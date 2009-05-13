@@ -1,0 +1,358 @@
+<html>
+<head>
+<title>Dark Unknown Map Editor v2.0</title>
+<link rel="stylesheet" type="text/css" href="external/jqModal.css" />
+<link rel="stylesheet" type="text/css" href="mapeditor.css" />
+
+<script language="JavaScript" src="collections.js"></script>
+<script language="JavaScript" src="gameObjects.js"></script>
+<script language="JavaScript" src="tileFactory.js"></script>
+<script language="JavaScript" src="atlas.js"></script>
+
+<script language="JavaScript" src="external/jquery-1.3.2.js"></script>
+<script language="JavaScript" src="external/jqModal.js"></script>
+
+<script language="JavaScript" src="mapeditor.js"></script>
+
+<!-- Maps follow -->
+ <script language="JavaScript" src="maps/main_map.js"></script>
+ <script language="JavaScript" src="maps/olympus.js"></script>
+
+</head>
+<body onLoad="initialSelect()">
+<div class="lefthalf">
+	<div class="mainmenu">
+		<form name="menuinterface">
+	  <img onClick="toggleinterface()" src="editor/button-l.gif" style="vertical-align:top;margin-right:5px" id="togglebutton" />
+	  <span class="buttons"><img onClick="editorLoadMap('test');" src="editor/newmapbutton.gif" />
+	  <select name="mapnameslist" style="vertical-align:top">
+	  	<script language="JavaScript">
+	  	for (var keyz in mappages) {
+      	if (keyz != "readPage") {
+   	      document.writeln('<option value="' + keyz + '">' + keyz + '</option>');
+        }
+      }
+      </script>
+    </select>
+    <img onClick="editorLoadMap('');" src="editor/loadmapbutton.gif" />
+    <img onClick="parent.amap.saveMap('');" src="editor/savemapbutton.gif" /></span>
+    </form>
+	</div>
+	<div class="bubble" id="featurebubble"><form name="featureeditpopup"><table cellpadding="1" cellspacing="1" border="0">
+		<tr><td colspan="2"><img src="graphics/073.gif" id="bubbletile" /></td></tr>
+		<tr><td>Tile desc:</td><td><input type="text" name="tiledesc" value="" size="40" /></td></tr>
+		<tr id="bubblelock" style="display:none"><td>Locked:</td><td><input type="text" name="tilelocked" value="" size="2" maxlength="1" /></td></tr>
+		<tr id="bubbleportal" style="display:none"><td>Dest. Map:<br />Dest X:<br />Dest Y:</td>
+		<td><input type="text" name="tileentermap" size="40" /><br /><input type="text" name="tileenterx" size="4" maxlength="3" /><br /><input type="text" name="tileentery" size="4" maxlength="3" /></td></tr>
+		<tr><td><input type="submit" value="Edit" onClick="submitEditFeature(1);" class="jqmClose" /></td><td><input type="submit" value="Cancel" onClick="submitEditFeature(0);" class="jqmClose" /></td></tr>
+		</table></form>
+	</div>
+  <div class="mapscreen">
+  	
+  </div>
+  <div class="brush">
+    <table>
+<tr><td>
+<form name="brushes">
+<table>
+<td>
+	<td colspan="3" style="text-align:center">Brush Function</td>
+</tr>
+<tr>
+	<td><input onClick="cornerx=-1;cornery=-1" type="radio" name="brushtype" value="point" checked="checked" /> Point</td>
+  <td><input type="radio" name="brushtype" value="rectangle" /> Rectangle</td>
+	<td><input type="radio" name="brushtype" value="editfeature" />Edit Features</td>
+</tr>
+</table>
+</form>
+</td>
+<td>&nbsp;</td>
+<td>
+<form name="editlayer">
+<table>
+<tr><td colspan="2" style="text-align:center">Map View</td></tr>
+<tr><td><input type="radio" name="layer" value="base" onclick="displayval='terrain';drawFeatures(0);" /> Base Map</td>
+<td><input type="radio" name="layer" value="objects" checked="checked" onclick="displayval='all';drawFeatures(1)" /> Features</td></tr>
+</table>
+</form>
+</td>
+</tr></table>
+  </div>
+</div>
+<div class="righthalf" id="righthalf">
+  <div class="selection">
+  	<form name="placement">
+      <center>
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr><td>
+            <img src="graphics/001.gif" id="selectionimg"></td>
+          <td><table cellpadding="0" cellspacing="0" border="1">
+          <tr><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td></tr>
+          <tr><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td></tr>
+          <tr><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td></tr>
+          </table></td></tr>
+          <tr><td></td><td><span style="font-size:smaller"><a href="javascript:parent.resize(document.forms[0]);">Resize</a>
+          <a href="javascript:parent.setdebug()">Debug</a></span></td></tr>
+        </table>
+      </center>
+    </form>
+  </div>
+  <div class="tiles">
+  	<table cellpadding="1" cellspacing="1" border="0">
+<tr>
+  <td><a href="javascript:setVisible('outdoor');"><img src="editor/outdoorbutton.gif" border="0"></a></td>
+  <td><a href="javascript:setVisible('indoor');"><img src="editor/indoorbutton.gif" border="0"></a></td>
+</tr><tr>
+  <td><a href="javascript:setVisible('features');"><img src="editor/featuresbutton.gif" border="0"></a></td>
+  <td><a href="javascript:setVisible('creatures');"><img src="editor/creaturesbutton.gif" border="0"></a></td>
+</tr>
+</table>
+<div style="display:block" id="outdoordiv">
+<table cellpadding="1" cellspacing="1" border="1">
+<tr>
+  <td colspan="3" style="font-weight:bold;text-align:center">Outdoor</td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('Ocean');</script></td>
+ <td><script language="Javascript">writeTileOption('Water');</script></td>
+ <td><script language="Javascript">writeTileOption('Shallows');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('SouthCoast');</script></td>
+ <td><script language="Javascript">writeTileOption('NorthCoast');</script></td>
+ <td><script language="Javascript">writeTileOption('EastCoast');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('WestCoast');</script></td>
+ <td><script language="Javascript">writeTileOption('NortheastCoast');</script></td>
+ <td><script language="Javascript">writeTileOption('SouthwestCoast');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('NorthwestCoast');</script></td>
+ <td><script language="Javascript">writeTileOption('SoutheastCoast');</script></td>
+ <td><script language="Javascript">writeTileOption('RiverNS');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('RiverEW');</script></td>
+ <td><script language="Javascript">writeTileOption('RiverNE');</script></td>
+ <td><script language="Javascript">writeTileOption('RiverNW');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('RiverSE');</script></td>
+ <td><script language="Javascript">writeTileOption('RiverSW');</script></td>
+ <td><script language="Javascript">writeTileOption('RiverTright');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('RiverTbottom');</script></td>
+ <td><script language="Javascript">writeTileOption('RiverTtop');</script></td>
+ <td><script language="Javascript">writeTileOption('RiverTleft');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('RiverSourceW');</script></td>
+ <td><script language="Javascript">writeTileOption('RiverSourceS');</script></td>
+ <td><script language="Javascript">writeTileOption('RiverSourceN');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('RiverSourceE');</script></td>
+ <td><script language="Javascript">writeTileOption('Swamp');</script></td>
+ <td><script language="Javascript">writeTileOption('Lava');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('Mountain');</script></td>
+ <td><script language="Javascript">writeTileOption('Grass');</script></td>
+ <td><script language="Javascript">writeTileOption('Brush');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('Forest');</script></td>
+ <td><script language="Javascript">writeTileOption('Hills');</script></td>
+ <td><script language="Javascript">writeTileOption('ForestNCoast');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('ForestECoast');</script></td>
+ <td><script language="Javascript">writeTileOption('ForestWCoast');</script></td>
+ <td><script language="Javascript">writeTileOption('ForestSCoast');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('BrushNCoast');</script></td>
+ <td><script language="Javascript">writeTileOption('BrushECoast');</script></td>
+ <td><script language="Javascript">writeTileOption('BrushWCoast');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('BrushSCoast');</script></td>
+ <td></td>
+ <td></td>
+</tr>
+</table>
+</div>
+<div style="display:none" id="indoordiv">
+<table cellpadding="1" cellspacing="1" border="1">
+<tr>
+ <td colspan="3" style="font-weight:bold;text-align:center">Indoor (Basic)</td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('Wall');</script></td>
+ <td><script language="Javascript">writeTileOption('BlankBlack');</script></td>
+ <td><script language="Javascript">writeTileOption('BlankWhite');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('Cobblestone');</script></td>
+ <td><script language="Javascript">writeTileOption('PurpleCobblestone');</script></td>
+ <td><script language="Javascript">writeTileOption('StoneWall');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('PlanksEW');</script></td>
+ <td><script language="Javascript">writeTileOption('Pillar');</script></td>
+ <td><script language="Javascript">writeTileOption('Doorway');</script></td>
+ <td></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('PlanksNS');</script></td>
+ <td><script language="Javascript">writeTileOption('Mast');</script></td>
+ <td><script language="Javascript">writeTileOption('Rigging');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('CounterBox');</script></td>
+ <td><script language="Javascript">writeTileOption('Stone');</script></td><td></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('LeftCounter');</script></td>
+ <td><script language="Javascript">writeTileOption('HorizontalCounter');</script></td>
+ <td><script language="Javascript">writeTileOption('RightCounter');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('LetterA');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterB');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterC');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('LetterD');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterE');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterF');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('LetterG');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterH');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterI');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('LetterJ');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterK');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterL');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('LetterM');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterN');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterO');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('LetterP');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterQ');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterR');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('LetterS');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterT');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterU');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('LetterV');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterW');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterX');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('LetterY');</script></td>
+ <td><script language="Javascript">writeTileOption('LetterZ');</script></td>
+ <td><script language="Javascript">writeTileOption('TopCounter');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('WallSE');</script></td>
+ <td><script language="Javascript">writeTileOption('WallSW');</script></td>
+ <td><script language="Javascript">writeTileOption('VerticalCounter');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('WallNE');</script></td>
+ <td><script language="Javascript">writeTileOption('WallNW');</script></td>
+ <td><script language="Javascript">writeTileOption('BottomCounter');</script></td>
+</tr>
+</table>
+</div>
+<div style="display:none" id="featurediv">
+<table cellpadding="1" cellspacing="1" border="1">
+<tr>
+ <td colspan="3" style="font-weight:bold;text-align:center">Features</td>
+</tr>
+<tr>
+ <td></td>
+ <td><script language="Javascript">writeTileOption('Eraser');</script></td>
+ <td></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('LeftCastle');</script></td>
+ <td><script language="Javascript">writeTileOption('Castle');</script></td>
+ <td><script language="Javascript">writeTileOption('RightCastle');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('Dungeon');</script></td>
+ <td><script language="Javascript">writeTileOption('Towne');</script></td>
+ <td><script language="Javascript">writeTileOption('Keep');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('Village');</script></td>
+ <td><script language="Javascript">writeTileOption('Shrine');</script></td>
+ <td><script language="Javascript">writeTileOption('Ruins');</script></td>
+</tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('GrassTower');</script></td>
+ <td><script language="Javascript">writeTileOption('HillTower');</script></td>
+ <td></td>
+</tr>
+<tr>
+	<td><script language="Javascript">writeTileOption('Chest');</script></td>
+	<td><script language="Javascript">writeTileOption('DoorWindow');</script></td>
+	<td><script language="Javascript">writeTileOption('LockedDoorWindow');</script></td>
+</tr>
+<tr>
+	<td><script language="Javascript">writeTileOption('Corpse');</script></td>
+	<td><script language="Javascript">writeTileOption('Altar');</script></td>
+	<td><script language="Javascript">writeTileOption('Campfire');</script></td>
+</tr>
+<tr>
+	<td><script language="Javascript">writeTileOption('EnergyField');</script></td>
+	<td><script language="Javascript">writeTileOption('Door');</script></td>
+	<td><script language="Javascript">writeTileOption('LockedDoor');</script></td>
+</tr>
+<tr>
+	<td><script language="Javascript">writeTileOption('SleepField');</script></td>
+	<td><script language="Javascript">writeTileOption('MagicLockedDoorWindow');</script></td>
+	<td><script language="Javascript">writeTileOption('MagicLockedDoor');</script></td>
+</tr>
+<tr>
+	<td><script language="Javascript">writeTileOption('FireField');</script></td>
+	<td><script language="Javascript">writeTileOption('PoisonField');</script></td>
+	<td><script language="Javascript">writeTileOption('LadderDown');</script></td>
+</tr>
+<tr>
+	<td><script language="Javascript">writeTileOption('WBridgeNS');</script></td>
+	<td><script language="Javascript">writeTileOption('EBridgeNS');</script></td>
+	<td><script language="Javascript">writeTileOption('LadderUp');</script></td>
+</tr>
+<tr>
+        <td><script language="Javascript">writeTileOption('NBridgeEW');</script></td>
+        <td><script language="Javascript">writeTileOption('BridgeEW');</script></td>
+        <td><script language="Javascript">writeTileOption('BridgeNS');</script></td>
+</tr>
+<tr>
+        <td><script language="Javascript">writeTileOption('SBridgeEW');</script></td>
+        <td><script language="Javascript">writeTileOption('SecretDoor');</script></td>
+        <td></td>
+</tr>
+</table>
+</div>
+<div style="display:none" id="creaturediv">
+
+</div>
+
+  </div>
+</div>
+</body>
+</html>

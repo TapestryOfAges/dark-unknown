@@ -1,0 +1,35 @@
+	div.lefthalf  { position: absolute;
+		              right: 155px;
+		              left: 0px;
+		            }
+		            
+  div.righthalf { position: absolute;
+  	              top: 0px;
+  	              right: 0px;
+  	              width : 155px;
+  	            }
+  
+  div.tiles     { overflow: auto;
+  	              border-width : 1px;
+  	              border-style : solid;
+  	            }
+  div.brush     { height : 70px;
+  	              border-width : 1px;
+  	              border-style : solid;
+  	            }
+  div.selection { border-width : 1px;
+  	              border-style : solid;
+  	            }
+  div.mapscreen { overflow: auto;
+  	              border-width : 1px;
+  	              border-style : solid;
+  	            }
+  div.mainmenu  { 
+  	            }
+  div.bubble { display: none; 
+  	           left:50; 
+  	           top:50; 
+  	           color: #aaaaff; 
+  	           background-color: #D7DF01; 
+  	           border: 1px solid #c93;
+  	           position: absolute;  }
