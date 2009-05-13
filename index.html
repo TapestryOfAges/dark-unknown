@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Dark Unknown Map Editor</title>
+</head>
+<body>
+<h2>Dark Unknown Map Editor v1.0</h2>
+
+<p><a href="mapeditor.html">Go to the editor</a>.</p>
+
+<p>A quick and dirty instruction file for using the map editor. Note: This requires Javascript to be turned on.</p>
+
+<h3>Top Menu</h3>
+
+<ul>
+<li>Leftmost button (shows a triangle): Hide/reveal the rest of the interface. (To-do: move it up and off the top tiles a bit.)</li>
+<li>New Map: Creates a 5x5 water map. Use the "resize" buttons in the upper right to create a map of the desired size. (To-do: Make "New Map"
+ask for input about new map size.) New Map is the same as clicking "Load Map" with the "test" map selected.</li>
+<li>Load Map: loads whichever map is selected in the dropdown. Be patient if the map is very large (like the "world" map).</li>
+<li>Save Map: Opens a new window/tab and saves the JS for the map you are working on there. Use Save As to save it to disk.</li>
+</ul>
+
+<h3>Upper Right</h3>
+<ul>
+<li>The square shows which tile you are "painting" with.</li>
+<li>Resize: Select one of the 9 boxes to show where in your new map the current map should be anchored. Same as in Photoshop/whatever when
+changing canvas size. If you choose the middle left box and then add columns they will all be added to the right, etc.</li>
+<li>Debug: Turns on the debug code, which pops info into a separate window. You are unlikely to want to do this. What stuff appears there is
+by and large dependant on which bits of code were giving me strange errors.</li>
+</ul>
+
+<h3>Right Column</h3>
+
+<ul>
+<li>Choose which category of tiles to choose from: Outdoor or Indoor for terrain, or Features. (Creatures is not yet implemented.)</li>
+<li>Click any of the tiles to select that tile to add to the map. You can see the tilenames in the status bar on the browser as you mouseover.
+</li>
+</ul>
+
+<h3>Bottom Menu</h3>
+
+<ul>
+<li>Point/Rectangle: If "Point" is selected, each click places one tile. If "rectangle" is selected, the first click is one corner, and the
+second click the opposite corner. The map will then fill in all the squares in the rectangle (which you can of course also use to make lines).
+</li>
+<li>Base Map/Features: Switching to Base Map redraws the map without any of the features showing. Selecting Features redraws it with the 
+features. Note this does a lazy redraw of the entire map, so it's slower the larger the map is.
+</li>
+</ul>
+
+<h3>Features vs Terrain:</h3>
+<p>Terrain is anything totally immutable and unusable on the map. Grass, mountains, walls, floors. Pillars and fountains if you don't want the
+PC to be able to (U)se the fountain. <br />
+Features are placed on top of terrain and are things like cities, dungeon entrances, doors, chairs, etc. <br />
+When making a map make it first as just terrain and then add the features.</p>
+
+<h3>How to save a map to edit later:</h3>
+<p>JavaScript doesn't have the ability to modify files on your hard drive. Hitting Save Map will open a new window and print the JS code for your
+map there. Perform the following steps if you want to be able to later Load the map you've built:</p>
+<ol>
+<li>Save Map. Give it a unique name.</li>
+<li>Go to the window with the map JS code and select File->Save As. Save it in the maps/ directory of the editor. (Note: you can only save a 
+map to reload later when running the editor locally. If you just want to send me the built map, save it anywhere and email it to me.)</li>
+<li>Open the file mapeditor.html. Find the comment "Maps follow" and add the following line at the end of that block:<br />
+<code>&lt;script language="JavaScript" src="maps/YOURFILENAME"&gt;&lt;/script&gt;</code></li>
+<li>Reload the map editor (hit refresh on the page). Your map should now appear in the dropdown next to Load Maps.</li>
+</ol>
+
+<p>If your map is complete and you would like to offer it to me for use in The Dark Unknown, send me the file after you Save As.</p>
+
+<p><a href="mapeditor.html">Go to the editor</a>.</p>
+
+</body>
+</html>
+
+
