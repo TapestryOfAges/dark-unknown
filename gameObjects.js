@@ -1362,10 +1362,20 @@ function SecretDoorTile() {
 	this.passable = 0x4; // ethereal
 	this.blocklos = 1; 
 	this.desc = "a wall";
-	this.setType("feature");
 }
 SecretDoorTile.prototype = new FeatureObject;
 
+function WhirlpoolTile() {
+	this.name = "Whirlpool";
+	this.graphic = "325.gif";
+	this.passable = 0x
+  this.passable = 0x15; // swim, ethereal, levitate, fly
+  this.blocklos = 0;
+  this.desc = "a whirlpool";
+  
+  Enterable.call(this, "null", 0, 0);
+}
+WhirlpoolTile.prototype = new FeatureObject;
 
 // NPCs
 
