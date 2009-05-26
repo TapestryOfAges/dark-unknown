@@ -38,7 +38,6 @@ Collection.prototype.addBottom = function(addthis) {
 }
 
 Collection.prototype.deleteFrom = function(deletethis) {
-	alert(deletethis.name);
 	for (var i = 0; i < this.container.length; i++) {
 		if (this.container[i] == deletethis) {
 			this.container.splice(i,1);
