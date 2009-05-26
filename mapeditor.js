@@ -9,13 +9,10 @@ var amap = new GameMap();
 var debug = 0;
 var debugscreen;
 var togglehide = 0;
-//var overrides = new Array;  // Array of arrays, each one x,y,property,new value
 var displayval = "all";
-//var lockout = 0;
 var editable;
 var browserheight = getSize();
 
-//$().ready(function() { $('.bubble').jqm({modal : true}) });
 
 if (debug) {
   debugscreen = window.open('','debugscreen');
@@ -85,18 +82,28 @@ function drawMap() {
  $("div.mapscreen").html(mapdiv);
  $("div.mapscreen").css("height", browserheight-130);
  $("div.tiles").css("height", browserheight-100);
- if (displayval == "all") {
+ if (displayval == "features") {
    drawFeatures(1);
+ }
+ else if (displayval == "all") {
+ 	 drawFeatures(2);
  }
  $().ready(function() { $('.bubble').jqm({modal : true}) });
 }
 
 function drawFeatures(draw) {
-	if (draw == 1) {
+	if (draw > 0) {
   	var allfeatures = amap.features.getAll();
     for (var i=0;i<=allfeatures.length-1;i++) {
       var tileid = "tile" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
       document.images[tileid].src="graphics/"+allfeatures[i].getGraphic();
+    }
+    if (draw > 1) {
+    	var allnpcs = amap.npcs.getAll();
+ 	    for (var i=0;i<=allnpcs.length-1;i++) {
+        var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
+        document.images[tileid].src="graphics/"+allnpcs[i].getGraphic();
+      }
     }
   }
   else {
@@ -106,6 +113,13 @@ function drawFeatures(draw) {
       var terrainthere = amap.getTile(allfeatures[i].getx(),allfeatures[i].gety());
       document.images[tileid].src="graphics/"+terrainthere.terrain.getGraphic();
     }
+    var allnpcs = amap.npcs.getAll();
+    for (var i=0;i<=allnpcs.length-1;i++) {
+      var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
+      var terrainthere = amap.getTile(allnpcs[i].getx(),allnpcs[i].gety());
+      document.images[tileid].src="graphics/"+terrainthere.terrain.getGraphic();
+    }
+
   } 	
 }
 
@@ -212,14 +226,22 @@ function submitEditFeature(change) {
 			editable.setEnterMap(document.featureeditpopup.tileentermap.value, document.featureeditpopup.tileenterx.value, document.featureeditpopup.tileentery.value);
 		}
 	}
-//	lockout = 0;
+	else if (change == -1) {
+		// add an "Are you sure? Yes/No" prompt
+		var mapfeature = amap.features;
+		mapfeature.deleteFrom(editable);
+		mapfeature = amap.getTile(editable.getx(),editable.gety());
+		mapfeature.features.deleteFrom(editable);
+    var tileid = "tile" + editable.getx() + "x" + editable.gety();
+    var localacre = amap.getTile(editable.getx(),editable.gety());
+    document.images[tileid].src = "graphics/"+localacre.terrain.getGraphic();
+
+	}
   document.featureeditpopup.elements[0].value = "";
   document.featureeditpopup.elements[1].value = "";
   document.featureeditpopup.elements[2].value = "";
   document.featureeditpopup.elements[3].value = "";
   document.featureeditpopup.elements[4].value = "";
-//	var bubbleblock = document.getElementById("featurebubble");
-//  bubbleblock.style.display = "none";
  	var lockedblock = document.getElementById("bubblelock");
  	lockedblock.style.display = "none";
   var portalblock = document.getElementById("bubbleportal");
