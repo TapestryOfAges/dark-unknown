@@ -387,6 +387,7 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
     debugscreen.document.writeln("Done: " + this.data.length + " " + this.data[0].length + "<br><br>");
   }
   this.setFeaturesCoord();
+  this.setNPCsCoord();
   drawMap();
 }
 
@@ -394,16 +395,26 @@ GameMap.prototype.setFeaturesCoord = function() {
   for (var i = 0; i<=this.data.length-1; i++) {
   	for (var j = 0; j<=this.data[0].length-1; j++){
   		var featuresarray = this.data[i][j].features.getAll();
-//  		alert(featuresarray.length);
   		for (var ind = 0; ind<=featuresarray.length-1; ind++) {
-//  			alert(featuresarray[ind].x);
-//  			alert(j);
   			featuresarray[ind].x = j;
   			featuresarray[ind].y = i;
   		}
   	}
   }
 }
+
+GameMap.prototype.setNPCsCoord = function() {
+  for (var i = 0; i<=this.data.length-1; i++) {
+  	for (var j = 0; j<=this.data[0].length-1; j++){
+  		var npcsarray = this.data[i][j].npcs.getAll();
+  		for (var ind = 0; ind<=npcsarray.length-1; ind++) {
+  			npcsarray[ind].x = j;
+  			npcsarray[ind].y = i;
+  		}
+  	}
+  }
+}
+
 
 GameMap.prototype.placeThing = function(x,y,newthing) {
   if (newthing) {
@@ -430,7 +441,6 @@ GameMap.prototype.deleteThing = function(thing) {
 }
 
 
-// FINISHME
 GameMap.prototype.saveMap = function (name) {
  if (name == '') {
    name = prompt("Map Name", "");
