@@ -44,7 +44,7 @@
 		<tr id="bubblelock" style="display:none"><td>Locked:</td><td><input type="text" name="tilelocked" value="" size="2" maxlength="1" /></td></tr>
 		<tr id="bubbleportal" style="display:none"><td>Dest. Map:<br />Dest X:<br />Dest Y:</td>
 		<td><input type="text" name="tileentermap" size="40" /><br /><input type="text" name="tileenterx" size="4" maxlength="3" /><br /><input type="text" name="tileentery" size="4" maxlength="3" /></td></tr>
-		<tr><td><input type="submit" value="Edit" onClick="submitEditFeature(1);" class="jqmClose" /></td><td><input type="submit" value="Cancel" onClick="submitEditFeature(0);" class="jqmClose" /></td></tr>
+		<tr><td><input type="submit" value="Edit" onClick="submitEditFeature(1);" class="jqmClose" /></td><td><input type="submit" value="Cancel" onClick="submitEditFeature(0);" class="jqmClose" /> <input type="submit" value="Delete Feature" onClick="submitEditFeature(-1);" class="jqmClose" /></td></tr>
 		</table></form>
 	</div>
   <div class="mapscreen">
@@ -72,7 +72,8 @@
 <table>
 <tr><td colspan="2" style="text-align:center">Map View</td></tr>
 <tr><td><input type="radio" name="layer" value="base" onclick="displayval='terrain';drawFeatures(0);" /> Base Map</td>
-<td><input type="radio" name="layer" value="objects" checked="checked" onclick="displayval='all';drawFeatures(1)" /> Features</td></tr>
+<td><input type="radio" name="layer" value="objects" onclick="displayval='features';drawFeatures(1)" /> Features</td>
+<td><input type="radio" name="layer" value="objects" checked="checked" onclick="displayval='all';drawFeatures(2)" /> NPCs</td></tr>
 </table>
 </form>
 </td>
@@ -304,7 +305,7 @@
 <tr>
  <td><script language="Javascript">writeTileOption('GrassTower');</script></td>
  <td><script language="Javascript">writeTileOption('HillTower');</script></td>
- <td></td>
+ <td><script language="Javascript">writeTileOption('Whirlpool');</script></td>
 </tr>
 <tr>
 	<td><script language="Javascript">writeTileOption('Chest');</script></td>
@@ -349,6 +350,10 @@
 </table>
 </div>
 <div style="display:none" id="creaturediv">
+<table cellpadding="1" cellspacing="1" border="1">
+<tr>
+  <td colspan="3" style="font-weight:bold;text-align:center">Creatures</td>
+</tr>
 
 </div>
 
