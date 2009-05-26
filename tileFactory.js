@@ -664,3 +664,8 @@ tileFactory.prototype.makeHillTowerTile = function() {
   var newTile = new HillTowerTile();
   return newTile;
 }
+
+tileFactory.prototype.makeWhirlpoolTile = function() {
+  var newTile = new WhirlpoolTile();
+  return newTile;
+}
