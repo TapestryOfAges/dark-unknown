@@ -1380,6 +1380,53 @@ WhirlpoolTile.prototype = new FeatureObject;
 // NPCs
 
 function AnimateObject() {
-	
+	this.altGraphics = new Array;
 }
 AnimateObject.prototype = new GameObject;
+
+AnimateObject.prototype.pickGraphic = new function() {
+	var options = this.altGraphics.length;
+	if (options > 0) {
+		var randomnumber=Math.floor(Math.random()*options);
+		this.setGraphic(altGraphics[randomnumber]);
+	}
+}
+
+function NPCObject() {
+	this.str = 10;
+	this.dex = 10;
+	this.con = 10
+	this.ai = "default";
+	this.hp = 10;
+	this.mana = 0;
+}
+NPCObject.prototype = new AnimateObject;
+
+NPCObject.prototype.setstr = new function(newstr) {
+	newstr = parseInt(newstr);
+	if (newstr != 0) { this.str = newstr; }
+}
+
+NPCObject.prototype.setdex = new function(newdex) {
+	newdex = parseInt(newdex);
+	if (newdex != 0) { this.dex = newdex; }
+}
+
+NPCObject.prototype.setcon = new function(newcon) {
+	newcon = parseInt(newcon);
+	if (newdex != 0) { this.con = newcon; }
+}
+
+NPCObject.prototype.setStats = new function(newstr, newdex, newcon) {
+	this.setstr(newstr);
+	this.setdex(newdex);
+	this.setcon(newcon);
+}
+
+function NPCGroup() {
+	
+}
+NPCGroup.prototype = new AnimateObject;
+
+
+// Start the NPCs!
