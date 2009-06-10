@@ -128,6 +128,21 @@ function drawFeatures(draw) {
 function changeselection(tilename) {
   selectionval = localFactory.createTile(tilename);
   document.images["selectionimg"].src = "graphics/" + selectionval.getGraphic();
+  if (selectionval.getType() == "terrain") {
+  	displayval='terrain';
+  	drawFeatures(0);
+  	document.editlayer.layer[0].checked = true;
+  }
+  else if (selectionval.getType() == "feature") {
+  	displayval = 'feature';
+  	drawFeatures(1);
+  	document.editlayer.layer[1].checked = true;
+  }
+  else {
+  	displayval = 'all';
+  	drawFeatures(2);
+  	document.editlayer.layer[2].checked = true;
+  }
 }
 
 function clickmap(xval,yval) {
@@ -313,6 +328,10 @@ function erasefeature(x,y) {
 
 function initialSelect() {
   changeselection('Ocean');
+ 	displayval='all';
+ 	drawFeatures(2);
+ 	document.editlayer.layer[2].checked = true;
+
 }
 
 function writeTileOption(tilename) {
