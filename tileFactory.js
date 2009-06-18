@@ -499,6 +499,11 @@ tileFactory.prototype.makeDungeonTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCaveTile = function() {
+  var newTile = new CaveTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTowneTile = function() {
   var newTile = new TowneTile();
   return newTile;
@@ -667,5 +672,40 @@ tileFactory.prototype.makeHillTowerTile = function() {
 
 tileFactory.prototype.makeWhirlpoolTile = function() {
   var newTile = new WhirlpoolTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArrowSlitTile = function() {
+  var newTile = new ArrowSlitTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrokenShrineTile = function() {
+  var newTile = new BrokenShrineTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWindowTile = function() {
+  var newTile = new WindowTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeLeftChairTile = function() {
+  var newTile = new LeftChairTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRightChairTile = function() {
+  var newTile = new RightChairTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTopChairTile = function() {
+  var newTile = new TopChairTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBottomChairTile = function() {
+  var newTile = new BottomChairTile();
   return newTile;
 }

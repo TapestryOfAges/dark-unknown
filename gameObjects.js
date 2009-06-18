@@ -603,6 +603,26 @@ function WallTile() {
 }
 WallTile.prototype = new TerrainObject;
 
+function ArrowSlitTile() {
+	this.name = "ArrowSlit";
+	this.graphic = "arrowslit.gif";
+	this.passable = 0x4; // ethereal
+	this.blocklos = 2; 
+	this.desc = "an arrow slit";
+
+}
+ArrowSlitTile.prototype = new TerrainObject;
+
+function WindowTile() {
+	this.name = "Window";
+	this.graphic = "window.gif";
+	this.passable = 0x4; // ethereal
+	this.blocklos = 0; 
+	this.desc = "a window";
+
+}
+WindowTile.prototype = new TerrainObject;
+
 function WallNETile() {
   this.name = "WallNE";
   this.graphic = "057.gif";
@@ -1071,6 +1091,17 @@ function DungeonTile() {
 }
 DungeonTile.prototype = new FeatureObject;
 
+function CaveTile() {
+  this.name = "Cave";
+  this.graphic = "cave.gif";
+  this.passable = 0x1d; // flying, walking, ethereal, levitate
+  this.blocklos = 0;
+  this.desc = "a cave entrance";
+
+  Enterable.call(this, "null", 0, 0);
+}
+CaveTile.prototype = new FeatureObject;
+
 function TowneTile() {
   this.name = "Towne";
   this.graphic = "152.gif";
@@ -1160,11 +1191,22 @@ function ShrineTile() {
   this.graphic = "156.gif";
   this.passable = 0x1d; // flying, walking, ethereal, levitate
   this.blocklos = 0;
-  this.desc = "a shrine";
+  this.desc = "a gate";
 
 //  Enterable.call(this, "null", 0, 0);
 }
 ShrineTile.prototype = new FeatureObject;
+
+function BrokenShrineTile() {
+  this.name = "BrokenShrine";
+  this.graphic = "brokengate.gif";
+  this.passable = 0x1d; // flying, walking, ethereal, levitate
+  this.blocklos = 0;
+  this.desc = "a broken gate";
+
+//  Enterable.call(this, "null", 0, 0);
+}
+BrokenShrineTile.prototype = new FeatureObject;
 
 function RuinsTile() {
   this.name = "Ruins";
@@ -1356,6 +1398,42 @@ function BridgeEWTile() {
 }
 BridgeEWTile.prototype = new FeatureObject;
 
+function LeftChairTile() {
+  this.name = "LeftChair";
+  this.graphic = "leftchair.gif";
+  this.passable = 0x1d; // flying, walking, ethereal, levitate
+  this.blocklos = 0;
+  this.desc = "a chair";
+}
+LeftChairTile.prototype = new FeatureObject;
+
+function RightChairTile() {
+  this.name = "RightChair";
+  this.graphic = "rightchair.gif";
+  this.passable = 0x1d; // flying, walking, ethereal, levitate
+  this.blocklos = 0;
+  this.desc = "a chair";
+}
+RightChairTile.prototype = new FeatureObject;
+
+function TopChairTile() {
+  this.name = "TopChair";
+  this.graphic = "topchair.gif";
+  this.passable = 0x1d; // flying, walking, ethereal, levitate
+  this.blocklos = 0;
+  this.desc = "a chair";
+}
+TopChairTile.prototype = new FeatureObject;
+
+function BottomChairTile() {
+  this.name = "BottomChair";
+  this.graphic = "bottomchair.gif";
+  this.passable = 0x1d; // flying, walking, ethereal, levitate
+  this.blocklos = 0;
+  this.desc = "a chair";
+}
+BottomChairTile.prototype = new FeatureObject;
+
 function SecretDoorTile() {
 	this.name = "SecretDoor";
 	this.graphic = "056.gif";   // note: 024 is U4's secret door
@@ -1395,16 +1473,29 @@ AnimateObject.prototype.pickGraphic = new function() {
 function NPCObject() {
 	this.str = 10;
 	this.dex = 10;
-	this.con = 10
+	this.int = 10
 	this.ai = "default";
 	this.hp = 10;
-	this.mana = 0;
+	this.level = 0
 }
 NPCObject.prototype = new AnimateObject;
+
+NPCObject.prototype.setMana = new function(newMana) {
+	if (newMana == -1) { this.mana = this.int; }
+	else {this.mana = newMana; }
+}
+
+NPCObject.prototype.getMana = new function() {
+	return this.mana;
+}
 
 NPCObject.prototype.setstr = new function(newstr) {
 	newstr = parseInt(newstr);
 	if (newstr != 0) { this.str = newstr; }
+}
+
+NPCObject.prototype.getstr = new function() {
+	return this.str;
 }
 
 NPCObject.prototype.setdex = new function(newdex) {
@@ -1412,15 +1503,40 @@ NPCObject.prototype.setdex = new function(newdex) {
 	if (newdex != 0) { this.dex = newdex; }
 }
 
-NPCObject.prototype.setcon = new function(newcon) {
-	newcon = parseInt(newcon);
-	if (newdex != 0) { this.con = newcon; }
+NPCObject.prototype.getdex = new function() {
+	return this.dex;
 }
 
-NPCObject.prototype.setStats = new function(newstr, newdex, newcon) {
+NPCObject.prototype.setint = new function(newint) {
+	newint = parseInt(newint);
+	if (newint != 0) { this.int = newint; }
+}
+
+NPCObject.prototype.getint = new function() {
+	return this.int;
+}
+
+NPCObject.prototype.setStats = new function(newstr, newdex, newint) {
 	this.setstr(newstr);
 	this.setdex(newdex);
-	this.setcon(newcon);
+	this.setint(newint);
+}
+
+NPCObject.prototype.setLevel = new function(newlevel) {
+	newlevel = parseInt(newlevel);
+	if (newlevel != 0) { this.level = newlevel; }
+}
+
+NPCObject.prototype.getLevel = new function() {
+	return this.level;
+}
+
+NPCObject.prototype.setAI = new function(newai) {
+	this.ai = newai; 
+}
+
+NPCObject.prototype.getAI = new function() {
+	return this.ai;
 }
 
 function NPCGroup() {
@@ -1430,3 +1546,74 @@ NPCGroup.prototype = new AnimateObject;
 
 
 // Start the NPCs!
+function DruidVillager() {
+	this.level = 1;
+	this.str = 10;
+	this.dex = 12;
+	this.int = 14;
+	this.ai = "spellcastergood";
+	this.graphic = "301.gif";
+	this.meleeAttackAs = "fists";
+	this.missileAttackAs = "none";
+}
+DruidVillager.prototype = new NPCObject;
+
+function ShepherdVillager() {
+	this.level = 1;
+	this.str = 12;
+	this.dex = 12;
+	this.int = 12;
+	this.ai = "meleegood";
+	this.graphic = "302.gif";
+	this.meleeAttackAs = "dagger";
+	this.missileAttackAs = "none";
+}
+ShepherdVillager.prototype = new NPCObject;
+
+function MageVillager() {
+	this.level = 1;
+	this.str = 10;
+	this.dex = 10;
+	this.int = 16;
+	this.ai = "spellcastergood";
+	this.graphic = "303.gif";
+	this.meleeAttackAs = "fists";
+	this.missileAttackAs = "none";
+}
+MageVillager.prototype = new NPCObject;
+
+function TinkerVillager() {
+	this.level = 1;
+	this.str = 12;
+	this.dex = 14;
+	this.int = 10;
+	this.ai = "missilegood";
+	this.graphic = "304.gif";
+	this.meleeAttackAs = "dagger";
+	this.missileAttackAs = "sling";
+}
+TinkerVillager.prototype = new NPCObject;
+
+function RangerVillager() {
+	this.level = 1;
+	this.str = 11;
+	this.dex = 14;
+	this.int = 11;
+	this.ai = "rangergood";
+	this.graphic = "305.gif";
+	this.meleeAttackAs = "dagger";
+	this.missileAttackAs = "sling";
+}
+RangerVillager.prototype = new NPCObject;
+
+function AdventurerVillager() {
+	this.level = 1;
+	this.str = 12;
+	this.dex = 12;
+	this.int = 12;
+	this.ai = "adventurergood";
+	this.graphic = "306.gif";
+	this.meleeAttackAs = "shortsword";
+	this.missileAttackAs = "sling";
+}
+
