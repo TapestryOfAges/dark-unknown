@@ -101,6 +101,10 @@ function Atlas() {
     "BlankBlack" : 'BK',
     '##' : "Wall", // 56
     "Wall" : '##',
+    '#+' : "ArrowSlit",
+    "ArrowSlit" : '#+',
+    '#O' : "Window",
+    "Window" : '#O',
     '+`' : "WallNE", // 57
     "WallNE" : '+`',
     '/+' : "WallNW", // 58
@@ -263,6 +267,14 @@ function GameMap() {
   this.features = new Collection;  // list of all features on the map
   this.npcs = new Collection; // list of all NPCs on the map
 // these two will be maintained concurrently with collections on individual tiles/acres
+
+  this.desc = "";
+  this.music = "";
+  this.exitTo = new Object;
+  this.exitTo.mapname = "darkunknown";
+  this.exitTo.x = 65;
+  this.exitTo.y = 70;
+  this.wraps = 0;
 }
 
 GameMap.prototype.setName = function(name) {
