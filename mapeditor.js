@@ -88,7 +88,7 @@ function drawMap() {
  else if (displayval == "all") {
  	 drawFeatures(2);
  }
- $().ready(function() { $('.bubble').jqm({modal : true}) });
+ $().ready(function() { $('#featurebubble').jqm({modal : true}) });
 }
 
 function drawFeatures(draw) {
@@ -209,8 +209,8 @@ function clickmap(xval,yval) {
 //  	var bubbleblock = mapscreen.document.getElementById("featurebubble");
 //  	bubbleblock.style.display = "block";
     var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
-    $('.bubble').jqm({onShow:myOpen}); 
-    $('.bubble').jqmShow();
+    $('#featurebubble').jqm({onShow:myOpen}); 
+    $('#featurebubble').jqmShow();
   	document.images["bubbletile"].src = "graphics/" + editable.getGraphic();
     document.featureeditpopup.tiledesc.value = editable.getDesc();
     if (editable.getLocked != null) {

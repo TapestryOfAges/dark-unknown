@@ -35,7 +35,9 @@
       </script>
     </select>
     <img onClick="editorLoadMap('');" src="editor/loadmapbutton.gif" />
-    <img onClick="parent.amap.saveMap('');" src="editor/savemapbutton.gif" /></span>
+    <img onClick="parent.amap.saveMap('');" src="editor/savemapbutton.gif" />
+    <img onClick="editorEditMapDetails();" src="editor/editdetailsbutton.gif" />
+    </span>
     </form>
 	</div>
 	<div class="bubble" id="featurebubble"><form name="featureeditpopup"><table cellpadding="1" cellspacing="1" border="0">
@@ -45,6 +47,15 @@
 		<tr id="bubbleportal" style="display:none"><td>Dest. Map:<br />Dest X:<br />Dest Y:</td>
 		<td><input type="text" name="tileentermap" size="40" /><br /><input type="text" name="tileenterx" size="4" maxlength="3" /><br /><input type="text" name="tileentery" size="4" maxlength="3" /></td></tr>
 		<tr><td><input type="submit" value="Edit" onClick="submitEditFeature(1);" class="jqmClose" /></td><td><input type="submit" value="Cancel" onClick="submitEditFeature(0);" class="jqmClose" /> <input type="submit" value="Delete Feature" onClick="submitEditFeature(-1);" class="jqmClose" /></td></tr>
+		</table></form>
+	</div>
+	<div class="bubble" id="detailsbubble"><form name="detailseditpopup"><table cellpadding="1" cellspacing="1" border="0">
+		<tr><td>Map name:</td><td><input type="text" name="mapname" value="" size="40" /></td></tr>
+		<tr><td>Map desc:</td><td><input type="text" name="mapdesc" value="" size="40" /></td></tr>
+		<tr><td>Music:</td><td><input type="text" name="mapmusic" value="" size="40" /></td></tr>
+		<tr><td>Exit to Map:<br />Dest X:<br />Dest Y:</td>
+		<td><input type="text" name="mapexitmap" size="40" /><br /><input type="text" name="mapexitx" size="4" maxlength="3" /><br /><input type="text" name="mapexity" size="4" maxlength="3" /></td></tr>
+		<tr><td><input type="submit" value="Edit" onClick="submitEditDetails(1);" class="jqmClose" /></td><td><input type="submit" value="Cancel" onClick="submitEditDetails(0);" class="jqmClose" /></td></tr>
 		</table></form>
 	</div>
   <div class="mapscreen">
