@@ -371,3 +371,31 @@ var creatureblock = document.getElementById("creaturediv");
 
 }
 
+function editorEditMapDetails() {
+  var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+  $('#detailsbubble').jqm({onShow:myOpen}); 
+  $('#detailsbubble').jqmShow();
+  document.detailseditpopup.mapname.value = amap.getName();
+  document.detailseditpopup.mapdesc.value = amap.getDesc();
+  document.detailseditpopup.mapmusic.value = amap.getMusic();
+  document.detailseditpopup.mapexitmap.value = amap.getExitToMap();
+  document.detailseditpopup.mapexitx.value = amap.getExitToX();
+  document.detailseditpopup.mapexity.value = amap.getExitToY();
+  document.detailseditpopup.mapenterx.value = amap.getEnterX();
+  document.detailseditpopup.mapentery.value = amap.getEnterY();
+  document.detailseditpopup.mapwrap.value = amap.getWrap();
+}
+
+function submitEditDetails(change) {
+	if (change == 1) {
+    amap.setName(document.detailseditpopup.mapname.value);
+    amap.setDesc(document.detailseditpopup.mapdesc.value);
+    amap.setMusic(document.detailseditpopup.mapmusic.value);
+    amap.setExitToMap(document.detailseditpopup.mapexitmap.value);
+    amap.setExitToX(document.detailseditpopup.mapexitx.value);
+    amap.setExitToY(document.detailseditpopup.mapexity.value);		
+    amap.setWrap(document.detailseditpopup.mapwrap.value);	
+    amap.setEnterX(document.detailseditpopup.mapenterx.value);
+    amap.setEnterY(document.detailseditpopup.mapentery.value);			
+	}
+}
