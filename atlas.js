@@ -227,13 +227,7 @@ function Atlas() {
     '=x' : "RiverSourceW"
 
     
-// 158-159 are features
-// 200-206 are features
-
   }
-
- // this.pages = new Array();  // array of condensed maps
-  // might remove this and use seperate Page objects external to but referenced exclusively by the Atlas
 
 }
 
@@ -260,8 +254,8 @@ function GameMap() {
   this.data = new Array;
 // Each entry in the array will be an Object with .terrain, .features, and .npcs
 
-  this.enterx = 0;
-  this.entery = 0;
+  this.enterx = 65;
+  this.entery = 70;
   this.name = "";  
 
   this.features = new Collection;  // list of all features on the map
@@ -286,6 +280,78 @@ GameMap.prototype.getName = function() {
   return this.name;
 }
 
+GameMap.prototype.setDesc = function(desc) {
+  this.desc = desc;
+  return this.desc;
+}
+
+GameMap.prototype.getDesc = function() {
+  return this.desc;
+}
+
+GameMap.prototype.setMusic = function(music) {
+  this.music = music;
+  return this.music;
+}
+
+GameMap.prototype.getMusic = function() {
+  return this.music;
+}
+
+GameMap.prototype.setEnterX = function(x) {
+  this.enterx = x;
+  return this.enterx;
+}
+
+GameMap.prototype.getEnterX = function() {
+  return this.enterx;
+}
+
+GameMap.prototype.setEnterY = function(y) {
+  this.entery = y;
+  return this.entery;
+}
+
+GameMap.prototype.getEnterY = function() {
+  return this.entery;
+}
+
+GameMap.prototype.setExitToMap = function(name) {
+  this.exitTo.mapname = name;
+  return this.exitTo.mapname;
+}
+
+GameMap.prototype.getExitToMap = function() {
+  return this.exitTo.mapname;
+}
+
+GameMap.prototype.setExitToX = function(x) {
+  this.exitTo.x = x;
+  return this.exitTo.x;
+}
+
+GameMap.prototype.getExitToX = function() {
+  return this.exitTo.x;
+}
+
+GameMap.prototype.setExitToY = function(y) {
+  this.exitTo.y = y;
+  return this.exitTo.y;
+}
+
+GameMap.prototype.getExitToY = function() {
+  return this.exitTo.y;
+}
+
+GameMap.prototype.setWrap = function(wrap) {
+  this.wrap = wrap;
+  return this.wrap;
+}
+
+GameMap.prototype.getWrap = function() {
+  return this.wrap;
+}
+
 // This should not be used externally
 GameMap.prototype.setTile = function(x,y,tile) {
   this.data[y][x] = tile;
@@ -294,8 +360,6 @@ GameMap.prototype.setTile = function(x,y,tile) {
 
 GameMap.prototype.getTile = function(x,y) {
   return this.data[y][x];
-  // FIXME - should return terrain, features, and NPCs
-  // now returns an object that has all three
 }
 
 // generate the tile from the factory first, then pass it to setTerrain
@@ -455,8 +519,9 @@ GameMap.prototype.deleteThing = function(thing) {
 
 GameMap.prototype.saveMap = function (name) {
  if (name == '') {
-   name = prompt("Map Name", "");
+   name = prompt("Map Name", this.name);
  }
+ if (name == null) {return;}
  var printerwin = window.open('','printarray');
  printerwin.document.writeln('mappages["' + name + '"] = new Object();');
  var oldname=name;
@@ -510,6 +575,15 @@ GameMap.prototype.saveMap = function (name) {
    }
    printerwin.document.write("};\n");
  }
+ name = 'mappages["' + oldname + '"]';
+ printerwin.document.write("\n" + name + ".desc = '" + this.getDesc() + "';\n");
+ printerwin.document.write(name + ".music = '" + this.getMusic() + "';\n");
+ printerwin.document.write(name + ".exitmap = '" + this.getExitToMap() + "';\n");
+ printerwin.document.write(name + ".exitx = '" + this.getExitToX() + "';\n");
+ printerwin.document.write(name + ".exity = '" + this.getExitToY() + "';\n");
+ printerwin.document.write(name + ".wraps = '" + this.getWrap() + "';\n");
+ printerwin.document.write(name + ".enterx = '" + this.getEnterX() + "';\n");
+ printerwin.document.write(name + ".entery = '" + this.getEnterY() + "';\n");
  printerwin.document.close();
 }
 
@@ -544,6 +618,17 @@ GameMap.prototype.loadMap = function (name) {
   	  this.placeThing(loadfeatures[i].x,loadfeatures[i].y,newfeature);
     }
   }
+  
+  // load map details
+  this.setDesc(mappages.readPage(name, "desc"));
+  this.setMusic(mappages.readPage(name, "music"));
+  this.setExitToMap(mappages.readPage(name, "exitmap"));
+  this.setExitToX(mappages.readPage(name, "exitx"));
+  this.setExitToY(mappages.readPage(name, "exity"));
+  this.setWrap(mappages.readPage(name, "wraps"));
+  this.setEnterX(mappages.readPage(name, "enterx"));
+  this.setEnterY(mappages.readPage(name, "entery"));
+  
   this.setName(name);
   return;
 }
