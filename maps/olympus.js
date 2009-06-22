@@ -70,6 +70,15 @@ mappages["olympus1"].features[20] = {name : 'EnergyField', x : 27, y : 11};
 mappages["olympus1"].features[21] = {name : 'EnergyField', x : 27, y : 12};
 mappages["olympus1"].features[22] = {name : 'LadderUp', x : 25, y : 23, entermap : 'null', enterx : 0, entery : 0};
 
+mappages["olympus1"].desc = 'Castle Olympus';
+mappages["olympus1"].music = 'Towne';
+mappages["olympus1"].exitmap = 'darkunknown';
+mappages["olympus1"].exitx = '65';
+mappages["olympus1"].exity = '69';
+mappages["olympus1"].wraps = '0';
+mappages["olympus1"].enterx = '29';
+mappages["olympus1"].entery = '42';
+
 
 mappages["olympus0"] = new Object();
 mappages["olympus0"].terrain = new Array;
