@@ -53,9 +53,23 @@
 	<div class="bubble" id="detailsbubble"><form name="detailseditpopup"><table cellpadding="1" cellspacing="1" border="0">
 		<tr><td>Map name:</td><td><input type="text" name="mapname" value="" size="40" /></td></tr>
 		<tr><td>Map desc:</td><td><input type="text" name="mapdesc" value="" size="40" /></td></tr>
-		<tr><td>Music:</td><td><input type="text" name="mapmusic" value="" size="40" /></td></tr>
+	  <tr><td>Music:</td><td><select name="mapmusic"><option value=""></option>
+		  <script language="JavaScript">
+		  	for (var keyz in musiclist) {
+		  		document.writeln('<option value="' + keyz + '">' + keyz + '</option>');
+		  	}
+			</script>
+		</select>
+		</td></tr>
 		<tr><td>Exit to Map:<br />Dest X:<br />Dest Y:</td>
-	<td><input type="text" name="mapexitmap" size="40" /><br /><input type="text" name="mapexitx" size="4" maxlength="3" /><br /><input type="text" name="mapexity" size="4" maxlength="3" /></td></tr>
+	<td><select name="mapexitmap"><option value=""></option>
+			<script language="JavaScript">
+		  	for (var keyz in mapslist) {
+		  		document.writeln('<option value="' + keyz + '">' + mapslist[keyz] + '</option>');
+		  	}
+			</script>
+		</select>
+		<br /><input type="text" name="mapexitx" size="4" maxlength="3" /><br /><input type="text" name="mapexity" size="4" maxlength="3" /></td></tr>
 		<tr><td>Map entrance<br />Enter X:<br />Enter Y:</td>
 	<td><br /><input type="text" name="mapenterx" size="4" maxlength="3" /><br /><input type="text" name="mapentery" size="4" maxlength="3" /></td></tr>
 		<tr><td>Worldwrap:</td><td><select name="mapwrap"><option value="None">None</option><option value="Horizontal">Horizontal</option>
