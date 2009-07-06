@@ -1477,6 +1477,7 @@ function NPCObject() {
 	this.ai = "default";
 	this.hp = 10;
 	this.level = 0
+	
 }
 NPCObject.prototype = new AnimateObject;
 
@@ -1546,74 +1547,232 @@ NPCGroup.prototype = new AnimateObject;
 
 
 // Start the NPCs!
-function DruidVillager() {
+function DruidVillagerNPC() {
+	this.name = "DruidVillager";
 	this.level = 1;
 	this.str = 10;
 	this.dex = 12;
 	this.int = 14;
-	this.ai = "spellcastergood";
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "spellcaster";
 	this.graphic = "301.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
 }
 DruidVillager.prototype = new NPCObject;
 
-function ShepherdVillager() {
+function ShepherdVillagerNPC() {
+	this.name = "ShepherdVillager";
 	this.level = 1;
 	this.str = 12;
 	this.dex = 12;
 	this.int = 12;
-	this.ai = "meleegood";
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "melee";
 	this.graphic = "302.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "none";
 }
 ShepherdVillager.prototype = new NPCObject;
 
-function MageVillager() {
+function MageVillagerNPC() {
+	this.name = "MageVillager";
 	this.level = 1;
 	this.str = 10;
 	this.dex = 10;
 	this.int = 16;
-	this.ai = "spellcastergood";
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "spellcaster";
 	this.graphic = "303.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
 }
 MageVillager.prototype = new NPCObject;
 
-function TinkerVillager() {
+function TinkerVillagerNPC() {
+	this.name = "TinkerVillager";
 	this.level = 1;
 	this.str = 12;
 	this.dex = 14;
 	this.int = 10;
-	this.ai = "missilegood";
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "missile";
 	this.graphic = "304.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "sling";
 }
 TinkerVillager.prototype = new NPCObject;
 
-function RangerVillager() {
+function RangerVillagerNPC() {
+	this.name = "RangerVillager";
 	this.level = 1;
 	this.str = 11;
 	this.dex = 14;
 	this.int = 11;
-	this.ai = "rangergood";
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "ranger";
 	this.graphic = "305.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "sling";
 }
 RangerVillager.prototype = new NPCObject;
 
-function AdventurerVillager() {
+function AdventurerVillagerNPC() {
+	this.name = "AdventurerVillager";
 	this.level = 1;
 	this.str = 12;
 	this.dex = 12;
 	this.int = 12;
-	this.ai = "adventurergood";
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "adventurer";
 	this.graphic = "306.gif";
 	this.meleeAttackAs = "shortsword";
 	this.missileAttackAs = "sling";
 }
 
+function PaladinVillagerNPC() {
+	this.name = "PaladinVillager";
+	this.level = 1;
+	this.str = 14;
+	this.dex = 10;
+	this.int = 12;
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "paladin";
+	this.graphic = "307.gif";
+	this.meleeAttackAs = "shortsword";
+	this.missileAttackAs = "none";
+}
+
+function FighterVillagerNPC() {
+	this.name = "FighterVillager";
+	this.level = 1;
+	this.str = 14;
+	this.dex = 12;
+	this.int = 10;
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "melee";
+	this.graphic = "308.gif";
+	this.meleeAttackAs = "shortsword";
+	this.missileAttackAs = "sling";
+}
+
+function TownsfolkVillagerNPC() {
+	this.name = "TownsfolkVillager";
+	this.level = 1;
+	this.str = 10;
+	this.dex = 10;
+	this.int = 10;
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "melee";
+	this.graphic = "310.gif";
+	this.meleeAttackAs = "dagger";
+	this.missileAttackAs = "none";
+}
+
+function BardVillagerNPC() {
+	this.name = "BardVillager";
+	this.level = 1;
+	this.str = 10;
+	this.dex = 14;
+	this.int = 12;
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "ranger";
+	this.graphic = "311.gif";
+	this.meleeAttackAs = "dagger";
+	this.missileAttackAs = "bow";
+}
+
+function ChildNPC() {
+	this.name = "Child";
+	this.level = 1;
+	this.str = 7;
+	this.dex = 7;
+	this.int = 7;
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "runaway";
+	this.graphic = "312.gif";
+	this.meleeAttackAs = "fists";
+	this.missileAttackAs = "none";
+}
+
+function BeggerNPC() {
+	this.name = "Begger";
+	this.level = 1;
+	this.str = 7;
+	this.dex = 7;
+	this.int = 7;
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "runaway";
+	this.graphic = "313.gif";
+	this.meleeAttackAs = "fists";
+	this.missileAttackAs = "none";
+}
+
+function TownGuardNPC() {
+  this.name = "TownGuard";
+	this.level = 5;
+	this.str = 23;
+	this.dex = 23;
+	this.int = 14;
+	this.attitude = "friendly";
+	this.peaceAI = "guard";
+	this.PCThreatAI = "melee";
+	this.ThreatenedAI = "melee";
+	this.graphic = "309.gif";
+	this.meleeAttackAs = "halberd";
+	this.missileAttackAs = "none";
+}
+
+function KingNPC() {
+  this.name = "King";
+	this.level = 8;
+	this.str = 30;
+	this.dex = 30;
+	this.int = 30;
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "spellcaster";
+	this.ThreatenedAI = "spellcaster";
+	this.graphic = "315.gif";
+	this.meleeAttackAs = "halberd";
+	this.missileAttackAs = "none";
+}
+
+function PrinceNPC() {
+  this.name = "Prince";
+	this.level = 7;
+	this.str = 25;
+	this.dex = 25;
+	this.int = 25;
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "townsfolk";
+	this.ThreatenedAI = "melee";
+	this.graphic = "300.gif";
+	this.meleeAttackAs = "longsword";
+	this.missileAttackAs = "none";
+}
