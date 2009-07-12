@@ -709,3 +709,78 @@ tileFactory.prototype.makeBottomChairTile = function() {
   var newTile = new BottomChairTile();
   return newTile;
 }
+
+tileFactory.prototype.makeDruidVillagerNPCTile = function() {
+  var newTile = new DruidVillagerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShepherdVillagerNPCTile = function() {
+  var newTile = new ShepherdVillagerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMageVillagerNPCTile = function() {
+  var newTile = new MageVillagerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTinkerVillagerNPCTile = function() {
+  var newTile = new TinkerVillagerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRangerVillagerNPCTile = function() {
+  var newTile = new RangerVillagerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAdventurerVillagerNPCTile = function() {
+  var newTile = new AdventurerVillagerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePaladinVillagerNPCTile = function() {
+  var newTile = new PaladinVillagerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFighterVillagerNPCTile = function() {
+  var newTile = new FighterVillagerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTownsfolkVillagerNPCTile = function() {
+  var newTile = new TownsfolkVillagerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBardVillagerNPCTile = function() {
+  var newTile = new BardVillagerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeChildNPCTile = function() {
+  var newTile = new ChildNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBeggerNPCTile = function() {
+  var newTile = new BeggerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeKingNPCTile = function() {
+  var newTile = new KingNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePrinceNPCTile = function() {
+  var newTile = new PrinceNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTownguardNPCTile = function() {
+  var newTile = new TownguardNPCTile();
+  return newTile;
+}

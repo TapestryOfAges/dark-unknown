@@ -1463,10 +1463,12 @@ function AnimateObject() {
 AnimateObject.prototype = new GameObject;
 
 AnimateObject.prototype.pickGraphic = new function() {
-	var options = this.altGraphics.length;
-	if (options > 0) {
-		var randomnumber=Math.floor(Math.random()*options);
-		this.setGraphic(altGraphics[randomnumber]);
+	if (this.altGraphics) {
+  	var options = this.altGraphics.length;
+	  if (options > 0) {
+		  var randomnumber=Math.floor(Math.random()*options);
+		  this.setGraphic(altGraphics[randomnumber]);
+	  }
 	}
 }
 
@@ -1477,66 +1479,67 @@ function NPCObject() {
 	this.ai = "default";
 	this.hp = 10;
 	this.level = 0
+	this.type = "npc";
 	
 }
 NPCObject.prototype = new AnimateObject;
 
-NPCObject.prototype.setMana = new function(newMana) {
+NPCObject.prototype.setMana = function(newMana) {
 	if (newMana == -1) { this.mana = this.int; }
 	else {this.mana = newMana; }
 }
 
-NPCObject.prototype.getMana = new function() {
+NPCObject.prototype.getMana = function() {
 	return this.mana;
 }
 
-NPCObject.prototype.setstr = new function(newstr) {
+NPCObject.prototype.setstr = function(newstr) {
 	newstr = parseInt(newstr);
 	if (newstr != 0) { this.str = newstr; }
 }
 
-NPCObject.prototype.getstr = new function() {
+NPCObject.prototype.getstr = function() {
 	return this.str;
 }
 
-NPCObject.prototype.setdex = new function(newdex) {
+NPCObject.prototype.setdex = function(newdex) {
 	newdex = parseInt(newdex);
 	if (newdex != 0) { this.dex = newdex; }
 }
 
-NPCObject.prototype.getdex = new function() {
+NPCObject.prototype.getdex = function() {
 	return this.dex;
 }
 
-NPCObject.prototype.setint = new function(newint) {
+NPCObject.prototype.setint = function(newint) {
 	newint = parseInt(newint);
 	if (newint != 0) { this.int = newint; }
 }
 
-NPCObject.prototype.getint = new function() {
+NPCObject.prototype.getint = function() {
 	return this.int;
 }
 
-NPCObject.prototype.setStats = new function(newstr, newdex, newint) {
+NPCObject.prototype.setStats = function(newstr, newdex, newint) {
 	this.setstr(newstr);
 	this.setdex(newdex);
 	this.setint(newint);
 }
 
-NPCObject.prototype.setLevel = new function(newlevel) {
+NPCObject.prototype.setLevel = function(newlevel) {
 	newlevel = parseInt(newlevel);
 	if (newlevel != 0) { this.level = newlevel; }
 }
 
-NPCObject.prototype.getLevel = new function() {
+NPCObject.prototype.getLevel = function() {
 	return this.level;
 }
 
-NPCObject.prototype.setAI = new function(newai) {
+NPCObject.prototype.setAI = function(newai) {
 	this.ai = newai; 
 }
 
-NPCObject.prototype.getAI = new function() {
+NPCObject.prototype.getAI = function() {
 	return this.ai;
 }
 
@@ -1545,14 +1548,14 @@ function NPCGroup() {
 }
 NPCGroup.prototype = new AnimateObject;
 
-
 // Start the NPCs!
-function DruidVillagerNPC() {
-	this.name = "DruidVillager";
+function DruidVillagerNPCTile() {
+	this.name = "DruidVillagerNPC";
 	this.level = 1;
 	this.str = 10;
 	this.dex = 12;
 	this.int = 14;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
@@ -1561,14 +1564,15 @@ function DruidVillagerNPC() {
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
 }
-DruidVillager.prototype = new NPCObject;
+DruidVillagerNPCTile.prototype = new NPCObject;
 
-function ShepherdVillagerNPC() {
-	this.name = "ShepherdVillager";
+function ShepherdVillagerNPCTile() {
+	this.name = "ShepherdVillagerNPC";
 	this.level = 1;
 	this.str = 12;
 	this.dex = 12;
 	this.int = 12;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
@@ -1577,14 +1581,15 @@ function ShepherdVillagerNPC() {
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "none";
 }
-ShepherdVillager.prototype = new NPCObject;
+ShepherdVillagerNPCTile.prototype = new NPCObject;
 
-function MageVillagerNPC() {
-	this.name = "MageVillager";
+function MageVillagerNPCTile() {
+	this.name = "MageVillagerNPC";
 	this.level = 1;
 	this.str = 10;
 	this.dex = 10;
 	this.int = 16;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
@@ -1593,14 +1598,15 @@ function MageVillagerNPC() {
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
 }
-MageVillager.prototype = new NPCObject;
+MageVillagerNPCTile.prototype = new NPCObject;
 
-function TinkerVillagerNPC() {
-	this.name = "TinkerVillager";
+function TinkerVillagerNPCTile() {
+	this.name = "TinkerVillagerNPC";
 	this.level = 1;
 	this.str = 12;
 	this.dex = 14;
 	this.int = 10;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
@@ -1609,14 +1615,15 @@ function TinkerVillagerNPC() {
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "sling";
 }
-TinkerVillager.prototype = new NPCObject;
+TinkerVillagerNPCTile.prototype = new NPCObject;
 
-function RangerVillagerNPC() {
-	this.name = "RangerVillager";
+function RangerVillagerNPCTile() {
+	this.name = "RangerVillagerNPC";
 	this.level = 1;
 	this.str = 11;
 	this.dex = 14;
 	this.int = 11;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
@@ -1625,14 +1632,15 @@ function RangerVillagerNPC() {
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "sling";
 }
-RangerVillager.prototype = new NPCObject;
+RangerVillagerNPCTile.prototype = new NPCObject;
 
-function AdventurerVillagerNPC() {
-	this.name = "AdventurerVillager";
+function AdventurerVillagerNPCTile() {
+	this.name = "AdventurerVillagerNPC";
 	this.level = 1;
 	this.str = 12;
 	this.dex = 12;
 	this.int = 12;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
@@ -1641,13 +1649,15 @@ function AdventurerVillagerNPC() {
 	this.meleeAttackAs = "shortsword";
 	this.missileAttackAs = "sling";
 }
+AdventurerVillagerNPCTile.prototype = new NPCObject;
 
-function PaladinVillagerNPC() {
-	this.name = "PaladinVillager";
+function PaladinVillagerNPCTile() {
+	this.name = "PaladinVillagerNPC";
 	this.level = 1;
 	this.str = 14;
 	this.dex = 10;
 	this.int = 12;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
@@ -1656,13 +1666,15 @@ function PaladinVillagerNPC() {
 	this.meleeAttackAs = "shortsword";
 	this.missileAttackAs = "none";
 }
+PaladinVillagerNPCTile.prototype = new NPCObject;
 
-function FighterVillagerNPC() {
-	this.name = "FighterVillager";
+function FighterVillagerNPCTile() {
+	this.name = "FighterVillagerNPC";
 	this.level = 1;
 	this.str = 14;
 	this.dex = 12;
 	this.int = 10;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
@@ -1671,13 +1683,15 @@ function FighterVillagerNPC() {
 	this.meleeAttackAs = "shortsword";
 	this.missileAttackAs = "sling";
 }
+FighterVillagerNPCTile.prototype = new NPCObject;
 
-function TownsfolkVillagerNPC() {
-	this.name = "TownsfolkVillager";
+function TownsfolkVillagerNPCTile() {
+	this.name = "TownsfolkVillagerNPC";
 	this.level = 1;
 	this.str = 10;
 	this.dex = 10;
 	this.int = 10;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
@@ -1686,13 +1700,15 @@ function TownsfolkVillagerNPC() {
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "none";
 }
+TownsfolkVillagerNPCTile.prototype = new NPCObject;
 
-function BardVillagerNPC() {
-	this.name = "BardVillager";
+function BardVillagerNPCTile() {
+	this.name = "BardVillagerNPC";
 	this.level = 1;
 	this.str = 10;
 	this.dex = 14;
 	this.int = 12;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
@@ -1701,13 +1717,15 @@ function BardVillagerNPC() {
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "bow";
 }
+BardVillagerNPCTile.prototype = new NPCObject;
 
-function ChildNPC() {
-	this.name = "Child";
+function ChildNPCTile() {
+	this.name = "ChildNPC";
 	this.level = 1;
 	this.str = 7;
 	this.dex = 7;
 	this.int = 7;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
@@ -1716,13 +1734,15 @@ function ChildNPC() {
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
 }
+ChildNPCTile.prototype = new NPCObject;
 
-function BeggerNPC() {
-	this.name = "Begger";
+function BeggerNPCTile() {
+	this.name = "BeggerNPC";
 	this.level = 1;
 	this.str = 7;
 	this.dex = 7;
 	this.int = 7;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
@@ -1731,13 +1751,15 @@ function BeggerNPC() {
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
 }
+BeggerNPCTile.prototype = new NPCObject;
 
-function TownGuardNPC() {
-  this.name = "TownGuard";
+function TownGuardNPCTile() {
+  this.name = "TownGuardNPC";
 	this.level = 5;
 	this.str = 23;
 	this.dex = 23;
 	this.int = 14;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "guard";
 	this.PCThreatAI = "melee";
@@ -1746,13 +1768,15 @@ function TownGuardNPC() {
 	this.meleeAttackAs = "halberd";
 	this.missileAttackAs = "none";
 }
+TownGuardNPCTile.prototype = new NPCObject;
 
-function KingNPC() {
-  this.name = "King";
+function KingNPCTile() {
+  this.name = "KingNPC";
 	this.level = 8;
 	this.str = 30;
 	this.dex = 30;
 	this.int = 30;
+	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "spellcaster";
@@ -1761,13 +1785,15 @@ function KingNPC() {
 	this.meleeAttackAs = "halberd";
 	this.missileAttackAs = "none";
 }
+KingNPCTile.prototype = new NPCObject;
 
-function PrinceNPC() {
-  this.name = "Prince";
+function PrinceNPCTile() {
+  this.name = "PrinceNPC";
 	this.level = 7;
 	this.str = 25;
 	this.dex = 25;
 	this.int = 25;
+	this.alignment = "good";
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "townsfolk";
@@ -1776,3 +1802,4 @@ function PrinceNPC() {
 	this.meleeAttackAs = "longsword";
 	this.missileAttackAs = "none";
 }
+PrinceNPCTile.prototype = new NPCObject;
