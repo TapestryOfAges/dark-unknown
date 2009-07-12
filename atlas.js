@@ -552,29 +552,41 @@ GameMap.prototype.saveMap = function (name) {
  // ADD FEATURES/NPCs
  name = 'mappages["' + oldname + '"].features';
  printerwin.document.write("\n" + name + " = new Array;\n");
- for (var i=0;i<=this.features.container.length-1;i++) {
-   printerwin.document.write(name + "[" + i + "] = {name : '" + this.features.container[i].name + "',");
-   printerwin.document.write(" x : " + this.features.container[i].x + ", y : " + this.features.container[i].y);
+ var mapfeatures = this.features.getAll();
+ for (var i=0;i<=mapfeatures.length-1;i++) {
+   printerwin.document.write(name + "[" + i + "] = {name : '" + mapfeatures[i].getName() + "',");
+   printerwin.document.write(" x : " + mapfeatures[i].getx() + ", y : " + mapfeatures[i].gety());
    // overrides
-   var baseobj = localFactory.createTile(this.features.container[i].name);
+   var baseobj = localFactory.createTile(mapfeatures[i].getName());
  //  for (var props in baseobj) {
  //  	 if (baseobj[props] != this.features.container[i][props]) {
  //  	 	 printerwin.document.write(", " + props + " : " + this.features.container[i][props]);
  //  	 }
  //  }
-   if (baseobj.getDesc() != this.features.container[i].getDesc()) {
-   	 var thedesc = this.features.container[i].getDesc();
+   if (baseobj.getDesc() != mapfeatures[i].getDesc()) {
+   	 var thedesc = mapfeatures[i].getDesc();
      printerwin.document.write(", desc : \"" + thedesc + "\"");
    }
-   if ((baseobj.getLocked != null) && (baseobj.getLocked() != this.features.container[i].getLocked())) {
-   	 printerwin.document.write(", locked : " + this.features.container[i].getLocked());
+   if ((baseobj.getLocked != null) && (baseobj.getLocked() != mapfeatures[i].getLocked())) {
+   	 printerwin.document.write(", locked : " + mapfeatures[i].getLocked());
    }
    if (baseobj.getEnterMap != null) {
-   	 var mapdest = this.features.container[i].getEnterMap();
+   	 var mapdest = mapfeatures[i].getEnterMap();
    	 printerwin.document.write(", entermap : '" + mapdest.entermap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
    }
    printerwin.document.write("};\n");
  }
+ 
+ name = 'mappages["' + oldname + '"].npcs';
+ printerwin.document.write("\n");
+ var mapnpcs = this.npcs.getAll();
+ for (var i=0;i<=mapnpcs.length-1;i++) {
+ 	printerwin.document.write(name + "[" + i + "] = {name : '" + mapnpcs[i].getName() + "',");
+ 	printerwin.document.write(" x : " + mapfeatures.getx() + ", y : " + mapfeatures[i].gety());
+ 	
+ 	printerwin.document.write("};\n");
+}
+ 
  name = 'mappages["' + oldname + '"]';
  printerwin.document.write("\n" + name + ".desc = '" + this.getDesc() + "';\n");
  printerwin.document.write(name + ".music = '" + this.getMusic() + "';\n");
@@ -605,7 +617,7 @@ GameMap.prototype.loadMap = function (name) {
     }
   }
   var loadfeatures = mappages.readPage(name, "features");
-  this.features = new Collection;
+//  this.features = new Collection;
   if (loadfeatures) {
 //  	alert(loadfeatures.length + " features loading...");
     for (var i=0;i<=loadfeatures.length-1;i++) {
@@ -618,7 +630,16 @@ GameMap.prototype.loadMap = function (name) {
   	  this.placeThing(loadfeatures[i].x,loadfeatures[i].y,newfeature);
     }
   }
-  
+
+  var loadnpcs = mappages.readPage(name, "npcs");
+
+  if (loadnpcs)  {
+  	for (var i=0;i<=loadnpcs.length-1;i++) {
+  		var newnpc = localFactory.createTile(loadnpcs[i].name);
+  		
+  		this.placeThing(loadnpcs[i].x,loadnpcs[i].y,newnpc);
+  	}
+  }
   // load map details
   this.setDesc(mappages.readPage(name, "desc"));
   this.setMusic(mappages.readPage(name, "music"));

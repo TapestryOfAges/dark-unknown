@@ -13,7 +13,6 @@ var displayval = "all";
 var editable;
 var browserheight = getSize();
 
-
 if (debug) {
   debugscreen = window.open('','debugscreen');
 }
@@ -311,7 +310,17 @@ function addfeaturetomap(x,y,selection) {
 }
 
 function addnpctomap(x,y,selection) {
+	if (!amap.data[y][x].npcs) { 
+		amap.data[y][x].npcs = new Collection;
+	}
+	var newnpc = localFactory.createTile(selection.getName());
+	newnpc.setx(x);
+	newnpc.sety(y);
+	amap.data[y][x].npcs.addTop(newnpc);
+	amap.npcs.addTop(newnpc);
 	
+	var tileid = "tile" + x + "x" + y;
+	document.images[tileid].src="graphics/"+selection.getGraphic();
 }
 
 function erasefeature(x,y) {
@@ -337,8 +346,8 @@ function initialSelect() {
 function writeTileOption(tilename) {
 
 var tempTile = parent.localFactory.createTile(tilename);
-var imgsrc = tempTile.graphic;
-document.write("<a href=\"javascript:parent.changeselection('" + tilename + "');\"><img src='graphics/" + imgsrc + "'></a>");
+var imgsrc = tempTile.getGraphic();
+document.write("<a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + imgsrc + "'></a>");
 
 }
 
@@ -399,3 +408,4 @@ function submitEditDetails(change) {
     amap.setEnterY(document.detailseditpopup.mapentery.value);			
 	}
 }
+
