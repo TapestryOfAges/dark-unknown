@@ -203,27 +203,47 @@ function clickmap(xval,yval) {
   else if (document.brushes.elements[2].checked) {
   	var thistile = amap.getTile(xval,yval);
   	editable = thistile.features.getTop();
-  	if (!editable) {alert("No feature on this tile."); return;}
-//  	lockout = 1;
-//  	var bubbleblock = mapscreen.document.getElementById("featurebubble");
-//  	bubbleblock.style.display = "block";
-    var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
-    $('#featurebubble').jqm({onShow:myOpen}); 
-    $('#featurebubble').jqmShow();
-  	document.images["bubbletile"].src = "graphics/" + editable.getGraphic();
-    document.featureeditpopup.tiledesc.value = editable.getDesc();
-    if (editable.getLocked != null) {
-    	var lockedblock = document.getElementById("bubblelock");
-    	lockedblock.style.display = "table-row";
-    	document.featureeditpopup.tilelocked.value = editable.getLocked();
+  	editnpcs = thistile.npcs.getTop();
+  	if (!editable && !editnpcs) {alert("Nothing to edit on this tile."); return;}
+  	if (!editnpcs || (displayval == "features")) {
+      var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+      $('#featurebubble').jqm({onShow:myOpen}); 
+      $('#featurebubble').jqmShow();
+  	  document.images["bubbletile"].src = "graphics/" + editable.getGraphic();
+      document.featureeditpopup.tiledesc.value = editable.getDesc();
+      if (editable.getLocked != null) {
+      	var lockedblock = document.getElementById("bubblelock");
+    	  lockedblock.style.display = "table-row";
+      	document.featureeditpopup.tilelocked.value = editable.getLocked();
+      }
+      if (editable.getEnterMap != null) {
+      	var portalblock = document.getElementById("bubbleportal");
+    	  portalblock.style.display = "table-row";
+      	var mapinfo = editable.getEnterMap();
+      	document.featureeditpopup.tileentermap.value = mapinfo.entermap;
+      	document.featureeditpopup.tileenterx.value = mapinfo.enterx;
+    	  document.featureeditpopup.tileentery.value = mapinfo.entery;
+      }
     }
-    if (editable.getEnterMap != null) {
-    	var portalblock = document.getElementById("bubbleportal");
-    	portalblock.style.display = "table-row";
-    	var mapinfo = editable.getEnterMap();
-    	document.featureeditpopup.tileentermap.value = mapinfo.entermap;
-    	document.featureeditpopup.tileenterx.value = mapinfo.enterx;
-    	document.featureeditpopup.tileentery.value = mapinfo.entery;
+    else if (!editable || (displayval == "all")) {
+    	var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+    	$('#npcbubble').jqm({onShow:myOpen});
+    	$('#npcbubble').jqmShow();
+    	document.npceditpopup.npcobjname.value = editnpcs.getName();
+      document.images["bubbleNPCtile"].src = "graphics/" + editnpcs.getGraphic();    	
+      document.npceditpopup.npcname.value = editnpcs.getNPCName();
+      document.npceditpopup.npcdesc.value = editnpcs.getDesc();
+      document.npceditpopup.npclevel.value = editnpcs.getLevel();
+      document.npceditpopup.npcalign.value = editnpcs.getAlignment();
+      document.npceditpopup.npcstr.value = editnpcs.getstr();
+      document.npceditpopup.npcattitude.value = editnpcs.getAttitude();
+      document.npceditpopup.npcdex.value = editnpcs.getdex();
+      document.npceditpopup.npcpeaceai.value = editnpcs.getPeaceAI();
+      document.npceditpopup.npcint.value = editnpcs.getint();
+      document.npceditpopup.npcpcthreatai.value = editnpcs.getPCThreatAI();      
+      document.npceditpopup.npcmelee.value = editnpcs.getMelee();
+      document.npceditpopup.npcthreatenedai.value = editnpcs.getThreatenedAI();      
+      document.npceditpopup.npcmissile.value = editnpcs.getMissile();
     }
   }
 }
@@ -263,6 +283,9 @@ function submitEditFeature(change) {
   return 0;
 }
 
+function submitEditNPC(change) {
+	
+}
 
 function changemaptile(xval,yval) {
   var tileid = "tile" + xval + "x" + yval;

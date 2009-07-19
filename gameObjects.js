@@ -1476,13 +1476,30 @@ function NPCObject() {
 	this.str = 10;
 	this.dex = 10;
 	this.int = 10
-	this.ai = "default";
 	this.hp = 10;
 	this.level = 0
 	this.type = "npc";
-	
+	this.npcname = "myname";
+	this.desc = "an NPC";
+	this.alignment = "good";	
+	this.attitude = "friendly";
+	this.peaceAI = "townsfolk";
+	this.PCThreatAI = "runaway";
+	this.ThreatenedAI = "spellcaster";
+	this.graphic = "301.gif";
+	this.meleeAttackAs = "fists";
+	this.missileAttackAs = "none";
 }
 NPCObject.prototype = new AnimateObject;
+
+NPCObject.prototype.getNPCName = function() {
+	return this.npcname;
+}
+
+NPCObject.prototype.setNPCName = function(newName) {
+	this.npcname = newName;
+	return this.npcname;
+}
 
 NPCObject.prototype.setMana = function(newMana) {
 	if (newMana == -1) { this.mana = this.int; }
@@ -1535,12 +1552,67 @@ NPCObject.prototype.getLevel = function() {
 	return this.level;
 }
 
-NPCObject.prototype.setAI = function(newai) {
-	this.ai = newai; 
+NPCObject.prototype.getAlignment = function() {
+	return this.alignment;
 }
 
-NPCObject.prototype.getAI = function() {
-	return this.ai;
+NPCObject.prototype.setAlignment = function(newAlign) {
+	this.alignment = newAlign;
+	return this.alignment;
+}
+
+NPCObject.prototype.getAttitude = function() {
+	return this.attitude;
+}
+
+NPCObject.prototype.setAttitude = function(newAttitude) {
+	this.attitude = newAttitude;
+	return this.attitude;
+}
+
+NPCObject.prototype.getPeaceAI = function() {
+	return this.peaceAI;
+}
+
+NPCObject.prototype.setPeaceAI = function(newAI) {
+	this.peaceAI = newAI;
+	return this.peaceAI;
+}
+
+NPCObject.prototype.getPCThreatAI = function() {
+	return this.PCThreatAI;
+}
+
+NPCObject.prototype.setPCThreatAI = function(newAI) {
+	this.PCThreatAI = newAI;
+	return this.PCThreatAI;
+}
+
+NPCObject.prototype.getThreatenedAI = function() {
+	return this.threatenedAI;
+}
+
+NPCObject.prototype.setThreatenedAI = function(newAI) {
+	this.threatenedAI = newAI;
+	return this.threatenedAI;
+}
+
+NPCObject.prototype.getMelee = function() {
+	return this.meleeAttackAs;
+}
+
+NPCObject.prototype.setMelee = function(melee) {
+	this.meleeAttackAs = melee;
+	return this.meleeAttackAs;
+}
+
+NPCObject.prototype.getMissile = function() {
+	return this.missileAttackAs;
+}
+
+NPCObject.prototype.setMissile = function(missile) {
+	this.missileAttackAs = missile;
+	return this.missileAttackAs;
 }
 
 function NPCGroup() {
@@ -1559,7 +1631,7 @@ function DruidVillagerNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "spellcaster";
+	this.threatenedAI = "spellcaster";
 	this.graphic = "301.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
@@ -1576,7 +1648,7 @@ function ShepherdVillagerNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "melee";
+	this.threatenedAI = "melee";
 	this.graphic = "302.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "none";
@@ -1593,7 +1665,7 @@ function MageVillagerNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "spellcaster";
+	this.threatenedAI = "spellcaster";
 	this.graphic = "303.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
@@ -1610,7 +1682,7 @@ function TinkerVillagerNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "missile";
+	this.threatenedAI = "missile";
 	this.graphic = "304.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "sling";
@@ -1627,7 +1699,7 @@ function RangerVillagerNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "ranger";
+	this.threatenedAI = "ranger";
 	this.graphic = "305.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "sling";
@@ -1644,7 +1716,7 @@ function AdventurerVillagerNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "adventurer";
+	this.threatenedAI = "adventurer";
 	this.graphic = "306.gif";
 	this.meleeAttackAs = "shortsword";
 	this.missileAttackAs = "sling";
@@ -1661,7 +1733,7 @@ function PaladinVillagerNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "paladin";
+	this.threatenedAI = "paladin";
 	this.graphic = "307.gif";
 	this.meleeAttackAs = "shortsword";
 	this.missileAttackAs = "none";
@@ -1678,7 +1750,7 @@ function FighterVillagerNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "melee";
+	this.threatenedAI = "melee";
 	this.graphic = "308.gif";
 	this.meleeAttackAs = "shortsword";
 	this.missileAttackAs = "sling";
@@ -1695,7 +1767,7 @@ function TownsfolkVillagerNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "melee";
+	this.threatenedAI = "melee";
 	this.graphic = "310.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "none";
@@ -1712,7 +1784,7 @@ function BardVillagerNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "ranger";
+	this.threatenedAI = "ranger";
 	this.graphic = "311.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "bow";
@@ -1729,7 +1801,7 @@ function ChildNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "runaway";
+	this.threatenedAI = "runaway";
 	this.graphic = "312.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
@@ -1746,7 +1818,7 @@ function BeggerNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "runaway";
+	this.threatenedAI = "runaway";
 	this.graphic = "313.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
@@ -1763,7 +1835,7 @@ function TownGuardNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "guard";
 	this.PCThreatAI = "melee";
-	this.ThreatenedAI = "melee";
+	this.threatenedAI = "melee";
 	this.graphic = "309.gif";
 	this.meleeAttackAs = "halberd";
 	this.missileAttackAs = "none";
@@ -1780,7 +1852,7 @@ function KingNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "spellcaster";
-	this.ThreatenedAI = "spellcaster";
+	this.threatenedAI = "spellcaster";
 	this.graphic = "315.gif";
 	this.meleeAttackAs = "halberd";
 	this.missileAttackAs = "none";
@@ -1797,7 +1869,7 @@ function PrinceNPCTile() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "townsfolk";
-	this.ThreatenedAI = "melee";
+	this.threatenedAI = "melee";
 	this.graphic = "300.gif";
 	this.meleeAttackAs = "longsword";
 	this.missileAttackAs = "none";

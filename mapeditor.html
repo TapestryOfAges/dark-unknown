@@ -77,6 +77,72 @@
 		<tr><td><input type="submit" value="Edit" onClick="submitEditDetails(1);" class="jqmClose" /></td><td><input type="submit" value="Cancel" onClick="submitEditDetails(0);" class="jqmClose" /></td></tr>
 		</table></form>
 	</div>
+	<div class="bubble" id="npcbubble"><form name="npceditpopup"><table cellpadding="1" cellspacing="1" border="0">
+    <tr><td><img src="graphics/073.gif" id="bubbleNPCtile" /></td><td colspan="3"><input type="text" name="npcobjname" value="" size="30" readonly /></td></tr>
+    <tr><td>Name:</td><td colspan="3"><input type="text" name="npcname" value="" size="30" /></td></tr>
+    <tr><td>Desc:</td><td colspan="3"><input type="text" name="npcdesc" value="" size="30" /></td></tr>
+    <tr><td>Level:</td><td><select name="npclevel">
+    	                     <option value="0">0</option>
+    	                     <option value="1">1</option>
+    	                     <option value="2">2</option>
+    	                     <option value="3">3</option>
+    	                     <option value="4">4</option>
+    	                     <option value="5">5</option>
+    	                     <option value="6">6</option>
+    	                     <option value="7">7</option>
+    	                   <option value="8">8</option></select>
+    	</td>
+    	<td>Alignment:</td><td><select name="npcalign">
+    		                   <option value="good">Good</option>
+    		                   <option value="evil">Evil</option>
+    		                 <option value="neutral">Neutral</option></select>
+      </td></tr>
+    <tr><td>STR:</td><td><input type="text" name="npcstr" value="" size="3" /></td>
+    	<td>Attitude:</td><td><select name="npcattitude">
+    		                    <option value="friendly">Friendly</option>
+    		                    <option value="neutral">Neutral</option>
+    		                  <option value="hostile">Hostile</option></select>
+   	</td></tr>
+    <tr><td>DEX:</td><td><input type="text" name="npcdex" value="" size="3" /></td>
+    	<td>PeaceAI:</td><td><select name="npcpeaceai">
+    		                   <option value="townsfolk">Townsfolk</option>
+    		                   <option value="runaway">Run Away</option>
+    		                   <option value="guard">Guard</option>
+    		                   <option value="melee">Melee</option>
+    		                   <option value="spellcaster">Spellcaster</option>
+    		                   <option value="missile">Missile</option>
+    		                   <option value="adventurer">Adventurer</option>
+    		                   <option value="paladin">Paladin</option>
+    		                 <option value="ranger">Ranger</option></select>
+    	</td></tr>
+    <tr><td>INT:</td><td><input type="text" name="npcint" value="" size="3" /></td>
+    	<td>PCThreatAI:</td><td><select name="npcpcthreatai">
+    		                   <option value="townsfolk">Townsfolk</option>
+    		                   <option value="runaway">Run Away</option>
+    		                   <option value="guard">Guard</option>
+    		                   <option value="melee">Melee</option>
+    		                   <option value="spellcaster">Spellcaster</option>
+    		                   <option value="missile">Missile</option>
+    		                   <option value="adventurer">Adventurer</option>
+    		                   <option value="paladin">Paladin</option>
+    		                 <option value="ranger">Ranger</option></select>    		
+    	</td></tr>
+    <tr><td>Melee:</td><td><input type="text" name="npcmelee" value="" size="5" /></td>
+    	<td>ThreatenedAI:</td><td><select name="npcthreatenedai">
+    		                   <option value="townsfolk">Townsfolk</option>
+    		                   <option value="runaway">Run Away</option>
+    		                   <option value="guard">Guard</option>
+    		                   <option value="melee">Melee</option>
+    		                   <option value="spellcaster">Spellcaster</option>
+    		                   <option value="missile">Missile</option>
+    		                   <option value="adventurer">Adventurer</option>
+    		                   <option value="paladin">Paladin</option>
+    		                 <option value="ranger">Ranger</option></select>
+    	</td></tr>
+    <tr><td>Missile:</td><td><input type="text" name="npcmissile" value="" size="5" /></td>
+    	<td></td><td></td></tr>
+    <tr><td colspan="4"><input type="submit" value="Edit" onClick="submitEditNPC(1);" class="jqmClose" /> <input type="submit" value="Cancel" onClick="submitEditNPC(0);" class="jqmClose" /> <input type="submit" value="Delete NPC" onClick="submitEditNPC(-1);" class="jqmClose" /></td></tr>		
+	</table></form></div>
   <div class="mapscreen">
   	
   </div>
@@ -91,7 +157,7 @@
 <tr>
 	<td><input onClick="cornerx=-1;cornery=-1" type="radio" name="brushtype" value="point" checked="checked" /> Point</td>
   <td><input type="radio" name="brushtype" value="rectangle" /> Rectangle</td>
-	<td><input type="radio" name="brushtype" value="editfeature" />Edit Features</td>
+	<td><input type="radio" name="brushtype" value="editfeature" />Edit Features/NPCs</td>
 </tr>
 </table>
 </form>
