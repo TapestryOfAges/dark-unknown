@@ -21,7 +21,7 @@ mapslist["deathunending"] = "the Dungeon Death's Unending";
 mapslist["worldsending"] = "the Dungeon World's Ending";
 mapslist["olympus1"] = "Castle Olympus";
 mapslist["olympus0"] = "Castle Olympus";
-mapslist["olympus1"] = "Castle Olympus";
+mapslist["olympus2"] = "Castle Olympus";
 mapslist["nassau"] = " the Village of Nassau";
 mapslist["gauntlet"] = "the Towne of Gauntlet";
 mapslist["clearlagoon"] = "the Towne of Clear Lagoon";
@@ -39,3 +39,4 @@ mapslist["ambrosia"] = "Ambrosia";
 mapslist["island"] = "the Distant Island";
 mapslist["cairns"] = "the Dungeon Cairns";
 
+ailist = new Array("townsfolk","runaway","guard","melee","spellcaster","missile","adventurer","paladin","ranger");
