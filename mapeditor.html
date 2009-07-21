@@ -65,7 +65,7 @@
 	<td><select name="mapexitmap"><option value=""></option>
 			<script language="JavaScript">
 		  	for (var keyz in mapslist) {
-		  		document.writeln('<option value="' + keyz + '">' + mapslist[keyz] + '</option>');
+		  		document.writeln('<option value="' + keyz + '">' + keyz + '</option>');
 		  	}
 			</script>
 		</select>
@@ -105,39 +105,30 @@
    	</td></tr>
     <tr><td>DEX:</td><td><input type="text" name="npcdex" value="" size="3" /></td>
     	<td>PeaceAI:</td><td><select name="npcpeaceai">
-    		                   <option value="townsfolk">Townsfolk</option>
-    		                   <option value="runaway">Run Away</option>
-    		                   <option value="guard">Guard</option>
-    		                   <option value="melee">Melee</option>
-    		                   <option value="spellcaster">Spellcaster</option>
-    		                   <option value="missile">Missile</option>
-    		                   <option value="adventurer">Adventurer</option>
-    		                   <option value="paladin">Paladin</option>
-    		                 <option value="ranger">Ranger</option></select>
+    		 <script language="JavaScript">
+		  	for (var keyz in ailist) {
+		  		document.writeln('<option value="' + ailist[keyz] + '">' + ailist[keyz] + '</option>');
+		  	}
+			</script>
+      </select>
     	</td></tr>
     <tr><td>INT:</td><td><input type="text" name="npcint" value="" size="3" /></td>
     	<td>PCThreatAI:</td><td><select name="npcpcthreatai">
-    		                   <option value="townsfolk">Townsfolk</option>
-    		                   <option value="runaway">Run Away</option>
-    		                   <option value="guard">Guard</option>
-    		                   <option value="melee">Melee</option>
-    		                   <option value="spellcaster">Spellcaster</option>
-    		                   <option value="missile">Missile</option>
-    		                   <option value="adventurer">Adventurer</option>
-    		                   <option value="paladin">Paladin</option>
-    		                 <option value="ranger">Ranger</option></select>    		
+    		 <script language="JavaScript">
+		  	for (var keyz in ailist) {
+		  		document.writeln('<option value="' + ailist[keyz] + '">' + ailist[keyz] + '</option>');
+		  	}
+			</script>
+      </select>    		
     	</td></tr>
     <tr><td>Melee:</td><td><input type="text" name="npcmelee" value="" size="5" /></td>
     	<td>ThreatenedAI:</td><td><select name="npcthreatenedai">
-    		                   <option value="townsfolk">Townsfolk</option>
-    		                   <option value="runaway">Run Away</option>
-    		                   <option value="guard">Guard</option>
-    		                   <option value="melee">Melee</option>
-    		                   <option value="spellcaster">Spellcaster</option>
-    		                   <option value="missile">Missile</option>
-    		                   <option value="adventurer">Adventurer</option>
-    		                   <option value="paladin">Paladin</option>
-    		                 <option value="ranger">Ranger</option></select>
+    		 <script language="JavaScript">
+		  	for (var keyz in ailist) {
+		  		document.writeln('<option value="' + ailist[keyz] + '">' + ailist[keyz] + '</option>');
+		  	}
+			</script>
+      </select>
     	</td></tr>
     <tr><td>Missile:</td><td><input type="text" name="npcmissile" value="" size="5" /></td>
     	<td></td><td></td></tr>
