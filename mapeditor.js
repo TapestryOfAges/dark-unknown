@@ -11,6 +11,7 @@ var debugscreen;
 var togglehide = 0;
 var displayval = "all";
 var editable;
+var editnpcs;
 var browserheight = getSize();
 
 if (debug) {
@@ -284,7 +285,47 @@ function submitEditFeature(change) {
 }
 
 function submitEditNPC(change) {
-	
+	if (change == 1) {
+		if (document.npceditpopup.npcname.value != editnpcs.getNPCName()) {
+			editnpcs.setNPCName(document.npceditpopup.npcname.value);
+		}
+		if (document.npceditpopup.npcdesc.value != editnpcs.getDesc()) {
+			editnpcs.setDesc(document.npceditpopup.npcdesc.value);
+		}
+		if (document.npceditpopup.npclevel.value != editnpcs.getLevel()) {
+			editnpcs.setLevel(document.npceditpopup.npclevel.value);
+		}
+		if (document.npceditpopup.npcalign.value != editnpcs.getAlignment()) {
+			editnpcs.setAlignment(document.npceditpopup.npcalign.value);
+		}
+		if (document.npceditpopup.npcstr.value != editnpcs.getstr()) {
+			editnpcs.setstr(document.npceditpopup.npcstr.value);
+		}
+		if (document.npceditpopup.npcdex.value != editnpcs.getdex()) {
+			editnpcs.setdex(document.npceditpopup.npcdex.value);
+		}
+		if (document.npceditpopup.npcint.value != editnpcs.getint()) {
+			editnpcs.setint(document.npceditpopup.npcint.value);
+		}
+		if (document.npceditpopup.npcattitude.value != editnpcs.getAttitude()) {
+			editnpcs.setAttitude(document.npceditpopup.npcattitude.value);
+		}
+		if (document.npceditpopup.npcpeaceai.value != editnpcs.getPeaceAI()) {
+			editnpcs.setPeaceAI(document.npceditpopup.npcpeaceai.value);
+		}
+		if (document.npceditpopup.npcpcthreatai.value != editnpcs.getPCThreatAI()) {
+			editnpcs.setPCThreatAI(document.npceditpopup.npcpcthreatai.value);
+		}
+		if (document.npceditpopup.npcthreatenedai.value != editnpcs.getThreatenedAI()) {
+			editnpcs.setThreatenedAI(document.npceditpopup.npcthreatenedai.value);
+		}
+		if (document.npceditpopup.npcmelee.value != editnpcs.getMelee()) {
+			editnpcs.setMelee(document.npceditpopup.npcmelee.value);
+		}
+		if (document.npceditpopup.npcmissile.value != editnpcs.getMissile()) {
+			editnpcs.setMissile(document.npceditpopup.npcmissile.value);
+		}
+	}
 }
 
 function changemaptile(xval,yval) {

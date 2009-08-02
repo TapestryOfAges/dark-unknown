@@ -572,18 +572,58 @@ GameMap.prototype.saveMap = function (name) {
    }
    if (baseobj.getEnterMap != null) {
    	 var mapdest = mapfeatures[i].getEnterMap();
-   	 printerwin.document.write(", entermap : '" + mapdest.entermap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
+   	 printerwin.document.write(", entermap : '" + mapdest.getEnterMap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
    }
    printerwin.document.write("};\n");
  }
  
  name = 'mappages["' + oldname + '"].npcs';
  printerwin.document.write("\n");
+ printerwin.document.write("\n" + name + " = new Array;\n");
  var mapnpcs = this.npcs.getAll();
  for (var i=0;i<=mapnpcs.length-1;i++) {
- 	printerwin.document.write(name + "[" + i + "] = {name : '" + mapnpcs[i].getName() + "',");
- 	printerwin.document.write(" x : " + mapfeatures.getx() + ", y : " + mapfeatures[i].gety());
- 	
+ 	printerwin.document.write(name + "[" + i + "] = {name : '" + mapnpcs[i].getName() + "'");
+ 	printerwin.document.write(", x : " + mapnpcs[i].getx() + ", y : " + mapnpcs[i].gety());
+ 	var basenpc = localFactory.createTile(mapnpcs[i].getName());
+ 	if (basenpc.getNPCName() != mapnpcs[i].getNPCName()) {
+ 		printerwin.document.write(", NPCName: '" + mapnpcs[i].getNPCName() + "'");
+ 	}
+ 	if (basenpc.getDesc() != mapnpcs[i].getDesc()) {
+ 		printerwin.document.write(", Desc: '" + mapnpcs[i].getDesc() + "'");
+ 	}
+ 	if (basenpc.getLevel() != mapnpcs[i].getLevel()) {
+ 		printerwin.document.write(", Level: " + mapnpcs[i].getLevel());
+ 	}
+ 	if (basenpc.getAlignment() != mapnpcs[i].getAlignment()) {
+ 		printerwin.document.write(", Alignment: '" + mapnpcs[i].getAlignment() + "'");
+ 	}
+ 	if (basenpc.getstr() != mapnpcs[i].getstr()) {
+ 		printerwin.document.write(", Str: " + mapnpcs[i].getstr());
+ 	}
+ 	if (basenpc.getdex() != mapnpcs[i].getdex()) {
+ 		printerwin.document.write(", Dex: " + mapnpcs[i].getdex());
+ 	}
+ 	if (basenpc.getint() != mapnpcs[i].getint()) {
+ 		printerwin.document.write(", Int: " + mapnpcs[i].getint());
+ 	}
+ 	if (basenpc.getAttitude() != mapnpcs[i].getAttitude()) {
+ 		printerwin.document.write(", Attitude: '" + mapnpcs[i].getAttitude() + "'");
+ 	}
+ 	if (basenpc.getPeaceAI() != mapnpcs[i].getPeaceAI()) {
+ 		printerwin.document.write(", PeaceAI: '" + mapnpcs[i].getPeaceAI() + "'");
+ 	}
+ 	if (basenpc.getPCThreatAI() != mapnpcs[i].getPCThreatAI()) {
+ 		printerwin.document.write(", PCThreatAI: '" + mapnpcs[i].getPCThreatAI() + "'");
+ 	}
+ 	if (basenpc.getThreatenedAI() != mapnpcs[i].getThreatenedAI()) {
+ 		printerwin.document.write(", ThreatenedAI: '" + mapnpcs[i].getThreatenedAI() + "'");
+ 	}
+ 	if (basenpc.getMelee() != mapnpcs[i].getMelee()) {
+ 		printerwin.document.write(", Melee: '" + mapnpcs[i].getMelee() + "'");
+ 	}
+ 	if (basenpc.getMissile() != mapnpcs[i].getMissile()) {
+ 		printerwin.document.write(", Missile: '" + mapnpcs[i].getMissile() + "'");
+ 	}
  	printerwin.document.write("};\n");
 }
  
