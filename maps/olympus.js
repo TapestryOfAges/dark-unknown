@@ -116,6 +116,22 @@ mappages["olympus0"].features[6] = {name :  'Door', x : 5, y : 15, 'locked' : 1}
 mappages["olympus0"].features[7] = {name : 'Door', x : 8, y : 18};
 mappages["olympus0"].features[8] = {name : 'LadderUp', x : 5, y : 18, entermap : 'olympus1', enterx : 11, entery : 33};
 
+mappages["olympus0"].npcs = new Array;
+mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 4, y : 16};
+mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 10};
+mappages["olympus0"].npcs[2] = {name : 'TownGuardNPC', x : 15, y : 7};
+mappages["olympus0"].npcs[3] = {name : 'TownGuardNPC', x : 15, y : 9};
+mappages["olympus0"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 20, y : 3};
+
+mappages["olympus0"].desc = 'Castle Olympus Basement';
+mappages["olympus0"].music = 'Towne';
+mappages["olympus0"].exitmap = 'olympus1';
+mappages["olympus0"].exitx = 'undefined';
+mappages["olympus0"].exity = 'undefined';
+mappages["olympus0"].wraps = 'None';
+mappages["olympus0"].enterx = 'undefined';
+mappages["olympus0"].entery = 'undefined';
+
 
 mappages["olympus2"] = new Object();
 mappages["olympus2"].terrain = new Array;
