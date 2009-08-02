@@ -1632,7 +1632,7 @@ function DruidVillagerNPCTile() {
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
 	this.threatenedAI = "spellcaster";
-	this.graphic = "301.gif";
+	this.graphic = "302.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
 }
@@ -1649,7 +1649,7 @@ function ShepherdVillagerNPCTile() {
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
 	this.threatenedAI = "melee";
-	this.graphic = "302.gif";
+	this.graphic = "301.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "none";
 }

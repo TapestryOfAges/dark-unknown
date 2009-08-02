@@ -780,7 +780,7 @@ tileFactory.prototype.makePrinceNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeTownguardNPCTile = function() {
-  var newTile = new TownguardNPCTile();
+tileFactory.prototype.makeTownGuardNPCTile = function() {
+  var newTile = new TownGuardNPCTile();
   return newTile;
 }
