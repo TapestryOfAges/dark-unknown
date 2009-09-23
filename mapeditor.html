@@ -18,6 +18,7 @@
 <!-- Maps follow -->
  <script language="JavaScript" src="maps/main_map.js"></script>
  <script language="JavaScript" src="maps/olympus.js"></script>
+ <script language="JavaScript" src="maps/clearlagoon.js"></script>
 
 </head>
 <body onLoad="initialSelect()">
@@ -36,7 +37,7 @@
       </script>
     </select>
     <img onClick="editorLoadMap('');" src="editor/loadmapbutton.gif" />
-    <img onClick="parent.amap.saveMap('');" src="editor/savemapbutton.gif" />
+    <img onClick="amap.saveMap('');" src="editor/savemapbutton.gif" />
     <img onClick="editorEditMapDetails();" src="editor/editdetailsbutton.gif" />
     </span>
     </form>
@@ -179,8 +180,8 @@
           <tr><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td></tr>
           <tr><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td></tr>
           </table></td></tr>
-          <tr><td></td><td><span style="font-size:smaller"><a href="javascript:parent.resize(document.forms[0]);">Resize</a>
-          <a href="javascript:parent.setdebug()">Debug</a></span></td></tr>
+          <tr><td></td><td><span style="font-size:smaller"><a href="javascript:resize(document.placement);">Resize</a>
+          <a href="javascript:setdebug()">Debug</a></span></td></tr>
         </table>
       </center>
     </form>
