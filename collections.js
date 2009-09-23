@@ -44,3 +44,7 @@ Collection.prototype.deleteFrom = function(deletethis) {
 		}
 	}
 }
+
+Collection.prototype.deleteAll = function() {
+	this.container = new Array;
+}
