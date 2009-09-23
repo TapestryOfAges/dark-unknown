@@ -641,6 +641,8 @@ GameMap.prototype.saveMap = function (name) {
 
 GameMap.prototype.loadMap = function (name) {
   this.data = new Array;
+  this.features.deleteAll();
+  this.npcs.deleteAll();
   var loadfrom = mappages.readPage(name, "terrain");
   var localatlas = new Atlas;
   for (var i=0;i<=loadfrom.length-1;i++) {
