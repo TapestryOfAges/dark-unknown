@@ -130,18 +130,18 @@ function changeselection(tilename) {
   document.images["selectionimg"].src = "graphics/" + selectionval.getGraphic();
   if (selectionval.getType() == "terrain") {
   	displayval='terrain';
-  	drawFeatures(0);
-  	document.editlayer.layer[0].checked = true;
+//  	drawFeatures(0);
+//  	document.editlayer.layer[0].checked = true;
   }
   else if (selectionval.getType() == "feature") {
   	displayval = 'feature';
-  	drawFeatures(1);
-  	document.editlayer.layer[1].checked = true;
+//  	drawFeatures(1);
+//  	document.editlayer.layer[1].checked = true;
   }
   else {
   	displayval = 'all';
-  	drawFeatures(2);
-  	document.editlayer.layer[2].checked = true;
+//  	drawFeatures(2);
+//  	document.editlayer.layer[2].checked = true;
   }
 }
 
@@ -325,6 +325,16 @@ function submitEditNPC(change) {
 		if (document.npceditpopup.npcmissile.value != editnpcs.getMissile()) {
 			editnpcs.setMissile(document.npceditpopup.npcmissile.value);
 		}
+	}
+	else if (change == -1) {
+	  // add an "Are you sure? Yes/No" prompt
+	  var mapnpc = amap.npcs;
+	  mapnpc.deleteFrom(editnpcs);
+    mapnpc = amap.getTile(editnpcs.getx(),editnpcs.gety());
+	  mapnpc.npcs.deleteFrom(editnpcs);
+    var tileid = "tile" + editnpcs.getx() + "x" + editnpcs.gety();
+    var localacre = amap.getTile(editnpcs.getx(),editnpcs.gety());
+    document.images[tileid].src = "graphics/"+localacre.terrain.getGraphic();
 	}
 }
 
