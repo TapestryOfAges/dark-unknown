@@ -3,7 +3,7 @@
 <title>Dark Unknown Map Editor</title>
 </head>
 <body>
-<h2>Dark Unknown Map Editor v2.0</h2>
+<h2>Dark Unknown Map Editor v3.1</h2>
 
 <p><a href="mapeditor.html">Go to the editor</a>.</p>
 
@@ -17,6 +17,8 @@
 ask for input about new map size.) New Map is the same as clicking "Load Map" with the "test" map selected.</li>
 <li>Load Map: loads whichever map is selected in the dropdown. Be patient if the map is very large (like the "world" map).</li>
 <li>Save Map: Opens a new window/tab and saves the JS for the map you are working on there. Use Save As to save it to disk.</li>
+<li>Edit Details: Lets you change the map details, like what map it exits to or what it is called when it is entered or whether it
+wraps at the edges.</li>
 </ul>
 
 <h3>Upper Right</h3>
@@ -31,7 +33,7 @@ by and large dependant on which bits of code were giving me strange errors.</li>
 <h3>Right Column</h3>
 
 <ul>
-<li>Choose which category of tiles to choose from: Outdoor or Indoor for terrain, or Features. (Creatures is not yet implemented.)</li>
+<li>Choose which category of tiles to choose from: Outdoor or Indoor for terrain, Features, or NPCs. </li>
 <li>Click any of the tiles to select that tile to add to the map. You can see the tilenames in the status bar on the browser as you mouseover.
 </li>
 </ul>
@@ -42,8 +44,8 @@ by and large dependant on which bits of code were giving me strange errors.</li>
 <li>Point/Rectangle: If "Point" is selected, each click places one tile. If "rectangle" is selected, the first click is one corner, and the
 second click the opposite corner. The map will then fill in all the squares in the rectangle (which you can of course also use to make lines).
 </li>
-<li>Base Map/Features: Switching to Base Map redraws the map without any of the features showing. Selecting Features redraws it with the 
-features. Note this does a lazy redraw of the entire map, so it's slower the larger the map is.
+<li>Base Map/Features/NPCs: Switching to Base Map redraws the map without any of the features showing. Selecting Features redraws it with the 
+features. Selecting NPCs redraws it with features and NPCs. 
 </li>
 </ul>
 
