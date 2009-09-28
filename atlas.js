@@ -224,9 +224,29 @@ function Atlas() {
     "RiverSourceE" : 'x=',
     'x=' : "RiverSourceE",
     "RiverSourceW" : '=x',
-    '=x' : "RiverSourceW"
-
-    
+    '=x' : "RiverSourceW",
+    "RoadEN" : 'r/',
+    'r/' : "RoadEN",
+    "RoadENS" : 'r<',
+    'r<' : "RoadENS",
+    "RoadES" : 'rr',
+    'rr' : "RoadES",
+    "RoadEW" : 'r=',
+    'r=' : "RoadEW",
+    "RoadEWN" : 'rV',
+    'rV' : "RoadEWN",
+    "RoadEWS" : 'rT',
+    'rT' : "RoadEWS",
+    "RoadNS" : 'r|',
+    'r|' : "RoadNS",
+    "RoadWN" : 'r]',
+    'r]' : "RoadWN",
+    "RoadWNS" : 'r>',
+    'r>' : "RoadWNS",
+    "RoadWS" : 'r[',
+    'r[' : "RoadWS",
+    "RoadX" : 'rX',
+    'rX' : "RoadX"
   }
 
 }
