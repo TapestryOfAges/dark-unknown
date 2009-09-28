@@ -342,6 +342,61 @@ tileFactory.prototype.makeGrassTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRoadENTile = function() {
+  var newTile = new RoadENTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoadENSTile = function() {
+  var newTile = new RoadENSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoadESTile = function() {
+  var newTile = new RoadESTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoadEWTile = function() {
+  var newTile = new RoadEWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoadEWNTile = function() {
+  var newTile = new RoadEWNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoadEWSTile = function() {
+  var newTile = new RoadEWSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoadNSTile = function() {
+  var newTile = new RoadNSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoadWNTile = function() {
+  var newTile = new RoadWNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoadWNSTile = function() {
+  var newTile = new RoadWNSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoadWSTile = function() {
+  var newTile = new RoadWSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoadXTile = function() {
+  var newTile = new RoadXTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBrushTile = function() {
   var newTile = new BrushTile();
   return newTile;
