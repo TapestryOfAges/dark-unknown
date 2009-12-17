@@ -96,7 +96,7 @@ function Atlas() {
     '[:' : "LeftCounter", // 53
     "LeftCounter" : '[:',
     '[]' : "CounterBox",  // 54
-    "Counterbox" : '[]',
+    "CounterBox" : '[]',
     'BK' : "BlankBlack", // 55
     "BlankBlack" : 'BK',
     '##' : "Wall", // 56
