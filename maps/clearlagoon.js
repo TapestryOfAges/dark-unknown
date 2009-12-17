@@ -1,3 +1,4 @@
+
 mappages["clearlagoon"] = new Object();
 mappages["clearlagoon"].terrain = new Array;
  mappages["clearlagoon"].terrain[0] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu uu uu uu uu uu uu /. .. .. .. .. ,, .. .. .. .. ,, ,, .. .. ,, ;; ,, .. .. .. .. .. ,, .. .. .. .. ..';
@@ -105,3 +106,90 @@ mappages["clearlagoon"].exity = 'undefined';
 mappages["clearlagoon"].wraps = 'None';
 mappages["clearlagoon"].enterx = 'undefined';
 mappages["clearlagoon"].entery = 'undefined';
+
+
+
+mappages["clearlagoon2"] = new Object();
+mappages["clearlagoon2"].terrain = new Array;
+ mappages["clearlagoon2"].terrain[0] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu uu uu uu uu uu uu /. .. .. .. .. ,, .. .. .. .. ,, ,, .. .. ,, ;; ,, .. .. .. .. .. ,, .. .. .. .. ..';
+ mappages["clearlagoon2"].terrain[1] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu uu uu uu uu uu uu /. .. .. .. .. ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## .. .. ..';
+ mappages["clearlagoon2"].terrain[2] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu uu uu uu /. -- -- -- -- .. .. ,, .. .. ## ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ;; .. ..';
+ mappages["clearlagoon2"].terrain[3] = 'ww ww ww ww ww ww ww ww ww ww ww uu uu uu uu uu /. -- .. .. .. ,, ,, .. .. .. .. .. #O ++ ++ ++ ++ ++ ## ++ ++ ## [: :: :: :: :: :: :: :: :: :] ## ,, ;; ..';
+ mappages["clearlagoon2"].terrain[4] = 'ww ww ww ww ww ww ww ww ww ww uu uu uu uu /. -- .. .. .. .. .. .. .. ,, .. .. .. .. ## ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. ;; ..';
+ mappages["clearlagoon2"].terrain[5] = 'ww ww ww ww ww ww ww ww ww uu uu uu /. -- .. .. .. .. ,, .. .. .. .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ## ++ ++ +D ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ;; ;; ..';
+ mappages["clearlagoon2"].terrain[6] = 'ww ww ww ww ww ww ww ww uu uu uu /. .. .. .. .. .. .. .. ,, ,, ,, .. .. ,, ,, .. .. ## ## ## ## ## ## ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ;; .. ..';
+ mappages["clearlagoon2"].terrain[7] = 'ww ww ww ww ww ww ww uu uu uu /. .. ;; .. .. .. ;; .. .. .. ,, .. ,, .. .. .. ,, .. ## ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ,,';
+ mappages["clearlagoon2"].terrain[8] = 'ww ww ww ww ww ww ww uu uu /. .. ;; ;; ;; ;; ;; ,, ,, ;; .. .. .. .. .. ,, .. .. .. ## ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. ;; ..';
+ mappages["clearlagoon2"].terrain[9] = 'ww ww ww ww ww ww uu uu uu `. .. ;; ,, ;; .. ;; ;; ;; ;; ;; .. ;; ;; .. .. .. .. .. #O ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ;;';
+mappages["clearlagoon2"].terrain[10] = 'ww ww ww ww ww uu uu uu uu uu |; ,, ;; ,, ;; ,, ;; ;; ,, ;; ;; ;; ;; ;; .. .. .. .. ## ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ..';
+mappages["clearlagoon2"].terrain[11] = 'ww ww ww ww ww uu uu uu uu uu |; ;; ;; ;; .. .. ,, ;; .. ;; ;; ;; ,, ;; .. .. .. .. ## ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ..';
+mappages["clearlagoon2"].terrain[12] = 'ww ww ww ww uu uu uu uu /. -; .. ;; ;; .. .. .. .. .. ;; ;; ;; ;; ;; .. .. .. .. .. ## ## ## ## ## ## ## ++ ++ ## ## ## ## ## ## ## ## ## ## ## ## .. .. ..';
+mappages["clearlagoon2"].terrain[13] = 'ww ww ww uu uu /. .` uu |. .. ;; ;; ;; ,, .. .. ,, .. ;; ;; ,, ;; .. ;; .. .. .. .. ## ++ ++ ++ ++ ++ ## ++ ++ ## ,, ,, .. .. .. r| .. .. .. .. .. .. .. ..';
+mappages["clearlagoon2"].terrain[14] = 'uu uu uu uu /. .. ,, -- .. ;; ;; ;; ;; .. ;; ,, ,, ;; .. ;; ;; ;; ;; .. .. .. .. .. #O ++ ++ ++ ++ ++ ## ++ ++ ## ,, .. .. %% .. r| .. %% .. .. .. .. .. ..';
+mappages["clearlagoon2"].terrain[15] = 'uu uu uu uu `. .. .. .. ;; ,, ;; ,, ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ## ++ ++ ## .. .. .. .. .. r| .. .. .. ,, .. .. .. ..';
+mappages["clearlagoon2"].terrain[16] = '.` uu /. .` uu `. .. .. .. ;; .. ;; ;; .. .. ;; ;; .. ;; ,, ;; .. .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ## ++ ++ ## .. .. .. %% .. r| .. %% .. .. ,, .. .. ..';
+mappages["clearlagoon2"].terrain[17] = '.. -- .. .. .` uu `. .. .. ;; ;; .. .. .. .. .. .. .. ;; ;; .. .. .. .. .. .. .. .. ## ## ## ## ## ## ## ## ## ## .. .. .. .. .. r| .. .. .. ,, .. .. .. ..';
+mappages["clearlagoon2"].terrain[18] = '.. .. .. .. .. .` uu |. .. .. .. .. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. r| .. %% .. .. .. .. ,, ..';
+mappages["clearlagoon2"].terrain[19] = '.. .. .. .. .. .| uu |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ,, .. .. .. .. .. .. .. .. ,, .. .. .. .. .. .. .. .. %% .. r| .. .. .. .. .. .. .. ..';
+mappages["clearlagoon2"].terrain[20] = '.. .. .. .. .. .. .` `. .. .. .. .. .. .. .. ,, .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. r| .. .. .. .. .. .. .. ..';
+mappages["clearlagoon2"].terrain[21] = '.. .. ;; .. ;; .. .. .` `. .. .. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. __ __ .. .. .. .. .. .. .. ,, .. .. .. .. .. .. r| .. .. .. .. ,, ,, .. ..';
+mappages["clearlagoon2"].terrain[22] = '.. .. .. .. ;; ;; .. .| uu `. .. .. .. .. .. .. .. .. .. __ __ __ __ .. .. .. ./ uu uu `. __ .. .. .. ,, .. .. .. .. .. .. %% .. r| .. %% .. .. .. .. ,, ..';
+mappages["clearlagoon2"].terrain[23] = '.. .. .. .. .. .. .. .| uu uu |. .. .. .. .. .. __ __ ./ uu uu uu uu `. __ ./ uu uu /. .` uu `. .. .. .. .. .. ,, .. .. .. .. .. r| .. .. .. .. ,, .. .. ..';
+mappages["clearlagoon2"].terrain[24] = '.. .. ;; ,, .. .. .. .. .` uu `. __ __ __ __ ./ uu uu uu uu /. -- .` uu uu uu /. -- .. .. .` uu `. .. .. .. .. ,, .. .. .. .. rr r] .. .. ,, .. .. .. .. ..';
+mappages["clearlagoon2"].terrain[25] = '.. ;; .. .. .. .. .. .. .. .` uu uu uu uu uu uu uu uu uu /. .. .. .. -- -- -- .. .. .. .. .. %% .` `. .. .. .. .. .. rr r= r= r] .. .. .. .. ,, .. ,, .. ..';
+mappages["clearlagoon2"].terrain[26] = '.. .. .. .. .. .. ;; ;; .. .. -- .` uu uu uu /. -- -- -- .. .. .. .. .. .. .. .. .. .. .. %% .. .| uu `. .. .. .. rr r] .. .. .. .. .. .. .. .. .. .. ,, ..';
+mappages["clearlagoon2"].terrain[27] = '.. .. .. .. .. .. ,, .. .. ;; .. .. -- -- -- .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. rr r= uu uu r= r= r= r] .. .. ,, .. .. .. .. .. .. .. .. .. ..';
+mappages["clearlagoon2"].terrain[28] = '.. .. .. .. .. ;; .. .. .. .. ,, .. ,, .. .. .. +o ++ ++ ++ ++ +o ++ ++ ++ ++ +o .. .. rr r= r] .| uu uu `. __ .. .. .. .. .. .. .. .. ./ `. __ .. ,, .. ,,';
+mappages["clearlagoon2"].terrain[29] = '.. .. .. .. .. .. .. .. .. .. ;; .. .. ;; ,, .. ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ .. .. r| .. .. %% .` uu uu uu `. .. %% ,, .. %% .. ./ uu uu uu `. __ _, __';
+mappages["clearlagoon2"].terrain[30] = '.. .. ;; ,, .. .. .. .. ;; .. .. .. .. .. ;; .. ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ .. .. r| .. .. .. .. .` uu uu uu `. .. %% ,, .. ./ /. -- -- -- .` uu uu uu';
+mappages["clearlagoon2"].terrain[31] = '.. ;; .. ;; ;; .. .. ;; .. .. .. ;; .. .. .. .. +o ++ ++ ++ ++ ++ ++ ++ ++ ++ +o .. .. r| .. .. .. .. .. -- .` uu uu `. __ __ ./ /. .. .. .. .. .. -- -- .`';
+mappages["clearlagoon2"].terrain[32] = '.. .. .. .. .. .. ,, .. .. .. .. ,, ;; .. .. .. ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ .. .. r| .. .. .. .. .. .. .. -- .` uu uu uu /. .. .. .. .. .. .. .. .. ..';
+mappages["clearlagoon2"].terrain[33] = '.. .. .. ;; ,, .. .. .. .. .. .. .. .. .. .. .. ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ .. .. r| .. .. .. .. .. .. .. .. .. -- -- -- .. .. .. .. .. .. .. .. .. ..';
+mappages["clearlagoon2"].terrain[34] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. +o ++ ++ ++ ++ +o ++ ++ ++ ++ +o .. .. r| .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["clearlagoon2"].terrain[35] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. r| .. .. .. .. .. .. .. .. .. .. .. .. ## ## ## ## ## ## ## ## ## ..';
+mappages["clearlagoon2"].terrain[36] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[37] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[38] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[39] = '.. .. .. .. .. ++ ++ ++ .. .. .. .. .. .. .. .. .. .. .. ++ ++ ++ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[40] = '.. .. .. .. .. ++ ++ ++ .. .. .. .. .. .. .. .. .. .. .. ++ ++ ++ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[41] = '.. .. .. .. .. ++ ++ ++ .. .. .. .. .. .. .. .. .. .. .. ++ ++ ++ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[42] = '.. .. ## ## ## ## +D ## ## ## ## ## ## ## ## ## #O ## ## ## +D ## ## ## .. .. .. .. ## ## ## #+ ## ## ## ## #+ ## ## ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[43] = '.. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ## ++ ++ (^ ++ ++ ++ ++ ## .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[44] = '.. .. #O ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ +D ++ ++ () ++ ++ ++ ++ ## .. .. .. .. #+ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[45] = '.. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ## ++ ++ () ++ ++ ++ ++ ## .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[46] = '.. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ## ## ## ## ## [] ++ (_ ++ ++ ++ ++ ## .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[47] = '.. .. ## ++ ++ ++ ++ [: :: :: :] ## ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[48] = '.. .. ## ++ ++ ++ ++ ++ ++ ++ ++ +D ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. #+ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[49] = '.. .. ## ++ ++ ++ ++ [] ++ ++ ++ ## ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
+mappages["clearlagoon2"].terrain[50] = '.. .. ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## .. .. .. .. ## ## ## #+ ## ## ## ## #+ ## ## ## .. .. ## ## ## ## ## ## ## ## ## ..';
+mappages["clearlagoon2"].terrain[51] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+
+mappages["clearlagoon2"].features = new Array;
+mappages["clearlagoon2"].features[0] = {name : 'DoorWindow', x : 43, y : 12};
+mappages["clearlagoon2"].features[1] = {name : 'Door', x : 34, y : 3};
+mappages["clearlagoon2"].features[2] = {name : 'Door', x : 34, y : 9};
+mappages["clearlagoon2"].features[3] = {name : 'Door', x : 34, y : 15};
+mappages["clearlagoon2"].features[4] = {name : 'LeftChair', x : 38, y : 9};
+mappages["clearlagoon2"].features[5] = {name : 'BridgeEW', x : 33, y : 27};
+mappages["clearlagoon2"].features[6] = {name : 'BridgeEW', x : 34, y : 27};
+mappages["clearlagoon2"].features[7] = {name : 'BridgeEW', x : 6, y : 19};
+mappages["clearlagoon2"].features[8] = {name : 'DoorWindow', x : 47, y : 47};
+mappages["clearlagoon2"].features[9] = {name : 'DoorWindow', x : 45, y : 47};
+mappages["clearlagoon2"].features[10] = {name : 'Door', x : 15, y : 44};
+mappages["clearlagoon2"].features[11] = {name : 'Door', x : 11, y : 48};
+mappages["clearlagoon2"].features[12] = {name : 'DoorWindow', x : 20, y : 42};
+mappages["clearlagoon2"].features[13] = {name : 'DoorWindow', x : 6, y : 42};
+mappages["clearlagoon2"].features[14] = {name : 'LadderDown', x : 38, y : 43, entermap : 'undefined', enterx : 0, entery : 0};
+mappages["clearlagoon2"].features[15] = {name : 'LadderDown', x : 49, y : 46, entermap : 'undefined', enterx : 0, entery : 0};
+
+
+mappages["clearlagoon2"].npcs = new Array;
+
+mappages["clearlagoon2"].desc = 'Clear Lagoon 2';
+mappages["clearlagoon2"].music = 'Towne';
+mappages["clearlagoon2"].exitmap = 'clearlagoon';
+mappages["clearlagoon2"].exitx = 'undefined';
+mappages["clearlagoon2"].exity = 'undefined';
+mappages["clearlagoon2"].wraps = 'None';
+mappages["clearlagoon2"].enterx = 'undefined';
+mappages["clearlagoon2"].entery = 'undefined';
