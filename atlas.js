@@ -246,7 +246,11 @@ function Atlas() {
     "RoadWS" : 'r[',
     'r[' : "RoadWS",
     "RoadX" : 'rX',
-    'rX' : "RoadX"
+    'rX' : "RoadX",
+    "Shingles" : 'rf',
+    'rf' : "Shingles",
+    "ShinglesTop" : 'rc',
+    'rc' : "ShinglesTop"
   }
 
 }

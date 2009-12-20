@@ -839,3 +839,13 @@ tileFactory.prototype.makeTownGuardNPCTile = function() {
   var newTile = new TownGuardNPCTile();
   return newTile;
 }
+
+tileFactory.prototype.makeShinglesTile = function() {
+  var newTile = new ShinglesTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShinglesTopTile = function() {
+  var newTile = new ShinglesTopTile();
+  return newTile;
+}

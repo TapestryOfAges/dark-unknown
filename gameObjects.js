@@ -1157,6 +1157,24 @@ SwampTile.prototype.idle = function() {
   // see walkon
 }
 
+function ShinglesTile() {
+  this.name = "Shingles";
+  this.graphic = "shingles.gif";
+  this.passable = 0x5; // fly, ethereal
+  this.blocklos = 0;
+  this.desc = "roof";
+}
+ShinglesTile.prototype = new TerrainObject;
+
+function ShinglesTopTile() {
+  this.name = "ShinglesTop";
+  this.graphic = "shingles-top.gif";
+  this.passable = 0x5; // fly, ethereal
+  this.blocklos = 0;
+  this.desc = "roof";
+}
+ShinglesTopTile.prototype = new TerrainObject;
+
 function LavaTile() {
   this.name = "Lava";
   this.graphic = "147.gif";
