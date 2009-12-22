@@ -467,6 +467,12 @@ function editorEditMapDetails() {
   document.detailseditpopup.mapenterx.value = amap.getEnterX();
   document.detailseditpopup.mapentery.value = amap.getEnterY();
   document.detailseditpopup.mapwrap.value = amap.getWrap();
+  var maplist = amap.getLinkedMaps();
+  if (maplist) {
+    document.detailseditpopup.maplinkedmaps.value = maplist.join();
+  }
+  else { document.detailseditpopup.maplinkedmaps.value = ""; }
+  document.detailseditpopup.mapseebelow.value = amap.getSeeBelow();
 }
 
 function submitEditDetails(change) {
@@ -480,6 +486,8 @@ function submitEditDetails(change) {
     amap.setWrap(document.detailseditpopup.mapwrap.value);	
     amap.setEnterX(document.detailseditpopup.mapenterx.value);
     amap.setEnterY(document.detailseditpopup.mapentery.value);			
+    amap.setLinkedMaps(document.detailseditpopup.maplinkedmaps.value);
+    amap.setSeeBelow(document.detailseditpopup.mapseebelow.value);
 	}
 }
 
