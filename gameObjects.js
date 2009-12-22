@@ -1175,6 +1175,15 @@ function ShinglesTopTile() {
 }
 ShinglesTopTile.prototype = new TerrainObject;
 
+function SeeBelowTile() {
+  this.name = "SeeBelow";
+  this.graphic = "see-below.gif";
+  this.passable = 0x5; // fly, ethereal
+  this.blocklos = 0;
+  this.desc = "roof";
+}
+SeeBelowTile.prototype = new TerrainObject;
+
 function LavaTile() {
   this.name = "Lava";
   this.graphic = "147.gif";
