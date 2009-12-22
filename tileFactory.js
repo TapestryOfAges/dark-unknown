@@ -849,3 +849,8 @@ tileFactory.prototype.makeShinglesTopTile = function() {
   var newTile = new ShinglesTopTile();
   return newTile;
 }
+
+tileFactory.prototype.makeSeeBelowTile = function() {
+  var newTile = new SeeBelowTile();
+  return newTile;
+}
