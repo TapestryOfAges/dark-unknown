@@ -75,6 +75,8 @@
 	<td><br /><input type="text" name="mapenterx" size="4" maxlength="3" /><br /><input type="text" name="mapentery" size="4" maxlength="3" /></td></tr>
 		<tr><td>Worldwrap:</td><td><select name="mapwrap"><option value="None">None</option><option value="Horizontal">Horizontal</option>
 			                                                <option value="Vertical">Vertical</option><option value="Both">Both</option></select></td></tr></tr>
+	  <tr><td>Linked maps:</td><td><input type="text" name="maplinkedmaps" size="30" /></td></tr>
+	  <tr><td>See Lower Map:</td><td><input type="text" name="mapseebelow" size="30" /></td></tr>
 		<tr><td><input type="submit" value="Edit" onClick="submitEditDetails(1);" class="jqmClose" /></td><td><input type="submit" value="Cancel" onClick="submitEditDetails(0);" class="jqmClose" /></td></tr>
 		</table></form>
 	</div>
@@ -200,6 +202,11 @@
 <table cellpadding="1" cellspacing="1" border="1">
 <tr>
   <td colspan="3" style="font-weight:bold;text-align:center">Outdoor</td>
+</tr>
+<tr>
+ <td></td>
+ <td><script language="Javascript">writeTileOption('SeeBelow');</script></td>
+ <td></td>
 </tr>
 <tr>
  <td><script language="Javascript">writeTileOption('Ocean');</script></td>
