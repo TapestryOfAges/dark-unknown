@@ -250,7 +250,9 @@ function Atlas() {
     "Shingles" : 'rf',
     'rf' : "Shingles",
     "ShinglesTop" : 'rc',
-    'rc' : "ShinglesTop"
+    'rc' : "ShinglesTop",
+    "SeeBelow" : 'sb',
+    'sb' : "SeeBelow"
   }
 
 }
@@ -293,7 +295,11 @@ function GameMap() {
   this.exitTo.x = 65;
   this.exitTo.y = 70;
   this.wraps = 0;
+  
+  this.linkedMaps = new Array;
+  this.seeBelow = "";
 }
+GameMap.prototype = new Object;
 
 GameMap.prototype.setName = function(name) {
   this.name = name;
@@ -384,6 +390,27 @@ GameMap.prototype.setTile = function(x,y,tile) {
 
 GameMap.prototype.getTile = function(x,y) {
   return this.data[y][x];
+}
+
+GameMap.prototype.getLinkedMaps = function() {
+	return this.linkedMaps;
+}
+
+GameMap.prototype.setLinkedMaps = function(maplist) {
+	maplist = maplist.replace(" ","");
+	this.linkedMaps = maplist.split(",");
+}
+
+GameMap.prototype.setLinkedMapsArray = function(maplist) {
+	this.linkedMaps = maplist;
+}
+
+GameMap.prototype.getSeeBelow = function() {
+	return this.seeBelow;
+}
+
+GameMap.prototype.setSeeBelow = function(mapname) {
+	this.seeBelow = mapname;
 }
 
 // generate the tile from the factory first, then pass it to setTerrain
@@ -596,7 +623,7 @@ GameMap.prototype.saveMap = function (name) {
    }
    if (baseobj.getEnterMap != null) {
    	 var mapdest = mapfeatures[i].getEnterMap();
-   	 printerwin.document.write(", entermap : '" + mapdest.getEnterMap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
+   	 printerwin.document.write(", entermap : '" + mapdest.entermap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
    }
    printerwin.document.write("};\n");
  }
@@ -660,6 +687,22 @@ GameMap.prototype.saveMap = function (name) {
  printerwin.document.write(name + ".wraps = '" + this.getWrap() + "';\n");
  printerwin.document.write(name + ".enterx = '" + this.getEnterX() + "';\n");
  printerwin.document.write(name + ".entery = '" + this.getEnterY() + "';\n");
+ printerwin.document.write(name + ".seeBelow = '" + this.getSeeBelow() + "';\n");
+ var linkedMapList;
+ var linkedMapArray = this.getLinkedMaps();
+ if (linkedMapArray.length > 0) {
+ 	 for (var i=0;i<linkedMapArray.length;i++) {
+ 	 	if (i == 0) {
+ 	 		linkedMapList = '"' + linkedMapArray[i] + '"';
+ 	 	} else {
+ 	 		linkedMapList = linkedMapList + ',"' + linkedMapArray[i] + '"';
+ 	 	}
+ 	}
+ 	printerwin.document.write(name + ".linkedMaps = new Array(" + linkedMapList + ");\n");
+ }
+ else {
+   printerwin.document.write(name + ".linkedMaps = new Array;\n");
+ }
  printerwin.document.close();
 }
 
@@ -715,6 +758,8 @@ GameMap.prototype.loadMap = function (name) {
   this.setWrap(mappages.readPage(name, "wraps"));
   this.setEnterX(mappages.readPage(name, "enterx"));
   this.setEnterY(mappages.readPage(name, "entery"));
+  this.setSeeBelow(mappages.readPage(name, "seeBelow"));
+  this.setLinkedMapsArray(mappages.readPage(name, "linkedMaps"));
   
   this.setName(name);
   return;
@@ -735,7 +780,11 @@ function Pages() {
 
 Pages.prototype.readPage = function (name,type) {
 
-  return this[name][type];
+  if (this[name][type]) {
+    return this[name][type];
+  } else {
+  	return "";
+  }
   
 }
 
