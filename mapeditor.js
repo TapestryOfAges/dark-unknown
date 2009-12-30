@@ -10,6 +10,7 @@ var debug = 0;
 var debugscreen;
 var togglehide = 0;
 var displayval = "all";
+var brushdown = 0;
 var editable;
 var editnpcs;
 var browserheight = getSize();
@@ -73,13 +74,19 @@ function drawMap() {
    for (var i=0;i<=amap.data.length-1;i++) {
      for (var j=0;j<=amap.data[0].length-1;j++) {
        var localacre = amap.getTile(j,i);
-       mapdiv += '<td><img onClick="parent.clickmap('+j+','+i+')" id="tile'+j+'x'+i+'" src="graphics/'+localacre.terrain.getGraphic()+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
+       mapdiv += '<td class="maptd" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+localacre.terrain.getGraphic()+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
      }
      mapdiv += '</tr><tr>';
    }
    mapdiv  += '</table>';
  }
  $("div.mapscreen").html(mapdiv);
+ //$("td.maptd").bind("mouseenter", function() {
+ 	
+ //});
+ //$("td.maptd").bind("mouseleave", function() {
+ 	
+ //});
  $("div.mapscreen").css("height", browserheight-130);
  $("div.tiles").css("height", browserheight-100);
  if (displayval == "features") {
@@ -89,6 +96,12 @@ function drawMap() {
  	 drawFeatures(2);
  }
  $().ready(function() { $('#featurebubble').jqm({modal : true}) });
+}
+
+function enterTile(x,y) {
+	if ((document.brushes.elements[0].checked) && (brushdown == 1)) {
+		clickmap(x,y);
+	}
 }
 
 function drawFeatures(draw) {
