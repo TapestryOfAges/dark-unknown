@@ -166,11 +166,8 @@ mappages["clearlagoon2"].terrain[50] = 'sb sb rf rf rf rf rf rf rf rf rf rf rf r
 mappages["clearlagoon2"].terrain[51] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
 
 mappages["clearlagoon2"].features = new Array;
-mappages["clearlagoon2"].features[0] = {name : 'BridgeEW', x : 33, y : 27};
-mappages["clearlagoon2"].features[1] = {name : 'BridgeEW', x : 34, y : 27};
-mappages["clearlagoon2"].features[2] = {name : 'BridgeEW', x : 6, y : 19};
-mappages["clearlagoon2"].features[3] = {name : 'LadderDown', x : 38, y : 43, entermap : 'clearlagoon', enterx : 38, entery : 43};
-mappages["clearlagoon2"].features[4] = {name : 'LadderDown', x : 49, y : 46, entermap : 'clearlagoon', enterx : 49, entery : 46};
+mappages["clearlagoon2"].features[0] = {name : 'LadderDown', x : 38, y : 43, entermap : 'clearlagoon', enterx : 38, entery : 43};
+mappages["clearlagoon2"].features[1] = {name : 'LadderDown', x : 49, y : 46, entermap : 'clearlagoon', enterx : 49, entery : 46};
 
 
 mappages["clearlagoon2"].npcs = new Array;
