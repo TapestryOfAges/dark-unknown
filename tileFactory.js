@@ -854,3 +854,8 @@ tileFactory.prototype.makeSeeBelowTile = function() {
   var newTile = new SeeBelowTile();
   return newTile;
 }
+
+tileFactory.prototype.makeWellTile = function() {
+  var newTile = new WellTile();
+  return newTile;
+}
