@@ -1569,6 +1569,15 @@ function SecretDoorTile() {
 }
 SecretDoorTile.prototype = new FeatureObject;
 
+function WellTile() {
+	this.name = "Well";
+	this.graphic = "well.gif";   
+	this.passable = 0x4; // ethereal
+	this.blocklos = 0; 
+	this.desc = "a well";
+}
+WellTile.prototype = new FeatureObject;
+
 function WhirlpoolTile() {
 	this.name = "Whirlpool";
 	this.graphic = "325.gif";
