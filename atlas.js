@@ -720,9 +720,12 @@ GameMap.prototype.loadMap = function (name) {
     for (var j=0;j<=tileserials.length-1;j++) {
       if (debug) {debugscreen.document.writeln(" " + tileserials[j]);}
       var loadedtile = localatlas.key[tileserials[j]];
-      this.data[i][j] = new Acre;
-      this.data[i][j].terrain = localFactory.createTile(loadedtile);
-      this.data[i][j].terrain.setHomeMap(this);
+//      this.data[i][j] = new Acre;
+//      this.data[i][j].terrain = localFactory.createTile(loadedtile);
+//      this.data[i][j].terrain.setHomeMap(this);
+      var newterrain = localFactory.createTile(loadedtile);
+      this.setTerrain(j,i,newterrain);
+
     }
   }
   var loadfeatures = mappages.readPage(name, "features");
@@ -731,6 +734,7 @@ GameMap.prototype.loadMap = function (name) {
 //  	alert(loadfeatures.length + " features loading...");
     for (var i=0;i<=loadfeatures.length-1;i++) {
     	var newfeature = localFactory.createTile(loadfeatures[i].name);
+    	newfeature.setHomeMap(this);
     	for (var featurekey in loadfeatures[i]) {
     		if (featurekey == "name") { continue; }
     		if (featurekey == "locked") { newfeature.lockMe(loadfeatures[i]["locked"]); continue; }
@@ -745,6 +749,7 @@ GameMap.prototype.loadMap = function (name) {
   if (loadnpcs)  {
   	for (var i=0;i<=loadnpcs.length-1;i++) {
   		var newnpc = localFactory.createTile(loadnpcs[i].name);
+  		newnpc.setHomeMap(this);
   		
   		this.placeThing(loadnpcs[i].x,loadnpcs[i].y,newnpc);
   	}
