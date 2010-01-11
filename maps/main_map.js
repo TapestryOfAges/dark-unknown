@@ -1,4 +1,3 @@
-
 mappages["darkunknown"] = new Object();
 mappages["darkunknown"].terrain = new Array;
   mappages["darkunknown"].terrain[0] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
@@ -162,3 +161,16 @@ mappages["darkunknown"].features[21] = {name : 'BridgeEW', x : 75, y : 25};
 mappages["darkunknown"].features[22] = {name : 'HillTower', x : 52, y : 33, entermap : 'magetower', enterx : 0, entery : 0};
 mappages["darkunknown"].features[23] = {name : 'Whirlpool', x : 104, y : 10, entermap : 'ambrosia', enterx : 0, entery : 0};
 
+
+mappages["darkunknown"].npcs = new Array;
+
+mappages["darkunknown"].desc = 'Lands of Olympus';
+mappages["darkunknown"].music = 'Mainland';
+mappages["darkunknown"].exitmap = '';
+mappages["darkunknown"].exitx = '';
+mappages["darkunknown"].exity = '';
+mappages["darkunknown"].wraps = 'Both';
+mappages["darkunknown"].enterx = '64';
+mappages["darkunknown"].entery = '71';
+mappages["darkunknown"].seeBelow = '';
+mappages["darkunknown"].linkedMaps = new Array("");
