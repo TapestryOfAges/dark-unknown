@@ -2018,6 +2018,7 @@ function PCObject() {
 	this.dex = 10;
 	this.int = 10
 	this.level = 1
+	this.type = "pc";
 	this.pcname = "Goldenflame";
 	this.desc = "you";
 	this.alignment = "good";	
