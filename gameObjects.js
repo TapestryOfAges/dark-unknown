@@ -52,8 +52,6 @@ GameObject.prototype.getName = function() {
 
 GameObject.prototype.moveTo = function(x,y) {
 	this.homeMap.moveThing(this,x,y)
-	this.x = x;
-	this.y = y;
 }
 
 GameObject.prototype.bumpinto = function(who) {
@@ -2020,7 +2018,6 @@ function PCObject() {
 	this.dex = 10;
 	this.int = 10
 	this.level = 1
-	this.type = "pc";
 	this.pcname = "Goldenflame";
 	this.desc = "you";
 	this.alignment = "good";	
