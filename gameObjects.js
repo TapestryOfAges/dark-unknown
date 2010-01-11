@@ -2010,3 +2010,27 @@ function PrinceNPCTile() {
 	this.missileAttackAs = "none";
 }
 PrinceNPCTile.prototype = new NPCObject;
+
+
+
+
+function PCObject() {
+	this.name = "PC";
+	this.str = 10;
+	this.dex = 10;
+	this.int = 10
+	this.level = 1
+	this.type = "pc";
+	this.pcname = "Goldenflame";
+	this.desc = "you";
+	this.alignment = "good";	
+	this.graphic = "301.gif";
+	this.meleeAttackAs = "fists";
+	this.missileAttackAs = "none";
+	this.maxhp = 30 * this.level;
+	this.hp = this.maxhp;
+	this.maxmana = this.int;
+	this.mana = this.maxmana;
+	this.mapname = "darkunknown";
+}
+PCObject.prototype = new NPCObject;
