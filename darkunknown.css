@@ -1,0 +1,24 @@
+
+@font-face {  
+	  font-family: "November";  
+	  src: url( fonts/novem___.eot ); /* IE */  
+	  src: local("November"), url( fonts/novem___.ttf ) format("truetype"); /* non-IE */  
+	}  
+	
+div.topbar { text-align:center; 
+	           color:white;
+	           vertical-align:top;
+	           font-weight:bold;
+	           font-family:"November";
+	           font-size:20px; }
+	           
+div.topbar p { margin-top:-4px }
+
+
+div.charstats table { color:white;
+                font-weight:bold; 
+                font-family:"November";
+   	            font-size:20px;
+   	            margin-top:-8px;
+}
+
