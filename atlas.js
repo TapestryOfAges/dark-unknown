@@ -559,7 +559,9 @@ GameMap.prototype.placeThing = function(x,y,newthing) {
 
 GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump and passable and before walkon
 		this.data[thing.y][thing.x][thing.type].deleteFrom(thing);
-    this.data[y][x][thing.type].addTop(newthing);
+    this.data[y][x][thing.type].addTop(thing);
+    thing.setx(x);
+    thing.sety(y);
 }
 
 GameMap.prototype.deleteThing = function(thing) {
