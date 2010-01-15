@@ -653,13 +653,13 @@ GameMap.prototype.saveMap = function (name) {
  		printerwin.document.write(", Alignment: '" + mapnpcs[i].getAlignment() + "'");
  	}
  	if (basenpc.getstr() != mapnpcs[i].getstr()) {
- 		printerwin.document.write(", Str: " + mapnpcs[i].getstr());
+ 		printerwin.document.write(", str: " + mapnpcs[i].getstr());
  	}
  	if (basenpc.getdex() != mapnpcs[i].getdex()) {
- 		printerwin.document.write(", Dex: " + mapnpcs[i].getdex());
+ 		printerwin.document.write(", dex: " + mapnpcs[i].getdex());
  	}
  	if (basenpc.getint() != mapnpcs[i].getint()) {
- 		printerwin.document.write(", Int: " + mapnpcs[i].getint());
+ 		printerwin.document.write(", int: " + mapnpcs[i].getint());
  	}
  	if (basenpc.getAttitude() != mapnpcs[i].getAttitude()) {
  		printerwin.document.write(", Attitude: '" + mapnpcs[i].getAttitude() + "'");
@@ -749,12 +749,25 @@ GameMap.prototype.loadMap = function (name) {
   }
 
   var loadnpcs = mappages.readPage(name, "npcs");
-
   if (loadnpcs)  {
   	for (var i=0;i<=loadnpcs.length-1;i++) {
   		var newnpc = localFactory.createTile(loadnpcs[i].name);
   		newnpc.setHomeMap(this);
-  		
+  		for (var npckey in loadnpcs[i]) {
+  			if (npckey == "NPCName") { newnpc.setNPCName(loadnpcs[i].NPCName); }
+  			if (npckey == "Desc") { newnpc.setDesc(loadnpcs[i].Desc); }
+  			if (npckey == "Level") { newnpc.setLevel(loadnpcs[i].Level); }
+  			if (npckey == "Alignment") { newnpc.setAlignment(loadnpcs[i].Alignment); }
+  			if (npckey == "str") { newnpc.setstr(loadnpcs[i].str); }
+  			if (npckey == "dex") { newnpc.setdex(loadnpcs[i].dex); }
+  			if (npckey == "int") { newnpc.setint(loadnpcs[i].int); }
+  			if (npckey == "Attitude") { newnpc.setAttitude(loadnpcs[i].Attitude); }
+  			if (npckey == "PeaceAI") { newnpc.setPeaceAI(loadnpcs[i].PeaceAI); }
+  			if (npckey == "PCThreatAI") { newnpc.setPCThreatAI(loadnpcs[i].PCThreatAI); }
+  			if (npckey == "ThreatenedAI") { newnpc.setThreatenedAI(loadnpcs[i].ThreatenedAI); }
+  			if (npckey == "Melee") { newnpc.setMelee(loadnpcs[i].Melee); }
+  			if (npckey == "Missile") { newnpc.setMissile(loadnpcs[i].Missile); }
+  		}
   		this.placeThing(loadnpcs[i].x,loadnpcs[i].y,newnpc);
   	}
   }
