@@ -73,8 +73,8 @@ mappages["olympus1"].features[22] = {name : 'LadderUp', x : 25, y : 23, entermap
 
 mappages["olympus1"].npcs = new Array;
 mappages["olympus1"].npcs[0] = {name : 'KingNPC', x : 29, y : 13, NPCName: 'King Daragen', Desc: 'the King of Olympus'};
-mappages["olympus1"].npcs[1] = {name : 'MageVillagerNPC', x : 31, y : 15, NPCName: 'Jharden', Desc: 'the royal advisor', Level: 6, Str: 12, Dex: 12, Int: 26};
-mappages["olympus1"].npcs[2] = {name : 'FighterVillagerNPC', x : 25, y : 13, NPCName: 'Ambrose', Desc: 'the guard captain', Level: 5, Str: 24, Dex: 18, Int: 12, PeaceAI: 'guard', PCThreatAI: 'melee', Melee: 'halberd'};
+mappages["olympus1"].npcs[1] = {name : 'MageVillagerNPC', x : 31, y : 15, NPCName: 'Jharden', Desc: 'the royal advisor', Level: 6, str: 12, dex: 12, int: 26};
+mappages["olympus1"].npcs[2] = {name : 'FighterVillagerNPC', x : 25, y : 13, NPCName: 'Ambrose', Desc: 'the guard captain', Level: 5, str: 24, dex: 18, int: 12, PeaceAI: 'guard', PCThreatAI: 'melee', Melee: 'halberd'};
 mappages["olympus1"].npcs[3] = {name : 'TownGuardNPC', x : 27, y : 18};
 mappages["olympus1"].npcs[4] = {name : 'TownGuardNPC', x : 31, y : 18};
 mappages["olympus1"].npcs[5] = {name : 'TownGuardNPC', x : 30, y : 23};
@@ -83,6 +83,7 @@ mappages["olympus1"].npcs[7] = {name : 'TownGuardNPC', x : 26, y : 33};
 mappages["olympus1"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 24, y : 22};
 mappages["olympus1"].npcs[9] = {name : 'DruidVillagerNPC', x : 13, y : 14};
 mappages["olympus1"].npcs[10] = {name : 'TownsfolkVillagerNPC', x : 47, y : 28};
+mappages["olympus1"].npcs[11] = {name : 'DruidVillagerNPC', x : 44, y : 14};
 
 mappages["olympus1"].desc = 'Castle Olympus';
 mappages["olympus1"].music = 'Towne';
