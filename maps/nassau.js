@@ -43,6 +43,15 @@ mappages["nassau"].features[5] = {name : 'Well', x : 26, y : 4};
 
 
 mappages["nassau"].npcs = new Array;
+mappages["nassau"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 28, y : 4};
+mappages["nassau"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 28, y : 13};
+mappages["nassau"].npcs[2] = {name : 'TinkerVillagerNPC', x : 23, y : 24};
+mappages["nassau"].npcs[3] = {name : 'ShepherdVillagerNPC', x : 3, y : 20};
+mappages["nassau"].npcs[4] = {name : 'RangerVillagerNPC', x : 7, y : 3};
+mappages["nassau"].npcs[5] = {name : 'AdventurerVillagerNPC', x : 13, y : 4};
+mappages["nassau"].npcs[6] = {name : 'PaladinVillagerNPC', x : 9, y : 6};
+mappages["nassau"].npcs[7] = {name : 'TownGuardNPC', x : 8, y : 13};
+mappages["nassau"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 25, y : 3};
 
 mappages["nassau"].desc = 'the Village of Nassau';
 mappages["nassau"].music = 'Towne';
