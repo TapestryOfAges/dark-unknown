@@ -828,3 +828,37 @@ Platonic.prototype.getForm = function (name) {
   }
 
 }
+
+function MapMemory() {
+  this.data = new Array;	
+}
+
+MapMemory.prototype.addMap = function(mapname) {
+	var newmap = new GameMap();
+	newmap.loadMap(mapname);
+	this.data[mapname] = newmap;
+	
+	// also load any linked maps
+	if (newmap.linkedMaps[0] && newmap.linkedMaps[0] != "") {
+		for (var i = 0; i < newmap.linkedMaps.length; i++) {
+			var anothermap = new GameMap();
+			anothermap.loadMap(newmap.linkedMaps[i]);
+			this.data[newmap.linkedMaps[i]] = anothermap;
+		}
+	}
+	
+	return newmap;
+}
+
+MapMemory.prototype.addMapByRef = function(mapname, mapref) {
+	this.data[mapname] = mapref;
+}
+
+MapMemory.prototype.deleteMap = function(mapname) {
+	if (this.data[mapname].linkedMaps[0] && this.data[mapname].linkedMaps[0] != "") {
+		for (var i = 0; i < this.data[mapname].linkedMaps.length; i++) {
+			delete this.data[this.data[mapname].linkedMaps[i]];
+		}
+	}
+	delete this.data[mapname];
+}
