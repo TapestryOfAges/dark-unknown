@@ -9,7 +9,7 @@ var eidos = new Platonic();
 var PC = new PCObject();
 var gamestate = new GameStateData();
 var maps = new MapMemory();
-var worldmap = maps.addMap("darkunknown");
+var worldmap = new GameMap();
 
 var debug = 0;
 var debugscreen;
@@ -39,7 +39,7 @@ $(document).ready(function() {
 	gamestate.loadGame();
   drawCharFrame();
   drawTopbarFrame("<p>Lands of Olympus</p>");
-  worldmap.loadMap("darkunknown");
+  worldmap = maps.addMap("darkunknown");
   drawMainFrame("draw");
 
   
