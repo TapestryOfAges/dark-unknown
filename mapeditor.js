@@ -361,8 +361,8 @@ function changemaptile(xval,yval) {
 
 
 function resize(forminfo) {
-  var oldy = amap.data.length;
-  var oldx = amap.data[0].length;
+  var oldy = amap.getHeight();
+  var oldx = amap.getWidth();
   var newx = prompt("New width of the map:", oldx);
   var newy = prompt("New height of the map:", oldy);
   var anchor = 4;
