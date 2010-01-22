@@ -2032,3 +2032,11 @@ function PCObject() {
 	this.mapname = "darkunknown";
 }
 PCObject.prototype = new NPCObject;
+
+PCObject.prototype.getMapName = function() {
+	return this.mapname;
+}
+
+PCObject.prototype.setMapName = function(newmap) {
+	this.mapname = newmap;
+}
