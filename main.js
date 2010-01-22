@@ -2,6 +2,9 @@
 var mode = "base";
 // base, conversation, direction choice
 
+var viewsizex = 13;
+var viewsizey = 13;
+
 var mappages = new Pages();
 var localFactory = new tileFactory();
 var eidos = new Platonic();
@@ -24,11 +27,22 @@ function drawCharFrame() {
 
 function drawMainFrame(how) {
   var mapdiv;
-  for (var i=PC.getx - 6; i<= PC.getx + 6; i++ ){
-  	for (var j=PC.gety - 6; j<= PC.gety + 6; j++ ){
-  		
-  	}
-  }	
+  var themap = maps.getMap(PC.getMapName());
+  
+  var leftedge = PC.getx() - (viewsizex - 1)/2;
+  if (leftedge < 0) { leftedge = 0; }
+  var rightedge = leftedge + viewsizex - 1;
+  if (rightedge >= themap.getWidth()) {
+  	rightedge = themap.getWidth() -1;  // Note, this will explode somewhat if the map is smaller than 13x13
+  }
+  var topedge = PC.gety() - (viewsizey - 1)/2;
+  if (topedge < 0) { topedge = 0; }
+  bottomedge = topedge + viewsizey - 1;
+  if (bottomedge >= themap.getHeight()) {
+  	bottomedge = themap.getHeight() -1;
+  }
+  
+  
 }
 
 function drawTopbarFrame(txt) {
