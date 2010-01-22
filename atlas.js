@@ -428,15 +428,23 @@ GameMap.prototype.setTerrain = function(x,y,terrain) {
   
 }
 
+GameMap.prototype.getWidth = function() {
+	return this.data[0].length;
+}
+
+GameMap.prototype.getHeight = function() {
+	return this.data.length;
+}
+
 GameMap.prototype.resizeMap = function(newx,newy,anchor){
-  var oldx = this.data[0].length;
-  var oldy = this.data.length;
+  var oldx = this.getWidth();
+  var oldy = this.getHeight();
   if (debug ) {
     debugscreen.document.writeln(oldx + " " + oldy + " to " + newx + " " + newy + ", anchor is " + anchor + "<br><br>");
   }
   var tile = new Acre;
   tile.terrain = localFactory.createTile(selectionval.name);
-  
+
   if ((newx) && (newx != oldx)) {
     for (i = 1; i <= Math.abs(newx-oldx); i++) {
       for (j=0;j<this.data.length;j++) {
@@ -861,4 +869,8 @@ MapMemory.prototype.deleteMap = function(mapname) {
 		}
 	}
 	delete this.data[mapname];
+}
+
+MapMemory.prototype.getMap = function(mapname) {
+	return this.data[mapname];
 }
