@@ -26,6 +26,8 @@ function drawCharFrame() {
 }
 
 function drawMainFrame(how) {
+  // how options are "draw" and "refresh"
+
   var mapdiv;
   var themap = maps.getMap(PC.getMapName());
   
@@ -42,6 +44,26 @@ function drawMainFrame(how) {
   	bottomedge = themap.getHeight() -1;
   }
   
+  if (how == "draw") {
+    mapdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
+    for (var i=topedge;i<=bottomedge;i++) {
+      for (var j=leftedge;j<=rightedge;j++) {
+        var localacre = themap.getTile(j,i);
+        var displaytile;
+        if (localacre.pcs.getTop()) {
+          displaytile = localacre.pcs.getTop();
+        } else if (localacre.npcs.getTop()) {
+          displaytile = localacre.npcs.getTop();
+        } else if (localacre.features.getTop()) {
+          displaytile = localacre.features.getTop();
+        } else { displaytile = localacre.terrain; }
+        mapdiv += '<td class="maptd" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+displaytile.getGraphic()+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
+      }  
+      mapdiv += '</tr><tr>';
+    }
+    mapdiv  += '</table>';
+    $('#displayframe').html(mapdiv);
+  }
   
 }
 
@@ -54,6 +76,7 @@ $(document).ready(function() {
   drawCharFrame();
   drawTopbarFrame("<p>Lands of Olympus</p>");
   worldmap = maps.addMap("darkunknown");
+  worldmap.placeThing(PC.getx(),PC.gety(),PC);
   drawMainFrame("draw");
 
   
