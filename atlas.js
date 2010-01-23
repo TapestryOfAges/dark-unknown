@@ -287,7 +287,8 @@ function GameMap() {
 
   this.features = new Collection;  // list of all features on the map
   this.npcs = new Collection; // list of all NPCs on the map
-// these two will be maintained concurrently with collections on individual tiles/acres
+  this.pcs = new Collection; // list of all PCs on the map - usually one, but support exists for parties
+// these three will be maintained concurrently with collections on individual tiles/acres
 
   this.desc = "";
   this.music = "";
@@ -555,8 +556,9 @@ GameMap.prototype.setNPCsCoord = function() {
 GameMap.prototype.placeThing = function(x,y,newthing) {
   if (newthing) {
   	var type = newthing.type + "s";
-  	newthing.x = x;
-  	newthing.y = y;
+        if (!this.data[y][x][type]) { this.data[y][x][type] = new Collection(); }
+  	newthing.setx(x);
+  	newthing.sety(y);
     this[type].addTop(newthing);
 
     if (!this.data[y][x][type]) {
