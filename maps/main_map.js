@@ -174,3 +174,4 @@ mappages["darkunknown"].enterx = '64';
 mappages["darkunknown"].entery = '71';
 mappages["darkunknown"].seeBelow = '';
 mappages["darkunknown"].linkedMaps = new Array("");
+mappages["darkunknown"].lightLevel = 'bright';

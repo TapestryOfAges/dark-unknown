@@ -108,7 +108,7 @@ mappages["clearlagoon"].enterx = '1';
 mappages["clearlagoon"].entery = '37';
 mappages["clearlagoon"].seeBelow = '';
 mappages["clearlagoon"].linkedMaps = new Array("clearlagoon2");
-
+mappages["clearlagoon"].lightLevel = 'bright';
 
 mappages["clearlagoon2"] = new Object();
 mappages["clearlagoon2"].terrain = new Array;
@@ -182,3 +182,4 @@ mappages["clearlagoon2"].enterx = '';
 mappages["clearlagoon2"].entery = '';
 mappages["clearlagoon2"].seeBelow = 'clearlagoon';
 mappages["clearlagoon2"].linkedMaps = new Array("clearlagoon");
+mappages["clearlagoon2"].lightLevel = 'bright';
