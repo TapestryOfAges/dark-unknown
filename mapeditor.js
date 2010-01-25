@@ -486,6 +486,7 @@ function editorEditMapDetails() {
   }
   else { document.detailseditpopup.maplinkedmaps.value = ""; }
   document.detailseditpopup.mapseebelow.value = amap.getSeeBelow();
+  document.detailseditpopup.maplightlevel.value = amap.getLightLevel();
 }
 
 function submitEditDetails(change) {
@@ -501,6 +502,7 @@ function submitEditDetails(change) {
     amap.setEnterY(document.detailseditpopup.mapentery.value);			
     amap.setLinkedMaps(document.detailseditpopup.maplinkedmaps.value);
     amap.setSeeBelow(document.detailseditpopup.mapseebelow.value);
+    amap.setLightLevel(document.detailseditpopup.maplightlevel.value);
 	}
 }
 
