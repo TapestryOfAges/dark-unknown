@@ -90,11 +90,12 @@ mappages["olympus1"].music = 'Towne';
 mappages["olympus1"].exitmap = 'darkunknown';
 mappages["olympus1"].exitx = '65';
 mappages["olympus1"].exity = '69';
-mappages["olympus1"].wraps = '0';
+mappages["olympus1"].wraps = 'None';
 mappages["olympus1"].enterx = '29';
 mappages["olympus1"].entery = '42';
 mappages["olympus1"].seeBelow = '';
-mappages["olympus1"].linkedMaps = new Array;
+mappages["olympus1"].lightLevel = 'bright';
+mappages["olympus1"].linkedMaps = new Array("olympus2","olympus0");
 
 mappages["olympus0"] = new Object();
 mappages["olympus0"].terrain = new Array;
@@ -123,14 +124,15 @@ mappages["olympus0"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 
 mappages["olympus0"].features = new Array;
 mappages["olympus0"].features[0] = {name : 'SecretDoor', x : 13, y : 17};
-mappages["olympus0"].features[1] = {name :'DoorWindow', x : 14, y : 8};
-mappages["olympus0"].features[2] = {name : 'DoorWindow', x : 18, y : 8, 'locked' : 1};
-mappages["olympus0"].features[3] = {name : 'DoorWindow', x : 18, y : 13, 'locked' : 1};
-mappages["olympus0"].features[4] = {name : 'DoorWindow', x : 18, y : 3, 'locked' : 1};
-mappages["olympus0"].features[5] = {name : 'Door', x : 5, y : 9, 'locked' : 2};
-mappages["olympus0"].features[6] = {name :  'Door', x : 5, y : 15, 'locked' : 1};
+mappages["olympus0"].features[1] = {name : 'DoorWindow', x : 14, y : 8};
+mappages["olympus0"].features[2] = {name : 'DoorWindow', x : 18, y : 8, desc : "a locked door", locked : 1};
+mappages["olympus0"].features[3] = {name : 'DoorWindow', x : 18, y : 13, desc : "a locked door", locked : 1};
+mappages["olympus0"].features[4] = {name : 'DoorWindow', x : 18, y : 3, desc : "a locked door", locked : 1};
+mappages["olympus0"].features[5] = {name : 'Door', x : 5, y : 9, desc : "a magically locked door", locked : 2};
+mappages["olympus0"].features[6] = {name : 'Door', x : 5, y : 15, desc : "a locked door", locked : 1};
 mappages["olympus0"].features[7] = {name : 'Door', x : 8, y : 18};
 mappages["olympus0"].features[8] = {name : 'LadderUp', x : 5, y : 18, entermap : 'olympus1', enterx : 11, entery : 33};
+
 
 mappages["olympus0"].npcs = new Array;
 mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 4, y : 16};
@@ -147,6 +149,9 @@ mappages["olympus0"].exity = 'undefined';
 mappages["olympus0"].wraps = 'None';
 mappages["olympus0"].enterx = 'undefined';
 mappages["olympus0"].entery = 'undefined';
+mappages["olympus0"].seeBelow = '';
+mappages["olympus0"].lightLevel = 'dark';
+mappages["olympus0"].linkedMaps = new Array("olympus1","olympus2");
 
 
 mappages["olympus2"] = new Object();
@@ -196,8 +201,6 @@ mappages["olympus2"].terrain[41] = '.. .. .. .` ww ww ww ww ww ww ww ww ww ww ww
 mappages["olympus2"].terrain[42] = '.. .. .. .. .` ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww !! !! !! ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww /. .. .. .. ..';
 mappages["olympus2"].terrain[43] = '.. .. .. .. .. -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- !! !! !! -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- .. .. .. .. ..';
 
-
-
 mappages["olympus2"].features = new Array;
 mappages["olympus2"].features[0] = {name : 'LadderDown', x : 8, y : 8, entermap : 'olympus1', enterx : 8, entery : 8};
 mappages["olympus2"].features[1] = {name : 'LadderDown', x : 50, y : 8, entermap : 'olympus1', enterx : 50, entery : 8};
@@ -221,3 +224,18 @@ mappages["olympus2"].features[18] = {name : 'Door', x : 32, y : 22};
 mappages["olympus2"].features[19] = {name : 'Door', x : 47, y : 19};
 mappages["olympus2"].features[20] = {name : 'Door', x : 41, y : 19};
 mappages["olympus2"].features[21] = {name : 'Door', x : 35, y : 19};
+
+
+mappages["olympus2"].npcs = new Array;
+
+mappages["olympus2"].desc = 'Castle Olympus';
+mappages["olympus2"].music = 'Towne';
+mappages["olympus2"].exitmap = '';
+mappages["olympus2"].exitx = '';
+mappages["olympus2"].exity = '';
+mappages["olympus2"].wraps = 'None';
+mappages["olympus2"].enterx = '';
+mappages["olympus2"].entery = '';
+mappages["olympus2"].seeBelow = 'olympus1';
+mappages["olympus2"].lightLevel = 'bright';
+mappages["olympus2"].linkedMaps = new Array("olympus1","olympus0");

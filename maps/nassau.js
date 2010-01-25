@@ -63,3 +63,4 @@ mappages["nassau"].enterx = '25';
 mappages["nassau"].entery = '48';
 mappages["nassau"].seeBelow = '';
 mappages["nassau"].linkedMaps = new Array("");
+mappages["nassau"].lightLevel = 'bright';
