@@ -40,3 +40,9 @@ mapslist["island"] = "the Distant Island";
 mapslist["cairns"] = "the Dungeon Cairns";
 
 ailist = new Array("townsfolk","runaway","guard","melee","spellcaster","missile","adventurer","paladin","ranger");
+
+var DAY = 0;
+var NIGHT = 2;
+var DAWN = 1;
+var DUSK = 3;
+
