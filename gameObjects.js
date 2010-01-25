@@ -3,6 +3,8 @@
 function GameObject() {
   this.x;
   this.y;
+  
+  this.serial = GetSerial();
 }
 
 GameObject.prototype.getx = function() {
@@ -588,7 +590,7 @@ function BlankBlackTile() {
   this.graphic = "055.gif";
   this.passable = 0x4; // ethereal
   this.blocklos = 1;
-  this.desc = "";
+  this.desc = "darkness";
 }
 BlankBlackTile.prototype = new TerrainObject;
 
@@ -1188,6 +1190,8 @@ function LavaTile() {
   this.passable = 0x1f; // everything!
   this.blocklos = 0;
   this.desc = "lava";
+  
+  LightEmitting.call(1);
 }
 LavaTile.prototype = new TerrainObject;
 LavaTile.prototype.walkon = function() {
@@ -1380,8 +1384,10 @@ function EnergyFieldTile() {
 	this.graphic = "021.gif";
 	this.passable = 0; // impassable - wonky outdoors, but necessary indoors
 	this.blocklos = 0;
-	this.light = 1; 
+//	this.light = 1; 
 	this.desc = "an energy field";
+	
+	LightEmitting.call(1);
 }
 EnergyFieldTile.prototype = new FeatureObject;
 
@@ -1390,8 +1396,10 @@ function CampfireTile() {
 	this.graphic = "022.gif";
 	this.passable = 0x5; // ethereal, fly
 	this.blocklos = 0;
-	this.light = 2;  // 2 tiles of "bright"
+//	this.light = 2;  // 2 tiles of "bright"
 	this.desc = "a campfire";
+	
+	LightEmitting.call(2);
 }
 CampfireTile.prototype = new FeatureObject;
 
@@ -1421,8 +1429,10 @@ function SleepFieldTile() {
 	this.graphic = "142.gif";
 	this.passable = 0;
 	this.blocklos = 0;
-	this.light = 1;
+//	this.light = 1;
 	this.desc = "a sleep field";
+	
+	LightEmitting.call(1);
 }
 SleepFieldTile.prototype = new FeatureObject;
 
@@ -1431,8 +1441,10 @@ function FireFieldTile() {
 	this.graphic = "143.gif";
 	this.passable = 0;
 	this.blocklos = 0;
-	this.light = 3;
+//	this.light = 3;
 	this.desc = "a fire field";
+	
+	LightEmitting.call(3);
 }
 FireFieldTile.prototype = new FeatureObject;
 
@@ -1441,8 +1453,10 @@ function PoisonFieldTile() {
 	this.graphic = "144.gif";
 	this.passable = 0;
 	this.blocklos = 0;
-	this.light = 1;
+//	this.light = 1;
 	this.desc = "a poison field";
+	
+	LightEmitting.call(1);
 }
 PoisonFieldTile.prototype = new FeatureObject;
 
@@ -2022,7 +2036,7 @@ function PCObject() {
 	this.pcname = "Goldenflame";
 	this.desc = "you";
 	this.alignment = "good";	
-	this.graphic = "301.gif";
+	this.graphic = "300.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
 	this.maxhp = 30 * this.level;
@@ -2030,6 +2044,8 @@ function PCObject() {
 	this.maxmana = this.int;
 	this.mana = this.maxmana;
 	this.mapname = "darkunknown";
+	
+	LightEmitting.call(1);
 }
 PCObject.prototype = new NPCObject;
 
