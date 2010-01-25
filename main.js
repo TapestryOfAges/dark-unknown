@@ -4,6 +4,8 @@ var mode = "base";
 
 var viewsizex = 13;
 var viewsizey = 13;
+var LOS_THRESHOLD = 1;
+var DAYNIGHT = DAY;
 
 var mappages = new Pages();
 var localFactory = new tileFactory();
@@ -25,19 +27,23 @@ function drawCharFrame() {
 	$("#charstats").html(txt);
 }
 
-function drawMainFrame(how) {
+function drawMainFrame(how, mapname, centerx, centery) {
   // how options are "draw" and "refresh"
 
   var mapdiv;
-  var themap = maps.getMap(PC.getMapName());
+  var themap = maps.getMap(mapname);
+  if (themap == undefined) {
+  	maps.addMap(mapname);
+  	themap = maps.getMap(mapname);
+  }
   
-  var leftedge = PC.getx() - (viewsizex - 1)/2;
+  var leftedge = centerx - (viewsizex - 1)/2;
   if (leftedge < 0) { leftedge = 0; }
   var rightedge = leftedge + viewsizex - 1;
   if (rightedge >= themap.getWidth()) {
   	rightedge = themap.getWidth() -1;  // Note, this will explode somewhat if the map is smaller than 13x13
   }
-  var topedge = PC.gety() - (viewsizey - 1)/2;
+  var topedge = centery - (viewsizey - 1)/2;
   if (topedge < 0) { topedge = 0; }
   bottomedge = topedge + viewsizey - 1;
   if (bottomedge >= themap.getHeight()) {
@@ -50,6 +56,8 @@ function drawMainFrame(how) {
       for (var j=leftedge;j<=rightedge;j++) {
         var localacre = themap.getTile(j,i);
         var displaytile;
+        // decide whether to draw a tile, draw it shaded, or make it darkness
+        var losresult = GetLineOfSight(centerx, centery, j, i, themap);
         if (localacre.pcs.getTop()) {
           displaytile = localacre.pcs.getTop();
         } else if (localacre.npcs.getTop()) {
@@ -57,7 +65,7 @@ function drawMainFrame(how) {
         } else if (localacre.features.getTop()) {
           displaytile = localacre.features.getTop();
         } else { displaytile = localacre.terrain; }
-        mapdiv += '<td class="maptd" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+displaytile.getGraphic()+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
+        mapdiv += '<td class="maptd"><img id="tile'+j+'x'+i+'" src="graphics/'+displaytile.getGraphic()+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
       }  
       mapdiv += '</tr><tr>';
     }
@@ -72,12 +80,13 @@ function drawTopbarFrame(txt) {
 }
 
 $(document).ready(function() {
+	
 	gamestate.loadGame();
   drawCharFrame();
   drawTopbarFrame("<p>Lands of Olympus</p>");
   worldmap = maps.addMap("darkunknown");
   worldmap.placeThing(PC.getx(),PC.gety(),PC);
-  drawMainFrame("draw");
+  drawMainFrame("draw", PC.getMapName() , PC.getx(), PC.gety());
 
   
   $(window).keydown(function(e) {
