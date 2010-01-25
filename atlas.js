@@ -272,6 +272,7 @@ function Acre() {
   this.npcs = new Collection;
   this.pcs = new Collection;
   
+  this.serial = GetSerial();
 }
 
 // Map Object - one per map.
@@ -300,6 +301,8 @@ function GameMap() {
   
   this.linkedMaps = new Array;
   this.seeBelow = "";
+  
+  this.lightLevel = "bright";
 }
 GameMap.prototype = new Object;
 
@@ -413,6 +416,14 @@ GameMap.prototype.getSeeBelow = function() {
 
 GameMap.prototype.setSeeBelow = function(mapname) {
 	this.seeBelow = mapname;
+}
+
+GameMap.prototype.setLightLevel = function(lightlevel) {
+	this.lightLevel = lightlevel;
+}
+
+GameMap.prototype.getLightLevel = function() {
+	return this.lightLevel;
 }
 
 // generate the tile from the factory first, then pass it to setTerrain
@@ -702,6 +713,7 @@ GameMap.prototype.saveMap = function (name) {
  printerwin.document.write(name + ".enterx = '" + this.getEnterX() + "';\n");
  printerwin.document.write(name + ".entery = '" + this.getEnterY() + "';\n");
  printerwin.document.write(name + ".seeBelow = '" + this.getSeeBelow() + "';\n");
+ printerwin.document.write(name + ".lightLevel = '" + this.getLightLevel() + "';\n");
  var linkedMapList;
  var linkedMapArray = this.getLinkedMaps();
  if (linkedMapArray.length > 0) {
@@ -792,6 +804,7 @@ GameMap.prototype.loadMap = function (name) {
   this.setEnterY(mappages.readPage(name, "entery"));
   this.setSeeBelow(mappages.readPage(name, "seeBelow"));
   this.setLinkedMapsArray(mappages.readPage(name, "linkedMaps"));
+  this.setLightLevel(mappages.readPage(name, "lightLevel"));
   
   this.setName(name);
   return;
@@ -874,5 +887,6 @@ MapMemory.prototype.deleteMap = function(mapname) {
 }
 
 MapMemory.prototype.getMap = function(mapname) {
-	return this.data[mapname];
+	if (this.data[mapname]) { return this.data[mapname]; }
+	else { return undefined; }
 }
