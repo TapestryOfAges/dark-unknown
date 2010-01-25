@@ -1,6 +1,21 @@
 
+function LOSMatrix(screensize) {
 
-function getLineofSight(x1,y1,x2,y2,map) {
+  this.matrix = new Array;
+  
+  for (i = 1-screensize; i<screensize ; i++) {
+  	for (j = 1-screensize; j<screensize; j++) {
+  		
+  	}
+  }
+	
+}
+
+
+function GetLineOfSight(x1,y1,x2,y2,map) {
+
+  return 0;
+  // temp until I finish function!! FIXME!!
 
   if ((x1 == x2) && (y1 == y2)) { return(0); }
 
@@ -31,3 +46,6 @@ function getLineofSight(x1,y1,x2,y2,map) {
   }
 }
 
+function GetVisibility(currentmap, x, y) {
+	if (currentmap.getLightLevel() == "bright") { return 1; }
+}
