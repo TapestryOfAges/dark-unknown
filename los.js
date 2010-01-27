@@ -16,19 +16,23 @@ function GetLineOfSight(x1,y1,x2,y2,map) {
 
   return 0;
   // temp until I finish function!! FIXME!!
+}
+
+function GetLineArray(x1,y1,x2,y2) {
 
   if ((x1 == x2) && (y1 == y2)) { return(0); }
 
-  var length;
-  var visibility;
+  var xints = new Array;
+  var yints = new Array;
+
   if (x1 != x2) {
     var a = (y1-y2)/(x1-x2);
     var b = y1 - a*x1;
 
-    var xints = new Array;
-    var yints = new Array;
-  
-    for (var xi = x1+.5 ; xi < x2 ; xi++) {
+    if (x2 < x1) { var x0 = x2; x2 = x1; x1 = x0; }
+    if (y2 < y1) { var y0 = y2; y2 = y1; y1 = y0; }
+
+    for (var xi = lowx+.5 ; xi < highx ; xi++) {
       xints.push(xi);
     }
     if (a != 0) {  // not a horizontal line
@@ -42,7 +46,7 @@ function GetLineOfSight(x1,y1,x2,y2,map) {
     
   }
   else {   // vertical line
-
+    
   }
 }
 
