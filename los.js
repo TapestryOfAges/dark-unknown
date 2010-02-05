@@ -2,15 +2,16 @@
 function LOSMatrix(screensize) {
 
   this.matrix = new Array;
-      var lineseg = GetLineArray(0,0,2,2);
-      alert(i + "," + j + " : " + lineseg);
+//      var lineseg = GetLineArray(0,0,2,-2);
+//      alert(i + "," + j + " : " + lineseg);
 
   for (var i = 1-screensize; i<screensize; i++) {
-  	this.matrix.i = new Array;
+  	this.matrix[i] = new Array;
   	for (var j = 1-screensize; j<screensize; j++) {
-//      var lineseg = GetLineArray(0,0,j,i);
-//      alert(i + "," + j + " : " + lineseg);
-//      this.matrix.i.j = lineseg;
+//  		alert(j + "," + i);
+      var lineseg = GetLineArray(0,0,j,i);
+//      alert(j + "," + i + " : " + lineseg);
+      this.matrix[i][j] = lineseg;
   	}
   }
 	
@@ -25,7 +26,7 @@ function GetLineOfSight(x1,y1,x2,y2,map) {
 
 function GetLineArray(x1,y1,x2,y2) {
 
-  if ((x1 == x2) && (y1 == y2)) { return(0); }
+  if ((Math.abs(x1 - x2) <= 1) && (Math.abs(y1 - y2) <= 1)) { return(0); }
 
   x1 = x1+.5;
   y1 = y1+.5;
@@ -57,31 +58,40 @@ function GetLineArray(x1,y1,x2,y2) {
     
   }
   else {   // vertical line
+//  	alert("vert");
+  	if (y2 < y1) { var y0 = y2; y2 = y1; y1 = y0; }
     for (var yi = y1+.5 ; yi < y2 ; yi++) {
     	yints.push(yi);
+//    	alert(yi);
     }
   }
 
   var lineLengths = "";
   if (xints[0])  {
-  	var enterx;
+  	var enterx = "x";
   	var entery;
   	var exitx;
   	var exity;
   	for (var k = 0; k < xints.length; k++){
-  		if (enterx) {
+//  		alert("k = " + k);
+  		if (enterx != "x") {
   			exitx = xints[k];
   			exity = a * xints[k] + b;
   			
   			var avex = (enterx + exitx)/2;
   			var avey = (entery + exity)/2;
+//  			alert("Range: (" + enterx + "," + entery + ") to (" + exitx + "," + exity + ")");
+//  			alert("Ave: (" + avex + "," + avey + ")");
   			avex = Math.floor(avex);
   			avey = Math.floor(avey);
+//  			alert("Ave: (" + avex + "," + avey + ")");
   			var segment = Math.sqrt(Math.pow((exitx - enterx),2) + Math.pow((exity - entery),2));
-  			segment = 100*segment;
-  			segment = Math.round(segment);
-  			segment = segment/100;
-  			lineLengths =  lineLengths + segment + "(" + avex + "," + avey + ") ";
+  			if (segment > .05) {
+    			segment = 100*segment;
+    			segment = Math.round(segment);
+  	  		segment = segment/100;
+  		  	lineLengths =  lineLengths + segment + "(" + avex + "," + avey + ") ";
+  		  }
   			
   			enterx = exitx;
   			entery = exity;
@@ -105,10 +115,12 @@ function GetLineArray(x1,y1,x2,y2) {
   			avex = Math.floor(avex);
   			avey = Math.floor(avey);
   			var segment = Math.sqrt(Math.pow((exitx - enterx),2) + Math.pow((exity - entery),2));
-  			segment = 100*segment;
-  			segment = Math.round(segment);
-  			segment = segment/100;
-  			lineLengths = lineLengths + segment + "(" + avex + "," + avey + ") ";
+  			if (segment > .05) {
+    			segment = 100*segment;
+    			segment = Math.round(segment);
+  	  		segment = segment/100;
+  		  	lineLengths = lineLengths + segment + "(" + avex + "," + avey + ") ";
+  		  }
   			
   			enterx = exitx;
   			entery = exity;
