@@ -15,10 +15,10 @@ var PC = new PCObject();
 var gamestate = new GameStateData();
 var maps = new MapMemory();
 var worldmap = new GameMap();
+var losgrid = new LOSMatrix(13);
 
 var debug = 0;
 var debugscreen;
-
 
 function drawCharFrame() {
 	var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='2'>";
