@@ -17,6 +17,8 @@ var maps = new MapMemory();
 var worldmap = new GameMap();
 var losgrid = new LOSMatrix(13);
 
+var testgrid = losgrid.getLOS(4,3);
+
 var debug = 0;
 var debugscreen;
 
