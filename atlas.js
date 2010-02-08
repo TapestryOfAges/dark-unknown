@@ -275,6 +275,21 @@ function Acre() {
   this.serial = GetSerial();
 }
 
+Acre.prototype.getBlocksLOS = function(dist) {
+	var maxLOS = 0;
+	maxLOS = this.terrain.getBlocksLOS(dist);
+	var allFeatures = this.features.getAll();
+	if (allFeatures[0]) {
+		for (var i = 0; i < allFeatures.length; i++ ) {
+			var featureLOS = allFeatures[0].getBlocksLOS(dist);
+			if (featureLOS > maxLOS) {
+				maxLOS = featureLOS;
+			}
+		}
+	}
+	return maxLOS;
+}
+
 // Map Object - one per map.
 
 function GameMap() {
@@ -393,7 +408,7 @@ GameMap.prototype.setTile = function(x,y,tile) {
   return this.data[y][x];
 }
 
-GameMap.prototype.getTile = function(x,y) {
+GameMap.prototype.getTile = function(x,y) {  // returns an Acre
   return this.data[y][x];
 }
 
@@ -808,6 +823,19 @@ GameMap.prototype.loadMap = function (name) {
   
   this.setName(name);
   return;
+}
+
+GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid) {
+  var LOSes = losgrid.getLOS(x1,y1,x2,y2);
+  var totalLOS = 0;
+  if (LOSes[0]) {
+  	for (var i = 0; i < LOSes.length; i++ ){
+  		var location = this.getTile(x1+LOSes[i].x,y1+LOSes[i].y);
+  		totalLOS += LOSes[i].coeff * location.getBlocksLOS(LOSes[i].x,LOSes[i].y);
+  		if (totalLOS > LOS_THRESHOLD) { return 1; }
+  	}
+  } 
+  return totalLOS;
 }
 
 
