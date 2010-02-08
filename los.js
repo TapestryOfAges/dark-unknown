@@ -16,23 +16,11 @@ function LOSMatrix(screensize) {
   }
 	
 }
-LOSMatrix.prototype.getLOSFun = function(xdiff,ydiff) {
-  return this.matrix[ydiff][xdiff];
-}
 
-LOSMatrix.prototype.getLOS = function(xdiff,ydiff) {
-  var LOSFun = this.getLOSFun(xdiff,ydiff);
-  var LOSArray = LOSFun.split(" ");
-  var LOSVals = new Array;
-  for (var i = 0; i < LOSArray.length -1 ; i++ ) {
-    var pattern = /^(.+)\((\d+),(\d+)\)/;
-    var result = LOSArray[i].match(pattern);
-    LOSVals[i] = new Object;
-    LOSVals[i].coeff = result[1];
-    LOSVals[i].x = result[2];
-    LOSVals[i].y = result[3];
-  }
-  return LOSVals;
+LOSMatrix.prototype.getLOS = function(x1,y1,x2,y2) {
+  var xdiff = x2-x1;
+  var ydiff = y2-y1;
+  return this.matrix[ydiff][xdiff];
 }
 
 function GetLineOfSight(x1,y1,x2,y2,map) {
@@ -44,6 +32,8 @@ function GetLineOfSight(x1,y1,x2,y2,map) {
 function GetLineArray(x1,y1,x2,y2) {
 
   if ((Math.abs(x1 - x2) <= 1) && (Math.abs(y1 - y2) <= 1)) { return(0); }
+
+  var lineArray = new Array;
 
   x1 = x1+.5;
   y1 = y1+.5;
@@ -83,7 +73,6 @@ function GetLineArray(x1,y1,x2,y2) {
     }
   }
 
-  var lineLengths = "";
   if (xints[0])  {
   	var enterx = "x";
   	var entery;
@@ -107,7 +96,11 @@ function GetLineArray(x1,y1,x2,y2) {
     			segment = 100*segment;
     			segment = Math.round(segment);
   	  		segment = segment/100;
-  		  	lineLengths =  lineLengths + segment + "(" + avex + "," + avey + ") ";
+  		  	var lineLengths = new Object;
+  		  	lineLengths.coeff = segment;
+  		  	lineLengths.x = avex;
+  		  	lineLengths.y = avey;
+  		  	lineArray.push(lineLengths);
   		  }
   			
   			enterx = exitx;
@@ -136,7 +129,11 @@ function GetLineArray(x1,y1,x2,y2) {
     			segment = 100*segment;
     			segment = Math.round(segment);
   	  		segment = segment/100;
-  		  	lineLengths = lineLengths + segment + "(" + avex + "," + avey + ") ";
+  		  	var lineLengths = new Object;
+  		  	lineLengths.coeff = segment;
+  		  	lineLengths.x = avex;
+  		  	lineLengths.y = avey;
+  		  	lineArray.push(lineLengths);
   		  }
   			
   			enterx = exitx;
@@ -149,7 +146,7 @@ function GetLineArray(x1,y1,x2,y2) {
   } else {
   	alert("Bwa?");
   }
-  return lineLengths;
+  return lineArray;
 }
 
 function GetVisibility(currentmap, x, y) {

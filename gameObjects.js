@@ -78,7 +78,7 @@ GameObject.prototype.getGraphic = function() {
   if (this.graphic) { return(this.graphic); }
 }
 
-GameObject.prototype.blocksLOS = function(distance) {
+GameObject.prototype.getBlocksLOS = function(distance) {
   if (this.losatdistance) {
     if (distance > this.losatdistance["distance"]) { return(this.losatdistance["blocklos"]) }
   }
@@ -1077,7 +1077,7 @@ function ForestTile() {
   this.name = "Forest";
   this.graphic = "123.gif";
   this.passable = 0x1d; // fly, ethereal, levitate, walk
-  this.blocklos = .4;
+  this.blocklos = .6;
   this.losatdistance = { distance : 5 , blocklos : .8 };
   this.desc = "forest";
 }
