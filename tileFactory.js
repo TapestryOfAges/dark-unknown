@@ -859,3 +859,13 @@ tileFactory.prototype.makeWellTile = function() {
   var newTile = new WellTile();
   return newTile;
 }
+
+tileFactory.prototype.makeCaveFloorTile = function() {
+	var newTile = new CaveFloorTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeCaveWallTile = function() {
+	var newTile = new CaveWallTile();
+	return newTile;
+}
