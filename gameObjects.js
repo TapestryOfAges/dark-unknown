@@ -97,7 +97,7 @@ GameObject.prototype.passable = function(movetype) {
   return(Passability);
 }
 
-// These three are abstract classes, to be used only in JS's halfassed
+// These below are abstract classes, to be used only in JS's halfassed
 // version of multiple inheritance. 
 
 function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockeddesc, lockeddesc, maglockeddesc) {
@@ -147,6 +147,18 @@ function LightEmitting(lightlevel) {
 		return this.light;
 	}
 }
+
+function Tiling(tileval) {
+	this.doTile = function() {
+		var tilingx = (this.getx() % tileval);
+		var tilingy = (this.gety() % tileval);
+		var tilegraphic = this.getGraphic();
+		var foo = tilegraphic.split('.');
+	  this.setGraphic(foo[0] . "-" + tilingx + tilingy + "." + foo[1]);
+	}
+}
+
+// end inheritance
 
 function InanimateObject() {
 
@@ -1174,6 +1186,49 @@ function ShinglesTopTile() {
   this.desc = "roof";
 }
 ShinglesTopTile.prototype = new TerrainObject;
+
+function CaveFloorTile() {
+	this.name = "CaveFloor";
+	this.graphic = "cavefloor.gif";
+	this.passable = 0x1f; // everything
+	this.blocklos = 0;
+	this.desc = "cave floor";
+	
+	Tiling.call(2);
+}
+CaveFloorTile.prototype =  new TerrainObject;
+
+function CaveWallTile() {
+	this.name = "CaveWall";
+	this.graphic = "cavewall.gif";
+	this.passable = 0x4; // ethereal
+	this.blocklos = 1;
+	this.desc = "cave wall";
+	
+	Tiling.call(2);
+}
+CaveWallTile.prototype = new TerrainObject;
+
+CaveWallTile.prototype.setBySurround = function() {
+	var x = this.getx();
+	var y = this.gety();
+	var themap = this.getHomeMap();
+	var addtoname = "";
+	if (themap.getTile(x,y+1).terrain.getName() == "CaveFloor") { addtoname = addtoname + "n"; }
+	if (themap.getTile(x,y-1).terrain.getName() == "CaveFloor") { addtoname = addtoname + "s"; }
+	if (themap.getTile(x+1,y).terrain.getName() == "CaveFloor") { addtoname = addtoname + "e"; }
+	if (themap.getTile(x-1,y).terrain.getName() == "CaveFloor") { addtoname = addtoname + "w"; }
+	
+	if (addtoname == "") {
+		if (themap.getTile(x+1,y-1).terrain.getName() == "CaveFloor") { addtoname = addtoname + "a"; }
+		if (themap.getTile(x+1,y+1).terrain.getName() == "CaveFloor") { addtoname = addtoname + "b"; }
+		if (themap.getTile(x-1,y+1).terrain.getName() == "CaveFloor") { addtoname = addtoname + "c"; }
+		if (themap.getTile(x-1,y-1).terrain.getName() == "CaveFloor") { addtoname = addtoname + "d"; }
+	}
+	
+	var foo = this.getGraphic().split('.');
+	this.setGraphic(foo[0] + '-' + addtoname + '.' + foo[1]);
+}
 
 function SeeBelowTile() {
   this.name = "SeeBelow";
