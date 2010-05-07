@@ -252,7 +252,11 @@ function Atlas() {
     "ShinglesTop" : 'rc',
     'rc' : "ShinglesTop",
     "SeeBelow" : 'sb',
-    'sb' : "SeeBelow"
+    'sb' : "SeeBelow",
+    "CaveFloor" : 'cf',
+    'cf' : "CaveFloor",
+    "CaveWall" : 'cw',
+    'cw' : "CaveWall"
   }
 
 }
@@ -273,6 +277,23 @@ function Acre() {
   this.pcs = new Collection;
   
   this.serial = GetSerial();
+  this.localLight = new Array;
+}
+
+Acre.prototype.addLocalLight = function(source, lightlevel) {
+	this.localLight[source] = lightlevel;
+}
+
+Acre.prototype.getLocalLight = function() {
+	var lightlevel = 0;
+	for (var i in this.localLight) {
+		lightlevel += this.localLight[i];
+	}
+	return lightlevel;
+}
+
+Acre.prototype.removeLocalLight = function(source) {
+	delete this.localLight[source];
 }
 
 Acre.prototype.getBlocksLOS = function(dist) {
@@ -289,6 +310,7 @@ Acre.prototype.getBlocksLOS = function(dist) {
 	}
 	return maxLOS;
 }
+
 
 // Map Object - one per map.
 
