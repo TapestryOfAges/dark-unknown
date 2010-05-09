@@ -311,6 +311,17 @@ Acre.prototype.getBlocksLOS = function(dist) {
 	return maxLOS;
 }
 
+Acre.prototype.getFeatures = function() {
+	return (this.features.getAll());
+}
+
+Acre.prototype.getNPCs = function() {
+	return (this.npcs.getAll());
+}
+
+Acre.prototype.getTerrain = function() {
+	return this.terrain;
+}
 
 // Map Object - one per map.
 
@@ -860,6 +871,13 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid) {
   return totalLOS;
 }
 
+GameMap.prototype.setLights = function() {
+	for (var i = 0; i < this.data.length; i++) {
+		for (var j = 0; j < this.data[i].length; j++) {
+			
+		}
+	}
+}
 
 function Pages() {
 
