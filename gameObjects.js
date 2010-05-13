@@ -75,7 +75,9 @@ GameObject.prototype.setGraphic = function(newgraphic) {
 }
 
 GameObject.prototype.getGraphic = function() {
-  if (this.graphic) { return(this.graphic); }
+	var returnGraphic = this.graphic;
+
+  if (returnGraphic) { return(returnGraphic); }
 }
 
 GameObject.prototype.getBlocksLOS = function(distance) {
@@ -149,12 +151,12 @@ function LightEmitting(lightlevel) {
 }
 
 function Tiling(tileval) {
-	this.doTile = function() {
-		var tilingx = (this.getx() % tileval);
-		var tilingy = (this.gety() % tileval);
+	this.doTile = function(tilingx,tilingy) {
+		tilingx = (tilingx % tileval); 
+		tilingy = (tilingy % tileval);
 		var tilegraphic = this.getGraphic();
 		var foo = tilegraphic.split('.');
-	  this.setGraphic(foo[0] . "-" + tilingx + tilingy + "." + foo[1]);
+	  return(foo[0] + "-" + tilingx + tilingy + "." + foo[1]);
 	}
 }
 
