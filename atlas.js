@@ -799,7 +799,6 @@ GameMap.prototype.loadMap = function (name) {
 //      this.data[i][j].terrain.setHomeMap(this);
       var newterrain = localFactory.createTile(loadedtile);
       this.setTerrain(j,i,newterrain);
-
     }
   }
   var loadfeatures = mappages.readPage(name, "features");
