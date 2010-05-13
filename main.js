@@ -72,7 +72,11 @@ function drawMainFrame(how, mapname, centerx, centery) {
           } else if (localacre.features.getTop()) {
             displaytile = localacre.features.getTop();
           } else { displaytile = localacre.terrain; }
-          mapdiv += '<td class="maptd"><img id="tile'+j+'x'+i+'" src="graphics/'+displaytile.getGraphic()+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
+          var showGraphic = displaytile.getGraphic();
+          if (typeof displaytile.doTile == "function") {
+          	showGraphic = displaytile.doTile(j,i);
+          }
+          mapdiv += '<td class="maptd"><img id="tile'+j+'x'+i+'" src="graphics/'+showGraphic+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
         } else {
         	displaytile = localFactory.createTile('BlankBlack');
         	mapdiv += '<td class="maptd"><img id="tile'+j+'x'+i+'" src="graphics/'+displaytile.getGraphic()+'" border="0" alt="tile'+j+'x'+i+'" /></td>';

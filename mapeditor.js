@@ -74,7 +74,12 @@ function drawMap() {
    for (var i=0;i<=amap.data.length-1;i++) {
      for (var j=0;j<=amap.data[0].length-1;j++) {
        var localacre = amap.getTile(j,i);
-       mapdiv += '<td class="maptd" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+localacre.terrain.getGraphic()+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
+       var showGraphic = localacre.getTerrain().getGraphic();
+       if (typeof localacre.getTerrain().doTile == "function") {
+  	     showGraphic = localacre.getTerrain().doTile(j,i);
+       }
+
+       mapdiv += '<td class="maptd" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+showGraphic+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
      }
      mapdiv += '</tr><tr>';
    }
@@ -109,13 +114,23 @@ function drawFeatures(draw) {
   	var allfeatures = amap.features.getAll();
     for (var i=0;i<=allfeatures.length-1;i++) {
       var tileid = "tile" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
-      document.images[tileid].src="graphics/"+allfeatures[i].getGraphic();
+      var showGraphic = allfeatures[i].getGraphic();
+      if (typeof allfeatures[i].doTile == "function") {
+  	    showGraphic = allfeatures[i].doTile(allfeatures[i].getx(),allfeatures[i].gety());
+      }
+
+      document.images[tileid].src="graphics/"+showGraphic;
     }
     if (draw > 1) {
     	var allnpcs = amap.npcs.getAll();
  	    for (var i=0;i<=allnpcs.length-1;i++) {
         var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
-        document.images[tileid].src="graphics/"+allnpcs[i].getGraphic();
+        var showGraphic = allnpcs[i].getGraphic();
+        if (typeof allnpcs[i].doTile == "function") {
+  	      showGraphic = allnps[i].doTile(allnpcs[i].getx(),allnpcs[i].gety());
+        }
+
+        document.images[tileid].src="graphics/"+showGraphic;
       }
     }
   }
@@ -124,13 +139,25 @@ function drawFeatures(draw) {
     for (var i=0;i<=allfeatures.length-1;i++) {
       var tileid = "tile" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
       var terrainthere = amap.getTile(allfeatures[i].getx(),allfeatures[i].gety());
-      document.images[tileid].src="graphics/"+terrainthere.terrain.getGraphic();
+      var showTerrain = terrainthere.getTerrain();
+      var showGraphic = showTerrain.getGraphic();
+      if (typeof showTerrain.doTile == "function") {
+  	    showGraphic = showTerrain.doTile(allfeatures[i].getx(),allfeatures[i].gety());
+      }
+
+      document.images[tileid].src="graphics/"+showGraphic;
     }
     var allnpcs = amap.npcs.getAll();
     for (var i=0;i<=allnpcs.length-1;i++) {
       var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
       var terrainthere = amap.getTile(allnpcs[i].getx(),allnpcs[i].gety());
-      document.images[tileid].src="graphics/"+terrainthere.terrain.getGraphic();
+      var showTerrain = terrainthere.getTerrain();
+      var showGraphic = showTerrain.getGraphic();
+      if (typeof showTerrain.doTile == "function") {
+  	    showGraphic = showTerrain.doTile(allnpcs[i].getx(),allnpcs[i].gety());
+      }
+
+      document.images[tileid].src="graphics/"+showGraphic;
     }
 
   } 	
@@ -354,7 +381,11 @@ function submitEditNPC(change) {
 function changemaptile(xval,yval) {
   var tileid = "tile" + xval + "x" + yval;
 
-  document.images[tileid].src="graphics/"+selectionval.getGraphic();
+  var showGraphic = selectionval.getGraphic();
+  if (typeof selectionval.doTile == "function") {
+  	showGraphic = selectionval.doTile(xval,yval);
+  }
+  document.images[tileid].src="graphics/"+showGraphic;
   amap.setTerrain(xval,yval,selectionval);
 
 }
@@ -392,7 +423,11 @@ function addfeaturetomap(x,y,selection) {
 	amap.features.addTop(newfeature);
 
   var tileid = "tile" + x + "x" + y;  
-  document.images[tileid].src="graphics/"+selection.getGraphic();
+  var showGraphic = selection.getGraphic();
+  if (typeof selection.doTile == "function") {
+  	showGraphic = selection.doTile(x,y);
+  }
+  document.images[tileid].src="graphics/"+showGraphic;
   
 }
 
@@ -407,7 +442,11 @@ function addnpctomap(x,y,selection) {
 	amap.npcs.addTop(newnpc);
 	
 	var tileid = "tile" + x + "x" + y;
-	document.images[tileid].src="graphics/"+selection.getGraphic();
+  var showGraphic = selection.getGraphic();
+  if (typeof selection.doTile == "function") {
+  	showGraphic = selection.doTile(x,y);
+  }
+  document.images[tileid].src="graphics/"+showGraphic;
 }
 
 function erasefeature(x,y) {
@@ -419,7 +458,11 @@ function erasefeature(x,y) {
 	}
         var tileid = "tile" + x + "x" + y;
         var localacre = amap.getTile(x,y);
-        document.images[tileid].src = "graphics/"+localacre.terrain.getGraphic();
+        var showGraphic = localacre.getTerrain().getGraphic();
+        if (typeof localacre.getTerrain().doTile == "function") {
+        	showGraphic = localacre.getTerrain().doTile(x,y);
+        }
+        document.images[tileid].src = "graphics/"+showGraphic;
 }
 
 function initialSelect() {
