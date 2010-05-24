@@ -75,8 +75,11 @@ function drawMap() {
      for (var j=0;j<=amap.data[0].length-1;j++) {
        var localacre = amap.getTile(j,i);
        var showGraphic = localacre.getTerrain().getGraphic();
+       if (typeof localacre.getTerrain().setBySurround == "function") {
+       	showGraphic = localacre.getTerrain().setBySurround(j,i,amap,showGraphic);
+      }
        if (typeof localacre.getTerrain().doTile == "function") {
-  	     showGraphic = localacre.getTerrain().doTile(j,i);
+  	     showGraphic = localacre.getTerrain().doTile(j,i,showGraphic);
        }
 
        mapdiv += '<td class="maptd" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+showGraphic+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
@@ -115,10 +118,12 @@ function drawFeatures(draw) {
     for (var i=0;i<=allfeatures.length-1;i++) {
       var tileid = "tile" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
       var showGraphic = allfeatures[i].getGraphic();
-      if (typeof allfeatures[i].doTile == "function") {
-  	    showGraphic = allfeatures[i].doTile(allfeatures[i].getx(),allfeatures[i].gety());
+      if (typeof allfeatures[i].setBySurround == "function") {
+       	showGraphic = allfeatures[i].setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,showGraphic);
       }
-
+      if (typeof allfeatures[i].doTile == "function") {
+  	    showGraphic = allfeatures[i].doTile(allfeatures[i].getx(),allfeatures[i].gety(),showGraphic);
+      }
       document.images[tileid].src="graphics/"+showGraphic;
     }
     if (draw > 1) {
@@ -126,8 +131,11 @@ function drawFeatures(draw) {
  	    for (var i=0;i<=allnpcs.length-1;i++) {
         var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
         var showGraphic = allnpcs[i].getGraphic();
+        if (typeof allnpcs[i].setBySurround == "function") {
+       	  showGraphic = allnpcs[i].setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,showGraphic);
+        }
         if (typeof allnpcs[i].doTile == "function") {
-  	      showGraphic = allnps[i].doTile(allnpcs[i].getx(),allnpcs[i].gety());
+  	      showGraphic = allnpcs[i].doTile(allnpcs[i].getx(),allnpcs[i].gety(),showGraphic);
         }
 
         document.images[tileid].src="graphics/"+showGraphic;
@@ -141,8 +149,11 @@ function drawFeatures(draw) {
       var terrainthere = amap.getTile(allfeatures[i].getx(),allfeatures[i].gety());
       var showTerrain = terrainthere.getTerrain();
       var showGraphic = showTerrain.getGraphic();
+      if (typeof showTerrain.setBySurround == "function") {
+       	showGraphic = showTerrain.setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,showGraphic);
+      }
       if (typeof showTerrain.doTile == "function") {
-  	    showGraphic = showTerrain.doTile(allfeatures[i].getx(),allfeatures[i].gety());
+  	    showGraphic = showTerrain.doTile(allfeatures[i].getx(),allfeatures[i].gety(),showGraphic);
       }
 
       document.images[tileid].src="graphics/"+showGraphic;
@@ -153,10 +164,12 @@ function drawFeatures(draw) {
       var terrainthere = amap.getTile(allnpcs[i].getx(),allnpcs[i].gety());
       var showTerrain = terrainthere.getTerrain();
       var showGraphic = showTerrain.getGraphic();
-      if (typeof showTerrain.doTile == "function") {
-  	    showGraphic = showTerrain.doTile(allnpcs[i].getx(),allnpcs[i].gety());
+      if (typeof showTerrain.setBySurround == "function") {
+       	showGraphic = showTerrain.setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,showGraphic);
       }
-
+      if (typeof showTerrain.doTile == "function") {
+  	    showGraphic = showTerrain.doTile(allnpcs[i].getx(),allnpcs[i].gety(),showGraphic);
+      }
       document.images[tileid].src="graphics/"+showGraphic;
     }
 
@@ -382,8 +395,11 @@ function changemaptile(xval,yval) {
   var tileid = "tile" + xval + "x" + yval;
 
   var showGraphic = selectionval.getGraphic();
+  if (typeof selectionval.setBySurround == "function") {
+    showGraphic = selectionval.setBySurround(xval,yval,amap,showGraphic);
+  }
   if (typeof selectionval.doTile == "function") {
-  	showGraphic = selectionval.doTile(xval,yval);
+  	showGraphic = selectionval.doTile(xval,yval,showGraphic);
   }
   document.images[tileid].src="graphics/"+showGraphic;
   amap.setTerrain(xval,yval,selectionval);
@@ -424,8 +440,11 @@ function addfeaturetomap(x,y,selection) {
 
   var tileid = "tile" + x + "x" + y;  
   var showGraphic = selection.getGraphic();
+  if (typeof selection.setBySurround == "function") {
+   	showGraphic = selection.setBySurround(x,y,amap,showGraphic);
+  }
   if (typeof selection.doTile == "function") {
-  	showGraphic = selection.doTile(x,y);
+  	showGraphic = selection.doTile(x,y,showGraphic);
   }
   document.images[tileid].src="graphics/"+showGraphic;
   
@@ -443,8 +462,11 @@ function addnpctomap(x,y,selection) {
 	
 	var tileid = "tile" + x + "x" + y;
   var showGraphic = selection.getGraphic();
+  if (typeof selection.setBySurround == "function") {
+   	showGraphic = selection.setBySurround(x,y,amap,showGraphic);
+  }
   if (typeof selection.doTile == "function") {
-  	showGraphic = selection.doTile(x,y);
+  	showGraphic = selection.doTile(x,y,showGraphic);
   }
   document.images[tileid].src="graphics/"+showGraphic;
 }
@@ -459,8 +481,11 @@ function erasefeature(x,y) {
         var tileid = "tile" + x + "x" + y;
         var localacre = amap.getTile(x,y);
         var showGraphic = localacre.getTerrain().getGraphic();
+        if (typeof localacre.getTerrain().setBySurround == "function") {
+       	  showGraphic = localacre.getTerrain().setBySurround(x,y,amap,showGraphic);
+        }
         if (typeof localacre.getTerrain().doTile == "function") {
-        	showGraphic = localacre.getTerrain().doTile(x,y);
+        	showGraphic = localacre.getTerrain().doTile(x,y,showGraphic);
         }
         document.images[tileid].src = "graphics/"+showGraphic;
 }

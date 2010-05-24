@@ -46,3 +46,7 @@ var NIGHT = 2;
 var DAWN = 1;
 var DUSK = 3;
 
+var worldlight = new Object;
+worldlight["bright"] = 1;
+worldlight["dim"] = .5;
+worldlight["dark"] = 0;
