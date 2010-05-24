@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Dark Unknown Map Editor v3.5</title>
+<title>Dark Unknown Map Editor v3.6</title>
 <link rel="stylesheet" type="text/css" href="external/jqModal.css" />
 <link rel="stylesheet" type="text/css" href="mapeditor.css" />
 
@@ -41,6 +41,7 @@
     <img onClick="editorLoadMap('');" src="editor/loadmapbutton.gif" />
     <img onClick="amap.saveMap('');" src="editor/savemapbutton.gif" />
     <img onClick="editorEditMapDetails();" src="editor/editdetailsbutton.gif" />
+    <img onClick="drawMap();" src="editor/refresh.gif" />
     </span>
     </form>
 	</div>
@@ -299,6 +300,10 @@
  <td><script language="Javascript">writeTileOption('RoadEWN');</script></td>
  <td><script language="Javascript">writeTileOption('RoadX');</script></td>
 </tr>
+<tr>
+ <td><script language="Javascript">writeTileOption('CaveFloor');</script></td>
+ <td><script language="Javascript">writeTileOption('CaveWall');</script></td>
+ <td></td>
 </table>
 </div>
 <div style="display:none" id="indoordiv">

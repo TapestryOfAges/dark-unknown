@@ -73,8 +73,11 @@ function drawMainFrame(how, mapname, centerx, centery) {
             displaytile = localacre.features.getTop();
           } else { displaytile = localacre.terrain; }
           var showGraphic = displaytile.getGraphic();
+          if (typeof displaytile.setBySurround == "function") {
+          	showGraphic = displaytile.setBySurround(j,i,themap,showGraphic);
+          }
           if (typeof displaytile.doTile == "function") {
-          	showGraphic = displaytile.doTile(j,i);
+          	showGraphic = displaytile.doTile(j,i,showGraphic);
           }
           mapdiv += '<td class="maptd"><img id="tile'+j+'x'+i+'" src="graphics/'+showGraphic+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
         } else {

@@ -442,6 +442,9 @@ GameMap.prototype.setTile = function(x,y,tile) {
 }
 
 GameMap.prototype.getTile = function(x,y) {  // returns an Acre
+	if ((y < 0) || (x < 0)) { return "OoB"; }
+	if (y >= this.data.length) { return "OoB"; }
+	if (x >= this.data[y].length) { return "OoB"; }
   return this.data[y][x];
 }
 

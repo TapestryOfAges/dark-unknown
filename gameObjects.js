@@ -151,15 +151,43 @@ function LightEmitting(lightlevel) {
 }
 
 function Tiling(tileval) {
-	this.doTile = function(tilingx,tilingy) {
+	this.doTile = function(tilingx,tilingy,tilegraphic) {
 		tilingx = (tilingx % tileval); 
 		tilingy = (tilingy % tileval);
-		var tilegraphic = this.getGraphic();
 		var foo = tilegraphic.split('.');
-	  return(foo[0] + "-" + tilingx + tilingy + "." + foo[1]);
+	  return(foo[0] + "-" + tilingy + tilingx + "." + foo[1]);
 	}
 }
 
+function SetBySurround() {
+	this.setBySurround = function(x,y,themap,showGraphic) {
+		var cardinal_dash = "";
+		var north = 0;
+		var south = 0;
+		var east = 0;
+		var west = 0;
+  	var addtoname_cardinal = "";
+	  if ((themap.getTile(x,y+1) != "OoB") && (themap.getTile(x,y+1).terrain.getName() == "CaveFloor")) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "n"; north = 1;}
+  	if ((themap.getTile(x,y-1) != "OoB") && (themap.getTile(x,y-1).terrain.getName() == "CaveFloor")) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "s"; south = 1;}
+	  if ((themap.getTile(x-1,y) != "OoB") && (themap.getTile(x-1,y).terrain.getName() == "CaveFloor")) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "e"; east = 1;}
+  	if ((themap.getTile(x+1,y) != "OoB") && (themap.getTile(x+1,y).terrain.getName() == "CaveFloor")) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "w"; west = 1;}
+	
+	  var diagonal_dash = "";
+	  var addtoname_diagonal = "";
+	 	if ((themap.getTile(x+1,y-1) != "OoB") && (themap.getTile(x+1,y-1).terrain.getName() == "CaveFloor") && (south == 0) && (west == 0))
+	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "a"; }
+  	if ((themap.getTile(x+1,y+1) != "OoB") && (themap.getTile(x+1,y+1).terrain.getName() == "CaveFloor") && (north == 0) && (west == 0)) 
+  	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "b"; }
+	  if ((themap.getTile(x-1,y+1) != "OoB") && (themap.getTile(x-1,y+1).terrain.getName() == "CaveFloor") && (north == 0) && (east == 0))
+	    { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "c"; }
+	 	if ((themap.getTile(x-1,y-1) != "OoB") && (themap.getTile(x-1,y-1).terrain.getName() == "CaveFloor") && (south == 0) && (east == 0)) 
+	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "d"; }
+	
+	  var foo = showGraphic.split('.');
+	  showGraphic = foo[0] + cardinal_dash + addtoname_cardinal + diagonal_dash + addtoname_diagonal + '.' + foo[1];
+	  return (showGraphic);
+  }
+}
 // end inheritance
 
 function InanimateObject() {
@@ -1196,7 +1224,7 @@ function CaveFloorTile() {
 	this.blocklos = 0;
 	this.desc = "cave floor";
 	
-	Tiling.call(2);
+	Tiling.call(this, 2);
 }
 CaveFloorTile.prototype =  new TerrainObject;
 
@@ -1207,30 +1235,10 @@ function CaveWallTile() {
 	this.blocklos = 1;
 	this.desc = "cave wall";
 	
-	Tiling.call(2);
+	Tiling.call(this, 2);
+	SetBySurround.call(this);
 }
 CaveWallTile.prototype = new TerrainObject;
-
-CaveWallTile.prototype.setBySurround = function() {
-	var x = this.getx();
-	var y = this.gety();
-	var themap = this.getHomeMap();
-	var addtoname = "";
-	if (themap.getTile(x,y+1).terrain.getName() == "CaveFloor") { addtoname = addtoname + "n"; }
-	if (themap.getTile(x,y-1).terrain.getName() == "CaveFloor") { addtoname = addtoname + "s"; }
-	if (themap.getTile(x+1,y).terrain.getName() == "CaveFloor") { addtoname = addtoname + "e"; }
-	if (themap.getTile(x-1,y).terrain.getName() == "CaveFloor") { addtoname = addtoname + "w"; }
-	
-	if (addtoname == "") {
-		if (themap.getTile(x+1,y-1).terrain.getName() == "CaveFloor") { addtoname = addtoname + "a"; }
-		if (themap.getTile(x+1,y+1).terrain.getName() == "CaveFloor") { addtoname = addtoname + "b"; }
-		if (themap.getTile(x-1,y+1).terrain.getName() == "CaveFloor") { addtoname = addtoname + "c"; }
-		if (themap.getTile(x-1,y-1).terrain.getName() == "CaveFloor") { addtoname = addtoname + "d"; }
-	}
-	
-	var foo = this.getGraphic().split('.');
-	this.setGraphic(foo[0] + '-' + addtoname + '.' + foo[1]);
-}
 
 function SeeBelowTile() {
   this.name = "SeeBelow";
@@ -1248,7 +1256,7 @@ function LavaTile() {
   this.blocklos = 0;
   this.desc = "lava";
   
-  LightEmitting.call(1);
+  LightEmitting.call(this, 1);
 }
 LavaTile.prototype = new TerrainObject;
 LavaTile.prototype.walkon = function() {
@@ -1444,7 +1452,7 @@ function EnergyFieldTile() {
 //	this.light = 1; 
 	this.desc = "an energy field";
 	
-	LightEmitting.call(1);
+	LightEmitting.call(this, 1);
 }
 EnergyFieldTile.prototype = new FeatureObject;
 
@@ -1456,7 +1464,7 @@ function CampfireTile() {
 //	this.light = 2;  // 2 tiles of "bright"
 	this.desc = "a campfire";
 	
-	LightEmitting.call(2);
+	LightEmitting.call(this, 2);
 }
 CampfireTile.prototype = new FeatureObject;
 
@@ -1489,7 +1497,7 @@ function SleepFieldTile() {
 //	this.light = 1;
 	this.desc = "a sleep field";
 	
-	LightEmitting.call(1);
+	LightEmitting.call(this, 1);
 }
 SleepFieldTile.prototype = new FeatureObject;
 
@@ -1501,7 +1509,7 @@ function FireFieldTile() {
 //	this.light = 3;
 	this.desc = "a fire field";
 	
-	LightEmitting.call(3);
+	LightEmitting.call(this, 3);
 }
 FireFieldTile.prototype = new FeatureObject;
 
@@ -1513,7 +1521,7 @@ function PoisonFieldTile() {
 //	this.light = 1;
 	this.desc = "a poison field";
 	
-	LightEmitting.call(1);
+	LightEmitting.call(this, 1);
 }
 PoisonFieldTile.prototype = new FeatureObject;
 
@@ -2102,7 +2110,7 @@ function PCObject() {
 	this.mana = this.maxmana;
 	this.mapname = "darkunknown";
 	
-	LightEmitting.call(1);
+	LightEmitting.call(this, 1);
 }
 PCObject.prototype = new NPCObject;
 
