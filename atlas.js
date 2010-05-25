@@ -857,7 +857,23 @@ GameMap.prototype.loadMap = function (name) {
   this.setLightLevel(mappages.readPage(name, "lightLevel"));
   
   this.setName(name);
+  
+  // set lightsources
+  for (var i=0; i<this.data.length; i++) {
+  	for (var j=0; j<this.data[0].length; j++) {
+  	  var thistile = this.getTile(j,i);
+  	  if (thistile == "OoB") { alert("Wtf? Tile out of bounds on map load."); }	
+  	  if ((typeof thistile.getTerrain().getLight == "function") && (thistile.getTerrain().getLight() > 0)) {
+  	  	setMapLight(this,thistile.getTerrain().getSerial(),thistile.getTerrain().getLight(),j,i);
+  	  }
+  	}
+  }
   return;
+}
+
+function setMapLight(map,serial,light,x,y) {
+	// need to check distance, LoS, then add light level
+	// WORKING HERE
 }
 
 GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid) {
