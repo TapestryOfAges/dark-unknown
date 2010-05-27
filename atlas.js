@@ -874,6 +874,17 @@ GameMap.prototype.loadMap = function (name) {
 function setMapLight(map,serial,light,x,y) {
 	// need to check distance, LoS, then add light level
 	// WORKING HERE
+	for (var i = (x-(light+1)); i<=(x+(light+1)); i++) {
+		for (var j = (y-(light+1)); j<=(y+(light+1)); j++) {
+			if (map.getTile(i,j) == "OoB") { next; }
+			var LOSval = map.getLOS(x,y,i,j,losgrid);
+			var dist = ((x-i)^2 + (y-j)^2)^(.5);
+			var totlight = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval );
+			if (totlight > 0) { 
+				map.getTile(i,j).addLocalLight(serial,totlight);
+			}
+		}
+	}
 }
 
 GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid) {
@@ -883,7 +894,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid) {
   	for (var i = 0; i < LOSes.length; i++ ){
   		var location = this.getTile(x1+LOSes[i].x,y1+LOSes[i].y);
   		totalLOS += LOSes[i].coeff * location.getBlocksLOS(LOSes[i].x,LOSes[i].y);
-  		if (totalLOS > LOS_THRESHOLD) { return 1; }
+  		if (totalLOS > LOS_THRESHOLD) { return LOS_THRESHOLD; }
   	}
   } 
   return totalLOS;
