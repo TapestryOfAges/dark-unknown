@@ -50,3 +50,6 @@ var worldlight = new Object;
 worldlight["bright"] = 1;
 worldlight["dim"] = .5;
 worldlight["dark"] = 0;
+
+var LOS_THRESHOLD = 1;
+var SHADOW_THRESHOLD = .3;

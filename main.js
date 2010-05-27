@@ -4,7 +4,6 @@ var mode = "base";
 
 var viewsizex = 13;
 var viewsizey = 13;
-var LOS_THRESHOLD = 1;
 var DAYNIGHT = DAY;
 
 var mappages = new Pages();
@@ -64,7 +63,7 @@ function drawMainFrame(how, mapname, centerx, centery) {
         var displaytile;
         // decide whether to draw a tile, draw it shaded, or make it darkness
         var losresult = themap.getLOS(centerx, centery, j, i, losgrid);
-        if (losresult < 1) {
+        if (losresult < LOS_THRESHOLD) {
           if (localacre.pcs.getTop()) {
             displaytile = localacre.pcs.getTop();
           } else if (localacre.npcs.getTop()) {
