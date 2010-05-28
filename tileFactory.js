@@ -869,3 +869,8 @@ tileFactory.prototype.makeCaveWallTile = function() {
 	var newTile = new CaveWallTile();
 	return newTile;
 }
+
+tileFactory.prototype.makeHexFloorTile = function() {
+	var newTile = new HexFloorTile();
+	return newTile;
+}

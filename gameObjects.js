@@ -7,6 +7,10 @@ function GameObject() {
   this.serial = GetSerial();
 }
 
+GameObject.prototype.getSerial = function() {
+	return this.serial;
+}
+
 GameObject.prototype.getx = function() {
 	return this.x;
 }
@@ -1239,6 +1243,17 @@ function CaveWallTile() {
 	SetBySurround.call(this);
 }
 CaveWallTile.prototype = new TerrainObject;
+
+function HexFloorTile() {
+	this.name = "HexFloor";
+	this.graphic = "hexfloor.gif";
+	this.passable = 0x1f; // everything
+	this.blocklos = 0;
+	this.desc = "floor";
+	
+}
+HexFloorTile.prototype = new TerrainObject;
+
 
 function SeeBelowTile() {
   this.name = "SeeBelow";
