@@ -874,8 +874,6 @@ GameMap.prototype.loadMap = function (name) {
 }
 
 function setMapLight(map,serial,light,x,y) {
-	// need to check distance, LoS, then add light level
-	// WORKING HERE
 	for (var i = (x-(light+1)); i<=(x+(light+1)); i++) {
 		for (var j = (y-(light+1)); j<=(y+(light+1)); j++) {
 			if (map.getTile(i,j) == "OoB") { next; }

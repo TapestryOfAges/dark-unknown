@@ -15,6 +15,7 @@ var editable;
 var editnpcs;
 var browserheight = getSize();
 var losgrid = new LOSMatrix(13);
+var mode = "editor";
 
 if (debug) {
   debugscreen = window.open('','debugscreen');
