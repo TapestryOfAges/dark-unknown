@@ -1,6 +1,4 @@
 
-var mode = "base";
-// base, conversation, direction choice
 
 var viewsizex = 13;
 var viewsizey = 13;
@@ -15,7 +13,8 @@ var gamestate = new GameStateData();
 var maps = new MapMemory();
 var worldmap = new GameMap();
 var losgrid = new LOSMatrix(13);
-
+var DUTime = new Timeline(0);
+var maintext = new TextFrame(14,32);
 
 var debug = 0;
 var debugscreen;
@@ -96,18 +95,43 @@ function drawTopbarFrame(txt) {
   $('#topbarframe').html(txt);	
 }
 
+function drawTextFrame(txt,inputtxt){
+	$('#maintextframe').html(txt);
+	$('#inputtext').html(inputtxt);
+}
+
 $(document).ready(function() {
 	
 	gamestate.loadGame();
   drawCharFrame();
-  drawTopbarFrame("<p>Lands of Olympus</p>");
-  worldmap = maps.addMap("darkunknown");
+  worldmap = maps.addMap(PC.getMapName());
   worldmap.placeThing(PC.getx(),PC.gety(),PC);
+  drawTopbarFrame("<p>" + worldmap.getDesc() + "</p>");
   drawMainFrame("draw", PC.getMapName() , PC.getx(), PC.gety());
 
+  maintext.addText("Game loaded.");
+  drawTextFrame(maintext.getTextFrame(), "&gt;"); 
   
   $(window).keydown(function(e) {
    var code = (e.keyCode ? e.keyCode : e.which);
    // will be a function call to main function
+   if (gamestate.mode == "base") {  // PC's turn, awaiting commands
+   	 var response = PerformCommand(code);
+   	 if (response) { 
+   	 	e.preventDefault(); 
+   	 	maintext.addText(response["txt"]);
+   	 	var inp = response["input"];
+   	 	drawTextFrame(maintext.getTextFrame(), inp);
+   	 	if (response["fin"] == 1) {
+   	 		gamestate.mode = "waiting";
+   	 		var PCevent = new GameEvent(PC);
+   	 		DUTime.addAtTimeInterval(PCevent,PC.nextActionTime());
+   	 		
+        var nextEntity = DUTime.executeNextEvent().getEntity();
+        nextEntity.myTurn();
+   	 	}
+   	 }  
+  }
   });
 });
+
