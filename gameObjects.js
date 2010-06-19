@@ -1716,6 +1716,7 @@ function NPCObject() {
 	this.graphic = "301.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
+	this.initmult = 1;
 }
 NPCObject.prototype = new AnimateObject;
 
@@ -1840,6 +1841,13 @@ NPCObject.prototype.getMissile = function() {
 NPCObject.prototype.setMissile = function(missile) {
 	this.missileAttackAs = missile;
 	return this.missileAttackAs;
+}
+
+NPCObject.prototype.nextActionTime = function() {
+
+  var isQuick = 0;  // replace with a check for the presence of the Quickness spell.
+  var init = ((-1/60) * this.getdex() + (7/6)) * this.initmult * (1 - .5 * isQuick);
+	return init;
 }
 
 function NPCGroup() {
@@ -2135,4 +2143,8 @@ PCObject.prototype.getMapName = function() {
 
 PCObject.prototype.setMapName = function(newmap) {
 	this.mapname = newmap;
+}
+
+PCObject.prototype.myTurn = function() {
+	gamestate.setMode("base");
 }

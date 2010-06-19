@@ -4,12 +4,18 @@
 	  src: url( fonts/novem___.eot ); /* IE */  
 	  src: local("November"), url( fonts/novem___.ttf ) format("truetype"); /* non-IE */  
 	}  
+
+@font-face {  
+	  font-family: "Commodore64";  
+	  src: url( fonts/cbm-6480-webfont.eot ); /* IE */  
+	  src: local("Commodore64"), url( fonts/CBM-6480.TTF ) format("truetype"); /* non-IE */  
+	}  
 	
 div.topbar { text-align:center; 
 	           color:white;
 	           vertical-align:top;
 	           font-weight:bold;
-	           font-family:"November";
+	           font-family:"Commodore64";
 	           font-size:20px; }
 	           
 div.topbar p { margin-top:-4px }
@@ -17,9 +23,18 @@ div.topbar p { margin-top:-4px }
 
 div.charstats table { color:white;
                 font-weight:bold; 
-                font-family:"November";
+                font-family:"Commodore64";
    	            font-size:20px;
    	            margin-top:-8px;
 }
 
 div.mainframe table {margin-top:-18px; }
+
+div.maintextframe { font-family:"Commodore64";
+	                  font-size:20px;
+	                  color: white; 
+	                  margin-top:-4px;}
+	                  
+div.inputtext { font-family:"Commodore64";
+	              font-size:20px;
+	              color:white; }
