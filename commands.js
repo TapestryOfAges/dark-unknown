@@ -1,0 +1,164 @@
+
+function PerformCommand(code) {
+	var retval = new Object;
+	retval["fin"] = 0;
+	if ((code == 38) || (code == 219)) {   // UP ARROW  or  [
+		// move north
+		var success = MovePC("n");
+		var txt = "Move North";
+		if (success) { txt += "."; }
+		else { txt += " - Blocked!"; }
+		retval["txt"] = txt;
+		retval["input"] = "&gt;";
+		retval["fin"] = 1;
+	}
+	else if ((code == 37) || (code == 59)) {  // LEFT ARROW or ;
+		// move west
+		var success = MovePC("w");
+		var txt = "Move West";
+		if (success) { txt += "."; }
+		else { txt += " - Blocked!"; }
+		retval["txt"] = txt;
+		retval["input"] = "&gt;";
+		retval["fin"] = 1;
+	}
+	else if ((code == 39) || (code == 222)) { // RIGHT ARROW or '
+		// move east
+		var success = MovePC("e");
+		var txt = "Move East";
+		if (success) { txt += "."; }
+		else { txt += " - Blocked!"; }
+		retval["txt"] = txt;
+		retval["input"] = "&gt;";
+		retval["fin"] = 1;
+	}
+	else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
+		// move south
+		var success = MovePC("s");
+		var txt = "Move South";
+		if (success) { txt += "."; }
+		else { txt += " - Blocked!"; }
+		retval["txt"] = txt;
+		retval["input"] = "&gt;";
+		retval["fin"] = 1;
+	}
+	else if (code == 65) { // a
+		// attack
+		
+	}
+	else if (code == 66) { // b
+		// board - not used in Dark Unknown but available for hooking
+		
+	}
+	else if (code == 67) { // c
+		// cast
+		
+	}
+	else if (code == 68) { // d
+		// descend - not used in DU, merged with "enter"
+		
+	}
+	else if (code == 69) { // e
+		// enter
+		
+	}
+	else if (code == 70) { // f
+		// fire - not used in DU, no boats
+	}
+	else if (code == 71) { // g
+		// get 
+		
+	}
+	else if (code == 72) { // h
+		// hole up and camp
+		
+	}
+	else if (code == 73) { // i
+		// ignite torch
+		
+	}
+	else if (code == 74) { // j
+		// jimmy lock ?
+		
+	}
+	else if (code == 75) { // k
+		// klimb - not used, merged with "enter"
+		
+	}
+	else if (code == 76) { // l
+		// locate - probably not used
+		
+	}
+	else if (code == 77) { // m
+		// mix - not used
+		// might repurpose as "music" to give it a separate toggle to sound effects
+		
+	}
+	else if (code == 78) { // n
+		// new order - not used
+		
+	}
+	else if (code == 79) { // o
+		// open - merged with use
+		
+	}
+	else if (code == 80) { // p
+		// peer into gem - not used
+		
+	}
+	else if (code == 81) { // q
+		// quit and save
+		
+	}
+	else if (code == 82) { // r
+		// ready equipment
+		
+	}
+	else if (code == 83) { // s
+		// search
+		
+	}
+	else if (code == 84) { // t
+		// talk
+		
+	}
+	else if (code == 85) { // u
+		// use
+		
+	}
+	else if (code == 86) { // v
+		// volume - turns sound effects on and off
+		
+	}
+	else if (code == 87) { // w
+		// 
+		
+	}
+	else if (code == 88) { // x
+		// eXit - not used
+		
+	}
+	else if (code == 89) { // y
+		// yell - probably not used
+		
+	}
+	else if (code == 90) { // z
+		// zstats
+		
+	}
+	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
+		// pass
+		retval["txt"] = "Pass.";
+		retval["input"] = "&gt;";
+		retval["fin"] = 1;
+	}
+	else {
+		//alert(code);
+	}
+	
+	return retval;
+}
+
+function MovePC(direction) {
+	return 0;
+}
