@@ -70,17 +70,19 @@ function drawMainFrame(how, mapname, centerx, centery) {
           } else if (localacre.features.getTop()) {
             displaytile = localacre.features.getTop();
           } else { displaytile = localacre.terrain; }
-          var showGraphic = displaytile.getGraphic();
+          var graphics = displaytile.getGraphic();
+          var showGraphic = graphics[0];
           if (typeof displaytile.setBySurround == "function") {
           	showGraphic = displaytile.setBySurround(j,i,themap,showGraphic);
           }
           if (typeof displaytile.doTile == "function") {
           	showGraphic = displaytile.doTile(j,i,showGraphic);
           }
-          mapdiv += '<td class="maptd"><img id="tile'+j+'x'+i+'" src="graphics/'+showGraphic+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
+        	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" width="32" height="32" /></td>';
         } else {
         	displaytile = localFactory.createTile('BlankBlack');
-        	mapdiv += '<td class="maptd"><img id="tile'+j+'x'+i+'" src="graphics/'+displaytile.getGraphic()+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
+        	var graphics = displaytile.getGraphic();
+        	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + graphics[0] + '\'); background-repeat:no-repeat;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" width="32" height="32" /></td>';
         }
       }  
       mapdiv += '</tr><tr>';
