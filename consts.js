@@ -10,8 +10,9 @@ musiclist["Mainland"] = "music/Mainland Wander.mp3";
 musiclist["Island"] = "music/Island Wander.mp3";
 musiclist["Magic"] = "music/Magic.mp3";
 musiclist["Cave"] = "music/Cave.mp3";
-musiclist["Ambrosia"] = "music/Ambrosia.mp3";
+musiclist["Underworld"] = "music/Underworld.mp3";
 musiclist["Combat"] = "music/Combat.mp3";
+musiclist["Olympus"] = "music/Olympus.mp3";
 
 var mapslist = new Object;
 mapslist["darkunknown"] = "the Mainland";
