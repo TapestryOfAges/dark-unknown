@@ -78,10 +78,46 @@ GameObject.prototype.setGraphic = function(newgraphic) {
 	this.graphic = newgraphic;
 }
 
-GameObject.prototype.getGraphic = function() {
+GameObject.prototype.setUnderlay = function(newgraphic) {
+	this.graphic = newgraphic;
+}
+
+GameObject.prototype.getUnderlay = function() {
 	var returnGraphic = this.graphic;
 
   if (returnGraphic) { return(returnGraphic); }
+}
+
+GameObject.prototype.getGraphic = function() {
+	var returnGraphic = this.graphic;
+  var returnOverlay = this.overlay;
+  var returnVars = new Array;
+  returnVars[0] = returnGraphic;
+  if (returnOverlay) {
+    returnVars[1] = returnOverlay;
+  }
+  else {
+  	returnVars[1] = "spacer.gif";
+  }
+  if (this.spritexoffset) {
+    returnVars[2] = this.spritexoffset;
+    returnVars[3] = this.spriteyoffset;
+  }
+  else {
+  	returnVars[2] = 0;
+  	returnVars[3] = 0;
+  }
+  return(returnVars); 
+}
+
+GameObject.prototype.setOverlay = function(newgraphic) {
+	this.overlay = newgraphic;
+}
+
+GameObject.prototype.getOverlay = function() {
+	var returnOverlay = this.overlay;
+
+  if (returnOverlay) { return(returnOverlay); }
 }
 
 GameObject.prototype.getBlocksLOS = function(distance) {

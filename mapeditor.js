@@ -76,7 +76,8 @@ function drawMap() {
    for (var i=0;i<=amap.data.length-1;i++) {
      for (var j=0;j<=amap.data[0].length-1;j++) {
        var localacre = amap.getTile(j,i);
-       var showGraphic = localacre.getTerrain().getGraphic();
+       var graphics = localacre.getTerrain().getGraphic();
+       var showGraphic = graphics[0];
        if (typeof localacre.getTerrain().setBySurround == "function") {
        	showGraphic = localacre.getTerrain().setBySurround(j,i,amap,showGraphic);
       }
@@ -84,7 +85,8 @@ function drawMap() {
   	     showGraphic = localacre.getTerrain().doTile(j,i,showGraphic);
        }
 
-       mapdiv += '<td class="maptd" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+showGraphic+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
+//       mapdiv += '<td class="maptd" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+showGraphic+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
+       mapdiv += '<td class="maptd" style="width:32;height:32;background-image:url(\'graphics/' + showGraphic + '\')" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" width="32" height="32" /></td>';
      }
      mapdiv += '</tr><tr>';
    }
@@ -119,7 +121,8 @@ function drawFeatures(draw) {
   	var allfeatures = amap.features.getAll();
     for (var i=0;i<=allfeatures.length-1;i++) {
       var tileid = "tile" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
-      var showGraphic = allfeatures[i].getGraphic();
+      var graphics = allfeatures[i].getGraphic();
+      var showGraphic = graphics[0];
       if (typeof allfeatures[i].setBySurround == "function") {
        	showGraphic = allfeatures[i].setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,showGraphic);
       }
@@ -132,7 +135,8 @@ function drawFeatures(draw) {
     	var allnpcs = amap.npcs.getAll();
  	    for (var i=0;i<=allnpcs.length-1;i++) {
         var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
-        var showGraphic = allnpcs[i].getGraphic();
+        var graphics = allnpcs[i].getGraphic();
+        var showGraphic = graphics[0];
         if (typeof allnpcs[i].setBySurround == "function") {
        	  showGraphic = allnpcs[i].setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,showGraphic);
         }
@@ -150,7 +154,8 @@ function drawFeatures(draw) {
       var tileid = "tile" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
       var terrainthere = amap.getTile(allfeatures[i].getx(),allfeatures[i].gety());
       var showTerrain = terrainthere.getTerrain();
-      var showGraphic = showTerrain.getGraphic();
+      var graphics = showTerrain.getGraphic();
+      var showGraphic = graphics[0];
       if (typeof showTerrain.setBySurround == "function") {
        	showGraphic = showTerrain.setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,showGraphic);
       }
@@ -165,7 +170,8 @@ function drawFeatures(draw) {
       var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
       var terrainthere = amap.getTile(allnpcs[i].getx(),allnpcs[i].gety());
       var showTerrain = terrainthere.getTerrain();
-      var showGraphic = showTerrain.getGraphic();
+      var graphics = showTerrain.getGraphic();
+      var showGraphic = graphics[0];
       if (typeof showTerrain.setBySurround == "function") {
        	showGraphic = showTerrain.setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,showGraphic);
       }
@@ -182,7 +188,8 @@ function drawFeatures(draw) {
 
 function changeselection(tilename) {
   selectionval = localFactory.createTile(tilename);
-  document.images["selectionimg"].src = "graphics/" + selectionval.getGraphic();
+  var graphics = selectionval.getGraphic();
+  document.images["selectionimg"].src = "graphics/" + graphics[0];
   if (selectionval.getType() == "terrain") {
   	displayval='terrain';
 //  	drawFeatures(0);
@@ -265,7 +272,8 @@ function clickmap(xval,yval) {
       var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
       $('#featurebubble').jqm({onShow:myOpen}); 
       $('#featurebubble').jqmShow();
-  	  document.images["bubbletile"].src = "graphics/" + editable.getGraphic();
+      var graphics = editable.getGraphic();
+  	  document.images["bubbletile"].src = "graphics/" + graphics[0];
       document.featureeditpopup.tiledesc.value = editable.getDesc();
       if (editable.getLocked != null) {
       	var lockedblock = document.getElementById("bubblelock");
@@ -286,7 +294,8 @@ function clickmap(xval,yval) {
     	$('#npcbubble').jqm({onShow:myOpen});
     	$('#npcbubble').jqmShow();
     	document.npceditpopup.npcobjname.value = editnpcs.getName();
-      document.images["bubbleNPCtile"].src = "graphics/" + editnpcs.getGraphic();    	
+    	var graphics = editnpcs.getGraphic();
+      document.images["bubbleNPCtile"].src = "graphics/" + graphics[0];    	
       document.npceditpopup.npcname.value = editnpcs.getNPCName();
       document.npceditpopup.npcdesc.value = editnpcs.getDesc();
       document.npceditpopup.npclevel.value = editnpcs.getLevel();
@@ -324,7 +333,8 @@ function submitEditFeature(change) {
 		mapfeature.features.deleteFrom(editable);
     var tileid = "tile" + editable.getx() + "x" + editable.gety();
     var localacre = amap.getTile(editable.getx(),editable.gety());
-    document.images[tileid].src = "graphics/"+localacre.terrain.getGraphic();
+    var terraingraphics = localacre.terrain.getGraphic();
+    document.images[tileid].src = "graphics/"+terraingraphics[0];
 
 	}
   document.featureeditpopup.elements[0].value = "";
@@ -389,14 +399,16 @@ function submitEditNPC(change) {
 	  mapnpc.npcs.deleteFrom(editnpcs);
     var tileid = "tile" + editnpcs.getx() + "x" + editnpcs.gety();
     var localacre = amap.getTile(editnpcs.getx(),editnpcs.gety());
-    document.images[tileid].src = "graphics/"+localacre.terrain.getGraphic();
+    var terraingraphics = localacre.terrain.getGraphic();
+    document.images[tileid].src = "graphics/"+terraingraphics[0];
 	}
 }
 
 function changemaptile(xval,yval) {
   var tileid = "tile" + xval + "x" + yval;
 
-  var showGraphic = selectionval.getGraphic();
+  var graphics = selectionval.getGraphic();
+  var showGraphic = graphics[0];
   if (typeof selectionval.setBySurround == "function") {
     showGraphic = selectionval.setBySurround(xval,yval,amap,showGraphic);
   }
@@ -441,7 +453,8 @@ function addfeaturetomap(x,y,selection) {
 	amap.features.addTop(newfeature);
 
   var tileid = "tile" + x + "x" + y;  
-  var showGraphic = selection.getGraphic();
+  var graphics = selection.getGraphic()
+  var showGraphic = graphics[0];
   if (typeof selection.setBySurround == "function") {
    	showGraphic = selection.setBySurround(x,y,amap,showGraphic);
   }
@@ -463,7 +476,8 @@ function addnpctomap(x,y,selection) {
 	amap.npcs.addTop(newnpc);
 	
 	var tileid = "tile" + x + "x" + y;
-  var showGraphic = selection.getGraphic();
+	var graphics = selection.getGraphic();
+  var showGraphic = graphics[0];
   if (typeof selection.setBySurround == "function") {
    	showGraphic = selection.setBySurround(x,y,amap,showGraphic);
   }
@@ -482,7 +496,8 @@ function erasefeature(x,y) {
 	}
         var tileid = "tile" + x + "x" + y;
         var localacre = amap.getTile(x,y);
-        var showGraphic = localacre.getTerrain().getGraphic();
+        var terraingraphics = localacre.getTerrain().getGraphic();
+        var showGraphic = terraingraphics[0];
         if (typeof localacre.getTerrain().setBySurround == "function") {
        	  showGraphic = localacre.getTerrain().setBySurround(x,y,amap,showGraphic);
         }
@@ -503,9 +518,12 @@ function initialSelect() {
 function writeTileOption(tilename) {
 
 var tempTile = parent.localFactory.createTile(tilename);
-var imgsrc = tempTile.getGraphic();
-document.write("<a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + imgsrc + "'></a>");
-
+var graphics = tempTile.getGraphic();
+var imgsrc = graphics[0];
+var oversrc = graphics[1];
+//document.write("<a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + imgsrc + "'></a>");
+var id = "#tileoption" + tilename;
+document.write("<td id='" + id+ "' style=\"height:32;width:32;background-image:url('graphics/" + imgsrc + "')\"><a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + oversrc + "' width='32' height='32' border='0'></a></td>");
 }
 
 function setVisible(divname) {
