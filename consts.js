@@ -54,3 +54,11 @@ worldlight["dark"] = 0;
 
 var LOS_THRESHOLD = 1;
 var SHADOW_THRESHOLD = .3;
+
+var MOVE_FLY = 1;
+var MOVE_SWIM = 2;
+var MOVE_ETHEREAL = 4;
+var MOVE_LEVITATE = 8;
+var MOVE_WALK = 16;
+
+
