@@ -1884,6 +1884,10 @@ NPCObject.prototype.nextActionTime = function() {
 	return init;
 }
 
+NPCObject.prototype.moveMe = function(direction, forcemove) {
+	var map = this.getHomeMap();
+}
+
 function NPCGroup() {
 	
 }
@@ -2166,6 +2170,7 @@ function PCObject() {
 	this.maxmana = this.int;
 	this.mana = this.maxmana;
 	this.mapname = "darkunknown";
+	this.movetype = MOVE_WALK;
 	
 	LightEmitting.call(this, 1);
 }

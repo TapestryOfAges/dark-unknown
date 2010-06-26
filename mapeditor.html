@@ -48,7 +48,7 @@
     </form>
 	</div>
 	<div class="bubble" id="featurebubble"><form name="featureeditpopup"><table cellpadding="1" cellspacing="1" border="0">
-		<tr><td colspan="2"><img src="graphics/073.gif" id="bubbletile" /></td></tr>
+		<tr><td colspan="2" id="td_bubbletile" style="width:32;height:32;background-repeat:no-repeat;background-image:url('graphics/073.gif')"><img src="graphics/spacer.gif" width="32" height="32" id="bubbletile" /></td></tr>
 		<tr><td>Tile desc:</td><td><input type="text" name="tiledesc" value="" size="40" /></td></tr>
 		<tr id="bubblelock" style="display:none"><td>Locked:</td><td><input type="text" name="tilelocked" value="" size="2" maxlength="1" /></td></tr>
 		<tr id="bubbleportal" style="display:none"><td>Dest. Map:<br />Dest X:<br />Dest Y:</td>
@@ -90,7 +90,7 @@
 		</table></form>
 	</div>
 	<div class="bubble" id="npcbubble"><form name="npceditpopup"><table cellpadding="1" cellspacing="1" border="0">
-    <tr><td><img src="graphics/073.gif" id="bubbleNPCtile" /></td><td colspan="3"><input type="text" name="npcobjname" value="" size="30" readonly /></td></tr>
+    <tr><td id="td_bubbleNPCtile" style="width:32;height:32;background-repeat:no-repeat;background-image:url('graphics/073.gif')"><img src="graphics/spacer.gif" width="32" height="32" id="bubbleNPCtile" /></td><td colspan="3"><input type="text" name="npcobjname" value="" size="30" readonly /></td></tr>
     <tr><td>Name:</td><td colspan="3"><input type="text" name="npcname" value="" size="30" /></td></tr>
     <tr><td>Desc:</td><td colspan="3"><input type="text" name="npcdesc" value="" size="30" /></td></tr>
     <tr><td>Level:</td><td><select name="npclevel">
@@ -184,13 +184,15 @@
   	<form name="placement">
       <center>
         <table cellpadding="0" cellspacing="0" border="0">
-          <tr><td>
-            <img src="graphics/001.gif" id="selectionimg"></td>
-          <td><table cellpadding="0" cellspacing="0" border="1">
+          <tr><td>&nbsp;</td>
+          <td rowspan="3"><table cellpadding="0" cellspacing="0" border="1">
           <tr><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td></tr>
           <tr><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td></tr>
           <tr><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td></tr>
           </table></td></tr>
+          <tr><td id="td_selectionimg" style="width:32;height:32;background-image:url('graphics/001.gif');background-repeat:no-repeat">
+          <img src="graphics/spacer.gif" id="selectionimg" width="32" height="32"></td></tr>
+          <tr><td></td></tr>
           <tr><td></td><td><span style="font-size:smaller"><a href="javascript:resize(document.placement);">Resize</a>
           <a href="javascript:setdebug()">Debug</a></span></td></tr>
         </table>

@@ -86,7 +86,7 @@ function drawMap() {
        }
 
 //       mapdiv += '<td class="maptd" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+showGraphic+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
-       mapdiv += '<td class="maptd" style="width:32;height:32;background-image:url(\'graphics/' + showGraphic + '\')" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" width="32" height="32" /></td>';
+       mapdiv += '<td id="td_tile'+j+'x'+i+'" class="maptd" style="background-repeat:no-repeat;width:32;height:32;background-image:url(\'graphics/' + showGraphic + '\')" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" width="32" height="32" /></td>';
      }
      mapdiv += '</tr><tr>';
    }
@@ -121,6 +121,7 @@ function drawFeatures(draw) {
   	var allfeatures = amap.features.getAll();
     for (var i=0;i<=allfeatures.length-1;i++) {
       var tileid = "tile" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
+      var tdid = "#td_" + tileid;
       var graphics = allfeatures[i].getGraphic();
       var showGraphic = graphics[0];
       if (typeof allfeatures[i].setBySurround == "function") {
@@ -129,12 +130,14 @@ function drawFeatures(draw) {
       if (typeof allfeatures[i].doTile == "function") {
   	    showGraphic = allfeatures[i].doTile(allfeatures[i].getx(),allfeatures[i].gety(),showGraphic);
       }
-      document.images[tileid].src="graphics/"+showGraphic;
+      $(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
+      document.images[tileid].src="graphics/"+graphics[1];
     }
     if (draw > 1) {
     	var allnpcs = amap.npcs.getAll();
  	    for (var i=0;i<=allnpcs.length-1;i++) {
         var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
+        var tdid = "#td_" + tileid;
         var graphics = allnpcs[i].getGraphic();
         var showGraphic = graphics[0];
         if (typeof allnpcs[i].setBySurround == "function") {
@@ -143,8 +146,8 @@ function drawFeatures(draw) {
         if (typeof allnpcs[i].doTile == "function") {
   	      showGraphic = allnpcs[i].doTile(allnpcs[i].getx(),allnpcs[i].gety(),showGraphic);
         }
-
-        document.images[tileid].src="graphics/"+showGraphic;
+      	$(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
+      	document.images[tileid].src="graphics/"+graphics[1];
       }
     }
   }
@@ -152,6 +155,7 @@ function drawFeatures(draw) {
     var allfeatures = amap.features.getAll();
     for (var i=0;i<=allfeatures.length-1;i++) {
       var tileid = "tile" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
+      var tdid = "#td_" + tileid;
       var terrainthere = amap.getTile(allfeatures[i].getx(),allfeatures[i].gety());
       var showTerrain = terrainthere.getTerrain();
       var graphics = showTerrain.getGraphic();
@@ -163,11 +167,13 @@ function drawFeatures(draw) {
   	    showGraphic = showTerrain.doTile(allfeatures[i].getx(),allfeatures[i].gety(),showGraphic);
       }
 
-      document.images[tileid].src="graphics/"+showGraphic;
+      $(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
+      document.images[tileid].src="graphics/"+graphics[1];
     }
     var allnpcs = amap.npcs.getAll();
     for (var i=0;i<=allnpcs.length-1;i++) {
       var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
+      var tdid = "#td_" + tileid;
       var terrainthere = amap.getTile(allnpcs[i].getx(),allnpcs[i].gety());
       var showTerrain = terrainthere.getTerrain();
       var graphics = showTerrain.getGraphic();
@@ -178,7 +184,8 @@ function drawFeatures(draw) {
       if (typeof showTerrain.doTile == "function") {
   	    showGraphic = showTerrain.doTile(allnpcs[i].getx(),allnpcs[i].gety(),showGraphic);
       }
-      document.images[tileid].src="graphics/"+showGraphic;
+      $(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
+      document.images[tileid].src="graphics/"+graphics[1];
     }
 
   } 	
@@ -189,7 +196,8 @@ function drawFeatures(draw) {
 function changeselection(tilename) {
   selectionval = localFactory.createTile(tilename);
   var graphics = selectionval.getGraphic();
-  document.images["selectionimg"].src = "graphics/" + graphics[0];
+  $('#td_selectionimg').css("background-image", "url('graphics/" + graphics[0] + "')");
+  document.images["selectionimg"].src = "graphics/" + graphics[1];
   if (selectionval.getType() == "terrain") {
   	displayval='terrain';
 //  	drawFeatures(0);
@@ -273,7 +281,8 @@ function clickmap(xval,yval) {
       $('#featurebubble').jqm({onShow:myOpen}); 
       $('#featurebubble').jqmShow();
       var graphics = editable.getGraphic();
-  	  document.images["bubbletile"].src = "graphics/" + graphics[0];
+      $('#td_bubbletile').css("background-image","url('graphics/" + graphics[0] + "')");
+  	  document.images["bubbletile"].src = "graphics/" + graphics[1];
       document.featureeditpopup.tiledesc.value = editable.getDesc();
       if (editable.getLocked != null) {
       	var lockedblock = document.getElementById("bubblelock");
@@ -295,7 +304,8 @@ function clickmap(xval,yval) {
     	$('#npcbubble').jqmShow();
     	document.npceditpopup.npcobjname.value = editnpcs.getName();
     	var graphics = editnpcs.getGraphic();
-      document.images["bubbleNPCtile"].src = "graphics/" + graphics[0];    	
+    	$('#td_bubbleNPCtile').css("background-image","url('graphics/" + graphics[0] + "')");
+      document.images["bubbleNPCtile"].src = "graphics/" + graphics[1];    	
       document.npceditpopup.npcname.value = editnpcs.getNPCName();
       document.npceditpopup.npcdesc.value = editnpcs.getDesc();
       document.npceditpopup.npclevel.value = editnpcs.getLevel();
@@ -332,9 +342,11 @@ function submitEditFeature(change) {
 		mapfeature = amap.getTile(editable.getx(),editable.gety());
 		mapfeature.features.deleteFrom(editable);
     var tileid = "tile" + editable.getx() + "x" + editable.gety();
+    var tdtileid = "#td_" + tileid;
     var localacre = amap.getTile(editable.getx(),editable.gety());
     var terraingraphics = localacre.terrain.getGraphic();
-    document.images[tileid].src = "graphics/"+terraingraphics[0];
+    $(tdtileid).css("background-image", "url('graphics/" + terraingraphics[0] + "')");
+    document.images[tileid].src = "graphics/"+terraingraphics[1];
 
 	}
   document.featureeditpopup.elements[0].value = "";
@@ -398,9 +410,11 @@ function submitEditNPC(change) {
     mapnpc = amap.getTile(editnpcs.getx(),editnpcs.gety());
 	  mapnpc.npcs.deleteFrom(editnpcs);
     var tileid = "tile" + editnpcs.getx() + "x" + editnpcs.gety();
+    var tdid = "#td_" + tileid;
     var localacre = amap.getTile(editnpcs.getx(),editnpcs.gety());
     var terraingraphics = localacre.terrain.getGraphic();
-    document.images[tileid].src = "graphics/"+terraingraphics[0];
+    $(tdid).css("background-image","url('graphics/" + terraingraphics[0] + "')");
+    document.images[tileid].src = "graphics/"+terraingraphics[1];
 	}
 }
 
@@ -453,6 +467,7 @@ function addfeaturetomap(x,y,selection) {
 	amap.features.addTop(newfeature);
 
   var tileid = "tile" + x + "x" + y;  
+  var tdid = "#td_" + tileid;
   var graphics = selection.getGraphic()
   var showGraphic = graphics[0];
   if (typeof selection.setBySurround == "function") {
@@ -461,7 +476,8 @@ function addfeaturetomap(x,y,selection) {
   if (typeof selection.doTile == "function") {
   	showGraphic = selection.doTile(x,y,showGraphic);
   }
-  document.images[tileid].src="graphics/"+showGraphic;
+  $(tdid).css("background-image","url('graphics/" + showGraphic + "')");
+  document.images[tileid].src="graphics/"+graphics[1];
   
 }
 
@@ -476,6 +492,7 @@ function addnpctomap(x,y,selection) {
 	amap.npcs.addTop(newnpc);
 	
 	var tileid = "tile" + x + "x" + y;
+	var tdid = "#td_" + tileid;
 	var graphics = selection.getGraphic();
   var showGraphic = graphics[0];
   if (typeof selection.setBySurround == "function") {
@@ -484,7 +501,8 @@ function addnpctomap(x,y,selection) {
   if (typeof selection.doTile == "function") {
   	showGraphic = selection.doTile(x,y,showGraphic);
   }
-  document.images[tileid].src="graphics/"+showGraphic;
+  $(tdid).css("background-image","url('graphics/" + showGraphic + "')");
+  document.images[tileid].src="graphics/"+graphics[1];
 }
 
 function erasefeature(x,y) {
@@ -495,6 +513,7 @@ function erasefeature(x,y) {
 	  amap.features.deleteFrom(featureshere[i]);
 	}
         var tileid = "tile" + x + "x" + y;
+        var tdid = "#td_" + tileid;
         var localacre = amap.getTile(x,y);
         var terraingraphics = localacre.getTerrain().getGraphic();
         var showGraphic = terraingraphics[0];
@@ -504,7 +523,8 @@ function erasefeature(x,y) {
         if (typeof localacre.getTerrain().doTile == "function") {
         	showGraphic = localacre.getTerrain().doTile(x,y,showGraphic);
         }
-        document.images[tileid].src = "graphics/"+showGraphic;
+        $(tdid).css("background-image","url('graphics/" + showGraphic + "')");
+        document.images[tileid].src = "graphics/"+graphics[1];
 }
 
 function initialSelect() {
@@ -523,7 +543,7 @@ var imgsrc = graphics[0];
 var oversrc = graphics[1];
 //document.write("<a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + imgsrc + "'></a>");
 var id = "#tileoption" + tilename;
-document.write("<td id='" + id+ "' style=\"height:32;width:32;background-image:url('graphics/" + imgsrc + "')\"><a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + oversrc + "' width='32' height='32' border='0'></a></td>");
+document.write("<td id='" + id+ "' style=\"height:32;width:32;background-repeat:no-repeat;background-image:url('graphics/" + imgsrc + "')\"><a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + oversrc + "' width='32' height='32' border='0'></a></td>");
 }
 
 function setVisible(divname) {
