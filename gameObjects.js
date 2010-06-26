@@ -1751,6 +1751,7 @@ function NPCObject() {
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
 	this.initmult = 1;
+	this.movetype = MOVE_WALK;
 }
 NPCObject.prototype = new AnimateObject;
 
@@ -1884,7 +1885,24 @@ NPCObject.prototype.nextActionTime = function() {
 	return init;
 }
 
-NPCObject.prototype.moveMe = function(direction, forcemove) {
+NPCObject.prototype.getMovetype = function() {
+	return this.movetype;
+}
+
+NPCObject.prototype.setMovetype = function(move) {
+	this.movetype = move;
+}
+
+NPCObject.prototype.addMovetype = function(move) {
+	this.movetype = this.movetype | move;
+}
+
+NPCObject.prototype.removeMovetype = function(move) {
+	this.movetype = this.movetype | move;
+	this.movetype = this.movetype - move;
+}
+
+NPCObject.prototype.moveMe = function(diffx,diffy, forcemove) {
 	var map = this.getHomeMap();
 }
 
@@ -1908,6 +1926,7 @@ function DruidVillagerNPCTile() {
 	this.graphic = "302.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
+	this.movetype = MOVE_WALK;
 }
 DruidVillagerNPCTile.prototype = new NPCObject;
 
@@ -1925,6 +1944,7 @@ function ShepherdVillagerNPCTile() {
 	this.graphic = "301.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "none";
+	this.movetype = MOVE_WALK;
 }
 ShepherdVillagerNPCTile.prototype = new NPCObject;
 
@@ -1942,6 +1962,7 @@ function MageVillagerNPCTile() {
 	this.graphic = "303.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
+	this.movetype = MOVE_WALK;
 }
 MageVillagerNPCTile.prototype = new NPCObject;
 
@@ -1959,6 +1980,7 @@ function TinkerVillagerNPCTile() {
 	this.graphic = "304.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "sling";
+	this.movetype = MOVE_WALK;
 }
 TinkerVillagerNPCTile.prototype = new NPCObject;
 
@@ -1976,6 +1998,7 @@ function RangerVillagerNPCTile() {
 	this.graphic = "305.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "sling";
+	this.movetype = MOVE_WALK;
 }
 RangerVillagerNPCTile.prototype = new NPCObject;
 
@@ -1993,6 +2016,7 @@ function AdventurerVillagerNPCTile() {
 	this.graphic = "306.gif";
 	this.meleeAttackAs = "shortsword";
 	this.missileAttackAs = "sling";
+	this.movetype = MOVE_WALK;
 }
 AdventurerVillagerNPCTile.prototype = new NPCObject;
 
@@ -2010,6 +2034,7 @@ function PaladinVillagerNPCTile() {
 	this.graphic = "307.gif";
 	this.meleeAttackAs = "shortsword";
 	this.missileAttackAs = "none";
+	this.movetype = MOVE_WALK;
 }
 PaladinVillagerNPCTile.prototype = new NPCObject;
 
@@ -2027,6 +2052,7 @@ function FighterVillagerNPCTile() {
 	this.graphic = "308.gif";
 	this.meleeAttackAs = "shortsword";
 	this.missileAttackAs = "sling";
+	this.movetype = MOVE_WALK;
 }
 FighterVillagerNPCTile.prototype = new NPCObject;
 
@@ -2044,6 +2070,7 @@ function TownsfolkVillagerNPCTile() {
 	this.graphic = "310.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "none";
+	this.movetype = MOVE_WALK;
 }
 TownsfolkVillagerNPCTile.prototype = new NPCObject;
 
@@ -2061,6 +2088,7 @@ function BardVillagerNPCTile() {
 	this.graphic = "311.gif";
 	this.meleeAttackAs = "dagger";
 	this.missileAttackAs = "bow";
+	this.movetype = MOVE_WALK;
 }
 BardVillagerNPCTile.prototype = new NPCObject;
 
@@ -2078,6 +2106,7 @@ function ChildNPCTile() {
 	this.graphic = "312.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
+	this.movetype = MOVE_WALK;
 }
 ChildNPCTile.prototype = new NPCObject;
 
@@ -2095,6 +2124,7 @@ function BeggerNPCTile() {
 	this.graphic = "313.gif";
 	this.meleeAttackAs = "fists";
 	this.missileAttackAs = "none";
+	this.movetype = MOVE_WALK;
 }
 BeggerNPCTile.prototype = new NPCObject;
 
@@ -2112,6 +2142,7 @@ function TownGuardNPCTile() {
 	this.graphic = "309.gif";
 	this.meleeAttackAs = "halberd";
 	this.missileAttackAs = "none";
+	this.movetype = MOVE_WALK;
 }
 TownGuardNPCTile.prototype = new NPCObject;
 
@@ -2129,6 +2160,7 @@ function KingNPCTile() {
 	this.graphic = "315.gif";
 	this.meleeAttackAs = "halberd";
 	this.missileAttackAs = "none";
+	this.movetype = MOVE_WALK;
 }
 KingNPCTile.prototype = new NPCObject;
 
@@ -2146,6 +2178,7 @@ function PrinceNPCTile() {
 	this.graphic = "300.gif";
 	this.meleeAttackAs = "longsword";
 	this.missileAttackAs = "none";
+	this.movetype = MOVE_WALK;
 }
 PrinceNPCTile.prototype = new NPCObject;
 
