@@ -1898,8 +1898,7 @@ NPCObject.prototype.addMovetype = function(move) {
 }
 
 NPCObject.prototype.removeMovetype = function(move) {
-	this.movetype = this.movetype | move;
-	this.movetype = this.movetype - move;
+	this.movetype = this.movetype & ~move;
 }
 
 NPCObject.prototype.moveMe = function(diffx,diffy, forcemove) {
