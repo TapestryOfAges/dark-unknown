@@ -127,9 +127,28 @@ GameObject.prototype.getBlocksLOS = function(distance) {
   return (this.blocklos);
 }
 
+GameObject.prototype.getPassable = function() {
+	return this.passable;
+}
+
+GameObject.prototype.setPassable = function(movetype) {
+	this.passable = movetype;
+	return this.passable;
+}
+
+GameObject.prototype.removePassable = function(movetype) {
+	this.passable = this.passable & ~movetype;
+	return this.passable;
+}
+
+GameObject.prototype.addPassable = function(movetype) {
+	this.passable = this.passable | movetype;
+	return this.passable;
+}
+
 GameObject.prototype.passable = function(movetype) {
   var Passability = new Object;
-  if ((movetype & this.passable) != "0") {
+  if ((movetype & this.getPassable()) != "0") {
     Passability.validmove = 1;
     return(Passability);
   }
@@ -1901,8 +1920,13 @@ NPCObject.prototype.removeMovetype = function(move) {
 	this.movetype = this.movetype & ~move;
 }
 
-NPCObject.prototype.moveMe = function(diffx,diffy, forcemove) {
+NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	var map = this.getHomeMap();
+	var tile = map.getTile(this.getx()+diffx,this.gety()+diffy);
+	
+	var startfromwater = map.getTile(this.getx(),this.gety()).terrain.getPassable
+	
+	return 0;
 }
 
 function NPCGroup() {
@@ -2201,20 +2225,11 @@ function PCObject() {
 	this.hp = this.maxhp;
 	this.maxmana = this.int;
 	this.mana = this.maxmana;
-	this.mapname = "darkunknown";
 	this.movetype = MOVE_WALK;
 	
 	LightEmitting.call(this, 1);
 }
 PCObject.prototype = new NPCObject;
-
-PCObject.prototype.getMapName = function() {
-	return this.mapname;
-}
-
-PCObject.prototype.setMapName = function(newmap) {
-	this.mapname = newmap;
-}
 
 PCObject.prototype.myTurn = function() {
 	gamestate.setMode("base");

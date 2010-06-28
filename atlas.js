@@ -970,8 +970,11 @@ MapMemory.prototype.addMap = function(mapname) {
 	return newmap;
 }
 
-MapMemory.prototype.addMapByRef = function(mapname, mapref) {
+MapMemory.prototype.addMapByRef = function(mapref) {
+	var mapname = mapref.getName();
 	this.data[mapname] = mapref;
+	
+	return mapref;
 }
 
 MapMemory.prototype.deleteMap = function(mapname) {

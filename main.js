@@ -12,6 +12,7 @@ var PC = new PCObject();
 var gamestate = new GameStateData();
 var maps = new MapMemory();
 var worldmap = new GameMap();
+maps.addMapByRef(worldmap);
 var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
 var maintext = new TextFrame(14,32);
@@ -103,13 +104,16 @@ function drawTextFrame(txt,inputtxt){
 }
 
 $(document).ready(function() {
+worldmap.loadMap("darkunknown");
 	
 	gamestate.loadGame();
   drawCharFrame();
-  worldmap = maps.addMap(PC.getMapName());
-  worldmap.placeThing(PC.getx(),PC.gety(),PC);
-  drawTopbarFrame("<p>" + worldmap.getDesc() + "</p>");
-  drawMainFrame("draw", PC.getMapName() , PC.getx(), PC.gety());
+  
+  
+  maps.addMapByRef(PC.getHomeMap());
+  PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
+  drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+  drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 
   maintext.addText("Game loaded.");
   drawTextFrame(maintext.getTextFrame(), "&gt;"); 
@@ -119,7 +123,7 @@ $(document).ready(function() {
    // will be a function call to main function
    if (gamestate.mode == "base") {  // PC's turn, awaiting commands
    	 var response = PerformCommand(code);
-   	 if (response) { 
+   	 if (response["fin"]) { 
    	 	e.preventDefault(); 
    	 	maintext.addText(response["txt"]);
    	 	var inp = response["input"];

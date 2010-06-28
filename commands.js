@@ -4,7 +4,7 @@ function PerformCommand(code) {
 	retval["fin"] = 0;
 	if ((code == 38) || (code == 219)) {   // UP ARROW  or  [
 		// move north
-		var success = MovePC("n");
+		var success = PC.moveMe(0,-1,0);
 		var txt = "Move North";
 		if (success) { txt += "."; }
 		else { txt += " - Blocked!"; }
@@ -14,7 +14,7 @@ function PerformCommand(code) {
 	}
 	else if ((code == 37) || (code == 59)) {  // LEFT ARROW or ;
 		// move west
-		var success = MovePC("w");
+		var success = PC.moveMe(-1,0,0);
 		var txt = "Move West";
 		if (success) { txt += "."; }
 		else { txt += " - Blocked!"; }
@@ -24,7 +24,7 @@ function PerformCommand(code) {
 	}
 	else if ((code == 39) || (code == 222)) { // RIGHT ARROW or '
 		// move east
-		var success = MovePC("e");
+		var success = PC.moveMe(1,0,0);
 		var txt = "Move East";
 		if (success) { txt += "."; }
 		else { txt += " - Blocked!"; }
@@ -34,7 +34,7 @@ function PerformCommand(code) {
 	}
 	else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
 		// move south
-		var success = MovePC("s");
+		var success = PC.moveMe(0,1,0);
 		var txt = "Move South";
 		if (success) { txt += "."; }
 		else { txt += " - Blocked!"; }
@@ -159,6 +159,3 @@ function PerformCommand(code) {
 	return retval;
 }
 
-function MovePC(direction) {
-	return 0;
-}
