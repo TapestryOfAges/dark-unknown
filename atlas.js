@@ -325,6 +325,39 @@ Acre.prototype.getTerrain = function() {
 	return this.terrain;
 }
 
+Acre.prototype.canMoveHere = function(mover, fromtile) {
+	var terrain = this.getTerrain();
+	var totalpassability = terrain.getPassable();
+	var retval = new Object;
+	if (totalpassability & MOVE_SWIM) {
+		if (fromtile.getTerrain().getPassable() & MOVE_SWIM) {
+			// moving from a water tile to a water tile. This bypasses the blocking ability of bridges, etc.
+			retval["canmove"] = 1;
+			retval["msg"] = ".";
+			return retval;
+		}
+	}
+	var features = this.getFeatures();
+	if (features[0]) {
+	  for (var i=0; i< features.length; i++) {
+		  totalpassability = totalpassability & features[i].getPassable();
+		}
+	}
+	var npcs = this.getNPCs();
+	if (npcs[0]) {
+		totalpassability = 0;
+	}
+	if (totalpassability & mover.getMovetype()) {
+		retval["canmove"] = 1;
+		retval["msg"] = ".";
+		return retval;
+	}
+	
+	retval["canmove"] = 0;
+	retval["msg"] = " - Blocked!";
+	return retval;
+}
+
 // Map Object - one per map.
 
 function GameMap() {

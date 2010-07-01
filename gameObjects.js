@@ -61,7 +61,7 @@ GameObject.prototype.moveTo = function(x,y) {
 }
 
 GameObject.prototype.bumpinto = function(who) {
-  return(0);
+  return(1);
 }
 
 GameObject.prototype.copy = function(type) {
@@ -256,11 +256,11 @@ function InanimateObject() {
 InanimateObject.prototype = new GameObject;
 
 InanimateObject.prototype.walkon = function() {
-  return(0);
+  return(1);
 }
 
 InanimateObject.prototype.leave = function() {
-  return(0);
+  return(1);
 }
 
 InanimateObject.prototype.idle = function() {
@@ -1924,9 +1924,9 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	var map = this.getHomeMap();
 	var tile = map.getTile(this.getx()+diffx,this.gety()+diffy);
 	
-	var startfromwater = map.getTile(this.getx(),this.gety()).terrain.getPassable
+	var retval = tile.canMoveHere(this, map.getTile(this.getx(),this.gety()));
 	
-	return 0;
+	return retval;
 }
 
 function NPCGroup() {

@@ -6,8 +6,7 @@ function PerformCommand(code) {
 		// move north
 		var success = PC.moveMe(0,-1,0);
 		var txt = "Move North";
-		if (success) { txt += "."; }
-		else { txt += " - Blocked!"; }
+		txt += success["msg"];
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
@@ -16,8 +15,7 @@ function PerformCommand(code) {
 		// move west
 		var success = PC.moveMe(-1,0,0);
 		var txt = "Move West";
-		if (success) { txt += "."; }
-		else { txt += " - Blocked!"; }
+		txt += success["msg"];
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
@@ -26,8 +24,7 @@ function PerformCommand(code) {
 		// move east
 		var success = PC.moveMe(1,0,0);
 		var txt = "Move East";
-		if (success) { txt += "."; }
-		else { txt += " - Blocked!"; }
+		txt += success["msg"];
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
@@ -36,8 +33,7 @@ function PerformCommand(code) {
 		// move south
 		var success = PC.moveMe(0,1,0);
 		var txt = "Move South";
-		if (success) { txt += "."; }
-		else { txt += " - Blocked!"; }
+		txt += success["msg"];
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
