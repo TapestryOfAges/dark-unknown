@@ -61,7 +61,10 @@ GameObject.prototype.moveTo = function(x,y) {
 }
 
 GameObject.prototype.bumpinto = function(who) {
-  return(1);
+	var retval = new Object;
+	retval["canmove"] = 1;
+	retval["msg"] = "";
+  return(retval);
 }
 
 GameObject.prototype.copy = function(type) {
@@ -1228,8 +1231,9 @@ function HillsTile() {
   this.name = "Hills";
   this.graphic = "124.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = .3;
-  this.losatdistancce = { distance : 5 , blocklos : .5 };
+  this.blocklos = 0;
+//  this.blocklos = .3;
+//  this.losatdistance = { distance : 5 , blocklos : .5 };
   this.desc = "hills";
 }
 HillsTile.prototype = new TerrainObject;
@@ -1355,8 +1359,8 @@ DungeonTile.prototype = new FeatureObject;
 
 function CaveTile() {
   this.name = "Cave";
-  this.graphic = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.passable = 0x1d; // flying, walking, ethereal, levitate
+  this.graphic = "cave.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "a cave entrance";
 
@@ -1924,8 +1928,24 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	var map = this.getHomeMap();
 	var tile = map.getTile(this.getx()+diffx,this.gety()+diffy);
 	
-	var retval = tile.canMoveHere(this, map.getTile(this.getx(),this.gety()));
+	var retval = tile.getBumpIntoResult(this);
+	if (retval["canmove"] == 0) { return retval; }
+	var moveval = tile.canMoveHere(this, map.getTile(this.getx(),this.gety()));
+	retval["canmove"] = moveval["canmove"];
+	if (retval["msg"] == "") {
+		if (moveval["msg"] == "") { retval["msg"] = "."; }
+		else { retval["msg"] = " - " + moveval["msg"]; }
+	}
+	else {
+		if (moveval["msg"] != "") {
+			retval["msg"] += "\n" + moveval["msg"];
+		}
+	}
 	
+	if (retval["canmove"] == 1) {
+		map.moveThing(this.getx()+diffx,this.gety()+diffy,PC);
+		drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+	}
 	return retval;
 }
 

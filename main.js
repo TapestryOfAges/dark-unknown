@@ -17,13 +17,6 @@ var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
 var maintext = new TextFrame(14,32);
 
-var debug = 0;
-var debugscreen;
-
-if (debug) {
-  debugscreen = window.open('','debugscreen');
-}
-
 
 function drawCharFrame() {
 	var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='2'>";
@@ -35,7 +28,7 @@ function drawCharFrame() {
 function drawMainFrame(how, mapname, centerx, centery) {
   // how options are "draw" and "refresh"
 
-  var mapdiv;
+  var mapdiv = "&nbsp;";
   var themap = maps.getMap(mapname);
   if (themap == undefined) {
   	maps.addMap(mapname);
@@ -64,13 +57,13 @@ function drawMainFrame(how, mapname, centerx, centery) {
         // decide whether to draw a tile, draw it shaded, or make it darkness
         var losresult = themap.getLOS(centerx, centery, j, i, losgrid);
         if (losresult < LOS_THRESHOLD) {
-          if (localacre.pcs.getTop()) {
-            displaytile = localacre.pcs.getTop();
-          } else if (localacre.npcs.getTop()) {
-            displaytile = localacre.npcs.getTop();
-          } else if (localacre.features.getTop()) {
-            displaytile = localacre.features.getTop();
-          } else { displaytile = localacre.terrain; }
+          if (localacre.getTopPC()) {
+            displaytile = localacre.getTopPC();
+          } else if (localacre.getTopNPC()) {
+            displaytile = localacre.getTopNPC();
+          } else if (localacre.getTopFeature()) {
+            displaytile = localacre.getTopFeature();
+          } else { displaytile = localacre.getTerrain(); }
           var graphics = displaytile.getGraphic();
           var showGraphic = graphics[0];
           if (typeof displaytile.setBySurround == "function") {
@@ -79,11 +72,11 @@ function drawMainFrame(how, mapname, centerx, centery) {
           if (typeof displaytile.doTile == "function") {
           	showGraphic = displaytile.doTile(j,i,showGraphic);
           }
-        	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" width="32" height="32" /></td>';
+        	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+' los:' + losresult + '" width="32" height="32" /></td>';
         } else {
         	displaytile = localFactory.createTile('BlankBlack');
         	var graphics = displaytile.getGraphic();
-        	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + graphics[0] + '\'); background-repeat:no-repeat;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" width="32" height="32" /></td>';
+        	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + graphics[0] + '\'); background-repeat:no-repeat;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+' los:' + losresult + '" width="32" height="32" /></td>';
         }
       }  
       mapdiv += '</tr><tr>';

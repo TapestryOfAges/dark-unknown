@@ -317,12 +317,50 @@ Acre.prototype.getFeatures = function() {
 	return (this.features.getAll());
 }
 
+Acre.prototype.getTopFeature = function() {
+	return (this.features.getTop());
+}
+
 Acre.prototype.getNPCs = function() {
 	return (this.npcs.getAll());
 }
 
+Acre.prototype.getTopNPC = function() {
+	return (this.npcs.getTop());
+}
+
+Acre.prototype.getPCs = function() {
+	return (this.pcs.getAll());
+}
+
+Acre.prototype.getTopPC = function() {
+	return (this.pcs.getTop());
+}
+
 Acre.prototype.getTerrain = function() {
 	return this.terrain;
+}
+
+Acre.prototype.getBumpIntoResult = function(mover) {
+	var terrain = this.getTerrain();
+	var retval = terrain.bumpinto(mover);
+
+	if (retval["msg"] != "") { retval["msg"] = " - " + retval["msg"]; }	
+	if (retval["canmove"] == 0) { return retval; }
+	
+	var features = this.getFeatures();
+	if (features[0]) {
+		for (var i=0; i<features.length; i++) {
+			var retval2 = features[i].bumpinto(mover);
+			if (retval2["msg"] != "") {
+				if (retval["msg"] == "") { retval["msg"] = " - " + retval2["msg"]; }
+				else { retval["msg"] += "\n" + retval2["msg"]; }
+			}
+			if (retval2["canmove"] == 0) { return retval; }
+		}
+	}
+	
+	return retval;
 }
 
 Acre.prototype.canMoveHere = function(mover, fromtile) {
@@ -333,7 +371,7 @@ Acre.prototype.canMoveHere = function(mover, fromtile) {
 		if (fromtile.getTerrain().getPassable() & MOVE_SWIM) {
 			// moving from a water tile to a water tile. This bypasses the blocking ability of bridges, etc.
 			retval["canmove"] = 1;
-			retval["msg"] = ".";
+			retval["msg"] = "";
 			return retval;
 		}
 	}
@@ -349,12 +387,12 @@ Acre.prototype.canMoveHere = function(mover, fromtile) {
 	}
 	if (totalpassability & mover.getMovetype()) {
 		retval["canmove"] = 1;
-		retval["msg"] = ".";
+		retval["msg"] = "";
 		return retval;
 	}
 	
 	retval["canmove"] = 0;
-	retval["msg"] = " - Blocked!";
+	retval["msg"] = "Blocked!";
 	return retval;
 }
 
@@ -666,16 +704,18 @@ GameMap.prototype.placeThing = function(x,y,newthing) {
 }
 
 GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump and passable and before walkon
-	var type = this.type + "s";
-	this.data[thing.y][thing.x][type].deleteFrom(thing);
-  this.data[y][x][thing.type].addTop(thing);
+	var type = thing.type + "s";
+	this.data[thing.gety()][thing.getx()][type].deleteFrom(thing);
+	if (!this.data[y][x][type]) { this.data[y][x][type] = new Collection(); }
+  this.data[y][x][type].addTop(thing);
   thing.setx(x);
   thing.sety(y);
 }
 
 GameMap.prototype.deleteThing = function(thing) {
-	this[thing.type].deleteFrom(thing);
-	this.data[thing.y][thing.x][thing.type].deleteFrom(thing);
+	var type = this.type + "s";
+	this[type].deleteFrom(thing);
+	this.data[thing.y][thing.x][type].deleteFrom(thing);
 }
 
 
@@ -921,16 +961,49 @@ function setMapLight(map,serial,light,x,y) {
 }
 
 GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid) {
-  var LOSes = losgrid.getLOS(x1,y1,x2,y2);
-  var totalLOS = 0;
-  if (LOSes[0]) {
-  	for (var i = 0; i < LOSes.length; i++ ){
-  		var location = this.getTile(x1+LOSes[i].x,y1+LOSes[i].y);
-  		totalLOS += LOSes[i].coeff * location.getBlocksLOS(LOSes[i].x,LOSes[i].y);
-  		if (totalLOS > LOS_THRESHOLD) { return LOS_THRESHOLD; }
-  	}
-  } 
-  return totalLOS;
+	var trueLOS = LOS_THRESHOLD;
+	var totalLOS = 0;
+	if ((x2-x1) <= (y2-y1)) { 
+		// lower left half of map
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw",this);
+		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
+	}
+	if ((x2-x1) >= (y2-y1)) {
+		// upper right half of map
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne",this);
+		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
+	}
+	if ((x2-x1) >= ((-1)*(y2-y1))) {
+		// lower right half of map
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se",this);
+		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
+	}
+	if ((x2-x1) <= ((-1)*(y2-y1))) {
+		// upper left half of map
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw",this);
+		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
+	}
+	
+	
+  return trueLOS;
+}
+
+function genLOS(x1,y1,x2,y2,losgrid,section,losmap) {
+	  var LOSes = losgrid.getLOS(x1,y1,x2,y2,section);
+	  var totalLOS = 0;
+	  if (LOSes[0]) {
+	  	for (var i = 0; i < LOSes.length; i++ ){
+	  		var location = losmap.getTile(x1+LOSes[i].x,y1+LOSes[i].y);
+	  		var dist = ((x1-LOSes[i].x)^2 + (y1-LOSes[i].y)^2)^(.5);
+	  		totalLOS += LOSes[i].coeff * location.getBlocksLOS(dist);
+	  		if (totalLOS > LOS_THRESHOLD) { return totalLOS; }
+	  	}
+	  } 
+	  return totalLOS;	
 }
 
 GameMap.prototype.setLights = function() {

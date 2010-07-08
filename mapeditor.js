@@ -537,7 +537,7 @@ function initialSelect() {
 
 function writeTileOption(tilename) {
 
-var tempTile = parent.localFactory.createTile(tilename);
+var tempTile = localFactory.createTile(tilename);
 var graphics = tempTile.getGraphic();
 var imgsrc = graphics[0];
 var oversrc = graphics[1];
