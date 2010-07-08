@@ -27,6 +27,14 @@ TextFrame.prototype.getTextFrame = function(as) {
 }
 
 TextFrame.prototype.addText = function(newtext) {
+	var lines = newtext.split("\n");
+	while (lines[0]){
+		var line = lines.shift();
+		this.addTextByLine(line);
+	}
+}
+
+TextFrame.prototype.addTextByLine = function(newtext) {
 	var words = newtext.split(" ");
 	var lines = new Array;
 	var line = "";
