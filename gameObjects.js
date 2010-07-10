@@ -342,7 +342,7 @@ function StoneWallTile() {
   this.name = "StoneWall";
   this.graphic = "011.gif";
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = 1;
+  this.blocklos = 0;
   this.desc = "a stone wall";
 }
 StoneWallTile.prototype = new TerrainObject;

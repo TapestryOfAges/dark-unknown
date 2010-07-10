@@ -40,12 +40,16 @@ function drawMainFrame(how, mapname, centerx, centery) {
   var rightedge = leftedge + viewsizex - 1;
   if (rightedge >= themap.getWidth()) {
   	rightedge = themap.getWidth() -1;  // Note, this will explode somewhat if the map is smaller than 13x13
+  	leftedge = rightedge - viewsizex + 1;
+  	if (leftedge < 0) { leftedge = 0; }
   }
   var topedge = centery - (viewsizey - 1)/2;
   if (topedge < 0) { topedge = 0; }
   bottomedge = topedge + viewsizey - 1;
   if (bottomedge >= themap.getHeight()) {
   	bottomedge = themap.getHeight() -1;
+  	topedge = bottomedge - viewsizey + 1;
+  	if (topedge < 0) {topedge = 0;}
   }
   
   if (how == "draw") {

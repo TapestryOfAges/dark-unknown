@@ -367,7 +367,7 @@ Acre.prototype.canMoveHere = function(mover, fromtile) {
 	var terrain = this.getTerrain();
 	var totalpassability = terrain.getPassable();
 	var retval = new Object;
-	if (totalpassability & MOVE_SWIM) {
+	if (totalpassability & MOVE_SWIM & mover.getMovetype()) {
 		if (fromtile.getTerrain().getPassable() & MOVE_SWIM) {
 			// moving from a water tile to a water tile. This bypasses the blocking ability of bridges, etc.
 			retval["canmove"] = 1;
@@ -375,17 +375,29 @@ Acre.prototype.canMoveHere = function(mover, fromtile) {
 			return retval;
 		}
 	}
+	var featurepassability = MOVE_FLY + MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	var features = this.getFeatures();
 	if (features[0]) {
 	  for (var i=0; i< features.length; i++) {
-		  totalpassability = totalpassability & features[i].getPassable();
-		}
+		  featurepassability = featurepassability & features[i].getPassable();
+		}  
+		var npcs = this.getNPCs();
+	  if (npcs[0]) {
+	  	featurepassability = 0;
+	  }
+		if (totalpassability & MOVE_SWIM) {
+	  	if (featurepassability & mover.getMovetype()) {
+	  		retval["canmove"] = 1;
+  			retval["msg"] = "";
+			  return retval;
+		  }
+	  }
 	}
 	var npcs = this.getNPCs();
 	if (npcs[0]) {
-		totalpassability = 0;
+		featurepassability = 0;
 	}
-	if (totalpassability & mover.getMovetype()) {
+	if (totalpassability & featurepassability & mover.getMovetype()) {
 		retval["canmove"] = 1;
 		retval["msg"] = "";
 		return retval;
