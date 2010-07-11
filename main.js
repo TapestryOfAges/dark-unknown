@@ -115,7 +115,7 @@ worldmap.loadMap("darkunknown");
   maintext.addText("Game loaded.");
   drawTextFrame(maintext.getTextFrame(), "&gt;"); 
   
-  $(window).keydown(function(e) {
+  $(document).keydown(function(e) {
    var code = (e.keyCode ? e.keyCode : e.which);
    // will be a function call to main function
    if (gamestate.mode == "base") {  // PC's turn, awaiting commands
