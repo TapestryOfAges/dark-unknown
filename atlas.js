@@ -321,12 +321,42 @@ Acre.prototype.getTopFeature = function() {
 	return (this.features.getTop());
 }
 
+Acre.prototype.getTopVisibleFeature = function() {
+	var features = this.features.getAll();
+	var ind = features.length;
+	while (ind > 0) {
+		if (features[ind-1].invisible) {
+			ind--;
+		}
+		else {
+			return features[ind-1];
+		}
+	}
+	return;
+}
+
+
+
 Acre.prototype.getNPCs = function() {
 	return (this.npcs.getAll());
 }
 
 Acre.prototype.getTopNPC = function() {
 	return (this.npcs.getTop());
+}
+
+Acre.prototype.getTopVisibleNPC = function() {
+	var npcs = this.npcs.getAll();
+	var ind = npcs.length;
+	while (ind > 0) {
+		if (npcs[ind-1].invisible) {
+			ind--;
+		}
+		else {
+			return npcs[ind-1];
+		}
+	}
+	return;
 }
 
 Acre.prototype.getPCs = function() {

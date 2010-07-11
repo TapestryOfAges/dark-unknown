@@ -1437,7 +1437,7 @@ CastleTile.prototype = new FeatureObject;
 function LeftCastleTile() {
   this.name = "LeftCastle";
   this.graphic = "005.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle Olympus";
 }
