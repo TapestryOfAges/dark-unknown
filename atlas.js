@@ -324,6 +324,7 @@ Acre.prototype.getTopFeature = function() {
 Acre.prototype.getTopVisibleFeature = function() {
 	var features = this.features.getAll();
 	var ind = features.length;
+	if (ind == 0) { return; }
 	while (ind > 0) {
 		if (features[ind-1].invisible) {
 			ind--;
@@ -348,6 +349,7 @@ Acre.prototype.getTopNPC = function() {
 Acre.prototype.getTopVisibleNPC = function() {
 	var npcs = this.npcs.getAll();
 	var ind = npcs.length;
+	if (ind == 0) { return; }
 	while (ind > 0) {
 		if (npcs[ind-1].invisible) {
 			ind--;
