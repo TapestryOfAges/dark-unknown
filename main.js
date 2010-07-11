@@ -63,10 +63,10 @@ function drawMainFrame(how, mapname, centerx, centery) {
         if (losresult < LOS_THRESHOLD) {
           if (localacre.getTopPC()) {
             displaytile = localacre.getTopPC();
-          } else if (localacre.getTopNPC()) {
-            displaytile = localacre.getTopNPC();
-          } else if (localacre.getTopFeature()) {
-            displaytile = localacre.getTopFeature();
+          } else if (localacre.getTopVisibleNPC()) {
+            displaytile = localacre.getTopVisibleNPC();
+          } else if (localacre.getTopVisibleFeature()) {
+            displaytile = localacre.getTopVisibleFeature();
           } else { displaytile = localacre.getTerrain(); }
           var graphics = displaytile.getGraphic();
           var showGraphic = graphics[0];
