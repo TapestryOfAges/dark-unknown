@@ -1332,10 +1332,10 @@ function LavaTile() {
   LightEmitting.call(this, 1);
 }
 LavaTile.prototype = new TerrainObject;
-LavaTile.prototype.walkon = function() {
-  // return chance (100%), damage, and type
+LavaTile.prototype.walkon = function(person) {
+  // return messages, perform action
 }
-LavaTile.prototype.idle = function() {
+LavaTile.prototype.idle = function(person) {
   // see walkon
 }
 
