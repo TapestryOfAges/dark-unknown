@@ -336,8 +336,6 @@ Acre.prototype.getTopVisibleFeature = function() {
 	return;
 }
 
-
-
 Acre.prototype.getNPCs = function() {
 	return (this.npcs.getAll());
 }
@@ -438,6 +436,13 @@ Acre.prototype.canMoveHere = function(mover, fromtile) {
 	retval["canmove"] = 0;
 	retval["msg"] = "Blocked!";
 	return retval;
+}
+
+Acre.prototype.executeWalkons = function(walker) {
+	terrain = this.getTerrain();
+	if (typeof terrain.walkOn == "function") {
+		terrain.walkon(walker);
+	}
 }
 
 // Map Object - one per map.
