@@ -439,9 +439,17 @@ Acre.prototype.canMoveHere = function(mover, fromtile) {
 }
 
 Acre.prototype.executeWalkons = function(walker) {
-	terrain = this.getTerrain();
-	if (typeof terrain.walkOn == "function") {
+	var terrain = this.getTerrain();
+	if (typeof terrain.walkon == "function") {
 		terrain.walkon(walker);
+	}
+	var features = this.getFeatures();
+	if (features) {
+		for (var i = 0; i < features.length; i++) {
+			if (typeof features[i].walkon == "function") {
+				features[i].walkon(walker);
+			}
+		}
 	}
 }
 
@@ -1047,7 +1055,7 @@ function genLOS(x1,y1,x2,y2,losgrid,section,losmap) {
 	  if (LOSes[0]) {
 	  	for (var i = 0; i < LOSes.length; i++ ){
 	  		var location = losmap.getTile(x1+LOSes[i].x,y1+LOSes[i].y);
-	  		var dist = ((x1-LOSes[i].x)^2 + (y1-LOSes[i].y)^2)^(.5);
+	  		var dist = Math.sqrt(Math.pow(LOSes[i].x, 2) + Math.pow(LOSes[i].y,2));
 	  		totalLOS += LOSes[i].coeff * location.getBlocksLOS(dist);
 	  		if (totalLOS > LOS_THRESHOLD) { return totalLOS; }
 	  	}
