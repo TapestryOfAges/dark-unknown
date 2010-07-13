@@ -127,6 +127,9 @@ GameObject.prototype.getBlocksLOS = function(distance) {
   if (this.losatdistance) {
     if (distance > this.losatdistance["distance"]) { return(this.losatdistance["blocklos"]) }
   }
+  if (this.losupclose) {
+  	if (distance <= this.losupclose["distance"]) { return(this.losupclose["blocklos"]) }
+  }
   return (this.blocklos);
 }
 
@@ -711,7 +714,8 @@ function ArrowSlitTile() {
 	this.name = "ArrowSlit";
 	this.graphic = "arrowslit.gif";
 	this.passable = MOVE_ETHEREAL;
-	this.blocklos = 2; 
+	this.blocklos = 1; 
+	this.losupclose = { distance : 1 , blocklos : 0 };
 	this.desc = "an arrow slit";
 
 }
@@ -1334,6 +1338,7 @@ function LavaTile() {
 LavaTile.prototype = new TerrainObject;
 LavaTile.prototype.walkon = function(person) {
   // return messages, perform action
+  alert("Walkon!");
 }
 LavaTile.prototype.idle = function(person) {
   // see walkon
@@ -1502,7 +1507,8 @@ function DoorWindowTile() {
 	this.name = "DoorWindow";
 	this.graphic = "009.gif";
 	this.passable = MOVE_ETHEREAL;
-	this.blocklos = 2; 
+	this.blocklos = 1; 
+	this.losupclose = { distance : 1 , blocklos : 0 };
 	this.desc = "a door";
 
 }
@@ -1945,6 +1951,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	if (retval["canmove"] == 1) {
 		map.moveThing(this.getx()+diffx,this.gety()+diffy,PC);
 		drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+		var walkonval = tile.executeWalkons(this);
 	}
 	return retval;
 }
