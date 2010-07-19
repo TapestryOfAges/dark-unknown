@@ -359,6 +359,15 @@ function StoneTile() {
 }
 StoneTile.prototype = new TerrainObject;
 
+function DirtStoneTile() {
+  this.name = "DirtStone";
+  this.graphic = "dirt-rock.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.desc = "a stone";
+}
+DirtStoneTile.prototype = new TerrainObject;
+
 function MastTile() {
   this.name = "Mast";
   this.graphic = "014.gif";
@@ -1036,6 +1045,15 @@ function GrassTile() {
   this.desc = "grass";
 }
 GrassTile.prototype = new TerrainObject;
+
+function DirtTile() {
+  this.name = "Dirt";
+  this.graphic = "dirt-ground.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "dirt";
+}
+DirtTile.prototype = new TerrainObject;
 
 function RoadENTile() {
   this.name = "RoadEN";
