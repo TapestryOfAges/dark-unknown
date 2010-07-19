@@ -60,6 +60,7 @@ function drawMainFrame(how, mapname, centerx, centery) {
         var displaytile;
         // decide whether to draw a tile, draw it shaded, or make it darkness
         var losresult = themap.getLOS(centerx, centery, j, i, losgrid);
+        var lighthere = localacre.getLocalLight();
         if (losresult < LOS_THRESHOLD) {
           if (localacre.getTopPC()) {
             displaytile = localacre.getTopPC();
@@ -76,11 +77,11 @@ function drawMainFrame(how, mapname, centerx, centery) {
           if (typeof displaytile.doTile == "function") {
           	showGraphic = displaytile.doTile(j,i,showGraphic);
           }
-        	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+' los:' + losresult + '" width="32" height="32" /></td>';
+        	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" /></td>';
         } else {
         	displaytile = localFactory.createTile('BlankBlack');
         	var graphics = displaytile.getGraphic();
-        	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + graphics[0] + '\'); background-repeat:no-repeat;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+' los:' + losresult + '" width="32" height="32" /></td>';
+        	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + graphics[0] + '\'); background-repeat:no-repeat;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" /></td>';
         }
       }  
       mapdiv += '</tr><tr>';

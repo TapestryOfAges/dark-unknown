@@ -8,10 +8,10 @@ function GameStateData() {
 
 GameStateData.prototype.loadGame = function() {
 	// Temporarily, this will return demo values
-	PC.setx(68);
-	PC.sety(68);
+	PC.setx(34);
+	PC.sety(34);
 	var themap = new GameMap();
-	themap.loadMap("darkunknown");
+	themap.loadMap("island_cave");
 	PC.setHomeMap(themap);
 	DUTime.setGameClock(0);
 	var PCEvent = new GameEvent(PC);
