@@ -342,6 +342,16 @@ tileFactory.prototype.makeGrassTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDirtTile = function() {
+  var newTile = new DirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDirtStoneTile = function() {
+  var newTile = new DirtStoneTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRoadENTile = function() {
   var newTile = new RoadENTile();
   return newTile;

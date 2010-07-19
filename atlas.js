@@ -22,6 +22,8 @@ function Atlas() {
   // 12 is a feature
     '#%' : "Stone",     // 13
     "Stone": '#%',
+    ',%' : "DirtStone",     // 13
+    "DirtStone": ',%',
     '#*' : "Mast",  // 14
     "Mast" : '#*',
     '#!' : "Rigging", // 15
@@ -149,6 +151,8 @@ function Atlas() {
 // 105 is a feature or an NPC, depending
     '..' : "Grass", // 121
     "Grass" : '..',
+    '.,' : "Dirt", // 121
+    "Dirt" : '.,',
     ',,' : "Brush", // 122
     "Brush" : ',,',
     ',|' : "BrushECoast",
