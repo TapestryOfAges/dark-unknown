@@ -1203,8 +1203,9 @@ function ForestTile() {
   this.name = "Forest";
   this.graphic = "123.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = .6;
-  this.losatdistance = { distance : 5 , blocklos : .8 };
+  this.blocklos = 1;
+//  this.losatdistance = { distance : 5 , blocklos : .8 };
+	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
 }
 ForestTile.prototype = new TerrainObject;
@@ -1213,8 +1214,9 @@ function ForestNCoastTile() {
 	this.name = "ForestNCoast";
 	this.graphic = "forestNcoast.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = .4;
-  this.losatdistance = { distance : 5 , blocklos : .8 };
+  this.blocklos = 1;
+//  this.losatdistance = { distance : 5 , blocklos : .8 };
+	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
 }
 ForestNCoastTile.prototype = new TerrainObject;
@@ -1223,8 +1225,9 @@ function ForestECoastTile() {
 	this.name = "ForestECoast";
 	this.graphic = "forestEcoast.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = .4;
-  this.losatdistance = { distance : 5 , blocklos : .8 };
+  this.blocklos = 1;
+//  this.losatdistance = { distance : 5 , blocklos : .8 };
+	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
 }
 ForestECoastTile.prototype = new TerrainObject;
@@ -1233,8 +1236,9 @@ function ForestSCoastTile() {
 	this.name = "ForestSCoast";
 	this.graphic = "forestScoast.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = .4;
-  this.losatdistance = { distance : 5 , blocklos : .8 };
+  this.blocklos = 1;
+//  this.losatdistance = { distance : 5 , blocklos : .8 };
+	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
 }
 ForestSCoastTile.prototype = new TerrainObject;
@@ -1243,8 +1247,9 @@ function ForestWCoastTile() {
 	this.name = "ForestWCoast";
 	this.graphic = "forestWcoast.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = .4;
-  this.losatdistance = { distance : 5 , blocklos : .8 };
+  this.blocklos = 1;
+//  this.losatdistance = { distance : 5 , blocklos : .8 };
+	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
 }
 ForestWCoastTile.prototype = new TerrainObject;
