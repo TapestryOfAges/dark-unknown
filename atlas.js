@@ -1026,25 +1026,57 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid) {
 	var totalLOS = 0;
 	if ((x2-x1) <= (y2-y1)) { 
 		// lower left half of map
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw",this);
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","ne",this);
+		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
+		
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","nw",this);
+		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
+
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","se",this);
 		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 	}
 	if ((x2-x1) >= (y2-y1)) {
 		// upper right half of map
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne",this);
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","sw",this);
+		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
+
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","nw",this);
+		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
+
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","se",this);
 		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 	}
 	if ((x2-x1) >= ((-1)*(y2-y1))) {
 		// lower right half of map
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se",this);
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","nw",this);
+		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
+
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","sw",this);
+		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
+
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","ne",this);
 		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 	}
 	if ((x2-x1) <= ((-1)*(y2-y1))) {
 		// upper left half of map
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw",this);
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","se",this);
+		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
+
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","ne",this);
+		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
+
+		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","sw",this);
 		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 	}
@@ -1053,13 +1085,13 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid) {
   return trueLOS;
 }
 
-function genLOS(x1,y1,x2,y2,losgrid,section,losmap) {
-	  var LOSes = losgrid.getLOS(x1,y1,x2,y2,section);
+function genLOS(x1,y1,x2,y2,losgrid,startsection,endsection,losmap) {
+	  var LOSes = losgrid.getLOS(x1,y1,x2,y2,startsection,endsection);
 	  var totalLOS = 0;
 	  if (LOSes[0]) {
 	  	for (var i = 0; i < LOSes.length; i++ ){
 	  		var location = losmap.getTile(x1+LOSes[i].x,y1+LOSes[i].y);
-	  		var dist = Math.sqrt(Math.pow(LOSes[i].x, 2) + Math.pow(LOSes[i].y,2));
+	  		var dist = Math.sqrt(Math.pow(((x1+LOSes[i].x) - x1), 2) + Math.pow(((y1 + LOSes[i].y) - y1),2));
 	  		totalLOS += LOSes[i].coeff * location.getBlocksLOS(dist);
 	  		if (totalLOS > LOS_THRESHOLD) { return totalLOS; }
 	  	}

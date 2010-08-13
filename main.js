@@ -60,6 +60,7 @@ function drawMainFrame(how, mapname, centerx, centery) {
         var displaytile;
         // decide whether to draw a tile, draw it shaded, or make it darkness
         var losresult = themap.getLOS(centerx, centery, j, i, losgrid);
+//        var losresult = themap.getLOS(j, i, centerx, centery, losgrid);
         var lighthere = localacre.getLocalLight();
         if (losresult < LOS_THRESHOLD) {
           if (localacre.getTopPC()) {

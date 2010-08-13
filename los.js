@@ -1,59 +1,64 @@
 
 function LOSMatrix(screensize) {
 
-  this.center = new Object;
-  this.center.matrix = new Array;
-  this.ne = new Object;
-  this.ne.matrix = new Array;
-  this.nw = new Object;
-  this.nw.matrix = new Array;
-  this.se = new Object;
-  this.se.matrix = new Array;
-  this.sw = new Object;
-  this.sw.matrix = new Array;
+  var dirs = new Array;
+  dirs[0] = new Object;
+  dirs[0].dir = "center";
+  dirs[0].x = 0;
+  dirs[0].y = 0;
+  dirs[1] = new Object;
+  dirs[1].dir = "ne";
+  dirs[1].x = .5;
+  dirs[1].y = -.5;
+  dirs[2] = new Object;
+  dirs[2].dir = "nw";
+  dirs[2].x = -.5;
+  dirs[2].y = -.5;
+  dirs[3] = new Object;
+  dirs[3].dir = "se";
+  dirs[3].x = .5;
+  dirs[3].y = .5;
+  dirs[4] = new Object;
+  dirs[4].dir = "sw";
+  dirs[4].x = -.5;
+  dirs[4].y = .5;
 
+  for (var i = 0; i <= 4; i++) {
+  	this[dirs[i].dir] = new Object;
+  	for (var j = 0; j <= 4; j++) {
+  		this[dirs[i].dir][dirs[j].dir] = new Object;
+  		this[dirs[i].dir][dirs[j].dir].matrix = new Array;
 
-//      var lineseg = GetLineArray(0,0,2,-2);
-//      alert(i + "," + j + " : " + lineseg);
-
-  for (var i = 1-screensize; i<screensize; i++) {
-  	this.center.matrix[i] = new Array;
-  	this.ne.matrix[i] = new Array;
-  	this.nw.matrix[i] = new Array;
-  	this.se.matrix[i] = new Array;
-  	this.sw.matrix[i] = new Array;
-  	for (var j = 1-screensize; j<screensize; j++) {
-      this.center.matrix[i][j] = GetLineArray(0,0,j,i,0,0);
-      this.ne.matrix[i][j] = GetLineArray(0,0,j,i,.5,-.5);
-      this.nw.matrix[i][j] = GetLineArray(0,0,j,i,-.5,-.5);
-      this.se.matrix[i][j] = GetLineArray(0,0,j,i,.5,.5);
-      this.sw.matrix[i][j] = GetLineArray(0,0,j,i,-.5,.5);
-  	}
-  }
+		  for (var k = 1-screensize; k<screensize; k++) {
+		  	this[dirs[i].dir][dirs[j].dir]["matrix"][k] = new Array;
+  			for (var l = 1-screensize; l<screensize; l++) {
+		      this[dirs[i].dir][dirs[j].dir]["matrix"][k][l] = GetLineArray(0,0,l,k,dirs[i].x,dirs[i].y,dirs[j].x,dirs[j].y);
+  			}
+ 		 	}
+ 		}
+ 	}
 	
 }
 
-LOSMatrix.prototype.getLOS = function(x1,y1,x2,y2,whichlos) {
-	if (!whichlos) { whichlos = "center"; }
+LOSMatrix.prototype.getLOS = function(x1,y1,x2,y2,whichstartlos,whichendlos) {
+	if (!whichstartlos) { whichstartlos = "center"; }
+	if (!whichendlos) { whichendlos = "center"; }
   var xdiff = x2-x1;
   var ydiff = y2-y1;
-  return this[whichlos].matrix[ydiff][xdiff];
+  return this[whichstartlos][whichendlos]["matrix"][ydiff][xdiff];
 }
 
-function GetLineOfSight(x1,y1,x2,y2,map) {
 
-  return 0;
-  // temp until I finish function!! FIXME!!
-}
+function GetLineArray(x1,y1,x2,y2,cornerx1,cornery1,cornerx2,cornery2) {
 
-function GetLineArray(x1,y1,x2,y2,cornerx,cornery) {
+  if (!cornerx1) { cornerx1 = 0;}
+	if (!cornery1) { cornery1 = 0;}
+  if (!cornerx2) { cornerx2 = 0;}
+	if (!cornery2) { cornery2 = 0;}
 
-  if (!cornerx) { cornerx = 0;}
-	if (!cornery) { cornery = 0;}
+  if (debug) { dbs.writeln("GetLineArray, sent " + x1 + "," + y1 + "," + x2 + "," + y2 + "," + cornerx1 + "," + cornery1 + "," + cornerx2 + "," + cornery2 + "<br>"); }
 
-  if (debug) { dbs.writeln("GetLineArray, sent " + x1 + "," + y1 + "," + x2 + "," + y2 + "," + cornerx + "," + cornery + "<br>"); }
-
-  if ((Math.abs(x1 - x2) <= 1) && (Math.abs(y1 - y2) <= 1)) { return(0); }
+  if ((Math.abs(x1 - x2) < 1) && (Math.abs(y1 - y2) < 1)) { return(0); }
 
   var lineArray = new Array;
 
@@ -65,8 +70,8 @@ function GetLineArray(x1,y1,x2,y2,cornerx,cornery) {
   var yints = new Array;
 
   if (x1 != x2) {
-    var a = ((y1+cornery)-y2)/((x1+cornerx)-x2);
-    var b = (y1+cornery) - a*(x1+cornerx);
+    var a = ((y1+cornery1)-(y2+cornery2))/((x1+cornerx1)-(x2+cornerx2));
+    var b = (y1+cornery1) - a*(x1+cornerx1);
 
 //    if (debug) { dbs.writeln("Line is: y = " + a + "x + " + b + "<br>"); }
 
