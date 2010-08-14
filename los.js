@@ -8,20 +8,20 @@ function LOSMatrix(screensize) {
   dirs[0].y = 0;
   dirs[1] = new Object;
   dirs[1].dir = "ne";
-  dirs[1].x = .5;
-  dirs[1].y = -.5;
+  dirs[1].x = .49;
+  dirs[1].y = -.49;
   dirs[2] = new Object;
   dirs[2].dir = "nw";
-  dirs[2].x = -.5;
-  dirs[2].y = -.5;
+  dirs[2].x = -.49;
+  dirs[2].y = -.49;
   dirs[3] = new Object;
   dirs[3].dir = "se";
-  dirs[3].x = .5;
-  dirs[3].y = .5;
+  dirs[3].x = .49;
+  dirs[3].y = .49;
   dirs[4] = new Object;
   dirs[4].dir = "sw";
-  dirs[4].x = -.5;
-  dirs[4].y = .5;
+  dirs[4].x = -.49;
+  dirs[4].y = .49;
 
   for (var i = 0; i <= 4; i++) {
   	this[dirs[i].dir] = new Object;

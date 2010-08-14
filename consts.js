@@ -52,7 +52,7 @@ worldlight["bright"] = 1;
 worldlight["dim"] = .5;
 worldlight["dark"] = 0;
 
-var LOS_THRESHOLD = 1;
+var LOS_THRESHOLD = .98;
 var SHADOW_THRESHOLD = .3;
 
 var MOVE_FLY = 1;
