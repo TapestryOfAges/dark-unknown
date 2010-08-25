@@ -256,7 +256,7 @@ function SetBySurround() {
 // end inheritance
 
 function InanimateObject() {
-
+  this.initdelay = 1;  // multiplicative
 }
 
 InanimateObject.prototype = new GameObject;
@@ -277,6 +277,14 @@ InanimateObject.prototype.use = function() {
   return(0);
 }
 
+InanimateObject.prototype.getInitDelay = function() {
+	return this.initdelay;
+}
+
+InanimateObject.prototype.setInitDelay = function(newdelay) {
+	this.initdelay = newdelay;
+	return this.initdelay;
+}
 
 // And now, on with the show!
 // TERRAIN
@@ -1160,6 +1168,7 @@ function BrushTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "brush";
+  this.initdelay = 1.1;
 }
 BrushTile.prototype = new TerrainObject;
 
@@ -1169,6 +1178,7 @@ function BrushNCoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "brush";
+  this.initdelay = 1.1;
 }
 BrushNCoastTile.prototype = new TerrainObject;
 
@@ -1178,6 +1188,7 @@ function BrushECoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "brush";
+  this.initdelay = 1.1;
 }
 BrushECoastTile.prototype = new TerrainObject;
 
@@ -1187,6 +1198,7 @@ function BrushSCoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "brush";
+  this.initdelay = 1.1;
 }
 BrushSCoastTile.prototype = new TerrainObject;
 
@@ -1196,6 +1208,7 @@ function BrushWCoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "brush";
+  this.initdelay = 1.1;
 }
 BrushWCoastTile.prototype = new TerrainObject;
 
@@ -1207,6 +1220,7 @@ function ForestTile() {
 //  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
+  this.initdelay = 1.3;
 }
 ForestTile.prototype = new TerrainObject;
 
@@ -1218,6 +1232,7 @@ function ForestNCoastTile() {
 //  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
+  this.initdelay = 1.3;
 }
 ForestNCoastTile.prototype = new TerrainObject;
 
@@ -1229,6 +1244,7 @@ function ForestECoastTile() {
 //  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
+  this.initdelay = 1.3;
 }
 ForestECoastTile.prototype = new TerrainObject;
 
@@ -1240,6 +1256,7 @@ function ForestSCoastTile() {
 //  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
+  this.initdelay = 1.3;
 }
 ForestSCoastTile.prototype = new TerrainObject;
 
@@ -1251,6 +1268,7 @@ function ForestWCoastTile() {
 //  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
+  this.initdelay = 1.3;
 }
 ForestWCoastTile.prototype = new TerrainObject;
 
@@ -1262,6 +1280,7 @@ function HillsTile() {
 //  this.blocklos = .3;
 //  this.losatdistance = { distance : 5 , blocklos : .5 };
   this.desc = "hills";
+  this.initdelay = 1.5;
 }
 HillsTile.prototype = new TerrainObject;
 
@@ -1280,6 +1299,7 @@ function SwampTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "swamp";
+  this.initdelay = 1.2;
 }
 SwampTile.prototype = new TerrainObject;
 SwampTile.prototype.walkon = function() {
@@ -1355,6 +1375,7 @@ function LavaTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_SWIM;
   this.blocklos = 0;
   this.desc = "lava";
+  this.initdelay = 1.2;
   
   LightEmitting.call(this, 1);
 }
@@ -1598,6 +1619,7 @@ function SleepFieldTile() {
 	this.blocklos = 0;
 //	this.light = 1;
 	this.desc = "a sleep field";
+	this.initdelay = 1.5;
 	
 	LightEmitting.call(this, 1);
 }
@@ -1612,6 +1634,7 @@ function FireFieldTile() {
 	this.desc = "a fire field";
 	
 	LightEmitting.call(this, 3);
+	this.initdelay = 1.5;
 }
 FireFieldTile.prototype = new FeatureObject;
 
@@ -1622,6 +1645,7 @@ function PoisonFieldTile() {
 	this.blocklos = 0;
 //	this.light = 1;
 	this.desc = "a poison field";
+	this.initdelay = 1.5;
 	
 	LightEmitting.call(this, 1);
 }
@@ -1930,10 +1954,13 @@ NPCObject.prototype.setMissile = function(missile) {
 	return this.missileAttackAs;
 }
 
-NPCObject.prototype.nextActionTime = function() {
+NPCObject.prototype.nextActionTime = function(initdelay) {
 
   var isQuick = 0;  // replace with a check for the presence of the Quickness spell.
   var init = ((-1/60) * this.getdex() + (7/6)) * this.initmult * (1 - .5 * isQuick);
+  if ((initdelay) && (initdelay != 0)) {
+  	init = init * initdelay;
+  }
 	return init;
 }
 
@@ -1976,6 +2003,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 		drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 		var walkonval = tile.executeWalkons(this);
 	}
+	retval["initdelay"] = tile.getInitDelay(this);
 	return retval;
 }
 

@@ -10,6 +10,8 @@ function PerformCommand(code) {
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
+		if (success["msg"].match("Blocked")) { retval["fin"] = 2; }
+		retval["initdelay"] = success["initdelay"];
 	}
 	else if ((code == 37) || (code == 59)) {  // LEFT ARROW or ;
 		// move west
@@ -19,6 +21,8 @@ function PerformCommand(code) {
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
+		if (success["msg"].match("Blocked")) { retval["fin"] = 2; }
+		retval["initdelay"] = success["initdelay"];
 	}
 	else if ((code == 39) || (code == 222)) { // RIGHT ARROW or '
 		// move east
@@ -28,6 +32,8 @@ function PerformCommand(code) {
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
+		if (success["msg"].match("Blocked")) { retval["fin"] = 2; }
+		retval["initdelay"] = success["initdelay"];
 	}
 	else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
 		// move south
@@ -37,6 +43,8 @@ function PerformCommand(code) {
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
+		if (success["msg"].match("Blocked")) { retval["fin"] = 2; }
+		retval["initdelay"] = success["initdelay"];
 	}
 	else if (code == 65) { // a
 		// attack

@@ -397,6 +397,22 @@ Acre.prototype.getBumpIntoResult = function(mover) {
 	return retval;
 }
 
+Acre.prototype.getInitDelay = function(mob) {
+	if (mob.getMovetype() & MOVE_FLY) {
+		return 1;
+	}
+	var terrain = this.getTerrain();
+	var features = this.getFeatures();
+	var initdelay = terrain.getInitDelay();
+	if (features[0]) {
+		for (var i = 0; i < features.length; i++) {
+			initdelay = initdelay * features[i].getInitDelay();
+		}
+	}
+	if (initdelay) { return initdelay; }
+	return 1;
+}
+
 Acre.prototype.canMoveHere = function(mover, fromtile) {
 	var terrain = this.getTerrain();
 	var totalpassability = terrain.getPassable();
