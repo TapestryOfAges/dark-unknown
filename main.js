@@ -130,7 +130,7 @@ worldmap.loadMap("darkunknown");
    	 	if (response["fin"] == 1) {
    	 		gamestate.mode = "waiting";
    	 		var PCevent = new GameEvent(PC);
-   	 		DUTime.addAtTimeInterval(PCevent,PC.nextActionTime());
+   	 		DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
    	 		
         var nextEntity = DUTime.executeNextEvent().getEntity();
         nextEntity.myTurn();
