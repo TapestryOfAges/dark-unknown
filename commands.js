@@ -90,8 +90,11 @@ function PerformCommand(code) {
 		
 	}
 	else if (code == 76) { // l
-		// locate - probably not used
-		
+		// U4's Locate, here, Look
+		var newx = PC.getx();
+		var newy = PC.gety();
+//		var tileid = "#td-tile" + newx + "x" + newy;
+		$(tileid).html($(tileid).html() + '<img src="graphics/target-cursor.gif" style="position:absolute;left:192px;top:192px;z-index:3" />');
 	}
 	else if (code == 77) { // m
 		// mix - not used
