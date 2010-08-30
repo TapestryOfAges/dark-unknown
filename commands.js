@@ -91,10 +91,16 @@ function PerformCommand(code) {
 	}
 	else if (code == 76) { // l
 		// U4's Locate, here, Look
+		gamestate.mode = "target";
 		var newx = PC.getx();
 		var newy = PC.gety();
-//		var tileid = "#td-tile" + newx + "x" + newy;
-		$(tileid).html($(tileid).html() + '<img src="graphics/target-cursor.gif" style="position:absolute;left:192px;top:192px;z-index:3" />');
+		var tileid = "#td-tile" + newx + "x" + newy;
+		targetCursor.tileid = tileid;
+		targetCursor.x = newx;
+		targetCursor.y = newy;
+		targetCursor.basetile = $(tileid).html();
+		targetCursor.command = "l";
+		$(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:192px;top:192px;z-index:3" />');
 	}
 	else if (code == 77) { // m
 		// mix - not used
@@ -166,3 +172,42 @@ function PerformCommand(code) {
 	return retval;
 }
 
+
+function PerformTarget(code)  {
+	var retval = new Object;
+	retval["fin"] = 0;
+	if ((code == 38) || (code == 219)) {   // UP ARROW  or  [
+		gamestate.mode = "null";
+		if ((PC.y - targetCursor.y) < 6) {
+			targetCursor.y -= 1;
+			retval["fin"] = 1;		
+		}
+	}
+	else if ((code == 37) || (code == 59)) {  // LEFT ARROW or ;
+		gamestate.mode = "null";
+		if ((PC.x - targetCursor.x) < 6) {
+			targetCursor.x -= 1;
+			retval["fin"] = 1;
+		}
+	}
+	else if ((code == 39) || (code == 222)) { // RIGHT ARROW or '
+		gamestate.mode = "null";
+		if ((targetCursor.x - PC.x) < 6) {
+			targetCursor.x += 1;
+			retval["fin"] = 1;
+		}
+	}
+	else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
+		gamestate.mode = "null";
+		if ((targetCursor.y - PC.y) < 6) {
+			targetCursor.y += 1;
+			retval["fin"] = 1;
+		}
+	}
+	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
+		gamestate.mode = "null";
+		retval["fin"] = 2;
+	}
+	// probably add one for ESC
+	return retval;
+}

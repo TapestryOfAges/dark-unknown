@@ -1792,6 +1792,23 @@ function WhirlpoolTile() {
 }
 WhirlpoolTile.prototype = new FeatureObject;
 
+// Items
+
+function ItemObject() {
+	this.item = 1;
+}
+ItemObject.prototype = new FeatureObject;
+
+function RubyGemoftheSunTile() {
+	this.name = "RubyGemoftheSun";
+	this.graphic = "sunruby.gif";
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 0;
+	this.desc = "a ruby gem that harnesses the power of the sun";
+}
+RubyGemoftheSunTile.prototype = new ItemObject;
+
+
 // NPCs
 
 function AnimateObject() {
