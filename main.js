@@ -17,6 +17,7 @@ var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
 var maintext = new TextFrame(14,32);
 
+var targetCursor = new Object;
 
 function drawCharFrame() {
 	var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='2'>";
@@ -119,7 +120,6 @@ worldmap.loadMap("darkunknown");
   
   $(document).keydown(function(e) {
    var code = (e.keyCode ? e.keyCode : e.which);
-   // will be a function call to main function
    if (gamestate.mode == "base") {  // PC's turn, awaiting commands
    	 var response = PerformCommand(code);
    	 if (response["fin"]) { 
@@ -136,6 +136,24 @@ worldmap.loadMap("darkunknown");
         nextEntity.myTurn();
    	 	}
    	 }  
+  }
+  else if (gamestate.mode == "target") {
+  	var response = PerformTarget(code);
+  	if (response["fin"]) { e.preventDefault(); }
+  	if (response["fin"] == 1) {  // move the cursor
+  		var posleft = 192 + (targetCursor.x - PC.x)*32;
+  		var postop = 192 + (targetCursor.y - PC.y)*32;
+  		var tileid = targetCursor.tileid;
+  		$(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:'+posleft+'px;top:'+postop+'px;z-index:3" />');
+  		gamestate.mode = "target";
+  	}
+  	else if (response["fin"] == 2) { // look at the current target
+  		
+  	}
+  	else {
+  		gamestate.mode = "target";
+  	}
+
   }
   });
 });

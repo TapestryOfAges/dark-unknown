@@ -884,3 +884,8 @@ tileFactory.prototype.makeHexFloorTile = function() {
 	var newTile = new HexFloorTile();
 	return newTile;
 }
+
+tileFactory.prototype.makeRubyGemoftheSunTile = function() {
+	var newTile = new RubyGemoftheSunTile();
+	return newTile;
+}
