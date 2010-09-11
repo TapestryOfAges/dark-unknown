@@ -1799,6 +1799,10 @@ function ItemObject() {
 }
 ItemObject.prototype = new FeatureObject;
 
+ItemObject.prototype.isItem = new function() {
+	return this.item;
+}
+
 function RubyGemoftheSunTile() {
 	this.name = "RubyGemoftheSun";
 	this.graphic = "sunruby.gif";

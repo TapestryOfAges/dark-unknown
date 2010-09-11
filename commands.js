@@ -101,6 +101,9 @@ function PerformCommand(code) {
 		targetCursor.basetile = $(tileid).html();
 		targetCursor.command = "l";
 		$(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:192px;top:192px;z-index:3" />');
+		retval["txt"] = "";
+		retval["input"] = "&gt; Look: ";
+		retval["fin"] = 2;
 	}
 	else if (code == 77) { // m
 		// mix - not used
@@ -208,6 +211,70 @@ function PerformTarget(code)  {
 		gamestate.mode = "null";
 		retval["fin"] = 2;
 	}
-	// probably add one for ESC
+	else if (code == 27) { // ESC
+		gamestate.mode = "null";
+		retval["fin"] = 0;
+		retval["txt"] = "";
+		retval["input"] = "&gt;";
+	}
+	
 	return retval;
+}
+
+function PerformLook() {
+	var txt = "";
+  var seethis = "";
+  var map = PC.getHomeMap();
+  var losval = map.getLOS(PC.getx(), PC.gety(), targetCursor.x, targetCursor.y, losgrid);
+  if (losval >= LOS_THRESHOLD) { 
+  	var retval = new Object;
+  	retval["txt"] = "You cannot see that.";
+  	retval["fin"] = 2;
+  	retval["input"] = "&gt;";
+ 	  var tileid = targetCursor.tileid;
+	  $(tileid).html(targetCursor.basetile); 
+
+  	return retval;
+  }
+  var tile = map.getTile(targetCursor.x,targetCursor.y);
+  if ((targetCursor.x == PC.getx())	&& (targetCursor.y == PC.gety())) {
+  	txt = "You are standing on ";
+  } else {
+  	txt = "You see ";
+  }
+  var npcs = tile.getNPCs();
+  if (npcs.length > 0) {
+  	for (var i=(npcs.length-1) ; i >= 0; i-- ) {
+  		if (seethis == "") { seethis = npcs[i].getDesc(); }
+  		else { seethis += ", " + npcs[i].getDesc(); }
+  	}
+  }
+  var features = tile.getFeatures();
+  if (features.length > 0) {
+  	for (var i=(features.length-1); i >= 0; i-- ) {
+  		if (( seethis == "" ) && (i == features.length-1)) {
+  			seethis = features[i].getDesc();
+  		}
+  		else if ( features[i].isItem() ) {
+  			if (seethis == "") { seethis = features[i].getDesc(); }
+  			else { seethis += ", " + features[i].getDesc(); }
+  		}
+  	}
+  }
+  if (seethis == "") {
+  	var terrain = tile.getTerrain();
+  	seethis = terrain.desc;
+  }
+  if (seethis == "") { alert("How are we here? command."); }
+  
+  txt += seethis + ".";
+  var tileid = targetCursor.tileid;
+  $(tileid).html(targetCursor.basetile); 
+  
+  var retval = new Object;
+  retval["txt"] = txt;
+  retval["fin"] = 2;
+  retval["input"] = "&gt;";
+  
+  return retval;
 }

@@ -120,6 +120,7 @@ worldmap.loadMap("darkunknown");
   
   $(document).keydown(function(e) {
    var code = (e.keyCode ? e.keyCode : e.which);
+   if (code == 27) { e.preventDefault(); }
    if (gamestate.mode == "base") {  // PC's turn, awaiting commands
    	 var response = PerformCommand(code);
    	 if (response["fin"]) { 
@@ -128,7 +129,7 @@ worldmap.loadMap("darkunknown");
    	 	var inp = response["input"];
    	 	drawTextFrame(maintext.getTextFrame(), inp);
    	 	if (response["fin"] == 1) {
-   	 		gamestate.mode = "waiting";
+   	 		gamestate.mode = "null";
    	 		var PCevent = new GameEvent(PC);
    	 		DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
    	 		
@@ -148,7 +149,20 @@ worldmap.loadMap("darkunknown");
   		gamestate.mode = "target";
   	}
   	else if (response["fin"] == 2) { // look at the current target
-  		
+  		if (targetCursor.command == "l") {
+  			response = PerformLook();
+  			maintext.addText(response["txt"]);
+  			drawTextFrame(maintext.getTextFrame(), response["input"]);
+  			gamestate.mode = "base";
+  		}
+  	}
+  	else if (response["fin"] == 0) { 
+  		var tileid = targetCursor.tileid;
+      $(tileid).html(targetCursor.basetile); 
+  			maintext.addText(response["txt"]);
+  			drawTextFrame(maintext.getTextFrame(), response["input"]);
+      
+      gamestate.mode = "base";
   	}
   	else {
   		gamestate.mode = "target";

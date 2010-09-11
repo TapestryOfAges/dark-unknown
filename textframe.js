@@ -27,6 +27,7 @@ TextFrame.prototype.getTextFrame = function(as) {
 }
 
 TextFrame.prototype.addText = function(newtext) {
+	if (newtext == "") { return; }
 	var lines = newtext.split("\n");
 	while (lines[0]){
 		var line = lines.shift();
@@ -56,4 +57,13 @@ TextFrame.prototype.addTextByLine = function(newtext) {
 		this.mainTextFrame.push(lines.shift());
 	}
 	return this.getTextFrame();
+}
+
+TextFrame.prototype.appendToLine = function(newtext) {
+	var appendto = this.mainTextFrame.pop();
+	this.mainTextFrame.unshift("   ");
+	
+	var newline = appendto + "" + newtext;
+	this.addText(newline);
+	
 }
