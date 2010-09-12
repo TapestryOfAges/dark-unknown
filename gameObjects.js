@@ -2028,6 +2028,10 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	return retval;
 }
 
+NPCObject.prototype.myTurn = function() {
+	
+}
+
 function NPCGroup() {
 	
 }
