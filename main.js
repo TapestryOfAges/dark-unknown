@@ -121,7 +121,8 @@ worldmap.loadMap("darkunknown");
   $(document).keydown(function(e) {
    var code = (e.keyCode ? e.keyCode : e.which);
    if (code == 27) { e.preventDefault(); }
-   if (gamestate.mode == "base") {  // PC's turn, awaiting commands
+   if (gamestate.getMode() == "player") {  // PC's turn, awaiting commands
+//   	 alert(DUTime.getGameClock());
    	 var response = PerformCommand(code);
    	 if (response["fin"]) { 
    	 	e.preventDefault(); 
@@ -129,7 +130,7 @@ worldmap.loadMap("darkunknown");
    	 	var inp = response["input"];
    	 	drawTextFrame(maintext.getTextFrame(), inp);
    	 	if (response["fin"] == 1) {
-   	 		gamestate.mode = "null";
+   	 		gamestate.setMode("null");
    	 		var PCevent = new GameEvent(PC);
    	 		DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
    	 		
@@ -138,7 +139,7 @@ worldmap.loadMap("darkunknown");
    	 	}
    	 }  
   }
-  else if (gamestate.mode == "target") {
+  else if (gamestate.getMode() == "target") {
   	var response = PerformTarget(code);
   	if (response["fin"]) { e.preventDefault(); }
   	if (response["fin"] == 1) {  // move the cursor
@@ -146,15 +147,20 @@ worldmap.loadMap("darkunknown");
   		var postop = 192 + (targetCursor.y - PC.y)*32;
   		var tileid = targetCursor.tileid;
   		$(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:'+posleft+'px;top:'+postop+'px;z-index:3" />');
-  		gamestate.mode = "target";
+  		gamestate.setMode("target");
   	}
   	else if (response["fin"] == 2) { // look at the current target
   		if (targetCursor.command == "l") {
   			response = PerformLook();
   			maintext.addText(response["txt"]);
   			drawTextFrame(maintext.getTextFrame(), response["input"]);
-  			gamestate.mode = "base";
   		}
+  		gamestate.setMode("null");
+  		var PCevent = new GameEvent(PC);
+   	 	DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
+   	 		
+      var nextEntity = DUTime.executeNextEvent().getEntity();
+      nextEntity.myTurn();
   	}
   	else if (response["fin"] == 0) { 
   		var tileid = targetCursor.tileid;
@@ -162,10 +168,11 @@ worldmap.loadMap("darkunknown");
   			maintext.addText(response["txt"]);
   			drawTextFrame(maintext.getTextFrame(), response["input"]);
       
-      gamestate.mode = "base";
+      gamestate.setMode("player");
+      gamestate.setTurn(PC);
   	}
   	else {
-  		gamestate.mode = "target";
+  		gamestate.setMode("target");
   	}
 
   }

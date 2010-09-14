@@ -1,22 +1,22 @@
 
 function GameStateData() {
-	this.mode = "waiting";
-	// base, conversation, direction choice, waiting (no input)
+	this.mode = "null";
+	this.turn = new Object;
+	// player, NPC, null, target, conversation
 }
 
 
 
 GameStateData.prototype.loadGame = function() {
 	// Temporarily, this will return demo values
-	PC.setx(67);
-	PC.sety(64);
+	PC.setx(30);
+	PC.sety(30);
 	var themap = new GameMap();
-	themap.loadMap("darkunknown");
+	themap.loadMap("nassau");
 	PC.setHomeMap(themap);
 	DUTime.setGameClock(0);
 	var PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,1);
-//	this.mode = "base";
   var nextEvent = DUTime.executeNextEvent();
   var nextEntity = nextEvent.getEntity();
   nextEntity.myTurn();
@@ -32,4 +32,12 @@ GameStateData.prototype.setMode = function(mode) {
 
 GameStateData.prototype.getMode = function() {
 	return this.mode;
+}
+
+GameStateData.prototype.setTurn = function(whoseturn) {
+	this.turn = whoseturn;
+}
+
+GameStateData.prototype.getTurn = function() {
+	return this.turn;
 }

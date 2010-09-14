@@ -91,7 +91,7 @@ function PerformCommand(code) {
 	}
 	else if (code == 76) { // l
 		// U4's Locate, here, Look
-		gamestate.mode = "target";
+		gamestate.setMode("target");
 		var newx = PC.getx();
 		var newy = PC.gety();
 		var tileid = "#td-tile" + newx + "x" + newy;
@@ -180,39 +180,39 @@ function PerformTarget(code)  {
 	var retval = new Object;
 	retval["fin"] = 0;
 	if ((code == 38) || (code == 219)) {   // UP ARROW  or  [
-		gamestate.mode = "null";
+		gamestate.setMode("null");
 		if ((PC.y - targetCursor.y) < 6) {
 			targetCursor.y -= 1;
 			retval["fin"] = 1;		
 		}
 	}
 	else if ((code == 37) || (code == 59)) {  // LEFT ARROW or ;
-		gamestate.mode = "null";
+		gamestate.setMode("null");
 		if ((PC.x - targetCursor.x) < 6) {
 			targetCursor.x -= 1;
 			retval["fin"] = 1;
 		}
 	}
 	else if ((code == 39) || (code == 222)) { // RIGHT ARROW or '
-		gamestate.mode = "null";
+		gamestate.setMode("null");
 		if ((targetCursor.x - PC.x) < 6) {
 			targetCursor.x += 1;
 			retval["fin"] = 1;
 		}
 	}
 	else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
-		gamestate.mode = "null";
+		gamestate.setMode("null");
 		if ((targetCursor.y - PC.y) < 6) {
 			targetCursor.y += 1;
 			retval["fin"] = 1;
 		}
 	}
 	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
-		gamestate.mode = "null";
+		gamestate.setMode("null");
 		retval["fin"] = 2;
 	}
 	else if (code == 27) { // ESC
-		gamestate.mode = "null";
+		gamestate.setMode("null");
 		retval["fin"] = 0;
 		retval["txt"] = "";
 		retval["input"] = "&gt;";
