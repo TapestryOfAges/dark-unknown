@@ -768,7 +768,7 @@ GameMap.prototype.setNPCsCoord = function() {
 GameMap.prototype.placeThing = function(x,y,newthing) {
   if (newthing) {
   	var type = newthing.type + "s";
-        if (!this.data[y][x][type]) { this.data[y][x][type] = new Collection(); }
+    if (!this.data[type]) { this.data[y][x][type] = new Collection; }
   	newthing.setx(x);
   	newthing.sety(y);
     this[type].addTop(newthing);
@@ -777,6 +777,12 @@ GameMap.prototype.placeThing = function(x,y,newthing) {
       this.data[y][x][type] = new Collection;
     }
     this.data[y][x][type].addTop(newthing);
+  }
+  if (newthing.type == "npc") {
+  	var timing = newthing.nextActionTime(0);
+  	alert(newthing.name + ", " + timing);
+  	var NPCEvent = new GameEvent(newthing);
+//  	DUTime.addAtTimeInterval(NPCEvent,timing);
   }  
 }
 

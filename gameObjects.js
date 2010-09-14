@@ -2029,7 +2029,8 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 }
 
 NPCObject.prototype.myTurn = function() {
-	
+	gamestate.setMode("NPC");
+	gamestate.setTurn(this);
 }
 
 function NPCGroup() {
@@ -2335,5 +2336,6 @@ function PCObject() {
 PCObject.prototype = new NPCObject;
 
 PCObject.prototype.myTurn = function() {
-	gamestate.setMode("base");
+	gamestate.setMode("player");
+	gamestate.setTurn(PC);
 }
