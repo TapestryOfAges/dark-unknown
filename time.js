@@ -12,8 +12,8 @@ GameEvent.prototype.setEntity = function(newEntity) {
 }
 
 
-function Tick(newEvent) {
-	this.timestamp = 0;
+function Tick(newEvent, time) {
+	this.timestamp = time;
 	if (newEvent) {
 		this.event = newEvent;
 	} else {
@@ -77,20 +77,20 @@ Timeline.prototype.addAtTime = function(event, timestamp) {
 		alert("Am I here?");
 		var pointer = this.tickstream;
 		if (pointer.nexttick) {
-			while ((pointer.nexttick.timestamp) && (pointer.nexttick.getGameClock() < timestamp)) {
+			while ((pointer.nexttick) && (pointer.nexttick.getTimeStamp() <= timestamp)) {
 				pointer = pointer.nexttick;
 			}
 		}
 		var afterinsert = pointer.nexttick;
-		pointer.nexttick = new Tick();
-		pointer.nexttick.setTimestamp(timestamp);
-		pointer.nexttick.setEvent(event);
+		pointer.nexttick = new Tick(event,timestamp);
+//		pointer.nexttick.setTimestamp(timestamp);
+//		pointer.nexttick.setEvent(event);
 		pointer.nexttick.nexttick = afterinsert;
 	}
 	else {
-		this.tickstream = new Tick();
-		this.tickstream.setTimestamp(timestamp);
-		this.tickstream.setEvent(event);
+		this.tickstream = new Tick(event,timestamp);
+//		this.tickstream.setTimestamp(timestamp);
+//		this.tickstream.setEvent(event);
 //		alert("adding first tick.");
 //		alert(this.tickstream.getTimestamp());
 //		alert(event.entity.name);
