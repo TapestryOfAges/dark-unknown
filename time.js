@@ -74,10 +74,9 @@ Timeline.prototype.addAtTimeInterval = function(event, timeinterval) {
 
 Timeline.prototype.addAtTime = function(event, timestamp) {
 	if (this.tickstream) {
-		alert("Am I here?");
 		var pointer = this.tickstream;
 		if (pointer.nexttick) {
-			while ((pointer.nexttick) && (pointer.nexttick.getTimeStamp() <= timestamp)) {
+			while ((pointer.nexttick) && (pointer.nexttick.getTimestamp() <= timestamp)) {
 				pointer = pointer.nexttick;
 			}
 		}
