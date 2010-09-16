@@ -780,9 +780,9 @@ GameMap.prototype.placeThing = function(x,y,newthing) {
   }
   if (newthing.type == "npc") {
   	var timing = newthing.nextActionTime(0);
-  	alert(newthing.name + ", " + timing);
+//  	alert(newthing.name + ", " + timing);
   	var NPCEvent = new GameEvent(newthing);
-//  	DUTime.addAtTimeInterval(NPCEvent,timing);
+  	DUTime.addAtTimeInterval(NPCEvent,timing);
   }  
 }
 
