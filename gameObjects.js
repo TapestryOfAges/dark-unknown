@@ -2031,6 +2031,19 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 NPCObject.prototype.myTurn = function() {
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
+	
+	// actual AI!
+	
+	var response = new Object;  
+	// will be = return value of AI call
+	response["initdelay"] = 1;
+	
+	gamestate.setMode("null");
+	var NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,this.nextActionTime(response["initdelay"]));
+  
+  var nextEntity = DUTime.executeNextEvent().getEntity();
+  nextEntity.myTurn();
 }
 
 function NPCGroup() {
