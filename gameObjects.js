@@ -2004,6 +2004,10 @@ NPCObject.prototype.removeMovetype = function(move) {
 NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	var map = this.getHomeMap();
 	var tile = map.getTile(this.getx()+diffx,this.gety()+diffy);
+
+	if (tile == "OoB") { 
+
+	 }
 	
 	var retval = tile.getBumpIntoResult(this);
 	if (retval["canmove"] == 0) { return retval; }
@@ -2020,8 +2024,10 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	}
 	
 	if (retval["canmove"] == 1) {
-		map.moveThing(this.getx()+diffx,this.gety()+diffy,PC);
-		drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
+//                if (this == PC) {
+			drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+//		}
 		var walkonval = tile.executeWalkons(this);
 	}
 	retval["initdelay"] = tile.getInitDelay(this);
