@@ -94,13 +94,21 @@ function PerformCommand(code) {
 		gamestate.setMode("target");
 		var newx = PC.getx();
 		var newy = PC.gety();
-		var tileid = "#td-tile" + newx + "x" + newy;
-		targetCursor.tileid = tileid;
+		var targetx = 192;
+		var targety = 192;
+		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		targetCursor.x = newx;
 		targetCursor.y = newy;
-		targetCursor.basetile = $(tileid).html();
 		targetCursor.command = "l";
-		$(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:192px;top:192px;z-index:3" />');
+		targetx += (PC.x - edges.centerx) * 32;
+		targety += (PC.y - edges.centery) * 32;
+//		targetCursor.x += (PC.x - edges.centerx);
+//		targetCursor.y += (PC.y - edges.centery);
+		var tileid = "#td-tile" + newx + "x" + newy;
+		targetCursor.tileid = tileid;
+		targetCursor.basetile = $(tileid).html();
+		$(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:' + targetx + 'px;top:' + targety + 'px;z-index:3" />');
+//		alert(PC.x + "," + PC.y + " ; " + targetCursor.x + "," + targetCursor.y);
 		retval["txt"] = "";
 		retval["input"] = "&gt; Look: ";
 		retval["fin"] = 2;
@@ -178,31 +186,35 @@ function PerformCommand(code) {
 
 function PerformTarget(code)  {
 	var retval = new Object;
-	retval["fin"] = 0;
+	retval["fin"] = -1;
 	if ((code == 38) || (code == 219)) {   // UP ARROW  or  [
 		gamestate.setMode("null");
-		if ((PC.y - targetCursor.y) < 6) {
+		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+		if ((edges.centery - targetCursor.y) < 6) {
 			targetCursor.y -= 1;
 			retval["fin"] = 1;		
 		}
 	}
 	else if ((code == 37) || (code == 59)) {  // LEFT ARROW or ;
 		gamestate.setMode("null");
-		if ((PC.x - targetCursor.x) < 6) {
+		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+		if ((edges.centerx - targetCursor.x) < 6) {
 			targetCursor.x -= 1;
 			retval["fin"] = 1;
 		}
 	}
 	else if ((code == 39) || (code == 222)) { // RIGHT ARROW or '
 		gamestate.setMode("null");
-		if ((targetCursor.x - PC.x) < 6) {
+		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+		if ((targetCursor.x - edges.centerx) < 6) {
 			targetCursor.x += 1;
 			retval["fin"] = 1;
 		}
 	}
 	else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
 		gamestate.setMode("null");
-		if ((targetCursor.y - PC.y) < 6) {
+		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+		if ((targetCursor.y - edges.centery) < 6) {
 			targetCursor.y += 1;
 			retval["fin"] = 1;
 		}
