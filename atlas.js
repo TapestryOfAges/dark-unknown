@@ -165,6 +165,8 @@ function Atlas() {
     "BrushNCoast" : '-,',
     ';;' : "Forest", // 123
     "Forest" : ';;',
+    ',;' : "Grove", // 123
+    "Grove" : ',;',
     '|;' : "ForestWCoast",
     "ForestWCoast" : '|;',
     ';|' : "ForestECoast",
