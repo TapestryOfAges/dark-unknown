@@ -36,27 +36,12 @@ function drawMainFrame(how, mapname, centerx, centery) {
   	themap = maps.getMap(mapname);
   }
   
-  var leftedge = centerx - (viewsizex - 1)/2;
-  if (leftedge < 0) { leftedge = 0; }
-  var rightedge = leftedge + viewsizex - 1;
-  if (rightedge >= themap.getWidth()) {
-  	rightedge = themap.getWidth() -1;  // Note, this will explode somewhat if the map is smaller than 13x13
-  	leftedge = rightedge - viewsizex + 1;
-  	if (leftedge < 0) { leftedge = 0; }
-  }
-  var topedge = centery - (viewsizey - 1)/2;
-  if (topedge < 0) { topedge = 0; }
-  bottomedge = topedge + viewsizey - 1;
-  if (bottomedge >= themap.getHeight()) {
-  	bottomedge = themap.getHeight() -1;
-  	topedge = bottomedge - viewsizey + 1;
-  	if (topedge < 0) {topedge = 0;}
-  }
+  var edges = getDisplayCenter(themap,centerx,centery);
   
   if (how == "draw") {
     mapdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
-    for (var i=topedge;i<=bottomedge;i++) {
-      for (var j=leftedge;j<=rightedge;j++) {
+    for (var i=edges.topedge;i<=edges.bottomedge;i++) {
+      for (var j=edges.leftedge;j<=edges.rightedge;j++) {
         var localacre = themap.getTile(j,i);
         var displaytile;
         // decide whether to draw a tile, draw it shaded, or make it darkness
@@ -143,8 +128,9 @@ worldmap.loadMap("darkunknown");
   	var response = PerformTarget(code);
   	if (response["fin"]) { e.preventDefault(); }
   	if (response["fin"] == 1) {  // move the cursor
-  		var posleft = 192 + (targetCursor.x - PC.x)*32;
-  		var postop = 192 + (targetCursor.y - PC.y)*32;
+  		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+  		var posleft = 192 + (targetCursor.x - edges.centerx)*32;
+  		var postop = 192 + (targetCursor.y - edges.centery)*32;
   		var tileid = targetCursor.tileid;
   		$(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:'+posleft+'px;top:'+postop+'px;z-index:3" />');
   		gamestate.setMode("target");
