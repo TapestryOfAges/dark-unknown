@@ -437,6 +437,11 @@ tileFactory.prototype.makeForestTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGroveTile = function() {
+  var newTile = new GroveTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeForestNCoastTile = function() {
   var newTile = new ForestNCoastTile();
   return newTile;

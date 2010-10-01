@@ -12,7 +12,7 @@ GameStateData.prototype.loadGame = function() {
 	PC.setx(30);
 	PC.sety(30);
 	var themap = new GameMap();
-	themap.loadMap("nassau");
+	themap.loadMap("island_cave");
 	PC.setHomeMap(themap);
 	DUTime.setGameClock(0);
 	var PCEvent = new GameEvent(PC);

@@ -50,6 +50,7 @@ Tick.prototype.getNextTick = function() {
 }
 
 Tick.prototype.setNextTick = function(nexttick) {
+	// maybe add check to see that nexttick is an instance of Tick?
 	this.nexttick = nexttick;
 }
 
@@ -112,3 +113,14 @@ Timeline.prototype.executeNextEvent = function() {
   return nextevent;
 }
 
+Timeline.prototype.removeEntityFrom = function(entity) {
+	var checktick = this.tickstream;
+	var prevtick = this.tickstream;
+	while ((checktick.getEvent().getEntity() != entity) && (checktick.getNextTick())) {
+		prevtick = checktick;
+		checktick = checktick.getNextTick();
+	}
+	if (checktick.getEvent().getEntity() == entity) {
+		prevtick.setNextTick(checktick.getNextTick());
+	}
+}

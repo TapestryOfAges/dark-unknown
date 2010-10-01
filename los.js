@@ -122,7 +122,7 @@ function GetLineArray(x1,y1,x2,y2,cornerx1,cornery1,cornerx2,cornery2) {
   			avey = Math.floor(avey);
   			if (debug) { dbs.writeln("Floor: (" + avex + "," + avey + ")<br>"); }
   			var segment = Math.sqrt(Math.pow((exitx - enterx),2) + Math.pow((exity - entery),2));
-  			if (segment > .05) {
+//  			if (segment > .05) {
     			segment = 100*segment;
     			segment = Math.round(segment);
   	  		segment = segment/100;
@@ -132,10 +132,10 @@ function GetLineArray(x1,y1,x2,y2,cornerx1,cornery1,cornerx2,cornery2) {
   		  	lineLengths.y = avey;
   		  	lineArray.push(lineLengths);
   		  	if (debug) { dbs.writeln("Segment: (" + segment + ")<br><br>"); }
-  		  }
-  		  else {
-  		  	if (debug) { dbs.writeln("Skipped.<br><br>"); }
-  		  }
+//  		  }
+//  		  else {
+//  		  	if (debug) { dbs.writeln("Skipped.<br><br>"); }
+//  		  }
   			
   			enterx = exitx;
   			entery = exity;

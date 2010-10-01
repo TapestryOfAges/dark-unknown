@@ -1224,6 +1224,18 @@ function ForestTile() {
 }
 ForestTile.prototype = new TerrainObject;
 
+function GroveTile() {
+	this.name = "Grove";
+  this.graphic = "123.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = .5;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "trees";
+  this.initdelay = 1.3;
+}
+GroveTile.prototype = new TerrainObject;
+	
+
 function ForestNCoastTile() {
 	this.name = "ForestNCoast";
 	this.graphic = "forestNcoast.gif";
