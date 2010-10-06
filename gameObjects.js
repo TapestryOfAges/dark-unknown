@@ -225,7 +225,7 @@ function Tiling(tileval) {
 }
 
 function SetBySurround() {
-	this.setBySurround = function(x,y,themap,showGraphic) {
+	this.setBySurround = function(x,y,themap,showGraphic, checklos, fromx, fromy) {
 		var cardinal_dash = "";
 		var north = 0;
 		var south = 0;
@@ -1335,7 +1335,7 @@ function ShinglesTopTile() {
   this.graphic = "shingles-top.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "roof";
+  this.desc = "a roof";
 }
 ShinglesTopTile.prototype = new TerrainObject;
 
@@ -1344,7 +1344,7 @@ function CaveFloorTile() {
 	this.graphic = "cavefloor.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
-	this.desc = "cave floor";
+	this.desc = "a cave floor";
 	
 	Tiling.call(this, 2);
 }
@@ -1355,7 +1355,7 @@ function CaveWallTile() {
 	this.graphic = "cavewall.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1;
-	this.desc = "cave wall";
+	this.desc = "a cave wall";
 	
 	Tiling.call(this, 2);
 	SetBySurround.call(this);
