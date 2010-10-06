@@ -79,7 +79,7 @@ function drawMap() {
        var graphics = localacre.getTerrain().getGraphic();
        var showGraphic = graphics[0];
        if (typeof localacre.getTerrain().setBySurround == "function") {
-       	showGraphic = localacre.getTerrain().setBySurround(j,i,amap,showGraphic);
+       	showGraphic = localacre.getTerrain().setBySurround(j,i,amap,showGraphic,0,0,0);
       }
        if (typeof localacre.getTerrain().doTile == "function") {
   	     showGraphic = localacre.getTerrain().doTile(j,i,showGraphic);
