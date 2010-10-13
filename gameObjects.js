@@ -231,25 +231,35 @@ function SetBySurround() {
 		var south = 0;
 		var east = 0;
 		var west = 0;
+		var vis = 0;
   	var addtoname_cardinal = "";
-	  if ((themap.getTile(x,y+1) != "OoB") && (themap.getTile(x,y+1).terrain.getName() == "CaveFloor")) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "n"; north = 1;}
-  	if ((themap.getTile(x,y-1) != "OoB") && (themap.getTile(x,y-1).terrain.getName() == "CaveFloor")) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "s"; south = 1;}
-	  if ((themap.getTile(x-1,y) != "OoB") && (themap.getTile(x-1,y).terrain.getName() == "CaveFloor")) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "e"; east = 1;}
-  	if ((themap.getTile(x+1,y) != "OoB") && (themap.getTile(x+1,y).terrain.getName() == "CaveFloor")) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "w"; west = 1;}
+	  if ((themap.getTile(x,y+1) != "OoB") && (themap.getTile(x,y+1).terrain.getName() == "CaveFloor") && ((checklos == 0) || (themap.getLOS(x,y+1,fromx,fromy,losgrid) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "n"; north = 1; vis = 1;}
+	  if ((themap.getTile(x,y+1) != "OoB") && (themap.getTile(x,y+1).terrain.getName() == "CaveFloor")) { north = 1; }
+  	if ((themap.getTile(x,y-1) != "OoB") && (themap.getTile(x,y-1).terrain.getName() == "CaveFloor") && ((checklos == 0) || (themap.getLOS(x,y-1,fromx,fromy,losgrid) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "s"; south = 1; vis = 1;}
+  	if ((themap.getTile(x,y-1) != "OoB") && (themap.getTile(x,y-1).terrain.getName() == "CaveFloor")) { south = 1; }
+	  if ((themap.getTile(x-1,y) != "OoB") && (themap.getTile(x-1,y).terrain.getName() == "CaveFloor") && ((checklos == 0) || (themap.getLOS(x-1,y,fromx,fromy,losgrid) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "e"; east = 1; vis = 1;}
+	  if ((themap.getTile(x-1,y) != "OoB") && (themap.getTile(x-1,y).terrain.getName() == "CaveFloor")) { east = 1; }
+  	if ((themap.getTile(x+1,y) != "OoB") && (themap.getTile(x+1,y).terrain.getName() == "CaveFloor") && ((checklos == 0) || (themap.getLOS(x+1,y,fromx,fromy,losgrid) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "w"; west = 1; vis = 1;}
+  	if ((themap.getTile(x+1,y) != "OoB") && (themap.getTile(x+1,y).terrain.getName() == "CaveFloor")) { west = 1; }
 	
 	  var diagonal_dash = "";
 	  var addtoname_diagonal = "";
-	 	if ((themap.getTile(x+1,y-1) != "OoB") && (themap.getTile(x+1,y-1).terrain.getName() == "CaveFloor") && (south == 0) && (west == 0))
-	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "a"; }
-  	if ((themap.getTile(x+1,y+1) != "OoB") && (themap.getTile(x+1,y+1).terrain.getName() == "CaveFloor") && (north == 0) && (west == 0)) 
-  	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "b"; }
-	  if ((themap.getTile(x-1,y+1) != "OoB") && (themap.getTile(x-1,y+1).terrain.getName() == "CaveFloor") && (north == 0) && (east == 0))
-	    { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "c"; }
-	 	if ((themap.getTile(x-1,y-1) != "OoB") && (themap.getTile(x-1,y-1).terrain.getName() == "CaveFloor") && (south == 0) && (east == 0)) 
-	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "d"; }
+	 	if ((themap.getTile(x+1,y-1) != "OoB") && (themap.getTile(x+1,y-1).terrain.getName() == "CaveFloor") && (south == 0) && (west == 0) && ((checklos == 0) || (themap.getLOS(x+1,y-1,fromx,fromy,losgrid) < LOS_THRESHOLD) ))
+	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "a"; vis = 1; }
+  	if ((themap.getTile(x+1,y+1) != "OoB") && (themap.getTile(x+1,y+1).terrain.getName() == "CaveFloor") && (north == 0) && (west == 0) && ((checklos == 0) || (themap.getLOS(x+1,y+1,fromx,fromy,losgrid) < LOS_THRESHOLD) )) 
+  	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "b"; vis = 1; }
+	  if ((themap.getTile(x-1,y+1) != "OoB") && (themap.getTile(x-1,y+1).terrain.getName() == "CaveFloor") && (north == 0) && (east == 0) && ((checklos == 0) || (themap.getLOS(x-1,y+1,fromx,fromy,losgrid) < LOS_THRESHOLD) ))
+	    { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "c"; vis = 1;}
+	 	if ((themap.getTile(x-1,y-1) != "OoB") && (themap.getTile(x-1,y-1).terrain.getName() == "CaveFloor") && (south == 0) && (east == 0) && ((checklos == 0) || (themap.getLOS(x-1,y-1,fromx,fromy,losgrid) < LOS_THRESHOLD) )) 
+	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "d"; vis = 1; }
 	
 	  var foo = showGraphic.split('.');
 	  showGraphic = foo[0] + cardinal_dash + addtoname_cardinal + diagonal_dash + addtoname_diagonal + '.' + foo[1];
+	  if (vis == 0) { 
+	  	var black = localFactory.createTile('BlankBlack');
+	  	var graphics = black.getGraphic();
+	  	showGraphic = graphics[0];
+	  }
 	  return (showGraphic);
   }
 }
@@ -1803,6 +1813,16 @@ function WhirlpoolTile() {
   Enterable.call(this, "null", 0, 0);
 }
 WhirlpoolTile.prototype = new FeatureObject;
+
+function WalkOnTile() {
+	this.name = "WalkOn";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.desc = "an invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnTile.prototype = new FeatureObject;
 
 // Items
 
