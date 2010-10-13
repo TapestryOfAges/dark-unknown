@@ -894,3 +894,8 @@ tileFactory.prototype.makeRubyGemoftheSunTile = function() {
 	var newTile = new RubyGemoftheSunTile();
 	return newTile;
 }
+
+tileFactory.prototype.makeWalkOnTile = function() {
+	var newTile = new WalkOnTile();
+	return newTile;
+}

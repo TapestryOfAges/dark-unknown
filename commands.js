@@ -237,7 +237,11 @@ function PerformLook() {
 	var txt = "";
   var seethis = "";
   var map = PC.getHomeMap();
-  var losval = map.getLOS(PC.getx(), PC.gety(), targetCursor.x, targetCursor.y, losgrid);
+  var onscreen = $('#td-tile' + targetCursor.x + 'x' + targetCursor.y).html();
+//  alert(onscreen);
+  var losval = 0;
+  if (onscreen.indexOf("You cannot see that") != -1) { losval = 1; }
+//  var losval = map.getLOS(PC.getx(), PC.gety(), targetCursor.x, targetCursor.y, losgrid);
   if (losval >= LOS_THRESHOLD) { 
   	var retval = new Object;
   	retval["txt"] = "You cannot see that.";
