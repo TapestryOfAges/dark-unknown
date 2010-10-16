@@ -267,9 +267,18 @@ function SetBySurround() {
 
 function InanimateObject() {
   this.initdelay = 1;  // multiplicative
+  this.walkonscript = "";
 }
 
 InanimateObject.prototype = new GameObject;
+
+InanimateObject.prototype.getWalkOnScript = function() {
+	return this.walkonscript;
+}
+
+InanimateObject.prototype.setWalkOnScript = function(newscript) {
+	this.walkonscript = newscript;
+}
 
 InanimateObject.prototype.walkon = function() {
   return(1);
@@ -2038,8 +2047,10 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	var tile = map.getTile(this.getx()+diffx,this.gety()+diffy);
 
 	if (tile == "OoB") { 
-
-	 }
+		if (map.getExitToMap()) {
+			
+		}
+	}
 	
 	var retval = tile.getBumpIntoResult(this);
 	if (retval["canmove"] == 0) { return retval; }
