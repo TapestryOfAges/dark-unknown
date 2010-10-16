@@ -194,11 +194,11 @@ mappages["island_cave"].terrain[68] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw
 mappages["island_cave"].terrain[69] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["island_cave"].features = new Array;
-mappages["island_cave"].features[0] = {name : 'WalkOn', x : 42, y : 0};
-mappages["island_cave"].features[1] = {name : 'WalkOn', x : 43, y : 0};
-mappages["island_cave"].features[2] = {name : 'WalkOn', x : 44, y : 0};
-mappages["island_cave"].features[3] = {name : 'WalkOn', x : 32, y : 69};
-mappages["island_cave"].features[4] = {name : 'WalkOn', x : 33, y : 69};
+mappages["island_cave"].features[0] = {name : 'WalkOn', x : 42, y : 0, walkonscript : 'exit_north'};
+mappages["island_cave"].features[1] = {name : 'WalkOn', x : 43, y : 0, walkonscript : 'exit_north'};
+mappages["island_cave"].features[2] = {name : 'WalkOn', x : 44, y : 0, walkonscript : 'exit_north'};
+mappages["island_cave"].features[3] = {name : 'WalkOn', x : 32, y : 69, walkonscript : 'exit_south'};
+mappages["island_cave"].features[4] = {name : 'WalkOn', x : 33, y : 69, walkonscript : 'exit_south'};
 
 
 mappages["island_cave"].npcs = new Array;
@@ -214,3 +214,23 @@ mappages["island_cave"].entery = '';
 mappages["island_cave"].seeBelow = '';
 mappages["island_cave"].lightLevel = 'dark';
 mappages["island_cave"].linkedMaps = new Array("");
+
+// Added manually below
+
+mappages["island_cave"].exit_north = function(feature) {
+	feature.walkon = function(walker) {
+		var themap=walker.getHomeMap();
+		themap.setExitToX(30);
+		themap.setExitToY(40);
+//		alert("Changed exit to north.");
+	}
+}
+
+mappages["island_cave"].exit_south = function(feature) {
+	feature.walkon = function(walker) {
+		var themap=walker.getHomeMap();
+		themap.setExitToX(33);
+		themap.setExitToY(47);
+//		alert("Changed exit to south.");
+	}	
+}
