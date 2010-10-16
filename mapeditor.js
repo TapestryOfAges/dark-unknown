@@ -284,6 +284,7 @@ function clickmap(xval,yval) {
       $('#td_bubbletile').css("background-image","url('graphics/" + graphics[0] + "')");
   	  document.images["bubbletile"].src = "graphics/" + graphics[1];
       document.featureeditpopup.tiledesc.value = editable.getDesc();
+      document.featureeditpopup.walkonscript.value = editable.getWalkOnScript();
       if (editable.getLocked != null) {
       	var lockedblock = document.getElementById("bubblelock");
     	  lockedblock.style.display = "table-row";
@@ -327,6 +328,9 @@ function submitEditFeature(change) {
 	if (change == 1) {
 		if (document.featureeditpopup.tiledesc.value != editable.getDesc()) {
 			editable.setDesc(document.featureeditpopup.tiledesc.value);
+		}
+		if (document.featureeditpopup.walkonscript.value != editable.getWalkOnScript()) {
+			editable.setWalkOnScript(document.featureeditpopup.walkonscript.value);
 		}
 		if ((document.featureeditpopup.tilelocked.value) && (editable.getLocked != null) && (document.featureeditpopup.tilelocked.value != editable.getLocked())) {
 			editable.lockMe(document.featureeditpopup.tilelocked.value);

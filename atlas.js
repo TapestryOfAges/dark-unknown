@@ -861,6 +861,9 @@ GameMap.prototype.saveMap = function (name) {
    	 var mapdest = mapfeatures[i].getEnterMap();
    	 printerwin.document.write(", entermap : '" + mapdest.entermap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
    }
+   if (baseobj.getWalkOnScript() != mapfeatures[i].getWalkOnScript()) {
+   	printerwin.document.write(", walkonscript : '" + mapfeatures[i].getWalkOnScript() + "'");
+   }
    printerwin.document.write("};\n");
  }
  
@@ -975,6 +978,10 @@ GameMap.prototype.loadMap = function (name) {
     		if (featurekey == "name") { continue; }
     		if (featurekey == "locked") { newfeature.lockMe(loadfeatures[i]["locked"]); continue; }
     		newfeature[featurekey] = loadfeatures[i][featurekey];
+    	}
+    	if (newfeature.getWalkOnScript()) {
+    		var walkonscript = newfeature.getWalkOnScript();
+    		mappages[name][walkonscript](newfeature);
     	}
   	  this.placeThing(loadfeatures[i].x,loadfeatures[i].y,newfeature);
     }
