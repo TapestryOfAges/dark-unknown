@@ -12,7 +12,6 @@ var PC = new PCObject();
 var gamestate = new GameStateData();
 var maps = new MapMemory();
 var worldmap = new GameMap();
-maps.addMapByRef(worldmap);
 var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
 var maintext = new TextFrame(14,32);
@@ -92,13 +91,13 @@ function drawTextFrame(txt,inputtxt){
 }
 
 $(document).ready(function() {
-worldmap.loadMap("darkunknown");
+	worldmap.loadMap("darkunknown");
+	maps.addMapByRef(worldmap);
 	
 	gamestate.loadGame();
   drawCharFrame();
   
   
-  maps.addMapByRef(PC.getHomeMap());
   PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
   drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
