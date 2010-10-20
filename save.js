@@ -14,6 +14,7 @@ GameStateData.prototype.loadGame = function() {
 	var themap = new GameMap();
 	themap.loadMap("island_cave");
 	PC.setHomeMap(themap);
+	maps.addMapByRef(themap);
 	DUTime.setGameClock(0);
 	var PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,1);

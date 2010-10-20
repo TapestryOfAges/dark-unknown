@@ -2048,6 +2048,16 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 
 	if (tile == "OoB") { 
 		if (map.getExitToMap()) {
+			// remove PC from current map
+			map.deleteThing(PC);
+			// also delete any NPCs following PC (summoned demons) FIXTHIS
+			var newmap = new GameMap();
+			if (maps[map.getExitToMap()]) {
+				newmap = maps[map.getExitToMap()];
+			} else {
+				newmap.loadMap(map.getExitToMap());
+				maps.addMapByRef(newmap);
+			}
 			
 		}
 	}
