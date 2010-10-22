@@ -770,7 +770,7 @@ GameMap.prototype.setNPCsCoord = function() {
 GameMap.prototype.placeThing = function(x,y,newthing) {
   if (newthing) {
   	var type = newthing.type + "s";
-    if (!this.data[type]) { this.data[y][x][type] = new Collection; }
+    if (!this.data[type]) { this.data[type] = new Collection; }
   	newthing.setx(x);
   	newthing.sety(y);
     this[type].addTop(newthing);
@@ -798,7 +798,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
 }
 
 GameMap.prototype.deleteThing = function(thing) {
-	var type = this.type + "s";
+	var type = thing.type + "s";
 	this[type].deleteFrom(thing);
 	this.data[thing.y][thing.x][type].deleteFrom(thing);
 }

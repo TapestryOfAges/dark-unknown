@@ -9,8 +9,8 @@ function GameStateData() {
 
 GameStateData.prototype.loadGame = function() {
 	// Temporarily, this will return demo values
-	PC.setx(30);
-	PC.sety(30);
+	PC.setx(33);
+	PC.sety(67);
 	var themap = new GameMap();
 	themap.loadMap("island_cave");
 	PC.setHomeMap(themap);

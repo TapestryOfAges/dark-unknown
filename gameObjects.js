@@ -2045,12 +2045,9 @@ NPCObject.prototype.removeMovetype = function(move) {
 NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	var map = this.getHomeMap();
 	var tile = map.getTile(this.getx()+diffx,this.gety()+diffy);
-
+	var retval = new Object;
 	if (tile == "OoB") { 
 		if (map.getExitToMap()) {
-			// remove PC from current map
-			map.deleteThing(PC);
-			// also delete any NPCs following PC (summoned demons) FIXTHIS
 			var newmap = new GameMap();
 			if (maps[map.getExitToMap()]) {
 				newmap = maps[map.getExitToMap()];
@@ -2058,21 +2055,29 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 				newmap.loadMap(map.getExitToMap());
 				maps.addMapByRef(newmap);
 			}
-			
+			tile = MoveBetweenMaps(this,map,newmap,map.getExitToX(),map.getExitToY());
+			if (this == PC) {
+				drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+				drawTopbarFrame(PC.getHomeMap().getName());
+				retval["canmove"] = 0;
+				retval["msg"] = ".";
+			}
 		}
 	}
-	
-	var retval = tile.getBumpIntoResult(this);
-	if (retval["canmove"] == 0) { return retval; }
-	var moveval = tile.canMoveHere(this, map.getTile(this.getx(),this.gety()));
-	retval["canmove"] = moveval["canmove"];
-	if (retval["msg"] == "") {
-		if (moveval["msg"] == "") { retval["msg"] = "."; }
-		else { retval["msg"] = " - " + moveval["msg"]; }
-	}
 	else {
-		if (moveval["msg"] != "") {
-			retval["msg"] += "\n" + moveval["msg"];
+		retval = tile.getBumpIntoResult(this);
+		if (retval["canmove"] == 0) { return retval; }
+		var moveval = tile.canMoveHere(this, map.getTile(this.getx(),this.gety()));
+		retval["canmove"] = moveval["canmove"];
+	
+		if (retval["msg"] == "") {
+			if (moveval["msg"] == "") { retval["msg"] = "."; }
+			else { retval["msg"] = " - " + moveval["msg"]; }
+		}
+		else {
+			if (moveval["msg"] != "") {
+				retval["msg"] += "\n" + moveval["msg"];
+			}
 		}
 	}
 	
