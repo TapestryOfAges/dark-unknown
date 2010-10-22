@@ -2058,7 +2058,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 			tile = MoveBetweenMaps(this,map,newmap,map.getExitToX(),map.getExitToY());
 			if (this == PC) {
 				drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-				drawTopbarFrame(PC.getHomeMap().getName());
+				drawTopbarFrame(PC.getHomeMap().getDesc());
 				retval["canmove"] = 0;
 				retval["msg"] = ".";
 			}
