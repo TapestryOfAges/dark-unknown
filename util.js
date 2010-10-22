@@ -26,3 +26,18 @@ function getDisplayCenter(themap,fromx,fromy) {
 	edge.centery = (topedge + bottomedge)/2;
 	return edge;
 }
+
+function MoveBetweenMaps(who,frommap,tomap,destx,desty) {
+	// remove PC from current map
+	frommap.deleteThing(who);
+	// also delete any NPCs following PC (summoned demons) FIXTHIS
+	tomap.placeThing(destx,desty,who);
+	var tile = tomap.getTile(destx,desty);
+	PC.setHomeMap(tomap);
+	
+	// Remove unneeded maps from mapmemory
+	var retval = new Object;
+
+	return tile;
+
+}
