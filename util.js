@@ -36,6 +36,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty) {
 	PC.setHomeMap(tomap);
 	
 	// Remove unneeded maps from mapmemory
+        // is old map linked to new map?
 	var retval = new Object;
 
 	return tile;

@@ -117,6 +117,7 @@ mappages["island"].enterx = '14';
 mappages["island"].entery = '76';
 mappages["island"].seeBelow = '';
 mappages["island"].lightLevel = 'bright';
+mappages["island"].alwaysRemember = '1';
 mappages["island"].linkedMaps = new Array("");
 
 
