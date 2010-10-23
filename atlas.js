@@ -503,6 +503,7 @@ function GameMap() {
   this.seeBelow = "";
   
   this.lightLevel = "bright";
+  this.alwaysRemember = 0;
 }
 GameMap.prototype = new Object;
 
@@ -611,6 +612,14 @@ GameMap.prototype.setLinkedMaps = function(maplist) {
 
 GameMap.prototype.setLinkedMapsArray = function(maplist) {
 	this.linkedMaps = maplist;
+}
+
+GameMap.prototype.getAlwaysRemember = function() {
+	return this.alwaysRemember;
+}
+
+GameMap.prototype.setAlwaysRemember = function(ar) {
+	this.alwaysRemember = ar;
 }
 
 GameMap.prototype.getSeeBelow = function() {
@@ -928,6 +937,7 @@ GameMap.prototype.saveMap = function (name) {
  printerwin.document.write(name + ".entery = '" + this.getEnterY() + "';\n");
  printerwin.document.write(name + ".seeBelow = '" + this.getSeeBelow() + "';\n");
  printerwin.document.write(name + ".lightLevel = '" + this.getLightLevel() + "';\n");
+ printerwin.document.write(name + ".alwaysRemember = '" + this.getAlwaysRemember() + "';\n");
  var linkedMapList;
  var linkedMapArray = this.getLinkedMaps();
  if (linkedMapArray.length > 0) {
@@ -1022,6 +1032,7 @@ GameMap.prototype.loadMap = function (name) {
   this.setSeeBelow(mappages.readPage(name, "seeBelow"));
   this.setLinkedMapsArray(mappages.readPage(name, "linkedMaps"));
   this.setLightLevel(mappages.readPage(name, "lightLevel"));
+  this.setAlwaysRemember(mappages.readPage(name, "alwaysRemember"));
   
   this.setName(name);
   
