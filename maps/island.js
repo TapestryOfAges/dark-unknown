@@ -92,8 +92,8 @@ mappages["island"].terrain[88] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW W
 mappages["island"].terrain[89] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';
 
 mappages["island"].features = new Array;
-mappages["island"].features[0] = {name : 'Cave', x : 33, y : 47, entermap : 'null', enterx : 0, entery : 0};
-mappages["island"].features[1] = {name : 'Cave', x : 30, y : 40, entermap : 'null', enterx : 0, entery : 0};
+mappages["island"].features[0] = {name : 'Cave', x : 33, y : 47, entermap : 'island_cave', enterx : 33, entery : 69};
+mappages["island"].features[1] = {name : 'Cave', x : 30, y : 40, entermap : 'island_cave', enterx : 43, entery : 0};
 mappages["island"].features[2] = {name : 'Cave', x : 15, y : 48, entermap : 'null', enterx : 0, entery : 0};
 mappages["island"].features[3] = {name : 'HillTower', x : 58, y : 33, entermap : 'null', enterx : 0, entery : 0};
 mappages["island"].features[4] = {name : 'Cave', x : 13, y : 13, entermap : 'null', enterx : 0, entery : 0};
