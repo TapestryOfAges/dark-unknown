@@ -33,10 +33,26 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty) {
 	// also delete any NPCs following PC (summoned demons) FIXTHIS
 	tomap.placeThing(destx,desty,who);
 	var tile = tomap.getTile(destx,desty);
-	PC.setHomeMap(tomap);
+	who.setHomeMap(tomap);
 	
 	// Remove unneeded maps from mapmemory
-        // is old map linked to new map?
+	var keepmap = frommap.getAlwaysRemember();
+	if (!keepmap) {
+		// is old map linked to new map?
+		var linkedmaps = tomap.getLinkedMaps();
+		if (linkedmaps.length > 0) {
+			for (var i=0; i<linkedmaps.length; i++) {
+				if (linkedmaps[i] == frommap.getName()) {
+					keepmap = 1;
+				}
+			}
+		}
+	}
+	
+	if (keepmap == 0) {
+		maps.deleteMap(frommap.getName());
+	}
+	
 	var retval = new Object;
 
 	return tile;

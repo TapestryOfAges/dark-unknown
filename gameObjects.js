@@ -2044,6 +2044,7 @@ NPCObject.prototype.removeMovetype = function(move) {
 
 NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	var map = this.getHomeMap();
+	var oldmapname = map.getDesc();
 	var tile = map.getTile(this.getx()+diffx,this.gety()+diffy);
 	var retval = new Object;
 	if (tile == "OoB") { 
@@ -2060,7 +2061,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 				drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 				drawTopbarFrame(PC.getHomeMap().getDesc());
 				retval["canmove"] = 0;
-				retval["msg"] = ".";
+				retval["msg"] = ".\nExiting " + oldmapname + ".";
 			}
 		}
 	}
