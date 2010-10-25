@@ -31,21 +31,25 @@ function drawMainFrame(how, mapname, centerx, centery) {
   var mapdiv = "&nbsp;";
   var themap = maps.getMap(mapname);
   if (themap == undefined) {
+  	alert("How am I here?");
   	maps.addMap(mapname);
   	themap = maps.getMap(mapname);
   }
-  
+
   var edges = getDisplayCenter(themap,centerx,centery);
-  
+	var debugcolor = "#0000cc";
+	
   if (how == "draw") {
     mapdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
     for (var i=edges.topedge;i<=edges.bottomedge;i++) {
       for (var j=edges.leftedge;j<=edges.rightedge;j++) {
+      	if (debug) { dbs.writeln("<span style='color:"+debugcolor+"'>j = " + j + ", i = " + i + ". Map is " + themap.getName() + " -- "); }
+      	if (debug) { dbs.writeln("<span style='color:"+debugcolor+"'>" + themap.data[i].length + "<br />"); }
         var localacre = themap.getTile(j,i);
         var displaytile;
         // decide whether to draw a tile, draw it shaded, or make it darkness
         var losresult = themap.getLOS(centerx, centery, j, i, losgrid);
-//        var losresult = themap.getLOS(j, i, centerx, centery, losgrid);
+
         var lighthere = localacre.getLocalLight();
         if (localacre.getTopPC()) {
           displaytile = localacre.getTopPC();
@@ -57,7 +61,7 @@ function drawMainFrame(how, mapname, centerx, centery) {
         var graphics = displaytile.getGraphic();
         var showGraphic = graphics[0];
         if (typeof displaytile.setBySurround == "function") {
-        	showGraphic = displaytile.setBySurround(j,i,themap,showGraphic,1,PC.getx(),PC.gety());
+        	showGraphic = displaytile.setBySurround(j,i,themap,showGraphic,1,centerx,centery);
         	showGraphic = displaytile.doTile(j,i,showGraphic);
         	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1;" title="' + displaytile.getDesc() + '" /></td>';
         }
