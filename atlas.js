@@ -595,8 +595,10 @@ GameMap.prototype.setTile = function(x,y,tile) {
 }
 
 GameMap.prototype.getTile = function(x,y) {  // returns an Acre
+	if (debug) { dbs.writeln("<span style='color:#cc0000'>" + this.getName() + " -- "); }
 	if ((y < 0) || (x < 0)) { return "OoB"; }
 	if (y >= this.data.length) { return "OoB"; }
+	if (debug) { dbs.writeln("<span style='color:#cc0000'>" + x + "," + y + " :: " + this.data.length + "<br />"); }
 	if (x >= this.data[y].length) { return "OoB"; }
   return this.data[y][x];
 }
@@ -1132,8 +1134,10 @@ function genLOS(x1,y1,x2,y2,losgrid,startsection,endsection,losmap) {
 	  var totalLOS = 0;
 	  if (LOSes[0]) {
 	  	for (var i = 0; i < LOSes.length; i++ ){
-	  		var location = losmap.getTile(x1+LOSes[i].x,y1+LOSes[i].y);
-	  		var dist = Math.sqrt(Math.pow(((x1+LOSes[i].x) - x1), 2) + Math.pow(((y1 + LOSes[i].y) - y1),2));
+	  		var passx = parseInt(x1) + parseInt(LOSes[i].x);
+	  		var passy = parseInt(y1) + parseInt(LOSes[i].y);
+	  		var location = losmap.getTile(passx,passy);
+	  		var dist = Math.sqrt(Math.pow((passx - x1), 2) + Math.pow((passy - y1),2));
 	  		totalLOS += LOSes[i].coeff * location.getBlocksLOS(dist);
 	  		if (totalLOS > LOS_THRESHOLD) { return totalLOS; }
 	  	}

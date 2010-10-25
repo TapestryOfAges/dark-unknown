@@ -9,12 +9,21 @@ function GameStateData() {
 
 GameStateData.prototype.loadGame = function() {
 	// Temporarily, this will return demo values
-	PC.setx(33);
-	PC.sety(67);
+	PC.setx(0);
+	PC.sety(37);
 	var themap = new GameMap();
-	themap.loadMap("island_cave");
+	themap.loadMap("clearlagoon");
 	PC.setHomeMap(themap);
 	maps.addMapByRef(themap);
+	if (themap.getLinkedMaps().length > 0) {
+		for (var i = 0; i < themap.getLinkedMaps().length; i++) {
+			if (themap.getLinkedMaps()[i] != "") {
+				var anothermap = new GameMap();
+				anothermap.loadMap(themap.getLinkedMaps()[i]);
+				maps.addMapByRef(anothermap);
+			}
+		}
+	}
 	DUTime.setGameClock(0);
 	var PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,1);

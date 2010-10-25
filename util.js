@@ -32,8 +32,8 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty) {
 	frommap.deleteThing(who);
 	// also delete any NPCs following PC (summoned demons) FIXTHIS
 	tomap.placeThing(destx,desty,who);
-	var tile = tomap.getTile(destx,desty);
 	who.setHomeMap(tomap);
+	var tile = tomap.getTile(destx,desty);
 	
 	// Remove unneeded maps from mapmemory
 	var keepmap = frommap.getAlwaysRemember();
