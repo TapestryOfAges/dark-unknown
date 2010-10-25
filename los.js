@@ -56,7 +56,7 @@ function GetLineArray(x1,y1,x2,y2,cornerx1,cornery1,cornerx2,cornery2) {
   if (!cornerx2) { cornerx2 = 0;}
 	if (!cornery2) { cornery2 = 0;}
 
-  if (debug) { dbs.writeln("GetLineArray, sent " + x1 + "," + y1 + "," + x2 + "," + y2 + "," + cornerx1 + "," + cornery1 + "," + cornerx2 + "," + cornery2 + "<br>"); }
+//  if (debug) { dbs.writeln("GetLineArray, sent " + x1 + "," + y1 + "," + x2 + "," + y2 + "," + cornerx1 + "," + cornery1 + "," + cornerx2 + "," + cornery2 + "<br>"); }
 
   if ((Math.abs(x1 - x2) < 1) && (Math.abs(y1 - y2) < 1)) { return(0); }
 
@@ -80,27 +80,27 @@ function GetLineArray(x1,y1,x2,y2,cornerx1,cornery1,cornerx2,cornery2) {
 
     for (var xi = x1+.5 ; xi < x2 ; xi++) {
       xints.push(xi);
-      if (debug) { dbs.writeln("xint: " + xi + "  "); }
+//      if (debug) { dbs.writeln("xint: " + xi + "  "); }
     }
     if (a != 0) {  // not a horizontal line
       for (var yi = y1+.5; yi < y2 ; yi++) {
         var x = (yi-b)/a;
         xints.push(x);
-        if (debug) { dbs.writeln("xint: " + x + "  "); }
+//        if (debug) { dbs.writeln("xint: " + x + "  "); }
       }
     }
     xints.sort(function(aa,bb){return aa - bb});
-    if (debug) { dbs.writeln("<br>");}
+//    if (debug) { dbs.writeln("<br>");}
     
   }
   else {   // vertical line
-  	if (debug) { dbs.writeln("vert: "); }
+//  	if (debug) { dbs.writeln("vert: "); }
   	if (y2 < y1) { var y0 = y2; y2 = y1; y1 = y0; }
     for (var yi = y1+.5 ; yi < y2 ; yi++) {
     	yints.push(yi);
-    	if (debug) { dbs.writeln("yint: " + yi + "  "); }
+//    	if (debug) { dbs.writeln("yint: " + yi + "  "); }
     }
-    if (debug) {dbs.writeln("<br>"); }
+//    if (debug) {dbs.writeln("<br>"); }
   }
 
   if (typeof xints[0] != "undefined")  {
@@ -116,11 +116,11 @@ function GetLineArray(x1,y1,x2,y2,cornerx1,cornery1,cornerx2,cornery2) {
   			
   			var avex = (enterx + exitx)/2;
   			var avey = (entery + exity)/2;
-  			if (debug) { dbs.writeln("Range: (" + enterx + "," + entery + ") to (" + exitx + "," + exity + ")<br>"); }
-  			if (debug) { dbs.writeln("Ave: (" + avex + "," + avey + ")<br>"); }
+//  			if (debug) { dbs.writeln("Range: (" + enterx + "," + entery + ") to (" + exitx + "," + exity + ")<br>"); }
+//  			if (debug) { dbs.writeln("Ave: (" + avex + "," + avey + ")<br>"); }
   			avex = Math.floor(avex);
   			avey = Math.floor(avey);
-  			if (debug) { dbs.writeln("Floor: (" + avex + "," + avey + ")<br>"); }
+//  			if (debug) { dbs.writeln("Floor: (" + avex + "," + avey + ")<br>"); }
   			var segment = Math.sqrt(Math.pow((exitx - enterx),2) + Math.pow((exity - entery),2));
 //  			if (segment > .05) {
     			segment = 100*segment;
@@ -131,7 +131,7 @@ function GetLineArray(x1,y1,x2,y2,cornerx1,cornery1,cornerx2,cornery2) {
   		  	lineLengths.x = avex;
   		  	lineLengths.y = avey;
   		  	lineArray.push(lineLengths);
-  		  	if (debug) { dbs.writeln("Segment: (" + segment + ")<br><br>"); }
+//  		  	if (debug) { dbs.writeln("Segment: (" + segment + ")<br><br>"); }
 //  		  }
 //  		  else {
 //  		  	if (debug) { dbs.writeln("Skipped.<br><br>"); }
@@ -156,13 +156,13 @@ function GetLineArray(x1,y1,x2,y2,cornerx1,cornery1,cornerx2,cornery2) {
   			
   			var avex = (enterx + exitx)/2;
   			var avey = (entery + exity)/2;
-  			if (debug) { dbs.writeln("Range: (" + enterx + "," + entery + ") to (" + exitx + "," + exity + ")<br>"); }
-  			if (debug) { dbs.writeln("Ave: (" + avex + "," + avey + ")<br>"); }
+//  			if (debug) { dbs.writeln("Range: (" + enterx + "," + entery + ") to (" + exitx + "," + exity + ")<br>"); }
+//  			if (debug) { dbs.writeln("Ave: (" + avex + "," + avey + ")<br>"); }
   			avex = Math.floor(avex);
   			avey = Math.floor(avey);
-  			if (debug) { dbs.writeln("Floor: (" + avex + "," + avey + ")<br>"); }
+//  			if (debug) { dbs.writeln("Floor: (" + avex + "," + avey + ")<br>"); }
   			var segment = Math.sqrt(Math.pow((exitx - enterx),2) + Math.pow((exity - entery),2));
-  			if (segment > .05) {
+//  			if (segment > .05) {
     			segment = 100*segment;
     			segment = Math.round(segment);
   	  		segment = segment/100;
@@ -171,11 +171,11 @@ function GetLineArray(x1,y1,x2,y2,cornerx1,cornery1,cornerx2,cornery2) {
   		  	lineLengths.x = avex;
   		  	lineLengths.y = avey;
   		  	lineArray.push(lineLengths);
-  		  	if (debug) { dbs.writeln("Segment: (" + segment + ")<br><br>"); }
-  		  }
-        else {
-  		  	if (debug) { dbs.writeln("Skipped.<br><br>"); }
-  		  }
+//  		  	if (debug) { dbs.writeln("Segment: (" + segment + ")<br><br>"); }
+//  		  }
+//        else {
+//  		  	if (debug) { dbs.writeln("Skipped.<br><br>"); }
+//  		  }
   			
   			enterx = exitx;
   			entery = exity;
