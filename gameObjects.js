@@ -12,21 +12,21 @@ GameObject.prototype.getSerial = function() {
 }
 
 GameObject.prototype.getx = function() {
-	return parseInt(this.x);
+	return parseInt(this.x,10);
 }
 
 GameObject.prototype.setx = function(x) {
-	if ((x != 0) && (parseInt(x) == 0)) { alert("X being set to a string and reset to 0."); }
-  this.x = parseInt(x);
+	if (parseInt(x) == "NaN") { alert("X being set to a string."); }
+  this.x = parseInt(x,10);
 }
 
 GameObject.prototype.gety = function() {
-	return parseInt(this.y);
+	return parseInt(this.y,10);
 }
 
 GameObject.prototype.sety = function(y) {
-	if ((y != 0) && (parseInt(y) == 0)) { alert("X being set to a string and reset to 0."); }
-  this.y = parseInt(y);
+	if (parseInt(y) == "NaN") { alert("Y being set to a string."); }
+  this.y = parseInt(y,10);
 }
 
 GameObject.prototype.setHomeMap = function(mapref) {
