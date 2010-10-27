@@ -15,6 +15,7 @@ var editable;
 var editnpcs;
 var browserheight = getSize();
 var losgrid = new LOSMatrix(13);
+var DUTime = new Timeline(0);
 var mode = "editor";
 
 if (debug) {
