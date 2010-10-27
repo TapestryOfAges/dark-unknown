@@ -9,10 +9,10 @@ function GameStateData() {
 
 GameStateData.prototype.loadGame = function() {
 	// Temporarily, this will return demo values
-	PC.setx(0);
-	PC.sety(37);
+	PC.setx(35);
+	PC.sety(43);
 	var themap = new GameMap();
-	themap.loadMap("clearlagoon");
+	themap.loadMap("darkunknown");
 	PC.setHomeMap(themap);
 	maps.addMapByRef(themap);
 	if (themap.getLinkedMaps().length > 0) {
