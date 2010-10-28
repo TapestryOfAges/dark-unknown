@@ -192,6 +192,8 @@ function Enterable(entermap, enterx, entery) {
 	this.entermap = entermap;
 	this.enterx = enterx;
 	this.entery = entery;
+	this.klimb = "";
+	this.descend = "";
 	
 	this.enter = function() {}
   this.setEnterMap = function(entermap, x, y) {
@@ -202,6 +204,12 @@ function Enterable(entermap, enterx, entery) {
   this.getEnterMap = function() {
   	var mapdata = { entermap : this.entermap , enterx : this.enterx, entery : this.entery };
   	return mapdata;
+  }
+  this.getKlimb = function() {
+  	return this.klimb;
+  }
+  this.getDescend = function() {
+  	return this.descend;
   }
 }
 
@@ -1698,6 +1706,7 @@ function LadderDownTile() {
   this.desc = "a ladder";
 
   Enterable.call(this, "null", 0, 0);
+  this.descend = "Climb down!";
 }
 LadderDownTile.prototype = new FeatureObject;
 
@@ -1709,6 +1718,7 @@ function LadderUpTile() {
   this.desc = "a ladder";
 
   Enterable.call(this, "null", 0, 0);
+  this.klimb = "Climb up!";
 }
 LadderUpTile.prototype = new FeatureObject;
 
@@ -2069,7 +2079,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 			tile = MoveBetweenMaps(this,map,newmap,map.getExitToX(),map.getExitToY());
 			if (this == PC) {
 				drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-				drawTopbarFrame(PC.getHomeMap().getDesc());
+				drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 				retval["canmove"] = 0;
 				retval["msg"] = ".\nExiting " + oldmapname + ".";
 			}
