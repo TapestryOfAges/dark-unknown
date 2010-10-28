@@ -59,49 +59,12 @@ function PerformCommand(code) {
 		
 	}
 	else if (code == 68) { // d
-		// descend - not used in DU, merged with "enter"
-		
+		// descend - alternate "Enter" option when on a down ladder
+		retval = PerformEnter("d");
 	}
 	else if (code == 69) { // e
 		// enter
-		var here = PC.getHomeMap().getTile(PC.getx(),PC.gety());
-		var features = here.getFeatures();
-		var destination;
-		var destx;
-		var desty;
-		if (features.length > 0) {
-			for (var i = 0; i < features.length; i++) {
-				if (features[i].getEnterMap()) {
-					var mapdata = features[i].getEnterMap();
-					destination = mapdata["entermap"];
-					destx = mapdata["enterx"];
-					desty = mapdata["entery"];
-				}
-			}
-		}
-		if (!destination) {
-			retval["fin"] = 2;
-			retval["txt"] = "You cannot enter that.";
-			retval["input"] = "&gt;";
-		} else if (destination == "null") {
-			retval["fin"] = 2;
-			retval["txt"] = "Destination map does not exist.";
-			retval["input"] = "&gt;";
-		} else {
-			retval["fin"] = 1;
-			var newmap = new GameMap();
-			if (maps[destination]) {
-				newmap = maps[destination];
-			} else {
-				newmap.loadMap(destination);
-				maps.addMapByRef(newmap);
-			}
-			var tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
-			retval["txt"] = "Entering " + newmap.getDesc() + ".";
-			drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-			drawTopbarFrame(PC.getHomeMap().getDesc());
-			
-		}
+		retval = PerformEnter("e");
 	}
 	else if (code == 70) { // f
 		// fire - not used in DU, no boats
@@ -123,8 +86,8 @@ function PerformCommand(code) {
 		
 	}
 	else if (code == 75) { // k
-		// klimb - not used, merged with "enter"
-		
+		// klimb - alternate "Enter" option when on an up ladder
+		retval = PerformEnter("k");
 	}
 	else if (code == 76) { // l
 		// U4's Locate, here, Look
@@ -330,4 +293,73 @@ function PerformLook() {
   retval["input"] = "&gt;";
   
   return retval;
+}
+
+function PerformEnter(cmd) {
+		var here = PC.getHomeMap().getTile(PC.getx(),PC.gety());
+		var features = here.getFeatures();
+		var destination;
+		var destx;
+		var desty;
+		var klimb = "";
+		var descend = "";
+		var retval = new Object;
+		if (features.length > 0) {
+			for (var i = 0; i < features.length; i++) {
+				if (features[i].getEnterMap()) {
+					var mapdata = features[i].getEnterMap();
+					destination = mapdata["entermap"];
+					destx = mapdata["enterx"];
+					desty = mapdata["entery"];
+					if (typeof features[i].getKlimb == "function") {
+						klimb = features[i].getKlimb();
+					}
+					if (typeof features[i].getDescend == "function") {
+						descend = features[i].getDescend();
+					}
+				}
+			}
+		}
+		if (!destination) {
+			retval["fin"] = 2;
+			if (cmd == "e") {
+				retval["txt"] = "You cannot enter that.";
+			} else if ((cmd == "k") || (cmd == "d")) {
+				retval["txt"] = "You cannot climb that."; 
+			} else {
+				alert("How did you get here (in PerformEnter)");
+			}
+				
+			retval["input"] = "&gt;";
+		} else if (destination == "null") {
+			retval["fin"] = 2;
+			retval["txt"] = "Destination map does not exist.";
+			retval["input"] = "&gt;";
+		} else if ((cmd == "d") && (descend == "")) {
+			retval["fin"] = 2;
+			retval["txt"] = "You cannot descend that.";
+		} else if ((cmd == "k") && (descend == "") && (klimb == "")) {
+			retval["fin"] = 2;
+			retval["txt"] = "You cannot climb that.";
+		} else {
+			retval["fin"] = 1;
+			var newmap = new GameMap();
+			if (maps[destination]) {
+				newmap = maps[destination];
+			} else {
+				newmap.loadMap(destination);
+				maps.addMapByRef(newmap);
+			}
+			var tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
+			retval["txt"] = "Entering " + newmap.getDesc() + ".";
+			if (descend != "") {
+				retval["txt"] = descend;
+			} else if (klimb != "") {
+				retval["txt"] = klimb;
+			}
+			drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+			drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+			
+		}
+		return retval;
 }
