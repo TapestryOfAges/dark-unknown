@@ -17,6 +17,7 @@ var DUTime = new Timeline(0);
 var maintext = new TextFrame(14,32);
 
 var targetCursor = new Object;
+var inputText = new Object;
 
 function drawCharFrame() {
 	var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='2'>";
@@ -127,6 +128,9 @@ $(document).ready(function() {
         nextEntity.myTurn();
    	 	}
    	 }  
+  }
+  else if (gamestate.getMode() == "talk") {
+
   }
   else if (gamestate.getMode() == "target") {
   	var response = PerformTarget(code);
