@@ -52,7 +52,7 @@ function drawMainFrame(how, mapname, centerx, centery) {
 
         var lighthere = localacre.getLocalLight();
 				displaytile = localacre.getTop();
-				while (displaytile.name == "SeeBelow") {
+				while (displaytile.getName() == "SeeBelow") {
 					localacre = FindBelow(j,i,themap);
 					displaytile = localacre.getTop();
 				}

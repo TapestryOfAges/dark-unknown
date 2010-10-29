@@ -258,6 +258,11 @@ function PerformLook() {
   } else {
   	txt = "You see ";
   }
+  var top = tile.getTop();
+  while (top.getName() == "SeeBelow") {
+    tile = FindBelow(targetCursor.x,targetCursor.y,map);
+    top = tile.getTop();
+  }
   var npcs = tile.getNPCs();
   if (npcs.length > 0) {
   	for (var i=(npcs.length-1) ; i >= 0; i-- ) {
