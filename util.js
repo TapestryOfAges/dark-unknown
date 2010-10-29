@@ -58,3 +58,12 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty) {
 	return tile;
 
 }
+
+function FindBelow(upx,upy,map) {
+	if (!map.getSeeBelow()) { return 0; }
+	var lowermapname = map.getSeeBelow();
+	var lowermap = maps.getMap(lowermapname);
+	var tile = lowermap.getTile(upx,upy);
+	if (tile) { return tile; }
+	return 0;
+}

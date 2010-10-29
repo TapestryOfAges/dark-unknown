@@ -51,13 +51,11 @@ function drawMainFrame(how, mapname, centerx, centery) {
         var losresult = themap.getLOS(centerx, centery, j, i, losgrid);
 
         var lighthere = localacre.getLocalLight();
-        if (localacre.getTopPC()) {
-          displaytile = localacre.getTopPC();
-        } else if (localacre.getTopVisibleNPC()) {
-          displaytile = localacre.getTopVisibleNPC();
-        } else if (localacre.getTopVisibleFeature()) {
-          displaytile = localacre.getTopVisibleFeature();
-        } else { displaytile = localacre.getTerrain(); }
+				displaytile = localacre.getTop();
+				while (displaytile.name == "SeeBelow") {
+					localacre = FindBelow(j,i,themap);
+					displaytile = localacre.getTop();
+				}
         var graphics = displaytile.getGraphic();
         var showGraphic = graphics[0];
         if (typeof displaytile.setBySurround == "function") {
