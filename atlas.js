@@ -377,6 +377,19 @@ Acre.prototype.getTerrain = function() {
 	return this.terrain;
 }
 
+Acre.prototype.getTop = function() {
+	var toptile;
+	if (this.getTopPC()) {
+  	toptile = this.getTopPC();
+  } else if (this.getTopVisibleNPC()) {
+  	toptile = this.getTopVisibleNPC();
+  } else if (this.getTopVisibleFeature()) {
+  	toptile = this.getTopVisibleFeature();
+  } else { toptile = this.getTerrain(); }
+
+	return toptile;
+}
+
 Acre.prototype.getBumpIntoResult = function(mover) {
 	var terrain = this.getTerrain();
 	var retval = terrain.bumpinto(mover);
