@@ -165,11 +165,11 @@ function PerformCommand(code) {
 	else if (code == 89) { // y
 		// yell 
 		gamestate.setMode("talk");
-                retval["txt"] = "";
+		retval["txt"] = "";
 		retval["input"] = "&gt; Yell: ";
 		retval["fin"] = 2;
-                inputText.cmd = "y";
-                inputText.txt = "";
+		inputText.cmd = "y";
+		inputText.txt = "";
 	}
 	else if (code == 90) { // z
 		// zstats
