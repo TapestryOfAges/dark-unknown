@@ -15,6 +15,10 @@ TextFrame.prototype.getInputLine = function() {
 	return this.inputLine;
 }
 
+TextFrame.prototype.setInputLine = function(txt) {
+	this.inputLine = txt;
+}
+
 TextFrame.prototype.getTextFrame = function(as) {
 	if (as == "array") { return this.mainTextFrame; }
 	else {
@@ -66,4 +70,13 @@ TextFrame.prototype.appendToLine = function(newtext) {
 	var newline = appendto + "" + newtext;
 	this.addText(newline);
 	
+}
+
+TextFrame.prototype.drawTextFrame = function() {
+	$('#maintextframe').html(this.getTextFrame());
+	this.drawInputLine();
+}
+
+TextFrame.prototype.drawInputLine = function() {
+	$('#inputtext').html(this.getInputLine());
 }
