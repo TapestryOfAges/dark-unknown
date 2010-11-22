@@ -117,8 +117,10 @@ $(document).ready(function() {
    	 if (response["fin"]) { 
    	 	e.preventDefault(); 
    	 	maintext.addText(response["txt"]);
+   	 	maintext.setInputLine(response["input"]);
    	 	var inp = response["input"];
-   	 	drawTextFrame(maintext.getTextFrame(), inp);
+//   	 	drawTextFrame(maintext.getTextFrame(), inp);
+			maintext.drawTextFrame();
    	 	if (response["fin"] == 1) {
    	 		gamestate.setMode("null");
    	 		var PCevent = new GameEvent(PC);
@@ -130,7 +132,35 @@ $(document).ready(function() {
    	 }  
   }
   else if (gamestate.getMode() == "talk") {
-
+    if (((code >= 65) && (code <= 90)) || (code == 32)) {  // letter
+			var letter = String.fromCharCode(code);    	
+			if (inputText.txt.length < 14) {
+				inputText.txt += letter;
+				maintext.setInputLine(maintext.getInputLine() + letter);
+				maintext.drawInputLine();
+			}
+    }
+    else if (code == 8) { // backspace
+    	var txt = maintext.getInputLine();
+    	txt = txt.substr(0,txt.length-1);
+    	maintext.setInputLine(txt);
+			maintext.drawInputLine();
+    }
+    else if (code == 13) { // enter
+    	if (inputText.cmd == "y") { 
+    		var retval = PerformYell(); 
+    	}
+    	else { alert("need to add hook here! (main 145)"); }
+    }
+    else if (code == 27) { // ESC
+    	maintext.setInputLine("&gt;");
+    	maintext.drawInputLine();
+    	gamestate.setMode("player");
+    	gamestate.setTurn(PC);
+    }
+    else { // ignore
+    	
+    }
   }
   else if (gamestate.getMode() == "target") {
   	var response = PerformTarget(code);
@@ -147,7 +177,9 @@ $(document).ready(function() {
   		if (targetCursor.command == "l") {
   			response = PerformLook();
   			maintext.addText(response["txt"]);
-  			drawTextFrame(maintext.getTextFrame(), response["input"]);
+  			maintext.setInputLine(response["input"]);
+  			//drawTextFrame(maintext.getTextFrame(), response["input"]);
+  			maintext.drawTextFrame();
   		}
   		gamestate.setMode("null");
   		var PCevent = new GameEvent(PC);
@@ -160,7 +192,9 @@ $(document).ready(function() {
   		var tileid = targetCursor.tileid;
       $(tileid).html(targetCursor.basetile); 
   			maintext.addText(response["txt"]);
-  			drawTextFrame(maintext.getTextFrame(), response["input"]);
+  			maintext.setInputLine(response["input"]);
+  			//drawTextFrame(maintext.getTextFrame(), response["input"]);
+  			maintext.drawTextFrame();
       
       gamestate.setMode("player");
       gamestate.setTurn(PC);

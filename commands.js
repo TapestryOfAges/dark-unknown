@@ -373,3 +373,12 @@ function PerformEnter(cmd) {
 		}
 		return retval;
 }
+
+function PerformYell() {
+	var retval = new Object;
+	if (inputText.txt == "") {
+		retval["txt"] = "Yell: Nothing!";
+		retval["fin"] = 2;
+		return retval;
+	}
+}
