@@ -14,7 +14,6 @@ GameStateData.prototype.loadGame = function() {
 	var themap = new GameMap();
 	themap.loadMap("darkunknown");
 	PC.setHomeMap(themap);
-	PC.addMovetype(MOVE_ETHEREAL);
 	maps.addMapByRef(themap);
 	if (themap.getLinkedMaps().length > 0) {
 		for (var i = 0; i < themap.getLinkedMaps().length; i++) {

@@ -381,4 +381,12 @@ function PerformYell() {
 		retval["fin"] = 2;
 		return retval;
 	}
+	else {
+		if (inputText.txt == "ETHERBUNNY") {
+			PC.addMovetype(MOVE_ETHEREAL);
+		}
+		retval["txt"] = "Yell: " + inputText.txt + "!";
+		retval["fin"] = 1;
+		return retval;
+	}
 }
