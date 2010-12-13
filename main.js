@@ -110,7 +110,8 @@ $(document).ready(function() {
   
   $(document).keydown(function(e) {
    var code = (e.keyCode ? e.keyCode : e.which);
-   if (code == 27) { e.preventDefault(); }
+//   if (code == 27) { e.preventDefault(); }
+   e.preventDefault();
    if (gamestate.getMode() == "player") {  // PC's turn, awaiting commands
 //   	 alert(DUTime.getGameClock());
    	 var response = PerformCommand(code);
