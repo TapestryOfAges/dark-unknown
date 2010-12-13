@@ -46,10 +46,11 @@ TextFrame.prototype.addTextByLine = function(newtext) {
 	while (words[0]) {
 		if (line == "" ){ line = words.shift(); }
 		else { 
-			var tmpline = line + " " + words.shift();
+			var tmpword = words.shift();
+			var tmpline = line + " " + tmpword;
 			if (tmpline.length > this.width) {
 				lines.push(line);
-				line = words.shift();
+				line = tmpword;
 			}
 			else { line = tmpline; }
 		}
