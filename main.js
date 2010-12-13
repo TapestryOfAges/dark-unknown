@@ -142,13 +142,32 @@ $(document).ready(function() {
     }
     else if (code == 8) { // backspace
     	var txt = maintext.getInputLine();
-    	txt = txt.substr(0,txt.length-1);
-    	maintext.setInputLine(txt);
-			maintext.drawInputLine();
+    	if (txt.length > 11) {
+    		txt = txt.substr(0,txt.length-1);
+    		maintext.setInputLine(txt);
+				maintext.drawInputLine();
+			}
     }
     else if (code == 13) { // enter
     	if (inputText.cmd == "y") { 
     		var retval = PerformYell(); 
+    	  if (retval["fin"] == 2) {
+    	  	gamestate.setMode("player");
+    	  	gamestate.setTurn(PC);
+    	  }
+    	  else if (retval["fin"] == 1) {
+    	  	gamestate.setMode("null");
+   	 	  	var PCevent = new GameEvent(PC);
+   	   		DUTime.addAtTimeInterval(PCevent,PC.nextActionTime());
+   	 		
+          var nextEntity = DUTime.executeNextEvent().getEntity();
+          nextEntity.myTurn();
+    	  }
+    	  maintext.setInputLine("&gt;");
+	    	maintext.drawInputLine();
+	    	maintext.addText(retval["txt"]);
+	    	maintext.drawTextFrame();
+
     	}
     	else { alert("need to add hook here! (main 145)"); }
     }
