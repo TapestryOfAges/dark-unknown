@@ -345,6 +345,10 @@ function PerformEnter(cmd) {
 			retval["fin"] = 2;
 			retval["txt"] = "Destination map does not exist.";
 			retval["input"] = "&gt;";
+		} else if (!mappages[destination]) {
+			retval["fin"] = 2;
+			retval["txt"] = "Destination map does not exist.";
+			retval["input"] = "&gt;";
 		} else if ((cmd == "d") && (descend == "")) {
 			retval["fin"] = 2;
 			retval["txt"] = "You cannot descend that.";
