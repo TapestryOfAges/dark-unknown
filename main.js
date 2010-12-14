@@ -116,7 +116,6 @@ $(document).ready(function() {
 //   	 alert(DUTime.getGameClock());
    	 var response = PerformCommand(code);
    	 if (response["fin"]) { 
-   	 	e.preventDefault(); 
    	 	maintext.addText(response["txt"]);
    	 	maintext.setInputLine(response["input"]);
    	 	var inp = response["input"];
@@ -184,7 +183,6 @@ $(document).ready(function() {
   }
   else if (gamestate.getMode() == "target") {
   	var response = PerformTarget(code);
-  	if (response["fin"]) { e.preventDefault(); }
   	if (response["fin"] == 1) {  // move the cursor
   		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
   		var posleft = 192 + (targetCursor.x - edges.centerx)*32;
