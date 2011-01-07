@@ -16,7 +16,7 @@ div.topbar { text-align:center;
 	           vertical-align:top;
 	           font-weight:bold;
 	           font-family:"Commodore64";
-	           font-size:20px; 
+	           font-size:large; 
 	           line-height:24px;
 }
 	           
@@ -25,22 +25,22 @@ div.topbar p { margin-top:-4px }
 
 div.charstats table { color:white;
                 font-family:"Commodore64";
-   	            font-size:20px;
+   	            font-size:large;
    	            margin-top:-8px;
-   	            line-height:24px;
+   	            line-height:20px;
 }
 
 div.mainframe table {margin-top:-18px; }
 
 div.maintextframe { font-family:"Commodore64";
-	                  font-size:20px;
+	                  font-size:large;
 	                  color: white; 
 	                  margin-top:-4px;
-	                  line-height:24px;
+	                  line-height:20px;
 }
 	                  
 div.inputtext { font-family:"Commodore64";
-	              font-size:20px;
+	              font-size:large;
 	              color:white; 
-	              line-height:24px;
+	              line-height:20px;
 }
