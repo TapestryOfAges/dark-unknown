@@ -2081,7 +2081,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 				drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 				drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 				retval["canmove"] = 0;
-				retval["msg"] = ".\nExiting " + oldmapname + ".";
+				retval["msg"] = ".<br />Exiting " + oldmapname + ".";
 			}
 		}
 	}
@@ -2097,7 +2097,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 		}
 		else {
 			if (moveval["msg"] != "") {
-				retval["msg"] += "\n" + moveval["msg"];
+				retval["msg"] += "<br />" + moveval["msg"];
 			}
 		}
 	}

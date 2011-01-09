@@ -14,7 +14,7 @@ var maps = new MapMemory();
 var worldmap = new GameMap();
 var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
-var maintext = new TextFrame(14,32);
+var maintext = new TextFrame("innertextframe");
 
 var targetCursor = new Object;
 var inputText = new Object;
@@ -88,11 +88,6 @@ function drawTopbarFrame(txt) {
   $('#topbarframe').html(txt);	
 }
 
-function drawTextFrame(txt,inputtxt){
-	$('#maintextframe').html(txt);
-	$('#inputtext').html(inputtxt);
-}
-
 $(document).ready(function() {
 	worldmap.loadMap("darkunknown");
 	maps.addMapByRef(worldmap);
@@ -106,7 +101,8 @@ $(document).ready(function() {
   drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 
   maintext.addText("Game loaded.");
-  drawTextFrame(maintext.getTextFrame(), "&gt;"); 
+  maintext.setInputLine("&gt;");
+  maintext.drawTextFrame(); 
   
   $(document).keydown(function(e) {
    var code = (e.keyCode ? e.keyCode : e.which);
@@ -119,7 +115,6 @@ $(document).ready(function() {
    	 	maintext.addText(response["txt"]);
    	 	maintext.setInputLine(response["input"]);
    	 	var inp = response["input"];
-//   	 	drawTextFrame(maintext.getTextFrame(), inp);
 			maintext.drawTextFrame();
    	 	if (response["fin"] == 1) {
    	 		gamestate.setMode("null");
@@ -164,7 +159,6 @@ $(document).ready(function() {
           nextEntity.myTurn();
     	  }
     	  maintext.setInputLine("&gt;");
-	    	maintext.drawInputLine();
 	    	maintext.addText(retval["txt"]);
 	    	maintext.drawTextFrame();
 
@@ -173,7 +167,7 @@ $(document).ready(function() {
     }
     else if (code == 27) { // ESC
     	maintext.setInputLine("&gt;");
-    	maintext.drawInputLine();
+    	maintext.drawTextFrame();
     	gamestate.setMode("player");
     	gamestate.setTurn(PC);
     }

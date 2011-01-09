@@ -37,10 +37,25 @@ div.maintextframe { font-family:"Commodore64";
 	                  color: white; 
 	                  margin-top:-4px;
 	                  line-height:20px;
+	                  position: relative;
+	                  overflow:hidden;
+	                  height:336px;
+}
+
+div.innertextframe { font-family:"Commodore64";
+	                  font-size:16pt;
+	                  color: white; 
+	                  margin-top:-4px;
+	                  line-height:20px;
+	                  position: absolute;
+	                  bottom:0;
+	                  margin-bottom:2px;
 }
 	                  
 div.inputtext { font-family:"Commodore64";
 	              font-size:16pt;
 	              color:white; 
 	              line-height:20px;
+	              position: absolute;
+	              bottom: 0;
 }
