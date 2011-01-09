@@ -1,14 +1,8 @@
 
 
-function TextFrame(hgt,wdt) {
-	this.mainTextFrame = new Array;
-	this.height = hgt;
-	this.width = wdt;
+function TextFrame(fname) {
+	this.framename = "#" + fname;
 	this.inputLine = "";
-	
-	for (var i=0; i<this.height; i++) {
-		this.mainTextFrame[i] = "";
-	}
 }
 
 TextFrame.prototype.getInputLine = function() {
@@ -19,24 +13,14 @@ TextFrame.prototype.setInputLine = function(txt) {
 	this.inputLine = txt;
 }
 
-TextFrame.prototype.getTextFrame = function(as) {
-	if (as == "array") { return this.mainTextFrame; }
-	else {
-		var textDiv = "";
-		for (var i=0; i<this.height; i++) {
-			textDiv = textDiv + this.mainTextFrame[i] + "<br />";
-		}
-		return textDiv;
-	}
+TextFrame.prototype.getTextFrame = function() {
+	return ($(this.framename).html());
 }
 
 TextFrame.prototype.addText = function(newtext) {
-	if (newtext == "") { return; }
-	var lines = newtext.split("\n");
-	while (lines[0]){
-		var line = lines.shift();
-		this.addTextByLine(line);
-	}
+	if (newtext) {
+  	$(this.framename).append("<br />" + newtext);
+  }
 }
 
 TextFrame.prototype.addTextByLine = function(newtext) {
@@ -65,16 +49,11 @@ TextFrame.prototype.addTextByLine = function(newtext) {
 }
 
 TextFrame.prototype.appendToLine = function(newtext) {
-	var appendto = this.mainTextFrame.pop();
-	this.mainTextFrame.unshift("   ");
-	
-	var newline = appendto + "" + newtext;
-	this.addText(newline);
-	
+  $(this.framename).append(newtext);	
 }
 
 TextFrame.prototype.drawTextFrame = function() {
-	$('#maintextframe').html(this.getTextFrame());
+//	$(fname).html(this.getTextFrame());
 	this.drawInputLine();
 }
 
