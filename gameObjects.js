@@ -2400,7 +2400,7 @@ function PrinceNPCTile() {
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "townsfolk";
 	this.threatenedAI = "melee";
-	this.graphic = "300.gif";
+	this.graphic = "prince.gif";
 	this.meleeAttackAs = "longsword";
 	this.missileAttackAs = "none";
 	this.movetype = MOVE_WALK;
