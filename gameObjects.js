@@ -852,6 +852,7 @@ function DoorwayTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "a doorway";
+  this.showTerrainBelow = 1;
 }
 DoorwayTile.prototype = new TerrainObject;
 
