@@ -350,28 +350,34 @@ BlankWhiteTile.prototype = new TerrainObject;
 
 function OceanTile() {
   this.name = "Ocean";
-  this.graphic = "001.gif";
+  this.graphic = "flowing_animations.gif";
   this.desc = "ocean";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "0";
 }
 OceanTile.prototype = new TerrainObject;
 
 function WaterTile() {
   this.name = "Water";
-  this.graphic = "002.gif";
+  this.graphic = "flowing_animations.gif";
   this.desc = "water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "0";
 }
 WaterTile.prototype = new TerrainObject;
 
 function ShallowsTile() {
   this.name = "Shallows";
-  this.graphic = "003.gif";
+  this.graphic = "flowing_animations.gif";
   this.desc = "shallow water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
 }
 ShallowsTile.prototype = new TerrainObject;
 
@@ -1419,11 +1425,13 @@ SeeBelowTile.prototype = new TerrainObject;
 
 function LavaTile() {
   this.name = "Lava";
-  this.graphic = "147.gif";
+  this.graphic = "flowing_animations.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_SWIM;
   this.blocklos = 0;
   this.desc = "lava";
   this.initdelay = 1.2;
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "0";
   
   LightEmitting.call(this, 1);
 }
@@ -1617,11 +1625,13 @@ CorpseTile.prototype = new FeatureObject;
 
 function EnergyFieldTile() {
 	this.name = "EnergyField";
-	this.graphic = "021.gif";
+	this.graphic = "flowing_animations.gif";
 	this.passable = 0; // impassable - wonky outdoors, but necessary indoors
 	this.blocklos = 0;
 //	this.light = 1; 
 	this.desc = "an energy field";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "0";
 	
 	LightEmitting.call(this, 1);
 }
@@ -1662,12 +1672,14 @@ DoorTile.prototype = new FeatureObject;
 
 function SleepFieldTile() {
 	this.name = "SleepField";
-	this.graphic = "142.gif";
+	this.graphic = "flowing_animations.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 //	this.light = 1;
 	this.desc = "a sleep field";
 	this.initdelay = 1.5;
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "0";
 	
 	LightEmitting.call(this, 1);
 }
@@ -1675,11 +1687,13 @@ SleepFieldTile.prototype = new FeatureObject;
 
 function FireFieldTile() {
 	this.name = "FireField";
-	this.graphic = "143.gif";
+	this.graphic = "flowing_animations.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 //	this.light = 3;
 	this.desc = "a fire field";
+	this.spritexoffset = "-32";
+  this.spriteyoffset = "0";
 	
 	LightEmitting.call(this, 3);
 	this.initdelay = 1.5;
@@ -1688,12 +1702,14 @@ FireFieldTile.prototype = new FeatureObject;
 
 function PoisonFieldTile() {
 	this.name = "PoisonField";
-	this.graphic = "144.gif";
+	this.graphic = "flowing_animations.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 //	this.light = 1;
 	this.desc = "a poison field";
 	this.initdelay = 1.5;
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
 	
 	LightEmitting.call(this, 1);
 }
