@@ -86,8 +86,7 @@ function drawMap() {
   	     showGraphic = localacre.getTerrain().doTile(j,i,showGraphic);
        }
 
-//       mapdiv += '<td class="maptd" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+showGraphic+'" border="0" alt="tile'+j+'x'+i+'" /></td>';
-       mapdiv += '<td id="td_tile'+j+'x'+i+'" class="maptd" style="background-repeat:no-repeat;width:32;height:32;background-image:url(\'graphics/' + showGraphic + '\')" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" width="32" height="32" /></td>';
+       mapdiv += '<td id="td_tile'+j+'x'+i+'" class="maptd" style="background-repeat:no-repeat;width:32;height:32;background-image:url(\'graphics/' + showGraphic + '\'); background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" width="32" height="32" /></td>';
      }
      mapdiv += '</tr><tr>';
    }
@@ -132,6 +131,7 @@ function drawFeatures(draw) {
   	    showGraphic = allfeatures[i].doTile(allfeatures[i].getx(),allfeatures[i].gety(),showGraphic);
       }
       $(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
+      $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
       document.images[tileid].src="graphics/"+graphics[1];
     }
     if (draw > 1) {
@@ -148,6 +148,7 @@ function drawFeatures(draw) {
   	      showGraphic = allnpcs[i].doTile(allnpcs[i].getx(),allnpcs[i].gety(),showGraphic);
         }
       	$(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
+        $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
       	document.images[tileid].src="graphics/"+graphics[1];
       }
     }
@@ -169,6 +170,7 @@ function drawFeatures(draw) {
       }
 
       $(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
+      $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
       document.images[tileid].src="graphics/"+graphics[1];
     }
     var allnpcs = amap.npcs.getAll();
@@ -186,6 +188,7 @@ function drawFeatures(draw) {
   	    showGraphic = showTerrain.doTile(allnpcs[i].getx(),allnpcs[i].gety(),showGraphic);
       }
       $(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
+      $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
       document.images[tileid].src="graphics/"+graphics[1];
     }
 
@@ -198,6 +201,7 @@ function changeselection(tilename) {
   selectionval = localFactory.createTile(tilename);
   var graphics = selectionval.getGraphic();
   $('#td_selectionimg').css("background-image", "url('graphics/" + graphics[0] + "')");
+  $('#td_selectionimg').css("background-position", graphics[2] + "px " + graphics[3] + "px");
   document.images["selectionimg"].src = "graphics/" + graphics[1];
   if (selectionval.getType() == "terrain") {
   	displayval='terrain';
@@ -283,6 +287,7 @@ function clickmap(xval,yval) {
       $('#featurebubble').jqmShow();
       var graphics = editable.getGraphic();
       $('#td_bubbletile').css("background-image","url('graphics/" + graphics[0] + "')");
+      $('#td_bubbletile').css("background-position", graphics[2] + "px " + graphics[3] + "px");
   	  document.images["bubbletile"].src = "graphics/" + graphics[1];
       document.featureeditpopup.tiledesc.value = editable.getDesc();
       document.featureeditpopup.walkonscript.value = editable.getWalkOnScript();
@@ -307,6 +312,7 @@ function clickmap(xval,yval) {
     	document.npceditpopup.npcobjname.value = editnpcs.getName();
     	var graphics = editnpcs.getGraphic();
     	$('#td_bubbleNPCtile').css("background-image","url('graphics/" + graphics[0] + "')");
+        $('#td_bubbleNPCtile').css("background-position", graphics[2] + "px " + graphics[3] + "px");
       document.images["bubbleNPCtile"].src = "graphics/" + graphics[1];    	
       document.npceditpopup.npcname.value = editnpcs.getNPCName();
       document.npceditpopup.npcdesc.value = editnpcs.getDesc();
@@ -351,6 +357,7 @@ function submitEditFeature(change) {
     var localacre = amap.getTile(editable.getx(),editable.gety());
     var terraingraphics = localacre.terrain.getGraphic();
     $(tdtileid).css("background-image", "url('graphics/" + terraingraphics[0] + "')");
+    $(tdtileid).css("background-position", terraingraphics[2] + "px " + terraingraphics[3] + "px");
     document.images[tileid].src = "graphics/"+terraingraphics[1];
 
 	}
@@ -419,13 +426,14 @@ function submitEditNPC(change) {
     var localacre = amap.getTile(editnpcs.getx(),editnpcs.gety());
     var terraingraphics = localacre.terrain.getGraphic();
     $(tdid).css("background-image","url('graphics/" + terraingraphics[0] + "')");
+    $(tdid).css("background-position", terraingraphics[2] + "px " + terraingraphics[3] + "px");
     document.images[tileid].src = "graphics/"+terraingraphics[1];
 	}
 }
 
 function changemaptile(xval,yval) {
   var tileid = "tile" + xval + "x" + yval;
-
+  var tdid = "#td_" + tileid;
   var graphics = selectionval.getGraphic();
   var showGraphic = graphics[0];
   if (typeof selectionval.setBySurround == "function") {
@@ -434,7 +442,9 @@ function changemaptile(xval,yval) {
   if (typeof selectionval.doTile == "function") {
   	showGraphic = selectionval.doTile(xval,yval,showGraphic);
   }
-  document.images[tileid].src="graphics/"+showGraphic;
+  $(tdid).css("background-image","url('graphics/" + graphics[0] + "')");
+  $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
+  document.images[tileid].src="graphics/"+graphics[1];
   amap.setTerrain(xval,yval,selectionval);
 
 }
@@ -482,6 +492,7 @@ function addfeaturetomap(x,y,selection) {
   	showGraphic = selection.doTile(x,y,showGraphic);
   }
   $(tdid).css("background-image","url('graphics/" + showGraphic + "')");
+  $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
   document.images[tileid].src="graphics/"+graphics[1];
   
 }
@@ -507,6 +518,7 @@ function addnpctomap(x,y,selection) {
   	showGraphic = selection.doTile(x,y,showGraphic);
   }
   $(tdid).css("background-image","url('graphics/" + showGraphic + "')");
+  $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
   document.images[tileid].src="graphics/"+graphics[1];
 }
 
@@ -529,7 +541,8 @@ function erasefeature(x,y) {
         	showGraphic = localacre.getTerrain().doTile(x,y,showGraphic);
         }
         $(tdid).css("background-image","url('graphics/" + showGraphic + "')");
-        document.images[tileid].src = "graphics/"+graphics[1];
+        $(tdid).css("background-position", terraingraphics[2] + "px " + terraingraphics[3] + "px");
+        document.images[tileid].src = "graphics/"+terraingraphics[1];
 }
 
 function initialSelect() {
@@ -548,7 +561,7 @@ var imgsrc = graphics[0];
 var oversrc = graphics[1];
 //document.write("<a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + imgsrc + "'></a>");
 var id = "#tileoption" + tilename;
-document.write("<td id='" + id+ "' style=\"height:32;width:32;background-repeat:no-repeat;background-image:url('graphics/" + imgsrc + "')\"><a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + oversrc + "' width='32' height='32' border='0'></a></td>");
+document.write("<td id='" + id+ "' style=\"height:32;width:32;background-repeat:no-repeat;background-position: " + graphics[2] + "px " + graphics[3] + "px; background-image:url('graphics/" + imgsrc + "')\"><a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + oversrc + "' width='32' height='32' border='0'></a></td>");
 }
 
 function setVisible(divname) {
