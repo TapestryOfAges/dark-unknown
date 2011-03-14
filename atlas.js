@@ -122,8 +122,8 @@ function Atlas() {
     '(^' : "TopCounter", // 63
     "TopCounter" : '(^',
 // 64 - 67 is features (doors)
-    '+D' : "Doorway", // 68
-    "Doorway" : '+D',
+//    '+D' : "Doorway", // 68
+//    "Doorway" : '+D',
     '!!' : "PlanksNS", // 69
     "PlanksNS" : '!!',
 // 70 - 72 are features (bridges)
