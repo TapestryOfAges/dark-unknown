@@ -238,6 +238,14 @@ function Tiling(tileval) {
 	}
 }
 
+function SetByBelow() {
+	this.setByBelow = function(x,y,themap) {
+		var localacre = themap.getTile(x,y);
+		var graphic = localacre.terrain.getGraphic();
+		return (graphic[0]);
+	};
+}
+
 function SetBySurround() {
 	this.setBySurround = function(x,y,themap,showGraphic, checklos, fromx, fromy) {
 		var cardinal_dash = "";
@@ -851,16 +859,6 @@ function TopCounterTile() {
   this.desc = "a counter";
 }
 TopCounterTile.prototype = new TerrainObject;
-
-function DoorwayTile() {
-  this.name = "Doorway";
-  this.graphic = "068.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.desc = "a doorway";
-  this.showTerrainBelow = 1;
-}
-DoorwayTile.prototype = new TerrainObject;
 
 function PlanksNSTile() {
   this.name = "PlanksNS";
@@ -1556,6 +1554,18 @@ function RightCastleTile() {
   this.desc = "Castle Olympus";
 }
 RightCastleTile.prototype = new FeatureObject;
+
+function DoorwayTile() {
+  this.name = "Doorway";
+  this.graphic = "103.gif";
+  this.overlay = "archway.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "an archway";
+  
+  SetByBelow.call(this);
+}
+DoorwayTile.prototype = new FeatureObject;
 
 function ShrineTile() {
   this.name = "Shrine";
