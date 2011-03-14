@@ -85,7 +85,6 @@ function drawMap() {
        if (typeof localacre.getTerrain().doTile == "function") {
   	     showGraphic = localacre.getTerrain().doTile(j,i,showGraphic);
        }
-
        mapdiv += '<td id="td_tile'+j+'x'+i+'" class="maptd" style="background-repeat:no-repeat;width:32;height:32;background-image:url(\'graphics/' + showGraphic + '\'); background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" width="32" height="32" /></td>';
      }
      mapdiv += '</tr><tr>';
@@ -129,6 +128,9 @@ function drawFeatures(draw) {
       }
       if (typeof allfeatures[i].doTile == "function") {
   	    showGraphic = allfeatures[i].doTile(allfeatures[i].getx(),allfeatures[i].gety(),showGraphic);
+      }
+      if (typeof allfeatures[i].setByBelow == "function") {
+          	showGraphic = allfeatures[i].setByBelow(allfeatures[i].getx(),allfeatures[i].gety(),amap);
       }
       $(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
       $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
@@ -442,6 +444,9 @@ function changemaptile(xval,yval) {
   if (typeof selectionval.doTile == "function") {
   	showGraphic = selectionval.doTile(xval,yval,showGraphic);
   }
+  if (typeof selectionval.setByBelow == "function") {
+   	showGraphic = selectionval.setByBelow(xval,yval,amap);
+  }
   $(tdid).css("background-image","url('graphics/" + graphics[0] + "')");
   $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
   document.images[tileid].src="graphics/"+graphics[1];
@@ -490,6 +495,9 @@ function addfeaturetomap(x,y,selection) {
   }
   if (typeof selection.doTile == "function") {
   	showGraphic = selection.doTile(x,y,showGraphic);
+  }
+  if (typeof selection.setByBelow == "function") {
+   	showGraphic = selection.setByBelow(x,y,amap);
   }
   $(tdid).css("background-image","url('graphics/" + showGraphic + "')");
   $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
