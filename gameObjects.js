@@ -907,7 +907,10 @@ WestCoastTile.prototype = new TerrainObject;
 
 function NortheastCoastTile() {
   this.name = "NortheastCoast";
-  this.graphic = "077.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "0";
+  this.overlay = "necoast.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -916,7 +919,10 @@ NortheastCoastTile.prototype = new TerrainObject;
 
 function SouthwestCoastTile() {
   this.name = "SouthwestCoast";
-  this.graphic = "078.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "0";
+  this.overlay = "swcoast.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -925,7 +931,10 @@ SouthwestCoastTile.prototype = new TerrainObject;
 
 function NorthwestCoastTile() {
   this.name = "NorthwestCoast";
-  this.graphic = "079.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "0";
+  this.overlay = "nwcoast.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -934,7 +943,10 @@ NorthwestCoastTile.prototype = new TerrainObject;
 
 function SoutheastCoastTile() {
   this.name = "SoutheastCoast";
-  this.graphic = "080.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "0";
+  this.overlay = "secoast.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -943,7 +955,10 @@ SoutheastCoastTile.prototype = new TerrainObject;
 
 function RiverNSTile() {
   this.name = "RiverNS";
-  this.graphic = "riverns.gif";
+  this.overlay = "riverns.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -952,7 +967,10 @@ RiverNSTile.prototype = new TerrainObject;
 
 function RiverEWTile() {
   this.name = "RiverEW";
-  this.graphic = "riverew.gif";
+  this.overlay = "riverew.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -961,7 +979,10 @@ RiverEWTile.prototype = new TerrainObject;
 
 function RiverNETile() {
   this.name = "RiverNE";
-  this.graphic = "riverne.gif";
+  this.overlay = "riverne.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -970,7 +991,10 @@ RiverNETile.prototype = new TerrainObject;
 
 function RiverNWTile() {
   this.name = "RiverNW";
-  this.graphic = "rivernw.gif";
+  this.overlay = "rivernw.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -979,7 +1003,10 @@ RiverNWTile.prototype = new TerrainObject;
 
 function RiverSETile() {
   this.name = "RiverSE";
-  this.graphic = "riverse.gif";
+  this.overlay = "riverse.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -988,7 +1015,10 @@ RiverSETile.prototype = new TerrainObject;
 
 function RiverSWTile() {
   this.name = "RiverSW";
-  this.graphic = "riversw.gif";
+  this.overlay = "riversw.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -997,7 +1027,10 @@ RiverSWTile.prototype = new TerrainObject;
 
 function RiverTbottomTile() {
   this.name = "RiverTbottom";
-  this.graphic = "riverTbottom.gif";
+  this.overlay = "riverTbottom.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -1006,7 +1039,10 @@ RiverTbottomTile.prototype = new TerrainObject;
 
 function RiverTleftTile() {
   this.name = "RiverTleft";
-  this.graphic = "riverTleft.gif";
+  this.overlay = "riverTleft.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -1015,7 +1051,10 @@ RiverTleftTile.prototype = new TerrainObject;
 
 function RiverTrightTile() {
   this.name = "RiverTright";
-  this.graphic = "riverTright.gif";
+  this.overlay = "riverTright.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -1024,7 +1063,10 @@ RiverTrightTile.prototype = new TerrainObject;
 
 function RiverTtopTile() {
   this.name = "RiverTtop";
-  this.graphic = "riverTtop.gif";
+  this.overlay = "riverTtop.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -1033,7 +1075,10 @@ RiverTtopTile.prototype = new TerrainObject;
 
 function RiverSourceNTile() {
   this.name = "RiverSourceN";
-  this.graphic = "riversourcen.gif";
+  this.overlay = "riversourcen.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -1042,7 +1087,10 @@ RiverSourceNTile.prototype = new TerrainObject;
 
 function RiverSourceSTile() {
   this.name = "RiverSourceS";
-  this.graphic = "riversources.gif";
+  this.overlay = "riversources.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -1051,7 +1099,10 @@ RiverSourceSTile.prototype = new TerrainObject;
 
 function RiverSourceETile() {
   this.name = "RiverSourceE";
-  this.graphic = "riversourcee.gif";
+  this.overlay = "riversourcee.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
@@ -1060,7 +1111,10 @@ RiverSourceETile.prototype = new TerrainObject;
 
 function RiverSourceWTile() {
   this.name = "RiverSourceW";
-  this.graphic = "riversourcew.gif";
+  this.overlay = "riversourcew.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
   this.desc = "a river";
