@@ -80,7 +80,8 @@ function drawMap() {
        var graphics = localacre.getTerrain().getGraphic();
        var showGraphic = graphics[0];
        if (typeof localacre.getTerrain().setBySurround == "function") {
-       	showGraphic = localacre.getTerrain().setBySurround(j,i,amap,showGraphic,0,0,0);
+       	graphics = localacre.getTerrain().setBySurround(j,i,amap,graphics,0,0,0);
+       	showGraphic = graphics[0];
       }
        if (typeof localacre.getTerrain().doTile == "function") {
   	     showGraphic = localacre.getTerrain().doTile(j,i,showGraphic);
@@ -124,7 +125,8 @@ function drawFeatures(draw) {
       var graphics = allfeatures[i].getGraphic();
       var showGraphic = graphics[0];
       if (typeof allfeatures[i].setBySurround == "function") {
-       	showGraphic = allfeatures[i].setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,showGraphic,0,0,0);
+       	graphics = allfeatures[i].setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,graphics,0,0,0);
+       	showGraphic = graphics[0];
       }
       if (typeof allfeatures[i].doTile == "function") {
   	    showGraphic = allfeatures[i].doTile(allfeatures[i].getx(),allfeatures[i].gety(),showGraphic);
@@ -144,7 +146,8 @@ function drawFeatures(draw) {
         var graphics = allnpcs[i].getGraphic();
         var showGraphic = graphics[0];
         if (typeof allnpcs[i].setBySurround == "function") {
-       	  showGraphic = allnpcs[i].setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,showGraphic,0,0,0);
+       	  graphics = allnpcs[i].setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,graphics,0,0,0);
+       	  showGraphic = graphics[0];
         }
         if (typeof allnpcs[i].doTile == "function") {
   	      showGraphic = allnpcs[i].doTile(allnpcs[i].getx(),allnpcs[i].gety(),showGraphic);
@@ -165,7 +168,8 @@ function drawFeatures(draw) {
       var graphics = showTerrain.getGraphic();
       var showGraphic = graphics[0];
       if (typeof showTerrain.setBySurround == "function") {
-       	showGraphic = showTerrain.setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,showGraphic,0,0,0);
+       	graphics = showTerrain.setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,graphics,0,0,0);
+       	showGraphic = graphics[0];
       }
       if (typeof showTerrain.doTile == "function") {
   	    showGraphic = showTerrain.doTile(allfeatures[i].getx(),allfeatures[i].gety(),showGraphic);
@@ -184,7 +188,8 @@ function drawFeatures(draw) {
       var graphics = showTerrain.getGraphic();
       var showGraphic = graphics[0];
       if (typeof showTerrain.setBySurround == "function") {
-       	showGraphic = showTerrain.setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,showGraphic,0,0,0);
+       	graphics = showTerrain.setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,graphics,0,0,0);
+       	showGraphic = graphics[0];
       }
       if (typeof showTerrain.doTile == "function") {
   	    showGraphic = showTerrain.doTile(allnpcs[i].getx(),allnpcs[i].gety(),showGraphic);
@@ -439,7 +444,8 @@ function changemaptile(xval,yval) {
   var graphics = selectionval.getGraphic();
   var showGraphic = graphics[0];
   if (typeof selectionval.setBySurround == "function") {
-    showGraphic = selectionval.setBySurround(xval,yval,amap,showGraphic,0,0,0);
+    graphics = selectionval.setBySurround(xval,yval,amap,graphics,0,0,0);
+    showGraphic = graphics[0];
   }
   if (typeof selectionval.doTile == "function") {
   	showGraphic = selectionval.doTile(xval,yval,showGraphic);
@@ -491,7 +497,8 @@ function addfeaturetomap(x,y,selection) {
   var graphics = selection.getGraphic()
   var showGraphic = graphics[0];
   if (typeof selection.setBySurround == "function") {
-   	showGraphic = selection.setBySurround(x,y,amap,showGraphic,0,0,0);
+   	graphics = selection.setBySurround(x,y,amap,graphics,0,0,0);
+   	showGraphic = graphics[0];
   }
   if (typeof selection.doTile == "function") {
   	showGraphic = selection.doTile(x,y,showGraphic);
@@ -520,7 +527,8 @@ function addnpctomap(x,y,selection) {
 	var graphics = selection.getGraphic();
   var showGraphic = graphics[0];
   if (typeof selection.setBySurround == "function") {
-   	showGraphic = selection.setBySurround(x,y,amap,showGraphic,0,0,0);
+   	graphics = selection.setBySurround(x,y,amap,graphics,0,0,0);
+   	showGraphic = graphics[0];
   }
   if (typeof selection.doTile == "function") {
   	showGraphic = selection.doTile(x,y,showGraphic);
@@ -543,7 +551,8 @@ function erasefeature(x,y) {
         var terraingraphics = localacre.getTerrain().getGraphic();
         var showGraphic = terraingraphics[0];
         if (typeof localacre.getTerrain().setBySurround == "function") {
-       	  showGraphic = localacre.getTerrain().setBySurround(x,y,amap,showGraphic,0,0,0);
+       	  graphics = localacre.getTerrain().setBySurround(x,y,amap,graphics,0,0,0);
+       	  showGraphic = graphics[0];
         }
         if (typeof localacre.getTerrain().doTile == "function") {
         	showGraphic = localacre.getTerrain().doTile(x,y,showGraphic);
