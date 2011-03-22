@@ -247,7 +247,7 @@ function SetByBelow() {
 }
 
 function SetBySurround() {
-	this.setBySurround = function(x,y,themap,showGraphic, checklos, fromx, fromy) {
+	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy) {
 		var cardinal_dash = "";
 		var north = 0;
 		var south = 0;
@@ -276,16 +276,90 @@ function SetBySurround() {
 	 	if ((themap.getTile(x-1,y-1) != "OoB") && (themap.getTile(x-1,y-1).terrain.getName() == "CaveFloor") && (south == 0) && (east == 0) && ((checklos == 0) || (themap.getLOS(fromx,fromy,x-1,y-1,losgrid) < LOS_THRESHOLD) )) 
 	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "d"; vis = 1; }
 	
-	  var foo = showGraphic.split('.');
-	  showGraphic = foo[0] + cardinal_dash + addtoname_cardinal + diagonal_dash + addtoname_diagonal + '.' + foo[1];
+	  var foo = graphics[0].split('.');
+	  graphics[0] = foo[0] + cardinal_dash + addtoname_cardinal + diagonal_dash + addtoname_diagonal + '.' + foo[1];
 	  if (vis == 0) { 
 	  	var black = localFactory.createTile('BlankBlack');
-	  	var graphics = black.getGraphic();
-	  	showGraphic = graphics[0];
+	  	var blkgraphics = black.getGraphic();
+	  	graphics[0] = blkgraphics[0];
 	  }
-	  if (showGraphic.indexOf("-nsew") != -1) { this.setBlockLOS(.5); }
-	  return (showGraphic);
+	  if (graphics[0].indexOf("-nsew") != -1) { this.setBlockLOS(.5); }
+	  return (graphics);
   }
+}
+
+function SetBySurroundRiver() {
+	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy) {
+		var north;
+		var south;
+		var east;
+		var west;
+		var northtile = themap.getTile(x,y-1);
+		if (northtile != "OoB") {
+			if (IsWet(northtile)) {
+				north = 1;
+			}
+		}
+		var southtile = themap.getTile(x,y+1);
+		if (southtile != "OoB") {
+			if (IsWet(southtile)) {
+				south = 1;
+			}
+		}
+		var easttile = themap.getTile(x+1,y);
+		if (easttile != "OoB") {
+			if (IsWet(easttile)) {
+				east = 1;
+			}
+		}
+		var westtile = themap.getTile(x-1,y);
+		if (westtile != "OoB") {
+			if (IsWet(westtile)) {
+				west = 1;
+			}
+		}
+		if ((north == 1) && (south == 1) && (east == 1) && (west == 1)) {
+			// this shouldn't happen, if it does I need to draw a + river piece
+			graphics[1] = "spacer.gif";
+		} else if ((north == 1) && (east == 1) && (south == 1) {
+			graphics[1] = "riverTright.gif";
+		} else if ((north == 1) && (west == 1) && (south == 1) {
+			graphics[1] = "riverTleft.gif";
+		} else if ((north == 1) && (east == 1) && (west == 1) {
+			graphics[1] = "riverTtop.gif";
+		} else if ((south == 1) && (east == 1) && (west == 1) {
+			graphics[1] = "riverTbottom.gif";
+		} else if ((east == 1) && (west == 1)) {
+			graphics[1] = "riverew.gif";
+		} else if ((north == 1) && (south == 1)) {
+			graphics[1] = "riverns.gif";
+		} else if ((north == 1) && (east == 1)) {
+			graphics[1] = "riverne.gif";
+		} else if ((north == 1) && (west == 1)) {
+			graphics[1] = "rivernw.gif";
+		} else if ((south == 1) && (east == 1)) {
+			graphics[1] = "riverse.gif";
+		} else if ((south == 1) && (west == 1)) {
+			graphics[1] = "riversw.gif";
+		} else if (north == 1) {
+			graphics[1] = "riversources.gif";
+		} else if (east == 1) {
+			graphics[1] = "riversourcew.gif";
+		} else if (west == 1) {
+			graphics[1] = "riversourcee.gif";
+		} else if (south == 1) {
+			graphics[1] = "riversourcen.gif";
+		}
+		return graphics;
+	}
+}
+
+function IsWet(tile) {
+	if (tile.getName() == "Ocean") { return 1; }
+	if (tile.getName() == "Water") { return 1; }
+	if (tile.getName() == "Shallows") { return 1; }
+	if (tile.getName() == "River") { return 1; }
+	return 0;
 }
 // end inheritance
 
