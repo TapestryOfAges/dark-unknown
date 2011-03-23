@@ -62,7 +62,9 @@ function drawMainFrame(how, mapname, centerx, centery) {
         if (typeof displaytile.setBySurround == "function") {
         	graphics = displaytile.setBySurround(j,i,themap,graphics,1,centerx,centery);
         	showGraphic = graphics[0];
-        	showGraphic = displaytile.doTile(j,i,showGraphic);
+        	if (typeof displaytile.doTile == "function") {
+        		showGraphic = displaytile.doTile(j,i,showGraphic);
+          }
         	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1;" title="' + displaytile.getDesc() + '" /></td>';
         }
         else if (losresult < LOS_THRESHOLD) {

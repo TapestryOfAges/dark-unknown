@@ -203,6 +203,8 @@ function Atlas() {
     "HillTower" : 'nT',
     '.T' : "GrassTower",
     "GrassTower" : '.T',
+    "River" : 'RR',
+    'RR' : "River",
     "RiverNS" : '||',
     '||' : "RiverNS",
     "RiverEW" : '==',
