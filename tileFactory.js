@@ -482,6 +482,11 @@ tileFactory.prototype.makeLavaTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRiverTile = function () {
+  var newTile = new RiverTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRiverNSTile = function () {
   var newTile = new RiverNSTile();
   return newTile;

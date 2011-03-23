@@ -288,32 +288,96 @@ function SetBySurround() {
   }
 }
 
+function SetBySurroundCoast() {
+	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy) {
+    var ocean;
+    var water;
+    var shallow;
+    var localacre = themap.getTile(x,y-1);
+    var tile; 
+    if (localacre != "OoB") {
+    	tile = localacre.terrain;
+    	if (tile.getName() == "Ocean") { ocean = tile; }
+    	if (tile.getName() == "Water") { water = tile; }
+    	if (tile.getName() == "Shallows") { shallow = tile; }
+    }
+    localacre = themap.getTile(x,y+1);
+    if (localacre != "OoB") {
+    	tile = localacre.terrain;
+    	if (tile.getName() == "Ocean") { ocean = tile; }
+    	if (tile.getName() == "Water") { water = tile; }
+    	if (tile.getName() == "Shallows") { shallow = tile;; }
+    }
+    localacre = themap.getTile(x+1,y);
+    if (localacre != "OoB") {
+    	tile = localacre.terrain;
+    	if (tile.getName() == "Ocean") { ocean = tile; }
+    	if (tile.getName() == "Water") { water = tile; }
+    	if (tile.getName() == "Shallows") { shallow = tile; }
+    }
+    localacre = themap.getTile(x-1,y);
+    if (localacre != "OoB") {
+    	tile = localacre.terrain;
+    	if (tile.getName() == "Ocean") { ocean = tile; }
+    	if (tile.getName() == "Water") { water = tile; }
+    	if (tile.getName() == "Shallows") { shallow = tile; }
+    }
+    var chosentile;
+    if (shallow) { chosentile = shallow; }
+    else if (water) { chosentile = water; }
+    else if (ocean) { chosentile = ocean; }
+    else { return graphics; }
+    
+    var chosengraphics = chosentile.getGraphic();
+    graphics[0] = chosengraphics[0];
+    graphics[2] = chosengraphics[2];
+    graphics[3] = chosengraphics[3];
+    return graphics;
+  }
+}
+
+function SetBySurroundRoad() {
+	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy) {
+	  var north = 0;
+	  var south = 0;
+	  var east = 0;
+	  var west = 0;
+	  var localacre = themap.getTile(x,y-1);
+	  if (localacre != "OoB") {
+	  }	
+	}
+}
+
 function SetBySurroundRiver() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy) {
 		var north;
 		var south;
 		var east;
 		var west;
-		var northtile = themap.getTile(x,y-1);
-		if (northtile != "OoB") {
+		var northacre = themap.getTile(x,y-1);
+		northtile = northacre.terrain;
+		if (northacre != "OoB") {
 			if (IsWet(northtile)) {
 				north = 1;
 			}
 		}
-		var southtile = themap.getTile(x,y+1);
-		if (southtile != "OoB") {
+		var southacre = themap.getTile(x,y+1);
+		var southtile = southacre.terrain;
+		if (southacre != "OoB") {
 			if (IsWet(southtile)) {
 				south = 1;
 			}
 		}
-		var easttile = themap.getTile(x+1,y);
-		if (easttile != "OoB") {
+		var eastacre = themap.getTile(x+1,y);
+		var easttile = eastacre.terrain;
+		if (eastacre != "OoB") {
 			if (IsWet(easttile)) {
 				east = 1;
 			}
 		}
-		var westtile = themap.getTile(x-1,y);
-		if (westtile != "OoB") {
+		var westacre = themap.getTile(x-1,y);
+		var westtile = westacre.terrain;
+		if (westacre != "OoB") {
 			if (IsWet(westtile)) {
 				west = 1;
 			}
@@ -321,13 +385,13 @@ function SetBySurroundRiver() {
 		if ((north == 1) && (south == 1) && (east == 1) && (west == 1)) {
 			// this shouldn't happen, if it does I need to draw a + river piece
 			graphics[1] = "spacer.gif";
-		} else if ((north == 1) && (east == 1) && (south == 1) {
+		} else if ((north == 1) && (east == 1) && (south == 1)) {
 			graphics[1] = "riverTright.gif";
-		} else if ((north == 1) && (west == 1) && (south == 1) {
+		} else if ((north == 1) && (west == 1) && (south == 1)) {
 			graphics[1] = "riverTleft.gif";
-		} else if ((north == 1) && (east == 1) && (west == 1) {
+		} else if ((north == 1) && (east == 1) && (west == 1)) {
 			graphics[1] = "riverTtop.gif";
-		} else if ((south == 1) && (east == 1) && (west == 1) {
+		} else if ((south == 1) && (east == 1) && (west == 1)) {
 			graphics[1] = "riverTbottom.gif";
 		} else if ((east == 1) && (west == 1)) {
 			graphics[1] = "riverew.gif";
@@ -982,50 +1046,72 @@ WestCoastTile.prototype = new TerrainObject;
 function NortheastCoastTile() {
   this.name = "NortheastCoast";
   this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-160";
+  this.spritexoffset = "-192";
   this.spriteyoffset = "0";
   this.overlay = "necoast.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
+  
+  SetBySurroundCoast.call(this);
 }
 NortheastCoastTile.prototype = new TerrainObject;
 
 function SouthwestCoastTile() {
   this.name = "SouthwestCoast";
   this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-160";
+  this.spritexoffset = "-192";
   this.spriteyoffset = "0";
   this.overlay = "swcoast.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
+  
+  SetBySurroundCoast.call(this);
 }
 SouthwestCoastTile.prototype = new TerrainObject;
 
 function NorthwestCoastTile() {
   this.name = "NorthwestCoast";
   this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-160";
+  this.spritexoffset = "-192";
   this.spriteyoffset = "0";
   this.overlay = "nwcoast.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
+  
+  SetBySurroundCoast.call(this);
 }
 NorthwestCoastTile.prototype = new TerrainObject;
 
 function SoutheastCoastTile() {
   this.name = "SoutheastCoast";
   this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-160";
+  this.spritexoffset = "-192";
   this.spriteyoffset = "0";
   this.overlay = "secoast.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
+  
+  SetBySurroundCoast.call(this);
 }
 SoutheastCoastTile.prototype = new TerrainObject;
+
+function RiverTile() {
+  this.name = "River";
+  this.overlay = "riverns.gif";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
+  this.blocklos = 0;
+  this.desc = "a river";
+  
+  SetBySurroundRiver.call(this);
+}
+RiverTile.prototype = new TerrainObject;
 
 function RiverNSTile() {
   this.name = "RiverNS";
