@@ -233,6 +233,8 @@ function Atlas() {
     'x=' : "RiverSourceE",
     "RiverSourceW" : '=x',
     '=x' : "RiverSourceW",
+    "Road" : 'rd',
+    'rd' : "Road",
     "RoadEN" : 'r/',
     'r/' : "RoadEN",
     "RoadENS" : 'r<',
