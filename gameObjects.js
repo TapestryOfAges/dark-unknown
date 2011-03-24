@@ -338,13 +338,32 @@ function SetBySurroundCoast() {
 
 function SetBySurroundRoad() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy) {
-	  var north = 0;
-	  var south = 0;
-	  var east = 0;
-	  var west = 0;
-	  var localacre = themap.getTile(x,y-1);
+    var suffix = "";
+	  var localacre = themap.getTile(x+1,y);
 	  if (localacre != "OoB") {
+	  	var tile = localacre.terrain;
+	  	if (tile.getName().indexOf("Road") != -1) { suffix = suffix + "e"; }
 	  }	
+	  localacre = themap.getTile(x-1,y);
+	  if (localacre != "OoB") {
+	  	var tile = localacre.terrain;
+	  	if (tile.getName().indexOf("Road") != -1) { suffix = suffix + "w"; }
+	  }	
+	  localacre = themap.getTile(x,y-1);
+	  if (localacre != "OoB") {
+	  	var tile = localacre.terrain;
+	  	if (tile.getName().indexOf("Road") != -1) { suffix = suffix + "n"; }
+	  }	
+	  localacre = themap.getTile(x,y+1);
+	  if (localacre != "OoB") {
+	  	var tile = localacre.terrain;
+	  	if (tile.getName().indexOf("Road") != -1) { suffix = suffix + "s"; }
+	  }	
+	  if ((suffix == "ewns") || (suffix == "")) { suffix = "x"; }
+	  if ((suffix == "e") || (suffix == "w")) { suffix = "ew"; }
+	  if ((suffix == "n") || (suffix == "s")) { suffix = "ns"; }
+	  graphics[0] = "road-" + suffix + ".gif";
+		return graphics;
 	}
 }
 
@@ -1316,6 +1335,18 @@ function DirtTile() {
   this.desc = "dirt";
 }
 DirtTile.prototype = new TerrainObject;
+
+
+function RoadTile() {
+  this.name = "Road";
+  this.graphic = "road-ew.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "a dirt road";
+  
+  SetBySurroundRoad.call(this);
+}
+RoadTile.prototype = new TerrainObject;
 
 function RoadENTile() {
   this.name = "RoadEN";
