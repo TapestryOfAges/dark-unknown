@@ -135,8 +135,27 @@ GameObject.prototype.getBlocksLOS = function(distance) {
   return (this.blocklos);
 }
 
+GameObject.prototype.getAllBlocksLOS = function() {
+	var LOSref = new Array;
+	LOSref[0] = this.blocklos;
+	LOSref[1] = this.losatdistance['distance'];
+	LOSref[2] = this.losatdistance['blocklos'];
+	LOSref[3] = this.losupclose['distance'];
+	LOSref[4] = this.losupclose['blocklos'];
+	
+	return LOSref;
+}
+
 GameObject.prototype.setBlockLOS = function(newLOS) {
-	this.blocklos = newLOS;
+	this.blocklos = newLOS[0];
+	if (typeof newLOS[1] != "undefined") {
+		this.losatdistance['distance'] = newLOS[1];
+		this.losatdistance['blocklos'] = newLOS[2];
+	}
+	if (typeof newLOS[3] != "undefined") {
+		this.losupclose['distance'] = newLOS[3];
+		this.losupclose['blocklos'] = newLOS[4];
+	}
 }
 
 GameObject.prototype.getPassable = function() {
@@ -227,6 +246,16 @@ function LightEmitting(lightlevel) {
 	this.getLight = function() {
 		return this.light;
 	}
+}
+
+function Openable(closedgraphic, opengraphic, startsopen) {
+	this.open = startsopen;
+	
+	this.closedLOS = new Array;
+	this.closedgraphic = closedgraphic;
+	this.opengraphic = opengraphic;
+	// NOTE: These should be arrays in the standard graphics[0-3] style.
+	
 }
 
 function Tiling(tileval) {
