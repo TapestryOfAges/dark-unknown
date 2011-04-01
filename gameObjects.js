@@ -83,6 +83,13 @@ GameObject.prototype.setGraphic = function(newgraphic) {
 	this.graphic = newgraphic;
 }
 
+GameObject.prototype.setAllGraphic = function(newgraphics) {
+	this.graphic = newgraphics[0];
+	this.overlay = newgraphics[1];
+	this.spritexoffset = newgraphics[2];
+	this.spriteyoffset = newgraphics[3];
+}
+
 GameObject.prototype.setUnderlay = function(newgraphic) {
 	this.graphic = newgraphic;
 }
@@ -201,7 +208,7 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockeddesc
 	this.getLocked = function() { return this.locked; }
 	this.lockMe = function(lock) {
 		this.setLocked(lock);
-		this.setGraphic(this.lockedgraphics[lock]);
+		this.setOverlay(this.lockedgraphics[lock]);
 		this.setDesc(this.lockeddescs[lock]);
 	}
 	this.unlockMe = function() { this.lockMe(0); }
@@ -255,6 +262,14 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 	this.closedgraphic = closedgraphic;
 	this.opengraphic = opengraphic;
 	// NOTE: These should be arrays in the standard graphics[0-3] style.
+	
+	this.toggleMe = function() {
+		if (this.open == 1) {
+			
+		} else {
+			
+		}
+	}
 	
 }
 
@@ -1890,11 +1905,13 @@ function DoorWindowTile() {
 	
 	this.name = "DoorWindow";
 	this.graphic = "009.gif";
+	this.overlay = "009.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.losupclose = { distance : 1 , blocklos : 0 };
 	this.desc = "a door";
 
+	SetByBelow.call(this);
 }
 DoorWindowTile.prototype = new FeatureObject;
 
@@ -1947,10 +1964,12 @@ function DoorTile() {
   	
 	this.name = "Door";
 	this.graphic = "064.gif";
+	this.overlay = "064.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.desc = "a door";
 
+	SetByBelow.call(this);
 }
 DoorTile.prototype = new FeatureObject;
 
@@ -2119,6 +2138,8 @@ function SecretDoorTile() {
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.desc = "a wall";
+	
+	SetByBelow.call(this);
 }
 SecretDoorTile.prototype = new FeatureObject;
 
