@@ -77,7 +77,7 @@ function drawMap() {
    for (var i=0;i<=amap.data.length-1;i++) {
      for (var j=0;j<=amap.data[0].length-1;j++) {
        var localacre = amap.getTile(j,i);
-       var graphics = localacre.getTerrain().getGraphic();
+       var graphics = localacre.getTerrain().getGraphicArray();
        var showGraphic = graphics[0];
        if (typeof localacre.getTerrain().setBySurround == "function") {
        	graphics = localacre.getTerrain().setBySurround(j,i,amap,graphics,0,0,0);
@@ -122,7 +122,7 @@ function drawFeatures(draw) {
     for (var i=0;i<=allfeatures.length-1;i++) {
       var tileid = "tile" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
       var tdid = "#td_" + tileid;
-      var graphics = allfeatures[i].getGraphic();
+      var graphics = allfeatures[i].getGraphicArray();
       var showGraphic = graphics[0];
       if (typeof allfeatures[i].setBySurround == "function") {
        	graphics = allfeatures[i].setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,graphics,0,0,0);
@@ -143,7 +143,7 @@ function drawFeatures(draw) {
  	    for (var i=0;i<=allnpcs.length-1;i++) {
         var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
         var tdid = "#td_" + tileid;
-        var graphics = allnpcs[i].getGraphic();
+        var graphics = allnpcs[i].getGraphicArray();
         var showGraphic = graphics[0];
         if (typeof allnpcs[i].setBySurround == "function") {
        	  graphics = allnpcs[i].setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,graphics,0,0,0);
@@ -165,7 +165,7 @@ function drawFeatures(draw) {
       var tdid = "#td_" + tileid;
       var terrainthere = amap.getTile(allfeatures[i].getx(),allfeatures[i].gety());
       var showTerrain = terrainthere.getTerrain();
-      var graphics = showTerrain.getGraphic();
+      var graphics = showTerrain.getGraphicArray();
       var showGraphic = graphics[0];
       if (typeof showTerrain.setBySurround == "function") {
        	graphics = showTerrain.setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,graphics,0,0,0);
@@ -185,7 +185,7 @@ function drawFeatures(draw) {
       var tdid = "#td_" + tileid;
       var terrainthere = amap.getTile(allnpcs[i].getx(),allnpcs[i].gety());
       var showTerrain = terrainthere.getTerrain();
-      var graphics = showTerrain.getGraphic();
+      var graphics = showTerrain.getGraphicArray();
       var showGraphic = graphics[0];
       if (typeof showTerrain.setBySurround == "function") {
        	graphics = showTerrain.setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,graphics,0,0,0);
@@ -206,7 +206,7 @@ function drawFeatures(draw) {
 
 function changeselection(tilename) {
   selectionval = localFactory.createTile(tilename);
-  var graphics = selectionval.getGraphic();
+  var graphics = selectionval.getGraphicArray();
   $('#td_selectionimg').css("background-image", "url('graphics/" + graphics[0] + "')");
   $('#td_selectionimg').css("background-position", graphics[2] + "px " + graphics[3] + "px");
   document.images["selectionimg"].src = "graphics/" + graphics[1];
@@ -292,7 +292,7 @@ function clickmap(xval,yval) {
       var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
       $('#featurebubble').jqm({onShow:myOpen}); 
       $('#featurebubble').jqmShow();
-      var graphics = editable.getGraphic();
+      var graphics = editable.getGraphicArray();
       $('#td_bubbletile').css("background-image","url('graphics/" + graphics[0] + "')");
       $('#td_bubbletile').css("background-position", graphics[2] + "px " + graphics[3] + "px");
   	  document.images["bubbletile"].src = "graphics/" + graphics[1];
@@ -317,7 +317,7 @@ function clickmap(xval,yval) {
     	$('#npcbubble').jqm({onShow:myOpen});
     	$('#npcbubble').jqmShow();
     	document.npceditpopup.npcobjname.value = editnpcs.getName();
-    	var graphics = editnpcs.getGraphic();
+    	var graphics = editnpcs.getGraphicArray();
     	$('#td_bubbleNPCtile').css("background-image","url('graphics/" + graphics[0] + "')");
         $('#td_bubbleNPCtile').css("background-position", graphics[2] + "px " + graphics[3] + "px");
       document.images["bubbleNPCtile"].src = "graphics/" + graphics[1];    	
@@ -362,7 +362,7 @@ function submitEditFeature(change) {
     var tileid = "tile" + editable.getx() + "x" + editable.gety();
     var tdtileid = "#td_" + tileid;
     var localacre = amap.getTile(editable.getx(),editable.gety());
-    var terraingraphics = localacre.terrain.getGraphic();
+    var terraingraphics = localacre.terrain.getGraphicArray();
     $(tdtileid).css("background-image", "url('graphics/" + terraingraphics[0] + "')");
     $(tdtileid).css("background-position", terraingraphics[2] + "px " + terraingraphics[3] + "px");
     document.images[tileid].src = "graphics/"+terraingraphics[1];
@@ -431,7 +431,7 @@ function submitEditNPC(change) {
     var tileid = "tile" + editnpcs.getx() + "x" + editnpcs.gety();
     var tdid = "#td_" + tileid;
     var localacre = amap.getTile(editnpcs.getx(),editnpcs.gety());
-    var terraingraphics = localacre.terrain.getGraphic();
+    var terraingraphics = localacre.terrain.getGraphicArray();
     $(tdid).css("background-image","url('graphics/" + terraingraphics[0] + "')");
     $(tdid).css("background-position", terraingraphics[2] + "px " + terraingraphics[3] + "px");
     document.images[tileid].src = "graphics/"+terraingraphics[1];
@@ -441,7 +441,7 @@ function submitEditNPC(change) {
 function changemaptile(xval,yval) {
   var tileid = "tile" + xval + "x" + yval;
   var tdid = "#td_" + tileid;
-  var graphics = selectionval.getGraphic();
+  var graphics = selectionval.getGraphicArray();
   var showGraphic = graphics[0];
   if (typeof selectionval.setBySurround == "function") {
     graphics = selectionval.setBySurround(xval,yval,amap,graphics,0,0,0);
@@ -494,7 +494,7 @@ function addfeaturetomap(x,y,selection) {
 
   var tileid = "tile" + x + "x" + y;  
   var tdid = "#td_" + tileid;
-  var graphics = selection.getGraphic()
+  var graphics = selection.getGraphicArray()
   var showGraphic = graphics[0];
   if (typeof selection.setBySurround == "function") {
    	graphics = selection.setBySurround(x,y,amap,graphics,0,0,0);
@@ -524,7 +524,7 @@ function addnpctomap(x,y,selection) {
 	
 	var tileid = "tile" + x + "x" + y;
 	var tdid = "#td_" + tileid;
-	var graphics = selection.getGraphic();
+	var graphics = selection.getGraphicArray();
   var showGraphic = graphics[0];
   if (typeof selection.setBySurround == "function") {
    	graphics = selection.setBySurround(x,y,amap,graphics,0,0,0);
@@ -548,7 +548,7 @@ function erasefeature(x,y) {
         var tileid = "tile" + x + "x" + y;
         var tdid = "#td_" + tileid;
         var localacre = amap.getTile(x,y);
-        var terraingraphics = localacre.getTerrain().getGraphic();
+        var terraingraphics = localacre.getTerrain().getGraphicArray();
         var showGraphic = terraingraphics[0];
         if (typeof localacre.getTerrain().setBySurround == "function") {
        	  graphics = localacre.getTerrain().setBySurround(x,y,amap,graphics,0,0,0);
@@ -573,7 +573,7 @@ function initialSelect() {
 function writeTileOption(tilename) {
 
 var tempTile = localFactory.createTile(tilename);
-var graphics = tempTile.getGraphic();
+var graphics = tempTile.getGraphicArray();
 var imgsrc = graphics[0];
 var oversrc = graphics[1];
 //document.write("<a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + imgsrc + "'></a>");
