@@ -147,8 +147,11 @@ function PerformCommand(code) {
 		
 	}
 	else if (code == 85) { // u
-		// use
-		
+		gamestate.setMode("choosedir");
+		retval["txt"] = "";
+		retval["input"] = "&gt; Use: ";
+		retval["fin"] = 2;
+		targetCursor.command = "u";
 	}
 	else if (code == 86) { // v
 		// volume - turns sound effects on and off

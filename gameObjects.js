@@ -83,24 +83,20 @@ GameObject.prototype.setGraphic = function(newgraphic) {
 	this.graphic = newgraphic;
 }
 
-GameObject.prototype.setAllGraphic = function(newgraphics) {
+GameObject.prototype.setGraphicArray = function(newgraphics) {
 	this.graphic = newgraphics[0];
 	this.overlay = newgraphics[1];
 	this.spritexoffset = newgraphics[2];
 	this.spriteyoffset = newgraphics[3];
 }
 
-GameObject.prototype.setUnderlay = function(newgraphic) {
-	this.graphic = newgraphic;
-}
-
-GameObject.prototype.getUnderlay = function() {
+GameObject.prototype.getGraphic = function() {
 	var returnGraphic = this.graphic;
 
   if (returnGraphic) { return(returnGraphic); }
 }
 
-GameObject.prototype.getGraphic = function() {
+GameObject.prototype.getGraphicArray = function() {
 	var returnGraphic = this.graphic;
   var returnOverlay = this.overlay;
   var returnVars = new Array;
@@ -142,7 +138,7 @@ GameObject.prototype.getBlocksLOS = function(distance) {
   return (this.blocklos);
 }
 
-GameObject.prototype.getAllBlocksLOS = function() {
+GameObject.prototype.getBlocksLOSArray = function() {
 	var LOSref = new Array;
 	LOSref[0] = this.blocklos;
 	LOSref[1] = this.losatdistance['distance'];
@@ -153,7 +149,7 @@ GameObject.prototype.getAllBlocksLOS = function() {
 	return LOSref;
 }
 
-GameObject.prototype.setBlockLOS = function(newLOS) {
+GameObject.prototype.setBlocksLOSArray = function(newLOS) {
 	this.blocklos = newLOS[0];
 	if (typeof newLOS[1] != "undefined") {
 		this.losatdistance['distance'] = newLOS[1];
@@ -263,12 +259,39 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 	this.opengraphic = opengraphic;
 	// NOTE: These should be arrays in the standard graphics[0-3] style.
 	
-	this.toggleMe = function() {
+	this.useScript = function() {
+		var retval = new Object;
+		retval["fin"] = 0;
 		if (this.open == 1) {
+			this.setGraphicArray(opengraphic);
 			
+			this.setBlocksLOSArray(this.closedLOS);
+			this.closedLOS = new Array;
+			
+			this.removePassable(MOVE_WALK);
+			
+			retval["fin"] = 1;
+			retval["txt"] = "Closed!";
 		} else {
+			if (typeof this.getLocked == "function") {
+				if (this.getLocked()) {
+					retval["fin"] = 1;
+					retval["txt"] = "Locked.";
+				}
+			}
+			this.setGraphicArray(closedgraphic);
 			
+			this.closedLOS = this.getBlocksLOSArray();
+			var seethru = new Array;
+			seethru[0] = 0;
+			this.setBlocksLOSArray(seethru);
+			
+			this.addPassable(MOVE_WALK);
+			
+			retval["fin"] = 1;
+			retval["txt"] = "Opened!";
 		}
+		return retval;
 	}
 	
 }
@@ -285,13 +308,13 @@ function Tiling(tileval) {
 function SetByBelow() {
 	this.setByBelow = function(x,y,themap) {
 		var localacre = themap.getTile(x,y);
-		var graphic = localacre.terrain.getGraphic();
+		var graphic = localacre.terrain.getGraphicArray();
 		return (graphic[0]);
 	};
 }
 
 function SetBySurround() {
-	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy) {
+	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		var cardinal_dash = "";
 		var north = 0;
 		var south = 0;
@@ -324,7 +347,7 @@ function SetBySurround() {
 	  graphics[0] = foo[0] + cardinal_dash + addtoname_cardinal + diagonal_dash + addtoname_diagonal + '.' + foo[1];
 	  if (vis == 0) { 
 	  	var black = localFactory.createTile('BlankBlack');
-	  	var blkgraphics = black.getGraphic();
+	  	var blkgraphics = black.getGraphicArray();
 	  	graphics[0] = blkgraphics[0];
 	  }
 	  if (graphics[0].indexOf("-nsew") != -1) { this.setBlockLOS(.5); }
@@ -333,7 +356,12 @@ function SetBySurround() {
 }
 
 function SetBySurroundCoast() {
-	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy) {
+	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
+		if (losresult >= LOS_THRESHOLD) {
+			var displaytile = localFactory.createTile('BlankBlack');
+			var displaygraphic = displaytile.getGraphicArray();
+			return displaygraphic;
+		}
     var ocean;
     var water;
     var shallow;
@@ -372,7 +400,7 @@ function SetBySurroundCoast() {
     else if (ocean) { chosentile = ocean; }
     else { return graphics; }
     
-    var chosengraphics = chosentile.getGraphic();
+    var chosengraphics = chosentile.getGraphicArray();
     graphics[0] = chosengraphics[0];
     graphics[2] = chosengraphics[2];
     graphics[3] = chosengraphics[3];
@@ -381,7 +409,13 @@ function SetBySurroundCoast() {
 }
 
 function SetBySurroundRoad() {
-	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy) {
+	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
+		if (losresult >= LOS_THRESHOLD) {
+			var displaytile = localFactory.createTile('BlankBlack');
+			var displaygraphic = displaytile.getGraphicArray();
+			return displaygraphic;
+		}
+
     var suffix = "";
 	  var localacre = themap.getTile(x+1,y);
 	  if (localacre != "OoB") {
@@ -412,7 +446,13 @@ function SetBySurroundRoad() {
 }
 
 function SetBySurroundRiver() {
-	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy) {
+	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
+		if (losresult >= LOS_THRESHOLD) {
+			var displaytile = localFactory.createTile('BlankBlack');
+			var displaygraphic = displaytile.getGraphicArray();
+			return displaygraphic;
+		}
+
 		var north;
 		var south;
 		var east;

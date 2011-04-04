@@ -57,10 +57,10 @@ function drawMainFrame(how, mapname, centerx, centery) {
 					localacre = FindBelow(j,i,themap);
 					displaytile = localacre.getTop();
 				}
-        var graphics = displaytile.getGraphic();
+        var graphics = displaytile.getGraphicArray();
         var showGraphic = graphics[0];
         if (typeof displaytile.setBySurround == "function") {
-        	graphics = displaytile.setBySurround(j,i,themap,graphics,1,centerx,centery);
+        	graphics = displaytile.setBySurround(j,i,themap,graphics,1,centerx,centery,losresult);
         	showGraphic = graphics[0];
         	if (typeof displaytile.doTile == "function") {
         		showGraphic = displaytile.doTile(j,i,showGraphic);
@@ -77,7 +77,7 @@ function drawMainFrame(how, mapname, centerx, centery) {
         	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="' + displaytile.getDesc() + '" /></td>';
         } else {
         	displaytile = localFactory.createTile('BlankBlack');
-        	graphics = displaytile.getGraphic();
+        	graphics = displaytile.getGraphicArray();
         	showGraphic = graphics[0];
         	mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="You cannot see that" /></td>';
         }
@@ -180,6 +180,9 @@ $(document).ready(function() {
     else { // ignore
     	
     }
+  }
+  else if (gamestate.getMode() == "choosedir") {
+  	var response = PerformTarget(code);
   }
   else if (gamestate.getMode() == "target") {
   	var response = PerformTarget(code);
