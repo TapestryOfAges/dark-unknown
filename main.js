@@ -182,7 +182,30 @@ $(document).ready(function() {
     }
   }
   else if (gamestate.getMode() == "choosedir") {
-  	var response = PerformTarget(code);
+  	var response = PerformChooseDir(code);
+  	if (response["fin"] == 1) { // direction chosen
+  		if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety())) {
+  			maintext.addText("Use from inventory not yet implemented.");
+  			maintext.setInputLine("&gt;");
+  			maintext.drawTextFrame();
+  			gamestate.setMode("player");
+  			return;
+  		}
+  		else {
+  			if (targetCursor.command == "u") { // USE
+  				PerformUse(PC);
+  			}
+  		}
+  	}
+  	else if (response["fin"] == -1) {   // anything not useful
+  		gamestate.setMode("choosedir");
+  	}
+  	else { // ESC hit
+  		maintext.setInputLine("&gt;");
+  		maintext.drawTextFrame();
+  		gamestate.setMode("player");
+  		return;
+  	}
   }
   else if (gamestate.getMode() == "target") {
   	var response = PerformTarget(code);
@@ -194,7 +217,7 @@ $(document).ready(function() {
   		$(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:'+posleft+'px;top:'+postop+'px;z-index:3" />');
   		gamestate.setMode("target");
   	}
-  	else if (response["fin"] == 2) { // look at the current target
+  	else if (response["fin"] == 2) { // act on the current target
   		if (targetCursor.command == "l") {
   			response = PerformLook();
   			maintext.addText(response["txt"]);
