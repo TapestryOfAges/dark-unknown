@@ -152,6 +152,8 @@ function PerformCommand(code) {
 		retval["input"] = "&gt; Use: ";
 		retval["fin"] = 2;
 		targetCursor.command = "u";
+		targetCursor.x = PC.getx();
+		targetCursor.y = PC.gety();
 	}
 	else if (code == 86) { // v
 		// volume - turns sound effects on and off
@@ -191,7 +193,41 @@ function PerformCommand(code) {
 	return retval;
 }
 
-
+function PerformChooseDir(code) {
+	var retval = new Object;
+	retval["fin"] = -1;
+	if ((code == 38) || (code == 219)) {  // UP ARROW or [
+		gamestate.setMode("null");
+		targetCursor.y -= 1;
+		retval["fin"] = 1;
+	}
+	else if ((code == 37) || (code == 59)) {  // LEFT ARROW or ;
+		gamestate.setMode("null");
+		targetCursor.x -= 1;
+		retval["fin"] = 1;
+	}
+	else if ((code == 39) || (code == 222)) {  // RIGHT ARROW or '
+		gamestate.setMode("null");
+		targetCursor.x += 1;
+		retval["fin"] = 1;
+	}
+	else if ((code == 40) || (code == 191)) {  // DOWN ARROW or /
+		gamestate.setMode("null");
+		targetCursor.y += 1;
+		retval["fin"] = 1;
+	}
+	else if ((code == 32) || (code == 13)) {  // ENTER or SPACE
+		gamestate.setMode("null");
+		retval["fin"] = 1;
+	}
+	else if (code ==27) {  // ESC
+		gamestate.setMode("null");
+		retval["fin"] = 0;
+		retval["txt"] = "";
+		retval["input"] = "&gt;";
+	}
+	return retval;
+}
 function PerformTarget(code)  {
 	var retval = new Object;
 	retval["fin"] = -1;
@@ -379,6 +415,10 @@ function PerformEnter(cmd) {
 			
 		}
 		return retval;
+}
+
+function PerformUse(who) {
+	
 }
 
 function PerformYell() {
