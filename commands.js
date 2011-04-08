@@ -418,7 +418,25 @@ function PerformEnter(cmd) {
 }
 
 function PerformUse(who) {
-	
+	var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+	var used = localacre.features.getTop();
+	var retval = new Object;
+	if (!used) {
+		retval["txt"] = "There is nothing to use there.";
+		retval["fin"] = 0;
+		return retval;
+	}
+	if (typeof used.useScript == "function") {
+		retval = used.useScript(who);
+		retval["fin"] = 1;
+		var usedname = used.getDesc();
+		usedname = usedname.replace(/^a /, "");
+		retval["txt"] = "Use " + usedname + ": " + retval["txt"];
+	} else {
+		retval["txt"] = "There is nothing to use there.";
+		retval["fin"] = 0;
+	}
+	return retval;
 }
 
 function PerformYell() {

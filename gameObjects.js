@@ -141,10 +141,14 @@ GameObject.prototype.getBlocksLOS = function(distance) {
 GameObject.prototype.getBlocksLOSArray = function() {
 	var LOSref = new Array;
 	LOSref[0] = this.blocklos;
-	LOSref[1] = this.losatdistance['distance'];
-	LOSref[2] = this.losatdistance['blocklos'];
-	LOSref[3] = this.losupclose['distance'];
-	LOSref[4] = this.losupclose['blocklos'];
+	if (this.losatdistance){
+		LOSref[1] = this.losatdistance['distance'];
+		LOSref[2] = this.losatdistance['blocklos'];
+	}
+	if (this.losupclose) {
+		LOSref[3] = this.losupclose['distance'];
+		LOSref[4] = this.losupclose['blocklos'];
+	}
 	
 	return LOSref;
 }
@@ -259,11 +263,11 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 	this.opengraphic = opengraphic;
 	// NOTE: These should be arrays in the standard graphics[0-3] style.
 	
-	this.useScript = function() {
+	this.useScript = function(who) {
 		var retval = new Object;
 		retval["fin"] = 0;
 		if (this.open == 1) {
-			this.setGraphicArray(opengraphic);
+			this.setGraphicArray(closedgraphic);
 			
 			this.setBlocksLOSArray(this.closedLOS);
 			this.closedLOS = new Array;
@@ -272,14 +276,17 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 			
 			retval["fin"] = 1;
 			retval["txt"] = "Closed!";
+			
+			this.open = 0;
 		} else {
 			if (typeof this.getLocked == "function") {
 				if (this.getLocked()) {
 					retval["fin"] = 1;
 					retval["txt"] = "Locked.";
+					return retval;
 				}
 			}
-			this.setGraphicArray(closedgraphic);
+			this.setGraphicArray(opengraphic);
 			
 			this.closedLOS = this.getBlocksLOSArray();
 			var seethru = new Array;
@@ -290,6 +297,7 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 			
 			retval["fin"] = 1;
 			retval["txt"] = "Opened!";
+			this.open = 1;
 		}
 		return retval;
 	}
@@ -1952,6 +1960,7 @@ function DoorWindowTile() {
 	this.desc = "a door";
 
 	SetByBelow.call(this);
+  Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0);
 }
 DoorWindowTile.prototype = new FeatureObject;
 
@@ -2010,6 +2019,7 @@ function DoorTile() {
 	this.desc = "a door";
 
 	SetByBelow.call(this);
+	Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0);
 }
 DoorTile.prototype = new FeatureObject;
 
