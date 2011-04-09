@@ -211,17 +211,17 @@ function changeselection(tilename) {
   $('#td_selectionimg').css("background-position", graphics[2] + "px " + graphics[3] + "px");
   document.images["selectionimg"].src = "graphics/" + graphics[1];
   if (selectionval.getType() == "terrain") {
-  	displayval='terrain';
+//  	displayval='terrain';
 //  	drawFeatures(0);
 //  	document.editlayer.layer[0].checked = true;
   }
   else if (selectionval.getType() == "feature") {
-  	displayval = 'feature';
+//  	displayval = 'feature';
 //  	drawFeatures(1);
 //  	document.editlayer.layer[1].checked = true;
   }
   else {
-  	displayval = 'all';
+//  	displayval = 'all';
 //  	drawFeatures(2);
 //  	document.editlayer.layer[2].checked = true;
   }
