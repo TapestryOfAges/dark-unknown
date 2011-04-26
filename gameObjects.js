@@ -1436,6 +1436,8 @@ function RoadTile() {
   this.blocklos = 0;
   this.desc = "a dirt road";
   
+  this.initdelay = 0.8;
+  
   SetBySurroundRoad.call(this);
 }
 RoadTile.prototype = new TerrainObject;
@@ -2227,6 +2229,7 @@ WalkOnTile.prototype = new FeatureObject;
 
 function ItemObject() {
 	this.item = 1;
+	this.quantity = 1;
 }
 ItemObject.prototype = new FeatureObject;
 
@@ -2239,7 +2242,8 @@ function RubyGemoftheSunTile() {
 	this.graphic = "sunruby.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0;
-	this.desc = "a ruby gem that harnesses the power of the sun";
+	this.desc = "ruby gem that harnesses the power of the sun";
+	this.prefix = "a ";
 }
 RubyGemoftheSunTile.prototype = new ItemObject;
 
