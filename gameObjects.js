@@ -2237,6 +2237,14 @@ ItemObject.prototype.isItem = new function() {
 	return this.item;
 }
 
+ItemObject.prototype.getQuantity = new function() {
+	return this.quantity;
+}
+
+ItemObject.prototype.setQuantity = new function(quant) {
+	this.quantity = quant;
+}
+
 function RubyGemoftheSunTile() {
 	this.name = "RubyGemoftheSun";
 	this.graphic = "sunruby.gif";
