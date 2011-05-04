@@ -29,6 +29,15 @@ Collection.prototype.getTop = function() {
   return this.container[this.container.length-1];
 }
 
+Collection.prototype.getByName = function(neededName) {
+	for (var i = 0; i < this.container.length; i++) {
+		if (this.container[i].getName() == neededName) {
+			return this.container[i];
+		}
+	}
+	return;
+}
+
 Collection.prototype.addTop = function(addthis) {
   this.container.push(addthis);
 }
@@ -48,3 +57,4 @@ Collection.prototype.deleteFrom = function(deletethis) {
 Collection.prototype.deleteAll = function() {
 	this.container = new Array;
 }
+
