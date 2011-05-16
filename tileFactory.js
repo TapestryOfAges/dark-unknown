@@ -909,3 +909,28 @@ tileFactory.prototype.makeWalkOnTile = function() {
 	var newTile = new WalkOnTile();
 	return newTile;
 }
+
+tileFactory.prototype.makeClothArmorTile = function() {
+	var newTile = new ClothArmorTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeLeatherArmorTile = function() {
+	var newTile = new LeatherArmorTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeChainArmorTile = function() {
+	var newTile = new ChainArmorTile();
+	return newTile;
+}
+
+tileFactory.prototype.makePlateArmorTile = function() {
+	var newTile = new PlateArmorTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeExoticArmorTile = function() {
+	var newTile = new ExoticArmorTile();
+	return newTile;
+}
