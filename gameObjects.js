@@ -2255,6 +2255,99 @@ function RubyGemoftheSunTile() {
 }
 RubyGemoftheSunTile.prototype = new ItemObject;
 
+// ARMOR
+
+function ArmorObject() {
+	this.defense = 0;
+	this.resist = 0;
+	this.strReq = 0;
+}
+ArmorObject.prototype = new ItemObject;
+
+ArmorObject.prototype.setDefense = function(newdef) {
+	this.defense = newdef;
+	return (this.defense);
+}
+
+ArmorObject.prototype.getDefense = function() {
+	return (this.defense);
+}
+
+ArmorObject.prototype.setResist = function(newresist) {
+	this.resist = newresist;
+	return (this.resist);
+}
+
+ArmorObject.prototype.getResist = function() {
+	return (this.resist);
+}
+
+ArmorObject.prototype.setReq = function(newreq) {
+	this.strReq = newreq;
+	return (this.strReq);
+}
+
+ArmorObject.prototype.getReq = function() {
+	return (this.strReq);
+}
+
+
+function ClothArmorTile() {
+	this.name = "ClothArmor";
+	this.defense = 15;
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = 0;
+	this.spriteyoffset = 0;
+	this.desc = "cloth armor";
+}
+ClothArmorTile.prototype = new ArmorObject;
+
+function LeatherArmorTile() {
+	this.name = "LeatherArmor";
+	this.defense = 30;
+	this.resist = 10;
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -32;
+	this.spriteyoffset = 0;
+	this.desc = "leather armor";
+}
+LeatherArmorTile.prototype = new ArmorObject;
+
+function ChainArmorTile() {
+	this.name = "ChainArmor";
+	this.defense = 55;
+	this.resist = 10;
+	this.strReq = 16;
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -64;
+	this.spriteyoffset = 0;
+	this.desc = "chain mail armor";
+}
+ChainArmorTile.prototype = new ArmorObject;
+
+function PlateArmorTile() {
+	this.name = "PlateArmor";
+	this.defense = 80;
+	this.resist = 15;
+	this.strReq = 20;
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -96;
+	this.spriteyoffset = 0;
+	this.desc = "plate armor";
+}
+PlateArmorTile.prototype = new ArmorObject;
+
+function ExoticArmorTile() {
+	this.name = "ExoticArmor";
+	this.defense = 100;
+	this.resist = 40;
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -128;
+	this.spriteyoffset = 0;
+	this.desc = "exotic armor";
+}
+ExoticArmorTile.prototype = new ArmorObject;
+
 
 // NPCs
 
