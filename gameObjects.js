@@ -2187,6 +2187,7 @@ BottomChairTile.prototype = new FeatureObject;
 function SecretDoorTile() {
 	this.name = "SecretDoor";
 	this.graphic = "056.gif";   // note: 024 is U4's secret door
+	this.overlay = "056.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.desc = "a wall";
