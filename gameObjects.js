@@ -2260,6 +2260,7 @@ RubyGemoftheSunTile.prototype = new ItemObject;
 
 function ArmorObject() {
 	this.defense = 0;
+	this.absorb = 0;
 	this.resist = 0;
 	this.strReq = 0;
 }
@@ -2283,6 +2284,15 @@ ArmorObject.prototype.getResist = function() {
 	return (this.resist);
 }
 
+ArmorObject.prototype.setAbsorb = function(newab) {
+	this.absorb = newab;
+	return (this.absorb);
+}
+
+ArmorObject.prototype.getAbsorb = function() {
+	return (this.absorb);
+}
+
 ArmorObject.prototype.setReq = function(newreq) {
 	this.strReq = newreq;
 	return (this.strReq);
@@ -2295,7 +2305,8 @@ ArmorObject.prototype.getReq = function() {
 
 function ClothArmorTile() {
 	this.name = "ClothArmor";
-	this.defense = 15;
+	this.defense = 5;
+	this.absorb = 10;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = 0;
 	this.spriteyoffset = 0;
@@ -2305,7 +2316,8 @@ ClothArmorTile.prototype = new ArmorObject;
 
 function LeatherArmorTile() {
 	this.name = "LeatherArmor";
-	this.defense = 30;
+	this.defense = 10;
+	this.absorb = 20;
 	this.resist = 10;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = -32;
@@ -2316,7 +2328,8 @@ LeatherArmorTile.prototype = new ArmorObject;
 
 function ChainArmorTile() {
 	this.name = "ChainArmor";
-	this.defense = 55;
+	this.defense = 20;
+	this.absorb = 33;
 	this.resist = 10;
 	this.strReq = 16;
 	this.graphic = "armorweapons.gif";
@@ -2328,7 +2341,8 @@ ChainArmorTile.prototype = new ArmorObject;
 
 function PlateArmorTile() {
 	this.name = "PlateArmor";
-	this.defense = 80;
+	this.defense = 35;
+	this.absorb = 50;
 	this.resist = 15;
 	this.strReq = 20;
 	this.graphic = "armorweapons.gif";
@@ -2340,7 +2354,8 @@ PlateArmorTile.prototype = new ArmorObject;
 
 function ExoticArmorTile() {
 	this.name = "ExoticArmor";
-	this.defense = 100;
+	this.defense = 40;
+	this.absorb = 60;
 	this.resist = 40;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = -128;
@@ -2349,6 +2364,12 @@ function ExoticArmorTile() {
 }
 ExoticArmorTile.prototype = new ArmorObject;
 
+// WEAPONS
+
+function WeaponObject() {
+	
+}
+WeaponObject.prototype = new ItemObject;
 
 // NPCs
 
