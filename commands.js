@@ -397,8 +397,8 @@ function PerformEnter(cmd) {
 		} else {
 			retval["fin"] = 1;
 			var newmap = new GameMap();
-			if (maps[destination]) {
-				newmap = maps[destination];
+			if (maps.getMap(destination)) {
+				newmap = maps.getMap(destination);
 			} else {
 				newmap.loadMap(destination);
 				maps.addMapByRef(newmap);
