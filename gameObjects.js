@@ -6,6 +6,7 @@ function GameObject() {
   
   this.serial = GetSerial();
 }
+GameObject.prototype = new Object;
 
 GameObject.prototype.getSerial = function() {
 	return this.serial;
@@ -199,6 +200,7 @@ GameObject.prototype.passable = function(movetype) {
 // These below are abstract classes, to be used only in JS's halfassed
 // version of multiple inheritance. 
 
+// Abstract class Lockable
 function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockeddesc, lockeddesc, maglockeddesc) {
 	this.locked = 0;
 	this.lockedgraphics = new Array(unlockedgraphic, lockedgraphic, maglockedgraphic);
@@ -214,6 +216,7 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockeddesc
 	this.unlockMe = function() { this.lockMe(0); }
 }
 
+// Abstract class Enterable
 function Enterable(entermap, enterx, entery) {
 	this.entermap = entermap;
 	this.enterx = enterx;
@@ -239,6 +242,7 @@ function Enterable(entermap, enterx, entery) {
   }
 }
 
+// Abstract class Light Emitting
 function LightEmitting(lightlevel) {
 	this.light = lightlevel;
 	this.ignite = function() {
@@ -255,6 +259,7 @@ function LightEmitting(lightlevel) {
 	}
 }
 
+// Abstract class Openable
 function Openable(closedgraphic, opengraphic, startsopen) {
 	this.open = startsopen;
 	
@@ -304,6 +309,7 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 	
 }
 
+// Abstract class Tiling
 function Tiling(tileval) {
 	this.doTile = function(tilingx,tilingy,tilegraphic) {
 		tilingx = (tilingx % tileval); 
@@ -313,6 +319,7 @@ function Tiling(tileval) {
 	}
 }
 
+// General func 
 function SetByBelow() {
 	this.setByBelow = function(x,y,themap) {
 		var localacre = themap.getTile(x,y);
@@ -321,6 +328,7 @@ function SetByBelow() {
 	};
 }
 
+// General func
 function SetBySurround() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		var cardinal_dash = "";
@@ -363,6 +371,7 @@ function SetBySurround() {
   }
 }
 
+// General func
 function SetBySurroundCoast() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
@@ -416,6 +425,7 @@ function SetBySurroundCoast() {
   }
 }
 
+// General func
 function SetBySurroundRoad() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
@@ -453,6 +463,7 @@ function SetBySurroundRoad() {
 	}
 }
 
+// General func
 function SetBySurroundRiver() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
@@ -529,6 +540,7 @@ function SetBySurroundRiver() {
 	}
 }
 
+// General func
 function IsWet(tile) {
 	if (tile.getName() == "Ocean") { return 1; }
 	if (tile.getName() == "Water") { return 1; }
@@ -536,7 +548,7 @@ function IsWet(tile) {
 	if (tile.getName() == "River") { return 1; }
 	return 0;
 }
-// end inheritance
+// end multiple inheritance
 
 function InanimateObject() {
   this.initdelay = 1;  // multiplicative
@@ -2256,6 +2268,24 @@ function RubyGemoftheSunTile() {
 }
 RubyGemoftheSunTile.prototype = new ItemObject;
 
+function DecorativeArmorTile() {
+	this.name = "DecorativeArmor";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -160;
+	this.desc = "decorative suit of armor";
+	this.blocklos = 0;
+	this.passable = MOVE_ETHEREAL;
+	this.prefix = "a ";
+}
+DecorativeArmorTile.prototype = new ItemObject;
+
+// Prototype for armor and weapons
+
+function EquippableItemObject() {
+	
+}
+EquippableItemObject.prototype = new ItemObject;
+
 // ARMOR
 
 function ArmorObject() {
@@ -2264,7 +2294,7 @@ function ArmorObject() {
 	this.resist = 0;
 	this.strReq = 0;
 }
-ArmorObject.prototype = new ItemObject;
+ArmorObject.prototype = new EquippableItemObject;
 
 ArmorObject.prototype.setDefense = function(newdef) {
 	this.defense = newdef;
@@ -2293,12 +2323,12 @@ ArmorObject.prototype.getAbsorb = function() {
 	return (this.absorb);
 }
 
-ArmorObject.prototype.setReq = function(newreq) {
+ArmorObject.prototype.setStrReq = function(newreq) {
 	this.strReq = newreq;
 	return (this.strReq);
 }
 
-ArmorObject.prototype.getReq = function() {
+ArmorObject.prototype.getStrReq = function() {
 	return (this.strReq);
 }
 
@@ -2367,9 +2397,202 @@ ExoticArmorTile.prototype = new ArmorObject;
 // WEAPONS
 
 function WeaponObject() {
+	this.hit = 0;
+	this.reduceArmor = 0;
+	this.damage = 0;
+	this.strdamage = 0;
+}
+WeaponObject.prototype = new EquippableItemObject;
+
+WeaponObject.prototype.getHit = function() {
+	return this.hit;
+}
+
+WeaponObject.prototype.setHit = function(newhit) {
+	this.hit = newhit;
+	return parseInt(this.hit);
+}
+
+WeaponObject.prototype.getReduceArmor = function() {
+	return this.reduceArmor;
+}
+
+WeaponObject.prototype.setReduceArmor = function(newreduce) {
+	this.reduceArmor = parseInt(newreduce);
+	return this.reduceArmor;
+}
+
+WeaponObject.prototype.getDamage = function() {
+	return this.damage;
+}
+
+WeaponObject.prototype.setDamage = function(newdam) {
+	this.damage = newdam;
+	return this.damage;
+}
+
+WeaponObject.prototype.rollDamage = function() {
 	
 }
-WeaponObject.prototype = new ItemObject;
+
+function FistsTile() {
+	this.name = "Fists";
+	this.damage = "1d2";
+	this.strdamage = "1/15";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -192;
+	this.spriteyoffset = -32;
+	this.desc = "your fists";
+}
+FistsTile.prototype = new WeaponObject;
+
+function DaggerTile() {
+	this.name = "Dagger";
+	this.damage = "1d5";
+	this.strdamage = "1/15";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = 0;
+	this.spriteyoffset = -32;
+	this.desc = "dagger";
+	this.prefix = "a ";
+}
+DaggerTile.prototype = new WeaponObject;
+
+function ShortswordTile() {
+	this.name = "Shortsword";
+	this.damage = "2d4+1";
+	this.strdamage = "1/15";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -32;
+	this.spriteyoffset = -32;
+	this.desc = "shortsword";
+	this.prefix = "a ";
+}
+ShortswordTile.prototype = new WeaponObject;
+
+function MaceTile() {
+	this.name = "Mace";
+	this.damage = "2d4+3";
+	this.strdamage = "1/5";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -64;
+	this.spriteyoffset = -32;
+	this.desc = "mace";
+	this.prefix = "a ";
+}
+MaceTile.prototype = new WeaponObject;
+
+function AxeTile() {
+	this.name = "Axe";
+	this.damage = "2d4+8";
+	this.strdamage = "1/10";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -96;
+	this.spriteyoffset = -32;
+	this.desc = "axe";
+	this.prefix = "an ";
+}
+AxeTile.prototype = new WeaponObject;
+
+function LongswordTile() {
+	this.name = "Longsword";
+	this.damage = "4d4+9";
+	this.strdamage = "1/10";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -128;
+	this.spriteyoffset = -32;
+	this.desc = "longsword";
+	this.prefix = "a ";
+}
+LongswordTile.prototype = new WeaponObject;
+
+function HalberdTile() {
+	this.name = "Halberd";
+	this.damage = "5d4+15";
+	this.strdamage = "1/3";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -160;
+	this.spriteyoffset = -32;
+	this.desc = "halberd";
+	this.prefix = "a ";
+}
+HalberdTile.prototype = new WeaponObject;
+
+function MagicSwordTile() {
+	this.name = "Dagger";
+	this.damage = "5d10+22";
+	this.strdamage = "1/5";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -192;
+	this.spriteyoffset = -32;
+	this.desc = "magic sword";
+	this.prefix = "a ";
+}
+DaggerTile.prototype = new WeaponObject;
+
+function MissileWeaponObject() {
+	this.mindex = 10;
+	this.range = 5;
+}
+MissileWeaponObject.prototype = new WeaponObject;
+
+function SlingTile() {
+	this.name = "Sling";
+	this.damage = "1d3";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = 0;
+	this.spriteyoffset = -64;
+	this.desc = "sling";
+	this.prefix = "a ";
+}
+SlingTile.prototype = new MissileWeaponObject;
+
+function BowTile() {
+	this.name = "Bow";
+	this.damage = "1d12+1";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -32;
+	this.spriteyoffset = -64;
+	this.desc = "bow";
+	this.prefix = "a ";
+}
+BowTile.prototype = new MissileWeaponObject;
+
+function CrossbowTile() {
+	this.name = "Crossbow";
+	this.damage = "4d8-1";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -64;
+	this.spriteyoffset = -64;
+	this.desc = "crossbow";
+	this.prefix = "a ";
+}
+CrossbowTile.prototype = new MissileWeaponObject;
+
+function WandTile() {
+	this.name = "Wand";
+	this.damage = "4d12";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -96;
+	this.spriteyoffset = -64;
+	this.desc = "magic wand";
+	this.prefix = "a ";
+}
+WandTile.prototype = new MissileWeaponObject;
+
+function MagicAxeTile() {
+	this.name = "MagicAxe";
+	this.damage = "4d12+12";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = -128;
+	this.spriteyoffset = -64;
+	this.desc = "magic axe";
+	this.prefix = "a ";
+}
+MagicAxeTile.prototype = new MissileWeaponObject;
+
+
+
 
 // NPCs
 
