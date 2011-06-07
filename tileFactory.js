@@ -934,3 +934,74 @@ tileFactory.prototype.makeExoticArmorTile = function() {
 	var newTile = new ExoticArmorTile();
 	return newTile;
 }
+
+tileFactory.prototype.makeFistsTile = function() {
+	var newTile = new FistsTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeDaggerTile = function() {
+	var newTile = new DaggerTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeShortswordTile = function() {
+	var newTile = new ShortswordTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeMaceTile = function() {
+	var newTile = new MaceTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeAxeTile = function() {
+	var newTile = new AxeTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeLongswordTile = function() {
+	var newTile = new LongswordTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeHalberdTile = function() {
+	var newTile = new HalberdTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeMagicSwordTile = function() {
+	var newTile = new MagicSwordTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeSlingTile = function() {
+	var newTile = new SlingTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeBowTile = function() {
+	var newTile = new BowTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeCrossbowTile = function() {
+	var newTile = new CrossbowTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeWandTile = function() {
+	var newTile = new WandTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeMagicAxeTile = function() {
+	var newTile = new MagicAxeTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeDecorativeArmorTile = function() {
+	var newTile = new DecorativeArmorTile();
+	return newTile;
+}
+
