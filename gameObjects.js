@@ -1454,105 +1454,6 @@ function RoadTile() {
 }
 RoadTile.prototype = new TerrainObject;
 
-function RoadENTile() {
-  this.name = "RoadEN";
-  this.graphic = "road-en.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.desc = "a dirt road";
-}
-RoadENTile.prototype = new TerrainObject;
-
-function RoadENSTile() {
-  this.name = "RoadENS";
-  this.graphic = "road-ens.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.desc = "a dirt road";
-}
-RoadENSTile.prototype = new TerrainObject;
-
-function RoadESTile() {
-  this.name = "RoadES";
-  this.graphic = "road-es.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.desc = "a dirt road";
-}
-RoadESTile.prototype = new TerrainObject;
-
-function RoadEWTile() {
-  this.name = "RoadEW";
-  this.graphic = "road-ew.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.desc = "a dirt road";
-}
-RoadEWTile.prototype = new TerrainObject;
-
-function RoadEWNTile() {
-  this.name = "RoadEWN";
-  this.graphic = "road-ewn.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.desc = "a dirt road";
-}
-RoadEWNTile.prototype = new TerrainObject;
-
-function RoadEWSTile() {
-  this.name = "RoadEWS";
-  this.graphic = "road-ews.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.desc = "a dirt road";
-}
-RoadEWSTile.prototype = new TerrainObject;
-
-function RoadNSTile() {
-  this.name = "RoadNS";
-  this.graphic = "road-ns.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.desc = "a dirt road";
-}
-RoadNSTile.prototype = new TerrainObject;
-
-function RoadWNTile() {
-  this.name = "RoadWN";
-  this.graphic = "road-wn.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.desc = "a dirt road";
-}
-RoadWNTile.prototype = new TerrainObject;
-
-function RoadWNSTile() {
-  this.name = "RoadWNS";
-  this.graphic = "road-wns.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.desc = "a dirt road";
-}
-RoadWNSTile.prototype = new TerrainObject;
-
-function RoadWSTile() {
-  this.name = "RoadWS";
-  this.graphic = "road-ws.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.desc = "a dirt road";
-}
-RoadWSTile.prototype = new TerrainObject;
-
-function RoadXTile() {
-  this.name = "RoadX";
-  this.graphic = "road-x.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.desc = "a dirt road";
-}
-RoadXTile.prototype = new TerrainObject;
-
 function BrushTile() {
   this.name = "Brush";
   this.graphic = "122.gif";
@@ -1739,7 +1640,7 @@ function CaveFloorTile() {
 	
 	Tiling.call(this, 2);
 }
-CaveFloorTile.prototype =  new TerrainObject;
+CaveFloorTile.prototype = new TerrainObject;
 
 function CaveWallTile() {
 	this.name = "CaveWall";
@@ -2519,7 +2420,7 @@ function HalberdTile() {
 HalberdTile.prototype = new WeaponObject;
 
 function MagicSwordTile() {
-	this.name = "Dagger";
+	this.name = "MagicSword";
 	this.damage = "5d10+22";
 	this.strdamage = "1/5";
 	this.graphic = "armorweapons.gif";
@@ -2528,10 +2429,10 @@ function MagicSwordTile() {
 	this.desc = "magic sword";
 	this.prefix = "a ";
 }
-DaggerTile.prototype = new WeaponObject;
+MagicSwordTile.prototype = new WeaponObject;
 
 function MissileWeaponObject() {
-	this.mindex = 10;
+	this.dexReq = 10;
 	this.range = 5;
 }
 MissileWeaponObject.prototype = new WeaponObject;
@@ -2553,6 +2454,7 @@ function BowTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = -32;
 	this.spriteyoffset = -64;
+	this.dexReq = 16;
 	this.desc = "bow";
 	this.prefix = "a ";
 }
@@ -2564,6 +2466,7 @@ function CrossbowTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = -64;
 	this.spriteyoffset = -64;
+	this.dexReq = 19;
 	this.desc = "crossbow";
 	this.prefix = "a ";
 }
@@ -2586,6 +2489,7 @@ function MagicAxeTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = -128;
 	this.spriteyoffset = -64;
+	this.dexReq = 22;
 	this.desc = "magic axe";
 	this.prefix = "a ";
 }
