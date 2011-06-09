@@ -142,5 +142,9 @@ foreach my $line (@gameobjects) {
 
 print "<html><head><title>Dark Unknown Objects</title>\n";
 print '<script language="JavaScript" src="external/jquery-1.3.2.js"></script>\n';
+print "<style type='text/css'>\n";
+
+print "</style>\n";
 print "</head><body>";
+
 
