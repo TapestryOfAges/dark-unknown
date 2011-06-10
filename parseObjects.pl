@@ -147,4 +147,17 @@ print "<style type='text/css'>\n";
 print "</style>\n";
 print "</head><body>";
 
+printcat("GameObject");
+printcat("InanimateObject");
+printcat("TerrainObject");
+printcat("FeatureObject");
+printcat("ItemObject");
+printcat("EquippableItemObject");
+printcat("ArmorObject");
+printcat("WeaponObject");
+printcat("AnimateObject");
+
+sub printcat(category) {
+  
+}
 
