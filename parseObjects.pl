@@ -72,6 +72,9 @@ foreach my $line (@gameobjects) {
 	    $allobjs{$currentobj}{"enterable"} = 1;
 #	    print STDERR "$currentobj enterable\n";
 	  }
+	  if ($line =~ /Lockable\.call\(/) {
+	    $allobjs{$currentobj}{"lockable"} = 1;
+	  }
     if ($line =~ /this\.invisible\s*=\s*(.+);/) {
 	    $allobjs{$currentobj}{"invisible"}= $1;
 #	    print STDERR "$currentobj invisible $1\n";
@@ -164,11 +167,12 @@ printcat("ItemObject");
 printcat("EquippableItemObject");
 printcat("ArmorObject");
 printcat("WeaponObject");
+printcat("MissileWeaponObject");
 printcat("AnimateObject");
 
 sub printcat() {
   my ($category) = @_;
-  print "<center><table border='0' padding='0' cellspacing='0' class='obj'><tr><td><span style='font-color:#dddddd; font-weight:bold'>$category</span><br />";
+  print "<center><table border='0' padding='0' cellspacing='0' class='obj'><tr><td><span style='color:#dddddd; font-weight:bold'>$category</span><br />";
   if (exists $allobjs{$category}{"prefix"}) {
     print "<span style='font-style:italic'>$allobjs{$category}{'prefix'}</span> ";
   }
@@ -182,11 +186,42 @@ sub printcat() {
   foreach my $func (@{$allobjs{$category}{"functions"}}) {
     print "$func<br />";
   }
-  print "</span><br />Inherit From: $allobjs{$category}{'inheritfrom'}</td></tr></table></center><br />";
+  print "</span><br />Inherit From: $allobjs{$category}{'inheritfrom'}</td></tr></table><br />";
   
-  foreach my $obj (%allobjs) {
-    if ($allobjs{$obj}{'inheritfrom'} eq $category) {
-       
+  my $celliter = 0;
+  print "<table cellpadding='0' cellspacing='3' border='0' width='100%'><tr>";
+  
+  foreach my $obj (sort keys %allobjs) {
+    if (($allobjs{$obj}{'inheritfrom'} eq $category) and (!($obj =~ /Object/))) {
+      print "<td><table border='0' cellpadding='0' cellspacing='6' class='obj'>";
+      if (!exists $allobjs{$obj}{'spritexoffset'}) { $allobjs{$obj}{'spritexoffset'} = "0"; }
+      if (!exists $allobjs{$obj}{'spriteyoffset'}) { $allobjs{$obj}{'spriteyoffset'} = "0"; }
+      if (!exists $allobjs{$obj}{'overlay'}) { $allobjs{$obj}{'overlay'} = "spacer.gif"; }
+      print "<tr><td width='32' height='32' style=\"background-image:url('graphics/$allobjs{$obj}{'graphic'}'); background-repeat:no-repeat; background-position: $allobjs{$obj}{'spritexoffset'}px $allobjs{$obj}{'spriteyoffset'}px;\"><img src=\"graphics/$allobjs{$obj}{'overlay'}\" border=\"0\" width=\"32\" height=\"32\" style=\"position: relative; z-index:1;\" /></td>";
+      print "<td><span style='color:#dddddd; font-weight: bold'>$allobjs{$obj}{'name'}</span></td></tr>";
+      print "<tr><td colspan='2'>";
+      foreach my $prop (sort keys %{$allobjs{$obj}}) {
+        if (($prop ne "functions") and ($prop ne "name") and ($prop ne "desc") and ($prop ne "prefix") and ($prop ne "inheritfrom")
+              and ($prop ne "graphic") and ($prop ne "spritexoffset") and ($prop ne "spriteyoffset") and ($prop ne "overlay")) {
+          print "$prop: $allobjs{$obj}{$prop}<br />";
+        }
+      } 
+      print "</td></tr>";
+      if ($allobjs{$obj}{"functions"}) {
+        print "<tr><td colspan='2'><span style='font-weight:bold' onClick='toggleShow(\"$obj\")'>Functions:</span><br /><span style='display:none' id='$obj'>";
+        foreach my $func (@{$allobjs{$obj}{"functions"}}) {
+          print "$func<br />";
+        }
+        print "</span></td></tr>";
+      }
+ #     print "<tr><td colspan='2'>Inherit From: $allobjs{$obj}{'inheritfrom'}</td></tr>";
+      print "<tr><td colspan='2'><span style='font-style:italic'>";
+      if (exists $allobjs{$obj}{"prefix"}) {
+        print "<span style='font-style:italic'>$allobjs{$obj}{'prefix'}</span> ";
+      }
+      print "<span style='font-style:italic'>$allobjs{$obj}{'desc'}</span></td></tr></table></td>";
+      $celliter++;
+      if ($celliter % 3 == 0) { print "</tr><tr>\n"; }
     }
   }
 }
