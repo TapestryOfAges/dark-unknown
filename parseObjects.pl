@@ -203,6 +203,13 @@ sub printcat() {
       foreach my $prop (sort keys %{$allobjs{$obj}}) {
         if (($prop ne "functions") and ($prop ne "name") and ($prop ne "desc") and ($prop ne "prefix") and ($prop ne "inheritfrom")
               and ($prop ne "graphic") and ($prop ne "spritexoffset") and ($prop ne "spriteyoffset") and ($prop ne "overlay")) {
+          if ($prop eq "passable") {
+            $allobjs{$obj}{$prop} =~ s\MOVE_SWIM\<span style="color:#3333ff">Swim</span>\;
+            $allobjs{$obj}{$prop} =~ s\MOVE_ETHEREAL\<span style="color:#ffffff">Ethereal</span>\;
+            $allobjs{$obj}{$prop} =~ s\MOVE_LEVITATE\<span style="color:#ff3333">Levitate</span>\;
+            $allobjs{$obj}{$prop} =~ s\MOVE_WALK\<span style="color:#33ff33">Walk</span>\;
+            $allobjs{$obj}{$prop} =~ s\MOVE_FLY\<span style="color:cyan">Fly</span>\;
+          }
           print "$prop: $allobjs{$obj}{$prop}<br />";
         }
       } 
