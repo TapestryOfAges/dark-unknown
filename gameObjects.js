@@ -1236,174 +1236,6 @@ function RiverTile() {
 }
 RiverTile.prototype = new TerrainObject;
 
-function RiverNSTile() {
-  this.name = "RiverNS";
-  this.overlay = "riverns.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverNSTile.prototype = new TerrainObject;
-
-function RiverEWTile() {
-  this.name = "RiverEW";
-  this.overlay = "riverew.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverEWTile.prototype = new TerrainObject;
-
-function RiverNETile() {
-  this.name = "RiverNE";
-  this.overlay = "riverne.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverNETile.prototype = new TerrainObject;
-
-function RiverNWTile() {
-  this.name = "RiverNW";
-  this.overlay = "rivernw.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverNWTile.prototype = new TerrainObject;
-
-function RiverSETile() {
-  this.name = "RiverSE";
-  this.overlay = "riverse.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverSETile.prototype = new TerrainObject;
-
-function RiverSWTile() {
-  this.name = "RiverSW";
-  this.overlay = "riversw.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverSWTile.prototype = new TerrainObject;
-
-function RiverTbottomTile() {
-  this.name = "RiverTbottom";
-  this.overlay = "riverTbottom.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverTbottomTile.prototype = new TerrainObject;
-
-function RiverTleftTile() {
-  this.name = "RiverTleft";
-  this.overlay = "riverTleft.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverTleftTile.prototype = new TerrainObject;
-
-function RiverTrightTile() {
-  this.name = "RiverTright";
-  this.overlay = "riverTright.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverTrightTile.prototype = new TerrainObject;
-
-function RiverTtopTile() {
-  this.name = "RiverTtop";
-  this.overlay = "riverTtop.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverTtopTile.prototype = new TerrainObject;
-
-function RiverSourceNTile() {
-  this.name = "RiverSourceN";
-  this.overlay = "riversourcen.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverSourceNTile.prototype = new TerrainObject;
-
-function RiverSourceSTile() {
-  this.name = "RiverSourceS";
-  this.overlay = "riversources.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverSourceSTile.prototype = new TerrainObject;
-
-function RiverSourceETile() {
-  this.name = "RiverSourceE";
-  this.overlay = "riversourcee.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverSourceETile.prototype = new TerrainObject;
-
-function RiverSourceWTile() {
-  this.name = "RiverSourceW";
-  this.overlay = "riversourcew.gif";
-  this.graphic = "flowing_animations.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
-  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
-  this.blocklos = 0;
-  this.desc = "a river";
-}
-RiverSourceWTile.prototype = new TerrainObject;
-
 function CobblestoneTile() {
   this.name = "Cobblestone";
   this.graphic = "103.gif";
@@ -2172,7 +2004,7 @@ RubyGemoftheSunTile.prototype = new ItemObject;
 function DecorativeArmorTile() {
 	this.name = "DecorativeArmor";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -160;
+	this.spritexoffset = "-160";
 	this.desc = "decorative suit of armor";
 	this.blocklos = 0;
 	this.passable = MOVE_ETHEREAL;
@@ -2239,8 +2071,8 @@ function ClothArmorTile() {
 	this.defense = 5;
 	this.absorb = 10;
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = 0;
-	this.spriteyoffset = 0;
+	this.spritexoffset = "0";
+	this.spriteyoffset = "0";
 	this.desc = "cloth armor";
 }
 ClothArmorTile.prototype = new ArmorObject;
@@ -2251,8 +2083,8 @@ function LeatherArmorTile() {
 	this.absorb = 20;
 	this.resist = 10;
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -32;
-	this.spriteyoffset = 0;
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "0";
 	this.desc = "leather armor";
 }
 LeatherArmorTile.prototype = new ArmorObject;
@@ -2264,8 +2096,8 @@ function ChainArmorTile() {
 	this.resist = 10;
 	this.strReq = 16;
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -64;
-	this.spriteyoffset = 0;
+	this.spritexoffset = "-64";
+	this.spriteyoffset = "0";
 	this.desc = "chain mail armor";
 }
 ChainArmorTile.prototype = new ArmorObject;
@@ -2277,8 +2109,8 @@ function PlateArmorTile() {
 	this.resist = 15;
 	this.strReq = 20;
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -96;
-	this.spriteyoffset = 0;
+	this.spritexoffset = "-96";
+	this.spriteyoffset = "0";
 	this.desc = "plate armor";
 }
 PlateArmorTile.prototype = new ArmorObject;
@@ -2289,8 +2121,8 @@ function ExoticArmorTile() {
 	this.absorb = 60;
 	this.resist = 40;
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -128;
-	this.spriteyoffset = 0;
+	this.spritexoffset = "-128";
+	this.spriteyoffset = "0";
 	this.desc = "exotic armor";
 }
 ExoticArmorTile.prototype = new ArmorObject;
@@ -2341,8 +2173,8 @@ function FistsTile() {
 	this.damage = "1d2";
 	this.strdamage = "1/15";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -192;
-	this.spriteyoffset = -32;
+	this.spritexoffset = "-224";
+	this.spriteyoffset = "-32";
 	this.desc = "your fists";
 }
 FistsTile.prototype = new WeaponObject;
@@ -2352,8 +2184,8 @@ function DaggerTile() {
 	this.damage = "1d5";
 	this.strdamage = "1/15";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = 0;
-	this.spriteyoffset = -32;
+	this.spritexoffset = "0";
+	this.spriteyoffset = "-32";
 	this.desc = "dagger";
 	this.prefix = "a ";
 }
@@ -2364,8 +2196,8 @@ function ShortswordTile() {
 	this.damage = "2d4+1";
 	this.strdamage = "1/15";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -32;
-	this.spriteyoffset = -32;
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "-32";
 	this.desc = "shortsword";
 	this.prefix = "a ";
 }
@@ -2376,8 +2208,8 @@ function MaceTile() {
 	this.damage = "2d4+3";
 	this.strdamage = "1/5";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -64;
-	this.spriteyoffset = -32;
+	this.spritexoffset = "-64";
+	this.spriteyoffset = "-32";
 	this.desc = "mace";
 	this.prefix = "a ";
 }
@@ -2388,8 +2220,8 @@ function AxeTile() {
 	this.damage = "2d4+8";
 	this.strdamage = "1/10";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -96;
-	this.spriteyoffset = -32;
+	this.spritexoffset = "-96";
+	this.spriteyoffset = "-32";
 	this.desc = "axe";
 	this.prefix = "an ";
 }
@@ -2400,8 +2232,8 @@ function LongswordTile() {
 	this.damage = "4d4+9";
 	this.strdamage = "1/10";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -128;
-	this.spriteyoffset = -32;
+	this.spritexoffset = "-128";
+	this.spriteyoffset = "-32";
 	this.desc = "longsword";
 	this.prefix = "a ";
 }
@@ -2412,8 +2244,8 @@ function HalberdTile() {
 	this.damage = "5d4+15";
 	this.strdamage = "1/3";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -160;
-	this.spriteyoffset = -32;
+	this.spritexoffset = "-160";
+	this.spriteyoffset = "-32";
 	this.desc = "halberd";
 	this.prefix = "a ";
 }
@@ -2424,8 +2256,8 @@ function MagicSwordTile() {
 	this.damage = "5d10+22";
 	this.strdamage = "1/5";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -192;
-	this.spriteyoffset = -32;
+	this.spritexoffset = "-192";
+	this.spriteyoffset = "-32";
 	this.desc = "magic sword";
 	this.prefix = "a ";
 }
@@ -2441,8 +2273,8 @@ function SlingTile() {
 	this.name = "Sling";
 	this.damage = "1d3";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = 0;
-	this.spriteyoffset = -64;
+	this.spritexoffset = "0";
+	this.spriteyoffset = "-64";
 	this.desc = "sling";
 	this.prefix = "a ";
 }
@@ -2452,8 +2284,8 @@ function BowTile() {
 	this.name = "Bow";
 	this.damage = "1d12+1";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -32;
-	this.spriteyoffset = -64;
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "-64";
 	this.dexReq = 16;
 	this.desc = "bow";
 	this.prefix = "a ";
@@ -2464,8 +2296,8 @@ function CrossbowTile() {
 	this.name = "Crossbow";
 	this.damage = "4d8-1";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -64;
-	this.spriteyoffset = -64;
+	this.spritexoffset = "-64";
+	this.spriteyoffset = "-64";
 	this.dexReq = 19;
 	this.desc = "crossbow";
 	this.prefix = "a ";
@@ -2476,8 +2308,8 @@ function WandTile() {
 	this.name = "Wand";
 	this.damage = "4d12";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -96;
-	this.spriteyoffset = -64;
+	this.spritexoffset = "-96";
+	this.spriteyoffset = "-64";
 	this.desc = "magic wand";
 	this.prefix = "a ";
 }
@@ -2487,8 +2319,8 @@ function MagicAxeTile() {
 	this.name = "MagicAxe";
 	this.damage = "4d12+12";
 	this.graphic = "armorweapons.gif";
-	this.spritexoffset = -128;
-	this.spriteyoffset = -64;
+	this.spritexoffset = "-128";
+	this.spriteyoffset = "-64";
 	this.dexReq = 22;
 	this.desc = "magic axe";
 	this.prefix = "a ";
