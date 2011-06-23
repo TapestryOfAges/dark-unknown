@@ -20,6 +20,20 @@ Collection.prototype.getAll = function() {
   return this.container;
 }
 
+Collection.prototype.getAllSorted = function() {
+  var tmparray = new Array;
+  tmparray = this.container.slice(0);
+  tmparray.sort(function(a,b) {
+    var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+    if (nameA < nameB) 
+      return -1
+    if (nameA > nameB)
+      return 1
+     return 0 
+  }); 
+  return tmparray;
+}
+
 Collection.prototype.getTopAt = function(x,y) {
 	var allat = this.getAt(x,y);
 	return allat[allat.length-1];
