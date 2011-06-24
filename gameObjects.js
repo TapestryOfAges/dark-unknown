@@ -2352,7 +2352,9 @@ function NPCObject() {
 	this.dex = 10;
 	this.int = 10
 	this.hp = 10;
+	this.maxhp = 10;
 	this.mana = 10;
+	this.maxmana = 10;
 	this.level = 0
 	this.type = "npc";
 	this.npcname = "myname";
@@ -2388,12 +2390,29 @@ NPCObject.prototype.getMana = function() {
 	return this.mana;
 }
 
+NPCObject.prototype.setMaxMana = function(newMana) {
+	if (newMana == -1) { this.maxmana = this.int; }
+	else {this.maxmana = newMana; }
+}
+
+NPCObject.prototype.getMaxMana = function() {
+	return this.maxmana;
+}
+
 NPCObject.prototype.setHP = function(newhp) {
 	this.hp = newhp;
 }
 
 NPCObject.prototype.getHP = function() {
 	return this.hp;
+}
+
+NPCObject.prototype.setMaxHP = function(newhp) {
+	this.maxhp = newhp;
+}
+
+NPCObject.prototype.getMaxHP = function() {
+	return this.maxhp;
 }
 
 NPCObject.prototype.modHP = function(hpdiff) {
