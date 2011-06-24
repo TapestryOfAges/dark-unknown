@@ -178,7 +178,12 @@ function PerformCommand(code) {
 	}
 	else if (code == 90) { // z
 		// zstats
-		
+    gamestate.setMode("zstats");
+    retval["txt"] = "";
+    retval["input"] = "&gt; Zstats- ";
+    retval["fin"] = 2;		
+    
+    DrawStats(1);
 	}
 	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
 		// pass
@@ -454,4 +459,20 @@ function PerformYell() {
 		retval["fin"] = 1;
 		return retval;
 	}
+}
+
+function DrawStats(page) {
+  var statsdiv = "&nbsp;";
+  statsdiv += "<div class='zstats'>";
+  statsdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
+  statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td>LEVEL: " + PC.getLevel() + "</tr>";
+  statsdiv += "<tr><td style='width:50%'>HP: " + PC.getHP() + "/" + PC.getMaxHP() + "</td><td></td>";
+  statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
+  statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
+  statsdiv += "<tr><td colspan='3'>STR: " + PC.getstr() + "</td></tr>";
+  statsdiv += "<tr><td colspan='3'>DEX: " + PC.getdex() + "</td></tr>";
+  statsdiv += "<tr><td colspan='3'>INT: " + PC.getint() + "</td></tr>";
+  
+  statsdiv += "</table></div>";
+  $('#displayframe').html(statsdiv);
 }
