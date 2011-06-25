@@ -100,8 +100,7 @@ $(document).ready(function() {
 	
 	gamestate.loadGame();
   drawCharFrame();
-  
-  
+    
   PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
   drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
