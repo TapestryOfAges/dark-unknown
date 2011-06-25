@@ -2065,6 +2065,15 @@ ArmorObject.prototype.getStrReq = function() {
 	return (this.strReq);
 }
 
+function NaturalArmorTile() {
+  this.name="NatureArmor";
+  this.defense = 5;
+  this.absorb = 10;
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "0";
+  this.desc = "natural armor";
+}
 
 function ClothArmorTile() {
 	this.name = "ClothArmor";
@@ -2132,7 +2141,7 @@ ExoticArmorTile.prototype = new ArmorObject;
 function WeaponObject() {
 	this.hit = 0;
 	this.reduceArmor = 0;
-	this.damage = 0;
+	this.damage = "1d1+0";
 	this.strdamage = 0;
 }
 WeaponObject.prototype = new EquippableItemObject;
@@ -2164,13 +2173,38 @@ WeaponObject.prototype.setDamage = function(newdam) {
 	return this.damage;
 }
 
+WeaponObject.prototype.parseDamage = function() {
+  var dmgobj = new Object;
+  var tmpobj = new Array;
+  tmpobj = this.getDamage().split("+");
+  dmgobj.plus = parseInt(tmpobj[1]);
+  tmpobj = tmpobj[0].split("d");
+  dmgobj.dice = parseInt(tmpobj[1]);
+  dmgobj.quantity = parseInt(tmpobj[0]);
+  
+  return dmgobj;
+}
+
 WeaponObject.prototype.rollDamage = function() {
-	
+  var dmgobj = this.parseDamage();
+  var damage = dmgobj.plus;
+  for (var i = 1; i <= dmgobj.quantity; i++) {
+    damage += Math.floor(Math.random() * dmgobj.dice)+ 1;
+  }	
+  
+  return damage;
+}
+
+WeaponObject.prototype.getAveDamage = function() {
+  var dmgobj = this.parseDamage();
+  var damage = dmgobj.plus;
+  damage += (dmgobj.quantity * (dmgobj.dice + 1)/2);
+  return damage;
 }
 
 function FistsTile() {
 	this.name = "Fists";
-	this.damage = "1d2";
+	this.damage = "1d2+0";
 	this.strdamage = "1/15";
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-224";
@@ -2181,7 +2215,7 @@ FistsTile.prototype = new WeaponObject;
 
 function DaggerTile() {
 	this.name = "Dagger";
-	this.damage = "1d5";
+	this.damage = "1d5+0";
 	this.strdamage = "1/15";
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "0";
@@ -2271,7 +2305,7 @@ MissileWeaponObject.prototype = new WeaponObject;
 
 function SlingTile() {
 	this.name = "Sling";
-	this.damage = "1d3";
+	this.damage = "1d3+0";
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-64";
@@ -2294,7 +2328,7 @@ BowTile.prototype = new MissileWeaponObject;
 
 function CrossbowTile() {
 	this.name = "Crossbow";
-	this.damage = "4d8-1";
+	this.damage = "4d8+-1";
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-64";
@@ -2306,7 +2340,7 @@ CrossbowTile.prototype = new MissileWeaponObject;
 
 function WandTile() {
 	this.name = "Wand";
-	this.damage = "4d12";
+	this.damage = "4d12+0";
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-64";
@@ -2341,7 +2375,7 @@ AnimateObject.prototype.pickGraphic = new function() {
 	if (this.altGraphics) {
   	var options = this.altGraphics.length;
 	  if (options > 0) {
-		  var randomnumber=Math.floor(Math.random()*options);
+		  var randomnumber=Math.floor(Math.random()*options) + 1;
 		  this.setGraphic(altGraphics[randomnumber]);
 	  }
 	}
@@ -2369,6 +2403,10 @@ function NPCObject() {
 	this.missileAttackAs = "none";
 	this.initmult = 1;
 	this.movetype = MOVE_WALK;
+	this.inventory = new Collection;
+	this.armor;
+	this.weapon;
+	this.missileweapon;
 }
 NPCObject.prototype = new AnimateObject;
 
