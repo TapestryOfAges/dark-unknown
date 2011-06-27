@@ -71,7 +71,13 @@ function PerformCommand(code) {
 	}
 	else if (code == 71) { // g
 		// get 
-		
+		gamestate.setMode("choosedir");
+		retval["txt"] = "";
+		retval["input"] = "&gt; Get: ";
+		retval["fin"] = 2;
+		targetCursor.command = "g";
+		targetCursor.x = PC.getx();
+		targetCursor.y = PC.gety();		
 	}
 	else if (code == 72) { // h
 		// hole up and camp
