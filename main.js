@@ -183,10 +183,16 @@ $(document).ready(function() {
   else if (gamestate.getMode() == "choosedir") {
   	var response = PerformChooseDir(code);
   	if (response["fin"] == 1) { // direction chosen
-  		if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety())) {
+  		if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && (targetCursor.command == "u")) {
   			maintext.addText("Use from inventory not yet implemented.");
   			maintext.setInputLine("&gt;");
   			maintext.drawTextFrame();
+  			gamestate.setMode("player");
+  			return;
+  		}
+  		else if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && (targetCursor.command == "g")) {
+  		  maintext.setInputLine("&gt;");
+  		  maintext.drawTextFrame();
   			gamestate.setMode("player");
   			return;
   		}
