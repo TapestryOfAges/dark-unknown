@@ -212,6 +212,9 @@ $(document).ready(function() {
    	 		
   	  	  var nextEntity = DUTime.executeNextEvent().getEntity();
 	      	nextEntity.myTurn();
+  			} else if (targetCursor.command == "g") { // GET
+  			  var resp = PerformGet(PC);
+  			  
   			}
   		}
   	}
