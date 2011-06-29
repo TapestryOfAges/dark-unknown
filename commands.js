@@ -428,6 +428,10 @@ function PerformEnter(cmd) {
 		return retval;
 }
 
+function PerformGet(who) {
+  
+}
+
 function PerformUse(who) {
 	var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
 	var used = localacre.features.getTop();
