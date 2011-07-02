@@ -797,7 +797,8 @@ GameMap.prototype.setNPCsCoord = function() {
 
 GameMap.prototype.placeThing = function(x,y,newthing) {
   if (newthing) {
-  	var type = newthing.type + "s";
+//  	var type = newthing.type + "s";
+    var type = newthing.getTypeForMap() + "s";
     if (!this.data[type]) { this.data[type] = new Collection; }
   	newthing.setx(x);
   	newthing.sety(y);
@@ -808,7 +809,7 @@ GameMap.prototype.placeThing = function(x,y,newthing) {
     }
     this.data[y][x][type].addTop(newthing);
   }
-  if (newthing.type == "npc") {
+  if (newthing.getTypeForMap() == "npc") {
   	var timing = newthing.nextActionTime(0);
 //  	alert(newthing.name + ", " + timing);
   	var NPCEvent = new GameEvent(newthing);
@@ -817,7 +818,8 @@ GameMap.prototype.placeThing = function(x,y,newthing) {
 }
 
 GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump and passable and before walkon
-	var type = thing.type + "s";
+//	var type = thing.type + "s";
+  var type = thing.getTypeForMap() + "s";
 	this.data[thing.gety()][thing.getx()][type].deleteFrom(thing);
 	if (!this.data[y][x][type]) { this.data[y][x][type] = new Collection(); }
   this.data[y][x][type].addTop(thing);
@@ -826,7 +828,8 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
 }
 
 GameMap.prototype.deleteThing = function(thing) {
-	var type = thing.type + "s";
+//	var type = thing.type + "s";
+  var type = thing.getTypeForMap() + "s";
 	this[type].deleteFrom(thing);
 	this.data[thing.y][thing.x][type].deleteFrom(thing);
 }

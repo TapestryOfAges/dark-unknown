@@ -214,7 +214,19 @@ $(document).ready(function() {
 	      	nextEntity.myTurn();
   			} else if (targetCursor.command == "g") { // GET
   			  var resp = PerformGet(PC);
-  			  
+          if (resp["fin"] == 1) {
+  					drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+  				}
+  				maintext.addText(resp["txt"]);
+  				maintext.setInputLine("&gt;");
+  				maintext.drawTextFrame();
+
+  				gamestate.setMode("null");
+  				var PCevent = new GameEvent(PC);
+   			 	DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
+   	 		
+  	  	  var nextEntity = DUTime.executeNextEvent().getEntity();
+	      	nextEntity.myTurn(); 
   			}
   		}
   	}
