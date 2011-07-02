@@ -65,13 +65,13 @@ GameObject.prototype.getTypeForMap = function() {
   if (patt.test(this.type)) {
     return ("feature");
   }
-  patt = new RegExp("XnpcX");
-  if (patt.test(this.type)) {
-    return ("npc");
-  }
   patt = new RegExp("XpcX");
   if (patt.test(this.type)) {
     return ("pc");
+  }
+  patt = new RegExp("XnpcX");
+  if (patt.test(this.type)) {
+    return ("npc");
   }
   return;
 }
