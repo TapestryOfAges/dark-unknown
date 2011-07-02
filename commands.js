@@ -429,7 +429,25 @@ function PerformEnter(cmd) {
 }
 
 function PerformGet(who) {
-  
+  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  var getitem = localacre.features.getTop();
+  var retval = new Object;
+  if (!getitem) {
+    retval["txt"] = "There is nothing there.";
+    retval["fin"] = 0;
+    return retval;    
+  } 
+  else if (getitem.getType() == "item") {
+    who.addToInventory(item);
+    retval["txt"] = "Taken: " + item.getPrefix() + item.getDesc() + ".";
+    retval["fin"] = 1;
+    return retval;    
+  } 
+  else {
+    retval["txt"] = "You can't get that.";
+    retval["fin"] = 0;
+    return retval;
+  }
 }
 
 function PerformUse(who) {

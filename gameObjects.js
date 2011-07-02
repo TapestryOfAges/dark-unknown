@@ -5,6 +5,7 @@ function GameObject() {
   this.y;
   
   this.serial = GetSerial();
+  this.type = "XGameObjectX";
 }
 GameObject.prototype = new Object;
 
@@ -47,12 +48,48 @@ GameObject.prototype.getType = function() {
 	return this.type;
 }
 
+GameObject.prototype.addType = function(type) {
+  this.type = this.type + "X" + type + "X";
+}
+
+GameObject.prototype.checkType = function(type) {
+  var patt = new RegExp("X"+type+"X");
+  if (patt.test(this.type)) {
+    return 1;
+  } else { return 0; }
+}
+
+GameObject.prototype.getTypeForMap = function() {
+  // run check for npc, pc, and feature
+  var patt = new RegExp("XFeatureX");
+  if (patt.test(this.type)) {
+    return ("feature");
+  }
+  patt = new RegExp("XnpcX");
+  if (patt.test(this.type)) {
+    return ("npc");
+  }
+  patt = new RegExp("XpcX");
+  if (patt.test(this.type)) {
+    return ("pc");
+  }
+  return;
+}
+
 GameObject.prototype.setDesc = function(newdesc) {
 	this.desc = newdesc;
 }
 
 GameObject.prototype.getDesc = function() {
 	return this.desc;
+}
+
+GameObject.prototype.setPrefix = function(newpref) {
+	this.prefix = newpref;
+}
+
+GameObject.prototype.getPrefix = function() {
+	return this.prefix;
 }
 
 GameObject.prototype.getName = function() {
@@ -553,6 +590,8 @@ function IsWet(tile) {
 function InanimateObject() {
   this.initdelay = 1;  // multiplicative
   this.walkonscript = "";
+  
+  this.addType("InanimateObject");
 }
 
 InanimateObject.prototype = new GameObject;
@@ -594,7 +633,7 @@ InanimateObject.prototype.setInitDelay = function(newdelay) {
 // TERRAIN
 
 function TerrainObject() {
-  this.setType("terrain");
+  this.addType("Terrain");
 }
 
 TerrainObject.prototype = new InanimateObject;
@@ -1528,7 +1567,7 @@ LavaTile.prototype.idle = function(person) {
 
 // Features!
 function FeatureObject() {
-  this.setType("feature");
+  this.addType("Feature");
 }
 FeatureObject.prototype = new InanimateObject;
 
@@ -1974,7 +2013,7 @@ WalkOnTile.prototype = new FeatureObject;
 // Items
 
 function ItemObject() {
-	this.item = 1;
+	this.addType("Item");
 	this.quantity = 1;
 }
 ItemObject.prototype = new FeatureObject;
@@ -2015,7 +2054,7 @@ DecorativeArmorTile.prototype = new ItemObject;
 // Prototype for armor and weapons
 
 function EquippableItemObject() {
-	
+  this.addType("Equippable");	
 }
 EquippableItemObject.prototype = new ItemObject;
 
@@ -2026,6 +2065,8 @@ function ArmorObject() {
 	this.absorb = 0;
 	this.resist = 0;
 	this.strReq = 0;
+	
+	this.addType="Armor";
 }
 ArmorObject.prototype = new EquippableItemObject;
 
@@ -2074,6 +2115,7 @@ function NaturalArmorTile() {
 	this.spriteyoffset = "0";
   this.desc = "natural armor";
 }
+NaturalArmorTile.prototype = new ArmorObject;
 
 function ClothArmorTile() {
 	this.name = "ClothArmor";
@@ -2143,6 +2185,8 @@ function WeaponObject() {
 	this.reduceArmor = 0;
 	this.damage = "1d1+0";
 	this.strdamage = 0;
+	
+	this.addType("Weapon");
 }
 WeaponObject.prototype = new EquippableItemObject;
 
@@ -2300,6 +2344,8 @@ MagicSwordTile.prototype = new WeaponObject;
 function MissileWeaponObject() {
 	this.dexReq = 10;
 	this.range = 5;
+	
+	this.addType("Missile");
 }
 MissileWeaponObject.prototype = new WeaponObject;
 
@@ -2368,6 +2414,8 @@ MagicAxeTile.prototype = new MissileWeaponObject;
 
 function AnimateObject() {
 	this.altGraphics = new Array;
+	
+	this.addType("Animate");
 }
 AnimateObject.prototype = new GameObject;
 
@@ -2390,7 +2438,7 @@ function NPCObject() {
 	this.mana = 10;
 	this.maxmana = 10;
 	this.level = 0
-	this.type = "npc";
+//	this.type = "npc";
 	this.npcname = "myname";
 	this.desc = "an NPC";
 	this.alignment = "good";	
@@ -2407,6 +2455,8 @@ function NPCObject() {
 	this.armor;
 	this.weapon;
 	this.missileweapon;
+	
+	this.addType("npc");
 }
 NPCObject.prototype = new AnimateObject;
 
@@ -2659,6 +2709,26 @@ NPCObject.prototype.myTurn = function() {
   
   var nextEntity = DUTime.executeNextEvent().getEntity();
   nextEntity.myTurn();
+}
+
+NPCObject.prototype.addToInventory = function(item) {
+  // Whether the object being added to inventory is an item
+  // must be checked before this point. This will add _anything_ to
+  // an inventory!
+  
+  //This will remove the item from the NPC/PC's map first.
+  this.getHomeMap().deleteThing(item);
+  this.inventory.addTop(item);
+  item.setx(0);
+  item.sety(0);  
+}
+
+NPCObject.prototype.removeFromInventory = function(item, map, x, y) {
+  this.inventory.deleteFrom(item);
+  if (map) { // if map,x,y are filled in, will place the item back on
+             // the map
+    map.placeThing(x,y,item);
+  }
 }
 
 function NPCGroup() {
@@ -2946,7 +3016,7 @@ function PCObject() {
 	this.dex = 10;
 	this.int = 10
 	this.level = 1
-	this.type = "pc";
+//	this.type = "pc";
 	this.pcname = "Subject Name Here";
 	this.desc = "you";
 	this.alignment = "good";	
@@ -2960,6 +3030,7 @@ function PCObject() {
 	this.movetype = MOVE_WALK;
 	
 	LightEmitting.call(this, 1);
+	this.addType("pc");
 }
 PCObject.prototype = new NPCObject;
 
