@@ -89,7 +89,11 @@ GameObject.prototype.setPrefix = function(newpref) {
 }
 
 GameObject.prototype.getPrefix = function() {
-	return this.prefix;
+  if (this.prefix) {
+	  return this.prefix;
+	} else {
+	  return "";
+	}
 }
 
 GameObject.prototype.getName = function() {

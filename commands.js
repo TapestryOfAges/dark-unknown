@@ -321,25 +321,25 @@ function PerformLook() {
   var npcs = tile.getNPCs();
   if (npcs.length > 0) {
   	for (var i=(npcs.length-1) ; i >= 0; i-- ) {
-  		if (seethis == "") { seethis = npcs[i].getDesc(); }
-  		else { seethis += ", " + npcs[i].getDesc(); }
+  		if (seethis == "") { seethis = npcs[i].getPrefix() + npcs[i].getDesc(); }
+  		else { seethis += ", " + npcs[i].getPrefix() + npcs[i].getDesc(); }
   	}
   }
   var features = tile.getFeatures();
   if (features.length > 0) {
   	for (var i=(features.length-1); i >= 0; i-- ) {
   		if (( seethis == "" ) && (i == features.length-1)) {
-  			seethis = features[i].getDesc();
+  			seethis = features[i].getPrefix() + features[i].getDesc();
   		}
   		else if ( features[i].isItem() ) {
-  			if (seethis == "") { seethis = features[i].getDesc(); }
+  			if (seethis == "") { seethis = features[i].getPrefix() + features[i].getDesc(); }
   			else { seethis += ", " + features[i].getDesc(); }
   		}
   	}
   }
   if (seethis == "") {
   	var terrain = tile.getTerrain();
-  	seethis = terrain.desc;
+  	seethis = terrain.getDesc();
   }
   if (seethis == "") { alert("How are we here? command."); }
   
@@ -437,9 +437,9 @@ function PerformGet(who) {
     retval["fin"] = 0;
     return retval;    
   } 
-  else if (getitem.getType() == "item") {
-    who.addToInventory(item);
-    retval["txt"] = "Taken: " + item.getPrefix() + item.getDesc() + ".";
+  else if (getitem.checkType("Item")) {
+    who.addToInventory(getitem);
+    retval["txt"] = "Taken: " + getitem.getPrefix() + getitem.getDesc() + ".";
     retval["fin"] = 1;
     return retval;    
   } 
