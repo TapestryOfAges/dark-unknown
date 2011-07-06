@@ -885,6 +885,10 @@ GameMap.prototype.saveMap = function (name) {
    	 var thedesc = mapfeatures[i].getDesc();
      printerwin.document.write(", desc : \"" + thedesc + "\"");
    }
+   if (baseobj.getPrefix() != mapfeatures[i].getPrefix()) {
+   	 var theprefix = mapfeatures[i].getPrefix();
+     printerwin.document.write(", prefix : \"" + theprefix + "\"");
+   }
    if ((baseobj.getLocked != null) && (baseobj.getLocked() != mapfeatures[i].getLocked())) {
    	 printerwin.document.write(", locked : " + mapfeatures[i].getLocked());
    }
@@ -911,6 +915,9 @@ GameMap.prototype.saveMap = function (name) {
  	}
  	if (basenpc.getDesc() != mapnpcs[i].getDesc()) {
  		printerwin.document.write(", Desc: '" + mapnpcs[i].getDesc() + "'");
+ 	}
+ 	if (basenpc.getDesc() != mapnpcs[i].getPrefix()) {
+ 		printerwin.document.write(", Prefix: '" + mapnpcs[i].getPrefix() + "'");
  	}
  	if (basenpc.getLevel() != mapnpcs[i].getLevel()) {
  		printerwin.document.write(", Level: " + mapnpcs[i].getLevel());
