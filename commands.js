@@ -321,25 +321,25 @@ function PerformLook() {
   var npcs = tile.getNPCs();
   if (npcs.length > 0) {
   	for (var i=(npcs.length-1) ; i >= 0; i-- ) {
-  		if (seethis == "") { seethis = npcs[i].getPrefix() + npcs[i].getDesc(); }
-  		else { seethis += ", " + npcs[i].getPrefix() + npcs[i].getDesc(); }
+  		if (seethis == "") { seethis = npcs[i].getPrefix() + " " + npcs[i].getDesc(); }
+  		else { seethis += ", " + npcs[i].getPrefix() + " " + npcs[i].getDesc(); }
   	}
   }
   var features = tile.getFeatures();
   if (features.length > 0) {
   	for (var i=(features.length-1); i >= 0; i-- ) {
   		if (( seethis == "" ) && (i == features.length-1)) {
-  			seethis = features[i].getPrefix() + features[i].getDesc();
+  			seethis = features[i].getPrefix() + " " + features[i].getDesc();
   		}
   		else if ( features[i].isItem() ) {
-  			if (seethis == "") { seethis = features[i].getPrefix() + features[i].getDesc(); }
-  			else { seethis += ", " + features[i].getDesc(); }
+  			if (seethis == "") { seethis = features[i].getPrefix() + " " + features[i].getDesc(); }
+  			else { seethis += ", " + features[i].getPrefix() + " " + features[i].getDesc(); }
   		}
   	}
   }
   if (seethis == "") {
   	var terrain = tile.getTerrain();
-  	seethis = terrain.getDesc();
+  	seethis = terrain.getPrefix() + " " + terrain.getDesc();
   }
   if (seethis == "") { alert("How are we here? command."); }
   
@@ -439,7 +439,7 @@ function PerformGet(who) {
   } 
   else if (getitem.checkType("Item")) {
     who.addToInventory(getitem);
-    retval["txt"] = "Taken: " + getitem.getPrefix() + getitem.getDesc() + ".";
+    retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
     retval["fin"] = 1;
     return retval;    
   } 
@@ -493,13 +493,15 @@ function DrawStats(page) {
   var statsdiv = "&nbsp;";
   statsdiv += "<div class='zstats'>";
   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
-  statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td>LEVEL: " + PC.getLevel() + "</tr>";
+  statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
   statsdiv += "<tr><td style='width:50%'>HP: " + PC.getHP() + "/" + PC.getMaxHP() + "</td><td></td>";
   statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
-  statsdiv += "<tr><td colspan='3'>STR: " + PC.getstr() + "</td></tr>";
-  statsdiv += "<tr><td colspan='3'>DEX: " + PC.getdex() + "</td></tr>";
-  statsdiv += "<tr><td colspan='3'>INT: " + PC.getint() + "</td></tr>";
+  statsdiv += "<tr><td>STR: " + PC.getstr() + "</td><td></td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
+  statsdiv += "<tr><td>DEX: " + PC.getdex() + "</td><td></td><td>XP: " + PC.getxp() + "</td></tr>";
+  statsdiv += "<tr><td>INT: " + PC.getint() + "</td><td></td><td>Training: " + PC.gettp() + "</td></tr>";
+  statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
+  
   
   statsdiv += "</table></div>";
   $('#displayframe').html(statsdiv);

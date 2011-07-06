@@ -707,7 +707,7 @@ function StoneWallTile() {
   this.graphic = "011.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "stone wall";
 }
 StoneWallTile.prototype = new TerrainObject;
@@ -717,7 +717,7 @@ function StoneTile() {
   this.graphic = "013.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "stone";
 }
 StoneTile.prototype = new TerrainObject;
@@ -727,7 +727,7 @@ function DirtStoneTile() {
   this.graphic = "dirt-rock.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "stone";
 }
 DirtStoneTile.prototype = new TerrainObject;
@@ -737,7 +737,7 @@ function MastTile() {
   this.graphic = "014.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "mast";
 }
 MastTile.prototype = new TerrainObject;
@@ -756,7 +756,7 @@ function PillarTile() {
   this.graphic = "016.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "pillar";
 }
 PillarTile.prototype = new TerrainObject;
@@ -766,7 +766,7 @@ function FountainSWTile() {
   this.graphic = "017.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "fountain";
 }
 FountainSWTile.prototype = new TerrainObject;
@@ -776,7 +776,7 @@ function FountainSETile() {
   this.graphic = "018.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "fountain";
 }
 FountainSETile.prototype = new TerrainObject;
@@ -786,7 +786,7 @@ function FountainNWTile() {
   this.graphic = "019.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "fountain";
 }
 FountainNWTile.prototype = new TerrainObject;
@@ -796,7 +796,7 @@ function FountainNETile() {
   this.graphic = "020.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "fountain";
 }
 FountainNETile.prototype = new TerrainObject;
@@ -806,7 +806,7 @@ function LetterATile() {
   this.graphic = "025.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "an ";
+  this.prefix = "an";
   this.desc = "A";
 }
 LetterATile.prototype = new TerrainObject;
@@ -816,7 +816,7 @@ function LetterBTile() {
   this.graphic = "026.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "B";
 }
 LetterBTile.prototype = new TerrainObject;
@@ -826,7 +826,7 @@ function LetterCTile() {
   this.graphic = "027.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "C";
 }
 LetterCTile.prototype = new TerrainObject;
@@ -836,7 +836,7 @@ function LetterDTile() {
   this.graphic = "028.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "D";
 }
 LetterDTile.prototype = new TerrainObject;
@@ -846,7 +846,7 @@ function LetterETile() {
   this.graphic = "029.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "an ";
+  this.prefix = "an";
   this.desc = "E";
 }
 LetterETile.prototype = new TerrainObject;
@@ -856,7 +856,7 @@ function LetterFTile() {
   this.graphic = "030.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "an ";
+  this.prefix = "an";
   this.desc = "F";
 }
 LetterFTile.prototype = new TerrainObject;
@@ -866,7 +866,7 @@ function LetterGTile() {
   this.graphic = "031.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "G";
 }
 LetterGTile.prototype = new TerrainObject;
@@ -876,7 +876,7 @@ function LetterHTile() {
   this.graphic = "032.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "an ";
+  this.prefix = "an";
   this.desc = "H";
 }
 LetterHTile.prototype = new TerrainObject;
@@ -886,7 +886,7 @@ function LetterITile() {
   this.graphic = "033.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "an ";
+  this.prefix = "an";
   this.desc = "I";
 }
 LetterITile.prototype = new TerrainObject;
@@ -896,7 +896,7 @@ function LetterJTile() {
   this.graphic = "034.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "J";
 }
 LetterJTile.prototype = new TerrainObject;
@@ -906,7 +906,7 @@ function LetterKTile() {
   this.graphic = "035.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "K";
 }
 LetterKTile.prototype = new TerrainObject;
@@ -916,7 +916,7 @@ function LetterLTile() {
   this.graphic = "036.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "an ";
+  this.prefix = "an";
   this.desc = "L";
 }
 LetterLTile.prototype = new TerrainObject;
@@ -926,7 +926,7 @@ function LetterMTile() {
   this.graphic = "037.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "an ";
+  this.prefix = "an";
   this.desc = "M";
 }
 LetterMTile.prototype = new TerrainObject;
@@ -936,7 +936,7 @@ function LetterNTile() {
   this.graphic = "038.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "an ";
+  this.prefix = "an";
   this.desc = "N";
 }
 LetterNTile.prototype = new TerrainObject;
@@ -946,7 +946,7 @@ function LetterOTile() {
   this.graphic = "039.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "an ";
+  this.prefix = "an";
   this.desc = "O";
 }
 LetterOTile.prototype = new TerrainObject;
@@ -956,7 +956,7 @@ function LetterPTile() {
   this.graphic = "040.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "P";
 }
 LetterPTile.prototype = new TerrainObject;
@@ -966,7 +966,7 @@ function LetterQTile() {
   this.graphic = "041.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "Q";
 }
 LetterQTile.prototype = new TerrainObject;
@@ -976,7 +976,7 @@ function LetterRTile() {
   this.graphic = "042.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "an ";
+  this.prefix = "an";
   this.desc = "R";
 }
 LetterRTile.prototype = new TerrainObject;
@@ -986,7 +986,7 @@ function LetterSTile() {
   this.graphic = "043.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "an ";
+  this.prefix = "an";
   this.desc = "S";
 }
 LetterSTile.prototype = new TerrainObject;
@@ -996,7 +996,7 @@ function LetterTTile() {
   this.graphic = "044.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "T";
 }
 LetterTTile.prototype = new TerrainObject;
@@ -1006,7 +1006,7 @@ function LetterUTile() {
   this.graphic = "045.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "U";
 }
 LetterUTile.prototype = new TerrainObject;
@@ -1016,7 +1016,7 @@ function LetterVTile() {
   this.graphic = "046.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "V";
 }
 LetterVTile.prototype = new TerrainObject;
@@ -1026,7 +1026,7 @@ function LetterWTile() {
   this.graphic = "047.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "W";
 }
 LetterWTile.prototype = new TerrainObject;
@@ -1036,7 +1036,7 @@ function LetterXTile() {
   this.graphic = "048.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "an ";
+  this.prefix = "an";
   this.desc = "X";
 }
 LetterXTile.prototype = new TerrainObject;
@@ -1046,7 +1046,7 @@ function LetterYTile() {
   this.graphic = "049.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "Y";
 }
 LetterYTile.prototype = new TerrainObject;
@@ -1056,7 +1056,7 @@ function LetterZTile() {
   this.graphic = "050.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "Z";
 }
 LetterZTile.prototype = new TerrainObject;
@@ -1066,7 +1066,7 @@ function HorizontalCounterTile() {
   this.graphic = "051.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "counter";
 }
 HorizontalCounterTile.prototype = new TerrainObject;
@@ -1076,7 +1076,7 @@ function RightCounterTile() {
   this.graphic = "052.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "counter";
 }
 RightCounterTile.prototype = new TerrainObject;
@@ -1086,7 +1086,7 @@ function LeftCounterTile() {
   this.graphic = "053.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "counter";
 }
 LeftCounterTile.prototype = new TerrainObject;
@@ -1096,7 +1096,7 @@ function CounterBoxTile() {
   this.graphic = "054.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "counter";
 }
 CounterBoxTile.prototype = new TerrainObject;
@@ -1115,7 +1115,7 @@ function WallTile() {
   this.graphic = "056.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 1;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "wall";
 }
 WallTile.prototype = new TerrainObject;
@@ -1126,7 +1126,7 @@ function ArrowSlitTile() {
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.losupclose = { distance : 1 , blocklos : 0 };
-	this.prefix = "an ";
+	this.prefix = "an";
 	this.desc = "arrow slit";
 
 }
@@ -1137,7 +1137,7 @@ function WindowTile() {
 	this.graphic = "window.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0; 
-	this.prefix = "a ";
+	this.prefix = "a";
 	this.desc = "window";
 
 }
@@ -1148,7 +1148,7 @@ function WallNETile() {
   this.graphic = "057.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 1;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "wall";
 }
 WallNETile.prototype = new TerrainObject;
@@ -1158,7 +1158,7 @@ function WallNWTile() {
   this.graphic = "058.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 1;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "wall";
 }
 WallNWTile.prototype = new TerrainObject;
@@ -1168,7 +1168,7 @@ function WallSWTile() {
   this.graphic = "059.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 1;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "wall";
 }
 WallSWTile.prototype = new TerrainObject;
@@ -1178,7 +1178,7 @@ function WallSETile() {
   this.graphic = "060.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 1;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "wall";
 }
 WallSETile.prototype = new TerrainObject;
@@ -1188,7 +1188,7 @@ function VerticalCounterTile() {
   this.graphic = "061.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "counter";
 }
 VerticalCounterTile.prototype = new TerrainObject;
@@ -1198,7 +1198,7 @@ function BottomCounterTile() {
   this.graphic = "062.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "counter";
 }
 BottomCounterTile.prototype = new TerrainObject;
@@ -1208,7 +1208,7 @@ function TopCounterTile() {
   this.graphic = "063.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "counter";
 }
 TopCounterTile.prototype = new TerrainObject;
@@ -1322,7 +1322,7 @@ function RiverTile() {
   this.spriteyoffset = "0";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "river";
   
   SetBySurroundRiver.call(this);
@@ -1371,7 +1371,7 @@ function RoadTile() {
   this.graphic = "road-ew.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "dirt road";
   
   this.initdelay = 0.8;
@@ -1553,7 +1553,7 @@ function ShinglesTopTile() {
   this.graphic = "shingles-top.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.prefix = "a ";
+  this.prefix = "a";
   this.desc = "roof";
 }
 ShinglesTopTile.prototype = new TerrainObject;
@@ -1563,7 +1563,7 @@ function CaveFloorTile() {
 	this.graphic = "cavefloor.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
-	this.prefix = "a ";
+	this.prefix = "a";
 	this.desc = "cave floor";
 	
 	Tiling.call(this, 2);
@@ -1575,7 +1575,7 @@ function CaveWallTile() {
 	this.graphic = "cavewall.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1;
-	this.prefix = "a ";
+	this.prefix = "a";
 	this.desc = "cave wall";
 	
 	Tiling.call(this, 2);
@@ -1635,7 +1635,8 @@ function DungeonTile() {
   this.graphic = "151.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a dungeon entrance";
+  this.prefix = "a";
+  this.desc = "dungeon entrance";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1646,7 +1647,8 @@ function CaveTile() {
   this.graphic = "cave.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a cave entrance";
+  this.prefix = "a";
+  this.desc = "cave entrance";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1657,7 +1659,8 @@ function TowneTile() {
   this.graphic = "152.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a towne";
+  this.prefix = "a";
+  this.desc = "towne";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1668,7 +1671,8 @@ function KeepTile() {
   this.graphic = "153.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a keep";
+  this.prefix = "a";
+  this.desc = "keep";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1679,7 +1683,8 @@ function GrassTowerTile() {
   this.graphic = "tower-grass.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a tower";
+  this.prefix = "a";
+  this.desc = "tower";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1690,7 +1695,8 @@ function HillTowerTile() {
   this.graphic = "tower-hill.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a tower";
+  this.prefix = "a";
+  this.desc = "tower";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1701,7 +1707,8 @@ function VillageTile() {
   this.graphic = "154.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a village";
+  this.prefix = "a";
+  this.desc = "village";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1742,7 +1749,8 @@ function DoorwayTile() {
   this.overlay = "archway.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "an archway";
+  this.prefix = "an";
+  this.desc = "archway";
   
   SetByBelow.call(this);
 }
@@ -1753,7 +1761,8 @@ function ShrineTile() {
   this.graphic = "156.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a gate";
+  this.prefix = "a";
+  this.desc = "gate";
 
 //  Enterable.call(this, "null", 0, 0);
 }
@@ -1764,7 +1773,8 @@ function BrokenShrineTile() {
   this.graphic = "brokengate.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a broken gate";
+  this.prefix = "a";
+  this.desc = "broken gate";
 
 //  Enterable.call(this, "null", 0, 0);
 }
@@ -1775,7 +1785,8 @@ function RuinsTile() {
   this.graphic = "157.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a ruin";
+  this.prefix = "a";
+  this.desc = "ruin";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -1787,7 +1798,8 @@ function ChestTile() {
 	this.graphic = "008.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
-	this.desc = "a chest";
+	this.prefix = "a";
+	this.desc = "chest";
 	
 }
 ChestTile.prototype = new FeatureObject;
@@ -1801,7 +1813,8 @@ function DoorWindowTile() {
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.losupclose = { distance : 1 , blocklos : 0 };
-	this.desc = "a door";
+	this.prefix = "a";
+	this.desc = "door";
 
 	SetByBelow.call(this);
   Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0);
@@ -1813,7 +1826,8 @@ function CorpseTile() {
 	this.graphic = "012.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
-	this.desc = "a corpse";
+	this.prefix = "a";
+	this.desc = "corpse";
 }
 CorpseTile.prototype = new FeatureObject;
 
@@ -1822,8 +1836,9 @@ function EnergyFieldTile() {
 	this.graphic = "flowing_animations.gif";
 	this.passable = 0; // impassable - wonky outdoors, but necessary indoors
 	this.blocklos = 0;
-//	this.light = 1; 
-	this.desc = "an energy field";
+//	this.light = 1;
+  this.prefix = "an"; 
+	this.desc = "energy field";
   this.spritexoffset = "-96";
   this.spriteyoffset = "0";
 	
@@ -1837,7 +1852,8 @@ function CampfireTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
 //	this.light = 2;  // 2 tiles of "bright"
-	this.desc = "a campfire";
+  this.prefix = "a";
+	this.desc = "campfire";
 	
 	LightEmitting.call(this, 2);
 }
@@ -1848,7 +1864,8 @@ function AltarTile() {
 	this.graphic = "023.gif";
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
-	this.desc = "an altar";
+	this.prefix = "an";
+	this.desc = "altar";
 }
 AltarTile.prototype = new FeatureObject;
 
@@ -1860,7 +1877,8 @@ function DoorTile() {
 	this.overlay = "064.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
-	this.desc = "a door";
+	this.prefix = "a";
+	this.desc = "door";
 
 	SetByBelow.call(this);
 	Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0);
@@ -1873,7 +1891,8 @@ function SleepFieldTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 //	this.light = 1;
-	this.desc = "a sleep field";
+  this.prefix = "a";
+	this.desc = "sleep field";
 	this.initdelay = 1.5;
   this.spritexoffset = "-64";
   this.spriteyoffset = "0";
@@ -1888,7 +1907,8 @@ function FireFieldTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 //	this.light = 3;
-	this.desc = "a fire field";
+  this.prefix = "a";
+	this.desc = "fire field";
 	this.spritexoffset = "-32";
   this.spriteyoffset = "0";
 	
@@ -1903,7 +1923,8 @@ function PoisonFieldTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 //	this.light = 1;
-	this.desc = "a poison field";
+  this.prefix = "a";
+	this.desc = "poison field";
 	this.initdelay = 1.5;
   this.spritexoffset = "0";
   this.spriteyoffset = "0";
@@ -1917,7 +1938,8 @@ function LadderDownTile() {
   this.graphic = "158.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a ladder";
+  this.prefix = "a";
+  this.desc = "ladder";
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -1929,7 +1951,8 @@ function LadderUpTile() {
   this.graphic = "159.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a ladder";
+  this.prefix = "a";
+  this.desc = "ladder";
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -1941,7 +1964,8 @@ function WBridgeNSTile() {
   this.graphic = "070.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a bridge";
+  this.prefix = "a";
+  this.desc = "bridge";
 }
 WBridgeNSTile.prototype = new FeatureObject;
 
@@ -1950,7 +1974,8 @@ function EBridgeNSTile() {
   this.graphic = "071.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a bridge";
+  this.prefix = "a";
+  this.desc = "bridge";
 }
 EBridgeNSTile.prototype = new FeatureObject;
 
@@ -1959,7 +1984,8 @@ function BridgeNSTile() {
   this.graphic = "072.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a bridge";
+  this.prefix = "a";
+  this.desc = "bridge";
 }
 BridgeNSTile.prototype = new FeatureObject;
 
@@ -1968,7 +1994,8 @@ function NBridgeEWTile() {
   this.graphic = "101.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a bridge";
+  this.prefix = "a";
+  this.desc = "bridge";
 }
 NBridgeEWTile.prototype = new FeatureObject;
 
@@ -1977,7 +2004,8 @@ function SBridgeEWTile() {
   this.graphic = "102.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a bridge";
+  this.prefix = "a";
+  this.desc = "bridge";
 }
 SBridgeEWTile.prototype = new FeatureObject;
 
@@ -1986,7 +2014,8 @@ function BridgeEWTile() {
   this.graphic = "126.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a bridge";
+  this.prefix = "a";
+  this.desc = "bridge";
 }
 BridgeEWTile.prototype = new FeatureObject;
 
@@ -1995,7 +2024,8 @@ function LeftChairTile() {
   this.graphic = "leftchair.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a chair";
+  this.prefix = "a";
+  this.desc = "chair";
 }
 LeftChairTile.prototype = new FeatureObject;
 
@@ -2004,7 +2034,8 @@ function RightChairTile() {
   this.graphic = "rightchair.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a chair";
+  this.prefix = "a";
+  this.desc = "chair";
 }
 RightChairTile.prototype = new FeatureObject;
 
@@ -2013,7 +2044,8 @@ function TopChairTile() {
   this.graphic = "topchair.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a chair";
+  this.prefix = "a";
+  this.desc = "chair";
 }
 TopChairTile.prototype = new FeatureObject;
 
@@ -2022,7 +2054,8 @@ function BottomChairTile() {
   this.graphic = "bottomchair.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "a chair";
+  this.prefix = "a";
+  this.desc = "chair";
 }
 BottomChairTile.prototype = new FeatureObject;
 
@@ -2032,7 +2065,8 @@ function SecretDoorTile() {
 	this.overlay = "056.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
-	this.desc = "a wall";
+	this.prefix = "a";
+	this.desc = "wall";
 	
 	SetByBelow.call(this);
 }
@@ -2043,7 +2077,8 @@ function WellTile() {
 	this.graphic = "well.gif";   
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0; 
-	this.desc = "a well";
+	this.prefix = "a";
+	this.desc = "well";
 }
 WellTile.prototype = new FeatureObject;
 
@@ -2052,7 +2087,8 @@ function WhirlpoolTile() {
 	this.graphic = "325.gif";
   this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
   this.blocklos = 0;
-  this.desc = "a whirlpool";
+  this.prefix = "a";
+  this.desc = "whirlpool";
   
   Enterable.call(this, "null", 0, 0);
 }
@@ -2063,7 +2099,8 @@ function WalkOnTile() {
 	this.graphic = "walkon.gif";
 	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
 	this.blocklos = 0;
-	this.desc = "an invisible walkon tile";
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
 	this.invisible = 1;
 }
 WalkOnTile.prototype = new FeatureObject;
@@ -2094,7 +2131,7 @@ function RubyGemoftheSunTile() {
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0;
 	this.desc = "ruby gem that harnesses the power of the sun";
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 RubyGemoftheSunTile.prototype = new ItemObject;
 
@@ -2105,7 +2142,7 @@ function DecorativeArmorTile() {
 	this.desc = "decorative suit of armor";
 	this.blocklos = 0;
 	this.passable = MOVE_ETHEREAL;
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 DecorativeArmorTile.prototype = new ItemObject;
 
@@ -2113,8 +2150,82 @@ DecorativeArmorTile.prototype = new ItemObject;
 
 function EquippableItemObject() {
   this.addType("Equippable");	
+  this.equippedTo;
 }
 EquippableItemObject.prototype = new ItemObject;
+
+EquippableItemObject.prototype.getEquippedTo = function() {
+  return this.equippedTo;
+}
+
+EquippableItemObject.prototype.setEquippedTo = function(newwho) {
+  if (newwho) {
+    this.equippedTo = newwho;
+    return 1;
+  }
+  return 0;
+}
+
+EquippableItemObject.prototype.equipMe = function(who) {
+  if (!checkType("npc")) { return 0; }
+  
+  if (this.checkType("Armor")) {
+    var currentarmor = who.getArmor();
+    if (currentarmor) {
+      currentarmor.unEquipMe();
+    }
+    this.equippedTo = who;
+    who.setArmor(this);
+  }
+  
+  else if (this.checkType("Weapon")) {
+    var currentweapon = who.getWeapon();
+    if (currentweapon) {
+      currentweapon.unEquipMe();
+    }
+    this.equippedTo = who;
+    who.setWeapon(this);
+  }
+  
+  else if (this.checkType("Missile")) {
+    var currentmissile = who.getMissile();
+    if (currentmissile) {
+      currentmissile.unEquipMe();
+    }
+    this.setEquippedTo(who);
+    who.setMissile(this);
+  }
+  
+}
+
+EquippableItemObject.prototype.unEquipMe = function() {
+  if (!checkType("npc")) { return 0; }  
+  var who = this.getEquippedTo();
+  
+  if (this.checkType("Armor")) {
+    if (who.getArmor() == this) {
+      who.setArmor("");
+    } else { 
+      return 0;
+    }
+  }
+  else if (this.checkType("Weapon")) {
+    if (who.getWeapon() == this) {
+      who.setWeapon("");
+    } else {
+      return 0;
+    }
+  }
+  else if (this.checkType("Missile")) {
+    if (who.getMissile() == this) {
+      who.setMissile("");
+    } else {
+      return 0;
+    }    
+  }
+  this.setEquippedTo("");
+  return 1;
+}
 
 // ARMOR
 
@@ -2323,7 +2434,7 @@ function DaggerTile() {
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-32";
 	this.desc = "dagger";
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 DaggerTile.prototype = new WeaponObject;
 
@@ -2335,7 +2446,7 @@ function ShortswordTile() {
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-32";
 	this.desc = "shortsword";
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 ShortswordTile.prototype = new WeaponObject;
 
@@ -2347,7 +2458,7 @@ function MaceTile() {
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-32";
 	this.desc = "mace";
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 MaceTile.prototype = new WeaponObject;
 
@@ -2359,7 +2470,7 @@ function AxeTile() {
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-32";
 	this.desc = "axe";
-	this.prefix = "an ";
+	this.prefix = "an";
 }
 AxeTile.prototype = new WeaponObject;
 
@@ -2371,7 +2482,7 @@ function LongswordTile() {
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-32";
 	this.desc = "longsword";
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 LongswordTile.prototype = new WeaponObject;
 
@@ -2383,7 +2494,7 @@ function HalberdTile() {
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-32";
 	this.desc = "halberd";
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 HalberdTile.prototype = new WeaponObject;
 
@@ -2395,7 +2506,7 @@ function MagicSwordTile() {
 	this.spritexoffset = "-192";
 	this.spriteyoffset = "-32";
 	this.desc = "magic sword";
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 MagicSwordTile.prototype = new WeaponObject;
 
@@ -2414,7 +2525,7 @@ function SlingTile() {
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-64";
 	this.desc = "sling";
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 SlingTile.prototype = new MissileWeaponObject;
 
@@ -2426,7 +2537,7 @@ function BowTile() {
 	this.spriteyoffset = "-64";
 	this.dexReq = 16;
 	this.desc = "bow";
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 BowTile.prototype = new MissileWeaponObject;
 
@@ -2438,7 +2549,7 @@ function CrossbowTile() {
 	this.spriteyoffset = "-64";
 	this.dexReq = 19;
 	this.desc = "crossbow";
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 CrossbowTile.prototype = new MissileWeaponObject;
 
@@ -2449,7 +2560,7 @@ function WandTile() {
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-64";
 	this.desc = "magic wand";
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 WandTile.prototype = new MissileWeaponObject;
 
@@ -2461,7 +2572,7 @@ function MagicAxeTile() {
 	this.spriteyoffset = "-64";
 	this.dexReq = 22;
 	this.desc = "magic axe";
-	this.prefix = "a ";
+	this.prefix = "a";
 }
 MagicAxeTile.prototype = new MissileWeaponObject;
 
@@ -2512,7 +2623,7 @@ function NPCObject() {
 	this.inventory = new Collection;
 	this.armor;
 	this.weapon;
-	this.missileweapon;
+	this.missile;
 	
 	this.addType("npc");
 }
@@ -2769,13 +2880,17 @@ NPCObject.prototype.myTurn = function() {
   nextEntity.myTurn();
 }
 
-NPCObject.prototype.addToInventory = function(item) {
+NPCObject.prototype.addToInventory = function(item, thinAir) {
   // Whether the object being added to inventory is an item
   // must be checked before this point. This will add _anything_ to
   // an inventory!
   
-  //This will remove the item from the NPC/PC's map first.
-  this.getHomeMap().deleteThing(item);
+  //If thinAir is set, the item is being generated directly into the inventory,
+  //and so does not need to be removed from the map.
+  if (!thinAir) {
+    // otherwise, this will remove the item from the NPC/PC's map first.
+    this.getHomeMap().deleteThing(item);
+  }
   this.inventory.addTop(item);
   item.setx(0);
   item.sety(0);  
@@ -2786,6 +2901,60 @@ NPCObject.prototype.removeFromInventory = function(item, map, x, y) {
   if (map) { // if map,x,y are filled in, will place the item back on
              // the map
     map.placeThing(x,y,item);
+  }
+}
+
+NPCObject.prototype.getArmor = function() {
+  if (this.armor) { return this.armor; }
+  else { return ""; } 
+}
+
+NPCObject.prototype.getWeapon = function() {
+  if (this.weapon) { return this.weapon; }
+  else { return ""; } 
+}
+
+NPCObject.prototype.getMissile = function() {
+  if (this.missile) { return this.missile; }
+  else { return ""; } 
+}
+
+NPCObject.prototype.setArmor = function(newarmor) {
+  if (newarmor) {
+    if (newarmor.checkType("Armor")) {
+      this.armor = newarmor;
+      return 1;
+    }
+    return 0;
+  } else { 
+    this.armor = "";
+    return 1;
+  }
+}
+
+NPCObject.prototype.setWeapon = function(newweapon) {
+  if (newweapon) {
+    if (newweapon.checkType("Weapon")) {
+      this.weapon = newweapon;
+      return 1;
+    }
+    return 0;
+  } else {
+    this.weapon = "";
+    return 1;
+  }
+}
+
+NPCObject.prototype.setMissile = function(newmissile) {
+  if (newmissile) {
+    if (newmissile.checkType("Missile")) {
+      this.missile = newmissile;
+      return 1;
+    }
+    return 0;
+  } else {
+    this.missile = "";
+    return 1;
   }
 }
 
@@ -3074,7 +3243,6 @@ function PCObject() {
 	this.dex = 10;
 	this.int = 10
 	this.level = 1
-//	this.type = "pc";
 	this.pcname = "Subject Name Here";
 	this.desc = "you";
 	this.alignment = "good";	
@@ -3086,6 +3254,8 @@ function PCObject() {
 	this.maxmana = this.int;
 	this.mana = this.maxmana;
 	this.movetype = MOVE_WALK;
+	this.xp = 0;
+	this.tp = 0;  // training points
 	
 	LightEmitting.call(this, 1);
 	this.addType("pc");
@@ -3104,4 +3274,34 @@ PCObject.prototype.getPCName = function() {
 PCObject.prototype.setPCName = function(newname) {
 	this.pcname = newname;
 	return this.pcname;
+}
+
+PCObject.prototype.getxp = function() {
+  return this.xp;
+}
+
+PCObject.prototype.setxp = function(newxp) {
+  newxp = parseInt(newxp);
+  this.xp = newxp;
+}
+
+PCObject.prototype.addxp = function(diffxp) {
+  diffxp = parseInt(diffxp);
+  this.xp += diffxp;
+  return this.xp;
+}
+
+PCObject.prototype.gettp = function() {
+  return this.tp;
+}
+
+PCObject.prototype.settp = function(newtp) {
+  newtp = parseInt(newtp);
+  this.tp = newtp;
+}
+
+PCObject.prototype.addtp = function(difftp) {
+  difftp = parseInt(difftp);
+  this.tp += difftp;
+  return this.tp;
 }
