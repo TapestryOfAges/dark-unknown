@@ -2235,7 +2235,7 @@ function ArmorObject() {
 	this.resist = 0;
 	this.strReq = 0;
 	
-	this.addType="Armor";
+	this.addType("Armor");
 }
 ArmorObject.prototype = new EquippableItemObject;
 
@@ -2276,7 +2276,7 @@ ArmorObject.prototype.getStrReq = function() {
 }
 
 function NaturalArmorTile() {
-  this.name="NatureArmor";
+  this.name="NaturalArmor";
   this.defense = 5;
   this.absorb = 10;
 	this.graphic = "armorweapons.gif";
@@ -2621,9 +2621,11 @@ function NPCObject() {
 	this.initmult = 1;
 	this.movetype = MOVE_WALK;
 	this.inventory = new Collection;
-	this.armor;
-	this.weapon;
-	this.missile;
+  this.equipment = new Object;
+	this.equipment.armor;
+	this.equipment.weapon;
+	this.equipment.missile;
+  this.gold = 0;
 	
 	this.addType("npc");
 }
@@ -2654,6 +2656,21 @@ NPCObject.prototype.setMaxMana = function(newMana) {
 
 NPCObject.prototype.getMaxMana = function() {
 	return this.maxmana;
+}
+
+NPCObject.prototype.setGold = function(newgold) {
+  newgold = parseInt(newgold);
+	this.gold = newgold;
+}
+
+NPCObject.prototype.getGold = function() {
+	return this.gold;
+}
+
+NPCObject.prototype.addGold = function(diffgold) {
+  diffgold = parseInt(diffgold);
+  this.gold += diffgold;
+  return this.gold;
 }
 
 NPCObject.prototype.setHP = function(newhp) {
@@ -2765,20 +2782,20 @@ NPCObject.prototype.setThreatenedAI = function(newAI) {
 	return this.threatenedAI;
 }
 
-NPCObject.prototype.getMelee = function() {
+NPCObject.prototype.getMeleeAttackAs = function() {
 	return this.meleeAttackAs;
 }
 
-NPCObject.prototype.setMelee = function(melee) {
+NPCObject.prototype.setMeleeAttackAs = function(melee) {
 	this.meleeAttackAs = melee;
 	return this.meleeAttackAs;
 }
 
-NPCObject.prototype.getMissile = function() {
+NPCObject.prototype.getMissileAttackAs = function() {
 	return this.missileAttackAs;
 }
 
-NPCObject.prototype.setMissile = function(missile) {
+NPCObject.prototype.setMissileAttackAs = function(missile) {
 	this.missileAttackAs = missile;
 	return this.missileAttackAs;
 }
@@ -2904,30 +2921,60 @@ NPCObject.prototype.removeFromInventory = function(item, map, x, y) {
   }
 }
 
+NPCObject.prototype.getEquipment = function(which) {
+  which = which.toLowerCase();
+  if (which == "armor") {
+    return (this.getArmor()); 
+  }
+  else if (which == "weapon") {
+    return (this.getWeapon());
+  }
+  else if (which == "missile") {
+    return (this.getMissile());
+  }
+  
+  else { return ""; }
+}
+
+NPCObject.prototype.setEquipment = function(which,what) {
+  which = which.toLowerCase();
+  if (which == "armor") {
+    return this.setArmor(what);
+  }
+  else if (which == "weapon") {
+    return this.setWeapon(what);
+  }
+  else if (which == "missile") {
+    return this.setMissile(what);
+  }
+  
+  else { return 0; }
+}
+
 NPCObject.prototype.getArmor = function() {
-  if (this.armor) { return this.armor; }
+  if (this.equipment.armor) { return this.equipment.armor; }
   else { return ""; } 
 }
 
 NPCObject.prototype.getWeapon = function() {
-  if (this.weapon) { return this.weapon; }
+  if (this.equipment.weapon) { return this.equipment.weapon; }
   else { return ""; } 
 }
 
 NPCObject.prototype.getMissile = function() {
-  if (this.missile) { return this.missile; }
+  if (this.equipment.missile) { return this.equipment.missile; }
   else { return ""; } 
 }
 
 NPCObject.prototype.setArmor = function(newarmor) {
   if (newarmor) {
     if (newarmor.checkType("Armor")) {
-      this.armor = newarmor;
+      this.equipment.armor = newarmor;
       return 1;
     }
     return 0;
   } else { 
-    this.armor = "";
+    this.equipment.armor = "";
     return 1;
   }
 }
@@ -2935,12 +2982,12 @@ NPCObject.prototype.setArmor = function(newarmor) {
 NPCObject.prototype.setWeapon = function(newweapon) {
   if (newweapon) {
     if (newweapon.checkType("Weapon")) {
-      this.weapon = newweapon;
+      this.equipment.weapon = newweapon;
       return 1;
     }
     return 0;
   } else {
-    this.weapon = "";
+    this.equipment.weapon = "";
     return 1;
   }
 }
@@ -2948,12 +2995,12 @@ NPCObject.prototype.setWeapon = function(newweapon) {
 NPCObject.prototype.setMissile = function(newmissile) {
   if (newmissile) {
     if (newmissile.checkType("Missile")) {
-      this.missile = newmissile;
+      this.equipment.missile = newmissile;
       return 1;
     }
     return 0;
   } else {
-    this.missile = "";
+    this.equipment.missile = "";
     return 1;
   }
 }

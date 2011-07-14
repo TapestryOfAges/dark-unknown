@@ -501,7 +501,44 @@ function DrawStats(page) {
   statsdiv += "<tr><td>DEX: " + PC.getdex() + "</td><td></td><td>XP: " + PC.getxp() + "</td></tr>";
   statsdiv += "<tr><td>INT: " + PC.getint() + "</td><td></td><td>Training: " + PC.gettp() + "</td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
-  
+  statsdiv += "<tr><td>Gold: " + PC.getGold() + "</td><td></td><td></td></tr>";
+  statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
+  if (PC.getEquipment("weapon")) { 
+    statsdiv += "<tr><td>Weapon: " + PC.getEquipment("weapon").getDesc() + "</td><td></td>";
+  } else {
+    statsdiv += "<tr><td>Weapon: None</td><td></td>";
+  }
+  if (PC.getEquipment("armor")) {
+    statsdiv += "<td>Armor: " + PC.getEquipment("armor").getDesc() + "</td></tr>";
+  } else {
+    statsdiv += "<td>Armor: None</td></tr>";
+  }
+  if (PC.getEquipment("weapon")) {
+    statsdiv += "<tr><td>Ave Dmg: " + PC.getEquipment("weapon").getAveDamage() + "</td><td></td>";
+  } else {
+    statsdiv += "<tr><td></td><td></td>";
+  }
+  if (PC.getEquipment("armor")) {
+    statsdiv += "<td>Defense: " + PC.getEquipment("armor").getDefense() + "</td></tr>";
+  } else {
+    statsdiv += "<td></td></tr>";
+  }
+  statsdiv += "<tr><td></td><td></td>";
+  if (PC.getEquipment("armor")) {
+    statsdiv += "<td>Absorb: " + PC.getEquipment("armor").getAbsorb() + "</td></tr>";
+  } else {
+    statsdiv += "<td></td></tr>";
+  }
+  if (PC.getEquipment("missile")) {    
+    statsdiv += "<tr><td>Missile: " + PC.getEquipment("missile").getDesc() + "</td><td></td>";
+  } else {
+    statsdiv += "<td></td><td></td>";
+  }
+  if (PC.getEquipment("armor")) {
+    statsdiv += "<td>Resist: " + PC.getEquipment("armor").getResist() + "</td></tr>";
+  } else {
+    statsdiv += "<td></td></tr>";
+  }
   
   statsdiv += "</table></div>";
   $('#displayframe').html(statsdiv);
