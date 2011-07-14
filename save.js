@@ -17,8 +17,10 @@ GameStateData.prototype.loadGame = function() {
 	PC.setHomeMap(themap);
   var dagger = localFactory.createTile("Dagger");
   PC.addToInventory(dagger, 1);
+  PC.setEquipment("weapon",dagger);
   var armor = localFactory.createTile("ClothArmor");
   PC.addToInventory(armor, 1);
+  PC.setEquipment("armor",armor);
 	maps.addMapByRef(themap);
 	if (themap.getLinkedMaps().length > 0) {
 		for (var i = 0; i < themap.getLinkedMaps().length; i++) {
