@@ -137,25 +137,25 @@ mappages["darkunknown"].terrain[133] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW W
 
 mappages["darkunknown"].features = new Array;
 mappages["darkunknown"].features[0] = {name : 'Shrine', x : 11, y : 12};
-mappages["darkunknown"].features[1] = {name : 'Towne', x : 119, y : 10, desc : "the Towne of Wealth", entermap : 'wealth', enterx : 0, entery : 0};
+mappages["darkunknown"].features[1] = {name : 'Towne', x : 119, y : 10, prefix: "the", desc : "Towne of Wealth", entermap : 'wealth', enterx : 0, entery : 0};
 mappages["darkunknown"].features[2] = {name : 'Dungeon', x : 92, y : 27, entermap : 'shadow', enterx : 0, entery : 0};
-mappages["darkunknown"].features[3] = {name : 'Towne', x : 77, y : 19, desc : "the Towne of Clear Lagoon", entermap : 'clearlagoon', enterx : 0, entery : 37};
-mappages["darkunknown"].features[4] = {name : 'Towne', x : 37, y : 22, desc : "the Towne of Poverty", entermap : 'poverty', enterx : 0, entery : 0};
+mappages["darkunknown"].features[3] = {name : 'Towne', x : 77, y : 19, prefix: "the", desc : "Towne of Clear Lagoon", entermap : 'clearlagoon', enterx : 0, entery : 37};
+mappages["darkunknown"].features[4] = {name : 'Towne', x : 37, y : 22, prefix: "the", desc : "Towne of Poverty", entermap : 'poverty', enterx : 0, entery : 0};
 mappages["darkunknown"].features[5] = {name : 'Dungeon', x : 35, y : 44, entermap : 'deathunending', enterx : 0, entery : 0};
-mappages["darkunknown"].features[6] = {name : 'Towne', x : 48, y : 59, desc : "the Towne of Gauntlet", entermap : 'gauntlet', enterx : 0, entery : 0};
+mappages["darkunknown"].features[6] = {name : 'Towne', x : 48, y : 59, prefix: "the", desc : "Towne of Gauntlet", entermap : 'gauntlet', enterx : 0, entery : 0};
 mappages["darkunknown"].features[7] = {name : 'Dungeon', x : 23, y : 39, entermap : 'worldsending', enterx : 0, entery : 0};
-mappages["darkunknown"].features[8] = {name : 'Village', x : 68, y : 71, desc : "the Village of Nassau", entermap : 'nassau', enterx : 0, entery : 0};
+mappages["darkunknown"].features[8] = {name : 'Village', x : 68, y : 71, prefix: "the", desc : "Village of Nassau", entermap : 'nassau', enterx : 0, entery : 0};
 mappages["darkunknown"].features[9] = {name : 'LeftCastle', x : 64, y : 69};
 mappages["darkunknown"].features[10] = {name : 'Castle', x : 65, y : 69, entermap : 'olympus1', enterx : 29, entery : 42};
 mappages["darkunknown"].features[11] = {name : 'RightCastle', x : 66, y : 69};
 mappages["darkunknown"].features[12] = {name : 'Dungeon', x : 113, y : 72, entermap : 'pitdespair', enterx : 0, entery : 0};
 mappages["darkunknown"].features[13] = {name : 'Dungeon', x : 129, y : 75, entermap : 'drash', enterx : 0, entery : 0};
 mappages["darkunknown"].features[14] = {name : 'Dungeon', x : 65, y : 92, entermap : 'guilddeath', enterx : 0, entery : 0};
-mappages["darkunknown"].features[15] = {name : 'Keep', x : 45, y : 86, desc : "the Black Dragon's Castle", entermap : 'blackdragon', enterx : 0, entery : 0};
+mappages["darkunknown"].features[15] = {name : 'Keep', x : 45, y : 86, prefix: "the", desc : "Black Dragon's Castle", entermap : 'blackdragon', enterx : 0, entery : 0};
 mappages["darkunknown"].features[16] = {name : 'Shrine', x : 9, y : 78};
-mappages["darkunknown"].features[17] = {name : 'Towne', x : 116, y : 100, desc : "the Towne of Stout", entermap : 'stout', enterx : 0, entery : 0};
+mappages["darkunknown"].features[17] = {name : 'Towne', x : 116, y : 100, prefix: "the", desc : "Towne of Stout", entermap : 'stout', enterx : 0, entery : 0};
 mappages["darkunknown"].features[18] = {name : 'Dungeon', x : 77, y : 124, entermap : 'vault', enterx : 0, entery : 0};
-mappages["darkunknown"].features[19] = {name : 'Towne', x : 60, y : 115, desc : "the Towne of Onyx", entermap : 'onyx', enterx : 0, entery : 0};
+mappages["darkunknown"].features[19] = {name : 'Towne', x : 60, y : 115, prefix: "the", desc : "Towne of Onyx", entermap : 'onyx', enterx : 0, entery : 0};
 mappages["darkunknown"].features[20] = {name : 'Dungeon', x : 18, y : 114, entermap : 'metaltwister', enterx : 0, entery : 0};
 mappages["darkunknown"].features[21] = {name : 'BridgeEW', x : 75, y : 25};
 mappages["darkunknown"].features[22] = {name : 'HillTower', x : 52, y : 33, entermap : 'magetower', enterx : 0, entery : 0};
@@ -166,7 +166,6 @@ mappages["darkunknown"].features[26] = {name : 'BridgeEW', x : 68, y : 40};
 mappages["darkunknown"].features[27] = {name : 'HillTower', x : 98, y : 122, entermap : 'toshintower', enterx : 0, entery : 0};
 mappages["darkunknown"].features[28] = {name : 'BridgeNS', x : 88, y : 97};
 mappages["darkunknown"].features[29] = {name : 'BridgeEW', x : 83, y : 98};
-
 
 mappages["darkunknown"].npcs = new Array;
 
