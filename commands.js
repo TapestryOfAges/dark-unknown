@@ -188,8 +188,9 @@ function PerformCommand(code) {
     retval["txt"] = "";
     retval["input"] = "&gt; Zstats- ";
     retval["fin"] = 2;		
+    targetCursor.page = 1;
     
-    DrawStats(1);
+    DrawStats(targetCursor.page);
 	}
 	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
 		// pass
@@ -490,6 +491,8 @@ function PerformYell() {
 }
 
 function DrawStats(page) {
+  
+ if (page == 1) {
   var statsdiv = "&nbsp;";
   statsdiv += "<div class='zstats'>";
   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
@@ -504,12 +507,16 @@ function DrawStats(page) {
   statsdiv += "<tr><td>Gold: " + PC.getGold() + "</td><td></td><td></td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
   if (PC.getEquipment("weapon")) { 
-    statsdiv += "<tr><td>Weapon: " + PC.getEquipment("weapon").getDesc() + "</td><td></td>";
+    var wpndesc = PC.getEquipment("weapon").getDesc();
+    wpndesc = wpndesc.charAt(0).toUpperCase() + wpndesc.slice(1);
+    statsdiv += "<tr><td>Weapon: " + wpndesc + "</td><td></td>";
   } else {
     statsdiv += "<tr><td>Weapon: None</td><td></td>";
   }
   if (PC.getEquipment("armor")) {
-    statsdiv += "<td>Armor: " + PC.getEquipment("armor").getDesc() + "</td></tr>";
+    var armordesc = PC.getEquipment("armor").getDesc();
+    armordesc = armordesc.charAt(0).toUpperCase() + armordesc.slice(1);
+    statsdiv += "<td>Armor: " + armordesc + "</td></tr>";
   } else {
     statsdiv += "<td>Armor: None</td></tr>";
   }
@@ -530,16 +537,27 @@ function DrawStats(page) {
     statsdiv += "<td></td></tr>";
   }
   if (PC.getEquipment("missile")) {    
+    var missdesc = PC.getEquipment("missile").getDesc();
+    missdesc = missdesc.charAt(0).toUpperCase() + missdesc.slice(1);
     statsdiv += "<tr><td>Missile: " + PC.getEquipment("missile").getDesc() + "</td><td></td>";
   } else {
-    statsdiv += "<td></td><td></td>";
+    statsdiv += "<tr><td></td><td></td>";
   }
   if (PC.getEquipment("armor")) {
     statsdiv += "<td>Resist: " + PC.getEquipment("armor").getResist() + "</td></tr>";
   } else {
     statsdiv += "<td></td></tr>";
   }
+  if (PC.getEquipment("missile")){
+    statsdiv += "<tr><td>Ave Dmg: " + PC.getEquipment("missile").getAveDamage() + "</td><td></td>";
+  } else {
+    statsdiv += "<tr><td></td><td></td>";
+  }
+  statsdiv += "<td></td></tr>";
   
   statsdiv += "</table></div>";
+  drawTopbarFrame("<p>Character</p>");
   $('#displayframe').html(statsdiv);
+  
+ }
 }
