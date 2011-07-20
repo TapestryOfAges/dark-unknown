@@ -168,7 +168,7 @@ $(document).ready(function() {
 	    	maintext.drawTextFrame();
 
     	}
-    	else { alert("need to add hook here! (main 145)"); }
+    	else { alert("need to add hook here! (main 171)"); }
     }
     else if (code == 27) { // ESC
     	maintext.setInputLine("&gt;");
@@ -280,6 +280,26 @@ $(document).ready(function() {
   		gamestate.setMode("target");
   	}
 
+  } 
+  else if (gamestate.getMode() == "zstats") {
+    if (code == 27) { // ESC
+    	maintext.setInputLine("&gt;");
+    	maintext.drawTextFrame();
+      drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    	gamestate.setMode("player");
+    	gamestate.setTurn(PC);
+    }
+    else if ((code == 38) || (code == 219) || (code == 37) || (code == 59)) {  // previous page
+      targetCursor.page--;
+      if (targetCursor.page == 0) { targetCursor.page = 5; }  // set to the last page when I know what that will be
+      DrawStats(targetCursor.page);
+    }
+    else if ((code == 32) || (code == 13) || (code == 39) || (code == 222) || (code == 40) || (code == 191)) { // next page
+      targetCursor.page++;
+      if (targetCursor.page == 6) { targetCursor.page = 1; }
+      DrawStats(targetCursor.page);
+    }
   }
   });
 });
