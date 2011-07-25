@@ -1544,6 +1544,7 @@ function ShinglesTile() {
   this.graphic = "shingles.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.prefix = "a";
   this.desc = "roof";
 }
 ShinglesTile.prototype = new TerrainObject;
