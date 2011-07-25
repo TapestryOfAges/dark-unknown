@@ -1,6 +1,7 @@
 
 var cornerx = -1;
 var cornery = -1;
+var changes = 0;
 var localFactory = new tileFactory();
 var selectionval = localFactory.createTile("Ocean");
 var eidos = new Platonic();
@@ -44,6 +45,10 @@ function setdebug() {
 }
 
 function editorLoadMap(mapname) {
+  if (changes == 1) {
+    var doload = confirm("Do you wish to load a new map? All progress will be lost.");
+    if (!doload) { return; }
+  }
 	if (mapname != "test") { 
 		mapname = document.menuinterface.mapnameslist.value;
 	}
@@ -210,12 +215,12 @@ function changeselection(tilename) {
   $('#td_selectionimg').css("background-image", "url('graphics/" + graphics[0] + "')");
   $('#td_selectionimg').css("background-position", graphics[2] + "px " + graphics[3] + "px");
   document.images["selectionimg"].src = "graphics/" + graphics[1];
-  if (selectionval.getType() == "terrain") {
+  if (selectionval.checkType("Terrain")) {
 //  	displayval='terrain';
 //  	drawFeatures(0);
 //  	document.editlayer.layer[0].checked = true;
   }
-  else if (selectionval.getType() == "feature") {
+  else if (selectionval.checkType("Feature")) {
 //  	displayval = 'feature';
 //  	drawFeatures(1);
 //  	document.editlayer.layer[1].checked = true;
@@ -229,17 +234,18 @@ function changeselection(tilename) {
 
 function clickmap(xval,yval) {
 //	if (lockout == 1) {return;}
+  changes = 1;
   var x=0;
   var y=0;
   if (document.brushes.elements[0].checked) {
-  	if (selectionval.getType() == "terrain") {
+  	if (selectionval.checkType("Terrain")) {
       changemaptile(xval,yval);
     }
-    else if (selectionval.getType() == "feature") {
+    else if (selectionval.checkType("Feature")) {
     	if (selectionval.getName() == "eraser") { erasefeature(xval,yval); }
     	else { addfeaturetomap(xval,yval,selectionval); }
     }
-    else if (selectionval.getType() == "npc") {
+    else if (selectionval.checkType("npc")) {
     	addnpctomap(xval,yval,selectionval);
     }
     else {
@@ -264,14 +270,14 @@ function clickmap(xval,yval) {
       }
       for (x=cornerx;x<=xval;x++) {
         for (y=cornery;y<=yval;y++) {
-        	if (selectionval.getType() == "terrain") {
+        	if (selectionval.checkType("Terrain")) {
             changemaptile(x,y);
           }
-          else if (selectionval.getType() == "feature") {
+          else if (selectionval.checkType("Feature")) {
     	      if (selectionval.getName() == "eraser") { erasefeature(x,y); }
     	      else { addfeaturetomap(x,y,selectionval); }
           }
-          else if (selectionval.getType() == "npc") {
+          else if (selectionval.checkType("npc")) {
     	      addnpctomap(x,y,selectionval);
           }
           else {
