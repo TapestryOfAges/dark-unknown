@@ -2235,10 +2235,20 @@ function ArmorObject() {
 	this.absorb = 0;
 	this.resist = 0;
 	this.strReq = 0;
+	this.tier = 0;
 	
 	this.addType("Armor");
 }
 ArmorObject.prototype = new EquippableItemObject;
+
+ArmorObject.prototype.setTier = function(newtier) {
+	this.tier = newtier;
+	return (this.tier);
+}
+
+ArmorObject.prototype.getTier = function() {
+	return (this.tier);
+}
 
 ArmorObject.prototype.setDefense = function(newdef) {
 	this.defense = newdef;
@@ -2295,6 +2305,7 @@ function ClothArmorTile() {
 	this.spritexoffset = "0";
 	this.spriteyoffset = "0";
 	this.desc = "cloth armor";
+	this.tier = 1;
 }
 ClothArmorTile.prototype = new ArmorObject;
 
@@ -2307,6 +2318,7 @@ function LeatherArmorTile() {
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "0";
 	this.desc = "leather armor";
+	this.tier = 2;
 }
 LeatherArmorTile.prototype = new ArmorObject;
 
@@ -2320,6 +2332,7 @@ function ChainArmorTile() {
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "0";
 	this.desc = "chain mail armor";
+	this.tier = 3;
 }
 ChainArmorTile.prototype = new ArmorObject;
 
@@ -2333,6 +2346,7 @@ function PlateArmorTile() {
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "0";
 	this.desc = "plate armor";
+	this.tier = 4;
 }
 PlateArmorTile.prototype = new ArmorObject;
 
@@ -2345,6 +2359,7 @@ function ExoticArmorTile() {
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "0";
 	this.desc = "exotic armor";
+	this.tier = 5;
 }
 ExoticArmorTile.prototype = new ArmorObject;
 
@@ -2355,10 +2370,20 @@ function WeaponObject() {
 	this.reduceArmor = 0;
 	this.damage = "1d1+0";
 	this.strdamage = 0;
+	this.tier = 0;
 	
 	this.addType("Weapon");
 }
 WeaponObject.prototype = new EquippableItemObject;
+
+WeaponObject.prototype.getTier = function() {
+	return this.tier;
+}
+
+WeaponObject.prototype.setTier = function(newtier) {
+	this.tier = newtier;
+	return parseInt(this.tier);
+}
 
 WeaponObject.prototype.getHit = function() {
 	return this.hit;
@@ -2424,6 +2449,7 @@ function FistsTile() {
 	this.spritexoffset = "-224";
 	this.spriteyoffset = "-32";
 	this.desc = "your fists";
+	this.tier = 0;
 }
 FistsTile.prototype = new WeaponObject;
 
@@ -2436,6 +2462,7 @@ function DaggerTile() {
 	this.spriteyoffset = "-32";
 	this.desc = "dagger";
 	this.prefix = "a";
+	this.tier = 1;
 }
 DaggerTile.prototype = new WeaponObject;
 
@@ -2448,6 +2475,7 @@ function ShortswordTile() {
 	this.spriteyoffset = "-32";
 	this.desc = "shortsword";
 	this.prefix = "a";
+	this.tier = 2;
 }
 ShortswordTile.prototype = new WeaponObject;
 
@@ -2460,6 +2488,7 @@ function MaceTile() {
 	this.spriteyoffset = "-32";
 	this.desc = "mace";
 	this.prefix = "a";
+	this.tier = 3;
 }
 MaceTile.prototype = new WeaponObject;
 
@@ -2472,6 +2501,7 @@ function AxeTile() {
 	this.spriteyoffset = "-32";
 	this.desc = "axe";
 	this.prefix = "an";
+	this.tier = 4;
 }
 AxeTile.prototype = new WeaponObject;
 
@@ -2484,6 +2514,7 @@ function LongswordTile() {
 	this.spriteyoffset = "-32";
 	this.desc = "longsword";
 	this.prefix = "a";
+	this.tier = 5;
 }
 LongswordTile.prototype = new WeaponObject;
 
@@ -2496,6 +2527,7 @@ function HalberdTile() {
 	this.spriteyoffset = "-32";
 	this.desc = "halberd";
 	this.prefix = "a";
+	this.tier = 6;
 }
 HalberdTile.prototype = new WeaponObject;
 
@@ -2508,16 +2540,27 @@ function MagicSwordTile() {
 	this.spriteyoffset = "-32";
 	this.desc = "magic sword";
 	this.prefix = "a";
+	this.tier = 7;
 }
 MagicSwordTile.prototype = new WeaponObject;
 
 function MissileWeaponObject() {
 	this.dexReq = 10;
 	this.range = 5;
+	this.tier = 0;
 	
 	this.addType("Missile");
 }
 MissileWeaponObject.prototype = new WeaponObject;
+
+MissileWeaponObject.prototype.getTier = function() {
+	return this.tier;
+}
+
+MissileWeaponObject.prototype.setTier = function(newtier) {
+	this.tier = newtier;
+	return parseInt(this.tier);
+}
 
 function SlingTile() {
 	this.name = "Sling";
@@ -2527,6 +2570,7 @@ function SlingTile() {
 	this.spriteyoffset = "-64";
 	this.desc = "sling";
 	this.prefix = "a";
+	tier = 1;
 }
 SlingTile.prototype = new MissileWeaponObject;
 
@@ -2539,6 +2583,7 @@ function BowTile() {
 	this.dexReq = 16;
 	this.desc = "bow";
 	this.prefix = "a";
+	tier = 2;
 }
 BowTile.prototype = new MissileWeaponObject;
 
@@ -2551,6 +2596,7 @@ function CrossbowTile() {
 	this.dexReq = 19;
 	this.desc = "crossbow";
 	this.prefix = "a";
+	tier = 3;
 }
 CrossbowTile.prototype = new MissileWeaponObject;
 
@@ -2562,6 +2608,7 @@ function WandTile() {
 	this.spriteyoffset = "-64";
 	this.desc = "magic wand";
 	this.prefix = "a";
+	tier = 4;
 }
 WandTile.prototype = new MissileWeaponObject;
 
@@ -2574,6 +2621,7 @@ function MagicAxeTile() {
 	this.dexReq = 22;
 	this.desc = "magic axe";
 	this.prefix = "a";
+	tier = 5;
 }
 MagicAxeTile.prototype = new MissileWeaponObject;
 
