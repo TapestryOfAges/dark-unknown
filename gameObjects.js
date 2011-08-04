@@ -2434,17 +2434,23 @@ WeaponObject.prototype.rollDamage = function() {
   return damage;
 }
 
-WeaponObject.prototype.getAveDamage = function() {
+WeaponObject.prototype.getAveDamage = function(wielder) {
   var dmgobj = this.parseDamage();
   var damage = dmgobj.plus;
   damage += (dmgobj.quantity * (dmgobj.dice + 1)/2);
+  if (wielder && this.strdamage) {
+    var str = wielder.getstr();
+    var strmod = parseFloat(this.strdamage);
+    var strdam = str*strmod;
+    damage += parseInt(strdam);
+  }
   return damage;
 }
 
 function FistsTile() {
 	this.name = "Fists";
 	this.damage = "1d2+0";
-	this.strdamage = "1/15";
+	this.strdamage = 1/15;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-224";
 	this.spriteyoffset = "-32";
@@ -2456,7 +2462,7 @@ FistsTile.prototype = new WeaponObject;
 function DaggerTile() {
 	this.name = "Dagger";
 	this.damage = "1d5+0";
-	this.strdamage = "1/15";
+	this.strdamage = 1/15;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-32";
@@ -2469,7 +2475,7 @@ DaggerTile.prototype = new WeaponObject;
 function ShortswordTile() {
 	this.name = "Shortsword";
 	this.damage = "2d4+1";
-	this.strdamage = "1/15";
+	this.strdamage = 1/15;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-32";
@@ -2482,7 +2488,7 @@ ShortswordTile.prototype = new WeaponObject;
 function MaceTile() {
 	this.name = "Mace";
 	this.damage = "2d4+3";
-	this.strdamage = "1/5";
+	this.strdamage = 1/5;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-32";
@@ -2495,7 +2501,7 @@ MaceTile.prototype = new WeaponObject;
 function AxeTile() {
 	this.name = "Axe";
 	this.damage = "2d4+8";
-	this.strdamage = "1/10";
+	this.strdamage = 1/10;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-32";
@@ -2508,7 +2514,7 @@ AxeTile.prototype = new WeaponObject;
 function LongswordTile() {
 	this.name = "Longsword";
 	this.damage = "4d4+9";
-	this.strdamage = "1/10";
+	this.strdamage = 1/10;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-32";
@@ -2521,7 +2527,7 @@ LongswordTile.prototype = new WeaponObject;
 function HalberdTile() {
 	this.name = "Halberd";
 	this.damage = "5d4+15";
-	this.strdamage = "1/3";
+	this.strdamage = 1/3;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-32";
@@ -2534,7 +2540,7 @@ HalberdTile.prototype = new WeaponObject;
 function MagicSwordTile() {
 	this.name = "MagicSword";
 	this.damage = "5d10+22";
-	this.strdamage = "1/5";
+	this.strdamage = 1/5;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-192";
 	this.spriteyoffset = "-32";
