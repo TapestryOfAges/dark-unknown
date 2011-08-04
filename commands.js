@@ -521,7 +521,7 @@ function DrawStats(page) {
     statsdiv += "<td>Armor: None</td></tr>";
   }
   if (PC.getEquipment("weapon")) {
-    statsdiv += "<tr><td>Ave Dmg: " + PC.getEquipment("weapon").getAveDamage() + "</td><td></td>";
+    statsdiv += "<tr><td>Ave Dmg: " + PC.getEquipment("weapon").getAveDamage(PC) + "</td><td></td>";
   } else {
     statsdiv += "<tr><td></td><td></td>";
   }
@@ -549,7 +549,7 @@ function DrawStats(page) {
     statsdiv += "<td></td></tr>";
   }
   if (PC.getEquipment("missile")){
-    statsdiv += "<tr><td>Ave Dmg: " + PC.getEquipment("missile").getAveDamage() + "</td><td></td>";
+    statsdiv += "<tr><td>Ave Dmg: " + PC.getEquipment("missile").getAveDamage(PC) + "</td><td></td>";
   } else {
     statsdiv += "<tr><td></td><td></td>";
   }
