@@ -2976,6 +2976,11 @@ NPCObject.prototype.removeFromInventory = function(item, map, x, y) {
   }
 }
 
+NPCObject.prototype.getInventory = function() {
+  var inv = this.inventory.getAll();
+  return inv;
+}
+
 NPCObject.prototype.getEquipment = function(which) {
   which = which.toLowerCase();
   if (which == "armor") {
