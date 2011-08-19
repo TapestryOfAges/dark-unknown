@@ -292,12 +292,12 @@ $(document).ready(function() {
     }
     else if ((code == 38) || (code == 219) || (code == 37) || (code == 59)) {  // previous page
       targetCursor.page--;
-      if (targetCursor.page == 0) { targetCursor.page = 5; }  // set to the last page when I know what that will be
+      if (targetCursor.page == 0) { targetCursor.page = 2; }  // set to the last page when I know what that will be
       DrawStats(targetCursor.page);
     }
     else if ((code == 32) || (code == 13) || (code == 39) || (code == 222) || (code == 40) || (code == 191)) { // next page
       targetCursor.page++;
-      if (targetCursor.page == 6) { targetCursor.page = 1; }
+      if (targetCursor.page == 3) { targetCursor.page = 1; }
       DrawStats(targetCursor.page);
     }
   }
