@@ -21,6 +21,27 @@ GameStateData.prototype.loadGame = function() {
   var armor = localFactory.createTile("ClothArmor");
   PC.addToInventory(armor, 1);
   PC.setEquipment("armor",armor);
+  dagger = localFactory.createTile("Longsword");
+  PC.addToInventory(dagger,1);
+  
+  // Let's add some of everything!
+  // <meme>ADD ALL THE THINGS!</meme>
+  dagger = localFactory.createTile("Longsword");
+  PC.addToInventory(dagger,1);
+  // Let's see if the quantity increases- it does now!
+  PC.addToInventory(localFactory.createTile("LeatherArmor"),1);
+  PC.addToInventory(localFactory.createTile("ChainArmor"),1);
+  PC.addToInventory(localFactory.createTile("PlateArmor"),1);
+  PC.addToInventory(localFactory.createTile("ExoticArmor"),1);
+  PC.addToInventory(localFactory.createTile("Shortsword"),1);
+  PC.addToInventory(localFactory.createTile("Mace"),1);
+  PC.addToInventory(localFactory.createTile("Axe"),1);
+  PC.addToInventory(localFactory.createTile("Halberd"),1);
+  PC.addToInventory(localFactory.createTile("MagicSword"),1);
+  PC.addToInventory(localFactory.createTile("Sling"),1);
+  PC.addToInventory(localFactory.createTile("Bow"),1);
+  PC.addToInventory(localFactory.createTile("Crossbow"),1);
+  
 	maps.addMapByRef(themap);
 	if (themap.getLinkedMaps().length > 0) {
 		for (var i = 0; i < themap.getLinkedMaps().length; i++) {
