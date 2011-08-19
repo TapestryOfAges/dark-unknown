@@ -2114,15 +2114,15 @@ function ItemObject() {
 }
 ItemObject.prototype = new FeatureObject;
 
-ItemObject.prototype.isItem = new function() {
+ItemObject.prototype.isItem = function() {
 	return this.item;
 }
 
-ItemObject.prototype.getQuantity = new function() {
+ItemObject.prototype.getQuantity = function() {
 	return this.quantity;
 }
 
-ItemObject.prototype.setQuantity = new function(quant) {
+ItemObject.prototype.setQuantity = function(quant) {
 	this.quantity = quant;
 }
 
@@ -2963,13 +2963,33 @@ NPCObject.prototype.addToInventory = function(item, thinAir) {
     // otherwise, this will remove the item from the NPC/PC's map first.
     this.getHomeMap().deleteThing(item);
   }
-  this.inventory.addTop(item);
+  var alreadyIn = this.inventory.getByName(item.getName());
+  if (alreadyIn) {
+    alreadyIn.setQuantity(alreadyIn.getQuantity()+1);
+  }
+  else {
+    this.inventory.addTop(item);
+  }
   item.setx(0);
   item.sety(0);  
 }
 
 NPCObject.prototype.removeFromInventory = function(item, map, x, y) {
-  this.inventory.deleteFrom(item);
+  if (item.getQuantity > 1) {
+    item.setQuantity(item.getQuantity()-1);
+  } else {
+    // If this is equipped, unequip it first
+    if (item.checkType("Weapon")) {
+      this.setEquipment("Weapon","");
+    }
+    if (item.checkType("Missile")) {
+      this.setEquipment("Missile","");
+    }
+    if (item.checkType("Armor")) {
+      this.setEquipment("Armor","");
+    }    
+    this.inventory.deleteFrom(item);
+  }
   if (map) { // if map,x,y are filled in, will place the item back on
              // the map
     map.placeThing(x,y,item);
