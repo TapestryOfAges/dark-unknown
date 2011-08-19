@@ -30,13 +30,22 @@ div.charstats table { color:white;
    	            line-height:20px;
 }
 
+div.mainframe table {margin-top:-18px; }
+
+div.outerstats { overflow:auto;
+                 margin-top: -18px;
+                  }
+
+div.zstats { width:100%;
+             height: 410px;
+           }
+           
 div.zstats table { color:white;
                 font-family:"Commodore64";
    	            font-size:16pt;
    	            line-height:20px;
+                margin-top:0px;
 }
-
-div.mainframe table {margin-top:-18px; }
 
 div.maintextframe { font-family:"Commodore64";
 	                  font-size:16pt;
@@ -65,3 +74,4 @@ div.inputtext { font-family:"Commodore64";
 	              position: absolute;
 	              bottom: 0;
 }
+
