@@ -494,7 +494,7 @@ function DrawStats(page) {
   
  if (page == 1) {
   var statsdiv = "&nbsp;";
-  statsdiv += "<div class='outerstats'><div class='zstats'>";
+  statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
   statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
   statsdiv += "<tr><td style='width:50%'>HP: " + PC.getHP() + "/" + PC.getMaxHP() + "</td><td></td>";
@@ -562,7 +562,7 @@ function DrawStats(page) {
  }
  else if (page == 2) {
    var statsdiv = "&nbsp;";
-   statsdiv += "<div class='outerstats'><div class='zstats'>";
+   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
    statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
    var inv = PC.getInventory();

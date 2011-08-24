@@ -290,15 +290,22 @@ $(document).ready(function() {
     	gamestate.setMode("player");
     	gamestate.setTurn(PC);
     }
-    else if ((code == 38) || (code == 219) || (code == 37) || (code == 59)) {  // previous page
+    else if ((code == 37) || (code == 59)) {  // previous page
       targetCursor.page--;
       if (targetCursor.page == 0) { targetCursor.page = 2; }  // set to the last page when I know what that will be
       DrawStats(targetCursor.page);
     }
-    else if ((code == 32) || (code == 13) || (code == 39) || (code == 222) || (code == 40) || (code == 191)) { // next page
+    else if ((code == 39) || (code == 222)) { // next page
       targetCursor.page++;
       if (targetCursor.page == 3) { targetCursor.page = 1; }
       DrawStats(targetCursor.page);
+    }
+    else if ((code == 38) || (code == 219)) { // scroll up
+      $("div.outerstats").scrollTop($("div.outerstats").scrollTop() - 50);      
+    }
+    else if ((code == 32) || (code == 13) || (code == 40) || (code == 191)) { // scroll down
+//      alert($("div.outerstats").scrollTop());
+      $("div.outerstats").scrollTop($("div.outerstats").scrollTop() + 50);
     }
   }
   });
