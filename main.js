@@ -287,6 +287,7 @@ $(document).ready(function() {
     	maintext.drawTextFrame();
       drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
       drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+      targetCursor.scrollapi = "";
     	gamestate.setMode("player");
     	gamestate.setTurn(PC);
     }
@@ -301,11 +302,14 @@ $(document).ready(function() {
       DrawStats(targetCursor.page);
     }
     else if ((code == 38) || (code == 219)) { // scroll up
-      $("div.outerstats").scrollTop($("div.outerstats").scrollTop() - 50);      
+//      $("div.outerstats").scrollTop($("div.outerstats").scrollTop() - 50);      
+      targetCursor.scrollapi.scrollByY(-50,0);
     }
     else if ((code == 32) || (code == 13) || (code == 40) || (code == 191)) { // scroll down
 //      alert($("div.outerstats").scrollTop());
-      $("div.outerstats").scrollTop($("div.outerstats").scrollTop() + 50);
+//      $("div.outerstats").scrollTop($("div.outerstats").scrollTop() + 50);
+      targetCursor.scrollapi.scrollByY(50,0);
+
     }
   }
   });
