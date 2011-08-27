@@ -32,12 +32,13 @@ div.charstats table { color:white;
 
 div.mainframe table {margin-top:-18px; }
 
-div.outerstats { overflow:auto;
+div.outerstats { 
                  margin-top: -18px;
                   }
 
 div.zstats { width:100%;
              height: 410px;
+             overflow:auto;
            }
            
 div.zstats table { color:white;
@@ -74,4 +75,8 @@ div.inputtext { font-family:"Commodore64";
 	              position: absolute;
 	              bottom: 0;
 }
+
+.jspTrack { background: none repeat scroll 0 0 #000000 } 
+
+.jspDrag { background: none repeat scroll 0 0 #000000 } 
 

@@ -559,6 +559,10 @@ function DrawStats(page) {
   drawTopbarFrame("<p>Character</p>");
   $('#displayframe').html(statsdiv);
   
+	var scrollelem = $('.zstats').jScrollPane();
+  var scrollapi = scrollelem.data('jsp');
+  targetCursor.scrollapi = scrollapi;
+  
  }
  else if (page == 2) {
    var statsdiv = "&nbsp;";
@@ -624,5 +628,9 @@ function DrawStats(page) {
    statsdiv += "</table></div></div>";
    drawTopbarFrame("<p>Inventory</p>");
    $('#displayframe').html(statsdiv);
+   
+	var scrollelem = $('.zstats').jScrollPane();
+  var scrollapi = scrollelem.data('jsp');
+  targetCursor.scrollapi = scrollapi;
  }
 }
