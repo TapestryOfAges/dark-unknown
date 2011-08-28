@@ -281,35 +281,29 @@ $(document).ready(function() {
   	}
 
   } 
-  else if (gamestate.getMode() == "zstats") {
-    if (code == 27) { // ESC
+  else if (gamestate.getMode() == "equip") {
+    var response = performEquip(code);
+    if (response["fin"] == 0) {
     	maintext.setInputLine("&gt;");
     	maintext.drawTextFrame();
       drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
       drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-      targetCursor.scrollapi = "";
-    	gamestate.setMode("player");
+      gamestate.setMode("player");
     	gamestate.setTurn(PC);
     }
-    else if ((code == 37) || (code == 59)) {  // previous page
-      targetCursor.page--;
-      if (targetCursor.page == 0) { targetCursor.page = 2; }  // set to the last page when I know what that will be
-      DrawStats(targetCursor.page);
-    }
-    else if ((code == 39) || (code == 222)) { // next page
-      targetCursor.page++;
-      if (targetCursor.page == 3) { targetCursor.page = 1; }
-      DrawStats(targetCursor.page);
-    }
-    else if ((code == 38) || (code == 219)) { // scroll up
-//      $("div.outerstats").scrollTop($("div.outerstats").scrollTop() - 50);      
-      targetCursor.scrollapi.scrollByY(-50,0);
-    }
-    else if ((code == 32) || (code == 13) || (code == 40) || (code == 191)) { // scroll down
-//      alert($("div.outerstats").scrollTop());
-//      $("div.outerstats").scrollTop($("div.outerstats").scrollTop() + 50);
-      targetCursor.scrollapi.scrollByY(50,0);
-
+    // WORK HERE
+  }
+  else if (gamestate.getMode() == "zstats") {
+    var response = performZstats(code);
+    if (response["fin"] == 0) {
+      maintext.setInputLine("&gt;");
+    	maintext.drawTextFrame();
+      drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+      gamestate.setMode("player");
+    	gamestate.setTurn(PC);
+    } else if (response["fin"] == 1) {
+      
     }
   }
   });

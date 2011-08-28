@@ -141,8 +141,7 @@ function PerformCommand(code) {
 		
 	}
 	else if (code == 82) { // r
-		// ready equipment
-		
+
 	}
 	else if (code == 83) { // s
 		// search
@@ -166,8 +165,11 @@ function PerformCommand(code) {
 		
 	}
 	else if (code == 87) { // w
-		// 
-		
+		gamestate.setMode("equip");
+		retval["txt"] = "";
+		retval["input"] = "&gt; Wear/Wield: ";
+		retval["fin"] = 2;
+		targetCursor.command = "w";		
 	}
 	else if (code == 88) { // x
 		// eXit - not used
@@ -451,6 +453,15 @@ function PerformGet(who) {
   }
 }
 
+function PerformEquip(code) {
+  var retval = new Object;
+  if (code == 27) { // ESC
+    retval["fin"] = 0;
+  }
+  
+  return retval;
+ 
+}
 function PerformUse(who) {
 	var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
 	var used = localacre.features.getTop();
@@ -488,6 +499,35 @@ function PerformYell() {
 		retval["fin"] = 1;
 		return retval;
 	}
+}
+
+function performZstats(code) {
+  var retval = new Object;
+    if (code == 27) { // ESC
+      retval["fin"] = 0;
+    }
+    else if ((code == 37) || (code == 59)) {  // previous page
+      targetCursor.page--;
+      if (targetCursor.page == 0) { targetCursor.page = 2; }  // set to the last page when I know what that will be
+      DrawStats(targetCursor.page);
+      retval["fin"] = 1;
+    }
+    else if ((code == 39) || (code == 222)) { // next page
+      targetCursor.page++;
+      if (targetCursor.page == 3) { targetCursor.page = 1; }
+      DrawStats(targetCursor.page);
+      retval["fin"] = 1;
+    }
+    else if ((code == 38) || (code == 219)) { // scroll up
+      targetCursor.scrollapi.scrollByY(-50,1);
+      retval["fin"] = 1;
+    }
+    else if ((code == 32) || (code == 13) || (code == 40) || (code == 191)) { // scroll down
+      targetCursor.scrollapi.scrollByY(50,1);
+      retval["fin"] = 1;
+    } else { retval["fin"] = 1; }
+      
+    return retval;
 }
 
 function DrawStats(page) {
