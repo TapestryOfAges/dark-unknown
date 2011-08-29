@@ -80,3 +80,10 @@ div.inputtext { font-family:"Commodore64";
 
 .jspDrag { background: none repeat scroll 0 0 #000000 } 
 
+  div.bubble { display: none; 
+  	           left:40; 
+  	           top:40; 
+  	           color: #ffffff; 
+  	           background-color: #000000; 
+  	           border: 3px solid #aaa;
+  	           position: absolute;  }
