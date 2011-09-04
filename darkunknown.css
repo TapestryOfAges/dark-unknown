@@ -87,3 +87,10 @@ div.inputtext { font-family:"Commodore64";
   	           background-color: #000000; 
   	           border: 3px solid #aaa;
   	           position: absolute;  }
+
+.highlight { background-color: #ffffff; color: #000000 }
+.highlighteq { background-color: #ffffff; color: #c00 }
+
+tr.invheader td { padding-bottom: 4px; }
+
+td.selected { color:#3ff }

@@ -170,6 +170,88 @@ function PerformCommand(code) {
 		retval["input"] = "&gt; Wear/Wield: ";
 		retval["fin"] = 2;
 		targetCursor.command = "w";		
+		
+   var statsdiv = "&nbsp;";
+   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
+   statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
+   var inv = PC.getInventory();
+   var melee = new Array;
+   var missile = new Array;
+   var armor = new Array;
+   var iter = 0;
+   var itemarray = new Array;
+   if (inv.length) {
+     for (var i = 0; i < inv.length; i++) {
+       if ((inv[i].checkType("Weapon")) && (!inv[i].checkType("Missile"))) { melee[melee.length] = inv[i]; }
+       if (inv[i].checkType("Missile")) { missile[missile.length] = inv[i]; }
+       if (inv[i].checkType("Armor")) { armor[armor.length] = inv[i];}
+     }
+     if (armor.length) {
+       armor.sort(function(a,b) { return (b.getDefense() - a.getDefense()); });
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Armour</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       for (var i = 0; i < armor.length; i++ ) {
+         var itemdesc = armor[i].getDesc();
+         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
+         if (armor[i] == PC.getEquipment("armor")) {
+           statsdiv += "<tr id='inv" + iter + "'><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
+         } else {
+           statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
+         }
+         iter++;
+         itemarray[iter] = armor[i];
+       }
+       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
+     }
+     if (melee.length) {
+       melee.sort(function(a,b) { return (b.getAveDamage(PC) - a.getAveDamage(PC)); });
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Weapons</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       for (var i = 0; i < melee.length; i++ ) {
+         var itemdesc = melee[i].getDesc();
+         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
+         if (melee[i] == PC.getEquipment("Weapon")) {
+           statsdiv += "<tr id='inv" + iter + "'><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
+         } else {
+           statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
+         }
+         iter++;
+         itemarray[iter] = melee[i];
+       }
+       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
+     }
+     if (missile.length) {
+       missile.sort(function(a,b) { return (b.getAveDamage(PC) - a.getAveDamage(PC)); });
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Missile Weapons</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       for (var i = 0; i < missile.length; i++ ) {
+         var itemdesc = missile[i].getDesc();
+         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
+         if (missile[i] == PC.getEquipment("Missile")) {
+           statsdiv += "<tr id='inv" + iter + "'><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
+         } else {
+           statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
+         }
+         iter++;
+         itemarray[iter] = missile[i];
+       }
+       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
+     }
+       
+   }
+   statsdiv += "<td></td></tr>";
+  
+   statsdiv += "</table></div></div>";
+   drawTopbarFrame("<p>Equipment</p>");
+   $('#displayframe').html(statsdiv);
+   
+	var scrollelem = $('.zstats').jScrollPane();
+  var scrollapi = scrollelem.data('jsp');
+  targetCursor.scrollapi = scrollapi;
+  targetCursor.scrolllocation = 2;
+  targetCursor.itemlist = new Array;
+  targetCursor.itemlist = itemarray;
+  
+  $('#inv2').toggleClass('highlight');
+		
 	}
 	else if (code == 88) { // x
 		// eXit - not used
@@ -457,11 +539,30 @@ function PerformEquip(code) {
   var retval = new Object;
   if (code == 27) { // ESC
     retval["fin"] = 0;
+    delete targetCursor.itemlist;
   }
-  
+	else if ((code == 38) || (code == 219)) {   // UP ARROW  or  [
+	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrolllocation--;
+	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
+	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	}
+  else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
+      $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrolllocation++;
+	    if (targetCursor.scrolllocation >= targetCursor.itemlist.length-1) { targetCursor.scrolllocation = 0; }
+	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+  }
+	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
+
+  }
   return retval;
+
+//  targetCursor.scrolllocation = 0;
+//  targetCursor.itemlist = itemarray;
  
 }
+
 function PerformUse(who) {
 	var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
 	var used = localacre.features.getTop();
@@ -621,12 +722,12 @@ function DrawStats(page) {
      }
      if (armor.length) {
        armor.sort(function(a,b) { return (b.getDefense() - a.getDefense()); });
-       statsdiv += "<tr><td></td><td><span style='text-decoration:underline'>Armour</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Armour</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
        for (var i = 0; i < armor.length; i++ ) {
          var itemdesc = armor[i].getDesc();
          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
          if (armor[i] == PC.getEquipment("armor")) {
-           statsdiv += "<tr><td style='color:#3ff'>*</td><td style='color:#3ff'>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
+           statsdiv += "<tr><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
          } else {
            statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
          }
@@ -635,12 +736,12 @@ function DrawStats(page) {
      }
      if (melee.length) {
        melee.sort(function(a,b) { return (b.getAveDamage(PC) - a.getAveDamage(PC)); });
-       statsdiv += "<tr><td></td><td><span style='text-decoration:underline'>Weapons</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Weapons</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
        for (var i = 0; i < melee.length; i++ ) {
          var itemdesc = melee[i].getDesc();
          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
          if (melee[i] == PC.getEquipment("Weapon")) {
-           statsdiv += "<tr><td style='color:#3ff'>*</td><td style='color:#3ff'>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
+           statsdiv += "<tr><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
          } else {
            statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
          }
@@ -649,12 +750,12 @@ function DrawStats(page) {
      }
      if (missile.length) {
        missile.sort(function(a,b) { return (b.getAveDamage(PC) - a.getAveDamage(PC)); });
-       statsdiv += "<tr><td></td><td><span style='text-decoration:underline'>Missile Weapons</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Missile Weapons</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
        for (var i = 0; i < missile.length; i++ ) {
          var itemdesc = missile[i].getDesc();
          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
          if (missile[i] == PC.getEquipment("Missile")) {
-           statsdiv += "<tr><td style='color:#3ff'>*</td><td style='color:#3ff'>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
+           statsdiv += "<tr><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
          } else {
            statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
          }

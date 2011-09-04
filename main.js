@@ -282,7 +282,7 @@ $(document).ready(function() {
 
   } 
   else if (gamestate.getMode() == "equip") {
-    var response = performEquip(code);
+    var response = PerformEquip(code);
     if (response["fin"] == 0) {
     	maintext.setInputLine("&gt;");
     	maintext.drawTextFrame();
