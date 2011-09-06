@@ -1504,7 +1504,8 @@ ForestWCoastTile.prototype = new TerrainObject;
 
 function HillsTile() {
   this.name = "Hills";
-  this.graphic = "124.gif";
+//  this.graphic = "124.gif";
+  this.graphic = "hill.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
 //  this.blocklos = .3;
