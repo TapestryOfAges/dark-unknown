@@ -198,8 +198,8 @@ function PerformCommand(code) {
          } else {
            statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
          }
-         iter++;
          itemarray[iter] = armor[i];
+         iter++;
        }
        statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
      }
@@ -214,8 +214,8 @@ function PerformCommand(code) {
          } else {
            statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
          }
-         iter++;
          itemarray[iter] = melee[i];
+         iter++;
        }
        statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
      }
@@ -230,8 +230,8 @@ function PerformCommand(code) {
          } else {
            statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
          }
-         iter++;
          itemarray[iter] = missile[i];
+         iter++;
        }
        statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
      }
@@ -246,7 +246,7 @@ function PerformCommand(code) {
 	var scrollelem = $('.zstats').jScrollPane();
   var scrollapi = scrollelem.data('jsp');
   targetCursor.scrollapi = scrollapi;
-  targetCursor.scrolllocation = 2;
+  targetCursor.scrolllocation = 0;
   targetCursor.itemlist = new Array;
   targetCursor.itemlist = itemarray;
   
@@ -546,12 +546,14 @@ function PerformEquip(code) {
 	    targetCursor.scrolllocation--;
 	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
 	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
 	}
   else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
       $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
 	    targetCursor.scrolllocation++;
 	    if (targetCursor.scrolllocation >= targetCursor.itemlist.length-1) { targetCursor.scrolllocation = 0; }
 	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
   }
 	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
 
