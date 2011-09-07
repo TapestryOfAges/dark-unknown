@@ -291,7 +291,23 @@ $(document).ready(function() {
       gamestate.setMode("player");
     	gamestate.setTurn(PC);
     }
-    // WORK HERE
+    else if (response["fin"] == 1) {
+      
+    }
+    else if (response["fin"] == 2) {
+      maintext.addText(response["txt"]);
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+  		gamestate.setMode("null");
+  		var PCevent = new GameEvent(PC);
+   	 	DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
+   	 		
+      var nextEntity = DUTime.executeNextEvent().getEntity();
+      nextEntity.myTurn();
+    }
+      
   }
   else if (gamestate.getMode() == "zstats") {
     var response = performZstats(code);

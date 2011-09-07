@@ -250,7 +250,7 @@ function PerformCommand(code) {
   targetCursor.itemlist = new Array;
   targetCursor.itemlist = itemarray;
   
-  $('#inv2').toggleClass('highlight');
+  $('#inv0').toggleClass('highlight');
 		
 	}
 	else if (code == 88) { // x
@@ -547,16 +547,26 @@ function PerformEquip(code) {
 	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
 	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
 	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
+	    retval["fin"] = 1;
 	}
   else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
       $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
 	    targetCursor.scrolllocation++;
-	    if (targetCursor.scrolllocation >= targetCursor.itemlist.length-1) { targetCursor.scrolllocation = 0; }
+	    if (targetCursor.scrolllocation > targetCursor.itemlist.length-1) { targetCursor.scrolllocation = 0; }
 	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
 	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
+	    retval["fin"] = 1;
   }
 	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
-
+    // equip selected item
+    var newequip = targetCursor.itemlist[targetCursor.scrolllocation];
+    newequip.equipMe(PC);
+    retval["fin"] = 2;
+    retval["txt"] = "";
+    if (newequip.checkType("Armor")) { retval["txt"] = "Wear: "; }
+    else { retval["txt"] = "Wield: "; }
+    if (newequip.getPrefix()) { retval["txt"] = retval["txt"] + newequip.getPrefix(); }
+    retval["txt"] = retval["txt"] + " " + newequip.getDesc() + ".";
   }
   return retval;
 
@@ -682,7 +692,7 @@ function DrawStats(page) {
   if (PC.getEquipment("missile")) {    
     var missdesc = PC.getEquipment("missile").getDesc();
     missdesc = missdesc.charAt(0).toUpperCase() + missdesc.slice(1);
-    statsdiv += "<tr><td>Missile: " + PC.getEquipment("missile").getDesc() + "</td><td></td>";
+    statsdiv += "<tr><td>Missile: " + missdesc + "</td><td></td>";
   } else {
     statsdiv += "<tr><td></td><td></td>";
   }
