@@ -1704,6 +1704,18 @@ function HillTowerTile() {
 }
 HillTowerTile.prototype = new FeatureObject;
 
+function LighthouseTile() {
+  this.name = "Lighthouse";
+  this.graphic = "lighthouse.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "lighthouse";
+
+  Enterable.call(this, "null", 0, 0);
+}
+LighthouseTile.prototype = new FeatureObject;
+
 function VillageTile() {
   this.name = "Village";
   this.graphic = "154.gif";

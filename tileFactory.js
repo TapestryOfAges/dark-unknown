@@ -1009,3 +1009,8 @@ tileFactory.prototype.makeNaturalArmorTile = function() {
 	var newTile = new NaturalArmorTile();
 	return newTile;
 }
+
+tileFactory.prototype.makeLighthouseTile = function() {
+	var newTile = new LighthouseTile();
+	return newTile;
+}
