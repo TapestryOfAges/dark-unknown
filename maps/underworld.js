@@ -78,7 +78,7 @@ mappages["underworld"].terrain[74] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ 
 mappages["underworld"].terrain[75] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
 
 mappages["underworld"].features = new Array;
-mappages["underworld"].features[0] = {name : 'Whirlpool', x : 37, y : 62, entermap : 'null', enterx : 0, entery : 0};
+mappages["underworld"].features[0] = {name : 'Whirlpool', x : 37, y : 62, entermap : 'darkunknown', enterx : 66, entery : 122};
 
 
 mappages["underworld"].npcs = new Array;
