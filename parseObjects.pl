@@ -3,6 +3,8 @@ use strict;
 
 open GAMEOBJECTS, "gameObjects.js" or die "Can't open gameObjects\n";
 
+open OUTFILE, ">objlist.html";
+
 my @gameobjects = <GAMEOBJECTS>;
 
 my $prevline;
@@ -143,21 +145,21 @@ foreach my $line (@gameobjects) {
 	
 }
 
-print "<html><head><title>Dark Unknown Objects</title>\n";
-print '<script language="JavaScript" src="external/jquery-1.3.2.js"></script>';
-print '<script language="Javascript">';
-print "\n";
-print 'function toggleShow(which) {';
-print "\n if (\$('#'+which).css('display') == 'none') {\n";
-print "   \$('#'+which).css('display', 'block'); \n";
-print " } else {\n   \$('#'+which).css('display', 'none'); \n";
-print " }\n}\n";
-print '</script>';
-print "\n<style type='text/css'>\n";
-print ".obj {\n  color: #fff;\n	padding: 20px;\n	background: #111;\n	border: 1px solid #000;\n	-webkit-border-radius: 5px;\n	-moz-border-radius: 5px;\n	border-radius: 5px;\n}\n";
+print OUTFILE "<html><head><title>Dark Unknown Objects</title>\n";
+print OUTFILE '<script language="JavaScript" src="external/jquery-1.3.2.js"></script>';
+print OUTFILE '<script language="Javascript">';
+print OUTFILE "\n";
+print OUTFILE 'function toggleShow(which) {';
+print OUTFILE "\n if (\$('#'+which).css('display') == 'none') {\n";
+print OUTFILE "   \$('#'+which).css('display', 'block'); \n";
+print OUTFILE " } else {\n   \$('#'+which).css('display', 'none'); \n";
+print OUTFILE " }\n}\n";
+print OUTFILE '</script>';
+print OUTFILE "\n<style type='text/css'>\n";
+print OUTFILE ".obj {\n  color: #fff;\n	padding: 20px;\n	background: #111;\n	border: 1px solid #000;\n	-webkit-border-radius: 5px;\n	-moz-border-radius: 5px;\n	border-radius: 5px;\n}\n";
 
-print "</style>";
-print "</head><body>";
+print OUTFILE "</style>";
+print OUTFILE "</head><body>";
 
 printcat("GameObject");
 printcat("InanimateObject");
@@ -172,34 +174,34 @@ printcat("AnimateObject");
 
 sub printcat() {
   my ($category) = @_;
-  print "<center><table border='0' padding='0' cellspacing='0' class='obj'><tr><td><span style='color:#dddddd; font-weight:bold'>$category</span><br />";
+  print OUTFILE "<center><table border='0' padding='0' cellspacing='0' class='obj'><tr><td><span style='color:#dddddd; font-weight:bold'>$category</span><br />";
   if (exists $allobjs{$category}{"prefix"}) {
-    print "<span style='font-style:italic'>$allobjs{$category}{'prefix'}</span> ";
+    print OUTFILE "<span style='font-style:italic'>$allobjs{$category}{'prefix'}</span> ";
   }
-  print "<span style='font-style:italic'>$allobjs{$category}{'desc'}</span><br />";
+  print OUTFILE "<span style='font-style:italic'>$allobjs{$category}{'desc'}</span><br />";
   foreach my $prop (sort keys %{$allobjs{$category}}) {
     if (($prop ne "functions") and ($prop ne "name") and ($prop ne "desc") and ($prop ne "prefix") and ($prop ne "inheritfrom")) {
-      print "$prop: $allobjs{$category}{$prop}<br />";
+      print OUTFILE "$prop: $allobjs{$category}{$prop}<br />";
     }
   }
-  print "<span style='font-weight:bold' onClick='toggleShow(\"$category\")'>Functions:</span><br /><span style='display:none' id='$category'>";
+  print OUTFILE "<span style='font-weight:bold' onClick='toggleShow(\"$category\")'>Functions:</span><br /><span style='display:none' id='$category'>";
   foreach my $func (@{$allobjs{$category}{"functions"}}) {
-    print "$func<br />";
+    print OUTFILE "$func<br />";
   }
-  print "</span><br />Inherit From: $allobjs{$category}{'inheritfrom'}</td></tr></table><br />";
+  print OUTFILE "</span><br />Inherit From: $allobjs{$category}{'inheritfrom'}</td></tr></table><br />";
   
   my $celliter = 0;
-  print "<table cellpadding='0' cellspacing='3' border='0' width='100%'><tr>";
+  print OUTFILE "<table cellpadding='0' cellspacing='3' border='0' width='100%'><tr>";
   
   foreach my $obj (sort keys %allobjs) {
     if (($allobjs{$obj}{'inheritfrom'} eq $category) and (!($obj =~ /Object/))) {
-      print "<td><table border='0' cellpadding='0' cellspacing='6' class='obj'>";
+      print OUTFILE "<td><table border='0' cellpadding='0' cellspacing='6' class='obj'>";
       if (!exists $allobjs{$obj}{'spritexoffset'}) { $allobjs{$obj}{'spritexoffset'} = "0"; }
       if (!exists $allobjs{$obj}{'spriteyoffset'}) { $allobjs{$obj}{'spriteyoffset'} = "0"; }
       if (!exists $allobjs{$obj}{'overlay'}) { $allobjs{$obj}{'overlay'} = "spacer.gif"; }
-      print "<tr><td width='32' height='32' style=\"background-image:url('graphics/$allobjs{$obj}{'graphic'}'); background-repeat:no-repeat; background-position: $allobjs{$obj}{'spritexoffset'}px $allobjs{$obj}{'spriteyoffset'}px;\"><img src=\"graphics/$allobjs{$obj}{'overlay'}\" border=\"0\" width=\"32\" height=\"32\" style=\"position: relative; z-index:1;\" /></td>";
-      print "<td><span style='color:#dddddd; font-weight: bold'>$allobjs{$obj}{'name'}</span></td></tr>";
-      print "<tr><td colspan='2'>";
+      print OUTFILE "<tr><td width='32' height='32' style=\"background-image:url('graphics/$allobjs{$obj}{'graphic'}'); background-repeat:no-repeat; background-position: $allobjs{$obj}{'spritexoffset'}px $allobjs{$obj}{'spriteyoffset'}px;\"><img src=\"graphics/$allobjs{$obj}{'overlay'}\" border=\"0\" width=\"32\" height=\"32\" style=\"position: relative; z-index:1;\" /></td>";
+      print OUTFILE "<td><span style='color:#dddddd; font-weight: bold'>$allobjs{$obj}{'name'}</span></td></tr>";
+      print OUTFILE "<tr><td colspan='2'>";
       foreach my $prop (sort keys %{$allobjs{$obj}}) {
         if (($prop ne "functions") and ($prop ne "name") and ($prop ne "desc") and ($prop ne "prefix") and ($prop ne "inheritfrom")
               and ($prop ne "graphic") and ($prop ne "spritexoffset") and ($prop ne "spriteyoffset") and ($prop ne "overlay")) {
@@ -210,25 +212,25 @@ sub printcat() {
             $allobjs{$obj}{$prop} =~ s\MOVE_WALK\<span style="color:#33ff33">Walk</span>\;
             $allobjs{$obj}{$prop} =~ s\MOVE_FLY\<span style="color:cyan">Fly</span>\;
           }
-          print "$prop: $allobjs{$obj}{$prop}<br />";
+          print OUTFILE "$prop: $allobjs{$obj}{$prop}<br />";
         }
       } 
-      print "</td></tr>";
+      print OUTFILE "</td></tr>";
       if ($allobjs{$obj}{"functions"}) {
-        print "<tr><td colspan='2'><span style='font-weight:bold' onClick='toggleShow(\"$obj\")'>Functions:</span><br /><span style='display:none' id='$obj'>";
+        print OUTFILE "<tr><td colspan='2'><span style='font-weight:bold' onClick='toggleShow(\"$obj\")'>Functions:</span><br /><span style='display:none' id='$obj'>";
         foreach my $func (@{$allobjs{$obj}{"functions"}}) {
-          print "$func<br />";
+          print OUTFILE "$func<br />";
         }
         print "</span></td></tr>";
       }
  #     print "<tr><td colspan='2'>Inherit From: $allobjs{$obj}{'inheritfrom'}</td></tr>";
-      print "<tr><td colspan='2'><span style='font-style:italic'>";
+      print OUTFILE "<tr><td colspan='2'><span style='font-style:italic'>";
       if (exists $allobjs{$obj}{"prefix"}) {
-        print "<span style='font-style:italic'>$allobjs{$obj}{'prefix'}</span> ";
+        print OUTFILE "<span style='font-style:italic'>$allobjs{$obj}{'prefix'}</span> ";
       }
-      print "<span style='font-style:italic'>$allobjs{$obj}{'desc'}</span></td></tr></table></td>";
+      print OUTFILE "<span style='font-style:italic'>$allobjs{$obj}{'desc'}</span></td></tr></table></td>";
       $celliter++;
-      if ($celliter % 3 == 0) { print "</tr><tr>\n"; }
+      if ($celliter % 3 == 0) { print OUTFILE "</tr><tr>\n"; }
     }
   }
 }
