@@ -809,11 +809,9 @@ GameMap.prototype.placeThing = function(x,y,newthing) {
     }
     this.data[y][x][type].addTop(newthing);
   }
-  if (newthing.getTypeForMap() == "npc") {
-  	var timing = newthing.nextActionTime(0);
-//  	alert(newthing.name + ", " + timing);
-  	var NPCEvent = new GameEvent(newthing);
-  	DUTime.addAtTimeInterval(NPCEvent,timing);
+if ( typeof newthing.activate == "function") {
+//  if (newthing.getTypeForMap() == "npc") {
+    newthing.activate();
   }  
 }
 

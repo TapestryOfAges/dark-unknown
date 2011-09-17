@@ -67,3 +67,15 @@ function FindBelow(upx,upy,map) {
 	if (tile) { return tile; }
 	return 0;
 }
+
+function ParseDice(die) {
+  var dieobj = new Object;
+  var tmpobj = new Array;
+  tmpobj = die.split("+");
+  dieobj.plus = parseInt(tmpobj[1]);
+  tmpobj = tmpobj[0].split("d");
+  dieobj.dice = parseInt(tmpobj[1]);
+  dieobj.quantity = parseInt(tmpobj[0]);
+
+  return dieobj;
+}

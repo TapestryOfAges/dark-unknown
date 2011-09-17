@@ -292,7 +292,30 @@ function clickmap(xval,yval) {
   	editable = thistile.features.getTop();
   	editnpcs = thistile.npcs.getTop();
   	if (!editable && !editnpcs) {alert("Nothing to edit on this tile."); return;}
-  	if (!editnpcs || (document.editlayer.showfeatures.checked)) {
+    if (!editable && (document.editlayer.shownpcs.checked)) {
+    	var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+    	$('#npcbubble').jqm({onShow:myOpen});
+    	$('#npcbubble').jqmShow();
+    	document.npceditpopup.npcobjname.value = editnpcs.getName();
+    	var graphics = editnpcs.getGraphicArray();
+    	$('#td_bubbleNPCtile').css("background-image","url('graphics/" + graphics[0] + "')");
+        $('#td_bubbleNPCtile').css("background-position", graphics[2] + "px " + graphics[3] + "px");
+      document.images["bubbleNPCtile"].src = "graphics/" + graphics[1];    	
+      document.npceditpopup.npcname.value = editnpcs.getNPCName();
+      document.npceditpopup.npcdesc.value = editnpcs.getDesc();
+      document.npceditpopup.npclevel.value = editnpcs.getLevel();
+      document.npceditpopup.npcalign.value = editnpcs.getAlignment();
+      document.npceditpopup.npcstr.value = editnpcs.getstr();
+      document.npceditpopup.npcattitude.value = editnpcs.getAttitude();
+      document.npceditpopup.npcdex.value = editnpcs.getdex();
+      document.npceditpopup.npcpeaceai.value = editnpcs.getPeaceAI();
+      document.npceditpopup.npcint.value = editnpcs.getint();
+      document.npceditpopup.npcpcthreatai.value = editnpcs.getPCThreatAI();      
+      document.npceditpopup.npcmelee.value = editnpcs.getMeleeAttackAs();
+      document.npceditpopup.npcthreatenedai.value = editnpcs.getThreatenedAI();      
+      document.npceditpopup.npcmissile.value = editnpcs.getMissileAttackAs();
+    }
+  	else if (!editnpcs && (document.editlayer.showfeatures.checked)) {
       var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
       $('#featurebubble').jqm({onShow:myOpen}); 
       $('#featurebubble').jqmShow();
@@ -315,29 +338,6 @@ function clickmap(xval,yval) {
       	document.featureeditpopup.tileenterx.value = mapinfo.enterx;
     	  document.featureeditpopup.tileentery.value = mapinfo.entery;
       }
-    }
-    else if (!editable || (document.editlayer.shownpcs.checked)) {
-    	var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
-    	$('#npcbubble').jqm({onShow:myOpen});
-    	$('#npcbubble').jqmShow();
-    	document.npceditpopup.npcobjname.value = editnpcs.getName();
-    	var graphics = editnpcs.getGraphicArray();
-    	$('#td_bubbleNPCtile').css("background-image","url('graphics/" + graphics[0] + "')");
-        $('#td_bubbleNPCtile').css("background-position", graphics[2] + "px " + graphics[3] + "px");
-      document.images["bubbleNPCtile"].src = "graphics/" + graphics[1];    	
-      document.npceditpopup.npcname.value = editnpcs.getNPCName();
-      document.npceditpopup.npcdesc.value = editnpcs.getDesc();
-      document.npceditpopup.npclevel.value = editnpcs.getLevel();
-      document.npceditpopup.npcalign.value = editnpcs.getAlignment();
-      document.npceditpopup.npcstr.value = editnpcs.getstr();
-      document.npceditpopup.npcattitude.value = editnpcs.getAttitude();
-      document.npceditpopup.npcdex.value = editnpcs.getdex();
-      document.npceditpopup.npcpeaceai.value = editnpcs.getPeaceAI();
-      document.npceditpopup.npcint.value = editnpcs.getint();
-      document.npceditpopup.npcpcthreatai.value = editnpcs.getPCThreatAI();      
-      document.npceditpopup.npcmelee.value = editnpcs.getMelee();
-      document.npceditpopup.npcthreatenedai.value = editnpcs.getThreatenedAI();      
-      document.npceditpopup.npcmissile.value = editnpcs.getMissile();
     }
   }
 }
@@ -419,11 +419,11 @@ function submitEditNPC(change) {
 		if (document.npceditpopup.npcthreatenedai.value != editnpcs.getThreatenedAI()) {
 			editnpcs.setThreatenedAI(document.npceditpopup.npcthreatenedai.value);
 		}
-		if (document.npceditpopup.npcmelee.value != editnpcs.getMelee()) {
-			editnpcs.setMelee(document.npceditpopup.npcmelee.value);
+		if (document.npceditpopup.npcmelee.value != editnpcs.getMeleeAttackAs()) {
+			editnpcs.setMeleeAttackAs(document.npceditpopup.npcmelee.value);
 		}
-		if (document.npceditpopup.npcmissile.value != editnpcs.getMissile()) {
-			editnpcs.setMissile(document.npceditpopup.npcmissile.value);
+		if (document.npceditpopup.npcmissile.value != editnpcs.getMissileAttackAs()) {
+			editnpcs.setMissileAttackAs(document.npceditpopup.npcmissile.value);
 		}
 	}
 	else if (change == -1) {

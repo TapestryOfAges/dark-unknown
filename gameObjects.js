@@ -2410,13 +2410,7 @@ WeaponObject.prototype.setDamage = function(newdam) {
 }
 
 WeaponObject.prototype.parseDamage = function() {
-  var dmgobj = new Object;
-  var tmpobj = new Array;
-  tmpobj = this.getDamage().split("+");
-  dmgobj.plus = parseInt(tmpobj[1]);
-  tmpobj = tmpobj[0].split("d");
-  dmgobj.dice = parseInt(tmpobj[1]);
-  dmgobj.quantity = parseInt(tmpobj[0]);
+  var dmgobj = ParseDice(this.getDamage());
   
   return dmgobj;
 }
@@ -2540,9 +2534,21 @@ function MagicSwordTile() {
 }
 MagicSwordTile.prototype = new WeaponObject;
 
+function NaturalWeaponTile() {
+	this.name = "NaturalWeapon";
+	this.damage = "1d5+0";
+	this.strdamage = 1/15;
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = "0";
+	this.spriteyoffset = "-32";
+	this.desc = "natural weapon";
+	this.prefix = "a";
+}
+NaturalWeaponTile.prototype = new WeaponObject;
+
 function MissileWeaponObject() {
 	this.dexReq = 10;
-	this.range = 5;
+	this.range = 10;
 	this.tier = 0;
 	
 	this.addType("Missile");
@@ -2616,6 +2622,16 @@ function MagicAxeTile() {
 }
 MagicAxeTile.prototype = new MissileWeaponObject;
 
+function NaturalMissileWeaponTile() {
+	this.name = "NaturalMissileWeapon";
+	this.damage = "1d12+1";
+	this.graphic = "armorweapons.gif";
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "-64";
+	this.desc = "natural missile weapon";
+	this.prefix = "a";
+}
+NaturalMissileWeaponTile.prototype = new MissileWeaponObject;
 
 
 
@@ -2628,6 +2644,8 @@ function AnimateObject() {
 }
 AnimateObject.prototype = new GameObject;
 
+
+// Replaced for the nonce with PickOne.
 AnimateObject.prototype.pickGraphic = new function() {
 	if (this.altGraphics) {
   	var options = this.altGraphics.length;
@@ -2656,8 +2674,16 @@ function NPCObject() {
 	this.PCThreatAI = "runaway";
 	this.ThreatenedAI = "spellcaster";
 	this.graphic = "301.gif";
-	this.meleeAttackAs = "fists";
+	this.meleeAttackAs = "Fists";
+	this.meleeDamage = -1;
+	this.meleeStrDamage = -1;
 	this.missileAttackAs = "none";
+	this.missileDamage = -1;
+	this.missileRange = -1;
+	this.armorAs = "none";
+	this.armorDefense = -1;
+	this.armorAbsorb = -1;
+	this.armorResist = -1;
 	this.initmult = 1;
 	this.movetype = MOVE_WALK;
 	this.inventory = new Collection;
@@ -2866,6 +2892,17 @@ NPCObject.prototype.removeMovetype = function(move) {
 	this.movetype = this.movetype & ~move;
 }
 
+NPCObject.prototype.activate = function() {
+  if (this.getMeleeAttackAs()) {
+    var weapon = localFactory.createTile(this.getMeleeAttackAs());
+    weapon.equipMe(this);
+  }
+  
+  var timing = this.nextActionTime(0);
+  var NPCEvent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCEvent,timing);  
+}
+
 NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	var map = this.getHomeMap();
 	var oldmapname = map.getDesc();
@@ -3070,281 +3107,13 @@ NPCObject.prototype.setMissile = function(newmissile) {
   }
 }
 
-function NPCGroup() {
-	
+function NPCGroupObject() {
+  this.group = new Object;
 }
-NPCGroup.prototype = new AnimateObject;
+NPCGroupObject.prototype = new NPCObject;
 
-// Start the NPCs!
-function DruidVillagerNPCTile() {
-	this.name = "DruidVillagerNPC";
-	this.level = 1;
-	this.str = 10;
-	this.dex = 12;
-	this.int = 14;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
-	this.threatenedAI = "spellcaster";
-	this.graphic = "302.gif";
-	this.meleeAttackAs = "fists";
-	this.missileAttackAs = "none";
-	this.movetype = MOVE_WALK;
-}
-DruidVillagerNPCTile.prototype = new NPCObject;
 
-function ShepherdVillagerNPCTile() {
-	this.name = "ShepherdVillagerNPC";
-	this.level = 1;
-	this.str = 12;
-	this.dex = 12;
-	this.int = 12;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
-	this.threatenedAI = "melee";
-	this.graphic = "301.gif";
-	this.meleeAttackAs = "dagger";
-	this.missileAttackAs = "none";
-	this.movetype = MOVE_WALK;
-}
-ShepherdVillagerNPCTile.prototype = new NPCObject;
-
-function MageVillagerNPCTile() {
-	this.name = "MageVillagerNPC";
-	this.level = 1;
-	this.str = 10;
-	this.dex = 10;
-	this.int = 16;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
-	this.threatenedAI = "spellcaster";
-	this.graphic = "303.gif";
-	this.meleeAttackAs = "fists";
-	this.missileAttackAs = "none";
-	this.movetype = MOVE_WALK;
-}
-MageVillagerNPCTile.prototype = new NPCObject;
-
-function TinkerVillagerNPCTile() {
-	this.name = "TinkerVillagerNPC";
-	this.level = 1;
-	this.str = 12;
-	this.dex = 14;
-	this.int = 10;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
-	this.threatenedAI = "missile";
-	this.graphic = "304.gif";
-	this.meleeAttackAs = "dagger";
-	this.missileAttackAs = "sling";
-	this.movetype = MOVE_WALK;
-}
-TinkerVillagerNPCTile.prototype = new NPCObject;
-
-function RangerVillagerNPCTile() {
-	this.name = "RangerVillagerNPC";
-	this.level = 1;
-	this.str = 11;
-	this.dex = 14;
-	this.int = 11;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
-	this.threatenedAI = "ranger";
-	this.graphic = "305.gif";
-	this.meleeAttackAs = "dagger";
-	this.missileAttackAs = "sling";
-	this.movetype = MOVE_WALK;
-}
-RangerVillagerNPCTile.prototype = new NPCObject;
-
-function AdventurerVillagerNPCTile() {
-	this.name = "AdventurerVillagerNPC";
-	this.level = 1;
-	this.str = 12;
-	this.dex = 12;
-	this.int = 12;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
-	this.threatenedAI = "adventurer";
-	this.graphic = "306.gif";
-	this.meleeAttackAs = "shortsword";
-	this.missileAttackAs = "sling";
-	this.movetype = MOVE_WALK;
-}
-AdventurerVillagerNPCTile.prototype = new NPCObject;
-
-function PaladinVillagerNPCTile() {
-	this.name = "PaladinVillagerNPC";
-	this.level = 1;
-	this.str = 14;
-	this.dex = 10;
-	this.int = 12;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
-	this.threatenedAI = "paladin";
-	this.graphic = "307.gif";
-	this.meleeAttackAs = "shortsword";
-	this.missileAttackAs = "none";
-	this.movetype = MOVE_WALK;
-}
-PaladinVillagerNPCTile.prototype = new NPCObject;
-
-function FighterVillagerNPCTile() {
-	this.name = "FighterVillagerNPC";
-	this.level = 1;
-	this.str = 14;
-	this.dex = 12;
-	this.int = 10;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
-	this.threatenedAI = "melee";
-	this.graphic = "308.gif";
-	this.meleeAttackAs = "shortsword";
-	this.missileAttackAs = "sling";
-	this.movetype = MOVE_WALK;
-}
-FighterVillagerNPCTile.prototype = new NPCObject;
-
-function TownsfolkVillagerNPCTile() {
-	this.name = "TownsfolkVillagerNPC";
-	this.level = 1;
-	this.str = 10;
-	this.dex = 10;
-	this.int = 10;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
-	this.threatenedAI = "melee";
-	this.graphic = "310.gif";
-	this.meleeAttackAs = "dagger";
-	this.missileAttackAs = "none";
-	this.movetype = MOVE_WALK;
-}
-TownsfolkVillagerNPCTile.prototype = new NPCObject;
-
-function BardVillagerNPCTile() {
-	this.name = "BardVillagerNPC";
-	this.level = 1;
-	this.str = 10;
-	this.dex = 14;
-	this.int = 12;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
-	this.threatenedAI = "ranger";
-	this.graphic = "311.gif";
-	this.meleeAttackAs = "dagger";
-	this.missileAttackAs = "bow";
-	this.movetype = MOVE_WALK;
-}
-BardVillagerNPCTile.prototype = new NPCObject;
-
-function ChildNPCTile() {
-	this.name = "ChildNPC";
-	this.level = 1;
-	this.str = 7;
-	this.dex = 7;
-	this.int = 7;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
-	this.threatenedAI = "runaway";
-	this.graphic = "312.gif";
-	this.meleeAttackAs = "fists";
-	this.missileAttackAs = "none";
-	this.movetype = MOVE_WALK;
-}
-ChildNPCTile.prototype = new NPCObject;
-
-function BeggerNPCTile() {
-	this.name = "BeggerNPC";
-	this.level = 1;
-	this.str = 7;
-	this.dex = 7;
-	this.int = 7;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
-	this.threatenedAI = "runaway";
-	this.graphic = "313.gif";
-	this.meleeAttackAs = "fists";
-	this.missileAttackAs = "none";
-	this.movetype = MOVE_WALK;
-}
-BeggerNPCTile.prototype = new NPCObject;
-
-function TownGuardNPCTile() {
-  this.name = "TownGuardNPC";
-	this.level = 5;
-	this.str = 23;
-	this.dex = 23;
-	this.int = 14;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "guard";
-	this.PCThreatAI = "melee";
-	this.threatenedAI = "melee";
-	this.graphic = "309.gif";
-	this.meleeAttackAs = "halberd";
-	this.missileAttackAs = "none";
-	this.movetype = MOVE_WALK;
-}
-TownGuardNPCTile.prototype = new NPCObject;
-
-function KingNPCTile() {
-  this.name = "KingNPC";
-	this.level = 8;
-	this.str = 30;
-	this.dex = 30;
-	this.int = 30;
-	this.alignment = "good";	
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "spellcaster";
-	this.threatenedAI = "spellcaster";
-	this.graphic = "315.gif";
-	this.meleeAttackAs = "halberd";
-	this.missileAttackAs = "none";
-	this.movetype = MOVE_WALK;
-}
-KingNPCTile.prototype = new NPCObject;
-
-function PrinceNPCTile() {
-  this.name = "PrinceNPC";
-	this.level = 7;
-	this.str = 25;
-	this.dex = 25;
-	this.int = 25;
-	this.alignment = "good";
-	this.attitude = "friendly";
-	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "townsfolk";
-	this.threatenedAI = "melee";
-	this.graphic = "prince.gif";
-	this.meleeAttackAs = "longsword";
-	this.missileAttackAs = "none";
-	this.movetype = MOVE_WALK;
-}
-PrinceNPCTile.prototype = new NPCObject;
+// NPCs have moved into npcObjects.js
 
 
 
@@ -3353,13 +3122,13 @@ function PCObject() {
 	this.name = "PC";
 	this.str = 10;
 	this.dex = 10;
-	this.int = 10
-	this.level = 1
+	this.int = 10;
+	this.level = 1;
 	this.pcname = "Subject Name Here";
 	this.desc = "you";
 	this.alignment = "good";	
 	this.graphic = "300.gif";
-	this.meleeAttackAs = "fists";
+	this.meleeAttackAs = "Fists";
 	this.missileAttackAs = "none";
 	this.maxhp = 30 * this.level;
 	this.hp = this.maxhp;
