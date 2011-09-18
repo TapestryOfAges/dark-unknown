@@ -2373,15 +2373,6 @@ function WeaponObject() {
 }
 WeaponObject.prototype = new EquippableItemObject;
 
-WeaponObject.prototype.getTier = function() {
-	return this.tier;
-}
-
-WeaponObject.prototype.setTier = function(newtier) {
-	this.tier = newtier;
-	return parseInt(this.tier);
-}
-
 WeaponObject.prototype.getHit = function() {
 	return this.hit;
 }
@@ -2409,18 +2400,33 @@ WeaponObject.prototype.setDamage = function(newdam) {
 	return this.damage;
 }
 
+WeaponObject.prototype.getStrDamage = function() {
+  return this.strdamage;
+}
+
+WeaponObject.prototype.setStrDamage = function(newdam) {
+  this.strdamage = newdam;
+  return this.strdamage;
+}
+
 WeaponObject.prototype.parseDamage = function() {
   var dmgobj = ParseDice(this.getDamage());
   
   return dmgobj;
 }
 
-WeaponObject.prototype.rollDamage = function() {
+WeaponObject.prototype.rollDamage = function(wielder) {
   var dmgobj = this.parseDamage();
   var damage = dmgobj.plus;
   for (var i = 1; i <= dmgobj.quantity; i++) {
     damage += Math.floor(Math.random() * dmgobj.dice)+ 1;
   }	
+  if (wielder && this.getStrDamage()) {
+    var str = wielder.getstr();
+    var strmod = parseFloat(this.getStrDamage());
+    var strdam = str*strmod;
+    damage += parseInt(strdam);
+  }
   
   return damage;
 }
@@ -2429,9 +2435,9 @@ WeaponObject.prototype.getAveDamage = function(wielder) {
   var dmgobj = this.parseDamage();
   var damage = dmgobj.plus;
   damage += (dmgobj.quantity * (dmgobj.dice + 1)/2);
-  if (wielder && this.strdamage) {
+  if (wielder && this.getStrDamage()) {
     var str = wielder.getstr();
-    var strmod = parseFloat(this.strdamage);
+    var strmod = parseFloat(this.getStrDamage());
     var strdam = str*strmod;
     damage += parseInt(strdam);
   }
@@ -2549,19 +2555,27 @@ NaturalWeaponTile.prototype = new WeaponObject;
 function MissileWeaponObject() {
 	this.dexReq = 10;
 	this.range = 10;
-	this.tier = 0;
 	
 	this.addType("Missile");
 }
 MissileWeaponObject.prototype = new WeaponObject;
 
-MissileWeaponObject.prototype.getTier = function() {
-	return this.tier;
+MissileWeaponObject.prototype.getDexReq = function() {
+  return this.dexReq;
 }
 
-MissileWeaponObject.prototype.setTier = function(newtier) {
-	this.tier = newtier;
-	return parseInt(this.tier);
+MissileWeaponObject.prototype.setDexReq = function(newdex) {
+  this.dexReq = newdex;
+  return this.dexReq;
+}
+
+MissileWeaponObject.prototype.getRange = function() {
+  return this.range;
+}
+
+MissileWeaponObject.prototype.setRange = function(newrange) {
+  this.range = newrange;
+  return this.range;
 }
 
 function SlingTile() {
@@ -2893,9 +2907,58 @@ NPCObject.prototype.removeMovetype = function(move) {
 }
 
 NPCObject.prototype.activate = function() {
-  if (this.getMeleeAttackAs()) {
-    var weapon = localFactory.createTile(this.getMeleeAttackAs());
+  
+  var weapon;
+  var missileweapon;
+  var armor;
+  
+  if ((this.getMeleeAttackAs()) && (this.getMeleeAttackAs != "none")) {
+    weapon = localFactory.createTile(this.getMeleeAttackAs());
     weapon.equipMe(this);
+    wpn = weapon;
+  }
+  else {
+    weapon = localFactory.createTile("NaturalWeapon");
+    weapon.equipMe(this);
+  }
+  if ((this.getMissileAttackAs()) && (this.getMissileAttackAs != "none")) {
+    missileweapon = localFactory.createTile(this.getMissileAttackAs());
+    missileweapon.equipMe(this);
+  }
+  else {
+    missileweapon = localFactory.createTile("NaturalMissileWeapon");
+    weapon.equipMe(this);
+  }
+  if ((this.getArmorAs()) && (this.getArmorAs != "none")) {
+    armor = localFactory.createTile(this.getArmorAs());
+    armor.equipMe(this);
+  }
+  else {
+    armor = localFactory.createTile("NaturalArmor");
+    armor.equipMe(this);
+  }
+  
+  if (this.meleeDamage != -1) {
+    weapon.setDamage = this.meleeDamage;
+  }
+  if (this.meleeStrDamage != -1) {
+    weapon.setStrDamage = this.meleeStrDamage;
+  }
+  
+  if (this.missileDamage != -1) {
+    missileweapon.setDamage = this.missileDamage;
+  }
+  if (this.missileRange != -1) {
+    missileweapon.setRange = this.missileRange;
+  }
+  if (this.armorDefense != -1) {
+    armor.setDefense(this.armorDefense);
+  }
+  if (this.armorResist != -1) {
+    armor.setResist(this.armorResist);
+  }
+  if (this.armorAbsorb != -1) {
+    armor.setAbsorb(this.armorAbsorb);
   }
   
   var timing = this.nextActionTime(0);
