@@ -521,6 +521,7 @@ function GameMap() {
   
   this.lightLevel = "bright";
   this.alwaysRemember = 0;
+  this.scale = 1;
 }
 GameMap.prototype = new Object;
 
@@ -540,6 +541,15 @@ GameMap.prototype.setDesc = function(desc) {
 
 GameMap.prototype.getDesc = function() {
   return this.desc;
+}
+
+GameMap.prototype.setScale = function(newscale) {
+  this.scale = newscale;
+  return this.scale;
+}
+
+GameMap.prototype.getScale = function() {
+  return this.scale;
 }
 
 GameMap.prototype.setMusic = function(music) {
@@ -809,8 +819,8 @@ GameMap.prototype.placeThing = function(x,y,newthing) {
     }
     this.data[y][x][type].addTop(newthing);
   }
-if ( typeof newthing.activate == "function") {
-//  if (newthing.getTypeForMap() == "npc") {
+//if ( typeof newthing.activate == "function") {
+  if (newthing.getTypeForMap() == "npc") {
     newthing.activate();
   }  
 }
@@ -965,6 +975,7 @@ GameMap.prototype.saveMap = function (name) {
  printerwin.document.write(name + ".seeBelow = '" + this.getSeeBelow() + "';\n");
  printerwin.document.write(name + ".lightLevel = '" + this.getLightLevel() + "';\n");
  printerwin.document.write(name + ".alwaysRemember = '" + this.getAlwaysRemember() + "';\n");
+ printerwin.document.write(name + ".scale = '" + this.getScale() + "';\n");
  var linkedMapList;
  var linkedMapArray = this.getLinkedMaps();
  if (linkedMapArray.length > 0) {
@@ -1060,6 +1071,7 @@ GameMap.prototype.loadMap = function (name) {
   this.setLinkedMapsArray(mappages.readPage(name, "linkedMaps"));
   this.setLightLevel(mappages.readPage(name, "lightLevel"));
   this.setAlwaysRemember(mappages.readPage(name, "alwaysRemember"));
+  this.setScale(mappages.readPage(name, "scale"));
   
   this.setName(name);
   
