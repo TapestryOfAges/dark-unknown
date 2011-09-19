@@ -119,7 +119,7 @@ mappages["island"].seeBelow = '';
 mappages["island"].lightLevel = 'bright';
 mappages["island"].alwaysRemember = '1';
 mappages["island"].linkedMaps = new Array("");
-
+mappages["island"].scale = '0';
 
 mappages["island_cave"] = new Object();
 mappages["island_cave"].terrain = new Array;

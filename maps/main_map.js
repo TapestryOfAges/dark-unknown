@@ -182,3 +182,4 @@ mappages["darkunknown"].seeBelow = '';
 mappages["darkunknown"].lightLevel = 'bright';
 mappages["darkunknown"].alwaysRemember = '1';
 mappages["darkunknown"].linkedMaps = new Array("");
+mappages["darkunknown"].scale = '0';

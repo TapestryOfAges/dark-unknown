@@ -97,3 +97,4 @@ mappages["metaltwister"].seeBelow = '';
 mappages["metaltwister"].lightLevel = '';
 mappages["metaltwister"].alwaysRemember = '';
 mappages["metaltwister"].linkedMaps = new Array;
+mappages["metaltwister"].scale = '1';
