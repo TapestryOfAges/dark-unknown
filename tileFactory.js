@@ -1010,6 +1010,16 @@ tileFactory.prototype.makeNaturalArmorTile = function() {
 	return newTile;
 }
 
+tileFactory.prototype.makeNaturalWeaponTile = function() {
+	var newTile = new NaturalWeaponTile();
+	return newTile;
+}
+
+tileFactory.prototype.makeNaturalMissileWeaponTile = function() {
+	var newTile = new NaturalMissileWeaponTile();
+	return newTile;
+}
+
 tileFactory.prototype.makeLighthouseTile = function() {
 	var newTile = new LighthouseTile();
 	return newTile;
