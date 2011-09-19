@@ -95,3 +95,4 @@ mappages["underworld"].seeBelow = '';
 mappages["underworld"].lightLevel = 'dark';
 mappages["underworld"].alwaysRemember = '0';
 mappages["underworld"].linkedMaps = new Array("");
+mappages["underworld"].scale = '1';
