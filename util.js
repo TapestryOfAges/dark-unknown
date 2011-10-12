@@ -28,6 +28,9 @@ function getDisplayCenter(themap,fromx,fromy) {
 }
 
 function MoveBetweenMaps(who,frommap,tomap,destx,desty) {
+  // determine time scale for this move
+  if ((frommap.getScale()) || tomap.getScale()) { who.smallscalemove = 1; }
+  
 	// remove PC from current map
 	frommap.deleteThing(who);
 	// also delete any NPCs following PC (summoned demons) FIXTHIS
@@ -72,10 +75,33 @@ function ParseDice(die) {
   var dieobj = new Object;
   var tmpobj = new Array;
   tmpobj = die.split("+");
-  dieobj.plus = parseInt(tmpobj[1]);
-  tmpobj = tmpobj[0].split("d");
-  dieobj.dice = parseInt(tmpobj[1]);
-  dieobj.quantity = parseInt(tmpobj[0]);
+  if (tmpobj[1]){
+    dieobj.plus = parseInt(tmpobj[1]);
+    tmpobj = tmpobj[0].split("d");
+    if (tmpobj[1]) {
+      dieobj.dice = parseInt(tmpobj[1]);
+      dieobj.quantity = parseInt(tmpobj[0]);
+    } else {
+      dieobj.dice = 1;
+      dieobj.quantity = 0;
+    }
+  } else {
+    dieobj.plus = parseInt(tmpobj[0]);
+    dieobj.dice = 1;
+    dieobj.quantity = 0;
+  }
 
   return dieobj;
+}
+
+function RollDice(die) {
+  var dieobj = ParseDice(die);
+  var roll = dieobj.plus;
+  if (dieobj.quantity > 0) {
+    for (var i = 1; i <= dieobj.quantity; i++) {
+      roll += Math.floor(Math.random() * dieobj.dice)+ 1;
+    }
+  }	
+
+  return roll;
 }

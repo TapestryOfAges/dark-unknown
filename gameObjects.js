@@ -638,6 +638,7 @@ InanimateObject.prototype.setInitDelay = function(newdelay) {
 
 function TerrainObject() {
   this.addType("Terrain");
+  this.combatmap = "";
 }
 
 TerrainObject.prototype = new InanimateObject;
@@ -648,6 +649,25 @@ TerrainObject.prototype.serialize = function() {
   var code = myatlas.keylookup(name);
   if (code) { return(code); }
   return(0);
+}
+
+TerrainObject.prototype.getCombatMap = function() {
+  var mapname = this.combatmap;
+  if (this.mapnameoptions > 1) {
+    var randomnumber=Math.floor(Math.random()*this.mapnameoptions)+1;
+    mapname = mapname + randomnumber;
+  }
+  return mapname;
+}
+
+TerrainObject.prototype.setCombatMap = function(map) {
+  this.combatmap = map;
+  return this.combatmap;
+}
+
+TerrainObject.prototype.setCombatMapOptions = function(mapnum) {
+  this.combatmapoptions = mapnum;
+  return this.combatmapoptions;
 }
 
 
@@ -1353,6 +1373,9 @@ function GrassTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "grass";
+
+  this.combatmap = "combatGrass";
+  this.combatmapoptions = 2; 
 }
 GrassTile.prototype = new TerrainObject;
 
@@ -2417,11 +2440,7 @@ WeaponObject.prototype.parseDamage = function() {
 }
 
 WeaponObject.prototype.rollDamage = function(wielder) {
-  var dmgobj = this.parseDamage();
-  var damage = dmgobj.plus;
-  for (var i = 1; i <= dmgobj.quantity; i++) {
-    damage += Math.floor(Math.random() * dmgobj.dice)+ 1;
-  }	
+  var damage = RollDice(this.getDamage());
   if (wielder && this.getStrDamage()) {
     var str = wielder.getstr();
     var strmod = parseFloat(this.getStrDamage());
@@ -2892,11 +2911,18 @@ NPCObject.prototype.setArmorAs = function(armor) {
 
 NPCObject.prototype.nextActionTime = function(initdelay) {
 
+  var scale = this.getHomeMap().getScale();
+  if (this.smallscalemove) { 
+    scale = 1;
+    delete this.smallscalemove;
+  }
+
   var isQuick = 0;  // replace with a check for the presence of the Quickness spell.
   var init = ((-1/60) * this.getdex() + (7/6)) * this.initmult * (1 - .5 * isQuick);
   if ((initdelay) && (initdelay != 0)) {
   	init = init * initdelay;
   }
+  if (scale) { init = init * SCALE_TIME; }
 	return init;
 }
 
@@ -3181,10 +3207,28 @@ NPCObject.prototype.setMissile = function(newmissile) {
 }
 
 function NPCGroupObject() {
-  this.group = new Object;
+  this.group = new Array;
 }
 NPCGroupObject.prototype = new NPCObject;
 
+function NPCList(npcs,num) {
+  this.npc = npcs;
+  this.count = num;
+}
+
+NPCGroupObject.prototype.populate = function() {
+  var population = new Array;
+  for (var i=0; i< this.group.length; i++) {
+    var num = RollDice(this.group.count);
+    for (var j=1; j<=num; j++) {
+      if (population.length < 8) {
+        population[population.length] = this.group.npc;
+      }
+    }
+  }
+  
+  return population;
+}
 
 // NPCs have moved into npcObjects.js
 

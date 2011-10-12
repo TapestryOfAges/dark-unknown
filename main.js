@@ -190,44 +190,43 @@ $(document).ready(function() {
   			gamestate.setMode("player");
   			return;
   		}
-  		else if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && (targetCursor.command == "g")) {
+  		else if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && ((targetCursor.command == "g") || (targetCursor.command == "a"))) {
   		  maintext.setInputLine("&gt;");
   		  maintext.drawTextFrame();
   			gamestate.setMode("player");
   			return;
   		}
   		else {
+  		  var resp;
   			if (targetCursor.command == "u") { // USE
-  				var resp = PerformUse(PC);
-  				if (resp["fin"] == 1) {
-  					drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-  				}
-  				maintext.addText(resp["txt"]);
-  				maintext.setInputLine("&gt;");
-  				maintext.drawTextFrame();
-
-  				gamestate.setMode("null");
-  				var PCevent = new GameEvent(PC);
-   			 	DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
-   	 		
-  	  	  var nextEntity = DUTime.executeNextEvent().getEntity();
-	      	nextEntity.myTurn();
+  				resp = PerformUse(PC);
   			} else if (targetCursor.command == "g") { // GET
-  			  var resp = PerformGet(PC);
-          if (resp["fin"] == 1) {
-  					drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-  				}
-  				maintext.addText(resp["txt"]);
-  				maintext.setInputLine("&gt;");
-  				maintext.drawTextFrame();
-
-  				gamestate.setMode("null");
-  				var PCevent = new GameEvent(PC);
-   			 	DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
-   	 		
-  	  	  var nextEntity = DUTime.executeNextEvent().getEntity();
-	      	nextEntity.myTurn(); 
+  			  resp = PerformGet(PC);
+  			} else if (targetCursor.command == "a") {  // ATTACK
+  			  var dir = "";
+  			  if (targetCursor.y == PC.gety()-1) { dir = "North"; }
+  			  if (targetCursor.y == PC.gety()+1) { dir = "South"; }
+  			  if (targetCursor.x == PC.getx()-1) { dir = "West"; }
+  			  if (targetCursor.x == PC.getx()+1) { dir = "East"; }
+  			  dir = "Attack " + dir + "!";
+  			  maintext.addText(dir);
+          resp = PerformAttackMap(PC);  			  
   			}
+				if (resp["fin"] == 1) {
+ 					drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+ 				}
+ 				if (resp["fin"] < 2) {
+ 				  maintext.addText(resp["txt"]);
+ 				  maintext.setInputLine("&gt;");
+ 				  maintext.drawTextFrame();
+
+ 				  gamestate.setMode("null");
+ 				  var PCevent = new GameEvent(PC);
+ 			 	  DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
+   	 		
+ 	  	    var nextEntity = DUTime.executeNextEvent().getEntity();
+      	  nextEntity.myTurn();
+        }
   		}
   	}
   	else if (response["fin"] == -1) {   // anything not useful

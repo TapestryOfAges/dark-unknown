@@ -299,6 +299,21 @@ function GiantRatNPCTile() {
 }
 GiantRatNPCTile.prototype = new NPCObject;
 
+function GiantRatGroupSmallTile() {
+  this.name = "GiantRatGroupSmall";
+  this.desc = "giant rats";
+  this.group[0] = new NPCList("GiantRatNPC", "1d3+2");
+}
+GiantRatGroupSmallTile.prototype = new NPCGroupObject;
+
+function GiantRatGroupLargeTile() {
+  this.name = "GiantRatGroupLarge";
+  this.desc = "giant rats";
+  this.group[0] = new NPCList("GiantRatNPC", "1d5+4");
+}
+GiantRatGroupLargeTile.prototype = new NPCGroupObject;
+
+
 function GiantSnakeNPCTile() {
   this.name = "GiantSnakeNPC";
   this.level = 2;
@@ -315,3 +330,4 @@ function GiantSnakeNPCTile() {
   this.desc = "giant snake";
 }
 GiantSnakeNPCTile.prototype = new NPCObject;
+
