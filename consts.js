@@ -61,4 +61,4 @@ var MOVE_ETHEREAL = 4;
 var MOVE_LEVITATE = 8;
 var MOVE_WALK = 16;
 
-
+var SCALE_TIME = .005;
