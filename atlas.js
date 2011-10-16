@@ -805,7 +805,7 @@ GameMap.prototype.setNPCsCoord = function() {
 }
 
 
-GameMap.prototype.placeThing = function(x,y,newthing) {
+GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
   if (newthing) {
 //  	var type = newthing.type + "s";
     var type = newthing.getTypeForMap() + "s";
@@ -821,7 +821,7 @@ GameMap.prototype.placeThing = function(x,y,newthing) {
   }
 //if ( typeof newthing.activate == "function") {
   if (newthing.getTypeForMap() == "npc") {
-    newthing.activate();
+    newthing.activate(timeoverride);
   }  
 }
 
