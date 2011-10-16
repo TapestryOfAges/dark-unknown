@@ -105,3 +105,368 @@ function RollDice(die) {
 
   return roll;
 }
+
+function PlaceMonsters(map,group,whoseturn) {
+  var monsters = new Array;
+  if (typeof group.populate == "function") {
+    monsters = group.populate();
+  } else {
+    alert("Non-group monster on world map.");
+    return 0;
+  }
+
+    
+  var monstercoords = new Array;
+  switch (monsters.length) {
+      case 1:
+        monstercoords[0] = new Object;
+        monstercoords[0].x = 6;
+        monstercoords[0].y = 3;
+        break;
+      case 2:
+        var coin = Math.floor(Math.random() * 2) +1;
+        if (coin == 1) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 5;
+          monstercoords[0].y = 3;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 7;
+          monstercoords[1].y = 3;
+        }
+        else if (coin == 2) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 6;
+          monstercoords[0].y = 2;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 6;
+          monstercoords[1].y = 4;          
+        }
+        break;
+      case 3:
+        var coin = Math.floor(Math.random() * 2) +1;
+        if (coin == 1) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 6;
+          monstercoords[0].y = 3;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 4;
+          monstercoords[1].y = 1;          
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 8;
+          monstercoords[2].y = 1;          
+        }
+        else if (coin == 2) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 6;
+          monstercoords[0].y = 1;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 4;
+          monstercoords[1].y = 3;          
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 8;
+          monstercoords[2].y = 3;                    
+        }
+        break;
+      case 4:
+        var coin = Math.floor(Math.random() * 2) +1;
+        if (coin == 1) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 4;
+          monstercoords[0].y = 1;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 5;
+          monstercoords[1].y = 3;          
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 7;
+          monstercoords[2].y = 3;                    
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 8;
+          monstercoords[3].y = 1;                    
+        }
+        else if (coin == 2) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 6;
+          monstercoords[0].y = 1;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 6;
+          monstercoords[1].y = 3;          
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 8;
+          monstercoords[2].y = 2;                    
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 4;
+          monstercoords[3].y = 2;                              
+        }
+        break;
+      case 5:
+        var coin = Math.floor(Math.random() * 4) +1;
+        if (coin == 1) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 6;
+          monstercoords[0].y = 4;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 8;
+          monstercoords[1].y = 3;          
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 7;
+          monstercoords[2].y = 1;                    
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 4;
+          monstercoords[3].y = 3;                              
+          monstercoords[4] = new Object;
+          monstercoords[4].x = 5;
+          monstercoords[4].y = 1;                              
+        }          
+        else if (coin == 2){
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 6;
+          monstercoords[0].y = 2;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 8;
+          monstercoords[1].y = 3;          
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 7;
+          monstercoords[2].y = 1;                    
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 4;
+          monstercoords[3].y = 3;                              
+          monstercoords[4] = new Object;
+          monstercoords[4].x = 5;
+          monstercoords[4].y = 1;                                        
+        }
+        else if (coin == 3){
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 7;
+          monstercoords[0].y = 4;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 5;
+          monstercoords[1].y = 4;          
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 6;
+          monstercoords[2].y = 2;                    
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 4;
+          monstercoords[3].y = 2;                              
+          monstercoords[4] = new Object;
+          monstercoords[4].x = 8;
+          monstercoords[4].y = 2;                                        
+        }
+        else if (coin == 4){
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 7;
+          monstercoords[0].y = 1;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 5;
+          monstercoords[1].y = 1;          
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 6;
+          monstercoords[2].y = 3;                    
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 4;
+          monstercoords[3].y = 3;                              
+          monstercoords[4] = new Object;
+          monstercoords[4].x = 8;
+          monstercoords[4].y = 3;                                        
+        }
+        break;
+      case 6:
+        var coin = Math.floor(Math.random() * 5) +1;
+        if (coin == 1) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 6;
+          monstercoords[0].y = 3;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 5;
+          monstercoords[1].y = 2;
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 7;
+          monstercoords[2].y = 2;
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 6;
+          monstercoords[3].y = 1;
+          monstercoords[4] = new Object;
+          monstercoords[4].x = 4;
+          monstercoords[4].y = 1;
+          monstercoords[5] = new Object;
+          monstercoords[5].x = 8;
+          monstercoords[5].y = 1;
+        } else if (coin == 2) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 4;
+          monstercoords[0].y = 1;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 5;
+          monstercoords[1].y = 2;
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 4;
+          monstercoords[2].y = 3;
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 8;
+          monstercoords[3].y = 1;
+          monstercoords[4] = new Object;
+          monstercoords[4].x = 7;
+          monstercoords[4].y = 2;
+          monstercoords[5] = new Object;
+          monstercoords[5].x = 8;
+          monstercoords[5].y = 3;          
+        } else if (coin == 3) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 4;
+          monstercoords[0].y = 1;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 6;
+          monstercoords[1].y = 2;
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 8;
+          monstercoords[2].y = 1;
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 4;
+          monstercoords[3].y = 3;
+          monstercoords[4] = new Object;
+          monstercoords[4].x = 6;
+          monstercoords[4].y = 4;
+          monstercoords[5] = new Object;
+          monstercoords[5].x = 8;
+          monstercoords[5].y = 3;          
+        } else if (coin == 4) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 4;
+          monstercoords[0].y = 1;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 6;
+          monstercoords[1].y = 1;
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 8;
+          monstercoords[2].y = 1;
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 4;
+          monstercoords[3].y = 3;
+          monstercoords[4] = new Object;
+          monstercoords[4].x = 6;
+          monstercoords[4].y = 3;
+          monstercoords[5] = new Object;
+          monstercoords[5].x = 8;
+          monstercoords[5].y = 3;          
+        } else if (coin == 5) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 4;
+          monstercoords[0].y = 1;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 6;
+          monstercoords[1].y = 1;
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 4;
+          monstercoords[2].y = 3;
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 6;
+          monstercoords[3].y = 3;
+          monstercoords[4] = new Object;
+          monstercoords[4].x = 4;
+          monstercoords[4].y = 5;
+          monstercoords[5] = new Object;
+          monstercoords[5].x = 6;
+          monstercoords[5].y = 5;          
+        }
+        break;
+      case 7:
+        var coin = Math.floor(Math.random() * 3) +1;
+        if (coin == 1) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 6;
+          monstercoords[0].y = 4;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 5;
+          monstercoords[1].y = 3;
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 7;
+          monstercoords[2].y = 3;
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 6;
+          monstercoords[3].y = 2;
+          monstercoords[4] = new Object;
+          monstercoords[4].x = 4;
+          monstercoords[4].y = 2;
+          monstercoords[5] = new Object;
+          monstercoords[5].x = 8;
+          monstercoords[5].y = 2;
+          monstercoords[6] = new Object;
+          monstercoords[6].x = 5;
+          monstercoords[6].y = 1;
+        } else if (coin == 2) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 6;
+          monstercoords[0].y = 4;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 5;
+          monstercoords[1].y = 3;
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 7;
+          monstercoords[2].y = 3;
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 6;
+          monstercoords[3].y = 2;
+          monstercoords[4] = new Object;
+          monstercoords[4].x = 4;
+          monstercoords[4].y = 2;
+          monstercoords[5] = new Object;
+          monstercoords[5].x = 8;
+          monstercoords[5].y = 2;
+          monstercoords[6] = new Object;
+          monstercoords[6].x = 7;
+          monstercoords[6].y = 1;
+        } else if (coin == 3) {
+          monstercoords[0] = new Object;
+          monstercoords[0].x = 6;
+          monstercoords[0].y = 4;
+          monstercoords[1] = new Object;
+          monstercoords[1].x = 5;
+          monstercoords[1].y = 3;
+          monstercoords[2] = new Object;
+          monstercoords[2].x = 7;
+          monstercoords[2].y = 3;
+          monstercoords[3] = new Object;
+          monstercoords[3].x = 5;
+          monstercoords[3].y = 1;
+          monstercoords[4] = new Object;
+          monstercoords[4].x = 4;
+          monstercoords[4].y = 2;
+          monstercoords[5] = new Object;
+          monstercoords[5].x = 8;
+          monstercoords[5].y = 2;
+          monstercoords[6] = new Object;
+          monstercoords[6].x = 7;
+          monstercoords[6].y = 1;
+        }
+        break;
+      case 8:
+        monstercoords[0] = new Object;
+        monstercoords[0].x = 6;
+        monstercoords[0].y = 4;
+        monstercoords[1] = new Object;
+        monstercoords[1].x = 5;
+        monstercoords[1].y = 3;
+        monstercoords[2] = new Object;
+        monstercoords[2].x = 7;
+        monstercoords[2].y = 3;
+        monstercoords[3] = new Object;
+        monstercoords[3].x = 6;
+        monstercoords[3].y = 2;
+        monstercoords[4] = new Object;
+        monstercoords[4].x = 4;
+        monstercoords[4].y = 2;
+        monstercoords[5] = new Object;
+        monstercoords[5].x = 8;
+        monstercoords[5].y = 2;
+        monstercoords[6] = new Object;
+        monstercoords[6].x = 5;
+        monstercoords[6].y = 1;
+        monstercoords[7] = new Object;
+        monstercoords[7].x = 7;
+        monstercoords[7].y = 1;
+        break;
+      
+  }
+
+
+
+}
