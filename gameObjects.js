@@ -2942,7 +2942,7 @@ NPCObject.prototype.removeMovetype = function(move) {
 	this.movetype = this.movetype & ~move;
 }
 
-NPCObject.prototype.activate = function() {
+NPCObject.prototype.activate = function(timeoverride) {
   
   var weapon;
   var missileweapon;
@@ -2998,6 +2998,11 @@ NPCObject.prototype.activate = function() {
   }
   
   var timing = this.nextActionTime(0);
+  timing = timing/2;
+  if (timeoverride) {
+    timing = timeoverride;
+  }
+  timing = timing + (Math.random() / 500);
   var NPCEvent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCEvent,timing);  
 }
