@@ -106,7 +106,7 @@ function RollDice(die) {
   return roll;
 }
 
-function PlaceMonsters(map,group,whoseturn) {
+function PlaceMonsters(battlemap,group,whoseturn) {
   var monsters = new Array;
   if (typeof group.populate == "function") {
     monsters = group.populate();
@@ -467,6 +467,15 @@ function PlaceMonsters(map,group,whoseturn) {
       
   }
 
+  for (i =0; i < monsters.length; i++) {
+    monsters[i].setHomeMap(battlemap);
+    var timetoplace = 0;
+    if (!whoseturn) { // combat began on NPC turn
+      timetoplace = .001;
+    }
+    combatmap.placeThing(monstercoords[i].x,monstercoords[i].y,monsters[i],timetoplace);
+    
+  }
 
-
+  return monsters;
 }

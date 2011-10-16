@@ -421,8 +421,11 @@ function PerformAttackMap(who) {
     
     var monsters = PlaceMonsters(newmap,atkwho,1);
     
-    
-    // set to PC turn
+    drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    retval["txt"] = "Attack: " + atkwho.getDesc() + "!";
+    retval["fin"] = 0;
+    retval["input"] = "&gt;";
+    // as if retval = 1, but set to PC turn
 
   } else {
     retval["txt"] = "There is nothing to attack there.";
