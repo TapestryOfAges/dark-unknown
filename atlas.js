@@ -807,6 +807,8 @@ GameMap.prototype.setNPCsCoord = function() {
 
 GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
   if (newthing) {
+    newthing.setHomeMap(this);
+
 //  	var type = newthing.type + "s";
     var type = newthing.getTypeForMap() + "s";
     if (!this.data[type]) { this.data[type] = new Collection; }
@@ -818,10 +820,12 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
       this.data[y][x][type] = new Collection;
     }
     this.data[y][x][type].addTop(newthing);
-  }
+  
 //if ( typeof newthing.activate == "function") {
-  if (newthing.getTypeForMap() == "npc") {
-    newthing.activate(timeoverride);
+    if (newthing.getTypeForMap() == "npc") {
+      newthing.activate(timeoverride);
+    }
+
   }  
 }
 
@@ -1021,7 +1025,7 @@ GameMap.prototype.loadMap = function (name) {
 //  	alert(loadfeatures.length + " features loading...");
     for (var i=0;i<=loadfeatures.length-1;i++) {
     	var newfeature = localFactory.createTile(loadfeatures[i].name);
-    	newfeature.setHomeMap(this);
+//    	newfeature.setHomeMap(this);
     	for (var featurekey in loadfeatures[i]) {
     		if (featurekey == "name") { continue; }
     		if (featurekey == "locked") { newfeature.lockMe(loadfeatures[i]["locked"]); continue; }
@@ -1039,7 +1043,7 @@ GameMap.prototype.loadMap = function (name) {
   if (loadnpcs)  {
   	for (var i=0;i<=loadnpcs.length-1;i++) {
   		var newnpc = localFactory.createTile(loadnpcs[i].name);
-  		newnpc.setHomeMap(this);
+//  		newnpc.setHomeMap(this);
   		for (var npckey in loadnpcs[i]) {
   			if (npckey == "NPCName") { newnpc.setNPCName(loadnpcs[i].NPCName); }
   			if (npckey == "Desc") { newnpc.setDesc(loadnpcs[i].Desc); }
