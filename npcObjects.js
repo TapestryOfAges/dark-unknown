@@ -302,6 +302,7 @@ GiantRatNPCTile.prototype = new NPCObject;
 function GiantRatGroupSmallTile() {
   this.name = "GiantRatGroupSmall";
   this.desc = "giant rats";
+  this.graphic = PickOne(["327.gif","361.gif"]);
   this.group[0] = new NPCList("GiantRatNPC", "1d3+2");
 }
 GiantRatGroupSmallTile.prototype = new NPCGroupObject;
@@ -309,6 +310,7 @@ GiantRatGroupSmallTile.prototype = new NPCGroupObject;
 function GiantRatGroupLargeTile() {
   this.name = "GiantRatGroupLarge";
   this.desc = "giant rats";
+  this.graphic = PickOne(["327.gif","361.gif"]);
   this.group[0] = new NPCList("GiantRatNPC", "1d5+4");
 }
 GiantRatGroupLargeTile.prototype = new NPCGroupObject;
