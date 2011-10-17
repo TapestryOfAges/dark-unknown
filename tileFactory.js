@@ -1024,3 +1024,19 @@ tileFactory.prototype.makeLighthouseTile = function() {
 	var newTile = new LighthouseTile();
 	return newTile;
 }
+
+tileFactory.prototype.makeGiantRatNPCTile = function() {
+        var newTile = new GiantRatNPCTile();
+        return newTile;
+}      
+
+tileFactory.prototype.makeGiantRatGroupSmallTile = function() {
+        var newTile = new GiantRatGroupSmallTile();
+        return newTile;
+}      
+
+tileFactory.prototype.makeGiantRatGroupLargeTile = function() {
+        var newTile = new GiantRatGroupLargeTile();
+        return newTile;
+}
+
