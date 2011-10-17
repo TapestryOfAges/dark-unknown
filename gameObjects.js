@@ -2911,7 +2911,8 @@ NPCObject.prototype.setArmorAs = function(armor) {
 
 NPCObject.prototype.nextActionTime = function(initdelay) {
 
-  var scale = this.getHomeMap().getScale();
+  var themap = this.getHomeMap();
+  var scale = themap.getScale();
   if (this.smallscalemove) { 
     scale = 1;
     delete this.smallscalemove;
