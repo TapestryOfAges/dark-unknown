@@ -15,6 +15,8 @@ GameStateData.prototype.loadGame = function() {
 	var themap = new GameMap();
 	themap.loadMap("darkunknown");
 	PC.setHomeMap(themap);
+  var rats = localFactory.createTile("GiantRatGroupSmall");
+  themap.placeThing(75,22,rats);
   var dagger = localFactory.createTile("Dagger");
   PC.addToInventory(dagger, 1);
   PC.setEquipment("weapon",dagger);
