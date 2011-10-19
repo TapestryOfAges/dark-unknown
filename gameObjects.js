@@ -653,8 +653,8 @@ TerrainObject.prototype.serialize = function() {
 
 TerrainObject.prototype.getCombatMap = function() {
   var mapname = this.combatmap;
-  if (this.mapnameoptions > 1) {
-    var randomnumber=Math.floor(Math.random()*this.mapnameoptions)+1;
+  if (this.combatmapoptions > 1) {
+    var randomnumber=Math.floor(Math.random()*this.combatmapoptions)+1;
     mapname = mapname + randomnumber;
   }
   return mapname;
@@ -3225,10 +3225,11 @@ function NPCList(npcs,num) {
 NPCGroupObject.prototype.populate = function() {
   var population = new Array;
   for (var i=0; i< this.group.length; i++) {
-    var num = RollDice(this.group.count);
+    var num = RollDice(this.group[i].count);
     for (var j=1; j<=num; j++) {
       if (population.length < 8) {
-        population[population.length] = this.group.npc;
+        var monster = localFactory.createTile(this.group[i].npc);
+        population[population.length] = monster;
       }
     }
   }
