@@ -473,7 +473,7 @@ function PlaceMonsters(battlemap,group,whoseturn) {
     if (!whoseturn) { // combat began on NPC turn
       timetoplace = .001;
     }
-    combatmap.placeThing(monstercoords[i].x,monstercoords[i].y,monsters[i],timetoplace);
+    battlemap.placeThing(monstercoords[i].x,monstercoords[i].y,monsters[i],timetoplace);
     
   }
 
