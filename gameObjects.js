@@ -407,7 +407,9 @@ function SetBySurround() {
 	  	var blkgraphics = black.getGraphicArray();
 	  	graphics[0] = blkgraphics[0];
 	  }
-	  if (graphics[0].indexOf("-nsew") != -1) { this.setBlockLOS(.5); }
+	  var tmparray = new Array;
+	  tmparray[0] = .5;
+	  if (graphics[0].indexOf("-nsew") != -1) { this.setBlocksLOSArray(tmparray); }
 	  return (graphics);
   }
 }
@@ -2141,6 +2143,109 @@ function WalkOnTile() {
 	this.invisible = 1;
 }
 WalkOnTile.prototype = new FeatureObject;
+
+function PentagramNWTile() {
+  this.name = "PentagramNW";
+  this.graphic = "pentagram.gif";
+	this.spritexoffset = "0";
+	this.spriteyoffset = "0";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pentagram";
+}
+PentagramNWTile.prototype = new FeatureObject;
+
+function PentagramNTile() {
+  this.name = "PentagramN";
+  this.graphic = "pentagram.gif";
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "0";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pentagram";
+}
+PentagramNTile.prototype = new FeatureObject;
+
+function PentagramNETile() {
+  this.name = "PentagramNE";
+  this.graphic = "pentagram.gif";
+	this.spritexoffset = "-64";
+	this.spriteyoffset = "0";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pentagram";
+}
+PentagramNETile.prototype = new FeatureObject;
+
+function PentagramWTile() {
+  this.name = "PentagramW";
+  this.graphic = "pentagram.gif";
+	this.spritexoffset = "0";
+	this.spriteyoffset = "-32";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pentagram";
+}
+PentagramWTile.prototype = new FeatureObject;
+
+function PentagramCTile() {
+  this.name = "PentagramC";
+  this.graphic = "pentagram.gif";
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "-32";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pentagram";
+}
+PentagramCTile.prototype = new FeatureObject;
+
+function PentagramETile() {
+  this.name = "PentagramE";
+  this.graphic = "pentagram.gif";
+	this.spritexoffset = "-64";
+	this.spriteyoffset = "-32";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pentagram";
+}
+PentagramETile.prototype = new FeatureObject;
+
+function PentagramSWTile() {
+  this.name = "PentagramSW";
+  this.graphic = "pentagram.gif";
+	this.spritexoffset = "0";
+	this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pentagram";
+}
+PentagramSWTile.prototype = new FeatureObject;
+
+function PentagramSTile() {
+  this.name = "PentagramS";
+  this.graphic = "pentagram.gif";
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pentagram";
+}
+PentagramSTile.prototype = new FeatureObject;
+
+function PentagramSETile() {
+  this.name = "PentagramSE";
+  this.graphic = "pentagram.gif";
+	this.spritexoffset = "-64";
+	this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pentagram";
+}
+PentagramSETile.prototype = new FeatureObject;
+
+
+
+
 
 // Items
 
