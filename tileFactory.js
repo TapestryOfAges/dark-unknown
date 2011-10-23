@@ -930,3 +930,34 @@ tileFactory.prototype.makeGiantSnakeNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEraserTile = function() {
+  var newTile = new BlankWhiteTile();
+  newTile.name = 'Eraser';
+  newTile.type = 'feature';
+  return newTile;
+}
+
+tileFactory.prototype.makeLockedDoorWindowTile = function() {
+  var newTile = this.createTile('DoorWindow');
+  newTile.lockMe(1);
+  return newTile;
+}
+
+tileFactory.prototype.makeMagicLockedDoorWindowTile = function() {
+  var newTile = this.createTile('DoorWindow');
+  newTile.lockMe(2);    // Magic Lock
+  return newTile;
+}
+
+tileFactory.prototype.makeLockedDoorTile = function() {
+  var newTile = this.createTile('Door');
+  newTile.lockMe(1);
+  return newTile;
+}
+
+tileFactory.prototype.makeMagicLockedDoorTile = function() {
+  var newTile = this.createTile('Door');
+  newTile.lockMe(2);    // Magic Lock
+  return newTile;
+}
+
