@@ -242,10 +242,11 @@ GameObject.prototype.passable = function(movetype) {
 // version of multiple inheritance. 
 
 // Abstract class Lockable
-function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockeddesc, lockeddesc, maglockeddesc) {
+function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedprefix, unlockeddesc, lockedprefix, lockeddesc, maglockedprefix, maglockeddesc) {
 	this.locked = 0;
 	this.lockedgraphics = new Array(unlockedgraphic, lockedgraphic, maglockedgraphic);
 	this.lockeddescs = new Array(unlockeddesc, lockeddesc, maglockeddesc);
+  this.lockedprefixes = new Array(unlockedprefix, lockedprefix, maglockedprefix);
 	
 	this.setLocked = function(lock) { this.locked = lock; }
 	this.getLocked = function() { return this.locked; }
@@ -253,6 +254,7 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockeddesc
 		this.setLocked(lock);
 		this.setOverlay(this.lockedgraphics[lock]);
 		this.setDesc(this.lockeddescs[lock]);
+		this.setPrefix(this.lockedprefixes[lock]);
 	}
 	this.unlockMe = function() { this.lockMe(0); }
 }
@@ -1795,6 +1797,19 @@ function DoorwayTile() {
 }
 DoorwayTile.prototype = new FeatureObject;
 
+function StoneDoorwayTile() {
+  this.name = "StoneDoorway";
+  this.graphic = "hexfloor.gif";
+  this.overlay = "stone-arch.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "archway";
+  
+  SetByBelow.call(this);
+}
+StoneDoorwayTile.prototype = new FeatureObject;
+
 function ShrineTile() {
   this.name = "Shrine";
   this.graphic = "156.gif";
@@ -1832,7 +1847,7 @@ function RuinsTile() {
 RuinsTile.prototype = new FeatureObject;
 
 function ChestTile() {
-  Lockable.call(this, "008.gif", "008.gif", "008.gif", 	"a chest", "a locked chest", "a magically locked chest");
+  Lockable.call(this, "008.gif", "008.gif", "008.gif", 	"a",  "chest", "a", "locked chest", "a", "magically locked chest");
 	this.name = "Chest";
 	this.graphic = "008.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1844,7 +1859,7 @@ function ChestTile() {
 ChestTile.prototype = new FeatureObject;
 
 function DoorWindowTile() {
-  Lockable.call(this, "009.gif", "010.gif", "067.gif", "a door", "a locked door", "a magically locked door");
+  Lockable.call(this, "009.gif", "010.gif", "067.gif", "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "DoorWindow";
 	this.graphic = "009.gif";
@@ -1857,6 +1872,22 @@ function DoorWindowTile() {
 
 	SetByBelow.call(this);
   Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0);
+}
+DoorWindowTile.prototype = new FeatureObject;
+
+function StonePortcullisTile() {
+  Lockable.call(this, "stone-portcullis.gif", "stone-portcullis.gif", "stone-portcullis.gif", "a", "portcullis", "a", "portcullis", "a", "portcullis");
+	
+	this.name = "StonePortcullis";
+	this.graphic = "stone-portcullis.gif";
+	this.overlay = "stone-portcullis.gif";
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 0; 
+	this.prefix = "a";
+	this.desc = "portcullis";
+
+	SetByBelow.call(this);
+  Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "stone-arch.gif", 0, 0], 0);
 }
 DoorWindowTile.prototype = new FeatureObject;
 
@@ -1909,7 +1940,7 @@ function AltarTile() {
 AltarTile.prototype = new FeatureObject;
 
 function DoorTile() {
-  Lockable.call(this, "064.gif", "065.gif", "066.gif", "a door", "a locked door", "a magically locked door");
+  Lockable.call(this, "064.gif", "065.gif", "066.gif", "a", "door", "a", "locked door", "a", "magically locked door");
   	
 	this.name = "Door";
 	this.graphic = "064.gif";

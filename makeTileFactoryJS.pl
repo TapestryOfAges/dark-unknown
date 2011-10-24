@@ -28,4 +28,4 @@ print "tileFactory.prototype.makeLockedDoorWindowTile = function() {\n  var newT
 print "tileFactory.prototype.makeMagicLockedDoorWindowTile = function() {\n  var newTile = this.createTile('DoorWindow');\n  newTile.lockMe(2);    // Magic Lock\n  return newTile;\n}\n\n";
 print "tileFactory.prototype.makeLockedDoorTile = function() {\n  var newTile = this.createTile('Door');\n  newTile.lockMe(1);\n  return newTile;\n}\n\n";
 print "tileFactory.prototype.makeMagicLockedDoorTile = function() {\n  var newTile = this.createTile('Door');\n  newTile.lockMe(2);    // Magic Lock\n  return newTile;\n}\n\n";
-
+print "tileFactory.prototype.makeLockedStonePortcullisTile = function() {\n  var newTile = this.createTile('StonePortcullis');\n  newTile.lockMe(1);\n  return newTile;\n}\n\n";
