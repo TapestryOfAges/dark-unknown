@@ -209,6 +209,7 @@ function drawFeatures() {
 
 function changeselection(tilename) {
   selectionval = localFactory.createTile(tilename);
+  selectionval.setName(tilename);  // to allow for my way of making locked doors/etc
   var graphics = selectionval.getGraphicArray();
   $('#td_selectionimg').css("background-image", "url('graphics/" + graphics[0] + "')");
   $('#td_selectionimg').css("background-position", graphics[2] + "px " + graphics[3] + "px");
