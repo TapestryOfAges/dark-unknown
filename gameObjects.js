@@ -100,6 +100,11 @@ GameObject.prototype.getName = function() {
 	return this.name;
 }
 
+GameObject.prototype.setName = function(newname) {  // USE SPARINGLY
+  this.name = newname;
+	return this.name;
+}
+
 GameObject.prototype.moveTo = function(x,y) {
 	this.homeMap.moveThing(this,x,y)
 }
@@ -1799,14 +1804,14 @@ DoorwayTile.prototype = new FeatureObject;
 
 function StoneDoorwayTile() {
   this.name = "StoneDoorway";
-  this.graphic = "hexfloor.gif";
+  this.graphic = "055.gif";
   this.overlay = "stone-arch.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archway";
   
-  SetByBelow.call(this);
+//  SetByBelow.call(this);
 }
 StoneDoorwayTile.prototype = new FeatureObject;
 
@@ -1886,10 +1891,10 @@ function StonePortcullisTile() {
 	this.prefix = "a";
 	this.desc = "portcullis";
 
-	SetByBelow.call(this);
-  Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "stone-arch.gif", 0, 0], 0);
+//	SetByBelow.call(this);
+  Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "stone-arch.gif", 0, 0], 0);
 }
-DoorWindowTile.prototype = new FeatureObject;
+StonePortcullisTile.prototype = new FeatureObject;
 
 function CorpseTile() {
 	this.name = "Corpse";
