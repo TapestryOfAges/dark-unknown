@@ -53,12 +53,13 @@
     </form>
 	</div>
 	<div class="bubble" id="featurebubble"><form name="featureeditpopup"><table cellpadding="1" cellspacing="1" border="0">
-		<tr><td colspan="2" id="td_bubbletile" style="width:32;height:32;background-repeat:no-repeat;background-image:url('graphics/073.gif')"><img src="graphics/spacer.gif" width="32" height="32" id="bubbletile" /></td></tr>
+		<tr><td id="td_bubbletile" style="width:32;height:32;background-repeat:no-repeat;background-image:url('graphics/073.gif')"><img src="graphics/spacer.gif" width="32" height="32" id="bubbletile" /></td><td id="featurecoordstd">&nbsp;</td></tr>
 		<tr><td>Tile desc:</td><td><input type="text" name="tiledesc" value="" size="40" /></td></tr>
 		<tr id="bubblelock" style="display:none"><td>Locked:</td><td><input type="text" name="tilelocked" value="" size="2" maxlength="1" /></td></tr>
 		<tr id="bubbleportal" style="display:none"><td>Dest. Map:<br />Dest X:<br />Dest Y:</td>
 		<td><input type="text" name="tileentermap" size="40" /><br /><input type="text" name="tileenterx" size="4" maxlength="3" /><br /><input type="text" name="tileentery" size="4" maxlength="3" /></td></tr>
 		<tr><td>Walkon Script:</td><td><input type="text" name="walkonscript" value="" size="40" /></td></tr>
+		<tr><td>Use Script:</td><td><input type="text" name="usescript" value="" size="40" /></td></tr>
 		<tr><td><input type="submit" value="Edit" onClick="submitEditFeature(1);" class="jqmClose" /></td><td><input type="submit" value="Cancel" onClick="submitEditFeature(0);" class="jqmClose" /> <input type="submit" value="Delete Feature" onClick="submitEditFeature(-1);" class="jqmClose" /></td></tr>
 		</table></form>
 	</div>
@@ -181,7 +182,7 @@
 <tr>
 <td><input type="checkbox" name="showfeatures" checked="checked" onclick="drawFeatures()" /> Features</td>
 <td><input type="checkbox" name="shownpcs" checked="checked" onclick="drawFeatures()" /> NPCs</td>
-<td><input type="checkbox" name="showninvis" onclick="drawFeatures()" /> Invis</td>
+<td><input type="checkbox" name="showinvis" onclick="drawFeatures()" /> Invis</td>
 </tr>
 </table>
 </form>
@@ -471,7 +472,7 @@
 <tr>
 	<script language="Javascript">writeTileOption('WalkOn');</script>
 	<script language="Javascript">writeTileOption('Lighthouse');</script>
-	<td></td>
+	<script language="Javascript">writeTileOption('LeverOff');</script>
 </tr>
 <tr>
 	<script language="Javascript">writeTileOption('PentagramNW');</script>
