@@ -730,6 +730,11 @@ tileFactory.prototype.makePentagramSETile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeLeverOffTile = function() {
+  var newTile = new LeverOffTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRubyGemoftheSunTile = function() {
   var newTile = new RubyGemoftheSunTile();
   return newTile;

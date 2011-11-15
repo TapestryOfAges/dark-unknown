@@ -646,8 +646,8 @@ function PerformUse(who) {
 		retval["fin"] = 0;
 		return retval;
 	}
-	if (typeof used.useScript == "function") {
-		retval = used.useScript(who);
+	if (typeof used.use == "function") {
+		retval = used.use(who);
 		retval["fin"] = 1;
 		var usedname = used.getDesc();
 		usedname = usedname.replace(/^a /, "");

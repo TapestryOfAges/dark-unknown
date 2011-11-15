@@ -316,7 +316,7 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 	this.opengraphic = opengraphic;
 	// NOTE: These should be arrays in the standard graphics[0-3] style.
 	
-	this.useScript = function(who) {
+	this.use = function(who) {
 		var retval = new Object;
 		retval["fin"] = 0;
 		if (this.open == 1) {
@@ -603,6 +603,7 @@ function IsWet(tile) {
 function InanimateObject() {
   this.initdelay = 1;  // multiplicative
   this.walkonscript = "";
+  this.usescript = "";
   
   this.addType("InanimateObject");
 }
@@ -617,6 +618,14 @@ InanimateObject.prototype.setWalkOnScript = function(newscript) {
 	this.walkonscript = newscript;
 }
 
+InanimateObject.prototype.getUseScript = function() {
+	return this.usescript;
+}
+
+InanimateObject.prototype.setUseScript = function(newscript) {
+	this.usescript = newscript;
+}
+
 InanimateObject.prototype.walkon = function() {
   return(1);
 }
@@ -626,10 +635,6 @@ InanimateObject.prototype.leave = function() {
 }
 
 InanimateObject.prototype.idle = function() {
-  return(0);
-}
-
-InanimateObject.prototype.use = function() {
   return(0);
 }
 
@@ -2278,6 +2283,18 @@ function PentagramSETile() {
   this.desc = "pentagram";
 }
 PentagramSETile.prototype = new FeatureObject;
+
+function LeverOffTile() {
+  this.name = "LeverOff";
+  this.graphic = "switch-off.gif";
+  this.overlay = "switch-off.gif";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "lever";
+  
+  SetByBelow.call(this);
+}
+LeverOffTile.prototype = new FeatureObject;
 
 
 
