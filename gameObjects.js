@@ -740,7 +740,7 @@ function StoneWallTile() {
   this.name = "StoneWall";
   this.graphic = "011.gif";
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
+  this.blocklos = 1;
   this.prefix = "a";
   this.desc = "stone wall";
 }
@@ -1139,7 +1139,7 @@ function BlankBlackTile() {
   this.name = "BlankBlack";
   this.graphic = "055.gif";
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = 1;
+  this.blocklos = 0;
   this.desc = "darkness";
 }
 BlankBlackTile.prototype = new TerrainObject;
