@@ -78,26 +78,26 @@ mappages["metaltwister"].terrain[74] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK B
 mappages["metaltwister"].terrain[75] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["metaltwister"].features = new Array;
-mappages["metaltwister"].features[0] = {name : 'LadderUp', x : 20, y : 24, entermap : 'null', enterx : 0, entery : 0};
-mappages["metaltwister"].features[1] = {name : 'LadderDown', x : 21, y : 36, entermap : 'null', enterx : 0, entery : 0};
-mappages["metaltwister"].features[2] = {name : 'LadderDown', x : 36, y : 55, entermap : 'null', enterx : 0, entery : 0};
+mappages["metaltwister"].features[0] = {name : 'LadderUp', x : 20, y : 24, entermap : 'darkunknown', enterx : 18, entery : 114};
+mappages["metaltwister"].features[1] = {name : 'LadderDown', x : 21, y : 36, entermap : 'metaltwister2', enterx : 16, entery : 2};
+mappages["metaltwister"].features[2] = {name : 'LadderDown', x : 36, y : 55, entermap : 'metaltwister2', enterx : 27, entery : 67};
 
 
 mappages["metaltwister"].npcs = new Array;
 
-mappages["metaltwister"].desc = '';
-mappages["metaltwister"].music = '';
-mappages["metaltwister"].exitmap = '';
-mappages["metaltwister"].exitx = '';
-mappages["metaltwister"].exity = '';
-mappages["metaltwister"].wraps = '';
-mappages["metaltwister"].enterx = '';
-mappages["metaltwister"].entery = '';
+mappages["metaltwister"].desc = 'Metal Twister';
+mappages["metaltwister"].music = 'Dungeon';
+mappages["metaltwister"].exitmap = 'darkunknown';
+mappages["metaltwister"].exitx = '18';
+mappages["metaltwister"].exity = '114';
+mappages["metaltwister"].wraps = 'None';
+mappages["metaltwister"].enterx = '20';
+mappages["metaltwister"].entery = '24';
 mappages["metaltwister"].seeBelow = '';
-mappages["metaltwister"].lightLevel = '';
+mappages["metaltwister"].lightLevel = 'Dark';
 mappages["metaltwister"].alwaysRemember = '';
 mappages["metaltwister"].scale = '1';
-mappages["metaltwister"].linkedMaps = new Array;
+mappages["metaltwister"].linkedMaps = new Array("metaltwister2","metaltwister3");
 
 
 mappages["metaltwister2"] = new Object();
@@ -172,12 +172,18 @@ mappages["metaltwister2"].terrain[66] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK 
 mappages["metaltwister2"].terrain[67] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% hf hf hf hf hf hf hf hf hf hf hf %% %% %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["metaltwister2"].terrain[68] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% %% %% %% %% hf hf hf hf hf %% %% %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["metaltwister2"].terrain[69] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% %% %% %% %% %% %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["metaltwister2"].terrain[70] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["metaltwister2"].terrain[71] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["metaltwister2"].terrain[72] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["metaltwister2"].terrain[73] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["metaltwister2"].terrain[74] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["metaltwister2"].terrain[75] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["metaltwister2"].features = new Array;
-mappages["metaltwister2"].features[0] = {name : 'LadderDown', x : 30, y : 30, entermap : 'null', enterx : 0, entery : 0};
-mappages["metaltwister2"].features[1] = {name : 'LadderDown', x : 33, y : 29, entermap : 'null', enterx : 0, entery : 0};
-mappages["metaltwister2"].features[2] = {name : 'LadderUp', x : 16, y : 2, entermap : 'null', enterx : 0, entery : 0};
-mappages["metaltwister2"].features[3] = {name : 'LadderUp', x : 27, y : 67, entermap : 'null', enterx : 0, entery : 0};
+mappages["metaltwister2"].features[0] = {name : 'LadderDown', x : 30, y : 30, entermap : 'metaltwister3', enterx : 21, entery : 20};
+mappages["metaltwister2"].features[1] = {name : 'LadderDown', x : 33, y : 29, entermap : 'metaltwister3', enterx : 7, entery : 14};
+mappages["metaltwister2"].features[2] = {name : 'LadderUp', x : 16, y : 2, entermap : 'metaltwister', enterx : 21, entery : 36};
+mappages["metaltwister2"].features[3] = {name : 'LadderUp', x : 27, y : 67, entermap : 'metaltwister', enterx : 36, entery : 55};
 mappages["metaltwister2"].features[4] = {name : 'StonePortcullis', x : 11, y : 7, locked : 1};
 mappages["metaltwister2"].features[5] = {name : 'StonePortcullis', x : 6, y : 13, locked : 1};
 mappages["metaltwister2"].features[6] = {name : 'StonePortcullis', x : 4, y : 22, locked : 1};
@@ -225,19 +231,19 @@ mappages["metaltwister2"].features[46] = {name : 'StonePortcullis', x : 41, y : 
 
 mappages["metaltwister2"].npcs = new Array;
 
-mappages["metaltwister2"].desc = '';
-mappages["metaltwister2"].music = '';
+mappages["metaltwister2"].desc = 'Metal Twister 2';
+mappages["metaltwister2"].music = 'Dungeon';
 mappages["metaltwister2"].exitmap = '';
 mappages["metaltwister2"].exitx = '';
 mappages["metaltwister2"].exity = '';
-mappages["metaltwister2"].wraps = '';
+mappages["metaltwister2"].wraps = 'None';
 mappages["metaltwister2"].enterx = '';
 mappages["metaltwister2"].entery = '';
 mappages["metaltwister2"].seeBelow = '';
-mappages["metaltwister2"].lightLevel = '';
+mappages["metaltwister2"].lightLevel = 'Dark';
 mappages["metaltwister2"].alwaysRemember = '';
-mappages["metaltwister2"].scale = '';
-mappages["metaltwister2"].linkedMaps = new Array;
+mappages["metaltwister2"].scale = '1';
+mappages["metaltwister2"].linkedMaps = new Array("metaltwister","metaltwister3");
 
 
 mappages["metaltwister3"] = new Object();
@@ -279,24 +285,34 @@ mappages["metaltwister3"].features = new Array;
 mappages["metaltwister3"].features[0] = {name : 'StonePortcullis', x : 17, y : 18, locked : 1};
 mappages["metaltwister3"].features[1] = {name : 'StonePortcullis', x : 11, y : 16, locked : 1};
 mappages["metaltwister3"].features[2] = {name : 'Altar', x : 14, y : 17};
-mappages["metaltwister3"].features[3] = {name : 'LadderUp', x : 21, y : 20, entermap : 'null', enterx : 0, entery : 0};
-mappages["metaltwister3"].features[4] = {name : 'LadderUp', x : 7, y : 14, entermap : 'null', enterx : 0, entery : 0};
-mappages["metaltwister3"].features[5] = {name : 'LeverOff', x : 10, y : 12};
-mappages["metaltwister3"].features[6] = {name : 'LeverOff', x : 20, y : 18};
+mappages["metaltwister3"].features[3] = {name : 'LadderUp', x : 21, y : 20, entermap : 'metaltwister2', enterx : 30, entery : 30};
+mappages["metaltwister3"].features[4] = {name : 'LadderUp', x : 7, y : 14, entermap : 'metaltwister2', enterx : 33, entery : 29};
+mappages["metaltwister3"].features[5] = {name : 'LeverOff', x : 10, y : 12, usescript : 'throwswitch'};
+mappages["metaltwister3"].features[6] = {name : 'LeverOff', x : 20, y : 18, usescript : 'throwswitch'};
 
 
 mappages["metaltwister3"].npcs = new Array;
 
-mappages["metaltwister3"].desc = '';
-mappages["metaltwister3"].music = '';
+mappages["metaltwister3"].desc = 'Metal Twister 3';
+mappages["metaltwister3"].music = 'Dungeon';
 mappages["metaltwister3"].exitmap = '';
 mappages["metaltwister3"].exitx = '';
 mappages["metaltwister3"].exity = '';
-mappages["metaltwister3"].wraps = '';
+mappages["metaltwister3"].wraps = 'None';
 mappages["metaltwister3"].enterx = '';
 mappages["metaltwister3"].entery = '';
 mappages["metaltwister3"].seeBelow = '';
-mappages["metaltwister3"].lightLevel = '';
+mappages["metaltwister3"].lightLevel = 'Dark';
 mappages["metaltwister3"].alwaysRemember = '';
-mappages["metaltwister3"].scale = '';
-mappages["metaltwister3"].linkedMaps = new Array;
+mappages["metaltwister3"].scale = '1';
+mappages["metaltwister3"].linkedMaps = new Array("metaltwister","metaltwister2");
+
+mappages["metaltwister3"].throwswitch = function(feature) {
+  feature.use = function(user) {
+    var level3 = maps.getMap("metaltwister3");
+    var level2 = maps.getMap("metaltwister2");
+    if (!level2) {
+      // load level 2 into memory
+    }
+  }
+}
