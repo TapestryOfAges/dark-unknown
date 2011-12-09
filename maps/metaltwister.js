@@ -311,8 +311,47 @@ mappages["metaltwister3"].throwswitch = function(feature) {
   feature.use = function(user) {
     var level3 = maps.getMap("metaltwister3");
     var level2 = maps.getMap("metaltwister2");
+    var retval = new Object;
     if (!level2) {
-      // load level 2 into memory
+      var otherlevel = new GameMap();
+      otherlevel.loadMap("metaltwister2");
+      maps.addMapByRef(otherlevel);
+      level2 = otherlevel;
     }
+    if (this.getOverlay() == "switch-off.gif") {
+      this.setOverlay("switch-on.gif");
+      retval["txt"] = "Click!";
+      
+      var checkboth = 1;
+      var floor3features = level3.features.getAll();
+      var ports = new Array;
+      for (i=0; i<floor3features.length; i++) {
+        if (floor3features[i].getName() == "leverOff") {
+          if (floor3features[i].getOverlay() == "switch-off.gif") {
+            checkboth = 0;
+          }
+        }
+        if (floor3features[i].getName() == "StonePortcullis") {
+          ports[ports.length] = floor3features[i];
+        }
+      }
+      if (checkboth) {
+        for (i=0; i<ports.length; i++) {
+          ports[i].unlockMe();
+          ports[i].use(user);
+        }
+        var floor2features = level2.features.getAll();
+        for (i=0; i<floor2features.length; i++) {
+          if (floor2features[i].getName() == "StonePortcullis") {
+            floor2features[i].unlockMe();
+            floor2features[i].use(user);
+          }
+        }
+      }
+    }
+    else {
+      retval["txt"] = "The switch is stuck."; 
+    }
+    return retval;
   }
 }
