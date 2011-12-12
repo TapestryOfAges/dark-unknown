@@ -2343,17 +2343,18 @@ DecorativeArmorTile.prototype = new ItemObject;
 
 // Prototype for armor and weapons
 
-function EquippableItemObject() {
-  this.addType("Equippable");	
+function equipableItemObject() {
+  this.addType("equipable");	
   this.equippedTo;
+  this.toHitBonus = 0;
 }
-EquippableItemObject.prototype = new ItemObject;
+equipableItemObject.prototype = new ItemObject;
 
-EquippableItemObject.prototype.getEquippedTo = function() {
+equipableItemObject.prototype.getEquippedTo = function() {
   return this.equippedTo;
 }
 
-EquippableItemObject.prototype.setEquippedTo = function(newwho) {
+equipableItemObject.prototype.setEquippedTo = function(newwho) {
   if (newwho) {
     this.equippedTo = newwho;
     return 1;
@@ -2361,7 +2362,7 @@ EquippableItemObject.prototype.setEquippedTo = function(newwho) {
   return 0;
 }
 
-EquippableItemObject.prototype.equipMe = function(who) {
+equipableItemObject.prototype.equipMe = function(who) {
   if (!who.checkType("npc")) { return 0; }
   
   if (this.checkType("Armor")) {
@@ -2393,7 +2394,7 @@ EquippableItemObject.prototype.equipMe = function(who) {
     
 }
 
-EquippableItemObject.prototype.unEquipMe = function() {
+equipableItemObject.prototype.unEquipMe = function() {
   var who = this.getEquippedTo();
   if (!who) { return 0; }
   if (!who.checkType("npc")) { return 0; }  
@@ -2423,6 +2424,23 @@ EquippableItemObject.prototype.unEquipMe = function() {
   return 1;
 }
 
+equipableItemObject.prototype.getToHitBonus = function() {
+  return this.toHitBonus;
+}
+
+equipableItemObject.prototype.setToHitBonus = function(newbonus) {
+  if (newbonus) {
+    newbonus = parseInt(newbonus, 10);
+    if (isNaN(newbonus)) {
+      newbonus = 0;
+    }
+    this.toHitBonus = newbonus;
+  }
+  return this.toHitBonus;
+}
+
+
+
 // ARMOR
 
 function ArmorObject() {
@@ -2433,7 +2451,7 @@ function ArmorObject() {
 	
 	this.addType("Armor");
 }
-ArmorObject.prototype = new EquippableItemObject;
+ArmorObject.prototype = new equipableItemObject;
 
 ArmorObject.prototype.setDefense = function(newdef) {
 	this.defense = newdef;
@@ -2553,7 +2571,7 @@ function WeaponObject() {
 	
 	this.addType("Weapon");
 }
-WeaponObject.prototype = new EquippableItemObject;
+WeaponObject.prototype = new equipableItemObject;
 
 WeaponObject.prototype.getHit = function() {
 	return this.hit;
@@ -3368,6 +3386,25 @@ NPCObject.prototype.setMissile = function(newmissile) {
     this.equipment.missile = "";
     return 1;
   }
+}
+
+NPCObject.prototype.getHitChance = function(atkwith) {
+  if (!atkwith) { atkwith = "melee"; }
+  var tohit = BASE_HIT_CHANCE;
+  tohit += this.getLevel() * HIT_PER_LEVEL ;
+  if (atkwith == "melee") {
+    tohit += this.getStr() - 10;
+    var weapon = this.getEquipment("weapon");
+    tohit += weapon.getToHitBonus();
+  } else {
+    tohit += this.getDex() - 10;
+    var weapon = this.getEquipment("missile");
+    tohit += weapon.getToHitBonus();
+  }
+  var armor = this.getEquipment("armor");
+  tohit += armor.getToHitBonus();
+  
+  return tohit;
 }
 
 function NPCGroupObject() {
