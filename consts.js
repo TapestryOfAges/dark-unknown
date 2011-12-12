@@ -62,3 +62,6 @@ var MOVE_LEVITATE = 8;
 var MOVE_WALK = 16;
 
 var SCALE_TIME = .005;
+
+var BASE_HIT_CHANCE = .8;
+var HIT_PER_LEVEL = .04;

@@ -15,3 +15,10 @@ function Anchor() {
 }
 Anchor.prototype = new Object;
 
+function Attack(atk, def) {
+  var type = "melee";
+  if (Math.abs(atk.getx() - def.getx()) > 1) { type = "missile"; }
+  if (Math.abs(atk.gety() - def.gety()) > 1) { type = "missile"; }
+  
+  
+}
