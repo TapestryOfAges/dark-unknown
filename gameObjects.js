@@ -2870,6 +2870,9 @@ function NPCObject() {
 	this.str = 10;
 	this.dex = 10;
 	this.int = 10
+	this.modstr = 0;
+	this.moddex = 0;
+	this.modint = 0;
 	this.hp = 10;
 	this.maxhp = 10;
 	this.mana = 10;
@@ -2926,7 +2929,7 @@ NPCObject.prototype.getMana = function() {
 }
 
 NPCObject.prototype.setMaxMana = function(newMana) {
-	if (newMana == -1) { this.maxmana = this.int; }
+	if (newMana == -1) { this.maxmana = this.getint(); }
 	else {this.maxmana = newMana; }
 }
 
@@ -2945,7 +2948,9 @@ NPCObject.prototype.getGold = function() {
 
 NPCObject.prototype.addGold = function(diffgold) {
   diffgold = parseInt(diffgold);
-  this.gold += diffgold;
+  if (!isNaN(diffgold)) {
+    this.gold += diffgold;
+  }
   return this.gold;
 }
 
@@ -2973,29 +2978,73 @@ NPCObject.prototype.modHP = function(hpdiff) {
 
 NPCObject.prototype.setstr = function(newstr) {
 	newstr = parseInt(newstr);
-	if (newstr != 0) { this.str = newstr; }
+	if ((newstr != 0) && (!isNaN(newstr))) { this.str = newstr; }
+}
+
+NPCObject.prototype.setBaseStr = function(newstr) {
+  this.setstr(newstr);
 }
 
 NPCObject.prototype.getstr = function() {
-	return this.str;
+  var str = this.getBaseStr() + this.getModStr();
+	return str;
+}
+
+NPCObject.prototype.getModStr = function() {
+  return this.modstr;
+}
+
+NPCObject.prototype.getBaseStr = function() {
+  return this.str;
 }
 
 NPCObject.prototype.setdex = function(newdex) {
 	newdex = parseInt(newdex);
-	if (newdex != 0) { this.dex = newdex; }
+	if ((newdex != 0) && (!isNaN(newdex))) { this.dex = newdex; }
+}
+
+NPCObject.prototype.setBaseDex = function(newdex) {
+  this.setdex(newdex);
 }
 
 NPCObject.prototype.getdex = function() {
-	return this.dex;
+  var dex = this.getBaseDex() + this.getModDex();
+	return dex;
+}
+
+NPCObject.prototype.getBaseDex = function() {
+  return this.str;
+}
+
+NPCObject.prototype.getModDex = function() {
+  return this.moddex;
 }
 
 NPCObject.prototype.setint = function(newint) {
 	newint = parseInt(newint);
-	if (newint != 0) { this.int = newint; }
+	if ((newint != 0) && (!isNaN(newint))) { this.int = newint; }
+}
+
+NPCObject.prototype.setBaseInt = function(newint) {
+  this.setint(newint);
+}
+
+NPCObject.prototype.setModInt = function(newint) {
+  newint = parseInt(newint);
+  if (!isNaN) { this.modint = newint; }
 }
 
 NPCObject.prototype.getint = function() {
-	return this.int;
+  var theint = this.getBaseInt() + this.getModInt();
+	return theint;
+}
+
+NPCObject.prototype.getBaseInt = function() {
+  return this.int;
+}
+
+NPCObject.prototype.getModInt = function() {
+  return this.modint;
 }
 
 NPCObject.prototype.setStats = function(newstr, newdex, newint) {
