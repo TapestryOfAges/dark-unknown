@@ -20,5 +20,5 @@ function Attack(atk, def) {
   if (Math.abs(atk.getx() - def.getx()) > 1) { type = "missile"; }
   if (Math.abs(atk.gety() - def.gety()) > 1) { type = "missile"; }
   
-  
+  var tohit = atk.getHitChance();
 }
