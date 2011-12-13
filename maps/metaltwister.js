@@ -326,7 +326,7 @@ mappages["metaltwister3"].throwswitch = function(feature) {
       var floor3features = level3.features.getAll();
       var ports = new Array;
       for (i=0; i<floor3features.length; i++) {
-        if (floor3features[i].getName() == "leverOff") {
+        if (floor3features[i].getName() == "LeverOff") {
           if (floor3features[i].getOverlay() == "switch-off.gif") {
             checkboth = 0;
           }
