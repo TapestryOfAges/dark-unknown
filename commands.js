@@ -398,6 +398,29 @@ function PerformTarget(code)  {
 	return retval;
 }
 
+function PerformAttack(who) {
+  var tileid = targetCursor.tileid;
+	$(tileid).html(targetCursor.basetile);   
+
+  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  var atkwho = localacre.npcs.getTop();
+  var retval = new Object;
+  if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety())){ // No self-mutilation!
+    retval["txt"] = "";
+    retval["fin"] = 0;  
+    retval["input"] = "&gt;";
+    return retval;
+  }  
+  if (!atkwho) {  // nothing there
+    retval["txt"] = "Attack: Nothing there!";
+    retval["fin"] = 0;  
+    retval["input"] = "&gt;";
+    return retval;
+  } 
+  retval = Attack(who, atkwho);
+  return retval;
+}
+
 function PerformAttackMap(who) {
   var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
   var atkwho = localacre.npcs.getTop();
