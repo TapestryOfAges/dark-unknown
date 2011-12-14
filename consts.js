@@ -65,3 +65,4 @@ var SCALE_TIME = .005;
 
 var BASE_HIT_CHANCE = .8;
 var HIT_PER_LEVEL = .04;
+var DEF_PER_LEVEL = .04;
