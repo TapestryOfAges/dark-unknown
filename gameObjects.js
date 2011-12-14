@@ -3444,16 +3444,31 @@ NPCObject.prototype.getHitChance = function(atkwith) {
   if (atkwith == "melee") {
     tohit += this.getStr() - 10;
     var weapon = this.getEquipment("weapon");
-    tohit += weapon.getToHitBonus();
+    if (weapon) {
+      tohit += weapon.getToHitBonus();
+    }
   } else {
     tohit += this.getDex() - 10;
     var weapon = this.getEquipment("missile");
-    tohit += weapon.getToHitBonus();
+    if (weapon) {
+      tohit += weapon.getToHitBonus();
+    }
   }
   var armor = this.getEquipment("armor");
-  tohit += armor.getToHitBonus();
+  if (armor) {
+    tohit += armor.getToHitBonus();
+  }
   
   return tohit;
+}
+
+NPCObject.prototype.getDefense = function() {
+  var def = this.getLevel() * DEF_PER_LEVEL;
+  var armor = this.getEquipment("armor");
+  if (armor) {
+    def += armor.getDefense();
+  }
+  return def;
 }
 
 function NPCGroupObject() {
