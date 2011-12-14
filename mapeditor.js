@@ -306,11 +306,11 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcdesc.value = editnpcs.getDesc();
       document.npceditpopup.npclevel.value = editnpcs.getLevel();
       document.npceditpopup.npcalign.value = editnpcs.getAlignment();
-      document.npceditpopup.npcstr.value = editnpcs.getstr();
+      document.npceditpopup.npcstr.value = editnpcs.getStr();
       document.npceditpopup.npcattitude.value = editnpcs.getAttitude();
-      document.npceditpopup.npcdex.value = editnpcs.getdex();
+      document.npceditpopup.npcdex.value = editnpcs.getDex();
       document.npceditpopup.npcpeaceai.value = editnpcs.getPeaceAI();
-      document.npceditpopup.npcint.value = editnpcs.getint();
+      document.npceditpopup.npcint.value = editnpcs.getInt();
       document.npceditpopup.npcpcthreatai.value = editnpcs.getPCThreatAI();      
       document.npceditpopup.npcmelee.value = editnpcs.getMeleeAttackAs();
       document.npceditpopup.npcthreatenedai.value = editnpcs.getThreatenedAI();      
@@ -404,14 +404,14 @@ function submitEditNPC(change) {
 		if (document.npceditpopup.npcalign.value != editnpcs.getAlignment()) {
 			editnpcs.setAlignment(document.npceditpopup.npcalign.value);
 		}
-		if (document.npceditpopup.npcstr.value != editnpcs.getstr()) {
-			editnpcs.setstr(document.npceditpopup.npcstr.value);
+		if (document.npceditpopup.npcstr.value != editnpcs.getStr()) {
+			editnpcs.setStr(document.npceditpopup.npcstr.value);
 		}
-		if (document.npceditpopup.npcdex.value != editnpcs.getdex()) {
-			editnpcs.setdex(document.npceditpopup.npcdex.value);
+		if (document.npceditpopup.npcdex.value != editnpcs.getDex()) {
+			editnpcs.setDex(document.npceditpopup.npcdex.value);
 		}
-		if (document.npceditpopup.npcint.value != editnpcs.getint()) {
-			editnpcs.setint(document.npceditpopup.npcint.value);
+		if (document.npceditpopup.npcint.value != editnpcs.getInt()) {
+			editnpcs.setInt(document.npceditpopup.npcint.value);
 		}
 		if (document.npceditpopup.npcattitude.value != editnpcs.getAttitude()) {
 			editnpcs.setAttitude(document.npceditpopup.npcattitude.value);
