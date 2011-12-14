@@ -2618,7 +2618,7 @@ WeaponObject.prototype.parseDamage = function() {
 WeaponObject.prototype.rollDamage = function(wielder) {
   var damage = RollDice(this.getDamage());
   if (wielder && this.getStrDamage()) {
-    var str = wielder.getstr();
+    var str = wielder.getStr();
     var strmod = parseFloat(this.getStrDamage());
     var strdam = str*strmod;
     damage += parseInt(strdam);
@@ -2632,7 +2632,7 @@ WeaponObject.prototype.getAveDamage = function(wielder) {
   var damage = dmgobj.plus;
   damage += (dmgobj.quantity * (dmgobj.dice + 1)/2);
   if (wielder && this.getStrDamage()) {
-    var str = wielder.getstr();
+    var str = wielder.getStr();
     var strmod = parseFloat(this.getStrDamage());
     var strdam = str*strmod;
     damage += parseInt(strdam);
@@ -2929,7 +2929,7 @@ NPCObject.prototype.getMana = function() {
 }
 
 NPCObject.prototype.setMaxMana = function(newMana) {
-	if (newMana == -1) { this.maxmana = this.getint(); }
+	if (newMana == -1) { this.maxmana = this.getInt(); }
 	else {this.maxmana = newMana; }
 }
 
@@ -2976,16 +2976,16 @@ NPCObject.prototype.modHP = function(hpdiff) {
 	return this.hp;
 }
 
-NPCObject.prototype.setstr = function(newstr) {
+NPCObject.prototype.setStr = function(newstr) {
 	newstr = parseInt(newstr);
 	if ((newstr != 0) && (!isNaN(newstr))) { this.str = newstr; }
 }
 
 NPCObject.prototype.setBaseStr = function(newstr) {
-  this.setstr(newstr);
+  this.setStr(newstr);
 }
 
-NPCObject.prototype.getstr = function() {
+NPCObject.prototype.getStr = function() {
   var str = this.getBaseStr() + this.getModStr();
 	return str;
 }
@@ -2998,16 +2998,16 @@ NPCObject.prototype.getBaseStr = function() {
   return this.str;
 }
 
-NPCObject.prototype.setdex = function(newdex) {
+NPCObject.prototype.setDex = function(newdex) {
 	newdex = parseInt(newdex);
 	if ((newdex != 0) && (!isNaN(newdex))) { this.dex = newdex; }
 }
 
 NPCObject.prototype.setBaseDex = function(newdex) {
-  this.setdex(newdex);
+  this.setDex(newdex);
 }
 
-NPCObject.prototype.getdex = function() {
+NPCObject.prototype.getDex = function() {
   var dex = this.getBaseDex() + this.getModDex();
 	return dex;
 }
@@ -3020,13 +3020,13 @@ NPCObject.prototype.getModDex = function() {
   return this.moddex;
 }
 
-NPCObject.prototype.setint = function(newint) {
+NPCObject.prototype.setInt = function(newint) {
 	newint = parseInt(newint);
 	if ((newint != 0) && (!isNaN(newint))) { this.int = newint; }
 }
 
 NPCObject.prototype.setBaseInt = function(newint) {
-  this.setint(newint);
+  this.setInt(newint);
 }
 
 NPCObject.prototype.setModInt = function(newint) {
@@ -3034,7 +3034,7 @@ NPCObject.prototype.setModInt = function(newint) {
   if (!isNaN) { this.modint = newint; }
 }
 
-NPCObject.prototype.getint = function() {
+NPCObject.prototype.getInt = function() {
   var theint = this.getBaseInt() + this.getModInt();
 	return theint;
 }
@@ -3048,9 +3048,9 @@ NPCObject.prototype.getModInt = function() {
 }
 
 NPCObject.prototype.setStats = function(newstr, newdex, newint) {
-	this.setstr(newstr);
-	this.setdex(newdex);
-	this.setint(newint);
+	this.setStr(newstr);
+	this.setDex(newdex);
+	this.setInt(newint);
 }
 
 NPCObject.prototype.setLevel = function(newlevel) {
@@ -3144,7 +3144,7 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
   }
 
   var isQuick = 0;  // replace with a check for the presence of the Quickness spell.
-  var init = ((-1/60) * this.getdex() + (7/6)) * this.initmult * (1 - .5 * isQuick);
+  var init = ((-1/60) * this.getDex() + (7/6)) * this.initmult * (1 - .5 * isQuick);
   if ((initdelay) && (initdelay != 0)) {
   	init = init * initdelay;
   }

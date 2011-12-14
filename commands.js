@@ -738,9 +738,9 @@ function DrawStats(page) {
   statsdiv += "<tr><td style='width:50%'>HP: " + PC.getHP() + "/" + PC.getMaxHP() + "</td><td></td>";
   statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
-  statsdiv += "<tr><td>STR: " + PC.getstr() + "</td><td></td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
-  statsdiv += "<tr><td>DEX: " + PC.getdex() + "</td><td></td><td>XP: " + PC.getxp() + "</td></tr>";
-  statsdiv += "<tr><td>INT: " + PC.getint() + "</td><td></td><td>Training: " + PC.gettp() + "</td></tr>";
+  statsdiv += "<tr><td>STR: " + PC.getStr() + "</td><td></td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
+  statsdiv += "<tr><td>DEX: " + PC.getDex() + "</td><td></td><td>XP: " + PC.getxp() + "</td></tr>";
+  statsdiv += "<tr><td>INT: " + PC.getInt() + "</td><td></td><td>Training: " + PC.gettp() + "</td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
   statsdiv += "<tr><td>Gold: " + PC.getGold() + "</td><td></td><td></td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";

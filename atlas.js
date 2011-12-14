@@ -940,14 +940,14 @@ GameMap.prototype.saveMap = function (name) {
  	if (basenpc.getAlignment() != mapnpcs[i].getAlignment()) {
  		printerwin.document.write(", Alignment: '" + mapnpcs[i].getAlignment() + "'");
  	}
- 	if (basenpc.getstr() != mapnpcs[i].getstr()) {
- 		printerwin.document.write(", str: " + mapnpcs[i].getstr());
+ 	if (basenpc.getStr() != mapnpcs[i].getStr()) {
+ 		printerwin.document.write(", str: " + mapnpcs[i].getStr());
  	}
- 	if (basenpc.getdex() != mapnpcs[i].getdex()) {
- 		printerwin.document.write(", dex: " + mapnpcs[i].getdex());
+ 	if (basenpc.getDex() != mapnpcs[i].getDex()) {
+ 		printerwin.document.write(", dex: " + mapnpcs[i].getDex());
  	}
- 	if (basenpc.getint() != mapnpcs[i].getint()) {
- 		printerwin.document.write(", int: " + mapnpcs[i].getint());
+ 	if (basenpc.getInt() != mapnpcs[i].getInt()) {
+ 		printerwin.document.write(", int: " + mapnpcs[i].getInt());
  	}
  	if (basenpc.getAttitude() != mapnpcs[i].getAttitude()) {
  		printerwin.document.write(", Attitude: '" + mapnpcs[i].getAttitude() + "'");
@@ -1056,9 +1056,9 @@ GameMap.prototype.loadMap = function (name) {
   			if (npckey == "Desc") { newnpc.setDesc(loadnpcs[i].Desc); }
   			if (npckey == "Level") { newnpc.setLevel(loadnpcs[i].Level); }
   			if (npckey == "Alignment") { newnpc.setAlignment(loadnpcs[i].Alignment); }
-  			if (npckey == "str") { newnpc.setstr(loadnpcs[i].str); }
-  			if (npckey == "dex") { newnpc.setdex(loadnpcs[i].dex); }
-  			if (npckey == "int") { newnpc.setint(loadnpcs[i].int); }
+  			if (npckey == "str") { newnpc.setStr(loadnpcs[i].str); }
+  			if (npckey == "dex") { newnpc.setDex(loadnpcs[i].dex); }
+  			if (npckey == "int") { newnpc.setInt(loadnpcs[i].int); }
   			if (npckey == "Attitude") { newnpc.setAttitude(loadnpcs[i].Attitude); }
   			if (npckey == "PeaceAI") { newnpc.setPeaceAI(loadnpcs[i].PeaceAI); }
   			if (npckey == "PCThreatAI") { newnpc.setPCThreatAI(loadnpcs[i].PCThreatAI); }

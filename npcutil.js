@@ -23,7 +23,7 @@ function Attack(atk, def) {
   
   if (type == "missile") {
     // check to see if attacker can use its missile weapon
-    var dex = atk.getdex();
+    var dex = atk.getDex();
     var weapon = atk.getEquipment("missile");
     
     if (!weapon) {
