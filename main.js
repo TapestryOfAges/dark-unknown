@@ -256,6 +256,11 @@ $(document).ready(function() {
   			maintext.setInputLine(response["input"]);
   			//drawTextFrame(maintext.getTextFrame(), response["input"]);
   			maintext.drawTextFrame();
+  		} else if (targetCursor.command == "a") {
+  		  response = PerformAttack(PC);
+  			maintext.addText(response["txt"]);
+  			maintext.setInputLine(response["input"]);
+  			maintext.drawTextFrame();
   		}
   		gamestate.setMode("null");
   		var PCevent = new GameEvent(PC);
