@@ -208,8 +208,8 @@ $(document).ready(function() {
   			  if (targetCursor.y == PC.gety()+1) { dir = "South"; }
   			  if (targetCursor.x == PC.getx()-1) { dir = "West"; }
   			  if (targetCursor.x == PC.getx()+1) { dir = "East"; }
-  			  dir = "Attack " + dir + "!";
-  			  maintext.addText(dir);
+  			  dir = "Attack " + dir + ".";
+//  			  maintext.addText(dir);
           resp = PerformAttackMap(PC);  			  
   			}
 				if (resp["fin"] == 1) {
