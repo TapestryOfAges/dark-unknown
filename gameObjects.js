@@ -3466,9 +3466,20 @@ NPCObject.prototype.getDefense = function() {
   var def = this.getLevel() * DEF_PER_LEVEL;
   var armor = this.getEquipment("armor");
   if (armor) {
-    def += armor.getDefense();
+    if (this.getStr() < armor.getStrReq()) {
+      def += (armor.getDefense())/3;
+    } else {
+      def += armor.getDefense();
+    }
   }
   return def;
+}
+
+NPCObject.prototype.getAbsorb = function() {
+  var armor = this.getEquipment("armor");
+  if (armor) {
+    return armor.getAbsorb();
+  }
 }
 
 function NPCGroupObject() {
