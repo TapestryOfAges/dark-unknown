@@ -44,5 +44,22 @@ function Attack(atk, def) {
   var defense = def.getDefense();
   
   tohit = tohit - defense;
+  if (tohit < .05) { tohit = .05; }
+  
+  if (Math.random() <= tohit) {
+    // Hit!
+    var dmg = weapon.rollDamage(atk);
+    var armor = def.getEquipment("armor");
+    var absorb = 0;
+    if (armor) {
+      absorb = def.getEquipment("armor").getAbsorb() - weapon.getReduceArmor();
+      if (absorb < 0) { absorb = 0; }
+    }
+    dmg = dmg * (1-absorb);
+    
+  }
+  else { // Miss!
+    
+  }
   
 }
