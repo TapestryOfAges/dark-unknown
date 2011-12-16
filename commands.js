@@ -426,13 +426,13 @@ function PerformAttackMap(who) {
   var atkwho = localacre.npcs.getTop();
   var retval = new Object;
   if (atkwho) { // there's something there!
-    retval["txt"] = "You attack ";
-    if (atkwho.getPrefix()){ 
-      retval["txt"] += atkwho.getPrefix() + " ";
-    }
-    retval["txt"] += atkwho.getDesc() + "!";
-    retval["fin"] = 2;
-    retval["input"] = "&gt;";
+//    retval["txt"] = "You attack ";
+//    if (atkwho.getPrefix()){ 
+//      retval["txt"] += atkwho.getPrefix() + " ";
+//    }
+//    retval["txt"] += atkwho.getDesc() + ".";
+//    retval["fin"] = 2;
+//    retval["input"] = "&gt;";
     
     var combatmapname = localacre.terrain.getCombatMap();
     if (!combatmapname) { combatmapname = "combatGrass1"; }
@@ -445,7 +445,7 @@ function PerformAttackMap(who) {
     var monsters = PlaceMonsters(newmap,atkwho,1);
     
     drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-    retval["txt"] = "Attack: " + atkwho.getDesc() + "!";
+    retval["txt"] = "Attack: " + atkwho.getDesc() + ".";
     retval["fin"] = 0;
     retval["input"] = "&gt;";
     // as if retval = 1, but set to PC turn
