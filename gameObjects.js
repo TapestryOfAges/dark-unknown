@@ -1665,9 +1665,21 @@ LavaTile.prototype.idle = function(person) {
 // Features!
 function FeatureObject() {
   this.addType("Feature");
+  this.searchYields = new Array;
 }
 FeatureObject.prototype = new InanimateObject;
 
+FeatureObject.prototype.getSearchYield = function() {
+  return this.searchYield;
+}
+
+FeatureObject.prototype.setSearchYield = function(searchable) {
+  // searchable must be an array, even if an empty one
+  // FIXME add check for that
+  this.searchYield = searchable;
+}
+
+// end definitions, begin features
 
 function DungeonTile() {
   this.name = "Dungeon";
@@ -2366,6 +2378,9 @@ equipableItemObject.prototype.equipMe = function(who) {
   if (!who.checkType("npc")) { return 0; }
   
   if (this.checkType("Armor")) {
+    if (who.getStr() < this.getStrReq()) {
+      return 0;
+    }
     var currentarmor = who.getArmor();
     if (currentarmor) {
       currentarmor.unEquipMe();
@@ -2375,6 +2390,9 @@ equipableItemObject.prototype.equipMe = function(who) {
   }
   
   else if (this.checkType("Missile")) {
+    if (who.getDex() < this.getDexReq()){
+      return 0;
+    }
     var currentmissile = who.getMissile();
     if (currentmissile) {
       currentmissile.unEquipMe();
@@ -2391,7 +2409,7 @@ equipableItemObject.prototype.equipMe = function(who) {
     this.setEquippedTo(who);
     who.setWeapon(this);
   }
-    
+  return 1;
 }
 
 equipableItemObject.prototype.unEquipMe = function() {
@@ -2491,8 +2509,8 @@ ArmorObject.prototype.getStrReq = function() {
 
 function NaturalArmorTile() {
   this.name="NaturalArmor";
-  this.defense = 5;
-  this.absorb = 10;
+  this.defense = 0;
+  this.absorb = 0;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "0";
@@ -2976,6 +2994,18 @@ NPCObject.prototype.modHP = function(hpdiff) {
 	return this.hp;
 }
 
+NPCObject.prototype.dealDamage = function(dmg, src) {
+  this.modHP(dmg*-1);
+  if (this.getHP() <= 0) { // killed!
+    this.processDeath(1);
+    return 0;
+  }
+  else { return 1; }
+}
+
+NPCObject.prototype.processDeath = function(droploot){
+  
+}
 NPCObject.prototype.setStr = function(newstr) {
 	newstr = parseInt(newstr);
 	if ((newstr != 0) && (!isNaN(newstr))) { this.str = newstr; }

@@ -645,11 +645,17 @@ function PerformEquip(code) {
 	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
     // equip selected item
     var newequip = targetCursor.itemlist[targetCursor.scrolllocation];
-    newequip.equipMe(PC);
+    var success = newequip.equipMe(PC);
     retval["fin"] = 2;
     retval["txt"] = "";
-    if (newequip.checkType("Armor")) { retval["txt"] = "Wear: "; }
-    else { retval["txt"] = "Wield: "; }
+    if (newequip.checkType("Armor")) { 
+      if (success) { retval["txt"] = "Wear: "; }
+      else { retval["txt"] = "You are not strong enough to wear that."; return retval; }
+    }
+    else { 
+      if (success) { retval["txt"] = "Wield: "; }
+      else { retval["txt"] = "You are not agile enough to equip that."; return retval; }
+    }
     if (newequip.getPrefix()) { retval["txt"] = retval["txt"] + newequip.getPrefix(); }
     retval["txt"] = retval["txt"] + " " + newequip.getDesc() + ".";
   }

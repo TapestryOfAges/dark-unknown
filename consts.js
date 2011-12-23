@@ -63,6 +63,6 @@ var MOVE_WALK = 16;
 
 var SCALE_TIME = .005;
 
-var BASE_HIT_CHANCE = .8;
-var HIT_PER_LEVEL = .04;
-var DEF_PER_LEVEL = .04;
+var BASE_HIT_CHANCE = 80;
+var HIT_PER_LEVEL = 4;
+var DEF_PER_LEVEL = 4;
