@@ -20,11 +20,13 @@ function Attack(atk, def) {
   var type = "weapon";
   if (Math.abs(atk.getx() - def.getx()) > 1) { type = "missile"; }
   if (Math.abs(atk.gety() - def.gety()) > 1) { type = "missile"; }
+
+  var weapon = atk.getEquipment("weapon");
   
   if (type == "missile") {
     // check to see if attacker can use its missile weapon
     var dex = atk.getDex();
-    var weapon = atk.getEquipment("missile");
+    weapon = atk.getEquipment("missile");
     
     if (!weapon) {
       retval["txt"] = "You don't have a missile weapon equipped!";
@@ -40,26 +42,50 @@ function Attack(atk, def) {
     }
   } 
   
-  var tohit = atk.getHitChance();
-  var defense = def.getDefense();
+  retval["txt"] = "Attack " + def.getDesc();
+  
+  var tohit = atk.getHitChance() / 100;
+  var defense = def.getDefense() / 100;
   
   tohit = tohit - defense;
   if (tohit < .05) { tohit = .05; }
   
   if (Math.random() <= tohit) {
     // Hit!
+    // animation and sound here!!!
+    
     var dmg = weapon.rollDamage(atk);
     var armor = def.getEquipment("armor");
     var absorb = 0;
     if (armor) {
       absorb = def.getEquipment("armor").getAbsorb() - weapon.getReduceArmor();
+      absorb /= 100;
       if (absorb < 0) { absorb = 0; }
     }
-    dmg = dmg * (1-absorb);
+    dmg = Math.floor(dmg * (1-absorb));
+    if (dmg == 0) { dmg = 1; }  // min dmg 1
+
+    var stillalive = def.dealDamage(dmg, atk);    
+    if (stillalive) {
+      var damagedesc = GetDamageDescriptor(def); 
+      retval["txt"] += ": " + damagedesc + "!"; 
+    }
+    else { retval["txt"] += ": Killed!"; }
     
   }
   else { // Miss!
-    
+    retval["txt"] = retval["txt"] + " - missed!";
   }
   
+  retval["fin"] = 1;
+  retval["input"] = "&gt;";
+  return retval;
+}
+
+function GetDamageDescriptor(who) {
+  var ratio = who.getHP() / who.getMaxHP();
+  if (ratio > .66) { return ("lightly wounded"); }
+  if (ratio > .4) { return ("moderately wounded"); }
+  if (ratio > .2) { return ("heavily wounded"); }
+  return ("deathly wounded");
 }
