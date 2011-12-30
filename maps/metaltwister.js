@@ -312,13 +312,13 @@ mappages["metaltwister3"].throwswitch = function(feature) {
     var level3 = maps.getMap("metaltwister3");
     var level2 = maps.getMap("metaltwister2");
     var retval = new Object;
-    if (!level2) {
+    if (!level2) {  // somehow level 2 is not in memory. Load it.
       var otherlevel = new GameMap();
       otherlevel.loadMap("metaltwister2");
       maps.addMapByRef(otherlevel);
       level2 = otherlevel;
     }
-    if (this.getOverlay() == "switch-off.gif") {
+    if (this.getOverlay() == "switch-off.gif") {  // This switch hasn't been thrown
       this.setOverlay("switch-on.gif");
       retval["txt"] = "Click!";
       
@@ -335,7 +335,7 @@ mappages["metaltwister3"].throwswitch = function(feature) {
           ports[ports.length] = floor3features[i];
         }
       }
-      if (checkboth) {
+      if (checkboth) {  // if both switches are thrown, open the dungeon's doors
         for (i=0; i<ports.length; i++) {
           ports[i].unlockMe();
           ports[i].use(user);
@@ -349,7 +349,7 @@ mappages["metaltwister3"].throwswitch = function(feature) {
         }
       }
     }
-    else {
+    else {  // for sanity's sake, you can't unthrow a switch
       retval["txt"] = "The switch is stuck."; 
     }
     return retval;
