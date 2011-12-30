@@ -945,6 +945,11 @@ tileFactory.prototype.makeGiantSnakeNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBloodTile = function() {
+  var newTile = new BloodTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeEraserTile = function() {
   var newTile = new BlankWhiteTile();
   newTile.name = 'Eraser';

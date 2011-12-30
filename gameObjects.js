@@ -357,6 +357,60 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 	
 }
 
+// Abstract class - open a container
+function OpenContainer() {
+  this.use = function(who) {
+    var retval = new Object; 
+
+    if (typeof this.getLocked == "function") {
+      if (this.getLocked() == 1) {
+        retval["fin"] = 1;
+        retval["txt"] = "Locked.";
+        return retval;
+      }
+      else if (this.getLocked() == 2){
+        retval["fin"] = 1;
+        retval["txt"] = "Magically locked.";
+        return retval;
+      }
+    }
+    
+    if (this.container.length) { // there's something inside
+      retval["fin"] = 1;
+      retval["txt"] = "It contains: ";
+      var firstitem = 1;
+      for (i=0; i<this.container.length; i++) {
+        var newitem = localFactory.createTile(this.container[i]);
+        if (newitem) {
+          this.getHomeMap().placeThing(this.getx(),this.gety(),newitem);
+          if (firstitem) {
+            firstitem = 0;
+            if (this.getPrefix()) {
+              retval["txt"] += this.getPrefix() + " ";
+            }
+            retval["txt"] += this.getDesc();
+          }
+          else {
+            retval += ", ";
+            if (this.getPrefix()) {
+              retval["txt"] += this.getPrefix() + " ";
+            }
+            retval["txt"] += this.getDesc();              
+          }
+        }
+      }
+      retval["txt"] += ".";
+    }
+    else {
+      retval["fin"] = 1;
+      retval["txt"] = "Empty.";
+    }
+    
+    this.getHomeMap().deleteThing(this);
+    return retval;
+  }
+}
+
 // Abstract class Tiling
 function Tiling(tileval) {
 	this.doTile = function(tilingx,tilingy,tilegraphic) {
@@ -1877,6 +1931,8 @@ function ChestTile() {
 	this.prefix = "a";
 	this.desc = "chest";
 	
+	this.container = new Array;
+	OpenContainer.call(this);
 }
 ChestTile.prototype = new FeatureObject;
 
@@ -1922,6 +1978,16 @@ function CorpseTile() {
 	this.desc = "corpse";
 }
 CorpseTile.prototype = new FeatureObject;
+
+function BloodTile() {
+	this.name = "Blood";
+	this.graphic = "blood.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "";
+	this.desc = "blood";
+}
+BloodTile.prototype = new FeatureObject;
 
 function EnergyFieldTile() {
 	this.name = "EnergyField";
@@ -2923,6 +2989,8 @@ function NPCObject() {
 	this.equipment.weapon;
 	this.equipment.missile;
   this.gold = 0;
+	this.leavesCorpse = "";
+	this.lootTable = "";
 	
 	this.addType("npc");
 }
@@ -3004,8 +3072,15 @@ NPCObject.prototype.dealDamage = function(dmg, src) {
 }
 
 NPCObject.prototype.processDeath = function(droploot){
+  var loot = new Object;
+  if (DULoot[this.loottable]) {
+    loot = DULoot[this.loottable].getLoot(); 
+  }
+  else {alert (this.getName() + " has a loottable that is not defined."); }
   
+  //WORKING HERE
 }
+
 NPCObject.prototype.setStr = function(newstr) {
 	newstr = parseInt(newstr);
 	if ((newstr != 0) && (!isNaN(newstr))) { this.str = newstr; }
@@ -3180,6 +3255,15 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
   }
   if (scale) { init = init * SCALE_TIME; }
 	return init;
+}
+
+NPCObject.prototype.getLeavesCorpse = function() {
+  return this.leavesCorpse;
+}
+
+NPCObject.prototype.setLeavesCorpse = function(newCorpse) {
+  this.leavesCorpse = newCorpse;
+  return (this.leavesCorpse);
 }
 
 NPCObject.prototype.getMovetype = function() {

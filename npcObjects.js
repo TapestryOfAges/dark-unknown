@@ -24,6 +24,7 @@ function DruidVillagerNPCTile() {
 	this.meleeAttackAs = "Fists";
 	this.missileAttackAs = "none";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 DruidVillagerNPCTile.prototype = new NPCObject;
 
@@ -42,6 +43,7 @@ function ShepherdVillagerNPCTile() {
 	this.meleeAttackAs = "Dagger";
 	this.missileAttackAs = "none";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 ShepherdVillagerNPCTile.prototype = new NPCObject;
 
@@ -60,6 +62,7 @@ function MageVillagerNPCTile() {
 	this.meleeAttackAs = "Fists";
 	this.missileAttackAs = "none";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 MageVillagerNPCTile.prototype = new NPCObject;
 
@@ -78,6 +81,7 @@ function TinkerVillagerNPCTile() {
 	this.meleeAttackAs = "Dagger";
 	this.missileAttackAs = "Sling";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 TinkerVillagerNPCTile.prototype = new NPCObject;
 
@@ -96,6 +100,7 @@ function RangerVillagerNPCTile() {
 	this.meleeAttackAs = "Dagger";
 	this.missileAttackAs = "Sling";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 RangerVillagerNPCTile.prototype = new NPCObject;
 
@@ -114,6 +119,7 @@ function AdventurerVillagerNPCTile() {
 	this.meleeAttackAs = "Shortsword";
 	this.missileAttackAs = "Sling";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 AdventurerVillagerNPCTile.prototype = new NPCObject;
 
@@ -132,6 +138,7 @@ function PaladinVillagerNPCTile() {
 	this.meleeAttackAs = "Shortsword";
 	this.missileAttackAs = "none";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 PaladinVillagerNPCTile.prototype = new NPCObject;
 
@@ -150,6 +157,7 @@ function FighterVillagerNPCTile() {
 	this.meleeAttackAs = "Shortsword";
 	this.missileAttackAs = "Sling";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 FighterVillagerNPCTile.prototype = new NPCObject;
 
@@ -168,6 +176,7 @@ function TownsfolkVillagerNPCTile() {
 	this.meleeAttackAs = "Dagger";
 	this.missileAttackAs = "none";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 TownsfolkVillagerNPCTile.prototype = new NPCObject;
 
@@ -186,6 +195,7 @@ function BardVillagerNPCTile() {
 	this.meleeAttackAs = "Dagger";
 	this.missileAttackAs = "Bow";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 BardVillagerNPCTile.prototype = new NPCObject;
 
@@ -204,6 +214,7 @@ function ChildNPCTile() {
 	this.meleeAttackAs = "Fists";
 	this.missileAttackAs = "none";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 ChildNPCTile.prototype = new NPCObject;
 
@@ -222,6 +233,7 @@ function BeggerNPCTile() {
 	this.meleeAttackAs = "Fists";
 	this.missileAttackAs = "none";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 BeggerNPCTile.prototype = new NPCObject;
 
@@ -240,6 +252,7 @@ function TownGuardNPCTile() {
 	this.meleeAttackAs = "Halberd";
 	this.missileAttackAs = "none";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 TownGuardNPCTile.prototype = new NPCObject;
 
@@ -258,6 +271,7 @@ function KingNPCTile() {
 	this.meleeAttackAs = "MagicSword";
 	this.missileAttackAs = "none";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 KingNPCTile.prototype = new NPCObject;
 
@@ -276,6 +290,7 @@ function PrinceNPCTile() {
 	this.meleeAttackAs = "Longsword";
 	this.missileAttackAs = "none";
 	this.movetype = MOVE_WALK;
+	this.leaveCorpse = "Corpse";
 }
 PrinceNPCTile.prototype = new NPCObject;
 
@@ -295,7 +310,8 @@ function GiantRatNPCTile() {
   this.movetype = MOVE_WALK;
   this.prefix = "a";
   this.desc = "giant rat";
-  
+	this.leaveCorpse = "Blood";  
+	this.lootTable = "small animal";
 }
 GiantRatNPCTile.prototype = new NPCObject;
 
@@ -330,6 +346,8 @@ function GiantSnakeNPCTile() {
   this.movetype = MOVE_WALK;
   this.prefix = "a";
   this.desc = "giant snake";
+	this.leaveCorpse = "Blood";
+  this.lootTable = "small animal";
 }
 GiantSnakeNPCTile.prototype = new NPCObject;
 
