@@ -15,6 +15,7 @@ var worldmap = new GameMap();
 var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
 var maintext = new TextFrame("innertextframe");
+var DULoot = SetLoots();
 
 var targetCursor = new Object;
 var inputText = new Object;

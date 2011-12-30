@@ -72,6 +72,9 @@ function FindBelow(upx,upy,map) {
 }
 
 function ParseDice(die) {
+  if (parseInt(die) == die) {
+    return die;
+  }
   var dieobj = new Object;
   var tmpobj = new Array;
   tmpobj = die.split("+");
