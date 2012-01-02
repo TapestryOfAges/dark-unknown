@@ -2419,6 +2419,43 @@ function DecorativeArmorTile() {
 }
 DecorativeArmorTile.prototype = new ItemObject;
 
+function GoldTile() {
+  this.name = "Gold";
+  this.graphic = "";  // FIXME
+  this.desc = "1 gold coin";
+  this.quantity = 1;
+  this.blocklos = 0;
+  this.passable = MOVE_ETHEREAL;
+  this.prefix = "";
+}
+GoldTile.prototype = new ItemObject;
+
+GoldTile.prototype.setQuantity = function(quant) {
+  var newquant = ParseInt(quant);
+  if (newquant == quant) {
+    this.quantity = quant;
+  } else {
+    return 0;
+  }
+  if ((this.quantity > 0) && (this.quantity < 4)) {
+    // set graphic to small pile
+  }
+  else if ((this.quantity > 3) && (this.quantity < 16)) {
+    // set graphic to medium pile
+  } else if (this.quantity > 15) {
+    // set graphic to large pile
+  }
+  return this.quantity;
+}
+
+GoldTile.prototype.onGet = function(who) {
+  who.setGold(who.getGold + this.getQuantity()); 
+  who.inventory.deleteFrom(this);
+
+  // this should delete the item entirely
+}
+
+
 // Prototype for armor and weapons
 
 function equipableItemObject() {
