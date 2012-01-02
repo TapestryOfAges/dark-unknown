@@ -745,6 +745,11 @@ tileFactory.prototype.makeDecorativeArmorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGoldTile = function() {
+  var newTile = new GoldTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNaturalArmorTile = function() {
   var newTile = new NaturalArmorTile();
   return newTile;
