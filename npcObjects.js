@@ -310,7 +310,7 @@ function GiantRatNPCTile() {
   this.movetype = MOVE_WALK;
   this.prefix = "a";
   this.desc = "giant rat";
-	this.leaveCorpse = "Blood";  
+	this.leavesCorpse = "Blood";  
 	this.lootTable = "small animal";
 }
 GiantRatNPCTile.prototype = new NPCObject;
@@ -346,7 +346,7 @@ function GiantSnakeNPCTile() {
   this.movetype = MOVE_WALK;
   this.prefix = "a";
   this.desc = "giant snake";
-	this.leaveCorpse = "Blood";
+	this.leavesCorpse = "Blood";
   this.lootTable = "small animal";
 }
 GiantSnakeNPCTile.prototype = new NPCObject;

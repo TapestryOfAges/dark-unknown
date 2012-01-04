@@ -14,12 +14,12 @@ LootTable.prototype.getLoot = function() {
   lootobj.gold = 0;
   lootobj.lootlist = new Array;  // array of objnames
   
-  if ((this.goldDice) && (Math.Random() <= (this.goldChange/100))) {
+  if ((this.goldDice) && (Math.random() <= (this.goldChange/100))) {
     lootobj.gold = RollDice(goldDice);
   }
   if (this.loot[0]) {
     for (i =0; i<this.loot.length; i++) {
-      if (Math.Random() <= (this.loot[i].chance / 100)) {
+      if (Math.random() <= (this.loot[i].chance / 100)) {
         var quant = RollDice(this.loot[i].quantity);
         for (j=1;j<=quant;j++) {
           lootobj.lootlist[lootobj.lootlist.length] = this.loot[i].objname;

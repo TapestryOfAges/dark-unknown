@@ -501,7 +501,7 @@ function PerformLook() {
   		if (( seethis == "" ) && (i == features.length-1)) {
   			seethis = features[i].getPrefix() + " " + features[i].getDesc();
   		}
-  		else if ( features[i].isItem() ) {
+  		else if ( typeof features[i].isItem == "function" ) {
   			if (seethis == "") { seethis = features[i].getPrefix() + " " + features[i].getDesc(); }
   			else { seethis += ", " + features[i].getPrefix() + " " + features[i].getDesc(); }
   		}
@@ -609,6 +609,9 @@ function PerformGet(who) {
   } 
   else if (getitem.checkType("Item")) {
     who.addToInventory(getitem);
+    if (typeof getitem.onGet == "function") {
+      getitem.onGet(who);
+    }
     retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
     retval["fin"] = 1;
     return retval;    

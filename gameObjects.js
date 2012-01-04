@@ -2421,7 +2421,9 @@ DecorativeArmorTile.prototype = new ItemObject;
 
 function GoldTile() {
   this.name = "Gold";
-  this.graphic = "";  // FIXME
+  this.graphic = "items.gif";  
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
   this.desc = "1 gold coin";
   this.quantity = 1;
   this.blocklos = 0;
@@ -2431,25 +2433,33 @@ function GoldTile() {
 GoldTile.prototype = new ItemObject;
 
 GoldTile.prototype.setQuantity = function(quant) {
-  var newquant = ParseInt(quant);
+  var newquant = parseInt(quant);
   if (newquant == quant) {
     this.quantity = quant;
+    if (quant == 1) { this.setDesc("1 gold coin"); }
+    else { this.setDesc(quant + " gold coins"); }
   } else {
     return 0;
   }
   if ((this.quantity > 0) && (this.quantity < 4)) {
-    // set graphic to small pile
+    this.graphic = "items.gif";  
+    this.spritexoffset = "0";
+    this.spriteyoffset = "0";
   }
   else if ((this.quantity > 3) && (this.quantity < 16)) {
-    // set graphic to medium pile
+    this.graphic = "items.gif";  
+    this.spritexoffset = "-32";
+    this.spriteyoffset = "0";
   } else if (this.quantity > 15) {
-    // set graphic to large pile
+    this.graphic = "items.gif";  
+    this.spritexoffset = "-64";
+    this.spriteyoffset = "0";
   }
   return this.quantity;
 }
 
 GoldTile.prototype.onGet = function(who) {
-  who.setGold(who.getGold + this.getQuantity()); 
+  who.addGold(parseInt(this.getQuantity())); 
   who.inventory.deleteFrom(this);
 
   // this should delete the item entirely
@@ -3109,12 +3119,24 @@ NPCObject.prototype.dealDamage = function(dmg, src) {
 }
 
 NPCObject.prototype.processDeath = function(droploot){
-  var loot = new Object;
-  if (DULoot[this.loottable]) {
-    loot = DULoot[this.loottable].getLoot(); 
-  }
-  else {alert (this.getName() + " has a loottable that is not defined."); }
   
+  var corpse;
+  var map = this.getHomeMap();
+  alert(this.getLeavesCorpse());
+  if (this.getLeavesCorpse()) {
+    corpse = localFactory.createTile(this.getLeavesCorpse());
+    map.placeThing(this.getx(),this.gety(), corpse);
+    map.deleteThing(this);
+    // redraw- just this one space, by preference 
+  }
+  if ((droploot) && (this.lootTable)) {
+    var loot = new Object;
+    if (DULoot[this.lootTable]) {
+      loot = DULoot[this.lootTable].getLoot(); 
+    }
+    else {alert (this.getName() + " has a loottable that is not defined."); }
+    
+  }
   //WORKING HERE
 }
 
