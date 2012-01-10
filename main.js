@@ -16,6 +16,7 @@ var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
 var maintext = new TextFrame("innertextframe");
 var DULoot = SetLoots();
+var displayspecs = new Object;
 
 var targetCursor = new Object;
 var inputText = new Object;
@@ -33,18 +34,18 @@ function drawMainFrame(how, mapname, centerx, centery) {
   var mapdiv = "&nbsp;";
   var themap = maps.getMap(mapname);
   if (themap == undefined) {
-  	alert("How am I here?");
+  	alert("How am I here? (Drawmap)");
   	maps.addMap(mapname);
   	themap = maps.getMap(mapname);
   }
 
-  var edges = getDisplayCenter(themap,centerx,centery);
+  displayspecs = getDisplayCenter(themap,centerx,centery);
 	var debugcolor = "#0000cc";
 	
   if (how == "draw") {
     mapdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
-    for (var i=edges.topedge;i<=edges.bottomedge;i++) {
-      for (var j=edges.leftedge;j<=edges.rightedge;j++) {
+    for (var i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
+      for (var j=displayspecs.leftedge;j<=displayspecs.rightedge;j++) {
       	if (debug) { dbs.writeln("<span style='color:"+debugcolor+"'>j = " + j + ", i = " + i + ". Map is " + themap.getName() + " -- "); }
       	if (debug) { dbs.writeln("<span style='color:"+debugcolor+"'>" + themap.data[i].length + "<br />"); }
         var localacre = themap.getTile(j,i);
@@ -243,9 +244,9 @@ $(document).ready(function() {
   else if (gamestate.getMode() == "target") {
   	var response = PerformTarget(code);
   	if (response["fin"] == 1) {  // move the cursor
-  		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
-  		var posleft = 192 + (targetCursor.x - edges.centerx)*32;
-  		var postop = 192 + (targetCursor.y - edges.centery)*32;
+//  		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+  		var posleft = 192 + (targetCursor.x - displayspecs.centerx)*32;
+  		var postop = 192 + (targetCursor.y - displayspecs.centery)*32;
   		var tileid = targetCursor.tileid;
   		$(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:'+posleft+'px;top:'+postop+'px;z-index:3" />');
   		gamestate.setMode("target");
