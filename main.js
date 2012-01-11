@@ -57,12 +57,13 @@ function drawMainFrame(how, mapname, centerx, centery) {
     mapdiv  += '</table>';
     $('#displayframe').html(mapdiv);
   } else if (how == "one") {
-    var thiscell = getDisplayCell(themap,PC.getx(),PC.gety(),centerx,centery);
-    var tileid = "#td-tile" + centerx + "x" + centery;
-    $(tileid).css("background-image","url('graphics/" + thiscell.showGraphic + "')");
-    $(tileid).css("background-position",thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px');
-    $(tileid).html('<img id="tile'+centerx+'x'+centery+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+centerx+'x'+centery+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="' + thiscell.desc + '" />');
-    
+    if ((centerx <= displayspecs.rightedge) && (centerx >= displayspecs.leftedge) && (centery <= displayspecs.topedge) && (centery >= displayspecs.bottomedge)) {
+      var thiscell = getDisplayCell(themap,PC.getx(),PC.gety(),centerx,centery);
+      var tileid = "#td-tile" + centerx + "x" + centery;
+      $(tileid).css("background-image","url('graphics/" + thiscell.showGraphic + "')");
+      $(tileid).css("background-position",thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px');
+      $(tileid).html('<img id="tile'+centerx+'x'+centery+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+centerx+'x'+centery+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="' + thiscell.desc + '" />');
+    }
   }
   
 }
