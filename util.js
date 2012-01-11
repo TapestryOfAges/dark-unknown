@@ -27,6 +27,71 @@ function getDisplayCenter(themap,fromx,fromy) {
 	return edge;
 }
 
+function getDisplayCell(mapname, centerx, centery, x, y) {
+
+  var displayCell = new Object;
+  var localacre = mapname.getTile(x,y);
+  
+  var displaytile;
+  // decide whether to draw a tile, draw it shaded, or make it darkness
+  var losresult = mapname.getLOS(centerx, centery, x, y, losgrid);
+
+  var lighthere = localacre.getLocalLight();
+  displaytile = localacre.getTop();
+  while (displaytile.getName() == "SeeBelow") {
+    localacre = FindBelow(x,y,mapname);
+    displaytile = localacre.getTop();
+  }
+  var graphics = displaytile.getGraphicArray();
+  var showGraphic = graphics[0];
+  if (typeof displaytile.setBySurround == "function") {
+   	graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
+    showGraphic = graphics[0];
+    if (typeof displaytile.doTile == "function") {
+      showGraphic = displaytile.doTile(x,y,showGraphic);
+    }
+    displayCell.showGraphic = showGraphic;
+    displayCell.graphics2 = graphics[2];
+    displayCell.graphics3 = graphics[3];
+    displayCell.graphics1 = graphics[1];
+    displayCell.losresult = losresult;
+    displayCell.lighthere = lighthere;
+    displayCell.desc = displaytile.getDesc();
+    
+//    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1;" title="' + displaytile.getDesc() + '" /></td>';
+  }
+  else if (losresult < LOS_THRESHOLD) {
+    if (typeof displaytile.doTile == "function") {
+      showGraphic = displaytile.doTile(x,y,showGraphic);
+    }
+    if (typeof displaytile.setByBelow == "function") {
+      showGraphic = displaytile.setByBelow(x,y,mapname);
+    }
+    displayCell.showGraphic = showGraphic;
+    displayCell.graphics2 = graphics[2];
+    displayCell.graphics3 = graphics[3];
+    displayCell.graphics1 = graphics[1];
+    displayCell.losresult = losresult;
+    displayCell.lighthere = lighthere;
+    displayCell.desc = displaytile.getDesc();
+//    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="' + displaytile.getDesc() + '" /></td>';
+  } else {
+    displaytile = localFactory.createTile('BlankBlack');
+    graphics = displaytile.getGraphicArray();
+    showGraphic = graphics[0];
+    displayCell.showGraphic = showGraphic;
+    displayCell.graphics2 = graphics[2];
+    displayCell.graphics3 = graphics[3];
+    displayCell.graphics1 = graphics[1];
+    displayCell.losresult = losresult;
+    displayCell.lighthere = lighthere;
+    displayCell.desc = "You cannot see that";
+//    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="You cannot see that" /></td>';
+  }
+return displayCell;
+}
+
+
 function MoveBetweenMaps(who,frommap,tomap,destx,desty) {
   // determine time scale for this move
   if ((frommap.getScale()) || tomap.getScale()) { who.smallscalemove = 1; }
