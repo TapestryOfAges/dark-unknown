@@ -3122,12 +3122,11 @@ NPCObject.prototype.processDeath = function(droploot){
   
   var corpse;
   var map = this.getHomeMap();
-  alert(this.getLeavesCorpse());
   if (this.getLeavesCorpse()) {
     corpse = localFactory.createTile(this.getLeavesCorpse());
     map.placeThing(this.getx(),this.gety(), corpse);
     map.deleteThing(this);
-    // redraw- just this one space, by preference 
+    drawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
   }
   if ((droploot) && (this.lootTable)) {
     var loot = new Object;

@@ -57,7 +57,7 @@ function drawMainFrame(how, mapname, centerx, centery) {
     mapdiv  += '</table>';
     $('#displayframe').html(mapdiv);
   } else if (how == "one") {
-    if ((centerx <= displayspecs.rightedge) && (centerx >= displayspecs.leftedge) && (centery <= displayspecs.topedge) && (centery >= displayspecs.bottomedge)) {
+    if ((centerx <= displayspecs.rightedge) && (centerx >= displayspecs.leftedge) && (centery >= displayspecs.topedge) && (centery <= displayspecs.bottomedge)) {
       var thiscell = getDisplayCell(themap,PC.getx(),PC.gety(),centerx,centery);
       var tileid = "#td-tile" + centerx + "x" + centery;
       $(tileid).css("background-image","url('graphics/" + thiscell.showGraphic + "')");
@@ -191,7 +191,7 @@ $(document).ready(function() {
           resp = PerformAttackMap(PC);  			  
   			}
 				if (resp["fin"] == 1) {
- 					drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+// 					drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
  				}
  				if (resp["fin"] < 2) {
  				  maintext.addText(resp["txt"]);
