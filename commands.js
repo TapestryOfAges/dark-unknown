@@ -614,6 +614,7 @@ function PerformGet(who) {
     }
     retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
     retval["fin"] = 1;
+    drawMainFrame("one",getitem.getHomeMap().getName(),getitem.getx(),getitem.gety());
     return retval;    
   } 
   else {
@@ -684,6 +685,7 @@ function PerformUse(who) {
 		var usedname = used.getDesc();
 		usedname = usedname.replace(/^a /, "");
 		retval["txt"] = "Use " + usedname + ": " + retval["txt"];
+		drawMainFrame("one",used.getHomeMap().getName(),used.getx(),used.gety());
 	} else {
 		retval["txt"] = "There is nothing to use there.";
 		retval["fin"] = 0;
