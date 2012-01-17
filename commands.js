@@ -169,8 +169,13 @@ function PerformCommand(code) {
 
 	}
 	else if (code == 83) { // s
-		// search
-		
+		gamestate.setMode("choosedir");
+		retval["txt"] = "";
+		retval["input"] = "&gt; Search: ";
+		retval["fin"] = 2;
+		targetCursor.command = "s";
+		targetCursor.x = PC.getx();
+		targetCursor.y = PC.gety();
 	}
 	else if (code == 84) { // t
 		// talk
@@ -614,7 +619,7 @@ function PerformGet(who) {
     }
     retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
     retval["fin"] = 1;
-    drawMainFrame("one",getitem.getHomeMap().getName(),getitem.getx(),getitem.gety());
+    drawMainFrame("one",getitem.getHomeMap().getName(),targetCursor.x,targetCursor.y);
     return retval;    
   } 
   else {
@@ -668,6 +673,56 @@ function PerformEquip(code) {
 //  targetCursor.scrolllocation = 0;
 //  targetCursor.itemlist = itemarray;
  
+}
+
+function PerformSearch(who) {
+  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  var searched = localacre.features.getTop();
+  var retval = new Object;
+  if (!searched) {
+		retval["txt"] = "There is nothing there.";
+		retval["fin"] = 0;
+		return retval;
+	}
+  if ((searched.getSearchYield().length) || searched.getGold()) {
+    if (searched.getShowSearched()) {
+      searched.setDesc(searched.getDesc() + " [Searched]");
+    }
+    retval["txt"] = "Search: You find ";
+    retval["fin"] = 1;
+    if (searched.getSearchYield().length) {
+      var stuff = searched.getSearchYield();
+      for (var i=0; i < stuff.length; i++) {
+        var newthing = localFactory.createTile(stuff[i]);
+        who.getHomeMap().placeThing(targetCursor.x,targetCursor.y,newthing);
+        if (i) {
+          retval["txt"] += ", ";
+        }
+        if (newthing.getPrefix()) {
+          retval["txt"] += " " + newthing.getPrefix();
+        }
+        retval["txt"] += " " + newthing.getDesc();
+      }
+    }
+    if (searched.getGold()) {
+      var newthing = localFactory.createTile("Gold");
+      newthing.setQuantity(searched.getGold());
+      who.getHomeMap().placeThing(targetCursor.x,targetCursor.y,newthing);
+      if (searched.getSearchYield().length) {
+        retval["txt"] += ", ";
+      }
+      retval["txt"] += newthing.getDesc();
+    }
+    retval["txt"] += ".";
+    drawMainFrame("one",who.getHomeMap().getName(),targetCursor.x,targetCursor.y);
+  }  else {
+    if (searched.getShowSearched()) {
+      searched.setDesc(searched.getDesc() + " [Searched]");
+    }
+    retval["txt"] = "You find nothing there.";
+    retval["fin"] = 1;
+  }
+  return retval;
 }
 
 function PerformUse(who) {
