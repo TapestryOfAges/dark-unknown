@@ -1719,9 +1719,28 @@ LavaTile.prototype.idle = function(person) {
 // Features!
 function FeatureObject() {
   this.addType("Feature");
-  this.searchYields = new Array;
+  this.searchYield = new Array;
+  this.showSearched = 0;
+  this.gold = 0;
 }
 FeatureObject.prototype = new InanimateObject;
+
+FeatureObject.prototype.setGold = function(newgold) {
+  newgold = parseInt(newgold);
+	this.gold = newgold;
+}
+
+FeatureObject.prototype.getGold = function() {
+	return this.gold;
+}
+
+FeatureObject.prototype.addGold = function(diffgold) {
+  diffgold = parseInt(diffgold);
+  if (!isNaN(diffgold)) {
+    this.gold += diffgold;
+  }
+  return this.gold;
+}
 
 FeatureObject.prototype.getSearchYield = function() {
   return this.searchYield;
@@ -1729,8 +1748,18 @@ FeatureObject.prototype.getSearchYield = function() {
 
 FeatureObject.prototype.setSearchYield = function(searchable) {
   // searchable must be an array, even if an empty one
-  // FIXME add check for that
-  this.searchYield = searchable;
+  if (typeof searchable == "Array") {
+    this.searchYield = searchable;
+  }
+}
+
+FeatureObject.prototype.getShowSearched = function() {
+  return this.showSearched;
+}
+
+FeatureObject.prototype.setShowSearched = function(showsearch) {
+  this.showSearched = showsearch;
+  return this.showSearched;
 }
 
 // end definitions, begin features
@@ -1976,6 +2005,7 @@ function CorpseTile() {
 	this.blocklos = 0;
 	this.prefix = "a";
 	this.desc = "corpse";
+	this.showSearched = 1;
 }
 CorpseTile.prototype = new FeatureObject;
 
@@ -1985,7 +2015,8 @@ function BloodTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.prefix = "";
-	this.desc = "blood";
+  this.desc = "blood";
+  this.showSearched = 1;
 }
 BloodTile.prototype = new FeatureObject;
 
@@ -2785,7 +2816,7 @@ FistsTile.prototype = new WeaponObject;
 
 function DaggerTile() {
 	this.name = "Dagger";
-	this.damage = "1d5+0";
+	this.damage = "1d4+1";
 	this.strdamage = 1/15;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "0";
@@ -3132,11 +3163,15 @@ NPCObject.prototype.processDeath = function(droploot){
     var loot = new Object;
     if (DULoot[this.lootTable]) {
       loot = DULoot[this.lootTable].getLoot(); 
+      if (loot.lootlist.length) {
+        corpse.setSearchYield(loot.lootlist);
+      }
+      if (loot.gold) {
+        corpse.setGold(loot.gold);
+      }
     }
     else {alert (this.getName() + " has a loottable that is not defined."); }
-    
   }
-  //WORKING HERE
 }
 
 NPCObject.prototype.setStr = function(newstr) {

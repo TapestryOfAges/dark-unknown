@@ -168,7 +168,7 @@ $(document).ready(function() {
   			gamestate.setMode("player");
   			return;
   		}
-  		else if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && ((targetCursor.command == "g") || (targetCursor.command == "a"))) {
+  		else if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && ((targetCursor.command == "g") || (targetCursor.command == "a") || (targetCursor.command == "s"))) {
   		  maintext.setInputLine("&gt;");
   		  maintext.drawTextFrame();
   			gamestate.setMode("player");
@@ -180,6 +180,8 @@ $(document).ready(function() {
   				resp = PerformUse(PC);
   			} else if (targetCursor.command == "g") { // GET
   			  resp = PerformGet(PC);
+  			} else if (targetCursor.command == "s") { // SEARCH
+  			  resp = PerformSearch(PC);
   			} else if (targetCursor.command == "a") {  // ATTACK
   			  var dir = "";
   			  if (targetCursor.y == PC.gety()-1) { dir = "North"; }

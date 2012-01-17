@@ -14,8 +14,8 @@ LootTable.prototype.getLoot = function() {
   lootobj.gold = 0;
   lootobj.lootlist = new Array;  // array of objnames
   
-  if ((this.goldDice) && (Math.random() <= (this.goldChange/100))) {
-    lootobj.gold = RollDice(goldDice);
+  if ((this.goldDice) && (Math.random() <= (this.goldChance/100))) {
+    lootobj.gold = RollDice(this.goldDice);
   }
   if (this.loot[0]) {
     for (i =0; i<this.loot.length; i++) {
