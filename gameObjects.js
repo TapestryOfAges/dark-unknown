@@ -1748,7 +1748,7 @@ FeatureObject.prototype.getSearchYield = function() {
 
 FeatureObject.prototype.setSearchYield = function(searchable) {
   // searchable must be an array, even if an empty one
-  if (typeof searchable == "Array") {
+  if ($.isArray(searchable)) {
     this.searchYield = searchable;
   }
 }

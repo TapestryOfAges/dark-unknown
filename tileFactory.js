@@ -955,6 +955,21 @@ tileFactory.prototype.makeBloodTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeOrcNPCTile = function() {
+  var newTile = new OrcNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrcGroupSmallTile = function() {
+  var newTile = new OrcGroupSmallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrcGroupLargeTile = function() {
+  var newTile = new OrcGroupLargeTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeEraserTile = function() {
   var newTile = new BlankWhiteTile();
   newTile.name = 'Eraser';
