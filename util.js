@@ -137,10 +137,13 @@ function FindBelow(upx,upy,map) {
 }
 
 function ParseDice(die) {
-  if (parseInt(die) == die) {
-    return die;
-  }
   var dieobj = new Object;
+  if (parseInt(die) == die) {
+    dieobj.plus = die;
+    dieobj.quantity = 0;
+    dieobj.dice = 0;
+    return dieobj;
+  }
   var tmpobj = new Array;
   tmpobj = die.split("+");
   if (tmpobj[1]){
@@ -154,9 +157,15 @@ function ParseDice(die) {
       dieobj.quantity = 0;
     }
   } else {
-    dieobj.plus = parseInt(tmpobj[0]);
-    dieobj.dice = 1;
-    dieobj.quantity = 0;
+    dieobj.plus = 0;
+    tmpobj = die.split("d");
+    if (tmpobj[1]) {
+      dieobj.dice = parseInt(tmpobj[1]);
+      dieobj.quantity = parseInt(tmpobj[0]);
+    } else {
+      dieobj.dice = 1;
+      dieobj.quantity = 0;
+    }
   }
 
   return dieobj;

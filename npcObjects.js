@@ -351,3 +351,37 @@ function GiantSnakeNPCTile() {
 }
 GiantSnakeNPCTile.prototype = new NPCObject;
 
+function OrcNPCTile() {
+  this.name="OrcNPC";
+  this.level = 2;
+  this.str = 12;
+  this.dex = 10;
+  this.int = 6;
+  this.alignment = "hostile";
+  this.threatenenAI = "melee";
+  this.graphic = PickOne(["339.gif","373.gif"]);
+  this.meleeAttackAs = "Shortsword";
+  this.missileAttackAs = "none";
+  this.movetype = MOVE_WALK;
+  this.prefix = "an";
+  this.desc = "orc";
+	this.leavesCorpse = "Blood";   // CHANGE TO CHEST AFTER TESTING
+  this.lootTable = "orcs";
+}
+OrcNPCTile.prototype = new NPCObject;
+
+function OrcGroupSmallTile() {
+  this.name = "OrcGroupSmall";
+  this.desc = "orcs";
+  this.graphic = PickOne(["339.gif","373.gif"]);
+  this.group[0] = new NPCList("OrcNPC", "1d3+2");
+}
+OrcGroupSmallTile.prototype = new NPCGroupObject;
+
+function OrcGroupLargeTile() {
+  this.name = "OrcGroupLarge";
+  this.desc = "orcs";
+  this.graphic = PickOne(["339.gif","373.gif"]);
+  this.group[0] = new NPCList("OrcNPC", "1d5+4");
+}
+OrcGroupLargeTile.prototype = new NPCGroupObject;

@@ -17,7 +17,7 @@ LootTable.prototype.getLoot = function() {
   if ((this.goldDice) && (Math.random() <= (this.goldChance/100))) {
     lootobj.gold = RollDice(this.goldDice);
   }
-  if (this.loot[0]) {
+  if (this.loot.length) {
     for (i =0; i<this.loot.length; i++) {
       if (Math.random() <= (this.loot[i].chance / 100)) {
         var quant = RollDice(this.loot[i].quantity);
@@ -38,5 +38,12 @@ function SetLoots() {
   loots["small animal"].goldDice = "1d3";
   loots["small animal"].goldChance = 30;
   
+  loots["orcs"] = new LootTable;
+  loots["orcs"].goldDice = "2d5";
+  loots["orcs"].goldChance = 60;
+  loots["orcs"].loot[0] = new Object;
+  loots["orcs"].loot[0].objname = "Dagger";
+  loots["orcs"].loot[0].chance = "90";
+  loots["orcs"].loot[0].quantity = "1";
   return loots;
 }
