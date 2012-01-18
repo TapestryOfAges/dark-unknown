@@ -3,6 +3,7 @@ function LootTable() {
  
    this.goldDice = "0";
    this.goldChance = 100; 
+   this.linked = 0;
    
    this.loot = new Array;  // array of objects with objname, quantity (dice), and chance
    
@@ -13,16 +14,25 @@ LootTable.prototype.getLoot = function() {
   var lootobj = new Object;
   lootobj.gold = 0;
   lootobj.lootlist = new Array;  // array of objnames
+  var hasgold = 0;
   
   if ((this.goldDice) && (Math.random() <= (this.goldChance/100))) {
     lootobj.gold = RollDice(this.goldDice);
+    hasgold = 1;
   }
   if (this.loot.length) {
-    for (i =0; i<this.loot.length; i++) {
-      if (Math.random() <= (this.loot[i].chance / 100)) {
-        var quant = RollDice(this.loot[i].quantity);
-        for (j=1;j<=quant;j++) {
-          lootobj.lootlist[lootobj.lootlist.length] = this.loot[i].objname;
+    if ((hasgold) || (!this.linked)) {
+      for (i =0; i<this.loot.length; i++) {
+        if (Math.random() <= (this.loot[i].chance / 100)) {
+          var lootquant = this.loot[i].quantity;
+          var lootobj = this.loot[i].objname;
+          if (lootobj.match("_")) {
+            
+          }
+          var quant = RollDice(this.loot[i].quantity);
+          for (j=1;j<=quant;j++) {
+            lootobj.lootlist[lootobj.lootlist.length] = this.loot[i].objname;
+          }
         }
       }
     }
