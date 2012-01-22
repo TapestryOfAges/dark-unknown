@@ -19,6 +19,7 @@ var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
 var maintext = new TextFrame("innertextframe");
 var DULoot = SetLoots();
+var DULootGroups = SetLootGroups(); // see loot.js for population
 var displayspecs = new Object;
 
 var targetCursor = new Object;
