@@ -25,13 +25,14 @@ LootTable.prototype.getLoot = function() {
       for (i =0; i<this.loot.length; i++) {
         if (Math.random() <= (this.loot[i].chance / 100)) {
           var lootquant = this.loot[i].quantity;
-          var lootobj = this.loot[i].objname;
-          if (lootobj.match("_")) {
-            
-          }
+          var theloot = this.loot[i].objname;
           var quant = RollDice(this.loot[i].quantity);
           for (j=1;j<=quant;j++) {
-            lootobj.lootlist[lootobj.lootlist.length] = this.loot[i].objname;
+            if (theloot.match("_")) {
+              lootobj.lootlist[lootobj.lootlist.length] = DULootGroups.rollForTreasure(lootobj);
+            } else {
+              lootobj.lootlist[lootobj.lootlist.length] = this.loot[i].objname;
+            }
           }
         }
       }
