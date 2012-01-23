@@ -381,6 +381,9 @@ function OpenContainer() {
       var firstitem = 1;
       for (i=0; i<this.container.length; i++) {
         var newitem = localFactory.createTile(this.container[i]);
+        if (this.container[i] == "Gold") {
+          newitem.quantity = this.gold;
+        }
         if (newitem) {
           this.getHomeMap().placeThing(this.getx(),this.gety(),newitem);
           if (firstitem) {
@@ -408,6 +411,19 @@ function OpenContainer() {
     
     this.getHomeMap().deleteThing(this);
     return retval;
+  }
+  
+  this.addToContainer = function(addthis, amt) {
+    if (!amt) { amt = 1; }
+    if (addthis == "Gold") {
+      this.container[this.container.length] = addthis;
+      this.gold = amt;
+    } else {
+      for (var i = 1; i <= amt; i++) {
+        this.container[this.container.length] = addthis;
+      }
+    }
+      
   }
 }
 
@@ -3150,27 +3166,30 @@ NPCObject.prototype.dealDamage = function(dmg, src) {
 }
 
 NPCObject.prototype.processDeath = function(droploot){
-  
-  var corpse;
-  var map = this.getHomeMap();
-  if (this.getLeavesCorpse()) {
-    corpse = localFactory.createTile(this.getLeavesCorpse());
-    map.placeThing(this.getx(),this.gety(), corpse);
-    map.deleteThing(this);
-    drawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
-  }
-  if ((droploot) && (this.lootTable)) {
-    var loot = new Object;
-    if (DULoot[this.lootTable]) {
-      loot = DULoot[this.lootTable].getLoot(); 
-      if (loot.lootlist.length) {
-        corpse.setSearchYield(loot.lootlist);
-      }
-      if (loot.gold) {
-        corpse.setGold(loot.gold);
-      }
+  if (this.checkType("PC") {
+    
+  } else {
+    var corpse;
+    var map = this.getHomeMap();
+    if (this.getLeavesCorpse()) {
+      corpse = localFactory.createTile(this.getLeavesCorpse());
+      map.placeThing(this.getx(),this.gety(), corpse);
+      map.deleteThing(this);
+      drawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
     }
-    else {alert (this.getName() + " has a loottable that is not defined."); }
+    if ((droploot) && (this.lootTable)) {
+      var loot = new Object;
+      if (DULoot[this.lootTable]) {
+        loot = DULoot[this.lootTable].getLoot(); 
+        if (loot.lootlist.length) {
+          corpse.setSearchYield(loot.lootlist);
+        }
+        if (loot.gold) {
+          corpse.setGold(loot.gold);
+        }
+      }
+      else {alert (this.getName() + " has a loottable that is not defined."); }
+    }
   }
 }
 
