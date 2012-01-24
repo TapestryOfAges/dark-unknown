@@ -3170,22 +3170,35 @@ NPCObject.prototype.processDeath = function(droploot){
     
   } else {
     var corpse;
+    var chest = 0;
     var map = this.getHomeMap();
     if (this.getLeavesCorpse()) {
       corpse = localFactory.createTile(this.getLeavesCorpse());
       map.placeThing(this.getx(),this.gety(), corpse);
       map.deleteThing(this);
       drawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
+    } else {
+      chest = localFactory.createTile("Chest");
     }
     if ((droploot) && (this.lootTable)) {
       var loot = new Object;
       if (DULoot[this.lootTable]) {
         loot = DULoot[this.lootTable].getLoot(); 
         if (loot.lootlist.length) {
-          corpse.setSearchYield(loot.lootlist);
+          if (chest) {
+            for (var i=0; i<loot.lootlist.length;i++){
+              chest.addToContainer(loot.lootlist[i], 1);
+            }
+          } else {
+            corpse.setSearchYield(loot.lootlist);
+          }
         }
         if (loot.gold) {
-          corpse.setGold(loot.gold);
+          if (chest) {
+            chest.addToContainer("Gold", loot.gold);
+          } else {
+            corpse.setGold(loot.gold);
+          }
         }
       }
       else {alert (this.getName() + " has a loottable that is not defined."); }
