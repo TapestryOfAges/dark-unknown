@@ -4,10 +4,12 @@ function tileFactory() {
 
 // terrain factories:
 tileFactory.prototype.createTile = function(tileName) {
-
+//  alert("Creating: " + tileName);
 
   var thingy = "make"+tileName+"Tile";
-  return this[thingy]();
+  var newthing = this[thingy]();
+  newthing.assignSerial();
+  return newthing;
 }
 
 tileFactory.prototype.makeBlankWhiteTile = function() {
