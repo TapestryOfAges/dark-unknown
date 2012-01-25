@@ -1,16 +1,19 @@
 
-
 function GameObject() {
   this.x;
   this.y;
   
-  this.serial = GetSerial();
   this.type = "XGameObjectX";
 }
 GameObject.prototype = new Object;
 
 GameObject.prototype.getSerial = function() {
 	return this.serial;
+}
+
+GameObject.prototype.assignSerial = function() {
+ 	maxserial++;
+	this.serial = maxserial;
 }
 
 GameObject.prototype.getx = function() {
@@ -359,6 +362,9 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 
 // Abstract class - open a container
 function OpenContainer() {
+  
+  this.isContainer = 1;
+  
   this.use = function(who) {
     var retval = new Object; 
 
@@ -417,7 +423,7 @@ function OpenContainer() {
     if (!amt) { amt = 1; }
     if (addthis == "Gold") {
       this.container[this.container.length] = addthis;
-      this.gold = amt;
+      this.setGold(amt);
     } else {
       for (var i = 1; i <= amt; i++) {
         this.container[this.container.length] = addthis;
@@ -1767,6 +1773,13 @@ FeatureObject.prototype.setSearchYield = function(searchable) {
   if ($.isArray(searchable)) {
     this.searchYield = searchable;
   }
+}
+
+FeatureObject.prototype.addToSearchYield = function(searchable) {
+  if (!this.searchYield.length) {
+    this.searchYield = new Array;
+  }
+  this.searchYield.push(searchable);
 }
 
 FeatureObject.prototype.getShowSearched = function() {
@@ -3169,11 +3182,13 @@ NPCObject.prototype.processDeath = function(droploot){
   if (this.checkType("PC")) {
     
   } else {
-    var corpse;
-    var chest = 0;
+    var corpse = new Object;
+    var chest;
     var map = this.getHomeMap();
     if (this.getLeavesCorpse()) {
       corpse = localFactory.createTile(this.getLeavesCorpse());
+      alert("searchyield is: " + corpse.getSearchYield().length);
+      alert("gold is: " + corpse.gold);
       map.placeThing(this.getx(),this.gety(), corpse);
     } else {
       chest = localFactory.createTile("Chest");
@@ -3182,6 +3197,7 @@ NPCObject.prototype.processDeath = function(droploot){
       var loot = new Object;
       if (DULoot[this.lootTable]) {
         loot = DULoot[this.lootTable].getLoot(); 
+        alert(loot.gold);
         if (loot.lootlist.length) {
           if (chest) {
             for (var i=0; i<loot.lootlist.length;i++){
@@ -3192,14 +3208,22 @@ NPCObject.prototype.processDeath = function(droploot){
           }
         }
         if (loot.gold) {
+          alert(loot.gold);
           if (chest) {
             chest.addToContainer("Gold", loot.gold);
           } else {
+            corpse.addToSearchYield("Gold");
+//            var foo = new Array;
+//            foo[0] = "Gold";
+//            corpse.setSearchYield(foo);
             corpse.setGold(loot.gold);
           }
         }
       }
       else {alert (this.getName() + " has a loottable that is not defined."); }
+    }
+    if ((chest) && (chest.container.length)) {
+      map.placeThing(this.getx(),this.gety(), chest);
     }
     map.deleteThing(this);
     drawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
