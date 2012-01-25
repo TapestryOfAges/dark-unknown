@@ -1,8 +1,5 @@
-ParseDice("3");
-ParseDice(3);
-ParseDice("1d4");
-ParseDice("1d3+5");
 
+var maxserial = 0;
 var viewsizex = 13;
 var viewsizey = 13;
 var DAYNIGHT = DAY;
