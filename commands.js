@@ -684,7 +684,10 @@ function PerformSearch(who) {
 		retval["fin"] = 0;
 		return retval;
 	}
-  if ((searched.getSearchYield().length) || searched.getGold()) {
+	if (this.isContainer) {
+	  // search for traps and such rather than searching for items
+	}
+  else if ((searched.getSearchYield().length)) {
     if (searched.getShowSearched()) {
       searched.setDesc(searched.getDesc() + " [Searched]");
     }
@@ -694,6 +697,9 @@ function PerformSearch(who) {
       var stuff = searched.getSearchYield();
       for (var i=0; i < stuff.length; i++) {
         var newthing = localFactory.createTile(stuff[i]);
+        if (stuff[i] == "Gold") {
+          newthing.setQuantity(searched.getGold());
+        }
         who.getHomeMap().placeThing(targetCursor.x,targetCursor.y,newthing);
         if (i) {
           retval["txt"] += ", ";
@@ -704,15 +710,17 @@ function PerformSearch(who) {
         retval["txt"] += " " + newthing.getDesc();
       }
     }
-    if (searched.getGold()) {
-      var newthing = localFactory.createTile("Gold");
-      newthing.setQuantity(searched.getGold());
-      who.getHomeMap().placeThing(targetCursor.x,targetCursor.y,newthing);
-      if (searched.getSearchYield().length) {
-        retval["txt"] += ", ";
-      }
-      retval["txt"] += newthing.getDesc();
-    }
+    var blanksearch = new Array;
+    searched.setSearchYield(blanksearch);
+//    if (searched.getGold()) {
+//      var newthing = localFactory.createTile("Gold");
+//      newthing.setQuantity(searched.getGold());
+//      who.getHomeMap().placeThing(targetCursor.x,targetCursor.y,newthing);
+//      if (searched.getSearchYield().length) {
+//        retval["txt"] += ", ";
+//      }
+//      retval["txt"] += newthing.getDesc();
+//    }
     retval["txt"] += ".";
     drawMainFrame("one",who.getHomeMap().getName(),targetCursor.x,targetCursor.y);
   }  else {
