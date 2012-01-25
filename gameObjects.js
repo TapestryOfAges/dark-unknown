@@ -3166,7 +3166,7 @@ NPCObject.prototype.dealDamage = function(dmg, src) {
 }
 
 NPCObject.prototype.processDeath = function(droploot){
-  if (this.checkType("PC") {
+  if (this.checkType("PC")) {
     
   } else {
     var corpse;
@@ -3175,8 +3175,6 @@ NPCObject.prototype.processDeath = function(droploot){
     if (this.getLeavesCorpse()) {
       corpse = localFactory.createTile(this.getLeavesCorpse());
       map.placeThing(this.getx(),this.gety(), corpse);
-      map.deleteThing(this);
-      drawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
     } else {
       chest = localFactory.createTile("Chest");
     }
@@ -3203,6 +3201,9 @@ NPCObject.prototype.processDeath = function(droploot){
       }
       else {alert (this.getName() + " has a loottable that is not defined."); }
     }
+    map.deleteThing(this);
+    drawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
+    DUTime.removeEntityFrom(this);
   }
 }
 
