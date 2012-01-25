@@ -288,7 +288,7 @@ function Acre() {
   this.npcs = new Collection;
   this.pcs = new Collection;
   
-  this.serial = GetSerial();
+//  AssignSerial.call(this);
   this.localLight = new Array;
 }
 
@@ -1018,6 +1018,7 @@ GameMap.prototype.loadMap = function (name) {
 //      this.data[i][j] = new Acre;
 //      this.data[i][j].terrain = localFactory.createTile(loadedtile);
 //      this.data[i][j].terrain.setHomeMap(this);
+// HEY! REMEMBER THE PLATONIC CODE? MAYBE USE IT AT SOME POINT, FUCKASS. FIXME.
       var newterrain = localFactory.createTile(loadedtile);
       this.setTerrain(j,i,newterrain);
     }
