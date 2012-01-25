@@ -6,7 +6,7 @@ use warnings;
 open GAMEOBJS, "gameObjects.js" or die "can't open gameObjects\n";
 
 print "function tileFactory() {\n\n}\n\n// terrain factories:\n";
-print "tileFactory.prototype.createTile = function(tileName) {\n\n\n  var thingy = \"make\"+tileName+\"Tile\";\n  return this[thingy]();\n}\n\n";
+print "tileFactory.prototype.createTile = function(tileName) {\n\n\n  var thingy = \"make\"+tileName+\"Tile\";\n    var newthing = this[thingy]();\n  newthing.assignSerial();\n  return newthing;\n}\n\n";
 
 
 foreach my $line (<GAMEOBJS>) {
