@@ -365,7 +365,7 @@ function OrcNPCTile() {
   this.movetype = MOVE_WALK;
   this.prefix = "an";
   this.desc = "orc";
-	this.leavesCorpse = "Blood";   // CHANGE TO CHEST AFTER TESTING
+	this.leavesCorpse = "";  
   this.lootTable = "orcs";
 }
 OrcNPCTile.prototype = new NPCObject;
