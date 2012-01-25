@@ -1,7 +1,7 @@
 
 var maxserial = 0;
 
-function GetSerial() {
+function AssignSerial() {
 	maxserial++;
-	return maxserial;
+	this.serial = maxserial;
 }
