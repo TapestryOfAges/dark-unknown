@@ -668,6 +668,10 @@ function editorEditMapDetails() {
   document.detailseditpopup.mapseebelow.value = amap.getSeeBelow();
   document.detailseditpopup.maplightlevel.value = amap.getLightLevel();
   document.detailseditpopup.mapalwaysremember.value = amap.getAlwaysRemember();
+  document.detailseditpopup.maponenterscript.value = amap.getEnterScript();
+  document.detailseditpopup.maponexitscript.value = amap.getExitScript();
+  document.detailseditpopup.maponentertest.value = amap.getEnterTestScript();
+  document.detailseditpopup.maponexittest.value = amap.getExitTestScript();
 }
 
 function submitEditDetails(change) {
@@ -686,6 +690,10 @@ function submitEditDetails(change) {
     amap.setLightLevel(document.detailseditpopup.maplightlevel.value);
     amap.setAlwaysRemember(document.detailseditpopup.mapalwaysremember.value);
     amap.setScale(document.detailseditpopup.mapscale.value);
+    amap.setEnterScript(document.detailseditpopup.maponenterscript.value);
+    amap.setExitScript(document.detailseditpopup.maponexitscript.value);
+    amap.setEnterTestScript(document.detailseditpopup.maponentertest.value);
+    amap.setExitTestScript(document.detailseditpopup.maponexittest.value);
 	}
 }
 
