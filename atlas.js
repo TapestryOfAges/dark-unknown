@@ -183,8 +183,8 @@ function Atlas() {
     'ff' : "Swamp", // 141
     "Swamp" : 'ff',
 // 142 - 146 are features
-    '~~' : "Lava", // 147
-    "Lava" : '~~',
+//    '~~' : "Lava", // 147
+//    "Lava" : '~~',
     '@D' : "Dungeon", // 151
     "Dungeon" : '@D',
     '@T' : "Towne", // 152
@@ -522,6 +522,11 @@ function GameMap() {
   this.lightLevel = "bright";
   this.alwaysRemember = 0;
   this.scale = 1;
+  
+  this.exitScript = "";
+  this.exitTestScript = "";
+  this.enterScript = "";
+  this.enterTestScript = "";
 }
 GameMap.prototype = new Object;
 
@@ -659,13 +664,48 @@ GameMap.prototype.setSeeBelow = function(mapname) {
 	this.seeBelow = mapname;
 }
 
+GameMap.prototype.getLightLevel = function() {
+	return this.lightLevel;
+}
+
 GameMap.prototype.setLightLevel = function(lightlevel) {
 	this.lightLevel = lightlevel;
 }
 
-GameMap.prototype.getLightLevel = function() {
-	return this.lightLevel;
+GameMap.prototype.getExitScript = function() {
+	return this.exitScript;
 }
+
+GameMap.prototype.setExitScript = function(es) {
+	this.exitScript = es;
+}
+
+GameMap.prototype.getExitTestScript = function() {
+	return this.exitTest;
+}
+
+GameMap.prototype.setExitTestScript = function(es) {
+	this.exitTest = es;
+}
+
+GameMap.prototype.getEnterScript = function() {
+	return this.enterScript;
+}
+
+GameMap.prototype.setEnterScript = function(es) {
+	this.enterScript = es;
+}
+
+GameMap.prototype.getEnterTestScript = function() {
+	return this.enterTest;
+}
+
+GameMap.prototype.setEnterTestScript = function(es) {
+	this.enterTest = es;
+}
+
+
+
 
 // generate the tile from the factory first, then pass it to setTerrain
 GameMap.prototype.setTerrain = function(x,y,terrain) {
