@@ -92,7 +92,16 @@ return displayCell;
 }
 
 
-function MoveBetweenMaps(who,frommap,tomap,destx,desty) {
+function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
+  
+  // check exit test
+  if (typeof frommap.onExitTest == "function") {
+    
+  }
+  // check enter test
+  // run exit script
+  // run enter script
+  
   // determine time scale for this move
   if ((frommap.getScale()) || tomap.getScale()) { who.smallscalemove = 1; }
   
@@ -104,22 +113,25 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty) {
 	var tile = tomap.getTile(destx,desty);
 	
 	// Remove unneeded maps from mapmemory
-	var keepmap = frommap.getAlwaysRemember();
-	if (!keepmap) {
-		// is old map linked to new map?
-		var linkedmaps = tomap.getLinkedMaps();
-		if (linkedmaps.length > 0) {
-			for (var i=0; i<linkedmaps.length; i++) {
-				if (linkedmaps[i] == frommap.getName()) {
-					keepmap = 1;
-				}
-			}
-		}
-	}
+	if (who == PC){
+  	var keepmap = frommap.getAlwaysRemember();
+	  if (!keepmap) {
+		  // is old map linked to new map?
+		  var linkedmaps = tomap.getLinkedMaps();
+		  if (linkedmaps.length > 0) {
+		  	for (var i=0; i<linkedmaps.length; i++) {
+			  	if (linkedmaps[i] == frommap.getName()) {
+				  	keepmap = 1;
+  				}
+	  		}
+		  }
+  	}
 	
-	if (keepmap == 0) {
-		maps.deleteMap(frommap.getName());
-	}
+	  if (keepmap == 0) {
+		  maps.deleteMap(frommap.getName());
+  	}
+  }
+	
 	
 	var retval = new Object;
 
