@@ -388,23 +388,23 @@ function OpenContainer() {
       for (i=0; i<this.container.length; i++) {
         var newitem = localFactory.createTile(this.container[i]);
         if (this.container[i] == "Gold") {
-          newitem.quantity = this.gold;
+          newitem.setQuantity(this.gold);
         }
         if (newitem) {
           this.getHomeMap().placeThing(this.getx(),this.gety(),newitem);
           if (firstitem) {
             firstitem = 0;
-            if (this.getPrefix()) {
-              retval["txt"] += this.getPrefix() + " ";
+            if (newitem.getPrefix()) {
+              retval["txt"] += newitem.getPrefix() + " ";
             }
-            retval["txt"] += this.getDesc();
+            retval["txt"] += newitem.getDesc();
           }
           else {
-            retval += ", ";
-            if (this.getPrefix()) {
-              retval["txt"] += this.getPrefix() + " ";
+            retval["txt"] += ", ";
+            if (newitem.getPrefix()) {
+              retval["txt"] += newitem.getPrefix() + " ";
             }
-            retval["txt"] += this.getDesc();              
+            retval["txt"] += newitem.getDesc();              
           }
         }
       }
@@ -1717,27 +1717,6 @@ function SeeBelowTile() {
 }
 SeeBelowTile.prototype = new TerrainObject;
 
-function LavaTile() {
-  this.name = "Lava";
-  this.graphic = "flowing_animations.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_SWIM;
-  this.blocklos = 0;
-  this.desc = "lava";
-  this.initdelay = 1.2;
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "0";
-  
-  LightEmitting.call(this, 1);
-}
-LavaTile.prototype = new TerrainObject;
-LavaTile.prototype.walkon = function(person) {
-  // return messages, perform action
-  alert("Walkon!");
-}
-LavaTile.prototype.idle = function(person) {
-  // see walkon
-}
-
 // Features!
 function FeatureObject() {
   this.addType("Feature");
@@ -1792,6 +1771,28 @@ FeatureObject.prototype.setShowSearched = function(showsearch) {
 }
 
 // end definitions, begin features
+
+function LavaTile() {
+  this.name = "Lava";
+  this.graphic = "flowing_animations.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK + MOVE_SWIM;
+  this.blocklos = 0;
+  this.desc = "lava";
+  this.initdelay = 1.2;
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "0";
+  
+  LightEmitting.call(this, 1);
+}
+LavaTile.prototype = new FeatureObject;
+
+LavaTile.prototype.walkon = function(person) {
+  // return messages, perform action
+  alert("Walkon!");
+}
+LavaTile.prototype.idle = function(person) {
+  // see walkon
+}
 
 function DungeonTile() {
   this.name = "Dungeon";
@@ -3187,8 +3188,6 @@ NPCObject.prototype.processDeath = function(droploot){
     var map = this.getHomeMap();
     if (this.getLeavesCorpse()) {
       corpse = localFactory.createTile(this.getLeavesCorpse());
-      alert("searchyield is: " + corpse.getSearchYield().length);
-      alert("gold is: " + corpse.gold);
       map.placeThing(this.getx(),this.gety(), corpse);
     } else {
       chest = localFactory.createTile("Chest");
@@ -3197,7 +3196,6 @@ NPCObject.prototype.processDeath = function(droploot){
       var loot = new Object;
       if (DULoot[this.lootTable]) {
         loot = DULoot[this.lootTable].getLoot(); 
-        alert(loot.gold);
         if (loot.lootlist.length) {
           if (chest) {
             for (var i=0; i<loot.lootlist.length;i++){
@@ -3208,7 +3206,6 @@ NPCObject.prototype.processDeath = function(droploot){
           }
         }
         if (loot.gold) {
-          alert(loot.gold);
           if (chest) {
             chest.addToContainer("Gold", loot.gold);
           } else {
