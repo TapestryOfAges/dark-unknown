@@ -94,13 +94,27 @@ return displayCell;
 
 function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   
-  // check exit test
-  if (typeof frommap.onExitTest == "function") {
+  var retval = new Object;
+
+  if (!overridetests) {  
+    // check exit test
+    if (typeof frommap.ExitTest == "function") {
+      
+    }
+    
+    if (typeof tomap.EnterTest == "function") {
+      
+    }
+  }
+
+  if (typeof frommap.Exit == "function") {
     
   }
-  // check enter test
-  // run exit script
-  // run enter script
+  
+  if (typeof tomap.Enter == "function") {
+    
+  }
+
   
   // determine time scale for this move
   if ((frommap.getScale()) || tomap.getScale()) { who.smallscalemove = 1; }
@@ -132,9 +146,6 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   	}
   }
 	
-	
-	var retval = new Object;
-
 	return tile;
 
 }
