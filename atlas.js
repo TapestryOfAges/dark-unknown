@@ -1023,6 +1023,10 @@ GameMap.prototype.saveMap = function (name) {
  printerwin.document.write(name + ".lightLevel = '" + this.getLightLevel() + "';\n");
  printerwin.document.write(name + ".alwaysRemember = '" + this.getAlwaysRemember() + "';\n");
  printerwin.document.write(name + ".scale = '" + this.getScale() + "';\n");
+ printerwin.document.write(name + ".enterscript = '" + this.getEnterScript() + "';\n");
+ printerwin.document.write(name + ".entertestscript = '" + this.getEnterTestScript() + "';\n");
+ printerwin.document.write(name + ".exitscript = '" + this.getExitScript() + "';\n");
+ printerwin.document.write(name + ".exittestscript = '" + this.getExitTestScript() + "';\n");
  var linkedMapList;
  var linkedMapArray = this.getLinkedMaps();
  if (linkedMapArray.length > 0) {
@@ -1124,6 +1128,18 @@ GameMap.prototype.loadMap = function (name) {
   this.setLightLevel(mappages.readPage(name, "lightLevel"));
   this.setAlwaysRemember(mappages.readPage(name, "alwaysRemember"));
   this.setScale(mappages.readPage(name, "scale"));
+  if(mappages.readPage(name, "enterscript")) {
+    mappages[name][mappages.readPage(name, "enterscript")](this);
+  }
+  if(mappages.readPage(name, "entertestscript")){
+    mappages[name][mappages.readPage(name, "entertestscript")](this);
+  }
+  if(mappages.readPage(name, "exitscript")) {
+    mappages[name][mappages.readPage(name, "exitscript")](this);
+  }
+  if(mappages.readPage(name, "exittestscript")) {
+    mappages[name][mappages.readPage(name, "exittestscript")](this);
+  }
   
   this.setName(name);
   
