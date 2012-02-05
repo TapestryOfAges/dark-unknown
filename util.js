@@ -112,7 +112,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   }
   
   if (typeof tomap.Enter == "function") {
-    
+    tomap.Enter(who,frommap,who.getx(),who.gety(),destx,desty)
   }
 
   

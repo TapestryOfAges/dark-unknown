@@ -445,9 +445,11 @@ function PerformAttackMap(who) {
     newmap.loadMap(combatmapname);
     maps.addMapByRef(newmap);
 
+    PC.getHomeMap().deleteThing(atkwho);
     var desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
     
     var monsters = PlaceMonsters(newmap,atkwho,1);
+    DUTime.removeEntityFrom(atkwho);
     
     drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
     retval["txt"] = "Attack: " + atkwho.getDesc() + ".";
