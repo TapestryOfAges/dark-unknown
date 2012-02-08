@@ -681,11 +681,11 @@ GameMap.prototype.setExitScript = function(es) {
 }
 
 GameMap.prototype.getExitTestScript = function() {
-	return this.exitTest;
+	return this.exitTestScript;
 }
 
 GameMap.prototype.setExitTestScript = function(es) {
-	this.exitTest = es;
+	this.exitTestScript = es;
 }
 
 GameMap.prototype.getEnterScript = function() {
@@ -697,11 +697,11 @@ GameMap.prototype.setEnterScript = function(es) {
 }
 
 GameMap.prototype.getEnterTestScript = function() {
-	return this.enterTest;
+	return this.enterTestScript;
 }
 
 GameMap.prototype.setEnterTestScript = function(es) {
-	this.enterTest = es;
+	this.enterTestScript = es;
 }
 
 
