@@ -128,14 +128,12 @@ function PerformCommand(code) {
 		gamestate.setMode("target");
 		var newx = PC.getx();
 		var newy = PC.gety();
-		var targetx = 192;
-		var targety = 192;
-		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		targetCursor.x = newx;
 		targetCursor.y = newy;
 		targetCursor.command = "l";
-		targetx += (PC.x - edges.centerx) * 32;
-		targety += (PC.y - edges.centery) * 32;
+    var targetcoords = getCoords(PC);
+		targetx = targetcoords.x;
+		targety = targetcoords.y;
 		var tileid = "#td-tile" + newx + "x" + newy;
 		targetCursor.tileid = tileid;
 		targetCursor.basetile = $(tileid).html();

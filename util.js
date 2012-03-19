@@ -27,6 +27,17 @@ function getDisplayCenter(themap,fromx,fromy) {
 	return edge;
 }
 
+function getCoords(who) {
+  var newx = who.getx();
+  var newy = who.gety();
+  var edges = getDisplayCenter(who.getHomeMap(),newx,newy);
+  var coords = new Object;
+  coords.x = 192 + (newx - edges.centerx) * 32;
+  coordsy = 192 + (newy - edges.centery) * 32;
+
+  return coords;
+}
+
 function getDisplayCell(mapname, centerx, centery, x, y) {
 
   var displayCell = new Object;
