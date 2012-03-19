@@ -74,6 +74,7 @@ function Attack(atk, def) {
     
   }
   else { // Miss!
+    // animation and sound here, too
     retval["txt"] = retval["txt"] + " - missed!";
   }
   
