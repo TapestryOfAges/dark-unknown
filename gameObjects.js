@@ -2943,6 +2943,10 @@ NaturalWeaponTile.prototype = new WeaponObject;
 function MissileWeaponObject() {
 	this.dexReq = 10;
 	this.range = 10;
+	this.ammographic = "ammo.gif";
+	this.ammoxoffset = "0";
+	this.ammoyoffset = "0";
+	this.directionalammo = 0;
 	
 	this.addType("Missile");
 }
@@ -2966,6 +2970,16 @@ MissileWeaponObject.prototype.setRange = function(newrange) {
   return this.range;
 }
 
+MissileWeaponObject.prototype.getRange = function() {
+  return this.range;
+}
+
+MissileWeaponObject.prototype.setRange = function(newrange) {
+  this.range = newrange;
+  return this.range;
+}
+
+
 function SlingTile() {
 	this.name = "Sling";
 	this.damage = "1d3+0";
@@ -2974,6 +2988,8 @@ function SlingTile() {
 	this.spriteyoffset = "-64";
 	this.desc = "sling";
 	this.prefix = "a";
+	this.ammoxoffset = "-32";
+	this.ammoyoffset = "-128";
 }
 SlingTile.prototype = new MissileWeaponObject;
 
@@ -2986,6 +3002,9 @@ function BowTile() {
 	this.dexReq = 16;
 	this.desc = "bow";
 	this.prefix = "a";
+  this.ammoxoffset = "0";
+  this.ammoyoffset = "0";
+  this.directionalammo = 1;
 }
 BowTile.prototype = new MissileWeaponObject;
 
@@ -2998,6 +3017,9 @@ function CrossbowTile() {
 	this.dexReq = 19;
 	this.desc = "crossbow";
 	this.prefix = "a";
+  this.ammoxoffset = "0";
+  this.ammoyoffset = "-32";
+  this.directionalammo = 1;
 }
 CrossbowTile.prototype = new MissileWeaponObject;
 
@@ -3009,6 +3031,8 @@ function WandTile() {
 	this.spriteyoffset = "-64";
 	this.desc = "magic wand";
 	this.prefix = "a";
+  this.ammoxoffset = "-96";
+  this.ammoyoffset = "-128";
 }
 WandTile.prototype = new MissileWeaponObject;
 
@@ -3021,6 +3045,8 @@ function MagicAxeTile() {
 	this.dexReq = 22;
 	this.desc = "magic axe";
 	this.prefix = "a";
+  this.ammoxoffset = "0";
+  this.ammoyoffset = "-128";
 }
 MagicAxeTile.prototype = new MissileWeaponObject;
 
@@ -3032,6 +3058,8 @@ function NaturalMissileWeaponTile() {
 	this.spriteyoffset = "-64";
 	this.desc = "natural missile weapon";
 	this.prefix = "a";
+  this.ammoxoffset = "-32";
+  this.ammoyoffset = "-128";
 }
 NaturalMissileWeaponTile.prototype = new MissileWeaponObject;
 
