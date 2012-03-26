@@ -27,15 +27,21 @@ function getDisplayCenter(themap,fromx,fromy) {
 	return edge;
 }
 
-function getCoords(who) {
-  var newx = who.getx();
-  var newy = who.gety();
-  var edges = getDisplayCenter(who.getHomeMap(),newx,newy);
+function getCoords(mapref, newx, newy) {
+  var edges = getDisplayCenter(mapref,newx,newy);
   var coords = new Object;
   coords.x = 192 + (newx - edges.centerx) * 32;
-  coordsy = 192 + (newy - edges.centery) * 32;
+  coords.y = 192 + (newy - edges.centery) * 32;
 
   return coords;
+}
+
+function animateEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset) {
+  var fromcoords = getCoords(mapref, fromx, fromy);
+  var tocoords = getCoords(mapref,tox,toy);
+  
+  var tablehtml = '<table id="animtable"><tr><td style="background-image:url(\'graphics/' + graphic + '\',background-repeat:no-repeat; background-position: ' + xoffset + 'px ' + yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32"></td></tr></table>';
+  
 }
 
 function getDisplayCell(mapname, centerx, centery, x, y) {

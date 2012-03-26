@@ -131,7 +131,7 @@ function PerformCommand(code) {
 		targetCursor.x = newx;
 		targetCursor.y = newy;
 		targetCursor.command = "l";
-    var targetcoords = getCoords(PC);
+    var targetcoords = getCoords(PC.getHomeMap(), PC.getx(), PC.gety());
 		targetx = targetcoords.x;
 		targety = targetcoords.y;
 		var tileid = "#td-tile" + newx + "x" + newy;
