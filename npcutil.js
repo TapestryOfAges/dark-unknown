@@ -44,7 +44,7 @@ function Attack(atk, def) {
   
   retval["txt"] = "Attack " + def.getDesc();
   
-  var tohit = atk.getHitChance() / 100;
+  var tohit = atk.getHitChance(weapon) / 100;
   var defense = def.getDefense() / 100;
   
   tohit = tohit - defense;
