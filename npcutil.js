@@ -50,6 +50,8 @@ function Attack(atk, def) {
   tohit = tohit - defense;
   if (tohit < .05) { tohit = .05; }
   
+  var preanim = PreAnimationEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset)
+  
   if (Math.random() <= tohit) {
     // Hit!
     // animation and sound here!!!
