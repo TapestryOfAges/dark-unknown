@@ -45,7 +45,7 @@ function animateEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destg
   tilecursor.basetile = $(tilecursor.tileid).html(); 
   $(tilecursor.tileid).html($tilecursor.tileid.html() + tablehtml);
   var duration = Math.pow( Math.pow(tox - fromx, 2) + Math.pow (toy - fromy, 2)  , .5);
-  $("#animtable").animate({ left: tocoords.x ; top: tocoords.y } , duration, function() {
+  $("#animtable").animate({ left: tocoords.x , top: tocoords.y } , duration, function() {
 
     });
 

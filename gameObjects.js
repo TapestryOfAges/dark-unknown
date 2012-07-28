@@ -215,6 +215,36 @@ GameObject.prototype.setBlocksLOSArray = function(newLOS) {
 	}
 }
 
+GameObject.prototype.getBlocksLOE = function(distance) {
+  if (this.blockloe) {  
+    if (this.loeatdistance) {
+      if (distance > this.loeatdistance["distance"]) { return(this.loeatdistance["blockloe"]) }
+    }
+    if (this.loeupclose) {
+  	  if (distance <= this.loeupclose["distance"]) { return(this.loeupclose["blockloe"]) }
+    }
+    return (this.blockloe);
+  }
+  else { return this.getBlocksLOS(distance); }
+}
+
+GameObject.prototype.getBlocksLOEArray = function() {
+  if (this.blockloe) { 
+    var tmp = new Array;
+    tmp[0] = this.blockloe;
+    if (this.loeatdistance) {
+      tmp[1] = this.loeatdistance['distance'];
+      tmp[2] = this.loeatdistance['attackThrough'];
+    }
+    if (this.loeupclose) {
+      tmp[3] = this.loeupclose['distance'];
+      tmp[4] = this.loeupclose['attackThrough']
+    }
+    return tmp;
+  }
+  return this.getBlocksLOSArray();
+}
+
 GameObject.prototype.getPassable = function() {
 	return this.passable;
 }
