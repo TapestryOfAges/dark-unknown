@@ -877,6 +877,7 @@ function MastTile() {
   this.graphic = "014.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .2;
   this.prefix = "a";
   this.desc = "mast";
 }
@@ -946,6 +947,7 @@ function LetterATile() {
   this.graphic = "025.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "an";
   this.desc = "A";
 }
@@ -956,6 +958,7 @@ function LetterBTile() {
   this.graphic = "026.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "B";
 }
@@ -966,6 +969,7 @@ function LetterCTile() {
   this.graphic = "027.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "C";
 }
@@ -976,6 +980,7 @@ function LetterDTile() {
   this.graphic = "028.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "D";
 }
@@ -986,6 +991,7 @@ function LetterETile() {
   this.graphic = "029.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "an";
   this.desc = "E";
 }
@@ -996,6 +1002,7 @@ function LetterFTile() {
   this.graphic = "030.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "an";
   this.desc = "F";
 }
@@ -1006,6 +1013,7 @@ function LetterGTile() {
   this.graphic = "031.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "G";
 }
@@ -1016,6 +1024,7 @@ function LetterHTile() {
   this.graphic = "032.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "an";
   this.desc = "H";
 }
@@ -1026,6 +1035,7 @@ function LetterITile() {
   this.graphic = "033.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "an";
   this.desc = "I";
 }
@@ -1036,6 +1046,7 @@ function LetterJTile() {
   this.graphic = "034.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "J";
 }
@@ -1046,6 +1057,7 @@ function LetterKTile() {
   this.graphic = "035.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "K";
 }
@@ -1056,6 +1068,7 @@ function LetterLTile() {
   this.graphic = "036.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "an";
   this.desc = "L";
 }
@@ -1066,6 +1079,7 @@ function LetterMTile() {
   this.graphic = "037.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "an";
   this.desc = "M";
 }
@@ -1076,6 +1090,7 @@ function LetterNTile() {
   this.graphic = "038.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "an";
   this.desc = "N";
 }
@@ -1086,6 +1101,7 @@ function LetterOTile() {
   this.graphic = "039.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "an";
   this.desc = "O";
 }
@@ -1096,6 +1112,7 @@ function LetterPTile() {
   this.graphic = "040.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "P";
 }
@@ -1106,6 +1123,7 @@ function LetterQTile() {
   this.graphic = "041.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "Q";
 }
@@ -1116,6 +1134,7 @@ function LetterRTile() {
   this.graphic = "042.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "an";
   this.desc = "R";
 }
@@ -1126,6 +1145,7 @@ function LetterSTile() {
   this.graphic = "043.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "an";
   this.desc = "S";
 }
@@ -1136,6 +1156,7 @@ function LetterTTile() {
   this.graphic = "044.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "T";
 }
@@ -1146,6 +1167,7 @@ function LetterUTile() {
   this.graphic = "045.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "U";
 }
@@ -1156,6 +1178,7 @@ function LetterVTile() {
   this.graphic = "046.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "V";
 }
@@ -1166,6 +1189,7 @@ function LetterWTile() {
   this.graphic = "047.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "W";
 }
@@ -1176,6 +1200,7 @@ function LetterXTile() {
   this.graphic = "048.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "an";
   this.desc = "X";
 }
@@ -1186,6 +1211,7 @@ function LetterYTile() {
   this.graphic = "049.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "Y";
 }
@@ -1196,6 +1222,7 @@ function LetterZTile() {
   this.graphic = "050.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "Z";
 }
@@ -1206,6 +1233,7 @@ function HorizontalCounterTile() {
   this.graphic = "051.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
 }
@@ -1216,6 +1244,7 @@ function RightCounterTile() {
   this.graphic = "052.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
 }
@@ -1226,6 +1255,7 @@ function LeftCounterTile() {
   this.graphic = "053.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
 }
@@ -1236,6 +1266,7 @@ function CounterBoxTile() {
   this.graphic = "054.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
 }
@@ -1266,6 +1297,8 @@ function ArrowSlitTile() {
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.losupclose = { distance : 1 , blocklos : 0 };
+	this.blockloe = 1;
+	this.loeupclose = {distance : 0 , blocklow : .2 };
 	this.prefix = "an";
 	this.desc = "arrow slit";
 
@@ -1277,6 +1310,7 @@ function WindowTile() {
 	this.graphic = "window.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0; 
+	this.blockloe = 1;
 	this.prefix = "a";
 	this.desc = "window";
 
@@ -1328,6 +1362,7 @@ function VerticalCounterTile() {
   this.graphic = "061.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
 }
@@ -1338,6 +1373,7 @@ function BottomCounterTile() {
   this.graphic = "062.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
 }
@@ -1348,6 +1384,7 @@ function TopCounterTile() {
   this.graphic = "063.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
+  this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
 }
@@ -2034,6 +2071,7 @@ function DoorWindowTile() {
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.losupclose = { distance : 1 , blocklos : 0 };
+	this.blockloe = 1;
 	this.prefix = "a";
 	this.desc = "door";
 
@@ -2085,6 +2123,7 @@ function EnergyFieldTile() {
 	this.graphic = "flowing_animations.gif";
 	this.passable = 0; // impassable - wonky outdoors, but necessary indoors
 	this.blocklos = 0;
+	this.blockloe = 1;
 //	this.light = 1;
   this.prefix = "an"; 
 	this.desc = "energy field";
