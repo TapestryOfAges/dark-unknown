@@ -41,6 +41,9 @@ function Attack(atk, def) {
       return retval;
     }
   } 
+
+  var themap = atk.getHomeMap();
+  var loeresult = themap.getLOS(atk.getx(), atk.gety(), def.getx(), def.gety(), losgrid, 1);
   
   retval["txt"] = "Attack " + def.getDesc();
   
