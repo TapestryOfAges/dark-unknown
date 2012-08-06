@@ -323,6 +323,21 @@ Acre.prototype.getBlocksLOS = function(dist) {
 	return maxLOS;
 }
 
+Acre.prototype.getBlocksLOE = function(dist) {
+	var maxLOS = 0;
+	maxLOS = this.terrain.getBlocksLOE(dist);
+	var allFeatures = this.features.getAll();
+	if (allFeatures[0]) {
+		for (var i = 0; i < allFeatures.length; i++ ) {
+			var featureLOS = allFeatures[0].getBlocksLOE(dist);
+			if (featureLOS > maxLOS) {
+				maxLOS = featureLOS;
+			}
+		}
+	}
+	return maxLOS;
+}
+
 Acre.prototype.getFeatures = function() {
 	return (this.features.getAll());
 }
