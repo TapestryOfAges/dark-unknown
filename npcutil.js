@@ -40,10 +40,16 @@ function Attack(atk, def) {
       retval["input"] = "&gt;";
       return retval;
     }
+    var themap = atk.getHomeMap();
+      
+    var loeresult = themap.getLOS(atk.getx(), atk.gety(), def.getx(), def.gety(), losgrid, 1);
+    if (loeresult > LOS_THRESHOLD) {
+      retval["txt"] = "You cannot attack that target from here.";
+      retval["fin"] = 0;
+      retval["input"] = "&gt;";
+      return retval;
+    }
   } 
-
-  var themap = atk.getHomeMap();
-  var loeresult = themap.getLOS(atk.getx(), atk.gety(), def.getx(), def.gety(), losgrid, 1);
   
   retval["txt"] = "Attack " + def.getDesc();
   
@@ -53,7 +59,7 @@ function Attack(atk, def) {
   tohit = tohit - defense;
   if (tohit < .05) { tohit = .05; }
   
-  var preanim = PreAnimationEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset)
+//  var preanim = PreAnimationEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset)
   
   if (Math.random() <= tohit) {
     // Hit!
