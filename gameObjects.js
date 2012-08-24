@@ -3048,6 +3048,68 @@ MissileWeaponObject.prototype.setRange = function(newrange) {
   return this.range;
 }
 
+MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
+  var ammo = new Object;
+  ammo.graphic= this.ammographic;
+  ammo.yoffset = this.ammoyoffset;
+  if (this.directionalammo) {
+    var diffx = def.getx() - atk.getx();
+    var diffy = def.gety() - atk.gety();
+    if ((diffx == 0) && (diffy > 0)) {
+      ammo.xoffset = 0;
+    } else if ((diffx == 0) && (diffy < 0)) {
+      ammo.xoffset = -4*32;
+    } else {
+      if ((diffy == 0) && (diffx > 0)) {
+        ammo.xoffset = -2*32; 
+      } else if ((diffy == 0) && (diffx < 0)) {
+        ammo.xoffset = -6*32;
+      }
+      else { 
+        var horflip = 0;
+        var verflip = 0;
+        if (diffy < 0) { 
+          diffy = Math.abs(diffy); 
+          verflip = 1;
+        }
+        if (diffx < 0) {
+          diffx = Math.abs(diffx);
+          horflip = 1;
+        }
+        slope = diffy/diffx;
+        if ((slope > 2.42) && (verflip == 0)) {
+          ammo.xoffset = 0;
+        }
+        else if ((slope > 2.42) && (verflip == 1)) {
+          ammo.xoffset = -4*32;
+        }
+        else if ((slope < .414) && (horflip == 0)) {
+          ammo.xoffset = -2*32;
+        }
+        else if ((slope < .414) && (horflip == 1)) {
+          ammo.xoffset = -6*32;
+        }
+        else if ((verflip == 0) && (horflip == 0)) {
+          ammo.xoffset = -32;
+        }
+        else if ((verflip == 1) && (horflip == 0)) {
+          ammo.xoffset = -3*32;
+        }
+        else if ((verflip == 1) && (horflip == 1)) {
+          ammo.xoffset = -5*32;
+        }
+        else if ((verflip == 0) && (horflip == 1)) {
+          ammo.xoffset = -7*32;
+        }
+        else { alert("Error in ammo direction finding."); }
+      }
+    }
+  } else {
+    ammo.xoffset = this.ammoxoffset;
+    ammo.yoffset = this.ammoyoffset;
+  }
+  return ammo;
+}
 
 function SlingTile() {
 	this.name = "Sling";
