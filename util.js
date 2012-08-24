@@ -474,22 +474,22 @@ function PlaceMonsters(battlemap,group,whoseturn) {
           monstercoords[5].y = 3;          
         } else if (coin == 5) {
           monstercoords[0] = new Object;
-          monstercoords[0].x = 4;
+          monstercoords[0].x = 5;
           monstercoords[0].y = 1;
           monstercoords[1] = new Object;
-          monstercoords[1].x = 6;
+          monstercoords[1].x = 7;
           monstercoords[1].y = 1;
           monstercoords[2] = new Object;
-          monstercoords[2].x = 4;
+          monstercoords[2].x = 5;
           monstercoords[2].y = 3;
           monstercoords[3] = new Object;
-          monstercoords[3].x = 6;
+          monstercoords[3].x = 7;
           monstercoords[3].y = 3;
           monstercoords[4] = new Object;
-          monstercoords[4].x = 4;
+          monstercoords[4].x = 5;
           monstercoords[4].y = 5;
           monstercoords[5] = new Object;
-          monstercoords[5].x = 6;
+          monstercoords[5].x = 7;
           monstercoords[5].y = 5;          
         }
         break;
