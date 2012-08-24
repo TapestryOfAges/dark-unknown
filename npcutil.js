@@ -86,16 +86,29 @@ function Attack(atk, def) {
   var fromcoords = getCoords(atk.getHomeMap(),atk.getx(), atk.gety());
   var tocoords = getCoords(def.getHomeMap(),def.getx(), def.gety());
 
-  // get graphic, xoffset, yoffset for graphic:  TODO
-
-  var tablehtml = '<table id="animtable" style="z-index:4; position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + '><tr><td style="background-image:url(\'graphics/' + graphic + '\',background-repeat:no-repeat; background-position: ' + xoffset + 'px ' + yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32"></td></tr></table>';
-  tilecursor.tileid = "#td-tile" + displayspecs.leftedge + "x" + displayspecs.topedge;
-  tilecursor.basetile = $(tilecursor.tileid).html(); 
-  $(tilecursor.tileid).html($tilecursor.tileid.html() + tablehtml);
-  var duration = Math.pow( Math.pow(tox - fromx, 2) + Math.pow (toy - fromy, 2)  , .5);
-  $("#animtable").animate({ left: tocoords.x , top: tocoords.y } , duration, function() {
-  
+  // get graphic, xoffset, yoffset for graphic
+  var ammographic = new Object;
+  if (type == "missile") { ammographic = weapon.getAmmoGraphic(atk,def); }
+  else { 
+    ammographic.graphic = "spacer.gif";
+    ammographic.xoffset = 0;
+    ammographic.yoffset = 0;
   }
+
+  //var tablehtml = '<div id="animtable" style="position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + 'px; z-index:4; background-image:url(\'graphics/035.gif\');background-repeat:no-repeat;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+  var tablehtml = '<div id="animtable" style="position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + 'px; z-index:4; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+  //var tablehtml = '<table id="animtable" cellpadding="0" cellspacing="0" border="0" style="position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + 'px; z-index:4;"><tr><td style="background-image:url(\'graphics/' + ammographic.graphic + '\'),background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/target-cursor.gif" width="32" height="32" /></td></tr></table>';
+  //var tablehtml = '<img id="animtable" style="z-index:4; position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + 'px" src="graphics/target-cursor.gif" />';
+  
+  targetCursor.tileid = "#td-tile" + displayspecs.leftedge + "x" + displayspecs.topedge;
+  targetCursor.basetile = $(targetCursor.tileid).html(); 
+  $(targetCursor.tileid).html($(targetCursor.tileid).html() + tablehtml);
+  var duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 150;
+  
+  $("#animtable").animate({ left: tocoords.x , top: tocoords.y } , duration, 'linear', function() {
+    $(targetCursor.tileid).html(targetCursor.basetile);
+
+  });
 }
 
 function PostAnimation1(mapref, frommob, tomob, dmg, retval) {
