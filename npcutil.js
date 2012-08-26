@@ -40,6 +40,13 @@ function Attack(atk, def) {
       retval["input"] = "&gt;";
       return retval;
     }
+    if (!CanMissileAttack(atk)) {
+      retval["txt"] = "Enemy too close. You cannot use your " + weapon.getDesc() + ".";
+      retval["fin"] = 0;
+      retval["input"] = "&gt;";
+      return retval;
+    }
+    
     var themap = atk.getHomeMap();
       
     var loeresult = themap.getLOS(atk.getx(), atk.gety(), def.getx(), def.gety(), losgrid, 1);
@@ -137,4 +144,29 @@ function GetDamageDescriptor(who) {
   if (ratio > .4) { return ("moderately wounded"); }
   if (ratio > .2) { return ("heavily wounded"); }
   return ("deathly wounded");
+}
+
+function CanMissileAttack(who) {
+  // looks to see if there are adjacent melee enemies
+  var enemystring = "";
+  if (who.getAttitude() == "friendly") {
+    enemystring = "hostile";
+  } else if (who.getAttitude() == "hostile") {
+    enemystring = "friendly";
+  }
+  var themap = who.getHomeMap();
+  for (i = -1; i <=1 ; i++) {
+    for (j = -1; j <= 1; j++) {
+      var tile = themap.getTile(who.getx() + i, who.gety() + j);
+      if (tile != "OoB") { 
+        var npcs = tile.getNPCs();
+        if (npcs) {
+          for (k=0; k<npcs.length; k++) {
+            if (npcs[k].getAttitude() == enemystring) { return 0; }
+          }
+        }
+      }
+    }
+  }
+  return 1;
 }
