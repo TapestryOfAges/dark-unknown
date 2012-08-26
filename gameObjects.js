@@ -3055,9 +3055,9 @@ MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
   if (this.directionalammo) {
     var diffx = def.getx() - atk.getx();
     var diffy = def.gety() - atk.gety();
-    if ((diffx == 0) && (diffy > 0)) {
+    if ((diffx == 0) && (diffy < 0)) {
       ammo.xoffset = 0;
-    } else if ((diffx == 0) && (diffy < 0)) {
+    } else if ((diffx == 0) && (diffy > 0)) {
       ammo.xoffset = -4*32;
     } else {
       if ((diffy == 0) && (diffx > 0)) {
@@ -3067,10 +3067,10 @@ MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
       }
       else { 
         var horflip = 0;
-        var verflip = 0;
+        var verflip = 1;
         if (diffy < 0) { 
           diffy = Math.abs(diffy); 
-          verflip = 1;
+          verflip = 0;
         }
         if (diffx < 0) {
           diffx = Math.abs(diffx);
@@ -3424,7 +3424,7 @@ NPCObject.prototype.getDex = function() {
 }
 
 NPCObject.prototype.getBaseDex = function() {
-  return this.str;
+  return this.dex;
 }
 
 NPCObject.prototype.getModDex = function() {
@@ -3941,6 +3941,7 @@ function PCObject() {
 	this.pcname = "Subject Name Here";
 	this.desc = "you";
 	this.alignment = "good";	
+	this.attutide = "friendly";
 	this.graphic = "300.gif";
 	this.meleeAttackAs = "Fists";
 	this.missileAttackAs = "none";
