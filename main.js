@@ -23,10 +23,10 @@ var targetCursor = new Object;
 var inputText = new Object;
 
 function drawCharFrame() {
-	var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='2'>";
-	txt = txt + PC.getPCName() + "</td></tr>";
-	txt = txt + "<tr><td>HP: " + PC.getHP() + "</td><td style='text-align:right'>MP: " + PC.getMana() + "</td></tr></table>";
-	$("#charstats").html(txt);
+  var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='2'>";
+  txt = txt + PC.getPCName() + "</td></tr>";
+  txt = txt + "<tr><td>HP: " + PC.getHP() + "</td><td style='text-align:right'>MP: " + PC.getMana() + "</td></tr></table>";
+  $("#charstats").html(txt);
 }
 
 function drawMainFrame(how, mapname, centerx, centery) {
@@ -35,12 +35,12 @@ function drawMainFrame(how, mapname, centerx, centery) {
   var mapdiv = "&nbsp;";
   var themap = maps.getMap(mapname);
   if (themap == undefined) {
-  	alert("How am I here? (Drawmap)");
-  	maps.addMap(mapname);
-  	themap = maps.getMap(mapname);
+    alert("How am I here? (Drawmap)");
+    maps.addMap(mapname);
+    themap = maps.getMap(mapname);
   }
 
-	var debugcolor = "#0000cc";
+  var debugcolor = "#0000cc";
 	
   if (how == "draw") {
     displayspecs = getDisplayCenter(themap,centerx,centery);
@@ -74,10 +74,10 @@ function drawTopbarFrame(txt) {
 }
 
 $(document).ready(function() {
-	worldmap.loadMap("darkunknown");
-	maps.addMapByRef(worldmap);
+  worldmap.loadMap("darkunknown");
+  maps.addMapByRef(worldmap);
 	
-	gamestate.loadGame();
+  gamestate.loadGame();
   drawCharFrame();
     
   PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
@@ -89,195 +89,194 @@ $(document).ready(function() {
   maintext.drawTextFrame(); 
   
   $(document).keydown(function(e) {
-   var code = (e.keyCode ? e.keyCode : e.which);
+  var code = (e.keyCode ? e.keyCode : e.which);
 //   if (code == 27) { e.preventDefault(); }
-   e.preventDefault();
-   if (gamestate.getMode() == "player") {  // PC's turn, awaiting commands
+  e.preventDefault();
+  if (gamestate.getMode() == "player") {  // PC's turn, awaiting commands
 //   	 alert(DUTime.getGameClock());
-   	 var response = PerformCommand(code);
-   	 if (response["fin"]) { 
-   	 	maintext.addText(response["txt"]);
-   	 	maintext.setInputLine(response["input"]);
-   	 	var inp = response["input"];
-			maintext.drawTextFrame();
-   	 	if (response["fin"] == 1) {
-   	 		gamestate.setMode("null");
-   	 		var PCevent = new GameEvent(PC);
-   	 		DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
+    var response = PerformCommand(code);
+    if (response["fin"]) { 
+      maintext.addText(response["txt"]);
+      maintext.setInputLine(response["input"]);
+      var inp = response["input"];
+      maintext.drawTextFrame();
+      if (response["fin"] == 1) {
+        gamestate.setMode("null");
+        var PCevent = new GameEvent(PC);
+        DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
    	 		
         var nextEntity = DUTime.executeNextEvent().getEntity();
         nextEntity.myTurn();
-   	 	}
-   	 }  
+      }
+    }  
   }
   else if (gamestate.getMode() == "talk") {
     if (((code >= 65) && (code <= 90)) || (code == 32)) {  // letter
-			var letter = String.fromCharCode(code);    	
-			if (inputText.txt.length < 14) {
-				inputText.txt += letter;
-				maintext.setInputLine(maintext.getInputLine() + letter);
-				maintext.drawInputLine();
-			}
+      var letter = String.fromCharCode(code);    	
+      if (inputText.txt.length < 14) {
+        inputText.txt += letter;
+        maintext.setInputLine(maintext.getInputLine() + letter);
+        maintext.drawInputLine();
+      }
     }
     else if (code == 8) { // backspace
-    	var txt = maintext.getInputLine();
-    	if (txt.length > 11) {
-    		txt = txt.substr(0,txt.length-1);
-    		maintext.setInputLine(txt);
-				maintext.drawInputLine();
-			}
+      var txt = maintext.getInputLine();
+      if (txt.length > 11) {
+        txt = txt.substr(0,txt.length-1);
+        maintext.setInputLine(txt);
+        maintext.drawInputLine();
+      }
     }
     else if (code == 13) { // enter
-    	if (inputText.cmd == "y") { 
-    		var retval = PerformYell(); 
-    	  if (retval["fin"] == 2) {
-    	  	gamestate.setMode("player");
-    	  	gamestate.setTurn(PC);
-    	  }
-    	  else if (retval["fin"] == 1) {
-    	  	gamestate.setMode("null");
-   	 	  	var PCevent = new GameEvent(PC);
-   	   		DUTime.addAtTimeInterval(PCevent,PC.nextActionTime());
+      if (inputText.cmd == "y") { 
+        var retval = PerformYell(); 
+        if (retval["fin"] == 2) {
+          gamestate.setMode("player");
+          gamestate.setTurn(PC);
+        }
+        else if (retval["fin"] == 1) {
+          gamestate.setMode("null");
+          var PCevent = new GameEvent(PC);
+          DUTime.addAtTimeInterval(PCevent,PC.nextActionTime());
    	 		
           var nextEntity = DUTime.executeNextEvent().getEntity();
           nextEntity.myTurn();
-    	  }
-    	  maintext.setInputLine("&gt;");
-	    	maintext.addText(retval["txt"]);
-	    	maintext.drawTextFrame();
+        }
+        maintext.setInputLine("&gt;");
+        maintext.addText(retval["txt"]);
+        maintext.drawTextFrame();
 
-    	}
-    	else { alert("need to add hook here! (main 171)"); }
+      }
+      else { alert("need to add hook here! (main 171)"); }
     }
     else if (code == 27) { // ESC
-    	maintext.setInputLine("&gt;");
-    	maintext.drawTextFrame();
-    	gamestate.setMode("player");
-    	gamestate.setTurn(PC);
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      gamestate.setMode("player");
+      gamestate.setTurn(PC);
     }
     else { // ignore
     	
     }
   }
   else if (gamestate.getMode() == "choosedir") {
-  	var response = PerformChooseDir(code);
-  	if (response["fin"] == 1) { // direction chosen
-  		if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && (targetCursor.command == "u")) {
-  			maintext.addText("Use from inventory not yet implemented.");
-  			maintext.setInputLine("&gt;");
-  			maintext.drawTextFrame();
-  			gamestate.setMode("player");
-  			return;
-  		}
-  		else if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && ((targetCursor.command == "g") || (targetCursor.command == "a") || (targetCursor.command == "s"))) {
-  		  maintext.setInputLine("&gt;");
-  		  maintext.drawTextFrame();
-  			gamestate.setMode("player");
-  			return;
-  		}
-  		else {
-  		  var resp;
-  			if (targetCursor.command == "u") { // USE
-  				resp = PerformUse(PC);
-  			} else if (targetCursor.command == "g") { // GET
-  			  resp = PerformGet(PC);
-  			} else if (targetCursor.command == "s") { // SEARCH
-  			  resp = PerformSearch(PC);
-  			} else if (targetCursor.command == "a") {  // ATTACK
-  			  var dir = "";
-  			  if (targetCursor.y == PC.gety()-1) { dir = "North"; }
-  			  if (targetCursor.y == PC.gety()+1) { dir = "South"; }
-  			  if (targetCursor.x == PC.getx()-1) { dir = "West"; }
-  			  if (targetCursor.x == PC.getx()+1) { dir = "East"; }
-  			  dir = "Attack " + dir + ".";
-//  			  maintext.addText(dir);
+    var response = PerformChooseDir(code);
+    if (response["fin"] == 1) { // direction chosen
+      if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && (targetCursor.command == "u")) {
+        maintext.addText("Use from inventory not yet implemented.");
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        gamestate.setMode("player");
+        return;
+      }
+      else if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && ((targetCursor.command == "g") || (targetCursor.command == "a") || (targetCursor.command == "s"))) {
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        gamestate.setMode("player");
+        return;
+      }
+      else {
+        var resp;
+        if (targetCursor.command == "u") { // USE
+          resp = PerformUse(PC);
+        } else if (targetCursor.command == "g") { // GET
+          resp = PerformGet(PC);
+        } else if (targetCursor.command == "s") { // SEARCH
+          resp = PerformSearch(PC);
+        } else if (targetCursor.command == "a") {  // ATTACK
+          var dir = "";
+          if (targetCursor.y == PC.gety()-1) { dir = "North"; }
+          if (targetCursor.y == PC.gety()+1) { dir = "South"; }
+          if (targetCursor.x == PC.getx()-1) { dir = "West"; }
+          if (targetCursor.x == PC.getx()+1) { dir = "East"; }
+          dir = "Attack " + dir + ".";
           resp = PerformAttackMap(PC);  			  
-  			}
-				if (resp["fin"] == 1) {
-// 					drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
- 				}
- 				if (resp["fin"] < 2) {
- 				  maintext.addText(resp["txt"]);
- 				  maintext.setInputLine("&gt;");
- 				  maintext.drawTextFrame();
-
- 				  gamestate.setMode("null");
- 				  var PCevent = new GameEvent(PC);
- 			 	  DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
-   	 		
- 	  	    var nextEntity = DUTime.executeNextEvent().getEntity();
-      	  nextEntity.myTurn();
         }
-  		}
-  	}
-  	else if (response["fin"] == -1) {   // anything not useful
-  		gamestate.setMode("choosedir");
-  	}
-  	else { // ESC hit
-  		maintext.setInputLine("&gt;");
-  		maintext.drawTextFrame();
-  		gamestate.setMode("player");
-  		return;
-  	}
+        if (resp["fin"] == 1) {
+// 					drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+        }
+        if (resp["fin"] < 2) {
+          maintext.addText(resp["txt"]);
+          maintext.setInputLine("&gt;");
+          maintext.drawTextFrame();
+
+          gamestate.setMode("null");
+          var PCevent = new GameEvent(PC);
+          DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
+   	 		
+          var nextEntity = DUTime.executeNextEvent().getEntity();
+          nextEntity.myTurn();
+        }
+      }
+    }
+    else if (response["fin"] == -1) {   // anything not useful
+      gamestate.setMode("choosedir");
+    }
+    else { // ESC hit
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      gamestate.setMode("player");
+      return;
+    }
   }
   else if (gamestate.getMode() == "target") {
-  	var response = PerformTarget(code);
-  	if (response["fin"] == 1) {  // move the cursor
+    var response = PerformTarget(code);
+    if (response["fin"] == 1) {  // move the cursor
 //  		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
-  		var posleft = 192 + (targetCursor.x - displayspecs.centerx)*32;
-  		var postop = 192 + (targetCursor.y - displayspecs.centery)*32;
-  		var tileid = targetCursor.tileid;
-  		$(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:'+posleft+'px;top:'+postop+'px;z-index:3" />');
-  		gamestate.setMode("target");
-  	}
-  	else if (response["fin"] == 2) { // act on the current target
-  		if (targetCursor.command == "l") {
-  			newresponse = PerformLook();
-  			maintext.addText(newresponse["txt"]);
-  			maintext.setInputLine(newresponse["input"]);
-  			maintext.drawTextFrame();
-  		} else if (targetCursor.command == "a") {
-  		  newresponse = PerformAttack(PC);
-      if (newresponse["txt"]) {
-  			maintext.addText(newresponse["txt"]);
+      var posleft = 192 + (targetCursor.x - displayspecs.centerx)*32;
+      var postop = 192 + (targetCursor.y - displayspecs.centery)*32;
+      var tileid = targetCursor.tileid;
+      $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:'+posleft+'px;top:'+postop+'px;z-index:3" />');
+      gamestate.setMode("target");
+    }
+    else if (response["fin"] == 2) { // act on the current target
+      if (targetCursor.command == "l") {
+        var newresponse = PerformLook();
+        maintext.addText(newresponse["txt"]);
+        maintext.setInputLine(newresponse["input"]);
+        maintext.drawTextFrame();
+      } else if (targetCursor.command == "a") {
+        newresponse = PerformAttack(PC);
+        if (newresponse["txt"]) {
+          maintext.addText(newresponse["txt"]);
+        }
+        if (newresponse["input"]) {
+          maintext.setInputLine(newresponse["input"]);
+        }
+        maintext.drawTextFrame();
       }
-      if (newresponse["input"]) {
-  			maintext.setInputLine(newresponse["input"]);
-      }
-  			maintext.drawTextFrame();
-  		}
-  		gamestate.setMode("null");
-  		var PCevent = new GameEvent(PC);
-   	 	DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
+      gamestate.setMode("null");
+      var PCevent = new GameEvent(PC);
+      DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
    	 		
       var nextEntity = DUTime.executeNextEvent().getEntity();
       nextEntity.myTurn();
-  	}
-  	else if (response["fin"] == 0) { 
-  		var tileid = targetCursor.tileid;
+    }
+    else if (response["fin"] == 0) { 
+      var tileid = targetCursor.tileid;
       $(tileid).html(targetCursor.basetile); 
-  			maintext.addText(response["txt"]);
-  			maintext.setInputLine(response["input"]);
+      maintext.addText(response["txt"]);
+      maintext.setInputLine(response["input"]);
   			//drawTextFrame(maintext.getTextFrame(), response["input"]);
-  			maintext.drawTextFrame();
+      maintext.drawTextFrame();
       
       gamestate.setMode("player");
       gamestate.setTurn(PC);
-  	}
-  	else {
-  		gamestate.setMode("target");
-  	}
+    }
+    else {
+      gamestate.setMode("target");
+    }
 
   } 
   else if (gamestate.getMode() == "equip") {
     var response = PerformEquip(code);
     if (response["fin"] == 0) {
-    	maintext.setInputLine("&gt;");
-    	maintext.drawTextFrame();
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
       drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
       drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
       gamestate.setMode("player");
-    	gamestate.setTurn(PC);
+      gamestate.setTurn(PC);
     }
     else if (response["fin"] == 1) {
       
@@ -288,9 +287,9 @@ $(document).ready(function() {
       maintext.drawTextFrame();
       drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
       drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-  		gamestate.setMode("null");
-  		var PCevent = new GameEvent(PC);
-   	 	DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
+      gamestate.setMode("null");
+      var PCevent = new GameEvent(PC);
+      DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
    	 		
       var nextEntity = DUTime.executeNextEvent().getEntity();
       nextEntity.myTurn();
@@ -301,11 +300,11 @@ $(document).ready(function() {
     var response = performZstats(code);
     if (response["fin"] == 0) {
       maintext.setInputLine("&gt;");
-    	maintext.drawTextFrame();
+      maintext.drawTextFrame();
       drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
       drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
       gamestate.setMode("player");
-    	gamestate.setTurn(PC);
+      gamestate.setTurn(PC);
     } else if (response["fin"] == 1) {
       
     }
