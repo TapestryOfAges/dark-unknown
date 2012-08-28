@@ -232,15 +232,18 @@ $(document).ready(function() {
   	}
   	else if (response["fin"] == 2) { // act on the current target
   		if (targetCursor.command == "l") {
-  			response = PerformLook();
-  			maintext.addText(response["txt"]);
-  			maintext.setInputLine(response["input"]);
-  			//drawTextFrame(maintext.getTextFrame(), response["input"]);
+  			newresponse = PerformLook();
+  			maintext.addText(newresponse["txt"]);
+  			maintext.setInputLine(newresponse["input"]);
   			maintext.drawTextFrame();
   		} else if (targetCursor.command == "a") {
-  		  response = PerformAttack(PC);
-  			maintext.addText(response["txt"]);
-  			maintext.setInputLine(response["input"]);
+  		  newresponse = PerformAttack(PC);
+      if (newresponse["txt"]) {
+  			maintext.addText(newresponse["txt"]);
+      }
+      if (newresponse["input"]) {
+  			maintext.setInputLine(newresponse["input"]);
+      }
   			maintext.drawTextFrame();
   		}
   		gamestate.setMode("null");
