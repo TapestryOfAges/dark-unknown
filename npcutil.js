@@ -95,6 +95,7 @@ function Attack(atk, def) {
 
   // get graphic, xoffset, yoffset for graphic
   var ammographic = new Object;
+  var duration = 50;
   if (type == "missile") { ammographic = weapon.getAmmoGraphic(atk,def); }
   else { 
     ammographic.graphic = "spacer.gif";
@@ -110,7 +111,9 @@ function Attack(atk, def) {
   targetCursor.tileid = "#td-tile" + displayspecs.leftedge + "x" + displayspecs.topedge;
   targetCursor.basetile = $(targetCursor.tileid).html(); 
   $(targetCursor.tileid).html($(targetCursor.tileid).html() + tablehtml);
-  var duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 150;
+  if (type == "missile") {
+    duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 150;
+  }
   
   $("#animtable").animate({ left: tocoords.x , top: tocoords.y } , duration, 'linear', function() {
     $(targetCursor.tileid).html(targetCursor.basetile);
@@ -119,6 +122,38 @@ function Attack(atk, def) {
     else { hitgraphic = "702.gif"; }
     var hitanimhtml = '<div id="hitdiv" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:4; background-image:url(\'graphics/' + hitgraphic + '\');background-repeat:no-repeat; background-position: 0px 0px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
     $(targetCursor.tileid).html($(targetCursor.tileid).html() + hitanimhtml);
+    setTimeout(function() {
+      $(targetCursor.tileid).html(targetCursor.basetile);
+      if ((type != "missile") || (!weapon.getAmmoReturn())) {
+        duration = 50;
+        ammographic.graphic = "spacer.gif";
+        ammographic.xoffset = 0;
+        ammographic.yoffset = 0;
+      }
+      returnhtml = '<div id="animtable" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:4; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
+      $(targetCursor.tileid).html($(targetCursor.tileid).html() + returnhtml);
+      $("#animtable").animate({ left: fromcoords.x , top: fromcoords.y } , duration, 'linear', function() {
+        if (dmg != 0) {
+          var stillalive = def.dealDamage(dmg, atk);    
+          if (stillalive) {
+            var damagedesc = GetDamageDescriptor(def); 
+            retval["txt"] += ": " + damagedesc + "!"; 
+          }
+          else { retval["txt"] += ": Killed!"; }
+        } else {
+          retval["txt"] = retval["txt"] + " - missed!";
+        }
+        maintext.addText(retval["txt"]);
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+
+        var PCevent = new GameEvent(PC);
+        DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(retval["initdelay"]));
+   	 		
+        var nextEntity = DUTime.executeNextEvent().getEntity();
+        nextEntity.myTurn();
+      });
+    }, 400);
   });
   
   var tmpval = new Object;
