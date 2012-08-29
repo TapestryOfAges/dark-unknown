@@ -22,6 +22,8 @@ var displayspecs = new Object;
 var targetCursor = new Object;
 var inputText = new Object;
 
+var raceWarning = 0;
+
 function drawCharFrame() {
   var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='2'>";
   txt = txt + PC.getPCName() + "</td></tr>";
@@ -230,8 +232,9 @@ $(document).ready(function() {
       gamestate.setMode("target");
     }
     else if (response["fin"] == 2) { // act on the current target
+      var newresponse = new Object;
       if (targetCursor.command == "l") {
-        var newresponse = PerformLook();
+        newresponse = PerformLook();
         maintext.addText(newresponse["txt"]);
         maintext.setInputLine(newresponse["input"]);
         maintext.drawTextFrame();
@@ -245,12 +248,23 @@ $(document).ready(function() {
         }
         maintext.drawTextFrame();
       }
-      gamestate.setMode("null");
-      var PCevent = new GameEvent(PC);
-      DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
+      if ((newresponse["fin"] == 0) || (newresponse["fin"] == 2)) {
+        gamestate.setMode("player");
+        // does not take time, either because it failed or was a no-time success
+      }
+      else if (newresponse["fin"] == 1) {
+        gamestate.setMode("null");
+        var PCevent = new GameEvent(PC);
+        DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
    	 		
-      var nextEntity = DUTime.executeNextEvent().getEntity();
-      nextEntity.myTurn();
+        var nextEntity = DUTime.executeNextEvent().getEntity();
+        nextEntity.myTurn();
+      }
+      else if (newresponse["fin"] == -1) {
+        gamestate.setMode("null");
+        // wait and let the combat code set things to next turn. NOTE: possible 
+        raceWarning = 1;
+      }
     }
     else if (response["fin"] == 0) { 
       var tileid = targetCursor.tileid;

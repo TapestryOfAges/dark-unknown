@@ -3016,6 +3016,7 @@ function MissileWeaponObject() {
 	this.ammoxoffset = "0";
 	this.ammoyoffset = "0";
 	this.directionalammo = 0;
+	this.ammoReturn = 0;
 	
 	this.addType("Missile");
 }
@@ -3111,6 +3112,11 @@ MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
   return ammo;
 }
 
+MissileWeaponObject.prototype.getAmmoReturn = function() {
+  return this.ammoReturn;
+}
+
+
 function SlingTile() {
 	this.name = "Sling";
 	this.damage = "1d3+0";
@@ -3178,6 +3184,7 @@ function MagicAxeTile() {
 	this.prefix = "a";
   this.ammoxoffset = "0";
   this.ammoyoffset = "-128";
+  this.ammoReturn = 1;
 }
 MagicAxeTile.prototype = new MissileWeaponObject;
 
@@ -3707,6 +3714,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 }
 
 NPCObject.prototype.myTurn = function() {
+  raceWarning = 0;
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
 	
