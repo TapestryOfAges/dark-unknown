@@ -3183,7 +3183,7 @@ function WandTile() {
 	this.spriteyoffset = "-64";
 	this.desc = "magic wand";
 	this.prefix = "a";
-  this.ammoxoffset = "-96";
+  this.ammoxoffset = "-64";
   this.ammoyoffset = "-128";
 }
 WandTile.prototype = new MissileWeaponObject;
