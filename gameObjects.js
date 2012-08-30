@@ -3053,18 +3053,22 @@ MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
   var ammo = new Object;
   ammo.graphic= this.ammographic;
   ammo.yoffset = this.ammoyoffset;
-  if (this.directionalammo) {
+//  if (this.directionalammo) {
     var diffx = def.getx() - atk.getx();
     var diffy = def.gety() - atk.gety();
     if ((diffx == 0) && (diffy < 0)) {
       ammo.xoffset = 0;
+      ammo.fired = 0;
     } else if ((diffx == 0) && (diffy > 0)) {
       ammo.xoffset = -4*32;
+      ammo.fired = 4;
     } else {
       if ((diffy == 0) && (diffx > 0)) {
         ammo.xoffset = -2*32; 
+        ammo.fired = 2;
       } else if ((diffy == 0) && (diffx < 0)) {
         ammo.xoffset = -6*32;
+        ammo.fired = 6;
       }
       else { 
         var horflip = 0;
@@ -3080,35 +3084,46 @@ MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
         slope = diffy/diffx;
         if ((slope > 2.42) && (verflip == 0)) {
           ammo.xoffset = 0;
+          ammo.fired = 0;
         }
         else if ((slope > 2.42) && (verflip == 1)) {
           ammo.xoffset = -4*32;
+          ammo.fired = 4;
         }
         else if ((slope < .414) && (horflip == 0)) {
           ammo.xoffset = -2*32;
+          ammo.fired = 2;
         }
         else if ((slope < .414) && (horflip == 1)) {
           ammo.xoffset = -6*32;
+          ammo.fired = 6;
         }
         else if ((verflip == 0) && (horflip == 0)) {
           ammo.xoffset = -32;
+          ammo.fired = 1;
         }
         else if ((verflip == 1) && (horflip == 0)) {
           ammo.xoffset = -3*32;
+          ammo.fired = 3;
         }
         else if ((verflip == 1) && (horflip == 1)) {
           ammo.xoffset = -5*32;
+          ammo.fired = 5;
         }
         else if ((verflip == 0) && (horflip == 1)) {
           ammo.xoffset = -7*32;
+          ammo.fired = 7;
         }
         else { alert("Error in ammo direction finding."); }
       }
     }
-  } else {
-    ammo.xoffset = this.ammoxoffset;
-    ammo.yoffset = this.ammoyoffset;
-  }
+//  } else {
+//    ammo.xoffset = this.ammoxoffset;
+//    ammo.yoffset = this.ammoyoffset;
+//  }
+    if (this.directionalammo == 0) {
+      ammo.xoffset = this.ammoxoffset;
+    }
   return ammo;
 }
 
