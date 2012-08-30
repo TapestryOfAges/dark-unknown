@@ -101,12 +101,12 @@ function Attack(atk, def) {
     ammographic.graphic = "spacer.gif";
     ammographic.xoffset = 0;
     ammographic.yoffset = 0;
+    ammographic.fired = -1;
   }
 
-  //var tablehtml = '<div id="animtable" style="position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + 'px; z-index:4; background-image:url(\'graphics/035.gif\');background-repeat:no-repeat;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
-  var tablehtml = '<div id="animtable" style="position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + 'px; z-index:4; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
-  //var tablehtml = '<table id="animtable" cellpadding="0" cellspacing="0" border="0" style="position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + 'px; z-index:4;"><tr><td style="background-image:url(\'graphics/' + ammographic.graphic + '\'),background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/target-cursor.gif" width="32" height="32" /></td></tr></table>';
-  //var tablehtml = '<img id="animtable" style="z-index:4; position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + 'px" src="graphics/target-cursor.gif" />';
+  var ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
+
+  var tablehtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; z-index:4; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
   
   targetCursor.tileid = "#td-tile" + displayspecs.leftedge + "x" + displayspecs.topedge;
   targetCursor.basetile = $(targetCursor.tileid).html(); 
@@ -115,7 +115,7 @@ function Attack(atk, def) {
     duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 150;
   }
   
-  $("#animtable").animate({ left: tocoords.x , top: tocoords.y } , duration, 'linear', function() {
+  $("#animtable").animate({ left: ammocoords.tox , top: ammocoords.toy } , duration, 'linear', function() {
     $(targetCursor.tileid).html(targetCursor.basetile);
     var hitgraphic = "";
     if (dmg == 0) { hitgraphic = "700.gif"; }
@@ -130,9 +130,10 @@ function Attack(atk, def) {
         ammographic.xoffset = 0;
         ammographic.yoffset = 0;
       }
-      returnhtml = '<div id="animtable" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:4; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
+      returnhtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; z-index:4; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
       $(targetCursor.tileid).html($(targetCursor.tileid).html() + returnhtml);
-      $("#animtable").animate({ left: fromcoords.x , top: fromcoords.y } , duration, 'linear', function() {
+      $("#animtable").animate({ left: ammocoords.fromx , top: ammocoords.fromy } , duration, 'linear', function() {
+        $(targetCursor.tileid).html(targetCursor.basetile);
         if (dmg != 0) {
           var stillalive = def.dealDamage(dmg, atk);    
           if (stillalive) {
@@ -140,9 +141,7 @@ function Attack(atk, def) {
             retval["txt"] += ": " + damagedesc + "!"; 
           }
           else { retval["txt"] += ": Killed!"; }
-        } else {
-          retval["txt"] = retval["txt"] + " - missed!";
-        }
+        } 
         maintext.addText(retval["txt"]);
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
@@ -152,6 +151,9 @@ function Attack(atk, def) {
    	 		
         var nextEntity = DUTime.executeNextEvent().getEntity();
         nextEntity.myTurn();
+
+        delete targetCursor;
+        targetCursor = new Object;
       });
     }, 400);
   });
@@ -161,26 +163,37 @@ function Attack(atk, def) {
   return tmpval;
 }
 
-function PostAnimation1(mapref, frommob, tomob, dmg, retval) {
-  
-  if (dmg != 0) {
-    var stillalive = def.dealDamage(dmg, atk);    
-    if (stillalive) {
-      var damagedesc = GetDamageDescriptor(def); 
-      retval["txt"] += ": " + damagedesc + "!"; 
-    }
-    else { retval["txt"] += ": Killed!"; }
-  } else {
-    retval["txt"] = retval["txt"] + " - missed!";
+function GetCoordsWithOffsets(direction, from, to) {
+
+  var fromdisplace = 10;
+  var todisplace = 5;
+
+  var coordsobj = new Object;
+  coordsobj.fromx = from.x;
+  coordsobj.fromy = from.y;
+  coordsobj.tox = to.x;
+  coordsobj.toy = to.y;
+
+  if ((direction == 7) || (direction == 0) || (direction == 1)) {  // north is a component
+    coordsobj.fromy -= fromdisplace;
+    coordsobj.toy += todisplace;
   }
-    
-  retval["fin"] = 1;
-  retval["input"] = "&gt;";
-  return retval;
-  
+  if ((direction >= 1) && (direction <= 3)) { // east is a component
+    coordsobj.fromx += fromdisplace;
+    coordsobj.tox -= todisplace;
+  }
+  if ((direction >= 3) && (displace <= 5)) { // south is a component
+    coordsobj.fromy += fromdisplace;
+    coordsobj.toy -= todisplace;
+  }
+  if ((direction >= 5) && (displace <= 7)) {  // west is a component
+    coordsobj.fromx -= fromdisplace;
+    coordsobj.fromy += todisplace;
+  }
+
+  return coordsobj;
 }
-
-
+  
 function GetDamageDescriptor(who) {
   var ratio = who.getHP() / who.getMaxHP();
   if (ratio > .66) { return ("lightly wounded"); }
