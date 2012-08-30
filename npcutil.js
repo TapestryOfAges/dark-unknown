@@ -112,7 +112,7 @@ function Attack(atk, def) {
   targetCursor.basetile = $(targetCursor.tileid).html(); 
   $(targetCursor.tileid).html($(targetCursor.tileid).html() + tablehtml);
   if (type == "missile") {
-    duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 150;
+    duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 100;
   }
   
   $("#animtable").animate({ left: ammocoords.tox , top: ammocoords.toy } , duration, 'linear', function() {
