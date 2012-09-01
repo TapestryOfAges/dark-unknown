@@ -3986,6 +3986,15 @@ PCObject.prototype.myTurn = function() {
 	gamestate.setTurn(PC);
 }
 
+PCObject.prototype.endTurn = function(init) {
+  gamestate.setMode("null");
+  var PCevent = new GameEvent(PC);
+  DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(init));
+
+  var nextEntity = DUTime.executeNextEvent().getEntity();
+  nextEntity.myTurn();
+}
+
 PCObject.prototype.getPCName = function() {
 	return this.pcname;
 }

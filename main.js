@@ -103,12 +103,7 @@ $(document).ready(function() {
       var inp = response["input"];
       maintext.drawTextFrame();
       if (response["fin"] == 1) {
-        gamestate.setMode("null");
-        var PCevent = new GameEvent(PC);
-        DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
-   	 		
-        var nextEntity = DUTime.executeNextEvent().getEntity();
-        nextEntity.myTurn();
+        PC.endTurn(response["initdelay"]);
       }
     }  
   }
@@ -137,12 +132,7 @@ $(document).ready(function() {
           gamestate.setTurn(PC);
         }
         else if (retval["fin"] == 1) {
-          gamestate.setMode("null");
-          var PCevent = new GameEvent(PC);
-          DUTime.addAtTimeInterval(PCevent,PC.nextActionTime());
-   	 		
-          var nextEntity = DUTime.executeNextEvent().getEntity();
-          nextEntity.myTurn();
+          PC.endTurn(retval["initdelay"]);
         }
         maintext.setInputLine("&gt;");
         maintext.addText(retval["txt"]);
@@ -202,12 +192,7 @@ $(document).ready(function() {
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame();
 
-          gamestate.setMode("null");
-          var PCevent = new GameEvent(PC);
-          DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
-   	 		
-          var nextEntity = DUTime.executeNextEvent().getEntity();
-          nextEntity.myTurn();
+          PC.endTurn(resp["initdelay"]);
         }
       }
     }
@@ -253,12 +238,7 @@ $(document).ready(function() {
         // does not take time, either because it failed or was a no-time success
       }
       else if (newresponse["fin"] == 1) {
-        gamestate.setMode("null");
-        var PCevent = new GameEvent(PC);
-        DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
-   	 		
-        var nextEntity = DUTime.executeNextEvent().getEntity();
-        nextEntity.myTurn();
+        PC.endTurn(newresponse["initdelay"]);
       }
       else if (newresponse["fin"] == -1) {
         gamestate.setMode("null");
@@ -301,12 +281,7 @@ $(document).ready(function() {
       maintext.drawTextFrame();
       drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
       drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-      gamestate.setMode("null");
-      var PCevent = new GameEvent(PC);
-      DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(response["initdelay"]));
-   	 		
-      var nextEntity = DUTime.executeNextEvent().getEntity();
-      nextEntity.myTurn();
+      PC.endTurn(response["initdelay"]);
     }
       
   }
