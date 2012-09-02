@@ -3280,6 +3280,7 @@ function NPCObject() {
   this.gold = 0;
 	this.leavesCorpse = "";
 	this.lootTable = "";
+	this.lastTurnTime = 0;
 	
 	this.addType("npc");
 }
@@ -3327,6 +3328,18 @@ NPCObject.prototype.addGold = function(diffgold) {
     this.gold += diffgold;
   }
   return this.gold;
+}
+
+NPCObject.prototype.getLastTurnTime = function() {
+  return this.lastTurnTime;
+}
+
+NPCObject.prototype.setLastTurnTime = function(newtime) {
+  newtime = parseInt(newtime);
+  if (!isNaN(newtime)) {
+    this.lastTurnTime = newtime;
+  }
+  return this.lastTurnTime;
 }
 
 NPCObject.prototype.setHP = function(newhp) {
