@@ -145,15 +145,9 @@ function Attack(atk, def) {
         maintext.addText(retval["txt"]);
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
+        
+        atk.endTurn(retval["initdelay"]);
 
-        var PCevent = new GameEvent(PC);
-        DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(retval["initdelay"]));
-   	 		
-        var nextEntity = DUTime.executeNextEvent().getEntity();
-        nextEntity.myTurn();
-
-        delete targetCursor;
-        targetCursor = new Object;
       });
     }, 400);
   });
