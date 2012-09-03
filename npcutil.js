@@ -58,7 +58,12 @@ function Attack(atk, def) {
     }
   } 
   
-  retval["txt"] = "Attack " + def.getDesc();
+  if (atk.checkType("pc")) {
+    retval["txt"] = "Attack " + def.getDesc();
+  } else {
+    retval["txt"] =  atk.getDesc() + " attacks " + def.getDesc();
+    retval["txt"] = retval["txt"].charAt(0).toUpperCase() + retval["txt"].slice(1);
+  }
   
   var tohit = atk.getHitChance(weapon) / 100;
   var defense = def.getDefense() / 100;
