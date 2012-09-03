@@ -3281,6 +3281,7 @@ function NPCObject() {
 	this.leavesCorpse = "";
 	this.lootTable = "";
 	this.lastTurnTime = 0;
+	this.spellbook = new Array;
 	
 	this.addType("npc");
 }
