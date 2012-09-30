@@ -82,7 +82,6 @@ mappages["metaltwister"].features[0] = {name : 'LadderUp', x : 20, y : 24, enter
 mappages["metaltwister"].features[1] = {name : 'LadderDown', x : 21, y : 36, entermap : 'metaltwister2', enterx : 16, entery : 2};
 mappages["metaltwister"].features[2] = {name : 'LadderDown', x : 36, y : 55, entermap : 'metaltwister2', enterx : 27, entery : 67};
 
-
 mappages["metaltwister"].npcs = new Array;
 
 mappages["metaltwister"].desc = 'Metal Twister';
@@ -94,7 +93,7 @@ mappages["metaltwister"].wraps = 'None';
 mappages["metaltwister"].enterx = '20';
 mappages["metaltwister"].entery = '24';
 mappages["metaltwister"].seeBelow = '';
-mappages["metaltwister"].lightLevel = 'Dark';
+mappages["metaltwister"].lightLevel = 'dark';
 mappages["metaltwister"].alwaysRemember = '';
 mappages["metaltwister"].scale = '1';
 mappages["metaltwister"].linkedMaps = new Array("metaltwister2","metaltwister3");
@@ -240,7 +239,7 @@ mappages["metaltwister2"].wraps = 'None';
 mappages["metaltwister2"].enterx = '';
 mappages["metaltwister2"].entery = '';
 mappages["metaltwister2"].seeBelow = '';
-mappages["metaltwister2"].lightLevel = 'Dark';
+mappages["metaltwister2"].lightLevel = 'dark';
 mappages["metaltwister2"].alwaysRemember = '';
 mappages["metaltwister2"].scale = '1';
 mappages["metaltwister2"].linkedMaps = new Array("metaltwister","metaltwister3");
@@ -302,7 +301,7 @@ mappages["metaltwister3"].wraps = 'None';
 mappages["metaltwister3"].enterx = '';
 mappages["metaltwister3"].entery = '';
 mappages["metaltwister3"].seeBelow = '';
-mappages["metaltwister3"].lightLevel = 'Dark';
+mappages["metaltwister3"].lightLevel = 'dark';
 mappages["metaltwister3"].alwaysRemember = '';
 mappages["metaltwister3"].scale = '1';
 mappages["metaltwister3"].linkedMaps = new Array("metaltwister","metaltwister2");
