@@ -875,6 +875,10 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
       this.data[y][x][type] = new Collection;
     }
     this.data[y][x][type].addTop(newthing);
+
+ 	  if ((typeof newthing.getLight == "function") && (newthing.getLight() > 0)) {
+  	  this.setMapLight(newthing.getSerial(), newthing.getLight(),x,y);
+  	}       
   
 //if ( typeof newthing.activate == "function") {
     if (newthing.getTypeForMap() == "npc") {
@@ -886,12 +890,19 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
 
 GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump and passable and before walkon
 //	var type = thing.type + "s";
+ 	if ((typeof thing.getLight == "function") && (thing.getLight() > 0)) {
+    this.removeMapLight(thing.getSerial(),thing.getLight(),thing.getx(),thing.gety());
+  }
   var type = thing.getTypeForMap() + "s";
 	this.data[thing.gety()][thing.getx()][type].deleteFrom(thing);
 	if (!this.data[y][x][type]) { this.data[y][x][type] = new Collection(); }
   this.data[y][x][type].addTop(thing);
   thing.setx(x);
   thing.sety(y);
+ 	if ((typeof thing.getLight == "function") && (thing.getLight() > 0)) {
+    this.setMapLight(thing.getSerial(),thing.getLight(),x,y);
+  }
+  
 }
 
 GameMap.prototype.deleteThing = function(thing) {
@@ -1082,6 +1093,36 @@ GameMap.prototype.loadMap = function (name) {
       this.setTerrain(j,i,newterrain);
     }
   }
+  
+  // load map details
+  this.setDesc(mappages.readPage(name, "desc"));
+  this.setMusic(mappages.readPage(name, "music"));
+  this.setExitToMap(mappages.readPage(name, "exitmap"));
+  this.setExitToX(mappages.readPage(name, "exitx"));
+  this.setExitToY(mappages.readPage(name, "exity"));
+  this.setWrap(mappages.readPage(name, "wraps"));
+  this.setEnterX(mappages.readPage(name, "enterx"));
+  this.setEnterY(mappages.readPage(name, "entery"));
+  this.setSeeBelow(mappages.readPage(name, "seeBelow"));
+  this.setLinkedMapsArray(mappages.readPage(name, "linkedMaps"));
+  this.setLightLevel(mappages.readPage(name, "lightLevel"));
+  this.setAlwaysRemember(mappages.readPage(name, "alwaysRemember"));
+  this.setScale(mappages.readPage(name, "scale"));
+  if(mappages.readPage(name, "enterscript")) {
+    mappages[name][mappages.readPage(name, "enterscript")](this);
+  }
+  if(mappages.readPage(name, "entertestscript")){
+    mappages[name][mappages.readPage(name, "entertestscript")](this);
+  }
+  if(mappages.readPage(name, "exitscript")) {
+    mappages[name][mappages.readPage(name, "exitscript")](this);
+  }
+  if(mappages.readPage(name, "exittestscript")) {
+    mappages[name][mappages.readPage(name, "exittestscript")](this);
+  }
+  
+  this.setName(name);
+    
   var loadfeatures = mappages.readPage(name, "features");
 //  this.features = new Collection;
   if (loadfeatures) {
@@ -1129,58 +1170,55 @@ GameMap.prototype.loadMap = function (name) {
   		this.placeThing(loadnpcs[i].x,loadnpcs[i].y,newnpc);
   	}
   }
-  // load map details
-  this.setDesc(mappages.readPage(name, "desc"));
-  this.setMusic(mappages.readPage(name, "music"));
-  this.setExitToMap(mappages.readPage(name, "exitmap"));
-  this.setExitToX(mappages.readPage(name, "exitx"));
-  this.setExitToY(mappages.readPage(name, "exity"));
-  this.setWrap(mappages.readPage(name, "wraps"));
-  this.setEnterX(mappages.readPage(name, "enterx"));
-  this.setEnterY(mappages.readPage(name, "entery"));
-  this.setSeeBelow(mappages.readPage(name, "seeBelow"));
-  this.setLinkedMapsArray(mappages.readPage(name, "linkedMaps"));
-  this.setLightLevel(mappages.readPage(name, "lightLevel"));
-  this.setAlwaysRemember(mappages.readPage(name, "alwaysRemember"));
-  this.setScale(mappages.readPage(name, "scale"));
-  if(mappages.readPage(name, "enterscript")) {
-    mappages[name][mappages.readPage(name, "enterscript")](this);
-  }
-  if(mappages.readPage(name, "entertestscript")){
-    mappages[name][mappages.readPage(name, "entertestscript")](this);
-  }
-  if(mappages.readPage(name, "exitscript")) {
-    mappages[name][mappages.readPage(name, "exitscript")](this);
-  }
-  if(mappages.readPage(name, "exittestscript")) {
-    mappages[name][mappages.readPage(name, "exittestscript")](this);
-  }
-  
-  this.setName(name);
+
   
   // set lightsources
-  for (var i=0; i<this.data.length; i++) {
-  	for (var j=0; j<this.data[0].length; j++) {
-  	  var thistile = this.getTile(j,i);
-  	  if (thistile == "OoB") { alert("Wtf? Tile out of bounds on map load."); }	
-  	  if ((typeof thistile.getTerrain().getLight == "function") && (thistile.getTerrain().getLight() > 0)) {
-  	  	setMapLight(this,thistile.getTerrain().getSerial(),thistile.getTerrain().getLight(),j,i);
-  	  }
-  	}
-  }
+//  for (var i=0; i<this.data.length; i++) {
+//  	for (var j=0; j<this.data[0].length; j++) {
+//  	  var thistile = this.getTile(j,i);
+//  	  if (thistile == "OoB") { alert("Wtf? Tile out of bounds on map load."); }	
+//  	  var tilenpc = thistile.getNPCs();
+//  	  if (tilenpc.length) {
+//  	    for (var k = 0; k < tilenpc.length; k++) {
+//  	      if ((typeof tilenpc[k].getLight == "function") && (tilenpc[k].getLight() > 0)) {
+//  	        setMapLight(this, tilenpc[k].getSerial(), tilenpc[k].getLight(),j,i);
+//  	      }
+//  	    }
+//  	  }
+//  	  var tilefeature = thistile.getFeatures();
+//  	  if (tilefeature.length) {
+//  	    for (var k = 0; k < tilefeature.length; k++) {
+//  	      if ((typeof tilefeature[k].getLight == "function") && (tilefeature[k].getLight() > 0)) {
+//  	        alert(tilefeature[k].getName() + ": " + tilefeature[k].getLight());
+//  	        setMapLight(this, tilefeature[k].getSerial(), tilefeature[k].getLight(),j,i);
+//  	      }
+//  	    }
+//  	  }
+//  	}
+//  }
   return;
 }
 
-function setMapLight(map,serial,light,x,y) {
+GameMap.prototype.setMapLight = function(serial,light,x,y) {
+//  alert(map.getName() + ", " + serial + ", " + light + ", " + x + ", " + y);
 	for (var i = (x-(light+1)); i<=(x+(light+1)); i++) {
 		for (var j = (y-(light+1)); j<=(y+(light+1)); j++) {
-			if (map.getTile(i,j) == "OoB") { next; }
-			var LOSval = map.getLOS(x,y,i,j,losgrid);
-			var dist = ((x-i)^2 + (y-j)^2)^(.5);
+			if (this.getTile(i,j) == "OoB") { next; }
+			var LOSval = this.getLOS(x,y,i,j,losgrid);
+			var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
 			var totlight = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval );
 			if (totlight > 0) { 
-				map.getTile(i,j).addLocalLight(serial,totlight);
+				this.getTile(i,j).addLocalLight(serial,totlight);
 			}
+		}
+	}
+}
+
+GameMap.prototype.removeMapLight = function(serial,light,x,y) {
+	for (var i = (x-(light+1)); i<=(x+(light+1)); i++) {
+		for (var j = (y-(light+1)); j<=(y+(light+1)); j++) {
+			if (this.getTile(i,j) == "OoB") { next; }
+			this.getTile(i,j).removeLocalLight(serial);
 		}
 	}
 }
