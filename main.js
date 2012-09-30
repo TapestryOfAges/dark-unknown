@@ -9,6 +9,7 @@ var localFactory = new tileFactory();
 var eidos = new Platonic();
 
 var PC = new PCObject();
+PC.assignSerial();
 var gamestate = new GameStateData();
 var maps = new MapMemory();
 var worldmap = new GameMap();
@@ -53,7 +54,14 @@ function drawMainFrame(how, mapname, centerx, centery) {
       	if (debug) { dbs.writeln("<span style='color:"+debugcolor+"'>j = " + j + ", i = " + i + ". Map is " + themap.getName() + " -- "); }
       	if (debug) { dbs.writeln("<span style='color:"+debugcolor+"'>" + themap.data[i].length + "<br />"); }
       	var thiscell = getDisplayCell(themap,centerx,centery,j,i);
-        mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + thiscell.showGraphic + '\'); background-repeat:no-repeat; background-position: ' + thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px;"><img id="tile'+j+'x'+i+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+j+'x'+i+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="' + thiscell.desc + '" /></td>';
+      	var opac = 1;
+      	if ((thiscell.lighthere >= SHADOW_THRESHOLD) && (thiscell.lighthere < 1)) {
+      	  opac = 0.3;
+      	}
+      	if (thiscell.lighthere < SHADOW_THRESHOLD) {
+      	  opac = 0;
+      	}
+        mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="opacity: ' + opac + '; background-image:url(\'graphics/' + thiscell.showGraphic + '\'); background-repeat:no-repeat; background-position: ' + thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px;"><img id="tile'+j+'x'+i+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+j+'x'+i+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="' + thiscell.desc + '" /></td>';
       }  
       mapdiv += '</tr><tr>';
     }

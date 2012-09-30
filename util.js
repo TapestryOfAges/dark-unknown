@@ -56,12 +56,16 @@ function getDisplayCell(mapname, centerx, centery, x, y) {
 
   var displayCell = new Object;
   var localacre = mapname.getTile(x,y);
+  var ambientlight = mapname.getLightLevel();
   
   var displaytile;
   // decide whether to draw a tile, draw it shaded, or make it darkness
   var losresult = mapname.getLOS(centerx, centery, x, y, losgrid);
 
   var lighthere = localacre.getLocalLight();
+  if (ambientlight == "bright") {
+    lighthere += 1;
+  }
   displaytile = localacre.getTop();
   while (displaytile.getName() == "SeeBelow") {
     localacre = FindBelow(x,y,mapname);

@@ -471,6 +471,16 @@ function PerformLook() {
 //  alert(onscreen);
   var losval = 0;
   if (onscreen.indexOf("You cannot see that") != -1) { losval = 1; }
+  else {
+    var tile = map.getTile(targetCursor.x,targetCursor.y);
+    var light = tile.getLocalLight();
+    if (map.getLightLevel() == "bright") {
+      light += 1;
+    }
+    if (light < SHADOW_THRESHOLD) {
+      losval = 1;
+    }
+  }
 //  var losval = map.getLOS(PC.getx(), PC.gety(), targetCursor.x, targetCursor.y, losgrid);
   if (losval >= LOS_THRESHOLD) { 
   	var retval = new Object;
