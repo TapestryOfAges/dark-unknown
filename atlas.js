@@ -1201,8 +1201,8 @@ GameMap.prototype.loadMap = function (name) {
 
 GameMap.prototype.setMapLight = function(serial,light,x,y) {
 //  alert(map.getName() + ", " + serial + ", " + light + ", " + x + ", " + y);
-	for (var i = (x-(light+1)); i<=(x+(light+1)); i++) {
-		for (var j = (y-(light+1)); j<=(y+(light+1)); j++) {
+	for (var i = (x-(Math.ceil(light)+1)); i<=(x+(Math.ceil(light)+1)); i++) {
+		for (var j = (y-(Math.ceil(light)+1)); j<=(y+(Math.ceil(light)+1)); j++) {
 			if (this.getTile(i,j) == "OoB") { next; }
 			var LOSval = this.getLOS(x,y,i,j,losgrid);
 			var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
@@ -1215,8 +1215,8 @@ GameMap.prototype.setMapLight = function(serial,light,x,y) {
 }
 
 GameMap.prototype.removeMapLight = function(serial,light,x,y) {
-	for (var i = (x-(light+1)); i<=(x+(light+1)); i++) {
-		for (var j = (y-(light+1)); j<=(y+(light+1)); j++) {
+	for (var i = (x-(Math.ceil(light)+1)); i<=(x+(Math.ceil(light)+1)); i++) {
+		for (var j = (y-(Math.ceil(light)+1)); j<=(y+(Math.ceil(light)+1)); j++) {
 			if (this.getTile(i,j) == "OoB") { next; }
 			this.getTile(i,j).removeLocalLight(serial);
 		}
