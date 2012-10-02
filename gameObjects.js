@@ -3989,6 +3989,7 @@ function PCObject() {
 	this.movetype = MOVE_WALK;
 	this.xp = 0;
 	this.tp = 0;  // training points
+        this.spells = 0;
 	
 	LightEmitting.call(this, 0.5);
 	this.addType("pc");
@@ -4047,3 +4048,14 @@ PCObject.prototype.addtp = function(difftp) {
   this.tp += difftp;
   return this.tp;
 }
+
+PCObject.prototype.addSpell = function(spellid) {
+  this.spells = (this.spells | spellid);
+  return this.spells;
+}
+
+PCObject.prototype.knowsSpell = function(spellid) {
+  if (this.spells & spellid) { return 1; }
+  return 0;
+}
+
