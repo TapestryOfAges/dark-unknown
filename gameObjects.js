@@ -4059,3 +4059,7 @@ PCObject.prototype.knowsSpell = function(spellid) {
   return 0;
 }
 
+PCObject.prototype.getSpells = function() {
+  return this.spells;
+}
+
