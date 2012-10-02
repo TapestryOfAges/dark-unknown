@@ -32,7 +32,8 @@ SpellObject.prototype.getTargets = function() {
 }
 
 function GetSpellID(level, num) {
-  var spellid = ((level-1) * 32) + Math.pow(2,(num-1));
+  var spellid = (Math.pow(2,((num-1) + ((level-1) * 6))));
+  return spellid;
 }
 
 magic[GetSpellID(1,1)] = new SpellObject("Cure", "An Nox", 1, 0);
