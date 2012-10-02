@@ -3990,7 +3990,7 @@ function PCObject() {
 	this.xp = 0;
 	this.tp = 0;  // training points
 	
-	LightEmitting.call(this, 1);
+	LightEmitting.call(this, 0.5);
 	this.addType("pc");
 }
 PCObject.prototype = new NPCObject;
