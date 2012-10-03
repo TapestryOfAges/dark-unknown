@@ -2136,7 +2136,7 @@ EnergyFieldTile.prototype = new FeatureObject;
 
 function CampfireTile() {
 	this.name = "Campfire";
-	this.graphic = "022.gif";
+	this.graphic = "campfire.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
 //	this.light = 2;  // 2 tiles of "bright"
@@ -2146,6 +2146,20 @@ function CampfireTile() {
 	LightEmitting.call(this, 2);
 }
 CampfireTile.prototype = new FeatureObject;
+
+function SpitTile() {
+	this.name = "Spit";
+	this.graphic = "spit.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+//	this.light = 2;  // 2 tiles of "bright"
+  this.prefix = "a";
+	this.desc = "campfire";
+	
+	LightEmitting.call(this, 2);
+}
+SpitTile.prototype = new FeatureObject;
+
 
 function AltarTile() {
 	this.name = "Altar";
