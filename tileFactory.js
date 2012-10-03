@@ -582,6 +582,11 @@ tileFactory.prototype.makeCampfireTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSpitTile = function() {
+  var newTile = new SpitTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAltarTile = function() {
   var newTile = new AltarTile();
   return newTile;
