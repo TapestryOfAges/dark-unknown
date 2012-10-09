@@ -31,6 +31,26 @@ SpellObject.prototype.getTargets = function() {
   return this.targets;
 }
 
+SpellObject.prototype.myTurn = function() {
+  this.executeSpell();
+  
+	var spellEvent = new GameEvent(this);
+  DUTime.addAtTimeInterval(SpellEvent,this.nextActionTime(1));
+  
+  var nextEntity = DUTime.executeNextEvent().getEntity();
+  nextEntity.myTurn(); 
+}
+
+SpellObject.prototype.executeSpell = function() {
+  // this will be overridden by each spell object
+  
+  return;
+}
+
+SpellObject.prototype.expireSpell = function() {
+  DUTime.removeEntityFrom(this);
+}
+
 function GetSpellID(level, num) {
   var spellid = (Math.pow(2,((num-1) + ((level-1) * 6))));
   return spellid;
