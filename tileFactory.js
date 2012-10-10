@@ -582,6 +582,16 @@ tileFactory.prototype.makeCampfireTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTorchWestTile = function() {
+  var newTile = new TorchWestTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTorchEastTile = function() {
+  var newTile = new TorchEastTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpitTile = function() {
   var newTile = new SpitTile();
   return newTile;

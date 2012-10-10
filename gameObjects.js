@@ -2134,6 +2134,36 @@ function EnergyFieldTile() {
 }
 EnergyFieldTile.prototype = new FeatureObject;
 
+function TorchWestTile() {
+	this.name = "Torch";
+	this.graphic = "torch_l.gif";
+	this.overlay = "torch_l.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+//	this.light = 2;  // 2 tiles of "bright"
+  this.prefix = "a";
+	this.desc = "torch";
+
+  SetByBelow.call(this);	
+	LightEmitting.call(this, 2);
+}
+TorchWestTile.prototype = new FeatureObject;  
+
+function TorchEastTile() {
+	this.name = "Torch";
+	this.graphic = "torch_r.gif";
+	this.overlay = "torch_r.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+//	this.light = 2;  // 2 tiles of "bright"
+  this.prefix = "a";
+	this.desc = "torch";
+
+  SetByBelow.call(this);	
+	LightEmitting.call(this, 2);
+}
+TorchEastTile.prototype = new FeatureObject;  
+
 function CampfireTile() {
 	this.name = "Campfire";
 	this.graphic = "campfire.gif";
