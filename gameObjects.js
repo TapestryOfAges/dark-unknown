@@ -2135,7 +2135,7 @@ function EnergyFieldTile() {
 EnergyFieldTile.prototype = new FeatureObject;
 
 function TorchWestTile() {
-	this.name = "Torch";
+	this.name = "TorchWest";
 	this.graphic = "torch_l.gif";
 	this.overlay = "torch_l.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -2150,7 +2150,7 @@ function TorchWestTile() {
 TorchWestTile.prototype = new FeatureObject;  
 
 function TorchEastTile() {
-	this.name = "Torch";
+	this.name = "TorchEast";
 	this.graphic = "torch_r.gif";
 	this.overlay = "torch_r.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
