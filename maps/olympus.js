@@ -126,21 +126,29 @@ mappages["olympus0"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 mappages["olympus0"].features = new Array;
 mappages["olympus0"].features[0] = {name : 'SecretDoor', x : 13, y : 17};
 mappages["olympus0"].features[1] = {name : 'DoorWindow', x : 14, y : 8};
-mappages["olympus0"].features[2] = {name : 'DoorWindow', x : 18, y : 8, desc : "a locked door", locked : 1};
-mappages["olympus0"].features[3] = {name : 'DoorWindow', x : 18, y : 13, desc : "a locked door", locked : 1};
-mappages["olympus0"].features[4] = {name : 'DoorWindow', x : 18, y : 3, desc : "a locked door", locked : 1};
-mappages["olympus0"].features[5] = {name : 'Door', x : 5, y : 9, desc : "a magically locked door", locked : 2};
-mappages["olympus0"].features[6] = {name : 'Door', x : 5, y : 15, desc : "a locked door", locked : 1};
+mappages["olympus0"].features[2] = {name : 'DoorWindow', x : 18, y : 8, desc : "locked door", locked : 1};
+mappages["olympus0"].features[3] = {name : 'DoorWindow', x : 18, y : 13, desc : "locked door", locked : 1};
+mappages["olympus0"].features[4] = {name : 'DoorWindow', x : 18, y : 3, desc : "locked door", locked : 1};
+mappages["olympus0"].features[5] = {name : 'Door', x : 5, y : 9, desc : "magically locked door", locked : 2};
+mappages["olympus0"].features[6] = {name : 'Door', x : 5, y : 15, desc : "locked door", locked : 1};
 mappages["olympus0"].features[7] = {name : 'Door', x : 8, y : 18};
 mappages["olympus0"].features[8] = {name : 'LadderUp', x : 5, y : 18, entermap : 'olympus1', enterx : 11, entery : 33};
 mappages["olympus0"].features[9] = {name : 'Doorway', x : 17, y : 18};
+mappages["olympus0"].features[10] = {name : 'TorchEast', x : 7, y : 17};
+mappages["olympus0"].features[11] = {name : 'TorchEast', x : 7, y : 19};
+mappages["olympus0"].features[12] = {name : 'TorchEast', x : 8, y : 4};
+mappages["olympus0"].features[13] = {name : 'TorchWest', x : 4, y : 12};
+mappages["olympus0"].features[14] = {name : 'TorchWest', x : 15, y : 12};
+mappages["olympus0"].features[15] = {name : 'TorchWest', x : 15, y : 4};
+mappages["olympus0"].features[16] = {name : 'TorchWest', x : 2, y : 4};
+
 
 mappages["olympus0"].npcs = new Array;
-mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 4, y : 16};
-mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 10};
-mappages["olympus0"].npcs[2] = {name : 'TownGuardNPC', x : 15, y : 7};
-mappages["olympus0"].npcs[3] = {name : 'TownGuardNPC', x : 15, y : 9};
-mappages["olympus0"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 20, y : 3};
+mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 4, y : 16, Prefix: ''};
+mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 6, y : 10, Prefix: ''};
+mappages["olympus0"].npcs[2] = {name : 'TownGuardNPC', x : 15, y : 7, Prefix: ''};
+mappages["olympus0"].npcs[3] = {name : 'TownGuardNPC', x : 15, y : 9, Prefix: ''};
+mappages["olympus0"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 20, y : 3, Prefix: ''};
 
 mappages["olympus0"].desc = 'Castle Olympus Basement';
 mappages["olympus0"].music = 'Towne';
@@ -152,8 +160,13 @@ mappages["olympus0"].enterx = 'undefined';
 mappages["olympus0"].entery = 'undefined';
 mappages["olympus0"].seeBelow = '';
 mappages["olympus0"].lightLevel = 'dark';
-mappages["olympus0"].linkedMaps = new Array("olympus1","olympus2");
+mappages["olympus0"].alwaysRemember = '';
 mappages["olympus0"].scale = '1';
+mappages["olympus0"].enterscript = '';
+mappages["olympus0"].entertestscript = '';
+mappages["olympus0"].exitscript = '';
+mappages["olympus0"].exittestscript = '';
+mappages["olympus0"].linkedMaps = new Array("olympus1","olympus2");
 
 
 mappages["olympus2"] = new Object();
