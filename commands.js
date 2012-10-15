@@ -790,13 +790,13 @@ function performZstats(code) {
     }
     else if ((code == 37) || (code == 59)) {  // previous page
       targetCursor.page--;
-      if (targetCursor.page == 0) { targetCursor.page = 2; }  // set to the last page when I know what that will be
+      if (targetCursor.page == 0) { targetCursor.page = 3; }  // set to the last page when I know what that will be
       DrawStats(targetCursor.page);
       retval["fin"] = 1;
     }
     else if ((code == 39) || (code == 222)) { // next page
       targetCursor.page++;
-      if (targetCursor.page == 3) { targetCursor.page = 1; }
+      if (targetCursor.page == 4) { targetCursor.page = 1; }
       DrawStats(targetCursor.page);
       retval["fin"] = 1;
     }
@@ -813,9 +813,10 @@ function performZstats(code) {
 }
 
 function DrawStats(page) {
-  
- if (page == 1) {
+
   var statsdiv = "&nbsp;";
+   
+ if (page == 1) {
   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
   statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
@@ -879,15 +880,9 @@ function DrawStats(page) {
   
   statsdiv += "</table></div></div>";
   drawTopbarFrame("<p>Character</p>");
-  $('#displayframe').html(statsdiv);
-  
-	var scrollelem = $('.zstats').jScrollPane();
-  var scrollapi = scrollelem.data('jsp');
-  targetCursor.scrollapi = scrollapi;
   
  }
  else if (page == 2) {
-   var statsdiv = "&nbsp;";
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
    statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
@@ -949,10 +944,55 @@ function DrawStats(page) {
   
    statsdiv += "</table></div></div>";
    drawTopbarFrame("<p>Inventory</p>");
-   $('#displayframe').html(statsdiv);
+ } else if (page == 3) {
+   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
+   statsdiv += "<tr><td>&nbsp;</td></tr>";
    
+   var hasSpellbook = 0;
+   
+   for (var lvl = 1; lvl <= 8; lvl++ ){
+     var hasLevel = 0;
+     for (var i=1; i<=6; i++) {
+       var spellnum = getSpellID(lvl,i);
+       if (PC.knowsSpell(spellID)) {
+         if (!hasLevel) {
+           if (lvl == 1) {
+             statsdiv += "<tr><td class='circleheader'>First Circle</td></tr>";
+           } else if (lvl == 2) {
+             statsdiv += "<tr><td class='circleheader'>Second Circle</td></tr>";
+           } else if (lvl == 3) {
+             statsdiv += "<tr><td class='circleheader'>Third Circle</td></tr>";
+           } else if (lvl == 4) {
+             statsdiv += "<tr><td class='circleheader'>Fourth Circle</td></tr>";
+           } else if (lvl == 5) {
+             statsdiv += "<tr><td class='circleheader'>Fifth Circle</td></tr>";
+           } else if (lvl == 6) {
+             statsdiv += "<tr><td class='circleheader'>Sixth Circle</td></tr>";
+           } else if (lvl == 7) {
+             statsdiv += "<tr><td class='circleheader'>Seventh Circle</td></tr>";
+           } else if (lvl == 8) {
+             statsdiv += "<tr><td class='circleheader'>Eighth Circle</td></tr>";
+           }
+         }
+         statsdiv
+         
+         }
+       }
+     }
+   }
+   if (!hasSpellbook) {
+    statsdiv += "<tr><td>You do not have a spellbook.</td></tr>";
+  }
+  
+   statsdiv += "</table></div></div>";  
+   drawTopbarFrame("<p>Spellbook</p>");
+  }
+ 
+  $('#displayframe').html(statsdiv);
+  
 	var scrollelem = $('.zstats').jScrollPane();
   var scrollapi = scrollelem.data('jsp');
   targetCursor.scrollapi = scrollapi;
- }
+
 }
