@@ -758,7 +758,13 @@ function PerformUse(who) {
 		var usedname = used.getDesc();
 		usedname = usedname.replace(/^a /, "");
 		retval["txt"] = "Use " + usedname + ": " + retval["txt"];
-		drawMainFrame("one",used.getHomeMap().getName(),used.getx(),used.gety());
+		var drawtype = "one";
+		if (retval["redrawtype"]) {
+		  delete retval["redrawtype"];
+		  drawMainFrame("draw",used.getHomeMap().getName(),PC.getx(),PC.gety());
+		} else {		
+		  drawMainFrame("one",used.getHomeMap().getName(),used.getx(),used.gety());
+		}
 	} else {
 		retval["txt"] = "There is nothing to use there.";
 		retval["fin"] = 0;
