@@ -954,9 +954,10 @@ function DrawStats(page) {
    for (var lvl = 1; lvl <= 8; lvl++ ){
      var hasLevel = 0;
      for (var i=1; i<=6; i++) {
-       var spellnum = getSpellID(lvl,i);
-       if (PC.knowsSpell(spellID)) {
+       var spellnum = GetSpellID(i);
+       if (PC.knowsSpell(lvl, spellnum)) {
          if (!hasLevel) {
+           if (lvl != 1) { statsdiv += "<tr><td>&nbsp;</td></tr>"; }
            if (lvl == 1) {
              statsdiv += "<tr><td class='circleheader'>First Circle</td></tr>";
            } else if (lvl == 2) {
@@ -975,9 +976,10 @@ function DrawStats(page) {
              statsdiv += "<tr><td class='circleheader'>Eighth Circle</td></tr>";
            }
          }
-         statsdiv
+         statsdiv += "<tr><td class='spellstat'>" + magic[lvl][spellnum].getName() + "</td></tr>";
+         hasLevel = 1;
+         hasSpellbook = 1;
          
-         }
        }
      }
    }
