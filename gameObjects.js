@@ -383,6 +383,7 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 			
 			retval["fin"] = 1;
 			retval["txt"] = "Opened!";
+			retval["redrawtype"] = "draw";
 			this.open = 1;
 		}
 		return retval;
