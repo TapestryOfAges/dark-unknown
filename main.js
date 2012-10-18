@@ -7,6 +7,7 @@ var DAYNIGHT = DAY;
 var mappages = new Pages();
 var localFactory = new tileFactory();
 var eidos = new Platonic();
+var universe = new Object;
 
 var PC = new PCObject();
 PC.assignSerial();

@@ -14,6 +14,7 @@ GameObject.prototype.getSerial = function() {
 GameObject.prototype.assignSerial = function() {
  	maxserial++;
 	this.serial = maxserial;
+	universe[this.serial] = this;
 }
 
 GameObject.prototype.getx = function() {
