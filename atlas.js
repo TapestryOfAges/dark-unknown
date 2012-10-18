@@ -289,7 +289,7 @@ function Acre() {
   this.pcs = new Collection;
   
 //  AssignSerial.call(this);
-  this.localLight = new Array;
+  this.localLight = new Object;
 }
 
 Acre.prototype.addLocalLight = function(source, lightlevel) {

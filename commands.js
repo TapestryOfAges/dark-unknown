@@ -761,6 +761,14 @@ function PerformUse(who) {
 		var drawtype = "one";
 		if (retval["redrawtype"]) {
 		  delete retval["redrawtype"];
+		  // if more of the map needs to be redrawn, need to recheck light sources
+		  
+		  $.each(localacre.localLight, function(index, value) {
+		    // each object that is casting light on the door might be casting light through the door.
+		    who.getHomeMap().removeMapLight(index, universe[index].getLight(), universe[index].getx(), universe[index].gety());
+		    who.getHomeMap().setMapLight(index, universe[index].getLight(), universe[index].getx(), universe[index].gety());
+		  });
+		  
 		  drawMainFrame("draw",used.getHomeMap().getName(),PC.getx(),PC.gety());
 		} else {		
 		  drawMainFrame("one",used.getHomeMap().getName(),used.getx(),used.gety());
