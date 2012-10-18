@@ -126,7 +126,10 @@ $(document).ready(function() {
     }
     else if (code == 8) { // backspace
       var txt = maintext.getInputLine();
-      if (txt.length > 11) {
+      if (inputText.txt.length) {
+        inputText.txt = inputText.txt.substr(0,inputText.txt.length-1);
+//      }
+//      if (txt.length > 11) {
         txt = txt.substr(0,txt.length-1);
         maintext.setInputLine(txt);
         maintext.drawInputLine();
