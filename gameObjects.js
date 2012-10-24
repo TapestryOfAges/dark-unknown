@@ -3466,6 +3466,7 @@ NPCObject.prototype.processDeath = function(droploot){
     map.deleteThing(this);
     drawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
     DUTime.removeEntityFrom(this);
+    delete universe.this.getSerial();
   }
 }
 
