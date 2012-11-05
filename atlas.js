@@ -292,16 +292,31 @@ function Acre() {
   this.localLight = new Object;
 }
 
-Acre.prototype.addLocalLight = function(source, lightlevel) {
-	this.localLight[source] = lightlevel;
+Acre.prototype.addLocalLight = function(lightsource, lightlevel, map) {
+  if (lightlevel.center) {
+    this.localLight[lightsource.getSerial()] = lightlevel.center;  // but not this
+  } else {
+	  this.localLight[lightsource.getSerial()] = lightlevel;
+	}
+	map.lightsList[lightsource.getSerial()] = lightsource;
 }
 
-Acre.prototype.getLocalLight = function() {
-	var lightlevel = 0;
-	for (var i in this.localLight) {
-		lightlevel += this.localLight[i];
-	}
+Acre.prototype.getLocalLight = function(dir) {
+  var lightlevel = 0 ;
+  if (dir) {
+    for (var i in this.localLight) {
+      lightlevel += this.localLight[i][dir];
+    }
+  } else {
+	  for (var i in this.localLight) {
+		  lightlevel += this.localLight[i];
+    }
+  }
 	return lightlevel;
+}
+
+Acre.prototype.getLocalLightFrom = function(viewer) {
+  
 }
 
 Acre.prototype.removeLocalLight = function(source) {
@@ -877,7 +892,7 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
     this.data[y][x][type].addTop(newthing);
 
  	  if ((typeof newthing.getLight == "function") && (newthing.getLight() > 0)) {
-  	  this.setMapLight(newthing.getSerial(), newthing.getLight(),x,y);
+  	  this.setMapLight(newthing, newthing.getLight(),x,y);
   	}       
   
 //if ( typeof newthing.activate == "function") {
@@ -900,7 +915,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
   thing.setx(x);
   thing.sety(y);
  	if ((typeof thing.getLight == "function") && (thing.getLight() > 0)) {
-    this.setMapLight(thing.getSerial(),thing.getLight(),x,y);
+    this.setMapLight(thing,thing.getLight(),x,y);
   }
   
 }
@@ -1199,16 +1214,32 @@ GameMap.prototype.loadMap = function (name) {
   return;
 }
 
-GameMap.prototype.setMapLight = function(serial,light,x,y) {
+GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
 //  alert(map.getName() + ", " + serial + ", " + light + ", " + x + ", " + y);
+  var serial = lightsource.getSerial();
 	for (var i = (x-(Math.ceil(Math.abs(light))+1)); i<=(x+(Math.ceil(Math.abs(light))+1)); i++) {
 		for (var j = (y-(Math.ceil(Math.abs(light))+1)); j<=(y+(Math.ceil(Math.abs(light))+1)); j++) {
 			if (this.getTile(i,j) == "OoB") { continue; }
-			var LOSval = this.getLOS(x,y,i,j,losgrid);
-			var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
-			var totlight = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval );
-			if (totlight > 0) { 
-				this.getTile(i,j).addLocalLight(serial,totlight);
+			var block = this.getTile(i,j).getBlocksLOS();
+			if ((block > LOS_THRESHOLD) && (serial != 1)) {   // should probably not do this FIXME
+        var LOSval = this.getLOS(x,y,i,j,losgrid,0,1);
+        var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
+        var totlight = new Object;
+        totlight.ne = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval.ne );
+        totlight.nw = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval.nw );
+        totlight.se = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval.se );
+        totlight.sw = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval.sw );
+        totlight.center = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval.center );
+        if ((totlight.ne > 0) || (totlight.nw > 0) || (totlight.se > 0) || (totlight.sw > 0)) {
+          this.getTile(i,j).addLocalLight(lightsource,totlight,this);
+        }
+			} else {
+        var LOSval = this.getLOS(x,y,i,j,losgrid);
+        var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
+        var totlight = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval );
+        if (totlight > 0) { 
+          this.getTile(i,j).addLocalLight(lightsource,totlight,this);
+        }
 			}
 		}
 	}
@@ -1223,66 +1254,147 @@ GameMap.prototype.removeMapLight = function(serial,light,x,y) {
 	}
 }
 
-GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe) {
+GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight) {
+  // checklight = 0, check is for LOS only or light on an object that does not block LOS or the light source is the PC
+  // checklight = 1, check is for light on an object that does block LOS
 	var trueLOS = LOS_THRESHOLD;
 	var totalLOS = 0;
+	var quartersLOS = new Object;
+	quartersLOS.nw = LOS_THRESHOLD;
+	quartersLOS.ne = LOS_THRESHOLD;
+	quartersLOS.sw = LOS_THRESHOLD;
+	quartersLOS.se = LOS_THRESHOLD;
+	quartersLOS.center = LOS_THRESHOLD;
 	if ((x2-x1) <= (y2-y1)) { 
 		// lower left half of map
 		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","ne",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < LOS_THRESHOLD) { 
+		  if (checklight) {
+		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
+		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
+		  }
+		  else { return totalLOS; }
+		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 		
 		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","nw",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < LOS_THRESHOLD) { 
+		  if (checklight) {
+		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
+		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
+		  }
+		  else { return totalLOS; }
+		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
 		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","se",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < LOS_THRESHOLD) { 
+		  if (checklight) {
+		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
+		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
+		  }
+		  else { return totalLOS; }
+		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 	}
 	if ((x2-x1) >= (y2-y1)) {
 		// upper right half of map
 		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","sw",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < LOS_THRESHOLD) { 
+		  if (checklight) {
+		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
+		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
+		  }
+		  else { return totalLOS; }
+		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
 		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","nw",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < LOS_THRESHOLD) { 
+		  if (checklight) {
+		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
+		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
+		  }
+		  else { return totalLOS; }
+		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
 		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","se",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < LOS_THRESHOLD) { 
+		  if (checklight) {
+		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
+		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
+		  }
+		  else { return totalLOS; }
+		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 	}
 	if ((x2-x1) >= ((-1)*(y2-y1))) {
 		// lower right half of map
 		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","nw",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < LOS_THRESHOLD) { 
+		  if (checklight) {
+		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
+		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
+		  }
+		  else { return totalLOS; }
+		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
 		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","sw",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < LOS_THRESHOLD) { 
+		  if (checklight) {
+		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
+		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
+		  }
+		  else { return totalLOS; }
+		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
 		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","ne",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < LOS_THRESHOLD) { 
+		  if (checklight) {
+		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
+		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
+		  }
+		  else { return totalLOS; }
+		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 	}
 	if ((x2-x1) <= ((-1)*(y2-y1))) {
 		// upper left half of map
 		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","se",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < LOS_THRESHOLD) { 
+		  if (checklight) {
+		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
+		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
+		  }
+		  else { return totalLOS; }
+		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
 		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","ne",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < LOS_THRESHOLD) { 
+		  if (checklight) {
+		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
+		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
+		  }
+		  else { return totalLOS; }
+		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
 		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","sw",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { return totalLOS; }
+		if (totalLOS < LOS_THRESHOLD) { 
+		  if (checklight) {
+		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
+		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
+		  }
+		  else { return totalLOS; }
+		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 	}
-	
+
+  if (checklight) { return quartersLOS; }	
 	
   return trueLOS;
 }

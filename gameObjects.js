@@ -14,7 +14,7 @@ GameObject.prototype.getSerial = function() {
 GameObject.prototype.assignSerial = function() {
  	maxserial++;
 	this.serial = maxserial;
-	universe[this.serial] = this;
+//	universe[this.serial] = this;
 }
 
 GameObject.prototype.getx = function() {
@@ -3466,7 +3466,8 @@ NPCObject.prototype.processDeath = function(droploot){
     map.deleteThing(this);
     drawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
     DUTime.removeEntityFrom(this);
-    delete universe.this.getSerial();
+//    delete universe.this.getSerial();
+    delete map.lightsList[this.getSerial()];
   }
 }
 

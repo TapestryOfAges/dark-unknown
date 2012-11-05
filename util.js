@@ -608,3 +608,59 @@ function PlaceMonsters(battlemap,group,whoseturn) {
 
   return monsters;
 }
+
+function getDirection(viewer,targ) {
+  var direction;
+  var diffx = targ.getx() - viewer.getx();
+  var diffy = targ.gety() - viewer.gety();
+  if ((diffx == 0) && (diffy < 0)) {
+    direction = 0;
+  } else if ((diffx == 0) && (diffy > 0)) {
+    direction = 4;
+  } else {
+    if ((diffy == 0) && (diffx > 0)) {
+      direction = 2;
+    } else if ((diffy == 0) && (diffx < 0)) {
+      direction = 6;
+    }
+    else { 
+      var horflip = 0;
+      var verflip = 1;
+      if (diffy < 0) { 
+        diffy = Math.abs(diffy); 
+        verflip = 0;
+      }
+      if (diffx < 0) {
+        diffx = Math.abs(diffx);
+        horflip = 1;
+      }
+      slope = diffy/diffx;
+      if ((slope > 2.42) && (verflip == 0)) {
+        direction = 0;
+      }
+      else if ((slope > 2.42) && (verflip == 1)) {
+        direction = 4;
+      }
+      else if ((slope < .414) && (horflip == 0)) {
+        direction = 2;
+      }
+      else if ((slope < .414) && (horflip == 1)) {
+        direction = 6;
+      }
+      else if ((verflip == 0) && (horflip == 0)) {
+        direction = 1;
+      }
+      else if ((verflip == 1) && (horflip == 0)) {
+        direction = 3;
+      }
+      else if ((verflip == 1) && (horflip == 1)) {
+        direction = 5;
+      }
+      else if ((verflip == 0) && (horflip == 1)) {
+        direction = 7;
+      }
+      else { alert("Error in direction finding."); }
+    }
+  }
+  return direction;
+}

@@ -744,7 +744,8 @@ function PerformSearch(who) {
 }
 
 function PerformUse(who) {
-	var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  var usemap = who.getHomeMap();
+	var localacre = usemap.getTile(targetCursor.x,targetCursor.y);
 	var used = localacre.features.getTop();
 	var retval = new Object;
 	if (!used) {
@@ -765,8 +766,8 @@ function PerformUse(who) {
 		  
 		  $.each(localacre.localLight, function(index, value) {
 		    // each object that is casting light on the door might be casting light through the door.
-		    who.getHomeMap().removeMapLight(index, universe[index].getLight(), universe[index].getx(), universe[index].gety());
-		    who.getHomeMap().setMapLight(index, universe[index].getLight(), universe[index].getx(), universe[index].gety());
+		    who.getHomeMap().removeMapLight(index, usemap[index].getLight(), usemap[index].getx(), usemap[index].gety());
+		    who.getHomeMap().setMapLight(index, usemap[index].getLight(), usemap[index].getx(), usemap[index].gety());
 		  });
 		  
 		  drawMainFrame("draw",used.getHomeMap().getName(),PC.getx(),PC.gety());
