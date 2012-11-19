@@ -45,6 +45,7 @@ function drawMainFrame(how, mapname, centerx, centery) {
   }
 
   var debugcolor = "#0000cc";
+  if (debug) { dbs.writeln("<br /><br />"); }
 	
   if (how == "draw") {
     displayspecs = getDisplayCenter(themap,centerx,centery);
