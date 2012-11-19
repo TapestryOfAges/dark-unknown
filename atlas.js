@@ -293,12 +293,10 @@ function Acre() {
 }
 
 Acre.prototype.addLocalLight = function(lightsource, lightlevel, map) {
-  if (lightlevel.center) {
-    this.localLight[lightsource.getSerial()] = lightlevel.center;  // but not this
-  } else {
-	  this.localLight[lightsource.getSerial()] = lightlevel;
-	}
+  // lightlevel is always an object, might not have ne,nw,etc, always has center
+  this.localLight[lightsource.getSerial()] = lightlevel;
 	map.lightsList[lightsource.getSerial()] = lightsource;
+	if (debug) { dbs.writeln("LIGHT " + lightsource.getSerial() + ": Added to this acre."); }
 }
 
 Acre.prototype.getLocalLight = function(dir) {
@@ -309,7 +307,7 @@ Acre.prototype.getLocalLight = function(dir) {
     }
   } else {
 	  for (var i in this.localLight) {
-		  lightlevel += this.localLight[i];
+		  lightlevel += this.localLight[i]["center"];
     }
   }
 	return lightlevel;
@@ -557,6 +555,8 @@ function GameMap() {
   this.exitTestScript = "";
   this.enterScript = "";
   this.enterTestScript = "";
+  
+  this.lightsList = new Object;
 }
 GameMap.prototype = new Object;
 
@@ -657,10 +657,10 @@ GameMap.prototype.setTile = function(x,y,tile) {
 }
 
 GameMap.prototype.getTile = function(x,y) {  // returns an Acre
-	if (debug) { dbs.writeln("<span style='color:#cc0000'>" + this.getName() + " -- "); }
+//	if (debug) { dbs.writeln("<span style='color:#cc0000'>" + this.getName() + " -- "); }
 	if ((y < 0) || (x < 0)) { return "OoB"; }
 	if (y >= this.data.length) { return "OoB"; }
-	if (debug) { dbs.writeln("<span style='color:#cc0000'>" + x + "," + y + " :: " + this.data.length + "<br />"); }
+//	if (debug) { dbs.writeln("<span style='color:#cc0000'>" + x + "," + y + " :: " + this.data.length + "<br />"); }
 	if (x >= this.data[y].length) { return "OoB"; }
   return this.data[y][x];
 }
@@ -892,6 +892,7 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
     this.data[y][x][type].addTop(newthing);
 
  	  if ((typeof newthing.getLight == "function") && (newthing.getLight() > 0)) {
+  	  if (debug) { dbs.writeln("<br /><br />LIGHT: Placing new light source: " + newthing.getName() + ", light value: " + newthing.getLight() + ", serial: " + newthing.getSerial()); } 	    
   	  this.setMapLight(newthing, newthing.getLight(),x,y);
   	}       
   
@@ -1186,61 +1187,51 @@ GameMap.prototype.loadMap = function (name) {
   	}
   }
 
-  
-  // set lightsources
-//  for (var i=0; i<this.data.length; i++) {
-//  	for (var j=0; j<this.data[0].length; j++) {
-//  	  var thistile = this.getTile(j,i);
-//  	  if (thistile == "OoB") { alert("Wtf? Tile out of bounds on map load."); }	
-//  	  var tilenpc = thistile.getNPCs();
-//  	  if (tilenpc.length) {
-//  	    for (var k = 0; k < tilenpc.length; k++) {
-//  	      if ((typeof tilenpc[k].getLight == "function") && (tilenpc[k].getLight() > 0)) {
-//  	        setMapLight(this, tilenpc[k].getSerial(), tilenpc[k].getLight(),j,i);
-//  	      }
-//  	    }
-//  	  }
-//  	  var tilefeature = thistile.getFeatures();
-//  	  if (tilefeature.length) {
-//  	    for (var k = 0; k < tilefeature.length; k++) {
-//  	      if ((typeof tilefeature[k].getLight == "function") && (tilefeature[k].getLight() > 0)) {
-//  	        alert(tilefeature[k].getName() + ": " + tilefeature[k].getLight());
-//  	        setMapLight(this, tilefeature[k].getSerial(), tilefeature[k].getLight(),j,i);
-//  	      }
-//  	    }
-//  	  }
-//  	}
-//  }
   return;
 }
 
 GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
-//  alert(map.getName() + ", " + serial + ", " + light + ", " + x + ", " + y);
   var serial = lightsource.getSerial();
+  if (debug) { dbs.writeln("<br />LIGHT: " + lightsource.getHomeMap().getName() + ", " + serial + ", " + light + ", " + x + ", " + y); }
 	for (var i = (x-(Math.ceil(Math.abs(light))+1)); i<=(x+(Math.ceil(Math.abs(light))+1)); i++) {
 		for (var j = (y-(Math.ceil(Math.abs(light))+1)); j<=(y+(Math.ceil(Math.abs(light))+1)); j++) {
 			if (this.getTile(i,j) == "OoB") { continue; }
 			var block = this.getTile(i,j).getBlocksLOS();
-			if ((block > LOS_THRESHOLD) && (serial != 1)) {   // should probably not do this FIXME
+      if (debug) { dbs.writeln("<br />LIGHT " + serial + ": Checking shine on x:"+i+",y:"+j+", which blocks " + block + "."); }
+			if ((block > LOS_THRESHOLD) && (!lightsource.checkType("PC"))) {   
         var LOSval = this.getLOS(x,y,i,j,losgrid,0,1);
         var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
         var totlight = new Object;
         totlight.ne = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval.ne );
+        if ((light >= 0) && (totlight.ne < 0)) { totlight.ne = 0; }
         totlight.nw = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval.nw );
+        if ((light >= 0) && (totlight.nw < 0)) { totlight.nw = 0; }
         totlight.se = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval.se );
+        if ((light >= 0) && (totlight.se < 0)) { totlight.se = 0; }
         totlight.sw = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval.sw );
+        if ((light >= 0) && (totlight.sw < 0)) { totlight.sw = 0; }
         totlight.center = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval.center );
+        if ((light >= 0) && (totlight.center < 0)) { totlight.center = 0; }
         if ((totlight.ne > 0) || (totlight.nw > 0) || (totlight.se > 0) || (totlight.sw > 0)) {
           this.getTile(i,j).addLocalLight(lightsource,totlight,this);
         }
 			} else {
         var LOSval = this.getLOS(x,y,i,j,losgrid);
         var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
-        var totlight = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval );
-        if (totlight > 0) { 
+        var totlight = new Object;
+        totlight.center = (light + 1.5 - dist) * ( LOS_THRESHOLD - LOSval );
+        if ((light >= 0) && (totlight.center < 0)) { totlight.center = 0; }
+        if ((lightsource.checkType("PC")) && (block > LOS_THRESHOLD)) {
+          totlight.ne = totlight.center;
+          totlight.se = totlight.center;
+          totlight.sw = totlight.center;
+          totlight.nw = totlight.center;
+        }
+        if (totlight.center > 0) { 
           this.getTile(i,j).addLocalLight(lightsource,totlight,this);
         }
 			}
+			if (debug) {dbs.writeln("<br />LIGHT " + serial + ": light values: center=" + totlight.center + ", ne=" + totlight.ne + ", nw=" + totlight.nw + ", se=" + totlight.se + ", sw=" +totlight.sw + "."); }
 		}
 	}
 }

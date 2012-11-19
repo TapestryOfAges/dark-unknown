@@ -57,6 +57,7 @@ GameObject.prototype.addType = function(type) {
 }
 
 GameObject.prototype.checkType = function(type) {
+  type = type.toLowerCase();
   var patt = new RegExp("X"+type+"X");
   if (patt.test(this.type)) {
     return 1;
@@ -363,6 +364,7 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 			
 			retval["fin"] = 1;
 			retval["txt"] = "Closed!";
+			retval["redrawtype"] = "draw";
 			
 			this.open = 0;
 		} else {

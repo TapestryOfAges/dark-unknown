@@ -62,7 +62,36 @@ function getDisplayCell(mapname, centerx, centery, x, y) {
   // decide whether to draw a tile, draw it shaded, or make it darkness
   var losresult = mapname.getLOS(centerx, centery, x, y, losgrid);
 
-  var lighthere = localacre.getLocalLight();
+  var blocks = localacre.getBlocksLOS();
+  
+  var lighthere = 0;
+  if ((blocks > LOS_THRESHOLD) && ((centerx != x) || (centery != y) )) {
+    var dirnum = GetDirection(centerx,centery,x,y);
+    if ((dirnum == 6) || (dirnum == 7) || (dirnum == 0)) {
+      var nwlight = localacre.getLocalLight("nw");
+      if (nwlight > lighthere) {
+        lighthere = nwlight;
+      }
+    } else if ((dirnum >= 0) && (dirnum <= 2)) {
+      var nelight = localacre.getLocalLight("ne");
+      if (nelight > lighthere) {
+        lighthere = nelight;
+      }
+    } else if ((dirnum >= 2) && (dirnum <= 4)) {
+      var selight = localacre.getLocalLight("se");
+      if (selight > lighthere) {
+        lighthere = selight;
+      }
+    } else if ((dirnum >= 4) && (dirnum <= 6)) {
+      var swlight = localacre.getLocalLight("sw");
+      if (swlight > lighthere) {
+        lighthere = swlight;
+      }
+    }
+  } else {
+    lighthere = localacre.getLocalLight("center");
+  }
+  
   if (ambientlight == "bright") {
     lighthere += 1;
   }
@@ -609,10 +638,10 @@ function PlaceMonsters(battlemap,group,whoseturn) {
   return monsters;
 }
 
-function getDirection(viewer,targ) {
+function GetDirection(viewerx, viewery, targx, targy) {
   var direction;
-  var diffx = targ.getx() - viewer.getx();
-  var diffy = targ.gety() - viewer.gety();
+  var diffx = targx - viewerx;
+  var diffy = targy - viewery;
   if ((diffx == 0) && (diffy < 0)) {
     direction = 0;
   } else if ((diffx == 0) && (diffy > 0)) {

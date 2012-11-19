@@ -766,8 +766,8 @@ function PerformUse(who) {
 		  
 		  $.each(localacre.localLight, function(index, value) {
 		    // each object that is casting light on the door might be casting light through the door.
-		    who.getHomeMap().removeMapLight(index, usemap[index].getLight(), usemap[index].getx(), usemap[index].gety());
-		    who.getHomeMap().setMapLight(index, usemap[index].getLight(), usemap[index].getx(), usemap[index].gety());
+		    who.getHomeMap().removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
+		    who.getHomeMap().setMapLight(usemap.lightsList[index], usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
 		  });
 		  
 		  drawMainFrame("draw",used.getHomeMap().getName(),PC.getx(),PC.gety());
