@@ -68,24 +68,24 @@ function getDisplayCell(mapname, centerx, centery, x, y) {
   if ((blocks > LOS_THRESHOLD) && ((centerx != x) || (centery != y) )) {
     var dirnum = GetDirection(centerx,centery,x,y);
     if ((dirnum == 6) || (dirnum == 7) || (dirnum == 0)) {
-      var nwlight = localacre.getLocalLight("nw");
-      if (nwlight > lighthere) {
-        lighthere = nwlight;
-      }
-    } else if ((dirnum >= 0) && (dirnum <= 2)) {
-      var nelight = localacre.getLocalLight("ne");
-      if (nelight > lighthere) {
-        lighthere = nelight;
-      }
-    } else if ((dirnum >= 2) && (dirnum <= 4)) {
       var selight = localacre.getLocalLight("se");
       if (selight > lighthere) {
         lighthere = selight;
       }
-    } else if ((dirnum >= 4) && (dirnum <= 6)) {
+    } else if ((dirnum >= 0) && (dirnum <= 2)) {
       var swlight = localacre.getLocalLight("sw");
       if (swlight > lighthere) {
         lighthere = swlight;
+      }
+    } else if ((dirnum >= 2) && (dirnum <= 4)) {
+      var nwlight = localacre.getLocalLight("nw");
+      if (nwlight > lighthere) {
+        lighthere = nwlight;
+      }
+    } else if ((dirnum >= 4) && (dirnum <= 6)) {
+      var nelight = localacre.getLocalLight("ne");
+      if (nelight > lighthere) {
+        lighthere = nelight;
       }
     }
   } else {
