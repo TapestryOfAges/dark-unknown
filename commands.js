@@ -791,6 +791,13 @@ function PerformYell() {
 	else {
 		if (inputText.txt == "ETHERBUNNY") {
 			PC.addMovetype(MOVE_ETHEREAL);
+		} else if (inputText.txt == "DEBUG") {
+		  if (debug) {
+		    debug = 0;
+		  } else {
+		    debug = 1;
+		    ActivateDebug();
+		  }
 		}
 		retval["txt"] = "Yell: " + inputText.txt + "!";
 		retval["fin"] = 1;
