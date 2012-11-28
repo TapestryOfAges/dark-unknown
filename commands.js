@@ -826,10 +826,19 @@ function performZstats(code) {
       targetCursor.scrollapi.scrollByY(-50,1);
       retval["fin"] = 1;
     }
-    else if ((code == 32) || (code == 13) || (code == 40) || (code == 191)) { // scroll down
+    else if ((code == 13) || (code == 40) || (code == 191)) { // scroll down
       targetCursor.scrollapi.scrollByY(50,1);
       retval["fin"] = 1;
-    } else { retval["fin"] = 1; }
+    }
+    else if ((code == 32) || (code == 34)) {  // space or page down
+      targetCursor.scrollapi.scrollByY(350,1);
+      retval["fin"] = 1;
+    }       
+    else if ((code == 33)) {  // page up
+      targetCursor.scrollapi.scrollByY(-350,1);
+      retval["fin"] = 1;
+    }       
+    else { retval["fin"] = 1; }
       
     return retval;
 }
