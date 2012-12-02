@@ -1,5 +1,6 @@
 
 var magic = new Object;
+var bookmark = new Object;
 
 function SpellObject(name, incant, level, targets) {
   this.name = name;

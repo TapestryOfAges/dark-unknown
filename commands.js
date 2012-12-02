@@ -84,7 +84,7 @@ function PerformCommand(code) {
 	}
 	else if (code == 67) { // c
 		// cast
-		
+    retval = PerformCast(0);
 	}
 	else if (code == 68) { // d
 		// descend - alternate "Enter" option when on a down ladder
@@ -112,8 +112,8 @@ function PerformCommand(code) {
 		
 	}
 	else if (code == 73) { // i
-		// ignite torch
-		
+		// was ignite torch, now infuse?
+    retval = PerformCast(1);
 	}
 	else if (code == 74) { // j
 		// jimmy lock ?
@@ -461,6 +461,28 @@ function PerformAttackMap(who) {
     retval["input"] = "&gt;";
   }  
   return retval;
+}
+
+function PerformCast(infuse) {
+  var hasSpellbook = 0;
+  var retval = new Object;
+  for (var lvl = 1; lvl <= 8; lvl++) {
+    if (hasSpellbook) { break; }
+    for (var i=1; i <= 6; i++) {
+      var spellnum = GetSpellID(i);
+      if (PC.knowsSpell(lvl, spellnum)) { 
+        hasSpellbook = 1; 
+        break;
+      }
+    }
+  }
+  if (!hasSpellbook) {
+    retval["txt"] = "You have no spellbook!";
+    retval["fin"] = 2;
+    retval["input"] = "&gt;";
+    
+    return retval;
+  }
 }
 
 function PerformLook() {
