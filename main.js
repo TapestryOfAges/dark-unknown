@@ -104,6 +104,12 @@ $(document).ready(function() {
   var code = (e.keyCode ? e.keyCode : e.which);
 //   if (code == 27) { e.preventDefault(); }
   e.preventDefault();
+  DoAction(code);
+  });
+});
+
+function DoAction(code) {
+
   if (gamestate.getMode() == "player") {  // PC's turn, awaiting commands
 //   	 alert(DUTime.getGameClock());
     var response = PerformCommand(code);
@@ -311,6 +317,5 @@ $(document).ready(function() {
       
     }
   }
-  });
-});
 
+}
