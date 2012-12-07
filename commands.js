@@ -829,7 +829,7 @@ function PerformYell() {
 
 function performZstats(code) {
   var retval = new Object;
-    if (code == 27) { // ESC
+    if ((code == 27) || (code == 90)) { // ESC or Z again
       retval["fin"] = 0;
     }
     else if ((code == 37) || (code == 59)) {  // previous page
