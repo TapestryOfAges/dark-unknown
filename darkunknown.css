@@ -98,3 +98,12 @@ td.selected { color:#3ff }
 td.circleheader { font-weight:bold; }
 
 td.spellstat { padding-left: 15px; }
+
+div.spellbook { display: none; 
+	           left:50; 
+  	           top:50; 
+  	           color: #000000; 
+  	           background-color: #D7DF01; 
+  	           border: 1px solid #c93;
+  	           position: absolute;  }
+  	           
