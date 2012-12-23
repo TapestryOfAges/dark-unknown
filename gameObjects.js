@@ -53,6 +53,7 @@ GameObject.prototype.getType = function() {
 }
 
 GameObject.prototype.addType = function(type) {
+  type = type.toLowerCase();
   this.type = this.type + "X" + type + "X";
 }
 
@@ -66,7 +67,7 @@ GameObject.prototype.checkType = function(type) {
 
 GameObject.prototype.getTypeForMap = function() {
   // run check for npc, pc, and feature
-  var patt = new RegExp("XFeatureX");
+  var patt = new RegExp("XfeatureX");
   if (patt.test(this.type)) {
     return ("feature");
   }
@@ -4043,6 +4044,9 @@ function PCObject() {
 	
 	LightEmitting.call(this, 0.5);
 	this.addType("pc");
+	
+//	var myweapon = localFactory.createTile("Dagger");
+//	myweapon.equipMe(this);
 }
 PCObject.prototype = new NPCObject;
 
