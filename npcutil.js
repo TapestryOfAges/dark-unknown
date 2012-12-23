@@ -181,11 +181,11 @@ function GetCoordsWithOffsets(direction, from, to) {
     coordsobj.fromx += fromdisplace;
     coordsobj.tox -= todisplace;
   }
-  if ((direction >= 3) && (displace <= 5)) { // south is a component
+  if ((direction >= 3) && (direction <= 5)) { // south is a component
     coordsobj.fromy += fromdisplace;
     coordsobj.toy -= todisplace;
   }
-  if ((direction >= 5) && (displace <= 7)) {  // west is a component
+  if ((direction >= 5) && (direction <= 7)) {  // west is a component
     coordsobj.fromx -= fromdisplace;
     coordsobj.fromy += todisplace;
   }
