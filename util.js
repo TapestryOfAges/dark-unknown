@@ -27,8 +27,13 @@ function getDisplayCenter(themap,fromx,fromy) {
 	return edge;
 }
 
-function getCoords(mapref, newx, newy) {
-  var edges = getDisplayCenter(mapref,newx,newy);
+function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
+  if (!centerfromx) { 
+    centerfromx = PC.getx();
+    centerfromy = PC.gety();
+  }
+//  var edges = getDisplayCenter(mapref,newx,newy);
+  var edges = getDisplayCenter(mapref,centerfromx,centerfromy);
   var coords = new Object;
   coords.x = 192 + (newx - edges.centerx) * 32;
   coords.y = 192 + (newy - edges.centery) * 32;
