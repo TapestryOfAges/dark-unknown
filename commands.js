@@ -484,7 +484,7 @@ function PerformCast(infuse) {
     return retval;
   }
   var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
-  $('#spellbookdiv').jqm({onShow:myOpen}); 
+  $('#spellbookdiv').jqm({onShow:myOpen,modal:true}); 
   $('#spellbookdiv').jqmShow();
 }
 
