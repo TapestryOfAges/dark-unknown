@@ -317,5 +317,14 @@ function DoAction(code) {
       
     }
   }
+  else if (gamestate.getMode() == "spellbook") {
+    if (code == 27) { // etc
+      $('#spellbookdiv').jqmHide();
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      gamestate.setMode("player");
+      gamestate.setTurn(PC);
+    }    
+  }
 
 }
