@@ -464,6 +464,7 @@ function PerformAttackMap(who) {
 }
 
 function PerformCast(infuse) {
+  gamestate.setMode("spellbook");
   var hasSpellbook = 0;
   var retval = new Object;
   for (var lvl = 1; lvl <= 8; lvl++) {
