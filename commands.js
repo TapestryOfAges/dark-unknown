@@ -481,12 +481,19 @@ function PerformCast(infuse) {
     retval["txt"] = "You have no spellbook!";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
+    gamestate.setMode("player");
     
     return retval;
   }
   var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
   $('#spellbookdiv').jqm({onShow:myOpen,modal:true}); 
   $('#spellbookdiv').jqmShow();
+  WritePages("#spellbookinnerdiv");
+  
+  retval["fin"] = 1;
+  retval["input"] = "&gt; Cast - "
+  return retval;
+
 }
 
 function PerformLook() {
@@ -823,6 +830,12 @@ function PerformYell() {
 		  } else {
 		    debug = 1;
 		    ActivateDebug();
+		  }
+		} else if (inputText.txt == "BEAMAGE") {
+		  for (i=1; i<=8; i++) {
+		    for (j=1; j<=6; j++) {
+		      PC.addSpell(i,GetSpellID(j));
+		    }
 		  }
 		}
 		retval["txt"] = "Yell: " + inputText.txt + "!";

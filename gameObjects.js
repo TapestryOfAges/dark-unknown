@@ -4041,6 +4041,7 @@ function PCObject() {
 	this.xp = 0;
 	this.tp = 0;  // training points
   this.spells = new Array;
+  this.lastpage = 1;
 	
 	LightEmitting.call(this, 0.5);
 	this.addType("pc");
@@ -4117,3 +4118,12 @@ PCObject.prototype.getSpells = function() {
   return this.spells;
 }
 
+PCObject.prototype.getLastPage = function() {
+  return this.lastpage;
+}
+
+PCObject.prototype.setLastPage = function(newpage) {
+  this.lastpage = parseInt(newpage);
+  if (this.lastpage = 0) { this.lastpage = 1; }
+  return this.lastpage;
+}
