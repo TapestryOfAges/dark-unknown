@@ -700,3 +700,29 @@ function GetDirection(viewerx, viewery, targx, targy) {
   }
   return direction;
 }
+
+function WritePages(divid) {   
+  var spellhtml = "<table class='spells'>";
+  var showpages = PC.getLastPage();
+  if (showpages == 1) {
+    spellhtml += "<tr><td class='spelllevel'>First Circle</td><td><img src='graphics/spacer.gif' width='90' height='16' /></td><td class='spelllevel'>Second Circle</td></tr><tr><td class='spellslist'>";
+    spellhtml += GetSpellList(1);
+    spellhtml += "</td><td></td><td class='spellslist'>";
+    spellhtml += GetSpellList(2);
+    spellhtml += "</td></tr></table>"
+  }
+  
+  $(divid).html(spellhtml);
+}
+
+function GetSpellList(lvl) {
+  var makehtml = "";
+  for (i=1;i<=6;i++) {
+    if (PC.knowsSpell(lvl,GetSpellID(i))) {
+      makehtml += "<span id='level" + lvl + "spell" + i + "'>" + magic[lvl][GetSpellID(i)].getName() + "</span>";
+      // need to add a mouseclick to the spells for tablet play
+      if (i < 6) { makehtml += "<br />"; }
+    }
+  }
+  return makehtml;
+}
