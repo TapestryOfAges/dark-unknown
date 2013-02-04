@@ -490,7 +490,7 @@ function PerformCast(infuse) {
   $('#spellbookdiv').jqmShow();
   WritePages("#spellbookinnerdiv");
   
-  retval["fin"] = 1;
+  retval["fin"] = 0;
   retval["input"] = "&gt; Cast - "
   return retval;
 
