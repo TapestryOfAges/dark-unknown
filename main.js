@@ -109,7 +109,6 @@ $(document).ready(function() {
 });
 
 function DoAction(code) {
-
   if (gamestate.getMode() == "player") {  // PC's turn, awaiting commands
 //   	 alert(DUTime.getGameClock());
     var response = PerformCommand(code);
