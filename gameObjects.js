@@ -4041,7 +4041,8 @@ function PCObject() {
 	this.xp = 0;
 	this.tp = 0;  // training points
   this.spells = new Array;
-  this.lastpage = 1;
+  this.lastspelllevel = 1;
+  this.lastspell = 1;
 	
 	LightEmitting.call(this, 0.5);
 	this.addType("pc");
@@ -4118,12 +4119,22 @@ PCObject.prototype.getSpells = function() {
   return this.spells;
 }
 
-PCObject.prototype.getLastPage = function() {
-  return this.lastpage;
+PCObject.prototype.getLastSpellLevel = function() {
+  return this.lastspelllevel;
 }
 
-PCObject.prototype.setLastPage = function(newpage) {
-  this.lastpage = parseInt(newpage);
-  if (this.lastpage = 0) { this.lastpage = 1; }
-  return this.lastpage;
+PCObject.prototype.setLastSpellLevel = function(newlvl) {
+  this.lastspelllevel = parseInt(newlvl);
+  if (this.lastspelllevel = 0) { this.lastspelllevel = 1; }
+  return this.lastspelllevel;
+}
+
+PCObject.prototype.getLastSpell = function() {
+  return this.lastspell;
+}
+
+PCObject.prototype.setLastSpell = function(newid) {
+  this.lastspell = parseInt(newid);
+  if (this.lastspell = 0) { this.lastspell = 1; }
+  return this.lastspell;
 }

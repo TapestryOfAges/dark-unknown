@@ -488,7 +488,7 @@ function PerformCast(infuse) {
   var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
   $('#spellbookdiv').jqm({onShow:myOpen,modal:true}); 
   $('#spellbookdiv').jqmShow();
-  WritePages("#spellbookinnerdiv");
+  WritePages();
   
   retval["fin"] = 0;
   retval["input"] = "&gt; Cast - "

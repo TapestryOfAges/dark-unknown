@@ -317,7 +317,7 @@ function DoAction(code) {
     }
   }
   else if (gamestate.getMode() == "spellbook") {
-    if (code == 27) { // etc
+    if (code == 27) { // esc
       $('#spellbookdiv').jqmHide();
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
