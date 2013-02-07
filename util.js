@@ -701,16 +701,23 @@ function GetDirection(viewerx, viewery, targx, targy) {
   return direction;
 }
 
-function WritePages(divid) {   
+function WritePages() {   
+  var divid = "#spellbookinnerdiv";
   var spellhtml = "<table class='spells'>";
-  var showpages = PC.getLastPage();
+  var showpages = Math.ceil(PC.getLastSpellLevel()/2);
   if (showpages == 1) {
     spellhtml += "<tr><td class='spelllevel'>First Circle</td><td><img src='graphics/spacer.gif' width='90' height='16' /></td><td class='spelllevel'>Second Circle</td></tr><tr><td class='spellslist'>";
-    spellhtml += GetSpellList(1);
-    spellhtml += "</td><td></td><td class='spellslist'>";
-    spellhtml += GetSpellList(2);
-    spellhtml += "</td></tr></table>"
+  } else if (showpages == 3) {
+    spellhtml += "<tr><td class='spelllevel'>Third Circle</td><td><img src='graphics/spacer.gif' width='90' height='16' /></td><td class='spelllevel'>Fourth Circle</td></tr><tr><td class='spellslist'>";
+  } else if (showpages == 5) {
+    spellhtml += "<tr><td class='spelllevel'>Fifth Circle</td><td><img src='graphics/spacer.gif' width='90' height='16' /></td><td class='spelllevel'>Sixth Circle</td></tr><tr><td class='spellslist'>";
+  } else if (showpages == 7) {
+    spellhtml += "<tr><td class='spelllevel'>Seventh Circle</td><td><img src='graphics/spacer.gif' width='90' height='16' /></td><td class='spelllevel'>Eighth Circle</td></tr><tr><td class='spellslist'>";
   }
+  spellhtml += GetSpellList(showpages);
+  spellhtml += "</td><td></td><td class='spellslist'>";
+  spellhtml += GetSpellList(showpages + 1);
+  spellhtml += "</td></tr></table>"
   
   $(divid).html(spellhtml);
 }
