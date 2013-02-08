@@ -720,6 +720,8 @@ function WritePages() {
   spellhtml += "</td></tr></table>"
   
   $(divid).html(spellhtml);
+  var spellspan = "#level" + PC.getLastSpellLevel() + "spell" + PC.getLastSpell();
+  $(spellspan).addClass("selected");
 }
 
 function GetSpellList(lvl) {
