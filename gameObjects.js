@@ -4043,6 +4043,7 @@ function PCObject() {
   this.spells = new Array;
   this.lastspelllevel = 1;
   this.lastspell = 1;
+  this.infuse = 0;
 	
 	LightEmitting.call(this, 0.5);
 	this.addType("pc");
@@ -4125,7 +4126,7 @@ PCObject.prototype.getLastSpellLevel = function() {
 
 PCObject.prototype.setLastSpellLevel = function(newlvl) {
   this.lastspelllevel = parseInt(newlvl);
-  if (this.lastspelllevel = 0) { this.lastspelllevel = 1; }
+  if (this.lastspelllevel == 0) { this.lastspelllevel = 1; }
   return this.lastspelllevel;
 }
 
@@ -4135,6 +4136,16 @@ PCObject.prototype.getLastSpell = function() {
 
 PCObject.prototype.setLastSpell = function(newid) {
   this.lastspell = parseInt(newid);
-  if (this.lastspell = 0) { this.lastspell = 1; }
+  if (this.lastspell == 0) { this.lastspell = 1; }
   return this.lastspell;
+}
+
+PCObject.prototype.getInfusion = function() {
+  return this.infuse;
+}
+
+PCObject.prototype.setInfusion = function(infuse) {
+  this.infuse = parseInt(infuse);
+  if (this.infuse != 1) { this.infuse = 0; }
+  return this.infuse;
 }

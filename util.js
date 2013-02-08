@@ -707,20 +707,29 @@ function WritePages() {
   var showpages = Math.ceil(PC.getLastSpellLevel()/2);
   if (showpages == 1) {
     spellhtml += "<tr><td class='spelllevel'>First Circle</td><td><img src='graphics/spacer.gif' width='90' height='16' /></td><td class='spelllevel'>Second Circle</td></tr><tr><td class='spellslist'>";
-  } else if (showpages == 3) {
+  } else if (showpages == 2) {
     spellhtml += "<tr><td class='spelllevel'>Third Circle</td><td><img src='graphics/spacer.gif' width='90' height='16' /></td><td class='spelllevel'>Fourth Circle</td></tr><tr><td class='spellslist'>";
-  } else if (showpages == 5) {
+  } else if (showpages == 3) {
     spellhtml += "<tr><td class='spelllevel'>Fifth Circle</td><td><img src='graphics/spacer.gif' width='90' height='16' /></td><td class='spelllevel'>Sixth Circle</td></tr><tr><td class='spellslist'>";
-  } else if (showpages == 7) {
+  } else if (showpages == 4) {
     spellhtml += "<tr><td class='spelllevel'>Seventh Circle</td><td><img src='graphics/spacer.gif' width='90' height='16' /></td><td class='spelllevel'>Eighth Circle</td></tr><tr><td class='spellslist'>";
   }
-  spellhtml += GetSpellList(showpages);
+  spellhtml += GetSpellList((showpages*2)-1);
   spellhtml += "</td><td></td><td class='spellslist'>";
-  spellhtml += GetSpellList(showpages + 1);
+  spellhtml += GetSpellList(showpages*2);
   spellhtml += "</td></tr></table>"
   
   $(divid).html(spellhtml);
+  if (PC.getLastSpell()) {
+    var spellspan = "#level" + PC.getLastSpellLevel() + "spell" + PC.getLastSpell();
+    $(spellspan).addClass("selected");
+  }
+}
+
+function HighlightSpell(lvl,spell) {
   var spellspan = "#level" + PC.getLastSpellLevel() + "spell" + PC.getLastSpell();
+  $(spellspan).removeClass("selected");
+  spellspan = "#level" + lvl + "spell" + spell;
   $(spellspan).addClass("selected");
 }
 

@@ -465,6 +465,7 @@ function PerformAttackMap(who) {
 
 function PerformCast(infuse) {
   gamestate.setMode("spellbook");
+  PC.setInfusion(infuse);
   var hasSpellbook = 0;
   var retval = new Object;
   for (var lvl = 1; lvl <= 8; lvl++) {
@@ -494,6 +495,77 @@ function PerformCast(infuse) {
   retval["input"] = "&gt; Cast - "
   return retval;
 
+}
+
+function PerformSpellbook(code) {
+  var retval = new Object;
+  if ((code == 38) || (code == 219)) { // up
+    var lvl = PC.getLastSpellLevel();
+    var spell = PC.getLastSpell();
+    spell--;
+    while (spell > 0) {
+      if (PC.knowsSpell(lvl,GetSpellID(spell))) {
+        HighlightSpell(lvl,spell);
+        PC.setLastSpell(spell);
+        spell = 0;
+      } else { 
+        spell--;
+      }
+    }
+    retval["fin"] = 0;
+    return retval;
+  }
+
+  if ((code == 40) || (code == 191)) { // down
+    var lvl = PC.getLastSpellLevel();
+    var spell = PC.getLastSpell();
+    spell++;
+    while (spell < 9) {
+      if (PC.knowsSpell(lvl,GetSpellID(spell))) {
+        HighlightSpell(lvl,spell);
+        PC.setLastSpell(spell);
+        spell = 9;
+      } else { 
+        spell++;
+      }
+    }
+    retval["fin"] = 0;
+    return retval;
+  }
+  
+  if ((code == 37) || (code == 59) || (code == 39) || (code == 222)) { // left or right
+    var lvl = PC.getLastSpellLevel();
+    var spell = PC.getLastSpell();
+    var newlvl = lvl;
+    if ((code == 37) || (code == 59)) { // left
+      if (lvl > 1) { newlvl = lvl - 1; }
+    }
+    if ((code == 39) || (code == 222)) { // right
+      if (lvl < 8) { newlvl = lvl + 1; }
+    }
+    // figure out how many spells down we are
+    var spellsdown = 0;
+    if (!spell) {
+      spell = 1;
+    }
+    for (i=1; i<=spell; i++) {
+      if (PC.knowsSpell(lvl, GetSpellID(i))) { spellsdown++; }
+    }
+    var spindex = 0;
+    var numspells = 0;
+    for (i=1; i<=8; i++) {
+      if (PC.knowsSpell(newlvl,GetSpellID(i))) {
+        numspells++;
+        if (numspells == spellsdown) {
+          spindex = i;
+        }
+      }
+    }
+    PC.setLastSpellLevel(newlvl);
+    PC.setLastSpell(spindex);
+    WritePages();
+    
+  }
 }
 
 function PerformLook() {
@@ -834,7 +906,9 @@ function PerformYell() {
 		} else if (inputText.txt == "BEAMAGE") {
 		  for (i=1; i<=8; i++) {
 		    for (j=1; j<=6; j++) {
-		      PC.addSpell(i,GetSpellID(j));
+		      if (i != 4) {
+		        PC.addSpell(i,GetSpellID(j));
+		      }
 		    }
 		  }
 		}
