@@ -323,7 +323,9 @@ function DoAction(code) {
       maintext.drawTextFrame();
       gamestate.setMode("player");
       gamestate.setTurn(PC);
-    }    
+    }    else {
+      var response = PerformSpellbook(code);
+    }
   }
 
 }
