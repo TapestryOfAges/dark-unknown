@@ -1,8 +1,7 @@
 
 @font-face {  
-	  font-family: "November";  
-	  src: url( fonts/novem___.eot ); /* IE */  
-	  src: local("November"), url( fonts/novem___.ttf ) format("truetype"); /* non-IE */  
+	  font-family: "Kells";  
+	  src: local("Kells"), url( 'fonts/KellsFLF.ttf' ) format("truetype");
 	}  
 
 @font-face {  
@@ -10,6 +9,12 @@
 	  src: url( fonts/cbm-6480-webfont.eot ); /* IE */  
 	  src: local("Commodore64"), url( fonts/CBM-6480.TTF ) format("truetype"); /* non-IE */  
 	}  
+	
+@font-face {  
+	  font-family: "Spells";  
+	  src: local("Spells"), url( 'fonts/UncialAntiqua-Regular.ttf' ) format("truetype");
+	}  
+
 	
 div.topbar { text-align:center; 
 	           color:white;
@@ -100,28 +105,31 @@ td.circleheader { font-weight:bold; }
 td.spellstat { padding-left: 15px; }
 
 div.spellbook { display: none;
-	           left:50; 
-  	           top:50; 
-  	           width:550px;
-  	           height: 295px;
+	           left:150; 
+  	           top:100; 
+  	           width:440px;
+  	           height: 236px;
   	           color: #000000; 
   	           background-image: url('graphics/spellbook_sized.gif');
   	           background-repeat: no-repeat;
   	           background-color: #000000; 
+  	           background-size: 440px 236px;
   	           border: 1px solid #ffffff;
   	           position: absolute; 
-               font-family:"Commodore64";
-               font-size:16pt;
+               font-family:"Kells";
+               font-size:12pt;
                line-height:20px; }
   	           
-table.spells { padding-top: 15;
-               padding-left: 32; }
+table.spells { padding-top: 8;
+               padding-left: 24; }
 
-table.spells td { font-size: 16pt; }
+table.spells td { font-size: 16pt;
+                  line-height: 20pt }
 
-td.spelllevel { width : 193;
+td.spelllevel { width : 154;
                 text-align: center;
-                font-size: 16pt;
+                font-size: 24pt;
+                font-weight: bold;
                  }
 
 span.selected { font-weight: bold; 
