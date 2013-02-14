@@ -44,8 +44,13 @@ SpellObject.prototype.myTurn = function() {
 
 SpellObject.prototype.executeSpell = function() {
   // this will be overridden by each spell object
+
+  var retval = new Object;
+  retval["fin"] = 1;
+  retval["txt"] = "";
+  retval["input"] = "&gt;";
   
-  return;
+  return retval;
 }
 
 SpellObject.prototype.expireSpell = function() {
