@@ -566,6 +566,20 @@ function PerformSpellbook(code) {
     WritePages();
     
   }
+  if ((code == 32) || (code == 13)) { // SPACE or ENTER
+    // cast a spell
+    var lvl = PC.getLastSpellLevel();
+    var spellnum = PC.getLastSpell();
+    $('#spellbookdiv').jqmHide();
+    var spelltxt = "Cast: " + magic[lvl][GetSpellID(spellnum)].getName();
+    if (PC.getInfusion()) {
+      spelltxt += " (Infused)";
+    }
+    spelltxt += "!";
+    maintext.addText(spelltxt);
+    var retval = magic[lvl][GetSpellID(spellnum)].executeSpell(PC);
+    return retval;
+  }
 }
 
 function PerformLook() {

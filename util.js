@@ -130,7 +130,11 @@ function getDisplayCell(mapname, centerx, centery, x, y) {
       showGraphic = displaytile.doTile(x,y,showGraphic);
     }
     if (typeof displaytile.setByBelow == "function") {
-      showGraphic = displaytile.setByBelow(x,y,mapname);
+      var setbelow = displaytile.setByBelow(x,y,mapname);
+      showGraphic = setbelow[0];
+      graphics[2] = setbelow[2];
+      graphics[3] = setbelow[3];
+//      showGraphic = displaytile.setByBelow(x,y,mapname);
     }
     displayCell.showGraphic = showGraphic;
     displayCell.graphics2 = graphics[2];

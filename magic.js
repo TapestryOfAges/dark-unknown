@@ -42,7 +42,7 @@ SpellObject.prototype.myTurn = function() {
   nextEntity.myTurn(); 
 }
 
-SpellObject.prototype.executeSpell = function() {
+SpellObject.prototype.executeSpell = function(caster) {
   // this will be overridden by each spell object
 
   var retval = new Object;
