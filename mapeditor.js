@@ -134,7 +134,11 @@ function drawFeatures() {
   	    showGraphic = allfeatures[i].doTile(allfeatures[i].getx(),allfeatures[i].gety(),showGraphic);
       }
       if (typeof allfeatures[i].setByBelow == "function") {
-          	showGraphic = allfeatures[i].setByBelow(allfeatures[i].getx(),allfeatures[i].gety(),amap);
+//          	showGraphic = allfeatures[i].setByBelow(allfeatures[i].getx(),allfeatures[i].gety(),amap);
+        var setbelow = allfeatures[i].setByBelow(allfeatures[i].getx(),allfeatures[i].gety(),amap);
+        showGraphic = setbelow[0];
+        graphics[2] = setbelow[2];
+        graphics[3] = setbelow[3];
       }
       $(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
       $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
@@ -464,7 +468,12 @@ function changemaptile(xval,yval) {
   	showGraphic = selectionval.doTile(xval,yval,showGraphic);
   }
   if (typeof selectionval.setByBelow == "function") {
-   	showGraphic = selectionval.setByBelow(xval,yval,amap);
+//   	showGraphic = selectionval.setByBelow(xval,yval,amap);
+      var setbelow = selectionval.setByBelow(xval,yval,amap);
+      showGraphic = setbelow[0];
+      graphics[2] = setbelow[2];
+      graphics[3] = setbelow[3];
+
   }
   $(tdid).css("background-image","url('graphics/" + graphics[0] + "')");
   $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
@@ -517,7 +526,11 @@ function addfeaturetomap(x,y,selection) {
   	showGraphic = selection.doTile(x,y,showGraphic);
   }
   if (typeof selection.setByBelow == "function") {
-   	showGraphic = selection.setByBelow(x,y,amap);
+//   	showGraphic = selection.setByBelow(x,y,amap);
+    var setbelow = selection.setByBelow(x,y,amap);
+    showGraphic = setbelow[0];
+    graphics[2] = setbelow[2];
+    graphics[3] = setbelow[3];
   }
   $(tdid).css("background-image","url('graphics/" + showGraphic + "')");
   $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");

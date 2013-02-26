@@ -483,7 +483,8 @@ function SetByBelow() {
 	this.setByBelow = function(x,y,themap) {
 		var localacre = themap.getTile(x,y);
 		var graphic = localacre.terrain.getGraphicArray();
-		return (graphic[0]);
+		return graphic;
+//		return (graphic[0]);
 	};
 }
 
