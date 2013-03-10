@@ -520,11 +520,11 @@ function PerformSpellbook(code) {
     var lvl = PC.getLastSpellLevel();
     var spell = PC.getLastSpell();
     spell++;
-    while (spell < 9) {
+    while (spell < 7) {
       if (PC.knowsSpell(lvl,GetSpellID(spell))) {
         HighlightSpell(lvl,spell);
         PC.setLastSpell(spell);
-        spell = 9;
+        spell = 7;
       } else { 
         spell++;
       }
