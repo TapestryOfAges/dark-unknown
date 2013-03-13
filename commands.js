@@ -575,10 +575,21 @@ function PerformSpellbook(code) {
     if (PC.getInfusion()) {
       spelltxt += " (Infused)";
     }
-    spelltxt += "!";
-    maintext.addText(spelltxt);
-    var retval = magic[lvl][GetSpellID(spellnum)].executeSpell(PC);
-    return retval;
+    var manacost = magic[lvl][GetSpellID(spellnum)].getManaCost(PC.getInfusion());
+    if (PC.getMana() >= manacost) {
+      spelltxt += "!";
+      maintext.addText(spelltxt);
+      var retval = magic[lvl][GetSpellID(spellnum)].executeSpell(PC, PC.getInfusion());
+      return retval;
+    }
+    else {
+      spelltxt += "...";
+      maintext.addText(spelltxt);
+      maintext.addText("Not enough mana.");
+      var retval = new Object;
+      retval["fin"] = 2;
+      return retval;
+    }
   }
 }
 
