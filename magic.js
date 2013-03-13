@@ -42,7 +42,7 @@ SpellObject.prototype.myTurn = function() {
   nextEntity.myTurn(); 
 }
 
-SpellObject.prototype.executeSpell = function(caster) {
+SpellObject.prototype.executeSpell = function(caster, infused) {
   // this will be overridden by each spell object
 
   var retval = new Object;
@@ -55,6 +55,13 @@ SpellObject.prototype.executeSpell = function(caster) {
 
 SpellObject.prototype.expireSpell = function() {
   DUTime.removeEntityFrom(this);
+}
+
+SpellObject.prototype.getManaCost = function(infuse) {
+  var multiplier = 1;
+  if (infuse) { multiplier = 2; }
+  var cost = this.getLevel() * multiplier;
+  return cost; 
 }
 
 function GetSpellID(num) {
@@ -121,3 +128,9 @@ magic[8][GetSpellID(3)] = new SpellObject("Conflagration", "In Vas Grav Flam Hur
 magic[8][GetSpellID(4)] = new SpellObject("Quickness", "Rel Tym", 8, 0);
 magic[8][GetSpellID(5)] = new SpellObject("Reincarnate", "An Corp", 8, 0);
 magic[8][GetSpellID(6)] = new SpellObject("Time Stop", "An Tym", 8, 0);
+
+
+// Cure
+magic[1][GetSpellID(1)].executeSpell = new function(caster, infused) {
+  
+}

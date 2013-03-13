@@ -325,7 +325,7 @@ function DoAction(code) {
       gamestate.setTurn(PC);
     }    else {
       var response = PerformSpellbook(code);
-      if (response[fin] == 1) {
+      if (response["fin"] == 1) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         PC.endTurn();
