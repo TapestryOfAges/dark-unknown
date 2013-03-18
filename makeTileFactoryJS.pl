@@ -23,6 +23,14 @@ foreach my $line (<NPCOBJS>) {
   }
 }
 
+open EOBJS, "ephemeralObjects.js" or die "can't open ephemeralObjects\n";
+
+foreach my $line (<EOBJS>) {
+  if ($line =~ /function (.*)Tile\(\)/) {
+    print "tileFactory.prototype.make" . $1 . "Tile = function() {\n  var newTile = new ". $1 . "Tile();\n  return newTile;\n}\n\n";
+  }
+}
+
 print "tileFactory.prototype.makeEraserTile = function() {\n  var newTile = new BlankWhiteTile();\n  newTile.name = 'Eraser';\n  newTile.type = 'feature';\n  return newTile;\n}\n\n";
 print "tileFactory.prototype.makeLockedDoorWindowTile = function() {\n  var newTile = this.createTile('DoorWindow');\n  newTile.lockMe(1);\n  return newTile;\n}\n\n";
 print "tileFactory.prototype.makeMagicLockedDoorWindowTile = function() {\n  var newTile = this.createTile('DoorWindow');\n  newTile.lockMe(2);    // Magic Lock\n  return newTile;\n}\n\n";
