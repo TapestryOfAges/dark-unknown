@@ -1,21 +1,73 @@
 
+function ProtoObject() {
+  
+}
+ProtoObject.prototype = new Object;
+
+ProtoObject.prototype.getSerial = function() {
+	return this.serial;
+}
+
+ProtoObject.prototype.assignSerial = function() {
+ 	maxserial++;
+	this.serial = maxserial;
+//	universe[this.serial] = this;
+}
+
+ProtoObject.prototype.setType = function(type) {
+	this.type = type;
+}
+
+ProtoObject.prototype.getType = function() {
+	return this.type;
+}
+
+ProtoObject.prototype.addType = function(type) {
+  type = type.toLowerCase();
+  this.type = this.type + "X" + type + "X";
+}
+
+ProtoObject.prototype.checkType = function(type) {
+  type = type.toLowerCase();
+  var patt = new RegExp("X"+type+"X");
+  if (patt.test(this.type)) {
+    return 1;
+  } else { return 0; }
+}
+
+ProtoObject.prototype.getTypeForMap = function() {
+  // run check for npc, pc, and feature
+  var patt = new RegExp("XfeatureX");
+  if (patt.test(this.type)) {
+    return ("feature");
+  }
+  patt = new RegExp("XpcX");
+  if (patt.test(this.type)) {
+    return ("pc");
+  }
+  patt = new RegExp("XnpcX");
+  if (patt.test(this.type)) {
+    return ("npc");
+  }
+  return;
+}
+
+ProtoObject.prototype.getName = function() {
+	return this.name;
+}
+
+ProtoObject.prototype.setName = function(newname) {  // USE SPARINGLY
+  this.name = newname;
+	return this.name;
+}
+
 function GameObject() {
   this.x;
   this.y;
   
   this.type = "XGameObjectX";
 }
-GameObject.prototype = new Object;
-
-GameObject.prototype.getSerial = function() {
-	return this.serial;
-}
-
-GameObject.prototype.assignSerial = function() {
- 	maxserial++;
-	this.serial = maxserial;
-//	universe[this.serial] = this;
-}
+GameObject.prototype = new ProtoObject;
 
 GameObject.prototype.getx = function() {
 	return parseInt(this.x,10);
@@ -44,44 +96,6 @@ GameObject.prototype.getHomeMap = function() {
   return this.homeMap;
 }
 
-GameObject.prototype.setType = function(type) {
-	this.type = type;
-}
-
-GameObject.prototype.getType = function() {
-	return this.type;
-}
-
-GameObject.prototype.addType = function(type) {
-  type = type.toLowerCase();
-  this.type = this.type + "X" + type + "X";
-}
-
-GameObject.prototype.checkType = function(type) {
-  type = type.toLowerCase();
-  var patt = new RegExp("X"+type+"X");
-  if (patt.test(this.type)) {
-    return 1;
-  } else { return 0; }
-}
-
-GameObject.prototype.getTypeForMap = function() {
-  // run check for npc, pc, and feature
-  var patt = new RegExp("XfeatureX");
-  if (patt.test(this.type)) {
-    return ("feature");
-  }
-  patt = new RegExp("XpcX");
-  if (patt.test(this.type)) {
-    return ("pc");
-  }
-  patt = new RegExp("XnpcX");
-  if (patt.test(this.type)) {
-    return ("npc");
-  }
-  return;
-}
-
 GameObject.prototype.setDesc = function(newdesc) {
 	this.desc = newdesc;
 }
@@ -100,15 +114,6 @@ GameObject.prototype.getPrefix = function() {
 	} else {
 	  return "";
 	}
-}
-
-GameObject.prototype.getName = function() {
-	return this.name;
-}
-
-GameObject.prototype.setName = function(newname) {  // USE SPARINGLY
-  this.name = newname;
-	return this.name;
 }
 
 GameObject.prototype.moveTo = function(x,y) {
@@ -3568,6 +3573,7 @@ function NPCObject() {
 	this.lootTable = "";
 	this.lastTurnTime = 0;
 	this.spellbook = new Array;
+	this.spellEffects = new Collection;
 	
 	this.addType("npc");
 }
