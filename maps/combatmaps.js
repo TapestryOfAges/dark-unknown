@@ -98,6 +98,56 @@ mappages["combatGrass2"].check_escape = function(mapref) {
 }
 
 
+mappages["combatShore"] = new Object();
+mappages["combatShore"].terrain = new Array;
+ mappages["combatShore"].terrain[0] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
+ mappages["combatShore"].terrain[1] = 'ww ww ww ww ww ww ww ww ww ww uu uu uu';
+ mappages["combatShore"].terrain[2] = 'ww ww ww ww ww ww uu uu uu uu uu uu uu';
+ mappages["combatShore"].terrain[3] = 'ww ww ww uu uu uu uu uu uu uu uu uu uu';
+ mappages["combatShore"].terrain[4] = 'uu uu uu uu uu uu uu uu uu uu /. -- --';
+ mappages["combatShore"].terrain[5] = 'uu uu uu uu /. -- -- -- -- -- .. .. ..';
+ mappages["combatShore"].terrain[6] = 'uu uu /. -- .. .. .. .. .. .. .. .. ..';
+ mappages["combatShore"].terrain[7] = '-- -- .. .. .. .. .. .. .. .. ,, .. ,,';
+ mappages["combatShore"].terrain[8] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["combatShore"].terrain[9] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["combatShore"].terrain[10] = '.. .. ,, .. .. .. .. .. .. .. .. .. ..';
+mappages["combatShore"].terrain[11] = '.. .. .. .. .. .. .. ,, .. .. .. .. ..';
+mappages["combatShore"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+
+mappages["combatShore"].features = new Array;
+
+
+mappages["combatShore"].npcs = new Array;
+
+mappages["combatShore"].desc = '';
+mappages["combatShore"].music = '';
+mappages["combatShore"].exitmap = '';
+mappages["combatShore"].exitx = '';
+mappages["combatShore"].exity = '';
+mappages["combatShore"].wraps = '';
+mappages["combatShore"].enterx = '';
+mappages["combatShore"].entery = '';
+mappages["combatShore"].seeBelow = '';
+mappages["combatShore"].lightLevel = '';
+mappages["combatShore"].alwaysRemember = '';
+mappages["combatShore"].scale = '';
+mappages["combatShore"].enterscript = '';
+mappages["combatShore"].entertestscript = '';
+mappages["combatShore"].exitscript = '';
+mappages["combatShore"].exittestscript = '';
+mappages["combatShore"].linkedMaps = new Array;
+
+// manually added
+
+mappages["combatShore"].set_exits = function(mapref) {
+  maps_set_exits(mapref);
+}
+
+mappages["combatShore"].check_escape = function(mapref) {
+  maps_check_escape(mapref);
+}
+
+
 // for all combat maps
 
 function maps_set_exits(mapref) {
