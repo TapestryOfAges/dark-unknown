@@ -748,3 +748,28 @@ function GetSpellList(lvl) {
   }
   return makehtml;
 }
+
+function GetCombatMap(atk,def) {
+  var atk_tile = atk.getHomeMap().getTile(atk.getx(),atk.gety());
+  var def_tile = def.getHomeMap().getTile(def.getx(),def.gety());
+  var atk_terrain = atk_tile.terrain.getCombatMap();
+  if (!atk_terrain) { atk_terrain = "Grass"; }
+  var def_terrain = def_tile.terrain.getCombatMap();
+  if (!def_terrain) { def_terrain = "Grass"; }
+  
+  var rand = Math.floor((Math.random()*2)+1); 
+  
+  if ((atk_terrain == "Water") && (def_terrain == "Water")) {
+    var final = "combatWater" + rand;
+    return final;
+  } 
+  
+  if ((atk_terrain == "Water") || (def_terrain == "Water")) {
+    var final = "combatShore" + rand;
+    return final;
+  }
+  
+  var final = "combat" + def_terrain + rand;
+  return final;
+  
+}
