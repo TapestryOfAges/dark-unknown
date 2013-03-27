@@ -783,12 +783,13 @@ TerrainObject.prototype.serialize = function() {
 }
 
 TerrainObject.prototype.getCombatMap = function() {
-  var mapname = this.combatmap;
-  if (this.combatmapoptions > 1) {
-    var randomnumber=Math.floor(Math.random()*this.combatmapoptions)+1;
-    mapname = mapname + randomnumber;
-  }
-  return mapname;
+//  var mapname = this.combatmap;
+//  if (this.combatmapoptions > 1) {
+//    var randomnumber=Math.floor(Math.random()*this.combatmapoptions)+1;
+//    mapname = mapname + randomnumber;
+//  }
+//  return mapname;
+  return this.combatmap;
 }
 
 TerrainObject.prototype.setCombatMap = function(map) {
@@ -822,6 +823,7 @@ function OceanTile() {
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
   this.spritexoffset = "-128";
   this.spriteyoffset = "0";
+  this.combatmap = "Water";
 }
 OceanTile.prototype = new TerrainObject;
 
@@ -833,6 +835,7 @@ function WaterTile() {
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
   this.spritexoffset = "-160";
   this.spriteyoffset = "0";
+  this.combatmap = "Water";
 }
 WaterTile.prototype = new TerrainObject;
 
@@ -844,6 +847,7 @@ function ShallowsTile() {
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
+  this.combatmap = "Water";
 }
 ShallowsTile.prototype = new TerrainObject;
 
@@ -856,6 +860,7 @@ function MountainTile() {
   this.desc = "mountains";
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
 }
 MountainTile.prototype = new TerrainObject;
 
@@ -1581,6 +1586,7 @@ function SouthCoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
+  this.combatmap = "Grass";
 }
 SouthCoastTile.prototype = new TerrainObject;
 
@@ -1593,6 +1599,7 @@ function NorthCoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
+  this.combatmap = "Grass";
 }
 NorthCoastTile.prototype = new TerrainObject;
 
@@ -1605,6 +1612,7 @@ function EastCoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
+  this.combatmap = "Grass";
 }
 EastCoastTile.prototype = new TerrainObject;
 
@@ -1617,6 +1625,7 @@ function WestCoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
+  this.combatmap = "Grass";
 }
 WestCoastTile.prototype = new TerrainObject;
 
@@ -1629,6 +1638,7 @@ function NortheastCoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
+  this.combatmap = "Grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -1643,6 +1653,7 @@ function SouthwestCoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
+  this.combatmap = "Grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -1657,6 +1668,7 @@ function NorthwestCoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
+  this.combatmap = "Grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -1671,6 +1683,7 @@ function SoutheastCoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
+  this.combatmap = "Grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -1686,6 +1699,7 @@ function RiverTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "river";
+  this.combatmap = "Water";
   
   SetBySurroundRiver.call(this);
 }
@@ -1725,8 +1739,7 @@ function GrassTile() {
   this.blocklos = 0;
   this.desc = "grass";
 
-  this.combatmap = "combatGrass";
-  this.combatmapoptions = 2; 
+  this.combatmap = "Grass"; 
 }
 GrassTile.prototype = new TerrainObject;
 
@@ -1739,6 +1752,7 @@ function DirtTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "dirt";
+  this.combatmap = "Grass";
 }
 DirtTile.prototype = new TerrainObject;
 
@@ -1750,6 +1764,7 @@ function RoadTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "dirt road";
+  this.combatmap = "Grass";
   
   this.initdelay = 0.8;
   
@@ -1767,6 +1782,7 @@ function BrushTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
+  this.combatmap = "Brush";
 }
 BrushTile.prototype = new TerrainObject;
 
@@ -1780,6 +1796,7 @@ function BrushNCoastTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
+  this.combatmap = "Brush";
 }
 BrushNCoastTile.prototype = new TerrainObject;
 
@@ -1793,6 +1810,7 @@ function BrushECoastTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
+  this.combatmap = "Brush";
 }
 BrushECoastTile.prototype = new TerrainObject;
 
@@ -1806,6 +1824,7 @@ function BrushSCoastTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
+  this.combatmap = "Brush";
 }
 BrushSCoastTile.prototype = new TerrainObject;
 
@@ -1818,7 +1837,8 @@ function BrushWCoastTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "brush";
-  this.initdelay = 1.1;
+  this.initdelay = 1.1;  
+  this.combatmap = "Brush";
 }
 BrushWCoastTile.prototype = new TerrainObject;
 
@@ -1834,6 +1854,7 @@ function ForestTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
+  this.combatmap = "Forest";
 }
 ForestTile.prototype = new TerrainObject;
 
@@ -1863,6 +1884,7 @@ function ForestNCoastTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
+  this.combatmap = "Forest";
 }
 ForestNCoastTile.prototype = new TerrainObject;
 
@@ -1878,6 +1900,7 @@ function ForestECoastTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
+  this.combatmap = "Forest";
 }
 ForestECoastTile.prototype = new TerrainObject;
 
@@ -1893,6 +1916,7 @@ function ForestSCoastTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
+  this.combatmap = "Forest";
 }
 ForestSCoastTile.prototype = new TerrainObject;
 
@@ -1908,6 +1932,7 @@ function ForestWCoastTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
+  this.combatmap = "Forest";
 }
 ForestWCoastTile.prototype = new TerrainObject;
 
@@ -1924,6 +1949,7 @@ function HillsTile() {
 //  this.losatdistance = { distance : 5 , blocklos : .5 };
   this.desc = "hills";
   this.initdelay = 1.5;
+  this.combatmap = "Hill";
 }
 HillsTile.prototype = new TerrainObject;
 
@@ -1949,6 +1975,7 @@ function SwampTile() {
   this.blocklos = 0;
   this.desc = "swamp";
   this.initdelay = 1.2;
+  this.combatmap = "Swamp";
 }
 SwampTile.prototype = new TerrainObject;
 SwampTile.prototype.walkon = function() {

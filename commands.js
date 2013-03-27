@@ -437,8 +437,9 @@ function PerformAttackMap(who) {
 //    retval["fin"] = 2;
 //    retval["input"] = "&gt;";
     
-    var combatmapname = localacre.terrain.getCombatMap();
-    if (!combatmapname) { combatmapname = "combatGrass1"; }
+//    var combatmapname = localacre.terrain.getCombatMap();
+//    if (!combatmapname) { combatmapname = "combatGrass1"; }
+    var combatmapname = GetCombatMap(who,atkwho);
     var newmap = new GameMap();
     newmap.loadMap(combatmapname);
     maps.addMapByRef(newmap);
