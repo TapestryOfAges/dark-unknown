@@ -17,7 +17,7 @@ Collection.prototype.getAt = function(x,y) {
 }
 
 Collection.prototype.getAll = function() {
-  return this.container;
+  return this.container.slice(0);
 }
 
 Collection.prototype.getAllSorted = function() {
