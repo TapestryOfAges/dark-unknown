@@ -3945,6 +3945,10 @@ NPCObject.prototype.removeMovetype = function(move) {
 	this.movetype = this.movetype & ~move;
 }
 
+NPCObject.prototype.getSpellEffects = function() {
+  return this.spellEffects.getAll();
+}
+
 NPCObject.prototype.activate = function(timeoverride) {
   
   var weapon;
@@ -4010,6 +4014,7 @@ NPCObject.prototype.activate = function(timeoverride) {
   DUTime.addAtTimeInterval(NPCEvent,timing);  
 }
 
+
 NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	var map = this.getHomeMap();
 	var oldmapname = map.getDesc();
@@ -4068,6 +4073,7 @@ NPCObject.prototype.myTurn = function() {
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
 	
+	runEffects(this);
 	// actual AI!
 	
 	var response = new Object;  
@@ -4324,6 +4330,7 @@ function PCObject() {
 PCObject.prototype = new NPCObject;
 
 PCObject.prototype.myTurn = function() {
+  runEffects(this);
 	gamestate.setMode("player");
 	gamestate.setTurn(PC);
 }
