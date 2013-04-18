@@ -225,3 +225,18 @@ function CanMissileAttack(who) {
   }
   return 1;
 }
+
+function setActiveEffects(who) {
+  var effects = who.getSpellEffects();
+  effects.sort(function(a,b){ if (a.getName() == b.getName()) {
+                                return (b.getPower() - a.getPower());
+                              } else {
+                                if (a.getName() < b.getName()) { return -1; }
+                                else return 1;
+                              }  }; );
+}
+
+function runEffects(who) {
+  var effects = who.getSpellEffects();
+  
+}
