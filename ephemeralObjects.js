@@ -6,7 +6,7 @@ function EphemeralObject() {
   this.name = "";
   this.createTime;
   this.expiresTime = 0; // 0 expires time means won't expire, replace this with a time if it will
-  this.power = 0;  // the Int of the caster, usually- this is used to decide which one of several
+  this.power = 1;  // the Int of the caster, usually- this is used to decide which one of several
                    // of the same spell/effect to actually have take effect
   this.active = 0;  // set to 1 if it is being allowed to take effect, see above
 
@@ -54,14 +54,24 @@ EphemeralObject.prototype.getActive = new function() {
 
 
 
-function TriggeredObject() {
-
+function DamageOverTimeObject() {
+  this.damagePerTick = 0;
 }
-TriggeredObject.prototype = new EphemeralObject;
+DamageOverTimeObject.prototype = new EphemeralObject;
+
+DamageOverTimeObject.prototype.setDamagePerTick = new function(newDoT) {
+  this.damagePerTick = newDoT;
+  return this.damagePerTick;
+}
+
+DamageOverTimeObject.prototype.getDamagePerTick = new function() {
+  return this.damagePerTick;
+}
 
 function DiseaseObject() {
   this.addType("Debuff");
   this.addType("DoT");
   this.name = "Disease";
+  this.damagePerTick = 2;
 }
-DiseaseObject.prototype = new TriggeredObject;
+DiseaseObject.prototype = new DamageOverTimeObject;
