@@ -233,7 +233,16 @@ function setActiveEffects(who) {
                               } else {
                                 if (a.getName() < b.getName()) { return -1; }
                                 else return 1;
-                              }  }; );
+                              }  } );
+                              
+  var currname = "";
+  for (var i = 0; i < effects.length; i++ ) {
+    if (effects[i].getName() == currname) { effects[i].setActive(0); }
+    else {
+      effects[i].setActive(1);
+      currname = effects[i].getName();
+    }
+  }
 }
 
 function runEffects(who) {
