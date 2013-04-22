@@ -520,6 +520,21 @@ Acre.prototype.executeWalkons = function(walker) {
 	}
 }
 
+Acre.prototype.executeIdles = function(walker) {
+	var terrain = this.getTerrain();
+	if (typeof terrain.idle == "function") {
+		terrain.idle(walker);
+	}
+	var features = this.getFeatures();
+	if (features) {
+		for (var i = 0; i < features.length; i++) {
+			if (typeof features[i].idle == "function") {
+				features[i].idle(walker);
+			}
+		}
+	}
+}
+
 // Map Object - one per map.
 
 function GameMap() {
