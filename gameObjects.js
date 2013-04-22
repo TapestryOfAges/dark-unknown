@@ -1978,11 +1978,13 @@ function SwampTile() {
   this.combatmap = "Swamp";
 }
 SwampTile.prototype = new TerrainObject;
-SwampTile.prototype.walkon = function() {
+SwampTile.prototype.walkon = function(person) {
   // return chance, damage, and type
+  alert("Walkon");
 }
-SwampTile.prototype.idle = function() {
+SwampTile.prototype.idle = function(person) {
   // see walkon
+  alert("Idle");
 }
 
 function ShinglesTile() {
@@ -3601,6 +3603,10 @@ function NPCObject() {
 	this.lastTurnTime = 0;
 	this.spellbook = new Array;
 	this.spellEffects = new Collection;
+	this.lastLocation = new Object;
+	this.lastLocation.map = "";
+	this.lastLocation.x = 0;
+	this.lastLocation.y = 0;
 	
 	this.addType("npc");
 }
@@ -4266,6 +4272,17 @@ NPCObject.prototype.getAbsorb = function() {
   }
 }
 
+NPCObject.prototype.getLastLocation = function() {
+  return this.lastLocation;
+}
+
+NPCObject.prototype.setLastLocation = function (newloc) {
+  this.lastLocation.map = newloc.map;
+  this.lastLocation.x = newloc.x;
+  this.lastLocation.y = newloc.y;
+}
+
+
 function NPCGroupObject() {
   this.group = new Array;
 }
@@ -4337,6 +4354,20 @@ PCObject.prototype.myTurn = function() {
 
 PCObject.prototype.endTurn = function(init) {
   gamestate.setMode("null");
+  
+  // did the player idle?
+  var oldloc = this.getLastLocation();
+  if ((oldloc.map == this.getHomeMap()) && (oldloc.x == this.getx()) && (oldloc.y == this.gety())) {  // player did not move
+    var tile = this.getHomeMap().getTile(this.getx(),this.gety());
+    var idleval = tile.executeIdles(this);
+  } else {
+    var newloc = new Object;
+    newloc.map = this.getHomeMap();
+    newloc.x = this.getx();
+    newloc.y = this.gety();
+    this.setLastLocation(newloc);
+  }
+  
   var PCevent = new GameEvent(PC);
   DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(init));
 
