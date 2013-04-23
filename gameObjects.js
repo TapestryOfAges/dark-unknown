@@ -3676,6 +3676,10 @@ NPCObject.prototype.getHP = function() {
 	return this.hp;
 }
 
+NPCObject.prototype.getDisplayHP = function() {
+  return Math.ceil(this.hp);
+}
+
 NPCObject.prototype.setMaxHP = function(newhp) {
 	this.maxhp = newhp;
 }
