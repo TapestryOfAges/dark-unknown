@@ -29,7 +29,7 @@ var raceWarning = 0;
 function drawCharFrame() {
   var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='2'>";
   txt = txt + PC.getPCName() + "</td></tr>";
-  txt = txt + "<tr><td>HP: " + PC.getHP() + "</td><td style='text-align:right'>MP: " + PC.getMana() + "</td></tr></table>";
+  txt = txt + "<tr><td>HP: " + PC.getDisplayHP() + "</td><td style='text-align:right'>MP: " + PC.getMana() + "</td></tr></table>";
   $("#charstats").html(txt);
 }
 

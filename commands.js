@@ -990,7 +990,7 @@ function DrawStats(page) {
   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
   statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
-  statsdiv += "<tr><td style='width:50%'>HP: " + PC.getHP() + "/" + PC.getMaxHP() + "</td><td></td>";
+  statsdiv += "<tr><td style='width:50%'>HP: " + PC.getDisplayHP() + "/" + PC.getMaxHP() + "</td><td></td>";
   statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
   statsdiv += "<tr><td>STR: " + PC.getStr() + "</td><td></td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
