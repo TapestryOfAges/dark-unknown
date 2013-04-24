@@ -3689,9 +3689,17 @@ NPCObject.prototype.getMaxHP = function() {
 }
 
 NPCObject.prototype.modHP = function(hpdiff) {
-	hpdiff = parseInt(hpdiff);
+//	hpdiff = parseInt(hpdiff);
 	this.hp += hpdiff;
 	return this.hp;
+}
+
+NPCObject.prototype.healMe = function(amt, src) {
+  this.modHP(amt);
+  if (this.getHP() > this.getMaxHP()) {
+    this.setHP(this.getMaxHP());
+  }
+  return this.getHP();
 }
 
 NPCObject.prototype.dealDamage = function(dmg, src) {
