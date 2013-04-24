@@ -3661,7 +3661,7 @@ NPCObject.prototype.getLastTurnTime = function() {
 }
 
 NPCObject.prototype.setLastTurnTime = function(newtime) {
-  newtime = parseInt(newtime);
+//  newtime = parseInt(newtime);
   if (!isNaN(newtime)) {
     this.lastTurnTime = newtime;
   }
@@ -3924,6 +3924,7 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
 
   var themap = this.getHomeMap();
   var scale = themap.getScale();
+  
   if (this.smallscalemove) { 
     scale = 1;
     delete this.smallscalemove;
@@ -3934,7 +3935,9 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
   if ((initdelay) && (initdelay != 0)) {
   	init = init * initdelay;
   }
-  if (scale) { init = init * SCALE_TIME; }
+
+  if (scale != "0") { init = init * SCALE_TIME; }
+
 	return init;
 }
 
@@ -4097,6 +4100,21 @@ NPCObject.prototype.myTurn = function() {
 	var response = new Object;  
 	// will be = return value of AI call
 	response["initdelay"] = 1;
+
+  // check for NPC idling
+  var oldloc = this.getLastLocation();
+  if ((oldloc.map == this.getHomeMap()) && (oldloc.x == this.getx()) && (oldloc.y == this.gety())) {  // player did not move
+    var tile = this.getHomeMap().getTile(this.getx(),this.gety());
+    var idleval = tile.executeIdles(this);
+  } else {
+    var newloc = new Object;
+    newloc.map = this.getHomeMap();
+    newloc.x = this.getx();
+    newloc.y = this.gety();
+    this.setLastLocation(newloc);
+  }
+	
+	this.setLastTurnTime(DUTime.getGameClock());
 	
 	gamestate.setMode("null");
 	var NPCevent = new GameEvent(this);
@@ -4379,6 +4397,8 @@ PCObject.prototype.endTurn = function(init) {
     newloc.y = this.gety();
     this.setLastLocation(newloc);
   }
+  
+  this.setLastTurnTime(DUTime.getGameClock());
   
   var PCevent = new GameEvent(PC);
   DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(init));
