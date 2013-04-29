@@ -272,18 +272,6 @@ GameObject.prototype.addPassable = function(movetype) {
 	return this.passable;
 }
 
-GameObject.prototype.passable = function(movetype) {
-  var Passability = new Object;
-  if ((movetype & this.getPassable()) != "0") {
-    Passability.validmove = 1;
-    return(Passability);
-  }
-  Passability.validmove = 0;
-  if (this.movementerrmeg) { Passability.errmsg = this.movementerrmsg; }
-  else { Passability.errmsg = "Movement blocked!"; }
-  return(Passability);
-}
-
 // These below are abstract classes, to be used only in JS's halfassed
 // version of multiple inheritance. 
 
@@ -1979,12 +1967,24 @@ function SwampTile() {
 }
 SwampTile.prototype = new TerrainObject;
 SwampTile.prototype.walkon = function(person) {
-  // return chance, damage, and type
-  alert("Walkon");
+  InASwamp(person);
 }
 SwampTile.prototype.idle = function(person) {
-  // see walkon
-  alert("Idle");
+  InASwamp(person);
+}
+
+function InASwamp(who) {
+  if (MOVE_LEVITATE & who.getPassable()) {
+    // entity is levitating and cannot be diseased
+    alert("Levitating!");
+    return 0;
+  }
+  // percent chance of infection- 10% per step, prorated by speed
+  var chance = 10 * (DUTime.getGameClock() - who.getLastTurnTime());  
+  if (Math.random()*100 < chance) {  // diseased!
+    alert("Diseased!");
+  }
+  
 }
 
 function ShinglesTile() {
@@ -3924,7 +3924,6 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
 
   var themap = this.getHomeMap();
   var scale = themap.getScale();
-  
   if (this.smallscalemove) { 
     scale = 1;
     delete this.smallscalemove;
@@ -3935,9 +3934,7 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
   if ((initdelay) && (initdelay != 0)) {
   	init = init * initdelay;
   }
-
   if (scale != "0") { init = init * SCALE_TIME; }
-
 	return init;
 }
 
@@ -4100,8 +4097,8 @@ NPCObject.prototype.myTurn = function() {
 	var response = new Object;  
 	// will be = return value of AI call
 	response["initdelay"] = 1;
-
-  // check for NPC idling
+	
+	  // check for NPC idling
   var oldloc = this.getLastLocation();
   if ((oldloc.map == this.getHomeMap()) && (oldloc.x == this.getx()) && (oldloc.y == this.gety())) {  // player did not move
     var tile = this.getHomeMap().getTile(this.getx(),this.gety());
