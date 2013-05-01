@@ -104,7 +104,7 @@ DiseaseTile.prototype = new DamageOverTimeObject;
 DiseaseTile.prototype.doEffect = function() {
   var prev = this.getLastTime();
   if (!prev) { prev = this.getCreateTime(); }
-  alert("prev: " + prev + ", now: " + DUTime.getGameClock());
+  
   var dur = DUTime.getGameClock() - prev;
   var dmg = dur * this.getDamagePerTick();
   var who = this.getAttachedTo();
