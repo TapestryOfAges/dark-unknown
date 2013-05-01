@@ -26,14 +26,14 @@ var inputText = new Object;
 
 var raceWarning = 0;
 
-function drawCharFrame() {
-  var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='2'>";
+function DrawCharFrame() {
+  var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='3'>";
   txt = txt + PC.getPCName() + "</td></tr>";
-  txt = txt + "<tr><td>HP: " + PC.getDisplayHP() + "</td><td style='text-align:right'>MP: " + PC.getMana() + "</td></tr></table>";
+  txt = txt + "<tr><td width='33%'>HP: " + PC.getDisplayHP() + "</td><td width='34%'>" + SpellInitials(PC) + "</td><td width='33%' style='text-align:right'>MP: " + PC.getMana() + "</td></tr></table>";
   $("#charstats").html(txt);
 }
 
-function drawMainFrame(how, mapname, centerx, centery) {
+function DrawMainFrame(how, mapname, centerx, centery) {
   // how options are "draw" and "refresh"
 
   var mapdiv = "&nbsp;";
@@ -81,7 +81,7 @@ function drawMainFrame(how, mapname, centerx, centery) {
   
 }
 
-function drawTopbarFrame(txt) {
+function DrawTopbarFrame(txt) {
   $('#topbarframe').html(txt);	
 }
 
@@ -90,11 +90,11 @@ $(document).ready(function() {
   maps.addMapByRef(worldmap);
 	
   gamestate.loadGame();
-  drawCharFrame();
+  DrawCharFrame();
     
   PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
-  drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-  drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 
   maintext.addText("Game loaded.");
   maintext.setInputLine("&gt;");
@@ -203,7 +203,7 @@ function DoAction(code) {
           resp = PerformAttackMap(PC);  			  
         }
         if (resp["fin"] == 1) {
-// 					drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+// 					DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
         }
         if (resp["fin"] < 2) {
           maintext.addText(resp["txt"]);
@@ -269,7 +269,7 @@ function DoAction(code) {
       $(tileid).html(targetCursor.basetile); 
       maintext.addText(response["txt"]);
       maintext.setInputLine(response["input"]);
-  			//drawTextFrame(maintext.getTextFrame(), response["input"]);
+  			//DrawTextFrame(maintext.getTextFrame(), response["input"]);
       maintext.drawTextFrame();
       
       gamestate.setMode("player");
@@ -285,8 +285,8 @@ function DoAction(code) {
     if (response["fin"] == 0) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
-      drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     }
@@ -297,8 +297,8 @@ function DoAction(code) {
       maintext.addText(response["txt"]);
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
-      drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
       PC.endTurn(response["initdelay"]);
     }
       
@@ -308,8 +308,8 @@ function DoAction(code) {
     if (response["fin"] == 0) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
-      drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     } else if (response["fin"] == 1) {
