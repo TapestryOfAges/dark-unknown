@@ -268,7 +268,7 @@ function PerformCommand(code) {
    statsdiv += "<td></td></tr>";
   
    statsdiv += "</table></div></div>";
-   drawTopbarFrame("<p>Equipment</p>");
+   DrawTopbarFrame("<p>Equipment</p>");
    $('#displayframe').html(statsdiv);
    
 	var scrollelem = $('.zstats').jScrollPane();
@@ -450,7 +450,7 @@ function PerformAttackMap(who) {
     var monsters = PlaceMonsters(newmap,atkwho,1);
     DUTime.removeEntityFrom(atkwho);
     
-    drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
     retval["txt"] = "Attack: " + atkwho.getDesc() + ".";
     retval["fin"] = 0;
     retval["input"] = "&gt;";
@@ -737,8 +737,8 @@ function PerformEnter(cmd) {
 			} else if (klimb != "") {
 				retval["txt"] = klimb;
 			}
-			drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-			drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+			DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+			DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 			
 		}
 		return retval;
@@ -760,7 +760,7 @@ function PerformGet(who) {
     }
     retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
     retval["fin"] = 1;
-    drawMainFrame("one",getitem.getHomeMap().getName(),targetCursor.x,targetCursor.y);
+    DrawMainFrame("one",getitem.getHomeMap().getName(),targetCursor.x,targetCursor.y);
     return retval;    
   } 
   else {
@@ -863,7 +863,7 @@ function PerformSearch(who) {
 //      retval["txt"] += newthing.getDesc();
 //    }
     retval["txt"] += ".";
-    drawMainFrame("one",who.getHomeMap().getName(),targetCursor.x,targetCursor.y);
+    DrawMainFrame("one",who.getHomeMap().getName(),targetCursor.x,targetCursor.y);
   }  else {
     if (searched.getShowSearched()) {
       searched.setDesc(searched.getDesc() + " [Searched]");
@@ -901,9 +901,9 @@ function PerformUse(who) {
 		    who.getHomeMap().setMapLight(usemap.lightsList[index], usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
 		  });
 		  
-		  drawMainFrame("draw",used.getHomeMap().getName(),PC.getx(),PC.gety());
+		  DrawMainFrame("draw",used.getHomeMap().getName(),PC.getx(),PC.gety());
 		} else {		
-		  drawMainFrame("one",used.getHomeMap().getName(),used.getx(),used.gety());
+		  DrawMainFrame("one",used.getHomeMap().getName(),used.getx(),used.gety());
 		}
 	} else {
 		retval["txt"] = "There is nothing to use there.";
@@ -1049,7 +1049,7 @@ function DrawStats(page) {
   statsdiv += "<td></td></tr>";
   
   statsdiv += "</table></div></div>";
-  drawTopbarFrame("<p>Character</p>");
+  DrawTopbarFrame("<p>Character</p>");
   
  }
  else if (page == 2) {
@@ -1113,7 +1113,7 @@ function DrawStats(page) {
    statsdiv += "<td></td></tr>";
   
    statsdiv += "</table></div></div>";
-   drawTopbarFrame("<p>Inventory</p>");
+   DrawTopbarFrame("<p>Inventory</p>");
  } else if (page == 3) {
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
@@ -1158,7 +1158,7 @@ function DrawStats(page) {
   }
   
    statsdiv += "</table></div></div>";  
-   drawTopbarFrame("<p>Spellbook</p>");
+   DrawTopbarFrame("<p>Spellbook</p>");
   }
  
   $('#displayframe').html(statsdiv);
