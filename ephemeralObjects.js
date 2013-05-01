@@ -68,10 +68,13 @@ DamageOverTimeObject.prototype.getDamagePerTick = new function() {
   return this.damagePerTick;
 }
 
-function DiseaseObject() {
+// Called "Tiles" for consistency, not because it'll ever get placed
+
+function DiseaseTile() {
   this.addType("Debuff");
   this.addType("DoT");
   this.name = "Disease";
   this.damagePerTick = 2;
 }
-DiseaseObject.prototype = new DamageOverTimeObject;
+DiseaseTile.prototype = new DamageOverTimeObject;
+
