@@ -226,7 +226,7 @@ function CanMissileAttack(who) {
   return 1;
 }
 
-function setActiveEffects(who) {
+function SetActiveEffects(who) {
   var effects = who.getSpellEffects();
   effects.sort(function(a,b){ if (a.getName() == b.getName()) {
                                 return (b.getPower() - a.getPower());
@@ -245,7 +245,14 @@ function setActiveEffects(who) {
   }
 }
 
-function runEffects(who) {
+function RunEffects(who) {
   var effects = who.getSpellEffects();
+  if (effects) {
+    for (var i=0; i<effects.length; i++) {
+      if (effects[i].getActive()) {
+        effects[i].doEffect();
+      } 
+    } 
+  }
   
 }
