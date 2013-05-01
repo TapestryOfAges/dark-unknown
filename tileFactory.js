@@ -4,10 +4,10 @@ function tileFactory() {
 
 // terrain factories:
 tileFactory.prototype.createTile = function(tileName) {
-//  alert("Creating: " + tileName);
+
 
   var thingy = "make"+tileName+"Tile";
-  var newthing = this[thingy]();
+    var newthing = this[thingy]();
   newthing.assignSerial();
   return newthing;
 }
@@ -572,13 +572,13 @@ tileFactory.prototype.makeCorpseTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeEnergyFieldTile = function() {
-  var newTile = new EnergyFieldTile();
+tileFactory.prototype.makeBloodTile = function() {
+  var newTile = new BloodTile();
   return newTile;
 }
 
-tileFactory.prototype.makeCampfireTile = function() {
-  var newTile = new CampfireTile();
+tileFactory.prototype.makeEnergyFieldTile = function() {
+  var newTile = new EnergyFieldTile();
   return newTile;
 }
 
@@ -589,6 +589,11 @@ tileFactory.prototype.makeTorchWestTile = function() {
 
 tileFactory.prototype.makeTorchEastTile = function() {
   var newTile = new TorchEastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCampfireTile = function() {
+  var newTile = new CampfireTile();
   return newTile;
 }
 
@@ -967,11 +972,6 @@ tileFactory.prototype.makeGiantSnakeNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeBloodTile = function() {
-  var newTile = new BloodTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeOrcNPCTile = function() {
   var newTile = new OrcNPCTile();
   return newTile;
@@ -984,6 +984,11 @@ tileFactory.prototype.makeOrcGroupSmallTile = function() {
 
 tileFactory.prototype.makeOrcGroupLargeTile = function() {
   var newTile = new OrcGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDiseaseTile = function() {
+  var newTile = new DiseaseTile();
   return newTile;
 }
 
