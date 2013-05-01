@@ -1976,13 +1976,16 @@ SwampTile.prototype.idle = function(person) {
 function InASwamp(who) {
   if (MOVE_LEVITATE & who.getPassable()) {
     // entity is levitating and cannot be diseased
-    alert("Levitating!");
     return 0;
   }
   // percent chance of infection- 10% per step, prorated by speed
   var chance = 10 * (DUTime.getGameClock() - who.getLastTurnTime());  
   if (Math.random()*100 < chance) {  // diseased!
-    alert("Diseased!");
+    if (who.getSpellEffectsByName("Disease")) { return 0; }
+    var disease = localFactory.createTile("Disease");
+    who.addSpellEffect(disease);
+    maintext.addText("You have become diseased.");
+    DrawCharFrame();
   }
   
 }
@@ -3677,7 +3680,9 @@ NPCObject.prototype.getHP = function() {
 }
 
 NPCObject.prototype.getDisplayHP = function() {
-  return Math.ceil(this.hp);
+  var displayhp = Math.ceil(this.hp);
+  if (displayhp < 0) { displayhp = 0; }
+  return displayhp;
 }
 
 NPCObject.prototype.setMaxHP = function(newhp) {
@@ -3755,7 +3760,7 @@ NPCObject.prototype.processDeath = function(droploot){
       map.placeThing(this.getx(),this.gety(), chest);
     }
     map.deleteThing(this);
-    drawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
+    DrawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
     DUTime.removeEntityFrom(this);
 //    delete universe.this.getSerial();
     delete map.lightsList[this.getSerial()];
@@ -3967,6 +3972,17 @@ NPCObject.prototype.getSpellEffects = function() {
   return this.spellEffects.getAll();
 }
 
+NPCObject.prototype.getSpellEffectsByName = function(checkname) {
+  return this.spellEffects.getByName(checkname);
+}
+
+NPCObject.prototype.addSpellEffect = function(spellobj) {
+  this.spellEffects.addBottom(spellobj);
+  spellobj.setAttachedTo(this);
+  spellobj.setCreateTime(DUTime.getGameClock());
+  SetActiveEffects(this);
+}
+
 NPCObject.prototype.activate = function(timeoverride) {
   
   var weapon;
@@ -4051,8 +4067,8 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 			}
 			tile = MoveBetweenMaps(this,map,newmap,map.getExitToX(),map.getExitToY());
 			if (this == PC) {
-				drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-				drawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+				DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+				DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 				retval["canmove"] = 0;
 				retval["msg"] = ".<br />Exiting " + oldmapname + ".";
 			}
@@ -4078,7 +4094,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	if (retval["canmove"] == 1) {
 		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
 //                if (this == PC) {
-			drawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+			DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 //		}
 		var walkonval = tile.executeWalkons(this);
 	}
@@ -4091,7 +4107,7 @@ NPCObject.prototype.myTurn = function() {
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
 	
-	runEffects(this);
+	RunEffects(this);
 	// actual AI!
 	
 	var response = new Object;  
@@ -4374,7 +4390,7 @@ function PCObject() {
 PCObject.prototype = new NPCObject;
 
 PCObject.prototype.myTurn = function() {
-  runEffects(this);
+  RunEffects(this);
 	gamestate.setMode("player");
 	gamestate.setTurn(PC);
 }
@@ -4485,4 +4501,21 @@ PCObject.prototype.setInfusion = function(infuse) {
   this.infuse = parseInt(infuse);
   if (this.infuse != 1) { this.infuse = 0; }
   return this.infuse;
+}
+
+PCObject.prototype.dealDamage = function(dmg, src) {
+  var oldhp = this.getDisplayHP();
+  this.modHP(dmg*-1);
+  var newhp = this.getDisplayHP();
+  
+  if (oldhp != newhp) {
+    // damage flash!!  FIXME
+    DrawCharFrame();
+  }
+  
+  if (this.getHP() <= 0) { // killed!
+    this.processDeath(1);
+    return 0;
+  }
+  else { return 1; }
 }
