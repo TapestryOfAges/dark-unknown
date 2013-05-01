@@ -57,7 +57,7 @@ Collection.prototype.addTop = function(addthis) {
 }
 
 Collection.prototype.addBottom = function(addthis) {
-  this.container.shift(addthis);
+  this.container.unshift(addthis);
 }
 
 Collection.prototype.deleteFrom = function(deletethis) {
