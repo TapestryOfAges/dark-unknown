@@ -773,3 +773,18 @@ function GetCombatMap(atk,def) {
   return final;
   
 }
+
+function SpellInitials(who) {
+  var initials = "";
+  var spells = who.getSpellEffects();
+  if (spells) {
+    for (var i=0; i<spells.length; i++) {
+      if (spells[i].getDisplay()) {
+        if (!initials.match(spells[i].getDisplay())) {
+          initials += spells[i].getDisplay();
+        }
+      }
+    }
+  }
+  return initials;
+}
