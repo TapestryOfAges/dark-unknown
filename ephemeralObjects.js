@@ -96,7 +96,7 @@ function DiseaseTile() {
   this.addType("Debuff");
   this.addType("DoT");
   this.name = "Disease";
-  this.damagePerTick = 2;
+  this.damagePerTick = 1;
   this.display = "<span style='color:#58FA58'>D</span>";
 }
 DiseaseTile.prototype = new DamageOverTimeObject;
