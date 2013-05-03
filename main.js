@@ -29,7 +29,7 @@ var raceWarning = 0;
 function DrawCharFrame() {
   var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='3'>";
   txt = txt + PC.getPCName() + "</td></tr>";
-  txt = txt + "<tr><td width='33%'>HP: " + PC.getDisplayHP() + "</td><td width='34%'>" + SpellInitials(PC) + "</td><td width='33%' style='text-align:right'>MP: " + PC.getMana() + "</td></tr></table>";
+  txt = txt + "<tr><td width='33%' id='hpcell'>HP: " + PC.getDisplayHP() + "</td><td width='34%'>" + SpellInitials(PC) + "</td><td width='33%' style='text-align:right'>MP: " + PC.getMana() + "</td></tr></table>";
   $("#charstats").html(txt);
 }
 
@@ -329,7 +329,12 @@ function DoAction(code) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         PC.endTurn();
-      }   
+      } else if (response["fin"] == 2) {
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        gamestate.setMode("player");
+        gamestate.setTurn(PC);
+      }
     }
   }
 

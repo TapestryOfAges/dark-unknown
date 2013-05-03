@@ -788,3 +788,9 @@ function SpellInitials(who) {
   }
   return initials;
 }
+
+function DamageFlash() {
+  $('#hpcell').css("background-color", "white");
+  $('#hpcell').css("color", "black");
+  setTimeout(function() { $('#hpcell').css("background-color", "black"); $('#hpcell').css("color", "white"); }, 250);
+}
