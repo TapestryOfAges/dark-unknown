@@ -113,7 +113,12 @@ function PerformCommand(code) {
 	}
 	else if (code == 73) { // i
 		// was ignite torch, now infuse?
-    retval = PerformCast(1);
+		if (PC.getKnowsInfusion()) {
+      retval = PerformCast(1);
+    } else {
+      retval["fin"] = 2;
+      retval["txt"] = "You have not yet learned the higher mysteries.";
+    }
 	}
 	else if (code == 74) { // j
 		// jimmy lock ?
