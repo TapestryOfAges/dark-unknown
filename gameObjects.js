@@ -732,15 +732,15 @@ InanimateObject.prototype.setUseScript = function(newscript) {
 }
 
 InanimateObject.prototype.walkon = function() {
-  return(1);
+  return("");
 }
 
 InanimateObject.prototype.leave = function() {
-  return(1);
+  return("");
 }
 
 InanimateObject.prototype.idle = function() {
-  return(0);
+  return("");
 }
 
 InanimateObject.prototype.getInitDelay = function() {
@@ -1967,16 +1967,18 @@ function SwampTile() {
 }
 SwampTile.prototype = new TerrainObject;
 SwampTile.prototype.walkon = function(person) {
-  InASwamp(person);
+  var resp = InASwamp(person);
+  return resp;
 }
 SwampTile.prototype.idle = function(person) {
-  InASwamp(person);
+  var resp = InASwamp(person);
+  return resp;
 }
 
 function InASwamp(who) {
   if (MOVE_LEVITATE & who.getPassable()) {
     // entity is levitating and cannot be diseased
-    return 0;
+    return "";
   }
   // percent chance of infection- 10% per step, prorated by speed
   var chance = 10 * (DUTime.getGameClock() - who.getLastTurnTime());  
@@ -1984,10 +1986,12 @@ function InASwamp(who) {
     if (who.getSpellEffectsByName("Disease")) { return 0; }
     var disease = localFactory.createTile("Disease");
     who.addSpellEffect(disease);
-    maintext.addText("You have become diseased.");
+    
     DrawCharFrame();
+    var response = "You have become diseased!";
+    return response;
   }
-  
+  return "";
 }
 
 function ShinglesTile() {
@@ -3606,6 +3610,7 @@ function NPCObject() {
 	this.lastTurnTime = 0;
 	this.spellbook = new Array;
 	this.spellEffects = new Collection;
+	this.knowsInfusion = 0;
 	this.lastLocation = new Object;
 	this.lastLocation.map = "";
 	this.lastLocation.x = 0;
@@ -3633,6 +3638,11 @@ NPCObject.prototype.getMana = function() {
 	return this.mana;
 }
 
+NPCObject.prototype.modMana = function(diffMana) {
+	this.mana = this.mana + diffMana;
+	return this.mana;
+}
+
 NPCObject.prototype.setMaxMana = function(newMana) {
 	if (newMana == -1) { this.maxmana = this.getInt(); }
 	else {this.maxmana = newMana; }
@@ -3640,6 +3650,15 @@ NPCObject.prototype.setMaxMana = function(newMana) {
 
 NPCObject.prototype.getMaxMana = function() {
 	return this.maxmana;
+}
+
+NPCObject.prototype.getKnowsInfusion = function() {
+	return this.knowsInfusion;
+}
+
+NPCObject.prototype.setKnowsInfusion = function(knowledge) {
+	this.knowsInfusion = knowledge;
+	return this.knowsInfusion;
 }
 
 NPCObject.prototype.setGold = function(newgold) {
@@ -3983,6 +4002,10 @@ NPCObject.prototype.addSpellEffect = function(spellobj) {
   SetActiveEffects(this);
 }
 
+NPCObject.prototype.deleteSpellEffect = function(spellobj) {
+  this.spellEffects.deleteFrom(spellobj);
+}
+
 NPCObject.prototype.activate = function(timeoverride) {
   
   var weapon;
@@ -4097,6 +4120,10 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 			DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 //		}
 		var walkonval = tile.executeWalkons(this);
+		if (walkonval) {
+		  if (retval["msg"] != "") { retval["msg"] += "<br />"; }
+		  retval["msg"] += walkonval;
+		}
 	}
 	retval["initdelay"] = tile.getInitDelay(this);
 	return retval;
@@ -4400,9 +4427,10 @@ PCObject.prototype.endTurn = function(init) {
   
   // did the player idle?
   var oldloc = this.getLastLocation();
+  var idleval;
   if ((oldloc.map == this.getHomeMap()) && (oldloc.x == this.getx()) && (oldloc.y == this.gety())) {  // player did not move
     var tile = this.getHomeMap().getTile(this.getx(),this.gety());
-    var idleval = tile.executeIdles(this);
+    idleval = tile.executeIdles(this);
   } else {
     var newloc = new Object;
     newloc.map = this.getHomeMap();
@@ -4411,6 +4439,7 @@ PCObject.prototype.endTurn = function(init) {
     this.setLastLocation(newloc);
   }
   
+  if (idleval) { maintext.addText(idleval); }
   this.setLastTurnTime(DUTime.getGameClock());
   
   var PCevent = new GameEvent(PC);
@@ -4509,8 +4538,8 @@ PCObject.prototype.dealDamage = function(dmg, src) {
   var newhp = this.getDisplayHP();
   
   if (oldhp != newhp) {
-    // damage flash!!  FIXME
     DrawCharFrame();
+    DamageFlash();
   }
   
   if (this.getHP() <= 0) { // killed!
