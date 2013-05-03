@@ -589,6 +589,7 @@ function PerformSpellbook(code) {
       maintext.addText("Not enough mana.");
       var retval = new Object;
       retval["fin"] = 2;
+      retval["input"] = "&gt;";
       return retval;
     }
   }
@@ -930,6 +931,7 @@ function PerformYell() {
 		    ActivateDebug();
 		  }
 		} else if (inputText.txt == "BEAMAGE") {
+		  PC.setKnowsInfusion(1);
 		  for (i=1; i<=8; i++) {
 		    for (j=1; j<=6; j++) {
 		      if (i != 4) {
