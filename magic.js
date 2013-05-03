@@ -131,6 +131,22 @@ magic[8][GetSpellID(6)] = new SpellObject("Time Stop", "An Tym", 8, 0);
 
 
 // Cure
-magic[1][GetSpellID(1)].executeSpell = new function(caster, infused) {
-  
+magic[1][GetSpellID(1)].executeSpell = function(caster, infused) {
+  var mana = this.getManaCost(infused);
+  var resp = new Object;
+  caster.modMana(-1*mana);
+  resp["fin"] = 1;
+  var effects = caster.getSpellEffects();
+  if (effects) {
+    for (var i=0; i<effects.length; i++) {
+      if (effects[i].getName() == "Poison") {
+        caster.deleteSpellEffect(effects[i]);
+      }
+      if ((infused) && (effects[i].getName() == "Disease")) {
+        caster.deleteSpellEffect(effects[i]);
+      }
+    }
+  }
+  DrawCharFrame();
+  return resp;
 }
