@@ -115,3 +115,8 @@ DiseaseTile.prototype.doEffect = function() {
   
   this.setLastTime(DUTime.getGameClock());    
 }
+
+DiseaseTile.prototype.endEffect = function() {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+}
