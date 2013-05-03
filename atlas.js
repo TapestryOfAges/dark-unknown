@@ -507,32 +507,48 @@ Acre.prototype.canMoveHere = function(mover, fromtile) {
 
 Acre.prototype.executeWalkons = function(walker) {
 	var terrain = this.getTerrain();
+	var response = "";
 	if (typeof terrain.walkon == "function") {
-		terrain.walkon(walker);
+    var resp = terrain.walkon(walker);
+    if (resp) {
+      response += resp;
+    }
 	}
 	var features = this.getFeatures();
 	if (features) {
 		for (var i = 0; i < features.length; i++) {
 			if (typeof features[i].walkon == "function") {
-				features[i].walkon(walker);
+				var resp = features[i].walkon(walker);
+				if (resp) {
+				  if (response) { response += "<br />"; }
+				  response += resp;
+				}
 			}
 		}
 	}
+	return response;
 }
 
 Acre.prototype.executeIdles = function(walker) {
 	var terrain = this.getTerrain();
+	var response = "";
 	if (typeof terrain.idle == "function") {
-		terrain.idle(walker);
+		var resp = terrain.idle(walker);
+		if (resp) { response += resp; }
 	}
 	var features = this.getFeatures();
 	if (features) {
 		for (var i = 0; i < features.length; i++) {
 			if (typeof features[i].idle == "function") {
-				features[i].idle(walker);
+				var resp = features[i].idle(walker);
+				if (resp) {
+				  if (response) { response += "<br />"; }
+				  resp += response;
+				}
 			}
 		}
 	}
+	return response;
 }
 
 // Map Object - one per map.
