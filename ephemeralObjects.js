@@ -1,7 +1,7 @@
 
 function EphemeralObject() {
 
-  this.type = "XEphemeralObjectX";
+  this.type = "XephemeralX";
 // beyond that, types are: Triggered, Spell, Buff, Debuff, OnAttack, OnHit, OnIsAttacked, OnIsHit
   this.name = "";
   this.createTime;
@@ -41,7 +41,7 @@ EphemeralObject.prototype.getLastTime = function() {
 }
 
 EphemeralObject.prototype.setExpiresTime = function(newtime) {
-  this.expiresTime = parseInt(newtime);
+  this.expiresTime = newtime;
 }
 
 EphemeralObject.prototype.getExpiresTime = function() {
@@ -78,6 +78,7 @@ EphemeralObject.prototype.getActive = function() {
 
 function DamageOverTimeObject() {
   this.damagePerTick = 0;
+  this.addType("dot");
 }
 DamageOverTimeObject.prototype = new EphemeralObject;
 
@@ -93,8 +94,7 @@ DamageOverTimeObject.prototype.getDamagePerTick = function() {
 // Called "Tiles" for consistency, not because it'll ever get placed
 
 function DiseaseTile() {
-  this.addType("Debuff");
-  this.addType("DoT");
+  this.addType("debuff");
   this.name = "Disease";
   this.damagePerTick = 1;
   this.display = "<span style='color:#58FA58'>D</span>";
@@ -119,4 +119,32 @@ DiseaseTile.prototype.doEffect = function() {
 DiseaseTile.prototype.endEffect = function() {
   var who = this.getAttachedTo();
   who.deleteSpellEffect(this);
+}
+
+
+function LevitateTile() {
+  this.addType("buff");
+  this.name = "Levitate";
+}
+LevitateTile.prototype = new EphemeralObject;
+
+LevitateTile.prototype.applyEffect = function() {
+  var who = this.getAttachedTo();
+  if (who) {
+    who.addMovetype(MOVE_LEVITATE);
+  }
+  maintext.addText("You begin to float a few inches off the ground.");
+}
+
+LevitateTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+LevitateTile.prototype.endEffect = function() {
+  var who = this.getAttachedTo();
+  who.removeMovetype(MOVE_LEVITATE);
+  who.deleteSpellEffect(this);
+  maintext.addText("You sink back to the ground.");
 }
