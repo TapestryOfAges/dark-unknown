@@ -585,7 +585,7 @@ function PerformSpellbook(code) {
     if (PC.getMana() >= manacost) {
       spelltxt += "!";
       maintext.addText(spelltxt);
-      var retval = magic[lvl][GetSpellID(spellnum)].executeSpell(PC, PC.getInfusion());
+      var retval = magic[lvl][GetSpellID(spellnum)].executeSpell(PC, PC.getInfusion(), 0);
       return retval;
     }
     else {
@@ -939,9 +939,9 @@ function PerformYell() {
 		  PC.setKnowsInfusion(1);
 		  for (i=1; i<=8; i++) {
 		    for (j=1; j<=6; j++) {
-		      if (i != 4) {
+	//	      if (i != 4) {
 		        PC.addSpell(i,GetSpellID(j));
-		      }
+	//	      }
 		    }
 		  }
 		}
