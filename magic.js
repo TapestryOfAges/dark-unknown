@@ -131,10 +131,12 @@ magic[8][GetSpellID(6)] = new SpellObject("Time Stop", "An Tym", 8, 0);
 
 
 // Cure
-magic[1][GetSpellID(1)].executeSpell = function(caster, infused) {
-  var mana = this.getManaCost(infused);
-  var resp = new Object;
-  caster.modMana(-1*mana);
+magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    var resp = new Object;
+    caster.modMana(-1*mana);
+  }
   resp["fin"] = 1;
   var effects = caster.getSpellEffects();
   if (effects) {
@@ -149,4 +151,28 @@ magic[1][GetSpellID(1)].executeSpell = function(caster, infused) {
   }
   DrawCharFrame();
   return resp;
+}
+
+
+// Levitate
+magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free) {
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    var resp = new Object;
+    caster.modMana(-1*mana);
+  }
+  resp["fin"] = 1;
+
+  var levobj = localFactory.createTile("Levitate");
+  caster.addSpellEffect(levobj);
+  levobj.applyEffect();
+  
+  var dur = caster.getInt();
+  if (infused) { dur = dur * 3; }
+  var endtime = dur + DUTime.getGameClock();
+  levobj.setPower(dur);
+  levobj.setExpiresTime(endtime);
+  
+  DrawCharFrame();
+  return resp;  
 }
