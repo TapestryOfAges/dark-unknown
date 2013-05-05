@@ -992,6 +992,11 @@ tileFactory.prototype.makeDiseaseTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeLevitateTile = function() {
+  var newTile = new LevitateTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeEraserTile = function() {
   var newTile = new BlankWhiteTile();
   newTile.name = 'Eraser';
