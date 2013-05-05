@@ -827,6 +827,16 @@ function WaterTile() {
 }
 WaterTile.prototype = new TerrainObject;
 
+WaterTile.prototype.walkon = function(walker) {
+  var resp = InWater(walker);
+  return resp;
+}
+
+WaterTile.prototype.idle = function(walker) {
+  var resp = InWater(walker);
+  return resp;
+}
+
 function ShallowsTile() {
   this.name = "Shallows";
   this.graphic = "flowing_animations.gif";
@@ -838,6 +848,30 @@ function ShallowsTile() {
   this.combatmap = "Water";
 }
 ShallowsTile.prototype = new TerrainObject;
+
+ShallowsTile.prototype.walkon = function(walker) {
+  var resp = InWater(walker);
+  return resp;
+}
+
+ShallowsTile.prototype.idle = function(walker) {
+  var resp = InWater(walker);
+  return resp;
+}
+
+function InWater(who) {
+  if (MOVE_LEVITATE & who.getMovetype()) {
+    // entity is levitating and so won't drown
+    return "";
+  }  
+
+  var dur = DUTime.getGameClock() - who.getLastTurnTime();
+  var response = "You have trouble keeping your head above the rough waters!";
+  var dmg = dur * 3;
+  who.dealDamage(dmg);
+  
+  return response;
+}
 
 function MountainTile() {
   this.name = "Mountain";
@@ -1976,7 +2010,7 @@ SwampTile.prototype.idle = function(person) {
 }
 
 function InASwamp(who) {
-  if (MOVE_LEVITATE & who.getPassable()) {
+  if (MOVE_LEVITATE & who.getMovetype()) {
     // entity is levitating and cannot be diseased
     return "";
   }
@@ -2843,10 +2877,6 @@ function ItemObject() {
 }
 ItemObject.prototype = new FeatureObject;
 
-ItemObject.prototype.isItem = function() {
-	return this.item;
-}
-
 ItemObject.prototype.getQuantity = function() {
 	return this.quantity;
 }
@@ -2921,6 +2951,156 @@ GoldTile.prototype.onGet = function(who) {
 
   // this should delete the item entirely
 }
+
+function ConsumableItemObject() {
+  this.addType("consumable");
+}
+ConsumableItemObject.prototype = new ItemObject;
+
+// potions
+
+function PotionItemObject() {
+  this.addType("potion");
+}
+PotionItemObject.prototype = new ConsumableItemObject;
+
+function greenPotionTile() {
+  this.name = "greenPotion";
+  this.desc = "green potion";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "0";
+}
+greenPotionTile.prototype = new PotionItemObject;
+
+function darkGreenPotionTile() {
+  this.name = "darkGreenPotion";
+  this.desc = "dark green potion";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "0";
+}
+darkGreenPotionTile.prototype = new PotionItemObject;
+
+function silverPotionTile() {
+  this.name = "silverPotion";
+  this.desc = "silver potion";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "0";
+}
+silverPotionTile.prototype = new PotionItemObject;
+
+function pinkPotionTile() {
+  this.name = "pinkPotion";
+  this.desc = "pink potion";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "0";
+}
+pinkPotionTile.prototype = new PotionItemObject;
+
+function greyPotionTile() {
+  this.name = "greyPotion";
+  this.desc = "grey potion";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "0";
+}
+greyPotionTile.prototype = new PotionItemObject;
+
+function brownPotionTile() {
+  this.name = "brownPotion";
+  this.desc = "brown potion";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "0";
+}
+brownPotionTile.prototype = new PotionItemObject;
+
+function redPotionTile() {
+  this.name = "redPotion";
+  this.desc = "red potion";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-32";
+}
+redPotionTile.prototype = new PotionItemObject;
+
+function whitePotionTile() {
+  this.name = "whitePotion";
+  this.desc = "white potion";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-32";
+}
+whitePotionTile.prototype = new PotionItemObject;
+
+function yellowPotionTile() {
+  this.name = "yellowPotion";
+  this.desc = "yellow potion";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-32";
+}
+yellowPotionTile.prototype = new PotionItemObject;
+
+function purplePotionTile() {
+  this.name = "purplePotion";
+  this.desc = "purple potion";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-32";
+}
+purplePotionTile.prototype = new PotionItemObject;
+
+
+function blackPotionTile() {
+  this.name = "blackPotion";
+  this.desc = "black potion";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-32";
+}
+blackPotionTile.prototype = new PotionItemObject;
+
+function bluePotionTile() {
+  this.name = "bluePotion";
+  this.desc = "blue potion";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-32";
+}
+bluePotionTile.prototype = new PotionItemObject;
+
+function orangePotionTile() {
+  this.name = "orangePotion";
+  this.desc = "orange potion";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-32";
+}
+orangePotionTile.prototype = new PotionItemObject;
+
+// scrolls
+
+function ScrollObject() {
+  this.addType("scroll"); 
+}
+ScrollObject.prototype = new ConsumableItemObject;
 
 
 // Prototype for armor and weapons
