@@ -132,9 +132,9 @@ magic[8][GetSpellID(6)] = new SpellObject("Time Stop", "An Tym", 8, 0);
 
 // Cure
 magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
+  var resp = new Object;
   if (!free) {
     var mana = this.getManaCost(infused);
-    var resp = new Object;
     caster.modMana(-1*mana);
   }
   resp["fin"] = 1;
