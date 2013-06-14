@@ -2953,152 +2953,171 @@ GoldTile.prototype.onGet = function(who) {
 }
 
 function ConsumableItemObject() {
-  this.addType("consumable");
+  this.addType("Consumable");
 }
 ConsumableItemObject.prototype = new ItemObject;
 
 // potions
 
 function PotionItemObject() {
-  this.addType("potion");
+  this.addType("Potion");
 }
 PotionItemObject.prototype = new ConsumableItemObject;
 
-function greenPotionTile() {
-  this.name = "greenPotion";
+// poison potions
+function GreenPotionTile() {
+  this.name = "GreenPotion";
   this.desc = "green potion";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-96";
   this.spriteyoffset = "0";
 }
-greenPotionTile.prototype = new PotionItemObject;
+GreenPotionTile.prototype = new PotionItemObject;
 
-function darkGreenPotionTile() {
-  this.name = "darkGreenPotion";
+//haste potion
+function DarkGreenPotionTile() {
+  this.name = "DarkGreenPotion";
   this.desc = "dark green potion";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-128";
   this.spriteyoffset = "0";
 }
-darkGreenPotionTile.prototype = new PotionItemObject;
+DarkGreenPotionTile.prototype = new PotionItemObject;
 
-function silverPotionTile() {
-  this.name = "silverPotion";
+// str potion
+function SilverPotionTile() {
+  this.name = "SilverPotion";
   this.desc = "silver potion";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-160";
   this.spriteyoffset = "0";
 }
-silverPotionTile.prototype = new PotionItemObject;
+SilverPotionTile.prototype = new PotionItemObject;
 
-function pinkPotionTile() {
-  this.name = "pinkPotion";
+// dex potion
+function PinkPotionTile() {
+  this.name = "PinkPotion";
   this.desc = "pink potion";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "0";
 }
-pinkPotionTile.prototype = new PotionItemObject;
+PinkPotionTile.prototype = new PotionItemObject;
 
-function greyPotionTile() {
-  this.name = "greyPotion";
+// int potion
+function GreyPotionTile() {
+  this.name = "GreyPotion";
   this.desc = "grey potion";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-256";
   this.spriteyoffset = "0";
 }
-greyPotionTile.prototype = new PotionItemObject;
+GreyPotionTile.prototype = new PotionItemObject;
 
-function brownPotionTile() {
-  this.name = "brownPotion";
+// greater mana potion
+function BrownPotionTile() {
+  this.name = "BrownPotion";
   this.desc = "brown potion";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-288";
   this.spriteyoffset = "0";
 }
-brownPotionTile.prototype = new PotionItemObject;
+BrownPotionTile.prototype = new PotionItemObject;
 
-function redPotionTile() {
-  this.name = "redPotion";
+// cure potion
+function RedPotionTile() {
+  this.name = "RedPotion";
   this.desc = "red potion";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "0";
   this.spriteyoffset = "-32";
 }
-redPotionTile.prototype = new PotionItemObject;
+RedPotionTile.prototype = new PotionItemObject;
 
-function whitePotionTile() {
-  this.name = "whitePotion";
+RedPotionTile.prototype.use = function(who) {
+  var resp = magic[1][GetSpellID(1)].executeSpell(who,1,1);
+  resp["txt"] = "You feel purified.";
+  
+  return resp;
+}
+
+// light potion
+function WhitePotionTile() {
+  this.name = "WhitePotion";
   this.desc = "white potion";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-32";
 }
-whitePotionTile.prototype = new PotionItemObject;
+WhitePotionTile.prototype = new PotionItemObject;
 
-function yellowPotionTile() {
-  this.name = "yellowPotion";
+// lesser heal potion
+function YellowPotionTile() {
+  this.name = "YellowPotion";
   this.desc = "yellow potion";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-32";
 }
-yellowPotionTile.prototype = new PotionItemObject;
+YellowPotionTile.prototype = new PotionItemObject;
 
-function purplePotionTile() {
-  this.name = "purplePotion";
+// protect potion
+function PurplePotionTile() {
+  this.name = "PurplePotion";
   this.desc = "purple potion";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-32";
 }
-purplePotionTile.prototype = new PotionItemObject;
+PurplePotionTile.prototype = new PotionItemObject;
 
-
-function blackPotionTile() {
-  this.name = "blackPotion";
+// bless potion
+function BlackPotionTile() {
+  this.name = "BlackPotion";
   this.desc = "black potion";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-32";
 }
-blackPotionTile.prototype = new PotionItemObject;
+BlackPotionTile.prototype = new PotionItemObject;
 
-function bluePotionTile() {
-  this.name = "bluePotion";
+// heal potion
+function BluePotionTile() {
+  this.name = "BluePotion";
   this.desc = "blue potion";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-32";
 }
-bluePotionTile.prototype = new PotionItemObject;
+BluePotionTile.prototype = new PotionItemObject;
 
-function orangePotionTile() {
-  this.name = "orangePotion";
+// mana potion
+function OrangePotionTile() {
+  this.name = "OrangePotion";
   this.desc = "orange potion";
   this.prefix = "an";
   this.graphic = "items.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-32";
 }
-orangePotionTile.prototype = new PotionItemObject;
+OrangePotionTile.prototype = new PotionItemObject;
 
 // scrolls
 
 function ScrollObject() {
-  this.addType("scroll"); 
+  this.addType("Scroll"); 
 }
 ScrollObject.prototype = new ConsumableItemObject;
 

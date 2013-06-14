@@ -897,6 +897,15 @@ function PerformUse(who) {
 		usedname = usedname.replace(/^a /, "");
 		retval["txt"] = "Use " + usedname + ": " + retval["txt"];
 		var drawtype = "one";
+		if (used.checkType("Consumable")) {
+		  if (used.getHomeMap()) {
+		    // being used from the ground
+		    used.getHomeMap().deleteThing(used);
+		  } else {
+		    // being used from inventory
+		    who.removeFromInventory(used);
+		  }
+		}
 		if (retval["redrawtype"]) {
 		  delete retval["redrawtype"];
 		  // if more of the map needs to be redrawn, need to recheck light sources

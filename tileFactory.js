@@ -772,68 +772,68 @@ tileFactory.prototype.makeGoldTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makegreenPotionTile = function() {
-  var newTile = new greenPotionTile();
+tileFactory.prototype.makeGreenPotionTile = function() {
+  var newTile = new GreenPotionTile();
   return newTile;
 }
 
-tileFactory.prototype.makedarkGreenPotionTile = function() {
-  var newTile = new darkGreenPotionTile();
+tileFactory.prototype.makeDarkGreenPotionTile = function() {
+  var newTile = new DarkGreenPotionTile();
   return newTile;
 }
 
-tileFactory.prototype.makesilverPotionTile = function() {
-  var newTile = new silverPotionTile();
+tileFactory.prototype.makeSilverPotionTile = function() {
+  var newTile = new SilverPotionTile();
   return newTile;
 }
 
-tileFactory.prototype.makepinkPotionTile = function() {
-  var newTile = new pinkPotionTile();
+tileFactory.prototype.makePinkPotionTile = function() {
+  var newTile = new PinkPotionTile();
   return newTile;
 }
 
-tileFactory.prototype.makegreyPotionTile = function() {
-  var newTile = new greyPotionTile();
+tileFactory.prototype.makeGreyPotionTile = function() {
+  var newTile = new GreyPotionTile();
   return newTile;
 }
 
-tileFactory.prototype.makebrownPotionTile = function() {
-  var newTile = new brownPotionTile();
+tileFactory.prototype.makeBrownPotionTile = function() {
+  var newTile = new BrownPotionTile();
   return newTile;
 }
 
-tileFactory.prototype.makeredPotionTile = function() {
-  var newTile = new redPotionTile();
+tileFactory.prototype.makeRedPotionTile = function() {
+  var newTile = new RedPotionTile();
   return newTile;
 }
 
-tileFactory.prototype.makewhitePotionTile = function() {
-  var newTile = new whitePotionTile();
+tileFactory.prototype.makeWhitePotionTile = function() {
+  var newTile = new WhitePotionTile();
   return newTile;
 }
 
-tileFactory.prototype.makeyellowPotionTile = function() {
-  var newTile = new yellowPotionTile();
+tileFactory.prototype.makeYellowPotionTile = function() {
+  var newTile = new YellowPotionTile();
   return newTile;
 }
 
-tileFactory.prototype.makepurplePotionTile = function() {
-  var newTile = new purplePotionTile();
+tileFactory.prototype.makePurplePotionTile = function() {
+  var newTile = new PurplePotionTile();
   return newTile;
 }
 
-tileFactory.prototype.makeblackPotionTile = function() {
-  var newTile = new blackPotionTile();
+tileFactory.prototype.makeBlackPotionTile = function() {
+  var newTile = new BlackPotionTile();
   return newTile;
 }
 
-tileFactory.prototype.makebluePotionTile = function() {
-  var newTile = new bluePotionTile();
+tileFactory.prototype.makeBluePotionTile = function() {
+  var newTile = new BluePotionTile();
   return newTile;
 }
 
-tileFactory.prototype.makeorangePotionTile = function() {
-  var newTile = new orangePotionTile();
+tileFactory.prototype.makeOrangePotionTile = function() {
+  var newTile = new OrangePotionTile();
   return newTile;
 }
 
