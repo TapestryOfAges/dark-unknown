@@ -2754,6 +2754,83 @@ function WalkOnTile() {
 }
 WalkOnTile.prototype = new FeatureObject;
 
+function SpawnerTile() {
+  this.name = "Spawner";
+  this.graphic = "target-cursor.gif";
+  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+  this.blockslos = 0;
+  this.prefix = "an";
+  this.desc = "invisible spawner";
+  this.invisible = 1;
+  
+  this.spawngroup = "";
+  this.maxSpawns = 5; 
+  this.spawnRadius = 0; // distance from spawner entity can appear
+  this.spawnLeash = 20;
+  this.spawnFreq = 40;
+}
+SpawnerTile.prototype = new FeatureObject;
+
+SpawnerTile.prototype.getSpawngroup = function() {
+  return this.spawngroup;
+}
+
+SpawnerTile.prototype.setSpawngroup = function(newgroup) {
+  if (spawngroups[newgroup]) {
+    this.spawngroup = newgroup;
+    return this.spawngroup;
+  }
+  else return 0;
+}
+
+SpawnerTile.prototype.getMaxSpawns = function() {
+  return this.maxSpawns;
+}
+
+SpawnerTile.prototype.setMaxSpawns = function(spawnnum) {
+  spawnnum = parseInt(spawnnum);
+  if (spawnnum != NaN) {
+    this.maxSpawns = spawnnum;
+  }
+  return this.maxSpawns;
+}
+
+SpawnerTile.prototype.getSpawnRadius = function() {
+  return this.spawnRadius;
+}
+
+SpawnerTile.prototype.setSpawnRadius = function(spawnnum) {
+  spawnnum = parseInt(spawnnum);
+  if (spawnnum != NaN) {
+    this.spawnRadius = spawnnum;
+  }
+  return this.spawnRadius;
+}
+
+SpawnerTile.prototype.getSpawnLeash = function() {
+  return this.spawnLeash;
+}
+
+SpawnerTile.prototype.setSpawnLeash = function(spawnnum) {
+  spawnnum = parseInt(spawnnum);
+  if (spawnnum != NaN) {
+    this.spawnLeash = spawnnum;
+  }
+  return this.spawnLeash;
+}
+
+SpawnerTile.prototype.getSpawnFreq = function() {
+  return this.spawnFreq;
+}
+
+SpawnerTile.prototype.setSpawnFreq = function(spawnnum) {
+  spawnnum = parseInt(spawnnum);
+  if (spawnnum != NaN) {
+    this.spawnFreq = spawnnum;
+  }
+  return this.spawnFreq;
+}
+
 function PentagramNWTile() {
   this.name = "PentagramNW";
   this.graphic = "pentagram.gif";
