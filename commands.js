@@ -967,13 +967,13 @@ function performZstats(code) {
     }
     else if ((code == 37) || (code == 59)) {  // previous page
       targetCursor.page--;
-      if (targetCursor.page == 0) { targetCursor.page = 3; }  // set to the last page when I know what that will be
+      if (targetCursor.page == 0) { targetCursor.page = 4; }  // set to the last page when I know what that will be
       DrawStats(targetCursor.page);
       retval["fin"] = 1;
     }
     else if ((code == 39) || (code == 222)) { // next page
       targetCursor.page++;
-      if (targetCursor.page == 4) { targetCursor.page = 1; }
+      if (targetCursor.page == 5) { targetCursor.page = 1; }
       DrawStats(targetCursor.page);
       retval["fin"] = 1;
     }
@@ -1131,6 +1131,10 @@ function DrawStats(page) {
    statsdiv += "</table></div></div>";
    DrawTopbarFrame("<p>Inventory</p>");
  } else if (page == 3) {
+   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
+   statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
+ } else if (page == 4) {
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
    statsdiv += "<tr><td>&nbsp;</td></tr>";
