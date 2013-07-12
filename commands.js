@@ -927,6 +927,146 @@ function PerformUse(who) {
 	return retval;
 }
 
+function PerformUseFromInventory() {
+		gamestate.setMode("equip");
+		var retval = new Object;
+		retval["txt"] = "";
+		retval["input"] = "&gt; Use: ";
+		retval["fin"] = 2;
+		targetCursor.command = "u";		
+		
+   var statsdiv = "&nbsp;";
+   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
+   statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
+   var inv = PC.getInventory();
+   var pots = new Array;
+   var scrolls = new Array;
+   var other = new Array;
+   var iter = 0;
+   var itemarray = new Array;
+   if (inv.length) {
+     for (var i = 0; i < inv.length; i++) {
+       if ((inv[i].checkType("Consumable")) && (!inv[i].checkType("Potion")) && (!inv[i].checkType("Scroll"))) { other[other.length] = inv[i]; }
+       if (inv[i].checkType("Potion")) { pots[pots.length] = inv[i]; }
+       if (inv[i].checkType("Scroll")) { scrolls[scrolls.length] = inv[i];}
+     }
+     if (pots.length) {
+       pots.sort(function(a,b) {
+        var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+        if (nameA < nameB) 
+          return -1
+        if (nameA > nameB)
+          return 1
+       return 0 
+       }); 
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Potions</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       for (var i = 0; i < pots.length; i++ ) {
+         var itemdesc = pots[i].getDesc();
+         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
+         statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + pots[i].getQuantity() + ")</td></tr>";
+         itemarray[iter] = pots[i];
+         iter++;
+       }
+       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
+     }
+     if (scrolls.length) {
+       scrolls.sort(function(a,b) {
+        var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+        if (nameA < nameB) 
+          return -1
+        if (nameA > nameB)
+          return 1
+       return 0 
+       }); 
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Scrolls</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       for (var i = 0; i < scrolls.length; i++ ) {
+         var itemdesc = scrolls[i].getDesc();
+         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
+         statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + scrolls[i].getQuantity() + ")</td></tr>";
+         itemarray[iter] = scrolls[i];
+         iter++;
+       }
+       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";      
+     }
+     if (other.length) {
+       other.sort(function(a,b) {
+        var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+        if (nameA < nameB) 
+          return -1
+        if (nameA > nameB)
+          return 1
+       return 0 
+       }); 
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Other</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       for (var i = 0; i < other.length; i++ ) {
+         var itemdesc = other[i].getDesc();
+         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
+         statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + other[i].getQuantity() + ")</td></tr>";
+         itemarray[iter] = other[i];
+         iter++;
+       }
+       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
+     }
+
+   }
+
+   statsdiv += "<td></td></tr>";
+  
+   statsdiv += "</table></div></div>";
+   DrawTopbarFrame("<p>Consumables</p>");
+   $('#displayframe').html(statsdiv);
+   
+	var scrollelem = $('.zstats').jScrollPane();
+  var scrollapi = scrollelem.data('jsp');
+  targetCursor.scrollapi = scrollapi;
+  targetCursor.scrolllocation = 0;
+  targetCursor.itemlist = new Array;
+  targetCursor.itemlist = itemarray;
+  
+  $('#inv0').toggleClass('highlight');
+		
+}
+
+function PerformUseFromInventoryState(code) {
+  var retval = new Object;
+  if (code == 27) { // ESC
+    retval["fin"] = 0;
+    delete targetCursor.itemlist;
+  }
+	else if ((code == 38) || (code == 219)) {   // UP ARROW  or  [
+	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrolllocation--;
+	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
+	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
+	    retval["fin"] = 1;
+	}
+  else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
+      $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrolllocation++;
+	    if (targetCursor.scrolllocation > targetCursor.itemlist.length-1) { targetCursor.scrolllocation = 0; }
+	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
+	    retval["fin"] = 1;
+  }
+	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
+    // use selected item
+    var used = targetCursor.itemlist[targetCursor.scrolllocation];
+		retval = used.use(PC);
+		retval["fin"] = 2;
+		var usedname = used.getDesc();
+		usedname = usedname.replace(/^a /, "");
+		retval["txt"] = "Use " + usedname + ": " + retval["txt"];
+    PC.removeFromInventory(used);
+  }
+  return retval;
+
+//  targetCursor.scrolllocation = 0;
+//  targetCursor.itemlist = itemarray;
+ 
+}
+
 function PerformYell() {
 	var retval = new Object;
 	if (inputText.txt == "") {
@@ -1134,6 +1274,54 @@ function DrawStats(page) {
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
    statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
+   var pots = new Array;
+   var scrolls = new Array;
+   var inv = PC.getInventory();
+   if (inv.length) {
+     for (var i = 0; i < inv.length; i++) {
+       if (inv[i].checkType("Potion")) { pots[pots.length] = inv[i]; }
+       if (inv[i].checkType("Scroll")) { scrolls[scrolls.length] = inv[i];}
+     }
+     if (pots.length) {
+       pots.sort(function(a,b) {
+        var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+        if (nameA < nameB) 
+          return -1
+        if (nameA > nameB)
+          return 1
+       return 0 
+       }); 
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Potions</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       for (var i = 0; i < pots.length; i++ ) {
+         var itemdesc = pots[i].getDesc();
+         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
+         statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + pots[i].getQuantity() + ")</td></tr>";
+       }
+       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
+     }
+     if (scrolls.length) {
+       scrolls.sort(function(a,b) {
+        var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+        if (nameA < nameB) 
+          return -1
+        if (nameA > nameB)
+          return 1
+       return 0 
+       }); 
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Scrolls</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       for (var i = 0; i < scrolls.length; i++ ) {
+         var itemdesc = scrolls[i].getDesc();
+         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
+         statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + scrolls[i].getQuantity() + ")</td></tr>";
+       }
+       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";      
+     }
+   }
+   statsdiv += "<td></td></tr>";
+  
+   statsdiv += "</table></div></div>";
+   DrawTopbarFrame("<p>Inventory</p>");
+
  } else if (page == 4) {
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
