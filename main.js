@@ -173,10 +173,11 @@ function DoAction(code) {
     var response = PerformChooseDir(code);
     if (response["fin"] == 1) { // direction chosen
       if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && (targetCursor.command == "u")) {
-        maintext.addText("Use from inventory not yet implemented.");
-        maintext.setInputLine("&gt;");
-        maintext.drawTextFrame();
-        gamestate.setMode("player");
+//        maintext.addText("Use from inventory not yet implemented.");
+        PerformUseFromInventory();
+//        maintext.setInputLine("&gt;");
+//        maintext.drawTextFrame();
+//        gamestate.setMode("equip");
         return;
       }
       else if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && ((targetCursor.command == "g") || (targetCursor.command == "a") || (targetCursor.command == "s"))) {
@@ -281,7 +282,12 @@ function DoAction(code) {
 
   } 
   else if (gamestate.getMode() == "equip") {
-    var response = PerformEquip(code);
+    var response;
+    if (targetCursor.command == "w") {
+      response = PerformEquip(code);
+    } else if (targetCursor.command == "u") {
+      response = PerformUseFromInventoryState(code);
+    }
     if (response["fin"] == 0) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
@@ -301,7 +307,7 @@ function DoAction(code) {
       DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
       PC.endTurn(response["initdelay"]);
     }
-      
+            
   }
   else if (gamestate.getMode() == "zstats") {
     var response = performZstats(code);
