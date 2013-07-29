@@ -341,7 +341,7 @@ function GiantSnakeNPCTile() {
   this.int = 3;
   this.alignment = "neutral";
   this.attitude = "hostile";
-  this.threatenenAI = "melee";
+  this.threatenedAI = "melee";
   this.graphic = PickOne(["342.gif","376.gif"]);
   this.meleeAttackAs = "Shortsword";
   this.missileAttackAs = "none";
@@ -361,7 +361,7 @@ function OrcNPCTile() {
   this.int = 6;
   this.alignment = "evil";
   this.attitude = "hostile";
-  this.threatenenAI = "melee";
+  this.threatenedAI = "melee";
   this.graphic = PickOne(["339.gif","373.gif"]);
   this.meleeAttackAs = "Shortsword";
   this.missileAttackAs = "none";
