@@ -7,13 +7,13 @@ open (my $npcdoc, "<", "NPCdoc.txt") or die "Can't open NPCdoc.txt\n";
 
 my $firstline = 1;
 
-foreach my $line (<$npcdpc>) {
+foreach my $line (<$npcdoc>) {
   if ($firstline) {
     $firstline = 0;
     next;
   }
-  
-  my @fields = split($line,"\t");
+  chomp $line;
+  my @fields = split("\t",$line);
   
   print "\n# $fields[1]\n\n";
   print "function " . $fields[0] . "NPCTile() {\n";
@@ -54,5 +54,3 @@ foreach my $line (<$npcdpc>) {
   print "}\n\n";
 }
 
-  
-}
