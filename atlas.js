@@ -460,18 +460,22 @@ Acre.prototype.getInitDelay = function(mob) {
 	return 1;
 }
 
-Acre.prototype.canMoveHere = function(mover, fromtile) {
+//Acre.prototype.canMoveHere = function(mover, fromtile) {
+Acre.prototype.canMoveHere = function(movetype) {
 	var terrain = this.getTerrain();
 	var totalpassability = terrain.getPassable();
 	var retval = new Object;
-	if (totalpassability & MOVE_SWIM & mover.getMovetype()) {
-		if (fromtile.getTerrain().getPassable() & MOVE_SWIM) {
-			// moving from a water tile to a water tile. This bypasses the blocking ability of bridges, etc.
-			retval["canmove"] = 1;
-			retval["msg"] = "";
-			return retval;
-		}
-	}
+	
+//  NO LONGER ALLOWING SWIMMERS TO CROSS BRIDGES
+
+//	if (totalpassability & MOVE_SWIM & mover.getMovetype()) {
+//		if (fromtile.getTerrain().getPassable() & MOVE_SWIM) {
+//			// moving from a water tile to a water tile. This bypasses the blocking ability of bridges, etc.
+//			retval["canmove"] = 1;
+//			retval["msg"] = "";
+//			return retval;
+//		}
+//	}
 	var featurepassability = MOVE_FLY + MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	var features = this.getFeatures();
 	if (features[0]) {
@@ -483,7 +487,8 @@ Acre.prototype.canMoveHere = function(mover, fromtile) {
 	  	featurepassability = 0;
 	  }
 		if (totalpassability & MOVE_SWIM) {
-	  	if (featurepassability & mover.getMovetype()) {
+//	  	if (featurepassability & mover.getMovetype()) {
+	  	if (featurepassability & movetype) {
 	  		retval["canmove"] = 1;
   			retval["msg"] = "";
 			  return retval;
@@ -494,7 +499,8 @@ Acre.prototype.canMoveHere = function(mover, fromtile) {
 	if (npcs[0]) {
 		featurepassability = 0;
 	}
-	if (totalpassability & featurepassability & mover.getMovetype()) {
+//	if (totalpassability & featurepassability & mover.getMovetype()) {
+  if (totalpassability & featurepassability & movetype) {
 		retval["canmove"] = 1;
 		retval["msg"] = "";
 		return retval;
@@ -586,6 +592,7 @@ function GameMap() {
   this.exitTestScript = "";
   this.enterScript = "";
   this.enterTestScript = "";
+  this.pathGrid = new Object;
   
   this.lightsList = new Object;
 }
@@ -765,7 +772,30 @@ GameMap.prototype.setEnterTestScript = function(es) {
 	this.enterTestScript = es;
 }
 
+GameMap.prototype.getPathGrid = function (movetype) {
+  return this.pathGrid[movetype];
+}
 
+GameMap.prototype.createPathGrid = function() {
+  this.pathGrid[MOVE_WALK] = new PF.Grid(this.getWidth(), this.getHeight());
+  this.pathGrid[MOVE_SWIM] = new PF.Grid(this.getWidth(), this.getHeight());
+  this.pathGrid[MOVE_LEVITATE] = new PF.Grid(this.getWidth(), this.getHeight());
+  this.pathGrid[MOVE_FLY] = new PF.Grid(this.getWidth(), this.getHeight());
+  this.pathGrid[MOVE_ETHEREAL] = new PF.Grid(this.getWidth(), this.getHeight());
+  for (i=0; i<this.getWidth(); i++) {
+    for (j=0; j<this.getHeight(); j++) {
+      var thisspot = this.getTile(i,j);
+      for (k=1; k<=16; k=k*2) {
+        var response = thisspot.canMoveHere(MOVE_WALK);
+        if (!response["canmove"]) { this.setWalkableAt(i,j,false,MOVE_WALK); }
+      }
+    }
+  }
+}
+
+GameMap.prototype.setWalkableAt = function(x,y,canwalk,movetype) {
+  this.pathGrid[movetype].setWalkableAt(x,y,canwalk);
+}
 
 
 // generate the tile from the factory first, then pass it to setTerrain
@@ -1219,6 +1249,8 @@ GameMap.prototype.loadMap = function (name) {
   	}
   }
 
+  this.createPathGrid();
+  
   return;
 }
 
