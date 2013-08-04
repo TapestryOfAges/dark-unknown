@@ -4376,7 +4376,8 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	else {
 		retval = tile.getBumpIntoResult(this);
 		if (retval["canmove"] == 0) { return retval; }
-		var moveval = tile.canMoveHere(this, map.getTile(this.getx(),this.gety()));
+//		var moveval = tile.canMoveHere(this, map.getTile(this.getx(),this.gety()));
+		var moveval = tile.canMoveHere(this.getMovetype());
 		retval["canmove"] = moveval["canmove"];
 	
 		if (retval["msg"] == "") {
