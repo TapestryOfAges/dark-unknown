@@ -786,8 +786,8 @@ GameMap.prototype.createPathGrid = function() {
     for (j=0; j<this.getHeight(); j++) {
       var thisspot = this.getTile(i,j);
       for (k=1; k<=16; k=k*2) {
-        var response = thisspot.canMoveHere(MOVE_WALK);
-        if (!response["canmove"]) { this.setWalkableAt(i,j,false,MOVE_WALK); }
+        var response = thisspot.canMoveHere(k);
+        if (!response["canmove"]) { this.setWalkableAt(i,j,false,k); }
       }
     }
   }
@@ -962,11 +962,21 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
       newthing.activate(timeoverride);
     }
 
+	  //update pathfinding
+    var tile = this.getTile(x,y);
+    for (i=1; i<=16; i=i*2) {
+      var response = tile.canMoveHere(i);
+	    if (response["canmove"]) { this.setWalkableAt(x,y,true,i); }
+	    else { this.setWalkableAt(x,y,false,i); }
+  	}
+
   }  
 }
 
 GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump and passable and before walkon
 //	var type = thing.type + "s";
+  var oldx = thing.getx();
+  var oldy = thing.gety();
  	if ((typeof thing.getLight == "function") && (thing.getLight() > 0)) {
     this.removeMapLight(thing.getSerial(),thing.getLight(),thing.getx(),thing.gety());
   }
@@ -979,14 +989,36 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
  	if ((typeof thing.getLight == "function") && (thing.getLight() > 0)) {
     this.setMapLight(thing,thing.getLight(),x,y);
   }
-  
+  // update pathfinding
+  var oldtile = this.getTile(oldx,oldy);
+  var tile = this.getTile(x,y);
+	for (i=1; i<=16; i=i*2) {
+	  var response = oldtile.canMoveHere(i);
+	  if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
+	  else { this.setWalkableAt(oldx,oldy,false,i); }
+	  response = tile.canMoveHere(i);
+	  if (response["canmove"]) { this.setWalkableAt(x,y,true,i); }
+	  else { this.setWalkableAt(x,y,false,i); }
+	}
+
 }
 
 GameMap.prototype.deleteThing = function(thing) {
 //	var type = thing.type + "s";
+  var oldx = thing.getx()
+  var oldy = thing.gety();
   var type = thing.getTypeForMap() + "s";
 	this[type].deleteFrom(thing);
-	this.data[thing.y][thing.x][type].deleteFrom(thing);
+	this.data[thing.gety()][thing.getx()][type].deleteFrom(thing);
+	
+	//update pathfinding
+  var tile = this.getTile(oldx,oldy);
+	for (i=1; i<=16; i=i*2) {
+	  var response = tile.canMoveHere(i);
+	  if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
+	  else { this.setWalkableAt(oldx,oldy,false,i); }
+	}
+	
 }
 
 
@@ -1200,6 +1232,7 @@ GameMap.prototype.loadMap = function (name) {
   }
   
   this.setName(name);
+  this.createPathGrid();
     
   var loadfeatures = mappages.readPage(name, "features");
 //  this.features = new Collection;
@@ -1248,8 +1281,6 @@ GameMap.prototype.loadMap = function (name) {
   		this.placeThing(loadnpcs[i].x,loadnpcs[i].y,newnpc);
   	}
   }
-
-  this.createPathGrid();
   
   return;
 }
