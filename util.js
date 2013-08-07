@@ -164,7 +164,9 @@ return displayCell;
 function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   
   var retval = new Object;
-
+  var oldx = who.getx();
+  var oldy = who.gety();
+  
   if (!overridetests) {  
     // check exit test
     if (typeof frommap.ExitTest == "function") {
@@ -181,7 +183,8 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   }
   
   if (typeof tomap.Enter == "function") {
-    tomap.Enter(who,frommap,who.getx(),who.gety(),destx,desty)
+    tomap.Enter(who,frommap,who.getx(),who.gety(),destx,desty);
+    
   }
 
   
@@ -194,6 +197,17 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	tomap.placeThing(destx,desty,who);
 	who.setHomeMap(tomap);
 	var tile = tomap.getTile(destx,desty);
+  var oldtile = frommap.getTile(oldx,oldy);
+  
+  // update pathfinding
+	for (i=1; i<=16; i=i*2) {
+	  var response = oldtile.canMoveHere(i);
+	  if (response["canmove"]) { frommap.setWalkableAt(oldx,oldy,true,i); }
+	  else { frommap.setWalkableAt(oldx,oldy,false,i); }
+	  response = tile.canMoveHere(i);
+	  if (response["canmove"]) { tomap.setWalkableAt(destx,desty,true,i); }
+	  else { tomap.setWalkableAt(destx,desty,false,i); }
+	}
 	
 	// Remove unneeded maps from mapmemory
 	if (who == PC){
@@ -793,4 +807,9 @@ function DamageFlash() {
   $('#hpcell').css("background-color", "white");
   $('#hpcell').css("color", "black");
   setTimeout(function() { $('#hpcell').css("background-color", "black"); $('#hpcell').css("color", "white"); }, 250);
+}
+
+function GetDistance(x1,y1,x2,y2) {
+  var dist = Math.pow(Math.pow(x1-x2,2) + Math.pow(y1-y2,2), 1/2)
+  return dist;
 }
