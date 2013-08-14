@@ -103,6 +103,11 @@ mappages["island"].features[7] = {name : 'LeftCastle', x : 41, y : 65};
 mappages["island"].features[8] = {name : 'Castle', x : 42, y : 65, entermap : 'null', enterx : 0, entery : 0};
 mappages["island"].features[9] = {name : 'RightCastle', x : 43, y : 65};
 mappages["island"].features[10] = {name : 'BrokenShrine', x : 60, y : 63};
+mappages["island"].features[11] = {name : 'Lava', x : 20, y : 42};
+mappages["island"].features[12] = {name : 'Lava', x : 20, y : 43};
+mappages["island"].features[13] = {name : 'Lava', x : 20, y : 44};
+mappages["island"].features[14] = {name : 'Lava', x : 19, y : 43};
+mappages["island"].features[15] = {name : 'Lava', x : 21, y : 43};
 
 
 mappages["island"].npcs = new Array;
@@ -118,8 +123,12 @@ mappages["island"].entery = '76';
 mappages["island"].seeBelow = '';
 mappages["island"].lightLevel = 'bright';
 mappages["island"].alwaysRemember = '1';
-mappages["island"].linkedMaps = new Array("");
 mappages["island"].scale = '0';
+mappages["island"].enterscript = '';
+mappages["island"].entertestscript = '';
+mappages["island"].exitscript = '';
+mappages["island"].exittestscript = '';
+mappages["island"].linkedMaps = new Array("");
 
 mappages["island_cave"] = new Object();
 mappages["island_cave"].terrain = new Array;
