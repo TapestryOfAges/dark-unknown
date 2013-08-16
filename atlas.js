@@ -958,9 +958,9 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
   	}       
   
 //if ( typeof newthing.activate == "function") {
-    if (newthing.getTypeForMap() == "npc") {
+//    if (newthing.getTypeForMap() == "npc") {
       newthing.activate(timeoverride);
-    }
+//    }
 
 	  //update pathfinding
     var tile = this.getTile(x,y);
