@@ -272,6 +272,10 @@ GameObject.prototype.addPassable = function(movetype) {
 	return this.passable;
 }
 
+GameObject.prototype.activate = function() {
+  return 1;
+}
+
 // These below are abstract classes, to be used only in JS's halfassed
 // version of multiple inheritance. 
 
@@ -2767,7 +2771,10 @@ function SpawnerTile() {
   this.maxSpawns = 5; 
   this.spawnRadius = 0; // distance from spawner entity can appear
   this.spawnLeash = 20;
+  this.spawnSoftLeash = 15;
   this.spawnFreq = 40;
+  
+  this.spawned = new Collection;
 }
 SpawnerTile.prototype = new FeatureObject;
 
@@ -2817,6 +2824,18 @@ SpawnerTile.prototype.setSpawnLeash = function(spawnnum) {
     this.spawnLeash = spawnnum;
   }
   return this.spawnLeash;
+}
+
+SpawnerTile.prototype.getSpawnSoftLeash = function() {
+  return this.spawnSoftLeash;
+}
+
+SpawnerTile.prototype.setSpawnSoftLeash = function(spawnnum) {
+  spawnnum = parseInt(spawnnum);
+  if (spawnnum != NaN) {
+    this.spawnSoftLeash = spawnnum;
+  }
+  return this.spawnSoftLeash;
 }
 
 SpawnerTile.prototype.getSpawnFreq = function() {
@@ -3891,6 +3910,7 @@ function NPCObject() {
 	this.lastLocation.map = "";
 	this.lastLocation.x = 0;
 	this.lastLocation.y = 0;
+	this.spawnedBy;
 	
 	this.addType("npc");
 }
@@ -4280,6 +4300,15 @@ NPCObject.prototype.addSpellEffect = function(spellobj) {
 
 NPCObject.prototype.deleteSpellEffect = function(spellobj) {
   this.spellEffects.deleteFrom(spellobj);
+}
+
+NPCObject.prototype.getSpawnedBy = function() {
+  return this.spawnedBy;
+}
+
+NPCObject.prototype.setSpawnedBy = function(spawner) {
+  this.spawnedBy = spawner;
+  return this.spawnedBy;
 }
 
 NPCObject.prototype.activate = function(timeoverride) {
