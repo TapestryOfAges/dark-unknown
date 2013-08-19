@@ -119,12 +119,14 @@ DiseaseTile.prototype.doEffect = function() {
 DiseaseTile.prototype.endEffect = function() {
   var who = this.getAttachedTo();
   who.deleteSpellEffect(this);
+  DrawCharFrame();
 }
 
 
 function LevitateTile() {
   this.addType("buff");
   this.name = "Levitate";
+  this.display = "<span style='color:#00FFFF'>L</span>";
 }
 LevitateTile.prototype = new EphemeralObject;
 
@@ -147,4 +149,5 @@ LevitateTile.prototype.endEffect = function() {
   who.removeMovetype(MOVE_LEVITATE);
   who.deleteSpellEffect(this);
   maintext.addText("You sink back to the ground.");
+  DrawCharFrame();
 }

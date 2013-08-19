@@ -869,6 +869,17 @@ function InWater(who) {
     return "";
   }  
 
+  var localmap = who.getHomeMap();
+  var tile = localmap.getTile(who.getx(),who.gety());
+  var feats = tile.getFeatures();
+  if (feats) {
+    for (i=0;i<feats.length;i++) {
+      if (MOVE_WALK & feats[i].getPassable()) {
+        return "";
+      }
+    }
+  }
+
   var dur = DUTime.getGameClock() - who.getLastTurnTime();
   var response = "You have trouble keeping your head above the rough waters!";
   var dmg = dur * 3;
@@ -2773,6 +2784,7 @@ function SpawnerTile() {
   this.spawnLeash = 20;
   this.spawnSoftLeash = 15;
   this.spawnFreq = 40;
+  this.lastSpawned = 0;
   
   this.spawned = new Collection;
 }
@@ -2848,6 +2860,37 @@ SpawnerTile.prototype.setSpawnFreq = function(spawnnum) {
     this.spawnFreq = spawnnum;
   }
   return this.spawnFreq;
+}
+
+SpawnerTile.prototype.addSpawned = function(spawned) {
+  this.spawned.addTop(spawned);
+}
+
+SpawnerTile.prototype.deleteSpawned = function(spawned) {
+  this.spawned.deleteFrom(spawned);
+}
+
+SpawnerTile.prototype.getSpawned = function() {
+  return this.spawned;
+}
+
+SpawnerTile.prototype.activate = function() {
+  var NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,1);
+
+}
+
+SpawnerTile.prototype.myTurn = function() {
+ 
+  if ((DUTime.getGameClock() > (this.lastSpawned + this.getSpawnFreq()) && (Math.random()*3 > 2)) {
+    if (this.spawned.getAll().length < this.getMaxSpawns()) {
+      // let's do some spawning
+      // WORKING HERE
+    }
+  }
+ 
+  var NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,(Math.random()*5)+1);
 }
 
 function PentagramNWTile() {
@@ -4079,6 +4122,10 @@ NPCObject.prototype.processDeath = function(droploot){
     DUTime.removeEntityFrom(this);
 //    delete universe.this.getSerial();
     delete map.lightsList[this.getSerial()];
+    var spawner=this.getSpawnedBy();
+    if (spawner) {
+      spawner.deleteSpawned(this);
+    }
   }
 }
 
