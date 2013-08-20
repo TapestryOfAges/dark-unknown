@@ -2882,7 +2882,7 @@ SpawnerTile.prototype.activate = function() {
 
 SpawnerTile.prototype.myTurn = function() {
  
-  if ((DUTime.getGameClock() > (this.lastSpawned + this.getSpawnFreq()) && (Math.random()*3 > 2)) {
+  if ((DUTime.getGameClock() > (this.lastSpawned + this.getSpawnFreq())) && (Math.random()*3 > 2)) {
     if (this.spawned.getAll().length < this.getMaxSpawns()) {
       // let's do some spawning
       // WORKING HERE
