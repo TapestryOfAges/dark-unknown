@@ -1053,12 +1053,17 @@ function PerformUseFromInventoryState(code) {
 	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
     // use selected item
     var used = targetCursor.itemlist[targetCursor.scrolllocation];
-		retval = used.use(PC);
-		retval["fin"] = 2;
-		var usedname = used.getDesc();
-		usedname = usedname.replace(/^a /, "");
-		retval["txt"] = "Use " + usedname + ": " + retval["txt"];
-    PC.removeFromInventory(used);
+    if (used) {
+  		retval = used.use(PC);
+	  	retval["fin"] = 2;
+		  var usedname = used.getDesc();
+  		usedname = usedname.replace(/^a /, "");
+	  	retval["txt"] = "Use " + usedname + ": " + retval["txt"];
+      PC.removeFromInventory(used);
+    } else {
+      retval["fin"] = 0;
+      delete targetCursor.itemlist;
+    }
   }
   return retval;
 
