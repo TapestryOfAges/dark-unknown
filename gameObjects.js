@@ -2783,7 +2783,7 @@ function SpawnerTile() {
   this.spawnRadius = 0; // distance from spawner entity can appear
   this.spawnLeash = 20;
   this.spawnSoftLeash = 15;
-  this.spawnFreq = 40;
+  this.spawnFreq = 30;
   this.lastSpawned = 0;
   
   this.spawned = new Collection;
@@ -2795,11 +2795,14 @@ SpawnerTile.prototype.getSpawngroup = function() {
 }
 
 SpawnerTile.prototype.setSpawngroup = function(newgroup) {
-  if (spawngroups[newgroup]) {
-    this.spawngroup = newgroup;
-    return this.spawngroup;
-  }
-  else return 0;
+  this.spawngroup = newgroup;
+  return this.spawngroup;
+}
+
+SpawnerTile.prototype.pickSpawn = function() {
+  var spindex = Math.floor(Math.random() * this.getSpawngroup().length);
+  var spawns= this.getSpawnGroup();
+  return spawns[spindex];
 }
 
 SpawnerTile.prototype.getMaxSpawns = function() {
@@ -2882,15 +2885,28 @@ SpawnerTile.prototype.activate = function() {
 
 SpawnerTile.prototype.myTurn = function() {
  
-  if ((DUTime.getGameClock() > (this.lastSpawned + this.getSpawnFreq())) && (Math.random()*3 > 2)) {
-    if (this.spawned.getAll().length < this.getMaxSpawns()) {
+  var timetonext = (this.getSpawnFreq() + (Math.random()*((this.getSpawnFreq()/2)+1)));
+  if (this.spawned.getAll().length < this.getMaxSpawns()) {
       // let's do some spawning
-      // WORKING HERE
-    }
+      var spawntype = this.pickSpawn();
+      var newspawn = localFactory.createTile(spawntype);
+      
+      var diffx = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
+      var diffy = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
+      var mymap = this.getHomeMap();
+      var tile = mymap.getTile(diffx,diffy);
+      var resp = tile.canMoveHere(newspawn.getMoveType());
+      if (resp["canmove"]) {
+        mymap.placeThing(this.getx() + diffx, this.gety() + diffy, newspawn);
+        //WORKING HERE- add spawn to spawn list, add spawner to NPC props
+      } else {
+        timetonext = 5;
+      }
+      
   }
  
   var NPCevent = new GameEvent(this);
-  DUTime.addAtTimeInterval(NPCevent,(Math.random()*5)+1);
+  DUTime.addAtTimeInterval(NPCevent,timetonext);
 }
 
 function PentagramNWTile() {
