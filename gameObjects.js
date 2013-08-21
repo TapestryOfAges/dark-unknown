@@ -2898,7 +2898,9 @@ SpawnerTile.prototype.myTurn = function() {
       var resp = tile.canMoveHere(newspawn.getMoveType());
       if (resp["canmove"]) {
         mymap.placeThing(this.getx() + diffx, this.gety() + diffy, newspawn);
-        //WORKING HERE- add spawn to spawn list, add spawner to NPC props
+        this.addSpawned(newspawn);
+        newspawn.setSpawnedBy(this);
+        
       } else {
         timetonext = 5;
       }
