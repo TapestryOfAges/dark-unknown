@@ -1282,6 +1282,10 @@ GameMap.prototype.loadMap = function (name) {
   	}
   }
   
+  if(typeof mappages[name]["onload"] == "function") {
+    mappages[name]["onload"](this);
+  }
+  
   return;
 }
 
@@ -2106,16 +2110,19 @@ function MapMemory() {
 MapMemory.prototype.addMap = function(mapname) {
 	var newmap = new GameMap();
 	newmap.loadMap(mapname);
-	this.data[mapname] = newmap;
+	
+	this.addMapByRef(newmap);
+
+//	this.data[mapname] = newmap;
 	
 	// also load any linked maps
-	if (newmap.linkedMaps[0] && newmap.linkedMaps[0] != "") {
-		for (var i = 0; i < newmap.linkedMaps.length; i++) {
-			var anothermap = new GameMap();
-			anothermap.loadMap(newmap.linkedMaps[i]);
-			this.data[newmap.linkedMaps[i]] = anothermap;
-		}
-	}
+//	if (newmap.linkedMaps[0] && newmap.linkedMaps[0] != "") {
+//		for (var i = 0; i < newmap.linkedMaps.length; i++) {
+//			var anothermap = new GameMap();
+//			anothermap.loadMap(newmap.linkedMaps[i]);
+//			this.data[newmap.linkedMaps[i]] = anothermap;
+//		}
+//	}
 	
 	return newmap;
 }
@@ -2123,6 +2130,15 @@ MapMemory.prototype.addMap = function(mapname) {
 MapMemory.prototype.addMapByRef = function(mapref) {
 	var mapname = mapref.getName();
 	this.data[mapname] = mapref;
+	
+	// also load linked maps
+	if (mapref.linkedMaps[0] && mapref.linkedMaps[0] != "") {
+	  for (var i = 0; i < mapref.linkedMaps.length; i++) {
+	    var anothermap = new GameMap();
+	    anothermap.loadMap(mapref.linkedMaps[i]);
+	    this.data[mapref.linkedMaps[i]] = anothermap;
+	  }
+	}
 	
 	return mapref;
 }
