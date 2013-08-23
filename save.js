@@ -10,13 +10,20 @@ function GameStateData() {
 GameStateData.prototype.loadGame = function() {
 	// Temporarily, this will return demo values
 	PC.setx(77);
-	PC.sety(20);
+	PC.sety(29);
 	PC.setPCName("Goldenflame");
-	var themap = new GameMap();
-	themap.loadMap("darkunknown");
+	var themap;
+	if (maps.getMap("darkunknown")) {
+	  themap = maps.getMap("darkunknown");
+	} else {
+	  themap = new GameMap();
+	  themap.loadMap("darkunknown");
+	}
 	PC.setHomeMap(themap);
   var rats = localFactory.createTile("GiantRatGroupSmall");
-  themap.placeThing(75,22,rats);
+  themap.placeThing(75,29,rats);
+  var potion = localFactory.createTile("RedPotion");
+  themap.placeThing(78,30,potion);
   var dagger = localFactory.createTile("Dagger");
   PC.addToInventory(dagger, 1);
   PC.setEquipment("weapon",dagger);
