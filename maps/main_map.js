@@ -195,3 +195,7 @@ mappages["darkunknown"].entertestscript = '';
 mappages["darkunknown"].exitscript = '';
 mappages["darkunknown"].exittestscript = '';
 mappages["darkunknown"].linkedMaps = new Array("");
+
+mappages["darkunknown"].onload = function(mapref) {
+  // x : 64, y : 119
+}
