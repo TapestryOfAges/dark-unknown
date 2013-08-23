@@ -13,7 +13,7 @@ var PC = new PCObject();
 PC.assignSerial();
 var gamestate = new GameStateData();
 var maps = new MapMemory();
-var worldmap = new GameMap();
+//var worldmap = new GameMap();
 var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
 var maintext = new TextFrame("innertextframe");
@@ -87,6 +87,7 @@ function DrawTopbarFrame(txt) {
 }
 
 $(document).ready(function() {
+  var worldmap = new GameMap();
   worldmap.loadMap("darkunknown");
   maps.addMapByRef(worldmap);
 	
