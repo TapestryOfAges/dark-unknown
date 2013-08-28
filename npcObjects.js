@@ -1,10 +1,3 @@
-// functions
-
-function PickOne(fromarray) {
-  var num = fromarray.length;
-  var roll = Math.floor(Math.random() * num);
-  return fromarray[roll];
-}
 
 
 // Townsfolk

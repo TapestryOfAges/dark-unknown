@@ -28,10 +28,11 @@ LootTable.prototype.getLoot = function() {
           var theloot = this.loot[i].objname;
           var quant = RollDice(this.loot[i].quantity);
           for (j=1;j<=quant;j++) {
-            if (theloot.match("_")) {
-              lootobj.lootlist[lootobj.lootlist.length] = DULootGroups.rollForTreasure(lootobj);
+//            if (theloot.match("_")) {
+            if (DULootGroups[theloot]) {
+              lootobj.lootlist[lootobj.lootlist.length] = DULootGroups.rollForTreasure(theloot);
             } else {
-              lootobj.lootlist[lootobj.lootlist.length] = this.loot[i].objname;
+              lootobj.lootlist[lootobj.lootlist.length] = theloot;
             }
           }
         }
@@ -48,7 +49,7 @@ function LootGroups() {
 LootGroups.prototype = new Object;
 
 LootGroups.prototype.setTreasureType = function(ttype, treasure) {
-  ttype = "group_" + ttype;
+//  ttype = "group_" + ttype;
   this.treasureTypes[ttype] = new Array;
   for (var i = 0; i< treasure.length ; i=i+2) {
     for (var j = 1; j<=treasure[i+1]; j++) {
