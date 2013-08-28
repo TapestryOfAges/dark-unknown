@@ -36,21 +36,64 @@ foreach my $line (<$npcdoc>) {
   } else { print "  this.graphic = '$fields[12]';\n"; }
   print "  this.meleeAttackAs = '$fields[13]';\n";
   print "  this.missileAttackAs = '$fields[14]';\n";
-  $fields[15] = uc($fields[15]);
-  print "  this.movetype = 'MOVE_$fields[15]';\n";
-  print "  this.leavesCorpse = '$fields[16]';\n";
-  print "  this.lootTable = '$fields[17]';\n";
-  if ($fields[18] =~ /^(an*) /) {
+  if ($fields[15] =~ /w/) { print "  this.armorAs = '$fields[15]';\n"; }
+  else {
+    my @armorvals = split(';', $fields[15]);
+    print "  this.armorAs = 'none'\n";
+    print "  this.armorDefense = '$armorvals[0]'\n";
+    print "  this.armorAbsorb = '$armorvals[1]'\n";
+    print "  this.armorResist = '$armorvals[2]'\n";
+  }
+  $fields[16] = uc($fields[16]);
+  print "  this.movetype = 'MOVE_$fields[16]';\n";
+  print "  this.leavesCorpse = '$fields[17]';\n";
+  print "  this.lootTable = '$fields[18]';\n";
+  if ($fields[19] =~ /^(an*) /) {
     print "  this.prefix = '$1';\n";
-    $fields[18] =~ s/^an* //;
+    $fields[19] =~ s/^an* //;
   }
-  print "  this.desc = '$fields[18]';\n";
-  if ($fields[19]) {
-    print "  this.onHit = '$fields[19]';\n";
-  }
+  print "  this.desc = '$fields[19]';\n";
   if ($fields[20]) {
-    print "  this.onDamaged = '$fields[20]';\n";
+    print "  this.onHit = '$fields[20]';\n";
   }
-  print "}\n\n";
+  if ($fields[21]) {
+    print "  this.onDamaged = '$fields[21]';\n";
+  }
+  print "}\n";
+  print "$fields[0]" . "Tile.prototype = new NPCObject\n\n";
 }
 
+close $npcdoc;
+
+open (my $groupdoc, "<", "Groupdoc.txt") or die "Can't open Groupdoc.txt\n";
+$firstline = 1;
+
+foreach my $line (<$groupdoc>) {
+  if ($firstline) { 
+    $firstline = 0;
+    next;
+  }
+  chomp $line;
+  
+  my @fields = split("\t",$line);
+  
+  print "function " . $fields[0] . "Tile() {\n";
+  print "  this.name = '$fields[0]'\n";
+  print "  this.desc = '$fields[1]'\n";
+  print "  this.peaceAI = '$fields[2]'\n";
+  if ($fields[3] =~ /,/) {
+    $fields[3] =~ s/ //g;
+    $fields[3] =~ /(.{7}),(.{7})/;
+    $fields[3] = "PickOne([\"$1\",\"$2\"]);\n";
+    print "  this.graphic = $fields[3]";
+  } else { print "  this.graphic = '$fields[3]';\n"; }
+  print "  this.group[0] = new NPCList('$fields[4]', '$fields[5]');\n";
+  if ($fields[6]) {
+    print "  this.group[1] = new NPCList('$fields[6]', '$fields[7]');\n";
+  }
+  if ($fields[8]) {
+    print "  this.group[2] = new NPCList('$fields[8]', '$fields[9]');\n";
+  }
+  print "}\n";
+  print "$fields[0]" . "Tile.prototype = new NPCGroupObject;\n\n";
+}
