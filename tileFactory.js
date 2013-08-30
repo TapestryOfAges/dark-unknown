@@ -707,6 +707,11 @@ tileFactory.prototype.makeWalkOnTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSpawnerTile = function() {
+  var newTile = new SpawnerTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePentagramNWTile = function() {
   var newTile = new PentagramNWTile();
   return newTile;
@@ -992,13 +997,13 @@ tileFactory.prototype.makeBardVillagerNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeChildNPCTile = function() {
-  var newTile = new ChildNPCTile();
+tileFactory.prototype.makeChildVillagerNPCTile = function() {
+  var newTile = new ChildVillagerNPCTile();
   return newTile;
 }
 
-tileFactory.prototype.makeBeggerNPCTile = function() {
-  var newTile = new BeggerNPCTile();
+tileFactory.prototype.makeBeggarVillagerNPCTile = function() {
+  var newTile = new BeggarVillagerNPCTile();
   return newTile;
 }
 
@@ -1017,8 +1022,73 @@ tileFactory.prototype.makePrinceNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCorruptPrinceNPCTile = function() {
+  var newTile = new CorruptPrinceNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCorruptGuardsNPCTile = function() {
+  var newTile = new CorruptGuardsNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGiantRatNPCTile = function() {
   var newTile = new GiantRatNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGiantSnakeNPCTile = function() {
+  var newTile = new GiantSnakeNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGiantBatNPCTile = function() {
+  var newTile = new GiantBatNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeLargeSpiderNPCTile = function() {
+  var newTile = new LargeSpiderNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGiantSpiderNPCTile = function() {
+  var newTile = new GiantSpiderNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGiantInsectsNPCTile = function() {
+  var newTile = new GiantInsectsNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrcNPCTile = function() {
+  var newTile = new OrcNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSlimeNPCTile = function() {
+  var newTile = new SlimeNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHoodNPCTile = function() {
+  var newTile = new HoodNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRogueNPCTile = function() {
+  var newTile = new RogueNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMinstrelNPCTile = function() {
+  var newTile = new MinstrelNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeThiefNPCTile = function() {
+  var newTile = new ThiefNPCTile();
   return newTile;
 }
 
@@ -1032,16 +1102,6 @@ tileFactory.prototype.makeGiantRatGroupLargeTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeGiantSnakeNPCTile = function() {
-  var newTile = new GiantSnakeNPCTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeOrcNPCTile = function() {
-  var newTile = new OrcNPCTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeOrcGroupSmallTile = function() {
   var newTile = new OrcGroupSmallTile();
   return newTile;
@@ -1049,6 +1109,36 @@ tileFactory.prototype.makeOrcGroupSmallTile = function() {
 
 tileFactory.prototype.makeOrcGroupLargeTile = function() {
   var newTile = new OrcGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHoodGroupSmallTile = function() {
+  var newTile = new HoodGroupSmallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHoodGroupLargeTile = function() {
+  var newTile = new HoodGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRogueGroupSmallTile = function() {
+  var newTile = new RogueGroupSmallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRogueGroupLargeTile = function() {
+  var newTile = new RogueGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeThiefGroupSmallTile = function() {
+  var newTile = new ThiefGroupSmallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeThiefGroupLargeTile = function() {
+  var newTile = new ThiefGroupLargeTile();
   return newTile;
 }
 
