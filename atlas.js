@@ -964,10 +964,10 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
 
 	  //update pathfinding
     var tile = this.getTile(x,y);
-    for (i=1; i<=16; i=i*2) {
-      var response = tile.canMoveHere(i);
-	    if (response["canmove"]) { this.setWalkableAt(x,y,true,i); }
-	    else { this.setWalkableAt(x,y,false,i); }
+    for (itr=1; itr<=16; itr=itr*2) {
+      var response = tile.canMoveHere(itr);
+	    if (response["canmove"]) { this.setWalkableAt(x,y,true,itr); }
+	    else { this.setWalkableAt(x,y,false,itr); }
   	}
 
   }  
