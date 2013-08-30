@@ -297,7 +297,6 @@ function PlaceMonsters(battlemap,group,whoseturn) {
     alert("Non-group monster on world map.");
     return 0;
   }
-
     
   var monstercoords = new Array;
   switch (monsters.length) {
@@ -651,13 +650,12 @@ function PlaceMonsters(battlemap,group,whoseturn) {
   }
 
   for (i =0; i < monsters.length; i++) {
-    monsters[i].setHomeMap(battlemap);
+//    monsters[i].setHomeMap(battlemap);
     var timetoplace = 0;
     if (!whoseturn) { // combat began on NPC turn
       timetoplace = .001;
     }
     battlemap.placeThing(monstercoords[i].x,monstercoords[i].y,monsters[i],timetoplace);
-    
   }
 
   return monsters;
