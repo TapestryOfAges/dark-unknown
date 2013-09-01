@@ -819,6 +819,7 @@ function GiantRatGroupSmallTile() {
   this.graphic = PickOne(["327.gif","361.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
+  this.movetype = 'MOVE_WALK';
 }
 GiantRatGroupSmallTile.prototype = new NPCGroupObject;
 
@@ -829,6 +830,7 @@ function GiantRatGroupLargeTile() {
   this.graphic = PickOne(["327.gif","361.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
+  this.movetype = 'MOVE_WALK';
 }
 GiantRatGroupLargeTile.prototype = new NPCGroupObject;
 
@@ -839,6 +841,7 @@ function OrcGroupSmallTile() {
   this.graphic = PickOne(["339.gif","373.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('OrcNPC', '1d3+2');
+  this.movetype = 'MOVE_WALK';
 }
 OrcGroupSmallTile.prototype = new NPCGroupObject;
 
@@ -849,6 +852,7 @@ function OrcGroupLargeTile() {
   this.graphic = PickOne(["339.gif","373.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('OrcNPC', '1d5+4');
+  this.movetype = 'MOVE_WALK';
 }
 OrcGroupLargeTile.prototype = new NPCGroupObject;
 
@@ -859,6 +863,7 @@ function HoodGroupSmallTile() {
   this.graphic = PickOne(["375.gif","341.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('HoodNPC', '1d3+1');
+  this.movetype = MOVE_WALK;
 }
 HoodGroupSmallTile.prototype = new NPCGroupObject;
 
@@ -870,6 +875,7 @@ function HoodGroupLargeTile() {
   this.group = new Array;
   this.group[0] = new NPCList('HoodNPC', '1d3+3');
   this.group[1] = new NPCList('MinstrelNPC', '1d1');
+  this.movetype = MOVE_WALK;
 }
 HoodGroupLargeTile.prototype = new NPCGroupObject;
 
@@ -881,6 +887,7 @@ function RogueGroupSmallTile() {
   this.group = new Array;
   this.group[0] = new NPCList('RogueNPC', '1d3+2');
   this.group[1] = new NPCList('HoodNPC', '1d3+1');
+  this.movetype = MOVE_WALK;
 }
 RogueGroupSmallTile.prototype = new NPCGroupObject;
 
@@ -893,6 +900,7 @@ function RogueGroupLargeTile() {
   this.group[0] = new NPCList('RogueNPC', '1d4+3');
   this.group[1] = new NPCList('HoodNPC', '1d3+2');
   this.group[2] = new NPCList('MinstrelNPC', '1d2');
+  this.movetype = 'MOVE_WALK';
 }
 RogueGroupLargeTile.prototype = new NPCGroupObject;
 
@@ -904,6 +912,7 @@ function ThiefGroupSmallTile() {
   this.group = new Array;
   this.group[0] = new NPCList('ThiefNPC', '1d3+2');
   this.group[1] = new NPCList('RogueNPC', '1d3+1');
+  this.movetype = 'MOVE_WALK';
 }
 ThiefGroupSmallTile.prototype = new NPCGroupObject;
 
@@ -916,6 +925,7 @@ function ThiefGroupLargeTile() {
   this.group[0] = new NPCList('ThiefNPC', '1d4+3');
   this.group[1] = new NPCList('RogueNPC', '1d3+2');
   this.group[2] = new NPCList('MinstrelNPC', '1d2');
+  this.movetype = 'MOVE_WALK';
 }
 ThiefGroupLargeTile.prototype = new NPCGroupObject;
 

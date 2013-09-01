@@ -648,15 +648,20 @@ function PerformLook() {
   	}
   }
   var features = tile.getFeatures();
-  if (features.length > 0) {
-  	for (var i=(features.length-1); i >= 0; i-- ) {
-  		if (( seethis == "" ) && (i == features.length-1)) {
-  			seethis = features[i].getPrefix() + " " + features[i].getDesc();
-  		}
-  		else if ( typeof features[i].isItem == "function" ) {
-  			if (seethis == "") { seethis = features[i].getPrefix() + " " + features[i].getDesc(); }
-  			else { seethis += ", " + features[i].getPrefix() + " " + features[i].getDesc(); }
-  		}
+  var len = features.length;
+  if (len > 0) {
+  	for (var i=(len-1); i >= 0; i-- ) {
+  	  if (features[i].invisible) {
+  	    len--;
+  	  } else {
+      	if (( seethis == "" ) && (i == len-1)) {
+      		seethis = features[i].getPrefix() + " " + features[i].getDesc();
+  	   	}
+  	    else if ( typeof features[i].isItem == "function" ) {
+  		    if (seethis == "") { seethis = features[i].getPrefix() + " " + features[i].getDesc(); }
+ 	    		else { seethis += ", " + features[i].getPrefix() + " " + features[i].getDesc(); }
+ 		    }
+ 		  }
   	}
   }
   if (seethis == "") {
