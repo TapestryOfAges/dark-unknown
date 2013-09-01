@@ -21,6 +21,7 @@ var DULoot = SetLoots();
 var DULootGroups = SetLootGroups(); // see loot.js for population
 var displayspecs = new Object;
 var finder = new PF.AStarFinder();
+var gameflags = new Object;
 
 var targetCursor = new Object;
 var inputText = new Object;
