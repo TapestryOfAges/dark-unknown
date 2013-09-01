@@ -36,7 +36,7 @@ foreach my $line (<$npcdoc>) {
   } else { print "  this.graphic = '$fields[12]';\n"; }
   print "  this.meleeAttackAs = '$fields[13]';\n";
   print "  this.missileAttackAs = '$fields[14]';\n";
-  if (!($fields[15] =~ /\;/)) { print "  this.armorAs = '$fields[15]';\n"; }
+  if (!($fields[15] =~ /\;/)) { print "  this.armorAs = '$fields[15]Armor';\n"; }
   else {
     my @armorvals = split('\;', $fields[15]);
     print "  this.armorAs = 'none';\n";
@@ -45,7 +45,7 @@ foreach my $line (<$npcdoc>) {
     print "  this.armorResist = '$armorvals[2]';\n";
   }
   $fields[16] = uc($fields[16]);
-  print "  this.movetype = 'MOVE_$fields[16]';\n";
+  print "  this.movetype = MOVE_$fields[16];\n";
   print "  this.leavesCorpse = '$fields[17]';\n";
   print "  this.lootTable = '$fields[18]';\n";
   if ($fields[19] =~ /^(an*) /) {
@@ -95,6 +95,7 @@ foreach my $line (<$groupdoc>) {
   if ($fields[8]) {
     print "  this.group[2] = new NPCList('$fields[8]NPC', '$fields[9]');\n";
   }
+  print "  this.movetype = '$fields[10]';\n";
   print "}\n";
   print "$fields[0]" . "Tile.prototype = new NPCGroupObject;\n\n";
 }

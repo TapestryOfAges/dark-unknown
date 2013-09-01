@@ -868,6 +868,10 @@ function InWater(who) {
     // entity is levitating and so won't drown
     return "";
   }  
+  if (MOVE_ETHEREAL & who.getMovetype()) {
+    // entity is ethereal and can't drown
+    return "";
+  }
 
   var localmap = who.getHomeMap();
   var tile = localmap.getTile(who.getx(),who.gety());
@@ -2778,7 +2782,7 @@ function SpawnerTile() {
   this.desc = "invisible spawner";
   this.invisible = 1;
   
-  this.spawngroup = "";
+  this.spawngroup = new Array;
   this.maxSpawns = 5; 
   this.spawnRadius = 0; // distance from spawner entity can appear
   this.spawnLeash = 20;
@@ -2801,7 +2805,7 @@ SpawnerTile.prototype.setSpawngroup = function(newgroup) {
 
 SpawnerTile.prototype.pickSpawn = function() {
   var spindex = Math.floor(Math.random() * this.getSpawngroup().length);
-  var spawns= this.getSpawnGroup();
+  var spawns= this.getSpawngroup();
   return spawns[spindex];
 }
 
@@ -2884,23 +2888,20 @@ SpawnerTile.prototype.activate = function() {
 }
 
 SpawnerTile.prototype.myTurn = function() {
- 
   var timetonext = (this.getSpawnFreq() + (Math.random()*((this.getSpawnFreq()/2)+1)));
-  if (this.spawned.getAll().length < this.getMaxSpawns()) {
+  if ((this.spawned.getAll().length < this.getMaxSpawns()) && ((this.getHomeMap() != PC.getHomeMap()) || (GetDistance(PC.getx(), PC.gety(), this.getx(), this.gety()) > 10))) {
       // let's do some spawning
       var spawntype = this.pickSpawn();
       var newspawn = localFactory.createTile(spawntype);
-      
       var diffx = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
       var diffy = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
       var mymap = this.getHomeMap();
-      var tile = mymap.getTile(diffx,diffy);
-      var resp = tile.canMoveHere(newspawn.getMoveType());
+      var tile = mymap.getTile(this.getx() + diffx, this.gety() + diffy);
+      var resp = tile.canMoveHere(newspawn.getMovetype());
       if (resp["canmove"]) {
         mymap.placeThing(this.getx() + diffx, this.gety() + diffy, newspawn);
         this.addSpawned(newspawn);
         newspawn.setSpawnedBy(this);
-        
       } else {
         timetonext = 5;
       }
@@ -2909,6 +2910,9 @@ SpawnerTile.prototype.myTurn = function() {
  
   var NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,timetonext);
+  
+  var nextEntity = DUTime.executeNextEvent().getEntity();
+  nextEntity.myTurn();
 }
 
 function PentagramNWTile() {
