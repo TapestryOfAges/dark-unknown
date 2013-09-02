@@ -95,7 +95,8 @@ foreach my $line (<$groupdoc>) {
   if ($fields[8]) {
     print "  this.group[2] = new NPCList('$fields[8]NPC', '$fields[9]');\n";
   }
-  print "  this.movetype = '$fields[10]';\n";
+  $fields[10] = uc($fields[10]);
+  print "  this.movetype = MOVE_$fields[10];\n";
   print "}\n";
   print "$fields[0]" . "Tile.prototype = new NPCGroupObject;\n\n";
 }

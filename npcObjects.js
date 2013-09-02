@@ -16,8 +16,8 @@ function DruidVillagerNPCTile() {
   this.graphic = '302.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
-  this.armorAs = 'Cloth';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'ClothArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
@@ -43,8 +43,8 @@ function ShepherdVillagerNPCTile() {
   this.graphic = '301.gif';
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
-  this.armorAs = 'Cloth';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'ClothArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
@@ -70,8 +70,8 @@ function MageVillagerNPCTile() {
   this.graphic = '303.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
-  this.armorAs = 'Cloth';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'ClothArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
@@ -97,8 +97,8 @@ function TinkerVillagerNPCTile() {
   this.graphic = '304.gif';
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'Sling';
-  this.armorAs = 'Cloth';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'ClothArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
@@ -124,8 +124,8 @@ function RangerVillagerNPCTile() {
   this.graphic = '305.gif';
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'Sling';
-  this.armorAs = 'Leather';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
@@ -151,8 +151,8 @@ function AdventurerVillagerNPCTile() {
   this.graphic = '306.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'Sling';
-  this.armorAs = 'Leather';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'an';
@@ -178,8 +178,8 @@ function PaladinVillagerNPCTile() {
   this.graphic = '307.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
-  this.armorAs = 'Leather';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
@@ -205,8 +205,8 @@ function FighterVillagerNPCTile() {
   this.graphic = '308.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'Sling';
-  this.armorAs = 'Leather';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
@@ -232,8 +232,8 @@ function TownsfolkVillagerNPCTile() {
   this.graphic = '310.gif';
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
-  this.armorAs = 'Cloth';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'ClothArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
@@ -259,8 +259,8 @@ function BardVillagerNPCTile() {
   this.graphic = '311.gif';
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'Bow';
-  this.armorAs = 'Cloth';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'ClothArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
@@ -286,8 +286,8 @@ function ChildVillagerNPCTile() {
   this.graphic = '312.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
-  this.armorAs = 'None';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'NoneArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'none';
   this.prefix = 'a';
@@ -313,8 +313,8 @@ function BeggarVillagerNPCTile() {
   this.graphic = '313.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
-  this.armorAs = 'None';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'NoneArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'none';
   this.prefix = 'a';
@@ -340,8 +340,8 @@ function TownGuardNPCTile() {
   this.graphic = '309.gif';
   this.meleeAttackAs = 'Halberd';
   this.missileAttackAs = 'none';
-  this.armorAs = 'Chain';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Town Guard';
   this.prefix = 'a';
@@ -367,8 +367,8 @@ function KingNPCTile() {
   this.graphic = '315.gif';
   this.meleeAttackAs = 'MagicSword';
   this.missileAttackAs = 'none';
-  this.armorAs = 'Plate';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.desc = 'your father the King';
@@ -393,8 +393,8 @@ function PrinceNPCTile() {
   this.graphic = 'prince.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
-  this.armorAs = 'Plate';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Town Guard';
   this.desc = 'your brother the prince';
@@ -419,8 +419,8 @@ function CorruptPrinceNPCTile() {
   this.graphic = 'prince.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
-  this.armorAs = 'Plate';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'PlateArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Town Guard';
   this.desc = 'your brother the prince';
@@ -445,8 +445,8 @@ function CorruptGuardsNPCTile() {
   this.graphic = '309.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
-  this.armorAs = 'Chain';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Town Guard';
   this.prefix = 'a';
@@ -476,7 +476,7 @@ function GiantRatNPCTile() {
   this.armorDefense = '5';
   this.armorAbsorb = '5';
   this.armorResist = '0';
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Small Animal';
   this.prefix = 'a';
@@ -506,7 +506,7 @@ function GiantSnakeNPCTile() {
   this.armorDefense = '10';
   this.armorAbsorb = '5';
   this.armorResist = '0';
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Small Animal';
   this.prefix = 'a';
@@ -537,7 +537,7 @@ function GiantBatNPCTile() {
   this.armorDefense = '5';
   this.armorAbsorb = '5';
   this.armorResist = '0';
-  this.movetype = 'MOVE_FLY';
+  this.movetype = MOVE_FLY;
   this.leavesCorpse = 'Blood';
   this.lootTable = 'none';
   this.prefix = 'a';
@@ -567,7 +567,7 @@ function LargeSpiderNPCTile() {
   this.armorDefense = '5';
   this.armorAbsorb = '10';
   this.armorResist = '0';
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Spiders';
   this.prefix = 'a';
@@ -598,7 +598,7 @@ function GiantSpiderNPCTile() {
   this.armorDefense = '10';
   this.armorAbsorb = '15';
   this.armorResist = '5';
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Giant Spider';
   this.prefix = 'a';
@@ -629,7 +629,7 @@ function GiantInsectsNPCTile() {
   this.armorDefense = '5';
   this.armorAbsorb = '5';
   this.armorResist = '0';
-  this.movetype = 'MOVE_FLY';
+  this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
@@ -659,7 +659,7 @@ function OrcNPCTile() {
   this.armorDefense = '10';
   this.armorAbsorb = '15';
   this.armorResist = '0';
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
   this.lootTable = 'Orcs';
   this.prefix = 'an';
@@ -689,7 +689,7 @@ function SlimeNPCTile() {
   this.armorDefense = '10';
   this.armorAbsorb = '0';
   this.armorResist = '0';
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.desc = 'slime';
@@ -715,8 +715,8 @@ function HoodNPCTile() {
   this.graphic = PickOne(["375.gif","341.gif"]);
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
-  this.armorAs = 'Cloth';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'ClothArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'a';
@@ -743,8 +743,8 @@ function RogueNPCTile() {
   this.graphic = '306.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
-  this.armorAs = 'Leather';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'a';
@@ -771,8 +771,8 @@ function MinstrelNPCTile() {
   this.graphic = '311.gif';
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'Sling';
-  this.armorAs = 'Cloth';
-  this.movetype = 'MOVE_WALK';
+  this.armorAs = 'ClothArmor';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'a';
@@ -803,7 +803,7 @@ function ThiefNPCTile() {
   this.armorDefense = '15';
   this.armorAbsorb = '20';
   this.armorResist = '5';
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Adventurer';
   this.prefix = 'a';
@@ -819,7 +819,7 @@ function GiantRatGroupSmallTile() {
   this.graphic = PickOne(["327.gif","361.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
 }
 GiantRatGroupSmallTile.prototype = new NPCGroupObject;
 
@@ -830,7 +830,7 @@ function GiantRatGroupLargeTile() {
   this.graphic = PickOne(["327.gif","361.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
 }
 GiantRatGroupLargeTile.prototype = new NPCGroupObject;
 
@@ -841,7 +841,7 @@ function OrcGroupSmallTile() {
   this.graphic = PickOne(["339.gif","373.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('OrcNPC', '1d3+2');
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
 }
 OrcGroupSmallTile.prototype = new NPCGroupObject;
 
@@ -852,7 +852,7 @@ function OrcGroupLargeTile() {
   this.graphic = PickOne(["339.gif","373.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('OrcNPC', '1d5+4');
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
 }
 OrcGroupLargeTile.prototype = new NPCGroupObject;
 
@@ -900,7 +900,7 @@ function RogueGroupLargeTile() {
   this.group[0] = new NPCList('RogueNPC', '1d4+3');
   this.group[1] = new NPCList('HoodNPC', '1d3+2');
   this.group[2] = new NPCList('MinstrelNPC', '1d2');
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
 }
 RogueGroupLargeTile.prototype = new NPCGroupObject;
 
@@ -912,7 +912,7 @@ function ThiefGroupSmallTile() {
   this.group = new Array;
   this.group[0] = new NPCList('ThiefNPC', '1d3+2');
   this.group[1] = new NPCList('RogueNPC', '1d3+1');
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
 }
 ThiefGroupSmallTile.prototype = new NPCGroupObject;
 
@@ -925,7 +925,7 @@ function ThiefGroupLargeTile() {
   this.group[0] = new NPCList('ThiefNPC', '1d4+3');
   this.group[1] = new NPCList('RogueNPC', '1d3+2');
   this.group[2] = new NPCList('MinstrelNPC', '1d2');
-  this.movetype = 'MOVE_WALK';
+  this.movetype = MOVE_WALK;
 }
 ThiefGroupLargeTile.prototype = new NPCGroupObject;
 
