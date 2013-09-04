@@ -286,7 +286,10 @@ function ChildVillagerNPCTile() {
   this.graphic = '312.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
-  this.armorAs = 'NoneArmor';
+  this.armorAs = 'none';
+  this.armorDefense = '0';
+  this.armorAbsorb = '0';
+  this.armorResist = '0';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'none';
@@ -313,7 +316,10 @@ function BeggarVillagerNPCTile() {
   this.graphic = '313.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
-  this.armorAs = 'NoneArmor';
+  this.armorAs = 'none';
+  this.armorDefense = '0';
+  this.armorAbsorb = '0';
+  this.armorResist = '0';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'none';
