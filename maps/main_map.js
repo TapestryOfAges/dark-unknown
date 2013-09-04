@@ -197,5 +197,35 @@ mappages["darkunknown"].exittestscript = '';
 mappages["darkunknown"].linkedMaps = new Array("");
 
 mappages["darkunknown"].onload = function(mapref) {
-  // x : 64, y : 119
+  
+  // Place spawners  
+  var onyxspawn = localFactory.createTile("Spawner");
+  var onyxgroup = new Array;
+  if (PC.getLevel() == 1) {
+    onyxgroup[0] = "HoodGroupSmall";
+    onyxgroup[1] = "HoodGroupSmall";
+    onyxgroup[2] = "HoodGroupLarge";
+    onyxgroup[3] = "RogueGroupSmall";
+  } else if (PC.getLevel() == 2) {
+    onyxgroup[0] = "HoodGroupSmall";
+    onyxgroup[1] = "HoodGroupLarge";
+    onyxgroup[2] = "RogueGroupSmall";
+    onyxgroup[3] = "RogueGroupLarge";
+    onyxgroup[4] = "RogueGroupLarge";
+    onyxgroup[5] = "ThiefGroupSmall";
+  } else {
+    onyxgroup[0] = "HoodGroupLarge";
+    onyxgroup[1] = "RogueGroupSmall";
+    onyxgroup[2] = "RogueGroupLarge";
+    onyxgroup[3] = "ThiefGroupSmall";
+    onyxgroup[4] = "ThiefGroupLarge";
+  }
+  onyxspawn.setSpawngroup(onyxgroup);
+  onyxspawn.setSpawnRadius(3);
+  onyxspawn.setSpawnLeash(0);
+  onyxspawn.setSpawnSoftLeash(0);
+  
+  mapref.placeThing(61,118,onyxspawn);
+  
+  
 }
