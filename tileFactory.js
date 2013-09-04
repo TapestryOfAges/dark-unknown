@@ -7,9 +7,14 @@ tileFactory.prototype.createTile = function(tileName) {
 
 
   var thingy = "make"+tileName+"Tile";
+  if (typeof this[thingy] == "function") {
     var newthing = this[thingy]();
-  newthing.assignSerial();
-  return newthing;
+    newthing.assignSerial();
+    return newthing;
+  } else {
+    alert(tileName + " is not a thing.");
+    exit;
+  }
 }
 
 tileFactory.prototype.makeBlankWhiteTile = function() {
