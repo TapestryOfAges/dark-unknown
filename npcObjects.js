@@ -3,11 +3,11 @@
 
 function DruidVillagerNPCTile() {
   this.name = 'DruidVillagerNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '10';
-  this.dex = '12';
-  this.int = '14';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 10;
+  this.dex = 12;
+  this.int = 14;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'townsfolk';
@@ -30,11 +30,11 @@ DruidVillagerNPCTile.prototype = new NPCObject;
 
 function ShepherdVillagerNPCTile() {
   this.name = 'ShepherdVillagerNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '12';
-  this.dex = '12';
-  this.int = '12';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 12;
+  this.dex = 12;
+  this.int = 12;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'townsfolk';
@@ -57,11 +57,11 @@ ShepherdVillagerNPCTile.prototype = new NPCObject;
 
 function MageVillagerNPCTile() {
   this.name = 'MageVillagerNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '10';
-  this.dex = '10';
-  this.int = '16';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 10;
+  this.dex = 10;
+  this.int = 16;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'townsfolk';
@@ -84,11 +84,11 @@ MageVillagerNPCTile.prototype = new NPCObject;
 
 function TinkerVillagerNPCTile() {
   this.name = 'TinkerVillagerNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '10';
-  this.dex = '14';
-  this.int = '12';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 10;
+  this.dex = 14;
+  this.int = 12;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'townsfolk';
@@ -111,11 +111,11 @@ TinkerVillagerNPCTile.prototype = new NPCObject;
 
 function RangerVillagerNPCTile() {
   this.name = 'RangerVillagerNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '11';
-  this.dex = '14';
-  this.int = '11';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 11;
+  this.dex = 14;
+  this.int = 11;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'townsfolk';
@@ -138,11 +138,11 @@ RangerVillagerNPCTile.prototype = new NPCObject;
 
 function AdventurerVillagerNPCTile() {
   this.name = 'AdventurerVillagerNPC';
-  this.level = '1';
-  this.addhp = '5';
-  this.str = '12';
-  this.dex = '12';
-  this.int = '12';
+  this.level = 1;
+  this.addhp = 5;
+  this.str = 12;
+  this.dex = 12;
+  this.int = 12;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'townsfolk';
@@ -165,11 +165,11 @@ AdventurerVillagerNPCTile.prototype = new NPCObject;
 
 function PaladinVillagerNPCTile() {
   this.name = 'PaladinVillagerNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '14';
-  this.dex = '10';
-  this.int = '12';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 14;
+  this.dex = 10;
+  this.int = 12;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'townsfolk';
@@ -192,11 +192,11 @@ PaladinVillagerNPCTile.prototype = new NPCObject;
 
 function FighterVillagerNPCTile() {
   this.name = 'FighterVillagerNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '14';
-  this.dex = '12';
-  this.int = '10';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 14;
+  this.dex = 12;
+  this.int = 10;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'townsfolk';
@@ -219,11 +219,11 @@ FighterVillagerNPCTile.prototype = new NPCObject;
 
 function TownsfolkVillagerNPCTile() {
   this.name = 'TownsfolkVillagerNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '10';
-  this.dex = '10';
-  this.int = '10';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 10;
+  this.dex = 10;
+  this.int = 10;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'townsfolk';
@@ -246,11 +246,11 @@ TownsfolkVillagerNPCTile.prototype = new NPCObject;
 
 function BardVillagerNPCTile() {
   this.name = 'BardVillagerNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '10';
-  this.dex = '14';
-  this.int = '12';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 10;
+  this.dex = 14;
+  this.int = 12;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'townsfolk';
@@ -273,11 +273,11 @@ BardVillagerNPCTile.prototype = new NPCObject;
 
 function ChildVillagerNPCTile() {
   this.name = 'ChildVillagerNPC';
-  this.level = '1';
-  this.addhp = '-2';
-  this.str = '7';
-  this.dex = '7';
-  this.int = '7';
+  this.level = 1;
+  this.addhp = -2;
+  this.str = 7;
+  this.dex = 7;
+  this.int = 7;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'townsfolk';
@@ -303,11 +303,11 @@ ChildVillagerNPCTile.prototype = new NPCObject;
 
 function BeggarVillagerNPCTile() {
   this.name = 'BeggarVillagerNPC';
-  this.level = '1';
-  this.addhp = '-2';
-  this.str = '7';
-  this.dex = '7';
-  this.int = '7';
+  this.level = 1;
+  this.addhp = -2;
+  this.str = 7;
+  this.dex = 7;
+  this.int = 7;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'townsfolk';
@@ -333,11 +333,11 @@ BeggarVillagerNPCTile.prototype = new NPCObject;
 
 function TownGuardNPCTile() {
   this.name = 'TownGuardNPC';
-  this.level = '5';
-  this.addhp = '0';
-  this.str = '23';
-  this.dex = '23';
-  this.int = '14';
+  this.level = 5;
+  this.addhp = 0;
+  this.str = 23;
+  this.dex = 23;
+  this.int = 14;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'guard';
@@ -360,11 +360,11 @@ TownGuardNPCTile.prototype = new NPCObject;
 
 function KingNPCTile() {
   this.name = 'KingNPC';
-  this.level = '8';
-  this.addhp = '100';
-  this.str = '30';
-  this.dex = '30';
-  this.int = '30';
+  this.level = 8;
+  this.addhp = 100;
+  this.str = 30;
+  this.dex = 30;
+  this.int = 30;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'stationary';
@@ -386,11 +386,11 @@ KingNPCTile.prototype = new NPCObject;
 
 function PrinceNPCTile() {
   this.name = 'PrinceNPC';
-  this.level = '7';
-  this.addhp = '50';
-  this.str = '25';
-  this.dex = '25';
-  this.int = '25';
+  this.level = 7;
+  this.addhp = 50;
+  this.str = 25;
+  this.dex = 25;
+  this.int = 25;
   this.alignment = 'Good';
   this.attitude = 'Friendly';
   this.peaceAI = 'stationary';
@@ -412,11 +412,11 @@ PrinceNPCTile.prototype = new NPCObject;
 
 function CorruptPrinceNPCTile() {
   this.name = 'CorruptPrinceNPC';
-  this.level = '7';
-  this.addhp = '50';
-  this.str = '25';
-  this.dex = '25';
-  this.int = '25';
+  this.level = 7;
+  this.addhp = 50;
+  this.str = 25;
+  this.dex = 25;
+  this.int = 25;
   this.alignment = 'Evil';
   this.attitude = 'Friendly';
   this.peaceAI = 'stationary';
@@ -438,11 +438,11 @@ CorruptPrinceNPCTile.prototype = new NPCObject;
 
 function CorruptGuardsNPCTile() {
   this.name = 'CorruptGuardsNPC';
-  this.level = '4';
-  this.addhp = '0';
-  this.str = '20';
-  this.dex = '20';
-  this.int = '14';
+  this.level = 4;
+  this.addhp = 0;
+  this.str = 20;
+  this.dex = 20;
+  this.int = 14;
   this.alignment = 'Evil';
   this.attitude = 'Friendly';
   this.peaceAI = 'guard';
@@ -465,11 +465,11 @@ CorruptGuardsNPCTile.prototype = new NPCObject;
 
 function GiantRatNPCTile() {
   this.name = 'GiantRatNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '5';
-  this.dex = '8';
-  this.int = '2';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 5;
+  this.dex = 8;
+  this.int = 2;
   this.alignment = 'Neutral';
   this.attitude = 'Hostile';
   this.peaceAI = 'seekPC-15';
@@ -495,11 +495,11 @@ GiantRatNPCTile.prototype = new NPCObject;
 
 function GiantSnakeNPCTile() {
   this.name = 'GiantSnakeNPC';
-  this.level = '2';
-  this.addhp = '0';
-  this.str = '10';
-  this.dex = '12';
-  this.int = '3';
+  this.level = 2;
+  this.addhp = 0;
+  this.str = 10;
+  this.dex = 12;
+  this.int = 3;
   this.alignment = 'Neutral';
   this.attitude = 'Hostile';
   this.peaceAI = 'seekPC-15';
@@ -526,11 +526,11 @@ GiantSnakeNPCTile.prototype = new NPCObject;
 
 function GiantBatNPCTile() {
   this.name = 'GiantBatNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '5';
-  this.dex = '15';
-  this.int = '2';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 5;
+  this.dex = 15;
+  this.int = 2;
   this.alignment = 'Neutral';
   this.attitude = 'Hostile';
   this.peaceAI = 'seekPC-20';
@@ -556,11 +556,11 @@ GiantBatNPCTile.prototype = new NPCObject;
 
 function LargeSpiderNPCTile() {
   this.name = 'LargeSpiderNPC';
-  this.level = '3';
-  this.addhp = '5';
-  this.str = '12';
-  this.dex = '12';
-  this.int = '3';
+  this.level = 3;
+  this.addhp = 5;
+  this.str = 12;
+  this.dex = 12;
+  this.int = 3;
   this.alignment = 'Neutral';
   this.attitude = 'Hostile';
   this.peaceAI = 'seekPC-10';
@@ -587,11 +587,11 @@ LargeSpiderNPCTile.prototype = new NPCObject;
 
 function GiantSpiderNPCTile() {
   this.name = 'GiantSpiderNPC';
-  this.level = '4';
-  this.addhp = '10';
-  this.str = '13';
-  this.dex = '15';
-  this.int = '5';
+  this.level = 4;
+  this.addhp = 10;
+  this.str = 13;
+  this.dex = 15;
+  this.int = 5;
   this.alignment = 'Neutral';
   this.attitude = 'Hostile';
   this.peaceAI = 'seekPC-10';
@@ -618,11 +618,11 @@ GiantSpiderNPCTile.prototype = new NPCObject;
 
 function GiantInsectsNPCTile() {
   this.name = 'GiantInsectsNPC';
-  this.level = '1';
-  this.addhp = '2';
-  this.str = '3';
-  this.dex = '8';
-  this.int = '2';
+  this.level = 1;
+  this.addhp = 2;
+  this.str = 3;
+  this.dex = 8;
+  this.int = 2;
   this.alignment = 'Neutral';
   this.attitude = 'Hostile';
   this.peaceAI = 'seePC-15';
@@ -648,11 +648,11 @@ GiantInsectsNPCTile.prototype = new NPCObject;
 
 function OrcNPCTile() {
   this.name = 'OrcNPC';
-  this.level = '2';
-  this.addhp = '0';
-  this.str = '12';
-  this.dex = '10';
-  this.int = '6';
+  this.level = 2;
+  this.addhp = 0;
+  this.str = 12;
+  this.dex = 10;
+  this.int = 6;
   this.alignment = 'Evil';
   this.attitude = 'Hostile';
   this.peaceAI = 'seekPC-25';
@@ -678,11 +678,11 @@ OrcNPCTile.prototype = new NPCObject;
 
 function SlimeNPCTile() {
   this.name = 'SlimeNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '7';
-  this.dex = '7';
-  this.int = '1';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 7;
+  this.dex = 7;
+  this.int = 1;
   this.alignment = 'Neutral';
   this.attitude = 'Hostile';
   this.peaceAI = 'seekPC-5';
@@ -708,11 +708,11 @@ SlimeNPCTile.prototype = new NPCObject;
 
 function HoodNPCTile() {
   this.name = 'HoodNPC';
-  this.level = '1';
-  this.addhp = '4';
-  this.str = '11';
-  this.dex = '9';
-  this.int = '9';
+  this.level = 1;
+  this.addhp = 4;
+  this.str = 11;
+  this.dex = 9;
+  this.int = 9;
   this.alignment = 'Evil';
   this.attitude = 'Hostile';
   this.peaceAI = 'seekPC-20';
@@ -736,11 +736,11 @@ HoodNPCTile.prototype = new NPCObject;
 
 function RogueNPCTile() {
   this.name = 'RogueNPC';
-  this.level = '2';
-  this.addhp = '0';
-  this.str = '10';
-  this.dex = '13';
-  this.int = '10';
+  this.level = 2;
+  this.addhp = 0;
+  this.str = 10;
+  this.dex = 13;
+  this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'Hostile';
   this.peaceAI = 'seekPC-20';
@@ -764,11 +764,11 @@ RogueNPCTile.prototype = new NPCObject;
 
 function MinstrelNPCTile() {
   this.name = 'MinstrelNPC';
-  this.level = '1';
-  this.addhp = '0';
-  this.str = '12';
-  this.dex = '13';
-  this.int = '12';
+  this.level = 1;
+  this.addhp = 0;
+  this.str = 12;
+  this.dex = 13;
+  this.int = 12;
   this.alignment = 'Evil';
   this.attitude = 'Hostile';
   this.peaceAI = 'seekPC-20';
@@ -792,11 +792,11 @@ MinstrelNPCTile.prototype = new NPCObject;
 
 function ThiefNPCTile() {
   this.name = 'ThiefNPC';
-  this.level = '3';
-  this.addhp = '8';
-  this.str = '15';
-  this.dex = '18';
-  this.int = '14';
+  this.level = 3;
+  this.addhp = 8;
+  this.str = 15;
+  this.dex = 18;
+  this.int = 14;
   this.alignment = 'Evil';
   this.attitude = 'Hostile';
   this.peaceAI = 'seekPC-20';

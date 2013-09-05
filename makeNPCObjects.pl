@@ -18,11 +18,11 @@ foreach my $line (<$npcdoc>) {
   print "\n// $fields[1]\n\n";
   print "function " . $fields[0] . "NPCTile() {\n";
   print "  this.name = '$fields[0]NPC';\n";
-  print "  this.level = '$fields[2]';\n";
-  print "  this.addhp = '$fields[3]';\n";
-  print "  this.str = '$fields[4]';\n";
-  print "  this.dex = '$fields[5]';\n";
-  print "  this.int = '$fields[6]';\n";
+  print "  this.level = $fields[2];\n";
+  print "  this.addhp = $fields[3];\n";
+  print "  this.str = $fields[4];\n";
+  print "  this.dex = $fields[5];\n";
+  print "  this.int = $fields[6];\n";
   print "  this.alignment = '$fields[7]';\n";
   print "  this.attitude = '$fields[8]';\n";
   print "  this.peaceAI = '$fields[9]';\n";
