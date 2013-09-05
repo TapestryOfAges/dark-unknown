@@ -3991,12 +3991,13 @@ NPCObject.prototype.setNPCName = function(newName) {
 }
 
 NPCObject.prototype.setMana = function(newMana) {
-	if (newMana == -1) { this.mana = this.int; }
+	if (newMana == -1) { this.mana = this.getInt(); }
 	else {this.mana = newMana; }
 }
 
 NPCObject.prototype.getMana = function() {
-	return this.mana;
+  var mana = parseInt(this.mana);
+	return mana;
 }
 
 NPCObject.prototype.modMana = function(diffMana) {
@@ -4028,7 +4029,7 @@ NPCObject.prototype.setGold = function(newgold) {
 }
 
 NPCObject.prototype.getGold = function() {
-	return this.gold;
+	return parseInt(this.gold);
 }
 
 NPCObject.prototype.addGold = function(diffgold) {
@@ -4320,6 +4321,7 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
 
   var isQuick = 0;  // replace with a check for the presence of the Quickness spell.
   var init = ((-1/60) * this.getDex() + (7/6)) * this.initmult * (1 - .5 * isQuick);
+  
   if ((initdelay) && (initdelay != 0)) {
   	init = init * initdelay;
   }
@@ -4382,6 +4384,9 @@ NPCObject.prototype.setSpawnedBy = function(spawner) {
 
 NPCObject.prototype.activate = function(timeoverride) {
   
+  this.setMana(-1);
+  this.setMaxMana(-1);
+  
   var weapon;
   var missileweapon;
   var armor;
@@ -4441,8 +4446,10 @@ NPCObject.prototype.activate = function(timeoverride) {
     timing = timeoverride;
   }
   timing = timing + (Math.random() / 500);
+  
   var NPCEvent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCEvent,timing);  
+  
 }
 
 
@@ -4790,6 +4797,10 @@ function PCObject() {
 //	myweapon.equipMe(this);
 }
 PCObject.prototype = new NPCObject;
+
+PCObject.prototype.activate = function() {
+  return 1;
+}
 
 PCObject.prototype.myTurn = function() {
   RunEffects(this);
