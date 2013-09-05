@@ -1238,13 +1238,13 @@ GameMap.prototype.loadMap = function (name) {
 //  this.features = new Collection;
   if (loadfeatures) {
 //  	alert(loadfeatures.length + " features loading...");
-    for (var i=0;i<=loadfeatures.length-1;i++) {
-    	var newfeature = localFactory.createTile(loadfeatures[i].name);
+    for (var fi=0;fi<=loadfeatures.length-1;fi++) {
+    	var newfeature = localFactory.createTile(loadfeatures[fi].name);
 //    	newfeature.setHomeMap(this);
-    	for (var featurekey in loadfeatures[i]) {
+    	for (var featurekey in loadfeatures[fi]) {
     		if (featurekey == "name") { continue; }
-    		if (featurekey == "locked") { newfeature.lockMe(loadfeatures[i]["locked"]); continue; }
-    		newfeature[featurekey] = loadfeatures[i][featurekey];
+    		if (featurekey == "locked") { newfeature.lockMe(loadfeatures[fi]["locked"]); continue; }
+    		newfeature[featurekey] = loadfeatures[fi][featurekey];
     	}
     	if (newfeature.getWalkOnScript()) {
     		var walkonscript = newfeature.getWalkOnScript();
@@ -1254,31 +1254,31 @@ GameMap.prototype.loadMap = function (name) {
     		var usescript = newfeature.getUseScript();
     		mappages[name][usescript](newfeature);
     	}
-  	  this.placeThing(loadfeatures[i].x,loadfeatures[i].y,newfeature);
+  	  this.placeThing(loadfeatures[fi].x,loadfeatures[fi].y,newfeature);
     }
   }
 
   var loadnpcs = mappages.readPage(name, "npcs");
   if (loadnpcs)  {
-  	for (var i=0;i<=loadnpcs.length-1;i++) {
-  		var newnpc = localFactory.createTile(loadnpcs[i].name);
+  	for (var npci=0;npci<=loadnpcs.length-1;npci++) {
+  		var newnpc = localFactory.createTile(loadnpcs[npci].name);
 //  		newnpc.setHomeMap(this);
-  		for (var npckey in loadnpcs[i]) {
-  			if (npckey == "NPCName") { newnpc.setNPCName(loadnpcs[i].NPCName); }
-  			if (npckey == "Desc") { newnpc.setDesc(loadnpcs[i].Desc); }
-  			if (npckey == "Level") { newnpc.setLevel(loadnpcs[i].Level); }
-  			if (npckey == "Alignment") { newnpc.setAlignment(loadnpcs[i].Alignment); }
-  			if (npckey == "str") { newnpc.setStr(loadnpcs[i].str); }
-  			if (npckey == "dex") { newnpc.setDex(loadnpcs[i].dex); }
-  			if (npckey == "int") { newnpc.setInt(loadnpcs[i].int); }
-  			if (npckey == "Attitude") { newnpc.setAttitude(loadnpcs[i].Attitude); }
-  			if (npckey == "PeaceAI") { newnpc.setPeaceAI(loadnpcs[i].PeaceAI); }
-  			if (npckey == "PCThreatAI") { newnpc.setPCThreatAI(loadnpcs[i].PCThreatAI); }
-  			if (npckey == "ThreatenedAI") { newnpc.setThreatenedAI(loadnpcs[i].ThreatenedAI); }
-  			if (npckey == "Melee") { newnpc.setMeleeAttackAs(loadnpcs[i].Melee); }
-  			if (npckey == "Missile") { newnpc.setMissileAttackAs(loadnpcs[i].Missile); }
+  		for (var npckey in loadnpcs[npci]) {
+  			if (npckey == "NPCName") { newnpc.setNPCName(loadnpcs[npci].NPCName); }
+  			if (npckey == "Desc") { newnpc.setDesc(loadnpcs[npci].Desc); }
+  			if (npckey == "Level") { newnpc.setLevel(loadnpcs[npci].Level); }
+  			if (npckey == "Alignment") { newnpc.setAlignment(loadnpcs[npci].Alignment); }
+  			if (npckey == "str") { newnpc.setStr(loadnpcs[npci].str); }
+  			if (npckey == "dex") { newnpc.setDex(loadnpcs[npci].dex); }
+  			if (npckey == "int") { newnpc.setInt(loadnpcs[npci].int); }
+  			if (npckey == "Attitude") { newnpc.setAttitude(loadnpcs[npci].Attitude); }
+  			if (npckey == "PeaceAI") { newnpc.setPeaceAI(loadnpcs[npci].PeaceAI); }
+  			if (npckey == "PCThreatAI") { newnpc.setPCThreatAI(loadnpcs[npci].PCThreatAI); }
+  			if (npckey == "ThreatenedAI") { newnpc.setThreatenedAI(loadnpcs[npci].ThreatenedAI); }
+  			if (npckey == "Melee") { newnpc.setMeleeAttackAs(loadnpcs[npci].Melee); }
+  			if (npckey == "Missile") { newnpc.setMissileAttackAs(loadnpcs[npci].Missile); }
   		}
-  		this.placeThing(loadnpcs[i].x,loadnpcs[i].y,newnpc);
+  		this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
   	}
   }
   
