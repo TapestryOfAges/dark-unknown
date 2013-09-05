@@ -78,8 +78,8 @@ mappages["clearlagoon"].features[19] = {name : 'Doorway', x : 37, y : 5};
 
 
 mappages["clearlagoon"].npcs = new Array;
-mappages["clearlagoon"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 41, y : 2};
-mappages["clearlagoon"].npcs[1] = {name : 'BardVillagerNPC', x : 32, y : 4};
+mappages["clearlagoon"].npcs[0] = {name : 'BardVillagerNPC', x : 32, y : 4};
+mappages["clearlagoon"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 41, y : 2};
 mappages["clearlagoon"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 39, y : 8};
 mappages["clearlagoon"].npcs[3] = {name : 'FighterVillagerNPC', x : 39, y : 10};
 mappages["clearlagoon"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 46, y : 6};
