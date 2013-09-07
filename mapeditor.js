@@ -19,6 +19,7 @@ var browserheight = getSize();
 var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
 var mode = "editor";
+var PC = new PCObject();
 
 if (debug) {
   debugscreen = window.open('','debugscreen');
