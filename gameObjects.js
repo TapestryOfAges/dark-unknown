@@ -4934,3 +4934,18 @@ PCObject.prototype.dealDamage = function(dmg, src) {
   }
   else { return 1; }
 }
+
+
+
+
+
+
+function PointOfInterest(xval,yval,poitype) {
+  
+  this.x = xval;
+  this.y = yval;
+  this.connections = new Array;
+  this.type = poitype;
+  
+}
+PointOfInterest.prototype = new Object;
