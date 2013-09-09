@@ -593,6 +593,7 @@ function GameMap() {
   this.enterScript = "";
   this.enterTestScript = "";
   this.pathGrid = new Object;
+  this.network = new Array;
   
   this.lightsList = new Object;
 }
