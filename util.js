@@ -1,5 +1,4 @@
 
-
 function getDisplayCenter(themap,fromx,fromy) {
 	var edge = new Object;
 	var leftedge = fromx - (viewsizex - 1)/2;
