@@ -125,7 +125,7 @@ mappages["darkunknown"].terrain[121] = 'WW WW WW WW WW WW WW ww ww ww /. .. .. .
 mappages["darkunknown"].terrain[122] = 'WW WW WW WW WW WW WW ww ww ww |. .. .. .. .. ;; ;; ;; ;; ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; .. .. .. .. ,, .. ,, RR ff .. RR RR RR RR .. ,, ;; ;; ,, ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ,, ;; ;; ;; ;| ww ww ww WW WW WW ww ww |; ;; ;; ;; ;; ;; ;; ;; ;; nn ^^ ^^ nn nn ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;| ww ww ww ww ww ww ww `. .. ^^ ^^ ^^ ,, ,, ;; ,, .. .. .. ff ff ff ff .. .. ff ff ff ,, .. .. .| ww ww ww WW WW WW WW WW WW WW';
 mappages["darkunknown"].terrain[123] = 'WW WW WW WW WW WW WW ww ww ww |. ;; ;; .. .. ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; ;; .. .. .. .. .. ,, ,, RR RR RR RR .. ;; ;; .. ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;| ww ww ww ww WW WW ww ww |; ;; ;; ;; ;; ;; ;; ;; ;; nn nn ^^ ^^ ^^ ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; .` ww ww ww ww ww ww ww ^^ ^^ ^^ ^^ ,, .. ;; ,, .. .. .. ,, ff ff ff ff ff ff ff ,, ff ff .. ./ ww ww ww WW WW WW WW WW WW WW';
 mappages["darkunknown"].terrain[124] = 'WW WW WW WW WW WW ww ww ww ww |. ;; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; .. .. .. .. .. .. ,, .. ff RR ,, ff .. ,, .. ;; ;; ;; ,, ;; ;; ,, ;; ;; ;; ;; ;; ,, ;; ;; ;; ;; ;; ;; ;; ;| ww ww ww ww ww ww ww ww |. .. nn ;; ^^ nn ;; ;; ;; ;; ;; nn ^^ nn ;; ;; ;; ;; .. ^^ ^^ ^^ ;; ;; ;; ^^ ;; ;; ^^ ^^ ^^ ^^ ww ww ^^ ^^ ^^ ^^ ^^ ^^ ,, ,, .. .. .. .. ,, ff ff ff ff ff ff ff ff .. ff ff ff ff .| ww ww ww WW WW WW WW WW WW WW WW';
-mappages["darkunknown"].terrain[125] = 'WW WW WW WW WW WW ww ww ww ww |; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ nn ;; ;; ;; ;; ;; ;; .. .. .. .. .. .. ,, ,, __ RR __ .. .. .. .. ;; ;; .. .. ,, ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ./ ww ww ww ww ww ww ww ww `. nn nn nn ^^ ^^ ;; ;; ;; ;; ;; ;; ^^ nn ;; ;; ;; ;; .. .. ^^ ^^ ;; ;; ^^ ^^ ;; ;; ^^ ^^ nn ^^ ^^ ^^ ^^ ^^ nn nn nn ^^ nn .. .. .. .. .. ,, ff ff ff .. ff ff ff ff ff ff ff ,, .. .| ww ww ww ww WW WW WW WW WW WW WW';
+mappages["darkunknown"].terrain[125] = 'WW WW WW WW WW WW ww ww ww ww |; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ nn ;; ;; ;; ;; ;; ;; .. .. .. .. .. .. ,, ,, __ RR __ .. .. .. .. ;; ;; .. .. ,, ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ./ ww ww ww ww nn ww ww ww `. nn nn nn ^^ ^^ ;; ;; ;; ;; ;; ;; ^^ nn ;; ;; ;; ;; .. .. ^^ ^^ ;; ;; ^^ ^^ ;; ;; ^^ ^^ nn ^^ ^^ ^^ ^^ ^^ nn nn nn ^^ nn .. .. .. .. .. ,, ff ff ff .. ff ff ff ff ff ff ff ,, .. .| ww ww ww ww WW WW WW WW WW WW WW';
 mappages["darkunknown"].terrain[126] = 'WW WW WW WW WW WW WW ww ww ww |; ;; ;; ;; ;; ;; nn nn ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; .. .. .. .. .. .. .. .. .. ./ ww ww ww `. .. .. .. __ .. .. .. ,, ,, .. ;; ;; ;; ;; ;; ;; ;; ;; ,, ;; ;; ;; ;| ww ww ww ww nn nn nn ww ww ww nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn ^^ nn nn nn .. nn nn .. .. .. .. ,, ff ff ff .. ,, ff ff ff ff ,, ff ff .. ff .. ,, .` ww ww ww ww WW WW WW WW WW WW';
 mappages["darkunknown"].terrain[127] = 'WW WW WW WW WW WW WW ww ww ww `. _; ;; ;; ;; ;; ;; nn nn ^^ ^^ nn ;; ;; ;; ;; ;; .. .. .. .. .. .. .. __ ./ ww ww ww ww ww `. __ ./ ww `. _, _, __ .. ,, ;; ;; ;; ;; ,, ;; ;; ;; ;; ;; ;; ;; ;| ww ww ww ww ww nn nn ww ww ww `. ;; ;; nn nn ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ^^ nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ nn __ nn nn nn __ nn nn nn nn nn .. .. .. ff ff .. ff ff ff ff ,, ,, .. ff ff ,, ff ff .. ,, ,| ww ww ww ww WW WW WW WW WW WW';
 mappages["darkunknown"].terrain[128] = 'WW WW WW WW WW WW WW WW ww ww ww ww `. ;; ;; ;; ;; nn ;; ;; ^^ ;; ;; ;; ;; .. .. .. .. .. .. .. __ ./ ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww `. _; ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; ,, ;; ;| ww ww ww ww ww ww ww ww ww ww ww |; ;; ;; nn ^^ ^^ nn ^^ ;; ;; ;; ,, ,, ^^ ^^ ^^ ;; nn nn nn nn nn nn ^^ ww ww ww ww ww ww ww ww ww ww ww ww ww ww nn .. ,, ff ,, ,, ff ,, ff .. ff ff ff __ .. ff ff ff ff ff .. .. .` ww ww ww WW WW WW WW WW WW';
@@ -167,7 +167,7 @@ mappages["darkunknown"].features[19] = {name : 'Towne', x : 64, y : 119, desc : 
 mappages["darkunknown"].features[20] = {name : 'Dungeon', x : 22, y : 118, entermap : 'metaltwister', enterx : 20, entery : 24};
 mappages["darkunknown"].features[21] = {name : 'BridgeEW', x : 79, y : 29};
 mappages["darkunknown"].features[22] = {name : 'HillTower', x : 56, y : 37, entermap : 'magetower', enterx : 0, entery : 0};
-mappages["darkunknown"].features[23] = {name : 'Lighthouse', x : 69, y : 126, entermap : 'lighthouse', enterx : 0, entery : 0};
+mappages["darkunknown"].features[23] = {name : 'Lighthouse', x : 69, y : 125, entermap : 'lighthouse', enterx : 0, entery : 0};
 mappages["darkunknown"].features[24] = {name : 'BridgeNS', x : 39, y : 73};
 mappages["darkunknown"].features[25] = {name : 'BridgeEW', x : 87, y : 42};
 mappages["darkunknown"].features[26] = {name : 'BridgeEW', x : 72, y : 44};
@@ -199,6 +199,12 @@ mappages["darkunknown"].linkedMaps = new Array("");
 mappages["darkunknown"].onload = function(mapref) {
   
   // Place spawners  
+  Placeonyxspawn(mapref);
+  
+  
+}
+
+function Placeonyxspawn(mapref) {
   var onyxspawn = localFactory.createTile("Spawner");
   var onyxgroup = new Array;
   if (PC.getLevel() == 1) {
@@ -225,7 +231,58 @@ mappages["darkunknown"].onload = function(mapref) {
   onyxspawn.setSpawnLeash(0);
   onyxspawn.setSpawnSoftLeash(0);
   
-  mapref.placeThing(61,118,onyxspawn);
+  mapref.placeThing(57,122,onyxspawn);
+    
+}
+
+
+function CreateNetwork(mapref) {
+  mapref.network["main"] = new Array;
+  mapref.network["main"][0] =  new PointOfInterest(115,32,"wild");
+  mapref.network["main"][1] =  new PointOfInterest(55,115,"civilized");
+  mapref.network["main"][2] =  new PointOfInterest(58,127,"wild");
+  mapref.network["main"][3] =  new PointOfInterest(53,100,"wild");
+  mapref.network["main"][4] =  new PointOfInterest(26,125,"wild");
+  mapref.network["main"][5] =  new PointOfInterest(13,123,"wild");
+  mapref.network["main"][6] =  new PointOfInterest(36,100,"wild civilized");
+  mapref.network["main"][7] =  new PointOfInterest(18,87,"wild");
+  mapref.network["main"][8] =  new PointOfInterest(44,90,"civilized");
+  mapref.network["main"][9] =  new PointOfInterest(45,65,"civilized");
+  mapref.network["main"][10] = new PointOfInterest(29,66,"wild");
+  mapref.network["main"][11] = new PointOfInterest(18,59,"wild");
+  mapref.network["main"][12] = new PointOfInterest(31,44,"wild");
+  mapref.network["main"][13] = new PointOfInterest(47,47,"wild");
+  mapref.network["main"][14] = new PointOfInterest(65,68,"civilized");
+  mapref.network["main"][15] = new PointOfInterest(62,64,"civilized");
+  mapref.network["main"][16] = new PointOfInterest(76,29,"civilized");
+  mapref.network["main"][17] = new PointOfInterest(48,27,"civilized");
+  mapref.network["main"][18] = new PointOfInterest(57,31,"wild");
+  mapref.network["main"][19] = new PointOfInterest(44,13,"wild");
+  mapref.network["main"][20] = new PointOfInterest(71,18,"wild");
+  mapref.network["main"][21] = new PointOfInterest(70,57,"wild");
+  mapref.network["main"][22] = new PointOfInterest(81,47,"wild");
+  mapref.network["main"][23] = new PointOfInterest(84,76,"wild");
+  mapref.network["main"][24] = new PointOfInterest(90,15,"wild");
+  mapref.network["main"][25] = new PointOfInterest(98,60,"wild");
+  mapref.network["main"][26] = new PointOfInterest(111,71,"wild");
+  mapref.network["main"][27] = new PointOfInterest(119,71,"wild");
+  mapref.network["main"][28] = new PointOfInterest(128,48,"wild");
+  mapref.network["main"][29] = new PointOfInterest(134,73,"wild");
+  mapref.network["main"][30] = new PointOfInterest(94,84,"wild");
+  mapref.network["main"][31] = new PointOfInterest(110,52,"civilized");
+  mapref.network["main"][32] = new PointOfInterest(129,18,"civilized");
+  mapref.network["main"][33] = new PointOfInterest(102,67,"civilized");
+  mapref.network["main"][34] = new PointOfInterest(119,100,"civilized");
+  mapref.network["main"][35] = new PointOfInterest(92,98,"wild");
+  mapref.network["main"][36] = new PointOfInterest(109,96,"wild");
+  mapref.network["main"][37] = new PointOfInterest(130,125,"wild");
+  mapref.network["main"][38] = new PointOfInterest(107,126,"wild");
+  mapref.network["main"][39] = new PointOfInterest(23,109,"wild");  
+  
+  mapref.network["morder"][0] = new PointOfInterest(92,110,"wild");
+  mapref.network["morder"][1] = new PointOfInterest(98,123,"wild");
+  mapref.network["morder"][2] = new PointOfInterest(79,114,"wild");
+  mapref.network["morder"][3] = new PointOfInterest(85,127,"wild");
   
   
 }
