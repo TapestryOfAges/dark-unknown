@@ -207,29 +207,23 @@ mappages["darkunknown"].onload = function(mapref) {
 function Placeonyxspawn(mapref) {
   var onyxspawn = localFactory.createTile("Spawner");
   var onyxgroup = new Array;
-  if (PC.getLevel() == 1) {
-    onyxgroup[0] = "HoodGroupSmall";
-    onyxgroup[1] = "HoodGroupSmall";
-    onyxgroup[2] = "HoodGroupLarge";
-    onyxgroup[3] = "RogueGroupSmall";
-  } else if (PC.getLevel() == 2) {
-    onyxgroup[0] = "HoodGroupSmall";
-    onyxgroup[1] = "HoodGroupLarge";
-    onyxgroup[2] = "RogueGroupSmall";
-    onyxgroup[3] = "RogueGroupLarge";
-    onyxgroup[4] = "RogueGroupLarge";
-    onyxgroup[5] = "ThiefGroupSmall";
-  } else {
-    onyxgroup[0] = "HoodGroupLarge";
-    onyxgroup[1] = "RogueGroupSmall";
-    onyxgroup[2] = "RogueGroupLarge";
-    onyxgroup[3] = "ThiefGroupSmall";
-    onyxgroup[4] = "ThiefGroupLarge";
-  }
+  onyxgroup[0] = "HoodGroupSmall";
+  onyxgroup[1] = "HoodGroupSmall";
+  onyxgroup[2] = "HoodGroupLarge";
+  onyxgroup[3] = "RogueGroupSmall";
+
   onyxspawn.setSpawngroup(onyxgroup);
   onyxspawn.setSpawnRadius(3);
   onyxspawn.setSpawnLeash(0);
   onyxspawn.setSpawnSoftLeash(0);
+
+  onyxspawn.evolve[2] = new Array;
+  onyxspawn.evolve[2][0] = "spawngroup";
+  onyxspawn.evolve[2][1] = new Array("HoodGroupSmall","HoodGroupLarge","RogueGroupSmall","RogueGroupLarge","RogueGroupLarge","ThiefGroupSmall");
+
+  onyxspawn.evolve[3] = new Array;
+  onyxspawn.evolve[3][0] = "spawngroup";
+  onyxspawn.evolve[3][1] = new Array("HoodGroupLarge","RogueGroupSmall","RogueGroupLarge","ThiefGroupSmall","ThiefGroupLarge");
   
   mapref.placeThing(57,122,onyxspawn);
     
@@ -279,10 +273,56 @@ function CreateNetwork(mapref) {
   mapref.network["main"][38] = new PointOfInterest(107,126,"wild");
   mapref.network["main"][39] = new PointOfInterest(23,109,"wild");  
   
-  mapref.network["morder"][0] = new PointOfInterest(92,110,"wild");
-  mapref.network["morder"][1] = new PointOfInterest(98,123,"wild");
-  mapref.network["morder"][2] = new PointOfInterest(79,114,"wild");
-  mapref.network["morder"][3] = new PointOfInterest(85,127,"wild");
+  mapref.network["main"][0].connections = (mapref.network["main"][24], mapref.network["main"][25], mapref.network["main"][28]);
+  mapref.network["main"][1].connections = (mapref.network["main"][6]);
+  mapref.network["main"][2].connections = (mapref.network["main"][4], mapref.network["main"][6]);
+  mapref.network["main"][3].connectiosn = (mapref.network["main"][6]);
+  mapref.network["main"][4].connections = (mapref.network["main"][2], mapref.network["main"][5], mapref.network["main"][6], mapref.network["main"][39]);
+  mapref.network["main"][5].connections = (mapref.network["main"][4], mapref.network["main"][6], mapref.network["main"][39]);
+  mapref.network["main"][6].connections = (mapref.network["main"][1], mapref.network["main"][2], mapref.network["main"][4], mapref.network["main"][39], mapref.network["main"][5], mapref.network["main"][7], mapref.network["main"][3], mapref.network["main"][10], mapref.network["main"][8]);
+  mapref.network["main"][7].connections = (mapref.network["main"][39], mapref.network["main"][6], mapref.network["main"][10]);
+  mapref.network["main"][8].connections = (mapref.network["main"][6], mapref.network["main"][9]);
+  mapref.network["main"][9].connections = (mapref.network["main"][8], mapref.network["main"][14], mapref.network["main"][15]);
+  mapref.network["main"][10].connections = (mapref.network["main"][7], mapref.network["main"][6], mapref.network["main"][11], mapref.network["main"][13], mapref.network["main"][12]);
+  mapref.network["main"][11].connections = (mapref.network["main"][10], mapref.network["main"][12], mapref.network["main"][13]);
+  mapref.network["main"][12].connections = (mapref.network["main"][10], mapref.network["main"][11], mapref.network["main"][13]);
+  mapref.network["main"][13].connections = (mapref.network["main"][6], mapref.network["main"][10], mapref.network["main"][11], mapref.network["main"][12], mapref.network["main"][18], mapref.network["main"][20], mapref.network["main"][21]);
+  mapref.network["main"][14].connections = (mapref.network["main"][9], mapref.network["main"][15]);
+  mapref.network["main"][15].connections = (mapref.network["main"][9], mapref.network["main"][14], mapref.network["main"][16], mapref.network["main"][17]);
+  mapref.network["main"][16].connections = (mapref.network["main"][15], mapref.network["main"][17], mapref.network["main"][31]);
+  mapref.network["main"][17].connections = (mapref.network["main"][15], mapref.network["main"][16]);
+  mapref.network["main"][18].connections = (mapref.network["main"][13], mapref.network["main"][19], mapref.network["main"][20]);
+  mapref.network["main"][19].connections = (mapref.network["main"][18], mapref.network["main"][20]);
+  mapref.network["main"][20].connections = (mapref.network["main"][13], mapref.network["main"][18], mapref.network["main"][19], mapref.network["main"][24]);
+  mapref.network["main"][21].connections = (mapref.network["main"][13], mapref.network["main"][22], mapref.network["main"][23]);
+  mapref.network["main"][22].connections = (mapref.network["main"][21], mapref.network["main"][23], mapref.network["main"][25], mapref.network["main"][24]);
+  mapref.network["main"][23].connections = (mapref.network["main"][21], mapref.network["main"][22], mapref.network["main"][25], mapref.network["main"][26], mapref.network["main"][30]);
+  mapref.network["main"][24].connections = (mapref.network["main"][20], mapref.network["main"][22], mapref.network["main"][25], mapref.network["main"][0]);
+  mapref.network["main"][25].connections = (mapref.network["main"][22], mapref.network["main"][24], mapref.network["main"][0], mapref.network["main"][28], mapref.network["main"][27], mapref.network["main"][26], mapref.network["main"][30], mapref.network["main"][23]);
+  mapref.network["main"][26].connections = (mapref.network["main"][23], mapref.network["main"][25], mapref.network["main"][27], mapref.network["main"][37], mapref.network["main"][30]);
+  mapref.network["main"][27].connections = (mapref.network["main"][25], mapref.network["main"][28], mapref.network["main"][26]);
+  mapref.network["main"][28].connections = (mapref.network["main"][0], mapref.network["main"][29], mapref.network["main"][27], mapref.network["main"][25]);
+  mapref.network["main"][29].connections = (mapref.network["main"][28]);
+  mapref.network["main"][30].connections = (mapref.network["main"][23], mapref.network["main"][25], mapref.network["main"][26], mapref.network["main"][36], mapref.network["main"][35]);
+  mapref.network["main"][31].connections = (mapref.network["main"][16], mapref.network["main"][32], mapref.network["main"][33]);
+  mapref.network["main"][32].connections = (mapref.network["main"][31]);
+  mapref.network["main"][33].connections = (mapref.network["main"][31], mapref.network["main"][34]);
+  mapref.network["main"][34].connections = (mapref.network["main"][33]);
+  mapref.network["main"][35].connections = (mapref.network["main"][30], mapref.network["main"][33], mapref.network["main"][36]);
+  mapref.network["main"][36].connections = (mapref.network["main"][35], mapref.network["main"][30], mapref.network["main"][33], mapref.network["main"][37], mapref.network["main"][38]);
+  mapref.network["main"][37].connections = (mapref.network["main"][38], mapref.network["main"][36], mapref.network["main"][26]);
+  mapref.network["main"][38].connections = (mapref.network["main"][36], mapref.network["main"][37]);
+  mapref.network["main"][39].connections = (mapref.network["main"][5], mapref.network["main"][7], mapref.network["main"][6], mapref.network["main"][4]);
+  
+  mapref.network["mordor"][0] = new PointOfInterest(92,110,"wild");
+  mapref.network["mordor"][1] = new PointOfInterest(98,123,"wild");
+  mapref.network["mordor"][2] = new PointOfInterest(79,114,"wild");
+  mapref.network["mordor"][3] = new PointOfInterest(85,127,"wild");
+  
+  mapref.network["mordor"][0].connections = (mapref.network["mordor"][1], mapref.network["mordor"][2], mapref.network["mordor"][3]);
+  mapref.network["mordor"][1].connections = (mapref.network["mordor"][0], mapref.network["mordor"][2], mapref.network["mordor"][3]);
+  mapref.network["mordor"][2].connections = (mapref.network["mordor"][0], mapref.network["mordor"][1], mapref.network["mordor"][3]);
+  mapref.network["mordor"][3].connections = (mapref.network["mordor"][0], mapref.network["mordor"][1], mapref.network["mordor"][2]);
   
   
 }
