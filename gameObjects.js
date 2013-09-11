@@ -2790,6 +2790,11 @@ function SpawnerTile() {
   this.spawnFreq = 30;
   this.lastSpawned = 0;
   
+  this.level = 1;
+  this.evolve = new Array;  
+  // if evolve [#] exists, the first time the player is that level and the spawner isn't
+  // yet, go through the pairs of keyword/value and set then to the spawner
+  
   this.spawned = new Collection;
 }
 SpawnerTile.prototype = new FeatureObject;
@@ -2888,6 +2893,20 @@ SpawnerTile.prototype.activate = function() {
 }
 
 SpawnerTile.prototype.myTurn = function() {
+  if (PC.getLevel() > this.level) {  
+    for (var i = this.level+1; i<=PC.getLevel(); i++) {
+      if (this.evolve[i]) {
+        this.level = i;
+        if (debug) { dbs.writeln("<span style='color:#00cc00'>Spawner at " + this.x + ", " + this.y + " has evolved.<br />"); }
+        while (this.evolve[i]) {
+          var idx = shift(this.evolve[i]);
+          var val = shift(this.evolve[i]);
+          this.idx = val;
+        }
+      }
+    }
+  }
+  
   var timetonext = (this.getSpawnFreq() + (Math.random()*((this.getSpawnFreq()/2)+1)));
   if ((this.spawned.getAll().length < this.getMaxSpawns()) && ((this.getHomeMap() != PC.getHomeMap()) || (GetDistance(PC.getx(), PC.gety(), this.getx(), this.gety()) > 10))) {
       // let's do some spawning
