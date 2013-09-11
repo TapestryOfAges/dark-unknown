@@ -1103,6 +1103,8 @@ function PerformYell() {
 	//	      }
 		    }
 		  }
+		} else if (inputText.txt == "ONEUP") {
+		  PC.setLevel(PC.getLevel()+1);
 		}
 		retval["txt"] = "Yell: " + inputText.txt + "!";
 		retval["fin"] = 1;
