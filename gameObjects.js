@@ -4959,12 +4959,12 @@ PCObject.prototype.dealDamage = function(dmg, src) {
 
 
 
-function PointOfInterest(xval,yval,poitype) {
+function PointOfInterest(xval,yval) {
   
   this.x = xval;
   this.y = yval;
   this.connections = new Array;
-  this.type = poitype;
+//  this.type = poitype;
   
 }
 PointOfInterest.prototype = new Object;
