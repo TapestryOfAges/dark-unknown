@@ -783,10 +783,10 @@ GameMap.prototype.createPathGrid = function() {
   this.pathGrid[MOVE_LEVITATE] = new PF.Grid(this.getWidth(), this.getHeight());
   this.pathGrid[MOVE_FLY] = new PF.Grid(this.getWidth(), this.getHeight());
   this.pathGrid[MOVE_ETHEREAL] = new PF.Grid(this.getWidth(), this.getHeight());
-  for (i=0; i<this.getWidth(); i++) {
-    for (j=0; j<this.getHeight(); j++) {
+  for (var i=0; i<this.getWidth(); i++) {
+    for (var j=0; j<this.getHeight(); j++) {
       var thisspot = this.getTile(i,j);
-      for (k=1; k<=16; k=k*2) {
+      for (var k=1; k<=16; k=k*2) {
         var response = thisspot.canMoveHere(k);
         if (!response["canmove"]) { this.setWalkableAt(i,j,false,k); }
       }
@@ -965,7 +965,7 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
 
 	  //update pathfinding
     var tile = this.getTile(x,y);
-    for (itr=1; itr<=16; itr=itr*2) {
+    for (var itr=1; itr<=16; itr=itr*2) {
       var response = tile.canMoveHere(itr);
 	    if (response["canmove"]) { this.setWalkableAt(x,y,true,itr); }
 	    else { this.setWalkableAt(x,y,false,itr); }
@@ -993,7 +993,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
   // update pathfinding
   var oldtile = this.getTile(oldx,oldy);
   var tile = this.getTile(x,y);
-	for (i=1; i<=16; i=i*2) {
+	for (var i=1; i<=16; i=i*2) {
 	  var response = oldtile.canMoveHere(i);
 	  if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
 	  else { this.setWalkableAt(oldx,oldy,false,i); }
@@ -1014,7 +1014,7 @@ GameMap.prototype.deleteThing = function(thing) {
 	
 	//update pathfinding
   var tile = this.getTile(oldx,oldy);
-	for (i=1; i<=16; i=i*2) {
+	for (var i=1; i<=16; i=i*2) {
 	  var response = tile.canMoveHere(i);
 	  if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
 	  else { this.setWalkableAt(oldx,oldy,false,i); }
