@@ -18,6 +18,12 @@ ais.HuntPC = function(who, radius) {
 		return 0;  // no hunting
 	}
 	
-	
+	// if the PC is within a smaller radius (currently radius/3), hunt no matter what.
+	// otherwise, check if we can see the PC, with a more forgiving threshold than used
+	// in the game display
+	if (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > (radius/3)) {   
+		var losresult = who.GetHomeMap().getLOS(who.getx(), who.gety(), PC.getx(), PC.gety(), losgrid);
+		if (losresult > 2) { return 0; }  // can't see the PC and they aren't really close, no hunt
+	}
 	
 }
