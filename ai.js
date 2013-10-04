@@ -26,4 +26,8 @@ ais.HuntPC = function(who, radius) {
 		if (losresult > 2) { return 0; }  // can't see the PC and they aren't really close, no hunt
 	}
 	
+	// HUNT!
+	// find path to the PC
+	
+	
 }
