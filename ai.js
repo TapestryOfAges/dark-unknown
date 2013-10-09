@@ -5,7 +5,13 @@
 var ais = new Object;
 
 ais.Bandit = function(who, radius) {
-  // If there is a radius attached, hunt for the PC first
+  // First, see if the PC is adjacent and if so, smite.
+  if (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) == radius) {
+    NPCAttackPCMap(npc);
+    return 1;
+  }
+  
+  // If there is a radius attached, hunt for the PC next
   var hunt = ais.HuntPC(who,radius);
 
   if (hunt) { return 1;  }  // already hunted
@@ -30,4 +36,23 @@ ais.HuntPC = function(who, radius) {
 	// find path to the PC
 	
 	
+}
+
+
+NPCAttackPCMap(npc) {
+  var combatmapname = GetCombatMap(PC,npc);
+  var newmap = new GameMap();
+  newmap.loadMap(combatmapname);
+  maps.addMapByRef(newmap);
+
+  PC.getHomeMap().deleteThing(npc);
+  var desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
+    
+  var monsters = PlaceMonsters(newmap,npc,0);
+  DUTime.removeEntityFrom(npc);
+    
+  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+  maintext.addText(npc.getDesc() + " attacks!");
+  
+  return 1;
 }
