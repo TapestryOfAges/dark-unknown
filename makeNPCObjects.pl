@@ -4,6 +4,7 @@ use strict;
 use warnings;
 
 open (my $npcdoc, "<", "NPCdoc.txt") or die "Can't open NPCdoc.txt\n";
+open (my $out, ">", "npcObjects.js") or die "Can't open output file.\n";
 
 my $firstline = 1;
 
@@ -15,52 +16,52 @@ foreach my $line (<$npcdoc>) {
   chomp $line;
   my @fields = split("\t",$line);
   
-  print "\n// $fields[1]\n\n";
-  print "function " . $fields[0] . "NPCTile() {\n";
-  print "  this.name = '$fields[0]NPC';\n";
-  print "  this.level = $fields[2];\n";
-  print "  this.addhp = $fields[3];\n";
-  print "  this.str = $fields[4];\n";
-  print "  this.dex = $fields[5];\n";
-  print "  this.int = $fields[6];\n";
-  print "  this.alignment = '$fields[7]';\n";
-  print "  this.attitude = '$fields[8]';\n";
-  print "  this.peaceAI = '$fields[9]';\n";
-  print "  this.threatenedAI = '$fields[10]';\n";
-  print "  this.PCThreatAI = '$fields[11]';\n";
+  print $out "\n// $fields[1]\n\n";
+  print $out "function " . $fields[0] . "NPCTile() {\n";
+  print $out "  this.name = '$fields[0]NPC';\n";
+  print $out "  this.level = $fields[2];\n";
+  print $out "  this.addhp = $fields[3];\n";
+  print $out "  this.str = $fields[4];\n";
+  print $out "  this.dex = $fields[5];\n";
+  print $out "  this.int = $fields[6];\n";
+  print $out "  this.alignment = '$fields[7]';\n";
+  print $out "  this.attitude = '$fields[8]';\n";
+  print $out "  this.peaceAI = '$fields[9]';\n";
+  print $out "  this.threatenedAI = '$fields[10]';\n";
+  print $out "  this.PCThreatAI = '$fields[11]';\n";
   if ($fields[12] =~ /,/) {
     $fields[12] =~ s/ //g;
     $fields[12] =~ /(.{7}),(.{7})/;
     $fields[12] = "PickOne([\"$1\",\"$2\"]);\n";
-    print "  this.graphic = $fields[12]";
-  } else { print "  this.graphic = '$fields[12]';\n"; }
-  print "  this.meleeAttackAs = '$fields[13]';\n";
-  print "  this.missileAttackAs = '$fields[14]';\n";
-  if (!($fields[15] =~ /\;/)) { print "  this.armorAs = '$fields[15]Armor';\n"; }
+    print $out "  this.graphic = $fields[12]";
+  } else { print $out "  this.graphic = '$fields[12]';\n"; }
+  print $out "  this.meleeAttackAs = '$fields[13]';\n";
+  print $out "  this.missileAttackAs = '$fields[14]';\n";
+  if (!($fields[15] =~ /\;/)) { print $out "  this.armorAs = '$fields[15]Armor';\n"; }
   else {
     my @armorvals = split('\;', $fields[15]);
-    print "  this.armorAs = 'none';\n";
-    print "  this.armorDefense = '$armorvals[0]';\n";
-    print "  this.armorAbsorb = '$armorvals[1]';\n";
-    print "  this.armorResist = '$armorvals[2]';\n";
+    print $out "  this.armorAs = 'none';\n";
+    print $out "  this.armorDefense = '$armorvals[0]';\n";
+    print $out "  this.armorAbsorb = '$armorvals[1]';\n";
+    print $out "  this.armorResist = '$armorvals[2]';\n";
   }
   $fields[16] = uc($fields[16]);
-  print "  this.movetype = MOVE_$fields[16];\n";
-  print "  this.leavesCorpse = '$fields[17]';\n";
-  print "  this.lootTable = '$fields[18]';\n";
+  print $out "  this.movetype = MOVE_$fields[16];\n";
+  print $out "  this.leavesCorpse = '$fields[17]';\n";
+  print $out "  this.lootTable = '$fields[18]';\n";
   if ($fields[19] =~ /^(an*) /) {
-    print "  this.prefix = '$1';\n";
+    print $out "  this.prefix = '$1';\n";
     $fields[19] =~ s/^an* //;
   }
-  print "  this.desc = '$fields[19]';\n";
+  print $out "  this.desc = '$fields[19]';\n";
   if ($fields[20]) {
-    print "  this.onHit = '$fields[20]';\n";
+    print $out "  this.onHit = '$fields[20]';\n";
   }
   if ($fields[21]) {
-    print "  this.onDamaged = '$fields[21]';\n";
+    print $out "  this.onDamaged = '$fields[21]';\n";
   }
-  print "}\n";
-  print "$fields[0]" . "NPCTile.prototype = new NPCObject;\n\n";
+  print $out "}\n";
+  print $out "$fields[0]" . "NPCTile.prototype = new NPCObject;\n\n";
 }
 
 close $npcdoc;
@@ -77,26 +78,26 @@ foreach my $line (<$groupdoc>) {
   
   my @fields = split("\t",$line);
   
-  print "function " . $fields[0] . "Tile() {\n";
-  print "  this.name = '$fields[0]';\n";
-  print "  this.desc = '$fields[1]';\n";
-  print "  this.peaceAI = '$fields[2]';\n";
+  print $out "function " . $fields[0] . "Tile() {\n";
+  print $out "  this.name = '$fields[0]';\n";
+  print $out "  this.desc = '$fields[1]';\n";
+  print $out "  this.peaceAI = '$fields[2]';\n";
   if ($fields[3] =~ /,/) {
     $fields[3] =~ s/ //g;
     $fields[3] =~ /(.{7}),(.{7})/;
     $fields[3] = "PickOne([\"$1\",\"$2\"]);\n";
-    print "  this.graphic = $fields[3]";
-  } else { print "  this.graphic = '$fields[3]';\n"; }
-  print "  this.group = new Array;\n";
-  print "  this.group[0] = new NPCList('$fields[4]NPC', '$fields[5]');\n";
+    print $out "  this.graphic = $fields[3]";
+  } else { print $out "  this.graphic = '$fields[3]';\n"; }
+  print $out "  this.group = new Array;\n";
+  print $out "  this.group[0] = new NPCList('$fields[4]NPC', '$fields[5]');\n";
   if ($fields[6]) {
-    print "  this.group[1] = new NPCList('$fields[6]NPC', '$fields[7]');\n";
+    print $out "  this.group[1] = new NPCList('$fields[6]NPC', '$fields[7]');\n";
   }
   if ($fields[8]) {
-    print "  this.group[2] = new NPCList('$fields[8]NPC', '$fields[9]');\n";
+    print $out "  this.group[2] = new NPCList('$fields[8]NPC', '$fields[9]');\n";
   }
   $fields[10] = uc($fields[10]);
-  print "  this.movetype = MOVE_$fields[10];\n";
-  print "}\n";
-  print "$fields[0]" . "Tile.prototype = new NPCGroupObject;\n\n";
+  print $out "  this.movetype = MOVE_$fields[10];\n";
+  print $out "}\n";
+  print $out "$fields[0]" . "Tile.prototype = new NPCGroupObject;\n\n";
 }
