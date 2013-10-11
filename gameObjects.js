@@ -4540,7 +4540,15 @@ NPCObject.prototype.myTurn = function() {
 	
 	var response = new Object;  
 	// will be = return value of AI call
-	response["initdelay"] = 1;
+	var ainame=this.getPeaceAI().split("-");
+
+	if (ais[ainame[0]]) {
+	  if (ainame.length == 1) { ainame[1] = ""; }
+	  response = ais[ainame[0]](this, ainame[1]);
+	}
+	if (typeof response.initdelay === 'undefined') {
+	  response["initdelay"] = 1;
+	}
 	
 	  // check for NPC idling
   var oldloc = this.getLastLocation();
