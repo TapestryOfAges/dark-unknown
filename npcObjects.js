@@ -821,7 +821,7 @@ ThiefNPCTile.prototype = new NPCObject;
 function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';
   this.desc = 'giant rats';
-  this.peaceAI = 'seekPC-15';
+  this.peaceAI = 'Animal-15';
   this.graphic = PickOne(["327.gif","361.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
@@ -832,7 +832,7 @@ GiantRatGroupSmallTile.prototype = new NPCGroupObject;
 function GiantRatGroupLargeTile() {
   this.name = 'GiantRatGroupLarge';
   this.desc = 'giant rats';
-  this.peaceAI = 'seekPC-15';
+  this.peaceAI = 'Animal-15';
   this.graphic = PickOne(["327.gif","361.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
@@ -843,7 +843,7 @@ GiantRatGroupLargeTile.prototype = new NPCGroupObject;
 function OrcGroupSmallTile() {
   this.name = 'OrcGroupSmall';
   this.desc = 'orcs';
-  this.peaceAI = 'seekPC-25';
+  this.peaceAI = 'Monster-25';
   this.graphic = PickOne(["339.gif","373.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('OrcNPC', '1d3+2');
@@ -854,7 +854,7 @@ OrcGroupSmallTile.prototype = new NPCGroupObject;
 function OrcGroupLargeTile() {
   this.name = 'OrcGroupLarge';
   this.desc = 'orcs';
-  this.peaceAI = 'seekPC-25';
+  this.peaceAI = 'Monster-25';
   this.graphic = PickOne(["339.gif","373.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('OrcNPC', '1d5+4');
@@ -865,7 +865,7 @@ OrcGroupLargeTile.prototype = new NPCGroupObject;
 function HoodGroupSmallTile() {
   this.name = 'HoodGroupSmall';
   this.desc = 'hoods';
-  this.peaceAI = 'seekPC-25';
+  this.peaceAI = 'Bandit-20';
   this.graphic = PickOne(["375.gif","341.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('HoodNPC', '1d3+1');
@@ -876,7 +876,7 @@ HoodGroupSmallTile.prototype = new NPCGroupObject;
 function HoodGroupLargeTile() {
   this.name = 'HoodGroupLarge';
   this.desc = 'hoods';
-  this.peaceAI = 'seekPC-25';
+  this.peaceAI = 'Bandit-20';
   this.graphic = PickOne(["375.gif","341.gif"]);
   this.group = new Array;
   this.group[0] = new NPCList('HoodNPC', '1d3+3');
@@ -888,7 +888,7 @@ HoodGroupLargeTile.prototype = new NPCGroupObject;
 function RogueGroupSmallTile() {
   this.name = 'RogueGroupSmall';
   this.desc = 'rogues';
-  this.peaceAI = 'seekPC-25';
+  this.peaceAI = 'Bandit-20';
   this.graphic = '306.gif';
   this.group = new Array;
   this.group[0] = new NPCList('RogueNPC', '1d3+2');
@@ -900,7 +900,7 @@ RogueGroupSmallTile.prototype = new NPCGroupObject;
 function RogueGroupLargeTile() {
   this.name = 'RogueGroupLarge';
   this.desc = 'rogues';
-  this.peaceAI = 'seekPC-25';
+  this.peaceAI = 'Bandit-20';
   this.graphic = '306.gif';
   this.group = new Array;
   this.group[0] = new NPCList('RogueNPC', '1d4+3');
@@ -913,7 +913,7 @@ RogueGroupLargeTile.prototype = new NPCGroupObject;
 function ThiefGroupSmallTile() {
   this.name = 'ThiefGroupSmall';
   this.desc = 'thieves';
-  this.peaceAI = 'seekPC-25';
+  this.peaceAI = 'Bandit-20';
   this.graphic = '306.gif';
   this.group = new Array;
   this.group[0] = new NPCList('ThiefNPC', '1d3+2');
@@ -925,7 +925,7 @@ ThiefGroupSmallTile.prototype = new NPCGroupObject;
 function ThiefGroupLargeTile() {
   this.name = 'ThiefGroupLarge';
   this.desc = 'thieves';
-  this.peaceAI = 'seekPC-25';
+  this.peaceAI = 'Bandit-20';
   this.graphic = '306.gif';
   this.group = new Array;
   this.group[0] = new NPCList('ThiefNPC', '1d4+3');
