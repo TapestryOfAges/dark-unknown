@@ -3995,6 +3995,7 @@ function NPCObject() {
 	this.lastLocation.x = 0;
 	this.lastLocation.y = 0;
 	this.spawnedBy;
+	this.memory = new NPCBrain();
 	
 	this.addType("npc");
 }
@@ -4761,6 +4762,45 @@ NPCObject.prototype.setLastLocation = function (newloc) {
   this.lastLocation.y = newloc.y;
 }
 
+NPCObject.prototype.getDestination = function() {
+  var dest = new Object;
+  dest.x = this.memory.currentDestination.x;
+  dest.y = this.memory.currentDestination.y;
+  return dest;
+}
+
+NPCObject.prototype.getTurnsToRecalcDest = function() {
+  return this.memory.turnsToRecalcDest; 
+}
+
+NPCObject.prototype.setDestination = function(dest, timeuntil) {
+  this.memory.currentDestination = dest;
+  this.memory.turnsToRecalcDest = timeuntil;
+}
+
+NPCObject.prototype.setTurnsToRecalcDest = function(timeuntil) {
+  this.memory.turnsToRecalcDest = timeuntil;
+}
+
+NPCObject.prototype.getPoI = function() {
+  var poi = new Object;
+  poi.poiname = this.memory.currentPoI.poiname;
+  poi.ind = this.memory.currentPoI.ind;
+  return poi;
+}
+
+NPCObject.prototype.setPoI = function(poiname, ind) {
+  this.memory.currentPoI.poiname = poiname;
+  this.memory.currentPoI.ind = ind;
+}
+
+NPCObject.prototype.getTurnsToRecalcPoI = function() {
+  return this.memory.turnsToRecalcPoI;
+}
+
+NPCObject.prototype.setTurnsToRecalcPoI = function(timeuntil) {
+  this.memory.turnsToRecalcPoI = timeuntil;
+}
 
 function NPCGroupObject() {
   this.group = new Array;
@@ -4976,3 +5016,11 @@ function PointOfInterest(xval,yval) {
   
 }
 PointOfInterest.prototype = new Object;
+
+function NPCBrain() {
+  this.currentPoI = new Object;
+  this.currentDestination = new Object;
+  this.turnsToRecalcPoI = 0;
+  this.turnsToRecalcDest = 0;
+}
+NPCBrain.prototype = new Object;
