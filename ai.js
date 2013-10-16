@@ -9,6 +9,7 @@ ais.Bandit = function(who, radius) {
   // First, see if the PC is adjacent and if so, smite.
   if (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) == 1) {
     NPCAttackPCMap(who);
+    retval["fin"] = 1;
     return retval;
   }
   
@@ -36,7 +37,8 @@ ais.HuntPC = function(who, radius) {
 	
 	// HUNT!
 	// find path to the PC
-	
+	var destination = { x: PC.getx(), y: PC.gety() };
+	who.setDestination(destination, 5);
 	
 }
 
