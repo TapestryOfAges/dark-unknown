@@ -701,6 +701,106 @@ mappages["combatSwamp2"].check_escape = function(mapref) {
   maps_check_escape(mapref);
 }
 
+// Coast (PC is on water)
+
+mappages["combatCoast1"] = new Object();
+mappages["combatCoast1"].terrain = new Array;
+ mappages["combatCoast1"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["combatCoast1"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. ,, ,, ..';
+ mappages["combatCoast1"].terrain[2] = '.. ,, .. .. .. .. .. .. .. .. .. ,, ..';
+ mappages["combatCoast1"].terrain[3] = '.. ,, .. .. .. .. .. .. .. .. .. .. _,';
+ mappages["combatCoast1"].terrain[4] = '.. .. .. .. .. .. .. .. .. .. __ ./ uu';
+ mappages["combatCoast1"].terrain[5] = '`. __ _, _, __ __ __ __ __ ./ uu uu uu';
+ mappages["combatCoast1"].terrain[6] = 'uu uu uu uu uu uu uu uu uu uu uu uu uu';
+ mappages["combatCoast1"].terrain[7] = 'uu uu uu uu uu uu uu uu uu uu uu uu ww';
+ mappages["combatCoast1"].terrain[8] = 'ww ww uu uu uu uu uu uu ww ww ww ww ww';
+ mappages["combatCoast1"].terrain[9] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
+mappages["combatCoast1"].terrain[10] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
+mappages["combatCoast1"].terrain[11] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
+mappages["combatCoast1"].terrain[12] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
+
+mappages["combatCoast1"].features = new Array;
+
+
+mappages["combatCoast1"].npcs = new Array;
+
+mappages["combatCoast1"].desc = '';
+mappages["combatCoast1"].music = '';
+mappages["combatCoast1"].exitmap = '';
+mappages["combatCoast1"].exitx = '';
+mappages["combatCoast1"].exity = '';
+mappages["combatCoast1"].wraps = '';
+mappages["combatCoast1"].enterx = '';
+mappages["combatCoast1"].entery = '';
+mappages["combatCoast1"].seeBelow = '';
+mappages["combatCoast1"].lightLevel = '';
+mappages["combatCoast1"].alwaysRemember = '';
+mappages["combatCoast1"].scale = '';
+mappages["combatCoast1"].enterscript = '';
+mappages["combatCoast1"].entertestscript = '';
+mappages["combatCoast1"].exitscript = '';
+mappages["combatCoast1"].exittestscript = '';
+mappages["combatCoast1"].linkedMaps = new Array;
+
+// manually added
+
+mappages["combatCoast1"].set_exits = function(mapref) {
+  maps_set_exits(mapref);
+}
+
+mappages["combatCoast1"].check_escape = function(mapref) {
+  maps_check_escape(mapref);
+}
+
+
+mappages["combatCoast2"] = new Object();
+mappages["combatCoast2"].terrain = new Array;
+ mappages["combatCoast2"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["combatCoast2"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["combatCoast2"].terrain[2] = '.. #% .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["combatCoast2"].terrain[3] = '.. __ __ __ .. .. .. .. .. .. .. .. ..';
+ mappages["combatCoast2"].terrain[4] = './ uu uu uu `. .. #% .. .. .. .. #% ..';
+ mappages["combatCoast2"].terrain[5] = 'uu uu uu uu uu `. __ __ __ __ __ __ ./';
+ mappages["combatCoast2"].terrain[6] = 'uu uu uu uu uu uu uu uu uu uu uu uu uu';
+ mappages["combatCoast2"].terrain[7] = 'uu ww ww ww uu uu uu uu uu uu uu uu ww';
+ mappages["combatCoast2"].terrain[8] = 'ww ww ww ww ww ww uu uu uu uu uu uu ww';
+ mappages["combatCoast2"].terrain[9] = 'ww ww ww ww ww ww ww uu uu uu ww ww ww';
+mappages["combatCoast2"].terrain[10] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
+mappages["combatCoast2"].terrain[11] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
+mappages["combatCoast2"].terrain[12] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
+
+mappages["combatCoast2"].features = new Array;
+
+
+mappages["combatCoast2"].npcs = new Array;
+
+mappages["combatCoast2"].desc = '';
+mappages["combatCoast2"].music = '';
+mappages["combatCoast2"].exitmap = '';
+mappages["combatCoast2"].exitx = '';
+mappages["combatCoast2"].exity = '';
+mappages["combatCoast2"].wraps = '';
+mappages["combatCoast2"].enterx = '';
+mappages["combatCoast2"].entery = '';
+mappages["combatCoast2"].seeBelow = '';
+mappages["combatCoast2"].lightLevel = '';
+mappages["combatCoast2"].alwaysRemember = '';
+mappages["combatCoast2"].scale = '';
+mappages["combatCoast2"].enterscript = '';
+mappages["combatCoast2"].entertestscript = '';
+mappages["combatCoast2"].exitscript = '';
+mappages["combatCoast2"].exittestscript = '';
+mappages["combatCoast2"].linkedMaps = new Array;
+
+// manually added
+
+mappages["combatCoast2"].set_exits = function(mapref) {
+  maps_set_exits(mapref);
+}
+
+mappages["combatCoast2"].check_escape = function(mapref) {
+  maps_check_escape(mapref);
+}
 
 
 // for all combat maps
