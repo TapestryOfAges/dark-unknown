@@ -794,6 +794,28 @@ GameMap.prototype.createPathGrid = function() {
   }
 }
 
+GameMap.prototype.getPath = function(fromx,fromy,tox,toy,movetype) {
+  // destination tile must always be walkable.
+  this.setWalkableAt(tox,toy,true,movetype);
+  
+  // so must start tile, for some reason
+  this.setWalkableAt(fromx,fromy,true,movetype);
+  
+  // get path
+  var path = finder.findPath(fromx,fromy,tox,toy,this.pathGrid[movetype]);
+  
+  // reset start and destination tiles
+  var thisspot = this.getTile(fromx,fromy);
+  var response = thisspot.canMoveHere(movetype);
+  if (!response["canmove"]) { this.setWalkableAt(i,j,false,movetype); }
+  
+  thisspot = this.getTile(tox,toy);
+  response = thisspot.canMoveHere(movetype);
+  if (!response["canmove"]) { this.setWalkableAt(i,j,false,movetype); }
+  
+  return path;
+}
+
 GameMap.prototype.setWalkableAt = function(x,y,canwalk,movetype) {
   this.pathGrid[movetype].setWalkableAt(x,y,canwalk);
 }
