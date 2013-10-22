@@ -776,8 +776,15 @@ function GetCombatMap(atk,def) {
   } 
   
   if ((atk_terrain == "Water") || (def_terrain == "Water")) {
-    var final = "combatShore" + rand;
-    return final;
+    var PC_tile = PC.getHomeMap().getTile(PC.getx(),PC.gety());
+    var PC_terrain = PC_tile.terrain.getCombatMap();
+    if (PC_terrain == "Water") {  // PC attacking from offshore
+      var final = "combatCoast" + rand;
+      return final;
+    } else {  // PC fighting an offshore foe
+      var final = "combatShore" + rand;
+      return final;
+    }
   }
   
   var final = "combat" + def_terrain + rand;
