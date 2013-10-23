@@ -21,6 +21,9 @@ ais.Bandit = function(who, radius) {
   return retval;
 }
 
+
+// sub-functions
+
 ais.HuntPC = function(who, radius) {
 	// Is the PC within range to be hunted?
 	if (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius) {
@@ -31,8 +34,10 @@ ais.HuntPC = function(who, radius) {
 	// otherwise, check if we can see the PC, with a more forgiving threshold than used
 	// in the game display
 	if (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > (radius/3)) {   
-//		var losresult = who.getHomeMap().getLOS(who.getx(), who.gety(), PC.getx(), PC.gety(), losgrid);
-//		if (losresult > 2) { return 0; }  // can't see the PC and they aren't really close, no hunt
+    var themap =  who.getHomeMap();
+    
+    var losresult = themap.getLOS(who.getx(), who.gety(), PC.getx(), PC.gety(), losgrid);
+    if (losresult > 2) { return 0; }  // can't see the PC and they aren't really close, no hunt
 	}
 	
 	// HUNT!
@@ -56,7 +61,10 @@ function NPCAttackPCMap(npc) {
   DUTime.removeEntityFrom(npc);
     
   DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-  maintext.addText(npc.getDesc() + " attacks!");
+  
+  var npcname = npc.getDesc();
+  npcname = npcname.charAt(0).toUpperCase() + npcname.slice(1);
+  maintext.addText(npcname + " attacks!");
   
   return 1;
 }

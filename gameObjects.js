@@ -4802,6 +4802,21 @@ NPCObject.prototype.setTurnsToRecalcPoI = function(timeuntil) {
   this.memory.turnsToRecalcPoI = timeuntil;
 }
 
+NPCObject.prototype.setCurrentPath = function(newpath) {
+  this.memory.currentPath = newpath;
+}
+
+NPCObject.prototype.getCurrentPath = function() {
+  return this.memory.currentPath;
+}
+
+NPCObject.prototype.getNextStep = function() {
+  if (this.memory.currentPath[0]) {
+    var nextstep = shift(this.memory.currentPath);
+    return nextstep;
+  }
+}
+
 function NPCGroupObject() {
   this.group = new Array;
 }
@@ -5022,5 +5037,6 @@ function NPCBrain() {
   this.currentDestination = new Object;
   this.turnsToRecalcPoI = 0;
   this.turnsToRecalcDest = 0;
+  this.currentPath = new Array;
 }
 NPCBrain.prototype = new Object;
