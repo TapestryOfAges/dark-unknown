@@ -14,7 +14,8 @@ PC.assignSerial();
 var gamestate = new GameStateData();
 var maps = new MapMemory();
 //var worldmap = new GameMap();
-var losgrid = new LOSMatrix(13);
+//var losgrid = new LOSMatrix(13);      // WAS RESTRICTING TO SIZE OF VIEWSCREEN
+var losgrid = new LOSMatrix(30);  // BIGGER FOR AI USE
 var DUTime = new Timeline(0);
 var maintext = new TextFrame("innertextframe");
 var DULoot = SetLoots();

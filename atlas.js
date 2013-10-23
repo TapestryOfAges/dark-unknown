@@ -795,23 +795,15 @@ GameMap.prototype.createPathGrid = function() {
 }
 
 GameMap.prototype.getPath = function(fromx,fromy,tox,toy,movetype) {
+  var gridbackup = this.getPathGrid(movetype).clone();
   // destination tile must always be walkable.
-  this.setWalkableAt(tox,toy,true,movetype);
+  gridbackup.setWalkableAt(tox,toy,true,movetype);
   
   // so must start tile, for some reason
-  this.setWalkableAt(fromx,fromy,true,movetype);
+  gridbackup.setWalkableAt(fromx,fromy,true,movetype);
   
   // get path
-  var path = finder.findPath(fromx,fromy,tox,toy,this.pathGrid[movetype]);
-  
-  // reset start and destination tiles
-  var thisspot = this.getTile(fromx,fromy);
-  var response = thisspot.canMoveHere(movetype);
-  if (!response["canmove"]) { this.setWalkableAt(i,j,false,movetype); }
-  
-  thisspot = this.getTile(tox,toy);
-  response = thisspot.canMoveHere(movetype);
-  if (!response["canmove"]) { this.setWalkableAt(i,j,false,movetype); }
+  var path = finder.findPath(fromx,fromy,tox,toy,gridbackup);
   
   return path;
 }
