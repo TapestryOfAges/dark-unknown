@@ -7,7 +7,7 @@ tileFactory.prototype.createTile = function(tileName) {
 
 
   var thingy = "make"+tileName+"Tile";
-  if (typeof this[thingy] == "function") {
+  if (this[thingy] && (typeof this[thingy] == "function")) {
     var newthing = this[thingy]();
     newthing.assignSerial();
     return newthing;
