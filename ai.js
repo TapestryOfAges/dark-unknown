@@ -13,6 +13,8 @@ ais.Bandit = function(who, radius) {
     return retval;
   }
   
+  // Next, check and see if there is already a path that has not expired
+  
   // If there is a radius attached, hunt for the PC next
   var hunt = ais.HuntPC(who,radius);
 
