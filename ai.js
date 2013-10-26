@@ -2,13 +2,14 @@
 // object to make it easier to construct which function to call without
 // using eval.
 
-var ais = new Object;
+var ais = {};
 
 ais.Bandit = function(who, radius) {
-  var retval = new Object;
+  var retval = {};
+  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " " + who.getSerial() + " is going.<br />"); }
   retval["fin"] = 1;
   // First, see if the PC is adjacent and if so, smite.
-  if (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) == 1) {
+  if (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) === 1) {
     NPCAttackPCMap(who);
     return retval;
   }

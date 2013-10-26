@@ -284,12 +284,12 @@ Atlas.prototype.keylookup = function(entry) {
 function Acre() {
 
   this.terrain = "";
-  this.features = new Collection;
-  this.npcs = new Collection;
-  this.pcs = new Collection;
+  this.features = new Collection();
+  this.npcs = new Collection();
+  this.pcs = new Collection();
   
 //  AssignSerial.call(this);
-  this.localLight = new Object;
+  this.localLight = {};
 }
 
 Acre.prototype.addLocalLight = function(lightsource, lightlevel, map) {
@@ -362,7 +362,7 @@ Acre.prototype.getTopFeature = function() {
 Acre.prototype.getTopVisibleFeature = function() {
 	var features = this.features.getAll();
 	var ind = features.length;
-	if (ind == 0) { return; }
+	if (ind === 0) { return; }
 	while (ind > 0) {
 		if (features[ind-1].invisible) {
 			ind--;
@@ -385,7 +385,7 @@ Acre.prototype.getTopNPC = function() {
 Acre.prototype.getTopVisibleNPC = function() {
 	var npcs = this.npcs.getAll();
 	var ind = npcs.length;
-	if (ind == 0) { return; }
+	if (ind === 0) { return; }
 	while (ind > 0) {
 		if (npcs[ind-1].invisible) {
 			ind--;
@@ -437,7 +437,7 @@ Acre.prototype.getBumpIntoResult = function(mover) {
 				if (retval["msg"] == "") { retval["msg"] = " - " + retval2["msg"]; }
 				else { retval["msg"] += "\n" + retval2["msg"]; }
 			}
-			if (retval2["canmove"] == 0) { return retval; }
+			if (retval2["canmove"] === 0) { return retval; }
 		}
 	}
 	
@@ -464,7 +464,7 @@ Acre.prototype.getInitDelay = function(mob) {
 Acre.prototype.canMoveHere = function(movetype) {
 	var terrain = this.getTerrain();
 	var totalpassability = terrain.getPassable();
-	var retval = new Object;
+	var retval = {};
 	
 //  NO LONGER ALLOWING SWIMMERS TO CROSS BRIDGES
 
@@ -514,7 +514,7 @@ Acre.prototype.canMoveHere = function(movetype) {
 Acre.prototype.executeWalkons = function(walker) {
 	var terrain = this.getTerrain();
 	var response = "";
-	if (typeof terrain.walkon == "function") {
+	if (typeof terrain.walkon === "function") {
     var resp = terrain.walkon(walker);
     if (resp) {
       response += resp;
@@ -523,7 +523,7 @@ Acre.prototype.executeWalkons = function(walker) {
 	var features = this.getFeatures();
 	if (features) {
 		for (var i = 0; i < features.length; i++) {
-			if (typeof features[i].walkon == "function") {
+			if (typeof features[i].walkon === "function") {
 				var resp = features[i].walkon(walker);
 				if (resp) {
 				  if (response) { response += "<br />"; }
@@ -538,14 +538,14 @@ Acre.prototype.executeWalkons = function(walker) {
 Acre.prototype.executeIdles = function(walker) {
 	var terrain = this.getTerrain();
 	var response = "";
-	if (typeof terrain.idle == "function") {
+	if (typeof terrain.idle === "function") {
 		var resp = terrain.idle(walker);
 		if (resp) { response += resp; }
 	}
 	var features = this.getFeatures();
 	if (features) {
 		for (var i = 0; i < features.length; i++) {
-			if (typeof features[i].idle == "function") {
+			if (typeof features[i].idle === "function") {
 				var resp = features[i].idle(walker);
 				if (resp) {
 				  if (response) { response += "<br />"; }
@@ -561,27 +561,27 @@ Acre.prototype.executeIdles = function(walker) {
 
 function GameMap() {
 
-  this.data = new Array;
+  this.data = [];
 // Each entry in the array will be an Object with .terrain, .features, and .npcs
 
   this.enterx = 65;
   this.entery = 70;
   this.name = "";  
 
-  this.features = new Collection;  // list of all features on the map
-  this.npcs = new Collection; // list of all NPCs on the map
-  this.pcs = new Collection; // list of all PCs on the map - usually one, but support exists for parties
+  this.features = new Collection();  // list of all features on the map
+  this.npcs = new Collection(); // list of all NPCs on the map
+  this.pcs = new Collection(); // list of all PCs on the map - usually one, but support exists for parties
 // these three will be maintained concurrently with collections on individual tiles/acres
 
   this.desc = "";
   this.music = "";
-  this.exitTo = new Object;
+  this.exitTo = {};
   this.exitTo.mapname = "darkunknown";
   this.exitTo.x = 65;
   this.exitTo.y = 70;
   this.wraps = 0;
   
-  this.linkedMaps = new Array;
+  this.linkedMaps = [];
   this.seeBelow = "";
   
   this.lightLevel = "bright";
@@ -592,10 +592,10 @@ function GameMap() {
   this.exitTestScript = "";
   this.enterScript = "";
   this.enterTestScript = "";
-  this.pathGrid = new Object;
-  this.network = new Array;
+  this.pathGrid = {};
+  this.network = [];
   
-  this.lightsList = new Object;
+  this.lightsList = {};
 }
 GameMap.prototype = new Object;
 
@@ -819,7 +819,7 @@ GameMap.prototype.setTerrain = function(x,y,terrain) {
 //  var tile = localFactory.createTile(terrain.name);
   var tile = eidos.getForm(terrain.getName());
   if (tile) {
-    this.data[y][x] = new Acre;
+    this.data[y][x] = new Acre();
     this.data[y][x].terrain = tile;
     return this.data[y][x].terrain;
   }
@@ -839,14 +839,14 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
   var oldx = this.getWidth();
   var oldy = this.getHeight();
   if (debug ) {
-    debugscreen.document.writeln(oldx + " " + oldy + " to " + newx + " " + newy + ", anchor is " + anchor + "<br><br>");
+    dbs.writeln(oldx + " " + oldy + " to " + newx + " " + newy + ", anchor is " + anchor + "<br><br>");
   }
-  var tile = new Acre;
+  var tile = new Acre();
   tile.terrain = localFactory.createTile(selectionval.name);
 
   if ((newx) && (newx != oldx)) {
-    for (i = 1; i <= Math.abs(newx-oldx); i++) {
-      for (j=0;j<this.data.length;j++) {
+    for (var i = 1; i <= Math.abs(newx-oldx); i++) {
+      for (var j=0;j<this.data.length;j++) {
         if ((anchor == 0) || (anchor == 3) || (anchor == 6)) {
           if (newx > oldx) {  
             this.data[j].push(tile);  
@@ -855,7 +855,7 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
             this.data[j].pop();
           }
         }
-        else if ((anchor == 2) || (anchor == 5) || (anchor == 8)) {
+        else if ((anchor === 2) || (anchor === 5) || (anchor === 8)) {
           if (newx > oldx) { 
             this.data[j].unshift(tile); 
           }
@@ -863,17 +863,17 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
             this.data[j].shift(); 
           }
         }
-        else if ((anchor == 1) || (anchor == 4) || (anchor == 7)) {
-          if ((newx > oldx) && (i%2 == 1)) { 
+        else if ((anchor === 1) || (anchor === 4) || (anchor === 7)) {
+          if ((newx > oldx) && (i%2 === 1)) { 
             this.data[j].push(tile); 
           }
-          else if ((newx > oldx) && (i%2 == 0)) { 
+          else if ((newx > oldx) && (i%2 === 0)) { 
             this.data[j].unshift(tile); 
           }
-          else if ((oldx > newx) && (i%2 == 1)) { 
+          else if ((oldx > newx) && (i%2 === 1)) { 
             this.data[j].pop(); 
           }
-          else if ((oldx > newx) && (i%2 == 0)) { 
+          else if ((oldx > newx) && (i%2 === 0)) { 
             this.data[j].shift(); 
           }
         }
@@ -881,37 +881,37 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
     }
   }
   if ((newy) && (newy != oldy)) { 
-    for (i = 1; i <= Math.abs(newy-oldy); i++) {
+    for (var i = 1; i <= Math.abs(newy-oldy); i++) {
       if (newy > oldy) {
         var placeholder = new Array();
-        for (j=0; j<this.data[0].length;j++) { placeholder.push(tile); }
-        if ((anchor == 0) || (anchor == 1) || (anchor == 2)) {
+        for (var j=0; j<this.data[0].length;j++) { placeholder.push(tile); }
+        if ((anchor === 0) || (anchor === 1) || (anchor === 2)) {
           this.data.push(placeholder);
         }
-        else if ((anchor == 6) || (anchor == 7) || (anchor == 8)) {
+        else if ((anchor === 6) || (anchor === 7) || (anchor === 8)) {
           this.data.unshift(placeholder);
         }
-        else if ((anchor == 3) || (anchor == 4) || (anchor == 5)) {
-          if (i%2 == 0) { 
+        else if ((anchor === 3) || (anchor === 4) || (anchor === 5)) {
+          if (i%2 === 0) { 
             this.data.push(placeholder); 
           }
-          else if (i%2 == 1) { 
+          else if (i%2 === 1) { 
             this.data.unshift(placeholder); 
           }
         }
       }
       else if (oldy > newy) {
-        if ((anchor == 0) || (anchor == 1) || (anchor == 2)) {
+        if ((anchor === 0) || (anchor === 1) || (anchor === 2)) {
           this.data.pop();
         }
-        else if ((anchor == 6) || (anchor == 7) || (anchor == 8)) {
+        else if ((anchor === 6) || (anchor === 7) || (anchor === 8)) {
           this.data.shift(); 
         }
-        else if ((anchor == 3) || (anchor == 4) || (anchor == 5)) {
-          if (i%2 == 0) { 
+        else if ((anchor === 3) || (anchor === 4) || (anchor === 5)) {
+          if (i%2 === 0) { 
             this.data.pop(); 
           }
-          else if (i%2 == 1) { 
+          else if (i%2 === 1) { 
             this.data.shift(); 
           }
         }
@@ -919,7 +919,7 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
     }
   }
   if (debug) {
-    debugscreen.document.writeln("Done: " + this.data.length + " " + this.data[0].length + "<br><br>");
+    dbs.writeln("Done: " + this.data.length + " " + this.data[0].length + "<br><br>");
   }
   this.setFeaturesCoord();
   this.setNPCsCoord();
@@ -957,17 +957,17 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
 
 //  	var type = newthing.type + "s";
     var type = newthing.getTypeForMap() + "s";
-    if (!this.data[type]) { this.data[type] = new Collection; }
+    if (!this.data[type]) { this.data[type] = new Collection(); }
   	newthing.setx(x);
   	newthing.sety(y);
     this[type].addTop(newthing);
 
     if (!this.data[y][x][type]) {
-      this.data[y][x][type] = new Collection;
+      this.data[y][x][type] = new Collection();
     }
     this.data[y][x][type].addTop(newthing);
 
- 	  if ((typeof newthing.getLight == "function") && (newthing.getLight() > 0)) {
+ 	  if ((typeof newthing.getLight === "function") && (newthing.getLight() > 0)) {
   	  if (debug) { dbs.writeln("<br /><br />LIGHT: Placing new light source: " + newthing.getName() + ", light value: " + newthing.getLight() + ", serial: " + newthing.getSerial()); } 	    
   	  this.setMapLight(newthing, newthing.getLight(),x,y);
   	}       
@@ -992,7 +992,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
 //	var type = thing.type + "s";
   var oldx = thing.getx();
   var oldy = thing.gety();
- 	if ((typeof thing.getLight == "function") && (thing.getLight() > 0)) {
+ 	if ((typeof thing.getLight === "function") && (thing.getLight() > 0)) {
     this.removeMapLight(thing.getSerial(),thing.getLight(),thing.getx(),thing.gety());
   }
   var type = thing.getTypeForMap() + "s";
@@ -1001,7 +1001,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
   this.data[y][x][type].addTop(thing);
   thing.setx(x);
   thing.sety(y);
- 	if ((typeof thing.getLight == "function") && (thing.getLight() > 0)) {
+ 	if ((typeof thing.getLight === "function") && (thing.getLight() > 0)) {
     this.setMapLight(thing,thing.getLight(),x,y);
   }
   // update pathfinding
@@ -1038,15 +1038,15 @@ GameMap.prototype.deleteThing = function(thing) {
 
 
 GameMap.prototype.saveMap = function (name) {
- if (name == '') {
+ if (name === '') {
    name = prompt("Map Name", this.name);
  }
- if (name == null) {return;}
+ if (name === null) {return;}
  var printerwin = window.open('','printarray');
- printerwin.document.writeln('mappages["' + name + '"] = new Object();');
+ printerwin.document.writeln('mappages["' + name + '"] = {};');
  var oldname=name;
  name = 'mappages["' + name + '"].terrain';
- printerwin.document.writeln(name + " = new Array;");
+ printerwin.document.writeln(name + " = [];");
  var maxindex = this.data.length-1;
  for (var i=0;i<=maxindex;i++) {
  	 var saveind = i;
@@ -1071,7 +1071,7 @@ GameMap.prototype.saveMap = function (name) {
  }
  // ADD FEATURES/NPCs
  name = 'mappages["' + oldname + '"].features';
- printerwin.document.write("\n" + name + " = new Array;\n");
+ printerwin.document.write("\n" + name + " = [];\n");
  var mapfeatures = this.features.getAll();
  for (var i=0;i<=mapfeatures.length-1;i++) {
    printerwin.document.write(name + "[" + i + "] = {name : '" + mapfeatures[i].getName() + "',");
@@ -1083,25 +1083,25 @@ GameMap.prototype.saveMap = function (name) {
  //  	 	 printerwin.document.write(", " + props + " : " + this.features.container[i][props]);
  //  	 }
  //  }
-   if (baseobj.getDesc() != mapfeatures[i].getDesc()) {
+   if (baseobj.getDesc() !== mapfeatures[i].getDesc()) {
    	 var thedesc = mapfeatures[i].getDesc();
      printerwin.document.write(", desc : \"" + thedesc + "\"");
    }
-   if (baseobj.getPrefix() != mapfeatures[i].getPrefix()) {
+   if (baseobj.getPrefix() !== mapfeatures[i].getPrefix()) {
    	 var theprefix = mapfeatures[i].getPrefix();
      printerwin.document.write(", prefix : \"" + theprefix + "\"");
    }
-   if ((baseobj.getLocked != null) && (baseobj.getLocked() != mapfeatures[i].getLocked())) {
+   if ((baseobj.getLocked !== null) && (baseobj.getLocked() !== mapfeatures[i].getLocked())) {
    	 printerwin.document.write(", locked : " + mapfeatures[i].getLocked());
    }
-   if (baseobj.getEnterMap != null) {
+   if (baseobj.getEnterMap !== null) {
    	 var mapdest = mapfeatures[i].getEnterMap();
    	 printerwin.document.write(", entermap : '" + mapdest.entermap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
    }
-   if (baseobj.getWalkOnScript() != mapfeatures[i].getWalkOnScript()) {
+   if (baseobj.getWalkOnScript() !== mapfeatures[i].getWalkOnScript()) {
    	printerwin.document.write(", walkonscript : '" + mapfeatures[i].getWalkOnScript() + "'");
    }
-   if (baseobj.getUseScript() != mapfeatures[i].getUseScript()) {
+   if (baseobj.getUseScript() !== mapfeatures[i].getUseScript()) {
    	printerwin.document.write(", usescript : '" + mapfeatures[i].getUseScript() + "'");
    }   
    printerwin.document.write("};\n");
@@ -1109,52 +1109,52 @@ GameMap.prototype.saveMap = function (name) {
  
  name = 'mappages["' + oldname + '"].npcs';
  printerwin.document.write("\n");
- printerwin.document.write("\n" + name + " = new Array;\n");
+ printerwin.document.write("\n" + name + " = [];\n");
  var mapnpcs = this.npcs.getAll();
  for (var i=0;i<=mapnpcs.length-1;i++) {
  	printerwin.document.write(name + "[" + i + "] = {name : '" + mapnpcs[i].getName() + "'");
  	printerwin.document.write(", x : " + mapnpcs[i].getx() + ", y : " + mapnpcs[i].gety());
  	var basenpc = localFactory.createTile(mapnpcs[i].getName());
- 	if (basenpc.getNPCName() != mapnpcs[i].getNPCName()) {
+ 	if (basenpc.getNPCName() !== mapnpcs[i].getNPCName()) {
  		printerwin.document.write(", NPCName: '" + mapnpcs[i].getNPCName() + "'");
  	}
- 	if (basenpc.getDesc() != mapnpcs[i].getDesc()) {
+ 	if (basenpc.getDesc() !== mapnpcs[i].getDesc()) {
  		printerwin.document.write(", Desc: '" + mapnpcs[i].getDesc() + "'");
  	}
- 	if (basenpc.getDesc() != mapnpcs[i].getPrefix()) {
+ 	if (basenpc.getDesc() !== mapnpcs[i].getPrefix()) {
  		printerwin.document.write(", Prefix: '" + mapnpcs[i].getPrefix() + "'");
  	}
- 	if (basenpc.getLevel() != mapnpcs[i].getLevel()) {
+ 	if (basenpc.getLevel() !== mapnpcs[i].getLevel()) {
  		printerwin.document.write(", Level: " + mapnpcs[i].getLevel());
  	}
- 	if (basenpc.getAlignment() != mapnpcs[i].getAlignment()) {
+ 	if (basenpc.getAlignment() !== mapnpcs[i].getAlignment()) {
  		printerwin.document.write(", Alignment: '" + mapnpcs[i].getAlignment() + "'");
  	}
- 	if (basenpc.getStr() != mapnpcs[i].getStr()) {
+ 	if (basenpc.getStr() !== mapnpcs[i].getStr()) {
  		printerwin.document.write(", str: " + mapnpcs[i].getStr());
  	}
- 	if (basenpc.getDex() != mapnpcs[i].getDex()) {
+ 	if (basenpc.getDex() !== mapnpcs[i].getDex()) {
  		printerwin.document.write(", dex: " + mapnpcs[i].getDex());
  	}
- 	if (basenpc.getInt() != mapnpcs[i].getInt()) {
+ 	if (basenpc.getInt() !== mapnpcs[i].getInt()) {
  		printerwin.document.write(", int: " + mapnpcs[i].getInt());
  	}
- 	if (basenpc.getAttitude() != mapnpcs[i].getAttitude()) {
+ 	if (basenpc.getAttitude() !== mapnpcs[i].getAttitude()) {
  		printerwin.document.write(", Attitude: '" + mapnpcs[i].getAttitude() + "'");
  	}
- 	if (basenpc.getPeaceAI() != mapnpcs[i].getPeaceAI()) {
+ 	if (basenpc.getPeaceAI() !== mapnpcs[i].getPeaceAI()) {
  		printerwin.document.write(", PeaceAI: '" + mapnpcs[i].getPeaceAI() + "'");
  	}
- 	if (basenpc.getPCThreatAI() != mapnpcs[i].getPCThreatAI()) {
+ 	if (basenpc.getPCThreatAI() !== mapnpcs[i].getPCThreatAI()) {
  		printerwin.document.write(", PCThreatAI: '" + mapnpcs[i].getPCThreatAI() + "'");
  	}
- 	if (basenpc.getThreatenedAI() != mapnpcs[i].getThreatenedAI()) {
+ 	if (basenpc.getThreatenedAI() !== mapnpcs[i].getThreatenedAI()) {
  		printerwin.document.write(", ThreatenedAI: '" + mapnpcs[i].getThreatenedAI() + "'");
  	}
- 	if (basenpc.getMeleeAttackAs() != mapnpcs[i].getMeleeAttackAs()) {
+ 	if (basenpc.getMeleeAttackAs() !== mapnpcs[i].getMeleeAttackAs()) {
  		printerwin.document.write(", Melee: '" + mapnpcs[i].getMeleeAttackAs() + "'");
  	}
- 	if (basenpc.getMissileAttackAs() != mapnpcs[i].getMissileAttackAs()) {
+ 	if (basenpc.getMissileAttackAs() !== mapnpcs[i].getMissileAttackAs()) {
  		printerwin.document.write(", Missile: '" + mapnpcs[i].getMissileAttackAs() + "'");
  	}
  	printerwin.document.write("};\n");
@@ -1181,31 +1181,31 @@ GameMap.prototype.saveMap = function (name) {
  var linkedMapArray = this.getLinkedMaps();
  if (linkedMapArray.length > 0) {
  	 for (var i=0;i<linkedMapArray.length;i++) {
- 	 	if (i == 0) {
+ 	 	if (i === 0) {
  	 		linkedMapList = '"' + linkedMapArray[i] + '"';
  	 	} else {
  	 		linkedMapList = linkedMapList + ',"' + linkedMapArray[i] + '"';
  	 	}
  	}
- 	printerwin.document.write(name + ".linkedMaps = new Array(" + linkedMapList + ");\n");
+ 	printerwin.document.write(name + ".linkedMaps = [" + linkedMapList + "];\n");
  }
  else {
-   printerwin.document.write(name + ".linkedMaps = new Array;\n");
+   printerwin.document.write(name + ".linkedMaps = [];\n");
  }
  printerwin.document.close();
 }
 
 GameMap.prototype.loadMap = function (name) {
-  this.data = new Array;
+  this.data = [];
   this.features.deleteAll();
   this.npcs.deleteAll();
   var loadfrom = mappages.readPage(name, "terrain");
-  var localatlas = new Atlas;
+  var localatlas = new Atlas();
   for (var i=0;i<=loadfrom.length-1;i++) {
     if (debug) {debugscreen.document.writeln("<br>Starting line: " +i+ ", length " + loadfrom[i].length + " <br>");}
-    var tileserials = new Array;
+    var tileserials = [];
     tileserials = loadfrom[i].split(" ");
-    this.data[i] = new Array();
+    this.data[i] = [];
     for (var j=0;j<=tileserials.length-1;j++) {
       if (debug) {debugscreen.document.writeln(" " + tileserials[j]);}
       var loadedtile = localatlas.key[tileserials[j]];
@@ -1257,8 +1257,8 @@ GameMap.prototype.loadMap = function (name) {
     	var newfeature = localFactory.createTile(loadfeatures[fi].name);
 //    	newfeature.setHomeMap(this);
     	for (var featurekey in loadfeatures[fi]) {
-    		if (featurekey == "name") { continue; }
-    		if (featurekey == "locked") { newfeature.lockMe(loadfeatures[fi]["locked"]); continue; }
+    		if (featurekey === "name") { continue; }
+    		if (featurekey === "locked") { newfeature.lockMe(loadfeatures[fi]["locked"]); continue; }
     		newfeature[featurekey] = loadfeatures[fi][featurekey];
     	}
     	if (newfeature.getWalkOnScript()) {
@@ -1279,25 +1279,25 @@ GameMap.prototype.loadMap = function (name) {
   		var newnpc = localFactory.createTile(loadnpcs[npci].name);
 //  		newnpc.setHomeMap(this);
   		for (var npckey in loadnpcs[npci]) {
-  			if (npckey == "NPCName") { newnpc.setNPCName(loadnpcs[npci].NPCName); }
-  			if (npckey == "Desc") { newnpc.setDesc(loadnpcs[npci].Desc); }
-  			if (npckey == "Level") { newnpc.setLevel(loadnpcs[npci].Level); }
-  			if (npckey == "Alignment") { newnpc.setAlignment(loadnpcs[npci].Alignment); }
-  			if (npckey == "str") { newnpc.setStr(loadnpcs[npci].str); }
-  			if (npckey == "dex") { newnpc.setDex(loadnpcs[npci].dex); }
-  			if (npckey == "int") { newnpc.setInt(loadnpcs[npci].int); }
-  			if (npckey == "Attitude") { newnpc.setAttitude(loadnpcs[npci].Attitude); }
-  			if (npckey == "PeaceAI") { newnpc.setPeaceAI(loadnpcs[npci].PeaceAI); }
-  			if (npckey == "PCThreatAI") { newnpc.setPCThreatAI(loadnpcs[npci].PCThreatAI); }
-  			if (npckey == "ThreatenedAI") { newnpc.setThreatenedAI(loadnpcs[npci].ThreatenedAI); }
-  			if (npckey == "Melee") { newnpc.setMeleeAttackAs(loadnpcs[npci].Melee); }
-  			if (npckey == "Missile") { newnpc.setMissileAttackAs(loadnpcs[npci].Missile); }
+  			if (npckey === "NPCName") { newnpc.setNPCName(loadnpcs[npci].NPCName); }
+  			if (npckey === "Desc") { newnpc.setDesc(loadnpcs[npci].Desc); }
+  			if (npckey === "Level") { newnpc.setLevel(loadnpcs[npci].Level); }
+  			if (npckey === "Alignment") { newnpc.setAlignment(loadnpcs[npci].Alignment); }
+  			if (npckey === "str") { newnpc.setStr(loadnpcs[npci].str); }
+  			if (npckey === "dex") { newnpc.setDex(loadnpcs[npci].dex); }
+  			if (npckey === "int") { newnpc.setInt(loadnpcs[npci].int); }
+  			if (npckey === "Attitude") { newnpc.setAttitude(loadnpcs[npci].Attitude); }
+  			if (npckey === "PeaceAI") { newnpc.setPeaceAI(loadnpcs[npci].PeaceAI); }
+  			if (npckey === "PCThreatAI") { newnpc.setPCThreatAI(loadnpcs[npci].PCThreatAI); }
+  			if (npckey === "ThreatenedAI") { newnpc.setThreatenedAI(loadnpcs[npci].ThreatenedAI); }
+  			if (npckey === "Melee") { newnpc.setMeleeAttackAs(loadnpcs[npci].Melee); }
+  			if (npckey === "Missile") { newnpc.setMissileAttackAs(loadnpcs[npci].Missile); }
   		}
   		this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
   	}
   }
   
-  if(typeof mappages[name]["onload"] == "function") {
+  if(typeof mappages[name]["onload"] === "function") {
     mappages[name]["onload"](this);
   }
   
@@ -1305,18 +1305,18 @@ GameMap.prototype.loadMap = function (name) {
 }
 
 GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
-  if (this.getLightLevel() == "bright") { return; }
+  if (this.getLightLevel() === "bright") { return; }
   var serial = lightsource.getSerial();
   if (debug) { dbs.writeln("<br />LIGHT: " + lightsource.getHomeMap().getName() + ", " + serial + ", " + light + ", " + x + ", " + y); }
 	for (var i = (x-(Math.ceil(Math.abs(light))+1)); i<=(x+(Math.ceil(Math.abs(light))+1)); i++) {
 		for (var j = (y-(Math.ceil(Math.abs(light))+1)); j<=(y+(Math.ceil(Math.abs(light))+1)); j++) {
-			if (this.getTile(i,j) == "OoB") { continue; }
+			if (this.getTile(i,j) === "OoB") { continue; }
 			var block = this.getTile(i,j).getBlocksLOS();
       if (debug) { dbs.writeln("<br />LIGHT " + serial + ": Checking shine on x:"+i+",y:"+j+", which blocks " + block + "."); }
 			if ((block > LOS_THRESHOLD) && (!lightsource.checkType("PC"))) {   
         var LOSval = this.getLOS(x,y,i,j,losgrid,0,1);
         var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
-        var totlight = new Object;
+        var totlight = {};
         if (debug) {dbs.writeln("<br />LOSVAL ne: " + LOSval.ne + ", nw: " + LOSval.nw + ", se: " + LOSval.se + ", sw: " + LOSval.sw + "."); }
         totlight.ne = (light + 1.5 - dist) * ( 1- (LOSval.ne / LOS_THRESHOLD) );
         if ((light >= 0) && (totlight.ne < 0)) { totlight.ne = 0; }
@@ -1334,7 +1334,7 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
 			} else {
         var LOSval = this.getLOS(x,y,i,j,losgrid);
         var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
-        var totlight = new Object;
+        var totlight = {};
         totlight.center = (light + 1.5 - dist) * ( 1- (LOSval / LOS_THRESHOLD) );
         if ((light >= 0) && (totlight.center < 0)) { totlight.center = 0; }
         if ((lightsource.checkType("PC")) && (block > LOS_THRESHOLD)) {
@@ -1355,8 +1355,9 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
 GameMap.prototype.removeMapLight = function(serial,light,x,y) {
 	for (var i = (x-(Math.ceil(Math.abs(light))+1)); i<=(x+(Math.ceil(Math.abs(light))+1)); i++) {
 		for (var j = (y-(Math.ceil(Math.abs(light))+1)); j<=(y+(Math.ceil(Math.abs(light))+1)); j++) {
-			if (this.getTile(i,j) == "OoB") { continue; }
-			this.getTile(i,j).removeLocalLight(serial);
+			if (this.getTile(i,j) !== "OoB") { 
+			  this.getTile(i,j).removeLocalLight(serial);
+			}
 		}
 	}
 }
@@ -1366,7 +1367,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight) {
   // checklight = 1, check is for light on an object that does block LOS
 	var trueLOS = LOS_THRESHOLD;
 	var totalLOS = 0;
-	var quartersLOS = new Object;
+	var quartersLOS = {};
 
  	quartersLOS.nw = LOS_THRESHOLD;
   quartersLOS.ne = LOS_THRESHOLD;
@@ -1374,7 +1375,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight) {
   quartersLOS.se = LOS_THRESHOLD;
   quartersLOS.center = LOS_THRESHOLD;
 
-  if (( (x2-x1) == 0) && ( (y2-y1) == 0)) {
+  if (( (x2-x1) === 0) && ( (y2-y1) === 0)) {
     if (checklight) {
       quartersLOS.nw = 0;
       quartersLOS.ne = 0;
@@ -1384,7 +1385,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight) {
       return quartersLOS;
     }
     return 0;
-  } else if (( (x2-x1) == 0) && ( (y2-y1) < 0)) {  // north line
+  } else if (( (x2-x1) === 0) && ( (y2-y1) < 0)) {  // north line
     totalLOS = genLOS(x1,y1,x2,y2,losgrid,"center","center",this, useloe, checklight);
 
 		if (totalLOS < LOS_THRESHOLD) { 
@@ -1513,7 +1514,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight) {
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
-  } else if (( (x2-x1) > 0) && ( (y2-y1) == 0)) {  // east line
+  } else if (( (x2-x1) > 0) && ( (y2-y1) === 0)) {  // east line
     totalLOS = genLOS(x1,y1,x2,y2,losgrid,"center","center",this, useloe, checklight);
 
 		if (totalLOS < LOS_THRESHOLD) { 
@@ -1639,7 +1640,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight) {
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
-  } else if (( (x2-x1) == 0) && ( (y2-y1) > 0)) {  // south line
+  } else if (( (x2-x1) === 0) && ( (y2-y1) > 0)) {  // south line
     totalLOS = genLOS(x1,y1,x2,y2,losgrid,"center","center",this, useloe, checklight);
 
 		if (totalLOS < LOS_THRESHOLD) { 
@@ -1765,7 +1766,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight) {
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
-  } else if (( (x2-x1) < 0) && ( (y2-y1) == 0)) {  // west line
+  } else if (( (x2-x1) < 0) && ( (y2-y1) === 0)) {  // west line
     totalLOS = genLOS(x1,y1,x2,y2,losgrid,"center","center",this, useloe, checklight);
 
 		if (totalLOS < LOS_THRESHOLD) { 
@@ -2079,8 +2080,8 @@ GameMap.prototype.setLights = function() {
 
 function Pages() {
 
-  this["test"] = new Object();
-  this["test"].terrain = new Array;
+  this["test"] = {};
+  this["test"].terrain = [];
   this["test"].terrain[0] = "WW WW WW WW WW";
   this["test"].terrain[1] = "WW ww ww ww WW";
   this["test"].terrain[2] = "WW ww uu ww WW";
@@ -2102,7 +2103,7 @@ Pages.prototype.readPage = function (name,type) {
 
 function Platonic() {
 
-  this.data = new Object;
+  this.data = {};
 
 }
 
@@ -2119,7 +2120,7 @@ Platonic.prototype.getForm = function (name) {
 }
 
 function MapMemory() {
-  this.data = new Array;	
+  this.data = [];	
 }
 
 MapMemory.prototype.addMap = function(mapname) {
@@ -2147,7 +2148,7 @@ MapMemory.prototype.addMapByRef = function(mapref) {
 	this.data[mapname] = mapref;
 	
 	// also load linked maps
-	if (mapref.linkedMaps[0] && mapref.linkedMaps[0] != "") {
+	if (mapref.linkedMaps[0] && mapref.linkedMaps[0] !== "") {
 	  for (var i = 0; i < mapref.linkedMaps.length; i++) {
 	    var anothermap = new GameMap();
 	    anothermap.loadMap(mapref.linkedMaps[i]);
@@ -2159,7 +2160,7 @@ MapMemory.prototype.addMapByRef = function(mapref) {
 }
 
 MapMemory.prototype.deleteMap = function(mapname) {
-	if (this.data[mapname].linkedMaps[0] && this.data[mapname].linkedMaps[0] != "") {
+	if (this.data[mapname].linkedMaps[0] && this.data[mapname].linkedMaps[0] !== "") {
 		for (var i = 0; i < this.data[mapname].linkedMaps.length; i++) {
 			delete this.data[this.data[mapname].linkedMaps[i]];
 		}
