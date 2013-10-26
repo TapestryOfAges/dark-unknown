@@ -1,5 +1,5 @@
 
-var musiclist = new Object;
+var musiclist = {};
 musiclist["Theme"] = "music/Hero Theme.mp3";
 musiclist["Dark Unknown"] = "music/Dark Unknown.mp3";
 musiclist["Towne"] = "music/Towne.mp3";
@@ -14,7 +14,7 @@ musiclist["Underworld"] = "music/Underworld.mp3";
 musiclist["Combat"] = "music/Combat.mp3";
 musiclist["Olympus"] = "music/Olympus.mp3";
 
-var mapslist = new Object;
+var mapslist = {};
 mapslist["darkunknown"] = "the Mainland";
 mapslist["poverty"] = "the Towne of Poverty";
 mapslist["magetower"] = "Mage's Tower";
@@ -47,7 +47,7 @@ var NIGHT = 2;
 var DAWN = 1;
 var DUSK = 3;
 
-var worldlight = new Object;
+var worldlight = {};
 worldlight["bright"] = 1;
 worldlight["dim"] = .5;
 worldlight["dark"] = 0;

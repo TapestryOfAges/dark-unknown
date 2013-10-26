@@ -14,7 +14,7 @@ function EphemeralObject() {
   this.attachedTo;
 
 }
-EphemeralObject.prototype = new ProtoObject;
+EphemeralObject.prototype = new ProtoObject();
 
 EphemeralObject.prototype.setAttachedTo = function(what) {
   this.attachedTo = what;

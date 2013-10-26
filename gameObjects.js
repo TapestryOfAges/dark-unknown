@@ -2,7 +2,7 @@
 function ProtoObject() {
   
 }
-ProtoObject.prototype = new Object;
+ProtoObject.prototype = new Object();
 
 ProtoObject.prototype.getSerial = function() {
 	return this.serial;
@@ -67,14 +67,14 @@ function GameObject() {
   
   this.type = "XGameObjectX";
 }
-GameObject.prototype = new ProtoObject;
+GameObject.prototype = new ProtoObject();
 
 GameObject.prototype.getx = function() {
 	return parseInt(this.x,10);
 }
 
 GameObject.prototype.setx = function(x) {
-	if (parseInt(x) == "NaN") { alert("X being set to a string."); }
+	if (isNaN(parseInt(x))) { alert("X being set to a string."); }
   this.x = parseInt(x,10);
 }
 
@@ -83,7 +83,7 @@ GameObject.prototype.gety = function() {
 }
 
 GameObject.prototype.sety = function(y) {
-	if (parseInt(y) == "NaN") { alert("Y being set to a string."); }
+	if (isNaN(parseInt(y))) { alert("Y being set to a string."); }
   this.y = parseInt(y,10);
 }
 
@@ -121,14 +121,14 @@ GameObject.prototype.moveTo = function(x,y) {
 }
 
 GameObject.prototype.bumpinto = function(who) {
-	var retval = new Object;
+	var retval = {};
 	retval["canmove"] = 1;
 	retval["msg"] = "";
   return(retval);
 }
 
 GameObject.prototype.copy = function(type) {
-  if (type == "clean") {
+  if (type === "clean") {
     var tilename = this.name;
     var minifactory = new tileFactory;
     return tileFactory.createTile(tilename);
@@ -197,7 +197,7 @@ GameObject.prototype.getBlocksLOS = function(distance) {
 }
 
 GameObject.prototype.getBlocksLOSArray = function() {
-	var LOSref = new Array;
+	var LOSref = [];
 	LOSref[0] = this.blocklos;
 	if (this.losatdistance){
 		LOSref[1] = this.losatdistance['distance'];
@@ -213,11 +213,11 @@ GameObject.prototype.getBlocksLOSArray = function() {
 
 GameObject.prototype.setBlocksLOSArray = function(newLOS) {
 	this.blocklos = newLOS[0];
-	if (typeof newLOS[1] != "undefined") {
+	if (typeof newLOS[1] !== "undefined") {
 		this.losatdistance['distance'] = newLOS[1];
 		this.losatdistance['blocklos'] = newLOS[2];
 	}
-	if (typeof newLOS[3] != "undefined") {
+	if (typeof newLOS[3] !== "undefined") {
 		this.losupclose['distance'] = newLOS[3];
 		this.losupclose['blocklos'] = newLOS[4];
 	}
@@ -238,7 +238,7 @@ GameObject.prototype.getBlocksLOE = function(distance) {
 
 GameObject.prototype.getBlocksLOEArray = function() {
   if (this.blockloe) { 
-    var tmp = new Array;
+    var tmp = [];
     tmp[0] = this.blockloe;
     if (this.loeatdistance) {
       tmp[1] = this.loeatdistance['distance'];
@@ -282,9 +282,9 @@ GameObject.prototype.activate = function() {
 // Abstract class Lockable
 function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedprefix, unlockeddesc, lockedprefix, lockeddesc, maglockedprefix, maglockeddesc) {
 	this.locked = 0;
-	this.lockedgraphics = new Array(unlockedgraphic, lockedgraphic, maglockedgraphic);
-	this.lockeddescs = new Array(unlockeddesc, lockeddesc, maglockeddesc);
-  this.lockedprefixes = new Array(unlockedprefix, lockedprefix, maglockedprefix);
+	this.lockedgraphics = [unlockedgraphic, lockedgraphic, maglockedgraphic];
+	this.lockeddescs = [unlockeddesc, lockeddesc, maglockeddesc];
+  this.lockedprefixes = [unlockedprefix, lockedprefix, maglockedprefix];
 	
 	this.setLocked = function(lock) { this.locked = lock; }
 	this.getLocked = function() { return this.locked; }
@@ -344,19 +344,19 @@ function LightEmitting(lightlevel) {
 function Openable(closedgraphic, opengraphic, startsopen) {
 	this.open = startsopen;
 	
-	this.closedLOS = new Array;
+	this.closedLOS = [];
 	this.closedgraphic = closedgraphic;
 	this.opengraphic = opengraphic;
 	// NOTE: These should be arrays in the standard graphics[0-3] style.
 	
 	this.use = function(who) {
-		var retval = new Object;
+		var retval = {};
 		retval["fin"] = 0;
 		if (this.open == 1) {
 			this.setGraphicArray(closedgraphic);
 			
 			this.setBlocksLOSArray(this.closedLOS);
-			this.closedLOS = new Array;
+			this.closedLOS = [];
 			
 			this.removePassable(MOVE_WALK);
 			
@@ -376,7 +376,7 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 			this.setGraphicArray(opengraphic);
 			
 			this.closedLOS = this.getBlocksLOSArray();
-			var seethru = new Array;
+			var seethru = [];
 			seethru[0] = 0;
 			this.setBlocksLOSArray(seethru);
 			
@@ -398,15 +398,15 @@ function OpenContainer() {
   this.isContainer = 1;
   
   this.use = function(who) {
-    var retval = new Object; 
+    var retval = {}; 
 
-    if (typeof this.getLocked == "function") {
+    if (typeof this.getLocked === "function") {
       if (this.getLocked() == 1) {
         retval["fin"] = 1;
         retval["txt"] = "Locked.";
         return retval;
       }
-      else if (this.getLocked() == 2){
+      else if (this.getLocked() === 2){
         retval["fin"] = 1;
         retval["txt"] = "Magically locked.";
         return retval;
@@ -417,9 +417,9 @@ function OpenContainer() {
       retval["fin"] = 1;
       retval["txt"] = "It contains: ";
       var firstitem = 1;
-      for (i=0; i<this.container.length; i++) {
+      for (var i=0; i<this.container.length; i++) {
         var newitem = localFactory.createTile(this.container[i]);
-        if (this.container[i] == "Gold") {
+        if (this.container[i] === "Gold") {
           newitem.setQuantity(this.gold);
         }
         if (newitem) {
@@ -453,7 +453,7 @@ function OpenContainer() {
   
   this.addToContainer = function(addthis, amt) {
     if (!amt) { amt = 1; }
-    if (addthis == "Gold") {
+    if (addthis === "Gold") {
       this.container[this.container.length] = addthis;
       this.setGold(amt);
     } else {
@@ -496,36 +496,36 @@ function SetBySurround() {
 		var vis = 0;
 
   	var addtoname_cardinal = "";
-	  if ((themap.getTile(x,y+1) != "OoB") && (themap.getTile(x,y+1).terrain.getName() == "CaveFloor") && ((checklos == 0) || (themap.getLOS(fromx,fromy,x,y+1,losgrid) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "n"; north = 1; vis = 1;}
-	  if ((themap.getTile(x,y+1) != "OoB") && (themap.getTile(x,y+1).terrain.getName() == "CaveFloor")) { north = 1; }
-  	if ((themap.getTile(x,y-1) != "OoB") && (themap.getTile(x,y-1).terrain.getName() == "CaveFloor") && ((checklos == 0) || (themap.getLOS(fromx,fromy,x,y-1,losgrid) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "s"; south = 1; vis = 1;}
-  	if ((themap.getTile(x,y-1) != "OoB") && (themap.getTile(x,y-1).terrain.getName() == "CaveFloor")) { south = 1; }
-	  if ((themap.getTile(x-1,y) != "OoB") && (themap.getTile(x-1,y).terrain.getName() == "CaveFloor") && ((checklos == 0) || (themap.getLOS(fromx,fromy,x-1,y,losgrid) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "e"; east = 1; vis = 1;}
-	  if ((themap.getTile(x-1,y) != "OoB") && (themap.getTile(x-1,y).terrain.getName() == "CaveFloor")) { east = 1; }
-  	if ((themap.getTile(x+1,y) != "OoB") && (themap.getTile(x+1,y).terrain.getName() == "CaveFloor") && ((checklos == 0) || (themap.getLOS(fromx,fromy,x+1,y,losgrid) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "w"; west = 1; vis = 1;}
-  	if ((themap.getTile(x+1,y) != "OoB") && (themap.getTile(x+1,y).terrain.getName() == "CaveFloor")) { west = 1; }
+	  if ((themap.getTile(x,y+1) !== "OoB") && (themap.getTile(x,y+1).terrain.getName() === "CaveFloor") && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y+1,losgrid) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "n"; north = 1; vis = 1;}
+	  if ((themap.getTile(x,y+1) !== "OoB") && (themap.getTile(x,y+1).terrain.getName() === "CaveFloor")) { north = 1; }
+  	if ((themap.getTile(x,y-1) !== "OoB") && (themap.getTile(x,y-1).terrain.getName() === "CaveFloor") && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y-1,losgrid) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "s"; south = 1; vis = 1;}
+  	if ((themap.getTile(x,y-1) !== "OoB") && (themap.getTile(x,y-1).terrain.getName() === "CaveFloor")) { south = 1; }
+	  if ((themap.getTile(x-1,y) !== "OoB") && (themap.getTile(x-1,y).terrain.getName() === "CaveFloor") && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y,losgrid) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "e"; east = 1; vis = 1;}
+	  if ((themap.getTile(x-1,y) !== "OoB") && (themap.getTile(x-1,y).terrain.getName() === "CaveFloor")) { east = 1; }
+  	if ((themap.getTile(x+1,y) !== "OoB") && (themap.getTile(x+1,y).terrain.getName() === "CaveFloor") && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y,losgrid) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "w"; west = 1; vis = 1;}
+  	if ((themap.getTile(x+1,y) !== "OoB") && (themap.getTile(x+1,y).terrain.getName() === "CaveFloor")) { west = 1; }
 		
 	  var diagonal_dash = "";
 	  var addtoname_diagonal = "";
-	 	if ((themap.getTile(x+1,y-1) != "OoB") && (themap.getTile(x+1,y-1).terrain.getName() == "CaveFloor") && (south == 0) && (west == 0) && ((checklos == 0) || (themap.getLOS(fromx,fromy,x+1,y-1,losgrid) < LOS_THRESHOLD) ))
+	 	if ((themap.getTile(x+1,y-1) !== "OoB") && (themap.getTile(x+1,y-1).terrain.getName() === "CaveFloor") && (south === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y-1,losgrid) < LOS_THRESHOLD) ))
 	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "a"; vis = 1; }
-  	if ((themap.getTile(x+1,y+1) != "OoB") && (themap.getTile(x+1,y+1).terrain.getName() == "CaveFloor") && (north == 0) && (west == 0) && ((checklos == 0) || (themap.getLOS(fromx,fromy,x+1,y+1,losgrid) < LOS_THRESHOLD) )) 
+  	if ((themap.getTile(x+1,y+1) !== "OoB") && (themap.getTile(x+1,y+1).terrain.getName() === "CaveFloor") && (north === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y+1,losgrid) < LOS_THRESHOLD) )) 
   	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "b"; vis = 1; }
-	  if ((themap.getTile(x-1,y+1) != "OoB") && (themap.getTile(x-1,y+1).terrain.getName() == "CaveFloor") && (north == 0) && (east == 0) && ((checklos == 0) || (themap.getLOS(fromx,fromy,x-1,y+1,losgrid) < LOS_THRESHOLD) ))
+	  if ((themap.getTile(x-1,y+1) !== "OoB") && (themap.getTile(x-1,y+1).terrain.getName() === "CaveFloor") && (north === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y+1,losgrid) < LOS_THRESHOLD) ))
 	    { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "c"; vis = 1;}
-	 	if ((themap.getTile(x-1,y-1) != "OoB") && (themap.getTile(x-1,y-1).terrain.getName() == "CaveFloor") && (south == 0) && (east == 0) && ((checklos == 0) || (themap.getLOS(fromx,fromy,x-1,y-1,losgrid) < LOS_THRESHOLD) )) 
+	 	if ((themap.getTile(x-1,y-1) !== "OoB") && (themap.getTile(x-1,y-1).terrain.getName() === "CaveFloor") && (south === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y-1,losgrid) < LOS_THRESHOLD) )) 
 	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "d"; vis = 1; }
 	
 	  var foo = graphics[0].split('.');
 	  graphics[0] = foo[0] + cardinal_dash + addtoname_cardinal + diagonal_dash + addtoname_diagonal + '.' + foo[1];
-	  if (vis == 0) { 
+	  if (vis === 0) { 
 	  	var black = localFactory.createTile('BlankBlack');
 	  	var blkgraphics = black.getGraphicArray();
 	  	graphics[0] = blkgraphics[0];
 	  }
 	  var tmparray = new Array;
 	  tmparray[0] = .5;
-	  if (graphics[0].indexOf("-nsew") != -1) { this.setBlocksLOSArray(tmparray); }
+	  if (graphics[0].indexOf("-nsew") !== -1) { this.setBlocksLOSArray(tmparray); }
 	  return (graphics);
   }
 }
@@ -543,32 +543,32 @@ function SetBySurroundCoast() {
     var shallow;
     var localacre = themap.getTile(x,y-1);
     var tile; 
-    if (localacre != "OoB") {
+    if (localacre !== "OoB") {
     	tile = localacre.terrain;
-    	if (tile.getName() == "Ocean") { ocean = tile; }
-    	if (tile.getName() == "Water") { water = tile; }
-    	if (tile.getName() == "Shallows") { shallow = tile; }
+    	if (tile.getName() === "Ocean") { ocean = tile; }
+    	if (tile.getName() === "Water") { water = tile; }
+    	if (tile.getName() === "Shallows") { shallow = tile; }
     }
     localacre = themap.getTile(x,y+1);
-    if (localacre != "OoB") {
+    if (localacre !== "OoB") {
     	tile = localacre.terrain;
-    	if (tile.getName() == "Ocean") { ocean = tile; }
-    	if (tile.getName() == "Water") { water = tile; }
-    	if (tile.getName() == "Shallows") { shallow = tile;; }
+    	if (tile.getName() === "Ocean") { ocean = tile; }
+    	if (tile.getName() === "Water") { water = tile; }
+    	if (tile.getName() === "Shallows") { shallow = tile;; }
     }
     localacre = themap.getTile(x+1,y);
-    if (localacre != "OoB") {
+    if (localacre !== "OoB") {
     	tile = localacre.terrain;
-    	if (tile.getName() == "Ocean") { ocean = tile; }
-    	if (tile.getName() == "Water") { water = tile; }
-    	if (tile.getName() == "Shallows") { shallow = tile; }
+    	if (tile.getName() === "Ocean") { ocean = tile; }
+    	if (tile.getName() === "Water") { water = tile; }
+    	if (tile.getName() === "Shallows") { shallow = tile; }
     }
     localacre = themap.getTile(x-1,y);
-    if (localacre != "OoB") {
+    if (localacre !== "OoB") {
     	tile = localacre.terrain;
-    	if (tile.getName() == "Ocean") { ocean = tile; }
-    	if (tile.getName() == "Water") { water = tile; }
-    	if (tile.getName() == "Shallows") { shallow = tile; }
+    	if (tile.getName() === "Ocean") { ocean = tile; }
+    	if (tile.getName() === "Water") { water = tile; }
+    	if (tile.getName() === "Shallows") { shallow = tile; }
     }
     var chosentile;
     if (shallow) { chosentile = shallow; }
@@ -595,28 +595,28 @@ function SetBySurroundRoad() {
 
     var suffix = "";
 	  var localacre = themap.getTile(x+1,y);
-	  if (localacre != "OoB") {
+	  if (localacre !== "OoB") {
 	  	var tile = localacre.terrain;
-	  	if (tile.getName().indexOf("Road") != -1) { suffix = suffix + "e"; }
+	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "e"; }
 	  }	
 	  localacre = themap.getTile(x-1,y);
-	  if (localacre != "OoB") {
+	  if (localacre !== "OoB") {
 	  	var tile = localacre.terrain;
-	  	if (tile.getName().indexOf("Road") != -1) { suffix = suffix + "w"; }
+	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "w"; }
 	  }	
 	  localacre = themap.getTile(x,y-1);
-	  if (localacre != "OoB") {
+	  if (localacre !== "OoB") {
 	  	var tile = localacre.terrain;
-	  	if (tile.getName().indexOf("Road") != -1) { suffix = suffix + "n"; }
+	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "n"; }
 	  }	
 	  localacre = themap.getTile(x,y+1);
-	  if (localacre != "OoB") {
+	  if (localacre !== "OoB") {
 	  	var tile = localacre.terrain;
-	  	if (tile.getName().indexOf("Road") != -1) { suffix = suffix + "s"; }
+	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "s"; }
 	  }	
-	  if ((suffix == "ewns") || (suffix == "")) { suffix = "x"; }
-	  if ((suffix == "e") || (suffix == "w")) { suffix = "ew"; }
-	  if ((suffix == "n") || (suffix == "s")) { suffix = "ns"; }
+	  if ((suffix === "ewns") || (suffix === "")) { suffix = "x"; }
+	  if ((suffix === "e") || (suffix === "w")) { suffix = "ew"; }
+	  if ((suffix === "n") || (suffix === "s")) { suffix = "ns"; }
 	  graphics[0] = "road-" + suffix + ".gif";
 		return graphics;
 	}
@@ -637,62 +637,62 @@ function SetBySurroundRiver() {
 		var west;
 		var northacre = themap.getTile(x,y-1);
 		northtile = northacre.terrain;
-		if (northacre != "OoB") {
+		if (northacre !== "OoB") {
 			if (IsWet(northtile)) {
 				north = 1;
 			}
 		}
 		var southacre = themap.getTile(x,y+1);
 		var southtile = southacre.terrain;
-		if (southacre != "OoB") {
+		if (southacre !== "OoB") {
 			if (IsWet(southtile)) {
 				south = 1;
 			}
 		}
 		var eastacre = themap.getTile(x+1,y);
 		var easttile = eastacre.terrain;
-		if (eastacre != "OoB") {
+		if (eastacre !== "OoB") {
 			if (IsWet(easttile)) {
 				east = 1;
 			}
 		}
 		var westacre = themap.getTile(x-1,y);
 		var westtile = westacre.terrain;
-		if (westacre != "OoB") {
+		if (westacre !== "OoB") {
 			if (IsWet(westtile)) {
 				west = 1;
 			}
 		}
-		if ((north == 1) && (south == 1) && (east == 1) && (west == 1)) {
+		if ((north === 1) && (south === 1) && (east === 1) && (west === 1)) {
 			// this shouldn't happen, if it does I need to draw a + river piece
 			graphics[1] = "spacer.gif";
-		} else if ((north == 1) && (east == 1) && (south == 1)) {
+		} else if ((north === 1) && (east === 1) && (south === 1)) {
 			graphics[1] = "riverTright.gif";
-		} else if ((north == 1) && (west == 1) && (south == 1)) {
+		} else if ((north === 1) && (west === 1) && (south === 1)) {
 			graphics[1] = "riverTleft.gif";
-		} else if ((north == 1) && (east == 1) && (west == 1)) {
+		} else if ((north === 1) && (east === 1) && (west === 1)) {
 			graphics[1] = "riverTtop.gif";
-		} else if ((south == 1) && (east == 1) && (west == 1)) {
+		} else if ((south === 1) && (east === 1) && (west === 1)) {
 			graphics[1] = "riverTbottom.gif";
-		} else if ((east == 1) && (west == 1)) {
+		} else if ((east === 1) && (west === 1)) {
 			graphics[1] = "riverew.gif";
-		} else if ((north == 1) && (south == 1)) {
+		} else if ((north === 1) && (south === 1)) {
 			graphics[1] = "riverns.gif";
-		} else if ((north == 1) && (east == 1)) {
+		} else if ((north === 1) && (east === 1)) {
 			graphics[1] = "riverne.gif";
-		} else if ((north == 1) && (west == 1)) {
+		} else if ((north === 1) && (west === 1)) {
 			graphics[1] = "rivernw.gif";
-		} else if ((south == 1) && (east == 1)) {
+		} else if ((south === 1) && (east === 1)) {
 			graphics[1] = "riverse.gif";
-		} else if ((south == 1) && (west == 1)) {
+		} else if ((south === 1) && (west === 1)) {
 			graphics[1] = "riversw.gif";
-		} else if (north == 1) {
+		} else if (north === 1) {
 			graphics[1] = "riversources.gif";
-		} else if (east == 1) {
+		} else if (east === 1) {
 			graphics[1] = "riversourcew.gif";
-		} else if (west == 1) {
+		} else if (west === 1) {
 			graphics[1] = "riversourcee.gif";
-		} else if (south == 1) {
+		} else if (south === 1) {
 			graphics[1] = "riversourcen.gif";
 		}
 		return graphics;
@@ -701,10 +701,10 @@ function SetBySurroundRiver() {
 
 // General func
 function IsWet(tile) {
-	if (tile.getName() == "Ocean") { return 1; }
-	if (tile.getName() == "Water") { return 1; }
-	if (tile.getName() == "Shallows") { return 1; }
-	if (tile.getName() == "River") { return 1; }
+	if (tile.getName() === "Ocean") { return 1; }
+	if (tile.getName() === "Water") { return 1; }
+	if (tile.getName() === "Shallows") { return 1; }
+	if (tile.getName() === "River") { return 1; }
 	return 0;
 }
 // end multiple inheritance
@@ -717,7 +717,7 @@ function InanimateObject() {
   this.addType("InanimateObject");
 }
 
-InanimateObject.prototype = new GameObject;
+InanimateObject.prototype = new GameObject();
 
 InanimateObject.prototype.getWalkOnScript = function() {
 	return this.walkonscript;
@@ -764,7 +764,7 @@ function TerrainObject() {
   this.combatmap = "";
 }
 
-TerrainObject.prototype = new InanimateObject;
+TerrainObject.prototype = new InanimateObject();
 
 TerrainObject.prototype.serialize = function() {
   var name = this.name;
@@ -805,7 +805,7 @@ function BlankWhiteTile() {
   this.blocklos = 1;
   this.passable = MOVE_ETHEREAL;
 }
-BlankWhiteTile.prototype = new TerrainObject;
+BlankWhiteTile.prototype = new TerrainObject();
 
 function OceanTile() {
   this.name = "Ocean";
@@ -817,7 +817,7 @@ function OceanTile() {
   this.spriteyoffset = "0";
   this.combatmap = "Water";
 }
-OceanTile.prototype = new TerrainObject;
+OceanTile.prototype = new TerrainObject();
 
 function WaterTile() {
   this.name = "Water";
@@ -829,7 +829,7 @@ function WaterTile() {
   this.spriteyoffset = "0";
   this.combatmap = "Water";
 }
-WaterTile.prototype = new TerrainObject;
+WaterTile.prototype = new TerrainObject();
 
 WaterTile.prototype.walkon = function(walker) {
   var resp = InWater(walker);
@@ -851,7 +851,7 @@ function ShallowsTile() {
   this.spriteyoffset = "0";
   this.combatmap = "Water";
 }
-ShallowsTile.prototype = new TerrainObject;
+ShallowsTile.prototype = new TerrainObject();
 
 ShallowsTile.prototype.walkon = function(walker) {
   var resp = InWater(walker);
@@ -877,7 +877,7 @@ function InWater(who) {
   var tile = localmap.getTile(who.getx(),who.gety());
   var feats = tile.getFeatures();
   if (feats) {
-    for (i=0;i<feats.length;i++) {
+    for (var i=0;i<feats.length;i++) {
       if (MOVE_WALK & feats[i].getPassable()) {
         return "";
       }
@@ -903,7 +903,7 @@ function MountainTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.combatmap = "Hill";
 }
-MountainTile.prototype = new TerrainObject;
+MountainTile.prototype = new TerrainObject();
 
 function StoneWallTile() {
   this.name = "StoneWall";
@@ -916,7 +916,7 @@ function StoneWallTile() {
   this.prefix = "a";
   this.desc = "stone wall";
 }
-StoneWallTile.prototype = new TerrainObject;
+StoneWallTile.prototype = new TerrainObject();
 
 function StoneTile() {
   this.name = "Stone";
@@ -929,7 +929,7 @@ function StoneTile() {
   this.prefix = "a";
   this.desc = "stone";
 }
-StoneTile.prototype = new TerrainObject;
+StoneTile.prototype = new TerrainObject();
 
 function DirtStoneTile() {
   this.name = "DirtStone";
@@ -942,7 +942,7 @@ function DirtStoneTile() {
   this.prefix = "a";
   this.desc = "stone";
 }
-DirtStoneTile.prototype = new TerrainObject;
+DirtStoneTile.prototype = new TerrainObject();
 
 function MastTile() {
   this.name = "Mast";
@@ -956,7 +956,7 @@ function MastTile() {
   this.prefix = "a";
   this.desc = "mast";
 }
-MastTile.prototype = new TerrainObject;
+MastTile.prototype = new TerrainObject();
 
 function RiggingTile() {
   this.name = "Rigging";
@@ -968,7 +968,7 @@ function RiggingTile() {
   this.blocklos = 0;
   this.desc = "ship's rigging";
 }
-RiggingTile.prototype = new TerrainObject;
+RiggingTile.prototype = new TerrainObject();
 
 function PillarTile() {
   this.name = "Pillar";
@@ -981,7 +981,7 @@ function PillarTile() {
   this.prefix = "a";
   this.desc = "pillar";
 }
-PillarTile.prototype = new TerrainObject;
+PillarTile.prototype = new TerrainObject();
 
 function FountainSWTile() {
   this.name = "FountainSW";
@@ -994,7 +994,7 @@ function FountainSWTile() {
   this.prefix = "a";
   this.desc = "fountain";
 }
-FountainSWTile.prototype = new TerrainObject;
+FountainSWTile.prototype = new TerrainObject();
 
 function FountainSETile() {
   this.name = "FountainSE";
@@ -1007,7 +1007,7 @@ function FountainSETile() {
   this.prefix = "a";
   this.desc = "fountain";
 }
-FountainSETile.prototype = new TerrainObject;
+FountainSETile.prototype = new TerrainObject();
 
 function FountainNWTile() {
   this.name = "FountainNW";
@@ -1020,7 +1020,7 @@ function FountainNWTile() {
   this.prefix = "a";
   this.desc = "fountain";
 }
-FountainNWTile.prototype = new TerrainObject;
+FountainNWTile.prototype = new TerrainObject();
 
 function FountainNETile() {
   this.name = "FountainNE";
@@ -1033,7 +1033,7 @@ function FountainNETile() {
   this.prefix = "a";
   this.desc = "fountain";
 }
-FountainNETile.prototype = new TerrainObject;
+FountainNETile.prototype = new TerrainObject();
 
 function LetterATile() {
   this.name = "LetterA";
@@ -1047,7 +1047,7 @@ function LetterATile() {
   this.prefix = "an";
   this.desc = "A";
 }
-LetterATile.prototype = new TerrainObject;
+LetterATile.prototype = new TerrainObject();
 
 function LetterBTile() {
   this.name = "LetterB";
@@ -1061,7 +1061,7 @@ function LetterBTile() {
   this.prefix = "a";
   this.desc = "B";
 }
-LetterBTile.prototype = new TerrainObject;
+LetterBTile.prototype = new TerrainObject();
 
 function LetterCTile() {
   this.name = "LetterC";
@@ -1075,7 +1075,7 @@ function LetterCTile() {
   this.prefix = "a";
   this.desc = "C";
 }
-LetterCTile.prototype = new TerrainObject;
+LetterCTile.prototype = new TerrainObject();
 
 function LetterDTile() {
   this.name = "LetterD";
@@ -1089,7 +1089,7 @@ function LetterDTile() {
   this.prefix = "a";
   this.desc = "D";
 }
-LetterDTile.prototype = new TerrainObject;
+LetterDTile.prototype = new TerrainObject();
 
 function LetterETile() {
   this.name = "LetterE";
@@ -1103,7 +1103,7 @@ function LetterETile() {
   this.prefix = "an";
   this.desc = "E";
 }
-LetterETile.prototype = new TerrainObject;
+LetterETile.prototype = new TerrainObject();
 
 function LetterFTile() {
   this.name = "LetterF";
@@ -1117,7 +1117,7 @@ function LetterFTile() {
   this.prefix = "an";
   this.desc = "F";
 }
-LetterFTile.prototype = new TerrainObject;
+LetterFTile.prototype = new TerrainObject();
 
 function LetterGTile() {
   this.name = "LetterG";
@@ -1131,7 +1131,7 @@ function LetterGTile() {
   this.prefix = "a";
   this.desc = "G";
 }
-LetterGTile.prototype = new TerrainObject;
+LetterGTile.prototype = new TerrainObject();
 
 function LetterHTile() {
   this.name = "LetterH";
@@ -1145,7 +1145,7 @@ function LetterHTile() {
   this.prefix = "an";
   this.desc = "H";
 }
-LetterHTile.prototype = new TerrainObject;
+LetterHTile.prototype = new TerrainObject();
 
 function LetterITile() {
   this.name = "LetterI";
@@ -1159,7 +1159,7 @@ function LetterITile() {
   this.prefix = "an";
   this.desc = "I";
 }
-LetterITile.prototype = new TerrainObject;
+LetterITile.prototype = new TerrainObject();
 
 function LetterJTile() {
   this.name = "LetterJ";
@@ -1173,7 +1173,7 @@ function LetterJTile() {
   this.prefix = "a";
   this.desc = "J";
 }
-LetterJTile.prototype = new TerrainObject;
+LetterJTile.prototype = new TerrainObject();
 
 function LetterKTile() {
   this.name = "LetterK";
@@ -1187,7 +1187,7 @@ function LetterKTile() {
   this.prefix = "a";
   this.desc = "K";
 }
-LetterKTile.prototype = new TerrainObject;
+LetterKTile.prototype = new TerrainObject();
 
 function LetterLTile() {
   this.name = "LetterL";
@@ -1201,7 +1201,7 @@ function LetterLTile() {
   this.prefix = "an";
   this.desc = "L";
 }
-LetterLTile.prototype = new TerrainObject;
+LetterLTile.prototype = new TerrainObject();
 
 function LetterMTile() {
   this.name = "LetterM";
@@ -1215,7 +1215,7 @@ function LetterMTile() {
   this.prefix = "an";
   this.desc = "M";
 }
-LetterMTile.prototype = new TerrainObject;
+LetterMTile.prototype = new TerrainObject();
 
 function LetterNTile() {
   this.name = "LetterN";
@@ -1229,7 +1229,7 @@ function LetterNTile() {
   this.prefix = "an";
   this.desc = "N";
 }
-LetterNTile.prototype = new TerrainObject;
+LetterNTile.prototype = new TerrainObject();
 
 function LetterOTile() {
   this.name = "LetterO";
@@ -1243,7 +1243,7 @@ function LetterOTile() {
   this.prefix = "an";
   this.desc = "O";
 }
-LetterOTile.prototype = new TerrainObject;
+LetterOTile.prototype = new TerrainObject();
 
 function LetterPTile() {
   this.name = "LetterP";
@@ -1257,7 +1257,7 @@ function LetterPTile() {
   this.prefix = "a";
   this.desc = "P";
 }
-LetterPTile.prototype = new TerrainObject;
+LetterPTile.prototype = new TerrainObject();
 
 function LetterQTile() {
   this.name = "LetterQ";
@@ -1271,7 +1271,7 @@ function LetterQTile() {
   this.prefix = "a";
   this.desc = "Q";
 }
-LetterQTile.prototype = new TerrainObject;
+LetterQTile.prototype = new TerrainObject();
 
 function LetterRTile() {
   this.name = "LetterR";
@@ -1285,7 +1285,7 @@ function LetterRTile() {
   this.prefix = "an";
   this.desc = "R";
 }
-LetterRTile.prototype = new TerrainObject;
+LetterRTile.prototype = new TerrainObject();
 
 function LetterSTile() {
   this.name = "LetterS";
@@ -1299,7 +1299,7 @@ function LetterSTile() {
   this.prefix = "an";
   this.desc = "S";
 }
-LetterSTile.prototype = new TerrainObject;
+LetterSTile.prototype = new TerrainObject();
 
 function LetterTTile() {
   this.name = "LetterT";
@@ -1313,7 +1313,7 @@ function LetterTTile() {
   this.prefix = "a";
   this.desc = "T";
 }
-LetterTTile.prototype = new TerrainObject;
+LetterTTile.prototype = new TerrainObject();
 
 function LetterUTile() {
   this.name = "LetterU";
@@ -1327,7 +1327,7 @@ function LetterUTile() {
   this.prefix = "a";
   this.desc = "U";
 }
-LetterUTile.prototype = new TerrainObject;
+LetterUTile.prototype = new TerrainObject();
 
 function LetterVTile() {
   this.name = "LetterV";
@@ -1341,7 +1341,7 @@ function LetterVTile() {
   this.prefix = "a";
   this.desc = "V";
 }
-LetterVTile.prototype = new TerrainObject;
+LetterVTile.prototype = new TerrainObject();
 
 function LetterWTile() {
   this.name = "LetterW";
@@ -1355,7 +1355,7 @@ function LetterWTile() {
   this.prefix = "a";
   this.desc = "W";
 }
-LetterWTile.prototype = new TerrainObject;
+LetterWTile.prototype = new TerrainObject();
 
 function LetterXTile() {
   this.name = "LetterX";
@@ -1369,7 +1369,7 @@ function LetterXTile() {
   this.prefix = "an";
   this.desc = "X";
 }
-LetterXTile.prototype = new TerrainObject;
+LetterXTile.prototype = new TerrainObject();
 
 function LetterYTile() {
   this.name = "LetterY";
@@ -1383,7 +1383,7 @@ function LetterYTile() {
   this.prefix = "a";
   this.desc = "Y";
 }
-LetterYTile.prototype = new TerrainObject;
+LetterYTile.prototype = new TerrainObject();
 
 function LetterZTile() {
   this.name = "LetterZ";
@@ -1397,7 +1397,7 @@ function LetterZTile() {
   this.prefix = "a";
   this.desc = "Z";
 }
-LetterZTile.prototype = new TerrainObject;
+LetterZTile.prototype = new TerrainObject();
 
 function HorizontalCounterTile() {
   this.name = "HorizontalCounter";
@@ -1411,7 +1411,7 @@ function HorizontalCounterTile() {
   this.prefix = "a";
   this.desc = "counter";
 }
-HorizontalCounterTile.prototype = new TerrainObject;
+HorizontalCounterTile.prototype = new TerrainObject();
 
 function RightCounterTile() {
   this.name = "RightCounter";
@@ -1425,7 +1425,7 @@ function RightCounterTile() {
   this.prefix = "a";
   this.desc = "counter";
 }
-RightCounterTile.prototype = new TerrainObject;
+RightCounterTile.prototype = new TerrainObject();
 
 function LeftCounterTile() {
   this.name = "LeftCounter";
@@ -1439,7 +1439,7 @@ function LeftCounterTile() {
   this.prefix = "a";
   this.desc = "counter";
 }
-LeftCounterTile.prototype = new TerrainObject;
+LeftCounterTile.prototype = new TerrainObject();
 
 function CounterBoxTile() {
   this.name = "CounterBox";
@@ -1453,7 +1453,7 @@ function CounterBoxTile() {
   this.prefix = "a";
   this.desc = "counter";
 }
-CounterBoxTile.prototype = new TerrainObject;
+CounterBoxTile.prototype = new TerrainObject();
 
 function BlankBlackTile() {
   this.name = "BlankBlack";
@@ -1465,7 +1465,7 @@ function BlankBlackTile() {
   this.blocklos = 0;
   this.desc = "darkness";
 }
-BlankBlackTile.prototype = new TerrainObject;
+BlankBlackTile.prototype = new TerrainObject();
 
 function WallTile() {
   this.name = "Wall";
@@ -1478,7 +1478,7 @@ function WallTile() {
   this.prefix = "a";
   this.desc = "wall";
 }
-WallTile.prototype = new TerrainObject;
+WallTile.prototype = new TerrainObject();
 
 function ArrowSlitTile() {
 	this.name = "ArrowSlit";
@@ -1495,7 +1495,7 @@ function ArrowSlitTile() {
 	this.desc = "arrow slit";
 
 }
-ArrowSlitTile.prototype = new TerrainObject;
+ArrowSlitTile.prototype = new TerrainObject();
 
 function WindowTile() {
 	this.name = "Window";
@@ -1510,7 +1510,7 @@ function WindowTile() {
 	this.desc = "window";
 
 }
-WindowTile.prototype = new TerrainObject;
+WindowTile.prototype = new TerrainObject();
 
 function WallNETile() {
   this.name = "WallNE";
@@ -1523,7 +1523,7 @@ function WallNETile() {
   this.prefix = "a";
   this.desc = "wall";
 }
-WallNETile.prototype = new TerrainObject;
+WallNETile.prototype = new TerrainObject();
 
 function WallNWTile() {
   this.name = "WallNW";
@@ -1536,7 +1536,7 @@ function WallNWTile() {
   this.prefix = "a";
   this.desc = "wall";
 }
-WallNWTile.prototype = new TerrainObject;
+WallNWTile.prototype = new TerrainObject();
 
 function WallSWTile() {
   this.name = "WallSW";
@@ -1549,7 +1549,7 @@ function WallSWTile() {
   this.prefix = "a";
   this.desc = "wall";
 }
-WallSWTile.prototype = new TerrainObject;
+WallSWTile.prototype = new TerrainObject();
 
 function WallSETile() {
   this.name = "WallSE";
@@ -1562,7 +1562,7 @@ function WallSETile() {
   this.prefix = "a";
   this.desc = "wall";
 }
-WallSETile.prototype = new TerrainObject;
+WallSETile.prototype = new TerrainObject();
 
 function VerticalCounterTile() {
   this.name = "VerticalCounter";
@@ -1576,7 +1576,7 @@ function VerticalCounterTile() {
   this.prefix = "a";
   this.desc = "counter";
 }
-VerticalCounterTile.prototype = new TerrainObject;
+VerticalCounterTile.prototype = new TerrainObject();
 
 function BottomCounterTile() {
   this.name = "BottomCounter";
@@ -1590,7 +1590,7 @@ function BottomCounterTile() {
   this.prefix = "a";
   this.desc = "counter";
 }
-BottomCounterTile.prototype = new TerrainObject;
+BottomCounterTile.prototype = new TerrainObject();
 
 function TopCounterTile() {
   this.name = "TopCounter";
@@ -1604,7 +1604,7 @@ function TopCounterTile() {
   this.prefix = "a";
   this.desc = "counter";
 }
-TopCounterTile.prototype = new TerrainObject;
+TopCounterTile.prototype = new TerrainObject();
 
 function PlanksNSTile() {
   this.name = "PlanksNS";
@@ -1616,7 +1616,7 @@ function PlanksNSTile() {
   this.blocklos = 0;
   this.desc = "wooden planks";
 }
-PlanksNSTile.prototype = new TerrainObject;
+PlanksNSTile.prototype = new TerrainObject();
 
 function SouthCoastTile() {
   this.name = "SouthCoast";
@@ -1629,7 +1629,7 @@ function SouthCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
 }
-SouthCoastTile.prototype = new TerrainObject;
+SouthCoastTile.prototype = new TerrainObject();
 
 function NorthCoastTile() {
   this.name = "NorthCoast";
@@ -1642,7 +1642,7 @@ function NorthCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
 }
-NorthCoastTile.prototype = new TerrainObject;
+NorthCoastTile.prototype = new TerrainObject();
 
 function EastCoastTile() {
   this.name = "EastCoast";
@@ -1655,7 +1655,7 @@ function EastCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
 }
-EastCoastTile.prototype = new TerrainObject;
+EastCoastTile.prototype = new TerrainObject();
 
 function WestCoastTile() {
   this.name = "WestCoast";
@@ -1668,7 +1668,7 @@ function WestCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
 }
-WestCoastTile.prototype = new TerrainObject;
+WestCoastTile.prototype = new TerrainObject();
 
 function NortheastCoastTile() {
   this.name = "NortheastCoast";
@@ -1683,7 +1683,7 @@ function NortheastCoastTile() {
   
   SetBySurroundCoast.call(this);
 }
-NortheastCoastTile.prototype = new TerrainObject;
+NortheastCoastTile.prototype = new TerrainObject();
 
 function SouthwestCoastTile() {
   this.name = "SouthwestCoast";
@@ -1698,7 +1698,7 @@ function SouthwestCoastTile() {
   
   SetBySurroundCoast.call(this);
 }
-SouthwestCoastTile.prototype = new TerrainObject;
+SouthwestCoastTile.prototype = new TerrainObject();
 
 function NorthwestCoastTile() {
   this.name = "NorthwestCoast";
@@ -1713,7 +1713,7 @@ function NorthwestCoastTile() {
   
   SetBySurroundCoast.call(this);
 }
-NorthwestCoastTile.prototype = new TerrainObject;
+NorthwestCoastTile.prototype = new TerrainObject();
 
 function SoutheastCoastTile() {
   this.name = "SoutheastCoast";
@@ -1728,7 +1728,7 @@ function SoutheastCoastTile() {
   
   SetBySurroundCoast.call(this);
 }
-SoutheastCoastTile.prototype = new TerrainObject;
+SoutheastCoastTile.prototype = new TerrainObject();
 
 function RiverTile() {
   this.name = "River";
@@ -1744,7 +1744,7 @@ function RiverTile() {
   
   SetBySurroundRiver.call(this);
 }
-RiverTile.prototype = new TerrainObject;
+RiverTile.prototype = new TerrainObject();
 
 function CobblestoneTile() {
   this.name = "Cobblestone";
@@ -1756,7 +1756,7 @@ function CobblestoneTile() {
   this.blocklos = 0;
   this.desc = "cobblestones";
 }
-CobblestoneTile.prototype = new TerrainObject;
+CobblestoneTile.prototype = new TerrainObject();
 
 function PlanksEWTile() {
   this.name = "PlanksEW";
@@ -1768,7 +1768,7 @@ function PlanksEWTile() {
   this.blocklos = 0;
   this.desc = "wooden planks";
 }
-PlanksEWTile.prototype = new TerrainObject;
+PlanksEWTile.prototype = new TerrainObject();
 
 function GrassTile() {
   this.name = "Grass";
@@ -1782,7 +1782,7 @@ function GrassTile() {
 
   this.combatmap = "Grass"; 
 }
-GrassTile.prototype = new TerrainObject;
+GrassTile.prototype = new TerrainObject();
 
 function DirtTile() {
   this.name = "Dirt";
@@ -1795,7 +1795,7 @@ function DirtTile() {
   this.desc = "dirt";
   this.combatmap = "Grass";
 }
-DirtTile.prototype = new TerrainObject;
+DirtTile.prototype = new TerrainObject();
 
 
 function RoadTile() {
@@ -1811,7 +1811,7 @@ function RoadTile() {
   
   SetBySurroundRoad.call(this);
 }
-RoadTile.prototype = new TerrainObject;
+RoadTile.prototype = new TerrainObject();
 
 function BrushTile() {
   this.name = "Brush";
@@ -1825,7 +1825,7 @@ function BrushTile() {
   this.initdelay = 1.1;
   this.combatmap = "Brush";
 }
-BrushTile.prototype = new TerrainObject;
+BrushTile.prototype = new TerrainObject();
 
 function BrushNCoastTile() {
   this.name = "BrushNCoast";
@@ -1839,7 +1839,7 @@ function BrushNCoastTile() {
   this.initdelay = 1.1;
   this.combatmap = "Brush";
 }
-BrushNCoastTile.prototype = new TerrainObject;
+BrushNCoastTile.prototype = new TerrainObject();
 
 function BrushECoastTile() {
   this.name = "BrushECoast";
@@ -1853,7 +1853,7 @@ function BrushECoastTile() {
   this.initdelay = 1.1;
   this.combatmap = "Brush";
 }
-BrushECoastTile.prototype = new TerrainObject;
+BrushECoastTile.prototype = new TerrainObject();
 
 function BrushSCoastTile() {
   this.name = "BrushSCoast";
@@ -1867,7 +1867,7 @@ function BrushSCoastTile() {
   this.initdelay = 1.1;
   this.combatmap = "Brush";
 }
-BrushSCoastTile.prototype = new TerrainObject;
+BrushSCoastTile.prototype = new TerrainObject();
 
 function BrushWCoastTile() {
   this.name = "BrushWCoast";
@@ -1881,7 +1881,7 @@ function BrushWCoastTile() {
   this.initdelay = 1.1;  
   this.combatmap = "Brush";
 }
-BrushWCoastTile.prototype = new TerrainObject;
+BrushWCoastTile.prototype = new TerrainObject();
 
 function ForestTile() {
   this.name = "Forest";
@@ -1897,7 +1897,7 @@ function ForestTile() {
   this.initdelay = 1.3;
   this.combatmap = "Forest";
 }
-ForestTile.prototype = new TerrainObject;
+ForestTile.prototype = new TerrainObject();
 
 function GroveTile() {
 	this.name = "Grove";
@@ -1911,7 +1911,7 @@ function GroveTile() {
   this.desc = "trees";
   this.initdelay = 1.3;
 }
-GroveTile.prototype = new TerrainObject;
+GroveTile.prototype = new TerrainObject();
 	
 function ForestNCoastTile() {
 	this.name = "ForestNCoast";
@@ -1927,7 +1927,7 @@ function ForestNCoastTile() {
   this.initdelay = 1.3;
   this.combatmap = "Forest";
 }
-ForestNCoastTile.prototype = new TerrainObject;
+ForestNCoastTile.prototype = new TerrainObject();
 
 function ForestECoastTile() {
 	this.name = "ForestECoast";
@@ -1943,7 +1943,7 @@ function ForestECoastTile() {
   this.initdelay = 1.3;
   this.combatmap = "Forest";
 }
-ForestECoastTile.prototype = new TerrainObject;
+ForestECoastTile.prototype = new TerrainObject();
 
 function ForestSCoastTile() {
 	this.name = "ForestSCoast";
@@ -1959,7 +1959,7 @@ function ForestSCoastTile() {
   this.initdelay = 1.3;
   this.combatmap = "Forest";
 }
-ForestSCoastTile.prototype = new TerrainObject;
+ForestSCoastTile.prototype = new TerrainObject();
 
 function ForestWCoastTile() {
 	this.name = "ForestWCoast";
@@ -1975,7 +1975,7 @@ function ForestWCoastTile() {
   this.initdelay = 1.3;
   this.combatmap = "Forest";
 }
-ForestWCoastTile.prototype = new TerrainObject;
+ForestWCoastTile.prototype = new TerrainObject();
 
 function HillsTile() {
   this.name = "Hills";
@@ -1992,7 +1992,7 @@ function HillsTile() {
   this.initdelay = 1.5;
   this.combatmap = "Hill";
 }
-HillsTile.prototype = new TerrainObject;
+HillsTile.prototype = new TerrainObject();
 
 function PurpleCobblestoneTile() {
   this.name = "PurpleCobblestone";
@@ -2004,7 +2004,7 @@ function PurpleCobblestoneTile() {
   this.blocklos = 0;
   this.desc = "cobblestone";
 }
-PurpleCobblestoneTile.prototype = new TerrainObject;
+PurpleCobblestoneTile.prototype = new TerrainObject();
 
 function SwampTile() {
   this.name = "Swamp";
@@ -2018,7 +2018,8 @@ function SwampTile() {
   this.initdelay = 1.2;
   this.combatmap = "Swamp";
 }
-SwampTile.prototype = new TerrainObject;
+SwampTile.prototype = new TerrainObject();
+
 SwampTile.prototype.walkon = function(person) {
   var resp = InASwamp(person);
   return resp;
@@ -2058,7 +2059,7 @@ function ShinglesTile() {
   this.prefix = "a";
   this.desc = "roof";
 }
-ShinglesTile.prototype = new TerrainObject;
+ShinglesTile.prototype = new TerrainObject();
 
 function ShinglesTopTile() {
   this.name = "ShinglesTop";
@@ -2071,7 +2072,7 @@ function ShinglesTopTile() {
   this.prefix = "a";
   this.desc = "roof";
 }
-ShinglesTopTile.prototype = new TerrainObject;
+ShinglesTopTile.prototype = new TerrainObject();
 
 function CaveFloorTile() {
 	this.name = "CaveFloor";
@@ -2083,7 +2084,7 @@ function CaveFloorTile() {
 	
 	Tiling.call(this, 2);
 }
-CaveFloorTile.prototype = new TerrainObject;
+CaveFloorTile.prototype = new TerrainObject();
 
 function CaveWallTile() {
 	this.name = "CaveWall";
@@ -2096,7 +2097,7 @@ function CaveWallTile() {
 	Tiling.call(this, 2);
 	SetBySurround.call(this);
 }
-CaveWallTile.prototype = new TerrainObject;
+CaveWallTile.prototype = new TerrainObject();
 
 function HexFloorTile() {
 	this.name = "HexFloor";
@@ -2108,7 +2109,7 @@ function HexFloorTile() {
 	this.blocklos = 0;
 	this.desc = "floor";
 }
-HexFloorTile.prototype = new TerrainObject;
+HexFloorTile.prototype = new TerrainObject();
 
 
 function SeeBelowTile() {
@@ -2118,7 +2119,7 @@ function SeeBelowTile() {
   this.blocklos = 0;
   this.desc = "roof";
 }
-SeeBelowTile.prototype = new TerrainObject;
+SeeBelowTile.prototype = new TerrainObject();
 
 // Features!
 function FeatureObject() {
@@ -2127,7 +2128,7 @@ function FeatureObject() {
   this.showSearched = 0;
   this.gold = 0;
 }
-FeatureObject.prototype = new InanimateObject;
+FeatureObject.prototype = new InanimateObject();
 
 FeatureObject.prototype.setGold = function(newgold) {
   newgold = parseInt(newgold);
@@ -2159,7 +2160,7 @@ FeatureObject.prototype.setSearchYield = function(searchable) {
 
 FeatureObject.prototype.addToSearchYield = function(searchable) {
   if (!this.searchYield.length) {
-    this.searchYield = new Array;
+    this.searchYield = [];
   }
   this.searchYield.push(searchable);
 }
@@ -2187,7 +2188,7 @@ function LavaTile() {
   
   LightEmitting.call(this, 1);
 }
-LavaTile.prototype = new FeatureObject;
+LavaTile.prototype = new FeatureObject();
 
 LavaTile.prototype.walkon = function(person) {
   // return messages, perform action
@@ -2207,7 +2208,7 @@ function DungeonTile() {
 
   Enterable.call(this, "null", 0, 0);
 }
-DungeonTile.prototype = new FeatureObject;
+DungeonTile.prototype = new FeatureObject();
 
 function CaveTile() {
   this.name = "Cave";
@@ -2219,7 +2220,7 @@ function CaveTile() {
 
   Enterable.call(this, "null", 0, 0);
 }
-CaveTile.prototype = new FeatureObject;
+CaveTile.prototype = new FeatureObject();
 
 function TowneTile() {
   this.name = "Towne";
@@ -2231,7 +2232,7 @@ function TowneTile() {
 
   Enterable.call(this, "null", 0, 0);
 }
-TowneTile.prototype = new FeatureObject;
+TowneTile.prototype = new FeatureObject();
 
 function KeepTile() {
   this.name = "Keep";
@@ -2243,7 +2244,7 @@ function KeepTile() {
 
   Enterable.call(this, "null", 0, 0);
 }
-KeepTile.prototype = new FeatureObject;
+KeepTile.prototype = new FeatureObject();
 
 function GrassTowerTile() {
   this.name = "GrassTower";
@@ -2255,7 +2256,7 @@ function GrassTowerTile() {
 
   Enterable.call(this, "null", 0, 0);
 }
-GrassTowerTile.prototype = new FeatureObject;
+GrassTowerTile.prototype = new FeatureObject();
 
 function HillTowerTile() {
   this.name = "HillTower";
@@ -2267,7 +2268,7 @@ function HillTowerTile() {
 
   Enterable.call(this, "null", 0, 0);
 }
-HillTowerTile.prototype = new FeatureObject;
+HillTowerTile.prototype = new FeatureObject();
 
 function LighthouseTile() {
   this.name = "Lighthouse";
@@ -2279,7 +2280,7 @@ function LighthouseTile() {
 
   Enterable.call(this, "null", 0, 0);
 }
-LighthouseTile.prototype = new FeatureObject;
+LighthouseTile.prototype = new FeatureObject();
 
 function VillageTile() {
   this.name = "Village";
@@ -2291,7 +2292,7 @@ function VillageTile() {
 
   Enterable.call(this, "null", 0, 0);
 }
-VillageTile.prototype = new FeatureObject;
+VillageTile.prototype = new FeatureObject();
 
 function CastleTile() {
   this.name = "Castle";
@@ -2302,7 +2303,7 @@ function CastleTile() {
 
   Enterable.call(this, "null", 0, 0);
 }
-CastleTile.prototype = new FeatureObject;
+CastleTile.prototype = new FeatureObject();
 
 function LeftCastleTile() {
   this.name = "LeftCastle";
@@ -2311,7 +2312,7 @@ function LeftCastleTile() {
   this.blocklos = 0;
   this.desc = "Castle Olympus";
 }
-LeftCastleTile.prototype = new FeatureObject;
+LeftCastleTile.prototype = new FeatureObject();
 
 function RightCastleTile() {
   this.name = "RightCastle";
@@ -2320,7 +2321,7 @@ function RightCastleTile() {
   this.blocklos = 0;
   this.desc = "Castle Olympus";
 }
-RightCastleTile.prototype = new FeatureObject;
+RightCastleTile.prototype = new FeatureObject();
 
 function DoorwayTile() {
   this.name = "Doorway";
@@ -2333,7 +2334,7 @@ function DoorwayTile() {
   
   SetByBelow.call(this);
 }
-DoorwayTile.prototype = new FeatureObject;
+DoorwayTile.prototype = new FeatureObject();
 
 function StoneDoorwayTile() {
   this.name = "StoneDoorway";
@@ -2346,7 +2347,7 @@ function StoneDoorwayTile() {
   
 //  SetByBelow.call(this);
 }
-StoneDoorwayTile.prototype = new FeatureObject;
+StoneDoorwayTile.prototype = new FeatureObject();
 
 function ShrineTile() {
   this.name = "Shrine";
@@ -2358,7 +2359,7 @@ function ShrineTile() {
 
 //  Enterable.call(this, "null", 0, 0);
 }
-ShrineTile.prototype = new FeatureObject;
+ShrineTile.prototype = new FeatureObject();
 
 function BrokenShrineTile() {
   this.name = "BrokenShrine";
@@ -2370,7 +2371,7 @@ function BrokenShrineTile() {
 
 //  Enterable.call(this, "null", 0, 0);
 }
-BrokenShrineTile.prototype = new FeatureObject;
+BrokenShrineTile.prototype = new FeatureObject();
 
 function RuinsTile() {
   this.name = "Ruins";
@@ -2382,7 +2383,7 @@ function RuinsTile() {
 
   Enterable.call(this, "null", 0, 0);
 }
-RuinsTile.prototype = new FeatureObject;
+RuinsTile.prototype = new FeatureObject();
 
 function ChestTile() {
   Lockable.call(this, "008.gif", "008.gif", "008.gif", 	"a",  "chest", "a", "locked chest", "a", "magically locked chest");
@@ -2393,10 +2394,10 @@ function ChestTile() {
 	this.prefix = "a";
 	this.desc = "chest";
 	
-	this.container = new Array;
+	this.container = [];
 	OpenContainer.call(this);
 }
-ChestTile.prototype = new FeatureObject;
+ChestTile.prototype = new FeatureObject();
 
 function DoorWindowTile() {
   Lockable.call(this, "009.gif", "010.gif", "067.gif", "a", "door", "a", "locked door", "a", "magically locked door");
@@ -2414,7 +2415,7 @@ function DoorWindowTile() {
 	SetByBelow.call(this);
   Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0);
 }
-DoorWindowTile.prototype = new FeatureObject;
+DoorWindowTile.prototype = new FeatureObject();
 
 function StonePortcullisTile() {
   Lockable.call(this, "stone-portcullis.gif", "stone-portcullis.gif", "stone-portcullis.gif", "a", "portcullis", "a", "portcullis", "a", "portcullis");
@@ -2430,7 +2431,7 @@ function StonePortcullisTile() {
 //	SetByBelow.call(this);
   Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "stone-arch.gif", 0, 0], 0);
 }
-StonePortcullisTile.prototype = new FeatureObject;
+StonePortcullisTile.prototype = new FeatureObject();
 
 function CorpseTile() {
 	this.name = "Corpse";
@@ -2441,7 +2442,7 @@ function CorpseTile() {
 	this.desc = "corpse";
 	this.showSearched = 1;
 }
-CorpseTile.prototype = new FeatureObject;
+CorpseTile.prototype = new FeatureObject();
 
 function BloodTile() {
 	this.name = "Blood";
@@ -2452,7 +2453,7 @@ function BloodTile() {
   this.desc = "blood";
   this.showSearched = 1;
 }
-BloodTile.prototype = new FeatureObject;
+BloodTile.prototype = new FeatureObject();
 
 function EnergyFieldTile() {
 	this.name = "EnergyField";
@@ -2468,7 +2469,7 @@ function EnergyFieldTile() {
 	
 	LightEmitting.call(this, 1);
 }
-EnergyFieldTile.prototype = new FeatureObject;
+EnergyFieldTile.prototype = new FeatureObject();
 
 function TorchWestTile() {
 	this.name = "TorchWest";
@@ -2476,14 +2477,13 @@ function TorchWestTile() {
 	this.overlay = "torch_l.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
-//	this.light = 2;  // 2 tiles of "bright"
   this.prefix = "a";
 	this.desc = "torch";
 
   SetByBelow.call(this);	
 	LightEmitting.call(this, 2);
 }
-TorchWestTile.prototype = new FeatureObject;  
+TorchWestTile.prototype = new FeatureObject();  
 
 function TorchEastTile() {
 	this.name = "TorchEast";
@@ -2491,40 +2491,37 @@ function TorchEastTile() {
 	this.overlay = "torch_r.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
-//	this.light = 2;  // 2 tiles of "bright"
   this.prefix = "a";
 	this.desc = "torch";
 
   SetByBelow.call(this);	
 	LightEmitting.call(this, 2);
 }
-TorchEastTile.prototype = new FeatureObject;  
+TorchEastTile.prototype = new FeatureObject();  
 
 function CampfireTile() {
 	this.name = "Campfire";
 	this.graphic = "campfire.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
-//	this.light = 2;  // 2 tiles of "bright"
   this.prefix = "a";
 	this.desc = "campfire";
 	
 	LightEmitting.call(this, 2);
 }
-CampfireTile.prototype = new FeatureObject;
+CampfireTile.prototype = new FeatureObject();
 
 function SpitTile() {
 	this.name = "Spit";
 	this.graphic = "spit.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
-//	this.light = 2;  // 2 tiles of "bright"
   this.prefix = "a";
 	this.desc = "campfire";
 	
 	LightEmitting.call(this, 2);
 }
-SpitTile.prototype = new FeatureObject;
+SpitTile.prototype = new FeatureObject();
 
 
 function AltarTile() {
@@ -2535,7 +2532,7 @@ function AltarTile() {
 	this.prefix = "an";
 	this.desc = "altar";
 }
-AltarTile.prototype = new FeatureObject;
+AltarTile.prototype = new FeatureObject();
 
 function DoorTile() {
   Lockable.call(this, "064.gif", "065.gif", "066.gif", "a", "door", "a", "locked door", "a", "magically locked door");
@@ -2551,7 +2548,7 @@ function DoorTile() {
 	SetByBelow.call(this);
 	Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0);
 }
-DoorTile.prototype = new FeatureObject;
+DoorTile.prototype = new FeatureObject();
 
 function SleepFieldTile() {
 	this.name = "SleepField";
@@ -2567,7 +2564,7 @@ function SleepFieldTile() {
 	
 	LightEmitting.call(this, 1);
 }
-SleepFieldTile.prototype = new FeatureObject;
+SleepFieldTile.prototype = new FeatureObject();
 
 function FireFieldTile() {
 	this.name = "FireField";
@@ -2583,7 +2580,7 @@ function FireFieldTile() {
 	LightEmitting.call(this, 3);
 	this.initdelay = 1.5;
 }
-FireFieldTile.prototype = new FeatureObject;
+FireFieldTile.prototype = new FeatureObject();
 
 function PoisonFieldTile() {
 	this.name = "PoisonField";
@@ -2599,7 +2596,7 @@ function PoisonFieldTile() {
 	
 	LightEmitting.call(this, 1);
 }
-PoisonFieldTile.prototype = new FeatureObject;
+PoisonFieldTile.prototype = new FeatureObject();
 
 function LadderDownTile() {
   this.name = "LadderDown";
@@ -2612,7 +2609,7 @@ function LadderDownTile() {
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
 }
-LadderDownTile.prototype = new FeatureObject;
+LadderDownTile.prototype = new FeatureObject();
 
 function LadderUpTile() {
   this.name = "LadderUp";
@@ -2625,7 +2622,7 @@ function LadderUpTile() {
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
 }
-LadderUpTile.prototype = new FeatureObject;
+LadderUpTile.prototype = new FeatureObject();
 
 function WBridgeNSTile() {
   this.name = "WBridgeNS";
@@ -2635,7 +2632,7 @@ function WBridgeNSTile() {
   this.prefix = "a";
   this.desc = "bridge";
 }
-WBridgeNSTile.prototype = new FeatureObject;
+WBridgeNSTile.prototype = new FeatureObject();
 
 function EBridgeNSTile() {
   this.name = "EBridgeNS";
@@ -2645,7 +2642,7 @@ function EBridgeNSTile() {
   this.prefix = "a";
   this.desc = "bridge";
 }
-EBridgeNSTile.prototype = new FeatureObject;
+EBridgeNSTile.prototype = new FeatureObject();
 
 function BridgeNSTile() {
   this.name = "BridgeNS";
@@ -2655,7 +2652,7 @@ function BridgeNSTile() {
   this.prefix = "a";
   this.desc = "bridge";
 }
-BridgeNSTile.prototype = new FeatureObject;
+BridgeNSTile.prototype = new FeatureObject();
 
 function NBridgeEWTile() {
   this.name = "NBridgeEW";
@@ -2665,7 +2662,7 @@ function NBridgeEWTile() {
   this.prefix = "a";
   this.desc = "bridge";
 }
-NBridgeEWTile.prototype = new FeatureObject;
+NBridgeEWTile.prototype = new FeatureObject();
 
 function SBridgeEWTile() {
   this.name = "SBridgeEW";
@@ -2675,7 +2672,7 @@ function SBridgeEWTile() {
   this.prefix = "a";
   this.desc = "bridge";
 }
-SBridgeEWTile.prototype = new FeatureObject;
+SBridgeEWTile.prototype = new FeatureObject();
 
 function BridgeEWTile() {
   this.name = "BridgeEW";
@@ -2685,7 +2682,7 @@ function BridgeEWTile() {
   this.prefix = "a";
   this.desc = "bridge";
 }
-BridgeEWTile.prototype = new FeatureObject;
+BridgeEWTile.prototype = new FeatureObject();
 
 function LeftChairTile() {
   this.name = "LeftChair";
@@ -2695,7 +2692,7 @@ function LeftChairTile() {
   this.prefix = "a";
   this.desc = "chair";
 }
-LeftChairTile.prototype = new FeatureObject;
+LeftChairTile.prototype = new FeatureObject();
 
 function RightChairTile() {
   this.name = "RightChair";
@@ -2705,7 +2702,7 @@ function RightChairTile() {
   this.prefix = "a";
   this.desc = "chair";
 }
-RightChairTile.prototype = new FeatureObject;
+RightChairTile.prototype = new FeatureObject();
 
 function TopChairTile() {
   this.name = "TopChair";
@@ -2715,7 +2712,7 @@ function TopChairTile() {
   this.prefix = "a";
   this.desc = "chair";
 }
-TopChairTile.prototype = new FeatureObject;
+TopChairTile.prototype = new FeatureObject();
 
 function BottomChairTile() {
   this.name = "BottomChair";
@@ -2725,7 +2722,7 @@ function BottomChairTile() {
   this.prefix = "a";
   this.desc = "chair";
 }
-BottomChairTile.prototype = new FeatureObject;
+BottomChairTile.prototype = new FeatureObject();
 
 function SecretDoorTile() {
 	this.name = "SecretDoor";
@@ -2738,7 +2735,7 @@ function SecretDoorTile() {
 	
 	SetByBelow.call(this);
 }
-SecretDoorTile.prototype = new FeatureObject;
+SecretDoorTile.prototype = new FeatureObject();
 
 function WellTile() {
 	this.name = "Well";
@@ -2748,7 +2745,7 @@ function WellTile() {
 	this.prefix = "a";
 	this.desc = "well";
 }
-WellTile.prototype = new FeatureObject;
+WellTile.prototype = new FeatureObject();
 
 function WhirlpoolTile() {
 	this.name = "Whirlpool";
@@ -2760,7 +2757,7 @@ function WhirlpoolTile() {
   
   Enterable.call(this, "null", 0, 0);
 }
-WhirlpoolTile.prototype = new FeatureObject;
+WhirlpoolTile.prototype = new FeatureObject();
 
 function WalkOnTile() {
 	this.name = "WalkOn";
@@ -2771,7 +2768,7 @@ function WalkOnTile() {
 	this.desc = "invisible walkon tile";
 	this.invisible = 1;
 }
-WalkOnTile.prototype = new FeatureObject;
+WalkOnTile.prototype = new FeatureObject();
 
 function SpawnerTile() {
   this.name = "Spawner";
@@ -2782,7 +2779,7 @@ function SpawnerTile() {
   this.desc = "invisible spawner";
   this.invisible = 1;
   
-  this.spawngroup = new Array;
+  this.spawngroup = [];
   this.maxSpawns = 5; 
   this.spawnRadius = 0; // distance from spawner entity can appear
   this.spawnLeash = 20;
@@ -2791,13 +2788,13 @@ function SpawnerTile() {
   this.lastSpawned = 0;
   
   this.level = 1;
-  this.evolve = new Array;  
+  this.evolve = [];  
   // if evolve [#] exists, the first time the player is that level and the spawner isn't
   // yet, go through the pairs of keyword/value and set then to the spawner
   
-  this.spawned = new Collection;
+  this.spawned = new Collection();
 }
-SpawnerTile.prototype = new FeatureObject;
+SpawnerTile.prototype = new FeatureObject();
 
 SpawnerTile.prototype.getSpawngroup = function() {
   return this.spawngroup;
@@ -2820,7 +2817,7 @@ SpawnerTile.prototype.getMaxSpawns = function() {
 
 SpawnerTile.prototype.setMaxSpawns = function(spawnnum) {
   spawnnum = parseInt(spawnnum);
-  if (spawnnum != NaN) {
+  if (!isNaN(spawnnum)) {
     this.maxSpawns = spawnnum;
   }
   return this.maxSpawns;
@@ -2832,7 +2829,7 @@ SpawnerTile.prototype.getSpawnRadius = function() {
 
 SpawnerTile.prototype.setSpawnRadius = function(spawnnum) {
   spawnnum = parseInt(spawnnum);
-  if (spawnnum != NaN) {
+  if (!isNaN(spawnnum)) {
     this.spawnRadius = spawnnum;
   }
   return this.spawnRadius;
@@ -2844,7 +2841,7 @@ SpawnerTile.prototype.getSpawnLeash = function() {
 
 SpawnerTile.prototype.setSpawnLeash = function(spawnnum) {
   spawnnum = parseInt(spawnnum);
-  if (spawnnum != NaN) {
+  if (!isNaN(spawnnum)) {
     this.spawnLeash = spawnnum;
   }
   return this.spawnLeash;
@@ -2856,7 +2853,7 @@ SpawnerTile.prototype.getSpawnSoftLeash = function() {
 
 SpawnerTile.prototype.setSpawnSoftLeash = function(spawnnum) {
   spawnnum = parseInt(spawnnum);
-  if (spawnnum != NaN) {
+  if (!isNaN(spawnnum)) {
     this.spawnSoftLeash = spawnnum;
   }
   return this.spawnSoftLeash;
@@ -2868,7 +2865,7 @@ SpawnerTile.prototype.getSpawnFreq = function() {
 
 SpawnerTile.prototype.setSpawnFreq = function(spawnnum) {
   spawnnum = parseInt(spawnnum);
-  if (spawnnum != NaN) {
+  if (!isNaN(spawnnum)) {
     this.spawnFreq = spawnnum;
   }
   return this.spawnFreq;
@@ -2943,7 +2940,7 @@ function PentagramNWTile() {
   this.prefix = "a";
   this.desc = "pentagram";
 }
-PentagramNWTile.prototype = new FeatureObject;
+PentagramNWTile.prototype = new FeatureObject();
 
 function PentagramNTile() {
   this.name = "PentagramN";
@@ -2954,7 +2951,7 @@ function PentagramNTile() {
   this.prefix = "a";
   this.desc = "pentagram";
 }
-PentagramNTile.prototype = new FeatureObject;
+PentagramNTile.prototype = new FeatureObject();
 
 function PentagramNETile() {
   this.name = "PentagramNE";
@@ -2965,7 +2962,7 @@ function PentagramNETile() {
   this.prefix = "a";
   this.desc = "pentagram";
 }
-PentagramNETile.prototype = new FeatureObject;
+PentagramNETile.prototype = new FeatureObject();
 
 function PentagramWTile() {
   this.name = "PentagramW";
@@ -2976,7 +2973,7 @@ function PentagramWTile() {
   this.prefix = "a";
   this.desc = "pentagram";
 }
-PentagramWTile.prototype = new FeatureObject;
+PentagramWTile.prototype = new FeatureObject();
 
 function PentagramCTile() {
   this.name = "PentagramC";
@@ -2987,7 +2984,7 @@ function PentagramCTile() {
   this.prefix = "a";
   this.desc = "pentagram";
 }
-PentagramCTile.prototype = new FeatureObject;
+PentagramCTile.prototype = new FeatureObject();
 
 function PentagramETile() {
   this.name = "PentagramE";
@@ -2998,7 +2995,7 @@ function PentagramETile() {
   this.prefix = "a";
   this.desc = "pentagram";
 }
-PentagramETile.prototype = new FeatureObject;
+PentagramETile.prototype = new FeatureObject();
 
 function PentagramSWTile() {
   this.name = "PentagramSW";
@@ -3009,7 +3006,7 @@ function PentagramSWTile() {
   this.prefix = "a";
   this.desc = "pentagram";
 }
-PentagramSWTile.prototype = new FeatureObject;
+PentagramSWTile.prototype = new FeatureObject();
 
 function PentagramSTile() {
   this.name = "PentagramS";
@@ -3020,7 +3017,7 @@ function PentagramSTile() {
   this.prefix = "a";
   this.desc = "pentagram";
 }
-PentagramSTile.prototype = new FeatureObject;
+PentagramSTile.prototype = new FeatureObject();
 
 function PentagramSETile() {
   this.name = "PentagramSE";
@@ -3031,7 +3028,7 @@ function PentagramSETile() {
   this.prefix = "a";
   this.desc = "pentagram";
 }
-PentagramSETile.prototype = new FeatureObject;
+PentagramSETile.prototype = new FeatureObject();
 
 function LeverOffTile() {
   this.name = "LeverOff";
@@ -3043,7 +3040,7 @@ function LeverOffTile() {
   
   SetByBelow.call(this);
 }
-LeverOffTile.prototype = new FeatureObject;
+LeverOffTile.prototype = new FeatureObject();
 
 
 
@@ -3055,7 +3052,7 @@ function ItemObject() {
 	this.addType("Item");
 	this.quantity = 1;
 }
-ItemObject.prototype = new FeatureObject;
+ItemObject.prototype = new FeatureObject();
 
 ItemObject.prototype.getQuantity = function() {
 	return this.quantity;
@@ -3073,7 +3070,7 @@ function RubyGemoftheSunTile() {
 	this.desc = "ruby gem that harnesses the power of the sun";
 	this.prefix = "a";
 }
-RubyGemoftheSunTile.prototype = new ItemObject;
+RubyGemoftheSunTile.prototype = new ItemObject();
 
 function DecorativeArmorTile() {
 	this.name = "DecorativeArmor";
@@ -3084,7 +3081,7 @@ function DecorativeArmorTile() {
 	this.passable = MOVE_ETHEREAL;
 	this.prefix = "a";
 }
-DecorativeArmorTile.prototype = new ItemObject;
+DecorativeArmorTile.prototype = new ItemObject();
 
 function GoldTile() {
   this.name = "Gold";
@@ -3097,13 +3094,13 @@ function GoldTile() {
   this.passable = MOVE_ETHEREAL;
   this.prefix = "";
 }
-GoldTile.prototype = new ItemObject;
+GoldTile.prototype = new ItemObject();
 
 GoldTile.prototype.setQuantity = function(quant) {
   var newquant = parseInt(quant);
-  if (newquant == quant) {
+  if (newquant === quant) {
     this.quantity = quant;
-    if (quant == 1) { this.setDesc("1 gold coin"); }
+    if (quant === 1) { this.setDesc("1 gold coin"); }
     else { this.setDesc(quant + " gold coins"); }
   } else {
     return 0;
@@ -3135,14 +3132,14 @@ GoldTile.prototype.onGet = function(who) {
 function ConsumableItemObject() {
   this.addType("Consumable");
 }
-ConsumableItemObject.prototype = new ItemObject;
+ConsumableItemObject.prototype = new ItemObject();
 
 // potions
 
 function PotionItemObject() {
   this.addType("Potion");
 }
-PotionItemObject.prototype = new ConsumableItemObject;
+PotionItemObject.prototype = new ConsumableItemObject();
 
 // poison potions
 function GreenPotionTile() {
@@ -3153,7 +3150,7 @@ function GreenPotionTile() {
   this.spritexoffset = "-96";
   this.spriteyoffset = "0";
 }
-GreenPotionTile.prototype = new PotionItemObject;
+GreenPotionTile.prototype = new PotionItemObject();
 
 //haste potion
 function DarkGreenPotionTile() {
@@ -3164,7 +3161,7 @@ function DarkGreenPotionTile() {
   this.spritexoffset = "-128";
   this.spriteyoffset = "0";
 }
-DarkGreenPotionTile.prototype = new PotionItemObject;
+DarkGreenPotionTile.prototype = new PotionItemObject();
 
 // str potion
 function SilverPotionTile() {
@@ -3175,7 +3172,7 @@ function SilverPotionTile() {
   this.spritexoffset = "-160";
   this.spriteyoffset = "0";
 }
-SilverPotionTile.prototype = new PotionItemObject;
+SilverPotionTile.prototype = new PotionItemObject();
 
 // dex potion
 function PinkPotionTile() {
@@ -3186,7 +3183,7 @@ function PinkPotionTile() {
   this.spritexoffset = "-224";
   this.spriteyoffset = "0";
 }
-PinkPotionTile.prototype = new PotionItemObject;
+PinkPotionTile.prototype = new PotionItemObject();
 
 // int potion
 function GreyPotionTile() {
@@ -3197,7 +3194,7 @@ function GreyPotionTile() {
   this.spritexoffset = "-256";
   this.spriteyoffset = "0";
 }
-GreyPotionTile.prototype = new PotionItemObject;
+GreyPotionTile.prototype = new PotionItemObject();
 
 // greater mana potion
 function BrownPotionTile() {
@@ -3208,7 +3205,7 @@ function BrownPotionTile() {
   this.spritexoffset = "-288";
   this.spriteyoffset = "0";
 }
-BrownPotionTile.prototype = new PotionItemObject;
+BrownPotionTile.prototype = new PotionItemObject();
 
 // cure potion
 function RedPotionTile() {
@@ -3219,7 +3216,7 @@ function RedPotionTile() {
   this.spritexoffset = "0";
   this.spriteyoffset = "-32";
 }
-RedPotionTile.prototype = new PotionItemObject;
+RedPotionTile.prototype = new PotionItemObject();
 
 RedPotionTile.prototype.use = function(who) {
   var resp = magic[1][GetSpellID(1)].executeSpell(who,1,1);
@@ -3237,7 +3234,7 @@ function WhitePotionTile() {
   this.spritexoffset = "-32";
   this.spriteyoffset = "-32";
 }
-WhitePotionTile.prototype = new PotionItemObject;
+WhitePotionTile.prototype = new PotionItemObject();
 
 // lesser heal potion
 function YellowPotionTile() {
@@ -3248,7 +3245,7 @@ function YellowPotionTile() {
   this.spritexoffset = "-64";
   this.spriteyoffset = "-32";
 }
-YellowPotionTile.prototype = new PotionItemObject;
+YellowPotionTile.prototype = new PotionItemObject();
 
 // protect potion
 function PurplePotionTile() {
@@ -3259,7 +3256,7 @@ function PurplePotionTile() {
   this.spritexoffset = "-96";
   this.spriteyoffset = "-32";
 }
-PurplePotionTile.prototype = new PotionItemObject;
+PurplePotionTile.prototype = new PotionItemObject();
 
 // bless potion
 function BlackPotionTile() {
@@ -3270,7 +3267,7 @@ function BlackPotionTile() {
   this.spritexoffset = "-128";
   this.spriteyoffset = "-32";
 }
-BlackPotionTile.prototype = new PotionItemObject;
+BlackPotionTile.prototype = new PotionItemObject();
 
 // heal potion
 function BluePotionTile() {
@@ -3281,7 +3278,7 @@ function BluePotionTile() {
   this.spritexoffset = "-160";
   this.spriteyoffset = "-32";
 }
-BluePotionTile.prototype = new PotionItemObject;
+BluePotionTile.prototype = new PotionItemObject();
 
 // mana potion
 function OrangePotionTile() {
@@ -3292,14 +3289,14 @@ function OrangePotionTile() {
   this.spritexoffset = "-192";
   this.spriteyoffset = "-32";
 }
-OrangePotionTile.prototype = new PotionItemObject;
+OrangePotionTile.prototype = new PotionItemObject();
 
 // scrolls
 
 function ScrollObject() {
   this.addType("Scroll"); 
 }
-ScrollObject.prototype = new ConsumableItemObject;
+ScrollObject.prototype = new ConsumableItemObject();
 
 
 // Prototype for armor and weapons
@@ -3309,7 +3306,7 @@ function equipableItemObject() {
   this.equippedTo;
   this.toHitBonus = 0;
 }
-equipableItemObject.prototype = new ItemObject;
+equipableItemObject.prototype = new ItemObject();
 
 equipableItemObject.prototype.getEquippedTo = function() {
   return this.equippedTo;
@@ -3367,21 +3364,21 @@ equipableItemObject.prototype.unEquipMe = function() {
   if (!who.checkType("npc")) { return 0; }  
   
   if (this.checkType("Armor")) {
-    if (who.getArmor() == this) {
+    if (who.getArmor() === this) {
       who.setArmor("");
     } else { 
       return 0;
     }
   }
   else if (this.checkType("Weapon")) {
-    if (who.getWeapon() == this) {
+    if (who.getWeapon() === this) {
       who.setWeapon("");
     } else {
       return 0;
     }
   }
   else if (this.checkType("Missile")) {
-    if (who.getMissile() == this) {
+    if (who.getMissile() === this) {
       who.setMissile("");
     } else {
       return 0;
@@ -3418,7 +3415,7 @@ function ArmorObject() {
 	
 	this.addType("Armor");
 }
-ArmorObject.prototype = new equipableItemObject;
+ArmorObject.prototype = new equipableItemObject();
 
 ArmorObject.prototype.setDefense = function(newdef) {
 	this.defense = newdef;
@@ -3465,7 +3462,7 @@ function NaturalArmorTile() {
 	this.spriteyoffset = "0";
   this.desc = "natural armor";
 }
-NaturalArmorTile.prototype = new ArmorObject;
+NaturalArmorTile.prototype = new ArmorObject();
 
 function ClothArmorTile() {
 	this.name = "ClothArmor";
@@ -3476,7 +3473,7 @@ function ClothArmorTile() {
 	this.spriteyoffset = "0";
 	this.desc = "cloth armor";
 }
-ClothArmorTile.prototype = new ArmorObject;
+ClothArmorTile.prototype = new ArmorObject();
 
 function LeatherArmorTile() {
 	this.name = "LeatherArmor";
@@ -3488,7 +3485,7 @@ function LeatherArmorTile() {
 	this.spriteyoffset = "0";
 	this.desc = "leather armor";
 }
-LeatherArmorTile.prototype = new ArmorObject;
+LeatherArmorTile.prototype = new ArmorObject();
 
 function ChainArmorTile() {
 	this.name = "ChainArmor";
@@ -3501,7 +3498,7 @@ function ChainArmorTile() {
 	this.spriteyoffset = "0";
 	this.desc = "chain mail armor";
 }
-ChainArmorTile.prototype = new ArmorObject;
+ChainArmorTile.prototype = new ArmorObject();
 
 function PlateArmorTile() {
 	this.name = "PlateArmor";
@@ -3514,7 +3511,7 @@ function PlateArmorTile() {
 	this.spriteyoffset = "0";
 	this.desc = "plate armor";
 }
-PlateArmorTile.prototype = new ArmorObject;
+PlateArmorTile.prototype = new ArmorObject();
 
 function ExoticArmorTile() {
 	this.name = "ExoticArmor";
@@ -3526,7 +3523,7 @@ function ExoticArmorTile() {
 	this.spriteyoffset = "0";
 	this.desc = "exotic armor";
 }
-ExoticArmorTile.prototype = new ArmorObject;
+ExoticArmorTile.prototype = new ArmorObject();
 
 // WEAPONS
 
@@ -3538,7 +3535,7 @@ function WeaponObject() {
 	
 	this.addType("Weapon");
 }
-WeaponObject.prototype = new equipableItemObject;
+WeaponObject.prototype = new equipableItemObject();
 
 WeaponObject.prototype.getHit = function() {
 	return this.hit;
@@ -3617,7 +3614,7 @@ function FistsTile() {
 	this.prefix = "your";
 	this.desc = "fists";
 }
-FistsTile.prototype = new WeaponObject;
+FistsTile.prototype = new WeaponObject();
 
 function DaggerTile() {
 	this.name = "Dagger";
@@ -3629,7 +3626,7 @@ function DaggerTile() {
 	this.desc = "dagger";
 	this.prefix = "a";
 }
-DaggerTile.prototype = new WeaponObject;
+DaggerTile.prototype = new WeaponObject();
 
 function ShortswordTile() {
 	this.name = "Shortsword";
@@ -3641,7 +3638,7 @@ function ShortswordTile() {
 	this.desc = "shortsword";
 	this.prefix = "a";
 }
-ShortswordTile.prototype = new WeaponObject;
+ShortswordTile.prototype = new WeaponObject();
 
 function MaceTile() {
 	this.name = "Mace";
@@ -3653,7 +3650,7 @@ function MaceTile() {
 	this.desc = "mace";
 	this.prefix = "a";
 }
-MaceTile.prototype = new WeaponObject;
+MaceTile.prototype = new WeaponObject();
 
 function AxeTile() {
 	this.name = "Axe";
@@ -3665,7 +3662,7 @@ function AxeTile() {
 	this.desc = "axe";
 	this.prefix = "an";
 }
-AxeTile.prototype = new WeaponObject;
+AxeTile.prototype = new WeaponObject();
 
 function LongswordTile() {
 	this.name = "Longsword";
@@ -3677,7 +3674,7 @@ function LongswordTile() {
 	this.desc = "longsword";
 	this.prefix = "a";
 }
-LongswordTile.prototype = new WeaponObject;
+LongswordTile.prototype = new WeaponObject();
 
 function HalberdTile() {
 	this.name = "Halberd";
@@ -3689,7 +3686,7 @@ function HalberdTile() {
 	this.desc = "halberd";
 	this.prefix = "a";
 }
-HalberdTile.prototype = new WeaponObject;
+HalberdTile.prototype = new WeaponObject();
 
 function MagicSwordTile() {
 	this.name = "MagicSword";
@@ -3701,7 +3698,7 @@ function MagicSwordTile() {
 	this.desc = "magic sword";
 	this.prefix = "a";
 }
-MagicSwordTile.prototype = new WeaponObject;
+MagicSwordTile.prototype = new WeaponObject();
 
 function NaturalWeaponTile() {
 	this.name = "NaturalWeapon";
@@ -3713,7 +3710,7 @@ function NaturalWeaponTile() {
 	this.desc = "natural weapon";
 	this.prefix = "a";
 }
-NaturalWeaponTile.prototype = new WeaponObject;
+NaturalWeaponTile.prototype = new WeaponObject();
 
 function MissileWeaponObject() {
 	this.dexReq = 10;
@@ -3726,7 +3723,7 @@ function MissileWeaponObject() {
 	
 	this.addType("Missile");
 }
-MissileWeaponObject.prototype = new WeaponObject;
+MissileWeaponObject.prototype = new WeaponObject();
 
 MissileWeaponObject.prototype.getDexReq = function() {
   return this.dexReq;
@@ -3762,17 +3759,17 @@ MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
 //  if (this.directionalammo) {
     var diffx = def.getx() - atk.getx();
     var diffy = def.gety() - atk.gety();
-    if ((diffx == 0) && (diffy < 0)) {
+    if ((diffx === 0) && (diffy < 0)) {
       ammo.xoffset = 0;
       ammo.fired = 0;
-    } else if ((diffx == 0) && (diffy > 0)) {
+    } else if ((diffx === 0) && (diffy > 0)) {
       ammo.xoffset = -4*32;
       ammo.fired = 4;
     } else {
-      if ((diffy == 0) && (diffx > 0)) {
+      if ((diffy === 0) && (diffx > 0)) {
         ammo.xoffset = -2*32; 
         ammo.fired = 2;
-      } else if ((diffy == 0) && (diffx < 0)) {
+      } else if ((diffy === 0) && (diffx < 0)) {
         ammo.xoffset = -6*32;
         ammo.fired = 6;
       }
@@ -3788,35 +3785,35 @@ MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
           horflip = 1;
         }
         slope = diffy/diffx;
-        if ((slope > 2.42) && (verflip == 0)) {
+        if ((slope > 2.42) && (verflip === 0)) {
           ammo.xoffset = 0;
           ammo.fired = 0;
         }
-        else if ((slope > 2.42) && (verflip == 1)) {
+        else if ((slope > 2.42) && (verflip === 1)) {
           ammo.xoffset = -4*32;
           ammo.fired = 4;
         }
-        else if ((slope < .414) && (horflip == 0)) {
+        else if ((slope < .414) && (horflip === 0)) {
           ammo.xoffset = -2*32;
           ammo.fired = 2;
         }
-        else if ((slope < .414) && (horflip == 1)) {
+        else if ((slope < .414) && (horflip === 1)) {
           ammo.xoffset = -6*32;
           ammo.fired = 6;
         }
-        else if ((verflip == 0) && (horflip == 0)) {
+        else if ((verflip === 0) && (horflip === 0)) {
           ammo.xoffset = -32;
           ammo.fired = 1;
         }
-        else if ((verflip == 1) && (horflip == 0)) {
+        else if ((verflip === 1) && (horflip === 0)) {
           ammo.xoffset = -3*32;
           ammo.fired = 3;
         }
-        else if ((verflip == 1) && (horflip == 1)) {
+        else if ((verflip === 1) && (horflip === 1)) {
           ammo.xoffset = -5*32;
           ammo.fired = 5;
         }
-        else if ((verflip == 0) && (horflip == 1)) {
+        else if ((verflip === 0) && (horflip === 1)) {
           ammo.xoffset = -7*32;
           ammo.fired = 7;
         }
@@ -3827,7 +3824,7 @@ MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
 //    ammo.xoffset = this.ammoxoffset;
 //    ammo.yoffset = this.ammoyoffset;
 //  }
-    if (this.directionalammo == 0) {
+    if (this.directionalammo === 0) {
       ammo.xoffset = this.ammoxoffset;
     }
   return ammo;
@@ -3849,7 +3846,7 @@ function SlingTile() {
 	this.ammoxoffset = "-32";
 	this.ammoyoffset = "-128";
 }
-SlingTile.prototype = new MissileWeaponObject;
+SlingTile.prototype = new MissileWeaponObject();
 
 function BowTile() {
 	this.name = "Bow";
@@ -3864,7 +3861,7 @@ function BowTile() {
   this.ammoyoffset = "0";
   this.directionalammo = 1;
 }
-BowTile.prototype = new MissileWeaponObject;
+BowTile.prototype = new MissileWeaponObject();
 
 function CrossbowTile() {
 	this.name = "Crossbow";
@@ -3879,7 +3876,7 @@ function CrossbowTile() {
   this.ammoyoffset = "-32";
   this.directionalammo = 1;
 }
-CrossbowTile.prototype = new MissileWeaponObject;
+CrossbowTile.prototype = new MissileWeaponObject();
 
 function WandTile() {
 	this.name = "Wand";
@@ -3892,7 +3889,7 @@ function WandTile() {
   this.ammoxoffset = "-64";
   this.ammoyoffset = "-128";
 }
-WandTile.prototype = new MissileWeaponObject;
+WandTile.prototype = new MissileWeaponObject();
 
 function MagicAxeTile() {
 	this.name = "MagicAxe";
@@ -3907,7 +3904,7 @@ function MagicAxeTile() {
   this.ammoyoffset = "-128";
   this.ammoReturn = 1;
 }
-MagicAxeTile.prototype = new MissileWeaponObject;
+MagicAxeTile.prototype = new MissileWeaponObject();
 
 function NaturalMissileWeaponTile() {
 	this.name = "NaturalMissileWeapon";
@@ -3920,18 +3917,18 @@ function NaturalMissileWeaponTile() {
   this.ammoxoffset = "-32";
   this.ammoyoffset = "-128";
 }
-NaturalMissileWeaponTile.prototype = new MissileWeaponObject;
+NaturalMissileWeaponTile.prototype = new MissileWeaponObject();
 
 
 
 // NPCs
 
 function AnimateObject() {
-	this.altGraphics = new Array;
+	this.altGraphics = [];
 	
 	this.addType("Animate");
 }
-AnimateObject.prototype = new GameObject;
+AnimateObject.prototype = new GameObject();
 
 
 // Replaced for the nonce with PickOne.
@@ -3999,7 +3996,7 @@ function NPCObject() {
 	
 	this.addType("npc");
 }
-NPCObject.prototype = new AnimateObject;
+NPCObject.prototype = new AnimateObject();
 
 NPCObject.prototype.getNPCName = function() {
 	return this.npcname;
@@ -4011,7 +4008,7 @@ NPCObject.prototype.setNPCName = function(newName) {
 }
 
 NPCObject.prototype.setMana = function(newMana) {
-	if (newMana == -1) { this.mana = this.getInt(); }
+	if (newMana === -1) { this.mana = this.getInt(); }
 	else {this.mana = newMana; }
 }
 
@@ -4026,7 +4023,7 @@ NPCObject.prototype.modMana = function(diffMana) {
 }
 
 NPCObject.prototype.setMaxMana = function(newMana) {
-	if (newMana == -1) { this.maxmana = this.getInt(); }
+	if (newMana === -1) { this.maxmana = this.getInt(); }
 	else {this.maxmana = newMana; }
 }
 
@@ -4121,7 +4118,7 @@ NPCObject.prototype.processDeath = function(droploot){
   if (this.checkType("PC")) {
     
   } else {
-    var corpse = new Object;
+    var corpse = {};
     var chest;
     var map = this.getHomeMap();
     if (this.getLeavesCorpse()) {
@@ -4131,7 +4128,7 @@ NPCObject.prototype.processDeath = function(droploot){
       chest = localFactory.createTile("Chest");
     }
     if ((droploot) && (this.lootTable)) {
-      var loot = new Object;
+      var loot = {};
       if (DULoot[this.lootTable]) {
         loot = DULoot[this.lootTable].getLoot(); 
         if (loot.lootlist.length) {
@@ -4174,7 +4171,7 @@ NPCObject.prototype.processDeath = function(droploot){
 
 NPCObject.prototype.setStr = function(newstr) {
 	newstr = parseInt(newstr);
-	if ((newstr != 0) && (!isNaN(newstr))) { this.str = newstr; }
+	if ((newstr !== 0) && (!isNaN(newstr))) { this.str = newstr; }
 }
 
 NPCObject.prototype.setBaseStr = function(newstr) {
@@ -4196,7 +4193,7 @@ NPCObject.prototype.getBaseStr = function() {
 
 NPCObject.prototype.setDex = function(newdex) {
 	newdex = parseInt(newdex);
-	if ((newdex != 0) && (!isNaN(newdex))) { this.dex = newdex; }
+	if ((newdex !== 0) && (!isNaN(newdex))) { this.dex = newdex; }
 }
 
 NPCObject.prototype.setBaseDex = function(newdex) {
@@ -4218,7 +4215,7 @@ NPCObject.prototype.getModDex = function() {
 
 NPCObject.prototype.setInt = function(newint) {
 	newint = parseInt(newint);
-	if ((newint != 0) && (!isNaN(newint))) { this.int = newint; }
+	if ((newint !== 0) && (!isNaN(newint))) { this.int = newint; }
 }
 
 NPCObject.prototype.setBaseInt = function(newint) {
@@ -4251,7 +4248,7 @@ NPCObject.prototype.setStats = function(newstr, newdex, newint) {
 
 NPCObject.prototype.setLevel = function(newlevel) {
 	newlevel = parseInt(newlevel);
-	if (newlevel != 0) { this.level = newlevel; }
+	if (newlevel !== 0) { this.level = newlevel; }
 }
 
 NPCObject.prototype.getLevel = function() {
@@ -4345,7 +4342,7 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
   if ((initdelay) && (initdelay != 0)) {
   	init = init * initdelay;
   }
-  if (scale != "0") { init = init * SCALE_TIME; }
+  if (scale !== "0") { init = init * SCALE_TIME; }
 	return init;
 }
 
@@ -4411,7 +4408,7 @@ NPCObject.prototype.activate = function(timeoverride) {
   var missileweapon;
   var armor;
   
-  if ((this.getMeleeAttackAs()) && (this.getMeleeAttackAs != "none")) {
+  if ((this.getMeleeAttackAs()) && (this.getMeleeAttackAs !== "none")) {
     weapon = localFactory.createTile(this.getMeleeAttackAs());
     this.setEquipment("weapon",weapon);
     wpn = weapon;
@@ -4420,7 +4417,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     weapon = localFactory.createTile("NaturalWeapon");
     this.setEquipment("weapon",weapon);
   } 
-  if ((this.getMissileAttackAs()) && (this.getMissileAttackAs() != "none")) {
+  if ((this.getMissileAttackAs()) && (this.getMissileAttackAs() !== "none")) {
     missileweapon = localFactory.createTile(this.getMissileAttackAs());
     this.setEquipment("missile",missileweapon);
   } 
@@ -4428,7 +4425,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     missileweapon = localFactory.createTile("NaturalMissileWeapon");
     this.setEquipment("missile",missileweapon);
   } 
-  if ((this.getArmorAs()) && (this.getArmorAs() != "none")) {
+  if ((this.getArmorAs()) && (this.getArmorAs() !== "none")) {
     armor = localFactory.createTile(this.getArmorAs());
     this.setEquipment("armor",armor);
   }
@@ -4437,26 +4434,26 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.setEquipment("armor",armor);
   } 
   
-  if (this.meleeDamage != -1) {
+  if (this.meleeDamage !== -1) {
     weapon.setDamage(this.meleeDamage);
   }
-  if (this.meleeStrDamage != -1) {
+  if (this.meleeStrDamage !== -1) {
     weapon.setStrDamage(this.meleeStrDamage);
   }
   
-  if (this.missileDamage != -1) {
+  if (this.missileDamage !== -1) {
     missileweapon.setDamage(this.missileDamage);
   }
-  if (this.missileRange != -1) {
+  if (this.missileRange !== -1) {
     missileweapon.setRange(this.missileRange);
   }
-  if (this.armorDefense != -1) {
+  if (this.armorDefense !== -1) {
     armor.setDefense(this.armorDefense);
   }
-  if (this.armorResist != -1) {
+  if (this.armorResist !== -1) {
     armor.setResist(this.armorResist);
   }
-  if (this.armorAbsorb != -1) {
+  if (this.armorAbsorb !== -1) {
     armor.setAbsorb(this.armorAbsorb);
   }
   
@@ -4479,8 +4476,8 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	var passx = parseInt(this.getx()) + parseInt(diffx);
 	var passy = parseInt(this.gety()) + parseInt(diffy);
 	var tile = map.getTile(passx,passy);
-	var retval = new Object;
-	if (tile == "OoB") { 
+	var retval = {};
+	if (tile === "OoB") { 
 		if (map.getExitToMap()) {
 			var newmap = new GameMap();
 			if (maps.getMap(map.getExitToMap())) {
@@ -4490,7 +4487,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 				maps.addMapByRef(newmap);
 			}
 			tile = MoveBetweenMaps(this,map,newmap,map.getExitToX(),map.getExitToY());
-			if (this == PC) {
+			if (this === PC) {
 				DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 				DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 				retval["canmove"] = 0;
@@ -4500,30 +4497,30 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	}
 	else {
 		retval = tile.getBumpIntoResult(this);
-		if (retval["canmove"] == 0) { return retval; }
+		if (retval["canmove"] === 0) { return retval; }
 //		var moveval = tile.canMoveHere(this, map.getTile(this.getx(),this.gety()));
 		var moveval = tile.canMoveHere(this.getMovetype());
 		retval["canmove"] = moveval["canmove"];
 	
-		if (retval["msg"] == "") {
-			if (moveval["msg"] == "") { retval["msg"] = "."; }
+		if (retval["msg"] === "") {
+			if (moveval["msg"] === "") { retval["msg"] = "."; }
 			else { retval["msg"] = " - " + moveval["msg"]; }
 		}
 		else {
-			if (moveval["msg"] != "") {
+			if (moveval["msg"] !== "") {
 				retval["msg"] += "<br />" + moveval["msg"];
 			}
 		}
 	}
 	
-	if (retval["canmove"] == 1) {
+	if (retval["canmove"] === 1) {
 		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
 //                if (this == PC) {
 			DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 //		}
 		var walkonval = tile.executeWalkons(this);
 		if (walkonval) {
-		  if (retval["msg"] != "") { retval["msg"] += "<br />"; }
+		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
 		  retval["msg"] += walkonval;
 		}
 	}
@@ -4539,12 +4536,12 @@ NPCObject.prototype.myTurn = function() {
 	RunEffects(this);
 	// actual AI!
 	
-	var response = new Object;  
+	var response = {};  
 	// will be = return value of AI call
 	var ainame=this.getPeaceAI().split("-");
 
 	if (ais[ainame[0]]) {
-	  if (ainame.length == 1) { ainame[1] = ""; }
+	  if (ainame.length === 1) { ainame[1] = ""; }
 	  response = ais[ainame[0]](this, ainame[1]);
 	}
 	if (typeof response.initdelay === 'undefined') {
@@ -4553,11 +4550,11 @@ NPCObject.prototype.myTurn = function() {
 	
 	  // check for NPC idling
   var oldloc = this.getLastLocation();
-  if ((oldloc.map == this.getHomeMap()) && (oldloc.x == this.getx()) && (oldloc.y == this.gety())) {  // player did not move
+  if ((oldloc.map === this.getHomeMap()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // player did not move
     var tile = this.getHomeMap().getTile(this.getx(),this.gety());
     var idleval = tile.executeIdles(this);
   } else {
-    var newloc = new Object;
+    var newloc = {};
     newloc.map = this.getHomeMap();
     newloc.x = this.getx();
     newloc.y = this.gety();
@@ -4625,13 +4622,13 @@ NPCObject.prototype.getInventory = function() {
 
 NPCObject.prototype.getEquipment = function(which) {
   which = which.toLowerCase();
-  if (which == "armor") {
+  if (which === "armor") {
     return (this.getArmor()); 
   }
-  else if (which == "weapon") {
+  else if (which === "weapon") {
     return (this.getWeapon());
   }
-  else if (which == "missile") {
+  else if (which === "missile") {
     return (this.getMissile());
   }
   
@@ -4640,13 +4637,13 @@ NPCObject.prototype.getEquipment = function(which) {
 
 NPCObject.prototype.setEquipment = function(which,what) {
   which = which.toLowerCase();
-  if (which == "armor") {
+  if (which === "armor") {
     return this.setArmor(what);
   }
-  else if (which == "weapon") {
+  else if (which === "weapon") {
     return this.setWeapon(what);
   }
-  else if (which == "missile") {
+  else if (which === "missile") {
     return this.setMissile(what);
   }
   
@@ -4711,7 +4708,7 @@ NPCObject.prototype.getHitChance = function(atkwith) {
   if (!atkwith) { atkwith = "melee"; }
   var tohit = BASE_HIT_CHANCE;
   tohit += this.getLevel() * HIT_PER_LEVEL ;
-  if (atkwith == "melee") {
+  if (atkwith === "melee") {
     tohit += this.getStr() - 10;
     var weapon = this.getEquipment("weapon");
     if (weapon) {
@@ -4763,7 +4760,7 @@ NPCObject.prototype.setLastLocation = function (newloc) {
 }
 
 NPCObject.prototype.getDestination = function() {
-  var dest = new Object;
+  var dest = {};
   dest.x = this.memory.currentDestination.x;
   dest.y = this.memory.currentDestination.y;
   return dest;
@@ -4783,7 +4780,7 @@ NPCObject.prototype.setTurnsToRecalcDest = function(timeuntil) {
 }
 
 NPCObject.prototype.getPoI = function() {
-  var poi = new Object;
+  var poi = {};
   poi.poiname = this.memory.currentPoI.poiname;
   poi.ind = this.memory.currentPoI.ind;
   return poi;
@@ -4815,12 +4812,13 @@ NPCObject.prototype.getNextStep = function() {
     var nextstep = shift(this.memory.currentPath);
     return nextstep;
   }
+  return [];
 }
 
 function NPCGroupObject() {
-  this.group = new Array;
+  this.group = [];
 }
-NPCGroupObject.prototype = new NPCObject;
+NPCGroupObject.prototype = new NPCObject();
 
 function NPCList(npcs,num) {
   this.npc = npcs;
@@ -4828,7 +4826,7 @@ function NPCList(npcs,num) {
 }
 
 NPCGroupObject.prototype.populate = function() {
-  var population = new Array;
+  var population = [];
   for (var i=0; i< this.group.length; i++) {
     var num = RollDice(this.group[i].count);
     for (var j=1; j<=num; j++) {
@@ -4867,7 +4865,7 @@ function PCObject() {
 	this.movetype = MOVE_WALK;
 	this.xp = 0;
 	this.tp = 0;  // training points
-  this.spells = new Array;
+  this.spells = [];
   this.lastspelllevel = 1;
   this.lastspell = 1;
   this.infuse = 0;
@@ -4878,7 +4876,7 @@ function PCObject() {
 //	var myweapon = localFactory.createTile("Dagger");
 //	myweapon.equipMe(this);
 }
-PCObject.prototype = new NPCObject;
+PCObject.prototype = new NPCObject();
 
 PCObject.prototype.activate = function() {
   return 1;
@@ -4896,11 +4894,11 @@ PCObject.prototype.endTurn = function(init) {
   // did the player idle?
   var oldloc = this.getLastLocation();
   var idleval;
-  if ((oldloc.map == this.getHomeMap()) && (oldloc.x == this.getx()) && (oldloc.y == this.gety())) {  // player did not move
+  if ((oldloc.map === this.getHomeMap()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // player did not move
     var tile = this.getHomeMap().getTile(this.getx(),this.gety());
     idleval = tile.executeIdles(this);
   } else {
-    var newloc = new Object;
+    var newloc = {};
     newloc.map = this.getHomeMap();
     newloc.x = this.getx();
     newloc.y = this.gety();
@@ -4976,7 +4974,7 @@ PCObject.prototype.getLastSpellLevel = function() {
 
 PCObject.prototype.setLastSpellLevel = function(newlvl) {
   this.lastspelllevel = parseInt(newlvl);
-  if (this.lastspelllevel == 0) { this.lastspelllevel = 1; }
+  if (this.lastspelllevel === 0) { this.lastspelllevel = 1; }
   return this.lastspelllevel;
 }
 
@@ -4986,7 +4984,7 @@ PCObject.prototype.getLastSpell = function() {
 
 PCObject.prototype.setLastSpell = function(newid) {
   this.lastspell = parseInt(newid);
-  if (this.lastspell == 0) { this.lastspell = 1; }
+  if (this.lastspell === 0) { this.lastspell = 1; }
   return this.lastspell;
 }
 
@@ -4996,7 +4994,7 @@ PCObject.prototype.getInfusion = function() {
 
 PCObject.prototype.setInfusion = function(infuse) {
   this.infuse = parseInt(infuse);
-  if (this.infuse != 1) { this.infuse = 0; }
+  if (this.infuse !== 1) { this.infuse = 0; }
   return this.infuse;
 }
 
@@ -5005,7 +5003,7 @@ PCObject.prototype.dealDamage = function(dmg, src) {
   this.modHP(dmg*-1);
   var newhp = this.getDisplayHP();
   
-  if (oldhp != newhp) {
+  if (oldhp !== newhp) {
     DrawCharFrame();
     DamageFlash();
   }
@@ -5026,17 +5024,17 @@ function PointOfInterest(xval,yval) {
   
   this.x = xval;
   this.y = yval;
-  this.connections = new Array;
+  this.connections = [];
 //  this.type = poitype;
   
 }
-PointOfInterest.prototype = new Object;
+PointOfInterest.prototype = new Object();
 
 function NPCBrain() {
-  this.currentPoI = new Object;
-  this.currentDestination = new Object;
+  this.currentPoI = {};
+  this.currentDestination = {};
   this.turnsToRecalcPoI = 0;
   this.turnsToRecalcDest = 0;
-  this.currentPath = new Array;
+  this.currentPath = [];
 }
-NPCBrain.prototype = new Object;
+NPCBrain.prototype = new Object();
