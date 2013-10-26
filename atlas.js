@@ -597,7 +597,7 @@ function GameMap() {
   
   this.lightsList = {};
 }
-GameMap.prototype = new Object;
+GameMap.prototype = new Object();
 
 GameMap.prototype.setName = function(name) {
   this.name = name;
