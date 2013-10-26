@@ -20,12 +20,12 @@ var DUTime = new Timeline(0);
 var maintext = new TextFrame("innertextframe");
 var DULoot = SetLoots();
 var DULootGroups = SetLootGroups(); // see loot.js for population
-var displayspecs = new Object;
+var displayspecs = {};
 var finder = new PF.AStarFinder();
-var gameflags = new Object;
+var gameflags = {};
 
-var targetCursor = new Object;
-var inputText = new Object;
+var targetCursor = {};
+var inputText = {};
 
 var raceWarning = 0;
 
@@ -41,7 +41,9 @@ function DrawMainFrame(how, mapname, centerx, centery) {
 
   var mapdiv = "&nbsp;";
   var themap = maps.getMap(mapname);
-  if (themap == undefined) {
+  var opac = 1;
+  
+  if (themap === undefined) {
     alert("How am I here? (Drawmap)");
     maps.addMap(mapname);
     themap = maps.getMap(mapname);
@@ -50,7 +52,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
   var debugcolor = "#0000cc";
   if (debug) { dbs.writeln("<br /><br />"); }
 	
-  if (how == "draw") {
+  if (how === "draw") {
     displayspecs = getDisplayCenter(themap,centerx,centery);
     
     mapdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
@@ -59,7 +61,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
       	if (debug) { dbs.writeln("<span style='color:"+debugcolor+"'>j = " + j + ", i = " + i + ". Map is " + themap.getName() + " -- "); }
       	if (debug) { dbs.writeln("<span style='color:"+debugcolor+"'>" + themap.data[i].length + "<br />"); }
       	var thiscell = getDisplayCell(themap,centerx,centery,j,i);
-      	var opac = 1;
+      	opac = 1;
       	if ((thiscell.lighthere >= SHADOW_THRESHOLD) && (thiscell.lighthere < 1)) {
       	  opac = 0.3;
       	}
@@ -72,7 +74,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
     }
     mapdiv  += '</table>';
     $('#displayframe').html(mapdiv);
-  } else if (how == "one") {
+  } else if (how === "one") {
     if ((centerx <= displayspecs.rightedge) && (centerx >= displayspecs.leftedge) && (centery >= displayspecs.topedge) && (centery <= displayspecs.bottomedge)) {
       var thiscell = getDisplayCell(themap,PC.getx(),PC.gety(),centerx,centery);
       var tileid = "#td-tile" + centerx + "x" + centery;
@@ -113,7 +115,7 @@ $(document).ready(function() {
 });
 
 function DoAction(code) {
-  if (gamestate.getMode() == "player") {  // PC's turn, awaiting commands
+  if (gamestate.getMode() === "player") {  // PC's turn, awaiting commands
 //   	 alert(DUTime.getGameClock());
     var response = PerformCommand(code);
     if (response["fin"]) { 
@@ -121,13 +123,13 @@ function DoAction(code) {
       maintext.setInputLine(response["input"]);
       var inp = response["input"];
       maintext.drawTextFrame();
-      if (response["fin"] == 1) {
+      if (response["fin"] === 1) {
         PC.endTurn(response["initdelay"]);
       }
     }  
   }
-  else if (gamestate.getMode() == "talk") {
-    if (((code >= 65) && (code <= 90)) || (code == 32)) {  // letter
+  else if (gamestate.getMode() === "talk") {
+    if (((code >= 65) && (code <= 90)) || (code === 32)) {  // letter
       var letter = String.fromCharCode(code);    	
       if (inputText.txt.length < 14) {
         inputText.txt += letter;
@@ -135,7 +137,7 @@ function DoAction(code) {
         maintext.drawInputLine();
       }
     }
-    else if (code == 8) { // backspace
+    else if (code === 8) { // backspace
       var txt = maintext.getInputLine();
       if (inputText.txt.length) {
         inputText.txt = inputText.txt.substr(0,inputText.txt.length-1);
@@ -146,14 +148,14 @@ function DoAction(code) {
         maintext.drawInputLine();
       }
     }
-    else if (code == 13) { // enter
-      if (inputText.cmd == "y") { 
+    else if (code === 13) { // enter
+      if (inputText.cmd === "y") { 
         var retval = PerformYell(); 
-        if (retval["fin"] == 2) {
+        if (retval["fin"] === 2) {
           gamestate.setMode("player");
           gamestate.setTurn(PC);
         }
-        else if (retval["fin"] == 1) {
+        else if (retval["fin"] === 1) {
           PC.endTurn(retval["initdelay"]);
         }
         maintext.setInputLine("&gt;");
@@ -163,7 +165,7 @@ function DoAction(code) {
       }
       else { alert("need to add hook here! (main 171)"); }
     }
-    else if (code == 27) { // ESC
+    else if (code === 27) { // ESC
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       gamestate.setMode("player");
@@ -173,10 +175,10 @@ function DoAction(code) {
     	
     }
   }
-  else if (gamestate.getMode() == "choosedir") {
+  else if (gamestate.getMode() === "choosedir") {
     var response = PerformChooseDir(code);
-    if (response["fin"] == 1) { // direction chosen
-      if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && (targetCursor.command == "u")) {
+    if (response["fin"] === 1) { // direction chosen
+      if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && (targetCursor.command === "u")) {
 //        maintext.addText("Use from inventory not yet implemented.");
         PerformUseFromInventory();
 //        maintext.setInputLine("&gt;");
@@ -184,7 +186,7 @@ function DoAction(code) {
 //        gamestate.setMode("equip");
         return;
       }
-      else if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety()) && ((targetCursor.command == "g") || (targetCursor.command == "a") || (targetCursor.command == "s"))) {
+      else if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "g") || (targetCursor.command === "a") || (targetCursor.command === "s"))) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         gamestate.setMode("player");
@@ -192,22 +194,22 @@ function DoAction(code) {
       }
       else {
         var resp;
-        if (targetCursor.command == "u") { // USE
+        if (targetCursor.command === "u") { // USE
           resp = PerformUse(PC);
-        } else if (targetCursor.command == "g") { // GET
+        } else if (targetCursor.command === "g") { // GET
           resp = PerformGet(PC);
-        } else if (targetCursor.command == "s") { // SEARCH
+        } else if (targetCursor.command === "s") { // SEARCH
           resp = PerformSearch(PC);
-        } else if (targetCursor.command == "a") {  // ATTACK
+        } else if (targetCursor.command === "a") {  // ATTACK
           var dir = "";
-          if (targetCursor.y == PC.gety()-1) { dir = "North"; }
-          if (targetCursor.y == PC.gety()+1) { dir = "South"; }
-          if (targetCursor.x == PC.getx()-1) { dir = "West"; }
-          if (targetCursor.x == PC.getx()+1) { dir = "East"; }
+          if (targetCursor.y === PC.gety()-1) { dir = "North"; }
+          if (targetCursor.y === PC.gety()+1) { dir = "South"; }
+          if (targetCursor.x === PC.getx()-1) { dir = "West"; }
+          if (targetCursor.x === PC.getx()+1) { dir = "East"; }
           dir = "Attack " + dir + ".";
           resp = PerformAttackMap(PC);  			  
         }
-        if (resp["fin"] == 1) {
+        if (resp["fin"] === 1) {
 // 					DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
         }
         if (resp["fin"] < 2) {
@@ -219,7 +221,7 @@ function DoAction(code) {
         }
       }
     }
-    else if (response["fin"] == -1) {   // anything not useful
+    else if (response["fin"] === -1) {   // anything not useful
       gamestate.setMode("choosedir");
     }
     else { // ESC hit
@@ -229,9 +231,9 @@ function DoAction(code) {
       return;
     }
   }
-  else if (gamestate.getMode() == "target") {
+  else if (gamestate.getMode() === "target") {
     var response = PerformTarget(code);
-    if (response["fin"] == 1) {  // move the cursor
+    if (response["fin"] === 1) {  // move the cursor
 //  		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
       var posleft = 192 + (targetCursor.x - displayspecs.centerx)*32;
       var postop = 192 + (targetCursor.y - displayspecs.centery)*32;
@@ -239,14 +241,14 @@ function DoAction(code) {
       $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:'+posleft+'px;top:'+postop+'px;z-index:3" />');
       gamestate.setMode("target");
     }
-    else if (response["fin"] == 2) { // act on the current target
-      var newresponse = new Object;
-      if (targetCursor.command == "l") {
+    else if (response["fin"] === 2) { // act on the current target
+      var newresponse = {};
+      if (targetCursor.command === "l") {
         newresponse = PerformLook();
         maintext.addText(newresponse["txt"]);
         maintext.setInputLine(newresponse["input"]);
         maintext.drawTextFrame();
-      } else if (targetCursor.command == "a") {
+      } else if (targetCursor.command === "a") {
         newresponse = PerformAttack(PC);
         if (newresponse["txt"]) {
           maintext.addText(newresponse["txt"]);
@@ -256,20 +258,20 @@ function DoAction(code) {
         }
         maintext.drawTextFrame();
       }
-      if ((newresponse["fin"] == 0) || (newresponse["fin"] == 2)) {
+      if ((newresponse["fin"] === 0) || (newresponse["fin"] === 2)) {
         gamestate.setMode("player");
         // does not take time, either because it failed or was a no-time success
       }
-      else if (newresponse["fin"] == 1) {
+      else if (newresponse["fin"] === 1) {
         PC.endTurn(newresponse["initdelay"]);
       }
-      else if (newresponse["fin"] == -1) {
+      else if (newresponse["fin"] === -1) {
         gamestate.setMode("null");
         // wait and let the combat code set things to next turn. NOTE: possible 
         raceWarning = 1;
       }
     }
-    else if (response["fin"] == 0) { 
+    else if (response["fin"] === 0) { 
       var tileid = targetCursor.tileid;
       $(tileid).html(targetCursor.basetile); 
       maintext.addText(response["txt"]);
@@ -285,14 +287,14 @@ function DoAction(code) {
     }
 
   } 
-  else if (gamestate.getMode() == "equip") {
+  else if (gamestate.getMode() === "equip") {
     var response;
-    if (targetCursor.command == "w") {
+    if (targetCursor.command === "w") {
       response = PerformEquip(code);
-    } else if (targetCursor.command == "u") {
+    } else if (targetCursor.command === "u") {
       response = PerformUseFromInventoryState(code);
     }
-    if (response["fin"] == 0) {
+    if (response["fin"] === 0) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
@@ -300,10 +302,10 @@ function DoAction(code) {
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     }
-    else if (response["fin"] == 1) {
+    else if (response["fin"] === 1) {
       
     }
-    else if (response["fin"] == 2) {
+    else if (response["fin"] === 2) {
       maintext.addText(response["txt"]);
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
@@ -313,21 +315,21 @@ function DoAction(code) {
     }
             
   }
-  else if (gamestate.getMode() == "zstats") {
+  else if (gamestate.getMode() === "zstats") {
     var response = performZstats(code);
-    if (response["fin"] == 0) {
+    if (response["fin"] === 0) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
       DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
       gamestate.setMode("player");
       gamestate.setTurn(PC);
-    } else if (response["fin"] == 1) {
+    } else if (response["fin"] === 1) {
       
     }
   }
-  else if (gamestate.getMode() == "spellbook") {
-    if (code == 27) { // esc
+  else if (gamestate.getMode() === "spellbook") {
+    if (code === 27) { // esc
       $('#spellbookdiv').jqmHide();
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
@@ -335,11 +337,11 @@ function DoAction(code) {
       gamestate.setTurn(PC);
     }    else {
       var response = PerformSpellbook(code);
-      if (response["fin"] == 1) {
+      if (response["fin"] === 1) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         PC.endTurn();
-      } else if (response["fin"] == 2) {
+      } else if (response["fin"] === 2) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         gamestate.setMode("player");
