@@ -1,8 +1,8 @@
 
 function PerformCommand(code) {
-	var retval = new Object;
+	var retval = {};
 	retval["fin"] = 0;
-	if ((code == 38) || (code == 219)) {   // UP ARROW  or  [
+	if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
 		// move north
 		var success = PC.moveMe(0,-1,0);
 		var txt = "Move North";
@@ -13,7 +13,7 @@ function PerformCommand(code) {
 		if (success["msg"].match("Blocked")) { retval["fin"] = 2; }
 		retval["initdelay"] = success["initdelay"];
 	}
-	else if ((code == 37) || (code == 59)) {  // LEFT ARROW or ;
+	else if ((code === 37) || (code === 59)) {  // LEFT ARROW or ;
 		// move west
 		var success = PC.moveMe(-1,0,0);
 		var txt = "Move West";
@@ -24,7 +24,7 @@ function PerformCommand(code) {
 		if (success["msg"].match("Blocked")) { retval["fin"] = 2; }
 		retval["initdelay"] = success["initdelay"];
 	}
-	else if ((code == 39) || (code == 222)) { // RIGHT ARROW or '
+	else if ((code === 39) || (code === 222)) { // RIGHT ARROW or '
 		// move east
 		var success = PC.moveMe(1,0,0);
 		var txt = "Move East";
@@ -35,7 +35,7 @@ function PerformCommand(code) {
 		if (success["msg"].match("Blocked")) { retval["fin"] = 2; }
 		retval["initdelay"] = success["initdelay"];
 	}
-	else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
+	else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
 		// move south
 		var success = PC.moveMe(0,1,0);
 		var txt = "Move South";
@@ -46,7 +46,7 @@ function PerformCommand(code) {
 		if (success["msg"].match("Blocked")) { retval["fin"] = 2; }
 		retval["initdelay"] = success["initdelay"];
 	}
-	else if (code == 65) { // a
+	else if (code === 65) { // a
 		// attack
 		var mapscale = PC.getHomeMap().getScale();
 		if (mapscale == '0') { // on a world map, attack is adjacent only
@@ -78,26 +78,26 @@ function PerformCommand(code) {
 		  retval["fin"] = 2;
     }
 	}
-	else if (code == 66) { // b
+	else if (code === 66) { // b
 		// board - not used in Dark Unknown but available for hooking
 		
 	}
-	else if (code == 67) { // c
+	else if (code === 67) { // c
 		// cast
     retval = PerformCast(0);
 	}
-	else if (code == 68) { // d
+	else if (code === 68) { // d
 		// descend - alternate "Enter" option when on a down ladder
 		retval = PerformEnter("d");
 	}
-	else if (code == 69) { // e
+	else if (code === 69) { // e
 		// enter
 		retval = PerformEnter("e");
 	}
-	else if (code == 70) { // f
+	else if (code === 70) { // f
 		// fire - not used in DU, no boats
 	}
-	else if (code == 71) { // g
+	else if (code === 71) { // g
 		// get 
 		gamestate.setMode("choosedir");
 		retval["txt"] = "";
@@ -107,11 +107,11 @@ function PerformCommand(code) {
 		targetCursor.x = PC.getx();
 		targetCursor.y = PC.gety();		
 	}
-	else if (code == 72) { // h
+	else if (code === 72) { // h
 		// hole up and camp
 		
 	}
-	else if (code == 73) { // i
+	else if (code === 73) { // i
 		// was ignite torch, now infuse?
 		if (PC.getKnowsInfusion()) {
       retval = PerformCast(1);
@@ -120,15 +120,15 @@ function PerformCommand(code) {
       retval["txt"] = "You have not yet learned the higher mysteries.";
     }
 	}
-	else if (code == 74) { // j
+	else if (code === 74) { // j
 		// jimmy lock ?
 		
 	}
-	else if (code == 75) { // k
+	else if (code === 75) { // k
 		// klimb - alternate "Enter" option when on an up ladder
 		retval = PerformEnter("k");
 	}
-	else if (code == 76) { // l
+	else if (code === 76) { // l
 		// U4's Locate, here, Look
 		gamestate.setMode("target");
 		var newx = PC.getx();
@@ -147,31 +147,31 @@ function PerformCommand(code) {
 		retval["input"] = "&gt; Look: ";
 		retval["fin"] = 2;
 	}
-	else if (code == 77) { // m
+	else if (code === 77) { // m
 		// mix - not used
 		// might repurpose as "music" to give it a separate toggle to sound effects
 		
 	}
-	else if (code == 78) { // n
+	else if (code === 78) { // n
 		// new order - not used
 		
 	}
-	else if (code == 79) { // o
+	else if (code === 79) { // o
 		// open - merged with use
 		
 	}
-	else if (code == 80) { // p
+	else if (code === 80) { // p
 		// peer into gem - not used
 		
 	}
-	else if (code == 81) { // q
+	else if (code === 81) { // q
 		// quit and save
 		
 	}
-	else if (code == 82) { // r
+	else if (code === 82) { // r
 
 	}
-	else if (code == 83) { // s
+	else if (code === 83) { // s
 		gamestate.setMode("choosedir");
 		retval["txt"] = "";
 		retval["input"] = "&gt; Search: ";
@@ -180,11 +180,11 @@ function PerformCommand(code) {
 		targetCursor.x = PC.getx();
 		targetCursor.y = PC.gety();
 	}
-	else if (code == 84) { // t
+	else if (code === 84) { // t
 		// talk
 		
 	}
-	else if (code == 85) { // u
+	else if (code === 85) { // u
 		gamestate.setMode("choosedir");
 		retval["txt"] = "";
 		retval["input"] = "&gt; Use: ";
@@ -193,11 +193,11 @@ function PerformCommand(code) {
 		targetCursor.x = PC.getx();
 		targetCursor.y = PC.gety();
 	}
-	else if (code == 86) { // v
+	else if (code === 86) { // v
 		// volume - turns sound effects on and off
 		
 	}
-	else if (code == 87) { // w
+	else if (code === 87) { // w
 		gamestate.setMode("equip");
 		retval["txt"] = "";
 		retval["input"] = "&gt; Wear/Wield: ";
@@ -209,11 +209,11 @@ function PerformCommand(code) {
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
    statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
    var inv = PC.getInventory();
-   var melee = new Array;
-   var missile = new Array;
-   var armor = new Array;
+   var melee = [];
+   var missile = [];
+   var armor = [];
    var iter = 0;
-   var itemarray = new Array;
+   var itemarray = [];
    if (inv.length) {
      for (var i = 0; i < inv.length; i++) {
        if ((inv[i].checkType("Weapon")) && (!inv[i].checkType("Missile"))) { melee[melee.length] = inv[i]; }
@@ -226,7 +226,7 @@ function PerformCommand(code) {
        for (var i = 0; i < armor.length; i++ ) {
          var itemdesc = armor[i].getDesc();
          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-         if (armor[i] == PC.getEquipment("armor")) {
+         if (armor[i] === PC.getEquipment("armor")) {
            statsdiv += "<tr id='inv" + iter + "'><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
          } else {
            statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
@@ -242,7 +242,7 @@ function PerformCommand(code) {
        for (var i = 0; i < melee.length; i++ ) {
          var itemdesc = melee[i].getDesc();
          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-         if (melee[i] == PC.getEquipment("Weapon")) {
+         if (melee[i] === PC.getEquipment("Weapon")) {
            statsdiv += "<tr id='inv" + iter + "'><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
          } else {
            statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
@@ -258,7 +258,7 @@ function PerformCommand(code) {
        for (var i = 0; i < missile.length; i++ ) {
          var itemdesc = missile[i].getDesc();
          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-         if (missile[i] == PC.getEquipment("Missile")) {
+         if (missile[i] === PC.getEquipment("Missile")) {
            statsdiv += "<tr id='inv" + iter + "'><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
          } else {
            statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
@@ -286,11 +286,11 @@ function PerformCommand(code) {
   $('#inv0').toggleClass('highlight');
 		
 	}
-	else if (code == 88) { // x
+	else if (code === 88) { // x
 		// eXit - not used
 		
 	}
-	else if (code == 89) { // y
+	else if (code === 89) { // y
 		// yell 
 		gamestate.setMode("talk");
 		retval["txt"] = "";
@@ -299,7 +299,7 @@ function PerformCommand(code) {
 		inputText.cmd = "y";
 		inputText.txt = "";
 	}
-	else if (code == 90) { // z
+	else if (code === 90) { // z
 		// zstats
     gamestate.setMode("zstats");
     retval["txt"] = "";
@@ -309,7 +309,7 @@ function PerformCommand(code) {
     
     DrawStats(targetCursor.page);
 	}
-	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
+	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
 		// pass
 		retval["txt"] = "Pass.";
 		retval["input"] = "&gt;";
@@ -325,31 +325,31 @@ function PerformCommand(code) {
 function PerformChooseDir(code) {
 	var retval = new Object;
 	retval["fin"] = -1;
-	if ((code == 38) || (code == 219)) {  // UP ARROW or [
+	if ((code === 38) || (code === 219)) {  // UP ARROW or [
 		gamestate.setMode("null");
 		targetCursor.y -= 1;
 		retval["fin"] = 1;
 	}
-	else if ((code == 37) || (code == 59)) {  // LEFT ARROW or ;
+	else if ((code === 37) || (code === 59)) {  // LEFT ARROW or ;
 		gamestate.setMode("null");
 		targetCursor.x -= 1;
 		retval["fin"] = 1;
 	}
-	else if ((code == 39) || (code == 222)) {  // RIGHT ARROW or '
+	else if ((code === 39) || (code === 222)) {  // RIGHT ARROW or '
 		gamestate.setMode("null");
 		targetCursor.x += 1;
 		retval["fin"] = 1;
 	}
-	else if ((code == 40) || (code == 191)) {  // DOWN ARROW or /
+	else if ((code === 40) || (code === 191)) {  // DOWN ARROW or /
 		gamestate.setMode("null");
 		targetCursor.y += 1;
 		retval["fin"] = 1;
 	}
-	else if ((code == 32) || (code == 13)) {  // ENTER or SPACE
+	else if ((code === 32) || (code === 13)) {  // ENTER or SPACE
 		gamestate.setMode("null");
 		retval["fin"] = 1;
 	}
-	else if (code ==27) {  // ESC
+	else if (code === 27) {  // ESC
 		gamestate.setMode("null");
 		retval["fin"] = 0;
 		retval["txt"] = "";
@@ -358,9 +358,9 @@ function PerformChooseDir(code) {
 	return retval;
 }
 function PerformTarget(code)  {
-	var retval = new Object;
+	var retval = {};
 	retval["fin"] = -1;
-	if ((code == 38) || (code == 219)) {   // UP ARROW  or  [
+	if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
 		gamestate.setMode("null");
 		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		if ((edges.centery - targetCursor.y) < 6) {
@@ -368,7 +368,7 @@ function PerformTarget(code)  {
 			retval["fin"] = 1;		
 		}
 	}
-	else if ((code == 37) || (code == 59)) {  // LEFT ARROW or ;
+	else if ((code === 37) || (code === 59)) {  // LEFT ARROW or ;
 		gamestate.setMode("null");
 		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		if ((edges.centerx - targetCursor.x) < 6) {
@@ -376,7 +376,7 @@ function PerformTarget(code)  {
 			retval["fin"] = 1;
 		}
 	}
-	else if ((code == 39) || (code == 222)) { // RIGHT ARROW or '
+	else if ((code === 39) || (code === 222)) { // RIGHT ARROW or '
 		gamestate.setMode("null");
 		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		if ((targetCursor.x - edges.centerx) < 6) {
@@ -384,7 +384,7 @@ function PerformTarget(code)  {
 			retval["fin"] = 1;
 		}
 	}
-	else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
+	else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
 		gamestate.setMode("null");
 		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		if ((targetCursor.y - edges.centery) < 6) {
@@ -392,11 +392,11 @@ function PerformTarget(code)  {
 			retval["fin"] = 1;
 		}
 	}
-	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
+	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
 		gamestate.setMode("null");
 		retval["fin"] = 2;
 	}
-	else if (code == 27) { // ESC
+	else if (code === 27) { // ESC
 		gamestate.setMode("null");
 		retval["fin"] = 0;
 		retval["txt"] = "";
@@ -413,7 +413,7 @@ function PerformAttack(who) {
   var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
   var atkwho = localacre.npcs.getTop();
   var retval = new Object;
-  if ((targetCursor.x == PC.getx()) && (targetCursor.y == PC.gety())){ // No self-mutilation!
+  if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety())){ // No self-mutilation!
     retval["txt"] = "";
     retval["fin"] = 0;  
     retval["input"] = "&gt;";
@@ -505,7 +505,7 @@ function PerformCast(infuse) {
 
 function PerformSpellbook(code) {
   var retval = new Object;
-  if ((code == 38) || (code == 219)) { // up
+  if ((code === 38) || (code === 219)) { // up
     var lvl = PC.getLastSpellLevel();
     var spell = PC.getLastSpell();
     spell--;
@@ -522,7 +522,7 @@ function PerformSpellbook(code) {
     return retval;
   }
 
-  if ((code == 40) || (code == 191)) { // down
+  if ((code === 40) || (code === 191)) { // down
     var lvl = PC.getLastSpellLevel();
     var spell = PC.getLastSpell();
     spell++;
@@ -539,14 +539,14 @@ function PerformSpellbook(code) {
     return retval;
   }
   
-  if ((code == 37) || (code == 59) || (code == 39) || (code == 222)) { // left or right
+  if ((code === 37) || (code === 59) || (code === 39) || (code === 222)) { // left or right
     var lvl = PC.getLastSpellLevel();
     var spell = PC.getLastSpell();
     var newlvl = lvl;
-    if ((code == 37) || (code == 59)) { // left
+    if ((code === 37) || (code === 59)) { // left
       if (lvl > 1) { newlvl = lvl - 1; }
     }
-    if ((code == 39) || (code == 222)) { // right
+    if ((code === 39) || (code === 222)) { // right
       if (lvl < 8) { newlvl = lvl + 1; }
     }
     // figure out how many spells down we are
@@ -554,15 +554,15 @@ function PerformSpellbook(code) {
     if (!spell) {
       spell = 1;
     }
-    for (i=1; i<=spell; i++) {
+    for (var i=1; i<=spell; i++) {
       if (PC.knowsSpell(lvl, GetSpellID(i))) { spellsdown++; }
     }
     var spindex = 0;
     var numspells = 0;
-    for (i=1; i<=8; i++) {
+    for (var i=1; i<=8; i++) {
       if (PC.knowsSpell(newlvl,GetSpellID(i))) {
         numspells++;
-        if (numspells == spellsdown) {
+        if (numspells === spellsdown) {
           spindex = i;
         }
       }
@@ -572,7 +572,7 @@ function PerformSpellbook(code) {
     WritePages();
     
   }
-  if ((code == 32) || (code == 13)) { // SPACE or ENTER
+  if ((code === 32) || (code === 13)) { // SPACE or ENTER
     // cast a spell
     var lvl = PC.getLastSpellLevel();
     var spellnum = PC.getLastSpell();
@@ -592,7 +592,7 @@ function PerformSpellbook(code) {
       spelltxt += "...";
       maintext.addText(spelltxt);
       maintext.addText("Not enough mana.");
-      var retval = new Object;
+      var retval = {};
       retval["fin"] = 2;
       retval["input"] = "&gt;";
       return retval;
@@ -607,11 +607,11 @@ function PerformLook() {
   var onscreen = $('#td-tile' + targetCursor.x + 'x' + targetCursor.y).html();
 //  alert(onscreen);
   var losval = 0;
-  if (onscreen.indexOf("You cannot see that") != -1) { losval = 1; }
+  if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
   else {
     var tile = map.getTile(targetCursor.x,targetCursor.y);
     var light = tile.getLocalLight();
-    if (map.getLightLevel() == "bright") {
+    if (map.getLightLevel() === "bright") {
       light += 1;
     }
     if (light < SHADOW_THRESHOLD) {
@@ -620,7 +620,7 @@ function PerformLook() {
   }
 //  var losval = map.getLOS(PC.getx(), PC.gety(), targetCursor.x, targetCursor.y, losgrid);
   if (losval >= LOS_THRESHOLD) { 
-  	var retval = new Object;
+  	var retval = {};
   	retval["txt"] = "You cannot see that.";
   	retval["fin"] = 2;
   	retval["input"] = "&gt;";
@@ -630,13 +630,13 @@ function PerformLook() {
   	return retval;
   }
   var tile = map.getTile(targetCursor.x,targetCursor.y);
-  if ((targetCursor.x == PC.getx())	&& (targetCursor.y == PC.gety())) {
+  if ((targetCursor.x === PC.getx())	&& (targetCursor.y === PC.gety())) {
   	txt = "You are standing on ";
   } else {
   	txt = "You see ";
   }
   var top = tile.getTop();
-  while (top.getName() == "SeeBelow") {
+  while (top.getName() === "SeeBelow") {
     tile = FindBelow(targetCursor.x,targetCursor.y,map);
     top = tile.getTop();
   }
@@ -654,10 +654,10 @@ function PerformLook() {
   	  if (features[i].invisible) {
   	    len--;
   	  } else {
-      	if (( seethis == "" ) && (i == len-1)) {
+      	if (( seethis == "" ) && (i === len-1)) {
       		seethis = features[i].getPrefix() + " " + features[i].getDesc();
   	   	}
-  	    else if ( typeof features[i].isItem == "function" ) {
+  	    else if ( typeof features[i].isItem === "function" ) {
   		    if (seethis == "") { seethis = features[i].getPrefix() + " " + features[i].getDesc(); }
  	    		else { seethis += ", " + features[i].getPrefix() + " " + features[i].getDesc(); }
  		    }
@@ -674,7 +674,7 @@ function PerformLook() {
   var tileid = targetCursor.tileid;
   $(tileid).html(targetCursor.basetile); 
   
-  var retval = new Object;
+  var retval = {};
   retval["txt"] = txt;
   retval["fin"] = 2;
   retval["input"] = "&gt;";
@@ -690,7 +690,7 @@ function PerformEnter(cmd) {
 		var desty;
 		var klimb = "";
 		var descend = "";
-		var retval = new Object;
+		var retval = {};
 		if (features.length > 0) {
 			for (var i = 0; i < features.length; i++) {
 				if (features[i].getEnterMap()) {
@@ -698,10 +698,10 @@ function PerformEnter(cmd) {
 					destination = mapdata["entermap"];
 					destx = mapdata["enterx"];
 					desty = mapdata["entery"];
-					if (typeof features[i].getKlimb == "function") {
+					if (typeof features[i].getKlimb === "function") {
 						klimb = features[i].getKlimb();
 					}
-					if (typeof features[i].getDescend == "function") {
+					if (typeof features[i].getDescend === "function") {
 						descend = features[i].getDescend();
 					}
 				}
@@ -709,16 +709,16 @@ function PerformEnter(cmd) {
 		}
 		if (!destination) {
 			retval["fin"] = 2;
-			if (cmd == "e") {
+			if (cmd === "e") {
 				retval["txt"] = "You cannot enter that.";
-			} else if ((cmd == "k") || (cmd == "d")) {
+			} else if ((cmd === "k") || (cmd === "d")) {
 				retval["txt"] = "You cannot climb that."; 
 			} else {
 				alert("How did you get here (in PerformEnter)");
 			}
 				
 			retval["input"] = "&gt;";
-		} else if (destination == "null") {
+		} else if (destination === "null") {
 			retval["fin"] = 2;
 			retval["txt"] = "Destination map does not exist.";
 			retval["input"] = "&gt;";
@@ -726,10 +726,10 @@ function PerformEnter(cmd) {
 			retval["fin"] = 2;
 			retval["txt"] = "Destination map does not exist.";
 			retval["input"] = "&gt;";
-		} else if ((cmd == "d") && (descend == "")) {
+		} else if ((cmd === "d") && (descend == "")) {
 			retval["fin"] = 2;
 			retval["txt"] = "You cannot descend that.";
-		} else if ((cmd == "k") && (descend == "") && (klimb == "")) {
+		} else if ((cmd === "k") && (descend == "") && (klimb == "")) {
 			retval["fin"] = 2;
 			retval["txt"] = "You cannot climb that.";
 		} else {
@@ -758,7 +758,7 @@ function PerformEnter(cmd) {
 function PerformGet(who) {
   var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
   var getitem = localacre.features.getTop();
-  var retval = new Object;
+  var retval = {};
   if (!getitem) {
     retval["txt"] = "There is nothing there.";
     retval["fin"] = 0;
@@ -766,7 +766,7 @@ function PerformGet(who) {
   } 
   else if (getitem.checkType("Item")) {
     who.addToInventory(getitem);
-    if (typeof getitem.onGet == "function") {
+    if (typeof getitem.onGet === "function") {
       getitem.onGet(who);
     }
     retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
@@ -782,12 +782,12 @@ function PerformGet(who) {
 }
 
 function PerformEquip(code) {
-  var retval = new Object;
-  if (code == 27) { // ESC
+  var retval = {};
+  if (code === 27) { // ESC
     retval["fin"] = 0;
     delete targetCursor.itemlist;
   }
-	else if ((code == 38) || (code == 219)) {   // UP ARROW  or  [
+	else if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
 	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
 	    targetCursor.scrolllocation--;
 	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
@@ -795,7 +795,7 @@ function PerformEquip(code) {
 	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
 	    retval["fin"] = 1;
 	}
-  else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
+  else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
       $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
 	    targetCursor.scrolllocation++;
 	    if (targetCursor.scrolllocation > targetCursor.itemlist.length-1) { targetCursor.scrolllocation = 0; }
@@ -803,7 +803,7 @@ function PerformEquip(code) {
 	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
 	    retval["fin"] = 1;
   }
-	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
+	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
     // equip selected item
     var newequip = targetCursor.itemlist[targetCursor.scrolllocation];
     var success = newequip.equipMe(PC);
@@ -830,7 +830,7 @@ function PerformEquip(code) {
 function PerformSearch(who) {
   var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
   var searched = localacre.features.getTop();
-  var retval = new Object;
+  var retval = {};
   if (!searched) {
 		retval["txt"] = "There is nothing there.";
 		retval["fin"] = 0;
@@ -849,7 +849,7 @@ function PerformSearch(who) {
       var stuff = searched.getSearchYield();
       for (var i=0; i < stuff.length; i++) {
         var newthing = localFactory.createTile(stuff[i]);
-        if (stuff[i] == "Gold") {
+        if (stuff[i] === "Gold") {
           newthing.setQuantity(searched.getGold());
         }
         who.getHomeMap().placeThing(targetCursor.x,targetCursor.y,newthing);
@@ -862,7 +862,7 @@ function PerformSearch(who) {
         retval["txt"] += " " + newthing.getDesc();
       }
     }
-    var blanksearch = new Array;
+    var blanksearch = [];
     searched.setSearchYield(blanksearch);
 //    if (searched.getGold()) {
 //      var newthing = localFactory.createTile("Gold");
@@ -889,13 +889,13 @@ function PerformUse(who) {
   var usemap = who.getHomeMap();
 	var localacre = usemap.getTile(targetCursor.x,targetCursor.y);
 	var used = localacre.features.getTop();
-	var retval = new Object;
+	var retval = {};
 	if (!used) {
 		retval["txt"] = "There is nothing to use there.";
 		retval["fin"] = 0;
 		return retval;
 	}
-	if (typeof used.use == "function") {
+	if (typeof used.use === "function") {
 		retval = used.use(who);
 		retval["fin"] = 1;
 		var usedname = used.getDesc();
@@ -934,7 +934,7 @@ function PerformUse(who) {
 
 function PerformUseFromInventory() {
 		gamestate.setMode("equip");
-		var retval = new Object;
+		var retval = {};
 		retval["txt"] = "";
 		retval["input"] = "&gt; Use: ";
 		retval["fin"] = 2;
@@ -945,11 +945,11 @@ function PerformUseFromInventory() {
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
    statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
    var inv = PC.getInventory();
-   var pots = new Array;
-   var scrolls = new Array;
-   var other = new Array;
+   var pots = [];
+   var scrolls = [];
+   var other = [];
    var iter = 0;
-   var itemarray = new Array;
+   var itemarray = [];
    if (inv.length) {
      for (var i = 0; i < inv.length; i++) {
        if ((inv[i].checkType("Consumable")) && (!inv[i].checkType("Potion")) && (!inv[i].checkType("Scroll"))) { other[other.length] = inv[i]; }
@@ -1034,12 +1034,12 @@ function PerformUseFromInventory() {
 }
 
 function PerformUseFromInventoryState(code) {
-  var retval = new Object;
-  if (code == 27) { // ESC
+  var retval = {};
+  if (code === 27) { // ESC
     retval["fin"] = 0;
     delete targetCursor.itemlist;
   }
-	else if ((code == 38) || (code == 219)) {   // UP ARROW  or  [
+	else if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
 	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
 	    targetCursor.scrolllocation--;
 	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
@@ -1047,7 +1047,7 @@ function PerformUseFromInventoryState(code) {
 	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
 	    retval["fin"] = 1;
 	}
-  else if ((code == 40) || (code == 191)) { // DOWN ARROW or /
+  else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
       $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
 	    targetCursor.scrolllocation++;
 	    if (targetCursor.scrolllocation > targetCursor.itemlist.length-1) { targetCursor.scrolllocation = 0; }
@@ -1055,7 +1055,7 @@ function PerformUseFromInventoryState(code) {
 	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
 	    retval["fin"] = 1;
   }
-	else if ((code == 32) || (code == 13)) { // SPACE or ENTER
+	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
     // use selected item
     var used = targetCursor.itemlist[targetCursor.scrolllocation];
     if (used) {
@@ -1085,25 +1085,25 @@ function PerformYell() {
 		return retval;
 	}
 	else {
-		if (inputText.txt == "ETHERBUNNY") {
+		if (inputText.txt === "ETHERBUNNY") {
 			PC.addMovetype(MOVE_ETHEREAL);
-		} else if (inputText.txt == "DEBUG") {
+		} else if (inputText.txt === "DEBUG") {
 		  if (debug) {
 		    debug = 0;
 		  } else {
 		    debug = 1;
 		    ActivateDebug();
 		  }
-		} else if (inputText.txt == "BEAMAGE") {
+		} else if (inputText.txt === "BEAMAGE") {
 		  PC.setKnowsInfusion(1);
-		  for (i=1; i<=8; i++) {
-		    for (j=1; j<=6; j++) {
+		  for (var i=1; i<=8; i++) {
+		    for (var j=1; j<=6; j++) {
 	//	      if (i != 4) {
 		        PC.addSpell(i,GetSpellID(j));
 	//	      }
 		    }
 		  }
-		} else if (inputText.txt == "ONEUP") {
+		} else if (inputText.txt === "ONEUP") {
 		  PC.setLevel(PC.getLevel()+1);
 		}
 		retval["txt"] = "Yell: " + inputText.txt + "!";
@@ -1114,34 +1114,34 @@ function PerformYell() {
 
 function performZstats(code) {
   var retval = new Object;
-    if ((code == 27) || (code == 90)) { // ESC or Z again
+    if ((code === 27) || (code === 90)) { // ESC or Z again
       retval["fin"] = 0;
     }
-    else if ((code == 37) || (code == 59)) {  // previous page
+    else if ((code === 37) || (code === 59)) {  // previous page
       targetCursor.page--;
-      if (targetCursor.page == 0) { targetCursor.page = 4; }  // set to the last page when I know what that will be
+      if (targetCursor.page === 0) { targetCursor.page = 4; }  // set to the last page when I know what that will be
       DrawStats(targetCursor.page);
       retval["fin"] = 1;
     }
-    else if ((code == 39) || (code == 222)) { // next page
+    else if ((code === 39) || (code === 222)) { // next page
       targetCursor.page++;
-      if (targetCursor.page == 5) { targetCursor.page = 1; }
+      if (targetCursor.page === 5) { targetCursor.page = 1; }
       DrawStats(targetCursor.page);
       retval["fin"] = 1;
     }
-    else if ((code == 38) || (code == 219)) { // scroll up
+    else if ((code === 38) || (code === 219)) { // scroll up
       targetCursor.scrollapi.scrollByY(-50,1);
       retval["fin"] = 1;
     }
-    else if ((code == 13) || (code == 40) || (code == 191)) { // scroll down
+    else if ((code === 13) || (code === 40) || (code === 191)) { // scroll down
       targetCursor.scrollapi.scrollByY(50,1);
       retval["fin"] = 1;
     }
-    else if ((code == 32) || (code == 34)) {  // space or page down
+    else if ((code === 32) || (code === 34)) {  // space or page down
       targetCursor.scrollapi.scrollByY(350,1);
       retval["fin"] = 1;
     }       
-    else if ((code == 33)) {  // page up
+    else if ((code === 33)) {  // page up
       targetCursor.scrollapi.scrollByY(-350,1);
       retval["fin"] = 1;
     }       
@@ -1154,7 +1154,7 @@ function DrawStats(page) {
 
   var statsdiv = "&nbsp;";
    
- if (page == 1) {
+ if (page === 1) {
   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
   statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
@@ -1220,14 +1220,14 @@ function DrawStats(page) {
   DrawTopbarFrame("<p>Character</p>");
   
  }
- else if (page == 2) {
+ else if (page === 2) {
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
    statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
    var inv = PC.getInventory();
-   var melee = new Array;
-   var missile = new Array;
-   var armor = new Array;
+   var melee = [];
+   var missile = [];
+   var armor = [];
    if (inv.length) {
      for (var i = 0; i < inv.length; i++) {
        if ((inv[i].checkType("Weapon")) && (!inv[i].checkType("Missile"))) { melee[melee.length] = inv[i]; }
@@ -1240,7 +1240,7 @@ function DrawStats(page) {
        for (var i = 0; i < armor.length; i++ ) {
          var itemdesc = armor[i].getDesc();
          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-         if (armor[i] == PC.getEquipment("armor")) {
+         if (armor[i] === PC.getEquipment("armor")) {
            statsdiv += "<tr><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
          } else {
            statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
@@ -1254,7 +1254,7 @@ function DrawStats(page) {
        for (var i = 0; i < melee.length; i++ ) {
          var itemdesc = melee[i].getDesc();
          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-         if (melee[i] == PC.getEquipment("Weapon")) {
+         if (melee[i] === PC.getEquipment("Weapon")) {
            statsdiv += "<tr><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
          } else {
            statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
@@ -1268,7 +1268,7 @@ function DrawStats(page) {
        for (var i = 0; i < missile.length; i++ ) {
          var itemdesc = missile[i].getDesc();
          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-         if (missile[i] == PC.getEquipment("Missile")) {
+         if (missile[i] === PC.getEquipment("Missile")) {
            statsdiv += "<tr><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
          } else {
            statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
@@ -1282,12 +1282,12 @@ function DrawStats(page) {
   
    statsdiv += "</table></div></div>";
    DrawTopbarFrame("<p>Inventory</p>");
- } else if (page == 3) {
+ } else if (page === 3) {
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
    statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
-   var pots = new Array;
-   var scrolls = new Array;
+   var pots = [];
+   var scrolls = [];
    var inv = PC.getInventory();
    if (inv.length) {
      for (var i = 0; i < inv.length; i++) {
@@ -1334,7 +1334,7 @@ function DrawStats(page) {
    statsdiv += "</table></div></div>";
    DrawTopbarFrame("<p>Inventory</p>");
 
- } else if (page == 4) {
+ } else if (page === 4) {
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
    statsdiv += "<tr><td>&nbsp;</td></tr>";
@@ -1347,22 +1347,22 @@ function DrawStats(page) {
        var spellnum = GetSpellID(i);
        if (PC.knowsSpell(lvl, spellnum)) {
          if (!hasLevel) {
-           if (lvl != 1) { statsdiv += "<tr><td>&nbsp;</td></tr>"; }
-           if (lvl == 1) {
+           if (lvl !== 1) { statsdiv += "<tr><td>&nbsp;</td></tr>"; }
+           if (lvl === 1) {
              statsdiv += "<tr><td class='circleheader'>First Circle</td></tr>";
-           } else if (lvl == 2) {
+           } else if (lvl === 2) {
              statsdiv += "<tr><td class='circleheader'>Second Circle</td></tr>";
-           } else if (lvl == 3) {
+           } else if (lvl === 3) {
              statsdiv += "<tr><td class='circleheader'>Third Circle</td></tr>";
-           } else if (lvl == 4) {
+           } else if (lvl === 4) {
              statsdiv += "<tr><td class='circleheader'>Fourth Circle</td></tr>";
-           } else if (lvl == 5) {
+           } else if (lvl === 5) {
              statsdiv += "<tr><td class='circleheader'>Fifth Circle</td></tr>";
-           } else if (lvl == 6) {
+           } else if (lvl === 6) {
              statsdiv += "<tr><td class='circleheader'>Sixth Circle</td></tr>";
-           } else if (lvl == 7) {
+           } else if (lvl === 7) {
              statsdiv += "<tr><td class='circleheader'>Seventh Circle</td></tr>";
-           } else if (lvl == 8) {
+           } else if (lvl === 8) {
              statsdiv += "<tr><td class='circleheader'>Eighth Circle</td></tr>";
            }
          }
