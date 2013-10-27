@@ -33,7 +33,7 @@ function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
   }
 //  var edges = getDisplayCenter(mapref,newx,newy);
   var edges = getDisplayCenter(mapref,centerfromx,centerfromy);
-  var coords = new Object;
+  var coords = {};
   coords.x = 192 + (newx - edges.centerx) * 32;
   coords.y = 192 + (newy - edges.centery) * 32;
 
@@ -58,7 +58,7 @@ function animateEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destg
 
 function getDisplayCell(mapname, centerx, centery, x, y) {
 
-  var displayCell = new Object;
+  var displayCell = {};
   var localacre = mapname.getTile(x,y);
   var ambientlight = mapname.getLightLevel();
   
@@ -69,13 +69,13 @@ function getDisplayCell(mapname, centerx, centery, x, y) {
   var blocks = localacre.getBlocksLOS();
   
   var lighthere = 0;
-  if (ambientlight == "bright") {
+  if (ambientlight === "bright") {
     lighthere = 1;
   }
   else {
     if ((blocks > LOS_THRESHOLD) && ((centerx != x) || (centery != y) )) {
       var dirnum = GetDirection(centerx,centery,x,y);
-      if ((dirnum == 6) || (dirnum == 7) || (dirnum == 0)) {
+      if ((dirnum === 6) || (dirnum === 7) || (dirnum === 0)) {
         var selight = localacre.getLocalLight("se");
         if (selight > lighthere) {
           lighthere = selight;
@@ -102,16 +102,16 @@ function getDisplayCell(mapname, centerx, centery, x, y) {
   }
   
   displaytile = localacre.getTop();
-  while (displaytile.getName() == "SeeBelow") {
+  while (displaytile.getName() === "SeeBelow") {
     localacre = FindBelow(x,y,mapname);
     displaytile = localacre.getTop();
   }
   var graphics = displaytile.getGraphicArray();
   var showGraphic = graphics[0];
-  if (typeof displaytile.setBySurround == "function") {
+  if (typeof displaytile.setBySurround === "function") {
    	graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
     showGraphic = graphics[0];
-    if (typeof displaytile.doTile == "function") {
+    if (typeof displaytile.doTile === "function") {
       showGraphic = displaytile.doTile(x,y,showGraphic);
     }
     displayCell.showGraphic = showGraphic;
@@ -125,10 +125,10 @@ function getDisplayCell(mapname, centerx, centery, x, y) {
 //    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1;" title="' + displaytile.getDesc() + '" /></td>';
   }
   else if (losresult < LOS_THRESHOLD) {
-    if (typeof displaytile.doTile == "function") {
+    if (typeof displaytile.doTile === "function") {
       showGraphic = displaytile.doTile(x,y,showGraphic);
     }
-    if (typeof displaytile.setByBelow == "function") {
+    if (typeof displaytile.setByBelow === "function") {
       var setbelow = displaytile.setByBelow(x,y,mapname);
       showGraphic = setbelow[0];
       graphics[2] = setbelow[2];
@@ -162,26 +162,26 @@ return displayCell;
 
 function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   
-  var retval = new Object;
+  var retval = {};
   var oldx = who.getx();
   var oldy = who.gety();
   
   if (!overridetests) {  
     // check exit test
-    if (typeof frommap.ExitTest == "function") {
+    if (typeof frommap.ExitTest === "function") {
       
     }
     
-    if (typeof tomap.EnterTest == "function") {
+    if (typeof tomap.EnterTest === "function") {
       
     }
   }
 
-  if (typeof frommap.Exit == "function") {
+  if (typeof frommap.Exit === "function") {
     
   }
   
-  if (typeof tomap.Enter == "function") {
+  if (typeof tomap.Enter === "function") {
     tomap.Enter(who,frommap,who.getx(),who.gety(),destx,desty);
     
   }
@@ -199,7 +199,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   var oldtile = frommap.getTile(oldx,oldy);
   
   // update pathfinding
-	for (i=1; i<=16; i=i*2) {
+	for (var i=1; i<=16; i=i*2) {
 	  var response = oldtile.canMoveHere(i);
 	  if (response["canmove"]) { frommap.setWalkableAt(oldx,oldy,true,i); }
 	  else { frommap.setWalkableAt(oldx,oldy,false,i); }
@@ -209,7 +209,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	}
 	
 	// Remove unneeded maps from mapmemory
-	if (who == PC){
+	if (who === PC){
   	var keepmap = frommap.getAlwaysRemember();
 	  if (!keepmap) {
 		  // is old map linked to new map?
@@ -223,7 +223,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 		  }
   	}
 	
-	  if (keepmap == 0) {
+	  if (keepmap === 0) {
 		  maps.deleteMap(frommap.getName());
   	}
   }
@@ -242,14 +242,14 @@ function FindBelow(upx,upy,map) {
 }
 
 function ParseDice(die) {
-  var dieobj = new Object;
+  var dieobj = {};
   if (parseInt(die) == die) {
     dieobj.plus = die;
     dieobj.quantity = 0;
     dieobj.dice = 0;
     return dieobj;
   }
-  var tmpobj = new Array;
+  var tmpobj = [];
   tmpobj = die.split("+");
   if (tmpobj[1]){
     dieobj.plus = parseInt(tmpobj[1]);
@@ -289,36 +289,36 @@ function RollDice(die) {
 }
 
 function PlaceMonsters(battlemap,group,whoseturn) {
-  var monsters = new Array;
-  if (typeof group.populate == "function") {
+  var monsters = [];
+  if (typeof group.populate === "function") {
     monsters = group.populate();
   } else {
     alert("Non-group monster on world map.");
     return 0;
   }
     
-  var monstercoords = new Array;
+  var monstercoords = [];
   switch (monsters.length) {
       case 1:
-        monstercoords[0] = new Object;
+        monstercoords[0] = {};
         monstercoords[0].x = 6;
         monstercoords[0].y = 3;
         break;
       case 2:
         var coin = Math.floor(Math.random() * 2) +1;
         if (coin == 1) {
-          monstercoords[0] = new Object;
+          monstercoords[0] = {};
           monstercoords[0].x = 5;
           monstercoords[0].y = 3;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 7;
           monstercoords[1].y = 3;
         }
         else if (coin == 2) {
-          monstercoords[0] = new Object;
+          monstercoords[0] = {};
           monstercoords[0].x = 6;
           monstercoords[0].y = 2;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 6;
           monstercoords[1].y = 4;          
         }
@@ -326,329 +326,329 @@ function PlaceMonsters(battlemap,group,whoseturn) {
       case 3:
         var coin = Math.floor(Math.random() * 2) +1;
         if (coin == 1) {
-          monstercoords[0] = new Object;
+          monstercoords[0] = {};
           monstercoords[0].x = 6;
           monstercoords[0].y = 3;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 4;
           monstercoords[1].y = 1;          
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 8;
           monstercoords[2].y = 1;          
         }
         else if (coin == 2) {
-          monstercoords[0] = new Object;
+          monstercoords[0] = {};
           monstercoords[0].x = 6;
           monstercoords[0].y = 1;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 4;
           monstercoords[1].y = 3;          
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 8;
           monstercoords[2].y = 3;                    
         }
         break;
       case 4:
         var coin = Math.floor(Math.random() * 2) +1;
-        if (coin == 1) {
-          monstercoords[0] = new Object;
+        if (coin === 1) {
+          monstercoords[0] = {};
           monstercoords[0].x = 4;
           monstercoords[0].y = 1;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 5;
           monstercoords[1].y = 3;          
-          monstercoords[2] = new Object;
+        monstercoords[2] = {};
           monstercoords[2].x = 7;
           monstercoords[2].y = 3;                    
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 8;
           monstercoords[3].y = 1;                    
         }
-        else if (coin == 2) {
-          monstercoords[0] = new Object;
+        else if (coin === 2) {
+          monstercoords[0] = {};
           monstercoords[0].x = 6;
           monstercoords[0].y = 1;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 6;
           monstercoords[1].y = 3;          
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 8;
           monstercoords[2].y = 2;                    
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 4;
           monstercoords[3].y = 2;                              
         }
         break;
       case 5:
         var coin = Math.floor(Math.random() * 4) +1;
-        if (coin == 1) {
-          monstercoords[0] = new Object;
+        if (coin === 1) {
+          monstercoords[0] = {};
           monstercoords[0].x = 6;
           monstercoords[0].y = 4;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 8;
           monstercoords[1].y = 3;          
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 7;
           monstercoords[2].y = 1;                    
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 4;
           monstercoords[3].y = 3;                              
-          monstercoords[4] = new Object;
+          monstercoords[4] = {};
           monstercoords[4].x = 5;
           monstercoords[4].y = 1;                              
         }          
-        else if (coin == 2){
-          monstercoords[0] = new Object;
+        else if (coin === 2){
+          monstercoords[0] = {};
           monstercoords[0].x = 6;
           monstercoords[0].y = 2;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 8;
           monstercoords[1].y = 3;          
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 7;
           monstercoords[2].y = 1;                    
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 4;
           monstercoords[3].y = 3;                              
-          monstercoords[4] = new Object;
+          monstercoords[4] = {};
           monstercoords[4].x = 5;
           monstercoords[4].y = 1;                                        
         }
-        else if (coin == 3){
-          monstercoords[0] = new Object;
+        else if (coin === 3){
+          monstercoords[0] = {};
           monstercoords[0].x = 7;
           monstercoords[0].y = 4;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 5;
           monstercoords[1].y = 4;          
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 6;
           monstercoords[2].y = 2;                    
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 4;
           monstercoords[3].y = 2;                              
-          monstercoords[4] = new Object;
+          monstercoords[4] = {};
           monstercoords[4].x = 8;
           monstercoords[4].y = 2;                                        
         }
-        else if (coin == 4){
-          monstercoords[0] = new Object;
+        else if (coin === 4){
+          monstercoords[0] = {};
           monstercoords[0].x = 7;
           monstercoords[0].y = 1;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 5;
           monstercoords[1].y = 1;          
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 6;
           monstercoords[2].y = 3;                    
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 4;
           monstercoords[3].y = 3;                              
-          monstercoords[4] = new Object;
+          monstercoords[4] = {};
           monstercoords[4].x = 8;
           monstercoords[4].y = 3;                                        
         }
         break;
       case 6:
         var coin = Math.floor(Math.random() * 5) +1;
-        if (coin == 1) {
-          monstercoords[0] = new Object;
+        if (coin === 1) {
+          monstercoords[0] = {};
           monstercoords[0].x = 6;
           monstercoords[0].y = 3;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 5;
           monstercoords[1].y = 2;
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 7;
           monstercoords[2].y = 2;
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 6;
           monstercoords[3].y = 1;
-          monstercoords[4] = new Object;
+          monstercoords[4] = {};
           monstercoords[4].x = 4;
           monstercoords[4].y = 1;
-          monstercoords[5] = new Object;
+          monstercoords[5] = {};
           monstercoords[5].x = 8;
           monstercoords[5].y = 1;
-        } else if (coin == 2) {
-          monstercoords[0] = new Object;
+        } else if (coin === 2) {
+          monstercoords[0] = {};
           monstercoords[0].x = 4;
           monstercoords[0].y = 1;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 5;
           monstercoords[1].y = 2;
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 4;
           monstercoords[2].y = 3;
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 8;
           monstercoords[3].y = 1;
-          monstercoords[4] = new Object;
+          monstercoords[4] = {};
           monstercoords[4].x = 7;
           monstercoords[4].y = 2;
-          monstercoords[5] = new Object;
+          monstercoords[5] = {};
           monstercoords[5].x = 8;
           monstercoords[5].y = 3;          
-        } else if (coin == 3) {
-          monstercoords[0] = new Object;
+        } else if (coin === 3) {
+          monstercoords[0] = {};
           monstercoords[0].x = 4;
           monstercoords[0].y = 1;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 6;
           monstercoords[1].y = 2;
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 8;
           monstercoords[2].y = 1;
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 4;
           monstercoords[3].y = 3;
-          monstercoords[4] = new Object;
+          monstercoords[4] = {};
           monstercoords[4].x = 6;
           monstercoords[4].y = 4;
-          monstercoords[5] = new Object;
+          monstercoords[5] = {};
           monstercoords[5].x = 8;
           monstercoords[5].y = 3;          
-        } else if (coin == 4) {
-          monstercoords[0] = new Object;
+        } else if (coin === 4) {
+          monstercoords[0] = {};
           monstercoords[0].x = 4;
           monstercoords[0].y = 1;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 6;
           monstercoords[1].y = 1;
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 8;
           monstercoords[2].y = 1;
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 4;
           monstercoords[3].y = 3;
-          monstercoords[4] = new Object;
+          monstercoords[4] = {};
           monstercoords[4].x = 6;
           monstercoords[4].y = 3;
-          monstercoords[5] = new Object;
+          monstercoords[5] = {};
           monstercoords[5].x = 8;
           monstercoords[5].y = 3;          
-        } else if (coin == 5) {
-          monstercoords[0] = new Object;
+        } else if (coin === 5) {
+          monstercoords[0] = {};
           monstercoords[0].x = 5;
           monstercoords[0].y = 1;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 7;
           monstercoords[1].y = 1;
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 5;
           monstercoords[2].y = 3;
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 7;
           monstercoords[3].y = 3;
-          monstercoords[4] = new Object;
+          monstercoords[4] = {};
           monstercoords[4].x = 5;
           monstercoords[4].y = 5;
-          monstercoords[5] = new Object;
+          monstercoords[5] = {};
           monstercoords[5].x = 7;
           monstercoords[5].y = 5;          
         }
         break;
       case 7:
         var coin = Math.floor(Math.random() * 3) +1;
-        if (coin == 1) {
-          monstercoords[0] = new Object;
+        if (coin === 1) {
+          monstercoords[0] = {};
           monstercoords[0].x = 6;
           monstercoords[0].y = 4;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 5;
           monstercoords[1].y = 3;
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 7;
           monstercoords[2].y = 3;
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 6;
           monstercoords[3].y = 2;
-          monstercoords[4] = new Object;
+          monstercoords[4] = {};
           monstercoords[4].x = 4;
           monstercoords[4].y = 2;
-          monstercoords[5] = new Object;
+          monstercoords[5] = {};
           monstercoords[5].x = 8;
           monstercoords[5].y = 2;
-          monstercoords[6] = new Object;
+          monstercoords[6] = {};
           monstercoords[6].x = 5;
           monstercoords[6].y = 1;
-        } else if (coin == 2) {
-          monstercoords[0] = new Object;
+        } else if (coin === 2) {
+          monstercoords[0] = {};
           monstercoords[0].x = 6;
           monstercoords[0].y = 4;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 5;
           monstercoords[1].y = 3;
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 7;
           monstercoords[2].y = 3;
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 6;
           monstercoords[3].y = 2;
-          monstercoords[4] = new Object;
+          monstercoords[4] = {};
           monstercoords[4].x = 4;
           monstercoords[4].y = 2;
-          monstercoords[5] = new Object;
+          monstercoords[5] = {};
           monstercoords[5].x = 8;
           monstercoords[5].y = 2;
-          monstercoords[6] = new Object;
+          monstercoords[6] = {};
           monstercoords[6].x = 7;
           monstercoords[6].y = 1;
-        } else if (coin == 3) {
-          monstercoords[0] = new Object;
+        } else if (coin === 3) {
+          monstercoords[0] = {};
           monstercoords[0].x = 6;
           monstercoords[0].y = 4;
-          monstercoords[1] = new Object;
+          monstercoords[1] = {};
           monstercoords[1].x = 5;
           monstercoords[1].y = 3;
-          monstercoords[2] = new Object;
+          monstercoords[2] = {};
           monstercoords[2].x = 7;
           monstercoords[2].y = 3;
-          monstercoords[3] = new Object;
+          monstercoords[3] = {};
           monstercoords[3].x = 5;
           monstercoords[3].y = 1;
-          monstercoords[4] = new Object;
+          monstercoords[4] = {};
           monstercoords[4].x = 4;
           monstercoords[4].y = 2;
-          monstercoords[5] = new Object;
+          monstercoords[5] = {};
           monstercoords[5].x = 8;
           monstercoords[5].y = 2;
-          monstercoords[6] = new Object;
+          monstercoords[6] = {};
           monstercoords[6].x = 7;
           monstercoords[6].y = 1;
         }
         break;
       case 8:
-        monstercoords[0] = new Object;
+        monstercoords[0] = {};
         monstercoords[0].x = 6;
         monstercoords[0].y = 4;
-        monstercoords[1] = new Object;
+        monstercoords[1] = {};
         monstercoords[1].x = 5;
         monstercoords[1].y = 3;
-        monstercoords[2] = new Object;
+        monstercoords[2] = {};
         monstercoords[2].x = 7;
         monstercoords[2].y = 3;
-        monstercoords[3] = new Object;
+        monstercoords[3] = {};
         monstercoords[3].x = 6;
         monstercoords[3].y = 2;
-        monstercoords[4] = new Object;
+        monstercoords[4] = {};
         monstercoords[4].x = 4;
         monstercoords[4].y = 2;
-        monstercoords[5] = new Object;
+        monstercoords[5] = {};
         monstercoords[5].x = 8;
         monstercoords[5].y = 2;
-        monstercoords[6] = new Object;
+        monstercoords[6] = {};
         monstercoords[6].x = 5;
         monstercoords[6].y = 1;
-        monstercoords[7] = new Object;
+        monstercoords[7] = {};
         monstercoords[7].x = 7;
         monstercoords[7].y = 1;
         break;
       
   }
 
-  for (i =0; i < monsters.length; i++) {
+  for (var i =0; i < monsters.length; i++) {
 //    monsters[i].setHomeMap(battlemap);
     var timetoplace = 0;
     if (!whoseturn) { // combat began on NPC turn
@@ -664,14 +664,14 @@ function GetDirection(viewerx, viewery, targx, targy) {
   var direction;
   var diffx = targx - viewerx;
   var diffy = targy - viewery;
-  if ((diffx == 0) && (diffy < 0)) {
+  if ((diffx === 0) && (diffy < 0)) {
     direction = 0;
-  } else if ((diffx == 0) && (diffy > 0)) {
+  } else if ((diffx === 0) && (diffy > 0)) {
     direction = 4;
   } else {
-    if ((diffy == 0) && (diffx > 0)) {
+    if ((diffy === 0) && (diffx > 0)) {
       direction = 2;
-    } else if ((diffy == 0) && (diffx < 0)) {
+    } else if ((diffy === 0) && (diffx < 0)) {
       direction = 6;
     }
     else { 
@@ -686,28 +686,28 @@ function GetDirection(viewerx, viewery, targx, targy) {
         horflip = 1;
       }
       slope = diffy/diffx;
-      if ((slope > 2.42) && (verflip == 0)) {
+      if ((slope > 2.42) && (verflip === 0)) {
         direction = 0;
       }
-      else if ((slope > 2.42) && (verflip == 1)) {
+      else if ((slope > 2.42) && (verflip === 1)) {
         direction = 4;
       }
-      else if ((slope < .414) && (horflip == 0)) {
+      else if ((slope < .414) && (horflip === 0)) {
         direction = 2;
       }
-      else if ((slope < .414) && (horflip == 1)) {
+      else if ((slope < .414) && (horflip === 1)) {
         direction = 6;
       }
-      else if ((verflip == 0) && (horflip == 0)) {
+      else if ((verflip === 0) && (horflip === 0)) {
         direction = 1;
       }
-      else if ((verflip == 1) && (horflip == 0)) {
+      else if ((verflip === 1) && (horflip === 0)) {
         direction = 3;
       }
-      else if ((verflip == 1) && (horflip == 1)) {
+      else if ((verflip === 1) && (horflip === 1)) {
         direction = 5;
       }
-      else if ((verflip == 0) && (horflip == 1)) {
+      else if ((verflip === 0) && (horflip === 1)) {
         direction = 7;
       }
       else { alert("Error in direction finding."); }
@@ -720,13 +720,13 @@ function WritePages() {
   var divid = "#spellbookinnerdiv";
   var spellhtml = "<table class='spells'>";
   var showpages = Math.ceil(PC.getLastSpellLevel()/2);
-  if (showpages == 1) {
+  if (showpages === 1) {
     spellhtml += "<tr><td class='spelllevel'>First Circle</td><td><img src='graphics/spacer.gif' width='60' height='16' /></td><td class='spelllevel'>Second Circle</td></tr><tr><td class='spellslist'>";
-  } else if (showpages == 2) {
+  } else if (showpages === 2) {
     spellhtml += "<tr><td class='spelllevel'>Third Circle</td><td><img src='graphics/spacer.gif' width='60' height='16' /></td><td class='spelllevel'>Fourth Circle</td></tr><tr><td class='spellslist'>";
-  } else if (showpages == 3) {
+  } else if (showpages === 3) {
     spellhtml += "<tr><td class='spelllevel'>Fifth Circle</td><td><img src='graphics/spacer.gif' width='60' height='16' /></td><td class='spelllevel'>Sixth Circle</td></tr><tr><td class='spellslist'>";
-  } else if (showpages == 4) {
+  } else if (showpages === 4) {
     spellhtml += "<tr><td class='spelllevel'>Seventh Circle</td><td><img src='graphics/spacer.gif' width='60' height='16' /></td><td class='spelllevel'>Eighth Circle</td></tr><tr><td class='spellslist'>";
   }
   spellhtml += GetSpellList((showpages*2)-1);
@@ -750,7 +750,7 @@ function HighlightSpell(lvl,spell) {
 
 function GetSpellList(lvl) {
   var makehtml = "";
-  for (i=1;i<=6;i++) {
+  for (var i=1;i<=6;i++) {
     if (PC.knowsSpell(lvl,GetSpellID(i))) {
       makehtml += "<span id='level" + lvl + "spell" + i + "'>" + magic[lvl][GetSpellID(i)].getName() + "</span>";
       // need to add a mouseclick to the spells for tablet play
@@ -770,15 +770,15 @@ function GetCombatMap(atk,def) {
   
   var rand = Math.floor((Math.random()*2)+1); 
   
-  if ((atk_terrain == "Water") && (def_terrain == "Water")) {
+  if ((atk_terrain === "Water") && (def_terrain === "Water")) {
     var final = "combatWater" + rand;
     return final;
   } 
   
-  if ((atk_terrain == "Water") || (def_terrain == "Water")) {
+  if ((atk_terrain === "Water") || (def_terrain === "Water")) {
     var PC_tile = PC.getHomeMap().getTile(PC.getx(),PC.gety());
     var PC_terrain = PC_tile.terrain.getCombatMap();
-    if (PC_terrain == "Water") {  // PC attacking from offshore
+    if (PC_terrain === "Water") {  // PC attacking from offshore
       var final = "combatCoast" + rand;
       return final;
     } else {  // PC fighting an offshore foe

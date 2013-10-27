@@ -8,12 +8,12 @@ function LootTable() {
    this.loot = new Array;  // array of objects with objname, quantity (dice), and chance
    
 }
-LootTable.prototype = new Object;
+LootTable.prototype = new Object();
 
 LootTable.prototype.getLoot = function() {
-  var lootobj = new Object;
+  var lootobj = {};
   lootobj.gold = 0;
-  lootobj.lootlist = new Array;  // array of objnames
+  lootobj.lootlist = [];  // array of objnames
   var hasgold = 0;
   
   if ((this.goldDice) && (Math.random() <= (this.goldChance/100))) {
@@ -22,12 +22,12 @@ LootTable.prototype.getLoot = function() {
   }
   if (this.loot.length) {
     if ((hasgold) || (!this.linked)) {
-      for (i =0; i<this.loot.length; i++) {
+      for (var i =0; i<this.loot.length; i++) {
         if (Math.random() <= (this.loot[i].chance / 100)) {
           var lootquant = this.loot[i].quantity;
           var theloot = this.loot[i].objname;
           var quant = RollDice(this.loot[i].quantity);
-          for (j=1;j<=quant;j++) {
+          for (var j=1;j<=quant;j++) {
 //            if (theloot.match("_")) {
             if (DULootGroups[theloot]) {
               lootobj.lootlist[lootobj.lootlist.length] = DULootGroups.rollForTreasure(theloot);
@@ -44,9 +44,9 @@ LootTable.prototype.getLoot = function() {
 
   
 function LootGroups() {
-  this.treasureTypes = new Object;  // lootgroups
+  this.treasureTypes = {};  // lootgroups
 }
-LootGroups.prototype = new Object;
+LootGroups.prototype = new Object();
 
 LootGroups.prototype.setTreasureType = function(ttype, treasure) {
 //  ttype = "group_" + ttype;
@@ -65,7 +65,7 @@ LootGroups.prototype.rollForTreasure = function(ttype) {
 
 
 function SetLoots() {
-  var loots = new Object;
+  var loots = {};
   
   loots["small animal"] = new LootTable;
   loots["small animal"].goldDice = "1d3";

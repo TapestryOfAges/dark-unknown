@@ -16,14 +16,14 @@ function Anchor() {
 Anchor.prototype = new Object;
 
 function Attack(atk, def) {
-  var retval = new Object;
+  var retval = {};
   var type = "weapon";
   if (Math.abs(atk.getx() - def.getx()) > 1) { type = "missile"; }
   if (Math.abs(atk.gety() - def.gety()) > 1) { type = "missile"; }
 
   var weapon = atk.getEquipment("weapon");
   
-  if (type == "missile") {
+  if (type === "missile") {
     // check to see if attacker can use its missile weapon
     var dex = atk.getDex();
     weapon = atk.getEquipment("missile");
@@ -101,7 +101,7 @@ function Attack(atk, def) {
   // get graphic, xoffset, yoffset for graphic
   var ammographic = new Object;
   var duration = 50;
-  if (type == "missile") { ammographic = weapon.getAmmoGraphic(atk,def); }
+  if (type === "missile") { ammographic = weapon.getAmmoGraphic(atk,def); }
   else { 
     ammographic.graphic = "spacer.gif";
     ammographic.xoffset = 0;
@@ -116,20 +116,20 @@ function Attack(atk, def) {
   targetCursor.tileid = "#td-tile" + displayspecs.leftedge + "x" + displayspecs.topedge;
   targetCursor.basetile = $(targetCursor.tileid).html(); 
   $(targetCursor.tileid).html($(targetCursor.tileid).html() + tablehtml);
-  if (type == "missile") {
+  if (type === "missile") {
     duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 100;
   }
   
   $("#animtable").animate({ left: ammocoords.tox , top: ammocoords.toy } , duration, 'linear', function() {
     $(targetCursor.tileid).html(targetCursor.basetile);
     var hitgraphic = "";
-    if (dmg == 0) { hitgraphic = "700.gif"; }
+    if (dmg === 0) { hitgraphic = "700.gif"; }
     else { hitgraphic = "702.gif"; }
     var hitanimhtml = '<div id="hitdiv" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:4; background-image:url(\'graphics/' + hitgraphic + '\');background-repeat:no-repeat; background-position: 0px 0px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
     $(targetCursor.tileid).html($(targetCursor.tileid).html() + hitanimhtml);
     setTimeout(function() {
       $(targetCursor.tileid).html(targetCursor.basetile);
-      if ((type != "missile") || (!weapon.getAmmoReturn())) {
+      if ((type !== "missile") || (!weapon.getAmmoReturn())) {
         duration = 50;
         ammographic.graphic = "spacer.gif";
         ammographic.xoffset = 0;
@@ -157,7 +157,7 @@ function Attack(atk, def) {
     }, 400);
   });
   
-  var tmpval = new Object;
+  var tmpval = {};
   tmpval["fin"] = -1;
   return tmpval;
 }
@@ -167,13 +167,13 @@ function GetCoordsWithOffsets(direction, from, to) {
   var fromdisplace = 10;
   var todisplace = 5;
 
-  var coordsobj = new Object;
+  var coordsobj = {};
   coordsobj.fromx = from.x;
   coordsobj.fromy = from.y;
   coordsobj.tox = to.x;
   coordsobj.toy = to.y;
 
-  if ((direction == 7) || (direction == 0) || (direction == 1)) {  // north is a component
+  if ((direction === 7) || (direction === 0) || (direction === 1)) {  // north is a component
     coordsobj.fromy -= fromdisplace;
     coordsobj.toy += todisplace;
   }
@@ -204,9 +204,9 @@ function GetDamageDescriptor(who) {
 function CanMissileAttack(who) {
   // looks to see if there are adjacent melee enemies
   var enemystring = "";
-  if (who.getAttitude() == "friendly") {
+  if (who.getAttitude() === "friendly") {
     enemystring = "hostile";
-  } else if (who.getAttitude() == "hostile") {
+  } else if (who.getAttitude() === "hostile") {
     enemystring = "friendly";
   }
   var themap = who.getHomeMap();
@@ -217,7 +217,7 @@ function CanMissileAttack(who) {
         var npcs = tile.getNPCs();
         if (npcs) {
           for (k=0; k<npcs.length; k++) {
-            if (npcs[k].getAttitude() == enemystring) { return 0; }
+            if (npcs[k].getAttitude() === enemystring) { return 0; }
           }
         }
       }
@@ -237,7 +237,7 @@ function SetActiveEffects(who) {
                               
   var currname = "";
   for (var i = 0; i < effects.length; i++ ) {
-    if (effects[i].getName() == currname) { effects[i].setActive(0); }
+    if (effects[i].getName() === currname) { effects[i].setActive(0); }
     else {
       effects[i].setActive(1);
       currname = effects[i].getName();

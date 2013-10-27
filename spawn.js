@@ -1,5 +1,5 @@
 
-var spawngroups = new Object;
+var spawngroups = {};
 
 function SpawnGroup() {
   

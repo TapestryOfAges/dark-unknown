@@ -25,10 +25,10 @@ TextFrame.prototype.addText = function(newtext) {
 
 TextFrame.prototype.addTextByLine = function(newtext) {
 	var words = newtext.split(" ");
-	var lines = new Array;
+	var lines = [];
 	var line = "";
 	while (words[0]) {
-		if (line == "" ){ line = words.shift(); }
+		if (line === "" ){ line = words.shift(); }
 		else { 
 			var tmpword = words.shift();
 			var tmpline = line + " " + tmpword;

@@ -26,7 +26,7 @@ if (debug) {
 }
 
 function toggleinterface() {
-  if (togglehide == 0) {
+  if (togglehide === 0) {
     $("span.buttons").hide();
     togglehide = 1;
     document.images["togglebutton"].src="editor/button-r.gif";
@@ -39,7 +39,7 @@ function toggleinterface() {
 }
 
 function setdebug() {
-  if (debug == 0) { debug = 1; }
+  if (debug === 0) { debug = 1; }
   else { debug = 1; }
   if (debug) {
     debugscreen = window.open('','debugscreen');
@@ -47,11 +47,11 @@ function setdebug() {
 }
 
 function editorLoadMap(mapname) {
-  if (changes == 1) {
+  if (changes === 1) {
     var doload = confirm("Do you wish to load a new map? All progress will be lost.");
     if (!doload) { return; }
   }
-	if (mapname != "test") { 
+	if (mapname !== "test") { 
 		mapname = document.menuinterface.mapnameslist.value;
 	}
 	amap.loadMap(mapname);
@@ -86,11 +86,11 @@ function drawMap() {
        var localacre = amap.getTile(j,i);
        var graphics = localacre.getTerrain().getGraphicArray();
        var showGraphic = graphics[0];
-       if (typeof localacre.getTerrain().setBySurround == "function") {
+       if (typeof localacre.getTerrain().setBySurround === "function") {
        	graphics = localacre.getTerrain().setBySurround(j,i,amap,graphics,0,0,0);
        	showGraphic = graphics[0];
       }
-       if (typeof localacre.getTerrain().doTile == "function") {
+       if (typeof localacre.getTerrain().doTile === "function") {
   	     showGraphic = localacre.getTerrain().doTile(j,i,showGraphic);
        }
        mapdiv += '<td id="td_tile'+j+'x'+i+'" class="maptd" style="background-repeat:no-repeat;width:32;height:32;background-image:url(\'graphics/' + showGraphic + '\'); background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" title="tile'+j+'x'+i+'" width="32" height="32" /></td>';
@@ -113,7 +113,7 @@ function drawMap() {
 }
 
 function enterTile(x,y) {
-	if ((document.brushes.elements[0].checked) && (brushdown == 1)) {
+	if ((document.brushes.elements[0].checked) && (brushdown === 1)) {
 		clickmap(x,y);
 	}
 }
@@ -127,14 +127,14 @@ function drawFeatures() {
       var tdid = "#td_" + tileid;
       var graphics = allfeatures[i].getGraphicArray();
       var showGraphic = graphics[0];
-      if (typeof allfeatures[i].setBySurround == "function") {
+      if (typeof allfeatures[i].setBySurround === "function") {
        	graphics = allfeatures[i].setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,graphics,0,0,0);
        	showGraphic = graphics[0];
       }
-      if (typeof allfeatures[i].doTile == "function") {
+      if (typeof allfeatures[i].doTile === "function") {
   	    showGraphic = allfeatures[i].doTile(allfeatures[i].getx(),allfeatures[i].gety(),showGraphic);
       }
-      if (typeof allfeatures[i].setByBelow == "function") {
+      if (typeof allfeatures[i].setByBelow === "function") {
 //          	showGraphic = allfeatures[i].setByBelow(allfeatures[i].getx(),allfeatures[i].gety(),amap);
         var setbelow = allfeatures[i].setByBelow(allfeatures[i].getx(),allfeatures[i].gety(),amap);
         showGraphic = setbelow[0];
@@ -155,11 +155,11 @@ function drawFeatures() {
       var showTerrain = terrainthere.getTerrain();
       var graphics = showTerrain.getGraphicArray();
       var showGraphic = graphics[0];
-      if (typeof showTerrain.setBySurround == "function") {
+      if (typeof showTerrain.setBySurround === "function") {
        	graphics = showTerrain.setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,graphics,0,0,0);
        	showGraphic = graphics[0];
       }
-      if (typeof showTerrain.doTile == "function") {
+      if (typeof showTerrain.doTile === "function") {
   	    showGraphic = showTerrain.doTile(allfeatures[i].getx(),allfeatures[i].gety(),showGraphic);
       }
 
@@ -176,11 +176,11 @@ function drawFeatures() {
         var tdid = "#td_" + tileid;
         var graphics = allnpcs[i].getGraphicArray();
         var showGraphic = graphics[0];
-        if (typeof allnpcs[i].setBySurround == "function") {
+        if (typeof allnpcs[i].setBySurround === "function") {
        	  graphics = allnpcs[i].setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,graphics,0,0,0);
        	  showGraphic = graphics[0];
         }
-        if (typeof allnpcs[i].doTile == "function") {
+        if (typeof allnpcs[i].doTile === "function") {
   	      showGraphic = allnpcs[i].doTile(allnpcs[i].getx(),allnpcs[i].gety(),showGraphic);
         }
       	$(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
@@ -197,11 +197,11 @@ function drawFeatures() {
       var showTerrain = terrainthere.getTerrain();
       var graphics = showTerrain.getGraphicArray();
       var showGraphic = graphics[0];
-      if (typeof showTerrain.setBySurround == "function") {
+      if (typeof showTerrain.setBySurround === "function") {
        	graphics = showTerrain.setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,graphics,0,0,0);
        	showGraphic = graphics[0];
       }
-      if (typeof showTerrain.doTile == "function") {
+      if (typeof showTerrain.doTile === "function") {
   	    showGraphic = showTerrain.doTile(allnpcs[i].getx(),allnpcs[i].gety(),showGraphic);
       }
       $(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
@@ -246,7 +246,7 @@ function clickmap(xval,yval) {
   	if (selectionval.checkType("Terrain")) {
       changemaptile(xval,yval);
     }
-    else if (selectionval.getName() == "Eraser") { erasefeature(xval,yval); }
+    else if (selectionval.getName() === "Eraser") { erasefeature(xval,yval); }
     else if (selectionval.checkType("Feature")) {
     	addfeaturetomap(xval,yval,selectionval); 
     }
@@ -258,7 +258,7 @@ function clickmap(xval,yval) {
     }
   }
   else if (document.brushes.elements[1].checked) {
-    if (cornerx == -1) {
+    if (cornerx === -1) {
       cornerx = xval;
       cornery = yval;
     }
@@ -273,13 +273,13 @@ function clickmap(xval,yval) {
         yval=cornery;
         cornery=y;
       }
-      for (x=cornerx;x<=xval;x++) {
-        for (y=cornery;y<=yval;y++) {
+      for (var x=cornerx;x<=xval;x++) {
+        for (var y=cornery;y<=yval;y++) {
         	if (selectionval.checkType("Terrain")) {
             changemaptile(x,y);
           }
           else if (selectionval.checkType("Feature")) {
-    	      if (selectionval.getName() == "eraser") { erasefeature(x,y); }
+    	      if (selectionval.getName() === "Eraser") { erasefeature(x,y); }
     	      else { addfeaturetomap(x,y,selectionval); }
           }
           else if (selectionval.checkType("npc")) {
@@ -352,24 +352,24 @@ function clickmap(xval,yval) {
 }
 
 function submitEditFeature(change) {
-	if (change == 1) {
-		if (document.featureeditpopup.tiledesc.value != editable.getDesc()) {
+	if (change === 1) {
+		if (document.featureeditpopup.tiledesc.value !== editable.getDesc()) {
 			editable.setDesc(document.featureeditpopup.tiledesc.value);
 		}
-		if (document.featureeditpopup.walkonscript.value != editable.getWalkOnScript()) {
+		if (document.featureeditpopup.walkonscript.value !== editable.getWalkOnScript()) {
 			editable.setWalkOnScript(document.featureeditpopup.walkonscript.value);
 		}
-    if (document.featureeditpopup.usescript.value != editable.getUseScript()) {
+    if (document.featureeditpopup.usescript.value !== editable.getUseScript()) {
 			editable.setUseScript(document.featureeditpopup.usescript.value);
 		}
-		if ((document.featureeditpopup.tilelocked.value) && (editable.getLocked != null) && (document.featureeditpopup.tilelocked.value != editable.getLocked())) {
+		if ((document.featureeditpopup.tilelocked.value) && (editable.getLocked != null) && (document.featureeditpopup.tilelocked.value !== editable.getLocked())) {
 			editable.lockMe(document.featureeditpopup.tilelocked.value);
 		}
-		if ((document.featureeditpopup.tileentermap.value) && (editable.getEnterMap != null) && (document.featureeditpopup.tileentermap.value != editable.getEnterMap().entermap)) {
+		if ((document.featureeditpopup.tileentermap.value) && (editable.getEnterMap != null) && (document.featureeditpopup.tileentermap.value !== editable.getEnterMap().entermap)) {
 			editable.setEnterMap(document.featureeditpopup.tileentermap.value, document.featureeditpopup.tileenterx.value, document.featureeditpopup.tileentery.value);
 		}
 	}
-	else if (change == -1) {
+	else if (change === -1) {
 		// add an "Are you sure? Yes/No" prompt
 		var mapfeature = amap.features;
 		mapfeature.deleteFrom(editable);
@@ -398,48 +398,48 @@ function submitEditFeature(change) {
 }
 
 function submitEditNPC(change) {
-	if (change == 1) {
-		if (document.npceditpopup.npcname.value != editnpcs.getNPCName()) {
+	if (change === 1) {
+		if (document.npceditpopup.npcname.value !== editnpcs.getNPCName()) {
 			editnpcs.setNPCName(document.npceditpopup.npcname.value);
 		}
-		if (document.npceditpopup.npcdesc.value != editnpcs.getDesc()) {
+		if (document.npceditpopup.npcdesc.value !== editnpcs.getDesc()) {
 			editnpcs.setDesc(document.npceditpopup.npcdesc.value);
 		}
-		if (document.npceditpopup.npclevel.value != editnpcs.getLevel()) {
+		if (document.npceditpopup.npclevel.value !== editnpcs.getLevel()) {
 			editnpcs.setLevel(document.npceditpopup.npclevel.value);
 		}
-		if (document.npceditpopup.npcalign.value != editnpcs.getAlignment()) {
+		if (document.npceditpopup.npcalign.value !== editnpcs.getAlignment()) {
 			editnpcs.setAlignment(document.npceditpopup.npcalign.value);
 		}
-		if (document.npceditpopup.npcstr.value != editnpcs.getStr()) {
+		if (document.npceditpopup.npcstr.value !== editnpcs.getStr()) {
 			editnpcs.setStr(document.npceditpopup.npcstr.value);
 		}
-		if (document.npceditpopup.npcdex.value != editnpcs.getDex()) {
+		if (document.npceditpopup.npcdex.value !== editnpcs.getDex()) {
 			editnpcs.setDex(document.npceditpopup.npcdex.value);
 		}
-		if (document.npceditpopup.npcint.value != editnpcs.getInt()) {
+		if (document.npceditpopup.npcint.value !== editnpcs.getInt()) {
 			editnpcs.setInt(document.npceditpopup.npcint.value);
 		}
-		if (document.npceditpopup.npcattitude.value != editnpcs.getAttitude()) {
+		if (document.npceditpopup.npcattitude.value !== editnpcs.getAttitude()) {
 			editnpcs.setAttitude(document.npceditpopup.npcattitude.value);
 		}
-		if (document.npceditpopup.npcpeaceai.value != editnpcs.getPeaceAI()) {
+		if (document.npceditpopup.npcpeaceai.value !== editnpcs.getPeaceAI()) {
 			editnpcs.setPeaceAI(document.npceditpopup.npcpeaceai.value);
 		}
-		if (document.npceditpopup.npcpcthreatai.value != editnpcs.getPCThreatAI()) {
+		if (document.npceditpopup.npcpcthreatai.value !== editnpcs.getPCThreatAI()) {
 			editnpcs.setPCThreatAI(document.npceditpopup.npcpcthreatai.value);
 		}
-		if (document.npceditpopup.npcthreatenedai.value != editnpcs.getThreatenedAI()) {
+		if (document.npceditpopup.npcthreatenedai.value !== editnpcs.getThreatenedAI()) {
 			editnpcs.setThreatenedAI(document.npceditpopup.npcthreatenedai.value);
 		}
-		if (document.npceditpopup.npcmelee.value != editnpcs.getMeleeAttackAs()) {
+		if (document.npceditpopup.npcmelee.value !== editnpcs.getMeleeAttackAs()) {
 			editnpcs.setMeleeAttackAs(document.npceditpopup.npcmelee.value);
 		}
-		if (document.npceditpopup.npcmissile.value != editnpcs.getMissileAttackAs()) {
+		if (document.npceditpopup.npcmissile.value !== editnpcs.getMissileAttackAs()) {
 			editnpcs.setMissileAttackAs(document.npceditpopup.npcmissile.value);
 		}
 	}
-	else if (change == -1) {
+	else if (change === -1) {
 	  // add an "Are you sure? Yes/No" prompt
 	  var mapnpc = amap.npcs;
 	  mapnpc.deleteFrom(editnpcs);
@@ -461,14 +461,14 @@ function changemaptile(xval,yval) {
   var tdid = "#td_" + tileid;
   var graphics = selectionval.getGraphicArray();
   var showGraphic = graphics[0];
-  if (typeof selectionval.setBySurround == "function") {
+  if (typeof selectionval.setBySurround === "function") {
     graphics = selectionval.setBySurround(xval,yval,amap,graphics,0,0,0);
     showGraphic = graphics[0];
   }
-  if (typeof selectionval.doTile == "function") {
+  if (typeof selectionval.doTile === "function") {
   	showGraphic = selectionval.doTile(xval,yval,showGraphic);
   }
-  if (typeof selectionval.setByBelow == "function") {
+  if (typeof selectionval.setByBelow === "function") {
 //   	showGraphic = selectionval.setByBelow(xval,yval,amap);
       var setbelow = selectionval.setByBelow(xval,yval,amap);
       showGraphic = setbelow[0];
@@ -507,7 +507,7 @@ function resize(forminfo) {
 
 function addfeaturetomap(x,y,selection) {
 	if (!amap.data[y][x].features) {
-		amap.data[y][x].features = new Collection;
+		amap.data[y][x].features = new Collection();
 	}
 	var newfeature = localFactory.createTile(selection.getName());
 	newfeature.setx(x);
@@ -519,14 +519,14 @@ function addfeaturetomap(x,y,selection) {
   var tdid = "#td_" + tileid;
   var graphics = selection.getGraphicArray()
   var showGraphic = graphics[0];
-  if (typeof selection.setBySurround == "function") {
+  if (typeof selection.setBySurround === "function") {
    	graphics = selection.setBySurround(x,y,amap,graphics,0,0,0);
    	showGraphic = graphics[0];
   }
-  if (typeof selection.doTile == "function") {
+  if (typeof selection.doTile === "function") {
   	showGraphic = selection.doTile(x,y,showGraphic);
   }
-  if (typeof selection.setByBelow == "function") {
+  if (typeof selection.setByBelow === "function") {
 //   	showGraphic = selection.setByBelow(x,y,amap);
     var setbelow = selection.setByBelow(x,y,amap);
     showGraphic = setbelow[0];
@@ -541,7 +541,7 @@ function addfeaturetomap(x,y,selection) {
 
 function addnpctomap(x,y,selection) {
 	if (!amap.data[y][x].npcs) { 
-		amap.data[y][x].npcs = new Collection;
+		amap.data[y][x].npcs = new Collection();
 	}
 	var newnpc = localFactory.createTile(selection.getName());
 	newnpc.setx(x);
@@ -553,11 +553,11 @@ function addnpctomap(x,y,selection) {
 	var tdid = "#td_" + tileid;
 	var graphics = selection.getGraphicArray();
   var showGraphic = graphics[0];
-  if (typeof selection.setBySurround == "function") {
+  if (typeof selection.setBySurround === "function") {
    	graphics = selection.setBySurround(x,y,amap,graphics,0,0,0);
    	showGraphic = graphics[0];
   }
-  if (typeof selection.doTile == "function") {
+  if (typeof selection.doTile === "function") {
   	showGraphic = selection.doTile(x,y,showGraphic);
   }
   $(tdid).css("background-image","url('graphics/" + showGraphic + "')");
@@ -576,11 +576,11 @@ function erasefeature(x,y) {
   var localacre = amap.getTile(editable.getx(),editable.gety());
   var terraingraphics = localacre.terrain.getGraphicArray();
   var showGraphic = terraingraphics[0];
-  if (typeof localacre.getTerrain().setBySurround == "function") {
+  if (typeof localacre.getTerrain().setBySurround === "function") {
  	  var graphics = localacre.getTerrain().setBySurround(x,y,amap,terraingraphics,0,0,0);
     showGraphic = graphics[0];
   }
-  if (typeof localacre.getTerrain().doTile == "function") {
+  if (typeof localacre.getTerrain().doTile === "function") {
     showGraphic = localacre.getTerrain().doTile(x,y,showGraphic);
   }
   $(tdtileid).css("background-image", "url('graphics/" + showGraphic + "')");
@@ -638,22 +638,22 @@ var indoorblock = document.getElementById("indoordiv");
 var featureblock = document.getElementById("featurediv");
 var creatureblock = document.getElementById("creaturediv");
 
-  if (divname == "outdoor") {
+  if (divname === "outdoor") {
     outdoorblock.style.display="block";
   }
   else { outdoorblock.style.display="none"; }
   
-  if (divname == "indoor") {
+  if (divname === "indoor") {
     indoorblock.style.display="block";
   }
   else { indoorblock.style.display="none"; }
   
-  if (divname == "features") {
+  if (divname === "features") {
     featureblock.style.display="block";
   }
   else { featureblock.style.display="none"; }
   
-  if (divname == "creatures") {
+  if (divname === "creatures") {
     creatureblock.style.display="block";
   }
   else { creatureblock.style.display="none"; }
@@ -689,7 +689,7 @@ function editorEditMapDetails() {
 }
 
 function submitEditDetails(change) {
-	if (change == 1) {
+	if (change === 1) {
     amap.setName(document.detailseditpopup.mapname.value);
     amap.setDesc(document.detailseditpopup.mapdesc.value);
     amap.setMusic(document.detailseditpopup.mapmusic.value);

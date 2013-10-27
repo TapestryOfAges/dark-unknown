@@ -116,11 +116,11 @@ Timeline.prototype.executeNextEvent = function() {
 Timeline.prototype.removeEntityFrom = function(entity) {
 	var checktick = this.tickstream;
 	var prevtick = this.tickstream;
-	while ((checktick.getEvent().getEntity() != entity) && (checktick.getNextTick())) {
+	while ((checktick.getEvent().getEntity() !== entity) && (checktick.getNextTick())) {
 		prevtick = checktick;
 		checktick = checktick.getNextTick();
 	}
-	if (checktick.getEvent().getEntity() == entity) {
+	if (checktick.getEvent().getEntity() === entity) {
 		prevtick.setNextTick(checktick.getNextTick());
 	}
 }
