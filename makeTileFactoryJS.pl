@@ -8,7 +8,15 @@ open GAMEOBJS, "gameObjects.js" or die "can't open gameObjects\n";
 open (my $output, ">", "tileFactory.js") or die "Can't open output tileFactory\n";
 
 print $output "function tileFactory() {\n\n}\n\n// terrain factories:\n";
-print $output "tileFactory.prototype.createTile = function(tileName) {\n\n\n  var thingy = \"make\"+tileName+\"Tile\";\n    var newthing = this[thingy]();\n  newthing.assignSerial();\n  return newthing;\n}\n\n";
+print $output "tileFactory.prototype.createTile = function(tileName) {\n\n\n  var thingy = \"make\"+tileName+\"Tile\";\n";
+print $output "  if (this[thingy] && (typeof this[thingy] == \"function\")) {\n";
+print $output "    var newthing = this[thingy]();\n";
+print $output "    newthing.assignSerial();\n";
+print $output "    return newthing;\n";
+print $output "  } else {\n";
+print $output "    alert(tileName + \" is not a thing.\");\n";
+print $output "    exit;\n";
+print $output "  }\n}\n\n";
 
 
 foreach my $line (<GAMEOBJS>) {

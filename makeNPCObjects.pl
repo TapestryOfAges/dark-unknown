@@ -61,7 +61,7 @@ foreach my $line (<$npcdoc>) {
     print $out "  this.onDamaged = '$fields[21]';\n";
   }
   print $out "}\n";
-  print $out "$fields[0]" . "NPCTile.prototype = new NPCObject;\n\n";
+  print $out "$fields[0]" . "NPCTile.prototype = new NPCObject();\n\n";
 }
 
 close $npcdoc;
@@ -99,5 +99,5 @@ foreach my $line (<$groupdoc>) {
   $fields[10] = uc($fields[10]);
   print $out "  this.movetype = MOVE_$fields[10];\n";
   print $out "}\n";
-  print $out "$fields[0]" . "Tile.prototype = new NPCGroupObject;\n\n";
+  print $out "$fields[0]" . "Tile.prototype = new NPCGroupObject();\n\n";
 }

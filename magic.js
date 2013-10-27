@@ -1,6 +1,6 @@
 
-var magic = new Object;
-var bookmark = new Object;
+var magic = {};
+var bookmark = {};
 
 function SpellObject(name, incant, level, targets) {
   this.name = name;
@@ -9,7 +9,7 @@ function SpellObject(name, incant, level, targets) {
   this.targets = targets;
    
 }
-SpellObject.prototype = new Object;
+SpellObject.prototype = new Object();
 
 SpellObject.prototype.getName = function() {
   return this.name;
@@ -45,7 +45,7 @@ SpellObject.prototype.myTurn = function() {
 SpellObject.prototype.executeSpell = function(caster, infused) {
   // this will be overridden by each spell object
 
-  var retval = new Object;
+  var retval = {};
   retval["fin"] = 1;
   retval["txt"] = "";
   retval["input"] = "&gt;";
@@ -70,7 +70,7 @@ function GetSpellID(num) {
 }
 
 for (var i=1;i<=8;i++) {
-  magic[i] = new Object;
+  magic[i] = {};
 }
 
 magic[1][GetSpellID(1)] = new SpellObject("Cure", "An Nox", 1, 0);
@@ -132,7 +132,7 @@ magic[8][GetSpellID(6)] = new SpellObject("Time Stop", "An Tym", 8, 0);
 
 // Cure
 magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
-  var resp = new Object;
+  var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
@@ -141,10 +141,10 @@ magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   var effects = caster.getSpellEffects();
   if (effects) {
     for (var i=0; i<effects.length; i++) {
-      if (effects[i].getName() == "Poison") {
+      if (effects[i].getName() === "Poison") {
         caster.deleteSpellEffect(effects[i]);
       }
-      if ((infused) && (effects[i].getName() == "Disease")) {
+      if ((infused) && (effects[i].getName() === "Disease")) {
         caster.deleteSpellEffect(effects[i]);
       }
     }
