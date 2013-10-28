@@ -4515,9 +4515,10 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	
 	if (retval["canmove"] === 1) {
 		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
-//                if (this == PC) {
+    if (GetDistance(this.getx(), this.gety(), PC.getx(), PC.gety()) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) ) {
+      // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
 			DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-//		}
+    }
 		var walkonval = tile.executeWalkons(this);
 		if (walkonval) {
 		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
@@ -4766,13 +4767,13 @@ NPCObject.prototype.getDestination = function() {
   return dest;
 }
 
-NPCObject.prototype.getTurnsToRecalcDest = function() {
-  return this.memory.turnsToRecalcDest; 
-}
-
 NPCObject.prototype.setDestination = function(dest, timeuntil) {
   this.memory.currentDestination = dest;
   this.memory.turnsToRecalcDest = timeuntil;
+}
+
+NPCObject.prototype.getTurnsToRecalcDest = function() {
+  return this.memory.turnsToRecalcDest; 
 }
 
 NPCObject.prototype.setTurnsToRecalcDest = function(timeuntil) {
@@ -4786,9 +4787,10 @@ NPCObject.prototype.getPoI = function() {
   return poi;
 }
 
-NPCObject.prototype.setPoI = function(poiname, ind) {
+NPCObject.prototype.setPoI = function(poiname, ind, timeuntil) {
   this.memory.currentPoI.poiname = poiname;
   this.memory.currentPoI.ind = ind;
+  this.memory.turnsToRecalcPoI = timeuntil;
 }
 
 NPCObject.prototype.getTurnsToRecalcPoI = function() {
@@ -4808,7 +4810,7 @@ NPCObject.prototype.getCurrentPath = function() {
 }
 
 NPCObject.prototype.getNextStep = function() {
-  if (this.memory.currentPath[0]) {
+  if (this.memory.currentPath.length > 0) {
     var nextstep = shift(this.memory.currentPath);
     return nextstep;
   }
