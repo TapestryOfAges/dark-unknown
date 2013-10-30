@@ -11,6 +11,7 @@ ProtoObject.prototype.getSerial = function() {
 ProtoObject.prototype.assignSerial = function() {
  	maxserial++;
 	this.serial = maxserial;
+	if (debug) { dbs.writeln("Serial #" + maxserial + " assigned to " + this.getName() + "<br />"); }
 //	universe[this.serial] = this;
 }
 
@@ -519,7 +520,7 @@ function SetBySurround() {
 	  var foo = graphics[0].split('.');
 	  graphics[0] = foo[0] + cardinal_dash + addtoname_cardinal + diagonal_dash + addtoname_diagonal + '.' + foo[1];
 	  if (vis === 0) { 
-	  	var black = localFactory.createTile('BlankBlack');
+	  	var black = eidos.getForm('BlankBlack');
 	  	var blkgraphics = black.getGraphicArray();
 	  	graphics[0] = blkgraphics[0];
 	  }
@@ -534,7 +535,7 @@ function SetBySurround() {
 function SetBySurroundCoast() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
-			var displaytile = localFactory.createTile('BlankBlack');
+			var displaytile = eidos.getForm('BlankBlack');
 			var displaygraphic = displaytile.getGraphicArray();
 			return displaygraphic;
 		}
@@ -588,7 +589,7 @@ function SetBySurroundCoast() {
 function SetBySurroundRoad() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
-			var displaytile = localFactory.createTile('BlankBlack');
+			var displaytile = eidos.getForm('BlankBlack');
 			var displaygraphic = displaytile.getGraphicArray();
 			return displaygraphic;
 		}
@@ -626,7 +627,7 @@ function SetBySurroundRoad() {
 function SetBySurroundRiver() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
-			var displaytile = localFactory.createTile('BlankBlack');
+			var displaytile = eidos.getForm('BlankBlack');
 			var displaygraphic = displaytile.getGraphicArray();
 			return displaygraphic;
 		}
@@ -2894,7 +2895,7 @@ SpawnerTile.prototype.myTurn = function() {
     for (var i = this.level+1; i<=PC.getLevel(); i++) {
       if (this.evolve[i]) {
         this.level = i;
-        if (debug) { dbs.writeln("<span style='color:#00cc00'>Spawner at " + this.x + ", " + this.y + " has evolved.<br />"); }
+        if (debug) { dbs.writeln("<span style='color:#00cc00'>Spawner at " + this.x + ", " + this.y + " has evolved.</span><br />"); }
         while (this.evolve[i]) {
           var idx = shift(this.evolve[i]);
           var val = shift(this.evolve[i]);
@@ -2918,6 +2919,7 @@ SpawnerTile.prototype.myTurn = function() {
         mymap.placeThing(this.getx() + diffx, this.gety() + diffy, newspawn);
         this.addSpawned(newspawn);
         newspawn.setSpawnedBy(this);
+        if (debug) { dbs.writeln("<span style='color:#00cc00'>Spawner at " + this.x + ", " + this.y + " has spawned a " + newspawn.getName() + " #" + newspawn.getSerial() + "</span><br />"); }
       } else {
         timetonext = 5;
       }
