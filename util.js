@@ -144,7 +144,7 @@ function getDisplayCell(mapname, centerx, centery, x, y) {
     displayCell.desc = displaytile.getDesc();
 //    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="' + displaytile.getDesc() + '" /></td>';
   } else {
-    displaytile = localFactory.createTile('BlankBlack');
+    displaytile = eidos.getForm('BlankBlack');
     graphics = displaytile.getGraphicArray();
     showGraphic = graphics[0];
     displayCell.showGraphic = showGraphic;
