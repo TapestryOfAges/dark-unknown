@@ -131,10 +131,10 @@ mappages["combatShore1"].seeBelow = '';
 mappages["combatShore1"].lightLevel = '';
 mappages["combatShore1"].alwaysRemember = '';
 mappages["combatShore1"].scale = '';
-mappages["combatShore1"].enterscript = '';
+mappages["combatShore1"].enterscript = 'set_exits';
 mappages["combatShore1"].entertestscript = '';
 mappages["combatShore1"].exitscript = '';
-mappages["combatShore1"].exittestscript = '';
+mappages["combatShore1"].exittestscript = 'check_escape';
 mappages["combatShore1"].linkedMaps = new Array;
 
 // manually added
@@ -180,10 +180,10 @@ mappages["combatShore2"].seeBelow = '';
 mappages["combatShore2"].lightLevel = '';
 mappages["combatShore2"].alwaysRemember = '';
 mappages["combatShore2"].scale = '';
-mappages["combatShore2"].enterscript = '';
+mappages["combatShore2"].enterscript = 'set_exits';
 mappages["combatShore2"].entertestscript = '';
 mappages["combatShore2"].exitscript = '';
-mappages["combatShore2"].exittestscript = '';
+mappages["combatShore2"].exittestscript = 'check_escape';
 mappages["combatShore2"].linkedMaps = new Array;
 
 // manually added
@@ -231,10 +231,10 @@ mappages["combatWater1"].seeBelow = '';
 mappages["combatWater1"].lightLevel = 'bright';
 mappages["combatWater1"].alwaysRemember = '0';
 mappages["combatWater1"].scale = '1';
-mappages["combatWater1"].enterscript = '';
+mappages["combatWater1"].enterscript = 'set_exits';
 mappages["combatWater1"].entertestscript = '';
 mappages["combatWater1"].exitscript = '';
-mappages["combatWater1"].exittestscript = '';
+mappages["combatWater1"].exittestscript = 'check_escape';
 mappages["combatWater1"].linkedMaps = new Array("");
 
 // manually added
@@ -281,10 +281,10 @@ mappages["combatWater2"].seeBelow = '';
 mappages["combatWater2"].lightLevel = 'bright';
 mappages["combatWater2"].alwaysRemember = '0';
 mappages["combatWater2"].scale = '1';
-mappages["combatWater2"].enterscript = '';
+mappages["combatWater2"].enterscript = 'set_exits';
 mappages["combatWater2"].entertestscript = '';
 mappages["combatWater2"].exitscript = '';
-mappages["combatWater2"].exittestscript = '';
+mappages["combatWater2"].exittestscript = 'check_escape';
 mappages["combatWater2"].linkedMaps = new Array("");
 
 // manually added
@@ -332,10 +332,10 @@ mappages["combatBrush1"].seeBelow = '';
 mappages["combatBrush1"].lightLevel = 'bright';
 mappages["combatBrush1"].alwaysRemember = '0';
 mappages["combatBrush1"].scale = '1';
-mappages["combatBrush1"].enterscript = '';
+mappages["combatBrush1"].enterscript = 'set_exits';
 mappages["combatBrush1"].entertestscript = '';
 mappages["combatBrush1"].exitscript = '';
-mappages["combatBrush1"].exittestscript = '';
+mappages["combatBrush1"].exittestscript = 'check_escape';
 mappages["combatBrush1"].linkedMaps = new Array("");
 
 // manually added
@@ -382,10 +382,10 @@ mappages["combatBrush2"].seeBelow = '';
 mappages["combatBrush2"].lightLevel = 'bright';
 mappages["combatBrush2"].alwaysRemember = '0';
 mappages["combatBrush2"].scale = '1';
-mappages["combatBrush2"].enterscript = '';
+mappages["combatBrush2"].enterscript = 'set_exits';
 mappages["combatBrush2"].entertestscript = '';
 mappages["combatBrush2"].exitscript = '';
-mappages["combatBrush2"].exittestscript = '';
+mappages["combatBrush2"].exittestscript = 'check_escape';
 mappages["combatBrush2"].linkedMaps = new Array("");
 
 // manually added
@@ -433,10 +433,10 @@ mappages["combatHill1"].seeBelow = '';
 mappages["combatHill1"].lightLevel = 'bright';
 mappages["combatHill1"].alwaysRemember = '0';
 mappages["combatHill1"].scale = '1';
-mappages["combatHill1"].enterscript = '';
+mappages["combatHill1"].enterscript = 'set_exits';
 mappages["combatHill1"].entertestscript = '';
 mappages["combatHill1"].exitscript = '';
-mappages["combatHill1"].exittestscript = '';
+mappages["combatHill1"].exittestscript = 'check_escape';
 mappages["combatHill1"].linkedMaps = new Array("");
 
 // manually added
@@ -483,10 +483,10 @@ mappages["combatHill2"].seeBelow = '';
 mappages["combatHill2"].lightLevel = 'bright';
 mappages["combatHill2"].alwaysRemember = '0';
 mappages["combatHill2"].scale = '1';
-mappages["combatHill2"].enterscript = '';
+mappages["combatHill2"].enterscript = 'set_exits';
 mappages["combatHill2"].entertestscript = '';
 mappages["combatHill2"].exitscript = '';
-mappages["combatHill2"].exittestscript = '';
+mappages["combatHill2"].exittestscript = 'check_escape';
 mappages["combatHill2"].linkedMaps = new Array("");
 
 
@@ -535,10 +535,10 @@ mappages["combatForest1"].seeBelow = '';
 mappages["combatForest1"].lightLevel = 'bright';
 mappages["combatForest1"].alwaysRemember = '0';
 mappages["combatForest1"].scale = '1';
-mappages["combatForest1"].enterscript = '';
+mappages["combatForest1"].enterscript = 'set_exits';
 mappages["combatForest1"].entertestscript = '';
 mappages["combatForest1"].exitscript = '';
-mappages["combatForest1"].exittestscript = '';
+mappages["combatForest1"].exittestscript = 'check_escape';
 mappages["combatForest1"].linkedMaps = new Array("");
 
 // manually added
@@ -584,10 +584,10 @@ mappages["combatForest2"].seeBelow = '';
 mappages["combatForest2"].lightLevel = 'bright';
 mappages["combatForest2"].alwaysRemember = '0';
 mappages["combatForest2"].scale = '1';
-mappages["combatForest2"].enterscript = '';
+mappages["combatForest2"].enterscript = 'set_exits';
 mappages["combatForest2"].entertestscript = '';
 mappages["combatForest2"].exitscript = '';
-mappages["combatForest2"].exittestscript = '';
+mappages["combatForest2"].exittestscript = 'check_escape';
 mappages["combatForest2"].linkedMaps = new Array("");
 
 // manually added
@@ -635,10 +635,10 @@ mappages["combatSwamp1"].seeBelow = '';
 mappages["combatSwamp1"].lightLevel = 'bright';
 mappages["combatSwamp1"].alwaysRemember = '0';
 mappages["combatSwamp1"].scale = '1';
-mappages["combatSwamp1"].enterscript = '';
+mappages["combatSwamp1"].enterscript = 'set_exits';
 mappages["combatSwamp1"].entertestscript = '';
 mappages["combatSwamp1"].exitscript = '';
-mappages["combatSwamp1"].exittestscript = '';
+mappages["combatSwamp1"].exittestscript = 'check_escape';
 mappages["combatSwamp1"].linkedMaps = new Array("");
 
 // manually added
@@ -685,10 +685,10 @@ mappages["combatSwamp2"].seeBelow = '';
 mappages["combatSwamp2"].lightLevel = 'bright';
 mappages["combatSwamp2"].alwaysRemember = '0';
 mappages["combatSwamp2"].scale = '1';
-mappages["combatSwamp2"].enterscript = '';
+mappages["combatSwamp2"].enterscript = 'set_exits';
 mappages["combatSwamp2"].entertestscript = '';
 mappages["combatSwamp2"].exitscript = '';
-mappages["combatSwamp2"].exittestscript = '';
+mappages["combatSwamp2"].exittestscript = 'check_escape';
 mappages["combatSwamp2"].linkedMaps = new Array("");
 
 // manually added
@@ -736,10 +736,10 @@ mappages["combatCoast1"].seeBelow = '';
 mappages["combatCoast1"].lightLevel = '';
 mappages["combatCoast1"].alwaysRemember = '';
 mappages["combatCoast1"].scale = '';
-mappages["combatCoast1"].enterscript = '';
+mappages["combatCoast1"].enterscript = 'set_exits';
 mappages["combatCoast1"].entertestscript = '';
 mappages["combatCoast1"].exitscript = '';
-mappages["combatCoast1"].exittestscript = '';
+mappages["combatCoast1"].exittestscript = 'check_escape';
 mappages["combatCoast1"].linkedMaps = new Array;
 
 // manually added
@@ -786,10 +786,10 @@ mappages["combatCoast2"].seeBelow = '';
 mappages["combatCoast2"].lightLevel = '';
 mappages["combatCoast2"].alwaysRemember = '';
 mappages["combatCoast2"].scale = '';
-mappages["combatCoast2"].enterscript = '';
+mappages["combatCoast2"].enterscript = 'set_exits';
 mappages["combatCoast2"].entertestscript = '';
 mappages["combatCoast2"].exitscript = '';
-mappages["combatCoast2"].exittestscript = '';
+mappages["combatCoast2"].exittestscript = 'check_escape';
 mappages["combatCoast2"].linkedMaps = new Array;
 
 // manually added
