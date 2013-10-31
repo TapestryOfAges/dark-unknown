@@ -4813,7 +4813,7 @@ NPCObject.prototype.getCurrentPath = function() {
 
 NPCObject.prototype.getNextStep = function() {
   if (this.memory.currentPath.length > 0) {
-    var nextstep = shift(this.memory.currentPath);
+    var nextstep = this.memory.currentPath.shift();
     return nextstep;
   }
   return [];
