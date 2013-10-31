@@ -78,6 +78,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       retval = who.moveMe(diffx, diffy, 0);
       if (retval["canmove"] === 1) { // it moved!
         if (debug) { dbs.writeln("successfully.</span><br />"); }
+        who.setTurnsToRecalcDest(who.getTurnsToRecalcDest - 1);
         return retval; // we're done here
       }
       // failed to move. On the surface, this means there was another AI there.
