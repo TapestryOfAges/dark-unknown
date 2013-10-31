@@ -432,7 +432,7 @@ function PerformAttack(who) {
 function PerformAttackMap(who) {
   var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
   var atkwho = localacre.npcs.getTop();
-  var retval = new Object;
+  var retval = {};
   if (atkwho) { // there's something there!
 //    retval["txt"] = "You attack ";
 //    if (atkwho.getPrefix()){ 
