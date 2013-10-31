@@ -3978,7 +3978,7 @@ function NPCObject() {
 	this.initmult = 1;
 	this.movetype = MOVE_WALK;
 	this.inventory = new Collection;
-  this.equipment = new Object;
+  this.equipment = {};
 	this.equipment.armor;
 	this.equipment.weapon;
 	this.equipment.missile;
@@ -3986,15 +3986,20 @@ function NPCObject() {
 	this.leavesCorpse = "";
 	this.lootTable = "";
 	this.lastTurnTime = 0;
-	this.spellbook = new Array;
+	this.spellbook = [];
 	this.spellEffects = new Collection;
 	this.knowsInfusion = 0;
-	this.lastLocation = new Object;
+	this.lastLocation = {};
 	this.lastLocation.map = "";
 	this.lastLocation.x = 0;
 	this.lastLocation.y = 0;
 	this.spawnedBy;
-	this.memory = new NPCBrain();
+	//brain
+	this.currentPoI = {};
+  this.currentDestination = {};
+  this.turnsToRecalcPoI = 0;
+  this.turnsToRecalcDest = 0;
+  this.currentPath = [];
 	
 	this.addType("npc");
 }
@@ -4764,56 +4769,56 @@ NPCObject.prototype.setLastLocation = function (newloc) {
 
 NPCObject.prototype.getDestination = function() {
   var dest = {};
-  dest.x = this.memory.currentDestination.x;
-  dest.y = this.memory.currentDestination.y;
+  dest.x = this.currentDestination.x;
+  dest.y = this.currentDestination.y;
   return dest;
 }
 
 NPCObject.prototype.setDestination = function(dest, timeuntil) {
-  this.memory.currentDestination = dest;
-  this.memory.turnsToRecalcDest = timeuntil;
+  this.currentDestination = dest;
+  this.turnsToRecalcDest = timeuntil;
 }
 
 NPCObject.prototype.getTurnsToRecalcDest = function() {
-  return this.memory.turnsToRecalcDest; 
+  return this.turnsToRecalcDest; 
 }
 
 NPCObject.prototype.setTurnsToRecalcDest = function(timeuntil) {
-  this.memory.turnsToRecalcDest = timeuntil;
+  this.turnsToRecalcDest = timeuntil;
 }
 
 NPCObject.prototype.getPoI = function() {
   var poi = {};
-  poi.poiname = this.memory.currentPoI.poiname;
-  poi.ind = this.memory.currentPoI.ind;
+  poi.poiname = this.currentPoI.poiname;
+  poi.ind = this.currentPoI.ind;
   return poi;
 }
 
 NPCObject.prototype.setPoI = function(poiname, ind, timeuntil) {
-  this.memory.currentPoI.poiname = poiname;
-  this.memory.currentPoI.ind = ind;
-  this.memory.turnsToRecalcPoI = timeuntil;
+  this.currentPoI.poiname = poiname;
+  this.currentPoI.ind = ind;
+  this.turnsToRecalcPoI = timeuntil;
 }
 
 NPCObject.prototype.getTurnsToRecalcPoI = function() {
-  return this.memory.turnsToRecalcPoI;
+  return this.turnsToRecalcPoI;
 }
 
 NPCObject.prototype.setTurnsToRecalcPoI = function(timeuntil) {
-  this.memory.turnsToRecalcPoI = timeuntil;
+  this.turnsToRecalcPoI = timeuntil;
 }
 
 NPCObject.prototype.setCurrentPath = function(newpath) {
-  this.memory.currentPath = newpath;
+  this.currentPath = newpath;
 }
 
 NPCObject.prototype.getCurrentPath = function() {
-  return this.memory.currentPath;
+  return this.currentPath;
 }
 
 NPCObject.prototype.getNextStep = function() {
-  if (this.memory.currentPath.length > 0) {
-    var nextstep = this.memory.currentPath.shift();
+  if (this.currentPath.length > 0) {
+    var nextstep = this.currentPath.shift();
     return nextstep;
   }
   return [];
