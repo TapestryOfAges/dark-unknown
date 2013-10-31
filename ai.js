@@ -41,11 +41,12 @@ ais.HuntPC = function(who, radius) {
 		return 0;  // no hunting
 	}
 	
+	var themap =  who.getHomeMap();
+	
 	// if the PC is within a smaller radius (currently radius/3), hunt no matter what.
 	// otherwise, check if we can see the PC, with a more forgiving threshold than used
 	// in the game display
 	if (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > (radius/3)) {   
-    var themap =  who.getHomeMap();
     
     var losresult = themap.getLOS(who.getx(), who.gety(), PC.getx(), PC.gety(), losgrid);
     if (losresult > 2) { 
@@ -56,12 +57,21 @@ ais.HuntPC = function(who, radius) {
 	
 	// HUNT!
 	// find path to the PC
+	if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Hunting!</span><br />"); }
 	var destination = { x: PC.getx(), y: PC.gety() };
 	
 	destination = CheckTownProximity(destination, who.getHomeMap());  // destination moved away if the target is too near a town.
 	
 	var dur = Math.floor(Math.random()*3)+5;   // recalc in 5-7 moves, and remember that this turn has not yet moved
 	who.setDestination(destination, dur);
+	
+	var path = themap.getPath(who.getx(), who.gety(), destination.x, destination.y, who.getMovetype());
+	path.shift();
+	if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>From: " + who.getx() + ", " + who.gety() + " to " + destination.x + ", " + destination.y+ "</span><br />"); }
+	if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>First step is: " + path[0][0] + ", " + path[0][1] + "</span><br />"); }
+	if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>Next step is: " + path[1][0] + ", " + path[1][1] + "</span><br />"); }
+	who.setCurrentPath(path);
+	
 	return 1;
 	
 }
@@ -71,14 +81,16 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
   var retval = { fin: 0 };
   if ((who.getCurrentPath().length > 0) && (who.getTurnsToRecalcDest() > 0)) {
     var coords = who.getNextStep();
+    if (debug) { dbs.writeln("<span style='color:red; font-weight:bold'>Check path distance? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + coords[0] + ", " + coords[1] + ".</span><br />"); }
     if (GetDistance(who.getx(), who.gety(), coords[0], coords[1]) === 1) {  // the next step is only a step away
-      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " moving to " + coords[0] + ", " + coords[1] + " :"); }
+      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " moving from " + who.getx() + ", " + who.gety() + " to " + coords[0] + ", " + coords[1] + " :"); }
       var diffx = coords[0] - who.getx();
       var diffy = coords[1] - who.gety();
       retval = who.moveMe(diffx, diffy, 0);
       if (retval["canmove"] === 1) { // it moved!
-        if (debug) { dbs.writeln("successfully.</span><br />"); }
-        who.setTurnsToRecalcDest(who.getTurnsToRecalcDest - 1);
+        retval["fin"] = 1;
+        if (debug) { dbs.writeln("successfully. New location: " + who.getx() + ", " + who.gety() + "</span><br />"); }
+        who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
         return retval; // we're done here
       }
       // failed to move. On the surface, this means there was another AI there.
@@ -106,7 +118,9 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       
     } 
     // if next step is more than one step away, a previous move failed, recalculate now
+    if (debug) { dbs.writeln("<span style='color:red; font-weight:bold'>Path distant? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + who.getCurrentPath()[0][0] + ", " + who.getCurrentPath()[0][1] + ".</span><br />"); }
   }
+  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>No path to follow. Path length: " + who.getCurrentPath().length + ". Turns: " + who.getTurnsToRecalcDest() + ".</span><br />"); }
   return retval;
 }
 

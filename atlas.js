@@ -797,15 +797,15 @@ GameMap.prototype.createPathGrid = function() {
 GameMap.prototype.getPath = function(fromx,fromy,tox,toy,movetype) {
   var gridbackup = this.getPathGrid(movetype).clone();
   // destination tile must always be walkable.
-  gridbackup.setWalkableAt(tox,toy,true,movetype);
+  gridbackup.setWalkableAt(tox,toy,true);
   
   // so must start tile, for some reason
-  gridbackup.setWalkableAt(fromx,fromy,true,movetype);
+  gridbackup.setWalkableAt(fromx,fromy,true);
   
   // get path
-  var path = finder.findPath(fromx,fromy,tox,toy,gridbackup);
+  var foundpath = finder.findPath(fromx,fromy,tox,toy,gridbackup);
   
-  return path;
+  return foundpath;
 }
 
 GameMap.prototype.setWalkableAt = function(x,y,canwalk,movetype) {
