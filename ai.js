@@ -15,19 +15,24 @@ ais.Bandit = function(who, radius) {
   }
   
   // Next, check and see if there is already a path that has not expired
-  retval = ais.SurfaceFollowPath(who,40,1);   
-  if (retval["fin"] === 1) { return retval; }
+  // but only if the PC is not within close range- in that case, always wait to hunt
+  if ((who.getHomeMap() !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius/3)) {
+    retval = ais.SurfaceFollowPath(who,40,1);   
+    if (retval["fin"] === 1) { return retval; }
+  }
   
   // If there is a radius attached, hunt for the PC next
-  var hunt = ais.HuntPC(who,radius);
+  if (radius) {
+    var hunt = ais.HuntPC(who,radius);
 
-  if (hunt) { 
-    retval = ais.SurfaceFollowPath(who,40,1);   
-    return retval; // we're done here either way
-  }  
+    if (hunt) { 
+      retval = ais.SurfaceFollowPath(who,40,1);   
+      return retval; // we're done here either way
+    }  
+  }
 
   // we have neither attacked, moved, nor hunted- now we look for a PoI to go towards
-
+  retval = ai.ProcessPoI(who, "road");
   return retval;
 }
 
@@ -36,7 +41,7 @@ ais.Bandit = function(who, radius) {
 
 ais.HuntPC = function(who, radius) {
 	// Is the PC within range to be hunted?
-	if (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius) {
+	if ((who.getHomeMap() !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius)) {
 	  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>PC is not in range to hunt.</span><br />"); }
 		return 0;  // no hunting
 	}
@@ -62,7 +67,7 @@ ais.HuntPC = function(who, radius) {
 	
 	destination = CheckTownProximity(destination, who.getHomeMap());  // destination moved away if the target is too near a town.
 	
-	var dur = Math.floor(Math.random()*3)+5;   // recalc in 5-7 moves, and remember that this turn has not yet moved
+	var dur = Math.floor(Math.random()*3)+3;   // recalc in 3-5 moves, and remember that this turn has not yet moved
 	who.setDestination(destination, dur);
 	
 	var path = themap.getPath(who.getx(), who.gety(), destination.x, destination.y, who.getMovetype());
@@ -152,6 +157,25 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
   return retval;
 }
 
+
+ais.ProcessPoI = function(who,poiname) {
+  var themap = who.getHomeMap();
+  if (!who.getPoI().poiname) {
+    var ind = FindClosestPoI(who.getx(), who.gety(), themap, poiname);
+    who.setPoI(poiname,ind,8);
+    // random scatter the actual destination to near the PoI
+    var xval = Math.floor(Math.random()*9)-4 + themap.network[poiname][ind].x;
+    var yval = Math.floor(Math.random()*9)-4 + themap.network[poiname][ind].y;
+    
+    who.setDestination({x: xval, y: yval}, 8);
+    var path = themap.getPath(who.getx(), who.gety(), xval, yval, who.getMovetype());
+    path.shift();
+    who.setCurrentPath(path);
+  }
+  var retval = ais.SurfaceFollowPath(who,30,1);
+    
+}
+
 function NPCAttackPCMap(npc) {
   var combatmapname = GetCombatMap(npc, PC);
   var newmap = new GameMap();
@@ -194,4 +218,15 @@ function CheckTownProximity(coords, map) {
     }
   }
   return coords;
+}
+
+function FindClosestPoI(xval, yval, themap, poiname) {
+  var closeind = 0;
+  var closest = GetDistance(xval,yval,themap.network[poiname][0].x, themap.network[poiname][0].y);
+  
+  for (var i=1; i<themap.network[poiname].length; i++) { 
+    var ind = GetDistance(xval,yval,themap.network[poiname][i].x, themap.network[poiname][i].y);
+    if (ind < closest) { closeind = ind; }
+  }
+  
 }
