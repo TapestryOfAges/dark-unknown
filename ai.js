@@ -66,18 +66,21 @@ ais.HuntPC = function(who, radius) {
 	var destination = { x: PC.getx(), y: PC.gety() };
 	
 	destination = CheckTownProximity(destination, who.getHomeMap());  // destination moved away if the target is too near a town.
-	
-	var dur = Math.floor(Math.random()*3)+3;   // recalc in 3-5 moves, and remember that this turn has not yet moved
-	who.setDestination(destination, dur);
-	
+		
 	var path = themap.getPath(who.getx(), who.gety(), destination.x, destination.y, who.getMovetype());
-	path.shift();
-	if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>From: " + who.getx() + ", " + who.gety() + " to " + destination.x + ", " + destination.y+ "</span><br />"); }
-	if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>First step is: " + path[0][0] + ", " + path[0][1] + "</span><br />"); }
-	if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>Next step is: " + path[1][0] + ", " + path[1][1] + "</span><br />"); }
-	who.setCurrentPath(path);
-	
-	return 1;
+	if (path.length) {
+   	path.shift();
+    if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>From: " + who.getx() + ", " + who.gety() + " to " + destination.x + ", " + destination.y+ "</span><br />"); }
+    if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>First step is: " + path[0][0] + ", " + path[0][1] + "</span><br />"); }
+    if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>Next step is: " + path[1][0] + ", " + path[1][1] + "</span><br />"); }
+    who.setCurrentPath(path);
+
+    var dur = Math.floor(Math.random()*3)-1; 
+    dur = dur + Math.floor(path.length / 3);
+    who.setDestination(destination, dur);
+    
+    return 1;
+  } else { return 0; }
 	
 }
 
