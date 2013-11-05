@@ -233,7 +233,7 @@ function Placeonyxspawn(mapref) {
 
 function CreateNetwork(mapref) {
   
-  mapref.network["road"] = new Array;
+  mapref.network["road"] = [];
   mapref.network["road"][0] =  new PointOfInterest(55,115);
   mapref.network["road"][1] =  new PointOfInterest(44,90);
   mapref.network["road"][2] =  new PointOfInterest(36,100);
