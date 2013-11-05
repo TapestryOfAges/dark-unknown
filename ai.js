@@ -4,7 +4,12 @@
 
 var ais = {};
 
-ais.Bandit = function(who, radius) {
+ais.Bandit = function(who,radius) {
+  var retval = ais.OutdoorHostile(who, radius, "road");
+  return retval;
+}
+
+ais.OutdoorHostile = function(who, radius, pname) {
   var retval = {fin: 1};
   if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " " + who.getSerial() + " is going.</span><br />"); }
   // First, see if the PC is adjacent and if so, smite.
@@ -32,7 +37,7 @@ ais.Bandit = function(who, radius) {
   }
 
   // we have neither attacked, moved, nor hunted- now we look for a PoI to go towards
-  retval = ai.ProcessPoI(who, "road");
+  retval = ais.ProcessPoI(who, pname);
   return retval;
 }
 
@@ -176,7 +181,7 @@ ais.ProcessPoI = function(who,poiname) {
     who.setCurrentPath(path);
   }
   var retval = ais.SurfaceFollowPath(who,30,1);
-    
+  return retval;
 }
 
 function NPCAttackPCMap(npc) {
@@ -232,4 +237,5 @@ function FindClosestPoI(xval, yval, themap, poiname) {
     if (ind < closest) { closeind = ind; }
   }
   
+  return closeind;
 }
