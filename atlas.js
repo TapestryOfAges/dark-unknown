@@ -460,8 +460,7 @@ Acre.prototype.getInitDelay = function(mob) {
 	return 1;
 }
 
-//Acre.prototype.canMoveHere = function(mover, fromtile) {
-Acre.prototype.canMoveHere = function(movetype) {
+Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	var terrain = this.getTerrain();
 	var totalpassability = terrain.getPassable();
 	var retval = {};
@@ -482,10 +481,12 @@ Acre.prototype.canMoveHere = function(movetype) {
 	  for (var i=0; i< features.length; i++) {
 		  featurepassability = featurepassability & features[i].getPassable();
 		}  
-		var npcs = this.getNPCs();
-	  if (npcs[0]) {
-	  	featurepassability = 0;
-	  }
+		if (!nonpcs) {
+		  var npcs = this.getNPCs();
+	    if (npcs[0]) {
+	  	  featurepassability = 0;
+      }
+    }
 		if (totalpassability & MOVE_SWIM) {
 //	  	if (featurepassability & mover.getMovetype()) {
 	  	if (featurepassability & movetype) {
@@ -495,10 +496,12 @@ Acre.prototype.canMoveHere = function(movetype) {
 		  }
 	  }
 	}
-	var npcs = this.getNPCs();
-	if (npcs[0]) {
-		featurepassability = 0;
-	}
+	if (!nonpcs) {
+	  var npcs = this.getNPCs();
+    if (npcs[0]) {
+      featurepassability = 0;
+    }
+  }
 //	if (totalpassability & featurepassability & mover.getMovetype()) {
   if (totalpassability & featurepassability & movetype) {
 		retval["canmove"] = 1;
@@ -787,7 +790,7 @@ GameMap.prototype.createPathGrid = function() {
     for (var j=0; j<this.getHeight(); j++) {
       var thisspot = this.getTile(i,j);
       for (var k=1; k<=16; k=k*2) {
-        var response = thisspot.canMoveHere(k);
+        var response = thisspot.canMoveHere(k, 1);
         if (!response["canmove"]) { this.setWalkableAt(i,j,false,k); }
       }
     }
@@ -978,12 +981,14 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
 //    }
 
 	  //update pathfinding
-    var tile = this.getTile(x,y);
-    for (var itr=1; itr<=16; itr=itr*2) {
-      var response = tile.canMoveHere(itr);
-	    if (response["canmove"]) { this.setWalkableAt(x,y,true,itr); }
-	    else { this.setWalkableAt(x,y,false,itr); }
-  	}
+	  if (type !== "npcs") {
+      var tile = this.getTile(x,y);
+      for (var itr=1; itr<=16; itr=itr*2) {
+        var response = tile.canMoveHere(itr, 1);
+	      if (response["canmove"]) { this.setWalkableAt(x,y,true,itr); }
+  	    else { this.setWalkableAt(x,y,false,itr); }
+    	}
+    }
 
   }  
 }
@@ -1005,16 +1010,18 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
     this.setMapLight(thing,thing.getLight(),x,y);
   }
   // update pathfinding
-  var oldtile = this.getTile(oldx,oldy);
-  var tile = this.getTile(x,y);
-	for (var i=1; i<=16; i=i*2) {
-	  var response = oldtile.canMoveHere(i);
-	  if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
-	  else { this.setWalkableAt(oldx,oldy,false,i); }
-	  response = tile.canMoveHere(i);
-	  if (response["canmove"]) { this.setWalkableAt(x,y,true,i); }
-	  else { this.setWalkableAt(x,y,false,i); }
-	}
+  if (type !== "npcs") {
+    var oldtile = this.getTile(oldx,oldy);
+    var tile = this.getTile(x,y);
+  	for (var i=1; i<=16; i=i*2) {
+	    var response = oldtile.canMoveHere(i, 1);
+      if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
+      else { this.setWalkableAt(oldx,oldy,false,i); }
+      response = tile.canMoveHere(i, 1);
+      if (response["canmove"]) { this.setWalkableAt(x,y,true,i); }
+      else { this.setWalkableAt(x,y,false,i); }
+    }
+  }
 
 }
 
@@ -1029,7 +1036,7 @@ GameMap.prototype.deleteThing = function(thing) {
 	//update pathfinding
   var tile = this.getTile(oldx,oldy);
 	for (var i=1; i<=16; i=i*2) {
-	  var response = tile.canMoveHere(i);
+	  var response = tile.canMoveHere(i, 1);
 	  if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
 	  else { this.setWalkableAt(oldx,oldy,false,i); }
 	}
