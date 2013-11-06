@@ -200,10 +200,10 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   
   // update pathfinding
 	for (var i=1; i<=16; i=i*2) {
-	  var response = oldtile.canMoveHere(i);
+	  var response = oldtile.canMoveHere(i, 1);
 	  if (response["canmove"]) { frommap.setWalkableAt(oldx,oldy,true,i); }
 	  else { frommap.setWalkableAt(oldx,oldy,false,i); }
-	  response = tile.canMoveHere(i);
+	  response = tile.canMoveHere(i, 1);
 	  if (response["canmove"]) { tomap.setWalkableAt(destx,desty,true,i); }
 	  else { tomap.setWalkableAt(destx,desty,false,i); }
 	}
