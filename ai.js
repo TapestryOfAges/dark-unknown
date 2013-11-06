@@ -170,6 +170,7 @@ ais.ProcessPoI = function(who,poiname) {
   var themap = who.getHomeMap();
   if (!who.getPoI().poiname) {
     var ind = FindClosestPoI(who.getx(), who.gety(), themap, poiname);
+    if (debug) { dbs.writeln("<span style='color:red; font-weight:bold'>Closest PoI: " + ind + "</span><br />"); }
     who.setPoI(poiname,ind,8);
     // random scatter the actual destination to near the PoI
     var xval = Math.floor(Math.random()*9)-4 + themap.network[poiname][ind].x;
