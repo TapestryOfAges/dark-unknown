@@ -4788,25 +4788,20 @@ NPCObject.prototype.setTurnsToRecalcDest = function(timeuntil) {
 }
 
 NPCObject.prototype.getPoI = function() {
-  var poi = {};
-  poi.poiname = this.currentPoI.poiname;
-  poi.ind = this.currentPoI.ind;
-  return poi;
+  return this.currentPoI;
 }
 
-NPCObject.prototype.setPoI = function(poiname, ind, timeuntil) {
-  this.currentPoI.poiname = poiname;
-  this.currentPoI.ind = ind;
-  this.turnsToRecalcPoI = timeuntil;
+NPCObject.prototype.setPoI = function(poi) {
+  this.currentPoI = poi;
 }
 
-NPCObject.prototype.getTurnsToRecalcPoI = function() {
-  return this.turnsToRecalcPoI;
-}
+//NPCObject.prototype.getTurnsToRecalcPoI = function() {
+//  return this.turnsToRecalcPoI;
+//}
 
-NPCObject.prototype.setTurnsToRecalcPoI = function(timeuntil) {
-  this.turnsToRecalcPoI = timeuntil;
-}
+//NPCObject.prototype.setTurnsToRecalcPoI = function(timeuntil) {
+//  this.turnsToRecalcPoI = timeuntil;
+//}
 
 NPCObject.prototype.setCurrentPath = function(newpath) {
   this.currentPath = newpath;

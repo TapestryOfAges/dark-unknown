@@ -10,6 +10,8 @@ ais.Bandit = function(who,radius) {
 }
 
 ais.OutdoorHostile = function(who, radius, pname) {
+  if (!radius) { radius = 0; }
+  
   var retval = {fin: 1};
   if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " " + who.getSerial() + " is going.</span><br />"); }
   // First, see if the PC is adjacent and if so, smite.
@@ -21,7 +23,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
   
   // Next, check and see if there is already a path that has not expired
   // but only if the PC is not within close range- in that case, always wait to hunt
-  if (radius && ((who.getHomeMap() !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius/3))) {
+  if ((who.getHomeMap() !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius/3)) {
     retval = ais.SurfaceFollowPath(who,40,1);   
     if (retval["fin"] === 1) { return retval; }
   }
@@ -100,10 +102,10 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       var diffx = coords[0] - who.getx();
       var diffy = coords[1] - who.gety();
       retval = who.moveMe(diffx, diffy, 0);
+      who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
       if (retval["canmove"] === 1) { // it moved!
         retval["fin"] = 1;
         if (debug) { dbs.writeln("successfully. New location: " + who.getx() + ", " + who.gety() + "</span><br />"); }
-        who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
         return retval; // we're done here
       }
       // failed to move. On the surface, this means there was another AI there.
@@ -169,17 +171,48 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
 ais.ProcessPoI = function(who,poiname) {
   var themap = who.getHomeMap();
   if (!who.getPoI().poiname) {
-    var ind = FindClosestPoI(who.getx(), who.gety(), themap, poiname);
+    if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Has no PoI yet. Searching...</span><br />"); }
+    var poi = FindClosestPoI(who.getx(), who.gety(), themap, poiname);
     if (debug) { dbs.writeln("<span style='color:red; font-weight:bold'>Closest PoI: " + ind + "</span><br />"); }
-    who.setPoI(poiname,ind,8);
+    who.setPoI(poi);
     // random scatter the actual destination to near the PoI
-    var xval = Math.floor(Math.random()*9)-4 + themap.network[poiname][ind].x;
-    var yval = Math.floor(Math.random()*9)-4 + themap.network[poiname][ind].y;
     
-    who.setDestination({x: xval, y: yval}, 8);
-    var path = themap.getPath(who.getx(), who.gety(), xval, yval, who.getMovetype());
+    var path = [];
+    while (path.length === 0) {
+      var xval = Math.floor(Math.random()*9)-4 + poi.x;
+      var yval = Math.floor(Math.random()*9)-4 + poi.y;
+    
+      path = themap.getPath(who.getx(), who.gety(), xval, yval, who.getMovetype());
+    }
     path.shift();
+    var dur = path.length / 3 + Math.floor(Math.random() * 3);
     who.setCurrentPath(path);
+    who.setDestination({x: xval, y: yval}, dur);
+  } else {
+    var coords = who.getCurrentPath()[0];
+    if ((who.getTurnsToRecalcDest() > 0) || (GetDistance(who.getx(), who.gety(), coords[0], coords[1]) !== 1)) {
+      // next step is not adjacent but destination is still valid: find a new path!
+      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Path not expired, but path invalid. Recalculate.</span><br />"); }
+      var coords = who.getDestination();
+      var path = themap.getPath(who.getx(), who.gety(), coords.x, coords.y);
+      who.setCurrentPath(path);
+    } else if (who.getTurnsToRecalcDest() <= 0) {
+      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Path expired, find a new PoI!</span><br />"); }
+      var connections = who.getPoI().connections;
+      var connind = Math.floor(Math.random() * connections.length);
+      who.setPoI(who.getPoI().connections[connind]);
+      var path = [];
+      while (path.length === 0) {
+        var xval = Math.floor(Math.random()*9)-4 + poi.x;
+        var yval = Math.floor(Math.random()*9)-4 + poi.y;
+    
+        path = themap.getPath(who.getx(), who.gety(), xval, yval, who.getMovetype());
+      }
+      path.shift();
+      var dur = path.length / 3 + Math.floor(Math.random() * 3);
+      who.setCurrentPath(path);
+      who.setDestination({x: xval, y: yval}, dur);        
+    }
   }
   var retval = ais.SurfaceFollowPath(who,30,1);
   return retval;
@@ -238,5 +271,5 @@ function FindClosestPoI(xval, yval, themap, poiname) {
     if (ind < closest) { closeind = ind; }
   }
   
-  return closeind;
+  return themap.network[poiname][closeind];
 }
