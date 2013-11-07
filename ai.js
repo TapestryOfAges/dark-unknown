@@ -21,7 +21,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
   
   // Next, check and see if there is already a path that has not expired
   // but only if the PC is not within close range- in that case, always wait to hunt
-  if ((who.getHomeMap() !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius/3)) {
+  if (radius && ((who.getHomeMap() !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius/3))) {
     retval = ais.SurfaceFollowPath(who,40,1);   
     if (retval["fin"] === 1) { return retval; }
   }
