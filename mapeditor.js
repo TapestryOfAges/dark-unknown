@@ -15,11 +15,16 @@ var togglehide = 0;
 var brushdown = 0;
 var editable;
 var editnpcs;
-var browserheight = getSize();
+//var browserheight = getSize();
+var browserheight;
 var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
 var mode = "editor";
 var PC = new PCObject();
+
+$(document).ready(function() {
+  browserheight = $(window).height();
+});
 
 if (debug) {
   debugscreen = window.open('','debugscreen');
