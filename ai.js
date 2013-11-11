@@ -173,7 +173,7 @@ ais.ProcessPoI = function(who,poiname) {
   if (!who.getPoI().poiname) {
     if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Has no PoI yet. Searching...</span><br />"); }
     var poi = FindClosestPoI(who.getx(), who.gety(), themap, poiname);
-    if (debug) { dbs.writeln("<span style='color:red; font-weight:bold'>Closest PoI: " + ind + "</span><br />"); }
+    if (debug) { dbs.writeln("<span style='color:red; font-weight:bold'>Closest PoI: " + poi.x + ", " + poi.y + "</span><br />"); }
     who.setPoI(poi);
     // random scatter the actual destination to near the PoI
     
@@ -188,6 +188,7 @@ ais.ProcessPoI = function(who,poiname) {
     var dur = path.length / 3 + Math.floor(Math.random() * 3);
     who.setCurrentPath(path);
     who.setDestination({x: xval, y: yval}, dur);
+    if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Set path to: " + xval + ", " + yval + "</span><br />"); }
   } else {
     var coords = who.getCurrentPath()[0];
     if ((who.getTurnsToRecalcDest() > 0) || (GetDistance(who.getx(), who.gety(), coords[0], coords[1]) !== 1)) {
