@@ -4000,6 +4000,7 @@ function NPCObject() {
   this.turnsToRecalcPoI = 0;
   this.turnsToRecalcDest = 0;
   this.currentPath = [];
+  this.destType;
 	
 	this.addType("npc");
 }
@@ -4778,6 +4779,15 @@ NPCObject.prototype.setDestination = function(dest, timeuntil) {
   this.currentDestination = dest;
   this.turnsToRecalcDest = timeuntil;
 }
+
+NPCObject.prototype.getDestinationType = function() {
+  return this.destType;
+}
+
+NPCObject.prototype.setDestinationType = function(dtype) {
+  this.destType = dtype;
+}
+
 
 NPCObject.prototype.getTurnsToRecalcDest = function() {
   return this.turnsToRecalcDest; 
