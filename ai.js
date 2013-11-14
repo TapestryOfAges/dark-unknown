@@ -85,6 +85,7 @@ ais.HuntPC = function(who, radius) {
     var dur = Math.floor(Math.random()*3)-1; 
     dur = dur + Math.floor(path.length / 3);
     who.setDestination(destination, dur);
+    who.setDestinationType("PC");
     
     return 1;
   } else { return 0; }
@@ -94,6 +95,7 @@ ais.HuntPC = function(who, radius) {
 ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
   if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " in SurfaceFollowPath.</span><br />"); }
   var retval = { fin: 0 };
+  var spawnedby = who.getSpawnedBy();
   if ((who.getCurrentPath().length > 0) && (who.getTurnsToRecalcDest() > 0)) {
     var coords = who.getNextStep();
     if (debug) { dbs.writeln("<span style='color:red; font-weight:bold'>Check path distance? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + coords[0] + ", " + coords[1] + ".</span><br />"); }
@@ -101,14 +103,27 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " moving from " + who.getx() + ", " + who.gety() + " to " + coords[0] + ", " + coords[1] + " :"); }
       var diffx = coords[0] - who.getx();
       var diffy = coords[1] - who.gety();
-      retval = who.moveMe(diffx, diffy, 0);
       who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
+      var leashed = 0;
+      if (spawnedby) {
+        var spawndist = GetDistance(coords[0], coords[1], spawnedby.getx(), spawnedby.gety());  // distance from spawner to target location
+        if ((who.getDestinationType() === "PC") && (spawndist > spawnedby.getSpawnLeash())) { // chasing the PC, but trying to move beyond leash
+          retval["canmove"] = 0;
+          leashed = 1;
+        } else if (spawndist > spawnedby.getSpawnSoftLeash()) { // doing anything else but threatening to move past soft leash
+          retval["canmove"] = 0;
+          leashed = 1;
+        }
+      }
+      if (!leashed) {
+        retval = who.moveMe(diffx, diffy, 0);
+      }
       if (retval["canmove"] === 1) { // it moved!
         retval["fin"] = 1;
         if (debug) { dbs.writeln("successfully. New location: " + who.getx() + ", " + who.gety() + "</span><br />"); }
         return retval; // we're done here
       }
-      // failed to move. On the surface, this means there was another AI there.
+      // failed to move. On the surface, this means there was another AI there, or it hit its leash.
       // in scale map, could be a closed door.
       if (debug) { dbs.writeln("unsuccessfully.</span><br />"); }
       
@@ -188,6 +203,7 @@ ais.ProcessPoI = function(who,poiname) {
     var dur = path.length / 3 + Math.floor(Math.random() * 3);
     who.setCurrentPath(path);
     who.setDestination({x: xval, y: yval}, dur);
+    who.setDestinationType("PoI");
     if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Set path to: " + xval + ", " + yval + "</span><br />"); }
   } else {
     var coords = who.getCurrentPath()[0];
@@ -203,6 +219,7 @@ ais.ProcessPoI = function(who,poiname) {
       var connind = Math.floor(Math.random() * connections.length);
       var poi = who.getPoI().connections[connind];
       who.setPoI(poi);
+      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>New PoI coords: " + poi.x + ", " + poi.y + "</span><br />"); }
       var path = [];
       while (path.length === 0) {
         var xval = Math.floor(Math.random()*9)-4 + poi.x;
@@ -213,7 +230,9 @@ ais.ProcessPoI = function(who,poiname) {
       path.shift();
       var dur = path.length / 3 + Math.floor(Math.random() * 3);
       who.setCurrentPath(path);
-      who.setDestination({x: xval, y: yval}, dur);        
+      who.setDestination({x: xval, y: yval}, dur);   
+      who.setDestinationType("PoI");
+      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>New path to: " + xval + ", " + yval + "</span><br />"); }
     }
   }
   var retval = ais.SurfaceFollowPath(who,30,1);
