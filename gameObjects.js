@@ -4887,6 +4887,7 @@ PCObject.prototype.activate = function() {
 }
 
 PCObject.prototype.myTurn = function() {
+  if (debug) { dbs.writeln("=== PC TURN ===<br />"); }
   RunEffects(this);
 	gamestate.setMode("player");
 	gamestate.setTurn(PC);

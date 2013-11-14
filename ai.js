@@ -170,7 +170,7 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
 
 ais.ProcessPoI = function(who,poiname) {
   var themap = who.getHomeMap();
-  if (!who.getPoI().poiname) {
+  if (!who.getPoI().x) {
     if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Has no PoI yet. Searching...</span><br />"); }
     var poi = FindClosestPoI(who.getx(), who.gety(), themap, poiname);
     if (debug) { dbs.writeln("<span style='color:red; font-weight:bold'>Closest PoI: " + poi.x + ", " + poi.y + "</span><br />"); }
@@ -201,7 +201,8 @@ ais.ProcessPoI = function(who,poiname) {
       if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Path expired, find a new PoI!</span><br />"); }
       var connections = who.getPoI().connections;
       var connind = Math.floor(Math.random() * connections.length);
-      who.setPoI(who.getPoI().connections[connind]);
+      var poi = who.getPoI().connections[connind];
+      who.setPoI(poi);
       var path = [];
       while (path.length === 0) {
         var xval = Math.floor(Math.random()*9)-4 + poi.x;
