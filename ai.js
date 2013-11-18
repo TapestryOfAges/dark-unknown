@@ -21,6 +21,12 @@ ais.OutdoorHostile = function(who, radius, pname) {
     return retval;
   }
   
+  // Next, check to see if it's outside its leash radius
+  var spawner = who.getSpawnedBy();
+//  if ((spawner) && ) {
+    
+//  }
+  
   // Next, check and see if there is already a path that has not expired
   // but only if the PC is not within close range- in that case, always wait to hunt
   if ((who.getHomeMap() !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius/3)) {
@@ -96,6 +102,9 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
   if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " in SurfaceFollowPath.</span><br />"); }
   var retval = { fin: 0 };
   var spawnedby = who.getSpawnedBy();
+  var leashpresent = 0;
+  if (spawnedby.getSpawnLeash() || spawnedby.getSpawnSoftLeash()) { leashpresent = 1; }
+  
   if ((who.getCurrentPath().length > 0) && (who.getTurnsToRecalcDest() > 0)) {
     var coords = who.getNextStep();
     if (debug) { dbs.writeln("<span style='color:red; font-weight:bold'>Check path distance? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + coords[0] + ", " + coords[1] + ".</span><br />"); }
@@ -105,7 +114,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       var diffy = coords[1] - who.gety();
       who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
       var leashed = 0;
-      if (spawnedby) {
+      if (leashpresent) {
         var spawndist = GetDistance(coords[0], coords[1], spawnedby.getx(), spawnedby.gety());  // distance from spawner to target location
         if ((who.getDestinationType() === "PC") && (spawndist > spawnedby.getSpawnLeash())) { // chasing the PC, but trying to move beyond leash
           retval["canmove"] = 0;
