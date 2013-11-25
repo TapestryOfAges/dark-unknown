@@ -798,6 +798,8 @@ GameMap.prototype.createPathGrid = function() {
 }
 
 GameMap.prototype.getPath = function(fromx,fromy,tox,toy,movetype) {
+  if (!movetype) { alert("getPath called with no movetype"); }
+  
   var gridbackup = this.getPathGrid(movetype).clone();
   // destination tile must always be walkable.
   gridbackup.setWalkableAt(tox,toy,true);
