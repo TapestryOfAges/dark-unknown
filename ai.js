@@ -9,6 +9,11 @@ ais.Bandit = function(who,radius) {
   return retval;
 }
 
+ais.Monster = function(who,radius) {
+  var retval = ais.OutdoorHostile(who,radius, "wild");
+  return retval;
+}
+
 ais.OutdoorHostile = function(who, radius, pname) {
   if (!radius) { radius = 0; }
   
@@ -53,13 +58,13 @@ ais.OutdoorHostile = function(who, radius, pname) {
 // sub-functions
 
 ais.HuntPC = function(who, radius) {
+  var themap =  who.getHomeMap();
 	// Is the PC within range to be hunted?
-	if ((who.getHomeMap() !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius)) {
+	if ((themap !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius)) {
 	  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>PC is not in range to hunt.</span><br />"); }
 		return 0;  // no hunting
 	}
 	
-	var themap =  who.getHomeMap();
 	
 	// if the PC is within a smaller radius (currently radius/3), hunt no matter what.
 	// otherwise, check if we can see the PC, with a more forgiving threshold than used
@@ -124,7 +129,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
           leashed = 1;
         }
       }
-      if (!leashed) {
+      if (!leashed) {  
         retval = who.moveMe(diffx, diffy, 0);
       }
       if (retval["canmove"] === 1) { // it moved!
@@ -220,7 +225,7 @@ ais.ProcessPoI = function(who,poiname) {
       // next step is not adjacent but destination is still valid: find a new path!
       if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Path not expired, but path invalid. Recalculate.</span><br />"); }
       var coords = who.getDestination();
-      var path = themap.getPath(who.getx(), who.gety(), coords.x, coords.y);
+      var path = themap.getPath(who.getx(), who.gety(), coords.x, coords.y, who.getMovetype());
       who.setCurrentPath(path);
     } else if (who.getTurnsToRecalcDest() <= 0) {
       if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Path expired, find a new PoI!</span><br />"); }
