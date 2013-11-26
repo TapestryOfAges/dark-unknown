@@ -9,20 +9,27 @@ var localFactory = new tileFactory();
 var eidos = new Platonic();
 //var universe = new Object;
 
-var PC = new PCObject();
+var DU = {};  // attach all saveable global objects to me
+
+DU.PC = new PCObject();
+var PC = DU.PC;  // alias
+
 PC.assignSerial();
 var gamestate = new GameStateData();
-var maps = new MapMemory();
+DU.maps = new MapMemory();
+var maps = DU.maps; // alias
 //var worldmap = new GameMap();
 //var losgrid = new LOSMatrix(13);      // WAS RESTRICTING TO SIZE OF VIEWSCREEN
 var losgrid = new LOSMatrix(30);  // BIGGER FOR AI USE
-var DUTime = new Timeline(0);
+
+DU.DUTime = new Timeline(0);
+var DUTime = DU.DUTime; // alias
 var maintext = new TextFrame("innertextframe");
 var DULoot = SetLoots();
 var DULootGroups = SetLootGroups(); // see loot.js for population
 var displayspecs = {};
 var finder = new PF.AStarFinder();
-var gameflags = {};
+DU.gameflags = {};
 
 var targetCursor = {};
 var inputText = {};
