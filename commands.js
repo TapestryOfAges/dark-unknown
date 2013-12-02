@@ -67,6 +67,8 @@ function PerformCommand(code) {
 		  targetCursor.x = newx;
 		  targetCursor.y = newy;
 		  targetCursor.command = "a";
+		  targetCursor.targetlimit = (viewsizex -1)/2;
+		  targetCursor.targetCenterlimit = 0;
 		  targetx += (PC.x - edges.centerx) * 32;
 		  targety += (PC.y - edges.centery) * 32;
 		  var tileid = "#td-tile" + newx + "x" + newy;
@@ -129,23 +131,25 @@ function PerformCommand(code) {
 		retval = PerformEnter("k");
 	}
 	else if (code === 76) { // l
-		// U4's Locate, here, Look
-		gamestate.setMode("target");
-		var newx = PC.getx();
-		var newy = PC.gety();
-		targetCursor.x = newx;
-		targetCursor.y = newy;
-		targetCursor.command = "l";
+    // U4's Locate, here, Look
+    gamestate.setMode("target");
+    var newx = PC.getx();
+    var newy = PC.gety();
+    targetCursor.x = newx;
+    targetCursor.y = newy;
+    targetCursor.command = "l";
+    targetCursor.targetlimit = (viewsizex -1)/2;
+    targetCursor.targetCenterlimit = 0;
     var targetcoords = getCoords(PC.getHomeMap(), PC.getx(), PC.gety());
-		targetx = targetcoords.x;
-		targety = targetcoords.y;
-		var tileid = "#td-tile" + newx + "x" + newy;
-		targetCursor.tileid = tileid;
-		targetCursor.basetile = $(tileid).html();
-		$(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:' + targetx + 'px;top:' + targety + 'px;z-index:3" />');
-		retval["txt"] = "";
-		retval["input"] = "&gt; Look: ";
-		retval["fin"] = 2;
+    targetx = targetcoords.x;
+    targety = targetcoords.y;
+    var tileid = "#td-tile" + newx + "x" + newy;
+    targetCursor.tileid = tileid;
+    targetCursor.basetile = $(tileid).html();
+    $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:' + targetx + 'px;top:' + targety + 'px;z-index:3" />');
+    retval["txt"] = "";
+    retval["input"] = "&gt; Look: ";
+    retval["fin"] = 2;
 	}
 	else if (code === 77) { // m
 		// mix - not used
@@ -182,7 +186,29 @@ function PerformCommand(code) {
 	}
 	else if (code === 84) { // t
 		// talk
-		
+		if (PC.getHomeMap().getScale() === '0') {
+		  retval["txt"] = "No one to talk to.";
+		  retval["fin"] = 2;
+		  return retval; 
+		}
+    gamestate.setMode("target");
+    var newx = PC.getx();
+    var newy = PC.gety();
+    targetCursor.x = newx;
+    targetCursor.y = newy;
+    targetCursor.command = "t";
+    targetCursor.targetlimit = (viewsizex -1)/2;
+    targetCursor.targetCenterlimit = 3;
+    var targetcoords = getCoords(PC.getHomeMap(), PC.getx(), PC.gety());
+    targetx = targetcoords.x;
+    targety = targetcoords.y;
+    var tileid = "#td-tile" + newx + "x" + newy;
+    targetCursor.tileid = tileid;
+    targetCursor.basetile = $(tileid).html();
+    $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:' + targetx + 'px;top:' + targety + 'px;z-index:3" />');
+    retval["txt"] = "";
+    retval["input"] = "&gt; Talk: ";
+    retval["fin"] = 2;
 	}
 	else if (code === 85) { // u
 		gamestate.setMode("choosedir");
@@ -363,33 +389,41 @@ function PerformTarget(code)  {
 	if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
 		gamestate.setMode("null");
 		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
-		if ((edges.centery - targetCursor.y) < 6) {
-			targetCursor.y -= 1;
-			retval["fin"] = 1;		
+		if ((edges.centery - targetCursor.y) < targetCursor.targetlimit) {
+		  if ((!targetCursor.targetCenterlimit) || ((PC.y - targetCursor.y) < targetCursor.targetCenterlimit)) {
+			  targetCursor.y -= 1;
+			  retval["fin"] = 1;		
+			}
 		}
 	}
 	else if ((code === 37) || (code === 59)) {  // LEFT ARROW or ;
 		gamestate.setMode("null");
 		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
-		if ((edges.centerx - targetCursor.x) < 6) {
-			targetCursor.x -= 1;
-			retval["fin"] = 1;
+		if ((edges.centerx - targetCursor.x) < targetCursor.targetlimit) {
+		  if ((!targetCursor.targetCenterlimit) || ((PC.x - targetCursor.x) < targetCursor.targetCenterlimit)) {
+			  targetCursor.x -= 1;
+			  retval["fin"] = 1;
+			}
 		}
 	}
 	else if ((code === 39) || (code === 222)) { // RIGHT ARROW or '
 		gamestate.setMode("null");
 		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
-		if ((targetCursor.x - edges.centerx) < 6) {
-			targetCursor.x += 1;
-			retval["fin"] = 1;
+		if ((targetCursor.x - edges.centerx) < targetCursor.targetlimit) {
+		  if ((!targetCursor.targetCenterlimit) || ((targetCursor.x - PC.x) < targetCursor.targetCenterlimit)) {
+			  targetCursor.x += 1;
+			  retval["fin"] = 1;
+			}
 		}
 	}
 	else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
 		gamestate.setMode("null");
 		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
-		if ((targetCursor.y - edges.centery) < 6) {
-			targetCursor.y += 1;
-			retval["fin"] = 1;
+		if ((targetCursor.y - edges.centery) < targetCursor.targetlimit) {
+		  if ((!targetCursor.targetCenterlimit) || ((targetCursor.y - PC.y) < targetCursor.targetCenterlimit)) {
+			  targetCursor.y += 1;
+			  retval["fin"] = 1;
+			}
 		}
 	}
 	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
@@ -883,6 +917,80 @@ function PerformSearch(who) {
     retval["fin"] = 1;
   }
   return retval;
+}
+
+function PerformTalkTarget() {
+  var tileid = targetCursor.tileid;
+  $(tileid).html(targetCursor.basetile); 
+  var map = PC.getHomeMap();
+  var onscreen = $('#td-tile' + targetCursor.x + 'x' + targetCursor.y).html();
+//  alert(onscreen);
+  var losval = 0;
+  if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
+  else {
+    var tile = map.getTile(targetCursor.x,targetCursor.y);
+    var light = tile.getLocalLight();
+    if (map.getLightLevel() === "bright") {
+      light += 1;
+    }
+    if (light < SHADOW_THRESHOLD) {
+      losval = 1;
+    }
+  }
+//  var losval = map.getLOS(PC.getx(), PC.gety(), targetCursor.x, targetCursor.y, losgrid);
+  if (losval >= LOS_THRESHOLD) { 
+  	var retval = {};
+  	retval["txt"] = "You cannot see that.";
+  	retval["fin"] = 2;
+  	retval["input"] = "&gt;";
+ 	  var tileid = targetCursor.tileid;
+	  $(tileid).html(targetCursor.basetile); 
+
+  	return retval;
+  }
+  var tile = map.getTile(targetCursor.x,targetCursor.y);
+  if ((targetCursor.x === PC.getx())	&& (targetCursor.y === PC.gety())) {
+    retval["txt"] = "This is no time to be talking to yourself.";
+    retval["fin"] = 2;
+    retval["input"] = "&gt;";
+
+    return retval;
+  } 
+  var top = tile.getTop();
+  while (top.getName() === "SeeBelow") {
+    tile = FindBelow(targetCursor.x,targetCursor.y,map);
+    top = tile.getTop();
+  }
+  
+  
+  var retval = {};
+  if (!top.checkType("NPC")) {
+  
+    retval["txt"] = "There is no one there to talk to.";
+    retval["fin"] = 2;
+    retval["input"] = "&gt;";
+  
+    return retval;
+  }
+  var convo = top.getConversation();
+  if (!convo) {
+    retval["txt"] = "No one there wishes to speak with you.";
+    retval["fin"] = 2;
+    retval["input"] = "&gt;";
+    
+    return retval;
+  }
+    
+  retval["txt"] = "Talk to: " + top.getDesc();
+  retval["fin"] = 0;
+  retval["input"] = "&gt;";
+  
+  targetCursor.talkingto = top;
+  targetCursor.command ="t";
+  gamestate.setMode("talk");
+  
+  return retval;
+
 }
 
 function PerformUse(who) {

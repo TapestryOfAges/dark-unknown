@@ -264,6 +264,11 @@ function DoAction(code) {
           maintext.setInputLine(newresponse["input"]);
         }
         maintext.drawTextFrame();
+      } else if (targetCursor.command === "t") {
+        newresponse = PerformTalkTarget();
+        maintext.addText(newresponse["txt"]);
+        maintext.setInputLine(newresponse["input"]);
+        maintext.drawTextFrame();
       }
       if ((newresponse["fin"] === 0) || (newresponse["fin"] === 2)) {
         gamestate.setMode("player");
@@ -276,6 +281,10 @@ function DoAction(code) {
         gamestate.setMode("null");
         // wait and let the combat code set things to next turn. NOTE: possible 
         raceWarning = 1;
+      }
+      else if (newresponse["fin"] === 3) {
+        gamestate.setMode("talk");
+        // new response code (need a lot for targeting!)
       }
     }
     else if (response["fin"] === 0) { 

@@ -3989,6 +3989,7 @@ function NPCObject() {
 	this.spellbook = [];
 	this.spellEffects = new Collection;
 	this.knowsInfusion = 0;
+	this.conversation = "";
 	this.lastLocation = {};
 	this.lastLocation.map = "";
 	this.lastLocation.x = 0;
@@ -4075,6 +4076,14 @@ NPCObject.prototype.setLastTurnTime = function(newtime) {
     this.lastTurnTime = newtime;
   }
   return this.lastTurnTime;
+}
+
+NPCObject.prototype.getConversation = function() {
+  return this.conversation; 
+}
+
+NPCObject.prototype.setConversation = function (convo) {
+  this.conversation = convo;
 }
 
 NPCObject.prototype.setHP = function(newhp) {
@@ -4629,6 +4638,10 @@ NPCObject.prototype.getInventory = function() {
   return inv;
 }
 
+NPCObject.prototype.checkInventory = function(itemname) {
+  return this.inventory.getByName(itemname);
+}
+
 NPCObject.prototype.getEquipment = function(which) {
   which = which.toLowerCase();
   if (which === "armor") {
@@ -4883,6 +4896,7 @@ function PCObject() {
   this.lastspelllevel = 1;
   this.lastspell = 1;
   this.infuse = 0;
+  this.gender = "male";
 	
 	LightEmitting.call(this, 0.5);
 	this.addType("pc");
@@ -4937,6 +4951,34 @@ PCObject.prototype.getPCName = function() {
 PCObject.prototype.setPCName = function(newname) {
 	this.pcname = newname;
 	return this.pcname;
+}
+
+PCObject.prototype.setGender = function(newgender) {
+  if ((newgender === "male") || (newgender === "female")) { this.gender = newgender; }
+  else { alert ("setGender send invalid data"); }
+  return this.gender; 
+}
+
+PCObject.prototype.getGender = function() {
+  return this.gender;
+}
+
+PCObject.prototype.getGenderedTerms = function() {
+  var gt = {};
+  if (this.gender === "male") {
+    gt.pronoun = "he";
+    gt.possessive = "his";
+    gt.titled = "Lord";
+    gt.objective = "him";
+    gt.formal = "Prince";
+  } else {
+    gt.pronoun = "she";
+    gt.possessive = "hers";
+    gt.titled = "Lady";
+    gt.objective = "her";
+    gt.formal = "Princess";
+  }
+  return gt;
 }
 
 PCObject.prototype.getxp = function() {
