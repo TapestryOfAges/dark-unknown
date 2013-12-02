@@ -1100,10 +1100,10 @@ GameMap.prototype.saveMap = function (name) {
    	 var theprefix = mapfeatures[i].getPrefix();
      printerwin.document.write(", prefix : \"" + theprefix + "\"");
    }
-   if ((baseobj.getLocked !== null) && (baseobj.getLocked() !== mapfeatures[i].getLocked())) {
+   if ((baseobj.getLocked != null) && (baseobj.getLocked() !== mapfeatures[i].getLocked())) {
    	 printerwin.document.write(", locked : " + mapfeatures[i].getLocked());
    }
-   if (baseobj.getEnterMap !== null) {
+   if (baseobj.getEnterMap != null) {
    	 var mapdest = mapfeatures[i].getEnterMap();
    	 printerwin.document.write(", entermap : '" + mapdest.entermap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
    }
@@ -1166,6 +1166,9 @@ GameMap.prototype.saveMap = function (name) {
  	if (basenpc.getMissileAttackAs() !== mapnpcs[i].getMissileAttackAs()) {
  		printerwin.document.write(", Missile: '" + mapnpcs[i].getMissileAttackAs() + "'");
  	}
+ 	if (basenpc.getConversation() !== mapnpcs[i].getConversation()) {
+ 		printerwin.document.write(", Conversation: '" + mapnpcs[i].getConversation() + "'");
+ 	} 	
  	printerwin.document.write("};\n");
 }
  
@@ -1301,6 +1304,7 @@ GameMap.prototype.loadMap = function (name) {
   			if (npckey === "ThreatenedAI") { newnpc.setThreatenedAI(loadnpcs[npci].ThreatenedAI); }
   			if (npckey === "Melee") { newnpc.setMeleeAttackAs(loadnpcs[npci].Melee); }
   			if (npckey === "Missile") { newnpc.setMissileAttackAs(loadnpcs[npci].Missile); }
+  			if (npckey === "Conversation") { newnpc.setConversation(loadnpcs[npci].Conversation); }
   		}
   		this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
   	}

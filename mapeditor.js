@@ -326,6 +326,7 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcmelee.value = editnpcs.getMeleeAttackAs();
       document.npceditpopup.npcthreatenedai.value = editnpcs.getThreatenedAI();      
       document.npceditpopup.npcmissile.value = editnpcs.getMissileAttackAs();
+      document.npceditpopup.npcconvo.value = editnpcs.getConversation();
     }
   	else if (!editnpcs && (document.editlayer.showfeatures.checked)) {
       var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
@@ -442,6 +443,9 @@ function submitEditNPC(change) {
 		}
 		if (document.npceditpopup.npcmissile.value !== editnpcs.getMissileAttackAs()) {
 			editnpcs.setMissileAttackAs(document.npceditpopup.npcmissile.value);
+		}
+		if (document.npceditpopup.npcconvo.value !== editnpcs.getConversation()) {
+			editnpcs.setConversation(document.npceditpopup.npcconvo.value);
 		}
 	}
 	else if (change === -1) {
