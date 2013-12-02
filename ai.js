@@ -215,6 +215,7 @@ ais.ProcessPoI = function(who,poiname) {
     }
     path.shift();
     var dur = path.length / 3 + Math.floor(Math.random() * 3);
+    if (dur > path.length) { dur = path.length; }
     who.setCurrentPath(path);
     who.setDestination({x: xval, y: yval}, dur);
     who.setDestinationType("PoI");
