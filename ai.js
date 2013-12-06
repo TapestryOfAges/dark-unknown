@@ -222,13 +222,7 @@ ais.ProcessPoI = function(who,poiname) {
     if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Set path to: " + xval + ", " + yval + "</span><br />"); }
   } else {
     var coords = who.getCurrentPath()[0];
-    if ((who.getTurnsToRecalcDest() > 0) || (GetDistance(who.getx(), who.gety(), coords[0], coords[1]) !== 1)) {
-      // next step is not adjacent but destination is still valid: find a new path!
-      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Path not expired, but path invalid. Recalculate.</span><br />"); }
-      var coords = who.getDestination();
-      var path = themap.getPath(who.getx(), who.gety(), coords.x, coords.y, who.getMovetype());
-      who.setCurrentPath(path);
-    } else if (who.getTurnsToRecalcDest() <= 0) {
+    if (who.getTurnsToRecalcDest() <= 0) {
       if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Path expired, find a new PoI!</span><br />"); }
       var connections = who.getPoI().connections;
       var connind = Math.floor(Math.random() * connections.length);
@@ -248,7 +242,13 @@ ais.ProcessPoI = function(who,poiname) {
       who.setDestination({x: xval, y: yval}, dur);   
       who.setDestinationType("PoI");
       if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>New path to: " + xval + ", " + yval + "</span><br />"); }
-    }
+    } else if (GetDistance(who.getx(), who.gety(), coords[0], coords[1]) !== 1) {
+      // next step is not adjacent but destination is still valid: find a new path!
+      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Path not expired, but path invalid. Recalculate.</span><br />"); }
+      var coords = who.getDestination();
+      var path = themap.getPath(who.getx(), who.gety(), coords.x, coords.y, who.getMovetype());
+      who.setCurrentPath(path);
+    } 
   }
   var retval = ais.SurfaceFollowPath(who,30,1);
   return retval;
