@@ -982,13 +982,16 @@ function PerformTalkTarget() {
   }
     
   retval["txt"] = "Talk to: " + top.getDesc();
-  retval["fin"] = 0;
+  retval["fin"] = 3;
   retval["input"] = "&gt;";
   
   targetCursor.talkingto = top;
   targetCursor.command ="t";
   gamestate.setMode("talk");
   
+  inputText.cmd = "t";
+  inputText.txt = "";
+		
   return retval;
 
 }

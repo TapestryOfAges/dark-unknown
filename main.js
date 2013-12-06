@@ -285,6 +285,8 @@ function DoAction(code) {
       else if (newresponse["fin"] === 3) {
         gamestate.setMode("talk");
         // new response code (need a lot for targeting!)
+        
+        // start conversation with target
       }
     }
     else if (response["fin"] === 0) { 
