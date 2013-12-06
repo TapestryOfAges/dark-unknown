@@ -214,7 +214,7 @@ ais.ProcessPoI = function(who,poiname) {
       path = themap.getPath(who.getx(), who.gety(), xval, yval, who.getMovetype());
     }
     path.shift();
-    var dur = path.length / 3 + Math.floor(Math.random() * 3);
+    var dur = Math.floor(path.length / 3) + Math.floor(Math.random() * 3);
     if (dur > path.length) { dur = path.length; }
     who.setCurrentPath(path);
     who.setDestination({x: xval, y: yval}, dur);
