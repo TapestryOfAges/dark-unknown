@@ -980,13 +980,31 @@ function PerformTalkTarget() {
     
     return retval;
   }
-    
-  retval["txt"] = "Talk to: " + top.getDesc();
-  retval["fin"] = 3;
-  retval["input"] = "&gt;";
+
+  maintext.addText("Talk to: " + top.getDesc());
+  var conval = conversations[convo].respond("_start");
+  
+  if (conval) {
+    retval["txt"] = "";
+    retval["fin"] = 3;
+  } else {
+    // person spoke and ended conversation
+    var gender = top.getGenderedTerms().pronoun;
+    gender = gender.charAt(0).toUpperCase() + gender.slice(1);
+    retval["txt"] = gender + " turns away.";
+    retval["fin"] = 1;
+    return retval;
+  }
+  
+  if (conval === 2) {
+    retval["input"] = "&gt; [MORE]";
+  } else {
+    retval["input"] = "&gt; You say:";
+  }
   
   targetCursor.talkingto = top;
   targetCursor.command ="t";
+  targetCursor.conval = conval;   // 2 == in-midsentence
   gamestate.setMode("talk");
   
   inputText.cmd = "t";
