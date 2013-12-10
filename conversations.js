@@ -1,12 +1,10 @@
 
 var conversations = {};  // directory of Conversations
 
-set_conversations();
-
 function set_conversations() {
 
   conversations.castleguard1 = new Conversation();
-
+  
   conversations.castleguard1["name"] = new ConvNode({}, "", "We do not give out our names while on duty.", [{}, {}]);
   conversations.castleguard1["_start"] = new ConvNode({ flags_met: "kingspeech" }, "Hail, %FORMAL% %NAME%! Your =father= the King wishes to speak with you.", "Greetings, %FORMAL% %NAME%.", [{}, {}]);
   conversations.castleguard1["job"] = new ConvNode({ flags_met: "kingspeech" }, "Surely that can wait. Your =father= awaits.", "We =guard= Castle Olympus.", [{}, {}]);
@@ -36,7 +34,7 @@ Conversation.prototype.respond = function(keyword, skipahead) {
   if (!this.hasOwnProperty(keyword)) {
     keyword = "_confused";
   }
-  
+  //WORK HERE ON FLAGS
   var flags = this[keyword].flags;
   if (flags.hasOwnProperty("flag_set")) {
     if (!DU.gameflags[flags.flag_set]) { flags_met = 0; }  

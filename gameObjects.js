@@ -3965,6 +3965,7 @@ function NPCObject() {
 	this.PCThreatAI = "runaway";
 	this.ThreatenedAI = "spellcaster";
 	this.graphic = "301.gif";
+  this.gender = "neuter";
 	this.meleeAttackAs = "Fists";
 	this.meleeDamage = -1;
 	this.meleeStrDamage = -1;
@@ -4184,6 +4185,38 @@ NPCObject.prototype.processDeath = function(droploot){
       spawner.deleteSpawned(this);
     }
   }
+}
+
+NPCObject.prototype.setGender = function(newgender) {
+  if ((newgender === "male") || (newgender === "female") || (newgender === "neuter")) { this.gender = newgender; }
+  else { alert ("setGender send invalid data"); }
+  return this.gender; 
+}
+
+NPCObject.prototype.getGender = function() {
+  return this.gender;
+}
+
+NPCObject.prototype.getGenderedTerms = function() {
+  var gt = {};
+  if (this.gender === "male") {
+    gt.pronoun = "he";
+    gt.possessive = "his";
+    gt.titled = "Lord";
+    gt.objective = "him";
+    gt.formal = "Prince";
+  } else if (this.gender === "female") {
+    gt.pronoun = "she";
+    gt.possessive = "hers";
+    gt.titled = "Lady";
+    gt.objective = "her";
+    gt.formal = "Princess";
+  } else {
+    gt.pronoun = "it";
+    gt.possessive = "its";
+    gt.objective = "it";
+  }
+  return gt;
 }
 
 NPCObject.prototype.setStr = function(newstr) {
@@ -4951,34 +4984,6 @@ PCObject.prototype.getPCName = function() {
 PCObject.prototype.setPCName = function(newname) {
 	this.pcname = newname;
 	return this.pcname;
-}
-
-PCObject.prototype.setGender = function(newgender) {
-  if ((newgender === "male") || (newgender === "female")) { this.gender = newgender; }
-  else { alert ("setGender send invalid data"); }
-  return this.gender; 
-}
-
-PCObject.prototype.getGender = function() {
-  return this.gender;
-}
-
-PCObject.prototype.getGenderedTerms = function() {
-  var gt = {};
-  if (this.gender === "male") {
-    gt.pronoun = "he";
-    gt.possessive = "his";
-    gt.titled = "Lord";
-    gt.objective = "him";
-    gt.formal = "Prince";
-  } else {
-    gt.pronoun = "she";
-    gt.possessive = "hers";
-    gt.titled = "Lady";
-    gt.objective = "her";
-    gt.formal = "Princess";
-  }
-  return gt;
 }
 
 PCObject.prototype.getxp = function() {

@@ -105,6 +105,8 @@ $(document).ready(function() {
   gamestate.loadGame();
   DrawCharFrame();
     
+  set_conversations();
+  
   PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
@@ -286,7 +288,6 @@ function DoAction(code) {
         gamestate.setMode("talk");
         // new response code (need a lot for targeting!)
         
-        // start conversation with target
       }
     }
     else if (response["fin"] === 0) { 
