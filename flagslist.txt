@@ -1,2 +1,3 @@
 
 kingspeech  - talked to king at beginning of game
+knows_NPCNAME  - has learned this NPC's name
