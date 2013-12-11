@@ -982,7 +982,7 @@ function PerformTalkTarget() {
   }
 
   maintext.addText("Talk to: " + top.getDesc());
-  var conval = conversations[convo].respond("_start");
+  var conval = conversations[convo].respond(top, "_start");
   
   if (conval) {
     retval["txt"] = "";
@@ -999,7 +999,7 @@ function PerformTalkTarget() {
   if (conval === 2) {
     retval["input"] = "&gt; [MORE]";
   } else {
-    retval["input"] = "&gt; You say:";
+    retval["input"] = "&gt; You say: ";
   }
   
   targetCursor.talkingto = top;

@@ -24,7 +24,7 @@ function Conversation() {
 }
 Conversation.prototype = new Object();
 
-Conversation.prototype.respond = function(keyword, skipahead) { 
+Conversation.prototype.respond = function(speaker, keyword, skipahead) { 
   if (!skipahead) { skipahead = 0; }
   var flags_met = 1;
   var necessary_item;
@@ -34,7 +34,7 @@ Conversation.prototype.respond = function(keyword, skipahead) {
   if (!this.hasOwnProperty(keyword)) {
     keyword = "_confused";
   }
-  //WORK HERE ON FLAGS
+  
   var flags = this[keyword].flags;
   if (flags.hasOwnProperty("flags_met")) {
     if (!DU.gameflags[flags.flags_met]) { flags_met = 0; }  
@@ -43,12 +43,14 @@ Conversation.prototype.respond = function(keyword, skipahead) {
     necessary_item = PC.checkInventory(flags.has_item);
     if (!necessary_item) { flags_met = 0; }
   }
-  keep_talking = this.say(this[keyword].responses[flags_met], skipahead);
+  keep_talking = this.say(speaker, this[keyword].responses[flags_met], skipahead);
   if (keep_talking === 2) { 
     targetCursor.keyword = keyword;
+    targetCursor.skipahead = skipahead++;
     return keep_talking; 
   }  // don't execute end of response triggers until actually at end of response
-  
+  targetCursor.keyword = "";
+  targetCursor.skipahead = 0;
   // handle triggers
   var triggers = this[keyword].triggers[flags_met];
   
@@ -71,7 +73,7 @@ Conversation.prototype.respond = function(keyword, skipahead) {
   
 }
 
-Conversation.prototype.say = function(saywhat, skipahead) {
+Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   var gterms = PC.getGenderedTerms();
   var pcname = PC.getPCName();
   
@@ -82,6 +84,8 @@ Conversation.prototype.say = function(saywhat, skipahead) {
   saywhat = saywhat.replace(/%PRONOUN%/g, gterms.pronoun);
   saywhat = saywhat.replace(/%POSSESSIVE%/g, gterms.possessive);
   saywhat = saywhat.replace(/%OBJ%/g, gterms.objective);
+  saywhat = saywhat.replace(/%SIBLING%/g, gterms.sibling);
+  saywhat = saywhat.replace(/%KIDDIE%/g, gterms.kiddie);
   
   var speech = saywhat.split("%%");
   while (skipahead) {
@@ -92,7 +96,6 @@ Conversation.prototype.say = function(saywhat, skipahead) {
   speech.shift();
   
   if (speech[0]) {
-    
     return 2;  // has more to say, waiting on any keypress
   } 
   

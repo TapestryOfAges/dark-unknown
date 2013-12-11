@@ -171,6 +171,8 @@ function DoAction(code) {
         maintext.addText(retval["txt"]);
         maintext.drawTextFrame();
 
+      } else if { inputText.cmd === "t") {
+        
       }
       else { alert("need to add hook here! (main 171)"); }
     }

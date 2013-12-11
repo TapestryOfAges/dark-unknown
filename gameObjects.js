@@ -4008,6 +4008,14 @@ function NPCObject() {
 }
 NPCObject.prototype = new AnimateObject();
 
+NPCObject.prototype.getDesc = function() {
+  var knowsflag = "knows_" + this.npcname;
+  if (DU[knowsflag]) {
+    return this.npcname;
+  } 
+  return this.desc;
+}
+
 NPCObject.prototype.getNPCName = function() {
 	return this.npcname;
 }
@@ -4205,12 +4213,16 @@ NPCObject.prototype.getGenderedTerms = function() {
     gt.titled = "Lord";
     gt.objective = "him";
     gt.formal = "Prince";
+    gt.sibling = "brother";
+    gt.kiddie = "son";
   } else if (this.gender === "female") {
     gt.pronoun = "she";
     gt.possessive = "hers";
     gt.titled = "Lady";
     gt.objective = "her";
     gt.formal = "Princess";
+    gt.sibling = "sister";
+    gt.kiddie = "daughter";
   } else {
     gt.pronoun = "it";
     gt.possessive = "its";
