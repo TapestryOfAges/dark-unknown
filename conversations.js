@@ -36,8 +36,8 @@ Conversation.prototype.respond = function(keyword, skipahead) {
   }
   //WORK HERE ON FLAGS
   var flags = this[keyword].flags;
-  if (flags.hasOwnProperty("flag_set")) {
-    if (!DU.gameflags[flags.flag_set]) { flags_met = 0; }  
+  if (flags.hasOwnProperty("flags_met")) {
+    if (!DU.gameflags[flags.flags_met]) { flags_met = 0; }  
   }
   if (flags.hasOwnProperty("has_item")) {
     necessary_item = PC.checkInventory(flags.has_item);
@@ -75,7 +75,7 @@ Conversation.prototype.say = function(saywhat, skipahead) {
   var gterms = PC.getGenderedTerms();
   var pcname = PC.getPCName();
   
-  saywhat = saywhat.replace(/=(\w+)=/g, "<span style='color:blue'>$1</span>");
+  saywhat = saywhat.replace(/=(\w+)=/g, "<span style='color:cyan'>$1</span>");
   saywhat = saywhat.replace(/%FORMAL%/g, gterms.formal);
   saywhat = saywhat.replace(/%TITLED%/g, gterms.titled);
   saywhat = saywhat.replace(/%NAME%/g, pcname);
