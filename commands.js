@@ -950,6 +950,7 @@ function PerformTalkTarget() {
   }
   var tile = map.getTile(targetCursor.x,targetCursor.y);
   if ((targetCursor.x === PC.getx())	&& (targetCursor.y === PC.gety())) {
+    var retval = {};
     retval["txt"] = "This is no time to be talking to yourself.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
@@ -982,36 +983,46 @@ function PerformTalkTarget() {
   }
 
   maintext.addText("Talk to: " + top.getDesc());
-  var conval = conversations[convo].respond(top, "_start");
+
+  retval = PerformTalk(top, convo, "_start");
+		
+  return retval;
+
+}
+
+function PerformTalk(talkto, convo, topic) {
+  var retval = {};
+  var conval = conversations[convo].respond(talkto, topic);
   
   if (conval) {
     retval["txt"] = "";
     retval["fin"] = 3;
   } else {
     // person spoke and ended conversation
-    var gender = top.getGenderedTerms().pronoun;
+    var gender = talkto.getGenderedTerms().pronoun;
     gender = gender.charAt(0).toUpperCase() + gender.slice(1);
-    retval["txt"] = gender + " turns away.";
+    retval["txt"] = "";
     retval["fin"] = 1;
+    retval["input"] = "&gt;";
     return retval;
   }
   
   if (conval === 2) {
     retval["input"] = "&gt; [MORE]";
+    gamestate.setMode("anykey");
   } else {
     retval["input"] = "&gt; You say: ";
+    gamestate.setMode("talk");
   }
   
-  targetCursor.talkingto = top;
+  targetCursor.talkingto = talkto;
   targetCursor.command ="t";
   targetCursor.conval = conval;   // 2 == in-midsentence
-  gamestate.setMode("talk");
   
   inputText.cmd = "t";
   inputText.txt = "";
 		
-  return retval;
-
+  return retval;  
 }
 
 function PerformUse(who) {

@@ -9,8 +9,8 @@ function GameStateData() {
 
 GameStateData.prototype.loadGame = function() {
 	// Temporarily, this will return demo values
-	PC.setx(77);
-	PC.sety(29);
+	PC.setx(67);
+	PC.sety(71);
 	PC.setPCName("Goldenflame");
 	var themap;
 	if (maps.getMap("darkunknown")) {

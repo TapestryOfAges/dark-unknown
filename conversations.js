@@ -5,14 +5,19 @@ function set_conversations() {
 
   conversations.castleguard1 = new Conversation();
   
-  conversations.castleguard1["name"] = new ConvNode({}, "", "We do not give out our names while on duty.", [{}, {}]);
-  conversations.castleguard1["_start"] = new ConvNode({ flags_met: "kingspeech" }, "Hail, %FORMAL% %NAME%! Your =father= the King wishes to speak with you.", "Greetings, %FORMAL% %NAME%.", [{}, {}]);
-  conversations.castleguard1["job"] = new ConvNode({ flags_met: "kingspeech" }, "Surely that can wait. Your =father= awaits.", "We =guard= Castle Olympus.", [{}, {}]);
+  conversations.castleguard1["name"] = new ConvNode({}, "", '"We do not give out our names while on duty."', [{}, {}]);
+  conversations.castleguard1["_start"] = new ConvNode({ flags_met: "kingspeech" }, '"Hail, %FORMAL% %NAME%! Your =father= the King wishes to speak with you."', '"Greetings, %FORMAL% %NAME%."', [{}, {}]);
+  conversations.castleguard1["job"] = new ConvNode({ flags_met: "kingspeech" }, '"Surely that can wait. Your =father= awaits."', '"We =guard= Castle Olympus."', [{}, {}]);
   conversations.castleguard1["_confused"] = new ConvNode({}, "", "Beg pardon?", [{}, {}]);
-  conversations.castleguard1["father"] = new ConvNode( {flags_met: "kingspeech" }, "He is upstairs, upon his throne. Seek him!", "He is upstairs.", [{}, { end_convo: 1}]);
+  conversations.castleguard1["father"] = new ConvNode( {flags_met: "kingspeech" }, '"He is within, upon his throne. Seek him!"', '"He is within."', [{}, { end_convo: 1}]);
+  conversations.castleguard1["throne"] = new ConvNode( {}, "", "Straight ahead through there.", [{}, {}]);
   conversations.castleguard1["king"] = conversations.castleguard1["father"];
-  conversations.castleguard1["guard"] = new ConvNode( {}, "", "While we patrols these halls, no harm shall come to those within.", [{}, {}]);
-  conversations.castleguard1["bye"] = new ConvNode({ flags_met: "kingspeech" }, "Hurry along!", "Stay out of trouble.", [{end_convo: 1}, {end_convo: 1}]);
+  conversations.castleguard1["guard"] = new ConvNode( {}, "", '"While we patrols these halls, no harm shall come to those within."', [{}, {}]);
+  conversations.castleguard1["bye"] = new ConvNode({ flags_met: "kingspeech" }, '"Hurry along!"', '"Stay out of trouble."', [{end_convo: "%SELF_PRONOUN% waves you onward."}, {end_convo: 1}]);
+  
+  conversations.king = new Conversation();
+  conversations.king["name"] = new ConvNode({}, "", '"While a king should usually demand a certain formality, even here you can just call me father."', [{}, {}]);
+  
 }
 
 
@@ -29,6 +34,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   var flags_met = 1;
   var necessary_item;
   var keep_talking = 0;
+  if (!keyword) { keyword = "bye"; }
   keyword = keyword.toLowerCase();
   
   if (!this.hasOwnProperty(keyword)) {
@@ -66,6 +72,9 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     DU.gameflags[triggers.set_flag] = 1;
   }
   if (triggers.hasOwnProperty("end_convo")) {
+    if (triggers.end_convo !== 1) {
+      this.say(speaker, triggers.end_convo);
+    }
     keep_talking = 0;
   }
   
@@ -76,6 +85,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
 Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   var gterms = PC.getGenderedTerms();
   var pcname = PC.getPCName();
+  var npcterms = speaker.getGenderedTerms();
   
   saywhat = saywhat.replace(/=(\w+)=/g, "<span style='color:cyan'>$1</span>");
   saywhat = saywhat.replace(/%FORMAL%/g, gterms.formal);
@@ -86,12 +96,14 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   saywhat = saywhat.replace(/%OBJ%/g, gterms.objective);
   saywhat = saywhat.replace(/%SIBLING%/g, gterms.sibling);
   saywhat = saywhat.replace(/%KIDDIE%/g, gterms.kiddie);
+  saywhat = saywhat.replace(/%SELF_PRONOUN%/g, npcterms.pronoun);
   
   var speech = saywhat.split("%%");
   while (skipahead) {
     speech.shift();
     skipahead--;
   }
+  speech[0] = speech[0].charAt(0).toUpperCase() + speech[0].slice(1);
   maintext.addText(speech[0]);
   speech.shift();
   
