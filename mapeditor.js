@@ -21,6 +21,7 @@ var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
 var mode = "editor";
 var PC = new PCObject();
+var DU = {};
 
 $(document).ready(function() {
   browserheight = $(window).height();
@@ -327,6 +328,7 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcthreatenedai.value = editnpcs.getThreatenedAI();      
       document.npceditpopup.npcmissile.value = editnpcs.getMissileAttackAs();
       document.npceditpopup.npcconvo.value = editnpcs.getConversation();
+      document.npceditpopup.npcgender.value = editnpcs.getGender();
     }
   	else if (!editnpcs && (document.editlayer.showfeatures.checked)) {
       var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
@@ -446,6 +448,9 @@ function submitEditNPC(change) {
 		}
 		if (document.npceditpopup.npcconvo.value !== editnpcs.getConversation()) {
 			editnpcs.setConversation(document.npceditpopup.npcconvo.value);
+		}
+		if (document.npceditpopup.npcgender.value !== editnpcs.getGender()) {
+			editnpcs.setGender(document.npceditpopup.npcgender.value);
 		}
 	}
 	else if (change === -1) {

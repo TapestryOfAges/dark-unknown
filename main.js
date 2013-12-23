@@ -171,8 +171,19 @@ function DoAction(code) {
         maintext.addText(retval["txt"]);
         maintext.drawTextFrame();
 
-      } else if { inputText.cmd === "t") {
+      } else if ( inputText.cmd === "t") {
+        var convo = targetCursor.talkingto.getConversation();
+        maintext.addText(" ");
+        maintext.addText("You say: " + inputText.txt);
+        var retval = PerformTalk(targetCursor.talkingto, convo, inputText.txt);
+        maintext.addText(retval["txt"]);
+        maintext.setInputLine(retval["input"]);
+        maintext.drawTextFrame();
         
+        if (retval["fin"] === 1) {
+          PC.endTurn(retval["initdelay"]);
+        }
+        // HERE
       }
       else { alert("need to add hook here! (main 171)"); }
     }
