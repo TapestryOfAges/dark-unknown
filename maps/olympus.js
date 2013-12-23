@@ -70,17 +70,17 @@ mappages["olympus1"].features[19] = {name : 'Doorway', x : 29, y : 19};
 
 mappages["olympus1"].npcs = [];
 mappages["olympus1"].npcs[0] = {name : 'KingNPC', x : 29, y : 13, NPCName: 'King Daragen', Desc: 'the King of Olympus', Prefix: ''};
-mappages["olympus1"].npcs[1] = {name : 'MageVillagerNPC', x : 31, y : 15, NPCName: 'Jharden', Desc: 'the royal advisor', Prefix: 'a', Level: 6, str: 12, dex: 12, int: 26};
+mappages["olympus1"].npcs[1] = {name : 'MageVillagerNPC', x : 31, y : 15, NPCName: 'Jharden', Desc: 'royal advisor', Prefix: 'the', Level: 6, str: 12, dex: 12, int: 26};
 mappages["olympus1"].npcs[2] = {name : 'TownGuardNPC', x : 27, y : 18, Prefix: 'a'};
 mappages["olympus1"].npcs[3] = {name : 'TownGuardNPC', x : 31, y : 18, Prefix: 'a'};
 mappages["olympus1"].npcs[4] = {name : 'TownGuardNPC', x : 30, y : 23, Prefix: 'a'};
 mappages["olympus1"].npcs[5] = {name : 'TownGuardNPC', x : 32, y : 33, Prefix: 'a'};
-mappages["olympus1"].npcs[6] = {name : 'TownGuardNPC', x : 26, y : 33, Prefix: 'a', Alignment: 'good', Attitude: 'friendly', PCThreatAI: 'townsfolk', Conversation: 'castleguard1'};
+mappages["olympus1"].npcs[6] = {name : 'TownGuardNPC', x : 26, y : 33, Prefix: 'a', Alignment: 'good', Attitude: 'friendly', PCThreatAI: 'townsfolk', Conversation: 'castleguard1', Gender: 'male'};
 mappages["olympus1"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 24, y : 22, Prefix: 'a'};
 mappages["olympus1"].npcs[8] = {name : 'DruidVillagerNPC', x : 13, y : 14, Prefix: 'a'};
 mappages["olympus1"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 47, y : 28, Prefix: 'a'};
 mappages["olympus1"].npcs[10] = {name : 'DruidVillagerNPC', x : 44, y : 14, Prefix: 'a'};
-mappages["olympus1"].npcs[11] = {name : 'FighterVillagerNPC', x : 25, y : 13, NPCName: 'Ambrose', Desc: 'the guard captain', Prefix: 'a', Level: 5, str: 24, dex: 18, int: 12, PeaceAI: 'guard', PCThreatAI: 'melee', Melee: 'Halberd'};
+mappages["olympus1"].npcs[11] = {name : 'FighterVillagerNPC', x : 25, y : 13, NPCName: 'Ambrose', Desc: 'guard captain', Prefix: 'the', Level: 5, str: 24, dex: 18, int: 12, PeaceAI: 'guard', PCThreatAI: 'melee', Melee: 'Halberd'};
 
 mappages["olympus1"].desc = 'Castle Olympus';
 mappages["olympus1"].music = 'Towne';
