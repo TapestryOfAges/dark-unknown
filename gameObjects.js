@@ -4227,6 +4227,9 @@ NPCObject.prototype.getGenderedTerms = function() {
     gt.pronoun = "it";
     gt.possessive = "its";
     gt.objective = "it";
+    gt.titled = "Lord";
+    gt.sibling = "sibling";
+    gt.kiddie = "child";    
   }
   return gt;
 }
