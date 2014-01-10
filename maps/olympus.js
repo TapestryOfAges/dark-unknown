@@ -69,7 +69,7 @@ mappages["olympus1"].features[19] = {name : 'Doorway', x : 29, y : 19};
 
 
 mappages["olympus1"].npcs = [];
-mappages["olympus1"].npcs[0] = {name : 'KingNPC', x : 29, y : 13, NPCName: 'King Daragen', Desc: 'the King of Olympus', Prefix: ''};
+mappages["olympus1"].npcs[0] = {name : 'KingNPC', x : 29, y : 13, NPCName: 'King Daragen', Desc: 'the King of Olympus', Prefix: '', Gender: 'male', Conversation: 'king'};
 mappages["olympus1"].npcs[1] = {name : 'MageVillagerNPC', x : 31, y : 15, NPCName: 'Jharden', Desc: 'royal advisor', Prefix: 'the', Level: 6, str: 12, dex: 12, int: 26};
 mappages["olympus1"].npcs[2] = {name : 'TownGuardNPC', x : 27, y : 18, Prefix: 'a'};
 mappages["olympus1"].npcs[3] = {name : 'TownGuardNPC', x : 31, y : 18, Prefix: 'a'};
