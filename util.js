@@ -198,15 +198,15 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	var tile = tomap.getTile(destx,desty);
   var oldtile = frommap.getTile(oldx,oldy);
   
-  // update pathfinding
-	for (var i=1; i<=16; i=i*2) {
-	  var response = oldtile.canMoveHere(i, 1);
-	  if (response["canmove"]) { frommap.setWalkableAt(oldx,oldy,true,i); }
-	  else { frommap.setWalkableAt(oldx,oldy,false,i); }
-	  response = tile.canMoveHere(i, 1);
-	  if (response["canmove"]) { tomap.setWalkableAt(destx,desty,true,i); }
-	  else { tomap.setWalkableAt(destx,desty,false,i); }
-	}
+  // update pathfinding   // NO LONGER NECESSARY, mobs no longer impact paths
+//	for (var i=1; i<=16; i=i*2) {
+//	  var response = oldtile.canMoveHere(i, 1);
+//	  if (response["canmove"]) { frommap.setWalkableAt(oldx,oldy,true,i); }
+//	  else { frommap.setWalkableAt(oldx,oldy,false,i); }
+//	  response = tile.canMoveHere(i, 1);
+//	  if (response["canmove"]) { tomap.setWalkableAt(destx,desty,true,i); }
+//	  else { tomap.setWalkableAt(destx,desty,false,i); }
+//	}
 	
 	// Remove unneeded maps from mapmemory
 	if (who === PC){
@@ -227,6 +227,13 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 		  maps.deleteMap(frommap.getName());
   	}
   }
+	
+	if ((DU.gameflags.music) && (who === PC) && (tomap.getMusic() !== nowplaying)) {
+	  stop_music();
+	  var song = tomap.getMusic();
+	  play_audio(song);
+	  nowplaying = song;
+	}
 	
 	return tile;
 

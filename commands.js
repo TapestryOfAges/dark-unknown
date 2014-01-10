@@ -152,9 +152,16 @@ function PerformCommand(code) {
     retval["fin"] = 2;
 	}
 	else if (code === 77) { // m
-		// mix - not used
-		// might repurpose as "music" to give it a separate toggle to sound effects
-		
+		// was mix - now, toggles music
+    if (DU.gameflags.music) {
+      DU.gameflags.music = 0;
+      stop_music();
+    } else {
+      DU.gameflags.music = 1;
+      var song = PC.getHomeMap().getMusic();
+      play_audio(song);
+      nowplaying = song;
+    }		
 	}
 	else if (code === 78) { // n
 		// new order - not used
