@@ -83,7 +83,7 @@ mappages["olympus1"].npcs[10] = {name : 'DruidVillagerNPC', x : 44, y : 14, Pref
 mappages["olympus1"].npcs[11] = {name : 'FighterVillagerNPC', x : 25, y : 13, NPCName: 'Ambrose', Desc: 'guard captain', Prefix: 'the', Level: 5, str: 24, dex: 18, int: 12, PeaceAI: 'guard', PCThreatAI: 'melee', Melee: 'Halberd'};
 
 mappages["olympus1"].desc = 'Castle Olympus';
-mappages["olympus1"].music = 'Towne';
+mappages["olympus1"].music = 'Olympus';
 mappages["olympus1"].exitmap = 'darkunknown';
 mappages["olympus1"].exitx = '69';
 mappages["olympus1"].exity = '73';
@@ -153,7 +153,7 @@ mappages["olympus0"].npcs[3] = {name : 'TownGuardNPC', x : 15, y : 9, Prefix: ''
 mappages["olympus0"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 20, y : 3, Prefix: ''};
 
 mappages["olympus0"].desc = 'Castle Olympus Basement';
-mappages["olympus0"].music = 'Towne';
+mappages["olympus0"].music = 'Olympus';
 mappages["olympus0"].exitmap = 'olympus1';
 mappages["olympus0"].exitx = 'undefined';
 mappages["olympus0"].exity = 'undefined';
@@ -257,7 +257,7 @@ mappages["olympus2"].features[32] = {name : 'PentagramSE', x : 29, y : 15};
 mappages["olympus2"].npcs = new Array;
 
 mappages["olympus2"].desc = 'Castle Olympus';
-mappages["olympus2"].music = 'Towne';
+mappages["olympus2"].music = 'Olympus';
 mappages["olympus2"].exitmap = '';
 mappages["olympus2"].exitx = '';
 mappages["olympus2"].exity = '';
