@@ -51,6 +51,8 @@ GameStateData.prototype.loadGame = function() {
   PC.addToInventory(localFactory.createTile("Bow"),1);
   PC.addToInventory(localFactory.createTile("Crossbow"),1);
   
+  play_audio('music', 'Mainland');
+  
 	maps.addMapByRef(themap);
 	if (themap.getLinkedMaps().length > 0) {
 		for (var i = 0; i < themap.getLinkedMaps().length; i++) {
