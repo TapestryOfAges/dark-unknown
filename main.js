@@ -15,6 +15,7 @@ DU.PC = new PCObject();
 var PC = DU.PC;  // alias
 
 PC.assignSerial();
+var audioplayers = create_audio();
 var gamestate = new GameStateData();
 DU.maps = new MapMemory();
 var maps = DU.maps; // alias
@@ -101,11 +102,15 @@ $(document).ready(function() {
   var worldmap = new GameMap();
   worldmap.loadMap("darkunknown");
   maps.addMapByRef(worldmap);
+    
+  set_conversations();
+  populate_audio(musiclist, 0, 1);
 	
   gamestate.loadGame();
   DrawCharFrame();
-    
-  set_conversations();
+  
+  // create audio players
+  
   
   PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
