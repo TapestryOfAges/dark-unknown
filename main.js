@@ -33,6 +33,7 @@ var finder = new PF.AStarFinder();
 DU.gameflags = {};
 
 var targetCursor = {};
+    targetCursor.skipahead = 0;
 var inputText = {};
 
 var raceWarning = 0;
@@ -141,6 +142,18 @@ function DoAction(code) {
         PC.endTurn(response["initdelay"]);
       }
     }  
+  }
+  else if (gamestate.getMode() === "anykey") {
+    if (((code >= 65) && (code <= 90)) || (code === 32) || (code === 13)) {  // letter, space, or enter
+      var retval = PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), targetCursor.keyword); 
+      maintext.addText(retval["txt"]);
+      maintext.setInputLine(retval["input"]);
+      maintext.drawTextFrame();
+        
+      if (retval["fin"] === 1) {
+        PC.endTurn(retval["initdelay"]);
+      }
+    }
   }
   else if (gamestate.getMode() === "talk") {
     if (((code >= 65) && (code <= 90)) || (code === 32)) {  // letter
@@ -303,7 +316,7 @@ function DoAction(code) {
         raceWarning = 1;
       }
       else if (newresponse["fin"] === 3) {
-        gamestate.setMode("talk");
+//        gamestate.setMode("talk");      // not needed, set in talk code
         // new response code (need a lot for targeting!)
         
       }
