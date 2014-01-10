@@ -31,7 +31,7 @@ function Conversation() {
 Conversation.prototype = new Object();
 
 Conversation.prototype.respond = function(speaker, keyword, skipahead) { 
-  if (!skipahead) { skipahead = 0; }
+  if (!skipahead) { skipahead = targetCursor.skipahead; }
   var flags_met = 1;
   var necessary_item;
   var keep_talking = 0;
@@ -51,9 +51,10 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     if (!necessary_item) { flags_met = 0; }
   }
   keep_talking = this.say(speaker, this[keyword].responses[flags_met], skipahead);
+  
   if (keep_talking === 2) { 
     targetCursor.keyword = keyword;
-    targetCursor.skipahead = skipahead++;
+    targetCursor.skipahead = ++skipahead;
     return keep_talking; 
   }  // don't execute end of response triggers until actually at end of response
   targetCursor.keyword = "";
@@ -111,7 +112,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   if (speech[0]) {
     return 2;  // has more to say, waiting on any keypress
   } 
-  
+
   return 1; // full response
 }
 
