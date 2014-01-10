@@ -16,6 +16,7 @@ var PC = DU.PC;  // alias
 
 PC.assignSerial();
 var audioplayers = create_audio();
+var nowplaying = "";
 var gamestate = new GameStateData();
 DU.maps = new MapMemory();
 var maps = DU.maps; // alias
@@ -31,6 +32,8 @@ var DULootGroups = SetLootGroups(); // see loot.js for population
 var displayspecs = {};
 var finder = new PF.AStarFinder();
 DU.gameflags = {};
+DU.gameflags.music = 0;
+DU.gameflags.sound = 1;
 
 var targetCursor = {};
     targetCursor.skipahead = 0;

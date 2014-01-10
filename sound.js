@@ -2,14 +2,14 @@
 function populate_audio(soundlist, preload, loop) {
   var preloadtext = "";
   if (preload) {
-    preloadtext = "preload: 'auto'";
+    preloadtext = "preload= 'metadata'";
   }
   var looptext = "";
   if (loop) {
-    looptext = "loop";
+    looptext = "loop = 'loop'";
   }
   $.each(soundlist, function(index, value) {
-    $("#audiocontainer").html($("#audiocontainer").html() + "<audio id='" + index + "' src='" + value + "' " + preloadtext + " " + loop + "></audio>");
+    $("#audiocontainer").html($("#audiocontainer").html() + "<audio id='" + index + "' src='" + value + "' " + preloadtext + " " + looptext + "></audio>");
   });
 }
 
@@ -22,8 +22,15 @@ function create_audio() {
   return tmparray;
 }
 
-function play_audio(atype, music) {
-  audioplayer[atype].src = document.getElementById(music).src;
-  audioplayer[atype].load();
-  audioplayer[atype].play();
+//function play_audio(atype, music) {
+//  audioplayers[atype].src = document.getElementById(music).src;
+//  audioplayers[atype].load();
+//  audioplayers[atype].play();
+function play_audio(music) {
+  document.getElementById(music).play();
+}
+
+function stop_music() {
+  document.getElementById(nowplaying).pause();
+  document.getElementById(nowplaying).currentTime = 0;
 }

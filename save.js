@@ -1,8 +1,8 @@
 
 function GameStateData() {
 	this.mode = "null";
-	this.turn = new Object;
-	// player, NPC, null, target, conversation
+	this.turn = {};
+	// player, NPC, null, target, conversation, anykey
 }
 
 
@@ -50,8 +50,6 @@ GameStateData.prototype.loadGame = function() {
   PC.addToInventory(localFactory.createTile("Sling"),1);
   PC.addToInventory(localFactory.createTile("Bow"),1);
   PC.addToInventory(localFactory.createTile("Crossbow"),1);
-  
-  play_audio('music', 'Mainland');
   
 	maps.addMapByRef(themap);
 	if (themap.getLinkedMaps().length > 0) {
