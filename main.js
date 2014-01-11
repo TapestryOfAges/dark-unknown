@@ -70,8 +70,6 @@ function DrawMainFrame(how, mapname, centerx, centery) {
     mapdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
     for (var i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
       for (var j=displayspecs.leftedge;j<=displayspecs.rightedge;j++) {
-//      	if (debug) { dbs.writeln("<span style='color:"+debugcolor+"'>j = " + j + ", i = " + i + ". Map is " + themap.getName() + " -- </span>"); }
-//      	if (debug) { dbs.writeln("<span style='color:"+debugcolor+"'>" + themap.data[i].length + "</span><br />"); }
       	var thiscell = getDisplayCell(themap,centerx,centery,j,i);
       	opac = 1;
       	if ((thiscell.lighthere >= SHADOW_THRESHOLD) && (thiscell.lighthere < 1)) {
