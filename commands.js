@@ -156,12 +156,16 @@ function PerformCommand(code) {
     if (DU.gameflags.music) {
       DU.gameflags.music = 0;
       stop_music();
+      retval["txt"] = "Music off.";
     } else {
       DU.gameflags.music = 1;
       var song = PC.getHomeMap().getMusic();
       play_audio(song);
       nowplaying = song;
+      retval["txt"] = "Music on.";
     }		
+    retval["input"] = "&gt;";
+    retval["fin"] = 2;
 	}
 	else if (code === 78) { // n
 		// new order - not used
@@ -228,7 +232,16 @@ function PerformCommand(code) {
 	}
 	else if (code === 86) { // v
 		// volume - turns sound effects on and off
-		
+		if (DU.gameflags.sound) { 
+		  DU.gameflags.sound = 0; 
+		  retval["txt"] = "Sound effects off.";
+		}
+		else { 
+      DU.gameflags.sound = 1; 
+      retval["txt"] = "Sound effects on.";
+    }
+    retval["input"] = "&gt;";
+    retval["fin"] = 2;
 	}
 	else if (code === 87) { // w
 		gamestate.setMode("equip");

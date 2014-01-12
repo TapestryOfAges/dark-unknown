@@ -4580,6 +4580,9 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	
 	if (retval["canmove"] === 1) {
 		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
+		if ((this === PC) && (DU.gameflags.sound)) {
+		  play_footstep();
+		}
     if (GetDistance(this.getx(), this.gety(), PC.getx(), PC.gety()) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) ) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
 			DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());

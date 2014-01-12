@@ -14,6 +14,10 @@ musiclist["Underworld"] = "music/Underworld.mp3";
 musiclist["Combat"] = "music/Combat.mp3";
 musiclist["Olympus"] = "music/Olympus.mp3";
 
+var sfxlist = {};
+sfxlist["sfx_walk_right"] = "sfx/sfx1.wav";
+sfxlist["sfx_walk_left"] = "sfx/sfx1.wav";
+
 var mapslist = {};
 mapslist["darkunknown"] = "the Mainland";
 mapslist["poverty"] = "the Towne of Poverty";

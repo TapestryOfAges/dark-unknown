@@ -15,8 +15,9 @@ DU.PC = new PCObject();
 var PC = DU.PC;  // alias
 
 PC.assignSerial();
-var audioplayers = create_audio();
+//var audioplayers = create_audio();
 var nowplaying = "";
+var laststep = "left";
 var gamestate = new GameStateData();
 DU.maps = new MapMemory();
 var maps = DU.maps; // alias
@@ -106,7 +107,8 @@ $(document).ready(function() {
   maps.addMapByRef(worldmap);
     
   set_conversations();
-  populate_audio(musiclist, 0, 1);
+  populate_audio(musiclist, 0, 1, "music");
+  populate_audio(sfxlist, 1, 0, "sfx");
 	
   gamestate.loadGame();
   DrawCharFrame();
