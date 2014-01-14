@@ -110,7 +110,7 @@ function PerformCommand(code) {
 		targetCursor.y = PC.gety();		
 	}
 	else if (code === 72) { // h
-		// hole up and camp
+		// hole up and camp, not used
 		
 	}
 	else if (code === 73) { // i
@@ -184,7 +184,7 @@ function PerformCommand(code) {
 		
 	}
 	else if (code === 82) { // r
-
+    // was Ready, merged with Wear/Wield
 	}
 	else if (code === 83) { // s
 		gamestate.setMode("choosedir");
