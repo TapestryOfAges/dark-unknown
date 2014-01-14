@@ -153,12 +153,23 @@ magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   return resp;
 }
 
+// Light
+magic[1][GetSpellId(5)].executeSpell = function(caster, infused, free) {
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+  }
+  resp["fin"] = 1;
+  
+  // FINISH HERE
+}
 
 // Levitate
 magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free) {
+  var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
-    var resp = new Object;
     caster.modMana(-1*mana);
   }
   resp["fin"] = 1;
