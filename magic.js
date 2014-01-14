@@ -154,7 +154,7 @@ magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
 }
 
 // Light
-magic[1][GetSpellId(5)].executeSpell = function(caster, infused, free) {
+magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
@@ -162,7 +162,19 @@ magic[1][GetSpellId(5)].executeSpell = function(caster, infused, free) {
   }
   resp["fin"] = 1;
   
-  // FINISH HERE
+  var liobj = localFactory.createTile("Light");
+  caster.addSpellEffect(liobj);
+  var dur = caster.getInt() * .3;
+  if (infused) {dur = dur * 3; }
+  var endtime = dur + DUTime.getGameClock();
+  liobj.setExpiresTime(endtime);
+  if (infused) { liobj.setPower(4); }   // defaults to 2
+  
+  liobj.applyEffect();
+  play_audio("sfx_spell_light");
+  
+  DrawCharFrame();
+  return resp;
 }
 
 // Levitate

@@ -162,6 +162,7 @@ LightTile.prototype = new EphemeralObject();
 
 LightTile.prototype.applyEffect = function() {
   var who = this.getAttachedTo();
+  var power = this.getPower();
   if (who) {
     who.setLight(who.getLight() + power);
   }
@@ -179,7 +180,7 @@ LightTile.prototype.doEffect = function() {
 
 LightTile.prototype.endEffect = function() {
   var who = this.getAttachedTo();
-  who.setLight(who.getLight() - power);
+  who.setLight(who.getLight() - this.getPower());
   who.deleteSpellEffect(this);
   maintext.addText("Your light blinks out.");
   DrawCharFrame();

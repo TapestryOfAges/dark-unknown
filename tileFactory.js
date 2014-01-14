@@ -1157,6 +1157,11 @@ tileFactory.prototype.makeLevitateTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeLightTile = function() {
+  var newTile = new LightTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeEraserTile = function() {
   var newTile = new BlankWhiteTile();
   newTile.name = 'Eraser';

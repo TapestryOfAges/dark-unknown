@@ -328,13 +328,10 @@ function Enterable(entermap, enterx, entery) {
 function LightEmitting(lightlevel) {
 	this.light = lightlevel;
 	this.ignite = function() {
-		this.light = lightlevel;
+		this.setLight(lightlevel);
 	}
 	this.extinguish = function() {
-	  if (this.light !== 0) {
-		  this.getHomeMap().removeMapLight(this.getSerial(), this.light, this.getx(), this.gety());
-		  this.light = 0;
-		}
+    this.setLight(0);
 	}
 	this.setLight = function(light) {
 	  if (this.light > 0) {
@@ -344,6 +341,7 @@ function LightEmitting(lightlevel) {
 	    this.getHomeMap().setMapLight(this,light,this.getx(),this.gety());
 	  }
 	    
+	  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 		this.light = light;
 	}
 	this.getLight = function() {

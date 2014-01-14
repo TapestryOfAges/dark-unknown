@@ -17,6 +17,7 @@ musiclist["Olympus"] = "music/Olympus.mp3";
 var sfxlist = {};
 sfxlist["sfx_walk_right"] = "sfx/sfx1.wav";
 sfxlist["sfx_walk_left"] = "sfx/sfx1.wav";
+sfxlist["sfx_spell_light"] = "sfx/sfx2.wav";
 
 var mapslist = {};
 mapslist["darkunknown"] = "the Mainland";
