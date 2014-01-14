@@ -80,7 +80,7 @@ function DamageOverTimeObject() {
   this.damagePerTick = 0;
   this.addType("dot");
 }
-DamageOverTimeObject.prototype = new EphemeralObject;
+DamageOverTimeObject.prototype = new EphemeralObject();
 
 DamageOverTimeObject.prototype.setDamagePerTick = function(newDoT) {
   this.damagePerTick = newDoT;
@@ -99,7 +99,7 @@ function DiseaseTile() {
   this.damagePerTick = 1;
   this.display = "<span style='color:#58FA58'>D</span>";
 }
-DiseaseTile.prototype = new DamageOverTimeObject;
+DiseaseTile.prototype = new DamageOverTimeObject();
 
 DiseaseTile.prototype.doEffect = function() {
   var prev = this.getLastTime();
@@ -128,7 +128,7 @@ function LevitateTile() {
   this.name = "Levitate";
   this.display = "<span style='color:#00FFFF'>L</span>";
 }
-LevitateTile.prototype = new EphemeralObject;
+LevitateTile.prototype = new EphemeralObject();
 
 LevitateTile.prototype.applyEffect = function() {
   var who = this.getAttachedTo();
@@ -151,3 +151,37 @@ LevitateTile.prototype.endEffect = function() {
   maintext.addText("You sink back to the ground.");
   DrawCharFrame();
 }
+
+function LightTile() {
+  this.addType("buff");
+  this.name = "Light";
+  this.display = "<span style='color:#ffff00'>L</span>";
+  this.power = 2;
+}
+LightTile.prototype = new EphemeralObject();
+
+LightTile.prototype.applyEffect = function() {
+  var who = this.getAttachedTo();
+  if (who) {
+    who.setLight(who.getLight() + power);
+  }
+  var lightdesc = "a sphere of light";
+  if (power > 2) { lightdesc = "a bright sphere of light"; }
+  
+  maintext.addText("You conjure " + lightdesc + ".");
+}
+
+LightTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+LightTile.prototype.endEffect = function() {
+  var who = this.getAttachedTo();
+  who.setLight(who.getLight() - power);
+  who.deleteSpellEffect(this);
+  maintext.addText("Your light blinks out.");
+  DrawCharFrame();
+}
+

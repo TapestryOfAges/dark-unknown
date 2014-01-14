@@ -331,9 +331,19 @@ function LightEmitting(lightlevel) {
 		this.light = lightlevel;
 	}
 	this.extinguish = function() {
-		this.light = 0;
+	  if (this.light !== 0) {
+		  this.getHomeMap().removeMapLight(this.getSerial(), this.light, this.getx(), this.gety());
+		  this.light = 0;
+		}
 	}
 	this.setLight = function(light) {
+	  if (this.light > 0) {
+	    this.getHomeMap().removeMapLight(this.getSerial(), this.light, this.getx(), this.gety());
+	  }
+	  if (light > 0) {
+	    this.getHomeMap().setMapLight(this,light,this.getx(),this.gety());
+	  }
+	    
 		this.light = light;
 	}
 	this.getLight = function() {
