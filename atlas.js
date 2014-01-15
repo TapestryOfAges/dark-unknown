@@ -314,7 +314,7 @@ Acre.prototype.getLocalLight = function(dir) {
 }
 
 Acre.prototype.getLocalLightFrom = function(viewer) {
-  
+  alert("IN OTHERWISE EMPTY FUNCTION getLocalLightFrom");
 }
 
 Acre.prototype.removeLocalLight = function(source) {
@@ -427,7 +427,7 @@ Acre.prototype.getBumpIntoResult = function(mover) {
 	var retval = terrain.bumpinto(mover);
 
 	if (retval["msg"] != "") { retval["msg"] = " - " + retval["msg"]; }	
-	if (retval["canmove"] == 0) { return retval; }
+	if (retval["canmove"] === 0) { return retval; }
 	
 	var features = this.getFeatures();
 	if (features[0]) {
@@ -437,7 +437,10 @@ Acre.prototype.getBumpIntoResult = function(mover) {
 				if (retval["msg"] == "") { retval["msg"] = " - " + retval2["msg"]; }
 				else { retval["msg"] += "\n" + retval2["msg"]; }
 			}
-			if (retval2["canmove"] === 0) { return retval; }
+			if (retval2["canmove"] === 0) { 
+			  retval["canmove"] = 0;
+			  return retval; 
+			}
 		}
 	}
 	

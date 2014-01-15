@@ -921,7 +921,7 @@ function StoneWallTile() {
   this.spritexoffset = "-32";
   this.spriteyoffset = "0";
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = 1;
+  this.blocklos = 2;
   this.prefix = "a";
   this.desc = "stone wall";
 }
@@ -1483,7 +1483,7 @@ function WallTile() {
   this.spritexoffset = "-96";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = 1;
+  this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
 }
@@ -2313,6 +2313,20 @@ function CastleTile() {
   Enterable.call(this, "null", 0, 0);
 }
 CastleTile.prototype = new FeatureObject();
+
+CastleTile.prototype.bumpinto = function(who) {
+	var retval = {};
+	retval["canmove"] = 1;
+	retval["msg"] = "";
+	
+	if ((who.getx() === this.getx()) && ((this.gety() - who.gety()) === 1)) {
+	  // mover is north of the castle, block
+	  retval["canmove"] = 0;
+	  retval["msg"] = "Blocked!";
+	}
+  return(retval);
+}
+
 
 function LeftCastleTile() {
   this.name = "LeftCastle";
