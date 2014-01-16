@@ -4467,15 +4467,39 @@ NPCObject.prototype.getSpellEffectsByName = function(checkname) {
 }
 
 NPCObject.prototype.addSpellEffect = function(spellobj) {
+  var otherEffects = this.getSpellEffects();
+  var addme = 1;
+  if (otherEffects.length) {
+    for (var i=0; i < otherEffects.length; i++) {
+      if (otherEffects[i].getName() === spellobj.getName()) {
+        if (otherEffects[i].getPower() >= spellobj.getPower()) {  // keep old one, extend it
+          var adddur = (spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.getGameClock());
+          otherEffects[i].setExpiresTime(otherEffects[i].getExpiresTime() + adddur);
+          addme = 0; 
+          maintext.addText("The existing spell is revitalized!");
+          return 0;
+        } else {
+          var adddur = (otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.getGameClock());
+          spellobj.setExpiresTime(spellobj.getExpiresTime() + adddur);
+          otherEffects[i].endEffect(1);
+          maintext.addText("The existing spell has become stronger!");
+        }
+        break;
+      }
+    }
+  }
   this.spellEffects.addBottom(spellobj);
   spellobj.setAttachedTo(this);
   spellobj.setCreateTime(DUTime.getGameClock());
-  SetActiveEffects(this);
+  spellobj.applyEffect(1);
+  
+  return 1;
+//  SetActiveEffects(this);
 }
 
 NPCObject.prototype.deleteSpellEffect = function(spellobj) {
   this.spellEffects.deleteFrom(spellobj);
-  SetActiveEffects(this);
+//  SetActiveEffects(this);
 }
 
 NPCObject.prototype.getSpawnedBy = function() {

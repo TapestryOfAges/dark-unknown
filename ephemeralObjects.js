@@ -116,7 +116,11 @@ DiseaseTile.prototype.doEffect = function() {
   this.setLastTime(DUTime.getGameClock());    
 }
 
-DiseaseTile.prototype.endEffect = function() {
+DiseaseTile.prototype.applyEffect = function(silent) {
+  return 1;
+}
+
+DiseaseTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   DrawCharFrame();
@@ -130,12 +134,14 @@ function LevitateTile() {
 }
 LevitateTile.prototype = new EphemeralObject();
 
-LevitateTile.prototype.applyEffect = function() {
+LevitateTile.prototype.applyEffect = function(silent) {
   var who = this.getAttachedTo();
   if (who) {
     who.addMovetype(MOVE_LEVITATE);
+    if (!silent) {
+      maintext.addText("You begin to float a few inches off the ground.");
+    }
   }
-  maintext.addText("You begin to float a few inches off the ground.");
 }
 
 LevitateTile.prototype.doEffect = function() {
@@ -144,11 +150,13 @@ LevitateTile.prototype.doEffect = function() {
   }
 }
 
-LevitateTile.prototype.endEffect = function() {
+LevitateTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
   who.removeMovetype(MOVE_LEVITATE);
   who.deleteSpellEffect(this);
-  maintext.addText("You sink back to the ground.");
+  if (!silent) {
+    maintext.addText("You sink back to the ground.");
+  }
   DrawCharFrame();
 }
 
@@ -160,16 +168,18 @@ function LightTile() {
 }
 LightTile.prototype = new EphemeralObject();
 
-LightTile.prototype.applyEffect = function() {
+LightTile.prototype.applyEffect = function(silent) {
   var who = this.getAttachedTo();
   var power = this.getPower();
   if (who) {
     who.setLight(who.getLight() + power);
-  }
-  var lightdesc = "a sphere of light";
-  if (power > 2) { lightdesc = "a bright sphere of light"; }
+    if (!silent) {
+      var lightdesc = "a sphere of light";
+      if (power > 2) { lightdesc = "a bright sphere of light"; }
   
-  maintext.addText("You conjure " + lightdesc + ".");
+      maintext.addText("You conjure " + lightdesc + ".");
+    }
+  }
 }
 
 LightTile.prototype.doEffect = function() {
@@ -178,11 +188,13 @@ LightTile.prototype.doEffect = function() {
   }
 }
 
-LightTile.prototype.endEffect = function() {
+LightTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
   who.setLight(who.getLight() - this.getPower());
   who.deleteSpellEffect(this);
-  maintext.addText("Your light blinks out.");
+  if (!silent) {
+    maintext.addText("Your light blinks out.");
+  }
   DrawCharFrame();
 }
 

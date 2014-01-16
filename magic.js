@@ -163,15 +163,16 @@ magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   resp["fin"] = 1;
   
   var liobj = localFactory.createTile("Light");
-  caster.addSpellEffect(liobj);
+  
   var dur = caster.getInt() * .3;
   if (infused) {dur = dur * 3; }
   var endtime = dur + DUTime.getGameClock();
   liobj.setExpiresTime(endtime);
   if (infused) { liobj.setPower(4); }   // defaults to 2
   
-  liobj.applyEffect();
   play_audio("sfx_spell_light");
+  caster.addSpellEffect(liobj);
+//  liobj.applyEffect();
   
   DrawCharFrame();
   return resp;
@@ -187,8 +188,6 @@ magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   resp["fin"] = 1;
 
   var levobj = localFactory.createTile("Levitate");
-  caster.addSpellEffect(levobj);
-  levobj.applyEffect();
   
   var dur = caster.getInt();
   if (infused) { dur = dur * 3; }
@@ -196,6 +195,9 @@ magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   levobj.setPower(dur);
   levobj.setExpiresTime(endtime);
   
+  caster.addSpellEffect(levobj);
+//  levobj.applyEffect();
+    
   DrawCharFrame();
   return resp;  
 }
