@@ -4475,6 +4475,7 @@ NPCObject.prototype.addSpellEffect = function(spellobj) {
 
 NPCObject.prototype.deleteSpellEffect = function(spellobj) {
   this.spellEffects.deleteFrom(spellobj);
+  SetActiveEffects(this);
 }
 
 NPCObject.prototype.getSpawnedBy = function() {
