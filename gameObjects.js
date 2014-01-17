@@ -4469,9 +4469,11 @@ NPCObject.prototype.getSpellEffectsByName = function(checkname) {
 NPCObject.prototype.addSpellEffect = function(spellobj) {
   var otherEffects = this.getSpellEffects();
   var addme = 1;
+  var silent = 0;
   if (otherEffects.length) {
     for (var i=0; i < otherEffects.length; i++) {
       if (otherEffects[i].getName() === spellobj.getName()) {
+        silent = 1;
         if (debug) { dbs.writeln("<span style='color:green'>Magic: That spell is already on the target.<br /></span>"); }
         if (otherEffects[i].getPower() >= spellobj.getPower()) {  // keep old one, extend it
           var adddur = (spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.DUTime.getGameClock());
@@ -4494,7 +4496,7 @@ NPCObject.prototype.addSpellEffect = function(spellobj) {
   this.spellEffects.addBottom(spellobj);
   spellobj.setAttachedTo(this);
   spellobj.setCreateTime(DUTime.getGameClock());
-  spellobj.applyEffect(1);
+  spellobj.applyEffect(silent);
   
   return 1;
 //  SetActiveEffects(this);
@@ -5012,7 +5014,7 @@ PCObject.prototype.activate = function() {
 }
 
 PCObject.prototype.myTurn = function() {
-  if (debug) { dbs.writeln("=== PC TURN ===   Timestamp: " + DU.DUTime.getGameClock() + "<br />"); }
+  if (debug) { dbs.writeln("=== PC TURN ===   Timestamp: " + DU.DUTime.getGameClock() + "; x: " + PC.getx() + ", y: " + PC.gety() + "<br />"); }
   RunEffects(this);
 	gamestate.setMode("player");
 	gamestate.setTurn(PC);
