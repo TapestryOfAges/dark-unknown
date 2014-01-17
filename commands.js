@@ -558,7 +558,7 @@ function PerformCast(infuse) {
 }
 
 function PerformSpellbook(code) {
-  var retval = new Object;
+  var retval = {};
   if ((code === 38) || (code === 219)) { // up
     var lvl = PC.getLastSpellLevel();
     var spell = PC.getLastSpell();
@@ -624,7 +624,9 @@ function PerformSpellbook(code) {
     PC.setLastSpellLevel(newlvl);
     PC.setLastSpell(spindex);
     WritePages();
-    
+
+    retval["fin"] = 0;
+    return retval;    
   }
   if ((code === 32) || (code === 13)) { // SPACE or ENTER
     // cast a spell
@@ -1265,6 +1267,8 @@ function PerformYell() {
 		  }
 		} else if (inputText.txt === "ONEUP") {
 		  PC.setLevel(PC.getLevel()+1);
+		} else if (inputText.txt === "REFRESH") {
+		  PC.setMana(PC.getMaxMana());
 		}
 		retval["txt"] = "Yell: " + inputText.txt + "!";
 		retval["fin"] = 1;
