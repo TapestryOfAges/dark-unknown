@@ -132,10 +132,12 @@ magic[8][GetSpellID(6)] = new SpellObject("Time Stop", "An Tym", 8, 0);
 
 // Cure
 magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Cure.<br /></span>");
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>");
   }
   resp["fin"] = 1;
   var effects = caster.getSpellEffects();
@@ -155,10 +157,12 @@ magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
 
 // Light
 magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Light.<br /></span>");
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>");
   }
   resp["fin"] = 1;
   
@@ -167,6 +171,7 @@ magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   var dur = caster.getInt() * .3;
   if (infused) {dur = dur * 3; }
   var endtime = dur + DUTime.getGameClock();
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>");
   liobj.setExpiresTime(endtime);
   if (infused) { liobj.setPower(4); }   // defaults to 2
   
@@ -180,10 +185,12 @@ magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
 
 // Levitate
 magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Levitate.<br /></span>");
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>");
   }
   resp["fin"] = 1;
 
@@ -192,6 +199,7 @@ magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   var dur = caster.getInt();
   if (infused) { dur = dur * 3; }
   var endtime = dur + DUTime.getGameClock();
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>");
   levobj.setPower(dur);
   levobj.setExpiresTime(endtime);
   

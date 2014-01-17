@@ -4472,8 +4472,10 @@ NPCObject.prototype.addSpellEffect = function(spellobj) {
   if (otherEffects.length) {
     for (var i=0; i < otherEffects.length; i++) {
       if (otherEffects[i].getName() === spellobj.getName()) {
+        if (debug) { dbs.writeln("<span style='color:green'>Magic: That spell is already on the target.<br /></span>");
         if (otherEffects[i].getPower() >= spellobj.getPower()) {  // keep old one, extend it
           var adddur = (spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.getGameClock());
+          if (debug) { dbs.writeln("<span style='color:green'>Magic: Old one is stronger, extending by " + adddur + ".<br /></span>");
           otherEffects[i].setExpiresTime(otherEffects[i].getExpiresTime() + adddur);
           addme = 0; 
           maintext.addText("The existing spell is revitalized!");
@@ -4481,6 +4483,7 @@ NPCObject.prototype.addSpellEffect = function(spellobj) {
         } else {
           var adddur = (otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.getGameClock());
           spellobj.setExpiresTime(spellobj.getExpiresTime() + adddur);
+          if (debug) { dbs.writeln("<span style='color:green'>Magic: New one is stronger. Replacing old and extending new by " + adddur + ".<br /></span>");
           otherEffects[i].endEffect(1);
           maintext.addText("The existing spell has become stronger!");
         }
@@ -5009,7 +5012,7 @@ PCObject.prototype.activate = function() {
 }
 
 PCObject.prototype.myTurn = function() {
-  if (debug) { dbs.writeln("=== PC TURN ===<br />"); }
+  if (debug) { dbs.writeln("=== PC TURN ===<br />Timestamp: " + DU.getGameClock() + "<br />"); }
   RunEffects(this);
 	gamestate.setMode("player");
 	gamestate.setTurn(PC);
