@@ -2751,8 +2751,11 @@ function SecretDoorTile() {
 	this.name = "SecretDoor";
 	this.graphic = "056.gif";   // note: 024 is U4's secret door
 	this.overlay = "056.gif";
+//  this.graphic = "terrain_tiles.gif";
+//  this.spritexoffset = "-96";
+//  this.spriteyoffset = "-128";
 	this.passable = MOVE_ETHEREAL;
-	this.blocklos = 1; 
+	this.blocklos = 2; 
 	this.prefix = "a";
 	this.desc = "wall";
 	
