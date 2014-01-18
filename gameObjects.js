@@ -2120,6 +2120,27 @@ function HexFloorTile() {
 }
 HexFloorTile.prototype = new TerrainObject();
 
+function GoldOutlineFloorTile() {
+	this.name = "GoldOutlineFloor";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-224";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.desc = "floor";
+}
+GoldOutlineFloorTile.prototype = new TerrainObject();
+
+function DiamondFloorTile() {
+	this.name = "DiamondFloor";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-224";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.desc = "floor";
+}
+DiamondFloorTile.prototype = new TerrainObject();
 
 function SeeBelowTile() {
   this.name = "SeeBelow";
@@ -2133,7 +2154,7 @@ SeeBelowTile.prototype = new TerrainObject();
 // Features!
 function FeatureObject() {
   this.addType("Feature");
-  this.searchYield = new Array;
+  this.searchYield = [];
   this.showSearched = 0;
   this.gold = 0;
 }
