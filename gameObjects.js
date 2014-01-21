@@ -808,7 +808,7 @@ function BlankWhiteTile() {
   this.name = "BlankWhite";
 //  this.graphic = "000.gif";
   this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-224";
+  this.spritexoffset = "-288";
   this.spriteyoffset = "-224";
   this.desc = "";
   this.blocklos = 1;
