@@ -1327,17 +1327,17 @@ GameMap.prototype.loadMap = function (name) {
 GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
   if (this.getLightLevel() === "bright") { return; }
   var serial = lightsource.getSerial();
-  if (debug) { dbs.writeln("<br />LIGHT: " + lightsource.getHomeMap().getName() + ", " + serial + ", " + light + ", " + x + ", " + y); }
+  if (debug) { dbs.writeln("LIGHT: " + lightsource.getHomeMap().getName() + ", " + serial + ", " + light + ", " + x + ", " + y + "<br />"); }
 	for (var i = (x-(Math.ceil(Math.abs(light))+1)); i<=(x+(Math.ceil(Math.abs(light))+1)); i++) {
 		for (var j = (y-(Math.ceil(Math.abs(light))+1)); j<=(y+(Math.ceil(Math.abs(light))+1)); j++) {
 			if (this.getTile(i,j) === "OoB") { continue; }
 			var block = this.getTile(i,j).getBlocksLOS();
-      if (debug) { dbs.writeln("<br />LIGHT " + serial + ": Checking shine on x:"+i+",y:"+j+", which blocks " + block + "."); }
+      if (debug) { dbs.writeln("<br />LIGHT " + serial + ": Checking shine on x:"+i+",y:"+j+", which blocks " + block + ".<br />"); }
 			if ((block > LOS_THRESHOLD) && (!lightsource.checkType("PC"))) {   
         var LOSval = this.getLOS(x,y,i,j,losgrid,0,1);
         var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
         var totlight = {};
-        if (debug) {dbs.writeln("<br />LOSVAL ne: " + LOSval.ne + ", nw: " + LOSval.nw + ", se: " + LOSval.se + ", sw: " + LOSval.sw + "."); }
+        if (debug) {dbs.writeln("LOSVAL ne: " + LOSval.ne + ", nw: " + LOSval.nw + ", se: " + LOSval.se + ", sw: " + LOSval.sw + ".<br />"); }
         totlight.ne = (light + 1.5 - dist) * ( 1- (LOSval.ne / LOS_THRESHOLD) );
         if ((light >= 0) && (totlight.ne < 0)) { totlight.ne = 0; }
         totlight.nw = (light + 1.5 - dist) * ( 1- (LOSval.nw / LOS_THRESHOLD) );
@@ -1367,7 +1367,11 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
           this.getTile(i,j).addLocalLight(lightsource,totlight,this);
         }
 			}
-			if (debug) {dbs.writeln("<br />LIGHT " + serial + ": light values: center=" + totlight.center + ", ne=" + totlight.ne + ", nw=" + totlight.nw + ", se=" + totlight.se + ", sw=" +totlight.sw + "."); }
+			if (block > LOS_THRESHOLD) {
+			  if (debug) {dbs.writeln("LIGHT " + serial + ": LOSval was (center:" + LOSval.center + ", nw:" + LOSval.nw + ", ne:" + LOSval.ne + ", sw:" + LOSval.sw + ", se:" + LOSval.se + "), light values: center=" + totlight.center + ", ne=" + totlight.ne + ", nw=" + totlight.nw + ", se=" + totlight.se + ", sw=" +totlight.sw + ".<br />"); }
+			} else {
+			  if (debug) {dbs.writeln("LIGHT " + serial + ": LOSval was " + LOSval + ", light values: center=" + totlight.center + ", ne=" + totlight.ne + ", nw=" + totlight.nw + ", se=" + totlight.se + ", sw=" +totlight.sw + ".<br />"); }
+			}
 		}
 	}
 }
@@ -1382,9 +1386,16 @@ GameMap.prototype.removeMapLight = function(serial,light,x,y) {
 	}
 }
 
-GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight) {
+GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, checkforlight) {
+  if (debug) { dbs.writeln("<span style='color:grey;font-style:italic'>&nbsp;Getting LOS between " + x1 + ", " + y1 + " and " + x2 +", " + y2 + ".<br /></span>");  }
   // checklight = 0, check is for LOS only or light on an object that does not block LOS or the light source is the PC
   // checklight = 1, check is for light on an object that does block LOS
+  
+  // checkforlight is a universal "is this check on the behalf of light", since the previous variable is insufficient for
+  // that and adding this was easier than refactoring
+  var use_threshold = LOS_THRESHOLD;
+  if (checkforlight) { use_threshold = .05; }
+  
 	var trueLOS = LOS_THRESHOLD;
 	var totalLOS = 0;
 	var quartersLOS = {};
@@ -1396,6 +1407,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight) {
   quartersLOS.center = LOS_THRESHOLD;
 
   if (( (x2-x1) === 0) && ( (y2-y1) === 0)) {
+    if (debug) { dbs.writeln("<span style='color:grey;font-style:italic'>&nbsp;Own tile, returning 0.<br /></span>");  }
     if (checklight) {
       quartersLOS.nw = 0;
       quartersLOS.ne = 0;
@@ -1913,154 +1925,6 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight) {
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
   }
-  if (checklight) { return quartersLOS; }	
-	
-  return trueLOS;
-}
-
-// This function no longer used, replaced by the above, kept only in case I find horrible bugs with the above
-GameMap.prototype.getLOSold = function(x1,y1,x2,y2,losgrid, useloe, checklight) {
-  // checklight = 0, check is for LOS only or light on an object that does not block LOS or the light source is the PC
-  // checklight = 1, check is for light on an object that does block LOS
-	var trueLOS = LOS_THRESHOLD;
-	var totalLOS = 0;
-	var quartersLOS = new Object;
-
- 	quartersLOS.nw = LOS_THRESHOLD;
-  quartersLOS.ne = LOS_THRESHOLD;
-  quartersLOS.sw = LOS_THRESHOLD;
-  quartersLOS.se = LOS_THRESHOLD;
-  quartersLOS.center = LOS_THRESHOLD;
-
-	if ((x2-x1) <= (y2-y1)) { 
-		// lower left half of map
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","ne",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { 
-		  if (checklight) {
-		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
-		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
-		  }
-		  else { return totalLOS; }
-		}
-		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
-		
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","nw",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { 
-		  if (checklight) {
-		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
-		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
-		  }
-		  else { return totalLOS; }
-		}
-		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
-
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","se",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { 
-		  if (checklight) {
-		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
-		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
-		  }
-		  else { return totalLOS; }
-		}
-		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
-	}
-	if ((x2-x1) >= (y2-y1)) {
-		// upper right half of map
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","sw",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { 
-		  if (checklight) {
-		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
-		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
-		  }
-		  else { return totalLOS; }
-		}
-		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
-
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","nw",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { 
-		  if (checklight) {
-		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
-		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
-		  }
-		  else { return totalLOS; }
-		}
-		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
-
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","se",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { 
-		  if (checklight) {
-		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
-		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
-		  }
-		  else { return totalLOS; }
-		}
-		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
-	}
-	if ((x2-x1) >= ((-1)*(y2-y1))) {
-		// lower right half of map
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","nw",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { 
-		  if (checklight) {
-		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
-		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
-		  }
-		  else { return totalLOS; }
-		}
-		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
-
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","sw",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { 
-		  if (checklight) {
-		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
-		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
-		  }
-		  else { return totalLOS; }
-		}
-		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
-
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","ne",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { 
-		  if (checklight) {
-		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
-		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
-		  }
-		  else { return totalLOS; }
-		}
-		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
-	}
-	if ((x2-x1) <= ((-1)*(y2-y1))) {
-		// upper left half of map
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","se",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { 
-		  if (checklight) {
-		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
-		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
-		  }
-		  else { return totalLOS; }
-		}
-		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
-
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","ne",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { 
-		  if (checklight) {
-		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
-		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
-		  }
-		  else { return totalLOS; }
-		}
-		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
-
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","sw",this, useloe);
-		if (totalLOS < LOS_THRESHOLD) { 
-		  if (checklight) {
-		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
-		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
-		  }
-		  else { return totalLOS; }
-		}
-		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
-	}
-
   if (checklight) { return quartersLOS; }	
 	
   return trueLOS;
