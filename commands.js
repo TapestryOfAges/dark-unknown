@@ -1079,8 +1079,9 @@ function PerformUse(who) {
 		  
 		  $.each(localacre.localLight, function(index, value) {
 		    // each object that is casting light on the door might be casting light through the door.
+		    var lightsource = usemap.lightsList[index];
 		    who.getHomeMap().removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
-		    who.getHomeMap().setMapLight(usemap.lightsList[index], usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
+		    who.getHomeMap().setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
 		  });
 		  
 		  DrawMainFrame("draw",used.getHomeMap().getName(),PC.getx(),PC.gety());
@@ -1269,6 +1270,8 @@ function PerformYell() {
 		  PC.setLevel(PC.getLevel()+1);
 		} else if (inputText.txt === "REFRESH") {
 		  PC.setMana(PC.getMaxMana());
+		} else if (inputText.txt === "RUNTEST") {
+		  RunTest();
 		}
 		retval["txt"] = "Yell: " + inputText.txt + "!";
 		retval["fin"] = 1;
