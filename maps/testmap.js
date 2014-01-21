@@ -67,7 +67,7 @@ function RunTest() {
   MoveBetweenMaps(PC, PC.getHomeMap(), testmap, 9, 23);
   
   var torch = localFactory.createTile("TorchEast");
-  testmap.placeThing(11,22,torch);
+//  testmap.placeThing(11,22,torch);
   DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
   
 }
