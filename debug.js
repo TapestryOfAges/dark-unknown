@@ -2,6 +2,7 @@
 var debug = 0;
 var debugscreen;
 var dbs;
+var deeptest = 0;
 
 if (debug) {  ActivateDebug(); }
 
