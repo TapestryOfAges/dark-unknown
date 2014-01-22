@@ -1334,7 +1334,7 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
 			var block = this.getTile(i,j).getBlocksLOS();
       if (debug) { dbs.writeln("<br />LIGHT " + serial + ": Checking shine on x:"+i+",y:"+j+", which blocks " + block + ".<br />"); }
 			if ((block > LOS_THRESHOLD) && (!lightsource.checkType("PC"))) {   
-        var LOSval = this.getLOS(x,y,i,j,losgrid,0,1);
+        var LOSval = this.getLOS(x,y,i,j,losgrid,0,1,1);
         var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
         var totlight = {};
         if (debug) {dbs.writeln("LOSVAL ne: " + LOSval.ne + ", nw: " + LOSval.nw + ", se: " + LOSval.se + ", sw: " + LOSval.sw + ".<br />"); }
@@ -1352,7 +1352,7 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
           this.getTile(i,j).addLocalLight(lightsource,totlight,this);
         }
 			} else {
-        var LOSval = this.getLOS(x,y,i,j,losgrid);
+        var LOSval = this.getLOS(x,y,i,j,losgrid,0,0,1);
         var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
         var totlight = {};
         totlight.center = (light + 1.5 - dist) * ( 1- (LOSval / LOS_THRESHOLD) );
@@ -1393,8 +1393,6 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
   
   // checkforlight is a universal "is this check on the behalf of light", since the previous variable is insufficient for
   // that and adding this was easier than refactoring
-  var use_threshold = LOS_THRESHOLD;
-  if (checkforlight) { use_threshold = .05; }
   
 	var trueLOS = LOS_THRESHOLD;
 	var totalLOS = 0;
@@ -1435,7 +1433,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1452,7 +1450,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1466,7 +1464,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 		
@@ -1476,7 +1474,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1490,7 +1488,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1504,7 +1502,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
@@ -1514,7 +1512,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1528,7 +1526,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1542,7 +1540,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
@@ -1568,7 +1566,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1578,7 +1576,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1587,12 +1585,12 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
     } else {
       totalLOS = genLOS(x1,y1,x2+1,y2,losgrid,"se","nw",this, useloe, checklight);
     }
-		if (totalLOS < LOS_THRESHOLD) { 
+		if  (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 		
@@ -1606,7 +1604,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1616,7 +1614,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1630,7 +1628,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
@@ -1644,7 +1642,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1654,7 +1652,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1668,7 +1666,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
@@ -1690,7 +1688,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1704,7 +1702,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1718,7 +1716,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 		
@@ -1728,7 +1726,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.se) { quartersLOS.ne = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1742,7 +1740,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1756,7 +1754,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
@@ -1766,7 +1764,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1780,7 +1778,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.nw) { quartersLOS.nw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1794,7 +1792,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
@@ -1820,7 +1818,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1834,7 +1832,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1844,7 +1842,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 		
@@ -1858,7 +1856,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.se) { quartersLOS.ne = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1872,7 +1870,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1882,7 +1880,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
@@ -1896,7 +1894,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.ne) { quartersLOS.ne = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1910,7 +1908,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.sw) { quartersLOS.sw = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
@@ -1920,7 +1918,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
 		    if (totalLOS < quartersLOS.se) { quartersLOS.se = totalLOS; }
 		  }
-		  else { return totalLOS; }
+		  else if ((!checkforlight) || (totalLOS < .005)) { return totalLOS; }
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
