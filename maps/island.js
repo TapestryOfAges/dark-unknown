@@ -130,6 +130,29 @@ mappages["island"].exitscript = '';
 mappages["island"].exittestscript = '';
 mappages["island"].linkedMaps = new Array("");
 
+mappages["island"].onload = function(mapref) {
+  
+    // give specs to teleporters
+  var shrinetile = mapref.getTile(14,76);
+  var shrine = shrinetile.getTopFeature();
+  shrine.gotomap = "darkunknown";
+  shrine.gotox = 13;
+  shrine.gotoy = 82;
+  
+  shrinetile = mapref.getTile(56,15);
+  shrine = shrinetile.getTopFeature();
+  shrine.gotomap = "darkunknown";
+  shrine.gotox = 15;
+  shrine.gotoy = 16;
+
+  shrinetile = mapref.getTile(60,63);
+  shrine = shrinetile.getTopFeature();
+  shrine.gotomap = "volcano";
+  shrine.gotox = 11;
+  shrine.gotoy = 34;
+  
+}
+
 mappages["island_cave"] = new Object();
 mappages["island_cave"].terrain = new Array;
  mappages["island_cave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
