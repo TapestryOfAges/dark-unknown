@@ -202,6 +202,18 @@ mappages["darkunknown"].onload = function(mapref) {
   Placeonyxspawn(mapref);
   CreateNetwork(mapref);
   
+  // give specs to teleporters
+  var shrinetile = mapref.getTile(13,82);
+  var shrine = shrinetile.getTopFeature();
+  shrine.gotomap = "island";
+  shrine.gotox = 14;
+  shrine.gotoy = 76;
+  
+  shrinetile = mapref.getTile(15,16);
+  shrine = shrinetile.getTopFeature();
+  shrine.gotomap = "island";
+  shrine.gotox = 56;
+  shrine.gotoy = 15;
   
 }
 
@@ -218,11 +230,11 @@ function Placeonyxspawn(mapref) {
   onyxspawn.setSpawnLeash(0);
   onyxspawn.setSpawnSoftLeash(0);
 
-  onyxspawn.evolve[2] = new Array;
+  onyxspawn.evolve[2] = [];
   onyxspawn.evolve[2][0] = "spawngroup";
   onyxspawn.evolve[2][1] = new Array("HoodGroupSmall","HoodGroupLarge","RogueGroupSmall","RogueGroupLarge","RogueGroupLarge","ThiefGroupSmall");
 
-  onyxspawn.evolve[3] = new Array;
+  onyxspawn.evolve[3] = [];
   onyxspawn.evolve[3][0] = "spawngroup";
   onyxspawn.evolve[3][1] = new Array("HoodGroupLarge","RogueGroupSmall","RogueGroupLarge","ThiefGroupSmall","ThiefGroupLarge");
   
