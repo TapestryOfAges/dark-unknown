@@ -855,7 +855,7 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
   if ((newx) && (newx != oldx)) {
     for (var i = 1; i <= Math.abs(newx-oldx); i++) {
       for (var j=0;j<this.data.length;j++) {
-        if ((anchor == 0) || (anchor == 3) || (anchor == 6)) {
+        if ((anchor === 0) || (anchor === 3) || (anchor === 6)) {
           if (newx > oldx) {  
             this.data[j].push(tile);  
           }
@@ -891,7 +891,7 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
   if ((newy) && (newy != oldy)) { 
     for (var i = 1; i <= Math.abs(newy-oldy); i++) {
       if (newy > oldy) {
-        var placeholder = new Array();
+        var placeholder = [];
         for (var j=0; j<this.data[0].length;j++) { placeholder.push(tile); }
         if ((anchor === 0) || (anchor === 1) || (anchor === 2)) {
           this.data.push(placeholder);
