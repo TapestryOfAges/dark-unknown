@@ -91,6 +91,29 @@ DamageOverTimeObject.prototype.getDamagePerTick = function() {
   return this.damagePerTick;
 }
 
+DamageOverTimeObject.prototype.doEffect = function() {
+  var prev = this.getLastTime();
+  if (!prev) { prev = this.getCreateTime(); }
+  
+  var now = DUTime.getGameClock();
+  if ((this.getExpiresTime()) && (now > this.getExpiresTime())) {
+    now = this.getExpiresTime();
+  }
+  var dur = now - prev;
+  var dmg = dur * this.getDamagePerTick();
+  var who = this.getAttachedTo();
+  
+//  var oldhp = who.getDisplayHP();
+  who.dealDamage(dmg);
+//  var newhp = who.getDisplayHP();
+  
+  if ((this.getExpiresTime()) && (now > this.getExpiresTime())) {
+    this.endEffect();
+  } else {
+    this.setLastTime(DUTime.getGameClock());    
+  }
+}
+
 // Called "Tiles" for consistency, not because it'll ever get placed
 
 function DiseaseTile() {
@@ -100,21 +123,6 @@ function DiseaseTile() {
   this.display = "<span style='color:#58FA58'>D</span>";
 }
 DiseaseTile.prototype = new DamageOverTimeObject();
-
-DiseaseTile.prototype.doEffect = function() {
-  var prev = this.getLastTime();
-  if (!prev) { prev = this.getCreateTime(); }
-  
-  var dur = DUTime.getGameClock() - prev;
-  var dmg = dur * this.getDamagePerTick();
-  var who = this.getAttachedTo();
-  
-//  var oldhp = who.getDisplayHP();
-  who.dealDamage(dmg);
-//  var newhp = who.getDisplayHP();
-  
-  this.setLastTime(DUTime.getGameClock());    
-}
 
 DiseaseTile.prototype.applyEffect = function(silent) {
   return 1;
@@ -126,6 +134,13 @@ DiseaseTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
+function PoisonTile() {
+  this.addType("debuff");
+  this.name = "Poison";
+  this.damagePerTick = 2 * (1/SCALE_TIME);  // poison is slow-maps only
+  this.display = "<span style='color:#58FA58'>D</span>";
+}
+PoisonTile.prototype = new DamageOverTimeObject();
 
 function LevitateTile() {
   this.addType("buff");
