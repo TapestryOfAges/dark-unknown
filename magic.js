@@ -144,14 +144,13 @@ magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   if (effects) {
     for (var i=0; i<effects.length; i++) {
       if (effects[i].getName() === "Poison") {
-        caster.deleteSpellEffect(effects[i]);
+        effects[i].endEffect();
       }
       if ((infused) && (effects[i].getName() === "Disease")) {
-        caster.deleteSpellEffect(effects[i]);
+        effects[i].endEffect();
       }
     }
   }
-  DrawCharFrame();
   return resp;
 }
 
@@ -208,4 +207,41 @@ magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free) {
     
   DrawCharFrame();
   return resp;  
+}
+
+//Transport
+magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Transport.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+
+  var loc = caster.getHomeMap().getTile(caster.getx(), caster.gety());
+  var shrine = loc.getTopFeature();
+  if ((shrine) && (shrine.gotomap)) {
+    if (shrine.getName() === "Shrine") {
+      DU.maps.addMap(shrine.gotomap);
+      var destmap = DU.maps.getMap(shrine.gotomap);
+      MoveBetweenMaps(caster,caster.getHomeMap(), destmap, shrine.gotox, shrine.gotoy);
+      DrawMainFrame("draw");
+    } else if (shrine.getName() === "BrokenShrine") {
+      if (infused) {
+        DU.maps.addMap(shrine.gotomap);
+        var destmap = DU.maps.getMap(shrine.gotomap);
+        MoveBetweenMaps(caster,caster.getHomeMap(), destmap, shrine.gotox, shrine.gotoy);
+        DrawMainFrame("draw");
+      } else {
+        maintext.addText("The spell sputters and the broken node remains closed.");
+      }
+    }
+  } else {
+    maintext.addText("The spell sputters, finding no transport node to open."); 
+  }
+  
+  DrawCharFrame();
+  return resp;
 }
