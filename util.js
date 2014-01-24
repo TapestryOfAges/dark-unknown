@@ -628,3 +628,8 @@ function GetDistance(x1,y1,x2,y2) {
   var dist = Math.pow(Math.pow(x1-x2,2) + Math.pow(y1-y2,2), 1/2)
   return dist;
 }
+
+function PerformTrap(who, trap) {
+  // Traps can be: Dart (poison), acid (physical damage), explosion (magical damage), drain (mana)
+  
+}

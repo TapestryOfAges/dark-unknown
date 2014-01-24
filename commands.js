@@ -892,8 +892,20 @@ function PerformSearch(who) {
 		retval["fin"] = 0;
 		return retval;
 	}
-	if (this.isContainer) {
+	if (searched.isContainer) {  // add doors to the list
 	  // search for traps and such rather than searching for items
+	  if (searched.trapped && (who.getInt() <= searched.trapchallenge)) {
+	    // If your int is at least half the challenge rating, you automatically find it. 
+	    // Maybe I'll change it later.
+	    retval["txt"] = "Search: You find a trap!";
+	    retval["fin"] = 1;
+	    searched.setDesc(searched.getDesc() + " [Trapped]");
+	    searched.trapchallenge = Math.floor(searched.trapchallenge / 2);
+	    // finding a trap halves the challenge of removing it
+	  } else {
+	    retval["txt"] = "Search: You find nothing there.";
+	    searched.setDesc(searched.getDesc() + " [Searched]");
+	  }
 	}
   else if ((searched.getSearchYield().length)) {
     if (searched.getShowSearched()) {
