@@ -99,7 +99,7 @@ function Attack(atk, def) {
   var tocoords = getCoords(def.getHomeMap(),def.getx(), def.gety());
 
   // get graphic, xoffset, yoffset for graphic
-  var ammographic = new Object;
+  var ammographic = {};
   var duration = 50;
   if (type === "missile") { ammographic = weapon.getAmmoGraphic(atk,def); }
   else { 

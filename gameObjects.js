@@ -286,6 +286,8 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	this.lockedgraphics = [unlockedgraphic, lockedgraphic, maglockedgraphic];
 	this.lockeddescs = [unlockeddesc, lockeddesc, maglockeddesc];
   this.lockedprefixes = [unlockedprefix, lockedprefix, maglockedprefix];
+  this.trapped = "";
+  this.trapchallenge = 0;
 	
 	this.setLocked = function(lock) { this.locked = lock; }
 	this.getLocked = function() { return this.locked; }
@@ -296,6 +298,20 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 		this.setPrefix(this.lockedprefixes[lock]);
 	}
 	this.unlockMe = function() { this.lockMe(0); }
+	
+	this.setTrap = function(trap, challenge) { this.trapped = trap; this.trapchallenge = challenge; }
+	this.tryTrap = function(who) { 
+	  // if your Dex === the challenge rating for the trap, you have a 50/50 chance of opening it. Once your dex is twice the
+	  // challenge you will always succeed.
+	  var resp = {};
+	  var chance = who.getDex() / (challenge * 2);
+	  var roll = Math.random();
+	  if (roll < chance) { this.disarmTrap(); resp["success"] = 1; resp["text"] = "You disarm the trap!"; }
+	  else { resp = PerformTrap(who, this.trapped); }
+	  return resp;
+	} 
+	this.disarmTrap = function() { this.trapped = ""; }
+	
 }
 
 // Abstract class Enterable
