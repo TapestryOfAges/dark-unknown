@@ -466,7 +466,7 @@ function PerformAttack(who) {
 
   var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
   var atkwho = localacre.npcs.getTop();
-  var retval = new Object;
+  var retval = {};
   if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety())){ // No self-mutilation!
     retval["txt"] = "";
     retval["fin"] = 0;  
@@ -527,7 +527,7 @@ function PerformCast(infuse) {
   gamestate.setMode("spellbook");
   PC.setInfusion(infuse);
   var hasSpellbook = 0;
-  var retval = new Object;
+  var retval = {};
   for (var lvl = 1; lvl <= 8; lvl++) {
     if (hasSpellbook) { break; }
     for (var i=1; i <= 6; i++) {

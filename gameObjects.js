@@ -158,7 +158,7 @@ GameObject.prototype.getGraphic = function() {
 GameObject.prototype.getGraphicArray = function() {
 	var returnGraphic = this.graphic;
   var returnOverlay = this.overlay;
-  var returnVars = new Array;
+  var returnVars = [];
   returnVars[0] = returnGraphic;
   if (returnOverlay) {
     returnVars[1] = returnOverlay;

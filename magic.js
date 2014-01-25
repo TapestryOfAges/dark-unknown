@@ -218,30 +218,109 @@ magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
     caster.modMana(-1*mana);
     if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
-  resp["fin"] = 1;
+  resp["fin"] = 3;  // end of turn waits on end of animation
 
   var loc = caster.getHomeMap().getTile(caster.getx(), caster.gety());
   var shrine = loc.getTopFeature();
   if ((shrine) && (shrine.gotomap)) {
+    var belowgraphic = shrine.getGraphicArray();
     if (shrine.getName() === "Shrine") {
       DU.maps.addMap(shrine.gotomap);
       var destmap = DU.maps.getMap(shrine.gotomap);
-      MoveBetweenMaps(caster,caster.getHomeMap(), destmap, shrine.gotox, shrine.gotoy);
-      DrawMainFrame("draw");
+//      MoveBetweenMaps(caster,caster.getHomeMap(), destmap, shrine.gotox, shrine.gotoy);
+//      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+      TravelByMoongate(caster,"blue",belowgraphic, destmap, shrine.gotox, shrine.gotoy);
     } else if (shrine.getName() === "BrokenShrine") {
       if (infused) {
         DU.maps.addMap(shrine.gotomap);
         var destmap = DU.maps.getMap(shrine.gotomap);
-        MoveBetweenMaps(caster,caster.getHomeMap(), destmap, shrine.gotox, shrine.gotoy);
-        DrawMainFrame("draw");
+//        MoveBetweenMaps(caster,caster.getHomeMap(), destmap, shrine.gotox, shrine.gotoy);
+//        DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+        TravelByMoongate(caster,"blue",belowgraphic, destmap, shrine.gotox, shrine.gotoy);
       } else {
         maintext.addText("The spell sputters and the broken node remains closed.");
+        resp["fin"] = 1;
       }
     }
   } else {
     maintext.addText("The spell sputters, finding no transport node to open."); 
+    resp["fin"] = 1;
   }
   
   DrawCharFrame();
   return resp;
+}
+
+function TravelByMoongate(who, color, belowgraphic, destmap, destx, desty) {
+  var tol = 300;
+  var graphicarray = [];
+  graphicarray[0] = "moongates.gif";
+  graphicarray[1] = "spacer.gif";
+  graphicarray[2] = -128;
+  graphicarray[3] = 0;
+  if (color === "red") { graphicarray[3] = -32; }
+  
+  var oldgraphic = who.getGraphicArray();
+  // play sound effect
+  who.setGraphicArray(graphicarray);
+  DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+  setTimeout(function() {
+    graphicarray[2] += 32;
+    who.setGraphicArray(graphicarray);
+    DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+    setTimeout(function() {
+      graphicarray[2] += 32;
+      who.setGraphicArray(graphicarray);
+      DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+      setTimeout(function() {
+        graphicarray[2] += 32;
+        who.setGraphicArray(graphicarray);
+        DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+        setTimeout(function() {
+          graphicarray[2] += 32; // at this point it should be 0
+          who.setGraphicArray(graphicarray);
+          DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+          setTimeout(function() {
+            who.setGraphicArray(belowgraphic);
+            DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+            setTimeout(function() {
+              MoveBetweenMaps(who,who.getHomeMap(), destmap, destx, desty);
+              DrawMainFrame("draw", who.getHomeMap().getName(), who.getx(), who.gety());
+              setTimeout(function() {
+                who.setGraphicArray(graphicarray);
+                DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                setTimeout(function() {
+                  graphicarray[2] -= 32;
+                  who.setGraphicArray(graphicarray);
+                  DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                  setTimeout(function() {
+                    graphicarray[2] -= 32;
+                    who.setGraphicArray(graphicarray);
+                    DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                    setTimeout(function() {
+                      graphicarray[2] -= 32;
+                      who.setGraphicArray(graphicarray);
+                      DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                      setTimeout(function() {
+                        graphicarray[2] -= 32;
+                        who.setGraphicArray(graphicarray);
+                        DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                        setTimeout(function() {
+                          who.setGraphicArray(oldgraphic);
+                          DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                          who.endTurn();  // currently only PC has endturn
+                                          // if an NPC spell can use this function, add an endturn to NPCs
+                        }, tol);
+                      }, tol);
+                    }, tol);
+                  }, tol);
+                }, tol);
+              }, tol);
+            }, tol);
+          }, tol);
+        }, tol);
+      }, tol); 
+    }, tol);
+  }, tol);
+  
 }
