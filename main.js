@@ -399,6 +399,11 @@ function DoAction(code) {
         maintext.drawTextFrame();
         gamestate.setMode("player");
         gamestate.setTurn(PC);
+      } else if (response["fin"] === 3) {
+        // waiting for an animation to finish, animation will handle ending turn
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        gamestate.setMode("null");
       }
     }
   }
