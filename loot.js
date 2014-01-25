@@ -5,8 +5,8 @@ function LootTable() {
    this.goldChance = 100; 
    this.linked = 0;
    
-   this.loot = new Array;  // array of objects with objname, quantity (dice), and chance
-   
+   this.loot = [];  // array of objects with objname, quantity (dice), and chance
+   // ADD TRAP STUFF HERE
 }
 LootTable.prototype = new Object();
 
