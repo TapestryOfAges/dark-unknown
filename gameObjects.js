@@ -4249,7 +4249,7 @@ NPCObject.prototype.processDeath = function(droploot){
     DrawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
     DUTime.removeEntityFrom(this);
 //    delete universe.this.getSerial();
-    delete map.lightsList[this.getSerial()];
+//    delete map.lightsList[this.getSerial()];    // handled in map.deleteThing now
     var spawner=this.getSpawnedBy();
     if (spawner) {
       spawner.deleteSpawned(this);
