@@ -1002,7 +1002,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
 //	var type = thing.type + "s";
   var oldx = thing.getx();
   var oldy = thing.gety();
- 	if ((typeof thing.getLight === "function") && (thing.getLight() > 0)) {
+ 	if ((typeof thing.getLight === "function") && (Math.abs(thing.getLight()) > 0)) {
     this.removeMapLight(thing.getSerial(),thing.getLight(),thing.getx(),thing.gety());
   }
   var type = thing.getTypeForMap() + "s";
@@ -1011,7 +1011,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
   this.data[y][x][type].addTop(thing);
   thing.setx(x);
   thing.sety(y);
- 	if ((typeof thing.getLight === "function") && (thing.getLight() > 0)) {
+ 	if ((typeof thing.getLight === "function") && (Math.abs(thing.getLight()) > 0)) {
     this.setMapLight(thing,thing.getLight(),x,y);
   }
   // update pathfinding
@@ -1035,15 +1035,20 @@ GameMap.prototype.deleteThing = function(thing) {
   var oldx = thing.getx()
   var oldy = thing.gety();
   var type = thing.getTypeForMap() + "s";
+  if ((typeof thing.getLight === "function") && (Math.abs(thing.getLight()) > 0)) {
+    this.removeMapLight(thing.getSerial(),thing.getLight(),thing.getx(),thing.gety());
+  }
 	this[type].deleteFrom(thing);
 	this.data[thing.gety()][thing.getx()][type].deleteFrom(thing);
 	
 	//update pathfinding
-  var tile = this.getTile(oldx,oldy);
-	for (var i=1; i<=16; i=i*2) {
-	  var response = tile.canMoveHere(i, 1);
-	  if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
-	  else { this.setWalkableAt(oldx,oldy,false,i); }
+	if (type !== "npcs") {
+    var tile = this.getTile(oldx,oldy);
+	  for (var i=1; i<=16; i=i*2) {
+	    var response = tile.canMoveHere(i, 1);
+  	  if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
+	    else { this.setWalkableAt(oldx,oldy,false,i); }
+	  }
 	}
 	
 }
