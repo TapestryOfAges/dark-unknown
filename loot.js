@@ -3,10 +3,11 @@ function LootTable() {
  
    this.goldDice = "0";
    this.goldChance = 100; 
-   this.linked = 0;
+   this.linked = 0;  // only has items if there is gold
    
    this.loot = [];  // array of objects with objname, quantity (dice), and chance
-   // ADD TRAP STUFF HERE
+   
+   this.trap = ""; // blank, never trapped, otherwise, name of a trap group
 }
 LootTable.prototype = new Object();
 
@@ -50,7 +51,7 @@ LootGroups.prototype = new Object();
 
 LootGroups.prototype.setTreasureType = function(ttype, treasure) {
 //  ttype = "group_" + ttype;
-  this.treasureTypes[ttype] = new Array;
+  this.treasureTypes[ttype] = [];
   for (var i = 0; i< treasure.length ; i=i+2) {
     for (var j = 1; j<=treasure[i+1]; j++) {
       this.treasureTypes[ttype][this.treasureTypes[ttype].length] = treasure[i];
@@ -67,17 +68,18 @@ LootGroups.prototype.rollForTreasure = function(ttype) {
 function SetLoots() {
   var loots = {};
   
-  loots["small animal"] = new LootTable;
+  loots["small animal"] = new LootTable();
   loots["small animal"].goldDice = "1d3";
   loots["small animal"].goldChance = 30;
   
-  loots["orcs"] = new LootTable;
+  loots["orcs"] = new LootTable();
   loots["orcs"].goldDice = "2d5";
   loots["orcs"].goldChance = 60;
-  loots["orcs"].loot[0] = new Object;
+  loots["orcs"].loot[0] = {};
   loots["orcs"].loot[0].objname = "Dagger";
   loots["orcs"].loot[0].chance = "90";
   loots["orcs"].loot[0].quantity = "1";
+  loots["orcs"].loot[0].trap = "weak";
 
   
   
@@ -93,4 +95,35 @@ function SetLootGroups() {
                                
                                
   return DULootGroup;
+}
+
+function TrapGroups(dart, acid, gas, explosion, drain, level) {
+  this.traps = [dart, acid, gas, explosion, drain];
+  this.trapnames = ["dart", "acid", "gas", "explosion", "drain"];
+}
+Trapgroups.prototype = new Object();
+
+Trapgroups.prototype.getTrap = function() {   // returns which trap name and what level
+                                              // level is Dex with 50% chance to evade
+  var dice = Math.floor(Math.random()*100)+1;
+  var i = 0;
+  var resp = {};
+  resp.level = this.level;
+  while (dice > 0) {
+    if (this.traps[i] > dice) {
+      resp.trap = this.trapnames[i];
+      return resp;
+    }
+    dice -= this.traps[i];
+  }
+  resp.trap = "";
+  return resp; 
+}
+
+function SetTraps() {
+  var traps = {};
+  
+  traps["weak"] = new TrapGroups(20,10,0,0,0,7);  // 70% chance of no trap
+  
+  return traps;
 }
