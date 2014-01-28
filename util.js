@@ -629,7 +629,8 @@ function GetDistance(x1,y1,x2,y2) {
   return dist;
 }
 
-function PerformTrap(who, trap) {
-  // Traps can be: Dart (poison), acid (physical damage), explosion (magical damage), drain (mana)
+function PerformTrap(who, trap, traplvl) {
+  // Traps can be: Dart (makes atk roll, poison), acid (physical damage), gas (poison), explosion (magical damage), drain (mana)
   
+  //WORKING HERE
 }
