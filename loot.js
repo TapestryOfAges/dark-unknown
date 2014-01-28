@@ -79,7 +79,7 @@ function SetLoots() {
   loots["orcs"].loot[0].objname = "Dagger";
   loots["orcs"].loot[0].chance = "90";
   loots["orcs"].loot[0].quantity = "1";
-  loots["orcs"].loot[0].trap = "weak";
+  loots["orcs"].trap = "weak";
 
   
   

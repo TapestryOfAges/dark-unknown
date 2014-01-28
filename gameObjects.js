@@ -307,7 +307,7 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	  var chance = who.getDex() / (challenge * 2);
 	  var roll = Math.random();
 	  if (roll < chance) { this.disarmTrap(); resp["success"] = 1; resp["text"] = "You disarm the trap!"; }
-	  else { resp = PerformTrap(who, this.trapped); }
+	  else { resp = PerformTrap(who, this.trapped, this.trapchallenge); }
 	  return resp;
 	} 
 	this.disarmTrap = function() { this.trapped = ""; }
@@ -365,7 +365,7 @@ function LightEmitting(lightlevel) {
 	}
 }
 
-// Abstract class Openable
+// Abstract class 
 function Openable(closedgraphic, opengraphic, startsopen) {
 	this.open = startsopen;
 	
@@ -4243,6 +4243,13 @@ NPCObject.prototype.processDeath = function(droploot){
       else {alert (this.getName() + " has a loottable that is not defined."); }
     }
     if ((chest) && (chest.container.length)) {
+      if (DULoot[this.lootTable].trap) {
+        var trapname = DULoot[this.lootTable].trap;
+        var trap = DUTraps[trapname].getTrap();
+        if (trap.trap) {
+          chest.setTrap(trap.trap, trap.level);
+        }
+      }
       map.placeThing(this.getx(),this.gety(), chest);
     }
     map.deleteThing(this);
