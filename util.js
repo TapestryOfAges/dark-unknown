@@ -632,5 +632,22 @@ function GetDistance(x1,y1,x2,y2) {
 function PerformTrap(who, trap, traplvl) {
   // Traps can be: Dart (makes atk roll, poison), acid (physical damage), gas (poison), explosion (magical damage), drain (mana)
   
-  //WORKING HERE
+  if (trap === "dart") {
+    var def = who.getDefense();
+    var tohit = traplvl - def;
+    if (tohit < .05) { tohit = .05; }
+    if (debug) { dbs.writeln("Dart trap fires, lvl " + traplvl + ", player defense is " + def + ", change to hit is " + tohit + "<br />"); }
+    if (Math.random() < tohit) {  // dart hits!
+      maintext.addText("TRAP! A dart strikes you. You are poisoned.");
+      var poison = localFactory.createTile("Poison");
+      who.addSpellEffect(poison);
+      DrawCharFrame();
+      return 1;
+    } else {  // dart misses
+      maintext.addText("TRAP! You barely avoid a poisoned dart.");
+      return 0;
+    } 
+  } else if (trap === "acid") {
+    //WORKING HERE
+  }
 }
