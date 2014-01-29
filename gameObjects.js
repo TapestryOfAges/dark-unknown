@@ -4245,6 +4245,7 @@ NPCObject.prototype.processDeath = function(droploot){
     if ((chest) && (chest.container.length)) {
       if (DULoot[this.lootTable].trap) {
         var trapname = DULoot[this.lootTable].trap;
+        if (debug) { dbs.writeln("Chest created, might be trapped with: " + trapname + "."); }        
         var trap = DUTraps[trapname].getTrap();
         if (trap.trap) {
           chest.setTrap(trap.trap, trap.level);
