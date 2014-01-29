@@ -303,10 +303,10 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	this.tryTrap = function(who) { 
 	  // if your Dex === the challenge rating for the trap, you have a 50/50 chance of opening it. Once your dex is twice the
 	  // challenge you will always succeed.
-	  var resp = {};
+	  var resp = 0;
 	  var chance = who.getDex() / (challenge * 2);
 	  var roll = Math.random();
-	  if (roll < chance) { this.disarmTrap(); resp["success"] = 1; resp["text"] = "You disarm the trap!"; }
+	  if (roll < chance) { this.disarmTrap(); resp = 1; maintext.addText("You disarm a trap!"); }
 	  else { resp = PerformTrap(who, this.trapped, this.trapchallenge); }
 	  return resp;
 	} 
@@ -424,6 +424,10 @@ function OpenContainer() {
   
   this.use = function(who) {
     var retval = {}; 
+
+    if (this.trapped) {
+      var trapresult = this.tryTrap(who);
+    }
 
     if (typeof this.getLocked === "function") {
       if (this.getLocked() == 1) {
