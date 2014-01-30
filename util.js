@@ -1,6 +1,6 @@
 
 function getDisplayCenter(themap,fromx,fromy) {
-	var edge = new Object;
+	var edge = {};
 	var leftedge = fromx - (viewsizex - 1)/2;
   if (leftedge < 0) { leftedge = 0; }
   var rightedge = leftedge + viewsizex - 1;
@@ -629,12 +629,12 @@ function GetDistance(x1,y1,x2,y2) {
   return dist;
 }
 
-function PerformTrap(who, trap, traplvl) {
+function PerformTrap(who, trap, traplvl, trapped) {
   // Traps can be: Dart (makes atk roll, poison), acid (physical damage), gas (poison), explosion (magical damage), drain (mana)
   
   if (trap === "dart") {
     var def = who.getDefense();
-    var tohit = traplvl - def;
+    var tohit = (2*traplvl - def)/100;
     if (tohit < .05) { tohit = .05; }
     if (debug) { dbs.writeln("Dart trap fires, lvl " + traplvl + ", player defense is " + def + ", change to hit is " + tohit + "<br />"); }
     if (Math.random() < tohit) {  // dart hits!
@@ -648,6 +648,31 @@ function PerformTrap(who, trap, traplvl) {
       return 0;
     } 
   } else if (trap === "acid") {
-    //WORKING HERE
+    var aciddmg = RollDice("1d6+3");
+    who.dealDamage(aciddmg, trapped);
+    maintext.addText("TRAP! You are splashed with acid.");
+    DrawCharFrame();
+    return 1;
+  } else if (trap === "gas") {
+    maintext.addText("TRAP! You are poisoned.");
+    var poison = localFactory.createTile("Poison");
+    who.addSpellEffect(poison);
+    DrawCharFrame();
+    return 1;    
+  } else if (trap === "explosion") {
+    maintext.addText("TRAP! There is an explosion!");
+    var firedmg = RollDice("3d6");
+    who.dealDamage(firedmg,trapped);
+    DrawCharFrame();
+    return 1;
+  } else if (trap === "drain") {
+    maintext.addText("TRAP! You feel a pull on your mind.");
+    var drain = RollDice("2d4");
+    if (drain > who.getMana()) {
+      drain = who.getMana();
+    }
+    who.modMana(-1*drain);
+    return 1;
   }
+  alert("Bad trap type");
 }
