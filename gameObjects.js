@@ -304,10 +304,10 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	  // if your Dex === the challenge rating for the trap, you have a 50/50 chance of opening it. Once your dex is twice the
 	  // challenge you will always succeed.
 	  var resp = 0;
-	  var chance = who.getDex() / (challenge * 2);
+	  var chance = who.getDex() / (this.trapchallenge * 2);
 	  var roll = Math.random();
 	  if (roll < chance) { this.disarmTrap(); resp = 1; maintext.addText("You disarm a trap!"); }
-	  else { resp = PerformTrap(who, this.trapped, this.trapchallenge); }
+	  else { resp = PerformTrap(who, this.trapped, this.trapchallenge, this); }
 	  return resp;
 	} 
 	this.disarmTrap = function() { this.trapped = ""; }
@@ -4213,7 +4213,7 @@ NPCObject.prototype.processDeath = function(droploot){
     var corpse = {};
     var chest;
     var map = this.getHomeMap();
-    if (this.getLeavesCorpse()) {
+    if ((this.getLeavesCorpse()) && (this.getLeavesCorpse() !== "none")) {
       corpse = localFactory.createTile(this.getLeavesCorpse());
       map.placeThing(this.getx(),this.gety(), corpse);
     } else {
@@ -4249,7 +4249,7 @@ NPCObject.prototype.processDeath = function(droploot){
     if ((chest) && (chest.container.length)) {
       if (DULoot[this.lootTable].trap) {
         var trapname = DULoot[this.lootTable].trap;
-        if (debug) { dbs.writeln("Chest created, might be trapped with: " + trapname + "."); }        
+        if (debug) { dbs.writeln("Chest created, might be trapped with: " + trapname + ".<br />"); }        
         var trap = DUTraps[trapname].getTrap();
         if (trap.trap) {
           chest.setTrap(trap.trap, trap.level);

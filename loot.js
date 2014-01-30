@@ -68,18 +68,18 @@ LootGroups.prototype.rollForTreasure = function(ttype) {
 function SetLoots() {
   var loots = {};
   
-  loots["small animal"] = new LootTable();
-  loots["small animal"].goldDice = "1d3";
-  loots["small animal"].goldChance = 30;
+  loots["Small Animal"] = new LootTable();
+  loots["Small Animal"].goldDice = "1d3";
+  loots["Small Animal"].goldChance = 30;
   
-  loots["orcs"] = new LootTable();
-  loots["orcs"].goldDice = "2d5";
-  loots["orcs"].goldChance = 60;
-  loots["orcs"].loot[0] = {};
-  loots["orcs"].loot[0].objname = "Dagger";
-  loots["orcs"].loot[0].chance = "90";
-  loots["orcs"].loot[0].quantity = "1";
-  loots["orcs"].trap = "weak";
+  loots["Orcs"] = new LootTable();
+  loots["Orcs"].goldDice = "2d5";
+  loots["Orcs"].goldChance = 60;
+  loots["Orcs"].loot[0] = {};
+  loots["Orcs"].loot[0].objname = "Dagger";
+  loots["Orcs"].loot[0].chance = "90";
+  loots["Orcs"].loot[0].quantity = "1";
+  loots["Orcs"].trap = "weak";
 
   
   
@@ -102,9 +102,9 @@ function TrapGroups(dart, acid, gas, explosion, drain, level) {
   this.trapnames = ["dart", "acid", "gas", "explosion", "drain"];
   this.level = level;
 }
-Trapgroups.prototype = new Object();
+TrapGroups.prototype = new Object();
 
-Trapgroups.prototype.getTrap = function() {   // returns which trap name and what level
+TrapGroups.prototype.getTrap = function() {   // returns which trap name and what level
                                               // level is Dex with 50% chance to evade
   var dice = Math.floor(Math.random()*100)+1;
   if (debug) { dbs.writeln("Getting a trap: rolled " + dice + "<br />"); }
