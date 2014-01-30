@@ -108,7 +108,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
   var retval = { fin: 0 };
   var spawnedby = who.getSpawnedBy();
   var leashpresent = 0;
-  if (spawnedby.getSpawnLeash() || spawnedby.getSpawnSoftLeash()) { leashpresent = 1; }
+  if (spawnedby && (spawnedby.getSpawnLeash() || spawnedby.getSpawnSoftLeash())) { leashpresent = 1; }
   
   if ((who.getCurrentPath().length > 0) && (who.getTurnsToRecalcDest() > 0)) {
     var coords = who.getNextStep();
