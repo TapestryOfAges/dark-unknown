@@ -41,9 +41,9 @@ foreach my $line (<$npcdoc>) {
   else {
     my @armorvals = split('\;', $fields[15]);
     print $out "  this.armorAs = 'none';\n";
-    print $out "  this.armorDefense = '$armorvals[0]';\n";
-    print $out "  this.armorAbsorb = '$armorvals[1]';\n";
-    print $out "  this.armorResist = '$armorvals[2]';\n";
+    print $out "  this.armorDefense = $armorvals[0];\n";
+    print $out "  this.armorAbsorb = $armorvals[1];\n";
+    print $out "  this.armorResist = $armorvals[2];\n";
   }
   $fields[16] = uc($fields[16]);
   print $out "  this.movetype = MOVE_$fields[16];\n";
@@ -88,7 +88,7 @@ foreach my $line (<$groupdoc>) {
     $fields[3] = "PickOne([\"$1\",\"$2\"]);\n";
     print $out "  this.graphic = $fields[3]";
   } else { print $out "  this.graphic = '$fields[3]';\n"; }
-  print $out "  this.group = new Array;\n";
+  print $out "  this.group = [];\n";
   print $out "  this.group[0] = new NPCList('$fields[4]NPC', '$fields[5]');\n";
   if ($fields[6]) {
     print $out "  this.group[1] = new NPCList('$fields[6]NPC', '$fields[7]');\n";
