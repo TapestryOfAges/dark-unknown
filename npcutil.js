@@ -13,7 +13,7 @@ function Anchor() {
   this.maxlength;
   this.leashlength;
 }
-Anchor.prototype = new Object;
+Anchor.prototype = new Object();
 
 function Attack(atk, def) {
   var retval = {};
@@ -64,13 +64,15 @@ function Attack(atk, def) {
     retval["txt"] =  atk.getDesc() + " attacks " + def.getDesc();
     retval["txt"] = retval["txt"].charAt(0).toUpperCase() + retval["txt"].slice(1);
   }
-  
+  if (debug) { dbs.writeln("Attacking: weapon is " + weapon.getName() + "<br />"); }
   var tohit = atk.getHitChance(weapon) / 100;
   var defense = def.getDefense() / 100;
-  
+
+  if (debug) { dbs.writeln("Atk: " + tohit + "; enemy defense: " + defense + "<br />"); }
   tohit = tohit - defense;
   if (tohit < .05) { tohit = .05; }
   
+  if (debug) { dbs.writeln("Chance to hit: " + tohit + "<br />"); }
 //  var preanim = PreAnimationEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset)
   var dmg = 0;
   if (Math.random() <= tohit) {
