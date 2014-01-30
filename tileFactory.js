@@ -13,7 +13,6 @@ tileFactory.prototype.createTile = function(tileName) {
     return newthing;
   } else {
     alert(tileName + " is not a thing.");
-    exit;
   }
 }
 
