@@ -266,5 +266,32 @@ function PickOne(fromarray) {
 }
 
 function PushOff(what) {
-  var dir = Math.floor(Math.random()*8);
+  var dir = 4;
+  var themap = what.getHomeMap();
+  var locx = what.getx();
+  var locy = what.gety();
+  var tries = 0;
+  while (tries < 8) {
+    var tile = themap.getTile(locx,locy);
+    var destx = locx;
+    var desty = locy;
+    if ((dir === 7) || (dir <= 1)) { desty -= 1; }
+    if ((dir >= 3) && (dir <= 5)) { desty += 1; }
+    if ((dir >= 1) && (dir <= 3)) { destx += 1; }
+    if ((dir >= 5) && (dir <= 7)) { destx -= 1; }
+
+    if (tile.canMove(MOVE_WALK, 1)) {   // can walk but ignore NPCs there- this is a rare 
+                                        // circumstance where I will stack NPCs
+      themap.moveThing(destx, desty, what);
+      if (debug) { dbs.writeln("Moving NPC off of exit, in direction " + dir + "<br />"); }
+      return 1;
+    }
+    tries += 1;
+    dir += 1;
+    if (dir === 8) { dir = 0; }
+  }
+  if (debug) { dbs.writeln("Moving NPC off of exit, in emergency backup code.<br />"); }
+  themap.moveThing(locx, locy+1, what);
+  return 1;
+  
 }
