@@ -213,3 +213,38 @@ LightTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
+function QuicknessTile() {
+  this.addType("buff");
+  this.name = "Quickness";
+  this.display = "<span style='color:c0c0c0'>Q</span>";
+  this.power = .5;
+}
+QuicknessTile.prototype = new EphemeralObject();
+
+
+QuicknessTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  
+  this.oldinitmult = who.initmult;
+  who.initmult = power;
+  if (!silent) {
+    maintext.addText("You begin to move faster.");
+  }
+}
+
+QuicknessTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+QuicknessTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.initmult = this.oldinitmult;
+  who.deleteSpellEffect(this);
+  if (!silent) {
+    maintext.addText("You slow down again.");
+  }
+  DrawCharFrame();  
+}

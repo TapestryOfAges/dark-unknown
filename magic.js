@@ -251,6 +251,33 @@ magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   return resp;
 }
 
+//Quickness
+magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Quickness.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+  
+  var liobj = localFactory.createTile("Quickness");
+  
+  var dur = caster.getInt() * SCALE_TIME;
+  if (infused) {dur = dur * 1.5; }
+  var endtime = dur + DU.DUTime.getGameClock();
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  liobj.setExpiresTime(endtime);
+  
+//  if (DU.gameflags.sound) { play_audio("sfx_spell_light"); }   // ADD SOUND HERE
+  caster.addSpellEffect(liobj);
+//  liobj.applyEffect();
+  
+  DrawCharFrame();
+  return resp;  
+}
+
 function TravelByMoongate(who, color, belowgraphic, destmap, destx, desty) {
   var tol = 300;
   var graphicarray = [];

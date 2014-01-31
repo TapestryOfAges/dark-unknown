@@ -20,10 +20,29 @@ ais.OutdoorHostile = function(who, radius, pname) {
   var retval = {fin: 1};
   if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " " + who.getSerial() + " is going.</span><br />"); }
   // First, see if the PC is adjacent and if so, smite.
-  if (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) === 1) {
-    NPCAttackPCMap(who);
-    if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " attacks the PC!</span><br />"); }
-    return retval;
+  var locx = PC.getx();
+  var locy = PC.gety();
+  var pcmap = PC.getHomeMap();
+  if (who.getHomeMap() !== pcmap) {
+    if (pcmap.getName().match(/combat/)) {
+      // if PC is on a combat map, use map's exit coords to determine location
+      locx = pcmap.getExitToX();
+      locy = pcmap.getExitToY();
+    } else {
+      locx = 300;
+      locy = 300;
+      // because these values can never be 1 away via GetDistance
+    }
+  }
+  if (GetDistance(who.getx(), who.gety(), locx, locy) === 1) {
+    if (pcmap === who.getHomeMap()) {
+      NPCAttackPCMap(who);
+      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " attacks the PC!</span><br />"); }
+      return retval;
+    } else { // PC is already in a fight
+      retval["initdelay"] = .1;
+      return retval;
+    }
   }
   
   // Next, check to see if it's outside its leash radius
@@ -34,7 +53,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
   
   // Next, check and see if there is already a path that has not expired
   // but only if the PC is not within close range- in that case, always wait to hunt
-  if ((who.getHomeMap() !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius/3)) {
+  if ((who.getHomeMap() !== pcmap) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius/3)) {
     retval = ais.SurfaceFollowPath(who,40,1);   
     if (retval["fin"] === 1) { return retval; }
   }
@@ -60,6 +79,18 @@ ais.OutdoorHostile = function(who, radius, pname) {
 ais.HuntPC = function(who, radius) {
   var themap =  who.getHomeMap();
 	// Is the PC within range to be hunted?
+	var locx = PC.getx();
+	var locy = PC.gety();
+	if (PC.getHomeMap() !== themap) {
+	  var pcmap = PC.getHomeMap();
+	  if (pcmap.getName().match(/combat/)) {
+	    locx = pcmap.getExitToX();
+	    locy = pcmap.getExitToY();
+	  } else {
+	    // far away so all GetDistance calls fail
+	    locx = 300;
+	    locy = 300;
+	  }
 	if ((themap !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius)) {
 	  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>PC is not in range to hunt.</span><br />"); }
 		return 0;  // no hunting
@@ -69,9 +100,9 @@ ais.HuntPC = function(who, radius) {
 	// if the PC is within a smaller radius (currently radius/3), hunt no matter what.
 	// otherwise, check if we can see the PC, with a more forgiving threshold than used
 	// in the game display
-	if (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > (radius/3)) {   
+	if (GetDistance(who.getx(), who.gety(), locx, locy) > (radius/3)) {   
     
-    var losresult = themap.getLOS(who.getx(), who.gety(), PC.getx(), PC.gety(), losgrid);
+    var losresult = themap.getLOS(who.getx(), who.gety(), locx, locy, losgrid);
     if (losresult > 2) { 
       if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>PC is close but not in sight, no hunt.</span><br />"); }
       return 0; 
@@ -81,7 +112,7 @@ ais.HuntPC = function(who, radius) {
 	// HUNT!
 	// find path to the PC
 	if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Hunting!</span><br />"); }
-	var destination = { x: PC.getx(), y: PC.gety() };
+	var destination = { x: locx, y: locy };
 	
 	destination = CheckTownProximity(destination, who.getHomeMap());  // destination moved away if the target is too near a town.
 		
