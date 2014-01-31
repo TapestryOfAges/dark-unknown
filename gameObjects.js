@@ -4475,8 +4475,13 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
     delete this.smallscalemove;
   }
 
-  var isQuick = 0;  // replace with a check for the presence of the Quickness spell.
-  var init = ((-1/60) * this.getDex() + (7/6)) * this.initmult * (1 - .5 * isQuick);
+  var effectiveDex = 10;
+  if (scale) {
+    effectiveDex = this.getDex();
+  }
+//  var isQuick = 1;  // replace with a check for the presence of the Quickness spell.  // actually, quickness spell should just modify initmult
+//  var init = ((-1/60) * effectiveDex + (7/6)) * this.initmult * (isQuick);
+  var init = ((-1/60) * effectiveDex + (7/6)) * this.initmult;
   
   if ((initdelay) && (initdelay != 0)) {
   	init = init * initdelay;

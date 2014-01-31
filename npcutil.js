@@ -264,3 +264,7 @@ function PickOne(fromarray) {
   var roll = Math.floor(Math.random() * num);
   return fromarray[roll];
 }
+
+function PushOff(what) {
+  var dir = Math.floor(Math.random()*8);
+}
