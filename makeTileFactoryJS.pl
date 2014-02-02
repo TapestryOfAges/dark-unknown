@@ -15,7 +15,6 @@ print $output "    newthing.assignSerial();\n";
 print $output "    return newthing;\n";
 print $output "  } else {\n";
 print $output "    alert(tileName + \" is not a thing.\");\n";
-print $output "    exit;\n";
 print $output "  }\n}\n\n";
 
 
