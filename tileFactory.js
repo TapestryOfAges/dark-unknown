@@ -466,6 +466,16 @@ tileFactory.prototype.makeHexFloorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGoldOutlineFloorTile = function() {
+  var newTile = new GoldOutlineFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDiamondFloorTile = function() {
+  var newTile = new DiamondFloorTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSeeBelowTile = function() {
   var newTile = new SeeBelowTile();
   return newTile;
@@ -1151,6 +1161,11 @@ tileFactory.prototype.makeDiseaseTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePoisonTile = function() {
+  var newTile = new PoisonTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeLevitateTile = function() {
   var newTile = new LevitateTile();
   return newTile;
@@ -1158,6 +1173,11 @@ tileFactory.prototype.makeLevitateTile = function() {
 
 tileFactory.prototype.makeLightTile = function() {
   var newTile = new LightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeQuicknessTile = function() {
+  var newTile = new QuicknessTile();
   return newTile;
 }
 
