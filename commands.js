@@ -797,6 +797,7 @@ function PerformEnter(cmd) {
 				newmap.loadMap(destination);
 				maps.addMapByRef(newmap);
 			}
+			// WORKING- IF DESTINATION MAP LINKED TO CURRENT MAP, CHECK FOR COLLISION
 			var tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
 			retval["txt"] = "Entering " + newmap.getDesc() + ".";
 			if (descend != "") {
