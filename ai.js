@@ -91,6 +91,7 @@ ais.HuntPC = function(who, radius) {
 	    locx = 300;
 	    locy = 300;
 	  }
+	}
 	if ((themap !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius)) {
 	  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>PC is not in range to hunt.</span><br />"); }
 		return 0;  // no hunting
