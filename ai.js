@@ -115,7 +115,7 @@ ais.HuntPC = function(who, radius) {
 	if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Hunting!</span><br />"); }
 	var destination = { x: locx, y: locy };
 	
-	destination = CheckTownProximity(destination, who.getHomeMap());  // destination moved away if the target is too near a town.
+	//destination = CheckTownProximity(destination, who.getHomeMap());  // destination moved away if the target is too near a town.
 		
 	var path = themap.getPath(who.getx(), who.gety(), destination.x, destination.y, who.getMovetype());
 	if (path.length) {
@@ -146,9 +146,18 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
     var coords = who.getNextStep();
     if (debug) { dbs.writeln("<span style='color:red; font-weight:bold'>Check path distance? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + coords[0] + ", " + coords[1] + ".</span><br />"); }
     if (GetDistance(who.getx(), who.gety(), coords[0], coords[1]) === 1) {  // the next step is only a step away
-      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " moving from " + who.getx() + ", " + who.gety() + " to " + coords[0] + ", " + coords[1] + " :"); }
       var diffx = coords[0] - who.getx();
       var diffy = coords[1] - who.gety();
+      var civilized = 0;
+      // check to see if move would bring close to a settlement
+      if (who.getHomeMap().getScale() === 0) {  // only care about it if on an outdoor map
+        if (debug) { dbs.writeln("Checking for civilization proximity."); }
+        civilized = CheckTownProximity( { x: coords[0], y: coords[1] }, who.getHomeMap());
+        if (civilized) { 
+          retval["canmove"] = 0; 
+        }
+      }  // WORKING HERE
+      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " moving from " + who.getx() + ", " + who.gety() + " to " + coords[0] + ", " + coords[1] + " :"); }      
       who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
       var leashed = 0;
       if (leashpresent) {
@@ -161,7 +170,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
           leashed = 1;
         }
       }
-      if (!leashed) {  
+      if (!leashed && !civilized) {  
         retval = who.moveMe(diffx, diffy, 0);
       }
       if (retval["canmove"] === 1) { // it moved!
@@ -309,25 +318,16 @@ function NPCAttackPCMap(npc) {
 
 function CheckTownProximity(coords, map) {
   var mapfeatures = map.features.getAll();  // weirdly, this assumes that all maps this will be run on have features. Probably a safe assumption.
-  var town = { x: 0};
+//  var town = { x: 0};
   for (var i = 0; i < mapfeatures.length; i++) {
     if ((mapfeatures[i].getName().match(/Town/)) || (mapfeatures[i].getName().match(/Castle/)) || (mapfeatures[i].getName().match(/Keep/)) || (mapfeatures[i].getName().match(/Village/))) {
-      while (GetDistance(coords.x, coords.y, mapfeatures[i].getx(), mapfeatures[i].gety()) < 4) {  // your little walk will take you too close to civilization
-        var dir = GetDirection(mapfeatures[i].getx(), mapfeatures[i].gety(), coords.x, coords.y);
-        if (dir === 0) { coords.y--; }
-        else if (dir === 1) { coords.y--; coords.x++ }
-        else if (dir === 2) { coords.x++; }
-        else if (dir === 3) { coords.x++; coords.y++ }
-        else if (dir === 4) { coords.y++; }
-        else if (dir === 5) { coords.x--; coords.y++ }
-        else if (dir === 6) { coords.x--; }
-        else if (dir === 7) { coords.x--; coords.y-- }
-        if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Moving destination away from " + mapfeatures[i].getDesc() + ".</span><br />"); }
-        i = 0;
+      if (GetDistance(coords.x, coords.y, mapfeatures[i].getx(), mapfeatures[i].gety()) < 4) {  // your little walk will take you too close to civilization
+        if (debug) { dbs.writeln("Destination too close to " + mapfeatures[i].getDesc() + ".<br />"); }
+        return 1;
       }
     }
   }
-  return coords;
+  return 0;
 }
 
 function FindClosestPoI(xval, yval, themap, poiname) {
