@@ -624,7 +624,8 @@ GameMap.prototype.getDesc = function() {
 }
 
 GameMap.prototype.setScale = function(newscale) {
-  this.scale = newscale;
+  if (newscale) { this.scale = parseInt(newscale); }
+//  this.scale = newscale;
   return this.scale;
 }
 
@@ -642,7 +643,8 @@ GameMap.prototype.getMusic = function() {
 }
 
 GameMap.prototype.setEnterX = function(x) {
-  this.enterx = x;
+  if (x) { this.enterx = parseInt(x); }
+//  this.enterx = x;
   return this.enterx;
 }
 
@@ -651,7 +653,8 @@ GameMap.prototype.getEnterX = function() {
 }
 
 GameMap.prototype.setEnterY = function(y) {
-  this.entery = y;
+  if (y) { this.entery = parseInt(y); }
+//  this.entery = y;
   return this.entery;
 }
 
@@ -669,7 +672,8 @@ GameMap.prototype.getExitToMap = function() {
 }
 
 GameMap.prototype.setExitToX = function(x) {
-  this.exitTo.x = x;
+  if (x) { this.exitTo.x = parseInt(x); }
+//  this.exitTo.x = x;
   return this.exitTo.x;
 }
 
@@ -678,7 +682,8 @@ GameMap.prototype.getExitToX = function() {
 }
 
 GameMap.prototype.setExitToY = function(y) {
-  this.exitTo.y = y;
+  if (y) { this.exitTo.y = parseInt(y); }
+//  this.exitTo.y = y;
   return this.exitTo.y;
 }
 
@@ -728,7 +733,8 @@ GameMap.prototype.getAlwaysRemember = function() {
 }
 
 GameMap.prototype.setAlwaysRemember = function(ar) {
-	this.alwaysRemember = ar;
+  if (ar) { this.alwaysRemember = parseInt(ar); }
+//	this.alwaysRemember = ar;
 }
 
 GameMap.prototype.getSeeBelow = function() {
