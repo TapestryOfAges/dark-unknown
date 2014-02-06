@@ -739,7 +739,8 @@ function PerformLook() {
 }
 
 function PerformEnter(cmd) {
-		var here = PC.getHomeMap().getTile(PC.getx(),PC.gety());
+  var oldmap = PC.getHomeMap();
+		var here = oldmap.getTile(PC.getx(),PC.gety());
 		var features = here.getFeatures();
 		var destination;
 		var destx;
@@ -797,7 +798,25 @@ function PerformEnter(cmd) {
 				newmap.loadMap(destination);
 				maps.addMapByRef(newmap);
 			}
-			// WORKING- IF DESTINATION MAP LINKED TO CURRENT MAP, CHECK FOR COLLISION
+			// check for someone in the way at destination
+			if ($.inArray(newmap.getName(), oldmap.linkedMaps) != -1) {
+			  var desttile = newmap.getTile(destx,desty);
+			  if (desttile.getTopNPC()) { // there's someone in the way and it's a linked map
+			    retval["fin"] = 2;
+			    retval["txt"] = "There is something in the way!";
+			    retval["input"] = "&gt;";
+			    return retval;
+			  }
+			} else {
+			  var desttile = newmap.getTile(destx,desty);
+			  if (desttile.getTopNPC()) { // there's someone in the way and it's not a linked map
+          var npcs = desttile.getNPCs();
+          while (npcs.length) {
+            PushOff(desttile.getTopNPC());
+            npcs = desttile.getNPCs();
+          }
+        }
+      }			  
 			var tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
 			retval["txt"] = "Entering " + newmap.getDesc() + ".";
 			if (descend != "") {
