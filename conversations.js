@@ -123,6 +123,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
 // Permitted triggers: end_convo -- conversation ends after response given
 //                     give_item, take_item -- alter the PC inventory
 //                     set_flag -- set a flag
+//                     start_shop -- change game state, do merchanty things
 
 function ConvNode(flags, noflag_response, flag_response, triggers) {
   this.flags = flags;
