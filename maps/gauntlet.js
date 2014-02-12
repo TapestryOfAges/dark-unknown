@@ -1,5 +1,5 @@
-mappages["gauntlet"] = new Object();
-mappages["gauntlet"].terrain = new Array;
+mappages["gauntlet"] = {};
+mappages["gauntlet"].terrain = [];
  mappages["gauntlet"].terrain[0] = '.. ,; .. ,; .. .. .. .. .. .. .. ,; .. ,; .. .. .. .. .. .. .. .. ,; ,; .. ,; .. .. .. .. .. .. .. .. .. ,; ,; .. ,; .. .. .. ,; ,; .. .. ,; .. .. ,;';
  mappages["gauntlet"].terrain[1] = '.. .. .. .. .. .. .. .. ,; .. .. ,; .. .. ,; .. .. .. .. .. .. ,; ,; .. .. .. .. .. .. ,; ,; .. ,; .. .. .. ,; ,; ,; .. ,; .. .. ,; .. ,; ,; .. ,; ..';
  mappages["gauntlet"].terrain[2] = '.. ,; ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## .. ,;';
@@ -41,7 +41,7 @@ mappages["gauntlet"].terrain[37] = '.. .. ## ## ## ## ## ## ## ## ## ## ## ## ##
 mappages["gauntlet"].terrain[38] = '.. ,; ,; .. ,; .. .. ,; ,; ,; .. .. .. ,; ,; .. .. ,; ,; .. .. ,; ,; .. .. .. .. .. .. ,; ,; ,; .. .. ,; .. .. ,; ,; .. ,; ,; ,; .. ,; ,; ,; ,; .. ,;';
 mappages["gauntlet"].terrain[39] = '.. ,; .. .. ,; .. .. .. .. ,; ,; .. ,; .. ,; ,; ,; .. ,; .. ,; ,; .. .. .. .. .. .. .. .. .. .. .. .. ,; ,; .. .. ,; .. .. ,; .. ,; ,; ,; .. .. ,; ..';
 
-mappages["gauntlet"].features = new Array;
+mappages["gauntlet"].features = [];
 mappages["gauntlet"].features[0] = {name : 'DoorWindow', x : 21, y : 30, desc : "locked door", locked : 1};
 mappages["gauntlet"].features[1] = {name : 'DoorWindow', x : 28, y : 30, desc : "locked door", locked : 1};
 mappages["gauntlet"].features[2] = {name : 'Well', x : 5, y : 5};
@@ -51,9 +51,16 @@ mappages["gauntlet"].features[5] = {name : 'Door', x : 42, y : 17, desc : "locke
 mappages["gauntlet"].features[6] = {name : 'DoorWindow', x : 32, y : 19};
 mappages["gauntlet"].features[7] = {name : 'DoorWindow', x : 27, y : 9};
 mappages["gauntlet"].features[8] = {name : 'Door', x : 33, y : 4, desc : "locked door", locked : 1};
+mappages["gauntlet"].features[9] = {name : 'EnergyField', x : 38, y : 14};
+mappages["gauntlet"].features[10] = {name : 'FireField', x : 39, y : 14};
+mappages["gauntlet"].features[11] = {name : 'PoisonField', x : 40, y : 14};
+mappages["gauntlet"].features[12] = {name : 'SleepField', x : 41, y : 14};
+mappages["gauntlet"].features[13] = {name : 'Doorway', x : 24, y : 37};
+mappages["gauntlet"].features[14] = {name : 'Doorway', x : 25, y : 37};
 
 
-mappages["gauntlet"].npcs = new Array;
+mappages["gauntlet"].npcs = [];
+mappages["gauntlet"].npcs[0] = {name : 'MageVillagerNPC', x : 39, y : 15, Prefix: 'a', NPCName: 'Katya', Gender: 'female', Conversation: 'Katya'};
 
 mappages["gauntlet"].desc = 'The Towne of Gauntlet';
 mappages["gauntlet"].music = 'Towne';
@@ -71,4 +78,4 @@ mappages["gauntlet"].enterscript = '';
 mappages["gauntlet"].entertestscript = '';
 mappages["gauntlet"].exitscript = '';
 mappages["gauntlet"].exittestscript = '';
-mappages["gauntlet"].linkedMaps = new Array("");
+mappages["gauntlet"].linkedMaps = [""];
