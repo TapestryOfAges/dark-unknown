@@ -3821,7 +3821,7 @@ MissileWeaponObject.prototype.setRange = function(newrange) {
 }
 
 MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
-  var ammo = new Object;
+  var ammo = {};
   ammo.graphic= this.ammographic;
   ammo.yoffset = this.ammoyoffset;
 //  if (this.directionalammo) {
