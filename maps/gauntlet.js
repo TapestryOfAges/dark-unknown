@@ -43,7 +43,7 @@ mappages["gauntlet"].terrain[39] = '.. ,; .. .. ,; .. .. .. .. ,; ,; .. ,; .. ,;
 
 mappages["gauntlet"].features = [];
 mappages["gauntlet"].features[0] = {name : 'DoorWindow', x : 21, y : 30, desc : "locked door", locked : 1};
-mappages["gauntlet"].features[1] = {name : 'DoorWindow', x : 28, y : 30, desc : "locked door", locked : 1};
+mappages["gauntlet"].features[1] = {name : 'DoorWindow', x : 28, y : 30};
 mappages["gauntlet"].features[2] = {name : 'Well', x : 5, y : 5};
 mappages["gauntlet"].features[3] = {name : 'DoorWindow', x : 14, y : 19};
 mappages["gauntlet"].features[4] = {name : 'Door', x : 7, y : 10};
@@ -60,7 +60,11 @@ mappages["gauntlet"].features[14] = {name : 'Doorway', x : 25, y : 37};
 
 
 mappages["gauntlet"].npcs = [];
-mappages["gauntlet"].npcs[0] = {name : 'MageVillagerNPC', x : 39, y : 15, Prefix: 'a', NPCName: 'Katya', Gender: 'female', Conversation: 'Katya'};
+mappages["gauntlet"].npcs[0] = {name : 'MageVillagerNPC', x : 39, y : 15, NPCName: 'Alexis', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'Alexis', Gender: 'female'};
+mappages["gauntlet"].npcs[1] = {name : 'FighterVillagerNPC', x : 4, y : 7, NPCName: 'Dave', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'dave', Gender: 'male'};
+mappages["gauntlet"].npcs[2] = {name : 'PaladinVillagerNPC', x : 6, y : 24, NPCName: 'Sarah', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', PCThreatAI: 'runaway', Conversation: 'sarah', Gender: 'female'};
+mappages["gauntlet"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 34, y : 11, NPCName: 'Anna', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'anna', Gender: 'female'};
+mappages["gauntlet"].npcs[4] = {name : 'RangerVillagerNPC', x : 31, y : 6, NPCName: 'Garrick', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'garrick', Gender: 'male'};
 
 mappages["gauntlet"].desc = 'The Towne of Gauntlet';
 mappages["gauntlet"].music = 'Towne';
