@@ -1,5 +1,5 @@
-mappages["poverty"] = new Object();
-mappages["poverty"].terrain = new Array;
+mappages["poverty"] = {};
+mappages["poverty"].terrain = [];
  mappages["poverty"].terrain[0] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww';
  mappages["poverty"].terrain[1] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww';
  mappages["poverty"].terrain[2] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww';
@@ -13,14 +13,14 @@ mappages["poverty"].terrain = new Array;
 mappages["poverty"].terrain[10] = 'uu uu uu uu uu uu /. -- -- -- .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. -- .` uu uu uu uu';
 mappages["poverty"].terrain[11] = 'uu uu uu uu uu /. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ## #O ## ## ## #O ## ## .. .. .| uu uu uu uu';
 mappages["poverty"].terrain[12] = 'uu uu uu uu /. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ## .. .. .| uu uu uu uu';
-mappages["poverty"].terrain[13] = 'uu uu uu uu |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .` uu uu uu';
-mappages["poverty"].terrain[14] = 'uu uu uu /. .. .. #% .. .. .. #% .. .. .. #% .. .. #% .. .. ## ++ ++ ++ ++ ++ ++ ++ ## .. ff .. .. .` uu uu';
+mappages["poverty"].terrain[13] = 'uu uu uu uu |. .. .. .. .. .. #% .. .. .. .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .` uu uu uu';
+mappages["poverty"].terrain[14] = 'uu uu uu /. .. .. #% .. .. .. .. .. .. .. #% .. .. #% .. .. ## ++ ++ ++ ++ ++ ++ ++ ## .. ff .. .. .` uu uu';
 mappages["poverty"].terrain[15] = 'uu uu /. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. #O ++ ++ ++ ++ ++ ++ ++ #O .. .. .. .. .. -- .`';
 mappages["poverty"].terrain[16] = '/. -- .. .. .. .. #% .. .. .. .. .. .. .. .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ## .. .. ff .. .. .. ..';
 mappages["poverty"].terrain[17] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ## .. .. ff .. ff .. ..';
 mappages["poverty"].terrain[18] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. #% .. .. ## ## ## ## ++ ## ## ## ## .. .. .. .. ff .. ..';
-mappages["poverty"].terrain[19] = '.. .. .. ff .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ., .. .. .. .. .. ff .. .. .. ff ..';
-mappages["poverty"].terrain[20] = '.. .. ff .. ff .. #% .. .. #% .. .. #% .. .. .. .. #% .. .. .. .. .. ., ., .. .. .. .. .. .. .. .. .. .. ..';
+mappages["poverty"].terrain[19] = '.. .. .. ff .. .. .. #% .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ., .. .. .. .. .. ff .. .. .. ff ..';
+mappages["poverty"].terrain[20] = '.. .. ff .. ff .. .. .. .. #% .. .. #% .. .. .. #% .. .. .. .. .. .. ., ., .. .. .. .. .. .. .. .. .. .. ..';
 mappages["poverty"].terrain[21] = 'ff .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ., ., ., ., .. ## ## ## ## #O ## ## .. ..';
 mappages["poverty"].terrain[22] = '.. ff .. ff ff .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ., ., ., ., ., ++ ++ ++ ++ ++ ++ ## .. ..';
 mappages["poverty"].terrain[23] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ., ., ., .. .. ## ++ ++ ++ ++ ++ ## ff ..';
@@ -41,13 +41,18 @@ mappages["poverty"].terrain[37] = 'ff .. .. %% ., ., ., ., ., ., %% .. .. .. .. 
 mappages["poverty"].terrain[38] = '.. .. .. %% %% %% %% %% %% %% %% .. .. .. .. .. ., ., ., .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ff';
 mappages["poverty"].terrain[39] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ., ., ., .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ff ff';
 
-mappages["poverty"].features = new Array;
+mappages["poverty"].features = [];
 mappages["poverty"].features[0] = {name : 'Door', x : 24, y : 18};
 mappages["poverty"].features[1] = {name : 'Door', x : 27, y : 22};
 mappages["poverty"].features[2] = {name : 'Well', x : 13, y : 24};
 
 
-mappages["poverty"].npcs = new Array;
+mappages["poverty"].npcs = [];
+mappages["poverty"].npcs[0] = {name : 'RangerVillagerNPC', x : 15, y : 16, NPCName: 'Steadman', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'steadman', Gender: 'male'};
+mappages["poverty"].npcs[1] = {name : 'TownGuardNPC', x : 26, y : 25, NPCName: 'Arthur', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', PCThreatAI: 'runaway', Conversation: 'arthur', Gender: 'male'};
+mappages["poverty"].npcs[2] = {name : 'MageVillagerNPC', x : 9, y : 16, NPCName: 'Ivan', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'ivan', Gender: 'male'};
+mappages["poverty"].npcs[3] = {name : 'BardVillagerNPC', x : 6, y : 34, NPCName: 'Damien', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'damien', Gender: 'male'};
+mappages["poverty"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 26, y : 15, NPCName: 'Bradley', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'bradley', Gender: 'male'};
 
 mappages["poverty"].desc = 'Towne of Poverty';
 mappages["poverty"].music = 'Towne';
@@ -65,4 +70,4 @@ mappages["poverty"].enterscript = '';
 mappages["poverty"].entertestscript = '';
 mappages["poverty"].exitscript = '';
 mappages["poverty"].exittestscript = '';
-mappages["poverty"].linkedMaps = new Array("");
+mappages["poverty"].linkedMaps = [""];
