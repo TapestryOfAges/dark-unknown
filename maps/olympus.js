@@ -69,8 +69,8 @@ mappages["olympus1"].features[19] = {name : 'Doorway', x : 29, y : 19};
 
 
 mappages["olympus1"].npcs = [];
-mappages["olympus1"].npcs[0] = {name : 'KingNPC', x : 29, y : 13, NPCName: 'King Daragen', Desc: 'the King of Olympus', Prefix: '', Gender: 'male', Conversation: 'king'};
-mappages["olympus1"].npcs[1] = {name : 'MageVillagerNPC', x : 31, y : 15, NPCName: 'Jharden', Desc: 'royal advisor', Prefix: 'the', Level: 6, str: 12, dex: 12, int: 26};
+mappages["olympus1"].npcs[0] = {name : 'KingNPC', x : 29, y : 13, NPCName: 'King Daragen', Desc: 'the King of Olympus', Prefix: '', Conversation: 'king', Gender: 'male'};
+mappages["olympus1"].npcs[1] = {name : 'MageVillagerNPC', x : 31, y : 15, NPCName: 'Jharden', Desc: 'royal advisor', Prefix: 'the', Level: 6, Alignment: 'good', str: 12, dex: 12, int: 26, Attitude: 'friendly', Conversation: 'jharden', Gender: 'male'};
 mappages["olympus1"].npcs[2] = {name : 'TownGuardNPC', x : 27, y : 18, Prefix: 'a'};
 mappages["olympus1"].npcs[3] = {name : 'TownGuardNPC', x : 31, y : 18, Prefix: 'a'};
 mappages["olympus1"].npcs[4] = {name : 'TownGuardNPC', x : 30, y : 23, Prefix: 'a'};
@@ -80,7 +80,7 @@ mappages["olympus1"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 24, y : 22, P
 mappages["olympus1"].npcs[8] = {name : 'DruidVillagerNPC', x : 13, y : 14, Prefix: 'a'};
 mappages["olympus1"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 47, y : 28, Prefix: 'a'};
 mappages["olympus1"].npcs[10] = {name : 'DruidVillagerNPC', x : 44, y : 14, Prefix: 'a'};
-mappages["olympus1"].npcs[11] = {name : 'FighterVillagerNPC', x : 25, y : 13, NPCName: 'Ambrose', Desc: 'guard captain', Prefix: 'the', Level: 5, str: 24, dex: 18, int: 12, PeaceAI: 'guard', PCThreatAI: 'melee', Melee: 'Halberd'};
+mappages["olympus1"].npcs[11] = {name : 'FighterVillagerNPC', x : 25, y : 13, NPCName: 'Ambrose', Desc: 'guard captain', Prefix: 'the', Level: 5, Alignment: 'good', str: 24, dex: 18, int: 12, Attitude: 'friendly', PeaceAI: 'guard', PCThreatAI: 'melee', Melee: 'Halberd', Conversation: 'ambrose', Gender: 'male'};
 
 mappages["olympus1"].desc = 'Castle Olympus';
 mappages["olympus1"].music = 'Olympus';
@@ -92,7 +92,7 @@ mappages["olympus1"].enterx = '29';
 mappages["olympus1"].entery = '42';
 mappages["olympus1"].seeBelow = '';
 mappages["olympus1"].lightLevel = 'bright';
-mappages["olympus1"].alwaysRemember = '';
+mappages["olympus1"].alwaysRemember = '0';
 mappages["olympus1"].scale = '1';
 mappages["olympus1"].enterscript = '';
 mappages["olympus1"].entertestscript = '';
