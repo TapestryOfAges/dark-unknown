@@ -4044,7 +4044,7 @@ function NPCObject() {
 	this.armorResist = -1;
 	this.initmult = 1;
 	this.movetype = MOVE_WALK;
-	this.inventory = new Collection;
+	this.inventory = new Collection();
   this.equipment = {};
 	this.equipment.armor;
 	this.equipment.weapon;
@@ -4054,9 +4054,10 @@ function NPCObject() {
 	this.lootTable = "";
 	this.lastTurnTime = 0;
 	this.spellbook = [];
-	this.spellEffects = new Collection;
+	this.spellEffects = new Collection();
 	this.knowsInfusion = 0;
 	this.conversation = "";
+	this.merch = "";
 	this.lastLocation = {};
 	this.lastLocation.map = "";
 	this.lastLocation.x = 0;
@@ -4159,6 +4160,14 @@ NPCObject.prototype.getConversation = function() {
 
 NPCObject.prototype.setConversation = function (convo) {
   this.conversation = convo;
+}
+
+NPCObject.prototype.getMerch = function() {
+  return this.merch; 
+}
+
+NPCObject.prototype.setMerch = function (merchname) {
+  this.merch = merchname;
 }
 
 NPCObject.prototype.setHP = function(newhp) {
