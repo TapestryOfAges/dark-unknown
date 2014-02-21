@@ -108,6 +108,8 @@ $(document).ready(function() {
   maps.addMapByRef(worldmap);
     
   set_conversations();
+  DU.merchants = {};
+  DU.merchants = SetMerchants();
   populate_audio(musiclist, 0, 1, "music");
   populate_audio(sfxlist, 1, 0, "sfx");
 	
