@@ -79,6 +79,11 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     }
     keep_talking = 0;
   }
+  if (triggers.hasOwnProperty("start_shop")) {
+    DisplayWares(speaker);
+    
+    // set up merchanting!
+  }
   
   return keep_talking;
   

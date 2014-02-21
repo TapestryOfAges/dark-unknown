@@ -1,5 +1,5 @@
 
-function setMerchants() {
+function SetMerchants() {
   var bill = {};
   bill.low_wpns = {};
   bill.low_wpns.stock = [ { item: "Dagger", quantity: 99, price: 5 },
@@ -70,4 +70,18 @@ function setMerchants() {
               ];
   bill.ivan.type = "spells";
   
+  
+  return bill;
+}
+
+
+function DisplayWares(who) {
+  var stocks = DU.merchants[who.getMerch()];
+  var code = 65; // ascii for A, to associate array index with letter for choice
+  
+  if (stocks.type === "stuff") {
+    
+  } else if (stocks.type === "spells") {
+    
+  }
 }
