@@ -329,6 +329,7 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcmissile.value = editnpcs.getMissileAttackAs();
       document.npceditpopup.npcconvo.value = editnpcs.getConversation();
       document.npceditpopup.npcgender.value = editnpcs.getGender();
+      document.npceditpopup.npcmerch.value = editnpcs.getMerch();
     }
   	else if (!editnpcs && (document.editlayer.showfeatures.checked)) {
       var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
@@ -448,6 +449,9 @@ function submitEditNPC(change) {
 		}
 		if (document.npceditpopup.npcconvo.value !== editnpcs.getConversation()) {
 			editnpcs.setConversation(document.npceditpopup.npcconvo.value);
+		}
+		if (document.npceditpopup.npcmerch.value !== editnpcs.getMerch()) {
+			editnpcs.setMerch(document.npceditpopup.npcmerch.value);
 		}
 		if (document.npceditpopup.npcgender.value !== editnpcs.getGender()) {
 			editnpcs.setGender(document.npceditpopup.npcgender.value);
