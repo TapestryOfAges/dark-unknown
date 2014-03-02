@@ -50,23 +50,23 @@ function SetMerchants() {
   
 
   bill.alexis = {};
-  bill.alexis.stock = [ { item: "DisarmTrapSpell", quantity: 99, price: 100} ,
-                  { item: "DistractSpell", quantity: 99, price: 100},
-                  { item: "FlameBladeSpell", quantity: 99, price: 100},
-                  { item: "StrikeSpell", quantity: 99, price: 100},
-                  { item: "LesserHealSpell", quantity: 99, price: 200},
-                  { item: "MagicBoltSpell", quantity: 99, price: 200},
-                  { item: "ProtectSpell", quantity: 99, price: 200},
-                  { item: "FireArmorSpell", quantity: 99, price: 400},
+  bill.alexis.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap (1)", price: 100} ,
+                  { item: "DistractSpell", desc: "Distract (1)", price: 100},
+                  { item: "FlameBladeSpell", desc: "Flame Blade (1)", price: 100},
+                  { item: "StrikeSpell", desc: "Strike (1)", price: 100},
+                  { item: "LesserHealSpell", desc: "Lesser Heal (2)", price: 200},
+                  { item: "MagicBoltSpell", desc: "Magic Bolt (2)", price: 200},
+                  { item: "ProtectSpell", desc: "Protect (2)", price: 200},
+                  { item: "FireArmorSpell", desc: "Fire Armor (3)", price: 400},
                 ];
   bill.alexis.type = "spells";
   
   bill.ivan = {};
-  bill.ivan.stock = [ { item: "LesserHealSpell", quantity: 99, price: 150},
-                { item: "ProtectSpell", quantity: 99, price: 150},
-                { item: "IllusionSpell", quantity: 99, price: 150},
-                { item: "TelekinesisSpell", quantity: 99, price: 330},
-                { item: "HealSpell", quantity: 99, price: 700},
+  bill.ivan.stock = [ { item: "LesserHealSpell", desc: "Lesser Heal (2)", price: 150},
+                { item: "ProtectSpell", desc: "Protect (2)", price: 150},
+                { item: "IllusionSpell", desc: "Illusion (2)", price: 150},
+                { item: "TelekinesisSpell", desc: "Telekinesis (3)", price: 330},
+                { item: "HealSpell", desc: "Heal (4)", price: 700},
               ];
   bill.ivan.type = "spells";
   
@@ -80,7 +80,18 @@ function DisplayWares(who) {
   var code = 65; // ascii for A, to associate array index with letter for choice
   
   if (stocks.type === "stuff") {
-    
+    $.each(stocks, function(idx, val) {   
+      if (val.quantity) {
+        var spaces = 14 - val.item.length;
+        var addme = String.fromCharCode(code+idx) + ") " + val.item;
+        for (var i=0; i<spaces; i++) {
+          addme = addme + " ";
+        }
+        addme = addme + val.price + " gp";
+        maintext.addText(addme);
+      }
+    });
+    // WORKING HERE
   } else if (stocks.type === "spells") {
     
   }
