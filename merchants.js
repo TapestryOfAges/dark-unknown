@@ -91,8 +91,10 @@ function DisplayWares(who) {
         maintext.addText(addme);
       }
     });
+    
     // WORKING HERE
   } else if (stocks.type === "spells") {
     
   }
+  else { alert("Bad merchant."); }
 }
