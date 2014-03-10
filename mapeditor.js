@@ -11,11 +11,11 @@ var amap = new GameMap();
 var debug = 0;
 var debugscreen;
 var togglehide = 0;
-//var displayval = "all";
+
 var brushdown = 0;
 var editable;
 var editnpcs;
-//var browserheight = getSize();
+
 var browserheight;
 var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
