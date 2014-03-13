@@ -1186,6 +1186,9 @@ GameMap.prototype.saveMap = function (name) {
  	if (basenpc.getGender() !== mapnpcs[i].getGender()) {
  		printerwin.document.write(", Gender: '" + mapnpcs[i].getGender() + "'");
  	} 	
+ 	if (basenpc.getMerch() !== mapnpcs[i].getMerch()) {
+ 		printerwin.document.write(", Merch: '" + mapnpcs[i].getMerch() + "'");
+ 	} 	
  	printerwin.document.write("};\n");
 }
  
@@ -1323,6 +1326,7 @@ GameMap.prototype.loadMap = function (name) {
   			if (npckey === "Missile") { newnpc.setMissileAttackAs(loadnpcs[npci].Missile); }
   			if (npckey === "Conversation") { newnpc.setConversation(loadnpcs[npci].Conversation); }
   			if (npckey === "Gender") { newnpc.setGender(loadnpcs[npci].Gender); }
+  			if (npckey === "Merch") { newnpc.setMerch(loadnpcs[npci].Merch); }
   		}
   		this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
   	}
