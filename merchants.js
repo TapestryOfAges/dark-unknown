@@ -48,6 +48,13 @@ function SetMerchants() {
                   ];
   bill.all_missile.type = "stuff";
   
+  bill.low_armor = {};
+  bill.low_armor.stock = [ { item: "ClothArmor", quantity: 99, price: 100 },
+                       { item: "LeatherArmor", quantity: 99, price: 400 },
+                       { item: "ChainArmor", quantity: 99, price: 2000 },
+                       { item: "PlateArmor", quantity: 0, price: 4000 },
+                  ];
+bill.low_armor.type = "stuff";
 
   bill.alexis = {};
   bill.alexis.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap (1)", price: 100} ,
