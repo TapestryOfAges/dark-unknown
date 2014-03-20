@@ -1035,6 +1035,11 @@ function PerformTalkTarget() {
     
     return retval;
   }
+  if (top.getConversationFlag()) {
+    if (DU.gameflags[top.getConversationFlag()]) {
+      top.setConversationFlagged();
+    }
+  }
 
   maintext.addText("Talk to: " + top.getDesc());
 
