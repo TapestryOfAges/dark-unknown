@@ -4162,6 +4162,18 @@ NPCObject.prototype.setConversation = function (convo) {
   this.conversation = convo;
 }
 
+NPCObject.prototype.getConversationFlag = function() {
+  return this.conversationflag; 
+}
+
+NPCObject.prototype.setConversationFlag = function (cf) {
+  this.conversationflag = cf;
+}
+
+NPCObject.prototype.setConversationFlagged = function () {
+  this.conversation= this.conversation + "_a";  
+}
+
 NPCObject.prototype.getMerch = function() {
   return this.merch; 
 }

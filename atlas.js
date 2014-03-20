@@ -1174,14 +1174,17 @@ GameMap.prototype.saveMap = function (name) {
  	if (basenpc.getThreatenedAI() !== mapnpcs[i].getThreatenedAI()) {
  		printerwin.document.write(", ThreatenedAI: '" + mapnpcs[i].getThreatenedAI() + "'");
  	}
- 	if (basenpc.getMeleeAttackAs() !== mapnpcs[i].getMeleeAttackAs()) {
- 		printerwin.document.write(", Melee: '" + mapnpcs[i].getMeleeAttackAs() + "'");
- 	}
- 	if (basenpc.getMissileAttackAs() !== mapnpcs[i].getMissileAttackAs()) {
- 		printerwin.document.write(", Missile: '" + mapnpcs[i].getMissileAttackAs() + "'");
- 	}
+// 	if (basenpc.getMeleeAttackAs() !== mapnpcs[i].getMeleeAttackAs()) {
+// 		printerwin.document.write(", Melee: '" + mapnpcs[i].getMeleeAttackAs() + "'");
+// 	}
+// 	if (basenpc.getMissileAttackAs() !== mapnpcs[i].getMissileAttackAs()) {
+// 		printerwin.document.write(", Missile: '" + mapnpcs[i].getMissileAttackAs() + "'");
+// 	}
  	if (basenpc.getConversation() !== mapnpcs[i].getConversation()) {
  		printerwin.document.write(", Conversation: '" + mapnpcs[i].getConversation() + "'");
+ 	} 	
+ 	if (basenpc.getConversationFlag() !== mapnpcs[i].getConversationFlag()) {
+ 		printerwin.document.write(", ConversationFlag: '" + mapnpcs[i].getConversationFlag() + "'");
  	} 	
  	if (basenpc.getGender() !== mapnpcs[i].getGender()) {
  		printerwin.document.write(", Gender: '" + mapnpcs[i].getGender() + "'");
@@ -1325,6 +1328,7 @@ GameMap.prototype.loadMap = function (name) {
   			if (npckey === "Melee") { newnpc.setMeleeAttackAs(loadnpcs[npci].Melee); }
   			if (npckey === "Missile") { newnpc.setMissileAttackAs(loadnpcs[npci].Missile); }
   			if (npckey === "Conversation") { newnpc.setConversation(loadnpcs[npci].Conversation); }
+  			if (npckey === "ConversationFlag") { newnpc.setConversation(loadnpcs[npci].ConversationFlag); }
   			if (npckey === "Gender") { newnpc.setGender(loadnpcs[npci].Gender); }
   			if (npckey === "Merch") { newnpc.setMerch(loadnpcs[npci].Merch); }
   		}
