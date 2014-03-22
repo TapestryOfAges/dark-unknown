@@ -241,7 +241,7 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
 ais.ProcessPoI = function(who,poiname) {
   var themap = who.getHomeMap();
   if (!who.getPoI().x) {
-    if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>Has no PoI yet. Searching...</span><br />"); }
+    if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + who.getName() + ", which follows " + poiname + " on map " + themap.getName() + ", has no PoI yet. Searching...</span><br />"); }
     var poi = FindClosestPoI(who.getx(), who.gety(), themap, poiname);
     if (debug) { dbs.writeln("<span style='color:red; font-weight:bold'>Closest PoI: " + poi.x + ", " + poi.y + "</span><br />"); }
     who.setPoI(poi);
