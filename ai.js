@@ -10,7 +10,7 @@ ais.Bandit = function(who,radius) {
 }
 
 ais.Monster = function(who,radius) {
-  var retval = ais.OutdoorHostile(who,radius, "wild");
+  var retval = ais.OutdoorHostile(who, radius, "wild");
   return retval;
 }
 
@@ -156,7 +156,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
         if (civilized) { 
           retval["canmove"] = 0; 
         }
-      }  // WORKING HERE
+      }  
       if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " moving from " + who.getx() + ", " + who.gety() + " to " + coords[0] + ", " + coords[1] + " :"); }      
       who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
       var leashed = 0;
@@ -331,13 +331,15 @@ function CheckTownProximity(coords, map) {
 }
 
 function FindClosestPoI(xval, yval, themap, poiname) {
+  if (!themap.network[poiname]) { alert("Unknown poi network!"); }
+  
   var closeind = 0;
   var closest = GetDistance(xval,yval,themap.network[poiname][0].x, themap.network[poiname][0].y);
   
   for (var i=1; i<themap.network[poiname].length; i++) { 
     var ind = GetDistance(xval,yval,themap.network[poiname][i].x, themap.network[poiname][i].y);
-    if (ind < closest) { closeind = ind; }
+    if (ind < closest) { closeind = i; }
   }
-  
+  alert(closeind);
   return themap.network[poiname][closeind];
 }
