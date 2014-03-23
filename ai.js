@@ -340,6 +340,5 @@ function FindClosestPoI(xval, yval, themap, poiname) {
     var ind = GetDistance(xval,yval,themap.network[poiname][i].x, themap.network[poiname][i].y);
     if (ind < closest) { closeind = i; }
   }
-  alert(closeind);
   return themap.network[poiname][closeind];
 }
