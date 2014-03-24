@@ -19,6 +19,13 @@ function set_conversations() {
   conversations.king["name"] = new ConvNode({}, "", '"While a king should usually demand a certain formality, even here you can just call me father."', [{}, {}]);
   conversations.king["_start"] = new ConvNode({ flags_met: "kingspeech" }, '"Thank you, %NAME%, for coming so quickly. Your brother has finally taken that step too far and now he must be dealt with.%%He has raised himself a castle and declared himself to be in rebellion, and so it is with a heavy heart that I say that he is no longer my heir.%%That title passes to you, my %KIDDIE%, who has remained steadfast. But now I must charge you with this duty."', '', [{set_flag: "kingspeech"}, {}]);
   
+  conversations.erin = new Conversation();
+  conversations.erin["name"] = new ConvNode({}, "", '"You can call me Erin."', [{}, {}]);
+  conversations.erin["_start"] = new ConvNode({}, "", 'She nods at you.', [{}, {}]);
+  conversations.erin["_confused"] = new ConvNode({}, "", '"Hmm?"', [{}, {}]);
+  conversations.erin["buy"] = new ConvNode({}, "", '"What would you like?"', [{}, {start_shop: 1}]);
+  conversations.erin["bye"] = new ConvNode({}, "", '"Come back soon!"', [{}, {end_convo: 1}]);
+  
 }
 
 
