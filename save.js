@@ -9,8 +9,8 @@ function GameStateData() {
 
 GameStateData.prototype.loadGame = function() {
 	// Temporarily, this will return demo values
-	PC.setx(67);
-	PC.sety(72);
+	PC.setx(55);
+	PC.sety(63);
 	PC.setPCName("Goldenflame");
 	var themap;
 	if (maps.getMap("darkunknown")) {
@@ -20,8 +20,8 @@ GameStateData.prototype.loadGame = function() {
 	  themap.loadMap("darkunknown");
 	}
 	PC.setHomeMap(themap);
-  var rats = localFactory.createTile("OrcGroupLarge");
-  themap.placeThing(65,70,rats);
+//  var rats = localFactory.createTile("OrcGroupLarge");
+//  themap.placeThing(65,70,rats);
   var dagger = localFactory.createTile("Dagger");
   PC.addToInventory(dagger, 1);
   PC.setEquipment("weapon",dagger);
