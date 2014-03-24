@@ -85,9 +85,11 @@ bill.low_armor.type = "stuff";
 function DisplayWares(who) {
   var stocks = DU.merchants[who.getMerch()];
   var code = 65; // ascii for A, to associate array index with letter for choice
-  
+
   if (stocks.type === "stuff") {
-    $.each(stocks, function(idx, val) {   
+    alert("Stuff");
+    $.each(stocks.stock, function(idx, val) {   
+      alert(val.item + " " + val.quantity);
       if (val.quantity) {
         var spaces = 14 - val.item.length;
         var addme = String.fromCharCode(code+idx) + ") " + val.item;
