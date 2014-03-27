@@ -8,7 +8,7 @@ function SetMerchants() {
                     { item: "Axe", quantity: 99, price: 500},
                     { item: "Longsword", quantity: 0, price: 1700}, 
                     { item: "Halberd", quantity: 0, price: 3500},
-                    { item: "MagicSword", quantity: 0, price: 6000}, ];
+                    { item: "MagicSword", quantity: 0, price: 6000, desc: "Magic Sword"} ];
   bill.low_wpns.type = "stuff";
   
   bill.all_wpns = {};
@@ -18,7 +18,7 @@ function SetMerchants() {
                     { item: "Axe", quantity: 99, price: 560},
                     { item: "Longsword", quantity: 99, price: 2000}, 
                     { item: "Halberd", quantity: 99, price: 4200},
-                    { item: "MagicSword", quantity: 0, price: 6600}, 
+                    { item: "MagicSword", quantity: 0, price: 6600, desc: "Magic Sword"}, 
                   ];
   bill.all_wpns.type = "stuff";
   
@@ -35,7 +35,7 @@ function SetMerchants() {
                        { item: "Bow", quantity: 99, price: 500 },
                        { item: "Crossbow", quantity: 0, price: 1000 },
                        { item: "Wand", quantity: 0, price: 5000 },
-                       { item: "MagicAxe", quantity: 0, price: 7500 },
+                       { item: "MagicAxe", quantity: 0, price: 7500, desc: "Magic Axe" },
                   ];
   bill.low_missile.type = "stuff";
   
@@ -44,15 +44,15 @@ function SetMerchants() {
                        { item: "Bow", quantity: 99, price: 600 },
                        { item: "Crossbow", quantity: 99, price: 2000 },
                        { item: "Wand", quantity: 0, price: 5000 },
-                       { item: "MagicAxe", quantity: 0, price: 7500 },
+                       { item: "MagicAxe", quantity: 0, price: 7500, desc: "Magic Axe" },
                   ];
   bill.all_missile.type = "stuff";
   
   bill.low_armor = {};
-  bill.low_armor.stock = [ { item: "ClothArmor", quantity: 99, price: 100 },
-                       { item: "LeatherArmor", quantity: 99, price: 400 },
-                       { item: "ChainArmor", quantity: 99, price: 2000 },
-                       { item: "PlateArmor", quantity: 0, price: 4000 },
+  bill.low_armor.stock = [ { item: "ClothArmor", quantity: 99, price: 100, desc: "Cloth Armor" },
+                       { item: "LeatherArmor", quantity: 99, price: 400, desc: "Leather Armor" },
+                       { item: "ChainArmor", quantity: 99, price: 2000, desc: "Chain" },
+                       { item: "PlateArmor", quantity: 0, price: 4000, desc: "Plate" },
                   ];
 bill.low_armor.type = "stuff";
 
@@ -87,14 +87,14 @@ function DisplayWares(who) {
   var code = 65; // ascii for A, to associate array index with letter for choice
 
   if (stocks.type === "stuff") {
-    alert("Stuff");
     $.each(stocks.stock, function(idx, val) {   
-      alert(val.item + " " + val.quantity);
       if (val.quantity) {
-        var spaces = 14 - val.item.length;
-        var addme = String.fromCharCode(code+idx) + ") " + val.item;
+        var displayname = val.item;
+        if (val.desc) { displayname = val.desc; }
+        var spaces = 20 - displayname.length;
+        var addme = String.fromCharCode(code+idx) + ") " + displayname;
         for (var i=0; i<spaces; i++) {
-          addme = addme + " ";
+          addme = addme + "&nbsp;";
         }
         addme = addme + val.price + " gp";
         maintext.addText(addme);
