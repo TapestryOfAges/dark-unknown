@@ -37,6 +37,13 @@ function Conversation() {
 }
 Conversation.prototype = new Object();
 
+// keep_talking values:
+// 0  : conv ends
+// 1  : normal conv
+// 2  : [more]
+// 3  : switch to buy
+// 4  : switch to sell
+
 Conversation.prototype.respond = function(speaker, keyword, skipahead) { 
   if (!skipahead) { skipahead = targetCursor.skipahead; }
   var flags_met = 1;
@@ -88,6 +95,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   if (triggers.hasOwnProperty("start_shop")) {
     DisplayWares(speaker);
+    
+    keep_talking = 3; 
     
     // set up merchanting!
   }
