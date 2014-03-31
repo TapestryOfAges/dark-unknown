@@ -110,13 +110,14 @@ $(document).ready(function() {
   set_conversations();
   DU.merchants = {};
   DU.merchants = SetMerchants();
+  // create audio players
   populate_audio(musiclist, 0, 1, "music");
   populate_audio(sfxlist, 1, 0, "sfx");
 	
   gamestate.loadGame();
   DrawCharFrame();
   
-  // create audio players
+
   
   
   PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
@@ -207,9 +208,8 @@ function DoAction(code) {
         if (retval["fin"] === 1) {
           PC.endTurn(retval["initdelay"]);
         }
-        // HERE
       }
-      else { alert("need to add hook here! (main 171)"); }
+      else { alert("need to add hook here! (main 212)"); }
     }
     else if (code === 27) { // ESC
       maintext.setInputLine("&gt;");
@@ -409,6 +409,37 @@ function DoAction(code) {
         gamestate.setMode("null");
       }
     }
+  }
+  else if (gamestate.getMode() === "buy") {
+    if ((code === 27) || (code ===13)) {    // ESC or enter
+      var convo = targetCursor.talkingto.getConversation();
+      maintext.addText(" ");
+      maintext.addText("You buy: Nothing.");
+      var retval = PerformTalk(targetCursor.talkingto, convo, "bye");
+      maintext.addText(retval["txt"]);
+      maintext.setInputLine(retval["input"]);
+      maintext.drawTextFrame();
+        
+      if (retval["fin"] === 1) {
+        PC.endTurn(retval["initdelay"]);
+      }
+
+    } else if ((code >= 65) && (code <= 90)) {
+      // check to see if that letter is in the merchant's inventory
+      var merinv = DU.merchants[targetCursor.talkingto.getMerch()];
+      var idx = code-65;
+      if (merinv.stock[idx] && ((merinv.stock[idx].quantity) || (merinv.type === "spells"))) {  
+        // that letter goes to something, and it is either spells or has a quantity
+        if (merinv.stock[idx].price < PC.getGold()) { // can afford it!
+          
+        } else { // not enough money
+          
+        }
+      }
+    }
+  }
+  else if (gamestate.getMode() === "sell") {
+    
   }
 
 }

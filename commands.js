@@ -1058,8 +1058,8 @@ function PerformTalk(talkto, convo, topic) {
     retval["fin"] = 3;
   } else {
     // person spoke and ended conversation
-    var gender = talkto.getGenderedTerms().pronoun;
-    gender = gender.charAt(0).toUpperCase() + gender.slice(1);
+//    var gender = talkto.getGenderedTerms().pronoun;
+//    gender = gender.charAt(0).toUpperCase() + gender.slice(1);
     retval["txt"] = "";
     retval["fin"] = 1;
     retval["input"] = "&gt;";
@@ -1069,6 +1069,13 @@ function PerformTalk(talkto, convo, topic) {
   if (conval === 2) {
     retval["input"] = "&gt; [MORE]";
     gamestate.setMode("anykey");
+  } else if (conval === 3) {
+    retval["input"] = "&gt; Buy what: ";
+    gamestate.setMode("buy");
+  } else if (conval === 4) {
+    // Add check for having stuff to sell?
+    retval["input"] = "&gt; Sell what: ";
+    gamestate.setMode("sell");
   } else {
     retval["input"] = "&gt; You say: ";
     gamestate.setMode("talk");
@@ -1076,7 +1083,7 @@ function PerformTalk(talkto, convo, topic) {
   
   targetCursor.talkingto = talkto;
   targetCursor.command ="t";
-  targetCursor.conval = conval;   // 2 == in-midsentence
+  targetCursor.conval = conval;   // 2 == in-midsentence, 3 or 4 == merchanting
   
   inputText.cmd = "t";
   inputText.txt = "";
