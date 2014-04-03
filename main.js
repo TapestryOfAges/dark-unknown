@@ -431,9 +431,17 @@ function DoAction(code) {
       if (merinv.stock[idx] && ((merinv.stock[idx].quantity) || (merinv.type === "spells"))) {  
         // that letter goes to something, and it is either spells or has a quantity
         if (merinv.stock[idx].price < PC.getGold()) { // can afford it!
-          
+          PC.addGold(-(merinv.stock[idx].price));
+          var newitem = localFactory.createTile(merinv.stock[idx].item);
+          PC.addToInventory(newitem,1);
+          maintext.addText(" ");
+          maintext.addText(newitem.getDesc() + ": Purchased.");
+          maintext.addText("Anything else?");
+          maintext.addText(" ");
+          DisplayWares(targetCursor.talkingto);
         } else { // not enough money
-          
+          maintext.addText(" ");
+          maintext.addText("You don't have enough gold for that.");
         }
       }
     }
