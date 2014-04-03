@@ -24,6 +24,7 @@ GameStateData.prototype.loadGame = function() {
 //  themap.placeThing(65,70,rats);
   var dagger = localFactory.createTile("Dagger");
   PC.addToInventory(dagger, 1);
+  PC.addGold(1000);
   PC.setEquipment("weapon",dagger);
   var armor = localFactory.createTile("ClothArmor");
   PC.addToInventory(armor, 1);
