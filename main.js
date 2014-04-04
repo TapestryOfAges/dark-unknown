@@ -423,7 +423,10 @@ function DoAction(code) {
       if (retval["fin"] === 1) {
         PC.endTurn(retval["initdelay"]);
       }
-
+    } else if ((code === 47) || (code === 63) || (code === 191)) {  //  ?, or / since it doesn't actually look at shift
+      maintext.addText(" ");
+      PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "buy");
+//      DisplayWares(targetCursor.talkingto);
     } else if ((code >= 65) && (code <= 90)) {
       // check to see if that letter is in the merchant's inventory
       var merinv = DU.merchants[targetCursor.talkingto.getMerch()];
@@ -435,10 +438,7 @@ function DoAction(code) {
           var newitem = localFactory.createTile(merinv.stock[idx].item);
           PC.addToInventory(newitem,1);
           maintext.addText(" ");
-          maintext.addText(newitem.getDesc() + ": Purchased.");
-          maintext.addText("Anything else?");
-          maintext.addText(" ");
-          DisplayWares(targetCursor.talkingto);
+          maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + ": Purchased. Anything else?");
         } else { // not enough money
           maintext.addText(" ");
           maintext.addText("You don't have enough gold for that.");
