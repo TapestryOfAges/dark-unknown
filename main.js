@@ -447,7 +447,8 @@ function DoAction(code) {
     }
   }
   else if (gamestate.getMode() === "sell") {
-    
+
+
   }
 
 }
