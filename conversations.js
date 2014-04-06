@@ -24,6 +24,7 @@ function set_conversations() {
   conversations.erin["_start"] = new ConvNode({}, "", 'She nods at you.', [{}, {}]);
   conversations.erin["_confused"] = new ConvNode({}, "", '"Hmm?"', [{}, {}]);
   conversations.erin["buy"] = new ConvNode({}, "", '"What would you like?"', [{}, {start_shop: 1}]);
+  conversations.erin["sell"] = new ConvNode({}, "", '"What have you got?"', [{}, {start_sell: 1}]);
   conversations.erin["bye"] = new ConvNode({}, "", '"Come back soon!"', [{}, {end_convo: 1}]);
   
 }
@@ -100,6 +101,34 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     
     // set up merchanting!
   }
+  if (triggers.hasOwnProperty("start_sell")) {
+
+    var selllist = [];
+    // WORKHERE GET LIST OF THINGS TO SELL
+    if (selllist.length) {
+      maintext.addText(" ");
+      maintext.addText("This merchant will buy:");
+      // WORKHERE THIS STUFF DOESN'T GO HERE
+    } else {
+      var convo = targetCursor.talkingto.getConversation();
+      maintext.addText(" ");
+      var genderterms = targetCursor.talkingto.getGenderedTerms();
+      maintext.addText("You have nothing " + genderterms.pronoun + " would like to buy.");
+      var retval = PerformTalk(targetCursor.talkingto, convo, "bye");
+      maintext.addText(retval["txt"]);
+      maintext.setInputLine("&gt; ");
+      maintext.drawTextFrame();
+        
+      if (retval["fin"] === 1) {
+        PC.endTurn(retval["initdelay"]);
+        return;
+      }
+ 
+    }
+
+
+    keep_talking = 4;
+  }
   
   return keep_talking;
   
@@ -145,6 +174,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
 //                     give_item, take_item -- alter the PC inventory
 //                     set_flag -- set a flag
 //                     start_shop -- change game state, do merchanty things
+//                     start_sell -- change game state, sell stuff to merchant
 
 function ConvNode(flags, noflag_response, flag_response, triggers) {
   this.flags = flags;
