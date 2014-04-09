@@ -4770,7 +4770,7 @@ NPCObject.prototype.myTurn = function() {
   nextEntity.myTurn();
 }
 
-NPCObject.prototype.addToInventory = function(item, thinAir) {
+NPCObject.prototype.addToInventory = function(item, thinAir, qty) {
   // Whether the object being added to inventory is an item
   // must be checked before this point. This will add _anything_ to
   // an inventory!
@@ -4781,9 +4781,10 @@ NPCObject.prototype.addToInventory = function(item, thinAir) {
     // otherwise, this will remove the item from the NPC/PC's map first.
     this.getHomeMap().deleteThing(item);
   }
+  if (!qty) { qty = 1; }
   var alreadyIn = this.inventory.getByName(item.getName());
   if (alreadyIn) {
-    alreadyIn.setQuantity(alreadyIn.getQuantity()+1);
+    alreadyIn.setQuantity(alreadyIn.getQuantity()+qty);
   }
   else {
     this.inventory.addTop(item);

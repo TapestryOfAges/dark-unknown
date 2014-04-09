@@ -44,9 +44,9 @@ var inputText = {};
 var raceWarning = 0;
 
 function DrawCharFrame() {
-  var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='3'>";
-  txt = txt + PC.getPCName() + "</td></tr>";
-  txt = txt + "<tr><td width='33%' id='hpcell'>HP: " + PC.getDisplayHP() + "</td><td width='34%'>" + SpellInitials(PC) + "</td><td width='33%' style='text-align:right'>MP: " + PC.getMana() + "</td></tr></table>";
+  var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='2'>";
+  txt = txt + PC.getPCName() + "</td><td id='hpcell' style='text-align:right'>HP: " + PC.getDisplayHP() + "</td></tr>";
+  txt = txt + "<tr><td width='33%' id='gpcell'>GP: " + PC.getGold() + "</td><td width='34%'>" + SpellInitials(PC) + "</td><td width='33%' style='text-align:right'>MP: " + PC.getMana() + "</td></tr></table>";
   $("#charstats").html(txt);
 }
 
@@ -318,7 +318,7 @@ function DoAction(code) {
       }
       else if (newresponse["fin"] === -1) {
         gamestate.setMode("null");
-        // wait and let the combat code set things to next turn. NOTE: possible 
+        // wait and let the combat code set things to next turn. NOTE: possible race conition
         raceWarning = 1;
       }
       else if (newresponse["fin"] === 3) {
