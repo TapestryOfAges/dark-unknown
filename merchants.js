@@ -54,7 +54,13 @@ function SetMerchants() {
                        { item: "ChainArmor", quantity: 99, price: 2000, desc: "Chain" },
                        { item: "PlateArmor", quantity: 0, price: 4000, desc: "Plate" },
                   ];
-bill.low_armor.type = "stuff";
+  bill.low_armor.type = "stuff";
+  
+  bill.low_alchemist = {};
+  bill.low_alchemist.stock = [ { item: "RedPotion", quantity: 10, price: 80, desc: "Red Potion"},
+                               { item: "YellowPotion", quantity: 25, price: 75, desc: "Yellow Potion"},
+                                ];
+  bill.low_alchemist.type = "stuff";
 
   bill.alexis = {};
   bill.alexis.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap (1)", price: 100} ,
@@ -87,16 +93,27 @@ function DisplayWares(who) {
   var code = 65; // ascii for A, to associate array index with letter for choice
 
   if (stocks.type === "stuff") {
-    $.each(stocks.stock, function(idx, val) {   
-      if (val.quantity) {
+    $.each(stocks.stock, function(idx, val) {    
+      var qty = val.quantity;
+      if (qty) {
         var displayname = val.item;
         if (val.desc) { displayname = val.desc; }
-        var spaces = 20 - displayname.length;
+        if ((qty > 0) && (qty < 99)) {
+          displayname = displayname + " (" + qty + ")";
+        }
+        var spaces = 23 - displayname.length;
         var addme = String.fromCharCode(code+idx) + ") " + displayname;
         for (var i=0; i<spaces; i++) {
           addme = addme + "&nbsp;";
         }
-        addme = addme + val.price + " gp";
+        var price = val.price + " gp";
+        spaces = 8-price.length;
+        if (spaces < 8) {
+          for (var i = 0; i<spaces; i++) {
+            price = "&nbsp;" + price;
+          }
+        }
+        addme = addme + price;
         maintext.addText(addme);
       }
     });
@@ -105,5 +122,5 @@ function DisplayWares(who) {
   } else if (stocks.type === "spells") {
     
   }
-  else { alert("Bad merchant."); }
+  else { alert("Bad merchant. (No biscuit)."); }
 }
