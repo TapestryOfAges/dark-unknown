@@ -435,10 +435,15 @@ function DoAction(code) {
         // that letter goes to something, and it is either spells or has a quantity
         if (merinv.stock[idx].price < PC.getGold()) { // can afford it!
           PC.addGold(-(merinv.stock[idx].price));
-          var newitem = localFactory.createTile(merinv.stock[idx].item);
-          PC.addToInventory(newitem,1);
-          maintext.addText(" ");
-          maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + ": Purchased. Anything else?");
+          if (merinv.stock[idx].quantity) {  // item
+            var newitem = localFactory.createTile(merinv.stock[idx].item);
+            if (merinv.stock[idx].quantity != 99) { marinv.stock[idx].quantity = marinv.stock[idx].quantity -1; }
+            PC.addToInventory(newitem,1);
+            maintext.addText(" ");
+            maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + ": Purchased. Anything else?");
+          } else { // spell 
+            
+          }
         } else { // not enough money
           maintext.addText(" ");
           maintext.addText("You don't have enough gold for that.");

@@ -105,6 +105,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
 
     var selllist = [];
     // WORKHERE GET LIST OF THINGS TO SELL
+    var stocks = DU.merchants[targetCursor.talkingto.getMerch()];
+    
     if (selllist.length) {
       maintext.addText(" ");
       maintext.addText("This merchant will buy:");
