@@ -70,7 +70,7 @@ mappages["gauntlet"].features[24] = {name : 'Door', x : 41, y : 29};
 
 
 mappages["gauntlet"].npcs = [];
-mappages["gauntlet"].npcs[0] = {name : 'MageVillagerNPC', x : 39, y : 15, NPCName: 'Alexis', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'Alexis', Gender: 'female'};
+mappages["gauntlet"].npcs[0] = {name : 'MageVillagerNPC', x : 39, y : 15, NPCName: 'Alexis', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'alexis', Gender: 'female', Merch: 'alexis'};
 mappages["gauntlet"].npcs[1] = {name : 'FighterVillagerNPC', x : 4, y : 7, NPCName: 'Dave', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'dave', Gender: 'male'};
 mappages["gauntlet"].npcs[2] = {name : 'PaladinVillagerNPC', x : 6, y : 24, NPCName: 'Sarah', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', PCThreatAI: 'runaway', Conversation: 'sarah', Gender: 'female'};
 mappages["gauntlet"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 34, y : 11, NPCName: 'Anna', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'anna', Gender: 'female'};
