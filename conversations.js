@@ -26,6 +26,15 @@ function set_conversations() {
   conversations.erin["buy"] = new ConvNode({}, "", '"What would you like?"', [{}, {start_shop: 1}]);
   conversations.erin["sell"] = new ConvNode({}, "", '"What have you got?"', [{}, {start_sell: 1}]);
   conversations.erin["bye"] = new ConvNode({}, "", '"Come back soon!"', [{}, {end_convo: 1}]);
+
+  conversations.alexis = new Conversation();
+  conversations.alexis["name"] = new ConvNode({}, "", '"I am Alexis."', [{}, {}]);
+  conversations.alexis["_start"] = new ConvNode({}, "", '"Good day to you."', [{}, {}]);
+  conversations.alexis["_confused"] = new ConvNode({}, "", '"What?"', [{}, {}]);
+  conversations.alexis["buy"] = new ConvNode({}, "", '', [{}, {start_shop: 1}]);
+  conversations.alexis["_startbuy"] = new ConvNode({}, "", '"I can teach these spells."', [{}, {}]);
+  conversations.alexis["_knowsall"] = new ConvNode({}, "", '"You have already learned everything I have to teach!"', [{}, {}]);
+  conversations.alexis["bye"] = new ConvNode({}, "", '"Good day!"', [{}, {end_convo: 1}]);
   
 }
 
@@ -95,11 +104,15 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     keep_talking = 0;
   }
   if (triggers.hasOwnProperty("start_shop")) {
-    DisplayWares(speaker);
+    var sell = DisplayWares(speaker);
     
-    keep_talking = 3; 
+    if (sell) {
+      targetCursor.alreadyBought = {};
+      keep_talking = 3; 
+      // set up merchanting!
+    }
     
-    // set up merchanting!
+
   }
   if (triggers.hasOwnProperty("start_sell")) {
 

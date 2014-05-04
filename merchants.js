@@ -63,23 +63,23 @@ function SetMerchants() {
   bill.low_alchemist.type = "stuff";
 
   bill.alexis = {};
-  bill.alexis.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap (1)", price: 100} ,
-                  { item: "DistractSpell", desc: "Distract (1)", price: 100},
-                  { item: "FlameBladeSpell", desc: "Flame Blade (1)", price: 100},
-                  { item: "StrikeSpell", desc: "Strike (1)", price: 100},
-                  { item: "LesserHealSpell", desc: "Lesser Heal (2)", price: 200},
-                  { item: "MagicBoltSpell", desc: "Magic Bolt (2)", price: 200},
-                  { item: "ProtectSpell", desc: "Protect (2)", price: 200},
-                  { item: "FireArmorSpell", desc: "Fire Armor (3)", price: 400},
+  bill.alexis.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap", lvl: 1, sid: GetSpellID(2), price: 100} ,
+                  { item: "DistractSpell", desc: "Distract", lvl: 1, sid: GetSpellID(3), price: 100},
+                  { item: "FlameBladeSpell", desc: "Flame Blade", lvl:1, sid: GetSpellID(4), price: 100},
+                  { item: "StrikeSpell", desc: "Strike", lvl: 1, sid: GetSpellID(6), price: 100},
+                  { item: "LesserHealSpell", desc: "Lesser Heal", lvl: 2, sid: GetSpellID(2), price: 200},
+                  { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: 2, sid: GetSpellID(3), price: 200},
+                  { item: "ProtectSpell", desc: "Protect", lvl: 2, sid: GetSpellID(5), price: 200},
+                  { item: "FireArmorSpell", desc: "Fire Armor", lvl: 3, sid: GetSpellID(1), price: 400},
                 ];
   bill.alexis.type = "spells";
   
   bill.ivan = {};
-  bill.ivan.stock = [ { item: "LesserHealSpell", desc: "Lesser Heal (2)", price: 150},
-                { item: "ProtectSpell", desc: "Protect (2)", price: 150},
-                { item: "IllusionSpell", desc: "Illusion (2)", price: 150},
-                { item: "TelekinesisSpell", desc: "Telekinesis (3)", price: 330},
-                { item: "HealSpell", desc: "Heal (4)", price: 700},
+  bill.ivan.stock = [ { item: "LesserHealSpell", desc: "Lesser Heal", lvl: 2, sid: GetSpellID(2), price: 150},
+                { item: "ProtectSpell", desc: "Protect", lvl: 2, sid: GetSpellID(5), price: 150},
+                { item: "IllusionSpell", desc: "Illusion", lvl: 2, sid: GetSpellID(1), price: 150},
+                { item: "TelekinesisSpell", desc: "Telekinesis", lvl: 3, sid: GetSpellID(5), price: 330},
+                { item: "HealSpell", desc: "Heal", lvl: 4, sid: GetSpellID(2), price: 700},
               ];
   bill.ivan.type = "spells";
   
@@ -118,9 +118,41 @@ function DisplayWares(who) {
       }
     });
     
+    return 1;
     // WORKING HERE
   } else if (stocks.type === "spells") {
-    
+//    var anyspells = [];
+    var yesspells = 0;
+    $.each(stocks.stock, function(idx, val) {
+      if (!PC.knowsSpell(val.lvl, val.sid)) { 
+        if (!yesspells) {
+          conversations[who.getConversation()].say(who, conversations[who.getConversation()]["_startbuy"].responses[1]);
+        }
+//        anyspells.push(idx);
+        yesspells = 1;
+        var displayname = val.desc + " (" + val.lvl + ")";
+        var spaces = 23 - displayname.length;
+        var addme = String.fromCharCode(code+idx) + ") " + displayname;
+        for (var i=0; i<spaces; i++) {
+          addme = addme + "&nbsp;";
+        }
+        var price = val.price + " gp";
+        spaces = 8-price.length;
+        if (spaces < 8) {
+          for (var i = 0; i<spaces; i++) {
+            price = "&nbsp;" + price;
+          }
+        }
+        addme = addme + price;
+        maintext.addText(addme);
+        
+      }
+    });
+    if (!yesspells) {
+      conversations[who.getConversation()].say(who, conversations[who.getConversation()]["_knowsall"].responses[1]);
+      return 0;
+    }
+    return 1;
   }
   else { alert("Bad merchant. (No biscuit)."); }
 }
