@@ -426,6 +426,7 @@ function DoAction(code) {
     } else if ((code === 47) || (code === 63) || (code === 191)) {  //  ?, or / since it doesn't actually look at shift
       maintext.addText(" ");
       PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "buy");
+      targetCursor.alreadyBought = {};
 //      DisplayWares(targetCursor.talkingto);
     } else if ((code >= 65) && (code <= 90)) {
       // check to see if that letter is in the merchant's inventory
@@ -442,7 +443,7 @@ function DoAction(code) {
             maintext.addText(" ");
             maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + ": Purchased. Anything else?");
           } else { // spell 
-            
+            // letter goes to a spell in theory, need to see if it was listed, already bought, or already known
           }
         } else { // not enough money
           maintext.addText(" ");
