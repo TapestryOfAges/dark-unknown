@@ -443,7 +443,14 @@ function DoAction(code) {
             maintext.addText(" ");
             maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + ": Purchased. Anything else?");
           } else { // spell 
-            // letter goes to a spell in theory, need to see if it was listed, already bought, or already known
+            if (PC.knowsSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid)) {
+              maintext.addText(" ");
+              maintext.addText("You already know that spell.");
+            } else {
+              PC.addSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid);
+              maintext.addText(" ");
+              maintext.addText("You have learned the spell " + merinv.stock[idx].desc + ".");
+            }
           }
         } else { // not enough money
           maintext.addText(" ");

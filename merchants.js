@@ -119,12 +119,11 @@ function DisplayWares(who) {
     });
     
     return 1;
-    // WORKING HERE
   } else if (stocks.type === "spells") {
 //    var anyspells = [];
     var yesspells = 0;
     $.each(stocks.stock, function(idx, val) {
-      if (!PC.knowsSpell(val.lvl, val.sid)) { 
+//      if (!PC.knowsSpell(val.lvl, val.sid)) { 
         if (!yesspells) {
           conversations[who.getConversation()].say(who, conversations[who.getConversation()]["_startbuy"].responses[1]);
         }
@@ -144,9 +143,12 @@ function DisplayWares(who) {
           }
         }
         addme = addme + price;
+        if (PC.knowsSpell(val.lvl, val.sid)) {
+          addme = "<span style='color:aaa'>" + addme + "</span>";
+        }
         maintext.addText(addme);
         
-      }
+//      }
     });
     if (!yesspells) {
       conversations[who.getConversation()].say(who, conversations[who.getConversation()]["_knowsall"].responses[1]);
