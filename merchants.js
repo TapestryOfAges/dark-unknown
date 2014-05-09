@@ -158,3 +158,35 @@ function DisplayWares(who) {
   }
   else { alert("Bad merchant. (No biscuit)."); }
 }
+
+function GetSellBack(seller, merchant) {
+  var stocks = DU.merchants[merchant.getMerch()];
+  var code = 65; // ascii for A, to associate array index with letter for choice
+  var selllist = [];
+
+  $.each(stocks.stock, function(idx, val) { 
+    var ininv = seller.checkInventory(val.item);
+    if (ininv) {
+      var qty = ininv.getQuantity();
+      var displayname = ininv.desc;
+      displayname = displayname + " (" + qty + ")";
+      var spaces = 23 - displayname.length;
+      var addme = String.fromCharCode(code+idx) + ") " + displayname;
+      for (var i=0; i<spaces; i++) {
+        addme = addme + "&nbsp;";
+      }
+      var price = val.price/10 + " gp";
+      spaces = 8-price.length;
+      if (spaces < 8) {
+        for (var i = 0; i<spaces; i++) {
+          price = "&nbsp;" + price;
+        }
+      }
+      addme = addme + price;
+      selllist.push(addme);
+      alert(addme);
+    }
+  });
+  
+  return selllist;
+}
