@@ -117,7 +117,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   if (triggers.hasOwnProperty("start_sell")) {
 
     var selllist = [];
-    // WORKHERE GET LIST OF THINGS TO SELL
+    selllist = GetSellBack(PC,speaker);
     var stocks = DU.merchants[targetCursor.talkingto.getMerch()];
     
     if (selllist.length) {
