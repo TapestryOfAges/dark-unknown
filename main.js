@@ -426,7 +426,6 @@ function DoAction(code) {
     } else if ((code === 47) || (code === 63) || (code === 191)) {  //  ?, or / since it doesn't actually look at shift
       maintext.addText(" ");
       PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "buy");
-      targetCursor.alreadyBought = {};
 //      DisplayWares(targetCursor.talkingto);
     } else if ((code >= 65) && (code <= 90)) {
       // check to see if that letter is in the merchant's inventory
@@ -460,8 +459,39 @@ function DoAction(code) {
     }
   }
   else if (gamestate.getMode() === "sell") {
+    if ((code === 27) || (code ===13)) {    // ESC or enter
+      var convo = targetCursor.talkingto.getConversation();
+      maintext.addText(" ");
+      maintext.addText("You sell: Nothing.");
+      var retval = PerformTalk(targetCursor.talkingto, convo, "bye");
+      maintext.addText(retval["txt"]);
+      maintext.setInputLine(retval["input"]);
+      maintext.drawTextFrame();
+        
+      if (retval["fin"] === 1) {
+        PC.endTurn(retval["initdelay"]);
+      }
 
-
+    } else if ((code === 47) || (code === 63) || (code === 191)) {  //  ?, or / since it doesn't actually look at shift
+      maintext.addText(" ");
+      PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "sell");
+    } else if ((code >= 65) && (code <= 90)) {
+      var merinv = DU.merchants[targetCursor.talkingto.getMerch()];
+      var idx = code-65;
+      if (merinv.stock[idx]) {
+        var ininv = PC.checkInventory(merinv.stock[idx].item);
+        var qty = ininv.getQuantity();
+        if ((ininv === PC.getArmor()) || (ininv === PC.getWeapon()) || (ininv === PC.getMissile())) {
+          qty = qty-1;
+        }
+        if (qty) { // sell it!
+          var sold = ininv.desc;
+          sold = sold.charAt(0).toUpperCase() + sold.slice(1)
+          maintext.addText(sold + ": sold.");
+          PC.removeFromInventory(ininv);  // already handles only subtracting 1 if there are multiples
+          PC.addGold(Math.floor(merinv.stock[idx].price/10));
+        }
+      }
+    }
   }
-
 }

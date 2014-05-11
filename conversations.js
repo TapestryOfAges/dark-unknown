@@ -118,12 +118,13 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
 
     var selllist = [];
     selllist = GetSellBack(PC,speaker);
-    var stocks = DU.merchants[targetCursor.talkingto.getMerch()];
     
     if (selllist.length) {
       maintext.addText(" ");
       maintext.addText("This merchant will buy:");
-      // WORKHERE THIS STUFF DOESN'T GO HERE
+      for (var i=0; i<selllist.length; i++) {
+        maintext.addText(selllist[i]);
+      }
     } else {
       var convo = targetCursor.talkingto.getConversation();
       maintext.addText(" ");

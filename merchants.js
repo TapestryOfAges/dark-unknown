@@ -168,23 +168,27 @@ function GetSellBack(seller, merchant) {
     var ininv = seller.checkInventory(val.item);
     if (ininv) {
       var qty = ininv.getQuantity();
-      var displayname = ininv.desc;
-      displayname = displayname + " (" + qty + ")";
-      var spaces = 23 - displayname.length;
-      var addme = String.fromCharCode(code+idx) + ") " + displayname;
-      for (var i=0; i<spaces; i++) {
-        addme = addme + "&nbsp;";
+      if ((ininv === seller.getArmor()) || (ininv === seller.getWeapon()) || (ininv === seller.getMissile())) {
+        qty = qty-1;
       }
-      var price = val.price/10 + " gp";
-      spaces = 8-price.length;
-      if (spaces < 8) {
-        for (var i = 0; i<spaces; i++) {
-          price = "&nbsp;" + price;
+      if (qty) {
+        var displayname = ininv.desc;
+        displayname = displayname + " (" + qty + ")";
+        var spaces = 23 - displayname.length;
+        var addme = String.fromCharCode(code+idx) + ") " + displayname;
+        for (var i=0; i<spaces; i++) {
+          addme = addme + "&nbsp;";
         }
+        var price = val.price/10 + " gp";
+        spaces = 8-price.length;
+        if (spaces < 8) {
+          for (var i = 0; i<spaces; i++) {
+            price = "&nbsp;" + price;
+          }
+        }
+        addme = addme + price;
+        selllist.push(addme);
       }
-      addme = addme + price;
-      selllist.push(addme);
-      alert(addme);
     }
   });
   
