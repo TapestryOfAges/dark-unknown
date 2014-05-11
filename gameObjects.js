@@ -4798,13 +4798,13 @@ NPCObject.prototype.removeFromInventory = function(item, map, x, y) {
     item.setQuantity(item.getQuantity()-1);
   } else {
     // If this is equipped, unequip it first
-    if (item.checkType("Weapon")) {
+    if (item === this.getWeapon()) {
       this.setEquipment("Weapon","");
     }
-    if (item.checkType("Missile")) {
+    if (item === this.getMissile()) {
       this.setEquipment("Missile","");
     }
-    if (item.checkType("Armor")) {
+    if (item === this.getArmor()) {
       this.setEquipment("Armor","");
     }    
     this.inventory.deleteFrom(item);
