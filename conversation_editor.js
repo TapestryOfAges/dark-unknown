@@ -23,7 +23,7 @@ function create_header() {
 function select_place(pname) {
   curr_place=pname;
   
-  var txt = "<p><form name='convform'><select name='pickconv' onChange='select_conv()'><option value=''></option>";
+  var txt = "<h3>" + pname + "</h3><p><form name='convform'><select name='pickconv' onChange='select_conv()'><option value=''></option>";
   var frst = "";
   $.each(conversations, function(idx, val) {
     if (val._location === pname) {
@@ -33,4 +33,8 @@ function select_place(pname) {
   });
   txt = txt + "</select></form></p>";
   $(convs).html(txt);
+}
+
+function select_conv() {
+  
 }
