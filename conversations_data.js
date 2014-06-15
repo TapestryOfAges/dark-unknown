@@ -8,9 +8,9 @@ function set_conversations() {
   conversations.castleguard1["name"] = new ConvNode({}, "", '"We do not give out our names while on duty."', [{}, {}]);
   conversations.castleguard1["_start"] = new ConvNode({ flags_met: "kingspeech" }, '"Hail, %FORMAL% %NAME%! Your =father= the King wishes to speak with you."', '"Greetings, %FORMAL% %NAME%."', [{}, {}]);
   conversations.castleguard1["job"] = new ConvNode({ flags_met: "kingspeech" }, '"Surely that can wait. Your =father= awaits."', '"We =guard= Castle Olympus."', [{}, {}]);
-  conversations.castleguard1["_confused"] = new ConvNode({}, "", "Beg pardon?", [{}, {}]);
+  conversations.castleguard1["_confused"] = new ConvNode({}, "", '"Beg pardon?"', [{}, {}]);
   conversations.castleguard1["father"] = new ConvNode( {flags_met: "kingspeech" }, '"He is within, upon his throne. Seek him!"', '"He is within."', [{}, { end_convo: 1}]);
-  conversations.castleguard1["throne"] = new ConvNode( {}, "", "Straight ahead through there.", [{}, {}]);
+  conversations.castleguard1["throne"] = new ConvNode( {}, "", '"Straight ahead through there."', [{}, {}]);
   conversations.castleguard1["king"] = conversations.castleguard1["father"];
   conversations.castleguard1["guard"] = new ConvNode( {}, "", '"While we patrols these halls, no harm shall come to those within."', [{}, {}]);
   conversations.castleguard1["bye"] = new ConvNode({ flags_met: "kingspeech" }, '"Hurry along!"', '"Stay out of trouble."', [{end_convo: "%SELF_PRONOUN% waves you onward."}, {end_convo: 1}]);
@@ -18,7 +18,9 @@ function set_conversations() {
   
   conversations.king = new Conversation();
   conversations.king["name"] = new ConvNode({}, "", '"While a king should usually demand a certain formality, even here you can just call me father."', [{}, {}]);
-  conversations.king["_start"] = new ConvNode({ flags_met: "kingspeech" }, '"Thank you, %NAME%, for coming so quickly. Your brother has finally taken that step too far and now he must be dealt with.%%He has raised himself a castle and declared himself to be in rebellion, and so it is with a heavy heart that I say that he is no longer my heir.%%That title passes to you, my %KIDDIE%, who has remained steadfast. But now I must charge you with this duty."', '', [{set_flag: "kingspeech"}, {}]);
+  conversations.king["_confused"] = new ConvNode({}, "", '"I\'m sorry, what was that?"', [{}, {}]);
+  conversations.king["_start"] = new ConvNode({ flags_met: "kingspeech" }, '"Thank you, %NAME%, for coming so quickly. Your brother has finally taken that step too far and now he must be dealt with.%%He has raised himself a castle and declared himself to be in rebellion, and so it is with a heavy heart that I say that he is no longer my heir.%%That title passes to you, my %KIDDIE%, who has remained steadfast. But now I must charge you with this =duty=."', '', [{set_flag: "kingspeech"}, {}]);
+  conversations.king["bye"] = new ConvNode({}, "", '"Travel well!"', [{}, {}]);
   conversations.king._location = "Castle Olympus";
   
   conversations.erin = new Conversation();
