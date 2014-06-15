@@ -38,20 +38,56 @@ function select_conv() {
   var thisconv = document.convform.pickconv.value;
 
   var txt = "<div style='margin-10'><form name='speechform'><table cellpadding='2' cellspacing='0' border='1'>";
-  txt = txt + "<tr><td>_start</td><td style='color:blue'>[no flag]</td><td>" + conversations[thisconv]["_start"].responses[0] + "</td><td><a href='javascript:edit_response(\"_start\",0)'>Edit</a></td></tr>";
-  if (conversations[thisconv]["_start"].flags) {
-    var keytype;
-    var flag;
-    $.each(conversations[thisconv]["_start"].flags, function(idx,val) {
-      keytype = idx;
-      flag = val;
-    });
-    txt = txt + "<tr><td></td><td style='color:blue'>"+ keytype + " : " + flag + "</td><td>" + conversations[thisconv]["_start"].responses[1] + "</td><td><a href='javascript:edit_response(\"_start\",1)'>Edit</a></td></tr>";
-  } else {
-    txt = txt + "<tr><td></td><td></td><td></td><td><a href='javascript:edit_response(\"_start\",1)'>Edit</a></td></tr>";
-  }
+  txt = txt + "<th>KEYWORD</th><th>FLAG</th><th>RESPONSE</th><th>TRIGGERS</th><th></th></tr>";
+  txt = txt + show_response(thisconv, "_start");
+  txt = txt + show_response(thisconv, "_confused");
   
+  $.each(conversations[thisconv], function(idx, val) {
+    if ((idx != "_start") && (idx != "_confused") && (idx != "bye") && (idx != "_location") && (idx != "respond") && (idx != "say")) {
+      txt = txt + show_response(thisconv, idx);
+    }
+    
+  });
   
+  txt = txt + show_response(thisconv, "bye");
   txt = txt + "</table></form></div>";
   $(mainbody).html(txt);
+}
+
+
+function show_response(convname, keyword) {
+  var tmptxt = "";
+  var keytype = "";
+  var flag = "";
+  $.each(conversations[convname][keyword].flags, function(idx,val) {
+    keytype = idx;
+    flag = val;
+  });
+
+  if (keytype) {
+    var triggers = "";
+    $.each(conversations[convname][keyword].triggers[0], function(idx, val) {
+      triggers = triggers + idx + " ";
+    });
+    tmptxt = tmptxt + "<tr><td>" + keyword + "</td><td style='color:blue'>[no flag]</td><td>" + conversations[convname][keyword].responses[0] + "</td><td style='font-weight:bold'>" + triggers + "</td><td rowspan='2'><a href='javascript:edit_response(\"" + convname + "\", \"" + keyword + "\")'>Edit</a></td></tr>";
+    triggers = "";
+    $.each(conversations[convname][keyword].triggers[1], function(idx, val) {
+      triggers = triggers + idx + " ";
+    });
+    tmptxt = tmptxt + "<tr><td></td><td style='color:blue'>"+ keytype + " : " + flag + "</td><td>" + conversations[convname][keyword].responses[1] + "</td><td style='font-weight:bold'>" + triggers + "</td></tr>";
+  } else {
+    var triggers = "";
+    $.each(conversations[convname][keyword].triggers[1], function(idx, val) {
+      triggers = triggers + idx + " ";
+    });
+    tmptxt = tmptxt + "<tr><td>" + keyword + "</td><td style='color:blue'></td><td>" + conversations[convname][keyword].responses[1] + "</td><td style='font-weight:bold'>" + triggers + "</td><td><a href='javascript:edit_response(\"" + convname + "\", \"" + keyword + "\")'>Edit</a></td></tr>";
+  }
+  return tmptxt;
+}
+
+function edit_response(convname, keyword) {
+  var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+  $('#responsebubble').jqm({onShow:myOpen});
+  $('#responsebubble').jqmShow();
+
 }

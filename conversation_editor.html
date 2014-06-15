@@ -7,11 +7,46 @@
     <script language="Javascript" src="conversations.js"></script>
     <script language="Javascript" src="conversations_data.js"></script>
     <script language="Javascript" src="conversation_editor.js"></script>
+    <style>
+      th {font-weight:bold;}
+      div.bubble { display: none; 
+  	           left:50; 
+  	           top:50; 
+  	           color: #aaaaff; 
+  	           background-color: #D7DF01; 
+  	           border: 1px solid #c93;
+  	           position: absolute;  }
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="external/jqModal.css" />
   </head>
   <body>
     <div id='locations'></div>
     <div id='convs'></div>
     <div id='mainbody'></div>
+
+  	<div class="bubble" id="responsebubble"><form name="responseeditpopup"><table cellpadding="1" cellspacing="1" border="0">
+		<tr><td colspan='3' style='text-align:center' id='responseid'></td></tr>
+		<tr><td></td><td><textarea name='response1' rows='2' cols='60'></textarea></td>
+		  <td><input type="checkbox" name="end_convo1" value="end_convo1" /> end_convo<br />
+		  <input type="checkbox" name="give_item1" value="give_item1" /> give_item <input type='text' name='item_given1' size='10' /><br />
+		  <input type="checkbox" name="take_item1" value="take_item1" /> take_item <input type='text' name='item_taken1' size='10' /><br />
+		  <input type="checkbox" name="set_flag1" value="set_flag1" /> set_flag <input type='text' name='flag_set1' size='10' /><br />
+		  <input type="checkbox" name="start_shop1" value="start_shop1" /> start_shop<br />
+		<input type="checkbox" name="start_sell1" value="start_sell1" /> start_sell</td>
+		</tr>
+		<tr><td></td><td><textarea name='response2' rows='2' cols='60'></textarea></td>
+		  <td><input type="checkbox" name="end_convo2" value="end_convo2" /> end_convo<br />
+		  <input type="checkbox" name="give_item2" value="give_item2" /> give_item <input type='text' name='item_given2' size='10' /><br />
+		  <input type="checkbox" name="take_item2" value="take_item2" /> take_item <input type='text' name='item_taken2' size='10' /><br />
+		  <input type="checkbox" name="set_flag2" value="set_flag2" /> set_flag <input type='text' name='flag_set2' size='10' /><br />
+		  <input type="checkbox" name="start_shop2" value="start_shop2" /> start_shop<br />
+		<input type="checkbox" name="start_sell2" value="start_sell2" /> start_sell</td>
+		</tr>
+		<tr><td><input type="submit" value="Edit" onClick="submitEditResponse(1);" class="jqmClose" /></td><td><input type="submit" value="Cancel" onClick="submitEditResponse(0);" class="jqmClose" /> <input type="submit" value="Delete Response" onClick="submitEditResponse(-1);" class="jqmClose" /></td></tr>
+		</table></form>
+	</div>
+
   </body>
 </html>
 
