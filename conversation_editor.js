@@ -50,7 +50,7 @@ function select_conv() {
   });
   
   txt = txt + show_response(thisconv, "bye");
-  txt = txt + "</table></form></div>";
+  txt = txt + "</table></form><p><a href='javascript:edit_response(\""+ thisconv + "\", \"___\");'>New Response</a></p></div>";
   $(mainbody).html(txt);
 }
 
@@ -89,5 +89,7 @@ function edit_response(convname, keyword) {
   var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
   $('#responsebubble').jqm({onShow:myOpen});
   $('#responsebubble').jqmShow();
+
+  
 
 }

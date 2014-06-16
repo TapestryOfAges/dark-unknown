@@ -25,8 +25,8 @@
     <div id='convs'></div>
     <div id='mainbody'></div>
 
-  	<div class="bubble" id="responsebubble"><form name="responseeditpopup"><table cellpadding="1" cellspacing="1" border="0">
-		<tr><td colspan='3' style='text-align:center' id='responseid'></td></tr>
+  	<div class="bubble" id="responsebubble"><form name="responseeditpopup"><table cellpadding="2" cellspacing="1" border="1">
+		<tr><td colspan='3' style='text-align:center; font-weight:bold' id='responseid'>Keyword: <input type='text' size='10' name='responsekeyword'></td></tr>
 		<tr><td></td><td><textarea name='response1' rows='2' cols='60'></textarea></td>
 		  <td><input type="checkbox" name="end_convo1" value="end_convo1" /> end_convo<br />
 		  <input type="checkbox" name="give_item1" value="give_item1" /> give_item <input type='text' name='item_given1' size='10' /><br />
@@ -35,7 +35,8 @@
 		  <input type="checkbox" name="start_shop1" value="start_shop1" /> start_shop<br />
 		<input type="checkbox" name="start_sell1" value="start_sell1" /> start_sell</td>
 		</tr>
-		<tr><td></td><td><textarea name='response2' rows='2' cols='60'></textarea></td>
+		<tr><td><select name='flags2'><option value=""></option><option value="flag_set">flag_set</option><option value="has_item">has_item</option></select></td>
+		  <td><textarea name='response2' rows='2' cols='60'></textarea></td>
 		  <td><input type="checkbox" name="end_convo2" value="end_convo2" /> end_convo<br />
 		  <input type="checkbox" name="give_item2" value="give_item2" /> give_item <input type='text' name='item_given2' size='10' /><br />
 		  <input type="checkbox" name="take_item2" value="take_item2" /> take_item <input type='text' name='item_taken2' size='10' /><br />
