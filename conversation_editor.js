@@ -67,18 +67,18 @@ function show_response(convname, keyword) {
   if (keytype) {
     var triggers = "";
     $.each(conversations[convname][keyword].triggers[0], function(idx, val) {
-      triggers = triggers + idx + " ";
+      triggers = triggers + idx + " " + "(" + val + ") ";
     });
     tmptxt = tmptxt + "<tr><td>" + keyword + "</td><td style='color:blue'>[no flag]</td><td>" + conversations[convname][keyword].responses[0] + "</td><td style='font-weight:bold'>" + triggers + "</td><td rowspan='2'><a href='javascript:edit_response(\"" + convname + "\", \"" + keyword + "\")'>Edit</a></td></tr>";
     triggers = "";
     $.each(conversations[convname][keyword].triggers[1], function(idx, val) {
-      triggers = triggers + idx + " ";
+      triggers = triggers + idx + " " + "(" + val + ") ";
     });
     tmptxt = tmptxt + "<tr><td></td><td style='color:blue'>"+ keytype + " : " + flag + "</td><td>" + conversations[convname][keyword].responses[1] + "</td><td style='font-weight:bold'>" + triggers + "</td></tr>";
   } else {
     var triggers = "";
     $.each(conversations[convname][keyword].triggers[1], function(idx, val) {
-      triggers = triggers + idx + " ";
+      triggers = triggers + idx + " " + "(" + val + ") ";
     });
     tmptxt = tmptxt + "<tr><td>" + keyword + "</td><td style='color:blue'></td><td>" + conversations[convname][keyword].responses[1] + "</td><td style='font-weight:bold'>" + triggers + "</td><td><a href='javascript:edit_response(\"" + convname + "\", \"" + keyword + "\")'>Edit</a></td></tr>";
   }
@@ -91,6 +91,70 @@ function edit_response(convname, keyword) {
   $('#responsebubble').jqmShow();
 
   document.responseeditpopup.responsekeyword.value = keyword;
+  document.responseeditpopup.response1.value = conversations[convname][keyword].responses[0];
+  var triggers = "";
+  $.each(conversations[convname][keyword].triggers[0], function(idx, val) {
+    if (idx === "end_convo") { 
+      document.responseeditpopup.end_convo1.checked = "true"; 
+      document.responseeditpopup.end_convo1_val.value = val;
+    }
+    else if (idx === "give_item") {
+      document.responseeditpopup.give_item1.checked = "true";
+      document.responseeditpopup.item_given1.value = val;
+    }
+    else if (idx === "take_item") {
+      document.responseeditpopup.take_item1.checked = "true";
+      document.responseeditpopup.item_taken1.value = val;
+    }
+    else if (idx === "set_flag") {
+      document.responseeditpopup.set_flag1.checked = "true";
+      document.responseeditpopup.flag_set1.value = val;
+    }
+    else if (idx === "start_shop") {
+      document.responseeditpopup.start_shop1.checked = "true";
+    }
+    else if (idx === "start_sell") {
+      document.responseeditpopup.start_sell1.checked = "true";
+    }
+    else { alert("Weird trigger: " + idx + " : " + val); }
+  });
   
+  var keytype = "";
+  var flag = "";
+  $.each(conversations[convname][keyword].flags, function(idx,val) {
+    keytype = idx;
+    flag = val;
+  });
+  
+  document.responseeditpopup.flags2.value= keytype;
+  document.responseeditpopup.flags2val.value= flag;
+    
+  document.responseeditpopup.response2.value = conversations[convname][keyword].responses[1];
+  var triggers = "";
+  $.each(conversations[convname][keyword].triggers[1], function(idx, val) {
+    if (idx === "end_convo") { 
+      document.responseeditpopup.end_convo2.checked = "true"; 
+      document.responseeditpopup.end_convo2_val.value = val;
+    }
+    else if (idx === "give_item") {
+      document.responseeditpopup.give_item2.checked = "true";
+      document.responseeditpopup.item_given2.value = val;
+    }
+    else if (idx === "take_item") {
+      document.responseeditpopup.take_item2.checked = "true";
+      document.responseeditpopup.item_taken2.value = val;
+    }
+    else if (idx === "set_flag") {
+      document.responseeditpopup.set_flag2.checked = "true";
+      document.responseeditpopup.flag_set2.value = val;
+    }
+    else if (idx === "start_shop") {
+      document.responseeditpopup.start_shop2.checked = "true";
+    }
+    else if (idx === "start_sell") {
+      document.responseeditpopup.start_sell2.checked = "true";
+    }
+    else { alert("Weird trigger: " + idx + " : " + val); }
+  });
 
 }
