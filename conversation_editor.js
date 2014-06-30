@@ -30,8 +30,22 @@ function select_place(pname) {
       if (!frst) { frst = idx; }
     }
   });
-  txt = txt + "</select></form></p>";
+  txt = txt + "</select></form> <a href='javascript:new_conv()'>New Conversation</a></p>";
   $(convs).html(txt);
+}
+
+function new_conv() {
+  var convname = "";
+  while (convname === "") {
+    convname = prompt("Name of conversation:");
+    $.each(conversations, function(idx, val) {
+      if (convname === idx) { convname = ""; }
+    });
+  }
+  conversations[convname] = {};
+  conversations[convname]._location = curr_place;
+  document.convform.pickconv.value = convname;
+  edit_response(convname, "");
 }
 
 function select_conv() {
@@ -90,6 +104,7 @@ function edit_response(convname, keyword) {
   $('#responsebubble').jqm({onShow:myOpen});
   $('#responsebubble').jqmShow();
 
+  if (keyword) {
   document.responseeditpopup.responsekeyword.value = keyword;
   document.responseeditpopup.response1.value = conversations[convname][keyword].responses[0];
   var triggers = "";
@@ -157,4 +172,25 @@ function edit_response(convname, keyword) {
     else { alert("Weird trigger: " + idx + " : " + val); }
   });
 
+  document.responseeditpopup.theconv.value = convname;
+  }  
+  document.responseeditpopup.location.value = conversations[convname]._location;
+}
+
+function submitEditResponse(val) {
+  var convname = document.responseeditpopup.theconv.value;
+  if (val === -1) { // delete this conversation
+    var conf = confirm("Are you sure?");
+    if (conf == true) {
+      conversations[convname] = {};
+    } else {
+      var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+      $('#responsebubble').jqm({onShow:myOpen});
+      $('#responsebubble').jqmShow();
+    }
+  }
+  
+  else if (val === 1) {
+    
+  }
 }
