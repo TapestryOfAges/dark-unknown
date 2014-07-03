@@ -179,10 +179,12 @@ function edit_response(convname, keyword) {
 
 function submitEditResponse(val) {
   var convname = document.responseeditpopup.theconv.value;
+  var keyword = document.responseeditpopup.responsekeyword.value;
   if (val === -1) { // delete this conversation
     var conf = confirm("Are you sure?");
     if (conf == true) {
-      conversations[convname] = {};
+      delete conversations[convname][keyword];
+      select_conv();
     } else {
       var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
       $('#responsebubble').jqm({onShow:myOpen});
@@ -191,6 +193,15 @@ function submitEditResponse(val) {
   }
   
   else if (val === 1) {
-    
+    while (!keyword) {
+      keyword = prompt("What is the keyword?");
+    }
+    if (document.responseeditpopup.flags2.value) { 
+      conversations.convname.keyword.flags[document.responseeditpopup.flags2.value] = document.responseeditpopup.flags2.value;
+    }
+    conversations.convname.keyword.responses = [ document.responseeditpopup.response1.value , document.responseeditpopup.response2.value ];
+    var triggers1 = {};
+    var triggers2 = {};
+//if tree on various triggers, adding them to above hash and then making an array [ triggers1, triggers2 ] and adding that to conversations.convname.triggers
   }
 }
