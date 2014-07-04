@@ -186,9 +186,10 @@ function submitEditResponse(val) {
       delete conversations[convname][keyword];
       select_conv();
     } else {
-      var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
-      $('#responsebubble').jqm({onShow:myOpen});
-      $('#responsebubble').jqmShow();
+      setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+        $('#responsebubble').jqm({onShow:myOpen});
+        $('#responsebubble').jqmShow();
+      }, 200);
     }
   }
   
@@ -197,11 +198,102 @@ function submitEditResponse(val) {
       keyword = prompt("What is the keyword?");
     }
     if (document.responseeditpopup.flags2.value) { 
-      conversations.convname.keyword.flags[document.responseeditpopup.flags2.value] = document.responseeditpopup.flags2.value;
+      conversations[convname][keyword].flags[document.responseeditpopup.flags2.value] = document.responseeditpopup.flags2.value;
     }
-    conversations.convname.keyword.responses = [ document.responseeditpopup.response1.value , document.responseeditpopup.response2.value ];
+    conversations[convname][keyword].responses = [ document.responseeditpopup.response1.value , document.responseeditpopup.response2.value ];
     var triggers1 = {};
     var triggers2 = {};
 //if tree on various triggers, adding them to above hash and then making an array [ triggers1, triggers2 ] and adding that to conversations.convname.triggers
+    if (document.responseeditpopup.end_convo1.checked) {
+      if (document.responseeditpopup.end_convo1_val.value) {
+        triggers1.end_convo = document.responseeditpopup.end_convo1_val.value;
+      } else { 
+        triggers1.end_convo = 1;
+      }
+    }
+    if (document.responseeditpopup.give_item1.checked) {
+      if (document.responseeditpopup.item_given1.value) {
+        triggers1.give_item = document.responseeditpopup.item_given1.value;
+      } else {
+        alert("Needs an item given for item_given1.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
+    if (document.responseeditpopup.take_item1.checked) {
+      if (document.responseeditpopup.item_taken1.value) {
+        triggers1.take_item = document.responseeditpopup.item_taken1.value;
+      } else {
+        alert("Needs an item given for item_taken1.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
+    if (document.responseeditpopup.set_flag1.checked) {
+      if (document.responseeditpopup.flag_set1.value) {
+        triggers1.set_flag = document.responseeditpopup.flag_set1.value;
+      } else { 
+        triggers1.set_flag = 1;
+      }
+    }
+    if (document.responseeditpopup.start_shop1.checked) {
+     triggers1.start_shop = 1;
+    }
+    if (document.responseeditpopup.start_sell1.checked) {
+     triggers1.start_sell = 1;
+    }
+
+    if (document.responseeditpopup.end_convo2.checked) {
+      if (document.responseeditpopup.end_convo2_val.value) {
+        triggers2.end_convo = document.responseeditpopup.end_convo2_val.value;
+      } else { 
+        triggers2.end_convo = 1;
+      }
+    }
+    if (document.responseeditpopup.give_item2.checked) {
+      if (document.responseeditpopup.item_given2.value) {
+        triggers2.give_item = document.responseeditpopup.item_given2.value;
+      } else {
+        alert("Needs an item given for item_given2.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
+    if (document.responseeditpopup.take_item2.checked) {
+      if (document.responseeditpopup.item_taken2.value) {
+        triggers2.take_item = document.responseeditpopup.item_taken2.value;
+      } else {
+        alert("Needs an item given for item_taken2.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
+    if (document.responseeditpopup.set_flag2.checked) {
+      if (document.responseeditpopup.flag_set2.value) {
+        triggers2.set_flag = document.responseeditpopup.flag_set2.value;
+      } else { 
+        triggers2.set_flag = 1;
+      }
+    }
+    if (document.responseeditpopup.start_shop2.checked) {
+     triggers2.start_shop = 1;
+    }
+    if (document.responseeditpopup.start_sell2.checked) {
+     triggers2.start_sell = 1;
+    }
+
+    conversations[convname][keyword].triggers = [ triggers1, triggers2 ];
   }
 }
