@@ -14,9 +14,13 @@ function create_header() {
     places[val._location] = 1;
   });
   
+  $('#locations').html("<p><a href='javascript:saveconv()'>[Save Conversations]</a></p><p>");
+  
   $.each(places, function(idx,val) {
-    $(locations).html($(locations).html() + "<a href='javascript:select_place(\"" + idx + "\")'>" + idx + "</a> | ");
+    $('#locations').html($('#locations').html() + "<a href='javascript:select_place(\"" + idx + "\")'>" + idx + "</a> | ");
   });
+  
+  $('#locations').html($('#locations').html() + "</p>");
 }
 
 function select_place(pname) {
@@ -31,7 +35,7 @@ function select_place(pname) {
     }
   });
   txt = txt + "</select></form> <a href='javascript:new_conv()'>New Conversation</a></p>";
-  $(convs).html(txt);
+  $('#convs').html(txt);
 }
 
 function new_conv() {
@@ -65,7 +69,7 @@ function select_conv() {
   
   txt = txt + show_response(thisconv, "bye");
   txt = txt + "</table></form><p><a href='javascript:edit_response(\""+ thisconv + "\", \"\");'>New Response</a></p></div>";
-  $(mainbody).html(txt);
+  $('#mainbody').html(txt);
 }
 
 
@@ -104,76 +108,103 @@ function edit_response(convname, keyword) {
   $('#responsebubble').jqm({onShow:myOpen});
   $('#responsebubble').jqmShow();
 
-  if (keyword) {
   document.responseeditpopup.responsekeyword.value = keyword;
-  document.responseeditpopup.response1.value = conversations[convname][keyword].responses[0];
-  var triggers = "";
-  $.each(conversations[convname][keyword].triggers[0], function(idx, val) {
-    if (idx === "end_convo") { 
-      document.responseeditpopup.end_convo1.checked = "true"; 
-      document.responseeditpopup.end_convo1_val.value = val;
-    }
-    else if (idx === "give_item") {
-      document.responseeditpopup.give_item1.checked = "true";
-      document.responseeditpopup.item_given1.value = val;
-    }
-    else if (idx === "take_item") {
-      document.responseeditpopup.take_item1.checked = "true";
-      document.responseeditpopup.item_taken1.value = val;
-    }
-    else if (idx === "set_flag") {
-      document.responseeditpopup.set_flag1.checked = "true";
-      document.responseeditpopup.flag_set1.value = val;
-    }
-    else if (idx === "start_shop") {
-      document.responseeditpopup.start_shop1.checked = "true";
-    }
-    else if (idx === "start_sell") {
-      document.responseeditpopup.start_sell1.checked = "true";
-    }
-    else { alert("Weird trigger: " + idx + " : " + val); }
-  });
-  
-  var keytype = "";
-  var flag = "";
-  $.each(conversations[convname][keyword].flags, function(idx,val) {
-    keytype = idx;
-    flag = val;
-  });
-  
-  document.responseeditpopup.flags2.value= keytype;
-  document.responseeditpopup.flags2val.value= flag;
-    
-  document.responseeditpopup.response2.value = conversations[convname][keyword].responses[1];
-  var triggers = "";
-  $.each(conversations[convname][keyword].triggers[1], function(idx, val) {
-    if (idx === "end_convo") { 
-      document.responseeditpopup.end_convo2.checked = "true"; 
-      document.responseeditpopup.end_convo2_val.value = val;
-    }
-    else if (idx === "give_item") {
-      document.responseeditpopup.give_item2.checked = "true";
-      document.responseeditpopup.item_given2.value = val;
-    }
-    else if (idx === "take_item") {
-      document.responseeditpopup.take_item2.checked = "true";
-      document.responseeditpopup.item_taken2.value = val;
-    }
-    else if (idx === "set_flag") {
-      document.responseeditpopup.set_flag2.checked = "true";
-      document.responseeditpopup.flag_set2.value = val;
-    }
-    else if (idx === "start_shop") {
-      document.responseeditpopup.start_shop2.checked = "true";
-    }
-    else if (idx === "start_sell") {
-      document.responseeditpopup.start_sell2.checked = "true";
-    }
-    else { alert("Weird trigger: " + idx + " : " + val); }
-  });
+  document.responseeditpopup.response1.value = "";
+  document.responseeditpopup.end_convo1.checked = false;
+  document.responseeditpopup.end_convo1_val.value = "";
+  document.responseeditpopup.give_item1.checked = false;
+  document.responseeditpopup.item_given1.value = "";
+  document.responseeditpopup.take_item1.checked = false;
+  document.responseeditpopup.item_taken1.value = "";
+  document.responseeditpopup.set_flag1.checked = false;
+  document.responseeditpopup.flag_set1.value = "";
+  document.responseeditpopup.start_shop1.checked = false;
+  document.responseeditpopup.start_sell1.checked = false;
+  document.responseeditpopup.flags2.value = "";
+  document.responseeditpopup.flags2val.value = "";
+  document.responseeditpopup.response2.value = "";
+  document.responseeditpopup.end_convo2.checked = false;
+  document.responseeditpopup.end_convo2_val.value = "";
+  document.responseeditpopup.give_item2.checked = false;
+  document.responseeditpopup.item_given2.value = "";
+  document.responseeditpopup.take_item2.checked = false;
+  document.responseeditpopup.item_taken2.value = "";
+  document.responseeditpopup.set_flag2.checked = false;
+  document.responseeditpopup.flag_set2.value = "";
+  document.responseeditpopup.start_shop2.checked = false;
+  document.responseeditpopup.start_sell2.checked = false;
 
+
+  if (keyword) {
+    document.responseeditpopup.responsekeyword.value = keyword;
+    document.responseeditpopup.response1.value = conversations[convname][keyword].responses[0];
+    var triggers = "";
+    $.each(conversations[convname][keyword].triggers[0], function(idx, val) {
+      if (idx === "end_convo") { 
+        document.responseeditpopup.end_convo1.checked = "true"; 
+        document.responseeditpopup.end_convo1_val.value = val;
+      }
+      else if (idx === "give_item") {
+        document.responseeditpopup.give_item1.checked = "true";
+        document.responseeditpopup.item_given1.value = val;
+      }
+      else if (idx === "take_item") {
+        document.responseeditpopup.take_item1.checked = "true";
+        document.responseeditpopup.item_taken1.value = val;
+      }
+      else if (idx === "set_flag") {
+        document.responseeditpopup.set_flag1.checked = "true";
+        document.responseeditpopup.flag_set1.value = val;
+      }
+      else if (idx === "start_shop") {
+        document.responseeditpopup.start_shop1.checked = "true";
+      }
+      else if (idx === "start_sell") {
+        document.responseeditpopup.start_sell1.checked = "true";
+      }
+      else { alert("Weird trigger: " + idx + " : " + val); }
+    });
+  
+    var keytype = "";
+    var flag = "";
+    $.each(conversations[convname][keyword].flags, function(idx,val) {
+      keytype = idx;
+      flag = val;
+    });
+  
+    document.responseeditpopup.flags2.value = keytype;
+    document.responseeditpopup.flags2val.value = flag;
+    
+    document.responseeditpopup.response2.value = conversations[convname][keyword].responses[1];
+    var triggers = "";
+    $.each(conversations[convname][keyword].triggers[1], function(idx, val) {
+      if (idx === "end_convo") { 
+        document.responseeditpopup.end_convo2.checked = "true"; 
+        document.responseeditpopup.end_convo2_val.value = val;
+      }
+      else if (idx === "give_item") {
+        document.responseeditpopup.give_item2.checked = "true";
+        document.responseeditpopup.item_given2.value = val;
+      }
+      else if (idx === "take_item") {
+        document.responseeditpopup.take_item2.checked = "true";
+        document.responseeditpopup.item_taken2.value = val;
+      }
+      else if (idx === "set_flag") {
+        document.responseeditpopup.set_flag2.checked = "true";
+        document.responseeditpopup.flag_set2.value = val;
+      }
+      else if (idx === "start_shop") {
+        document.responseeditpopup.start_shop2.checked = "true";
+      }
+      else if (idx === "start_sell") {
+        document.responseeditpopup.start_sell2.checked = "true";
+      }
+      else { alert("Weird trigger: " + idx + " : " + val); }
+    });
+
+  } 
   document.responseeditpopup.theconv.value = convname;
-  }  
   document.responseeditpopup.location.value = conversations[convname]._location;
 }
 
@@ -197,13 +228,17 @@ function submitEditResponse(val) {
     while (!keyword) {
       keyword = prompt("What is the keyword?");
     }
+    if (!conversations[convname][keyword]){
+      conversations[convname][keyword] = {};
+    }
     if (document.responseeditpopup.flags2.value) { 
-      conversations[convname][keyword].flags[document.responseeditpopup.flags2.value] = document.responseeditpopup.flags2.value;
+      conversations[convname][keyword].flags = {}
+      conversations[convname][keyword]["flags"][document.responseeditpopup.flags2.value] = document.responseeditpopup.flags2val.value;
     }
     conversations[convname][keyword].responses = [ document.responseeditpopup.response1.value , document.responseeditpopup.response2.value ];
     var triggers1 = {};
     var triggers2 = {};
-//if tree on various triggers, adding them to above hash and then making an array [ triggers1, triggers2 ] and adding that to conversations.convname.triggers
+
     if (document.responseeditpopup.end_convo1.checked) {
       if (document.responseeditpopup.end_convo1_val.value) {
         triggers1.end_convo = document.responseeditpopup.end_convo1_val.value;
@@ -295,5 +330,21 @@ function submitEditResponse(val) {
     }
 
     conversations[convname][keyword].triggers = [ triggers1, triggers2 ];
+    conversations[convname]._location = document.responseeditpopup.location.value; 
+    select_conv();
   }
+}
+
+function saveconv() {
+  var serialized = JSON.stringify(conversations);
+
+  serialized = serialized.replace(/\\/g, "\\\\");
+  
+  serialized = serialized.replace(/\'/g, "\\'");
+  alert(serialized);
+  var printerwin = window.open('','printarray');
+  printerwin.document.writeln("var serialconv = '" + serialized + "';");
+  printerwin.document.close();
+  
+  var deser = JSON.parse(serialized);
 }
