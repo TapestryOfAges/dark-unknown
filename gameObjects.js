@@ -1509,6 +1509,84 @@ function WallTile() {
 }
 WallTile.prototype = new TerrainObject();
 
+function RuinsWallTallLeftMidRightTile() {
+  this.name = "RuinsWallTallLeftMidRight";
+//  this.graphic = "056.gif";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+}
+RuinsWallTallLeftMidRightTile.prototype = new TerrainObject();
+
+function RuinsWallMidLeftMidRightTile() {
+  this.name = "RuinsWallMidLeftMidRight";
+//  this.graphic = "056.gif";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+}
+RuinsWallMidLeftMidRightTile.prototype = new TerrainObject();
+
+function RuinsWallMidLeftTallRightTile() {
+  this.name = "RuinsWallMidLeftTallRight";
+//  this.graphic = "056.gif";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+}
+RuinsWallMidLeftTallRightTile.prototype = new TerrainObject();
+
+function RuinsWallTile() {
+  this.name = "RuinsWall";
+//  this.graphic = "056.gif";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+}
+RuinsWallTile.prototype = new TerrainObject();
+
+function RuinsWallMidLeftBottomRightTile() {
+  this.name = "RuinsWallMidLeftBottomRight";
+//  this.graphic = "056.gif";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+}
+RuinsWallMidLeftBottomRightTile.prototype = new TerrainObject();
+
+function RuinsWallBottomLeftMidRightTile() {
+  this.name = "RuinsWallBottomLeftMidRight";
+//  this.graphic = "056.gif";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+}
+RuinsWallBottomLeftMidRightTile.prototype = new TerrainObject();
+
 function ArrowSlitTile() {
 	this.name = "ArrowSlit";
 //	this.graphic = "arrowslit.gif";

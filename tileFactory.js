@@ -251,6 +251,36 @@ tileFactory.prototype.makeWallTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRuinsWallTallLeftMidRightTile = function() {
+  var newTile = new RuinsWallTallLeftMidRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallMidLeftMidRightTile = function() {
+  var newTile = new RuinsWallMidLeftMidRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallMidLeftTallRightTile = function() {
+  var newTile = new RuinsWallMidLeftTallRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallTile = function() {
+  var newTile = new RuinsWallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallMidLeftBottomRightTile = function() {
+  var newTile = new RuinsWallMidLeftBottomRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallBottomLeftMidRightTile = function() {
+  var newTile = new RuinsWallBottomLeftMidRightTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeArrowSlitTile = function() {
   var newTile = new ArrowSlitTile();
   return newTile;
