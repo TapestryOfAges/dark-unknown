@@ -14,7 +14,7 @@ function create_header() {
     places[val._location] = 1;
   });
   
-  $('#locations').html("<p><a href='javascript:saveconv()'>[Save Conversations]</a></p><p>");
+  $('#locations').html("<p><a href='javascript:validate()'>[Validate]</a> <a href='javascript:saveconv()'>[Save Conversations]</a></p><p>");
   
   $.each(places, function(idx,val) {
     $('#locations').html($('#locations').html() + "<a href='javascript:select_place(\"" + idx + "\")'>" + idx + "</a> | ");
@@ -347,4 +347,10 @@ function saveconv() {
   printerwin.document.close();
   
   var deser = JSON.parse(serialized);
+}
+
+function validate() {
+  $.each(conversations, function(idx,val) {
+    
+  });
 }
