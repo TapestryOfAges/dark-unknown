@@ -350,7 +350,11 @@ function saveconv() {
 }
 
 function validate() {
+  $("#mainbody").html("");
   $.each(conversations, function(idx,val) {
-    
+    $("#mainbody").html($("#mainbody").html() + "Processing " + idx + "...");
+    if (!val["_start"]) { 
+      
+    }
   });
 }
