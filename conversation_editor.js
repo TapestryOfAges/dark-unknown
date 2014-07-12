@@ -350,11 +350,38 @@ function saveconv() {
 }
 
 function validate() {
-  $("#mainbody").html("");
+  $("#mainbody").html("<p>");
   $.each(conversations, function(idx,val) {
+    var allgood = 1;
     $("#mainbody").html($("#mainbody").html() + "Processing " + idx + "...");
     if (!val["_start"]) { 
-      
+      allgood = 0;
+      $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>_start missing</span>");
     }
+    if (!val["_confused"]) { 
+      allgood = 0;
+      $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>_confused missing</span>");
+    }
+    if (!val["name"]) { 
+      allgood = 0;
+      $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>name missing</span>");
+    }
+    if (!val["job"]) { 
+      allgood = 0;
+      $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>job missing</span>");
+    }
+    if (!val["bye"]) { 
+      allgood = 0;
+      $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>bye missing</span>");
+    }
+    if (!val["_location"]) { 
+      allgood = 0;
+      $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>_location missing</span>");
+    }
+    if (allgood) {
+      $("#mainbody").html($("#mainbody").html() + "<span style='color:blue'>validated</span>.");
+    }
+    $("#mainbody").html($("#mainbody").html() + "<br />");
+    
   });
 }
