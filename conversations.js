@@ -155,3 +155,4 @@ function ConvNode(flags, noflag_response, flag_response, triggers) {
   this.triggers = triggers;
 }
 ConvNode.prototype = new Object();
+//Deprecated
