@@ -378,9 +378,39 @@ function validate() {
       allgood = 0;
       $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>_location missing</span>");
     }
+    
+    $.each(val, function(idx2,val2) {
+      if (idx2 !== "_location") {
+        if (val2.responses[0] && (Object.keys(val2.flags).length === 0)) { 
+          $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>Keyword " + idx2 + " has no flag, response in wrong field. Repairing...</span>");
+          val2.responses[1] = val2.responses[0];
+          val2.responses[0] = "";
+          val2.triggers[1] = val2.triggers[0];
+          val2.triggers[0] = {};
+          allgood = 0;
+        }
+        $.each(val2.flags, function(flagname, flagval) {
+          if (flagval === "") {
+            $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>Keyword " + idx2 + ", flag " + flagname + " has no value.</span>");
+          }
+        });
+        $.each(val2.triggers[0], function(trigname, trigval) {
+          if (((trigname === "end_convo") || (trigname === "give_item") || (trigname === "take_item") || (trigname === "set_flag")) && (trigval === "")) {
+            $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>Keyword " + idx2 + ", trigger " + trigname + " has no value.</span>");
+          }
+        });
+        $.each(val2.triggers[1], function(trigname, trigval) {
+          if (((trigname === "end_convo") || (trigname === "give_item") || (trigname === "take_item") || (trigname === "set_flag")) && (trigval === "")) {
+            $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>Keyword " + idx2 + ", trigger " + trigname + " has no value.</span>");
+          }          
+        });
+      }
+    });
+    
     if (allgood) {
       $("#mainbody").html($("#mainbody").html() + "<span style='color:blue'>validated</span>.");
     }
+    
     $("#mainbody").html($("#mainbody").html() + "<br />");
     
   });
