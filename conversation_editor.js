@@ -380,7 +380,7 @@ function validate() {
     }
     
     $.each(val, function(idx2,val2) {
-      if (idx2 !== "_location") {
+      if ((idx2 !== "_location") && (typeof val2 !== "function")) {
         if (val2.responses[0] && (Object.keys(val2.flags).length === 0)) { 
           $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>Keyword " + idx2 + " has no flag, response in wrong field. Repairing...</span>");
           val2.responses[1] = val2.responses[0];
