@@ -231,8 +231,8 @@ function submitEditResponse(val) {
     if (!conversations[convname][keyword]){
       conversations[convname][keyword] = {};
     }
+    conversations[convname][keyword].flags = {};
     if (document.responseeditpopup.flags2.value) { 
-      conversations[convname][keyword].flags = {}
       conversations[convname][keyword]["flags"][document.responseeditpopup.flags2.value] = document.responseeditpopup.flags2val.value;
     }
     conversations[convname][keyword].responses = [ document.responseeditpopup.response1.value , document.responseeditpopup.response2.value ];
@@ -328,9 +328,10 @@ function submitEditResponse(val) {
     if (document.responseeditpopup.start_sell2.checked) {
      triggers2.start_sell = 1;
     }
-
+    
     conversations[convname][keyword].triggers = [ triggers1, triggers2 ];
     conversations[convname]._location = document.responseeditpopup.location.value; 
+    
     select_conv();
   }
 }
@@ -341,7 +342,7 @@ function saveconv() {
   serialized = serialized.replace(/\\/g, "\\\\");
   
   serialized = serialized.replace(/\'/g, "\\'");
-  alert(serialized);
+  //alert(serialized);
   var printerwin = window.open('','printarray');
   printerwin.document.writeln("var serialconv = '" + serialized + "';");
   printerwin.document.close();
