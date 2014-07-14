@@ -10,7 +10,10 @@ function PerformCommand(code) {
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
-		if (success["msg"].match("Blocked")) { retval["fin"] = 2; }
+    if (success["msg"].match("Blocked")) { 
+      if (DU.gameflags.sound) { play_audio("sfx_walk_blocked"); }
+      retval["fin"] = 2; 
+    }
 		retval["initdelay"] = success["initdelay"];
 	}
 	else if ((code === 37) || (code === 59)) {  // LEFT ARROW or ;
@@ -21,7 +24,10 @@ function PerformCommand(code) {
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
-		if (success["msg"].match("Blocked")) { retval["fin"] = 2; }
+    if (success["msg"].match("Blocked")) { 
+      if (DU.gameflags.sound) { play_audio("sfx_walk_blocked"); }
+      retval["fin"] = 2; 
+    }
 		retval["initdelay"] = success["initdelay"];
 	}
 	else if ((code === 39) || (code === 222)) { // RIGHT ARROW or '
@@ -32,7 +38,10 @@ function PerformCommand(code) {
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
-		if (success["msg"].match("Blocked")) { retval["fin"] = 2; }
+    if (success["msg"].match("Blocked")) { 
+      if (DU.gameflags.sound) { play_audio("sfx_walk_blocked"); }
+      retval["fin"] = 2; 
+    }
 		retval["initdelay"] = success["initdelay"];
 	}
 	else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
@@ -43,7 +52,10 @@ function PerformCommand(code) {
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
-		if (success["msg"].match("Blocked")) { retval["fin"] = 2; }
+    if (success["msg"].match("Blocked")) { 
+      if (DU.gameflags.sound) { play_audio("sfx_walk_blocked"); }
+      retval["fin"] = 2; 
+    }
 		retval["initdelay"] = success["initdelay"];
 	}
 	else if (code === 65) { // a
