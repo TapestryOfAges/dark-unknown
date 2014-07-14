@@ -17,7 +17,12 @@ musiclist["Olympus"] = "music/Olympus.mp3";
 var sfxlist = {};
 sfxlist["sfx_walk_right"] = "sfx/sfx1.wav";
 sfxlist["sfx_walk_left"] = "sfx/sfx1.wav";
+sfxlist["sfx_walk_blocked"] = "sfx/sfx6.wav";
+sfxlist["sfx_open_door"] = "sfx/sfx3.wav";
+sfxlist["sfx_close_door"] = "sfx/sfx4.wav";
+sfxlist["sfx_locked_door"] = "sfx/sfx5.wav";
 sfxlist["sfx_spell_light"] = "sfx/sfx2.wav";
+
 
 var mapslist = {};
 mapslist["darkunknown"] = "the Mainland";
