@@ -1,0 +1,30 @@
+
+Spellbook:
+http://flameshaft.deviantart.com/art/Open-book-289133547
+"flameshaft" of deviant art.
+
+Pathfinding code comes from https://github.com/qiao/PathFinding.js , MIT license.
+
+© 2011-2012 Xueqiao Xu <xueqiaoxu@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+SOUND SOURCES AND LICENSES:
+
+Sanctimonia: http://eightvirtues.com/sanctimonia/?page_id=97
+
+Footsteps: footstep_vegetation1_2.wav
+
+
+freesound.org:
+Link to the CC Attribution license: http://creativecommons.org/licenses/by/3.0/
+
+Locked door: http://freesound.org/people/Kyle1Katarn/sounds/108407/  (edited down), CC Attribution license
+Open door: http://freesound.org/people/D%20W/sounds/151588/ , CC Attribution license
+Close door: http://freesound.org/people/THE_bizniss/sounds/53270/, CC Attribution license
+Light spell: http://freesound.org/people/jamesrodavidson/sounds/193012/  (edited down), CC Public Domain
