@@ -4157,7 +4157,7 @@ function NPCObject() {
 NPCObject.prototype = new AnimateObject();
 
 NPCObject.prototype.getDesc = function() {
-  var knowsflag = "knows_" + this.npcname;
+  var knowsflag = "knows_" + this.conversation;
   if (DU.gameflags[knowsflag]) {
     return this.npcname;
   } 
