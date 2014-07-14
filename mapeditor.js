@@ -22,6 +22,7 @@ var DUTime = new Timeline(0);
 var mode = "editor";
 var PC = new PCObject();
 var DU = {};
+DU.gameflags = {};  // empty games flags because atlas will look for it
 
 $(document).ready(function() {
   browserheight = $(window).height();
