@@ -5,14 +5,19 @@ function ProtoObject() {
 ProtoObject.prototype = new Object();
 
 ProtoObject.prototype.getSerial = function() {
+  if (!this.serial) {
+    this.assignSerial();
+  }
 	return this.serial;
 }
 
 ProtoObject.prototype.assignSerial = function() {
- 	maxserial++;
-	this.serial = maxserial;
-	if (debug) { dbs.writeln("Serial #" + maxserial + " assigned to " + this.getName() + "<br />"); }
+  if (gamestate.getMode() !== "gameload") {
+   	maxserial++;
+	  this.serial = maxserial;
+	  if (debug) { dbs.writeln("Serial #" + maxserial + " assigned to " + this.getName() + "<br />"); }
 //	universe[this.serial] = this;
+  }
 }
 
 ProtoObject.prototype.setType = function(type) {
