@@ -3216,6 +3216,17 @@ ItemObject.prototype.setQuantity = function(quant) {
 	this.quantity = quant;
 }
 
+function AmbroseShieldTile() {
+  this.name = "AmbroseShield";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-32";
+  this.spritexoffset = "-256";
+  this.blocklos = 0;
+  this.desc = "shield commissioned by Ambrose";
+  this.prefix = "the";
+}
+AmbroseShieldTile.prototype = new ItemObject();
+
 function RubyGemoftheSunTile() {
 	this.name = "RubyGemoftheSun";
 	this.graphic = "sunruby.gif";
