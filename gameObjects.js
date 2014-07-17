@@ -12,7 +12,7 @@ ProtoObject.prototype.getSerial = function() {
 }
 
 ProtoObject.prototype.assignSerial = function() {
-  if (gamestate.getMode() !== "gameload") {
+  if (gamestate && (gamestate.getMode() !== "gameload")) {
    	maxserial++;
 	  this.serial = maxserial;
 	  if (debug) { dbs.writeln("Serial #" + maxserial + " assigned to " + this.getName() + "<br />"); }
