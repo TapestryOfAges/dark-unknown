@@ -50,7 +50,7 @@ mappages["asharden1"].features[9] = {name : 'Well', x : 17, y : 14};
 
 mappages["asharden1"].npcs = [];
 
-mappages["asharden1"].desc = 'Asharden's Tower';
+mappages["asharden1"].desc = "Asharden's Tower";
 mappages["asharden1"].music = 'Magic';
 mappages["asharden1"].exitmap = 'darkunknown';
 mappages["asharden1"].exitx = '56';
