@@ -1,4 +1,5 @@
 
+var gamestate = "";
 var maxserial = 0;
 var cornerx = -1;
 var cornery = -1;
