@@ -806,6 +806,11 @@ tileFactory.prototype.makeLeverOffTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAmbroseShieldTile = function() {
+  var newTile = new AmbroseShieldTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRubyGemoftheSunTile = function() {
   var newTile = new RubyGemoftheSunTile();
   return newTile;
