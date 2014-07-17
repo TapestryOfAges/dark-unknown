@@ -1196,7 +1196,7 @@ GameMap.prototype.saveMap = function (name) {
 }
  
  name = 'mappages["' + oldname + '"]';
- printerwin.document.write("\n" + name + ".desc = '" + this.getDesc() + "';\n");
+ printerwin.document.write("\n" + name + ".desc = \"" + this.getDesc() + "\";\n");
  printerwin.document.write(name + ".music = '" + this.getMusic() + "';\n");
  printerwin.document.write(name + ".exitmap = '" + this.getExitToMap() + "';\n");
  printerwin.document.write(name + ".exitx = '" + this.getExitToX() + "';\n");
