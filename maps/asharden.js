@@ -43,7 +43,7 @@ mappages["asharden1"].features[3] = {name : 'PoisonField', x : 20, y : 18};
 mappages["asharden1"].features[4] = {name : 'FireField', x : 29, y : 15};
 mappages["asharden1"].features[5] = {name : 'FireField', x : 21, y : 15};
 mappages["asharden1"].features[6] = {name : 'Door', x : 25, y : 21, desc : "magically locked door", locked : 2};
-mappages["asharden1"].features[7] = {name : 'LadderUp', x : 29, y : 20, entermap : 'null', enterx : 0, entery : 0};
+mappages["asharden1"].features[7] = {name : 'LadderUp', x : 29, y : 20, entermap : 'null', enterx : 29, entery : 20};
 mappages["asharden1"].features[8] = {name : 'BottomChair', x : 17, y : 19};
 mappages["asharden1"].features[9] = {name : 'Well', x : 17, y : 14};
 
@@ -67,3 +67,130 @@ mappages["asharden1"].entertestscript = '';
 mappages["asharden1"].exitscript = '';
 mappages["asharden1"].exittestscript = '';
 mappages["asharden1"].linkedMaps = ["asharden2","asharden3"];
+
+mappages["asharden1"].onload = function(mapref) {
+  // swap door's use function with conversation with password.
+}
+
+mappages["asharden2"] = {};
+mappages["asharden2"].terrain = [];
+ mappages["asharden2"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden2"].terrain[1] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden2"].terrain[2] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden2"].terrain[3] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden2"].terrain[4] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden2"].terrain[5] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden2"].terrain[6] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden2"].terrain[7] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden2"].terrain[8] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden2"].terrain[9] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[10] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[11] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[12] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[13] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[14] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb ## ## ## ## ## ## ## ## ## ## ## sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[15] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[16] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb rf rf rf rf rf rf rf ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## rf rf rf rf rf sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[17] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb rf rf rf rf rf rf rf ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## rf rf rf rf rf sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[18] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb rc rc rc rc rc rc rc ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## rc rc rc rc rc sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[19] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb rf rf rf rf rf rf rf ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## rf rf rf rf rf sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[20] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb rf rf rf rf rf rf rf ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## rf rf rf rf rf sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[21] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb ## ## ## ## ## ## ## ## ## ## ## sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[22] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[23] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[24] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[25] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[26] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[27] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[28] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[29] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[30] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[31] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[32] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden2"].terrain[33] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+
+mappages["asharden2"].features = [];
+mappages["asharden2"].features[0] = {name : 'LadderDown', x : 29, y : 20, entermap : 'null', enterx : 29, entery : 20};
+mappages["asharden2"].features[1] = {name : 'LadderUp', x : 21, y : 15, entermap : 'null', enterx : 21, entery : 15};
+
+
+mappages["asharden2"].npcs = [];
+
+mappages["asharden2"].desc = "Asharden's Tower";
+mappages["asharden2"].music = 'Magic';
+mappages["asharden2"].exitmap = 'darkunknown';
+mappages["asharden2"].exitx = '56';
+mappages["asharden2"].exity = '37';
+mappages["asharden2"].wraps = 'None';
+mappages["asharden2"].enterx = '32';
+mappages["asharden2"].entery = '32';
+mappages["asharden2"].seeBelow = 'asharden1';
+mappages["asharden2"].lightLevel = 'bright';
+mappages["asharden2"].alwaysRemember = '0';
+mappages["asharden2"].scale = '1';
+mappages["asharden2"].enterscript = '';
+mappages["asharden2"].entertestscript = '';
+mappages["asharden2"].exitscript = '';
+mappages["asharden2"].exittestscript = '';
+mappages["asharden2"].linkedMaps = ["asharden1","asharden3"];
+
+mappages["asharden3"] = {};
+mappages["asharden3"].terrain = [];
+ mappages["asharden3"].terrain[0] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden3"].terrain[1] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden3"].terrain[2] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden3"].terrain[3] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden3"].terrain[4] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden3"].terrain[5] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden3"].terrain[6] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden3"].terrain[7] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden3"].terrain[8] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+ mappages["asharden3"].terrain[9] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[10] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[11] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[12] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[13] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[14] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb ## ## ## ## ## #O #O ## ## ## ## sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[15] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[16] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[17] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb #O ++ ++ ++ ++ ++ ++ ++ ++ ++ #O sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[18] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb #O ++ ++ ++ ++ ++ ++ ++ ++ ++ #O sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[19] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[20] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[21] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb ## ## ## ## #O #O ## ## ## ## ## sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[22] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[23] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[24] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[25] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[26] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[27] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[28] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[29] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[30] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[31] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[32] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+mappages["asharden3"].terrain[33] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
+
+mappages["asharden3"].features = [];
+mappages["asharden3"].features[0] = {name : 'LadderDown', x : 21, y : 15, entermap : 'asharden2', enterx : 21, entery : 15};
+
+
+mappages["asharden3"].npcs = [];
+
+mappages["asharden3"].desc = "Asharden's Tower";
+mappages["asharden3"].music = 'Magic';
+mappages["asharden3"].exitmap = 'darkunknown';
+mappages["asharden3"].exitx = '56';
+mappages["asharden3"].exity = '37';
+mappages["asharden3"].wraps = 'None';
+mappages["asharden3"].enterx = '32';
+mappages["asharden3"].entery = '32';
+mappages["asharden3"].seeBelow = 'asharden2';
+mappages["asharden3"].lightLevel = 'bright';
+mappages["asharden3"].alwaysRemember = '0';
+mappages["asharden3"].scale = '1';
+mappages["asharden3"].enterscript = '';
+mappages["asharden3"].entertestscript = '';
+mappages["asharden3"].exitscript = '';
+mappages["asharden3"].exittestscript = '';
+mappages["asharden3"].linkedMaps = ["asharden1","asharden2"];
