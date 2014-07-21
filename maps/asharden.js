@@ -69,7 +69,21 @@ mappages["asharden1"].exittestscript = '';
 mappages["asharden1"].linkedMaps = ["asharden2","asharden3"];
 
 mappages["asharden1"].onload = function(mapref) {
-  // swap door's use function with conversation with password.
+  // swap door's use function with conversation with password unless password already given
+  var doorloc = mapref.getTile(25,21);
+  var door = doorloc.getTopFeature();
+  if (DU.gameflags.ash_password) {  
+    // gave password previously, unlock the door
+    door.unlockMe();
+  } else {
+    door.use_old = door.use
+    door.conversation = "ash_door";
+    door.getConversation = function() { return "ash_door"; }
+    door.use = function(who) {
+      var retval = PerformTalk(this,"ash_door","_start");
+      return retval;
+    }
+  }
 }
 
 mappages["asharden2"] = {};
