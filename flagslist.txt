@@ -1,3 +1,7 @@
 
+music
+sound
+
 kingspeech  - talked to king at beginning of game
 knows_NPCNAME  - has learned this NPC's name        -- note, requires name uniqueness. One Steve Limit!
+ash_password - gave Asharden's door the password

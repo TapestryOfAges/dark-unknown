@@ -14,7 +14,7 @@ function create_header() {
     places[val._location] = 1;
   });
   
-  $('#locations').html("<p><a href='javascript:validate()'>[Validate]</a> <a href='javascript:saveconv()'>[Save Conversations]</a></p><p>");
+  $('#locations').html("<p><a href='javascript:validate()'>[Validate]</a> <a href='javascript:saveconv()'>[Save Conversations]</a> <a href='javascript:create_header()'>[Refresh]</a></p><p>");
   
   $.each(places, function(idx,val) {
     $('#locations').html($('#locations').html() + "<a href='javascript:select_place(\"" + idx + "\")'>" + idx + "</a> | ");
@@ -57,8 +57,8 @@ function select_conv() {
 
   var txt = "<div style='margin-10'><form name='speechform'><table cellpadding='2' cellspacing='0' border='1'>";
   txt = txt + "<th>KEYWORD</th><th>FLAG</th><th>RESPONSE</th><th>TRIGGERS</th><th></th></tr>";
-  txt = txt + show_response(thisconv, "_start");
-  txt = txt + show_response(thisconv, "_confused");
+  if (conversations[thisconv]._start) { txt = txt + show_response(thisconv, "_start"); }
+  if (conversations[thisconv]._confused) { txt = txt + show_response(thisconv, "_confused"); }
   
   $.each(conversations[thisconv], function(idx, val) {
     if ((idx != "_start") && (idx != "_confused") && (idx != "bye") && (idx != "_location") && (idx != "respond") && (idx != "say")) {
@@ -67,7 +67,7 @@ function select_conv() {
     
   });
   
-  txt = txt + show_response(thisconv, "bye");
+  if (conversations[thisconv].bye) { txt = txt + show_response(thisconv, "bye"); }
   txt = txt + "</table></form><p><a href='javascript:edit_response(\""+ thisconv + "\", \"\");'>New Response</a></p></div>";
   $('#mainbody').html(txt);
 }

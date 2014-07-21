@@ -53,6 +53,13 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   if (triggers.hasOwnProperty("set_flag")) {
     DU.gameflags[triggers.set_flag] = 1;
+    
+    // special cases
+    if (triggers.set_flag === "ash_password") {
+      var door = PC.getHomeMap().getTile(25,21).getTopFeature();
+      door.use = door.use_old;
+      door.unlockMe();
+    }
   }
   if (triggers.hasOwnProperty("end_convo")) {
     if (triggers.end_convo !== 1) {
