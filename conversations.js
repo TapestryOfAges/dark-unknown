@@ -59,6 +59,18 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       var door = PC.getHomeMap().getTile(25,21).getTopFeature();
       door.use = door.use_old;
       door.unlockMe();
+      
+      // replicating a door's Use code without a user
+      door.setGraphicArray(door.opengraphic);
+      door.closedLOS = door.getBlocksLOSArray();
+      var seethru = [];
+			seethru[0] = 0;
+			door.setBlocksLOSArray(seethru);
+			door.addPassable(MOVE_WALK);
+			if (DU.gameflags.sound) { play_audio("sfx_open_door"); }
+			door.open = 1;
+			
+			DrawMainFrame("draw",door.getHomeMap().getName(),PC.getx(),PC.gety());
     }
   }
   if (triggers.hasOwnProperty("end_convo")) {

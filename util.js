@@ -103,7 +103,9 @@ function getDisplayCell(mapname, centerx, centery, x, y) {
   
   displaytile = localacre.getTop();
   while (displaytile.getName() === "SeeBelow") {
-    localacre = FindBelow(x,y,mapname);
+    var retval = FindBelow(x,y,mapname);
+    localacre = retval.tile;
+    mapname = retval.map;
     displaytile = localacre.getTop();
   }
   var graphics = displaytile.getGraphicArray();
@@ -244,7 +246,12 @@ function FindBelow(upx,upy,map) {
 	var lowermapname = map.getSeeBelow();
 	var lowermap = maps.getMap(lowermapname);
 	var tile = lowermap.getTile(upx,upy);
-	if (tile) { return tile; }
+	if (tile) { 
+	  var retval = {};
+	  retval.tile = tile;
+	  retval.map = lowermap;
+	  return retval; 
+	}
 	return 0;
 }
 

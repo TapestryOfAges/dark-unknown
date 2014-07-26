@@ -264,7 +264,7 @@ function DoAction(code) {
           maintext.drawTextFrame();
 
           PC.endTurn(resp["initdelay"]);
-        }
+        } 
       }
     }
     else if (response["fin"] === -1) {   // anything not useful
