@@ -43,7 +43,7 @@ mappages["asharden1"].features[3] = {name : 'PoisonField', x : 20, y : 18};
 mappages["asharden1"].features[4] = {name : 'FireField', x : 29, y : 15};
 mappages["asharden1"].features[5] = {name : 'FireField', x : 21, y : 15};
 mappages["asharden1"].features[6] = {name : 'Door', x : 25, y : 21, desc : "magically locked door", locked : 2};
-mappages["asharden1"].features[7] = {name : 'LadderUp', x : 29, y : 20, entermap : 'null', enterx : 29, entery : 20};
+mappages["asharden1"].features[7] = {name : 'LadderUp', x : 29, y : 20, entermap : 'asharden2', enterx : 29, entery : 20};
 mappages["asharden1"].features[8] = {name : 'BottomChair', x : 17, y : 19};
 mappages["asharden1"].features[9] = {name : 'Well', x : 17, y : 14};
 
@@ -80,8 +80,23 @@ mappages["asharden1"].onload = function(mapref) {
     door.conversation = "ash_door";
     door.getConversation = function() { return "ash_door"; }
     door.use = function(who) {
-      var retval = PerformTalk(this,"ash_door","_start");
+      var retval;
+      maintext.addText("Use " + door.getDesc() + ":");
+      retval = PerformTalk(this,"ash_door","_start");
+      retval["override"] = 1;
+      maintext.setInputLine("&gt; You say: ");
+      maintext.drawTextFrame();
       return retval;
+    }
+    door.getGenderedTerms = function() {
+      var gt = {};
+      gt.pronoun = "it";
+      gt.possessive = "its";
+      gt.objective = "it";
+      gt.titled = "Lord";
+      gt.sibling = "sibling";
+      gt.kiddie = "child";    
+      return gt;
     }
   }
 }
@@ -124,8 +139,8 @@ mappages["asharden2"].terrain[32] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb s
 mappages["asharden2"].terrain[33] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
 
 mappages["asharden2"].features = [];
-mappages["asharden2"].features[0] = {name : 'LadderDown', x : 29, y : 20, entermap : 'null', enterx : 29, entery : 20};
-mappages["asharden2"].features[1] = {name : 'LadderUp', x : 21, y : 15, entermap : 'null', enterx : 21, entery : 15};
+mappages["asharden2"].features[0] = {name : 'LadderDown', x : 29, y : 20, entermap : 'asharden1', enterx : 29, entery : 20};
+mappages["asharden2"].features[1] = {name : 'LadderUp', x : 21, y : 15, entermap : 'asharden3', enterx : 21, entery : 15};
 
 
 mappages["asharden2"].npcs = [];
