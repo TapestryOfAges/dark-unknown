@@ -1115,36 +1115,41 @@ function PerformUse(who) {
 	}
 	if (typeof used.use === "function") {
 		retval = used.use(who);
-		retval["fin"] = 1;
-		var usedname = used.getDesc();
-		usedname = usedname.replace(/^a /, "");
-		retval["txt"] = "Use " + usedname + ": " + retval["txt"];
-		var drawtype = "one";
-		if (used.checkType("Consumable")) {
-		  if (used.getHomeMap()) {
-		    // being used from the ground
-		    used.getHomeMap().deleteThing(used);
-		  } else {
-		    // being used from inventory
-		    who.removeFromInventory(used);
-		  }
-		}
-		if (retval["redrawtype"]) {
-		  delete retval["redrawtype"];
-		  // if more of the map needs to be redrawn, need to recheck light sources
+		if (retval["override"] === 1) {
+		  delete retval["override"];
 		  
-		  $.each(localacre.localLight, function(index, value) {
-		    // each object that is casting light on the door might be casting light through the door.
-		    var lightsource = usemap.lightsList[index];
-		    who.getHomeMap().removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
-		    who.getHomeMap().setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
-		  });
+		} else {
+  		retval["fin"] = 1;
+	  	var usedname = used.getDesc();
+		  usedname = usedname.replace(/^a /, "");
+  		retval["txt"] = "Use " + usedname + ": " + retval["txt"];
+	  	var drawtype = "one";
+		  if (used.checkType("Consumable")) {
+		    if (used.getHomeMap()) {
+		      // being used from the ground
+  		    used.getHomeMap().deleteThing(used);
+	  	  } else {
+		      // being used from inventory
+		      who.removeFromInventory(used);
+		    }
+  		}
+	  	if (retval["redrawtype"]) {
+		    delete retval["redrawtype"];
+  		  // if more of the map needs to be redrawn, need to recheck light sources
 		  
-		  DrawMainFrame("draw",used.getHomeMap().getName(),PC.getx(),PC.gety());
-		} else {		
-		  DrawMainFrame("one",used.getHomeMap().getName(),used.getx(),used.gety());
-		}
-	} else {
+	  	  $.each(localacre.localLight, function(index, value) {
+		      // each object that is casting light on the door might be casting light through the door.
+		      var lightsource = usemap.lightsList[index];
+		      who.getHomeMap().removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
+  		    who.getHomeMap().setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
+	  	  });
+		  
+		    DrawMainFrame("draw",used.getHomeMap().getName(),PC.getx(),PC.gety());
+		  } else {		
+		    DrawMainFrame("one",used.getHomeMap().getName(),used.getx(),used.gety());
+  		}
+  	}
+  } else {
 		retval["txt"] = "There is nothing to use there.";
 		retval["fin"] = 0;
 	}
