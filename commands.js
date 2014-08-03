@@ -926,14 +926,18 @@ function PerformSearch(who) {
 	}
 	if (searched.isContainer) {  // add doors to the list
 	  // search for traps and such rather than searching for items
-	  if (searched.trapped && (who.getInt() <= searched.trapchallenge)) {
-	    // If your int is at least half the challenge rating, you automatically find it. 
-	    // Maybe I'll change it later.
-	    retval["txt"] = "Search: You find a trap!";
+	  if (searched.trapped && (who.getInt() >= searched.trapchallenge-5)) {
+	    var descriptor = "complex ";
+	    if (who.getDex() >= searched.trapchallenge-6) { // 80% chance to disarm
+	      descriptor = "simple ";
+	    } else if (who.getDex() <= searched.trapchallenge+6) { // 20% chance or worse
+	      descriptor = "challenging ";
+	    retval["txt"] = "Search: You find a " + descriptor + "trap!";
 	    retval["fin"] = 1;
-	    searched.setDesc(searched.getDesc() + " [Trapped]");
-	    searched.trapchallenge = Math.floor(searched.trapchallenge / 2);
-	    // finding a trap halves the challenge of removing it
+	    searched.setDesc(searched.getDesc() + " [Trap (" + descriptor + ")]");
+//	    searched.trapchallenge = Math.floor(searched.trapchallenge / 2);
+      searched.trapchallenge = searched.trapchallenge - 5;
+	    // finding a trap reduces the challenge of removing it
 	  } else {
 	    retval["txt"] = "Search: You find nothing there.";
 	    searched.setDesc(searched.getDesc() + " [Searched]");

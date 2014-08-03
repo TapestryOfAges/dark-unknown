@@ -307,9 +307,11 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	this.setTrap = function(trap, challenge) { this.trapped = trap; this.trapchallenge = challenge; }
 	this.tryTrap = function(who) { 
 	  // if your Dex === the challenge rating for the trap, you have a 50/50 chance of opening it. Once your dex is twice the
-	  // challenge you will always succeed.
+	  // challenge you will always succeed. NOTE: Changed that to challenge+10.
 	  var resp = 0;
-	  var chance = who.getDex() / (this.trapchallenge * 2);
+//	  var chance = who.getDex() / (this.trapchallenge * 2);
+    var chance = ((who.getDex() + 10) - (this.trapchallenge)) /20;
+    if (chance < .05) { chance = .05; }
 	  var roll = Math.random();
 	  if (roll < chance) { this.disarmTrap(); resp = 1; maintext.addText("You disarm a trap!"); }
 	  else { resp = PerformTrap(who, this.trapped, this.trapchallenge, this); }
@@ -3384,6 +3386,7 @@ function RedPotionTile() {
 RedPotionTile.prototype = new PotionItemObject();
 
 RedPotionTile.prototype.use = function(who) {
+  play_audio("sfx_potion");
   var resp = magic[1][GetSpellID(1)].executeSpell(who,1,1);
   resp["txt"] = "You feel purified.";
   
@@ -4808,7 +4811,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	if (retval["canmove"] === 1) {
 		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
 		if ((this === PC) && (DU.gameflags.sound)) {
-		  play_footstep();
+		  play_footstep(tile.getTerrain().getName());
 		}
     if (GetDistance(this.getx(), this.gety(), PC.getx(), PC.gety()) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) ) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen

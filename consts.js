@@ -17,11 +17,15 @@ musiclist["Olympus"] = "music/Olympus.mp3";
 var sfxlist = {};
 sfxlist["sfx_walk_right"] = "sfx/sfx1.wav";
 sfxlist["sfx_walk_left"] = "sfx/sfx1.wav";
+sfxlist["sfx_walk_water_right"] = "sfx/sfx1_1.wav";
+sfxlist["sfx_walk_water_left"] = "sfx/sfx1_1.wav";
 sfxlist["sfx_walk_blocked"] = "sfx/sfx6.wav";
 sfxlist["sfx_open_door"] = "sfx/sfx3.wav";
 sfxlist["sfx_close_door"] = "sfx/sfx4.wav";
 sfxlist["sfx_locked_door"] = "sfx/sfx5.wav";
 sfxlist["sfx_spell_light"] = "sfx/sfx2.wav";
+sfxlist["sfx_unlock"] = "sfx/sfx7.wav";
+sfxlist["sfx_potion"] = "sfx/sfx8.wav";
 
 
 var mapslist = {};
