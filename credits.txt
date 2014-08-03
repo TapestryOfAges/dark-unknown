@@ -18,7 +18,7 @@ SOUND SOURCES AND LICENSES:
 
 Sanctimonia: http://eightvirtues.com/sanctimonia/?page_id=97
 
-Footsteps: footstep_vegetation1_2.wav
+Footsteps: footstep_vegetation1_2.wav, footstep_watermedium_3.wav (trimmed)
 
 
 freesound.org:
@@ -29,3 +29,6 @@ Open door: http://freesound.org/people/D%20W/sounds/151588/ , CC Attribution lic
 Close door: http://freesound.org/people/THE_bizniss/sounds/53270/, CC Attribution license
 Light spell: http://freesound.org/people/jamesrodavidson/sounds/193012/  (edited down), CC Public Domain
 Bump: http://freesound.org/people/lewisisminted/sounds/162370/  (edited down), CC Public Domain
+Unlock: http://freesound.org/people/MrAuralization/sounds/158625/, CC Public Domain
+Potion: http://freesound.org/people/Q.K./sounds/56271/, CC Public Domain
+
