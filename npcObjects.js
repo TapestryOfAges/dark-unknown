@@ -328,6 +328,34 @@ function BeggarVillagerNPCTile() {
 }
 BeggarVillagerNPCTile.prototype = new NPCObject();
 
+// Townsfolk
+
+function JesterNPCTile() {
+  this.name = 'JesterNPC';
+  this.level = 1;
+  this.addhp = -2;
+  this.str = 7;
+  this.dex = 7;
+  this.int = 7;
+  this.alignment = 'Good';
+  this.attitude = 'Friendly';
+  this.peaceAI = 'townsfolk';
+  this.threatenedAI = 'runaway';
+  this.PCThreatAI = 'runaway';
+  this.graphic = '314.gif';
+  this.meleeAttackAs = 'Fists';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'none';
+  this.armorDefense = 0;
+  this.armorAbsorb = 0;
+  this.armorResist = 0;
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'Corpse';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = 'jester';
+}
+JesterNPCTile.prototype = new NPCObject();
 
 // Townsfolk
 

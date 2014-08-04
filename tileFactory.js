@@ -1056,6 +1056,11 @@ tileFactory.prototype.makeBeggarVillagerNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeJesterNPCTile = function() {
+  var newTile = new JesterNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTownGuardNPCTile = function() {
   var newTile = new TownGuardNPCTile();
   return newTile;
