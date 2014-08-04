@@ -118,6 +118,7 @@ function edit_response(convname, keyword) {
   document.responseeditpopup.item_taken1.value = "";
   document.responseeditpopup.set_flag1.checked = false;
   document.responseeditpopup.flag_set1.value = "";
+  document.responseeditpopup.set_yesno1.checked = false;
   document.responseeditpopup.start_shop1.checked = false;
   document.responseeditpopup.start_sell1.checked = false;
   document.responseeditpopup.flags2.value = "";
@@ -131,6 +132,7 @@ function edit_response(convname, keyword) {
   document.responseeditpopup.item_taken2.value = "";
   document.responseeditpopup.set_flag2.checked = false;
   document.responseeditpopup.flag_set2.value = "";
+  document.responseeditpopup.set_yesno2.checked = false;
   document.responseeditpopup.start_shop2.checked = false;
   document.responseeditpopup.start_sell2.checked = false;
 
@@ -155,6 +157,9 @@ function edit_response(convname, keyword) {
       else if (idx === "set_flag") {
         document.responseeditpopup.set_flag1.checked = "true";
         document.responseeditpopup.flag_set1.value = val;
+      }
+      else if (idx === "yes_no") {
+        document.responseeditpopup.set_yesno1.checked = "true";
       }
       else if (idx === "start_shop") {
         document.responseeditpopup.start_shop1.checked = "true";
@@ -193,6 +198,9 @@ function edit_response(convname, keyword) {
       else if (idx === "set_flag") {
         document.responseeditpopup.set_flag2.checked = "true";
         document.responseeditpopup.flag_set2.value = val;
+      }
+      else if (idx === "yes_no") {
+        document.responseeditpopup.set_yesno2.checked = "true";
       }
       else if (idx === "start_shop") {
         document.responseeditpopup.start_shop2.checked = "true";
@@ -277,6 +285,9 @@ function submitEditResponse(val) {
         triggers1.set_flag = 1;
       }
     }
+    if (document.responseeditpopup.set_yesno1.checked) {
+     triggers1.yes_no = 1;
+    }
     if (document.responseeditpopup.start_shop1.checked) {
      triggers1.start_shop = 1;
     }
@@ -321,6 +332,9 @@ function submitEditResponse(val) {
       } else { 
         triggers2.set_flag = 1;
       }
+    }
+    if (document.responseeditpopup.set_yesno2.checked) {
+     triggers2.yes_no = 1;
     }
     if (document.responseeditpopup.start_shop2.checked) {
      triggers2.start_shop = 1;

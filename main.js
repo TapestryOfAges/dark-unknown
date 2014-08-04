@@ -200,7 +200,17 @@ function DoAction(code) {
         var convo = targetCursor.talkingto.getConversation();
         maintext.addText(" ");
         maintext.addText("You say: " + inputText.txt);
-        var retval = PerformTalk(targetCursor.talkingto, convo, inputText.txt);
+        var retval;
+        if (inputText.subcmd === "yn") {
+          if ((inputText.txt === "y") || (inputText.txt === "yes")) {
+            retval = PerformTalk(targetCursor.talkingto, convo, "_yes");
+          } else {
+            retval = PerformTalk(targetCursor.talkingto, convo, "_no");
+          }
+          delete inputText.subcmd;
+        } else {
+          retval = PerformTalk(targetCursor.talkingto, convo, inputText.txt);
+        }
         maintext.addText(retval["txt"]);
         maintext.setInputLine(retval["input"]);
         maintext.drawTextFrame();
@@ -208,7 +218,7 @@ function DoAction(code) {
         if (retval["fin"] === 1) {
           PC.endTurn(retval["initdelay"]);
         }
-      }
+      } 
       else { alert("need to add hook here! (main 212)"); }
     }
     else if (code === 27) { // ESC

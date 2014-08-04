@@ -51,6 +51,9 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       PC.removeFromInventory(necessary_item);
     }
   }
+  if (triggers.hasOwnProperty("yes_no")) {
+    inputText.subcmd = "yn";
+  }
   if (triggers.hasOwnProperty("set_flag")) {
     DU.gameflags[triggers.set_flag] = 1;
     
