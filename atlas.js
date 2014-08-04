@@ -1328,7 +1328,7 @@ GameMap.prototype.loadMap = function (name) {
   			if (npckey === "Melee") { newnpc.setMeleeAttackAs(loadnpcs[npci].Melee); }
   			if (npckey === "Missile") { newnpc.setMissileAttackAs(loadnpcs[npci].Missile); }
   			if (npckey === "Conversation") { newnpc.setConversation(loadnpcs[npci].Conversation); }
-  			if (npckey === "ConversationFlag") { newnpc.setConversation(loadnpcs[npci].ConversationFlag); }
+  			if (npckey === "ConversationFlag") { newnpc.setConversationFlag(loadnpcs[npci].ConversationFlag); }
   			if (npckey === "Gender") { newnpc.setGender(loadnpcs[npci].Gender); }
   			if (npckey === "Merch") { newnpc.setMerch(loadnpcs[npci].Merch); }
   		}
