@@ -79,7 +79,7 @@ mappages["olympus1"].npcs[6] = {name : 'TownGuardNPC', x : 26, y : 33, Prefix: '
 mappages["olympus1"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 24, y : 22, Prefix: 'a'};
 mappages["olympus1"].npcs[8] = {name : 'BardVillagerNPC', x : 13, y : 14, NPCName: 'Olivia', Desc: 'librarian', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'olivia', Gender: 'female'};
 mappages["olympus1"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 47, y : 28, Prefix: 'a'};
-mappages["olympus1"].npcs[10] = {name : 'DruidVillagerNPC', x : 44, y : 14, Prefix: 'a'};
+mappages["olympus1"].npcs[10] = {name : 'DruidVillagerNPC', x : 44, y : 14, Prefix: 'the', NPCName: 'Shelaria', Desc: 'Queen'};
 mappages["olympus1"].npcs[11] = {name : 'FighterVillagerNPC', x : 25, y : 13, NPCName: 'Ambrose', Desc: 'guard captain', Prefix: 'a', Level: 5, Alignment: 'good', str: 24, dex: 18, int: 12, Attitude: 'friendly', PeaceAI: 'guard', PCThreatAI: 'melee', Conversation: 'ambrose', ConversationFlag: 'has_shield', Gender: 'male'};
 mappages["olympus1"].npcs[12] = {name : 'JesterNPC', x : 28, y : 15, NPCName: 'Kaye', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'kaye', ConversationFlag: 'undefined', Gender: 'male'};
 
