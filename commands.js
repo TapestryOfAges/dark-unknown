@@ -932,6 +932,7 @@ function PerformSearch(who) {
 	      descriptor = "simple ";
 	    } else if (who.getDex() <= searched.trapchallenge+6) { // 20% chance or worse
 	      descriptor = "challenging ";
+	    }
 	    retval["txt"] = "Search: You find a " + descriptor + "trap!";
 	    retval["fin"] = 1;
 	    searched.setDesc(searched.getDesc() + " [Trap (" + descriptor + ")]");
