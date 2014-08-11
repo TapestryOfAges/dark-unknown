@@ -2259,6 +2259,16 @@ function SeeBelowTile() {
 }
 SeeBelowTile.prototype = new TerrainObject();
 
+function WorldBelowTile() {
+  this.name = "WorldBelow";
+  this.graphic = "world-below.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "the";
+  this.desc = "world";
+}
+WorldBelowTile.prototype = new TerrainObject();
+
 // Features!
 function FeatureObject() {
   this.addType("Feature");

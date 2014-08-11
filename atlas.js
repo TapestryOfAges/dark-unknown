@@ -263,6 +263,8 @@ function Atlas() {
     'rc' : "ShinglesTop",
     "SeeBelow" : 'sb',
     'sb' : "SeeBelow",
+    "WorldBelow" : 'wb',
+    'wb' : "WorldBelow",
     "CaveFloor" : 'cf',
     'cf' : "CaveFloor",
     "CaveWall" : 'cw',
