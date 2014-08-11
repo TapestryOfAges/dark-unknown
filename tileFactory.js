@@ -511,6 +511,11 @@ tileFactory.prototype.makeSeeBelowTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWorldBelowTile = function() {
+  var newTile = new WorldBelowTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeLavaTile = function() {
   var newTile = new LavaTile();
   return newTile;
