@@ -613,7 +613,12 @@ function SetBySurroundCoast() {
     if (shallow) { chosentile = shallow; }
     else if (water) { chosentile = water; }
     else if (ocean) { chosentile = ocean; }
-    else { return graphics; }
+    else { 
+      graphics[0] = "spacer.gif";
+      graphics[2] = 0;
+      graphics[3] = 0;
+      return graphics; 
+    }
     
     var chosengraphics = chosentile.getGraphicArray();
     graphics[0] = chosengraphics[0];
@@ -2261,7 +2266,8 @@ SeeBelowTile.prototype = new TerrainObject();
 
 function WorldBelowTile() {
   this.name = "WorldBelow";
-  this.graphic = "world-below.gif";
+  this.graphic = "spacer.gif";
+//  this.graphic = "world-below.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "the";
@@ -3077,6 +3083,7 @@ SpawnerTile.prototype.myTurn = function() {
       var diffx = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
       var diffy = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
       var mymap = this.getHomeMap();
+      
       var tile = mymap.getTile(this.getx() + diffx, this.gety() + diffy);
       var resp = tile.canMoveHere(newspawn.getMovetype());
       if (resp["canmove"]) {
