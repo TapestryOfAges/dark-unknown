@@ -223,8 +223,9 @@ mappages["darkunknown"].onload = function(mapref) {
 }
 
 function Placeonyxspawn(mapref) {
+  
   var onyxspawn = localFactory.createTile("Spawner");
-  var onyxgroup = new Array;
+  var onyxgroup = [];
   onyxgroup[0] = "HoodGroupSmall";
   onyxgroup[1] = "HoodGroupSmall";
   onyxgroup[2] = "HoodGroupLarge";
@@ -277,7 +278,7 @@ function CreateNetwork(mapref) {
   mapref.network["road"][10].connections = [mapref.network["road"][8], mapref.network["road"][11]];
   mapref.network["road"][11].connections = [mapref.network["road"][10]];
   
-  mapref.network["wild"] = new Array;
+  mapref.network["wild"] = [];
   mapref.network["wild"][0] =  new PointOfInterest(115,32);
   mapref.network["wild"][1] =  new PointOfInterest(23,109);  
   mapref.network["wild"][2] =  new PointOfInterest(58,127);
@@ -341,7 +342,7 @@ function CreateNetwork(mapref) {
   mapref.network["wild"][28].connections = [mapref.network["wild"][0], mapref.network["wild"][17], mapref.network["wild"][27], mapref.network["wild"][25], mapref.network["wild"][29]];
   mapref.network["wild"][29].connections = [mapref.network["wild"][0], mapref.network["wild"][28]];
   
-  mapref.network["mordor"] = new Array;
+  mapref.network["mordor"] = [];
   mapref.network["mordor"][0] = new PointOfInterest(92,110);
   mapref.network["mordor"][1] = new PointOfInterest(98,123);
   mapref.network["mordor"][2] = new PointOfInterest(79,114);
