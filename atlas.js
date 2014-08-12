@@ -595,6 +595,7 @@ function GameMap() {
   this.lightLevel = "bright";
   this.alwaysRemember = 0;
   this.scale = 1;
+  this.backgroundimage = '';
   
   this.exitScript = "";
   this.exitTestScript = "";
@@ -623,6 +624,15 @@ GameMap.prototype.setDesc = function(desc) {
 
 GameMap.prototype.getDesc = function() {
   return this.desc;
+}
+
+GameMap.prototype.setBackground = function(bgimg) {
+  this.backgroundimage = bgimg;
+  return this.backgroundimage;
+}
+
+GameMap.prototype.getBackground = function() {
+  return this.backgroundimage;
 }
 
 GameMap.prototype.setScale = function(newscale) {
