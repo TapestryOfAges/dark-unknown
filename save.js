@@ -9,17 +9,23 @@ function GameStateData() {
 
 GameStateData.prototype.loadGame = function() {
 	// Temporarily, this will return demo values
-	PC.setx(55);
-	PC.sety(63);
+//	PC.setx(55);
+//	PC.sety(63);
+  PC.setx(8);
+  PC.sety(8);
 	PC.setPCName("Goldenflame");
 	var themap;
 	if (maps.getMap("darkunknown")) {
 	  themap = maps.getMap("darkunknown");
 	} else {
 	  themap = new GameMap();
-	  themap.loadMap("darkunknown");
+    themap.loadMap("darkunknown");
+
 	}
-	PC.setHomeMap(themap);
+  var anothermap = new GameMap();
+  anothermap.loadMap("skypalace");
+	PC.setHomeMap(anothermap);
+	maps.addMapByRef(anothermap);
 //  var rats = localFactory.createTile("OrcGroupLarge");
 //  themap.placeThing(65,70,rats);
   var dagger = localFactory.createTile("Dagger");
