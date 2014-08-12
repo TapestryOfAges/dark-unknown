@@ -69,7 +69,11 @@ function DrawMainFrame(how, mapname, centerx, centery) {
   if (how === "draw") {
     displayspecs = getDisplayCenter(themap,centerx,centery);
     
-    mapdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
+    var mapbg = '';
+    if (themap.getBackground()) {
+      mapbg = 'style="background-image:url(\'graphics/' + themap.getBackground() + '\'); background-repeat:no-repeat"';
+    }
+    mapdiv += "<table cellpadding='0' cellspacing='0' border='0' " + mapbg + "><tr>";
     for (var i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
       for (var j=displayspecs.leftedge;j<=displayspecs.rightedge;j++) {
       	var thiscell = getDisplayCell(themap,centerx,centery,j,i);
