@@ -89,5 +89,5 @@ mappages["skypalace"].exittestscript = '';
 mappages["skypalace"].linkedMaps = [""];
 
 mappages["skypalace"].onload = function(mapref){ 
-  mapref.setBackground("testimage.jpg");
+  mapref.setBackground("high_world.gif");
 }
