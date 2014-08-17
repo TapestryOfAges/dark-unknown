@@ -586,6 +586,11 @@ tileFactory.prototype.makeStoneDoorwayTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWallDoorwayTile = function() {
+  var newTile = new WallDoorwayTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeShrineTile = function() {
   var newTile = new ShrineTile();
   return newTile;
@@ -613,6 +618,11 @@ tileFactory.prototype.makeDoorWindowTile = function() {
 
 tileFactory.prototype.makeStonePortcullisTile = function() {
   var newTile = new StonePortcullisTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWallPortcullisTile = function() {
+  var newTile = new WallPortcullisTile();
   return newTile;
 }
 
@@ -1259,6 +1269,12 @@ tileFactory.prototype.makeMagicLockedDoorTile = function() {
 
 tileFactory.prototype.makeLockedStonePortcullisTile = function() {
   var newTile = this.createTile('StonePortcullis');
+  newTile.lockMe(1);
+  return newTile;
+}
+
+tileFactory.prototype.makeLockedWallPortcullisTile = function() {
+  var newTile = this.createTile('WallPortcullis');
   newTile.lockMe(1);
   return newTile;
 }
