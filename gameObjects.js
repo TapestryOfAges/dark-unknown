@@ -2517,6 +2517,19 @@ function StoneDoorwayTile() {
 }
 StoneDoorwayTile.prototype = new FeatureObject();
 
+function WallDoorwayTile() {
+  this.name = "WallDoorway";
+  this.graphic = "055.gif";
+  this.overlay = "wall-arch.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "archway";
+  
+//  SetByBelow.call(this);
+}
+WallDoorwayTile.prototype = new FeatureObject();
+
 function ShrineTile() {
   this.name = "Shrine";
   this.graphic = "156.gif";
@@ -2600,6 +2613,22 @@ function StonePortcullisTile() {
   Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "stone-arch.gif", 0, 0], 0);
 }
 StonePortcullisTile.prototype = new FeatureObject();
+
+function WallPortcullisTile() {
+  Lockable.call(this, "wall-portcullis.gif", "wall-portcullis.gif", "wall-portcullis.gif", "a", "portcullis", "a", "portcullis", "a", "portcullis");
+	
+	this.name = "WallPortcullis";
+	this.graphic = "wall-portcullis.gif";
+	this.overlay = "wall-portcullis.gif";
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 0; 
+	this.prefix = "a";
+	this.desc = "portcullis";
+
+//	SetByBelow.call(this);
+  Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "wall-arch.gif", 0, 0], 0);
+}
+WallPortcullisTile.prototype = new FeatureObject();
 
 function CorpseTile() {
 	this.name = "Corpse";
