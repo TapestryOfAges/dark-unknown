@@ -13,6 +13,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+Clouds from http://opengameart.org/content/fluffy-clouds, CC-by-SA licensed (http://creativecommons.org/licenses/by-sa/3.0/). The various clouds were merged into one image. One of the clouds is the smoke from the particle pack at http://www.ironstarmedia.co.uk/2009/12/free-game-assets-02-sprites-for-particle-effects/.
 
 SOUND SOURCES AND LICENSES:
 
