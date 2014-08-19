@@ -980,6 +980,10 @@ GameMap.prototype.setNPCsCoord = function() {
 GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
   if (newthing) {
     newthing.setHomeMap(this);
+    
+    if (newthing.checkType("NPC") && (typeof this.Enter === "function")) {
+      this.Enter(newthing,"",0,0,x,y);
+    }
 
 //  	var type = newthing.type + "s";
     var type = newthing.getTypeForMap() + "s";
