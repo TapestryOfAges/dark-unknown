@@ -44,7 +44,7 @@ var inputText = {};
 var raceWarning = 0;
 
 function DrawCharFrame() {
-  var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%'><tr><td colspan='2'>";
+  var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%' style='z-index:0'><tr><td colspan='2'>";
   txt = txt + PC.getPCName() + "</td><td id='hpcell' style='text-align:right'>HP: " + PC.getDisplayHP() + "</td></tr>";
   txt = txt + "<tr><td width='33%' id='gpcell'>GP: " + PC.getGold() + "</td><td width='34%'>" + SpellInitials(PC) + "</td><td width='33%' style='text-align:right'>MP: " + PC.getMana() + "</td></tr></table>";
   $("#charstats").html(txt);
@@ -71,9 +71,9 @@ function DrawMainFrame(how, mapname, centerx, centery) {
     
     var mapbg = '';
     if (themap.getBackground()) {
-      mapbg = 'style="background-image:url(\'graphics/' + themap.getBackground() + '\'); background-repeat:no-repeat"';
+      mapbg = 'background-image:url(\'graphics/' + themap.getBackground() + '\'); background-repeat:no-repeat';
     }
-    mapdiv += "<table cellpadding='0' cellspacing='0' border='0' " + mapbg + "><tr>";
+    mapdiv += "<table cellpadding='0' cellspacing='0' border='0' style=\"z-index:0; " + mapbg + "\"><tr>";
     for (var i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
       for (var j=displayspecs.leftedge;j<=displayspecs.rightedge;j++) {
       	var thiscell = getDisplayCell(themap,centerx,centery,j,i);
@@ -84,7 +84,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
       	if (thiscell.lighthere < SHADOW_THRESHOLD) {
       	  opac = 0;
       	}
-        mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="opacity: ' + opac + '; background-image:url(\'graphics/' + thiscell.showGraphic + '\'); background-repeat:no-repeat; background-position: ' + thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px;"><img id="tile'+j+'x'+i+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+j+'x'+i+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="' + thiscell.desc + '" /></td>';
+        mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="opacity: ' + opac + '; background-image:url(\'graphics/' + thiscell.showGraphic + '\'); background-repeat:no-repeat; background-position: ' + thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px;"><img id="tile'+j+'x'+i+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+j+'x'+i+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:2" title="' + thiscell.desc + '" /></td>';
       }  
       mapdiv += '</tr><tr>';
     }
@@ -96,7 +96,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
       var tileid = "#td-tile" + centerx + "x" + centery;
       $(tileid).css("background-image","url('graphics/" + thiscell.showGraphic + "')");
       $(tileid).css("background-position",thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px');
-      $(tileid).html('<img id="tile'+centerx+'x'+centery+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+centerx+'x'+centery+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="' + thiscell.desc + '" />');
+      $(tileid).html('<img id="tile'+centerx+'x'+centery+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+centerx+'x'+centery+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:2" title="' + thiscell.desc + '" />');
     }
   }
   
