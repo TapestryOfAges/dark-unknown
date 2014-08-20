@@ -86,7 +86,7 @@ function PerformCommand(code) {
 		  var tileid = "#td-tile" + newx + "x" + newy;
 		  targetCursor.tileid = tileid;
 		  targetCursor.basetile = $(tileid).html();
-		  $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:' + targetx + 'px;top:' + targety + 'px;z-index:3" />');
+		  $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:' + targetx + 'px;top:' + targety + 'px;z-index:50" />');
 		  retval["txt"] = "";
 		  retval["input"] = "&gt; Attack: ";
 		  retval["fin"] = 2;

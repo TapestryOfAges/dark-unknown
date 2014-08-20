@@ -44,7 +44,7 @@ function animateEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destg
   var fromcoords = getCoords(mapref, fromx, fromy);
   var tocoords = getCoords(mapref,tox,toy);
   
-  var tablehtml = '<table id="animtable" style="z-index:4; position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + '><tr><td style="background-image:url(\'graphics/' + graphic + '\',background-repeat:no-repeat; background-position: ' + xoffset + 'px ' + yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32"></td></tr></table>';
+  var tablehtml = '<table id="animtable" style="z-index:40; position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + '><tr><td style="background-image:url(\'graphics/' + graphic + '\',background-repeat:no-repeat; background-position: ' + xoffset + 'px ' + yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32"></td></tr></table>';
   tilecursor.tileid = "#td-tile" + displayspecs.leftedge + "x" + displayspecs.topedge;
   tilecursor.basetile = $(tilecursor.tileid).html(); 
   $(tilecursor.tileid).html($tilecursor.tileid.html() + tablehtml);
