@@ -89,14 +89,14 @@ mappages["skypalace"].exittestscript = '';
 mappages["skypalace"].linkedMaps = [""];
 
 mappages["skypalace"].onload = function(mapref){ 
-  mapref.setBackground("high_world.gif");
+//  mapref.setBackground("high_world.gif");
+  //mapref.setBackground("clouds-mass.gif");
 }
 
 mappages["skypalace"].entersky = function(mapref) {
   mapref.Enter = function(enterer, enterfrom, fromx, fromy, tox, toy){
     if (enterer === PC) {
-      // add clouds!
-      
+      $("#cloudlayer").html("<img src='graphics/high_world.gif' width='416' height='416' />");
     }
   }
 }
