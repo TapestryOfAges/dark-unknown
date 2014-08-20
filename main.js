@@ -73,7 +73,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
     if (themap.getBackground()) {
       mapbg = 'background-image:url(\'graphics/' + themap.getBackground() + '\'); background-repeat:no-repeat';
     }
-    mapdiv += "<table cellpadding='0' cellspacing='0' border='0' style=\"z-index:0; " + mapbg + "\"><tr>";
+    mapdiv += "<table cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:0; " + mapbg + "\"><tr>";
     for (var i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
       for (var j=displayspecs.leftedge;j<=displayspecs.rightedge;j++) {
       	var thiscell = getDisplayCell(themap,centerx,centery,j,i);
@@ -84,7 +84,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
       	if (thiscell.lighthere < SHADOW_THRESHOLD) {
       	  opac = 0;
       	}
-        mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="opacity: ' + opac + '; background-image:url(\'graphics/' + thiscell.showGraphic + '\'); background-repeat:no-repeat; background-position: ' + thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px;"><img id="tile'+j+'x'+i+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+j+'x'+i+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:2" title="' + thiscell.desc + '" /></td>';
+        mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="opacity: ' + opac + '; background-image:url(\'graphics/' + thiscell.showGraphic + '\'); background-repeat:no-repeat; background-position: ' + thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px; position:relative; z-index:2;"><img id="tile'+j+'x'+i+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+j+'x'+i+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:2" title="' + thiscell.desc + '" /></td>';
       }  
       mapdiv += '</tr><tr>';
     }
