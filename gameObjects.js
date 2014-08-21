@@ -3244,8 +3244,23 @@ function LeverOffTile() {
 }
 LeverOffTile.prototype = new FeatureObject();
 
+function WallOfWavesTile() {
+  this.name = "WallOfWaves";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
+  this.prefix = "the";
+  this.desc = "rune of Waves";
+}
+WallOfWavesTile.prototype = new FeatureObject();
 
+WallOfWaves.prototype.use = function(user) {
+  ApplyRune(user, "waves");
+}
 
+WallOfWaves.prototype.bumpInto = function(who) {
+  ApplyRune(who, "waves");
+}
 
 
 // Items
