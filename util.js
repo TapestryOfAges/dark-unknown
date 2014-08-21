@@ -683,3 +683,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
   }
   alert("Bad trap type");
 }
+
+function ApplyRune(who, rune) {
+  // CREATE ME
+}
