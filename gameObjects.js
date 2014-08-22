@@ -3262,6 +3262,24 @@ WallOfWaves.prototype.bumpInto = function(who) {
   ApplyRune(who, "waves");
 }
 
+function RuneOfWavesTile() {
+  this.name = "RuneOfWaves";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-32";
+  this.prefix = "the";
+  this.desc = "rune of Waves";
+}
+RuneOfWavesTile.prototype = new FeatureObject();
+
+RuneOfWaves.prototype.use = function(user) {
+  ApplyRune(user, "waves");
+}
+
+RuneOfWaves.prototype.bumpInto = function(who) {
+  ApplyRune(who, "waves");
+}
+
 
 // Items
 
