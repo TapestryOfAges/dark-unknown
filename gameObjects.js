@@ -3254,11 +3254,11 @@ function WallOfWavesTile() {
 }
 WallOfWavesTile.prototype = new FeatureObject();
 
-WallOfWaves.prototype.use = function(user) {
+WallOfWavesTile.prototype.use = function(user) {
   ApplyRune(user, "waves");
 }
 
-WallOfWaves.prototype.bumpInto = function(who) {
+WallOfWavesTile.prototype.bumpInto = function(who) {
   ApplyRune(who, "waves");
 }
 
@@ -3272,14 +3272,210 @@ function RuneOfWavesTile() {
 }
 RuneOfWavesTile.prototype = new FeatureObject();
 
-RuneOfWaves.prototype.use = function(user) {
+RuneOfWavesTile.prototype.use = function(user) {
   ApplyRune(user, "waves");
 }
 
-RuneOfWaves.prototype.bumpInto = function(who) {
+RuneOfWavesTile.prototype.bumpInto = function(who) {
   ApplyRune(who, "waves");
 }
 
+
+function WallOfWindsTile() {
+  this.name = "WallOfWinds";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "0";
+  this.prefix = "the";
+  this.desc = "rune of Winds";
+}
+WallOfWindsTile.prototype = new FeatureObject();
+
+WallOfWindsTile.prototype.use = function(user) {
+  ApplyRune(user, "winds");
+}
+
+WallOfWindsTile.prototype.bumpInto = function(who) {
+  ApplyRune(who, "winds");
+}
+
+function RuneOfWindsTile() {
+  this.name = "RuneOfWinds";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-32";
+  this.prefix = "the";
+  this.desc = "rune of Winds";
+}
+RuneOfWindsTile.prototype = new FeatureObject();
+
+RuneOfWindsTile.prototype.use = function(user) {
+  ApplyRune(user, "winds");
+}
+
+RuneOfWindsTile.prototype.bumpInto = function(who) {
+  ApplyRune(who, "winds");
+}
+
+
+function WallOfKingsTile() {
+  this.name = "WallOfKings";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "0";
+  this.prefix = "the";
+  this.desc = "rune of Kings";
+}
+WallOfKingsTile.prototype = new FeatureObject();
+
+WallOfKingsTile.prototype.use = function(user) {
+  ApplyRune(user, "kings");
+}
+
+WallOfKingsTile.prototype.bumpInto = function(who) {
+  ApplyRune(who, "kings");
+}
+
+function RuneOfKingsTile() {
+  this.name = "RuneOfKings";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-32";
+  this.prefix = "the";
+  this.desc = "rune of Kings";
+}
+RuneOfKingsTile.prototype = new FeatureObject();
+
+RuneOfKingsTile.prototype.use = function(user) {
+  ApplyRune(user, "kings");
+}
+
+RuneOfKingsTile.prototype.bumpInto = function(who) {
+  ApplyRune(who, "kings");
+}
+
+function WallOfFlamesTile() {
+  this.name = "WallOfFlames";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "0";
+  this.prefix = "the";
+  this.desc = "rune of Flames";
+}
+WallOfFlamesTile.prototype = new FeatureObject();
+
+WallOfFlamesTile.prototype.use = function(user) {
+  ApplyRune(user, "flames");
+}
+
+WallOfFlamesTile.prototype.bumpInto = function(who) {
+  ApplyRune(who, "flames");
+}
+
+function RuneOfFlamesTile() {
+  this.name = "RuneOfFlames";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-32";
+  this.prefix = "the";
+  this.desc = "rune of Flames";
+}
+RuneOfFlamesTile.prototype = new FeatureObject();
+
+RuneOfFlamesTile.prototype.use = function(user) {
+  ApplyRune(user, "flames");
+}
+
+RuneOfFlamesTile.prototype.bumpInto = function(who) {
+  ApplyRune(who, "flames");
+}
+
+
+function WallOfVoidTile() {
+  this.name = "WallOfVoid";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "0";
+  this.prefix = "the";
+  this.desc = "rune of Void";
+}
+WallOfVoidTile.prototype = new FeatureObject();
+
+WallOfVoidTile.prototype.use = function(user) {
+  ApplyRune(user, "void");
+}
+
+WallOfVoidTile.prototype.bumpInto = function(who) {
+  ApplyRune(who, "void");
+}
+
+function RuneOfVoidTile() {
+  this.name = "RuneOfVoid";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-32";
+  this.prefix = "the";
+  this.desc = "rune of Void";
+}
+RuneOfVoidTile.prototype = new FeatureObject();
+
+RuneOfVoidTile.prototype.use = function(user) {
+  ApplyRune(user, "void");
+}
+
+RuneOfVoidTile.prototype.bumpInto = function(who) {
+  ApplyRune(who, "void");
+}
+
+function PlatformOfWavesTile() {
+  this.name = "PlatformOfWaves";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-64";
+  this.prefix = "a";
+  this.desc = "platform";
+}
+PlatformOfWavesTile.prototype = new FeatureObject();
+
+function PlatformOfWindsTile() {
+  this.name = "PlatformOfWinds";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-64";
+  this.prefix = "a";
+  this.desc = "platform";
+}
+PlatformOfWindsTile.prototype = new FeatureObject();
+
+function PlatformOfKingsTile() {
+  this.name = "PlatformOfKings";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-64";
+  this.prefix = "a";
+  this.desc = "platform";
+}
+PlatformOfKingsTile.prototype = new FeatureObject();
+
+function PlatformOfFlamesTile() {
+  this.name = "PlatformOfFlames";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-64";
+  this.prefix = "a";
+  this.desc = "platform";
+}
+PlatformOfFlamesTile.prototype = new FeatureObject();
+
+function PlatformOfVoidTile() {
+  this.name = "PlatformOfVoid";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-64";
+  this.prefix = "a";
+  this.desc = "platform";
+}
+PlatformOfVoidTile.prototype = new FeatureObject();
 
 // Items
 
