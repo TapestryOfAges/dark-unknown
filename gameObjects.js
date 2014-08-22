@@ -1880,6 +1880,19 @@ function CobblestoneTile() {
 }
 CobblestoneTile.prototype = new TerrainObject();
 
+function BlueTilesTile() {
+  this.name = "BlueTiles";
+//  this.graphic = "056.gif";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "tiles";
+}
+BlueTilesTile.prototype = new TerrainObject();
+
+
 function PlanksEWTile() {
   this.name = "PlanksEW";
 //  this.graphic = "104.gif";
