@@ -381,6 +381,11 @@ tileFactory.prototype.makeCobblestoneTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBlueTilesTile = function() {
+  var newTile = new BlueTilesTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePlanksEWTile = function() {
   var newTile = new PlanksEWTile();
   return newTile;
