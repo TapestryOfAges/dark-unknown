@@ -821,6 +821,81 @@ tileFactory.prototype.makeLeverOffTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWallOfWavesTile = function() {
+  var newTile = new WallOfWavesTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuneOfWavesTile = function() {
+  var newTile = new RuneOfWavesTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWallOfWindsTile = function() {
+  var newTile = new WallOfWindsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuneOfWindsTile = function() {
+  var newTile = new RuneOfWindsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWallOfKingsTile = function() {
+  var newTile = new WallOfKingsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuneOfKingsTile = function() {
+  var newTile = new RuneOfKingsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWallOfFlamesTile = function() {
+  var newTile = new WallOfFlamesTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuneOfFlamesTile = function() {
+  var newTile = new RuneOfFlamesTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWallOfVoidTile = function() {
+  var newTile = new WallOfVoidTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuneOfVoidTile = function() {
+  var newTile = new RuneOfVoidTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePlatformOfWavesTile = function() {
+  var newTile = new PlatformOfWavesTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePlatformOfWindsTile = function() {
+  var newTile = new PlatformOfWindsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePlatformOfKingsTile = function() {
+  var newTile = new PlatformOfKingsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePlatformOfFlamesTile = function() {
+  var newTile = new PlatformOfFlamesTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePlatformOfVoidTile = function() {
+  var newTile = new PlatformOfVoidTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAmbroseShieldTile = function() {
   var newTile = new AmbroseShieldTile();
   return newTile;
