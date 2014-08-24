@@ -35,8 +35,22 @@ foreach my $line (<$npcdoc>) {
     $fields[12] = "PickOne([\"$1\",\"$2\"]);\n";
     print $out "  this.graphic = $fields[12]";
   } else { print $out "  this.graphic = '$fields[12]';\n"; }
-  print $out "  this.meleeAttackAs = '$fields[13]';\n";
-  print $out "  this.missileAttackAs = '$fields[14]';\n";
+  if ($fields[13] =~ /\;/) {
+    print $out "  this.meleeAttackAs = 'none';\n";
+    my @wpnvals = split(';', $fields[13]);
+    print $out "  this.meleeDamage = $wpnvals[0]\n";
+    print $out "  this.meleeStrDamage = $wpnvals[1]\n";
+  } else {
+    print $out "  this.meleeAttackAs = '$fields[13]';\n";
+  }
+  if ($fields[14] =~ /\;/) {
+    print $out "  this.missileAttackAs = 'none';\n";
+    my @wpnvals = split(';', $fields[13]);
+    print $out "  this.missileDamage = $wpnvals[0]\n";
+    print $out "  this.missileRange = $wpnvals[1]\n";
+  } else{
+    print $out "  this.missileAttackAs = '$fields[14]';\n";
+  }
   if (!($fields[15] =~ /\;/)) { print $out "  this.armorAs = '$fields[15]Armor';\n"; }
   else {
     my @armorvals = split('\;', $fields[15]);
