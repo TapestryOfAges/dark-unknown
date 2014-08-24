@@ -270,7 +270,9 @@ function Atlas() {
     "CaveWall" : 'cw',
     'cw' : "CaveWall",
     "HexFloor" : 'hf',
-    'hf' : "HexFloor"
+    'hf' : "HexFloor",
+    "BlueTiles" : 'bb',
+    'bb' : "BlueTiles",    
   }
 
 }
