@@ -4994,7 +4994,6 @@ NPCObject.prototype.activate = function(timeoverride) {
   if ((this.getMeleeAttackAs()) && (this.getMeleeAttackAs !== "none")) {
     weapon = localFactory.createTile(this.getMeleeAttackAs());
     this.setEquipment("weapon",weapon);
-    wpn = weapon;
   }
   else {
     weapon = localFactory.createTile("NaturalWeapon");
