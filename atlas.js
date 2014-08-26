@@ -1286,17 +1286,32 @@ GameMap.prototype.loadMap = function (name) {
   this.setLightLevel(mappages.readPage(name, "lightLevel"));
   this.setAlwaysRemember(mappages.readPage(name, "alwaysRemember"));
   this.setScale(mappages.readPage(name, "scale"));
-  if(mappages.readPage(name, "enterscript")) {
-    mappages[name][mappages.readPage(name, "enterscript")](this);
-  }
-  if(mappages.readPage(name, "entertestscript")){
-    mappages[name][mappages.readPage(name, "entertestscript")](this);
-  }
-  if(mappages.readPage(name, "exitscript")) {
-    mappages[name][mappages.readPage(name, "exitscript")](this);
-  }
-  if(mappages.readPage(name, "exittestscript")) {
-    mappages[name][mappages.readPage(name, "exittestscript")](this);
+  if (!DU.gameflags.editor) {
+    if(mappages.readPage(name, "enterscript")) {
+      mappages[name][mappages.readPage(name, "enterscript")](this);
+    }
+    if(mappages.readPage(name, "entertestscript")){
+      mappages[name][mappages.readPage(name, "entertestscript")](this);
+    }
+    if(mappages.readPage(name, "exitscript")) {
+      mappages[name][mappages.readPage(name, "exitscript")](this);
+    }
+    if(mappages.readPage(name, "exittestscript")) {
+      mappages[name][mappages.readPage(name, "exittestscript")](this);
+    }
+  } else {
+    if(mappages.readPage(name, "enterscript")) {
+      this.setEnterScript(mappages.readPage(name, "enterscript"));
+    }
+    if(mappages.readPage(name, "entertestscript")){
+      this.setEnterTestScript(mappages.readPage(name, "entertestscript"));
+    }
+    if(mappages.readPage(name, "exitscript")) {
+      this.setExitScript(mappages.readPage(name, "exitscript"));
+    }
+    if(mappages.readPage(name, "exittestscript")) {
+      this.setExitTestScript(mappages.readPage(name, "exittestscript"));
+    }
   }
   
   this.setName(name);

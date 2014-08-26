@@ -24,6 +24,7 @@ var mode = "editor";
 var PC = new PCObject();
 var DU = {};
 DU.gameflags = {};  // empty games flags because atlas will look for it
+DU.gameflags.editor = 1;  // for atlas to look for
 
 $(document).ready(function() {
   browserheight = $(window).height();
