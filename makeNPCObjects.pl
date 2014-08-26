@@ -77,6 +77,9 @@ foreach my $line (<$npcdoc>) {
   if ($fields[22]) {
     print $out "  this.initmult = $fields[22];\n";
   }
+  if ($fields[23]) {
+    print $out "  this.meleeChance = $fields[23];\n";
+  }
   print $out "}\n";
   print $out "$fields[0]" . "NPCTile.prototype = new NPCObject();\n\n";
 }
