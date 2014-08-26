@@ -4437,6 +4437,7 @@ function NPCObject() {
 	this.equipment.armor;
 	this.equipment.weapon;
 	this.equipment.missile;
+	this.meleeChance = 100;
   this.gold = 0;
 	this.leavesCorpse = "";
 	this.lootTable = "";
@@ -4922,6 +4923,15 @@ NPCObject.prototype.addMovetype = function(move) {
 
 NPCObject.prototype.removeMovetype = function(move) {
 	this.movetype = this.movetype & ~move;
+}
+
+NPCObject.prototype.getMeleeChance = function() {
+  return this.meleeChance;
+}
+
+NPCObject.prototype.setMeleeChance = function(mc) {
+  this.meleeChance = mc;
+  return this.meleeChance;
 }
 
 NPCObject.prototype.getSpellEffects = function() {
