@@ -15,6 +15,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 Clouds from http://opengameart.org/content/fluffy-clouds, CC-by-SA licensed (http://creativecommons.org/licenses/by-sa/3.0/). The various clouds were merged into one image. One of the clouds is the smoke from the particle pack at http://www.ironstarmedia.co.uk/2009/12/free-game-assets-02-sprites-for-particle-effects/.
 
+Other images: 
+Most of the graphics came from the Ultima IV graphic upgrade (whose license boils down to "feel free to use so long as you don't mind that others are too" and David Gervais' Angband tiles (from http://pousse.rapiere.free.fr/tome/, CC license with attribution), variously modified. Various other tiles were created by me from whole cloth, or came from public domain sources that I lost my notes on, for which I apologize. 
+Some tiles come from http://opengameart.org/content/dungeon-crawl-32x32-tiles .
+
+
 SOUND SOURCES AND LICENSES:
 
 Sanctimonia: http://eightvirtues.com/sanctimonia/?page_id=97
