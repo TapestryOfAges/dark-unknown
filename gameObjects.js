@@ -3152,6 +3152,7 @@ function PentagramNWTile() {
 	this.spritexoffset = "0";
 	this.spriteyoffset = "0";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "pentagram";
 }
@@ -3163,6 +3164,7 @@ function PentagramNTile() {
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "0";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "pentagram";
 }
@@ -3174,6 +3176,7 @@ function PentagramNETile() {
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "0";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "pentagram";
 }
@@ -3185,6 +3188,7 @@ function PentagramWTile() {
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "pentagram";
 }
@@ -3196,6 +3200,7 @@ function PentagramCTile() {
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "pentagram";
 }
@@ -3207,6 +3212,7 @@ function PentagramETile() {
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "pentagram";
 }
@@ -3218,6 +3224,7 @@ function PentagramSWTile() {
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "pentagram";
 }
@@ -3229,6 +3236,7 @@ function PentagramSTile() {
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "pentagram";
 }
@@ -3240,6 +3248,7 @@ function PentagramSETile() {
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "pentagram";
 }
@@ -3262,6 +3271,7 @@ function WallOfWavesTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "0";
   this.spriteyoffset = "0";
+  this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Waves";
 }
@@ -3280,6 +3290,7 @@ function RuneOfWavesTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "0";
   this.spriteyoffset = "-32";
+  this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Waves";
 }
@@ -3299,6 +3310,7 @@ function WallOfWindsTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "-32";
   this.spriteyoffset = "0";
+  this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Winds";
 }
@@ -3317,6 +3329,7 @@ function RuneOfWindsTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-32";
+  this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Winds";
 }
@@ -3336,6 +3349,7 @@ function WallOfKingsTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "-64";
   this.spriteyoffset = "0";
+  this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Kings";
 }
@@ -3354,6 +3368,7 @@ function RuneOfKingsTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-32";
+  this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Kings";
 }
@@ -3372,6 +3387,7 @@ function WallOfFlamesTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "-96";
   this.spriteyoffset = "0";
+  this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Flames";
 }
@@ -3390,6 +3406,7 @@ function RuneOfFlamesTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-32";
+  this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Flames";
 }
@@ -3409,6 +3426,7 @@ function WallOfVoidTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "-128";
   this.spriteyoffset = "0";
+  this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Void";
 }
@@ -3427,6 +3445,7 @@ function RuneOfVoidTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-32";
+  this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Void";
 }
@@ -3445,6 +3464,7 @@ function PlatformOfWavesTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "0";
   this.spriteyoffset = "-64";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
 }
@@ -3455,6 +3475,7 @@ function PlatformOfWindsTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-64";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
 }
@@ -3465,6 +3486,7 @@ function PlatformOfKingsTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-64";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
 }
@@ -3475,6 +3497,7 @@ function PlatformOfFlamesTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-64";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
 }
@@ -3485,10 +3508,56 @@ function PlatformOfVoidTile() {
   this.graphic = "runes.gif";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-64";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
 }
 PlatformOfVoidTile.prototype = new FeatureObject();
+
+function FlameEternalTile() {
+  this.name = "FlameEternal";
+  this.graphic = "eternal_flame.gif";
+  this.spritexoffset = "0";  // -32 is active fire
+  this.spriteyoffset = "0";
+  this.prefix = "the";
+  this.desc = "Flame Eternal";
+}
+FlameEternalTile.prototype = new FeatureObject();
+
+function BrightFountainTile() {
+  this.name = "BrightFountain";
+  this.graphic = "fountains.gif";
+  this.spritexoffset = "0";
+  this.prefix = "a";
+  this.desc = "fountain";
+}
+BrightFountainTile.prototype = new FeatureObject();
+
+function BlueFountainTile() {
+  this.name = "BlueFountain";
+  this.graphic = "fountains.gif";
+  this.spritexoffset = "-64";
+  this.prefix = "a";
+  this.desc = "fountain";
+}
+BlueFountainTile.prototype = new FeatureObject();
+
+function BloodFountainTile() {
+  this.name = "BloodFountain";
+  this.graphic = "fountains.gif";
+  this.spritexoffset = "-32";
+  this.prefix = "a";
+  this.desc = "fountain";
+}
+BloodFountainTile.prototype = new FeatureObject();
+
+function FountainTile() {
+  this.name = "Fountain";
+  this.graphic = "fountain.gif";
+  this.prefix = "a";
+  this.desc = "fountain";
+}
+FountainTile.prototype = new FeatureObject();
 
 // Items
 

@@ -901,6 +901,31 @@ tileFactory.prototype.makePlatformOfVoidTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFlameEternalTile = function() {
+  var newTile = new FlameEternalTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrightFountainTile = function() {
+  var newTile = new BrightFountainTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlueFountainTile = function() {
+  var newTile = new BlueFountainTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBloodFountainTile = function() {
+  var newTile = new BloodFountainTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFountainTile = function() {
+  var newTile = new FountainTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAmbroseShieldTile = function() {
   var newTile = new AmbroseShieldTile();
   return newTile;
