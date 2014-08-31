@@ -3528,6 +3528,7 @@ function BrightFountainTile() {
   this.name = "BrightFountain";
   this.graphic = "fountains.gif";
   this.spritexoffset = "0";
+  this.spriteyoffset = "0";
   this.prefix = "a";
   this.desc = "fountain";
 }
@@ -3537,6 +3538,7 @@ function BlueFountainTile() {
   this.name = "BlueFountain";
   this.graphic = "fountains.gif";
   this.spritexoffset = "-64";
+  this.spriteyoffset = "0";
   this.prefix = "a";
   this.desc = "fountain";
 }
@@ -3546,6 +3548,7 @@ function BloodFountainTile() {
   this.name = "BloodFountain";
   this.graphic = "fountains.gif";
   this.spritexoffset = "-32";
+  this.spriteyoffset = "0";
   this.prefix = "a";
   this.desc = "fountain";
 }
