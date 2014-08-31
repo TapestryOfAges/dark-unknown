@@ -27,11 +27,11 @@ mappages["olympus1"].terrain[23] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ++
 mappages["olympus1"].terrain[24] = '.. .| ww ww ww |. .. .. ## ++ ## ## ++ ## ## ## ## ## ++ ## ## ## ## ## ## ## ## ## ## ++ ## ## ## ## ## ## ## ## ## ## ++ ## ## ## ## ## ++ ## ## ++ ## .. .. .| ww ww ww |. ..';
 mappages["olympus1"].terrain[25] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ## ## ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
 mappages["olympus1"].terrain[26] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ## ## ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ +o ++ +o ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
-mappages["olympus1"].terrain[27] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ## ## ## ++ ++ ## ++ ++ +/ WE WE WE `+ ++ ++ ++ ++ ++ +/ WE WE WE `+ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
-mappages["olympus1"].terrain[28] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ## ## ## ++ ++ ## ++ ++ WE /u uu u` WE ++ ++ ++ ++ ++ WE /u uu u` WE ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
-mappages["olympus1"].terrain[29] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ## ## ## ++ ++ ++ ++ ++ WE uu uu uu WE ++ +o ++ +o ++ WE uu uu uu WE ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
-mappages["olympus1"].terrain[30] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ## ## ## ++ ++ ## ++ ++ WE `u uu u/ WE ++ ++ ++ ++ ++ WE `u uu u/ WE ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
-mappages["olympus1"].terrain[31] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ +` WE WE WE /+ ++ ++ ++ ++ ++ +` WE WE WE /+ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
+mappages["olympus1"].terrain[27] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ## ## ## ++ ++ ## ++ ++ ++ +* +* +* ++ ++ ++ ++ ++ ++ ++ +* +* +* ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
+mappages["olympus1"].terrain[28] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ## ## ## ++ ++ ## ++ ++ +* +* +* +* +* ++ ++ ++ ++ ++ +* +* +* +* +* ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
+mappages["olympus1"].terrain[29] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ## ## ## ++ ++ ++ ++ ++ +* +* +* +* +* ++ +o ++ +o ++ +* +* +* +* +* ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
+mappages["olympus1"].terrain[30] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ## ## ## ++ ++ ## ++ ++ +* +* +* +* +* ++ ++ ++ ++ ++ +* +* +* +* +* ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
+mappages["olympus1"].terrain[31] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ +* +* +* ++ ++ ++ ++ ++ ++ ++ +* +* +* ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
 mappages["olympus1"].terrain[32] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ +o ++ +o ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
 mappages["olympus1"].terrain[33] = '.. .| ww ww ww |. .. .. ## ++ ## ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ++ ++ ## ++ ## .. .. .| ww ww ww |. ..';
 mappages["olympus1"].terrain[34] = '.. .| ww ww ww |. ## ## ## ++ ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ++ ++ ++ ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ++ ## ## ## .| ww ww ww |. ..';
@@ -66,6 +66,8 @@ mappages["olympus1"].features[16] = {name : 'Door', x : 46, y : 24};
 mappages["olympus1"].features[17] = {name : 'DoorWindow', x : 40, y : 24};
 mappages["olympus1"].features[18] = {name : 'LadderUp', x : 25, y : 23, entermap : 'null', enterx : 0, entery : 0};
 mappages["olympus1"].features[19] = {name : 'Doorway', x : 29, y : 19};
+mappages["olympus1"].features[20] = {name : 'Fountain', x : 34, y : 29};
+mappages["olympus1"].features[21] = {name : 'Fountain', x : 24, y : 29};
 
 
 mappages["olympus1"].npcs = [];
@@ -79,7 +81,7 @@ mappages["olympus1"].npcs[6] = {name : 'TownGuardNPC', x : 26, y : 33, Prefix: '
 mappages["olympus1"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 24, y : 22, Prefix: 'a'};
 mappages["olympus1"].npcs[8] = {name : 'BardVillagerNPC', x : 13, y : 14, NPCName: 'Olivia', Desc: 'librarian', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'olivia', Gender: 'female'};
 mappages["olympus1"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 47, y : 28, Prefix: 'a'};
-mappages["olympus1"].npcs[10] = {name : 'DruidVillagerNPC', x : 44, y : 14, Prefix: 'the', NPCName: 'Shelaria', Desc: 'Queen'};
+mappages["olympus1"].npcs[10] = {name : 'DruidVillagerNPC', x : 44, y : 14, NPCName: 'Shelaria', Desc: 'Queen', Prefix: 'a'};
 mappages["olympus1"].npcs[11] = {name : 'FighterVillagerNPC', x : 25, y : 13, NPCName: 'Ambrose', Desc: 'guard captain', Prefix: 'a', Level: 5, Alignment: 'good', str: 24, dex: 18, int: 12, Attitude: 'friendly', PeaceAI: 'guard', PCThreatAI: 'melee', Conversation: 'ambrose', ConversationFlag: 'has_shield', Gender: 'male'};
 mappages["olympus1"].npcs[12] = {name : 'JesterNPC', x : 28, y : 15, NPCName: 'Kaye', Prefix: 'a', Alignment: 'good', Attitude: 'friendly', Conversation: 'kaye', ConversationFlag: 'undefined', Gender: 'male'};
 
