@@ -89,7 +89,7 @@ function getSize() {
 function drawMap() {
   var mapdiv = "";
  if (amap.data.length) {
-   mapdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
+   mapdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'><tr>";
    for (var i=0;i<=amap.data.length-1;i++) {
      for (var j=0;j<=amap.data[0].length-1;j++) {
        var localacre = amap.getTile(j,i);
