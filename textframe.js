@@ -3,6 +3,7 @@
 function TextFrame(fname) {
 	this.framename = "#" + fname;
 	this.inputLine = "";
+	this.delayedappend = "";
 }
 
 TextFrame.prototype.getInputLine = function() {
@@ -21,6 +22,22 @@ TextFrame.prototype.addText = function(newtext) {
 	if (newtext) {
   	$(this.framename).append("<br />" + newtext);
   }
+  if (this.delayedappend) {
+    $(this.framename).append("<br />" + this.delayedappend);
+    this.clearDelay();
+  }
+}
+
+TextFrame.prototype.delayedAddText = function(newtext) {
+  if (this.delayedappend) {
+    this.delayedappend = this.delayedappend + "<br />" + newtext;
+  } else {
+    this.delayedappend = newtext;
+  }
+}
+
+TextFrame.prototype.clearDelay = function() {
+  this.delayedappend = "";
 }
 
 TextFrame.prototype.addTextByLine = function(newtext) {
