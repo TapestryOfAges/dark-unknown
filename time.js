@@ -102,6 +102,10 @@ Timeline.prototype.getNextEvent = function() {
 }
 
 Timeline.prototype.executeNextEvent = function() {
+  if (PC.getHP() <= 0) {
+    DoPCDeath();
+  }
+
   var nextevent = this.tickstream.executeEvent();
   this.setGameClock(nextevent.timestamp);
   var foo = this.tickstream.getNextTick();
