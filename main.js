@@ -6,7 +6,7 @@ var DAYNIGHT = DAY;
 
 var wind = {};
 wind.xoff = 0;
-wind.yoff = 0;
+wind.yoff = 2;
 
 var mappages = new Pages();
 var localFactory = new tileFactory();
