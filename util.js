@@ -687,3 +687,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
 function ApplyRune(who, rune) {
   // CREATE ME
 }
+
+function DoPCDeath() {
+  
+}
