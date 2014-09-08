@@ -142,6 +142,19 @@ function PoisonTile() {
 }
 PoisonTile.prototype = new DamageOverTimeObject();
 
+PoisonTile.prototype.applyEffect = function(silent) {
+  return 1;
+}
+
+PoisonTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  DrawCharFrame();
+  if (!silent) {
+    maintext.delayedAddText("The poison wears off.");
+  }
+}
+
 function LevitateTile() {
   this.addType("buff");
   this.name = "Levitate";
