@@ -82,7 +82,7 @@ function Attack(atk, def) {
     var armor = def.getEquipment("armor");
     var absorb = 0;
     if (armor) {
-      absorb = def.getEquipment("armor").getAbsorb() - weapon.getReduceArmor();
+      absorb = armor.getAbsorb() - weapon.getReduceArmor();
       absorb /= 100;
       if (absorb < 0) { absorb = 0; }
     }
