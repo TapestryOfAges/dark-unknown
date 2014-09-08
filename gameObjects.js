@@ -2792,6 +2792,32 @@ function FireFieldTile() {
 }
 FireFieldTile.prototype = new FeatureObject();
 
+FireFieldTile.prototype.walkon = function(person) {
+  var resp = InAFireField(person);
+  return resp;
+}
+FireFieldTile.prototype.idle = function(person) {
+  var resp = InAFireField(person);
+  return resp;
+}
+
+function InAFireField(who) {
+  var dmg = RollDice("2d6+3");
+  dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
+  var response = "The fire field burns you!";
+  var armor = who.getEquipment("armor");
+  var resist = 0;
+  if (armor) {
+    resist = armor.getResist();
+    resist = resist/100;
+  }
+  resist = 1-resist;
+  dmg = dmg*resist;
+  who.dealDamage(dmg, this);
+  
+  return response;
+}
+
 function PoisonFieldTile() {
 	this.name = "PoisonField";
 	this.graphic = "flowing_animations.gif";
@@ -2807,6 +2833,39 @@ function PoisonFieldTile() {
 	LightEmitting.call(this, 1);
 }
 PoisonFieldTile.prototype = new FeatureObject();
+
+PoisonFieldTile.prototype.walkon = function(person) {
+  var resp = InAPoisonField(person);
+  return resp;
+}
+PoisonFieldTile.prototype.idle = function(person) {
+  var resp = InAPoisonField(person);
+  return resp;
+}
+
+function InAPoisonField(who){
+  var poisonchance = .75;
+  poisonchance = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * poisonchance;
+  var armor = who.getEquipment("armor");
+  if (armor) {
+    poisonchance = poisonchance * (1-armor.getResist()/100);
+  }
+  
+  if (Math.random()*1 < poisonchance) {  
+    if (who.getSpellEffectsByName("Poison")) { return 0; }
+    var poison = localFactory.createTile("Poison");
+    
+    var duration = (20+RollDice("2d10") + who.getInt() - 15) * SCALE_TIME;
+    poison.setExpiresTime(duration + DUTime.getGameClock());
+    who.addSpellEffect(poison);
+    
+    DrawCharFrame();
+    var response = "You are poisoned!";
+    return response;
+  }
+
+  return "";
+}
 
 function LadderDownTile() {
   this.name = "LadderDown";
@@ -5564,6 +5623,11 @@ PCObject.prototype.activate = function() {
 PCObject.prototype.myTurn = function() {
   if (debug) { dbs.writeln("=== PC TURN ===   Timestamp: " + DU.DUTime.getGameClock() + "; x: " + PC.getx() + ", y: " + PC.gety() + "<br />"); }
   RunEffects(this);
+  
+  if (this.getHP() <= 0) {
+    DoPCDeath();
+  }
+  
 	gamestate.setMode("player");
 	gamestate.setTurn(PC);
 }
