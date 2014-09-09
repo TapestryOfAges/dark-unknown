@@ -5103,7 +5103,10 @@ NPCObject.prototype.addSpellEffect = function(spellobj) {
   this.spellEffects.addBottom(spellobj);
   spellobj.setAttachedTo(this);
   spellobj.setCreateTime(DUTime.getGameClock());
-  spellobj.applyEffect(silent);
+  var makeactive = spellobj.applyEffect(silent);
+  if (makeactive) {
+    spellobj.setActive(1);
+  }
   
   return 1;
 //  SetActiveEffects(this);
