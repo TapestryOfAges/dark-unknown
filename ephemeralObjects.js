@@ -103,6 +103,7 @@ DamageOverTimeObject.prototype.doEffect = function() {
   var dmg = dur * this.getDamagePerTick();
   var who = this.getAttachedTo();
   
+  alert(dmg);
 //  var oldhp = who.getDisplayHP();
   who.dealDamage(dmg);
 //  var newhp = who.getDisplayHP();
@@ -170,6 +171,7 @@ LevitateTile.prototype.applyEffect = function(silent) {
       maintext.addText("You begin to float a few inches off the ground.");
     }
   }
+  return 1;
 }
 
 LevitateTile.prototype.doEffect = function() {
@@ -208,6 +210,7 @@ LightTile.prototype.applyEffect = function(silent) {
       maintext.addText("You conjure " + lightdesc + ".");
     }
   }
+  return 1;
 }
 
 LightTile.prototype.doEffect = function() {
@@ -244,6 +247,7 @@ QuicknessTile.prototype.applyEffect = function(silent) {
   if (!silent) {
     maintext.addText("You begin to move faster.");
   }
+  return 1;
 }
 
 QuicknessTile.prototype.doEffect = function() {
