@@ -151,7 +151,7 @@ PoisonTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   DrawCharFrame();
-  if (!silent) {
+  if ((who === PC) && !silent) {
     maintext.delayedAddText("The poison wears off.");
   }
 }
@@ -167,7 +167,7 @@ LevitateTile.prototype.applyEffect = function(silent) {
   var who = this.getAttachedTo();
   if (who) {
     who.addMovetype(MOVE_LEVITATE);
-    if (!silent) {
+    if ((who === PC) && !silent) {
       maintext.addText("You begin to float a few inches off the ground.");
     }
   }
@@ -184,7 +184,7 @@ LevitateTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
   who.removeMovetype(MOVE_LEVITATE);
   who.deleteSpellEffect(this);
-  if (!silent) {
+  if ((who === PC) && !silent) {
     maintext.addText("You sink back to the ground.");
   }
   DrawCharFrame();
@@ -203,7 +203,7 @@ LightTile.prototype.applyEffect = function(silent) {
   var power = this.getPower();
   if (who) {
     who.setLight(who.getLight() + power);
-    if (!silent) {
+    if ((who === PC) && !silent) {
       var lightdesc = "a sphere of light";
       if (power > 2) { lightdesc = "a bright sphere of light"; }
   
@@ -223,7 +223,7 @@ LightTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
   who.setLight(who.getLight() - this.getPower());
   who.deleteSpellEffect(this);
-  if (!silent) {
+  if ((who === PC) && !silent) {
     maintext.addText("Your light blinks out.");
   }
   DrawCharFrame();
@@ -244,7 +244,7 @@ QuicknessTile.prototype.applyEffect = function(silent) {
   
   this.oldinitmult = who.initmult;
   who.initmult = power;
-  if (!silent) {
+  if ((who === PC) && !silent) {
     maintext.addText("You begin to move faster.");
   }
   return 1;
@@ -260,8 +260,38 @@ QuicknessTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
   who.initmult = this.oldinitmult;
   who.deleteSpellEffect(this);
-  if (!silent) {
+  if ((who === PC) && !silent) {
     maintext.addText("You slow down again.");
   }
   DrawCharFrame();  
+}
+
+function SleepTile() {
+  this.addType("debuff");
+  this.name = "Sleep";
+  this.display = "<span style='color:777777'>S</span>";
+}
+SleepTile.prototype = new EphemeralObject();
+
+SleepTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You fall asleep.");
+  }
+  return 1;
+}
+
+SleepTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+SleepTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You wake up!");
+  }
+  DrawCharFrame();
 }

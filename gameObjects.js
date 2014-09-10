@@ -2776,6 +2776,38 @@ function SleepFieldTile() {
 }
 SleepFieldTile.prototype = new FeatureObject();
 
+SleepFieldTile.prototype.walkon = function(person) {
+  var resp = InASleepField(person);
+  return resp;
+}
+SleepFieldTile.prototype.idle = function(person) {
+  var resp = InASleepField(person);
+  return resp;
+}
+
+function InASleepField(who) {
+  var armor = who.getEquipment("armor");
+  var resist = 0;
+  if (armor) {
+    resist = armor.getResist();
+    resist = resist/100;
+  }
+  resist = 1-resist;
+  var chance = .5 * resist;
+  if (Math.random()*1 < chance) {
+    if (who.getSpellEffectsByName("Sleep")) { return 0; }
+    var poison = localFactory.createTile("Sleep");
+    
+    var duration = (RollDice("2d3") - who.getInt()/20) * SCALE_TIME;
+    poison.setExpiresTime(duration + DUTime.getGameClock());
+    who.addSpellEffect(poison);
+    
+    DrawCharFrame();
+
+  }
+  return "";
+}
+
 function FireFieldTile() {
 	this.name = "FireField";
 	this.graphic = "flowing_animations.gif";
@@ -4739,6 +4771,10 @@ NPCObject.prototype.healMe = function(amt, src) {
 }
 
 NPCObject.prototype.dealDamage = function(dmg, src) {
+  var isasleep = this.getSpellEffectsByName("Sleep");
+  if (isasleep) {
+    isasleep.endEffect();
+  }
   this.modHP(dmg*-1);
   if (this.getHP() <= 0) { // killed!
     this.processDeath(1);
@@ -5264,23 +5300,28 @@ NPCObject.prototype.myTurn = function() {
 	gamestate.setTurn(this);
 	
 	RunEffects(this);
+	
+  var awake = 1;
+  if (this.getSpellEffectsByName("Sleep")) { awake = 0; }
+  
 	// actual AI!
-	
-	var response = {};  
-	// will be = return value of AI call
-	var ainame=this.getPeaceAI().split("-");
+  if (awake) {	
+    var response = {};  
+  	// will be = return value of AI call
+  	var ainame=this.getPeaceAI().split("-");
 
-	if (ais[ainame[0]]) {
-	  if (ainame.length === 1) { ainame[1] = ""; }
-	  response = ais[ainame[0]](this, ainame[1]);
-	}
-	if (typeof response.initdelay === 'undefined') {
-	  response["initdelay"] = 1;
+    if (ais[ainame[0]]) {
+	    if (ainame.length === 1) { ainame[1] = ""; }
+	    response = ais[ainame[0]](this, ainame[1]);
+	  }
+	  if (typeof response.initdelay === 'undefined') {
+	    response["initdelay"] = 1;
+	  }
 	}
 	
-	  // check for NPC idling
+  // check for NPC idling
   var oldloc = this.getLastLocation();
-  if ((oldloc.map === this.getHomeMap()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // player did not move
+  if ((oldloc.map === this.getHomeMap()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // npc did not move
     var tile = this.getHomeMap().getTile(this.getx(),this.gety());
     var idleval = tile.executeIdles(this);
   } else {
@@ -5290,7 +5331,7 @@ NPCObject.prototype.myTurn = function() {
     newloc.y = this.gety();
     this.setLastLocation(newloc);
   }
-	
+  
 	this.setLastTurnTime(DUTime.getGameClock());
 	
 	gamestate.setMode("null");
@@ -5631,8 +5672,16 @@ PCObject.prototype.myTurn = function() {
     DoPCDeath();
   }
   
-	gamestate.setMode("player");
-	gamestate.setTurn(PC);
+  var awake = 1;
+  if (this.getSpellEffectsByName("Sleep")) { awake = 0; }  
+  
+  if (awake) {
+	  gamestate.setMode("player");
+	  gamestate.setTurn(PC);
+	} else {
+	  maintext.addText("Zzzz...");
+	  this.endTurn(0);
+	}
 }
 
 PCObject.prototype.endTurn = function(init) {
@@ -5746,6 +5795,12 @@ PCObject.prototype.setInfusion = function(infuse) {
 }
 
 PCObject.prototype.dealDamage = function(dmg, src) {
+  
+  var isasleep = this.getSpellEffectsByName("Sleep");
+  if (isasleep) {
+    isasleep.endEffect();
+  }
+
   var oldhp = this.getDisplayHP();
   this.modHP(dmg*-1);
   var newhp = this.getDisplayHP();
