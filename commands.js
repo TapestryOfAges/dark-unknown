@@ -1389,7 +1389,7 @@ function DrawStats(page) {
    
  if (page === 1) {
   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-  statsdiv += "<table cellpadding='0' cellspacing='0' border='0'><tr>";
+  statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'><tr>";
   statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
   statsdiv += "<tr><td style='width:50%'>HP: " + PC.getDisplayHP() + "/" + PC.getMaxHP() + "</td><td></td>";
   statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
@@ -1455,7 +1455,7 @@ function DrawStats(page) {
  }
  else if (page === 2) {
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
+   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
    statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
    var inv = PC.getInventory();
    var melee = [];
@@ -1517,7 +1517,7 @@ function DrawStats(page) {
    DrawTopbarFrame("<p>Inventory</p>");
  } else if (page === 3) {
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
+   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
    statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
    var pots = [];
    var scrolls = [];
@@ -1569,7 +1569,7 @@ function DrawStats(page) {
 
  } else if (page === 4) {
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
+   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
    statsdiv += "<tr><td>&nbsp;</td></tr>";
    
    var hasSpellbook = 0;
@@ -1614,6 +1614,9 @@ function DrawStats(page) {
    DrawTopbarFrame("<p>Spellbook</p>");
   }
  
+  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
+  $("#worldlayer").css("background-image", "");
+  $("#worldlayer").css("background-color", "black");
   $('#displayframe').html(statsdiv);
   
 	var scrollelem = $('.zstats').jScrollPane();
