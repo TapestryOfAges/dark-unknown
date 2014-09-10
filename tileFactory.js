@@ -1341,6 +1341,11 @@ tileFactory.prototype.makeQuicknessTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSleepTile = function() {
+  var newTile = new SleepTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeEraserTile = function() {
   var newTile = new BlankWhiteTile();
   newTile.name = 'Eraser';
