@@ -126,14 +126,15 @@ mappages["skypalace"].linkedMaps = [""];
 mappages["skypalace"].onload = function(mapref){ 
 //  mapref.setBackground("high_world.gif");
   mapref.setBackground("clouds-mass.gif");
+  mapref.worldlayer = "high_world.gif";
 }
 
 mappages["skypalace"].entersky = function(mapref) {
   mapref.Enter = function(enterer, enterfrom, fromx, fromy, tox, toy){
     if (enterer === PC) {
       //$("#worldlayer").html("<img src='graphics/high_world.gif' width='416' height='416' />");
-      $("#worldlayer").css("background-image", "url('graphics/high_world.gif')");
-      
+//      $("#worldlayer").css("background-image", "url('graphics/high_world.gif')");
+
       setTimeout(function() {wind_blow();}, 100);
     }
   }
@@ -144,7 +145,9 @@ function wind_blow() {
   if (PC.getHomeMap().getName() === "skypalace") {
     wind.xoff -= 1;
     if (wind.xoff <= -1685) { wind.xoff = 0; }
-    $("#cloudlayer").css("background-position", wind.xoff + "px " + wind.yoff + "px");
+    if ($("#worldlayer").css("background-image").indexOf("url") > -1) {
+      $("#cloudlayer").css("background-position", wind.xoff + "px " + wind.yoff + "px");
+    }
     setTimeout(function() {wind_blow();}, 100);
   }
 }
