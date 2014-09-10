@@ -80,6 +80,9 @@ function DrawMainFrame(how, mapname, centerx, centery) {
     } else {
       $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
     }
+    if (themap.worldlayer) {
+      $("#worldlayer").css("background-image", "url('graphics/high_world.gif')");
+    }
     mapdiv += "<table cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20;\"><tr>";
     for (var i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
       for (var j=displayspecs.leftedge;j<=displayspecs.rightedge;j++) {
