@@ -3653,6 +3653,58 @@ function FountainTile() {
 }
 FountainTile.prototype = new FeatureObject();
 
+function OrbToggleTile() {
+  this.name = "OrbToggle";
+  this.graphic = "orbs.gif";
+  this.spritexoffset = '0';
+  this.spriteyoffset = '0';
+  this.prefix = "an";
+  this.desc = "orb";
+}
+OrbToggleTile.prototype = new FeatureObject();
+
+function OrbStrengthTile() {
+  this.name = "OrbStrength";
+  this.graphic = "orbs.gif";
+  this.spritexoffset = '-128';
+  this.spriteyoffset = '0';
+  this.prefix = "an";
+  this.desc = "orb";
+}
+OrbStrengthTile.prototype = new FeatureObject();
+
+function OrbDexterityTile() {
+  this.name = "OrbDexterity";
+  this.graphic = "orbs.gif";
+  this.spritexoffset = '-64';
+  this.spriteyoffset = '0';
+  this.prefix = "an";
+  this.desc = "orb";
+}
+OrbDexterityTile.prototype = new FeatureObject();
+
+function OrbIntelligenceTile() {
+  this.name = "OrbIntelligence";
+  this.graphic = "orbs.gif";
+  this.spritexoffset = '-32';
+  this.spriteyoffset = '0';
+  this.prefix = "an";
+  this.desc = "orb";
+}
+OrbIntelligenceTile.prototype = new FeatureObject();
+
+function OrbExperienceTile() {
+  this.name = "OrbExperience";
+  this.graphic = "orbs.gif";
+  this.spritexoffset = '-96';
+  this.spriteyoffset = '0';
+  this.prefix = "an";
+  this.desc = "orb";
+}
+OrbExperienceTile.prototype = new FeatureObject();
+
+
+
 // Items
 
 function ItemObject() {

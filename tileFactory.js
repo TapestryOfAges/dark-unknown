@@ -926,6 +926,31 @@ tileFactory.prototype.makeFountainTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeOrbToggleTile = function() {
+  var newTile = new OrbToggleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrbStrengthTile = function() {
+  var newTile = new OrbStrengthTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrbDexterityTile = function() {
+  var newTile = new OrbDexterityTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrbIntelligenceTile = function() {
+  var newTile = new OrbIntelligenceTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrbExperienceTile = function() {
+  var newTile = new OrbExperienceTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAmbroseShieldTile = function() {
   var newTile = new AmbroseShieldTile();
   return newTile;
