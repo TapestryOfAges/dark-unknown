@@ -3663,6 +3663,15 @@ function OrbToggleTile() {
 }
 OrbToggleTile.prototype = new FeatureObject();
 
+OrbToggleTile.prototype.use = function(who) {
+  this.spritexoffset = this.spritexoffset - 32;
+  if (this.spritexoffset < -128) { this.spritexoffset = 0; }
+  
+  var retval = {};
+  retval["txt"] = "Done!";
+  return retval;
+}
+
 function OrbStrengthTile() {
   this.name = "OrbStrength";
   this.graphic = "orbs.gif";
@@ -3704,6 +3713,15 @@ function OrbExperienceTile() {
 OrbExperienceTile.prototype = new FeatureObject();
 
 
+function MoongateTile() {
+  this.name = "Moongate";
+  this.graphic = "moongates.gif";
+  this.spritexoffset = '0';
+  this.spriteyoffset = '0';
+  this.prefix = "a";
+  this.desc = "gate";
+}
+MoongateTile.prototype = new FeatureObject();
 
 // Items
 

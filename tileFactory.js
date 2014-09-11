@@ -951,6 +951,11 @@ tileFactory.prototype.makeOrbExperienceTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeMoongateTile = function() {
+  var newTile = new MoongateTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAmbroseShieldTile = function() {
   var newTile = new AmbroseShieldTile();
   return newTile;
