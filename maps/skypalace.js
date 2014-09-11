@@ -101,6 +101,9 @@ mappages["skypalace"].features[31] = {name : 'FireField', x : 27, y : 10};
 mappages["skypalace"].features[32] = {name : 'PlatformOfWinds', x : 31, y : 9};
 mappages["skypalace"].features[33] = {name : 'PlatformOfWinds', x : 49, y : 30};
 mappages["skypalace"].features[34] = {name : 'PlatformOfWinds', x : 51, y : 23};
+mappages["skypalace"].features[35] = {name : 'OrbToggle', x : 33, y : 27, usescript : 'useorb'};
+mappages["skypalace"].features[36] = {name : 'OrbToggle', x : 29, y : 32, usescript : 'useorb'};
+mappages["skypalace"].features[37] = {name : 'OrbToggle', x : 37, y : 32, usescript : 'useorb'};
 
 
 mappages["skypalace"].npcs = [];
@@ -123,10 +126,12 @@ mappages["skypalace"].exitscript = '';
 mappages["skypalace"].exittestscript = '';
 mappages["skypalace"].linkedMaps = [""];
 
+
 mappages["skypalace"].onload = function(mapref){ 
 //  mapref.setBackground("high_world.gif");
   mapref.setBackground("clouds-mass.gif");
   mapref.worldlayer = "high_world.gif";
+  
 }
 
 mappages["skypalace"].entersky = function(mapref) {
@@ -140,6 +145,31 @@ mappages["skypalace"].entersky = function(mapref) {
   }
 }
 
+mappages["skypalace"].useorb = function(feature) {
+  feature.use = function(user) {
+    this.spritexoffset = this.spritexoffset - 32;
+    if (this.spritexoffset < -128) { this.spritexoffset = 0; }
+
+    var sp = maps.getMap("skypalace");
+    var orb1tile = sp.getTile(33,27);
+    var orb1 = orb1tile.getTopFeature();
+    var orb2tile = sp.getTile(29,32);
+    var orb2 = orb2tile.getTopFeature();
+    var orb3tile = sp.getTile(37,32);
+    var orb3 = orb3tile.getTopFeature();
+//    alert(orb1.spritexoffset + " , " + orb2.spritexoffset + " , " + orb3.spritexoffset);
+    if ((orb1.spritexoffset == '-32') && (orb2.spritexoffset == '-96') && (orb3.spritexoffset == '-64')) {
+      alert("success");
+      var moongate = localFactory.createTile("Moongate");
+      sp.placeThing(33,31,moongate);
+      DrawMainFrame("one", moongate.getHomeMap().getName(), moongate.getx(), moongate.gety());
+    }
+  
+    var retval = {};
+    retval["txt"] = "Done!";
+    return retval;
+  }
+}
 
 function wind_blow() {
   if (PC.getHomeMap().getName() === "skypalace") {
@@ -151,3 +181,4 @@ function wind_blow() {
     setTimeout(function() {wind_blow();}, 100);
   }
 }
+
