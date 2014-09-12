@@ -305,13 +305,17 @@ function DoAction(code) {
     var response = PerformTarget(code);
     if (response["fin"] === 1) {  // move the cursor
 //  		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
-      var postmp = getCoords(PC.getHomeMap(), targetCursor.x, targetCursor.y);
+//      var pos = getCoords(PC.getHomeMap(), targetCursor.x, targetCursor.y);
 //      var posleft = 192 + (targetCursor.x - displayspecs.centerx)*32;
 //      var postop = 192 + (targetCursor.y - displayspecs.centery)*32;
-      var posleft = postmp.x;
-      var postop = postmp.y;
       var tileid = targetCursor.tileid;
-      $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:'+posleft+'px;top:'+postop+'px;z-index:50" />');
+      $(tileid).html(targetCursor.basetile);
+      tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+      targetCursor.tileid = tileid;
+      targetCursor.basetile = $(tileid).html();
+//      pos.x = 0;
+//      pos.y = 0;
+      $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0;top:0;z-index:50" />');
       gamestate.setMode("target");
     }
     else if (response["fin"] === 2) { // act on the current target
