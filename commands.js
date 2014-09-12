@@ -71,18 +71,21 @@ function PerformCommand(code) {
       targetCursor.y = PC.gety();		  
 		} else {  // on a 1:1 scale map, choose target
 		  gamestate.setMode("target");
+		  var targetcoords = getCoords(PC.getHomeMap(), PC.getx(), PC.gety());
 		  var newx = PC.getx();
 		  var newy = PC.gety();
-		  var targetx = 192;
-		  var targety = 192;
-		  var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+//		  var targetx = 192;
+//		  var targety = 192;
+//		  var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		  targetCursor.x = newx;
 		  targetCursor.y = newy;
 		  targetCursor.command = "a";
 		  targetCursor.targetlimit = (viewsizex -1)/2;
 		  targetCursor.targetCenterlimit = 0;
-		  targetx += (PC.x - edges.centerx) * 32;
-		  targety += (PC.y - edges.centery) * 32;
+//		  targetx += (PC.x - edges.centerx) * 32;
+//		  targety += (PC.y - edges.centery) * 32;
+      var targetx = targetcoords.x;
+      var targety = targetcoords.y;
 		  var tileid = "#td-tile" + newx + "x" + newy;
 		  targetCursor.tileid = tileid;
 		  targetCursor.basetile = $(tileid).html();
@@ -144,24 +147,23 @@ function PerformCommand(code) {
 	}
 	else if (code === 76) { // l
     // U4's Locate, here, Look
-    gamestate.setMode("target");
-    var newx = PC.getx();
-    var newy = PC.gety();
-    targetCursor.x = newx;
-    targetCursor.y = newy;
+    gamestate.setMode("null");
+    targetCursor.x = PC.getx();
+    targetCursor.y = PC.gety();
     targetCursor.command = "l";
     targetCursor.targetlimit = (viewsizex -1)/2;
     targetCursor.targetCenterlimit = 0;
     var targetcoords = getCoords(PC.getHomeMap(), PC.getx(), PC.gety());
     targetx = targetcoords.x;
     targety = targetcoords.y;
-    var tileid = "#td-tile" + newx + "x" + newy;
+    var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
     targetCursor.tileid = tileid;
     targetCursor.basetile = $(tileid).html();
-    $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:' + targetx + 'px;top:' + targety + 'px;z-index:3" />');
+    $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:' + targetx + 'px;top:' + targety + 'px;z-index:50" />');
     retval["txt"] = "";
     retval["input"] = "&gt; Look: ";
     retval["fin"] = 2;
+    gamestate.setMode("target");
 	}
 	else if (code === 77) { // m
 		// was mix - now, toggles music
@@ -228,7 +230,7 @@ function PerformCommand(code) {
     var tileid = "#td-tile" + newx + "x" + newy;
     targetCursor.tileid = tileid;
     targetCursor.basetile = $(tileid).html();
-    $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:' + targetx + 'px;top:' + targety + 'px;z-index:3" />');
+    $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:' + targetx + 'px;top:' + targety + 'px;z-index:50" />');
     retval["txt"] = "";
     retval["input"] = "&gt; Talk: ";
     retval["fin"] = 2;

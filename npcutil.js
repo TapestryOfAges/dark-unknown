@@ -113,7 +113,7 @@ function Attack(atk, def) {
 
   var ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
 
-  var tablehtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; z-index:4; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+  var tablehtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
   
   targetCursor.tileid = "#td-tile" + displayspecs.leftedge + "x" + displayspecs.topedge;
   targetCursor.basetile = $(targetCursor.tileid).html(); 
@@ -127,7 +127,7 @@ function Attack(atk, def) {
     var hitgraphic = "";
     if (dmg === 0) { hitgraphic = "700.gif"; }
     else { hitgraphic = "702.gif"; }
-    var hitanimhtml = '<div id="hitdiv" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:4; background-image:url(\'graphics/' + hitgraphic + '\');background-repeat:no-repeat; background-position: 0px 0px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+    var hitanimhtml = '<div id="hitdiv" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:40; background-image:url(\'graphics/' + hitgraphic + '\');background-repeat:no-repeat; background-position: 0px 0px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
     $(targetCursor.tileid).html($(targetCursor.tileid).html() + hitanimhtml);
     setTimeout(function() {
       $(targetCursor.tileid).html(targetCursor.basetile);
@@ -137,7 +137,7 @@ function Attack(atk, def) {
         ammographic.xoffset = 0;
         ammographic.yoffset = 0;
       }
-      returnhtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; z-index:4; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
+      returnhtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
       $(targetCursor.tileid).html($(targetCursor.tileid).html() + returnhtml);
       $("#animtable").animate({ left: ammocoords.fromx , top: ammocoords.fromy } , duration, 'linear', function() {
         $(targetCursor.tileid).html(targetCursor.basetile);

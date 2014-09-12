@@ -305,8 +305,11 @@ function DoAction(code) {
     var response = PerformTarget(code);
     if (response["fin"] === 1) {  // move the cursor
 //  		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
-      var posleft = 192 + (targetCursor.x - displayspecs.centerx)*32;
-      var postop = 192 + (targetCursor.y - displayspecs.centery)*32;
+      var postmp = getCoords(PC.getHomeMap(), targetCursor.x, targetCursor.y);
+//      var posleft = 192 + (targetCursor.x - displayspecs.centerx)*32;
+//      var postop = 192 + (targetCursor.y - displayspecs.centery)*32;
+      var posleft = postmp.x;
+      var postop = postmp.y;
       var tileid = targetCursor.tileid;
       $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:'+posleft+'px;top:'+postop+'px;z-index:50" />');
       gamestate.setMode("target");
