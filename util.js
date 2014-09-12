@@ -34,8 +34,10 @@ function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
 //  var edges = getDisplayCenter(mapref,newx,newy);
   var edges = getDisplayCenter(mapref,centerfromx,centerfromy);
   var coords = {};
-  coords.x = 192 + (newx - edges.centerx) * 32;
-  coords.y = 192 + (newy - edges.centery) * 32;
+//  coords.x = 192 + (newx - edges.centerx) * 32;
+//  coords.y = 192 + (newy - edges.centery) * 32;
+  coords.x = 0 + (newx - edges.centerx) * 32;
+  coords.y = 0 + (newy - edges.centery) * 32;
 
   return coords;
 }
