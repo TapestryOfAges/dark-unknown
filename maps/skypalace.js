@@ -132,6 +132,7 @@ mappages["skypalace"].onload = function(mapref){
   mapref.setBackground("clouds-mass.gif");
   mapref.worldlayer = "high_world.gif";
   
+  
 }
 
 mappages["skypalace"].entersky = function(mapref) {
