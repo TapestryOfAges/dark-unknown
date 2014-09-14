@@ -2359,10 +2359,17 @@ LavaTile.prototype = new FeatureObject();
 
 LavaTile.prototype.walkon = function(person) {
   // return messages, perform action
-  alert("Walkon!");
+  var resp = InLava(person);
+  return resp;
 }
+
 LavaTile.prototype.idle = function(person) {
-  // see walkon
+  var resp = InLava(person);
+  return resp;
+}
+
+function InLava(who) {
+  // WORK HERE
 }
 
 function DungeonTile() {
@@ -3716,13 +3723,30 @@ OrbExperienceTile.prototype = new FeatureObject();
 function MoongateTile() {
   this.name = "Moongate";
   this.graphic = "moongates.gif";
-  this.spritexoffset = '0';
+  this.spritexoffset = '-128';
   this.spriteyoffset = '0';
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "gate";
 }
 MoongateTile.prototype = new FeatureObject();
 
+MoongateTile.prototype.walkon = function(who) {
+  if (this.destmap && this.destx && this.desty) {
+    var newmap = new GameMap();
+    if (maps.getMap(this.destmap)) {
+      newmap = maps.getMap(this.destmap);
+    } else {
+      newmap.loadMap(destination);
+      maps.addMapByRef(newmap);
+    }
+    MoveBetweenMaps(PC,PC.getHomeMap(),newmap, this.destx, this.desty);
+    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+
+  } 
+  return "";
+}
 // Items
 
 function ItemObject() {

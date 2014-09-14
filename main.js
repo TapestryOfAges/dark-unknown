@@ -18,6 +18,8 @@ var DU = {};  // attach all saveable global objects to me
 DU.PC = new PCObject();
 var PC = DU.PC;  // alias
 
+var timeouts = {};
+
 PC.assignSerial();
 //var audioplayers = create_audio();
 var nowplaying = "";
