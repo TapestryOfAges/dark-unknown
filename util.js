@@ -686,6 +686,48 @@ function PerformTrap(who, trap, traplvl, trapped) {
   alert("Bad trap type");
 }
 
+function animateImage(startx, endx, obj, repeat, dir, waitdur, destroywhendone, settostart) {
+  if (timeouts[obj.getSerial()]) { clearTimeout(timeouts[obj.getSerial()]); }
+  if (settostart) { obj.spritexoffset = startx; }
+  if (PC.getHomeMap() === obj.getHomeMap()) {
+    DrawMainFrame("one", obj.getHomeMap().getName(), obj.getx(), obj.gety());
+    timeouts[obj.getSerial()] = setTimeout(function() { continueAnimation(startx, endx, obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
+  }
+}
+
+function continueAnimation(startx, endx, obj,repeat, dir, waitdur, destroywhendone) {
+  if (obj.getHomeMap() === PC.getHomeMap()) {
+    var diff = 32;
+    if (dir === "right") {
+      diff = -32;
+    }
+    if (obj.spritexoffset == endx) {
+      if (repeat) {
+        obj.spritexoffset = startx;
+        DrawMainFrame("one", obj.getHomeMap().getName(), obj.getx(), obj.gety());
+        timeouts[obj.getSerial()] = setTimeout(function() { continueAnimation(startx, endx, obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
+      }  else if (destroywhendone) {
+        setTimeout(function() { destroyAnimation(obj) }, waitdur);
+      }
+    } else {
+      obj.spritexoffset = parseInt(obj.spritexoffset) + diff;
+      DrawMainFrame("one", obj.getHomeMap().getName(), obj.getx(), obj.gety());
+      timeouts[obj.getSerial()] = setTimeout(function() { continueAnimation(startx, endx, obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
+    }
+  }
+}
+
+function destroyAnimation(thing) {
+  delete timeouts[thing.getSerial()];
+  var thingmap = thing.getHomeMap();
+  var thingx = thing.getx();
+  var thingy = thing.gety();
+  thingmap.deleteThing(thing);
+  if (thingmap === PC.getHomeMap()) {
+    DrawMainFrame("one", thingmap.getName(), thingx, thingy);
+  }
+}
+
 function ApplyRune(who, rune) {
   // CREATE ME
 }
@@ -693,3 +735,4 @@ function ApplyRune(who, rune) {
 function DoPCDeath() {
   
 }
+
