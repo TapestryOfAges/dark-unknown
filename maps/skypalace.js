@@ -124,7 +124,7 @@ mappages["skypalace"].enterscript = 'entersky';
 mappages["skypalace"].entertestscript = '';
 mappages["skypalace"].exitscript = '';
 mappages["skypalace"].exittestscript = '';
-mappages["skypalace"].linkedMaps = [""];
+mappages["skypalace"].linkedMaps = ["skypalace2"];
 
 
 mappages["skypalace"].onload = function(mapref){ 
@@ -159,10 +159,19 @@ mappages["skypalace"].useorb = function(feature) {
     var orb3 = orb3tile.getTopFeature();
 //    alert(orb1.spritexoffset + " , " + orb2.spritexoffset + " , " + orb3.spritexoffset);
     if ((orb1.spritexoffset == '-32') && (orb2.spritexoffset == '-96') && (orb3.spritexoffset == '-64')) {
-      alert("success");
       var moongate = localFactory.createTile("Moongate");
+      moongate.destmap = "skypalace2";
+      moongate.destx = 11;
+      moongate.desty = 12;
       sp.placeThing(33,31,moongate);
-      DrawMainFrame("one", moongate.getHomeMap().getName(), moongate.getx(), moongate.gety());
+      animateImage(0,-128,moongate,0,"right",300,0,1);
+    } else {
+      var mgtile = sp.getTile(33,31);
+      var moongate = mgtile.getTopFeature();
+      if (moongate) {
+        animateImage(-128,0,moongate,0,"left",300,1,0);
+        delete moongate.destmap;
+      }
     }
   
     var retval = {};
@@ -182,3 +191,81 @@ function wind_blow() {
   }
 }
 
+
+mappages["skypalace2"] = {};
+mappages["skypalace2"].terrain = [];
+ mappages["skypalace2"].terrain[0] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+ mappages["skypalace2"].terrain[1] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+ mappages["skypalace2"].terrain[2] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+ mappages["skypalace2"].terrain[3] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+ mappages["skypalace2"].terrain[4] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+ mappages["skypalace2"].terrain[5] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+ mappages["skypalace2"].terrain[6] = 'wb wb wb wb wb wb wb wb wb ## #O #O ## ## wb wb wb wb wb wb wb wb wb wb';
+ mappages["skypalace2"].terrain[7] = 'wb wb wb wb wb wb wb #O #O ## bb bb ## ## #O #O wb wb wb wb wb wb wb wb';
+ mappages["skypalace2"].terrain[8] = 'wb wb wb wb wb wb #O bb bb ## bb bb bb ## bb bb #O wb wb wb wb wb wb wb';
+ mappages["skypalace2"].terrain[9] = 'wb wb wb wb wb wb #O bb bb bb bb bb ## ## bb bb #O wb wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[10] = 'wb wb wb wb wb #O bb bb bb ## ## ## ## ## bb bb bb #O wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[11] = 'wb wb wb wb wb #O bb bb bb ## bb bb bb bb bb bb bb #O wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[12] = 'wb wb wb wb wb ## ## bb ## ## bb bb bb ## ## bb ## ## wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[13] = 'wb wb wb wb wb #O bb bb bb ## bb bb bb ## bb bb bb #O wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[14] = 'wb wb wb wb wb #O bb bb bb ## ## ## ## ## bb bb bb #O wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[15] = 'wb wb wb wb wb wb #O bb bb bb bb bb bb bb bb bb #O wb wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[16] = 'wb wb wb wb wb wb #O bb bb ## bb bb bb ## bb bb #O wb wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[17] = 'wb wb wb wb wb wb wb #O #O ## bb bb bb ## #O #O wb wb wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[18] = 'wb wb wb wb wb wb wb wb wb ## #O #O #O ## wb wb wb wb wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[19] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[20] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[21] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[22] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[23] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+
+mappages["skypalace2"].features = [];
+mappages["skypalace2"].features[0] = {name : 'DoorWindow', x : 13, y : 11};
+mappages["skypalace2"].features[1] = {name : 'DoorWindow', x : 15, y : 12};
+mappages["skypalace2"].features[2] = {name : 'DoorWindow', x : 13, y : 15};
+mappages["skypalace2"].features[3] = {name : 'DoorWindow', x : 9, y : 15};
+mappages["skypalace2"].features[4] = {name : 'DoorWindow', x : 7, y : 12};
+mappages["skypalace2"].features[5] = {name : 'WallOfWinds', x : 12, y : 8};
+mappages["skypalace2"].features[6] = {name : 'Door', x : 9, y : 9};
+mappages["skypalace2"].features[7] = {name : 'Fountain', x : 10, y : 11};
+mappages["skypalace2"].features[8] = {name : 'Fountain', x : 10, y : 13};
+mappages["skypalace2"].features[9] = {name : 'Moongate', x : 11, y : 12};
+
+
+mappages["skypalace2"].npcs = [];
+
+mappages["skypalace2"].desc = "Palace of the Skies";
+mappages["skypalace2"].music = 'Cave';
+mappages["skypalace2"].exitmap = '';
+mappages["skypalace2"].exitx = '65';
+mappages["skypalace2"].exity = '70';
+mappages["skypalace2"].wraps = 'None';
+mappages["skypalace2"].enterx = '11';
+mappages["skypalace2"].entery = '12';
+mappages["skypalace2"].seeBelow = '';
+mappages["skypalace2"].lightLevel = 'bright';
+mappages["skypalace2"].alwaysRemember = '0';
+mappages["skypalace2"].scale = '1';
+mappages["skypalace2"].enterscript = 'entersky';
+mappages["skypalace2"].entertestscript = '';
+mappages["skypalace2"].exitscript = '';
+mappages["skypalace2"].exittestscript = '';
+mappages["skypalace2"].linkedMaps = ["skypalace"];
+
+mappages["skypalace2"].entersky = function(mapref) {
+  mapref.Enter = function(enterer, enterfrom, fromx, fromy, tox, toy){
+    if (enterer === PC) {
+      //$("#worldlayer").html("<img src='graphics/high_world.gif' width='416' height='416' />");
+//      $("#worldlayer").css("background-image", "url('graphics/high_world.gif')");
+
+      setTimeout(function() {wind_blow();}, 100);
+      
+      var gateacre = this.getTile(11,12);
+      var gate = gateacre.getTopFeature();
+      gate.destmap = "darkunknown";
+      gate.destx = 100;
+      gate.desty = 57;
+      
+    }
+  }
+}
