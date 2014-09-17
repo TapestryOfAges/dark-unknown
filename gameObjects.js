@@ -3579,6 +3579,36 @@ function PlatformOfWindsTile() {
 }
 PlatformOfWindsTile.prototype = new FeatureObject();
 
+PlatformOfWindsTile.prototype.walkon = function(who) {
+  if (this.getHomeMap().getName() === "skypalace") {  // WHOOSH
+    gamestate.setMode("null");
+
+    var windlist = this.windlist;
+    setTimeout( function() { whoosh(who, windlist, this.spawnat, this.spawnwhat); }, 100);
+    
+    // play a wind sound
+    return "WHOOSH!";
+  }
+}
+
+function whoosh(whozat, windlist, spawnwhere, spawnthing) {
+
+  var tox = windlist[0];
+  var toy = windlist[1];
+  
+  var windmap = whozat.getHomeMap();
+  windmap.moveThing(tox,toy,whozat);
+  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());  
+  
+  // HANDLE SPAWNING WORKHERE
+  
+  if (windlist[2]) {
+    setTimeout( function() { whoosh(whozat, windlist.slice(2), spawnwhere, spawnthing); }, 100);
+  } else {
+    whozat.endTurn(0);
+  }
+}
+
 function PlatformOfKingsTile() {
   this.name = "PlatformOfKings";
   this.graphic = "runes.gif";
