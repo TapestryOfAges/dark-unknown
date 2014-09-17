@@ -16,8 +16,8 @@ mappages["skypalace"].terrain[12] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb w
 mappages["skypalace"].terrain[13] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb |, .. nn nn nn nn nn ^^ ^^ ^^ nn nn .. ,, ,, .. ,, ,, .| wb wb wb wb wb';
 mappages["skypalace"].terrain[14] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb |. .. nn nn nn nn ^^ ^^ ^^ nn nn nn ,, ,, ,, .. .. ,, ./ wb wb wb wb wb';
 mappages["skypalace"].terrain[15] = 'wb wb wb wb wb wb wb /. -- -- .` wb wb wb /. -, -- -- .` wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb `. nn nn nn nn ^^ ^^ nn nn nn nn nn ,, .. .. .. nn nn wb wb wb wb wb wb';
-mappages["skypalace"].terrain[16] = 'wb wb wb wb wb wb wb |. .. ,, .| wb wb wb |. .. #% ,, .| wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb nn nn ^^ ^^ ^^ nn nn nn nn nn ,, .. .. .. nn nn nn wb wb wb wb wb wb';
-mappages["skypalace"].terrain[17] = 'wb wb wb wb wb wb wb |. ,, .. .| wb wb wb |. .. .. ,, .| wb wb wb wb wb ^^ ^^ ^^ ^^ wb wb wb wb wb wb wb wb wb wb wb wb wb nn ^^ ^^ ^^ nn nn nn nn .. .. .. .. .. ,, nn nn ^^ wb wb wb wb wb wb';
+mappages["skypalace"].terrain[16] = 'wb wb wb wb wb wb wb |. .. ,, .| .. .. .. |. .. #% ,, .| wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb nn nn ^^ ^^ ^^ nn nn nn nn nn ,, .. .. .. nn nn nn wb wb wb wb wb wb';
+mappages["skypalace"].terrain[17] = 'wb wb wb wb wb wb wb |. ,, .. .| .. .. .. |. .. .. ,, .| wb wb wb wb wb ^^ ^^ ^^ ^^ wb wb wb wb wb wb wb wb wb wb wb wb wb nn ^^ ^^ ^^ nn nn nn nn .. .. .. .. .. ,, nn nn ^^ wb wb wb wb wb wb';
 mappages["skypalace"].terrain[18] = 'wb wb wb wb wb wb wb |. ,, ,, .| wb wb wb `. __ _, __ ./ wb wb wb wb ^^ ^^ nn nn ^^ ^^ wb wb wb wb wb wb wb wb wb wb wb wb ^^ ^^ ^^ nn nn nn .. .. ,, .. .. .. .. nn nn ^^ ^^ wb wb wb wb wb wb';
 mappages["skypalace"].terrain[19] = 'wb wb wb wb wb wb wb `. __ __ ./ wb wb wb wb wb wb wb wb wb wb wb wb ^^ nn nn nn nn ^^ ^^ wb wb wb wb wb wb wb wb wb wb wb wb wb wb nn ,, .. .. ,, ,, ,, .. ,, nn nn nn ^^ ^^ wb wb wb wb wb wb';
 mappages["skypalace"].terrain[20] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb ^^ nn nn nn nn nn ^^ wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb `. _, .. .. ,, ,, .. nn nn nn ^^ ^^ wb wb wb wb wb wb wb';
@@ -26,8 +26,8 @@ mappages["skypalace"].terrain[22] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb w
 mappages["skypalace"].terrain[23] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb |. ,, .. .. .| wb wb wb wb ^^ ^^ ./ wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb nn wb wb wb wb wb wb wb wb wb wb wb wb';
 mappages["skypalace"].terrain[24] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb |. .. .. .. .| wb wb wb wb wb wb wb wb wb wb wb wb wb /. -- .` wb /. -- -- .` wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
 mappages["skypalace"].terrain[25] = 'wb wb wb wb wb wb wb /. -- -- -- .` wb wb wb `. .. .. ,, .| wb wb wb wb wb wb wb wb wb wb wb wb /. .. .. .. -- .. .. .. .. .` wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
-mappages["skypalace"].terrain[26] = 'wb wb wb wb wb wb wb |. ,, .. .. .| wb wb wb wb |. .. .. .| wb wb wb wb wb wb wb wb /. -- -- -- ,, .. ;; .. ,, ;; .. ,, .. .| wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
-mappages["skypalace"].terrain[27] = 'wb wb wb wb wb wb wb |. ,, .. .. .| wb wb wb wb |. ,, .. ./ wb wb wb wb wb /. -- .. .. .. ,, ,, .. .. .. ;; ;; ;; ;; ;; .. .| wb wb wb wb wb wb wb wb wb wb wb wb nn nn wb wb wb wb wb wb wb wb';
+mappages["skypalace"].terrain[26] = 'wb wb wb wb wb wb wb |. ,, .. .. .| .. .. .. .. |. .. .. .| wb wb wb wb wb wb wb wb /. -- -- -- ,, .. ;; .. ,, ;; .. ,, .. .| wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
+mappages["skypalace"].terrain[27] = 'wb wb wb wb wb wb wb |. ,, .. .. .| .. .. .. .. |. ,, .. ./ wb wb wb wb wb /. -- -- .. .. ,, ,, .. .. .. ;; ;; ;; ;; ;; .. .| wb wb wb wb wb wb wb wb wb wb wb wb nn nn wb wb wb wb wb wb wb wb';
 mappages["skypalace"].terrain[28] = 'wb wb wb wb wb wb wb |. .. .. .. .. .` wb wb wb `. __ ./ wb wb wb wb /. -- .. .. .. .. ,, .. ,, .. +* .. ,, .. ;; ,, ;; .. .| wb wb wb wb wb wb wb wb wb wb wb nn nn nn nn nn wb wb wb wb wb wb';
 mappages["skypalace"].terrain[29] = 'wb wb wb wb wb wb wb `. .. .. .. .. .| wb wb wb wb wb wb wb wb wb /. .. .. .. ,, .. .. .. .. .. .. +* .. .. ,, ;; ;; .. ;; .| wb wb wb wb wb wb wb wb wb nn nn nn ., nn nn nn nn wb wb wb wb wb';
 mappages["skypalace"].terrain[30] = 'wb wb wb wb wb wb wb wb |. ,, .. .. .. .` wb wb wb wb wb wb wb wb |. .. .. ;; ;; .. .. .. .. .. .. +* .. .. .. ;; ;; ,, ;; .| wb wb wb wb wb wb wb ., nn nn ., ., nn ., ., nn nn wb wb wb wb wb';
@@ -93,7 +93,7 @@ mappages["skypalace"].features[23] = {name : 'PlatformOfWinds', x : 33, y : 42};
 mappages["skypalace"].features[24] = {name : 'PoisonField', x : 37, y : 44};
 mappages["skypalace"].features[25] = {name : 'EnergyField', x : 25, y : 19};
 mappages["skypalace"].features[26] = {name : 'PlatformOfWinds', x : 27, y : 22};
-mappages["skypalace"].features[27] = {name : 'PlatformOfWinds', x : 27, y : 27};
+mappages["skypalace"].features[27] = {name : 'PlatformOfWinds', x : 26, y : 27};
 mappages["skypalace"].features[28] = {name : 'PlatformOfWinds', x : 26, y : 36};
 mappages["skypalace"].features[29] = {name : 'PlatformOfWinds', x : 34, y : 37};
 mappages["skypalace"].features[30] = {name : 'FireField', x : 22, y : 10};
@@ -132,6 +132,76 @@ mappages["skypalace"].onload = function(mapref){
   mapref.setBackground("clouds-mass.gif");
   mapref.worldlayer = "high_world.gif";
   
+  // find platforms
+  var plattile = mapref.getTile(36,54);
+  var plat = plattile.getTopFeature();
+  plat.windlist = [35,54, 34,54, 33,54, 32,54, 31,54];
+  
+  plattile = mapref.getTile(15,56);
+  plat = plattile.getTopFeature();
+  plat.windlist = [14,56, 13,56, 12,56, 11,56, 10,56];
+  
+  plattile = mapref.getTile(8,53);
+  plat = plattile.getTopFeature();
+  plat.windlist = [8,52, 8,51, 9,50, 9,49, 9,48];
+  
+  plattile = mapref.getTile(11,38);
+  plat = plattile.getTopFeature();
+  plat.windlist = [11,37, 11,36, 11,35, 11,34, 11,33, 11,32];
+  
+  plattile = mapref.getTile(17,22);
+  plat = plattile.getTopFeature();
+  plat.windlist = [17,21, 17,20, 17,19, 17,18];
+  
+  plattile = mapref.getTile(8,15);
+  plat = plattile.getTopFeature();
+  plat.windlist = [8,14, 8,13, 8,12, 8,11];
+  
+  plattile = mapref.getTile(10,8);
+  plat = plattile.getTopFeature();
+  plat.windlist = [11,8, 12,8, 13,8, 14,8, 15,8, 16,8, 17,8, 18,8];
+  
+  plattile = mapref.getTile(31,9);
+  plat = plattile.getTopFeature();
+  plat.windlist = [32,9, 33,9, 34,9, 35,9, 36,9, 37,9, 38,9, 39,9, 40,9, 41,9];
+  
+  plattile = mapref.getTile(51,23);
+  plat = plattile.getTopFeature();
+  plat.windlist = [52,24, 53,25, 54,26, 55,27];
+  
+  plattile = mapref.getTile(49,30);
+  plat = plattile.getTopFeature();
+  plat.windlist = [48,30, 47,30, 46,30, 45,30, 44,30, 43,30, 42,30, 41,30];
+  
+  plattile = mapref.getTile(34,37);
+  plat = plattile.getTopFeature();
+  plat.windlist = [34,38, 34,39, 34,40, 34,41];
+  
+  plattile = mapref.getTile(33,42);
+  plat = plattile.getTopFeature();
+  plat.windlist = [33,41, 33,40, 33,39, 33,38, 33,37];
+  plat.spawnat = [35,32];
+  plat.spawnwhat = "AirElemental";
+  
+  plattile = mapref.getTile(26,36);
+  plat = plattile.getTopFeature();
+  plat.windlist = [25,37, 24,38, 23,39, 22,40];
+  
+  plattile = mapref.getTile(22,41);
+  plat = plattile.getTopFeature();
+  plat.windlist = [23,40, 24,39, 25,38, 26,37, 27,36];
+  plat.spawnat = [31,32];
+  plat.spawnwhat = "Drake";
+  
+  plattile = mapref.getTile(26,27);
+  plat = plattile.getTopFeature();
+  plat.windlist = [26,26, 26,25, 26,24, 26,23];
+  
+  plattile = mapref.getTile(27,22);
+  plat = plattile.getTopFeature();
+  plat.windlist = [27,23, 27,24, 27,25, 27,26, 27,27];
+  plat.spawnat = [33,29];
+  plat.spawnwhat = "AirElemental";
   
 }
 
@@ -184,7 +254,7 @@ mappages["skypalace"].useorb = function(feature) {
 function wind_blow() {
   if (PC.getHomeMap().getName() === "skypalace") {
     wind.xoff -= 1;
-    if (wind.xoff <= -1685) { wind.xoff = 0; }
+    if (wind.xoff <= -1683) { wind.xoff = 0; }
     if ($("#worldlayer").css("background-image").indexOf("url") > -1) {
       $("#cloudlayer").css("background-position", wind.xoff + "px " + wind.yoff + "px");
     }
