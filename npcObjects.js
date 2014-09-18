@@ -49,6 +49,7 @@ function ShepherdVillagerNPCTile() {
   this.lootTable = 'Townsman';
   this.prefix = 'a';
   this.desc = 'shepherd';
+  this.meleeChance = 100;
 }
 ShepherdVillagerNPCTile.prototype = new NPCObject();
 
@@ -103,6 +104,7 @@ function TinkerVillagerNPCTile() {
   this.lootTable = 'Townsman';
   this.prefix = 'a';
   this.desc = 'tinker';
+  this.meleeChance = 30;
 }
 TinkerVillagerNPCTile.prototype = new NPCObject();
 
@@ -130,6 +132,7 @@ function RangerVillagerNPCTile() {
   this.lootTable = 'Townsman';
   this.prefix = 'a';
   this.desc = 'ranger';
+  this.meleeChance = 50;
 }
 RangerVillagerNPCTile.prototype = new NPCObject();
 
@@ -157,6 +160,7 @@ function AdventurerVillagerNPCTile() {
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'an';
   this.desc = 'adventurer';
+  this.meleeChance = 50;
 }
 AdventurerVillagerNPCTile.prototype = new NPCObject();
 
@@ -184,6 +188,7 @@ function PaladinVillagerNPCTile() {
   this.lootTable = 'Townsman';
   this.prefix = 'a';
   this.desc = 'paladin';
+  this.meleeChance = 60;
 }
 PaladinVillagerNPCTile.prototype = new NPCObject();
 
@@ -211,6 +216,7 @@ function FighterVillagerNPCTile() {
   this.lootTable = 'Townsman';
   this.prefix = 'a';
   this.desc = 'fighter';
+  this.meleeChance = 100;
 }
 FighterVillagerNPCTile.prototype = new NPCObject();
 
@@ -238,6 +244,7 @@ function TownsfolkVillagerNPCTile() {
   this.lootTable = 'Townsman';
   this.prefix = 'a';
   this.desc = 'citizen';
+  this.meleeChance = 100;
 }
 TownsfolkVillagerNPCTile.prototype = new NPCObject();
 
@@ -265,6 +272,7 @@ function BardVillagerNPCTile() {
   this.lootTable = 'Townsman';
   this.prefix = 'a';
   this.desc = 'bard';
+  this.meleeChance = 40;
 }
 BardVillagerNPCTile.prototype = new NPCObject();
 
@@ -328,6 +336,7 @@ function BeggarVillagerNPCTile() {
 }
 BeggarVillagerNPCTile.prototype = new NPCObject();
 
+
 // Townsfolk
 
 function JesterNPCTile() {
@@ -357,6 +366,7 @@ function JesterNPCTile() {
 }
 JesterNPCTile.prototype = new NPCObject();
 
+
 // Townsfolk
 
 function TownGuardNPCTile() {
@@ -380,6 +390,7 @@ function TownGuardNPCTile() {
   this.lootTable = 'Town Guard';
   this.prefix = 'a';
   this.desc = 'guard';
+  this.meleeChance = 100;
 }
 TownGuardNPCTile.prototype = new NPCObject();
 
@@ -406,6 +417,7 @@ function KingNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.desc = 'your father the King';
+  this.meleeChance = 70;
 }
 KingNPCTile.prototype = new NPCObject();
 
@@ -432,6 +444,7 @@ function PrinceNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Town Guard';
   this.desc = 'your brother the prince';
+  this.meleeChance = 70;
 }
 PrinceNPCTile.prototype = new NPCObject();
 
@@ -458,6 +471,7 @@ function CorruptPrinceNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Town Guard';
   this.desc = 'your brother the prince';
+  this.meleeChance = 70;
 }
 CorruptPrinceNPCTile.prototype = new NPCObject();
 
@@ -485,6 +499,7 @@ function CorruptGuardsNPCTile() {
   this.lootTable = 'Town Guard';
   this.prefix = 'a';
   this.desc = 'guard';
+  this.meleeChance = 100;
 }
 CorruptGuardsNPCTile.prototype = new NPCObject();
 
@@ -515,6 +530,7 @@ function GiantRatNPCTile() {
   this.lootTable = 'Small Animal';
   this.prefix = 'a';
   this.desc = 'giant rat';
+  this.meleeChance = 100;
 }
 GiantRatNPCTile.prototype = new NPCObject();
 
@@ -546,6 +562,7 @@ function GiantSnakeNPCTile() {
   this.prefix = 'a';
   this.desc = 'giant snake';
   this.onHit = 'venom';
+  this.meleeChance = 100;
 }
 GiantSnakeNPCTile.prototype = new NPCObject();
 
@@ -576,6 +593,7 @@ function GiantBatNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = 'giant bat';
+  this.meleeChance = 100;
 }
 GiantBatNPCTile.prototype = new NPCObject();
 
@@ -607,6 +625,7 @@ function LargeSpiderNPCTile() {
   this.prefix = 'a';
   this.desc = 'large spider';
   this.onHit = 'venom';
+  this.meleeChance = 100;
 }
 LargeSpiderNPCTile.prototype = new NPCObject();
 
@@ -638,6 +657,7 @@ function GiantSpiderNPCTile() {
   this.prefix = 'a';
   this.desc = 'giant spider';
   this.onHit = 'paralyze';
+  this.meleeChance = 100;
 }
 GiantSpiderNPCTile.prototype = new NPCObject();
 
@@ -653,7 +673,7 @@ function GiantInsectsNPCTile() {
   this.int = 2;
   this.alignment = 'Neutral';
   this.attitude = 'Hostile';
-  this.peaceAI = 'seePC-15';
+  this.peaceAI = 'seekPC-15';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
   this.graphic = PickOne(["336.gif","370.gif"]);
@@ -668,6 +688,7 @@ function GiantInsectsNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = 'swarm of insects';
+  this.meleeChance = 100;
 }
 GiantInsectsNPCTile.prototype = new NPCObject();
 
@@ -698,6 +719,7 @@ function OrcNPCTile() {
   this.lootTable = 'Orcs';
   this.prefix = 'an';
   this.desc = 'orc';
+  this.meleeChance = 100;
 }
 OrcNPCTile.prototype = new NPCObject();
 
@@ -728,6 +750,7 @@ function SlimeNPCTile() {
   this.lootTable = 'none';
   this.desc = 'slime';
   this.onDamaged = 'split';
+  this.meleeChance = 70;
 }
 SlimeNPCTile.prototype = new NPCObject();
 
@@ -756,6 +779,7 @@ function HoodNPCTile() {
   this.prefix = 'a';
   this.desc = 'hood';
   this.onHit = 'steal gold';
+  this.meleeChance = 100;
 }
 HoodNPCTile.prototype = new NPCObject();
 
@@ -784,6 +808,7 @@ function RogueNPCTile() {
   this.prefix = 'a';
   this.desc = 'rogue';
   this.onHit = 'steal gold';
+  this.meleeChance = 100;
 }
 RogueNPCTile.prototype = new NPCObject();
 
@@ -811,7 +836,7 @@ function MinstrelNPCTile() {
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'a';
   this.desc = 'minstrel';
-  this.onHit = 'sing';
+  this.meleeChance = 40;
 }
 MinstrelNPCTile.prototype = new NPCObject();
 
@@ -843,8 +868,93 @@ function ThiefNPCTile() {
   this.prefix = 'a';
   this.desc = 'thief';
   this.onHit = 'steal gold';
+  this.meleeChance = 100;
 }
 ThiefNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function TwisterNPCTile() {
+  this.name = 'TwisterNPC';
+  this.level = 3;
+  this.addhp = 0;
+  this.str = 14;
+  this.dex = 16;
+  this.int = 6;
+  this.alignment = 'Neutral';
+  this.attitude = 'Hostile';
+  this.peaceAI = '';
+  this.threatenedAI = 'melee';
+  this.PCThreatAI = 'attackPC';
+  this.graphic = '324.gif';
+  this.meleeAttackAs = 'Shortsword';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = 'twister';
+  this.meleeChance = 100;
+}
+TwisterNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function AirElementalNPCTile() {
+  this.name = 'AirElementalNPC';
+  this.level = 4;
+  this.addhp = 0;
+  this.str = 16;
+  this.dex = 20;
+  this.int = 6;
+  this.alignment = 'Neutral';
+  this.attitude = 'Hostile';
+  this.peaceAI = '';
+  this.threatenedAI = 'mageknight';
+  this.PCThreatAI = 'attackPC';
+  this.graphic = '324.gif';
+  this.meleeAttackAs = 'Mace';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'an';
+  this.desc = 'air elemental';
+  this.meleeChance = 70;
+}
+AirElementalNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function DrakeNPCTile() {
+  this.name = 'DrakeNPC';
+  this.level = 4;
+  this.addhp = 5;
+  this.str = 13;
+  this.dex = 15;
+  this.int = 10;
+  this.alignment = 'Neutral';
+  this.attitude = 'Hostile';
+  this.peaceAI = '';
+  this.threatenedAI = 'mageknight';
+  this.PCThreatAI = 'attackPC';
+  this.graphic = PickOne(["353.gif","387.gif"]);
+  this.meleeAttackAs = 'Mace';
+  this.missileAttackAs = 'none';
+  this.armorAs = '15,33,25Armor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'Drake';
+  this.prefix = 'a';
+  this.desc = 'drake';
+  this.meleeChance = 85;
+}
+DrakeNPCTile.prototype = new NPCObject();
 
 function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';

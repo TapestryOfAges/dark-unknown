@@ -1139,6 +1139,10 @@ GameMap.prototype.saveMap = function (name) {
    	 var mapdest = mapfeatures[i].getEnterMap();
    	 printerwin.document.write(", entermap : '" + mapdest.entermap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
    }
+   if (baseobj.container != null) {
+     printerwin.document,write(", lootgroup : '" + mapfeatures[i].getLootgroup() + "'");
+     printerwin.document,write(", lootedid : '" + mapfeatures[i].getLootedID() + "'");
+   }
    if (baseobj.getWalkOnScript() !== mapfeatures[i].getWalkOnScript()) {
    	printerwin.document.write(", walkonscript : '" + mapfeatures[i].getWalkOnScript() + "'");
    }
