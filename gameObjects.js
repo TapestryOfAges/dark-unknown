@@ -2595,10 +2595,32 @@ function ChestTile() {
 	this.prefix = "a";
 	this.desc = "chest";
 	
+	this.lootgroup = "";
+	this.lootedid = "";
+	
 	this.container = [];
 	OpenContainer.call(this);
 }
 ChestTile.prototype = new FeatureObject();
+
+ChestTile.prototype.getLootgroup = function() {
+  return this.lootgroup;
+}
+
+ChestTile.prototype.setLootgroup = function(lg) {
+  this.lootgroup = lg;
+  return this.lootgroup;
+}
+
+ChestTile.prototype.getLootedID = function() {
+  return this.lootedid;
+}
+
+ChestTile.prototype.setLootedID = function(lid) {
+  this.lootedid = lid;
+  return this.lootedid;
+}
+
 
 function DoorWindowTile() {
   Lockable.call(this, "009.gif", "010.gif", "067.gif", "a", "door", "a", "locked door", "a", "magically locked door");

@@ -278,7 +278,7 @@ function PerformCommand(code) {
 		
    var statsdiv = "&nbsp;";
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
+   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
    statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
    var inv = PC.getInventory();
    var melee = [];
@@ -346,13 +346,18 @@ function PerformCommand(code) {
   
    statsdiv += "</table></div></div>";
    DrawTopbarFrame("<p>Equipment</p>");
+   
+   $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
+   $("#worldlayer").css("background-image", "");
+   $("#worldlayer").css("background-color", "black");
+
    $('#displayframe').html(statsdiv);
    
 	var scrollelem = $('.zstats').jScrollPane();
   var scrollapi = scrollelem.data('jsp');
   targetCursor.scrollapi = scrollapi;
   targetCursor.scrolllocation = 0;
-  targetCursor.itemlist = new Array;
+  targetCursor.itemlist = [];
   targetCursor.itemlist = itemarray;
   
   $('#inv0').toggleClass('highlight');
@@ -1263,6 +1268,10 @@ function PerformUseFromInventory() {
   
    statsdiv += "</table></div></div>";
    DrawTopbarFrame("<p>Consumables</p>");
+   $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
+   $("#worldlayer").css("background-image", "");
+   $("#worldlayer").css("background-color", "black");
+   
    $('#displayframe').html(statsdiv);
    
 	var scrollelem = $('.zstats').jScrollPane();
@@ -1360,7 +1369,7 @@ function PerformYell() {
 }
 
 function performZstats(code) {
-  var retval = new Object;
+  var retval = {};
     if ((code === 27) || (code === 90)) { // ESC or Z again
       retval["fin"] = 0;
     }

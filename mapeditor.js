@@ -360,6 +360,12 @@ function clickmap(xval,yval) {
       	document.featureeditpopup.tileenterx.value = mapinfo.enterx;
     	  document.featureeditpopup.tileentery.value = mapinfo.entery;
       }
+      if (editable.container != null) {
+        var chestblock = document.getElementById("bubblechest");
+        chestblock.style.display = "table-row";
+        document.featureeditpopup.lootgroup.value = editable.getLootgroup();
+        document.featureeditpopup.lootedid.value = editable.getLootedID();
+      }
     }
   }
 }
@@ -381,6 +387,13 @@ function submitEditFeature(change) {
 		if ((document.featureeditpopup.tileentermap.value) && (editable.getEnterMap != null) && (document.featureeditpopup.tileentermap.value !== editable.getEnterMap().entermap)) {
 			editable.setEnterMap(document.featureeditpopup.tileentermap.value, document.featureeditpopup.tileenterx.value, document.featureeditpopup.tileentery.value);
 		}
+		if ((document.featureeditpopup.lootgroup.value) && (editable.container != null) && (document.featureeditpopup.lootgroup.value != editable.getLootgroup())) {
+		  editable.setLootgroup(document.featureeditpopup.lootgroup.value);
+		}
+		if ((document.featureeditpopup.lootedid.value) && (editable.container != null) && (document.featureeditpopup.lootedid.value != editable.getLootedID())) {
+		  editable.setLootgroup(document.featureeditpopup.lootedid.value);
+		}
+
 	}
 	else if (change === -1) {
 		// add an "Are you sure? Yes/No" prompt
