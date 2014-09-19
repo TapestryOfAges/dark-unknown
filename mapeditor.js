@@ -676,6 +676,8 @@ var outdoorblock = document.getElementById("outdoordiv");
 var indoorblock = document.getElementById("indoordiv");
 var featureblock = document.getElementById("featurediv");
 var creatureblock = document.getElementById("creaturediv");
+var lowlvlblock = document.getElementById("lowlvldiv");
+var highlvlblock = document.getElementById("highlvldiv");
 
   if (divname === "outdoor") {
     outdoorblock.style.display="block";
@@ -697,6 +699,16 @@ var creatureblock = document.getElementById("creaturediv");
   }
   else { creatureblock.style.display="none"; }
 
+  if (divname === "lowlvl") {
+    lowlvlblock.style.display="block";
+  } 
+  else { lowlvlblock.style.display="none"; }
+  
+  if (divname === "highlvl") {
+    highlvlblock.style.display="block";
+  } 
+  else { highlvlblock.style.display="none"; }
+  
 }
 
 function editorEditMapDetails() {
