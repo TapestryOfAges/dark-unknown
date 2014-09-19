@@ -232,9 +232,11 @@
 <tr>
   <td><a href="javascript:setVisible('outdoor');"><img src="editor/outdoorbutton.gif" border="0"></a></td>
   <td><a href="javascript:setVisible('indoor');"><img src="editor/indoorbutton.gif" border="0"></a></td>
+  <td><a href="javascript:setVisible('lowlvl');"><img src="editor/lowlvl.gif" border="0"></a></td>
 </tr><tr>
   <td><a href="javascript:setVisible('features');"><img src="editor/featuresbutton.gif" border="0"></a></td>
-  <td><a href="javascript:setVisible('creatures');"><img src="editor/creaturesbutton.gif" border="0"></a></td>
+  <td><a href="javascript:setVisible('creatures');"><img src="editor/towns.gif" border="0" /></a></td>
+  <td><a href="javascript:setVisible('highlvl');"><img src="editor/highlvl.gif" border="0"></a></td>
 </tr>
 </table>
 <div style="display:block" id="outdoordiv">
@@ -573,7 +575,7 @@
 <div style="display:none" id="creaturediv">
 <table cellpadding="0" cellspacing="2" border="1">
 <tr>
-  <td colspan="2" style="font-weight:bold;text-align:center">Creatures</td>
+  <td colspan="2" style="font-weight:bold;text-align:center">Townsfolk</td>
 </tr>
 <tr>
 	<script language="Javascript">writeTileOption('TownsfolkVillagerNPC');</script>
@@ -642,6 +644,85 @@
 </table>
 
 </div>
+<div style="display:none" id="lowlvldiv">
+<table cellpadding="0" cellspacing="2" border="1">
+<tr>
+  <td colspan="2" style="font-weight:bold;text-align:center">Low Level Creatures</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('GiantRatNPC');</script>
+	<td> - Giant Rat</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('GiantSnakeNPC');</script>
+	<td> - Giant Snake</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('GiantBatNPC');</script>
+	<td> - Giant Bat</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('LargeSpiderNPC');</script>
+	<td> - Large Spider</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('GiantSpiderNPC');</script>
+	<td> - Giant Spider</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('OrcNPC');</script>
+	<td> - Orc</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('SlimeNPC');</script>
+	<td> - Slime</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('HoodNPC');</script>
+	<td> - Hood</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('RogueNPC');</script>
+	<td> - Rogue</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('MinstrelNPC');</script>
+	<td> - Minstrel</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('ThiefNPC');</script>
+	<td> - Thief</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('TwisterNPC');</script>
+	<td> - Twister</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('AirElementalNPC');</script>
+	<td> - Air Elemental</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('DrakeNPC');</script>
+	<td> - Drake</td>
+</tr>
+
+</table>
+
+</div>
+
+<div style="display:none" id="highlvldiv">
+<table cellpadding="0" cellspacing="2" border="1">
+<tr>
+  <td colspan="2" style="font-weight:bold;text-align:center">High Level Creatures</td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('TownsfolkVillagerNPC');</script>
+	<td> - Townsfolk</td>
+</tr>
+</table>
+
+</div>
+
 
   </div>
 </div>

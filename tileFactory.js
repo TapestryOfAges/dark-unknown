@@ -1296,6 +1296,21 @@ tileFactory.prototype.makeThiefNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTwisterNPCTile = function() {
+  var newTile = new TwisterNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAirElementalNPCTile = function() {
+  var newTile = new AirElementalNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDrakeNPCTile = function() {
+  var newTile = new DrakeNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGiantRatGroupSmallTile = function() {
   var newTile = new GiantRatGroupSmallTile();
   return newTile;
