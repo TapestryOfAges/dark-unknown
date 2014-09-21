@@ -5310,6 +5310,10 @@ NPCObject.prototype.setSpawnedBy = function(spawner) {
 
 NPCObject.prototype.activate = function(timeoverride) {
   
+  if (this.altgraphic) {
+    this.graphic = PickOne([this.graphic, this.altgraphic]);
+  }
+  
   this.setMana(-1);
   this.setMaxMana(-1);
   
