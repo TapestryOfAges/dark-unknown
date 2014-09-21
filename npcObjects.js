@@ -518,7 +518,8 @@ function GiantRatNPCTile() {
   this.peaceAI = 'seekPC-15';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = PickOne(["327.gif","361.gif"]);
+  this.graphic = "327.gif";
+  this.altgraphic = "361.gif";
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -549,7 +550,8 @@ function GiantSnakeNPCTile() {
   this.peaceAI = 'seekPC-15';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = PickOne(["342.gif","376.gif"]);
+  this.graphic = "342.gif";
+  this.altgraphic = "376.gif";
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -581,7 +583,8 @@ function GiantBatNPCTile() {
   this.peaceAI = 'seekPC-20';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = PickOne(["362.gif","328.gif"]);
+  this.graphic = "362.gif";
+  this.altgraphic = "328.gif";
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -612,7 +615,8 @@ function LargeSpiderNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = PickOne(["329.gif","363.gif"]);
+  this.graphic = "329.gif";
+  this.altgraphic = "363.gif";
   this.meleeAttackAs = 'Axe';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -644,7 +648,8 @@ function GiantSpiderNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = PickOne(["329.gif","363.gif"]);
+  this.graphic = "329.gif";
+  this.altgraphic = "363.gif";
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -676,7 +681,8 @@ function GiantInsectsNPCTile() {
   this.peaceAI = 'seekPC-15';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = PickOne(["336.gif","370.gif"]);
+  this.graphic = "336.gif";
+  this.altgraphic = "370.gif";
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -707,7 +713,8 @@ function OrcNPCTile() {
   this.peaceAI = 'seekPC-25';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = PickOne(["339.gif","373.gif"]);
+  this.graphic = "339.gif";
+  this.altgraphic = "373.gif";
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -738,7 +745,8 @@ function SlimeNPCTile() {
   this.peaceAI = 'seekPC-5';
   this.threatenedAI = 'spitter';
   this.PCThreatAI = 'attackPC';
-  this.graphic = PickOne(["331.gif","365.gif"]);
+  this.graphic = "331.gif";
+  this.altgraphic = "365.gif";
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -769,7 +777,8 @@ function HoodNPCTile() {
   this.peaceAI = 'seekPC-20';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = PickOne(["375.gif","341.gif"]);
+  this.graphic = "375.gif";
+  this.altgraphic = "341.gif";
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'ClothArmor';
@@ -943,7 +952,8 @@ function DrakeNPCTile() {
   this.peaceAI = '';
   this.threatenedAI = 'mageknight';
   this.PCThreatAI = 'attackPC';
-  this.graphic = PickOne(["353.gif","387.gif"]);
+  this.graphic = "353.gif";
+  this.altgraphic = "387.gif";
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
   this.armorAs = '15,33,25Armor';
@@ -960,7 +970,8 @@ function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';
   this.desc = 'giant rats';
   this.peaceAI = 'Animal-15';
-  this.graphic = PickOne(["327.gif","361.gif"]);
+  this.graphic = "327.gif";
+  this.altgraphic = "361.gif";
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
   this.movetype = MOVE_WALK;
@@ -971,7 +982,8 @@ function GiantRatGroupLargeTile() {
   this.name = 'GiantRatGroupLarge';
   this.desc = 'giant rats';
   this.peaceAI = 'Animal-15';
-  this.graphic = PickOne(["327.gif","361.gif"]);
+  this.graphic = "327.gif";
+  this.altgraphic = "361.gif";
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
   this.movetype = MOVE_WALK;
@@ -982,7 +994,8 @@ function OrcGroupSmallTile() {
   this.name = 'OrcGroupSmall';
   this.desc = 'orcs';
   this.peaceAI = 'Monster-25';
-  this.graphic = PickOne(["339.gif","373.gif"]);
+  this.graphic = "339.gif";
+  this.altgraphic = "373.gif";
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d3+2');
   this.movetype = MOVE_WALK;
@@ -993,7 +1006,8 @@ function OrcGroupLargeTile() {
   this.name = 'OrcGroupLarge';
   this.desc = 'orcs';
   this.peaceAI = 'Monster-25';
-  this.graphic = PickOne(["339.gif","373.gif"]);
+  this.graphic = "339.gif";
+  this.altgraphic = "373.gif";
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d5+4');
   this.movetype = MOVE_WALK;
@@ -1004,7 +1018,8 @@ function HoodGroupSmallTile() {
   this.name = 'HoodGroupSmall';
   this.desc = 'hoods';
   this.peaceAI = 'Bandit-20';
-  this.graphic = PickOne(["375.gif","341.gif"]);
+  this.graphic = "375.gif";
+  this.altgraphic = "341.gif";
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d3+1');
   this.movetype = MOVE_WALK;
@@ -1015,7 +1030,8 @@ function HoodGroupLargeTile() {
   this.name = 'HoodGroupLarge';
   this.desc = 'hoods';
   this.peaceAI = 'Bandit-20';
-  this.graphic = PickOne(["375.gif","341.gif"]);
+  this.graphic = "375.gif";
+  this.altgraphic = "341.gif";
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d3+3');
   this.group[1] = new NPCList('MinstrelNPC', '1d1');
