@@ -391,7 +391,7 @@ function submitEditFeature(change) {
 		  editable.setLootgroup(document.featureeditpopup.lootgroup.value);
 		}
 		if ((document.featureeditpopup.lootedid.value) && (editable.container != null) && (document.featureeditpopup.lootedid.value != editable.getLootedID())) {
-		  editable.setLootgroup(document.featureeditpopup.lootedid.value);
+		  editable.setLootedID(document.featureeditpopup.lootedid.value);
 		}
 
 	}
