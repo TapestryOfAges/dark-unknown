@@ -964,13 +964,20 @@ function PerformSearch(who) {
 	  }
 	}
   else if ((searched.getSearchYield().length)) {
+    var stuff = searched.getSearchYield();
+    if (searched.getLootedID() && DU.gameflags[searched.getLootedID()]) {
+      stuff = [];
+    }
+    else if (searched.getLootedID()) {
+      DU.gameflags[searched.getLootedID()] = 1;
+    }
+
     if (searched.getShowSearched()) {
       searched.setDesc(searched.getDesc() + " [Searched]");
     }
     retval["txt"] = "Search: You find ";
     retval["fin"] = 1;
-    if (searched.getSearchYield().length) {
-      var stuff = searched.getSearchYield();
+    if (stuff.length) {
       for (var i=0; i < stuff.length; i++) {
         var newthing = localFactory.createTile(stuff[i]);
         if (stuff[i] === "Gold") {
