@@ -1341,6 +1341,11 @@ GameMap.prototype.loadMap = function (name) {
     		var usescript = newfeature.getUseScript();
     		mappages[name][usescript](newfeature);
     	}
+    	if (newfeature.getLootedID()) {
+    	  if (DU.gameflags[newfeature.getLootedID()]) {
+    	    newfeature.setLootgroup("prev_looted");
+    	  }
+    	}
   	  this.placeThing(loadfeatures[fi].x,loadfeatures[fi].y,newfeature);
     }
   }

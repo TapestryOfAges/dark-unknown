@@ -453,6 +453,10 @@ function OpenContainer() {
     }
     
     if (this.container.length) { // there's something inside
+      if (this.getLootedID()) {
+        DU.gameflags[this.getLootedID()] = 1;
+      }
+      
       retval["fin"] = 1;
       retval["txt"] = "It contains: ";
       var firstitem = 1;
