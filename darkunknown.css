@@ -7,12 +7,12 @@
 @font-face {  
 	  font-family: "Commodore64";  
 	  src: url( fonts/cbm-6480-webfont.eot ); /* IE */  
-	  src: local("Commodore64"), url( fonts/CBM-6480.TTF ) format("truetype"); /* non-IE */  
+	  src: local("Commodore64"), url( 'fonts/CBM-6480.TTF' ) format("truetype"); /* non-IE */  
 	}  
 	
 @font-face {  
 	  font-family: "Spells";  
-	  src: local("Spells"), url( 'fonts/UncialAntiqua-Regular.ttf' ) format("truetype");
+	  src: local("Spells"), url( 'fonts/UnZialish.ttf' ) format("truetype");
 	}  
 
 	
@@ -116,19 +116,19 @@ div.spellbook { display: none;
   	           background-size: 440px 236px;
   	           border: 1px solid #ffffff;
   	           position: absolute; 
-               font-family:"Kells";
-               font-size:12pt;
-               line-height:20px; }
+               font-family:"Spells";
+               font-size:10pt;
+               line-height:16px; }
   	           
 table.spells { padding-top: 8;
                padding-left: 24; }
 
-table.spells td { font-size: 16pt;
+table.spells td { font-size: 14pt;
                   line-height: 20pt }
 
-td.spelllevel { width : 154;
+table.spells td.spelllevel { width : 160;
                 text-align: center;
-                font-size: 24pt;
+                font-size: 14pt;
                 font-weight: bold;
                  }
 
