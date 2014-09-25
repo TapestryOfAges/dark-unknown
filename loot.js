@@ -127,6 +127,7 @@ function SetTraps() {
   var traps = {};
   
   traps["weak"] = new TrapGroups(20,10,0,0,0,7);  // 70% chance of no trap
+  traps["medium"] = new TrapGroups(30,20,10,0,0,10); // 40% chance no trap
   
   return traps;
 }
