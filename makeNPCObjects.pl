@@ -32,8 +32,9 @@ foreach my $line (<$npcdoc>) {
   if ($fields[12] =~ /,/) {
     $fields[12] =~ s/ //g;
     $fields[12] =~ /(.{7}),(.{7})/;
-    $fields[12] = "PickOne([\"$1\",\"$2\"]);\n";
-    print $out "  this.graphic = $fields[12]";
+   # $fields[12] = "PickOne([\"$1\",\"$2\"]);\n";
+    print $out "  this.graphic = '$1';\n";
+    print $out "  this.altgraphic = '$2;'\n";
   } else { print $out "  this.graphic = '$fields[12]';\n"; }
   if ($fields[13] =~ /\;/) {
     print $out "  this.meleeAttackAs = 'none';\n";
@@ -105,8 +106,9 @@ foreach my $line (<$groupdoc>) {
   if ($fields[3] =~ /,/) {
     $fields[3] =~ s/ //g;
     $fields[3] =~ /(.{7}),(.{7})/;
-    $fields[3] = "PickOne([\"$1\",\"$2\"]);\n";
-    print $out "  this.graphic = $fields[3]";
+#    $fields[3] = "PickOne([\"$1\",\"$2\"]);\n";
+    print $out "  this.graphic = '$1';\n";
+    print $out "  this.altgraphic = '$2';\n";
   } else { print $out "  this.graphic = '$fields[3]';\n"; }
   print $out "  this.group = [];\n";
   print $out "  this.group[0] = new NPCList('$fields[4]NPC', '$fields[5]');\n";
