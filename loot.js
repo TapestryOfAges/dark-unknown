@@ -65,38 +65,6 @@ LootGroups.prototype.rollForTreasure = function(ttype) {
 }
 
 
-function SetLoots() {
-  var loots = {};
-  
-  loots["Small Animal"] = new LootTable();
-  loots["Small Animal"].goldDice = "1d3";
-  loots["Small Animal"].goldChance = 30;
-  
-  loots["Orcs"] = new LootTable();
-  loots["Orcs"].goldDice = "2d5";
-  loots["Orcs"].goldChance = 60;
-  loots["Orcs"].loot[0] = {};
-  loots["Orcs"].loot[0].objname = "Dagger";
-  loots["Orcs"].loot[0].chance = "90";
-  loots["Orcs"].loot[0].quantity = "1";
-  loots["Orcs"].trap = "weak";
-
-  
-  
-  return loots;
-}
-
-function SetLootGroups() {
-  var DULootGroup = new LootGroups();
-  
-  DULootGroup.setTreasureType("smallweapons",
-                              ["Dagger", 2,
-                               "Shortsword", 1]);
-                               
-                               
-  return DULootGroup;
-}
-
 function TrapGroups(dart, acid, gas, explosion, drain, level) {
   this.traps = [dart, acid, gas, explosion, drain];
   this.trapnames = ["dart", "acid", "gas", "explosion", "drain"];
