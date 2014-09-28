@@ -518,8 +518,8 @@ function GiantRatNPCTile() {
   this.peaceAI = 'seekPC-15';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = "327.gif";
-  this.altgraphic = "361.gif";
+  this.graphic = '327.gif';
+  this.altgraphic = '361.gif;'
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -550,8 +550,8 @@ function GiantSnakeNPCTile() {
   this.peaceAI = 'seekPC-15';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = "342.gif";
-  this.altgraphic = "376.gif";
+  this.graphic = '342.gif';
+  this.altgraphic = '376.gif;'
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -583,8 +583,8 @@ function GiantBatNPCTile() {
   this.peaceAI = 'seekPC-20';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = "362.gif";
-  this.altgraphic = "328.gif";
+  this.graphic = '362.gif';
+  this.altgraphic = '328.gif;'
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -615,8 +615,8 @@ function LargeSpiderNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = "329.gif";
-  this.altgraphic = "363.gif";
+  this.graphic = '329.gif';
+  this.altgraphic = '363.gif;'
   this.meleeAttackAs = 'Axe';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -648,8 +648,8 @@ function GiantSpiderNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = "329.gif";
-  this.altgraphic = "363.gif";
+  this.graphic = '329.gif';
+  this.altgraphic = '363.gif;'
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -681,8 +681,8 @@ function GiantInsectsNPCTile() {
   this.peaceAI = 'seekPC-15';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = "336.gif";
-  this.altgraphic = "370.gif";
+  this.graphic = '336.gif';
+  this.altgraphic = '370.gif;'
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -713,8 +713,8 @@ function OrcNPCTile() {
   this.peaceAI = 'seekPC-25';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = "339.gif";
-  this.altgraphic = "373.gif";
+  this.graphic = '339.gif';
+  this.altgraphic = '373.gif;'
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -745,8 +745,8 @@ function SlimeNPCTile() {
   this.peaceAI = 'seekPC-5';
   this.threatenedAI = 'spitter';
   this.PCThreatAI = 'attackPC';
-  this.graphic = "331.gif";
-  this.altgraphic = "365.gif";
+  this.graphic = '331.gif';
+  this.altgraphic = '365.gif;'
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -777,8 +777,8 @@ function HoodNPCTile() {
   this.peaceAI = 'seekPC-20';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = "375.gif";
-  this.altgraphic = "341.gif";
+  this.graphic = '375.gif';
+  this.altgraphic = '341.gif;'
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'ClothArmor';
@@ -893,7 +893,7 @@ function TwisterNPCTile() {
   this.int = 6;
   this.alignment = 'Neutral';
   this.attitude = 'Hostile';
-  this.peaceAI = '';
+  this.peaceAI = 'wander';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
   this.graphic = '324.gif';
@@ -921,7 +921,7 @@ function AirElementalNPCTile() {
   this.int = 6;
   this.alignment = 'Neutral';
   this.attitude = 'Hostile';
-  this.peaceAI = '';
+  this.peaceAI = 'wander';
   this.threatenedAI = 'mageknight';
   this.PCThreatAI = 'attackPC';
   this.graphic = '324.gif';
@@ -949,11 +949,11 @@ function DrakeNPCTile() {
   this.int = 10;
   this.alignment = 'Neutral';
   this.attitude = 'Hostile';
-  this.peaceAI = '';
+  this.peaceAI = 'wander';
   this.threatenedAI = 'mageknight';
   this.PCThreatAI = 'attackPC';
-  this.graphic = "353.gif";
-  this.altgraphic = "387.gif";
+  this.graphic = '353.gif';
+  this.altgraphic = '387.gif;'
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
   this.armorAs = '15,33,25Armor';
@@ -966,12 +966,70 @@ function DrakeNPCTile() {
 }
 DrakeNPCTile.prototype = new NPCObject();
 
+
+// Monster
+
+function AnimatedArmorNPCTile() {
+  this.name = 'AnimatedArmorNPC';
+  this.level = 2;
+  this.addhp = 10;
+  this.str = 13;
+  this.dex = 8;
+  this.int = 2;
+  this.alignment = 'Neutral';
+  this.attitude = 'Hostile';
+  this.peaceAI = 'wander';
+  this.threatenedAI = 'melee';
+  this.PCThreatAI = 'attackPC';
+  this.graphic = '338.gif';
+  this.altgraphic = '372.gif;'
+  this.meleeAttackAs = 'Shortsword';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'AnimArmor';
+  this.desc = 'animated armor';
+  this.meleeChance = 100;
+}
+AnimatedArmorNPCTile.prototype = new NPCObject();
+
+
+// Monster
+
+function Will-o-the-WispNPCTile() {
+  this.name = 'Will-o-the-WispNPC';
+  this.level = 5;
+  this.addhp = 5;
+  this.str = 14;
+  this.dex = 18;
+  this.int = 16;
+  this.alignment = 'Neutral';
+  this.attitude = 'Hostile';
+  this.peaceAI = 'wander';
+  this.threatenedAI = 'spellcaster';
+  this.PCThreatAI = 'attackPC';
+  this.graphic = '346.gif';
+  this.altgraphic = '380.gif;'
+  this.meleeAttackAs = 'Mace';
+  this.missileAttackAs = 'none';
+  this.armorAs = '15,20,30Armor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'willowisp';
+  this.prefix = 'a';
+  this.desc = 'will-o-the-wisp';
+  this.onHit = 'mana clash';
+  this.meleeChance = 35;
+}
+Will-o-the-WispNPCTile.prototype = new NPCObject();
+
 function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';
   this.desc = 'giant rats';
-  this.peaceAI = 'Animal-15';
-  this.graphic = "327.gif";
-  this.altgraphic = "361.gif";
+  this.peaceAI = 'seekPC-15';
+  this.graphic = '327.gif';
+  this.altgraphic = '361.gif';
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
   this.movetype = MOVE_WALK;
@@ -981,9 +1039,9 @@ GiantRatGroupSmallTile.prototype = new NPCGroupObject();
 function GiantRatGroupLargeTile() {
   this.name = 'GiantRatGroupLarge';
   this.desc = 'giant rats';
-  this.peaceAI = 'Animal-15';
-  this.graphic = "327.gif";
-  this.altgraphic = "361.gif";
+  this.peaceAI = 'seekPC-15';
+  this.graphic = '327.gif';
+  this.altgraphic = '361.gif';
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
   this.movetype = MOVE_WALK;
@@ -993,9 +1051,9 @@ GiantRatGroupLargeTile.prototype = new NPCGroupObject();
 function OrcGroupSmallTile() {
   this.name = 'OrcGroupSmall';
   this.desc = 'orcs';
-  this.peaceAI = 'Monster-25';
-  this.graphic = "339.gif";
-  this.altgraphic = "373.gif";
+  this.peaceAI = 'seekPC-25';
+  this.graphic = '339.gif';
+  this.altgraphic = '373.gif';
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d3+2');
   this.movetype = MOVE_WALK;
@@ -1005,9 +1063,9 @@ OrcGroupSmallTile.prototype = new NPCGroupObject();
 function OrcGroupLargeTile() {
   this.name = 'OrcGroupLarge';
   this.desc = 'orcs';
-  this.peaceAI = 'Monster-25';
-  this.graphic = "339.gif";
-  this.altgraphic = "373.gif";
+  this.peaceAI = 'seekPC-25';
+  this.graphic = '339.gif';
+  this.altgraphic = '373.gif';
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d5+4');
   this.movetype = MOVE_WALK;
@@ -1017,9 +1075,9 @@ OrcGroupLargeTile.prototype = new NPCGroupObject();
 function HoodGroupSmallTile() {
   this.name = 'HoodGroupSmall';
   this.desc = 'hoods';
-  this.peaceAI = 'Bandit-20';
-  this.graphic = "375.gif";
-  this.altgraphic = "341.gif";
+  this.peaceAI = 'seekPC-25';
+  this.graphic = '375.gif';
+  this.altgraphic = '341.gif';
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d3+1');
   this.movetype = MOVE_WALK;
@@ -1029,9 +1087,9 @@ HoodGroupSmallTile.prototype = new NPCGroupObject();
 function HoodGroupLargeTile() {
   this.name = 'HoodGroupLarge';
   this.desc = 'hoods';
-  this.peaceAI = 'Bandit-20';
-  this.graphic = "375.gif";
-  this.altgraphic = "341.gif";
+  this.peaceAI = 'seekPC-25';
+  this.graphic = '375.gif';
+  this.altgraphic = '341.gif';
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d3+3');
   this.group[1] = new NPCList('MinstrelNPC', '1d1');
@@ -1042,7 +1100,7 @@ HoodGroupLargeTile.prototype = new NPCGroupObject();
 function RogueGroupSmallTile() {
   this.name = 'RogueGroupSmall';
   this.desc = 'rogues';
-  this.peaceAI = 'Bandit-20';
+  this.peaceAI = 'seekPC-25';
   this.graphic = '306.gif';
   this.group = [];
   this.group[0] = new NPCList('RogueNPC', '1d3+2');
@@ -1054,7 +1112,7 @@ RogueGroupSmallTile.prototype = new NPCGroupObject();
 function RogueGroupLargeTile() {
   this.name = 'RogueGroupLarge';
   this.desc = 'rogues';
-  this.peaceAI = 'Bandit-20';
+  this.peaceAI = 'seekPC-25';
   this.graphic = '306.gif';
   this.group = [];
   this.group[0] = new NPCList('RogueNPC', '1d4+3');
@@ -1067,7 +1125,7 @@ RogueGroupLargeTile.prototype = new NPCGroupObject();
 function ThiefGroupSmallTile() {
   this.name = 'ThiefGroupSmall';
   this.desc = 'thieves';
-  this.peaceAI = 'Bandit-20';
+  this.peaceAI = 'seekPC-25';
   this.graphic = '306.gif';
   this.group = [];
   this.group[0] = new NPCList('ThiefNPC', '1d3+2');
@@ -1079,7 +1137,7 @@ ThiefGroupSmallTile.prototype = new NPCGroupObject();
 function ThiefGroupLargeTile() {
   this.name = 'ThiefGroupLarge';
   this.desc = 'thieves';
-  this.peaceAI = 'Bandit-20';
+  this.peaceAI = 'seekPC-25';
   this.graphic = '306.gif';
   this.group = [];
   this.group[0] = new NPCList('ThiefNPC', '1d4+3');
