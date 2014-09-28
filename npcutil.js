@@ -260,8 +260,7 @@ function RunEffects(who) {
 }
 
 function PickOne(fromarray) {
-  var num = fromarray.length;
-  var roll = Math.floor(Math.random() * num);
+  var roll = Math.floor(Math.random() * fromarray.length);
   return fromarray[roll];
 }
 

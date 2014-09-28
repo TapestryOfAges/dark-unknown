@@ -1311,6 +1311,16 @@ tileFactory.prototype.makeDrakeNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAnimatedArmorNPCTile = function() {
+  var newTile = new AnimatedArmorNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWillotheWispNPCTile = function() {
+  var newTile = new WillotheWispNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGiantRatGroupSmallTile = function() {
   var newTile = new GiantRatGroupSmallTile();
   return newTile;

@@ -519,7 +519,7 @@ function GiantRatNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
   this.graphic = '327.gif';
-  this.altgraphic = '361.gif;'
+  this.altgraphic = '361.gif';
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -551,7 +551,7 @@ function GiantSnakeNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
   this.graphic = '342.gif';
-  this.altgraphic = '376.gif;'
+  this.altgraphic = '376.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -584,7 +584,7 @@ function GiantBatNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
   this.graphic = '362.gif';
-  this.altgraphic = '328.gif;'
+  this.altgraphic = '328.gif';
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -616,7 +616,7 @@ function LargeSpiderNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
   this.graphic = '329.gif';
-  this.altgraphic = '363.gif;'
+  this.altgraphic = '363.gif';
   this.meleeAttackAs = 'Axe';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -649,7 +649,7 @@ function GiantSpiderNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
   this.graphic = '329.gif';
-  this.altgraphic = '363.gif;'
+  this.altgraphic = '363.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -682,7 +682,7 @@ function GiantInsectsNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
   this.graphic = '336.gif';
-  this.altgraphic = '370.gif;'
+  this.altgraphic = '370.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -714,7 +714,7 @@ function OrcNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
   this.graphic = '339.gif';
-  this.altgraphic = '373.gif;'
+  this.altgraphic = '373.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -746,7 +746,7 @@ function SlimeNPCTile() {
   this.threatenedAI = 'spitter';
   this.PCThreatAI = 'attackPC';
   this.graphic = '331.gif';
-  this.altgraphic = '365.gif;'
+  this.altgraphic = '365.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -778,7 +778,7 @@ function HoodNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
   this.graphic = '375.gif';
-  this.altgraphic = '341.gif;'
+  this.altgraphic = '341.gif';
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'ClothArmor';
@@ -953,7 +953,7 @@ function DrakeNPCTile() {
   this.threatenedAI = 'mageknight';
   this.PCThreatAI = 'attackPC';
   this.graphic = '353.gif';
-  this.altgraphic = '387.gif;'
+  this.altgraphic = '387.gif';
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
   this.armorAs = '15,33,25Armor';
@@ -982,7 +982,7 @@ function AnimatedArmorNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
   this.graphic = '338.gif';
-  this.altgraphic = '372.gif;'
+  this.altgraphic = '372.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'ChainArmor';
@@ -997,8 +997,8 @@ AnimatedArmorNPCTile.prototype = new NPCObject();
 
 // Monster
 
-function Will-o-the-WispNPCTile() {
-  this.name = 'Will-o-the-WispNPC';
+function WillotheWispNPCTile() {
+  this.name = 'WillotheWispNPC';
   this.level = 5;
   this.addhp = 5;
   this.str = 14;
@@ -1010,7 +1010,7 @@ function Will-o-the-WispNPCTile() {
   this.threatenedAI = 'spellcaster';
   this.PCThreatAI = 'attackPC';
   this.graphic = '346.gif';
-  this.altgraphic = '380.gif;'
+  this.altgraphic = '380.gif';
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
   this.armorAs = '15,20,30Armor';
@@ -1022,7 +1022,7 @@ function Will-o-the-WispNPCTile() {
   this.onHit = 'mana clash';
   this.meleeChance = 35;
 }
-Will-o-the-WispNPCTile.prototype = new NPCObject();
+WillotheWispNPCTile.prototype = new NPCObject();
 
 function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';

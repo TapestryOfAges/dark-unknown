@@ -34,7 +34,7 @@ foreach my $line (<$npcdoc>) {
     $fields[12] =~ /(.{7}),(.{7})/;
    # $fields[12] = "PickOne([\"$1\",\"$2\"]);\n";
     print $out "  this.graphic = '$1';\n";
-    print $out "  this.altgraphic = '$2;'\n";
+    print $out "  this.altgraphic = '$2';\n";
   } else { print $out "  this.graphic = '$fields[12]';\n"; }
   if ($fields[13] =~ /\;/) {
     print $out "  this.meleeAttackAs = 'none';\n";
