@@ -737,6 +737,14 @@ function editorEditMapDetails() {
   document.detailseditpopup.maponexitscript.value = amap.getExitScript();
   document.detailseditpopup.maponentertest.value = amap.getEnterTestScript();
   document.detailseditpopup.maponexittest.value = amap.getExitTestScript();
+  document.detailseditpopup.mapreturnmap.value = amap.getReturnMap();
+  document.detailseditpopup.mapreturnx.value = amap.getReturnx();
+  document.detailseditpopup.mapreturny.value = amap.getReturny();
+  if (amap.getReturnInfused()) {
+    document.detailseditpopup.mapreturninfused.checked = true;
+  } else {
+    document.detailseditpopup.mapreturninfused.checked = false;
+  }
 }
 
 function submitEditDetails(change) {
@@ -759,6 +767,12 @@ function submitEditDetails(change) {
     amap.setExitScript(document.detailseditpopup.maponexitscript.value);
     amap.setEnterTestScript(document.detailseditpopup.maponentertest.value);
     amap.setExitTestScript(document.detailseditpopup.maponexittest.value);
+    amap.setReturn(document.detailseditpopup.mapreturnmap.value, document.detailseditpopup.mapreturnx.value, document.detailseditpopup.mapreturny.value);
+    if (document.detailseditpopup.mapreturninfused.checked == true) {
+      amap.setReturnInfused(1);
+    } else {
+      amap.setReturnInfused(0);
+    }
 	}
 }
 
