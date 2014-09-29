@@ -251,6 +251,36 @@ magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   return resp;
 }
 
+//Return
+magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+  
+  var returndest = {};
+  
+  var castermap = caster.getHomeMap();
+  if (castermap.getName().indexOf("combat") > -1) {
+    var fighton = castermap.getExitToMap();
+    if ((fighton === "darkunknown") || (infused)) {
+      returndest.map = "darkunknown";
+      returndest.x = 29;
+      returndest.y = 43;
+    }
+  } else {
+    if (((castermap.getReturnInfused()) && (infused)) || (!castermap.getReturnInfused)) {
+      returndest.map = castermap.getReturnMap();
+      returndest.x = castermap.getReturnx();
+      returndest.y = castermap.getReturny();
+    }
+  }
+  //WORK HERE  
+}
+
 //Quickness
 magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Quickness.<br /></span>"); }

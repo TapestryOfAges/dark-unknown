@@ -591,6 +591,11 @@ function GameMap() {
   this.exitTo.y = 70;
   this.wraps = 0;
   
+  this.returnmap = "darkunknown";
+  this.returnx = 29;
+  this.returny = 43;
+  this.returninfused = 0;
+  
   this.linkedMaps = [];
   this.seeBelow = "";
   
@@ -712,6 +717,38 @@ GameMap.prototype.setWrap = function(wrap) {
 
 GameMap.prototype.getWrap = function() {
   return this.wrap;
+}
+
+GameMap.prototype.getReturnMap = function() {
+  return this.returnmap;
+}
+
+GameMap.prototype.getReturnx = function() {
+  return this.returnx;
+}
+
+GameMap.prototype.getReturny = function() {
+  return this.returny;
+}
+
+GameMap.prototype.setReturn = function(newmap, rx, ry) {
+  this.returnmap = newmap;
+  this.returnx = rx;
+  this.returny = ry;
+  return this.returnmap;
+}
+
+GameMap.prototype.getReturnInfused = function() {
+  return this.returninfused;
+}
+
+GameMap.prototype.setReturnInfused = function(infused) {
+  if (infused) {
+    this.returninfused = 1;
+  } else {
+    this.returninfused = 0;
+  }
+  return this.returninfused;
 }
 
 // This should not be used externally
@@ -1166,7 +1203,7 @@ GameMap.prototype.saveMap = function (name) {
  	if (basenpc.getDesc() !== mapnpcs[i].getDesc()) {
  		printerwin.document.write(", Desc: '" + mapnpcs[i].getDesc() + "'");
  	}
- 	if (basenpc.getDesc() !== mapnpcs[i].getPrefix()) {
+ 	if (basenpc.getPrefix() !== mapnpcs[i].getPrefix()) {
  		printerwin.document.write(", Prefix: '" + mapnpcs[i].getPrefix() + "'");
  	}
  	if (basenpc.getLevel() !== mapnpcs[i].getLevel()) {
@@ -1234,6 +1271,10 @@ GameMap.prototype.saveMap = function (name) {
  printerwin.document.write(name + ".entertestscript = '" + this.getEnterTestScript() + "';\n");
  printerwin.document.write(name + ".exitscript = '" + this.getExitScript() + "';\n");
  printerwin.document.write(name + ".exittestscript = '" + this.getExitTestScript() + "';\n");
+ printerwin.document.write(name + ".returnmap = '" + this.getReturnMap() + "';\n");
+ printerwin.document.write(name + ".returnx = '" + this.getReturnx() + "';\n");
+ printerwin.document.write(name + ".returny = '" + this.getReturny() + "';\n");
+ printerwin.document.write(name + ".returninfused = '" + this.getReturnInfused() + "';\n");
  var linkedMapList;
  var linkedMapArray = this.getLinkedMaps();
  if (linkedMapArray.length > 0) {
@@ -1290,6 +1331,8 @@ GameMap.prototype.loadMap = function (name) {
   this.setLightLevel(mappages.readPage(name, "lightLevel"));
   this.setAlwaysRemember(mappages.readPage(name, "alwaysRemember"));
   this.setScale(mappages.readPage(name, "scale"));
+  this.setReturn(mappages.readPage(name, "returnmap"), mappages.readPage(name, "returnx"), mappages.readPage(name, "returny"));
+  this.setReturnInfused(mappages.readPage(name, "returninfused"));
   if (!DU.gameflags.editor) {
     if(mappages.readPage(name, "enterscript")) {
       mappages[name][mappages.readPage(name, "enterscript")](this);
@@ -1358,6 +1401,7 @@ GameMap.prototype.loadMap = function (name) {
   		for (var npckey in loadnpcs[npci]) {
   			if (npckey === "NPCName") { newnpc.setNPCName(loadnpcs[npci].NPCName); }
   			if (npckey === "Desc") { newnpc.setDesc(loadnpcs[npci].Desc); }
+  			if (npckey === "Prefix") { newnpc.setPrefix(loadnpcs[npci].Prefix); }
   			if (npckey === "Level") { newnpc.setLevel(loadnpcs[npci].Level); }
   			if (npckey === "Alignment") { newnpc.setAlignment(loadnpcs[npci].Alignment); }
   			if (npckey === "str") { newnpc.setStr(loadnpcs[npci].str); }
