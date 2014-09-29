@@ -94,7 +94,7 @@ mappages["island"].terrain[89] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW W
 mappages["island"].features = new Array;
 mappages["island"].features[0] = {name : 'Cave', x : 33, y : 47, entermap : 'island_cave', enterx : 33, entery : 69};
 mappages["island"].features[1] = {name : 'Cave', x : 30, y : 40, entermap : 'island_cave', enterx : 43, entery : 0};
-mappages["island"].features[2] = {name : 'Cave', x : 15, y : 48, entermap : 'null', enterx : 0, entery : 0};
+mappages["island"].features[2] = {name : 'Cave', x : 15, y : 48, entermap : 'cairns', enterx : 29, entery : 62};
 mappages["island"].features[3] = {name : 'HillTower', x : 58, y : 33, entermap : 'null', enterx : 0, entery : 0};
 mappages["island"].features[4] = {name : 'Cave', x : 13, y : 13, entermap : 'null', enterx : 0, entery : 0};
 mappages["island"].features[5] = {name : 'Shrine', x : 56, y : 15};
@@ -128,6 +128,10 @@ mappages["island"].enterscript = '';
 mappages["island"].entertestscript = '';
 mappages["island"].exitscript = '';
 mappages["island"].exittestscript = '';
+mappages["island"].returnmap = 'darkunknown';
+mappages["island"].returnx = '29';
+mappages["island"].returny = '43';
+mappages["island"].returninfused = '1';
 mappages["island"].linkedMaps = new Array("");
 
 mappages["island"].onload = function(mapref) {
@@ -280,6 +284,10 @@ mappages["island_cave"].seeBelow = '';
 mappages["island_cave"].lightLevel = 'dark';
 mappages["island_cave"].alwaysRemember = '';
 mappages["island_cave"].scale = '';
+mappages["island_cave"].returnmap = 'island';
+mappages["island_cave"].returnx = '33';
+mappages["island_cave"].returny = '47';
+mappages["island_cave"].returninfused = '0';
 mappages["island_cave"].linkedMaps = new Array("");
 
 // Added manually below

@@ -114,6 +114,10 @@ mappages["clearlagoon"].enterscript = '';
 mappages["clearlagoon"].entertestscript = '';
 mappages["clearlagoon"].exitscript = '';
 mappages["clearlagoon"].exittestscript = '';
+mappages["clearlagoon"].returnmap = 'darkunknown';
+mappages["clearlagoon"].returnx = '29';
+mappages["clearlagoon"].returny = '43';
+mappages["clearlagoon"].returninfused = '0';
 mappages["clearlagoon"].linkedMaps = ["clearlagoon2"];
 
 

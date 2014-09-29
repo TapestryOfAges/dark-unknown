@@ -53,6 +53,10 @@ mappages["testmap"].enterscript = '';
 mappages["testmap"].entertestscript = '';
 mappages["testmap"].exitscript = '';
 mappages["testmap"].exittestscript = '';
+mappages["darkunknown"].returnmap = 'darkunknown';
+mappages["darkunknown"].returnx = '29';
+mappages["darkunknown"].returny = '43';
+mappages["darkunknown"].returninfused = '0';
 mappages["testmap"].linkedMaps = [];
 
 

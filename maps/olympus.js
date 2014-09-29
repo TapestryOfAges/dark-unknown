@@ -101,6 +101,10 @@ mappages["olympus1"].enterscript = '';
 mappages["olympus1"].entertestscript = '';
 mappages["olympus1"].exitscript = '';
 mappages["olympus1"].exittestscript = '';
+mappages["olympus1"].returnmap = 'darkunknown';
+mappages["olympus1"].returnx = '29';
+mappages["olympus1"].returny = '43';
+mappages["olympus1"].returninfused = '0';
 mappages["olympus1"].linkedMaps = ["olympus2","olympus0"];
 
 
@@ -182,6 +186,10 @@ mappages["olympus0"].enterscript = '';
 mappages["olympus0"].entertestscript = '';
 mappages["olympus0"].exitscript = '';
 mappages["olympus0"].exittestscript = '';
+mappages["olympus0"].returnmap = 'darkunknown';
+mappages["olympus0"].returnx = '29';
+mappages["olympus0"].returny = '43';
+mappages["olympus0"].returninfused = '0';
 mappages["olympus0"].linkedMaps = ["olympus1","olympus2"];
 
 
@@ -292,4 +300,8 @@ mappages["olympus2"].enterscript = '';
 mappages["olympus2"].entertestscript = '';
 mappages["olympus2"].exitscript = '';
 mappages["olympus2"].exittestscript = '';
+mappages["olympus2"].returnmap = 'darkunknown';
+mappages["olympus2"].returnx = '29';
+mappages["olympus2"].returny = '43';
+mappages["olympus2"].returninfused = '0';
 mappages["olympus2"].linkedMaps = ["olympus1","olympus0"];

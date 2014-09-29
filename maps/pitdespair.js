@@ -49,7 +49,7 @@ mappages["pitdespair1"].terrain[45] = '## BK BK BK BK BK BK BK BK BK BK BK BK BK
 mappages["pitdespair1"].terrain[46] = '## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["pitdespair1"].features = [];
-mappages["pitdespair1"].features[0] = {name : 'LadderUp', x : 8, y : 19, entermap : 'null', enterx : 0, entery : 0};
+mappages["pitdespair1"].features[0] = {name : 'LadderUp', x : 8, y : 19, entermap : 'darkunknown', enterx : 117, entery : 76};
 mappages["pitdespair1"].features[1] = {name : 'Door', x : 11, y : 20, desc : "locked door", locked : 1};
 mappages["pitdespair1"].features[2] = {name : 'LadderDown', x : 16, y : 21, entermap : 'null', enterx : 0, entery : 0};
 mappages["pitdespair1"].features[3] = {name : 'Door', x : 15, y : 20, desc : "locked door", locked : 1};
@@ -109,4 +109,8 @@ mappages["pitdespair1"].enterscript = '';
 mappages["pitdespair1"].entertestscript = '';
 mappages["pitdespair1"].exitscript = '';
 mappages["pitdespair1"].exittestscript = '';
+mappages["pitdespair1"].returnmap = 'darkunknown';
+mappages["pitdespair1"].returnx = '29';
+mappages["pitdespair1"].returny = '43';
+mappages["pitdespair1"].returninfused = '0';
 mappages["pitdespair1"].linkedMaps = [""];
