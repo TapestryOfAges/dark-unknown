@@ -149,6 +149,10 @@ mappages["volcano"].enterscript = '';
 mappages["volcano"].entertestscript = '';
 mappages["volcano"].exitscript = '';
 mappages["volcano"].exittestscript = '';
+mappages["volcano"].returnmap = 'darkunknown';
+mappages["volcano"].returnx = '29';
+mappages["volcano"].returny = '43';
+mappages["volcano"].returninfused = '0';
 mappages["volcano"].linkedMaps = [];
 
 mappages["volcano"].onload = function(mapref) {

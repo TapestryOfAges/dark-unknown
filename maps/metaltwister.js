@@ -96,6 +96,10 @@ mappages["metaltwister"].seeBelow = '';
 mappages["metaltwister"].lightLevel = 'dark';
 mappages["metaltwister"].alwaysRemember = '';
 mappages["metaltwister"].scale = '1';
+mappages["metaltwister"].returnmap = 'darkunknown';
+mappages["metaltwister"].returnx = '22';
+mappages["metaltwister"].returny = '117';
+mappages["metaltwister"].returninfused = '0';
 mappages["metaltwister"].linkedMaps = new Array("metaltwister2","metaltwister3");
 
 
@@ -242,6 +246,10 @@ mappages["metaltwister2"].seeBelow = '';
 mappages["metaltwister2"].lightLevel = 'dark';
 mappages["metaltwister2"].alwaysRemember = '';
 mappages["metaltwister2"].scale = '1';
+mappages["metaltwister2"].returnmap = 'darkunknown';
+mappages["metaltwister2"].returnx = '22';
+mappages["metaltwister2"].returny = '117';
+mappages["metaltwister2"].returninfused = '0';
 mappages["metaltwister2"].linkedMaps = new Array("metaltwister","metaltwister3");
 
 
@@ -304,6 +312,10 @@ mappages["metaltwister3"].seeBelow = '';
 mappages["metaltwister3"].lightLevel = 'dark';
 mappages["metaltwister3"].alwaysRemember = '';
 mappages["metaltwister3"].scale = '1';
+mappages["metaltwister3"].returnmap = 'darkunknown';
+mappages["metaltwister3"].returnx = '22';
+mappages["metaltwister3"].returny = '117';
+mappages["metaltwister3"].returninfused = '0';
 mappages["metaltwister3"].linkedMaps = new Array("metaltwister","metaltwister2");
 
 mappages["metaltwister3"].throwswitch = function(feature) {
