@@ -3221,6 +3221,10 @@ SpawnerTile.prototype.getSpawned = function() {
 }
 
 SpawnerTile.prototype.activate = function() {
+  if (debug) {
+    dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getName() + " activating at " + DUTime.getGameClock() + ".</span><br />");
+  }
+
   var NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,1);
 
@@ -5314,6 +5318,10 @@ NPCObject.prototype.setSpawnedBy = function(spawner) {
 
 NPCObject.prototype.activate = function(timeoverride) {
   
+  if (debug) {
+    dbs.writeln("<span style='color:green;font-weight:bold'>NPC " + this.getName() + " activating.</span><br />");
+  }
+  
   if (this.altgraphic) {
     this.graphic = PickOne([this.graphic, this.altgraphic]);
   }
@@ -5379,6 +5387,10 @@ NPCObject.prototype.activate = function(timeoverride) {
     timing = timeoverride;
   }
   timing = timing + (Math.random() / 500);
+
+  if (debug) {
+    dbs.writeln("<span style='color:green;font-weight:bold'>Curr time: " + DUTime.getGameClock() + ", NPC will go in " + timing + ".</span><br />");
+  }
   
   var NPCEvent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCEvent,timing);  
