@@ -66,9 +66,9 @@ GameStateData.prototype.loadGame = function() {
 			}
 		}
 	}
-	DUTime.setGameClock(0);
+//	DUTime.setGameClock(0);
 	var PCEvent = new GameEvent(PC);
-	DUTime.addAtTimeInterval(PCEvent,1);
+	DUTime.addAtTimeInterval(PCEvent,.0001);
   var nextEvent = DUTime.executeNextEvent();
   var nextEntity = nextEvent.getEntity();
   nextEntity.myTurn();

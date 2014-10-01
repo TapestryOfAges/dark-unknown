@@ -71,6 +71,7 @@ Timeline.prototype.setGameClock = function(newtime) {
 Timeline.prototype.addAtTimeInterval = function(event, timeinterval) {
   var timestamp = this.getGameClock() + timeinterval;
   this.addAtTime(event,timestamp);
+
 }
 
 Timeline.prototype.addAtTime = function(event, timestamp) {
@@ -95,6 +96,10 @@ Timeline.prototype.addAtTime = function(event, timestamp) {
 //		alert(this.tickstream.getTimestamp());
 //		alert(event.entity.name);
 	}
+  if (debug) {
+    dbs.writeln("<span style='color:brown;font-weight:bold'>Tick added to timeline: " + event.getEntity().getName() + " added at " + timestamp + ".</span><br />");
+  }
+
 }
 
 Timeline.prototype.getNextEvent = function() {
