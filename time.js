@@ -69,6 +69,7 @@ Timeline.prototype.setGameClock = function(newtime) {
 }
 
 Timeline.prototype.addAtTimeInterval = function(event, timeinterval) {
+  timeinterval = parseFloat(timeinterval);
   var timestamp = this.getGameClock() + timeinterval;
   this.addAtTime(event,timestamp);
 
@@ -77,16 +78,22 @@ Timeline.prototype.addAtTimeInterval = function(event, timeinterval) {
 Timeline.prototype.addAtTime = function(event, timestamp) {
 	if (this.tickstream) {
 		var pointer = this.tickstream;
-		if (pointer.nexttick) {
-			while ((pointer.nexttick) && (pointer.nexttick.getTimestamp() <= timestamp)) {
-				pointer = pointer.nexttick;
-			}
-		}
-		var afterinsert = pointer.nexttick;
-		pointer.nexttick = new Tick(event,timestamp);
+		if (timestamp < pointer.getTimestamp()) {
+		  var firsttick = new Tick(event,timestamp);
+		  firsttick.nexttick = pointer;
+		  this.tickstream = firsttick;
+		} else {
+  		if (pointer.nexttick) {
+	  		while ((pointer.nexttick) && (pointer.nexttick.getTimestamp() <= timestamp)) {
+		  		pointer = pointer.nexttick;
+			  }
+  		}
+	  	var afterinsert = pointer.nexttick;
+		  pointer.nexttick = new Tick(event,timestamp);
 //		pointer.nexttick.setTimestamp(timestamp);
 //		pointer.nexttick.setEvent(event);
-		pointer.nexttick.nexttick = afterinsert;
+		  pointer.nexttick.nexttick = afterinsert;
+		}
 	}
 	else {
 		this.tickstream = new Tick(event,timestamp);
@@ -98,6 +105,8 @@ Timeline.prototype.addAtTime = function(event, timestamp) {
 	}
   if (debug) {
     dbs.writeln("<span style='color:brown;font-weight:bold'>Tick added to timeline: " + event.getEntity().getName() + " added at " + timestamp + ".</span><br />");
+    
+    dbs.writeln(this.createDebugTimeline());
   }
 
 }
@@ -132,4 +141,16 @@ Timeline.prototype.removeEntityFrom = function(entity) {
 	if (checktick.getEvent().getEntity() === entity) {
 		prevtick.setNextTick(checktick.getNextTick());
 	}
+}
+
+Timeline.prototype.createDebugTimeline = function() {
+  var tltable = "<table border='1'><tr><td>Time<br />Name<br />Serial</td>";
+  var pointer = this.tickstream;
+  while (pointer) {
+    tltable = tltable + "<td>" + pointer.getTimestamp().toFixed(5) + "<br />" + pointer.getEvent().getEntity().getName() + "<br />" + pointer.getEvent().getEntity().getSerial() + "</td>";
+    pointer = pointer.nexttick;
+  }
+  tltable = tltable + "</tr></table><br />";
+  
+  return tltable;
 }
