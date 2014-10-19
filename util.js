@@ -304,6 +304,11 @@ function RollDice(die) {
   return roll;
 }
 
+function RollMin(die) {
+  var dieobj = ParseDice(die);
+  return (dieobj.plus + dieobj+quantity);
+}
+
 function PlaceMonsters(battlemap,group,whoseturn) {
   var monsters = [];
   if (typeof group.populate === "function") {
