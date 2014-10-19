@@ -100,6 +100,11 @@ function Attack(atk, def) {
   var fromcoords = getCoords(atk.getHomeMap(),atk.getx(), atk.gety());
   var tocoords = getCoords(def.getHomeMap(),def.getx(), def.gety());
 
+  fromcoords.x += 192;
+  fromcoords.y += 192;
+  tocoords.x += 192;
+  tocoords.y += 192;  
+
   // get graphic, xoffset, yoffset for graphic
   var ammographic = {};
   var duration = 50;
@@ -112,25 +117,30 @@ function Attack(atk, def) {
   }
 
   var ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
-
+//alert(ammocoords.fromx + ", " + ammocoords.fromy);
+  
   var tablehtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
   
-  targetCursor.tileid = "#td-tile" + displayspecs.leftedge + "x" + displayspecs.topedge;
-  targetCursor.basetile = $(targetCursor.tileid).html(); 
-  $(targetCursor.tileid).html($(targetCursor.tileid).html() + tablehtml);
+//  targetCursor.tileid = "#td-tile" + displayspecs.leftedge + "x" + displayspecs.topedge;
+//  targetCursor.basetile = $(targetCursor.tileid).html(); 
+//  $(targetCursor.tileid).html($(targetCursor.tileid).html() + tablehtml);
+  $("#combateffects").html(tablehtml);
   if (type === "missile") {
     duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 100;
   }
   
   $("#animtable").animate({ left: ammocoords.tox , top: ammocoords.toy } , duration, 'linear', function() {
-    $(targetCursor.tileid).html(targetCursor.basetile);
+//    $(targetCursor.tileid).html(targetCursor.basetile);
+    $("#combateffects").html("");
     var hitgraphic = "";
     if (dmg === 0) { hitgraphic = "700.gif"; }
     else { hitgraphic = "702.gif"; }
     var hitanimhtml = '<div id="hitdiv" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:40; background-image:url(\'graphics/' + hitgraphic + '\');background-repeat:no-repeat; background-position: 0px 0px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
-    $(targetCursor.tileid).html($(targetCursor.tileid).html() + hitanimhtml);
+    //$(targetCursor.tileid).html($(targetCursor.tileid).html() + hitanimhtml);
+    $("#combateffects").html(hitanimhtml);
     setTimeout(function() {
-      $(targetCursor.tileid).html(targetCursor.basetile);
+//      $(targetCursor.tileid).html(targetCursor.basetile);
+      $("#combateffects").html("");
       if ((type !== "missile") || (!weapon.getAmmoReturn())) {
         duration = 50;
         ammographic.graphic = "spacer.gif";
@@ -138,9 +148,11 @@ function Attack(atk, def) {
         ammographic.yoffset = 0;
       }
       returnhtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
-      $(targetCursor.tileid).html($(targetCursor.tileid).html() + returnhtml);
+//      $(targetCursor.tileid).html($(targetCursor.tileid).html() + returnhtml);
+      $("#combateffects").html(returnhtml);
       $("#animtable").animate({ left: ammocoords.fromx , top: ammocoords.fromy } , duration, 'linear', function() {
-        $(targetCursor.tileid).html(targetCursor.basetile);
+//        $(targetCursor.tileid).html(targetCursor.basetile);
+        $("#combateffects").html("");
         if (dmg != 0) {
           var stillalive = def.dealDamage(dmg, atk);    
           if (stillalive) {
@@ -162,6 +174,52 @@ function Attack(atk, def) {
   var tmpval = {};
   tmpval["fin"] = -1;
   return tmpval;
+}
+
+function prepareSpellDamage(damsrc, damtar, damval, damtype) {
+  var retval = {};
+  retval.dmg = RollDice(damval);
+
+  if (damtype === "magic") {
+    var armor = damtar.getEquipment("armor");
+    var resist = 0;
+    if (resist) {
+      resist = armor.getResist() - damsrc.getReduceResist();
+      resist /= 100;
+      if (resist < 0) { resist = 0; }
+    }    
+    if (Math.random() < resist) {
+      retval.msg = "RESIST!";
+      retval.dmg = RollMin(damval);
+    }
+  }
+
+  if (damtype === "physical") {
+    var armor = damtar.getEquipment("armor");
+    var absorb = 0;
+    if (armor) {
+      absorb = armor.getAbsorb() - damsrc.getReduceResist();
+      absorb /= 100;
+      if (absorb < 0) { absorb = 0; }
+    }
+    retval.dmg = Math.floor(retval.dmg * (1-absorb));
+    if (retval.dmg === 0) { retval.dmg = 1; }  // min dmg 1
+  } 
+  
+  if (damtype === "fire") {
+    if (damtar.resists.fire) {
+      var fireresist = (damtar.resists.fire - damsrc.getReduceResist)/100;
+      retval.dmg = retval.dmg * (1-fireresist);
+    }
+  }
+  
+  if (damtype === "ice") {
+    if (damtar.resists.ice) {
+      var iceresist = (damtar.resists.ice - damsrc.getReduceResist)/100;
+      retval.dmg = retval.dmg * (1-iceresist);
+    }
+  }
+  
 }
 
 function GetCoordsWithOffsets(direction, from, to) {
