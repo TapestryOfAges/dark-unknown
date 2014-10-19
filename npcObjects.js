@@ -9,7 +9,7 @@ function DruidVillagerNPCTile() {
   this.dex = 12;
   this.int = 14;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'spellcaster';
   this.PCThreatAI = 'runaway';
@@ -36,7 +36,7 @@ function ShepherdVillagerNPCTile() {
   this.dex = 12;
   this.int = 12;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'runaway';
@@ -64,7 +64,7 @@ function MageVillagerNPCTile() {
   this.dex = 10;
   this.int = 16;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'spellcaster';
   this.PCThreatAI = 'runaway';
@@ -91,7 +91,7 @@ function TinkerVillagerNPCTile() {
   this.dex = 14;
   this.int = 12;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'missile';
   this.PCThreatAI = 'runaway';
@@ -119,7 +119,7 @@ function RangerVillagerNPCTile() {
   this.dex = 14;
   this.int = 11;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'ranger';
   this.PCThreatAI = 'runaway';
@@ -147,7 +147,7 @@ function AdventurerVillagerNPCTile() {
   this.dex = 12;
   this.int = 12;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'adventurer';
   this.PCThreatAI = 'runaway';
@@ -175,7 +175,7 @@ function PaladinVillagerNPCTile() {
   this.dex = 10;
   this.int = 12;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'paladin';
   this.PCThreatAI = 'assistPC';
@@ -203,7 +203,7 @@ function FighterVillagerNPCTile() {
   this.dex = 12;
   this.int = 10;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'runaway';
@@ -231,7 +231,7 @@ function TownsfolkVillagerNPCTile() {
   this.dex = 10;
   this.int = 10;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'runaway';
@@ -259,7 +259,7 @@ function BardVillagerNPCTile() {
   this.dex = 14;
   this.int = 12;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'ranger';
   this.PCThreatAI = 'runaway';
@@ -287,7 +287,7 @@ function ChildVillagerNPCTile() {
   this.dex = 7;
   this.int = 7;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'runaway';
   this.PCThreatAI = 'runaway';
@@ -317,7 +317,7 @@ function BeggarVillagerNPCTile() {
   this.dex = 7;
   this.int = 7;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'runaway';
   this.PCThreatAI = 'runaway';
@@ -347,7 +347,7 @@ function JesterNPCTile() {
   this.dex = 7;
   this.int = 7;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.threatenedAI = 'runaway';
   this.PCThreatAI = 'runaway';
@@ -377,7 +377,7 @@ function TownGuardNPCTile() {
   this.dex = 23;
   this.int = 14;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'guard';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'assistPC';
@@ -405,7 +405,7 @@ function KingNPCTile() {
   this.dex = 30;
   this.int = 30;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'stationary';
   this.threatenedAI = 'mageknight';
   this.PCThreatAI = 'assistPC';
@@ -432,7 +432,7 @@ function PrinceNPCTile() {
   this.dex = 25;
   this.int = 25;
   this.alignment = 'Good';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'stationary';
   this.threatenedAI = 'mageknight';
   this.PCThreatAI = 'assistPC';
@@ -459,7 +459,7 @@ function CorruptPrinceNPCTile() {
   this.dex = 25;
   this.int = 25;
   this.alignment = 'Evil';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'stationary';
   this.threatenedAI = 'mageknight';
   this.PCThreatAI = 'attackPC';
@@ -486,7 +486,7 @@ function CorruptGuardsNPCTile() {
   this.dex = 20;
   this.int = 14;
   this.alignment = 'Evil';
-  this.attitude = 'Friendly';
+  this.attitude = 'friendly';
   this.peaceAI = 'guard';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -514,7 +514,7 @@ function GiantRatNPCTile() {
   this.dex = 8;
   this.int = 2;
   this.alignment = 'Neutral';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-15';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -546,7 +546,7 @@ function GiantSnakeNPCTile() {
   this.dex = 12;
   this.int = 3;
   this.alignment = 'Neutral';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-15';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -579,7 +579,7 @@ function GiantBatNPCTile() {
   this.dex = 15;
   this.int = 2;
   this.alignment = 'Neutral';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-20';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -611,7 +611,7 @@ function LargeSpiderNPCTile() {
   this.dex = 12;
   this.int = 3;
   this.alignment = 'Neutral';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -644,7 +644,7 @@ function GiantSpiderNPCTile() {
   this.dex = 15;
   this.int = 5;
   this.alignment = 'Neutral';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -677,7 +677,7 @@ function GiantInsectsNPCTile() {
   this.dex = 8;
   this.int = 2;
   this.alignment = 'Neutral';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-15';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -709,7 +709,7 @@ function OrcNPCTile() {
   this.dex = 10;
   this.int = 6;
   this.alignment = 'Evil';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-25';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -741,7 +741,7 @@ function SlimeNPCTile() {
   this.dex = 7;
   this.int = 1;
   this.alignment = 'Neutral';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-5';
   this.threatenedAI = 'spitter';
   this.PCThreatAI = 'attackPC';
@@ -773,7 +773,7 @@ function HoodNPCTile() {
   this.dex = 9;
   this.int = 9;
   this.alignment = 'Evil';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-20';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -803,7 +803,7 @@ function RogueNPCTile() {
   this.dex = 13;
   this.int = 10;
   this.alignment = 'Evil';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-20';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -832,7 +832,7 @@ function MinstrelNPCTile() {
   this.dex = 13;
   this.int = 12;
   this.alignment = 'Evil';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-20';
   this.threatenedAI = 'missile';
   this.PCThreatAI = 'attackPC';
@@ -860,7 +860,7 @@ function ThiefNPCTile() {
   this.dex = 18;
   this.int = 14;
   this.alignment = 'Evil';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'seekPC-20';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -892,7 +892,7 @@ function TwisterNPCTile() {
   this.dex = 16;
   this.int = 6;
   this.alignment = 'Neutral';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'wander';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -920,7 +920,7 @@ function AirElementalNPCTile() {
   this.dex = 20;
   this.int = 6;
   this.alignment = 'Neutral';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'wander';
   this.threatenedAI = 'mageknight';
   this.PCThreatAI = 'attackPC';
@@ -948,7 +948,7 @@ function DrakeNPCTile() {
   this.dex = 15;
   this.int = 10;
   this.alignment = 'Neutral';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'wander';
   this.threatenedAI = 'mageknight';
   this.PCThreatAI = 'attackPC';
@@ -980,7 +980,7 @@ function AnimatedArmorNPCTile() {
   this.dex = 8;
   this.int = 2;
   this.alignment = 'Neutral';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'wander';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
@@ -1008,7 +1008,7 @@ function WillotheWispNPCTile() {
   this.dex = 18;
   this.int = 16;
   this.alignment = 'Neutral';
-  this.attitude = 'Hostile';
+  this.attitude = 'hostile';
   this.peaceAI = 'wander';
   this.threatenedAI = 'spellcaster';
   this.PCThreatAI = 'attackPC';
