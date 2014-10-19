@@ -7,6 +7,7 @@ function SpellObject(name, incant, level, targets) {
   this.incant = incant;
   this.level = level;
   this.targets = targets;
+  this.reduceresist = 0;
    
 }
 SpellObject.prototype = new Object();
@@ -30,6 +31,10 @@ SpellObject.prototype.getLevel = function() {
 
 SpellObject.prototype.getTargets = function() {
   return this.targets;
+}
+
+SpellObject.prototype.getReduceResist = function() {
+  return this.returnresist;
 }
 
 SpellObject.prototype.myTurn = function() {
@@ -279,6 +284,34 @@ magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
     }
   }
   //WORK HERE  
+  
+  var localacre = castermap.getTile(caster.getx(), caster.gety());
+  var displaytile = localacre.getTop();
+  while (displaytile.getName() === "SeeBelow") {
+    var retval = FindBelow(x,y,mapname);
+    localacre = retval.tile;
+    mapname = retval.map;
+    displaytile = localacre.getTop();
+  }
+  var graphics = displaytile.getGraphicArray();
+  var showGraphic = graphics[0];
+  if (typeof displaytile.setBySurround === "function") {
+   	graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
+    showGraphic = graphics[0];
+    if (typeof displaytile.doTile === "function") {
+      showGraphic = displaytile.doTile(x,y,showGraphic);
+    }
+    displayCell.showGraphic = showGraphic;
+    displayCell.graphics2 = graphics[2];
+    displayCell.graphics3 = graphics[3];
+    displayCell.graphics1 = graphics[1];
+    displayCell.losresult = losresult;
+    displayCell.lighthere = lighthere;
+    displayCell.desc = displaytile.getDesc();
+    
+//    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1;" title="' + displaytile.getDesc() + '" /></td>';
+  }
+
 }
 
 //Quickness
