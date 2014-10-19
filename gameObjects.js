@@ -617,6 +617,11 @@ function SetBySurroundCoast() {
     if (shallow) { chosentile = shallow; }
     else if (water) { chosentile = water; }
     else if (ocean) { chosentile = ocean; }
+    // kludge fix for clear lagoon
+    else if (themap.getName() === "clearlagoon") { 
+      shallow = eidos.getForm("Shallows");
+      chosentile = shallow;
+    }
     else { 
       graphics[0] = "spacer.gif";
       graphics[2] = 0;
@@ -2829,11 +2834,11 @@ function InASleepField(who) {
   var chance = .5 * resist;
   if (Math.random()*1 < chance) {
     if (who.getSpellEffectsByName("Sleep")) { return 0; }
-    var poison = localFactory.createTile("Sleep");
+    var fieldeffect = localFactory.createTile("Sleep");
     
     var duration = (RollDice("2d3") - who.getInt()/20) * SCALE_TIME;
-    poison.setExpiresTime(duration + DUTime.getGameClock());
-    who.addSpellEffect(poison);
+    fieldeffect.setExpiresTime(duration + DUTime.getGameClock());
+    who.addSpellEffect(fieldeffect);
     
     DrawCharFrame();
 
@@ -4755,6 +4760,7 @@ function NPCObject() {
 	this.equipment.weapon;
 	this.equipment.missile;
 	this.meleeChance = 100;
+	this.resists = {};   // fire, ice
   this.gold = 0;
 	this.leavesCorpse = "";
 	this.lootTable = "";
@@ -4950,7 +4956,7 @@ NPCObject.prototype.processDeath = function(droploot){
     } else {
       chest = localFactory.createTile("Chest");
     }
-    if ((droploot) && (this.lootTable)) {
+    if ((droploot) && (this.lootTable !== "none")) {
       var loot = {};
       if (DULoot[this.lootTable]) {
         loot = DULoot[this.lootTable].getLoot(); 
@@ -5444,7 +5450,11 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	if (retval["canmove"] === 1) {
 		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
 		if ((this === PC) && (DU.gameflags.sound)) {
-		  play_footstep(tile.getTerrain().getName());
+		  if (tile.getFeatures().length) {
+		    play_footstep("Feature");
+		  } else {
+		    play_footstep(tile.getTerrain().getName());
+		  }
 		}
     if (GetDistance(this.getx(), this.gety(), PC.getx(), PC.gety()) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) ) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
@@ -5689,6 +5699,23 @@ NPCObject.prototype.getAbsorb = function() {
   if (armor) {
     return armor.getAbsorb();
   }
+}
+
+NPCObject.prototype.getResist = function(resisttype) {
+  if (resisttype === "physical") {
+    var armor = this.getEquipment("armor");
+    if (armor) {
+      return (armor.getAbsorb());
+    }
+  }
+  if (resisttype === "magic") {
+    var armor = this.getEquipment("armor");
+    if (armor) {
+      return (armor.getResist());
+    }
+  }    
+  
+  return this.resists[resisttype];
 }
 
 NPCObject.prototype.getLastLocation = function() {
