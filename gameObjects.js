@@ -5223,7 +5223,7 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
   if ((initdelay) && (initdelay != 0)) {
   	init = init * initdelay;
   }
-  if (scale !== "0") { init = init * SCALE_TIME; }
+  if (scale != "0") { init = init * SCALE_TIME; }
 	return init;
 }
 
@@ -5456,8 +5456,11 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 		    play_footstep(tile.getTerrain().getName());
 		  }
 		}
-    if (GetDistance(this.getx(), this.gety(), PC.getx(), PC.gety()) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) ) {
+//    if (GetDistance(this.getx(), this.gety(), PC.getx(), PC.gety()) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) ) {
+    var distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
+    if (GetDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) ) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
+      // uncommented version checks from current display center, not from PC position.
 			DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
     }
 		var walkonval = tile.executeWalkons(this);
@@ -5474,7 +5477,8 @@ NPCObject.prototype.myTurn = function() {
   raceWarning = 0;
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
-	
+
+  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + this.getName() + ", serial " + this.getSerial() + " is starting its turn.</span><br />"); }	
 	RunEffects(this);
 	
   var awake = 1;

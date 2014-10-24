@@ -36,17 +36,18 @@ ais.OutdoorHostile = function(who, radius, pname) {
   }
   if (GetDistance(who.getx(), who.gety(), locx, locy) === 1) {
     if (pcmap === who.getHomeMap()) {
-      NPCAttackPCMap(who);
       if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " attacks the PC!</span><br />"); }
+      NPCAttackPCMap(who);
       return retval;
     } else { // PC is already in a fight
+      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " adjacent to PC on world map, waiting its turn.</span><br />"); }
       retval["initdelay"] = .1;
       return retval;
     }
   }
   
-  // Next, check to see if it's outside its leash radius
-  var spawner = who.getSpawnedBy();
+  // Next, check to see if it's outside its leash radius (moved to SurfaceFollowPath
+//  var spawner = who.getSpawnedBy();
 //  if ((spawner) && ) {
     
 //  }
@@ -54,21 +55,25 @@ ais.OutdoorHostile = function(who, radius, pname) {
   // Next, check and see if there is already a path that has not expired
   // but only if the PC is not within close range- in that case, always wait to hunt
   if ((who.getHomeMap() !== pcmap) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius/3)) {
+    if (debug) { dbs.writeln("<span style='color:orange;'>PC on another map or not Close. Trying to follow a path.</span><br />"); }
     retval = ais.SurfaceFollowPath(who,40,1);   
     if (retval["fin"] === 1) { return retval; }
   }
   
   // If there is a radius attached, hunt for the PC next
   if (radius) {
+    if (debug) { dbs.writeln("<span style='color:orange;'>AI hunts within " + radius + ", hunting for PC.</span><br />"); }
     var hunt = ais.HuntPC(who,radius);
 
     if (hunt) { 
+      if (debug) { dbs.writeln("<span style='color:orange;'>Hunt was successful, trying to follow the path.</span><br />"); }
       retval = ais.SurfaceFollowPath(who,40,1);   
       return retval; // we're done here either way
     }  
   }
 
   // we have neither attacked, moved, nor hunted- now we look for a PoI to go towards
+  if (debug) { dbs.writeln("<span style='color:orange;'>AI " + who.getName() + " has neither attacked, moved, nor hunted- now look for a PoI.</span><br />"); }
   retval = ais.ProcessPoI(who, pname);
   return retval;
 }
@@ -105,7 +110,7 @@ ais.HuntPC = function(who, radius) {
     
     var losresult = themap.getLOS(who.getx(), who.gety(), locx, locy, losgrid);
     if (losresult > 2) { 
-      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>PC is close but not in sight, no hunt.</span><br />"); }
+      if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>PC is within radius but not in sight, no hunt.</span><br />"); }
       return 0; 
     }  // can't see the PC and they aren't really close, no hunt
 	}
@@ -119,7 +124,7 @@ ais.HuntPC = function(who, radius) {
 		
 	var path = themap.getPath(who.getx(), who.gety(), destination.x, destination.y, who.getMovetype());
 	if (path.length) {
-   	path.shift();
+   	path.shift();  // because the furst step is where it is already standing.
     if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>From: " + who.getx() + ", " + who.gety() + " to " + destination.x + ", " + destination.y+ "</span><br />"); }
     if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>First step is: " + path[0][0] + ", " + path[0][1] + "</span><br />"); }
     if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>Next step is: " + path[1][0] + ", " + path[1][1] + "</span><br />"); }
@@ -131,7 +136,10 @@ ais.HuntPC = function(who, radius) {
     who.setDestinationType("PC");
     
     return 1;
-  } else { return 0; }
+  } else { 
+    if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>No available path, hunt abandoned.</span><br />"); }
+    return 0;
+  }
 	
 }
 
@@ -154,8 +162,10 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
         if (debug) { dbs.writeln("Checking for civilization proximity."); }
         civilized = CheckTownProximity( { x: coords[0], y: coords[1] }, who.getHomeMap());
         if (civilized) { 
+          if (debug) { dbs.writeln(" Civilized!"); }
           retval["canmove"] = 0; 
         }
+        if (debug) { dbs.writeln("<br />"); }
       }  
       if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " moving from " + who.getx() + ", " + who.gety() + " to " + coords[0] + ", " + coords[1] + " :"); }      
       who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
@@ -176,6 +186,12 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       if (retval["canmove"] === 1) { // it moved!
         retval["fin"] = 1;
         if (debug) { dbs.writeln("successfully. New location: " + who.getx() + ", " + who.gety() + "</span><br />"); }
+        if (debug) {
+          var tile = who.getHomeMap().getTile(who.getx(), who.gety());
+          if (!tile.canMoveHere(MOVE_WALK)) {
+            dbs.writeln("<span style='color:orange; font-weight:bold; text-decoration:underline'>AI moved onto a tile that cannot be walked on: " + tile.getTerrain().getName() + ".</span><br />");
+          }
+        }
         return retval; // we're done here
       }
       // failed to move. On the surface, this means there was another AI there, or it hit its leash.
