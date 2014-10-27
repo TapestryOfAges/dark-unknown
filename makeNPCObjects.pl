@@ -31,10 +31,17 @@ foreach my $line (<$npcdoc>) {
   print $out "  this.PCThreatAI = '$fields[11]';\n";
   if ($fields[12] =~ /,/) {
     $fields[12] =~ s/ //g;
-    $fields[12] =~ /(.{7}),(.{7})/;
+#    $fields[12] =~ /^(.+),(.+)/;
+    my @graphics = split(',', $fields[12]);
    # $fields[12] = "PickOne([\"$1\",\"$2\"]);\n";
-    print $out "  this.graphic = '$1';\n";
-    print $out "  this.altgraphic = '$2';\n";
+    print $out "  this.graphic = '$graphics[0]';\n";
+    shift @graphics;
+    print $out "  this.altgraphic = [";
+    while ($graphics[0]) {
+      print $out "'$graphics[0]',";
+      shift @graphics;
+    }
+    print $out "];\n";
   } else { print $out "  this.graphic = '$fields[12]';\n"; }
   if ($fields[13] =~ /\;/) {
     print $out "  this.meleeAttackAs = 'none';\n";

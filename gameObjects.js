@@ -5329,7 +5329,8 @@ NPCObject.prototype.activate = function(timeoverride) {
   }
   
   if (this.altgraphic) {
-    this.graphic = PickOne([this.graphic, this.altgraphic]);
+    var pickamong = this.altgraphic.push(this.graphic);
+    this.graphic = PickOne(pickamong);
   }
   
   this.setMana(-1);
