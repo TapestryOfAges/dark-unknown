@@ -57,7 +57,7 @@ function DrawCharFrame() {
 }
 
 function DrawMainFrame(how, mapname, centerx, centery) {
-  // how options are "draw" and "refresh"
+  // how options are "draw" and "one"
 
   var mapdiv = "&nbsp;";
   var themap = maps.getMap(mapname);
