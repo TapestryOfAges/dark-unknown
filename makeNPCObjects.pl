@@ -112,11 +112,17 @@ foreach my $line (<$groupdoc>) {
   print $out "  this.peaceAI = '$fields[2]';\n";
   if ($fields[3] =~ /,/) {
     $fields[3] =~ s/ //g;
-    $fields[3] =~ /(.{7}),(.{7})/;
-#    $fields[3] = "PickOne([\"$1\",\"$2\"]);\n";
-    print $out "  this.graphic = '$1';\n";
-    print $out "  this.altgraphic = '$2';\n";
+    my @graphics = split(',', $fields[3]);
+    print $out "  this.graphic = '$graphics[0]';\n";
+    shift @graphics;
+    print $out "  this.altgraphic = [";
+    while ($graphics[0]) {
+      print $out "'$graphics[0]',";
+      shift @graphics;
+    }
+    print $out "];\n";
   } else { print $out "  this.graphic = '$fields[3]';\n"; }
+
   print $out "  this.group = [];\n";
   print $out "  this.group[0] = new NPCList('$fields[4]NPC', '$fields[5]');\n";
   if ($fields[6]) {

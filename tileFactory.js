@@ -956,8 +956,23 @@ tileFactory.prototype.makeMoongateTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePetrifiedRoperTile = function() {
+  var newTile = new PetrifiedRoperTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAltarWithSwordTile = function() {
+  var newTile = new AltarWithSwordTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAmbroseShieldTile = function() {
   var newTile = new AmbroseShieldTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoperBarkTile = function() {
+  var newTile = new RoperBarkTile();
   return newTile;
 }
 
