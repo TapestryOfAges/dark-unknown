@@ -1092,6 +1092,10 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
 }
 
 GameMap.prototype.deleteThing = function(thing) {
+  var thingmap = thing.getHomeMap();
+//  alert(thingmap.getName());
+//  alert(thing.getName());
+  if (thingmap !== this) { alert("tried to delete " + thing.getName() + " which is not on this map."); return 0; }
 //	var type = thing.type + "s";
   var oldx = thing.getx()
   var oldy = thing.gety();
