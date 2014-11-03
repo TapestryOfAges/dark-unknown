@@ -1035,7 +1035,7 @@ function GiantRatGroupSmallTile() {
   this.desc = 'giant rats';
   this.peaceAI = 'Animal-15';
   this.graphic = '327.gif';
-  this.altgraphic = '361.gif';
+  this.altgraphic = ['361.gif',];
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
   this.movetype = MOVE_WALK;
@@ -1047,7 +1047,7 @@ function GiantRatGroupLargeTile() {
   this.desc = 'giant rats';
   this.peaceAI = 'Animal-15';
   this.graphic = '327.gif';
-  this.altgraphic = '361.gif';
+  this.altgraphic = ['361.gif',];
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
   this.movetype = MOVE_WALK;
@@ -1059,7 +1059,7 @@ function OrcGroupSmallTile() {
   this.desc = 'orcs';
   this.peaceAI = 'Monster-25';
   this.graphic = '339.gif';
-  this.altgraphic = '373.gif';
+  this.altgraphic = ['373.gif',];
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d3+2');
   this.movetype = MOVE_WALK;
@@ -1071,7 +1071,7 @@ function OrcGroupLargeTile() {
   this.desc = 'orcs';
   this.peaceAI = 'Monster-25';
   this.graphic = '339.gif';
-  this.altgraphic = '373.gif';
+  this.altgraphic = ['373.gif',];
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d5+4');
   this.movetype = MOVE_WALK;
@@ -1083,7 +1083,7 @@ function HoodGroupSmallTile() {
   this.desc = 'hoods';
   this.peaceAI = 'Bandit-20';
   this.graphic = '375.gif';
-  this.altgraphic = '341.gif';
+  this.altgraphic = ['341.gif',];
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d3+1');
   this.movetype = MOVE_WALK;
@@ -1095,7 +1095,7 @@ function HoodGroupLargeTile() {
   this.desc = 'hoods';
   this.peaceAI = 'Bandit-20';
   this.graphic = '375.gif';
-  this.altgraphic = '341.gif';
+  this.altgraphic = ['341.gif',];
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d3+3');
   this.group[1] = new NPCList('MinstrelNPC', '1d1');

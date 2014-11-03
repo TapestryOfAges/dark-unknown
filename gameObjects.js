@@ -3812,6 +3812,46 @@ MoongateTile.prototype.walkon = function(who) {
   } 
   return "";
 }
+
+function PetrifiedRoperTile() {
+  this.name = "PetrifiedRoper";
+  this.graphic = "petrifiedropwer.gif";
+  this.passable = MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "petrified roper";
+}
+PetrifiedRoperTile.prototype = new FeatureObject();
+
+PetrifiedRoperTile.prototype.use = function(who) {
+  var loot = localFactory.createTile("RoperBark");
+  PC.addToInventory(loot,1);
+  maintext.delayedAddText("You take some petrified roper bark.");
+  return;
+}  
+
+function AltarWithSwordTile() {
+  this.name = "AltarWithSword";
+  this.graphic = "swordinstone.gif";
+  this.passable = MOVE_ETHEREAL;
+  this.prefix = "a";
+  this.desc = "sword driven into the stone of an altar";
+}
+AltarWithSwordTile.prototype = new FeatureObject();
+
+AltarWithSwordTile.prototype.use = function(who) {
+  var wherex = this.getx();
+  var wherey = this.gety();
+  var mymap = this.getHomeMap();
+  mymap.deleteThing(this);
+  var emptyaltar = localFactory.createTile("Altar");
+  mymap.placeThing(wherex,wherey,emptyaltar);
+  var magicsword = localFactory.createTile("MagicSword");
+  mymap.placeThing(wherex,wherey,magicsword);
+  DrawMainFrame("one", mymap, wherex, whereY);
+  
+  return;
+}
+
 // Items
 
 function ItemObject() {
@@ -3838,6 +3878,18 @@ function AmbroseShieldTile() {
   this.prefix = "the";
 }
 AmbroseShieldTile.prototype = new ItemObject();
+
+function RoperBarkTile() {
+  this.name = "RoperBark";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-64";
+  this.spritexoffset = "-32";
+  this.blocklos = 0;
+  this.desc = "piece of petrified roper bark";
+  this.prefix = "a";
+}
+RoperBarkTile.prototype = new ItemObject();
+
 
 function RubyGemoftheSunTile() {
 	this.name = "RubyGemoftheSun";
@@ -4702,7 +4754,7 @@ NaturalMissileWeaponTile.prototype = new MissileWeaponObject();
 // NPCs
 
 function AnimateObject() {
-	this.altGraphics = [];
+	this.altgraphic = [];
 	
 	this.addType("Animate");
 }
@@ -4710,15 +4762,15 @@ AnimateObject.prototype = new GameObject();
 
 
 // Replaced for the nonce with PickOne.
-AnimateObject.prototype.pickGraphic = new function() {
-	if (this.altGraphics) {
-  	var options = this.altGraphics.length;
-	  if (options > 0) {
-		  var randomnumber=Math.floor(Math.random()*options) + 1;
-		  this.setGraphic(altGraphics[randomnumber]);
-	  }
-	}
-}
+//AnimateObject.prototype.pickGraphic = new function() {
+//	if (this.altGraphics) {
+ // 	var options = this.altGraphics.length;
+//	  if (options > 0) {
+//		  var randomnumber=Math.floor(Math.random()*options) + 1;
+//		  this.setGraphic(altGraphics[randomnumber]);
+//	  }
+//	}
+//}
 
 function NPCObject() {
 	this.str = 10;
