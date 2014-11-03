@@ -1368,6 +1368,14 @@ function PerformYell() {
 		  PC.setMana(PC.getMaxMana());
 		} else if (inputText.txt === "RUNTEST") {
 		  RunTest();
+		} else if (inputText.txt === "KARIS") {
+		  if (PC.getHomeMap().getName() === "asharden1") {
+		    // FIX HERE- add sound effect for teleport
+		    maintext.delayedAddText("In a blink, you are elsewhere.");
+		    var homemap = PC.getHomeMap();
+		    homemap.moveThing(25,23,PC);
+		    DrawMainFrame("draw", homemap.getName(), PC.getx(), PC.gety());
+		  }
 		}
 		retval["txt"] = "Yell: " + inputText.txt + "!";
 		retval["fin"] = 1;
