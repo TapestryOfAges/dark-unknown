@@ -67,7 +67,7 @@ mappages["darkunknown"].terrain = new Array;
  mappages["darkunknown"].terrain[64] = 'WW WW WW WW WW WW WW WW WW WW WW WW ww ww ww ww ww `. .. .. .. RR RR RR RR ,, .. ,, .. ,, .. .. .. nn .. .. .. .. .. .. .. .. .. .. .. .. .. ;; ;; .. .. ,, rd ;; ;; ;; ;; ;; ;; ;; ,, ;; ;; ,, rd .. .. .. .. .. .. .. ,, ;; ;; ,, ;; ;; ;; ;; ;; ;; ;; ;; ;; ,, ;; ;; ,, .. .. .. .. .. .. .. .. .. .. .. .. .. rd .. .. .. .. nn nn ^^ ^^ ^^ nn nn .. .. .. .. .| ww ww ww WW WW WW ww ww |. .. .. .. .. .. .. ^^ ^^ ww ww ww WW WW WW WW WW WW';
  mappages["darkunknown"].terrain[65] = 'WW WW WW WW WW WW WW WW WW WW WW ww ww ww ww ww ww ww |. ,, .. .. .. ,, RR ,, .. ,, ,, ,, ;; ;; .. .. .. .. .. .. .. .. ,, .. ,, rd rd rd rd rd rd rd rd rd rd rd ;; ;; ;; ;; ,, ,, ;; ;; ,, .. rd .. .. .. .. .. .. .. ,, ;; ,, ;; ,, ;; ,, ;; ;; ,, ,, ;; ;; ;; ;; ;; ;; .. .. .. .. .. .. .. .. .. .. .. .. .. rd .. .. .. .. .. nn ^^ ^^ nn nn nn nn .. .. .. .| uu ww ww ww WW WW ww ww |. .. .. .. .. .. .. ^^ ^^ ww ww WW WW WW WW WW WW WW';
  mappages["darkunknown"].terrain[66] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW ww ww ww ww `. .. ,, ,, ,, .. RR .. ,, .. ;; ;; ;; ;; .. .. __ .. .. .. .. .. .. .. .. rd .. ,, ;; ;; ;; ;; ,, ;; ;; rd rd rd ;; ;; ;; ,, ;; .. .. .. rd .. .. .. .. .. .. .. ,, ;; ;; RR ;; ,, ,, ;; ,, ,, ,, ;; ;; ;; ,, ,, ;; ;; .. .. .. .. .. .. .. .. .. .. .. .. rd .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ nn .. .. .. .. .` uu ww WW WW ww ww ww ^^ ^^ .. .. .. .. ^^ ^^ ww ww WW WW WW WW WW WW WW WW';
- mappages["darkunknown"].terrain[67] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW ww ww ww ww `. .. .. .. .. RR .. ,, ;; ;; ;; ;; .. .. ./ ww `. _, .. .. .. .. .. .. rd .. ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; rd rd ;; ;; ;; ;; .. .. .. rd .. .. .. .. .. .. .. .. ;; ,, RR ;; ;; ,, ;; ;; .. ff ,, ;; ;; ;; ;; ;; ;; .. .. .. .. .. .. .. .. .. .. .. .. rd .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ nn nn .. .. .. .. .` uu ww WW WW ww ww ^^ ^^ ^^ ^^ ff ff ^^ ^^ ww ww WW WW WW WW WW WW WW WW';
+ mappages["darkunknown"].terrain[67] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW ww ww ww ww `. .. .. .. .. RR .. ,, ;; ;; ;; ;; .. .. ./ ww `. _, .. .. .. .. .. .. rd .. ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; rd rd ;; ;; ;; ;; .. .. .. rd .. .. .. .. .. .. .. .. ;; ,, RR ;; ;; ,, ;; ;; .. ff ,, ;; ;; ;; ;; ;; ;; .. .. .. .. .. .. .. .. .. .. .. .. rd .. .. .. .. .. .. ^^ ^^ ^^ ^_ ^^ nn nn .. .. .. .. .` uu ww WW WW ww ww ^^ ^^ ^^ ^^ ff ff ^^ ^^ ww ww WW WW WW WW WW WW WW WW';
  mappages["darkunknown"].terrain[68] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW ww ww ww /. .. ,, RR RR RR .. ;; ;; .. ,, .. .. .| uu ww ww uu `. .. ,, ,, .. ,, rd .. ;; ;; ,, ^^ ^^ ,, ;; ;; ;; ;; ;; rd rd rd rd rd rd rd rd rd rd .. .. .. .. .. .. .. ,, ;; RR RR ff ff ;; ,, ff RR ;; ;; ;; ,, ;; ;; ;; .. .. .. .. .. .. .. .. .. .. .. .. rd .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ nn .. .. .. .. .| uu ww WW WW ww ww ^^ ff .. ff ff ff ,, .| ww ww ww WW WW WW WW WW WW WW';
  mappages["darkunknown"].terrain[69] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW ww ww ww `. .. ,, RR .. ,, .. .. ;; ;; .. __ __ ./ ww ww ww ww ww |, ,, rd rd rd rd .. ,, ;; ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ;; ,, .. .. .. .. rd .. .. .. .. .. .. .. ,, ;; ,, RR RR ff ;; ff ff RR ff ;; ;; ;; ;; ;; .. .. .. .. .. .. .. .. .. .. .. .. .. rd .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ .. ^^ .. .. .| ww ww WW WW ww ww ^^ .. ff ff .. ff ff .| ww ww ww WW WW WW WW WW WW WW';
  mappages["darkunknown"].terrain[70] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW ww ww ww `. .. RR ,, ,, .. .. .. .. .| uu uu ww ww ww ww ww uu |, .. rd .. .. .. .. .. ,, ;; nn ^^ ^^ ^^ ^^ ;; ;; ;; ,, ;; ;; .. .. .. .. .. .. rd .. .. .. .. .. .. .. ;; ;; ;; ;; RR ,, ff ;; RR RR ff ;; ;; ;; ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. rd .. .. .. .. .. .. .. .. .. nn ^^ ^^ ^^ ^^ ^^ nn .. .| ww ww WW ww ww ww ^^ ff .. ff ff .. ,, ff ww ww WW WW WW WW WW WW WW WW';
@@ -201,12 +201,7 @@ mappages["darkunknown"].returninfused = '0';
 mappages["darkunknown"].linkedMaps = new Array("");
 
 mappages["darkunknown"].onload = function(mapref) {
-  
-  // prepare palace of the sky
-  var palacetile = mapref.getTile(112,67);
-  var palacemtn = palacetile.getTerrain();
-  palacemtn.addPassable(MOVE_WALK);
-  
+    
   // Place spawners  
   Placeonyxspawn(mapref);
   CreateNetwork(mapref);
