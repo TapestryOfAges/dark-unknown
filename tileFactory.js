@@ -41,6 +41,11 @@ tileFactory.prototype.makeMountainTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeMountainPassTile = function() {
+  var newTile = new MountainPassTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeStoneWallTile = function() {
   var newTile = new StoneWallTile();
   return newTile;
@@ -768,6 +773,11 @@ tileFactory.prototype.makeWhirlpoolTile = function() {
 
 tileFactory.prototype.makeWalkOnTile = function() {
   var newTile = new WalkOnTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnChangeExitTile = function() {
+  var newTile = new WalkOnChangeExitTile();
   return newTile;
 }
 

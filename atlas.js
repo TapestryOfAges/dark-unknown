@@ -12,6 +12,8 @@ function Atlas() {
     "Shallows" : "uu",
     '^^' : "Mountain", // 4
     "Mountain" : '^^', 
+    '^_' : "MountainPass", // 4
+    "MountainPass" : '^_', 
     '$=' : "LeftCastle", // 5
     "LeftCastle" : '$=',
     '=$' : "RightCastle", // 6
