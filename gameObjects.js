@@ -958,6 +958,19 @@ function MountainTile() {
 }
 MountainTile.prototype = new TerrainObject();
 
+function MountainPassTile() {
+  this.name = "MountainPass";
+//  this.graphic = "004.gif";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK;
+  this.combatmap = "Hill";
+}
+MountainPassTile.prototype = new TerrainObject();
+
 function StoneWallTile() {
   this.name = "StoneWall";
 //  this.graphic = "011.gif";
@@ -3111,6 +3124,25 @@ function WalkOnTile() {
 	this.invisible = 1;
 }
 WalkOnTile.prototype = new FeatureObject();
+
+function WalkOnChangeExitTile() {
+  this.name = "WalkOnChangeExit";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.setxto = 0;
+	this.setyto = 0;
+}
+WalkOnChangeExitTile.prototype = new FeatureObject();
+
+WalkOnChangeExitTile.prototype.walkon = function(walker) {
+  var themap=walker.getHomeMap();
+  themap.setExitToX(this.setxto);
+  themap.setExitToY(this.setyto);
+}
 
 function SpawnerTile() {
   this.name = "Spawner";
