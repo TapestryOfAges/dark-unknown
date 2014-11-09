@@ -231,11 +231,11 @@ mappages["island_cave"].terrain[68] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw
 mappages["island_cave"].terrain[69] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["island_cave"].features = new Array;
-mappages["island_cave"].features[0] = {name : 'WalkOn', x : 42, y : 0, walkonscript : 'exit_north'};
-mappages["island_cave"].features[1] = {name : 'WalkOn', x : 43, y : 0, walkonscript : 'exit_north'};
-mappages["island_cave"].features[2] = {name : 'WalkOn', x : 44, y : 0, walkonscript : 'exit_north'};
-mappages["island_cave"].features[3] = {name : 'WalkOn', x : 32, y : 69, walkonscript : 'exit_south'};
-mappages["island_cave"].features[4] = {name : 'WalkOn', x : 33, y : 69, walkonscript : 'exit_south'};
+mappages["island_cave"].features[0] = {name : 'WalkOnChangeExit', x : 42, y : 0};
+mappages["island_cave"].features[1] = {name : 'WalkOnChangeExit', x : 43, y : 0};
+mappages["island_cave"].features[2] = {name : 'WalkOnChangeExit', x : 44, y : 0};
+mappages["island_cave"].features[3] = {name : 'WalkOnChangeExit', x : 32, y : 69};
+mappages["island_cave"].features[4] = {name : 'WalkOnChangeExit', x : 33, y : 69};
 mappages["island_cave"].features[5] = {name : 'Lava', x : 60, y : 14};
 mappages["island_cave"].features[6] = {name : 'Lava', x : 61, y : 14};
 mappages["island_cave"].features[7] = {name : 'Lava', x : 60, y : 15};
@@ -291,6 +291,34 @@ mappages["island_cave"].returninfused = '0';
 mappages["island_cave"].linkedMaps = new Array("");
 
 // Added manually below
+
+mappages["island_cave"].onload = function(mapref) {
+  var walkonloc = mapref.getTile(42,0);
+  var walkontile = walkonloc.getTopFeature();
+  walkontile.setxto = 30;
+  walkontile.setyto = 40;
+  
+  walkonloc = mapref.getTile(43,0);
+  walkontile = walkonloc.getTopFeature();
+  walkontile.setxto = 30;
+  walkontile.setyto = 40;
+  
+  walkonloc = mapref.getTile(44,0);
+  walkontile = walkonloc.getTopFeature();
+  walkontile.setxto = 30;
+  walkontile.setyto = 40;
+  
+  walkonloc = mapref.getTile(32,69);
+  walkontile = walkonloc.getTopFeature();
+  walkontile.setxto = 33;
+  walkontile.setyto = 47;
+
+  walkonloc = mapref.getTile(33,69);
+  walkontile = walkonloc.getTopFeature();
+  walkontile.setxto = 33;
+  walkontile.setyto = 47;
+
+}
 
 mappages["island_cave"].exit_north = function(feature) {
 	feature.walkon = function(walker) {
