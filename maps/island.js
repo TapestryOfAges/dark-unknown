@@ -136,25 +136,26 @@ mappages["island"].linkedMaps = new Array("");
 
 mappages["island"].onload = function(mapref) {
   
+  if (gamestate.getMode() !== "loadgame") {
     // give specs to teleporters
-  var shrinetile = mapref.getTile(14,76);
-  var shrine = shrinetile.getTopFeature();
-  shrine.gotomap = "darkunknown";
-  shrine.gotox = 13;
-  shrine.gotoy = 82;
+    var shrinetile = mapref.getTile(14,76);
+    var shrine = shrinetile.getTopFeature();
+    shrine.gotomap = "darkunknown";
+    shrine.gotox = 13;
+    shrine.gotoy = 82;
   
-  shrinetile = mapref.getTile(56,15);
-  shrine = shrinetile.getTopFeature();
-  shrine.gotomap = "darkunknown";
-  shrine.gotox = 15;
-  shrine.gotoy = 16;
+    shrinetile = mapref.getTile(56,15);
+    shrine = shrinetile.getTopFeature();
+    shrine.gotomap = "darkunknown";
+    shrine.gotox = 15;
+    shrine.gotoy = 16;
 
-  shrinetile = mapref.getTile(60,63);
-  shrine = shrinetile.getTopFeature();
-  shrine.gotomap = "volcano";
-  shrine.gotox = 11;
-  shrine.gotoy = 34;
-  
+    shrinetile = mapref.getTile(60,63);
+    shrine = shrinetile.getTopFeature();
+    shrine.gotomap = "volcano";
+    shrine.gotox = 11;
+    shrine.gotoy = 34;
+  }
 }
 
 mappages["island_cave"] = new Object();
@@ -293,30 +294,32 @@ mappages["island_cave"].linkedMaps = new Array("");
 // Added manually below
 
 mappages["island_cave"].onload = function(mapref) {
-  var walkonloc = mapref.getTile(42,0);
-  var walkontile = walkonloc.getTopFeature();
-  walkontile.setxto = 30;
-  walkontile.setyto = 40;
+  if (gamestate.getMode() !== "loadgame") {
+    var walkonloc = mapref.getTile(42,0);
+    var walkontile = walkonloc.getTopFeature();
+    walkontile.setxto = 30;
+    walkontile.setyto = 40;
   
-  walkonloc = mapref.getTile(43,0);
-  walkontile = walkonloc.getTopFeature();
-  walkontile.setxto = 30;
-  walkontile.setyto = 40;
+    walkonloc = mapref.getTile(43,0);
+    walkontile = walkonloc.getTopFeature();
+    walkontile.setxto = 30;
+    walkontile.setyto = 40;
   
-  walkonloc = mapref.getTile(44,0);
-  walkontile = walkonloc.getTopFeature();
-  walkontile.setxto = 30;
-  walkontile.setyto = 40;
+    walkonloc = mapref.getTile(44,0);
+    walkontile = walkonloc.getTopFeature();
+    walkontile.setxto = 30;
+    walkontile.setyto = 40;
   
-  walkonloc = mapref.getTile(32,69);
-  walkontile = walkonloc.getTopFeature();
-  walkontile.setxto = 33;
-  walkontile.setyto = 47;
+    walkonloc = mapref.getTile(32,69);
+    walkontile = walkonloc.getTopFeature();
+    walkontile.setxto = 33;
+    walkontile.setyto = 47;
 
-  walkonloc = mapref.getTile(33,69);
-  walkontile = walkonloc.getTopFeature();
-  walkontile.setxto = 33;
-  walkontile.setyto = 47;
+    walkonloc = mapref.getTile(33,69);
+    walkontile = walkonloc.getTopFeature();
+    walkontile.setxto = 33;
+    walkontile.setyto = 47;
+  }
 
 }
 

@@ -157,10 +157,12 @@ mappages["volcano"].linkedMaps = [];
 
 mappages["volcano"].onload = function(mapref) {
   
-  shrinetile = mapref.getTile(11,34);
-  shrine = shrinetile.getTopFeature();
-  shrine.gotomap = "volcano";
-  shrine.gotox = 60;
-  shrine.gotoy = 63;
+  if (gamestate.getMode() !== "loadgame") {
+    shrinetile = mapref.getTile(11,34);
+    shrine = shrinetile.getTopFeature();
+    shrine.gotomap = "island";
+    shrine.gotox = 60;
+    shrine.gotoy = 63;
+  }
 
 }
