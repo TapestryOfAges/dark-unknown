@@ -294,8 +294,8 @@ mappages["metaltwister3"].features[1] = {name : 'StonePortcullis', x : 11, y : 1
 mappages["metaltwister3"].features[2] = {name : 'Altar', x : 14, y : 17};
 mappages["metaltwister3"].features[3] = {name : 'LadderUp', x : 21, y : 20, entermap : 'metaltwister2', enterx : 30, entery : 30};
 mappages["metaltwister3"].features[4] = {name : 'LadderUp', x : 7, y : 14, entermap : 'metaltwister2', enterx : 33, entery : 29};
-mappages["metaltwister3"].features[5] = {name : 'LeverOff', x : 10, y : 12, usescript : 'throwswitch'};
-mappages["metaltwister3"].features[6] = {name : 'LeverOff', x : 20, y : 18, usescript : 'throwswitch'};
+mappages["metaltwister3"].features[5] = {name : 'MetalTwisterLever', x : 10, y : 12};
+mappages["metaltwister3"].features[6] = {name : 'MetalTwisterLever', x : 20, y : 18};
 
 
 mappages["metaltwister3"].npcs = new Array;

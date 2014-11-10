@@ -203,21 +203,27 @@ mappages["darkunknown"].linkedMaps = new Array("");
 mappages["darkunknown"].onload = function(mapref) {
     
   // Place spawners  
-  Placeonyxspawn(mapref);
+  if (gamestate.getMode() !== "loadgame") {
+    Placeonyxspawn(mapref);
+  // give specs to teleporters
+    var shrinetile = mapref.getTile(13,82);
+    var shrine = shrinetile.getTopFeature();
+    if (shrine) {
+      shrine.gotomap = "island";
+      shrine.gotox = 14;
+      shrine.gotoy = 76;
+    }
+  
+    shrinetile = mapref.getTile(15,16);
+    shrine = shrinetile.getTopFeature();
+    if (shrine) {
+      shrine.gotomap = "island";
+      shrine.gotox = 56;
+      shrine.gotoy = 15;
+    }
+  }
   CreateNetwork(mapref);
   
-  // give specs to teleporters
-  var shrinetile = mapref.getTile(13,82);
-  var shrine = shrinetile.getTopFeature();
-  shrine.gotomap = "island";
-  shrine.gotox = 14;
-  shrine.gotoy = 76;
-  
-  shrinetile = mapref.getTile(15,16);
-  shrine = shrinetile.getTopFeature();
-  shrine.gotomap = "island";
-  shrine.gotox = 56;
-  shrine.gotoy = 15;
   
 }
 

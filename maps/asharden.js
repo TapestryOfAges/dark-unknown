@@ -42,7 +42,7 @@ mappages["asharden1"].features[2] = {name : 'SleepField', x : 30, y : 18};
 mappages["asharden1"].features[3] = {name : 'PoisonField', x : 20, y : 18};
 mappages["asharden1"].features[4] = {name : 'FireField', x : 29, y : 15};
 mappages["asharden1"].features[5] = {name : 'FireField', x : 21, y : 15};
-mappages["asharden1"].features[6] = {name : 'Door', x : 25, y : 21, desc : "magically locked door", locked : 2};
+mappages["asharden1"].features[6] = {name : 'TalkingDoor', x : 25, y : 21, desc : "magically locked door", locked : 2};
 mappages["asharden1"].features[7] = {name : 'LadderUp', x : 29, y : 20, entermap : 'asharden2', enterx : 29, entery : 20};
 mappages["asharden1"].features[8] = {name : 'BottomChair', x : 17, y : 19};
 mappages["asharden1"].features[9] = {name : 'Well', x : 17, y : 14};
@@ -73,35 +73,14 @@ mappages["asharden1"].returninfused = '0';
 mappages["asharden1"].linkedMaps = ["asharden2","asharden3"];
 
 mappages["asharden1"].onload = function(mapref) {
-  // swap door's use function with conversation with password unless password already given
-  var doorloc = mapref.getTile(25,21);
-  var door = doorloc.getTopFeature();
-  if (DU.gameflags.ash_password) {  
+
+  if (gamestate.getMode() !== "loadgame") {
+    var doorloc = mapref.getTile(25,21);
+    var door = doorloc.getTopFeature();
+    if (DU.gameflags.ash_password) {  
     // gave password previously, unlock the door
-    door.unlockMe();
-  } else {
-    door.use_old = door.use
-    door.conversation = "ash_door";
-    door.getConversation = function() { return "ash_door"; }
-    door.use = function(who) {
-      var retval;
-      maintext.addText("Use " + door.getDesc() + ":");
-      retval = PerformTalk(this,"ash_door","_start");
-      retval["override"] = 1;
-      maintext.setInputLine("&gt; You say: ");
-      maintext.drawTextFrame();
-      return retval;
-    }
-    door.getGenderedTerms = function() {
-      var gt = {};
-      gt.pronoun = "it";
-      gt.possessive = "its";
-      gt.objective = "it";
-      gt.titled = "Lord";
-      gt.sibling = "sibling";
-      gt.kiddie = "child";    
-      return gt;
-    }
+      door.unlockMe();
+    } 
   }
 }
 
