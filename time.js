@@ -140,6 +140,7 @@ Timeline.prototype.removeEntityFrom = function(entity) {
 	}
 	if (checktick.getEvent().getEntity() === entity) {
 		prevtick.setNextTick(checktick.getNextTick());
+		dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline: " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />");
 	}
 }
 

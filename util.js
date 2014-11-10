@@ -228,7 +228,10 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   	}
 	
 	  if (keepmap === 0) {
+	    if (debug) { dbs.writeln("<span style='color:brown; font-weight:bold'>DESTROYING MAP " + frommap.getName() + ".</span><br />"); }	
 		  maps.deleteMap(frommap.getName());
+		  
+		  // remove stuff from the map from the timelines
   	}
   }
 	

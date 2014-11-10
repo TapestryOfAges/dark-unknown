@@ -681,6 +681,11 @@ tileFactory.prototype.makeDoorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTalkingDoorTile = function() {
+  var newTile = new TalkingDoorTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSleepFieldTile = function() {
   var newTile = new SleepFieldTile();
   return newTile;
@@ -833,6 +838,11 @@ tileFactory.prototype.makePentagramSETile = function() {
 
 tileFactory.prototype.makeLeverOffTile = function() {
   var newTile = new LeverOffTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMetalTwisterLeverTile = function() {
+  var newTile = new MetalTwisterLeverTile();
   return newTile;
 }
 
