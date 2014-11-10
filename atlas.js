@@ -1369,65 +1369,66 @@ GameMap.prototype.loadMap = function (name) {
   
   this.setName(name);
   this.createPathGrid();
-    
-  var loadfeatures = mappages.readPage(name, "features");
+
+  if (gamestate.getMode() !== "loadgame") {
+    var loadfeatures = mappages.readPage(name, "features");
 //  this.features = new Collection;
-  if (loadfeatures) {
+    if (loadfeatures) {
 //  	alert(loadfeatures.length + " features loading...");
-    for (var fi=0;fi<=loadfeatures.length-1;fi++) {
-    	var newfeature = localFactory.createTile(loadfeatures[fi].name);
+      for (var fi=0;fi<=loadfeatures.length-1;fi++) {
+        var newfeature = localFactory.createTile(loadfeatures[fi].name);
 //    	newfeature.setHomeMap(this);
-    	for (var featurekey in loadfeatures[fi]) {
-    		if (featurekey === "name") { continue; }
-    		if (featurekey === "locked") { newfeature.lockMe(loadfeatures[fi]["locked"]); continue; }
-    		newfeature[featurekey] = loadfeatures[fi][featurekey];
-    	}
-    	if (newfeature.getWalkOnScript()) {
-    		var walkonscript = newfeature.getWalkOnScript();
-    		mappages[name][walkonscript](newfeature);
-    	}
-    	if (newfeature.getUseScript()) {
-    		var usescript = newfeature.getUseScript();
-    		mappages[name][usescript](newfeature);
-    	}
-    	if ((typeof newfeature.getLootedID === "function") && (newfeature.getLootedID())) {
-    	  if (DU.gameflags[newfeature.getLootedID()]) {
-    	    newfeature.setLootgroup("prev_looted");
+    	  for (var featurekey in loadfeatures[fi]) {
+    		  if (featurekey === "name") { continue; }
+      		if (featurekey === "locked") { newfeature.lockMe(loadfeatures[fi]["locked"]); continue; }
+      		newfeature[featurekey] = loadfeatures[fi][featurekey];
+      	}
+    	  if (newfeature.getWalkOnScript()) {
+      		var walkonscript = newfeature.getWalkOnScript();
+      		mappages[name][walkonscript](newfeature);
+      	}
+      	if (newfeature.getUseScript()) {
+      		var usescript = newfeature.getUseScript();
+      		mappages[name][usescript](newfeature);
     	  }
-    	}
-  	  this.placeThing(loadfeatures[fi].x,loadfeatures[fi].y,newfeature);
+      	if ((typeof newfeature.getLootedID === "function") && (newfeature.getLootedID())) {
+      	  if (DU.gameflags[newfeature.getLootedID()]) {
+      	    newfeature.setLootgroup("prev_looted");
+      	  }
+      	}
+  	    this.placeThing(loadfeatures[fi].x,loadfeatures[fi].y,newfeature);
+      }
+    }
+
+    var loadnpcs = mappages.readPage(name, "npcs");
+    if (loadnpcs)  {
+  	  for (var npci=0;npci<=loadnpcs.length-1;npci++) {
+    		var newnpc = localFactory.createTile(loadnpcs[npci].name);
+//  		newnpc.setHomeMap(this);
+    		for (var npckey in loadnpcs[npci]) {
+  	  		if (npckey === "NPCName") { newnpc.setNPCName(loadnpcs[npci].NPCName); }
+  		  	if (npckey === "Desc") { newnpc.setDesc(loadnpcs[npci].Desc); }
+  			  if (npckey === "Prefix") { newnpc.setPrefix(loadnpcs[npci].Prefix); }
+    			if (npckey === "Level") { newnpc.setLevel(loadnpcs[npci].Level); }
+    			if (npckey === "Alignment") { newnpc.setAlignment(loadnpcs[npci].Alignment); }
+  	  		if (npckey === "str") { newnpc.setStr(loadnpcs[npci].str); }
+  		  	if (npckey === "dex") { newnpc.setDex(loadnpcs[npci].dex); }
+  			  if (npckey === "int") { newnpc.setInt(loadnpcs[npci].int); }
+    			if (npckey === "Attitude") { newnpc.setAttitude(loadnpcs[npci].Attitude); }
+    			if (npckey === "PeaceAI") { newnpc.setPeaceAI(loadnpcs[npci].PeaceAI); }
+  	  		if (npckey === "PCThreatAI") { newnpc.setPCThreatAI(loadnpcs[npci].PCThreatAI); }
+  		  	if (npckey === "ThreatenedAI") { newnpc.setThreatenedAI(loadnpcs[npci].ThreatenedAI); }
+  			  if (npckey === "Melee") { newnpc.setMeleeAttackAs(loadnpcs[npci].Melee); }
+    			if (npckey === "Missile") { newnpc.setMissileAttackAs(loadnpcs[npci].Missile); }
+    			if (npckey === "Conversation") { newnpc.setConversation(loadnpcs[npci].Conversation); }
+  	  		if (npckey === "ConversationFlag") { newnpc.setConversationFlag(loadnpcs[npci].ConversationFlag); }
+  		  	if (npckey === "Gender") { newnpc.setGender(loadnpcs[npci].Gender); }
+  			  if (npckey === "Merch") { newnpc.setMerch(loadnpcs[npci].Merch); }
+    		}
+    		this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
+  	  }
     }
   }
-
-  var loadnpcs = mappages.readPage(name, "npcs");
-  if (loadnpcs)  {
-  	for (var npci=0;npci<=loadnpcs.length-1;npci++) {
-  		var newnpc = localFactory.createTile(loadnpcs[npci].name);
-//  		newnpc.setHomeMap(this);
-  		for (var npckey in loadnpcs[npci]) {
-  			if (npckey === "NPCName") { newnpc.setNPCName(loadnpcs[npci].NPCName); }
-  			if (npckey === "Desc") { newnpc.setDesc(loadnpcs[npci].Desc); }
-  			if (npckey === "Prefix") { newnpc.setPrefix(loadnpcs[npci].Prefix); }
-  			if (npckey === "Level") { newnpc.setLevel(loadnpcs[npci].Level); }
-  			if (npckey === "Alignment") { newnpc.setAlignment(loadnpcs[npci].Alignment); }
-  			if (npckey === "str") { newnpc.setStr(loadnpcs[npci].str); }
-  			if (npckey === "dex") { newnpc.setDex(loadnpcs[npci].dex); }
-  			if (npckey === "int") { newnpc.setInt(loadnpcs[npci].int); }
-  			if (npckey === "Attitude") { newnpc.setAttitude(loadnpcs[npci].Attitude); }
-  			if (npckey === "PeaceAI") { newnpc.setPeaceAI(loadnpcs[npci].PeaceAI); }
-  			if (npckey === "PCThreatAI") { newnpc.setPCThreatAI(loadnpcs[npci].PCThreatAI); }
-  			if (npckey === "ThreatenedAI") { newnpc.setThreatenedAI(loadnpcs[npci].ThreatenedAI); }
-  			if (npckey === "Melee") { newnpc.setMeleeAttackAs(loadnpcs[npci].Melee); }
-  			if (npckey === "Missile") { newnpc.setMissileAttackAs(loadnpcs[npci].Missile); }
-  			if (npckey === "Conversation") { newnpc.setConversation(loadnpcs[npci].Conversation); }
-  			if (npckey === "ConversationFlag") { newnpc.setConversationFlag(loadnpcs[npci].ConversationFlag); }
-  			if (npckey === "Gender") { newnpc.setGender(loadnpcs[npci].Gender); }
-  			if (npckey === "Merch") { newnpc.setMerch(loadnpcs[npci].Merch); }
-  		}
-  		this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
-  	}
-  }
-  
   if(typeof mappages[name]["onload"] === "function") {
     mappages[name]["onload"](this);
   }
