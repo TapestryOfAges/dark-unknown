@@ -2811,6 +2811,41 @@ function DoorTile() {
 }
 DoorTile.prototype = new FeatureObject();
 
+function TalkingDoorTile() {
+  this.name = "TalkingDoor";
+  this.conversation = "ash_door";
+}
+TalkingDoorTile.prototype = new DoorTile();
+
+TalkingDoorTile.prototype.getConversation = function() {
+  return this.conversation;
+}
+
+TalkingDoorTile.prototype.getGenderedTerms = function() {
+  var gt = {};
+  gt.pronoun = "it";
+  gt.possessive = "its";
+  gt.objective = "it";
+  gt.titled = "Lord";
+  gt.sibling = "sibling";
+  gt.kiddie = "child";    
+  return gt;  
+}
+
+TalkingDoorTile.prototype.activate = function(timeoverride) {
+  this.use_old = this.use;
+  this.use = function(who) {
+    var retval;
+    maintext.addText("Use " + this.getDesc() + ":");
+    retval = PerformTalk(this,"ash_door","_start");
+    retval["override"] = 1;
+    maintext.setInputLine("&gt; You say: ");
+    maintext.drawTextFrame();
+    return retval;
+  };
+  return 1;
+}
+
 function SleepFieldTile() {
 	this.name = "SleepField";
 	this.graphic = "flowing_animations.gif";
@@ -3268,6 +3303,15 @@ SpawnerTile.prototype.activate = function() {
 }
 
 SpawnerTile.prototype.myTurn = function() {
+  if (!maps.getMap(this.getHomeMap().getName())) {
+    // removing from timeline, its map is gone
+    var nextEntity = DUTime.executeNextEvent().getEntity();
+    nextEntity.myTurn();
+
+    dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getSerial() + " removed from game- map gone.</span><br />");
+  
+    return;
+  }
   if (PC.getLevel() > this.level) {  
     for (var i = this.level+1; i<=PC.getLevel(); i++) {
       if (this.evolve[i]) {
@@ -3308,7 +3352,7 @@ SpawnerTile.prototype.myTurn = function() {
   DUTime.addAtTimeInterval(NPCevent,timetonext);
   
   var nextEntity = DUTime.executeNextEvent().getEntity();
-  nextEntity.myTurn();
+  setTimeout(function(){ nextEntity.myTurn(); }, 1);
 }
 
 function PentagramNWTile() {
@@ -3430,6 +3474,65 @@ function LeverOffTile() {
   SetByBelow.call(this);
 }
 LeverOffTile.prototype = new FeatureObject();
+
+function MetalTwisterLeverTile() {
+  this.name = "MetalTwisterLever";
+  this.graphic = "switch-off.gif";
+  this.overlay = "switch-off.gif";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "lever";
+  
+  SetByBelow.call(this);
+}
+MetalTwisterLeverTile.prototype = new FeatureObject();
+  
+MetalTwisterLeverTile.prototype.use = function(user) {
+    var level3 = maps.getMap("metaltwister3");
+    var level2 = maps.getMap("metaltwister2");
+    var retval = {};
+    if (!level2) {  // somehow level 2 is not in memory. Load it.
+      var otherlevel = new GameMap();
+      otherlevel.loadMap("metaltwister2");
+      maps.addMapByRef(otherlevel);
+      level2 = otherlevel;
+    }
+    if (this.getOverlay() == "switch-off.gif") {  // This switch hasn't been thrown
+      this.setOverlay("switch-on.gif");
+      retval["txt"] = "Click!";
+      
+      var checkboth = 1;
+      var floor3features = level3.features.getAll();
+      var ports = [];
+      for (i=0; i<floor3features.length; i++) {
+        if (floor3features[i].getName() == "LeverOff") {
+          if (floor3features[i].getOverlay() == "switch-off.gif") {
+            checkboth = 0;
+          }
+        }
+        if (floor3features[i].getName() == "StonePortcullis") {
+          ports[ports.length] = floor3features[i];
+        }
+      }
+      if (checkboth) {  // if both switches are thrown, open the dungeon's doors
+        for (i=0; i<ports.length; i++) {
+          ports[i].unlockMe();
+          ports[i].use(user);
+        }
+        var floor2features = level2.features.getAll();
+        for (i=0; i<floor2features.length; i++) {
+          if (floor2features[i].getName() == "StonePortcullis") {
+            floor2features[i].unlockMe();
+            floor2features[i].use(user);
+          }
+        }
+      }
+    }
+    else {  // for sanity's sake, you can't unthrow a switch
+      retval["txt"] = "The switch is stuck."; 
+    }
+    return retval;  
+}
 
 function WallOfWavesTile() {
   this.name = "WallOfWaves";
@@ -3757,6 +3860,7 @@ function FountainTile() {
 }
 FountainTile.prototype = new FeatureObject();
 
+// For skypalace
 function OrbToggleTile() {
   this.name = "OrbToggle";
   this.graphic = "orbs.gif";
@@ -3768,12 +3872,36 @@ function OrbToggleTile() {
 OrbToggleTile.prototype = new FeatureObject();
 
 OrbToggleTile.prototype.use = function(who) {
-  this.spritexoffset = this.spritexoffset - 32;
-  if (this.spritexoffset < -128) { this.spritexoffset = 0; }
+    this.spritexoffset = this.spritexoffset - 32;
+    if (this.spritexoffset < -128) { this.spritexoffset = 0; }
+
+    var sp = maps.getMap("skypalace");
+    var orb1tile = sp.getTile(33,27);
+    var orb1 = orb1tile.getTopFeature();
+    var orb2tile = sp.getTile(29,32);
+    var orb2 = orb2tile.getTopFeature();
+    var orb3tile = sp.getTile(37,32);
+    var orb3 = orb3tile.getTopFeature();
+//    alert(orb1.spritexoffset + " , " + orb2.spritexoffset + " , " + orb3.spritexoffset);
+    if ((orb1.spritexoffset == '-32') && (orb2.spritexoffset == '-96') && (orb3.spritexoffset == '-64')) {
+      var moongate = localFactory.createTile("Moongate");
+      moongate.destmap = "skypalace2";
+      moongate.destx = 11;
+      moongate.desty = 12;
+      sp.placeThing(33,31,moongate);
+      animateImage(0,-128,moongate,0,"right",300,0,1);
+    } else {
+      var mgtile = sp.getTile(33,31);
+      var moongate = mgtile.getTopFeature();
+      if (moongate) {
+        animateImage(-128,0,moongate,0,"left",300,1,0);
+        delete moongate.destmap;
+      }
+    }
   
-  var retval = {};
-  retval["txt"] = "Done!";
-  return retval;
+    var retval = {};
+    retval["txt"] = "Done!";
+    return retval;
 }
 
 function OrbStrengthTile() {
@@ -4823,7 +4951,7 @@ function NPCObject() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.ThreatenedAI = "spellcaster";
+	this.threatenedAI = "spellcaster";
 	this.graphic = "301.gif";
   this.gender = "neuter";
 	this.meleeAttackAs = "Fists";
@@ -5409,12 +5537,12 @@ NPCObject.prototype.setSpawnedBy = function(spawner) {
 NPCObject.prototype.activate = function(timeoverride) {
   
   if (debug) {
-    dbs.writeln("<span style='color:green;font-weight:bold'>NPC " + this.getName() + " activating.</span><br />");
+    dbs.writeln("<span style='color:green;font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") activating.</span><br />");
   }
   
-  if (this.altgraphic) {
-    var pickamong = this.altgraphic.push(this.graphic);
-    this.graphic = PickOne(pickamong);
+  if (this.altgraphic.length) {
+    this.altgraphic.push(this.graphic);
+    this.graphic = PickOne(this.altgraphic);
   }
   
   this.setMana(-1);
@@ -5560,6 +5688,17 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 
 NPCObject.prototype.myTurn = function() {
   raceWarning = 0;
+  
+  if (!maps.getMap(this.getHomeMap().getName())) {
+    // removing from timeline, its map is gone
+    var nextEntity = DUTime.executeNextEvent().getEntity();
+    nextEntity.myTurn();
+
+    dbs.writeln("<span style='color:green;font-weight:orange'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone.</span><br />");
+  
+    return;
+  }
+
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
 
@@ -5604,6 +5743,7 @@ NPCObject.prototype.myTurn = function() {
   DUTime.addAtTimeInterval(NPCevent,this.nextActionTime(response["initdelay"]));
   
   var nextEntity = DUTime.executeNextEvent().getEntity();
+//  setTimeout(function(){ nextEntity.myTurn(); }, 1);
   nextEntity.myTurn();
 }
 
@@ -5990,6 +6130,7 @@ PCObject.prototype.endTurn = function(init) {
   DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(init));
 
   var nextEntity = DUTime.executeNextEvent().getEntity();
+//  setTimeout(function(){ nextEntity.myTurn(); }, 1);
   nextEntity.myTurn();
 }
 
