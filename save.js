@@ -22,11 +22,11 @@ GameStateData.prototype.loadGame = function() {
     themap.loadMap("darkunknown");
 
 	}
-//  var anothermap = new GameMap();
-//  anothermap.loadMap("skypalace");
-//	PC.setHomeMap(anothermap);
-//	maps.addMapByRef(anothermap);
-  PC.setHomeMap(themap);
+  var anothermap = new GameMap();
+  anothermap.loadMap("skypalace");
+	PC.setHomeMap(anothermap);
+	maps.addMapByRef(anothermap);
+//  PC.setHomeMap(themap);
 //  var rats = localFactory.createTile("OrcGroupLarge");
 //  themap.placeThing(65,70,rats);
   var dagger = localFactory.createTile("Dagger");
