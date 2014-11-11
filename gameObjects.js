@@ -3352,7 +3352,8 @@ SpawnerTile.prototype.myTurn = function() {
   DUTime.addAtTimeInterval(NPCevent,timetonext);
   
   var nextEntity = DUTime.executeNextEvent().getEntity();
-  setTimeout(function(){ nextEntity.myTurn(); }, 1);
+  //setTimeout(function(){ nextEntity.myTurn(); }, 1);
+  nextEntity.myTurn();
 }
 
 function PentagramNWTile() {
@@ -6088,12 +6089,15 @@ PCObject.prototype.activate = function() {
 
 PCObject.prototype.myTurn = function() {
   if (debug) { dbs.writeln("=== PC TURN ===   Timestamp: " + DU.DUTime.getGameClock() + "; x: " + PC.getx() + ", y: " + PC.gety() + "<br />"); }
-  RunEffects(this);
+  if (gamestate !== "loadgame") {
+    // this half of myTurn has already run before the player saved
+    RunEffects(this);
   
-  if (this.getHP() <= 0) {
-    DoPCDeath();
+    if (this.getHP() <= 0) {
+      DoPCDeath();
+    }
   }
-  
+    
   var awake = 1;
   if (this.getSpellEffectsByName("Sleep")) { awake = 0; }  
   
