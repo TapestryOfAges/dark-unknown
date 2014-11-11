@@ -155,3 +155,27 @@ Timeline.prototype.createDebugTimeline = function() {
   
   return tltable;
 }
+
+Timeline.prototype.cleanTimeline = function() {
+  // after removing one or more maps from mapmemory, find and remove any entities that live on those maps
+  var checktick = this.tickstream;
+  var prevtick = this.tickstream;  
+  while (checktick.getNextTick()) {
+    var entity = checktick.getEvent().getEntity();
+    var mapname = entity.getHomeMap().getName();
+    if (!maps[mapname]) {  // lives on a map that has been removed
+      prevtick.setNextTick(checktick.getNextTick());
+      dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />");
+    } else {
+      prevtick = checktick;
+    }
+    checktick = checktick.getNextTick();
+  }
+  var entity = checktick.getEvent().getEntity();
+  var mapname = entity.getHomeMap().getName();
+  if (!maps[mapname]) {
+    // remove the last tick on the timeline
+    dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />");
+    prevtick.setNextTick("");
+  }
+}
