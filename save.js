@@ -70,9 +70,10 @@ GameStateData.prototype.loadGame = function() {
 //	DUTime.setGameClock(0);
 	var PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,.0001);
-  var nextEvent = DUTime.executeNextEvent();
-  var nextEntity = nextEvent.getEntity();
-  nextEntity.myTurn();
+//  var nextEvent = DUTime.executeNextEvent();
+//  var nextEntity = nextEvent.getEntity();
+//  nextEntity.myTurn();
+  startScheduler();
 }
 
 GameStateData.prototype.saveGame = function() {

@@ -232,6 +232,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 		  maps.deleteMap(frommap.getName());
 		  
 		  // remove stuff from the map from the timelines
+		  DUTime.cleanTimeline();
   	}
   }
 	
