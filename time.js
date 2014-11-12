@@ -139,7 +139,13 @@ Timeline.prototype.removeEntityFrom = function(entity) {
 		checktick = checktick.getNextTick();
 	}
 	if (checktick.getEvent().getEntity() === entity) {
-		prevtick.setNextTick(checktick.getNextTick());
+	  if (prevtick === checktick) { // still at the start of the timeline
+	    this.tickstream = checktick.getNextTick();
+	    checktick = this.tickstream;
+	    prevtick = this.tickstream;
+	  } else {
+		  prevtick.setNextTick(checktick.getNextTick());
+		}
 		dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline: " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />");
 	}
 }
@@ -160,16 +166,26 @@ Timeline.prototype.cleanTimeline = function() {
   // after removing one or more maps from mapmemory, find and remove any entities that live on those maps
   var checktick = this.tickstream;
   var prevtick = this.tickstream;  
+  var first = 0;
   while (checktick.getNextTick()) {
     var entity = checktick.getEvent().getEntity();
     var mapname = entity.getHomeMap().getName();
     if (!maps[mapname]) {  // lives on a map that has been removed
-      prevtick.setNextTick(checktick.getNextTick());
+      if (prevtick === checktick) { // first thing in the timeline
+        this.tickstream = checktick.getNextTick();
+        checktick = this.tickstream;
+        prevtick = this.tickstream;
+        first = 1;
+      } else {
+        prevtick.setNextTick(checktick.getNextTick());
+      }
       dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />");
     } else {
       prevtick = checktick;
     }
-    checktick = checktick.getNextTick();
+    if (!first) {
+      checktick = checktick.getNextTick();
+    }
   }
   var entity = checktick.getEvent().getEntity();
   var mapname = entity.getHomeMap().getName();
@@ -177,5 +193,15 @@ Timeline.prototype.cleanTimeline = function() {
     // remove the last tick on the timeline
     dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />");
     prevtick.setNextTick("");
+  }
+}
+
+
+function startScheduler() {
+  var cont = 1;
+  while (cont) {
+    var nextEvent = DUTime.executeNextEvent();
+    var nextEntity = nextEvent.getEntity();
+    cont = nextEntity.myTurn();  
   }
 }

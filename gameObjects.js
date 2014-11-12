@@ -3305,12 +3305,12 @@ SpawnerTile.prototype.activate = function() {
 SpawnerTile.prototype.myTurn = function() {
   if (!maps.getMap(this.getHomeMap().getName())) {
     // removing from timeline, its map is gone
-    var nextEntity = DUTime.executeNextEvent().getEntity();
-    nextEntity.myTurn();
+//    var nextEntity = DUTime.executeNextEvent().getEntity();
+//    nextEntity.myTurn();
 
     dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getSerial() + " removed from game- map gone.</span><br />");
   
-    return;
+    return 1;
   }
   if (PC.getLevel() > this.level) {  
     for (var i = this.level+1; i<=PC.getLevel(); i++) {
@@ -3351,9 +3351,10 @@ SpawnerTile.prototype.myTurn = function() {
   var NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,timetonext);
   
-  var nextEntity = DUTime.executeNextEvent().getEntity();
+//  var nextEntity = DUTime.executeNextEvent().getEntity();
   //setTimeout(function(){ nextEntity.myTurn(); }, 1);
-  nextEntity.myTurn();
+//  nextEntity.myTurn();
+  return 1;
 }
 
 function PentagramNWTile() {
@@ -5743,9 +5744,9 @@ NPCObject.prototype.myTurn = function() {
 	var NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,this.nextActionTime(response["initdelay"]));
   
-  var nextEntity = DUTime.executeNextEvent().getEntity();
-//  setTimeout(function(){ nextEntity.myTurn(); }, 1);
-  nextEntity.myTurn();
+//  var nextEntity = DUTime.executeNextEvent().getEntity();
+//  nextEntity.myTurn();
+  return 1;
 }
 
 NPCObject.prototype.addToInventory = function(item, thinAir, qty) {
@@ -6104,6 +6105,7 @@ PCObject.prototype.myTurn = function() {
   if (awake) {
 	  gamestate.setMode("player");
 	  gamestate.setTurn(PC);
+	  return 0;
 	} else {
 	  maintext.addText("Zzzz...");
 	  this.endTurn(0);
@@ -6133,9 +6135,9 @@ PCObject.prototype.endTurn = function(init) {
   var PCevent = new GameEvent(PC);
   DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(init));
 
-  var nextEntity = DUTime.executeNextEvent().getEntity();
-//  setTimeout(function(){ nextEntity.myTurn(); }, 1);
-  nextEntity.myTurn();
+//  var nextEntity = DUTime.executeNextEvent().getEntity();
+//  nextEntity.myTurn();
+  startScheduler();
 }
 
 PCObject.prototype.getPCName = function() {
