@@ -136,10 +136,12 @@ GameObject.prototype.bumpinto = function(who) {
 GameObject.prototype.copy = function(type) {
   if (type === "clean") {
     var tilename = this.name;
-    var minifactory = new tileFactory;
-    return tileFactory.createTile(tilename);
+    return localFactory.createTile(tilename);
   }
   // add full version when I need it
+  
+  
+  
   return(0);
 }
 
