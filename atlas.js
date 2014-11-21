@@ -2107,6 +2107,10 @@ Platonic.prototype.getForm = function (name) {
     return this.data[name];
   }
   else {
+    if (debug) {
+      dbs.writeln("((Adding " + name + " to the platonic forms.))<br />");
+    }
+
     this.data[name] = localFactory.createTile(name);
     return this.data[name];
   }
