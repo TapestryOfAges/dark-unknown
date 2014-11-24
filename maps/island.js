@@ -112,7 +112,7 @@ mappages["island"].features[15] = {name : 'Lava', x : 21, y : 43};
 
 mappages["island"].npcs = new Array;
 
-mappages["island"].desc = 'A Distant Island';
+mappages["island"].desc = 'Land of Lost Hope';
 mappages["island"].music = 'Island';
 mappages["island"].exitmap = '';
 mappages["island"].exitx = '';
