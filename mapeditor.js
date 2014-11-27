@@ -1,5 +1,4 @@
 
-var gamestate = "";
 var maxserial = 0;
 var cornerx = -1;
 var cornery = -1;
@@ -23,6 +22,8 @@ var DUTime = new Timeline(0);
 var mode = "editor";
 var PC = new PCObject();
 var DU = {};
+var gamestate = new GameStateData();
+
 DU.gameflags = {};  // empty games flags because atlas will look for it
 DU.gameflags.editor = 1;  // for atlas to look for
 
