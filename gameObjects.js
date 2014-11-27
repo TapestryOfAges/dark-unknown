@@ -145,7 +145,7 @@ GameObject.prototype.copy = function(type) {
   copydata.serial = this.getSerial();
   copydata.name = this.getName();
   $.each(this, function(idx, val) {
-    if ((typeof val === "function") && (typeof base_version[idx] === "function)) { 
+    if ((typeof val === "function") && (typeof base_version[idx] === "function")) { 
       if (debug) { dbs.writeln(idx + " is a function, moving on...  "); }
       return;
       // both have a function. Assuming they're the same, not worth caring
