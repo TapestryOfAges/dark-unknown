@@ -108,7 +108,7 @@ mappages["island"].features[12] = {name : 'Lava', x : 20, y : 43};
 mappages["island"].features[13] = {name : 'Lava', x : 20, y : 44};
 mappages["island"].features[14] = {name : 'Lava', x : 19, y : 43};
 mappages["island"].features[15] = {name : 'Lava', x : 21, y : 43};
-
+mappages["island"].features[16] = {name : 'Village', x : 54, y : 74, entermap : 'null', enterx : 0, entery : 0};
 
 mappages["island"].npcs = new Array;
 
