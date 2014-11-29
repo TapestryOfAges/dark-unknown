@@ -139,22 +139,58 @@ GameObject.prototype.copy = function(type) {
     return localFactory.createTile(tilename);
   }
   
-  if (debug) { dbs.writeln("Copying " + this.getName() + ", serial " + this.getSerial() + ":<br />"); }
+  if (debug) { dbs.writeln("<br /><span style='font-weight:bold'>Copying " + this.getName() + ", serial " + this.getSerial() + ":</span><br />"); }
   var base_version = eidos.getForm(this.getName());
   var copydata = {};
-  copydata.serial = this.getSerial();
+  copydata.traceback = [];
+//  var copyserial = this.getSerial();
   copydata.name = this.getName();
   $.each(this, function(idx, val) {
     if ((typeof val === "function") && (typeof base_version[idx] === "function")) { 
-      if (debug) { dbs.writeln(idx + " is a function, moving on...  "); }
+      if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " is a function, moving on...</span>  "); }
       return;
       // both have a function. Assuming they're the same, not worth caring
     }
+    if (typeof val === "function") {  // real one has a function base one does not
+      alert("Function on " + this.getName() + ": " + idx);
+    }
+    if (typeof val !== "object") { 
+      if (val != base_version[idx]) {
+        copydata[idx] = val;
+        if (debug) { dbs.writeln(idx + " different, copying... "); }
+      } else {
+        if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " the same, moving on...</span>  "); }
+      }
+    } else if ($.isArray(val)) {
+      if ($.isArray(base_version[idx]) && arrayCompare(val, base_version[idx])) {
+        if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " an array and the same, moving on...</span>  "); }
+      } else {
+        copydata[idx] = val;
+        if (debug) { 
+          dbs.writeln(idx + " an array and different, copying... <br /> ["); 
+          for (var i = 0; i < val.length; i++) { dbs.writeln(val[i] + ", "); }
+          dbs.writeln("] vs [");
+          if ($.isArray(base_version[idx])) {
+            for (var i = 0; i < base_version[idx].length; i++) { dbs.writeln(base_version[idx][i] + ", "); }
+          } else {
+            dbs.writeln("Not an array");
+          }
+          dbs.writeln("]. <br />");
+        }
+      }
+    } else if (idx === "homeMap") {
+      copydata.homeMap = val.getName();
+      copydata.traceback.push("homeMap");
+      if (debug) { dbs.writeln(idx + " copied... "); }
+    } else {
+      if (debug) { dbs.writeln(idx + " is type " + typeof val + ",  "); }
+    }
     // WORKING HERE
+    
   });
   
+  return copydata;
   
-  return(0);
 }
 
 GameObject.prototype.setGraphic = function(newgraphic) {

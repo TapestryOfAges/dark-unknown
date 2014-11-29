@@ -745,3 +745,15 @@ function DoPCDeath() {
   
 }
 
+function arrayCompare(arrayA, arrayB) {
+  var a = jQuery.extend(true, [], arrayA);
+  var b = jQuery.extend(true, [], arrayB);
+  a.sort(); 
+  b.sort();
+  for (var i = 0, l = a.length; i < l; i++) {
+    if (a[i] !== b[i]) { 
+      return false;
+    }
+  }
+  return true;
+}

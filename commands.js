@@ -1376,6 +1376,12 @@ function PerformYell() {
 		    homemap.moveThing(25,23,PC);
 		    DrawMainFrame("draw", homemap.getName(), PC.getx(), PC.gety());
 		  }
+		} else if (inputText.txt === "COPYTEST") {
+		  var homemap = PC.getHomeMap();
+		  var allfeatures = homemap.features.getAll();
+		  $.each(allfeatures, function(idx,val) {
+		    val.copy();
+		  });
 		}
 		retval["txt"] = "Yell: " + inputText.txt + "!";
 		retval["fin"] = 1;
