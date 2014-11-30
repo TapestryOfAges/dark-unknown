@@ -3343,13 +3343,14 @@ SpawnerTile.prototype.getSpawned = function() {
 }
 
 SpawnerTile.prototype.activate = function() {
-  if (debug) {
-    dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getName() + " activating at " + DUTime.getGameClock() + ".</span><br />");
+  if (gamestate.getMode() !== "loadgame") {
+    if (debug) {
+      dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getName() + " activating at " + DUTime.getGameClock() + ".</span><br />");
+    }
+
+    var NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,1);
   }
-
-  var NPCevent = new GameEvent(this);
-  DUTime.addAtTimeInterval(NPCevent,1);
-
 }
 
 SpawnerTile.prototype.myTurn = function() {
@@ -5587,85 +5588,85 @@ NPCObject.prototype.setSpawnedBy = function(spawner) {
 }
 
 NPCObject.prototype.activate = function(timeoverride) {
+  if (gamestate.getMode() !== "loadgame") {  
+    if (debug) {
+      dbs.writeln("<span style='color:green;font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") activating.</span><br />");
+    }
   
-  if (debug) {
-    dbs.writeln("<span style='color:green;font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") activating.</span><br />");
-  }
+    if (this.altgraphic.length) {
+      this.altgraphic.push(this.graphic);
+      this.graphic = PickOne(this.altgraphic);
+    }
   
-  if (this.altgraphic.length) {
-    this.altgraphic.push(this.graphic);
-    this.graphic = PickOne(this.altgraphic);
-  }
+    this.setMana(-1);
+    this.setMaxMana(-1);
   
-  this.setMana(-1);
-  this.setMaxMana(-1);
+    var weapon;
+    var missileweapon;
+    var armor;
   
-  var weapon;
-  var missileweapon;
-  var armor;
+    if ((this.getMeleeAttackAs()) && (this.getMeleeAttackAs !== "none")) {
+      weapon = localFactory.createTile(this.getMeleeAttackAs());
+      this.setEquipment("weapon",weapon);
+    }
+    else {
+      weapon = localFactory.createTile("NaturalWeapon");
+      this.setEquipment("weapon",weapon);
+    } 
+    if ((this.getMissileAttackAs()) && (this.getMissileAttackAs() !== "none")) {
+      missileweapon = localFactory.createTile(this.getMissileAttackAs());
+      this.setEquipment("missile",missileweapon);
+    } 
+    else {
+      missileweapon = localFactory.createTile("NaturalMissileWeapon");
+      this.setEquipment("missile",missileweapon);
+    } 
+    if ((this.getArmorAs()) && (this.getArmorAs() !== "none")) {
+      armor = localFactory.createTile(this.getArmorAs());
+      this.setEquipment("armor",armor);
+    }
+    else {
+      armor = localFactory.createTile("NaturalArmor");
+      this.setEquipment("armor",armor);
+    } 
   
-  if ((this.getMeleeAttackAs()) && (this.getMeleeAttackAs !== "none")) {
-    weapon = localFactory.createTile(this.getMeleeAttackAs());
-    this.setEquipment("weapon",weapon);
-  }
-  else {
-    weapon = localFactory.createTile("NaturalWeapon");
-    this.setEquipment("weapon",weapon);
-  } 
-  if ((this.getMissileAttackAs()) && (this.getMissileAttackAs() !== "none")) {
-    missileweapon = localFactory.createTile(this.getMissileAttackAs());
-    this.setEquipment("missile",missileweapon);
-  } 
-  else {
-    missileweapon = localFactory.createTile("NaturalMissileWeapon");
-    this.setEquipment("missile",missileweapon);
-  } 
-  if ((this.getArmorAs()) && (this.getArmorAs() !== "none")) {
-    armor = localFactory.createTile(this.getArmorAs());
-    this.setEquipment("armor",armor);
-  }
-  else {
-    armor = localFactory.createTile("NaturalArmor");
-    this.setEquipment("armor",armor);
-  } 
+    if (this.meleeDamage !== -1) {
+      weapon.setDamage(this.meleeDamage);
+    }
+    if (this.meleeStrDamage !== -1) {
+      weapon.setStrDamage(this.meleeStrDamage);
+    }
   
-  if (this.meleeDamage !== -1) {
-    weapon.setDamage(this.meleeDamage);
-  }
-  if (this.meleeStrDamage !== -1) {
-    weapon.setStrDamage(this.meleeStrDamage);
-  }
+    if (this.missileDamage !== -1) {
+      missileweapon.setDamage(this.missileDamage);
+    }
+    if (this.missileRange !== -1) {
+      missileweapon.setRange(this.missileRange);
+    }
+    if (this.armorDefense !== -1) {
+      armor.setDefense(this.armorDefense);
+    }
+    if (this.armorResist !== -1) {
+      armor.setResist(this.armorResist);
+    }
+    if (this.armorAbsorb !== -1) {
+      armor.setAbsorb(this.armorAbsorb);
+    }
   
-  if (this.missileDamage !== -1) {
-    missileweapon.setDamage(this.missileDamage);
-  }
-  if (this.missileRange !== -1) {
-    missileweapon.setRange(this.missileRange);
-  }
-  if (this.armorDefense !== -1) {
-    armor.setDefense(this.armorDefense);
-  }
-  if (this.armorResist !== -1) {
-    armor.setResist(this.armorResist);
-  }
-  if (this.armorAbsorb !== -1) {
-    armor.setAbsorb(this.armorAbsorb);
-  }
-  
-  var timing = this.nextActionTime(0);
-  timing = timing/2;
-  if (timeoverride) {
-    timing = timeoverride;
-  }
-  timing = timing + (Math.random() / 500);
+    var timing = this.nextActionTime(0);
+    timing = timing/2;
+    if (timeoverride) {
+      timing = timeoverride;
+    }
+    timing = timing + (Math.random() / 500);
 
-  if (debug) {
-    dbs.writeln("<span style='color:green;font-weight:bold'>Curr time: " + DUTime.getGameClock() + ", NPC will go in " + timing + ".</span><br />");
+    if (debug) {
+      dbs.writeln("<span style='color:green;font-weight:bold'>Curr time: " + DUTime.getGameClock() + ", NPC will go in " + timing + ".</span><br />");
+    }
+  
+    var NPCEvent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCEvent,timing);  
   }
-  
-  var NPCEvent = new GameEvent(this);
-  DUTime.addAtTimeInterval(NPCEvent,timing);  
-  
 }
 
 
