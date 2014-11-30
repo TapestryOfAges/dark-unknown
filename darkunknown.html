@@ -1,98 +1,79 @@
-<html>
-<head>
-<title>The Dark Unknown</title>
-<link rel="stylesheet" type="text/css" href="external/jqModal.css" />
-<link rel="stylesheet" type="text/css" href="external/jscrollpane.css" />
-<link rel="stylesheet" type="text/css" href="darkunknown.css" />
+mappages["stout"] = {};
+mappages["stout"].terrain = [];
+ mappages["stout"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["stout"].terrain[1] = '.. .. .. ## ## ## ## ## ## ## ## ## ## ## ## ## .. .. .. ## ## ## ## ## ## ## .. .. ## ## ## ## ## ## ## ## ## .. .. ..';
+ mappages["stout"].terrain[2] = '.. .. ## ## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ## ## .. .. ## ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ## .. ..';
+ mappages["stout"].terrain[3] = '.. .. ## ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ## .. ..';
+ mappages["stout"].terrain[4] = '.. .. ## ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ## .. .. #O ++ ++ ++ ++ ++ ++ ++ ++ ## .. ..';
+ mappages["stout"].terrain[5] = '.. .. ## ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ## .. ..';
+ mappages["stout"].terrain[6] = '.. .. ## ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ## .. ..';
+ mappages["stout"].terrain[7] = '.. .. ## ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ## .. ..';
+ mappages["stout"].terrain[8] = '.. .. ## ## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ## ## .. .. ## ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ## .. ..';
+ mappages["stout"].terrain[9] = '.. .. .. ## ## #O ## ++ ## ## ## ++ ## #O ## ## .. .. .. ## ## ## ++ ## ## ## .. .. ## ## ++ ++ ++ ++ ++ ++ ++ ## .. ..';
+mappages["stout"].terrain[10] = '.. .. .. .. .. .. ++ ++ ++ ++ ++ ++ ++ .. .. .. .. .. .. .. .. ++ ++ ++ .. .. .. .. .. ## ## #O ## ## ## ++ ## ## .. ..';
+mappages["stout"].terrain[11] = '.. .. .. .. .. .. ++ ++ ++ ++ ++ ++ ++ .. .. .. .. .. .. .. .. ++ ++ ++ .. .. .. .. .. .. .. .. .. .. ++ ++ ++ .. .. ..';
+mappages["stout"].terrain[12] = '.. .. .. .. .. .. ++ ++ ++ ++ ++ ++ ++ ++ .. .. .. .. .. .. ++ ++ ++ ++ ++ .. .. .. .. .. .. .. .. .. ++ ++ ++ .. .. ..';
+mappages["stout"].terrain[13] = '`. .. .. .. .. .. .. ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["stout"].terrain[14] = 'ww |. .. .. .. .. .. .. ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["stout"].terrain[15] = 'ww `. .. .. .. .. .. .. .. ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["stout"].terrain[16] = 'ww ww `. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ++ ++ ++ ++ ++ .. .. .. .. .. .. .. .. .. ++ ++ ++ .. .. ..';
+mappages["stout"].terrain[17] = 'ww ww ww |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ++ ++ ++ .. .. .. .. .. .. .. .. .. .. ++ ++ ++ .. .. ..';
+mappages["stout"].terrain[18] = 'ww ww ww |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ++ ++ ++ .. .. .. .. .. .. .. .. .. .. ++ ++ ++ .. .. ..';
+mappages["stout"].terrain[19] = 'ww ww ww |. .. .. .. .. ## ## ## ## ## ## ## #O ## ## ## #O ## ## ++ ## ## .. .. .. .. .. .. %% %% %% %% ++ %% %% %% ..';
+mappages["stout"].terrain[20] = 'ww ww ww `. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. %% ++ ++ ++ ++ ++ ++ %% ..';
+mappages["stout"].terrain[21] = 'ww ww ww ww `. .. .. .. ## ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. %% ++ ++ ++ ++ ++ ++ %% ..';
+mappages["stout"].terrain[22] = 'ww ww ww ww ww |. .. .. #O ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. %% ++ ++ ++ ++ ++ ++ %% ..';
+mappages["stout"].terrain[23] = 'ww ww ww ww ww `. .. .. ## ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ #O .. .. .. .. .. .. %% ++ ++ ++ ++ ++ ++ %% ..';
+mappages["stout"].terrain[24] = 'ww ww ww ww ww ww `. .. ## ## ## ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. %% ++ ++ ++ ++ ++ ++ %% ..';
+mappages["stout"].terrain[25] = 'ww ww ww ww ww ww ww |. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. %% ++ ++ ++ ++ ++ ++ %% ..';
+mappages["stout"].terrain[26] = 'ww ww ww ww ww ww ww `. .. .. .. #O ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. %% ++ ++ ++ ++ ++ ++ %% ..';
+mappages["stout"].terrain[27] = 'ww ww ww ww ww ww ww ww |. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. %% %% %% %% %% %% %% %% ..';
+mappages["stout"].terrain[28] = 'ww ww ww ww ww ww ww ww `. .. .. ## ## ## ## ## ## ## ## ## ## ## ## ## ## .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["stout"].terrain[29] = 'ww ww ww ww ww ww ww ww ww `. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["stout"].terrain[30] = 'ww ww ww ww ww ww ww ww ww ww |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["stout"].terrain[31] = 'ww ww ww ww ww ww ww ww ww ww `. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
 
-<script language="JavaScript" src="external/jquery-1.3.2.js"></script>
-<script language="JavaScript" src="external/jqModal.js"></script>
-<script language="JavaScript" src="external/jscrollpane.js"></script>
-<script language="JavaScript" src="external/pathfinding-browser.min.js"></script>
+mappages["stout"].features = [];
+mappages["stout"].features[0] = {name : 'Door', x : 35, y : 19, desc : "locked door", locked : 1};
+mappages["stout"].features[1] = {name : 'Fountain', x : 20, y : 12};
+mappages["stout"].features[2] = {name : 'Fountain', x : 20, y : 16};
+mappages["stout"].features[3] = {name : 'Fountain', x : 24, y : 12};
+mappages["stout"].features[4] = {name : 'Fountain', x : 24, y : 16};
+mappages["stout"].features[5] = {name : 'DoorWindow', x : 35, y : 10};
+mappages["stout"].features[6] = {name : 'DoorWindow', x : 22, y : 9};
+mappages["stout"].features[7] = {name : 'DoorWindow', x : 22, y : 19};
+mappages["stout"].features[8] = {name : 'Door', x : 12, y : 20};
+mappages["stout"].features[9] = {name : 'LeftChair', x : 12, y : 26};
+mappages["stout"].features[10] = {name : 'DoorWindow', x : 7, y : 9};
+mappages["stout"].features[11] = {name : 'DoorWindow', x : 11, y : 9};
+mappages["stout"].features[12] = {name : 'SleepField', x : 20, y : 2};
 
-<script language="JavaScript" src="debug.js"></script>
-<script language="JavaScript" src="util.js"></script>
-<script language="JavaScript" src="consts.js"></script>
-<script language="JavaScript" src="collections.js"></script>
-<script language="JavaScript" src="conversations.js"></script>
-<script language="JavaScript" src="conversations_data.js"></script>
-<script language="JavaScript" src="time.js"></script>
-<script language="JavaScript" src="gameObjects.js"></script>
-<script language="JavaScript" src="npcObjects.js"></script>
-<script language="JavaScript" src="ephemeralObjects.js"></script>
-<script language="JavaScript" src="npcutil.js"></script>
-<script language="JavaScript" src="tileFactory.js"></script>
-<script language="JavaScript" src="atlas.js"></script>
-<script language="JavaScript" src="save.js"></script>
-<script language="JavaScript" src="los.js"></script>
-<script language="JavaScript" src="textframe.js"></script>
-<script language="JavaScript" src="commands.js"></script>
-<script language="JavaScript" src="lootset.js"></script>
-<script language="JavaScript" src="loot.js"></script>
-<script language="JavaScript" src="magic.js"></script>
-<script language="JavaScript" src="ai.js"></script>
-<script language="JavaScript" src="sound.js"></script>
-<script language="JavaScript" src="merchants.js"></script>
 
-<script language="JavaScript" src="main.js"></script>
+mappages["stout"].npcs = [];
+mappages["stout"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 23, y : 5};
+mappages["stout"].npcs[1] = {name : 'AdventurerVillagerNPC', x : 14, y : 20};
+mappages["stout"].npcs[2] = {name : 'BardVillagerNPC', x : 22, y : 14};
+mappages["stout"].npcs[3] = {name : 'MageVillagerNPC', x : 14, y : 5};
+mappages["stout"].npcs[4] = {name : 'DruidVillagerNPC', x : 4, y : 5};
 
-<!-- Maps follow -->
- <script language="JavaScript" src="maps/main_map.js"></script>
- <script language="JavaScript" src="maps/olympus.js"></script>
- <script language="JavaScript" src="maps/clearlagoon.js"></script>
- <script language="JavaScript" src="maps/nassau.js"></script>
- <script language="JavaScript" src="maps/island.js"></script>
- <script language="JavaScript" src="maps/metaltwister.js"></script>
- <script language="JavaScript" src="maps/underworld.js"></script>
- <script language="JavaScript" src="maps/combatmaps.js"></script>
- <script language="JavaScript" src="maps/gauntlet.js"></script>
- <script language="JavaScript" src="maps/poverty.js"></script>
- <script language="JavaScript" src="maps/cairns.js"></script>
- <script language="JavaScript" src="maps/onyx.js"></script>
- <script language="JavaScript" src="maps/volcano.js"></script>
- <script language="JavaScript" src="maps/asharden.js"></script>
- <script language="JavaScript" src="maps/skypalace.js"></script>
- <script language="JavaScript" src="maps/pitdespair.js"></script>
- <script language="JavaScript" src="maps/testmap.js"></script>
-
-</head>
-<body>
-	<div id="worldlayer" style="position:absolute;left:20px;top:20px;width:416px;height:416px;z-index:10"><img src="graphics/spacer.gif" width='416' height='416' /></div>
-	
-<div id="gamecontainer" style="position:abolute;left:0px;top:0px;z-index:-10; width:776px; height:456px; background-color:black;">
-	<div style="position:absolute;left:0px;top:0px;z-index:0;width:20px"><img src="graphics/frame/c-rd.gif" /></div>
-	<div style="position:absolute;left:20px;top:0px;width:88px;z-index:0;"><img src="graphics/frame/lr.gif" height="20" width="88" /></div>
-	<div style="position:absolute;left:108px;top:0px;width:20px;z-index:0;"><img src="graphics/frame/lr-rend.gif" height="20" width="20" /></div>
-	<div style="position:absolute;left:128px;top:0px;width:200px;z-index:0;background-color:black" class="topbar" id="topbarframe">Test</div>
-	<div style="position:absolute;left:328px;top:0px;width:20px;z-index:0;"><img src="graphics/frame/lr-lend.gif" height="20" width="20" /></div>
-	<div style="position:absolute;left:348px;top:0px;width:88px;z-index:0;"><img src="graphics/frame/lr.gif" height="20" width="88" /></div>
-	<div style="position:absolute;left:436px;top:0px;width:20px;z-index:0;"><img src="graphics/frame/lrd.gif" /></div>
-	<div style="position:absolute;left:456px;top:0px;width:300px;z-index:0;"><img src="graphics/frame/lr.gif" height="20" width="300" /></div>
-	<div style="position:absolute;left:756px;top:0px;width:20px;z-index:0;"><img src="graphics/frame/c-ld.gif" /></div>
-	<div style="position:absolute;left:0px;top:20px;width:20px;height:416px;z-index:0;"><img src="graphics/frame/ud-lw.gif" height="416" width="20" /></div>
-	<div style="position:absolute;left:20px;top:20px;width:416px;height:416px;z-index:20;" class="mainframe" id="displayframe">&nbsp;</div>
-	<div style="position:absolute;left:436px;top:20px;width:20px;height:40px;z-index:0;"><img src="graphics/frame/ud-cc.gif" height="40" width="20" /></div>
-	<div style="position:absolute;left:456px;top:20px;width:300px;height:40px;background-color:black;z-index:0;" id="charstats" class="charstats" onClick="DoAction(90)">&nbsp;</div>
-  <div style="position:absolute;left:756px;top:20px;width:20px;height:40px;z-index:0;"><img src="graphics/frame/ud-rw.gif" height="40" width="20" /></div>
-	<div style="position:absolute;left:436px;top:60px;width:20px;height:20px;z-index:0;"><img src="graphics/frame/thin-r.gif" height="20" width="20" /></div>
-	<div style="position:absolute;left:456px;top:60px;width:300px;height:20px;z-index:0;"><img src="graphics/frame/thin-lr.gif" height="20" width="300" /></div>
-  <div style="position:absolute;left:756px;top:60px;width:20px;height:20px;z-index:0;"><img src="graphics/frame/thin-l.gif" height="20" width="20" /></div>
-	<div style="position:absolute;left:436px;top:80px;width:20px;height:356px;z-index:0;"><img src="graphics/frame/ud-cc.gif" height="356" width="20" /></div>
-	<div style="position:absolute;left:456px;top:80px;width:300px;height:356px;background-color:black;z-index:0;" id="textframe" class="textframe">
-		<div id="maintextframe" class="maintextframe"><div id="innertextframe" class="innertextframe">&nbsp;</div></div>
-		<div id="inputtext" class="inputtext">&nbsp;</div>
-	</div>
-  <div style="position:absolute;left:756px;top:80px;width:20px;height:356px;z-index:0;;"><img src="graphics/frame/ud-rw.gif" height="356" width="20" /></div>
-
-	<div style="position:absolute;left:0px;top:436px;width:20px;height:20px;z-index:0;"><img src="graphics/frame/c-ru.gif" /></div>
-	<div style="position:absolute;left:20px;top:436px;width:416px;height:20px;z-index:0;"><img src="graphics/frame/rl-bw.gif" width="416" height="20" /></div>
-	<div style="position:absolute;left:436px;top:436px;width:20px;height:20px;z-index:0;"><img src="graphics/frame/lru.gif" /></div>
-	<div style="position:absolute;left:456px;top:436px;width:300px;height:20px;z-index:0;"><img src="graphics/frame/rl-bw.gif" width="300" height="20" /></div>
-	<div style="position:absolute;left:756px;top:436px;width:20px;height:20px;z-index:0;"><img src="graphics/frame/c-ul.gif" /></div>
-</div>
-        <div class="spellbook" id="spellbookdiv" style="position:absolute; left:150px; top:110px; z-index:100;"><div id="spellbookinnerdiv"> <p>Spellbook test.</p></div></div>
-        <div id="combateffects" style="position:absolute; left: 20px; top: 20px; z-index: 60; width:416px; height:416px;"></div>
-        <div id="audiocontainer" style="display:none"></div>
-        
-        
-</body></html>
+mappages["stout"].desc = "The Towne of Stout";
+mappages["stout"].music = 'Towne';
+mappages["stout"].exitmap = 'darkunknown';
+mappages["stout"].exitx = '120';
+mappages["stout"].exity = '104';
+mappages["stout"].wraps = 'None';
+mappages["stout"].enterx = '39';
+mappages["stout"].entery = '14';
+mappages["stout"].seeBelow = '';
+mappages["stout"].lightLevel = 'bright';
+mappages["stout"].alwaysRemember = '0';
+mappages["stout"].scale = '1';
+mappages["stout"].enterscript = '';
+mappages["stout"].entertestscript = '';
+mappages["stout"].exitscript = '';
+mappages["stout"].exittestscript = '';
+mappages["stout"].returnmap = 'darkunknown';
+mappages["stout"].returnx = '29';
+mappages["stout"].returny = '43';
+mappages["stout"].returninfused = '1';
+mappages["stout"].linkedMaps = [""];
