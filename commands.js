@@ -206,8 +206,12 @@ function PerformCommand(code) {
 		
 	}
 	else if (code === 81) { // q
-		// quit and save
-		
+		var mymap = PC.getHomeMap();
+		var testnpc = mymap.npcs.getTop();
+		testnpc.copy();
+		retval["txt"] = "Quit &amp; Save: Testing save procedure...";
+		retval["input"] = "&gt;";
+		retval["fin"] = 2;
 	}
 	else if (code === 82) { // r
     // was Ready, merged with Wear/Wield
@@ -1376,12 +1380,6 @@ function PerformYell() {
 		    homemap.moveThing(25,23,PC);
 		    DrawMainFrame("draw", homemap.getName(), PC.getx(), PC.gety());
 		  }
-		} else if (inputText.txt === "COPYTEST") {
-		  var homemap = PC.getHomeMap();
-		  var allfeatures = homemap.features.getAll();
-		  $.each(allfeatures, function(idx,val) {
-		    val.copy();
-		  });
 		}
 		retval["txt"] = "Yell: " + inputText.txt + "!";
 		retval["fin"] = 1;

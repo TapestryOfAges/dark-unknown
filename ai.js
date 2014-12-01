@@ -46,7 +46,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
     }
   }
   
-  // Next, check to see if it's outside its leash radius (moved to SurfaceFollowPath
+  // Next, check to see if it's outside its leash radius (moved to SurfaceFollowPath)
 //  var spawner = who.getSpawnedBy();
 //  if ((spawner) && ) {
     
