@@ -182,8 +182,23 @@ GameObject.prototype.copy = function(type) {
       copydata.homeMap = val.getName();
       copydata.traceback.push("homeMap");
       if (debug) { dbs.writeln(idx + " copied... "); }
+    } else if (idx === "resists") {
+      if ((typeof base_version[idx] === "object") && objectCompare(val, base_version[idx])) {
+        if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
+      } else {
+        copydata[idx] = val;
+        if (debug) {
+          dbs.writeln(idx + " an array and different, copying... ");
+        }
+      }
+    } else if ((idx === "currentDestination") || (idx === "lastLocation")) {
+      copydata[idx] = val;
+      if (debug) { dbs.writeln(idx + " different, copying... "); }
+    } else if (idx === "currentPoI") {
+      copydata[idx] = {};
+      if (debug) { dbs.writeln(idx + " deliberately not saved... "); }
     } else {
-      if (debug) { dbs.writeln(idx + " is type " + typeof val + ",  "); }
+      if (debug) { dbs.writeln("<span style='color:red'>" + idx + " is type " + typeof val + "</span>,  "); }
     }
     // WORKING HERE
     
@@ -5596,6 +5611,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     if (this.altgraphic.length) {
       this.altgraphic.push(this.graphic);
       this.graphic = PickOne(this.altgraphic);
+      this.altgraphic = []; // no longer need to store this
     }
   
     this.setMana(-1);
