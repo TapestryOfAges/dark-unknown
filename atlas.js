@@ -2118,7 +2118,7 @@ Platonic.prototype.getForm = function (name) {
 }
 
 function MapMemory() {
-  this.data = [];	
+  this.data = {};	
 }
 
 MapMemory.prototype.addMap = function(mapname) {

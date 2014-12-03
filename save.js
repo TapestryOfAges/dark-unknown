@@ -76,7 +76,23 @@ GameStateData.prototype.loadGame = function() {
   startScheduler();
 }
 
+// eventually use var compressed = LZString.compressToUTF16(string); and string = LZString.decompressFromUTF16(localStorage.getItem("myData"));
 GameStateData.prototype.saveGame = function() {
+	var savedata = {};
+	
+	savedata.time = DUTime.getGameClock();
+	savedata.gameflags = {};
+	$.extend(true,savedata.gameflags,DU.gameflags);
+	savedata.objs = {};
+	savedata.maps = [];
+	
+	$.each(DU.maps.data, function(idx, val) {
+	  savedata.maps.push(idx);
+	  
+	  var mapfeatures = val.features.getAll();
+	  
+	});
+	
 	
 }
 
