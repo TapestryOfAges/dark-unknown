@@ -2428,6 +2428,11 @@ FeatureObject.prototype.setShowSearched = function(showsearch) {
   return this.showSearched;
 }
 
+FeatureObject.prototype.getSearchedGraphic = function() {
+  if (this.searchedgraphic) {
+    return this.searchedgraphic;  // should be a graphic array
+  }
+}
 // end definitions, begin features
 
 function LavaTile() {
