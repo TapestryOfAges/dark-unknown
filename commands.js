@@ -1009,6 +1009,9 @@ function PerformSearch(who) {
 //      retval["txt"] += newthing.getDesc();
 //    }
     retval["txt"] += ".";
+    if (searched.getSearchedGraphic()) {
+      searched.setGraphicArray(searched.getSearchedGraphic());
+    }
     DrawMainFrame("one",who.getHomeMap().getName(),targetCursor.x,targetCursor.y);
   }  else {
     if (searched.getShowSearched()) {
@@ -1016,6 +1019,11 @@ function PerformSearch(who) {
     }
     retval["txt"] = "You find nothing there.";
     retval["fin"] = 1;
+    if (searched.getSearchedGraphic()) {
+      searched.setGraphicArray(searched.getSearchedGraphic());
+      DrawMainFrame("one",who.getHomeMap().getName(),targetCursor.x,targetCursor.y);
+    }
+
   }
   return retval;
 }
