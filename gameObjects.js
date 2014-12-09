@@ -3057,7 +3057,9 @@ function InAPoisonField(who){
 
 function LadderDownTile() {
   this.name = "LadderDown";
-  this.graphic = "158.gif";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3070,7 +3072,9 @@ LadderDownTile.prototype = new FeatureObject();
 
 function LadderUpTile() {
   this.name = "LadderUp";
-  this.graphic = "159.gif";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3080,6 +3084,34 @@ function LadderUpTile() {
   this.klimb = "Climb up!";
 }
 LadderUpTile.prototype = new FeatureObject();
+
+function StairDownTile() {
+  this.name = "StairDown";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "stairs";
+
+  Enterable.call(this, "null", 0, 0);
+  this.descend = "Climb down!";
+}
+StairDownTile.prototype = new FeatureObject();
+
+function StairUpTile() {
+  this.name = "StairUp";
+  this.graphic = "features.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "stairs";
+
+  Enterable.call(this, "null", 0, 0);
+  this.klimb = "Climb up!";
+}
+StairUpTile.prototype = new FeatureObject();
 
 function WBridgeNSTile() {
   this.name = "WBridgeNS";
@@ -3143,7 +3175,9 @@ BridgeEWTile.prototype = new FeatureObject();
 
 function LeftChairTile() {
   this.name = "LeftChair";
-  this.graphic = "leftchair.gif";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3153,7 +3187,9 @@ LeftChairTile.prototype = new FeatureObject();
 
 function RightChairTile() {
   this.name = "RightChair";
-  this.graphic = "rightchair.gif";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3163,7 +3199,9 @@ RightChairTile.prototype = new FeatureObject();
 
 function TopChairTile() {
   this.name = "TopChair";
-  this.graphic = "topchair.gif";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3173,7 +3211,9 @@ TopChairTile.prototype = new FeatureObject();
 
 function BottomChairTile() {
   this.name = "BottomChair";
-  this.graphic = "bottomchair.gif";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
