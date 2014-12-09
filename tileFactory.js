@@ -711,6 +711,16 @@ tileFactory.prototype.makeLadderUpTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeStairDownTile = function() {
+  var newTile = new StairDownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStairUpTile = function() {
+  var newTile = new StairUpTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWBridgeNSTile = function() {
   var newTile = new WBridgeNSTile();
   return newTile;
