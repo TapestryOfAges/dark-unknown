@@ -3221,6 +3221,72 @@ function BottomChairTile() {
 }
 BottomChairTile.prototype = new FeatureObject();
 
+function BedHeadTile() {
+  this.name = "BedHead";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bed";
+}
+BedHeadTile.prototype = new FeatureObject();
+
+function BedFootTile() {
+  this.name = "BedFoot";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bed";
+}
+BedFootTile.prototype = new FeatureObject();
+
+function BookshelfLeftTile() {
+  this.name = "BookshelfLeft";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bookshelf";
+  this.showsearched = 1;
+  this.searchedgraphic = ["furniture.gif", "furniture.gif", "-96", "0"];
+}
+BookshelfLeftTile.prototype = new FeatureObject();
+
+function BookshelfRightTile() {
+  this.name = "BookshelfRight";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bookshelf";
+  this.showsearched = 1;
+  this.searchedgraphic = ["furniture.gif", "furniture.gif", "-128", "0"];
+}
+BookshelfRightTile.prototype = new FeatureObject();
+
+function BookshelfOneTile() {
+  this.name = "BookshelfOne";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bookshelf";
+  this.showsearched = 1;
+  this.searchedgraphic = ["furniture.gif", "furniture.gif", "-160", "0"];
+}
+BookshelfOneTile.prototype = new FeatureObject();
+
 function SecretDoorTile() {
 	this.name = "SecretDoor";
 	this.graphic = "056.gif";   // note: 024 is U4's secret door
