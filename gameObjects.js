@@ -3255,7 +3255,7 @@ function BookshelfLeftTile() {
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "furniture.gif", "-96", "0"];
+  this.searchedgraphic = ["furniture.gif", "", "-96", "-32"];
 }
 BookshelfLeftTile.prototype = new FeatureObject();
 
@@ -3269,7 +3269,7 @@ function BookshelfRightTile() {
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "furniture.gif", "-128", "0"];
+  this.searchedgraphic = ["furniture.gif", "", "-128", "-32"];
 }
 BookshelfRightTile.prototype = new FeatureObject();
 
@@ -3283,7 +3283,7 @@ function BookshelfOneTile() {
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "furniture.gif", "-160", "0"];
+  this.searchedgraphic = ["furniture.gif", "", "-160", "-32"];
 }
 BookshelfOneTile.prototype = new FeatureObject();
 
@@ -3300,15 +3300,17 @@ function MirrorTile() {
 MirrorTile.prototype = new FeatureObject();
 
 MirrorTile.prototype.activate = function() {
-  var reflection = localFactory.createTile("Reflection");
-  reflection.mirror = this;
-  var homemap = this.GetHomeMap();
-  homemap.placeThing(this.getx(),this.gety()+1,reflection);
+  if (!DU.gameflags.editor) {
+    var reflection = localFactory.createTile("Reflection");
+    reflection.mirror = this;
+    var homemap = this.getHomeMap();
+    homemap.placeThing(this.getx(),this.gety()+1,reflection);
+  }
   return 1;
 }
 
 function ReflectionTile() {
-  this.name = "Mirror";
+  this.name = "Reflection";
   this.graphic = "walkon.gif";
   this.invisible = 1;
   this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_ETHEREAL + MOVE_FLY;
@@ -3321,10 +3323,12 @@ ReflectionTile.prototype = new FeatureObject();
 
 ReflectionTile.prototype.walkon = function(who) {
   // add reflection to attached mirror
+  this.mirror.setGraphicArray([who.getGraphic(), "mirror-reflection.gif", "0", "7"]);
 }
 
 ReflectionTile.prototype.walkoff = function(who) {
   // remove reflection from attached mirror
+  this.mirror.setGraphicArray(["furniture.gif", "", "-192", "0"]);
 }
 
 function SecretDoorTile() {
