@@ -77,6 +77,7 @@ GameStateData.prototype.loadGame = function() {
 }
 
 // eventually use var compressed = LZString.compressToUTF16(string); and string = LZString.decompressFromUTF16(localStorage.getItem("myData"));
+// also, respect .nosave property
 GameStateData.prototype.saveGame = function() {
 	var savedata = {};
 	
