@@ -771,6 +771,41 @@ tileFactory.prototype.makeBottomChairTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBedHeadTile = function() {
+  var newTile = new BedHeadTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBedFootTile = function() {
+  var newTile = new BedFootTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBookshelfLeftTile = function() {
+  var newTile = new BookshelfLeftTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBookshelfRightTile = function() {
+  var newTile = new BookshelfRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBookshelfOneTile = function() {
+  var newTile = new BookshelfOneTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMirrorTile = function() {
+  var newTile = new MirrorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeReflectionTile = function() {
+  var newTile = new ReflectionTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSecretDoorTile = function() {
   var newTile = new SecretDoorTile();
   return newTile;
