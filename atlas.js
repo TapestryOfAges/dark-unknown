@@ -547,6 +547,30 @@ Acre.prototype.executeWalkons = function(walker) {
 	return response;
 }
 
+Acre.prototype.executeWalkoffs = function(walker) {
+	var terrain = this.getTerrain();
+	var response = "";
+	if (typeof terrain.walkoff === "function") {
+    var resp = terrain.walkoff(walker);
+    if (resp) {
+      response += resp;
+    }
+	}
+	var features = this.getFeatures();
+	if (features) {
+		for (var i = 0; i < features.length; i++) {
+			if (typeof features[i].walkoff === "function") {
+				var resp = features[i].walkoff(walker);
+				if (resp) {
+				  if (response) { response += "<br />"; }
+				  response += resp;
+				}
+			}
+		}
+	}
+	return response;
+}
+
 Acre.prototype.executeIdles = function(walker) {
 	var terrain = this.getTerrain();
 	var response = "";

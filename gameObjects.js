@@ -3287,6 +3287,46 @@ function BookshelfOneTile() {
 }
 BookshelfOneTile.prototype = new FeatureObject();
 
+function MirrorTile() {
+  this.name = "Mirror";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "mirror";
+}
+MirrorTile.prototype = new FeatureObject();
+
+MirrorTile.prototype.activate = function() {
+  var reflection = localFactory.createTile("Reflection");
+  reflection.mirror = this;
+  var homemap = this.GetHomeMap();
+  homemap.placeThing(this.getx(),this.gety()+1,reflection);
+  return 1;
+}
+
+function ReflectionTile() {
+  this.name = "Mirror";
+  this.graphic = "walkon.gif";
+  this.invisible = 1;
+  this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "reflection walkon";
+  this.nosave = 1;
+}
+ReflectionTile.prototype = new FeatureObject();
+
+ReflectionTile.prototype.walkon = function(who) {
+  // add reflection to attached mirror
+}
+
+ReflectionTile.prototype.walkoff = function(who) {
+  // remove reflection from attached mirror
+}
+
 function SecretDoorTile() {
 	this.name = "SecretDoor";
 	this.graphic = "056.gif";   // note: 024 is U4's secret door
@@ -5841,6 +5881,12 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	}
 	
 	if (retval["canmove"] === 1) {
+	  var exittile = map.getTile(this.getx(),this.gety());
+	  var walkofftile = exittile.executeWalkoffs(this);
+	  if (walkofftile) {
+	    if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
+	    retval["msg"] += walkoffval;
+	  }
 		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
 		if ((this === PC) && (DU.gameflags.sound)) {
 		  if (tile.getFeatures().length) {
@@ -5851,16 +5897,16 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 		}
 //    if (GetDistance(this.getx(), this.gety(), PC.getx(), PC.gety()) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) ) {
     var distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
-    if (GetDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) ) {
-      // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
-      // uncommented version checks from current display center, not from PC position.
-			DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-    }
 		var walkonval = tile.executeWalkons(this);
 		if (walkonval) {
 		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
 		  retval["msg"] += walkonval;
 		}
+    if (GetDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) ) {
+      // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
+      // uncommented version checks from current display center, not from PC position.
+			DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    }
 	}
 	retval["initdelay"] = tile.getInitDelay(this);
 	return retval;
