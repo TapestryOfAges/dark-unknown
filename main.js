@@ -83,7 +83,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
       $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
     }
     if (themap.worldlayer) {
-      $("#worldlayer").css("background-image", "url('graphics/high_world.gif')");
+      $("#worldlayer").css("background-image", "url('graphics/" + themap.worldlayer + "')");
     } else {
       $("#worldlayer").css("background-image", "");
     }
