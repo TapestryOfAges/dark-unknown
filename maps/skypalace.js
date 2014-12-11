@@ -322,8 +322,8 @@ mappages["skypalace2"].terrain[11] = 'wb wb wb wb wb #O bb bb bb ## bb bb bb bb 
 mappages["skypalace2"].terrain[12] = 'wb wb wb wb wb ## ## bb ## ## bb bb bb ## ## bb ## ## wb wb wb wb wb wb';
 mappages["skypalace2"].terrain[13] = 'wb wb wb wb wb #O bb bb bb ## bb bb bb ## bb bb bb #O wb wb wb wb wb wb';
 mappages["skypalace2"].terrain[14] = 'wb wb wb wb wb #O bb bb bb ## ## ## ## ## bb bb bb #O wb wb wb wb wb wb';
-mappages["skypalace2"].terrain[15] = 'wb wb wb wb wb wb #O bb bb bb bb bb bb bb bb bb #O wb wb wb wb wb wb wb';
-mappages["skypalace2"].terrain[16] = 'wb wb wb wb wb wb #O bb bb ## bb bb bb ## bb bb #O wb wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[15] = 'wb wb wb wb wb wb #O bb bb ## bb bb bb ## bb bb #O wb wb wb wb wb wb wb';
+mappages["skypalace2"].terrain[16] = 'wb wb wb wb wb wb #O bb bb bb bb bb bb bb bb bb #O wb wb wb wb wb wb wb';
 mappages["skypalace2"].terrain[17] = 'wb wb wb wb wb wb wb #O #O ## bb bb bb ## #O #O wb wb wb wb wb wb wb wb';
 mappages["skypalace2"].terrain[18] = 'wb wb wb wb wb wb wb wb wb ## #O #O #O ## wb wb wb wb wb wb wb wb wb wb';
 mappages["skypalace2"].terrain[19] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';
@@ -335,14 +335,19 @@ mappages["skypalace2"].terrain[23] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb 
 mappages["skypalace2"].features = [];
 mappages["skypalace2"].features[0] = {name : 'DoorWindow', x : 13, y : 11};
 mappages["skypalace2"].features[1] = {name : 'DoorWindow', x : 15, y : 12};
-mappages["skypalace2"].features[2] = {name : 'DoorWindow', x : 13, y : 15};
-mappages["skypalace2"].features[3] = {name : 'DoorWindow', x : 9, y : 15};
+mappages["skypalace2"].features[2] = {name : 'DoorWindow', x : 13, y : 16};
+mappages["skypalace2"].features[3] = {name : 'DoorWindow', x : 9, y : 16};
 mappages["skypalace2"].features[4] = {name : 'DoorWindow', x : 7, y : 12};
 mappages["skypalace2"].features[5] = {name : 'WallOfWinds', x : 12, y : 8};
 mappages["skypalace2"].features[6] = {name : 'Door', x : 9, y : 9};
 mappages["skypalace2"].features[7] = {name : 'Fountain', x : 10, y : 11};
 mappages["skypalace2"].features[8] = {name : 'Fountain', x : 10, y : 13};
 mappages["skypalace2"].features[9] = {name : 'Moongate', x : 11, y : 12};
+mappages["skypalace2"].features[10] = {name : 'Mirror', x : 14, y : 13};
+mappages["skypalace2"].features[11] = {name : 'Mirror', x : 8, y : 13};
+mappages["skypalace2"].features[12] = {name : 'BookshelfLeft', x : 10, y : 15};
+mappages["skypalace2"].features[13] = {name : 'BookshelfRight', x : 11, y : 15};
+mappages["skypalace2"].features[14] = {name : 'BookshelfOne', x : 12, y : 15};
 
 
 mappages["skypalace2"].npcs = [];
@@ -363,7 +368,12 @@ mappages["skypalace2"].enterscript = 'entersky';
 mappages["skypalace2"].entertestscript = '';
 mappages["skypalace2"].exitscript = '';
 mappages["skypalace2"].exittestscript = '';
+mappages["skypalace2"].returnmap = 'darkunknown';
+mappages["skypalace2"].returnx = '65';
+mappages["skypalace2"].returny = '70';
+mappages["skypalace2"].returninfused = '1';
 mappages["skypalace2"].linkedMaps = ["skypalace"];
+
 
 mappages["skypalace2"].entersky = function(mapref) {
   mapref.Enter = function(enterer, enterfrom, fromx, fromy, tox, toy){
