@@ -275,6 +275,10 @@ function Atlas() {
     'hf' : "HexFloor",
     "BlueTiles" : 'bb',
     'bb' : "BlueTiles",    
+    "GoldOutlineFloor" : 'go',
+    'go' : "GoldOutlineFloor",    
+    "DiamondFloor" : 'df',
+    'df' : "DiamondFloor",    
   }
 
 }
