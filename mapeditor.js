@@ -19,7 +19,7 @@ var editnpcs;
 var browserheight;
 var losgrid = new LOSMatrix(13);
 var DUTime = new Timeline(0);
-var mode = "editor";
+//var mode = "editor";
 var PC = new PCObject();
 var DU = {};
 var gamestate = new GameStateData();
