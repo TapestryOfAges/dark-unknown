@@ -2355,6 +2355,18 @@ function DiamondFloorTile() {
 }
 DiamondFloorTile.prototype = new TerrainObject();
 
+function BannerTile() {
+  this.name = "Banner";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "banner of Olympus";
+}
+BannerTile.prototype = new TerrainObject();
+
 function SeeBelowTile() {
   this.name = "SeeBelow";
   this.graphic = "see-below.gif";
@@ -3092,7 +3104,7 @@ function StairDownTile() {
   this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "stairs";
+  this.desc = "stairs down";
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -3106,12 +3118,41 @@ function StairUpTile() {
   this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "stairs";
+  this.desc = "stairs up";
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
 }
 StairUpTile.prototype = new FeatureObject();
+
+function StairDown2Tile() {
+  this.name = "StairDown2";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "stairs down";
+
+  Enterable.call(this, "null", 0, 0);
+  this.descend = "Climb down!";
+}
+StairDown2Tile.prototype = new FeatureObject();
+
+function StairUp2Tile() {
+  this.name = "StairUp2";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "stairs up";
+
+  Enterable.call(this, "null", 0, 0);
+  this.klimb = "Climb up!";
+}
+StairUp2Tile.prototype = new FeatureObject();
+
 
 function WBridgeNSTile() {
   this.name = "WBridgeNS";
@@ -3284,6 +3325,20 @@ function BookshelfOneTile() {
   this.desc = "bookshelf";
   this.showsearched = 1;
   this.searchedgraphic = ["furniture.gif", "", "-160", "-32"];
+}
+BookshelfOneTile.prototype = new FeatureObject();
+
+function SmallBoxTile() {
+  this.name = "SmallBoxOne";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "small box";
+  this.showsearched = 1;
+  this.searchedgraphic = ["furniture.gif", "", "-256", "-32"];
 }
 BookshelfOneTile.prototype = new FeatureObject();
 
@@ -3685,6 +3740,18 @@ function PentagramSETile() {
   this.desc = "pentagram";
 }
 PentagramSETile.prototype = new FeatureObject();
+
+function MoatLeverOffTile() {
+  this.name = "MoatLeverOff";
+  this.graphic = "moatLever-off.gif";
+  this.overlay = "moatLever-off.gif";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "lever";
+  
+  SetByBelow.call(this);
+}
+MoatLeverOffTile.prototype = new FeatureObject();
 
 function LeverOffTile() {
   this.name = "LeverOff";

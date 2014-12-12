@@ -279,6 +279,8 @@ function Atlas() {
     'go' : "GoldOutlineFloor",    
     "DiamondFloor" : 'df',
     'df' : "DiamondFloor",    
+    "Banner" : 'br',
+    'br' : "Banner",
   }
 
 }

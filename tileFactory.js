@@ -516,6 +516,11 @@ tileFactory.prototype.makeDiamondFloorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBannerTile = function() {
+  var newTile = new BannerTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSeeBelowTile = function() {
   var newTile = new SeeBelowTile();
   return newTile;
@@ -721,6 +726,16 @@ tileFactory.prototype.makeStairUpTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeStairDown2Tile = function() {
+  var newTile = new StairDown2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStairUp2Tile = function() {
+  var newTile = new StairUp2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWBridgeNSTile = function() {
   var newTile = new WBridgeNSTile();
   return newTile;
@@ -793,6 +808,11 @@ tileFactory.prototype.makeBookshelfRightTile = function() {
 
 tileFactory.prototype.makeBookshelfOneTile = function() {
   var newTile = new BookshelfOneTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSmallBoxTile = function() {
+  var newTile = new SmallBoxTile();
   return newTile;
 }
 
@@ -878,6 +898,11 @@ tileFactory.prototype.makePentagramSTile = function() {
 
 tileFactory.prototype.makePentagramSETile = function() {
   var newTile = new PentagramSETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMoatLeverOffTile = function() {
+  var newTile = new MoatLeverOffTile();
   return newTile;
 }
 
