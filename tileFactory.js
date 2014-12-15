@@ -736,6 +736,71 @@ tileFactory.prototype.makeStairUp2Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSingleSignpostTile = function() {
+  var newTile = new SingleSignpostTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSignpostLeftTile = function() {
+  var newTile = new SignpostLeftTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSignpostRightTile = function() {
+  var newTile = new SignpostRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeInnSignTile = function() {
+  var newTile = new InnSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTavernSignTile = function() {
+  var newTile = new TavernSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArmourySignTile = function() {
+  var newTile = new ArmourySignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGrocerSignTile = function() {
+  var newTile = new GrocerSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGrocerSign2Tile = function() {
+  var newTile = new GrocerSign2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWeaponSignTile = function() {
+  var newTile = new WeaponSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAlchemistSignTile = function() {
+  var newTile = new AlchemistSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMagicShoppeSignTile = function() {
+  var newTile = new MagicShoppeSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHealerSignTile = function() {
+  var newTile = new HealerSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCasinoSignTile = function() {
+  var newTile = new CasinoSignTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWBridgeNSTile = function() {
   var newTile = new WBridgeNSTile();
   return newTile;
@@ -1063,6 +1128,66 @@ tileFactory.prototype.makeAmbroseShieldTile = function() {
 
 tileFactory.prototype.makeRoperBarkTile = function() {
   var newTile = new RoperBarkTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAmuletOfReflectionsTile = function() {
+  var newTile = new AmuletOfReflectionsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDragonBoneTile = function() {
+  var newTile = new DragonBoneTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStoneOfSparksTile = function() {
+  var newTile = new StoneOfSparksTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStoneOfEmbersTile = function() {
+  var newTile = new StoneOfEmbersTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStoneOfTheBlazeTile = function() {
+  var newTile = new StoneOfTheBlazeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStoneOfConflagrationsTile = function() {
+  var newTile = new StoneOfConflagrationsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBookOfLoreTile = function() {
+  var newTile = new BookOfLoreTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSpiderSilkTile = function() {
+  var newTile = new SpiderSilkTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlackPearlTile = function() {
+  var newTile = new BlackPearlTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeExecutionersHoodTile = function() {
+  var newTile = new ExecutionersHoodTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNightshadeTile = function() {
+  var newTile = new NightshadeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSulfurousAshTile = function() {
+  var newTile = new SulfurousAshTile();
   return newTile;
 }
 
