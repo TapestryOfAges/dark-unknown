@@ -3153,7 +3153,162 @@ function StairUp2Tile() {
 }
 StairUp2Tile.prototype = new FeatureObject();
 
+function SingleSignpostTile() {
+  this.name = "SingleSignpost";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "signpost";
+}
+SingleSignpostTile.prototype = new FeatureObject();
 
+function SignpostLeftTile() {
+  this.name = "SignpostLeft";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "signpost";
+}
+SignpostLeftTile.prototype = new FeatureObject();
+
+function SignpostRightTile() {
+  this.name = "SignpostRight";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "signpost";
+}
+SignpostRightTile.prototype = new FeatureObject();
+
+function InnSignTile() {
+  this.name = "InnSign";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "inn";
+}
+InnSignTile.prototype = new FeatureObject();
+
+function TavernSignTile() {
+  this.name = "TavernSign";
+  this.graphic = "features.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "tavern";
+}
+TavernSignTile.prototype = new FeatureObject();
+
+function ArmourySignTile() {
+  this.name = "ArmourySign";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "armoury";
+}
+ArmourySignTile.prototype = new FeatureObject();
+
+function GrocerSignTile() {
+  this.name = "GrocerSign";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "grocer";
+}
+GrocerSignTile.prototype = new FeatureObject();
+
+function GrocerSign2Tile() {
+  this.name = "GrocerSign2";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "grocer";
+}
+GrocerSign2Tile.prototype = new FeatureObject();
+
+function WeaponSignTile() {
+  this.name = "WeaponSign";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "weaponsmith";
+}
+WeaponSignTile.prototype = new FeatureObject();
+
+function AlchemistSignTile() {
+  this.name = "AlchemistSign";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "alchemist";
+}
+AlchemistSignTile.prototype = new FeatureObject();
+
+function MagicShoppeSignTile() {
+  this.name = "MagicShoppeSign";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "magic shoppe";
+}
+MagicShoppeSignTile.prototype = new FeatureObject();
+
+function HealerSignTile() {
+  this.name = "HealerSign";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "healer";
+}
+HealerSignTile.prototype = new FeatureObject();
+
+function CasinoSignTile() {
+  this.name = "CasinoSign";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-260";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "casino";
+}
+CasinoSignTile.prototype = new FeatureObject();
+  
 function WBridgeNSTile() {
   this.name = "WBridgeNS";
   this.graphic = "070.gif";
@@ -4326,19 +4481,165 @@ function AmbroseShieldTile() {
   this.blocklos = 0;
   this.desc = "shield commissioned by Ambrose";
   this.prefix = "the";
+  this.addType("Quest");
 }
 AmbroseShieldTile.prototype = new ItemObject();
 
 function RoperBarkTile() {
   this.name = "RoperBark";
   this.graphic = "items.gif";
-  this.spriteyoffset = "-64";
   this.spritexoffset = "-32";
+  this.spriteyoffset = "-64";
   this.blocklos = 0;
   this.desc = "piece of petrified roper bark";
   this.prefix = "a";
+  this.addType("Quest");
 }
 RoperBarkTile.prototype = new ItemObject();
+
+function AmuletOfReflectionsTile() {
+  this.name = "AmuletOfReflections";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-96";
+  this.blocklos = 0;
+  this.desc = "Amulet of Reflections";
+  this.prefix = "an";
+  this.addType("Quest");
+}
+AmuletOfReflectionsTile.prototype = new ItemObject();
+
+function DragonBoneTile() {
+  this.name = "DragonBone";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-96";
+  this.blocklos = 0;
+  this.desc = "dragon fingerbone";
+  this.prefix = "a";
+  this.addType("Quest");
+}
+DragonBoneTile.prototype = new ItemObject();
+
+function StoneOfSparksTile() {
+  this.name = "StoneOfSparks";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-96";
+  this.blocklos = 0;
+  this.desc = "Stone of Sparks";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+StoneOfSparksTile.prototype = new ItemObject();
+
+function StoneOfEmbersTile() {
+  this.name = "StoneOfEmbers";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-96";
+  this.blocklos = 0;
+  this.desc = "Stone of Embers";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+StoneOfEmbersTile.prototype = new ItemObject();
+
+function StoneOfTheBlazeTile() {
+  this.name = "StoneOfTheBlaze";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-96";
+  this.blocklos = 0;
+  this.desc = "Stone of the Blaze";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+StoneOfTheBlazeTile.prototype = new ItemObject();
+
+function StoneOfConflagrationsTile() {
+  this.name = "StoneOfConflagrations";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-96";
+  this.blocklos = 0;
+  this.desc = "Stone of Conflagrations";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+StoneOfConflagrationsTile.prototype = new ItemObject();
+
+function BookOfLoreTile() {
+  this.name = "BookOfLore";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-96";
+  this.blocklos = 0;
+  this.desc = "Book of Lore";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+BookOfLoreTile.prototype = new ItemObject();
+
+function SpiderSilkTile() {
+  this.name = "SpiderSilk";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bit of spider silk";
+  this.addType("Reagent");
+}
+SpiderSilkTile.prototype = new ItemObject();
+
+function BlackPearlTile() {
+  this.name = "BlackPearl";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "black pearl";
+  this.addType("Reagent");
+}
+BlackPearlTile.prototype = new ItemObject();
+
+function ExecutionersHoodTile() {
+  this.name = "ExecutionersHood";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "executioner's hood";
+  this.addType("Reagent");
+}
+ExecutionersHoodTile.prototype = new ItemObject();
+
+function NightshadeTile() {
+  this.name = "Nightshade";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.prefix = "some";
+  this.desc = "nightshade";
+  this.addType("Reagent");
+}
+NightshadeTile.prototype = new ItemObject();
+
+function SulfurousAshTile() {
+  this.name = "SulfurousAsh";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pile of sulfurous ash";
+  this.addType("Reagent");
+}
+SulfurousAshTile.prototype = new ItemObject();
 
 
 function RubyGemoftheSunTile() {
