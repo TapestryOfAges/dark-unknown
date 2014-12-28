@@ -24,7 +24,7 @@ GameStateData.prototype.loadGame = function() {
 
 	}
   var anothermap = new GameMap();
-  anothermap.loadMap("ether");
+  anothermap.loadMap("skypalace");
 	PC.setHomeMap(anothermap);
 	maps.addMapByRef(anothermap);
 //  PC.setHomeMap(themap);
