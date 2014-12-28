@@ -105,6 +105,18 @@ function Atlas() {
     "BlankBlack" : 'BK',
     '##' : "Wall", // 56
     "Wall" : '##',
+    '!#' : "RuinsWall",
+    "RuinsWall" : '!#',
+    '~_' : "RuinsWallMidLeftBottomRight",
+    "RuinsWallMidLeftBottomRight" : '~_',
+    '_~' : "RuinsWallBottomLeftMidRight",
+    "RuinsWallBottomLeftMidRight" : '_~',
+    '=~' : "RuinsWallTallLeftMidRight",
+    "RuinsWallTallLeftMidRight" : '=~',
+    '~=' : "RuinsWallMidLeftTallRight",
+    "RuinsWallMidLeftTallRight" : '~=',
+    '~~' : "RuinsWallMidLeftMidRight",
+    "RuinsWallMidLeftMidRight" : '~~',
     '#+' : "ArrowSlit",
     "ArrowSlit" : '#+',
     '#O' : "Window",
@@ -771,11 +783,11 @@ GameMap.prototype.setReturn = function(newmap, rx, ry) {
 }
 
 GameMap.prototype.getReturnInfused = function() {
-  return this.returninfused;
+  return parseInt(this.returninfused);
 }
 
 GameMap.prototype.setReturnInfused = function(infused) {
-  if (infused) {
+  if (parseInt(infused)) {
     this.returninfused = 1;
   } else {
     this.returninfused = 0;
