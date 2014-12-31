@@ -131,7 +131,10 @@ foreach my $line (<$groupdoc>) {
   if ($fields[8]) {
     print $out "  this.group[2] = new NPCList('$fields[8]NPC', '$fields[9]');\n";
   }
-  $fields[10] = uc($fields[10]);
+  if ($fields[10]) {
+    print $out "  this.group[3] = new NPCList('$fields[10]NPC', '$fields[11]');\n";
+  }
+  $fields[12] = uc($fields[12]);
   print $out "  this.movetype = MOVE_$fields[10];\n";
   print $out "}\n";
   print $out "$fields[0]" . "Tile.prototype = new NPCGroupObject();\n\n";
