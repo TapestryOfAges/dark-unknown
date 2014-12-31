@@ -5335,7 +5335,7 @@ MissileWeaponObject.prototype.setRange = function(newrange) {
 
 MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
   var ammo = {};
-  ammo.graphic= this.ammographic;
+  ammo.graphic = this.ammographic;
   ammo.yoffset = this.ammoyoffset;
 //  if (this.directionalammo) {
     var diffx = def.getx() - atk.getx();
@@ -5500,7 +5500,16 @@ function NaturalMissileWeaponTile() {
 }
 NaturalMissileWeaponTile.prototype = new MissileWeaponObject();
 
-
+function BoulderWeaponTile() {
+  this.name = "BoulderWeapon";
+  this.damage = "2d12+3";
+  this.graphic = "boulder.gif";
+  this.desc = "boulder";
+  this.prefix = "a";
+  this.ammoxoffset = "0";
+  this.ammoyoffset = "0";  // probably not final values
+}
+BoulderWeaponTile.prototype = new MissileWeaponObject();
 
 // NPCs
 
