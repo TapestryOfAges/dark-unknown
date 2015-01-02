@@ -55,7 +55,8 @@ foreach my $line (<$npcdoc>) {
     print $out "  this.missileAttackAs = 'none';\n";
     my @wpnvals = split(';', $fields[13]);
     print $out "  this.missileDamage = $wpnvals[0]\n";
-    print $out "  this.missileRange = $wpnvals[1]\n";
+    print $out "  this.missileStrDamage = $wpnvals[1]\n";
+    print $out "  this.missileRange = $wpnvals[2]\n";
   } else{
     print $out "  this.missileAttackAs = '$fields[14]';\n";
   }
@@ -75,6 +76,10 @@ foreach my $line (<$npcdoc>) {
     print $out "  this.prefix = '$1';\n";
     $fields[19] =~ s/^an* //;
   }
+  if ($fields[19] =~ /^(the) /) {
+    print $out "  this.prefix = '$1';\n";
+    $fields[19] =~ s/^the //;
+  }
   print $out "  this.desc = '$fields[19]';\n";
   if ($fields[20]) {
     print $out "  this.onHit = '$fields[20]';\n";
@@ -87,6 +92,20 @@ foreach my $line (<$npcdoc>) {
   }
   if ($fields[23]) {
     print $out "  this.meleeChance = $fields[23];\n";
+  }
+  if ($fields[24] or $fields[25] or $fields[26] or $fields[27]) {
+    print $out "  this.spellsknown = { ";
+    print $out "heal: 1, " if $fields[24];
+    print $out "control: 1, " if $fields[25];
+    print $out "attack: 1, " if $fields[26];
+    print $out "buff: 1, " if $fields[27];
+    print $out "};\n";
+  }
+  if ($fields[28]) {
+    print $out "  resists = { $fields[28] };\n";
+  }
+  if ($fields[29]) {
+    print $out "  special = '$fields[29]';\n";
   }
   print $out "}\n";
   print $out "$fields[0]" . "NPCTile.prototype = new NPCObject();\n\n";
