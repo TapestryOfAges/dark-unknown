@@ -82,11 +82,11 @@ GameStateData.prototype.loadGame = function() {
 GameStateData.prototype.saveGame = function() {
 	var savedata = {};
 	
-	savedata.time = DUTime.getGameClock();
+	savedata.time = DUTime.getGameClock();   // no timeline- .copy needs to add a time field if an item is on the timeline
 	savedata.gameflags = {};
 	$.extend(true,savedata.gameflags,DU.gameflags);
 	savedata.objs = {};
-	savedata.maps = [];
+	savedata.maps = [];       // this turns into a list of names of maps, to be re-loaded on load
 	
 	$.each(DU.maps.data, function(idx, val) {
 	  savedata.maps.push(idx);
