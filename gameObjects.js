@@ -1,6 +1,6 @@
 
 function ProtoObject() {
-  
+  this.nosave = 0;
 }
 ProtoObject.prototype = new Object();
 
@@ -139,12 +139,19 @@ GameObject.prototype.copy = function(type) {
     return localFactory.createTile(tilename);
   }
   
-  if (debug) { dbs.writeln("<br /><span style='font-weight:bold'>Copying " + this.getName() + ", serial " + this.getSerial() + ":</span><br />"); }
+  if (debug) { dbs.writeln("<br /><span style='font-weight:bold'><br />Copying " + this.getName() + ", serial " + this.getSerial() + ":</span><br />"); }
   var base_version = eidos.getForm(this.getName());
   var copydata = {};
-  copydata.traceback = [];
+  var copies = [];
+  copies[0] = copydata;
+  copydata.traceback = [];    // traceback holds the places this was found. On a map or in the timeline are the main options.
 //  var copyserial = this.getSerial();
-  copydata.name = this.getName();
+  copydata.name = this.getName(); 
+  var ontime = DUTime.findEntityTime(this);
+  if (ontime !== -1) {
+    copydata.timestamp = ontime;
+    copydata.traceback.push("timeline");
+  }
   $.each(this, function(idx, val) {
     if ((typeof val === "function") && (typeof base_version[idx] === "function")) { 
       if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " is a function, moving on...</span>  "); }
@@ -194,17 +201,27 @@ GameObject.prototype.copy = function(type) {
     } else if ((idx === "currentDestination") || (idx === "lastLocation")) {
       copydata[idx] = val;
       if (debug) { dbs.writeln(idx + " different, copying... "); }
-    } else if (idx === "currentPoI") {
+    } else if ((idx === "currentPoI") || (idx === "losupclose")){
       copydata[idx] = {};
       if (debug) { dbs.writeln(idx + " deliberately not saved... "); }
+    } else if (idx === "spawned") { 
+      // for things with collections
+      var spawnlist = val.getAll();
+      var spawnserials = [];
+      $.each(spawnlist, function(spaidx,spaval) {
+        spawnserials.push(spaval.getSerial());
+      });
+      copydata[idx] = spawnserials;
+      if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serials, serial# " + copydata[idx] + "...</span> "); }
     } else {
       if (debug) { dbs.writeln("<span style='color:red'>" + idx + " is type " + typeof val + "</span>,  "); }
+      alert("SAVE NEEDS " + idx + "!");
     }
     // WORKING HERE
     
   });
   
-  return copydata;
+  return copies;
   
 }
 
