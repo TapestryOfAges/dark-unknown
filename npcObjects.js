@@ -14,6 +14,7 @@ function DruidVillagerNPCTile() {
   this.threatenedAI = 'spellcaster';
   this.PCThreatAI = 'runaway';
   this.graphic = '302.gif';
+  this.altgraphic = ['druid-offcolor.1.gif','druid-offcolor.gif',];
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'ClothArmor';
@@ -41,6 +42,7 @@ function ShepherdVillagerNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'runaway';
   this.graphic = '301.gif';
+  this.altgraphic = ['shepherd-offcolor.1.gif',];
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'ClothArmor';
@@ -69,6 +71,7 @@ function MageVillagerNPCTile() {
   this.threatenedAI = 'spellcaster';
   this.PCThreatAI = 'runaway';
   this.graphic = '303.gif';
+  this.altgraphic = ['303.2.gif','mage-offcolor.gif',];
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'ClothArmor';
@@ -96,6 +99,7 @@ function TinkerVillagerNPCTile() {
   this.threatenedAI = 'missile';
   this.PCThreatAI = 'runaway';
   this.graphic = '304.gif';
+  this.altgraphic = ['304.2.gif','tinker-offcolor.gif',];
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'Sling';
   this.armorAs = 'ClothArmor';
@@ -125,6 +129,7 @@ function RangerVillagerNPCTile() {
   this.threatenedAI = 'ranger';
   this.PCThreatAI = 'runaway';
   this.graphic = '305.gif';
+  this.altgraphic = ['ranger-offcolor.gif',];
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'Sling';
   this.armorAs = 'LeatherArmor';
@@ -180,9 +185,10 @@ function PaladinVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'paladin';
+  this.threatenedAI = 'mageknight';
   this.PCThreatAI = 'assistPC';
   this.graphic = '307.gif';
+  this.altgraphic = ['307.2.gif','paladin-offcolor.gif',];
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'LeatherArmor';
@@ -212,6 +218,7 @@ function FighterVillagerNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'runaway';
   this.graphic = '308.gif';
+  this.altgraphic = ['fighter-offcolor.gif',];
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'Sling';
   this.armorAs = 'LeatherArmor';
@@ -240,6 +247,7 @@ function TownsfolkVillagerNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'runaway';
   this.graphic = '310.gif';
+  this.altgraphic = ['310.2.gif',];
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'ClothArmor';
@@ -268,6 +276,7 @@ function BardVillagerNPCTile() {
   this.threatenedAI = 'ranger';
   this.PCThreatAI = 'runaway';
   this.graphic = '311.gif';
+  this.altgraphic = ['bard-offcolor.gif',];
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'Bow';
   this.armorAs = 'ClothArmor';
@@ -417,7 +426,7 @@ function KingNPCTile() {
   this.graphic = '315.gif';
   this.meleeAttackAs = 'MagicSword';
   this.missileAttackAs = 'none';
-  this.armorAs = 'PlateArmor';
+  this.armorAs = 'ExoticArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
@@ -426,6 +435,34 @@ function KingNPCTile() {
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
 }
 KingNPCTile.prototype = new NPCObject();
+
+
+// Townsfolk
+
+function QueenNPCTile() {
+  this.name = 'QueenNPC';
+  this.level = 8;
+  this.addhp = 100;
+  this.str = 30;
+  this.dex = 30;
+  this.int = 30;
+  this.alignment = 'Good';
+  this.attitude = 'friendly';
+  this.peaceAI = 'stationary';
+  this.threatenedAI = 'mageknight';
+  this.PCThreatAI = 'assistPC';
+  this.graphic = '315.2.gif';
+  this.meleeAttackAs = 'MagicSword';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ExoticArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'Corpse';
+  this.lootTable = 'Townsman';
+  this.desc = 'your mother the Queen';
+  this.meleeChance = 70;
+  this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+}
+QueenNPCTile.prototype = new NPCObject();
 
 
 // Townsfolk
@@ -716,7 +753,7 @@ function ApprenticeNPCTile() {
   this.threatenedAI = 'spellcaster';
   this.PCThreatAI = 'attackPC';
   this.graphic = '303.gif';
-  this.altgraphic = ['303.2.gif','mage-offcolor.gif',];
+  this.altgraphic = ['303.2.gif',];
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'ClothArmor';
@@ -1082,6 +1119,7 @@ function FireLizardNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = 'fire lizard';
+  this.meleeChance = 80;
   resists = { fire:66 };
   special = 'firebreath';
 }
@@ -1201,7 +1239,6 @@ function HandlerNPCTile() {
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
   this.graphic = 'shepherd-offcolor.1.gif';
-  this.altgraphic = ['shepherd-offcolor.gif',];
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
   this.armorAs = 'LeatherArmor';
@@ -1494,8 +1531,8 @@ CyclopsNPCTile.prototype = new NPCObject();
 
 // Monster
 
-function Deep NixieNPCTile() {
-  this.name = 'Deep NixieNPC';
+function DeepNixieNPCTile() {
+  this.name = 'DeepNixieNPC';
   this.level = 4;
   this.addhp = 0;
   this.str = 17;
@@ -1519,7 +1556,7 @@ function Deep NixieNPCTile() {
   this.meleeChance = 60;
   this.spellsknown = { attack: 1, buff: 1, };
 }
-Deep NixieNPCTile.prototype = new NPCObject();
+DeepNixieNPCTile.prototype = new NPCObject();
 
 
 // Monster
@@ -1824,7 +1861,7 @@ function WizardNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.threatenedAI = 'spellcaster';
   this.PCThreatAI = 'attackPC';
-  this.graphic = '381.gif';
+  this.graphic = 'mage-offcolor.gif';
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
   this.armorAs = 'LeatherArmor';
@@ -2164,7 +2201,8 @@ function ArchmageNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.threatenedAI = 'spellcaster';
   this.PCThreatAI = 'attackPC';
-  this.graphic = '303.gif';
+  this.graphic = '347.gif';
+  this.altgraphic = ['381.gif',];
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -2197,7 +2235,7 @@ function BlackDragonNPCTile() {
   this.PCThreatAI = 'attackAll';
   this.graphic = 'blackdragon.gif';
   this.meleeAttackAs = 'Halberd';
-  this.missileAttackAs = '';
+  this.missileAttackAs = 'none';
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
@@ -2398,9 +2436,9 @@ function ReaperNPCTile() {
   this.armorResist = 25;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'repear';
+  this.lootTable = 'reaper';
   this.prefix = 'a';
-  this.desc = 'repear';
+  this.desc = 'reaper';
   this.meleeChance = 50;
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
 }
@@ -2492,7 +2530,7 @@ function DelverNPCTile() {
   this.missileAttackAs = 'none';
   this.armorAs = 'ExoticArmor';
   this.movetype = MOVE_ETHEREAL;
-  this.leavesCorpse = '';
+  this.leavesCorpse = 'none';
   this.lootTable = 'delver';
   this.prefix = 'a';
   this.desc = 'delver';
@@ -2723,177 +2761,4 @@ function AbyssalKrakenNPCTile() {
   special = 'lbolt';
 }
 AbyssalKrakenNPCTile.prototype = new NPCObject();
-
-function GiantRatGroupSmallTile() {
-  this.name = 'GiantRatGroupSmall';
-  this.desc = 'giant rats';
-  this.peaceAI = 'Animal-15';
-  this.graphic = '327.gif';
-  this.altgraphic = ['361.gif',];
-  this.group = [];
-  this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
-  this.movetype = MOVE_;
-}
-GiantRatGroupSmallTile.prototype = new NPCGroupObject();
-
-function GiantRatGroupLargeTile() {
-  this.name = 'GiantRatGroupLarge';
-  this.desc = 'giant rats';
-  this.peaceAI = 'Animal-15';
-  this.graphic = '327.gif';
-  this.altgraphic = ['361.gif',];
-  this.group = [];
-  this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
-  this.movetype = MOVE_;
-}
-GiantRatGroupLargeTile.prototype = new NPCGroupObject();
-
-function OrcGroupSmallTile() {
-  this.name = 'OrcGroupSmall';
-  this.desc = 'orcs';
-  this.peaceAI = 'Monster-25';
-  this.graphic = '339.gif';
-  this.altgraphic = ['373.gif',];
-  this.group = [];
-  this.group[0] = new NPCList('OrcNPC', '1d3+2');
-  this.movetype = MOVE_;
-}
-OrcGroupSmallTile.prototype = new NPCGroupObject();
-
-function OrcGroupLargeTile() {
-  this.name = 'OrcGroupLarge';
-  this.desc = 'orcs';
-  this.peaceAI = 'Monster-25';
-  this.graphic = '339.gif';
-  this.altgraphic = ['373.gif',];
-  this.group = [];
-  this.group[0] = new NPCList('OrcNPC', '1d5+4');
-  this.movetype = MOVE_;
-}
-OrcGroupLargeTile.prototype = new NPCGroupObject();
-
-function HoodGroupSmallTile() {
-  this.name = 'HoodGroupSmall';
-  this.desc = 'hoods';
-  this.peaceAI = 'Bandit-20';
-  this.graphic = '375.gif';
-  this.altgraphic = ['341.gif',];
-  this.group = [];
-  this.group[0] = new NPCList('HoodNPC', '1d3+1');
-  this.movetype = MOVE_;
-}
-HoodGroupSmallTile.prototype = new NPCGroupObject();
-
-function HoodGroupLargeTile() {
-  this.name = 'HoodGroupLarge';
-  this.desc = 'hoods';
-  this.peaceAI = 'Bandit-20';
-  this.graphic = '375.gif';
-  this.altgraphic = ['341.gif',];
-  this.group = [];
-  this.group[0] = new NPCList('HoodNPC', '1d3+3');
-  this.group[1] = new NPCList('MinstrelNPC', '1d1');
-  this.movetype = MOVE_;
-}
-HoodGroupLargeTile.prototype = new NPCGroupObject();
-
-function RogueGroupSmallTile() {
-  this.name = 'RogueGroupSmall';
-  this.desc = 'rogues';
-  this.peaceAI = 'Bandit-20';
-  this.graphic = '306.gif';
-  this.group = [];
-  this.group[0] = new NPCList('RogueNPC', '1d3+2');
-  this.group[1] = new NPCList('HoodNPC', '1d3+1');
-  this.movetype = MOVE_;
-}
-RogueGroupSmallTile.prototype = new NPCGroupObject();
-
-function RogueGroupLargeTile() {
-  this.name = 'RogueGroupLarge';
-  this.desc = 'rogues';
-  this.peaceAI = 'Bandit-20';
-  this.graphic = '306.gif';
-  this.group = [];
-  this.group[0] = new NPCList('RogueNPC', '1d4+3');
-  this.group[1] = new NPCList('HoodNPC', '1d3+2');
-  this.group[2] = new NPCList('MinstrelNPC', '1d2');
-  this.movetype = MOVE_;
-}
-RogueGroupLargeTile.prototype = new NPCGroupObject();
-
-function ThiefGroupSmallTile() {
-  this.name = 'ThiefGroupSmall';
-  this.desc = 'thieves';
-  this.peaceAI = 'Bandit-20';
-  this.graphic = '306.gif';
-  this.group = [];
-  this.group[0] = new NPCList('ThiefNPC', '1d3+2');
-  this.group[1] = new NPCList('RogueNPC', '1d3+1');
-  this.movetype = MOVE_;
-}
-ThiefGroupSmallTile.prototype = new NPCGroupObject();
-
-function ThiefGroupLargeTile() {
-  this.name = 'ThiefGroupLarge';
-  this.desc = 'thieves';
-  this.peaceAI = 'Bandit-20';
-  this.graphic = '306.gif';
-  this.group = [];
-  this.group[0] = new NPCList('ThiefNPC', '1d4+3');
-  this.group[1] = new NPCList('RogueNPC', '1d3+2');
-  this.group[2] = new NPCList('MinstrelNPC', '1d2');
-  this.movetype = MOVE_;
-}
-ThiefGroupLargeTile.prototype = new NPCGroupObject();
-
-function LowbiePartyTile() {
-  this.name = 'LowbieParty';
-  this.desc = 'a party of adventurers';
-  this.peaceAI = 'Bandit-20';
-  this.graphic = '308.gif';
-  this.group = [];
-  this.group[0] = new NPCList('FighterNPC', '1d2');
-  this.group[1] = new NPCList('RogueNPC', '1d2');
-  this.group[2] = new NPCList('MinstrelNPC', '1d2-1');
-  this.group[3] = new NPCList('ApprenticeNPC', '1d2-1');
-  this.movetype = MOVE_Apprentice;
-}
-LowbiePartyTile.prototype = new NPCGroupObject();
-
-function HeadlessGroupSmallTile() {
-  this.name = 'HeadlessGroupSmall';
-  this.desc = 'headlesses';
-  this.peaceAI = 'Monster-15';
-  this.graphic = '344.gif';
-  this.altgraphic = ['378.gif',];
-  this.group = [];
-  this.group[0] = new NPCList('HeadlessNPC', '1d4+1');
-  this.movetype = MOVE_;
-}
-HeadlessGroupSmallTile.prototype = new NPCGroupObject();
-
-function HeadlessGroupLargeTile() {
-  this.name = 'HeadlessGroupLarge';
-  this.desc = 'headlesses';
-  this.peaceAI = 'Monster-15';
-  this.graphic = '344.gif';
-  this.altgraphic = ['378.gif',];
-  this.group = [];
-  this.group[0] = new NPCList('HeadlessNPC', '1d5+2');
-  this.movetype = MOVE_;
-}
-HeadlessGroupLargeTile.prototype = new NPCGroupObject();
-
-function SnakesTile() {
-  this.name = 'Snakes';
-  this.desc = 'giant snakes';
-  this.peaceAI = 'Animal-15';
-  this.graphic = '342.gif';
-  this.altgraphic = ['376.gif',];
-  this.group = [];
-  this.group[0] = new NPCList('GiantSnakeNPC', '1d4+2');
-  this.movetype = MOVE_;
-}
-SnakesTile.prototype = new NPCGroupObject();
 

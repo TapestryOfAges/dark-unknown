@@ -206,12 +206,15 @@ function PerformCommand(code) {
 		
 	}
 	else if (code === 81) { // q
-		var mymap = PC.getHomeMap();
-		var testnpc = mymap.npcs.getTop();
-		testnpc.copy();
+//		var mymap = PC.getHomeMap();
+//		var testnpc = mymap.npcs.getTop();
+//		testnpc.copy();
+    gamestate.setMode("saving");
+    gamestate.saveGame();
 		retval["txt"] = "Quit &amp; Save: Testing save procedure...";
 		retval["input"] = "&gt;";
 		retval["fin"] = 2;
+		gamestate.setMode("player");
 	}
 	else if (code === 82) { // r
     // was Ready, merged with Wear/Wield

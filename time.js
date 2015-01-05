@@ -150,6 +150,19 @@ Timeline.prototype.removeEntityFrom = function(entity) {
 	}
 }
 
+Timeline.prototype.findEntityTime = function(entity) {
+	var checktick = this.tickstream;
+	var prevtick = this.tickstream;
+	while ((checktick.getEvent().getEntity() !== entity) && (checktick.getNextTick())) {
+		prevtick = checktick;
+		checktick = checktick.getNextTick();
+	}
+	if (checktick.getEvent().getEntity() === entity) {
+	  return checktick.getTimestamp();
+	}
+	return -1;
+}
+
 Timeline.prototype.createDebugTimeline = function() {
   var tltable = "<table border='1'><tr><td>Time<br />Name<br />Serial</td>";
   var pointer = this.tickstream;

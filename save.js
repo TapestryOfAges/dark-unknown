@@ -91,8 +91,25 @@ GameStateData.prototype.saveGame = function() {
 	$.each(DU.maps.data, function(idx, val) {
 	  savedata.maps.push(idx);
 	  
+	  // save features
 	  var mapfeatures = val.features.getAll();
+	  if (debug) { dbs.writeln("<br /><span style='font-weight:bold'>Copying " + mapfeatures.length + " features from map " + idx + "</span><br />"); }
+	  $.each(mapfeatures, function(feaidx, feaval) {
+	    if (!feaval.nosave) {
+  	    var copies = feaval.copy();
+	      $.each(copies, function(copidx, copval) {
+	        savedata.objs[copval.serial] = copval;
+	      });
+	    }
+	  });
 	  
+	  // save NPCs
+	  var mapnpcs = val.npcs.getAll();
+	  if (debug) { dbs.writeln("<br /><span style='font-weight:bold'>Copying " + mapnpcs.length + " NPCs from map " + idx + "</span><br />"); }
+	  $.each(mapnpcs, function (npcidx, npcval) {
+	    var copies = npcval.copy();
+	    // note- this is going to explode gloriously if I have a closed loop anywhere other than to and from maps
+	  });
 	});
 	
 	

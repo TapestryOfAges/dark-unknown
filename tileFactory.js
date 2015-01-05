@@ -1376,6 +1376,11 @@ tileFactory.prototype.makeNaturalMissileWeaponTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBoulderWeaponTile = function() {
+  var newTile = new BoulderWeaponTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDruidVillagerNPCTile = function() {
   var newTile = new DruidVillagerNPCTile();
   return newTile;
@@ -1451,6 +1456,11 @@ tileFactory.prototype.makeKingNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeQueenNPCTile = function() {
+  var newTile = new QueenNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePrinceNPCTile = function() {
   var newTile = new PrinceNPCTile();
   return newTile;
@@ -1466,28 +1476,8 @@ tileFactory.prototype.makeCorruptGuardsNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeGiantRatNPCTile = function() {
-  var newTile = new GiantRatNPCTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeGiantSnakeNPCTile = function() {
-  var newTile = new GiantSnakeNPCTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeGiantBatNPCTile = function() {
   var newTile = new GiantBatNPCTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLargeSpiderNPCTile = function() {
-  var newTile = new LargeSpiderNPCTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeGiantSpiderNPCTile = function() {
-  var newTile = new GiantSpiderNPCTile();
   return newTile;
 }
 
@@ -1496,13 +1486,8 @@ tileFactory.prototype.makeGiantInsectsNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeOrcNPCTile = function() {
-  var newTile = new OrcNPCTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeSlimeNPCTile = function() {
-  var newTile = new SlimeNPCTile();
+tileFactory.prototype.makeGiantRatNPCTile = function() {
+  var newTile = new GiantRatNPCTile();
   return newTile;
 }
 
@@ -1511,18 +1496,128 @@ tileFactory.prototype.makeHoodNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeRogueNPCTile = function() {
-  var newTile = new RogueNPCTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeMinstrelNPCTile = function() {
   var newTile = new MinstrelNPCTile();
   return newTile;
 }
 
+tileFactory.prototype.makeSlimeNPCTile = function() {
+  var newTile = new SlimeNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeApprenticeNPCTile = function() {
+  var newTile = new ApprenticeNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFighterNPCTile = function() {
+  var newTile = new FighterNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGiantSnakeNPCTile = function() {
+  var newTile = new GiantSnakeNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHeadlessNPCTile = function() {
+  var newTile = new HeadlessNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNixieNPCTile = function() {
+  var newTile = new NixieNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrcNPCTile = function() {
+  var newTile = new OrcNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRogueNPCTile = function() {
+  var newTile = new RogueNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSkeletonNPCTile = function() {
+  var newTile = new SkeletonNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAnimatedArmorNPCTile = function() {
+  var newTile = new AnimatedArmorNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArcherNPCTile = function() {
+  var newTile = new ArcherNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBardNPCTile = function() {
+  var newTile = new BardNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDruidNPCTile = function() {
+  var newTile = new DruidNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFireLizardNPCTile = function() {
+  var newTile = new FireLizardNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFlukeNPCTile = function() {
+  var newTile = new FlukeNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGhostNPCTile = function() {
+  var newTile = new GhostNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGiantSpiderNPCTile = function() {
+  var newTile = new GiantSpiderNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHandlerNPCTile = function() {
+  var newTile = new HandlerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMimicNPCTile = function() {
+  var newTile = new MimicNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrcShamanNPCTile = function() {
+  var newTile = new OrcShamanNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePythonNPCTile = function() {
+  var newTile = new PythonNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSeahorseNPCTile = function() {
+  var newTile = new SeahorseNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeThiefNPCTile = function() {
   var newTile = new ThiefNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTrollNPCTile = function() {
+  var newTile = new TrollNPCTile();
   return newTile;
 }
 
@@ -1536,13 +1631,103 @@ tileFactory.prototype.makeAirElementalNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCyclopsNPCTile = function() {
+  var newTile = new CyclopsNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDeepNixieNPCTile = function() {
+  var newTile = new DeepNixieNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDrakeNPCTile = function() {
   var newTile = new DrakeNPCTile();
   return newTile;
 }
 
-tileFactory.prototype.makeAnimatedArmorNPCTile = function() {
-  var newTile = new AnimatedArmorNPCTile();
+tileFactory.prototype.makeEarthElementalNPCTile = function() {
+  var newTile = new EarthElementalNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFireElementalNPCTile = function() {
+  var newTile = new FireElementalNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeLurkerNPCTile = function() {
+  var newTile = new LurkerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrcCaptainNPCTile = function() {
+  var newTile = new OrcCaptainNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePaladinNPCTile = function() {
+  var newTile = new PaladinNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSeaSerpentNPCTile = function() {
+  var newTile = new SeaSerpentNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTremendousSpiderNPCTile = function() {
+  var newTile = new TremendousSpiderNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterElementalNPCTile = function() {
+  var newTile = new WaterElementalNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWizardNPCTile = function() {
+  var newTile = new WizardNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCorpserNPCTile = function() {
+  var newTile = new CorpserNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEttinNPCTile = function() {
+  var newTile = new EttinNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFloorNPCTile = function() {
+  var newTile = new FloorNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGazerNPCTile = function() {
+  var newTile = new GazerNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHydraNPCTile = function() {
+  var newTile = new HydraNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMagmaSpawnNPCTile = function() {
+  var newTile = new MagmaSpawnNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePhantomNPCTile = function() {
+  var newTile = new PhantomNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRangerNPCTile = function() {
+  var newTile = new RangerNPCTile();
   return newTile;
 }
 
@@ -1551,53 +1736,98 @@ tileFactory.prototype.makeWillotheWispNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeGiantRatGroupSmallTile = function() {
-  var newTile = new GiantRatGroupSmallTile();
+tileFactory.prototype.makeXornNPCTile = function() {
+  var newTile = new XornNPCTile();
   return newTile;
 }
 
-tileFactory.prototype.makeGiantRatGroupLargeTile = function() {
-  var newTile = new GiantRatGroupLargeTile();
+tileFactory.prototype.makeArchmageNPCTile = function() {
+  var newTile = new ArchmageNPCTile();
   return newTile;
 }
 
-tileFactory.prototype.makeOrcGroupSmallTile = function() {
-  var newTile = new OrcGroupSmallTile();
+tileFactory.prototype.makeBlackDragonNPCTile = function() {
+  var newTile = new BlackDragonNPCTile();
   return newTile;
 }
 
-tileFactory.prototype.makeOrcGroupLargeTile = function() {
-  var newTile = new OrcGroupLargeTile();
+tileFactory.prototype.makeDevourerNPCTile = function() {
+  var newTile = new DevourerNPCTile();
   return newTile;
 }
 
-tileFactory.prototype.makeHoodGroupSmallTile = function() {
-  var newTile = new HoodGroupSmallTile();
+tileFactory.prototype.makeDragonNPCTile = function() {
+  var newTile = new DragonNPCTile();
   return newTile;
 }
 
-tileFactory.prototype.makeHoodGroupLargeTile = function() {
-  var newTile = new HoodGroupLargeTile();
+tileFactory.prototype.makeEttinSorcererNPCTile = function() {
+  var newTile = new EttinSorcererNPCTile();
   return newTile;
 }
 
-tileFactory.prototype.makeRogueGroupSmallTile = function() {
-  var newTile = new RogueGroupSmallTile();
+tileFactory.prototype.makeGiantNPCTile = function() {
+  var newTile = new GiantNPCTile();
   return newTile;
 }
 
-tileFactory.prototype.makeRogueGroupLargeTile = function() {
-  var newTile = new RogueGroupLargeTile();
+tileFactory.prototype.makeKrakenNPCTile = function() {
+  var newTile = new KrakenNPCTile();
   return newTile;
 }
 
-tileFactory.prototype.makeThiefGroupSmallTile = function() {
-  var newTile = new ThiefGroupSmallTile();
+tileFactory.prototype.makeReaperNPCTile = function() {
+  var newTile = new ReaperNPCTile();
   return newTile;
 }
 
-tileFactory.prototype.makeThiefGroupLargeTile = function() {
-  var newTile = new ThiefGroupLargeTile();
+tileFactory.prototype.makeSpecterNPCTile = function() {
+  var newTile = new SpecterNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDaemonNPCTile = function() {
+  var newTile = new DaemonNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDelverNPCTile = function() {
+  var newTile = new DelverNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeLicheNPCTile = function() {
+  var newTile = new LicheNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEyesofSpiteNPCTile = function() {
+  var newTile = new EyesofSpiteNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeReaperLordNPCTile = function() {
+  var newTile = new ReaperLordNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeElderDragonNPCTile = function() {
+  var newTile = new ElderDragonNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBalronNPCTile = function() {
+  var newTile = new BalronNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTitanNPCTile = function() {
+  var newTile = new TitanNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAbyssalKrakenNPCTile = function() {
+  var newTile = new AbyssalKrakenNPCTile();
   return newTile;
 }
 
