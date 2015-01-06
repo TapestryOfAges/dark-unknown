@@ -213,6 +213,17 @@ GameObject.prototype.copy = function(type) {
       });
       copydata[idx] = spawnserials;
       if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serials, serial# " + copydata[idx] + "...</span> "); }
+    } else if (idx === "equippedTo") {
+      if (val) {
+        copydata[idx] = val.getSerial();
+        if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serial, serial# " + copydata[idx] + "...</span> "); }
+      } else {
+        if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " is empty, not saved...</span> "); }
+      }
+    } else if (idx === "equipment") {
+      $.each(val, function(eqidx, eqval) {
+        
+      });
     } else {
       if (debug) { dbs.writeln("<span style='color:red'>" + idx + " is type " + typeof val + "</span>,  "); }
       alert("SAVE NEEDS " + idx + "!");
