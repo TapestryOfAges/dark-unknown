@@ -783,7 +783,7 @@ function objectCompare(objA, objB) {
         }
       }
     }
-    if ($.compare(objA[i],objB[i]) === false){
+    if (objectCompare(objA[i],objB[i]) === false){
       return false;
     }
   }
