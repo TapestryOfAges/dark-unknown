@@ -107,10 +107,20 @@ GameStateData.prototype.saveGame = function() {
 	  var mapnpcs = val.npcs.getAll();
 	  if (debug) { dbs.writeln("<br /><span style='font-weight:bold'>Copying " + mapnpcs.length + " NPCs from map " + idx + "</span><br />"); }
 	  $.each(mapnpcs, function (npcidx, npcval) {
-	    var copies = npcval.copy();
-	    // note- this is going to explode gloriously if I have a closed loop anywhere other than to and from maps
+	    if (!npcval.nosave) {
+	      var copies = npcval.copy();
+  	    // note- this is going to explode gloriously if I have a closed loop anywhere other than to and from maps
+	      // so far so good though!
+	      $.each(copies, function(copidx, copval) {
+	        savedata.objs[copval.serial] = copval;
+	      });
+	    }
+	    
 	  });
 	});
+	
+	// save the PC!
+	
 	
 	
 }

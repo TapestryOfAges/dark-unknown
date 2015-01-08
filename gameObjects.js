@@ -139,7 +139,8 @@ GameObject.prototype.copy = function(type) {
     return localFactory.createTile(tilename);
   }
   
-  if (debug) { dbs.writeln("<br /><span style='font-weight:bold'><br />Copying " + this.getName() + ", serial " + this.getSerial() + ":</span><br />"); }
+  var savename = this.getName();
+  if (debug) { dbs.writeln("<br /><span style='font-weight:bold'><br />Copying " + savename + ", serial " + this.getSerial() + ":</span><br />"); }
   var base_version = eidos.getForm(this.getName());
   var copydata = {};
   var copies = [];
@@ -213,7 +214,7 @@ GameObject.prototype.copy = function(type) {
       });
       copydata[idx] = spawnserials;
       if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serials, serial# " + copydata[idx] + "...</span> "); }
-    } else if (idx === "equippedTo") {
+    } else if ((idx === "equippedTo") || (idx === "attachedTo")) {
       if (val) {
         copydata[idx] = val.getSerial();
         if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serial, serial# " + copydata[idx] + "...</span> "); }
@@ -221,12 +222,44 @@ GameObject.prototype.copy = function(type) {
         if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " is empty, not saved...</span> "); }
       }
     } else if (idx === "equipment") {
+      copydata[idx] = {};
       $.each(val, function(eqidx, eqval) {
-        
+        if (debug) { dbs.writeln("<span>" + idx + ": " + eqidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
+        var equipcopy = eqval.copy();
+        copydata[idx][eqidx] = equipcopy.serial;
+        copies.push(equipcopy);
+        if (debug) { dbs.writeln("<span>Copy made, " + eqidx + " added as serial to main object...</span> "); }
       });
+    } else if (idx === "inventory") {
+      var inv = val.getAll();
+      copydata[idx] = [];
+      $.each(inv, function(invidx, invval) {
+        if (debug) { dbs.writeln("<span>" + idx + ": " + invidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
+        var invcopy = invval.copy();
+        copydata[idx].push(invcopy.serial);
+        copies.push(invcopy);
+        if (debug) { dbs.writeln("<span>Copy made, " + invidx + " added as serial to main object...</span> "); }
+      });
+    } else if (idx === "spellEffects") {
+      var spells = val.getAll();
+      copydata[idx] = [];
+      $.each(spells, function(spellidx, spellval) {
+        if (debug) { dbs.writeln("<span>" + idx + ": " + spellidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
+        var spellcopy = spellval.copy();
+        copydata[idx].push(spellcopy.serial);
+        copies.push(spellcopy);
+        if (debug) { dbs.writeln("<span>Copy made, " + spellidx + " added as serial to main object...</span> "); }
+      });
+    } else if (idx === "spellsknown") {
+      if (objectCompare(val, base_version[idx])) {
+        if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
+      } else {
+        copydata[idx] = val;
+        dbs.writeln("<span style='color:purple'>" + idx + " different, saved.</span>");
+      }
     } else {
-      if (debug) { dbs.writeln("<span style='color:red'>" + idx + " is type " + typeof val + "</span>,  "); }
-      alert("SAVE NEEDS " + idx + "!");
+      if (debug) { dbs.writeln("<br /><span style='color:red'>" + idx + " is type " + typeof val + "</span>,  "); }
+      alert(savename + " SAVE NEEDS " + idx + "!");
     }
     // WORKING HERE
     
