@@ -132,7 +132,7 @@ $(document).ready(function() {
   populate_audio(musiclist, 0, 1, "music");
   populate_audio(sfxlist, 1, 0, "sfx");
 	
-  gamestate.loadGame();
+  gamestate.loadTmp();
   DrawCharFrame();
   
 

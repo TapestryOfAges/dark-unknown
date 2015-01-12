@@ -7,7 +7,7 @@ function GameStateData() {
 
 
 
-GameStateData.prototype.loadGame = function() {
+GameStateData.prototype.loadTmp = function() {
 	// Temporarily, this will return demo values
 //  PC.setx(47);
 //  PC.sety(49);
@@ -120,8 +120,18 @@ GameStateData.prototype.saveGame = function() {
 	});
 	
 	// save the PC!
+	var copies = PC.copy();
+	$.each(copies, function(copidx, copval) {
+	  savedata.objs[copval.serial] = copval;
+	});
+
+  var serialized = JSON.stringify(savedata);
+	var compressed = LZString.compressToUTF16(serialized);
 	
+	if (debug) { dbs.writeln("<br /><br /><p>" + serialized + "</p><br />"); }
+	//this is where we would add a prompt for save game name if we want to allow multiple saves
 	
+	localStorage.savegame = compressed;
 	
 }
 
