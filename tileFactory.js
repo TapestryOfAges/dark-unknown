@@ -1904,3 +1904,8 @@ tileFactory.prototype.makeLockedWallPortcullisTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePCTile = function() {
+  var newTile = new PCObject();
+  return newTile;
+}
+
