@@ -80,6 +80,7 @@ GameStateData.prototype.loadTmp = function() {
 // eventually use var compressed = LZString.compressToUTF16(string); and string = LZString.decompressFromUTF16(localStorage.getItem("myData"));
 // also, respect .nosave property
 GameStateData.prototype.saveGame = function() {
+  gamestate.setMode("loadgame");
 	var savedata = {};
 	
 	savedata.time = DUTime.getGameClock();   // no timeline- .copy needs to add a time field if an item is on the timeline
@@ -133,6 +134,28 @@ GameStateData.prototype.saveGame = function() {
 	
 	localStorage.savegame = compressed;
 	
+}
+
+GameStateData.prototype.loadGame = function() {
+  var compressed = localStorage.savegame;
+  var serialized = LZString.decompressFromUTF16(compressed);
+  var savedata = JSON.parse(serialized);
+  
+  DUTime.setGameClock(savedata.time);
+  DU.gameflags = {};
+  $.extend(true,DU.gameflags,savedata.gameflags);
+  
+  var loadmaps = {};
+  
+  $.each(savedata.maps, function(idx, val) {
+    //load all the maps
+    loadmaps[val] = new GameMap();
+    loadmaps[val].loadMap("skypalace");
+  	maps.addMapByRef(loadmaps[val]);
+     
+  });
+  
+  startScheduler();
 }
 
 GameStateData.prototype.setMode = function(mode) {
