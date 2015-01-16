@@ -244,4 +244,6 @@ print $out "<b>icebreath</b>: Similar to fire breath. Less damage but chance of 
 print $out "<b>phase</b>: Can turn itself invisible temporarily.<br />\n";
 print $out "<b>createundead</b>: Can summon low level undead, such as skeletons and ghosts.<br />\n";
 print $out "<b>summonearthelemental</b>: Can summon an earth elemental once.<br />\n";
-print $out "<b>stealfood</b>: Announces that it has stolen some food. Since food is not tracked, this is not actually a problem.<br />\n";
+print $out "<b>stealfood</b>: Announces that it has stolen some food. Since food is not tracked, this is not actually a problem in and of itself.<br />\n";
+print $out "<b>breedsexplosively</b>: Each turn there is a chance that it spawns a new one... but only if it or the gremlin it spawned from has stolen food.<br />\n";
+
