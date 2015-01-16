@@ -155,6 +155,13 @@ GameStateData.prototype.loadGame = function() {
      
   });
   
+  // go through all the objects that were saved
+  $.each(savedata.objs, function(idx, val) {
+    $.each(val.traceback, function(tbidx, ibval) {
+      // things will have 0 (if in inventory or the like), 1 (on a map), or 2 (map and timeline) entries here
+    });
+  });
+  
   startScheduler();
 }
 
