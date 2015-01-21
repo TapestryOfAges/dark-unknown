@@ -137,9 +137,11 @@ GameStateData.prototype.saveGame = function() {
 }
 
 GameStateData.prototype.loadGame = function() {
+  if (debug) { dbs.writeln("<p><span style='font-weight:bold'>Start load procedure:</span><br />"); }
   var compressed = localStorage.savegame;
   var serialized = LZString.decompressFromUTF16(compressed);
   var savedata = JSON.parse(serialized);
+  var universe = {};
   
   DUTime.setGameClock(savedata.time);
   DU.gameflags = {};
@@ -150,13 +152,28 @@ GameStateData.prototype.loadGame = function() {
   $.each(savedata.maps, function(idx, val) {
     //load all the maps
     loadmaps[val] = new GameMap();
-    loadmaps[val].loadMap("skypalace");
+    loadmaps[val].loadMap(val);
   	maps.addMapByRef(loadmaps[val]);
-     
+     if (debug) { dbs.writeln("Loaded map: " + val + "<br />"); }
   });
   
   // go through all the objects that were saved
   $.each(savedata.objs, function(idx, val) {
+    // idx is the serial, val is the object with only saved properties
+    my savename = val.name;
+    my newobj = localFactory.createTile(savename);
+    universe[idx] = newobj;
+    if (debug) { dbs.writeln("Loading object: " + savename + ", serial # + " idx + "...<br />"); }
+    $.each(val, function(svidx, svval) {
+      if (debug) { dbs.writeln("&nbsp;&nbsp;Loading property " + svidx + "...<br />"); }  
+      if (idx === "") {
+        
+      } else {
+        
+      }
+    });
+    
+    
     $.each(val.traceback, function(tbidx, ibval) {
       // things will have 0 (if in inventory or the like), 1 (on a map), or 2 (map and timeline) entries here
     });
