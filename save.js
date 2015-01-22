@@ -166,17 +166,24 @@ GameStateData.prototype.loadGame = function() {
     if (debug) { dbs.writeln("Loading object: " + savename + ", serial # + " idx + "...<br />"); }
     $.each(val, function(svidx, svval) {
       if (debug) { dbs.writeln("&nbsp;&nbsp;Loading property " + svidx + "...<br />"); }  
-      if (idx === "") {
-        
-      } else {
-        
-      }
+      newobj.svidx = svval;
     });
+    
+  });
+
+  if (debug) { dbs.writeln("<br />SECOND RUN THROUGH LOADED OBJECTS<br />"); }
+  var topserial = 1;
+  $.each(universe, function(idx, val) {
+    
+    if (val.serial > topserial) { topserial = val.serial; }
+    if (debug) { dbs.writeln("Processing object: " + val.name + ", serial # + " idx + "...<br />"); }
     
     
     $.each(val.traceback, function(tbidx, ibval) {
       // things will have 0 (if in inventory or the like), 1 (on a map), or 2 (map and timeline) entries here
     });
+
+    
   });
   
   startScheduler();
