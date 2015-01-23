@@ -137,6 +137,7 @@ GameStateData.prototype.saveGame = function() {
 }
 
 GameStateData.prototype.loadGame = function() {
+  gamestate.setMode("loadgame");
   if (debug) { dbs.writeln("<p><span style='font-weight:bold'>Start load procedure:</span><br />"); }
   var compressed = localStorage.savegame;
   var serialized = LZString.decompressFromUTF16(compressed);
@@ -163,7 +164,7 @@ GameStateData.prototype.loadGame = function() {
     my savename = val.name;
     my newobj = localFactory.createTile(savename);
     universe[idx] = newobj;
-    if (debug) { dbs.writeln("Loading object: " + savename + ", serial # + " idx + "...<br />"); }
+    if (debug) { dbs.writeln("Loading object: " + savename + ", serial # + " + idx + "...<br />"); }
     $.each(val, function(svidx, svval) {
       if (debug) { dbs.writeln("&nbsp;&nbsp;Loading property " + svidx + "...<br />"); }  
       newobj.svidx = svval;
@@ -178,7 +179,44 @@ GameStateData.prototype.loadGame = function() {
     if (val.serial > topserial) { topserial = val.serial; }
     if (debug) { dbs.writeln("Processing object: " + val.name + ", serial # + " idx + "...<br />"); }
     
-    
+    if (val.serial == 1) { PC = val; }
+    if (val.homemap) {
+      val.homemap = loadmaps[val.homemap];
+      if (debug) { dbs.writeln("&nbsp;&nbsp;Setting home map to " + val.homemap + "...<br />"); }
+    } else if (val.spawned) {
+      var spawnlist = val.spawned;
+      val.spawned = new Collection();
+      $.each(spawnlist, function(spawnidx, spawnval) {
+        val.spawned.addTop(universe[spawnval]);
+      });
+    } else if (val.inventory) {
+      var inv = val.inventory;
+      val.inventory = new Collection();
+      $.each(inv, function(invidx, invval) {
+        val.addToInventory(universe[invval], 1);
+      });
+    } else if (val.equipment) {
+      var inv = val.equipment;
+      val.equipment = {};
+      $.each(inv,function(invidx, invval) {
+        var equipment = universe[invval];
+        if (equipment.checkType("Armor")) {
+          val.setArmor(equipment);
+        }
+        if (equipment.checkType("Weapon")) {
+          val.setWeapon(equipment);
+        }
+        if (equipment.checkType("Missile")) {
+          val.setMissile(equipment);
+        }
+      });
+    } else if (val.spelleffects) {
+      var inv = val.spelleffects;
+      val.inventory = new Collection();
+      $.each(inv, function(invidx, invval) {
+        val.addSpellEffect(universe[invval], 1);
+      });
+    }
     $.each(val.traceback, function(tbidx, ibval) {
       // things will have 0 (if in inventory or the like), 1 (on a map), or 2 (map and timeline) entries here
     });
