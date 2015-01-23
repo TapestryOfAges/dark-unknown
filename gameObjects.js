@@ -261,7 +261,7 @@ GameObject.prototype.copy = function(type) {
       if (debug) { dbs.writeln("<br /><span style='color:red'>" + idx + " is type " + typeof val + "</span>,  "); }
       alert(savename + " SAVE NEEDS " + idx + "!");
     }
-    // WORKING HERE
+    // ADD HERE WHEN THERE ARE MORE
     
   });
   
