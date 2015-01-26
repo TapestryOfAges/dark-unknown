@@ -224,11 +224,13 @@ GameObject.prototype.copy = function(type) {
     } else if (idx === "equipment") {
       copydata[idx] = {};
       $.each(val, function(eqidx, eqval) {
-        if (debug) { dbs.writeln("<span>" + idx + ": " + eqidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
-        var equipcopy = eqval.copy();
-        copydata[idx][eqidx] = equipcopy.serial;
-        copies.push(equipcopy);
-        if (debug) { dbs.writeln("<span>Copy made, " + eqidx + " added as serial to main object...</span> "); }
+        if (eqval) {
+          if (debug) { dbs.writeln("<span>" + idx + ": " + eqidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
+          var equipcopy = eqval.copy();
+          copydata[idx][eqidx] = equipcopy[0].serial;
+          copies.push(equipcopy[0]);   // using index rather than each here because equipment can't chain farther
+          if (debug) { dbs.writeln("<span>Copy made, " + eqidx + " added as serial to main object...</span> "); }
+        }
       });
     } else if (idx === "inventory") {
       var inv = val.getAll();
@@ -236,8 +238,8 @@ GameObject.prototype.copy = function(type) {
       $.each(inv, function(invidx, invval) {
         if (debug) { dbs.writeln("<span>" + idx + ": " + invidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
         var invcopy = invval.copy();
-        copydata[idx].push(invcopy.serial);
-        copies.push(invcopy);
+        copydata[idx][invidx] = invcopy[0].serial;
+        copies.push(invcopy[0]);   // using index rather than each here as well for the same reason
         if (debug) { dbs.writeln("<span>Copy made, " + invidx + " added as serial to main object...</span> "); }
       });
     } else if (idx === "spellEffects") {
@@ -247,7 +249,7 @@ GameObject.prototype.copy = function(type) {
         if (debug) { dbs.writeln("<span>" + idx + ": " + spellidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
         var spellcopy = spellval.copy();
         copydata[idx].push(spellcopy.serial);
-        copies.push(spellcopy);
+        copies.push(spellcopy[0]);  // probably should make this each as future proofing
         if (debug) { dbs.writeln("<span>Copy made, " + spellidx + " added as serial to main object...</span> "); }
       });
     } else if (idx === "spellsknown") {
@@ -265,6 +267,7 @@ GameObject.prototype.copy = function(type) {
     
   });
   
+  if (debug) { dbs.writeln("<br /><span style='font-weight:bold'>Copying " + copies.length + " objects.</span><br />  "); }
   return copies;
   
 }
@@ -2451,7 +2454,7 @@ WorldBelowTile.prototype = new TerrainObject();
 // Features!
 function FeatureObject() {
   this.addType("Feature");
-  this.searchYield = [];
+  this.searchYield = [];   // be careful here
   this.showSearched = 0;
   this.gold = 0;
 }
@@ -5628,27 +5631,39 @@ function NPCObject() {
 	this.armorResist = -1;
 	this.initmult = 1;
 	this.movetype = MOVE_WALK;
-	this.inventory = new Collection();
-  this.equipment = {};
-	this.equipment.armor;
-	this.equipment.weapon;
-	this.equipment.missile;
 	this.meleeChance = 100;
-	this.resists = {};   // fire, ice
   this.gold = 0;
 	this.leavesCorpse = "";
 	this.lootTable = "";
 	this.lastTurnTime = 0;
-	this.spellbook = [];
-	this.spellEffects = new Collection();
 	this.knowsInfusion = 0;
 	this.conversation = "";
 	this.merch = "";
+	this.spawnedBy;
+	
+	this.addType("npc");
+	AddNPCProperties.call(this);
+}
+NPCObject.prototype = new AnimateObject();
+
+function AddNPCProperties() {
+  this.equipment = {};
+  this.equipment.armor = "";
+  this.equipment.weapon = "";
+  this.equipment.missile = "";
+
+	this.inventory = new Collection();
+	
+	this.spellbook = [];
+	this.spellEffects = new Collection();
+	
+	this.resists = {};   // fire, ice
+
 	this.lastLocation = {};
 	this.lastLocation.map = "";
 	this.lastLocation.x = 0;
 	this.lastLocation.y = 0;
-	this.spawnedBy;
+		
 	//brain
 	this.currentPoI = {};
   this.currentDestination = {};
@@ -5656,10 +5671,8 @@ function NPCObject() {
   this.turnsToRecalcDest = 0;
   this.currentPath = [];
   this.destType;
-	
-	this.addType("npc");
+
 }
-NPCObject.prototype = new AnimateObject();
 
 NPCObject.prototype.getDesc = function() {
   var knowsflag = "knows_" + this.conversation;
@@ -6214,21 +6227,35 @@ NPCObject.prototype.activate = function(timeoverride) {
     var weapon;
     var missileweapon;
     var armor;
-  
-    if ((this.getMeleeAttackAs()) && (this.getMeleeAttackAs !== "none")) {
+    
+    if ((this.getMeleeAttackAs()) && (this.getMeleeAttackAs() !== "none")) {
       weapon = localFactory.createTile(this.getMeleeAttackAs());
       this.setEquipment("weapon",weapon);
     }
     else {
       weapon = localFactory.createTile("NaturalWeapon");
+      
+      if (this.meleeDamage !== -1) {
+        weapon.setDamage(this.meleeDamage);
+      }
+      if (this.meleeStrDamage !== -1) {
+        weapon.setStrDamage(this.meleeStrDamage);
+      }
       this.setEquipment("weapon",weapon);
     } 
     if ((this.getMissileAttackAs()) && (this.getMissileAttackAs() !== "none")) {
       missileweapon = localFactory.createTile(this.getMissileAttackAs());
       this.setEquipment("missile",missileweapon);
     } 
-    else {
+    else if (this.getMissileAttackAs() !== "none") {
       missileweapon = localFactory.createTile("NaturalMissileWeapon");
+      if (this.missileDamage !== -1) {
+        missileweapon.setDamage(this.missileDamage);
+      }
+      if (this.missileRange !== -1) {
+        missileweapon.setRange(this.missileRange);
+      }
+
       this.setEquipment("missile",missileweapon);
     } 
     if ((this.getArmorAs()) && (this.getArmorAs() !== "none")) {
@@ -6237,31 +6264,19 @@ NPCObject.prototype.activate = function(timeoverride) {
     }
     else {
       armor = localFactory.createTile("NaturalArmor");
+      if (this.armorDefense !== -1) {
+        armor.setDefense(this.armorDefense);
+      }
+      if (this.armorResist !== -1) {
+        armor.setResist(this.armorResist);
+      }
+      if (this.armorAbsorb !== -1) {
+        armor.setAbsorb(this.armorAbsorb);
+      }
+
       this.setEquipment("armor",armor);
     } 
-  
-    if (this.meleeDamage !== -1) {
-      weapon.setDamage(this.meleeDamage);
-    }
-    if (this.meleeStrDamage !== -1) {
-      weapon.setStrDamage(this.meleeStrDamage);
-    }
-  
-    if (this.missileDamage !== -1) {
-      missileweapon.setDamage(this.missileDamage);
-    }
-    if (this.missileRange !== -1) {
-      missileweapon.setRange(this.missileRange);
-    }
-    if (this.armorDefense !== -1) {
-      armor.setDefense(this.armorDefense);
-    }
-    if (this.armorResist !== -1) {
-      armor.setResist(this.armorResist);
-    }
-    if (this.armorAbsorb !== -1) {
-      armor.setAbsorb(this.armorAbsorb);
-    }
+    
   
     var timing = this.nextActionTime(0);
     timing = timing/2;
@@ -6730,6 +6745,10 @@ function PCObject() {
 	this.graphic = "300.gif";
 	this.meleeAttackAs = "Fists";
 	this.missileAttackAs = "none";
+  this.equipment = {};
+  this.equipment.armor = "";
+  this.equipment.weapon = "";
+  this.equipment.missile = "";
 	this.maxhp = 30 * this.level;
 	this.hp = this.maxhp;
 	this.maxmana = this.int;
