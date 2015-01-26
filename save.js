@@ -11,8 +11,8 @@ GameStateData.prototype.loadTmp = function() {
 	// Temporarily, this will return demo values
 //  PC.setx(47);
 //  PC.sety(49);
-  PC.setx(8);
-  PC.sety(8);
+  PC.setx(13);
+  PC.sety(19);
 
 	PC.setPCName("Goldenflame");
 	var themap;
@@ -21,15 +21,22 @@ GameStateData.prototype.loadTmp = function() {
 	} else {
 	  themap = new GameMap();
     themap.loadMap("darkunknown");
-
+    maps.addMapByRef(themap);
 	}
   var anothermap = new GameMap();
-  anothermap.loadMap("skypalace");
+  anothermap.loadMap("pitdespair1");
 	PC.setHomeMap(anothermap);
 	maps.addMapByRef(anothermap);
 //  PC.setHomeMap(themap);
-//  var rats = localFactory.createTile("OrcGroupLarge");
-//  themap.placeThing(65,70,rats);
+  var rats = localFactory.createTile("GiantBatNPC");
+  anothermap.placeThing(12,20,rats);
+  var rats2 = localFactory.createTile("GiantBatNPC");
+  anothermap.placeThing(14,20,rats2);
+  var rats3 = localFactory.createTile("GiantInsectsNPC");
+  anothermap.placeThing(12,18,rats3);
+  var rats4 = localFactory.createTile("GiantInsectsNPC");
+  anothermap.placeThing(14,18,rats4);
+
   var dagger = localFactory.createTile("Dagger");
   PC.addToInventory(dagger, 1);
   PC.addGold(1000);
@@ -99,6 +106,7 @@ GameStateData.prototype.saveGame = function() {
 	    if (!feaval.nosave) {
   	    var copies = feaval.copy();
 	      $.each(copies, function(copidx, copval) {
+	        if (debug) { dbs.writeln("<br /><span style='font-weight:bold'>!Adding " + copval.name + " to save object!</span><br />"); }
 	        savedata.objs[copval.serial] = copval;
 	      });
 	    }
@@ -113,6 +121,7 @@ GameStateData.prototype.saveGame = function() {
   	    // note- this is going to explode gloriously if I have a closed loop anywhere other than to and from maps
 	      // so far so good though!
 	      $.each(copies, function(copidx, copval) {
+	        if (debug) { dbs.writeln("<br /><span style='font-weight:bold'>!Adding " + copval.name + " to save object!</span><br />"); }
 	        savedata.objs[copval.serial] = copval;
 	      });
 	    }
@@ -138,6 +147,11 @@ GameStateData.prototype.saveGame = function() {
 
 GameStateData.prototype.loadGame = function() {
   gamestate.setMode("loadgame");
+  if (!localStorage.savegame) {
+    gamestate.loadTmp();
+    return;
+  }
+
   if (debug) { dbs.writeln("<p><span style='font-weight:bold'>Start load procedure:</span><br />"); }
   var compressed = localStorage.savegame;
   var serialized = LZString.decompressFromUTF16(compressed);
@@ -161,10 +175,10 @@ GameStateData.prototype.loadGame = function() {
   // go through all the objects that were saved
   $.each(savedata.objs, function(idx, val) {
     // idx is the serial, val is the object with only saved properties
-    my savename = val.name;
-    my newobj = localFactory.createTile(savename);
+    var savename = val.name;
+    if (debug) { dbs.writeln("Loading object: " + savename + ", serial # " + idx + "...<br />"); }
+    var newobj = localFactory.createTile(savename);
     universe[idx] = newobj;
-    if (debug) { dbs.writeln("Loading object: " + savename + ", serial # + " + idx + "...<br />"); }
     $.each(val, function(svidx, svval) {
       if (debug) { dbs.writeln("&nbsp;&nbsp;Loading property " + svidx + "...<br />"); }  
       newobj.svidx = svval;
@@ -177,25 +191,25 @@ GameStateData.prototype.loadGame = function() {
   $.each(universe, function(idx, val) {
     
     if (val.serial > topserial) { topserial = val.serial; }
-    if (debug) { dbs.writeln("Processing object: " + val.name + ", serial # + " idx + "...<br />"); }
+    if (debug) { dbs.writeln("Processing object: " + val.name + ", serial # + " + idx + "...<br />"); }
     
     if (val.serial == 1) { PC = val; }
-    if (val.homemap) {
-      val.homemap = loadmaps[val.homemap];
-      if (debug) { dbs.writeln("&nbsp;&nbsp;Setting home map to " + val.homemap + "...<br />"); }
-    } else if (val.spawned) {
+
+    if (val.spawned) {
       var spawnlist = val.spawned;
       val.spawned = new Collection();
       $.each(spawnlist, function(spawnidx, spawnval) {
         val.spawned.addTop(universe[spawnval]);
       });
-    } else if (val.inventory) {
+    } 
+    if (val.inventory) {
       var inv = val.inventory;
       val.inventory = new Collection();
       $.each(inv, function(invidx, invval) {
         val.addToInventory(universe[invval], 1);
       });
-    } else if (val.equipment) {
+    } 
+    if (val.equipment) {
       var inv = val.equipment;
       val.equipment = {};
       $.each(inv,function(invidx, invval) {
@@ -210,16 +224,30 @@ GameStateData.prototype.loadGame = function() {
           val.setMissile(equipment);
         }
       });
-    } else if (val.spelleffects) {
+    } 
+    if (val.spelleffects) {
       var inv = val.spelleffects;
       val.inventory = new Collection();
       $.each(inv, function(invidx, invval) {
         val.addSpellEffect(universe[invval], 1);
       });
     }
-    $.each(val.traceback, function(tbidx, ibval) {
-      // things will have 0 (if in inventory or the like), 1 (on a map), or 2 (map and timeline) entries here
-    });
+    if (val.traceback) {
+      $.each(val.traceback, function(tbidx, ibval) {
+        // things will have 0 (if in inventory or the like), 1 (on a map), or 2 (map and timeline) entries here
+        if (ibval === "homeMap") {
+          if (debug) { dbs.writeln("&nbsp;&nbsp;Setting home map to " + val.homeMap + "...<br />"); }          
+          loadmaps[val.homeMap].placeThing(val.x, val.y, val);
+        }
+        if (ibval == "timeline") {
+          var newEvent = new GameEvent(val);
+          DUTime.addAtTime(newEvent, val.timestamp);
+          delete val.timestamp;
+        }
+        
+      });
+      delete val.traceback;
+    }
 
     
   });
