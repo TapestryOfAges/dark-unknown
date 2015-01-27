@@ -5642,7 +5642,7 @@ function NPCObject() {
 	this.spawnedBy;
 	
 	this.addType("npc");
-	AddNPCProperties.call(this);
+//	AddNPCProperties.call(this);
 }
 NPCObject.prototype = new AnimateObject();
 
@@ -6211,6 +6211,31 @@ NPCObject.prototype.setSpawnedBy = function(spawner) {
 
 NPCObject.prototype.activate = function(timeoverride) {
   if (gamestate.getMode() !== "loadgame") {  
+    this.equipment = {};
+    this.equipment.armor = "";
+    this.equipment.weapon = "";
+    this.equipment.missile = "";
+
+	  this.inventory = new Collection();
+	
+  	this.spellbook = [];
+	  this.spellEffects = new Collection();
+	
+  	this.resists = {};   // fire, ice
+
+	  this.lastLocation = {};
+    this.lastLocation.map = "";
+	  this.lastLocation.x = 0;
+	  this.lastLocation.y = 0;
+		
+	  //brain
+	  this.currentPoI = {};
+    this.currentDestination = {};
+    this.turnsToRecalcPoI = 0;
+    this.turnsToRecalcDest = 0;
+    this.currentPath = [];
+    this.destType;
+
     if (debug) {
       dbs.writeln("<span style='color:green;font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") activating.</span><br />");
     }
@@ -6765,6 +6790,32 @@ function PCObject() {
 	LightEmitting.call(this, 0.5);
 	this.addType("pc");
 	
+  // kind of a hack
+  this.equipment = {};
+  this.equipment.armor = "";
+  this.equipment.weapon = "";
+  this.equipment.missile = "";
+
+	this.inventory = new Collection();
+	
+	this.spellbook = [];
+	this.spellEffects = new Collection();
+	
+	this.resists = {};   // fire, ice
+
+	this.lastLocation = {};
+	this.lastLocation.map = "";
+	this.lastLocation.x = 0;
+	this.lastLocation.y = 0;
+		
+	//brain
+	this.currentPoI = {};
+  this.currentDestination = {};
+  this.turnsToRecalcPoI = 0;
+  this.turnsToRecalcDest = 0;
+  this.currentPath = [];
+  this.destType;
+
 //	var myweapon = localFactory.createTile("Dagger");
 //	myweapon.equipMe(this);
 }
