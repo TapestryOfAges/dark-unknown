@@ -132,7 +132,11 @@ GameStateData.prototype.saveGame = function() {
 	// save the PC!
 	var copies = PC.copy();
 	$.each(copies, function(copidx, copval) {
-	  savedata.objs[copval.serial] = copval;
+    if (copval.name === "PC") {
+      copval.timestamp = savedata.time;
+      copval.traceback.push("timeline");
+    }
+    savedata.objs[copval.serial] = copval;
 	});
 
   var serialized = JSON.stringify(savedata);
@@ -155,6 +159,7 @@ GameStateData.prototype.loadGame = function() {
   if (debug) { dbs.writeln("<p><span style='font-weight:bold'>Start load procedure:</span><br />"); }
   var compressed = localStorage.savegame;
   var serialized = LZString.decompressFromUTF16(compressed);
+  if (debug) { dbs.writeln("<br /><br /><p>" + serialized + "</p><br />"); }
   var savedata = JSON.parse(serialized);
   var universe = {};
   
@@ -169,8 +174,10 @@ GameStateData.prototype.loadGame = function() {
     loadmaps[val] = new GameMap();
     loadmaps[val].loadMap(val);
   	maps.addMapByRef(loadmaps[val]);
-     if (debug) { dbs.writeln("Loaded map: " + val + "<br />"); }
+    if (debug) { dbs.writeln("Loaded map: " + val + "<br />"); }
   });
+  
+  if (debug) { dbs.writeln("<br /><h3>Done loading maps, on to objs...</h3>"); }
   
   // go through all the objects that were saved
   $.each(savedata.objs, function(idx, val) {
@@ -178,12 +185,11 @@ GameStateData.prototype.loadGame = function() {
     var savename = val.name;
     if (debug) { dbs.writeln("Loading object: " + savename + ", serial # " + idx + "...<br />"); }
     var newobj = localFactory.createTile(savename);
-    universe[idx] = newobj;
     $.each(val, function(svidx, svval) {
-      if (debug) { dbs.writeln("&nbsp;&nbsp;Loading property " + svidx + "...<br />"); }  
-      newobj.svidx = svval;
+      if (debug) { dbs.writeln("&nbsp;&nbsp;Loading property " + svidx + ", saving " + svval + "...<br />"); }  
+      newobj[svidx] = svval;
     });
-    
+    universe[idx] = newobj;
   });
 
   if (debug) { dbs.writeln("<br />SECOND RUN THROUGH LOADED OBJECTS<br />"); }
@@ -192,7 +198,7 @@ GameStateData.prototype.loadGame = function() {
     
     if (val.serial > topserial) { topserial = val.serial; }
     if (debug) { dbs.writeln("Processing object: " + val.name + ", serial # + " + idx + "...<br />"); }
-    
+    if (debug) { dbs.writeln("SERIALIZED NEW VERSION: " + JSON.stringify(val) +"<br />"); }
     if (val.serial == 1) { PC = val; }
 
     if (val.spawned) {
@@ -203,31 +209,39 @@ GameStateData.prototype.loadGame = function() {
       });
     } 
     if (val.inventory) {
+      if (debug) { dbs.writeln(val.name + " has an inventory, processing..."); }
       var inv = val.inventory;
       val.inventory = new Collection();
       $.each(inv, function(invidx, invval) {
+        if (debug) { dbs.writeln("adding " + universe[invval].name + "... "); }
         val.addToInventory(universe[invval], 1);
       });
+      if (debug) { dbs.writeln("<br />"); }
     } 
     if (val.equipment) {
+      if (debug) { dbs.writeln(val.name + " has equipment, processing..."); }
       var inv = val.equipment;
       val.equipment = {};
       $.each(inv,function(invidx, invval) {
         var equipment = universe[invval];
         if (equipment.checkType("Armor")) {
+          if (debug) { dbs.writeln("adding " + equipment.name + "... "); }
           val.setArmor(equipment);
         }
         if (equipment.checkType("Weapon")) {
+          if (debug) { dbs.writeln("adding " + equipment.name + "... "); }
           val.setWeapon(equipment);
         }
         if (equipment.checkType("Missile")) {
+          if (debug) { dbs.writeln("adding " + equipment.name + "... "); }
           val.setMissile(equipment);
         }
       });
+      if (debug) { dbs.writeln("<br />"); }
     } 
-    if (val.spelleffects) {
-      var inv = val.spelleffects;
-      val.inventory = new Collection();
+    if (val.spellEffects) {
+      var inv = val.spellEffects;
+      val.spellEffects = new Collection();
       $.each(inv, function(invidx, invval) {
         val.addSpellEffect(universe[invval], 1);
       });

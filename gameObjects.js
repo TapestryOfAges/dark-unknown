@@ -6797,24 +6797,7 @@ function PCObject() {
   this.equipment.missile = "";
 
 	this.inventory = new Collection();
-	
-	this.spellbook = [];
-	this.spellEffects = new Collection();
-	
-	this.resists = {};   // fire, ice
-
-	this.lastLocation = {};
-	this.lastLocation.map = "";
-	this.lastLocation.x = 0;
-	this.lastLocation.y = 0;
-		
-	//brain
-	this.currentPoI = {};
-  this.currentDestination = {};
-  this.turnsToRecalcPoI = 0;
-  this.turnsToRecalcDest = 0;
-  this.currentPath = [];
-  this.destType;
+  this.spellEffects = new Collection();	
 
 //	var myweapon = localFactory.createTile("Dagger");
 //	myweapon.equipMe(this);
