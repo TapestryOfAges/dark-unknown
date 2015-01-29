@@ -1091,7 +1091,7 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
 //    }
 
 	  //update pathfinding
-	  if (type !== "npcs") {
+	  if ((type !== "npcs") && (type !== "pcs")) {
       var tile = this.getTile(x,y);
       for (var itr=1; itr<=16; itr=itr*2) {
         var response = tile.canMoveHere(itr, 1);
@@ -1151,7 +1151,7 @@ GameMap.prototype.deleteThing = function(thing) {
 	this.data[thing.gety()][thing.getx()][type].deleteFrom(thing);
 	
 	//update pathfinding
-	if (type !== "npcs") {
+	if ((type !== "npcs") && (type !== "pcs")) {
     var tile = this.getTile(oldx,oldy);
 	  for (var i=1; i<=16; i=i*2) {
 	    var response = tile.canMoveHere(i, 1);

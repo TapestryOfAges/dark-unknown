@@ -76,6 +76,7 @@ GameStateData.prototype.loadTmp = function() {
 		}
 	}
 //	DUTime.setGameClock(0);
+  PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
 	var PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,.0001);
 //  var nextEvent = DUTime.executeNextEvent();
@@ -262,7 +263,9 @@ GameStateData.prototype.loadGame = function() {
       });
       delete val.traceback;
     }
-
+    if (val.name === "PC") {
+      PC = val;
+    }
     
   });
   

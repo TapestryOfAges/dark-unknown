@@ -132,14 +132,14 @@ $(document).ready(function() {
   populate_audio(musiclist, 0, 1, "music");
   populate_audio(sfxlist, 1, 0, "sfx");
 	
-//  gamestate.loadGame();
-  gamestate.loadTmp();
+  gamestate.loadGame();
+//  gamestate.loadTmp();
   DrawCharFrame();
   
 
   
   
-  PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
+//  PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 

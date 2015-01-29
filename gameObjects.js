@@ -6434,12 +6434,12 @@ NPCObject.prototype.myTurn = function() {
 	
   // check for NPC idling
   var oldloc = this.getLastLocation();
-  if ((oldloc.map === this.getHomeMap()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // npc did not move
+  if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // npc did not move
     var tile = this.getHomeMap().getTile(this.getx(),this.gety());
     var idleval = tile.executeIdles(this);
   } else {
     var newloc = {};
-    newloc.map = this.getHomeMap();
+    newloc.map = this.getHomeMap().getName();
     newloc.x = this.getx();
     newloc.y = this.gety();
     this.setLastLocation(newloc);
@@ -6799,6 +6799,11 @@ function PCObject() {
 	this.inventory = new Collection();
   this.spellEffects = new Collection();	
 
+	this.lastLocation = {};
+	this.lastLocation.map = "";
+	this.lastLocation.x = 0;
+	this.lastLocation.y = 0;
+
 //	var myweapon = localFactory.createTile("Dagger");
 //	myweapon.equipMe(this);
 }
@@ -6838,12 +6843,12 @@ PCObject.prototype.endTurn = function(init) {
   // did the player idle?
   var oldloc = this.getLastLocation();
   var idleval;
-  if ((oldloc.map === this.getHomeMap()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // player did not move
+  if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // player did not move
     var tile = this.getHomeMap().getTile(this.getx(),this.gety());
     idleval = tile.executeIdles(this);
   } else {
     var newloc = {};
-    newloc.map = this.getHomeMap();
+    newloc.map = this.getHomeMap().getName();
     newloc.x = this.getx();
     newloc.y = this.gety();
     this.setLastLocation(newloc);
