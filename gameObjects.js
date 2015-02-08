@@ -4276,7 +4276,8 @@ PlatformOfWindsTile.prototype.walkon = function(who) {
 
     var windlist = this.windlist;
     setTimeout( function() { whoosh(who, windlist, this.spawnat, this.spawnwhat); }, 100);
-    
+  
+    delete this.spawnwhat;  
     // play a wind sound
     return "WHOOSH!";
   }
@@ -4291,11 +4292,13 @@ function whoosh(whozat, windlist, spawnwhere, spawnthing) {
   windmap.moveThing(tox,toy,whozat);
   DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());  
   
-  // HANDLE SPAWNING WORKHERE
-  
   if (windlist[2]) {
     setTimeout( function() { whoosh(whozat, windlist.slice(2), spawnwhere, spawnthing); }, 100);
   } else {
+    var spawnedmonster = localFactory.createTile(spawnthing);
+    windmap.placeThing(spawnwhere[0], spawnwhere[1], spawnedmonster);
+    // add an "appears" visual effect?
+    
     whozat.endTurn(0);
   }
 }
