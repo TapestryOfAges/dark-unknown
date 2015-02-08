@@ -1120,6 +1120,8 @@ function CoralTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "coral reef";
+  
+  LightEmitting.call(this, 1);
 }
 CoralTile.prototype = new TerrainObject();
 
