@@ -21,6 +21,8 @@ function Atlas() {
   // 7-10 are features
     '%%' : "StoneWall", // 11
     "StoneWall" : '%%',
+    'c#' : "Coral",
+    "Coral" : 'c#',
   // 12 is a feature
     '#%' : "Stone",     // 13
     "Stone": '#%',
