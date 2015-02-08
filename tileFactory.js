@@ -51,6 +51,11 @@ tileFactory.prototype.makeStoneWallTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCoralTile = function() {
+  var newTile = new CoralTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeStoneTile = function() {
   var newTile = new StoneTile();
   return newTile;
