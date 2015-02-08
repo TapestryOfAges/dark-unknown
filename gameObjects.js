@@ -1113,6 +1113,16 @@ function StoneWallTile() {
 }
 StoneWallTile.prototype = new TerrainObject();
 
+function CoralTile() {
+  this.name = "CoralWall";
+  this.graphic = "coral.gif";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "coral reef";
+}
+CoralTile.prototype = new TerrainObject();
+
 function StoneTile() {
   this.name = "Stone";
 //  this.graphic = "013.gif";
