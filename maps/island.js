@@ -158,8 +158,8 @@ mappages["island"].onload = function(mapref) {
   }
 }
 
-mappages["island_cave"] = new Object();
-mappages["island_cave"].terrain = new Array;
+mappages["island_cave"] = {};
+mappages["island_cave"].terrain = [];
  mappages["island_cave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["island_cave"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["island_cave"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -173,19 +173,19 @@ mappages["island_cave"].terrain = new Array;
 mappages["island_cave"].terrain[10] = 'BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw cw BK cw cw cw cf cf cw BK BK BK BK cw cw cw cw cw BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["island_cave"].terrain[11] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["island_cave"].terrain[12] = 'BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cw cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["island_cave"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ^^ ^^ ^^ ^^ BK BK BK BK BK BK BK';
-mappages["island_cave"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw cw cf cf cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ^^ cf cf ^^ BK BK BK BK BK BK BK';
-mappages["island_cave"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw cw cw cw cf cf cf cf cf cf cw BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ^^ ^^ cf cf ^^ BK BK BK BK BK BK BK';
-mappages["island_cave"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw cw BK BK cw cw cf cf cf cf cf cw cw BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ^^ cf cf cf ^^ BK BK BK BK BK BK BK';
-mappages["island_cave"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK cw cw cf cf cf cf cf cw cw BK BK BK cw cw cw cf cf cf cw cw BK BK BK BK BK BK BK cw cw cw cw cw cw cw cw cw ^^ cf cf cf ^^ BK BK BK BK BK BK BK';
-mappages["island_cave"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK cw cw cf cf cf cf cf cw cw cw cw cw cf cf cf cf cf cw BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf ^^ ^^ BK BK BK BK BK BK BK';
-mappages["island_cave"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf ^^ BK BK BK BK BK BK BK BK';
+mappages["island_cave"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw BK BK BK BK BK BK BK';
+mappages["island_cave"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw cw cf cf cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw BK BK BK BK BK BK BK';
+mappages["island_cave"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw cw cw cw cf cf cf cf cf cf cw BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cw BK BK BK BK BK BK BK';
+mappages["island_cave"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw cw BK BK cw cw cf cf cf cf cf cw cw BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK';
+mappages["island_cave"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK cw cw cf cf cf cf cf cw cw BK BK BK cw cw cw cf cf cf cw cw BK BK BK BK BK BK BK cw cw cw cw cw cw cw cw cw cw cf cf cf cw BK BK BK BK BK BK BK';
+mappages["island_cave"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK cw cw cf cf cf cf cf cw cw cw cw cw cf cf cf cf cf cw BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["island_cave"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
 mappages["island_cave"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
-mappages["island_cave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw ^^ ^^ cf cf cf cf cf cf cw cw BK BK BK BK BK BK';
-mappages["island_cave"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw ^^ ^^ cf cf cf ^^ cw cf cf cf cw BK BK BK BK BK BK';
-mappages["island_cave"].terrain[23] = 'BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK ^^ cf cf cf ^^ ^^ cw cf cf cf cw BK BK BK BK BK BK';
-mappages["island_cave"].terrain[24] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK ^^ cf cf cf ^^ BK cw cf cf cf cw BK BK BK BK BK BK';
-mappages["island_cave"].terrain[25] = 'BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw cw ^^ ^^ ^^ ^^ ^^ cw cw cf cf cf cw BK BK BK BK BK BK';
+mappages["island_cave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK';
+mappages["island_cave"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw cw cw cf cf cf cw cw cf cf cf cw BK BK BK BK BK BK';
+mappages["island_cave"].terrain[23] = 'BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK cw cf cf cf cw cw cw cf cf cf cw BK BK BK BK BK BK';
+mappages["island_cave"].terrain[24] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK cw cf cf cf cw BK cw cf cf cf cw BK BK BK BK BK BK';
+mappages["island_cave"].terrain[25] = 'BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw cw cw cw cw cw cw cw cw cf cf cf cw BK BK BK BK BK BK';
 mappages["island_cave"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cw BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK';
 mappages["island_cave"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cw cw cw BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK';
 mappages["island_cave"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK';
@@ -231,7 +231,7 @@ mappages["island_cave"].terrain[67] = 'BK BK BK BK BK BK BK BK BK cw cw cw cf cf
 mappages["island_cave"].terrain[68] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw BK BK BK BK BK BK BK BK BK cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["island_cave"].terrain[69] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
-mappages["island_cave"].features = new Array;
+mappages["island_cave"].features = [];
 mappages["island_cave"].features[0] = {name : 'WalkOnChangeExit', x : 42, y : 0};
 mappages["island_cave"].features[1] = {name : 'WalkOnChangeExit', x : 43, y : 0};
 mappages["island_cave"].features[2] = {name : 'WalkOnChangeExit', x : 44, y : 0};
@@ -271,25 +271,29 @@ mappages["island_cave"].features[35] = {name : 'Lava', x : 57, y : 21};
 mappages["island_cave"].features[36] = {name : 'Lava', x : 56, y : 21};
 
 
-mappages["island_cave"].npcs = new Array;
+mappages["island_cave"].npcs = [];
 
-mappages["island_cave"].desc = 'Cave';
+mappages["island_cave"].desc = "Cave";
 mappages["island_cave"].music = 'Cave';
 mappages["island_cave"].exitmap = 'island';
 mappages["island_cave"].exitx = '33';
 mappages["island_cave"].exity = '47';
 mappages["island_cave"].wraps = 'None';
-mappages["island_cave"].enterx = '';
-mappages["island_cave"].entery = '';
+mappages["island_cave"].enterx = '32';
+mappages["island_cave"].entery = '68';
 mappages["island_cave"].seeBelow = '';
 mappages["island_cave"].lightLevel = 'dark';
-mappages["island_cave"].alwaysRemember = '';
-mappages["island_cave"].scale = '';
+mappages["island_cave"].alwaysRemember = '0';
+mappages["island_cave"].scale = '1';
+mappages["island_cave"].enterscript = '';
+mappages["island_cave"].entertestscript = '';
+mappages["island_cave"].exitscript = '';
+mappages["island_cave"].exittestscript = '';
 mappages["island_cave"].returnmap = 'island';
 mappages["island_cave"].returnx = '33';
 mappages["island_cave"].returny = '47';
 mappages["island_cave"].returninfused = '0';
-mappages["island_cave"].linkedMaps = new Array("");
+mappages["island_cave"].linkedMaps = [""];
 
 // Added manually below
 
