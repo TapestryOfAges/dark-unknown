@@ -1362,7 +1362,7 @@ function SeahorseNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.threatenedAI = 'mageknight';
   this.PCThreatAI = 'attackPC';
-  this.graphic = '324.gif';
+  this.graphic = '326.gif';
   this.altgraphic = ['360.gif',];
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';

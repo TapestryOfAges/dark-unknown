@@ -679,6 +679,7 @@ var featureblock = document.getElementById("featurediv");
 var creatureblock = document.getElementById("creaturediv");
 var lowlvlblock = document.getElementById("lowlvldiv");
 var highlvlblock = document.getElementById("highlvldiv");
+var seablock = document.getElementById("seadiv");
 
   if (divname === "outdoor") {
     outdoorblock.style.display="block";
@@ -709,6 +710,11 @@ var highlvlblock = document.getElementById("highlvldiv");
     highlvlblock.style.display="block";
   } 
   else { highlvlblock.style.display="none"; }
+
+  if (divname === "sea") {
+    seablock.style.display="block";
+  } 
+  else {seablock.style.display="none"; }
   
 }
 
