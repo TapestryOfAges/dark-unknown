@@ -1114,7 +1114,7 @@ function StoneWallTile() {
 StoneWallTile.prototype = new TerrainObject();
 
 function CoralTile() {
-  this.name = "CoralWall";
+  this.name = "Coral";
   this.graphic = "coral.gif";
   this.passable = MOVE_ETHEREAL + MOVE_FLY;
   this.blocklos = 0;
