@@ -981,8 +981,8 @@ function BlankWhiteTile() {
   this.name = "BlankWhite";
 //  this.graphic = "000.gif";
   this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-224";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-288";
   this.desc = "";
   this.blocklos = 1;
   this.passable = MOVE_ETHEREAL;
@@ -2430,6 +2430,61 @@ function DiamondFloorTile() {
 	this.desc = "floor";
 }
 DiamondFloorTile.prototype = new TerrainObject();
+
+function BlueDiamondFloorTile() {
+	this.name = "BlueDiamondFloor";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-224";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.desc = "floor";
+}
+BlueDiamondFloorTile.prototype = new TerrainObject();
+
+function PurpleDiamondFloorTile() {
+	this.name = "PurpleDiamondFloor";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-256";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.desc = "floor";
+}
+PurpleDiamondFloorTile.prototype = new TerrainObject();
+
+function RedDiamondFloorTile() {
+	this.name = "RedDiamondFloor";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-256";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.desc = "floor";
+}
+RedDiamondFloorTile.prototype = new TerrainObject();
+
+function GreenDiamondFloorTile() {
+	this.name = "GreenDiamondFloor";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-288";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.desc = "floor";
+}
+GreenDiamondFloorTile.prototype = new TerrainObject();
+
+function YellowDiamondFloorTile() {
+	this.name = "YellowDiamondFloor";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-288";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.desc = "floor";
+}
+YellowDiamondFloorTile.prototype = new TerrainObject();
 
 function BannerTile() {
   this.name = "Banner";
