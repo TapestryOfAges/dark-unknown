@@ -521,6 +521,31 @@ tileFactory.prototype.makeDiamondFloorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBlueDiamondFloorTile = function() {
+  var newTile = new BlueDiamondFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePurpleDiamondFloorTile = function() {
+  var newTile = new PurpleDiamondFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRedDiamondFloorTile = function() {
+  var newTile = new RedDiamondFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreenDiamondFloorTile = function() {
+  var newTile = new GreenDiamondFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeYellowDiamondFloorTile = function() {
+  var newTile = new YellowDiamondFloorTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBannerTile = function() {
   var newTile = new BannerTile();
   return newTile;
