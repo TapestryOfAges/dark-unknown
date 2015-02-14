@@ -1543,8 +1543,7 @@ function DeepNixieNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.threatenedAI = 'makeknight';
   this.PCThreatAI = 'attackPC';
-  this.graphic = '323.gif';
-  this.altgraphic = ['357.gif',];
+  this.graphic = 'deep_nixie.gif';
   this.meleeAttackAs = 'Axe';
   this.missileAttackAs = 'none';
   this.armorAs = 'ChainArmor';
