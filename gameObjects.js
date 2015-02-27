@@ -2997,6 +2997,17 @@ function SpitTile() {
 }
 SpitTile.prototype = new FeatureObject();
 
+function FireplaceTile() {
+	this.name = "Fireplace";
+	this.graphic = "fireplace.gif";
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 2;
+  this.prefix = "a";
+	this.desc = "fireplace";
+	
+	LightEmitting.call(this, 2);
+}
+FireplaceTile.prototype = new FeatureObject();
 
 function AltarTile() {
 	this.name = "Altar";
