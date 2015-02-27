@@ -706,6 +706,11 @@ tileFactory.prototype.makeSpitTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFireplaceTile = function() {
+  var newTile = new FireplaceTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAltarTile = function() {
   var newTile = new AltarTile();
   return newTile;
