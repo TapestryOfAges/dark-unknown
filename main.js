@@ -42,6 +42,8 @@ var finder = new PF.AStarFinder();
 DU.gameflags = {};
 DU.gameflags.music = 0;
 DU.gameflags.sound = 1;
+DU.gameflags.tablet = 0;
+DU.gameflags.autosave = 0;
 
 var targetCursor = {};
     targetCursor.skipahead = 0;
@@ -409,6 +411,19 @@ function DoAction(code) {
   }
   else if (gamestate.getMode() === "zstats") {
     var response = performZstats(code);
+    if (response["fin"] === 0) {
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+      gamestate.setMode("player");
+      gamestate.setTurn(PC);
+    } else if (response["fin"] === 1) {
+      
+    }
+  }
+  else if (gamestate.getMode() === "options") {
+    var response = performOptions(code);
     if (response["fin"] === 0) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();

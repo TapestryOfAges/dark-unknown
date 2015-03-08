@@ -198,7 +198,15 @@ function PerformCommand(code) {
 		
 	}
 	else if (code === 79) { // o
-		// open - merged with use
+		// was open - merged with use
+		// now, Options
+		gamestate.setMode("options");
+    retval["txt"] = "";
+    retval["input"] = "&gt; Zstats- ";
+    retval["fin"] = 2;		
+    targetCursor.page = 1;
+    
+    DrawOptions();		
 		
 	}
 	else if (code === 80) { // p
@@ -1676,4 +1684,123 @@ function DrawStats(page) {
   var scrollapi = scrollelem.data('jsp');
   targetCursor.scrollapi = scrollapi;
 
+}
+
+function DrawOptions() {
+  var optdiv = "<div><div id='opt' class='zstats'>";
+  optdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
+  optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
+  optdiv += "<tr><td>OPTIONS</td><td></td><td></td></tr>";
+  optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td></tr>";
+  optdiv += "<tr><td>MUSIC:</td><td></td><td";
+  if (targetCursor.page === 1) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.music) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>SOUND:</td><td></td><td";
+  if (targetCursor.page === 2) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.sound) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>TABLET:</td><td></td><td";
+  if (targetCursor.page === 3) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.tablet) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>AUTOSAVE:</td><td></td><td";
+  if (targetCursor.page === 4) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.autosave) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "</table></div></div>";
+  
+  DrawTopbarFrame("<p>Options</p>");
+  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
+  $("#worldlayer").css("background-image", "");
+  $("#worldlayer").css("background-color", "black");
+  $('#displayframe').html(optdiv);
+  
+}
+
+function performOptions(code) {
+  var retval = {};
+    if ((code === 27) || (code === 79)) { // ESC or O again
+      retval["fin"] = 0;
+    }
+    else if ((code === 38) || (code === 219)) { // scroll up
+      targetCursor.page--;
+      if (targetCursor.page === 0) { targetCursor.page = 1; } 
+      retval["fin"] = 1;
+    }
+    else if ((code === 40) || (code === 191)) { // scroll down
+      targetCursor.page++;
+      if (targetCursor.page === 5) { targetCursor.page = 4; }
+      retval["fin"] = 1;
+    }
+    else if ((code === 32) || (code === 13)) {  // space or enter
+      ToggleOption(targetCursor.page);
+      retval["fin"] = 1;
+    }       
+    else { retval["fin"] = 1; }
+      
+    DrawOptions();
+    return retval;
+}
+
+function ToggleOption(opt) {
+  if (opt === 1) {
+    if (DU.gameflags.music) {
+      DU.gameflags.music = 0;
+      stop_music();
+    } else {
+      DU.gameflags.music = 1;
+      var song = PC.getHomeMap().getMusic();
+      play_audio(song);
+      nowplaying = song;
+    }		
+  } else if (opt === 2) {
+   	if (DU.gameflags.sound) { 
+	    DU.gameflags.sound = 0; 
+	  } else { 
+      DU.gameflags.sound = 1; 
+    }
+  } else if (opt === 3) {
+    if (DU.gameflags.tablet) {
+      DU.gameflags.tablet = 0;
+      TabletUI(-1);
+    } else {
+      DU.gameflags.tablet = 1;
+      TabletUI(1);
+    }
+  } else if (opt === 4) {
+    if (DU.gameflags.autosave) {
+      DU.gameflags.autosave = 0;
+    } else {
+      DU.gameflags.autosave = 1;
+    }
+  }
 }
