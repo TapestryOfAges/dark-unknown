@@ -243,6 +243,12 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	  nowplaying = song;
 	}
 	
+	if ((who === PC) && (DU.gameflags.autosave)) {
+	  var prevstate = gamestate.getMode();
+    gamestate.setMode("saving");
+    gamestate.saveGame();
+    gamestate.setMode(prevstate);
+	}
 	return tile;
 
 }
