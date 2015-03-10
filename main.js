@@ -89,8 +89,9 @@ function DrawMainFrame(how, mapname, centerx, centery) {
     } else {
       $("#worldlayer").css("background-image", "");
     }
-    mapdiv += "<table cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20;\"><tr>";
+    mapdiv += "<table cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20;\">";
     for (var i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
+      mapdiv += "<tr>";
       for (var j=displayspecs.leftedge;j<=displayspecs.rightedge;j++) {
       	var thiscell = getDisplayCell(themap,centerx,centery,j,i);
       	opac = 1;
@@ -102,7 +103,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
       	}
         mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="opacity: ' + opac + '; background-image:url(\'graphics/' + thiscell.showGraphic + '\'); background-repeat:no-repeat; background-position: ' + thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px; position:relative; z-index:20;"><img id="tile'+j+'x'+i+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+j+'x'+i+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:20" title="' + thiscell.desc + '" /></td>';
       }  
-      mapdiv += '</tr><tr>';
+      mapdiv += '</tr>';
     }
     mapdiv  += '</table>';
     $('#displayframe').html(mapdiv);
@@ -133,7 +134,7 @@ $(document).ready(function() {
   // create audio players
   populate_audio(musiclist, 0, 1, "music");
   populate_audio(sfxlist, 1, 0, "sfx");
-	
+	CreateUI();
   gamestate.loadGame();
 //  gamestate.loadTmp();
   DrawCharFrame();
