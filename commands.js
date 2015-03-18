@@ -1308,7 +1308,7 @@ function PerformUseFromInventory() {
   var scrollapi = scrollelem.data('jsp');
   targetCursor.scrollapi = scrollapi;
   targetCursor.scrolllocation = 0;
-  targetCursor.itemlist = new Array;
+  targetCursor.itemlist = [];
   targetCursor.itemlist = itemarray;
   
   $('#inv0').toggleClass('highlight');
@@ -1360,7 +1360,7 @@ function PerformUseFromInventoryState(code) {
 }
 
 function PerformYell() {
-	var retval = new Object;
+	var retval = {};
 	if (inputText.txt == "") {
 		retval["txt"] = "Yell: Nothing!";
 		retval["fin"] = 2;
@@ -1413,13 +1413,21 @@ function performZstats(code) {
     }
     else if ((code === 37) || (code === 59)) {  // previous page
       targetCursor.page--;
-      if (targetCursor.page === 0) { targetCursor.page = 4; }  // set to the last page when I know what that will be
+      if (targetCursor.page === 0) { 
+        targetCursor.page = 5; 
+        if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) {
+          targetCursor.page = 6;
+        }
+      }  // set to the last page when I know what that will be
       DrawStats(targetCursor.page);
       retval["fin"] = 1;
     }
     else if ((code === 39) || (code === 222)) { // next page
       targetCursor.page++;
-      if (targetCursor.page === 5) { targetCursor.page = 1; }
+      if (targetCursor.page === 7) { targetCursor.page = 1; }
+      if ((targetCursor.page === 6) && !(PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void)) {
+        targetCursor.page = 1;
+      }
       DrawStats(targetCursor.page);
       retval["fin"] = 1;
     }
@@ -1669,10 +1677,50 @@ function DrawStats(page) {
    }
    if (!hasSpellbook) {
     statsdiv += "<tr><td>You do not have a spellbook.</td></tr>";
-  }
+   }
   
    statsdiv += "</table></div></div>";  
    DrawTopbarFrame("<p>Spellbook</p>");
+ } else if (page === 5) {
+   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
+   statsdiv += "<tr><td>&nbsp;</td></tr>";
+   
+// WORKING HERE
+
+   statsdiv += "</table></div></div>";  
+   DrawTopbarFrame("<p>Effects</p>");
+ } else if (page === 6) {
+   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
+   statsdiv += "<tr><td>&nbsp;</td></tr>";
+   
+   var hasrunes = 0;
+   if (PC.runes.kings) { 
+    statsdiv += "<tr><td>Rune of Kings</td></tr>";
+    hasrunes = 1;
+   }
+   if (PC.runes.waves) { 
+    statsdiv += "<tr><td>Rune of Waves</td></tr>";
+    hasrunes = 1;
+   }
+   if (PC.runes.winds) { 
+    statsdiv += "<tr><td>Rune of Winds</td></tr>";
+    hasrunes = 1;
+   }
+   if (PC.runes.flames) { 
+    statsdiv += "<tr><td>Rune of Flames</td></tr>";
+    hasrunes = 1;
+   }
+   if (PC.runes.void) { 
+    statsdiv += "<tr><td>Rune of Void</td></tr>";
+    hasrunes = 1;
+   }
+   if (!hasrunes) {
+     statsdiv += "<tr><td>You have discovered no runes.</td></tr>";
+   }
+   statsdiv += "</table></div></div>";  
+   DrawTopbarFrame("<p>Runes</p>");
   }
  
   $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");

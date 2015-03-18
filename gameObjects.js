@@ -992,7 +992,7 @@ BlankWhiteTile.prototype = new TerrainObject();
 function OceanTile() {
   this.name = "Ocean";
   this.graphic = "flowing_animations.gif";
-  this.desc = "ocean";
+  this.desc = "deep water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
   this.spritexoffset = "-128";
@@ -1669,10 +1669,22 @@ function BlankBlackTile() {
   this.spritexoffset = "-64";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
+  this.blocklos = 2;
   this.desc = "darkness";
 }
 BlankBlackTile.prototype = new TerrainObject();
+
+function DarknessTile() {
+  this.name = "Darkness";
+//  this.graphic = "055.gif";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.desc = "darkness";
+}
+DarknessTile.prototype = new TerrainObject();
 
 function WallTile() {
   this.name = "Wall";
@@ -4133,11 +4145,11 @@ function WallOfWavesTile() {
 WallOfWavesTile.prototype = new FeatureObject();
 
 WallOfWavesTile.prototype.use = function(user) {
-  ApplyRune(user, "waves");
+  ApplyRune(user, "waves", this);
 }
 
 WallOfWavesTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "waves");
+  ApplyRune(who, "waves", this);
 }
 
 function RuneOfWavesTile() {
@@ -4152,11 +4164,11 @@ function RuneOfWavesTile() {
 RuneOfWavesTile.prototype = new FeatureObject();
 
 RuneOfWavesTile.prototype.use = function(user) {
-  ApplyRune(user, "waves");
+  ApplyRune(user, "waves", this);
 }
 
 RuneOfWavesTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "waves");
+  ApplyRune(who, "waves", this);
 }
 
 
@@ -4172,11 +4184,11 @@ function WallOfWindsTile() {
 WallOfWindsTile.prototype = new FeatureObject();
 
 WallOfWindsTile.prototype.use = function(user) {
-  ApplyRune(user, "winds");
+  ApplyRune(user, "winds", this);
 }
 
 WallOfWindsTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "winds");
+  ApplyRune(who, "winds", this);
 }
 
 function RuneOfWindsTile() {
@@ -4191,11 +4203,11 @@ function RuneOfWindsTile() {
 RuneOfWindsTile.prototype = new FeatureObject();
 
 RuneOfWindsTile.prototype.use = function(user) {
-  ApplyRune(user, "winds");
+  ApplyRune(user, "winds", this);
 }
 
 RuneOfWindsTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "winds");
+  ApplyRune(who, "winds", this);
 }
 
 
@@ -4211,11 +4223,11 @@ function WallOfKingsTile() {
 WallOfKingsTile.prototype = new FeatureObject();
 
 WallOfKingsTile.prototype.use = function(user) {
-  ApplyRune(user, "kings");
+  ApplyRune(user, "kings", this);
 }
 
 WallOfKingsTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "kings");
+  ApplyRune(who, "kings", this);
 }
 
 function RuneOfKingsTile() {
@@ -4230,11 +4242,11 @@ function RuneOfKingsTile() {
 RuneOfKingsTile.prototype = new FeatureObject();
 
 RuneOfKingsTile.prototype.use = function(user) {
-  ApplyRune(user, "kings");
+  ApplyRune(user, "kings", this);
 }
 
 RuneOfKingsTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "kings");
+  ApplyRune(who, "kings", this);
 }
 
 function WallOfFlamesTile() {
@@ -4249,11 +4261,11 @@ function WallOfFlamesTile() {
 WallOfFlamesTile.prototype = new FeatureObject();
 
 WallOfFlamesTile.prototype.use = function(user) {
-  ApplyRune(user, "flames");
+  ApplyRune(user, "flames", this);
 }
 
 WallOfFlamesTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "flames");
+  ApplyRune(who, "flames", this);
 }
 
 function RuneOfFlamesTile() {
@@ -4268,11 +4280,11 @@ function RuneOfFlamesTile() {
 RuneOfFlamesTile.prototype = new FeatureObject();
 
 RuneOfFlamesTile.prototype.use = function(user) {
-  ApplyRune(user, "flames");
+  ApplyRune(user, "flames", this);
 }
 
 RuneOfFlamesTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "flames");
+  ApplyRune(who, "flames", this);
 }
 
 
@@ -4288,11 +4300,11 @@ function WallOfVoidTile() {
 WallOfVoidTile.prototype = new FeatureObject();
 
 WallOfVoidTile.prototype.use = function(user) {
-  ApplyRune(user, "void");
+  ApplyRune(user, "void", this);
 }
 
 WallOfVoidTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "void");
+  ApplyRune(who, "void", this);
 }
 
 function RuneOfVoidTile() {
@@ -4307,11 +4319,11 @@ function RuneOfVoidTile() {
 RuneOfVoidTile.prototype = new FeatureObject();
 
 RuneOfVoidTile.prototype.use = function(user) {
-  ApplyRune(user, "void");
+  ApplyRune(user, "void", this);
 }
 
 RuneOfVoidTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "void");
+  ApplyRune(who, "void", this);
 }
 
 function PlatformOfWavesTile() {
@@ -6866,7 +6878,7 @@ function PCObject() {
   this.lastspelllevel = 1;
   this.lastspell = 1;
   this.infuse = 0;
-  this.gender = "male";
+  this.gender = "other";
 	
 	LightEmitting.call(this, 0.5);
 	this.addType("pc");
@@ -6876,6 +6888,13 @@ function PCObject() {
   this.equipment.armor = "";
   this.equipment.weapon = "";
   this.equipment.missile = "";
+
+  this.runes = {};
+  this.runes.kings = 0;
+  this.runes.flames = 0;
+  this.runes.winds = 0;
+  this.runes.waves = 0;
+  this.runes.void = 0;
 
 	this.inventory = new Collection();
   this.spellEffects = new Collection();	
