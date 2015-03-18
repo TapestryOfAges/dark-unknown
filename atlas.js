@@ -105,6 +105,8 @@ function Atlas() {
     "CounterBox" : '[]',
     'BK' : "BlankBlack", // 55
     "BlankBlack" : 'BK',
+    'DK' : "Darkness", // 55
+    "Darkness" : 'DK',
     '##' : "Wall", // 56
     "Wall" : '##',
     '!#' : "RuinsWall",
