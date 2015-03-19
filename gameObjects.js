@@ -4145,7 +4145,7 @@ function RuneTile() {
 }
 RuneTile.prototype = new FeatureObject();
 
-RunTile.prototype.use = function(user) {
+RuneTile.prototype.use = function(user) {
   UseRune();
 }
 
