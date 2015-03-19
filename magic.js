@@ -101,10 +101,10 @@ magic[3][GetSpellID(6)] = new SpellObject("Wall of Flame", "Kal Flam", 3, 1);
 
 magic[4][GetSpellID(1)] = new SpellObject("Blessing", "In Mani Xen", 4, 0);
 magic[4][GetSpellID(2)] = new SpellObject("Heal", "In Mani", 4, 0);
-magic[4][GetSpellID(3)] = new SpellObject("Levitate", "Uus Xen", 4, 0);
-magic[4][GetSpellID(4)] = new SpellObject("Life Drain", "In Corp Mani", 4, 1);
-magic[4][GetSpellID(5)] = new SpellObject("Smite", "Corp Por", 4, 0);
-magic[4][GetSpellID(6)] = new SpellObject("Transport", "Rel Por", 4, 0);
+magic[4][GetSpellID(3)] = new SpellObject("Life Drain", "In Corp Mani", 4, 1);
+magic[4][GetSpellID(4)] = new SpellObject("Smite", "Corp Por", 4, 0);
+magic[4][GetSpellID(5)] = new SpellObject("Transport", "Rel Por", 4, 0);
+magic[4][GetSpellID(6)] = new SpellObject("Water Walk", "Uus Xen", 4, 0);
 
 magic[5][GetSpellID(1)] = new SpellObject("Mirror Ward", "Ort Sanct", 5, 0);
 magic[5][GetSpellID(2)] = new SpellObject("Paralyze", "An Ex Por", 5, 1);
@@ -187,9 +187,9 @@ magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   return resp;
 }
 
-// Levitate
-magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Levitate.<br /></span>"); }
+// Levitate/Waterwalk
+magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Water Walk.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
@@ -215,7 +215,7 @@ magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free) {
 }
 
 //Transport
-magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+magic[4][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Transport.<br /></span>"); }
   var resp = {};
   if (!free) {
