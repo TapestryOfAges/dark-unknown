@@ -4133,6 +4133,23 @@ MetalTwisterLeverTile.prototype.use = function(user) {
     return retval;  
 }
 
+// This is a fake item, just so runes can have a Usescript for UseFromInventory
+function RuneTile() {
+  this.name = "Rune";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "rune";
+}
+RuneTile.prototype = new FeatureObject();
+
+RunTile.prototype.use = function(user) {
+  UseRune();
+}
+
+
 function WallOfWavesTile() {
   this.name = "WallOfWaves";
   this.graphic = "runes.gif";

@@ -1346,7 +1346,9 @@ function PerformUseFromInventoryState(code) {
 		  var usedname = used.getDesc();
   		usedname = usedname.replace(/^a /, "");
 	  	retval["txt"] = "Use " + usedname + ": " + retval["txt"];
-      PC.removeFromInventory(used);
+	  	if (used.checkType("Consumable")) {
+        PC.removeFromInventory(used);
+      }
     } else {
       retval["fin"] = 0;
       delete targetCursor.itemlist;
@@ -1686,7 +1688,14 @@ function DrawStats(page) {
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
    statsdiv += "<tr><td>&nbsp;</td></tr>";
    
-// WORKING HERE
+   var alleffects = PC.getSpellEffects();
+   if (!alleffects[0]) {
+     statsdiv += "<tr><td>You have no effects or afflictions upon you.</td></tr>";
+   } else {
+     for (var i=0; i < alleffects.length; i++) {
+       statsdiv += "<tr><td>" + alleffects[i].display + ": " + alleffects[i].zstatdesc + "</td></tr>";
+     }
+   }
 
    statsdiv += "</table></div></div>";  
    DrawTopbarFrame("<p>Effects</p>");

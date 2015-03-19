@@ -122,6 +122,7 @@ function DiseaseTile() {
   this.name = "Disease";
   this.damagePerTick = 1;
   this.display = "<span style='color:#58FA58'>D</span>";
+  this.zstatdesc = "You have been infected by a disease.";
 }
 DiseaseTile.prototype = new DamageOverTimeObject();
 
@@ -140,6 +141,7 @@ function PoisonTile() {
   this.name = "Poison";
   this.damagePerTick = 2 * (1/SCALE_TIME);  // poison is slow-maps only
   this.display = "<span style='color:#58FA58'>D</span>";
+  this.zstatdesc = "Poison courses through your veins.";
 }
 PoisonTile.prototype = new DamageOverTimeObject();
 
@@ -159,7 +161,8 @@ PoisonTile.prototype.endEffect = function(silent) {
 function LevitateTile() {
   this.addType("buff");
   this.name = "Levitate";
-  this.display = "<span style='color:#00FFFF'>L</span>";
+  this.display = "<span style='color:#00FFFF'>W</span>";
+  this.zstatdesc = "You are able to walk on water.";
 }
 LevitateTile.prototype = new EphemeralObject();
 
@@ -195,6 +198,7 @@ function LightTile() {
   this.name = "Light";
   this.display = "<span style='color:#ffff00'>L</span>";
   this.power = 2;
+  this.zstatdesc = "You are followed by a glowing sphere of light.";
 }
 LightTile.prototype = new EphemeralObject();
 
@@ -205,7 +209,10 @@ LightTile.prototype.applyEffect = function(silent) {
     who.setLight(who.getLight() + power);
     if ((who === PC) && !silent) {
       var lightdesc = "a sphere of light";
-      if (power > 2) { lightdesc = "a bright sphere of light"; }
+      if (power > 2) { 
+        lightdesc = "a bright sphere of light"; 
+        this.zstatdesc = "You are followed by a brightly glowing sphere of light.";
+      }
   
       maintext.addText("You conjure " + lightdesc + ".");
     }
@@ -234,6 +241,7 @@ function QuicknessTile() {
   this.name = "Quickness";
   this.display = "<span style='color:c0c0c0'>Q</span>";
   this.power = .5;
+  this.zstatdesc = "You move extremely quickly.";
 }
 QuicknessTile.prototype = new EphemeralObject();
 
@@ -270,6 +278,7 @@ function SleepTile() {
   this.addType("debuff");
   this.name = "Sleep";
   this.display = "<span style='color:777777'>S</span>";
+  this.zstatdesc = "You are asleep.";
 }
 SleepTile.prototype = new EphemeralObject();
 
