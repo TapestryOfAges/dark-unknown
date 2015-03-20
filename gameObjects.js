@@ -4133,23 +4133,6 @@ MetalTwisterLeverTile.prototype.use = function(user) {
     return retval;  
 }
 
-// This is a fake item, just so runes can have a Usescript for UseFromInventory
-function RuneTile() {
-  this.name = "Rune";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "0";
-  this.blocklos = 2;
-  this.prefix = "a";
-  this.desc = "rune";
-}
-RuneTile.prototype = new FeatureObject();
-
-RuneTile.prototype.use = function(user) {
-  UseRune();
-}
-
-
 function WallOfWavesTile() {
   this.name = "WallOfWaves";
   this.graphic = "runes.gif";
@@ -4430,6 +4413,39 @@ function PlatformOfVoidTile() {
   this.desc = "platform";
 }
 PlatformOfVoidTile.prototype = new FeatureObject();
+
+// These are fake items, just so runes can have a Usescript for UseFromInventory
+function MarkOfKingsTile() {
+  this.name = "MarkOfKings";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-32";
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "Rune of Kings: Earthbond";
+  this.focuscost = 3;  // ?
+}
+MarkOfKingsTile.prototype = new FeatureObject();
+
+MarkOfKingsTile.prototype.use = function(user) {
+  UseRune("Kings");
+}
+
+function MarkOfWavesTile() {
+  this.name = "MarkOfKings";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-32";
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "Rune of Waves: Mana Tide";
+}
+MarkOfWavesTile.prototype = new FeatureObject();
+
+MarkOfWavesTile.prototype.use = function(user) {
+  UseRune("Waves");
+}
+
 
 function FlameEternalTile() {
   this.name = "FlameEternal";
