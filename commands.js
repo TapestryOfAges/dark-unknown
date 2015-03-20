@@ -1226,6 +1226,7 @@ function PerformUseFromInventory() {
    var pots = [];
    var scrolls = [];
    var other = [];
+   var runes;
    var iter = 0;
    var itemarray = [];
    if (inv.length) {

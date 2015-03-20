@@ -747,7 +747,7 @@ function ApplyRune(who, rune, runeref) {
   maintext.delayedAddText("You touch the glowing sigil.");
   maintext.delayedAddText("It burns you!");
   who.dealDamage((who.getHP()/3), runeref);
-  maintext.delayedAddText("You have been marked with the rune of " + rune);
+  maintext.delayedAddText("You have been marked with the rune of " + rune + "!");
   who.runes[rune] = 1;
   
   return 1;
