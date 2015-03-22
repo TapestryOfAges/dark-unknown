@@ -4415,35 +4415,19 @@ function PlatformOfVoidTile() {
 PlatformOfVoidTile.prototype = new FeatureObject();
 
 // These are fake items, just so runes can have a Usescript for UseFromInventory
-function MarkOfKingsTile() {
-  this.name = "MarkOfKings";
+function AbstractRuneTile() {
+  this.name = "AbstractRune";
   this.graphic = "runes.gif";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-32";
   this.blocklos = 2;
   this.prefix = "the";
-  this.desc = "Rune of Kings: Earthbond";
-  this.focuscost = 3;  // ?
+  this.desc = "Invoke Runes";
 }
-MarkOfKingsTile.prototype = new FeatureObject();
+AbstractRuneTile.prototype = new FeatureObject();
 
-MarkOfKingsTile.prototype.use = function(user) {
-  UseRune("Kings");
-}
-
-function MarkOfWavesTile() {
-  this.name = "MarkOfKings";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
-  this.blocklos = 2;
-  this.prefix = "the";
-  this.desc = "Rune of Waves: Mana Tide";
-}
-MarkOfWavesTile.prototype = new FeatureObject();
-
-MarkOfWavesTile.prototype.use = function(user) {
-  UseRune("Waves");
+AbstractRuneTile.prototype.use = function(user) {
+  ChooseRune();
 }
 
 

@@ -256,6 +256,11 @@ tileFactory.prototype.makeBlankBlackTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDarknessTile = function() {
+  var newTile = new DarknessTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWallTile = function() {
   var newTile = new WallTile();
   return newTile;
@@ -1088,6 +1093,11 @@ tileFactory.prototype.makePlatformOfFlamesTile = function() {
 
 tileFactory.prototype.makePlatformOfVoidTile = function() {
   var newTile = new PlatformOfVoidTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAbstractRuneTile = function() {
+  var newTile = new AbstractRuneTile();
   return newTile;
 }
 
