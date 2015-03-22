@@ -1226,7 +1226,6 @@ function PerformUseFromInventory() {
    var pots = [];
    var scrolls = [];
    var other = [];
-   var runes;
    var iter = 0;
    var itemarray = [];
    if (inv.length) {
@@ -1244,7 +1243,7 @@ function PerformUseFromInventory() {
           return 1
        return 0 
        }); 
-       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Potions</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Potions</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</span></td></tr>";
        for (var i = 0; i < pots.length; i++ ) {
          var itemdesc = pots[i].getDesc();
          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
@@ -1263,7 +1262,7 @@ function PerformUseFromInventory() {
           return 1
        return 0 
        }); 
-       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Scrolls</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Scrolls</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</span></td></tr>";
        for (var i = 0; i < scrolls.length; i++ ) {
          var itemdesc = scrolls[i].getDesc();
          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
@@ -1282,7 +1281,7 @@ function PerformUseFromInventory() {
           return 1
        return 0 
        }); 
-       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Other</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Other</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</span></td></tr>";
        for (var i = 0; i < other.length; i++ ) {
          var itemdesc = other[i].getDesc();
          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
@@ -1290,6 +1289,14 @@ function PerformUseFromInventory() {
          itemarray[iter] = other[i];
          iter++;
        }
+       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
+     }
+     if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) {  // in theory, kings is required for the rest, but let's be sure
+       var rune = localFactory.createTile("AbstractRune");
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Other</span></td><td>&nbsp;</td></tr>";
+       statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
+       itemarray[iter] = rune;
+       iter++;
        statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
      }
 
@@ -1392,8 +1399,11 @@ function PerformYell() {
 		  PC.setLevel(PC.getLevel()+1);
 		} else if (inputText.txt === "REFRESH") {
 		  PC.setMana(PC.getMaxMana());
+		} else if (inputText.txt === "FUTHARK") {
+		  PC.runes.kings = 1;
 		} else if (inputText.txt === "RUNTEST") {
 		  RunTest();
+// REAL YELLS START HERE
 		} else if (inputText.txt === "KARIS") {
 		  if (PC.getHomeMap().getName() === "asharden1") {
 		    // FIX HERE- add sound effect for teleport
