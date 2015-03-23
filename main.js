@@ -388,6 +388,8 @@ function DoAction(code) {
       response = PerformEquip(code);
     } else if (targetCursor.command === "u") {
       response = PerformUseFromInventoryState(code);
+    } else if (targetCursor.command === "r") {
+      response = PerformRuneChoice(code);
     }
     if (response["fin"] === 0) {
       maintext.setInputLine("&gt;");
