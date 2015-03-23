@@ -1369,6 +1369,63 @@ function PerformUseFromInventoryState(code) {
  
 }
 
+function ChooseRune() {
+  alert("Choosing rune.");
+  targetCursor.command = "r";
+
+  var itemarray = [];
+  var statsdiv = "&nbsp;";
+  statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+  statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
+  statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td></tr>";
+  var numrunes = 1;
+  if (PC.runes.kings) {
+    statsdiv += "<tr><td></td><td id='rune" + numrunes + "'>The Rune of Kings</td></tr>";
+    numrunes++;
+    itemarray[numrunes-1] = "kings";
+  }
+  if (PC.runes.waves) {
+    statsdiv += "<tr><td></td><td id='rune" + numrunes + "'>The Rune of Waves</td></tr>";
+    numrunes++;
+    itemarray[numrunes-1] = "waves";
+  }
+  if (PC.runes.winds) {
+    statsdiv += "<tr><td></td><td id='rune" + numrunes + "'>The Rune of Winds</td></tr>";
+    numrunes++;
+    itemarray[numrunes-1] = "winds";
+  }
+  if (PC.runes.flames) {
+    statsdiv += "<tr><td></td><td id='rune" + numrunes + "'>The Rune of Flames</td></tr>";
+    numrunes++;
+    itemarray[numrunes-1] = "flames";
+  }
+  if (PC.runes.void) {
+    statsdiv += "<tr><td></td><td id='rune" + numrunes + "'>The Rune of Void</td></tr>";
+    itemarray[numrunes-1] = "void";
+  }
+  statsdiv += "</table><table cellpadding='0' cellspacing='0' border='0'>";
+  statsdiv += "<tr><td id='rune1'>&nbsp;</td><td id='rune2'>&nbsp;</td></tr>";
+  statsdiv += "<tr><td colspan='2' id='runevoid' style='align:center'>&nbsp;</td></tr>"
+  statsdiv += "<tr><td colspan='2' id='runeselect' style='text-align:center'>&nbsp;</td></tr>";
+  statsdiv += "</table></div></div>";
+
+   DrawTopbarFrame("<p>Runes</p>");
+   $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
+   $("#worldlayer").css("background-image", "");
+   $("#worldlayer").css("background-color", "black");
+   
+   $('#displayframe').html(statsdiv);
+   
+	var scrollelem = $('.zstats').jScrollPane();
+  var scrollapi = scrollelem.data('jsp');
+  targetCursor.scrollapi = scrollapi;
+  targetCursor.scrolllocation = 0;
+  targetCursor.itemlist = [];
+  targetCursor.itemlist = itemarray;
+  
+  $('#rune1').toggleClass('highlight');
+}
+
 function PerformYell() {
 	var retval = {};
 	if (inputText.txt == "") {
