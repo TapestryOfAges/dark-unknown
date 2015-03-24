@@ -1404,8 +1404,8 @@ function ChooseRune() {
     itemarray[numrunes-1] = "void";
   }
   statsdiv += "</table><table cellpadding='0' cellspacing='0' border='0'>";
-  statsdiv += "<tr><td id='rune1'>&nbsp;</td><td id='rune2'>&nbsp;</td></tr>";
-  statsdiv += "<tr><td colspan='2' id='runevoid' style='align:center'>&nbsp;</td></tr>"
+//  statsdiv += "<tr><td id='rune1'>&nbsp;</td><td id='rune2'>&nbsp;</td></tr>";
+//  statsdiv += "<tr><td colspan='2' id='runevoid' style='align:center'>&nbsp;</td></tr>"
   statsdiv += "<tr><td colspan='2' id='runeselect' style='text-align:center'>&nbsp;</td></tr>";
   statsdiv += "</table></div></div>";
 
