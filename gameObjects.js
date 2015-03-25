@@ -4422,12 +4422,16 @@ function AbstractRuneTile() {
   this.spriteyoffset = "-32";
   this.blocklos = 2;
   this.prefix = "the";
-  this.desc = "Invoke Runes";
+  this.desc = "Runes";
 }
 AbstractRuneTile.prototype = new FeatureObject();
 
 AbstractRuneTile.prototype.use = function(user) {
   ChooseRune();
+  var retval = {};
+  retval.txt = "Invoked";
+  retval.override = 1;
+  return retval;
 }
 
 

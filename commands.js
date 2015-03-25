@@ -1302,6 +1302,9 @@ function PerformUseFromInventory() {
 
    }
 
+   if (itemarray.length === 0) {
+    statsdiv += "<tr><td>You have no usable items.</td></tr>";
+   }
    statsdiv += "<td></td></tr>";
   
    statsdiv += "</table></div></div>";
@@ -1325,6 +1328,9 @@ function PerformUseFromInventory() {
 
 function PerformUseFromInventoryState(code) {
   var retval = {};
+  if (targetCursor.itemlist.length === 0) {
+    code = 27;
+  }
   if (code === 27) { // ESC
     retval["fin"] = 0;
     delete targetCursor.itemlist;
@@ -1351,6 +1357,9 @@ function PerformUseFromInventoryState(code) {
     if (used) {
   		retval = used.use(PC);
 	  	retval["fin"] = 2;
+  		if (retval.override) {
+  		  retval["fin"] = retval.override;
+  		}
 		  var usedname = used.getDesc();
   		usedname = usedname.replace(/^a /, "");
 	  	retval["txt"] = "Use " + usedname + ": " + retval["txt"];
@@ -1370,7 +1379,6 @@ function PerformUseFromInventoryState(code) {
 }
 
 function ChooseRune() {
-  alert("Choosing rune.");
   targetCursor.command = "r";
 
   var itemarray = [];
@@ -1378,35 +1386,36 @@ function ChooseRune() {
   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
   statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
   statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td></tr>";
-  var numrunes = 1;
+  var numrunes = 0;
   if (PC.runes.kings) {
     statsdiv += "<tr><td></td><td id='rune" + numrunes + "'>The Rune of Kings</td></tr>";
+    itemarray[numrunes] = "kings";
     numrunes++;
-    itemarray[numrunes-1] = "kings";
   }
   if (PC.runes.waves) {
     statsdiv += "<tr><td></td><td id='rune" + numrunes + "'>The Rune of Waves</td></tr>";
+    itemarray[numrunes] = "waves";
     numrunes++;
-    itemarray[numrunes-1] = "waves";
   }
   if (PC.runes.winds) {
     statsdiv += "<tr><td></td><td id='rune" + numrunes + "'>The Rune of Winds</td></tr>";
+    itemarray[numrunes] = "winds";
     numrunes++;
-    itemarray[numrunes-1] = "winds";
   }
   if (PC.runes.flames) {
     statsdiv += "<tr><td></td><td id='rune" + numrunes + "'>The Rune of Flames</td></tr>";
+    itemarray[numrunes] = "flames";
     numrunes++;
-    itemarray[numrunes-1] = "flames";
   }
   if (PC.runes.void) {
     statsdiv += "<tr><td></td><td id='rune" + numrunes + "'>The Rune of Void</td></tr>";
-    itemarray[numrunes-1] = "void";
+    itemarray[numrunes] = "void";
+    numrunes++;
   }
   statsdiv += "</table><table cellpadding='0' cellspacing='0' border='0'>";
 //  statsdiv += "<tr><td id='rune1'>&nbsp;</td><td id='rune2'>&nbsp;</td></tr>";
 //  statsdiv += "<tr><td colspan='2' id='runevoid' style='align:center'>&nbsp;</td></tr>"
-  statsdiv += "<tr><td colspan='2' id='runeselect' style='text-align:center'>&nbsp;</td></tr>";
+  statsdiv += "<tr><td colspan='2' id='rune" + numrunes+1 + "' style='text-align:center'>&nbsp;</td></tr>";
   statsdiv += "</table></div></div>";
 
    DrawTopbarFrame("<p>Runes</p>");
@@ -1425,6 +1434,66 @@ function ChooseRune() {
   
   $('#rune1').toggleClass('highlight');
 }
+
+function PerformRuneChoice(code) {
+  var retval = {};
+  var numselected = 0;
+  $.each(targetCursor.runeselect, function(idx, val) {
+    if (val === 1) { numselected++; }
+  });
+  if (code === 27) { // ESC
+    retval["fin"] = 0;
+    delete targetCursor.itemlist;
+    delete targetCursor.runeselect;
+  }
+	else if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
+	    $('#rune' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrolllocation--;
+	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length; }
+	    if ((targetCursor.scrolllocation === targetCursor.itemlist.length) && (!numselected)) {
+	      targetCursor.scrolllocation--;
+	    }
+	    $('#rune' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    retval["fin"] = 1;
+	}
+  else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
+      $('#rune' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrolllocation++;
+	    if ((targetCursor.scrolllocation === targetCursor.itemlist.length) && (!numselected)) {
+	      targetCursor.scrolllocation++;
+	    }
+	    if (targetCursor.scrolllocation > targetCursor.itemlist.length) { targetCursor.scrolllocation = 0; }
+	    $('#rune' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    retval["fin"] = 1;
+  }
+	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
+    // toggle selected rune
+    if (targetCursor.scrolllocation === targetCursor.itemlist.length) {
+      // rune combo selected
+    }
+    var used = targetCursor.itemlist[targetCursor.scrolllocation];
+    if (used) {
+  		retval = used.use(PC);
+	  	retval["fin"] = 2;
+		  var usedname = used.getDesc();
+  		usedname = usedname.replace(/^a /, "");
+	  	retval["txt"] = "Use " + usedname + ": " + retval["txt"];
+	  	if (used.checkType("Consumable")) {
+        PC.removeFromInventory(used);
+      }
+    } else {
+      retval["fin"] = 0;
+      delete targetCursor.itemlist;
+    }
+  }
+  return retval;
+
+//  targetCursor.scrolllocation = 0;
+//  targetCursor.itemlist = itemarray;
+ 
+}
+
+
 
 function PerformYell() {
 	var retval = {};
