@@ -80,3 +80,9 @@ var SCALE_TIME = .005;
 var BASE_HIT_CHANCE = 80;
 var HIT_PER_LEVEL = 4;
 var DEF_PER_LEVEL = 4;
+
+var RUNE_KINGS  = 1;
+var RUNE_WAVES  = 2;
+var RUNE_WINDS  = 4;
+var RUNE_FLAMES = 8;
+var RUNE_VOID   = 16;
