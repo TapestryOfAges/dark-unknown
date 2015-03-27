@@ -1389,33 +1389,34 @@ function ChooseRune() {
   var numrunes = 0;
   if (PC.runes.kings) {
     statsdiv += "<tr><td id='star" + numrunes + "'></td><td id='rune" + numrunes + "'>The Rune of Kings</td></tr>";
-    itemarray[numrunes] = "kings";
+    itemarray[numrunes] = RUNE_KINGS;
     numrunes++;
   }
   if (PC.runes.waves) {
     statsdiv += "<tr><td id='star" + numrunes + "'></td><td id='rune" + numrunes + "'>The Rune of Waves</td></tr>";
-    itemarray[numrunes] = "waves";
+    itemarray[numrunes] = RUNE_WAVES;
     numrunes++;
   }
   if (PC.runes.winds) {
     statsdiv += "<tr><td id='star" + numrunes + "'></td><td id='rune" + numrunes + "'>The Rune of Winds</td></tr>";
-    itemarray[numrunes] = "winds";
+    itemarray[numrunes] = RUNE_WINDS;
     numrunes++;
   }
   if (PC.runes.flames) {
     statsdiv += "<tr><td id='star" + numrunes + "'></td><td id='rune" + numrunes + "'>The Rune of Flames</td></tr>";
-    itemarray[numrunes] = "flames";
+    itemarray[numrunes] = RUNE_FLAMES;
     numrunes++;
   }
   if (PC.runes.void) {
     statsdiv += "<tr><td id='star" + numrunes + "'></td><td id='rune" + numrunes + "'>The Rune of Void</td></tr>";
-    itemarray[numrunes] = "void";
+    itemarray[numrunes] = RUNE_VOID;
     numrunes++;
   }
-  statsdiv += "</table><table cellpadding='0' cellspacing='0' border='0'>";
+  statsdiv += "</table><table width='100%' cellpadding='0' cellspacing='0' border='0'>";
 //  statsdiv += "<tr><td id='rune1'>&nbsp;</td><td id='rune2'>&nbsp;</td></tr>";
 //  statsdiv += "<tr><td colspan='2' id='runevoid' style='align:center'>&nbsp;</td></tr>"
-  statsdiv += "<tr><td colspan='2' id='rune" + numrunes+1 + "' style='text-align:center'>&nbsp;</td></tr>";
+  statsdiv += "<tr><td><br /><br /></td></tr>";
+  statsdiv += "<tr><td id='rune" + numrunes + "' style='text-align:center'>&nbsp;</td></tr>";
   statsdiv += "</table></div></div>";
 
    DrawTopbarFrame("<p>Runes</p>");
@@ -1472,8 +1473,10 @@ function PerformRuneChoice(code) {
 	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
     // toggle selected rune
     if (targetCursor.scrolllocation === targetCursor.itemlist.length) {
-      // rune combo selected
-      // call function to perform rune task
+      runecombo = 0;
+      $.each(targetCursor.runeselect, function(idx,val) {
+        if (val) { runecombo += targetCursor.itemlist[idx]; }
+      });
       retval = RunePower(runecombo);
       retval["fin"] = 2;
     } else {
@@ -1483,12 +1486,21 @@ function PerformRuneChoice(code) {
         targetCursor.runeselect[targetCursor.scrolllocation] = 0;
         numselected--;
       } else {
-        $('#star'+targetCursor.scrolllocation).html("*");
-        targetCursor.runeselect[targetCursor.scrolllocation] = 1;
-        numselected++;
+        if ((numselected > 3) || ((numselected === 3) && (!targetCursor.runeselect[targetCursor.itemlist.length-1]))) {
+          if (DU.gameflags.sound) { play_audio("sfx_walk_blocked"); }
+        } else {
+          $('#star'+targetCursor.scrolllocation).html("*");
+          targetCursor.runeselect[targetCursor.scrolllocation] = 1;
+          numselected++;
+        }
       }
       if (numselected) {
-        
+        runecombo = 0;
+        $.each(targetCursor.runeselect, function(idx,val) {
+          if (val) { runecombo += targetCursor.itemlist[idx]; }
+        });
+        alert(runecombo);
+        $('#rune'+targetCursor.itemlist.length).html(runedefs[runecombo].pre);
       } else {
         $('#rune'+targetCursor.itemlist.length).html("");
       }
