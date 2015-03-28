@@ -4434,6 +4434,22 @@ AbstractRuneTile.prototype.use = function(user) {
   return retval;
 }
 
+function OutdoorRuneOfKingsTile() {
+  this.name = "OutdoorRuneOfKings";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-32";
+  this.blocklos = 2;
+  this.prefix = "The";
+  this.desc = "Rune of Kings";
+}
+OutdoorRuneOfKingsTile.prototype = new FeatureObject();
+
+OutdoorRuneOfKingsTile.prototype.use = function(user) {
+  // check to see if you are in one of a few locations, if so, open new dungeon
+  // WORKING
+}
+  
 
 function FlameEternalTile() {
   this.name = "FlameEternal";

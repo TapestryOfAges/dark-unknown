@@ -1292,7 +1292,12 @@ function PerformUseFromInventory() {
        statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
      }
      if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) {  // in theory, kings is required for the rest, but let's be sure
-       var rune = localFactory.createTile("AbstractRune");
+       var rune;
+       if (PC.getHomeMap().getScale() === 0) {
+         rune = localFactory.createTile("OutdoorRuneOfKings");
+       } else {
+         rune = localFactory.createTile("AbstractRune");
+       }
        statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Other</span></td><td>&nbsp;</td></tr>";
        statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
        itemarray[iter] = rune;
