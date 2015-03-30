@@ -1293,15 +1293,32 @@ function PerformUseFromInventory() {
      }
      if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) {  // in theory, kings is required for the rest, but let's be sure
        var rune;
-       if (PC.getHomeMap().getScale() === 0) {
-         rune = localFactory.createTile("OutdoorRuneOfKings");
-       } else {
-         rune = localFactory.createTile("AbstractRune");
-       }
-       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Other</span></td><td>&nbsp;</td></tr>";
-       statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
-       itemarray[iter] = rune;
-       iter++;
+       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Runes</span></td><td>&nbsp;</td></tr>";
+       if (PC.runes.kings) {
+         rune = localFactory.createTile("MarkOfKings");
+         statsdiv += "<tr id='inv" + iter + "'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
+         itemarray[iter] = rune;
+         iter++;
+       } 
+       if (PC.runes.waves) {
+         rune = localFactory.createTile("MarkOfWaves");
+         statsdiv += "<tr id='inv" + iter + "'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
+         itemarray[iter] = rune;
+         iter++;
+       } 
+       if (PC.runes.winds) {
+         rune = localFactory.createTile("MarkOfWinds");
+         statsdiv += "<tr id='inv" + iter + "'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
+         itemarray[iter] = rune;
+         iter++;
+       } 
+       if (PC.runes.flames) {
+         rune = localFactory.createTile("MarkOfFlames");
+         statsdiv += "<tr id='inv" + iter + "'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
+         itemarray[iter] = rune;
+         iter++;
+       } 
+        
        statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
      }
 
@@ -1552,6 +1569,8 @@ function PerformYell() {
 		  PC.setMana(PC.getMaxMana());
 		} else if (inputText.txt === "FUTHARK") {
 		  PC.runes.kings = 1;
+		} else if (inputText.txt === "QUAKE") {
+		  Earthquake();
 		} else if (inputText.txt === "RUNTEST") {
 		  RunTest();
 // REAL YELLS START HERE

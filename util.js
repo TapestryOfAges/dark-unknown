@@ -801,3 +801,29 @@ function objectCompare(objA, objB) {
   }
   return true;
 }
+
+function Earthquake() {
+  // possibly add sound
+  $("#displayframe").css("left", 18);
+  setTimeout(function() {
+    $("#displayframe").css("left", 20);
+    setTimeout(function() {
+      $("#displayframe").css("left", 22);
+      setTimeout(function() {
+        $("#displayframe").css("left", 20);
+        setTimeout(function() {
+          $("#displayframe").css("left", 18);
+          setTimeout(function() {
+            $("#displayframe").css("left", 20);
+            setTimeout(function() {
+              $("#displayframe").css("left", 22);
+              setTimeout(function() {
+                $("#displayframe").css("left", 20);
+              }, 250);
+            },250);
+          },250);
+        },250);
+      },250);
+    },250);
+  },250);
+}

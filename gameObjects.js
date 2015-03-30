@@ -1113,18 +1113,6 @@ function StoneWallTile() {
 }
 StoneWallTile.prototype = new TerrainObject();
 
-function CoralTile() {
-  this.name = "Coral";
-  this.graphic = "coral.gif";
-  this.passable = MOVE_ETHEREAL + MOVE_FLY;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "coral reef";
-  
-  LightEmitting.call(this, 1);
-}
-CoralTile.prototype = new TerrainObject();
-
 function StoneTile() {
   this.name = "Stone";
 //  this.graphic = "013.gif";
@@ -2618,6 +2606,18 @@ LavaTile.prototype.idle = function(person) {
 function InLava(who) {
   // WORK HERE
 }
+
+function CoralTile() {
+  this.name = "Coral";
+  this.graphic = "coral.gif";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "coral reef";
+  
+  LightEmitting.call(this, 1);
+}
+CoralTile.prototype = new FeatureObject();
 
 function DungeonTile() {
   this.name = "Dungeon";
@@ -4415,6 +4415,7 @@ function PlatformOfVoidTile() {
 PlatformOfVoidTile.prototype = new FeatureObject();
 
 // These are fake items, just so runes can have a Usescript for UseFromInventory
+// deprecated
 function AbstractRuneTile() {
   this.name = "AbstractRune";
   this.graphic = "runes.gif";
@@ -4447,9 +4448,96 @@ OutdoorRuneOfKingsTile.prototype = new FeatureObject();
 
 OutdoorRuneOfKingsTile.prototype.use = function(user) {
   // check to see if you are in one of a few locations, if so, open new dungeon
-  // WORKING
+  // deprecated
 }
+
+function MarkOfKingsTile() {
+  this.name = "MarkOfKings";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-32";
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "Rune of Kings";
+}
+MarkOfKingsTile.prototype = new FeatureObject();
   
+MarkOfKingsTile.prototype.use = function(user) {
+  // check if on surface, if so check location
+  // if underground/in town, heal
+  var retval = {};
+  if (!user.getHomeMap().getScale()) {
+    if (user.getHomeMap().getName() === "darkunknown") {
+      if (((user.getx() === 27) && (user.gety() === 28)) || ((user.getx() === 26) && (user.gety() === 29)) || ((user.getx() === 28) && (user.gety() === 29)) || ((user.getx() >= 25) && (user.getx() <= 28) && (user.gety() === 30)) || ((user.getx() >=25) && (user.getx() <= 27) && (user.gety() === 31))) {
+        // open entrance to grotto
+        Earthquake();
+        var cave = localFactory.createTile("Cave");
+        cave.setEnterMap("grotto", 22, 53);
+        user.getHomeMap().placeThing(27,30,cave);
+        retval["txt"] = "A cave entrance is revealed!";
+        return retval;
+      } else if ((user.getx() === 100) && (user.gety() === 57)) {
+        // teleport to entrance to air
+      } else {
+        // no effect
+      }
+    } else if (user.getHomeMap().getName() === "volcano") {
+      
+    } else {
+      // no effect
+    }
+  } else {
+    // use power
+  }
+  return retval;
+}  
+
+function MarkOfWavesTile() {
+  this.name = "MarkOfWaves";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-32";
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "Rune of Waves";
+}
+MarkOfWavesTile.prototype = new FeatureObject();
+  
+MarkOfWavesTile.prototype.use = function(user) {
+  // summon whirlpool if at lighthouse
+  // otherwise, temp mana?
+}  
+  
+function MarkOfWindsTile() {
+  this.name = "MarkOfWinds";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-32";
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "Rune of Winds";
+}
+MarkOfWindsTile.prototype = new FeatureObject();
+  
+MarkOfWindsTile.prototype.use = function(user) {
+  // push back
+}  
+
+function MarkOfFlamesTile() {
+  this.name = "MarkOfFlames";
+  this.graphic = "runes.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-32";
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "Rune of Flames";
+}
+MarkOfFlamesTile.prototype = new FeatureObject();
+  
+MarkOfFlamesTile.prototype.use = function(user) {
+  // various random effects- flame armor, flame sword, burn foe
+}  
+
 
 function FlameEternalTile() {
   this.name = "FlameEternal";

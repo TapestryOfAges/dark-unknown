@@ -698,6 +698,7 @@ function MinstrelNPCTile() {
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'a';
   this.desc = 'minstrel';
+  this.onHit = ' ';
   this.meleeChance = 40;
   this.spellsknown = { buff: 1, };
   special = 'sing';
@@ -1224,6 +1225,37 @@ function GiantSpiderNPCTile() {
 GiantSpiderNPCTile.prototype = new NPCObject();
 
 
+// Animal
+
+function GremlinNPCTile() {
+  this.name = 'GremlinNPC';
+  this.level = 3;
+  this.addhp = -5;
+  this.str = 10;
+  this.dex = 15;
+  this.int = 6;
+  this.alignment = 'Neutral';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.threatenedAI = 'melee';
+  this.PCThreatAI = 'attackPC';
+  this.graphic = '333.gif';
+  this.altgraphic = ['367.gif',];
+  this.meleeAttackAs = 'Shortsword';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'Blood';
+  this.lootTable = 'Gremlin';
+  this.prefix = 'a';
+  this.desc = 'gremlin';
+  this.onHit = 'stealfood';
+  this.meleeChance = 100;
+  special = 'breedsexplosively';
+}
+GremlinNPCTile.prototype = new NPCObject();
+
+
 // CorruptTownsfolk
 
 function HandlerNPCTile() {
@@ -1328,8 +1360,7 @@ function PythonNPCTile() {
   this.peaceAI = 'seekPC-15';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = '342.gif';
-  this.altgraphic = ['376.gif',];
+  this.graphic = 'python.gif';
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -2760,4 +2791,177 @@ function AbyssalKrakenNPCTile() {
   special = 'lbolt';
 }
 AbyssalKrakenNPCTile.prototype = new NPCObject();
+
+function GiantRatGroupSmallTile() {
+  this.name = 'GiantRatGroupSmall';
+  this.desc = 'giant rats';
+  this.peaceAI = 'Animal-15';
+  this.graphic = '327.gif';
+  this.altgraphic = ['361.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
+  this.movetype = MOVE_WALK;
+}
+GiantRatGroupSmallTile.prototype = new NPCGroupObject();
+
+function GiantRatGroupLargeTile() {
+  this.name = 'GiantRatGroupLarge';
+  this.desc = 'giant rats';
+  this.peaceAI = 'Animal-15';
+  this.graphic = '327.gif';
+  this.altgraphic = ['361.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
+  this.movetype = MOVE_WALK;
+}
+GiantRatGroupLargeTile.prototype = new NPCGroupObject();
+
+function OrcGroupSmallTile() {
+  this.name = 'OrcGroupSmall';
+  this.desc = 'orcs';
+  this.peaceAI = 'Monster-25';
+  this.graphic = '339.gif';
+  this.altgraphic = ['373.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('OrcNPC', '1d3+2');
+  this.movetype = MOVE_WALK;
+}
+OrcGroupSmallTile.prototype = new NPCGroupObject();
+
+function OrcGroupLargeTile() {
+  this.name = 'OrcGroupLarge';
+  this.desc = 'orcs';
+  this.peaceAI = 'Monster-25';
+  this.graphic = '339.gif';
+  this.altgraphic = ['373.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('OrcNPC', '1d5+4');
+  this.movetype = MOVE_WALK;
+}
+OrcGroupLargeTile.prototype = new NPCGroupObject();
+
+function HoodGroupSmallTile() {
+  this.name = 'HoodGroupSmall';
+  this.desc = 'hoods';
+  this.peaceAI = 'Bandit-20';
+  this.graphic = '375.gif';
+  this.altgraphic = ['341.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('HoodNPC', '1d3+1');
+  this.movetype = MOVE_WALK;
+}
+HoodGroupSmallTile.prototype = new NPCGroupObject();
+
+function HoodGroupLargeTile() {
+  this.name = 'HoodGroupLarge';
+  this.desc = 'hoods';
+  this.peaceAI = 'Bandit-20';
+  this.graphic = '375.gif';
+  this.altgraphic = ['341.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('HoodNPC', '1d3+3');
+  this.group[1] = new NPCList('MinstrelNPC', '1d1');
+  this.movetype = MOVE_WALK;
+}
+HoodGroupLargeTile.prototype = new NPCGroupObject();
+
+function RogueGroupSmallTile() {
+  this.name = 'RogueGroupSmall';
+  this.desc = 'rogues';
+  this.peaceAI = 'Bandit-20';
+  this.graphic = '306.gif';
+  this.group = [];
+  this.group[0] = new NPCList('RogueNPC', '1d3+2');
+  this.group[1] = new NPCList('HoodNPC', '1d3+1');
+  this.movetype = MOVE_WALK;
+}
+RogueGroupSmallTile.prototype = new NPCGroupObject();
+
+function RogueGroupLargeTile() {
+  this.name = 'RogueGroupLarge';
+  this.desc = 'rogues';
+  this.peaceAI = 'Bandit-20';
+  this.graphic = '306.gif';
+  this.group = [];
+  this.group[0] = new NPCList('RogueNPC', '1d4+3');
+  this.group[1] = new NPCList('HoodNPC', '1d3+2');
+  this.group[2] = new NPCList('MinstrelNPC', '1d2');
+  this.movetype = MOVE_WALK;
+}
+RogueGroupLargeTile.prototype = new NPCGroupObject();
+
+function ThiefGroupSmallTile() {
+  this.name = 'ThiefGroupSmall';
+  this.desc = 'thieves';
+  this.peaceAI = 'Bandit-20';
+  this.graphic = '306.gif';
+  this.group = [];
+  this.group[0] = new NPCList('ThiefNPC', '1d3+2');
+  this.group[1] = new NPCList('RogueNPC', '1d3+1');
+  this.movetype = MOVE_WALK;
+}
+ThiefGroupSmallTile.prototype = new NPCGroupObject();
+
+function ThiefGroupLargeTile() {
+  this.name = 'ThiefGroupLarge';
+  this.desc = 'thieves';
+  this.peaceAI = 'Bandit-20';
+  this.graphic = '306.gif';
+  this.group = [];
+  this.group[0] = new NPCList('ThiefNPC', '1d4+3');
+  this.group[1] = new NPCList('RogueNPC', '1d3+2');
+  this.group[2] = new NPCList('MinstrelNPC', '1d2');
+  this.movetype = MOVE_WALK;
+}
+ThiefGroupLargeTile.prototype = new NPCGroupObject();
+
+function LowbiePartyTile() {
+  this.name = 'LowbieParty';
+  this.desc = 'a party of adventurers';
+  this.peaceAI = 'Bandit-20';
+  this.graphic = '308.gif';
+  this.group = [];
+  this.group[0] = new NPCList('FighterNPC', '1d2');
+  this.group[1] = new NPCList('RogueNPC', '1d2');
+  this.group[2] = new NPCList('MinstrelNPC', '1d2-1');
+  this.group[3] = new NPCList('ApprenticeNPC', '1d2-1');
+  this.movetype = MOVE_WALK;
+}
+LowbiePartyTile.prototype = new NPCGroupObject();
+
+function HeadlessGroupSmallTile() {
+  this.name = 'HeadlessGroupSmall';
+  this.desc = 'headlesses';
+  this.peaceAI = 'Monster-15';
+  this.graphic = '344.gif';
+  this.altgraphic = ['378.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('HeadlessNPC', '1d4+1');
+  this.movetype = MOVE_WALK;
+}
+HeadlessGroupSmallTile.prototype = new NPCGroupObject();
+
+function HeadlessGroupLargeTile() {
+  this.name = 'HeadlessGroupLarge';
+  this.desc = 'headlesses';
+  this.peaceAI = 'Monster-15';
+  this.graphic = '344.gif';
+  this.altgraphic = ['378.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('HeadlessNPC', '1d5+2');
+  this.movetype = MOVE_WALK;
+}
+HeadlessGroupLargeTile.prototype = new NPCGroupObject();
+
+function SnakesTile() {
+  this.name = 'Snakes';
+  this.desc = 'giant snakes';
+  this.peaceAI = 'Animal-15';
+  this.graphic = '342.gif';
+  this.altgraphic = ['376.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('GiantSnakeNPC', '1d4+2');
+  this.movetype = MOVE_WALK;
+}
+SnakesTile.prototype = new NPCGroupObject();
 
