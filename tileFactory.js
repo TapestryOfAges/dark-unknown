@@ -1101,6 +1101,31 @@ tileFactory.prototype.makeAbstractRuneTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeOutdoorRuneOfKingsTile = function() {
+  var newTile = new OutdoorRuneOfKingsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMarkOfKingsTile = function() {
+  var newTile = new MarkOfKingsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMarkOfWavesTile = function() {
+  var newTile = new MarkOfWavesTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMarkOfWindsTile = function() {
+  var newTile = new MarkOfWindsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMarkOfFlamesTile = function() {
+  var newTile = new MarkOfFlamesTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeFlameEternalTile = function() {
   var newTile = new FlameEternalTile();
   return newTile;
@@ -1631,6 +1656,11 @@ tileFactory.prototype.makeGiantSpiderNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGremlinNPCTile = function() {
+  var newTile = new GremlinNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeHandlerNPCTile = function() {
   var newTile = new HandlerNPCTile();
   return newTile;
@@ -1873,6 +1903,76 @@ tileFactory.prototype.makeTitanNPCTile = function() {
 
 tileFactory.prototype.makeAbyssalKrakenNPCTile = function() {
   var newTile = new AbyssalKrakenNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGiantRatGroupSmallTile = function() {
+  var newTile = new GiantRatGroupSmallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGiantRatGroupLargeTile = function() {
+  var newTile = new GiantRatGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrcGroupSmallTile = function() {
+  var newTile = new OrcGroupSmallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrcGroupLargeTile = function() {
+  var newTile = new OrcGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHoodGroupSmallTile = function() {
+  var newTile = new HoodGroupSmallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHoodGroupLargeTile = function() {
+  var newTile = new HoodGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRogueGroupSmallTile = function() {
+  var newTile = new RogueGroupSmallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRogueGroupLargeTile = function() {
+  var newTile = new RogueGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeThiefGroupSmallTile = function() {
+  var newTile = new ThiefGroupSmallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeThiefGroupLargeTile = function() {
+  var newTile = new ThiefGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeLowbiePartyTile = function() {
+  var newTile = new LowbiePartyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHeadlessGroupSmallTile = function() {
+  var newTile = new HeadlessGroupSmallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHeadlessGroupLargeTile = function() {
+  var newTile = new HeadlessGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSnakesTile = function() {
+  var newTile = new SnakesTile();
   return newTile;
 }
 

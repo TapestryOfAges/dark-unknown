@@ -154,7 +154,7 @@ foreach my $line (<$groupdoc>) {
     print $out "  this.group[3] = new NPCList('$fields[10]NPC', '$fields[11]');\n";
   }
   $fields[12] = uc($fields[12]);
-  print $out "  this.movetype = MOVE_$fields[10];\n";
+  print $out "  this.movetype = MOVE_$fields[12];\n";
   print $out "}\n";
   print $out "$fields[0]" . "Tile.prototype = new NPCGroupObject();\n\n";
 }
