@@ -4466,18 +4466,36 @@ MarkOfKingsTile.prototype.use = function(user) {
   // check if on surface, if so check location
   // if underground/in town, heal
   var retval = {};
-  if (!user.getHomeMap().getScale()) {
-    if (user.getHomeMap().getName() === "darkunknown") {
+  var themap = user.getHomeMap();
+  if (!themap.getScale()) {
+    if (themap.getName() === "darkunknown") {
       if (((user.getx() === 27) && (user.gety() === 28)) || ((user.getx() === 26) && (user.gety() === 29)) || ((user.getx() === 28) && (user.gety() === 29)) || ((user.getx() >= 25) && (user.getx() <= 28) && (user.gety() === 30)) || ((user.getx() >=25) && (user.getx() <= 27) && (user.gety() === 31))) {
         // open entrance to grotto
         Earthquake();
         var cave = localFactory.createTile("Cave");
         cave.setEnterMap("grotto", 22, 53);
-        user.getHomeMap().placeThing(27,30,cave);
+        themap.placeThing(27,30,cave);
         retval["txt"] = "A cave entrance is revealed!";
         return retval;
       } else if ((user.getx() === 100) && (user.gety() === 57)) {
+        var tile = themap.getTile(112,67);
+        var oldgate = tile.getTopFeature();
+        if (oldgate && (oldgate.getName() === "Moongate")) {
+          themap.deleteThing(oldgate);
+        }
+        
+        user.getHomeMap().moveThing(111,67,user);
+        DrawMainFrame("draw", "darkunknown", user.getx(), user.gety());
         // teleport to entrance to air
+        setTimeout(function() {
+          var moongate = localFactory.createTile("Moongate");
+          moongate.destmap = "skypalace";
+          moongate.destx = 47;
+          moongate.desty = 49;
+          themap.placeThing(112,67,moongate);
+          animateImage(0,-128,moongate,0,"right",300,0,1);
+        }, 500);
+
       } else {
         // no effect
       }
@@ -4689,7 +4707,7 @@ MoongateTile.prototype.walkon = function(who) {
     if (maps.getMap(this.destmap)) {
       newmap = maps.getMap(this.destmap);
     } else {
-      newmap.loadMap(destination);
+      newmap.loadMap(this.destmap);
       maps.addMapByRef(newmap);
     }
     MoveBetweenMaps(PC,PC.getHomeMap(),newmap, this.destx, this.desty);
