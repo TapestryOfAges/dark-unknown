@@ -305,7 +305,7 @@ SleepTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
-
+// This whole thing is deprecated
 var runedefs = {};
 runedefs[RUNE_KINGS] = {name: "Earthbond", pre: "Rune of Kings", focus: 3};  // heal
 runedefs[RUNE_WAVES] = {name: "Mana Tide", pre: "Rune of Waves", focus: 4};  // temp mana
