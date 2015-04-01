@@ -437,9 +437,9 @@ Acre.prototype.getTerrain = function() {
 	return this.terrain;
 }
 
-Acre.prototype.getTop = function() {
+Acre.prototype.getTop = function(nopc) {
 	var toptile;
-	if (this.getTopPC()) {
+	if (this.getTopPC() && !nopc) {
   	toptile = this.getTopPC();
   } else if (this.getTopVisibleNPC()) {
   	toptile = this.getTopVisibleNPC();
