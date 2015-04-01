@@ -235,14 +235,14 @@ magic[4][GetSpellID(5)].executeSpell = function(caster, infused, free) {
       var destmap = DU.maps.getMap(shrine.gotomap);
 //      MoveBetweenMaps(caster,caster.getHomeMap(), destmap, shrine.gotox, shrine.gotoy);
 //      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-      TravelByMoongate(caster,"blue",belowgraphic, destmap, shrine.gotox, shrine.gotoy);
+      TravelByMoongate(caster,"blue",belowgraphic,belowgraphic, destmap, shrine.gotox, shrine.gotoy);
     } else if (shrine.getName() === "BrokenShrine") {
       if (infused) {
         DU.maps.addMap(shrine.gotomap);
         var destmap = DU.maps.getMap(shrine.gotomap);
 //        MoveBetweenMaps(caster,caster.getHomeMap(), destmap, shrine.gotox, shrine.gotoy);
 //        DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-        TravelByMoongate(caster,"blue",belowgraphic, destmap, shrine.gotox, shrine.gotoy);
+        TravelByMoongate(caster,"blue",belowgraphic,belowgraphic, destmap, shrine.gotox, shrine.gotoy);
       } else {
         maintext.addText("The spell sputters and the broken node remains closed.");
         resp["fin"] = 1;
@@ -288,7 +288,7 @@ magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   if (returndest.map) {
     var destmap = DU.maps.getMap(returndest.map);
     var localacre = castermap.getTile(caster.getx(), caster.gety());
-    var displaytile = localacre.getTop();
+    var displaytile = localacre.getTop(1);
     while (displaytile.getName() === "SeeBelow") {
       var retval = FindBelow(x,y,mapname);
       localacre = retval.tile;
@@ -313,7 +313,11 @@ magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
     
 //    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1;" title="' + displaytile.getDesc() + '" /></td>';
     }
-    TravelByMoongate(caster,"blue",graphics, destmap, returndest.x, returndest.y);
+    
+    var destacre = destmap.getTile(returndest.x, returndest.y);
+    var desttile = destacre.getTop();
+    
+    TravelByMoongate(caster,"blue",graphics,desttile.getGraphicArray(), destmap, returndest.x, returndest.y);
     resp["fin"] = 3;
   } else {
     maintext.addText("The spell sputters as the distances are too great.");
@@ -350,7 +354,7 @@ magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   return resp;  
 }
 
-function TravelByMoongate(who, color, belowgraphic, destmap, destx, desty) {
+function TravelByMoongate(who, color, belowgraphic, destbelow, destmap, destx, desty) {
   var tol = 300;
   var graphicarray = [];
   graphicarray[0] = "moongates.gif";
@@ -384,6 +388,7 @@ function TravelByMoongate(who, color, belowgraphic, destmap, destx, desty) {
             DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
             setTimeout(function() {
               MoveBetweenMaps(who,who.getHomeMap(), destmap, destx, desty);
+              who.setGraphicArray(destbelow);
               DrawMainFrame("draw", who.getHomeMap().getName(), who.getx(), who.gety());
               setTimeout(function() {
                 who.setGraphicArray(graphicarray);
