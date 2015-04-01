@@ -8,6 +8,7 @@ function GameStateData() {
 
 
 GameStateData.prototype.loadTmp = function() {
+  gamestate.setMode("null");
 	// Temporarily, this will return demo values
 //  PC.setx(47);
 //  PC.sety(49);
@@ -153,6 +154,7 @@ GameStateData.prototype.saveGame = function() {
 GameStateData.prototype.loadGame = function() {
   gamestate.setMode("loadgame");
   if (!localStorage.savegame) {
+    if (debug) { dbs.writeln("<br /><br /><p>LOADING TMP VALUES</p><br />"); }
     gamestate.loadTmp();
     return;
   }

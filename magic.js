@@ -123,13 +123,14 @@ magic[6][GetSpellID(6)] = new SpellObject("Negate Magic", "An Ort", 6, 0);
 magic[7][GetSpellID(1)] = new SpellObject("Charm", "An Xen Ex", 7, 1);
 magic[7][GetSpellID(2)] = new SpellObject("Fear", "Quas Wis", 7, 0);
 magic[7][GetSpellID(3)] = new SpellObject("Fire and Ice", "Vas Frio Flam Ex Por", 7, 1);
-magic[7][GetSpellID(4)] = new SpellObject("Meteor Swarm", "Vas Flam Ylem", 7, 0);
-magic[7][GetSpellID(5)] = new SpellObject("Permanence", "In Vas Ort Tym", 7, 0);
-magic[7][GetSpellID(6)] = new SpellObject("Summon Daemon", "Kal Vas Des Xen", 7, 1);
+magic[7][GetSpellID(4)] = new SpellObject("Invulnerability", "In Vas Sanct", 7, 0);
+magic[7][GetSpellID(5)] = new SpellObject("Meteor Swarm", "Vas Flam Ylem", 7, 0);
+magic[7][GetSpellID(6)] = new SpellObject("Permanence", "In Vas Ort Tym", 7, 0);
 
-magic[8][GetSpellID(1)] = new SpellObject("Armageddon", "Kal Vas An Mani Corp Xen", 8, 0);
-magic[8][GetSpellID(2)] = new SpellObject("Arrow of Glass", "Corp Ylem", 8, 1);
-magic[8][GetSpellID(3)] = new SpellObject("Conflagration", "In Vas Grav Flam Hur", 8, 1);
+//magic[8][GetSpellID(1)] = new SpellObject("Armageddon", "Kal Vas An Mani Corp Xen", 8, 0);
+magic[8][GetSpellID(1)] = new SpellObject("Arrow of Glass", "Corp Ylem", 8, 1);
+magic[8][GetSpellID(2)] = new SpellObject("Conflagration", "In Vas Grav Flam Hur", 8, 1);
+magic[8][GetSpellID(3)] = new SpellObject("Conjure Daemon", "Kal Vas Des Xen", 7, 1);
 magic[8][GetSpellID(4)] = new SpellObject("Quickness", "Rel Tym", 8, 0);
 magic[8][GetSpellID(5)] = new SpellObject("Reincarnate", "An Corp", 8, 0);
 magic[8][GetSpellID(6)] = new SpellObject("Time Stop", "An Tym", 8, 0);
@@ -277,41 +278,49 @@ magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
       returndest.y = 43;
     }
   } else {
-    if (((castermap.getReturnInfused()) && (infused)) || (!castermap.getReturnInfused)) {
+    if ((castermap.getReturnInfused() && infused) || !castermap.getReturnInfused()) {
       returndest.map = castermap.getReturnMap();
       returndest.x = castermap.getReturnx();
       returndest.y = castermap.getReturny();
     }
   }
   //WORK HERE  
-  
-  var localacre = castermap.getTile(caster.getx(), caster.gety());
-  var displaytile = localacre.getTop();
-  while (displaytile.getName() === "SeeBelow") {
-    var retval = FindBelow(x,y,mapname);
-    localacre = retval.tile;
-    mapname = retval.map;
-    displaytile = localacre.getTop();
-  }
-  var graphics = displaytile.getGraphicArray();
-  var showGraphic = graphics[0];
-  if (typeof displaytile.setBySurround === "function") {
-   	graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
-    showGraphic = graphics[0];
-    if (typeof displaytile.doTile === "function") {
-      showGraphic = displaytile.doTile(x,y,showGraphic);
-    }
-    displayCell.showGraphic = showGraphic;
-    displayCell.graphics2 = graphics[2];
-    displayCell.graphics3 = graphics[3];
-    displayCell.graphics1 = graphics[1];
-    displayCell.losresult = losresult;
-    displayCell.lighthere = lighthere;
-    displayCell.desc = displaytile.getDesc();
+  if (returndest.map) {
+    var destmap = DU.maps.getMap(returndest.map);
+    var localacre = castermap.getTile(caster.getx(), caster.gety());
+    var displaytile = localacre.getTop();
+    while (displaytile.getName() === "SeeBelow") {
+      var retval = FindBelow(x,y,mapname);
+      localacre = retval.tile;
+      mapname = retval.map;
+      displaytile = localacre.getTop();
+    }  
+    var graphics = displaytile.getGraphicArray();
+    var showGraphic = graphics[0];
+    if (typeof displaytile.setBySurround === "function") {
+     	graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
+      showGraphic = graphics[0];
+      if (typeof displaytile.doTile === "function") {
+        graphics[0] = displaytile.doTile(x,y,showGraphic);
+      }
+//    displayCell.showGraphic = showGraphic;
+//    displayCell.graphics2 = graphics[2];
+//    displayCell.graphics3 = graphics[3];
+//    displayCell.graphics1 = graphics[1];
+//    displayCell.losresult = losresult;
+//    displayCell.lighthere = lighthere;
+//    displayCell.desc = displaytile.getDesc();
     
 //    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1;" title="' + displaytile.getDesc() + '" /></td>';
+    }
+    TravelByMoongate(caster,"blue",graphics, destmap, returndest.x, returndest.y);
+    resp["fin"] = 3;
+  } else {
+    maintext.addText("The spell sputters as the distances are too great.");
+    resp["fin"] = 1;
   }
-
+  
+  return resp;
 }
 
 //Quickness
