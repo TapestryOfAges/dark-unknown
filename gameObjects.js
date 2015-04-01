@@ -4499,10 +4499,23 @@ MarkOfKingsTile.prototype.use = function(user) {
       } else {
         // no effect
       }
-    } else if (user.getHomeMap().getName() === "volcano") {
+    } else if ((themap.getName() === "volcano") && (GetDistance(user.getx(), user.gety(), 27,21) < 5)) {
+      Earthquake();
+      var cave = localFactory.createTile("Cave");
+      cave.setEnterMap("lavatubes", 0, 0);   // make tubes!
+      var nillavatile = themap.getTile(27,21);
+      var nillava = nillavatile.getTopFeature();
+      if (nillava && (nillave.getName() === "Lava")) {
+        themap.deleteThing(nillava);
+      }
       
+      themap.placeThing(27,21,cave);
+      retval["txt"] = "A tunnel into the caldera is exposed!";
+      return retval;
+        
     } else {
-      // no effect
+      retval["txt"] = "Nothing happens here.";
+      return retval;
     }
   } else {
     // use power
