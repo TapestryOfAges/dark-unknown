@@ -78,52 +78,52 @@ for (var i=1;i<=8;i++) {
   magic[i] = {};
 }
 
-magic[1][GetSpellID(1)] = new SpellObject("Cure", "An Nox", 1, 0);
-magic[1][GetSpellID(2)] = new SpellObject("Disarm Trap", "An Jux", 1, 0);
-magic[1][GetSpellID(3)] = new SpellObject("Distract", "An Wis Xen", 1, 0);
-magic[1][GetSpellID(4)] = new SpellObject("Flame Blade", "Flam Bet Ylem", 1, 0);
-magic[1][GetSpellID(5)] = new SpellObject("Light", "In Lor", 1, 0);
-magic[1][GetSpellID(6)] = new SpellObject("Strike", "An Sanct", 1, 1);
+magic[1][GetSpellID(1)] = new SpellObject("Cure", "An Nox", 1, 0);      // heal
+magic[1][GetSpellID(2)] = new SpellObject("Disarm Trap", "An Jux", 1, 0);   // sound effect is sfx_unlock
+magic[1][GetSpellID(3)] = new SpellObject("Distract", "An Wis Xen", 1, 0);  // debuff
+magic[1][GetSpellID(4)] = new SpellObject("Flame Blade", "Flam Bet Ylem", 1, 0);     // flames
+magic[1][GetSpellID(5)] = new SpellObject("Light", "In Lor", 1, 0);  // has sound
+magic[1][GetSpellID(6)] = new SpellObject("Strike", "An Sanct", 1, 1);  // melee hit
 
 magic[2][GetSpellID(1)] = new SpellObject("Illusion", "Quas Xen", 2, 1);
-magic[2][GetSpellID(2)] = new SpellObject("Lesser Heal", "Bet Mani", 2, 0);
+magic[2][GetSpellID(2)] = new SpellObject("Lesser Heal", "Bet Mani", 2, 0);   // heal
 magic[2][GetSpellID(3)] = new SpellObject("Magic Bolt", "Grav Por", 2, 1);
 magic[2][GetSpellID(4)] = new SpellObject("Poison Blade", "In Nox Bet Ylem", 2, 0);
-magic[2][GetSpellID(5)] = new SpellObject("Protect", "In Sanct", 2, 0);
-magic[2][GetSpellID(6)] = new SpellObject("Unlock", "Ex Por", 2, 0);
+magic[2][GetSpellID(5)] = new SpellObject("Protect", "In Sanct", 2, 0);   // blessing
+magic[2][GetSpellID(6)] = new SpellObject("Unlock", "Ex Por", 2, 0);     // sfx_unlock
 
-magic[3][GetSpellID(1)] = new SpellObject("Fire Armor", "In Sanct Flam", 3, 0);
+magic[3][GetSpellID(1)] = new SpellObject("Fire Armor", "In Sanct Flam", 3, 0);  // flames
 magic[3][GetSpellID(2)] = new SpellObject("Fireball", "Flam Por", 3, 1);
 magic[3][GetSpellID(3)] = new SpellObject("Iceball", "Frio Por", 3, 1);
-magic[3][GetSpellID(4)] = new SpellObject("Poison Wind", "Vas Nox Hur", 3, 0);
+magic[3][GetSpellID(4)] = new SpellObject("Poison Wind", "Vas Nox Hur", 3, 0);   // wind
 magic[3][GetSpellID(5)] = new SpellObject("Telekinesis", "Ylem Por", 3, 1);
-magic[3][GetSpellID(6)] = new SpellObject("Wall of Flame", "Kal Flam", 3, 1);
+magic[3][GetSpellID(6)] = new SpellObject("Wall of Flame", "Kal Flam", 3, 1);    // flames
 
-magic[4][GetSpellID(1)] = new SpellObject("Blessing", "In Mani Xen", 4, 0);
-magic[4][GetSpellID(2)] = new SpellObject("Heal", "In Mani", 4, 0);
+magic[4][GetSpellID(1)] = new SpellObject("Blessing", "In Mani Xen", 4, 0);  // blessing
+magic[4][GetSpellID(2)] = new SpellObject("Heal", "In Mani", 4, 0);  // heal
 magic[4][GetSpellID(3)] = new SpellObject("Life Drain", "In Corp Mani", 4, 1);
 magic[4][GetSpellID(4)] = new SpellObject("Smite", "Corp Por", 4, 0);
-magic[4][GetSpellID(5)] = new SpellObject("Transport", "Rel Por", 4, 0);
-magic[4][GetSpellID(6)] = new SpellObject("Water Walk", "Uus Xen", 4, 0);
-
-magic[5][GetSpellID(1)] = new SpellObject("Mirror Ward", "Ort Sanct", 5, 0);
-magic[5][GetSpellID(2)] = new SpellObject("Paralyze", "An Ex Por", 5, 1);
-magic[5][GetSpellID(3)] = new SpellObject("Return", "Kal Ort Por", 5, 0);
+magic[4][GetSpellID(5)] = new SpellObject("Transport", "Rel Por", 4, 0);    // teleport
+magic[4][GetSpellID(6)] = new SpellObject("Water Walk", "Uus Xen", 4, 0);   // blessing
+ 
+magic[5][GetSpellID(1)] = new SpellObject("Mirror Ward", "Ort Sanct", 5, 0);  // blessing
+magic[5][GetSpellID(2)] = new SpellObject("Paralyze", "An Ex Por", 5, 1);    // curse
+magic[5][GetSpellID(3)] = new SpellObject("Return", "Kal Ort Por", 5, 0);    // none (moongate)
 magic[5][GetSpellID(4)] = new SpellObject("Shockwave", "Vas Grav Por Ylem", 5, 0);
 magic[5][GetSpellID(5)] = new SpellObject("Summon Ally", "Kal Xen", 5, 1);
-magic[5][GetSpellID(6)] = new SpellObject("Swordstrike", "Vas Jux Ylem", 5, 1);
+magic[5][GetSpellID(6)] = new SpellObject("Swordstrike", "Vas Jux Ylem", 5, 1);  // melee hit
 
-magic[6][GetSpellID(1)] = new SpellObject("Empower", "In Ort Ylem", 6, 0);
+magic[6][GetSpellID(1)] = new SpellObject("Empower", "In Ort Ylem", 6, 0);  // bless
 magic[6][GetSpellID(2)] = new SpellObject("Explosion", "Vas Flam Por", 6, 1);
-magic[6][GetSpellID(3)] = new SpellObject("Jinx", "Vas Quas", 6, 0);
-magic[6][GetSpellID(4)] = new SpellObject("Mass Curse", "Vas An Sanct", 6, 0);
+magic[6][GetSpellID(3)] = new SpellObject("Jinx", "Vas Quas", 6, 0);  // curse
+magic[6][GetSpellID(4)] = new SpellObject("Mass Curse", "Vas An Sanct", 6, 0);  // curse
 magic[6][GetSpellID(5)] = new SpellObject("Lightning Storm", "In Grav Hur", 6, 0);
 magic[6][GetSpellID(6)] = new SpellObject("Negate Magic", "An Ort", 6, 0);
 
-magic[7][GetSpellID(1)] = new SpellObject("Charm", "An Xen Ex", 7, 1);
-magic[7][GetSpellID(2)] = new SpellObject("Fear", "Quas Wis", 7, 0);
+magic[7][GetSpellID(1)] = new SpellObject("Charm", "An Xen Ex", 7, 1);   // curse
+magic[7][GetSpellID(2)] = new SpellObject("Fear", "Quas Wis", 7, 0);   // curse
 magic[7][GetSpellID(3)] = new SpellObject("Fire and Ice", "Vas Frio Flam Ex Por", 7, 1);
-magic[7][GetSpellID(4)] = new SpellObject("Invulnerability", "In Vas Sanct", 7, 0);
+magic[7][GetSpellID(4)] = new SpellObject("Invulnerability", "In Vas Sanct", 7, 0);   // bless
 magic[7][GetSpellID(5)] = new SpellObject("Meteor Swarm", "Vas Flam Ylem", 7, 0);
 magic[7][GetSpellID(6)] = new SpellObject("Permanence", "In Vas Ort Tym", 7, 0);
 
@@ -131,8 +131,8 @@ magic[7][GetSpellID(6)] = new SpellObject("Permanence", "In Vas Ort Tym", 7, 0);
 magic[8][GetSpellID(1)] = new SpellObject("Arrow of Glass", "Corp Ylem", 8, 1);
 magic[8][GetSpellID(2)] = new SpellObject("Conflagration", "In Vas Grav Flam Hur", 8, 1);
 magic[8][GetSpellID(3)] = new SpellObject("Conjure Daemon", "Kal Vas Des Xen", 7, 1);
-magic[8][GetSpellID(4)] = new SpellObject("Quickness", "Rel Tym", 8, 0);
-magic[8][GetSpellID(5)] = new SpellObject("Reincarnate", "An Corp", 8, 0);
+magic[8][GetSpellID(4)] = new SpellObject("Quickness", "Rel Tym", 8, 0);   // bless
+magic[8][GetSpellID(5)] = new SpellObject("Reincarnate", "An Corp", 8, 0);  
 magic[8][GetSpellID(6)] = new SpellObject("Time Stop", "An Tym", 8, 0);
 
 

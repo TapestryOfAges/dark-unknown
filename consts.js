@@ -26,7 +26,9 @@ sfxlist["sfx_locked_door"] = "sfx/sfx5.wav";
 sfxlist["sfx_spell_light"] = "sfx/sfx2.wav";
 sfxlist["sfx_unlock"] = "sfx/sfx7.wav";
 sfxlist["sfx_potion"] = "sfx/sfx8.wav";
-
+sfxlist["sfx_melee_miss"] = "sfx/sfx9.wav";
+// melee hit
+// arrow/bolt miss
 
 var mapslist = {};
 mapslist["darkunknown"] = "the Mainland";
