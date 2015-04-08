@@ -1573,6 +1573,9 @@ function PerformYell() {
 		  Earthquake();
 		} else if (inputText.txt === "RUNTEST") {
 		  RunTest();
+		} else if (inputText.txt === "SOUNDCHK") {
+		  createjs.Sound.play("sfx_open_door");
+		  
 // REAL YELLS START HERE
 		} else if (inputText.txt === "KARIS") {
 		  if (PC.getHomeMap().getName() === "asharden1") {
