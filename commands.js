@@ -1574,7 +1574,7 @@ function PerformYell() {
 		} else if (inputText.txt === "RUNTEST") {
 		  RunTest();
 		} else if (inputText.txt === "SOUNDCHK") {
-		  createjs.Sound.play("sfx_open_door");
+		  createjs.Sound.play("Mainland", {loop: -1});
 		  
 // REAL YELLS START HERE
 		} else if (inputText.txt === "KARIS") {

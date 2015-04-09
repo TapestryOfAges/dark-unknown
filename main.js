@@ -134,11 +134,7 @@ $(document).ready(function() {
   // create audio players
   populate_audio(musiclist, 0, 1, "music");
   populate_audio(sfxlist, 1, 0, "sfx");
-  createjs.Sound.initializeDefaultPlugins();
-  createjs.Sound.alternateExtensions = ["mp3"];
-  //createjs.Sound.on("fileload", loadSound);
-  createjs.Sound.registerSounds(DUSound, soundpath);
-  
+  audio_init();  
 	CreateUI();
   gamestate.loadGame();
 //  gamestate.loadTmp();

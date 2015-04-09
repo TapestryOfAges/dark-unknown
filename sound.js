@@ -20,6 +20,34 @@ var DUSound = [ {src: "sfx.ogg", data: {
   ]}
 }];
 
+var musicpath = "music/";
+var DUMusic = {};
+DUMusic["Theme"] = "Hero Theme";
+DUMusic["Dark Unknown"] = "Dark Unknown";
+DUMusic["Towne"] = "Towne";
+DUMusic["Dark Towne"] = "Dark Towne";
+DUMusic["Dungeon"] = "Dungeon";
+DUMusic["Dark Dungeon"] = "Dark Dungeon";
+DUMusic["Mainland"] = "Mainland Wander";
+DUMusic["Island"] = "Island Wander";
+DUMusic["Magic"] = "Magic";
+DUMusic["Cave"] = "Cave";
+DUMusic["Underworld"] = "Underworld";
+DUMusic["Combat"] = "Combat";
+DUMusic["Olympus"] = "Olympus";
+
+function audio_init() {
+  createjs.Sound.initializeDefaultPlugins();
+  createjs.Sound.alternateExtensions = ["mp3"];
+  //createjs.Sound.on("fileload", loadSound);
+  createjs.Sound.registerSounds(DUSound, soundpath);
+  
+  $.each(DUMusic, function(idx, val) {
+    var fullpath = musicpath + "" + val + ".mp3";
+    createjs.Sound.registerSound(fullpath, idx);
+  });
+
+}
 
 function populate_audio(soundlist, preload, loop, soundtype) {
   var preloadtext = "";
