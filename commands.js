@@ -11,7 +11,7 @@ function PerformCommand(code) {
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
     if (success["msg"].match("Blocked")) { 
-      if (DU.gameflags.sound) { play_audio("sfx_walk_blocked"); }
+      DUPlaySound("sfx_walk_blocked"); 
       retval["fin"] = 2; 
     }
     if (success["msg"].match("WHOOSH")) {
@@ -28,7 +28,7 @@ function PerformCommand(code) {
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
     if (success["msg"].match("Blocked")) { 
-      if (DU.gameflags.sound) { play_audio("sfx_walk_blocked"); }
+      DUPlaySound("sfx_walk_blocked"); 
       retval["fin"] = 2; 
     }
     if (success["msg"].match("WHOOSH")) {
@@ -45,7 +45,7 @@ function PerformCommand(code) {
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
     if (success["msg"].match("Blocked")) { 
-      if (DU.gameflags.sound) { play_audio("sfx_walk_blocked"); }
+      DUPlaySound("sfx_walk_blocked"); 
       retval["fin"] = 2; 
     }
     if (success["msg"].match("WHOOSH")) {
@@ -62,7 +62,7 @@ function PerformCommand(code) {
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
     if (success["msg"].match("Blocked")) { 
-      if (DU.gameflags.sound) { play_audio("sfx_walk_blocked"); }
+      DUPlaySound("sfx_walk_blocked"); 
       retval["fin"] = 2; 
     }
     if (success["msg"].match("WHOOSH")) {
@@ -181,12 +181,12 @@ function PerformCommand(code) {
 		// was mix - now, toggles music
     if (DU.gameflags.music) {
       DU.gameflags.music = 0;
-      stop_music();
+      StopMusic();
       retval["txt"] = "Music off.";
     } else {
       DU.gameflags.music = 1;
       var song = PC.getHomeMap().getMusic();
-      play_audio(song);
+      PlaySound(song);
       nowplaying = song;
       retval["txt"] = "Music on.";
     }		
@@ -1509,7 +1509,7 @@ function PerformRuneChoice(code) {
         numselected--;
       } else {
         if ((numselected > 3) || ((numselected === 3) && (!targetCursor.runeselect[targetCursor.itemlist.length-1]))) {
-          if (DU.gameflags.sound) { play_audio("sfx_walk_blocked"); }
+          DUPlaySound("sfx_walk_blocked"); 
         } else {
           $('#star'+targetCursor.scrolllocation).html("*");
           targetCursor.runeselect[targetCursor.scrolllocation] = 1;
@@ -2016,11 +2016,11 @@ function ToggleOption(opt) {
   if (opt === 1) {
     if (DU.gameflags.music) {
       DU.gameflags.music = 0;
-      stop_music();
+      StopMusic();
     } else {
       DU.gameflags.music = 1;
       var song = PC.getHomeMap().getMusic();
-      play_audio(song);
+      PlaySound(song);
       nowplaying = song;
     }		
   } else if (opt === 2) {

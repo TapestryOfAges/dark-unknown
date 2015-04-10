@@ -180,7 +180,7 @@ magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   liobj.setExpiresTime(endtime);
   if (infused) { liobj.setPower(4); }   // defaults to 2
   
-  if (DU.gameflags.sound) { play_audio("sfx_spell_light"); }
+  DUPlaySound("sfx_spell_light"); 
   caster.addSpellEffect(liobj);
 //  liobj.applyEffect();
   
