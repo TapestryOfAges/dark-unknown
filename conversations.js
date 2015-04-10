@@ -70,7 +70,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
 			seethru[0] = 0;
 			door.setBlocksLOSArray(seethru);
 			door.addPassable(MOVE_WALK);
-			if (DU.gameflags.sound) { play_audio("sfx_open_door"); }
+			DUPlaySound("sfx_open_door"); 
 			door.open = 1;
 			
 			DrawMainFrame("draw",door.getHomeMap().getName(),PC.getx(),PC.gety());

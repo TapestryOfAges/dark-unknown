@@ -79,6 +79,18 @@ function create_audio() {
   return tmparray;
 }
 
+function DUPlaySound(sound) {
+  if (DU.gameflags.sound) { PlaySound(sound); }
+}
+
+function PlaySound(sound) {
+  createjs.Sound.play(sound);
+}
+
+function StopMusic() {
+  createjs.Sound.stop();
+}
+
 //function play_audio(atype, music) {
 //  audioplayers[atype].src = document.getElementById(music).src;
 //  audioplayers[atype].load();
@@ -97,16 +109,20 @@ function stop_music() {
 function play_footstep(onwhat) {
   if (laststep === "left") {
     if ((onwhat === "Ocean") || (onwhat === "Water") || (onwhat === "Shallows") || (onwhat === "River")) {
-      play_audio("sfx_walk_water_right");
+//      play_audio("sfx_walk_water_right");
+      DUPlaySound("sfx_walk_water_right");
     } else {
-      play_audio("sfx_walk_right");
+//      play_audio("sfx_walk_right");
+      DUPlaySound("sfx_walk_right");
     }
     laststep = "right";
   } else {
     if ((onwhat === "Ocean") || (onwhat === "Water") || (onwhat === "Shallows") || (onwhat === "River")) {
-      play_audio("sfx_walk_water_left");
+//      play_audio("sfx_walk_water_left");
+      DUPlaySound("sfx_walk_water_left");
     } else {
-      play_audio("sfx_walk_left");
+//      play_audio("sfx_walk_left");
+      DUPlaySound("sfx_walk_left");
     }
     laststep = "left";
   }

@@ -524,7 +524,7 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 			retval["fin"] = 1;
 			retval["txt"] = "Closed!";
 			retval["redrawtype"] = "draw";
-			if (DU.gameflags.sound) { play_audio("sfx_close_door"); }
+			DUPlaySound("sfx_close_door"); 
 			
 			this.open = 0;
 		} else {
@@ -532,7 +532,7 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 				if (this.getLocked()) {
 					retval["fin"] = 1;
 					retval["txt"] = "Locked.";
-					if (DU.gameflags.sound) { play_audio("sfx_locked_door"); }
+					DUPlaySound("sfx_locked_door"); 
 					return retval;
 				}
 			}
@@ -544,7 +544,7 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 			this.setBlocksLOSArray(seethru);
 			
 			this.addPassable(MOVE_WALK);
-			if (DU.gameflags.sound) { play_audio("sfx_open_door"); }
+			DUPlaySound("sfx_open_door"); 
 			
 			retval["fin"] = 1;
 			retval["txt"] = "Opened!";
@@ -5112,7 +5112,7 @@ function RedPotionTile() {
 RedPotionTile.prototype = new PotionItemObject();
 
 RedPotionTile.prototype.use = function(who) {
-  play_audio("sfx_potion");
+  DUPlaySound("sfx_potion");
   var resp = magic[1][GetSpellID(1)].executeSpell(who,1,1);
   resp["txt"] = "You feel purified.";
   
