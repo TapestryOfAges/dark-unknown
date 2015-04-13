@@ -181,13 +181,12 @@ function PerformCommand(code) {
 		// was mix - now, toggles music
     if (DU.gameflags.music) {
       DU.gameflags.music = 0;
-      StopMusic();
+      StopMusic(nowplaying);
       retval["txt"] = "Music off.";
     } else {
       DU.gameflags.music = 1;
       var song = PC.getHomeMap().getMusic();
-      PlaySound(song);
-      nowplaying = song;
+      nowplaying = PlaySound(song);
       retval["txt"] = "Music on.";
     }		
     retval["input"] = "&gt;";
@@ -2016,12 +2015,11 @@ function ToggleOption(opt) {
   if (opt === 1) {
     if (DU.gameflags.music) {
       DU.gameflags.music = 0;
-      StopMusic();
+      StopMusic(nowplaying);
     } else {
       DU.gameflags.music = 1;
       var song = PC.getHomeMap().getMusic();
-      PlaySound(song);
-      nowplaying = song;
+      nowplaying = PlaySound(song);
     }		
   } else if (opt === 2) {
    	if (DU.gameflags.sound) { 
