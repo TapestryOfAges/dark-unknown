@@ -214,6 +214,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	
 	// Remove unneeded maps from mapmemory
 	if (who === PC){
+	  spellcount = {};  // see magic.js, this prevents animations from continuing
   	var keepmap = frommap.getAlwaysRemember();
 	  if (!keepmap) {
 		  // is old map linked to new map?
