@@ -51,11 +51,6 @@ tileFactory.prototype.makeStoneWallTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeCoralTile = function() {
-  var newTile = new CoralTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeStoneTile = function() {
   var newTile = new StoneTile();
   return newTile;
@@ -571,6 +566,11 @@ tileFactory.prototype.makeLavaTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCoralTile = function() {
+  var newTile = new CoralTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDungeonTile = function() {
   var newTile = new DungeonTile();
   return newTile;
@@ -891,6 +891,46 @@ tileFactory.prototype.makeBottomChairTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeLeftChairWoodTile = function() {
+  var newTile = new LeftChairWoodTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRightChairWoodTile = function() {
+  var newTile = new RightChairWoodTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTopChairWoodTile = function() {
+  var newTile = new TopChairWoodTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBottomChairWoodTile = function() {
+  var newTile = new BottomChairWoodTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeLeftTableTile = function() {
+  var newTile = new LeftTableTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMiddleTableTile = function() {
+  var newTile = new MiddleTableTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRightTableTile = function() {
+  var newTile = new RightTableTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSmallTableTile = function() {
+  var newTile = new SmallTableTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBedHeadTile = function() {
   var newTile = new BedHeadTile();
   return newTile;
@@ -1018,6 +1058,11 @@ tileFactory.prototype.makeLeverOffTile = function() {
 
 tileFactory.prototype.makeMetalTwisterLeverTile = function() {
   var newTile = new MetalTwisterLeverTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePitDespairLeverTile = function() {
+  var newTile = new PitDespairLeverTile();
   return newTile;
 }
 
@@ -1193,6 +1238,11 @@ tileFactory.prototype.makeAltarWithSwordTile = function() {
 
 tileFactory.prototype.makeAmbroseShieldTile = function() {
   var newTile = new AmbroseShieldTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePitOfDespairKeyTile = function() {
+  var newTile = new PitOfDespairKeyTile();
   return newTile;
 }
 
