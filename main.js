@@ -22,7 +22,7 @@ var timeouts = {};
 
 PC.assignSerial();
 //var audioplayers = create_audio();
-var nowplaying = "";
+var nowplaying;
 var laststep = "left";
 var gamestate = new GameStateData();
 DU.maps = new MapMemory();
