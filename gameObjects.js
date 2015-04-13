@@ -502,7 +502,7 @@ function LightEmitting(lightlevel) {
 }
 
 // Abstract class 
-function Openable(closedgraphic, opengraphic, startsopen) {
+function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound, lockedsound) {
 	this.open = startsopen;
 	
 	this.closedLOS = [];
@@ -524,7 +524,9 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 			retval["fin"] = 1;
 			retval["txt"] = "Closed!";
 			retval["redrawtype"] = "draw";
-			DUPlaySound("sfx_close_door"); 
+			if (closesound) {
+			  DUPlaySound(closesound); 
+			}
 			
 			this.open = 0;
 		} else {
@@ -532,7 +534,9 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 				if (this.getLocked()) {
 					retval["fin"] = 1;
 					retval["txt"] = "Locked.";
-					DUPlaySound("sfx_locked_door"); 
+					if (lockedsound) {
+					  DUPlaySound(lockedsound); 
+					}
 					return retval;
 				}
 			}
@@ -544,7 +548,9 @@ function Openable(closedgraphic, opengraphic, startsopen) {
 			this.setBlocksLOSArray(seethru);
 			
 			this.addPassable(MOVE_WALK);
-			DUPlaySound("sfx_open_door"); 
+			if (opensound) {
+			  DUPlaySound(opensound); 
+			}
 			
 			retval["fin"] = 1;
 			retval["txt"] = "Opened!";
@@ -2883,7 +2889,7 @@ function DoorWindowTile() {
 	this.desc = "door";
 
 	SetByBelow.call(this);
-  Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0);
+  Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorWindowTile.prototype = new FeatureObject();
 
@@ -2899,7 +2905,7 @@ function StonePortcullisTile() {
 	this.desc = "portcullis";
 
 //	SetByBelow.call(this);
-  Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "stone-arch.gif", 0, 0], 0);
+  Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "stone-arch.gif", 0, 0], 0, "", "", "sfx_locked_door");  // ADD WHEN SOUNDS ADDED
 }
 StonePortcullisTile.prototype = new FeatureObject();
 
@@ -2915,7 +2921,7 @@ function WallPortcullisTile() {
 	this.desc = "portcullis";
 
 //	SetByBelow.call(this);
-  Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "wall-arch.gif", 0, 0], 0);
+  Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "wall-arch.gif", 0, 0], 0, "", "", "sfx_locked_door");  // HERE TOO
 }
 WallPortcullisTile.prototype = new FeatureObject();
 
@@ -3043,7 +3049,7 @@ function DoorTile() {
 	this.desc = "door";
 
 	SetByBelow.call(this);
-	Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0);
+	Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorTile.prototype = new FeatureObject();
 
@@ -3570,6 +3576,109 @@ function BottomChairTile() {
   this.desc = "chair";
 }
 BottomChairTile.prototype = new FeatureObject();
+
+function LeftChairWoodTile() {
+  this.name = "LeftChairWood";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-64";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "chair";
+}
+LeftChairWoodTile.prototype = new FeatureObject();
+
+function RightChairWoodTile() {
+  this.name = "RightChairWood";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "chair";
+}
+RightChairWoodTile.prototype = new FeatureObject();
+
+function TopChairWoodTile() {
+  this.name = "TopChairWood";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "chair";
+}
+TopChairWoodTile.prototype = new FeatureObject();
+
+function BottomChairWoodTile() {
+  this.name = "BottomChairWood";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-64";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "chair";
+}
+BottomChairWoodTile.prototype = new FeatureObject();
+
+function LeftTableTile() {
+  this.name = "LeftTable";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "table";
+}
+LeftTableTile.prototype = new FeatureObject();
+
+function MiddleTableTile() {
+  this.name = "MiddleTable";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "table";
+}
+MiddleTableTile.prototype = new FeatureObject();
+
+function RightTableTile() {
+  this.name = "RightTable";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "table";
+}
+RightTableTile.prototype = new FeatureObject();
+
+function SmallTableTile() {
+  this.name = "SmallTable";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "table";
+}
+SmallTableTile.prototype = new FeatureObject();
+
+
+
 
 function BedHeadTile() {
   this.name = "BedHead";
@@ -4131,6 +4240,79 @@ MetalTwisterLeverTile.prototype.use = function(user) {
       retval["txt"] = "The switch is stuck."; 
     }
     return retval;  
+}
+
+function PitDespairLeverTile() {
+  this.name = "PitDespairLever";
+  this.graphic = "switch-off.gif";
+  this.overlay = "switch-off.gif";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "lever";
+  
+  SetByBelow.call(this);
+}
+PitDespairLeverTile.prototype = new FeatureObject();
+
+PitDespairLeverTile.prototype.use = function(user) {
+  var retval = {};
+  if (this.attached) {
+    var thismap = user.getHomeMap();
+    var doortile = thismap.getTile(this.attached.x, this.attached.y);
+    var ftrs = doortile.getFeatures();
+    var door;
+    $.each(ftrs, function(idx, val) {
+      if (val.getName() === "WallPortcullis") { door = val; }
+    });
+    if (this.graphic === "switch-off.gif") {
+      door.locked = 0;
+      door.setGraphicArray(["055.gif", "wall-arch.gif", 0, 0]);
+			
+			door.closedLOS = door.getBlocksLOSArray();
+			var seethru = [];
+			seethru[0] = 0;
+			door.setBlocksLOSArray(seethru);
+			
+			door.addPassable(MOVE_WALK);
+			door.open = 1;
+			
+			this.graphic = "switch-on.gif";
+			this.overlay = "switch-on.gif";
+    } else {
+      var mobs = doortile.getNPCs();
+      var diffx = 0;
+      var diffy = 0;
+      if (this.gety() === 36) {
+        diffy = -1;
+      } else if ((this.getx() === 11) || (this.getx() === 25)) {
+        diffx = 1;
+      } else {
+        diffx = -1;
+      }
+      $.each(mobs, function(idx,val) {
+        thismap.moveThing(val.getx() + diffx , val.gety() + diffy, val);
+        val.dealDamage(1000, door);
+      });
+      door.locked = 1;
+      door.setGraphicArray(["wall-portcullis.gif", "wall-portcullis.gif", 0, 0]);
+      
+      door.setBlocksLOSArray(door.closedLOS);
+      door.closedLOS = [];
+			
+      door.removePassable(MOVE_WALK);
+      door.open = 0;
+      
+      this.graphic = "switch-off.gif";
+      this.graphic = "switch-on.gif";
+    }
+    retval["fin"] = 1;
+    retval["txt"] = "Switch thrown.";
+  } else {
+    alert("Lever unattached!");
+    retval["fin"] = 0;
+  }
+  
+  return retval;
 }
 
 function WallOfWavesTile() {
@@ -4797,6 +4979,19 @@ function AmbroseShieldTile() {
   this.addType("Quest");
 }
 AmbroseShieldTile.prototype = new ItemObject();
+
+function PitOfDespairKeyTile() {
+  this.name = "PitOfDespairKey";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-64";
+  this.spritexoffset = "-224";
+  this.blocklos = 0;
+  this.desc = "Pit of Despair dungeon key";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+PitOfDespairKeyTile.prototype = new ItemObject();
+  
 
 function RoperBarkTile() {
   this.name = "RoperBark";
