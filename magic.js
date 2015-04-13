@@ -160,6 +160,36 @@ magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   return resp;
 }
 
+// Disarm Trap
+magic[1][GetSpellID(2)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Disarm Trap.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+  var mult = 1;
+  if (infused) { mult = 2; }
+  for (var i = -1; i<=1; i++) {
+    for (var j = -1; j<=1; j++) {
+      var checkx = caster.getx() + i;
+      var checky = caster.gety() + j;
+      var castermap = caster.getHomeMap();
+      var thetile = castermap.getTile(checkx,checky)
+      if (thetile === "OoB") { continue; }
+      var allfeatures = thetile.getFeatures();
+      $.each(allfeatures, function(idx, val) {
+        if (val.trapped) {
+          var chance = ((who.getInt()*mult + 10) - (this.trapchallenge)) /20;
+        }
+      });
+    }
+  }
+  return resp;
+}
+
 // Light
 magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Light.<br /></span>"); }
@@ -427,4 +457,60 @@ function TravelByMoongate(who, color, belowgraphic, destbelow, destmap, destx, d
     }, tol);
   }, tol);
   
+}
+
+
+var spellcount = {};
+
+function PlaySparkles(onwhat, color) {
+  if (Object.keys(spellcount).length === 0) {
+    $("spelleffects").html("");
+  }
+    
+  var colory = {};
+  colory["yellow"] = 0;
+  colory["green"] = -32;
+  colory["blue"] = -64;
+  colory["orange"] = -96;
+  colory["purple"] = -128;
+  colory["red"] = -160;
+  
+  var where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+  where.x += 192;
+  where.y += 192;
+
+  if (spellcount["anim" + onwhat.getSerial()]) { return; }  //if there's already a sparkle playing, don't replace it with another one, just play the first only
+  spellcount["anim" + onwhat.getSerial()] = 1;
+  var animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-image:url(\'graphics/spellsparkles.gif\');background-repeat:no-repeat; background-position: 0px ' + colory[color] + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';  
+  $("spelleffects").html($("spelleffects").html() + animhtml);
+  AnimateSparkles(onwhat,colory[color],0);
+  
+}
+
+function AnimateSparkles(onwhat, color, animframe) {
+  var spellcountid = "anim" + onwhat.getSerial();
+  if (!spellcount[spellcountid]) {
+    $(spellcountid).html("");
+    return;
+  }
+  if (spellcount[spellcountid] === 48) {
+    delete spellcount[spellcountid];
+    $(spellcountid).html("");
+  }
+  var where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+  where.x += 192;
+  where.y += 192;
+  
+  if ((spellcount[spellcountid]) % 3) {  // progressing the animation only every three calls 
+                                         // so it can move with the target more quickly than it animates
+    animframe++;
+    if (animframe > 7) {
+      animframe = 0;
+    }
+  }
+  $(spellcountid).css("background-position", (animframe*-32) + "px " + color + "py");
+  
+  spellcount[spellcountid]++;
+  setTimeout(AnimateSparkles(onwhat,color,animframe), 100);
+
 }
