@@ -4,19 +4,19 @@ var DUSound = [ {src: "sfx.ogg", data: {
   audioSprite: [
     {id: "sfx_walk_right", startTime: 0, duration: 100},
     {id: "sfx_walk_left", startTime: 400, duration: 100},
-    {id: "sfx_walk_water_right", startTime: 10400, duration: 700},
-    {id: "sfx_walk_water_left", startTime: 11400, duration: 700},
-    {id: "sfx_walk_blocked", startTime: 6250, duration: 250}, 
+    {id: "sfx_spell_light", startTime: 800, duration: 900},
     {id: "sfx_open_door", startTime: 2200, duration: 1100},
     {id: "sfx_close_door", startTime: 3700, duration: 650},
     {id: "sfx_locked_door", startTime: 4900, duration: 800}, 
-    {id: "sfx_spell_light", startTime: 800, duration: 900},
+    {id: "sfx_walk_blocked", startTime: 6250, duration: 250}, 
     {id: "sfx_unlock", startTime: 6850, duration: 300},
     {id: "sfx_potion", startTime: 7700, duration: 200},
     {id: "sfx_melee_miss", startTime: 8200, duration: 150}, 
     {id: "sfx_melee_hit", startTime: 8700, duration: 150},
     {id: "sfx_arrow_miss", startTime: 9100, duration: 200},
     {id: "sfx_arrow_hit", startTime: 9600, duration: 500},
+    {id: "sfx_walk_water_right", startTime: 10400, duration: 700},
+    {id: "sfx_walk_water_left", startTime: 11400, duration: 700},
   ]}
 }];
 
@@ -39,11 +39,10 @@ DUMusic["Olympus"] = "Olympus";
 function audio_init() {
   createjs.Sound.initializeDefaultPlugins();
   createjs.Sound.alternateExtensions = ["mp3"];
-  //createjs.Sound.on("fileload", loadSound);
   createjs.Sound.registerSounds(DUSound, soundpath);
   
   $.each(DUMusic, function(idx, val) {
-    var fullpath = musicpath + "" + val + ".mp3";
+    var fullpath = musicpath + "" + val + ".ogg";
     createjs.Sound.registerSound(fullpath, idx);
   });
 
@@ -79,16 +78,18 @@ function create_audio() {
   return tmparray;
 }
 
+// checks to see if the player has turned off sound
 function DUPlaySound(sound) {
-  if (DU.gameflags.sound) { PlaySound(sound); }
+  if (DU.gameflags.sound) { createjs.Sound.play(sound); }
 }
 
 function PlaySound(sound) {
-  createjs.Sound.play(sound);
+  var playing = createjs.Sound.play(sound);
+  return playing;
 }
 
-function StopMusic() {
-  createjs.Sound.stop();
+function StopMusic(playing) {
+  playing.stop();
 }
 
 //function play_audio(atype, music) {
@@ -109,19 +110,15 @@ function stop_music() {
 function play_footstep(onwhat) {
   if (laststep === "left") {
     if ((onwhat === "Ocean") || (onwhat === "Water") || (onwhat === "Shallows") || (onwhat === "River")) {
-//      play_audio("sfx_walk_water_right");
       DUPlaySound("sfx_walk_water_right");
     } else {
-//      play_audio("sfx_walk_right");
       DUPlaySound("sfx_walk_right");
     }
     laststep = "right";
   } else {
     if ((onwhat === "Ocean") || (onwhat === "Water") || (onwhat === "Shallows") || (onwhat === "River")) {
-//      play_audio("sfx_walk_water_left");
       DUPlaySound("sfx_walk_water_left");
     } else {
-//      play_audio("sfx_walk_left");
       DUPlaySound("sfx_walk_left");
     }
     laststep = "left";
