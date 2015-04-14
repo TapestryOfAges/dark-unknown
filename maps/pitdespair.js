@@ -159,23 +159,23 @@ mappages["pitdespair1"].returninfused = '0';
 mappages["pitdespair1"].linkedMaps = [""];
 
 
-// the following two functions add a quest key to two of the doors,
-// so they auto-unlock if you are holding it
 mappages["pitdespair1"].onload = function(mapref) {
-
-  var doortile = mapref.getTile(11,20);
-  var door = doortile.getTopFeature();
-  PDChangeUse(door);
-    
-  doortile = mapref.getTile(15,20);
-  door = doortile.getTopFeature();
-  PDChangeUse(door);
-
-  doortile = mapref.getTile(14,36);
-  door = doortile.getTopFeature();
-  PDChangeUse(door);
     
   if (gamestate.getMode() !== "loadgame") {
+
+    // add a key to three of the locked doors. They still unlock to the Unlock spell as well    
+    var doortile = mapref.getTile(11,20);
+    var door = doortile.getTopFeature();
+    door.keyname = "PitOfDespairKey";
+    
+    doortile = mapref.getTile(15,20);
+    door = doortile.getTopFeature();
+    door.keyname = "PitOfDespairKey";
+
+    doortile = mapref.getTile(14,36);
+    door = doortile.getTopFeature();
+    door.keyname = "PitOfDespairKey";
+
     var ports = [];
     doortile = mapref.getTile(11,24);
     ports[0] = doortile.getTopFeature();
@@ -266,16 +266,3 @@ mappages["pitdespair1"].onload = function(mapref) {
   }
 }
 
-function PDChangeUse(obj) {
-  obj.realuse = obj.use;
-  obj.use = function(user) {
-    var retval = {};
-
-    if (user.inventory.getByName("PitOfDespairKey")) {
-      obj.unlockMe();
-    }
-    
-    retval = obj.realuse(user);
-    return retval;
-  }
-}
