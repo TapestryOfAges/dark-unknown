@@ -513,6 +513,11 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 	this.use = function(who) {
 		var retval = {};
 		retval["fin"] = 0;
+		
+		if (this.locked && this.keyname) {
+		  if (who.inventory.getByName(this.keyname)) {
+      this.unlockMe();
+    }
 		if (this.open == 1) {
 			this.setGraphicArray(closedgraphic);
 			
