@@ -132,8 +132,8 @@ $(document).ready(function() {
   DU.merchants = {};
   DU.merchants = SetMerchants();
   // create audio players
-  populate_audio(musiclist, 0, 1, "music");
-  populate_audio(sfxlist, 1, 0, "sfx");
+//  populate_audio(musiclist, 0, 1, "music");
+//  populate_audio(sfxlist, 1, 0, "sfx");
   audio_init();  
 	CreateUI();
   gamestate.loadGame();
