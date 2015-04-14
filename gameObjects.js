@@ -516,7 +516,8 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 		
 		if (this.locked && this.keyname) {
 		  if (who.inventory.getByName(this.keyname)) {
-      this.unlockMe();
+        this.unlockMe();
+      }
     }
 		if (this.open == 1) {
 			this.setGraphicArray(closedgraphic);
