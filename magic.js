@@ -464,6 +464,7 @@ var spellcount = {};
 
 function PlaySparkles(onwhat, color) {
   if (Object.keys(spellcount).length === 0) {
+    if (debug) { dbs.writeln("<span style='color:green'>Clearing the spelleffects of empty sparkles.<br /></span>"); }
     $("spelleffects").html("");
   }
     
@@ -479,10 +480,15 @@ function PlaySparkles(onwhat, color) {
   where.x += 192;
   where.y += 192;
 
-  if (spellcount["anim" + onwhat.getSerial()]) { return; }  //if there's already a sparkle playing, don't replace it with another one, just play the first only
+  if (spellcount["anim" + onwhat.getSerial()]) { 
+    if (debug) { dbs.writeln("<span style='color:green'>Tried to create a second sparkle on " + onwhat.getName() + ".<br /></span>"); }
+    return; 
+  }  //if there's already a sparkle playing, don't replace it with another one, just play the first only
   spellcount["anim" + onwhat.getSerial()] = 1;
+  if (debug) { dbs.writeln("<span style='color:green'>Incrementing spell effects count to " + spellcount['anim' + onwhat.getSerial() + ".<br /></span>"); }
   var animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-image:url(\'graphics/spellsparkles.gif\');background-repeat:no-repeat; background-position: 0px ' + colory[color] + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';  
   $("spelleffects").html($("spelleffects").html() + animhtml);
+  if (debug) { dbs.writeln("<span style='color:green'>Placed " + color + " sparkles on " + onwhat.getName() + ".<br /></span>"); }
   AnimateSparkles(onwhat,colory[color],0);
   
 }
@@ -491,9 +497,11 @@ function AnimateSparkles(onwhat, color, animframe) {
   var spellcountid = "anim" + onwhat.getSerial();
   if (!spellcount[spellcountid]) {
     $(spellcountid).html("");
+    if (debug) { dbs.writeln("<span style='color:green'>Spellcount zeroed out externally. Ceasing sparkling.<br /></span>"); }
     return;
   }
   if (spellcount[spellcountid] === 48) {
+    if (debug) { dbs.writeln("<span style='color:green'>Sparkle on " + onwhat.getName() + " finished.<br /></span>"); }
     delete spellcount[spellcountid];
     $(spellcountid).html("");
   }
@@ -507,6 +515,7 @@ function AnimateSparkles(onwhat, color, animframe) {
     if (animframe > 7) {
       animframe = 0;
     }
+    if (debug) { dbs.writeln("<span style='color:green'>Sparkle on " + onwhat.getName() + " moving on to frame " + animframe + ".<br /></span>"); }
   }
   $(spellcountid).css("background-position", (animframe*-32) + "px " + color + "py");
   
