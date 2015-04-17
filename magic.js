@@ -476,17 +476,25 @@ function PlaySparkles(onwhat, color) {
   colory["purple"] = -128;
   colory["red"] = -160;
   
-  var where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
-  where.x += 192;
-  where.y += 192;
+  var where;
+  var animhtml;
 
   if (spellcount["anim" + onwhat.getSerial()]) { 
     if (debug) { dbs.writeln("<span style='color:green'>Tried to create a second sparkle on " + onwhat.getName() + ".<br /></span>"); }
     return; 
   }  //if there's already a sparkle playing, don't replace it with another one, just play the first only
   spellcount["anim" + onwhat.getSerial()] = 1;
-  if (debug) { dbs.writeln("<span style='color:green'>Incrementing spell effects count to " + spellcount['anim' + onwhat.getSerial() + ".<br /></span>"); }
-  var animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-image:url(\'graphics/spellsparkles.gif\');background-repeat:no-repeat; background-position: 0px ' + colory[color] + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';  
+  if (debug) { dbs.writeln("<span style='color:green'>Incrementing spell effects count to " + spellcount['anim' + onwhat.getSerial()] + ".<br /></span>"); }
+  var displayspecs = getDisplayCenter(onwhat.getHomeMap(),onwhat.getx(),onwhat.gety());
+  if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onewhat.gety() <= displayspecs.bottomedge)) {
+    where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+    where.x += 192;
+    where.y += 192;
+    animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-image:url(\'graphics/spellsparkles.gif\');background-repeat:no-repeat; background-position: 0px ' + colory[color] + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';  
+  } else {
+    if (debug) { dbs.writeln("<span style='color:green'>Target is offscreen.<br /></span>"); }
+    animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-repeat:no-repeat; background-position: 0px ' + colory[color] + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';  
+  }
   $("spelleffects").html($("spelleffects").html() + animhtml);
   if (debug) { dbs.writeln("<span style='color:green'>Placed " + color + " sparkles on " + onwhat.getName() + ".<br /></span>"); }
   AnimateSparkles(onwhat,colory[color],0);
@@ -497,6 +505,7 @@ function AnimateSparkles(onwhat, color, animframe) {
   var spellcountid = "anim" + onwhat.getSerial();
   if (!spellcount[spellcountid]) {
     $(spellcountid).html("");
+    $(spellcountid).css("background-image", "");
     if (debug) { dbs.writeln("<span style='color:green'>Spellcount zeroed out externally. Ceasing sparkling.<br /></span>"); }
     return;
   }
@@ -504,10 +513,19 @@ function AnimateSparkles(onwhat, color, animframe) {
     if (debug) { dbs.writeln("<span style='color:green'>Sparkle on " + onwhat.getName() + " finished.<br /></span>"); }
     delete spellcount[spellcountid];
     $(spellcountid).html("");
+    $(spellcountid).css("background-image", "");
   }
-  var where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
-  where.x += 192;
-  where.y += 192;
+  var displayspecs = getDisplayCenter(onwhat.getHomeMap(),onwhat.getx(),onwhat.gety());
+  var where;
+  where.x = 0;
+  where.y = 0;
+  var animurl = "";
+  if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onewhat.gety() <= displayspecs.bottomedge)) {
+    where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+    where.x += 192;
+    where.y += 192;
+    animurl = "url('graphics/spellsparkles.gif')";
+  }
   
   if ((spellcount[spellcountid]) % 3) {  // progressing the animation only every three calls 
                                          // so it can move with the target more quickly than it animates
@@ -518,6 +536,9 @@ function AnimateSparkles(onwhat, color, animframe) {
     if (debug) { dbs.writeln("<span style='color:green'>Sparkle on " + onwhat.getName() + " moving on to frame " + animframe + ".<br /></span>"); }
   }
   $(spellcountid).css("background-position", (animframe*-32) + "px " + color + "py");
+  $(spellcountid).css("background-image", animurl);
+  $(spellcountid).css("left", where.x);
+  $(spellcountid).css("top", where.y);
   
   spellcount[spellcountid]++;
   setTimeout(AnimateSparkles(onwhat,color,animframe), 100);
