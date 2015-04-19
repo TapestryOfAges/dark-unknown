@@ -11,6 +11,8 @@ DUListener.prototype.sendEvent = function(ev) {
 
 
 function DUEvent() {
-  
+  this.name;
+  this.source;
+  this.callfunc;  
 }
 DUEvent.prototype = new Object();
