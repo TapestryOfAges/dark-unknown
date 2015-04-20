@@ -3120,13 +3120,8 @@ SleepFieldTile.prototype.idle = function(person) {
 }
 
 function InASleepField(who) {
-  var armor = who.getEquipment("armor");
-  var resist = 0;
-  if (armor) {
-    resist = armor.getResist();
-    resist = resist/100;
-  }
-  resist = 1-resist;
+  var resist = who.getResist("magic");
+  resist = 1-(resist/100);
   var chance = .5 * resist;
   if (Math.random()*1 < chance) {
     if (who.getSpellEffectsByName("Sleep")) { return 0; }
@@ -3171,13 +3166,8 @@ function InAFireField(who) {
   var dmg = RollDice("2d6+3");
   dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
   var response = "The fire field burns you!";
-  var armor = who.getEquipment("armor");
-  var resist = 0;
-  if (armor) {
-    resist = armor.getResist();
-    resist = resist/100;
-  }
-  resist = 1-resist;
+  var resist = who.getResist("magic");
+  resist = 1-(resist/100);
   dmg = dmg*resist;
   who.dealDamage(dmg, this);
   
@@ -3212,11 +3202,7 @@ PoisonFieldTile.prototype.idle = function(person) {
 function InAPoisonField(who){
   var poisonchance = .75;
   poisonchance = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * poisonchance;
-  var armor = who.getEquipment("armor");
-  if (armor) {
-    poisonchance = poisonchance * (1-armor.getResist()/100);
-  }
-  
+  poisonchance = poisonchance * (1-who.getResist()/100);  
   if (Math.random()*1 < poisonchance) {  
     if (who.getSpellEffectsByName("Poison")) { return 0; }
     var poison = localFactory.createTile("Poison");
@@ -7122,7 +7108,10 @@ NPCObject.prototype.getResist = function(resisttype) {
     }
   }    
   
-  return this.resists[resisttype];
+  if (this.resists[resisttype]) {
+    return this.resists[resisttype];
+  } 
+  return 0;
 }
 
 NPCObject.prototype.getLastLocation = function() {
