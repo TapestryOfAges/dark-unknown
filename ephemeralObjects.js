@@ -136,6 +136,37 @@ DiseaseTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
+function DistractTile() {
+  this.addType("debuff");
+  this.name = "Distract";
+  this.display = "<span style='color:777777'>D</span>";
+  this.zstatdesc = "You are distracted.";
+}
+DistractTile.prototype = new EphemeralObject();
+
+DistractTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You have become distracted.");
+  }
+  return 1;
+}
+
+DistractTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+DistractTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You are no longer distracted!");
+  }
+  DrawCharFrame();
+}
+
 function PoisonTile() {
   this.addType("debuff");
   this.name = "Poison";

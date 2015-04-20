@@ -183,10 +183,47 @@ magic[1][GetSpellID(2)].executeSpell = function(caster, infused, free) {
       $.each(allfeatures, function(idx, val) {
         if (val.trapped) {
           var chance = ((who.getInt()*mult + 10) - (this.trapchallenge)) /20;
+          //WORKING HERE
         }
       });
     }
   }
+  return resp;
+}
+
+// Distract
+magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Distract.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+  
+  var radius = 3;
+  if (caster.getInt() > 20) { radius = 4; }
+  if (infused) { radius = radius * 1.5; } 
+  var power = caster.getInt()/4;
+  if (infused) { power = power*1.5; }
+  var castermap = caster.getHomeMap();
+  var npcs = castermap.npcs.getAll();
+  $.each(npcs, function (idx, val) {
+    if (GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) {
+      var chance = 1-((val.getResist("magic") + val.getInt())/100);
+      if (Math.random()*1 < chance) {
+        var distract = localFactory.createTile("Distract");
+        // WORKING HERE
+      } else {
+        var desc = val.getPrefix() + " " + val.getDesc() + " resists!";
+        desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+        maintext.delayedAddText(desc);
+        // show X graphic
+      }
+    }
+  });
+
   return resp;
 }
 
