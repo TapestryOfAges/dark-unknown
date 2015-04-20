@@ -6400,6 +6400,12 @@ NPCObject.prototype.getModStr = function() {
   return this.modstr;
 }
 
+NPCObject.prototype.setModStr = function(newstr) {
+  newstr = parseInt(newstr);
+  if (!isNaN) { this.modstr = newstr; }
+  return this.getStr();
+}
+
 NPCObject.prototype.getBaseStr = function() {
   return this.str;
 }
@@ -6426,6 +6432,12 @@ NPCObject.prototype.getModDex = function() {
   return this.moddex;
 }
 
+NPCObject.prototype.setModDex = function(newdex) {
+  newdex = parseInt(newdex);
+  if (!isNaN) { this.moddex = newdex; }
+  return this.getDex();
+}
+
 NPCObject.prototype.setInt = function(newint) {
 	newint = parseInt(newint);
 	if ((newint !== 0) && (!isNaN(newint))) { this.int = newint; }
@@ -6438,6 +6450,7 @@ NPCObject.prototype.setBaseInt = function(newint) {
 NPCObject.prototype.setModInt = function(newint) {
   newint = parseInt(newint);
   if (!isNaN) { this.modint = newint; }
+  return this.getInt();
 }
 
 NPCObject.prototype.getInt = function() {
@@ -7066,6 +7079,12 @@ NPCObject.prototype.getHitChance = function(atkwith) {
     tohit += armor.getToHitBonus();
   }
   
+  var distracted = this.getSpellEffectByName("Distract");
+  if (distracted) {
+    if (debug) { dbs.writeln("<span style='color:green'>DISTRACTED: old tohit: " + tohit + ", "); }
+    tohit = tohit * (1-distracted.getPower());
+    if (debug) { dbs.writeln("new tohit: " + tohit + ".<br /></span>"); }
+  }
   return tohit;
 }
 
