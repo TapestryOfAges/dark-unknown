@@ -499,6 +499,34 @@ function TravelByMoongate(who, color, belowgraphic, destbelow, destmap, destx, d
 
 var spellcount = {};
 
+function ShowEffect(onwhat, graphic, duration) {
+  if (spellcount["anim" + onwhat.getSerial()]){ 
+    if (debug) { dbs.writeln("<span style='color:green'>Tried to create a second effect on " + onwhat.getName() + ".<br /></span>"); }
+    return; 
+  }  //if there's already an effect playing, don't replace it with another one, just play the first only    
+  var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
+  where.x = 0;
+  where.y = 0;
+  var animurl = "";
+  if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onewhat.gety() <= displayspecs.bottomedge)) {
+    where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+    where.x += 192;
+    where.y += 192;
+    animurl = "url('graphics/" + graphic + "')";
+  }
+  var animhtml;
+  if (animurl) {
+    animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute: left: ' + where.x + 'px; top: ' + where.y + 'px;"><img src="' + animurl + '" /></div>';
+    $("spelleffects").html($("spelleffects").html() + animhtml);
+    
+    setTimeout(function() {
+      delete spellcount["anim" + onwhat.getSerial()];
+      $("anim" + onwhat.getSerial()).html("");
+    },1000);
+  }
+}
+
+
 function PlaySparkles(onwhat, color) {
   if (Object.keys(spellcount).length === 0) {
     if (debug) { dbs.writeln("<span style='color:green'>Clearing the spelleffects of empty sparkles.<br /></span>"); }
@@ -522,7 +550,7 @@ function PlaySparkles(onwhat, color) {
   }  //if there's already a sparkle playing, don't replace it with another one, just play the first only
   spellcount["anim" + onwhat.getSerial()] = 1;
   if (debug) { dbs.writeln("<span style='color:green'>Incrementing spell effects count to " + spellcount['anim' + onwhat.getSerial()] + ".<br /></span>"); }
-  var displayspecs = getDisplayCenter(onwhat.getHomeMap(),onwhat.getx(),onwhat.gety());
+  var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
   if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onewhat.gety() <= displayspecs.bottomedge)) {
     where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
     where.x += 192;
@@ -552,7 +580,7 @@ function AnimateSparkles(onwhat, color, animframe) {
     $(spellcountid).html("");
     $(spellcountid).css("background-image", "");
   }
-  var displayspecs = getDisplayCenter(onwhat.getHomeMap(),onwhat.getx(),onwhat.gety());
+  var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
   var where;
   where.x = 0;
   where.y = 0;
