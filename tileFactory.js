@@ -2031,6 +2031,11 @@ tileFactory.prototype.makeDiseaseTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDistractTile = function() {
+  var newTile = new DistractTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePoisonTile = function() {
   var newTile = new PoisonTile();
   return newTile;
