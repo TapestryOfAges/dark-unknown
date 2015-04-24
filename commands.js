@@ -687,6 +687,7 @@ function PerformSpellbook(code) {
       spelltxt += "!";
       maintext.addText(spelltxt);
       var retval = magic[lvl][GetSpellID(spellnum)].executeSpell(PC, PC.getInfusion(), 0);
+      DrawCharFrame();
       return retval;
     }
     else {
