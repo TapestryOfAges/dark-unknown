@@ -53,8 +53,14 @@ var raceWarning = 0;
 
 function DrawCharFrame() {
   var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%' style='margin-top:1px'><tr><td colspan='2'>";
-  txt = txt + PC.getPCName() + "</td><td id='hpcell' style='text-align:right'>HP: " + PC.getDisplayHP() + "</td></tr>";
-  txt = txt + "<tr><td width='33%' id='gpcell'>GP: " + PC.getGold() + "</td><td width='34%'>" + SpellInitials(PC) + "</td><td width='33%' style='text-align:right'>MP: " + PC.getMana() + "</td></tr></table>";
+  var dishp = "" + PC.getDisplayHP();
+  while (dishp.length < 3) { dishp = " " + dishp; }
+  dishp.replace(" ", "&nbsp;");
+  var dismp = "" + PC.getMana();
+  while (dismp.length < 3) { dismp = " " + dismp; }
+  dismp = dismp.replace(/ /g, "&nbsp;");
+  txt = txt + PC.getPCName() + "</td><td id='hpcell' style='text-align:right'>HP:&nbsp;" + dishp + "</td></tr>";
+  txt = txt + "<tr><td width='33%' id='gpcell'>GP: " + PC.getGold() + "</td><td width='34%'>" + SpellInitials(PC) + "</td><td width='33%' style='text-align:right'>MP:&nbsp;" + dismp + "</td></tr></table>";
   $("#charstats").html(txt);
 }
 
