@@ -211,16 +211,20 @@ magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   var npcs = castermap.npcs.getAll();
   $.each(npcs, function (idx, val) {
     if (GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) {
-      var chance = 1-((val.getResist("magic") + val.getInt())/100);
+      var chance = 1-((val.getResist("magic") + 1.5*val.getInt() - .66*caster.getInt())/100);
       if (Math.random()*1 < chance) {
         var distract = localFactory.createTile("Distract");
+        // sparkles
+        var desc = val.getDesc() + " is distracted!";
+        
         // WORKING HERE
       } else {
-        var desc = val.getPrefix() + " " + val.getDesc() + " resists!";
-        desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-        maintext.delayedAddText(desc);
-        // show X graphic
+        var desc = val.getDesc() + " resists!";
+        ShowEffect(val, "X.gif", 700);
       }
+      desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+      maintext.addText(desc);
+
     }
   });
 
@@ -505,24 +509,28 @@ function ShowEffect(onwhat, graphic, duration) {
     return; 
   }  //if there's already an effect playing, don't replace it with another one, just play the first only    
   var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
+  var where = {};
   where.x = 0;
   where.y = 0;
   var animurl = "";
-  if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onewhat.gety() <= displayspecs.bottomedge)) {
+  spellcount["anim" + onwhat.getSerial()] = 1;
+  if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onwhat.gety() <= displayspecs.bottomedge)) {
     where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
     where.x += 192;
     where.y += 192;
-    animurl = "url('graphics/" + graphic + "')";
+ //   animurl = "url('graphics/" + graphic + "')";
+    animurl = "graphics/" + graphic ;
+    if (debug) { dbs.writeln("<span style='color:green'>Putting a " + animurl + " on " + onwhat.getName() + ".<br /></span>"); }
   }
   var animhtml;
   if (animurl) {
-    animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute: left: ' + where.x + 'px; top: ' + where.y + 'px;"><img src="' + animurl + '" /></div>';
-    $("spelleffects").html($("spelleffects").html() + animhtml);
+    animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; width:32px; height:32px"><img src="' + animurl + '" /></div>';
+    $("#spelleffects").html($("#spelleffects").html() + animhtml);
     
     setTimeout(function() {
       delete spellcount["anim" + onwhat.getSerial()];
-      $("anim" + onwhat.getSerial()).html("");
-    },1000);
+      $("#anim" + onwhat.getSerial()).html("");
+    },duration);
   }
 }
 
@@ -530,7 +538,7 @@ function ShowEffect(onwhat, graphic, duration) {
 function PlaySparkles(onwhat, color) {
   if (Object.keys(spellcount).length === 0) {
     if (debug) { dbs.writeln("<span style='color:green'>Clearing the spelleffects of empty sparkles.<br /></span>"); }
-    $("spelleffects").html("");
+    $("#spelleffects").html("");
   }
     
   var colory = {};
@@ -560,14 +568,14 @@ function PlaySparkles(onwhat, color) {
     if (debug) { dbs.writeln("<span style='color:green'>Target is offscreen.<br /></span>"); }
     animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-repeat:no-repeat; background-position: 0px ' + colory[color] + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';  
   }
-  $("spelleffects").html($("spelleffects").html() + animhtml);
+  $("#spelleffects").html($("#spelleffects").html() + animhtml);
   if (debug) { dbs.writeln("<span style='color:green'>Placed " + color + " sparkles on " + onwhat.getName() + ".<br /></span>"); }
   AnimateSparkles(onwhat,colory[color],0);
   
 }
 
 function AnimateSparkles(onwhat, color, animframe) {
-  var spellcountid = "anim" + onwhat.getSerial();
+  var spellcountid = "#anim" + onwhat.getSerial();
   if (!spellcount[spellcountid]) {
     $(spellcountid).html("");
     $(spellcountid).css("background-image", "");
