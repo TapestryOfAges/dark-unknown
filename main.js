@@ -113,6 +113,15 @@ function DrawMainFrame(how, mapname, centerx, centery) {
     }
     mapdiv  += '</table>';
     $('#displayframe').html(mapdiv);
+    $.each(spellcount, function(idx, val) {
+      if ((val.getx() >= displayspecs.leftedge) && (val.getx() <= displayspecs.rightedge) && (val.gety() >= displayspecs.topedge) && (val.gety() <= displayspecs.bottomedge)) {
+        var where = getCoords(val.getHomeMap(),val.getx(), val.gety());
+        where.x += 192;
+        where.y += 192;
+        $("#" + idx).css("left", where.x);
+        $("#" + idx).css("top", where.y);
+      }
+    });
   } else if (how === "one") {
     if ((centerx <= displayspecs.rightedge) && (centerx >= displayspecs.leftedge) && (centery >= displayspecs.topedge) && (centery <= displayspecs.bottomedge)) {
       var thiscell = getDisplayCell(themap,PC.getx(),PC.gety(),centerx,centery);
@@ -354,6 +363,11 @@ function DoAction(code) {
         maintext.addText(newresponse["txt"]);
         maintext.setInputLine(newresponse["input"]);
         maintext.drawTextFrame();
+      } else if (targetCursor.command === "c") {
+        newresponse = PerformSpellcast();
+        maintext.addText(newresponse["txt"]);
+        maintext.setInputLine(newresponse["input"]);
+        maintext.drawTextFrame();        
       }
       if ((newresponse["fin"] === 0) || (newresponse["fin"] === 2)) {
         gamestate.setMode("player");
