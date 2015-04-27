@@ -333,7 +333,7 @@ magic[1][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 2;
+  resp["fin"] = 0;
   gamestate.setMode("target");
   return resp;
 }
@@ -345,7 +345,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
     if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
-
+  // WORKING HERE
 }
 
 // Levitate/Waterwalk
