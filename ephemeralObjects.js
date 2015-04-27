@@ -153,9 +153,11 @@ DistractTile.prototype.applyEffect = function(silent) {
 }
 
 DistractTile.prototype.doEffect = function() {
+  var resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
+    resp = this.endEffect();
   }
+  return resp;
 }
 
 DistractTile.prototype.endEffect = function(silent) {
@@ -165,6 +167,38 @@ DistractTile.prototype.endEffect = function(silent) {
     maintext.addText("You are no longer distracted!");
   }
   DrawCharFrame();
+  return -1;
+}
+
+function FlameBladeTile() {
+  this.addType("buff");
+  this.name = "FlameBlade";
+  this.display = "<span style='color:#df0101'>F</span>";
+  this.zstatdesc = "Your weapon is sheathed in flame.";
+}
+FlameBladeTile.prototype = new EphemeralObject();
+
+FlameBladeTile.prototype.doEffect = function() {
+  this.uses--;
+  var resp = 0;
+  if (this.uses) {
+    if (DUTime.getGameClock() > this.getExpiresTime()) {
+      resp = this.endEffect();
+    }
+  } else {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+FlameBladeTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("The flames on your weapon flicker and die.");
+  }
+  DrawCharFrame();
+  return -1;
 }
 
 function PoisonTile() {
