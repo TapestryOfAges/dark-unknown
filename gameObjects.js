@@ -5669,6 +5669,13 @@ WeaponObject.prototype.rollDamage = function(wielder) {
     damage += parseInt(strdam);
   }
   
+  var fb = wielder.getSpellEffectsByName("FlameBlade");
+  if (wielder && fb) {
+    if (debug) { dbs.writeln("<span style='color:green'>Flame blade adds " + fb.damage + " damage.<br /></span>"); }
+    fbdmg = RollDice(fb.damage);
+    damage += parseInt(fbdmg);
+    fb.doEffect();
+  }
   return damage;
 }
 
@@ -7067,9 +7074,12 @@ NPCObject.prototype.getHitChance = function(atkwith) {
   
   var distracted = this.getSpellEffectByName("Distract");
   if (distracted) {
-    if (debug) { dbs.writeln("<span style='color:green'>DISTRACTED: old tohit: " + tohit + ", "); }
-    tohit = tohit * (1-distracted.getPower());
-    if (debug) { dbs.writeln("new tohit: " + tohit + ".<br /></span>"); }
+    var stillon = distracted.doEffect();
+    if (stillon != -1) {
+      if (debug) { dbs.writeln("<span style='color:green'>DISTRACTED: old tohit: " + tohit + ", "); }
+      tohit = tohit * (1-distracted.getPower());
+      if (debug) { dbs.writeln("new tohit: " + tohit + ".<br /></span>"); }
+    }
   }
   return tohit;
 }
