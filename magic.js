@@ -83,13 +83,13 @@ magic[1][GetSpellID(2)] = new SpellObject("Disarm Trap", "An Jux", 1, 0);   // s
 magic[1][GetSpellID(3)] = new SpellObject("Distract", "An Wis Xen", 1, 0);  // debuff
 magic[1][GetSpellID(4)] = new SpellObject("Flame Blade", "Flam Bet Ylem", 1, 0);     // flames
 magic[1][GetSpellID(5)] = new SpellObject("Light", "In Lor", 1, 0);  // has sound
-magic[1][GetSpellID(6)] = new SpellObject("Strike", "An Sanct", 1, 1);  // melee hit
+magic[1][GetSpellID(6)] = new SpellObject("Vulnerability", "An Sanct", 1, 1);  // melee hit
 
 magic[2][GetSpellID(1)] = new SpellObject("Illusion", "Quas Xen", 2, 1);
 magic[2][GetSpellID(2)] = new SpellObject("Lesser Heal", "Bet Mani", 2, 0);   // heal
 magic[2][GetSpellID(3)] = new SpellObject("Magic Bolt", "Grav Por", 2, 1);
 magic[2][GetSpellID(4)] = new SpellObject("Poison Blade", "In Nox Bet Ylem", 2, 0);
-magic[2][GetSpellID(5)] = new SpellObject("Protect", "In Sanct", 2, 0);   // blessing
+magic[2][GetSpellID(5)] = new SpellObject("Protection", "In Sanct", 2, 0);   // blessing
 magic[2][GetSpellID(6)] = new SpellObject("Unlock", "Ex Por", 2, 0);     // sfx_unlock
 
 magic[3][GetSpellID(1)] = new SpellObject("Fire Armor", "In Sanct Flam", 3, 0);  // flames
@@ -150,10 +150,12 @@ magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   if (effects) {
     for (var i=0; i<effects.length; i++) {
       if (effects[i].getName() === "Poison") {
+        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, 0);
         effects[i].endEffect();
       }
       if ((infused) && (effects[i].getName() === "Disease")) {
         effects[i].endEffect();
+        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, 0);
       }
     }
   }
@@ -183,7 +185,17 @@ magic[1][GetSpellID(2)].executeSpell = function(caster, infused, free) {
       $.each(allfeatures, function(idx, val) {
         if (val.trapped) {
           var chance = ((who.getInt()*mult + 10) - (this.trapchallenge)) /20;
-          //WORKING HERE
+          if (chance < .05) { chance = .05; }
+          var roll = Math.random();
+          if (roll < chance) { 
+            val.disarmTrap(); 
+            maintext.addText("Trap disarmed!"); 
+            ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, -96);
+          }
+          else { 
+            maintext.addText("Trap resists."); 
+            ShowEffect(val, 500, "X.gif");
+          }
         }
       });
     }
@@ -205,22 +217,31 @@ magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   var radius = 3;
   if (caster.getInt() > 20) { radius = 4; }
   if (infused) { radius = radius * 1.5; } 
-  var power = caster.getInt()/4;
+  var power = caster.getInt()/2;
   if (infused) { power = power*1.5; }
   var castermap = caster.getHomeMap();
   var npcs = castermap.npcs.getAll();
   $.each(npcs, function (idx, val) {
     if (GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) {
-      var chance = 1-((val.getResist("magic") + 1.5*val.getInt() - .66*caster.getInt())/100);
+      var chance = 1-((val.getResist("magic") + 1.5*val.getInt() - .5*caster.getInt())/100);
       if (Math.random()*1 < chance) {
         var distract = localFactory.createTile("Distract");
-        // sparkles
+        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, -128);
         var desc = val.getDesc() + " is distracted!";
-        
-        // WORKING HERE
+        if (val === PC) {
+          desc = "You are distracted!";
+        }
+        var duration = power * SCALE_TIME;
+        distract.setExpiresTime(duration + DUTime.getGameClock());
+        val.addSpellEffect(distract);
       } else {
         var desc = val.getDesc() + " resists!";
-        ShowEffect(val, "X.gif", 700);
+        if (val === PC) {
+          desc = "You resist.";
+          // no X over the PC
+        } else {
+          ShowEffect(val, 700, "X.gif");
+        }
       }
       desc = desc.charAt(0).toUpperCase() + desc.slice(1);
       maintext.addText(desc);
@@ -228,6 +249,40 @@ magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
     }
   });
 
+  return resp;
+}
+
+// Flame Blade
+magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Flame Blade.<br /></span>"); }
+  var resp = {};
+  if ((caster.getWeapon() === "Fists") || (caster.getWeapon() === "NaturalWeapon")) {
+    if (caster === PC) {
+      maintext.addText("You must have a weapon equipped.");
+    }
+    resp["fin"] = 0;
+    return resp;  
+  }
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+  var flameblade = localFactory.createTile("FlameBlade");
+  duration = caster.getInt() * 2 * SCALE_TIME;
+  flameblade.uses = 1;
+  flameblade.damage = "2d4";
+  
+  if (infused) { 
+    duration = duration * 2; 
+    flameblade.uses = RollDice("1d4+1");
+    flameblade.damage = "3d4+3";
+  }
+  
+  flameblade.setExpiresTime(duration + DUTime.getGameClock());
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, -160);
+  
   return resp;
 }
 
@@ -257,6 +312,40 @@ magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   
   DrawCharFrame();
   return resp;
+}
+
+// Vulnerability
+magic[1][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Vulnerability.<br /></span>"); }
+  var resp = {};
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Vulnerability";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free};
+  targetCursor.targetlimit = (viewsizex -1)/2;
+  targetCursor.targetCenterlimit = 0;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 2;
+  gamestate.setMode("target");
+  return resp;
+}
+  
+function PerformVulnerability(caster, infused, free, tgt) {
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+
 }
 
 // Levitate/Waterwalk
@@ -503,7 +592,57 @@ function TravelByMoongate(who, color, belowgraphic, destbelow, destmap, destx, d
 
 var spellcount = {};
 
-function ShowEffect(onwhat, graphic, duration) {
+function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
+  if (Object.keys(spellcount).length === 0) {
+    if (debug) { dbs.writeln("<span style='color:green'>Clearing the spelleffects of empty divs.<br /></span>"); }
+    $("#spelleffects").html("");
+  }
+
+  if (!xoff) { xoff = 0; }
+  if (!yoff) { yoff = 0; }
+  
+  if (spellcount["anim" + onwhat.getSerial()]){ 
+    if (debug) { dbs.writeln("<span style='color:green'>Tried to create a second effect on " + onwhat.getName() + ".<br /></span>"); }
+    return; 
+  }  //if there's already an effect playing, don't replace it with another one, just play the first only    
+  var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
+  var where = {};
+  where.x = 0;
+  where.y = 0;
+  var animurl = "";
+  spellcount["anim" + onwhat.getSerial()] = onwhat;
+  if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onwhat.gety() <= displayspecs.bottomedge)) {
+    where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+    where.x += 192;
+    where.y += 192;
+ //   animurl = "url('graphics/" + graphic + "')";
+    animurl = "graphics/" + graphic ;
+    if (debug) { dbs.writeln("<span style='color:green'>Putting a " + animurl + " on " + onwhat.getName() + ".<br /></span>"); }
+  }
+  var animhtml;
+  if (animurl) {
+    if ($("#anim" + onwhat.getSerial()).html() === "") {
+      $("#anim" + onwhat.getSerial()).html('<img src="graphics/spacer.gif" width="32" height="32" />');
+      $("#anim" + onwhat.getSerial()).css('left',where.x);
+      $("#anim" + onwhat.getSerial()).css('top',where.y);
+      $("#anim" + onwhat.getSerial()).css('background-image', 'url("graphics/' + graphic + '")');
+      $("#anim" + onwhat.getSerial()).css('background-position', xoff + 'px ' + yoff + 'px');
+    } else {
+      animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; width:32px; height:32px; background-image:url(\'graphics/' + graphic + '\'); background-position: ' + xoff + 'px ' + yoff + 'px"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+      $("#spelleffects").html($("#spelleffects").html() + animhtml);
+    }
+    
+    setTimeout(function() {
+      if (debug) { dbs.writeln("<span style='color:green'>Removing a " + animurl + " from " + onwhat.getName() + ".<br /></span>"); }
+      $("#anim" + onwhat.getSerial()).html("");
+      $("#anim" + onwhat.getSerial()).css("background-image", "");
+      delete spellcount["anim" + onwhat.getSerial()];
+    },duration);
+  }
+}
+
+
+function ShowEffectOLD(onwhat, graphic, duration) {
   if (spellcount["anim" + onwhat.getSerial()]){ 
     if (debug) { dbs.writeln("<span style='color:green'>Tried to create a second effect on " + onwhat.getName() + ".<br /></span>"); }
     return; 
@@ -616,4 +755,20 @@ function AnimateSparkles(onwhat, color, animframe) {
   spellcount[spellcountid]++;
   setTimeout(AnimateSparkles(onwhat,color,animframe), 100);
 
+}
+
+function PerformSpellcast() {
+  var themap = PC.getHomeMap();
+  var targettile = themap.getTile(targetCursor.x, targetCursor.y);
+  if (targetCursor.spellName === "Vulnerability") {
+    var tgt = targettile.getTopVisibleNPC();
+    if (!tgt || (tgt === PC)){
+      // spell canceled
+      var resp = {}
+      resp["fin"] = 0;
+      resp["txt"] = "Invalid target.";
+      return resp;
+    }
+    
+  }
 }
