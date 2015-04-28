@@ -370,6 +370,37 @@ SleepTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
+function VulnerabilityTile() {
+  this.addType("debuff");
+  this.name = "Vulnerability";
+  this.display = "<span style='color:#0000ee'>V</span>";
+  this.zstatdesc = "You are vulnerable to attack.";
+}
+VulnerabilityTile.prototype = new EphemeralObject();
+
+VulnerabilityTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You feel vulnerable.");
+  }
+  return 1;
+}
+
+VulnerabilityTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+VulnerabilityTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You no longer feel vulnerable.");
+  }
+  DrawCharFrame();
+}
+
 // This whole thing is deprecated
 var runedefs = {};
 runedefs[RUNE_KINGS] = {name: "Earthbond", pre: "Rune of Kings", focus: 3};  // heal

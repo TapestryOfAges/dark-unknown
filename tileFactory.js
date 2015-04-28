@@ -2036,6 +2036,11 @@ tileFactory.prototype.makeDistractTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFlameBladeTile = function() {
+  var newTile = new FlameBladeTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePoisonTile = function() {
   var newTile = new PoisonTile();
   return newTile;
@@ -2058,6 +2063,11 @@ tileFactory.prototype.makeQuicknessTile = function() {
 
 tileFactory.prototype.makeSleepTile = function() {
   var newTile = new SleepTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeVulnerabilityTile = function() {
+  var newTile = new VulnerabilityTile();
   return newTile;
 }
 

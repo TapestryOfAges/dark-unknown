@@ -315,7 +315,11 @@ magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
 }
 
 // Vulnerability
-magic[1][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+magic[1][GetSpellID(6)].executeSpell = function(caster, infused, free, tgt) {
+  if (caster !== PC) {
+    var resp = PerformVulnerability(caster, infused, free, tgt);
+    return resp;
+  }
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Vulnerability.<br /></span>"); }
   var resp = {};
   
@@ -340,12 +344,41 @@ magic[1][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   
 function PerformVulnerability(caster, infused, free, tgt) {
   if (!free) {
-    var mana = this.getManaCost(infused);
+    var mana = magic[1][GetSpellID(6)].getManaCost(infused);
     caster.modMana(-1*mana);
     if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
+  var resp = {};
   resp["fin"] = 1;
-  // WORKING HERE
+  var desc = "";
+    
+  var chance = 1-(tgt.getResist("magic")/100);
+  if (Math.random()*1 < chance) {
+    var vulobj = localFactory.createTile("Vulnerability");
+  
+    var dur = caster.getInt()/2;
+    if (infused) { dur = dur * 1.5;}
+    ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, -128);
+    if (tgt !== PC) {
+      desc = tgt.getDesc() + " is vulnerable!";
+    }
+    vulobj.setExpiresTime(dur + DUTime.getGameClock());
+    tgt.addSpellEffect(vulobj);
+  }
+  else {
+    desc = tgt.getDesc() + " resists!";
+    if (tgt === PC) {
+      desc = "You resist.";
+      // no X over the PC
+    } else {
+      ShowEffect(val, 700, "X.gif");
+    }
+  }
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+//  maintext.addText(desc);
+  resp["txt"] = desc;
+  resp["input"] = "&gt;";
+  return resp;
 }
 
 // Levitate/Waterwalk
@@ -760,15 +793,27 @@ function AnimateSparkles(onwhat, color, animframe) {
 function PerformSpellcast() {
   var themap = PC.getHomeMap();
   var targettile = themap.getTile(targetCursor.x, targetCursor.y);
+  var resp = {};
   if (targetCursor.spellName === "Vulnerability") {
     var tgt = targettile.getTopVisibleNPC();
     if (!tgt || (tgt === PC)){
       // spell canceled
-      var resp = {}
       resp["fin"] = 0;
       resp["txt"] = "Invalid target.";
-      return resp;
+      resp["input"] = "&gt;";
+      delete targetCursor.spellName;
+      var tileid = targetCursor.tileid;
+      $(tileid).html(targetCursor.basetile); 
+
+    } else {
+      delete targetCursor.spellName;
+      var tileid = targetCursor.tileid;
+      $(tileid).html(targetCursor.basetile); 
+
+      resp = PerformVulnerability(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+      
     }
     
   }
+  return resp;
 }
