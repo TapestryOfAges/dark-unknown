@@ -195,8 +195,8 @@ mappages["darkunknown"].entertestscript = '';
 mappages["darkunknown"].exitscript = '';
 mappages["darkunknown"].exittestscript = '';
 mappages["darkunknown"].returnmap = 'darkunknown';
-mappages["darkunknown"].returnx = '29';
-mappages["darkunknown"].returny = '43';
+mappages["darkunknown"].returnx = '69';
+mappages["darkunknown"].returny = '74';
 mappages["darkunknown"].returninfused = '0';
 mappages["darkunknown"].linkedMaps = new Array("");
 
