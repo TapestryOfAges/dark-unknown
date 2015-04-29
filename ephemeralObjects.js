@@ -13,6 +13,7 @@ function EphemeralObject() {
   this.instances = 1;  // how many of this spell have stacked their durations
   this.display = "";
   this.attachedTo;
+  this.desc;
 
 }
 EphemeralObject.prototype = new ProtoObject();
@@ -148,6 +149,7 @@ function DiseaseTile() {
   this.damagePerTick = 1;
   this.display = "<span style='color:#58FA58'>D</span>";
   this.zstatdesc = "You have been infected by a disease.";
+  this.desc = "disease";
 }
 DiseaseTile.prototype = new DamageOverTimeObject();
 
@@ -166,6 +168,7 @@ function DistractTile() {
   this.name = "Distract";
   this.display = "<span style='color:777777'>D</span>";
   this.zstatdesc = "You are distracted.";
+  this.desc = "Distract";
 }
 DistractTile.prototype = new EphemeralObject();
 
@@ -200,6 +203,7 @@ function FlameBladeTile() {
   this.name = "FlameBlade";
   this.display = "<span style='color:#df0101'>F</span>";
   this.zstatdesc = "Your weapon is sheathed in flame.";
+  this.desc = "Flame Blade";
 }
 FlameBladeTile.prototype = new EphemeralObject();
 
@@ -245,6 +249,7 @@ function PoisonTile() {
   this.damagePerTick = 2 * (1/SCALE_TIME);  // poison is slow-maps only
   this.display = "<span style='color:#58FA58'>D</span>";
   this.zstatdesc = "Poison courses through your veins.";
+  this.desc = "poison";
 }
 PoisonTile.prototype = new DamageOverTimeObject();
 
@@ -266,6 +271,7 @@ function LevitateTile() {
   this.name = "Levitate";
   this.display = "<span style='color:#00FFFF'>W</span>";
   this.zstatdesc = "You are able to walk on water.";
+  this.desc = "Water Walk";
 }
 LevitateTile.prototype = new EphemeralObject();
 
@@ -302,6 +308,7 @@ function LightTile() {
   this.display = "<span style='color:#ffff00'>L</span>";
   this.power = 2;
   this.zstatdesc = "You are followed by a glowing sphere of light.";
+  this.desc = "Light";
 }
 LightTile.prototype = new EphemeralObject();
 
@@ -345,6 +352,7 @@ function QuicknessTile() {
   this.display = "<span style='color:c0c0c0'>Q</span>";
   this.power = .5;
   this.zstatdesc = "You move extremely quickly.";
+  this.desc = "Quickness";
 }
 QuicknessTile.prototype = new EphemeralObject();
 
@@ -382,6 +390,7 @@ function SleepTile() {
   this.name = "Sleep";
   this.display = "<span style='color:777777'>S</span>";
   this.zstatdesc = "You are asleep.";
+  this.desc = "sleep";
 }
 SleepTile.prototype = new EphemeralObject();
 
@@ -413,6 +422,7 @@ function VulnerabilityTile() {
   this.name = "Vulnerability";
   this.display = "<span style='color:#0000ee'>V</span>";
   this.zstatdesc = "You are vulnerable to attack.";
+  this.desc = "Vulnerability";
 }
 VulnerabilityTile.prototype = new EphemeralObject();
 
