@@ -310,7 +310,7 @@ function RunEffects(who) {
   if (effects) {
     for (var i=0; i<effects.length; i++) {
       if (effects[i].getActive()) {
-        effects[i].doEffect();
+        effects[i].onTurn();
       } 
     } 
   }

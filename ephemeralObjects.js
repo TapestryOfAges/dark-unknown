@@ -10,6 +10,7 @@ function EphemeralObject() {
   this.power = 1;  // the Int of the caster, usually- this is used to decide which one of several
                    // of the same spell/effect to actually have take effect
   this.active = 0;  // set to 1 if it is being allowed to take effect, see above
+  this.instances = 1;  // how many of this spell have stacked their durations
   this.display = "";
   this.attachedTo;
 
@@ -61,6 +62,16 @@ EphemeralObject.prototype.getDisplay = function() {
   return this.display;
 }
 
+EphemeralObject.prototype.getInstances = function() {
+  return this.instances;
+}
+
+EphemeralObject.prototype.setInstances = function(newval) {
+  var nv = parseInt(newval);
+  if (nv) { this.instances = nv; }
+  return this.instances;
+}
+
 EphemeralObject.prototype.setActive = function(active) {
   if (active) {
     this.active = 1;
@@ -74,7 +85,21 @@ EphemeralObject.prototype.getActive = function() {
   return this.active;
 }
 
+EphemeralObject.prototype.onTurn = function() {
+  var resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
 
+EphemeralObject.prototype.mergeSpells = function(oldornew) {
+  if (oldornew === "old") {
+    
+  } else {
+    
+  }
+}
 
 function DamageOverTimeObject() {
   this.damagePerTick = 0;
@@ -91,7 +116,7 @@ DamageOverTimeObject.prototype.getDamagePerTick = function() {
   return this.damagePerTick;
 }
 
-DamageOverTimeObject.prototype.doEffect = function() {
+DamageOverTimeObject.prototype.onTurn = function() {
   var prev = this.getLastTime();
   if (!prev) { prev = this.getCreateTime(); }
   
@@ -103,12 +128,12 @@ DamageOverTimeObject.prototype.doEffect = function() {
   var dmg = dur * this.getDamagePerTick();
   var who = this.getAttachedTo();
   
-  alert(dmg);
+//  alert(dmg);
 //  var oldhp = who.getDisplayHP();
   who.dealDamage(dmg);
 //  var newhp = who.getDisplayHP();
   
-  if ((this.getExpiresTime()) && (now > this.getExpiresTime())) {
+  if ((this.getExpiresTime()) && (now >= this.getExpiresTime())) {
     this.endEffect();
   } else {
     this.setLastTime(DUTime.getGameClock());    
@@ -178,6 +203,17 @@ function FlameBladeTile() {
 }
 FlameBladeTile.prototype = new EphemeralObject();
 
+FlameBladeTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if (who) {
+    who.setLight(who.getLight() + .5);
+    if ((who === PC) && !silent) {
+      maintext.addText("Your weapon is sheathed in flame.");
+    }
+  }
+  return 1;
+}
+
 FlameBladeTile.prototype.doEffect = function() {
   this.uses--;
   var resp = 0;
@@ -186,13 +222,15 @@ FlameBladeTile.prototype.doEffect = function() {
       resp = this.endEffect();
     }
   } else {
-    resp = this.endEffect();
+    resp = this.endEffect(1);
+    maintext.delayedAddText("The flames on your weapon are consumed!");
   }
   return resp;
 }
 
 FlameBladeTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
+  who.setLight(who.getLight() - .5);
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("The flames on your weapon flicker and die.");

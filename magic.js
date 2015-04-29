@@ -273,14 +273,18 @@ magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   duration = caster.getInt() * 2 * SCALE_TIME;
   flameblade.uses = 1;
   flameblade.damage = "2d4";
+  flameblade.power = 2;
   
   if (infused) { 
     duration = duration * 2; 
     flameblade.uses = RollDice("1d4+1");
     flameblade.damage = "3d4+3";
+    flameblade.power = 3;
   }
-  
-  flameblade.setExpiresTime(duration + DUTime.getGameClock());
+  var endtime = duration + DUTime.getGameClock();
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
+  flameblade.setExpiresTime(endtime);
+  caster.addSpellEffect(flameblade);
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, -160);
   
   return resp;
@@ -363,6 +367,9 @@ function PerformVulnerability(caster, infused, free, tgt) {
       desc = tgt.getDesc() + " is vulnerable!";
     }
     vulobj.setExpiresTime(dur + DUTime.getGameClock());
+    var power = 4;
+    if (infused) { power = 6; }
+    vulobj.setPower(power);
     tgt.addSpellEffect(vulobj);
   }
   else {
