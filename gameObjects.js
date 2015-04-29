@@ -6620,20 +6620,25 @@ NPCObject.prototype.addSpellEffect = function(spellobj) {
     for (var i=0; i < otherEffects.length; i++) {
       if (otherEffects[i].getName() === spellobj.getName()) {
         silent = 1;
+        var totin = spellobj.getInstances() + otherEffects[i].getInstances();
         if (debug) { dbs.writeln("<span style='color:green'>Magic: That spell is already on the target.<br /></span>"); }
-        if (otherEffects[i].getPower() >= spellobj.getPower()) {  // keep old one, extend it
-          var adddur = (spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.DUTime.getGameClock());
+        if (otherEffects[i].getPower() > spellobj.getPower()) {  // keep old one, extend it
+          var adddur = (1/(totin - 1))*(spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.DUTime.getGameClock());
           if (debug) { dbs.writeln("<span style='color:green'>Magic: Old one is stronger, extending by " + adddur + ".<br /></span>"); }
           otherEffects[i].setExpiresTime(otherEffects[i].getExpiresTime() + adddur);
+          otherEffects[i].setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
+          otherEffects[i].mergeSpells("old");
           addme = 0; 
-          maintext.addText("The existing spell is revitalized!");
+//          maintext.addText("The existing spell is revitalized!");
           return 0;
         } else {
-          var adddur = (otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.DUTime.getGameClock());
+          var adddur = (1/(totin - 1))*(otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.DUTime.getGameClock());
           spellobj.setExpiresTime(spellobj.getExpiresTime() + adddur);
           if (debug) { dbs.writeln("<span style='color:green'>Magic: New one is stronger. Replacing old and extending new by " + adddur + ".<br /></span>"); }
           otherEffects[i].endEffect(1);
-          maintext.addText("The existing spell has become stronger!");
+          spellobj.setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
+          spellobj.mergeSpells("new");
+//          maintext.addText("The existing spell has become stronger!");
         }
         break;
       }
@@ -7072,7 +7077,7 @@ NPCObject.prototype.getHitChance = function(atkwith) {
     tohit += armor.getToHitBonus();
   }
   
-  var distracted = this.getSpellEffectByName("Distract");
+  var distracted = this.getSpellEffectsByName("Distract");
   if (distracted) {
     var stillon = distracted.doEffect();
     if (stillon != -1) {
@@ -7093,6 +7098,12 @@ NPCObject.prototype.getDefense = function() {
     } else {
       def += armor.getDefense();
     }
+  }
+  var vuln = this.getSpellEffectsByName("Vulnerability");
+  if (vuln) {
+    if (debug) { dbs.writeln("vulnerable: old AC " + def + ", </span>"); }
+    def = def - vuln.getPower();
+    if (debug) { dbs.writeln("new AC: " + def + ".<br /></span>"); }
   }
   return def;
 }
