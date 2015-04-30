@@ -970,7 +970,7 @@ function SkeletonNPCTile() {
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Skeleton';
+  this.lootTable = 'Minor Adventurer';
   this.prefix = 'a';
   this.desc = 'skeleton';
   this.meleeChance = 100;
@@ -2791,6 +2791,63 @@ function AbyssalKrakenNPCTile() {
   special = 'lbolt';
 }
 AbyssalKrakenNPCTile.prototype = new NPCObject();
+
+
+// Summoned
+
+function IllusionNPCTile() {
+  this.name = 'IllusionNPC';
+  this.level = 2;
+  this.addhp = 0;
+  this.str = 15;
+  this.dex = 15;
+  this.int = 15;
+  this.alignment = 'Good';
+  this.attitude = 'friendly';
+  this.peaceAI = 'stationary';
+  this.threatenedAI = 'melee';
+  this.PCThreatAI = 'assistPC';
+  this.graphic = '338.gif';
+  this.meleeAttackAs = 'Shortsword';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'an';
+  this.desc = 'illusion';
+  this.onDamaged = 'die';
+  this.meleeChance = 100;
+}
+IllusionNPCTile.prototype = new NPCObject();
+
+
+// Summoned
+
+function InfusedIllusionNPCTile() {
+  this.name = 'InfusedIllusionNPC';
+  this.level = 3;
+  this.addhp = 0;
+  this.str = 18;
+  this.dex = 18;
+  this.int = 18;
+  this.alignment = 'Good';
+  this.attitude = 'friendly';
+  this.peaceAI = 'stationary';
+  this.threatenedAI = 'melee';
+  this.PCThreatAI = 'assistPC';
+  this.graphic = '338.gif';
+  this.meleeAttackAs = 'Axe';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'an';
+  this.desc = 'illusion';
+  this.onDamaged = 'die';
+}
+InfusedIllusionNPCTile.prototype = new NPCObject();
 
 function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';
