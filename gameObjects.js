@@ -6697,6 +6697,11 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.currentPath = [];
     this.destType;
 
+    this.maxhp = this.level * 10 + (parseInt(Math.random()*11) - 5);
+    if (this.addhp) { this.maxhp += this.addhp; }
+    this.hp = this.maxhp;
+    
+
     if (debug) {
       dbs.writeln("<span style='color:green;font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") activating.</span><br />");
     }
