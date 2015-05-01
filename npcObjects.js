@@ -1670,7 +1670,7 @@ function FireElementalNPCTile() {
   this.peaceAI = 'wander';
   this.threatenedAI = 'mageknight';
   this.PCThreatAI = 'attackPC';
-  this.graphic = '143.gif';
+  this.graphic = 'fire_elemental.gif';
   this.meleeAttackAs = 'Axe';
   this.missileAttackAs = 'none';
   this.armorAs = 'ChainArmor';
