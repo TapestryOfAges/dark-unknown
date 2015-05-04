@@ -4792,6 +4792,49 @@ function FountainTile() {
 }
 FountainTile.prototype = new FeatureObject();
 
+function TeleporterPlatformTile() {
+  this.name = "TeleporterPlatform";
+  this.graphic = "teleporter.gif";
+  this.prefix = "a";
+  this.desc = "platform";
+  this.destination;
+}
+TeleporterPlatformTile.prototype = new FeatureObject();
+
+TeleporterPlatformTile.prototype.setDestination = function(destobj) {
+  this.destination = {};
+  if (destobj.map && destobj.x && destobj.y) {
+    this.destination = destobj;
+  }
+}
+
+TeleporterPlatformTile.prototype.getDestination = function() {
+  return this.destination;
+}
+
+// Toshin
+function ToshinPanelTile() {
+  this.name = "ToshinPanel";
+  this.graphic = "023.gif";
+  this.prefix = "a";
+  this.desc = "panel covered with buttons";
+}
+ToshinPanelTile.prototype = new FeatureObject();
+
+ToshinPanelTile.prototype.use = function(who) {
+  gamestate.setMode("singleletter");
+  var retval = {};
+  retval["fin"] = 0;
+  retval["txt"] = "Press which button?"
+  retval["input"] = "Choose - ";
+  
+  return retval;
+}
+
+function PerformToshinAltar(letter) {
+  // WORKING HERE 
+}
+
 // For skypalace
 function OrbToggleTile() {
   this.name = "OrbToggle";
