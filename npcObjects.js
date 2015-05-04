@@ -2846,8 +2846,37 @@ function InfusedIllusionNPCTile() {
   this.prefix = 'an';
   this.desc = 'illusion';
   this.onDamaged = 'die';
+  this.meleeChance = 100;
 }
 InfusedIllusionNPCTile.prototype = new NPCObject();
+
+
+// Sentinel
+
+function ToshinSentinelNPCTile() {
+  this.name = 'ToshinSentinelNPC';
+  this.level = 8;
+  this.addhp = 20;
+  this.str = 30;
+  this.dex = 30;
+  this.int = 30;
+  this.alignment = 'Neutral';
+  this.attitude = 'neutral';
+  this.peaceAI = 'sentinel';
+  this.threatenedAI = 'sentinel';
+  this.PCThreatAI = 'sentinel';
+  this.graphic = 'sentinel.gif';
+  this.meleeAttackAs = 'Fists';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ExoticArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = 'floating sentinel';
+  special = 'quick';
+}
+ToshinSentinelNPCTile.prototype = new NPCObject();
 
 function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';
