@@ -257,7 +257,7 @@ function DoAction(code) {
           PC.endTurn(retval["initdelay"]);
         }
       } 
-      else { alert("need to add hook here! (main 212)"); }
+      else { alert("need to add hook here! (main 260)"); }
     }
     else if (code === 27) { // ESC
       maintext.setInputLine("&gt;");
@@ -457,6 +457,32 @@ function DoAction(code) {
       gamestate.setTurn(PC);
     } else if (response["fin"] === 1) {
       
+    }
+  }
+  else if (gamestate.getMode() === "singleletter") {
+    if (((code >= 65) && (code <= 90)) || (code === 32)) {  // letter
+      var letter = String.fromCharCode(code);    	
+      if (inputText.thing = "toshin") {
+        var retval = PerformToshinAltar(letter);
+        if (retval["fin"] === 2) {
+          gamestate.setMode("player");
+          gamestate.setTurn(PC);
+        } else if (retval["fin"] === 1) {
+          PC.endTurn(retval["initdelay"]);
+        }
+        maintext.setInputLine("&gt;");
+        maintext.addText(retval["txt"]);
+        maintext.drawTextFrame();
+      }
+    }
+    else if (code === 27) { // ESC
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      gamestate.setMode("player");
+      gamestate.setTurn(PC);
+    }
+    else { // ignore
+    	
     }
   }
   else if (gamestate.getMode() === "spellbook") {
