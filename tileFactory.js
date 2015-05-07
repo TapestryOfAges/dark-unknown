@@ -1196,6 +1196,16 @@ tileFactory.prototype.makeFountainTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTeleporterPlatformTile = function() {
+  var newTile = new TeleporterPlatformTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeToshinPanelTile = function() {
+  var newTile = new ToshinPanelTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeOrbToggleTile = function() {
   var newTile = new OrbToggleTile();
   return newTile;
@@ -1953,6 +1963,21 @@ tileFactory.prototype.makeTitanNPCTile = function() {
 
 tileFactory.prototype.makeAbyssalKrakenNPCTile = function() {
   var newTile = new AbyssalKrakenNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeIllusionNPCTile = function() {
+  var newTile = new IllusionNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeInfusedIllusionNPCTile = function() {
+  var newTile = new InfusedIllusionNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeToshinSentinelNPCTile = function() {
+  var newTile = new ToshinSentinelNPCTile();
   return newTile;
 }
 
