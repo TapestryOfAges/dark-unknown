@@ -332,6 +332,107 @@ mappages["toshin3"].linkedMaps = ["toshin1","toshin2","toshin4"];
 
 mappages["toshin3"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
-    // WORKING HERE- link teleporters
+    var tile = mapref.getTile(24,7);
+    var tp = tile.getTopFeature();
+    if (tp.getName() === "TeleporterPlatform") {
+      var destobj = {};
+      destobj.map = mapref.getName();
+      destobj.x = 15;
+      destobj.y = 13;
+      tp.setDestination(destobj);
+    }
+    tile = mapref.getTile(15,13);
+    tp = tile.getTopFeature();
+    if (tp.getName() === "TeleporterPlatform") {
+      destobj = {};
+      destobj.map = mapref.getName();
+      destobj.x = 24;
+      destobj.y = 7;
+      tp.setDestination(destobj);
+    }
+    tile = mapref.getTile(8,20);
+    tp = tile.getTopFeature();
+    if (tp.getName() === "TeleporterPlatform") {
+      destobj = {};
+      destobj.map = mapref.getName();
+      destobj.x = 18;
+      destobj.y = 21;
+      tp.setDestination(destobj);
+    }
+    tile = mapref.getTile(18,21);
+    tp = tile.getTopFeature();
+    if (tp.getName() === "TeleporterPlatform") {
+      destobj = {};
+      destobj.map = mapref.getName();
+      destobj.x = 8;
+      destobj.y = 20;
+      tp.setDestination(destobj);
+    }
+    
+    
   }
 }
+
+
+mappages["toshin4"] = {};
+mappages["toshin4"].terrain = [];
+ mappages["toshin4"].terrain[0] = '^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^';
+ mappages["toshin4"].terrain[1] = '^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^';
+ mappages["toshin4"].terrain[2] = '^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^';
+ mappages["toshin4"].terrain[3] = '^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
+ mappages["toshin4"].terrain[4] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
+ mappages["toshin4"].terrain[5] = 'nn nn nn nn nn nn nn ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## nn nn nn nn nn nn';
+ mappages["toshin4"].terrain[6] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## nn nn nn nn nn nn';
+ mappages["toshin4"].terrain[7] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ;; nn nn nn nn nn';
+ mappages["toshin4"].terrain[8] = 'nn nn nn nn nn nn nn #O ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ;; ;; nn nn nn nn';
+ mappages["toshin4"].terrain[9] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ;; nn nn nn nn nn';
+mappages["toshin4"].terrain[10] = 'nn nn nn nn nn nn ;; ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## nn nn nn nn nn nn';
+mappages["toshin4"].terrain[11] = 'nn nn nn nn nn ;; ;; ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## nn nn nn nn nn nn';
+mappages["toshin4"].terrain[12] = 'nn nn nn nn nn ;; ., ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ., ., ., ., nn .,';
+mappages["toshin4"].terrain[13] = 'nn nn nn nn nn ;; ;; ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ., nn ., ., ., .,';
+mappages["toshin4"].terrain[14] = 'nn nn nn nn nn nn ;; ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ., ., ., ., ., .,';
+mappages["toshin4"].terrain[15] = 'nn nn nn nn nn nn nn ## ## ## ## ## ## ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## nn nn nn nn nn nn';
+mappages["toshin4"].terrain[16] = 'nn nn nn nn nn nn nn ## ## ## ## ## ## ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## nn nn nn nn nn nn';
+mappages["toshin4"].terrain[17] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## nn nn nn nn nn nn';
+mappages["toshin4"].terrain[18] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## nn nn nn nn nn nn';
+mappages["toshin4"].terrain[19] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ #O nn nn nn nn ;; nn';
+mappages["toshin4"].terrain[20] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## nn nn nn ;; ;; nn';
+mappages["toshin4"].terrain[21] = 'nn nn nn nn nn nn nn ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## nn nn nn nn ;; ;;';
+mappages["toshin4"].terrain[22] = 'nn nn nn nn nn nn nn ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #O ## ## ## nn nn nn nn ;; ;;';
+mappages["toshin4"].terrain[23] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
+mappages["toshin4"].terrain[24] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
+mappages["toshin4"].terrain[25] = 'nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
+mappages["toshin4"].terrain[26] = 'nn nn nn nn nn nn nn nn nn nn nn ;; ;; nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
+mappages["toshin4"].terrain[27] = 'nn nn nn nn nn nn nn nn nn nn ;; ;; ;; nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn';
+mappages["toshin4"].terrain[28] = 'nn nn nn nn nn nn nn nn nn ;; ;; ;; ;; ;; nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^';
+mappages["toshin4"].terrain[29] = '^^ nn nn nn nn nn nn nn nn nn ;; ;; ;; nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^';
+mappages["toshin4"].terrain[30] = '^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+mappages["toshin4"].terrain[31] = '^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+
+mappages["toshin4"].features = [];
+mappages["toshin4"].features[0] = {name : 'LadderDown', x : 12, y : 21, entermap : 'toshin3', enterx : 12, entery : 21};
+
+
+mappages["toshin4"].npcs = [];
+
+mappages["toshin4"].desc = "Toshin's Tower";
+mappages["toshin4"].music = 'Magic';
+mappages["toshin4"].exitmap = 'darkunknown';
+mappages["toshin4"].exitx = '65';
+mappages["toshin4"].exity = '70';
+mappages["toshin4"].wraps = 'None';
+mappages["toshin4"].enterx = '31';
+mappages["toshin4"].entery = '16';
+mappages["toshin4"].seeBelow = '';
+mappages["toshin4"].lightLevel = 'bright';
+mappages["toshin4"].alwaysRemember = '0';
+mappages["toshin4"].scale = '1';
+mappages["toshin4"].enterscript = '';
+mappages["toshin4"].entertestscript = '';
+mappages["toshin4"].exitscript = '';
+mappages["toshin4"].exittestscript = '';
+mappages["toshin4"].returnmap = 'darkunknown';
+mappages["toshin4"].returnx = '29';
+mappages["toshin4"].returny = '43';
+mappages["toshin4"].returninfused = '0';
+mappages["toshin4"].linkedMaps = ["toshin1","toshin2","toshin3"];
