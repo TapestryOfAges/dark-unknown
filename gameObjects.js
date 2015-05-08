@@ -4798,6 +4798,7 @@ function TeleporterPlatformTile() {
   this.prefix = "a";
   this.desc = "platform";
   this.destination;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 TeleporterPlatformTile.prototype = new FeatureObject();
 
@@ -4810,6 +4811,22 @@ TeleporterPlatformTile.prototype.setDestination = function(destobj) {
 
 TeleporterPlatformTile.prototype.getDestination = function() {
   return this.destination;
+}
+
+TeleporterPlatformTile.prototype.walkon = function(who) {
+  if (this.getDestination()) {
+    var themap = who.getHomeMap();
+    var dest = this.getDestination();
+    if (themap.getName() === dest.map) {
+      themap.moveThing(dest.x, dest.y, who);
+      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    } else {
+      DU.maps.addMap(dest.map);
+      var destmap = DU.maps.getMap(dest.map);
+      MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
+      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    }
+  }
 }
 
 // Toshin
