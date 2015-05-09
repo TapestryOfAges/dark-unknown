@@ -461,9 +461,8 @@ function DoAction(code) {
   }
   else if (gamestate.getMode() === "singleletter") {
     if (((code >= 65) && (code <= 90)) || (code === 32)) {  // letter
-      var letter = String.fromCharCode(code);    	
       if (inputText.thing = "toshin") {
-        var retval = PerformToshinAltar(letter);
+        var retval = PerformToshinAltar(code);
         if (retval["fin"] === 2) {
           gamestate.setMode("player");
           gamestate.setTurn(PC);
