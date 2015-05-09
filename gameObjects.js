@@ -4819,13 +4819,14 @@ TeleporterPlatformTile.prototype.walkon = function(who) {
     var dest = this.getDestination();
     if (themap.getName() === dest.map) {
       themap.moveThing(dest.x, dest.y, who);
-      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
     } else {
       DU.maps.addMap(dest.map);
       var destmap = DU.maps.getMap(dest.map);
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
-      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
     }
+    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
+    // NEEDS SFX
   }
 }
 
@@ -4835,6 +4836,12 @@ function ToshinPanelTile() {
   this.graphic = "023.gif";
   this.prefix = "a";
   this.desc = "panel covered with buttons";
+  this.val = {};
+  this.val[65] = 0;
+  this.val[66] = 0;
+  this.val[67] = 0;
+  this.val[68] = 0;
+  this.val[69] = 0;
 }
 ToshinPanelTile.prototype = new FeatureObject();
 
@@ -4843,12 +4850,158 @@ ToshinPanelTile.prototype.use = function(who) {
   var retval = {};
   retval["fin"] = 0;
   retval["txt"] = "Press which button?"
-  retval["input"] = "Choose - ";
+  retval["input"] = "Choose (A-E) - ";
+  inputText.thing = "toshin";
+  inputText.thingref = this;
   
   return retval;
 }
 
-function PerformToshinAltar(letter) {
+function PerformToshinAltar(code) {
+  var letter = String.fromCharCode(code);    	
+  var retval = {};
+  retval["fin"] = 1;
+  var altar = inputText.thingref;
+  var themap = altar.getHomeMap();
+  var energyfield = localFactory.createTile("EnergyField");
+  var firefield = localFactory.createTile("FireField");
+
+  if (code === 65) {
+    var fieldtile1 = themap.getTile(22,13);
+    var fields = fieldtile1.getFeatures();
+    $.each(fields, function(idx,val) {
+      if (val.getName().indexOf("Field") > -1) {
+        themap.deleteThing(val);
+      }
+    });
+    var fieldtile2 = themap.getTile(20,17);
+    fields = fieldtile2.getFeatures();
+    $.each(fields, function(idx,val) {
+      if (val.getName().indexOf("Field") > -1) {
+        themap.deleteThing(val);
+      }
+    });
+    if (altar.val[65]) {
+      themap.placeThing(22,13,energyfield);
+      themap.placeThing(20,17,firefield);
+      altar.val[65] = 0;
+    } else {
+      themap.placeThing(22,13,firefield);
+      themap.placeThing(20,17,energyfield);      
+      altar.val[65] = 1;
+    }
+  } else if (code === 66) {
+    var fieldtile1 = themap.getTile(11,7);
+    var fields = fieldtile1.getFeatures();
+    $.each(fields, function(idx,val) {
+      if (val.getName().indexOf("Field") > -1) {
+        themap.deleteThing(val);
+      }
+    });
+    var fieldtile2 = themap.getTile(18,8);
+    fields = fieldtile2.getFeatures();
+    $.each(fields, function(idx,val) {
+      if (val.getName().indexOf("Field") > -1) {
+        themap.deleteThing(val);
+      }
+    });
+    if (altar.val[66]) {
+      themap.placeThing(18,8,energyfield);
+      themap.placeThing(11,7,firefield);
+      altar.val[66] = 0;
+    } else {
+      themap.placeThing(18,8,firefield);
+      themap.placeThing(11,7,energyfield);      
+      altar.val[66] = 1;
+    }
+  } else if (code === 67) {
+    var fieldtile1 = themap.getTile(12,17);
+    var fields = fieldtile1.getFeatures();
+    $.each(fields, function(idx,val) {
+      if (val.getName().indexOf("Field") > -1) {
+        themap.deleteThing(val);
+      }
+    });
+    var fieldtile2 = themap.getTile(12,19);
+    fields = fieldtile2.getFeatures();
+    $.each(fields, function(idx,val) {
+      if (val.getName().indexOf("Field") > -1) {
+        themap.deleteThing(val);
+      }
+    });
+    var fieldtile3 = themap.getTile(13,18);
+    fields = fieldtile3.getFeatures();
+    $.each(fields, function(idx,val) {
+      if (val.getName().indexOf("Field") > -1) {
+        themap.deleteThing(val);
+      }
+    });
+    if (altar.val[67]) {
+      themap.placeThing(13,18,energyfield);
+      themap.placeThing(12,17,firefield);
+      var firefield2 = localFactory.createTile("FireField");
+      themap.placeThing(12,19,firefield2);
+      altar.val[67] = 0;
+    } else {
+      themap.placeThing(13,18,firefield);
+      themap.placeThing(12,17,energyfield);      
+      var energyfield2 = localFactory.createTile("EnergyField");
+      themap.placeThing(12,19,energyfield);
+      altar.val[67] = 1;
+    }
+  } else if (code === 68) {
+    var fieldtile1 = themap.getTile(11,11);
+    var fields = fieldtile1.getFeatures();
+    $.each(fields, function(idx,val) {
+      if (val.getName().indexOf("Field") > -1) {
+        themap.deleteThing(val);
+      }
+    });
+    var fieldtile2 = themap.getTile(14,8);
+    fields = fieldtile2.getFeatures();
+    $.each(fields, function(idx,val) {
+      if (val.getName().indexOf("Field") > -1) {
+        themap.deleteThing(val);
+      }
+    });
+    if (altar.val[68]) {
+      themap.placeThing(14,8,energyfield);
+      themap.placeThing(11,11,firefield);
+      altar.val[68] = 0;
+    } else {
+      themap.placeThing(14,8,firefield);
+      themap.placeThing(11,11,energyfield);      
+      altar.val[68] = 1;
+    }
+  } else if (code === 69) {
+    var fieldtile1 = themap.getTile(9,10);
+    var fields = fieldtile1.getFeatures();
+    $.each(fields, function(idx,val) {
+      if (val.getName().indexOf("Field") > -1) {
+        themap.deleteThing(val);
+      }
+    });
+    var fieldtile2 = themap.getTile(12,15);
+    fields = fieldtile2.getFeatures();
+    $.each(fields, function(idx,val) {
+      if (val.getName().indexOf("Field") > -1) {
+        themap.deleteThing(val);
+      }
+    });
+    if (altar.val[69]) {
+      themap.placeThing(9,10,energyfield);
+      themap.placeThing(12,15,firefield);
+      altar.val[69] = 0;
+    } else {
+      themap.placeThing(9,10,firefield);
+      themap.placeThing(12,15,energyfield);      
+      altar.val[69] = 1;
+    }
+  } else {
+    retval["fin"] = 2;
+    return retval;
+  } 
+  
   // WORKING HERE 
 }
 
