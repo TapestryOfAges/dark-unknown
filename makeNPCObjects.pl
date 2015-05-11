@@ -102,10 +102,10 @@ foreach my $line (<$npcdoc>) {
     print $out "};\n";
   }
   if ($fields[28]) {
-    print $out "  resists = { $fields[28] };\n";
+    print $out "  this.resists = { $fields[28] };\n";
   }
   if ($fields[29]) {
-    print $out "  special = '$fields[29]';\n";
+    print $out "  this.special = '$fields[29]';\n";
   }
   print $out "}\n";
   print $out "$fields[0]" . "NPCTile.prototype = new NPCObject();\n\n";
