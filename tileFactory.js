@@ -1206,6 +1206,11 @@ tileFactory.prototype.makeToshinPanelTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeToshinMoatLeverOffTile = function() {
+  var newTile = new ToshinMoatLeverOffTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeOrbToggleTile = function() {
   var newTile = new OrbToggleTile();
   return newTile;
