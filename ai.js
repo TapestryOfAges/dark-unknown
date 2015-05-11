@@ -4,6 +4,25 @@
 
 var ais = {};
 
+ais.Sentinel = function(who) {
+  my destinations = [];
+  my jumps = [];
+  destinations[0] = ["w","w","n","n","w","w","w","w","w","e","e","e","e","e","e","e","e","e","s","s","s","s","n","n","n","n","w","w","w","w","s","s","e","e"];
+  jumps[0] = { 2:31, 6:12, 10:8, 18:25, 23:20, 29:4};
+  destinations[1] = ["w","n","w","w","s","s","s","w","w","n","n","n","n","s","s","s","s","e","e","n","n","n","e","e","s","e","s","s","s","s","w","w","w","w","e","e","e","e","s","s","w","w","w","w","s","s","e","e","e","e","w","w","w","w","n","n","e","e","e","e","n","n","w","w","w","w","e","e","e","e","n","n","n","n"];
+  jumps[1] = { 11:15,13:13,30:38,36:32,46:54,52:48,62:70,68:64};
+  destinations[2] = ["n","n","n","n","n","e","e","e","w","w","w","s","s","s","s","s","s","s","s","e","e","e","e","n","n","w","w","n","n","n","n","s","s","s","s","e","e","s","s""w","w","w","w","n","n","n"];
+  jumps[2] = { 1:14,6:10,8:8,13:3,21:41,28:34,32:30,39:23};
+  destinations[3] = ["w","w","w","w","w","s","n","e","e","e","e","e","n","n","e","e","s","s","e","e","e","e","e","e","w","w","w","w","w","w","n","n","w","w","s","s"];
+  jumps[3] = { 2:10, 8:4, 20:28, 26:22};
+  
+  // sequence: first, see if player is in front of, if so spend action teleporting player back to center
+  //                  (also do this to the player's summoned NPCs if they have one)
+  // then, see if path is blocked, if so, if there is a jump, jump to next step without moving
+  // if neither of those things happened, take the next step
+  
+}
+
 ais.Bandit = function(who,radius) {
   var retval = ais.OutdoorHostile(who, radius, "road");
   return retval;
