@@ -4848,9 +4848,10 @@ ToshinPanelTile.prototype = new FeatureObject();
 ToshinPanelTile.prototype.use = function(who) {
   gamestate.setMode("singleletter");
   var retval = {};
-  retval["fin"] = 0;
-  retval["txt"] = "Press which button?"
+  retval["fin"] = 2;
+  retval["txt"] = "Use: panel covered with buttons- Press which button?"
   retval["input"] = "Choose (A-E) - ";
+  retval["override"] = 1;
   inputText.thing = "toshin";
   inputText.thingref = this;
   
@@ -4861,6 +4862,7 @@ function PerformToshinAltar(code) {
   var letter = String.fromCharCode(code);    	
   var retval = {};
   retval["fin"] = 1;
+  retval["txt"] = "Pressed " + letter + ".";
   var altar = inputText.thingref;
   var themap = altar.getHomeMap();
   var energyfield = localFactory.createTile("EnergyField");
@@ -5001,8 +5003,53 @@ function PerformToshinAltar(code) {
     retval["fin"] = 2;
     return retval;
   } 
+  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+  return retval;
+}
+
+function ToshinMoatLeverOffTile() {
+  this.name = "ToshinMoatLeverOff";
+  this.graphic = "moatLever-off.gif";
+  this.overlay = "moatLever-off.gif";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "lever";
   
-  // WORKING HERE 
+  SetByBelow.call(this);
+}
+ToshinMoatLeverOffTile.prototype = new FeatureObject();
+
+ToshinMoatLeverOffTile.prototype.use = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  retval["txt"] = "Click!";
+  var themap = this.getHomeMap();
+  var tile = themap.getTile(25,13);
+  var door = tile.getTopFeature();
+  
+  var lever1tile = themap.getTile(6,12);
+  var lever1 = lever1tile.getTopFeature();
+  var lever2tile = themap.getTile(24,14);
+  var lever2 = lever2tile.getTopFeature();
+  
+  if (this.getOverlay() === "moatLever-off.gif") {
+    door.unlockMe();
+    lever1.setGraphic("moatLever-on.gif");
+    lever1.setOverlay("moatLever-on.gif");
+    lever2.setGraphic("moatLever-on.gif");
+    lever2.setOverlay("moatLever-on.gif");
+  } else {
+    door.lockMe(2);
+    lever1.setGraphic("moatLever-off.gif");
+    lever1.setOverlay("moatLever-off.gif");
+    lever2.setGraphic("moatLever-off.gif");
+    lever2.setOverlay("moatLever-off.gif");    
+  }
+  DrawMainFrame("one",themap.getName(),lever1.getx(), lever1.gety());
+  DrawMainFrame("one",themap.getName(),lever2.getx(), lever2.gety());
+  DrawMainFrame("one",themap.getName(),door.getx(), door.gety());
+  
+  return retval;
 }
 
 // For skypalace
@@ -6981,6 +7028,11 @@ NPCObject.prototype.activate = function(timeoverride) {
       this.setEquipment("armor",armor);
     } 
     
+    if (this.special.indexOf("quick") > -1) {
+      var qobj = localFactory.createTile("Quickness");
+      qobj.setExpiresTime(-1);
+      this.addSpellEffect(qobj);
+    }
   
     var timing = this.nextActionTime(0);
     timing = timing/2;
