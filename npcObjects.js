@@ -701,7 +701,7 @@ function MinstrelNPCTile() {
   this.onHit = ' ';
   this.meleeChance = 40;
   this.spellsknown = { buff: 1, };
-  special = 'sing';
+  this.special = 'sing';
 }
 MinstrelNPCTile.prototype = new NPCObject();
 
@@ -734,7 +734,7 @@ function SlimeNPCTile() {
   this.desc = 'slime';
   this.onDamaged = 'split';
   this.meleeChance = 70;
-  resists = { fire:20 };
+  this.resists = { fire:20 };
 }
 SlimeNPCTile.prototype = new NPCObject();
 
@@ -974,7 +974,7 @@ function SkeletonNPCTile() {
   this.prefix = 'a';
   this.desc = 'skeleton';
   this.meleeChance = 100;
-  resists = { ice:33 };
+  this.resists = { ice:33 };
 }
 SkeletonNPCTile.prototype = new NPCObject();
 
@@ -1061,7 +1061,7 @@ function BardNPCTile() {
   this.desc = 'bard';
   this.meleeChance = 40;
   this.spellsknown = { control: 1, buff: 1, };
-  special = 'sing';
+  this.special = 'sing';
 }
 BardNPCTile.prototype = new NPCObject();
 
@@ -1121,8 +1121,8 @@ function FireLizardNPCTile() {
   this.prefix = 'a';
   this.desc = 'fire lizard';
   this.meleeChance = 80;
-  resists = { fire:66 };
-  special = 'firebreath';
+  this.resists = { fire:66 };
+  this.special = 'firebreath';
 }
 FireLizardNPCTile.prototype = new NPCObject();
 
@@ -1155,8 +1155,8 @@ function FlukeNPCTile() {
   this.desc = 'fluke';
   this.meleeChance = 40;
   this.spellsknown = { control: 1, };
-  resists = { ice:33 };
-  special = 'whirlpool, hides:spacer.gif';
+  this.resists = { ice:33 };
+  this.special = 'whirlpool, hides:spacer.gif';
 }
 FlukeNPCTile.prototype = new NPCObject();
 
@@ -1187,7 +1187,7 @@ function GhostNPCTile() {
   this.desc = 'ghost';
   this.onDamaged = 'incorporeal';
   this.meleeChance = 100;
-  resists = { ice:50 };
+  this.resists = { ice:50 };
 }
 GhostNPCTile.prototype = new NPCObject();
 
@@ -1251,7 +1251,7 @@ function GremlinNPCTile() {
   this.desc = 'gremlin';
   this.onHit = 'stealfood';
   this.meleeChance = 100;
-  special = 'breedsexplosively';
+  this.special = 'breedsexplosively';
 }
 GremlinNPCTile.prototype = new NPCObject();
 
@@ -1281,7 +1281,7 @@ function HandlerNPCTile() {
   this.desc = 'animal handler';
   this.meleeChance = 70;
   this.spellsknown = { buff: 1, };
-  special = 'animalhandler';
+  this.special = 'animalhandler';
 }
 HandlerNPCTile.prototype = new NPCObject();
 
@@ -1311,7 +1311,7 @@ function MimicNPCTile() {
   this.prefix = 'a';
   this.desc = 'mimic';
   this.meleeChance = 100;
-  special = 'hides:008.gif, hidename:"a chest", spitter';
+  this.special = 'hides:008.gif, hidename:"a chest", spitter';
 }
 MimicNPCTile.prototype = new NPCObject();
 
@@ -1374,7 +1374,7 @@ function PythonNPCTile() {
   this.desc = 'python';
   this.onHit = 'venom';
   this.meleeChance = 100;
-  special = 'spitter';
+  this.special = 'spitter';
 }
 PythonNPCTile.prototype = new NPCObject();
 
@@ -1407,7 +1407,7 @@ function SeahorseNPCTile() {
   this.prefix = 'a';
   this.desc = 'seahorse';
   this.meleeChance = 75;
-  special = 'lbolt';
+  this.special = 'lbolt';
 }
 SeahorseNPCTile.prototype = new NPCObject();
 
@@ -1525,7 +1525,7 @@ function AirElementalNPCTile() {
   this.prefix = 'an';
   this.desc = 'air elemental';
   this.meleeChance = 70;
-  special = 'lbolt';
+  this.special = 'lbolt';
 }
 AirElementalNPCTile.prototype = new NPCObject();
 
@@ -1618,8 +1618,8 @@ function DrakeNPCTile() {
   this.desc = 'drake';
   this.meleeChance = 85;
   this.spellsknown = { attack: 1, };
-  resists = { fire:50 };
-  special = 'firebreath';
+  this.resists = { fire:50 };
+  this.special = 'firebreath';
 }
 DrakeNPCTile.prototype = new NPCObject();
 
@@ -1681,8 +1681,8 @@ function FireElementalNPCTile() {
   this.desc = 'fire elemental';
   this.meleeChance = 60;
   this.spellsknown = { attack: 1, };
-  resists = { fire:100, ice:-50 };
-  special = 'flamearmor';
+  this.resists = { fire:100, ice:-50 };
+  this.special = 'flamearmor';
 }
 FireElementalNPCTile.prototype = new NPCObject();
 
@@ -1715,7 +1715,7 @@ function LurkerNPCTile() {
   this.desc = 'lurker';
   this.onHit = 'entangle';
   this.meleeChance = 100;
-  special = 'invisible';
+  this.special = 'invisible';
 }
 LurkerNPCTile.prototype = new NPCObject();
 
@@ -1808,7 +1808,7 @@ function SeaSerpentNPCTile() {
   this.prefix = 'a';
   this.desc = 'sea serpent';
   this.meleeChance = 80;
-  special = 'firebreath';
+  this.special = 'firebreath';
 }
 SeaSerpentNPCTile.prototype = new NPCObject();
 
@@ -1842,7 +1842,7 @@ function TremendousSpiderNPCTile() {
   this.desc = 'giant spider';
   this.onHit = 'paralyze';
   this.meleeChance = 100;
-  special = 'spitter';
+  this.special = 'spitter';
 }
 TremendousSpiderNPCTile.prototype = new NPCObject();
 
@@ -1872,7 +1872,7 @@ function WaterElementalNPCTile() {
   this.desc = 'water elemental';
   this.onHit = 'slow';
   this.meleeChance = 75;
-  resists = { ice:50, fire:-25 };
+  this.resists = { ice:50, fire:-25 };
 }
 WaterElementalNPCTile.prototype = new NPCObject();
 
@@ -1934,7 +1934,7 @@ function CorpserNPCTile() {
   this.desc = 'corpser';
   this.onHit = 'entangle';
   this.meleeChance = 100;
-  special = 'invisible, reach';
+  this.special = 'invisible, reach';
 }
 CorpserNPCTile.prototype = new NPCObject();
 
@@ -1995,7 +1995,7 @@ function FloorNPCTile() {
   this.prefix = 'the';
   this.desc = 'floor';
   this.meleeChance = 100;
-  special = 'trueinvisible';
+  this.special = 'trueinvisible';
 }
 FloorNPCTile.prototype = new NPCObject();
 
@@ -2026,7 +2026,7 @@ function GazerNPCTile() {
   this.desc = 'gazer';
   this.meleeChance = 20;
   this.spellsknown = { attack: 1, };
-  special = 'sleep, ondeathInsects';
+  this.special = 'sleep, ondeathInsects';
 }
 GazerNPCTile.prototype = new NPCObject();
 
@@ -2058,7 +2058,7 @@ function HydraNPCTile() {
   this.onHit = 'venom';
   this.initmult = 1.2;
   this.meleeChance = 80;
-  special = 'firebreath, multiattack';
+  this.special = 'firebreath, multiattack';
 }
 HydraNPCTile.prototype = new NPCObject();
 
@@ -2088,7 +2088,7 @@ function MagmaSpawnNPCTile() {
   this.prefix = 'a';
   this.desc = 'magma spawn';
   this.meleeChance = 80;
-  special = 'magmaspit, magmaheal';
+  this.special = 'magmaspit, magmaheal';
 }
 MagmaSpawnNPCTile.prototype = new NPCObject();
 
@@ -2182,7 +2182,7 @@ function WillotheWispNPCTile() {
   this.onHit = 'mana clash';
   this.meleeChance = 35;
   this.spellsknown = { control: 1, attack: 1, };
-  special = 'teleport, energy bolt';
+  this.special = 'teleport, energy bolt';
 }
 WillotheWispNPCTile.prototype = new NPCObject();
 
@@ -2274,7 +2274,7 @@ function BlackDragonNPCTile() {
   this.desc = 'black dragon';
   this.meleeChance = 70;
   this.spellsknown = { control: 1, attack: 1, };
-  special = 'firebreath';
+  this.special = 'firebreath';
 }
 BlackDragonNPCTile.prototype = new NPCObject();
 
@@ -2307,8 +2307,8 @@ function DevourerNPCTile() {
   this.onDamaged = 'acidblood';
   this.meleeChance = 70;
   this.spellsknown = { control: 1, buff: 1, };
-  resists = { fire:50, ice:50 };
-  special = 'firebreath, icebreath, multiattack';
+  this.resists = { fire:50, ice:50 };
+  this.special = 'firebreath, icebreath, multiattack';
 }
 DevourerNPCTile.prototype = new NPCObject();
 
@@ -2339,8 +2339,8 @@ function DragonNPCTile() {
   this.desc = 'dragon';
   this.meleeChance = 70;
   this.spellsknown = { control: 1, attack: 1, };
-  resists = { fire:50 };
-  special = 'firebreath';
+  this.resists = { fire:50 };
+  this.special = 'firebreath';
 }
 DragonNPCTile.prototype = new NPCObject();
 
@@ -2437,7 +2437,7 @@ function KrakenNPCTile() {
   this.desc = 'kraken';
   this.onDamaged = 'shock';
   this.meleeChance = 85;
-  special = 'lbolt';
+  this.special = 'lbolt';
 }
 KrakenNPCTile.prototype = new NPCObject();
 
@@ -2502,7 +2502,7 @@ function SpecterNPCTile() {
   this.onDamaged = 'incorporeal';
   this.meleeChance = 66;
   this.spellsknown = { control: 1, attack: 1, };
-  special = 'phase';
+  this.special = 'phase';
 }
 SpecterNPCTile.prototype = new NPCObject();
 
@@ -2565,7 +2565,7 @@ function DelverNPCTile() {
   this.prefix = 'a';
   this.desc = 'delver';
   this.meleeChance = 90;
-  special = 'summonearthelemental';
+  this.special = 'summonearthelemental';
 }
 DelverNPCTile.prototype = new NPCObject();
 
@@ -2598,8 +2598,8 @@ function LicheNPCTile() {
   this.prefix = 'a';
   this.desc = 'liche';
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
-  resists = { ice:66 };
-  special = 'createundead';
+  this.resists = { ice:66 };
+  this.special = 'createundead';
 }
 LicheNPCTile.prototype = new NPCObject();
 
@@ -2631,7 +2631,7 @@ function EyesofSpiteNPCTile() {
   this.onHit = 'paralyze';
   this.meleeChance = 15;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
-  special = 'sleep, ondeathInsects';
+  this.special = 'sleep, ondeathInsects';
 }
 EyesofSpiteNPCTile.prototype = new NPCObject();
 
@@ -2694,8 +2694,8 @@ function ElderDragonNPCTile() {
   this.desc = 'elder dragon';
   this.meleeChance = 65;
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
-  resists = { fire:50 };
-  special = 'firebreath';
+  this.resists = { fire:50 };
+  this.special = 'firebreath';
 }
 ElderDragonNPCTile.prototype = new NPCObject();
 
@@ -2726,8 +2726,8 @@ function BalronNPCTile() {
   this.desc = 'balron';
   this.meleeChance = 75;
   this.spellsknown = { control: 1, attack: 1, };
-  resists = { fire:100 };
-  special = 'phase';
+  this.resists = { fire:100 };
+  this.special = 'phase';
 }
 BalronNPCTile.prototype = new NPCObject();
 
@@ -2788,7 +2788,7 @@ function AbyssalKrakenNPCTile() {
   this.desc = 'abyssal kraken';
   this.onDamaged = 'shock';
   this.meleeChance = 90;
-  special = 'lbolt';
+  this.special = 'lbolt';
 }
 AbyssalKrakenNPCTile.prototype = new NPCObject();
 
@@ -2862,10 +2862,10 @@ function ToshinSentinelNPCTile() {
   this.int = 30;
   this.alignment = 'Neutral';
   this.attitude = 'neutral';
-  this.peaceAI = 'sentinel';
-  this.threatenedAI = 'sentinel';
-  this.PCThreatAI = 'sentinel';
-  this.graphic = 'sentinel.gif';
+  this.peaceAI = 'Sentinel';
+  this.threatenedAI = 'Sentinel';
+  this.PCThreatAI = 'Sentinel';
+  this.graphic = 'Sentinel.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'ExoticArmor';
@@ -2874,7 +2874,7 @@ function ToshinSentinelNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = 'floating sentinel';
-  special = 'quick';
+  this.special = 'quick';
 }
 ToshinSentinelNPCTile.prototype = new NPCObject();
 
