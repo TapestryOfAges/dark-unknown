@@ -303,8 +303,11 @@ function DoAction(code) {
           dir = "Attack " + dir + ".";
           resp = PerformAttackMap(PC);  			  
         }
-        if (resp["fin"] === 1) {
-// 					DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+        if (resp["fin"] === 2) {
+          maintext.addText(resp["txt"]);
+          maintext.setInputLine(resp["input"]);
+          maintext.drawTextFrame();
+          
         }
         if (resp["fin"] < 2) {
           maintext.addText(resp["txt"]);
