@@ -34,7 +34,7 @@ mappages["toshin1"].terrain[30] = '^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn 
 mappages["toshin1"].terrain[31] = '^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
 
 mappages["toshin1"].features = [];
-mappages["toshin1"].features[0] = {name : 'MoatLeverOff', x : 6, y : 12};
+mappages["toshin1"].features[0] = {name : 'ToshinMoatLeverOff', x : 6, y : 12};
 mappages["toshin1"].features[1] = {name : 'DoorWindow', x : 25, y : 13, desc : "magically locked door", locked : 2};
 mappages["toshin1"].features[2] = {name : 'DoorWindow', x : 8, y : 13};
 mappages["toshin1"].features[3] = {name : 'DoorWindow', x : 8, y : 15};
@@ -59,7 +59,7 @@ mappages["toshin1"].features[21] = {name : 'BookshelfLeft', x : 14, y : 9};
 mappages["toshin1"].features[22] = {name : 'BookshelfLeft', x : 11, y : 10};
 mappages["toshin1"].features[23] = {name : 'BookshelfRight', x : 12, y : 10};
 mappages["toshin1"].features[24] = {name : 'LeftChair', x : 11, y : 8};
-mappages["toshin1"].features[25] = {name : 'MoatLeverOff', x : 24, y : 14};
+mappages["toshin1"].features[25] = {name : 'ToshinMoatLeverOff', x : 24, y : 14};
 mappages["toshin1"].features[26] = {name : 'Fountain', x : 18, y : 13};
 
 
@@ -217,7 +217,7 @@ mappages["toshin3"].features[9] = {name : 'EnergyField', x : 14, y : 14};
 mappages["toshin3"].features[10] = {name : 'EnergyField', x : 14, y : 13};
 mappages["toshin3"].features[11] = {name : 'EnergyField', x : 14, y : 12};
 mappages["toshin3"].features[12] = {name : 'EnergyField', x : 18, y : 13};
-mappages["toshin3"].features[13] = {name : 'FireField', x : 16, y : 12};
+mappages["toshin3"].features[13] = {name : 'Chest', x : 8, y : 6, lootgroup : '', lootedid : ''};
 mappages["toshin3"].features[14] = {name : 'TeleporterPlatform', x : 15, y : 13};
 mappages["toshin3"].features[15] = {name : 'TeleporterPlatform', x : 24, y : 7};
 mappages["toshin3"].features[16] = {name : 'TeleporterPlatform', x : 8, y : 20};
@@ -302,10 +302,13 @@ mappages["toshin3"].features[94] = {name : 'EnergyField', x : 14, y : 8};
 mappages["toshin3"].features[95] = {name : 'FireField', x : 11, y : 11};
 mappages["toshin3"].features[96] = {name : 'Chest', x : 8, y : 17, lootgroup : '', lootedid : ''};
 mappages["toshin3"].features[97] = {name : 'TeleporterPlatform', x : 18, y : 21};
-mappages["toshin3"].features[98] = {name : 'Chest', x : 8, y : 6, lootgroup : '', lootedid : ''};
 
 
 mappages["toshin3"].npcs = [];
+mappages["toshin3"].npcs[0] = {name : 'ToshinSentinelNPC', x : 14, y : 17};
+mappages["toshin3"].npcs[1] = {name : 'ToshinSentinelNPC', x : 16, y : 9};
+mappages["toshin3"].npcs[2] = {name : 'ToshinSentinelNPC', x : 23, y : 9};
+mappages["toshin3"].npcs[3] = {name : 'ToshinSentinelNPC', x : 9, y : 12};
 
 mappages["toshin3"].desc = "Toshin's Tower";
 mappages["toshin3"].music = 'Magic';
@@ -368,7 +371,22 @@ mappages["toshin3"].onload = function(mapref) {
       tp.setDestination(destobj);
     }
     
-    
+    tile = mapref.getTile(16,9);
+    var sentinel = tile.getTopNPC();
+    sentinel.patrol = 0;
+    sentinel.step = 0;
+    tile = mapref.getTile(23,9);
+    sentinel = tile.getTopNPC();
+    sentinel.patrol = 1;
+    sentinel.step = 0;
+    tile = mapref.getTile(9,12);
+    sentinel = tile.getTopNPC();
+    sentinel.patrol = 2;
+    sentinel.step = 0;
+    tile = mapref.getTile(15,17);
+    sentinel = tile.getTopNPC();
+    sentinel.patrol = 3;
+    sentinel.step = 0;
   }
 }
 
