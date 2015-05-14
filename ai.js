@@ -21,6 +21,7 @@ ais.Sentinel = function(who) {
   // then, see if path is blocked, if so, if there is a jump, jump to next step without moving
   // if neither of those things happened, take the next step
   
+  var mymap = who.getHomeMap();
   var diffx=0;
   var diffy=0;
   if (destinations[who.patrol][who.step] === "n") {
@@ -34,7 +35,12 @@ ais.Sentinel = function(who) {
   } else {
     alert("Sentinels have an invalid step, " + who.patrol + " / " + who.step);
   }
-  
+
+  if ((PC.getHomeMap() === mymap) && (PC.getx() === who.getx()+diffx) && (PC.gety() === who.gety()+diffy)) {
+    if (debug) { dbs.writeln("<span style='color:orange;'>SENTINEL " + who.getserial() + ": PC in the way. Removing.</span><br />"); }
+    mymap.moveThing(16,13,PC);
+    maintext.addText("The sentinel teleports you away.");
+  }
 }
 
 ais.Bandit = function(who,radius) {
