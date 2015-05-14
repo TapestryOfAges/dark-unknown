@@ -36,10 +36,32 @@ ais.Sentinel = function(who) {
     alert("Sentinels have an invalid step, " + who.patrol + " / " + who.step);
   }
 
+  var retval;
+  var desttile = mymap.getTile(who.getx()+diffx,who.gety()+diffy);
+  var moveval = desttile.canMoveHere(who.getMovetype());
   if ((PC.getHomeMap() === mymap) && (PC.getx() === who.getx()+diffx) && (PC.gety() === who.gety()+diffy)) {
     if (debug) { dbs.writeln("<span style='color:orange;'>SENTINEL " + who.getserial() + ": PC in the way. Removing.</span><br />"); }
     mymap.moveThing(16,13,PC);
     maintext.addText("The sentinel teleports you away.");
+    retval["fin"] = 1;
+  } else if (moreval["canmove"] !== 1) {
+    // path is blocked
+    var blocker = desttile.getTopNPC();
+    if (blocker) {
+      if (blocker.getName() !== who.getName()) {
+        if (blocker.summoned) {
+          maintext.addText("The sentinel unsummons your ally!");
+          blocker.dealDamage(1000,who);
+          retval["fin"] = 1;
+        }
+      }
+    } else {
+      if (debug) { dbs.writeln("<span style='color:orange;'>SENTINEL " + who.getserial() + ": Path blocked- skip from " + who.step + " to "); }
+      who.step = jumps[who.patrol][who.step];
+      if (debug) { dbs.writeln(who.step + ".</span><br />"); }
+    }
+  } else {
+    
   }
 }
 
