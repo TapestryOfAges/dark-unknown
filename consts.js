@@ -76,6 +76,7 @@ var MOVE_SWIM = 2;
 var MOVE_ETHEREAL = 4;
 var MOVE_LEVITATE = 8;
 var MOVE_WALK = 16;
+var MOVE_WALK_DOOR = 32;
 
 var SCALE_TIME = .005;
 

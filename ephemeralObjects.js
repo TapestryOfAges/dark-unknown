@@ -88,7 +88,7 @@ EphemeralObject.prototype.getActive = function() {
 
 EphemeralObject.prototype.onTurn = function() {
   var resp = 0;
-  if (this.getExpiresTime() > -1) && (DUTime.getGameClock() > this.getExpiresTime())) {
+  if ((this.getExpiresTime() > -1) && (DUTime.getGameClock() > this.getExpiresTime())) {
     resp = this.endEffect();
   }
   return resp;

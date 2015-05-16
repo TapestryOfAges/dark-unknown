@@ -506,11 +506,21 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 //			return retval;
 //		}
 //	}
+  var doors = 0;
+  if (movetype === MOVE_WALK_DOOR) { 
+    movetype = MOVE_WALK; 
+    doors = 1;
+  }
+  
 	var featurepassability = MOVE_FLY + MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	var features = this.getFeatures();
 	if (features[0]) {
 	  for (var i=0; i< features.length; i++) {
-		  featurepassability = featurepassability & features[i].getPassable();
+	    if (doors && (features[i].opengraphic)) {
+	      // skip doors for this check
+	    } else {
+		    featurepassability = featurepassability & features[i].getPassable();
+		  }
 		}  
 		if (!nonpcs) {
 		  var npcs = this.getNPCs();
@@ -894,10 +904,11 @@ GameMap.prototype.createPathGrid = function() {
   this.pathGrid[MOVE_LEVITATE] = new PF.Grid(this.getWidth(), this.getHeight());
   this.pathGrid[MOVE_FLY] = new PF.Grid(this.getWidth(), this.getHeight());
   this.pathGrid[MOVE_ETHEREAL] = new PF.Grid(this.getWidth(), this.getHeight());
+  this.pathGrid[MOVE_WALK_DOOR] = new PF.Grid(this.getWidth(), this.getHeight());
   for (var i=0; i<this.getWidth(); i++) {
     for (var j=0; j<this.getHeight(); j++) {
       var thisspot = this.getTile(i,j);
-      for (var k=1; k<=16; k=k*2) {
+      for (var k=1; k<=32; k=k*2) {
         var response = thisspot.canMoveHere(k, 1);
         if (!response["canmove"]) { this.setWalkableAt(i,j,false,k); }
       }
@@ -1097,7 +1108,7 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
 	  //update pathfinding
 	  if ((type !== "npcs") && (type !== "pcs")) {
       var tile = this.getTile(x,y);
-      for (var itr=1; itr<=16; itr=itr*2) {
+      for (var itr=1; itr<=32; itr=itr*2) {
         var response = tile.canMoveHere(itr, 1);
 	      if (response["canmove"]) { this.setWalkableAt(x,y,true,itr); }
   	    else { this.setWalkableAt(x,y,false,itr); }
@@ -1127,7 +1138,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
   if (type !== "npcs") {
     var oldtile = this.getTile(oldx,oldy);
     var tile = this.getTile(x,y);
-  	for (var i=1; i<=16; i=i*2) {
+  	for (var i=1; i<=32; i=i*2) {
 	    var response = oldtile.canMoveHere(i, 1);
       if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
       else { this.setWalkableAt(oldx,oldy,false,i); }
@@ -1157,7 +1168,7 @@ GameMap.prototype.deleteThing = function(thing) {
 	//update pathfinding
 	if ((type !== "npcs") && (type !== "pcs")) {
     var tile = this.getTile(oldx,oldy);
-	  for (var i=1; i<=16; i=i*2) {
+	  for (var i=1; i<=32; i=i*2) {
 	    var response = tile.canMoveHere(i, 1);
   	  if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
 	    else { this.setWalkableAt(oldx,oldy,false,i); }
