@@ -6343,6 +6343,7 @@ function NPCObject() {
 	this.conversation = "";
 	this.merch = "";
 	this.spawnedBy;
+	this.special = "";
 	
 	this.addType("npc");
 //	AddNPCProperties.call(this);
@@ -7045,6 +7046,9 @@ NPCObject.prototype.activate = function(timeoverride) {
       dbs.writeln("<span style='color:green;font-weight:bold'>Curr time: " + DUTime.getGameClock() + ", NPC will go in " + timing + ".</span><br />");
     }
   
+    this.startx = this.getx();
+    this.starty = this.gety();
+    
     var NPCEvent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCEvent,timing);  
   }
