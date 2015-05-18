@@ -660,6 +660,16 @@ function initialSelect() {
 
 }
 
+function getManual() {
+  var thingname = prompt("Select what?");
+  if (thingname) {
+    var thing = localFactory.createTile(thingname);
+    if (thing) {
+      changeselection(thingname);
+    }
+  }
+}
+
 function writeTileOption(tilename) {
 
 var tempTile = localFactory.createTile(tilename);
