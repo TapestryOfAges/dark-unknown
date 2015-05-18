@@ -1,4 +1,5 @@
 
+/* 
 var musiclist = {};
 musiclist["Theme"] = "music/Hero Theme.mp3";
 musiclist["Dark Unknown"] = "music/Dark Unknown.mp3";
@@ -27,8 +28,10 @@ sfxlist["sfx_spell_light"] = "sfx/sfx2.wav";
 sfxlist["sfx_unlock"] = "sfx/sfx7.wav";
 sfxlist["sfx_potion"] = "sfx/sfx8.wav";
 sfxlist["sfx_melee_miss"] = "sfx/sfx9.wav";
-// melee hit
-// arrow/bolt miss
+// melee hit (10)
+// arrow/bolt miss (11)
+// arrow/bolt hit (12)
+*/
 
 var mapslist = {};
 mapslist["darkunknown"] = "the Mainland";
