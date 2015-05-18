@@ -4307,6 +4307,115 @@ PitDespairLeverTile.prototype.use = function(user) {
   return retval;
 }
 
+function RoyalPuzzleLaserEWTile() {
+  this.name = "RoyalPuzzleLaserEW";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "shimmering beam";
+  
+}
+RoyalPuzzleLaserEWTile.prototype = new FeatureObject();
+
+RoyalPuzzleLaserEWTile.prototype.walkon = function(who) {
+  var resp = InALaser(who);
+  return resp;
+}
+
+function RoyalPuzzleLaserNSTile() {
+  this.name = "RoyalPuzzleLaserNS";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "shimmering beam";
+  
+}
+RoyalPuzzleLaserNSTile.prototype = new FeatureObject();
+
+RoyalPuzzleLaserNSTile.prototype.walkon = function(who) {
+  var resp = InALaser(who);
+  return resp;
+}
+
+function RoyalPuzzleLaserCrossTile() {
+  this.name = "RoyalPuzzleLaserCross";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "shimmering beam";
+  
+}
+RoyalPuzzleLaserCrossTile.prototype = new FeatureObject();
+
+RoyalPuzzleLaserCrossTile.prototype.walkon = function(who) {
+  var resp = InALaser(who);
+  return resp;
+}
+
+function InALaser(who) {
+  var themap = who.getHomeMap();
+  themap.moveThing(46,28,who);
+  ResetRoyalPuzzle(themap);
+  return "ZAP! The room resets.";
+}
+
+ResetRoyalPuzzle(where) {
+  var beams = [];
+  for (var i=46; i<=51; i++) {
+    beams.push({name:"RoyalPuzzleLaserEW", x:i, y:34});
+  }
+  beams.push({name:"RoyalPuzzleLaserEW", x:53, y:34});
+  beams.push({name:"RoyalPuzzleLaserEW", x:54, y:34});
+  beams.push({name:"RoyalPuzzleLaserCross", x:52, y:34});
+  
+  for (var i=28; i<=33; i++) {
+    beams.push({name:"RoyalPuzzleLaserNS", x:52, y:i});
+  }
+  beams.push({name:"RoyalPuzzleLaserNS", x:52, y:35});
+  
+  var walls = [{x:48,y:29}, {x:49, y:35}, {x:48, y:31}, {x:46, y:29}, {x:47, y:28}, {x: 49, y:28}];
+  
+  //WORKING HERE  
+}
+
+function SandstoneWallTile() {
+  this.name = "SandstoneWall";
+  this.graphic = "features.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.prefix = "a"
+  this.desc = "sandstone wall";
+}
+SandstoneWallTile.prototype = new FeatureObject();
+
+SandstoneWallTile.prototype.use = function(who) {
+  var themap = who.getHomeMap();
+  var diffx = this.getx() - who.getx();
+  var diffy = this.gety() - who.gety();
+  var retval = {};
+  if ((Math.abs(diffx) > 1) || (Math.abs(diffy) > 1)) {
+    retval["txt"] = "The wall shakes in place but does not move.";
+    return retval;
+  }
+  var desttile = themap.getTile(this.getx()+diffx, this.gety()+diffy);
+  var ontile = desttile.getTopFeature();
+  if (ontile) {
+    retval["txt"] = "Something is in the way.";
+    return retval;
+  }
+  themap.moveThing(this.getx()+diffx, this.gety()+diffy, this);
+  retval["txt"] = "The wall segment slides across the floor.";
+  
+  return retval;
+}
+
 function WallOfWavesTile() {
   this.name = "WallOfWaves";
   this.graphic = "runes.gif";
@@ -4884,12 +4993,12 @@ function PerformToshinAltar(code) {
       }
     });
     if (altar.val[65]) {
-      themap.placeThing(22,13,energyfield);
-      themap.placeThing(20,17,firefield);
+      themap.placeThing(22,13,firefield);
+      themap.placeThing(20,17,energyfield);
       altar.val[65] = 0;
     } else {
-      themap.placeThing(22,13,firefield);
-      themap.placeThing(20,17,energyfield);      
+      themap.placeThing(22,13,energyfield);
+      themap.placeThing(20,17,firefield);      
       altar.val[65] = 1;
     }
   } else if (code === 66) {
@@ -4948,7 +5057,7 @@ function PerformToshinAltar(code) {
       themap.placeThing(13,18,firefield);
       themap.placeThing(12,17,energyfield);      
       var energyfield2 = localFactory.createTile("EnergyField");
-      themap.placeThing(12,19,energyfield);
+      themap.placeThing(12,19,energyfield2);
       altar.val[67] = 1;
     }
   } else if (code === 68) {
