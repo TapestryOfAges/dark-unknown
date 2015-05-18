@@ -8,14 +8,15 @@ ais.Sentinel = function(who) {
   var destinations = [];
   var jumps = [];
   destinations[0] = ["w","w","n","n","w","w","w","w","w","e","e","e","e","e","e","e","e","e","s","s","s","s","n","n","n","n","w","w","w","w","s","s","e","e"];
-  jumps[0] = { 2:31, 6:12, 10:8, 18:25, 23:20, 29:4};
+  jumps[0] = { 2:32, 6:12, 10:8, 18:26, 23:20, 30:4};
   destinations[1] = ["w","n","w","w","s","s","s","w","w","n","n","n","n","s","s","s","s","e","e","n","n","n","e","e","s","e","s","s","s","s","w","w","w","w","e","e","e","e","s","s","w","w","w","w","s","s","e","e","e","e","w","w","w","w","n","n","e","e","e","e","n","n","w","w","w","w","e","e","e","e","n","n","n","n"];
   jumps[1] = { 11:15,13:13,30:38,36:32,46:54,52:48,62:70,68:64};
   destinations[2] = ["n","n","n","n","n","e","e","e","w","w","w","s","s","s","s","s","s","s","s","e","e","e","e","n","n","w","w","n","n","n","n","s","s","s","s","e","e","s","s","w","w","w","w","n","n","n"];
-  jumps[2] = { 1:14,6:10,8:8,13:3,21:41,28:34,32:30,39:23};
+  jumps[2] = { 1:15,6:10,8:8,13:3,21:41,28:34,32:30,39:23};
   destinations[3] = ["w","w","w","w","w","s","n","e","e","e","e","e","n","n","e","e","s","s","e","e","e","e","e","e","w","w","w","w","w","w","n","n","w","w","s","s"];
   jumps[3] = { 2:10, 8:4, 20:28, 26:22};
   
+  if (debug) { dbs.writeln("<span style='color:orange;'>SENTINEL " + who.patrol + " AI beginning. Standing at " + who.getx() + "," + who.gety() + ". Path takes it " + destinations[who.patrol][who.step] + ". </span><br />"); }
   // sequence: first, see if player is in front of, if so spend action teleporting player back to center
   //                  (also do this to the player's summoned NPCs if they have one)
   // then, see if path is blocked, if so, if there is a jump, jump to next step without moving
@@ -36,33 +37,76 @@ ais.Sentinel = function(who) {
     alert("Sentinels have an invalid step, " + who.patrol + " / " + who.step);
   }
 
-  var retval;
+  var retval = {};
   var desttile = mymap.getTile(who.getx()+diffx,who.gety()+diffy);
   var moveval = desttile.canMoveHere(who.getMovetype());
   if ((PC.getHomeMap() === mymap) && (PC.getx() === who.getx()+diffx) && (PC.gety() === who.gety()+diffy)) {
-    if (debug) { dbs.writeln("<span style='color:orange;'>SENTINEL " + who.getserial() + ": PC in the way. Removing.</span><br />"); }
+    if (debug) { dbs.writeln("<span style='color:orange;'>SENTINEL " + who.patrol + ": PC in the way. Removing.</span><br />"); }
     mymap.moveThing(16,13,PC);
     maintext.addText("The sentinel teleports you away.");
     retval["fin"] = 1;
-  } else if (moreval["canmove"] !== 1) {
+    who.waits = 0;
+  } else if (moveval["canmove"] !== 1) {
     // path is blocked
     var blocker = desttile.getTopNPC();
     if (blocker) {
+      if (debug) { dbs.writeln("<span style='color:orange;'>Path is blocked by " + blocker.getName() + ".</span><br />"); }
       if (blocker.getName() !== who.getName()) {
         if (blocker.summoned) {
           maintext.addText("The sentinel unsummons your ally!");
           blocker.dealDamage(1000,who);
           retval["fin"] = 1;
+          who.waits = 0;
+        } else {
+          // blocker is neither another sentinel nor a summoned creature nor the PC. 
+          // This shouldn't be possible, but if it happens, it'll wait
+          who.waits++;
+          retval["fin"] = 1;
+          
+          // has it been standing here for too long?
+          if (who.waits > 3) {
+            var starttile = mymap.getTile(who.startx,who.starty);
+            var whosehere = starttile.getTopNPC();
+            if (!whosethere) {
+              mymap.moveThing(who.startx, who.starty, who);
+            } // otherwise, can't go back home because someone is there
+            retval["fin"] = 1;
+          }
         }
+      } else {
+        // bumped into another sentinel
+        who.waits++;
+        retval["fin"] = 1;
+        // has it been standing here for too long?
+        if (who.waits > 3) {
+          if (debug) { dbs.writeln("<span style='color:orange;'>Been standing in place too long, going home.</span><br />"); }
+          var starttile = mymap.getTile(who.startx,who.starty);
+          var whosthere = starttile.getTopNPC();
+          if (!whosthere) {
+            mymap.moveThing(who.startx, who.starty, who);
+          } // otherwise, can't go back home because someone is there
+        }    
       }
     } else {
-      if (debug) { dbs.writeln("<span style='color:orange;'>SENTINEL " + who.getserial() + ": Path blocked- skip from " + who.step + " to "); }
+      if (debug) { dbs.writeln("<span style='color:orange;'>SENTINEL " + who.patrol + ": Path blocked- skip from " + who.step + " to "); }
       who.step = jumps[who.patrol][who.step];
       if (debug) { dbs.writeln(who.step + ".</span><br />"); }
+      who.waits = 0;
+      retval["fin"] = 1;
     }
   } else {
-    
+    who.moveMe(diffx,diffy);
+    who.step++;
+    if (destinations[who.patrol].length <= who.step) { 
+      who.step = 0;
+      // back at the start
+      if ((who.getx() !== who.startx) || (who.gety() !== who.starty)) {
+        alert("Sentinel failed to return home.");
+      }
+    }
+    retval["fin"] = 1;
   }
+  return retval;
 }
 
 ais.Bandit = function(who,radius) {
