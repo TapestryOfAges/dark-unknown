@@ -2865,7 +2865,7 @@ function ToshinSentinelNPCTile() {
   this.peaceAI = 'Sentinel';
   this.threatenedAI = 'Sentinel';
   this.PCThreatAI = 'Sentinel';
-  this.graphic = 'Sentinel.gif';
+  this.graphic = 'sentinel.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'ExoticArmor';
@@ -2874,7 +2874,6 @@ function ToshinSentinelNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = 'floating sentinel';
-  this.special = 'quick';
 }
 ToshinSentinelNPCTile.prototype = new NPCObject();
 
