@@ -1,5 +1,6 @@
 
 var soundpath = "sfx/";
+/*
 var DUSound = [ {src: "sfx.ogg", data: {
   audioSprite: [
     {id: "sfx_walk_right", startTime: 0, duration: 100},
@@ -20,6 +21,26 @@ var DUSound = [ {src: "sfx.ogg", data: {
   ]}
 }];
 
+// Doesn't work properly from file:///
+*/
+
+var DUSound = {};
+DUSound["sfx_walk_right"] = "sfx/sfx1.ogg";
+DUSound["sfx_walk_left"] = "sfx/sfx1.ogg";
+DUSound["sfx_walk_water_right"] = "sfx/sfx1_1.ogg";
+DUSound["sfx_walk_water_left"] = "sfx/sfx1_1.ogg";
+DUSound["sfx_walk_blocked"] = "sfx/sfx6.ogg";
+DUSound["sfx_open_door"] = "sfx/sfx3.ogg";
+DUSound["sfx_close_door"] = "sfx/sfx4.ogg";
+DUSound["sfx_locked_door"] = "sfx/sfx5.ogg";
+DUSound["sfx_spell_light"] = "sfx/sfx2.ogg";
+DUSound["sfx_unlock"] = "sfx/sfx7.ogg";
+DUSound["sfx_potion"] = "sfx/sfx8.ogg";
+DUSound["sfx_melee_miss"] = "sfx/sfx9.ogg";
+DUSound["sfx_melee_hit"] = "sfx/sfx10.ogg";
+DUSound["sfx_missile_miss"] = "sfx/sfx11.ogg";
+DUSound["sfx_missile_hit"] = "sfx/sfx12.ogg";
+
 var musicpath = "music/";
 var DUMusic = {};
 DUMusic["Theme"] = "Hero Theme";
@@ -38,12 +59,16 @@ DUMusic["Olympus"] = "Olympus";
 
 function audio_init() {
   createjs.Sound.initializeDefaultPlugins();
-  createjs.Sound.alternateExtensions = ["mp3"];
-  createjs.Sound.registerSounds(DUSound, soundpath);
+//  createjs.Sound.alternateExtensions = ["mp3"];
+//  createjs.Sound.registerSounds(DUSound, soundpath);
   
   $.each(DUMusic, function(idx, val) {
     var fullpath = musicpath + "" + val + ".ogg";
     createjs.Sound.registerSound(fullpath, idx);
+  });
+
+  $.each(DUSound, function(idx, val) {
+    createjs.Sound.registerSound(val, idx);
   });
 
 }
