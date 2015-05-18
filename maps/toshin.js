@@ -305,7 +305,7 @@ mappages["toshin3"].features[97] = {name : 'TeleporterPlatform', x : 18, y : 21}
 
 
 mappages["toshin3"].npcs = [];
-mappages["toshin3"].npcs[0] = {name : 'ToshinSentinelNPC', x : 14, y : 17};
+mappages["toshin3"].npcs[0] = {name : 'ToshinSentinelNPC', x : 15, y : 17};
 mappages["toshin3"].npcs[1] = {name : 'ToshinSentinelNPC', x : 16, y : 9};
 mappages["toshin3"].npcs[2] = {name : 'ToshinSentinelNPC', x : 23, y : 9};
 mappages["toshin3"].npcs[3] = {name : 'ToshinSentinelNPC', x : 9, y : 12};
