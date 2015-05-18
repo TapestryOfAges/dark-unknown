@@ -1066,6 +1066,26 @@ tileFactory.prototype.makePitDespairLeverTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRoyalPuzzleLaserEWTile = function() {
+  var newTile = new RoyalPuzzleLaserEWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoyalPuzzleLaserNSTile = function() {
+  var newTile = new RoyalPuzzleLaserNSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoyalPuzzleLaserCrossTile = function() {
+  var newTile = new RoyalPuzzleLaserCrossTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSandstoneWallTile = function() {
+  var newTile = new SandstoneWallTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWallOfWavesTile = function() {
   var newTile = new WallOfWavesTile();
   return newTile;
