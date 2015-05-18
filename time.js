@@ -183,7 +183,7 @@ Timeline.prototype.cleanTimeline = function() {
   while (checktick.getNextTick()) {
     var entity = checktick.getEvent().getEntity();
     var mapname = entity.getHomeMap().getName();
-    if (!maps[mapname]) {  // lives on a map that has been removed
+    if (!maps.getMap(mapname)) {  // lives on a map that has been removed
       if (prevtick === checktick) { // first thing in the timeline
         this.tickstream = checktick.getNextTick();
         checktick = this.tickstream;
@@ -202,7 +202,7 @@ Timeline.prototype.cleanTimeline = function() {
   }
   var entity = checktick.getEvent().getEntity();
   var mapname = entity.getHomeMap().getName();
-  if (!maps[mapname]) {
+  if (!maps.getMap(mapname)) {
     // remove the last tick on the timeline
     dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />");
     prevtick.setNextTick("");
