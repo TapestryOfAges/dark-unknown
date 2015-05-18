@@ -1575,7 +1575,16 @@ function PerformYell() {
 		  RunTest();
 		} else if (inputText.txt === "SOUNDCHK") {
 		  createjs.Sound.play("Mainland", {loop: -1});
-		  
+    } else if (inputText.txt === "TESTTOWER") {
+      var newmap = new GameMap();
+      if (maps.getMap("toshin3")) {
+				newmap = maps.getMap("toshin3");
+			} else {
+				newmap.loadMap("toshin3");
+				maps.addMapByRef(newmap);
+			}
+      MoveBetweenMaps(PC,PC.getHomeMap(),newmap,16,13);		  
+      DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
 // REAL YELLS START HERE
 		} else if (inputText.txt === "KARIS") {
 		  if (PC.getHomeMap().getName() === "asharden1") {
