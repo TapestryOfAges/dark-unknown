@@ -384,3 +384,101 @@ mappages["pitdespair2"].returny = '76';
 mappages["pitdespair2"].returninfused = '0';
 mappages["pitdespair2"].linkedMaps = [""];
 
+
+function CheckLasers(themap) {
+  // Always with the lasers!
+/*
+  var beams = [];
+  for (var i=46; i<=51; i++) {
+    beams.push({name:"RoyalPuzzleLaserEW", x:i, y:34});
+  }
+  beams.push({name:"RoyalPuzzleLaserEW", x:53, y:34});
+  beams.push({name:"RoyalPuzzleLaserEW", x:54, y:34});
+  beams.push({name:"RoyalPuzzleLaserCross", x:52, y:34});
+  
+  for (var i=28; i<=33; i++) {
+    beams.push({name:"RoyalPuzzleLaserNS", x:52, y:i});
+  }
+  beams.push({name:"RoyalPuzzleLaserNS", x:52, y:35});
+*/
+
+  // EW laser
+  var ewline = {};
+  var fromleft = 1;
+  for (var i=46; i<=54; i++) {
+    ewline[i]=0;
+    var tile = themap.getTile(i,34);
+    var fea = tile.getFeatures();
+    $.each(fea, function(idx,val) {
+      if (val.getName().indexOf("Laser") > -1) {
+        themap.deleteThing(val);
+      }
+      if (val.getName() === "SandstoneWall") {
+        fromleft = 0;
+      }
+    });
+    if (fromleft) { ewlin[i]=1; }
+  }
+  var fromright = 1;
+  for (var i=54; i>=46; i--) {
+    var tile = themap.getTile(i,34);
+    var fea = tile.getFeatures();
+    $.each(fea, function(idx,val) {
+      if (val.getName().indexOf("Laser") > -1) {
+        themap.deleteThing(val);
+      }
+      if (fea.getName() === "SandstoneWall") {
+        fromright = 0;
+      }
+    });
+    if (fromright) { ewlin[i]=1; }    
+  }
+  
+  // NS laser
+  var nsline = {};
+  var fromtop = 1;
+  for (var i=28; i<=35; i++) {
+    nslin[i]=0;
+    var tile = themap.getTile(52,i);
+    var fea = tile.getFeatures();
+    $.each(fea, function(idx,val) {
+      if (val.getName().indexOf("Laser") > -1) {
+        themap.deleteThing(val);
+      }
+      if (fea.getName() === "SandstoneWall") {
+        fromtop = 0;
+      }
+    });
+    if (fromtop) { nslin[i]=1; }
+  }
+  var frombottom = 1;
+  for (var i=35; i>=28; i--) {
+    var tile = themap.getTile(52,i);
+    var fea = tile.getFeatures();
+    $.each(fea, function(idx,val) {
+      if (fea.getName() === "SandstoneWall") {
+        frombottom = 0;
+      }
+    });
+    if (frombottom) { nslin[i]=1; }    
+  }
+  
+  for (var i=46; i<=54; i++) {
+    if (ewline[i]) {
+      var newlaser;
+      if ((i === 52) && (nsline[34])) {
+        newlaser = localFactory.createTile("RoyalPuzzleLaserCross");
+      } else {
+        newlaser = localFactory.createTile("RoyalPuzzleLaserEW");
+      }
+      themap.placeThing(i,34,newlaser);
+    }
+  }
+  
+  for (var i=28; i<=35; i++) {
+    if (nsline[i]) {
+      var newlaser = localFactory.createTile("RoyalPuzzleLaserNS");
+      themap.placeThing(52,i,newlaser);
+    }
+  }
+}
