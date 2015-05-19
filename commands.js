@@ -1585,6 +1585,16 @@ function PerformYell() {
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,16,13);		  
       DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+    } else if (inputText.txt === "TESTROYAL") {
+      var newmap = new GameMap();
+      if (maps.getMap("pitdespair2")) {
+				newmap = maps.getMap("pitdespair2");
+			} else {
+				newmap.loadMap("pitdespair2");
+				maps.addMapByRef(newmap);
+			}
+      MoveBetweenMaps(PC,PC.getHomeMap(),newmap,46,28);		  
+      DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
 // REAL YELLS START HERE
 		} else if (inputText.txt === "KARIS") {
 		  if (PC.getHomeMap().getName() === "asharden1") {
