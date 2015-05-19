@@ -4313,6 +4313,7 @@ function RoyalPuzzleLaserEWTile() {
   this.spritexoffset = "-64";
   this.spriteyoffset = "-64";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "shimmering beam";
   
@@ -4330,6 +4331,7 @@ function RoyalPuzzleLaserNSTile() {
   this.spritexoffset = "-32";
   this.spriteyoffset = "-64";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "shimmering beam";
   
@@ -4347,6 +4349,7 @@ function RoyalPuzzleLaserCrossTile() {
   this.spritexoffset = "-96";
   this.spriteyoffset = "-64";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "shimmering beam";
   
@@ -4365,23 +4368,18 @@ function InALaser(who) {
   return "ZAP! The room resets.";
 }
 
-ResetRoyalPuzzle(where) {
-  var beams = [];
-  for (var i=46; i<=51; i++) {
-    beams.push({name:"RoyalPuzzleLaserEW", x:i, y:34});
-  }
-  beams.push({name:"RoyalPuzzleLaserEW", x:53, y:34});
-  beams.push({name:"RoyalPuzzleLaserEW", x:54, y:34});
-  beams.push({name:"RoyalPuzzleLaserCross", x:52, y:34});
-  
-  for (var i=28; i<=33; i++) {
-    beams.push({name:"RoyalPuzzleLaserNS", x:52, y:i});
-  }
-  beams.push({name:"RoyalPuzzleLaserNS", x:52, y:35});
-  
+function ResetRoyalPuzzle(where) {  
   var walls = [{x:48,y:29}, {x:49, y:35}, {x:48, y:31}, {x:46, y:29}, {x:47, y:28}, {x: 49, y:28}];
   
-  //WORKING HERE  
+  var allfeatures = where.features.getAll();
+  $.each(allfeatures, function(idx,val) {
+    if (val.getName() === "SandstoneWall") {
+      var gowhere = walls.shift();
+      where.moveThing(gowhere.x, gowhere.y, val);
+    }
+  });
+  
+  CheckLasers(where);
 }
 
 function SandstoneWallTile() {
@@ -4390,6 +4388,7 @@ function SandstoneWallTile() {
   this.spritexoffset = "0";
   this.spriteyoffset = "-64";
   this.blocklos = 0;
+  this.passable = MOVE_ETHEREAL;
   this.prefix = "a"
   this.desc = "sandstone wall";
 }
@@ -4405,14 +4404,15 @@ SandstoneWallTile.prototype.use = function(who) {
     return retval;
   }
   var desttile = themap.getTile(this.getx()+diffx, this.gety()+diffy);
-  var ontile = desttile.getTopFeature();
-  if (ontile) {
+  var ontile = desttile.canMoveHere(MOVE_WALK,0);
+  if (!ontile) {
     retval["txt"] = "Something is in the way.";
     return retval;
   }
   themap.moveThing(this.getx()+diffx, this.gety()+diffy, this);
   retval["txt"] = "The wall segment slides across the floor.";
   
+  CheckLasers(themap);
   return retval;
 }
 
