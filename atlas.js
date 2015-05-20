@@ -34,6 +34,8 @@ function Atlas() {
     "Rigging" : '#!',
     '+o' : "Pillar", // 16
     "Pillar" : '+o',
+    'xo' : "PurplePillar", // 16
+    "PurplePillar" : 'xo',
     'u`' : "FountainSW", // 17
     "FountainSW" : 'u`',
     '/u' : "FountainSE", // 18

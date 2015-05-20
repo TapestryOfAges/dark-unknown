@@ -430,11 +430,17 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 		this.setOverlay(this.lockedgraphics[lock]);
 		this.setDesc(this.lockeddescs[lock]);
 		this.setPrefix(this.lockedprefixes[lock]);
-		this.getHomeMap().setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK_DOOR);
+		var homemap = this.getHomeMap();
+		if (homemap) {
+		  homemap.setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK_DOOR);
+		}
 	}
 	this.unlockMe = function() { 
 	  this.lockMe(0);
-	  this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK_DOOR);
+	  var homemap = this.getHomeMap();
+	  if (homemap) {
+	    this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK_DOOR);
+	  }
 	}
 	
 	this.setTrap = function(trap, challenge) { this.trapped = trap; this.trapchallenge = challenge; }
@@ -1205,6 +1211,18 @@ function PillarTile() {
   this.desc = "pillar";
 }
 PillarTile.prototype = new TerrainObject();
+
+function PurplePillarTile() {
+  this.name = "PurplePillar";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-288";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pillar";
+}
+PurplePillarTile.prototype = new TerrainObject();
 
 function FountainSWTile() {
   this.name = "FountainSW";

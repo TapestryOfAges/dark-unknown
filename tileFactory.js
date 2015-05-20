@@ -76,6 +76,11 @@ tileFactory.prototype.makePillarTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePurplePillarTile = function() {
+  var newTile = new PurplePillarTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeFountainSWTile = function() {
   var newTile = new FountainSWTile();
   return newTile;
