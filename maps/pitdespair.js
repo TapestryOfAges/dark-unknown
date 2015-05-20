@@ -282,42 +282,42 @@ mappages["pitdespair2"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 mappages["pitdespair2"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["pitdespair2"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["pitdespair2"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ## ## ## ## ## ## ## ## ## BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ++ ## BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ ++ +o ++ ++ ## BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ +o ++ ++ ++ ## BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## +o ++ ++ ++ ++ ++ ++ ++ ## BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[32] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ +o ++ ++ ++ ++ ## BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[33] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ++ ## ## BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[34] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[35] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ++ ## ## BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[36] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ## ## ## ## ## ## ## ## ## BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[37] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[38] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[39] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[40] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[41] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[42] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[43] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[44] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[45] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[46] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[47] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[48] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair2"].terrain[49] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% %% %% %% %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% cf cf cf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% cf cf cf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% cf cf cf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% cf cf cf %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK BK cw %% %% cf %% %% BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK %% %% cw cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[22] = 'BK BK BK BK BK BK BK BK %% %% %% %% %% cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[23] = 'BK BK BK BK BK BK BK BK %% cf cf cf %% cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[24] = 'BK BK BK BK BK BK BK BK %% cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[25] = 'BK BK BK BK BK BK BK BK %% cf cf cf %% cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK cw cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[26] = 'BK BK BK BK BK BK BK BK %% cf cf cf %% cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK cw cw cw cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[27] = 'BK BK BK BK BK BK BK BK %% %% %% %% %% cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK ## ## ## ## ## ## ## ## ## ## BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ++ ## BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK ## ++ ++ ++ ++ ++ +o ++ ++ ## BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cw cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK ## ++ ++ ++ ++ +o ++ ++ ++ ## BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cw cw cw cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK ## +o ++ ++ ++ ++ ++ ++ ++ ## BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[32] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw BK BK cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK ## ++ ++ ++ +o ++ ++ ++ ++ ## BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[33] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cw BK BK BK cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ++ ## ## BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[34] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw %% %% cf %% %% cw cw BK BK BK BK cw cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[35] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% cf cf cf %% BK BK BK BK BK BK cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ++ ## ## BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[36] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% cf cf cf %% BK BK BK BK BK BK cw cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK ## ## ## ## ## ## ## ## ## ## BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[37] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% %% cf cf %% BK BK BK BK BK BK cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[38] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK %% %% %% %% BK BK BK BK BK BK cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[39] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[40] = 'BK BK BK BK BK BK BK BK BK cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[41] = 'BK BK BK BK BK BK BK BK cw cw cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw %% %% %% %% %% BK BK BK BK ## ## ## ## ## BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[42] = 'BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw cw %% cf cf cf %% BK BK BK BK ## ++ ++ ++ ## BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[43] = 'BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cw cw BK BK cw cw cw cw cw BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf %% BK BK BK BK ## ++ ++ ++ ## BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[44] = 'BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cw cw cw cw cf cf cf cw ## cw cw cf cf cw cf cf cf cf cf cf cf %% %% cf cf cf %% BK BK BK BK ## ++ ++ ++ ## BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[45] = 'BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf ## cf cf cf cf cw cf cf cf cf cf cw cw %% %% %% %% %% %% BK BK BK BK ## ## ## ## ## BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[46] = 'BK BK BK BK BK BK BK BK cw cw cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[47] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf ## cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[48] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw cw cf cf cw ## cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair2"].terrain[49] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["pitdespair2"].terrain[50] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["pitdespair2"].terrain[51] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["pitdespair2"].terrain[52] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -358,6 +358,16 @@ mappages["pitdespair2"].features[20] = {name : 'SandstoneWall', x : 49, y : 28};
 mappages["pitdespair2"].features[21] = {name : 'TeleporterPlatform', x : 46, y : 28};
 mappages["pitdespair2"].features[22] = {name : 'TeleporterPlatform', x : 53, y : 35};
 mappages["pitdespair2"].features[23] = {name : 'RoyalPuzzleLaserEW', x : 54, y : 34};
+mappages["pitdespair2"].features[24] = {name : 'TeleporterPlatform', x : 48, y : 42};
+mappages["pitdespair2"].features[25] = {name : 'LadderDown', x : 50, y : 44, entermap : 'null', enterx : 0, entery : 0};
+mappages["pitdespair2"].features[26] = {name : 'StoneDoorway', x : 12, y : 24};
+mappages["pitdespair2"].features[27] = {name : 'LadderUp', x : 18, y : 19, entermap : 'null', enterx : 0, entery : 0};
+mappages["pitdespair2"].features[28] = {name : 'Well', x : 21, y : 21};
+mappages["pitdespair2"].features[29] = {name : 'StoneDoorway', x : 20, y : 34};
+mappages["pitdespair2"].features[30] = {name : 'StonePortcullis', x : 37, y : 19, locked : 1};
+mappages["pitdespair2"].features[31] = {name : 'StonePortcullis', x : 38, y : 43, locked : 1};
+mappages["pitdespair2"].features[32] = {name : 'Door', x : 24, y : 46, desc : "locked door", locked : 1};
+mappages["pitdespair2"].features[33] = {name : 'TeleporterPlatform', x : 10, y : 43};
 
 
 mappages["pitdespair2"].npcs = [];
@@ -417,7 +427,7 @@ function CheckLasers(themap) {
         fromleft = 0;
       }
     });
-    if (fromleft) { ewlin[i]=1; }
+    if (fromleft) { ewline[i]=1; }
   }
   var fromright = 1;
   for (var i=54; i>=46; i--) {
@@ -427,40 +437,40 @@ function CheckLasers(themap) {
       if (val.getName().indexOf("Laser") > -1) {
         themap.deleteThing(val);
       }
-      if (fea.getName() === "SandstoneWall") {
+      if (val.getName() === "SandstoneWall") {
         fromright = 0;
       }
     });
-    if (fromright) { ewlin[i]=1; }    
+    if (fromright) { ewline[i]=1; }    
   }
   
   // NS laser
   var nsline = {};
   var fromtop = 1;
   for (var i=28; i<=35; i++) {
-    nslin[i]=0;
+    nsline[i]=0;
     var tile = themap.getTile(52,i);
     var fea = tile.getFeatures();
     $.each(fea, function(idx,val) {
       if (val.getName().indexOf("Laser") > -1) {
         themap.deleteThing(val);
       }
-      if (fea.getName() === "SandstoneWall") {
+      if (val.getName() === "SandstoneWall") {
         fromtop = 0;
       }
     });
-    if (fromtop) { nslin[i]=1; }
+    if (fromtop) { nsline[i]=1; }
   }
   var frombottom = 1;
   for (var i=35; i>=28; i--) {
     var tile = themap.getTile(52,i);
     var fea = tile.getFeatures();
     $.each(fea, function(idx,val) {
-      if (fea.getName() === "SandstoneWall") {
+      if (val.getName() === "SandstoneWall") {
         frombottom = 0;
       }
     });
-    if (frombottom) { nslin[i]=1; }    
+    if (frombottom) { nsline[i]=1; }    
   }
   
   for (var i=46; i<=54; i++) {
@@ -477,8 +487,11 @@ function CheckLasers(themap) {
   
   for (var i=28; i<=35; i++) {
     if (nsline[i]) {
-      var newlaser = localFactory.createTile("RoyalPuzzleLaserNS");
-      themap.placeThing(52,i,newlaser);
+      if (i!==34) { 
+        var newlaser = localFactory.createTile("RoyalPuzzleLaserNS");
+        themap.placeThing(52,i,newlaser);
+      }
     }
   }
+  DrawMainFrame("draw",themap.getName(),PC.getx(),PC.gety());
 }
