@@ -430,8 +430,12 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 		this.setOverlay(this.lockedgraphics[lock]);
 		this.setDesc(this.lockeddescs[lock]);
 		this.setPrefix(this.lockedprefixes[lock]);
+		this.getHomeMap().setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK_DOOR);
 	}
-	this.unlockMe = function() { this.lockMe(0); }
+	this.unlockMe = function() { 
+	  this.lockMe(0);
+	  this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK_DOOR);
+	}
 	
 	this.setTrap = function(trap, challenge) { this.trapped = trap; this.trapchallenge = challenge; }
 	this.tryTrap = function(who) { 
@@ -526,6 +530,12 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			this.closedLOS = [];
 			
 			this.removePassable(MOVE_WALK);
+			this.removePassable(MOVE_LEVITATE);
+			this.removePassable(MOVE_FLY);
+			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK);
+			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),false,MOVE_SWIM);
+			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),false,MOVE_LEVITATE);
+			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),false,MOVE_FLY);
 			
 			retval["fin"] = 1;
 			retval["txt"] = "Closed!";
@@ -554,6 +564,12 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			this.setBlocksLOSArray(seethru);
 			
 			this.addPassable(MOVE_WALK);
+			this.addPassable(MOVE_LEVITATE);
+			this.addPassable(MOVE_FLY);
+			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK);
+			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_LEVITATE);
+			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_SWIM);
+			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_FLY);
 			if (opensound) {
 			  DUPlaySound(opensound); 
 			}
@@ -4317,6 +4333,7 @@ function RoyalPuzzleLaserEWTile() {
   this.prefix = "a";
   this.desc = "shimmering beam";
   
+  LightEmitting.call(this, 1);
 }
 RoyalPuzzleLaserEWTile.prototype = new FeatureObject();
 
@@ -4335,6 +4352,7 @@ function RoyalPuzzleLaserNSTile() {
   this.prefix = "a";
   this.desc = "shimmering beam";
   
+  LightEmitting.call(this, 1);
 }
 RoyalPuzzleLaserNSTile.prototype = new FeatureObject();
 
@@ -4353,6 +4371,7 @@ function RoyalPuzzleLaserCrossTile() {
   this.prefix = "a";
   this.desc = "shimmering beam";
   
+  LightEmitting.call(this, 1);
 }
 RoyalPuzzleLaserCrossTile.prototype = new FeatureObject();
 
@@ -4391,6 +4410,8 @@ function SandstoneWallTile() {
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a"
   this.desc = "sandstone wall";
+  
+  LightEmitting.call(this, 3);
 }
 SandstoneWallTile.prototype = new FeatureObject();
 
