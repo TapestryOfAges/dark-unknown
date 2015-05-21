@@ -5374,7 +5374,7 @@ function AmbroseShieldTile() {
   this.spriteyoffset = "-32";
   this.spritexoffset = "-256";
   this.blocklos = 0;
-  this.desc = "shield commissioned by Ambrose";
+  this.desc = "shield commissioned by Nyrani";
   this.prefix = "the";
   this.addType("Quest");
 }

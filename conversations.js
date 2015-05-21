@@ -74,7 +74,11 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
 			door.open = 1;
 			
 			DrawMainFrame("draw",door.getHomeMap().getName(),PC.getx(),PC.gety());
-    }
+    } else if (triggers.set_flag === "spellbook") {
+      PC.addSpell(1,GetSpellID(5)); 
+      // spellbook starts with Light in it
+    } 
+    
   }
   if (triggers.hasOwnProperty("end_convo")) {
     if (triggers.end_convo !== 1) {
