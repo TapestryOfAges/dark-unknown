@@ -541,10 +541,10 @@ function DoAction(code) {
           maintext.addText(" ");
           maintext.addText("You need a spellbook to learn spells.");
         } else if (merinv.stock[idx].price < PC.getGold()) { // can afford it!
-          PC.addGold(-(merinv.stock[idx].price));
           if (merinv.stock[idx].quantity) {  // item
             var newitem = localFactory.createTile(merinv.stock[idx].item);
             if (merinv.stock[idx].quantity != 99) { marinv.stock[idx].quantity = marinv.stock[idx].quantity -1; }
+            PC.addGold(-(merinv.stock[idx].price));
             PC.addToInventory(newitem,1);
             maintext.addText(" ");
             maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + ": Purchased. Anything else?");
@@ -552,10 +552,15 @@ function DoAction(code) {
             if (PC.knowsSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid)) {
               maintext.addText(" ");
               maintext.addText("You already know that spell.");
+            } else if ((merinv.stock[idx].lvl > 2) && (!DU.gameflags["spellbook2"])) {
+              maintext.addText(" ");
+              maintext.addText("Your spellbook is not strong enough to contain that spell.");
             } else {
               PC.addSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid);
               maintext.addText(" ");
               maintext.addText("You have learned the spell " + merinv.stock[idx].desc + ".");
+              PC.addGold(-(merinv.stock[idx].price));
+              PC.addSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid);
             }
           }
         } else { // not enough money
