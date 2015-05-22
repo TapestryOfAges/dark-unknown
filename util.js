@@ -238,7 +238,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   }
 	
 	if ((DU.gameflags.music) && (who === PC) && (tomap.getMusic() !== nowplaying)) {
-	  StopMusic();
+	  StopMusic(nowplaying);
 	  var song = tomap.getMusic();
 	  PlaySound(song);
 	  nowplaying = song;
