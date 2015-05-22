@@ -105,7 +105,9 @@ function create_audio() {
 
 // checks to see if the player has turned off sound
 function DUPlaySound(sound) {
-  if (DU.gameflags.sound) { createjs.Sound.play(sound); }
+  var playing;
+  if (DU.gameflags.sound) { playing = createjs.Sound.play(sound); }
+  return playing;
 }
 
 function PlaySound(sound) {
