@@ -43,19 +43,22 @@ DUSound["sfx_missile_hit"] = "sfx/sfx12.ogg";
 
 var musicpath = "music/";
 var DUMusic = {};
-DUMusic["Theme"] = "Hero Theme";
-DUMusic["Dark Unknown"] = "Dark Unknown";
+DUMusic["Theme"] = "Hero Victorious";
+DUMusic["Dark Unknown"] = "The Dark Unknown";
 DUMusic["Towne"] = "Towne";
 DUMusic["Dark Towne"] = "Dark Towne";
-DUMusic["Dungeon"] = "Dungeon";
-DUMusic["Dark Dungeon"] = "Dark Dungeon";
-DUMusic["Mainland"] = "Mainland Wander";
-DUMusic["Island"] = "Island Wander";
-DUMusic["Magic"] = "Magic";
-DUMusic["Cave"] = "Cave";
-DUMusic["Underworld"] = "Underworld";
-DUMusic["Combat"] = "Combat";
+DUMusic["Dungeon"] = "Dungeon";  // currently absent
+DUMusic["Dark Dungeon"] = "Dark Dungeon";  // currently absent
+DUMusic["Mainland"] = "Wandering";  // currently absent
+DUMusic["Island"] = "Distant Shores";
+DUMusic["Magic"] = "Magic and Mystery";
+DUMusic["Cave"] = "Paths Unmapped";
+DUMusic["Underworld"] = "In the Underworld";  // needs some fixing
+DUMusic["Combat"] = "On the Battlefield";
 DUMusic["Olympus"] = "Olympus";
+DUMusic["Tension"] = "Tension";
+DUMusic["Charcreate"] = "Journey Begins";
+DUMusic["Fanfare"] = "Fanfare"; // currently absent
 
 function audio_init() {
   createjs.Sound.initializeDefaultPlugins();
