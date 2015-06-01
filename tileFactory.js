@@ -1061,6 +1061,11 @@ tileFactory.prototype.makeLeverOffTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGrottoLeverOffTile = function() {
+  var newTile = new GrottoLeverOffTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeMetalTwisterLeverTile = function() {
   var newTile = new MetalTwisterLeverTile();
   return newTile;
