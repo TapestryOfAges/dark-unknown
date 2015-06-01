@@ -70,7 +70,7 @@ mappages["grotto"].features[0] = {name : 'LadderUp', x : 22, y : 53, entermap : 
 mappages["grotto"].features[1] = {name : 'EnergyField', x : 24, y : 21};
 mappages["grotto"].features[2] = {name : 'EnergyField', x : 25, y : 21};
 mappages["grotto"].features[3] = {name : 'EnergyField', x : 26, y : 21};
-mappages["grotto"].features[4] = {name : 'LeverOff', x : 15, y : 22};
+mappages["grotto"].features[4] = {name : 'GrottoLeverOff', x : 15, y : 22};
 mappages["grotto"].features[5] = {name : 'Chest', x : 40, y : 43, lootgroup : '', lootedid : ''};
 mappages["grotto"].features[6] = {name : 'Chest', x : 41, y : 43, lootgroup : '', lootedid : ''};
 mappages["grotto"].features[7] = {name : 'Chest', x : 41, y : 44, lootgroup : '', lootedid : ''};
@@ -275,11 +275,9 @@ mappages["grotto2"].features[48] = {name : 'Coral', x : 110, y : 16};
 mappages["grotto2"].features[49] = {name : 'Coral', x : 105, y : 19};
 mappages["grotto2"].features[50] = {name : 'Coral', x : 110, y : 24};
 mappages["grotto2"].features[51] = {name : 'Coral', x : 111, y : 24};
-
-
-
-
-
+mappages["grotto2"].features[52] = {name : 'BlackPearl', x : 52, y : 18};
+mappages["grotto2"].features[53] = {name : 'BlackPearl', x : 53, y : 19};
+mappages["grotto2"].features[54] = {name : 'BlackPearl', x : 75, y : 27};
 
 
 mappages["grotto2"].npcs = [];
