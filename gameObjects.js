@@ -4209,6 +4209,41 @@ function LeverOffTile() {
 }
 LeverOffTile.prototype = new FeatureObject();
 
+function GrottoLeverOffTile() {
+  this.name = "GrotoLeverOff";
+  this.graphic = "switch-off.gif";
+  this.overlay = "switch-off.gif";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "lever";
+  
+  SetByBelow.call(this);
+}
+GrottoLeverOffTile.prototype = new FeatureObject();
+
+GrottoLeverOffTile.prototype.use = function(who) {
+  var retval = {};
+  retval["txt"] = "There is a deafening sound of rushing water! The water levels recede.";
+  this.overlay = "switch-on.gif";
+  var frommap = this.getHomeMap();
+  var tomap = maps.getMap("grotto2");
+  
+  var feas = frommap.features.getAll();
+  $.each(feas, function(idx,val) {
+    if (val.getName() !== "EnergyField") {
+      MoveBetweenMaps(val,frommap,tomap,val.getx(),val.gety());
+    }
+  });
+  var npcs = frommap.npcs.getAll();
+  $.each(npcs, function(idx,val) {
+    MoveBetweenMaps(val,frommap,tomap,val.getx(),val.gety());
+  });
+  MoveBetweenMaps(PC,frommap,tomap,PC.getx(),PC.gety());
+  
+  DrawMainFrame("draw", "grotto2", PC.getx(), PC.gety());
+  return retval;
+}
+
 function MetalTwisterLeverTile() {
   this.name = "MetalTwisterLever";
   this.graphic = "switch-off.gif";
