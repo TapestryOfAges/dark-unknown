@@ -194,7 +194,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   // determine time scale for this move
   if ((frommap.getScale()) || tomap.getScale()) { who.smallscalemove = 1; }
   
-	// remove PC from current map
+	// remove entity from current map
 	frommap.deleteThing(who);
 	// also delete any NPCs following PC (summoned demons) FIXTHIS
 	tomap.placeThing(destx,desty,who);
