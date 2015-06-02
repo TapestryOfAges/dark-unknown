@@ -1,0 +1,59 @@
+mappages["abyss0"] = {};
+mappages["abyss0"].terrain = [];
+ mappages["abyss0"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["abyss0"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["abyss0"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["abyss0"].terrain[3] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["abyss0"].terrain[4] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["abyss0"].terrain[5] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["abyss0"].terrain[6] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["abyss0"].terrain[7] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["abyss0"].terrain[8] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["abyss0"].terrain[9] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["abyss0"].terrain[10] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["abyss0"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["abyss0"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["abyss0"].terrain[13] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["abyss0"].terrain[14] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["abyss0"].terrain[15] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["abyss0"].terrain[16] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+
+mappages["abyss0"].features = [];
+mappages["abyss0"].features[0] = {name : 'WalkOnAbyss1', x : 8, y : 6};
+mappages["abyss0"].features[1] = {name : 'WalkOnAbyss1', x : 9, y : 6};
+mappages["abyss0"].features[2] = {name : 'WalkOnAbyss1', x : 7, y : 6};
+mappages["abyss0"].features[3] = {name : 'WalkOnAbyss1', x : 6, y : 7};
+mappages["abyss0"].features[4] = {name : 'WalkOnAbyss1', x : 6, y : 8};
+mappages["abyss0"].features[5] = {name : 'WalkOnAbyss1', x : 6, y : 9};
+mappages["abyss0"].features[6] = {name : 'WalkOnAbyss1', x : 7, y : 10};
+mappages["abyss0"].features[7] = {name : 'WalkOnAbyss1', x : 8, y : 10};
+mappages["abyss0"].features[8] = {name : 'WalkOnAbyss1', x : 9, y : 10};
+mappages["abyss0"].features[9] = {name : 'WalkOnAbyss1', x : 10, y : 9};
+mappages["abyss0"].features[10] = {name : 'WalkOnAbyss1', x : 10, y : 8};
+mappages["abyss0"].features[11] = {name : 'WalkOnAbyss1', x : 10, y : 7};
+
+
+mappages["abyss0"].npcs = [];
+
+mappages["abyss0"].desc = "The Stygian Abyss";
+mappages["abyss0"].music = 'Magic';
+mappages["abyss0"].exitmap = '';
+mappages["abyss0"].exitx = '65';
+mappages["abyss0"].exity = '70';
+mappages["abyss0"].wraps = 'None';
+mappages["abyss0"].enterx = '65';
+mappages["abyss0"].entery = '70';
+mappages["abyss0"].seeBelow = '';
+mappages["abyss0"].lightLevel = 'bright';
+mappages["abyss0"].alwaysRemember = '0';
+mappages["abyss0"].scale = '1';
+mappages["abyss0"].enterscript = '';
+mappages["abyss0"].entertestscript = '';
+mappages["abyss0"].exitscript = '';
+mappages["abyss0"].exittestscript = '';
+mappages["abyss0"].returnmap = '';
+mappages["abyss0"].returnx = '';
+mappages["abyss0"].returny = '';
+mappages["abyss0"].returninfused = '0';
+mappages["abyss0"].linkedMaps = [""];
+
