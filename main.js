@@ -95,7 +95,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
     } else {
       $("#worldlayer").css("background-image", "");
     }
-    mapdiv += "<table cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20;\">";
+    mapdiv += "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20;\">";
     for (var i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
       mapdiv += "<tr>";
       for (var j=displayspecs.leftedge;j<=displayspecs.rightedge;j++) {
@@ -185,6 +185,8 @@ function DoAction(code) {
       maintext.drawTextFrame();
       if (response["fin"] === 1) {
         PC.endTurn(response["initdelay"]);
+      } else if (response["fin"] === 3) {
+        gamestate.setMode("waiting");
       }
     }  
   }

@@ -3898,6 +3898,25 @@ WalkOnChangeExitTile.prototype.walkon = function(walker) {
   themap.setExitToY(this.setyto);
 }
 
+function WalkOnAbyss1Tile() {
+  this.name = "WalkOnAbyss1";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnAbyss1Tile.prototype = new FeatureObject();
+
+WalkOnAbyss1Tile.prototype.walkon = function(walker) {
+  var themap=walker.getHomeMap();
+  newmap = maps.getMap("abyss1");
+  MoveBetweenMaps(walker,themap,newmap,8,8);
+  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+}
+
 function SpawnerTile() {
   this.name = "Spawner";
   this.graphic = "target-cursor.gif";
@@ -5451,6 +5470,40 @@ function AmuletOfReflectionsTile() {
   this.addType("Quest");
 }
 AmuletOfReflectionsTile.prototype = new ItemObject();
+
+AmuletOfReflectionsTile.prototype.use = function(who) {
+  var themap = who.getHomeMap();
+  var retval = {};
+  if (themap.getName() === "olympus2") {
+    var standbefore = themap.getTile(who.getx(), who.gety());
+    var ismirror = standbefore.getTopFeature();
+    if (ismirror.getName() === "mirror") {
+      // you are in the right map standing at the right place. GO.
+      FadeOut(2000);
+      setTimeout(function() {
+        var newmap = new GameMap();
+        if (maps.getMap("abyss0")) {
+          newmap = maps.getMap("abyss0");
+        } else {
+          newmap.loadMap("abyss0");
+          maps.addMapByRef(newmap);
+        }
+        MoveBetweenMaps(who,themap,newmap,8,8);
+        FadeIn(2000);
+        setTimeout(function() {
+          gamestate.setMode("player");
+          maintext.addText('You hear a voice in your mind: "In the beginning of the journey of knowledge, the mind is a blank. The landscape, featureless and empty."');
+        },2000);
+      }, 2000);
+      retval["txt"] = "The room fades to black around you as your mind accepts the challenge of the Stygian Abyss.";
+      retval["fin"] = 3;
+      return retval;
+    } 
+  }
+  retval["txt"] = "Nothing happens here.";
+  retval["fin"] = 1;
+  return retval;
+}
 
 function DragonBoneTile() {
   this.name = "DragonBone";
