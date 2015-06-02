@@ -1001,6 +1001,11 @@ tileFactory.prototype.makeWalkOnChangeExitTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnAbyss1Tile = function() {
+  var newTile = new WalkOnAbyss1Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpawnerTile = function() {
   var newTile = new SpawnerTile();
   return newTile;
