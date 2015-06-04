@@ -19,19 +19,22 @@ mappages["abyss0"].terrain[15] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .
 mappages["abyss0"].terrain[16] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
 
 mappages["abyss0"].features = [];
-mappages["abyss0"].features[0] = {name : 'WalkOnAbyss1', x : 8, y : 6};
-mappages["abyss0"].features[1] = {name : 'WalkOnAbyss1', x : 9, y : 6};
-mappages["abyss0"].features[2] = {name : 'WalkOnAbyss1', x : 7, y : 6};
-mappages["abyss0"].features[3] = {name : 'WalkOnAbyss1', x : 6, y : 7};
-mappages["abyss0"].features[4] = {name : 'WalkOnAbyss1', x : 6, y : 8};
-mappages["abyss0"].features[5] = {name : 'WalkOnAbyss1', x : 6, y : 9};
-mappages["abyss0"].features[6] = {name : 'WalkOnAbyss1', x : 7, y : 10};
-mappages["abyss0"].features[7] = {name : 'WalkOnAbyss1', x : 8, y : 10};
-mappages["abyss0"].features[8] = {name : 'WalkOnAbyss1', x : 9, y : 10};
-mappages["abyss0"].features[9] = {name : 'WalkOnAbyss1', x : 10, y : 9};
-mappages["abyss0"].features[10] = {name : 'WalkOnAbyss1', x : 10, y : 8};
-mappages["abyss0"].features[11] = {name : 'WalkOnAbyss1', x : 10, y : 7};
-
+mappages["abyss0"].features[0] = {name : 'WalkOnAbyss0', x : 8, y : 6};
+mappages["abyss0"].features[1] = {name : 'WalkOnAbyss0', x : 9, y : 6};
+mappages["abyss0"].features[2] = {name : 'WalkOnAbyss0', x : 7, y : 6};
+mappages["abyss0"].features[3] = {name : 'WalkOnAbyss0', x : 6, y : 7};
+mappages["abyss0"].features[4] = {name : 'WalkOnAbyss0', x : 6, y : 8};
+mappages["abyss0"].features[5] = {name : 'WalkOnAbyss0', x : 6, y : 9};
+mappages["abyss0"].features[6] = {name : 'WalkOnAbyss0', x : 7, y : 10};
+mappages["abyss0"].features[7] = {name : 'WalkOnAbyss0', x : 8, y : 10};
+mappages["abyss0"].features[8] = {name : 'WalkOnAbyss0', x : 9, y : 10};
+mappages["abyss0"].features[9] = {name : 'WalkOnAbyss0', x : 10, y : 9};
+mappages["abyss0"].features[10] = {name : 'WalkOnAbyss0', x : 10, y : 8};
+mappages["abyss0"].features[11] = {name : 'WalkOnAbyss0', x : 10, y : 7};
+mappages["abyss0"].features[12] = {name : 'WalkOnAbyss0', x : 7, y : 7};
+mappages["abyss0"].features[13] = {name : 'WalkOnAbyss0', x : 9, y : 7};
+mappages["abyss0"].features[14] = {name : 'WalkOnAbyss0', x : 7, y : 9};
+mappages["abyss0"].features[15] = {name : 'WalkOnAbyss0', x : 9, y : 9};
 
 mappages["abyss0"].npcs = [];
 
