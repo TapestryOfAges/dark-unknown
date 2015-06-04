@@ -1001,6 +1001,16 @@ tileFactory.prototype.makeWalkOnChangeExitTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnAbyssTile = function() {
+  var newTile = new WalkOnAbyssTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyss0Tile = function() {
+  var newTile = new WalkOnAbyss0Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnAbyss1Tile = function() {
   var newTile = new WalkOnAbyss1Tile();
   return newTile;

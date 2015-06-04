@@ -3898,6 +3898,51 @@ WalkOnChangeExitTile.prototype.walkon = function(walker) {
   themap.setExitToY(this.setyto);
 }
 
+function WalkOnAbyssTile() {
+  this.name = "WalkOnAbyss";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.destmap = "abyss1";
+	this.destx = 8;
+	this.desty = 8;
+	this.say = '';
+}
+WalkOnAbyssTile.prototype = new FeatureObject();
+
+WalkOnAbyssTile.prototype.walkon = function(walker) {
+  var themap=walker.getHomeMap();
+  newmap = maps.getMap(this.destmap);
+  if (!this.destx) {
+    this.destx = walker.getx();
+    this.desty = walker.gety();
+  }
+  MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
+  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+  if (this.say) {
+    maintext.addText(this.say);
+  }
+}
+
+function WalkOnAbyss0Tile() {
+  this.name = "WalkOnAbyss0";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.destmap = "abyss1";
+	this.destx = 8;
+	this.desty = 8;
+	this.say = 'Voice: "As you learn, and feel, and gain experience, you fill your landscape with knowledge."';
+}
+WalkOnAbyss0Tile.prototype = new WalkOnAbyssTile();
+
 function WalkOnAbyss1Tile() {
   this.name = "WalkOnAbyss1";
 	this.graphic = "walkon.gif";
@@ -3906,16 +3951,10 @@ function WalkOnAbyss1Tile() {
 	this.prefix = "an";
 	this.desc = "invisible walkon tile";
 	this.invisible = 1;
+	this.destx = 0;
+	this.desty = 0;
 }
-WalkOnAbyss1Tile.prototype = new FeatureObject();
-
-WalkOnAbyss1Tile.prototype.walkon = function(walker) {
-  var themap=walker.getHomeMap();
-  newmap = maps.getMap("abyss1");
-  MoveBetweenMaps(walker,themap,newmap,8,8);
-  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-}
+WalkOnAbyss1Tile.prototype = new WalkOnAbyssTile();
 
 function SpawnerTile() {
   this.name = "Spawner";
