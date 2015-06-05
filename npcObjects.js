@@ -799,8 +799,8 @@ FighterNPCTile.prototype = new NPCObject();
 
 // Animal
 
-function GiantSnakeNPCTile() {
-  this.name = 'GiantSnakeNPC';
+function PythonNPCTile() {
+  this.name = 'PythonNPC';
   this.level = 2;
   this.addhp = 0;
   this.str = 10;
@@ -823,11 +823,11 @@ function GiantSnakeNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Small Animal';
   this.prefix = 'a';
-  this.desc = 'giant snake';
+  this.desc = 'python';
   this.onHit = 'venom';
   this.meleeChance = 100;
 }
-GiantSnakeNPCTile.prototype = new NPCObject();
+PythonNPCTile.prototype = new NPCObject();
 
 
 // Monster
@@ -1348,8 +1348,8 @@ OrcShamanNPCTile.prototype = new NPCObject();
 
 // Animal
 
-function PythonNPCTile() {
-  this.name = 'PythonNPC';
+function GiantSnakeNPCTile() {
+  this.name = 'GiantSnakeNPC';
   this.level = 3;
   this.addhp = 0;
   this.str = 13;
@@ -1371,12 +1371,12 @@ function PythonNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Medium Animal';
   this.prefix = 'a';
-  this.desc = 'python';
+  this.desc = 'giant snake';
   this.onHit = 'venom';
   this.meleeChance = 100;
   this.special = 'spitter';
 }
-PythonNPCTile.prototype = new NPCObject();
+GiantSnakeNPCTile.prototype = new NPCObject();
 
 
 // Animal
@@ -1638,7 +1638,7 @@ function EarthElementalNPCTile() {
   this.peaceAI = 'wander';
   this.threatenedAI = 'melee';
   this.PCThreatAI = 'attackPC';
-  this.graphic = 'boulder.gif';
+  this.graphic = 'earth_elemental.gif';
   this.meleeAttackAs = 'Halberd';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -2876,6 +2876,36 @@ function ToshinSentinelNPCTile() {
   this.desc = 'floating sentinel';
 }
 ToshinSentinelNPCTile.prototype = new NPCObject();
+
+
+// Townsfolk
+
+function AbyssYouNPCTile() {
+  this.name = 'AbyssYouNPC';
+  this.level = 8;
+  this.addhp = 20;
+  this.str = 30;
+  this.dex = 30;
+  this.int = 30;
+  this.alignment = 'Good';
+  this.attitude = 'friendly';
+  this.peaceAI = 'abyssyou ';
+  this.threatenedAI = 'abyssyou';
+  this.PCThreatAI = 'abyssyou';
+  this.graphic = '388.gif';
+  this.meleeAttackAs = 'Fists';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'none';
+  this.armorDefense = 2000;
+  this.armorAbsorb = 2000;
+  this.armorResist = 2000;
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.desc = 'yourself';
+  this.special = 'mirror';
+}
+AbyssYouNPCTile.prototype = new NPCObject();
 
 function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';
