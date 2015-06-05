@@ -3907,8 +3907,8 @@ function WalkOnAbyssTile() {
 	this.desc = "invisible walkon tile";
 	this.invisible = 1;
 	this.destmap = "abyss1";
-	this.destx = 8;
-	this.desty = 8;
+	this.destx = 10;
+	this.desty = 10;
 	this.say = '';
 }
 WalkOnAbyssTile.prototype = new FeatureObject();
@@ -3937,8 +3937,8 @@ function WalkOnAbyss0Tile() {
 	this.desc = "invisible walkon tile";
 	this.invisible = 1;
 	this.destmap = "abyss1";
-	this.destx = 8;
-	this.desty = 8;
+	this.destx = 10;
+	this.desty = 10;
 	this.say = 'Voice: "As you learn, and feel, and gain experience, you fill your landscape with knowledge."';
 }
 WalkOnAbyss0Tile.prototype = new WalkOnAbyssTile();
@@ -3951,10 +3951,56 @@ function WalkOnAbyss1Tile() {
 	this.prefix = "an";
 	this.desc = "invisible walkon tile";
 	this.invisible = 1;
+	this.destmap = "abyss2";
 	this.destx = 0;
 	this.desty = 0;
 }
 WalkOnAbyss1Tile.prototype = new WalkOnAbyssTile();
+
+function WalkOnAbyss2Tile() {
+  this.name = "WalkOnAbyss2";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.destmap = "abyss3";
+	this.destx = 0;
+	this.desty = 0;
+}
+WalkOnAbyss2Tile.prototype = new WalkOnAbyssTile();
+
+function WalkOnAbyss3Tile() {
+  this.name = "WalkOnAbyss3";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.destmap = "abyss4";
+	this.destx = 0;
+	this.desty = 0;
+	this.say = 'Voice: "To attain the higher initiation, you must first master yourself."';
+}
+WalkOnAbyss3Tile.prototype = new WalkOnAbyssTile();
+
+function WalkOnAbyss4Tile() {
+  this.name = "WalkOnAbyss4";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+	this.destmap = "abyss5";
+	this.destx = 0;
+	this.desty = 0;
+	this.say = 'Voice: "Through this portal you shall be challenged. Prove your mastery of the self and you shall be counted as one of the great."';
+}
+WalkOnAbyss4Tile.prototype = new WalkOnAbyssTile();
+
 
 function SpawnerTile() {
   this.name = "Spawner";
@@ -7308,6 +7354,12 @@ NPCObject.prototype.activate = function(timeoverride) {
       var qobj = localFactory.createTile("Quickness");
       qobj.setExpiresTime(-1);
       this.addSpellEffect(qobj);
+    }
+    
+    if (this.special.indexOf("mirror") > -1) {
+      this.setGraphicArray(PC.getGraphicArray());
+      this.gender = PC.gender
+      this.npcname = PC.pcname;
     }
   
     var timing = this.nextActionTime(0);

@@ -1016,6 +1016,21 @@ tileFactory.prototype.makeWalkOnAbyss1Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnAbyss2Tile = function() {
+  var newTile = new WalkOnAbyss2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyss3Tile = function() {
+  var newTile = new WalkOnAbyss3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnAbyss4Tile = function() {
+  var newTile = new WalkOnAbyss4Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpawnerTile = function() {
   var newTile = new SpawnerTile();
   return newTile;
@@ -1696,8 +1711,8 @@ tileFactory.prototype.makeFighterNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeGiantSnakeNPCTile = function() {
-  var newTile = new GiantSnakeNPCTile();
+tileFactory.prototype.makePythonNPCTile = function() {
+  var newTile = new PythonNPCTile();
   return newTile;
 }
 
@@ -1786,8 +1801,8 @@ tileFactory.prototype.makeOrcShamanNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makePythonNPCTile = function() {
-  var newTile = new PythonNPCTile();
+tileFactory.prototype.makeGiantSnakeNPCTile = function() {
+  var newTile = new GiantSnakeNPCTile();
   return newTile;
 }
 
@@ -2028,6 +2043,11 @@ tileFactory.prototype.makeInfusedIllusionNPCTile = function() {
 
 tileFactory.prototype.makeToshinSentinelNPCTile = function() {
   var newTile = new ToshinSentinelNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAbyssYouNPCTile = function() {
+  var newTile = new AbyssYouNPCTile();
   return newTile;
 }
 
