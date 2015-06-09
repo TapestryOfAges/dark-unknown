@@ -527,6 +527,11 @@ magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   return resp;
 }
 
+//Negate Magic
+magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+  
+}
+
 //Quickness
 magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Quickness.<br /></span>"); }

@@ -235,6 +235,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 		  // remove stuff from the map from the timelines
 		  DUTime.cleanTimeline();
   	}
+  	DrawCharFrame();  // to remove Negate if it's present
   }
 	
 	if ((DU.gameflags.music) && (who === PC) && (tomap.getMusic() !== nowplaying)) {
