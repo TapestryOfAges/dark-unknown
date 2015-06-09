@@ -595,6 +595,16 @@ function PerformCast(infuse) {
     
     return retval;
   }
+  
+  var castermap = PC.getHomeMap();
+  if (DU.gameflags.negate[castermap.getName()]) {
+    retval["txt"] = "Cast - Magic has been negated, you cannot cast spells here.";
+    retval["fin"] = 2;
+    retval["input"] = "&gt;";
+    gamestate.setMode("player");
+    
+    return retval;
+  }
   var myOpen=function(hash){ hash.w.css('opacity',0.95).show(); };
   $('#spellbookdiv').jqm({onShow:myOpen,modal:true}); 
   $('#spellbookdiv').jqmShow();

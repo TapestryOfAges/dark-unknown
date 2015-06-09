@@ -2220,10 +2220,13 @@ MapMemory.prototype.deleteMap = function(mapname) {
 	if (this.data[mapname].linkedMaps[0] && this.data[mapname].linkedMaps[0] !== "") {
 		for (var i = 0; i < this.data[mapname].linkedMaps.length; i++) {
 			delete this.data[this.data[mapname].linkedMaps[i]];
+			// also stop tracking that magic is negated on this map
+			delete DU.gameflags.negate[this.data[mapname].linkedMaps[i]];
 			if (debug) { dbs.writeln("<span style='color:brown; font-style:italic'>Deleting map " + this.data[mapname].linkedMaps[i] + ".</span><br />"); }	
 		}
 	}
 	delete this.data[mapname];
+	delete DU.gameflags.negate[mapname];
 	if (debug) {
 	  if (debug) { dbs.writeln("<span style='color:brown; font-style:italic'>Remaining maps: "); }	
 	  $.each(this.data, function(idx,val) {
