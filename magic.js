@@ -529,7 +529,22 @@ magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
 
 //Negate Magic
 magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Negate Magic.<br /></span>"); }
   
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+  
+  var castermap = caster.getHomeMap();
+  var duration = caster.getInt() + DU.DUTime.getGameClock();
+  DU.gameflags.negate[castermap.getName()] = duration * SCALE_TIME;
+  
+  DrawCharFrame();
+  return resp;
 }
 
 //Quickness
