@@ -690,6 +690,13 @@ function PerformSpellbook(code) {
   if ((code === 32) || (code === 13)) { // SPACE or ENTER
     // cast a spell
     var lvl = PC.getLastSpellLevel();
+    if ((lvl > 5) && (PC.getInfusion()) {
+      var retval = {};
+      retval["fin"] = 2;
+      retval["input"] = "&gt;";
+      maintext.addText("Cannot infuse spells of level 6 or higher.");
+      return retval;
+    }
     var spellnum = PC.getLastSpell();
     $('#spellbookdiv').jqmHide();
     var spelltxt = "Cast: " + magic[lvl][GetSpellID(spellnum)].getName();
