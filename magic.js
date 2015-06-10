@@ -474,8 +474,8 @@ magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
     var fighton = castermap.getExitToMap();
     if ((fighton === "darkunknown") || (infused)) {
       returndest.map = "darkunknown";
-      returndest.x = 29;
-      returndest.y = 43;
+      returndest.x = 68;
+      returndest.y = 73;
     }
   } else {
     if ((castermap.getReturnInfused() && infused) || !castermap.getReturnInfused()) {
@@ -543,7 +543,14 @@ magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   var duration = caster.getInt() + DU.DUTime.getGameClock();
   DU.gameflags.negate[castermap.getName()] = duration * SCALE_TIME;
   
+  var gnome = localFactory.createTile("NegateGnome");
+  var negtile = localFactory.createTile("NegateMagic");
+  negtile.negatedmap = castermap.getName();
+  gnome.addSpellEffect(negtile);
   
+  var worldmap = maps.getMap("darkunknown");
+  worldmap.placeThing(141,2,gnome);
+  // MIGHT NEED ALTERNATE MAP- being on the worldmap might mean its turns come too infrequently
   
   DrawCharFrame();
   return resp;
