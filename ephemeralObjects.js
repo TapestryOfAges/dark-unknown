@@ -365,8 +365,35 @@ function NegateMagicTile() {
   this.zstatdesc = "Magic has been negated.";
   this.desc = "Negate Magic";
   this.level = 6;
+  this.negatedmap = "";
 }
 NegateMagicTile.prototype = new EphemeralObject();
+
+NegateMagicTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.invisible = 1;
+  return 1;
+}
+
+NegateMagicTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+NegateMagicTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var negmap = who.getHomeMap();
+  delete DU.gameflags.negate[negmap.getName()];
+  negmap.deleteThing(who);
+  
+  if (PC.getHomeMap() === negmap) {
+    maintext.addText("The ether is accessible again.");
+  }
+
+  DrawCharFrame();  
+  return;
+}
 
 function QuicknessTile() {
   this.addType("buff");
