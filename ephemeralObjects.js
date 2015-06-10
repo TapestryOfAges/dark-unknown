@@ -357,6 +357,17 @@ LightTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
+function NegateMagicTile() {
+  this.addType("buff");
+  this.name = "NegateMagic";
+  this.display = "";
+  this.power = 1;
+  this.zstatdesc = "Magic has been negated.";
+  this.desc = "Negate Magic";
+  this.level = 6;
+}
+NegateMagicTile.prototype = new EphemeralObject();
+
 function QuicknessTile() {
   this.addType("buff");
   this.name = "Quickness";
