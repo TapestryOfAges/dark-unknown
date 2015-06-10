@@ -652,7 +652,7 @@ function GameMap() {
   this.wraps = 0;
   
   this.returnmap = "darkunknown";
-  this.returnx = 29;
+  this.returnx = 27;
   this.returny = 43;
   this.returninfused = 0;
   
@@ -793,8 +793,8 @@ GameMap.prototype.getReturny = function() {
 
 GameMap.prototype.setReturn = function(newmap, rx, ry) {
   this.returnmap = newmap;
-  this.returnx = rx;
-  this.returny = ry;
+  this.returnx = parseInt(rx);
+  this.returny = parseInt(ry);
   return this.returnmap;
 }
 

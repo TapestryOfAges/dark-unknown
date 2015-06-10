@@ -2907,6 +2907,33 @@ function AbyssYouNPCTile() {
 }
 AbyssYouNPCTile.prototype = new NPCObject();
 
+
+// Sentinel
+
+function NegatorGnomeNPCTile() {
+  this.name = 'NegatorGnomeNPC';
+  this.level = 8;
+  this.addhp = 0;
+  this.str = 30;
+  this.dex = 30;
+  this.int = 30;
+  this.alignment = 'Neutral';
+  this.attitude = 'friendly';
+  this.peaceAI = 'negator';
+  this.threatenedAI = 'negator';
+  this.PCThreatAI = 'negator';
+  this.graphic = 'sentinel.gif';
+  this.meleeAttackAs = 'Fists';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ClothArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = 'negator gnome';
+}
+NegatorGnomeNPCTile.prototype = new NPCObject();
+
 function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';
   this.desc = 'giant rats';

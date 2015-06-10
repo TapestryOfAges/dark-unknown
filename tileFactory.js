@@ -2051,6 +2051,11 @@ tileFactory.prototype.makeAbyssYouNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeNegatorGnomeNPCTile = function() {
+  var newTile = new NegatorGnomeNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGiantRatGroupSmallTile = function() {
   var newTile = new GiantRatGroupSmallTile();
   return newTile;
@@ -2148,6 +2153,11 @@ tileFactory.prototype.makeLevitateTile = function() {
 
 tileFactory.prototype.makeLightTile = function() {
   var newTile = new LightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNegateMagicTile = function() {
+  var newTile = new NegateMagicTile();
   return newTile;
 }
 
