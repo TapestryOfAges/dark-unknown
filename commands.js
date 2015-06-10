@@ -1936,7 +1936,9 @@ function DrawStats(page) {
      statsdiv += "<tr><td>You have no effects or afflictions upon you.</td></tr>";
    } else {
      for (var i=0; i < alleffects.length; i++) {
-       statsdiv += "<tr><td>" + alleffects[i].display + ": " + alleffects[i].zstatdesc + "</td></tr>";
+       if (alleffects[i].display) {
+         statsdiv += "<tr><td>" + alleffects[i].display + ": " + alleffects[i].zstatdesc + "</td></tr>";
+       }
      }
    }
 
