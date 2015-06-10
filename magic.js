@@ -543,6 +543,8 @@ magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   var duration = caster.getInt() + DU.DUTime.getGameClock();
   DU.gameflags.negate[castermap.getName()] = duration * SCALE_TIME;
   
+
+  
   DrawCharFrame();
   return resp;
 }

@@ -14,9 +14,17 @@ function EphemeralObject() {
   this.display = "";
   this.attachedTo;
   this.desc;
-
+  this.level = 0;
 }
 EphemeralObject.prototype = new ProtoObject();
+
+EphemeralObject.prototype.setLevel = function(what) {
+  this.level = what;
+}
+
+EphemeralObject.prototype.getLevel = function() {
+  return this.level;
+}
 
 EphemeralObject.prototype.setAttachedTo = function(what) {
   this.attachedTo = what;
@@ -204,6 +212,7 @@ function FlameBladeTile() {
   this.display = "<span style='color:#df0101'>F</span>";
   this.zstatdesc = "Your weapon is sheathed in flame.";
   this.desc = "Flame Blade";
+  this.level = 1;
 }
 FlameBladeTile.prototype = new EphemeralObject();
 
@@ -272,6 +281,7 @@ function LevitateTile() {
   this.display = "<span style='color:#00FFFF'>W</span>";
   this.zstatdesc = "You are able to walk on water.";
   this.desc = "Water Walk";
+  this.level = 4;
 }
 LevitateTile.prototype = new EphemeralObject();
 
@@ -309,6 +319,7 @@ function LightTile() {
   this.power = 2;
   this.zstatdesc = "You are followed by a glowing sphere of light.";
   this.desc = "Light";
+  this.level = 1;
 }
 LightTile.prototype = new EphemeralObject();
 
@@ -353,6 +364,7 @@ function QuicknessTile() {
   this.power = .5;
   this.zstatdesc = "You move extremely quickly.";
   this.desc = "Quickness";
+  this.level = 8;
 }
 QuicknessTile.prototype = new EphemeralObject();
 
@@ -423,6 +435,7 @@ function VulnerabilityTile() {
   this.display = "<span style='color:#0000ee'>V</span>";
   this.zstatdesc = "You are vulnerable to attack.";
   this.desc = "Vulnerability";
+  this.level = 1;
 }
 VulnerabilityTile.prototype = new EphemeralObject();
 
