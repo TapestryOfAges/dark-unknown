@@ -690,7 +690,7 @@ function PerformSpellbook(code) {
   if ((code === 32) || (code === 13)) { // SPACE or ENTER
     // cast a spell
     var lvl = PC.getLastSpellLevel();
-    if ((lvl > 5) && (PC.getInfusion()) {
+    if ((lvl > 5) && (PC.getInfusion())) {
       var retval = {};
       retval["fin"] = 2;
       retval["input"] = "&gt;";
