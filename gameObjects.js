@@ -5564,6 +5564,15 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
     var ismirror = standbefore.getTopFeature();
     if (ismirror.getName() === "mirror") {
       // you are in the right map standing at the right place. GO.
+      // remove buffs/debuffs - doesn't cure poison, I guess you can die of
+      // poison while your mind is elsewhere? Don't do it, people.
+      var effects = who.getSpellEffects();
+      $.each(effects, function(effidx, effval) {
+        if ((effval.getLevel() > 0) && (effval.getExpiresTime() > -1)) {
+          effval.endEffect();
+        }
+      });
+      
       FadeOut(2000);
       setTimeout(function() {
         var newmap = new GameMap();

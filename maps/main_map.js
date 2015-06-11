@@ -361,3 +361,39 @@ function CreateNetwork(mapref) {
   
 //  if (debug) { TestNetwork(mapref, "wild"); }
 }
+
+
+mappages["gnomeland"] = {};
+mappages["gnomeland"].terrain = [];
+mappages["gnomeland"].terrain[0] = 'WW WW WW WW WW';
+mappages["gnomeland"].terrain[1] = 'WW ## ## ## WW';
+mappages["gnomeland"].terrain[2] = 'WW ## ++ ## WW';
+mappages["gnomeland"].terrain[3] = 'WW ## ## ## WW';
+mappages["gnomeland"].terrain[4] = 'WW WW WW WW WW';
+
+mappages["gnomeland"].features = [];
+
+
+mappages["gnomeland"].npcs = [];
+
+mappages["gnomeland"].desc = "Gnomeland";
+mappages["gnomeland"].music = 'Charcreate';
+mappages["gnomeland"].exitmap = '';
+mappages["gnomeland"].exitx = '65';
+mappages["gnomeland"].exity = '70';
+mappages["gnomeland"].wraps = 'None';
+mappages["gnomeland"].enterx = '65';
+mappages["gnomeland"].entery = '70';
+mappages["gnomeland"].seeBelow = '';
+mappages["gnomeland"].lightLevel = 'bright';
+mappages["gnomeland"].alwaysRemember = '1';
+mappages["gnomeland"].scale = '1';
+mappages["gnomeland"].enterscript = '';
+mappages["gnomeland"].entertestscript = '';
+mappages["gnomeland"].exitscript = '';
+mappages["gnomeland"].exittestscript = '';
+mappages["gnomeland"].returnmap = '';
+mappages["gnomeland"].returnx = '';
+mappages["gnomeland"].returny = '';
+mappages["gnomeland"].returninfused = '0';
+mappages["gnomeland"].linkedMaps = [""];

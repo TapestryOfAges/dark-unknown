@@ -548,9 +548,18 @@ magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   negtile.negatedmap = castermap.getName();
   gnome.addSpellEffect(negtile);
   
-  var worldmap = maps.getMap("darkunknown");
-  worldmap.placeThing(141,2,gnome);
-  // MIGHT NEED ALTERNATE MAP- being on the worldmap might mean its turns come too infrequently
+  var gnomemap = maps.getMap("gnomeland");
+  gnomemap.placeThing(2,2,gnome);
+
+  var everyone = castermap.features.getAll();
+  $.each(everyone, function(idx, val) {
+    var effects = val.getSpellEffects();
+    $.each(effects, function(effidx, effval) {
+      if ((effval.getLevel() > 0) && (effval.getExpiresTime() > -1)) {
+        effval.endEffect();
+      }
+    });
+  });
   
   DrawCharFrame();
   return resp;
