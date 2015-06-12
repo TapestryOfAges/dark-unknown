@@ -543,22 +543,37 @@ magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   var duration = caster.getInt() + DU.DUTime.getGameClock();
   DU.gameflags.negate[castermap.getName()] = duration * SCALE_TIME;
   
-  var gnome = localFactory.createTile("NegateGnome");
+  var gnome = localFactory.createTile("NegatorGnomeNPC");
+  var gnomemap = maps.getMap("gnomeland");
+	if (!gnomemap) {
+	  gnomemap = new GameMap();
+    gnomemap.loadMap("gnomeland");
+    maps.addMapByRef(gnomemap);
+	}
+  gnomemap.placeThing(2,2,gnome);
+  gnome.activate(0);
   var negtile = localFactory.createTile("NegateMagic");
   negtile.negatedmap = castermap.getName();
   gnome.addSpellEffect(negtile);
   
-  var gnomemap = maps.getMap("gnomeland");
-  gnomemap.placeThing(2,2,gnome);
 
-  var everyone = castermap.features.getAll();
+  var everyone = castermap.npcs.getAll();
   $.each(everyone, function(idx, val) {
     var effects = val.getSpellEffects();
     $.each(effects, function(effidx, effval) {
       if ((effval.getLevel() > 0) && (effval.getExpiresTime() > -1)) {
+        if (debug) { dbs.writeln("<span style='color:green'>Magic: Negate magic has dispelled " + effval.getName() + " from " + val.getName() + "<br /></span>"); }
         effval.endEffect();
       }
     });
+  });
+  
+  var effects = caster.getSpellEffects();
+  $.each(effects, function(effidx, effval) {
+    if ((effval.getLevel() > 0) && (effval.getExpiresTime() > -1)) {
+      if (debug) { dbs.writeln("<span style='color:green'>Magic: Negate magic has dispelled " + effval.getName() + " from " + caster.getName() + "<br /></span>"); }
+      effval.endEffect();
+    }
   });
   
   DrawCharFrame();
