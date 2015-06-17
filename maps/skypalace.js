@@ -223,7 +223,7 @@ mappages["skypalace"].onload = function(mapref){
     plat = plattile.getTopFeature();
     plat.windlist = [33,41, 33,40, 33,39, 33,38, 33,37];
     plat.spawnat = [35,32];
-    plat.spawnwhat = "AirElemental";
+    plat.spawnwhat = "AirElementalNPC";
   
     plattile = mapref.getTile(26,36);
     plat = plattile.getTopFeature();
@@ -233,7 +233,7 @@ mappages["skypalace"].onload = function(mapref){
     plat = plattile.getTopFeature();
     plat.windlist = [23,40, 24,39, 25,38, 26,37, 27,36];
     plat.spawnat = [31,32];
-    plat.spawnwhat = "Drake";
+    plat.spawnwhat = "DrakeNPC";
   
     plattile = mapref.getTile(26,27);
     plat = plattile.getTopFeature();
@@ -243,7 +243,7 @@ mappages["skypalace"].onload = function(mapref){
     plat = plattile.getTopFeature();
     plat.windlist = [27,23, 27,24, 27,25, 27,26, 27,27];
     plat.spawnat = [33,29];
-    plat.spawnwhat = "AirElemental";
+    plat.spawnwhat = "AirElementalNPC";
   }
 }
 
