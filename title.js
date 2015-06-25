@@ -79,9 +79,31 @@ function SecondPage() {
 
   var sleft = browserwidth/2 - 200;
   var sptop = browserheight/2 - 300;
-  var spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;display:none'><img src='graphics/title/du_logo.gif' /></div>";
-  $("#allofem").html(spage);
+  var opttop = sptop + 250;
+  var optleft = browserwidth/2 - 215;
+  var spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;display:none'><img src='graphics/title/du_logo.gif' /></div><div id='options'></div>";
+  $("#maindiv").html(spage);
   $("#DU").fadeIn(1000, function() {
     
+    spage = "<div id='intro' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img src='graphics/title/intro.gif' onClick='makeChoice(\'intro\')' /></div>";
+    opttop += 60;
+    spage += "<div id='create' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img src='graphics/title/create.gif' onClick='makeChoice(\'create\')' /></div>";
+    opttop += 60;
+    var journey = "journey.gif";
+    if (!localStorage.savegame) {
+      journey = "journey-d.gif";
+    }
+    spage += "<div id='journey' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img src='graphics/title/" + journey + "' onClick='makeChoice(\'journey\')' /></div>";
+    opttop += 60;
+    spage += "<div id='credits' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img src='graphics/title/credits.gif' onClick='makeChoice(\'credits\')' /></div>";
+    $("#options").html(spage);
+    $("#intro").fadeIn(1000);
+    $("#create").fadeIn(1000);
+    $("#journey").fadeIn(1000);
+    $("#credits").fadeIn(1000, function() { pagelive(); });
   });
+}
+
+function pagelive() {
+  
 }
