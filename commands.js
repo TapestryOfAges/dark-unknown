@@ -1625,6 +1625,16 @@ function PerformYell() {
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,22,53);		  
       DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+    } else if (inputText.txt === "TESTPALACE") {
+      var newmap = new GameMap();
+      if (maps.getMap("ether")) {
+				newmap = maps.getMap("ether");
+			} else {
+				newmap.loadMap("ether");
+				maps.addMapByRef(newmap);
+			}
+      MoveBetweenMaps(PC,PC.getHomeMap(),newmap,5,5);		  
+      DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTROYAL") {
       var newmap = new GameMap();
       if (maps.getMap("pitdespair2")) {

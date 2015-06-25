@@ -88,14 +88,14 @@ magic[1][GetSpellID(6)] = new SpellObject("Vulnerability", "An Sanct", 1, 1);  /
 magic[2][GetSpellID(1)] = new SpellObject("Illusion", "Quas Xen", 2, 1);
 magic[2][GetSpellID(2)] = new SpellObject("Lesser Heal", "Bet Mani", 2, 0);   // heal
 magic[2][GetSpellID(3)] = new SpellObject("Magic Bolt", "Grav Por", 2, 1);
-magic[2][GetSpellID(4)] = new SpellObject("Poison Blade", "In Nox Bet Ylem", 2, 0);
+magic[2][GetSpellID(4)] = new SpellObject("Poison Cloud", "In Nox Hur", 2, 0);
 magic[2][GetSpellID(5)] = new SpellObject("Protection", "In Sanct", 2, 0);   // blessing
 magic[2][GetSpellID(6)] = new SpellObject("Unlock", "Ex Por", 2, 0);     // sfx_unlock
 
-magic[3][GetSpellID(1)] = new SpellObject("Fire Armor", "In Sanct Flam", 3, 0);  // flames
-magic[3][GetSpellID(2)] = new SpellObject("Fireball", "Flam Por", 3, 1);
-magic[3][GetSpellID(3)] = new SpellObject("Iceball", "Frio Por", 3, 1);
-magic[3][GetSpellID(4)] = new SpellObject("Poison Wind", "Vas Nox Hur", 3, 0);   // wind
+magic[3][GetSpellID(1)] = new SpellObject("Disrupt Undead", "An Xen Corp", 3, 0);   
+magic[3][GetSpellID(2)] = new SpellObject("Fire Armor", "In Sanct Flam", 3, 0);  // flames
+magic[3][GetSpellID(3)] = new SpellObject("Fireball", "Flam Por", 3, 1);
+magic[3][GetSpellID(4)] = new SpellObject("Iceball", "Frio Por", 3, 1);
 magic[3][GetSpellID(5)] = new SpellObject("Telekinesis", "Ylem Por", 3, 1);
 magic[3][GetSpellID(6)] = new SpellObject("Wall of Flame", "Kal Flam", 3, 1);    // flames
 
@@ -117,8 +117,9 @@ magic[6][GetSpellID(1)] = new SpellObject("Empower", "In Ort Ylem", 6, 0);  // b
 magic[6][GetSpellID(2)] = new SpellObject("Explosion", "Vas Flam Por", 6, 1);
 magic[6][GetSpellID(3)] = new SpellObject("Jinx", "Vas Quas", 6, 0);  // curse
 magic[6][GetSpellID(4)] = new SpellObject("Mass Curse", "Vas An Sanct", 6, 0);  // curse
-magic[6][GetSpellID(5)] = new SpellObject("Lightning Storm", "In Grav Hur", 6, 0);
-magic[6][GetSpellID(6)] = new SpellObject("Negate Magic", "An Ort", 6, 0);
+magic[6][GetSpellID(5)] = new SpellObject("Negate Magic", "An Ort", 6, 0);
+magic[6][GetSpellID(6)] = new SpellObject("Storm", "In Grav Hur", 6, 0);
+
 
 magic[7][GetSpellID(1)] = new SpellObject("Charm", "An Xen Ex", 7, 1);   // curse
 magic[7][GetSpellID(2)] = new SpellObject("Fear", "Quas Wis", 7, 0);   // curse
@@ -665,6 +666,7 @@ function TravelByMoongate(who, color, belowgraphic, destbelow, destmap, destx, d
                         setTimeout(function() {
                           who.setGraphicArray(oldgraphic);
                           DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                          DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");  
                           who.endTurn();  // currently only PC has endturn
                                           // if an NPC spell can use this function, add an endturn to NPCs
                         }, tol);

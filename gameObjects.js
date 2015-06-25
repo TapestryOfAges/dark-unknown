@@ -3234,6 +3234,9 @@ PoisonFieldTile.prototype.idle = function(person) {
 }
 
 function InAPoisonField(who){
+  if ((who.special.indexOf("undead") > -1) || (who.special.indexOf("construct") > -1)) {
+    return "";
+  }
   var poisonchance = .75;
   poisonchance = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * poisonchance;
   poisonchance = poisonchance * (1-who.getResist()/100);  
