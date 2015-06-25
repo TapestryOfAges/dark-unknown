@@ -248,4 +248,5 @@ print $out "<b>stealfood</b>: Announces that it has stolen some food. Since food
 print $out "<b>breedsexplosively</b>: Each turn there is a chance that it spawns a new one... but only if it or the gremlin it spawned from has stolen food.<br />\n";
 print $out "<b>dies</b>: The creature is an illusion, and is dispelled if it takes damage.<br />\n";
 print $out "<b>quick</b>: Has the Quickness spell applied to it.<br />\n";
-
+print $out "<b>undead</b>: The creature is undead. Immune to poison.<br />\n";
+print $out "<b>construct</b>: The creature is a mindless construct. Cannot be Jinxed or Charmed.<br />\n";
