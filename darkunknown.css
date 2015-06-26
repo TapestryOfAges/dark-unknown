@@ -135,3 +135,10 @@ table.spells td.spelllevel { width : 160;
 span.selected { font-weight: bold; 
                 color: red; }
 
+
+p.charcreate { color:white;
+                font-family:"Commodore64";
+   	            font-size:16pt;
+   	            margin-top:-8px;
+   	            line-height:20px;
+}
