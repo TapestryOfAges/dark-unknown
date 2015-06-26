@@ -21,6 +21,12 @@ preload([
   "graphics/title/and.gif",
 ]);
 
+var optnames = [];
+optnames[0] = "graphics/title/intro";
+optnames[1] = "graphics/title/create";
+optnames[2] = "graphics/title/journey";
+optnames[3] = "graphics/title/credits";
+
 var mappages = new Pages();
 var localFactory = new tileFactory();
 var eidos = new Platonic();
@@ -30,7 +36,8 @@ DU.gameflags = {};
 DU.gameflags.music = 1;
 DU.gameflags.sound = 1;
 var nowplaying;
-
+var gamestate = "null";
+var optselect = 0;
 
 $(document).ready(function() {
   audio_init();  
@@ -72,7 +79,7 @@ $(document).ready(function() {
 });
 
 function SecondPage() {
-  var dusong = DUPlaySound("Dark Unknown");
+//  var dusong = DUPlaySound("Dark Unknown");
   
   var browserheight = $(window).height();
   var browserwidth = $(window).width();
@@ -85,17 +92,18 @@ function SecondPage() {
   $("#maindiv").html(spage);
   $("#DU").fadeIn(1000, function() {
     
-    spage = "<div id='intro' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img src='graphics/title/intro.gif' onClick='makeChoice(\'intro\')' /></div>";
+    spage = "<div id='intro' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt0' src='graphics/title/intro-g.gif' onClick='makeChoice(\'intro\')' /></div>";
     opttop += 60;
-    spage += "<div id='create' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img src='graphics/title/create.gif' onClick='makeChoice(\'create\')' /></div>";
+    spage += "<div id='create' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt1' src='graphics/title/create.gif' onClick='makeChoice(\'create\')' /></div>";
     opttop += 60;
     var journey = "journey.gif";
     if (!localStorage.savegame) {
       journey = "journey-d.gif";
+      optnames[2] = "graphics/title/journey-d";
     }
-    spage += "<div id='journey' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img src='graphics/title/" + journey + "' onClick='makeChoice(\'journey\')' /></div>";
+    spage += "<div id='journey' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt2' src='graphics/title/" + journey + "' onClick='makeChoice(\'journey\')' /></div>";
     opttop += 60;
-    spage += "<div id='credits' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img src='graphics/title/credits.gif' onClick='makeChoice(\'credits\')' /></div>";
+    spage += "<div id='credits' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt3' src='graphics/title/credits.gif' onClick='makeChoice(\'credits\')' /></div>";
     $("#options").html(spage);
     $("#intro").fadeIn(1000);
     $("#create").fadeIn(1000);
@@ -105,5 +113,73 @@ function SecondPage() {
 }
 
 function pagelive() {
+  gamestate = "on";
   
+  $(document).keydown(function(e) {
+    var code = (e.keyCode ? e.keyCode : e.which);
+    e.preventDefault();
+    if (gamestate === "on") {
+      DoAction(code);
+    }
+  });
+
+}
+
+
+function DoAction(code) {
+  if (gamestate === "on") {
+    if ((code === 38) || (code === 219)) {
+      if (optselect > 0) {
+        var img = "opt" + optselect;
+        $("#"+img).attr("src", optnames[optselect] + ".gif");
+        optselect--;
+        img = "opt" + optselect;
+        if ((optselect !== 2) || (localStorage.savegame)) {
+          $("#"+img).attr("src", optnames[optselect] + "-g.gif");
+        } else {
+          optselect--;
+          img = "opt" + optselect;
+          $("#"+img).attr("src", optnames[optselect] + "-g.gif");
+        }
+      }
+    }
+    else if ((code === 40) || (code === 191)) {
+      if (optselect < 3) {
+        var img = "opt" + optselect;
+        $("#"+img).attr("src", optnames[optselect] + ".gif");
+        optselect++;
+        img = "opt" + optselect;
+        if ((optselect !== 2) || (localStorage.savegame)) {
+          $("#"+img).attr("src", optnames[optselect] + "-g.gif");
+        } else {
+          optselect++;
+          img = "opt" + optselect;
+          $("#"+img).attr("src", optnames[optselect] + "-g.gif");
+        }
+      }
+    }
+    else if ((code === 32) || (code === 13)) {
+      if (optselect === 0) {
+        alert("intro");
+      }
+      else if (optselect === 1) {
+        CharCreate();
+      }
+      else if (optselect === 2) {
+        // load game.html
+      }
+      else if (optselect === 3) {
+        alert("credits");
+      }
+    }
+  }
+  else if (gamestate === "name") {
+    
+  }
+}
+
+function CharCreate() {
+  var charprompt = "<div style='position:absolute;left:100px;top:100px'><p class='charcreate' id='charprompt'>Enter character name: _</p></div>";
+  $("#maindiv").html(charprompt);
+  gamestate = "name";
 }
