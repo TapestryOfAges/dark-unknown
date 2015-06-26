@@ -38,6 +38,7 @@ DU.gameflags.sound = 1;
 var nowplaying;
 var gamestate = "null";
 var optselect = 0;
+var charname = "";
 
 $(document).ready(function() {
   audio_init();  
@@ -174,7 +175,21 @@ function DoAction(code) {
     }
   }
   else if (gamestate === "name") {
-    
+    if (((code >= 65) && (code <= 90)) || (code === 32)) {
+      if (charname.length < 15) {
+        var letter = String.fromCharCode(code);  
+        charname += letter;
+        var chartxt = "Enter character name: <span style='color:gold'>" + charname + "</span>";
+        if (charname.length < 15) { chartxt += "_"; }
+        $("#charprompt").html(chartxt);
+      }
+    } else if (code === 8) {  // backspace
+      if (charname.length) {
+        charname = charname.substr(0,charname.length-1);
+        var chartxt = "Enter character name: <span style='color:gold'>" + charname + "</span>_";
+        $("#charprompt").html(chartxt);
+      }
+    }
   }
 }
 
