@@ -66,7 +66,7 @@ function Attack(atk, def) {
       var localnpcs = def.getHomeMap().npcs.getAll();
       $.each(localnpcs, function(idx, val) {
         if (val.getAttitude() === "friendly") {
-          val.setAttitude("enemy");
+          val.setAttitude("hostile");
           if (debug) { dbs.writeln(val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />"); }
         }
       });
