@@ -81,7 +81,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     
   }
   if (triggers.hasOwnProperty("end_convo")) {
-    if (triggers.end_convo !== 1) {
+    if ((triggers.end_convo !== 1) && (triggers.end_convo !== "1")) {
       this.say(speaker, triggers.end_convo);
     }
     keep_talking = 0;
