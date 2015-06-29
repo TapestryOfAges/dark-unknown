@@ -704,6 +704,15 @@ function PerformSpellbook(code) {
       spelltxt += " (Infused)";
     }
     var manacost = magic[lvl][GetSpellID(spellnum)].getManaCost(PC.getInfusion());
+    if (lvl > PC.getLevel()) {
+      spelltxt += "...";
+      maintext.addText(spelltxt);
+      maintext.addText("That spell's power is beyond you.");
+      var retval = {};
+      retval["fin"] = 2;
+      retval["input"] = "&gt;";
+      return retval;
+    }      
     if (PC.getMana() >= manacost) {
       spelltxt += "!";
       maintext.addText(spelltxt);
