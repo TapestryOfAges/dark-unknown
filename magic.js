@@ -356,6 +356,8 @@ function PerformVulnerability(caster, infused, free, tgt) {
   var resp = {};
   resp["fin"] = 1;
   var desc = "";
+  
+  tgt = CheckMirrorWard(tgt, caster);
     
   var chance = 1-(tgt.getResist("magic")/100);
   if (Math.random()*1 < chance) {
@@ -366,6 +368,8 @@ function PerformVulnerability(caster, infused, free, tgt) {
     ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, -128);
     if (tgt !== PC) {
       desc = tgt.getDesc() + " is vulnerable!";
+    } else {
+      desc = "You are vulnerable!";
     }
     vulobj.setExpiresTime(dur + DUTime.getGameClock());
     var power = 4;
@@ -485,7 +489,7 @@ magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
       returndest.y = castermap.getReturny();
     }
   }
-  //WORK HERE  
+  //WORK HERE  - done I think? aside from sound
   if (returndest.map) {
     var destmap = DU.maps.getMap(returndest.map);
     var localacre = castermap.getTile(caster.getx(), caster.gety());
@@ -878,4 +882,25 @@ function PerformSpellcast() {
     
   }
   return resp;
+}
+
+function CheckMirrorWard(tgt, caster) {
+  var mirror = tgt.getSpellEffectsByName("MirrorWard");
+  
+  
+  var localnpcs = tgt.getHomeMap().npcs.getAll();
+  var newtgt = [];
+  $.each(localnpcs, function(idx, val) {
+    if (val !== tgt) {
+      if (GetDistance(val.getx(), val.gety(), tgt.getx(), tgt.gety()) < 5.5) {
+        newtgt.push(val);
+      }
+    }
+  });
+  
+  if (newtgt.length) {
+    
+  }
+  
+  return tgt;
 }
