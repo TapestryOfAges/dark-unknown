@@ -39,17 +39,19 @@ DUListener.prototype.sendEvent = function(ev) {
     return;
   }
   $.each(allears, function(idx, val) {
-    if (val.listenforname === ev.name) {
-      var flagsmatch = 1;
-      $.each(val.flagsreq, function(idx2, val2) {
-        if (ev.idx2 && (ev.idx2 === val2)) {
-          if (debug) { dbs.writeln("<span style='color:magenta'>Flag " + idx2 + " matched - values " + val2 + ".<br /></span>"); }
-        } else {
-          flagsmatch = 0;
+    if (val.linkedtomap === ev.source.getHomeMap().getName()) {
+      if (val.listenforname === ev.name) {
+        var flagsmatch = 1;
+        $.each(val.flagsreq, function(idx2, val2) {
+          if (ev.idx2 && (ev.idx2 === val2)) {
+            if (debug) { dbs.writeln("<span style='color:magenta'>Flag " + idx2 + " matched - values " + val2 + ".<br /></span>"); }
+          } else {
+            flagsmatch = 0;
+          }
+        });
+        if (flagsmatch) {
+          this.callfunc(ev);
         }
-      });
-      if (flagsmatch) {
-        this.callfunc(ev);
       }
     }
   });
