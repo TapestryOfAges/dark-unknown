@@ -181,6 +181,7 @@ Timeline.prototype.cleanTimeline = function() {
   var prevtick = this.tickstream;  
   var first = 0;
   while (checktick.getNextTick()) {
+    first = 0;
     var entity = checktick.getEvent().getEntity();
     var mapname = entity.getHomeMap().getName();
     if (!maps.getMap(mapname)) {  // lives on a map that has been removed
