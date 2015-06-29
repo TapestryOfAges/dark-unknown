@@ -60,6 +60,17 @@ function Attack(atk, def) {
   
   if (atk.checkType("pc")) {
     retval["txt"] = "Attack " + def.getDesc();
+    if (def.getAttitude() === "friendly") {
+      // Make it and its friends hostile. 
+      if (debug) { dbs.writeln("Attacked a friendly! Turning hostile...<br />"); }
+      var localnpcs = def.getHomeMap().npcs.getAll();
+      $.each(localnpcs, function(idx, val) {
+        if (val.getAttitude() === "friendly") {
+          val.setAttitude("enemy");
+          if (debug) { dbs.writeln(val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />"); }
+        }
+      });
+    }
   } else {
     retval["txt"] =  atk.getDesc() + " attacks " + def.getDesc();
     retval["txt"] = retval["txt"].charAt(0).toUpperCase() + retval["txt"].slice(1);
