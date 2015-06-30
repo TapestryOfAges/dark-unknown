@@ -462,6 +462,18 @@ magic[4][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   return resp;
 }
 
+//Mirror Ward
+magic[5][GetSpellID(1)].executeSpell = function(caster, infused, free) {
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+
+  // WORKING HERE
+}
 //Return
 magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   var resp = {};

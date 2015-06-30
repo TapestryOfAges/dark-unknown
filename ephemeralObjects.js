@@ -357,6 +357,68 @@ LightTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
+function MirrorWardTile() {
+  this.addType("buff");
+  this.name = "MirrorWard";
+  this.display = "<span style='color:#EEEEEE'>W</span>";
+  this.zstatdesc = "You are protected by a mirror ward.";
+  this.desc = "Mirror Ward";
+  this.level = 5;
+}
+MirrorWardTile.prototype = new EphemeralObject();
+
+MirrorWardTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if (who) {
+    if ((who === PC) && !silent) {
+      maintext.addText("Ethereal mirrors surround and protect you.");
+    }
+  }
+  return 1;
+}
+
+MirrorWardTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+MirrorWardTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("The mirror ward fades.");
+  }
+  DrawCharFrame();
+}
+
+MirrorWardTile.prototype.findNewTarget = function(caster) {
+  var curtarget = this.getAttachedTo();
+  
+  var localnpcs = curtarget.getHomeMap().npcs.getAll();
+  var newtgt = [];
+  var displayspecs = getDisplayCenter(curtarget.getHomeMap(),caster.getx(),caster.gety());
+  var pcdisplay = getDisplayCenter(curtarget.getHomeMap(),PC.getx(),PC.gety()); // just in case
+  
+  $.each(localnpcs, function(idx, val) {
+    if (val !== curtarget) {
+      if (GetDistance(val.getx(), val.gety(), tgt.getx(), tgt.gety()) < 8.5) {
+        // check for on screen from caster
+        if ((displayspecs.leftedge <= val.getx()) && (val.getx() <= displayspecs.rightedge) && (displayspecs.topedge <= val.gety()) && (val.gety() <= displayspecs.bottomedge)) {
+          // check for LoE from curtarget WORKING HERE
+          newtgt.push(val);
+        }
+      }
+    }
+  });
+  
+  if (newtgt.length) {
+    
+  }
+  
+  
+}
+
 function NegateMagicTile() {
   this.addType("buff");
   this.name = "NegateMagic";
