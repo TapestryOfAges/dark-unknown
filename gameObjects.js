@@ -6938,7 +6938,7 @@ NPCObject.prototype.processDeath = function(droploot){
 }
 
 NPCObject.prototype.setGender = function(newgender) {
-  if ((newgender === "male") || (newgender === "female") || (newgender === "neuter")) { this.gender = newgender; }
+  if ((newgender === "male") || (newgender === "female") || (newgender === "other") || (newgender === "neuter")) { this.gender = newgender; }
   else { alert ("setGender send invalid data"); }
   return this.gender; 
 }
