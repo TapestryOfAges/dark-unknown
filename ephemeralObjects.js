@@ -422,7 +422,7 @@ MirrorWardTile.prototype.findNewTarget = function(caster) {
   }
   
   if (curtarget === PC) {
-    maintext.addText("The mirror ward flashes!");
+    maintext.addText("Your mirror ward flashes!");
   }
   
   this.endEffect(1); // end silently
