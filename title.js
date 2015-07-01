@@ -240,7 +240,7 @@ function DoAction(code, e) {
       gender = "female";
       ChooseGraphic();
     } else if (code === 79) {
-      gender = "neuter";
+      gender = "other";
       ChooseGraphic();
     } else if (code === 77) {
       gender = "male";
@@ -290,7 +290,7 @@ function ChooseGraphic() {
   var chartxt = "<div style='position:absolute;left:100px;top:100px'><p class='charcreate'><span style='color:gold'>" + charname + "</span><br /><span style='color:white'>";
   if (gender === "male") { chartxt += "Male"; }
   if (gender === "female") { chartxt += "Female"; }
-  if (gender === "neuter") { chartxt += "Other"; }
+  if (gender === "other") { chartxt += "Other"; }
   chartxt += "</span></p><p class='charcreate'>Choose your avatar:</p>";
   
   chartxt += "<table cellpadding='2' cellspacing='10' cellborder='0'>";
