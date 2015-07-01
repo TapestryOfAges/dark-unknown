@@ -415,10 +415,19 @@ MirrorWardTile.prototype.findNewTarget = function(caster) {
     }
   });
   
+  var reflectto;
   if (newtgt.length) {
-    
+    var roll = Math.floor(Math.random()*(newtgt.length-1));
+    reflectto = newtgt[roll];
   }
   
+  if (curtarget === PC) {
+    maintext.addText("The mirror ward flashes!");
+  }
+  
+  this.endEffect(1); // end silently
+  
+  return reflectto;
   
 }
 

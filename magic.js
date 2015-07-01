@@ -348,14 +348,21 @@ magic[1][GetSpellID(6)].executeSpell = function(caster, infused, free, tgt) {
 }
   
 function PerformVulnerability(caster, infused, free, tgt) {
+  var resp = {};
+  resp["fin"] = 1;
+  var desc = "";
+
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) <= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "Your spell cannot reach that target!";
+    return resp;
+  }
+  
   if (!free) {
     var mana = magic[1][GetSpellID(6)].getManaCost(infused);
     caster.modMana(-1*mana);
     if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
-  var resp = {};
-  resp["fin"] = 1;
-  var desc = "";
   
   tgt = CheckMirrorWard(tgt, caster);
     
