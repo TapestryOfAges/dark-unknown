@@ -6965,10 +6965,18 @@ NPCObject.prototype.getGenderedTerms = function() {
     gt.formal = "Princess";
     gt.sibling = "sister";
     gt.kiddie = "daughter";
-  } else {
+  } else if (this.gender === "other") {
     gt.pronoun = "they";
     gt.possessive = "theirs";
     gt.objective = "their";
+    gt.titled = "Lord";
+    gt.formal = "Heir";
+    gt.sibling = "sibling";
+    gt.kiddie = "child";    
+  } else {
+    gt.pronoun = "it";
+    gt.possessive = "its";
+    gt.objective = "it";
     gt.titled = "Lord";
     gt.formal = "Heir";
     gt.sibling = "sibling";
