@@ -415,15 +415,19 @@ MirrorWardTile.prototype.findNewTarget = function(caster) {
     }
   });
   
-  var reflectto;
+  var reflectto = curtarget;
   if (newtgt.length) {
     var roll = Math.floor(Math.random()*(newtgt.length-1));
     reflectto = newtgt[roll];
+    
+    if (curtarget === PC) {
+      maintext.addText("Your mirror ward flashes!");
+    }
+    if ((caster === PC) || (caster.getAttitude === "friendly")) {
+      maintext.addText("The " + curtarget.getDesc() + " is protected by a mirror ward!";
+    }
   }
   
-  if (curtarget === PC) {
-    maintext.addText("Your mirror ward flashes!");
-  }
   
   this.endEffect(1); // end silently
   
