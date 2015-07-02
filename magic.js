@@ -364,8 +364,14 @@ function PerformVulnerability(caster, infused, free, tgt) {
     if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   
-  tgt = CheckMirrorWard(tgt, caster);
+  var newtgt = CheckMirrorWard(tgt, caster);
+  while (newtgt !== tgt) {
+    tgt = newtgt;
+    newtgt = CheckMirrorWard(tgt, caster);
+  }
     
+  tgt = newtgt;
+  
   var chance = 1-(tgt.getResist("magic")/100);
   if (Math.random()*1 < chance) {
     var vulobj = localFactory.createTile("Vulnerability");
@@ -398,6 +404,67 @@ function PerformVulnerability(caster, infused, free, tgt) {
   resp["txt"] = desc;
   resp["input"] = "&gt;";
   return resp;
+}
+
+// Illusion
+magic[2][GetSpellID(1)].executeSpell = function(caster, infused, free, tgt) {
+  if (caster !== PC) {
+    var resp = PerformIllusion(caster, infused, free, tgt);
+    return resp;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Illusion.<br /></span>"); }
+  var resp = {};
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Illusion";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free};
+  targetCursor.targetlimit = 3;
+  targetCursor.targetCenterlimit = 0;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose where to conjure- ";
+  resp["fin"] = 0;
+  gamestate.setMode("target");
+  return resp;
+}
+
+function PerformIllusion(caster, infused, free, tgt) {
+  var resp = {};
+  resp["fin"] = 1;
+  var desc = "";
+
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) <= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "You cannot place your illusion there.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+  
+  if (!free) {
+    var mana = magic[2][GetSpellID(1)].getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+
+  var illusion;
+  if (infused) {
+    illusion = localFactory.createTile("InfusedIllusionNPC");
+  } else {
+    illusion = localFactory.createTile("IllusionNPC");
+  }
+  
+  caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
+  
+  resp["txt"] = "You conjure an illusion to aid you in battle.";
+  resp["input"] = "&gt;";
+  return resp;
+
 }
 
 // Levitate/Waterwalk
@@ -899,6 +966,12 @@ function PerformSpellcast() {
       
     }
     
+  } else if (targetCursor.spellName === "Illusion") {
+    delete targetCursor.spellName;
+    var tgt = {};
+    tgt.x = targetCursor.x;
+    tgt.y = targetCursor.y;
+    resp = PerformIllusion(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
   }
   return resp;
 }
@@ -906,19 +979,8 @@ function PerformSpellcast() {
 function CheckMirrorWard(tgt, caster) {
   var mirror = tgt.getSpellEffectsByName("MirrorWard");
   
-  
-  var localnpcs = tgt.getHomeMap().npcs.getAll();
-  var newtgt = [];
-  $.each(localnpcs, function(idx, val) {
-    if (val !== tgt) {
-      if (GetDistance(val.getx(), val.gety(), tgt.getx(), tgt.gety()) < 5.5) {
-        newtgt.push(val);
-      }
-    }
-  });
-  
-  if (newtgt.length) {
-    
+  if (mirror) {
+    tgt = mirror.findNewTarget(caster);
   }
   
   return tgt;

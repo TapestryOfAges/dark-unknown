@@ -498,12 +498,14 @@ function PerformTarget(code)  {
 	else if ((code === 32) || (code === 13) || (code === 65) || (code === 76) || (code === 84)) { // SPACE or ENTER or A, L, or T, since those commands use targeting
 		gamestate.setMode("null");
 		retval["fin"] = 2;
+		delete targetCursor.targetlimit;
 	}
 	else if (code === 27) { // ESC
 		gamestate.setMode("null");
 		retval["fin"] = 0;
 		retval["txt"] = "";
 		retval["input"] = "&gt;";
+		delete targetCursor.targetlimit;
 	}
 	
 	return retval;
