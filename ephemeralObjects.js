@@ -424,7 +424,7 @@ MirrorWardTile.prototype.findNewTarget = function(caster) {
       maintext.addText("Your mirror ward flashes!");
     }
     if ((caster === PC) || (caster.getAttitude === "friendly")) {
-      maintext.addText("The " + curtarget.getDesc() + " is protected by a mirror ward!";
+      maintext.addText("The " + curtarget.getDesc() + " is protected by a mirror ward!");
     }
   }
   

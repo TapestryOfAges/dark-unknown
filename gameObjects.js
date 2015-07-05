@@ -6441,82 +6441,14 @@ MissileWeaponObject.prototype.setRange = function(newrange) {
 }
 
 MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
-  var ammo = {};
-  ammo.graphic = this.ammographic;
-  ammo.yoffset = this.ammoyoffset;
-//  if (this.directionalammo) {
-    var diffx = def.getx() - atk.getx();
-    var diffy = def.gety() - atk.gety();
-    if ((diffx === 0) && (diffy < 0)) {
-      ammo.xoffset = 0;
-      ammo.fired = 0;
-    } else if ((diffx === 0) && (diffy > 0)) {
-      ammo.xoffset = -4*32;
-      ammo.fired = 4;
-    } else {
-      if ((diffy === 0) && (diffx > 0)) {
-        ammo.xoffset = -2*32; 
-        ammo.fired = 2;
-      } else if ((diffy === 0) && (diffx < 0)) {
-        ammo.xoffset = -6*32;
-        ammo.fired = 6;
-      }
-      else { 
-        var horflip = 0;
-        var verflip = 1;
-        if (diffy < 0) { 
-          diffy = Math.abs(diffy); 
-          verflip = 0;
-        }
-        if (diffx < 0) {
-          diffx = Math.abs(diffx);
-          horflip = 1;
-        }
-        slope = diffy/diffx;
-        if ((slope > 2.42) && (verflip === 0)) {
-          ammo.xoffset = 0;
-          ammo.fired = 0;
-        }
-        else if ((slope > 2.42) && (verflip === 1)) {
-          ammo.xoffset = -4*32;
-          ammo.fired = 4;
-        }
-        else if ((slope < .414) && (horflip === 0)) {
-          ammo.xoffset = -2*32;
-          ammo.fired = 2;
-        }
-        else if ((slope < .414) && (horflip === 1)) {
-          ammo.xoffset = -6*32;
-          ammo.fired = 6;
-        }
-        else if ((verflip === 0) && (horflip === 0)) {
-          ammo.xoffset = -32;
-          ammo.fired = 1;
-        }
-        else if ((verflip === 1) && (horflip === 0)) {
-          ammo.xoffset = -3*32;
-          ammo.fired = 3;
-        }
-        else if ((verflip === 1) && (horflip === 1)) {
-          ammo.xoffset = -5*32;
-          ammo.fired = 5;
-        }
-        else if ((verflip === 0) && (horflip === 1)) {
-          ammo.xoffset = -7*32;
-          ammo.fired = 7;
-        }
-        else { alert("Error in ammo direction finding."); }
-      }
-    }
-//  } else {
-//    ammo.xoffset = this.ammoxoffset;
-//    ammo.yoffset = this.ammoyoffset;
-//  }
-    if (this.directionalammo === 0) {
-      ammo.xoffset = this.ammoxoffset;
-    }
-  return ammo;
-}
+  var params = {};
+  params.graphic = this.ammographic;
+  params.yoffset = this.ammoyoffset;
+  params.xoffset = this.ammoxoffset;
+  params.directionalammo = this.directionalammo;
+  return GetEffectGraphic(atk,def,params);
+  
+}  
 
 MissileWeaponObject.prototype.getAmmoReturn = function() {
   return this.ammoReturn;
@@ -7495,7 +7427,7 @@ NPCObject.prototype.myTurn = function() {
 
     dbs.writeln("<span style='color:green;font-weight:orange'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone.</span><br />");
   
-    return;
+    return 1;
   }
 
 	gamestate.setMode("NPC");
@@ -7521,7 +7453,10 @@ NPCObject.prototype.myTurn = function() {
 	    response["initdelay"] = 1;
 	  }
 	}
-	
+  if (response.wait) {
+    // something the NPC did has started an animation that will handing restarting the scheduler.
+    return 0;
+  }	
   // check for NPC idling
   var oldloc = this.getLastLocation();
   if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // npc did not move
@@ -7543,7 +7478,36 @@ NPCObject.prototype.myTurn = function() {
   
 //  var nextEntity = DUTime.executeNextEvent().getEntity();
 //  nextEntity.myTurn();
+
   return 1;
+}
+
+NPCObject.prototype.endTurn = function(init) {
+  gamestate.setMode("null");
+  
+  // did this entity idle?
+  var oldloc = this.getLastLocation();
+  var idleval;
+  if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // player did not move
+    var tile = this.getHomeMap().getTile(this.getx(),this.gety());
+    idleval = tile.executeIdles(this);
+  } else {
+    var newloc = {};
+    newloc.map = this.getHomeMap().getName();
+    newloc.x = this.getx();
+    newloc.y = this.gety();
+    this.setLastLocation(newloc);
+  }
+  
+  if (idleval && (this === PC)) { maintext.addText(idleval); }
+  this.setLastTurnTime(DUTime.getGameClock());
+  
+  var myevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(myevent,this.nextActionTime(init));
+
+//  var nextEntity = DUTime.executeNextEvent().getEntity();
+//  nextEntity.myTurn();
+  startScheduler();
 }
 
 NPCObject.prototype.addToInventory = function(item, thinAir, qty) {
@@ -7952,33 +7916,6 @@ PCObject.prototype.myTurn = function() {
 	}
 }
 
-PCObject.prototype.endTurn = function(init) {
-  gamestate.setMode("null");
-  
-  // did the player idle?
-  var oldloc = this.getLastLocation();
-  var idleval;
-  if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // player did not move
-    var tile = this.getHomeMap().getTile(this.getx(),this.gety());
-    idleval = tile.executeIdles(this);
-  } else {
-    var newloc = {};
-    newloc.map = this.getHomeMap().getName();
-    newloc.x = this.getx();
-    newloc.y = this.gety();
-    this.setLastLocation(newloc);
-  }
-  
-  if (idleval) { maintext.addText(idleval); }
-  this.setLastTurnTime(DUTime.getGameClock());
-  
-  var PCevent = new GameEvent(PC);
-  DUTime.addAtTimeInterval(PCevent,PC.nextActionTime(init));
-
-//  var nextEntity = DUTime.executeNextEvent().getEntity();
-//  nextEntity.myTurn();
-  startScheduler();
-}
 
 PCObject.prototype.getPCName = function() {
 	return this.pcname;
