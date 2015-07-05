@@ -34,28 +34,84 @@ function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
 //  var edges = getDisplayCenter(mapref,newx,newy);
   var edges = getDisplayCenter(mapref,centerfromx,centerfromy);
   var coords = {};
-//  coords.x = 192 + (newx - edges.centerx) * 32;
-//  coords.y = 192 + (newy - edges.centery) * 32;
-  coords.x = 0 + (newx - edges.centerx) * 32;
-  coords.y = 0 + (newy - edges.centery) * 32;
+  coords.x = 192 + (newx - edges.centerx) * 32;
+  coords.y = 192 + (newy - edges.centery) * 32;
+//  coords.x = 0 + (newx - edges.centerx) * 32;
+//  coords.y = 0 + (newy - edges.centery) * 32;
 
   return coords;
 }
 
-function animateEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset,destsound) {
-  var fromcoords = getCoords(mapref, fromx, fromy);
-  var tocoords = getCoords(mapref,tox,toy);
+//function animateEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset,destsound) {
+//  var fromcoords = getCoords(mapref, fromx, fromy);
+//  var tocoords = getCoords(mapref,tox,toy);
   
-  var tablehtml = '<table id="animtable" style="z-index:40; position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + '><tr><td style="background-image:url(\'graphics/' + graphic + '\',background-repeat:no-repeat; background-position: ' + xoffset + 'px ' + yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32"></td></tr></table>';
-  tilecursor.tileid = "#td-tile" + displayspecs.leftedge + "x" + displayspecs.topedge;
-  tilecursor.basetile = $(tilecursor.tileid).html(); 
-  $(tilecursor.tileid).html($tilecursor.tileid.html() + tablehtml);
-  var duration = Math.pow( Math.pow(tox - fromx, 2) + Math.pow (toy - fromy, 2)  , .5);
-  $("#animtable").animate({ left: tocoords.x , top: tocoords.y } , duration, function() {
+//  var tablehtml = '<table id="animtable" style="z-index:40; position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + '><tr><td style="background-image:url(\'graphics/' + graphic + '\',background-repeat:no-repeat; background-position: ' + xoffset + 'px ' + yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32"></td></tr></table>';
+//  tilecursor.tileid = "#td-tile" + displayspecs.leftedge + "x" + displayspecs.topedge;
+//  tilecursor.basetile = $(tilecursor.tileid).html(); 
+//  $(tilecursor.tileid).html($tilecursor.tileid.html() + tablehtml);
+//  var duration = Math.pow( Math.pow(tox - fromx, 2) + Math.pow (toy - fromy, 2)  , .5);
+//  $("#animtable").animate({ left: tocoords.x , top: tocoords.y } , duration, function() {
 
-    });
+//    });
 
 
+//}
+
+
+function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, type, duration, dmg, endturn, retval) {
+// atk - source/attacker
+// def - target/defender, if any
+// fromcoords, tocoords - object with .x and .y
+// ammographic - object with .graphic, .xoffset, .yoffset, .fired (-1 if not a missile attack, directionalammo otherwise)
+// destgraphic - hit/miss/whatever graphic, object with graphic, xoffset, yoffset, overlay
+// type - "missile", "melee", "spell"
+// duration - time for animation 
+// dmg - damage dealt by whatever generates this effect
+// endturn - 1 if this ends atk's turn
+// retval - retval from calling function
+
+  var ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
+
+  var tablehtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+
+  $("#combateffects").html(tablehtml);
+  
+  $("#animtable").animate({ left: ammocoords.tox , top: ammocoords.toy } , duration, 'linear', function() {
+
+    $("#combateffects").html("");
+    var hitanimhtml = '<div id="hitdiv" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:40; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphix.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
+
+    $("#combateffects").html(hitanimhtml);
+    setTimeout(function() {
+      $("#combateffects").html("");
+      if ((type !== "missile") || (!weapon.getAmmoReturn())) {
+        duration = 50;
+        ammographic.graphic = "spacer.gif";
+        ammographic.xoffset = 0;
+        ammographic.yoffset = 0;
+      }
+      returnhtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
+      $("#combateffects").html(returnhtml);
+      $("#animtable").animate({ left: ammocoords.fromx , top: ammocoords.fromy } , duration, 'linear', function() {
+        if (dmg != 0) {
+          var stillalive = def.dealDamage(dmg, atk);    
+          if (stillalive) {
+            var damagedesc = GetDamageDescriptor(def); 
+            retval["txt"] += ": " + damagedesc + "!"; 
+          }
+          else { retval["txt"] += ": Killed!"; }
+        } 
+        maintext.addText(retval["txt"]);
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        
+        atk.endTurn(retval["initdelay"]);
+
+      });
+
+    }, 400);
+  });
 }
 
 function getDisplayCell(mapname, centerx, centery, x, y) {
@@ -846,4 +902,77 @@ function FadeIn(duration) {
     $("#spelleffects").html("");
   });
   
+}
+
+function GetEffectGraphic(start, dest, params) {
+  var ammo = {};
+  ammo.graphic = params.graphic;
+  ammo.yoffset = params.yoffset;
+  var diffx = dest.getx() - start.getx();
+  var diffy = dest.gety() - start.gety();
+  if ((diffx === 0) && (diffy < 0)) {
+    ammo.xoffset = 0;
+    ammo.fired = 0;
+  } else if ((diffx === 0) && (diffy > 0)) {
+    ammo.xoffset = -4*32;
+    ammo.fired = 4;
+  } else {
+    if ((diffy === 0) && (diffx > 0)) {
+      ammo.xoffset = -2*32; 
+      ammo.fired = 2;
+    } else if ((diffy === 0) && (diffx < 0)) {
+      ammo.xoffset = -6*32;
+      ammo.fired = 6;
+    }
+    else { 
+      var horflip = 0;
+      var verflip = 1;
+      if (diffy < 0) { 
+        diffy = Math.abs(diffy); 
+        verflip = 0;
+      }
+      if (diffx < 0) {
+        diffx = Math.abs(diffx);
+        horflip = 1;
+      }
+      slope = diffy/diffx;
+      if ((slope > 2.42) && (verflip === 0)) {
+        ammo.xoffset = 0;
+        ammo.fired = 0;
+      }
+      else if ((slope > 2.42) && (verflip === 1)) {
+        ammo.xoffset = -4*32;
+        ammo.fired = 4;
+      }
+      else if ((slope < .414) && (horflip === 0)) {
+        ammo.xoffset = -2*32;
+        ammo.fired = 2;
+      }
+      else if ((slope < .414) && (horflip === 1)) {
+        ammo.xoffset = -6*32;
+        ammo.fired = 6;
+      }
+      else if ((verflip === 0) && (horflip === 0)) {
+        ammo.xoffset = -32;
+        ammo.fired = 1;
+      }
+      else if ((verflip === 1) && (horflip === 0)) {
+        ammo.xoffset = -3*32;
+        ammo.fired = 3;
+      }
+      else if ((verflip === 1) && (horflip === 1)) {
+        ammo.xoffset = -5*32;
+        ammo.fired = 5;
+      }
+      else if ((verflip === 0) && (horflip === 1)) {
+        ammo.xoffset = -7*32;
+        ammo.fired = 7;
+      }
+      else { alert("Error in ammo direction finding."); }
+    }
+  }
+  if (!params.directionalammo) {
+    ammo.xoffset = params.xoffset;
+  }
+  return ammo;
 }

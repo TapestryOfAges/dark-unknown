@@ -117,8 +117,8 @@ function DrawMainFrame(how, mapname, centerx, centery) {
     $.each(spellcount, function(idx, val) {
       if ((val.getx() >= displayspecs.leftedge) && (val.getx() <= displayspecs.rightedge) && (val.gety() >= displayspecs.topedge) && (val.gety() <= displayspecs.bottomedge)) {
         var where = getCoords(val.getHomeMap(),val.getx(), val.gety());
-        where.x += 192;
-        where.y += 192;
+//        where.x += 192;
+//        where.y += 192;
         $("#" + idx).css("left", where.x);
         $("#" + idx).css("top", where.y);
       }
@@ -502,16 +502,19 @@ function DoAction(code) {
       if (response["fin"] === 1) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
+        maintext.addText(response["txt"]);
         PC.endTurn();
       } else if (response["fin"] === 2) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
+        maintext.addText(response["txt"]);
         gamestate.setMode("player");
         gamestate.setTurn(PC);
       } else if (response["fin"] === 3) {
         // waiting for an animation to finish, animation will handle ending turn
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
+        maintext.addText(response["txt"]);
         gamestate.setMode("null");
       }
     }

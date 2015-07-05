@@ -132,8 +132,7 @@ table.spells td.spelllevel { width : 160;
                 font-weight: bold;
                  }
 
-span.selected { font-weight: bold; 
-                color: red; }
+span.selected { color: red; }
 
 
 p.charcreate { color:white;

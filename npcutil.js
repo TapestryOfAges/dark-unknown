@@ -98,7 +98,7 @@ function Attack(atk, def) {
       if (absorb < 0) { absorb = 0; }
     }
     dmg = Math.floor(dmg * (1-absorb));
-    if (dmg == 0) { dmg = 1; }  // min dmg 1
+    if (dmg == 0) { dmg = 1; }  // min dmg 1 on a hit
 
     
   }
@@ -111,15 +111,18 @@ function Attack(atk, def) {
   var fromcoords = getCoords(atk.getHomeMap(),atk.getx(), atk.gety());
   var tocoords = getCoords(def.getHomeMap(),def.getx(), def.gety());
 
-  fromcoords.x += 192;
-  fromcoords.y += 192;
-  tocoords.x += 192;
-  tocoords.y += 192;  
+//  fromcoords.x += 192;
+//  fromcoords.y += 192;
+//  tocoords.x += 192;
+//  tocoords.y += 192;  
 
   // get graphic, xoffset, yoffset for graphic
   var ammographic = {};
   var duration = 50;
-  if (type === "missile") { ammographic = weapon.getAmmoGraphic(atk,def); }
+  if (type === "missile") { 
+    ammographic = weapon.getAmmoGraphic(atk,def); 
+    duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 100;
+  }
   else { 
     ammographic.graphic = "spacer.gif";
     ammographic.xoffset = 0;
@@ -127,6 +130,14 @@ function Attack(atk, def) {
     ammographic.fired = -1;
   }
 
+  var hitgraphic = {};
+  hitgraphic.graphic = "702.gif";
+  if (dmg === 0) { hitgraphic.graphic = "700.gif"; }
+  hitgraphic.xoffset = 0;
+  hitgraphic.yoffset = 0;
+  hitgraphic.overlay = "spacer.gif";
+  
+// --- refactoring begins here ---
   var ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
 //alert(ammocoords.fromx + ", " + ammocoords.fromy);
   
@@ -136,9 +147,6 @@ function Attack(atk, def) {
 //  targetCursor.basetile = $(targetCursor.tileid).html(); 
 //  $(targetCursor.tileid).html($(targetCursor.tileid).html() + tablehtml);
   $("#combateffects").html(tablehtml);
-  if (type === "missile") {
-    duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 100;
-  }
   
   $("#animtable").animate({ left: ammocoords.tox , top: ammocoords.toy } , duration, 'linear', function() {
 //    $(targetCursor.tileid).html(targetCursor.basetile);

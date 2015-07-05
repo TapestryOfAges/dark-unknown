@@ -352,7 +352,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
   resp["fin"] = 1;
   var desc = "";
 
-  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) <= LOS_THRESHOLD) { 
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -415,6 +415,15 @@ magic[2][GetSpellID(1)].executeSpell = function(caster, infused, free, tgt) {
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Illusion.<br /></span>"); }
   var resp = {};
   
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+  
+  // check for existing illusion if I want to limit to just 1, but for now I don't
+  
   targetCursor.x = PC.getx();
   targetCursor.y = PC.gety();
   targetCursor.command = "c";
@@ -439,7 +448,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   resp["fin"] = 1;
   var desc = "";
 
-  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) <= LOS_THRESHOLD) { 
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.x, tgt.x, losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "You cannot place your illusion there.";
     resp["input"] = "&gt;";
@@ -459,12 +468,41 @@ function PerformIllusion(caster, infused, free, tgt) {
     illusion = localFactory.createTile("IllusionNPC");
   }
   
+  illusion.expiresTime = DUTime.getGameClock() + caster.getInt();  // illusion AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
+  DrawMainFrame("one",caster.getHomeMap().getName(),illusion.getx(),illusion.gety());
   
   resp["txt"] = "You conjure an illusion to aid you in battle.";
   resp["input"] = "&gt;";
   return resp;
 
+}
+
+// Lesser Heal
+magic[2][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Lesser Heal.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+  
+  var healamt = RollDice(caster.getLevel() + "d8+" + caster.getLevel());
+  if (debug) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
+  if (infused) { healamt = healamt * 1.5; }
+  
+  if (caster === PC) {
+    tgt = caster;
+  }
+  
+  ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, 0);
+  tgt.healMe(healamt, caster);
+  resp["txt"] = "You feel better!";
+  
+  return resp;
+  
 }
 
 // Levitate/Waterwalk
@@ -798,8 +836,8 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
   spellcount["anim" + onwhat.getSerial()] = onwhat;
   if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onwhat.gety() <= displayspecs.bottomedge)) {
     where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
-    where.x += 192;
-    where.y += 192;
+//    where.x += 192;
+//    where.y += 192;
  //   animurl = "url('graphics/" + graphic + "')";
     animurl = "graphics/" + graphic ;
     if (debug) { dbs.writeln("<span style='color:green'>Putting a " + animurl + " on " + onwhat.getName() + ".<br /></span>"); }
@@ -840,8 +878,8 @@ function ShowEffectOLD(onwhat, graphic, duration) {
   spellcount["anim" + onwhat.getSerial()] = 1;
   if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onwhat.gety() <= displayspecs.bottomedge)) {
     where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
-    where.x += 192;
-    where.y += 192;
+//    where.x += 192;
+//    where.y += 192;
  //   animurl = "url('graphics/" + graphic + "')";
     animurl = "graphics/" + graphic ;
     if (debug) { dbs.writeln("<span style='color:green'>Putting a " + animurl + " on " + onwhat.getName() + ".<br /></span>"); }
@@ -885,8 +923,8 @@ function PlaySparkles(onwhat, color) {
   var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
   if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onewhat.gety() <= displayspecs.bottomedge)) {
     where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
-    where.x += 192;
-    where.y += 192;
+//    where.x += 192;
+//    where.y += 192;
     animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-image:url(\'graphics/spellsparkles.gif\');background-repeat:no-repeat; background-position: 0px ' + colory[color] + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';  
   } else {
     if (debug) { dbs.writeln("<span style='color:green'>Target is offscreen.<br /></span>"); }
@@ -919,8 +957,8 @@ function AnimateSparkles(onwhat, color, animframe) {
   var animurl = "";
   if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onewhat.gety() <= displayspecs.bottomedge)) {
     where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
-    where.x += 192;
-    where.y += 192;
+//    where.x += 192;
+//    where.y += 192;
     animurl = "url('graphics/spellsparkles.gif')";
   }
   
@@ -968,9 +1006,21 @@ function PerformSpellcast() {
     
   } else if (targetCursor.spellName === "Illusion") {
     delete targetCursor.spellName;
+    var canmove = targettile.canMoveHere(MOVE_WALK,0);
+    if (!canmove["canmove"]) {
+      resp["fin"] = 0;
+      resp["txt"] = "You cannot conjure there.";
+      resp["input"] = "&gt;";   
+      var tileid = targetCursor.tileid;
+      $(tileid).html(targetCursor.basetile); 
+
+      return resp;   
+    }
     var tgt = {};
     tgt.x = targetCursor.x;
     tgt.y = targetCursor.y;
+    var tileid = targetCursor.tileid;
+    $(tileid).html(targetCursor.basetile); 
     resp = PerformIllusion(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
   }
   return resp;

@@ -293,6 +293,7 @@ function PerformCommand(code) {
     retval["input"] = "&gt; Wear/Wield: ";
     retval["fin"] = 2;
     targetCursor.command = "w";		
+    gamestate.setMode("equip");
 		
     var statsdiv = "&nbsp;";
     statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
@@ -731,6 +732,9 @@ function PerformSpellbook(code) {
       retval["input"] = "&gt;";
       return retval;
     }
+  } else {
+    retval["fin"] = 0;
+    return retval;  
   }
 }
 
@@ -1614,6 +1618,8 @@ function PerformYell() {
 		  RunTest();
 		} else if (inputText.txt === "SOUNDCHK") {
 		  createjs.Sound.play("Mainland", {loop: -1});
+		} else if (inputText.txt === "SLINGS") {
+		  PC.addToInventory(localFactory.createTile("Sling"),1);
     } else if (inputText.txt === "TESTFADE") {
       FadeOut(2000);
     } else if (inputText.txt === "TESTTOWER") {

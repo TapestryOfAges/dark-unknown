@@ -19,6 +19,9 @@ Other images:
 Most of the graphics came from the Ultima IV graphic upgrade (whose license boils down to "feel free to use so long as you don't mind that others are too" and David Gervais' Angband tiles (from http://pousse.rapiere.free.fr/tome/, CC license with attribution), variously modified. Various other tiles were created by me from whole cloth, or came from public domain sources that I lost my notes on, for which I apologize. 
 Some tiles come from http://opengameart.org/content/dungeon-crawl-32x32-tiles .
 
+Fireball, Icicle, Lightning graphics:
+http://creativecommons.org/licenses/by/3.0/
+http://opengameart.org/content/special-effects
 
 SOUND SOURCES AND LICENSES:
 
