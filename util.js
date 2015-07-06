@@ -59,7 +59,7 @@ function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
 //}
 
 
-function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, type, duration, dmg, endturn, retval) {
+function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, type, duration, ammoreturn, dmg, endturn, retval) {
 // atk - source/attacker
 // def - target/defender, if any
 // fromcoords, tocoords - object with .x and .y
@@ -80,12 +80,12 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   $("#animtable").animate({ left: ammocoords.tox , top: ammocoords.toy } , duration, 'linear', function() {
 
     $("#combateffects").html("");
-    var hitanimhtml = '<div id="hitdiv" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:40; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphix.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
+    var hitanimhtml = '<div id="hitdiv" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:40; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
 
     $("#combateffects").html(hitanimhtml);
     setTimeout(function() {
       $("#combateffects").html("");
-      if ((type !== "missile") || (!weapon.getAmmoReturn())) {
+      if ((type !== "missile") || (!ammoreturn)) {
         duration = 50;
         ammographic.graphic = "spacer.gif";
         ammographic.xoffset = 0;
