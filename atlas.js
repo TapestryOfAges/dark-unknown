@@ -1557,6 +1557,10 @@ GameMap.prototype.removeMapLight = function(serial,light,x,y) {
 	}
 }
 
+GameMap.prototype.getLOE = function(x1,y1,x2,y2,losgrid) {
+  return genLOS(x1,y1,x2,y2,losgrid,"center","center",this, 1, 0);
+}
+
 GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, checkforlight) {
 //  if (debug) { dbs.writeln("<span style='color:grey;font-style:italic'>&nbsp;Getting LOS between " + x1 + ", " + y1 + " and " + x2 +", " + y2 + ".<br /></span>");  }
   // checklight = 0, check is for LOS only or light on an object that does not block LOS or the light source is the PC
