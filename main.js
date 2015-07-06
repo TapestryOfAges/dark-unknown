@@ -504,6 +504,11 @@ function DoAction(code) {
         maintext.drawTextFrame();
         maintext.addText(response["txt"]);
         PC.endTurn();
+      } else if (response["fin"] === 4) {
+        maintext.setInputLine(response["input"]);
+        maintext.addText(response["txt"]);
+        maintext.drawTextFrame();
+        // mode has been set prior to this point
       } else if (response["fin"] === 2) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
