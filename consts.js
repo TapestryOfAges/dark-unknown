@@ -59,7 +59,7 @@ mapslist["ambrosia"] = "Ambrosia";
 mapslist["island"] = "the Distant Island";
 mapslist["cairns"] = "the Dungeon Cairns";
 
-ailist = new Array("townsfolk","runaway","guard","melee","spellcaster","missile","adventurer","paladin","ranger");
+ailist = new Array("townsfolk","runaway","guard","melee","spellcaster","missile","adventurer","paladin","ranger","stationary","smallwander","fullwander");
 
 var DAY = 0;
 var NIGHT = 2;
@@ -72,6 +72,7 @@ worldlight["dim"] = .5;
 worldlight["dark"] = 0;
 
 var LOS_THRESHOLD = .98;
+//var LOE_THRESHOLD = .7;
 var SHADOW_THRESHOLD = .3;
 
 var MOVE_FLY = 1;
