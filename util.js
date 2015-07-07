@@ -59,7 +59,7 @@ function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
 //}
 
 
-function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, type, duration, ammoreturn, dmg, endturn, retval, doagain) {
+function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, sounds, type, duration, ammoreturn, dmg, endturn, retval, doagain) {
 // atk - source/attacker
 // def - target/defender, if any
 // fromcoords, tocoords - object with .x and .y
@@ -104,7 +104,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
         } 
         maintext.addText(retval["txt"]);
         maintext.setInputLine("&gt;");
-        maintext.drawTextFrame();
+        maintext.drawInputLine();
         
         if ((!doagain) && (endturn)) {
           atk.endTurn(retval["initdelay"]);

@@ -142,8 +142,9 @@ function Attack(atk, def) {
   hitgraphic.yoffset = 0;
   hitgraphic.overlay = "spacer.gif";
   
+  var sounds = {};
   
-  AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,type,duration,ammoreturn,dmg,1,retval);
+  AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,sounds,type,duration,ammoreturn,dmg,1,retval);
   
   var tmpval = {};
   tmpval["fin"] = -1;
