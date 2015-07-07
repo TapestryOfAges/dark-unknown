@@ -78,6 +78,8 @@ function Attack(atk, def) {
   }
   if (debug) { dbs.writeln("Attacking: weapon is " + weapon.getName() + "<br />"); }
   var tohit = atk.getHitChance(weapon) / 100;
+  tohit -= loeresult/2; // harder to hit if foe has cover
+  if (debug) { dbs.writeln("Attacking: reducing to-hit chance by " + loeresult/2 + " due to cover<br />"); }
   var defense = def.getDefense() / 100;
 
   if (debug) { dbs.writeln("Atk: " + tohit + "; enemy defense: " + defense + "<br />"); }

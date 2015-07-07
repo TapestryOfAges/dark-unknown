@@ -579,7 +579,8 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   var fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
   var tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   var duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
-//  maintext.addText(desc);
+  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, "702.gif", "missile", duration, 0, dmg, 1, desc);
+  //  maintext.addText(desc);
   resp["fin"] = -1;
   return resp;
 }
