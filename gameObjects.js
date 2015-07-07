@@ -6679,6 +6679,9 @@ NPCObject.prototype.getMana = function() {
 
 NPCObject.prototype.modMana = function(diffMana) {
 	this.mana = this.mana + diffMana;
+	if (this.checkType("pc")) {
+	  DrawCharFrame();
+	}
 	return this.mana;
 }
 
