@@ -528,7 +528,7 @@ magic[2][GetSpellID(3)].executeSpell = function(caster, infused, free, tgt) {
   $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 0;
+  resp["fin"] = 4;
   gamestate.setMode("target");
   return resp;
 }
@@ -566,20 +566,23 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   if (Math.random()*1 < chance) {
     dmg = Math.floor(dmg/2)+1;
   }
-  
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
   var boltgraphic = {};
   boltgraphic.graphic = "magic-bolt.gif";
   boltgraphic.yoffset = 0;
   boltgraphic.xoffset = 0;
-  boltgraphic.fired = 1;
+  boltgraphic.directionalammo = 1;
   boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
+  var descval = {txt: desc};
 
+  var sounds = {};
   var fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
   var tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   var duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
-  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, "702.gif", "missile", duration, 0, dmg, 1, desc);
+  var destgraphic = {graphic:"702.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, "missile", duration, 0, dmg, 1, descval);
   //  maintext.addText(desc);
   resp["fin"] = -1;
   return resp;
