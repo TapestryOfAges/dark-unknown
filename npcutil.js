@@ -144,7 +144,7 @@ function Attack(atk, def) {
   
   var sounds = {};
   
-  AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,sounds,type,duration,ammoreturn,dmg,1,retval);
+  AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,sounds, {type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:1,retval:retval});
   
   var tmpval = {};
   tmpval["fin"] = -1;

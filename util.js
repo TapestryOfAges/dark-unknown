@@ -59,18 +59,27 @@ function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
 //}
 
 
-function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, sounds, type, duration, ammoreturn, dmg, endturn, retval, doagain) {
+function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, sounds, param, doagain) {
 // atk - source/attacker
 // def - target/defender, if any
 // fromcoords, tocoords - object with .x and .y
 // ammographic - object with .graphic, .xoffset, .yoffset, .fired (-1 if not a missile attack, directionalammo otherwise)
 // destgraphic - hit/miss/whatever graphic, object with graphic, xoffset, yoffset, overlay
-// type - "missile", "melee", "spell"
-// duration - time for animation 
-// dmg - damage dealt by whatever generates this effect
-// endturn - 1 if this ends atk's turn
-// retval - retval from calling function
+// sounds - object with sound effect for start and end of animation
+// param.type - "missile", "melee"
+// param.duration - time for animation 
+// param.ammoreturn - whether the animation doubles back
+// param.dmg - damage dealt by whatever generates this effect
+// param.endturn - 1 if this ends atk's turn
+// param.retval - retval from calling function
 
+  var type = param.type;
+  var duration = param.duration;
+  var ammoreturn = param.ammoreturn;
+  var dmg = param.dmg;
+  var endturn = param.endturn;
+  var retval = param.retval;
+  var callback = param.callback;
   var ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
 
   var tablehtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
