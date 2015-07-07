@@ -59,7 +59,7 @@ function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
 //}
 
 
-function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, type, duration, ammoreturn, dmg, endturn, retval) {
+function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, type, duration, ammoreturn, dmg, endturn, retval, doagain) {
 // atk - source/attacker
 // def - target/defender, if any
 // fromcoords, tocoords - object with .x and .y
@@ -106,7 +106,12 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         
-        atk.endTurn(retval["initdelay"]);
+        if ((!doagain) && (endturn)) {
+          atk.endTurn(retval["initdelay"]);
+        } else if (doagain) {
+          var doit = doagain.shift();
+          AnimateEffect(doit.atk, doit.def, doit.fromcoords, doit.tocoords, doit.ammocoords, doit.destgraphic, doit.type, doit.duration, doit.ammoreturn, doit.dmg, endturn, doit.retval, doagain);
+        }
 
       });
 
