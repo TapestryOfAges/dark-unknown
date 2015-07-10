@@ -15,6 +15,17 @@ function Anchor() {
 }
 Anchor.prototype = new Object();
 
+function TurnMapHostile(map) {
+  if (debug) { dbs.writeln("Attacked a friendly! Turning hostile...<br />"); }
+  var localnpcs = map.npcs.getAll();
+  $.each(localnpcs, function(idx, val) {
+    if (val.getAttitude() === "friendly") {
+      val.setAttitude("hostile");
+      if (debug) { dbs.writeln(val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />"); }
+    }
+  });
+}
+
 function Attack(atk, def) {
   var retval = {};
   var type = "weapon";
@@ -63,14 +74,7 @@ function Attack(atk, def) {
     retval["txt"] = "Attack " + def.getDesc();
     if (def.getAttitude() === "friendly") {
       // Make it and its friends hostile. 
-      if (debug) { dbs.writeln("Attacked a friendly! Turning hostile...<br />"); }
-      var localnpcs = def.getHomeMap().npcs.getAll();
-      $.each(localnpcs, function(idx, val) {
-        if (val.getAttitude() === "friendly") {
-          val.setAttitude("hostile");
-          if (debug) { dbs.writeln(val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />"); }
-        }
-      });
+      TurnMapHostile(def.getHomeMap());
     }
   } else {
     retval["txt"] =  atk.getDesc() + " attacks " + def.getDesc();
