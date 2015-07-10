@@ -7701,6 +7701,12 @@ NPCObject.prototype.getDefense = function() {
     def = def - vuln.getPower();
     if (debug) { dbs.writeln("new AC: " + def + ".<br /></span>"); }
   }
+  var prot = this.getSpellEffectsByName("Protection");
+  if (prot) {
+    if (debug) { dbs.writeln("protected: old AC " + def + ", </span>"); }
+    def = def + prot.getPower();
+    if (debug) { dbs.writeln("new AC: " + def + ".<br /></span>"); }
+  } 
   return def;
 }
 
