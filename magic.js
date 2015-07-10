@@ -88,7 +88,7 @@ magic[1][GetSpellID(6)] = new SpellObject("Vulnerability", "An Sanct", 1, 1);  /
 magic[2][GetSpellID(1)] = new SpellObject("Illusion", "Quas Xen", 2, 1);
 magic[2][GetSpellID(2)] = new SpellObject("Lesser Heal", "Bet Mani", 2, 0);   // heal
 magic[2][GetSpellID(3)] = new SpellObject("Magic Bolt", "Grav Por", 2, 1);
-magic[2][GetSpellID(4)] = new SpellObject("Poison Cloud", "In Nox Hur", 2, 0);
+magic[2][GetSpellID(4)] = new SpellObject("Poison Cloud", "In Nox Hur", 2, 1);
 magic[2][GetSpellID(5)] = new SpellObject("Protection", "In Sanct", 2, 0);   // blessing
 magic[2][GetSpellID(6)] = new SpellObject("Unlock", "Ex Por", 2, 0);     // sfx_unlock
 
@@ -559,8 +559,13 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   }
     
   tgt = newtgt;
-  
+  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+    TurnMapHostile(caster.getHomeMap());
+  }
   var dmg = RollDice("2d6+" + Math.floor(caster.getInt()/5));
+  if (infused) {
+    dmg = dmg * 1.5;
+  }
   
   var chance = 1-(tgt.getResist("magic")/100);
   if (Math.random()*1 < chance) {
@@ -585,6 +590,145 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval});
   //  maintext.addText(desc);
   resp["fin"] = -1;
+  return resp;
+}
+
+// Poison Cloud
+magic[2][GetSpellID(4)].executeSpell = function(caster, infused, free, tgt) {
+  if (caster !== PC) {
+    var resp = PerformPoisonCloud(caster, infused, free, tgt);
+    return resp;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Poison Cloud.<br /></span>"); }
+  var resp = {};
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Poison Cloud";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open"};
+  targetCursor.targetlimit = (viewsizex -1)/2;
+  targetCursor.targetCenterlimit = 0;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 4;
+  gamestate.setMode("target");
+  return resp;
+}
+
+function PerformPoisonCloud(caster, infused, free, tgt) {
+  gamestate.setMode("null");
+  var resp = {};
+  resp["fin"] = 1;
+
+  var tgtmap = caster.getHomeMap();
+  if (tgtmap.getLOE(caster.getx(), caster.gety(), tgt.x, tgt.y, losgrid, 1) >= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "Your spell cannot reach there!";
+    return resp;
+  }
+  
+  if (!free) {
+    var mana = magic[2][GetSpellID(4)].getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+    
+  var radius = Math.floor(caster.getInt()/10) +1; 
+    
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Calculating poison cloud.<br /></span>"); }
+  $.each(tgtmap.npcs.getAll(), function(idx, val) {
+    if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y)) && (val !== caster)) {
+      if (tgtmap.getLOE(val.getx(),val.gety(),tgt.x,tgt.y) < LOS_THRESHOLD) {
+        if ((Math.random() < (1-val.getResist("magic")/100)) || (val.getSpellEffectsByName("Poison"))) {
+          // poison resisted
+          ShowEffect(val, 700, "X.gif");
+          var desc = val.getDesc() + " resists!";
+          if (val === PC) {
+            desc = "You resist!";
+          }
+          desc = desc.charAt(0).toUpperCase() + desc.slice(1);        
+          maintext.addText(desc);
+        } else {
+          ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, -32);
+          var desc = val.getDesc() + " is poisoned!";
+          if (val === PC) {
+            desc = "You are poisoned!";
+          desc = desc.charAt(0).toUpperCase() + desc.slice(1);        
+          maintext.addText(desc);
+          var poisontile = localFactory.createTile("Poison");
+          var duration = (RollDice("2d10") + who.getInt() - 15) * SCALE_TIME;
+          poison.setExpiresTime(duration + DUTime.getGameClock());
+          val.addSpellEffect(poison);
+          // poisoned!
+        }
+      }
+    }
+  });
+    
+  return resp;
+}
+
+// Protection
+magic[2][GetSpellID(5)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Protection.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+  var prot = localFactory.createTile("Protection");
+  duration = caster.getInt() * 3 * SCALE_TIME;
+  var power = Math.floor(caster.getInt()*2/3)+1;
+  if (infused) { 
+    duration = duration * 2; 
+    power = Math.floor(power*3/2);
+  }
+  var endtime = duration + DUTime.getGameClock();
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
+  prot.setExpiresTime(endtime);
+  prot.setPower(power);
+  caster.addSpellEffect(prot);
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, -160);
+  
+  return resp;
+}
+
+// Unlock
+magic[2][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Unlock.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+  
+  var castermap = caster.getHomeMap();
+  var features = castermap.features.getAll();
+  $.each(features, function (idx, val) {
+    if (typeof val.getLocked == "function") {
+      if (GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) <= 1) {
+        var lock = val.getLocked();
+        if ((lock === 1) || ((lock === 2) && (infused))) {
+          val.unlockMe();
+          DrawMainFrame("one", castermap.getName(), val.getx(), val.gety());
+          var desc = "The " + val.getDesc() + " is unlocked.";
+          desc = desc.charAt(0).toUpperCase() + desc.slice(1);      
+          maintext.addText(desc);
+        }
+      }
+    }
+  });
+
   return resp;
 }
 
@@ -1096,7 +1240,7 @@ function PerformSpellcast() {
     var canmove = targettile.canMoveHere(MOVE_WALK,0);
     if (!canmove["canmove"]) {
       resp["fin"] = 0;
-      resp["txt"] = "You cannot conjure there.";
+      resp["txt"] = "You cannot cast there.";
       resp["input"] = "&gt;";   
       var tileid = targetCursor.tileid;
       $(tileid).html(targetCursor.basetile); 
@@ -1110,6 +1254,8 @@ function PerformSpellcast() {
     $(tileid).html(targetCursor.basetile); 
     if (targetCursor.spellName === "Illusion") {
       resp = PerformIllusion(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+    } else if (targetCursor.spellName === "Poison Cloud") {
+        resp = PerformPoisonCloud(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
     }
     delete targetCursor.spellName;
   } else {
