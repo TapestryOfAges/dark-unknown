@@ -473,6 +473,45 @@ NegateMagicTile.prototype.endEffect = function(silent) {
   return;
 }
 
+function ProtectionTile() {
+  this.addType("buff");
+  this.name = "Protection";
+  this.display = "<span style='color:#ffffff'>P</span>";
+  this.zstatdesc = "You are protected by magic.";
+  this.desc = "Protection";
+  this.level = 1;
+}
+ProtectionTile.prototype = new EphemeralObject();
+
+ProtectionTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if (who) {
+    if ((who === PC) && !silent) {
+      maintext.addText("You are protected by magic.");
+    }
+  }
+  return 1;
+}
+
+ProtectionTile.prototype.doEffect = function() {
+  var resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+ProtectionTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("Your protective shield wears off.");
+  }
+  DrawCharFrame();
+  return -1;
+}
+
+
 function QuicknessTile() {
   this.addType("buff");
   this.name = "Quickness";
