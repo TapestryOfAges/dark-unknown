@@ -931,8 +931,18 @@ tileFactory.prototype.makeRightTableTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeSmallTableTile = function() {
-  var newTile = new SmallTableTile();
+tileFactory.prototype.makeLeftTableOnWoodTile = function() {
+  var newTile = new LeftTableOnWoodTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMiddleTableOnWoodTile = function() {
+  var newTile = new MiddleTableOnWoodTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRightTableOnWoodTile = function() {
+  var newTile = new RightTableOnWoodTile();
   return newTile;
 }
 
@@ -2156,8 +2166,18 @@ tileFactory.prototype.makeLightTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeMirrorWardTile = function() {
+  var newTile = new MirrorWardTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNegateMagicTile = function() {
   var newTile = new NegateMagicTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeProtectionTile = function() {
+  var newTile = new ProtectionTile();
   return newTile;
 }
 

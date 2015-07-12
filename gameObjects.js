@@ -3663,9 +3663,9 @@ BottomChairWoodTile.prototype = new FeatureObject();
 
 function LeftTableTile() {
   this.name = "LeftTable";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "0";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-64";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -3676,9 +3676,9 @@ LeftTableTile.prototype = new FeatureObject();
 
 function MiddleTableTile() {
   this.name = "MiddleTable";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "0";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-64";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -3689,9 +3689,9 @@ MiddleTableTile.prototype = new FeatureObject();
 
 function RightTableTile() {
   this.name = "RightTable";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "0";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-64";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -3700,19 +3700,44 @@ function RightTableTile() {
 }
 RightTableTile.prototype = new FeatureObject();
 
-function SmallTableTile() {
-  this.name = "SmallTable";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-128";
+function LeftTableOnWoodTile() {
+  this.name = "LeftTableOnWood";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-64";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
 }
-SmallTableTile.prototype = new FeatureObject();
+LeftTableOnWoodTile.prototype = new FeatureObject();
 
+function MiddleTableOnWoodTile() {
+  this.name = "MiddleTableOnWood";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-64";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "table";
+}
+MiddleTableOnWoodTile.prototype = new FeatureObject();
+
+function RightTableOnWoodTile() {
+  this.name = "RightTableOnWood";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-64";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "table";
+}
+RightTableOnWoodTile.prototype = new FeatureObject();
 
 
 
