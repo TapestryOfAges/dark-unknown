@@ -1013,10 +1013,11 @@ function PerformSearch(who) {
 	    retval["txt"] = "Search: You find nothing there.";
 	    searched.setDesc(searched.getDesc() + " [Searched]");
 	  }
+	  return retval;
 	}
   else if ((searched.getSearchYield().length)) {
     var stuff = searched.getSearchYield();
-    if (searched.getLootedID() && DU.gameflags[searched.getLootedID()]) {
+    if (searched.getLootedID() && DU.gameflags[searched.searchedid]) {
       stuff = [];
     }
     else if (searched.getLootedID()) {
@@ -1071,6 +1072,9 @@ function PerformSearch(who) {
       DrawMainFrame("one",who.getHomeMap().getName(),targetCursor.x,targetCursor.y);
     }
 
+  }
+  if (searched.searchid) {
+    DU.gameflags[searched.searchedid] = 1;
   }
   return retval;
 }
