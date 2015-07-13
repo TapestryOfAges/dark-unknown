@@ -273,13 +273,13 @@ magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   var flameblade = localFactory.createTile("FlameBlade");
   duration = caster.getInt() * 2 * SCALE_TIME;
   flameblade.uses = 1;
-  flameblade.damage = "2d4";
+  flameblade.damage = DMG_NEGLIGABLE;
   flameblade.power = 2;
   
   if (infused) { 
     duration = duration * 2; 
     flameblade.uses = RollDice("1d4+1");
-    flameblade.damage = "3d4+3";
+    flameblade.damage = DMG_LIGHT;
     flameblade.power = 3;
   }
   var endtime = duration + DUTime.getGameClock();
@@ -562,7 +562,8 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
-  var dmg = RollDice("2d6+" + Math.floor(caster.getInt()/5));
+//  var dmg = RollDice("2d6+" + Math.floor(caster.getInt()/5));
+  var dmg = RollDamage(DMG_NEGLIGABLE, Math.floor(caster.getInt()/5)+1);
   if (infused) {
     dmg = dmg * 1.5;
   }
@@ -659,6 +660,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           var desc = val.getDesc() + " is poisoned!";
           if (val === PC) {
             desc = "You are poisoned!";
+          }
           desc = desc.charAt(0).toUpperCase() + desc.slice(1);        
           maintext.addText(desc);
           var poisontile = localFactory.createTile("Poison");
@@ -732,6 +734,251 @@ magic[2][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   return resp;
 }
 
+// Disrupt Undead
+magic[3][GetSpellID(1)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Disrupt Undead.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+  
+  var castermap = caster.getHomeMap();
+  var npcs = castermap.npcs.getAll();
+  var hitany = 0;
+  $.each(npcs, function (idx, val) {
+    if (val.special.indexOf("undead") > -1) {
+      if (GetDistance(val.getx(),val.gety(), caster.getx(), caster.gety()) < 8) {
+        var dmg = RollDamage(DMG_MEDIUM);
+        if (debug) { dbs.writeln("<span style='color:green'>Found " + val.getName() + " , dealing it " + dmg + " damage.<br /></span>"); }
+        val.dealDamage(dmg);
+        ShowEffect(val, 700, "702.gif", 0, 0);
+        var desc = val.getDesc() + " disrupted!";
+        desc = desc.charAt(0).toUpperCase() + desc.slice(1);      
+        maintext.addText(desc);
+        hitany = 1;
+      }
+    }
+  });
+  if (!hitany) {
+    maintext.addText("No undead within range.");
+  }
+
+  return resp;
+}
+
+// Fire Armor
+magic[3][GetSpellID(2)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Fire Armor.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+  var prot = localFactory.createTile("FireArmor");
+  duration = caster.getInt() * 3 * SCALE_TIME;
+  var power = DMG_NEGLIGABLE;
+  if (infused) { 
+    duration = duration * 2; 
+    power = DMG_LIGHT;
+  }
+  var endtime = duration + DUTime.getGameClock();
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
+  prot.setExpiresTime(endtime);
+  prot.setPower(power);
+  caster.addSpellEffect(prot);
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, -160);
+  
+  return resp;
+}
+
+// Fireball
+magic[3][GetSpellID(3)].executeSpell = function(caster, infused, free, tgt) {
+  if (caster !== PC) {
+    var resp = PerformFireball(caster, infused, free, tgt);
+    return resp;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Fireball.<br /></span>"); }
+  var resp = {};
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Fireball";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
+  targetCursor.targetlimit = (viewsizex -1)/2;
+  targetCursor.targetCenterlimit = 0;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 4;
+  gamestate.setMode("target");
+  return resp;
+}
+
+
+function PerformFireball(caster, infused, free, tgt) {
+  gamestate.setMode("null");
+  var resp = {};
+  resp["fin"] = 1;
+  var desc = tgt.getDesc();
+
+  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "Your spell cannot reach that target!";
+    return resp;
+  }
+  
+  if (!free) {
+    var mana = magic[3][GetSpellID(3)].getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  
+  var newtgt = CheckMirrorWard(tgt, caster);
+  while (newtgt !== tgt) {
+    tgt = newtgt;
+    newtgt = CheckMirrorWard(tgt, caster);
+  }
+    
+  tgt = newtgt;
+  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+    TurnMapHostile(caster.getHomeMap());
+  }
+//  var dmg = RollDice("2d6+" + Math.floor(caster.getInt()/5));
+  var dmg = RollDamage(DMG_MEDIUM);
+  if (infused) {
+    dmg = dmg * 1.5;
+  }
+  
+  var chance = 1-(tgt.getResist("magic")/100);
+  if (Math.random()*1 < chance) {
+    dmg = Math.floor(dmg/2)+1;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+  
+  var boltgraphic = {};
+  boltgraphic.graphic = "fireicelightning.gif";
+  boltgraphic.yoffset = 0;
+  boltgraphic.xoffset = 0;
+  boltgraphic.directionalammo = 1;
+  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
+  var descval = {txt: desc};
+
+  var sounds = {};
+  var fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  var tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  var duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+  var destgraphic = {graphic:"702.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire"});
+  //  maintext.addText(desc);
+  resp["fin"] = -1;
+  return resp;
+}
+
+// Iceball
+magic[3][GetSpellID(4)].executeSpell = function(caster, infused, free, tgt) {
+  if (caster !== PC) {
+    var resp = PerformFireball(caster, infused, free, tgt);
+    return resp;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Iceball.<br /></span>"); }
+  var resp = {};
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Iceball";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
+  targetCursor.targetlimit = (viewsizex -1)/2;
+  targetCursor.targetCenterlimit = 0;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 4;
+  gamestate.setMode("target");
+  return resp;
+}
+
+
+function PerformIceball(caster, infused, free, tgt) {
+  gamestate.setMode("null");
+  var resp = {};
+  resp["fin"] = 1;
+  var desc = tgt.getDesc();
+
+  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "Your spell cannot reach that target!";
+    return resp;
+  }
+  
+  if (!free) {
+    var mana = magic[3][GetSpellID(4)].getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  
+  var newtgt = CheckMirrorWard(tgt, caster);
+  while (newtgt !== tgt) {
+    tgt = newtgt;
+    newtgt = CheckMirrorWard(tgt, caster);
+  }
+    
+  tgt = newtgt;
+  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+    TurnMapHostile(caster.getHomeMap());
+  }
+//  var dmg = RollDice("2d6+" + Math.floor(caster.getInt()/5));
+  var dmg = RollDamage(DMG_LIGHT);
+  if (infused) {
+    dmg = dmg * 1.5;
+  }
+  
+  var chance = 1-(tgt.getResist("magic")/100);
+  if (Math.random()*1 < chance) {
+    dmg = Math.floor(dmg/2)+1;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+  
+  var frozen = localFactory.createTile("Slow");
+  var dur = 2*caster.getInt()/5;
+  var endtime = dur + DU.DUTime.getGameClock();
+  frozen.setExpiresTime(endtime);
+  tgt.addSpellEffect(frozen);
+  
+  var boltgraphic = {};
+  boltgraphic.graphic = "fireicelightning.gif";
+  boltgraphic.yoffset = -32;
+  boltgraphic.xoffset = 0;
+  boltgraphic.directionalammo = 1;
+  boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
+  var descval = {txt: desc};
+
+  var sounds = {};
+  var fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  var tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  var duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+  var destgraphic = {graphic:"702.2.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice"});
+  //  maintext.addText(desc);
+  resp["fin"] = -1;
+  return resp;
+}
 
 // Levitate/Waterwalk
 magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
@@ -1231,6 +1478,10 @@ function PerformSpellcast() {
         resp = PerformVulnerability(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Magic Bolt") {
         resp = PerformMagicBolt(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+      } else if (targetCursor.spellName === "Fireball") {
+        resp = PerformFireball(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+      } else if (targetCursor.spellName === "Iceball") {
+        resp = PerformIceball(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       }
       delete targetCursor.spellName;
       
