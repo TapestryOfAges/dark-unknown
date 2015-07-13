@@ -33,6 +33,7 @@ function Attack(atk, def) {
   if (Math.abs(atk.gety() - def.gety()) > 1) { type = "missile"; }
 
   var weapon = atk.getEquipment("weapon");
+  var loeresult = 0;
   
   if (type === "missile") {
     // check to see if attacker can use its missile weapon
@@ -60,7 +61,7 @@ function Attack(atk, def) {
     
     var themap = atk.getHomeMap();
       
-    var loeresult = themap.getLOE(atk.getx(), atk.gety(), def.getx(), def.gety(), losgrid, 1);
+    loeresult = themap.getLOE(atk.getx(), atk.gety(), def.getx(), def.gety(), losgrid, 1);
     
     if (loeresult > LOS_THRESHOLD) {
       retval["txt"] = "You cannot attack that target from here.";
@@ -97,17 +98,24 @@ function Attack(atk, def) {
     // Hit!
     
     dmg = weapon.rollDamage(atk);
-    var armor = def.getEquipment("armor");
-    var absorb = 0;
-    if (armor) {
-      absorb = armor.getAbsorb() - weapon.getReduceArmor();
-      absorb /= 100;
-      if (absorb < 0) { absorb = 0; }
-    }
-    dmg = Math.floor(dmg * (1-absorb));
-    if (dmg == 0) { dmg = 1; }  // min dmg 1 on a hit
+//    var armor = def.getEquipment("armor");
+//    var absorb = 0;
+//    if (armor) {
+//      absorb = armor.getAbsorb() - weapon.getReduceArmor();
+//      absorb /= 100;
+//      if (absorb < 0) { absorb = 0; }
+//    }
+//    dmg = Math.floor(dmg * (1-absorb));
+// moved to CheckAbsorb, called in dealDamage
 
-    
+    if (dmg < 1) { dmg = 1; }  // min dmg 1 on a hit
+
+    var firearmor = def.getSpellEffectsByName("FireArmor");
+    if (firearmor) {
+      if (IsAdjacent(atk,def)) {
+        firearmor.flashback(atk);
+      }
+    }
   }
   else { // Miss!
     // animation and sound here, too
