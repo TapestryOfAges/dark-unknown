@@ -711,6 +711,11 @@ tileFactory.prototype.makeCampfireTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBrazierTile = function() {
+  var newTile = new BrazierTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpitTile = function() {
   var newTile = new SpitTile();
   return newTile;
@@ -1043,6 +1048,96 @@ tileFactory.prototype.makeWalkOnAbyss4Tile = function() {
 
 tileFactory.prototype.makeSpawnerTile = function() {
   var newTile = new SpawnerTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRedCarpetNWTile = function() {
+  var newTile = new RedCarpetNWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRedCarpetNTile = function() {
+  var newTile = new RedCarpetNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRedCarpetNETile = function() {
+  var newTile = new RedCarpetNETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRedCarpetWTile = function() {
+  var newTile = new RedCarpetWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRedCarpetCTile = function() {
+  var newTile = new RedCarpetCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRedCarpetETile = function() {
+  var newTile = new RedCarpetETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRedCarpetSWTile = function() {
+  var newTile = new RedCarpetSWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRedCarpetSTile = function() {
+  var newTile = new RedCarpetSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRedCarpetSETile = function() {
+  var newTile = new RedCarpetSETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlueCarpetNWTile = function() {
+  var newTile = new BlueCarpetNWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlueCarpetNTile = function() {
+  var newTile = new BlueCarpetNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlueCarpetNETile = function() {
+  var newTile = new BlueCarpetNETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlueCarpetWTile = function() {
+  var newTile = new BlueCarpetWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlueCarpetCTile = function() {
+  var newTile = new BlueCarpetCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlueCarpetETile = function() {
+  var newTile = new BlueCarpetETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlueCarpetSWTile = function() {
+  var newTile = new BlueCarpetSWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlueCarpetSTile = function() {
+  var newTile = new BlueCarpetSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlueCarpetSETile = function() {
+  var newTile = new BlueCarpetSETile();
   return newTile;
 }
 
