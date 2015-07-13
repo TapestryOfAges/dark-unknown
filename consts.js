@@ -93,3 +93,10 @@ var RUNE_WAVES  = 2;
 var RUNE_WINDS  = 4;
 var RUNE_FLAMES = 8;
 var RUNE_VOID   = 16;
+
+var DMG_NEGLIGABLE = "2d4";
+var DMG_LIGHT = "3d4+3";
+var DMG_MEDIUM = "4d4+16";
+var DMG_HEAVY = "5d4+30";
+var DMG_TREMENDOUS = "5d8+55";
+var DMG_AUTOKILL = "255";
