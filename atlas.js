@@ -1436,6 +1436,7 @@ GameMap.prototype.loadMap = function (name) {
 //  	alert(loadfeatures.length + " features loading...");
       for (var fi=0;fi<=loadfeatures.length-1;fi++) {
         var newfeature = localFactory.createTile(loadfeatures[fi].name);
+        if (debug) {debugscreen.document.writeln("<br>Loading features: " +newfeature.getName()+ "...<br>");}
 //    	newfeature.setHomeMap(this);
     	  for (var featurekey in loadfeatures[fi]) {
     		  if (featurekey === "name") { continue; }
@@ -1450,10 +1451,13 @@ GameMap.prototype.loadMap = function (name) {
       		var usescript = newfeature.getUseScript();
       		mappages[name][usescript](newfeature);
     	  }
-      	if ((typeof newfeature.getLootedID === "function") && (newfeature.getLootedID())) {
+      	if (newfeature.getLootedID()) {
       	  if (DU.gameflags[newfeature.getLootedID()]) {
       	    newfeature.setLootgroup("prev_looted");
       	  }
+      	}
+      	if (newfeature.getLootgroup()) {
+      	  AddLoot(this);
       	}
   	    this.placeThing(loadfeatures[fi].x,loadfeatures[fi].y,newfeature);
       }
