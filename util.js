@@ -77,6 +77,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   var duration = param.duration;
   var ammoreturn = param.ammoreturn;
   var dmg = param.dmg;
+  var dmgtype = param.dmgtype;
   var endturn = param.endturn;
   var retval = param.retval;
   var callback = param.callback;
@@ -104,7 +105,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
       $("#combateffects").html(returnhtml);
       $("#animtable").animate({ left: ammocoords.fromx , top: ammocoords.fromy } , duration, 'linear', function() {
         if (dmg != 0) {
-          var stillalive = def.dealDamage(dmg, atk);    
+          var stillalive = def.dealDamage(dmg, atk, dmgtype);    
           if (stillalive) {
             var damagedesc = GetDamageDescriptor(def); 
             retval["txt"] += ": " + damagedesc + "!"; 
@@ -989,4 +990,71 @@ function GetEffectGraphic(start, dest, params) {
     ammo.xoffset = params.xoffset;
   }
   return ammo;
+}
+
+function AddLoot(towhat) {
+
+  var lootgroup = towhat.getLootgroup();
+  if (lootgroup) {
+    var loot = {};
+    if (DULoot[lootgroup]) {
+      loot = DULoot[lootgroup].getLoot(); 
+      if (loot.lootlist.length) {
+        if (towhat.isContainer) {
+          for (var i=0; i<loot.lootlist.length;i++){
+            towhat.addToContainer(loot.lootlist[i], 1);
+          }
+        } else {
+          towhat.setSearchYield(loot.lootlist);
+        }
+      }
+      if (loot.gold) {
+        if (towhat.isContainer) {
+          towhat.addToContainer("Gold", loot.gold);
+        } else {
+          towhat.addToSearchYield("Gold");
+          towhat.setGold(loot.gold);
+        }
+      }
+    }
+    else {alert (towhat.getName() + " has a loottable that is not defined (" + lootgroup + ") ."); }
+  }
+
+}
+
+function RollDamage(dam_val,extra) {
+  var dmg = RollDice(dam_val);
+  if (extra) { dmg += RollDice(extra); }
+  return dmg;
+}
+
+function IsAdjacent(one,two) {
+  if (Math.abs(one.getx() - two.getx()) <= 1) {
+    if (Math.abs(one.gety() - two.gety()) <= 1) {
+      return 1;
+    }
+  }
+  return 0;
+}
+
+function CheckAbsorb(dam,to,from,type) {
+  if (!type) { type = "physical"; }
+  var absorb = to.getResist(type);
+
+  if (!absorb) { return dam; }
+  
+  if (to.checkType("npc") && (type === "physical")) {
+    var weapon = from.getEquipment("weapon");
+    absorb = absorb - weapon.getReduceArmor();
+    if (absorb < 0) { absorb = 0; }
+  }
+  
+  if (absorb !== 0) {
+    if (debug) { dbs.writeln("Damage modified: " + dam + " becomes "); }
+    dam = Math.floor(dam * (1-(absorb/100)));
+    if (debug) { dbs.writeln(dam + ".<br />"); }
+  }
+  if (dam < 1) { dam = 1; }
+  
+  return dam;
 }
