@@ -103,6 +103,8 @@ foreach my $line (<$npcdoc>) {
   }
   if ($fields[28]) {
     print $out "  this.resists = { $fields[28] };\n";
+  } else {
+    print $out "  this.resists = {};\n";
   }
   if ($fields[29]) {
     print $out "  this.special = '$fields[29]';\n";
