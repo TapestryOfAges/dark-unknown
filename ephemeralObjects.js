@@ -206,6 +206,53 @@ DistractTile.prototype.endEffect = function(silent) {
   return -1;
 }
 
+function FireArmorTile() {
+  this.addType("buff");
+  this.name = "FireArmor";
+  this.display = "<span style='color:red'>A</span>";
+  this.zstatdesc = "You are surrounded with flames.";
+  this.desc = "Fire Armor";
+  this.level = 3;
+}
+FireArmorTile.prototype = new EphemeralObject();
+
+FireArmorTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if (who) {
+    if ((who === PC) && !silent) {
+      maintext.addText("You are surrounded with flames.");
+    }
+  }
+  return 1;
+}
+
+FireArmorTile.prototype.doEffect = function() {
+  var resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+FireArmorTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("The flames that surround you fade away.");
+  }
+  DrawCharFrame();
+  return -1;
+}
+
+FireArmorTile.prototype.flashback = function(attacker) {
+  var dmg = RollDamage(this.getPower());
+  if (attacker === PC) {
+    maintext.addText("Flames burn you!");
+  }
+  attacker.dealDamage(dmg);
+  ShowEffect(attacker, 700, "702.gif", 0, 0);
+}
+
 function FlameBladeTile() {
   this.addType("buff");
   this.name = "FlameBlade";
@@ -528,8 +575,7 @@ QuicknessTile.prototype.applyEffect = function(silent) {
   var who = this.getAttachedTo();
   var power = this.getPower();
   
-  this.oldinitmult = who.initmult;
-  who.initmult = power;
+  who.initmult *= power;
   if ((who === PC) && !silent) {
     maintext.addText("You begin to move faster.");
   }
@@ -544,7 +590,7 @@ QuicknessTile.prototype.doEffect = function() {
 
 QuicknessTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
-  who.initmult = this.oldinitmult;
+  who.initmult *= (1/this.getPower());
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("You slow down again.");
@@ -582,6 +628,45 @@ SleepTile.prototype.endEffect = function(silent) {
     maintext.addText("You wake up!");
   }
   DrawCharFrame();
+}
+
+function SlowTile() {
+  this.addType("debuff");
+  this.name = "Slow";
+  this.display = "<span style='color:444444'>S</span>";
+  this.power = 2.25;
+  this.zstatdesc = "You are moving more slowly.";
+  this.desc = "Slow";
+  this.level = 3;
+}
+SlowTile.prototype = new EphemeralObject();
+
+
+SlowTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  
+  who.initmult *= power;
+  if ((who === PC) && !silent) {
+    maintext.addText("You are moving more slowly.");
+  }
+  return 1;
+}
+
+SlowTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+SlowTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.initmult *= (1/this.getPower())
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You speed up again.");
+  }
+  DrawCharFrame();  
 }
 
 function VulnerabilityTile() {
