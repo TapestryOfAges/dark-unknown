@@ -604,6 +604,12 @@ function OpenContainer() {
   
   this.use = function(who) {
     var retval = {}; 
+    
+    if (this.getLootedID()) {
+      if (DU.gameflags[newfeature.getLootedID()]) {
+        this.setLootgroup("prev_looted");
+      }
+    }
 
     if (this.trapped) {
       var trapresult = this.tryTrap(who);
@@ -660,7 +666,12 @@ function OpenContainer() {
       retval["txt"] = "Empty.";
     }
     
-    this.getHomeMap().deleteThing(this);
+    if (this.showsearched) {
+      this.container = [];
+      this.setGraphicArray(this.getSearchedGraphic());
+    } else {
+      this.getHomeMap().deleteThing(this);
+    }
     return retval;
   }
   
@@ -676,6 +687,7 @@ function OpenContainer() {
     }
       
   }
+  
 }
 
 // Abstract class Tiling
@@ -2539,6 +2551,7 @@ function YellowDiamondFloorTile() {
 }
 YellowDiamondFloorTile.prototype = new TerrainObject();
 
+
 function BannerTile() {
   this.name = "Banner";
   this.graphic = "terrain_tiles.gif";
@@ -2629,6 +2642,25 @@ FeatureObject.prototype.getSearchedGraphic = function() {
     return this.searchedgraphic;  // should be a graphic array
   }
 }
+
+FeatureObject.prototype.getLootgroup = function() {
+  return this.lootgroup;
+}
+
+FeatureObject.prototype.setLootgroup = function(lg) {
+  this.lootgroup = lg;
+  return this.lootgroup;
+}
+
+FeatureObject.prototype.getLootedID = function() {
+  return this.lootedid;
+}
+
+FeatureObject.prototype.setLootedID = function(lid) {
+  this.lootedid = lid;
+  return this.lootedid;
+}
+
 // end definitions, begin features
 
 function LavaTile() {
@@ -2903,23 +2935,6 @@ function ChestTile() {
 }
 ChestTile.prototype = new FeatureObject();
 
-ChestTile.prototype.getLootgroup = function() {
-  return this.lootgroup;
-}
-
-ChestTile.prototype.setLootgroup = function(lg) {
-  this.lootgroup = lg;
-  return this.lootgroup;
-}
-
-ChestTile.prototype.getLootedID = function() {
-  return this.lootedid;
-}
-
-ChestTile.prototype.setLootedID = function(lid) {
-  this.lootedid = lid;
-  return this.lootedid;
-}
 
 
 function DoorWindowTile() {
@@ -3049,6 +3064,18 @@ function CampfireTile() {
 	LightEmitting.call(this, 2);
 }
 CampfireTile.prototype = new FeatureObject();
+
+function BrazierTile() {
+	this.name = "Brazier";
+	this.graphic = "brazier.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "brazier";
+	
+	LightEmitting.call(this, 2);  
+}
+BrazierTile.prototype = new FeatureObject();
 
 function SpitTile() {
 	this.name = "Spit";
@@ -3210,7 +3237,7 @@ function InAFireField(who) {
   var resist = who.getResist("magic");
   resist = 1-(resist/100);
   dmg = dmg*resist;
-  who.dealDamage(dmg, this);
+  who.dealDamage(dmg, this, "fire");
   
   return response;
 }
@@ -3776,6 +3803,8 @@ function BookshelfLeftTile() {
   this.desc = "bookshelf";
   this.showsearched = 1;
   this.searchedgraphic = ["furniture.gif", "", "-96", "-32"];
+	this.lootgroup = "";
+	this.lootedid = "";
 }
 BookshelfLeftTile.prototype = new FeatureObject();
 
@@ -3790,6 +3819,8 @@ function BookshelfRightTile() {
   this.desc = "bookshelf";
   this.showsearched = 1;
   this.searchedgraphic = ["furniture.gif", "", "-128", "-32"];
+	this.lootgroup = "";
+	this.lootedid = "";
 }
 BookshelfRightTile.prototype = new FeatureObject();
 
@@ -3804,6 +3835,8 @@ function BookshelfOneTile() {
   this.desc = "bookshelf";
   this.showsearched = 1;
   this.searchedgraphic = ["furniture.gif", "", "-160", "-32"];
+	this.lootgroup = "";
+	this.lootedid = "";
 }
 BookshelfOneTile.prototype = new FeatureObject();
 
@@ -3818,8 +3851,13 @@ function SmallBoxTile() {
   this.desc = "small box";
   this.showsearched = 1;
   this.searchedgraphic = ["furniture.gif", "", "-256", "-32"];
+	this.lootgroup = "";
+	this.lootedid = "";
+	
+	this.container = [];
+	OpenContainer.call(this);
 }
-BookshelfOneTile.prototype = new FeatureObject();
+SmallBoxTile.prototype = new FeatureObject();
 
 function MirrorTile() {
   this.name = "Mirror";
@@ -4216,6 +4254,222 @@ SpawnerTile.prototype.myTurn = function() {
   return 1;
 }
 
+function RedCarpetNWTile() {
+  this.name = "RedCarpetNW";
+  this.graphic = "red-carpet.gif";
+	this.spritexoffset = "0";
+	this.spriteyoffset = "0";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+RedCarpetNWTile.prototype = new FeatureObject();
+
+function RedCarpetNTile() {
+  this.name = "RedCarpetN";
+  this.graphic = "red-carpet.gif";
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "0";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+RedCarpetNTile.prototype = new FeatureObject();
+
+function RedCarpetNETile() {
+  this.name = "RedCarpetNE";
+  this.graphic = "red-carpet.gif";
+	this.spritexoffset = "-64";
+	this.spriteyoffset = "0";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+RedCarpetNETile.prototype = new FeatureObject();
+
+function RedCarpetWTile() {
+  this.name = "RedCarpetW";
+  this.graphic = "red-carpet.gif";
+	this.spritexoffset = "0";
+	this.spriteyoffset = "-32";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+RedCarpetWTile.prototype = new FeatureObject();
+
+function RedCarpetCTile() {
+  this.name = "RedCarpetC";
+  this.graphic = "red-carpet.gif";
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "-32";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+RedCarpetCTile.prototype = new FeatureObject();
+
+function RedCarpetETile() {
+  this.name = "RedCarpetE";
+  this.graphic = "red-carpet.gif";
+	this.spritexoffset = "-64";
+	this.spriteyoffset = "-32";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+RedCarpetETile.prototype = new FeatureObject();
+
+function RedCarpetSWTile() {
+  this.name = "RedCarpetSW";
+  this.graphic = "red-carpet.gif";
+	this.spritexoffset = "0";
+	this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+RedCarpetSWTile.prototype = new FeatureObject();
+
+function RedCarpetSTile() {
+  this.name = "RedCarpetS";
+  this.graphic = "red-carpet.gif";
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+RedCarpetSTile.prototype = new FeatureObject();
+
+function RedCarpetSETile() {
+  this.name = "RedCarpetSE";
+  this.graphic = "red-carpet.gif";
+	this.spritexoffset = "-64";
+	this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+RedCarpetSETile.prototype = new FeatureObject();
+
+function BlueCarpetNWTile() {
+  this.name = "BlueCarpetNW";
+  this.graphic = "blue-carpet.gif";
+	this.spritexoffset = "0";
+	this.spriteyoffset = "0";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+BlueCarpetNWTile.prototype = new FeatureObject();
+
+function BlueCarpetNTile() {
+  this.name = "BlueCarpetN";
+  this.graphic = "blue-carpet.gif";
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "0";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+BlueCarpetNTile.prototype = new FeatureObject();
+
+function BlueCarpetNETile() {
+  this.name = "BlueCarpetNE";
+  this.graphic = "blue-carpet.gif";
+	this.spritexoffset = "-64";
+	this.spriteyoffset = "0";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+BlueCarpetNETile.prototype = new FeatureObject();
+
+function BlueCarpetWTile() {
+  this.name = "BlueCarpetW";
+  this.graphic = "blue-carpet.gif";
+	this.spritexoffset = "0";
+	this.spriteyoffset = "-32";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+BlueCarpetWTile.prototype = new FeatureObject();
+
+function BlueCarpetCTile() {
+  this.name = "BlueCarpetC";
+  this.graphic = "blue-carpet.gif";
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "-32";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+BlueCarpetCTile.prototype = new FeatureObject();
+
+function BlueCarpetETile() {
+  this.name = "BlueCarpetE";
+  this.graphic = "blue-carpet.gif";
+	this.spritexoffset = "-64";
+	this.spriteyoffset = "-32";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+BlueCarpetETile.prototype = new FeatureObject();
+
+function BlueCarpetSWTile() {
+  this.name = "BlueCarpetSW";
+  this.graphic = "blue-carpet.gif";
+	this.spritexoffset = "0";
+	this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+BlueCarpetSWTile.prototype = new FeatureObject();
+
+function BlueCarpetSTile() {
+  this.name = "BlueCarpetS";
+  this.graphic = "blue-carpet.gif";
+	this.spritexoffset = "-32";
+	this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+BlueCarpetSTile.prototype = new FeatureObject();
+
+function BlueCarpetSETile() {
+  this.name = "BlueCarpetSE";
+  this.graphic = "blue-carpet.gif";
+	this.spritexoffset = "-64";
+	this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+}
+BlueCarpetSETile.prototype = new FeatureObject();
+
 function PentagramNWTile() {
   this.name = "PentagramNW";
   this.graphic = "pentagram.gif";
@@ -4323,6 +4577,8 @@ function PentagramSETile() {
   this.desc = "pentagram";
 }
 PentagramSETile.prototype = new FeatureObject();
+
+
 
 function MoatLeverOffTile() {
   this.name = "MoatLeverOff";
@@ -6658,8 +6914,6 @@ function AddNPCProperties() {
 	this.spellbook = [];
 	this.spellEffects = new Collection();
 	
-	this.resists = {};   // fire, ice
-
 	this.lastLocation = {};
 	this.lastLocation.map = "";
 	this.lastLocation.x = 0;
@@ -6821,11 +7075,12 @@ NPCObject.prototype.healMe = function(amt, src) {
   return this.getHP();
 }
 
-NPCObject.prototype.dealDamage = function(dmg, src) {
+NPCObject.prototype.dealDamage = function(dmg, src, type) {
   var isasleep = this.getSpellEffectsByName("Sleep");
   if (isasleep) {
     isasleep.endEffect();
   }
+  dmg = CheckAbsorb(dmg,this,src,type);
   this.modHP(dmg*-1);
   if (this.getHP() <= 0) { // killed!
     this.processDeath(1);
@@ -8034,13 +8289,14 @@ PCObject.prototype.setInfusion = function(infuse) {
   return this.infuse;
 }
 
-PCObject.prototype.dealDamage = function(dmg, src) {
+PCObject.prototype.dealDamage = function(dmg, src, type) {
   
   var isasleep = this.getSpellEffectsByName("Sleep");
   if (isasleep) {
     isasleep.endEffect();
   }
 
+  dmg = CheckAbsorb(dmg,this,src,type);
   var oldhp = this.getDisplayHP();
   this.modHP(dmg*-1);
   var newhp = this.getDisplayHP();
