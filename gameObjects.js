@@ -7725,6 +7725,7 @@ NPCObject.prototype.myTurn = function() {
   if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + this.getName() + ", serial " + this.getSerial() + " is starting its turn.</span><br />"); }	
 	RunEffects(this);
 	
+	Regen(this);
   var awake = 1;
   if (this.getSpellEffectsByName("Sleep")) { awake = 0; }
   
@@ -8201,6 +8202,7 @@ PCObject.prototype.myTurn = function() {
     }
   }
     
+  Regen(this);
   var awake = 1;
   if (this.getSpellEffectsByName("Sleep")) { awake = 0; }  
   

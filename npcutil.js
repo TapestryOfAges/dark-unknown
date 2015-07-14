@@ -339,3 +339,14 @@ function PushOff(what) {
   return 1;
   
 }
+
+function Regen(who) {
+  if (DUTime.getGameClock() <= who.nextMana) {
+    if (who.getMana() < who.getMaxMana()) {
+      who.modMana(1);
+    }
+    who.nextMana += MANA_REGEN;
+  }
+  
+  // put HP regen here if I decide to include it after all
+}
