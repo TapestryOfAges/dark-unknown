@@ -6897,6 +6897,8 @@ function NPCObject() {
 	this.merch = "";
 	this.spawnedBy;
 	this.special = "";
+	this.nextMana = 0;
+	this.nextHP = 0;
 	
 	this.addType("npc");
 //	AddNPCProperties.call(this);
@@ -7619,6 +7621,10 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.startx = this.getx();
     this.starty = this.gety();
     
+    this.nextMana = DUTime.getGameClock() + MANA_REGEN;
+    this.nextHP = DUTime.getGameClock() + HP_REGEN;
+    
+    
     var NPCEvent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCEvent,timing);  
   }
@@ -8171,6 +8177,9 @@ function PCObject() {
 	this.lastLocation.map = "";
 	this.lastLocation.x = 0;
 	this.lastLocation.y = 0;
+	
+	this.nextMana = MANA_REGEN;
+	this.nextHP = HP_REGEN;
 
 //	var myweapon = localFactory.createTile("Dagger");
 //	myweapon.equipMe(this);
