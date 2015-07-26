@@ -84,9 +84,9 @@ var MOVE_WALK_DOOR = 32;
 
 var SCALE_TIME = .005;
 
-var BASE_HIT_CHANCE = 80;
+var BASE_HIT_CHANCE = 70;
 var HIT_PER_LEVEL = 4;
-var DEF_PER_LEVEL = 4;
+var DEF_PER_LEVEL = 0;
 
 var RUNE_KINGS  = 1;
 var RUNE_WAVES  = 2;
@@ -103,3 +103,11 @@ var DMG_AUTOKILL = "255";
 
 var MANA_REGEN = 1.5;
 var HP_REGEN = 20;
+
+// For sparkles
+var COLOR_YELLOW = 0;
+var COLOR_GREEN = -32;
+var COLOR_BLUE = -64;
+var COLOR_ORANGE = -96;
+var COLOR_PURPLE = -128;
+var COLOR_RED = -160;

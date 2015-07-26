@@ -81,6 +81,11 @@ tileFactory.prototype.makePurplePillarTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFancyFloorTile = function() {
+  var newTile = new FancyFloorTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeFountainSWTile = function() {
   var newTile = new FountainSWTile();
   return newTile;
@@ -716,6 +721,11 @@ tileFactory.prototype.makeBrazierTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeUnlitBrazierTile = function() {
+  var newTile = new UnlitBrazierTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpitTile = function() {
   var newTile = new SpitTile();
   return newTile;
@@ -728,6 +738,11 @@ tileFactory.prototype.makeFireplaceTile = function() {
 
 tileFactory.prototype.makeAltarTile = function() {
   var newTile = new AltarTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeThroneTile = function() {
+  var newTile = new ThroneTile();
   return newTile;
 }
 
@@ -2241,6 +2256,11 @@ tileFactory.prototype.makeDistractTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFireArmorTile = function() {
+  var newTile = new FireArmorTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeFlameBladeTile = function() {
   var newTile = new FlameBladeTile();
   return newTile;
@@ -2283,6 +2303,11 @@ tileFactory.prototype.makeQuicknessTile = function() {
 
 tileFactory.prototype.makeSleepTile = function() {
   var newTile = new SleepTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSlowTile = function() {
+  var newTile = new SlowTile();
   return newTile;
 }
 

@@ -151,12 +151,12 @@ magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   if (effects) {
     for (var i=0; i<effects.length; i++) {
       if (effects[i].getName() === "Poison") {
-        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, 0);
+        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
         effects[i].endEffect();
       }
       if ((infused) && (effects[i].getName() === "Disease")) {
         effects[i].endEffect();
-        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, 0);
+        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
       }
     }
   }
@@ -191,7 +191,7 @@ magic[1][GetSpellID(2)].executeSpell = function(caster, infused, free) {
           if (roll < chance) { 
             val.disarmTrap(); 
             maintext.addText("Trap disarmed!"); 
-            ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, -96);
+            ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
           }
           else { 
             maintext.addText("Trap resists."); 
@@ -227,7 +227,7 @@ magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
       var chance = 1-((val.getResist("magic") + 1.5*val.getInt() - .5*caster.getInt())/100);
       if (Math.random()*1 < chance) {
         var distract = localFactory.createTile("Distract");
-        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, -128);
+        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
         var desc = val.getDesc() + " is distracted!";
         if (val === PC) {
           desc = "You are distracted!";
@@ -286,7 +286,7 @@ magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   if (debug) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
   flameblade.setExpiresTime(endtime);
   caster.addSpellEffect(flameblade);
-  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, -160);
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
   
   return resp;
 }
@@ -378,7 +378,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
   
     var dur = caster.getInt()/2;
     if (infused) { dur = dur * 1.5;}
-    ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, -128);
+    ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
     if (tgt !== PC) {
       desc = tgt.getDesc() + " is vulnerable!";
     } else {
@@ -497,7 +497,7 @@ magic[2][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
     tgt = caster;
   }
   
-  ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, 0);
+  ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
   tgt.healMe(healamt, caster);
   resp["txt"] = "You feel better!";
   
@@ -656,7 +656,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           desc = desc.charAt(0).toUpperCase() + desc.slice(1);        
           maintext.addText(desc);
         } else {
-          ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, -32);
+          ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_GREEN);
           var desc = val.getDesc() + " is poisoned!";
           if (val === PC) {
             desc = "You are poisoned!";
@@ -698,7 +698,7 @@ magic[2][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   prot.setExpiresTime(endtime);
   prot.setPower(power);
   caster.addSpellEffect(prot);
-  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, -160);
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   
   return resp;
 }
@@ -724,6 +724,7 @@ magic[2][GetSpellID(6)].executeSpell = function(caster, infused, free) {
           val.unlockMe();
           DrawMainFrame("one", castermap.getName(), val.getx(), val.gety());
           var desc = "The " + val.getDesc() + " is unlocked.";
+          ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
           desc = desc.charAt(0).toUpperCase() + desc.slice(1);      
           maintext.addText(desc);
         }
@@ -791,7 +792,7 @@ magic[3][GetSpellID(2)].executeSpell = function(caster, infused, free) {
   prot.setExpiresTime(endtime);
   prot.setPower(power);
   caster.addSpellEffect(prot);
-  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, -160);
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
   
   return resp;
 }
@@ -980,6 +981,269 @@ function PerformIceball(caster, infused, free, tgt) {
   return resp;
 }
 
+// Telekinesis
+magic[3][GetSpellID(5)].executeSpell = function(caster, infused, free, tgt) {
+  if (caster !== PC) {
+    var resp = PerformVulnerability(caster, infused, free, tgt);
+    return resp;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Telekinesis.<br /></span>"); }
+  var resp = {};
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Telekinesis";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "usable"};
+  targetCursor.targetlimit = (viewsizex -1)/2;
+  targetCursor.targetCenterlimit = 0;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 0;
+  gamestate.setMode("target");
+  return resp;
+}
+
+function PerformTelekinesis(caster, infused, free, tgt) {
+  gamestate.setMode("null");
+  var usemap = tgt.getHomeMap();
+  var localacre = usemap.getTile(tgt.getx(),tgt.gety());
+  
+  var retval = tgt.use(caster);
+  retval["input"] = "&gt;";
+  if (retval["override"] === 1) {
+    delete retval["override"]; 
+  } else {
+    retval["fin"] = 1;
+    var usedname = tgt.getDesc();
+    usedname = usedname.replace(/^a /, "");
+    retval["txt"] = "Telekinesis on " + usedname + ": " + retval["txt"];
+    var drawtype = "one";
+    if (tgt.checkType("Consumable")) {
+      tgt.getHomeMap().deleteThing(used);
+    }
+    if (retval["redrawtype"]) {
+      delete retval["redrawtype"];
+      // if more of the map needs to be redrawn, need to recheck light sources
+
+      $.each(localacre.localLight, function(index, value) {
+      // each object that is casting light on the door might be casting light through the door.
+        var lightsource = usemap.lightsList[index];
+        who.getHomeMap().removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
+        who.getHomeMap().setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
+      });
+		  
+      DrawMainFrame("draw",usemap.getName(),PC.getx(),PC.gety());
+    } else {		
+      DrawMainFrame("one",usemap.getName(),tgt.getx(),tgt.gety());
+    }
+  }
+  return retval;
+}
+
+// Wall of Flame
+magic[3][GetSpellID(6)].executeSpell = function(caster, infused, free, tgt) {
+  if (caster !== PC) {
+    var resp = PerformWallOfFlame(caster, infused, free, tgt);
+    return resp;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Wall of Flame.<br /></span>"); }
+  var resp = {};
+  
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Wall of Flame";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open"};
+  targetCursor.targetlimit = (viewsizex -1)/2;
+  targetCursor.targetCenterlimit = 0;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose where to conjure- ";
+  resp["fin"] = 4;
+  gamestate.setMode("target");
+  return resp;
+}
+
+function PerformWallOfFlame(caster, infused, free, tgt) {
+  var resp = {};
+  resp["fin"] = 1;
+  resp["input"] = "&gt;";
+  var desc = "";
+
+  var castermap = caster.getHomeMap();
+  if (castermap.getLOS(caster.getx(), caster.gety(), tgt.x, tgt.x, losgrid, 1) >= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "You cannot cast this spell there.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+  
+  if (!free) {
+    var mana = magic[3][GetSpellID(6)].getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+
+  // make the first firefield
+  var field1 = localFactory.createTile("FireField");
+  castermap.placeThing(tgt.x, tgt.y, field1)
+  
+  // determine which direction it was, for whether the wall is diagonal, horizontal, or vertical.
+  var dir = GetEffectGraphic(caster,field1,{}).fired;
+  if ((dir === 0) || (dir === 4)) {
+    var placed = TryToPlaceField(castermap,tgt.x-1,tgt.y,"FireField");
+    if (!placed) {
+      var newy = tgt.y;
+      if (dir === 0) { newy++; }
+      else { newy--; }
+      placed = TryToPlaceField(castermap,tgt.x-1,newy,"FireField");
+      if (!placed) {
+        if (dir === 0) { newy = tgt.y-1; }
+        else { newy = tgt.y+1; }
+        TryToPlaceField(castermap,tgt.x-1,newy,"FireField");
+      }
+    }
+    placed = TryToPlaceField(castermap,tgt.x+1,tgt.y,"FireField");
+    if (!placed) {
+      var newy = tgt.y;
+      if (dir === 0) { newy++; }
+      else { newy--; }
+      placed = TryToPlaceField(castermap,tgt.x+1,newy,"FireField");
+      if (!placed) {
+        if (dir === 0) { newy = tgt.y-1; }
+        else { newy = tgt.y+1; }
+        TryToPlaceField(castermap,tgt.x+1,newy,"FireField");
+      }
+    }
+  } else if ((dir === 1) || (dir === 5)) {
+    var placed = TryToPlaceField(castermap,tgt.x-1,tgt.y-1,"FireField");
+    if (!placed) {
+      var newy = tgt.y-1;
+      var newx = tgt.x-1;
+      if (dir === 1) { newy++; }
+      else { newx++; }
+      placed = TryToPlaceField(castermap,newx,newy,"FireField");
+      if (!placed) {
+        var newy = tgt.y-1;
+        var newx = tgt.x-1;
+        if (dir === 1) { newx++; }
+        else { newy++; }
+        TryToPlaceField(castermap,newy,newy,"FireField");
+      }
+    }
+    placed = TryToPlaceField(castermap,tgt.x+1,tgt.y+1,"FireField");
+    if (!placed) {
+      var newy = tgt.y+1;
+      var newx = tgt.x+1;
+      if (dir === 1) { newx--; }
+      else { newy--; }
+      placed = TryToPlaceField(castermap,newx,newy,"FireField");
+      if (!placed) {
+        var newy = tgt.y+1;
+        var newx = tgt.x+1;
+        if (dir === 1) { newy--; }
+        else { newx--; }
+        TryToPlaceField(castermap,newx,newy,"FireField");
+      }
+    }    
+  } else if ((dir === 2) || (dir === 6)) {
+    var placed = TryToPlaceField(castermap,tgt.x,tgt.y-1,"FireField");
+    if (!placed) {
+      var newy = tgt.y-1;
+      var newx = tgt.x;
+      if (dir === 2) { newx--; }
+      else { newx++; }
+      placed = TryToPlaceField(castermap,newx,newy,"FireField");
+      if (!placed) {
+        var newy = tgt.y-1;
+        var newx = tgt.x;
+        if (dir === 2) { newx++; }
+        else { newx--; }
+        TryToPlaceField(castermap,newy,newy,"FireField");
+      }
+    }
+    placed = TryToPlaceField(castermap,tgt.x,tgt.y+1,"FireField");
+    if (!placed) {
+      var newy = tgt.y+1;
+      var newx = tgt.x;
+      if (dir === 2) { newx--; }
+      else { newx++; }
+      placed = TryToPlaceField(castermap,newx,newy,"FireField");
+      if (!placed) {
+        var newy = tgt.y+1;
+        var newx = tgt.x;
+        if (dir === 2) { newx++; }
+        else { newx--; }
+        TryToPlaceField(castermap,newx,newy,"FireField");
+      }
+    }        
+  } else if ((dir === 3) || (dir === 7)) {
+    var placed = TryToPlaceField(castermap,tgt.x+1,tgt.y-1,"FireField");
+    if (!placed) {
+      var newy = tgt.y-1;
+      var newx = tgt.x+1;
+      if (dir === 3) { newx--; }
+      else { newy++; }
+      placed = TryToPlaceField(castermap,newx,newy,"FireField");
+      if (!placed) {
+        var newy = tgt.y+1;
+        var newx = tgt.x-1;
+        if (dir === 3) { newy--; }
+        else { newx++; }
+        TryToPlaceField(castermap,newy,newy,"FireField");
+      }
+    }
+    placed = TryToPlaceField(castermap,tgt.x-1,tgt.y+1,"FireField");
+    if (!placed) {
+      var newy = tgt.y+1;
+      var newx = tgt.x-1;
+      if (dir === 3) { newy--; }
+      else { newx++; }
+      placed = TryToPlaceField(castermap,newx,newy,"FireField");
+      if (!placed) {
+        var newy = tgt.y+1;
+        var newx = tgt.x-1;
+        if (dir === 3) { newx++; }
+        else { newy--; }
+        TryToPlaceField(castermap,newx,newy,"FireField");
+      }
+    }        
+  } else {
+    alert("Finding facing isn't working.");
+  }
+  DrawMainFrame("draw",castermap.getName(),PC.getx(),PC.gety());
+  //WORKING HERE
+  
+  return resp;
+}
+
+function TryToPlaceField(mapref, wherex, wherey, fieldname) {
+  var tile = mapref.getTile(wherex, wherey);
+  if (tile.canMoveHere(MOVE_WALK,0)["canmove"]) {
+    var field = localFactory.createTile(fieldname);
+    mapref.placeThing(wherex,wherey,field);
+    return 1;
+  }
+  return 0;
+}
+
 // Levitate/Waterwalk
 magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Water Walk.<br /></span>"); }
@@ -1060,6 +1324,7 @@ magic[5][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   resp["fin"] = 1;
 
   // WORKING HERE
+  //will be blue sparkle
 }
 //Return
 magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
@@ -1206,7 +1471,7 @@ magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
 //  if (DU.gameflags.sound) { play_audio("sfx_spell_light"); }   // ADD SOUND HERE
   caster.addSpellEffect(liobj);
 //  liobj.applyEffect();
-  
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   DrawCharFrame();
   return resp;  
 }
@@ -1458,6 +1723,41 @@ function AnimateSparkles(onwhat, color, animframe) {
 function PerformSpellcast() {
   var themap = PC.getHomeMap();
   var targettile = themap.getTile(targetCursor.x, targetCursor.y);
+  var onscreen = $('#td-tile' + targetCursor.x + 'x' + targetCursor.y).html();
+  var losval = 0;
+  if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
+  else {
+    var light = targettile.getLocalLight();
+    if (themap.getLightLevel() === "bright") {
+      light += 1;
+    }
+    if (light < SHADOW_THRESHOLD) {
+      losval = 1;
+    }
+  }
+  if (losval >= LOS_THRESHOLD) {
+   	var retval = {};
+  	retval["txt"] = "You cannot see that.";
+  	retval["fin"] = 0;
+    retval["input"] = "&gt;";
+ 	  var tileid = targetCursor.tileid;
+    $(tileid).html(targetCursor.basetile); 
+    delete targetCursor.spellName;
+
+  	return retval;
+  }
+
+  if (themap.getLOE(PC.getx(), PC.gety(), targetCursor.x, targetCursor.y, losgrid, 1) >= LOS_THRESHOLD) { 
+    retval["fin"] = 0;
+    retval["txt"] = "Your spell cannot reach there!";
+   	retval["input"] = "&gt;";
+ 	  var tileid = targetCursor.tileid;
+    $(tileid).html(targetCursor.basetile); 
+    delete targetCursor.spellName;
+
+    return retval;
+  }
+  
   var resp = {};
   if (targetCursor.spelldetails.targettype === "npc") {
     var tgt = targettile.getTopVisibleNPC();
@@ -1495,7 +1795,8 @@ function PerformSpellcast() {
       resp["input"] = "&gt;";   
       var tileid = targetCursor.tileid;
       $(tileid).html(targetCursor.basetile); 
-
+      delete targetCursor.spellName;
+      
       return resp;   
     }
     var tgt = {};
@@ -1506,12 +1807,28 @@ function PerformSpellcast() {
     if (targetCursor.spellName === "Illusion") {
       resp = PerformIllusion(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
     } else if (targetCursor.spellName === "Poison Cloud") {
-        resp = PerformPoisonCloud(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+      resp = PerformPoisonCloud(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+    } else if (targetCursor.spellName === "Wall of Flame") {
+      resp = PerformWallOfFlame(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
     }
-    delete targetCursor.spellName;
+  } else if (targetCursor.spelldetails.targettype === "usable") {
+    var topfeature = targettile.getTopVisibleFeature();
+    if (typeof topfeature.use === "function") {
+      resp = PerformTelekinesis(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, topfeature);
+    } else {
+      resp["fin"] = 0;
+      resp["txt"] = "There is nothing to cast this on there.";
+      resp["input"] = "&gt;";
+      var tileid = targetCursor.tileid;
+      $(tileid).html(targetCursor.basetile); 
+      delete targetCursor.spellName;
+      
+      return resp;   
+    }
   } else {
     alert(targetCursor.spelldetails.targettype);
   }
+  delete targetCursor.spellName;
   return resp;
 }
 

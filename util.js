@@ -388,7 +388,12 @@ function RollDice(die) {
 
 function RollMin(die) {
   var dieobj = ParseDice(die);
-  return (dieobj.plus + dieobj+quantity);
+  return (dieobj.plus + dieobj.quantity);
+}
+
+function RollAve(die) {
+  var dieobj = ParseDice(die);
+  return (dieobj.plus + dieobj.quantity * (1+dieobj.dice)/2);
 }
 
 function PlaceMonsters(battlemap,group,whoseturn) {
@@ -729,6 +734,11 @@ function PerformTrap(who, trap, traplvl, trapped) {
   // Traps can be: Dart (makes atk roll, poison), acid (physical damage), gas (poison), explosion (magical damage), drain (mana)
   
   if (trap === "dart") {
+    if (!IsAdjacent(who,trapped)) {
+      if (debug) { dbs.writeln("Dart trap fires, misses everyone (telekinesis)<br />"); }
+      maintext.addTrap("TRAP! A dart flies out and misses everything.");
+      return 0;
+    }
     var def = who.getDefense();
     var tohit = (2*traplvl - def)/100;
     if (tohit < .05) { tohit = .05; }
@@ -744,24 +754,45 @@ function PerformTrap(who, trap, traplvl, trapped) {
       return 0;
     } 
   } else if (trap === "acid") {
+    if (!IsAdjacent(who,trapped)) {
+      if (debug) { dbs.writeln("Acid trap fires, misses everyone (telekinesis)<br />"); }
+      maintext.addTrap("TRAP! Acid spews forth, missing everything.");
+      return 0;
+    }
     var aciddmg = RollDice("1d6+3");
     who.dealDamage(aciddmg, trapped);
     maintext.addText("TRAP! You are splashed with acid.");
     DrawCharFrame();
     return 1;
   } else if (trap === "gas") {
+    if (!IsAdjacent(who,trapped)) {
+      if (debug) { dbs.writeln("Gas trap fires, misses everyone (telekinesis)<br />"); }
+      maintext.addTrap("TRAP! Poison gas billows forth, but disperses before it reaches you.");
+      return 0;
+    }
     maintext.addText("TRAP! You are poisoned.");
     var poison = localFactory.createTile("Poison");
     who.addSpellEffect(poison);
     DrawCharFrame();
     return 1;    
   } else if (trap === "explosion") {
+    if (!IsAdjacent(who,trapped)) {
+      if (debug) { dbs.writeln("Explosion trap fires, misses everyone (telekinesis)<br />"); }
+      maintext.addTrap("TRAP! The lock explodes, but you just feel a little heat.");
+      return 0;
+    }
     maintext.addText("TRAP! There is an explosion!");
     var firedmg = RollDice("3d6");
     who.dealDamage(firedmg,trapped);
     DrawCharFrame();
     return 1;
   } else if (trap === "drain") {
+    if (!IsAdjacent(who,trapped)) {
+      if (debug) { dbs.writeln("Drain trap fires, misses everyone (telekinesis)<br />"); }
+      maintext.addTrap("TRAP! You feel a distant pull on your mind, but then it passes.");
+      return 0;
+    }
+
     maintext.addText("TRAP! You feel a pull on your mind.");
     var drain = RollDice("2d4");
     if (drain > who.getMana()) {
