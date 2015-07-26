@@ -1243,6 +1243,18 @@ function PurplePillarTile() {
 }
 PurplePillarTile.prototype = new TerrainObject();
 
+function FancyFloorTile() {
+  this.name = "FancyFloor";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-288";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_LEVITATE;
+  this.blocklos = 0;
+  this.prefix = "the";
+  this.desc = "floor";
+}
+FancyFloorTile.prototype = new TerrainObject();
+
 function FountainSWTile() {
   this.name = "FountainSW";
 //  this.graphic = "017.gif";
@@ -3011,14 +3023,15 @@ BloodTile.prototype = new FeatureObject();
 
 function EnergyFieldTile() {
 	this.name = "EnergyField";
-	this.graphic = "flowing_animations.gif";
+//	this.graphic = "flowing_animations.gif";
+  this.graphic = "fields.gif";
 	this.passable = 0; // impassable - wonky outdoors, but necessary indoors
 	this.blocklos = 0;
 	this.blockloe = 1;
 //	this.light = 1;
   this.prefix = "an"; 
 	this.desc = "energy field";
-  this.spritexoffset = "-96";
+  this.spritexoffset = "-32";
   this.spriteyoffset = "0";
 	
 	LightEmitting.call(this, 1);
@@ -3077,6 +3090,54 @@ function BrazierTile() {
 }
 BrazierTile.prototype = new FeatureObject();
 
+BrazierTile.prototype.use = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  if (!this.alwayslit) {
+    var map = this.getHomeMap();
+    var unlit = localFactory.createTile("UnlitBrazier");
+    var x = this.getx();
+    var y = this.gety();
+    map.deleteThing(this);
+    map.placeThing(x,y,unlit);
+    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    
+    retval["txt"] = "You extinguish the brazier.";
+  }
+  
+  return retval;
+}
+
+function UnlitBrazierTile() {
+	this.name = "UnlitBrazier";
+	this.graphic = "features.gif";
+	this.spritexoffset = "-128";
+	this.spriteyoffset = "-64";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+  this.prefix = "an";
+	this.desc = "unlit brazier";
+}
+UnlitBrazierTile.prototype = new FeatureObject();
+
+UnlitBrazierTile.prototype.use = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  if (!this.alwaysout) {
+    var map = this.getHomeMap();
+    var lit = localFactory.createTile("Brazier");
+    var x = this.getx();
+    var y = this.gety();
+    map.deleteThing(this);
+    map.placeThing(x,y,lit);
+    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    
+    retval["txt"] = "You light the brazier.";
+  }
+  
+  return retval;
+}
+
 function SpitTile() {
 	this.name = "Spit";
 	this.graphic = "spit.gif";
@@ -3110,6 +3171,18 @@ function AltarTile() {
 	this.desc = "altar";
 }
 AltarTile.prototype = new FeatureObject();
+
+function ThroneTile() {
+	this.name = "Throne";
+	this.graphic = "furniture.gif";
+	this.spritexoffset = "-256";
+	this.spriteyoffset = "-96";
+	this.passable = MOVE_ETHEREAL + MOVE_FLY;
+	this.blocklos = 0;
+	this.prefix = "the";
+	this.desc = "throne";
+}
+ThroneTile.prototype = new FeatureObject();
 
 function DoorTile() {
   Lockable.call(this, "064.gif", "065.gif", "066.gif", "a", "door", "a", "locked door", "a", "magically locked door");
@@ -3164,14 +3237,14 @@ TalkingDoorTile.prototype.activate = function(timeoverride) {
 
 function SleepFieldTile() {
 	this.name = "SleepField";
-	this.graphic = "flowing_animations.gif";
+	this.graphic = "fields.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 //	this.light = 1;
   this.prefix = "a";
 	this.desc = "sleep field";
 	this.initdelay = 1.5;
-  this.spritexoffset = "-64";
+  this.spritexoffset = "-96";
   this.spriteyoffset = "0";
 	
 	LightEmitting.call(this, 1);
@@ -3207,13 +3280,13 @@ function InASleepField(who) {
 
 function FireFieldTile() {
 	this.name = "FireField";
-	this.graphic = "flowing_animations.gif";
+	this.graphic = "fields.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 //	this.light = 3;
   this.prefix = "a";
 	this.desc = "fire field";
-	this.spritexoffset = "-32";
+	this.spritexoffset = "-64";
   this.spriteyoffset = "0";
 	
 	LightEmitting.call(this, 3);
@@ -3244,7 +3317,7 @@ function InAFireField(who) {
 
 function PoisonFieldTile() {
 	this.name = "PoisonField";
-	this.graphic = "flowing_animations.gif";
+	this.graphic = "fields.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 //	this.light = 1;
@@ -5753,9 +5826,13 @@ function PetrifiedRoperTile() {
 PetrifiedRoperTile.prototype = new FeatureObject();
 
 PetrifiedRoperTile.prototype.use = function(who) {
-  var loot = localFactory.createTile("RoperBark");
-  PC.addToInventory(loot,1);
-  maintext.delayedAddText("You take some petrified roper bark.");
+  if (IsAdjacent(who,this)) {
+    var loot = localFactory.createTile("RoperBark");
+    PC.addToInventory(loot,1);
+    maintext.delayedAddText("You take some petrified roper bark.");
+  } else {
+    maintext.delayedAddText("Nothing happens.");
+  }
   return;
 }  
 
@@ -8163,6 +8240,7 @@ function PCObject() {
   this.equipment.armor = "";
   this.equipment.weapon = "";
   this.equipment.missile = "";
+  this.resists = {};
 
   this.runes = {};
   this.runes.kings = 0;

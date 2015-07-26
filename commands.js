@@ -1133,6 +1133,15 @@ function PerformTalkTarget() {
   
     return retval;
   }
+  if (top.getAttitude() !== "friendly") {
+    var pronoun = top.getGenderedTerms().pronoun;
+    pronoun = pronoun.charAt(0).toUpperCase() + pronoun.slice(1);
+    retval["txt"] = pronoun + "does not want to talk to you.";
+    retval["fin"] = 2;
+    retval["input"] = "&gt;";
+  
+    return retval;    
+  }
   var convo = top.getConversation();
   if (!convo) {
     retval["txt"] = "No one there wishes to speak with you.";

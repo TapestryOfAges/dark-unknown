@@ -1,0 +1,109 @@
+<html>
+  <head>
+    <title>DU Balance</title>
+    <script language="JavaScript" src="external/jquery-1.3.2.js"></script>
+    <script language="JavaScript" src="util.js"></script>
+    <script language="JavaScript" src="consts.js"></script>
+    <script language="JavaScript" src="npcutil.js"></script>
+    
+    <script language="JavaScript">
+      $(document).ready(function() {  
+        document.parameters.basetohit.value = BASE_HIT_CHANCE;
+        document.parameters.hitperlevel.value = HIT_PER_LEVEL;
+        document.parameters.defperlevel.value = DEF_PER_LEVEL;
+      });
+      
+      var armors = [];
+      armors[0] = {name:"None", Defense: 0, Resist: 0, Absorb: 0};
+      armors[1] = {name:"Cloth", Defense: 5, Resist: 0, Absorb: 10};
+      armors[2] = {name:"Leather", Defense: 10, Resist: 10, Absorb: 20};
+      armors[3] = {name:"Chain", Defense: 20, Resist: 10, Absorb: 33};
+      armors[4] = {name:"Plate", Defense: 35, Resist: 15, Absorb: 50};
+      armors[5] = {name:"Exotic", Defense: 40, Resist: 40, Absorb: 60};
+      var wpns = [];
+      wpns[0] = {name:"Fists", Dmg: "1d3", noabsorb: 0, str:1/3, lvl: 1};
+      wpns[1] = {name:"Dagger", Dmg: "1d4+1", noabsorb: 0, str: 1/3, lvl: 1};
+      wpns[2] = {name:"Short Sword", Dmg: "2d4+1", noabsorb: 0, str: 1/2, lvl: 2};
+      wpns[3] = {name:"Mace", Dmg: "2d4+3", noabsorb: 0, str: 1, lvl: 2};
+      wpns[4] = {name:"Axe", Dmg: "2d4+8", noabsorb: 0, str: 2/3, lvl: 3};
+      wpns[5] = {name:"Longsword", Dmg: "4d4+9", noabsorb: 0, str: 2/3, lvl: 4};
+      wpns[6] = {name:"Halberd", Dmg: "5d4+15", noabsorb: 0, str: 1, lvl: 5};
+      wpns[7] = {name:"Magic Sword", Dmg: "5d10+22", noabsorb: 0, str: 1, lvl: 6};
+      wpns[8] = {name:"Sling",Dmg: "1d3", str: 0, lvl: 1};
+      wpns[9] = {name:"Bow", Dmg:"1d12+1", str: 0, lvl: 3};
+      wpns[10] = {name:"Crossbow", Dmg:"4d8+-1", str: 0, lvl: 5};
+      wpns[11] = {name:"Wand", Dmg:"4d12+0", str: 0, lvl: 6};
+      
+      var expectedstr = [];
+      expectedstr[1] = 10;
+      expectedstr[2] = 11;
+      expectedstr[3] = 13;
+      expectedstr[4] = 14;
+      expectedstr[5] = 16;
+      expectedstr[6] = 18;
+      expectedstr[7] = 21;
+      expectedstr[8] = 25;
+      
+      function calculate() {
+        var html = "<p>== TO HIT ==</p><table cellpadding='1' cellspacing='0' border='1'>";
+        html += "<tr><th>Lvl</th><th>None</th><th>Cloth</th><th>Leather</th><th>Chain</th><th>Plate</th><th>Exotic</th></tr>";
+        for (var lvl=1;lvl<=8;lvl++) {
+          for (var i=0;i<=30;i++) {
+            if (expectedstr[lvl] === i) {
+              html += "<tr><td>" + lvl + " ("+ i + ")</td>";
+              for (var j=0;j<=5;j++) {
+                var chance = parseInt(document.parameters.basetohit.value) + parseInt(document.parameters.hitperlevel.value)*lvl - armors[j].Defense - parseInt(document.parameters.defperlevel.value)*lvl + i-10;
+                var color;
+                if (chance <= 50) { color = "red"; }
+                else if ((chance >50) && (chance < 63)) { color = "orange"; }
+                else if ((chance >= 63) && (chance <=75)) { color = "green"; }
+                else if ((chance > 75) && (chance <= 85)) { color = "cyan"; }
+                else { color = "yellow"; }
+                html += "<td style='background-color:" +color+ "'>" + chance + "%</td>"; 
+              }
+              html += "</tr>";
+            }
+          }
+        }
+        html += "</table>";
+        $("#tohitchart").html(html);
+        
+        html = "<p>== DAMAGE ==</p><table cellpadding='1' cellspacing='0' border='1'>";
+        html += "<tr><th>Weapon</th><th>(Lvl)</th><th>(Str)</th><th>None</th><th>Cloth</th><th>Leather</th><th>Chain</th><th>Plate</th><th>Exotic</th></tr>";
+        for (var i = 0; i<=11; i++) {
+          html += "<tr><td>" + wpns[i].name + "</td><td>" + wpns[i].lvl + "</td><td>" + expectedstr[wpns[i].lvl] + "</td>";
+          var dmg = RollAve(wpns[i].Dmg) + wpns[i].str*expectedstr[wpns[i].lvl];
+          for (var j = 0; j<=5; j++ ){
+            admg = dmg * (1-armors[j].Absorb/100);
+            html += "<td>" + parseInt(admg) + "</td>";
+          }
+          html += "</tr>";
+        }
+        html += "</table>"
+        $("#damagechart").html(html);
+        
+        html = "<p>== DAMAGE ==</p><table cellpadding='1' cellspacing='0' border='1'>";
+        html += "<tr><th>Spell Dam</th><th>None</th><th>Cloth</th><th>Leather</th><th>Chain</th><th>Plate</th><th>Exotic</th></tr>";
+      }
+    </script>
+  </head>
+  <body>
+    <form name="parameters">
+    <table>
+      <tr><th colspan='5'>PARAMETERS</th></tr>
+      <tr><td>Base To-hit:</td><td><input type="text" name="basetohit" size="2"></td>
+        <td>&nbsp;</td>
+        <td></td><td></td>
+      </tr>
+      <tr><td>To Hit/Level:</td><td><input type="text" name="hitperlevel" size="2"></td>
+        <td></td>
+        <td>Def/Level:</td><td><input type="text" name="defperlevel" size="2"></td>
+      </tr>
+    </table>
+    <p onclick="calculate()">[CALCULATE]</p>
+    </form>
+    <div id="tohitchart"></div>
+    <div id="damagechart"></div>
+    <div id="spellchart"</div>
+  </body>
+</html>
