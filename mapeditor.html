@@ -140,9 +140,9 @@
     	                   <option value="8">8</option></select>
     	</td>
     	<td>Alignment:</td><td><select name="npcalign">
-    		                   <option value="good">Good</option>
-    		                   <option value="evil">Evil</option>
-    		                 <option value="neutral">Neutral</option></select>
+    		                   <option value="Good">Good</option>
+    		                   <option value="Evil">Evil</option>
+    		                 <option value="Neutral">Neutral</option></select>
       </td></tr>
     <tr><td>STR:</td><td><input type="text" name="npcstr" value="" size="3" /></td>
     	<td>Attitude:</td><td><select name="npcattitude">
@@ -180,7 +180,11 @@
     <tr><td>Conv Flag:</td><td><input type="text" name="npcconvflag" value="" size="10" /></td>
     	<td>Merchant:</td><td><input type="text" name="npcmerch" value="" size="10" /></td></tr>
     <tr><td>Gender:</td><td><select name="npcgender"><option value=""></option><option value="male">Male</option><option value="female">Female</option></select></td>
-      <td></td></tr>
+      <td>Leash:</td><td><input type="text" name="npcleash" value="" size="10" /></td></tr>
+    <tr><td>Bark Freq:</td><td><input type="text" name="npcbarkfreq" value="" size="2" /></td>
+      <td>Bark ID:</td><td><input type="text" name="npcbark" value="" size="10" /></td></tr>
+    <tr><td>Bark Rad:</td><td><input type="text" name="npcbarkrad" value="" size="2" /></td>
+      <td></td><td></td></tr>
     <tr><td colspan="4"><input type="submit" value="Edit" onClick="submitEditNPC(1);" class="jqmClose" /> <input type="submit" value="Cancel" onClick="submitEditNPC(0);" class="jqmClose" /> <input type="submit" value="Delete NPC" onClick="submitEditNPC(-1);" class="jqmClose" /></td></tr>		
 	</table></form></div>
   <div class="mapscreen">
@@ -691,7 +695,7 @@
 <tr>
   <script language="Javascript">writeTileOption('Fireplace');</script>
   <script language="Javascript">writeTileOption('Brazier');</script>
-  <td></td></tr>
+  <script language="Javascript">writeTileOption('UnlitBrazier');</script></tr>
 <tr>
   <script language="Javascript">writeTileOption('Throne');</script>
   <td></td>

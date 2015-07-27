@@ -1316,6 +1316,18 @@ GameMap.prototype.saveMap = function (name) {
  	if (basenpc.getMerch() !== mapnpcs[i].getMerch()) {
  		printerwin.document.write(", Merch: '" + mapnpcs[i].getMerch() + "'");
  	} 	
+ 	if (basenpc.getLeash() !== mapnpcs[i].getLeash()) {
+ 		printerwin.document.write(", Leash: " + mapnpcs[i].getLeash() + "");
+ 	} 	
+ 	if (basenpc.getBarkFreq() !== mapnpcs[i].getBarkFreq()) {
+ 		printerwin.document.write(", BarkFreq: " + mapnpcs[i].getBarkFreq() + "");
+ 	} 	
+ 	if (basenpc.getBark() !== mapnpcs[i].getBark()) {
+ 		printerwin.document.write(", Bark: '" + mapnpcs[i].getBark() + "'");
+ 	} 	
+ 	if (basenpc.getBarkRad() !== mapnpcs[i].getBarkRad()) {
+ 		printerwin.document.write(", BarkRad: " + mapnpcs[i].getBarkRad() + "");
+ 	} 	
  	printerwin.document.write("};\n");
 }
  
@@ -1487,6 +1499,10 @@ GameMap.prototype.loadMap = function (name) {
   	  		if (npckey === "ConversationFlag") { newnpc.setConversationFlag(loadnpcs[npci].ConversationFlag); }
   		  	if (npckey === "Gender") { newnpc.setGender(loadnpcs[npci].Gender); }
   			  if (npckey === "Merch") { newnpc.setMerch(loadnpcs[npci].Merch); }
+  			  if (npckey === "Leash") { newnpc.setLeash(loadnpcs[npci].Leash); }
+  			  if (npckey === "BarkFreq") { newnpc.setBarkFreq(loadnpcs[npci].BarkFreq); }
+  			  if (npckey === "Bark") { newnpc.setBark(loadnpcs[npci].Bark); }
+  			  if (npckey === "BarkRad") { newnpc.setBarkRad(loadnpcs[npci].BarkRad); }
     		}
     		this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
   	  }

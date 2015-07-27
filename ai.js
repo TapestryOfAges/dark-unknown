@@ -1,8 +1,78 @@
 
+var barks = {};
+barks['jester'] = ['%THEDESC% sings, "Ho eye he hum!"'];
+
+barks.getBark = function(idx) {
+  if (barks[idx]) {
+    var choice = Math.floor(Math.random()*barks[idx].length);
+    return barks[idx][choice];
+  }
+}
+
+barks.checkBark = function(who) {
+ if ((who.getBark()) && (who.getHomeMap() === PC.getHomeMap())) {
+    if (Math.floor(Math.random()*100)+1  < who.getBarkFreq()) {
+      if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= who.getBarkRad()) {
+        // bark!
+        if (debug) { dbs.writeln("<span style='color:orange;'>Townfolk barking.</span><br />"); }
+        var mybark = this.getBark(who.getBark());
+        if (mybark) {
+          if ((mybark.indexOf("%THEDESC%") !== -1) || (mybark.indexOf("%DESC%") !== -1)) {
+            var pref = who.getPrefix();
+            if (mybark.indexOf("%THEDESC%") !== -1) {
+              if ((pref === "a") || (pref === "an")) { pref = "the"; }
+            }
+            var desc = pref + " " + who.getDesc();
+            mybark = mybark.replace(/%THEDESC%/g, desc);
+            mybark = mybark.replace(/%DESC%/g, desc);
+          }
+          mybark = mybark.charAt(0).toUpperCase() + mybark.slice(1);
+          maintext.addText(mybark);
+        }
+      }
+    }
+  }  
+}
 // object to make it easier to construct which function to call without
 // using eval.
 
 var ais = {};
+
+ais.townsfolk = function(who) {
+  // first, check for bark
+  barks.checkBark(who);
+  var retval = {};
+  retval["fin"] = 1;
+  
+  var themap = who.getHomeMap();
+  if (Math.random() < .25) {   // 25% chance of moving, slow wander
+    if (debug) { dbs.writeln("<span style='color:orange;'>Moving... </span>"); }
+    if (who.getLeash() && (who.getLeash() < GetDistance(who.getx(), who.gety(), who.startx, who.starty))) {
+      var path = themap.getPath(who.getx(),who.gety(),who.startx, who.starty, MOVE_WALK_DOOR);
+      path.shift();  // first entry in the path is where it already stands
+      var acre = themap.getTile(path[0][0],path[0][1]);
+      var possdoor = acre.getTopFeature();
+      if (possdoor && (possdoor.closedgraphic)) { 
+        // there is a door in the way
+        if (!((typeof possdoor.getLocked === "function") && (possdoor.getLocked()))) {
+          // door is not locked
+          if (debug) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
+          possdoor.use(who);
+          DrawMainFrame("one",who.getHomeMap().getName(),possdoor.getx(),possdoor.gety());
+          return retval;
+        }
+      }
+      if (debug) { dbs.writeln("<span style='color:orange;'>Moving to " + path[0][0] + "," + path[0][1] + ".</span><br />"); }
+      who.moveMe(path[0][0]-who.getx(), path[0][1]-who.gety());
+      return retval;
+    } else if (who.getLeash()) {
+      // able to wander (leash = 0 means stationary)
+      var moveval = ais.Randomwalk(who,25,25,25,25);
+    }
+  }
+  // townsfolk don't do anything else
+  return retval;
+}
 
 ais.Sentinel = function(who) {
   var destinations = [];

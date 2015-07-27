@@ -335,6 +335,10 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcconvflag.value = editnpcs.getConversationFlag();
       document.npceditpopup.npcgender.value = editnpcs.getGender();
       document.npceditpopup.npcmerch.value = editnpcs.getMerch();
+      document.npceditpopup.npcleash.value = editnpcs.getLeash();
+      document.npceditpopup.npcbarkfreq.value = editnpcs.getBarkFreq();
+      document.npceditpopup.npcbard.value = editnpcs.getBark();
+      document.npceditpopup.npcbarkrad.value = editnpcs.getBarkRad();
     }
   	else if (!editnpcs && (document.editlayer.showfeatures.checked)) {
       var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
@@ -471,12 +475,23 @@ function submitEditNPC(change) {
     if (document.npceditpopup.npcconvo.value !== editnpcs.getConversationFlag()) {
 			editnpcs.setConversationFlag(document.npceditpopup.npcconvflag.value);
 		}
-
 		if (document.npceditpopup.npcmerch.value !== editnpcs.getMerch()) {
 			editnpcs.setMerch(document.npceditpopup.npcmerch.value);
 		}
 		if (document.npceditpopup.npcgender.value !== editnpcs.getGender()) {
 			editnpcs.setGender(document.npceditpopup.npcgender.value);
+		}
+		if (document.npceditpopup.npcleash.value !== editnpcs.getLeash()) {
+			editnpcs.setLeash(document.npceditpopup.npcleash.value);
+		}
+		if (document.npceditpopup.npcbarkfreq.value !== editnpcs.getBarkFreq()) {
+			editnpcs.setBarkFreq(document.npceditpopup.npcbarkfreq.value);
+		}
+		if (document.npceditpopup.npcbark.value !== editnpcs.getBark()) {
+			editnpcs.setBark(document.npceditpopup.npcbark.value);
+		}
+		if (document.npceditpopup.npcbarkrad.value !== editnpcs.getBarkRad()) {
+			editnpcs.setBarkRad(document.npceditpopup.npcbarkrad.value);
 		}
 	}
 	else if (change === -1) {
