@@ -553,7 +553,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			retval["fin"] = 1;
 			retval["txt"] = "Closed!";
 			retval["redrawtype"] = "draw";
-			if (closesound) {
+			if ((closesound) && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 10)) {
 			  DUPlaySound(closesound); 
 			}
 			
@@ -563,7 +563,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 				if (this.getLocked()) {
 					retval["fin"] = 1;
 					retval["txt"] = "Locked.";
-					if (lockedsound) {
+					if ((lockedsound) && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 10)) {
 					  DUPlaySound(lockedsound); 
 					}
 					return retval;
@@ -583,7 +583,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_LEVITATE);
 			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_SWIM);
 			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_FLY);
-			if (opensound) {
+			if ((opensound)&& (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 10)) {
 			  DUPlaySound(opensound); 
 			}
 			
@@ -3175,7 +3175,7 @@ AltarTile.prototype = new FeatureObject();
 function ThroneTile() {
 	this.name = "Throne";
 	this.graphic = "furniture.gif";
-	this.spritexoffset = "-256";
+	this.spritexoffset = "-224";
 	this.spriteyoffset = "-96";
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
@@ -6971,11 +6971,16 @@ function NPCObject() {
 	this.lastTurnTime = 0;
 	this.knowsInfusion = 0;
 	this.conversation = "";
+	this.conversationflag = "";
 	this.merch = "";
 	this.spawnedBy;
 	this.special = "";
 	this.nextMana = 0;
 	this.nextHP = 0;
+	this.leash = 0;
+	this.barkfreq = 0;
+	this.bark = 0;
+	this.barkrad = 0;
 	
 	this.addType("npc");
 //	AddNPCProperties.call(this);
@@ -7076,6 +7081,43 @@ NPCObject.prototype.addGold = function(diffgold) {
     this.gold += diffgold;
   }
   return this.gold;
+}
+
+NPCObject.prototype.getLeash = function() {
+  return this.leash;
+}
+
+NPCObject.prototype.setLeash = function(radius) {
+  this.leash = parseInt(radius);
+  return this.leash;
+}
+
+NPCObject.prototype.getBark = function() {
+  return this.bark;
+}
+
+NPCObject.prototype.setBark = function(bark) {
+  this.bark = bark;
+  return this.bark;
+}
+
+NPCObject.prototype.getBarkFreq = function() {
+  return this.barkfreq;
+}
+
+NPCObject.prototype.setBarkFreq = function(freq) {
+  // frequency is %
+  this.barkfreq = parseInt(freq);
+  return this.barkfreq;
+}
+
+NPCObject.prototype.getBarkRad = function() {
+  return this.barkrad;
+}
+
+NPCObject.prototype.setBarkRad = function(radius) {
+  this.barkrad = parseInt(radius);
+  return this.barkrad;
 }
 
 NPCObject.prototype.getLastTurnTime = function() {
@@ -7423,6 +7465,15 @@ NPCObject.prototype.setThreatenedAI = function(newAI) {
 	return this.threatenedAI;
 }
 
+NPCObject.prototype.getCurrentAI = function() {
+	return this.currentAI;
+}
+
+NPCObject.prototype.setCurrentAI = function(newAI) {
+	this.currentAI = newAI;
+	return this.currentAI;
+}
+
 NPCObject.prototype.getMeleeAttackAs = function() {
 	return this.meleeAttackAs;
 }
@@ -7619,6 +7670,12 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.setMana(-1);
     this.setMaxMana(-1);
   
+    if (this.getHomeMap().getName().indexOf("combat") !== -1) {
+      this.setCurrentAI(this.getThreatenedAI());
+    } else {
+      this.setCurrentAI(this.getPeaceAI());
+    }
+  
     var weapon;
     var missileweapon;
     var armor;
@@ -7810,7 +7867,7 @@ NPCObject.prototype.myTurn = function() {
   if (awake) {	
     var response = {};  
   	// will be = return value of AI call
-  	var ainame=this.getPeaceAI().split("-");
+  	var ainame=this.getCurrentAI().split("-");
 
     if (ais[ainame[0]]) {
 	    if (ainame.length === 1) { ainame[1] = ""; }

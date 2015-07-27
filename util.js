@@ -736,7 +736,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
   if (trap === "dart") {
     if (!IsAdjacent(who,trapped)) {
       if (debug) { dbs.writeln("Dart trap fires, misses everyone (telekinesis)<br />"); }
-      maintext.addTrap("TRAP! A dart flies out and misses everything.");
+      maintext.addText("TRAP! A dart flies out and misses everything.");
       return 0;
     }
     var def = who.getDefense();
@@ -756,7 +756,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
   } else if (trap === "acid") {
     if (!IsAdjacent(who,trapped)) {
       if (debug) { dbs.writeln("Acid trap fires, misses everyone (telekinesis)<br />"); }
-      maintext.addTrap("TRAP! Acid spews forth, missing everything.");
+      maintext.addText("TRAP! Acid spews forth, missing everything.");
       return 0;
     }
     var aciddmg = RollDice("1d6+3");
@@ -767,7 +767,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
   } else if (trap === "gas") {
     if (!IsAdjacent(who,trapped)) {
       if (debug) { dbs.writeln("Gas trap fires, misses everyone (telekinesis)<br />"); }
-      maintext.addTrap("TRAP! Poison gas billows forth, but disperses before it reaches you.");
+      maintext.addText("TRAP! Poison gas billows forth, but disperses before it reaches you.");
       return 0;
     }
     maintext.addText("TRAP! You are poisoned.");
@@ -778,7 +778,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
   } else if (trap === "explosion") {
     if (!IsAdjacent(who,trapped)) {
       if (debug) { dbs.writeln("Explosion trap fires, misses everyone (telekinesis)<br />"); }
-      maintext.addTrap("TRAP! The lock explodes, but you just feel a little heat.");
+      maintext.addText("TRAP! The lock explodes, but you just feel a little heat.");
       return 0;
     }
     maintext.addText("TRAP! There is an explosion!");
@@ -789,7 +789,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
   } else if (trap === "drain") {
     if (!IsAdjacent(who,trapped)) {
       if (debug) { dbs.writeln("Drain trap fires, misses everyone (telekinesis)<br />"); }
-      maintext.addTrap("TRAP! You feel a distant pull on your mind, but then it passes.");
+      maintext.addText("TRAP! You feel a distant pull on your mind, but then it passes.");
       return 0;
     }
 
