@@ -68,6 +68,22 @@ ais.townsfolk = function(who) {
     } else if (who.getLeash()) {
       // able to wander (leash = 0 means stationary)
       var moveval = ais.Randomwalk(who,25,25,25,25);
+      if (moveval["canmove"] === 0) {
+        // it picked a direction to move but failed to move
+        var acre = themap.getTile(who.getx()+moveval['diffx'], who.gety()+moveval['diffy']);
+        var possdoor = acre.getTopFeature();
+        if (possdoor && (possdoor.closedgraphic)) { 
+          // there is a door in the way
+          if (!((typeof possdoor.getLocked === "function") && (possdoor.getLocked()))) {
+            // door is not locked
+            if (debug) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
+            possdoor.use(who);
+            DrawMainFrame("one",who.getHomeMap().getName(),possdoor.getx(),possdoor.gety());
+            return retval;
+          }
+        }
+        
+      }
     }
   }
   // townsfolk don't do anything else
@@ -425,6 +441,8 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
   }
   
   retval = who.moveMe(diffx,diffy);
+  retval["diffx"] = diffx;
+  retval["diffy"] = diffy;
   return retval;
 }
 
