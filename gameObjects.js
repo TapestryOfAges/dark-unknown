@@ -6981,6 +6981,7 @@ function NPCObject() {
 	this.barkfreq = 0;
 	this.bark = 0;
 	this.barkrad = 0;
+	this.aggro = 0;
 	
 	this.addType("npc");
 //	AddNPCProperties.call(this);
@@ -7064,6 +7065,15 @@ NPCObject.prototype.getKnowsInfusion = function() {
 NPCObject.prototype.setKnowsInfusion = function(knowledge) {
 	this.knowsInfusion = knowledge;
 	return this.knowsInfusion;
+}
+
+NPCObject.prototype.getAggro = function() {
+  return this.aggro;
+}
+
+NPCObject.prototype.setAggro = function(aggro) {
+  this.aggro = aggro;
+  return this.aggro;
 }
 
 NPCObject.prototype.setGold = function(newgold) {
@@ -7865,6 +7875,10 @@ NPCObject.prototype.myTurn = function() {
   
 	// actual AI!
   if (awake) {	
+    if (this.getAggro()) {
+      this.setCurrentAI(this.getThreatenedAI());
+    }
+    
     var response = {};  
   	// will be = return value of AI call
   	var ainame=this.getCurrentAI().split("-");

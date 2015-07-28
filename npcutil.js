@@ -21,6 +21,7 @@ function TurnMapHostile(map) {
   $.each(localnpcs, function(idx, val) {
     if (val.getAttitude() === "friendly") {
       val.setAttitude("hostile");
+      val.setAggro(1);
       if (debug) { dbs.writeln(val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />"); }
     }
   });
