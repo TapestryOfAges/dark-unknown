@@ -1328,6 +1328,9 @@ GameMap.prototype.saveMap = function (name) {
  	if (basenpc.getBarkRad() !== mapnpcs[i].getBarkRad()) {
  		printerwin.document.write(", BarkRad: " + mapnpcs[i].getBarkRad() + "");
  	} 	
+ 	if (basenpc.getNPCBand() !== mapnpcs[i].getNPCBand()) {
+ 		printerwin.document.write(", NPCBand: " + mapnpcs[i].getNPCBand() + "");
+ 	} 	
  	printerwin.document.write("};\n");
 }
  
@@ -1503,6 +1506,7 @@ GameMap.prototype.loadMap = function (name) {
   			  if (npckey === "BarkFreq") { newnpc.setBarkFreq(loadnpcs[npci].BarkFreq); }
   			  if (npckey === "Bark") { newnpc.setBark(loadnpcs[npci].Bark); }
   			  if (npckey === "BarkRad") { newnpc.setBarkRad(loadnpcs[npci].BarkRad); }
+  			  if (npckey === "NPCBand") { newnpc.setLeash(loadnpcs[npci].NPCBand); }
     		}
     		this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
   	  }
