@@ -6982,6 +6982,7 @@ function NPCObject() {
 	this.bark = 0;
 	this.barkrad = 0;
 	this.aggro = 0;
+	this.npcband = 0;
 	
 	this.addType("npc");
 //	AddNPCProperties.call(this);
@@ -7100,6 +7101,15 @@ NPCObject.prototype.getLeash = function() {
 NPCObject.prototype.setLeash = function(radius) {
   this.leash = parseInt(radius);
   return this.leash;
+}
+
+NPCObject.prototype.getNPCBand = function() {
+  return this.npcband;
+}
+
+NPCObject.prototype.setNPCBand = function(bandname) {
+  this.npcband = bandname;
+  return this.npcband;
 }
 
 NPCObject.prototype.getBark = function() {
