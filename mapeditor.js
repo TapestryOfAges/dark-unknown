@@ -309,7 +309,7 @@ function clickmap(xval,yval) {
   	editable = thistile.features.getTop();
   	editnpcs = thistile.npcs.getTop();
   	if (!editable && !editnpcs) {alert("Nothing to edit on this tile."); return;}
-    if (!editable && (document.editlayer.shownpcs.checked)) {
+    if (editnpcs && (document.editlayer.shownpcs.checked)) {
     	var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
     	$('#npcbubble').jqm({onShow:myOpen});
     	$('#npcbubble').jqmShow();
@@ -339,6 +339,7 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcbarkfreq.value = editnpcs.getBarkFreq();
       document.npceditpopup.npcbard.value = editnpcs.getBark();
       document.npceditpopup.npcbarkrad.value = editnpcs.getBarkRad();
+      document.npceditpopup.npcnpcband.value = editnpcs.getNPCBand();
     }
   	else if (!editnpcs && (document.editlayer.showfeatures.checked)) {
       var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
@@ -493,6 +494,9 @@ function submitEditNPC(change) {
 		if (document.npceditpopup.npcbarkrad.value !== editnpcs.getBarkRad()) {
 			editnpcs.setBarkRad(document.npceditpopup.npcbarkrad.value);
 		}
+		if (document.npceditpopup.npcnpcband.value !== editnpcs.getNPCBand()) {
+			editnpcs.setNPCBand(document.npceditpopup.npcnpcband.value);
+		}
 	}
 	else if (change === -1) {
 	  // add an "Are you sure? Yes/No" prompt
@@ -601,6 +605,7 @@ function addnpctomap(x,y,selection) {
 	var newnpc = localFactory.createTile(selection.getName());
 	newnpc.setx(x);
 	newnpc.sety(y);
+	newnpc.setNPCBand(document.brushes.npcband.value);
 	amap.data[y][x].npcs.addTop(newnpc);
 	amap.npcs.addTop(newnpc);
 	

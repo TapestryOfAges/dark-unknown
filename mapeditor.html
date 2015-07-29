@@ -184,7 +184,7 @@
     <tr><td>Bark Freq:</td><td><input type="text" name="npcbarkfreq" value="" size="2" /></td>
       <td>Bark ID:</td><td><input type="text" name="npcbark" value="" size="10" /></td></tr>
     <tr><td>Bark Rad:</td><td><input type="text" name="npcbarkrad" value="" size="2" /></td>
-      <td></td><td></td></tr>
+      <td>NPC Band:</td><td><input type="text" name="npcnpcband" value="" size="5" /></td></tr>
     <tr><td colspan="4"><input type="submit" value="Edit" onClick="submitEditNPC(1);" class="jqmClose" /> <input type="submit" value="Cancel" onClick="submitEditNPC(0);" class="jqmClose" /> <input type="submit" value="Delete NPC" onClick="submitEditNPC(-1);" class="jqmClose" /></td></tr>		
 	</table></form></div>
   <div class="mapscreen">
@@ -196,12 +196,13 @@
 <form name="brushes">
 <table>
 <td>
-	<td colspan="3" style="text-align:center;">Brush Function</td>
+	<td colspan="4" style="text-align:center;">Brush Function</td>
 </tr>
 <tr>
 	<td><input onClick="cornerx=-1;cornery=-1" type="radio" name="brushtype" value="point" checked="checked" /> Point</td>
   <td><input type="radio" name="brushtype" value="rectangle" /> Rectangle</td>
 	<td><input type="radio" name="brushtype" value="editfeature" />Edit Features/NPCs</td>
+	<td>NPCBand: <input type="text" name="npcband" value="" size="5" /></td>
 </tr>
 </table>
 </form>
@@ -210,7 +211,7 @@
 <td>
 <form name="editlayer">
 <table>
-<tr><td colspan="2" style="text-align:center">Map View</td></tr>
+<tr><td colspan="2" style="text-align:center">Map View</td><td></td></tr>
 <tr>
 <td><input type="checkbox" name="showfeatures" checked="checked" onclick="drawFeatures()" /> Features</td>
 <td><input type="checkbox" name="shownpcs" checked="checked" onclick="drawFeatures()" /> NPCs</td>
