@@ -1506,6 +1506,21 @@ tileFactory.prototype.makeSulfurousAshTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeMandrakeRootTile = function() {
+  var newTile = new MandrakeRootTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeLightningWoodTile = function() {
+  var newTile = new LightningWoodTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMistletoeTile = function() {
+  var newTile = new MistletoeTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRubyGemoftheSunTile = function() {
   var newTile = new RubyGemoftheSunTile();
   return newTile;

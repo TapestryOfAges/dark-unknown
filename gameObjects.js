@@ -6099,6 +6099,36 @@ function SulfurousAshTile() {
 }
 SulfurousAshTile.prototype = new ItemObject();
 
+function MandrakeRootTile() {
+  this.name = "MandrakeRoot";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-64";
+  this.spritexoffset = "-256";
+  this.blocklos = 0;
+  this.desc = "mandrake root";
+}
+MandrakeRootTile.prototype = new ItemObject();
+
+function LightningWoodTile() {
+  this.name = "LightningWood";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-64";
+  this.spritexoffset = "-288";
+  this.blocklos = 0;
+  this.desc = "twig of lightning wood";
+  this.prefix = "a";
+}
+LightningWoodTile.prototype = new ItemObject();
+
+function MistletoeTile() {
+  this.name = "Mistletoe";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-96";
+  this.spritexoffset = "-256";
+  this.blocklos = 0;
+  this.desc = "mistletoe";
+}
+MistletoeTile.prototype = new ItemObject();
 
 function RubyGemoftheSunTile() {
 	this.name = "RubyGemoftheSun";
