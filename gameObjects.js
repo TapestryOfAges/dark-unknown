@@ -7931,13 +7931,14 @@ NPCObject.prototype.myTurn = function() {
   
 	// actual AI!
   if (awake) {	
+  	var ainame=this.getCurrentAI().split("-");
     if (this.getAggro()) {
 //      this.setCurrentAI(this.getThreatenedAI());
+      ainame[0] = "combat";
     }
     
     var response = {};  
   	// will be = return value of AI call
-  	var ainame=this.getCurrentAI().split("-");
 
     if (ais[ainame[0]]) {
 	    if (ainame.length === 1) { ainame[1] = ""; }
