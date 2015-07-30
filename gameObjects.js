@@ -7779,18 +7779,34 @@ NPCObject.prototype.activate = function(timeoverride) {
       this.setEquipment("armor",armor);
     } 
     
-    if (this.special.indexOf("quick") > -1) {
+    if (this.special) {
+      this.specials = {};
+      var tmp = this.special.split(",");
+      $.each(tmp, function(idx,val) {
+        if (val.indexOf(":") > -1) {
+          var bluh = val.split(":");
+          this.specials[bluh[0]] = bluh[1];
+        } else {
+          this.specials[val] = 1;
+        }
+      });
+    }
+    if (this.specials["quick"]) {
       var qobj = localFactory.createTile("Quickness");
       qobj.setExpiresTime(-1);
       this.addSpellEffect(qobj);
     }
     
-    if (this.special.indexOf("mirror") > -1) {
+    if (this.specials["mirror"]) {
       this.setGraphicArray(PC.getGraphicArray());
       this.gender = PC.gender
       this.npcname = PC.pcname;
     }
   
+    if (this.specials["invisible"]) {
+      this.invisible = 1;
+    }
+    
     var timing = this.nextActionTime(0);
     timing = timing/2;
     if (timeoverride) {
@@ -7916,7 +7932,7 @@ NPCObject.prototype.myTurn = function() {
 	// actual AI!
   if (awake) {	
     if (this.getAggro()) {
-      this.setCurrentAI(this.getThreatenedAI());
+//      this.setCurrentAI(this.getThreatenedAI());
     }
     
     var response = {};  

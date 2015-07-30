@@ -82,6 +82,7 @@ function Attack(atk, def) {
     retval["txt"] =  atk.getDesc() + " attacks " + def.getDesc();
     retval["txt"] = retval["txt"].charAt(0).toUpperCase() + retval["txt"].slice(1);
   }
+  def.setAggro(1);
   if (debug) { dbs.writeln("Attacking: weapon is " + weapon.getName() + "<br />"); }
   var tohit = atk.getHitChance(weapon) / 100;
   tohit -= loeresult/2; // harder to hit if foe has cover
