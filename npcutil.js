@@ -118,6 +118,7 @@ function Attack(atk, def) {
         firearmor.flashback(atk);
       }
     }
+    // handle onDamaged stuff here
   }
   else { // Miss!
     // animation and sound here, too

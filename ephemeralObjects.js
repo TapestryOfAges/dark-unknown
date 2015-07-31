@@ -96,7 +96,7 @@ EphemeralObject.prototype.getActive = function() {
 
 EphemeralObject.prototype.onTurn = function() {
   var resp = 0;
-  if ((this.getExpiresTime() > -1) && (DUTime.getGameClock() > this.getExpiresTime())) {
+  if ((this.getExpiresTime() > 0) && (DUTime.getGameClock() > this.getExpiresTime())) {
     resp = this.endEffect();
   }
   return resp;
@@ -130,7 +130,7 @@ DamageOverTimeObject.prototype.onTurn = function() {
   if (!prev) { prev = this.getCreateTime(); }
   
   var now = DUTime.getGameClock();
-  if ((this.getExpiresTime()) && (now > this.getExpiresTime())) {
+  if ((this.getExpiresTime() > 0) && (now > this.getExpiresTime())) {
     now = this.getExpiresTime();
   }
   var dur = now - prev;
@@ -249,7 +249,7 @@ FireArmorTile.prototype.flashback = function(attacker) {
   if (attacker === PC) {
     maintext.addText("Flames burn you!");
   }
-  attacker.dealDamage(dmg);
+  attacker.dealDamage(dmg, this.getAttachedTo(), "fire");
   ShowEffect(attacker, 700, "702.gif", 0, 0);
 }
 
