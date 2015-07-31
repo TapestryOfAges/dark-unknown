@@ -7802,9 +7802,26 @@ NPCObject.prototype.activate = function(timeoverride) {
       this.gender = PC.gender
       this.npcname = PC.pcname;
     }
+
+    if (this.specials["flamearmor"]) {
+      var qobj = localFactory.createTile("FireArmor");
+      if (this.specials["flamearmor"] !== 1) {
+        qobj.setPower(this.specials["flamearmor"]);
+      } else {
+        qobj.setPower("2d4");
+      }
+      qobj.setExpiresTime(-1);
+      this.addSpellEffect(qobj);
+    }
   
     if (this.specials["invisible"]) {
       this.invisible = 1;
+    }
+    
+    if (this.specials["hides"]) {
+      var oldgraph = this.getGraphic();
+      this.setGraphic(this.specials["hides"]);
+      this.specials["hides"] = oldgraph;
     }
     
     var timing = this.nextActionTime(0);
