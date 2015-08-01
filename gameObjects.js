@@ -5898,7 +5898,66 @@ function PitOfDespairKeyTile() {
   this.addType("Quest");
 }
 PitOfDespairKeyTile.prototype = new ItemObject();
-  
+
+function KeyOfShadowsTile() {
+  this.name = "KeyOfShadows";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-64";
+  this.spritexoffset = "0";
+  this.blocklos = 0;
+  this.desc = "Key of Shadows";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+KeyOfShadowsTile.prototype = new ItemObject();
+
+function RoyalKeyTile() {
+  this.name = "RoyalKey";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "0";
+  this.blocklos = 0;
+  this.desc = "Royal Key";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+RoyalKeyTile.prototype = new ItemObject();  
+
+function BlackDragonKeyTile() {
+  this.name = "BlackDragonKey";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-32";
+  this.blocklos = 0;
+  this.desc = "Black Dragon Key";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+BlackDragonKeyTile.prototype = new ItemObject();  
+
+function KeyOfFireTile() {
+  this.name = "KeyOfFire";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-64";
+  this.blocklos = 0;
+  this.desc = "Key of Fire";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+KeyOfFireTile.prototype = new ItemObject();  
+
+function KeyOfIceTile() {
+  this.name = "KeyOfIce";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-96";
+  this.blocklos = 0;
+  this.desc = "Key of Ice";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+KeyOfIceTile.prototype = new ItemObject();  
 
 function RoperBarkTile() {
   this.name = "RoperBark";
@@ -6129,6 +6188,16 @@ function MistletoeTile() {
   this.desc = "mistletoe";
 }
 MistletoeTile.prototype = new ItemObject();
+
+function BloodMossTile() {
+  this.name = "BloodMoss";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-96";
+  this.spritexoffset = "-288";
+  this.blocklos = 0;
+  this.desc = "blood moss";
+}
+BloodMossTile.prototype = new ItemObject();
 
 function RubyGemoftheSunTile() {
 	this.name = "RubyGemoftheSun";
