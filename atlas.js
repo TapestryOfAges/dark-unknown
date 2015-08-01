@@ -1329,7 +1329,7 @@ GameMap.prototype.saveMap = function (name) {
  		printerwin.document.write(", BarkRad: " + mapnpcs[i].getBarkRad() + "");
  	} 	
  	if (basenpc.getNPCBand() !== mapnpcs[i].getNPCBand()) {
- 		printerwin.document.write(", NPCBand: " + mapnpcs[i].getNPCBand() + "");
+ 		printerwin.document.write(", NPCBand: '" + mapnpcs[i].getNPCBand() + "'");
  	} 	
  	printerwin.document.write("};\n");
 }

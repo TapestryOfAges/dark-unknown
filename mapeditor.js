@@ -337,7 +337,7 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcmerch.value = editnpcs.getMerch();
       document.npceditpopup.npcleash.value = editnpcs.getLeash();
       document.npceditpopup.npcbarkfreq.value = editnpcs.getBarkFreq();
-      document.npceditpopup.npcbard.value = editnpcs.getBark();
+      document.npceditpopup.npcbark.value = editnpcs.getBark();
       document.npceditpopup.npcbarkrad.value = editnpcs.getBarkRad();
       document.npceditpopup.npcnpcband.value = editnpcs.getNPCBand();
     }
@@ -605,7 +605,9 @@ function addnpctomap(x,y,selection) {
 	var newnpc = localFactory.createTile(selection.getName());
 	newnpc.setx(x);
 	newnpc.sety(y);
-	newnpc.setNPCBand(document.brushes.npcband.value);
+	if (document.brushes.npcband.value) {
+	  newnpc.setNPCBand(document.brushes.npcband.value);
+	}
 	amap.data[y][x].npcs.addTop(newnpc);
 	amap.npcs.addTop(newnpc);
 	
