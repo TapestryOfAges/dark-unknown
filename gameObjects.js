@@ -7779,8 +7779,8 @@ NPCObject.prototype.activate = function(timeoverride) {
       this.setEquipment("armor",armor);
     } 
     
+    this.specials = {};
     if (this.special) {
-      this.specials = {};
       var tmp = this.special.split(",");
       $.each(tmp, function(idx,val) {
         if (val.indexOf(":") > -1) {
