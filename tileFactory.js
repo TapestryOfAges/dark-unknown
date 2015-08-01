@@ -1441,6 +1441,31 @@ tileFactory.prototype.makePitOfDespairKeyTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeKeyOfShadowsTile = function() {
+  var newTile = new KeyOfShadowsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRoyalKeyTile = function() {
+  var newTile = new RoyalKeyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlackDragonKeyTile = function() {
+  var newTile = new BlackDragonKeyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeKeyOfFireTile = function() {
+  var newTile = new KeyOfFireTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeKeyOfIceTile = function() {
+  var newTile = new KeyOfIceTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRoperBarkTile = function() {
   var newTile = new RoperBarkTile();
   return newTile;
@@ -1518,6 +1543,11 @@ tileFactory.prototype.makeLightningWoodTile = function() {
 
 tileFactory.prototype.makeMistletoeTile = function() {
   var newTile = new MistletoeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBloodMossTile = function() {
+  var newTile = new BloodMossTile();
   return newTile;
 }
 
