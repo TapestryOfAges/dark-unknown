@@ -199,6 +199,8 @@ function Atlas() {
     "Hills" : 'nn',
     '+*' : "PurpleCobblestone", // 125
     "PurpleCobblestone" : '+*',
+    'p*' : "FancyFloor",
+    "FancyFloor" : 'p*',
 // 126 is a feature (bridge)
     'ff' : "Swamp", // 141
     "Swamp" : 'ff',
