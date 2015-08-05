@@ -1376,6 +1376,36 @@ tileFactory.prototype.makeFountainTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBlueCrystalTile = function() {
+  var newTile = new BlueCrystalTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePurpleCrystalTile = function() {
+  var newTile = new PurpleCrystalTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeYellowCrystalTile = function() {
+  var newTile = new YellowCrystalTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreenCrystalTile = function() {
+  var newTile = new GreenCrystalTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRedCrystalTile = function() {
+  var newTile = new RedCrystalTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWhiteCrystalTile = function() {
+  var newTile = new WhiteCrystalTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTeleporterPlatformTile = function() {
   var newTile = new TeleporterPlatformTile();
   return newTile;
@@ -1413,6 +1443,11 @@ tileFactory.prototype.makeOrbIntelligenceTile = function() {
 
 tileFactory.prototype.makeOrbExperienceTile = function() {
   var newTile = new OrbExperienceTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEtherGateTile = function() {
+  var newTile = new EtherGateTile();
   return newTile;
 }
 
