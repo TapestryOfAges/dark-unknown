@@ -307,6 +307,8 @@ function Atlas() {
     'r^' : "RedDiamondFloor",    
     "YellowDiamondFloor" : 'yd',
     'yd' : "YellowDiamondFloor",    
+    "GreenDiamondFloor" : 'gd',
+    'gd' : "GreenDiamondFloor",    
     "Banner" : 'br',
     'br' : "Banner",
   }

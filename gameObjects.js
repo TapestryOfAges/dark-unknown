@@ -5443,6 +5443,71 @@ function FountainTile() {
 }
 FountainTile.prototype = new FeatureObject();
 
+function BlueCrystalTile() {
+  this.name = "BlueCrystal";
+  this.graphic = "crystals.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
+  this.prefix = "a";
+  this.desc = "crystal";
+  LightEmitting.call(this, 2);
+}
+BlueCrystalTile.prototype = new FeatureObject();
+
+function PurpleCrystalTile() {
+  this.name = "PurpleCrystal";
+  this.graphic = "crystals.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "0";
+  this.prefix = "a";
+  this.desc = "crystal";
+  LightEmitting.call(this, 2);
+}
+PurpleCrystalTile.prototype = new FeatureObject();
+
+function YellowCrystalTile() {
+  this.name = "YellowCrystal";
+  this.graphic = "crystals.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "0";
+  this.prefix = "a";
+  this.desc = "crystal";
+  LightEmitting.call(this, 2);
+}
+YellowCrystalTile.prototype = new FeatureObject();
+
+function GreenCrystalTile() {
+  this.name = "GreenCrystal";
+  this.graphic = "crystals.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "0";
+  this.prefix = "a";
+  this.desc = "crystal";
+  LightEmitting.call(this, 2);
+}
+GreenCrystalTile.prototype = new FeatureObject();
+
+function RedCrystalTile() {
+  this.name = "RedCrystal";
+  this.graphic = "crystals.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "0";
+  this.prefix = "a";
+  this.desc = "crystal";
+  LightEmitting.call(this, 2);
+}
+RedCrystalTile.prototype = new FeatureObject();
+
+function WhiteCrystalTile() {
+  this.name = "WhiteCrystal";
+  this.graphic = "crystals.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "0";
+  this.prefix = "a";
+  this.desc = "crystal";
+}
+WhiteCrystalTile.prototype = new FeatureObject();
+
 function TeleporterPlatformTile() {
   this.name = "TeleporterPlatform";
   this.graphic = "teleporter.gif";
@@ -5787,6 +5852,22 @@ function OrbExperienceTile() {
 }
 OrbExperienceTile.prototype = new FeatureObject();
 
+function EtherGateTile() {
+  this.name = "EtherGate";
+  this.graphic = "moongates.gif";
+  this.spritexoffset = '-128';
+  this.spriteyoffset = '0';
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "gate";
+}
+EtherGateTile.prototype = new FeatureObject();
+
+EtherGateTile.prototype.walkon = function(who) {
+  var homemap = who.getHomeMap();
+  homemap.moveThing(this.destx,this.desty,who);
+  DrawMainFrame("draw", homemap.getName(), PC.getx(), PC.gety());
+}
 
 function MoongateTile() {
   this.name = "Moongate";
