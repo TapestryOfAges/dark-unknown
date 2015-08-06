@@ -111,3 +111,7 @@ var COLOR_BLUE = -64;
 var COLOR_ORANGE = -96;
 var COLOR_PURPLE = -128;
 var COLOR_RED = -160;
+
+var STAT_MAX = 25;
+var LVL_MAX = 8;
+var TP_PER_LEVEL = 3;

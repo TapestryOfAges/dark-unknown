@@ -4287,9 +4287,9 @@ SpawnerTile.prototype.myTurn = function() {
       if (this.evolve[i]) {
         this.level = i;
         if (debug) { dbs.writeln("<span style='color:#00cc00'>Spawner at " + this.x + ", " + this.y + " has evolved.</span><br />"); }
-        while (this.evolve[i]) {
-          var idx = shift(this.evolve[i]);
-          var val = shift(this.evolve[i]);
+        while (this.evolve[i][0]) {
+          var idx = this.evolve[i].shift();
+          var val = this.evolve[i].shift();
           this.idx = val;
         }
       }
@@ -7117,6 +7117,9 @@ function NPCObject() {
 	this.modstr = 0;
 	this.moddex = 0;
 	this.modint = 0;
+	this.orbstr = 0;
+	this.orbdex = 0;
+	this.orbint = 0;
 	this.hp = 10;
 	this.maxhp = 10;
 	this.mana = 10;
@@ -7531,7 +7534,7 @@ NPCObject.prototype.setBaseStr = function(newstr) {
 }
 
 NPCObject.prototype.getStr = function() {
-  var str = this.getBaseStr() + this.getModStr();
+  var str = this.getBaseStr() + this.getModStr() + this.getOrbStr();
 	return str;
 }
 
@@ -7539,9 +7542,19 @@ NPCObject.prototype.getModStr = function() {
   return this.modstr;
 }
 
+NPCObject.prototype.getOrbStr = function() {
+  return this.orbstr;
+}
+
 NPCObject.prototype.setModStr = function(newstr) {
   newstr = parseInt(newstr);
   if (!isNaN) { this.modstr = newstr; }
+  return this.getStr();
+}
+
+NPCObject.prototype.setOrbStr = function(newstr) {
+  newstr = parseInt(newstr);
+  if (!isNaN) { this.orbstr = newstr; }
   return this.getStr();
 }
 
@@ -7558,8 +7571,13 @@ NPCObject.prototype.setBaseDex = function(newdex) {
   this.setDex(newdex);
 }
 
+NPCObject.prototype.setOrbDex = function(newdex) {
+	newdex = parseInt(newdex);
+	if (!isNaN(newdex)) { this.orbdex = newdex; }
+}
+
 NPCObject.prototype.getDex = function() {
-  var dex = this.getBaseDex() + this.getModDex();
+  var dex = this.getBaseDex() + this.getModDex() + this.getOrbDex();
 	return dex;
 }
 
@@ -7569,6 +7587,10 @@ NPCObject.prototype.getBaseDex = function() {
 
 NPCObject.prototype.getModDex = function() {
   return this.moddex;
+}
+
+NPCObject.prototype.getOrbDex = function() {
+  return this.orbdex;
 }
 
 NPCObject.prototype.setModDex = function(newdex) {
@@ -7592,8 +7614,14 @@ NPCObject.prototype.setModInt = function(newint) {
   return this.getInt();
 }
 
+NPCObject.prototype.setOrbInt = function(newint) {
+  newint = parseInt(newint);
+  if (!isNaN) { this.orbint = newint; }
+  return this.getInt();
+}
+
 NPCObject.prototype.getInt = function() {
-  var theint = this.getBaseInt() + this.getModInt();
+  var theint = this.getBaseInt() + this.getModInt() + this.getOrbInt();
 	return theint;
 }
 
@@ -7603,6 +7631,10 @@ NPCObject.prototype.getBaseInt = function() {
 
 NPCObject.prototype.getModInt = function() {
   return this.modint;
+}
+
+NPCObject.prototype.getOrbInt = function() {
+  return this.orbint;
 }
 
 NPCObject.prototype.setStats = function(newstr, newdex, newint) {

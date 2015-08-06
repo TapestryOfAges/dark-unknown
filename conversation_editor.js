@@ -136,7 +136,6 @@ function edit_response(convname, keyword) {
   document.responseeditpopup.start_shop2.checked = false;
   document.responseeditpopup.start_sell2.checked = false;
 
-
   if (keyword) {
     document.responseeditpopup.responsekeyword.value = keyword;
     document.responseeditpopup.response1.value = conversations[convname][keyword].responses[0];

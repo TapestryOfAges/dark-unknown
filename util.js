@@ -1089,3 +1089,4 @@ function CheckAbsorb(dam,to,from,type) {
   
   return dam;
 }
+

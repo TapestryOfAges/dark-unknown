@@ -1158,7 +1158,16 @@ function PerformTalkTarget() {
 
   maintext.addText("Talk to: " + top.getDesc());
 
-  retval = PerformTalk(top, convo, "_start");
+  if (EarnedLevel(PC) && (top.getName() === "KingNPC")) {
+    maintext.addText('"Hail, ' + PC.getPCName() + '! I am well pleased with your progress.");
+    PC.setLevel(PC.getLevel()+1);
+    PC.settp(PC.gettp()+TP_PER_LEVEL);
+    DU.gameflags["can_train"] = 1;
+    maintext.addText(PC.getPCName() + " is now level " + PC.getLevel() + "!");
+    retval = PreformTalk(top, convo, "_level");
+  } else {
+    retval = PerformTalk(top, convo, "_start");
+  }
 		
   return retval;
 
@@ -1749,7 +1758,15 @@ function DrawStats(page) {
   statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
   statsdiv += "<tr><td>STR: " + PC.getStr() + "</td><td></td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
-  statsdiv += "<tr><td>DEX: " + PC.getDex() + "</td><td></td><td>XP: " + PC.getxp() + "</td></tr>";
+  statsdiv += "<tr><td>DEX: " + PC.getDex() + "</td><td></td><td>XP: ";
+  if (EarnedLevel(PC)) {
+    statsdiv += "<span class='leveled'>";
+  }
+  statsdiv += PC.getxp();
+  if (EarnedLevel(PC)) {
+    statsdiv += "</span>";
+  }
+  statsdiv += "</td></tr>";
   statsdiv += "<tr><td>INT: " + PC.getInt() + "</td><td></td><td>Training: " + PC.gettp() + "</td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
   statsdiv += "<tr><td>Gold: " + PC.getGold() + "</td><td></td><td></td></tr>";
