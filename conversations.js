@@ -81,7 +81,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     } else if (triggers.set_flag === "king_heal") {
       delete DU.gameflags[triggers.set_flag];
       PC.healMe(1000);
-      var effects = caster.getSpellEffects();
+      var effects = PC.getSpellEffects();
       if (effects) {
         for (var i=0; i<effects.length; i++) {
           if (effects[i].getName() === "Poison") {
@@ -92,9 +92,51 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
           }
         }
       }
-      ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+      ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+      DrawCharFrame();
+    } else if (triggers.set_flag === "train_int") {
+      if (PC.gettp() === 0) {
+        alert("Somehow training Int without any tp.");
+      } else if ((PC.getBaseInt() < STAT_MAX) && (PC.gettp() > 0)) {
+        PC.setBaseInt(PC.getBaseInt()+1);
+        PC.settp(PC.gettp()-1);
+        maintext.addText("Your intelligence is now " + PC.getInt());
+      } else {
+        maintext.addText("Your intelligence cannot be raised further by training.");
+      }
+      if (PC.gettp() === 0) {
+        delete DU.getflags["can_train"];
+      }
+      delete DU.getflags[triggers.set_flag];
+    } else if (triggers.set_flag === "train_dex") {
+      if (PC.gettp() === 0) {
+        alert("Somehow training Dex without any tp.");
+      } else if ((PC.getBaseDex() < STAT_MAX) && (PC.gettp() > 0)) {
+        PC.setBaseDex(PC.getBaseDex()+1);
+        PC.settp(PC.gettp()-1);
+        maintext.addText("Your dexterity is now " + PC.getDex());
+      } else {
+        maintext.addText("Your dexterity cannot be raised further by training.");
+      }
+      if (PC.gettp() === 0) {
+        delete DU.getflags["can_train"];
+      }
+      delete DU.getflags[triggers.set_flag];
+    } else if (triggers.set_flag === "train_str") {
+      if (PC.gettp() === 0) {
+        alert("Somehow training Str without any tp.");
+      } else if ((PC.getBaseStr() < STAT_MAX) && (PC.gettp() > 0)) {
+        PC.setBaseStr(PC.getBaseStr()+1);
+        PC.settp(PC.gettp()-1);
+        maintext.addText("Your strength is now " + PC.getStr());
+      } else {
+        maintext.addText("Your strength cannot be raised further by training.");
+      }
+      if (PC.gettp() === 0) {
+        delete DU.getflags["can_train"];
+      }
+      delete DU.getflags[triggers.set_flag];
     }
-
   }
   if (triggers.hasOwnProperty("end_convo")) {
     if ((triggers.end_convo !== 1) && (triggers.end_convo !== "1")) {
