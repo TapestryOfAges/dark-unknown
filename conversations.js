@@ -74,11 +74,27 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
 			door.open = 1;
 			
 			DrawMainFrame("draw",door.getHomeMap().getName(),PC.getx(),PC.gety());
+			delete DU.gameflags[triggers.set_flag];
     } else if (triggers.set_flag === "spellbook") {
       PC.addSpell(1,GetSpellID(5)); 
       // spellbook starts with Light in it
-    } 
-    
+    } else if (triggers.set_flag === "king_heal") {
+      delete DU.gameflags[triggers.set_flag];
+      PC.healMe(1000);
+      var effects = caster.getSpellEffects();
+      if (effects) {
+        for (var i=0; i<effects.length; i++) {
+          if (effects[i].getName() === "Poison") {
+            effects[i].endEffect();
+          }
+          if ((infused) && (effects[i].getName() === "Disease")) {
+            effects[i].endEffect();
+          }
+        }
+      }
+      ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+    }
+
   }
   if (triggers.hasOwnProperty("end_convo")) {
     if ((triggers.end_convo !== 1) && (triggers.end_convo !== "1")) {
