@@ -38,6 +38,16 @@ barks.checkBark = function(who) {
 
 var ais = {};
 
+ais.seekPC = function(who,radius) {
+  if (debug) { dbs.writeln("<span style='color:orange;'>Seeking PC...</span><br />"); }
+  if (who.getHomeMap() === PC.getHomeMap()) {
+    if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety() <= radius) {
+      // if can see
+      // WORKING HERE
+    }
+  }
+}
+
 ais.townsfolk = function(who) {
   // first, check for bark
   barks.checkBark(who);
