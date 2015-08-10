@@ -11,7 +11,7 @@ function DruidVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'spellcaster';
+  this.forgetAt = 0;
   this.PCThreatAI = 'runaway';
   this.graphic = '302.gif';
   this.altgraphic = ['druid-offcolor.1.gif','druid-offcolor.gif',];
@@ -23,6 +23,9 @@ function DruidVillagerNPCTile() {
   this.lootTable = 'Townsman';
   this.prefix = 'a';
   this.desc = 'druid';
+  this.meleeChance = 30;
+  this.spellsknown = { heal: 1, control: 1, };
+  this.resists = {};
 }
 DruidVillagerNPCTile.prototype = new NPCObject();
 
@@ -39,7 +42,7 @@ function ShepherdVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'melee';
+  this.forgetAt = 0;
   this.PCThreatAI = 'runaway';
   this.graphic = '301.gif';
   this.altgraphic = ['shepherd-offcolor.1.gif',];
@@ -52,6 +55,7 @@ function ShepherdVillagerNPCTile() {
   this.prefix = 'a';
   this.desc = 'shepherd';
   this.meleeChance = 100;
+  this.resists = {};
 }
 ShepherdVillagerNPCTile.prototype = new NPCObject();
 
@@ -68,7 +72,7 @@ function MageVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'spellcaster';
+  this.forgetAt = 0;
   this.PCThreatAI = 'runaway';
   this.graphic = '303.gif';
   this.altgraphic = ['303.2.gif','mage-offcolor.gif',];
@@ -80,6 +84,8 @@ function MageVillagerNPCTile() {
   this.lootTable = 'Townsman';
   this.prefix = 'a';
   this.desc = 'mage';
+  this.spellsknown = { control: 1, attack: 1, };
+  this.resists = {};
 }
 MageVillagerNPCTile.prototype = new NPCObject();
 
@@ -96,7 +102,7 @@ function TinkerVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'missile';
+  this.forgetAt = 0;
   this.PCThreatAI = 'runaway';
   this.graphic = '304.gif';
   this.altgraphic = ['304.2.gif','tinker-offcolor.gif',];
@@ -110,6 +116,7 @@ function TinkerVillagerNPCTile() {
   this.desc = 'tinker';
   this.meleeChance = 30;
   this.spellsknown = { control: 1, attack: 1, };
+  this.resists = {};
 }
 TinkerVillagerNPCTile.prototype = new NPCObject();
 
@@ -126,7 +133,7 @@ function RangerVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'ranger';
+  this.forgetAt = 0;
   this.PCThreatAI = 'runaway';
   this.graphic = '305.gif';
   this.altgraphic = ['ranger-offcolor.gif',];
@@ -140,6 +147,7 @@ function RangerVillagerNPCTile() {
   this.desc = 'ranger';
   this.meleeChance = 50;
   this.spellsknown = { heal: 1, control: 1, buff: 1, };
+  this.resists = {};
 }
 RangerVillagerNPCTile.prototype = new NPCObject();
 
@@ -156,7 +164,7 @@ function AdventurerVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'adventurer';
+  this.forgetAt = 0;
   this.PCThreatAI = 'runaway';
   this.graphic = '306.gif';
   this.meleeAttackAs = 'Shortsword';
@@ -169,6 +177,7 @@ function AdventurerVillagerNPCTile() {
   this.desc = 'adventurer';
   this.meleeChance = 50;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.resists = {};
 }
 AdventurerVillagerNPCTile.prototype = new NPCObject();
 
@@ -185,7 +194,7 @@ function PaladinVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'mageknight';
+  this.forgetAt = 0;
   this.PCThreatAI = 'assistPC';
   this.graphic = '307.gif';
   this.altgraphic = ['307.2.gif','paladin-offcolor.gif',];
@@ -197,8 +206,9 @@ function PaladinVillagerNPCTile() {
   this.lootTable = 'Townsman';
   this.prefix = 'a';
   this.desc = 'paladin';
-  this.meleeChance = 60;
+  this.meleeChance = 75;
   this.spellsknown = { heal: 1, attack: 1, };
+  this.resists = {};
 }
 PaladinVillagerNPCTile.prototype = new NPCObject();
 
@@ -215,7 +225,7 @@ function FighterVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'melee';
+  this.forgetAt = 0;
   this.PCThreatAI = 'runaway';
   this.graphic = '308.gif';
   this.altgraphic = ['fighter-offcolor.gif',];
@@ -228,6 +238,7 @@ function FighterVillagerNPCTile() {
   this.prefix = 'a';
   this.desc = 'fighter';
   this.meleeChance = 100;
+  this.resists = {};
 }
 FighterVillagerNPCTile.prototype = new NPCObject();
 
@@ -244,7 +255,7 @@ function TownsfolkVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'melee';
+  this.forgetAt = 0;
   this.PCThreatAI = 'runaway';
   this.graphic = '310.gif';
   this.altgraphic = ['310.2.gif',];
@@ -257,6 +268,7 @@ function TownsfolkVillagerNPCTile() {
   this.prefix = 'a';
   this.desc = 'citizen';
   this.meleeChance = 100;
+  this.resists = {};
 }
 TownsfolkVillagerNPCTile.prototype = new NPCObject();
 
@@ -273,7 +285,7 @@ function BardVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'ranger';
+  this.forgetAt = 0;
   this.PCThreatAI = 'runaway';
   this.graphic = '311.gif';
   this.altgraphic = ['bard-offcolor.gif',];
@@ -287,6 +299,7 @@ function BardVillagerNPCTile() {
   this.desc = 'bard';
   this.meleeChance = 40;
   this.spellsknown = { control: 1, buff: 1, };
+  this.resists = {};
 }
 BardVillagerNPCTile.prototype = new NPCObject();
 
@@ -303,7 +316,7 @@ function ChildVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'runaway';
+  this.forgetAt = 0;
   this.PCThreatAI = 'runaway';
   this.graphic = '312.gif';
   this.meleeAttackAs = 'Fists';
@@ -317,6 +330,7 @@ function ChildVillagerNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = 'small child';
+  this.resists = {};
 }
 ChildVillagerNPCTile.prototype = new NPCObject();
 
@@ -333,7 +347,7 @@ function BeggarVillagerNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'runaway';
+  this.forgetAt = 0;
   this.PCThreatAI = 'runaway';
   this.graphic = '313.gif';
   this.meleeAttackAs = 'Fists';
@@ -347,6 +361,7 @@ function BeggarVillagerNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = 'beggar';
+  this.resists = {};
 }
 BeggarVillagerNPCTile.prototype = new NPCObject();
 
@@ -363,7 +378,7 @@ function JesterNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
-  this.threatenedAI = 'runaway';
+  this.forgetAt = 0;
   this.PCThreatAI = 'runaway';
   this.graphic = '314.gif';
   this.meleeAttackAs = 'Fists';
@@ -377,6 +392,7 @@ function JesterNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = 'jester';
+  this.resists = {};
 }
 JesterNPCTile.prototype = new NPCObject();
 
@@ -393,7 +409,7 @@ function TownGuardNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'guard';
-  this.threatenedAI = 'melee';
+  this.forgetAt = 0;
   this.PCThreatAI = 'assistPC';
   this.graphic = '309.gif';
   this.meleeAttackAs = 'Halberd';
@@ -405,6 +421,7 @@ function TownGuardNPCTile() {
   this.prefix = 'a';
   this.desc = 'guard';
   this.meleeChance = 100;
+  this.resists = {};
 }
 TownGuardNPCTile.prototype = new NPCObject();
 
@@ -420,8 +437,8 @@ function KingNPCTile() {
   this.int = 30;
   this.alignment = 'Good';
   this.attitude = 'friendly';
-  this.peaceAI = 'stationary';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'townsfolk';
+  this.forgetAt = 0;
   this.PCThreatAI = 'assistPC';
   this.graphic = '315.gif';
   this.meleeAttackAs = 'MagicSword';
@@ -433,6 +450,7 @@ function KingNPCTile() {
   this.desc = 'your father the King';
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.resists = {};
 }
 KingNPCTile.prototype = new NPCObject();
 
@@ -448,8 +466,8 @@ function QueenNPCTile() {
   this.int = 30;
   this.alignment = 'Good';
   this.attitude = 'friendly';
-  this.peaceAI = 'stationary';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'townsfolk';
+  this.forgetAt = 0;
   this.PCThreatAI = 'assistPC';
   this.graphic = '315.2.gif';
   this.meleeAttackAs = 'MagicSword';
@@ -461,6 +479,7 @@ function QueenNPCTile() {
   this.desc = 'your mother the Queen';
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.resists = {};
 }
 QueenNPCTile.prototype = new NPCObject();
 
@@ -476,8 +495,8 @@ function PrinceNPCTile() {
   this.int = 25;
   this.alignment = 'Good';
   this.attitude = 'friendly';
-  this.peaceAI = 'stationary';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'townsfolk';
+  this.forgetAt = 0;
   this.PCThreatAI = 'assistPC';
   this.graphic = 'prince.gif';
   this.meleeAttackAs = 'Longsword';
@@ -489,6 +508,7 @@ function PrinceNPCTile() {
   this.desc = 'your brother the prince';
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.resists = {};
 }
 PrinceNPCTile.prototype = new NPCObject();
 
@@ -504,8 +524,8 @@ function CorruptPrinceNPCTile() {
   this.int = 25;
   this.alignment = 'Evil';
   this.attitude = 'friendly';
-  this.peaceAI = 'stationary';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'townsfolk';
+  this.forgetAt = 0;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'prince.gif';
   this.meleeAttackAs = 'Longsword';
@@ -517,6 +537,7 @@ function CorruptPrinceNPCTile() {
   this.desc = 'your brother the prince';
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.resists = {};
 }
 CorruptPrinceNPCTile.prototype = new NPCObject();
 
@@ -533,7 +554,7 @@ function CorruptGuardsNPCTile() {
   this.alignment = 'Evil';
   this.attitude = 'friendly';
   this.peaceAI = 'guard';
-  this.threatenedAI = 'melee';
+  this.forgetAt = 0;
   this.PCThreatAI = 'attackPC';
   this.graphic = '309.gif';
   this.meleeAttackAs = 'Longsword';
@@ -545,6 +566,7 @@ function CorruptGuardsNPCTile() {
   this.prefix = 'a';
   this.desc = 'guard';
   this.meleeChance = 100;
+  this.resists = {};
 }
 CorruptGuardsNPCTile.prototype = new NPCObject();
 
@@ -560,8 +582,8 @@ function GiantBatNPCTile() {
   this.int = 2;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-20';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 15;
   this.PCThreatAI = 'attackPC';
   this.graphic = '362.gif';
   this.altgraphic = ['328.gif',];
@@ -577,6 +599,7 @@ function GiantBatNPCTile() {
   this.prefix = 'a';
   this.desc = 'giant bat';
   this.meleeChance = 100;
+  this.resists = {};
 }
 GiantBatNPCTile.prototype = new NPCObject();
 
@@ -592,8 +615,8 @@ function GiantInsectsNPCTile() {
   this.int = 2;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-7';
+  this.forgetAt = 14;
   this.PCThreatAI = 'attackPC';
   this.graphic = '336.gif';
   this.altgraphic = ['370.gif',];
@@ -609,6 +632,7 @@ function GiantInsectsNPCTile() {
   this.prefix = 'a';
   this.desc = 'swarm of insects';
   this.meleeChance = 100;
+  this.resists = {};
 }
 GiantInsectsNPCTile.prototype = new NPCObject();
 
@@ -624,8 +648,8 @@ function GiantRatNPCTile() {
   this.int = 2;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '327.gif';
   this.altgraphic = ['361.gif',];
@@ -641,6 +665,7 @@ function GiantRatNPCTile() {
   this.prefix = 'a';
   this.desc = 'giant rat';
   this.meleeChance = 100;
+  this.resists = {};
 }
 GiantRatNPCTile.prototype = new NPCObject();
 
@@ -656,8 +681,8 @@ function HoodNPCTile() {
   this.int = 9;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-20';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '375.gif';
   this.altgraphic = ['341.gif',];
@@ -671,6 +696,7 @@ function HoodNPCTile() {
   this.desc = 'hood';
   this.onHit = 'steal gold';
   this.meleeChance = 100;
+  this.resists = {};
 }
 HoodNPCTile.prototype = new NPCObject();
 
@@ -686,8 +712,8 @@ function MinstrelNPCTile() {
   this.int = 12;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-20';
-  this.threatenedAI = 'missile';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '311.gif';
   this.meleeAttackAs = 'Dagger';
@@ -701,6 +727,7 @@ function MinstrelNPCTile() {
   this.onHit = ' ';
   this.meleeChance = 40;
   this.spellsknown = { buff: 1, };
+  this.resists = {};
   this.special = 'sing';
 }
 MinstrelNPCTile.prototype = new NPCObject();
@@ -718,7 +745,7 @@ function SlimeNPCTile() {
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-5';
-  this.threatenedAI = 'spitter';
+  this.forgetAt = 7;
   this.PCThreatAI = 'attackPC';
   this.graphic = '331.gif';
   this.altgraphic = ['365.gif',];
@@ -750,8 +777,8 @@ function ApprenticeNPCTile() {
   this.int = 13;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'spellcaster';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '303.gif';
   this.altgraphic = ['303.2.gif',];
@@ -764,6 +791,7 @@ function ApprenticeNPCTile() {
   this.prefix = 'an';
   this.desc = 'apprentice';
   this.spellsknown = { control: 1, attack: 1, };
+  this.resists = {};
 }
 ApprenticeNPCTile.prototype = new NPCObject();
 
@@ -779,8 +807,8 @@ function FighterNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '308.gif';
   this.altgraphic = ['fighter-offcolor.gif',];
@@ -793,6 +821,7 @@ function FighterNPCTile() {
   this.prefix = 'a';
   this.desc = 'fighter';
   this.meleeChance = 100;
+  this.resists = {};
 }
 FighterNPCTile.prototype = new NPCObject();
 
@@ -808,8 +837,8 @@ function PythonNPCTile() {
   this.int = 3;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '342.gif';
   this.altgraphic = ['376.gif',];
@@ -826,6 +855,7 @@ function PythonNPCTile() {
   this.desc = 'python';
   this.onHit = 'venom';
   this.meleeChance = 100;
+  this.resists = {};
 }
 PythonNPCTile.prototype = new NPCObject();
 
@@ -841,8 +871,8 @@ function HeadlessNPCTile() {
   this.int = 5;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '344.gif';
   this.altgraphic = ['378.gif',];
@@ -855,6 +885,7 @@ function HeadlessNPCTile() {
   this.prefix = 'a';
   this.desc = 'headless';
   this.meleeChance = 100;
+  this.resists = {};
 }
 HeadlessNPCTile.prototype = new NPCObject();
 
@@ -870,8 +901,8 @@ function NixieNPCTile() {
   this.int = 12;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'ranger';
+  this.peaceAI = 'seekPC-6';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '323.gif';
   this.altgraphic = ['357.gif',];
@@ -884,6 +915,7 @@ function NixieNPCTile() {
   this.prefix = 'a';
   this.desc = 'nixie';
   this.meleeChance = 50;
+  this.resists = {};
 }
 NixieNPCTile.prototype = new NPCObject();
 
@@ -899,8 +931,8 @@ function OrcNPCTile() {
   this.int = 6;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-25';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '339.gif';
   this.altgraphic = ['373.gif',];
@@ -916,6 +948,7 @@ function OrcNPCTile() {
   this.prefix = 'an';
   this.desc = 'orc';
   this.meleeChance = 100;
+  this.resists = {};
 }
 OrcNPCTile.prototype = new NPCObject();
 
@@ -931,8 +964,8 @@ function RogueNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-20';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '306.gif';
   this.meleeAttackAs = 'Shortsword';
@@ -945,6 +978,7 @@ function RogueNPCTile() {
   this.desc = 'rogue';
   this.onHit = 'steal gold';
   this.meleeChance = 100;
+  this.resists = {};
 }
 RogueNPCTile.prototype = new NPCObject();
 
@@ -960,8 +994,8 @@ function SkeletonNPCTile() {
   this.int = 2;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '340.gif';
   this.altgraphic = ['374.gif',];
@@ -975,6 +1009,7 @@ function SkeletonNPCTile() {
   this.desc = 'skeleton';
   this.meleeChance = 100;
   this.resists = { ice:33 };
+  this.special = 'undead';
 }
 SkeletonNPCTile.prototype = new NPCObject();
 
@@ -990,8 +1025,8 @@ function AnimatedArmorNPCTile() {
   this.int = 2;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'wander-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '338.gif';
   this.altgraphic = ['372.gif',];
@@ -1003,6 +1038,8 @@ function AnimatedArmorNPCTile() {
   this.lootTable = 'AnimArmor';
   this.desc = 'animated armor';
   this.meleeChance = 100;
+  this.resists = {};
+  this.special = 'construct';
 }
 AnimatedArmorNPCTile.prototype = new NPCObject();
 
@@ -1018,8 +1055,8 @@ function ArcherNPCTile() {
   this.int = 11;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'missile';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'ranger-offcolor.gif';
   this.meleeAttackAs = 'Mace';
@@ -1032,6 +1069,7 @@ function ArcherNPCTile() {
   this.desc = 'archer';
   this.initmult = 0.8;
   this.meleeChance = 30;
+  this.resists = {};
 }
 ArcherNPCTile.prototype = new NPCObject();
 
@@ -1047,8 +1085,8 @@ function BardNPCTile() {
   this.int = 11;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'missile';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'bard-offcolor.gif';
   this.meleeAttackAs = 'Shortsword';
@@ -1061,6 +1099,7 @@ function BardNPCTile() {
   this.desc = 'bard';
   this.meleeChance = 40;
   this.spellsknown = { control: 1, buff: 1, };
+  this.resists = {};
   this.special = 'sing';
 }
 BardNPCTile.prototype = new NPCObject();
@@ -1077,8 +1116,8 @@ function DruidNPCTile() {
   this.int = 17;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'spellcaster';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '302.gif';
   this.altgraphic = ['druid-offcolor.gif','druid-offcolor.1.gif',];
@@ -1092,6 +1131,7 @@ function DruidNPCTile() {
   this.desc = 'druid';
   this.meleeChance = 30;
   this.spellsknown = { heal: 1, control: 1, buff: 1, };
+  this.resists = {};
 }
 DruidNPCTile.prototype = new NPCObject();
 
@@ -1107,8 +1147,8 @@ function FireLizardNPCTile() {
   this.int = 6;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '349.gif';
   this.altgraphic = ['383.gif',];
@@ -1139,7 +1179,7 @@ function FlukeNPCTile() {
   this.alignment = 'Evil';
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'mageknight';
+  this.forgetAt = 15;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'fluke.gif';
   this.meleeAttackAs = 'Mace';
@@ -1156,7 +1196,7 @@ function FlukeNPCTile() {
   this.meleeChance = 40;
   this.spellsknown = { control: 1, };
   this.resists = { ice:33 };
-  this.special = 'whirlpool, hides:spacer.gif';
+  this.special = 'whirlpool, invisible';
 }
 FlukeNPCTile.prototype = new NPCObject();
 
@@ -1173,7 +1213,7 @@ function GhostNPCTile() {
   this.alignment = 'Evil';
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'melee';
+  this.forgetAt = 30;
   this.PCThreatAI = 'attackPC';
   this.graphic = '330.gif';
   this.altgraphic = ['364.gif',];
@@ -1188,6 +1228,7 @@ function GhostNPCTile() {
   this.onDamaged = 'incorporeal';
   this.meleeChance = 100;
   this.resists = { ice:50 };
+  this.special = 'undead';
 }
 GhostNPCTile.prototype = new NPCObject();
 
@@ -1203,8 +1244,8 @@ function GiantSpiderNPCTile() {
   this.int = 3;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '329.gif';
   this.altgraphic = ['363.gif',];
@@ -1221,6 +1262,7 @@ function GiantSpiderNPCTile() {
   this.desc = 'giant spider';
   this.onHit = 'venom';
   this.meleeChance = 100;
+  this.resists = {};
 }
 GiantSpiderNPCTile.prototype = new NPCObject();
 
@@ -1236,8 +1278,8 @@ function GremlinNPCTile() {
   this.int = 6;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '333.gif';
   this.altgraphic = ['367.gif',];
@@ -1251,7 +1293,8 @@ function GremlinNPCTile() {
   this.desc = 'gremlin';
   this.onHit = 'stealfood';
   this.meleeChance = 100;
-  this.special = 'breedsexplosively';
+  this.resists = {};
+  this.special = 'stealfood,breedsexplosively';
 }
 GremlinNPCTile.prototype = new NPCObject();
 
@@ -1267,8 +1310,8 @@ function HandlerNPCTile() {
   this.int = 13;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'shepherd-offcolor.1.gif';
   this.meleeAttackAs = 'Mace';
@@ -1281,6 +1324,7 @@ function HandlerNPCTile() {
   this.desc = 'animal handler';
   this.meleeChance = 70;
   this.spellsknown = { buff: 1, };
+  this.resists = {};
   this.special = 'animalhandler';
 }
 HandlerNPCTile.prototype = new NPCObject();
@@ -1297,8 +1341,8 @@ function MimicNPCTile() {
   this.int = 2;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'wait';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'stationary-3';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '368.gif';
   this.altgraphic = ['334.gif',];
@@ -1309,9 +1353,10 @@ function MimicNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Mimic';
   this.prefix = 'a';
-  this.desc = 'mimic';
+  this.desc = 'chest';
   this.meleeChance = 100;
-  this.special = 'hides:008.gif, hidename:"a chest", spitter';
+  this.resists = {};
+  this.special = 'hides:008.gif, aggroname:a mimic, spitter';
 }
 MimicNPCTile.prototype = new NPCObject();
 
@@ -1327,8 +1372,8 @@ function OrcShamanNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-25';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '339.gif';
   this.altgraphic = ['373.gif',];
@@ -1342,6 +1387,7 @@ function OrcShamanNPCTile() {
   this.desc = 'orc shaman';
   this.meleeChance = 33;
   this.spellsknown = { heal: 1, buff: 1, };
+  this.resists = {};
 }
 OrcShamanNPCTile.prototype = new NPCObject();
 
@@ -1357,8 +1403,8 @@ function GiantSnakeNPCTile() {
   this.int = 3;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'python.gif';
   this.meleeAttackAs = 'Mace';
@@ -1374,6 +1420,7 @@ function GiantSnakeNPCTile() {
   this.desc = 'giant snake';
   this.onHit = 'venom';
   this.meleeChance = 100;
+  this.resists = {};
   this.special = 'spitter';
 }
 GiantSnakeNPCTile.prototype = new NPCObject();
@@ -1390,8 +1437,8 @@ function SeahorseNPCTile() {
   this.int = 10;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '326.gif';
   this.altgraphic = ['360.gif',];
@@ -1407,6 +1454,7 @@ function SeahorseNPCTile() {
   this.prefix = 'a';
   this.desc = 'seahorse';
   this.meleeChance = 75;
+  this.resists = {};
   this.special = 'lbolt';
 }
 SeahorseNPCTile.prototype = new NPCObject();
@@ -1423,8 +1471,8 @@ function ThiefNPCTile() {
   this.int = 14;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-20';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '306.gif';
   this.meleeAttackAs = 'Mace';
@@ -1440,6 +1488,7 @@ function ThiefNPCTile() {
   this.desc = 'thief';
   this.onHit = 'steal gold';
   this.meleeChance = 100;
+  this.resists = {};
 }
 ThiefNPCTile.prototype = new NPCObject();
 
@@ -1455,8 +1504,8 @@ function TrollNPCTile() {
   this.int = 8;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'ranger';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '332.gif';
   this.altgraphic = ['366.gif',];
@@ -1469,6 +1518,7 @@ function TrollNPCTile() {
   this.prefix = 'a';
   this.desc = 'troll';
   this.meleeChance = 50;
+  this.resists = {};
 }
 TrollNPCTile.prototype = new NPCObject();
 
@@ -1484,8 +1534,8 @@ function TwisterNPCTile() {
   this.int = 6;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'wander-5';
+  this.forgetAt = 8;
   this.PCThreatAI = 'attackPC';
   this.graphic = '324.gif';
   this.meleeAttackAs = 'Shortsword';
@@ -1497,6 +1547,7 @@ function TwisterNPCTile() {
   this.prefix = 'a';
   this.desc = 'twister';
   this.meleeChance = 100;
+  this.resists = {};
 }
 TwisterNPCTile.prototype = new NPCObject();
 
@@ -1512,8 +1563,8 @@ function AirElementalNPCTile() {
   this.int = 6;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'wander-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'air_elemental.gif';
   this.meleeAttackAs = 'Mace';
@@ -1525,6 +1576,7 @@ function AirElementalNPCTile() {
   this.prefix = 'an';
   this.desc = 'air elemental';
   this.meleeChance = 70;
+  this.resists = {};
   this.special = 'lbolt';
 }
 AirElementalNPCTile.prototype = new NPCObject();
@@ -1541,8 +1593,8 @@ function CyclopsNPCTile() {
   this.int = 8;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-20';
-  this.threatenedAI = 'ranger';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '345.gif';
   this.altgraphic = ['379.gif',];
@@ -1556,6 +1608,7 @@ function CyclopsNPCTile() {
   this.desc = 'cyclops';
   this.onHit = 'knockback';
   this.meleeChance = 60;
+  this.resists = {};
 }
 CyclopsNPCTile.prototype = new NPCObject();
 
@@ -1571,8 +1624,8 @@ function DeepNixieNPCTile() {
   this.int = 15;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'makeknight';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'deep_nixie.gif';
   this.meleeAttackAs = 'Axe';
@@ -1585,6 +1638,7 @@ function DeepNixieNPCTile() {
   this.desc = 'deep nixie';
   this.meleeChance = 60;
   this.spellsknown = { attack: 1, buff: 1, };
+  this.resists = {};
 }
 DeepNixieNPCTile.prototype = new NPCObject();
 
@@ -1600,8 +1654,8 @@ function DrakeNPCTile() {
   this.int = 10;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'wander-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '353.gif';
   this.altgraphic = ['387.gif',];
@@ -1635,8 +1689,8 @@ function EarthElementalNPCTile() {
   this.int = 6;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'wander-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'earth_elemental.gif';
   this.meleeAttackAs = 'Halberd';
@@ -1652,6 +1706,7 @@ function EarthElementalNPCTile() {
   this.desc = 'earth elemental';
   this.initmult = 1.2;
   this.meleeChance = 100;
+  this.resists = {};
 }
 EarthElementalNPCTile.prototype = new NPCObject();
 
@@ -1667,8 +1722,8 @@ function FireElementalNPCTile() {
   this.int = 6;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'wander-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'fire_elemental.gif';
   this.meleeAttackAs = 'Axe';
@@ -1698,8 +1753,8 @@ function LurkerNPCTile() {
   this.int = 7;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'wander-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'lurker.gif';
   this.meleeAttackAs = 'Longsword';
@@ -1715,6 +1770,7 @@ function LurkerNPCTile() {
   this.desc = 'lurker';
   this.onHit = 'entangle';
   this.meleeChance = 100;
+  this.resists = {};
   this.special = 'invisible';
 }
 LurkerNPCTile.prototype = new NPCObject();
@@ -1731,8 +1787,8 @@ function OrcCaptainNPCTile() {
   this.int = 9;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'ranger';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '339.gif';
   this.altgraphic = ['373.gif',];
@@ -1746,6 +1802,7 @@ function OrcCaptainNPCTile() {
   this.desc = 'orc captain';
   this.meleeChance = 66;
   this.spellsknown = { buff: 1, };
+  this.resists = {};
 }
 OrcCaptainNPCTile.prototype = new NPCObject();
 
@@ -1761,8 +1818,8 @@ function PaladinNPCTile() {
   this.int = 14;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '307.gif';
   this.altgraphic = ['307.2.gif','paladin-offcolor.gif',];
@@ -1776,6 +1833,7 @@ function PaladinNPCTile() {
   this.desc = 'paladin';
   this.meleeChance = 66;
   this.spellsknown = { heal: 1, attack: 1, buff: 1, };
+  this.resists = {};
 }
 PaladinNPCTile.prototype = new NPCObject();
 
@@ -1791,8 +1849,8 @@ function SeaSerpentNPCTile() {
   this.int = 8;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'wander-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '321.gif';
   this.altgraphic = ['355.gif',];
@@ -1808,6 +1866,7 @@ function SeaSerpentNPCTile() {
   this.prefix = 'a';
   this.desc = 'sea serpent';
   this.meleeChance = 80;
+  this.resists = {};
   this.special = 'firebreath';
 }
 SeaSerpentNPCTile.prototype = new NPCObject();
@@ -1824,8 +1883,8 @@ function TremendousSpiderNPCTile() {
   this.int = 5;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '329.gif';
   this.altgraphic = ['363.gif',];
@@ -1842,6 +1901,7 @@ function TremendousSpiderNPCTile() {
   this.desc = 'giant spider';
   this.onHit = 'paralyze';
   this.meleeChance = 100;
+  this.resists = {};
   this.special = 'spitter';
 }
 TremendousSpiderNPCTile.prototype = new NPCObject();
@@ -1858,8 +1918,8 @@ function WaterElementalNPCTile() {
   this.int = 10;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'wander-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '325.gif';
   this.meleeAttackAs = 'Longsword';
@@ -1888,8 +1948,8 @@ function WizardNPCTile() {
   this.int = 20;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'spellcaster';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'mage-offcolor.gif';
   this.meleeAttackAs = 'Mace';
@@ -1902,6 +1962,7 @@ function WizardNPCTile() {
   this.desc = 'wizard';
   this.meleeChance = 10;
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
+  this.resists = {};
 }
 WizardNPCTile.prototype = new NPCObject();
 
@@ -1917,8 +1978,8 @@ function CorpserNPCTile() {
   this.int = 7;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'wander-10';
+  this.forgetAt = 15;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'corpser.gif';
   this.meleeAttackAs = 'Longsword';
@@ -1933,7 +1994,8 @@ function CorpserNPCTile() {
   this.prefix = 'a';
   this.desc = 'corpser';
   this.onHit = 'entangle';
-  this.meleeChance = 100;
+  this.meleeChance = 50;
+  this.resists = {};
   this.special = 'invisible, reach';
 }
 CorpserNPCTile.prototype = new NPCObject();
@@ -1950,8 +2012,8 @@ function EttinNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '343.gif';
   this.altgraphic = ['377.gif',];
@@ -1967,6 +2029,7 @@ function EttinNPCTile() {
   this.prefix = 'an';
   this.desc = 'ettin';
   this.meleeChance = 100;
+  this.resists = {};
 }
 EttinNPCTile.prototype = new NPCObject();
 
@@ -1983,7 +2046,7 @@ function FloorNPCTile() {
   this.alignment = 'Evil';
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-5';
-  this.threatenedAI = 'melee';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '103.gif';
   this.meleeAttackAs = 'Halberd';
@@ -1995,7 +2058,7 @@ function FloorNPCTile() {
   this.prefix = 'the';
   this.desc = 'floor';
   this.meleeChance = 100;
-  this.special = 'trueinvisible';
+  this.resists = {};
 }
 FloorNPCTile.prototype = new NPCObject();
 
@@ -2011,8 +2074,8 @@ function GazerNPCTile() {
   this.int = 16;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'spellcaster';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '337.gif';
   this.altgraphic = ['371.gif',];
@@ -2026,6 +2089,7 @@ function GazerNPCTile() {
   this.desc = 'gazer';
   this.meleeChance = 20;
   this.spellsknown = { attack: 1, };
+  this.resists = {};
   this.special = 'sleep, ondeathInsects';
 }
 GazerNPCTile.prototype = new NPCObject();
@@ -2042,8 +2106,8 @@ function HydraNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '352.gif';
   this.altgraphic = ['386.gif',];
@@ -2058,6 +2122,7 @@ function HydraNPCTile() {
   this.onHit = 'venom';
   this.initmult = 1.2;
   this.meleeChance = 80;
+  this.resists = {};
   this.special = 'firebreath, multiattack';
 }
 HydraNPCTile.prototype = new NPCObject();
@@ -2074,8 +2139,8 @@ function MagmaSpawnNPCTile() {
   this.int = 8;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '349.gif';
   this.altgraphic = ['383.gif',];
@@ -2088,6 +2153,7 @@ function MagmaSpawnNPCTile() {
   this.prefix = 'a';
   this.desc = 'magma spawn';
   this.meleeChance = 80;
+  this.resists = {};
   this.special = 'magmaspit, magmaheal';
 }
 MagmaSpawnNPCTile.prototype = new NPCObject();
@@ -2104,8 +2170,8 @@ function PhantomNPCTile() {
   this.int = 14;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 15;
   this.PCThreatAI = 'attackPC';
   this.graphic = '338.gif';
   this.altgraphic = ['372.gif',];
@@ -2119,6 +2185,8 @@ function PhantomNPCTile() {
   this.desc = 'phantom';
   this.meleeChance = 75;
   this.spellsknown = { attack: 1, };
+  this.resists = {};
+  this.special = 'undead';
 }
 PhantomNPCTile.prototype = new NPCObject();
 
@@ -2134,8 +2202,8 @@ function RangerNPCTile() {
   this.int = 12;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-20';
-  this.threatenedAI = 'ranger';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '305.gif';
   this.meleeAttackAs = 'Longsword';
@@ -2148,6 +2216,7 @@ function RangerNPCTile() {
   this.desc = 'ranger';
   this.meleeChance = 25;
   this.spellsknown = { heal: 1, control: 1, };
+  this.resists = {};
 }
 RangerNPCTile.prototype = new NPCObject();
 
@@ -2163,8 +2232,8 @@ function WillotheWispNPCTile() {
   this.int = 16;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander';
-  this.threatenedAI = 'spellcaster';
+  this.peaceAI = 'wander-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '346.gif';
   this.altgraphic = ['380.gif',];
@@ -2182,6 +2251,7 @@ function WillotheWispNPCTile() {
   this.onHit = 'mana clash';
   this.meleeChance = 35;
   this.spellsknown = { control: 1, attack: 1, };
+  this.resists = {};
   this.special = 'teleport, energy bolt';
 }
 WillotheWispNPCTile.prototype = new NPCObject();
@@ -2198,8 +2268,8 @@ function XornNPCTile() {
   this.int = 9;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '350.gif';
   this.altgraphic = ['384.gif',];
@@ -2213,6 +2283,7 @@ function XornNPCTile() {
   this.desc = 'xorn';
   this.initmult = 1.2;
   this.meleeChance = 100;
+  this.resists = {};
 }
 XornNPCTile.prototype = new NPCObject();
 
@@ -2228,8 +2299,8 @@ function ArchmageNPCTile() {
   this.int = 22;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'spellcaster';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '347.gif';
   this.altgraphic = ['381.gif',];
@@ -2245,6 +2316,7 @@ function ArchmageNPCTile() {
   this.prefix = 'an';
   this.desc = 'archmage';
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.resists = {};
 }
 ArchmageNPCTile.prototype = new NPCObject();
 
@@ -2261,7 +2333,7 @@ function BlackDragonNPCTile() {
   this.alignment = 'Evil';
   this.attitude = 'hostile';
   this.peaceAI = 'stationary';
-  this.threatenedAI = 'mageknight';
+  this.forgetAt = 0;
   this.PCThreatAI = 'attackAll';
   this.graphic = 'blackdragon.gif';
   this.meleeAttackAs = 'Halberd';
@@ -2274,6 +2346,7 @@ function BlackDragonNPCTile() {
   this.desc = 'black dragon';
   this.meleeChance = 70;
   this.spellsknown = { control: 1, attack: 1, };
+  this.resists = {};
   this.special = 'firebreath';
 }
 BlackDragonNPCTile.prototype = new NPCObject();
@@ -2290,8 +2363,8 @@ function DevourerNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '352.gif';
   this.altgraphic = ['386.gif',];
@@ -2304,7 +2377,6 @@ function DevourerNPCTile() {
   this.prefix = 'the';
   this.desc = 'devourer';
   this.onHit = 'venom';
-  this.onDamaged = 'acidblood';
   this.meleeChance = 70;
   this.spellsknown = { control: 1, buff: 1, };
   this.resists = { fire:50, ice:50 };
@@ -2324,8 +2396,8 @@ function DragonNPCTile() {
   this.int = 20;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-20';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '353.gif';
   this.altgraphic = ['387.gif',];
@@ -2356,8 +2428,8 @@ function EttinSorcererNPCTile() {
   this.int = 16;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '343.gif';
   this.altgraphic = ['377.gif',];
@@ -2374,6 +2446,7 @@ function EttinSorcererNPCTile() {
   this.desc = 'ettin sorcerer';
   this.meleeChance = 40;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.resists = {};
 }
 EttinSorcererNPCTile.prototype = new NPCObject();
 
@@ -2389,8 +2462,8 @@ function GiantNPCTile() {
   this.int = 8;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-20';
-  this.threatenedAI = 'ranger';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '345.gif';
   this.altgraphic = ['379.gif',];
@@ -2404,6 +2477,7 @@ function GiantNPCTile() {
   this.desc = 'giant';
   this.onHit = 'knockback';
   this.meleeChance = 60;
+  this.resists = {};
 }
 GiantNPCTile.prototype = new NPCObject();
 
@@ -2419,8 +2493,8 @@ function KrakenNPCTile() {
   this.int = 12;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '322.gif';
   this.altgraphic = ['356.gif',];
@@ -2437,6 +2511,7 @@ function KrakenNPCTile() {
   this.desc = 'kraken';
   this.onDamaged = 'shock';
   this.meleeChance = 85;
+  this.resists = {};
   this.special = 'lbolt';
 }
 KrakenNPCTile.prototype = new NPCObject();
@@ -2453,8 +2528,8 @@ function ReaperNPCTile() {
   this.int = 20;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'stationary';
-  this.threatenedAI = 'spellcaster';
+  this.peaceAI = 'stationary-4';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '335.gif';
   this.altgraphic = ['369.gif',];
@@ -2471,6 +2546,7 @@ function ReaperNPCTile() {
   this.desc = 'reaper';
   this.meleeChance = 50;
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
+  this.resists = {};
 }
 ReaperNPCTile.prototype = new NPCObject();
 
@@ -2486,8 +2562,8 @@ function SpecterNPCTile() {
   this.int = 17;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-20';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '330.gif';
   this.altgraphic = ['364.gif',];
@@ -2502,6 +2578,7 @@ function SpecterNPCTile() {
   this.onDamaged = 'incorporeal';
   this.meleeChance = 66;
   this.spellsknown = { control: 1, attack: 1, };
+  this.resists = {};
   this.special = 'phase';
 }
 SpecterNPCTile.prototype = new NPCObject();
@@ -2518,8 +2595,8 @@ function DaemonNPCTile() {
   this.int = 20;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '351.gif';
   this.altgraphic = ['385.gif',];
@@ -2536,6 +2613,7 @@ function DaemonNPCTile() {
   this.desc = 'daemon';
   this.meleeChance = 75;
   this.spellsknown = { control: 1, attack: 1, };
+  this.resists = {};
 }
 DaemonNPCTile.prototype = new NPCObject();
 
@@ -2551,8 +2629,8 @@ function DelverNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '350.gif';
   this.altgraphic = ['384.gif',];
@@ -2565,6 +2643,7 @@ function DelverNPCTile() {
   this.prefix = 'a';
   this.desc = 'delver';
   this.meleeChance = 90;
+  this.resists = {};
   this.special = 'summonearthelemental';
 }
 DelverNPCTile.prototype = new NPCObject();
@@ -2581,8 +2660,8 @@ function LicheNPCTile() {
   this.int = 26;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'spellcaster';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '348.gif';
   this.altgraphic = ['382.gif',];
@@ -2599,7 +2678,7 @@ function LicheNPCTile() {
   this.desc = 'liche';
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
   this.resists = { ice:66 };
-  this.special = 'createundead';
+  this.special = 'necromancer, undead';
 }
 LicheNPCTile.prototype = new NPCObject();
 
@@ -2615,8 +2694,8 @@ function EyesofSpiteNPCTile() {
   this.int = 20;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-25';
-  this.threatenedAI = 'spellcaster';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '337.gif';
   this.altgraphic = ['371.gif',];
@@ -2631,6 +2710,7 @@ function EyesofSpiteNPCTile() {
   this.onHit = 'paralyze';
   this.meleeChance = 15;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.resists = {};
   this.special = 'sleep, ondeathInsects';
 }
 EyesofSpiteNPCTile.prototype = new NPCObject();
@@ -2647,8 +2727,8 @@ function ReaperLordNPCTile() {
   this.int = 22;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'stationary';
-  this.threatenedAI = 'spellcaster';
+  this.peaceAI = 'stationary-4';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '335.gif';
   this.altgraphic = ['369.gif',];
@@ -2665,6 +2745,7 @@ function ReaperLordNPCTile() {
   this.desc = 'reaper lord';
   this.meleeChance = 50;
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
+  this.resists = {};
 }
 ReaperLordNPCTile.prototype = new NPCObject();
 
@@ -2681,7 +2762,7 @@ function ElderDragonNPCTile() {
   this.alignment = 'Evil';
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-7';
-  this.threatenedAI = 'mageknight';
+  this.forgetAt = 13;
   this.PCThreatAI = 'attackPC';
   this.graphic = 'elder_dragon.gif';
   this.meleeAttackAs = 'MagicSword';
@@ -2711,8 +2792,8 @@ function BalronNPCTile() {
   this.int = 26;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
-  this.threatenedAI = 'mageknight';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '354.gif';
   this.altgraphic = ['388.gif',];
@@ -2743,8 +2824,8 @@ function TitanNPCTile() {
   this.int = 14;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-10';
-  this.threatenedAI = 'ranger';
+  this.peaceAI = 'seekPC-5';
+  this.forgetAt = 10;
   this.PCThreatAI = 'attackPC';
   this.graphic = '345.gif';
   this.altgraphic = ['379.gif',];
@@ -2758,6 +2839,7 @@ function TitanNPCTile() {
   this.desc = 'titan';
   this.onHit = 'knockback, stun';
   this.meleeChance = 70;
+  this.resists = {};
 }
 TitanNPCTile.prototype = new NPCObject();
 
@@ -2773,8 +2855,8 @@ function AbyssalKrakenNPCTile() {
   this.int = 20;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-5';
-  this.threatenedAI = 'melee';
+  this.peaceAI = 'seekPC-7';
+  this.forgetAt = 12;
   this.PCThreatAI = 'attackPC';
   this.graphic = '322.gif';
   this.altgraphic = ['356.gif',];
@@ -2788,6 +2870,7 @@ function AbyssalKrakenNPCTile() {
   this.desc = 'abyssal kraken';
   this.onDamaged = 'shock';
   this.meleeChance = 90;
+  this.resists = {};
   this.special = 'lbolt';
 }
 AbyssalKrakenNPCTile.prototype = new NPCObject();
@@ -2805,7 +2888,7 @@ function IllusionNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'stationary';
-  this.threatenedAI = 'melee';
+  this.forgetAt = 0;
   this.PCThreatAI = 'assistPC';
   this.graphic = '338.gif';
   this.meleeAttackAs = 'Shortsword';
@@ -2818,6 +2901,7 @@ function IllusionNPCTile() {
   this.desc = 'illusion';
   this.onDamaged = 'die';
   this.meleeChance = 100;
+  this.resists = {};
 }
 IllusionNPCTile.prototype = new NPCObject();
 
@@ -2834,7 +2918,7 @@ function InfusedIllusionNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'stationary';
-  this.threatenedAI = 'melee';
+  this.forgetAt = 0;
   this.PCThreatAI = 'assistPC';
   this.graphic = '338.gif';
   this.meleeAttackAs = 'Axe';
@@ -2847,6 +2931,7 @@ function InfusedIllusionNPCTile() {
   this.desc = 'illusion';
   this.onDamaged = 'die';
   this.meleeChance = 100;
+  this.resists = {};
 }
 InfusedIllusionNPCTile.prototype = new NPCObject();
 
@@ -2863,7 +2948,7 @@ function ToshinSentinelNPCTile() {
   this.alignment = 'Neutral';
   this.attitude = 'neutral';
   this.peaceAI = 'Sentinel';
-  this.threatenedAI = 'Sentinel';
+  this.forgetAt = 0;
   this.PCThreatAI = 'Sentinel';
   this.graphic = 'sentinel.gif';
   this.meleeAttackAs = 'Fists';
@@ -2874,6 +2959,7 @@ function ToshinSentinelNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = 'floating sentinel';
+  this.resists = {};
 }
 ToshinSentinelNPCTile.prototype = new NPCObject();
 
@@ -2890,7 +2976,7 @@ function AbyssYouNPCTile() {
   this.alignment = 'Good';
   this.attitude = 'friendly';
   this.peaceAI = 'abyssyou ';
-  this.threatenedAI = 'abyssyou';
+  this.forgetAt = 0;
   this.PCThreatAI = 'abyssyou';
   this.graphic = '388.gif';
   this.meleeAttackAs = 'Fists';
@@ -2903,6 +2989,7 @@ function AbyssYouNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.desc = 'yourself';
+  this.resists = {};
   this.special = 'mirror';
 }
 AbyssYouNPCTile.prototype = new NPCObject();
@@ -2920,7 +3007,7 @@ function NegatorGnomeNPCTile() {
   this.alignment = 'Neutral';
   this.attitude = 'friendly';
   this.peaceAI = 'negator';
-  this.threatenedAI = 'negator';
+  this.forgetAt = 0;
   this.PCThreatAI = 'negator';
   this.graphic = 'sentinel.gif';
   this.meleeAttackAs = 'Fists';
@@ -2931,6 +3018,7 @@ function NegatorGnomeNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = 'negator gnome';
+  this.resists = {};
 }
 NegatorGnomeNPCTile.prototype = new NPCObject();
 
