@@ -220,7 +220,9 @@ GameStateData.prototype.loadGame = function() {
         val.addToInventory(universe[invval], 1);
       });
       if (debug) { dbs.writeln("<br />"); }
-    } 
+    } else {
+      val.inventory = new Collection();
+    }
     if (val.equipment) {
       if (debug) { dbs.writeln(val.name + " has equipment, processing..."); }
       var inv = val.equipment;
@@ -242,12 +244,19 @@ GameStateData.prototype.loadGame = function() {
       });
       if (debug) { dbs.writeln("<br />"); }
     } 
+    if (val.target) {
+      val.target = universe[val.target];
+    } else {
+      val.target = {};
+    }
     if (val.spellEffects) {
       var inv = val.spellEffects;
       val.spellEffects = new Collection();
       $.each(inv, function(invidx, invval) {
         val.addSpellEffect(universe[invval], 1);
       });
+    } else {
+      val.spellEffects = new Collection();
     }
     if (val.traceback) {
       $.each(val.traceback, function(tbidx, ibval) {

@@ -1159,7 +1159,7 @@ function PerformTalkTarget() {
   maintext.addText("Talk to: " + top.getDesc());
 
   if (EarnedLevel(PC) && (top.getName() === "KingNPC")) {
-    maintext.addText('"Hail, ' + PC.getPCName() + '! I am well pleased with your progress.");
+    maintext.addText('"Hail, ' + PC.getPCName() + '! I am well pleased with your progress."');
     PC.setLevel(PC.getLevel()+1);
     PC.settp(PC.gettp()+TP_PER_LEVEL);
     DU.gameflags["can_train"] = 1;

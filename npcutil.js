@@ -363,3 +363,33 @@ function EarnedLevel(who) {
   }
   return 0;
 }
+
+function SetBandAggro(band, map) {
+  var npcs = map.npcs.getAll();
+  $.each(npcs, function(idx, val) {
+    if (val.getNPCBand() === band) {
+      val.setAggro();
+    }
+  });
+}
+
+function StepOrDoor(who, where) {
+  var whomap = who.getHomeMap();
+  var tile = whomap.getTile(where[0],where[1]);
+  var fea = tile.getTopFeature();
+  if (fea && fea.closedgraphic) {
+    if (!((typeof possdoor.getLocked === "function") && (possdoor.getLocked()))) {
+      // door is not locked    
+      if (debug) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
+      fea.use(who);
+      DrawMainFrame("one",who.getHomeMap().getName(),fea.getx(),fea.gety());
+      return 2;  // opened a door
+    }
+  }
+  var diffx = where[0] - who.getx();
+  var diffy = where[1] - who.gety();
+  var moved = who.moveMe(diffx,diffy);
+  if (moved["canmove"]) { return 1; }
+  
+  return 0;
+}

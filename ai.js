@@ -39,12 +39,100 @@ barks.checkBark = function(who) {
 var ais = {};
 
 ais.seekPC = function(who,radius) {
+  var retval = {};
   if (debug) { dbs.writeln("<span style='color:orange;'>Seeking PC...</span><br />"); }
-  if (who.getHomeMap() === PC.getHomeMap()) {
-    if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety() <= radius) {
+  var whomap = who.getHomeMap();
+  if (whomap === PC.getHomeMap()) {
+    if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= radius) {
       // if can see
-      // WORKING HERE
+      var losresult = whomap.getLOS(who.getx(), who.gety(), PC.getx(), PC.gety(), losgrid);
+      if (losresult < 1) {
+        if (debug) { dbs.writeln("<span style='color:orange;'>Nearby and can see the PC! Aggroing.</span><br />"); }
+        // WORKING HERE
+        // Go aggro, turn team aggro if part of a band
+        if (who.getNPCBand()) {
+          SetBandAggro(who.getNPCBand(), who.getHomeMap());
+        } else {
+          who.setAggro();
+        }
+        retval["fin"] = 1;
+        return retval;
+      }
     }
+    if ((who.getx() !== who.startx) || (who.gety() !== who.starty)) {
+      if (debug) { dbs.writeln("<span style='color:orange;'>Can't see PC, heading home.</span><br />"); }
+      // isn't at home, doesn't see PC, heads home
+      var path = whomap.getPath(who.getx(),who.gety(),who.startx,who.starty,who.getMovetype());
+      path.shift();
+      var moved = StepOrDoor(who,path[0]);
+      if (!moved) {
+        var moveval = ais.Randomwalk(who,25,25,25,25);
+      }
+    }
+  }
+  retval["fin"] = 1;
+  return retval;
+}
+
+ais.combat = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  if (who.getHomeMap() !== PC.getHomeMap()) {
+    // what happens if the PC is on another map?
+    who.wait++;
+    if (who.wait > 30) {
+      who.setAggro(0);
+    }
+    return retval;  
+  }
+  whomap = who.getHomeMap();
+  // check to see if we should cease to aggro
+  // need no one in your Band be within "forgetAt" radius
+  if (who.getForgetAt() && GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) > who.getForgetAt()) {
+    var npcs = whomap.npcs.getAll();
+    var anysee = 0;
+    $.each(npcs, function(idx,val) {
+      if (!anysee && (GetDistance(val.getx(),val.gety(),PC.getx(),PC.gety()) < val.getForgetAt())) {
+        anysee = 1;
+      }
+      if (!val.getForgetAt()) { anysee = 1; }
+    });
+    if (!anysee) {
+      who.setAggro(0);
+      return retval;
+    }
+  }
+  
+  // whoo boy, here we are: still aggro, still on right map. Go!
+  // first up- choose a target
+  if (!who.getTarget() || (who.getTarget().gethp()<=0)) {
+    // no target, or target is dead but not yet cleaned up because it's a target
+    var potentials = [];
+    if (who.getAttitude() === "hostile") {
+      potentials[0] = PC;
+    }
+    var npcs = whomap.npcs.getAll();
+    var bandcount = 0;
+    $.each(npcs, function(idx,val) {
+      if (val.getAttitude() !== who.getAttitude()) {
+        potentials.push(val);
+      }
+      if (val.getNPCBand() === who.getNPCBand()){ 
+        bandcount++;
+      }
+    });
+    if (potentials[1]) {
+      ShuffleArray(potentials);
+    }
+    // WORKING HERE
+  }
+  
+  // decide if meleeing
+  var chance = who.meleechance;
+  if (chance) { chance = chance/100; }
+  else { chance = 1; }
+  if (Math.random() < chance) {
+    
   }
 }
 

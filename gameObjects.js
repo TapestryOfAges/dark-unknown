@@ -221,6 +221,13 @@ GameObject.prototype.copy = function(type) {
       } else {
         if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " is empty, not saved...</span> "); }
       }
+    } else if (idx === "target") {
+      if (val) {
+        copydata[idx] = val.getSerial();
+        if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serial, serial# " + copydata[idx] + "...</span> "); }
+      } else {
+        if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " is empty, not saved...</span> "); }
+      }
     } else if (idx === "equipment") {
       copydata[idx] = {};
       $.each(val, function(eqidx, eqval) {
@@ -7132,7 +7139,7 @@ function NPCObject() {
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
 	this.PCThreatAI = "runaway";
-	this.threatenedAI = "spellcaster";
+	this.forgetAt = 0;
 	this.graphic = "301.gif";
   this.gender = "neuter";
 	this.meleeAttackAs = "Fists";
@@ -7166,6 +7173,7 @@ function NPCObject() {
 	this.barkrad = 0;
 	this.aggro = 0;
 	this.npcband = 0;
+	this.wait;
 	
 	this.addType("npc");
 //	AddNPCProperties.call(this);
@@ -7688,13 +7696,13 @@ NPCObject.prototype.setPCThreatAI = function(newAI) {
 	return this.PCThreatAI;
 }
 
-NPCObject.prototype.getThreatenedAI = function() {
-	return this.threatenedAI;
+NPCObject.prototype.getForgetAt = function() {
+	return this.forgetAt;
 }
 
-NPCObject.prototype.setThreatenedAI = function(newAI) {
-	this.threatenedAI = newAI;
-	return this.threatenedAI;
+NPCObject.prototype.setForgetAt = function(newAt) {
+	this.forgetAt = newAt;
+	return this.forgetAt;
 }
 
 NPCObject.prototype.getCurrentAI = function() {
@@ -7857,6 +7865,15 @@ NPCObject.prototype.setSpawnedBy = function(spawner) {
   return this.spawnedBy;
 }
 
+NPCObject.prototype.getTarget = function() {
+  return this.target;
+}
+
+NPCObject.prototype.setTarget = function(newtarg) {
+  this.target = newtarg;
+  return this.target;
+}
+
 NPCObject.prototype.activate = function(timeoverride) {
   if (gamestate.getMode() !== "loadgame") {  
     this.equipment = {};
@@ -7871,6 +7888,8 @@ NPCObject.prototype.activate = function(timeoverride) {
 	
   	this.resists = {};   // fire, ice
 
+    this.target = {};
+    
 	  this.lastLocation = {};
     this.lastLocation.map = "";
 	  this.lastLocation.x = 0;
@@ -7903,7 +7922,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.setMaxMana(-1);
   
     if (this.getHomeMap().getName().indexOf("combat") !== -1) {
-      this.setCurrentAI(this.getThreatenedAI());
+      this.setCurrentAI("combat");
     } else {
       this.setCurrentAI(this.getPeaceAI());
     }
@@ -8132,7 +8151,6 @@ NPCObject.prototype.myTurn = function() {
   if (awake) {	
   	var ainame=this.getCurrentAI().split("-");
     if (this.getAggro()) {
-//      this.setCurrentAI(this.getThreatenedAI());
       ainame[0] = "combat";
     }
     
