@@ -38,7 +38,7 @@ foreach my $line (<$npcdoc>) {
   print $out "<span style='font-weight:bold;'>$desc</span> ($fields[0])</td></tr>\n";
   
   print $out "<tr><td>Lvl $fields[2] $fields[1]</td><td style='text-align:right'>S: $fields[4] D: $fields[5] I: $fields[6]</td></tr>\n";
-  print $out "<tr><td>Combat AI: $fields[10]</td><td style='text-align:right'>";
+  print $out "<tr><td>AI: $fields[9] (Forget: $fields[10])</td><td style='text-align:right'>";
   print $out "Init mult: $fields[22]" if ($fields[22]);
   print $out "</td></tr>\n";
   my $hp = 10*$fields[2] + $fields[3];
@@ -176,7 +176,7 @@ foreach my $line (<$npcdoc>) {
   print $out "<tr><td>Armor: $armorvals</td><td style='text-align:right'>Move type: $fields[16]</td></tr>\n";
   print $out "<tr><td>Corpse type: $fields[17]</td><td style='text-align:right'>Lootgroup: $fields[18]</td></tr>\n";
   if ($fields[22]) { print $out "<tr><td colspan='2'>Initmult: $fields[22]</td></tr>\n"; }
-  print $out "<tr><td colspan='2'>Melee %: $fields[23]</td></tr>\n"; 
+  print $out "<tr><td>Melee %: $fields[23]</td><td style='text-align:right'>Withdraw %: $fields[11]</td></tr>\n"; 
   if ($fields[20]) { print $out "<tr><td colspan='2'>OnHit: $fields[20]</td></tr>\n"; }
   if ($fields[21]) { print $out "<tr><td colspan='2'>OnDamaged: $fields[21]</td></tr>\n"; }
   
@@ -220,7 +220,6 @@ print $out "<b>stun</b>: Chance to make what it hits lose its next turn.<br />\n
 print $out "<b>manaclash</b>: I have no idea what this was going to be. I need to figure this out.<br />\n";
 print $out "<b>split</b>: When struck, this has a chance of splitting into two creatures.<br />\n";
 print $out "<b>incorporeal</b>: These ghostly foes have a chance of negating any physical hit on them.<br />\n";
-print $out "<b>acidblood</b>: When struck by a nonmagical weapon, they have a chance of damaging the weapon.<br />\n";
 print $out "<b>shock</b>: Can electrocute anyone who hits it.<br />\n";
 print $out "<b>sing</b>: Bardic types can duplicate the effect of some buff spells with music.<br />\n";
 print $out "<b>whirlpool</b>: If enough Flukes surround someone they can generate a strong whirlpool to harm their foe.<br />\n";
@@ -250,3 +249,4 @@ print $out "<b>dies</b>: The creature is an illusion, and is dispelled if it tak
 print $out "<b>quick</b>: Has the Quickness spell applied to it.<br />\n";
 print $out "<b>undead</b>: The creature is undead. Immune to poison.<br />\n";
 print $out "<b>construct</b>: The creature is a mindless construct. Cannot be Jinxed or Charmed.<br />\n";
+print $out "<b>coward</b>: Will always run in aggroed.<br />\n";
