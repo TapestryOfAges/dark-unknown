@@ -1110,3 +1110,25 @@ function CheckAbsorb(dam,to,from,type) {
   return dam;
 }
 
+
+function FindAdjacent(what,map,tox,toy) {
+  var adj = [];
+  for (var i = tox-1; i>tox; i++) {
+    for (var j = toy-1; j>toy; j++) {
+      var tile = map.getTile(i,j);
+      if (tile !== "OoB") {
+        var list;
+        if (what === "npcs") {
+          list = tile.getNPCs();
+        } else if (what === "features") {
+          list = tile.getFeatures();
+        } else {
+          alert("Find Adj with improper what: " + what);
+          return;
+        }
+        adj.push(list);
+      }
+    }
+  }
+  return adj;
+}

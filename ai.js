@@ -77,6 +77,7 @@ ais.seekPC = function(who,radius) {
 ais.combat = function(who) {
   var retval = {};
   retval["fin"] = 1;
+ 
   if (who.getHomeMap() !== PC.getHomeMap()) {
     // what happens if the PC is on another map?
     who.wait++;
@@ -104,6 +105,27 @@ ais.combat = function(who) {
   }
   
   // whoo boy, here we are: still aggro, still on right map. Go!
+
+  // decide if meleeing/approaching
+  var chance = who.meleechance;
+  if (chance) { chance = chance/100; }
+  else { chance = 1; }
+  if (Math.random() < chance) {
+    // yes
+    //now find targets
+    // top priority: adjacent foes
+    var nearby = FindAdjacent("npcs",who.getHomeMap(),who.getx(),who.gety());
+    if (nearby.length > 0) {
+      ShuffleArray(nearby);
+      $.each(nearby, function(idx,val) {
+        if (!target && (val.getAttitude() !== who.getAttitude())) {
+          // attack val and call it a day!
+        }
+      });
+    }
+  }
+
+
   // first up- choose a target
   if (!who.getTarget() || (who.getTarget().gethp()<=0)) {
     // no target, or target is dead but not yet cleaned up because it's a target
@@ -127,13 +149,6 @@ ais.combat = function(who) {
     // WORKING HERE
   }
   
-  // decide if meleeing
-  var chance = who.meleechance;
-  if (chance) { chance = chance/100; }
-  else { chance = 1; }
-  if (Math.random() < chance) {
-    
-  }
 }
 
 ais.townsfolk = function(who) {
