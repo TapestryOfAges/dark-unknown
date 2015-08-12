@@ -30,8 +30,10 @@ function TurnMapHostile(map) {
 function Attack(atk, def) {
   var retval = {};
   var type = "weapon";
-  if (Math.abs(atk.getx() - def.getx()) > 1) { type = "missile"; }
-  if (Math.abs(atk.gety() - def.gety()) > 1) { type = "missile"; }
+  var rad = 1;
+  if (atk.specials.reach) { rad = 2; }
+  if (Math.abs(atk.getx() - def.getx()) > rad) { type = "missile"; }
+  if (Math.abs(atk.gety() - def.gety()) > rad) { type = "missile"; }
 
   var weapon = atk.getEquipment("weapon");
   var loeresult = 0;

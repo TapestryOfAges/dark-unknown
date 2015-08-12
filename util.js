@@ -1111,24 +1111,35 @@ function CheckAbsorb(dam,to,from,type) {
 }
 
 
-function FindAdjacent(what,map,tox,toy) {
+function FindNearby(what,map,radius,shape,tox,toy) {
   var adj = [];
-  for (var i = tox-1; i>tox; i++) {
-    for (var j = toy-1; j>toy; j++) {
-      var tile = map.getTile(i,j);
-      if (tile !== "OoB") {
-        var list;
-        if (what === "npcs") {
-          list = tile.getNPCs();
-        } else if (what === "features") {
-          list = tile.getFeatures();
-        } else {
-          alert("Find Adj with improper what: " + what);
-          return;
+  if (shape === "box") {
+    for (var i = tox-radius; i>tox+radius; i++) {
+      for (var j = toy-radius; j>toy+radius; j++) {
+        var tile = map.getTile(i,j);
+        if (tile !== "OoB") {
+          var list;
+          if (what === "npcs") {
+            list = tile.getNPCs();
+          } else if (what === "features") {
+            list = tile.getFeatures();
+          } else {
+            alert("Find Adj with improper what: " + what);
+            return;
+          }
+          adj.push(list);
         }
-        adj.push(list);
       }
     }
+  } else if (shape === "circle") {
+    var list;
+    if (what === "npcs") { list = map.npcs.getAll(); }
+    else if (what === "features") { list = map.features.getAll(); }
+    $.each(list, function(idx,val) {
+      if (((val.getx() !== tox) || (val.gety !== toy)) && (GetDistance(val.getx(), val.gety(),tox,toy) <= radius)) {
+        adj.push(val);
+      }
+    });
   }
   return adj;
 }

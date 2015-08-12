@@ -77,16 +77,21 @@ ais.seekPC = function(who,radius) {
 ais.combat = function(who) {
   var retval = {};
   retval["fin"] = 1;
+  whomap = who.getHomeMap();
+  
+  if (debug) { dbs.writeln("<span style='color:orange;'>" + who.getName() + " " + who.getSerial() + " in combat AI.</span><br />"); } 
  
-  if (who.getHomeMap() !== PC.getHomeMap()) {
+  if (whomap() !== PC.getHomeMap()) {
     // what happens if the PC is on another map?
+    if (debug) { dbs.writeln("<span style='color:orange;'>On a different map, waiting...</span><br />"); }
     who.wait++;
     if (who.wait > 30) {
+      if (debug) { dbs.writeln("<span style='color:orange;'>Waited long enough, dropping aggro.</span><br />"); }
       who.setAggro(0);
     }
     return retval;  
   }
-  whomap = who.getHomeMap();
+  
   // check to see if we should cease to aggro
   // need no one in your Band be within "forgetAt" radius
   if (who.getForgetAt() && GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) > who.getForgetAt()) {
@@ -99,6 +104,7 @@ ais.combat = function(who) {
       if (!val.getForgetAt()) { anysee = 1; }
     });
     if (!anysee) {
+      if (debug) { dbs.writeln("<span style='color:orange;'>Distant, and no one in the band can see- dropping aggro.</span><br />"); }
       who.setAggro(0);
       return retval;
     }
@@ -110,16 +116,28 @@ ais.combat = function(who) {
   var chance = who.meleechance;
   if (chance) { chance = chance/100; }
   else { chance = 1; }
+  if (debug) { dbs.writeln("<span style='color:orange;'>Chance of melee: " + chance + ".</span><br />"); }
   if (Math.random() < chance) {
     // yes
     //now find targets
     // top priority: adjacent foes
-    var nearby = FindAdjacent("npcs",who.getHomeMap(),who.getx(),who.gety());
+    if (debug) { dbs.writeln("<span style='color:orange;'>Melee/approach.</span><br />"); }
+    var radius = 1;
+    if (who.specials.reach) { radius = 2; }
+    var nearby = FindNearby("npcs",who.getHomeMap(),radius,"box",who.getx(),who.gety());
     if (nearby.length > 0) {
       ShuffleArray(nearby);
       $.each(nearby, function(idx,val) {
-        if (!target && (val.getAttitude() !== who.getAttitude())) {
+        if (val.getAttitude() !== who.getAttitude()) {
+          if (radius > 1) { 
+            // check LOE first
+            if (whomap.getLOE(who.getx(), who.gety(), val.getx(), val.gety(), losgrid, 1) >= LOS_THRESHOLD) { continue; }
+          }
           // attack val and call it a day!
+          if (debug) { dbs.writeln("<span style='color:orange;'>ATTACK!</span><br />"); }
+          var result = Attack(who,val);
+          maintext.addText(result["txt"]);
+          return retval;
         }
       });
     }
