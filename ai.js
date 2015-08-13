@@ -110,6 +110,10 @@ ais.combat = function(who) {
     }
   }
   
+  if (who.specials.coward) {
+    // run away! run away!
+    // WORK ON COWARD HERE
+  }
   // whoo boy, here we are: still aggro, still on right map. Go!
 
   // decide if meleeing/approaching
@@ -121,26 +125,9 @@ ais.combat = function(who) {
     // yes
     //now find targets
     // top priority: adjacent foes
-    if (debug) { dbs.writeln("<span style='color:orange;'>Melee/approach.</span><br />"); }
-    var radius = 1;
-    if (who.specials.reach) { radius = 2; }
-    var nearby = FindNearby("npcs",who.getHomeMap(),radius,"box",who.getx(),who.gety());
-    if (nearby.length > 0) {
-      ShuffleArray(nearby);
-      $.each(nearby, function(idx,val) {
-        if (val.getAttitude() !== who.getAttitude()) {
-          if (radius > 1) { 
-            // check LOE first
-            if (whomap.getLOE(who.getx(), who.gety(), val.getx(), val.gety(), losgrid, 1) >= LOS_THRESHOLD) { continue; }
-          }
-          // attack val and call it a day!
-          if (debug) { dbs.writeln("<span style='color:orange;'>ATTACK!</span><br />"); }
-          var result = Attack(who,val);
-          maintext.addText(result["txt"]);
-          return retval;
-        }
-      });
-    }
+    var melee = TryMelee(who);
+    if (melee) { return retval; }
+    // didn't melee anything, time to try to find something to approach
   }
 
 
@@ -167,6 +154,30 @@ ais.combat = function(who) {
     // WORKING HERE
   }
   
+}
+
+function TryMelee(who) {
+  if (debug) { dbs.writeln("<span style='color:orange;'>Attempting melee.</span><br />"); }
+  var radius = 1;
+  if (who.specials.reach) { radius = 2; }
+  var nearby = FindNearby("npcs",who.getHomeMap(),radius,"box",who.getx(),who.gety());
+  if (nearby.length > 0) {
+    ShuffleArray(nearby);
+    $.each(nearby, function(idx,val) {
+      if (val.getAttitude() !== who.getAttitude()) {
+        if (radius > 1) { 
+          // check LOE first
+          if (whomap.getLOE(who.getx(), who.gety(), val.getx(), val.gety(), losgrid, 1) >= LOS_THRESHOLD) { continue; }
+        }
+        // attack val and call it a day!
+        if (debug) { dbs.writeln("<span style='color:orange;'>ATTACK!</span><br />"); }
+        var result = Attack(who,val);
+        maintext.addText(result["txt"]);
+        return 1;
+      }
+    });
+  }
+  return 0;
 }
 
 ais.townsfolk = function(who) {
