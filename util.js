@@ -1143,3 +1143,17 @@ function FindNearby(what,map,radius,shape,tox,toy) {
   }
   return adj;
 }
+
+function FindNearestNPC(from, align) {
+  var found = from.getHomeMap().npcs.getAll();
+  var nearest;
+  var distance = 10000;
+  $.each(found, function(idx,val) {
+    var dist = FindDistance(val.getx(),val.gety(),from.getx(),from.gety());
+    if (dist < distance) {
+      nearest = val;
+      distance = dist;
+    }
+  });
+  return nearest;
+}
