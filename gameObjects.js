@@ -8049,7 +8049,7 @@ NPCObject.prototype.activate = function(timeoverride) {
 }
 
 
-NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
+NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	var map = this.getHomeMap();
 	var oldmapname = map.getDesc();
 	var passx = parseInt(this.getx()) + parseInt(diffx);
@@ -8057,6 +8057,11 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 	var tile = map.getTile(passx,passy);
 	var retval = {};
 	if (tile === "OoB") { 
+	  if (noexit) {
+	    // NPC won't step out of the map
+	    retval["canmove"] = 0;
+	    return retval;
+	  }
 		if (map.getExitToMap()) {
 			var newmap = new GameMap();
 			if (maps.getMap(map.getExitToMap())) {
@@ -8066,10 +8071,10 @@ NPCObject.prototype.moveMe = function(diffx,diffy,forcemove) {
 				maps.addMapByRef(newmap);
 			}
 			tile = MoveBetweenMaps(this,map,newmap,map.getExitToX(),map.getExitToY());
+      retval["canmove"] = 0;
 			if (this === PC) {
 				DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 				DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-				retval["canmove"] = 0;
 				retval["msg"] = ".<br />Exiting " + oldmapname + ".";
 			}
 		}

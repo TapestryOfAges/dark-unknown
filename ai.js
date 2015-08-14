@@ -110,9 +110,19 @@ ais.combat = function(who) {
     }
   }
   
+  if (!who.specials.undead && !who.specials.construct && !who.specials.mindless && (who.gethp() < .15*who.getMaxhp())) {
+    if (debug) { dbs.writeln("<span style='color:orange;'>Too wounded, becoming a coward.</span><br />"); }
+    // consider making this a check of some kind
+    who.specials.coward = 1;
+  }
+  
   if (who.specials.coward) {
     // run away! run away!
-    // WORK ON COWARD HERE
+    if (debug) { dbs.writeln("<span style='color:orange;'>Running away!</span><br />"); }
+    var runfrom = FindNearestNPC(who, "enemy");
+    var diffx = who.getx() - runfrom.getx();
+    var diffy = who.gety() - runfrom.gety();
+    // WORKING HERE
   }
   // whoo boy, here we are: still aggro, still on right map. Go!
 
