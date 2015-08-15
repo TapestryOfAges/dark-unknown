@@ -122,7 +122,97 @@ ais.combat = function(who) {
     var runfrom = FindNearestNPC(who, "enemy");
     var diffx = who.getx() - runfrom.getx();
     var diffy = who.gety() - runfrom.gety();
-    // WORKING HERE
+    if (Math.abs(diffx) > Math.abs(diffy)) {
+      if (diffx > 0) {
+        var trymove = who.moveMe(1,0,1);   // move east, don't walk off maps
+        if (!trymove) {
+          if (Math.random() < .5) {
+            trymove = who.moveMe(0,1,1);
+            if (!trymove) {
+              trymove = who.moveMe(0,-1,1);
+            }
+          } else {
+            trymove = who.moveMe(0,-1,1);
+            if (!trymove) {
+              trymove = who.moveMe(0,1,1);
+            }
+          }
+        }
+      } else {
+        var trymove = who.moveMe(-1,0,1); // move west, don't walk off maps
+        if (!trymove) {
+          if (Math.random() < .5) {
+            trymove = who.moveMe(0,1,1);
+            if (!trymove) {
+              trymove = who.moveme(0,-1,1);
+            }
+          } else {
+            trymove = who.moveMe(0,-1,1);
+            if (!trymoev) {
+              trymove = who.moveMe(0,1,1);
+            }
+          }
+        }
+      }
+    } else if (Math.abs(diffx) < Math.abs(diffy)) {
+      if (diffy > 0) {
+        var trymove = who.moveMe(0,1,1);   // move south, don't walk off maps
+        if (!trymove) {
+          if (Math.random() < .5) {
+            trymove = who.moveMe(1,0,1);
+            if (!trymove) {
+              trymove = who.moveMe(-1,0,1);
+            }
+          } else {
+            trymove = who.moveMe(-1,0,1);
+            if (!trymove) {
+              trymove = who.moveMe(1,0,1);
+            }
+          }
+        }
+      } else {
+        var trymove = who.moveMe(0,-1,1);   // move north, don't walk off maps
+        if (!trymove) {
+          if (Math.random() < .5) {
+            trymove = who.moveMe(1,0,1);
+            if (!trymove) {
+              trymove = who.moveMe(-1,0,1);
+            }
+          } else {
+            trymove = who.moveMe(1,0,1);
+            if (!trymove) {
+              trymove = who.moveMe(-1,0,1);
+            }
+          }
+        }
+      }
+    } else {
+      if (diffx > 1) {
+        if (Math.random() < .5) {
+          var trymove = who.moveMe(1,0,1);
+          if (!trymove) {
+            trymove = who.moveMe(0,-1,1);
+          }
+        } else {
+          var trymove = who.moveMe(0,-1,1);
+          if (!trymove) {
+            trymove = who.moveMe(1,0,1);
+          }
+        }
+      } else {
+        if (Math.random() < .5) {
+          var trymove = who.moveMe(-1,0,1);
+          if (!trymove) {
+            trymove = who.moveMe(0,1,1);
+          }
+        } else {
+          var trymove = who.moveMe(0,1,1);
+          if (!trymove) {
+            trymove = who.moveMe(-1,0,1);
+          }
+        }
+      }
+    }
   }
   // whoo boy, here we are: still aggro, still on right map. Go!
 
