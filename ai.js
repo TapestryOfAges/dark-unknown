@@ -228,10 +228,23 @@ ais.combat = function(who) {
     var melee = TryMelee(who);
     if (melee) { return retval; }
     // didn't melee anything, time to try to find something to approach
+    var approach = FindNearestNPC(who, "enemy");
+    var others = FindNearby("npcs",approach.getHomeMap(),1,"square",approach.getx(),approach.gety());
+    var count = 0;
+    $.each(others, function(idx,val) {
+      if (val.getAttitude() === who.getAttitude()) { count++; }
+    });
+    if (count >= 3) {
+      // there's enough people beating on the closest, head towards someone else if there is one
+      var newapproach = FindNearestNPC(who,"enemy",[approach]);
+      if (newapproach) { approach = newapproach; }
+    }
+    // WORKING HERE
   }
 
 
   // first up- choose a target
+  // NO LONGER IN USE, KEPT FOR REFERENCE FOR NOW
   if (!who.getTarget() || (who.getTarget().gethp()<=0)) {
     // no target, or target is dead but not yet cleaned up because it's a target
     var potentials = [];
@@ -251,7 +264,7 @@ ais.combat = function(who) {
     if (potentials[1]) {
       ShuffleArray(potentials);
     }
-    // WORKING HERE
+    
   }
   
 }

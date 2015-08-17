@@ -5872,6 +5872,13 @@ EtherGateTile.prototype = new FeatureObject();
 
 EtherGateTile.prototype.walkon = function(who) {
   var homemap = who.getHomeMap();
+  var desttile = homemap.getTile(this.destx,this.desty);
+  var npcs = desttile.getNPCs();
+  if (npcs) {
+    $.each(npcs, function(idx,val) {
+      homemap.moveThing(this.destx-1,this.desty,val);
+    });
+  }
   homemap.moveThing(this.destx,this.desty,who);
   DrawMainFrame("draw", homemap.getName(), PC.getx(), PC.gety());
 }
