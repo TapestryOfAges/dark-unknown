@@ -239,7 +239,14 @@ ais.combat = function(who) {
       var newapproach = FindNearestNPC(who,"enemy",[approach]);
       if (newapproach) { approach = newapproach; }
     }
-    // WORKING HERE
+    if (approach) {
+      var path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety());
+      path.shift();
+      path.pop();
+      // if path > 3ish, try to walk along it, if short, check if destination tile is occupied, 
+      // if so, search adjacent to approach to find an empty tile and pathfind to it.
+      
+    }
   }
 
 
