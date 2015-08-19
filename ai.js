@@ -245,7 +245,23 @@ ais.combat = function(who) {
       path.pop();
       // if path > 3ish, try to walk along it, if short, check if destination tile is occupied, 
       // if so, search adjacent to approach to find an empty tile and pathfind to it.
-      
+      if (path.length >= 3) {
+        var walk = who.moveMe(path[0][0]-who.getx(),path[0][1]-who.gety(),1);
+        if (!walk["canmove"]) {
+          if (path[0][0] === who.getx()) { // movement was N/S
+            this.randomWalk(who,0,50,0,50);  // and so randomly walk E/W
+          } else {
+            this.randomWalk(who,50,0,50,0);
+          }
+        }
+      } else {
+        var finaldest = whomap.getTile(path[path.length-1][0],path[path.length-1][1]);
+        var firststep = whomap.getTile(path[0][0],path[0][1]);
+        if (finaldest.getTopNPC() || firststep.getTopNPC()) {
+          // path currently goes through some NPCs. Need to make a better path.
+          // first step- create a pathgrid that takes NPCs into account.
+        }
+      }
     }
   }
 
