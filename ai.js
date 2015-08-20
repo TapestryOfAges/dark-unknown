@@ -241,25 +241,58 @@ ais.combat = function(who) {
     }
     if (approach) {
       var path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety());
-      path.shift();
-      path.pop();
-      // if path > 3ish, try to walk along it, if short, check if destination tile is occupied, 
-      // if so, search adjacent to approach to find an empty tile and pathfind to it.
-      if (path.length >= 3) {
-        var walk = who.moveMe(path[0][0]-who.getx(),path[0][1]-who.gety(),1);
-        if (!walk["canmove"]) {
-          if (path[0][0] === who.getx()) { // movement was N/S
-            this.randomWalk(who,0,50,0,50);  // and so randomly walk E/W
-          } else {
-            this.randomWalk(who,50,0,50,0);
-          }
-        }
-      } else {
+      if (path) { 
+        path.shift();
+        path.pop();
         var finaldest = whomap.getTile(path[path.length-1][0],path[path.length-1][1]);
         var firststep = whomap.getTile(path[0][0],path[0][1]);
-        if (finaldest.getTopNPC() || firststep.getTopNPC()) {
+
+        // if path > 3ish, try to walk along it, if short, check if destination tile is occupied, 
+        // if so, search adjacent to approach to find an empty tile and pathfind to it.
+        if ((path.length > 3) || (!finaldest.getTopNPC() && !firststep.getTopNPC()))  {
+          var walk = who.moveMe(path[0][0]-who.getx(),path[0][1]-who.gety(),1);
+          if (!walk["canmove"]) {
+            if (path[0][0] === who.getx()) { // movement was N/S
+              this.randomWalk(who,0,50,0,50);  // and so randomly walk E/W
+            } else {
+              this.randomWalk(who,50,0,50,0);
+            }
+          }
+        } else {
           // path currently goes through some NPCs. Need to make a better path.
-          // first step- create a pathgrid that takes NPCs into account.
+          // first step- create a local pathgrid that takes NPCs into account.
+          // to get here the path distance can be no more than 4. Tweak this after playtest.
+          
+          var leftx = who.getx();
+          var rightx = approach.getx();
+          if (rightx < leftx) { 
+            leftx = rightx; 
+            rightx = who.getx();
+          }
+          var topy = who.gety();
+          var bottomy = approach.gety();
+          if (topy > bottomy) {
+            topy = bottomy;
+            bottomy = who.gety();
+          }
+          leftx = leftx - 2;
+          if (leftx < 0) { leftx = 0; }
+          topy = topy - 2;
+          if (topy < 0) { topy = 0; }
+          rightx = rightx + 2;
+          if (rightx >= whomap.getWidth()) { rightx = whomap.getWidth()-1; }
+          bottomy = bottomy + 2;
+          if (bottomy >= whomap.getHeight()) { bottomy = whomap.getHeight()-1; }
+          
+          var temppathgrid = new PF.Grid(rightx-leftx+1,bottomy-topy+1);
+          for (var i = leftx; i<=rightx,i++) {
+            for (var j = topy; j<=bottomj, j++) {
+              var thisspot = whomap.getTile(i,j);
+              var response = thisspot.canMoveHere(who.getMovetype(), 1);
+              if (!response["canmove"]) { temppathgrid.setWalkableAt(i,j,false); }
+            }
+          }
+          // WORKING HERE
         }
       }
     }
