@@ -2941,7 +2941,7 @@ function ChestTile() {
   Lockable.call(this, "008.gif", "008.gif", "008.gif", 	"a",  "chest", "a", "locked chest", "a", "magically locked chest");
 	this.name = "Chest";
 	this.graphic = "008.gif";
-	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK + MOVE_LEVITATE;
 	this.blocklos = 0;
 	this.prefix = "a";
 	this.desc = "chest";
@@ -5976,6 +5976,7 @@ function AmbroseShieldTile() {
   this.spriteyoffset = "-32";
   this.spritexoffset = "-256";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "shield commissioned by Nyrani";
   this.prefix = "the";
   this.addType("Quest");
@@ -5988,6 +5989,7 @@ function PitOfDespairKeyTile() {
   this.spriteyoffset = "-64";
   this.spritexoffset = "-224";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Pit of Despair dungeon key";
   this.prefix = "the";
   this.addType("Quest");
@@ -6000,6 +6002,7 @@ function KeyOfShadowsTile() {
   this.spriteyoffset = "-64";
   this.spritexoffset = "0";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Shadows";
   this.prefix = "the";
   this.addType("Quest");
@@ -6012,6 +6015,7 @@ function RoyalKeyTile() {
   this.spriteyoffset = "-128";
   this.spritexoffset = "0";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Royal Key";
   this.prefix = "the";
   this.addType("Quest");
@@ -6024,6 +6028,7 @@ function BlackDragonKeyTile() {
   this.spriteyoffset = "-128";
   this.spritexoffset = "-32";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Black Dragon Key";
   this.prefix = "the";
   this.addType("Quest");
@@ -6036,6 +6041,7 @@ function KeyOfFireTile() {
   this.spriteyoffset = "-128";
   this.spritexoffset = "-64";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Fire";
   this.prefix = "the";
   this.addType("Quest");
@@ -6048,6 +6054,7 @@ function KeyOfIceTile() {
   this.spriteyoffset = "-128";
   this.spritexoffset = "-96";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Ice";
   this.prefix = "the";
   this.addType("Quest");
@@ -6060,6 +6067,7 @@ function RoperBarkTile() {
   this.spritexoffset = "-32";
   this.spriteyoffset = "-64";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "piece of petrified roper bark";
   this.prefix = "a";
   this.addType("Quest");
@@ -6072,6 +6080,7 @@ function AmuletOfReflectionsTile() {
   this.spritexoffset = "-32";
   this.spriteyoffset = "-96";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Amulet of Reflections";
   this.prefix = "an";
   this.addType("Quest");
@@ -6127,6 +6136,7 @@ function DragonBoneTile() {
   this.spritexoffset = "-64";
   this.spriteyoffset = "-96";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "dragon fingerbone";
   this.prefix = "a";
   this.addType("Quest");
@@ -6139,6 +6149,7 @@ function StoneOfSparksTile() {
   this.spritexoffset = "-96";
   this.spriteyoffset = "-96";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Sparks";
   this.prefix = "the";
   this.addType("Quest");
@@ -6151,6 +6162,7 @@ function StoneOfEmbersTile() {
   this.spritexoffset = "-128";
   this.spriteyoffset = "-96";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Embers";
   this.prefix = "the";
   this.addType("Quest");
@@ -6163,6 +6175,7 @@ function StoneOfTheBlazeTile() {
   this.spritexoffset = "-160";
   this.spriteyoffset = "-96";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of the Blaze";
   this.prefix = "the";
   this.addType("Quest");
@@ -6175,6 +6188,7 @@ function StoneOfConflagrationsTile() {
   this.spritexoffset = "-192";
   this.spriteyoffset = "-96";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Conflagrations";
   this.prefix = "the";
   this.addType("Quest");
@@ -6187,6 +6201,7 @@ function BookOfLoreTile() {
   this.spritexoffset = "-224";
   this.spriteyoffset = "-96";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Book of Lore";
   this.prefix = "the";
   this.addType("Quest");
@@ -6200,6 +6215,7 @@ function SpiderSilkTile() {
   this.spriteyoffset = "-64";
   this.blocklos = 0;
   this.prefix = "a";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "bit of spider silk";
   this.addType("Reagent");
 }
@@ -6212,6 +6228,7 @@ function BlackPearlTile() {
   this.spriteyoffset = "-64";
   this.blocklos = 0;
   this.prefix = "a";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "black pearl";
   this.addType("Reagent");
 }
@@ -6223,6 +6240,7 @@ function ExecutionersHoodTile() {
   this.spritexoffset = "-128";
   this.spriteyoffset = "-64";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
   this.desc = "executioner's hood";
   this.addType("Reagent");
@@ -6235,6 +6253,7 @@ function NightshadeTile() {
   this.spritexoffset = "-160";
   this.spriteyoffset = "-64";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "some";
   this.desc = "nightshade";
   this.addType("Reagent");
@@ -6247,6 +6266,7 @@ function SulfurousAshTile() {
   this.spritexoffset = "-192";
   this.spriteyoffset = "-64";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "pile of sulfurous ash";
   this.addType("Reagent");
@@ -6259,7 +6279,9 @@ function MandrakeRootTile() {
   this.spriteyoffset = "-64";
   this.spritexoffset = "-256";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "mandrake root";
+  this.addType("Reagent");
 }
 MandrakeRootTile.prototype = new ItemObject();
 
@@ -6269,8 +6291,10 @@ function LightningWoodTile() {
   this.spriteyoffset = "-64";
   this.spritexoffset = "-288";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "twig of lightning wood";
   this.prefix = "a";
+  this.addType("Reagent");
 }
 LightningWoodTile.prototype = new ItemObject();
 
@@ -6280,7 +6304,9 @@ function MistletoeTile() {
   this.spriteyoffset = "-96";
   this.spritexoffset = "-256";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "mistletoe";
+  this.addType("Reagent");
 }
 MistletoeTile.prototype = new ItemObject();
 
@@ -6290,7 +6316,9 @@ function BloodMossTile() {
   this.spriteyoffset = "-96";
   this.spritexoffset = "-288";
   this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "blood moss";
+  this.addType("Reagent");
 }
 BloodMossTile.prototype = new ItemObject();
 
@@ -6299,6 +6327,7 @@ function RubyGemoftheSunTile() {
 	this.graphic = "sunruby.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "ruby gem that harnesses the power of the sun";
 	this.prefix = "a";
 }
@@ -6310,6 +6339,7 @@ function DecorativeArmorTile() {
 	this.spritexoffset = "-160";
 	this.desc = "decorative suit of armor";
 	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.passable = MOVE_ETHEREAL;
 	this.prefix = "a";
 }
@@ -6323,7 +6353,7 @@ function GoldTile() {
   this.desc = "1 gold coin";
   this.quantity = 1;
   this.blocklos = 0;
-  this.passable = MOVE_ETHEREAL;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "";
 }
 GoldTile.prototype = new ItemObject();
@@ -6377,6 +6407,7 @@ PotionItemObject.prototype = new ConsumableItemObject();
 function GreenPotionTile() {
   this.name = "GreenPotion";
   this.desc = "green potion";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-96";
@@ -6392,6 +6423,7 @@ function DarkGreenPotionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-128";
   this.spriteyoffset = "0";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 DarkGreenPotionTile.prototype = new PotionItemObject();
 
@@ -6403,6 +6435,7 @@ function SilverPotionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-160";
   this.spriteyoffset = "0";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 SilverPotionTile.prototype = new PotionItemObject();
 
@@ -6414,6 +6447,7 @@ function PinkPotionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "0";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 PinkPotionTile.prototype = new PotionItemObject();
 
@@ -6425,6 +6459,7 @@ function GreyPotionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-256";
   this.spriteyoffset = "0";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 GreyPotionTile.prototype = new PotionItemObject();
 
@@ -6436,6 +6471,7 @@ function BrownPotionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-288";
   this.spriteyoffset = "0";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 BrownPotionTile.prototype = new PotionItemObject();
 
@@ -6447,6 +6483,7 @@ function RedPotionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "0";
   this.spriteyoffset = "-32";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 RedPotionTile.prototype = new PotionItemObject();
 
@@ -6466,6 +6503,7 @@ function WhitePotionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-32";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 WhitePotionTile.prototype = new PotionItemObject();
 
@@ -6477,6 +6515,7 @@ function YellowPotionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-32";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 YellowPotionTile.prototype = new PotionItemObject();
 
@@ -6488,6 +6527,7 @@ function PurplePotionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-32";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 PurplePotionTile.prototype = new PotionItemObject();
 
@@ -6499,6 +6539,7 @@ function BlackPotionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-32";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 BlackPotionTile.prototype = new PotionItemObject();
 
@@ -6510,6 +6551,7 @@ function BluePotionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-32";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 BluePotionTile.prototype = new PotionItemObject();
 
@@ -6521,6 +6563,7 @@ function OrangePotionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-32";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 OrangePotionTile.prototype = new PotionItemObject();
 
@@ -6528,6 +6571,7 @@ OrangePotionTile.prototype = new PotionItemObject();
 
 function ScrollObject() {
   this.addType("Scroll"); 
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 ScrollObject.prototype = new ConsumableItemObject();
 
@@ -6704,6 +6748,7 @@ function ClothArmorTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "0";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "cloth armor";
 }
 ClothArmorTile.prototype = new ArmorObject();
@@ -6716,6 +6761,7 @@ function LeatherArmorTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "0";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "leather armor";
 }
 LeatherArmorTile.prototype = new ArmorObject();
@@ -6729,6 +6775,7 @@ function ChainArmorTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "0";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "chain mail armor";
 }
 ChainArmorTile.prototype = new ArmorObject();
@@ -6742,6 +6789,7 @@ function PlateArmorTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "0";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "plate armor";
 }
 PlateArmorTile.prototype = new ArmorObject();
@@ -6754,6 +6802,7 @@ function ExoticArmorTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "0";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "exotic armor";
 }
 ExoticArmorTile.prototype = new ArmorObject();
@@ -6863,6 +6912,7 @@ function DaggerTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-32";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "dagger";
 	this.prefix = "a";
 }
@@ -6875,6 +6925,7 @@ function ShortswordTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-32";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "shortsword";
 	this.prefix = "a";
 }
@@ -6887,6 +6938,7 @@ function MaceTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-32";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "mace";
 	this.prefix = "a";
 }
@@ -6899,6 +6951,7 @@ function AxeTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-32";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "axe";
 	this.prefix = "an";
 }
@@ -6911,6 +6964,7 @@ function LongswordTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-32";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "longsword";
 	this.prefix = "a";
 }
@@ -6923,6 +6977,7 @@ function HalberdTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-32";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "halberd";
 	this.prefix = "a";
 }
@@ -6935,6 +6990,7 @@ function MagicSwordTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-192";
 	this.spriteyoffset = "-32";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "magic sword";
 	this.prefix = "a";
 }
@@ -7013,6 +7069,7 @@ function SlingTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-64";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "sling";
 	this.prefix = "a";
 	this.ammoxoffset = "-32";
@@ -7026,6 +7083,7 @@ function BowTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-64";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.dexReq = 16;
 	this.desc = "bow";
 	this.prefix = "a";
@@ -7041,6 +7099,7 @@ function CrossbowTile() {
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-64";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.dexReq = 19;
 	this.desc = "crossbow";
 	this.prefix = "a";
@@ -7054,6 +7113,7 @@ function WandTile() {
 	this.name = "Wand";
 	this.damage = "4d12+0";
 	this.graphic = "armorweapons.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-64";
 	this.desc = "magic wand";
@@ -7067,6 +7127,7 @@ function MagicAxeTile() {
 	this.name = "MagicAxe";
 	this.damage = "4d12+12";
 	this.graphic = "armorweapons.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-64";
 	this.dexReq = 22;
