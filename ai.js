@@ -276,14 +276,21 @@ ais.combat = function(who) {
             bottomy = who.gety();
           }
           leftx = leftx - 2;
-          if (leftx < 0) { leftx = 0; }
           topy = topy - 2;
-          if (topy < 0) { topy = 0; }
           rightx = rightx + 2;
-          if (rightx >= whomap.getWidth()) { rightx = whomap.getWidth()-1; }
           bottomy = bottomy + 2;
+
+          if (rightx - leftx < 7) { rightx++; leftx--; }
+          if (bottomy - topy < 7) { bottomy++; topy--; }
+
+          if (leftx < 0) { leftx = 0; }
+          if (topy < 0) { topy = 0; }
+          if (rightx >= whomap.getWidth()) { rightx = whomap.getWidth()-1; }
           if (bottomy >= whomap.getHeight()) { bottomy = whomap.getHeight()-1; }
           
+          // creates a box with the two entities in the corners, and then 
+          // stretches it to be large enough to find paths in
+                    
           var temppathgrid = new PF.Grid(rightx-leftx+1,bottomy-topy+1);
           for (var i = leftx; i<=rightx,i++) {
             for (var j = topy; j<=bottomj, j++) {
@@ -292,7 +299,60 @@ ais.combat = function(who) {
               if (!response["canmove"]) { temppathgrid.setWalkableAt(i,j,false); }
             }
           }
-          // WORKING HERE
+          
+          var copygrid = temppathgrid.clone();
+          copygrid.setWalkableAt(who.getx(),who.gety(),true);
+          copygrid.setWalkableAt(approach.getx(),approach.gety(),true);
+          var directpath = finder.findPath(who.getx(),who.gety(),approach.getx(),approach.gety(),copygrid);
+          
+          // that will find paths that go through the cardinal directions, now check diagonals, since you
+          // can attack on the diagonal
+          
+          copygrid.setWalkableAt(approach.getx(),approach.gety(),false);
+          var cpath = [];
+          cpath["nw"] = [];
+          var cornertile = whomap.getTile(approach.getx()-1,approach.gety()-1);
+          if (cornertile !== "OoB") {
+            if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
+              cpath["nw"] = finder.findPath(who.getx(),who.gety(),approach.getx()-1,approach.gety()-1,copygrid);
+            }
+          }
+          var cpath["ne"] = [];
+          var cornertile = whomap.getTile(approach.getx()+1,approach.gety()-1);
+          if (cornertile !== "OoB") {
+            if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
+              cpath["ne"] = finder.findPath(who.getx(),who.gety(),approach.getx()+1,approach.gety()-1,copygrid);
+            }
+          }
+          var cpath["sw"] = [];
+          var cornertile = whomap.getTile(approach.getx()-1,approach.gety()+1);
+          if (cornertile !== "OoB") {
+            if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
+              cpath["sw"] = finder.findPath(who.getx(),who.gety(),approach.getx()-1,approach.gety()+1,copygrid);
+            }
+          }
+          var cpath["se"] = [];
+          var cornertile = whomap.getTile(approach.getx()+1,approach.gety()+1);
+          if (cornertile !== "OoB") {
+            if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
+              cpath["se"] = finder.findPath(who.getx(),who.gety(),approach.getx()+1,approach.gety()+1,copygrid);
+            }
+          }
+          
+          var chosenpath = directpath;
+          $.each(cpath, function(idx, val) {
+            if ((chosenpath.length === 0) && (val.length > 0)) { chosenpath = val; }
+            else if ((val.length > 0) && (val.length < chosenpath.length)) { chosenpath = val; }
+          });
+          
+          if (chosenpath.length > 0) {
+            // I have somewhere to go!
+            chosenpath.shift();
+            chosenpath.pop();
+            // WORKING HERE
+            // follow path. Then for those without a path, randomwalk.
+          }
+
         }
       }
     }
