@@ -225,22 +225,41 @@ ais.combat = function(who) {
     // yes
     //now find targets
     // top priority: adjacent foes
+    if (debug) { dbs.writeln("<span style='color:orange;'>Chosen to melee/approach!</span><br />"); }
     var melee = TryMelee(who);
     if (melee) { return retval; }
     // didn't melee anything, time to try to find something to approach
     var approach = FindNearestNPC(who, "enemy");
+    if (!approach) {
+      alert("How do I not have a nearest enemy while still aggro?");
+      return retval;
+    }
+    if (debug) { dbs.writeln("<span style='color:orange;'>Nearest enemy is: " + approach.getName() + " " + approach.getSerial() + " .</span><br />"); }
     var others = FindNearby("npcs",approach.getHomeMap(),1,"square",approach.getx(),approach.gety());
     var count = 0;
     $.each(others, function(idx,val) {
       if (val.getAttitude() === who.getAttitude()) { count++; }
     });
+    if (debug) { dbs.writeln("<span style='color:orange;'>It is already fighting " + count + " of my friends.</span><br />"); }
+    var oldapproach;
     if (count >= 3) {
       // there's enough people beating on the closest, head towards someone else if there is one
-      var newapproach = FindNearestNPC(who,"enemy",[approach]);
-      if (newapproach) { approach = newapproach; }
+      if (debug) { dbs.writeln("<span style='color:orange;'>That's plenty- looking for another target.</span><br />"); }
+      newapproach = FindNearestNPC(who,"enemy",[approach]);
+      if (newapproach) { 
+        if (debug) { dbs.writeln("<span style='color:orange;'>Found another target: " + newapproach.getName() + " " + newapproach.getSerial() + " .</span><br />"); }
+        oldapproach = approach;
+        approach = newapproach; 
+      } else {
+        if (debug) { dbs.writeln("<span style='color:orange;'>No other target found- sticking with current target.</span><br />"); }
+      }
     }
     if (approach) {
-      var path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety());
+      var path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),who.getMovetype());
+      if (!path) {
+        approach = oldapproach;
+        path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),who.getMovetype());
+      }
       if (path) { 
         path.shift();
         path.pop();
@@ -250,8 +269,10 @@ ais.combat = function(who) {
         // if path > 3ish, try to walk along it, if short, check if destination tile is occupied, 
         // if so, search adjacent to approach to find an empty tile and pathfind to it.
         if ((path.length > 3) || (!finaldest.getTopNPC() && !firststep.getTopNPC()))  {
+          if (debug) { dbs.writeln("<span style='color:orange;'>Path long enough or short but start and end positions are empty- walking.</span><br />"); }
           var walk = who.moveMe(path[0][0]-who.getx(),path[0][1]-who.gety(),1);
           if (!walk["canmove"]) {
+            if (debug) { dbs.writeln("<span style='color:orange;'>Something in the way- sidestepping.</span><br />"); }
             if (path[0][0] === who.getx()) { // movement was N/S
               this.randomWalk(who,0,50,0,50);  // and so randomly walk E/W
             } else {
@@ -262,6 +283,7 @@ ais.combat = function(who) {
           // path currently goes through some NPCs. Need to make a better path.
           // first step- create a local pathgrid that takes NPCs into account.
           // to get here the path distance can be no more than 4. Tweak this after playtest.
+          if (debug) { dbs.writeln("<span style='color:orange;'>Path is short but blocked- looking for a better path.</span><br />"); }
           
           var leftx = who.getx();
           var rightx = approach.getx();
@@ -288,6 +310,7 @@ ais.combat = function(who) {
           if (rightx >= whomap.getWidth()) { rightx = whomap.getWidth()-1; }
           if (bottomy >= whomap.getHeight()) { bottomy = whomap.getHeight()-1; }
           
+          if (debug) { dbs.writeln("<span style='color:orange;'>Searching for a path inside bounding box- left: " + leftx + ", right: " + rightx + ", top: " + topy + ", bottom: " + bottomy + ".</span><br />"); }
           // creates a box with the two entities in the corners, and then 
           // stretches it to be large enough to find paths in
                     
@@ -347,41 +370,25 @@ ais.combat = function(who) {
           
           if (chosenpath.length > 0) {
             // I have somewhere to go!
+            if (debug) { dbs.writeln("<span style='color:orange;'>Found a usable path.</span><br />"); }
             chosenpath.shift();
             chosenpath.pop();
-            // WORKING HERE
             // follow path. Then for those without a path, randomwalk.
-          }
+            var moved = who.moveMe(chosenpath[0][0]-who.getx(), chosenpath[0][1]-who.gety());
+            if (!moved) {
+              alert("Somehow, didn't move despite clear path. Bwah?");
+            }
+          } 
 
         }
+      } else {
+        // no path found to target
+        var moved = ais.Randomwalk(who,25,25,25,25);
       }
     }
   }
 
-
-  // first up- choose a target
-  // NO LONGER IN USE, KEPT FOR REFERENCE FOR NOW
-  if (!who.getTarget() || (who.getTarget().gethp()<=0)) {
-    // no target, or target is dead but not yet cleaned up because it's a target
-    var potentials = [];
-    if (who.getAttitude() === "hostile") {
-      potentials[0] = PC;
-    }
-    var npcs = whomap.npcs.getAll();
-    var bandcount = 0;
-    $.each(npcs, function(idx,val) {
-      if (val.getAttitude() !== who.getAttitude()) {
-        potentials.push(val);
-      }
-      if (val.getNPCBand() === who.getNPCBand()){ 
-        bandcount++;
-      }
-    });
-    if (potentials[1]) {
-      ShuffleArray(potentials);
-    }
-    
-  }
+  return retval;
   
 }
 
