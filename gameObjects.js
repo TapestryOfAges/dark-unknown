@@ -221,13 +221,13 @@ GameObject.prototype.copy = function(type) {
       } else {
         if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " is empty, not saved...</span> "); }
       }
-    } else if (idx === "target") {
-      if (val) {
-        copydata[idx] = val.getSerial();
-        if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serial, serial# " + copydata[idx] + "...</span> "); }
-      } else {
-        if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " is empty, not saved...</span> "); }
-      }
+//    } else if (idx === "target") {
+//      if (val) {
+//        copydata[idx] = val.getSerial();
+//        if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serial, serial# " + copydata[idx] + "...</span> "); }
+//      } else {
+//        if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " is empty, not saved...</span> "); }
+//      }
     } else if (idx === "equipment") {
       copydata[idx] = {};
       $.each(val, function(eqidx, eqval) {
@@ -7553,7 +7553,8 @@ NPCObject.prototype.processDeath = function(droploot){
 }
 
 NPCObject.prototype.setGender = function(newgender) {
-  if ((newgender === "male") || (newgender === "female") || (newgender === "other") || (newgender === "neuter")) { this.gender = newgender; }
+  if (newgender === "") { newgender = "monster"; }
+  if ((newgender === "male") || (newgender === "female") || (newgender === "other") || (newgender === "neuter") || (newgender === "monster")) { this.gender = newgender; }
   else { alert ("setGender send invalid data"); }
   return this.gender; 
 }
@@ -7956,7 +7957,7 @@ NPCObject.prototype.activate = function(timeoverride) {
 	
   	this.resists = {};   // fire, ice
 
-    this.target = {};
+//    this.target = {};
     
 	  this.lastLocation = {};
     this.lastLocation.map = "";

@@ -1094,7 +1094,7 @@ function CheckAbsorb(dam,to,from,type) {
 
   if (!absorb) { return dam; }
   
-  if (to.checkType("npc") && (type === "physical")) {
+  if (to.checkType("npc") && from && (type === "physical")) {
     var weapon = from.getEquipment("weapon");
     absorb = absorb - weapon.getReduceArmor();
     if (absorb < 0) { absorb = 0; }

@@ -315,8 +315,8 @@ ais.combat = function(who) {
           // stretches it to be large enough to find paths in
                     
           var temppathgrid = new PF.Grid(rightx-leftx+1,bottomy-topy+1);
-          for (var i = leftx; i<=rightx,i++) {
-            for (var j = topy; j<=bottomj, j++) {
+          for (var i = leftx; i<=rightx;i++) {
+            for (var j = topy; j<=bottomj; j++) {
               var thisspot = whomap.getTile(i,j);
               var response = thisspot.canMoveHere(who.getMovetype(), 1);
               if (!response["canmove"]) { temppathgrid.setWalkableAt(i,j,false); }
@@ -332,7 +332,7 @@ ais.combat = function(who) {
           // can attack on the diagonal
           
           copygrid.setWalkableAt(approach.getx(),approach.gety(),false);
-          var cpath = [];
+          var cpath = {};
           cpath["nw"] = [];
           var cornertile = whomap.getTile(approach.getx()-1,approach.gety()-1);
           if (cornertile !== "OoB") {
@@ -340,21 +340,21 @@ ais.combat = function(who) {
               cpath["nw"] = finder.findPath(who.getx(),who.gety(),approach.getx()-1,approach.gety()-1,copygrid);
             }
           }
-          var cpath["ne"] = [];
+          cpath["ne"] = [];
           var cornertile = whomap.getTile(approach.getx()+1,approach.gety()-1);
           if (cornertile !== "OoB") {
             if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
               cpath["ne"] = finder.findPath(who.getx(),who.gety(),approach.getx()+1,approach.gety()-1,copygrid);
             }
           }
-          var cpath["sw"] = [];
+          cpath["sw"] = [];
           var cornertile = whomap.getTile(approach.getx()-1,approach.gety()+1);
           if (cornertile !== "OoB") {
             if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
               cpath["sw"] = finder.findPath(who.getx(),who.gety(),approach.getx()-1,approach.gety()+1,copygrid);
             }
           }
-          var cpath["se"] = [];
+          cpath["se"] = [];
           var cornertile = whomap.getTile(approach.getx()+1,approach.gety()+1);
           if (cornertile !== "OoB") {
             if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
@@ -397,23 +397,29 @@ function TryMelee(who) {
   var radius = 1;
   if (who.specials.reach) { radius = 2; }
   var nearby = FindNearby("npcs",who.getHomeMap(),radius,"box",who.getx(),who.gety());
+  var atked = 0;
   if (nearby.length > 0) {
     ShuffleArray(nearby);
     $.each(nearby, function(idx,val) {
-      if (val.getAttitude() !== who.getAttitude()) {
-        if (radius > 1) { 
-          // check LOE first
-          if (whomap.getLOE(who.getx(), who.gety(), val.getx(), val.gety(), losgrid, 1) >= LOS_THRESHOLD) { continue; }
+      if (!atked) {
+        if (val.getAttitude() !== who.getAttitude()) {
+          var doatk = 1;
+          if (radius > 1) { 
+            // check LOE first
+            if (whomap.getLOE(who.getx(), who.gety(), val.getx(), val.gety(), losgrid, 1) >= LOS_THRESHOLD) { doatk = 0; }
+          }
+          // attack val and call it a day!
+          if (doatk) {
+            if (debug) { dbs.writeln("<span style='color:orange;'>ATTACK!</span><br />"); }
+            var result = Attack(who,val);
+            maintext.addText(result["txt"]);
+            atked = 1;
+          }
         }
-        // attack val and call it a day!
-        if (debug) { dbs.writeln("<span style='color:orange;'>ATTACK!</span><br />"); }
-        var result = Attack(who,val);
-        maintext.addText(result["txt"]);
-        return 1;
       }
     });
   }
-  return 0;
+  return atked;
 }
 
 ais.townsfolk = function(who) {
