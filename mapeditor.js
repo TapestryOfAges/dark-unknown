@@ -329,7 +329,6 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcint.value = editnpcs.getInt();
       document.npceditpopup.npcpcthreatai.value = editnpcs.getPCThreatAI();      
 //      document.npceditpopup.npcmelee.value = editnpcs.getMeleeAttackAs();
-      document.npceditpopup.npcthreatenedai.value = editnpcs.getThreatenedAI();      
 //      document.npceditpopup.npcmissile.value = editnpcs.getMissileAttackAs();
       document.npceditpopup.npcconvo.value = editnpcs.getConversation();
       document.npceditpopup.npcconvflag.value = editnpcs.getConversationFlag();
@@ -460,9 +459,6 @@ function submitEditNPC(change) {
 		}
 		if (document.npceditpopup.npcpcthreatai.value !== editnpcs.getPCThreatAI()) {
 			editnpcs.setPCThreatAI(document.npceditpopup.npcpcthreatai.value);
-		}
-		if (document.npceditpopup.npcthreatenedai.value !== editnpcs.getThreatenedAI()) {
-			editnpcs.setThreatenedAI(document.npceditpopup.npcthreatenedai.value);
 		}
 //		if (document.npceditpopup.npcmelee.value !== editnpcs.getMeleeAttackAs()) {
 //			editnpcs.setMeleeAttackAs(document.npceditpopup.npcmelee.value);

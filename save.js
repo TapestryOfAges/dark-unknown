@@ -244,11 +244,11 @@ GameStateData.prototype.loadGame = function() {
       });
       if (debug) { dbs.writeln("<br />"); }
     } 
-    if (val.target) {
-      val.target = universe[val.target];
-    } else {
-      val.target = {};
-    }
+//    if (val.target) {
+//      val.target = universe[val.target];
+//    } else {
+//      val.target = {};
+//    }
     if (val.spellEffects) {
       var inv = val.spellEffects;
       val.spellEffects = new Collection();

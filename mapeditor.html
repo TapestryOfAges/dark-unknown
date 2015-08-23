@@ -47,6 +47,7 @@
  <script language="JavaScript" src="maps/toshin.js"></script>
  <script language="JavaScript" src="maps/abyss.js"></script>
  <script language="JavaScript" src="maps/blackdragon.js"></script>
+ <script language="JavaScript" src="maps/shadow.js"></script>
  <script language="JavaScript" src="maps/testmap.js"></script>
 
 </head>
@@ -152,31 +153,11 @@
     		                  <option value="hostile">Hostile</option></select>
    	</td></tr>
     <tr><td>DEX:</td><td><input type="text" name="npcdex" value="" size="3" /></td>
-    	<td>PeaceAI:</td><td><select name="npcpeaceai">
-    		 <script language="JavaScript">
-		  	for (var keyz in ailist) {
-		  		document.writeln('<option value="' + ailist[keyz] + '">' + ailist[keyz] + '</option>');
-		  	}
-			</script>
-      </select>
-    	</td></tr>
+    	<td>PeaceAI:</td><td><input type="text" name="npcpeaceai" value="" size="10" /></td></tr>
     <tr><td>INT:</td><td><input type="text" name="npcint" value="" size="3" /></td>
-    	<td>PCThreatAI:</td><td><select name="npcpcthreatai">
-    		 <script language="JavaScript">
-		  	for (var keyz in ailist) {
-		  		document.writeln('<option value="' + ailist[keyz] + '">' + ailist[keyz] + '</option>');
-		  	}
-			</script>
-      </select>    		
-    	</td></tr>
+    	<td>PCThreatAI:</td><td><input type="text" name="npcpcthreatai" value="" size="10" /></td></tr>
     <tr><td>Convo:</td><td><input type="text" name="npcconvo" value="" size="10" /></td>
-    	<td>ThreatenedAI:</td><td><select name="npcthreatenedai">
-    		 <script language="JavaScript">
-		  	for (var keyz in ailist) {
-		  		document.writeln('<option value="' + ailist[keyz] + '">' + ailist[keyz] + '</option>');
-		  	}
-			</script>
-      </select>
+    	<td></td><td>
     	</td></tr>
     <tr><td>Conv Flag:</td><td><input type="text" name="npcconvflag" value="" size="10" /></td>
     	<td>Merchant:</td><td><input type="text" name="npcmerch" value="" size="10" /></td></tr>
