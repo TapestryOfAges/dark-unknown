@@ -370,7 +370,7 @@ function SetBandAggro(band, map) {
   var npcs = map.npcs.getAll();
   $.each(npcs, function(idx, val) {
     if (val.getNPCBand() === band) {
-      val.setAggro();
+      val.setAggro(1);
     }
   });
 }
