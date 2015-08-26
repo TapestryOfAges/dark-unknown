@@ -223,6 +223,10 @@ GameStateData.prototype.loadGame = function() {
     } else {
       val.inventory = new Collection();
     }
+    if (val.spawnedBy) {
+      if (debug) { dbs.writeln(val.name + " was spawned by something, processing..."); }
+      val.spawnedBy = universe[val.spawnedBy];
+    }
     if (val.equipment) {
       if (debug) { dbs.writeln(val.name + " has equipment, processing..."); }
       var inv = val.equipment;

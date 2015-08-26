@@ -1105,7 +1105,7 @@ function CheckAbsorb(dam,to,from,type) {
     dam = Math.floor(dam * (1-(absorb/100)));
     if (debug) { dbs.writeln(dam + ".<br />"); }
   }
-  if (dam < 1) { dam = 1; }
+//  if (dam < 1) { dam = 1; }
   
   return dam;
 }

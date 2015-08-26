@@ -53,7 +53,7 @@ ais.seekPC = function(who,radius) {
         if (who.getNPCBand()) {
           SetBandAggro(who.getNPCBand(), who.getHomeMap());
         } else {
-          who.setAggro();
+          who.setAggro(1);
         }
         retval["fin"] = 1;
         return retval;
@@ -98,7 +98,8 @@ ais.combat = function(who) {
     var npcs = whomap.npcs.getAll();
     var anysee = 0;
     $.each(npcs, function(idx,val) {
-      if (!anysee && (GetDistance(val.getx(),val.gety(),PC.getx(),PC.gety()) < val.getForgetAt())) {
+      
+      if (!anysee && (who.getNPCBand() === val.getNPCBand()) && (GetDistance(val.getx(),val.gety(),PC.getx(),PC.gety()) < val.getForgetAt())) {
         anysee = 1;
       }
       if (!val.getForgetAt()) { anysee = 1; }

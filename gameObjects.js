@@ -6415,11 +6415,11 @@ function GreenPotionTile() {
 }
 GreenPotionTile.prototype = new PotionItemObject();
 
-GreenPotionTile.prototype.use = new function(who) {
+GreenPotionTile.prototype.use = function(who) {
   var retval = {}
   retval["fin"] = 1;
   var poisontile = localFactory.createTile("Poison");
-  var duration = (RollDice("2d8") * SCALE_TIME;
+  var duration = RollDice("2d8") * SCALE_TIME;
   poison.setExpiresTime(duration + DUTime.getGameClock());
   who.addSpellEffect(poison);
   if (who === PC) {
