@@ -190,13 +190,13 @@ GameObject.prototype.copy = function(type) {
       copydata.homeMap = val.getName();
       copydata.traceback.push("homeMap");
       if (debug) { dbs.writeln(idx + " copied... "); }
-    } else if (idx === "resists") {
+    } else if ((idx === "resists") || (idx === "specials")) {
       if ((typeof base_version[idx] === "object") && objectCompare(val, base_version[idx])) {
         if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
       } else {
         copydata[idx] = val;
         if (debug) {
-          dbs.writeln(idx + " an array and different, copying... ");
+          dbs.writeln(idx + " an object and different, copying... ");
         }
       }
     } else if ((idx === "currentDestination") || (idx === "lastLocation")) {
@@ -214,7 +214,7 @@ GameObject.prototype.copy = function(type) {
       });
       copydata[idx] = spawnserials;
       if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serials, serial# " + copydata[idx] + "...</span> "); }
-    } else if ((idx === "equippedTo") || (idx === "attachedTo")) {
+    } else if ((idx === "equippedTo") || (idx === "attachedTo") || (idx === "spawnedBy")) {
       if (val) {
         copydata[idx] = val.getSerial();
         if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serial, serial# " + copydata[idx] + "...</span> "); }
@@ -6414,6 +6414,19 @@ function GreenPotionTile() {
   this.spriteyoffset = "0";
 }
 GreenPotionTile.prototype = new PotionItemObject();
+
+GreenPotionTile.prototype.use = new function(who) {
+  var retval = {}
+  retval["fin"] = 1;
+  var poisontile = localFactory.createTile("Poison");
+  var duration = (RollDice("2d8") * SCALE_TIME;
+  poison.setExpiresTime(duration + DUTime.getGameClock());
+  who.addSpellEffect(poison);
+  if (who === PC) {
+    retval["txt"] = "You are poisoned!";
+  }
+  return retval;
+}
 
 //haste potion
 function DarkGreenPotionTile() {
