@@ -81,7 +81,7 @@ ais.combat = function(who) {
   
   if (debug) { dbs.writeln("<span style='color:orange;'>" + who.getName() + " " + who.getSerial() + " in combat AI.</span><br />"); } 
  
-  if (whomap() !== PC.getHomeMap()) {
+  if (whomap !== PC.getHomeMap()) {
     // what happens if the PC is on another map?
     if (debug) { dbs.writeln("<span style='color:orange;'>On a different map, waiting...</span><br />"); }
     who.wait++;
@@ -111,7 +111,7 @@ ais.combat = function(who) {
     }
   }
   
-  if (!who.specials.undead && !who.specials.construct && !who.specials.mindless && (who.gethp() < .15*who.getMaxhp())) {
+  if (!who.specials.undead && !who.specials.construct && !who.specials.mindless && (who.getHP() < .15*who.getMaxHP())) {
     if (debug) { dbs.writeln("<span style='color:orange;'>Too wounded, becoming a coward.</span><br />"); }
     // consider making this a check of some kind
     who.specials.coward = 1;

@@ -8643,7 +8643,7 @@ function PCObject() {
 	this.pcname = "Subject Name Here";
 	this.desc = "you";
 	this.alignment = "good";	
-	this.attutide = "friendly";
+	this.attitude = "friendly";
 	this.graphic = "300.gif";
 	this.meleeAttackAs = "Fists";
 	this.missileAttackAs = "none";
