@@ -1102,7 +1102,7 @@ function CheckAbsorb(dam,to,from,type) {
   
   if (absorb !== 0) {
     if (debug) { dbs.writeln("Damage modified: " + dam + " becomes "); }
-    dam = Math.floor(dam * (1-(absorb/100)));
+    dam = dam * (1-(absorb/100));
     if (debug) { dbs.writeln(dam + ".<br />"); }
   }
 //  if (dam < 1) { dam = 1; }
@@ -1146,17 +1146,22 @@ function FindNearby(what,map,radius,shape,tox,toy) {
 
 
 // "except" is there so you can "find nearest except this dude"
+// align is "enemy" or "ally" (or blank for either)
 function FindNearestNPC(from, align, except) {
   if (!except) { except = []; }
   var found = from.getHomeMap().npcs.getAll();
+  if (PC.getHomeMap() === from.getHomeMap()) { found.push(PC); }
   var nearest;
   var distance = 10000;
   $.each(found, function(idx,val) {
+    alert(val.getName());
     if ((val !== from) && (!$.inArray(val,except))) {
-      var dist = FindDistance(val.getx(),val.gety(),from.getx(),from.gety());
-      if (dist < distance) {
-        nearest = val;
-        distance = dist;
+      if (!except || ((except === "enemy") && (who.getAttitude() !== val.getAttitude())) || ((except === "ally") && (who.getAttitude() === val.getAttitude()))) {
+        var dist = FindDistance(val.getx(),val.gety(),from.getx(),from.gety());
+        if (dist < distance) {
+          nearest = val;
+          distance = dist;
+        }
       }
     }
   });

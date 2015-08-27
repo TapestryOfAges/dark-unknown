@@ -139,7 +139,9 @@ DamageOverTimeObject.prototype.onTurn = function() {
   
 //  alert(dmg);
 //  var oldhp = who.getDisplayHP();
-  who.dealDamage(dmg);
+  var damagetype = "";
+  if (this.damagetype) { damagetype = this.damagetype; }
+  who.dealDamage(dmg, this, damagetype);
 //  var newhp = who.getDisplayHP();
   
   if ((this.getExpiresTime()) && (now >= this.getExpiresTime())) {
@@ -158,6 +160,7 @@ function DiseaseTile() {
   this.display = "<span style='color:#58FA58'>D</span>";
   this.zstatdesc = "You have been infected by a disease.";
   this.desc = "disease";
+  this.damagetype = "disease";
 }
 DiseaseTile.prototype = new DamageOverTimeObject();
 
