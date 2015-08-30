@@ -2969,7 +2969,7 @@ function DoorWindowTile() {
 	this.prefix = "a";
 	this.desc = "door";
 
-	SetByBelow.call(this);
+  SetByBelow.call(this);
   Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorWindowTile.prototype = new FeatureObject();
@@ -3995,7 +3995,8 @@ function SecretDoorTile() {
 	this.prefix = "a";
 	this.desc = "wall";
 	
-	SetByBelow.call(this);
+  SetByBelow.call(this);
+  Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
 }
 SecretDoorTile.prototype = new FeatureObject();
 

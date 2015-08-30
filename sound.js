@@ -40,6 +40,7 @@ DUSound["sfx_melee_miss"] = "sfx/sfx9.ogg";
 DUSound["sfx_melee_hit"] = "sfx/sfx10.ogg";
 DUSound["sfx_missile_miss"] = "sfx/sfx11.ogg";
 DUSound["sfx_missile_hit"] = "sfx/sfx12.ogg";
+DUSound["sfx_stone_drag"] = "sfx/sfx13.ogg";
 
 var musicpath = "music/";
 var DUMusic = {};
