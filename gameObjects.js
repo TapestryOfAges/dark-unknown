@@ -8063,16 +8063,18 @@ NPCObject.prototype.activate = function(timeoverride) {
     } 
     
     this.specials = {};
+    var tmpspc = {};
     if (this.special) {
       var tmp = this.special.split(",");
       $.each(tmp, function(idx,val) {
         if (val.indexOf(":") > -1) {
           var bluh = val.split(":");
-          this.specials[bluh[0]] = bluh[1];
+          tmpspc[bluh[0]] = bluh[1];
         } else {
-          this.specials[val] = 1;
+          tmpspc[val] = 1;
         }
       });
+      this.specials = tmpspc;
     }
     if (this.specials["quick"]) {
       var qobj = localFactory.createTile("Quickness");
