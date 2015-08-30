@@ -8277,12 +8277,14 @@ NPCObject.prototype.myTurn = function() {
   
 //  var nextEntity = DUTime.executeNextEvent().getEntity();
 //  nextEntity.myTurn();
-
+  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>*" + this.getName() + ", serial " + this.getSerial() + " is ending its turn.*</span><br />"); }	
   return 1;
 }
 
 NPCObject.prototype.endTurn = function(init) {
   gamestate.setMode("null");
+  
+  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>*" + this.getName() + ", serial " + this.getSerial() + " is ending its turn.*</span><br />"); }	
   
   // did this entity idle?
   var oldloc = this.getLastLocation();

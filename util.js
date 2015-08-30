@@ -1112,28 +1112,38 @@ function CheckAbsorb(dam,to,from,type) {
 
 
 function FindNearby(what,map,radius,shape,tox,toy) {
+//  alert(what + " " + map.getName() + " " + radius + " " + shape + " " + tox + " " + toy);
   var adj = [];
   if (shape === "box") {
-    for (var i = tox-radius; i>tox+radius; i++) {
-      for (var j = toy-radius; j>toy+radius; j++) {
+    for (var i = tox-radius; i<=tox+radius; i++) {
+      for (var j = toy-radius; j<=toy+radius; j++) {
         var tile = map.getTile(i,j);
         if (tile !== "OoB") {
           var list;
           if (what === "npcs") {
             list = tile.getNPCs();
+//            alert(list.length + " npcs found at " + i + "," + j);
+            if ((PC.getHomeMap() === map) && (PC.getx() === i) && (PC.gety() === j)) {
+              list.push(PC);
+            }
           } else if (what === "features") {
             list = tile.getFeatures();
           } else {
             alert("Find Adj with improper what: " + what);
             return;
           }
-          adj.push(list);
+          $.each(list, function(idx,val) {
+            adj.push(val);
+          });
         }
       }
     }
   } else if (shape === "circle") {
     var list;
-    if (what === "npcs") { list = map.npcs.getAll(); }
+    if (what === "npcs") { 
+      list = map.npcs.getAll();  
+      list.push(PC);
+    }
     else if (what === "features") { list = map.features.getAll(); }
     $.each(list, function(idx,val) {
       if (((val.getx() !== tox) || (val.gety !== toy)) && (GetDistance(val.getx(), val.gety(),tox,toy) <= radius)) {
@@ -1154,10 +1164,9 @@ function FindNearestNPC(from, align, except) {
   var nearest;
   var distance = 10000;
   $.each(found, function(idx,val) {
-    alert(val.getName());
-    if ((val !== from) && (!$.inArray(val,except))) {
-      if (!except || ((except === "enemy") && (who.getAttitude() !== val.getAttitude())) || ((except === "ally") && (who.getAttitude() === val.getAttitude()))) {
-        var dist = FindDistance(val.getx(),val.gety(),from.getx(),from.gety());
+    if ((val !== from) && ($.inArray(val,except) === -1)) {
+      if (!align || ((align === "enemy") && (from.getAttitude() !== val.getAttitude())) || ((align === "ally") && (from.getAttitude() === val.getAttitude()))) {
+        var dist = GetDistance(val.getx(),val.gety(),from.getx(),from.gety());
         if (dist < distance) {
           nearest = val;
           distance = dist;
