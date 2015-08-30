@@ -228,7 +228,10 @@ ais.combat = function(who) {
     // top priority: adjacent foes
     if (debug) { dbs.writeln("<span style='color:orange;'>Chosen to melee/approach!</span><br />"); }
     var melee = TryMelee(who);
-    if (melee) { return retval; }
+    if (melee) { 
+      retval["wait"] = 1;
+      return retval; 
+    }
     // didn't melee anything, time to try to find something to approach
     var approach = FindNearestNPC(who, "enemy");
     if (!approach) {
@@ -275,9 +278,9 @@ ais.combat = function(who) {
           if (!walk["canmove"]) {
             if (debug) { dbs.writeln("<span style='color:orange;'>Something in the way- sidestepping.</span><br />"); }
             if (path[0][0] === who.getx()) { // movement was N/S
-              this.randomWalk(who,0,50,0,50);  // and so randomly walk E/W
+              this.Randomwalk(who,0,50,0,50);  // and so randomly walk E/W
             } else {
-              this.randomWalk(who,50,0,50,0);
+              this.Randomwalk(who,50,0,50,0);
             }
           }
         } else {
@@ -315,20 +318,29 @@ ais.combat = function(who) {
           // creates a box with the two entities in the corners, and then 
           // stretches it to be large enough to find paths in
                     
-          var temppathgrid = new PF.Grid(rightx-leftx+1,bottomy-topy+1);
-          for (var i = leftx; i<=rightx;i++) {
-            for (var j = topy; j<=bottomj; j++) {
-              var thisspot = whomap.getTile(i,j);
-              var response = thisspot.canMoveHere(who.getMovetype(), 1);
-              if (!response["canmove"]) { temppathgrid.setWalkableAt(i,j,false); }
+          var temppathgrid = new PF.Grid(whomap.getWidth(),whomap.getHeight());
+          for (var i = 0; i<whomap.getWidth();i++) {
+            for (var j = 0; j<whomap.getHeight(); j++) {
+              if ((i >= leftx) && (i<= rightx) && (j >= topy) && (j <= bottomy)) {
+                var thisspot = whomap.getTile(i,j);
+                var response = thisspot.canMoveHere(who.getMovetype(), 1);
+                if (!response["canmove"]) { temppathgrid.setWalkableAt(i,j,false); }
+              } else {
+                // making a path grid just for the local area- making it full sized but everywhere outside
+                // local area is just set to impassible
+                temppathgrid.setWalkableAt(i,j,false);
+              }
             }
           }
+          
+          if (debug) { dbs.writeln("<br /><span style='color:orange;'>Made tmpgrid...</span><br />"); }
           
           var copygrid = temppathgrid.clone();
           copygrid.setWalkableAt(who.getx(),who.gety(),true);
           copygrid.setWalkableAt(approach.getx(),approach.gety(),true);
           var directpath = finder.findPath(who.getx(),who.gety(),approach.getx(),approach.gety(),copygrid);
           
+          if (debug) { dbs.writeln("<span style='color:orange;'>Made cardinal paths...</span><br />"); }
           // that will find paths that go through the cardinal directions, now check diagonals, since you
           // can attack on the diagonal
           
@@ -339,6 +351,7 @@ ais.combat = function(who) {
           if (cornertile !== "OoB") {
             if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
               cpath["nw"] = finder.findPath(who.getx(),who.gety(),approach.getx()-1,approach.gety()-1,copygrid);
+              if (debug) { dbs.writeln("<span style='color:orange;'>Made NW path...</span><br />"); }
             }
           }
           cpath["ne"] = [];
@@ -346,6 +359,7 @@ ais.combat = function(who) {
           if (cornertile !== "OoB") {
             if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
               cpath["ne"] = finder.findPath(who.getx(),who.gety(),approach.getx()+1,approach.gety()-1,copygrid);
+              if (debug) { dbs.writeln("<span style='color:orange;'>Made NE path...</span><br />"); }
             }
           }
           cpath["sw"] = [];
@@ -353,6 +367,7 @@ ais.combat = function(who) {
           if (cornertile !== "OoB") {
             if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
               cpath["sw"] = finder.findPath(who.getx(),who.gety(),approach.getx()-1,approach.gety()+1,copygrid);
+              if (debug) { dbs.writeln("<span style='color:orange;'>Made SW path...</span><br />"); }
             }
           }
           cpath["se"] = [];
@@ -360,6 +375,7 @@ ais.combat = function(who) {
           if (cornertile !== "OoB") {
             if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
               cpath["se"] = finder.findPath(who.getx(),who.gety(),approach.getx()+1,approach.gety()+1,copygrid);
+              if (debug) { dbs.writeln("<span style='color:orange;'>Made SE path...</span><br />"); }
             }
           }
           
@@ -399,6 +415,7 @@ function TryMelee(who) {
   if (who.specials.reach) { radius = 2; }
   var nearby = FindNearby("npcs",who.getHomeMap(),radius,"box",who.getx(),who.gety());
   var atked = 0;
+  if (debug) { dbs.writeln("<span style='color:orange;'>Seeking entities in melee range. There are " + nearby.length + ".</span><br />"); }
   if (nearby.length > 0) {
     ShuffleArray(nearby);
     $.each(nearby, function(idx,val) {
