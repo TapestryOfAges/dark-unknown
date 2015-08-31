@@ -105,9 +105,9 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         maintext.addText("Your intelligence cannot be raised further by training.");
       }
       if (PC.gettp() === 0) {
-        delete DU.getflags["can_train"];
+        delete DU.gameflags["can_train"];
       }
-      delete DU.getflags[triggers.set_flag];
+      delete DU.gameflags[triggers.set_flag];
     } else if (triggers.set_flag === "train_dex") {
       if (PC.gettp() === 0) {
         alert("Somehow training Dex without any tp.");
@@ -119,9 +119,9 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         maintext.addText("Your dexterity cannot be raised further by training.");
       }
       if (PC.gettp() === 0) {
-        delete DU.getflags["can_train"];
+        delete DU.gameflags["can_train"];
       }
-      delete DU.getflags[triggers.set_flag];
+      delete DU.gameflags[triggers.set_flag];
     } else if (triggers.set_flag === "train_str") {
       if (PC.gettp() === 0) {
         alert("Somehow training Str without any tp.");
@@ -133,10 +133,20 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         maintext.addText("Your strength cannot be raised further by training.");
       }
       if (PC.gettp() === 0) {
-        delete DU.getflags["can_train"];
+        delete DU.gameflags["can_train"];
       }
-      delete DU.getflags[triggers.set_flag];
+      delete DU.gameflags[triggers.set_flag];
     }
+  } else if (triggers.set_flag === "give_100g") {
+    delete DU.gameflags["give_100g"];
+    PC.addGold(100);
+  } else if (triggers.set_flag === "give_100g_k") {
+    delete DU.gameflags["give_100g_k"];
+    DU.gameflags["debt_paid"] = 1;
+    PC.addGold(100);
+    DU.gameflags["karma"]++;
+  } else if (DU.gameflags["health_kyvek"] &&  DU.gameflags["health_daniel"] && DU.gameflags["health_hazel"] && DU.gameflags["health_kylee"] && DU.gameflags["health_garen"] && DU.gameflags["health_guard"] && DU.gameflags["health_amaeryl"] && DU.gameflags["health_warren"] && DU.gameflags["health_samuel"] && DU.gameflags["health_ingrid"]) {
+    DU.gameflags["all_health"] = 1;    
   }
   if (triggers.hasOwnProperty("end_convo")) {
     if ((triggers.end_convo !== 1) && (triggers.end_convo !== "1")) {
