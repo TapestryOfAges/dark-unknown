@@ -45,6 +45,7 @@ DU.gameflags.sound = 1;
 DU.gameflags.tablet = 0;
 DU.gameflags.autosave = 0;
 DU.gameflags.negate = {};
+DU.gameflags.karma = 0;
 
 var targetCursor = {};
     targetCursor.skipahead = 0;

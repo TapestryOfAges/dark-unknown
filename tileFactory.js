@@ -1471,6 +1471,11 @@ tileFactory.prototype.makeAmbroseShieldTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeKyvekBoxTile = function() {
+  var newTile = new KyvekBoxTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePitOfDespairKeyTile = function() {
   var newTile = new PitOfDespairKeyTile();
   return newTile;
@@ -1553,6 +1558,11 @@ tileFactory.prototype.makeBlackPearlTile = function() {
 
 tileFactory.prototype.makeExecutionersHoodTile = function() {
   var newTile = new ExecutionersHoodTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeQuestExecutionersHoodTile = function() {
+  var newTile = new QuestExecutionersHoodTile();
   return newTile;
 }
 

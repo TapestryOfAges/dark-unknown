@@ -5984,6 +5984,17 @@ function AmbroseShieldTile() {
 }
 AmbroseShieldTile.prototype = new ItemObject();
 
+function KyvekBoxTile() {
+  this.name = "KyvekBox";
+  this.graphic = "008.gif";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "box with the payment of a debt to Kyvek";
+  this.prefix = "a";
+  this.addType("Quest");
+}
+KyvekBoxTile.prototype = new ItemObject();
+
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
   this.graphic = "items.gif";
@@ -6247,6 +6258,21 @@ function ExecutionersHoodTile() {
   this.addType("Reagent");
 }
 ExecutionersHoodTile.prototype = new ItemObject();
+
+function QuestExecutionersHoodTile() {
+  this.name = "QuestExecutionersHood";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-64";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "an";
+  this.desc = "executioner's hood";
+  this.addType("Quest");
+}
+QuestExecutionersHoodTile.prototype = new ItemObject();
+
+
 
 function NightshadeTile() {
   this.name = "Nightshade";
