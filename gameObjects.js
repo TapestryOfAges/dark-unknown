@@ -6009,12 +6009,16 @@ KyvekBoxTile.prototype.use = function(who) {
 }
 
 KyvekBoxTile.prototype.usePrompt = function(code) {
-  // WORKING HERE
+  var retval = {};
+  retval["fin"] = 1;
   if (code === 89) {
-    
+    retval["txt"] = "You break the seal and empty the coin into your own pouches. You gain 600 gold.";
+    PC.addGold(600);
+    PC.removeFromInventory(this);
   } else {
-    
+    retval["txt"] = "You put the box away, unopened.";
   }
+  return retval;
 }
 
 function PitOfDespairKeyTile() {
