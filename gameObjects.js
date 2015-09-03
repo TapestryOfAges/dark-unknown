@@ -5995,6 +5995,28 @@ function KyvekBoxTile() {
 }
 KyvekBoxTile.prototype = new ItemObject();
 
+KyvekBoxTile.prototype.use = function(who) {
+  var retval = {};
+  
+  if (who === PC) {
+    maintext.delayedAddText("This will break the seal and you will be unable to return the money to Kyvek. Are you sure?";
+    retval["override"] = -1;
+    retval["fin"] = -1;
+    return retval;
+  }
+  retval["fin"] = 1;
+  return retval;
+}
+
+KyvekBoxTile.prototype.usePrompt = function(code) {
+  // WORKING HERE
+  if (code === 89) {
+    
+  } else {
+    
+  }
+}
+
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
   this.graphic = "items.gif";

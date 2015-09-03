@@ -427,8 +427,11 @@ function DoAction(code) {
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     }
-    else if (response["fin"] === 1) {
-      
+    else if (response["fin"] === -1) {
+      gamestate.setMode("useprompt");
+      maintext.addText(response["txt"]);
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
     }
     else if (response["fin"] === 2) {
       maintext.addText(response["txt"]);
@@ -439,6 +442,17 @@ function DoAction(code) {
       PC.endTurn(response["initdelay"]);
     }
             
+  }
+  else if (gamestate.getMode() === "useprompt") {
+    var used = targetCursor.itemlist[targetCursor.scrolllocation];
+    var response = used.usePrompt(code);
+
+    maintext.addText(response["txt"]);
+    maintext.setInputLine("&gt;");
+    maintext.drawTextFrame();
+    DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    PC.endTurn(response["initdelay"]);
   }
   else if (gamestate.getMode() === "zstats") {
     var response = performZstats(code);
