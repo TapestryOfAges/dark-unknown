@@ -17,6 +17,7 @@ Anchor.prototype = new Object();
 
 function TurnMapHostile(map) {
   if (debug) { dbs.writeln("Attacked a friendly! Turning hostile...<br />"); }
+  DU.gameflags["karma"] -= 10; 
   var localnpcs = map.npcs.getAll();
   $.each(localnpcs, function(idx, val) {
     if (val.getAttitude() === "friendly") {
