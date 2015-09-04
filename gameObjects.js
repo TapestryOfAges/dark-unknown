@@ -5999,7 +5999,8 @@ KyvekBoxTile.prototype.use = function(who) {
   var retval = {};
   
   if (who === PC) {
-    maintext.delayedAddText("This will break the seal and you will be unable to return the money to Kyvek. Are you sure?";
+    maintext.delayedAddText("This will break the seal and you will be unable to return the money to Kyvek. Are you sure?");
+    DU.gameflags["karma"]--;
     retval["override"] = -1;
     retval["fin"] = -1;
     return retval;

@@ -492,6 +492,77 @@ ais.townsfolk = function(who) {
   return retval;
 }
 
+ais.Trevor = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  if (DU.gameflags["kyvek_fetch"]) {
+    if (!who.steps) {
+      var walk = who.moveMe(1,0);
+      if (walk["canmove"]) {
+        who.steps = 1;
+      }
+    } else if (who.steps === 1) {
+      var doortile = who.getHomeMap().getTile(9,14);
+      var door = doortile.getTopFeature();
+      door.unlockMe();
+      who.steps = 2;
+    } else if (who.steps === 2) { 
+      var doorrile = who.getHomeMap().getTile(9,14);
+      var door = doortile.getTopFeature();
+      door.use(who);
+      who.steps = 3;
+    } else if ((who.steps >= 3) and (who.steps <= 5)) {
+      var walk = who.moveMe(0,-1);
+      if (walk["canmove"]) {
+        who.steps++;
+      }
+    } else if (who.steps === 6) {
+      var walk = who.moveMe(1,0);
+      if (walk["canmove"]) {
+        who.steps++;
+      }
+    } else if (who.steps === 7) {
+      who.steps++;
+    } else if (who.steps === 8) {
+      var walk = who.moveMe(-1,0);
+      if (walk["canmove"]) {
+        who.steps++;
+      }
+    } else if ((who.steps >= 9) and (who.steps <= 11)) {
+      var walk = who.moveMe(0,1);
+      if (walk["canmove"]) {
+        who.steps++;
+      }
+    } else if (who.steps === 12) {
+      var doorrile = who.getHomeMap().getTile(9,14);
+      var door = doortile.getTopFeature();
+      door.use(who);
+      who.steps++;
+    } else if (who.steps === 13) {
+      var doorrile = who.getHomeMap().getTile(9,14);
+      var door = doortile.getTopFeature();
+      door.lockMe(2);
+      who.steps++;
+    } else if (who.steps === 14) {
+      var walk = moveMe(-1,0);
+      if (walk["canmove"]) {
+        who.steps++;
+      }
+    } else if (who.steps > 14) {
+      if (who.getHomeMap() === PC.getHomeMap()) {
+        if ((PC.getx() >= 8) && (PC.getx() <= 10) && (PC.gety() >= 15) && (PC.gety() <= 19)) {
+          maintext.addText("Trevor hands you a wooden box, sealed with wax. \"Give this to Kyvek and all debts will be paid.\" He makes a mark in his ledger.");
+          var box = localFactory.createTile("KyvekBox");
+          PC.addToInventory(box,1);
+          delete DU.gameflags["kyvek_fetch"];
+          delete DU.gameflage["pay_kyvek"];
+          DU.gameflags["given_box"] = 1;
+        }
+      }
+    }
+  }
+}
+
 ais.Sentinel = function(who) {
   var destinations = [];
   var jumps = [];
