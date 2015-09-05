@@ -511,7 +511,7 @@ ais.Trevor = function(who) {
       var door = doortile.getTopFeature();
       door.use(who);
       who.steps = 3;
-    } else if ((who.steps >= 3) and (who.steps <= 5)) {
+    } else if ((who.steps >= 3) && (who.steps <= 5)) {
       var walk = who.moveMe(0,-1);
       if (walk["canmove"]) {
         who.steps++;
@@ -528,7 +528,7 @@ ais.Trevor = function(who) {
       if (walk["canmove"]) {
         who.steps++;
       }
-    } else if ((who.steps >= 9) and (who.steps <= 11)) {
+    } else if ((who.steps >= 9) && (who.steps <= 11)) {
       var walk = who.moveMe(0,1);
       if (walk["canmove"]) {
         who.steps++;
