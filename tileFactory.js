@@ -1676,6 +1676,176 @@ tileFactory.prototype.makeOrangePotionTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeScrollCureTile = function() {
+  var newTile = new ScrollCureTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollDisarmTrapTile = function() {
+  var newTile = new ScrollDisarmTrapTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollDistractTile = function() {
+  var newTile = new ScrollDistractTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollFlameBladeTile = function() {
+  var newTile = new ScrollFlameBladeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollLightTile = function() {
+  var newTile = new ScrollLightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollVulnerabilityTile = function() {
+  var newTile = new ScrollVulnerabilityTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollIllusionTile = function() {
+  var newTile = new ScrollIllusionTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollLesserHealTile = function() {
+  var newTile = new ScrollLesserHealTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollMagicBoltTile = function() {
+  var newTile = new ScrollMagicBoltTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollPoisonCloudTile = function() {
+  var newTile = new ScrollPoisonCloudTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollProtectionTile = function() {
+  var newTile = new ScrollProtectionTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollUnlockTile = function() {
+  var newTile = new ScrollUnlockTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollDisruptUndeadTile = function() {
+  var newTile = new ScrollDisruptUndeadTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollFireArmorTile = function() {
+  var newTile = new ScrollFireArmorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollFireballTile = function() {
+  var newTile = new ScrollFireballTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollIceballTile = function() {
+  var newTile = new ScrollIceballTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollWallOfFlameTile = function() {
+  var newTile = new ScrollWallOfFlameTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollBlessingTile = function() {
+  var newTile = new ScrollBlessingTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollHealTile = function() {
+  var newTile = new ScrollHealTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollLifeDrainTile = function() {
+  var newTile = new ScrollLifeDrainTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollSmiteTile = function() {
+  var newTile = new ScrollSmiteTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollMirrorWardTile = function() {
+  var newTile = new ScrollMirrorWardTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollParalyzeTile = function() {
+  var newTile = new ScrollParalyzeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollShockwaveTile = function() {
+  var newTile = new ScrollShockwaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollSummonAllyTile = function() {
+  var newTile = new ScrollSummonAllyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollSwordstrikeTile = function() {
+  var newTile = new ScrollSwordstrikeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollExplosionTile = function() {
+  var newTile = new ScrollExplosionTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollStormTile = function() {
+  var newTile = new ScrollStormTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollFearTile = function() {
+  var newTile = new ScrollFearTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollFireAndIceTile = function() {
+  var newTile = new ScrollFireAndIceTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollMeteorSwarmTile = function() {
+  var newTile = new ScrollMeteorSwarmTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollConflagrationTile = function() {
+  var newTile = new ScrollConflagrationTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollConjureDaemonTile = function() {
+  var newTile = new ScrollConjureDaemonTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollTimeStopTile = function() {
+  var newTile = new ScrollTimeStopTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNaturalArmorTile = function() {
   var newTile = new NaturalArmorTile();
   return newTile;

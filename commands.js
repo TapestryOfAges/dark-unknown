@@ -781,8 +781,8 @@ function PerformLook() {
   var npcs = tile.getNPCs();
   if (npcs.length > 0) {
   	for (var i=(npcs.length-1) ; i >= 0; i-- ) {
-  		if (seethis == "") { seethis = npcs[i].getPrefix() + " " + npcs[i].getDesc(); }
-  		else { seethis += ", " + npcs[i].getPrefix() + " " + npcs[i].getDesc(); }
+  		if (seethis == "") { seethis = npcs[i].getFullDesc(); }
+  		else { seethis += ", " + npcs[i].getFullDesc(); }
   	}
   }
   var features = tile.getFeatures();
@@ -793,11 +793,11 @@ function PerformLook() {
   	    len--;
   	  } else {
       	if (( seethis == "" ) && (i === len-1)) {
-      		seethis = features[i].getPrefix() + " " + features[i].getDesc();
+      		seethis = features[i].getFullDesc();
   	   	}
   	    else if ( typeof features[i].isItem === "function" ) {
-  		    if (seethis == "") { seethis = features[i].getPrefix() + " " + features[i].getDesc(); }
- 	    		else { seethis += ", " + features[i].getPrefix() + " " + features[i].getDesc(); }
+  		    if (seethis == "") { seethis = features[i].getFullDesc(); }
+ 	    		else { seethis += ", " + features[i].getFullDesc(); }
  		    }
  		  }
   	}

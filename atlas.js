@@ -1481,7 +1481,7 @@ GameMap.prototype.loadMap = function (name) {
       	  }
       	}
       	if (newfeature.getLootgroup()) {
-      	  AddLoot(this);
+      	  AddLoot(newfeature);
       	}
   	    this.placeThing(loadfeatures[fi].x,loadfeatures[fi].y,newfeature);
       }
