@@ -1471,11 +1471,6 @@ tileFactory.prototype.makeAmbroseShieldTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeKyvekBoxTile = function() {
-  var newTile = new KyvekBoxTile();
-  return newTile;
-}
-
 tileFactory.prototype.makePitOfDespairKeyTile = function() {
   var newTile = new PitOfDespairKeyTile();
   return newTile;
@@ -1546,6 +1541,11 @@ tileFactory.prototype.makeBookOfLoreTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTreasuryTokenTile = function() {
+  var newTile = new TreasuryTokenTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpiderSilkTile = function() {
   var newTile = new SpiderSilkTile();
   return newTile;
@@ -1608,6 +1608,11 @@ tileFactory.prototype.makeDecorativeArmorTile = function() {
 
 tileFactory.prototype.makeGoldTile = function() {
   var newTile = new GoldTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeKyvekBoxTile = function() {
+  var newTile = new KyvekBoxTile();
   return newTile;
 }
 

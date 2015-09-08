@@ -1450,7 +1450,7 @@ function PerformUseFromInventoryState(code) {
 		  var usedname = used.getDesc();
   		usedname = usedname.replace(/^a /, "");
 	  	retval["txt"] = "Use " + usedname + ": " + retval["txt"];
-	  	if (used.checkType("Consumable")) {
+	  	if (used.checkType("Consumable") && !retval["preserve"]) {
         PC.removeFromInventory(used);
       }
     } else {
@@ -1892,45 +1892,27 @@ function DrawStats(page) {
    statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
    var pots = [];
    var scrolls = [];
+   var reagents = [];
+   var quest = [];
    var inv = PC.getInventory();
    if (inv.length) {
      for (var i = 0; i < inv.length; i++) {
        if (inv[i].checkType("Potion")) { pots[pots.length] = inv[i]; }
        if (inv[i].checkType("Scroll")) { scrolls[scrolls.length] = inv[i];}
+       if (inv[i].checkType("Reagent")) { reagents[reagents.length] = inv[i];}
+       if (inv[i].checkType("Quest")) { quest[quest.length] = inv[i];}
      }
      if (pots.length) {
-       pots.sort(function(a,b) {
-        var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
-        if (nameA < nameB) 
-          return -1
-        if (nameA > nameB)
-          return 1
-       return 0 
-       }); 
-       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Potions</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
-       for (var i = 0; i < pots.length; i++ ) {
-         var itemdesc = pots[i].getDesc();
-         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-         statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + pots[i].getQuantity() + ")</td></tr>";
-       }
-       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
+       statsdiv += StatsCategory(pots, "Potions");
      }
      if (scrolls.length) {
-       scrolls.sort(function(a,b) {
-        var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
-        if (nameA < nameB) 
-          return -1
-        if (nameA > nameB)
-          return 1
-       return 0 
-       }); 
-       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Scrolls</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
-       for (var i = 0; i < scrolls.length; i++ ) {
-         var itemdesc = scrolls[i].getDesc();
-         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-         statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + scrolls[i].getQuantity() + ")</td></tr>";
-       }
-       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";      
+       statsdiv += StatsCategory(scrolls, "Scrolls");
+     }
+     if (reagents.length) {
+       statsdiv += StatsCategory(reagents, "Reagents");
+     }
+     if (quest.length) {
+       statsdiv += StatsCategory(quest, "Quest Items"); 
      }
    }
    statsdiv += "<td></td></tr>";
@@ -2043,6 +2025,25 @@ function DrawStats(page) {
   var scrollapi = scrollelem.data('jsp');
   targetCursor.scrollapi = scrollapi;
 
+}
+
+function StatsCategory(stuff, label) {
+  stuff.sort(function(a,b) {
+    var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+    if (nameA < nameB) 
+      return -1
+    if (nameA > nameB)
+      return 1
+    return 0 
+  }); 
+  var newtext = "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>" + label +"</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+  for (var i = 0; i < stuff.length; i++ ) {
+    var itemdesc = stuff[i].getDesc();
+    itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
+    newtext += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + stuff[i].getQuantity() + ")</td></tr>";
+  }
+  newtext += "<tr><td></td><td>&nbsp;</td></tr>";
+  return newtext;
 }
 
 function DrawOptions() {

@@ -30,7 +30,7 @@ LootTable.prototype.getLoot = function() {
           var quant = RollDice(this.loot[i].quantity);
           for (var j=1;j<=quant;j++) {
 //            if (theloot.match("_")) {
-            if (DULootGroups[theloot]) {
+            if (DULootGroups.treasureTypes[theloot]) {
               lootobj.lootlist[lootobj.lootlist.length] = DULootGroups.rollForTreasure(theloot);
             } else {
               lootobj.lootlist[lootobj.lootlist.length] = theloot;

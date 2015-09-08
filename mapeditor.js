@@ -23,6 +23,10 @@ var DUTime = new Timeline(0);
 var PC = new PCObject();
 var DU = {};
 var gamestate = new GameStateData();
+var DULoot = SetLoots();            //
+var DULootGroups = SetLootGroups(); //  see loot.js and lootset.js for population
+var DUTraps = SetTraps();           //
+
 
 DU.gameflags = {};  // empty games flags because atlas will look for it
 DU.gameflags.editor = 1;  // for atlas to look for

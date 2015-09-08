@@ -62,7 +62,7 @@ foreach my $key (keys %loots) {
   print $outfile "\n";
 }
 
-print $outfile "}\n\n";
+print $outfile "  return loots;\n}\n\n";
 
 print $outfile "function SetLootGroups() {\n  var DULootGroup = new LootGroups();\n\n";
 foreach my $key (keys %groups) {
@@ -72,4 +72,4 @@ foreach my $key (keys %groups) {
   }
   print $outfile "  ]);\n\n";
 }
-print $outfile "}\n";
+print $outfile "  return DULootGroup;\n}\n";

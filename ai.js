@@ -502,14 +502,21 @@ ais.Trevor = function(who) {
         who.steps = 1;
       }
     } else if (who.steps === 1) {
+      var walk = who.moveMe(0,-1);
+      if (walk["canmove"]) {
+        who.steps = 1.5;
+      }      
+    } else if (who.steps === 1.5) {
       var doortile = who.getHomeMap().getTile(9,14);
       var door = doortile.getTopFeature();
       door.unlockMe();
+      DrawMainFrame("one",who.getHomeMap().getName(),9,14);
       who.steps = 2;
     } else if (who.steps === 2) { 
-      var doorrile = who.getHomeMap().getTile(9,14);
+      var doortile = who.getHomeMap().getTile(9,14);
       var door = doortile.getTopFeature();
       door.use(who);
+      DrawMainFrame("one",who.getHomeMap().getName(),9,14);
       who.steps = 3;
     } else if ((who.steps >= 3) && (who.steps <= 5)) {
       var walk = who.moveMe(0,-1);
@@ -534,17 +541,24 @@ ais.Trevor = function(who) {
         who.steps++;
       }
     } else if (who.steps === 12) {
-      var doorrile = who.getHomeMap().getTile(9,14);
+      var doortile = who.getHomeMap().getTile(9,14);
       var door = doortile.getTopFeature();
       door.use(who);
+      DrawMainFrame("one",who.getHomeMap().getName(),9,14);
       who.steps++;
     } else if (who.steps === 13) {
-      var doorrile = who.getHomeMap().getTile(9,14);
+      var doortile = who.getHomeMap().getTile(9,14);
       var door = doortile.getTopFeature();
       door.lockMe(2);
-      who.steps++;
+      DrawMainFrame("one",who.getHomeMap().getName(),9,14);
+      who.steps = 13.5;
+    } else if (who.steps === 13.5) {
+      var walk = who.moveMe(0,1);
+      if (walk["canmove"]) {
+        who.steps = 14;
+      }      
     } else if (who.steps === 14) {
-      var walk = moveMe(-1,0);
+      var walk = who.moveMe(-1,0);
       if (walk["canmove"]) {
         who.steps++;
       }
@@ -555,12 +569,13 @@ ais.Trevor = function(who) {
           var box = localFactory.createTile("KyvekBox");
           PC.addToInventory(box,1);
           delete DU.gameflags["kyvek_fetch"];
-          delete DU.gameflage["pay_kyvek"];
+          delete DU.gameflags["pay_kyvek"];
           DU.gameflags["given_box"] = 1;
         }
       }
     }
   }
+  return retval;
 }
 
 ais.Sentinel = function(who) {
