@@ -6001,44 +6001,6 @@ function AmbroseShieldTile() {
 }
 AmbroseShieldTile.prototype = new ItemObject();
 
-function KyvekBoxTile() {
-  this.name = "KyvekBox";
-  this.graphic = "008.gif";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "box with the payment of a debt to Kyvek";
-  this.prefix = "a";
-  this.addType("Quest");
-}
-KyvekBoxTile.prototype = new ItemObject();
-
-KyvekBoxTile.prototype.use = function(who) {
-  var retval = {};
-  
-  if (who === PC) {
-    maintext.delayedAddText("This will break the seal and you will be unable to return the money to Kyvek. Are you sure?");
-    DU.gameflags["karma"]--;
-    retval["override"] = -1;
-    retval["fin"] = -1;
-    return retval;
-  }
-  retval["fin"] = 1;
-  return retval;
-}
-
-KyvekBoxTile.prototype.usePrompt = function(code) {
-  var retval = {};
-  retval["fin"] = 1;
-  if (code === 89) {
-    retval["txt"] = "You break the seal and empty the coin into your own pouches. You gain 600 gold.";
-    PC.addGold(600);
-    PC.removeFromInventory(this);
-  } else {
-    retval["txt"] = "You put the box away, unopened.";
-  }
-  return retval;
-}
-
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
   this.graphic = "items.gif";
@@ -6264,6 +6226,19 @@ function BookOfLoreTile() {
 }
 BookOfLoreTile.prototype = new ItemObject();
 
+function TreasuryTokenTile() {
+  this.name = "TreasuryToken";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-96";  // never seen
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "treasury token";
+  this.prefix = "a";
+  this.addType("Quest");
+}
+TreasuryTokenTile.prototype = new ItemObject();
+
 function SpiderSilkTile() {
   this.name = "SpiderSilk";
   this.graphic = "items.gif";
@@ -6466,6 +6441,46 @@ function ConsumableItemObject() {
   this.addType("Consumable");
 }
 ConsumableItemObject.prototype = new ItemObject();
+
+function KyvekBoxTile() {
+  this.name = "KyvekBox";
+  this.graphic = "008.gif";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "box with the payment of a debt to Kyvek";
+  this.prefix = "a";
+  this.addType("Quest");
+}
+KyvekBoxTile.prototype = new ConsumableItemObject();
+
+KyvekBoxTile.prototype.use = function(who) {
+  var retval = {};
+  
+  if (who === PC) {
+    retval["override"] = -1;
+    retval["fin"] = -1;
+    retval["preserve"] = 1;
+    retval["txt"] = "This will break the seal and you will be unable to return the money to Kyvek. Are you sure?";
+    return retval;
+  }
+  retval["fin"] = 1;
+  return retval;
+}
+
+KyvekBoxTile.prototype.usePrompt = function(code) {
+  var retval = {};
+  retval["fin"] = 1;
+  if (code === 89) {
+    retval["txt"] = "You break the seal and empty the coin into your own pouches. You gain 600 gold.";
+    DU.gameflags["karma"]--;
+    PC.addGold(600);
+    PC.removeFromInventory(this);
+  } else {
+    retval["txt"] = "You put the box away, unopened.";
+  }
+  return retval;
+}
+
 
 // potions
 
