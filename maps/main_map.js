@@ -206,6 +206,7 @@ mappages["darkunknown"].onload = function(mapref) {
   // Place spawners  
   if (gamestate.getMode() !== "loadgame") {
     Placeonyxspawn(mapref);
+    Placeislandspawn(mapref);
   // give specs to teleporters
     var shrinetile = mapref.getTile(13,82);
     var shrine = shrinetile.getTopFeature();
@@ -254,6 +255,25 @@ function Placeonyxspawn(mapref) {
     
 }
 
+function Placeislandspawn(mapref) {
+  
+  var spawn = localFactory.createTile("Spawner");
+  var group = [];
+  group[0] = "DrakesSmallGroup";
+
+  spawn.setSpawngroup(group);
+  spawn.setSpawnRadius(5);
+  spawn.setSpawnLeash(6);
+  spawn.setSpawnSoftLeash(5);
+  spawn.setMaxSpawns(1);
+
+  spawn.evolve[6] = [];
+  spawn.evolve[6][0] = "spawnLeash";
+  spawn.evolve[6][1] = 20;
+  
+  mapref.placeThing(18,17,spawn);
+    
+}
 
 function CreateNetwork(mapref) {
   
