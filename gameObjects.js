@@ -4187,7 +4187,7 @@ function SpawnerTile() {
   this.spawnRadius = 0; // distance from spawner entity can appear
   this.spawnLeash = 20;
   this.spawnSoftLeash = 15;
-  this.spawnFreq = 30;
+  this.spawnFreq = 100;
   this.lastSpawned = 0;
   
   this.level = 1;
