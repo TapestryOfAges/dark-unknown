@@ -683,6 +683,11 @@ ais.Sentinel = function(who) {
   return retval;
 }
 
+ais.Animal = function(who,radius) {
+  var retval = ais.OutdoorHostile(who, radius, "none");
+  return retval;  
+}
+
 ais.Bandit = function(who,radius) {
   var retval = ais.OutdoorHostile(who, radius, "road");
   return retval;
@@ -733,7 +738,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
   
   // Next, check and see if there is already a path that has not expired
   // but only if the PC is not within close range- in that case, always wait to hunt
-  if ((who.getHomeMap() !== pcmap) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius/3)) {
+  if (GetDistance(who.getx(), who.gety(), locx, locy) > radius/3) {
     if (debug) { dbs.writeln("<span style='color:orange;'>PC on another map or not Close. Trying to follow a path.</span><br />"); }
     retval = ais.SurfaceFollowPath(who,40,1);   
     if (retval["fin"] === 1) { return retval; }
@@ -751,10 +756,19 @@ ais.OutdoorHostile = function(who, radius, pname) {
     }  
   }
 
-  // we have neither attacked, moved, nor hunted- now we look for a PoI to go towards
-  if (debug) { dbs.writeln("<span style='color:orange;'>AI " + who.getName() + " has neither attacked, moved, nor hunted- now look for a PoI.</span><br />"); }
-  retval = ais.ProcessPoI(who, pname);
-  return retval;
+  if (pname !== "none") {
+    // we have neither attacked, moved, nor hunted- now we look for a PoI to go towards
+    if (debug) { dbs.writeln("<span style='color:orange;'>AI " + who.getName() + " has neither attacked, moved, nor hunted- now look for a PoI.</span><br />"); }
+    retval = ais.ProcessPoI(who, pname);
+    return retval;
+  } else {
+    // animal, only randomwalk
+    retval = this.Randomwalk(who,25,25,25,25);
+    if (retval["nomove"] === 1) {
+      retval = this.Randomwalk(who,25,25,25,25);
+    }
+    return retval;
+  }
 }
 
 
@@ -776,7 +790,7 @@ ais.HuntPC = function(who, radius) {
 	    locy = 300;
 	  }
 	}
-	if ((themap !== PC.getHomeMap()) || (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) > radius)) {
+	if (GetDistance(who.getx(), who.gety(), locx, locy) > radius) {
 	  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>PC is not in range to hunt.</span><br />"); }
 		return 0;  // no hunting
 	}
