@@ -114,6 +114,12 @@ function DUPlaySound(sound) {
   return playing;
 }
 
+function DUPlayMusic(sound) {
+  var playing;
+  if (DU.gameflags.music) { playing = createjs.Sound.play(sound); }
+  return playing;
+}
+
 function PlaySound(sound) {
   var playing = createjs.Sound.play(sound);
   return playing;
