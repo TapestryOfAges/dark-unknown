@@ -81,7 +81,7 @@ $(document).ready(function() {
   if (ftop < 0) { ftop = 0; }
   var signl = fleft+324;
   var signt = ftop+121;
-  var firstpage = "<div id='allofem'><div id='ToA' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;width:800;height:209;display:none'><img src='graphics/title/ToA_banner_ToA-only.gif' /></div><div id=\"over\" style=\"position:absolute;left:"+fleft+"px;top:"+ftop+"px;width:800px;height:209px;z-index:5;display:none;background-image:url('graphics/title/ToA_banner_blank.gif');background-position: 0px 0px\"></div>";
+  var firstpage = "<div id='allofem'><div id='ToA' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;width:800;height:209;display:none'><img src='graphics/title/ToA_banner_blank.gif' /></div><div id=\"over\" style=\"position:absolute;left:"+fleft+"px;top:"+ftop+"px;width:2px;height:209px;z-index:5;display:none;background-image:url('graphics/title/ToA_banner_ToA-only.gif');background-position: 0px 0px\"></div>";
   firstpage += "<div id='sign' style='position:absolute;z-index:10;left:" + signl + "px;display:none;top:" + signt + "px;width:162;height:52;background-image:url(\"graphics/title/games_signature.gif\");background-position: 0px 0px;color:white'></div>";
   var animateto = fleft+800;
   fleft = fleft+370;
@@ -97,31 +97,35 @@ $(document).ready(function() {
   $("#maindiv").html(firstpage);
   setTimeout(function() {
   dusong = DUPlayMusic("Dark Unknown");
-  $("#over").fadeIn(1500, function() {
-    $("#ToA").css("display", "inline");
-    $("#over").animate({ left: animateto + "px", width: "0px", backgroundPosition: "-800px 0px" }, 4200, function() {
-      $("#sign").css("display", "inline");
-      Signature(-52);
+    $("#ToA").fadeIn(1700, function() {
+      $("#over").css("display", "inline");
+      $("#over").animate({ width: "800px" }, 3700, function() {
+        $("#sign").css("display", "inline");
+        Signature(-52);
+      });
     });
-  });
-  }, 20);
+  }, 50);
 });
 
 function Signature(val) {
   if (val === -4212) { FirstPage(); return; }
   $("#sign").css("background-position", "0px " + val + "px");
-  setTimeout(function() { Signature(val-52);}, 100);
+  setTimeout(function() { Signature(val-52);}, 25);
 }
 
 function FirstPage() {
+  $("#ToA").html("<img src='graphics/title/ToA_banner-b.gif' />");
+  $("#sign").css("display","none");
+  $("#over").css("display","none");
   $("#and").fadeIn(1200, function() {
     $("#gf").fadeIn(700, function() {
       $("#present").fadeIn(1400, function() {
-        return;
         setTimeout(function() {
           $("#present").fadeOut(1000);
           $("#gf").fadeOut(1000);
           $("#and").fadeOut(1000);
+          $("#sign").fadeOut(1000);
+          $("#over").fadeOut(1000);
           $("#ToA").fadeOut(1000, function() {
             SecondPage();
           });
