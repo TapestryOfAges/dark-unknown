@@ -97,7 +97,7 @@ $(document).ready(function() {
   $("#maindiv").html(firstpage);
   setTimeout(function() {
   dusong = DUPlayMusic("Dark Unknown");
-  $("#over").fadeIn(2000, function() {
+  $("#over").fadeIn(1500, function() {
     $("#ToA").css("display", "inline");
     $("#over").animate({ left: animateto + "px", width: "0px", backgroundPosition: "-800px 0px" }, 4200, function() {
       $("#sign").css("display", "inline");
