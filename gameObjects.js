@@ -7931,7 +7931,46 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
 
 NPCObject.prototype.processDeath = function(droploot){
   if (this.checkType("PC")) {
-    
+    maintext.AddText("You have died!");
+    var newmap = new GameMap();
+    if (maps.getMap("landsbeyond")) {
+      newmap = maps.getMap("landsbeyond");
+      // though I'm confused about why this is already in memory!
+    } else {
+      newmap.loadMap("landsbeyond");
+      maps.addMapByRef(newmap);
+    }
+    var tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, 7, 7);
+    $("#mainview").fadeOut(1500, function() {
+      maintext.AddText("You find yourself floating bodiless in the void.");
+      setTimeout(function() {
+        DrawMainFrame("draw", "landsbeyond", 7,7);
+        $("#mainview").fadeIn(1000, function() {
+          maintext.AddText("There is nought to do but meditate upon your life, and the triumphs and errors it contained.");
+          setTimeout(function() {
+            maintext.AddText("Suddenly a voice cries out in the darkness!");
+            setTimeout(function() {
+              maintext.AddText('"The world is not finished with thee, ' + PC.getPCName() + '!"');
+              setTimeout(function() {
+                maintext.AddText('"By the strength of this land I bid thee return!"');
+                // play sound effect
+                var returnmap = new GameMap();
+                if (maps.getMap("olympus1")) {
+                  returnmap = maps.getMap("olympus1");
+                  // though again, this shouldn't be in memory
+                } else {
+                  returnmap.loadMap("olympus1");
+                  maps.addMapByRef(returnmap);
+                }
+                tile = MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,29,16);
+                DrawMainFrame("draw","olympus1",29,16);
+              }, 1000);
+            }, 1000);
+          }, 1000);
+        } , 1000);
+      });
+    });
+    return;
   } else {
     var corpse = {};
     var chest;
