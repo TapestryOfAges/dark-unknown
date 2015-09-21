@@ -205,8 +205,7 @@ mappages["darkunknown"].onload = function(mapref) {
     
   // Place spawners  
   if (gamestate.getMode() !== "loadgame") {
-    Placeonyxspawn(mapref);
-    Placeislandspawn(mapref);
+    Placespawns(mapref);
   // give specs to teleporters
     var shrinetile = mapref.getTile(13,82);
     var shrine = shrinetile.getTopFeature();
@@ -229,7 +228,7 @@ mappages["darkunknown"].onload = function(mapref) {
   
 }
 
-function Placeonyxspawn(mapref) {
+function Placespawns(mapref) {
   
   var onyxspawn = localFactory.createTile("Spawner");
   var onyxgroup = [];
@@ -251,12 +250,12 @@ function Placeonyxspawn(mapref) {
   onyxspawn.evolve[3][0] = "spawngroup";
   onyxspawn.evolve[3][1] = new Array("HoodGroupLarge","RogueGroupSmall","RogueGroupLarge","ThiefGroupSmall","ThiefGroupLarge");
   
+  var freq = 90 + RollDice("1d20");
+  onyxspawn.setSpawnFreq(freq);
+  
   mapref.placeThing(57,122,onyxspawn);
     
-}
-
-function Placeislandspawn(mapref) {
-  
+      
   var spawn = localFactory.createTile("Spawner");
   var group = [];
   group[0] = "DrakesSmallGroup";
@@ -270,9 +269,233 @@ function Placeislandspawn(mapref) {
   spawn.evolve[6] = [];
   spawn.evolve[6][0] = "spawnLeash";
   spawn.evolve[6][1] = 20;
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
   
   mapref.placeThing(18,17,spawn);
     
+    
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "GiantRatGroupSmall";
+  group[1] = "SnakesGroup";
+  
+  spawn.setSpawngroup(group);
+  spawn.setMaxSpawns(3);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+  
+  spawn.evolve[2] = [];
+  spawn.evolve[2][0] = "spawngroup";
+  spawn.evolve[2][1] = new Array("GiantRatGroupSmall", "SnakesGroup", "HeadlessGroupSmall");
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "LowbiePartyGroup");
+  spawn.evolve[4] = [];
+  spawn.evolve[4][0] = "spawngroup";
+  spawn.evolve[4][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "MidPartyGroup", "MidHeadlessGroup");
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(60,25,spawn);
+  
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "GiantRatGroupSmall";
+  group[1] = "SnakesGroup";
+  
+  spawn.setSpawngroup(group);
+  spawn.setMaxSpawns(3);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+  
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupSmall");
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(90,16,spawn);
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "GiantRatGroupSmall";
+  group[1] = "SnakesGroup";
+  
+  spawn.setSpawngroup(group);
+  spawn.setMaxSpawns(2);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+  
+  spawn.evolve[2] = [];
+  spawn.evolve[2][0] = "spawngroup";
+  spawn.evolve[2][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "OrcGroupSmall");
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "OrcGroupLarge");
+  spawn.evolve[4] = [];
+  spawn.evolve[4][0] = "spawngroup";
+  spawn.evolve[4][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "OrcGroupLarge", "OrcPartyLowGroup");
+  spawn.evolve[5] = [];
+  spawn.evolve[5][0] = "spawngroup";
+  spawn.evolve[5][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "OrcPartyHighGroup", "OrcPartyLowGroup");
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(97,30,spawn);
+  
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "GiantRatGroupSmall";
+  group[1] = "SnakesGroup";
+  
+  spawn.setSpawngroup(group);
+  spawn.setMaxSpawns(3);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+  
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "DrakesSmallGroup");
+  spawn.evolve[4] = [];
+  spawn.evolve[4][0] = "spawngroup";
+  spawn.evolve[4][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "DrakesSmallGroup", "DrakesLargeGroup");
+  spawn.evolve[5] = [];
+  spawn.evolve[5][0] = "spawngroup";
+  spawn.evolve[5][1] = new Array("MidSnakesGroup", "DrakesSmallGroup", "DragonsGroup");
+
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(118,31,spawn);
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "GiantRatGroupSmall";
+  group[1] = "SnakesGroup";
+  
+  spawn.setSpawngroup(group);
+  spawn.setMaxSpawns(3);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+  
+  spawn.evolve[2] = [];
+  spawn.evolve[2][0] = "spawngroup";
+  spawn.evolve[2][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup");
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "OrcGroupSmall");
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(81,46,spawn);
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "GiantRatGroupSmall";
+  group[1] = "SnakesGroup";
+  
+  spawn.setSpawngroup(group);
+  spawn.setMaxSpawns(3);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+  
+  spawn.evolve[2] = [];
+  spawn.evolve[2][0] = "spawngroup";
+  spawn.evolve[2][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup");
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "RogueGroupSmall", "LowbiePartyGroup");
+  spawn.evolve[4] = [];
+  spawn.evolve[4][0] = "spawngroup";
+  spawn.evolve[4][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "RogueGroupSmall", "LowbiePartyGroup", "MidPartyGroup");
+  spawn.evolve[5] = [];
+  spawn.evolve[5][0] = "spawngroup";
+  spawn.evolve[5][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "MidHighPartyGroup", "LowbiePartyGroup", "MidPartyGroup");
+  spawn.evolve[7] = [];
+  spawn.evolve[7][0] = "spawngroup";
+  spawn.evolve[7][1] = new Array("MidPartyGroup", "MidHighPartyGroup", "HighPartyGroup", "NecromancerGroup", "ElementalistGroup");
+  
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(88,81,spawn);
+
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "DrakesSmallGroup";
+  group[1] = "SnakesGroup";
+  
+  spawn.setSpawngroup(group);
+  spawn.setMaxSpawns(1);
+  spawn.setSpawnRadius(5);
+  spawn.setSpawnLeash(30);
+  spawn.setSpawnSoftLeash(20);  
+  
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("DrakesSmallGroup", "DrakesLargeGroup");
+  spawn.evolve[4] = [];
+  spawn.evolve[4][0] = "spawngroup";
+  spawn.evolve[4][1] = new Array("DrakesSmallGroup", "DrakesLargeGroup", "DragonsGroup");
+  spawn.evolve[6] = [];
+  spawn.evolve[6][0] = "spawngroup";
+  spawn.evolve[6][1] = new Array("MidSnakesGroup", "DrakesSmallGroup", "DragonsGroup", "DaemonGroup");
+  spawn.evolve[7] = [];
+  spawn.evolve[7][0] = "spawnLeash";
+  spawn.evolve[7][1] = 46;
+  spawn.evolve[7][2] = "spawnSoftLeash";
+  spawn.evolve[7][3] = 35;
+  spawn.evolve[8][0] = "spawnLeash";
+  spawn.evolve[8][1] = 200;
+  spawn.evolve[8][2] = "spawnSoftLeash";
+  spawn.evolve[8][3] = 200;
+
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(134,77,spawn);
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "HoodGroupSmall";
+  group[1] = "HoodGroupSmall";
+  group[2] = "HoodGroupLarge";
+  group[3] = "PitRogueGroupSmall";
+
+  spawn.setSpawngroup(group);
+  spawn.setSpawnRadius(3);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+
+  spawn.evolve[2] = [];
+  spawn.evolve[2][0] = "spawngroup";
+  spawn.evolve[2][1] = new Array("HoodGroupSmall","HoodGroupLarge","PitRogueGroupSmall","PitRogueGroupSmall","ThiefGroupSmall");
+
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("PitRogueGroupSmall","PitRogueGroupSmall","ThiefGroupSmall","ThiefGroupLarge");
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(119,75,spawn);
+   
 }
 
 function CreateNetwork(mapref) {
@@ -417,3 +640,48 @@ mappages["gnomeland"].returnx = '';
 mappages["gnomeland"].returny = '';
 mappages["gnomeland"].returninfused = '0';
 mappages["gnomeland"].linkedMaps = [""];
+
+mappages["landsbeyond"] = {};
+mappages["landsbeyond"].terrain = [];
+ mappages["landsbeyond"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["landsbeyond"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["landsbeyond"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["landsbeyond"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["landsbeyond"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["landsbeyond"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["landsbeyond"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["landsbeyond"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["landsbeyond"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["landsbeyond"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["landsbeyond"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["landsbeyond"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["landsbeyond"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["landsbeyond"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["landsbeyond"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["landsbeyond"].features = [];
+
+
+mappages["landsbeyond"].npcs = [];
+
+mappages["landsbeyond"].desc = "The Lands Beyond";
+mappages["landsbeyond"].music = '';
+mappages["landsbeyond"].exitmap = '';
+mappages["landsbeyond"].exitx = '65';
+mappages["landsbeyond"].exity = '70';
+mappages["landsbeyond"].wraps = 'None';
+mappages["landsbeyond"].enterx = '64';
+mappages["landsbeyond"].entery = '71';
+mappages["landsbeyond"].seeBelow = '';
+mappages["landsbeyond"].lightLevel = 'bright';
+mappages["landsbeyond"].alwaysRemember = '0';
+mappages["landsbeyond"].scale = '0';
+mappages["landsbeyond"].enterscript = '';
+mappages["landsbeyond"].entertestscript = '';
+mappages["landsbeyond"].exitscript = '';
+mappages["landsbeyond"].exittestscript = '';
+mappages["landsbeyond"].returnmap = '';
+mappages["landsbeyond"].returnx = '';
+mappages["landsbeyond"].returny = '';
+mappages["landsbeyond"].returninfused = '0';
+mappages["landsbeyond"].linkedMaps = [""];
