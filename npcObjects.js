@@ -3107,6 +3107,18 @@ function RogueGroupSmallTile() {
 }
 RogueGroupSmallTile.prototype = new NPCGroupObject();
 
+function PitRogueGroupSmallTile() {
+  this.name = 'PitRogueGroupSmall';
+  this.desc = 'rogues';
+  this.peaceAI = 'Bandit-20';
+  this.graphic = '306.gif';
+  this.group = [];
+  this.group[0] = new NPCList('PitRogueNPC', '1d3+2');
+  this.group[1] = new NPCList('HoodNPC', '1d3+1');
+  this.movetype = MOVE_WALK;
+}
+PitRogueGroupSmallTile.prototype = new NPCGroupObject();
+
 function RogueGroupLargeTile() {
   this.name = 'RogueGroupLarge';
   this.desc = 'rogues';
@@ -3478,4 +3490,28 @@ function MagmaLizardGroupTile() {
   this.movetype = MOVE_WALK;
 }
 MagmaLizardGroupTile.prototype = new NPCGroupObject();
+
+function InsectsGroupSmallTile() {
+  this.name = 'InsectsGroupSmall';
+  this.desc = 'giant insects';
+  this.peaceAI = 'Animal-15';
+  this.graphic = '336.gif';
+  this.altgraphic = ['370.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('GiantInsectsNPC', '1d4');
+  this.movetype = MOVE_FLY;
+}
+InsectsGroupSmallTile.prototype = new NPCGroupObject();
+
+function InsectsGroupLargeTile() {
+  this.name = 'InsectsGroupLarge';
+  this.desc = 'giant insects';
+  this.peaceAI = 'Animal-15';
+  this.graphic = '336.gif';
+  this.altgraphic = ['370.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('GiantInsectsNPC', '2d4+1');
+  this.movetype = MOVE_;
+}
+InsectsGroupLargeTile.prototype = new NPCGroupObject();
 

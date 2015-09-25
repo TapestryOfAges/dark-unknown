@@ -89,7 +89,7 @@ mappages["nassau"].features[51] = {name : 'Door', x : 9, y : 23, desc : "locked 
 
 
 mappages["nassau"].npcs = [];
-mappages["nassau"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 28, y : 4, NPCName: 'Sanmuel', Alignment: 'good', Conversation: 'samuel', Gender: 'male'};
+mappages["nassau"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 28, y : 4, NPCName: 'Sanmuel', Desc: 'blind shepherd', Alignment: 'good', Conversation: 'samuel', Gender: 'male'};
 mappages["nassau"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 28, y : 12, NPCName: 'Daniel', Alignment: 'good', Conversation: 'daniel', Gender: 'male'};
 mappages["nassau"].npcs[2] = {name : 'TinkerVillagerNPC', x : 23, y : 24, NPCName: 'Kyvek', Conversation: 'kyvek', ConversationFlag: 'debt_paid', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["nassau"].npcs[3] = {name : 'DruidVillagerNPC', x : 3, y : 20, NPCName: 'Hazel', Desc: 'healer', Conversation: 'hazel', ConversationFlag: 'given_hood', Gender: 'female', Bark: '0', NPCBand: '0'};
