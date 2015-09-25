@@ -238,6 +238,7 @@ function Placespawns(mapref) {
   onyxgroup[3] = "RogueGroupSmall";
 
   onyxspawn.setSpawngroup(onyxgroup);
+  onyxspawn.setMaxSpawns(4);
   onyxspawn.setSpawnRadius(3);
   onyxspawn.setSpawnLeash(0);
   onyxspawn.setSpawnSoftLeash(0);
@@ -282,6 +283,7 @@ function Placespawns(mapref) {
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(3);
+  spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
   
@@ -308,6 +310,7 @@ function Placespawns(mapref) {
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(3);
+  spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
   
@@ -328,6 +331,7 @@ function Placespawns(mapref) {
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
+  spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
   
@@ -357,6 +361,7 @@ function Placespawns(mapref) {
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(3);
+  spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
   
@@ -384,6 +389,7 @@ function Placespawns(mapref) {
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(3);
+  spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
   
@@ -407,6 +413,7 @@ function Placespawns(mapref) {
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(3);
+  spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
   
@@ -459,6 +466,7 @@ function Placespawns(mapref) {
   spawn.evolve[7][1] = 46;
   spawn.evolve[7][2] = "spawnSoftLeash";
   spawn.evolve[7][3] = 35;
+  spawn.evolve[8] = [];
   spawn.evolve[8][0] = "spawnLeash";
   spawn.evolve[8][1] = 200;
   spawn.evolve[8][2] = "spawnSoftLeash";
@@ -480,6 +488,7 @@ function Placespawns(mapref) {
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(3);
+  spawn.setMaxSpawns(4);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
 
@@ -495,6 +504,229 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(119,75,spawn);
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "OrcGroupSmall";
+
+  spawn.setSpawngroup(group);
+  spawn.setSpawnRadius(3);
+  spawn.setSpawnLeash(25);
+  spawn.setSpawnSoftLeash(18);
+
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("OrcGroupSmall","OrcGroupLarge","LowbiePartyGroup");
+  
+  spawn.evolve[5] = [];
+  spawn.evolve[5][0] = "spawngroup";
+  spawn.evolve[5][1] = new Array("TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","LowbiePartyGroup","MidPartyGroup");
+
+  spawn.evolve[6] = [];
+  spawn.evolve[6][0] = "spawngroup";
+  spawn.evolve[6][1] = new Array("TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","MidHighPartyGroup","MidPartyGroup");
+  spawn.evolve[6][2] = "spawnLeash";
+  spawn.evolve[6][3] = 0;
+  spawn.evolve[6][4] = "spawnSoftLeash";
+  spawn.evolve[6][5] = 0;
+
+  spawn.evolve[7] = [];
+  spawn.evolve[7][0] = "spawngroup";
+  spawn.evolve[7][1] = new Array("TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","HighPartyGroup","MidHighPartyGroup");
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(42,49,spawn);
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "HeadlessGroupSmall";
+
+  spawn.setSpawngroup(group);
+  spawn.setSpawnRadius(3);
+  spawn.setMaxSpawns(4);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("HeadlessGroupSmall","HeadlessGroupLarge","HeadlessGroupLarge");
+
+  spawn.evolve[5] = [];
+  spawn.evolve[5][0] = "spawngroup";
+  spawn.evolve[5][1] = new Array("HeadlessGroupSmall","HeadlessGroupLarge","HeadlessGroupLarge","DrakesSmallGroup");
+
+  spawn.evolve[6] = [];
+  spawn.evolve[6][0] = "spawngroup";
+  spawn.evolve[6][1] = new Array("HeadlessGroupSmall","HeadlessGroupLarge","HeadlessGroupLarge","DrakesSmallGroup","DrakesLargeGroup","DragonsGroup");
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(29,47,spawn);
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "SnakesGroup";
+
+  spawn.setSpawngroup(group);
+  spawn.setSpawnRadius(6);
+  spawn.setMaxSpawns(2);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+
+  spawn.evolve[2] = [];
+  spawn.evolve[2][0] = "spawngroup";
+  spawn.evolve[2][1] = new Array("SnakesGroup","MidSnakesGroup");
+
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("SnakesGroup","MidSnakesGroup","MidSnakesGroup","GazersGroup");
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(125,124,spawn);
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "OrcGroupSmall";
+
+  spawn.setSpawngroup(group);
+  spawn.setSpawnRadius(4);
+  spawn.setMaxSpawns(4);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+
+  spawn.evolve[2] = [];
+  spawn.evolve[2][0] = "spawngroup";
+  spawn.evolve[2][1] = new Array("OrcGroupSmall","OrcGroupSmall","OrcGroupLarge");
+
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("OrcGroupSmall","OrcGroupLarge","OrcGroupLarge");
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(83,102,spawn);
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "GiantRatGroupSmall";
+  group[1] = "SnakesGroup";
+  group[2] = "InsectsGroupSmall";
+    
+  spawn.setSpawngroup(group);
+  spawn.setMaxSpawns(3);
+  spawn.setSpawnRadius(3);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+  
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "InsectsGroupLarge");
+  
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(31,124,spawn);
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "GiantRatGroupSmall";
+  group[1] = "SnakesGroup";
+  group[2] = "InsectsGroupSmall";
+    
+  spawn.setSpawngroup(group);
+  spawn.setMaxSpawns(2);
+  spawn.setSpawnRadius(3);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+  
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "InsectsGroupLarge");
+  
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(25,92,spawn);
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "OrcGroupSmall";
+
+  spawn.setSpawngroup(group);
+  spawn.setSpawnRadius(4);
+  spawn.setMaxSpawns(3);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+
+  spawn.evolve[2] = [];
+  spawn.evolve[2][0] = "spawngroup";
+  spawn.evolve[2][1] = new Array("OrcGroupSmall","OrcGroupSmall","OrcGroupLarge");
+
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("OrcGroupSmall","OrcGroupLarge","OrcGroupLarge");
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(26,115,spawn);
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "HeadlessGroupLarge";
+  group[1] = "GazersGroup";
+  group[2] = "OrcPartyLowGroup";
+  group[3] = "OrcPartyHighGroup";
+
+  spawn.setSpawngroup(group);
+  spawn.setSpawnRadius(3);
+  spawn.setMaxSpawns(3);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+
+  spawn.evolve[6] = [];
+  spawn.evolve[6][0] = "spawngroup";
+  spawn.evolve[6][1] = new Array("GazersGroup","HeadlessGroupLarge","HeadlessGroupLarge","OrcPartyHighGroup","DaemonGroup");
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(81,112,spawn);
+
+
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "TrollGroup";
+  group[1] = "TrollGroup";
+  group[2] = "GiantsGroup";
+
+  spawn.setSpawngroup(group);
+  spawn.setSpawnRadius(3);
+  spawn.setMaxSpawns(3);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(84,127,spawn);
    
 }
 
