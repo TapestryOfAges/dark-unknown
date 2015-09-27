@@ -238,7 +238,7 @@ function Placespawns(mapref) {
   onyxgroup[3] = "RogueGroupSmall";
 
   onyxspawn.setSpawngroup(onyxgroup);
-  onyxspawn.setMaxSpawns(4);
+  onyxspawn.setMaxSpawns(3);
   onyxspawn.setSpawnRadius(3);
   onyxspawn.setSpawnLeash(0);
   onyxspawn.setSpawnSoftLeash(0);
@@ -255,7 +255,7 @@ function Placespawns(mapref) {
   onyxspawn.setSpawnFreq(freq);
   
   mapref.placeThing(57,122,onyxspawn);
-    
+  // Forest SW of Onyx  
       
   var spawn = localFactory.createTile("Spawner");
   var group = [];
@@ -274,7 +274,7 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(18,17,spawn);
-    
+  // center of NW island
     
   spawn = localFactory.createTile("Spawner");
   group = [];
@@ -282,7 +282,7 @@ function Placespawns(mapref) {
   group[1] = "SnakesGroup";
   
   spawn.setSpawngroup(group);
-  spawn.setMaxSpawns(3);
+  spawn.setMaxSpawns(2);
   spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
@@ -301,28 +301,29 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(60,25,spawn);
-  
+  // entrance to valley with Asharden Tower
 
   spawn = localFactory.createTile("Spawner");
   group = [];
   group[0] = "GiantRatGroupSmall";
   group[1] = "SnakesGroup";
+  group[2] = "InsectsGroupSmall";
   
   spawn.setSpawngroup(group);
-  spawn.setMaxSpawns(3);
+  spawn.setMaxSpawns(1);
   spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
   
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupSmall");
+  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupSmall", "InsectsGroupLarge");
   
   freq = 90 + RollDice("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(90,16,spawn);
-
+  // NE of Clear Lagoon
 
   spawn = localFactory.createTile("Spawner");
   group = [];
@@ -352,7 +353,7 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(97,30,spawn);
-  
+  // Shadow
 
   spawn = localFactory.createTile("Spawner");
   group = [];
@@ -360,7 +361,7 @@ function Placespawns(mapref) {
   group[1] = "SnakesGroup";
   
   spawn.setSpawngroup(group);
-  spawn.setMaxSpawns(3);
+  spawn.setMaxSpawns(2);
   spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
@@ -380,7 +381,7 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(118,31,spawn);
-
+  // SW of Wealth
 
   spawn = localFactory.createTile("Spawner");
   group = [];
@@ -388,7 +389,7 @@ function Placespawns(mapref) {
   group[1] = "SnakesGroup";
   
   spawn.setSpawngroup(group);
-  spawn.setMaxSpawns(3);
+  spawn.setMaxSpawns(2);
   spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
@@ -404,22 +405,23 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(81,46,spawn);
-
+  // South of big lake
 
   spawn = localFactory.createTile("Spawner");
   group = [];
   group[0] = "GiantRatGroupSmall";
   group[1] = "SnakesGroup";
+  group[2] = "InsectsGroupSmall";
   
   spawn.setSpawngroup(group);
-  spawn.setMaxSpawns(3);
+  spawn.setMaxSpawns(2);
   spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
   
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup");
+  spawn.evolve[2][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "InsectsGroupLarge");
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
   spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "RogueGroupSmall", "LowbiePartyGroup");
@@ -438,7 +440,7 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(88,81,spawn);
-
+  // great plain
 
 
   spawn = localFactory.createTile("Spawner");
@@ -477,7 +479,8 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(134,77,spawn);
-
+  // Mt Drash
+  
 
   spawn = localFactory.createTile("Spawner");
   group = [];
@@ -488,7 +491,7 @@ function Placespawns(mapref) {
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(3);
-  spawn.setMaxSpawns(4);
+  spawn.setMaxSpawns(2);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
 
@@ -504,13 +507,14 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(119,75,spawn);
-
+  // Pit
 
   spawn = localFactory.createTile("Spawner");
   group = [];
   group[0] = "OrcGroupSmall";
 
   spawn.setSpawngroup(group);
+  spawn.setMaxSpawns(2);
   spawn.setSpawnRadius(3);
   spawn.setSpawnLeash(25);
   spawn.setSpawnSoftLeash(18);
@@ -539,7 +543,8 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(42,49,spawn);
-
+  // Death Unending
+  
 
   spawn = localFactory.createTile("Spawner");
   group = [];
@@ -547,7 +552,7 @@ function Placespawns(mapref) {
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(3);
-  spawn.setMaxSpawns(4);
+  spawn.setMaxSpawns(2);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
 
@@ -567,7 +572,7 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(29,47,spawn);
-
+  // World's Ending
 
   spawn = localFactory.createTile("Spawner");
   group = [];
@@ -591,7 +596,7 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(125,124,spawn);
-
+  // great swamp
 
   spawn = localFactory.createTile("Spawner");
   group = [];
@@ -599,7 +604,7 @@ function Placespawns(mapref) {
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(4);
-  spawn.setMaxSpawns(4);
+  spawn.setMaxSpawns(2);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
 
@@ -615,30 +620,7 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(83,102,spawn);
-
-
-  spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "GiantRatGroupSmall";
-  group[1] = "SnakesGroup";
-  group[2] = "InsectsGroupSmall";
-    
-  spawn.setSpawngroup(group);
-  spawn.setMaxSpawns(3);
-  spawn.setSpawnRadius(3);
-  spawn.setSpawnLeash(0);
-  spawn.setSpawnSoftLeash(0);
-  
-  spawn.evolve[3] = [];
-  spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "InsectsGroupLarge");
-  
-  
-  freq = 90 + RollDice("1d20");
-  spawn.setSpawnFreq(freq);
-  
-  mapref.placeThing(31,124,spawn);
-
+  // west of the two bridges
 
   spawn = localFactory.createTile("Spawner");
   group = [];
@@ -655,13 +637,39 @@ function Placespawns(mapref) {
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
   spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "InsectsGroupLarge");
+  spawn.evolve[4] = [];
+  spawn.evolve[4][0] = "maxSpawns";
+  spawn.evolve[4][1] = 1;
+  
+  
+  freq = 90 + RollDice("1d20");
+  spawn.setSpawnFreq(freq);
+  
+  mapref.placeThing(31,124,spawn);
+  // south end of western leg of continent
+
+  spawn = localFactory.createTile("Spawner");
+  group = [];
+  group[0] = "GiantRatGroupSmall";
+  group[1] = "SnakesGroup";
+  group[2] = "InsectsGroupSmall";
+    
+  spawn.setSpawngroup(group);
+  spawn.setMaxSpawns(1);
+  spawn.setSpawnRadius(3);
+  spawn.setSpawnLeash(0);
+  spawn.setSpawnSoftLeash(0);
+  
+  spawn.evolve[3] = [];
+  spawn.evolve[3][0] = "spawngroup";
+  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "InsectsGroupLarge");
   
   
   freq = 90 + RollDice("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(25,92,spawn);
-
+  // SE of Circle of Stones
 
   spawn = localFactory.createTile("Spawner");
   group = [];
@@ -669,7 +677,7 @@ function Placespawns(mapref) {
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(4);
-  spawn.setMaxSpawns(3);
+  spawn.setMaxSpawns(1);
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
 
@@ -680,12 +688,15 @@ function Placespawns(mapref) {
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
   spawn.evolve[3][1] = new Array("OrcGroupSmall","OrcGroupLarge","OrcGroupLarge");
+  spawn.evolve[3][2] = "maxSpawns";
+  spawn.evolve[3][3] = 2;
   
   freq = 90 + RollDice("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(26,115,spawn);
-
+  // Metal Twister
+  
 
   spawn = localFactory.createTile("Spawner");
   group = [];
@@ -708,7 +719,7 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(81,112,spawn);
-
+  // northern section of troll land
 
 
   spawn = localFactory.createTile("Spawner");
@@ -727,6 +738,7 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(84,127,spawn);
+  // Vault
    
 }
 
