@@ -1,6 +1,7 @@
 
 var barks = {};
 barks['jester'] = ['%THEDESC% sings, "Ho eye he hum!"'];
+barks['sam'] = ['%THEDESC% shouts, "Look at me!"'];
 
 barks.getBark = function(idx) {
   if (barks[idx]) {

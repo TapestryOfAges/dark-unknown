@@ -1,8 +1,8 @@
 mappages["nassau"] = {};
 mappages["nassau"].terrain = [];
  mappages["nassau"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
- mappages["nassau"].terrain[1] = '.. .. ## ## ## ## ## #O ## ## ## ## ## ## ## #O ## ## ## .. ,, .. .. .. ,, .. .. .. .. .. .. ..';
- mappages["nassau"].terrain[2] = '.. ,, ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ,, .. .. ,, .. .. .. ,, .. .. ,, .. ..';
+ mappages["nassau"].terrain[1] = '.. .. ## ## ## ## ## #O ## ## ## ## ## ## ## #O ## ## ## .. ,, .. .. .. ,, .. .. .. ,; .. .. ..';
+ mappages["nassau"].terrain[2] = '.. ,, ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ,, .. .. ,, .. .. ,; ,, .. .. ,, .. ..';
  mappages["nassau"].terrain[3] = '.. .. ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. ,, ,, .. .. ,, ,, .. .. ..';
  mappages["nassau"].terrain[4] = '.. .. ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ,, .. .. .. .. .. .. .. .. .. ..';
  mappages["nassau"].terrain[5] = ',, .. ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. ,, .. ,, .. .. .. .. .. ..';
@@ -89,7 +89,7 @@ mappages["nassau"].features[51] = {name : 'Door', x : 9, y : 23, desc : "locked 
 
 
 mappages["nassau"].npcs = [];
-mappages["nassau"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 28, y : 4, NPCName: 'Sanmuel', Desc: 'blind shepherd', Alignment: 'good', Conversation: 'samuel', Gender: 'male'};
+mappages["nassau"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 28, y : 4, NPCName: 'Samuel', Desc: 'blind shepherd', Alignment: 'good', Conversation: 'samuel', Gender: 'male'};
 mappages["nassau"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 28, y : 12, NPCName: 'Daniel', Alignment: 'good', Conversation: 'daniel', Gender: 'male'};
 mappages["nassau"].npcs[2] = {name : 'TinkerVillagerNPC', x : 23, y : 24, NPCName: 'Kyvek', Conversation: 'kyvek', ConversationFlag: 'debt_paid', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["nassau"].npcs[3] = {name : 'DruidVillagerNPC', x : 3, y : 20, NPCName: 'Hazel', Desc: 'healer', Conversation: 'hazel', ConversationFlag: 'given_hood', Gender: 'female', Bark: '0', NPCBand: '0'};
@@ -97,7 +97,7 @@ mappages["nassau"].npcs[4] = {name : 'RangerVillagerNPC', x : 11, y : 3, NPCName
 mappages["nassau"].npcs[5] = {name : 'AdventurerVillagerNPC', x : 13, y : 4, NPCName: 'Warren', Alignment: 'good', Conversation: 'warren', Gender: 'male'};
 mappages["nassau"].npcs[6] = {name : 'PaladinVillagerNPC', x : 9, y : 6, NPCName: 'Amaeryl', Alignment: 'good', Conversation: 'amaeryl', Gender: 'female'};
 mappages["nassau"].npcs[7] = {name : 'TownGuardNPC', x : 8, y : 13, NPCName: 'Guard', Alignment: 'good', Conversation: 'nassau_guard', Gender: 'male'};
-mappages["nassau"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 25, y : 3, NPCName: 'Kylee', Desc: 'worried mother', Alignment: 'good', Conversation: 'kylee', Gender: 'female'};
+mappages["nassau"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 25, y : 3, NPCName: 'Kylee', Desc: 'farmer', Alignment: 'good', Conversation: 'kylee', ConversationFlag: 'rescued_sam', Gender: 'female'};
 mappages["nassau"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 5, y : 2, NPCName: 'Ingrid', Alignment: 'good', Conversation: 'ingrid', Gender: 'female'};
 
 mappages["nassau"].desc = "the Village of Nassau";
@@ -121,3 +121,18 @@ mappages["nassau"].returnx = '29';
 mappages["nassau"].returny = '43';
 mappages["nassau"].returninfused = '0';
 mappages["nassau"].linkedMaps = [""];
+
+mappages["nassau"].onload = function(mapref) {
+  
+  if (DU.getflags["rescued_sam"]) {
+    var sam = localFactory.createTile("ChildVillagerNPC");
+    sam.setNPCName("Samantha");
+    sam.setConversation("samantha2");
+    sam.setGender("female");
+    sam.setDesc("excited girl");
+    sam.setPrefix("an");
+    sam.setBark("sam");
+    sam.setLeash(3);
+    mapref.placeThing(23,4,sam);
+  }
+}
