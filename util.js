@@ -1076,7 +1076,7 @@ function AddLoot(towhat) {
 function RollDamage(dam_val,extra) {
   var dmg = RollDice(dam_val);
   if (extra) { dmg += RollDice(extra); }
-  return dmg;
+  return parseInt(dmg);
 }
 
 function IsAdjacent(one,two) {

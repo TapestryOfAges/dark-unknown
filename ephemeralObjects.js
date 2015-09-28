@@ -152,6 +152,185 @@ DamageOverTimeObject.prototype.onTurn = function() {
 }
 
 // Called "Tiles" for consistency, not because it'll ever get placed
+function BlessingTile() {
+  this.addType("buff");
+  this.name = "Blessing";
+  this.display = "<span style='color:white'>B</span>";
+  this.zstatdesc = "You have been blessed.";
+  this.desc = "Blessing";
+  this.level = 4;
+}
+BlessingTile.prototype = new EphemeralObject();
+
+BlessingTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  who.setModStr(who.getModStr() + power);
+  who.setModDex(who.getModDex() + power);
+  who.setModInt(who.getModInt() + power);
+
+  if (who) {
+    if ((who === PC) && !silent) {
+      maintext.addText("You are blessed.");
+    }
+  }
+  return 1;
+}
+
+BlessingTile.prototype.doEffect = function() {
+  var resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+BlessingTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  who.deleteSpellEffect(this);
+  who.setModStr(who.getModStr() - power);
+  who.setModDex(who.getModDex() - power);
+  who.setModInt(who.getModInt() - power);
+
+  if ((who === PC) && !silent) {
+    maintext.addText("The blessing fades.");
+  }
+  DrawCharFrame();
+  return -1;
+}
+
+function BlessingStrTile() {
+  this.addType("buff");
+  this.name = "BlessingStr";
+  this.display = "<span style='color:white'>S</span>";
+  this.zstatdesc = "Your strength is improved.";
+  this.desc = "Strength";
+  this.level = 4;
+}
+BlessingStrTile.prototype = new EphemeralObject();
+
+BlessingStrTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  who.setModStr(who.getModStr() + power);
+
+  if (who) {
+    if ((who === PC) && !silent) {
+      maintext.addText("You feel stronger.");
+    }
+  }
+  return 1;
+}
+
+BlessingStrTile.prototype.doEffect = function() {
+  var resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+BlessingStrTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  who.deleteSpellEffect(this);
+  who.setModStr(who.getModStr() - power);
+
+  if ((who === PC) && !silent) {
+    maintext.addText("Your strength returns to normal.");
+  }
+  DrawCharFrame();
+  return -1;
+}
+
+function BlessingDexTile() {
+  this.addType("buff");
+  this.name = "BlessingDex";
+  this.display = "<span style='color:white'>D</span>";
+  this.zstatdesc = "Your dexterity is improved.";
+  this.desc = "Dexterity";
+  this.level = 4;
+}
+BlessingDexTile.prototype = new EphemeralObject();
+
+BlessingDexTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  who.setModDex(who.getModDex() + power);
+
+  if (who) {
+    if ((who === PC) && !silent) {
+      maintext.addText("You feel more agile.");
+    }
+  }
+  return 1;
+}
+
+BlessingDexTile.prototype.doEffect = function() {
+  var resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+BlessingDexTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  who.deleteSpellEffect(this);
+  who.setModDex(who.getModDex() - power);
+
+  if ((who === PC) && !silent) {
+    maintext.addText("Your dexterity returns to normal.");
+  }
+  DrawCharFrame();
+  return -1;
+}
+
+function BlessingIntTile() {
+  this.addType("buff");
+  this.name = "BlessingInt";
+  this.display = "<span style='color:white'>I</span>";
+  this.zstatdesc = "Your intelligence is improved.";
+  this.desc = "Intelligence";
+  this.level = 4;
+}
+BlessingIntTile.prototype = new EphemeralObject();
+
+BlessingIntTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  who.setModInt(who.getModInt() + power);
+
+  if (who) {
+    if ((who === PC) && !silent) {
+      maintext.addText("You feel smarter.");
+    }
+  }
+  return 1;
+}
+
+BlessingIntTile.prototype.doEffect = function() {
+  var resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+BlessingIntTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  who.deleteSpellEffect(this);
+  who.setModInt(who.getModInt() - power);
+
+  if ((who === PC) && !silent) {
+    maintext.addText("Your intelligence returns to normal.");
+  }
+  DrawCharFrame();
+  return -1;
+}
 
 function DiseaseTile() {
   this.addType("debuff");

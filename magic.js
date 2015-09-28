@@ -1244,6 +1244,38 @@ function TryToPlaceField(mapref, wherex, wherey, fieldname) {
   return 0;
 }
 
+// Blessing
+magic[4][GetSpellID(1)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Blessing.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+
+  var levobj = localFactory.createTile("Blessing");
+  
+  var dur = caster.getInt();
+  if (infused) { dur = dur * 3; }
+  var power = Math.floor(caster.getInt()/5)+1;
+  if (free) {
+    dur = RollDice("2d10+15") * SCALE_TIME;
+    power = RollDice("1d4+1");
+  }
+  var endtime = dur + DU.DUTime.getGameClock();
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  levobj.setPower(power);
+  levobj.setExpiresTime(endtime);
+  
+  caster.addSpellEffect(levobj);
+//  levobj.applyEffect();
+    
+  DrawCharFrame();
+  return resp;  
+}
+
 // Levitate/Waterwalk
 magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Water Walk.<br /></span>"); }
@@ -1463,6 +1495,9 @@ magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   var liobj = localFactory.createTile("Quickness");
   
   var dur = caster.getInt() * SCALE_TIME;
+  if (free) { 
+    dur = RollDice("1d10+5") * SCALE_TIME;
+  }
   if (infused) {dur = dur * 1.5; }
   var endtime = dur + DU.DUTime.getGameClock();
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }

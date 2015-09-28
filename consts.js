@@ -101,7 +101,7 @@ var DMG_HEAVY = "5d4+30";
 var DMG_TREMENDOUS = "5d8+55";
 var DMG_AUTOKILL = "255";
 
-var MANA_REGEN = 1.5;
+var MANA_REGEN = 4;
 var HP_REGEN = 20;
 
 // For sparkles
