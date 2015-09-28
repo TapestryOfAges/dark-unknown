@@ -2476,6 +2476,11 @@ tileFactory.prototype.makeRogueGroupSmallTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePitRogueGroupSmallTile = function() {
+  var newTile = new PitRogueGroupSmallTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRogueGroupLargeTile = function() {
   var newTile = new RogueGroupLargeTile();
   return newTile;
@@ -2491,8 +2496,8 @@ tileFactory.prototype.makeThiefGroupLargeTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeLowbiePartyTile = function() {
-  var newTile = new LowbiePartyTile();
+tileFactory.prototype.makeLowbiePartyGroupTile = function() {
+  var newTile = new LowbiePartyGroupTile();
   return newTile;
 }
 
@@ -2506,8 +2511,143 @@ tileFactory.prototype.makeHeadlessGroupLargeTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeSnakesTile = function() {
-  var newTile = new SnakesTile();
+tileFactory.prototype.makeSnakesGroupTile = function() {
+  var newTile = new SnakesGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMidSnakesGroupTile = function() {
+  var newTile = new MidSnakesGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDrakesSmallGroupTile = function() {
+  var newTile = new DrakesSmallGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDrakesLargeGroupTile = function() {
+  var newTile = new DrakesLargeGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDragonsGroupTile = function() {
+  var newTile = new DragonsGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMidPartyGroupTile = function() {
+  var newTile = new MidPartyGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMidHighPartyGroupTile = function() {
+  var newTile = new MidHighPartyGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHighPartyGroupTile = function() {
+  var newTile = new HighPartyGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMidHeadlessGroupTile = function() {
+  var newTile = new MidHeadlessGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHighHeadlessGroupTile = function() {
+  var newTile = new HighHeadlessGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGiantsGroupTile = function() {
+  var newTile = new GiantsGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrcPartyLowGroupTile = function() {
+  var newTile = new OrcPartyLowGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOrcPartyHighGroupTile = function() {
+  var newTile = new OrcPartyHighGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNecromancerGroupTile = function() {
+  var newTile = new NecromancerGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeElementalistGroupTile = function() {
+  var newTile = new ElementalistGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGazersGroupTile = function() {
+  var newTile = new GazersGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTrollGroupTile = function() {
+  var newTile = new TrollGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDaemonGroupTile = function() {
+  var newTile = new DaemonGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSkeletonGroupTile = function() {
+  var newTile = new SkeletonGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeUndeadGroupTile = function() {
+  var newTile = new UndeadGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFireLizardGroupTile = function() {
+  var newTile = new FireLizardGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMagmaLizardGroupTile = function() {
+  var newTile = new MagmaLizardGroupTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeInsectsGroupSmallTile = function() {
+  var newTile = new InsectsGroupSmallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeInsectsGroupLargeTile = function() {
+  var newTile = new InsectsGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlessingTile = function() {
+  var newTile = new BlessingTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlessingStrTile = function() {
+  var newTile = new BlessingStrTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlessingDexTile = function() {
+  var newTile = new BlessingDexTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlessingIntTile = function() {
+  var newTile = new BlessingIntTile();
   return newTile;
 }
 

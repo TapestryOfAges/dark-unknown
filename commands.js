@@ -1751,14 +1751,24 @@ function DrawStats(page) {
   var statsdiv = "&nbsp;";
    
  if (page === 1) {
+  var spanstr = "<span>";
+  if (PC.getStr() > PC.getBaseStr()) { spanstr = '<span style="color:cyan">'; }
+  if (PC.getStr() < PC.getBaseStr()) { spanstr = '<span style="color:orange">'; }
+  var spandex = "<span>";
+  if (PC.getDex() > PC.getBaseDex()) { spandex = '<span style="color:cyan">'; }
+  if (PC.getDex() < PC.getBaseDex()) { spandex = '<span style="color:orange">'; }
+  var spanint = "<span>";
+  if (PC.getInt() > PC.getBaseInt()) { spanint = '<span style="color:cyan">'; }
+  if (PC.getInt() < PC.getBaseInt()) { spanint = '<span style="color:orange">'; }
+    
   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'><tr>";
   statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
   statsdiv += "<tr><td style='width:50%'>HP: " + PC.getDisplayHP() + "/" + PC.getMaxHP() + "</td><td></td>";
   statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
-  statsdiv += "<tr><td>STR: " + PC.getStr() + "</td><td></td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
-  statsdiv += "<tr><td>DEX: " + PC.getDex() + "</td><td></td><td>XP: ";
+  statsdiv += "<tr><td>STR: " + spanstr + "" + PC.getStr() + "</span></td><td></td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
+  statsdiv += "<tr><td>DEX: " + spandex + "" + PC.getDex() + "</span></td><td></td><td>XP: ";
   if (EarnedLevel(PC)) {
     statsdiv += "<span class='leveled'>";
   }
@@ -1767,7 +1777,7 @@ function DrawStats(page) {
     statsdiv += "</span>";
   }
   statsdiv += "</td></tr>";
-  statsdiv += "<tr><td>INT: " + PC.getInt() + "</td><td></td><td>Training: " + PC.gettp() + "</td></tr>";
+  statsdiv += "<tr><td>INT: " + spanint + "" + PC.getInt() + "</span></td><td></td><td>Training: " + PC.gettp() + "</td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
   statsdiv += "<tr><td>Gold: " + PC.getGold() + "</td><td></td><td></td></tr>";
   statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";

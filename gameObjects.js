@@ -6502,6 +6502,7 @@ function GreenPotionTile() {
 GreenPotionTile.prototype = new PotionItemObject();
 
 GreenPotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
   var retval = {}
   retval["fin"] = 1;
   var poisontile = localFactory.createTile("Poison");
@@ -6526,6 +6527,13 @@ function DarkGreenPotionTile() {
 }
 DarkGreenPotionTile.prototype = new PotionItemObject();
 
+DarkGreenPotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
+  var retval = {};
+  retval = magic[8][GetSpellID(4)].executeSpell(PC, 0, 1);
+  return retval;
+}
+
 // str potion
 function SilverPotionTile() {
   this.name = "SilverPotion";
@@ -6538,6 +6546,26 @@ function SilverPotionTile() {
 }
 SilverPotionTile.prototype = new PotionItemObject();
 
+SilverPotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
+  var resp = {};
+  resp["fin"] = 1;
+
+  var levobj = localFactory.createTile("BlessingStr");
+  
+  var dur = RollDice("2d10+15");
+  var power = RollDice("1d4+1");
+  var endtime = dur + DU.DUTime.getGameClock();
+  if (debug) { dbs.writeln("<span style='color:green'>Potion of Strength: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  levobj.setPower(power);
+  levobj.setExpiresTime(endtime);
+  
+  who.addSpellEffect(levobj);
+    
+  DrawCharFrame();
+  return resp;  
+}
+  
 // dex potion
 function PinkPotionTile() {
   this.name = "PinkPotion";
@@ -6549,6 +6577,26 @@ function PinkPotionTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 PinkPotionTile.prototype = new PotionItemObject();
+
+PinkPotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
+  var resp = {};
+  resp["fin"] = 1;
+
+  var levobj = localFactory.createTile("BlessingDex");
+  
+  var dur = RollDice("2d10+15");
+  var power = RollDice("1d4+1");
+  var endtime = dur + DU.DUTime.getGameClock();
+  if (debug) { dbs.writeln("<span style='color:green'>Potion of Dexterity: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  levobj.setPower(power);
+  levobj.setExpiresTime(endtime);
+  
+  who.addSpellEffect(levobj);
+    
+  DrawCharFrame();
+  return resp;  
+}
 
 // int potion
 function GreyPotionTile() {
@@ -6562,6 +6610,26 @@ function GreyPotionTile() {
 }
 GreyPotionTile.prototype = new PotionItemObject();
 
+GreyPotionTile.prototype.use = function(who) {
+  var resp = {};
+  DUPlaySound("sfx_potion");
+  resp["fin"] = 1;
+
+  var levobj = localFactory.createTile("BlessingInt");
+  
+  var dur = RollDice("2d10+15");
+  var power = RollDice("1d4+1");
+  var endtime = dur + DU.DUTime.getGameClock();
+  if (debug) { dbs.writeln("<span style='color:green'>Potion of Intelligence: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  levobj.setPower(power);
+  levobj.setExpiresTime(endtime);
+  
+  who.addSpellEffect(levobj);
+    
+  DrawCharFrame();
+  return resp;  
+}
+
 // greater mana potion
 function BrownPotionTile() {
   this.name = "BrownPotion";
@@ -6573,6 +6641,17 @@ function BrownPotionTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 BrownPotionTile.prototype = new PotionItemObject();
+
+BrownPotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
+  who.setMana(who.getMaxMana());
+  var retval = {};
+  retval["fin"] = 1;
+  if (who === PC) {
+    retval["txt"] = "You feel refreshed!";
+  }
+  return retval;
+}
 
 // cure potion
 function RedPotionTile() {
@@ -6665,6 +6744,20 @@ function OrangePotionTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 OrangePotionTile.prototype = new PotionItemObject();
+
+OrangePotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
+  var mana = RollDice("2d6+1");
+  who.setMana(who.getMana() + mana);
+  if (who.getMana() > who.getMaxMana()) { who.setMana(who.getMaxMana()); }
+  var retval = {};
+  retval["fin"] = 1;
+  if (who === PC) {
+    retval["txt"] = "You feel refreshed!";
+  }
+  return retval;
+}
+
 
 // scrolls
 
@@ -8104,13 +8197,13 @@ NPCObject.prototype.getOrbStr = function() {
 
 NPCObject.prototype.setModStr = function(newstr) {
   newstr = parseInt(newstr);
-  if (!isNaN) { this.modstr = newstr; }
+  if (!isNaN(newstr)) { this.modstr = newstr; }
   return this.getStr();
 }
 
 NPCObject.prototype.setOrbStr = function(newstr) {
   newstr = parseInt(newstr);
-  if (!isNaN) { this.orbstr = newstr; }
+  if (!isNaN(newstr)) { this.orbstr = newstr; }
   return this.getStr();
 }
 
@@ -8151,7 +8244,7 @@ NPCObject.prototype.getOrbDex = function() {
 
 NPCObject.prototype.setModDex = function(newdex) {
   newdex = parseInt(newdex);
-  if (!isNaN) { this.moddex = newdex; }
+  if (!isNaN(newdex)) { this.moddex = newdex; }
   return this.getDex();
 }
 
@@ -8166,13 +8259,13 @@ NPCObject.prototype.setBaseInt = function(newint) {
 
 NPCObject.prototype.setModInt = function(newint) {
   newint = parseInt(newint);
-  if (!isNaN) { this.modint = newint; }
+  if (!isNaN(newint)) { this.modint = newint; }
   return this.getInt();
 }
 
 NPCObject.prototype.setOrbInt = function(newint) {
   newint = parseInt(newint);
-  if (!isNaN) { this.orbint = newint; }
+  if (!isNaN(newint)) { this.orbint = newint; }
   return this.getInt();
 }
 
