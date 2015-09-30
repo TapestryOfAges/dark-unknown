@@ -630,7 +630,7 @@ function OpenContainer() {
     var retval = {}; 
     
     if (this.getLootedID()) {
-      if (DU.gameflags[newfeature.getLootedID()]) {
+      if (DU.gameflags[this.getLootedID()]) {
         this.setLootgroup("prev_looted");
       }
     }

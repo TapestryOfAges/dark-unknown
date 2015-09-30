@@ -145,6 +145,30 @@ function SetLoots() {
   loots['Small Animal'].goldDice = '1d3';
   loots['Small Animal'].goldChance = 30;
 
+  loots['olympus_secret'] = new LootTable();
+  loots['olympus_secret'].goldDice = '2d20';
+  loots['olympus_secret'].goldChance = 100;
+  loots['olympus_secret'].loot[0] = {};
+  loots['olympus_secret'].loot[0].objname = 'Scrolls1';
+  loots['olympus_secret'].loot[0].quantity = '1d2';
+  loots['olympus_secret'].loot[0].chance = 25;
+  loots['olympus_secret'].loot[1] = {};
+  loots['olympus_secret'].loot[1].objname = 'Lesser Weapon';
+  loots['olympus_secret'].loot[1].quantity = '1d2';
+  loots['olympus_secret'].loot[1].chance = 60;
+  loots['olympus_secret'].loot[2] = {};
+  loots['olympus_secret'].loot[2].objname = 'Lesser Armor';
+  loots['olympus_secret'].loot[2].quantity = '1';
+  loots['olympus_secret'].loot[2].chance = 33;
+  loots['olympus_secret'].loot[3] = {};
+  loots['olympus_secret'].loot[3].objname = 'Potions1';
+  loots['olympus_secret'].loot[3].quantity = '1d2';
+  loots['olympus_secret'].loot[3].chance = 40;
+
+  loots['prev_looted'] = new LootTable();
+  loots['prev_looted'].goldDice = '1d4';
+  loots['prev_looted'].goldChance = 100;
+
   return loots;
 }
 
@@ -167,16 +191,16 @@ function SetLootGroups() {
   DULootGroup.setTreasureType('Scrolls3',
   [
     'ScrollDisruptUndead', 1,
-    'ScrollWallOfFlame', 1,
     'ScrollFireArmor', 1,
     'ScrollFireball', 1,
+    'ScrollWallOfFlame', 1,
     'ScrollIceball', 1,
   ]);
 
   DULootGroup.setTreasureType('Lesser Weapon',
   [
     'Dagger', 2,
-    'Short Sword', 1,
+    'Shortsword', 1,
   ]);
 
   DULootGroup.setTreasureType('Scroll4',
@@ -276,7 +300,7 @@ function SetLootGroups() {
     'Axe', 2,
     'Dagger', 3,
     'Mace', 2,
-    'Short Sword', 3,
+    'Shortsword', 3,
   ]);
 
   DULootGroup.setTreasureType('All Armor',
