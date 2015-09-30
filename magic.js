@@ -305,6 +305,7 @@ magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   var liobj = localFactory.createTile("Light");
   
   var dur = caster.getInt() * .3;
+  if (free) { dur = 5; }
   if (infused) {dur = dur * 3; }
   var endtime = dur + DU.DUTime.getGameClock();
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
@@ -489,7 +490,8 @@ magic[2][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
   }
   resp["fin"] = 1;
   
-  var healamt = RollDice(caster.getLevel() + "d8+" + caster.getLevel());
+  var lvl = Math.ceil(caster.getLevel()/2);
+  var healamt = RollDice(lvl + "d8+" + caster.getLevel());
   if (debug) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
   if (infused) { healamt = healamt * 1.5; }
   
@@ -1274,6 +1276,34 @@ magic[4][GetSpellID(1)].executeSpell = function(caster, infused, free) {
     
   DrawCharFrame();
   return resp;  
+}
+
+// Heal
+magic[4][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Heal.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+  
+  var plus = caster.getLevel()*2;
+  var healamt = RollDice(caster.getLevel() + "d8+" + plus);
+  if (debug) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
+  if (infused) { healamt = healamt * 1.5; }
+  
+  if (caster === PC) {
+    tgt = caster;
+  }
+  
+  ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+  tgt.healMe(healamt, caster);
+  resp["txt"] = "You feel better!";
+  
+  return resp;
+  
 }
 
 // Levitate/Waterwalk

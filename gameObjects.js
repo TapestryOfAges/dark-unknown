@@ -6685,6 +6685,13 @@ function WhitePotionTile() {
 }
 WhitePotionTile.prototype = new PotionItemObject();
 
+WhitePotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
+  var retval = {};
+  retval = magic[1][GetSpellID(5)].executeSpell(PC, 0, 1);
+  return retval;
+}
+
 // lesser heal potion
 function YellowPotionTile() {
   this.name = "YellowPotion";
