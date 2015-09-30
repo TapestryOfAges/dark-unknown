@@ -491,6 +491,7 @@ magic[2][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
   resp["fin"] = 1;
   
   var lvl = Math.ceil(caster.getLevel()/2);
+  if (free) { lvl = 3; }
   var healamt = RollDice(lvl + "d8+" + caster.getLevel());
   if (debug) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
   if (infused) { healamt = healamt * 1.5; }
@@ -694,6 +695,10 @@ magic[2][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   if (infused) { 
     duration = duration * 2; 
     power = Math.floor(power*3/2);
+  }
+  if (free) {
+    duration = 40 * SCALE_TIME;
+    power = RollDice("1d5+8");
   }
   var endtime = duration + DUTime.getGameClock();
   if (debug) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
@@ -1291,6 +1296,7 @@ magic[4][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
   
   var plus = caster.getLevel()*2;
   var healamt = RollDice(caster.getLevel() + "d8+" + plus);
+  if (free) { healamt = RollDice("4d8+10"); }
   if (debug) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
   if (infused) { healamt = healamt * 1.5; }
   
