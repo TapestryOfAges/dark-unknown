@@ -2121,6 +2121,11 @@ tileFactory.prototype.makeRogueNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePitRogueNPCTile = function() {
+  var newTile = new PitRogueNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSkeletonNPCTile = function() {
   var newTile = new SkeletonNPCTile();
   return newTile;
