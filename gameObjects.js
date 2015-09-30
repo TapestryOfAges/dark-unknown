@@ -6704,6 +6704,13 @@ function YellowPotionTile() {
 }
 YellowPotionTile.prototype = new PotionItemObject();
 
+YellowPotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
+  var retval = {};
+  retval = magic[2][GetSpellID(2)].executeSpell(PC, 0, 1);
+  return retval;
+}
+
 // protect potion
 function PurplePotionTile() {
   this.name = "PurplePotion";
@@ -6715,6 +6722,13 @@ function PurplePotionTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 PurplePotionTile.prototype = new PotionItemObject();
+
+PurplePotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
+  var retval = {};
+  retval = magic[2][GetSpellID(5)].executeSpell(PC, 0, 1);
+  return retval;
+}
 
 // bless potion
 function BlackPotionTile() {
@@ -6728,6 +6742,13 @@ function BlackPotionTile() {
 }
 BlackPotionTile.prototype = new PotionItemObject();
 
+BlackPotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
+  var retval = {};
+  retval = magic[4][GetSpellID(1)].executeSpell(PC, 0, 1);
+  return retval;
+}
+
 // heal potion
 function BluePotionTile() {
   this.name = "BluePotion";
@@ -6739,6 +6760,13 @@ function BluePotionTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 }
 BluePotionTile.prototype = new PotionItemObject();
+
+BluePotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
+  var retval = {};
+  retval = magic[4][GetSpellID(2)].executeSpell(PC, 0, 1);
+  return retval;
+}
 
 // mana potion
 function OrangePotionTile() {
