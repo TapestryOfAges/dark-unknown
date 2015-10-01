@@ -6799,8 +6799,16 @@ OrangePotionTile.prototype.use = function(who) {
 function ScrollItemObject() {
   this.addType("Scroll"); 
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.spelllevel = 1;
+  this.spellnumber = 1;
 }
 ScrollItemObject.prototype = new ConsumableItemObject();
+
+ScrollItemObject.prototype.use = function(who) {
+  var retval = {};
+  retval = magic[this.spelllevel][GetSpellID(this.spellnumber)].executeSpell(PC, 0, 1);
+  return retval;
+}
 
 function ScrollCureTile() {
   this.name = "ScrollCure";
@@ -6809,6 +6817,8 @@ function ScrollCureTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 1;
+  this.spellnum = 1;
 }
 ScrollCureTile.prototype = new ScrollItemObject;
 
@@ -6819,6 +6829,8 @@ function ScrollDisarmTrapTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 1;
+  this.spellnum = 2;
 }
 ScrollDisarmTrapTile.prototype = new ScrollItemObject;
 
@@ -6829,6 +6841,8 @@ function ScrollDistractTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 1;
+  this.spellnum = 3;
 }
 ScrollDistractTile.prototype = new ScrollItemObject;
 
@@ -6839,6 +6853,8 @@ function ScrollFlameBladeTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 1;
+  this.spellnum = 4;
 }
 ScrollFlameBladeTile.prototype = new ScrollItemObject;
 
@@ -6849,6 +6865,8 @@ function ScrollLightTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 1;
+  this.spellnum = 5;
 }
 ScrollLightTile.prototype = new ScrollItemObject;
 
@@ -6859,6 +6877,8 @@ function ScrollVulnerabilityTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 1;
+  this.spellnum = 6;
 }
 ScrollVulnerabilityTile.prototype = new ScrollItemObject;
 
@@ -6869,6 +6889,8 @@ function ScrollIllusionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 2;
+  this.spellnum = 1;
 }
 ScrollIllusionTile.prototype = new ScrollItemObject;
 
@@ -6879,6 +6901,8 @@ function ScrollLesserHealTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 2;
+  this.spellnum = 2;
 }
 ScrollLesserHealTile.prototype = new ScrollItemObject;
 
@@ -6889,6 +6913,8 @@ function ScrollMagicBoltTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 2;
+  this.spellnum = 3;
 }
 ScrollMagicBoltTile.prototype = new ScrollItemObject;
 
@@ -6899,6 +6925,8 @@ function ScrollPoisonCloudTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 2;
+  this.spellnum = 4;
 }
 ScrollPoisonCloudTile.prototype = new ScrollItemObject;
 
@@ -6909,6 +6937,8 @@ function ScrollProtectionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 2;
+  this.spellnum = 5;
 }
 ScrollProtectionTile.prototype = new ScrollItemObject;
 
@@ -6919,6 +6949,8 @@ function ScrollUnlockTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 2;
+  this.spellnum = 6;
 }
 ScrollUnlockTile.prototype = new ScrollItemObject;
 
@@ -6929,6 +6961,8 @@ function ScrollDisruptUndeadTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 3;
+  this.spellnum = 1;
 }
 ScrollDisruptUndeadTile.prototype = new ScrollItemObject;
 
@@ -6939,6 +6973,8 @@ function ScrollFireArmorTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 3;
+  this.spellnum = 2;
 }
 ScrollFireArmorTile.prototype = new ScrollItemObject;
 
@@ -6949,6 +6985,8 @@ function ScrollFireballTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 3;
+  this.spellnum = 3;
 }
 ScrollFireballTile.prototype = new ScrollItemObject;
 
@@ -6959,8 +6997,22 @@ function ScrollIceballTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 3;
+  this.spellnum = 4;
 }
 ScrollIceballTile.prototype = new ScrollItemObject;
+
+function ScrollTelekinesisTile() {
+  this.name = "ScrollTelekinesis";
+  this.desc = "scroll of Telekinesis";
+  this.prefix = "a";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-32";
+  this.spelllevel = 3;
+  this.spellnum = 5;
+}
+ScrollTelekinesisTile.prototype = new ScrollItemObject;
 
 function ScrollWallOfFlameTile() {
   this.name = "ScrollWallOfFlame";
@@ -6969,6 +7021,8 @@ function ScrollWallOfFlameTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 3;
+  this.spellnum = 6;
 }
 ScrollWallOfFlameTile.prototype = new ScrollItemObject;
 
@@ -6979,6 +7033,8 @@ function ScrollBlessingTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 4;
+  this.spellnum = 1;
 }
 ScrollBlessingTile.prototype = new ScrollItemObject;
 
@@ -6989,6 +7045,8 @@ function ScrollHealTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 4;
+  this.spellnum = 2;
 }
 ScrollHealTile.prototype = new ScrollItemObject;
 
@@ -6999,6 +7057,8 @@ function ScrollLifeDrainTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 4;
+  this.spellnum = 3;
 }
 ScrollLifeDrainTile.prototype = new ScrollItemObject;
 
@@ -7009,6 +7069,8 @@ function ScrollSmiteTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 4;
+  this.spellnum = 4;
 }
 ScrollSmiteTile.prototype = new ScrollItemObject;
 
@@ -7019,6 +7081,8 @@ function ScrollMirrorWardTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 5;
+  this.spellnum = 1;
 }
 ScrollMirrorWardTile.prototype = new ScrollItemObject;
 
@@ -7029,6 +7093,8 @@ function ScrollParalyzeTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 5;
+  this.spellnum = 2;
 }
 ScrollParalyzeTile.prototype = new ScrollItemObject;
 
@@ -7039,6 +7105,8 @@ function ScrollShockwaveTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 5;
+  this.spellnum = 4;
 }
 ScrollShockwaveTile.prototype = new ScrollItemObject;
 
@@ -7049,6 +7117,8 @@ function ScrollSummonAllyTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 5;
+  this.spellnum = 5;
 }
 ScrollSummonAllyTile.prototype = new ScrollItemObject;
 
@@ -7059,6 +7129,8 @@ function ScrollSwordstrikeTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 5;
+  this.spellnum = 6;
 }
 ScrollSwordstrikeTile.prototype = new ScrollItemObject;
 
@@ -7069,6 +7141,8 @@ function ScrollExplosionTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 6;
+  this.spellnum = 2;
 }
 ScrollExplosionTile.prototype = new ScrollItemObject;
 
@@ -7079,6 +7153,8 @@ function ScrollStormTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 6;
+  this.spellnum = 6;
 }
 ScrollStormTile.prototype = new ScrollItemObject;
 
@@ -7089,6 +7165,8 @@ function ScrollFearTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 7;
+  this.spellnum = 2;
 }
 ScrollFearTile.prototype = new ScrollItemObject;
 
@@ -7099,6 +7177,8 @@ function ScrollFireAndIceTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 7;
+  this.spellnum = 3;
 }
 ScrollFireAndIceTile.prototype = new ScrollItemObject;
 
@@ -7109,6 +7189,8 @@ function ScrollMeteorSwarmTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 7;
+  this.spellnum = 5;
 }
 ScrollMeteorSwarmTile.prototype = new ScrollItemObject;
 
@@ -7119,6 +7201,8 @@ function ScrollConflagrationTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 8;
+  this.spellnum = 2;
 }
 ScrollConflagrationTile.prototype = new ScrollItemObject;
 
@@ -7129,6 +7213,8 @@ function ScrollConjureDaemonTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 8;
+  this.spellnum = 3;
 }
 ScrollConjureDaemonTile.prototype = new ScrollItemObject;
 
@@ -7139,6 +7225,8 @@ function ScrollTimeStopTile() {
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
+  this.spelllevel = 8;
+  this.spellnum = 6;
 }
 ScrollTimeStopTile.prototype = new ScrollItemObject;
 
