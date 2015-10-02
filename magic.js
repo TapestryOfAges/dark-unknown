@@ -101,17 +101,17 @@ magic[3][GetSpellID(6)] = new SpellObject("Wall of Flame", "Kal Flam", 3, 1);   
 
 magic[4][GetSpellID(1)] = new SpellObject("Blessing", "In Mani Xen", 4, 0);  // blessing
 magic[4][GetSpellID(2)] = new SpellObject("Heal", "In Mani", 4, 0);  // heal
-magic[4][GetSpellID(3)] = new SpellObject("Life Drain", "In Corp Mani", 4, 1);
-magic[4][GetSpellID(4)] = new SpellObject("Smite", "Corp Por", 4, 0);
+magic[4][GetSpellID(3)] = new SpellObject("Life Drain", "In Corp Mani", 4, 1);  // # M Dam
+magic[4][GetSpellID(4)] = new SpellObject("Smite", "Corp Por", 4, 0);  // # M Dam on 3 random nearby foes
 magic[4][GetSpellID(5)] = new SpellObject("Transport", "Rel Por", 4, 0);    // teleport
 magic[4][GetSpellID(6)] = new SpellObject("Water Walk", "Uus Xen", 4, 0);   // blessing
  
 magic[5][GetSpellID(1)] = new SpellObject("Mirror Ward", "Ort Sanct", 5, 0);  // blessing
 magic[5][GetSpellID(2)] = new SpellObject("Paralyze", "An Ex Por", 5, 1);    // curse
 magic[5][GetSpellID(3)] = new SpellObject("Return", "Kal Ort Por", 5, 0);    // none (moongate)
-magic[5][GetSpellID(4)] = new SpellObject("Shockwave", "Vas Grav Por Ylem", 5, 0);
+magic[5][GetSpellID(4)] = new SpellObject("Shockwave", "Vas Grav Por Ylem", 5, 0);   // # M Dam in ring around caster, pushes back
 magic[5][GetSpellID(5)] = new SpellObject("Summon Ally", "Kal Xen", 5, 1);
-magic[5][GetSpellID(6)] = new SpellObject("Swordstrike", "Vas Jux Ylem", 5, 1);  // melee hit
+magic[5][GetSpellID(6)] = new SpellObject("Swordstrike", "Vas Jux Ylem", 5, 1);  // melee hit  # H Dam to single, L to surrounding foes
 
 magic[6][GetSpellID(1)] = new SpellObject("Empower", "In Ort Ylem", 6, 0);  // bless
 magic[6][GetSpellID(2)] = new SpellObject("Explosion", "Vas Flam Por", 6, 1);
