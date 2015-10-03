@@ -174,6 +174,10 @@ magic[1][GetSpellID(2)].executeSpell = function(caster, infused, free) {
   }
   resp["fin"] = 1;
   var mult = 1;
+  var power = who.getInt();
+  if (free) {
+    power = 15;
+  }
   if (infused) { mult = 2; }
   for (var i = -1; i<=1; i++) {
     for (var j = -1; j<=1; j++) {
@@ -185,7 +189,7 @@ magic[1][GetSpellID(2)].executeSpell = function(caster, infused, free) {
       var allfeatures = thetile.getFeatures();
       $.each(allfeatures, function(idx, val) {
         if (val.trapped) {
-          var chance = ((who.getInt()*mult + 10) - (this.trapchallenge)) /20;
+          var chance = ((power*mult + 10) - (val.trapchallenge)) /20;
           if (chance < .05) { chance = .05; }
           var roll = Math.random();
           if (roll < chance) { 
@@ -216,15 +220,16 @@ magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   resp["fin"] = 1;
   
   var radius = 3;
-  if (caster.getInt() > 20) { radius = 4; }
+  if (!free & caster.getInt() > 20) { radius = 4; }
   if (infused) { radius = radius * 1.5; } 
   var power = caster.getInt()/2;
+  if (free) { power = RollDice("1d3+7"); }
   if (infused) { power = power*1.5; }
   var castermap = caster.getHomeMap();
   var npcs = castermap.npcs.getAll();
   $.each(npcs, function (idx, val) {
     if (GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) {
-      var chance = 1-((val.getResist("magic") + 1.5*val.getInt() - .5*caster.getInt())/100);
+      var chance = 1-((val.getResist("magic") + 1.5*val.getInt() - power)/100);
       if (Math.random()*1 < chance) {
         var distract = localFactory.createTile("Distract");
         ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
@@ -272,6 +277,7 @@ magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   resp["fin"] = 1;
   var flameblade = localFactory.createTile("FlameBlade");
   duration = caster.getInt() * 2 * SCALE_TIME;
+  if (free) { duration = 30*SCALE_TIME; }
   flameblade.uses = 1;
   flameblade.damage = DMG_NEGLIGABLE;
   flameblade.power = 2;
@@ -379,6 +385,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
   
     var dur = caster.getInt()/2;
     if (infused) { dur = dur * 1.5;}
+    if (free) { dur = RollDice("1d4+5"): }
     ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
     if (tgt !== PC) {
       desc = tgt.getDesc() + " is vulnerable!";
@@ -469,7 +476,9 @@ function PerformIllusion(caster, infused, free, tgt) {
     illusion = localFactory.createTile("IllusionNPC");
   }
   
-  illusion.expiresTime = DUTime.getGameClock() + caster.getInt();  // illusion AI needs to check expiresTime and go poof if it is reached
+  var duration = caster.getInt();
+  if (free) { duration = RollDice("1d6+12"); }
+  illusion.expiresTime = DUTime.getGameClock() + duration;  // illusion AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
   DrawMainFrame("one",caster.getHomeMap().getName(),illusion.getx(),illusion.gety());
   
@@ -491,8 +500,13 @@ magic[2][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
   resp["fin"] = 1;
   
   var lvl = Math.ceil(caster.getLevel()/2);
-  if (free) { lvl = 3; }
-  var healamt = RollDice(lvl + "d8+" + caster.getLevel());
+  var plus = caster.getLevel();
+  if (free) { 
+    lvl = RollDice("1d2+2"); 
+    plus = RollDice("1d3+2");
+  }
+  
+  var healamt = RollDice(lvl + "d8+" + plus);
   if (debug) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
   if (infused) { healamt = healamt * 1.5; }
   
@@ -566,7 +580,9 @@ function PerformMagicBolt(caster, infused, free, tgt) {
     TurnMapHostile(caster.getHomeMap());
   }
 //  var dmg = RollDice("2d6+" + Math.floor(caster.getInt()/5));
-  var dmg = RollDamage(DMG_NEGLIGABLE, Math.floor(caster.getInt()/5)+1);
+  var power = caster.getInt();
+  if (free) { power = RollDice("1d5+12"); }
+  var dmg = RollDamage(DMG_NEGLIGABLE, Math.floor(power/5)+1);
   if (infused) {
     dmg = dmg * 1.5;
   }
@@ -642,8 +658,10 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
     caster.modMana(-1*mana);
     if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
-    
-  var radius = Math.floor(caster.getInt()/10) +1; 
+  
+  var power = caster.getInt();
+  if (free) { power = RollDice("1d5+12"); }  
+  var radius = Math.floor(power/10) +1; 
     
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Calculating poison cloud.<br /></span>"); }
   $.each(tgtmap.npcs.getAll(), function(idx, val) {
@@ -667,7 +685,9 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           desc = desc.charAt(0).toUpperCase() + desc.slice(1);        
           maintext.addText(desc);
           var poisontile = localFactory.createTile("Poison");
-          var duration = (RollDice("2d10") + who.getInt() - 15) * SCALE_TIME;
+          var duration = (RollDice("2d10") + power - 15);
+          if (duration < 2) { duration = 2; }
+          duration = duration * SCALE_TIME;
           poison.setExpiresTime(duration + DUTime.getGameClock());
           val.addSpellEffect(poison);
           // poisoned!
@@ -760,6 +780,9 @@ magic[3][GetSpellID(1)].executeSpell = function(caster, infused, free) {
     if (val.special.indexOf("undead") > -1) {
       if (GetDistance(val.getx(),val.gety(), caster.getx(), caster.gety()) < 8) {
         var dmg = RollDamage(DMG_MEDIUM);
+        if (infused) {
+          dmg *= 1.5;
+        }
         if (debug) { dbs.writeln("<span style='color:green'>Found " + val.getName() + " , dealing it " + dmg + " damage.<br /></span>"); }
         val.dealDamage(dmg);
         ShowEffect(val, 700, "702.gif", 0, 0);
@@ -789,6 +812,7 @@ magic[3][GetSpellID(2)].executeSpell = function(caster, infused, free) {
   resp["fin"] = 1;
   var prot = localFactory.createTile("FireArmor");
   duration = caster.getInt() * 3 * SCALE_TIME;
+  if (free) { duration = RollDice("1d6 + 12") * 3 * SCALE_TIME; }
   var power = DMG_NEGLIGABLE;
   if (infused) { 
     duration = duration * 2; 
@@ -896,7 +920,7 @@ function PerformFireball(caster, infused, free, tgt) {
 // Iceball
 magic[3][GetSpellID(4)].executeSpell = function(caster, infused, free, tgt) {
   if (caster !== PC) {
-    var resp = PerformFireball(caster, infused, free, tgt);
+    var resp = PerformIceball(caster, infused, free, tgt);
     return resp;
   }
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Iceball.<br /></span>"); }
@@ -964,7 +988,8 @@ function PerformIceball(caster, infused, free, tgt) {
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
   var frozen = localFactory.createTile("Slow");
-  var dur = 2*caster.getInt()/5;
+  var dur = 2*caster.getInt()/6;
+  if (free) { dur = RollDice("1d2+3"); }
   var endtime = dur + DU.DUTime.getGameClock();
   frozen.setExpiresTime(endtime);
   tgt.addSpellEffect(frozen);
@@ -991,7 +1016,7 @@ function PerformIceball(caster, infused, free, tgt) {
 // Telekinesis
 magic[3][GetSpellID(5)].executeSpell = function(caster, infused, free, tgt) {
   if (caster !== PC) {
-    var resp = PerformVulnerability(caster, infused, free, tgt);
+    var resp = PerformTelekinesis(caster, infused, free, tgt);
     return resp;
   }
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Telekinesis.<br /></span>"); }
@@ -1236,7 +1261,6 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
     alert("Finding facing isn't working.");
   }
   DrawMainFrame("draw",castermap.getName(),PC.getx(),PC.gety());
-  //WORKING HERE
   
   return resp;
 }
@@ -1326,6 +1350,7 @@ magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   var levobj = localFactory.createTile("Levitate");
   
   var dur = caster.getInt();
+  if (free) { dur = RollDice("1d5+17"); }
   if (infused) { dur = dur * 3; }
   var endtime = dur + DU.DUTime.getGameClock();
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
@@ -1394,6 +1419,7 @@ magic[5][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   // WORKING HERE
   //will be blue sparkle
 }
+
 //Return
 magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   var resp = {};

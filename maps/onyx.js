@@ -3,7 +3,7 @@ mappages["onyx"].terrain = [];
  mappages["onyx"].terrain[0] = '.. uu uu .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
  mappages["onyx"].terrain[1] = '.. uu uu .. ## ## ## ## ## ## ## ## #O ## ## .. .. .. .. .. .. ## ## ## ## ## ## ## ## ## ## .. .. .. .. .. .. .. .. .. .. .. .. ..';
  mappages["onyx"].terrain[2] = '.. uu uu .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ## ## #O ## ## ## ## ;; ;; ;; ;; ;; ;; ;; ;; ## .. .. .. .. .. .. .. .. .. .. .. .. ..';
- mappages["onyx"].terrain[3] = '.. uu uu .. ## [: :: :: :: :] ++ ++ ++ ++ ## ++ ++ ++ ## .. .. ;; ;; ## ## ## ## ## ++ ## ## .. .. .. ## ## ## ## ## ## ## ## ## ..';
+ mappages["onyx"].terrain[3] = '.. uu uu .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ## .. .. ;; ;; ## ## ## ## ## ++ ## ## .. .. .. ## ## ## ## ## ## ## ## ## ..';
  mappages["onyx"].terrain[4] = '.. uu uu .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ## .. .. .. ;; ## ++ ++ ++ ++ ++ ++ ## .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
  mappages["onyx"].terrain[5] = '.. uu uu .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ## .. .. .. .. ## ++ ++ ++ ++ ++ ++ ## .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ## ..';
  mappages["onyx"].terrain[6] = '.. uu uu .. #O ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ## ## ## ## .. .. ,, .. ## ## ## ## ## ## ## ## ## ## ## ## ++ ++ ++ ++ ++ ++ ++ ## ..';
@@ -46,11 +46,27 @@ mappages["onyx"].features[8] = {name : 'Door', x : 22, y : 28, desc : "locked do
 mappages["onyx"].features[9] = {name : 'Door', x : 38, y : 20, desc : "locked door", locked : 1};
 mappages["onyx"].features[10] = {name : 'Door', x : 38, y : 16, desc : "locked door", locked : 1};
 mappages["onyx"].features[11] = {name : 'DoorWindow', x : 23, y : 10};
+mappages["onyx"].features[12] = {name : 'LeftTable', x : 5, y : 3};
+mappages["onyx"].features[13] = {name : 'MiddleTable', x : 6, y : 3};
+mappages["onyx"].features[14] = {name : 'MiddleTable', x : 7, y : 3};
+mappages["onyx"].features[15] = {name : 'RightTable', x : 8, y : 3};
+mappages["onyx"].features[16] = {name : 'LeftTable', x : 6, y : 6};
+mappages["onyx"].features[17] = {name : 'LeftTable', x : 11, y : 6};
+mappages["onyx"].features[18] = {name : 'RightTable', x : 7, y : 6};
+mappages["onyx"].features[19] = {name : 'RightTable', x : 12, y : 6};
+mappages["onyx"].features[20] = {name : 'LeftChair', x : 10, y : 6};
+mappages["onyx"].features[21] = {name : 'BottomChair', x : 6, y : 7};
+mappages["onyx"].features[22] = {name : 'TopChair', x : 12, y : 5};
+mappages["onyx"].features[23] = {name : 'TopChair', x : 7, y : 5};
+mappages["onyx"].features[24] = {name : 'BottomChair', x : 11, y : 7};
+mappages["onyx"].features[25] = {name : 'RightChair', x : 8, y : 6};
+mappages["onyx"].features[26] = {name : 'Brazier', x : 13, y : 2};
+mappages["onyx"].features[27] = {name : 'Brazier', x : 13, y : 9};
 
 
 mappages["onyx"].npcs = [];
 
-mappages["onyx"].desc = 'the Towne of Onyx';
+mappages["onyx"].desc = "the Towne of Onyx";
 mappages["onyx"].music = 'Dark Towne';
 mappages["onyx"].exitmap = 'darkunknown';
 mappages["onyx"].exitx = '64';
