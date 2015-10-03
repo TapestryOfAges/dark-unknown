@@ -1,7 +1,30 @@
 
 music
 sound
+tablet
+autosave
+
+karma - tracks PC's karma
 
 kingspeech  - talked to king at beginning of game
 knows_NPCNAME  - has learned this NPC's name        -- note, requires name uniqueness. One Steve Limit!
 ash_password - gave Asharden's door the password
+pay_kyvek - king has agreed to pay Kyvek
+kyvek_fetch - Trevor is currently pathing to get Kyvek's payment
+debt_paid - Kyvek has been paid
+negate[mapname] - magic negated here
+SEARCHID - various containers will have IDs to mark that they have been looted
+can_train - PC has training points
+health_kyvek - has asked Kyvek HEALTH
+health_daniel - has asked Daniel HEALTH
+health_hazel - has asked Hazel HEALTH
+health_kylee - has asked Kylee HEALTH
+health_garen - has asked Garen HEALTH
+health_guard - has asked Nassau's guard HEALTH
+health_amaeryl - has asked Amaeryl HEALTH
+health_warren - has asked Warren HEALTH
+health_samuel - has asked Samuel HEALTH
+health_ingrid - has asked Ingrid HEALTH
+all_health - has set all the above health_ flags
+spellbook - has low level spellbook
+spellbook2 - has full sized spellbook
