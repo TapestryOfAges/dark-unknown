@@ -28,3 +28,4 @@ health_ingrid - has asked Ingrid HEALTH
 all_health - has set all the above health_ flags
 spellbook - has low level spellbook
 spellbook2 - has full sized spellbook
+rescued_sam - rescued Samantha from Shadow
