@@ -78,6 +78,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     } else if (triggers.set_flag === "spellbook") {
       PC.addSpell(1,GetSpellID(5)); 
       // spellbook starts with Light in it
+    } else if (triggers.set_flag === "knows_samantha") {
+      DU.gameflags["knows_samantha2"] = 1;
     } else if (triggers.set_flag === "king_heal") {
       delete DU.gameflags[triggers.set_flag];
       PC.healMe(1000);

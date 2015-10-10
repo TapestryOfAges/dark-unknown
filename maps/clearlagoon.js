@@ -167,10 +167,11 @@ mappages["clearlagoon"].returninfused = '0';
 mappages["clearlagoon"].linkedMaps = ["clearlagoon2"];
 
 mappages["clearlagoon"].onload = function(mapref) {
-  
-  if (DU.getflags["rescued_sam"]) {
-    var julian = mapref.getTile(46,6).getTopNPC();
-    julian.setDesc("relieved uncle");
+  if (gamestate.getMode() !== "loadgame") {
+    if (DU.gameflags["rescued_sam"]) {
+      var julian = mapref.getTile(46,6).getTopNPC();
+      julian.setDesc("relieved uncle");
+    }
   }
 }
 

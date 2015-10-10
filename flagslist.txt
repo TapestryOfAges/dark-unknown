@@ -29,3 +29,4 @@ all_health - has set all the above health_ flags
 spellbook - has low level spellbook
 spellbook2 - has full sized spellbook
 rescued_sam - rescued Samantha from Shadow
+shadow_safe - monsters in shadow between Sam and the entrance are dead.
