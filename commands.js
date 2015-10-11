@@ -1672,7 +1672,7 @@ function PerformYell() {
 				newmap.loadMap("ether");
 				maps.addMapByRef(newmap);
 			}
-      MoveBetweenMaps(PC,PC.getHomeMap(),newmap,5,5);		  
+      MoveBetweenMaps(PC,PC.getHomeMap(),newmap,46,64);		  
       DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTROYAL") {
       var newmap = new GameMap();

@@ -385,7 +385,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
   
     var dur = caster.getInt()/2;
     if (infused) { dur = dur * 1.5;}
-    if (free) { dur = RollDice("1d4+5"): }
+    if (free) { dur = RollDice("1d4+5"); }
     ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
     if (tgt !== PC) {
       desc = tgt.getDesc() + " is vulnerable!";
