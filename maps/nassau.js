@@ -124,7 +124,7 @@ mappages["nassau"].linkedMaps = [""];
 
 mappages["nassau"].onload = function(mapref) {
   
-  if (DU.getflags["rescued_sam"]) {
+  if (DU.gameflags["rescued_sam"]) {
     var sam = localFactory.createTile("ChildVillagerNPC");
     sam.setNPCName("Samantha");
     sam.setConversation("samantha2");

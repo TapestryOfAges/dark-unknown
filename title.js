@@ -104,7 +104,7 @@ $(document).ready(function() {
         Signature(-52);
       });
     });
-  }, 50);
+  }, 100);
 });
 
 function Signature(val) {

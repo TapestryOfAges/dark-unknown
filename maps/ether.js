@@ -324,6 +324,10 @@ mappages["ether"].linkedMaps = [""];
 
 
 mappages["ether"].onload = function(mapref) {
+//  mapref.setBackground("clouds-mass.gif");
+  mapref.worldlayer = "ether.gif";
+
+  
   if (gamestate.getMode() !== "loadgame") {
     // center island  (0)
     var tile = mapref.getTile(47,53);
@@ -348,167 +352,167 @@ mappages["ether"].onload = function(mapref) {
     gate.desty = 71;
     
     // island 2
-    tile.mapref.getTile(62,39);
+    tile = mapref.getTile(62,39);
     gate = tile.getTopFeature();
     gate.destx = 49;
     gate.desty = 40;
 
-    tile.mapref.getTile(59,42);
+    tile = mapref.getTile(59,42);
     gate = tile.getTopFeature();
     gate.destx = 22;
     gate.desty = 28;
 
-    tile.mapref.getTile(62,42);
+    tile = mapref.getTile(62,42);
     gate = tile.getTopFeature();
     gate.destx = 59;
     gate.desty = 62;
     
     // island 3
-    tile.mapref.getTile(64,49);
+    tile = mapref.getTile(64,49);
     gate = tile.getTopFeature();
     gate.destx = 60;
     gate.desty = 40;
 
-    tile.mapref.getTile(63,52);
+    tile = mapref.getTile(63,52);
     gate = tile.getTopFeature();
     gate.destx = 73;
     gate.desty = 71;
 
     // island 4
-    tile.mapref.getTile(57,60);
+    tile = mapref.getTile(57,60);
     gate = tile.getTopFeature();
     gate.destx = 49;
     gate.desty = 40;
     
-    tile.mapref.getTile(59,59);
+    tile = mapref.getTile(59,59);
     gate = tile.getTopFeature();
     gate.destx = 79;
     gate.desty = 28;
 
-    tile.mapref.getTile(61,62);
+    tile = mapref.getTile(61,62);
     gate = tile.getTopFeature();
     gate.destx = 49;
     gate.desty = 40;
 
     // island 5
-    tile.mapref.getTile(45,62);
+    tile = mapref.getTile(45,62);
     gate = tile.getTopFeature();
     gate.destx = 60;
     gate.desty = 40;
 
-    tile.mapref.getTile(43,64);
+    tile = mapref.getTile(43,64);
     gate = tile.getTopFeature();
     gate.destx = 73;
     gate.desty = 71;
 
-    tile.mapref.getTile(48,66);
+    tile = mapref.getTile(48,66);
     gate = tile.getTopFeature();
     gate.destx = 60;
     gate.desty = 40;
     
     //island 6
-    tile.mapref.getTile(40,56);
+    tile = mapref.getTile(40,56);
     gate = tile.getTopFeature();
     gate.destx = 31;
     gate.desty = 74;
 
-    tile.mapref.getTile(38,60);
+    tile = mapref.getTile(38,60);
     gate = tile.getTopFeature();
     gate.destx = 41;
     gate.desty = 40;
     
     // island 7
-    tile.mapref.getTile(38,51);
+    tile = mapref.getTile(38,51);
     gate = tile.getTopFeature();
     gate.destx = 32;
     gate.desty = 28;
 
-    tile.mapref.getTile(40,49);
+    tile = mapref.getTile(40,49);
     gate = tile.getTopFeature();
     gate.destx = 46;
     gate.desty = 64;
 
-    tile.mapref.getTile(36,49);
+    tile = mapref.getTile(36,49);
     gate = tile.getTopFeature();
     gate.destx = 79;
     gate.desty = 28;
     
     // island 8
-    tile.mapref.getTile(41,42);
+    tile = mapref.getTile(41,42);
     gate = tile.getTopFeature();
     gate.destx = 31;
     gate.desty = 74;
 
-    tile.mapref.getTile(43,40);
+    tile = mapref.getTile(43,40);
     gate = tile.getTopFeature();
     gate.destx = 66;
     gate.desty = 53;
 
-    tile.mapref.getTile(39,39);
+    tile = mapref.getTile(39,39);
     gate = tile.getTopFeature();
     gate.destx = 50;
     gate.desty = 55;
     
     // island 9 (NE)
-    tile.mapref.getTile(71,35);
+    tile = mapref.getTile(71,35);
     gate = tile.getTopFeature();
     gate.destx = 60;
     gate.desty = 40;
 
-    tile.mapref.getTile(81,33);
+    tile = mapref.getTile(81,33);
     gate = tile.getTopFeature();
     gate.destx = 46;
     gate.desty = 64;
 
-    tile.mapref.getTile(75,26);
+    tile = mapref.getTile(75,26);
     gate = tile.getTopFeature();
     gate.destx = 66;
     gate.desty = 53;
     
     // island 10
-    tile.mapref.getTile(78,74);
+    tile = mapref.getTile(78,74);
     gate = tile.getTopFeature();
     gate.destx = 59;
     gate.desty = 62;
 
-    tile.mapref.getTile(73,66);
+    tile = mapref.getTile(73,66);
     gate = tile.getTopFeature();
     gate.destx = 79;
     gate.desty = 28;
 
-    tile.mapref.getTile(66,72);
+    tile = mapref.getTile(66,72);
     gate = tile.getTopFeature();
     gate.destx = 37;
     gate.desty = 57;
     
     // island 11
-    tile.mapref.getTile(26,77);
+    tile = mapref.getTile(26,77);
     gate = tile.getTopFeature();
     gate.destx = 41;
     gate.desty = 38;
 
-    tile.mapref.getTile(34,70);
+    tile = mapref.getTile(34,70);
     gate = tile.getTopFeature();
     gate.destx = 66;
     gate.desty = 53;
 
-    tile.mapref.getTile(24,67);
+    tile = mapref.getTile(24,67);
     gate = tile.getTopFeature();
     gate.destx = 37;
     gate.desty = 57;
 
     // island 12
-    tile.mapref.getTile(18,33);
+    tile = mapref.getTile(18,33);
     gate = tile.getTopFeature();
     gate.destx = 37;
     gate.desty = 57;
 
-    tile.mapref.getTile(27,26);
+    tile = mapref.getTile(27,26);
     gate = tile.getTopFeature();
     gate.destx = 49;
     gate.desty = 40;
 
-    tile.mapref.getTile(28,37);
+    tile = mapref.getTile(28,37);
     gate = tile.getTopFeature();
     gate.destx = 41;
     gate.desty = 38;
