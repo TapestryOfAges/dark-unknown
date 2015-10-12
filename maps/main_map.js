@@ -718,6 +718,8 @@ function Placespawns(mapref) {
   freq = 90 + RollDice("1d20");
   spawn.setSpawnFreq(freq);
   
+  spawn.altPoI = "mordor";
+  
   mapref.placeThing(81,112,spawn);
   // northern section of troll land
 
@@ -736,6 +738,8 @@ function Placespawns(mapref) {
 
   freq = 90 + RollDice("1d20");
   spawn.setSpawnFreq(freq);
+  
+  spawn.altPoI = "mordor";
   
   mapref.placeThing(84,127,spawn);
   // Vault

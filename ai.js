@@ -695,7 +695,9 @@ ais.Bandit = function(who,radius) {
 }
 
 ais.Monster = function(who,radius) {
-  var retval = ais.OutdoorHostile(who, radius, "wild");
+  var poiname = "wild";
+  if (who.altPoI) { poiname = who.altPoI; }
+  var retval = ais.OutdoorHostile(who, radius, poiname);
   return retval;
 }
 

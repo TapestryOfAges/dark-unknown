@@ -1061,6 +1061,10 @@ function PerformSearch(who) {
       searched.setGraphicArray(searched.getSearchedGraphic());
     }
     DrawMainFrame("one",who.getHomeMap().getName(),targetCursor.x,targetCursor.y);
+  } else if (searched.getSearchDesc()) {
+    retval["txt"] = "You see: " + searched.getSearchPrefix() + " " + searched.getSearchDesc() + ".";
+    retval["fin"] = 1;
+    searched.setDesc(searched.getSearchDesc());
   }  else {
     if (searched.getShowSearched()) {
       searched.setDesc(searched.getDesc() + " [Searched]");

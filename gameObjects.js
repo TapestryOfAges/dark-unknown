@@ -2679,6 +2679,14 @@ FeatureObject.prototype.getSearchedGraphic = function() {
   }
 }
 
+FeatureObject.prototype.getSearchDesc = function() {
+  return this.searchDesc;
+}
+
+FeatureObject.prototype.getSearchPrefix = function() {
+  return this.searchPrefix;
+}
+
 FeatureObject.prototype.getLootgroup = function() {
   return this.lootgroup;
 }
@@ -4012,6 +4020,9 @@ function SecretDoorTile() {
 	this.prefix = "a";
 	this.desc = "wall";
 	
+	this.searchDesc = "secret door";
+	this.searchPrefix = "a";
+	
   SetByBelow.call(this);
   Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
 }
@@ -4195,6 +4206,8 @@ function SpawnerTile() {
   // if evolve [#] exists, the first time the player is that level and the spawner isn't
   // yet, go through the pairs of keyword/value and set then to the spawner
   
+  this.altPoI = "";  // for creatures in "mordor" so they don't try to follow paths outside
+  
   this.spawned = new Collection();
 }
 SpawnerTile.prototype = new FeatureObject();
@@ -4329,6 +4342,10 @@ SpawnerTile.prototype.myTurn = function() {
       var diffx = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
       var diffy = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
       var mymap = this.getHomeMap();
+      if (this.altPoI) {
+        newspawn.altPoI = this.altPoI;
+        if (debug) { dbs.writeln("About to spawn, adding an altPoI.<br />"); }
+      }
       
       var tile = mymap.getTile(this.getx() + diffx, this.gety() + diffy);
       var resp = tile.canMoveHere(newspawn.getMovetype());
@@ -4336,7 +4353,7 @@ SpawnerTile.prototype.myTurn = function() {
         mymap.placeThing(this.getx() + diffx, this.gety() + diffy, newspawn);
         this.addSpawned(newspawn);
         newspawn.setSpawnedBy(this);
-        if (debug) { dbs.writeln("<span style='color:#00cc00'>Spawner at " + this.x + ", " + this.y + " has spawned a " + newspawn.getName() + " #" + newspawn.getSerial() + "</span><br />"); }
+        if (debug) { dbs.writeln("<span style='color:#00cc00'>Spawner #" + this.getSerial() + " at " + this.x + ", " + this.y + " has spawned a " + newspawn.getName() + " #" + newspawn.getSerial() + "</span><br />"); }
       } else {
         timetonext = 5;
       }
@@ -8921,7 +8938,7 @@ NPCObject.prototype.myTurn = function() {
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
 
-  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + this.getName() + ", serial " + this.getSerial() + " is starting its turn.</span><br />"); }	
+  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + this.getName() + ", serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ".</span><br />"); }	
 	RunEffects(this);
 	
 	Regen(this);
