@@ -147,7 +147,7 @@ function getDisplayCell(mapname, centerx, centery, x, y) {
   }
   else {
     if ((blocks > LOS_THRESHOLD) && ((centerx != x) || (centery != y) )) {
-      var dirnum = GetDirection(centerx,centery,x,y);
+      var dirnum = GetViewDirection(centerx,centery,x,y);
       if ((dirnum === 6) || (dirnum === 7) || (dirnum === 0)) {
         var selight = localacre.getLocalLight("se");
         if (selight > lighthere) {
@@ -625,6 +625,33 @@ function GetDirection(viewerx, viewery, targx, targy) {
       else { alert("Error in direction finding."); }
     }
   }
+  return direction;
+}
+
+function GetViewDirection(viewerx, viewery, targx, targy) {
+  var direction;
+  var diffx = targx - viewerx;
+  var diffy = targy - viewery;
+  if ((diffx === 0) && (diffy === 0)) {
+    direction = -1;
+  } else if ((diffx === 0) && (diffy < 0)) {
+    direction = 0;
+  } else if ((diffx === 0) && (diffy > 0)) {
+    direction = 4;
+  } else if ((diffy === 0) && (diffx < 0)) {
+    direction = 6;
+  } else if ((diffy === 0) && (diffx > 0)) {
+    direction = 2;
+  } else if ((diffx > 0) && (diffy < 0)) { 
+    direction = 1;
+  } else if ((diffx > 0) && (diffy > 0)) { 
+    direction = 3;
+  } else if ((diffx < 0) && (diffy < 0)) { 
+    direction = 7;
+  } else if ((diffx < 0) && (diffy > 0)) { 
+    direction = 5;
+  }
+
   return direction;
 }
 
