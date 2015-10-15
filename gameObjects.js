@@ -6018,6 +6018,19 @@ function AmbroseShieldTile() {
 }
 AmbroseShieldTile.prototype = new ItemObject();
 
+function RobertMapTile() {
+  this.name = "RobertMap";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-96";
+  this.spritexoffset = "-0";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "map to bring to Robert";
+  this.prefix = "a";
+  this.addType("Quest");
+}
+RobertMapTile.prototype = new ItemObject();
+
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
   this.graphic = "items.gif";
