@@ -2980,7 +2980,6 @@ function ChestTile() {
 ChestTile.prototype = new FeatureObject();
 
 
-
 function DoorWindowTile() {
   Lockable.call(this, "009.gif", "010.gif", "067.gif", "a", "door", "a", "locked door", "a", "magically locked door");
 	
@@ -5223,7 +5222,7 @@ PlatformOfWindsTile.prototype.walkon = function(who) {
     setTimeout( function() { whoosh(who, windlist, this.spawnat, this.spawnwhat); }, 100);
   
     delete this.spawnwhat;  
-    // play a wind sound
+    // play a wind SOUND
     return "WHOOSH!";
   }
 }
@@ -5242,7 +5241,7 @@ function whoosh(whozat, windlist, spawnwhere, spawnthing) {
   } else {
     var spawnedmonster = localFactory.createTile(spawnthing);
     windmap.placeThing(spawnwhere[0], spawnwhere[1], spawnedmonster);
-    // add an "appears" visual effect?
+    // add an "appears" visual effect? WORKING
     
     whozat.endTurn(0);
   }
@@ -5584,7 +5583,7 @@ TeleporterPlatformTile.prototype.walkon = function(who) {
     }
     DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
     ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
-    // NEEDS SFX
+    // NEEDS SFX/SOUND
   }
 }
 
@@ -5943,6 +5942,7 @@ MoongateTile.prototype.walkon = function(who) {
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 
   } 
+  // needs SOUND
   return "";
 }
 
@@ -6157,6 +6157,7 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
       }, 2000);
       retval["txt"] = "The room fades to black around you as your mind accepts the challenge of the Stygian Abyss.";
       retval["fin"] = 3;
+      // play SOUND generic spellcast
       return retval;
     } 
   }
