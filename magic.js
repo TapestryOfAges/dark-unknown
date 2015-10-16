@@ -945,7 +945,6 @@ magic[3][GetSpellID(4)].executeSpell = function(caster, infused, free, tgt) {
   return resp;
 }
 
-
 function PerformIceball(caster, infused, free, tgt) {
   gamestate.setMode("null");
   var resp = {};
@@ -1336,33 +1335,89 @@ magic[4][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
   
 }
 
-// Levitate/Waterwalk
-magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Water Walk.<br /></span>"); }
+//Life Drain
+magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free, tgt) {
+  if (caster !== PC) {
+    var resp = PerformLifeDrain(caster, infused, free, tgt);
+    return resp;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Life Drain.<br /></span>"); }
   var resp = {};
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Life Drain";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
+  targetCursor.targetlimit = (viewsizex -1)/2;
+  targetCursor.targetCenterlimit = 0;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 4;
+  gamestate.setMode("target");
+  return resp;
+}
+  
+function PerformLifeDrain(caster, infused, free, tgt) {
+  gamestate.setMode("null");
+  var resp = {};
+  resp["fin"] = 1;
+  var desc = tgt.getDesc();
+
+  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "Your spell cannot reach that target!";
+    return resp;
+  }
+  
   if (!free) {
-    var mana = this.getManaCost(infused);
+    var mana = magic[3][GetSpellID(4)].getManaCost(infused);
     caster.modMana(-1*mana);
     if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
-  resp["fin"] = 1;
-
-  var levobj = localFactory.createTile("Levitate");
   
-  var dur = caster.getInt();
-  if (free) { dur = RollDice("1d5+17"); }
-  if (infused) { dur = dur * 3; }
-  var endtime = dur + DU.DUTime.getGameClock();
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
-  levobj.setPower(dur);
-  levobj.setExpiresTime(endtime);
-  
-  caster.addSpellEffect(levobj);
-//  levobj.applyEffect();
+  var newtgt = CheckMirrorWard(tgt, caster);
+  while (newtgt !== tgt) {
+    tgt = newtgt;
+    newtgt = CheckMirrorWard(tgt, caster);
+  }
     
-  DrawCharFrame();
-  return resp;  
+  tgt = newtgt;
+  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+    TurnMapHostile(caster.getHomeMap());
+  }
+//  var dmg = RollDice("2d6+" + Math.floor(caster.getInt()/5));
+  var dmg = RollDamage(DMG_MEDIUM);
+  if (infused) {
+    dmg = dmg * 1.5;
+  }
+  
+  var chance = 1-(tgt.getResist("magic")/100);
+  if (Math.random()*1 < chance) {
+    dmg = Math.floor(dmg/2)+1;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    
+  ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+
+  var healamt = RollDice("2d8+" + 10);
+  if (debug) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
+  if (infused) { healamt = healamt * 1.5; }
+  
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+  caster.healMe(healamt, caster);
+  resp["txt"] = "You feel better!";
+
+  resp["fin"] = -1;
+  return resp;
 }
+
 
 //Transport
 magic[4][GetSpellID(5)].executeSpell = function(caster, infused, free) {
@@ -1404,6 +1459,34 @@ magic[4][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   
   DrawCharFrame();
   return resp;
+}
+
+// Levitate/Waterwalk
+magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Water Walk.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+
+  var levobj = localFactory.createTile("Levitate");
+  
+  var dur = caster.getInt();
+  if (free) { dur = RollDice("1d5+17"); }
+  if (infused) { dur = dur * 3; }
+  var endtime = dur + DU.DUTime.getGameClock();
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  levobj.setPower(dur);
+  levobj.setExpiresTime(endtime);
+  
+  caster.addSpellEffect(levobj);
+//  levobj.applyEffect();
+    
+  DrawCharFrame();
+  return resp;  
 }
 
 //Mirror Ward
@@ -1879,6 +1962,8 @@ function PerformSpellcast() {
         resp = PerformFireball(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Iceball") {
         resp = PerformIceball(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+      } else if (targetCursor.spellName === "Life Drain") {
+        resp = PerformLifeDrain(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       }
       delete targetCursor.spellName;
       
