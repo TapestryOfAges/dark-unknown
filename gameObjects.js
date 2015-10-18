@@ -379,11 +379,11 @@ GameObject.prototype.getBlocksLOSArray = function() {
 
 GameObject.prototype.setBlocksLOSArray = function(newLOS) {
 	this.blocklos = newLOS[0];
-	if (typeof newLOS[1] !== "undefined") {
+	if ((typeof newLOS[1] !== "undefined") && (newLOS[1])) {
 		this.losatdistance['distance'] = newLOS[1];
 		this.losatdistance['blocklos'] = newLOS[2];
 	}
-	if (typeof newLOS[3] !== "undefined") {
+	if ((typeof newLOS[3] !== "undefined") && (newLOS[3])) {
 		this.losupclose['distance'] = newLOS[3];
 		this.losupclose['blocklos'] = newLOS[4];
 	}
@@ -8178,7 +8178,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
 
 NPCObject.prototype.processDeath = function(droploot){
   if (this.checkType("PC")) {
-    maintext.AddText("You have died!");
+    maintext.addText("You have died!");
     var newmap = new GameMap();
     if (maps.getMap("landsbeyond")) {
       newmap = maps.getMap("landsbeyond");
@@ -8189,17 +8189,17 @@ NPCObject.prototype.processDeath = function(droploot){
     }
     var tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, 7, 7);
     $("#mainview").fadeOut(1500, function() {
-      maintext.AddText("You find yourself floating bodiless in the void.");
+      maintext.addText("You find yourself floating bodiless in the void.");
       setTimeout(function() {
         DrawMainFrame("draw", "landsbeyond", 7,7);
         $("#mainview").fadeIn(1000, function() {
-          maintext.AddText("There is nought to do but meditate upon your life, and the triumphs and errors it contained.");
+          maintext.addText("There is nought to do but meditate upon your life, and the triumphs and errors it contained.");
           setTimeout(function() {
-            maintext.AddText("Suddenly a voice cries out in the darkness!");
+            maintext.addText("Suddenly a voice cries out in the darkness!");
             setTimeout(function() {
-              maintext.AddText('"The world is not finished with thee, ' + PC.getPCName() + '!"');
+              maintext.addText('"The world is not finished with thee, ' + PC.getPCName() + '!"');
               setTimeout(function() {
-                maintext.AddText('"By the strength of this land I bid thee return!"');
+                maintext.addText('"By the strength of this land I bid thee return!"');
                 // play sound effect
                 var returnmap = new GameMap();
                 if (maps.getMap("olympus1")) {
