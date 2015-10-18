@@ -102,14 +102,14 @@ magic[3][GetSpellID(6)] = new SpellObject("Wall of Flame", "Kal Flam", 3, 1);   
 magic[4][GetSpellID(1)] = new SpellObject("Blessing", "In Mani Xen", 4, 0);  // blessing
 magic[4][GetSpellID(2)] = new SpellObject("Heal", "In Mani", 4, 0);  // heal
 magic[4][GetSpellID(3)] = new SpellObject("Life Drain", "In Corp Mani", 4, 1);  // # M Dam  curse
-magic[4][GetSpellID(4)] = new SpellObject("Smite", "Corp Por", 4, 0);  // # M Dam on 3 random nearby foes   attack spell, missile hit
+magic[4][GetSpellID(4)] = new SpellObject("Smite", "Corp Por", 4, 0);  // # M Dam on 3 random nearby foes   attack spell, thunder
 magic[4][GetSpellID(5)] = new SpellObject("Transport", "Rel Por", 4, 0);    // teleport (effect generated from moongate)
 magic[4][GetSpellID(6)] = new SpellObject("Water Walk", "Uus Xen", 4, 0);   // blessing
  
 magic[5][GetSpellID(1)] = new SpellObject("Mirror Ward", "Ort Sanct", 5, 0);  // blessing
 magic[5][GetSpellID(2)] = new SpellObject("Paralyze", "An Ex Por", 5, 1);    // curse
 magic[5][GetSpellID(3)] = new SpellObject("Return", "Kal Ort Por", 5, 0);    // none (moongate)
-magic[5][GetSpellID(4)] = new SpellObject("Shockwave", "Vas Grav Por Ylem", 5, 0);   // # M Dam in ring around caster, pushes back  // lightning zap
+magic[5][GetSpellID(4)] = new SpellObject("Shockwave", "Vas Grav Por Ylem", 5, 0);   // # M Dam in ring around caster, pushes back  // thunder
 magic[5][GetSpellID(5)] = new SpellObject("Summon Ally", "Kal Xen", 5, 1);   // generic
 magic[5][GetSpellID(6)] = new SpellObject("Swordstrike", "Vas Jux Ylem", 5, 1);  // attack spell, melee hit  # H Dam to single, L to surrounding foes  
 

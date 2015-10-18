@@ -78,7 +78,7 @@ div.inputtext { font-family:"Commodore64";
 	              color:white; 
 	              line-height:20px;
 	              position: absolute;
-	              bottom: 0;
+	              bottom: 1;
 }
 
 .jspTrack { background: none repeat scroll 0 0 #000000 } 

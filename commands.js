@@ -1195,17 +1195,23 @@ function PerformTalk(talkto, convo, topic) {
   }
   
   if (conval === 2) {
-    retval["input"] = "&gt; [MORE]";
+    retval["input"] = "[MORE]";
     gamestate.setMode("anykey");
   } else if (conval === 3) {
-    retval["input"] = "&gt; Buy what: ";
+    retval["input"] = "Buy what: ";
     gamestate.setMode("buy");
   } else if (conval === 4) {
     // Add check for having stuff to sell?
-    retval["input"] = "&gt; Sell what: ";
+    retval["input"] = "Sell what: ";
     gamestate.setMode("sell");
+  } else if (conval === -1) {
+    gamestate.setMode("null");
   } else {
-    retval["input"] = "&gt; You say: ";
+    if (inputText.subcmd === "yn") {
+      retval["input"] = "You answer:";
+    } else {
+      retval["input"] = "You say: ";
+    }
     gamestate.setMode("talk");
   }
   

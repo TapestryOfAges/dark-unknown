@@ -138,6 +138,14 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         delete DU.gameflags["can_train"];
       }
       delete DU.gameflags[triggers.set_flag];
+    } else if (triggers.set_flag === "inn_20_y") {
+      delete DU.gameflags["inn_20_y"];
+      delete DU.gameflags["inn_20"];
+      keep_talking = -1;
+      setTimeout(function() { InnRoom(28,17,21,14); }, 50);
+    } else if (triggers.set_flag === "inn_20_n") {
+      delete DU.gameflags["inn_20_n"];
+      delete DU.gameflags["inn_20"];
     } else if (triggers.set_flag === "give_100g") {
       delete DU.gameflags["give_100g"];
       PC.addGold(100);
@@ -154,7 +162,9 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     if ((triggers.end_convo !== 1) && (triggers.end_convo !== "1")) {
       this.say(speaker, triggers.end_convo);
     }
-    keep_talking = 0;
+    if (keep_talking != -1) {
+      keep_talking = 0;
+    }
   }
   if (triggers.hasOwnProperty("start_shop")) {
     var sell = DisplayWares(speaker);
@@ -252,3 +262,31 @@ function ConvNode(flags, noflag_response, flag_response, triggers) {
 }
 ConvNode.prototype = new Object();
 //Deprecated
+
+function InnRoom(xc,yc,doorx,doory) {
+  var innmap = PC.getHomeMap();
+  maintext.setInputLine("&gt;");
+  maintext.drawTextFrame();
+  
+  $("#mainview").fadeOut(1500, function() {
+    maintext.addText("ZZZZZZ...");
+    innmap.moveThing(0,0,PC);
+    if (GetDistance(0,0,doorx,doory) <= 10) {
+      innmap.moveThing(30,30,PC);
+    }
+    var inndoor = innmap.getTile(doorx,doory);
+    inndoor = inndoor.getTopFeature();
+    inndoor.use(PC);
+    innmap.moveThing(xc,yc,PC);
+    DrawMainFrame("draw", PC.getHomeMap().getName(), PC.getx(),PC.gety());
+    setTimeout(function() {
+      $("#mainview").fadeIn(1000, function() {
+        maintext.addText("You awake refreshed!");
+        PC.healMe(RollDice("20d5+20"));
+        gamestate.setMode("player");
+        PC.endTurn();
+      });
+    },1000);
+  });
+
+}

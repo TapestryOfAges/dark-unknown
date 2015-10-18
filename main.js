@@ -240,16 +240,19 @@ function DoAction(code) {
 
       } else if ( inputText.cmd === "t") {
         var convo = targetCursor.talkingto.getConversation();
+        if (inputText.txt === "") { inputText.txt = "BYE"; }
         maintext.addText(" ");
         maintext.addText("You say: " + inputText.txt);
         var retval;
         if (inputText.subcmd === "yn") {
-          if ((inputText.txt === "y") || (inputText.txt === "yes")) {
+          delete inputText.subcmd;
+          if ((inputText.txt === "Y") || (inputText.txt === "YES")) {
+            inputText.txt = "YES";
             retval = PerformTalk(targetCursor.talkingto, convo, "_yes");
           } else {
+            inputText.txt = "NO";
             retval = PerformTalk(targetCursor.talkingto, convo, "_no");
           }
-          delete inputText.subcmd;
         } else {
           retval = PerformTalk(targetCursor.talkingto, convo, inputText.txt);
         }
