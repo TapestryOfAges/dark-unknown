@@ -141,8 +141,14 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     } else if (triggers.set_flag === "inn_20_y") {
       delete DU.gameflags["inn_20_y"];
       delete DU.gameflags["inn_20"];
-      keep_talking = -1;
-      setTimeout(function() { InnRoom(28,17,21,14); }, 50);
+      if (PC.getGold() < 20) {
+        maintext.addText("You don't have enough gold!");
+      } else {
+        keep_talking = -1;
+        PC.addGold(-20);
+        maintext.addText("He leads you to your room.");
+        setTimeout(function() { InnRoom(28,17,[21,14,25,20]); }, 50);
+      }
     } else if (triggers.set_flag === "inn_20_n") {
       delete DU.gameflags["inn_20_n"];
       delete DU.gameflags["inn_20"];
@@ -154,8 +160,11 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       DU.gameflags["debt_paid"] = 1;
       PC.addGold(100);
       DU.gameflags["karma"]++;
-    } else if (DU.gameflags["health_kyvek"] &&  DU.gameflags["health_daniel"] && DU.gameflags["health_hazel"] && DU.gameflags["health_kylee"] && DU.gameflags["health_garen"] && DU.gameflags["health_guard"] && DU.gameflags["health_amaeryl"] && DU.gameflags["health_warren"] && DU.gameflags["health_samuel"] && DU.gameflags["health_ingrid"]) {
+    } else if (!DU.gameflags["all_health"] && DU.gameflags["health_kyvek"] &&  DU.gameflags["health_daniel"] && DU.gameflags["health_kylee"] && DU.gameflags["health_garen"] && DU.gameflags["health_guard"] && DU.gameflags["health_amaeryl"] && DU.gameflags["health_warren"] && DU.gameflags["health_samuel"] && DU.gameflags["health_ingrid"]) {
       DU.gameflags["all_health"] = 1;    
+    } else if (DU.gameflags["shield_gotten"]) {
+      delete DU.gameflags["get_shield"];
+      delete DU.gameflags["shield_gotten"];
     }
   } 
   if (triggers.hasOwnProperty("end_convo")) {
@@ -263,20 +272,26 @@ function ConvNode(flags, noflag_response, flag_response, triggers) {
 ConvNode.prototype = new Object();
 //Deprecated
 
-function InnRoom(xc,yc,doorx,doory) {
+function InnRoom(xc,yc,doors) {
   var innmap = PC.getHomeMap();
   maintext.setInputLine("&gt;");
   maintext.drawTextFrame();
   
   $("#mainview").fadeOut(1500, function() {
     maintext.addText("ZZZZZZ...");
-    innmap.moveThing(0,0,PC);
-    if (GetDistance(0,0,doorx,doory) <= 10) {
-      innmap.moveThing(30,30,PC);
+    while(doors[0]) {
+      innmap.moveThing(0,0,PC);
+      if (GetDistance(0,0,doors[0],doors[1]) <= 10) {
+        innmap.moveThing(30,30,PC);
+      }
+      var inndoor = innmap.getTile(doors[0],doors[1]);
+      inndoor = inndoor.getTopFeature();
+      if (inndoor.open) {
+        inndoor.use(PC);
+      }
+      doors.shift();
+      doors.shift();
     }
-    var inndoor = innmap.getTile(doorx,doory);
-    inndoor = inndoor.getTopFeature();
-    inndoor.use(PC);
     innmap.moveThing(xc,yc,PC);
     DrawMainFrame("draw", PC.getHomeMap().getName(), PC.getx(),PC.gety());
     setTimeout(function() {

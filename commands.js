@@ -832,7 +832,7 @@ function PerformEnter(cmd) {
 		var retval = {};
 		if (features.length > 0) {
 			for (var i = 0; i < features.length; i++) {
-				if (features[i].getEnterMap()) {
+				if ((typeof features[i].getEnterMap === "function") && (features[i].getEnterMap())) {
 					var mapdata = features[i].getEnterMap();
 					destination = mapdata["entermap"];
 					destx = mapdata["enterx"];

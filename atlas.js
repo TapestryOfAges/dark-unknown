@@ -2241,11 +2241,13 @@ MapMemory.prototype.addMapByRef = function(mapref) {
 	this.data[mapname] = mapref;
 	
 	// also load linked maps
-	if (mapref.linkedMaps[0] && mapref.linkedMaps[0] !== "") {
-	  for (var i = 0; i < mapref.linkedMaps.length; i++) {
-	    var anothermap = new GameMap();
-	    anothermap.loadMap(mapref.linkedMaps[i]);
-	    this.data[mapref.linkedMaps[i]] = anothermap;
+	if (gamestate.getMode() !== "loadgame") {  // but only if not loading- on load they are in the saved game
+  	if (mapref.linkedMaps[0] && mapref.linkedMaps[0] !== "") {
+	    for (var i = 0; i < mapref.linkedMaps.length; i++) {
+	      var anothermap = new GameMap();
+	      anothermap.loadMap(mapref.linkedMaps[i]);
+  	    this.data[mapref.linkedMaps[i]] = anothermap;
+	    }
 	  }
 	}
 	

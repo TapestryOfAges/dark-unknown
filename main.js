@@ -240,20 +240,25 @@ function DoAction(code) {
 
       } else if ( inputText.cmd === "t") {
         var convo = targetCursor.talkingto.getConversation();
-        if (inputText.txt === "") { inputText.txt = "BYE"; }
-        maintext.addText(" ");
-        maintext.addText("You say: " + inputText.txt);
         var retval;
         if (inputText.subcmd === "yn") {
           delete inputText.subcmd;
+          if (inputText.txt === "") { inputText.txt = "NO"; }
           if ((inputText.txt === "Y") || (inputText.txt === "YES")) {
             inputText.txt = "YES";
+            maintext.addText(" ");
+            maintext.addText("You answer: " + inputText.txt);
             retval = PerformTalk(targetCursor.talkingto, convo, "_yes");
           } else {
             inputText.txt = "NO";
+            maintext.addText(" ");
+            maintext.addText("You answer: " + inputText.txt);
             retval = PerformTalk(targetCursor.talkingto, convo, "_no");
           }
         } else {
+          if (inputText.txt === "") { inputText.txt = "BYE"; }
+          maintext.addText(" ");
+          maintext.addText("You say: " + inputText.txt);
           retval = PerformTalk(targetCursor.talkingto, convo, inputText.txt);
         }
         maintext.addText(retval["txt"]);
