@@ -866,6 +866,16 @@ tileFactory.prototype.makeCasinoSignTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePaladinSignTile = function() {
+  var newTile = new PaladinSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTrainingDummyTile = function() {
+  var newTile = new TrainingDummyTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWBridgeNSTile = function() {
   var newTile = new WBridgeNSTile();
   return newTile;
@@ -1471,6 +1481,11 @@ tileFactory.prototype.makeAmbroseShieldTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRobertMapTile = function() {
+  var newTile = new RobertMapTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePitOfDespairKeyTile = function() {
   var newTile = new PitOfDespairKeyTile();
   return newTile;
@@ -1758,6 +1773,11 @@ tileFactory.prototype.makeScrollFireballTile = function() {
 
 tileFactory.prototype.makeScrollIceballTile = function() {
   var newTile = new ScrollIceballTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollTelekinesisTile = function() {
+  var newTile = new ScrollTelekinesisTile();
   return newTile;
 }
 

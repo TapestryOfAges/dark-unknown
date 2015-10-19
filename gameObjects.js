@@ -1131,7 +1131,10 @@ function InWater(who) {
     // entity is ethereal and can't drown
     return "";
   }
-
+  if (MOVE_FLY & who.getMovetype()) {
+    // entity is flying and can't drown
+    return "";
+  }
   var localmap = who.getHomeMap();
   var tile = localmap.getTile(who.getx(),who.gety());
   var feats = tile.getFeatures();
@@ -2433,6 +2436,16 @@ function InASwamp(who) {
     // entity is levitating and cannot be diseased
     return "";
   }
+  if (MOVE_FLY & who.getMovetype()) {
+    // entity flies and cannot be diseased
+    return "";
+  }
+  
+  if (who.group) {
+    // entity is an NPC group, immune to disease
+    return "";
+  }
+  
   // percent chance of infection- 10% per step, prorated by speed
   var chance = 10 * (DUTime.getGameClock() - who.getLastTurnTime());  
   if (Math.random()*100 < chance) {  // diseased!
@@ -3636,6 +3649,31 @@ function CasinoSignTile() {
 }
 CasinoSignTile.prototype = new FeatureObject();
   
+function PaladinSignTile() {
+  this.name = "PaladinSign";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-292";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "sign showing a chalice";
+}
+PaladinSignTile.prototype = new FeatureObject();
+
+function TrainingDummyTile() {
+  this.name = "TrainingDummy";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-64";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "training dummy";
+}
+TrainingDummyTile.prototype = new FeatureObject();
+
+
 function WBridgeNSTile() {
   this.name = "WBridgeNS";
   this.graphic = "070.gif";
