@@ -51,6 +51,12 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       PC.removeFromInventory(necessary_item);
     }
   }
+  if (triggers.hasOwnProperty("give_gold")) {
+    PC.addGold(parseInt(triggers.give_gold));
+  }
+  if (triggers.hasOwnProperty("give_karma")) {
+    DU.gameflags["karma"] += parseInt(triggers.give_karma);
+  }
   if (triggers.hasOwnProperty("yes_no")) {
     inputText.subcmd = "yn";
   }
