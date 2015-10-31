@@ -1652,8 +1652,10 @@ function PerformYell() {
 		  createjs.Sound.play("Mainland", {loop: -1});
 		} else if (inputText.txt === "SLINGS") {
 		  PC.addToInventory(localFactory.createTile("Sling"),1);
-    } else if (inputText.txt === "TESTFADE") {
-      FadeOut(2000);
+    } else if (inputText.txt === "SHOWMAP") {
+      if (debug) {
+        DisplayTestMap();
+      }
     } else if (inputText.txt === "TESTTOWER") {
       var newmap = new GameMap();
       if (maps.getMap("toshin3")) {

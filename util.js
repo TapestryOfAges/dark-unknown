@@ -1203,3 +1203,24 @@ function FindNearestNPC(from, align, except) {
   });
   return nearest;
 }
+
+function DisplayTestMap() {
+  var mapdiv;
+  var themap = PC.getHomeMap();
+  mapdiv += "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20;\">";
+  for (var i=0;i<themap.getHeight();i++) {
+    mapdiv += "<tr>";
+    for (var j=0;j<themap.getWidth();j++) {
+    	var thiscell = themap.getTile(j,i);
+    	var graphics = thiscell.getTop().getGraphicArray();
+      mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + graphics[0] + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px; position:relative; z-index:20;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" width="32" height="32" style="position: relative; z-index:20" title="' + thiscell.desc + '" /></td>';
+    }  
+    mapdiv += '</tr>';
+  }
+  mapdiv  += '</table>';
+
+  var debugmap = window.open('','debugmapscreen');
+  debugmap.document.writeln(mapdiv);
+  
+  debugmap.close()
+}
