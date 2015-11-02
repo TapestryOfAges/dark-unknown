@@ -64,6 +64,8 @@ var maps = DU.maps; // alias
 var debug = 0;
 var PC = new PCObject();
 PC.assignSerial();
+var musicloaded = {};
+var musictries = 0;
 
 var firsttime = 1;
 var themap;
@@ -72,6 +74,7 @@ themap = new GameMap();
 
 $(document).ready(function() {
   audio_init();  
+  
   var browserheight = $(window).height();
   var browserwidth = $(window).width();
   
@@ -96,7 +99,13 @@ $(document).ready(function() {
 
   $("#maindiv").html(firstpage);
   setTimeout(function() {
-  dusong = DUPlayMusic("Dark Unknown");
+    start_animations();      
+  }, 100);
+});
+
+function start_animations() {
+  if (musicloaded["Dark Unknown"] || (musictries >= 10)) {
+    dusong = DUPlayMusic("Dark Unknown");
     $("#ToA").fadeIn(1700, function() {
       $("#over").css("display", "inline");
       $("#over").animate({ width: "800px" }, 3700, function() {
@@ -104,8 +113,13 @@ $(document).ready(function() {
         Signature(-52);
       });
     });
-  }, 100);
-});
+  } else {
+    musictries++;
+    setTimeout(function() {
+      start_animations();      
+    }, 100);
+  } 
+}
 
 function Signature(val) {
   if (val === -4212) { FirstPage(); return; }

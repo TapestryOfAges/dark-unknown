@@ -61,6 +61,8 @@ DUMusic["Tension"] = "Tension";
 DUMusic["Charcreate"] = "Journey Begins";
 DUMusic["Fanfare"] = "Fanfare"; // currently absent
 
+var musicloaded = {};
+
 function audio_init() {
   createjs.Sound.initializeDefaultPlugins();
 //  createjs.Sound.alternateExtensions = ["mp3"];
@@ -160,4 +162,10 @@ function play_footstep(onwhat) {
     }
     laststep = "left";
   }
+}
+
+createjs.Sound.addEventListener("fileload", handleFileLoad);
+function handleFileLoad(event) {
+    // A sound has been preloaded.
+    musicloaded[event.id] = 1;
 }
