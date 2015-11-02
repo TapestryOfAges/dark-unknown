@@ -541,6 +541,10 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	    if (npcs[0]) {
 	  	  featurepassability = 0;
       }
+      var pcs = this.getPCs();
+      if (pcs[0]) {
+	  	  featurepassability = 0;
+      }
     }
 		if (totalpassability & MOVE_SWIM) {
 //	  	if (featurepassability & mover.getMovetype()) {

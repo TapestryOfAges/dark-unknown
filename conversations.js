@@ -158,9 +158,6 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     } else if (triggers.set_flag === "inn_20_n") {
       delete DU.gameflags["inn_20_n"];
       delete DU.gameflags["inn_20"];
-    } else if (triggers.set_flag === "give_100g") {
-      delete DU.gameflags["give_100g"];
-      PC.addGold(100);
     } else if (triggers.set_flag === "give_100g_k") {
       delete DU.gameflags["give_100g_k"];
       DU.gameflags["debt_paid"] = 1;
