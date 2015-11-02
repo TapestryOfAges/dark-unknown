@@ -118,6 +118,10 @@ function edit_response(convname, keyword) {
   document.responseeditpopup.item_taken1.value = "";
   document.responseeditpopup.set_flag1.checked = false;
   document.responseeditpopup.flag_set1.value = "";
+  document.responseeditpopup.give_gold1.checked = false;
+  document.responseeditpopup.gold_given1.value = "";
+  document.responseeditpopup.give_karma1.checked = false;
+  document.responseeditpopup.karma_given1.value = "";
   document.responseeditpopup.set_yesno1.checked = false;
   document.responseeditpopup.start_shop1.checked = false;
   document.responseeditpopup.start_sell1.checked = false;
@@ -132,6 +136,10 @@ function edit_response(convname, keyword) {
   document.responseeditpopup.item_taken2.value = "";
   document.responseeditpopup.set_flag2.checked = false;
   document.responseeditpopup.flag_set2.value = "";
+  document.responseeditpopup.give_gold2.checked = false;
+  document.responseeditpopup.gold_given2.value = "";
+  document.responseeditpopup.give_karma2.checked = false;
+  document.responseeditpopup.karma_given2.value = "";
   document.responseeditpopup.set_yesno2.checked = false;
   document.responseeditpopup.start_shop2.checked = false;
   document.responseeditpopup.start_sell2.checked = false;
@@ -156,6 +164,14 @@ function edit_response(convname, keyword) {
       else if (idx === "set_flag") {
         document.responseeditpopup.set_flag1.checked = "true";
         document.responseeditpopup.flag_set1.value = val;
+      }
+      else if (idx === "give_gold") {
+        document.responseeditpopup.give_gold1.checked = "true";
+        document.responseeditpopup.gold_given1.value = val;
+      }
+      else if (idx === "give_karma") {
+        document.responseeditpopup.give_karma1.checked = "true";
+        document.responseeditpopup.karma_given1.value = val;
       }
       else if (idx === "yes_no") {
         document.responseeditpopup.set_yesno1.checked = "true";
@@ -197,6 +213,14 @@ function edit_response(convname, keyword) {
       else if (idx === "set_flag") {
         document.responseeditpopup.set_flag2.checked = "true";
         document.responseeditpopup.flag_set2.value = val;
+      }
+      else if (idx === "give_gold") {
+        document.responseeditpopup.give_gold2.checked = "true";
+        document.responseeditpopup.gold_given2.value = val;
+      }
+      else if (idx === "give_karma") {
+        document.responseeditpopup.give_karma2.checked = "true";
+        document.responseeditpopup.karma_given2.value = val;
       }
       else if (idx === "yes_no") {
         document.responseeditpopup.set_yesno2.checked = "true";
@@ -265,6 +289,30 @@ function submitEditResponse(val) {
         return;
       }
     }
+    if (document.responseeditpopup.give_gold1.checked) {
+      if (document.responseeditpopup.gold_given1.value) {
+        triggers1.give_gold = document.responseeditpopup.gold_given1.value;
+      } else {
+        alert("Needs an amount of gold given for gold_given1.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
+    if (document.responseeditpopup.give_karma1.checked) {
+      if (document.responseeditpopup.karma_given1.value) {
+        triggers1.give_karma = document.responseeditpopup.karma_given1.value;
+      } else {
+        alert("Needs an amount of karma given for karma_given1.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
     if (document.responseeditpopup.take_item1.checked) {
       if (document.responseeditpopup.item_taken1.value) {
         triggers1.take_item = document.responseeditpopup.item_taken1.value;
@@ -306,6 +354,30 @@ function submitEditResponse(val) {
         triggers2.give_item = document.responseeditpopup.item_given2.value;
       } else {
         alert("Needs an item given for item_given2.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
+    if (document.responseeditpopup.give_gold2.checked) {
+      if (document.responseeditpopup.gold_given2.value) {
+        triggers2.give_gold = document.responseeditpopup.gold_given2.value;
+      } else {
+        alert("Needs an amount of gold given for gold_given2.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
+    if (document.responseeditpopup.give_karma2.checked) {
+      if (document.responseeditpopup.karma_given2.value) {
+        triggers2.give_karma = document.responseeditpopup.karma_given2.value;
+      } else {
+        alert("Needs an amount of karma given for karma_given2.");
         setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
           $('#responsebubble').jqm({onShow:myOpen});
           $('#responsebubble').jqmShow();
@@ -391,6 +463,10 @@ function validate() {
     if (!val["_location"]) { 
       allgood = 0;
       $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>_location missing</span>");
+    }
+    if (!val["look"]) { 
+      allgood = 0;
+      $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>look missing</span>");
     }
     
     $.each(val, function(idx2,val2) {
