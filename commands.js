@@ -1,5 +1,5 @@
 
-function PerformCommand(code) {
+function PerformCommand(code, ctrl) {
 	var retval = {};
 	retval["fin"] = 0;
 	if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
@@ -217,7 +217,7 @@ function PerformCommand(code) {
 //		var testnpc = mymap.npcs.getTop();
 //		testnpc.copy();
     gamestate.setMode("saving");
-    gamestate.saveGame();
+    gamestate.saveGame(ctrl);
 		retval["txt"] = "Quit &amp; Save: Saving game...";
 		retval["input"] = "&gt;";
 		retval["fin"] = 2;

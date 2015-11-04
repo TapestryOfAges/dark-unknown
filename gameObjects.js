@@ -4730,7 +4730,47 @@ function PentagramSETile() {
 }
 PentagramSETile.prototype = new FeatureObject();
 
+function ArmorCounterLeatherTile() {
+  this.name = "ArmorCounterLeather";
+//  this.graphic = "051.gif";
+  this.graphic = "armorcounter.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "display counter";
+}
+ArmorCounterLeatherTile.prototype = new FeatureObject();
 
+function ArmorCounterChainTile() {
+  this.name = "ArmorCounterChain";
+//  this.graphic = "051.gif";
+  this.graphic = "armorcounter.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "display counter";
+}
+ArmorCounterChainTile.prototype = new FeatureObject();
+
+function ArmorCounterPlateTile() {
+  this.name = "ArmorCounterPlate";
+//  this.graphic = "051.gif";
+  this.graphic = "armorcounter.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .3;
+  this.prefix = "a";
+  this.desc = "display counter";
+}
+ArmorCounterPlateTile.prototype = new FeatureObject();
 
 function MoatLeverOffTile() {
   this.name = "MoatLeverOff";
