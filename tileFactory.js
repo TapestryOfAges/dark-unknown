@@ -1211,6 +1211,21 @@ tileFactory.prototype.makePentagramSETile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeArmorCounterLeatherTile = function() {
+  var newTile = new ArmorCounterLeatherTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArmorCounterChainTile = function() {
+  var newTile = new ArmorCounterChainTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArmorCounterPlateTile = function() {
+  var newTile = new ArmorCounterPlateTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeMoatLeverOffTile = function() {
   var newTile = new MoatLeverOffTile();
   return newTile;

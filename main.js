@@ -172,14 +172,14 @@ $(document).ready(function() {
   var code = (e.keyCode ? e.keyCode : e.which);
 //   if (code == 27) { e.preventDefault(); }
   e.preventDefault();
-  DoAction(code);
+  DoAction(code, e.ctrlKey);
   });
 });
 
-function DoAction(code) {
+function DoAction(code, ctrl) {
   if (gamestate.getMode() === "player") {  // PC's turn, awaiting commands
 //   	 alert(DUTime.getGameClock());
-    var response = PerformCommand(code);
+    var response = PerformCommand(code, ctrl);
     if (response["fin"]) { 
       maintext.addText(response["txt"]);
       maintext.setInputLine(response["input"]);
