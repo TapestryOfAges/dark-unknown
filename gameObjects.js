@@ -8266,11 +8266,11 @@ NPCObject.prototype.processDeath = function(droploot){
       maps.addMapByRef(newmap);
     }
     var tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, 7, 7);
-    $("#mainview").fadeOut(1500, function() {
+    $("#mainview").fadeOut(2500, function() {
       maintext.addText("You find yourself floating bodiless in the void.");
       setTimeout(function() {
         DrawMainFrame("draw", "landsbeyond", 7,7);
-        $("#mainview").fadeIn(1000, function() {
+        $("#mainview").fadeIn(2000, function() {
           maintext.addText("There is nought to do but meditate upon your life, and the triumphs and errors it contained.");
           setTimeout(function() {
             maintext.addText("Suddenly a voice cries out in the darkness!");
@@ -8289,12 +8289,15 @@ NPCObject.prototype.processDeath = function(droploot){
                 }
                 tile = MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,29,16);
                 DrawMainFrame("draw","olympus1",29,16);
-              }, 1000);
-            }, 1000);
-          }, 1000);
-        } , 1000);
+              }, 2000);
+            }, 2000);
+          }, 2000);
+        } , 2000);
       });
     });
+    PC.setHP(PC.getMaxHP());
+    PC.setMana(PC.getMaxMana());
+    DrawCharFrame();
     return;
   } else {
     var corpse = {};
@@ -9485,6 +9488,8 @@ function PCObject() {
   this.runes.winds = 0;
   this.runes.waves = 0;
   this.runes.void = 0;
+
+  this.specials = {};
 
 	this.inventory = new Collection();
   this.spellEffects = new Collection();	

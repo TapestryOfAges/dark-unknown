@@ -806,10 +806,12 @@ mappages["combatCoast2"].check_escape = function(mapref) {
 // for all combat maps
 
 function maps_set_exits(mapref) {
-  mapref.Enter = function(who,frommap,fromx,fromy,tox,toy) {
-    this.setExitToMap(frommap.getName());
-    this.setExitToX(fromx);
-    this.setExitToY(fromy);    
+  mapref.Enter = function(ewho,efrommap,efromx,efromy,etox,etoy) {
+    if (efrommap) {
+      this.setExitToMap(efrommap.getName());
+      this.setExitToX(efromx);
+      this.setExitToY(efromy);    
+    }
   }
 }
 

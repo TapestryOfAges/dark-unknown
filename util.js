@@ -236,7 +236,6 @@ return displayCell;
 
 
 function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
-  
   var retval = {};
   var oldx = who.getx();
   var oldy = who.gety();

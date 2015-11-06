@@ -741,6 +741,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
   
   // Next, check and see if there is already a path that has not expired
   // but only if the PC is not within close range- in that case, always wait to hunt
+  if (debug) { dbs.writeln("<span style='color:orange;'>Comparing distance: Radius=" + radius + "; PC is " + GetDistance(who.getx(), who.gety(), locx, locy) + " away .</span><br />"); }
   if (GetDistance(who.getx(), who.gety(), locx, locy) > radius/3) {
     if (debug) { dbs.writeln("<span style='color:orange;'>PC on another map or not Close. Trying to follow a path.</span><br />"); }
     retval = ais.SurfaceFollowPath(who,40,1);   
@@ -1020,7 +1021,10 @@ function NPCAttackPCMap(npc) {
     
   var monsters = PlaceMonsters(newmap,npc,0);
   DUTime.removeEntityFrom(npc);
-    
+  DUTime.removeEntityFrom(PC);
+  var NPCevent = new GameEvent(PC);
+  DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+      
   DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
   
   var npcname = npc.getDesc();
