@@ -1475,7 +1475,7 @@ magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   var levobj = localFactory.createTile("Levitate");
   
   var dur = caster.getInt();
-  if (free) { dur = RollDice("1d5+17"); }
+  if (free) { dur = RollDice("1d10+35"); }
   if (infused) { dur = dur * 3; }
   var endtime = dur + DU.DUTime.getGameClock();
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }

@@ -349,7 +349,7 @@ function PushOff(what) {
 }
 
 function Regen(who) {
-  if (DUTime.getGameClock() <= who.nextMana) {
+  if (DUTime.getGameClock() > who.nextMana) {
     if (who.getMana() < who.getMaxMana()) {
       who.modMana(1);
     }

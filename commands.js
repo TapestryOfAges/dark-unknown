@@ -1666,6 +1666,10 @@ function PerformYell() {
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,16,13);		  
       DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+    } else if (inputText.txt === "GOGROTTO") {
+		    var homemap = PC.getHomeMap();
+		    homemap.moveThing(30,45,PC);
+		    DrawMainFrame("draw", homemap.getName(), PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTGROTTO") {
       var newmap = new GameMap();
       if (maps.getMap("grotto")) {
