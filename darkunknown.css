@@ -15,6 +15,7 @@
 	  src: local("Spells"), url( 'fonts/UnZialish.ttf' ) format("truetype");
 	}  
 
+body { background-color: black; }
 	
 div.topbar { text-align:center; 
 	           color:white;

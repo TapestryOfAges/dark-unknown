@@ -705,7 +705,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
   if (!radius) { radius = 0; }
   
   var retval = {fin: 1};
-  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " " + who.getSerial() + " is going.</span><br />"); }
+  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " " + who.getSerial() + " is going. Radius: " + radius + ".</span><br />"); }
   // First, see if the PC is adjacent and if so, smite.
   var locx = PC.getx();
   var locy = PC.gety();
@@ -725,6 +725,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
     if (pcmap === who.getHomeMap()) {
       if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " attacks the PC!</span><br />"); }
       NPCAttackPCMap(who);
+      retval.removed = 1;
       return retval;
     } else { // PC is already in a fight
       if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " adjacent to PC on world map, waiting its turn.</span><br />"); }
@@ -821,7 +822,7 @@ ais.HuntPC = function(who, radius) {
 		
 	var path = themap.getPath(who.getx(), who.gety(), destination.x, destination.y, who.getMovetype());
 	if (path.length) {
-   	path.shift();  // because the furst step is where it is already standing.
+   	path.shift();  // because the first step is where it is already standing.
     if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>From: " + who.getx() + ", " + who.gety() + " to " + destination.x + ", " + destination.y+ "</span><br />"); }
     if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>First step is: " + path[0][0] + ", " + path[0][1] + "</span><br />"); }
     if (debug) { dbs.writeln("<span style='color:purple; font-weight:bold'>Next step is: " + path[1][0] + ", " + path[1][1] + "</span><br />"); }
@@ -829,6 +830,7 @@ ais.HuntPC = function(who, radius) {
 
     var dur = Math.floor(Math.random()*3)-1; 
     dur = dur + Math.floor(path.length / 3);
+    if (dur < 1) { dur = 1; }
     who.setDestination(destination, dur);
     who.setDestinationType("PC");
     
@@ -1029,7 +1031,11 @@ function NPCAttackPCMap(npc) {
   
   var npcname = npc.getDesc();
   npcname = npcname.charAt(0).toUpperCase() + npcname.slice(1);
-  maintext.addText(npcname + " attacks!");
+  if (npc.attackword) {
+    maintext.addText(npcname + " " + npc.attackword + "!");
+  } else {
+    maintext.addText(npcname + " attack!");
+  }
   
   return 1;
 }

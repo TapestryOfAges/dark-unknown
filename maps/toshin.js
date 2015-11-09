@@ -82,8 +82,8 @@ mappages["toshin1"].entertestscript = '';
 mappages["toshin1"].exitscript = '';
 mappages["toshin1"].exittestscript = '';
 mappages["toshin1"].returnmap = 'darkunknown';
-mappages["toshin1"].returnx = '29';
-mappages["toshin1"].returny = '43';
+mappages["toshin1"].returnx = '102';
+mappages["toshin1"].returny = '126';
 mappages["toshin1"].returninfused = '0';
 mappages["toshin1"].linkedMaps = ["toshin2", "toshin3","toshin4"];
 
