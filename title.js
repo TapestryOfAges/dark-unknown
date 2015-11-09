@@ -157,7 +157,9 @@ function SecondPage() {
 
   var sleft = browserwidth/2 - 200;
   var sptop = browserheight/2 - 300;
+  if (sptop < 0 ) { sptop = 0; }
   var opttop = sptop + 250;
+  if (opttop === 250) { opttop = 200; }
   var optleft = browserwidth/2 - 215;
   optselect = 0;
   var spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;display:none'><img src='graphics/title/du_logo.gif' /></div><div id='options'></div>";

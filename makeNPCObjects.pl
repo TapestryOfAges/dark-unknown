@@ -157,6 +157,7 @@ foreach my $line (<$groupdoc>) {
   }
   $fields[12] = uc($fields[12]);
   print $out "  this.movetype = MOVE_$fields[12];\n";
+  print $out "  this.attackword = '$fields[13]';\n";
   print $out "}\n";
   print $out "$fields[0]" . "Tile.prototype = new NPCGroupObject();\n\n";
 }

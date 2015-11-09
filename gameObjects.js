@@ -7964,7 +7964,7 @@ function NPCObject() {
 	this.maxhp = 10;
 	this.mana = 10;
 	this.maxmana = 10;
-	this.level = 0
+	this.level = 1;
 //	this.type = "npc";
 	this.npcname = "myname";
 	this.desc = "an NPC";
@@ -9078,8 +9078,10 @@ NPCObject.prototype.myTurn = function() {
 	this.setLastTurnTime(DUTime.getGameClock());
 	
 	gamestate.setMode("null");
-	var NPCevent = new GameEvent(this);
-  DUTime.addAtTimeInterval(NPCevent,this.nextActionTime(response["initdelay"]));
+  if (!response.removed) {
+	  var NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,this.nextActionTime(response["initdelay"]));
+  }
   
 //  var nextEntity = DUTime.executeNextEvent().getEntity();
 //  nextEntity.myTurn();
@@ -9414,6 +9416,7 @@ NPCObject.prototype.getNextStep = function() {
 
 function NPCGroupObject() {
   this.group = [];
+  this.attackword = "attack";
 }
 NPCGroupObject.prototype = new NPCObject();
 
