@@ -88,7 +88,7 @@ GameStateData.prototype.loadTmp = function() {
 
 // eventually use var compressed = LZString.compressToUTF16(string); and string = LZString.decompressFromUTF16(localStorage.getItem("myData"));
 // also, respect .nosave property
-GameStateData.prototype.saveGame = function(external) {
+GameStateData.prototype.saveGame = function(flag) {
   gamestate.setMode("loadgame");
 	var savedata = {};
 	
@@ -147,9 +147,11 @@ GameStateData.prototype.saveGame = function(external) {
 	if (debug) { dbs.writeln("<br /><br /><p>" + serialized + "</p><br />"); }
 	//this is where we would add a prompt for save game name if we want to allow multiple saves
 	
-	if (external) {
+	if (flag === 'external') {
 	  savescreen = window.open('','savescreen');
 	  savescreen.document.write(serialized);
+	} else if (flag === "charsave") {
+	  localStorage.charsave = compressed;
 	} else {
 	  localStorage.savegame = compressed;
 	}
@@ -159,7 +161,7 @@ GameStateData.prototype.saveGame = function(external) {
 GameStateData.prototype.loadGame = function() {
   gamestate.setMode("loadgame");
   
-  if (!localStorage.savegame && !localStorage.manualsave) {
+  if (!localStorage.savegame && !localStorage.manualsave && !localStorage.charsave) {
     if (debug) { dbs.writeln("<br /><br /><p>LOADING TMP VALUES</p><br />"); }
     gamestate.loadTmp();
     return;
@@ -170,7 +172,11 @@ GameStateData.prototype.loadGame = function() {
   
   if (debug) { dbs.writeln("<p><span style='font-weight:bold'>Start load procedure:</span><br />"); }
 
-  if (localStorage.manualsave) {
+  if (localStorage.charsave) {
+    compressed = localStorage.charsave;
+    serialized = LZString.decompressFromUTF16(compressed);
+    delete localStorage.charsave;    
+  } else if (localStorage.manualsave) {
     serialized = localStorage.manualsave;
     delete localStorage.manualsave;
   } else {

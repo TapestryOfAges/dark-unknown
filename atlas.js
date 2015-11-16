@@ -10,6 +10,12 @@ function Atlas() {
     "Water" : "ww",  
     "uu" : "Shallows", // 3
     "Shallows" : "uu",
+    "sW" : "ShadowOcean",   // 1
+    "ShadowOcean" : "sW",  
+    "sw" : "ShadowWater",   // 2
+    "ShadowWater" : "sw",  
+    "su" : "ShadowShallows", // 3
+    "ShadowShallows" : "su",
     '^^' : "Mountain", // 4
     "Mountain" : '^^', 
     '^_' : "MountainPass", // 4
@@ -146,6 +152,8 @@ function Atlas() {
 //    "Doorway" : '+D',
     '!!' : "PlanksNS", // 69
     "PlanksNS" : '!!',
+    's!' : "ShadowPlanksNS", // 69
+    "ShadowPlanksNS" : 's!',
 // 70 - 72 are features (bridges)
     '__' : "SouthCoast", // 73
     "SouthCoast" : '__',
@@ -163,6 +171,22 @@ function Atlas() {
     "NorthwestCoast" : '/.',
     './' : "SoutheastCoast", // 80
     "SoutheastCoast" : './',
+    's_' : "ShadowSouthCoast", // 73
+    "ShadowSouthCoast" : 's_',
+    's-' : "ShadowNorthCoast", // 74
+    "ShadowNorthCoast" : 's-',
+    's|' : "ShadowEastCoast", // 75
+    "ShadowEastCoast" : 's|',
+    '|s' : "ShadowWestCoast", // 76
+    "ShadowWestCoast" : '|s',
+    's`' : "ShadowNortheastCoast", // 77
+    "ShadowNortheastCoast" : 's`',
+    '`s' : "ShadowSouthwestCoast", // 78
+    "ShadowSouthwestCoast" : '`s', 
+    '/s' : "ShadowNorthwestCoast", // 79
+    "ShadowNorthwestCoast" : '/s',
+    's/' : "ShadowSoutheastCoast", // 80
+    "ShadowSoutheastCoast" : 's/',
 // 101-102 are features (bridge)
     '++' : "Cobblestone", // 103
     "Cobblestone" : '++',
@@ -171,10 +195,16 @@ function Atlas() {
 // 105 is a feature or an NPC, depending
     '..' : "Grass", // 121
     "Grass" : '..',
+    'ss' : "ShadowGrass", // 121
+    "ShadowGrass" : 'ss',
     '.,' : "Dirt", // 121
     "Dirt" : '.,',
+    's,' : "ShadowDirt", 
+    "ShadowDirt" : 's,',
     ',,' : "Brush", // 122
     "Brush" : ',,',
+    ',s' : "ShadowBrush",
+    "ShadowBrush" : ',s',
     ',|' : "BrushECoast",
     "BrushECoast" : ',|',
     '|,' : "BrushWCoast",
@@ -187,6 +217,8 @@ function Atlas() {
     "Forest" : ';;',
     ',;' : "Grove", // 123
     "Grove" : ',;',
+    's;' : "ShadowGrove", // 123
+    "ShadowGrove" : 's;',
     '|;' : "ForestWCoast",
     "ForestWCoast" : '|;',
     ';|' : "ForestECoast",
@@ -199,11 +231,15 @@ function Atlas() {
     "Hills" : 'nn',
     '+*' : "PurpleCobblestone", // 125
     "PurpleCobblestone" : '+*',
+    '+S' : "ShadowPurpleCobblestone", // 125
+    "ShadowPurpleCobblestone" : '+S',
     'p*' : "FancyFloor",
     "FancyFloor" : 'p*',
 // 126 is a feature (bridge)
     'ff' : "Swamp", // 141
     "Swamp" : 'ff',
+    'sf' : "ShadowSwamp", 
+    "ShadowSwamp" : 'sf',
 // 142 - 146 are features
 //    '~~' : "Lava", // 147
 //    "Lava" : '~~',

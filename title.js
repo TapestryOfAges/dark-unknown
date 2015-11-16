@@ -375,5 +375,5 @@ var PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,.0001);
 	startScheduler();
 	
-	gamestate.saveGame();
+	gamestate.saveGame("charsave");
 }

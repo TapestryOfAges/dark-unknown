@@ -217,7 +217,8 @@ function PerformCommand(code, ctrl) {
 //		var testnpc = mymap.npcs.getTop();
 //		testnpc.copy();
     gamestate.setMode("saving");
-    gamestate.saveGame(ctrl);
+    if (ctrl) { gamestate.saveGame("external"); }
+    else { gamestate.saveGame(); }
 		retval["txt"] = "Quit &amp; Save: Saving game...";
 		retval["input"] = "&gt;";
 		retval["fin"] = 2;
