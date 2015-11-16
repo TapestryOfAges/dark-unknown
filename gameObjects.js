@@ -794,30 +794,30 @@ function SetBySurroundCoast() {
     var tile; 
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
-    	if (tile.getName() === "Ocean") { ocean = tile; }
-    	if (tile.getName() === "Water") { water = tile; }
-    	if (tile.getName() === "Shallows") { shallow = tile; }
+    	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
+    	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
+    	if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
     }
     localacre = themap.getTile(x,y+1);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
-    	if (tile.getName() === "Ocean") { ocean = tile; }
-    	if (tile.getName() === "Water") { water = tile; }
-    	if (tile.getName() === "Shallows") { shallow = tile;; }
+    	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
+    	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
+    	if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile;; }
     }
     localacre = themap.getTile(x+1,y);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
-    	if (tile.getName() === "Ocean") { ocean = tile; }
-    	if (tile.getName() === "Water") { water = tile; }
-    	if (tile.getName() === "Shallows") { shallow = tile; }
+    	if (tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
+    	if (tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
+    	if (tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
     }
     localacre = themap.getTile(x-1,y);
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
-    	if (tile.getName() === "Ocean") { ocean = tile; }
-    	if (tile.getName() === "Water") { water = tile; }
-    	if (tile.getName() === "Shallows") { shallow = tile; }
+    	if (tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
+    	if (tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
+    	if (tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
     }
     var chosentile;
     if (shallow) { chosentile = shallow; }
@@ -1118,6 +1118,62 @@ ShallowsTile.prototype.walkon = function(walker) {
 }
 
 ShallowsTile.prototype.idle = function(walker) {
+  var resp = InWater(walker);
+  return resp;
+}
+
+function ShadowOceanTile() {
+  this.name = "ShadowOcean";
+  this.graphic = "flowing_animations.gif";
+  this.desc = "deep water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "0";
+  this.combatmap = "Water";
+}
+ShadowOceanTile.prototype = new TerrainObject();
+
+function ShadowWaterTile() {
+  this.name = "ShadowWater";
+  this.graphic = "flowing_animations.gif";
+  this.desc = "water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "0";
+  this.combatmap = "Water";
+}
+ShadowWaterTile.prototype = new TerrainObject();
+
+ShadowWaterTile.prototype.walkon = function(walker) {
+  var resp = InWater(walker);
+  return resp;
+}
+
+ShadowWaterTile.prototype.idle = function(walker) {
+  var resp = InWater(walker);
+  return resp;
+}
+
+function ShadowShallowsTile() {
+  this.name = "ShadowShallows";
+  this.graphic = "flowing_animations.gif";
+  this.desc = "shallow water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  this.combatmap = "Water";
+}
+ShadowShallowsTile.prototype = new TerrainObject();
+
+ShadowShallowsTile.prototype.walkon = function(walker) {
+  var resp = InWater(walker);
+  return resp;
+}
+
+ShadowShallowsTile.prototype.idle = function(walker) {
   var resp = InWater(walker);
   return resp;
 }
@@ -2007,6 +2063,18 @@ function PlanksNSTile() {
 }
 PlanksNSTile.prototype = new TerrainObject();
 
+function ShadowPlanksNSTile() {
+  this.name = "ShadowPlanksNS";
+//  this.graphic = "069.gif";
+  this.graphic = "terrain_ether.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "wooden planks";
+}
+ShadowPlanksNSTile.prototype = new TerrainObject();
+
 function SouthCoastTile() {
   this.name = "SouthCoast";
 //  this.graphic = "073.gif";
@@ -2119,6 +2187,119 @@ function SoutheastCoastTile() {
 }
 SoutheastCoastTile.prototype = new TerrainObject();
 
+function ShadowSouthCoastTile() {
+  this.name = "ShadowSouthCoast";
+//  this.graphic = "073.gif";
+  this.graphic = "terrain_ether.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+}
+ShadowSouthCoastTile.prototype = new TerrainObject();
+
+function ShadowNorthCoastTile() {
+  this.name = "ShadowNorthCoast";
+//  this.graphic = "074.gif";
+  this.graphic = "terrain_ether.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+}
+ShadowNorthCoastTile.prototype = new TerrainObject();
+
+function ShadowEastCoastTile() {
+  this.name = "ShadowEastCoast";
+//  this.graphic = "075.gif";
+  this.graphic = "terrain_ether.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+}
+ShadowEastCoastTile.prototype = new TerrainObject();
+
+function ShadowWestCoastTile() {
+  this.name = "ShadowWestCoast";
+//  this.graphic = "076.gif";
+  this.graphic = "terrain_ether.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+}
+ShadowWestCoastTile.prototype = new TerrainObject();
+
+function ShadowNortheastCoastTile() {
+  this.name = "ShadowNortheastCoast";
+  this.graphic = "flow_ethereal.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  this.overlay = "necoast.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  
+  SetBySurroundCoast.call(this);
+}
+ShadowNortheastCoastTile.prototype = new TerrainObject();
+
+function ShadowSouthwestCoastTile() {
+  this.name = "ShadowSouthwestCoast";
+  this.graphic = "flow_ethereal.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  this.overlay = "swcoast.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  
+  SetBySurroundCoast.call(this);
+}
+ShadowSouthwestCoastTile.prototype = new TerrainObject();
+
+function ShadowNorthwestCoastTile() {
+  this.name = "ShadowNorthwestCoast";
+  this.graphic = "flow_ethereal.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  this.overlay = "nwcoast.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  
+  SetBySurroundCoast.call(this);
+}
+ShadowNorthwestCoastTile.prototype = new TerrainObject();
+
+function ShadowSoutheastCoastTile() {
+  this.name = "ShadowSoutheastCoast";
+  this.graphic = "flow_ethereal.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  this.overlay = "secoast.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  
+  SetBySurroundCoast.call(this);
+}
+ShadowSoutheastCoastTile.prototype = new TerrainObject();
+
+
 function RiverTile() {
   this.name = "River";
   this.overlay = "riverns.gif";
@@ -2186,6 +2367,20 @@ function GrassTile() {
 }
 GrassTile.prototype = new TerrainObject();
 
+function ShadowGrassTile() {
+  this.name = "ShadowGrass";
+//  this.graphic = "121.gif";
+  this.graphic = "terrain_ether.gif";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "grass";
+
+  this.combatmap = "Grass"; 
+}
+ShadowGrassTile.prototype = new TerrainObject();
+
 function DirtTile() {
   this.name = "Dirt";
 //  this.graphic = "dirt-ground.gif";
@@ -2198,6 +2393,19 @@ function DirtTile() {
   this.combatmap = "Grass";
 }
 DirtTile.prototype = new TerrainObject();
+
+function ShadowDirtTile() {
+  this.name = "ShadowDirt";
+//  this.graphic = "dirt-ground.gif";
+  this.graphic = "terrain_ether.gif";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "dirt";
+  this.combatmap = "Grass";
+}
+ShadowDirtTile.prototype = new TerrainObject();
 
 
 function RoadTile() {
@@ -2228,6 +2436,20 @@ function BrushTile() {
   this.combatmap = "Brush";
 }
 BrushTile.prototype = new TerrainObject();
+
+function ShadowBrushTile() {
+  this.name = "ShadowBrush";
+//  this.graphic = "122.gif";
+  this.graphic = "terrain_ether.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-192";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "brush";
+  this.initdelay = 1.1;
+  this.combatmap = "Brush";
+}
+ShadowBrushTile.prototype = new TerrainObject();
 
 function BrushNCoastTile() {
   this.name = "BrushNCoast";
@@ -2314,6 +2536,20 @@ function GroveTile() {
   this.initdelay = 1.3;
 }
 GroveTile.prototype = new TerrainObject();
+
+function ShadowGroveTile() {
+	this.name = "ShadowGrove";
+//  this.graphic = "123.gif";
+  this.graphic = "terrain_ether.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-192";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = .5;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "trees";
+  this.initdelay = 1.3;
+}
+ShadowGroveTile.prototype = new TerrainObject();
 	
 function ForestNCoastTile() {
 	this.name = "ForestNCoast";
@@ -2408,6 +2644,18 @@ function PurpleCobblestoneTile() {
 }
 PurpleCobblestoneTile.prototype = new TerrainObject();
 
+function ShadowPurpleCobblestoneTile() {
+  this.name = "ShadowPurpleCobblestone";
+//  this.graphic = "125.gif";
+  this.graphic = "terrain_ether.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-224";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "cobblestone";
+}
+ShadowPurpleCobblestoneTile.prototype = new TerrainObject();
+
 function SwampTile() {
   this.name = "Swamp";
 //  this.graphic = "141.gif";
@@ -2427,6 +2675,29 @@ SwampTile.prototype.walkon = function(person) {
   return resp;
 }
 SwampTile.prototype.idle = function(person) {
+  var resp = InASwamp(person);
+  return resp;
+}
+
+function ShadowSwampTile() {
+  this.name = "ShadowSwamp";
+//  this.graphic = "141.gif";
+  this.graphic = "terrain_ether.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-224";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "swamp";
+  this.initdelay = 1.2;
+  this.combatmap = "Swamp";
+}
+ShadowSwampTile.prototype = new TerrainObject();
+
+ShadowSwampTile.prototype.walkon = function(person) {
+  var resp = InASwamp(person);
+  return resp;
+}
+ShadowSwampTile.prototype.idle = function(person) {
   var resp = InASwamp(person);
   return resp;
 }
@@ -5317,9 +5588,12 @@ function whoosh(whozat, windlist, spawnwhere, spawnthing) {
   if (windlist[2]) {
     setTimeout( function() { whoosh(whozat, windlist.slice(2), spawnwhere, spawnthing); }, 100);
   } else {
-    var spawnedmonster = localFactory.createTile(spawnthing);
-    windmap.placeThing(spawnwhere[0], spawnwhere[1], spawnedmonster);
-    // add an "appears" visual effect? WORKING
+    if (spawnthing) {
+      var spawnedmonster = localFactory.createTile(spawnthing);
+      windmap.placeThing(spawnwhere[0], spawnwhere[1], spawnedmonster);
+      // add an "appears" visual effect? WORKING
+    }
+    
     
     whozat.endTurn(0);
   }

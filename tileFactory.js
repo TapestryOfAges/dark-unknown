@@ -36,6 +36,21 @@ tileFactory.prototype.makeShallowsTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeShadowOceanTile = function() {
+  var newTile = new ShadowOceanTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowWaterTile = function() {
+  var newTile = new ShadowWaterTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowShallowsTile = function() {
+  var newTile = new ShadowShallowsTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeMountainTile = function() {
   var newTile = new MountainTile();
   return newTile;
@@ -391,6 +406,46 @@ tileFactory.prototype.makeSoutheastCoastTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeShadowSouthCoastTile = function() {
+  var newTile = new ShadowSouthCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowNorthCoastTile = function() {
+  var newTile = new ShadowNorthCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowEastCoastTile = function() {
+  var newTile = new ShadowEastCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowWestCoastTile = function() {
+  var newTile = new ShadowWestCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowNortheastCoastTile = function() {
+  var newTile = new ShadowNortheastCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowSouthwestCoastTile = function() {
+  var newTile = new ShadowSouthwestCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowNorthwestCoastTile = function() {
+  var newTile = new ShadowNorthwestCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowSoutheastCoastTile = function() {
+  var newTile = new ShadowSoutheastCoastTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRiverTile = function() {
   var newTile = new RiverTile();
   return newTile;
@@ -416,8 +471,18 @@ tileFactory.prototype.makeGrassTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeShadowGrassTile = function() {
+  var newTile = new ShadowGrassTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDirtTile = function() {
   var newTile = new DirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowDirtTile = function() {
+  var newTile = new ShadowDirtTile();
   return newTile;
 }
 
@@ -428,6 +493,11 @@ tileFactory.prototype.makeRoadTile = function() {
 
 tileFactory.prototype.makeBrushTile = function() {
   var newTile = new BrushTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowBrushTile = function() {
+  var newTile = new ShadowBrushTile();
   return newTile;
 }
 
@@ -461,6 +531,11 @@ tileFactory.prototype.makeGroveTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeShadowGroveTile = function() {
+  var newTile = new ShadowGroveTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeForestNCoastTile = function() {
   var newTile = new ForestNCoastTile();
   return newTile;
@@ -491,8 +566,18 @@ tileFactory.prototype.makePurpleCobblestoneTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeShadowPurpleCobblestoneTile = function() {
+  var newTile = new ShadowPurpleCobblestoneTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSwampTile = function() {
   var newTile = new SwampTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeShadowSwampTile = function() {
+  var newTile = new ShadowSwampTile();
   return newTile;
 }
 
