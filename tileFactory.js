@@ -366,6 +366,11 @@ tileFactory.prototype.makePlanksNSTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeShadowPlanksNSTile = function() {
+  var newTile = new ShadowPlanksNSTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSouthCoastTile = function() {
   var newTile = new SouthCoastTile();
   return newTile;
@@ -961,6 +966,11 @@ tileFactory.prototype.makeTrainingDummyTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAnvilTile = function() {
+  var newTile = new AnvilTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWBridgeNSTile = function() {
   var newTile = new WBridgeNSTile();
   return newTile;
@@ -1088,6 +1098,11 @@ tileFactory.prototype.makeBookshelfOneTile = function() {
 
 tileFactory.prototype.makeSmallBoxTile = function() {
   var newTile = new SmallBoxTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBarrelTile = function() {
+  var newTile = new BarrelTile();
   return newTile;
 }
 
@@ -1308,6 +1323,21 @@ tileFactory.prototype.makeArmorCounterChainTile = function() {
 
 tileFactory.prototype.makeArmorCounterPlateTile = function() {
   var newTile = new ArmorCounterPlateTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArmorRackLeatherTile = function() {
+  var newTile = new ArmorRackLeatherTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArmorRackChainTile = function() {
+  var newTile = new ArmorRackChainTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArmorRackPlateTile = function() {
+  var newTile = new ArmorRackPlateTile();
   return newTile;
 }
 
@@ -2163,6 +2193,11 @@ tileFactory.prototype.makeQueenNPCTile = function() {
 
 tileFactory.prototype.makePrinceNPCTile = function() {
   var newTile = new PrinceNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHorseNPCTile = function() {
+  var newTile = new HorseNPCTile();
   return newTile;
 }
 

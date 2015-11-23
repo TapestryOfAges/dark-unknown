@@ -3944,6 +3944,17 @@ function TrainingDummyTile() {
 }
 TrainingDummyTile.prototype = new FeatureObject();
 
+function AnvilTile() {
+  this.name = "Anvil";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-64";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "anvil";
+}
+AnvilTile.prototype = new FeatureObject();
 
 function WBridgeNSTile() {
   this.name = "WBridgeNS";
@@ -4254,16 +4265,16 @@ function BookshelfOneTile() {
 BookshelfOneTile.prototype = new FeatureObject();
 
 function SmallBoxTile() {
-  this.name = "SmallBoxOne";
+  this.name = "SmallBox";
   this.graphic = "furniture.gif";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "0";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-96";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "small box";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "", "-256", "-32"];
+  this.searchedgraphic = ["furniture.gif", "", "-128", "-96"];
 	this.lootgroup = "";
 	this.lootedid = "";
 	
@@ -4271,6 +4282,25 @@ function SmallBoxTile() {
 	OpenContainer.call(this);
 }
 SmallBoxTile.prototype = new FeatureObject();
+
+function BarrelTile() {
+  this.name = "Barrel";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-96";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "small box";
+  this.showsearched = 1;
+  this.searchedgraphic = ["furniture.gif", "", "-192", "-96"];
+	this.lootgroup = "";
+	this.lootedid = "";
+	
+	this.container = [];
+	OpenContainer.call(this);
+}
+BarrelTile.prototype = new FeatureObject();
 
 function MirrorTile() {
   this.name = "Mirror";
@@ -5004,9 +5034,9 @@ PentagramSETile.prototype = new FeatureObject();
 function ArmorCounterLeatherTile() {
   this.name = "ArmorCounterLeather";
 //  this.graphic = "051.gif";
-  this.graphic = "armorcounter.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "0";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-64";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -5018,9 +5048,9 @@ ArmorCounterLeatherTile.prototype = new FeatureObject();
 function ArmorCounterChainTile() {
   this.name = "ArmorCounterChain";
 //  this.graphic = "051.gif";
-  this.graphic = "armorcounter.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "0";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-64";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -5032,9 +5062,9 @@ ArmorCounterChainTile.prototype = new FeatureObject();
 function ArmorCounterPlateTile() {
   this.name = "ArmorCounterPlate";
 //  this.graphic = "051.gif";
-  this.graphic = "armorcounter.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "0";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-64";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -5042,6 +5072,48 @@ function ArmorCounterPlateTile() {
   this.desc = "display counter";
 }
 ArmorCounterPlateTile.prototype = new FeatureObject();
+
+function ArmorRackLeatherTile() {
+  this.name = "ArmorRackLeather";
+//  this.graphic = "051.gif";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-96";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = 0;
+  this.prefix = "a";
+  this.desc = "display suit of leather armor";
+}
+ArmorRackLeatherTile.prototype = new FeatureObject();
+
+function ArmorRackChainTile() {
+  this.name = "ArmorRackChain";
+//  this.graphic = "051.gif";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-96";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = 0;
+  this.prefix = "a";
+  this.desc = "display suit of chain mail";
+}
+ArmorRackChainTile.prototype = new FeatureObject();
+
+function ArmorRackPlateTile() {
+  this.name = "ArmorRackPlate";
+//  this.graphic = "051.gif";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-64";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = 0;
+  this.prefix = "a";
+  this.desc = "display suit of plate armor";
+}
+ArmorRackPlateTile.prototype = new FeatureObject();
 
 function MoatLeverOffTile() {
   this.name = "MoatLeverOff";

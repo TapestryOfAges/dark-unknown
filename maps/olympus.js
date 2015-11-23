@@ -196,6 +196,10 @@ mappages["olympus1"].features[146] = {name : 'RedCarpetS', x : 16, y : 22};
 mappages["olympus1"].features[147] = {name : 'RedCarpetS', x : 17, y : 22};
 mappages["olympus1"].features[148] = {name : 'RedCarpetSE', x : 18, y : 22};
 mappages["olympus1"].features[149] = {name : 'Throne', x : 29, y : 13};
+mappages["olympus1"].features[150] = {name : 'LeftTable', x : 43, y : 25};
+mappages["olympus1"].features[151] = {name : 'MiddleTable', x : 44, y : 25};
+mappages["olympus1"].features[152] = {name : 'RightTable', x : 45, y : 25};
+mappages["olympus1"].features[153] = {name : 'Barrel', x : 47, y : 32, lootgroup : '', lootedid : ''};
 
 
 mappages["olympus1"].npcs = [];
@@ -206,13 +210,13 @@ mappages["olympus1"].npcs[3] = {name : 'TownGuardNPC', x : 31, y : 18, Conversat
 mappages["olympus1"].npcs[4] = {name : 'TownGuardNPC', x : 30, y : 23, Conversation: 'castleguard1', Gender: 'female'};
 mappages["olympus1"].npcs[5] = {name : 'TownGuardNPC', x : 32, y : 33, Conversation: 'castleguard1', Gender: 'male'};
 mappages["olympus1"].npcs[6] = {name : 'TownGuardNPC', x : 26, y : 33, Conversation: 'castleguard1', Gender: 'male'};
-mappages["olympus1"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 24, y : 22, NPCName: 'Katrina', Conversation: 'katrina', Gender: 'female', Desc: 'librarian'};
-mappages["olympus1"].npcs[8] = {name : 'BardVillagerNPC', x : 13, y : 14, NPCName: 'Olivia', Desc: 'bard', Conversation: 'olivia', Gender: 'female', Leash: 8};
+mappages["olympus1"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 24, y : 22, NPCName: 'Katrina', Desc: 'librarian', Conversation: 'katrina', Gender: 'female'};
+mappages["olympus1"].npcs[8] = {name : 'BardVillagerNPC', x : 13, y : 14, NPCName: 'Olivia', Conversation: 'olivia', Gender: 'female', Leash: 8};
 mappages["olympus1"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 47, y : 28};
 mappages["olympus1"].npcs[10] = {name : 'QueenNPC', x : 44, y : 14, NPCName: 'Shelaria', Conversation: 'shelaria', Gender: 'female'};
 mappages["olympus1"].npcs[11] = {name : 'FighterVillagerNPC', x : 25, y : 13, NPCName: 'Nyrani', Desc: 'guard captain', Level: 5, Alignment: 'good', str: 24, dex: 18, int: 12, PeaceAI: 'guard', PCThreatAI: 'melee', Conversation: 'nyrani', ConversationFlag: 'has_shield', Gender: 'female'};
 mappages["olympus1"].npcs[12] = {name : 'JesterNPC', x : 28, y : 15, NPCName: 'Kaye', Alignment: 'good', Conversation: 'kaye', Gender: 'male', Leash: 4, BarkFreq: 5, Bark: 'jester', BarkRad: 6};
-mappages["olympus1"].npcs[13] = {name : 'BardVillagerNPC', x : 42, y : 13, Gender: 'female', NPCName: 'Sonya', Conversation: 'sonya', Leash: 1};
+mappages["olympus1"].npcs[13] = {name : 'BardVillagerNPC', x : 42, y : 13, NPCName: 'Sonya', Conversation: 'sonya', Gender: 'female', Leash: 1};
 
 mappages["olympus1"].desc = "Castle Olympus";
 mappages["olympus1"].music = 'Olympus';
