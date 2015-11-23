@@ -517,6 +517,36 @@ function PrinceNPCTile() {
 PrinceNPCTile.prototype = new NPCObject();
 
 
+// Townsfolk
+
+function HorseNPCTile() {
+  this.name = 'HorseNPC';
+  this.level = 2;
+  this.addhp = 10;
+  this.str = 20;
+  this.dex = 12;
+  this.int = 3;
+  this.alignment = 'Good';
+  this.attitude = 'friendly';
+  this.peaceAI = 'townsfolk';
+  this.forgetAt = 0;
+  this.withdraw = '0';
+  this.graphic = '105.gif';
+  this.altgraphic = ['204.gif',];
+  this.meleeAttackAs = 'Shortsword';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = 'horse';
+  this.meleeChance = 100;
+  this.resists = {};
+}
+HorseNPCTile.prototype = new NPCObject();
+
+
 // CorruptTownsfolk
 
 function CorruptPrinceNPCTile() {
@@ -669,6 +699,7 @@ function GiantRatNPCTile() {
   this.lootTable = 'Small Animal';
   this.prefix = 'a';
   this.desc = 'giant rat';
+  this.onHit = 'disease';
   this.meleeChance = 100;
   this.resists = {};
 }
@@ -3068,6 +3099,7 @@ function GiantRatGroupSmallTile() {
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d3+2');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 GiantRatGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -3080,6 +3112,7 @@ function GiantRatGroupLargeTile() {
   this.group = [];
   this.group[0] = new NPCList('GiantRatNPC', '1d5+4');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 GiantRatGroupLargeTile.prototype = new NPCGroupObject();
 
@@ -3092,6 +3125,7 @@ function OrcGroupSmallTile() {
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d3+2');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 OrcGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -3104,6 +3138,7 @@ function OrcGroupLargeTile() {
   this.group = [];
   this.group[0] = new NPCList('OrcNPC', '1d5+4');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 OrcGroupLargeTile.prototype = new NPCGroupObject();
 
@@ -3116,6 +3151,7 @@ function HoodGroupSmallTile() {
   this.group = [];
   this.group[0] = new NPCList('HoodNPC', '1d3+1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 HoodGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -3129,6 +3165,7 @@ function HoodGroupLargeTile() {
   this.group[0] = new NPCList('HoodNPC', '1d3+3');
   this.group[1] = new NPCList('MinstrelNPC', '1d1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 HoodGroupLargeTile.prototype = new NPCGroupObject();
 
@@ -3141,6 +3178,7 @@ function RogueGroupSmallTile() {
   this.group[0] = new NPCList('RogueNPC', '1d3+2');
   this.group[1] = new NPCList('HoodNPC', '1d3+1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 RogueGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -3153,6 +3191,7 @@ function PitRogueGroupSmallTile() {
   this.group[0] = new NPCList('PitRogueNPC', '1d3+2');
   this.group[1] = new NPCList('HoodNPC', '1d3+1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 PitRogueGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -3166,6 +3205,7 @@ function RogueGroupLargeTile() {
   this.group[1] = new NPCList('HoodNPC', '1d3+2');
   this.group[2] = new NPCList('MinstrelNPC', '1d2');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 RogueGroupLargeTile.prototype = new NPCGroupObject();
 
@@ -3178,6 +3218,7 @@ function ThiefGroupSmallTile() {
   this.group[0] = new NPCList('ThiefNPC', '1d3+2');
   this.group[1] = new NPCList('RogueNPC', '1d3+1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 ThiefGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -3191,6 +3232,7 @@ function ThiefGroupLargeTile() {
   this.group[1] = new NPCList('RogueNPC', '1d3+2');
   this.group[2] = new NPCList('MinstrelNPC', '1d2');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 ThiefGroupLargeTile.prototype = new NPCGroupObject();
 
@@ -3205,6 +3247,7 @@ function LowbiePartyGroupTile() {
   this.group[2] = new NPCList('MinstrelNPC', '1d2-1');
   this.group[3] = new NPCList('ApprenticeNPC', '1d2-1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attacks';
 }
 LowbiePartyGroupTile.prototype = new NPCGroupObject();
 
@@ -3217,6 +3260,7 @@ function HeadlessGroupSmallTile() {
   this.group = [];
   this.group[0] = new NPCList('HeadlessNPC', '1d4+1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 HeadlessGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -3229,6 +3273,7 @@ function HeadlessGroupLargeTile() {
   this.group = [];
   this.group[0] = new NPCList('HeadlessNPC', '1d5+2');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 HeadlessGroupLargeTile.prototype = new NPCGroupObject();
 
@@ -3241,6 +3286,7 @@ function SnakesGroupTile() {
   this.group = [];
   this.group[0] = new NPCList('GiantSnakeNPC', '1d4+2');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 SnakesGroupTile.prototype = new NPCGroupObject();
 
@@ -3254,6 +3300,7 @@ function MidSnakesGroupTile() {
   this.group[0] = new NPCList('GiantSnakeNPC', '1d4+2');
   this.group[1] = new NPCList('PythonNPC', '1d2');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 MidSnakesGroupTile.prototype = new NPCGroupObject();
 
@@ -3266,6 +3313,7 @@ function DrakesSmallGroupTile() {
   this.group = [];
   this.group[0] = new NPCList('DrakeNPC', '1d4+1');
   this.movetype = MOVE_FLY;
+  this.attackword = 'attack';
 }
 DrakesSmallGroupTile.prototype = new NPCGroupObject();
 
@@ -3279,6 +3327,7 @@ function DrakesLargeGroupTile() {
   this.group[0] = new NPCList('DrakeNPC', '1d6+1');
   this.group[1] = new NPCList('DragonNPC', '1d2-1');
   this.movetype = MOVE_FLY;
+  this.attackword = 'attack';
 }
 DrakesLargeGroupTile.prototype = new NPCGroupObject();
 
@@ -3292,6 +3341,7 @@ function DragonsGroupTile() {
   this.group[0] = new NPCList('DrakeNPC', '1d3');
   this.group[1] = new NPCList('DragonNPC', '1d3+1');
   this.movetype = MOVE_FLY;
+  this.attackword = 'attack';
 }
 DragonsGroupTile.prototype = new NPCGroupObject();
 
@@ -3306,6 +3356,7 @@ function MidPartyGroupTile() {
   this.group[2] = new NPCList('ThiefNPC', '1d2');
   this.group[3] = new NPCList('HandlerNPC', '1d2-1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attacks';
 }
 MidPartyGroupTile.prototype = new NPCGroupObject();
 
@@ -3320,6 +3371,7 @@ function MidHighPartyGroupTile() {
   this.group[2] = new NPCList('WizardNPC', '1d2-1');
   this.group[3] = new NPCList('RangerNPC', '1d2-1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attacks';
 }
 MidHighPartyGroupTile.prototype = new NPCGroupObject();
 
@@ -3334,6 +3386,7 @@ function HighPartyGroupTile() {
   this.group[2] = new NPCList('ArchmageNPC', '1d2-1');
   this.group[3] = new NPCList('HandlerNPC', '1d2-1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attacks';
 }
 HighPartyGroupTile.prototype = new NPCGroupObject();
 
@@ -3347,6 +3400,7 @@ function MidHeadlessGroupTile() {
   this.group[0] = new NPCList('HeadlessNPC', '1d4+2');
   this.group[1] = new NPCList('EttinNPC', '1d2-1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 MidHeadlessGroupTile.prototype = new NPCGroupObject();
 
@@ -3361,6 +3415,7 @@ function HighHeadlessGroupTile() {
   this.group[1] = new NPCList('EttinNPC', '1d3-1');
   this.group[2] = new NPCList('CyclopsNPC', '1d2-1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 HighHeadlessGroupTile.prototype = new NPCGroupObject();
 
@@ -3376,6 +3431,7 @@ function GiantsGroupTile() {
   this.group[2] = new NPCList('EttinNPC', '1d3-1');
   this.group[3] = new NPCList('HeadlessNPC', '1d4');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 GiantsGroupTile.prototype = new NPCGroupObject();
 
@@ -3390,6 +3446,7 @@ function OrcPartyLowGroupTile() {
   this.group[1] = new NPCList('OrcShamanNPC', '1d3-1');
   this.group[2] = new NPCList('TrollNPC', '1d3-1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 OrcPartyLowGroupTile.prototype = new NPCGroupObject();
 
@@ -3405,6 +3462,7 @@ function OrcPartyHighGroupTile() {
   this.group[2] = new NPCList('TrollNPC', '1d3-1');
   this.group[3] = new NPCList('OrcCaptainNPC', '1d3');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 OrcPartyHighGroupTile.prototype = new NPCGroupObject();
 
@@ -3419,6 +3477,7 @@ function NecromancerGroupTile() {
   this.group[1] = new NPCList('PhantomNPC', '1d3-1');
   this.group[2] = new NPCList('SkeletonNPC', '2d4');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attacks';
 }
 NecromancerGroupTile.prototype = new NPCGroupObject();
 
@@ -3434,6 +3493,7 @@ function ElementalistGroupTile() {
   this.group[2] = new NPCList('FireElementalNPC', '1d3-1');
   this.group[3] = new NPCList('EarthElementalNPC', '1d3-1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attacks';
 }
 ElementalistGroupTile.prototype = new NPCGroupObject();
 
@@ -3447,6 +3507,7 @@ function GazersGroupTile() {
   this.group[0] = new NPCList('GazerNPC', '1d4');
   this.group[1] = new NPCList('GiantInsectsNPC', '1d5');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 GazersGroupTile.prototype = new NPCGroupObject();
 
@@ -3459,6 +3520,7 @@ function TrollGroupTile() {
   this.group = [];
   this.group[0] = new NPCList('TrollNPC', '2d4');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 TrollGroupTile.prototype = new NPCGroupObject();
 
@@ -3472,6 +3534,7 @@ function DaemonGroupTile() {
   this.group[0] = new NPCList('DaemonNPC', '1d3');
   this.group[1] = new NPCList('FireElementalNPC', '1d2-1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 DaemonGroupTile.prototype = new NPCGroupObject();
 
@@ -3485,6 +3548,7 @@ function SkeletonGroupTile() {
   this.group[0] = new NPCList('SkeletonNPC', '2d4');
   this.group[1] = new NPCList('GhostNPC', '1d2-1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 SkeletonGroupTile.prototype = new NPCGroupObject();
 
@@ -3499,6 +3563,7 @@ function UndeadGroupTile() {
   this.group[1] = new NPCList('SkeletonNPC', '1d2');
   this.group[2] = new NPCList('PhantomNPC', '1d2-1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 UndeadGroupTile.prototype = new NPCGroupObject();
 
@@ -3511,6 +3576,7 @@ function FireLizardGroupTile() {
   this.group = [];
   this.group[0] = new NPCList('FireLizardNPC', '1d5+1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 FireLizardGroupTile.prototype = new NPCGroupObject();
 
@@ -3525,6 +3591,7 @@ function MagmaLizardGroupTile() {
   this.group[1] = new NPCList('FireLizardNPC', '1d4+1');
   this.group[2] = new NPCList('FireElementalNPC', '1d2-1');
   this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
 }
 MagmaLizardGroupTile.prototype = new NPCGroupObject();
 
@@ -3537,6 +3604,7 @@ function InsectsGroupSmallTile() {
   this.group = [];
   this.group[0] = new NPCList('GiantInsectsNPC', '1d4');
   this.movetype = MOVE_FLY;
+  this.attackword = 'attack';
 }
 InsectsGroupSmallTile.prototype = new NPCGroupObject();
 
@@ -3548,7 +3616,8 @@ function InsectsGroupLargeTile() {
   this.altgraphic = ['370.gif',];
   this.group = [];
   this.group[0] = new NPCList('GiantInsectsNPC', '2d4+1');
-  this.movetype = MOVE_;
+  this.movetype = MOVE_FLY;
+  this.attackword = 'attack';
 }
 InsectsGroupLargeTile.prototype = new NPCGroupObject();
 
