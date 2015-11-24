@@ -1499,8 +1499,20 @@ magic[5][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   }
   resp["fin"] = 1;
 
-  // WORKING HERE
-  //will be blue sparkle
+  var mwobj = localFactory.createTile("MirrorWard");
+  
+  var dur = caster.getInt();
+  if (free) { dur = RollDice("1d10+35"); }
+  if (infused) { dur = dur * 3; }
+  var endtime = (dur * SCALE_TIME) + DU.DUTime.getGameClock();
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  mwobj.setPower(dur);
+  mwobj.setExpiresTime(endtime);
+  
+  caster.addSpellEffect(mwobj);
+
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+  return resp;
 }
 
 //Return
