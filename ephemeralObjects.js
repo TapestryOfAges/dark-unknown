@@ -485,7 +485,7 @@ function PoisonTile() {
   this.addType("debuff");
   this.name = "Poison";
   this.damagePerTick = 2 * (1/SCALE_TIME);  // poison is slow-maps only
-  this.display = "<span style='color:#58FA58'>D</span>";
+  this.display = "<span style='color:#58FA58'>P</span>";
   this.zstatdesc = "Poison courses through your veins.";
   this.desc = "poison";
 }
@@ -702,6 +702,39 @@ NegateMagicTile.prototype.endEffect = function(silent) {
   return;
 }
 
+function ParalyzeTile() {
+  this.addType("debuff");
+  this.name = "Paralyze";
+  this.display = "<span style='color:cyan'>P</span>";
+  this.zstatdesc = "You are paralyzed.";
+  this.desc = "paralyze";
+}
+ParalyzeTile.prototype = new EphemeralObject();
+
+ParalyzeTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You are paralyzed!");
+  }
+  return 1;
+}
+
+ParalyzeTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+ParalyzeTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You can move again!");
+  }
+  DrawCharFrame();
+}
+
+
 function ProtectionTile() {
   this.addType("buff");
   this.name = "Protection";
@@ -783,7 +816,7 @@ QuicknessTile.prototype.endEffect = function(silent) {
 function SleepTile() {
   this.addType("debuff");
   this.name = "Sleep";
-  this.display = "<span style='color:777777'>S</span>";
+  this.display = "<span style='color:#e600e5'>S</span>";
   this.zstatdesc = "You are asleep.";
   this.desc = "sleep";
 }
@@ -815,7 +848,7 @@ SleepTile.prototype.endEffect = function(silent) {
 function SlowTile() {
   this.addType("debuff");
   this.name = "Slow";
-  this.display = "<span style='color:444444'>S</span>";
+  this.display = "<span style='color:777777'>S</span>";
   this.power = 2.25;
   this.zstatdesc = "You are moving more slowly.";
   this.desc = "Slow";
