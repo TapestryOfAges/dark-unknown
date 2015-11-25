@@ -3603,6 +3603,7 @@ function FireFieldTile() {
 	this.desc = "fire field";
 	this.spritexoffset = "-64";
   this.spriteyoffset = "0";
+  this.expires = 0;
 	
 	LightEmitting.call(this, 3);
 	this.initdelay = 1.5;
@@ -3618,6 +3619,31 @@ FireFieldTile.prototype.idle = function(person) {
   return resp;
 }
 
+FireFieldTile.prototype.myTurn = function() {
+  if (!maps.getMap(this.getHomeMap().getName())) {
+    // removing from timeline, its map is gone
+//    var nextEntity = DUTime.executeNextEvent().getEntity();
+//    nextEntity.myTurn();
+
+    if (debug) { dbs.writeln("<span style='color:green;font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />"); }
+  
+    return 1;
+  }
+ 
+  if (this.expires && (this.expires > DUTime.getGameClock())) {
+    if (debug) { dbs.writeln("<span style='color:green;font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />"); }
+    this.getHomeMap().deleteThing(this);
+    
+    return 1;
+  }
+  var NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  
+//  var nextEntity = DUTime.executeNextEvent().getEntity();
+  //setTimeout(function(){ nextEntity.myTurn(); }, 1);
+//  nextEntity.myTurn();
+  return 1;
+}
 function InAFireField(who) {
   var dmg = RollDice("2d6+3");
   dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
@@ -4654,7 +4680,7 @@ SpawnerTile.prototype.myTurn = function() {
 //    var nextEntity = DUTime.executeNextEvent().getEntity();
 //    nextEntity.myTurn();
 
-    dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getSerial() + " removed from game- map gone.</span><br />");
+    if (debug) { dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getSerial() + " removed from game- map gone.</span><br />"); }
   
     return 1;
   }
@@ -9384,7 +9410,7 @@ NPCObject.prototype.myTurn = function() {
 	
 	Regen(this);
   var awake = 1;
-  if (this.getSpellEffectsByName("Sleep")) { awake = 0; }
+  if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze")) { awake = 0; }
   
 	// actual AI!
   if (awake) {	
@@ -9630,7 +9656,7 @@ NPCObject.prototype.getHitChance = function(atkwith) {
     var stillon = distracted.doEffect();
     if (stillon != -1) {
       if (debug) { dbs.writeln("<span style='color:green'>DISTRACTED: old tohit: " + tohit + ", "); }
-      tohit = tohit * (1-distracted.getPower());
+      tohit = tohit - distracted.getPower();
       if (debug) { dbs.writeln("new tohit: " + tohit + ".<br /></span>"); }
     }
   }
@@ -9873,14 +9899,18 @@ PCObject.prototype.myTurn = function() {
     
   Regen(this);
   var awake = 1;
-  if (this.getSpellEffectsByName("Sleep")) { awake = 0; }  
+  if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze")) { awake = 0; }  
   
   if (awake) {
 	  gamestate.setMode("player");
 	  gamestate.setTurn(PC);
 	  return 0;
 	} else {
-	  maintext.addText("Zzzz...");
+	  if (this.getSpellEffectsByName("Sleep")) {
+  	  maintext.addText("Zzzz...");
+  	} else {
+  	  maintext.addText("Paralyzed!");
+  	}
 	  this.endTurn(0);
 	}
 }
