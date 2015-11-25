@@ -152,13 +152,24 @@ magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
     for (var i=0; i<effects.length; i++) {
       if (effects[i].getName() === "Poison") {
         ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+        if (caster === PC) {
+          maintext.addText("You are cured of poison!");
+        }
         effects[i].endEffect();
       }
       if ((infused) && (effects[i].getName() === "Disease")) {
         effects[i].endEffect();
+        if (caster === PC) {
+          maintext.addText("You are cured of disease!");
+        }
         ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
       }
     }
+  }
+  if (infused) {
+    var die = caster.getLevel() + "d4+2";
+    var heal = RollDice(die);
+    caster.healMe(heal, caster);
   }
   return resp;
 }
@@ -607,7 +618,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   var tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   var duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
   var destgraphic = {graphic:"702.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
-  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval});
+  AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force"});
   //  maintext.addText(desc);
   resp["fin"] = -1;
   return resp;
@@ -665,7 +676,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
     
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Calculating poison cloud.<br /></span>"); }
   $.each(tgtmap.npcs.getAll(), function(idx, val) {
-    if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y)) && (val !== caster)) {
+    if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) < radius) && (val !== caster)) {
       if (tgtmap.getLOE(val.getx(),val.gety(),tgt.x,tgt.y) < LOS_THRESHOLD) {
         if ((Math.random() < (1-val.getResist("magic")/100)) || (val.getSpellEffectsByName("Poison"))) {
           // poison resisted
@@ -691,6 +702,12 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           poison.setExpiresTime(duration + DUTime.getGameClock());
           val.addSpellEffect(poison);
           // poisoned!
+          
+          if (infused) {
+            var dmg = RollDice(DMG_LIGHT);
+            val.dealDamage(dmg,caster,"poison");
+            // additionally deals some damage
+          }
         }
       }
     }
@@ -987,9 +1004,9 @@ function PerformIceball(caster, infused, free, tgt) {
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
   var frozen = localFactory.createTile("Slow");
-  var dur = 2*caster.getInt()/6;
+  var dur = caster.getInt()/3;
   if (free) { dur = RollDice("1d2+3"); }
-  var endtime = dur + DU.DUTime.getGameClock();
+  var endtime = dur*SCALE_TIME + DU.DUTime.getGameClock();
   frozen.setExpiresTime(endtime);
   tgt.addSpellEffect(frozen);
   
@@ -1042,21 +1059,29 @@ magic[3][GetSpellID(5)].executeSpell = function(caster, infused, free, tgt) {
 
 function PerformTelekinesis(caster, infused, free, tgt) {
   gamestate.setMode("null");
-  var usemap = tgt.getHomeMap();
-  var localacre = usemap.getTile(tgt.getx(),tgt.gety());
   
-  var retval = tgt.use(caster);
+  var retval = {};
+  if (tgt.heavy && !infused) {
+    retval["fin"] = 1;
+    retval["txt"] = "That object is too heavy.";
+    retval["override"] = 1;
+  }
+  else {
+    retval = tgt.use(caster);
+  }
   retval["input"] = "&gt;";
   if (retval["override"] === 1) {
     delete retval["override"]; 
   } else {
+    var usemap = tgt.getHomeMap();
+    var localacre = usemap.getTile(tgt.getx(),tgt.gety());
     retval["fin"] = 1;
     var usedname = tgt.getDesc();
     usedname = usedname.replace(/^a /, "");
     retval["txt"] = "Telekinesis on " + usedname + ": " + retval["txt"];
     var drawtype = "one";
     if (tgt.checkType("Consumable")) {
-      tgt.getHomeMap().deleteThing(used);
+      usemap.deleteThing(used);
     }
     if (retval["redrawtype"]) {
       delete retval["redrawtype"];
@@ -1065,8 +1090,8 @@ function PerformTelekinesis(caster, infused, free, tgt) {
       $.each(localacre.localLight, function(index, value) {
       // each object that is casting light on the door might be casting light through the door.
         var lightsource = usemap.lightsList[index];
-        who.getHomeMap().removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
-        who.getHomeMap().setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
+        usemap.removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
+        usemap.setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
       });
 		  
       DrawMainFrame("draw",usemap.getName(),PC.getx(),PC.gety());
@@ -1132,9 +1157,14 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
     if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
 
+  var duration = caster.getInt() * SCALE_TIME;
+  if (infused) { duration = duration * 2; }
+  var expires = duration + DU.DUTime.getGameClock();
+  
   // make the first firefield
   var field1 = localFactory.createTile("FireField");
   castermap.placeThing(tgt.x, tgt.y, field1)
+  field1.expires = expires;
   
   // determine which direction it was, for whether the wall is diagonal, horizontal, or vertical.
   var dir = GetEffectGraphic(caster,field1,{}).fired;
@@ -1149,7 +1179,11 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
         if (dir === 0) { newy = tgt.y-1; }
         else { newy = tgt.y+1; }
         TryToPlaceField(castermap,tgt.x-1,newy,"FireField");
+      } else {
+        placed.expires = expires;
       }
+    } else {
+      placed.expires = expires;
     }
     placed = TryToPlaceField(castermap,tgt.x+1,tgt.y,"FireField");
     if (!placed) {
@@ -1161,7 +1195,11 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
         if (dir === 0) { newy = tgt.y-1; }
         else { newy = tgt.y+1; }
         TryToPlaceField(castermap,tgt.x+1,newy,"FireField");
+      } else {
+        placed.expires = expires;
       }
+    } else {
+      placed.expires = expires;
     }
   } else if ((dir === 1) || (dir === 5)) {
     var placed = TryToPlaceField(castermap,tgt.x-1,tgt.y-1,"FireField");
@@ -1177,7 +1215,11 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
         if (dir === 1) { newx++; }
         else { newy++; }
         TryToPlaceField(castermap,newy,newy,"FireField");
+      } else {
+        placed.expires = expires;
       }
+    } else {
+      placed.expires = expires;
     }
     placed = TryToPlaceField(castermap,tgt.x+1,tgt.y+1,"FireField");
     if (!placed) {
@@ -1192,8 +1234,12 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
         if (dir === 1) { newy--; }
         else { newx--; }
         TryToPlaceField(castermap,newx,newy,"FireField");
+      } else {
+        placed.expires = expires;
       }
-    }    
+    } else {
+      placed.expires = expires;
+    } 
   } else if ((dir === 2) || (dir === 6)) {
     var placed = TryToPlaceField(castermap,tgt.x,tgt.y-1,"FireField");
     if (!placed) {
@@ -1208,7 +1254,11 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
         if (dir === 2) { newx++; }
         else { newx--; }
         TryToPlaceField(castermap,newy,newy,"FireField");
+      } else {
+        placed.expires = expires;
       }
+    } else {
+      placed.expires = expires;
     }
     placed = TryToPlaceField(castermap,tgt.x,tgt.y+1,"FireField");
     if (!placed) {
@@ -1223,8 +1273,12 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
         if (dir === 2) { newx++; }
         else { newx--; }
         TryToPlaceField(castermap,newx,newy,"FireField");
+      } else {
+        placed.expires = expires;
       }
-    }        
+    } else {
+      placed.expires = expires;
+    }     
   } else if ((dir === 3) || (dir === 7)) {
     var placed = TryToPlaceField(castermap,tgt.x+1,tgt.y-1,"FireField");
     if (!placed) {
@@ -1239,7 +1293,11 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
         if (dir === 3) { newy--; }
         else { newx++; }
         TryToPlaceField(castermap,newy,newy,"FireField");
+      } else {
+        placed.expires = expires;
       }
+    } else {
+      placed.expires = expires;
     }
     placed = TryToPlaceField(castermap,tgt.x-1,tgt.y+1,"FireField");
     if (!placed) {
@@ -1254,7 +1312,11 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
         if (dir === 3) { newx++; }
         else { newy--; }
         TryToPlaceField(castermap,newx,newy,"FireField");
+      } else {
+        placed.expires = expires;
       }
+    } else {
+      placed.expires = expires;
     }        
   } else {
     alert("Finding facing isn't working.");
@@ -1269,7 +1331,7 @@ function TryToPlaceField(mapref, wherex, wherey, fieldname) {
   if (tile.canMoveHere(MOVE_WALK,0)["canmove"]) {
     var field = localFactory.createTile(fieldname);
     mapref.placeThing(wherex,wherey,field);
-    return 1;
+    return field;
   }
   return 0;
 }
@@ -1418,6 +1480,20 @@ function PerformLifeDrain(caster, infused, free, tgt) {
   return resp;
 }
 
+//Smite
+magic[4][GetSpellID(4)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Smite.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+
+// WORKING HERE
+  return resp;  
+}
 
 //Transport
 magic[4][GetSpellID(5)].executeSpell = function(caster, infused, free) {
@@ -1514,6 +1590,95 @@ magic[5][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   return resp;
 }
+
+//Paralyze
+magic[5][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
+  if (caster !== PC) {
+    var resp = PerformParalyze(caster, infused, free, tgt);
+    return resp;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Paralyze.<br /></span>"); }
+  var resp = {};
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Paralyze";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
+  targetCursor.targetlimit = (viewsizex -1)/2;
+  targetCursor.targetCenterlimit = 0;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 0;
+  gamestate.setMode("target");
+  return resp;
+}
+  
+function PerformParalyze(caster, infused, free, tgt) {
+  var resp = {};
+  resp["fin"] = 1;
+  var desc = "";
+
+  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "Your spell cannot reach that target!";
+    return resp;
+  }
+  
+  if (!free) {
+    var mana = magic[5][GetSpellID(2)].getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  
+  var newtgt = CheckMirrorWard(tgt, caster);
+  while (newtgt !== tgt) {
+    tgt = newtgt;
+    newtgt = CheckMirrorWard(tgt, caster);
+  }
+    
+  tgt = newtgt;
+  
+  var chance = 1-(tgt.getResist("magic")/100);
+  if (Math.random()*1 < chance) {
+    var vulobj = localFactory.createTile("Paralyze");
+  
+    var dur = caster.getInt()/2;
+    if (infused) { dur = dur * 1.5;}
+    if (free) { dur = RollDice("1d4+5"); }
+    ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+    if (tgt !== PC) {
+      desc = tgt.getDesc() + " is paralyzed!";
+    } else {
+      desc = "You are paralyzed!";
+    }
+    vulobj.setExpiresTime(dur + DUTime.getGameClock());
+    var power = 4;
+    if (infused) { power = 6; }
+    vulobj.setPower(power);
+    tgt.addSpellEffect(vulobj);
+  }
+  else {
+    desc = tgt.getDesc() + " resists!";
+    if (tgt === PC) {
+      desc = "You resist.";
+      // no X over the PC
+    } else {
+      ShowEffect(val, 700, "X.gif");
+    }
+  }
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+//  maintext.addText(desc);
+  resp["txt"] = desc;
+  resp["input"] = "&gt;";
+  return resp;
+}
+
 
 //Return
 magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
@@ -1976,6 +2141,8 @@ function PerformSpellcast() {
         resp = PerformIceball(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Life Drain") {
         resp = PerformLifeDrain(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+      } else if (targetCursor.spellName === "Paralyze") {
+        resp = PerformParalyze(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       }
       delete targetCursor.spellName;
       
