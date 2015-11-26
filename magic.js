@@ -1349,7 +1349,7 @@ magic[4][GetSpellID(1)].executeSpell = function(caster, infused, free) {
 
   var levobj = localFactory.createTile("Blessing");
   
-  var dur = caster.getInt();
+  var dur = caster.getInt() * SCALE_TIME;
   if (infused) { dur = dur * 3; }
   var power = Math.floor(caster.getInt()/5)+1;
   if (free) {
@@ -1363,6 +1363,7 @@ magic[4][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   
   caster.addSpellEffect(levobj);
 //  levobj.applyEffect();
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
     
   DrawCharFrame();
   return resp;  
@@ -1458,19 +1459,20 @@ function PerformLifeDrain(caster, infused, free, tgt) {
   if (infused) {
     dmg = dmg * 1.5;
   }
-  
+
+  var healamt = RollDice("2d8+" + 10);  
+  if (infused) { healamt = healamt * 1.5; }
   var chance = 1-(tgt.getResist("magic")/100);
   if (Math.random()*1 < chance) {
     dmg = Math.floor(dmg/2)+1;
+    healamt = Math.floor(healamt/2)+1;
   }
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
     
   ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
 
-  var healamt = RollDice("2d8+" + 10);
   if (debug) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
-  if (infused) { healamt = healamt * 1.5; }
   
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
   caster.healMe(healamt, caster);
