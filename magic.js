@@ -1493,7 +1493,26 @@ magic[4][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   }
   resp["fin"] = 1;
 
-// WORKING HERE
+  var foes = GetAllWithin("npcs",radius,caster.getHomeMap(),{x: caster.getx(), y: caster.gety()});
+  foes = ShuffleArray(foes);
+  
+  if (!foes[0]) {
+    resp["txt"] = "No enemies nearby.";
+    return resp;
+  }
+  for (var i=0; i<=2; i++) {
+    if (foes[i]) {
+      var dmg = RollDamage(DMG_MEDIUM);
+      if (infused) { dmg = dmg * 1.5; }
+      var chance = 1-(foes[i].getResist("magic")/100);
+      if (Math.random()*1 < chance) {
+        dmg = Math.floor(dmg/2)+1;
+      }
+      foes[i].dealDamage(dmg,caster,"force");
+      if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage to target " + foes[i].getName() + " " + foes[i].getSerial() + ".<br /></span>"); }
+      ShowEffect(foes[i], 700, "702.gif", 0, 0);
+    }
+  }
   return resp;  
 }
 
@@ -1552,11 +1571,12 @@ magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
 
   var levobj = localFactory.createTile("Levitate");
   
-  var dur = caster.getInt();
+  var dur = caster.getInt()+5;
   if (free) { dur = RollDice("1d10+35"); }
   if (infused) { dur = dur * 3; }
   var endtime = dur + DU.DUTime.getGameClock();
   if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   levobj.setPower(dur);
   levobj.setExpiresTime(endtime);
   
@@ -1751,6 +1771,41 @@ magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   
   return resp;
 }
+
+// Shockwave
+magic[5][GetSpellID(4)].executeSpell = function(caster, infused, free) {
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Shockwave.<br /></span>"); }
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  resp["fin"] = 1;
+
+  var spellmap = caster.getHomeMap();
+  for (var xdiff=-1; xdiff<=1; xdiff++) {
+    for (var ydiff=-1;ydiff<=1; ydiff++) {
+      if ((xdiff === 0) && (ydiff === 0)) { next; }
+      var tile = spellmap.getTile(caster.getx()+xdiff, caster.gety()+ydiff);
+      var badguy = tile.getTopNPC();
+      if (badguy) {
+        var dmg = RollDice(DMG_MEDIUM);
+        if (infused) { dmg = dmg * 1.5; }
+        var chance = 1-(tgt.getResist("magic")/100);
+        var resist = 0;
+        if (Math.random()*1 >= chance) {
+          resist = 1;
+          dmg = dmg*.5;
+        }
+        // WORKING HERE SHOCKWAVE
+        
+      }
+    }
+  }
+  return resp;  
+}
+
 
 //Negate Magic
 magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {

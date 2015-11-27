@@ -1223,3 +1223,24 @@ function DisplayTestMap() {
   
   debugmap.close()
 }
+
+function GetAllWithin(type,rad,map,center) {
+  var everything;
+  if (type === "features") {
+    everything = map.getAllFeatures();
+  } else if (type === "npcs") {
+    everything = map.getAllNPCs();
+  } else {
+    alert("GetAllWithin called inappropriately.");
+    return [];
+  }
+  
+  var within = [];
+  $.each(everything, function(idx,val) {
+    if (GetDistance(val.getx(), val.gety(),center.x, center.y) < rad) {
+      within.push(val);
+    }
+  });
+  
+  return within;
+}
