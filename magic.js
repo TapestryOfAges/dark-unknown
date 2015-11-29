@@ -1901,16 +1901,17 @@ function PerformSummonAlly(caster, infused, free, tgt) {
       break;
   }
   ally = localFactory.createTile(eletype+"NPC");
+  var duration = caster.getInt() * SCALE_TIME;
+  if (free) { duration = RollDice("1d6+12"); }
   if (infused) {
     ally.setStr(ally.getStr()+5);
     ally.setStr(ally.getDex()+5);
     ally.setStr(ally.getInt()+5);
     ally.setMaxHP(ally.getMaxHP()+15);
     ally.setLevel(ally.getLevel()+1);
+    duration = duration* 1.5; 
   }
   
-  var duration = caster.getInt();
-  if (free) { duration = RollDice("1d6+12"); }
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
   if (eletype !== "FireElemental") {
