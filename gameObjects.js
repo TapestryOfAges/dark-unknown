@@ -9264,6 +9264,10 @@ NPCObject.prototype.activate = function(timeoverride) {
       this.npcname = PC.pcname;
     }
 
+    if (this.specials["light"]) {
+      LightEmitting.call(this, this.specials["light"]);
+    }
+    
     if (this.specials["flamearmor"]) {
       var qobj = localFactory.createTile("FireArmor");
       if (this.specials["flamearmor"] !== 1) {
@@ -9379,7 +9383,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
 		  retval["msg"] += walkonval;
 		}
-    if (GetDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) ) {
+    if ((this.getHomeMap() === PC.getHomeMap()) &&(GetDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) )) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
       // uncommented version checks from current display center, not from PC position.
 			DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
@@ -9394,11 +9398,16 @@ NPCObject.prototype.myTurn = function() {
   
   if (!maps.getMap(this.getHomeMap().getName())) {
     // removing from timeline, its map is gone
-    var nextEntity = DUTime.executeNextEvent().getEntity();
-    nextEntity.myTurn();
 
     dbs.writeln("<span style='color:green;font-weight:orange'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone.</span><br />");
   
+    return 1;
+  }
+
+  if (this.expiresTime && (this.expiresTime > DUTime.getGameClock())) {
+    if (debug) { dbs.writeln("<span style='color:green;font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " expired, removing itself.</span><br />"); }
+    this.getHomeMap().deleteThing(this);
+    
     return 1;
   }
 
