@@ -99,6 +99,8 @@ div.inputtext { font-family:"Commodore64";
 
 tr.invheader td { padding-bottom: 4px; }
 
+tr.runecooldown td { color: #888888; }
+
 td.selected { color:#3ff }
 
 td.circleheader { font-weight:bold; }

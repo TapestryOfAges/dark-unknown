@@ -3292,6 +3292,7 @@ function StonePortcullisTile() {
 	this.blocklos = 0; 
 	this.prefix = "a";
 	this.desc = "portcullis";
+	this.heavy = 1;
 
 //	SetByBelow.call(this);
   Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "stone-arch.gif", 0, 0], 0, "", "", "sfx_locked_door");  // ADD WHEN SOUNDS ADDED
@@ -3308,6 +3309,7 @@ function WallPortcullisTile() {
 	this.blocklos = 0; 
 	this.prefix = "a";
 	this.desc = "portcullis";
+	this.heavy = 1;
 
 //	SetByBelow.call(this);
   Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "wall-arch.gif", 0, 0], 0, "", "", "sfx_locked_door");  // HERE TOO
@@ -5458,11 +5460,21 @@ function WallOfWavesTile() {
 WallOfWavesTile.prototype = new FeatureObject();
 
 WallOfWavesTile.prototype.use = function(user) {
+  var retval = {};
+  retval["fin"] = 1;
+  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
+    retval["txt"] = "The rune glows for a moment, and then fades.";
+    return retval;
+  }
   ApplyRune(user, "waves", this);
+  return retval;
 }
 
 WallOfWavesTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "waves", this);
+  var retval = {};
+  retval["fin"] = 1;
+  ApplyRune(user, "waves", this);
+  return retval;
 }
 
 function RuneOfWavesTile() {
@@ -5477,11 +5489,21 @@ function RuneOfWavesTile() {
 RuneOfWavesTile.prototype = new FeatureObject();
 
 RuneOfWavesTile.prototype.use = function(user) {
+  var retval = {};
+  retval["fin"] = 1;
+  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
+    retval["txt"] = "The rune glows for a moment, and then fades.";
+    return retval;
+  }
   ApplyRune(user, "waves", this);
+  return retval;
 }
 
 RuneOfWavesTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "waves", this);
+  var retval = {};
+  retval["fin"] = 1;
+  ApplyRune(user, "waves", this);
+  return retval;
 }
 
 
@@ -5497,11 +5519,21 @@ function WallOfWindsTile() {
 WallOfWindsTile.prototype = new FeatureObject();
 
 WallOfWindsTile.prototype.use = function(user) {
+  var retval = {};
+  retval["fin"] = 1;
+  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
+    retval["txt"] = "The rune glows for a moment, and then fades.";
+    return retval;
+  }
   ApplyRune(user, "winds", this);
+  return retval;
 }
 
 WallOfWindsTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "winds", this);
+  var retval = {};
+  retval["fin"] = 1;
+  ApplyRune(user, "winds", this);
+  return retval;
 }
 
 function RuneOfWindsTile() {
@@ -5516,11 +5548,21 @@ function RuneOfWindsTile() {
 RuneOfWindsTile.prototype = new FeatureObject();
 
 RuneOfWindsTile.prototype.use = function(user) {
+  var retval = {};
+  retval["fin"] = 1;
+  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
+    retval["txt"] = "The rune glows for a moment, and then fades.";
+    return retval;
+  }
   ApplyRune(user, "winds", this);
+  return retval;
 }
 
 RuneOfWindsTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "winds", this);
+  var retval = {};
+  retval["fin"] = 1;
+  ApplyRune(user, "winds", this);
+  return retval;
 }
 
 
@@ -5536,11 +5578,21 @@ function WallOfKingsTile() {
 WallOfKingsTile.prototype = new FeatureObject();
 
 WallOfKingsTile.prototype.use = function(user) {
+  var retval = {};
+  retval["fin"] = 1;
+  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
+    retval["txt"] = "The rune glows for a moment, and then fades.";
+    return retval;
+  }
   ApplyRune(user, "kings", this);
+  return retval;
 }
 
 WallOfKingsTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "kings", this);
+  var retval = {};
+  retval["fin"] = 1;
+  ApplyRune(user, "kings", this);
+  return retval;
 }
 
 function RuneOfKingsTile() {
@@ -5555,11 +5607,21 @@ function RuneOfKingsTile() {
 RuneOfKingsTile.prototype = new FeatureObject();
 
 RuneOfKingsTile.prototype.use = function(user) {
-  ApplyRune(user, "kings", this);
+  var retval = {};
+  retval["fin"] = 1;
+  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
+    retval["txt"] = "The rune glows for a moment, and then fades.";
+    return retval;
+  }
+  ApplyRune(user, "winds", this);
+  return retval;
 }
 
 RuneOfKingsTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "kings", this);
+  var retval = {};
+  retval["fin"] = 1;
+  ApplyRune(user, "winds", this);
+  return retval;
 }
 
 function WallOfFlamesTile() {
@@ -5574,11 +5636,21 @@ function WallOfFlamesTile() {
 WallOfFlamesTile.prototype = new FeatureObject();
 
 WallOfFlamesTile.prototype.use = function(user) {
+  var retval = {};
+  retval["fin"] = 1;
+  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
+    retval["txt"] = "The rune glows for a moment, and then fades.";
+    return retval;
+  }
   ApplyRune(user, "flames", this);
+  return retval;
 }
 
 WallOfFlamesTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "flames", this);
+  var retval = {};
+  retval["fin"] = 1;
+  ApplyRune(user, "flames", this);
+  return retval;
 }
 
 function RuneOfFlamesTile() {
@@ -5593,11 +5665,21 @@ function RuneOfFlamesTile() {
 RuneOfFlamesTile.prototype = new FeatureObject();
 
 RuneOfFlamesTile.prototype.use = function(user) {
+  var retval = {};
+  retval["fin"] = 1;
+  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
+    retval["txt"] = "The rune glows for a moment, and then fades.";
+    return retval;
+  }
   ApplyRune(user, "flames", this);
+  return retval;
 }
 
 RuneOfFlamesTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "flames", this);
+  var retval = {};
+  retval["fin"] = 1;
+  ApplyRune(user, "flames", this);
+  return retval;
 }
 
 
@@ -5613,11 +5695,21 @@ function WallOfVoidTile() {
 WallOfVoidTile.prototype = new FeatureObject();
 
 WallOfVoidTile.prototype.use = function(user) {
+  var retval = {};
+  retval["fin"] = 1;
+  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
+    retval["txt"] = "The rune glows for a moment, and then fades.";
+    return retval;
+  }
   ApplyRune(user, "void", this);
+  return retval;
 }
 
 WallOfVoidTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "void", this);
+  var retval = {};
+  retval["fin"] = 1;
+  ApplyRune(user, "void", this);
+  return retval;
 }
 
 function RuneOfVoidTile() {
@@ -5632,11 +5724,21 @@ function RuneOfVoidTile() {
 RuneOfVoidTile.prototype = new FeatureObject();
 
 RuneOfVoidTile.prototype.use = function(user) {
+  var retval = {};
+  retval["fin"] = 1;
+  if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
+    retval["txt"] = "The rune glows for a moment, and then fades.";
+    return retval;
+  }
   ApplyRune(user, "void", this);
+  return retval;
 }
 
 RuneOfVoidTile.prototype.bumpInto = function(who) {
-  ApplyRune(who, "void", this);
+  var retval = {};
+  retval["fin"] = 1;
+  ApplyRune(user, "void", this);
+  return retval;
 }
 
 function PlatformOfWavesTile() {
@@ -5730,43 +5832,6 @@ function PlatformOfVoidTile() {
 }
 PlatformOfVoidTile.prototype = new FeatureObject();
 
-// These are fake items, just so runes can have a Usescript for UseFromInventory
-// deprecated
-function AbstractRuneTile() {
-  this.name = "AbstractRune";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
-  this.blocklos = 2;
-  this.prefix = "the";
-  this.desc = "Runes";
-}
-AbstractRuneTile.prototype = new FeatureObject();
-
-AbstractRuneTile.prototype.use = function(user) {
-  ChooseRune();
-  var retval = {};
-  retval.txt = "Invoked";
-  retval.override = 1;
-  return retval;
-}
-
-function OutdoorRuneOfKingsTile() {
-  this.name = "OutdoorRuneOfKings";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
-  this.blocklos = 2;
-  this.prefix = "The";
-  this.desc = "Rune of Kings";
-}
-OutdoorRuneOfKingsTile.prototype = new FeatureObject();
-
-OutdoorRuneOfKingsTile.prototype.use = function(user) {
-  // check to see if you are in one of a few locations, if so, open new dungeon
-  // deprecated
-}
-
 function MarkOfKingsTile() {
   this.name = "MarkOfKings";
   this.graphic = "runes.gif";
@@ -5779,9 +5844,14 @@ function MarkOfKingsTile() {
 MarkOfKingsTile.prototype = new FeatureObject();
   
 MarkOfKingsTile.prototype.use = function(user) {
+  var retval = {};
+  if (user.getRuneCooldown() > DUTime.getGameClock()) {
+    retval["fin"] = 1;
+    retval["txt"] = "You are too tired to invoke a rune!"
+    return retval;
+  }
   // check if on surface, if so check location
   // if underground/in town, heal
-  var retval = {};
   var themap = user.getHomeMap();
   if (!themap.getScale()) {
     if (themap.getName() === "darkunknown") {
@@ -5835,6 +5905,7 @@ MarkOfKingsTile.prototype.use = function(user) {
     }
   } else {
     // use power
+    // set cooldown
   }
   return retval;
 }  
@@ -9872,6 +9943,7 @@ function PCObject() {
   this.runes.winds = 0;
   this.runes.waves = 0;
   this.runes.void = 0;
+  this.runeCooldown = 0;
 
   this.specials = {};
 
@@ -10032,8 +10104,14 @@ PCObject.prototype.dealDamage = function(dmg, src, type) {
   else { return 1; }
 }
 
+PCObject.prototype.getRuneCooldown = function() {
+  return this.runeCooldown;
+}
 
-
+PCObject.prototype.setRuneCooldown = function(timediff) {
+  this.runeCooldown = DUTime.getGameClock() + timediff;
+  return this.runeCooldown;
+}
 
 
 
