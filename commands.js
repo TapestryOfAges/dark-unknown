@@ -1370,53 +1370,52 @@ function PerformUseFromInventory() {
      if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) {  // in theory, kings is required for the rest, but let's be sure
        var rune;
        statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Runes</span></td><td>&nbsp;</td></tr>";
-       if (PC.getRuneCooldown() < DUTime.getGameClock()) {
-         if (PC.runes.kings) {
+       if (PC.runes.kings) {
+         if (PC.getRuneCooldown("kings") < DUTime.getGameClock()) {
            rune = localFactory.createTile("MarkOfKings");
            statsdiv += "<tr id='inv" + iter + "'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
            itemarray[iter] = rune;
            iter++;
-         } 
-         if (PC.runes.waves) {
-           rune = localFactory.createTile("MarkOfWaves");
-           statsdiv += "<tr id='inv" + iter + "'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
-           itemarray[iter] = rune;
-           iter++;
-         } 
-         if (PC.runes.winds) {
-           rune = localFactory.createTile("MarkOfWinds");
-           statsdiv += "<tr id='inv" + iter + "'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
-           itemarray[iter] = rune;
-           iter++;
-         } 
-         if (PC.runes.flames) {
-           rune = localFactory.createTile("MarkOfFlames");
-           statsdiv += "<tr id='inv" + iter + "'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
-           itemarray[iter] = rune;
-           iter++;
-         } 
-        
-         statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
-       } else {
-         if (PC.runes.kings) {
+         } else {
            rune = localFactory.createTile("MarkOfKings");
            statsdiv += "<tr class='runecooldown'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
-         } 
-         if (PC.runes.waves) {
-           rune = localFactory.createTile("MarkOfWaves");
-           statsdiv += "<tr class='runecooldown'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
-         } 
-         if (PC.runes.winds) {
-           rune = localFactory.createTile("MarkOfWinds");
-           statsdiv += "<tr class='runecooldown'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
-         } 
-         if (PC.runes.flames) {
-           rune = localFactory.createTile("MarkOfFlames");
-           statsdiv += "<tr class='runecooldown'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
-         } 
-        
-         statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
+         }
        }
+       if (PC.runes.waves) {
+         if (PC.getRuneCooldown("waves") < DUTime.getGameClock()) {
+           rune = localFactory.createTile("MarkOfWaves");
+           statsdiv += "<tr id='inv" + iter + "'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
+           itemarray[iter] = rune;
+           iter++;
+         } else { 
+           rune = localFactory.createTile("MarkOfWaves");
+           statsdiv += "<tr class='runecooldown'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
+         }
+       }
+       if (PC.runes.winds) {
+         if (PC.getRuneCooldown("winds") < DUTime.getGameClock()) {
+           rune = localFactory.createTile("MarkOfWinds");
+           statsdiv += "<tr id='inv" + iter + "'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
+           itemarray[iter] = rune;
+           iter++;
+         } else {
+           rune = localFactory.createTile("MarkOfWinds");
+           statsdiv += "<tr class='runecooldown'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
+         }
+       }
+       if (PC.runes.flames) {
+         if (PC.getRuneCooldown("flames") < DUTime.getGameClock()) {
+           rune = localFactory.createTile("MarkOfFlames");
+           statsdiv += "<tr id='inv" + iter + "'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
+           itemarray[iter] = rune;
+           iter++;
+         } else {
+           rune = localFactory.createTile("MarkOfFlames");
+           statsdiv += "<tr class='runecooldown'><td></td><td>The " + rune.getDesc() + "</td><td>&nbsp;</td></tr>";
+         }
+       }
+        
+         statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
      }
 
    }
