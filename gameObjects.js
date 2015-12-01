@@ -5845,9 +5845,9 @@ MarkOfKingsTile.prototype = new FeatureObject();
   
 MarkOfKingsTile.prototype.use = function(user) {
   var retval = {};
-  if (user.getRuneCooldown() > DUTime.getGameClock()) {
+  if (user.getRuneCooldown("kings") > DUTime.getGameClock()) {
     retval["fin"] = 1;
-    retval["txt"] = "You are too tired to invoke a rune!"
+    retval["txt"] = "You are too tired to invoke this rune!"
     return retval;
   }
   // check if on surface, if so check location
@@ -9943,7 +9943,7 @@ function PCObject() {
   this.runes.winds = 0;
   this.runes.waves = 0;
   this.runes.void = 0;
-  this.runeCooldown = 0;
+  this.runeCooldown = {};
 
   this.specials = {};
 
@@ -10104,13 +10104,13 @@ PCObject.prototype.dealDamage = function(dmg, src, type) {
   else { return 1; }
 }
 
-PCObject.prototype.getRuneCooldown = function() {
-  return this.runeCooldown;
+PCObject.prototype.getRuneCooldown = function(rune) {
+  return this.runeCooldown[rune];
 }
 
-PCObject.prototype.setRuneCooldown = function(timediff) {
-  this.runeCooldown = DUTime.getGameClock() + timediff;
-  return this.runeCooldown;
+PCObject.prototype.setRuneCooldown = function(rune, timediff) {
+  this.runeCooldown[rune] = DUTime.getGameClock() + timediff;
+  return this.runeCooldown[rune];
 }
 
 
