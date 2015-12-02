@@ -159,16 +159,22 @@ function Atlas() {
     "SouthCoast" : '__',
     '--' : "NorthCoast", // 74
     "NorthCoast" : '--',
+    '-b' : "NorthCoastSand", // 74
+    "NorthCoastSand" : '-b',
     '.|' : "EastCoast", // 75
     "EastCoast" : '.|',
     '|.' : "WestCoast", // 76
     "WestCoast" : '|.',
     '.`' : "NortheastCoast", // 77
     "NortheastCoast" : '.`',
+    'b`' : "NortheastCoastSand", // 77
+    "NortheastCoastSand" : 'b`',
     '`.' : "SouthwestCoast", // 78
     "SouthwestCoast" : '`.', 
     '/.' : "NorthwestCoast", // 79
     "NorthwestCoast" : '/.',
+    '/b' : "NorthwestCoastSand", // 79
+    "NorthwestCoastSand" : '/b',
     './' : "SoutheastCoast", // 80
     "SoutheastCoast" : './',
     's_' : "ShadowSouthCoast", // 73
