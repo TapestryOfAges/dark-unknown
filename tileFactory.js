@@ -381,6 +381,11 @@ tileFactory.prototype.makeNorthCoastTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeNorthCoastSandTile = function() {
+  var newTile = new NorthCoastSandTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeEastCoastTile = function() {
   var newTile = new EastCoastTile();
   return newTile;
@@ -396,6 +401,11 @@ tileFactory.prototype.makeNortheastCoastTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeNortheastCoastSandTile = function() {
+  var newTile = new NortheastCoastSandTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSouthwestCoastTile = function() {
   var newTile = new SouthwestCoastTile();
   return newTile;
@@ -403,6 +413,11 @@ tileFactory.prototype.makeSouthwestCoastTile = function() {
 
 tileFactory.prototype.makeNorthwestCoastTile = function() {
   var newTile = new NorthwestCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNorthwestCoastSandTile = function() {
+  var newTile = new NorthwestCoastSandTile();
   return newTile;
 }
 
@@ -1458,16 +1473,6 @@ tileFactory.prototype.makePlatformOfFlamesTile = function() {
 
 tileFactory.prototype.makePlatformOfVoidTile = function() {
   var newTile = new PlatformOfVoidTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeAbstractRuneTile = function() {
-  var newTile = new AbstractRuneTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeOutdoorRuneOfKingsTile = function() {
-  var newTile = new OutdoorRuneOfKingsTile();
   return newTile;
 }
 
@@ -2853,6 +2858,11 @@ tileFactory.prototype.makeMirrorWardTile = function() {
 
 tileFactory.prototype.makeNegateMagicTile = function() {
   var newTile = new NegateMagicTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeParalyzeTile = function() {
+  var newTile = new ParalyzeTile();
   return newTile;
 }
 

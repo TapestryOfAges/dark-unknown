@@ -2101,6 +2101,19 @@ function NorthCoastTile() {
 }
 NorthCoastTile.prototype = new TerrainObject();
 
+function NorthCoastSandTile() {
+  this.name = "NorthCoastSand";
+//  this.graphic = "074.gif";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-288";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+}
+NorthCoastSandTile.prototype = new TerrainObject();
+
 function EastCoastTile() {
   this.name = "EastCoast";
 //  this.graphic = "075.gif";
@@ -2142,6 +2155,21 @@ function NortheastCoastTile() {
 }
 NortheastCoastTile.prototype = new TerrainObject();
 
+function NortheastCoastSandTile() {
+  this.name = "NortheastCoastSand";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  this.overlay = "necoast-sand.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  
+  SetBySurroundCoast.call(this);
+}
+NortheastCoastSandTile.prototype = new TerrainObject();
+
 function SouthwestCoastTile() {
   this.name = "SouthwestCoast";
   this.graphic = "flowing_animations.gif";
@@ -2171,6 +2199,21 @@ function NorthwestCoastTile() {
   SetBySurroundCoast.call(this);
 }
 NorthwestCoastTile.prototype = new TerrainObject();
+
+function NorthwestCoastSandTile() {
+  this.name = "NorthwestCoastSand";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  this.overlay = "nwcoast-sand.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  
+  SetBySurroundCoast.call(this);
+}
+NorthwestCoastSandTile.prototype = new TerrainObject();
 
 function SoutheastCoastTile() {
   this.name = "SoutheastCoast";
