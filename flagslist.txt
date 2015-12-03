@@ -31,3 +31,4 @@ spellbook2 - has full sized spellbook
 rescued_sam - rescued Samantha from Shadow
 shadow_safe - monsters in shadow between Sam and the entrance are dead.
 end_rebel - finished Prince plot
+anna_return - Anna has moved back to Poverty
