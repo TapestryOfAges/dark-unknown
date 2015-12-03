@@ -62,6 +62,12 @@ function SetMerchants() {
                                 ];
   bill.low_alchemist.type = "stuff";
 
+  bill.brooke = {};
+  bill.brooke.stock = [ { item: "RedPotion", quantity: 2, price: 50, desc: "Red Potion"},
+                        { item: "YellowPotion", quantity: 4, price: 35, desc: "Yellow Potion"},
+                                ];
+  bill.brooke.type = "stuff";
+
   bill.alexis = {};
   bill.alexis.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap", lvl: 1, sid: GetSpellID(2), price: 100} ,
                   { item: "DistractSpell", desc: "Distract", lvl: 1, sid: GetSpellID(3), price: 100},
