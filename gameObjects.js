@@ -9285,7 +9285,9 @@ NPCObject.prototype.activate = function(timeoverride) {
       dbs.writeln("<span style='color:green;font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") activating.</span><br />");
     }
   
-    if (this.altgraphic.length) {
+    if (this.overrideGraphic) {
+      this.graphic = this.overrideGraphic;
+    } else if (this.altgraphic.length) {
       this.altgraphic.push(this.graphic);
       this.graphic = PickOne(this.altgraphic);
       this.altgraphic = []; // no longer need to store this

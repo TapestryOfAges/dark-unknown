@@ -356,13 +356,16 @@ function clickmap(xval,yval) {
       $.each(tmpdude.altgraphic, function(idx,val) {
         picksblock = picksblock + " <td style='background-color:777777; border:inset' id='opt" + optnum + "' onClick='selectGraphic(" + optnum+",\"" + val + "\")' >";
         picksblock = picksblock + "<img src='graphics/" + val + "' /></td>";
-        graphicpicks[optnum] = tmpdude.getGraphic();
+        graphicpicks[optnum] = val;
         optnum++;
       });
       picksblock = picksblock += "</tr></table>";
       $("#pickgraphics").html(picksblock);
       
       if (editnpcs.overrideGraphic && !optindex) {
+        $.each(graphicpicks, function(idx,val) {
+          if (val === editnpcs.overrideGraphic) { optindex = idx; }
+        });
         $("#opt"+optindex).css("background-color","red");
       } else if (optindex) {
         $("#opt"+optindex).css("background-color","red");
@@ -408,6 +411,7 @@ function selectGraphic(optnum, selgraph) {
     optindex = 0;
     $("#opt" + optnum).css("background-color","777777");
   } else {
+    $("#opt" + optindex).css("background-color","777777");
     optindex = optnum
     $("#opt" + optnum).css("background-color","red");
   }
@@ -533,6 +537,9 @@ function submitEditNPC(change) {
 		}
 		if (optindex) {
 		  editnpcs.overrideGraphic = graphicpicks[optindex];
+		  alert(graphicpicks[optindex]);
+		} else {
+		  editnpcs.overrideGraphic = "";
 		}
 	}
 	else if (change === -1) {
