@@ -27,6 +27,8 @@ var DULoot = SetLoots();            //
 var DULootGroups = SetLootGroups(); //  see loot.js and lootset.js for population
 var DUTraps = SetTraps();           //
 
+var graphicpicks = [];
+var optindex = 0;
 
 DU.gameflags = {};  // empty games flags because atlas will look for it
 DU.gameflags.editor = 1;  // for atlas to look for
@@ -343,6 +345,28 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcbark.value = editnpcs.getBark();
       document.npceditpopup.npcbarkrad.value = editnpcs.getBarkRad();
       document.npceditpopup.npcnpcband.value = editnpcs.getNPCBand();
+      
+      graphicpicks = [];
+      optindex=0;
+      var tmpdude = localFactory.createTile(editnpcs.getName());
+      var picksblock = "<table><tr><td style='background-color:777777; border:inset' id='opt1' onClick='selectGraphic(1,\"" + tmpdude.getGraphic() + "\")' >";
+      picksblock = picksblock + "<img src='graphics/" + tmpdude.getGraphic() + "' /></td>";
+      graphicpicks[1] = tmpdude.getGraphic();
+      var optnum = 2;
+      $.each(tmpdude.altgraphic, function(idx,val) {
+        picksblock = picksblock + " <td style='background-color:777777; border:inset' id='opt" + optnum + "' onClick='selectGraphic(" + optnum+",\"" + val + "\")' >";
+        picksblock = picksblock + "<img src='graphics/" + val + "' /></td>";
+        graphicpicks[optnum] = tmpdude.getGraphic();
+        optnum++;
+      });
+      picksblock = picksblock += "</tr></table>";
+      $("#pickgraphics").html(picksblock);
+      
+      if (editnpcs.overrideGraphic && !optindex) {
+        $("#opt"+optindex).css("background-color","red");
+      } else if (optindex) {
+        $("#opt"+optindex).css("background-color","red");
+      }
     }
   	else if (!editnpcs && (document.editlayer.showfeatures.checked)) {
       var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
@@ -376,6 +400,16 @@ function clickmap(xval,yval) {
         document.featureeditpopup.lootedid.value = editable.getLootedID();
       }
     }
+  }
+}
+
+function selectGraphic(optnum, selgraph) {
+  if (graphicpicks[optindex] === selgraph) {
+    optindex = 0;
+    $("#opt" + optnum).css("background-color","777777");
+  } else {
+    optindex = optnum
+    $("#opt" + optnum).css("background-color","red");
   }
 }
 
@@ -496,6 +530,9 @@ function submitEditNPC(change) {
 		}
 		if (document.npceditpopup.npcnpcband.value !== editnpcs.getNPCBand()) {
 			editnpcs.setNPCBand(document.npceditpopup.npcnpcband.value);
+		}
+		if (optindex) {
+		  editnpcs.overrideGraphic = graphicpicks[optindex];
 		}
 	}
 	else if (change === -1) {

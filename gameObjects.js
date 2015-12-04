@@ -322,6 +322,7 @@ GameObject.prototype.getGraphic = function() {
 
 GameObject.prototype.getGraphicArray = function() {
 	var returnGraphic = this.graphic;
+	if (this.overrideGraphic) { returnGraphic = this.overrideGraphic; }
   var returnOverlay = this.overlay;
   var returnVars = [];
   returnVars[0] = returnGraphic;
