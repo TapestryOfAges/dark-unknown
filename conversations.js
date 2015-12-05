@@ -17,6 +17,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   var necessary_item;
   var keep_talking = 0;
   if (!keyword) { keyword = "bye"; }
+    
   keyword = keyword.toLowerCase();
   
   if (!this.hasOwnProperty(keyword)) {
@@ -31,6 +32,13 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     necessary_item = PC.checkInventory(flags.has_item);
     if (!necessary_item) { flags_met = 0; }
   }
+  
+  if (this[keyword].responses[flags_met].indexOf("->") != -1) {
+    var holder = this[keyword].responses[flags_met];
+    holder.replace(/->/, "");
+    keyword = holder;
+  }
+  
   keep_talking = this.say(speaker, this[keyword].responses[flags_met], skipahead);
   
   if (keep_talking === 2) { 
