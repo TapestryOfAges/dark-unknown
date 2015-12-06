@@ -817,7 +817,17 @@ function maps_set_exits(mapref) {
 
 function maps_check_escape(mapref) {
   mapref.ExitTest = function(who,frommap,fromx,fromy,tox,toy) {
-    // ADD CODE here for checking for bribery
+    if (who === PC) {
+      // possibly check for bribery if I decide to go that route
+      if (PC.getHP() > (PC.getMaxHP() * (1/5)) {
+        if (debug) { dbs.writeln("<span style='color:red'>PC has more than 1/5 its hp, karma penalty for fleeing.<br /></span>"); }
+        DU.gameflags["karma"]--;
+      } else {
+        if (debug) { dbs.writeln("<span style='color:red'>PC has less than 1/5 its hp, able to flee freely.<br /></span>"); }
+      }
+      
+      return 1;
+    }
     
     return 1;  // allow to leave, later will depend on bribery
   }
