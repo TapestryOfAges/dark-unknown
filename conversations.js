@@ -35,8 +35,11 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   
   if (this[keyword].responses[flags_met].indexOf("->") != -1) {
     var holder = this[keyword].responses[flags_met];
-    holder.replace(/->/, "");
+    holder = holder.replace(/\-\>/, "");
     keyword = holder;
+    if (!this.hasOwnProperty(keyword)) {
+      keyword = "_confused";
+    }
   }
   
   keep_talking = this.say(speaker, this[keyword].responses[flags_met], skipahead);
@@ -69,115 +72,120 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     inputText.subcmd = "yn";
   }
   if (triggers.hasOwnProperty("set_flag")) {
-    DU.gameflags[triggers.set_flag] = 1;
+    if (triggers.set_flag.indexOf("unset_") !== -1) {
+      var tmpflag = triggers.set_flag.replace(/unset_/, "");
+      DU.gameflags[tmpflag] = 0;
+    } else {
+      DU.gameflags[triggers.set_flag] = 1;
     
-    // special cases
-    if (triggers.set_flag === "ash_password") {
-      var door = PC.getHomeMap().getTile(25,21).getTopFeature();
-      door.use = door.use_old;
-      door.unlockMe();
+      // special cases
+      if (triggers.set_flag === "ash_password") {
+        var door = PC.getHomeMap().getTile(25,21).getTopFeature();
+        door.use = door.use_old;
+        door.unlockMe();
       
-      // replicating a door's Use code without a user
-      door.setGraphicArray(door.opengraphic);
-      door.closedLOS = door.getBlocksLOSArray();
-      var seethru = [];
-			seethru[0] = 0;
-			door.setBlocksLOSArray(seethru);
-			door.addPassable(MOVE_WALK);
-			DUPlaySound("sfx_open_door"); 
-			door.open = 1;
+        // replicating a door's Use code without a user
+        door.setGraphicArray(door.opengraphic);
+        door.closedLOS = door.getBlocksLOSArray();
+        var seethru = [];
+	  		seethru[0] = 0;
+		  	door.setBlocksLOSArray(seethru);
+			  door.addPassable(MOVE_WALK);
+  			DUPlaySound("sfx_open_door"); 
+	  		door.open = 1;
 			
-			DrawMainFrame("draw",door.getHomeMap().getName(),PC.getx(),PC.gety());
-			delete DU.gameflags[triggers.set_flag];
-    } else if (triggers.set_flag === "spellbook") {
-      PC.addSpell(1,GetSpellID(5)); 
-      // spellbook starts with Light in it
-    } else if (triggers.set_flag === "knows_samantha") {
-      DU.gameflags["knows_samantha2"] = 1;
-    } else if (triggers.set_flag === "king_heal") {
-      delete DU.gameflags[triggers.set_flag];
-      PC.healMe(1000);
-      var effects = PC.getSpellEffects();
-      if (effects) {
-        for (var i=0; i<effects.length; i++) {
-          if (effects[i].getName() === "Poison") {
-            effects[i].endEffect();
-          }
-          if ((infused) && (effects[i].getName() === "Disease")) {
-            effects[i].endEffect();
+		  	DrawMainFrame("draw",door.getHomeMap().getName(),PC.getx(),PC.gety());
+			  delete DU.gameflags[triggers.set_flag];
+      } else if (triggers.set_flag === "spellbook") {
+        PC.addSpell(1,GetSpellID(5)); 
+        // spellbook starts with Light in it
+      } else if (triggers.set_flag === "knows_samantha") {
+        DU.gameflags["knows_samantha2"] = 1;
+      } else if (triggers.set_flag === "king_heal") {
+        delete DU.gameflags[triggers.set_flag];
+        PC.healMe(1000);
+        var effects = PC.getSpellEffects();
+        if (effects) {
+          for (var i=0; i<effects.length; i++) {
+            if (effects[i].getName() === "Poison") {
+              effects[i].endEffect();
+            }
+            if ((infused) && (effects[i].getName() === "Disease")) {
+              effects[i].endEffect();
+            }
           }
         }
+        ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+        DrawCharFrame();
+      } else if (triggers.set_flag === "train_int") {
+        if (PC.gettp() === 0) {
+          alert("Somehow training Int without any tp.");
+        } else if ((PC.getBaseInt() < STAT_MAX) && (PC.gettp() > 0)) {
+          PC.setBaseInt(PC.getBaseInt()+1);
+          PC.settp(PC.gettp()-1);
+          maintext.addText("Your intelligence is now " + PC.getInt());
+        } else {
+          maintext.addText("Your intelligence cannot be raised further by training.");
+        }
+        if (PC.gettp() === 0) {
+          delete DU.gameflags["can_train"];
+        }
+        delete DU.gameflags[triggers.set_flag];
+      } else if (triggers.set_flag === "train_dex") {
+        if (PC.gettp() === 0) {
+          alert("Somehow training Dex without any tp.");
+        } else if ((PC.getBaseDex() < STAT_MAX) && (PC.gettp() > 0)) {
+          PC.setBaseDex(PC.getBaseDex()+1);
+          PC.settp(PC.gettp()-1);
+          maintext.addText("Your dexterity is now " + PC.getDex());
+        } else {
+          maintext.addText("Your dexterity cannot be raised further by training.");
+        }
+        if (PC.gettp() === 0) {
+          delete DU.gameflags["can_train"];
+        }
+        delete DU.gameflags[triggers.set_flag];
+      } else if (triggers.set_flag === "train_str") {
+        if (PC.gettp() === 0) {
+          alert("Somehow training Str without any tp.");
+        } else if ((PC.getBaseStr() < STAT_MAX) && (PC.gettp() > 0)) {
+          PC.setBaseStr(PC.getBaseStr()+1);
+          PC.settp(PC.gettp()-1);
+          maintext.addText("Your strength is now " + PC.getStr());
+        } else {
+          maintext.addText("Your strength cannot be raised further by training.");
+        }
+        if (PC.gettp() === 0) {
+          delete DU.gameflags["can_train"];
+        }
+        delete DU.gameflags[triggers.set_flag];
+      } else if (triggers.set_flag === "inn_20_y") {
+        delete DU.gameflags["inn_20_y"];
+        delete DU.gameflags["inn_20"];
+        if (PC.getGold() < 20) {
+          maintext.addText("You don't have enough gold!");
+        } else {
+          keep_talking = -1;
+          PC.addGold(-20);
+          maintext.addText("He leads you to your room.");
+          setTimeout(function() { InnRoom(28,17,[21,14,25,20]); }, 50);
+        }
+      } else if (triggers.set_flag === "inn_20_n") {
+        delete DU.gameflags["inn_20_n"];
+        delete DU.gameflags["inn_20"];
+      } else if (triggers.set_flag === "give_100g_k") {
+        delete DU.gameflags["give_100g_k"];
+        DU.gameflags["debt_paid"] = 1;
+        PC.addGold(100);
+        DU.gameflags["karma"]++;
+      } else if (!DU.gameflags["all_health"] && DU.gameflags["health_kyvek"] &&  DU.gameflags["health_daniel"] && DU.gameflags["health_kylee"] && DU.gameflags["health_garen"] && DU.gameflags["health_guard"] && DU.gameflags["health_amaeryl"] && DU.gameflags["health_warren"] && DU.gameflags["health_samuel"] && DU.gameflags["health_ingrid"]) {
+        DU.gameflags["all_health"] = 1;    
+      } else if (DU.gameflags["shield_gotten"]) {
+        delete DU.gameflags["get_shield"];
+        delete DU.gameflags["shield_gotten"];
       }
-      ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
-      DrawCharFrame();
-    } else if (triggers.set_flag === "train_int") {
-      if (PC.gettp() === 0) {
-        alert("Somehow training Int without any tp.");
-      } else if ((PC.getBaseInt() < STAT_MAX) && (PC.gettp() > 0)) {
-        PC.setBaseInt(PC.getBaseInt()+1);
-        PC.settp(PC.gettp()-1);
-        maintext.addText("Your intelligence is now " + PC.getInt());
-      } else {
-        maintext.addText("Your intelligence cannot be raised further by training.");
-      }
-      if (PC.gettp() === 0) {
-        delete DU.gameflags["can_train"];
-      }
-      delete DU.gameflags[triggers.set_flag];
-    } else if (triggers.set_flag === "train_dex") {
-      if (PC.gettp() === 0) {
-        alert("Somehow training Dex without any tp.");
-      } else if ((PC.getBaseDex() < STAT_MAX) && (PC.gettp() > 0)) {
-        PC.setBaseDex(PC.getBaseDex()+1);
-        PC.settp(PC.gettp()-1);
-        maintext.addText("Your dexterity is now " + PC.getDex());
-      } else {
-        maintext.addText("Your dexterity cannot be raised further by training.");
-      }
-      if (PC.gettp() === 0) {
-        delete DU.gameflags["can_train"];
-      }
-      delete DU.gameflags[triggers.set_flag];
-    } else if (triggers.set_flag === "train_str") {
-      if (PC.gettp() === 0) {
-        alert("Somehow training Str without any tp.");
-      } else if ((PC.getBaseStr() < STAT_MAX) && (PC.gettp() > 0)) {
-        PC.setBaseStr(PC.getBaseStr()+1);
-        PC.settp(PC.gettp()-1);
-        maintext.addText("Your strength is now " + PC.getStr());
-      } else {
-        maintext.addText("Your strength cannot be raised further by training.");
-      }
-      if (PC.gettp() === 0) {
-        delete DU.gameflags["can_train"];
-      }
-      delete DU.gameflags[triggers.set_flag];
-    } else if (triggers.set_flag === "inn_20_y") {
-      delete DU.gameflags["inn_20_y"];
-      delete DU.gameflags["inn_20"];
-      if (PC.getGold() < 20) {
-        maintext.addText("You don't have enough gold!");
-      } else {
-        keep_talking = -1;
-        PC.addGold(-20);
-        maintext.addText("He leads you to your room.");
-        setTimeout(function() { InnRoom(28,17,[21,14,25,20]); }, 50);
-      }
-    } else if (triggers.set_flag === "inn_20_n") {
-      delete DU.gameflags["inn_20_n"];
-      delete DU.gameflags["inn_20"];
-    } else if (triggers.set_flag === "give_100g_k") {
-      delete DU.gameflags["give_100g_k"];
-      DU.gameflags["debt_paid"] = 1;
-      PC.addGold(100);
-      DU.gameflags["karma"]++;
-    } else if (!DU.gameflags["all_health"] && DU.gameflags["health_kyvek"] &&  DU.gameflags["health_daniel"] && DU.gameflags["health_kylee"] && DU.gameflags["health_garen"] && DU.gameflags["health_guard"] && DU.gameflags["health_amaeryl"] && DU.gameflags["health_warren"] && DU.gameflags["health_samuel"] && DU.gameflags["health_ingrid"]) {
-      DU.gameflags["all_health"] = 1;    
-    } else if (DU.gameflags["shield_gotten"]) {
-      delete DU.gameflags["get_shield"];
-      delete DU.gameflags["shield_gotten"];
-    }
-  } 
+    } 
+  }
   if (triggers.hasOwnProperty("end_convo")) {
     if ((triggers.end_convo !== 1) && (triggers.end_convo !== "1")) {
       this.say(speaker, triggers.end_convo);
