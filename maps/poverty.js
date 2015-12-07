@@ -75,13 +75,13 @@ mappages["poverty"].features[29] = {name : 'SmallBox', x : 31, y : 28, lootgroup
 
 
 mappages["poverty"].npcs = [];
-mappages["poverty"].npcs[0] = {name : 'RangerVillagerNPC', x : 15, y : 16, NPCName: 'Steadman', Alignment: 'good', Conversation: 'steadman', Gender: 'male'};
+mappages["poverty"].npcs[0] = {name : 'RangerVillagerNPC', x : 15, y : 16, NPCName: 'Steadman', Conversation: 'steadman', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif'};
 mappages["poverty"].npcs[1] = {name : 'TownGuardNPC', x : 26, y : 25, NPCName: 'Arthur', Alignment: 'good', Conversation: 'arthur', Gender: 'male'};
-mappages["poverty"].npcs[2] = {name : 'MageVillagerNPC', x : 9, y : 16, NPCName: 'Ivan', Alignment: 'good', Conversation: 'ivan', Gender: 'male'};
+mappages["poverty"].npcs[2] = {name : 'MageVillagerNPC', x : 9, y : 16, NPCName: 'Ivan', Conversation: 'ivan', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '303.gif'};
 mappages["poverty"].npcs[3] = {name : 'AdventurerVillagerNPC', x : 6, y : 34, NPCName: 'Damien', Conversation: 'damien', ConversationFlag: 'anna_return', Gender: 'male', Bark: '0', NPCBand: '0'};
-mappages["poverty"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 26, y : 15, NPCName: 'Brooke', Conversation: 'brooke', ConversationFlag: 'anna_return', Gender: 'female', Merch: 'brooke', Leash: 2, Bark: '0', NPCBand: '0'};
-mappages["poverty"].npcs[5] = {name : 'BardVillagerNPC', x : 11, y : 24, NPCName: 'Kelly', Desc: 'mayor', Conversation: 'kelly', Gender: 'female', Leash: 3, Bark: '0', NPCBand: '0'};
-mappages["poverty"].npcs[6] = {name : 'DruidVillagerNPC', x : 23, y : 14, NPCName: 'Jennifer', Conversation: 'jennifer', Gender: 'female', Leash: 2, Bark: '0', NPCBand: '0'};
+mappages["poverty"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 26, y : 15, NPCName: 'Brooke', Conversation: 'brooke', ConversationFlag: 'anna_return', Gender: 'female', Merch: 'brooke', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["poverty"].npcs[5] = {name : 'BardVillagerNPC', x : 11, y : 24, NPCName: 'Kelly', Desc: 'mayor', Conversation: 'kelly', Gender: 'female', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif'};
+mappages["poverty"].npcs[6] = {name : 'DruidVillagerNPC', x : 23, y : 14, NPCName: 'Jennifer', Conversation: 'jennifer', Gender: 'female', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: '302.gif'};
 
 mappages["poverty"].desc = "Towne of Poverty";
 mappages["poverty"].music = 'Towne';
@@ -100,7 +100,7 @@ mappages["poverty"].entertestscript = '';
 mappages["poverty"].exitscript = '';
 mappages["poverty"].exittestscript = '';
 mappages["poverty"].returnmap = 'darkunknown';
-mappages["poverty"].returnx = '29';
-mappages["poverty"].returny = '43';
+mappages["poverty"].returnx = '69';
+mappages["poverty"].returny = '74';
 mappages["poverty"].returninfused = '0';
 mappages["poverty"].linkedMaps = [""];

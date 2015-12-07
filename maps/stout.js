@@ -50,11 +50,11 @@ mappages["stout"].features[12] = {name : 'SleepField', x : 20, y : 2};
 
 
 mappages["stout"].npcs = [];
-mappages["stout"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 23, y : 5};
-mappages["stout"].npcs[1] = {name : 'AdventurerVillagerNPC', x : 14, y : 20};
-mappages["stout"].npcs[2] = {name : 'BardVillagerNPC', x : 22, y : 14};
-mappages["stout"].npcs[3] = {name : 'MageVillagerNPC', x : 14, y : 5};
-mappages["stout"].npcs[4] = {name : 'DruidVillagerNPC', x : 4, y : 5};
+mappages["stout"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 23, y : 5, Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
+mappages["stout"].npcs[1] = {name : 'AdventurerVillagerNPC', x : 14, y : 20, Gender: 'monster', Bark: '0', NPCBand: '0'};
+mappages["stout"].npcs[2] = {name : 'BardVillagerNPC', x : 22, y : 14, Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif'};
+mappages["stout"].npcs[3] = {name : 'MageVillagerNPC', x : 14, y : 5, Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif'};
+mappages["stout"].npcs[4] = {name : 'DruidVillagerNPC', x : 4, y : 5, Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: '302.gif'};
 
 mappages["stout"].desc = "The Towne of Stout";
 mappages["stout"].music = 'Towne';
@@ -73,7 +73,7 @@ mappages["stout"].entertestscript = '';
 mappages["stout"].exitscript = '';
 mappages["stout"].exittestscript = '';
 mappages["stout"].returnmap = 'darkunknown';
-mappages["stout"].returnx = '29';
-mappages["stout"].returny = '43';
+mappages["stout"].returnx = '69';
+mappages["stout"].returny = '74';
 mappages["stout"].returninfused = '0';
 mappages["stout"].linkedMaps = [""];

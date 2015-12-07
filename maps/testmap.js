@@ -54,8 +54,8 @@ mappages["testmap"].entertestscript = '';
 mappages["testmap"].exitscript = '';
 mappages["testmap"].exittestscript = '';
 mappages["testmap"].returnmap = 'darkunknown';
-mappages["testmap"].returnx = '29';
-mappages["testmap"].returny = '43';
+mappages["testmap"].returnx = '69';
+mappages["testmap"].returny = '74';
 mappages["testmap"].returninfused = '0';
 mappages["testmap"].linkedMaps = [];
 

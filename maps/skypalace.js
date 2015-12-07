@@ -162,8 +162,8 @@ mappages["skypalace"].entertestscript = '';
 mappages["skypalace"].exitscript = '';
 mappages["skypalace"].exittestscript = '';
 mappages["skypalace"].returnmap = 'darkunknown';
-mappages["skypalace"].returnx = '65';
-mappages["skypalace"].returny = '70';
+mappages["skypalace"].returnx = '69';
+mappages["skypalace"].returny = '74';
 mappages["skypalace"].returninfused = '0';
 mappages["skypalace"].linkedMaps = ["skypalace2"];
 

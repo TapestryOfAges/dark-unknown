@@ -31,4 +31,8 @@ spellbook2 - has full sized spellbook
 rescued_sam - rescued Samantha from Shadow
 shadow_safe - monsters in shadow between Sam and the entrance are dead.
 end_rebel - finished Prince plot
+anna_romance - you've mentioned Damien or Brooke to Anna
 anna_return - Anna has moved back to Poverty
+garrick_flipout - garrick has attacked you
+kiba_question - Kiba has asked who garrick is engaged to
+kiba_rumor - she's responded about garrick marrying anna
