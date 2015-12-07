@@ -12,6 +12,7 @@ Conversation.prototype = new Object();
 // 4  : switch to sell
 
 Conversation.prototype.respond = function(speaker, keyword, skipahead) { 
+    
   if (!skipahead) { skipahead = targetCursor.skipahead; }
   var flags_met = 1;
   var necessary_item;
@@ -19,6 +20,30 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   if (!keyword) { keyword = "bye"; }
     
   keyword = keyword.toLowerCase();
+
+  if (DU.gameflags.kiba_question) {
+    delete DU.gameflags.kiba_question;
+    // Kiba needed a third set of responses to some things, so when you are answering her
+    // question prompt, the responses are set up from here instead.
+    if (keyword === "kiba") {
+      maintext.addText('Kiba laughs. "No, I think I\'d know in that case."');
+      return 1;
+    } else if ((keyword === "erin") || (keyword === "aaron") || (keyword === "alexis") || (keyword === "dave") || (keyword === "sarah") || (keyword === "rhiannon") || (keyword === "franklin") || (keyword === "aiofe")) {
+      maintext.addText('Kiba considers the possibility. "No, I don\'t think so."');
+      return 1;
+    } else if (keyword === "anna") {
+      if (DU.gameflags.anna_romance) {
+        keyword = "_anna";
+      } else {
+        maintext.addText('Kiba considers. "I\m not sure..."');
+        return 1;
+      }
+    } else {
+      maintext.addText('"That doesn\'t really make sense.");
+      return 1;
+    }
+  }
+
   
   if (!this.hasOwnProperty(keyword)) {
     keyword = "_confused";
@@ -74,7 +99,9 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   if (triggers.hasOwnProperty("set_flag")) {
     if (triggers.set_flag.indexOf("unset_") !== -1) {
       var tmpflag = triggers.set_flag.replace(/unset_/, "");
-      DU.gameflags[tmpflag] = 0;
+      if (DU.gameflags[tmpflag]) {
+        delete DU.gameflags[tmpflag];
+      }
     } else {
       DU.gameflags[triggers.set_flag] = 1;
     

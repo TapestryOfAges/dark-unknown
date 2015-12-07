@@ -290,6 +290,13 @@ GameObject.prototype.copy = function(type) {
         copydata[idx] = val;
         dbs.writeln("<span style='color:purple'>" + idx + " different, saved.</span>");
       }
+    } else if (idx === "runeCooldown") {
+      if (objectCompare(val, base_version[idx])) {
+        if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
+      } else {
+        copydata[idx] = val;
+        dbs.writeln("<span style='color:purple'>" + idx + " different, saved.</span>");
+      }      
     } else {
       if (debug) { dbs.writeln("<br /><span style='color:red'>" + idx + " is type " + typeof val + "</span>,  "); }
       alert(savename + " SAVE NEEDS " + idx + "!");

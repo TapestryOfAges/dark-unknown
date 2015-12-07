@@ -129,8 +129,8 @@ mappages["island"].entertestscript = '';
 mappages["island"].exitscript = '';
 mappages["island"].exittestscript = '';
 mappages["island"].returnmap = 'darkunknown';
-mappages["island"].returnx = '29';
-mappages["island"].returny = '43';
+mappages["island"].returnx = '69';
+mappages["island"].returny = '74';
 mappages["island"].returninfused = '1';
 mappages["island"].linkedMaps = new Array("");
 

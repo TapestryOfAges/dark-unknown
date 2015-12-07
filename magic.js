@@ -1955,7 +1955,7 @@ magic[5][GetSpellID(6)].executeSpell = function(caster, infused, free, tgt) {
 }
 
 
-function PerformFireball(caster, infused, free, tgt) {
+function PerformSwordstrike(caster, infused, free, tgt) {
   gamestate.setMode("null");
   var resp = {};
   resp["fin"] = 1;
@@ -2025,6 +2025,100 @@ function PerformFireball(caster, infused, free, tgt) {
   
   return resp;
 }
+
+// Explosion
+magic[6][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
+  if (caster !== PC) {
+    var resp = PerformExplosion(caster, infused, free, tgt);
+    return resp;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Explosion.<br /></span>"); }
+  var resp = {};
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Explosion";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open"};
+  targetCursor.targetlimit = (viewsizex -1)/2;
+  targetCursor.targetCenterlimit = 0;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 4;
+  gamestate.setMode("target");
+  return resp;
+}
+
+function PerformExplosion(caster, infused, free, tgt) {
+  gamestate.setMode("null");
+  var resp = {};
+  resp["fin"] = 1;
+  var desc = tgt.getDesc();
+  var castmap = caster.getHomeMap();
+
+  if (castmap.getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "Your spell cannot reach that target!";
+    return resp;
+  }
+  
+  if (!free) {
+    var mana = magic[6][GetSpellID(2)].getManaCost(infused);
+    caster.modMana(-1*mana);
+    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+  }
+  
+// WORKING HERE
+  var hostile = 0;
+  if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
+    TurnMapHostile(castmap);
+    hostile = 1;
+  }
+
+  var dmg = RollDamage(DMG_HEAVY);
+  if (infused) {
+    dmg = dmg * 1.5;
+  }
+  
+  if (CheckResist(caster,tgt,infused,0)) {
+    dmg = Math.floor(dmg/2)+1;
+  }
+  if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
+  ShowEffect(tgt, 700, "702.gif", 0, 0);
+  tgt.dealDamage(dmg,caster,"physical");
+  
+  for (var diffx = -1; diffx <=1; diffx++) {
+    for (var diffy = -1; diffy <=1; diffy++) {
+      if ((diffx === 0) && (diffy === 0)) { next; }
+      dmg = RollDamage(DMG_LIGHT);
+      if ((tgt.getx()+diffx === PC.getx()) && (tgt.gety()+diffy === PC.gety())) {
+        if (CheckResist(caster,PC,infused,0)) { dmg = dmg/2 +1; }
+        PC.dealDamage(dmg,caster,"physical");
+        ShowEffect(PC, 700, "702.gif", 0, 0);
+        next;
+      }
+      var tile = castmap.getTile(tgt.getx()+diffx,tgt.gety()+diffy);
+      var badguy = tile.getTopNPC();
+      if (badguy) {
+        if (CheckResist(caster,badguy,infused,0)) { dmg = dmg/2+1; }
+        badguy.dealDamage(dmg,caster,"physical");
+        ShowEffect(badguy, 700, "702.gif", 0, 0);
+        if (!hostile && (caster === PC) && (tgt.getAttitude() === "friendly")) {
+          TurnMapHostile(castmap);
+          hostile = 1;
+        }
+      }
+    }
+  }
+  
+  return resp;
+}
+
 
 //Negate Magic
 magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
@@ -2421,6 +2515,8 @@ function PerformSpellcast() {
         resp = PerformParalyze(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Swordstrike") {
         resp = PerformSwordstrike(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+      } else if (targetCursor.spellName === "Explosion") {
+        resp = PerformExplosion(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       }
       delete targetCursor.spellName;
       

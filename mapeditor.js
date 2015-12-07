@@ -537,7 +537,6 @@ function submitEditNPC(change) {
 		}
 		if (optindex) {
 		  editnpcs.overrideGraphic = graphicpicks[optindex];
-		  alert(graphicpicks[optindex]);
 		} else {
 		  editnpcs.overrideGraphic = "";
 		}
