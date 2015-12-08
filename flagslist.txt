@@ -33,6 +33,7 @@ shadow_safe - monsters in shadow between Sam and the entrance are dead.
 end_rebel - finished Prince plot
 anna_romance - you've mentioned Damien or Brooke to Anna
 anna_return - Anna has moved back to Poverty (or is on her way out of Gauntlet)
+anna_left - she's made it out of Gauntlet (set in her AI or when player leaves)
 garrick_flipout - garrick has been tossed in jail. Set once he surrenders to Aiofe.
 kiba_question - Kiba has asked who garrick is engaged to
 kiba_rumor - she's responded about garrick marrying anna
