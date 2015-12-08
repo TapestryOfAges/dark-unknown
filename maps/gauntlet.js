@@ -173,3 +173,13 @@ mappages["gauntlet"].returnx = '69';
 mappages["gauntlet"].returny = '74';
 mappages["gauntlet"].returninfused = '0';
 mappages["gauntlet"].linkedMaps = [""];
+
+mappages["gauntlet"].onload = function(mapref) {
+  if (DU.gameflag.anna_return) {
+    var tile = mapref.getTile(34,11);
+    var anna = tile.getTopNPC();
+    if (anna) {
+      mapref.deleteThing(anna);
+    }
+  }
+}
