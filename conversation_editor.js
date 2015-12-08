@@ -14,7 +14,7 @@ function create_header() {
     places[val._location] = 1;
   });
   
-  $('#locations').html("<p><a href='javascript:validate()'>[Validate]</a> <a href='javascript:saveconv()'>[Save Conversations]</a> <a href='javascript:create_header()'>[Refresh]</a></p><p>");
+  $('#locations').html("<p><a href='javascript:validate()'>[Validate]</a> <a href='javascript:saveconv()'>[Save Conversations]</a> <a href='javascript:create_header()'>[Refresh]</a> <a href='javascript:makescript()'>[Make Script]</a></p><p>");
   
   $.each(places, function(idx,val) {
     $('#locations').html($('#locations').html() + "<a href='javascript:select_place(\"" + idx + "\")'>" + idx + "</a> | ");
@@ -504,4 +504,8 @@ function validate() {
     $("#mainbody").html($("#mainbody").html() + "<br />");
     
   });
+}
+
+function makescript() {
+  
 }
