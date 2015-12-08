@@ -507,5 +507,14 @@ function validate() {
 }
 
 function makescript() {
+  var locations = {};
+  $.each(conversations, function(idx,val) {
+    locations[val["_location"]] = 1;
+  });
   
+  $.each(locations, function(idx,val) {
+    $.each(conversations, function(convname, convdata) {
+      
+    });
+  });
 }

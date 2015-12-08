@@ -821,7 +821,7 @@ function maps_set_exits(mapref) {
 }
 
 function maps_check_escape(mapref) {
-  mapref.ExitTest = function(who,frommap,fromx,fromy,tox,toy) {
+  mapref.ExitTest = function(who,tomap,fromx,fromy,tox,toy) {
     if (who === PC) {
       // possibly check for bribery if I decide to go that route
       if (PC.getHP() > (PC.getMaxHP() * (1/5))) {

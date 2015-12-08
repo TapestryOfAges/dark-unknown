@@ -146,7 +146,7 @@ mappages["gauntlet"].npcs[4] = {name : 'RangerVillagerNPC', x : 31, y : 6, NPCNa
 mappages["gauntlet"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 30, y : 36, NPCName: 'Rhiannon', Desc: 'innkeeper', Conversation: 'rhiannon', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["gauntlet"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 18, y : 12, NPCName: 'Aaron', Desc: 'merchant', Conversation: 'aaron', Gender: 'male', Merch: 'low_wpns', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["gauntlet"].npcs[7] = {name : 'AdventurerVillagerNPC', x : 5, y : 17, NPCName: 'Erin', Desc: 'merchant', Prefix: 'a', Conversation: 'erin', Gender: 'female', Merch: 'low_armor', Bark: '0', NPCBand: '0', OverrideGraphic: '306.gif'};
-mappages["gauntlet"].npcs[8] = {name : 'TinkerVillagerNPC', x : 23, y : 19, NPCName: 'Kiba', Conversation: 'kiba', ConversationFlag: 'anna_return', Gender: 'female', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
+mappages["gauntlet"].npcs[8] = {name : 'TinkerVillagerNPC', x : 23, y : 19, NPCName: 'Kiba', Conversation: 'kiba', ConversationFlag: 'anna_left', Gender: 'female', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
 mappages["gauntlet"].npcs[9] = {name : 'TownGuardNPC', x : 25, y : 5, NPCName: 'Guard', Conversation: 'trainer_guard', Gender: 'female', Bark: '0', NPCBand: '0'};
 mappages["gauntlet"].npcs[10] = {name : 'TownGuardNPC', x : 27, y : 26, NPCName: 'Guard', Conversation: 'gauntlet_guard', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["gauntlet"].npcs[11] = {name : 'TownGuardNPC', x : 11, y : 30, NPCName: 'Guard', Conversation: 'gauntlet_prison', Gender: 'male', Bark: '0', NPCBand: '0'};
@@ -166,7 +166,7 @@ mappages["gauntlet"].alwaysRemember = '0';
 mappages["gauntlet"].scale = '1';
 mappages["gauntlet"].enterscript = '';
 mappages["gauntlet"].entertestscript = '';
-mappages["gauntlet"].exitscript = '';
+mappages["gauntlet"].exitscript = 'check_anne';
 mappages["gauntlet"].exittestscript = '';
 mappages["gauntlet"].returnmap = 'darkunknown';
 mappages["gauntlet"].returnx = '69';
@@ -181,5 +181,11 @@ mappages["gauntlet"].onload = function(mapref) {
     if (anna) {
       mapref.deleteThing(anna);
     }
+  }
+}
+
+mappages["gauntlet"].check_anne = function(mapref) {
+  mapref.Exit = function(who,tomap,fromx,fromy,tox,toy) {
+    if (DU.gameflags.anna_return) { DU.gameflags.anna_left = 1; }
   }
 }
