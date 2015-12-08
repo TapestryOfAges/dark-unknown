@@ -807,10 +807,15 @@ mappages["combatCoast2"].check_escape = function(mapref) {
 
 function maps_set_exits(mapref) {
   mapref.Enter = function(ewho,efrommap,efromx,efromy,etox,etoy) {
-    if (efrommap) {
+    if (efrommap && (ewho === PC)) {
       this.setExitToMap(efrommap.getName());
       this.setExitToX(efromx);
       this.setExitToY(efromy);    
+      
+      this.setReturn(efrommap.getName(), 69,74);
+      if (efrommap.getName() !== "darkunknown") {
+        this.setReturnInfused(1);
+      }
     }
   }
 }
@@ -819,7 +824,7 @@ function maps_check_escape(mapref) {
   mapref.ExitTest = function(who,frommap,fromx,fromy,tox,toy) {
     if (who === PC) {
       // possibly check for bribery if I decide to go that route
-      if (PC.getHP() > (PC.getMaxHP() * (1/5)) {
+      if (PC.getHP() > (PC.getMaxHP() * (1/5))) {
         if (debug) { dbs.writeln("<span style='color:red'>PC has more than 1/5 its hp, karma penalty for fleeing.<br /></span>"); }
         DU.gameflags["karma"]--;
       } else {

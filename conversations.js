@@ -39,7 +39,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         return 1;
       }
     } else {
-      maintext.addText('"That doesn\'t really make sense.");
+      maintext.addText('"That doesn\'t really make sense."');
       return 1;
     }
   }
