@@ -507,14 +507,19 @@ function validate() {
 }
 
 function makescript() {
+  var script = window.open("","_blank");
+  script.writeln("<html><head><title>Dark Unknown Transcript</title></head><body><table cellpadding='1' cellspacing='1' border='0'>");
   var locations = {};
   $.each(conversations, function(idx,val) {
     locations[val["_location"]] = 1;
   });
   
   $.each(locations, function(idx,val) {
+    
     $.each(conversations, function(convname, convdata) {
-      
+      if (idx === convdata._location) {
+        
+      }
     });
   });
 }
