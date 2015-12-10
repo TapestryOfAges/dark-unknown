@@ -507,7 +507,8 @@ function validate() {
 }
 
 function makescript() {
-  var script = window.open("","_blank");
+  var scriptpage = window.open("","_blank");
+  var script = scriptpage.document;
   script.writeln("<html><head><title>Dark Unknown Transcript</title></head><body><table cellpadding='1' cellspacing='1' border='0'>");
   var locations = {};
   $.each(conversations, function(idx,val) {
@@ -515,11 +516,57 @@ function makescript() {
   });
   
   $.each(locations, function(idx,val) {
-    
+    script.writeln("<tr><td colspan='3'>" + idx.toUpperCase() + "</td></tr>");
     $.each(conversations, function(convname, convdata) {
       if (idx === convdata._location) {
+        script.writeln("<tr><td colspan='3'><br /><span style='text-decoration:underline'>" + convname.toUpperCase() + "</span></td></tr>");
+        script.writeln(PrintDialogue(convdata, "_start"));
+        script.writeln(PrintDialogue(convdata, "_confused"));
+        script.writeln(PrintDialogue(convdata, "name"));
+        script.writeln(PrintDialogue(convdata, "job"));
+        $.each(convdata, function(convword, convresponce) {
+          if (typeof convdata[convword] !== "function") {
+            if ((convword !== "_start") && (convword !== "_confused") && (convword !== "name") && (convword !== "job") && (convword !== "bye") && (convword !== "_location")) {
+              script.writeln(PrintDialogue(convdata, convword));
+            }
+          }
+        });
+        script.writeln(PrintDialogue(convdata, "bye"));
+        script.writeln(PrintDialogue(convdata, "look"));
         
       }
     });
   });
+}
+
+function PrintDialogue(speech, keyword) {
+  //alert(keyword);
+  var tmptxt = "";
+  var keytype = "";
+  var flag = "";
+  $.each(speech[keyword].flags, function(idx,val) {
+    keytype = idx;
+    flag = val;
+  });
+
+  if (keytype) {
+    var triggers = "";
+    $.each(speech[keyword].triggers[0], function(idx, val) {
+      triggers = triggers + idx + " " + "(" + val + ") ";
+    });
+    tmptxt = tmptxt + "<tr><td>" + keyword.toUpperCase() + "</td><td style='color:blue'>[no flag]</td><td>" + speech[keyword].responses[0] + "</td><td style='font-weight:bold'>" + triggers + "</td></tr>";
+    triggers = "";
+    $.each(speech[keyword].triggers[1], function(idx, val) {
+      triggers = triggers + idx + " " + "(" + val + ") ";
+    });
+    tmptxt = tmptxt + "<tr><td></td><td style='color:blue'>"+ keytype + " : " + flag + "</td><td>" + speech[keyword].responses[1] + "</td><td style='font-weight:bold'>" + triggers + "</td></tr>";
+  } else {
+    var triggers = "";
+    $.each(speech[keyword].triggers[1], function(idx, val) {
+      triggers = triggers + idx + " " + "(" + val + ") ";
+    });
+    tmptxt = tmptxt + "<tr><td>" + keyword.toUpperCase() + "</td><td style='color:blue'></td><td>" + speech[keyword].responses[1] + "</td><td style='font-weight:bold'>" + triggers + "</td></tr>";
+  }
+  return tmptxt;
+
 }
