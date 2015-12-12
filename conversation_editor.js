@@ -519,14 +519,19 @@ function makescript() {
     script.writeln("<tr><td colspan='3'>" + idx.toUpperCase() + "</td></tr>");
     $.each(conversations, function(convname, convdata) {
       if (idx === convdata._location) {
-        script.writeln("<tr><td colspan='3'><br /><span style='text-decoration:underline'>" + convname.toUpperCase() + "</span></td></tr>");
+        script.writeln("<tr><td colspan='3'><br /><span style='text-decoration:underline'>" + convname.toUpperCase() + "</span>");
+        if (convdata["_notes"]) {
+          script.writeln("(" + convdata["_notes"].responses[1] + ")</td></tr>");
+        } else {
+          script.writeln("</td></tr>");
+        }
         script.writeln(PrintDialogue(convdata, "_start"));
         script.writeln(PrintDialogue(convdata, "_confused"));
         script.writeln(PrintDialogue(convdata, "name"));
         script.writeln(PrintDialogue(convdata, "job"));
         $.each(convdata, function(convword, convresponce) {
           if (typeof convdata[convword] !== "function") {
-            if ((convword !== "_start") && (convword !== "_confused") && (convword !== "name") && (convword !== "job") && (convword !== "bye") && (convword !== "_location")) {
+            if ((convword !== "_start") && (convword !== "_confused") && (convword !== "name") && (convword !== "job") && (convword !== "bye") && (convword !== "_location") && (convword !== "_notes")) {
               script.writeln(PrintDialogue(convdata, convword));
             }
           }
