@@ -629,6 +629,8 @@ ais.AnnaLeaves = function(who) {
 ais.GarrickAttack(who) {
   if (who.getHP() <= 1000) { // Garrick gets 1030 hp when he attacks, so he can always surrender
     // surrender to Aiofe
+  } else {
+    
   }
 }
 
