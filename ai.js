@@ -579,6 +579,59 @@ ais.Trevor = function(who) {
   return retval;
 }
 
+ais.AnnaLeaves = function(who) {
+  if (!who.dest) { who.dest = 1; }
+  var retval = {};
+  retval["fin"] = 1;
+  var themap = who.getHomeMap();
+  var annax = who.getx();
+  var annay = who.gety();
+  if (who.gety() === 39) {
+    DU.gameflags.anna_left = 1;
+    themap.deleteThing(who);
+    DrawMainFrame("one",themap.getName(),annax,annay);
+    return retval;
+  }
+  
+  var path;
+  if (who.dest === 1) {
+    path = themap.getPath(annax, annay, 26, 13, who.getMovetype());
+  } else if (who.dest === 2) {
+    path = themap.getPath(annax, annay, 26, 21, who.getMovetype());
+  } else if (who.dest === 3) {
+    path = themap.getPath(annax, annay, 25, 21, who.getMovetype());
+  } else if (who.dest === 4) {
+    path = themap.getPath(annax, annay, 25, 39, who.getMovetype());
+  }
+  path.shift();
+  
+  // step on the path
+  // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
+  var diffx = path[0][0] - annax;
+  var diffy = path[0][1] - annay;
+  var fullx = 25 - annax;
+  var fully = 39 - annay;
+  
+  var moved = who.moveMe(diffx,diffy);
+  if (!moved["canmove"]) {
+    if (diffx !== 0) {
+      if (fully > 0) { who.moveMe(0,1); }
+      else { who.moveMe(0,-1); }
+    } else {
+      if (fullx > 0) { who.moveMe(1,0); }
+      else { who.moveMe(-1,0); }
+    }
+  }
+  
+  return retval;
+}
+
+ais.GarrickAttack(who) {
+  if (who.getHP() <= 1000) { // Garrick gets 1030 hp when he attacks, so he can always surrender
+    // surrender to Aiofe
+  }
+}
+
 ais.Sentinel = function(who) {
   var destinations = [];
   var jumps = [];

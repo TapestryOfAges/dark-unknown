@@ -207,9 +207,43 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         DU.gameflags["karma"]++;
       } else if (!DU.gameflags["all_health"] && DU.gameflags["health_kyvek"] &&  DU.gameflags["health_daniel"] && DU.gameflags["health_kylee"] && DU.gameflags["health_garen"] && DU.gameflags["health_guard"] && DU.gameflags["health_amaeryl"] && DU.gameflags["health_warren"] && DU.gameflags["health_samuel"] && DU.gameflags["health_ingrid"]) {
         DU.gameflags["all_health"] = 1;    
-      } else if (DU.gameflags["shield_gotten"]) {
+      } else if (triggers.set_flag === "shield_gotten") {
         delete DU.gameflags["get_shield"];
         delete DU.gameflags["shield_gotten"];
+      } else if (triggers.set_flag === "anna_return") {
+        var annamap = PC.getHomeMap(); // she has to be on the PC's map since they just talked to her
+        var npcs = annamap.npcs.getAll();
+        var anna;
+        $.each(npcs, function(idx,val) {
+          if (val.getNPCName() === "Anna") { anna = val; }
+        });
+        if (!anna) { alert("Couldn't find Anna to change her AI."); }
+        else {
+          anna.setCurrentAI("AnnaLeaves");
+          if (debug) { dbs.writeln("Anna's AI changes to AnnaLeaves.<br />"); }        
+        }
+      } else if (triggers.set_flag === "garrick_attack") {
+        var garrickmap = PC.getHomeMap();
+        var npcs = garrickmap.npcs.getAll();
+        var garrick;
+        var aiofe;
+        $.each(npcs, function(idx,val) {
+          if (val.getNPCName() === "Garrick") { garrick = val; }
+          if (val.getNPCName() === "Aiofe") { aiofe = val; }
+        });
+        if (!garrick) { alert("Couldn't find Garrick to change his AI."); }
+        else {
+          garrick.setCurrentAI("GarrickAttack");
+          if (debug) { dbs.writeln("Garrick's AI changes to GarrickAttack.<br />"); }        
+          garrick.setMaxHP(1030);
+          garrick.setHP(1030);
+        }
+        if (!aiofe) { alert("Couldn't find Aiofe to change her AI."); }
+        else {
+          aiofe.setCurrentAI("FightGarrick");
+          if (debug) { dbs.writeln("Aiofe's AI changes to FightGarrick.<br />"); }        
+          // to set her back, just reset to PeaceAI
+        }
       }
     } 
   }
