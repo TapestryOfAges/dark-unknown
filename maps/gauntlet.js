@@ -148,7 +148,7 @@ mappages["gauntlet"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 18, y : 12, N
 mappages["gauntlet"].npcs[7] = {name : 'AdventurerVillagerNPC', x : 5, y : 17, NPCName: 'Erin', Desc: 'merchant', Prefix: 'a', Conversation: 'erin', Gender: 'female', Merch: 'low_armor', Bark: '0', NPCBand: '0', OverrideGraphic: '306.gif'};
 mappages["gauntlet"].npcs[8] = {name : 'TinkerVillagerNPC', x : 23, y : 19, NPCName: 'Kiba', Conversation: 'kiba', ConversationFlag: 'anna_left', Gender: 'female', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
 mappages["gauntlet"].npcs[9] = {name : 'TownGuardNPC', x : 25, y : 5, NPCName: 'Guard', Conversation: 'trainer_guard', Gender: 'female', Bark: '0', NPCBand: '0'};
-mappages["gauntlet"].npcs[10] = {name : 'TownGuardNPC', x : 27, y : 26, NPCName: 'Guard', Conversation: 'gauntlet_guard', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["gauntlet"].npcs[10] = {name : 'TownGuardNPC', x : 27, y : 26, NPCName: 'Guard', Conversation: 'gauntlet_guard', Gender: 'male', Bark: '0', NPCBand: '0', Leash: 3};
 mappages["gauntlet"].npcs[11] = {name : 'TownGuardNPC', x : 11, y : 30, NPCName: 'Guard', Conversation: 'gauntlet_prison', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["gauntlet"].npcs[12] = {name : 'BardVillagerNPC', x : 39, y : 33, NPCName: 'Franklin', Conversation: 'franklin', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif'};
 
@@ -175,7 +175,7 @@ mappages["gauntlet"].returninfused = '0';
 mappages["gauntlet"].linkedMaps = [""];
 
 mappages["gauntlet"].onload = function(mapref) {
-  if (DU.gameflag.anna_return) {
+  if (DU.gameflags.anna_return) {
     var tile = mapref.getTile(34,11);
     var anna = tile.getTopNPC();
     if (anna) {
