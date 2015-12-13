@@ -222,7 +222,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
           anna.setCurrentAI("AnnaLeaves");
           if (debug) { dbs.writeln("Anna's AI changes to AnnaLeaves.<br />"); }        
         }
-      } else if (triggers.set_flag === "garrick_attack") {
+      } else if (triggers.set_flag === "garrick_flipout") {
         var garrickmap = PC.getHomeMap();
         var npcs = garrickmap.npcs.getAll();
         var garrick;
@@ -242,6 +242,9 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         else {
           aiofe.setCurrentAI("FightGarrick");
           if (debug) { dbs.writeln("Aiofe's AI changes to FightGarrick.<br />"); }        
+          var mace = localFactory.createTile("Mace");
+          aiofe.addToInventory(mace);
+          aiofe.setWeapon(mace);
           // to set her back, just reset to PeaceAI
         }
       }
