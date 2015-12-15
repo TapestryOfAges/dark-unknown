@@ -28,7 +28,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     if (keyword === "kiba") {
       maintext.addText('Kiba laughs. "No, I think I\'d know in that case."');
       return 1;
-    } else if ((keyword === "erin") || (keyword === "aaron") || (keyword === "alexis") || (keyword === "dave") || (keyword === "sarah") || (keyword === "rhiannon") || (keyword === "franklin") || (keyword === "aiofe")) {
+    } else if ((keyword === "erin") || (keyword === "aaron") || (keyword === "alexis") || (keyword === "dave") || (keyword === "sarah") || (keyword === "rhiannon") || (keyword === "franklin") || (keyword === "aoife")) {
       maintext.addText('Kiba considers the possibility. "No, I don\'t think so."');
       return 1;
     } else if (keyword === "anna") {
@@ -226,10 +226,10 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         var garrickmap = PC.getHomeMap();
         var npcs = garrickmap.npcs.getAll();
         var garrick;
-        var aiofe;
+        var aoife;
         $.each(npcs, function(idx,val) {
           if (val.getNPCName() === "Garrick") { garrick = val; }
-          if (val.getNPCName() === "Aiofe") { aiofe = val; }
+          if (val.getNPCName() === "Aoife") { aoife = val; }
         });
         if (!garrick) { alert("Couldn't find Garrick to change his AI."); }
         else {
@@ -239,13 +239,13 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
           garrick.setHP(1030);
           garrick.setAttitude("enraged");
         }
-        if (!aiofe) { alert("Couldn't find Aiofe to change her AI."); }
+        if (!aoife) { alert("Couldn't find Aoife to change her AI."); }
         else {
-          aiofe.setCurrentAI("FightGarrick");
-          if (debug) { dbs.writeln("Aiofe's AI changes to FightGarrick.<br />"); }        
+          aoife.setCurrentAI("FightGarrick");
+          if (debug) { dbs.writeln("Aoife's AI changes to FightGarrick.<br />"); }        
           var mace = localFactory.createTile("Mace");
-          aiofe.addToInventory(mace);
-          aiofe.setWeapon(mace);
+          aoife.addToInventory(mace);
+          aoife.setWeapon(mace);
           // to set her back, just reset to PeaceAI
         }
       }
