@@ -142,7 +142,7 @@ mappages["gauntlet"].npcs[0] = {name : 'MageVillagerNPC', x : 39, y : 18, NPCNam
 mappages["gauntlet"].npcs[1] = {name : 'FighterVillagerNPC', x : 4, y : 7, NPCName: 'Dave', Conversation: 'dave', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '308.gif'};
 mappages["gauntlet"].npcs[2] = {name : 'PaladinVillagerNPC', x : 6, y : 24, NPCName: 'Sarah', Conversation: 'sarah', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'paladin-offcolor.gif'};
 mappages["gauntlet"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 34, y : 11, NPCName: 'Anna', Conversation: 'anna', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
-mappages["gauntlet"].npcs[4] = {name : 'RangerVillagerNPC', x : 31, y : 6, NPCName: 'Garrick', Conversation: 'garrick', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif'};
+mappages["gauntlet"].npcs[4] = {name : 'RangerVillagerNPC', x : 31, y : 6, NPCName: 'Garrick', Conversation: 'garrick', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif', ConversationFlag: 'garrick_flipout'};
 mappages["gauntlet"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 30, y : 36, NPCName: 'Rhiannon', Desc: 'innkeeper', Conversation: 'rhiannon', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["gauntlet"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 18, y : 12, NPCName: 'Aaron', Desc: 'merchant', Conversation: 'aaron', Gender: 'male', Merch: 'low_wpns', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["gauntlet"].npcs[7] = {name : 'AdventurerVillagerNPC', x : 5, y : 17, NPCName: 'Erin', Desc: 'merchant', Prefix: 'a', Conversation: 'erin', Gender: 'female', Merch: 'low_armor', Bark: '0', NPCBand: '0', OverrideGraphic: '306.gif'};
@@ -180,6 +180,14 @@ mappages["gauntlet"].onload = function(mapref) {
     var anna = tile.getTopNPC();
     if (anna) {
       mapref.deleteThing(anna);
+    }
+  }
+  
+  if (DU.gameflags.garrick_flipout) {
+    var tile = mapref.getTile(31,6);
+    var garrick = tile.getTopNPC();
+    if (garrick) {
+      mapref.moveThing(9,35,garrick);
     }
   }
   

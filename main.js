@@ -193,14 +193,18 @@ function DoAction(code, ctrl) {
     }  
   }
   else if (gamestate.getMode() === "anykey") {
-    if (((code >= 65) && (code <= 90)) || (code === 32) || (code === 13)) {  // letter, space, or enter
-      var retval = PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), targetCursor.keyword); 
-      maintext.addText(retval["txt"]);
-      maintext.setInputLine(retval["input"]);
-      maintext.drawTextFrame();
-        
-      if (retval["fin"] === 1) {
-        PC.endTurn(retval["initdelay"]);
+    if (targetCursor.command === "garrick") {
+      GarrickScene(targetCursor.stage);
+    } else {
+      if (((code >= 65) && (code <= 90)) || (code === 32) || (code === 13)) {  // letter, space, or enter
+        var retval = PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), targetCursor.keyword); 
+        maintext.addText(retval["txt"]);
+        maintext.setInputLine(retval["input"]);
+        maintext.drawTextFrame();
+         
+        if (retval["fin"] === 1) {
+          PC.endTurn(retval["initdelay"]);
+        }
       }
     }
   }
