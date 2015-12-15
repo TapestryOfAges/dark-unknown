@@ -237,6 +237,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
           if (debug) { dbs.writeln("Garrick's AI changes to GarrickAttack.<br />"); }        
           garrick.setMaxHP(1030);
           garrick.setHP(1030);
+          garrick.setAttitude("enraged");
         }
         if (!aiofe) { alert("Couldn't find Aiofe to change her AI."); }
         else {

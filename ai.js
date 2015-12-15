@@ -627,11 +627,43 @@ ais.AnnaLeaves = function(who) {
 }
 
 ais.GarrickAttack(who) {
+  var retval = {};
+  retval["fin"] = 1;
   if (who.getHP() <= 1000) { // Garrick gets 1030 hp when he attacks, so he can always surrender
-    // surrender to Aiofe
+    maintext.addText('Garrick falls to his knees and cries, "You win!"');
+    retval["wait"] = 1;
+    retval["input"] = "[MORE]";
+    gamestate.setMode("anykey");
+    targetCursor.command = "garrick";
+    targetCursor.stage = 0;
+    return retval;
   } else {
-    
+    if (IsAdjacent(who,PC)) {
+      var result = Attack(who,PC);
+    } else {
+      var path = themap.getPath(who.getx(), who.gety(), PC.getx(), PC.gety(), who.getMovetype());
+      path.shift();
+      var diffx = path[0][0] - who.getx();
+      var diffy = path[0][1] - who.gety();
+      var fullx = PC.getx() - who.getx();
+      var fully = PC.gety() - who.gety();
+      var moved = who.moveMe(diffx,diffy);
+      if (!moved["canmove"]) {
+        if (diffx !== 0) {
+          if (fully > 0) { who.moveMe(0,1); }
+          else { who.moveMe(0,-1); }
+        } else {
+          if (fullx > 0) { who.moveMe(1,0); }
+          else { who.moveMe(-1,0); }
+        }        
+      }
+    }
   }
+  return retval;
+}
+
+function GarrickScene(stage) {
+  // WORKING
 }
 
 ais.Sentinel = function(who) {
