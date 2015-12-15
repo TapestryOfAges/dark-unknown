@@ -663,7 +663,16 @@ ais.GarrickAttack(who) {
 }
 
 function GarrickScene(stage) {
-  // WORKING
+  gamestate.setMode("null");
+  var aoife;
+  var npcs = PC.getHomeMap().npcs.getAll();
+  $.each(npcs, function(idx,val) {
+    if (val.getNPCName() === "Aoife") { aoife = val; }
+  });
+  if (aoife) {
+    aoife.setCurrentAI(aoife.getPeaceAI());
+    // WORKING HERE
+  }
 }
 
 ais.Sentinel = function(who) {
