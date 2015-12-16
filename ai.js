@@ -636,6 +636,7 @@ ais.GarrickAttack(who) {
     gamestate.setMode("anykey");
     targetCursor.command = "garrick";
     targetCursor.stage = 0;
+    who.setCurrentAI("GarrickEscort");
     return retval;
   } else {
     if (IsAdjacent(who,PC)) {
@@ -669,9 +670,46 @@ function GarrickScene(stage) {
   $.each(npcs, function(idx,val) {
     if (val.getNPCName() === "Aoife") { aoife = val; }
   });
+  var retval = {};
   if (aoife) {
-    aoife.setCurrentAI(aoife.getPeaceAI());
-    // WORKING HERE
+    aoife.setCurrentAI("AoifeEscort");
+    if (stage === 0) {
+      maintext.addText('Aoife points at Garrick. "All right, you. Will you come quietly, now? You know where you\'re going, after a stunt like that."');
+      targetCursor.stage++;
+    } else if (stage === 1) {
+      maintext.addText('Garrick, broken and defeated, merely nods and staggers to his feet.');
+      targetCursor.stage++;
+    } else if (stage === 2) {
+      maintext.addText('Aoife gazes at him with eyes like flint. "Right. On you go, then."');
+      targetCursor.stage++;
+    } else if (stage === 3) {
+      maintext.addText('She turns to you. "He\'ll get a cell to himself, for a while. You won\'t have to worry about him again." She shakes her head. "Sorry that happened."');
+      retval["fin"] = 1;
+    }
+    return retval;
+  } else {
+    // what should we do if Aoife is dead somehow? Only real way is if PC attacked her, in which case town has turned on them anyway.
+    retval["fin"] = 1;
+    return retval;
+  }
+}
+
+ais.AoifeAttack(who) {
+  var retval = {};
+  var aoifemap = who.getHomeMap();
+  var npcs = aoifemap.npcs.getAll();
+  var garrick;
+  $.each (npcs, function(idx, val) {
+    if (val.getNPCName() === "Garrick") { garrick = val; }
+  });
+  if (garrick) {
+    if(IsAdjacent(who,garrick) {
+      var result = Attack(who,garrick);
+    } else {
+      // WORKING HERE
+    }
+  } else {
+    alert("Where'd Garrick go?");
   }
 }
 

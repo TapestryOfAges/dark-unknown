@@ -194,7 +194,14 @@ function DoAction(code, ctrl) {
   }
   else if (gamestate.getMode() === "anykey") {
     if (targetCursor.command === "garrick") {
-      GarrickScene(targetCursor.stage);
+      var retval = GarrickScene(targetCursor.stage);
+      if (retval["fin"] === 1) {
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        startScheduler();
+      } else {
+        gamestate.setMode("anykey");
+      }
     } else {
       if (((code >= 65) && (code <= 90)) || (code === 32) || (code === 13)) {  // letter, space, or enter
         var retval = PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), targetCursor.keyword); 
