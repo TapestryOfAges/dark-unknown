@@ -41,3 +41,4 @@ garrick_better - he's said something awful about Anna.
 garrick_attack - garrick has attacked you
 anna_damien_response - Damien has thanked you for Anna's return.
 anna_brooke_response - Brooke has thanked you for Anna's return.
+pc_abyss - the PC has crossed the Great Abyss

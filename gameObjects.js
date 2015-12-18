@@ -10133,6 +10133,14 @@ PCObject.prototype.setInfusion = function(infuse) {
   return this.infuse;
 }
 
+PCObject.prototype.getMaxMana = function() {
+  var maxmana = this.getBaseInt() + this.getOrbInt();
+  if (DU.gameflags.pc_abyss) {
+    maxmana = maxmana * 2;
+  }
+  return maxmana;
+}
+
 PCObject.prototype.dealDamage = function(dmg, src, type) {
   
   var isasleep = this.getSpellEffectsByName("Sleep");
