@@ -642,7 +642,8 @@ ais.GarrickAttack(who) {
     if (IsAdjacent(who,PC)) {
       var result = Attack(who,PC);
     } else {
-      var path = themap.getPath(who.getx(), who.gety(), PC.getx(), PC.gety(), who.getMovetype());
+      var path = themap.getPath(who.getx(), who.gety(), PC.getx(), PC.gety(), MOVE_WALK_DOOR);
+      // WORKING- CHECK DOOR
       path.shift();
       var diffx = path[0][0] - who.getx();
       var diffy = path[0][1] - who.gety();
@@ -706,7 +707,23 @@ ais.AoifeAttack(who) {
     if(IsAdjacent(who,garrick) {
       var result = Attack(who,garrick);
     } else {
-      // WORKING HERE
+      var path = themap.getPath(who.getx(), who.gety(), garrick.getx(), garrick.gety(), MOVE_WALK_DOOR);
+      path.shift();
+      var diffx = path[0][0] - who.getx();
+      var diffy = path[0][1] - who.gety();
+      var fullx = PC.getx() - who.getx();
+      var fully = PC.gety() - who.gety();
+      var moved = who.moveMe(diffx,diffy);
+      if (!moved["canmove"]) {
+        if (diffx !== 0) {
+          if (fully > 0) { who.moveMe(0,1); }
+          else { who.moveMe(0,-1); }
+        } else {
+          if (fullx > 0) { who.moveMe(1,0); }
+          else { who.moveMe(-1,0); }
+        }        
+      }
+      
     }
   } else {
     alert("Where'd Garrick go?");
