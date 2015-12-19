@@ -7,6 +7,7 @@ open GAMEOBJS, "gameObjects.js" or die "can't open gameObjects\n";
 
 open (my $output, ">", "tileFactory.js") or die "Can't open output tileFactory\n";
 
+print $output '"use strict";\n\n';
 print $output "function tileFactory() {\n\n}\n\n// terrain factories:\n";
 print $output "tileFactory.prototype.createTile = function(tileName) {\n\n\n  var thingy = \"make\"+tileName+\"Tile\";\n";
 print $output "  if (this[thingy] && (typeof this[thingy] == \"function\")) {\n";

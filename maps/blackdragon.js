@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["blackdragon"] = {};
 mappages["blackdragon"].terrain = [];
  mappages["blackdragon"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. nn nn nn nn nn nn nn nn nn nn';

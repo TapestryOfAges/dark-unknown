@@ -1,4 +1,6 @@
 
+"use strict";
+
 function EphemeralObject() {
 
   this.type = "XephemeralX";

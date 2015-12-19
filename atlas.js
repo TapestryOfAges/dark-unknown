@@ -1,4 +1,6 @@
 
+"use strict";
+
 function Atlas() {
 
   this.key = {

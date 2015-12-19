@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["ether"] = {};
 mappages["ether"].terrain = [];
   mappages["ether"].terrain[0] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';

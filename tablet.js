@@ -1,3 +1,4 @@
+"use strict";
 
 function CreateUI() {
   var uidiv = "<table cellpadding='0' cellspacing='0' border='0'>";

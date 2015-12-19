@@ -1,4 +1,6 @@
 
+"use strict";
+
 var barks = {};
 barks['jester'] = ['%THEDESC% sings, "Ho eye he hum!"'];
 barks['sam'] = ['%THEDESC% shouts, "Look at me!"'];
@@ -626,7 +628,7 @@ ais.AnnaLeaves = function(who) {
   return retval;
 }
 
-ais.GarrickAttack(who) {
+ais.GarrickAttack = function(who) {
   var retval = {};
   retval["fin"] = 1;
   if (who.getHP() <= 1000) { // Garrick gets 1030 hp when he attacks, so he can always surrender
@@ -695,7 +697,7 @@ function GarrickScene(stage) {
   }
 }
 
-ais.AoifeAttack(who) {
+ais.AoifeAttack = function(who) {
   var retval = {};
   var aoifemap = who.getHomeMap();
   var npcs = aoifemap.npcs.getAll();
@@ -704,7 +706,7 @@ ais.AoifeAttack(who) {
     if (val.getNPCName() === "Garrick") { garrick = val; }
   });
   if (garrick) {
-    if(IsAdjacent(who,garrick) {
+    if(IsAdjacent(who,garrick)) {
       var result = Attack(who,garrick);
     } else {
       var path = themap.getPath(who.getx(), who.gety(), garrick.getx(), garrick.gety(), MOVE_WALK_DOOR);

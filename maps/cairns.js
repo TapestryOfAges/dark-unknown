@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["cairns"] = new Object();
 mappages["cairns"].terrain = new Array;
  mappages["cairns"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';

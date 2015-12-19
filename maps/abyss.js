@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["abyss0"] = {};
 mappages["abyss0"].terrain = [];
  mappages["abyss0"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';

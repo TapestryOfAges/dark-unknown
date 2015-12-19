@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["volcano"] = {};
 mappages["volcano"].terrain = [];
  mappages["volcano"].terrain[0] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';

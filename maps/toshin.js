@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["toshin1"] = {};
 mappages["toshin1"].terrain = [];
  mappages["toshin1"].terrain[0] = '^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^';

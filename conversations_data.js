@@ -1,4 +1,6 @@
 
+"use strict";
+
 var conversations = {};  // directory of Conversations
 
 function set_conversations() {

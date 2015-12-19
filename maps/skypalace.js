@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["skypalace"] = {};
 mappages["skypalace"].terrain = [];
  mappages["skypalace"].terrain[0] = 'wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb wb';

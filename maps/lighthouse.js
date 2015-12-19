@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["lighthouse1"] = {};
 mappages["lighthouse1"].terrain = [];
  mappages["lighthouse1"].terrain[0] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';

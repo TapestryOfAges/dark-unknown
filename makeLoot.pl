@@ -40,6 +40,7 @@ close $fh;
 
 open (my $outfile, ">", "lootset.js") or die "can't open outfile lootset\n";
 
+print $outfile '"use strict";\n\n';
 print $outfile "function SetLoots() {\n  var loots = {};\n\n";
 foreach my $key (keys %loots) {
   print $outfile "  loots['$key'] = new LootTable();\n";

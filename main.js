@@ -1,3 +1,4 @@
+"use strict";
 
 var maxserial = 0;
 var viewsizex = 13;

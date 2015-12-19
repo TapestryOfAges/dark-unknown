@@ -1,4 +1,6 @@
 
+"use strict";
+
 function Conversation() {
   
 }
@@ -43,28 +45,30 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       return 1;
     }
   }
+  var checkkeyword = 1;
 
-  
-  if (!this.hasOwnProperty(keyword)) {
-    keyword = "_confused";
-  }
-  
-  var flags = this[keyword].flags;
-  if (flags.hasOwnProperty("flags_met")) {
-    if (!DU.gameflags[flags.flags_met]) { flags_met = 0; }  
-  }
-  if (flags.hasOwnProperty("has_item")) {
-    necessary_item = PC.checkInventory(flags.has_item);
-    if (!necessary_item) { flags_met = 0; }
-  }
-  
-  if (this[keyword].responses[flags_met].indexOf("->") != -1) {
-    var holder = this[keyword].responses[flags_met];
-    holder = holder.replace(/\-\>/, "");
-    keyword = holder;
+  while (checkkeyword)  {
     if (!this.hasOwnProperty(keyword)) {
       keyword = "_confused";
     }
+  
+    var flags = this[keyword].flags;
+    if (flags.hasOwnProperty("flags_met")) {
+      if (!DU.gameflags[flags.flags_met]) { flags_met = 0; }  
+    }
+    if (flags.hasOwnProperty("has_item")) {
+      necessary_item = PC.checkInventory(flags.has_item);
+      if (!necessary_item) { flags_met = 0; }
+    }
+  
+    if (this[keyword].responses[flags_met].indexOf("->") != -1) {
+      var holder = this[keyword].responses[flags_met];
+      holder = holder.replace(/\-\>/, "");
+      keyword = holder;
+    } else {
+      checkkeyword = 0;
+    }
+    
   }
   
   keep_talking = this.say(speaker, this[keyword].responses[flags_met], skipahead);

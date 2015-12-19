@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["metaltwister"] = new Object();
 mappages["metaltwister"].terrain = new Array;
  mappages["metaltwister"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';

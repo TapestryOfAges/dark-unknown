@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["island"] = new Object();
 mappages["island"].terrain = new Array;
  mappages["island"].terrain[0] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW';

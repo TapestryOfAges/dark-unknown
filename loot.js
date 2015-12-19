@@ -1,4 +1,6 @@
 
+"use strict";
+
 function LootTable() {
  
    this.goldDice = "0";

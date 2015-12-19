@@ -1,3 +1,4 @@
+"use strict";
 
 function GameEvent(newEntity) {
 	this.entity = newEntity;

@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["testmap"] = {};
 mappages["testmap"].terrain = [];
  mappages["testmap"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
