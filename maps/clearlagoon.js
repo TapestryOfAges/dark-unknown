@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["clearlagoon"] = {};
 mappages["clearlagoon"].terrain = [];
  mappages["clearlagoon"].terrain[0] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu uu uu uu uu uu uu /. .. .. .. .. ,, .. .. .. .. ,, ,, .. .. ,, ,; ,, .. .. .. .. .. ,, .. .. .. .. ..';

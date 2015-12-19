@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["gauntlet"] = {};
 mappages["gauntlet"].terrain = [];
  mappages["gauntlet"].terrain[0] = '.. ,; .. ,; .. .. .. .. .. .. .. ,; .. ,; .. .. .. .. .. .. .. .. ,; ,; .. ,; .. .. .. .. .. .. .. .. .. ,; ,; .. ,; .. .. .. ,; ,; .. .. ,; .. .. ,;';

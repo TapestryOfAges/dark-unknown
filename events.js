@@ -1,5 +1,6 @@
 // Finished but untested
 
+"use strict";
 
 function DUListener() {
   this.listeners = new Collection();

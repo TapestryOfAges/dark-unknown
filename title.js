@@ -1,3 +1,4 @@
+"use strict";
 
 function preload(arrayOfImages) {
     $(arrayOfImages).each(function(){

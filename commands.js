@@ -1,4 +1,6 @@
 
+"use strict";
+
 function PerformCommand(code, ctrl) {
 	var retval = {};
 	retval["fin"] = 0;

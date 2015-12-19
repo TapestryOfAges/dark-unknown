@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["shadow1"] = {};
 mappages["shadow1"].terrain = [];
  mappages["shadow1"].terrain[0] = 'cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw cw';

@@ -1,3 +1,4 @@
+"use strict";
 
 function getDisplayCenter(themap,fromx,fromy) {
 	var edge = {};
@@ -11,7 +12,7 @@ function getDisplayCenter(themap,fromx,fromy) {
   }
   var topedge = fromy - (viewsizey - 1)/2;
   if (topedge < 0) { topedge = 0; }
-  bottomedge = topedge + viewsizey - 1;
+  var bottomedge = topedge + viewsizey - 1;
   if (bottomedge >= themap.getHeight()) {
   	bottomedge = themap.getHeight() -1;
   	topedge = bottomedge - viewsizey + 1;

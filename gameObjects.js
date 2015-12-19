@@ -1,4 +1,6 @@
 
+"use strict";
+
 function ProtoObject() {
   this.nosave = 0;
 }
@@ -6681,6 +6683,45 @@ function KeyOfIceTile() {
 }
 KeyOfIceTile.prototype = new ItemObject();  
 
+function KeyOfBoneTile() {
+  this.name = "KeyOfBone";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-128";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Bone";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+KeyOfBoneTile.prototype = new ItemObject();  
+
+function KeyOfAirTile() {
+  this.name = "KeyOfAir";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-160";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Air";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+KeyOfAirTile.prototype = new ItemObject();  
+
+function KeyOfSunTile() {
+  this.name = "KeyOfSun";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-192";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of the Sun";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+KeyOfSunTile.prototype = new ItemObject();  
+
 function RoperBarkTile() {
   this.name = "RoperBark";
   this.graphic = "items.gif";
@@ -6820,7 +6861,7 @@ function BookOfLoreTile() {
   this.name = "BookOfLore";
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
-  this.spriteyoffset = "-96";
+  this.spriteyoffset = "-128";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Book of Lore";
@@ -6828,6 +6869,20 @@ function BookOfLoreTile() {
   this.addType("Quest");
 }
 BookOfLoreTile.prototype = new ItemObject();
+
+function TomeOfSightTile() {
+  this.name = "TomeOfSight";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-96";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Tome of Sight";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+TomeOfSightTile.prototype = new ItemObject();
+
 
 function TreasuryTokenTile() {
   this.name = "TreasuryToken";

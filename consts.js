@@ -1,4 +1,6 @@
 
+"use strict";
+
 /* 
 var musiclist = {};
 musiclist["Theme"] = "music/Hero Theme.mp3";
@@ -59,7 +61,7 @@ mapslist["ambrosia"] = "Ambrosia";
 mapslist["island"] = "the Distant Island";
 mapslist["cairns"] = "the Dungeon Cairns";
 
-ailist = new Array("townsfolk","runaway","guard","melee","spellcaster","missile","adventurer","paladin","ranger","stationary","smallwander","fullwander");
+var ailist = new Array("townsfolk","runaway","guard","melee","spellcaster","missile","adventurer","paladin","ranger","stationary","smallwander","fullwander");
 
 var DAY = 0;
 var NIGHT = 2;

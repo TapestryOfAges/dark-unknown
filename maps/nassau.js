@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["nassau"] = {};
 mappages["nassau"].terrain = [];
  mappages["nassau"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';

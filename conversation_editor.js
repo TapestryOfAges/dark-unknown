@@ -1,4 +1,6 @@
 
+"use strict";
+
 var places = {};
 
 var curr_place = "";

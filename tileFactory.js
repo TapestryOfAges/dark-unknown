@@ -1651,6 +1651,21 @@ tileFactory.prototype.makeKeyOfIceTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeKeyOfBoneTile = function() {
+  var newTile = new KeyOfBoneTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeKeyOfAirTile = function() {
+  var newTile = new KeyOfAirTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeKeyOfSunTile = function() {
+  var newTile = new KeyOfSunTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRoperBarkTile = function() {
   var newTile = new RoperBarkTile();
   return newTile;
@@ -1688,6 +1703,11 @@ tileFactory.prototype.makeStoneOfConflagrationsTile = function() {
 
 tileFactory.prototype.makeBookOfLoreTile = function() {
   var newTile = new BookOfLoreTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTomeOfSightTile = function() {
+  var newTile = new TomeOfSightTile();
   return newTile;
 }
 

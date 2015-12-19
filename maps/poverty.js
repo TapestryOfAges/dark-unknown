@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["poverty"] = {};
 mappages["poverty"].terrain = [];
  mappages["poverty"].terrain[0] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww';

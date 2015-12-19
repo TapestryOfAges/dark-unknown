@@ -1,3 +1,4 @@
+"use strict";
 
 function SetMerchants() {
   var bill = {};

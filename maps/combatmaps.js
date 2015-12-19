@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["combatGrass1"] = new Object();
 mappages["combatGrass1"].terrain = new Array;
  mappages["combatGrass1"].terrain[0] = ',, ,, ,, .. .. .. .. .. .. .. .. .. ..';

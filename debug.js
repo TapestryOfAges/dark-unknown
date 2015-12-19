@@ -1,4 +1,6 @@
 
+"use strict";
+
 var debug = 1;
 var debugscreen;
 var dbs;

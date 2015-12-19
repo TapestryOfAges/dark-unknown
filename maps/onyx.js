@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["onyx"] = {};
 mappages["onyx"].terrain = [];
  mappages["onyx"].terrain[0] = '.. uu uu .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';

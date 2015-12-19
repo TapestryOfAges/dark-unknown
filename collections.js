@@ -1,4 +1,6 @@
 
+"use strict";
+
 function Collection() {
 
   this.container = [];

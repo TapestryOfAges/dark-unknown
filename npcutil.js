@@ -1,3 +1,4 @@
+"use strict";
 
 //function NPCGroup() {
 //  this.min = 1;
