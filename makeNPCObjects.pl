@@ -8,7 +8,8 @@ open (my $out, ">", "npcObjects.js") or die "Can't open output file.\n";
 
 my $firstline = 1;
 
-print $out '"use strict";\n\n';
+print $out '"use strict";';
+print $out "\n\n";
 
 foreach my $line (<$npcdoc>) {
   if ($firstline) {

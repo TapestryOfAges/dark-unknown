@@ -1,3 +1,5 @@
+"use strict";
+
 function tileFactory() {
 
 }
@@ -1626,8 +1628,8 @@ tileFactory.prototype.makePitOfDespairKeyTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeKeyOfShadowsTile = function() {
-  var newTile = new KeyOfShadowsTile();
+tileFactory.prototype.makeKeyOfSpiritsTile = function() {
+  var newTile = new KeyOfSpiritsTile();
   return newTile;
 }
 
@@ -1641,8 +1643,8 @@ tileFactory.prototype.makeBlackDragonKeyTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeKeyOfFireTile = function() {
-  var newTile = new KeyOfFireTile();
+tileFactory.prototype.makeKeyOfAshesTile = function() {
+  var newTile = new KeyOfAshesTile();
   return newTile;
 }
 
@@ -1656,13 +1658,18 @@ tileFactory.prototype.makeKeyOfBoneTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeKeyOfAirTile = function() {
-  var newTile = new KeyOfAirTile();
+tileFactory.prototype.makeKeyOfDustTile = function() {
+  var newTile = new KeyOfDustTile();
   return newTile;
 }
 
 tileFactory.prototype.makeKeyOfSunTile = function() {
   var newTile = new KeyOfSunTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeKeyOfShadowTile = function() {
+  var newTile = new KeyOfShadowTile();
   return newTile;
 }
 

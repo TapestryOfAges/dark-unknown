@@ -905,7 +905,7 @@ function SetBySurroundRiver() {
 		var east;
 		var west;
 		var northacre = themap.getTile(x,y-1);
-		northtile = northacre.terrain;
+		var northtile = northacre.terrain;
 		if (northacre !== "OoB") {
 			if (IsWet(northtile)) {
 				north = 1;
@@ -6618,18 +6618,18 @@ function PitOfDespairKeyTile() {
 }
 PitOfDespairKeyTile.prototype = new ItemObject();
 
-function KeyOfShadowsTile() {
-  this.name = "KeyOfShadows";
+function KeyOfSpiritsTile() {
+  this.name = "KeyOfSpirits";
   this.graphic = "items.gif";
   this.spriteyoffset = "-64";
   this.spritexoffset = "0";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Shadows";
+  this.desc = "Key of Spirits";
   this.prefix = "the";
   this.addType("Quest");
 }
-KeyOfShadowsTile.prototype = new ItemObject();
+KeyOfSpiritsTile.prototype = new ItemObject();
 
 function RoyalKeyTile() {
   this.name = "RoyalKey";
@@ -6657,18 +6657,18 @@ function BlackDragonKeyTile() {
 }
 BlackDragonKeyTile.prototype = new ItemObject();  
 
-function KeyOfFireTile() {
-  this.name = "KeyOfFire";
+function KeyOfAshesTile() {
+  this.name = "KeyOfAshes";
   this.graphic = "items.gif";
   this.spriteyoffset = "-128";
   this.spritexoffset = "-64";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Fire";
+  this.desc = "Key of Ashes";
   this.prefix = "the";
   this.addType("Quest");
 }
-KeyOfFireTile.prototype = new ItemObject();  
+KeyOfAshesTile.prototype = new ItemObject();  
 
 function KeyOfIceTile() {
   this.name = "KeyOfIce";
@@ -6696,18 +6696,18 @@ function KeyOfBoneTile() {
 }
 KeyOfBoneTile.prototype = new ItemObject();  
 
-function KeyOfAirTile() {
-  this.name = "KeyOfAir";
+function KeyOfDustTile() {
+  this.name = "KeyOfDust";
   this.graphic = "items.gif";
   this.spriteyoffset = "-128";
   this.spritexoffset = "-160";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Air";
+  this.desc = "Key of Dust";
   this.prefix = "the";
   this.addType("Quest");
 }
-KeyOfAirTile.prototype = new ItemObject();  
+KeyOfDustTile.prototype = new ItemObject();  
 
 function KeyOfSunTile() {
   this.name = "KeyOfSun";
@@ -6721,6 +6721,19 @@ function KeyOfSunTile() {
   this.addType("Quest");
 }
 KeyOfSunTile.prototype = new ItemObject();  
+
+function KeyOfShadowTile() {
+  this.name = "KeyOfShadow";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-192";
+  this.spritexoffset = "-192";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Shadow";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+KeyOfShadowTile.prototype = new ItemObject();  
 
 function RoperBarkTile() {
   this.name = "RoperBark";

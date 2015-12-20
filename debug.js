@@ -4,7 +4,8 @@
 var debug = 1;
 var debugscreen;
 var dbs;
-var deeptest = 0;
+var debugflags = {};
+// var deeptest = 0;
 
 if (debug) {  ActivateDebug(); }
 

@@ -206,6 +206,7 @@ function PerformCommand(code, ctrl) {
     retval["input"] = "&gt; Zstats- ";
     retval["fin"] = 2;		
     targetCursor.page = 1;
+    targetCursor.cmd = "o";
     
     DrawOptions();		
 		
@@ -387,7 +388,6 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 88) { // x
 		// eXit - not used
-		
 	}
 	else if (code === 89) { // y
 		// yell 
@@ -1150,7 +1150,7 @@ function PerformTalkTarget() {
     return retval;    
   }
   var convo = top.getConversation();
-  if (!convo) {
+  if (!convo || !conversations[convo]) {
     retval["txt"] = "No one there wishes to speak with you.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
@@ -2181,12 +2181,20 @@ function performOptions(code) {
       retval["fin"] = 1;
     }
     else if ((code === 32) || (code === 13)) {  // space or enter
-      ToggleOption(targetCursor.page);
+      if (targetCursor.cmd === "o") {
+        ToggleOption(targetCursor.page);
+      } else if (targetCursor.cmd === "debug") {
+        ToggleDebugOption(targetCursor.page);
+      }
       retval["fin"] = 1;
     }       
     else { retval["fin"] = 1; }
-      
-    DrawOptions();
+    
+    if (targetCursor.cmd === "o") {  
+      DrawOptions();
+    } else if (targetCursor.cmd === "debug") {
+      DrawDebugOptions();
+    }
     return retval;
 }
 
