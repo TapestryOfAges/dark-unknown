@@ -596,16 +596,22 @@ ais.AnnaLeaves = function(who) {
   }
   
   var path;
-  if (who.dest === 1) {
-    path = themap.getPath(annax, annay, 26, 13, who.getMovetype());
-  } else if (who.dest === 2) {
-    path = themap.getPath(annax, annay, 26, 21, who.getMovetype());
-  } else if (who.dest === 3) {
-    path = themap.getPath(annax, annay, 25, 21, who.getMovetype());
-  } else if (who.dest === 4) {
-    path = themap.getPath(annax, annay, 25, 39, who.getMovetype());
+  var pathfound;
+  
+  while (!pathfound) {
+    if (who.dest === 1) {
+      path = themap.getPath(annax, annay, 26, 13, who.getMovetype());
+    } else if (who.dest === 2) {
+      path = themap.getPath(annax, annay, 26, 21, who.getMovetype());
+    } else if (who.dest === 3) {
+      path = themap.getPath(annax, annay, 25, 21, who.getMovetype());
+    } else if (who.dest === 4) {
+      path = themap.getPath(annax, annay, 25, 39, who.getMovetype());
+    }
   }
   path.shift();
+  if (!path[0]) { who.dest++; pathfound = 0;}
+  else { pathfound = 1; }
   
   // step on the path
   // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
@@ -645,14 +651,13 @@ ais.GarrickAttack = function(who) {
       var result = Attack(who,PC);
     } else {
       var path = themap.getPath(who.getx(), who.gety(), PC.getx(), PC.gety(), MOVE_WALK_DOOR);
-      // WORKING- CHECK DOOR
       path.shift();
       var diffx = path[0][0] - who.getx();
       var diffy = path[0][1] - who.gety();
       var fullx = PC.getx() - who.getx();
       var fully = PC.gety() - who.gety();
-      var moved = who.moveMe(diffx,diffy);
-      if (!moved["canmove"]) {
+      var moved = StepOrDoor(who,path[0]);
+      if (!moved) {
         if (diffx !== 0) {
           if (fully > 0) { who.moveMe(0,1); }
           else { who.moveMe(0,-1); }
@@ -699,6 +704,7 @@ function GarrickScene(stage) {
 
 ais.AoifeAttack = function(who) {
   var retval = {};
+  retval["fin"] = 1;
   var aoifemap = who.getHomeMap();
   var npcs = aoifemap.npcs.getAll();
   var garrick;
@@ -730,6 +736,102 @@ ais.AoifeAttack = function(who) {
   } else {
     alert("Where'd Garrick go?");
   }
+}
+
+ais.GarrickEscort = function(who) {
+  if (!who.dest) { who.dest = 1; }
+  var retval = {};
+  retval["fin"] = 1;
+  var themap = who.getHomeMap();
+  var gx = who.getx();
+  var gy = who.gety();
+    
+  var path;
+  var pathfound;
+  while (!pathfound) {
+    if (who.dest === 1) {
+      path = themap.getPath(gx, gy, 26, 20, MOVE_WALK_DOOR);
+    } else if (who.dest === 2) {
+      path = themap.getPath(gx, gy, 25, 21, who.getMovetype());
+    } else if (who.dest === 3) {
+      path = themap.getPath(gx, gy, 24, 30, who.getMovetype());
+    } else if (who.dest === 4) {
+      path = themap.getPath(gx, gy, 22, 30, MOVE_WALK_DOOR);
+    } else if (who.dest ===5) {
+      var doortile = themap.getTile(gx-1,gy);
+      var door = doortile.getTopFeature();
+      door.unlockMe();
+      who.dest++;
+      return retval;
+    } else if (who.dest === 6) {
+      path = themap.getPath(gx, gy, 6, 32, MOVE_WALK_DOOR);
+    } else if (who.dest === 7) {
+      var doortile = themap.getTile(gx,gy+1);
+      var door = doortile.getTopFeature();
+      door.unlockMe();
+      who.dest++;
+      return retval;
+    } else if ((who.dest >= 8) && (who.dest <= 10)) {
+      StepOrDoor(who,[0,-1]);
+      who.dest++;
+      return retval;
+    } else if (who.dest === 11) {
+      var doortile = themap.getTile(6,33);
+      var door = doortile.getTopFeature();
+      door.use(who);
+      door.lockMe();
+      who.setCurrentAI(who.getPeaceAI());
+      return retval;      
+    }
+  }
+  path.shift();
+  if (!path[0]) { who.dest++; }
+  else { pathfound = 1; }
+  
+  // step on the path
+  // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
+  var diffx = path[0][0] - gx;
+  var diffy = path[0][1] - gy;
+  var fullx = 6 - gx;
+  var fully = 32 - gy;
+  
+  var moved = StepOrDoor(who,path[0]);
+  if (!moved) {
+    if (diffx !== 0) {
+      if (fully > 0) { who.moveMe(0,1); }
+      else { who.moveMe(0,-1); }
+    } else {
+      if (fullx > 0) { who.moveMe(1,0); }
+      else { who.moveMe(-1,0); }
+    }
+  }
+  
+  return retval;
+}
+
+ais.AoifeEscort = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  var themap = who.getHomeMap();
+  var allnpcs = themap.npcs.getAll();
+  var garrick;
+  $.each(allnpcs, function(idx,val) {
+    if (val.getNPCName() === "Garrick") { garrick = 1;}
+  });
+  if (garrick.getx() < 10) {
+    who.setCurrentAI(who.getPeaceAI());
+    return retval;
+  }
+  var path = themap.getPath(who.getx(), who.gety(), garrick.getx(), garrick.gety(), MOVE_WALK_DOOR);
+  path.shift();
+  if (path[0]) {
+    StepOrDoor(who,path[0]);
+  } else {
+    if ((themap === PC.getHomeMap()) && (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) < 6)) {
+      maintext.addText('Aoife says, "Come on, let\'s go."');
+    }
+  }
+  return retval;
 }
 
 ais.Sentinel = function(who) {
@@ -1053,6 +1155,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       // if there is another AI in the way, randomwalk
       if (!random_tries) { random_tries = 1; }
       for (var i = 0; i<random_tries; i++) {
+        if (!random_nomove) { random_nomove = 0; }
         var split_move = (100-random_nomove)/3;
         if (diffx === 1) { retval = ais.Randomwalk(who,split_move,0,split_move,split_move); }
         else if (diffx === -1) { retval = ais.Randomwalk(who,split_move,split_move,split_move,0); }

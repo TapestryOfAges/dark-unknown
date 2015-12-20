@@ -178,6 +178,11 @@ $(document).ready(function() {
 });
 
 function DoAction(code, ctrl) {
+  if (debug && ctrl && (code === 88)) { 
+    // BE VERY CAREFUL WITH THIS.
+    // recovers from syntax errors, returns control to player
+    gamestate.setMode("player");
+  }
   if (gamestate.getMode() === "player") {  // PC's turn, awaiting commands
 //   	 alert(DUTime.getGameClock());
     var response = PerformCommand(code, ctrl);
@@ -497,7 +502,7 @@ function DoAction(code, ctrl) {
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     } else if (response["fin"] === 1) {
-      
+        
     }
   }
   else if (gamestate.getMode() === "singleletter") {
