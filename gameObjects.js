@@ -17,7 +17,7 @@ ProtoObject.prototype.assignSerial = function() {
   if (gamestate && (gamestate.getMode() !== "gameload")) {
    	maxserial++;
 	  this.serial = maxserial;
-	  if (debug) { dbs.writeln("Serial #" + maxserial + " assigned to " + this.getName() + "<br />"); }
+	  if (debug && debugflags.gameobj) { dbs.writeln("Serial #" + maxserial + " assigned to " + this.getName() + "<br />"); }
 //	universe[this.serial] = this;
   }
 }
@@ -159,7 +159,7 @@ GameObject.prototype.copy = function(type) {
   }
   
   var savename = this.getName();
-  if (debug) { dbs.writeln("<br /><span style='font-weight:bold'><br />Copying " + savename + ", serial " + this.getSerial() + ":</span><br />"); }
+  if (debug && debugflags.saveload) { dbs.writeln("<br /><span style='font-weight:bold'><br />Copying " + savename + ", serial " + this.getSerial() + ":</span><br />"); }
   var base_version = eidos.getForm(this.getName());
   var copydata = {};
   var copies = [];
@@ -174,7 +174,7 @@ GameObject.prototype.copy = function(type) {
   }
   $.each(this, function(idx, val) {
     if ((typeof val === "function") && (typeof base_version[idx] === "function")) { 
-      if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " is a function, moving on...</span>  "); }
+      if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " is a function, moving on...</span>  "); }
       return;
       // both have a function. Assuming they're the same, not worth caring
     }
@@ -184,16 +184,16 @@ GameObject.prototype.copy = function(type) {
     if (typeof val !== "object") { 
       if (val != base_version[idx]) {
         copydata[idx] = val;
-        if (debug) { dbs.writeln(idx + " different, copying... "); }
+        if (debug && debugflags.saveload) { dbs.writeln(idx + " different, copying... "); }
       } else {
-        if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " the same, moving on...</span>  "); }
+        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " the same, moving on...</span>  "); }
       }
     } else if ($.isArray(val)) {
       if ($.isArray(base_version[idx]) && arrayCompare(val, base_version[idx])) {
-        if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " an array and the same, moving on...</span>  "); }
+        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an array and the same, moving on...</span>  "); }
       } else {
         copydata[idx] = val;
-        if (debug) { 
+        if (debug && debugflags.saveload) { 
           dbs.writeln(idx + " an array and different, copying... <br /> ["); 
           for (var i = 0; i < val.length; i++) { dbs.writeln(val[i] + ", "); }
           dbs.writeln("] vs [");
@@ -208,22 +208,22 @@ GameObject.prototype.copy = function(type) {
     } else if (idx === "homeMap") {
       copydata.homeMap = val.getName();
       copydata.traceback.push("homeMap");
-      if (debug) { dbs.writeln(idx + " copied... "); }
+      if (debug && debugflags.saveload) { dbs.writeln(idx + " copied... "); }
     } else if ((idx === "resists") || (idx === "specials")) {
       if ((typeof base_version[idx] === "object") && objectCompare(val, base_version[idx])) {
-        if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
+        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
       } else {
         copydata[idx] = val;
-        if (debug) {
+        if (debug && debugflags.saveload) {
           dbs.writeln(idx + " an object and different, copying... ");
         }
       }
     } else if ((idx === "currentDestination") || (idx === "lastLocation")) {
       copydata[idx] = val;
-      if (debug) { dbs.writeln(idx + " different, copying... "); }
+      if (debug && debugflags.saveload) { dbs.writeln(idx + " different, copying... "); }
     } else if ((idx === "currentPoI") || (idx === "losupclose")){
       copydata[idx] = {};
-      if (debug) { dbs.writeln(idx + " deliberately not saved... "); }
+      if (debug && debugflags.saveload) { dbs.writeln(idx + " deliberately not saved... "); }
     } else if (idx === "spawned") { 
       // for things with collections
       var spawnlist = val.getAll();
@@ -232,82 +232,75 @@ GameObject.prototype.copy = function(type) {
         spawnserials.push(spaval.getSerial());
       });
       copydata[idx] = spawnserials;
-      if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serials, serial# " + copydata[idx] + "...</span> "); }
+      if (debug && debugflags.saveload) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serials, serial# " + copydata[idx] + "...</span> "); }
     } else if ((idx === "equippedTo") || (idx === "attachedTo") || (idx === "spawnedBy")) {
       if (val) {
         copydata[idx] = val.getSerial();
-        if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serial, serial# " + copydata[idx] + "...</span> "); }
+        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serial, serial# " + copydata[idx] + "...</span> "); }
       } else {
-        if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " is empty, not saved...</span> "); }
+        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:purple'>" + idx + " is empty, not saved...</span> "); }
       }
-//    } else if (idx === "target") {
-//      if (val) {
-//        copydata[idx] = val.getSerial();
-//        if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serial, serial# " + copydata[idx] + "...</span> "); }
-//      } else {
-//        if (debug) { dbs.writeln("<span style='color:purple'>" + idx + " is empty, not saved...</span> "); }
-//      }
     } else if (idx === "equipment") {
       copydata[idx] = {};
       $.each(val, function(eqidx, eqval) {
         if (eqval) {
-          if (debug) { dbs.writeln("<span>" + idx + ": " + eqidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
+          if (debug && debugflags.saveload) { dbs.writeln("<span>" + idx + ": " + eqidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
           var equipcopy = eqval.copy();
           copydata[idx][eqidx] = equipcopy[0].serial;
           copies.push(equipcopy[0]);   // using index rather than each here because equipment can't chain farther
-          if (debug) { dbs.writeln("<span>Copy made, " + eqidx + " added as serial to main object...</span> "); }
+          if (debug && debugflags.saveload) { dbs.writeln("<span>Copy made, " + eqidx + " added as serial to main object...</span> "); }
         }
       });
     } else if (idx === "inventory") {
       var inv = val.getAll();
       copydata[idx] = [];
       $.each(inv, function(invidx, invval) {
-        if (debug) { dbs.writeln("<span>" + idx + ": " + invidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
+        if (debug && debugflags.saveload) { dbs.writeln("<span>" + idx + ": " + invidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
         var invcopy = invval.copy();
         copydata[idx][invidx] = invcopy[0].serial;
         copies.push(invcopy[0]);   // using index rather than each here as well for the same reason
-        if (debug) { dbs.writeln("<span>Copy made, " + invidx + " added as serial to main object...</span> "); }
+        if (debug && debugflags.saveload) { dbs.writeln("<span>Copy made, " + invidx + " added as serial to main object...</span> "); }
       });
     } else if (idx === "spellEffects") {
       var spells = val.getAll();
       copydata[idx] = [];
       $.each(spells, function(spellidx, spellval) {
-        if (debug) { dbs.writeln("<span>" + idx + ": " + spellidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
+        if (debug && debugflags.saveload) { dbs.writeln("<span>" + idx + ": " + spellidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
         var spellcopy = spellval.copy();
         copydata[idx].push(spellcopy.serial);
         copies.push(spellcopy[0]);  // probably should make this each as future proofing
-        if (debug) { dbs.writeln("<span>Copy made, " + spellidx + " added as serial to main object...</span> "); }
+        if (debug && debugflags.saveload) { dbs.writeln("<span>Copy made, " + spellidx + " added as serial to main object...</span> "); }
       });
     } else if (idx === "spellsknown") {
       if (objectCompare(val, base_version[idx])) {
-        if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
+        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
       } else {
         copydata[idx] = val;
         dbs.writeln("<span style='color:purple'>" + idx + " different, saved.</span>");
       }
     } else if (idx === "runes") {
       if (objectCompare(val, base_version[idx])) {
-        if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
+        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
       } else {
         copydata[idx] = val;
         dbs.writeln("<span style='color:purple'>" + idx + " different, saved.</span>");
       }
     } else if (idx === "runeCooldown") {
       if (objectCompare(val, base_version[idx])) {
-        if (debug) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
+        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
       } else {
         copydata[idx] = val;
         dbs.writeln("<span style='color:purple'>" + idx + " different, saved.</span>");
       }      
     } else {
-      if (debug) { dbs.writeln("<br /><span style='color:red'>" + idx + " is type " + typeof val + "</span>,  "); }
+      if (debug && debugflags.saveload) { dbs.writeln("<br /><span style='color:red'>" + idx + " is type " + typeof val + "</span>,  "); }
       alert(savename + " SAVE NEEDS " + idx + "!");
     }
     // ADD HERE WHEN THERE ARE MORE
     
   });
   
-  if (debug) { dbs.writeln("<br /><span style='font-weight:bold'>Copying " + copies.length + " objects.</span><br />  "); }
+  if (debug && debugflags.saveload) { dbs.writeln("<br /><span style='font-weight:bold'>Copying " + copies.length + " objects.</span><br />  "); }
   return copies;
   
 }
@@ -3680,13 +3673,13 @@ FireFieldTile.prototype.myTurn = function() {
 //    var nextEntity = DUTime.executeNextEvent().getEntity();
 //    nextEntity.myTurn();
 
-    if (debug) { dbs.writeln("<span style='color:green;font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />"); }
+    if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green;font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />"); }
   
     return 1;
   }
  
   if (this.expires && (this.expires > DUTime.getGameClock())) {
-    if (debug) { dbs.writeln("<span style='color:green;font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />"); }
+    if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green;font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />"); }
     this.getHomeMap().deleteThing(this);
     
     return 1;
@@ -4720,7 +4713,7 @@ SpawnerTile.prototype.getSpawned = function() {
 
 SpawnerTile.prototype.activate = function() {
   if (gamestate.getMode() !== "loadgame") {
-    if (debug) {
+    if (debug && debugflags.gameobj) {
       dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getName() + " activating at " + DUTime.getGameClock() + ".</span><br />");
     }
 
@@ -4735,7 +4728,7 @@ SpawnerTile.prototype.myTurn = function() {
 //    var nextEntity = DUTime.executeNextEvent().getEntity();
 //    nextEntity.myTurn();
 
-    if (debug) { dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getSerial() + " removed from game- map gone.</span><br />"); }
+    if (debug && debugflags.gameobj) { dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getSerial() + " removed from game- map gone.</span><br />"); }
   
     return 1;
   }
@@ -4743,7 +4736,7 @@ SpawnerTile.prototype.myTurn = function() {
     for (var i = this.level+1; i<=PC.getLevel(); i++) {
       if (this.evolve[i]) {
         this.level = i;
-        if (debug) { dbs.writeln("<span style='color:#00cc00'>Spawner at " + this.x + ", " + this.y + " has evolved.</span><br />"); }
+        if (debug && debugflags.gameobj) { dbs.writeln("<span style='color:#00cc00'>Spawner at " + this.x + ", " + this.y + " has evolved.</span><br />"); }
         while (this.evolve[i][0]) {
           var idx = this.evolve[i].shift();
           var val = this.evolve[i].shift();
@@ -4763,7 +4756,7 @@ SpawnerTile.prototype.myTurn = function() {
       var mymap = this.getHomeMap();
       if (this.altPoI) {
         newspawn.altPoI = this.altPoI;
-        if (debug) { dbs.writeln("About to spawn, adding an altPoI.<br />"); }
+        if (debug && debugflags.gameobj) { dbs.writeln("About to spawn, adding an altPoI.<br />"); }
       }
       
       var tile = mymap.getTile(this.getx() + diffx, this.gety() + diffy);
@@ -4772,7 +4765,7 @@ SpawnerTile.prototype.myTurn = function() {
         mymap.placeThing(this.getx() + diffx, this.gety() + diffy, newspawn);
         this.addSpawned(newspawn);
         newspawn.setSpawnedBy(this);
-        if (debug) { dbs.writeln("<span style='color:#00cc00'>Spawner #" + this.getSerial() + " at " + this.x + ", " + this.y + " has spawned a " + newspawn.getName() + " #" + newspawn.getSerial() + "</span><br />"); }
+        if (debug && debugflags.gameobj) { dbs.writeln("<span style='color:#00cc00'>Spawner #" + this.getSerial() + " at " + this.x + ", " + this.y + " has spawned a " + newspawn.getName() + " #" + newspawn.getSerial() + "</span><br />"); }
       } else {
         timetonext = 5;
       }
@@ -7227,7 +7220,7 @@ SilverPotionTile.prototype.use = function(who) {
   var dur = RollDice("2d10+15");
   var power = RollDice("1d4+1");
   var endtime = dur + DU.DUTime.getGameClock();
-  if (debug) { dbs.writeln("<span style='color:green'>Potion of Strength: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green'>Potion of Strength: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
   levobj.setPower(power);
   levobj.setExpiresTime(endtime);
   
@@ -7259,7 +7252,7 @@ PinkPotionTile.prototype.use = function(who) {
   var dur = RollDice("2d10+15");
   var power = RollDice("1d4+1");
   var endtime = dur + DU.DUTime.getGameClock();
-  if (debug) { dbs.writeln("<span style='color:green'>Potion of Dexterity: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green'>Potion of Dexterity: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
   levobj.setPower(power);
   levobj.setExpiresTime(endtime);
   
@@ -7291,7 +7284,7 @@ GreyPotionTile.prototype.use = function(who) {
   var dur = RollDice("2d10+15");
   var power = RollDice("1d4+1");
   var endtime = dur + DU.DUTime.getGameClock();
-  if (debug) { dbs.writeln("<span style='color:green'>Potion of Intelligence: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green'>Potion of Intelligence: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
   levobj.setPower(power);
   levobj.setExpiresTime(endtime);
   
@@ -8199,7 +8192,7 @@ WeaponObject.prototype.rollDamage = function(wielder) {
   
   var fb = wielder.getSpellEffectsByName("FlameBlade");
   if (wielder && fb) {
-    if (debug) { dbs.writeln("<span style='color:green'>Flame blade adds " + fb.damage + " damage.<br /></span>"); }
+    if (debug && (debugflags.magic || debugflags.combat)) { dbs.writeln("<span style='color:green'>Flame blade adds " + fb.damage + " damage.<br /></span>"); }
     fbdmg = RollDice(fb.damage);
     damage += parseInt(fbdmg);
     fb.doEffect();
@@ -8911,7 +8904,7 @@ NPCObject.prototype.processDeath = function(droploot){
     if ((chest) && (chest.container.length)) {
       if (DULoot[this.lootTable].trap) {
         var trapname = DULoot[this.lootTable].trap;
-        if (debug) { dbs.writeln("Chest created, might be trapped with: " + trapname + ".<br />"); }        
+        if (debug && debugflags.gameobj) { dbs.writeln("Chest created, might be trapped with: " + trapname + ".<br />"); }        
         var trap = DUTraps[trapname].getTrap();
         if (trap.trap) {
           chest.setTrap(trap.trap, trap.level);
@@ -9264,10 +9257,10 @@ NPCObject.prototype.addSpellEffect = function(spellobj) {
       if (otherEffects[i].getName() === spellobj.getName()) {
         silent = 1;
         var totin = spellobj.getInstances() + otherEffects[i].getInstances();
-        if (debug) { dbs.writeln("<span style='color:green'>Magic: That spell is already on the target.<br /></span>"); }
+        if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: That spell is already on the target.<br /></span>"); }
         if (otherEffects[i].getPower() > spellobj.getPower()) {  // keep old one, extend it
           var adddur = (1/(totin - 1))*(spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.DUTime.getGameClock());
-          if (debug) { dbs.writeln("<span style='color:green'>Magic: Old one is stronger, extending by " + adddur + ".<br /></span>"); }
+          if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Old one is stronger, extending by " + adddur + ".<br /></span>"); }
           otherEffects[i].setExpiresTime(otherEffects[i].getExpiresTime() + adddur);
           otherEffects[i].setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
           otherEffects[i].mergeSpells("old");
@@ -9277,7 +9270,7 @@ NPCObject.prototype.addSpellEffect = function(spellobj) {
         } else {
           var adddur = (1/(totin - 1))*(otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.DUTime.getGameClock());
           spellobj.setExpiresTime(spellobj.getExpiresTime() + adddur);
-          if (debug) { dbs.writeln("<span style='color:green'>Magic: New one is stronger. Replacing old and extending new by " + adddur + ".<br /></span>"); }
+          if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: New one is stronger. Replacing old and extending new by " + adddur + ".<br /></span>"); }
           otherEffects[i].endEffect(1);
           spellobj.setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
           spellobj.mergeSpells("new");
@@ -9356,7 +9349,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.hp = this.maxhp;
     
 
-    if (debug) {
+    if (debug && debugflags.ai) {
       dbs.writeln("<span style='color:green;font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") activating.</span><br />");
     }
   
@@ -9488,7 +9481,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     }
     timing = timing + (Math.random() / 500);
 
-    if (debug) {
+    if (debug && (debugflags.ai || debugflags.time)) {
       dbs.writeln("<span style='color:green;font-weight:bold'>Curr time: " + DUTime.getGameClock() + ", NPC will go in " + timing + ".</span><br />");
     }
   
@@ -9501,6 +9494,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     
     var NPCEvent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCEvent,timing);  
+    
   }
 }
 
@@ -9597,7 +9591,7 @@ NPCObject.prototype.myTurn = function() {
   }
 
   if (this.expiresTime && (this.expiresTime > DUTime.getGameClock())) {
-    if (debug) { dbs.writeln("<span style='color:green;font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " expired, removing itself.</span><br />"); }
+    if (debug && debugflags.ai) { dbs.writeln("<span style='color:green;font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " expired, removing itself.</span><br />"); }
     this.getHomeMap().deleteThing(this);
     
     return 1;
@@ -9606,7 +9600,7 @@ NPCObject.prototype.myTurn = function() {
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
 
-  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + this.getName() + ", serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ".</span><br />"); }	
+  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + this.getName() + ", serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ".</span><br />"); }	
 	RunEffects(this);
 	
 	Regen(this);
@@ -9658,14 +9652,14 @@ NPCObject.prototype.myTurn = function() {
   
 //  var nextEntity = DUTime.executeNextEvent().getEntity();
 //  nextEntity.myTurn();
-  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>*" + this.getName() + ", serial " + this.getSerial() + " is ending its turn.*</span><br />"); }	
+  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>*" + this.getName() + ", serial " + this.getSerial() + " is ending its turn.*</span><br />"); }	
   return 1;
 }
 
 NPCObject.prototype.endTurn = function(init) {
   gamestate.setMode("null");
   
-  if (debug) { dbs.writeln("<span style='color:orange; font-weight:bold'>*" + this.getName() + ", serial " + this.getSerial() + " is ending its turn.*</span><br />"); }	
+  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>*" + this.getName() + ", serial " + this.getSerial() + " is ending its turn.*</span><br />"); }	
   
   // did this entity idle?
   var oldloc = this.getLastLocation();
@@ -9856,9 +9850,9 @@ NPCObject.prototype.getHitChance = function(atkwith) {
   if (distracted) {
     var stillon = distracted.doEffect();
     if (stillon != -1) {
-      if (debug) { dbs.writeln("<span style='color:green'>DISTRACTED: old tohit: " + tohit + ", "); }
+      if (debug && debugflags.combat) { dbs.writeln("<span style='color:green'>DISTRACTED: old tohit: " + tohit + ", "); }
       tohit = tohit - distracted.getPower();
-      if (debug) { dbs.writeln("new tohit: " + tohit + ".<br /></span>"); }
+      if (debug && debugflags.combat) { dbs.writeln("new tohit: " + tohit + ".<br /></span>"); }
     }
   }
   return tohit;
@@ -9876,15 +9870,15 @@ NPCObject.prototype.getDefense = function() {
   }
   var vuln = this.getSpellEffectsByName("Vulnerability");
   if (vuln) {
-    if (debug) { dbs.writeln("vulnerable: old AC " + def + ", </span>"); }
+    if (debug && debugflags.combat) { dbs.writeln("vulnerable: old AC " + def + ", </span>"); }
     def = def - vuln.getPower();
-    if (debug) { dbs.writeln("new AC: " + def + ".<br /></span>"); }
+    if (debug && debugflags.combat) { dbs.writeln("new AC: " + def + ".<br /></span>"); }
   }
   var prot = this.getSpellEffectsByName("Protection");
   if (prot) {
-    if (debug) { dbs.writeln("protected: old AC " + def + ", </span>"); }
+    if (debug && debugflags.combat) { dbs.writeln("protected: old AC " + def + ", </span>"); }
     def = def + prot.getPower();
-    if (debug) { dbs.writeln("new AC: " + def + ".<br /></span>"); }
+    if (debug && debugflags.combat) { dbs.writeln("new AC: " + def + ".<br /></span>"); }
   } 
   return def;
 }

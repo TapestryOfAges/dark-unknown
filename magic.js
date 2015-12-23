@@ -158,12 +158,12 @@ magic[8][GetSpellID(6)] = new SpellObject("Time Stop", "An Tym", 8, 0);  // bles
 
 // Cure
 magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Cure.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Cure.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   var effects = caster.getSpellEffects();
@@ -195,12 +195,12 @@ magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free) {
 
 // Disarm Trap
 magic[1][GetSpellID(2)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Disarm Trap.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Disarm Trap.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   var mult = 1;
@@ -240,12 +240,12 @@ magic[1][GetSpellID(2)].executeSpell = function(caster, infused, free) {
 
 // Distract
 magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Distract.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Distract.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   
@@ -289,7 +289,7 @@ magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
 
 // Flame Blade
 magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Flame Blade.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Flame Blade.<br /></span>"); }
   var resp = {};
   if ((caster.getWeapon() === "Fists") || (caster.getWeapon() === "NaturalWeapon")) {
     if (caster === PC) {
@@ -301,7 +301,7 @@ magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   var flameblade = localFactory.createTile("FlameBlade");
@@ -318,7 +318,7 @@ magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
     flameblade.power = 3;
   }
   var endtime = duration + DUTime.getGameClock();
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
   flameblade.setExpiresTime(endtime);
   caster.addSpellEffect(flameblade);
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
@@ -328,12 +328,12 @@ magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
 
 // Light
 magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Light.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Light.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   
@@ -343,7 +343,7 @@ magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   if (free) { dur = 5; }
   if (infused) {dur = dur * 3; }
   var endtime = dur + DU.DUTime.getGameClock();
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
   liobj.setExpiresTime(endtime);
   if (infused) { liobj.setPower(4); }   // defaults to 2
   
@@ -361,7 +361,7 @@ magic[1][GetSpellID(6)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformVulnerability(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Vulnerability.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Vulnerability.<br /></span>"); }
   var resp = {};
   
   targetCursor.x = PC.getx();
@@ -397,7 +397,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
   if (!free) {
     var mana = magic[1][GetSpellID(6)].getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   
   var newtgt = CheckMirrorWard(tgt, caster);
@@ -448,7 +448,7 @@ magic[2][GetSpellID(1)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformIllusion(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Illusion.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Illusion.<br /></span>"); }
   var resp = {};
   
   if (!caster.getHomeMap().getScale()) {
@@ -494,7 +494,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   if (!free) {
     var mana = magic[2][GetSpellID(1)].getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
 
   var illusion;
@@ -518,12 +518,12 @@ function PerformIllusion(caster, infused, free, tgt) {
 
 // Lesser Heal
 magic[2][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Lesser Heal.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Lesser Heal.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   
@@ -535,7 +535,7 @@ magic[2][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
   }
   
   var healamt = RollDice(lvl + "d8+" + plus);
-  if (debug) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
   if (infused) { healamt = healamt * 1.5; }
   
   if (caster === PC) {
@@ -556,7 +556,7 @@ magic[2][GetSpellID(3)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformMagicBolt(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Magic Bolt.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Magic Bolt.<br /></span>"); }
   var resp = {};
   
   targetCursor.x = PC.getx();
@@ -594,7 +594,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   if (!free) {
     var mana = magic[2][GetSpellID(3)].getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   
   var newtgt = CheckMirrorWard(tgt, caster);
@@ -618,7 +618,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   if (CheckResist(caster,tgt,infused,0)) {
     dmg = Math.floor(dmg/2)+1;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
   var boltgraphic = {};
@@ -646,7 +646,7 @@ magic[2][GetSpellID(4)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformPoisonCloud(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Poison Cloud.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Poison Cloud.<br /></span>"); }
   var resp = {};
   
   targetCursor.x = PC.getx();
@@ -683,14 +683,14 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
   if (!free) {
     var mana = magic[2][GetSpellID(4)].getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   
   var power = caster.getInt();
   if (free) { power = RollDice("1d5+12"); }  
   var radius = Math.floor(power/10) +1; 
     
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Calculating poison cloud.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Calculating poison cloud.<br /></span>"); }
   $.each(tgtmap.npcs.getAll(), function(idx, val) {
     if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) < radius) && (val !== caster)) {
       if (tgtmap.getLOE(val.getx(),val.gety(),tgt.x,tgt.y) < LOS_THRESHOLD) {
@@ -734,12 +734,12 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
 
 // Protection
 magic[2][GetSpellID(5)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Protection.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Protection.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   var prot = localFactory.createTile("Protection");
@@ -754,7 +754,7 @@ magic[2][GetSpellID(5)].executeSpell = function(caster, infused, free) {
     power = RollDice("1d5+8");
   }
   var endtime = duration + DUTime.getGameClock();
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
   prot.setExpiresTime(endtime);
   prot.setPower(power);
   caster.addSpellEffect(prot);
@@ -765,12 +765,12 @@ magic[2][GetSpellID(5)].executeSpell = function(caster, infused, free) {
 
 // Unlock
 magic[2][GetSpellID(6)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Unlock.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Unlock.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   
@@ -797,12 +797,12 @@ magic[2][GetSpellID(6)].executeSpell = function(caster, infused, free) {
 
 // Disrupt Undead
 magic[3][GetSpellID(1)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Disrupt Undead.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Disrupt Undead.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   
@@ -817,7 +817,7 @@ magic[3][GetSpellID(1)].executeSpell = function(caster, infused, free) {
           dmg *= 1.5;
         }
         if (CheckResist(caster,val,infused,0)) { dmg = (dmg/2)+1; }
-        if (debug) { dbs.writeln("<span style='color:green'>Found " + val.getName() + " , dealing it " + dmg + " damage.<br /></span>"); }
+        if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Found " + val.getName() + " , dealing it " + dmg + " damage.<br /></span>"); }
         val.dealDamage(dmg);
         ShowEffect(val, 700, "702.gif", 0, 0);
         var desc = val.getDesc() + " disrupted!";
@@ -836,12 +836,12 @@ magic[3][GetSpellID(1)].executeSpell = function(caster, infused, free) {
 
 // Fire Armor
 magic[3][GetSpellID(2)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Fire Armor.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Fire Armor.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   var prot = localFactory.createTile("FireArmor");
@@ -853,7 +853,7 @@ magic[3][GetSpellID(2)].executeSpell = function(caster, infused, free) {
     power = DMG_LIGHT;
   }
   var endtime = duration + DUTime.getGameClock();
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
   prot.setExpiresTime(endtime);
   prot.setPower(power);
   caster.addSpellEffect(prot);
@@ -868,7 +868,7 @@ magic[3][GetSpellID(3)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformFireball(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Fireball.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Fireball.<br /></span>"); }
   var resp = {};
   
   targetCursor.x = PC.getx();
@@ -906,7 +906,7 @@ function PerformFireball(caster, infused, free, tgt) {
   if (!free) {
     var mana = magic[3][GetSpellID(3)].getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   
   var newtgt = CheckMirrorWard(tgt, caster);
@@ -928,7 +928,7 @@ function PerformFireball(caster, infused, free, tgt) {
   if (CheckResist(caster,tgt,infused,0)) {
     dmg = Math.floor(dmg/2)+1;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
   var boltgraphic = {};
@@ -956,7 +956,7 @@ magic[3][GetSpellID(4)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformIceball(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Iceball.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Iceball.<br /></span>"); }
   var resp = {};
   
   targetCursor.x = PC.getx();
@@ -993,7 +993,7 @@ function PerformIceball(caster, infused, free, tgt) {
   if (!free) {
     var mana = magic[3][GetSpellID(4)].getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   
   var newtgt = CheckMirrorWard(tgt, caster);
@@ -1015,7 +1015,7 @@ function PerformIceball(caster, infused, free, tgt) {
   if (CheckResist(caster,tgt,infused,0)) {
     dmg = Math.floor(dmg/2)+1;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
   var frozen = localFactory.createTile("Slow");
@@ -1050,7 +1050,7 @@ magic[3][GetSpellID(5)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformTelekinesis(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Telekinesis.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Telekinesis.<br /></span>"); }
   var resp = {};
   
   targetCursor.x = PC.getx();
@@ -1123,7 +1123,7 @@ magic[3][GetSpellID(6)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformWallOfFlame(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Wall of Flame.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Wall of Flame.<br /></span>"); }
   var resp = {};
   
   if (!caster.getHomeMap().getScale()) {
@@ -1169,7 +1169,7 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
   if (!free) {
     var mana = magic[3][GetSpellID(6)].getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
 
   var duration = caster.getInt() * SCALE_TIME;
@@ -1361,12 +1361,12 @@ function TryToPlaceField(mapref, wherex, wherey, fieldname) {
 
 // Blessing
 magic[4][GetSpellID(1)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Blessing.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Blessing.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
 
@@ -1380,7 +1380,7 @@ magic[4][GetSpellID(1)].executeSpell = function(caster, infused, free) {
     power = RollDice("1d4+1");
   }
   var endtime = dur + DU.DUTime.getGameClock();
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
   levobj.setPower(power);
   levobj.setExpiresTime(endtime);
   
@@ -1394,19 +1394,19 @@ magic[4][GetSpellID(1)].executeSpell = function(caster, infused, free) {
 
 // Heal
 magic[4][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Heal.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Heal.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   
   var plus = caster.getLevel()*2;
   var healamt = RollDice(caster.getLevel() + "d8+" + plus);
   if (free) { healamt = RollDice("4d8+10"); }
-  if (debug) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
   if (infused) { healamt = healamt * 1.5; }
   
   if (caster === PC) {
@@ -1427,7 +1427,7 @@ magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformLifeDrain(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Life Drain.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Life Drain.<br /></span>"); }
   var resp = {};
   
   targetCursor.x = PC.getx();
@@ -1464,7 +1464,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
   if (!free) {
     var mana = magic[3][GetSpellID(4)].getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   
   var newtgt = CheckMirrorWard(tgt, caster);
@@ -1489,12 +1489,12 @@ function PerformLifeDrain(caster, infused, free, tgt) {
     dmg = Math.floor(dmg/2)+1;
     healamt = Math.floor(healamt/2)+1;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
     
   ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
 
-  if (debug) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
   
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
   caster.healMe(healamt, caster);
@@ -1506,12 +1506,12 @@ function PerformLifeDrain(caster, infused, free, tgt) {
 
 //Smite
 magic[4][GetSpellID(4)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Smite.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Smite.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
 
@@ -1530,7 +1530,7 @@ magic[4][GetSpellID(4)].executeSpell = function(caster, infused, free) {
         dmg = Math.floor(dmg/2)+1;
       }
       foes[i].dealDamage(dmg,caster,"force");
-      if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage to target " + foes[i].getName() + " " + foes[i].getSerial() + ".<br /></span>"); }
+      if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage to target " + foes[i].getName() + " " + foes[i].getSerial() + ".<br /></span>"); }
       ShowEffect(foes[i], 700, "702.gif", 0, 0);
     }
   }
@@ -1539,12 +1539,12 @@ magic[4][GetSpellID(4)].executeSpell = function(caster, infused, free) {
 
 //Transport
 magic[4][GetSpellID(5)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Transport.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Transport.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 3;  // end of turn waits on end of animation
 
@@ -1581,12 +1581,12 @@ magic[4][GetSpellID(5)].executeSpell = function(caster, infused, free) {
 
 // Levitate/Waterwalk
 magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Water Walk.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Water Walk.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
 
@@ -1596,7 +1596,7 @@ magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   if (free) { dur = RollDice("1d10+35"); }
   if (infused) { dur = dur * 3; }
   var endtime = dur + DU.DUTime.getGameClock();
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   levobj.setPower(dur);
   levobj.setExpiresTime(endtime);
@@ -1614,7 +1614,7 @@ magic[5][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
 
@@ -1624,7 +1624,7 @@ magic[5][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   if (free) { dur = RollDice("1d10+35"); }
   if (infused) { dur = dur * 3; }
   var endtime = (dur * SCALE_TIME) + DU.DUTime.getGameClock();
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
   mwobj.setPower(dur);
   mwobj.setExpiresTime(endtime);
   
@@ -1640,7 +1640,7 @@ magic[5][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformParalyze(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Paralyze.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Paralyze.<br /></span>"); }
   var resp = {};
   
   targetCursor.x = PC.getx();
@@ -1676,7 +1676,7 @@ function PerformParalyze(caster, infused, free, tgt) {
   if (!free) {
     var mana = magic[5][GetSpellID(2)].getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   
   var newtgt = CheckMirrorWard(tgt, caster);
@@ -1728,7 +1728,7 @@ magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   
@@ -1794,12 +1794,12 @@ magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free) {
 
 // Shockwave
 magic[5][GetSpellID(4)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Shockwave.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Shockwave.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
 
@@ -1836,7 +1836,7 @@ magic[5][GetSpellID(5)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformSummonAlly(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Summon Ally.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Summon Ally.<br /></span>"); }
   var resp = {};
   
   if (!caster.getHomeMap().getScale()) {
@@ -1882,7 +1882,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   if (!free) {
     var mana = magic[5][GetSpellID(5)].getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
 
   var ally;
@@ -1933,7 +1933,7 @@ magic[5][GetSpellID(6)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformSwordstrike(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Swordstrike.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Swordstrike.<br /></span>"); }
   var resp = {};
   
   targetCursor.x = PC.getx();
@@ -1972,7 +1972,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
   if (!free) {
     var mana = magic[5][GetSpellID(6)].getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   
   var newtgt = CheckMirrorWard(tgt, caster);
@@ -1996,7 +1996,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
   if (CheckResist(caster,tgt,infused,0)) {
     dmg = Math.floor(dmg/2)+1;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
   ShowEffect(tgt, 700, "702.gif", 0, 0);
   tgt.dealDamage(dmg,caster,"physical");
   
@@ -2033,7 +2033,7 @@ magic[6][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
     var resp = PerformExplosion(caster, infused, free, tgt);
     return resp;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Explosion.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Explosion.<br /></span>"); }
   var resp = {};
   
   targetCursor.x = PC.getx();
@@ -2071,7 +2071,7 @@ function PerformExplosion(caster, infused, free, tgt) {
   if (!free) {
     var mana = magic[6][GetSpellID(2)].getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   
 // WORKING HERE
@@ -2089,7 +2089,7 @@ function PerformExplosion(caster, infused, free, tgt) {
   if (CheckResist(caster,tgt,infused,0)) {
     dmg = Math.floor(dmg/2)+1;
   }
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
   ShowEffect(tgt, 700, "702.gif", 0, 0);
   tgt.dealDamage(dmg,caster,"physical");
   
@@ -2123,13 +2123,13 @@ function PerformExplosion(caster, infused, free, tgt) {
 
 //Negate Magic
 magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Negate Magic.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Negate Magic.<br /></span>"); }
   
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   
@@ -2156,7 +2156,7 @@ magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
     var effects = val.getSpellEffects();
     $.each(effects, function(effidx, effval) {
       if ((effval.getLevel() > 0) && (effval.getExpiresTime() > -1)) {
-        if (debug) { dbs.writeln("<span style='color:green'>Magic: Negate magic has dispelled " + effval.getName() + " from " + val.getName() + "<br /></span>"); }
+        if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Negate magic has dispelled " + effval.getName() + " from " + val.getName() + "<br /></span>"); }
         effval.endEffect();
       }
     });
@@ -2165,7 +2165,7 @@ magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   var effects = caster.getSpellEffects();
   $.each(effects, function(effidx, effval) {
     if ((effval.getLevel() > 0) && (effval.getExpiresTime() > -1)) {
-      if (debug) { dbs.writeln("<span style='color:green'>Magic: Negate magic has dispelled " + effval.getName() + " from " + caster.getName() + "<br /></span>"); }
+      if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Negate magic has dispelled " + effval.getName() + " from " + caster.getName() + "<br /></span>"); }
       effval.endEffect();
     }
   });
@@ -2176,12 +2176,12 @@ magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
 
 //Quickness
 magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Casting Quickness.<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Quickness.<br /></span>"); }
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
   }
   resp["fin"] = 1;
   
@@ -2193,7 +2193,7 @@ magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   }
   if (infused) {dur = dur * 1.5; }
   var endtime = dur + DU.DUTime.getGameClock();
-  if (debug) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
   liobj.setExpiresTime(endtime);
   
 //  if (DU.gameflags.sound) { play_audio("sfx_spell_light"); }   // ADD SOUND HERE
@@ -2285,7 +2285,7 @@ var spellcount = {};
 
 function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
   if (Object.keys(spellcount).length === 0) {
-    if (debug) { dbs.writeln("<span style='color:green'>Clearing the spelleffects of empty divs.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Clearing the spelleffects of empty divs.<br /></span>"); }
     $("#spelleffects").html("");
   }
 
@@ -2293,7 +2293,7 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
   if (!yoff) { yoff = 0; }
   
   if (spellcount["anim" + onwhat.getSerial()]){ 
-    if (debug) { dbs.writeln("<span style='color:green'>Tried to create a second effect on " + onwhat.getName() + ".<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Tried to create a second effect on " + onwhat.getName() + ".<br /></span>"); }
     return; 
   }  //if there's already an effect playing, don't replace it with another one, just play the first only    
   var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
@@ -2308,7 +2308,7 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
 //    where.y += 192;
  //   animurl = "url('graphics/" + graphic + "')";
     animurl = "graphics/" + graphic ;
-    if (debug) { dbs.writeln("<span style='color:green'>Putting a " + animurl + " on " + onwhat.getName() + ".<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Putting a " + animurl + " on " + onwhat.getName() + ".<br /></span>"); }
   }
   var animhtml;
   if (animurl) {
@@ -2324,7 +2324,7 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
     }
     
     setTimeout(function() {
-      if (debug) { dbs.writeln("<span style='color:green'>Removing a " + animurl + " from " + onwhat.getName() + ".<br /></span>"); }
+      if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Removing a " + animurl + " from " + onwhat.getName() + ".<br /></span>"); }
       $("#anim" + onwhat.getSerial()).html("");
       $("#anim" + onwhat.getSerial()).css("background-image", "");
       delete spellcount["anim" + onwhat.getSerial()];
@@ -2335,7 +2335,7 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
 
 function ShowEffectOLD(onwhat, graphic, duration) {
   if (spellcount["anim" + onwhat.getSerial()]){ 
-    if (debug) { dbs.writeln("<span style='color:green'>Tried to create a second effect on " + onwhat.getName() + ".<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Tried to create a second effect on " + onwhat.getName() + ".<br /></span>"); }
     return; 
   }  //if there's already an effect playing, don't replace it with another one, just play the first only    
   var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
@@ -2350,7 +2350,7 @@ function ShowEffectOLD(onwhat, graphic, duration) {
 //    where.y += 192;
  //   animurl = "url('graphics/" + graphic + "')";
     animurl = "graphics/" + graphic ;
-    if (debug) { dbs.writeln("<span style='color:green'>Putting a " + animurl + " on " + onwhat.getName() + ".<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Putting a " + animurl + " on " + onwhat.getName() + ".<br /></span>"); }
   }
   var animhtml;
   if (animurl) {
@@ -2367,7 +2367,7 @@ function ShowEffectOLD(onwhat, graphic, duration) {
 
 function PlaySparkles(onwhat, color) {
   if (Object.keys(spellcount).length === 0) {
-    if (debug) { dbs.writeln("<span style='color:green'>Clearing the spelleffects of empty sparkles.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Clearing the spelleffects of empty sparkles.<br /></span>"); }
     $("#spelleffects").html("");
   }
     
@@ -2383,11 +2383,11 @@ function PlaySparkles(onwhat, color) {
   var animhtml;
 
   if (spellcount["anim" + onwhat.getSerial()]) { 
-    if (debug) { dbs.writeln("<span style='color:green'>Tried to create a second sparkle on " + onwhat.getName() + ".<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Tried to create a second sparkle on " + onwhat.getName() + ".<br /></span>"); }
     return; 
   }  //if there's already a sparkle playing, don't replace it with another one, just play the first only
   spellcount["anim" + onwhat.getSerial()] = 1;
-  if (debug) { dbs.writeln("<span style='color:green'>Incrementing spell effects count to " + spellcount['anim' + onwhat.getSerial()] + ".<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Incrementing spell effects count to " + spellcount['anim' + onwhat.getSerial()] + ".<br /></span>"); }
   var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
   if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onewhat.gety() <= displayspecs.bottomedge)) {
     where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
@@ -2395,11 +2395,11 @@ function PlaySparkles(onwhat, color) {
 //    where.y += 192;
     animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-image:url(\'graphics/spellsparkles.gif\');background-repeat:no-repeat; background-position: 0px ' + colory[color] + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';  
   } else {
-    if (debug) { dbs.writeln("<span style='color:green'>Target is offscreen.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Target is offscreen.<br /></span>"); }
     animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-repeat:no-repeat; background-position: 0px ' + colory[color] + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';  
   }
   $("#spelleffects").html($("#spelleffects").html() + animhtml);
-  if (debug) { dbs.writeln("<span style='color:green'>Placed " + color + " sparkles on " + onwhat.getName() + ".<br /></span>"); }
+  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Placed " + color + " sparkles on " + onwhat.getName() + ".<br /></span>"); }
   AnimateSparkles(onwhat,colory[color],0);
   
 }
@@ -2409,11 +2409,11 @@ function AnimateSparkles(onwhat, color, animframe) {
   if (!spellcount[spellcountid]) {
     $(spellcountid).html("");
     $(spellcountid).css("background-image", "");
-    if (debug) { dbs.writeln("<span style='color:green'>Spellcount zeroed out externally. Ceasing sparkling.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Spellcount zeroed out externally. Ceasing sparkling.<br /></span>"); }
     return;
   }
   if (spellcount[spellcountid] === 48) {
-    if (debug) { dbs.writeln("<span style='color:green'>Sparkle on " + onwhat.getName() + " finished.<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Sparkle on " + onwhat.getName() + " finished.<br /></span>"); }
     delete spellcount[spellcountid];
     $(spellcountid).html("");
     $(spellcountid).css("background-image", "");
@@ -2436,7 +2436,7 @@ function AnimateSparkles(onwhat, color, animframe) {
     if (animframe > 7) {
       animframe = 0;
     }
-    if (debug) { dbs.writeln("<span style='color:green'>Sparkle on " + onwhat.getName() + " moving on to frame " + animframe + ".<br /></span>"); }
+    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Sparkle on " + onwhat.getName() + " moving on to frame " + animframe + ".<br /></span>"); }
   }
   $(spellcountid).css("background-position", (animframe*-32) + "px " + color + "py");
   $(spellcountid).css("background-image", animurl);

@@ -17,14 +17,14 @@ function Anchor() {
 Anchor.prototype = new Object();
 
 function TurnMapHostile(map) {
-  if (debug) { dbs.writeln("Attacked a friendly! Turning hostile...<br />"); }
+  if (debug && debugflags.combat) { dbs.writeln("Attacked a friendly! Turning hostile...<br />"); }
   DU.gameflags["karma"] -= 10; 
   var localnpcs = map.npcs.getAll();
   $.each(localnpcs, function(idx, val) {
     if (val.getAttitude() === "friendly") {
       val.setAttitude("hostile");
       val.setAggro(1);
-      if (debug) { dbs.writeln(val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />"); }
+      if (debug && debugflags.combat) { dbs.writeln(val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />"); }
     }
   });
 }
@@ -33,13 +33,16 @@ function Attack(atk, def) {
   var retval = {};
   var type = "weapon";
   var rad = 1;
-  if (atk.specials.reach) { rad = 2; }
-  if (Math.abs(atk.getx() - def.getx()) > rad) { type = "missile"; }
-  if (Math.abs(atk.gety() - def.gety()) > rad) { type = "missile"; }
+  if (atk.specials.reach) { 
+    rad = 2; 
+  }
+  if (debug && debugflags.combat) { dbs.writeln("Attacking: reach is " + rad + ", atk coords: " + atk.getx() + ", " + atk.gety() + " ; def coords: " + def.getx() + ", " + def.gety() + ".<br />"); }
+  if (Math.abs(atk.getx() - def.getx()) > rad) { type = "missile";}
+  if (Math.abs(atk.gety() - def.gety()) > rad) { type = "missile";}
 
   var weapon = atk.getEquipment("weapon");
   var loeresult = 0;
-  
+
   if (type === "missile") {
     // check to see if attacker can use its missile weapon
     var dex = atk.getDex();
@@ -89,17 +92,17 @@ function Attack(atk, def) {
   if (def !== PC) {
     def.setAggro(1);
   }
-  if (debug) { dbs.writeln("Attacking: weapon is " + weapon.getName() + "<br />"); }
+  if (debug && debugflags.combat) { dbs.writeln("Attacking: weapon is " + weapon.getName() + "<br />"); }
   var tohit = atk.getHitChance(weapon) / 100;
   tohit -= loeresult/2; // harder to hit if foe has cover
-  if (debug) { dbs.writeln("Attacking: reducing to-hit chance by " + loeresult/2 + " due to cover<br />"); }
+  if (debug && debugflags.combat) { dbs.writeln("Attacking: reducing to-hit chance by " + loeresult/2 + " due to cover<br />"); }
   var defense = def.getDefense() / 100;
 
-  if (debug) { dbs.writeln("Atk: " + tohit + "; enemy defense: " + defense + "<br />"); }
+  if (debug && debugflags.combat) { dbs.writeln("Atk: " + tohit + "; enemy defense: " + defense + "<br />"); }
   tohit = tohit - defense;
   if (tohit < .05) { tohit = .05; }
   
-  if (debug) { dbs.writeln("Chance to hit: " + tohit + "<br />"); }
+  if (debug && debugflags.combat) { dbs.writeln("Chance to hit: " + tohit + "<br />"); }
 //  var preanim = PreAnimationEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset)
   var dmg = 0;
   if (Math.random() <= tohit) {
@@ -169,6 +172,7 @@ function Attack(atk, def) {
   
   var tmpval = {};
   tmpval["fin"] = -1;
+  tmpval["wait"] = 1;
   return tmpval;
 }
 
@@ -336,14 +340,14 @@ function PushOff(what) {
     if (tile.canMove(MOVE_WALK, 1)) {   // can walk but ignore NPCs there- this is a rare 
                                         // circumstance where I will stack NPCs
       themap.moveThing(destx, desty, what);
-      if (debug) { dbs.writeln("Moving NPC off of exit, in direction " + dir + "<br />"); }
+      if (debug && debugflags.ai) { dbs.writeln("Moving NPC off of exit, in direction " + dir + "<br />"); }
       return 1;
     }
     tries += 1;
     dir += 1;
     if (dir === 8) { dir = 0; }
   }
-  if (debug) { dbs.writeln("Moving NPC off of exit, in emergency backup code.<br />"); }
+  if (debug && debugflags.ai) { dbs.writeln("Moving NPC off of exit, in emergency backup code.<br />"); }
   themap.moveThing(locx, locy+1, what);
   return 1;
   
@@ -386,7 +390,7 @@ function StepOrDoor(who, where) {
   if (fea && fea.closedgraphic) {
     if (!((typeof possdoor.getLocked === "function") && (possdoor.getLocked()))) {
       // door is not locked    
-      if (debug) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
+      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
       fea.use(who);
       DrawMainFrame("one",who.getHomeMap().getName(),fea.getx(),fea.gety());
       return 2;  // opened a door

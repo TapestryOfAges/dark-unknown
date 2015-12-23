@@ -26,7 +26,7 @@ DUListener.prototype.clearListeners = function() {
 DUListener.prototype.clearListener = function(listname) {
   findlistener = this.listeners.getByName(listname);
   if (findlistener) {
-    if (debug) { dbs.writeln("<span style='color:magenta'>Deleting listener " + findlistener.getName() + ".<br /></span>"); }
+    if (debug && debugflags.events) { dbs.writeln("<span style='color:magenta'>Deleting listener " + findlistener.getName() + ".<br /></span>"); }
     this.listeners.deleteFrom(findlistener);
   }
 }
@@ -36,7 +36,7 @@ DUListener.prototype.sendEvent = function(ev) {
   
   var allears = this.listeners.getAll();
   if (allears.length === 0) { 
-    if (debug) { dbs.writeln("<span style='color:magenta'>Event sent, no listeners.<br /></span>"); }
+    if (debug && debugflags.events) { dbs.writeln("<span style='color:magenta'>Event sent, no listeners.<br /></span>"); }
     return;
   }
   $.each(allears, function(idx, val) {
@@ -45,7 +45,7 @@ DUListener.prototype.sendEvent = function(ev) {
         var flagsmatch = 1;
         $.each(val.flagsreq, function(idx2, val2) {
           if (ev.idx2 && (ev.idx2 === val2)) {
-            if (debug) { dbs.writeln("<span style='color:magenta'>Flag " + idx2 + " matched - values " + val2 + ".<br /></span>"); }
+            if (debug && debugflags.events) { dbs.writeln("<span style='color:magenta'>Flag " + idx2 + " matched - values " + val2 + ".<br /></span>"); }
           } else {
             flagsmatch = 0;
           }
