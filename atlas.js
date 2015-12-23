@@ -382,7 +382,7 @@ Acre.prototype.addLocalLight = function(lightsource, lightlevel, map) {
   // lightlevel is always an object, might not have ne,nw,etc, always has center
   this.localLight[lightsource.getSerial()] = lightlevel;
 	map.lightsList[lightsource.getSerial()] = lightsource;
-	if (debug) { dbs.writeln("LIGHT " + lightsource.getSerial() + ": Added to this acre."); }
+	if (debug && debugflags.light) { dbs.writeln("LIGHT " + lightsource.getSerial() + ": Added to this acre."); }
 }
 
 Acre.prototype.getLocalLight = function(dir) {
@@ -878,10 +878,8 @@ GameMap.prototype.setTile = function(x,y,tile) {
 }
 
 GameMap.prototype.getTile = function(x,y) {  // returns an Acre
-//	if (debug) { dbs.writeln("<span style='color:#cc0000'>" + this.getName() + " -- "); }
 	if ((y < 0) || (x < 0)) { return "OoB"; }
 	if (y >= this.data.length) { return "OoB"; }
-//	if (debug) { dbs.writeln("<span style='color:#cc0000'>" + x + "," + y + " :: " + this.data.length + "<br />"); }
 	if (x >= this.data[y].length) { return "OoB"; }
   return this.data[y][x];
 }
@@ -1024,7 +1022,7 @@ GameMap.prototype.getHeight = function() {
 GameMap.prototype.resizeMap = function(newx,newy,anchor){
   var oldx = this.getWidth();
   var oldy = this.getHeight();
-  if (debug ) {
+  if (debug && debugflags.map) {
     dbs.writeln(oldx + " " + oldy + " to " + newx + " " + newy + ", anchor is " + anchor + "<br><br>");
   }
   var tile = new Acre();
@@ -1104,7 +1102,7 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
       }
     }
   }
-  if (debug) {
+  if (debug && debugflags.map) {
     dbs.writeln("Done: " + this.data.length + " " + this.data[0].length + "<br><br>");
   }
   this.setFeaturesCoord();
@@ -1158,7 +1156,7 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
     this.data[y][x][type].addTop(newthing);
 
  	  if ((typeof newthing.getLight === "function") && (newthing.getLight() > 0)) {
-  	  if (debug) { dbs.writeln("<br /><br />LIGHT: Placing new light source: " + newthing.getName() + ", light value: " + newthing.getLight() + ", serial: " + newthing.getSerial()); } 	    
+  	  if (debug && debugflags.light) { dbs.writeln("<br /><br />LIGHT: Placing new light source: " + newthing.getName() + ", light value: " + newthing.getLight() + ", serial: " + newthing.getSerial()); } 	    
   	  this.setMapLight(newthing, newthing.getLight(),x,y);
   	}       
   
@@ -1440,12 +1438,12 @@ GameMap.prototype.loadMap = function (name) {
   var loadfrom = mappages.readPage(name, "terrain");
   var localatlas = new Atlas();
   for (var i=0;i<=loadfrom.length-1;i++) {
-    if (debug) {debugscreen.document.writeln("<br>Starting line: " +i+ ", length " + loadfrom[i].length + " <br>");}
+    if (debug && debugflags.map) {debugscreen.document.writeln("<br>Starting line: " +i+ ", length " + loadfrom[i].length + " <br>");}
     var tileserials = [];
     tileserials = loadfrom[i].split(" ");
     this.data[i] = [];
     for (var j=0;j<=tileserials.length-1;j++) {
-      if (debug) {debugscreen.document.writeln(" " + tileserials[j]);}
+      if (debug && debugflags.map) {debugscreen.document.writeln(" " + tileserials[j]);}
       var loadedtile = localatlas.key[tileserials[j]];
 //      this.data[i][j] = new Acre;
 //      this.data[i][j].terrain = localFactory.createTile(loadedtile);
@@ -1511,7 +1509,7 @@ GameMap.prototype.loadMap = function (name) {
 //  	alert(loadfeatures.length + " features loading...");
       for (var fi=0;fi<=loadfeatures.length-1;fi++) {
         var newfeature = localFactory.createTile(loadfeatures[fi].name);
-        if (debug) {debugscreen.document.writeln("<br>Loading features: " +newfeature.getName()+ "...<br>");}
+        if (debug && debugflags.map) {debugscreen.document.writeln("<br>Loading features: " +newfeature.getName()+ "...<br>");}
 //    	newfeature.setHomeMap(this);
     	  for (var featurekey in loadfeatures[fi]) {
     		  if (featurekey === "name") { continue; }
@@ -1582,17 +1580,17 @@ GameMap.prototype.loadMap = function (name) {
 GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
   if (this.getLightLevel() === "bright") { return; }
   var serial = lightsource.getSerial();
-  if (debug) { dbs.writeln("LIGHT: " + lightsource.getHomeMap().getName() + ", " + serial + ", " + light + ", " + x + ", " + y + "<br />"); }
+  if (debug && debugflags.light) { dbs.writeln("LIGHT: " + lightsource.getHomeMap().getName() + ", " + serial + ", " + light + ", " + x + ", " + y + "<br />"); }
 	for (var i = (x-(Math.ceil(Math.abs(light))+1)); i<=(x+(Math.ceil(Math.abs(light))+1)); i++) {
 		for (var j = (y-(Math.ceil(Math.abs(light))+1)); j<=(y+(Math.ceil(Math.abs(light))+1)); j++) {
 			if (this.getTile(i,j) === "OoB") { continue; }
 			var block = this.getTile(i,j).getBlocksLOS();
-      if (debug) { dbs.writeln("<br />LIGHT " + serial + ": Checking shine on x:"+i+",y:"+j+", which blocks " + block + ".<br />"); }
+      if (debug && debugflags.light) { dbs.writeln("<br />LIGHT " + serial + ": Checking shine on x:"+i+",y:"+j+", which blocks " + block + ".<br />"); }
 			if ((block > LOS_THRESHOLD) && (!lightsource.checkType("PC"))) {   
         var LOSval = this.getLOS(x,y,i,j,losgrid,0,1,1);
         var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
         var totlight = {};
-        if (debug) {dbs.writeln("LOSVAL ne: " + LOSval.ne + ", nw: " + LOSval.nw + ", se: " + LOSval.se + ", sw: " + LOSval.sw + ".<br />"); }
+        if (debug && debugflags.light) {dbs.writeln("LOSVAL ne: " + LOSval.ne + ", nw: " + LOSval.nw + ", se: " + LOSval.se + ", sw: " + LOSval.sw + ".<br />"); }
         totlight.ne = (light + 1.5 - dist) * ( 1- (LOSval.ne / LOS_THRESHOLD) );
         if ((light >= 0) && (totlight.ne < 0)) { totlight.ne = 0; }
         totlight.nw = (light + 1.5 - dist) * ( 1- (LOSval.nw / LOS_THRESHOLD) );
@@ -1623,9 +1621,9 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
         }
 			}
 			if (block > LOS_THRESHOLD) {
-			  if (debug) {dbs.writeln("LIGHT " + serial + ": LOSval was (center:" + LOSval.center + ", nw:" + LOSval.nw + ", ne:" + LOSval.ne + ", sw:" + LOSval.sw + ", se:" + LOSval.se + "), light values: center=" + totlight.center + ", ne=" + totlight.ne + ", nw=" + totlight.nw + ", se=" + totlight.se + ", sw=" +totlight.sw + ".<br />"); }
+			  if (debug && debugflags.light) {dbs.writeln("LIGHT " + serial + ": LOSval was (center:" + LOSval.center + ", nw:" + LOSval.nw + ", ne:" + LOSval.ne + ", sw:" + LOSval.sw + ", se:" + LOSval.se + "), light values: center=" + totlight.center + ", ne=" + totlight.ne + ", nw=" + totlight.nw + ", se=" + totlight.se + ", sw=" +totlight.sw + ".<br />"); }
 			} else {
-			  if (debug) {dbs.writeln("LIGHT " + serial + ": LOSval was " + LOSval + ", light values: center=" + totlight.center + ", ne=" + totlight.ne + ", nw=" + totlight.nw + ", se=" + totlight.se + ", sw=" +totlight.sw + ".<br />"); }
+			  if (debug && debugflags.light) {dbs.writeln("LIGHT " + serial + ": LOSval was " + LOSval + ", light values: center=" + totlight.center + ", ne=" + totlight.ne + ", nw=" + totlight.nw + ", se=" + totlight.se + ", sw=" +totlight.sw + ".<br />"); }
 			}
 		}
 	}
@@ -1664,7 +1662,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
   quartersLOS.center = LOS_THRESHOLD;
 
   if (( (x2-x1) === 0) && ( (y2-y1) === 0)) {
-    if (debug) { dbs.writeln("<span style='color:grey;font-style:italic'>&nbsp;Own tile, returning 0.<br /></span>");  }
+    if (debug && (debugflags.map || debugflags.light)) { dbs.writeln("<span style='color:grey;font-style:italic'>&nbsp;Own tile, returning 0.<br /></span>");  }
     if (checklight) {
       quartersLOS.nw = 0;
       quartersLOS.ne = 0;
@@ -2254,7 +2252,7 @@ Platonic.prototype.getForm = function (name) {
     return this.data[name];
   }
   else {
-    if (debug) {
+    if (debug && debugflags.map) {
       dbs.writeln("((Adding " + name + " to the platonic forms.))<br />");
     }
 
@@ -2312,17 +2310,17 @@ MapMemory.prototype.deleteMap = function(mapname) {
 			delete this.data[this.data[mapname].linkedMaps[i]];
 			// also stop tracking that magic is negated on this map
 			delete DU.gameflags.negate[this.data[mapname].linkedMaps[i]];
-			if (debug) { dbs.writeln("<span style='color:brown; font-style:italic'>Deleting map " + this.data[mapname].linkedMaps[i] + ".</span><br />"); }	
+			if (debug && debugflags.map) { dbs.writeln("<span style='color:brown; font-style:italic'>Deleting map " + this.data[mapname].linkedMaps[i] + ".</span><br />"); }	
 		}
 	}
 	delete this.data[mapname];
 	delete DU.gameflags.negate[mapname];
-	if (debug) {
-	  if (debug) { dbs.writeln("<span style='color:brown; font-style:italic'>Remaining maps: "); }	
+	if (debug && debugflags.map) {
+	  dbs.writeln("<span style='color:brown; font-style:italic'>Remaining maps: "); 
 	  $.each(this.data, function(idx,val) {
-	    if (debug) { dbs.writeln(idx + ", "); }	
+	    dbs.writeln(idx + ", "); 
 	  });
-	  if (debug) { dbs.writeln(".</span><br />"); }	
+	  dbs.writeln(".</span><br />");
 	}
 }
 

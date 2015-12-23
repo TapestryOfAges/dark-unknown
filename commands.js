@@ -203,7 +203,7 @@ function PerformCommand(code, ctrl) {
 		// now, Options
 		gamestate.setMode("options");
     retval["txt"] = "";
-    retval["input"] = "&gt; Zstats- ";
+    retval["input"] = "&gt; Options- ";
     retval["fin"] = 2;		
     targetCursor.page = 1;
     targetCursor.cmd = "o";
@@ -1647,11 +1647,13 @@ function PerformYell() {
 			PC.addMovetype(MOVE_ETHEREAL);
 		} else if (inputText.txt === "DEBUG") {
 		  if (debug) {
-		    debug = 0;
+		    ActivateDebug();
 		  } else {
 		    debug = 1;
 		    ActivateDebug();
 		  }
+		  retval["fin"] = 3;
+		  return retval;
 		} else if (inputText.txt === "BEAMAGE") {
 		  PC.setKnowsInfusion(1);
 		  for (var i=1; i<=8; i++) {
@@ -2165,10 +2167,150 @@ function DrawOptions() {
   
 }
 
+function DrawDebugOptions() {
+  var optdiv = "<div><div id='opt' class='zstats'>";
+  optdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
+  optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
+  optdiv += "<tr><td>DEBUG OPTIONS</td><td></td><td></td></tr>";
+  optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td></tr>";
+  optdiv += "<tr><td>Maps:</td><td></td><td";
+  if (targetCursor.page === 1) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (debugflags.map) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>Sound:</td><td></td><td";
+  if (targetCursor.page === 2) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (debugflags.sound) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>Light:</td><td></td><td";
+  if (targetCursor.page === 3) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (debugflags.light) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>Save/load:</td><td></td><td";
+  if (targetCursor.page === 4) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (debugflags.saveload) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>AI:</td><td></td><td";
+  if (targetCursor.page === 5) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (debugflags.ai) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>Combat:</td><td></td><td";
+  if (targetCursor.page === 6) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (debugflags.combat) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>Magic:</td><td></td><td";
+  if (targetCursor.page === 7) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (debugflags.magic) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>Time:</td><td></td><td";
+  if (targetCursor.page === 8) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (debugflags.time) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>Plot:</td><td></td><td";
+  if (targetCursor.page === 9) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (debugflags.plot) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>Events:</td><td></td><td";
+  if (targetCursor.page === 10) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (debugflags.events) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>Game Objects:</td><td></td><td";
+  if (targetCursor.page === 11) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (debugflags.gameobj) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+
+  optdiv += "</table></div></div>";
+  
+  DrawTopbarFrame("<p>Debug Options</p>");
+  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
+  $("#worldlayer").css("background-image", "");
+  $("#worldlayer").css("background-color", "black");
+  $('#displayframe').html(optdiv);
+  
+}
+
+
 function performOptions(code) {
   var retval = {};
     if ((code === 27) || (code === 79)) { // ESC or O again
       retval["fin"] = 0;
+      delete targetCursor.cmd;
     }
     else if ((code === 38) || (code === 219)) { // scroll up
       targetCursor.page--;
@@ -2177,7 +2319,11 @@ function performOptions(code) {
     }
     else if ((code === 40) || (code === 191)) { // scroll down
       targetCursor.page++;
-      if (targetCursor.page === 5) { targetCursor.page = 4; }
+      if (targetCursor.cmd === "o") {
+        if (targetCursor.page === 5) { targetCursor.page = 4; }
+      } else if (targetCursor.cmd === "debug") {
+        if (targetCursor.page === 12) { targetCursor.page = 11; }
+      }
       retval["fin"] = 1;
     }
     else if ((code === 32) || (code === 13)) {  // space or enter
@@ -2196,6 +2342,76 @@ function performOptions(code) {
       DrawDebugOptions();
     }
     return retval;
+}
+
+function ToggleDebugOption(opt) {
+  if (opt === 1) {
+    if (debugflags.map === 1) {
+      debugflags.map = 0;
+    } else {
+      debugflags.map = 1;
+    }		
+  } else if (opt === 2) {
+   	if (debugflags.sound) { 
+	    debugflags.sound = 0; 
+	  } else { 
+      debugflags.sound = 1; 
+    }
+  } else if (opt === 3) {
+    if (debugflags.light === 1) {
+      debugflags.light = 0;
+    } else {
+      debugflags.light = 1;
+    }
+  } else if (opt === 4) {
+    if (debugflags.saveload === 1) {
+      debugflags.saveload = 0;
+    } else {
+      debugflags.saveload = 1;
+    }
+  } else if (opt === 5) {
+    if (debugflags.ai === 1) {
+      debugflags.ai = 0;
+    } else {
+      debugflags.ai = 1;
+    }
+  } else if (opt === 6) {
+    if (debugflags.combat === 1) {
+      debugflags.combat = 0;
+    } else {
+      debugflags.combat = 1;
+    }
+  } else if (opt === 7) {
+    if (debugflags.magic === 1) {
+      debugflags.magic = 0;
+    } else {
+      debugflags.magic = 1;
+    }
+  } else if (opt === 8) {
+    if (debugflags.time === 1) {
+      debugflags.time = 0;
+    } else {
+      debugflags.time = 1;
+    }
+  } else if (opt === 9) {
+    if (debugflags.plot === 1) {
+      debugflags.plot = 0;
+    } else {
+      debugflags.plot = 1;
+    }
+  } else if (opt === 10) {
+    if (debugflags.events === 1) {
+      debugflags.events = 0;
+    } else {
+      debugflags.events = 1;
+    }
+  } else if (opt === 11) {
+    if (debugflags.gameobj === 1) {
+      debugflags.gameobj = 0;
+    } else {
+      debugflags.gameobj = 1;
+    }
+  }
 }
 
 function ToggleOption(opt) {

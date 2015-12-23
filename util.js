@@ -83,6 +83,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   var retval = param.retval;
   var callback = param.callback;
   var ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
+  var returnhtml;
 
   var tablehtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
 
@@ -300,7 +301,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   	}
 	
 	  if (keepmap === 0) {
-	    if (debug) { dbs.writeln("<span style='color:brown; font-weight:bold'>DESTROYING MAP " + frommap.getName() + ".</span><br />"); }	
+	    if (debug && debugflags.map) { dbs.writeln("<span style='color:brown; font-weight:bold'>DESTROYING MAP " + frommap.getName() + ".</span><br />"); }	
 		  maps.deleteMap(frommap.getName());
 		  
 		  // remove stuff from the map from the timelines
@@ -762,14 +763,14 @@ function PerformTrap(who, trap, traplvl, trapped) {
   
   if (trap === "dart") {
     if (!IsAdjacent(who,trapped)) {
-      if (debug) { dbs.writeln("Dart trap fires, misses everyone (telekinesis)<br />"); }
+      if (debug && debugflags.gameobj) { dbs.writeln("Dart trap fires, misses everyone (telekinesis)<br />"); }
       maintext.addText("TRAP! A dart flies out and misses everything.");
       return 0;
     }
     var def = who.getDefense();
     var tohit = (2*traplvl - def)/100;
     if (tohit < .05) { tohit = .05; }
-    if (debug) { dbs.writeln("Dart trap fires, lvl " + traplvl + ", player defense is " + def + ", change to hit is " + tohit + "<br />"); }
+    if (debug && debugflags.gameobj) { dbs.writeln("Dart trap fires, lvl " + traplvl + ", player defense is " + def + ", change to hit is " + tohit + "<br />"); }
     if (Math.random() < tohit) {  // dart hits!
       maintext.addText("TRAP! A dart strikes you. You are poisoned.");
       var poison = localFactory.createTile("Poison");
@@ -782,7 +783,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
     } 
   } else if (trap === "acid") {
     if (!IsAdjacent(who,trapped)) {
-      if (debug) { dbs.writeln("Acid trap fires, misses everyone (telekinesis)<br />"); }
+      if (debug && debugflags.gameobj) { dbs.writeln("Acid trap fires, misses everyone (telekinesis)<br />"); }
       maintext.addText("TRAP! Acid spews forth, missing everything.");
       return 0;
     }
@@ -793,7 +794,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
     return 1;
   } else if (trap === "gas") {
     if (!IsAdjacent(who,trapped)) {
-      if (debug) { dbs.writeln("Gas trap fires, misses everyone (telekinesis)<br />"); }
+      if (debug && debugflags.gameobj) { dbs.writeln("Gas trap fires, misses everyone (telekinesis)<br />"); }
       maintext.addText("TRAP! Poison gas billows forth, but disperses before it reaches you.");
       return 0;
     }
@@ -804,7 +805,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
     return 1;    
   } else if (trap === "explosion") {
     if (!IsAdjacent(who,trapped)) {
-      if (debug) { dbs.writeln("Explosion trap fires, misses everyone (telekinesis)<br />"); }
+      if (debug && debugflags.gameobj) { dbs.writeln("Explosion trap fires, misses everyone (telekinesis)<br />"); }
       maintext.addText("TRAP! The lock explodes, but you just feel a little heat.");
       return 0;
     }
@@ -815,7 +816,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
     return 1;
   } else if (trap === "drain") {
     if (!IsAdjacent(who,trapped)) {
-      if (debug) { dbs.writeln("Drain trap fires, misses everyone (telekinesis)<br />"); }
+      if (debug && debugflags.gameobj) { dbs.writeln("Drain trap fires, misses everyone (telekinesis)<br />"); }
       maintext.addText("TRAP! You feel a distant pull on your mind, but then it passes.");
       return 0;
     }
@@ -1128,9 +1129,9 @@ function CheckAbsorb(dam,to,from,type) {
   }
   
   if (absorb !== 0) {
-    if (debug) { dbs.writeln("Damage modified: " + dam + " becomes "); }
+    if (debug && debugflags.gameobj) { dbs.writeln("Damage modified: " + dam + " becomes "); }
     dam = dam * (1-(absorb/100));
-    if (debug) { dbs.writeln(dam + ".<br />"); }
+    if (debug && debugflags.gameobj) { dbs.writeln(dam + ".<br />"); }
   }
 //  if (dam < 1) { dam = 1; }
   

@@ -25,7 +25,6 @@ PC.assignSerial();
 //var audioplayers = create_audio();
 var nowplaying;
 var laststep = "left";
-var gamestate = new GameStateData();
 DU.maps = new MapMemory();
 var maps = DU.maps; // alias
 //var worldmap = new GameMap();
@@ -81,7 +80,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
   }
 
   var debugcolor = "#0000cc";
-  if (debug) { dbs.writeln("<br /><br />"); }
+//  if (debug) { dbs.writeln("<br /><br />"); }
 	
   if (how === "draw") {
     displayspecs = getDisplayCenter(themap,centerx,centery);
@@ -250,6 +249,9 @@ function DoAction(code, ctrl) {
         }
         else if (retval["fin"] === 1) {
           PC.endTurn(retval["initdelay"]);
+        }
+        else if (retval["fin"] === 3) {
+          gamestate.setMode("options");
         }
         maintext.setInputLine("&gt;");
         maintext.addText(retval["txt"]);

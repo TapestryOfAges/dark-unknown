@@ -1,17 +1,36 @@
 
 "use strict";
 
-var debug = 1;
+var debug = 0;
 var debugscreen;
 var dbs;
 var debugflags = {};
+  debugflags.map = 1
+  debugflags.sound = 1;
+  debugflags.light = 1;
+  debugflags.saveload = 1;
+  debugflags.ai = 1;
+  debugflags.combat = 1;
+  debugflags.magic = 1;
+  debugflags.time = 1;
+  debugflags.plot = 1;
+  debugflags.events = 1;
+  debugflags.gameobj = 1;
 // var deeptest = 0;
 
 if (debug) {  ActivateDebug(); }
 
 function ActivateDebug() { 
-  debugscreen = window.open('','debugscreen');
-  dbs = debugscreen.document;
+  if (!dbs) {
+    debugscreen = window.open('','debugscreen');
+    dbs = debugscreen.document;
+  }
+  
+  targetCursor.page = 1;
+  targetCursor.cmd = "debug";
+    
+  DrawDebugOptions();		
+
 }
 
 

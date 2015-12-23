@@ -209,6 +209,6 @@ mappages["gauntlet"].onload = function(mapref) {
 
 mappages["gauntlet"].check_anne = function(mapref) {
   mapref.Exit = function(who,tomap,fromx,fromy,tox,toy) {
-    if (DU.gameflags.anna_return) { DU.gameflags.anna_left = 1; }
+    if ((who === PC) && DU.gameflags.anna_return) { DU.gameflags.anna_left = 1; }
   }
 }

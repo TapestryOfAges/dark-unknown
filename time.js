@@ -104,7 +104,7 @@ Timeline.prototype.addAtTime = function(event, timestamp) {
 //		alert(this.tickstream.getTimestamp());
 //		alert(event.entity.name);
 	}
-  if (debug) {
+  if (debug && debugflags.time) {
     dbs.writeln("<span style='color:brown;font-weight:bold'>Tick added to timeline: " + event.getEntity().getName() + " added at " + timestamp + ".</span><br />");
     
     dbs.writeln(this.createDebugTimeline());
@@ -147,8 +147,8 @@ Timeline.prototype.removeEntityFrom = function(entity) {
 	  } else {
 		  prevtick.setNextTick(checktick.getNextTick());
 		}
-		dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline: " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />");
-		dbs.writeln(this.createDebugTimeline());
+		if (debug && debugflags.time) { dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline: " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />"); }
+		if (debug && debugflags.time) { dbs.writeln(this.createDebugTimeline()); }
 	}
 }
 
@@ -195,7 +195,7 @@ Timeline.prototype.cleanTimeline = function() {
       } else {
         prevtick.setNextTick(checktick.getNextTick());
       }
-      dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />");
+      if (debug && debugflags.time) { dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />"); }
     } else {
       prevtick = checktick;
     }
@@ -207,7 +207,7 @@ Timeline.prototype.cleanTimeline = function() {
   var mapname = entity.getHomeMap().getName();
   if (!maps.getMap(mapname)) {
     // remove the last tick on the timeline
-    dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />");
+    if (debug && debugflags.time) { dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />"); }
     prevtick.setNextTick("");
   }
 }
