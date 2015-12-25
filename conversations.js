@@ -245,11 +245,12 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         }
         if (!aoife) { alert("Couldn't find Aoife to change her AI."); }
         else {
-          aoife.setCurrentAI("FightGarrick");
-          if (debug && (debugflags.plot || debugflags.ai)) { dbs.writeln("Aoife's AI changes to FightGarrick.<br />"); }        
-          var mace = localFactory.createTile("Mace");
+          aoife.setCurrentAI("AoifeAttack");
+          if (debug && (debugflags.plot || debugflags.ai)) { dbs.writeln("Aoife's AI changes to AoifeAttack.<br />"); }        
+          var mace = localFactory.createTile("Shortsword");
           aoife.addToInventory(mace,1);
-          aoife.setWeapon(mace);
+          aoife.setWeapon(mace);  // no longer actually a mace
+          aoife.setAttitude("defensive");
           // to set her back, just reset to PeaceAI
         }
       }

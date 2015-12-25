@@ -80,7 +80,7 @@ ais.seekPC = function(who,radius) {
 ais.combat = function(who) {
   var retval = {};
   retval["fin"] = 1;
-  whomap = who.getHomeMap();
+  var whomap = who.getHomeMap();
   
   if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>" + who.getName() + " " + who.getSerial() + " in combat AI.</span><br />"); } 
  
@@ -641,13 +641,26 @@ ais.GarrickAttack = function(who) {
   if (who.getHP() <= 1000) { // Garrick gets 1030 hp when he attacks, so he can always surrender
     maintext.addText('Garrick falls to his knees and cries, "You win!"');
     retval["wait"] = 1;
-    retval["input"] = "[MORE]";
+    maintext.setInputLine("&gt;[MORE]");
+    maintext.drawTextFrame(); 
     gamestate.setMode("anykey");
     targetCursor.command = "garrick";
     targetCursor.stage = 0;
     who.setCurrentAI("GarrickEscort");
     who.setMaxHP(30);
     who.setHP(10);
+    who.setAttitude("friendly");
+    who.setAggro(0);
+    var aoife;
+    var npcs = PC.getHomeMap().npcs.getAll();
+    $.each(npcs, function(idx,val) {
+      if (val.getNPCName() === "Aoife") { aoife = val; }
+    });
+    aoife.setCurrentAI("AoifeEscort");
+    aoife.setMaxHP(30);
+    aoife.setHP(30);
+    aoife.setAttitude("friendly");
+    aoife.setAggro(0);
     return retval;
   } else {
     if (IsAdjacent(who,PC)) {
@@ -677,15 +690,14 @@ ais.GarrickAttack = function(who) {
 function GarrickScene(stage) {
   gamestate.setMode("null");
   var aoife;
+  var garrick
   var npcs = PC.getHomeMap().npcs.getAll();
   $.each(npcs, function(idx,val) {
     if (val.getNPCName() === "Aoife") { aoife = val; }
+    if (val.getNPCName() === "Garrick") { garrick = val; }
   });
   var retval = {};
   if (aoife) {
-    aoife.setCurrentAI("AoifeEscort");
-    aoife.setMaxHP(30);
-    aoife.setHP(30);
     if (stage === 0) {
       maintext.addText('Aoife points at Garrick. "All right, you. Will you come quietly, now? You know where you\'re going, after a stunt like that."');
       targetCursor.stage++;
@@ -697,6 +709,8 @@ function GarrickScene(stage) {
       targetCursor.stage++;
     } else if (stage === 3) {
       maintext.addText('She turns to you. "He\'ll get a cell to himself, for a while. You won\'t have to worry about him again." She shakes her head. "Sorry that happened."');
+      var NPCevent = new GameEvent(garrick);
+      DUTime.addAtTimeInterval(NPCevent,garrick.nextActionTime());
       retval["fin"] = 1;
     }
     return retval;
@@ -713,19 +727,19 @@ ais.AoifeAttack = function(who) {
   var aoifemap = who.getHomeMap();
   var npcs = aoifemap.npcs.getAll();
   var garrick;
-  $.each (npcs, function(idx, val) {
+  $.each(npcs, function(idx, val) {
     if (val.getNPCName() === "Garrick") { garrick = val; }
   });
   if (garrick) {
     if(IsAdjacent(who,garrick)) {
-      var result = Attack(who,garrick);
+      retval = Attack(who,garrick);
     } else {
-      var path = themap.getPath(who.getx(), who.gety(), garrick.getx(), garrick.gety(), MOVE_WALK_DOOR);
+      var path = aoifemap.getPath(who.getx(), who.gety(), garrick.getx(), garrick.gety(), MOVE_WALK_DOOR);
       path.shift();
       var diffx = path[0][0] - who.getx();
       var diffy = path[0][1] - who.gety();
-      var fullx = PC.getx() - who.getx();
-      var fully = PC.gety() - who.gety();
+      var fullx = garrick.getx() - who.getx();
+      var fully = garrick.gety() - who.gety();
       var moved = who.moveMe(diffx,diffy);
       if (!moved["canmove"]) {
         if (diffx !== 0) {
@@ -741,6 +755,7 @@ ais.AoifeAttack = function(who) {
   } else {
     alert("Where'd Garrick go?");
   }
+  return retval;
 }
 
 ais.GarrickEscort = function(who) {
@@ -788,10 +803,10 @@ ais.GarrickEscort = function(who) {
       who.setCurrentAI(who.getPeaceAI());
       return retval;      
     }
+    path.shift();
+    if (!path[0]) { who.dest++; }
+    else { pathfound = 1; }
   }
-  path.shift();
-  if (!path[0]) { who.dest++; }
-  else { pathfound = 1; }
   
   // step on the path
   // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
@@ -821,7 +836,7 @@ ais.AoifeEscort = function(who) {
   var allnpcs = themap.npcs.getAll();
   var garrick;
   $.each(allnpcs, function(idx,val) {
-    if (val.getNPCName() === "Garrick") { garrick = 1;}
+    if (val.getNPCName() === "Garrick") { garrick = val;}
   });
   if (garrick.getx() < 10) {
     who.setCurrentAI(who.getPeaceAI());
@@ -829,10 +844,28 @@ ais.AoifeEscort = function(who) {
   }
   var path = themap.getPath(who.getx(), who.gety(), garrick.getx(), garrick.gety(), MOVE_WALK_DOOR);
   path.shift();
+  path.pop();
   if (path[0]) {
-    StepOrDoor(who,path[0]);
+    var moved = StepOrDoor(who,path[0]);
+    if (!moved) {
+      var diffx = path[0][0] - who.getx();
+      var diffy = path[0][1] - who.gety();
+      var fullx = 6 - who.getx();
+      var fully = 32 - who.gety();
+
+      if (diffx !== 0) {
+        if (fully > 0) { who.moveMe(0,1); }
+        else { who.moveMe(0,-1); }
+      } else {
+        if (fullx > 0) { who.moveMe(1,0); }
+        else { who.moveMe(-1,0); }
+      }
+    }
+  }
+      
+    }
   } else {
-    if ((themap === PC.getHomeMap()) && (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) < 6)) {
+    if ((themap === PC.getHomeMap()) && (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) < 6) && (Math.random() < .3)) {
       maintext.addText('Aoife says, "Come on, let\'s go."');
     }
   }
