@@ -1143,7 +1143,7 @@ function PerformTalkTarget() {
   if (top.getAttitude() !== "friendly") {
     var pronoun = top.getGenderedTerms().pronoun;
     pronoun = pronoun.charAt(0).toUpperCase() + pronoun.slice(1);
-    retval["txt"] = pronoun + "does not want to talk to you.";
+    retval["txt"] = pronoun + " does not want to talk to you.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
   

@@ -261,7 +261,7 @@ GameStateData.prototype.loadGame = function() {
           if (debug && debugflags.saveload) { dbs.writeln("adding " + equipment.name + "... "); }
           val.setArmor(equipment);
         }
-        if (equipment.checkType("Weapon")) {
+        if (equipment.checkType("Weapon") && !equipment.checkType("Missile")) {
           if (debug && debugflags.saveload) { dbs.writeln("adding " + equipment.name + "... "); }
           val.setWeapon(equipment);
         }

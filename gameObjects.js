@@ -222,7 +222,7 @@ GameObject.prototype.copy = function(type) {
       copydata[idx] = val;
       if (debug && debugflags.saveload) { dbs.writeln(idx + " different, copying... "); }
     } else if ((idx === "currentPoI") || (idx === "losupclose")){
-      copydata[idx] = {};
+//      copydata[idx] = {};
       if (debug && debugflags.saveload) { dbs.writeln(idx + " deliberately not saved... "); }
     } else if (idx === "spawned") { 
       // for things with collections
@@ -3318,7 +3318,7 @@ function DoorWindowTile() {
 	this.overlay = "009.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
-	this.losupclose = { distance : 1 , blocklos : 0 };
+	this.losupclose = {distance: 1 , blocklos: 0};
 	this.blockloe = 1;
 	this.prefix = "a";
 	this.desc = "door";
@@ -9491,7 +9491,6 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.nextMana = DUTime.getGameClock() + MANA_REGEN;
     this.nextHP = DUTime.getGameClock() + HP_REGEN;
     
-    
     var NPCEvent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCEvent,timing);  
     
@@ -9533,6 +9532,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		retval = tile.getBumpIntoResult(this);
 		if (retval["canmove"] === 0) { return retval; }
 //		var moveval = tile.canMoveHere(this, map.getTile(this.getx(),this.gety()));
+    if (debug && debugflags.ai) { dbs.writeln("<span style='color:brown'>" + this.getName() + " trying to move, checking canMoveHere for " + passx + "," + passy +".</span><br />"); }
 		var moveval = tile.canMoveHere(this.getMovetype());
 		retval["canmove"] = moveval["canmove"];
 	
@@ -9600,23 +9600,23 @@ NPCObject.prototype.myTurn = function() {
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
 
-  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + this.getName() + ", serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ".</span><br />"); }	
+  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock() + ".</span><br />"); }	
 	RunEffects(this);
 	
 	Regen(this);
   var awake = 1;
   if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze")) { awake = 0; }
+
+  var response = {};  
+  // will be = return value of AI call
   
 	// actual AI!
   if (awake) {	
   	var ainame=this.getCurrentAI().split("-");
-    if (this.getAggro()) {
+    if (this.getAggro() && ((this.getAttitude() === "friendly") || (this.getAttitude() === "hostile") || (this.getAttitude() === "neutral"))) {
       ainame[0] = "combat";
     }
     
-    var response = {};  
-  	// will be = return value of AI call
-
     if (ais[ainame[0]]) {
 	    if (ainame.length === 1) { ainame[1] = ""; }
 	    response = ais[ainame[0]](this, ainame[1]);
