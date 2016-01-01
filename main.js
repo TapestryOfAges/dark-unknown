@@ -38,7 +38,9 @@ var DULoot = SetLoots();            //
 var DULootGroups = SetLootGroups(); //  see loot.js and lootset.js for population
 var DUTraps = SetTraps();           //
 var displayspecs = {};
-var finder = new PF.AStarFinder();
+var finder = new PF.AStarFinder({
+  heuristic: PF.Heuristic.euclidean
+});
 DU.gameflags = {};
 DU.gameflags.music = 0;
 DU.gameflags.sound = 1;
