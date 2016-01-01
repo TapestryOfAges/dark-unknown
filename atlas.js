@@ -549,6 +549,7 @@ Acre.prototype.getInitDelay = function(mob) {
 	return 1;
 }
 
+// if nonpcs is true, this will return false if there is an NPC blocking movement. If it's false/missing, this ignores NPCs.
 Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	var terrain = this.getTerrain();
 	var totalpassability = terrain.getPassable();

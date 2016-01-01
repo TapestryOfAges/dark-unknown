@@ -736,20 +736,9 @@ ais.AoifeAttack = function(who) {
     } else {
       var path = aoifemap.getPath(who.getx(), who.gety(), garrick.getx(), garrick.gety(), MOVE_WALK_DOOR);
       path.shift();
-      var diffx = path[0][0] - who.getx();
-      var diffy = path[0][1] - who.gety();
       var fullx = garrick.getx() - who.getx();
       var fully = garrick.gety() - who.gety();
-      var moved = who.moveMe(diffx,diffy);
-      if (!moved["canmove"]) {
-        if (diffx !== 0) {
-          if (fully > 0) { who.moveMe(0,1); }
-          else { who.moveMe(0,-1); }
-        } else {
-          if (fullx > 0) { who.moveMe(1,0); }
-          else { who.moveMe(-1,0); }
-        }        
-      }
+      var moved = StepOrSidestep(who,path[0],[fullx,fully]);
       
     }
   } else {
@@ -792,14 +781,14 @@ ais.GarrickEscort = function(who) {
       who.dest++;
       return retval;
     } else if ((who.dest >= 8) && (who.dest <= 10)) {
-      StepOrDoor(who,[0,-1]);
+      StepOrDoor(who,[gx,gy+1]);
       who.dest++;
       return retval;
     } else if (who.dest === 11) {
       var doortile = themap.getTile(6,33);
       var door = doortile.getTopFeature();
       door.use(who);
-      door.lockMe();
+      door.lockMe(1);
       who.setCurrentAI(who.getPeaceAI());
       return retval;      
     }
@@ -810,21 +799,7 @@ ais.GarrickEscort = function(who) {
   
   // step on the path
   // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
-  var diffx = path[0][0] - gx;
-  var diffy = path[0][1] - gy;
-  var fullx = 6 - gx;
-  var fully = 32 - gy;
-  
-  var moved = StepOrDoor(who,path[0]);
-  if (!moved) {
-    if (diffx !== 0) {
-      if (fully > 0) { who.moveMe(0,1); }
-      else { who.moveMe(0,-1); }
-    } else {
-      if (fullx > 0) { who.moveMe(1,0); }
-      else { who.moveMe(-1,0); }
-    }
-  }
+  var moved = MoveOrSidestep(who, path, [6,32]);
   
   return retval;
 }
@@ -838,7 +813,7 @@ ais.AoifeEscort = function(who) {
   $.each(allnpcs, function(idx,val) {
     if (val.getNPCName() === "Garrick") { garrick = val;}
   });
-  if (garrick.getx() < 10) {
+  if (garrick.getx() < 7) {
     who.setCurrentAI(who.getPeaceAI());
     return retval;
   }
@@ -846,24 +821,8 @@ ais.AoifeEscort = function(who) {
   path.shift();
   path.pop();
   if (path[0]) {
-    var moved = StepOrDoor(who,path[0]);
-    if (!moved) {
-      var diffx = path[0][0] - who.getx();
-      var diffy = path[0][1] - who.gety();
-      var fullx = 6 - who.getx();
-      var fully = 32 - who.gety();
+    StepOrSidestep(who,path[0],[6,32]);
 
-      if (diffx !== 0) {
-        if (fully > 0) { who.moveMe(0,1); }
-        else { who.moveMe(0,-1); }
-      } else {
-        if (fullx > 0) { who.moveMe(1,0); }
-        else { who.moveMe(-1,0); }
-      }
-    }
-  }
-      
-    }
   } else {
     if ((themap === PC.getHomeMap()) && (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) < 6) && (Math.random() < .3)) {
       maintext.addText('Aoife says, "Come on, let\'s go."');
@@ -1359,4 +1318,67 @@ function FindClosestPoI(xval, yval, themap, poiname) {
     if (ind < closest) { closeind = i; }
   }
   return themap.network[poiname][closeind];
+}
+
+function findCombatPath() {
+        path.shift();
+        path.pop();
+        var finaldest = whomap.getTile(path[path.length-1][0],path[path.length-1][1]);
+        var firststep = whomap.getTile(path[0][0],path[0][1]);
+
+        // if path > 3ish, try to walk along it, if short, check if destination tile is occupied, 
+        // if so, search adjacent to approach to find an empty tile and pathfind to it.
+        if ((path.length > 3) || (!finaldest.getTopNPC() && !firststep.getTopNPC()))  {
+          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Path long enough or short but start and end positions are empty- walking.</span><br />"); }
+          var walk = StepOrSidestep(who,path[0],path[path.length-1]);
+        } else {
+          // path currently goes through some NPCs. Need to make a better path.
+          // first step- create a local pathgrid that takes NPCs into account.
+          // to get here the path distance can be no more than 4. Tweak this after playtest.
+          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Path is short but blocked- looking for a better path.</span><br />"); }
+
+          var leftx = who.getx();
+          var rightx = approach.getx();
+          if (rightx < leftx) { 
+            leftx = rightx; 
+            rightx = who.getx();
+          }
+          var topy = who.gety();
+          var bottomy = approach.gety();
+          if (topy > bottomy) {
+            topy = bottomy;
+            bottomy = who.gety();
+          }
+          leftx = leftx - 2;
+          topy = topy - 2;
+          rightx = rightx + 2;
+          bottomy = bottomy + 2;
+
+          if (rightx - leftx < 7) { rightx++; leftx--; }
+          if (bottomy - topy < 7) { bottomy++; topy--; }
+
+          if (leftx < 0) { leftx = 0; }
+          if (topy < 0) { topy = 0; }
+          if (rightx >= whomap.getWidth()) { rightx = whomap.getWidth()-1; }
+          if (bottomy >= whomap.getHeight()) { bottomy = whomap.getHeight()-1; }
+          
+          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Searching for a path inside bounding box- left: " + leftx + ", right: " + rightx + ", top: " + topy + ", bottom: " + bottomy + ".</span><br />"); }
+          // creates a box with the two entities in the corners, and then 
+          // stretches it to be large enough to find paths in
+
+          var temppathgrid = whomap.getPathGrid(who.getMovetype()).clone();
+          for (var i = leftx; i <= rightx; i++ ) {
+            for (var j = topy; j <= bottomy; j++ ) {
+              var thisspot = whomap.getTile(i,j);
+              if (thisspot.getTopNPC()) {
+                temppathgrid.setWalkableAt(i,j,false);
+              }
+            }
+          }
+          // Created pathgrid that is a duplicate of the maps, but with NPCs marked impassible. 
+          temppathgrid.setWalkableAt(who.getx(),who.gety(),true); // pathfinding requires start tile to be walkable
+          
+          // from here, find 5 paths, to enter and each corner
+          // each path requires its own clone with that location marked walkable- for corners, note if destination is occupied but still get path
+            
 }

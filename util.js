@@ -753,9 +753,19 @@ function DamageFlash() {
   setTimeout(function() { $('#hpcell').css("background-color", "black"); $('#hpcell').css("color", "white"); }, 250);
 }
 
-function GetDistance(x1,y1,x2,y2) {
+function GetDistance(x1,y1,x2,y2,disttype) {
+  if (disttype === "square") { return GetSquareDistance(x1,y2,x2,y2); }
+  if (disttype === "manhatten") { return GetManhattenDistance(x1,y1,x2,y2); }
   var dist = Math.pow(Math.pow(x1-x2,2) + Math.pow(y1-y2,2), 1/2)
   return dist;
+}
+
+function GetSquareDistance(x1,y1,x2,y2) {
+  return (Math.max(Math.abs(x1-x2), Math.abs(y1-y2)));
+}
+
+function GetManhattenDistance(x1,y1,x2,y2) {
+  return (Math.abs(x1-x2) + Math.abs(y1-y2));
 }
 
 function PerformTrap(who, trap, traplvl, trapped) {
@@ -998,25 +1008,18 @@ function FadeIn(duration) {
   
 }
 
-function GetEffectGraphic(start, dest, params) {
-  var ammo = {};
-  ammo.graphic = params.graphic;
-  ammo.yoffset = params.yoffset;
-  var diffx = dest.getx() - start.getx();
-  var diffy = dest.gety() - start.gety();
+function GetOctant(diffx, diffy) {
+  // diffx and diffy created via dest.x-start.x and dest.y-start.y
+  
   if ((diffx === 0) && (diffy < 0)) {
-    ammo.xoffset = 0;
-    ammo.fired = 0;
+    return 0;
   } else if ((diffx === 0) && (diffy > 0)) {
-    ammo.xoffset = -4*32;
-    ammo.fired = 4;
+    return 4;
   } else {
     if ((diffy === 0) && (diffx > 0)) {
-      ammo.xoffset = -2*32; 
-      ammo.fired = 2;
+      return 2;
     } else if ((diffy === 0) && (diffx < 0)) {
-      ammo.xoffset = -6*32;
-      ammo.fired = 6;
+      return 6;
     }
     else { 
       var horflip = 0;
@@ -1031,40 +1034,42 @@ function GetEffectGraphic(start, dest, params) {
       }
       slope = diffy/diffx;
       if ((slope > 2.42) && (verflip === 0)) {
-        ammo.xoffset = 0;
-        ammo.fired = 0;
+        return 0;
       }
       else if ((slope > 2.42) && (verflip === 1)) {
-        ammo.xoffset = -4*32;
-        ammo.fired = 4;
+        return 4;
       }
       else if ((slope < .414) && (horflip === 0)) {
-        ammo.xoffset = -2*32;
-        ammo.fired = 2;
+        return 2;
       }
       else if ((slope < .414) && (horflip === 1)) {
-        ammo.xoffset = -6*32;
-        ammo.fired = 6;
+        return 6;
       }
       else if ((verflip === 0) && (horflip === 0)) {
-        ammo.xoffset = -32;
-        ammo.fired = 1;
+        return 1;
       }
       else if ((verflip === 1) && (horflip === 0)) {
-        ammo.xoffset = -3*32;
-        ammo.fired = 3;
+        return 3;
       }
       else if ((verflip === 1) && (horflip === 1)) {
-        ammo.xoffset = -5*32;
-        ammo.fired = 5;
+        return 5;
       }
       else if ((verflip === 0) && (horflip === 1)) {
-        ammo.xoffset = -7*32;
-        ammo.fired = 7;
+        return 7;
       }
-      else { alert("Error in ammo direction finding."); }
+      else { alert("Error in octant finding."); }
     }
-  }
+  }  
+}
+
+function GetEffectGraphic(start, dest, params) {
+  var ammo = {};
+  ammo.graphic = params.graphic;
+  ammo.yoffset = params.yoffset;
+  var diffx = dest.getx() - start.getx();
+  var diffy = dest.gety() - start.gety();
+  ammo.fired = GetOctant(diffx,diffy);
+  ammo.xoffset = ammo.fired * -32;
   if (!params.directionalammo) {
     ammo.xoffset = params.xoffset;
   }

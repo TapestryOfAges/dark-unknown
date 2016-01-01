@@ -407,3 +407,36 @@ function StepOrDoor(who, where) {
   
   return 0;
 }
+
+function StepOrSidestep(who, path, finaldest) {
+  var moved = StepOrDoor(who,[path[0], path[1]]);
+  if (!moved) {
+    var diffx = path[0] - who.getx();
+    var diffy = path[1] - who.gety();
+    var fullx = finaldest[0] - who.getx();
+    var fully = finaldest[1] - who.gety();
+
+    if (diffx !== 0) {
+      if (fully > 0) { moved = who.moveMe(0,1); }
+      else if (fully < 0 ) { moved = who.moveMe(0,-1); }
+      else { 
+        var parity = 1;
+        if (Math.random() < .5) { 
+          parity = -1;
+        }
+        moved = who.moveMe(0,parity); 
+      }
+    } else {
+      if (fullx > 0) { moved = who.moveMe(1,0); }
+      else if (fullx < 0) { moved = who.moveMe(-1,0); }
+      else {
+        var parity = 1;
+        if (Math.random() < .5) {
+          parity = -1;
+        } 
+        moved = who.moveMe(parity,0);
+      }
+    }
+  }
+  return moved;
+}
