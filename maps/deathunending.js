@@ -1,0 +1,82 @@
+"use strict";
+
+mappages["deathunending1"] = {};
+mappages["deathunending1"].terrain = [];
+ mappages["deathunending1"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["deathunending1"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["deathunending1"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["deathunending1"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["deathunending1"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["deathunending1"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["deathunending1"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["deathunending1"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["deathunending1"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["deathunending1"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK cw cw cw cw cw cw cw BK BK BK BK BK';
+mappages["deathunending1"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cw BK BK BK cw cw cf cf cf cf cf cw cw BK BK BK BK';
+mappages["deathunending1"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cf cf cf cf cw cw cw cw cw cw cw cf cf cf cf cf cf cf cw cw BK BK BK';
+mappages["deathunending1"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cw cw cw BK cw cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK';
+mappages["deathunending1"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cw cw BK BK cw cw cf cf cf cw cf cf cf cf cf cf cf cf cw BK BK BK';
+mappages["deathunending1"].terrain[14] = 'BK BK BK BK BK BK cw cw cw cw cw cf cf cf cf cf cf cf cf cw cw BK cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK';
+mappages["deathunending1"].terrain[15] = 'BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cw cf cf cf cw BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK';
+mappages["deathunending1"].terrain[16] = 'BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK';
+mappages["deathunending1"].terrain[17] = 'BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw cw cw cf cf cf cf cf cf cf cw BK BK';
+mappages["deathunending1"].terrain[18] = 'BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK cw cf cf cf cf cf cf cf cw BK BK';
+mappages["deathunending1"].terrain[19] = 'BK BK BK BK cw cf cf cf cf cf cf cf cf cw cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK cw cw cf cf cf cf cf cf cw BK BK';
+mappages["deathunending1"].terrain[20] = 'BK BK BK BK cw cw cf cf cf cf cf cf cw cw cf cf cf cf cf cf cw cf cf cf cw cw BK BK BK BK BK BK cw cf cf cf cf cf cf cw BK BK';
+mappages["deathunending1"].terrain[21] = 'BK BK BK BK BK cw cw cw cf cf cf cf cw cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK cw cw cw cf cf cf cf cw BK BK';
+mappages["deathunending1"].terrain[22] = 'BK BK BK BK BK BK BK cw cf cf cw cw cw BK cw cw cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK cw cw cw cw cw cw BK BK';
+mappages["deathunending1"].terrain[23] = 'BK BK BK BK BK BK BK cw cw cw cw BK BK BK BK cw cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[31] = 'BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[32] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[33] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[34] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[35] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[36] = 'BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[37] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[38] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[39] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[40] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["deathunending1"].terrain[41] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["deathunending1"].features = [];
+mappages["deathunending1"].features[0] = {name : 'LadderUp', x : 15, y : 5, entermap : 'darkunknown', enterx : 39, entery : 48};
+mappages["deathunending1"].features[1] = {name : 'PetrifiedRoper', x : 34, y : 19};
+mappages["deathunending1"].features[2] = {name : 'PetrifiedRoper', x : 36, y : 19};
+mappages["deathunending1"].features[3] = {name : 'PetrifiedRoper', x : 37, y : 18};
+mappages["deathunending1"].features[4] = {name : 'PetrifiedRoper', x : 35, y : 17};
+mappages["deathunending1"].features[5] = {name : 'PetrifiedRoper', x : 37, y : 15};
+mappages["deathunending1"].features[6] = {name : 'PetrifiedRoper', x : 35, y : 13};
+
+
+mappages["deathunending1"].npcs = [];
+
+mappages["deathunending1"].desc = "Death Unending";
+mappages["deathunending1"].music = 'Dungeon';
+mappages["deathunending1"].exitmap = 'darkunknown';
+mappages["deathunending1"].exitx = '39';
+mappages["deathunending1"].exity = '48';
+mappages["deathunending1"].wraps = 'None';
+mappages["deathunending1"].enterx = '15';
+mappages["deathunending1"].entery = '5';
+mappages["deathunending1"].seeBelow = '';
+mappages["deathunending1"].lightLevel = 'bright';
+mappages["deathunending1"].alwaysRemember = '0';
+mappages["deathunending1"].scale = '1';
+mappages["deathunending1"].enterscript = '';
+mappages["deathunending1"].entertestscript = '';
+mappages["deathunending1"].exitscript = '';
+mappages["deathunending1"].exittestscript = '';
+mappages["deathunending1"].returnmap = 'darkunknown';
+mappages["deathunending1"].returnx = '39';
+mappages["deathunending1"].returny = '48';
+mappages["deathunending1"].returninfused = '0';
+mappages["deathunending1"].linkedMaps = [""];
+
+

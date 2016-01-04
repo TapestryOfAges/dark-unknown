@@ -270,8 +270,8 @@ function CanMissileAttack(who) {
     enemystring = "friendly";
   }
   var themap = who.getHomeMap();
-  for (i = -1; i <=1 ; i++) {
-    for (j = -1; j <= 1; j++) {
+  for (var i = -1; i <=1 ; i++) {
+    for (var j = -1; j <= 1; j++) {
       var tile = themap.getTile(who.getx() + i, who.gety() + j);
       if (tile != "OoB") { 
         var npcs = tile.getNPCs();
@@ -387,7 +387,7 @@ function StepOrDoor(who, where) {
   var whomap = who.getHomeMap();
   var tile = whomap.getTile(where[0],where[1]);
   var fea = tile.getTopFeature();
-  if (fea && fea.closedgraphic) {
+  if (fea && fea.closedgraphic && who.specials["open_door"]) {
     if (!((typeof fea.getLocked === "function") && (fea.getLocked()))) {
       // door is not locked    
       if (!fea.open) {
@@ -417,24 +417,24 @@ function StepOrSidestep(who, path, finaldest) {
     var fully = finaldest[1] - who.gety();
 
     if (diffx !== 0) {
-      if (fully > 0) { moved = who.moveMe(0,1); }
-      else if (fully < 0 ) { moved = who.moveMe(0,-1); }
+      if (fully > 0) { moved = who.moveMe(0,1,1); }
+      else if (fully < 0 ) { moved = who.moveMe(0,-1,1); }
       else { 
         var parity = 1;
         if (Math.random() < .5) { 
           parity = -1;
         }
-        moved = who.moveMe(0,parity); 
+        moved = who.moveMe(0,parity,1); 
       }
     } else {
-      if (fullx > 0) { moved = who.moveMe(1,0); }
-      else if (fullx < 0) { moved = who.moveMe(-1,0); }
+      if (fullx > 0) { moved = who.moveMe(1,0,1); }
+      else if (fullx < 0) { moved = who.moveMe(-1,0,1); }
       else {
         var parity = 1;
         if (Math.random() < .5) {
           parity = -1;
         } 
-        moved = who.moveMe(parity,0);
+        moved = who.moveMe(parity,0,1);
       }
     }
   }

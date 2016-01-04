@@ -16,38 +16,17 @@ Conversation.prototype = new Object();
 Conversation.prototype.respond = function(speaker, keyword, skipahead) { 
     
   if (!skipahead) { skipahead = targetCursor.skipahead; }
-  var flags_met = 1;
+  var flags_met;
   var necessary_item;
   var keep_talking = 0;
   if (!keyword) { keyword = "bye"; }
     
   keyword = keyword.toLowerCase();
 
-  if (DU.gameflags.kiba_question) {
-    delete DU.gameflags.kiba_question;
-    // Kiba needed a third set of responses to some things, so when you are answering her
-    // question prompt, the responses are set up from here instead.
-    if (keyword === "kiba") {
-      maintext.addText('Kiba laughs. "No, I think I\'d know in that case."');
-      return 1;
-    } else if ((keyword === "erin") || (keyword === "aaron") || (keyword === "alexis") || (keyword === "dave") || (keyword === "sarah") || (keyword === "rhiannon") || (keyword === "franklin") || (keyword === "aoife")) {
-      maintext.addText('Kiba considers the possibility. "No, I don\'t think so."');
-      return 1;
-    } else if (keyword === "anna") {
-      if (DU.gameflags.anna_romance) {
-        keyword = "_anna";
-      } else {
-        maintext.addText('Kiba considers. "I\m not sure..."');
-        return 1;
-      }
-    } else {
-      maintext.addText('"That doesn\'t really make sense."');
-      return 1;
-    }
-  }
   var checkkeyword = 1;
 
   while (checkkeyword)  {
+    flags_met = 1;
     if (!this.hasOwnProperty(keyword)) {
       keyword = "_confused";
     }
@@ -253,6 +232,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
           aoife.setAttitude("defensive");
           // to set her back, just reset to PeaceAI
         }
+      } else if (triggers.set_flag === "kiba_rumor") {
+        delete DU.gameflags["kiba_question"];
       }
     } 
   }

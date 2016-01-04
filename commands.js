@@ -1149,6 +1149,12 @@ function PerformTalkTarget() {
   
     return retval;    
   }
+  if (top.getConversationFlag()) {
+    if (DU.gameflags[top.getConversationFlag()]) {
+      top.setConversationFlagged();
+    }
+  }
+
   var convo = top.getConversation();
   if (!convo || !conversations[convo]) {
     retval["txt"] = "No one there wishes to speak with you.";
@@ -1156,11 +1162,6 @@ function PerformTalkTarget() {
     retval["input"] = "&gt;";
     
     return retval;
-  }
-  if (top.getConversationFlag()) {
-    if (DU.gameflags[top.getConversationFlag()]) {
-      top.setConversationFlagged();
-    }
   }
 
   maintext.addText("Talk to: " + top.getDesc());

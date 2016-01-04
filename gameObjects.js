@@ -6515,7 +6515,7 @@ MoongateTile.prototype.walkon = function(who) {
 
 function PetrifiedRoperTile() {
   this.name = "PetrifiedRoper";
-  this.graphic = "petrifiedropwer.gif";
+  this.graphic = "petrifiedroper.gif";
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "petrified roper";
@@ -8749,6 +8749,7 @@ NPCObject.prototype.setConversationFlag = function (cf) {
 
 NPCObject.prototype.setConversationFlagged = function () {
   this.conversation= this.conversation + "_a";  
+  this.setConversationFlag("");
 }
 
 NPCObject.prototype.getMerch = function() {
@@ -9652,7 +9653,7 @@ NPCObject.prototype.myTurn = function() {
   
 //  var nextEntity = DUTime.executeNextEvent().getEntity();
 //  nextEntity.myTurn();
-  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>*" + this.getName() + ", serial " + this.getSerial() + " is ending its turn.*</span><br />"); }	
+  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>*" + this.getName() + ", serial " + this.getSerial() + " is ending its turn at " + this.getx() + "," + this.gety() + ".*</span><br />"); }	
   return 1;
 }
 
@@ -9950,6 +9951,7 @@ NPCObject.prototype.setTurnsToRecalcDest = function(timeuntil) {
 }
 
 NPCObject.prototype.getPoI = function() {
+  if (typeof this.currentPoI !== "object") { this.currentPoI = {}; }
   return this.currentPoI;
 }
 

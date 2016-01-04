@@ -67,7 +67,7 @@ ais.seekPC = function(who,radius) {
       // isn't at home, doesn't see PC, heads home
       var path = whomap.getPath(who.getx(),who.gety(),who.startx,who.starty,who.getMovetype());
       path.shift();
-      var moved = StepOrDoor(who,path[0]);
+      var moved = StepOrSidestep(who,path[0],[who.startx, who.starty]);
       if (!moved) {
         var moveval = ais.Randomwalk(who,25,25,25,25);
       }
@@ -81,6 +81,8 @@ ais.combat = function(who) {
   var retval = {};
   retval["fin"] = 1;
   var whomap = who.getHomeMap();
+  var whox = who.getx();
+  var whoy = who.gety();
   
   if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>" + who.getName() + " " + who.getSerial() + " in combat AI.</span><br />"); } 
  
@@ -97,7 +99,7 @@ ais.combat = function(who) {
   
   // check to see if we should cease to aggro
   // need no one in your Band be within "forgetAt" radius
-  if (who.getForgetAt() && GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) > who.getForgetAt()) {
+  if (who.getForgetAt() && GetDistance(whox,whoy,PC.getx(),PC.gety()) > who.getForgetAt()) {
     var npcs = whomap.npcs.getAll();
     var anysee = 0;
     $.each(npcs, function(idx,val) {
@@ -124,99 +126,30 @@ ais.combat = function(who) {
     // run away! run away!
     if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Running away!</span><br />"); }
     var runfrom = FindNearestNPC(who, "enemy");
-    var diffx = who.getx() - runfrom.getx();
-    var diffy = who.gety() - runfrom.gety();
-    if (Math.abs(diffx) > Math.abs(diffy)) {
+    var diffx = whox - runfrom.getx();
+    var diffy = whoy - runfrom.gety();
+    var rundest = [];
+    var pathdest = [];
+    var coin = Math.random();
+    if ((Math.abs(diffx) > Math.abs(diffy)) || ((coin < .5) && (Math.abs(diffx) === Math.abs(diffy)))) {
       if (diffx > 0) {
-        var trymove = who.moveMe(1,0,1);   // move east, don't walk off maps
-        if (!trymove) {
-          if (Math.random() < .5) {
-            trymove = who.moveMe(0,1,1);
-            if (!trymove) {
-              trymove = who.moveMe(0,-1,1);
-            }
-          } else {
-            trymove = who.moveMe(0,-1,1);
-            if (!trymove) {
-              trymove = who.moveMe(0,1,1);
-            }
-          }
-        }
+        pathdest = [whox+1,whoy];
+        rundest = [whomap.getWidth()-1,whoy];
       } else {
-        var trymove = who.moveMe(-1,0,1); // move west, don't walk off maps
-        if (!trymove) {
-          if (Math.random() < .5) {
-            trymove = who.moveMe(0,1,1);
-            if (!trymove) {
-              trymove = who.moveme(0,-1,1);
-            }
-          } else {
-            trymove = who.moveMe(0,-1,1);
-            if (!trymoev) {
-              trymove = who.moveMe(0,1,1);
-            }
-          }
-        }
-      }
-    } else if (Math.abs(diffx) < Math.abs(diffy)) {
-      if (diffy > 0) {
-        var trymove = who.moveMe(0,1,1);   // move south, don't walk off maps
-        if (!trymove) {
-          if (Math.random() < .5) {
-            trymove = who.moveMe(1,0,1);
-            if (!trymove) {
-              trymove = who.moveMe(-1,0,1);
-            }
-          } else {
-            trymove = who.moveMe(-1,0,1);
-            if (!trymove) {
-              trymove = who.moveMe(1,0,1);
-            }
-          }
-        }
-      } else {
-        var trymove = who.moveMe(0,-1,1);   // move north, don't walk off maps
-        if (!trymove) {
-          if (Math.random() < .5) {
-            trymove = who.moveMe(1,0,1);
-            if (!trymove) {
-              trymove = who.moveMe(-1,0,1);
-            }
-          } else {
-            trymove = who.moveMe(1,0,1);
-            if (!trymove) {
-              trymove = who.moveMe(-1,0,1);
-            }
-          }
-        }
+        pathdest = [whox-1,whoy];
+        rundest = [0,whoy];
       }
     } else {
-      if (diffx > 1) {
-        if (Math.random() < .5) {
-          var trymove = who.moveMe(1,0,1);
-          if (!trymove) {
-            trymove = who.moveMe(0,-1,1);
-          }
-        } else {
-          var trymove = who.moveMe(0,-1,1);
-          if (!trymove) {
-            trymove = who.moveMe(1,0,1);
-          }
-        }
+      if (diffy > 0) {
+        pathdest = [whox,whoy+1];
+        rundest = [whox,whomap.getHeight()-1];
       } else {
-        if (Math.random() < .5) {
-          var trymove = who.moveMe(-1,0,1);
-          if (!trymove) {
-            trymove = who.moveMe(0,1,1);
-          }
-        } else {
-          var trymove = who.moveMe(0,1,1);
-          if (!trymove) {
-            trymove = who.moveMe(-1,0,1);
-          }
-        }
+        pathdest = [whox,whoy-1];
+        rundest = [whox,0];
       }
     }
+    var trymove = StepOrSidestep(who,pathdest,rundest);
+    return retval;
   }
   // whoo boy, here we are: still aggro, still on right map. Go!
 
@@ -268,139 +201,7 @@ ais.combat = function(who) {
         path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),who.getMovetype());
       }
       if (path) { 
-        path.shift();
-        path.pop();
-        var finaldest = whomap.getTile(path[path.length-1][0],path[path.length-1][1]);
-        var firststep = whomap.getTile(path[0][0],path[0][1]);
-
-        // if path > 3ish, try to walk along it, if short, check if destination tile is occupied, 
-        // if so, search adjacent to approach to find an empty tile and pathfind to it.
-        if ((path.length > 3) || (!finaldest.getTopNPC() && !firststep.getTopNPC()))  {
-          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Path long enough or short but start and end positions are empty- walking.</span><br />"); }
-          var walk = who.moveMe(path[0][0]-who.getx(),path[0][1]-who.gety(),1);
-          if (!walk["canmove"]) {
-            if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Something in the way- sidestepping.</span><br />"); }
-            if (path[0][0] === who.getx()) { // movement was N/S
-              this.Randomwalk(who,0,50,0,50);  // and so randomly walk E/W
-            } else {
-              this.Randomwalk(who,50,0,50,0);
-            }
-          }
-        } else {
-          // path currently goes through some NPCs. Need to make a better path.
-          // first step- create a local pathgrid that takes NPCs into account.
-          // to get here the path distance can be no more than 4. Tweak this after playtest.
-          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Path is short but blocked- looking for a better path.</span><br />"); }
-          
-          var leftx = who.getx();
-          var rightx = approach.getx();
-          if (rightx < leftx) { 
-            leftx = rightx; 
-            rightx = who.getx();
-          }
-          var topy = who.gety();
-          var bottomy = approach.gety();
-          if (topy > bottomy) {
-            topy = bottomy;
-            bottomy = who.gety();
-          }
-          leftx = leftx - 2;
-          topy = topy - 2;
-          rightx = rightx + 2;
-          bottomy = bottomy + 2;
-
-          if (rightx - leftx < 7) { rightx++; leftx--; }
-          if (bottomy - topy < 7) { bottomy++; topy--; }
-
-          if (leftx < 0) { leftx = 0; }
-          if (topy < 0) { topy = 0; }
-          if (rightx >= whomap.getWidth()) { rightx = whomap.getWidth()-1; }
-          if (bottomy >= whomap.getHeight()) { bottomy = whomap.getHeight()-1; }
-          
-          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Searching for a path inside bounding box- left: " + leftx + ", right: " + rightx + ", top: " + topy + ", bottom: " + bottomy + ".</span><br />"); }
-          // creates a box with the two entities in the corners, and then 
-          // stretches it to be large enough to find paths in
-                    
-          var temppathgrid = new PF.Grid(whomap.getWidth(),whomap.getHeight());
-          for (var i = 0; i<whomap.getWidth();i++) {
-            for (var j = 0; j<whomap.getHeight(); j++) {
-              if ((i >= leftx) && (i<= rightx) && (j >= topy) && (j <= bottomy)) {
-                var thisspot = whomap.getTile(i,j);
-                var response = thisspot.canMoveHere(who.getMovetype(), 1);
-                if (!response["canmove"]) { temppathgrid.setWalkableAt(i,j,false); }
-              } else {
-                // making a path grid just for the local area- making it full sized but everywhere outside
-                // local area is just set to impassible
-                temppathgrid.setWalkableAt(i,j,false);
-              }
-            }
-          }
-          
-          if (debug && debugflags.ai) { dbs.writeln("<br /><span style='color:orange;'>Made tmpgrid...</span><br />"); }
-          
-          var copygrid = temppathgrid.clone();
-          copygrid.setWalkableAt(who.getx(),who.gety(),true);
-          copygrid.setWalkableAt(approach.getx(),approach.gety(),true);
-          var directpath = finder.findPath(who.getx(),who.gety(),approach.getx(),approach.gety(),copygrid);
-          
-          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Made cardinal paths...</span><br />"); }
-          // that will find paths that go through the cardinal directions, now check diagonals, since you
-          // can attack on the diagonal
-          
-          copygrid.setWalkableAt(approach.getx(),approach.gety(),false);
-          var cpath = {};
-          cpath["nw"] = [];
-          var cornertile = whomap.getTile(approach.getx()-1,approach.gety()-1);
-          if (cornertile !== "OoB") {
-            if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
-              cpath["nw"] = finder.findPath(who.getx(),who.gety(),approach.getx()-1,approach.gety()-1,copygrid);
-              if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Made NW path...</span><br />"); }
-            }
-          }
-          cpath["ne"] = [];
-          var cornertile = whomap.getTile(approach.getx()+1,approach.gety()-1);
-          if (cornertile !== "OoB") {
-            if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
-              cpath["ne"] = finder.findPath(who.getx(),who.gety(),approach.getx()+1,approach.gety()-1,copygrid);
-              if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Made NE path...</span><br />"); }
-            }
-          }
-          cpath["sw"] = [];
-          var cornertile = whomap.getTile(approach.getx()-1,approach.gety()+1);
-          if (cornertile !== "OoB") {
-            if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
-              cpath["sw"] = finder.findPath(who.getx(),who.gety(),approach.getx()-1,approach.gety()+1,copygrid);
-              if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Made SW path...</span><br />"); }
-            }
-          }
-          cpath["se"] = [];
-          var cornertile = whomap.getTile(approach.getx()+1,approach.gety()+1);
-          if (cornertile !== "OoB") {
-            if (cornertile.canMoveHere(who.getMovetype(), 1).canmove) {
-              cpath["se"] = finder.findPath(who.getx(),who.gety(),approach.getx()+1,approach.gety()+1,copygrid);
-              if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Made SE path...</span><br />"); }
-            }
-          }
-          
-          var chosenpath = directpath;
-          $.each(cpath, function(idx, val) {
-            if ((chosenpath.length === 0) && (val.length > 0)) { chosenpath = val; }
-            else if ((val.length > 0) && (val.length < chosenpath.length)) { chosenpath = val; }
-          });
-          
-          if (chosenpath.length > 0) {
-            // I have somewhere to go!
-            if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Found a usable path.</span><br />"); }
-            chosenpath.shift();
-            chosenpath.pop();
-            // follow path. Then for those without a path, randomwalk.
-            var moved = who.moveMe(chosenpath[0][0]-who.getx(), chosenpath[0][1]-who.gety());
-            if (!moved) {
-              alert("Somehow, didn't move despite clear path. Bwah?");
-            }
-          } 
-
-        }
+        var moved = FindCombatPath(who,approach,path);
       } else {
         // no path found to target
         var moved = ais.Randomwalk(who,25,25,25,25);
@@ -455,21 +256,26 @@ ais.townsfolk = function(who) {
     if (who.getLeash() && (who.getLeash() < GetDistance(who.getx(), who.gety(), who.startx, who.starty))) {
       var path = themap.getPath(who.getx(),who.gety(),who.startx, who.starty, MOVE_WALK_DOOR);
       path.shift();  // first entry in the path is where it already stands
-      var acre = themap.getTile(path[0][0],path[0][1]);
-      var possdoor = acre.getTopFeature();
-      if (possdoor && (possdoor.closedgraphic)) { 
-        // there is a door in the way
-        if (!((typeof possdoor.getLocked === "function") && (possdoor.getLocked()))) {
-          // door is not locked
-          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
-          possdoor.use(who);
-          DrawMainFrame("one",who.getHomeMap().getName(),possdoor.getx(),possdoor.gety());
-          return retval;
-        }
+      if (path[0]){
+        var acre = themap.getTile(path[0][0],path[0][1]);
+        var possdoor = acre.getTopFeature();
+        if (possdoor && (possdoor.closedgraphic)) { 
+          // there is a door in the way
+          if (!((typeof possdoor.getLocked === "function") && (possdoor.getLocked()))) {
+            // door is not locked
+            if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
+            possdoor.use(who);
+            DrawMainFrame("one",who.getHomeMap().getName(),possdoor.getx(),possdoor.gety());
+            return retval;
+          }
+        } 
+        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Moving to " + path[0][0] + "," + path[0][1] + ".</span><br />"); }
+//        who.moveMe(path[0][0]-who.getx(), path[0][1]-who.gety());
+        StepOrSidestep(who, path[0], [who.startx, who.starty]);
+        return retval;
+      } else {
+        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Leashed and outside leash, but no path home.</span><br />"); }
       }
-      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Moving to " + path[0][0] + "," + path[0][1] + ".</span><br />"); }
-      who.moveMe(path[0][0]-who.getx(), path[0][1]-who.gety());
-      return retval;
     } else if (who.getLeash()) {
       // able to wander (leash = 0 means stationary)
       var moveval = ais.Randomwalk(who,25,25,25,25);
@@ -667,21 +473,7 @@ ais.GarrickAttack = function(who) {
       retval = Attack(who,PC);
     } else {
       var path = themap.getPath(who.getx(), who.gety(), PC.getx(), PC.gety(), MOVE_WALK_DOOR);
-      path.shift();
-      var diffx = path[0][0] - who.getx();
-      var diffy = path[0][1] - who.gety();
-      var fullx = PC.getx() - who.getx();
-      var fully = PC.gety() - who.gety();
-      var moved = StepOrDoor(who,path[0]);
-      if (!moved) {
-        if (diffx !== 0) {
-          if (fully > 0) { who.moveMe(0,1); }
-          else { who.moveMe(0,-1); }
-        } else {
-          if (fullx > 0) { who.moveMe(1,0); }
-          else { who.moveMe(-1,0); }
-        }        
-      }
+      var moved = FindCombatPath(who,PC,path);
     }
   }
   return retval;
@@ -735,10 +527,11 @@ ais.AoifeAttack = function(who) {
       retval = Attack(who,garrick);
     } else {
       var path = aoifemap.getPath(who.getx(), who.gety(), garrick.getx(), garrick.gety(), MOVE_WALK_DOOR);
-      path.shift();
-      var fullx = garrick.getx() - who.getx();
-      var fully = garrick.gety() - who.gety();
-      var moved = StepOrSidestep(who,path[0],[fullx,fully]);
+//      path.shift();
+//      var fullx = garrick.getx() - who.getx();
+//      var fully = garrick.gety() - who.gety();
+//      var moved = StepOrSidestep(who,path[0],[fullx,fully]);
+      var moved = FindCombatPath(who,garrick,path);
       
     }
   } else {
@@ -799,7 +592,7 @@ ais.GarrickEscort = function(who) {
   
   // step on the path
   // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
-  var moved = MoveOrSidestep(who, path, [6,32]);
+  var moved = StepOrSidestep(who, path[0], [6,32]);
   
   return retval;
 }
@@ -1198,7 +991,16 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
   
   if (diffx === diffy) {  // which at this point can only happen if we aren't moving
     retval["nomove"] = 1;
+    retval["canmove"] = 0;
     return retval;
+  }
+  var desttile = who.getHomeMap().getTile(who.getx()+diffx, who.gety()+diffy);
+  var fea = desttile.getFeatures();
+  
+  if (fea) {
+    for (var i=0; i<fea.length; i++){
+      if (fea[i].getName().indexOf("Field") !== -1) { return retval; }  // won't wander into a Field
+    }
   }
   
   retval = who.moveMe(diffx,diffy);
@@ -1320,65 +1122,171 @@ function FindClosestPoI(xval, yval, themap, poiname) {
   return themap.network[poiname][closeind];
 }
 
-function findCombatPath() {
-        path.shift();
-        path.pop();
-        var finaldest = whomap.getTile(path[path.length-1][0],path[path.length-1][1]);
-        var firststep = whomap.getTile(path[0][0],path[0][1]);
+// who, approach, path
+function FindCombatPath(who,approach,path) {
+  var whomap = who.getHomeMap();
+  var moved;
+  path.shift();
+  path.pop();
+  var finaldest = whomap.getTile(path[path.length-1][0],path[path.length-1][1]);
+  var firststep = whomap.getTile(path[0][0],path[0][1]);
 
-        // if path > 3ish, try to walk along it, if short, check if destination tile is occupied, 
-        // if so, search adjacent to approach to find an empty tile and pathfind to it.
-        if ((path.length > 3) || (!finaldest.getTopNPC() && !firststep.getTopNPC()))  {
-          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Path long enough or short but start and end positions are empty- walking.</span><br />"); }
-          var walk = StepOrSidestep(who,path[0],path[path.length-1]);
-        } else {
-          // path currently goes through some NPCs. Need to make a better path.
-          // first step- create a local pathgrid that takes NPCs into account.
-          // to get here the path distance can be no more than 4. Tweak this after playtest.
-          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Path is short but blocked- looking for a better path.</span><br />"); }
+  // if path > 3ish, try to walk along it, if short, check if destination tile is occupied, 
+  // if so, search adjacent to approach to find an empty tile and pathfind to it.
+  if ((path.length > 3) || (!finaldest.getTopNPC() && !firststep.getTopNPC()))  {
+    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Path long enough or short but start and end positions are empty- walking.</span><br />"); }
+    moved = StepOrSidestep(who,path[0],path[path.length-1]);
+  } else {
+    // path currently goes through some NPCs. Need to make a better path.
+    // first step- create a local pathgrid that takes NPCs into account.
+    // to get here the path distance can be no more than 4. Tweak this after playtest.
+    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Path is short but blocked- looking for a better path.</span><br />"); }
 
-          var leftx = who.getx();
-          var rightx = approach.getx();
-          if (rightx < leftx) { 
-            leftx = rightx; 
-            rightx = who.getx();
-          }
-          var topy = who.gety();
-          var bottomy = approach.gety();
-          if (topy > bottomy) {
-            topy = bottomy;
-            bottomy = who.gety();
-          }
-          leftx = leftx - 2;
-          topy = topy - 2;
-          rightx = rightx + 2;
-          bottomy = bottomy + 2;
+    var leftx = who.getx();
+    var rightx = approach.getx();
+    if (rightx < leftx) { 
+      leftx = rightx; 
+      rightx = who.getx();
+    }
+    var topy = who.gety();
+    var bottomy = approach.gety();
+    if (topy > bottomy) {
+      topy = bottomy;
+      bottomy = who.gety();
+    }
+    leftx = leftx - 2;
+    topy = topy - 2;
+    rightx = rightx + 2;
+    bottomy = bottomy + 2;
 
-          if (rightx - leftx < 7) { rightx++; leftx--; }
-          if (bottomy - topy < 7) { bottomy++; topy--; }
-
-          if (leftx < 0) { leftx = 0; }
-          if (topy < 0) { topy = 0; }
-          if (rightx >= whomap.getWidth()) { rightx = whomap.getWidth()-1; }
-          if (bottomy >= whomap.getHeight()) { bottomy = whomap.getHeight()-1; }
+    if (rightx - leftx < 7) { rightx++; leftx--; }
+    if (bottomy - topy < 7) { bottomy++; topy--; }
+    if (leftx < 0) { leftx = 0; }
+    if (topy < 0) { topy = 0; }
+    if (rightx >= whomap.getWidth()) { rightx = whomap.getWidth()-1; }
+    if (bottomy >= whomap.getHeight()) { bottomy = whomap.getHeight()-1; }
           
-          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Searching for a path inside bounding box- left: " + leftx + ", right: " + rightx + ", top: " + topy + ", bottom: " + bottomy + ".</span><br />"); }
-          // creates a box with the two entities in the corners, and then 
-          // stretches it to be large enough to find paths in
+    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Searching for a path inside bounding box- left: " + leftx + ", right: " + rightx + ", top: " + topy + ", bottom: " + bottomy + ".</span><br />"); }
+    // creates a box with the two entities in the corners, and then 
+    // stretches it to be large enough to find paths in
 
-          var temppathgrid = whomap.getPathGrid(who.getMovetype()).clone();
-          for (var i = leftx; i <= rightx; i++ ) {
-            for (var j = topy; j <= bottomy; j++ ) {
-              var thisspot = whomap.getTile(i,j);
-              if (thisspot.getTopNPC()) {
-                temppathgrid.setWalkableAt(i,j,false);
-              }
-            }
-          }
-          // Created pathgrid that is a duplicate of the maps, but with NPCs marked impassible. 
-          temppathgrid.setWalkableAt(who.getx(),who.gety(),true); // pathfinding requires start tile to be walkable
+    var temppathgrid = whomap.getPathGrid(who.getMovetype()).clone();
+    for (var i = leftx; i <= rightx; i++ ) {
+      for (var j = topy; j <= bottomy; j++ ) {
+        var thisspot = whomap.getTile(i,j);
+        if (thisspot.getTopNPC()) {
+          temppathgrid.setWalkableAt(i,j,false);
+        }
+      }
+    }
+    // Created pathgrid that is a duplicate of the maps, but with NPCs marked impassible. 
+    temppathgrid.setWalkableAt(who.getx(),who.gety(),true); // pathfinding requires start tile to be walkable
+       
+    // from here, find 5 paths, to enter and each corner
+    // each path requires its own clone with that location marked walkable- for corners, note if destination is occupied but still get path
+    var whichdir = GetOctant(approach.getx()-who.getx(), approach.gety()-who.gety());
           
-          // from here, find 5 paths, to enter and each corner
-          // each path requires its own clone with that location marked walkable- for corners, note if destination is occupied but still get path
-            
+    var endpoints = [];  
+    switch(whichdir) {                                         // dir from target entity
+      case 0:   // AI is heading north
+        endpoints[0] = [approach.getx(), approach.gety()+1];   // south
+        endpoints[1] = [approach.getx()+1, approach.gety()+1]; // southeast
+        endpoints[2] = [approach.getx()-1, approach.gety()+1]; // southwest
+        break;
+      case 1:   // AI is heading northeast
+        endpoints[0] = [approach.getx(), approach.gety()+1];   // south
+        endpoints[1] = [approach.getx()-1, approach.gety()];   // west
+        endpoints[2] = [approach.getx()-1, approach.gety()+1]; // southwest
+        break;
+      case 2:   // AI is heading east
+        endpoints[0] = [approach.getx()-1, approach.gety()-1]; // northwest
+        endpoints[1] = [approach.getx()-1, approach.gety()];   // west
+        endpoints[2] = [approach.getx()-1, approach.gety()+1]; // southwest
+        break;
+      case 3:   // AI is heading southeast
+        endpoints[0] = [approach.getx()-1, approach.gety()-1]; // northwest
+        endpoints[1] = [approach.getx()-1, approach.gety()];   // west
+        endpoints[2] = [approach.getx(), approach.gety()-1];   // north
+        break;
+      case 4:   // AI is heading south
+        endpoints[0] = [approach.getx()-1, approach.gety()-1]; // northwest
+        endpoints[1] = [approach.getx()+1, approach.gety()-1]; // northeast
+        endpoints[2] = [approach.getx(), approach.gety()-1];   // north
+        break;
+      case 5:   // AI is heading southwest
+        endpoints[0] = [approach.getx()+1, approach.gety()];   // east
+        endpoints[1] = [approach.getx()+1, approach.gety()-1]; // northeast
+        endpoints[2] = [approach.getx(), approach.gety()-1];   // north
+        break;
+      case 6:   // AI is heading west
+        endpoints[0] = [approach.getx()+1, approach.gety()];   // east
+        endpoints[1] = [approach.getx()+1, approach.gety()+1]; // southeast
+        endpoints[2] = [approach.getx()+1, approach.gety()-1]; // northeast
+        break;
+      case 7:   // AI is heading northwest
+        endpoints[0] = [approach.getx()+1, approach.gety()];   // east
+        endpoints[1] = [approach.getx()+1, approach.gety()-1]; // southeast
+        endpoints[2] = [approach.getx(), approach.gety()-1]; // south
+        break;        
+      default:
+        alert("Switch in FindCombatPath broken.");
+    }          
+    
+    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Searching for a path to these locations: (" +  endpoints[0][0] + "," + endpoints[0][1] + "),(" + endpoints[1][0] + "," + endpoints[1][1] + "),(" + endpoints[2][0] + "," + endpoints[2][1] + ").</span><br />"); }    
+
+    var available = [];
+    var anyavailable = 0;
+    $.each(endpoints, function(idx,val) {
+      var desttile = whomap.getTile(val[0],val[1]);
+      if (desttile.getTopNPC()) { available[idx] = 0; }
+      else { available[idx] = 1; anyavailable = 1;}
+    });
+    
+    var availdests = [];
+    if (anyavailable) {
+      // remove from endpoints destinations that are occupied.
+      // skip this step if they all are- in that case pretend none are and just get closer
+      $.each(endpoints, function(idx,val) {
+        if (available[idx]) {
+          availdests.push(val);
+        }
+      });
+    } else {
+      availdests = endpoints;
+    }
+    
+    var availpaths = [];
+    $.each(availdests, function(idx,val){ 
+      var evenmoretempgrid = temppathgrid.clone();
+      evenmoretempgrid.setWalkableAt(availdests[idx][0], availdests[idx][1]);
+      var tmp = finder.findPath(whox,whoy,availdests[idx][0],availdests[idx][1],evenmoretempgrid);
+      if (tmp) {
+        availpaths[idx] = tmp;
+      }
+    });
+    
+    // next up- find the shortest of the available paths
+    var shortest;
+    for (var i = 0; i<availpaths.length; i++) {
+      if (!availpaths[i]) { next; }
+      if (i === 0) {
+        shortest = availpaths[i];
+      } else if (availpaths[i].length < shortest.length) {
+        shortest = availpaths[i];
+      } else if (availpaths[i].length === shortest.length) {
+        if (Math.random() < .5) {
+          shortest = availpaths[i];
+        }
+      }
+    }
+    
+    if (shortest) {
+      shortest.shift(); // paths start with the starting location
+      moved = StepOrSidestep(who,shortest[0],[approach.getx(),approach.gety()]);
+    } else {
+      moved = ais.Randomwalk(who,25,25,25,25);  // no path was found
+    }
+    
+  }      
+  return moved;
 }
