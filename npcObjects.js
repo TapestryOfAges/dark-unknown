@@ -1,5 +1,6 @@
 "use strict";
 
+
 // Townsfolk
 
 function DruidVillagerNPCTile() {
@@ -27,6 +28,7 @@ function DruidVillagerNPCTile() {
   this.meleeChance = 30;
   this.spellsknown = { heal: 1, control: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 DruidVillagerNPCTile.prototype = new NPCObject();
 
@@ -57,6 +59,7 @@ function ShepherdVillagerNPCTile() {
   this.desc = 'shepherd';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'open_door';
 }
 ShepherdVillagerNPCTile.prototype = new NPCObject();
 
@@ -87,6 +90,7 @@ function MageVillagerNPCTile() {
   this.desc = 'mage';
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 MageVillagerNPCTile.prototype = new NPCObject();
 
@@ -118,6 +122,7 @@ function TinkerVillagerNPCTile() {
   this.meleeChance = 30;
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 TinkerVillagerNPCTile.prototype = new NPCObject();
 
@@ -149,6 +154,7 @@ function RangerVillagerNPCTile() {
   this.meleeChance = 50;
   this.spellsknown = { heal: 1, control: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 RangerVillagerNPCTile.prototype = new NPCObject();
 
@@ -179,6 +185,7 @@ function AdventurerVillagerNPCTile() {
   this.meleeChance = 50;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 AdventurerVillagerNPCTile.prototype = new NPCObject();
 
@@ -210,6 +217,7 @@ function PaladinVillagerNPCTile() {
   this.meleeChance = 75;
   this.spellsknown = { heal: 1, attack: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 PaladinVillagerNPCTile.prototype = new NPCObject();
 
@@ -240,6 +248,7 @@ function FighterVillagerNPCTile() {
   this.desc = 'fighter';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'open_door';
 }
 FighterVillagerNPCTile.prototype = new NPCObject();
 
@@ -270,7 +279,7 @@ function TownsfolkVillagerNPCTile() {
   this.desc = 'citizen';
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'coward';
+  this.special = 'coward, open_door';
 }
 TownsfolkVillagerNPCTile.prototype = new NPCObject();
 
@@ -302,6 +311,7 @@ function BardVillagerNPCTile() {
   this.meleeChance = 40;
   this.spellsknown = { control: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 BardVillagerNPCTile.prototype = new NPCObject();
 
@@ -333,7 +343,7 @@ function ChildVillagerNPCTile() {
   this.prefix = 'a';
   this.desc = 'small child';
   this.resists = {};
-  this.special = 'coward';
+  this.special = 'coward, open_door';
 }
 ChildVillagerNPCTile.prototype = new NPCObject();
 
@@ -365,7 +375,7 @@ function BeggarVillagerNPCTile() {
   this.prefix = 'a';
   this.desc = 'beggar';
   this.resists = {};
-  this.special = 'coward';
+  this.special = 'coward, open_door';
 }
 BeggarVillagerNPCTile.prototype = new NPCObject();
 
@@ -397,7 +407,7 @@ function JesterNPCTile() {
   this.prefix = 'a';
   this.desc = 'jester';
   this.resists = {};
-  this.special = 'coward';
+  this.special = 'coward, open_door';
 }
 JesterNPCTile.prototype = new NPCObject();
 
@@ -427,6 +437,7 @@ function TownGuardNPCTile() {
   this.desc = 'guard';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'open_door';
 }
 TownGuardNPCTile.prototype = new NPCObject();
 
@@ -456,6 +467,7 @@ function KingNPCTile() {
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 KingNPCTile.prototype = new NPCObject();
 
@@ -485,6 +497,7 @@ function QueenNPCTile() {
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 QueenNPCTile.prototype = new NPCObject();
 
@@ -514,6 +527,7 @@ function PrinceNPCTile() {
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 PrinceNPCTile.prototype = new NPCObject();
 
@@ -573,6 +587,7 @@ function CorruptPrinceNPCTile() {
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 CorruptPrinceNPCTile.prototype = new NPCObject();
 
@@ -602,6 +617,7 @@ function CorruptGuardsNPCTile() {
   this.desc = 'guard';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'open_door';
 }
 CorruptGuardsNPCTile.prototype = new NPCObject();
 
@@ -734,6 +750,7 @@ function HoodNPCTile() {
   this.onHit = 'steal gold';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'open_door';
 }
 HoodNPCTile.prototype = new NPCObject();
 
@@ -765,7 +782,7 @@ function MinstrelNPCTile() {
   this.meleeChance = 40;
   this.spellsknown = { buff: 1, };
   this.resists = {};
-  this.special = 'sing';
+  this.special = 'sing, open_door';
 }
 MinstrelNPCTile.prototype = new NPCObject();
 
@@ -830,6 +847,7 @@ function ApprenticeNPCTile() {
   this.desc = 'apprentice';
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 ApprenticeNPCTile.prototype = new NPCObject();
 
@@ -860,6 +878,7 @@ function FighterNPCTile() {
   this.desc = 'fighter';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'open_door';
 }
 FighterNPCTile.prototype = new NPCObject();
 
@@ -987,6 +1006,7 @@ function OrcNPCTile() {
   this.desc = 'orc';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'open_door';
 }
 OrcNPCTile.prototype = new NPCObject();
 
@@ -1017,6 +1037,7 @@ function RogueNPCTile() {
   this.onHit = 'steal gold';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'open_door';
 }
 RogueNPCTile.prototype = new NPCObject();
 
@@ -1047,6 +1068,7 @@ function PitRogueNPCTile() {
   this.onHit = 'steal gold';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'open_door';
 }
 PitRogueNPCTile.prototype = new NPCObject();
 
@@ -1138,6 +1160,7 @@ function ArcherNPCTile() {
   this.initmult = 0.8;
   this.meleeChance = 30;
   this.resists = {};
+  this.special = 'open_door';
 }
 ArcherNPCTile.prototype = new NPCObject();
 
@@ -1168,7 +1191,7 @@ function BardNPCTile() {
   this.meleeChance = 40;
   this.spellsknown = { control: 1, buff: 1, };
   this.resists = {};
-  this.special = 'sing';
+  this.special = 'sing, open_door';
 }
 BardNPCTile.prototype = new NPCObject();
 
@@ -1200,6 +1223,7 @@ function DruidNPCTile() {
   this.meleeChance = 30;
   this.spellsknown = { heal: 1, control: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 DruidNPCTile.prototype = new NPCObject();
 
@@ -1393,7 +1417,7 @@ function HandlerNPCTile() {
   this.meleeChance = 70;
   this.spellsknown = { buff: 1, };
   this.resists = {};
-  this.special = 'animalhandler';
+  this.special = 'animalhandler, open_door';
 }
 HandlerNPCTile.prototype = new NPCObject();
 
@@ -1455,6 +1479,7 @@ function OrcShamanNPCTile() {
   this.meleeChance = 33;
   this.spellsknown = { heal: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 OrcShamanNPCTile.prototype = new NPCObject();
 
@@ -1556,6 +1581,7 @@ function ThiefNPCTile() {
   this.onHit = 'steal gold';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'open_door';
 }
 ThiefNPCTile.prototype = new NPCObject();
 
@@ -1586,6 +1612,7 @@ function TrollNPCTile() {
   this.desc = 'troll';
   this.meleeChance = 50;
   this.resists = {};
+  this.special = 'open_door';
 }
 TrollNPCTile.prototype = new NPCObject();
 
@@ -1677,6 +1704,7 @@ function CyclopsNPCTile() {
   this.onHit = 'knockback';
   this.meleeChance = 60;
   this.resists = {};
+  this.special = 'open_door';
 }
 CyclopsNPCTile.prototype = new NPCObject();
 
@@ -1806,7 +1834,7 @@ function FireElementalNPCTile() {
   this.meleeChance = 60;
   this.spellsknown = { attack: 1, };
   this.resists = { fire:100, ice:-50 };
-  this.special = 'flamearmor, mindless';
+  this.special = 'flamearmor, mindless,light:1';
 }
 FireElementalNPCTile.prototype = new NPCObject();
 
@@ -1871,6 +1899,7 @@ function OrcCaptainNPCTile() {
   this.meleeChance = 66;
   this.spellsknown = { buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 OrcCaptainNPCTile.prototype = new NPCObject();
 
@@ -1902,6 +1931,7 @@ function PaladinNPCTile() {
   this.meleeChance = 66;
   this.spellsknown = { heal: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 PaladinNPCTile.prototype = new NPCObject();
 
@@ -1992,7 +2022,7 @@ function WaterElementalNPCTile() {
   this.graphic = '325.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
-  this.armorAs = 'ChaineArmor';
+  this.armorAs = 'ChainArmor';
   this.movetype = MOVE_SWIM;
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
@@ -2032,6 +2062,7 @@ function WizardNPCTile() {
   this.meleeChance = 10;
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 WizardNPCTile.prototype = new NPCObject();
 
@@ -2099,6 +2130,7 @@ function EttinNPCTile() {
   this.desc = 'ettin';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'open_door';
 }
 EttinNPCTile.prototype = new NPCObject();
 
@@ -2286,6 +2318,7 @@ function RangerNPCTile() {
   this.meleeChance = 25;
   this.spellsknown = { heal: 1, control: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 RangerNPCTile.prototype = new NPCObject();
 
@@ -2328,8 +2361,8 @@ WillotheWispNPCTile.prototype = new NPCObject();
 
 // Monster
 
-function XornNPCTile() {
-  this.name = 'XornNPC';
+function DelverNPCTile() {
+  this.name = 'DelverNPC';
   this.level = 5;
   this.addhp = 5;
   this.str = 16;
@@ -2344,17 +2377,19 @@ function XornNPCTile() {
   this.altgraphic = ['384.gif',];
   this.meleeAttackAs = 'Halberd';
   this.missileAttackAs = 'none';
-  this.armorAs = 'PlateArmor';
+  this.armorAs = 'none';
+  this.armorDefense = 10;
+  this.armorAbsorb = 40;
+  this.armorResist = 100;
   this.movetype = MOVE_ETHEREAL;
   this.leavesCorpse = 'none';
-  this.lootTable = 'xorn';
+  this.lootTable = 'delver';
   this.prefix = 'a';
-  this.desc = 'xorn';
-  this.initmult = 1.2;
+  this.desc = 'delver';
   this.meleeChance = 100;
   this.resists = {};
 }
-XornNPCTile.prototype = new NPCObject();
+DelverNPCTile.prototype = new NPCObject();
 
 
 // CorruptTownsfolk
@@ -2386,6 +2421,7 @@ function ArchmageNPCTile() {
   this.desc = 'archmage';
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 ArchmageNPCTile.prototype = new NPCObject();
 
@@ -2516,6 +2552,7 @@ function EttinSorcererNPCTile() {
   this.meleeChance = 40;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 EttinSorcererNPCTile.prototype = new NPCObject();
 
@@ -2547,6 +2584,7 @@ function GiantNPCTile() {
   this.onHit = 'knockback';
   this.meleeChance = 60;
   this.resists = {};
+  this.special = 'open_door';
 }
 GiantNPCTile.prototype = new NPCObject();
 
@@ -2683,14 +2721,15 @@ function DaemonNPCTile() {
   this.meleeChance = 75;
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
+  this.special = 'open_door';
 }
 DaemonNPCTile.prototype = new NPCObject();
 
 
 // Monster
 
-function DelverNPCTile() {
-  this.name = 'DelverNPC';
+function EarthenTyrantNPCTile() {
+  this.name = 'EarthenTyrantNPC';
   this.level = 7;
   this.addhp = 10;
   this.str = 26;
@@ -2705,17 +2744,20 @@ function DelverNPCTile() {
   this.altgraphic = ['384.gif',];
   this.meleeAttackAs = 'Halberd';
   this.missileAttackAs = 'none';
-  this.armorAs = 'ExoticArmor';
+  this.armorAs = 'none';
+  this.armorDefense = 10;
+  this.armorAbsorb = 40;
+  this.armorResist = 100;
   this.movetype = MOVE_ETHEREAL;
   this.leavesCorpse = 'none';
-  this.lootTable = 'delver';
-  this.prefix = 'a';
-  this.desc = 'delver';
+  this.lootTable = 'earthentyrant';
+  this.prefix = 'an';
+  this.desc = 'earthen tyrant';
   this.meleeChance = 90;
   this.resists = {};
   this.special = 'summonearthelemental';
 }
-DelverNPCTile.prototype = new NPCObject();
+EarthenTyrantNPCTile.prototype = new NPCObject();
 
 
 // Monster
@@ -2747,7 +2789,7 @@ function LicheNPCTile() {
   this.desc = 'liche';
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
   this.resists = { ice:66 };
-  this.special = 'necromancer, undead';
+  this.special = 'necromancer, undead, open_door';
 }
 LicheNPCTile.prototype = new NPCObject();
 
@@ -2877,7 +2919,7 @@ function BalronNPCTile() {
   this.meleeChance = 75;
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = { fire:100 };
-  this.special = 'phase';
+  this.special = 'phase, open_door';
 }
 BalronNPCTile.prototype = new NPCObject();
 
@@ -2909,6 +2951,7 @@ function TitanNPCTile() {
   this.onHit = 'knockback, stun';
   this.meleeChance = 70;
   this.resists = {};
+  this.special = 'open_door';
 }
 TitanNPCTile.prototype = new NPCObject();
 

@@ -198,11 +198,13 @@ mappages["gauntlet"].onload = function(mapref) {
   }
   
   if (DU.gameflags.garrick_flipout) {
-    var tile = mapref.getTile(31,6);
+    var tile = mapref.getTile(27,4);
     var garrick = tile.getTopNPC();
     if (garrick) {
       mapref.moveThing(9,35,garrick);
-    }
+      garrick.startx = 9;
+      garrick.starty = 35;
+    } 
   }
   
 }
