@@ -5,6 +5,7 @@ var debug = 0;
 var debugscreen;
 var dbs;
 var debugflags = {};
+  debugflags.all = 1;
   debugflags.map = 1
   debugflags.sound = 1;
   debugflags.light = 1;
@@ -26,11 +27,25 @@ function ActivateDebug() {
     dbs = debugscreen.document;
   }
   
+  var wide = $(window).width() - 800;
+  if (!wide) { wide = 300; }
+  var tall = $(window).height() - 30;
+  $("body").html($("body").html() + "<div style='position:absolute;left:790px;top:0px;width:" + wide + "px;height:" + tall + "px;overflow-y:scroll;background-color:white;color:black' id='debugdiv'></div>");
+  $("#debugdiv").html("<div style='text-align:center'>DEBUG PANE");
+  
   targetCursor.page = 1;
   targetCursor.cmd = "debug";
     
   DrawDebugOptions();		
 
+}
+
+function DebugWrite(category, html) {
+  if (debug && debugflags[category]) {
+    $("#debugdiv").html($("#debugdiv").html() + html);
+    return 1;
+  } 
+  return 0;
 }
 
 
