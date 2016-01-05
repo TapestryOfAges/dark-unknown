@@ -9586,7 +9586,7 @@ NPCObject.prototype.myTurn = function() {
   if (!maps.getMap(this.getHomeMap().getName())) {
     // removing from timeline, its map is gone
 
-    dbs.writeln("<span style='color:green;font-weight:orange'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone.</span><br />");
+    if (debug && debugflags.gameobj) { dbs.writeln("<span style='color:green;font-weight:orange'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone.</span><br />"); }
   
     return 1;
   }
