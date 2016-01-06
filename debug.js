@@ -17,7 +17,11 @@ var debugflags = {};
   debugflags.plot = 1;
   debugflags.events = 1;
   debugflags.gameobj = 1;
+  debugflags.first = 1;
 // var deeptest = 0;
+
+var debugstyle = {};
+debugstyle.header = "font-weight:bold";
 
 if (debug) {  ActivateDebug(); }
 
@@ -43,6 +47,7 @@ function ActivateDebug() {
 function DebugWrite(category, html) {
   if (debug && debugflags[category]) {
     $("#debugdiv").html($("#debugdiv").html() + html);
+    $('#debugdiv').scrollTop($('#debugdiv')[0].scrollHeight);
     return 1;
   } 
   return 0;
