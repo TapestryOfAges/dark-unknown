@@ -9502,8 +9502,10 @@ NPCObject.prototype.activate = function(timeoverride) {
 NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	var map = this.getHomeMap();
 	var oldmapname = map.getDesc();
-	var passx = parseInt(this.getx()) + parseInt(diffx);
-	var passy = parseInt(this.gety()) + parseInt(diffy);
+	var startx = this.getx();
+	var starty = this.gety();
+	var passx = startx + parseInt(diffx);
+	var passy = starty + parseInt(diffy);
 	var tile = map.getTile(passx,passy);
 	var retval = {};
 	if (tile === "OoB") { 
@@ -9523,8 +9525,8 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 			tile = MoveBetweenMaps(this,map,newmap,map.getExitToX(),map.getExitToY());
       retval["canmove"] = 0;
 			if (this === PC) {
-				DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
-				DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+				DrawMainFrame("draw", map.getName() , PC.getx(), PC.gety());
+				DrawTopbarFrame("<p>" + map.getDesc() + "</p>");
 				retval["msg"] = ".<br />Exiting " + oldmapname + ".";
 			}
 		}
@@ -9570,10 +9572,16 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
 		  retval["msg"] += walkonval;
 		}
-    if ((this.getHomeMap() === PC.getHomeMap()) &&(GetDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) )) {
+    if ((map === PC.getHomeMap()) &&(GetSquareDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.max(viewsizex,viewsizey) )) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
       // uncommented version checks from current display center, not from PC position.
-			DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+      if (typeof this.getLight === "function") {
+			  DrawMainFrame("draw", map.getName() , PC.getx(), PC.gety());
+			} else {
+			  // only redraw these two spaces
+			  DrawMainFrame("one", map.getName(), startx, starty);
+			  DrawMainFrame("one", map.getName(), passx, passy);
+			}
     }
 	}
 	retval["initdelay"] = tile.getInitDelay(this);
@@ -9582,7 +9590,9 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 
 NPCObject.prototype.myTurn = function() {
   raceWarning = 0;
-  
+  if (debugflags.first) { delete debugflags.first; } 
+  else { DebugWrite("all", "</div>"); }
+  DebugWrite("all", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock() + ".</span><br />");
   if (!maps.getMap(this.getHomeMap().getName())) {
     // removing from timeline, its map is gone
 
@@ -9601,7 +9611,7 @@ NPCObject.prototype.myTurn = function() {
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
 
-  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock() + ".</span><br />"); }	
+//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock() + ".</span><br />"); }	
 	RunEffects(this);
 	
 	Regen(this);
@@ -10085,7 +10095,12 @@ PCObject.prototype.activate = function() {
 }
 
 PCObject.prototype.myTurn = function() {
-  if (debug) { dbs.writeln("=== PC TURN ===   Timestamp: " + DU.DUTime.getGameClock() + "; x: " + PC.getx() + ", y: " + PC.gety() + "<br />"); }
+
+  if (debugflags.first) { delete debugflags.first; } 
+  else { DebugWrite("all", "</div>"); }
+  DebugWrite("all", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>=== PC TURN ===   Timestamp: " + DU.DUTime.getGameClock() + "; x: " + PC.getx() + ", y: " + PC.gety() + "<br />");
+
+//  if (debug) { dbs.writeln("=== PC TURN ===   Timestamp: " + DU.DUTime.getGameClock() + "; x: " + PC.getx() + ", y: " + PC.gety() + "<br />"); }
   if (gamestate !== "loadgame") {
     // this half of myTurn has already run before the player saved
     RunEffects(this);
