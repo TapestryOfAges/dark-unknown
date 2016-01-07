@@ -17,14 +17,16 @@ function Anchor() {
 Anchor.prototype = new Object();
 
 function TurnMapHostile(map) {
-  if (debug && debugflags.combat) { dbs.writeln("Attacked a friendly! Turning hostile...<br />"); }
+//  if (debug && debugflags.combat) { dbs.writeln("Attacked a friendly! Turning hostile...<br />"); }
+  DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
   DU.gameflags["karma"] -= 10; 
   var localnpcs = map.npcs.getAll();
   $.each(localnpcs, function(idx, val) {
     if (val.getAttitude() === "friendly") {
       val.setAttitude("hostile");
       val.setAggro(1);
-      if (debug && debugflags.combat) { dbs.writeln(val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />"); }
+//      if (debug && debugflags.combat) { dbs.writeln(val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />"); }
+      DebugWrite("combat", val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />");
     }
   });
 }
@@ -36,7 +38,8 @@ function Attack(atk, def) {
   if (atk.specials.reach) { 
     rad = 2; 
   }
-  if (debug && debugflags.combat) { dbs.writeln("Attacking: reach is " + rad + ", atk coords: " + atk.getx() + ", " + atk.gety() + " ; def coords: " + def.getx() + ", " + def.gety() + ".<br />"); }
+//  if (debug && debugflags.combat) { dbs.writeln("Attacking: reach is " + rad + ", atk coords: " + atk.getx() + ", " + atk.gety() + " ; def coords: " + def.getx() + ", " + def.gety() + ".<br />"); }
+  DebugWrite("combat", "Attacking: reach is " + rad + ", atk coords: " + atk.getx() + ", " + atk.gety() + " ; def coords: " + def.getx() + ", " + def.gety() + ".<br />");
   if (Math.abs(atk.getx() - def.getx()) > rad) { type = "missile";}
   if (Math.abs(atk.gety() - def.gety()) > rad) { type = "missile";}
 
@@ -92,17 +95,21 @@ function Attack(atk, def) {
   if (def !== PC) {
     def.setAggro(1);
   }
-  if (debug && debugflags.combat) { dbs.writeln("Attacking: weapon is " + weapon.getName() + "<br />"); }
+//  if (debug && debugflags.combat) { dbs.writeln("Attacking: weapon is " + weapon.getName() + "<br />"); }
+  DebugWrite("combat", "Attacking: weapon is " + weapon.getName() + "<br />");
   var tohit = atk.getHitChance(weapon) / 100;
   tohit -= loeresult/2; // harder to hit if foe has cover
-  if (debug && debugflags.combat) { dbs.writeln("Attacking: reducing to-hit chance by " + loeresult/2 + " due to cover<br />"); }
+//  if (debug && debugflags.combat) { dbs.writeln("Attacking: reducing to-hit chance by " + loeresult/2 + " due to cover<br />"); }
+  DebugWrite("combat", "Attacking: reducing to-hit chance by " + loeresult/2 + " due to cover<br />");
   var defense = def.getDefense() / 100;
 
-  if (debug && debugflags.combat) { dbs.writeln("Atk: " + tohit + "; enemy defense: " + defense + "<br />"); }
+//  if (debug && debugflags.combat) { dbs.writeln("Atk: " + tohit + "; enemy defense: " + defense + "<br />"); }
+  DebugWrite("combat", "Atk: " + tohit + "; enemy defense: " + defense + "<br />");
   tohit = tohit - defense;
   if (tohit < .05) { tohit = .05; }
   
-  if (debug && debugflags.combat) { dbs.writeln("Chance to hit: " + tohit + "<br />"); }
+//  if (debug && debugflags.combat) { dbs.writeln("Chance to hit: " + tohit + "<br />"); }
+  DebugWrite("combat", "Chance to hit: " + tohit + "<br />");
 //  var preanim = PreAnimationEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset)
   var dmg = 0;
   if (Math.random() <= tohit) {
@@ -340,14 +347,16 @@ function PushOff(what) {
     if (tile.canMove(MOVE_WALK, 1)) {   // can walk but ignore NPCs there- this is a rare 
                                         // circumstance where I will stack NPCs
       themap.moveThing(destx, desty, what);
-      if (debug && debugflags.ai) { dbs.writeln("Moving NPC off of exit, in direction " + dir + "<br />"); }
+//      if (debug && debugflags.ai) { dbs.writeln("Moving NPC off of exit, in direction " + dir + "<br />"); }
+      DebugWrite("combat", "Moving NPC off of exit, in direction " + dir + "<br />");
       return 1;
     }
     tries += 1;
     dir += 1;
     if (dir === 8) { dir = 0; }
   }
-  if (debug && debugflags.ai) { dbs.writeln("Moving NPC off of exit, in emergency backup code.<br />"); }
+//  if (debug && debugflags.ai) { dbs.writeln("Moving NPC off of exit, in emergency backup code.<br />"); }
+  DebugWrite("combat", "Moving NPC off of exit, in emergency backup code.<br />");
   themap.moveThing(locx, locy+1, what);
   return 1;
   
@@ -391,7 +400,8 @@ function StepOrDoor(who, where) {
     if (!((typeof fea.getLocked === "function") && (fea.getLocked()))) {
       // door is not locked    
       if (!fea.open) {
-        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
+//        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
+        DebugWrite("ai", "opening a door in StepOrDoor.<br />");
         fea.use(who);
         DrawMainFrame("one",who.getHomeMap().getName(),fea.getx(),fea.gety());
         return 2;  // opened a door
@@ -402,7 +412,8 @@ function StepOrDoor(who, where) {
   var diffy = where[1] - who.gety();
   var moved = who.moveMe(diffx,diffy);
   if (moved["canmove"]) { 
-    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>moved in StepOrDoor.</span><br />"); }
+//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>moved in StepOrDoor.</span><br />"); }
+    DebugWrite("ai", "moved in StepOrDoor.<br />");
     return 1; }
   
   return 0;

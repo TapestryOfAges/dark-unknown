@@ -104,11 +104,13 @@ Timeline.prototype.addAtTime = function(event, timestamp) {
 //		alert(this.tickstream.getTimestamp());
 //		alert(event.entity.name);
 	}
-  if (debug && debugflags.time) {
-    dbs.writeln("<span style='color:brown;font-weight:bold'>Tick added to timeline: " + event.getEntity().getName() + " added at " + timestamp + ".</span><br />");
+//  if (debug && debugflags.time) {
+//    dbs.writeln("<span style='color:brown;font-weight:bold'>Tick added to timeline: " + event.getEntity().getName() + " added at " + timestamp + ".</span><br />");
+    DebugWrite("time", "Tick added to timeline: " + event.getEntity().getName() + " added at " + timestamp + ".<br />");
     
-    dbs.writeln(this.createDebugTimeline());
-  }
+//    dbs.writeln(this.createDebugTimeline());
+    DebugWrite("time", this.createDebugTimeline());
+//  }
 
 }
 
@@ -147,8 +149,9 @@ Timeline.prototype.removeEntityFrom = function(entity) {
 	  } else {
 		  prevtick.setNextTick(checktick.getNextTick());
 		}
-		if (debug && debugflags.time) { dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline: " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />"); }
-		if (debug && debugflags.time) { dbs.writeln(this.createDebugTimeline()); }
+//		if (debug && debugflags.time) { dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline: " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />"); }
+//		if (debug && debugflags.time) { dbs.writeln(this.createDebugTimeline()); }
+		DebugWrite("time", "Entity removed from timeline: " + entity.getName() + " with serial " + entity.getSerial() + ".<br />" + this.createDebugTimeline());
 	}
 }
 
@@ -195,7 +198,8 @@ Timeline.prototype.cleanTimeline = function() {
       } else {
         prevtick.setNextTick(checktick.getNextTick());
       }
-      if (debug && debugflags.time) { dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />"); }
+//      if (debug && debugflags.time) { dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />"); }
+      DebugWrite("time", "Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".<br />");
     } else {
       prevtick = checktick;
     }
@@ -207,7 +211,8 @@ Timeline.prototype.cleanTimeline = function() {
   var mapname = entity.getHomeMap().getName();
   if (!maps.getMap(mapname)) {
     // remove the last tick on the timeline
-    if (debug && debugflags.time) { dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />"); }
+//    if (debug && debugflags.time) { dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />"); }
+    DebugWrite("time", "Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".<br />");
     prevtick.setNextTick("");
   }
 }

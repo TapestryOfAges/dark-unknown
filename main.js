@@ -81,7 +81,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
     themap = maps.getMap(mapname);
   }
 
-  var debugcolor = "#0000cc";
+//  var debugcolor = "#0000cc";
 //  if (debug) { dbs.writeln("<br /><br />"); }
 	
   if (how === "draw") {

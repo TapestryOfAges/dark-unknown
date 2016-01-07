@@ -203,7 +203,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         if (!anna) { alert("Couldn't find Anna to change her AI."); }
         else {
           anna.setCurrentAI("AnnaLeaves");
-          if (debug && (debugflags.plot || debugflags.ai)) { dbs.writeln("Anna's AI changes to AnnaLeaves.<br />"); }        
+//          if (debug && (debugflags.plot || debugflags.ai)) { dbs.writeln("Anna's AI changes to AnnaLeaves.<br />"); }        
+          DebugWrite("plot", "Anna's AI changes to AnnaLeaves.<br />");
         }
       } else if (triggers.set_flag === "garrick_flipout") {
         var garrickmap = PC.getHomeMap();
@@ -217,7 +218,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         if (!garrick) { alert("Couldn't find Garrick to change his AI."); }
         else {
           garrick.setCurrentAI("GarrickAttack");
-          if (debug && (debugflags.plot || debugflags.ai)) { dbs.writeln("Garrick's AI changes to GarrickAttack.<br />"); }        
+//          if (debug && (debugflags.plot || debugflags.ai)) { dbs.writeln("Garrick's AI changes to GarrickAttack.<br />"); }        
+          DebugWrite("plot", "Garrick's AI changes to GarrickAttack.<br />");
           garrick.setMaxHP(1030);
           garrick.setHP(1030);
           garrick.setAttitude("enraged");
@@ -225,7 +227,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
         if (!aoife) { alert("Couldn't find Aoife to change her AI."); }
         else {
           aoife.setCurrentAI("AoifeAttack");
-          if (debug && (debugflags.plot || debugflags.ai)) { dbs.writeln("Aoife's AI changes to AoifeAttack.<br />"); }        
+//          if (debug && (debugflags.plot || debugflags.ai)) { dbs.writeln("Aoife's AI changes to AoifeAttack.<br />"); }        
+          DebugWrite("plot", "Aoife's AI changes to AoifeAttack.<br />");
           var mace = localFactory.createTile("Shortsword");
           aoife.addToInventory(mace,1);
           aoife.setWeapon(mace);  // no longer actually a mace
