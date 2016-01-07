@@ -22,6 +22,18 @@ var debugflags = {};
 
 var debugstyle = {};
 debugstyle.header = "font-weight:bold";
+debugstyle.map = "color:grey";
+debugstyle.sound = "color:orange";
+debugstyle.light = "color:brown";
+debugstyle.saveload = "color:grey";
+debugstyle.ai = "color:blue";
+debugstyle.combat = "color:red";
+debugstyle.magic = "color:green";
+debugstyle.time = "color:cyan";
+debugstyle.plot = "color:pink";
+debugstyle.events = "color:magenta";
+debugstyle.gameobj = "color:black";
+debugstyle.all = "color:black";
 
 if (debug) {  ActivateDebug(); }
 
@@ -34,7 +46,7 @@ function ActivateDebug() {
   var wide = $(window).width() - 800;
   if (!wide) { wide = 300; }
   var tall = $(window).height() - 30;
-  $("body").html($("body").html() + "<div style='position:absolute;left:790px;top:0px;width:" + wide + "px;height:" + tall + "px;overflow-y:scroll;background-color:white;color:black' id='debugdiv'></div>");
+  $("body").html($("body").html() + "<div style='position:absolute;left:790px;top:0px;width:" + wide + "px;height:" + tall + "px;overflow-y:scroll;background-color:white;color:black;font-size:smaller' id='debugdiv'></div>");
   $("#debugdiv").html("<div style='text-align:center'>DEBUG PANE");
   
   targetCursor.page = 1;
@@ -46,12 +58,18 @@ function ActivateDebug() {
 
 function DebugWrite(category, html) {
   if (debug && debugflags[category]) {
-    $("#debugdiv").html($("#debugdiv").html() + html);
-    $('#debugdiv').scrollTop($('#debugdiv')[0].scrollHeight);
+    $("#debugdiv").append("<span style='" + debugstyle[category] + "'>" + html + "</span>");
     return 1;
   } 
   return 0;
 }
+
+function SetDebugToBottom() {
+  if (debug) {
+    $('#debugdiv').scrollTop($('#debugdiv')[0].scrollHeight);
+  }
+}
+
 
 
 function TestNetwork(mapref, network) {

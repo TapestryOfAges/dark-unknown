@@ -186,7 +186,8 @@ function GetLineArray(x1,y1,x2,y2,cornerx1,cornery1,cornerx2,cornery2) {
   		}
   	}  	
   } else {
-    if (debug) { dbs.writeln("ERROR!<br><br>"); }
+//    if (debug) { dbs.writeln("ERROR!<br><br>"); }
+    DebugWrite("all", "ERROR! (los.js)<br /><br />");
   }
   return lineArray;
 }

@@ -77,14 +77,16 @@ TrapGroups.prototype = new Object();
 TrapGroups.prototype.getTrap = function() {   // returns which trap name and what level
                                               // level is Dex with 50% chance to evade
   var dice = Math.floor(Math.random()*100)+1;
-  if (debug && debugflags.gameobj) { dbs.writeln("Getting a trap: rolled " + dice + "<br />"); }
+//  if (debug && debugflags.gameobj) { dbs.writeln("Getting a trap: rolled " + dice + "<br />"); }
+  DebugWrite("gameobj", "Getting a trap: rolled " + dice + "<br />");
   var i = 0;
   var resp = {};
   resp.level = this.level;
   while (dice > 0) {
     if (this.traps[i] > dice) {
       resp.trap = this.trapnames[i];
-      if (debug && debugflags.gameobj) { dbs.writeln("Trap is: " + resp.trap + " , level: " + resp.level + "<br />"); }
+//      if (debug && debugflags.gameobj) { dbs.writeln("Trap is: " + resp.trap + " , level: " + resp.level + "<br />"); }
+      DebugWrite("gameobj", "Trap is: " + resp.trap + " , level: " + resp.level + "<br />");
       return resp;
     }
     dice -= this.traps[i];

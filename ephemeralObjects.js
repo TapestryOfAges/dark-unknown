@@ -631,7 +631,8 @@ MirrorWardTile.prototype.findNewTarget = function(caster) {
   var displayspecs = getDisplayCenter(curtarget.getHomeMap(),caster.getx(),caster.gety());
   var pcdisplay = getDisplayCenter(curtarget.getHomeMap(),PC.getx(),PC.gety()); // just in case
   
-  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>MIRROR WARD is reflecting the spell...<br /></span>"); }
+//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>MIRROR WARD is reflecting the spell...<br /></span>"); }
+  DebugWrite("magic", "MIRROR WARD is reflecting the spell...<br />");
   $.each(localnpcs, function(idx, val) {
     if (val !== curtarget) {
       if (GetDistance(val.getx(), val.gety(), tgt.getx(), tgt.gety()) < 8.5) {
