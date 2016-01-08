@@ -46,7 +46,10 @@ function ActivateDebug() {
   var wide = $(window).width() - 800;
   if (!wide) { wide = 300; }
   var tall = $(window).height() - 30;
-  $("body").html($("body").html() + "<div style='position:absolute;left:790px;top:0px;width:" + wide + "px;height:" + tall + "px;overflow-y:scroll;background-color:white;color:black;font-size:smaller' id='debugdiv'></div>");
+  $("body").append("<div style='position:absolute;left:790px;top:0px;width:" + wide + "px;height:" + tall + "px;overflow-y:scroll;background-color:white;color:black;font-size:smaller' id='debugdiv'></div>");
+  var buttonleft = 800+wide/2;
+  var buttontop = tall+10;
+  $("body").append("<div style='position:absolute;left:" + buttonleft + ";top:" + buttontop + ";background-color:white' onClick='ClearDebug()'>Clear Debug</div>");
   $("#debugdiv").html("<div style='text-align:center'>DEBUG PANE");
   
   targetCursor.page = 1;
@@ -70,7 +73,11 @@ function SetDebugToBottom() {
   }
 }
 
-
+function ClearDebug() {
+  if (debug) {
+    $("#debugdiv").html("");
+  }
+}
 
 function TestNetwork(mapref, network) {
   var web = mapref.network[network];
