@@ -109,7 +109,7 @@ mappages["tharock"].features = [];
 mappages["tharock"].npcs = [];
 
 mappages["tharock"].desc = "Castle Tharock";
-mappages["tharock"].music = 'Cave';
+mappages["tharock"].music = 'Ruins';
 mappages["tharock"].exitmap = 'island';
 mappages["tharock"].exitx = '65';
 mappages["tharock"].exity = '70';

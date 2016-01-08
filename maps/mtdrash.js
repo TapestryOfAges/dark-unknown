@@ -27,7 +27,7 @@ mappages["mtdrash1"].features[1] = {name : 'LadderDown', x : 9, y : 9, entermap 
 
 mappages["mtdrash1"].npcs = [];
 
-mappages["mtdrash1"].desc = "Mt Drash";
+mappages["mtdrash1"].desc = "Mt Drash (L1)";
 mappages["mtdrash1"].music = 'Dungeon';
 mappages["mtdrash1"].exitmap = 'darkunknown';
 mappages["mtdrash1"].exitx = '133';
@@ -76,7 +76,7 @@ mappages["mtdrash2"].features[1] = {name : 'LadderDown', x : 9, y : 13, entermap
 
 mappages["mtdrash2"].npcs = [];
 
-mappages["mtdrash2"].desc = "Mt Drash";
+mappages["mtdrash2"].desc = "Mt Drash (L2)";
 mappages["mtdrash2"].music = 'Dungeon';
 mappages["mtdrash2"].exitmap = 'darkunknown';
 mappages["mtdrash2"].exitx = '133';
@@ -125,7 +125,7 @@ mappages["mtdrash3"].features[1] = {name : 'LadderDown', x : 1, y : 5, entermap 
 
 mappages["mtdrash3"].npcs = [];
 
-mappages["mtdrash3"].desc = "Mt Drash";
+mappages["mtdrash3"].desc = "Mt Drash (L3)";
 mappages["mtdrash3"].music = 'Dungeon';
 mappages["mtdrash3"].exitmap = 'darkunknown';
 mappages["mtdrash3"].exitx = '133';
@@ -174,7 +174,7 @@ mappages["mtdrash4"].features[1] = {name : 'LadderDown', x : 13, y : 13, enterma
 
 mappages["mtdrash4"].npcs = [];
 
-mappages["mtdrash4"].desc = "Mt Drash";
+mappages["mtdrash4"].desc = "Mt Drash (L4)";
 mappages["mtdrash4"].music = 'Dungeon';
 mappages["mtdrash4"].exitmap = 'darkunknown';
 mappages["mtdrash4"].exitx = '133';
@@ -224,7 +224,7 @@ mappages["mtdrash5"].features[2] = {name : 'LadderDown', x : 1, y : 1, entermap 
 
 mappages["mtdrash5"].npcs = [];
 
-mappages["mtdrash5"].desc = "Mt Drash";
+mappages["mtdrash5"].desc = "Mt Drash (L5)";
 mappages["mtdrash5"].music = 'Dungeon';
 mappages["mtdrash5"].exitmap = 'darkunknown';
 mappages["mtdrash5"].exitx = '133';
@@ -273,7 +273,7 @@ mappages["mtdrash6"].features[1] = {name : 'LadderUp', x : 1, y : 1, entermap : 
 
 mappages["mtdrash6"].npcs = [];
 
-mappages["mtdrash6"].desc = "Mt Drash";
+mappages["mtdrash6"].desc = "Mt Drash (L6)";
 mappages["mtdrash6"].music = 'Dungeon';
 mappages["mtdrash6"].exitmap = 'darkunknown';
 mappages["mtdrash6"].exitx = '133';
@@ -322,7 +322,7 @@ mappages["mtdrash-proto"].features = [];
 
 mappages["mtdrash-proto"].npcs = [];
 
-mappages["mtdrash-proto"].desc = "Mt Drash";
+mappages["mtdrash-proto"].desc = "Mt Drash (L0)";
 mappages["mtdrash-proto"].music = 'Dungeon';
 mappages["mtdrash-proto"].exitmap = 'darkunknown';
 mappages["mtdrash-proto"].exitx = '133';

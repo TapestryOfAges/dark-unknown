@@ -303,7 +303,7 @@ mappages["ether"].features[192] = {name : 'YellowCrystal', x : 11, y : 46};
 mappages["ether"].npcs = [];
 
 mappages["ether"].desc = "Ethereal Plane";
-mappages["ether"].music = 'Magic';
+mappages["ether"].music = 'Ether';
 mappages["ether"].exitmap = '';
 mappages["ether"].exitx = '65';
 mappages["ether"].exity = '70';
