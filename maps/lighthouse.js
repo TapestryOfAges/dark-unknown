@@ -51,8 +51,8 @@ mappages["lighthouse1"].features[0] = {name : 'DoorWindow', x : 28, y : 33};
 
 mappages["lighthouse1"].npcs = [];
 
-mappages["lighthouse1"].desc = "Lighthouse of Cabra";
-mappages["lighthouse1"].music = 'Cave';
+mappages["lighthouse1"].desc = "Lighthouse of Cabran";
+mappages["lighthouse1"].music = 'Towne';
 mappages["lighthouse1"].exitmap = 'darkunknown';
 mappages["lighthouse1"].exitx = '69';
 mappages["lighthouse1"].exity = '125';
