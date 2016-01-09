@@ -83,7 +83,8 @@ function CheckResist (caster, tgt, infused, diffmod) {
   var resist = Math.random()*100;
   
   if (resist <= chance) {
-    return 1; 
+    if (resist === 0) { resist = chance; }
+    return resist; 
   } 
   return 0;
 }
@@ -264,29 +265,30 @@ magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   var castermap = caster.getHomeMap();
   var npcs = castermap.npcs.getAll();
   $.each(npcs, function (idx, val) {
-    if (GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) {
-      if (!CheckResist(caster,val,infused,0)) {
-        var distract = localFactory.createTile("Distract");
-        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
-        var desc = val.getDesc() + " is distracted!";
-        if (val === PC) {
-          desc = "You are distracted!";
-        }
-        var duration = power * SCALE_TIME;
-        distract.setExpiresTime(duration + DUTime.getGameClock());
-        val.addSpellEffect(distract);
-      } else {
-        var desc = val.getDesc() + " resists!";
-        if (val === PC) {
-          desc = "You resist.";
-          // no X over the PC
+    if (val.getAttitude() !== caster.getAttitude()) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
+        if (!CheckResist(caster,val,infused,0)) {
+          var distract = localFactory.createTile("Distract");
+          ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+          var desc = val.getDesc() + " is distracted!";
+          if (val === PC) {
+            desc = "You are distracted!";
+          }
+          var duration = power * SCALE_TIME;
+          distract.setExpiresTime(duration + DUTime.getGameClock());
+          val.addSpellEffect(distract);
         } else {
-          ShowEffect(val, 700, "X.gif");
+          var desc = val.getDesc() + " resists!";
+          if (val === PC) {
+            desc = "You resist.";
+            // no X over the PC
+          } else {
+            ShowEffect(val, 700, "X.gif");
+          }
         }
+        desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+        maintext.addText(desc);
       }
-      desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-      maintext.addText(desc);
-
     }
   });
 
@@ -2211,50 +2213,49 @@ function PerformExplosion(caster, infused, free, tgt) {
 
 // Jinx
 magic[6][GetSpellID(2)].executeSpell = function(caster, infused, free) {
-//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Distract.<br /></span>"); }
   DebugWrite("magic", "Casting Jinx.<br />");
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-//    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   resp["fin"] = 1;
 
-// WORKING HERE  
-  var radius = 3;
-  if (!free & caster.getInt() > 20) { radius = 4; }
-  if (infused) { radius = radius * 1.5; } 
-  var power = caster.getInt()/2;
-  if (free) { power = RollDice("1d3+7"); }
-  if (infused) { power = power*1.5; }
+  var radius = 4;
+  if (!free & caster.getInt() > 20) { radius = 5; }
+  if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   var castermap = caster.getHomeMap();
   var npcs = castermap.npcs.getAll();
   $.each(npcs, function (idx, val) {
-    if (GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) {
-      if (!CheckResist(caster,val,infused,0)) {
-        var distract = localFactory.createTile("Distract");
-        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
-        var desc = val.getDesc() + " is distracted!";
-        if (val === PC) {
-          desc = "You are distracted!";
-        }
-        var duration = power * SCALE_TIME;
-        distract.setExpiresTime(duration + DUTime.getGameClock());
-        val.addSpellEffect(distract);
-      } else {
-        var desc = val.getDesc() + " resists!";
-        if (val === PC) {
-          desc = "You resist.";
-          // no X over the PC
+    var desc;
+    if (caster.getAttitude() !== val.getAttitude()) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD ) {
+        var resist = CheckResist(caster,val,infused,0);
+        var power = 66-resist;
+        if (resist < 33) {
+          desc = val.getDesc() + " resists!";
+          if (val === PC) {
+            desc = "You resist.";
+            // no X over the PC
+          } else {
+            ShowEffect(val, 700, "X.gif");
+          }       
         } else {
-          ShowEffect(val, 700, "X.gif");
+          var duration = 8 + RollDice("1d4") - val.getInt()/5;
+          var jinx = localFactory.createTile("Confused");
+          jinx.setPower(power);
+          jinx.setExpiresTime(duration + DUTime.getGameClock());
+          val.addSpellEffect(jinx);          
+          desc = val.getDesc() + " is confused!";
+          ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+          if (val === PC) {
+            desc = "You have become confused.";
+          }
         }
+        desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+        maintext.addText(desc);
       }
-      desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-      maintext.addText(desc);
-
     }
   });
 
