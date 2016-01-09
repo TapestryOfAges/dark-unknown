@@ -334,6 +334,38 @@ BlessingIntTile.prototype.endEffect = function(silent) {
   return -1;
 }
 
+function ConfusedTile() {
+  this.addType("debuff");
+  this.name = "Confused";
+  this.display = "<span style='color:grey'>C</span>";
+  this.zstatdesc = "You are confused.";
+  this.desc = "confuse";
+}
+ConfusedTile.prototype = new EphemeralObject();
+
+ConfusedTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You have become confused!");
+  }
+  return 1;
+}
+
+ConfusedTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+ConfusedTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("Your head is clear of its confusion!");
+  }
+  DrawCharFrame();
+}
+
 function DiseaseTile() {
   this.addType("debuff");
   this.name = "Disease";

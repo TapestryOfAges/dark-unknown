@@ -2209,6 +2209,58 @@ function PerformExplosion(caster, infused, free, tgt) {
   return resp;
 }
 
+// Jinx
+magic[6][GetSpellID(2)].executeSpell = function(caster, infused, free) {
+//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Distract.<br /></span>"); }
+  DebugWrite("magic", "Casting Jinx.<br />");
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+//    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  resp["fin"] = 1;
+
+// WORKING HERE  
+  var radius = 3;
+  if (!free & caster.getInt() > 20) { radius = 4; }
+  if (infused) { radius = radius * 1.5; } 
+  var power = caster.getInt()/2;
+  if (free) { power = RollDice("1d3+7"); }
+  if (infused) { power = power*1.5; }
+  var castermap = caster.getHomeMap();
+  var npcs = castermap.npcs.getAll();
+  $.each(npcs, function (idx, val) {
+    if (GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) {
+      if (!CheckResist(caster,val,infused,0)) {
+        var distract = localFactory.createTile("Distract");
+        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+        var desc = val.getDesc() + " is distracted!";
+        if (val === PC) {
+          desc = "You are distracted!";
+        }
+        var duration = power * SCALE_TIME;
+        distract.setExpiresTime(duration + DUTime.getGameClock());
+        val.addSpellEffect(distract);
+      } else {
+        var desc = val.getDesc() + " resists!";
+        if (val === PC) {
+          desc = "You resist.";
+          // no X over the PC
+        } else {
+          ShowEffect(val, 700, "X.gif");
+        }
+      }
+      desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+      maintext.addText(desc);
+
+    }
+  });
+
+  return resp;
+}
+
 
 //Negate Magic
 magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {

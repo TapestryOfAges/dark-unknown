@@ -4,6 +4,22 @@
 function PerformCommand(code, ctrl) {
 	var retval = {};
 	retval["fin"] = 0;
+	var confusion = PC.getSpellEffectsByName("Confused");
+	if (confusion && (Math.random() > (confusion.getPower/100))) {
+	  // PC is confused and loses their action because of it
+	  retval["txt"] = "You are confused!";
+	  retval["fin"] = 1;
+	  if (Math.random() < .5) { 
+	    // confused and randomly wandering
+	    var dir = RollDice("1d4");
+	    if (dir === 1) { PC.moveMe(0,-1,0); }
+	    if (dir === 2) { PC.moveMe(1,0,0); }
+	    if (dir === 3) { PC.moveMe(0,1,0); }
+	    if (dir === 4) { PC.moveMe(-1,0,0); }
+	  }
+	  return retval;
+	}
+	// player has control, continue as normal
 	if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
 		// move north
 		var success = PC.moveMe(0,-1,0);
