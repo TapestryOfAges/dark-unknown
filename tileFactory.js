@@ -2513,8 +2513,8 @@ tileFactory.prototype.makeWillotheWispNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeXornNPCTile = function() {
-  var newTile = new XornNPCTile();
+tileFactory.prototype.makeDelverNPCTile = function() {
+  var newTile = new DelverNPCTile();
   return newTile;
 }
 
@@ -2568,8 +2568,8 @@ tileFactory.prototype.makeDaemonNPCTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeDelverNPCTile = function() {
-  var newTile = new DelverNPCTile();
+tileFactory.prototype.makeEarthenTyrantNPCTile = function() {
+  var newTile = new EarthenTyrantNPCTile();
   return newTile;
 }
 
@@ -2840,6 +2840,11 @@ tileFactory.prototype.makeBlessingDexTile = function() {
 
 tileFactory.prototype.makeBlessingIntTile = function() {
   var newTile = new BlessingIntTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeConfusedTile = function() {
+  var newTile = new ConfusedTile();
   return newTile;
 }
 

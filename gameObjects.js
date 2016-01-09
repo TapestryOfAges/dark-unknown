@@ -9685,6 +9685,20 @@ NPCObject.prototype.myTurn = function() {
 	Regen(this);
   var awake = 1;
   if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze")) { awake = 0; }
+  var confused = this.getSpellEffectsByName("Confused");
+  if (confused && (Math.random() < (confused.getPower()/100))) {
+    // confused and Confused
+    awake = 0;
+    if (Math.random() < .5) { 
+	    // confused and randomly wandering
+	    var dir = RollDice("1d4");
+	    if (dir === 1) { this.moveMe(0,-1,0); }
+	    if (dir === 2) { this.moveMe(1,0,0); }
+	    if (dir === 3) { this.moveMe(0,1,0); }
+	    if (dir === 4) { this.moveMe(-1,0,0); }
+	  }
+
+  }
 
   var response = {};  
   // will be = return value of AI call
