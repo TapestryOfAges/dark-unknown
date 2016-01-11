@@ -340,6 +340,7 @@ function ConfusedTile() {
   this.display = "<span style='color:grey'>C</span>";
   this.zstatdesc = "You are confused.";
   this.desc = "confuse";
+  this.level = 6;
 }
 ConfusedTile.prototype = new EphemeralObject();
 
@@ -364,6 +365,54 @@ ConfusedTile.prototype.endEffect = function(silent) {
     maintext.addText("Your head is clear of its confusion!");
   }
   DrawCharFrame();
+}
+
+function CurseTile() {
+  this.addType("debuff");
+  this.name = "Curse";
+  this.display = "<span style='color:red'>C</span>";
+  this.zstatdesc = "You have been cursed.";
+  this.desc = "Curse";
+  this.level = 6;
+}
+CurseTile.prototype = new EphemeralObject();
+
+CurseTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  who.setModInt(who.getModInt() - power);
+  who.setModStr(who.getModInt() - power);
+  who.setModDex(who.getModInt() - power);
+
+  if (who) {
+    if ((who === PC) && !silent) {
+      maintext.addText("You have been cursed!");
+    }
+  }
+  return 1;
+}
+
+CurseTile.prototype.doEffect = function() {
+  var resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+CurseTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  who.deleteSpellEffect(this);
+  who.setModInt(who.getModInt() + power);
+  who.setModStr(who.getModInt() + power);
+  who.setModDex(who.getModInt() + power);
+
+  if ((who === PC) && !silent) {
+    maintext.addText("You are no longer cursed.");
+  }
+  DrawCharFrame();
+  return -1;
 }
 
 function DiseaseTile() {
@@ -915,6 +964,94 @@ SlowTile.prototype.endEffect = function(silent) {
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("You speed up again.");
+  }
+  DrawCharFrame();  
+}
+
+function StormTile() {
+  this.addType("buff");
+  this.name = "Storm";
+  this.display = "<span style='color:yellow'>S</span>";
+  this.power = .5;
+  this.zstatdesc = "You have summoned the storm.";
+  this.desc = "Storm";
+  this.level = 6;
+}
+StormTile.prototype = new EphemeralObject();
+
+
+StormTile.prototype.applyEffect = function(silent) {
+//  var who = this.getAttachedTo();
+//  var power = this.getPower();
+  this.lastbolt = DU.getGameClock();
+  return 1;
+}
+
+StormTile.prototype.doEffect = function() {
+  var who = this.getAttachedTo();
+  var bolts = Math.floor((DU.getGameClock() - this.lastbolt)/SCALE_TIME)*2;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+    bolts++;
+  }
+  if (bolts) {
+    DebugWrite("magic", "Storm fires!");
+    var castermap = who.getHomeMap();
+    var npcs = castermap.npcs.getAll();
+    var targetlist = [];
+    $.each(npcs, function (idx, val) {
+      if (caster.getAttitude() !== val.getAttitude()) {
+        if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD ) {
+          targetlist.push(val);
+        }
+      }
+    });
+    if (targetlist.length) {
+      var display = getDisplayCenter(castermap, who.getx(), who.gety());
+      var cloud = new GameObject();
+      cloud.x = display.centerx;
+      cloud.y = display.topy;
+      // animate bolt from top-center to target 
+      for (var i = 0; i<bolts; i++) {
+        if (targetlist.length) {
+          var chosenidx = Math.floor(Math.random()*targetlength.length);
+        
+          var boltgraphic = {};
+          boltgraphic.graphic = "fireicelightning.gif";
+          boltgraphic.yoffset = -64;
+          boltgraphic.xoffset = 0;
+          boltgraphic.directionalammo = 1;
+        
+          boltgraphic = GetEffectGraphic(cloud,targetlist[chosenidx],boltgraphic);
+        
+          var dmg = RollDamage(DMG_MEDIUM);
+          if (CheckResist(who,targetlist[chosenidx],infused,0)) {
+            dmg = Math.floor(dmg/2)+1;
+          }
+
+          var desc = targetlist[chosenidx].getDesc();
+          desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+          var descval = {txt: desc};
+          var sounds = {};
+          var fromcoords = getCoords(castermap,display.centerx, display.topy);
+          var tocoords = getCoords(castermap,targetlist[chosenidx].getx(), targetlist[chosenidx].gety());
+          var duration = (Math.pow( Math.pow(targetlist[chosenidx].getx() - display.centerx, 2) + Math.pow (targetlist[chosenidx].gety() - display.topy, 2)  , .5)) * 50;
+          var destgraphic = {graphic:"702.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+          AnimateEffect(cloud, targetlist[chosenidx], fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:0, retval:descval, dmgtype:"lightning"});
+          
+          targetlist.splice(chosenidx,1);
+          //WORKING HERE- check over
+        }        
+      }
+    }
+  }
+}
+
+StormTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("The storm has ceased.");
   }
   DrawCharFrame();  
 }
