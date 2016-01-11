@@ -80,6 +80,9 @@ function CheckResist (caster, tgt, infused, diffmod) {
   if (diffmod) { chance += diffmod; }
   
   if (chance < 0) { chance = 0; }
+  
+  if (tgt.getSpellEffectsByName("Curse")) { chance = chance/2; }
+  
   var resist = Math.random()*100;
   
   if (resist <= chance) {
@@ -2212,7 +2215,7 @@ function PerformExplosion(caster, infused, free, tgt) {
 }
 
 // Jinx
-magic[6][GetSpellID(2)].executeSpell = function(caster, infused, free) {
+magic[6][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Jinx.<br />");
   var resp = {};
   if (!free) {
@@ -2245,7 +2248,7 @@ magic[6][GetSpellID(2)].executeSpell = function(caster, infused, free) {
           var duration = 8 + RollDice("1d4") - val.getInt()/5;
           var jinx = localFactory.createTile("Confused");
           jinx.setPower(power);
-          jinx.setExpiresTime(duration + DUTime.getGameClock());
+          jinx.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
           val.addSpellEffect(jinx);          
           desc = val.getDesc() + " is confused!";
           ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
@@ -2262,9 +2265,61 @@ magic[6][GetSpellID(2)].executeSpell = function(caster, infused, free) {
   return resp;
 }
 
+// Mass Curse
+magic[6][GetSpellID(4)].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Mass Curse.<br />");
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  resp["fin"] = 1;
+
+  var radius = 4;
+  if (!free & caster.getInt() > 20) { radius = 5; }
+  if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
+  var castermap = caster.getHomeMap();
+  var npcs = castermap.npcs.getAll();
+  $.each(npcs, function (idx, val) {
+    var desc;
+    if (caster.getAttitude() !== val.getAttitude()) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD ) {
+        var resist = CheckResist(caster,val,infused,0);
+        var curse = localFactory.createTile("Curse");
+        var power = 5 + Math.floor(caster.getInt()/5);
+        if (resist) {
+          if (val === PC) {
+            desc = "You resist, but are more vulnerable to magic.";
+            // no X over the PC
+          } else {
+            ShowEffect(val, 700, "X.gif");
+          }       
+          power = 2;
+        } else {
+          if (val === PC) {
+            desc = "You are cursed! Your thoughts feel sluggish, you feel clumsier, and you feel weaker.";
+          }
+        }
+        var duration = 10 + RollDice("1d8") - val.getInt()/4;
+        curse.setPower(power);
+        curse.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
+        val.addSpellEffect(curse);          
+        desc = val.getDesc() + " is cursed!";
+        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+        
+        desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+        maintext.addText(desc);
+      }
+    }
+  });
+
+  return resp;
+}
+
 
 //Negate Magic
-magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+magic[6][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Negate Magic.<br /></span>"); }
   DebugWrite("magic", "Casting Negate Magic.<br />");
   
@@ -2319,6 +2374,40 @@ magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   DrawCharFrame();
   return resp;
 }
+
+// Lightning Storm
+magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Storm.<br />");
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  resp["fin"] = 1;
+  
+  var castermap = caster.getHomeMap();
+  if (!castermap.getScale()) {
+    DebugWrite("magic", "Tried to cast Storm on an overland map.<br />");
+    maintext.AddText("You summon a small storm, which soon ends.");
+    return resp;
+  }
+  var liobj = localFactory.createTile("Storm");
+  
+  var dur = 10*SCALE_TIME;
+  if (infused) {dur = dur * 1.5; } // can't be infused, but what the heck
+  var endtime = dur + DU.DUTime.getGameClock();
+//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
+  liobj.setExpiresTime(endtime);
+  
+  caster.addSpellEffect(liobj);
+//  liobj.applyEffect();
+  
+  DrawCharFrame();
+  return resp;
+}
+
 
 //Quickness
 magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {

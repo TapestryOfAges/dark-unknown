@@ -2848,6 +2848,11 @@ tileFactory.prototype.makeConfusedTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCurseTile = function() {
+  var newTile = new CurseTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDiseaseTile = function() {
   var newTile = new DiseaseTile();
   return newTile;
@@ -2915,6 +2920,11 @@ tileFactory.prototype.makeSleepTile = function() {
 
 tileFactory.prototype.makeSlowTile = function() {
   var newTile = new SlowTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStormTile = function() {
+  var newTile = new StormTile();
   return newTile;
 }
 

@@ -9045,6 +9045,7 @@ NPCObject.prototype.setBaseStr = function(newstr) {
 
 NPCObject.prototype.getStr = function() {
   var str = this.getBaseStr() + this.getModStr() + this.getOrbStr();
+  str = Math.max(str,3);
 	return str;
 }
 
@@ -9088,6 +9089,7 @@ NPCObject.prototype.setOrbDex = function(newdex) {
 
 NPCObject.prototype.getDex = function() {
   var dex = this.getBaseDex() + this.getModDex() + this.getOrbDex();
+  dex = Math.max(dex,3);
 	return dex;
 }
 
@@ -9132,6 +9134,7 @@ NPCObject.prototype.setOrbInt = function(newint) {
 
 NPCObject.prototype.getInt = function() {
   var theint = this.getBaseInt() + this.getModInt() + this.getOrbInt();
+  theint = Math.max(theint, 3);
 	return theint;
 }
 
