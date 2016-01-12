@@ -334,6 +334,42 @@ BlessingIntTile.prototype.endEffect = function(silent) {
   return -1;
 }
 
+function CharmTile() {
+  this.addType("debuff");
+  this.name = "Charm";
+  this.display = "<span style='color:purple'>C</span>";
+  this.zstatdesc = "You are charmed.";
+  this.desc = "charm";
+  this.level = 7;
+}
+CharmTile.prototype = new EphemeralObject();
+
+CharmTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  this.oldattitude = who.getAttitude();
+  who.setAttitude("friendly");
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You have been charmed!");
+  }
+  return 1;
+}
+
+CharmTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+CharmTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.setAttitude(this.oldattitude);
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You are once more in control of yourself!");
+  }
+  DrawCharFrame();
+}
+
 function ConfusedTile() {
   this.addType("debuff");
   this.name = "Confused";
@@ -469,6 +505,43 @@ DistractTile.prototype.endEffect = function(silent) {
   }
   DrawCharFrame();
   return -1;
+}
+
+function FearTile() {
+  this.addType("debuff");
+  this.name = "Fear";
+  this.display = "<span style='color:purple'>F</span>";
+  this.zstatdesc = "You are afraid.";
+  this.desc = "fear";
+  this.level = 7;
+}
+FearTile.prototype = new EphemeralObject();
+
+FearTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if (who !== PC) {
+    who.specials.coward = 1;
+  }
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You are terrified!");
+  }
+  return 1;
+}
+
+FearTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+FearTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  delete who.specials.coward;
+  if ((who === PC) && !silent) {
+    maintext.addText("You are once more in control of yourself!");
+  }
+  DrawCharFrame();
 }
 
 function FireArmorTile() {

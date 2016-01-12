@@ -2408,6 +2408,147 @@ magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   return resp;
 }
 
+// Charm
+magic[7][GetSpellID(1)].executeSpell = function(caster, infused, free, tgt) {
+  DebugWrite("magic", "Casting Charm.<br />");
+  if (caster !== PC) {
+    var resp = PerformCharm(caster, infused, free, tgt);
+    return resp;
+  }
+  var resp = {};
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Charm";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
+  targetCursor.targetlimit = (viewsizex -1)/2;
+  targetCursor.targetCenterlimit = 0;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 0;
+  gamestate.setMode("target");
+  return resp;
+}
+
+function PerformCharm(caster, infused, free, tgt) {
+  var resp = {};
+  resp["fin"] = 1;
+  var desc = "";
+
+  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "Your spell cannot reach that target!";
+    return resp;
+  }
+  
+  if (!free) {
+    var mana = magic[7][GetSpellID(1)].getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  
+  var newtgt = CheckMirrorWard(tgt, caster);
+  while (newtgt !== tgt) {
+    tgt = newtgt;
+    newtgt = CheckMirrorWard(tgt, caster);
+  }
+    
+  tgt = newtgt;
+
+  if (!CheckResist(caster,tgt,infused,0)) {
+    var charmobj = localFactory.createTile("Charm");
+  
+    var dur = caster.getInt()/2;
+    if (infused) { dur = dur * 1.5;}  // can't be infused, but just in case
+    if (free) { dur = RollDice("1d4+5"); }
+    ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+    if (tgt !== PC) {
+      desc = tgt.getDesc() + " is charmed!";
+    } else {
+      desc = "You are charmed!";  // good lord, don't let NPCs cast charm
+    }
+    charmobj.setExpiresTime(dur + DUTime.getGameClock());
+    charmobj.setPower(1);
+    tgt.addSpellEffect(charmobj);
+  }
+  else {
+    desc = tgt.getDesc() + " resists!";
+    if (tgt === PC) {
+      desc = "You resist.";
+      // no X over the PC
+    } else {
+      ShowEffect(val, 700, "X.gif");
+    }
+  }
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+//  maintext.addText(desc);
+  resp["txt"] = desc;
+  resp["input"] = "&gt;";
+  return resp;
+}
+
+// Fear
+magic[7][GetSpellID(2)].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Fear.<br />");
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  resp["fin"] = 1;
+
+  var radius = 4;
+  if (!free & caster.getInt() > 20) { radius = 5; }
+  if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
+  var castermap = caster.getHomeMap();
+  var npcs = castermap.npcs.getAll();
+  $.each(npcs, function (idx, val) {
+    var desc;
+    if (caster.getAttitude() !== val.getAttitude()) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD ) {
+        if (resist) {
+          if (val === PC) {
+            desc = "You resist.";
+            // no X over the PC
+          } else {
+            ShowEffect(val, 700, "X.gif");
+          }       
+        } else {
+          if (val.specials.coward) {
+            desc = val.getDesc() + " was already afraid!";
+          } else {
+            var fear = localFactory.createTile("Fear");
+            var resist = CheckResist(caster,val,infused,0);
+            var duration = 10 + RollDice("1d8") - val.getInt()/4;
+            fear.setPower(1);
+            fear.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
+            val.addSpellEffect(fear);          
+            desc = val.getDesc() + " is afraid!";
+            ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+          }
+
+ //         if (val === PC) {
+ //           desc = "You are terrified!";
+ //         }
+        }
+ 
+        if (desc) {       
+          desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+          maintext.addText(desc);
+        }
+      }
+    }
+  });
+
+  return resp;
+}
 
 //Quickness
 magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
@@ -2735,6 +2876,8 @@ function PerformSpellcast() {
         resp = PerformSwordstrike(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Explosion") {
         resp = PerformExplosion(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+      } else if (targetCursor.spellName === "Charm") {
+        resp = PerformCharm(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       }
       delete targetCursor.spellName;
       
