@@ -90,39 +90,45 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 65) { // a
 		// attack
-		var mapscale = PC.getHomeMap().getScale();
-		if (mapscale == '0') { // on a world map, attack is adjacent only
-      gamestate.setMode("choosedir");
-      retval["txt"] = "";
-      retval["input"] = "&gt; Attack: ";
-      retval["fin"] = 2;
-      targetCursor.command = "a";
-      targetCursor.x = PC.getx();
-      targetCursor.y = PC.gety();		  
-		} else {  // on a 1:1 scale map, choose target
-		  gamestate.setMode("target");
+		if (PC.getSpellEffectsByName("Fear")) {
+		  retval["txt"] = "You are too afraid!";
+		  retval["fin"] = 0;
+		  retval["input"] = "&gt;";
+		} else {
+  	  var mapscale = PC.getHomeMap().getScale();
+  		if (mapscale == '0') { // on a world map, attack is adjacent only
+        gamestate.setMode("choosedir");
+        retval["txt"] = "";
+        retval["input"] = "&gt; Attack: ";
+        retval["fin"] = 2;
+        targetCursor.command = "a";
+        targetCursor.x = PC.getx();
+        targetCursor.y = PC.gety();		  
+  		} else {  // on a 1:1 scale map, choose target
+	  	  gamestate.setMode("target");
 //		  var targetcoords = getCoords(PC.getHomeMap(), PC.getx(), PC.gety());
 //		  var newx = PC.getx();
 //		  var newy = PC.gety();
 //		  var targetx = 192;
 //		  var targety = 192;
 //		  var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
-		  targetCursor.x = PC.getx();
-		  targetCursor.y = PC.gety();
-		  targetCursor.command = "a";
-		  targetCursor.targetlimit = (viewsizex -1)/2;
-		  targetCursor.targetCenterlimit = 0;
+		    targetCursor.x = PC.getx();
+		    targetCursor.y = PC.gety();
+  		  targetCursor.command = "a";
+	  	  targetCursor.targetlimit = (viewsizex -1)/2;
+		    targetCursor.targetCenterlimit = 0;
 //		  targetx += (PC.x - edges.centerx) * 32;
 //		  targety += (PC.y - edges.centery) * 32;
 //      var targetx = targetcoords.x;
 //      var targety = targetcoords.y;
-		  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-		  targetCursor.tileid = tileid;
-		  targetCursor.basetile = $(tileid).html();
-		  $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
-		  retval["txt"] = "";
-		  retval["input"] = "&gt; Attack: ";
-		  retval["fin"] = 2;
+		    var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  		  targetCursor.tileid = tileid;
+	  	  targetCursor.basetile = $(tileid).html();
+		    $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+		    retval["txt"] = "";
+  		  retval["input"] = "&gt; Attack: ";
+	  	  retval["fin"] = 2;
+      }
     }
 	}
 	else if (code === 66) { // b
