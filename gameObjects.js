@@ -9687,7 +9687,7 @@ NPCObject.prototype.myTurn = function() {
 	
 	Regen(this);
   var awake = 1;
-  if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze")) { awake = 0; }
+  if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze") || this.getSpellEffectsByName("Frozen")) { awake = 0; }
   var confused = this.getSpellEffectsByName("Confused");
   if (confused && (Math.random() < (confused.getPower()/100))) {
     // confused and Confused
@@ -10206,7 +10206,10 @@ PCObject.prototype.myTurn = function() {
     
   Regen(this);
   var awake = 1;
-  if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze")) { awake = 0; }  
+  var sleep = this.getSpellEffectsByName("Sleep");
+  var paralyzed = this.getSpellEffectsByName("Paralyze");
+  var frozen = this.getSpellEffectsByName("Frozen");
+  if (sleep || paralyzed || frozen) { awake = 0; }  
 
   SetDebugToBottom();
   
@@ -10215,10 +10218,12 @@ PCObject.prototype.myTurn = function() {
 	  gamestate.setTurn(PC);
 	  return 0;
 	} else {
-	  if (this.getSpellEffectsByName("Sleep")) {
+	  if (sleep) {
   	  maintext.addText("Zzzz...");
-  	} else {
+  	} else if (paralyzed) {
   	  maintext.addText("Paralyzed!");
+  	} else if (frozen) {
+  	  maintext.addText("You are frozen!");
   	}
 	  this.endTurn(0);
 	}
@@ -10321,6 +10326,11 @@ PCObject.prototype.dealDamage = function(dmg, src, type) {
   var isasleep = this.getSpellEffectsByName("Sleep");
   if (isasleep) {
     isasleep.endEffect();
+  }
+  
+  var isfrozen = this.getSpellEffectsByName("Frozen");
+  if (isfrozen) {
+    isfrozen.endEffect();
   }
 
   dmg = CheckAbsorb(dmg,this,src,type);

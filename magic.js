@@ -2233,7 +2233,7 @@ magic[6][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   $.each(npcs, function (idx, val) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD ) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
         var resist = CheckResist(caster,val,infused,0);
         var power = 66-resist;
         if (resist < 33) {
@@ -2284,7 +2284,7 @@ magic[6][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   $.each(npcs, function (idx, val) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD ) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
         var resist = CheckResist(caster,val,infused,0);
         var curse = localFactory.createTile("Curse");
         var power = 5 + Math.floor(caster.getInt()/5);
@@ -2512,7 +2512,7 @@ magic[7][GetSpellID(2)].executeSpell = function(caster, infused, free) {
   $.each(npcs, function (idx, val) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD ) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
         if (resist) {
           if (val === PC) {
             desc = "You resist.";
@@ -2549,6 +2549,22 @@ magic[7][GetSpellID(2)].executeSpell = function(caster, infused, free) {
 
   return resp;
 }
+
+// Fire and Ice
+magic[7][GetSpellID(3)].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Fire and Ice.<br />");
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  resp["fin"] = 1;
+
+
+  return resp;
+}
+
 
 //Quickness
 magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
@@ -2753,17 +2769,17 @@ function PlaySparkles(onwhat, color) {
     animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-repeat:no-repeat; background-position: 0px ' + colory[color] + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';  
   }
   $("#spelleffects").html($("#spelleffects").html() + animhtml);
-  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Placed " + color + " sparkles on " + onwhat.getName() + ".<br /></span>"); }
+//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Placed " + color + " sparkles on " + onwhat.getName() + ".<br /></span>"); }
   DebugWrite("magic", "Placed " + color + " sparkles on " + onwhat.getName() + ".<br />");
   AnimateSparkles(onwhat,colory[color],0);
   
 }
 
 function AnimateSparkles(onwhat, color, animframe) {
-  var spellcountid = "#anim" + onwhat.getSerial();
+  var spellcountid = "anim" + onwhat.getSerial();
   if (!spellcount[spellcountid]) {
-    $(spellcountid).html("");
-    $(spellcountid).css("background-image", "");
+    $("#"+spellcountid).html("");
+    $("#"+spellcountid).css("background-image", "");
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Spellcount zeroed out externally. Ceasing sparkling.<br /></span>"); }
     DebugWrite("magic", "Spellcount zeroed out externally. Ceasing sparkling.<br />");
     return;
@@ -2772,8 +2788,8 @@ function AnimateSparkles(onwhat, color, animframe) {
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Sparkle on " + onwhat.getName() + " finished.<br /></span>"); }
     DebugWrite("magic", "Sparkle on " + onwhat.getName() + " finished.<br />");
     delete spellcount[spellcountid];
-    $(spellcountid).html("");
-    $(spellcountid).css("background-image", "");
+    $("#"+spellcountid).html("");
+    $("#"+spellcountid).css("background-image", "");
   }
   var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
   var where;
@@ -2796,10 +2812,10 @@ function AnimateSparkles(onwhat, color, animframe) {
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Sparkle on " + onwhat.getName() + " moving on to frame " + animframe + ".<br /></span>"); }
     DebugWrite("magic", "Sparkle on " + onwhat.getName() + " moving on to frame " + animframe + ".<br />");
   }
-  $(spellcountid).css("background-position", (animframe*-32) + "px " + color + "py");
-  $(spellcountid).css("background-image", animurl);
-  $(spellcountid).css("left", where.x);
-  $(spellcountid).css("top", where.y);
+  $("#"+spellcountid).css("background-position", (animframe*-32) + "px " + color + "py");
+  $("#"+spellcountid).css("background-image", animurl);
+  $("#"+spellcountid).css("left", where.x);
+  $("#"+spellcountid).css("top", where.y);
   
   spellcount[spellcountid]++;
   setTimeout(AnimateSparkles(onwhat,color,animframe), 100);
@@ -2938,4 +2954,113 @@ function CheckMirrorWard(tgt, caster) {
   }
   
   return tgt;
+}
+
+function PlayRing(onwhat, ringfile, retval, endturn, secondring) {
+  if (Object.keys(spellcount).length === 0) {
+    DebugWrite("magic", "Clearing the spelleffects of empty sparkles.<br />");
+    $("#spelleffects").html("");
+  }
+    
+  var where;
+  var animhtml;
+
+  if (spellcount["animring" + onwhat.getSerial()]) { 
+    DebugWrite("magic", "Tried to create a second ring on " + onwhat.getName() + ".<br />");
+    return; 
+  }  //if there's already a sparkle playing, don't replace it with another one, just play the first only
+  spellcount["animring" + onwhat.getSerial()] = 1;
+  DebugWrite("magic", "Incrementing spell effects count to " + spellcount['anim' + onwhat.getSerial()] + ".<br />");
+  var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
+  
+  var centerx = onwhat.getx();
+  var centery = onwhat.gety();
+  for (var i = centerx-1; i<=centerx+1; i++) {
+    for (var j = centery-1; i<=centery+1; i++) {
+      where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+      if ((i >= displayspecs.leftedge) && (i <= displayspecs.rightedge) && (j >= displayspecs.topedge) && (j <= displayspecs.bottomedge)) {
+        animhtml = '<div id="animring' + onwhat.getSerial() + i + 'x' + j + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-image:url(\'graphics/' + ringfile + '\');background-repeat:no-repeat; background-position: 0px 0px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';    
+      } else {
+        animhtml = '<div id="animring' + onwhat.getSerial() + i + 'x' + j + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; background-image:url(\'graphics/spacer.gif\');background-repeat:no-repeat; background-position: 0px 0px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';            
+      }
+      $("#spelleffects").append(animhtml);
+    }  
+  }
+  
+  DebugWrite("magic", "Placed a " + ringfile + " ring on " + onwhat.getName() + ".<br />");
+  AnimateRing(onwhat,ringfile,retval,endturn,secondring);  
+  return;
+}
+
+function AnimateRing(onwhat, ringfile, retval, endturn, secondring) {
+  var spellcountid = "animring" + onwhat.getSerial();
+  if (!spellcount[spellcountid]) {
+    $("#"+spellcountid).html("");
+    $("#"+spellcountid).css("background-image", "");
+    DebugWrite("magic", "Spellcount zeroed out externally. Ceasing animating.<br />");
+    return;
+  }
+  var centerx = onwhat.getx();
+  var centery = onwhat.gety();
+  if (spellcount[spellcountid] === 192) {
+    DebugWrite("magic", "Ring on " + onwhat.getName() + " finished.<br />");
+    delete spellcount[spellcountid];
+    for (i=centerx-1;i<=centerx+1;i++) {
+      for (var j = centery-1; i<=centery+1; i++) {
+        $("#"+spellcountid + i + 'x' + j).html("");
+        $("#"+spellcountid + i + 'x' + j).css("background-image", "");        
+      }
+    }
+    if (secondring) {
+      PlayRing(onwhat, secondring, endturn);
+      return;
+    }
+    if (endturn) {
+      onwhat.endTurn(retval["initmod"]);
+      return;
+    }
+  }
+  var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
+  var where;
+  where.x = 0;
+  where.y = 0;
+  var animurl = "";
+  for (i=centerx-1;i<=centerx+1;i++) {
+    for (var j = centery-1; i<=centery+1; i++) {
+      if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onewhat.gety() <= displayspecs.bottomedge)) {
+        where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
+        animurl = "url('graphics/" + ringfile + "')";
+      } else {
+        animurl = "url('graphics/spacer.gif')";
+      }
+      var animframe = spellcount[spellcountid]-1;
+      animframe = Math.floor(animframe/3);
+      var animx = 0;
+      var animy = 0;
+      while (animframe > 7) {
+        animy = animy-32;
+        animframe = animframe - 8;
+      }
+      animx = -32*animframe;
+
+      $("#"+spellcountid).css("background-position", animx + "px " + animy + "py");
+      $("#"+spellcountid).css("background-image", animurl);
+      $("#"+spellcountid).css("left", where.x);
+      $("#"+spellcountid).css("top", where.y);
+      
+    }
+  }
+
+  spellcount[spellcountid]++;
+  setTimeout(AnimateRing(onwhat, ringfile, retval, endturn, secondring), 100);
+
+}
+
+
+function TestRing() {
+  var displayspecs = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
+  var testspot = getCoords(PC.getHomeMap(),displayspecs.leftedge, PC.gety());
+  testspot.x -= 32;
+  var animhtml = '<div id="animringtest" style="position: absolute; left: ' + testspot.x + 'px; top: ' + testspot.y + 'px; background-image:url(\'graphics/red-carpet.gif\');background-repeat:no-repeat; background-position: 0px 0px;"><img src="graphics/spacer.gif" width="96" height="96" /></div>';  
+  $("#spelleffects").append(animhtml);
 }
