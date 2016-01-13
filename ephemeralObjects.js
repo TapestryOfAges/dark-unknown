@@ -637,6 +637,38 @@ FlameBladeTile.prototype.endEffect = function(silent) {
   return -1;
 }
 
+function FrozenTile() {
+  this.addType("debuff");
+  this.name = "Frozen";
+  this.display = "<span style='color:lightblue'>F</span>";
+  this.zstatdesc = "You are frozen.";
+  this.desc = "frozen";
+}
+FrozenTile.prototype = new EphemeralObject();
+
+FrozenTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You are frozen!");
+  }
+  return 1;
+}
+
+FrozenTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+FrozenTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You are no longer frozen.");
+  }
+  DrawCharFrame();
+}
+
 function PoisonTile() {
   this.addType("debuff");
   this.name = "Poison";
@@ -1074,7 +1106,7 @@ StormTile.prototype.doEffect = function() {
     var targetlist = [];
     $.each(npcs, function (idx, val) {
       if (caster.getAttitude() !== val.getAttitude()) {
-        if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD ) {
+        if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
           targetlist.push(val);
         }
       }

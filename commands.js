@@ -1696,6 +1696,8 @@ function PerformYell() {
 		  Earthquake();
 		} else if (inputText.txt === "RUNTEST") {
 		  RunTest();
+		} else if (inputText.txt === "TESTRING") {
+		  TestRing();
 		} else if (inputText.txt === "SOUNDCHK") {
 		  createjs.Sound.play("Mainland", {loop: -1});
 		} else if (inputText.txt === "SLINGS") {
