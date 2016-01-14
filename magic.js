@@ -2559,8 +2559,50 @@ magic[7][GetSpellID(3)].executeSpell = function(caster, infused, free) {
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
-  resp["fin"] = 1;
+  resp["fin"] = -1;
 
+  PlayRing(caster,"firering.png", {}, 1, "icering.png", function(center) {
+    var centerx = center.getx();
+    var centery = center.gety();
+    var castermap = center.getHomeMap();
+    for (var i=centerx-1;i<=centerx+1;i++) {
+      for (var j=centery-1;j<=centery+1;j++) {
+        if ((i!==centerx)||(j!==centery)) {
+          var tile = castermap.getTile(i,j);
+          var tgt = tile.getTopVisibleNPC();
+          if (tgt) {
+            var dmg = RollDice(DMG_MEDIUM);
+            if (CheckResist(center,tgt,0,0)) {
+              dmg = Math.floor(dmg/2);
+            }
+            tgt.dealDamage(dmg,center,"fire");
+          }
+        }
+      }
+    }
+  }, function(center) {
+    var centerx = center.getx();
+    var centery = center.gety();
+    var castermap = center.getHomeMap();
+    for (var i=centerx-1;i<=centerx+1;i++) {
+      for (var j=centery-1;j<=centery+1;j++) {
+        if ((i!==centerx)||(j!==centery)) {
+          var tile = castermap.getTile(i,j);
+          var tgt = tile.getTopVisibleNPC();
+          if (tgt) {
+            if (!CheckResist(center,tgt,0,0)) {
+              var freeze = localFactory.createTile("Frozen");
+              freeze.setPower(1);
+              freeze.setExpiresTime(RollDice("1d3+1")*SCALE_TIME + DUTime.getGameClock());
+              tgt.addSpellEffect(freeze);
+              var desc = tgt.getDesc() + " is frozen!";
+              maintext.addText(desc);
+            }
+          }
+        }
+      }
+    }    
+  });
 
   return resp;
 }
@@ -2956,7 +2998,7 @@ function CheckMirrorWard(tgt, caster) {
   return tgt;
 }
 
-function PlayRing(onwhat, ringfile, retval, endturn, secondring) {
+function PlayRing(onwhat, ringfile, retval, endturn, secondring, firstringcallback, secondringcallback) {
   if (Object.keys(spellcount).length === 0) {
     DebugWrite("magic", "Clearing the spelleffects of empty sparkles.<br />");
     $("#spelleffects").html("");
@@ -2988,11 +3030,11 @@ function PlayRing(onwhat, ringfile, retval, endturn, secondring) {
   }
   
   DebugWrite("magic", "Placed a " + ringfile + " ring on " + onwhat.getName() + ".<br />");
-  AnimateRing(onwhat,ringfile,retval,endturn,secondring);  
+  AnimateRing(onwhat,ringfile,retval,endturn,secondring, firstringcallback, secondringcallback);  
   return;
 }
 
-function AnimateRing(onwhat, ringfile, retval, endturn, secondring) {
+function AnimateRing(onwhat, ringfile, retval, endturn, secondring, firstringcallback, secondringcallback) {
   var spellcountid = "animring" + onwhat.getSerial();
   if (!spellcount[spellcountid]) {
     $("#"+spellcountid).html("");
@@ -3011,8 +3053,11 @@ function AnimateRing(onwhat, ringfile, retval, endturn, secondring) {
         $("#"+spellcountid + i + 'x' + j).css("background-image", "");        
       }
     }
+    if (typeof firstringcallback === "function") {
+      firstringcallback(onwhat);
+    }
     if (secondring) {
-      PlayRing(onwhat, secondring, endturn);
+      PlayRing(onwhat, secondring, endturn,0,secondringcallback);
       return;
     }
     if (endturn) {
@@ -3052,7 +3097,7 @@ function AnimateRing(onwhat, ringfile, retval, endturn, secondring) {
   }
 
   spellcount[spellcountid]++;
-  setTimeout(AnimateRing(onwhat, ringfile, retval, endturn, secondring), 100);
+  setTimeout(AnimateRing(onwhat, ringfile, retval, endturn, secondring, firstringcallback, secondringcallback), 100);
 
 }
 

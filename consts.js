@@ -35,32 +35,6 @@ sfxlist["sfx_melee_miss"] = "sfx/sfx9.wav";
 // arrow/bolt hit (12)
 */
 
-var mapslist = {};
-mapslist["darkunknown"] = "the Mainland";
-mapslist["poverty"] = "the Towne of Poverty";
-mapslist["magetower"] = "Mage's Tower";
-mapslist["deathunending"] = "the Dungeon Death's Unending";
-mapslist["worldsending"] = "the Dungeon World's Ending";
-mapslist["olympus1"] = "Castle Olympus";
-mapslist["olympus0"] = "Castle Olympus";
-mapslist["olympus2"] = "Castle Olympus";
-mapslist["nassau"] = " the Village of Nassau";
-mapslist["gauntlet"] = "the Towne of Gauntlet";
-mapslist["clearlagoon"] = "the Towne of Clear Lagoon";
-mapslist["shadow"] = "the Dungeon Shadow";
-mapslist["wealth"] = "the Towne of Wealth";
-mapslist["guilddeath"] = "the Dungeon The Guild of Death";
-mapslist["blackdragon"] = "Black Dragon's Castle";
-mapslist["metaltwister"] = "the Dungeon The Metal Twister";
-mapslist["onyx"] = "the Towne of Onyx";
-mapslist["pitdespair"] = "the Dungeon Pit of Despair";
-mapslist["stout"] = "the Towne of Stout";
-mapslist["drash"] = "the Dungeon Mt Drash";
-mapslist["vault"] = "the Dungeon Vault";
-mapslist["ambrosia"] = "Ambrosia";
-mapslist["island"] = "the Distant Island";
-mapslist["cairns"] = "the Dungeon Cairns";
-
 var ailist = new Array("townsfolk","runaway","guard","melee","spellcaster","missile","adventurer","paladin","ranger","stationary","smallwander","fullwander");
 
 var DAY = 0;
