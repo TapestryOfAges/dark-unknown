@@ -24,6 +24,10 @@ Fireball, Icicle, Lightning graphics:
 http://creativecommons.org/licenses/by/3.0/
 http://opengameart.org/content/special-effects
 
+Fire/ice ring:
+http://opengameart.org/content/animated-particle-effects-1
+Public domain
+
 SOUND SOURCES AND LICENSES:
 
 Sanctimonia: http://eightvirtues.com/sanctimonia/?page_id=97

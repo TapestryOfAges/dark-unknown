@@ -1,0 +1,82 @@
+"use strict";
+
+mappages["kaltonmine1"] = {};
+mappages["kaltonmine1"].terrain = [];
+ mappages["kaltonmine1"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["kaltonmine1"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["kaltonmine1"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["kaltonmine1"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["kaltonmine1"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["kaltonmine1"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["kaltonmine1"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["kaltonmine1"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["kaltonmine1"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["kaltonmine1"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK cw cw cw cw cw cw cw BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cw BK BK BK cw cw cf cf cf cf cf cw cw BK BK BK BK';
+mappages["kaltonmine1"].terrain[11] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cf cf cf cf cw cw cw cw cw cw cw cf cf cf cf cf cf cf cw cw BK BK BK';
+mappages["kaltonmine1"].terrain[12] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cw cw cw BK cw cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK';
+mappages["kaltonmine1"].terrain[13] = 'BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cw cw BK BK cw cw cf cf cf cw cf cf cf cf cf cf cf cf cw BK BK BK';
+mappages["kaltonmine1"].terrain[14] = 'BK BK BK BK BK BK cw cw cw cw cw cf cf cf cf cf cf cf cf cw cw BK cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK';
+mappages["kaltonmine1"].terrain[15] = 'BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cw cf cf cf cw BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK';
+mappages["kaltonmine1"].terrain[16] = 'BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK';
+mappages["kaltonmine1"].terrain[17] = 'BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw cw cw cf cf cf cf cf cf cf cw BK BK';
+mappages["kaltonmine1"].terrain[18] = 'BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK cw cf cf cf cf cf cf cf cw BK BK';
+mappages["kaltonmine1"].terrain[19] = 'BK BK BK BK cw cf cf cf cf cf cf cf cf cw cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK cw cw cf cf cf cf cf cf cw BK BK';
+mappages["kaltonmine1"].terrain[20] = 'BK BK BK BK cw cw cf cf cf cf cf cf cw cw cf cf cf cf cf cf cw cf cf cf cw cw BK BK BK BK BK BK cw cf cf cf cf cf cf cw BK BK';
+mappages["kaltonmine1"].terrain[21] = 'BK BK BK BK BK cw cw cw cf cf cf cf cw cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK cw cw cw cf cf cf cf cw BK BK';
+mappages["kaltonmine1"].terrain[22] = 'BK BK BK BK BK BK BK cw cf cf cw cw cw BK cw cw cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK cw cw cw cw cw cw BK BK';
+mappages["kaltonmine1"].terrain[23] = 'BK BK BK BK BK BK BK cw cw cw cw BK BK BK BK cw cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[31] = 'BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[32] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[33] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[34] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[35] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[36] = 'BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[37] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[38] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[39] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[40] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["kaltonmine1"].terrain[41] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["kaltonmine1"].features = [];
+mappages["kaltonmine1"].features[0] = {name : 'LadderUp', x : 15, y : 5, entermap : 'darkunknown', enterx : 39, entery : 48};
+mappages["kaltonmine1"].features[1] = {name : 'PetrifiedRoper', x : 34, y : 19};
+mappages["kaltonmine1"].features[2] = {name : 'PetrifiedRoper', x : 36, y : 19};
+mappages["kaltonmine1"].features[3] = {name : 'PetrifiedRoper', x : 37, y : 18};
+mappages["kaltonmine1"].features[4] = {name : 'PetrifiedRoper', x : 35, y : 17};
+mappages["kaltonmine1"].features[5] = {name : 'PetrifiedRoper', x : 37, y : 15};
+mappages["kaltonmine1"].features[6] = {name : 'PetrifiedRoper', x : 35, y : 13};
+
+
+mappages["kaltonmine1"].npcs = [];
+
+mappages["kaltonmine1"].desc = "Kalton Mine (L1)";
+mappages["kaltonmine1"].music = 'Dungeon';
+mappages["kaltonmine1"].exitmap = 'darkunknown';
+mappages["kaltonmine1"].exitx = '39';
+mappages["kaltonmine1"].exity = '48';
+mappages["kaltonmine1"].wraps = 'None';
+mappages["kaltonmine1"].enterx = '15';
+mappages["kaltonmine1"].entery = '5';
+mappages["kaltonmine1"].seeBelow = '';
+mappages["kaltonmine1"].lightLevel = 'bright';
+mappages["kaltonmine1"].alwaysRemember = '0';
+mappages["kaltonmine1"].scale = '1';
+mappages["kaltonmine1"].enterscript = '';
+mappages["kaltonmine1"].entertestscript = '';
+mappages["kaltonmine1"].exitscript = '';
+mappages["kaltonmine1"].exittestscript = '';
+mappages["kaltonmine1"].returnmap = 'darkunknown';
+mappages["kaltonmine1"].returnx = '39';
+mappages["kaltonmine1"].returny = '48';
+mappages["kaltonmine1"].returninfused = '0';
+mappages["kaltonmine1"].linkedMaps = [""];
+
+
