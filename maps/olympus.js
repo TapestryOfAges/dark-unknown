@@ -220,7 +220,7 @@ mappages["olympus1"].npcs[11] = {name : 'FighterVillagerNPC', x : 25, y : 13, NP
 mappages["olympus1"].npcs[12] = {name : 'JesterNPC', x : 28, y : 15, NPCName: 'Kaye', Alignment: 'good', Conversation: 'kaye', Gender: 'male', Leash: 4, BarkFreq: 5, Bark: 'jester', BarkRad: 6};
 mappages["olympus1"].npcs[13] = {name : 'BardVillagerNPC', x : 42, y : 13, NPCName: 'Sonya', Conversation: 'sonya', Gender: 'female', Leash: 1, Bark: '0', NPCBand: '0', OverrideGraphic: 'bard-offcolor.gif'};
 
-mappages["olympus1"].desc = "Castle Olympus";
+mappages["olympus1"].desc = "Castle Dea Olympus";
 mappages["olympus1"].music = 'Olympus';
 mappages["olympus1"].exitmap = 'darkunknown';
 mappages["olympus1"].exitx = '69';
