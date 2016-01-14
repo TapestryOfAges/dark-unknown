@@ -988,7 +988,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       }
       if (retval["canmove"] === 1) { // it moved!
         retval["fin"] = 1;
-        if (debug && debugflags.ai) { dbs.writeln("successfully. New location: " + who.getx() + ", " + who.gety() + "</span><br />"); }
+//        if (debug && debugflags.ai) { dbs.writeln("successfully. New location: " + who.getx() + ", " + who.gety() + "</span><br />"); }
         DebugWrite("ai", "successfully. New location: " + who.getx() + ", " + who.gety() + "<br />");
         if (debug && debugflags.ai) {
           var tile = who.getHomeMap().getTile(who.getx(), who.gety());

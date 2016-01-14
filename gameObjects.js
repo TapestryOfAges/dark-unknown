@@ -8860,6 +8860,11 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
   if (isasleep) {
     isasleep.endEffect();
   }
+  var isfrozen = this.getSpellEffectsByName("Frozen");
+  if (isfrozen) {
+    isfrozen.endEffect();
+  }
+
   dmg = CheckAbsorb(dmg,this,src,type);
   this.modHP(dmg*-1);
   if (this.getHP() <= 0) { // killed!
@@ -9579,22 +9584,27 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	if (tile === "OoB") { 
 	  if (noexit) {
 	    // NPC won't step out of the map
+	    DebugWrite("map", this.getDesc() + " won't move out of the map.<br />");
 	    retval["canmove"] = 0;
 	    return retval;
 	  }
 		if (map.getExitToMap()) {
+		  DebugWrite("map", this.getDesc() + " exiting the map: ");
 			var newmap = new GameMap();
 			if (maps.getMap(map.getExitToMap())) {
+			  DebugWrite("map", "destination map already exists.<br />");
 				newmap = maps.getMap(map.getExitToMap());
 			} else {
+			  DebugWrite("map", "destination map needs to be loaded.<br />");
 				newmap.loadMap(map.getExitToMap());
 				maps.addMapByRef(newmap);
 			}
 			tile = MoveBetweenMaps(this,map,newmap,map.getExitToX(),map.getExitToY());
+			DebugWrite("map", "Exited from MoveBetweenMaps. New map is " + this.getHomeMap().getName() + ".<br />");
       retval["canmove"] = 0;
 			if (this === PC) {
-				DrawMainFrame("draw", map.getName() , PC.getx(), PC.gety());
-				DrawTopbarFrame("<p>" + map.getDesc() + "</p>");
+				DrawMainFrame("draw", newmap.getName() , PC.getx(), PC.gety());
+				DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
 				retval["msg"] = ".<br />Exiting " + oldmapname + ".";
 			}
 		}
