@@ -669,6 +669,38 @@ FrozenTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
+function InvulnerableTile() {
+  this.addType("buff");
+  this.name = "Invulnerable";
+  this.display = "<span style='color:cyan'>I</span>";
+  this.zstatdesc = "You are invulnerable.";
+  this.desc = "invulnerable";
+}
+InvulnerableTile.prototype = new EphemeralObject();
+
+InvulnerableTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You are invulnerable to damage!");
+  }
+  return 1;
+}
+
+InvulnerableTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+InvulnerableTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You are once more vulnerable to damage.");
+  }
+  DrawCharFrame();
+}
+
 function PoisonTile() {
   this.addType("debuff");
   this.name = "Poison";
