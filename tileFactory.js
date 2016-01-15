@@ -2843,6 +2843,11 @@ tileFactory.prototype.makeBlessingIntTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCharmTile = function() {
+  var newTile = new CharmTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeConfusedTile = function() {
   var newTile = new ConfusedTile();
   return newTile;
@@ -2863,6 +2868,11 @@ tileFactory.prototype.makeDistractTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFearTile = function() {
+  var newTile = new FearTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeFireArmorTile = function() {
   var newTile = new FireArmorTile();
   return newTile;
@@ -2870,6 +2880,16 @@ tileFactory.prototype.makeFireArmorTile = function() {
 
 tileFactory.prototype.makeFlameBladeTile = function() {
   var newTile = new FlameBladeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFrozenTile = function() {
+  var newTile = new FrozenTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeInvulnerableTile = function() {
+  var newTile = new InvulnerableTile();
   return newTile;
 }
 
