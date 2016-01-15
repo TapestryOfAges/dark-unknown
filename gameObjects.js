@@ -8864,14 +8864,18 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
   if (isfrozen) {
     isfrozen.endEffect();
   }
+  var isinvuln = this.getSpellEffectsByName("Invulnerable");
+  if (isinvuln) {
+    dmg = 0;
+  }
 
   dmg = CheckAbsorb(dmg,this,src,type);
   this.modHP(dmg*-1);
   if (this.getHP() <= 0) { // killed!
     this.processDeath(1);
-    return 0;
+    return -1;
   }
-  else { return 1; }
+  else { return dmg; }
 }
 
 NPCObject.prototype.processDeath = function(droploot){
@@ -10331,6 +10335,7 @@ PCObject.prototype.getMaxMana = function() {
   return maxmana;
 }
 
+// returns the amount of damage dealt, -1 if the damage killed the target
 PCObject.prototype.dealDamage = function(dmg, src, type) {
   
   var isasleep = this.getSpellEffectsByName("Sleep");
@@ -10341,6 +10346,11 @@ PCObject.prototype.dealDamage = function(dmg, src, type) {
   var isfrozen = this.getSpellEffectsByName("Frozen");
   if (isfrozen) {
     isfrozen.endEffect();
+  }
+
+  var isinvuln = this.getSpellEffectsByName("Invulnerable");
+  if (isinvuln) {
+    dmg = 0;
   }
 
   dmg = CheckAbsorb(dmg,this,src,type);
@@ -10355,9 +10365,9 @@ PCObject.prototype.dealDamage = function(dmg, src, type) {
   
   if (this.getHP() <= 0) { // killed!
     this.processDeath(1);
-    return 0;
+    return -1;
   }
-  else { return 1; }
+  else { return dmg; }
 }
 
 PCObject.prototype.getRuneCooldown = function(rune) {

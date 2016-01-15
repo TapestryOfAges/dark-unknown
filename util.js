@@ -108,7 +108,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
       $("#animtable").animate({ left: ammocoords.fromx , top: ammocoords.fromy } , duration, 'linear', function() {
         if (dmg != 0) {
           var stillalive = def.dealDamage(dmg, atk, dmgtype);    
-          if (stillalive) {
+          if (stillalive > -1) {
             var damagedesc = GetDamageDescriptor(def); 
             retval["txt"] += ": " + damagedesc + "!"; 
           }
