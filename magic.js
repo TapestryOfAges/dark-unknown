@@ -2513,7 +2513,7 @@ magic[7][GetSpellID(2)].executeSpell = function(caster, infused, free) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
-        if (resist) {
+        if (CheckResist(caster,val,infused,0)) {
           if (val === PC) {
             desc = "You resist.";
             // no X over the PC
@@ -2525,7 +2525,6 @@ magic[7][GetSpellID(2)].executeSpell = function(caster, infused, free) {
             desc = val.getDesc() + " was already afraid!";
           } else {
             var fear = localFactory.createTile("Fear");
-            var resist = CheckResist(caster,val,infused,0);
             var duration = 10 + RollDice("1d8") - val.getInt()/4;
             fear.setPower(1);
             fear.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
@@ -2607,6 +2606,81 @@ magic[7][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   return resp;
 }
 
+// Invulnerability
+magic[7][GetSpellID(4)].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Invulnerability.<br />");
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  resp["fin"] = 1;
+  var prot = localFactory.createTile("Invulnerable");
+  duration = 3 * SCALE_TIME;
+  var power = 1;
+  if (infused) { 
+    duration = duration +1; 
+  }
+  if (free) {
+    duration = 2 * SCALE_TIME;
+  }
+  var endtime = duration + DUTime.getGameClock();
+//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
+  DebugWrite("magic", "End time is " + endtime + ".<br />");
+  prot.setExpiresTime(endtime);
+  prot.setPower(power);
+  caster.addSpellEffect(prot);
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+  
+  return resp;
+}
+
+// Meteor Swarm
+magic[7][GetSpellID(5)].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Meteor Swarm.<br />");
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  resp["fin"] = -1;
+
+  var radius = 4;
+  if (!free & caster.getInt() > 20) { radius = 5; }
+  if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
+  var castermap = caster.getHomeMap();
+  var npcs = castermap.npcs.getAll();
+  var display = getDisplayCenter(PC.getHomeMap(), PC.getx(), PC.gety());
+  var npccount = 0;
+  $.each(npcs, function (idx, val) {
+    var desc;
+    if (caster.getAttitude() !== val.getAttitude()) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
+        npccount++;
+      }
+    }
+  });
+  $.each(npcs, function (idx, val) {
+    var desc;
+    if (caster.getAttitude() !== val.getAttitude()) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
+        npccount--;
+        var final = 0;
+        if (!npccount) { final = 1; }
+        var dmg = RollDice(DMG_MEDIUM);
+        if (CheckResist(caster,val,infused,0)) {
+          dmg = dmg/2;
+        } 
+        // WORKING HERE
+        val.dealDamage(dmg); 
+      }
+    }
+  });
+
+  return resp;
+}
 
 //Quickness
 magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
