@@ -2948,6 +2948,11 @@ tileFactory.prototype.makeStormTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTimeStopTile = function() {
+  var newTile = new TimeStopTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeVulnerabilityTile = function() {
   var newTile = new VulnerabilityTile();
   return newTile;

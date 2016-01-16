@@ -1193,6 +1193,47 @@ StormTile.prototype.endEffect = function(silent) {
   DrawCharFrame();  
 }
 
+function TimeStopTile() {
+  this.addType("buff");
+  this.name = "TimeStop";
+  this.display = "<span style='color:blue'>T</span>";
+  this.zstatdesc = "Time bends to your will.";
+  this.desc = "time stop";
+}
+TimeStopTile.prototype = new EphemeralObject();
+
+TimeStopTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You have caused time itself to stop!");
+  }
+  return 1;
+}
+
+TimeStopTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+  var who = this.getAttachedTo();
+  if (who.getHomeMap().getScale()) {
+    who.modMana(-5);
+  } else {
+    who.modMana(-(who.getMana()));
+  }
+  if (who.getMana() <= 0) {
+    this.endEffect();
+  }
+}
+
+TimeStopTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("Time flows once more.");
+  }
+  DrawCharFrame();
+}
+
 function VulnerabilityTile() {
   this.addType("debuff");
   this.name = "Vulnerability";

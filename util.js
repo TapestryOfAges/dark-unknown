@@ -691,11 +691,11 @@ function HighlightSpell(lvl,spell) {
 
 function GetSpellList(lvl) {
   var makehtml = "";
-  for (var i=1;i<=6;i++) {
+  for (var i=1;i<=8;i++) {
     if (PC.knowsSpell(lvl,GetSpellID(i))) {
       makehtml += "<span id='level" + lvl + "spell" + i + "'>" + magic[lvl][GetSpellID(i)].getName() + "</span>";
       // need to add a mouseclick to the spells for tablet play
-      if (i < 6) { makehtml += "<br />"; }
+      if (i < 8) { makehtml += "<br />"; }
     }
   }
   return makehtml;

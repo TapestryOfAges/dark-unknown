@@ -607,7 +607,7 @@ function PerformCast(infuse) {
   var retval = {};
   for (var lvl = 1; lvl <= 8; lvl++) {
     if (hasSpellbook) { break; }
-    for (var i=1; i <= 6; i++) {
+    for (var i=1; i <= 8; i++) {
       var spellnum = GetSpellID(i);
       if (PC.knowsSpell(lvl, spellnum)) { 
         hasSpellbook = 1; 
@@ -667,11 +667,11 @@ function PerformSpellbook(code) {
     var lvl = PC.getLastSpellLevel();
     var spell = PC.getLastSpell();
     spell++;
-    while (spell < 7) {
+    while (spell < 9) {
       if (PC.knowsSpell(lvl,GetSpellID(spell))) {
         HighlightSpell(lvl,spell);
         PC.setLastSpell(spell);
-        spell = 7;
+        spell = 9;
       } else { 
         spell++;
       }
@@ -1680,7 +1680,7 @@ function PerformYell() {
 		} else if (inputText.txt === "BEAMAGE") {
 		  PC.setKnowsInfusion(1);
 		  for (var i=1; i<=8; i++) {
-		    for (var j=1; j<=6; j++) {
+		    for (var j=1; j<=8; j++) {
 	//	      if (i != 4) {
 		        PC.addSpell(i,GetSpellID(j));
 	//	      }
@@ -2015,7 +2015,7 @@ function DrawStats(page) {
    
    for (var lvl = 1; lvl <= 8; lvl++ ){
      var hasLevel = 0;
-     for (var i=1; i<=6; i++) {
+     for (var i=1; i<=8; i++) {
        var spellnum = GetSpellID(i);
        if (PC.knowsSpell(lvl, spellnum)) {
          if (!hasLevel) {
