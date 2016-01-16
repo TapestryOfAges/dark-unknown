@@ -126,8 +126,8 @@ div.spellbook { display: none;
 table.spells { padding-top: 8;
                padding-left: 24; }
 
-table.spells td { font-size: 14pt;
-                  line-height: 20pt }
+table.spells td { font-size: 12pt;
+                  line-height: 16pt }
 
 table.spells td.spelllevel { width : 160;
                 text-align: center;

@@ -8682,6 +8682,7 @@ NPCObject.prototype.getMana = function() {
 
 NPCObject.prototype.modMana = function(diffMana) {
 	this.mana = this.mana + diffMana;
+	if (this.mana < 0) { this.mana = 0; }
 	if (this.checkType("pc")) {
 	  DrawCharFrame();
 	}
@@ -9257,6 +9258,7 @@ NPCObject.prototype.setArmorAs = function(armor) {
 
 NPCObject.prototype.nextActionTime = function(initdelay) {
 
+  if (this.getSpellEffectsByName("TimeStop")) { return 0; }
   var themap = this.getHomeMap();
   var scale = themap.getScale();
   if (this.smallscalemove) { 
