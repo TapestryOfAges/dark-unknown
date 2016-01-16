@@ -2673,8 +2673,27 @@ magic[7][GetSpellID(5)].executeSpell = function(caster, infused, free) {
         if (CheckResist(caster,val,infused,0)) {
           dmg = dmg/2;
         } 
-        // WORKING HERE
-        val.dealDamage(dmg); 
+        // In theory, it is impossible for targets to be offscreen.
+        var skysourcex = Math.random()*(display.rightedge - displey.leftedge +1) + display.leftedge;
+        var skysourcey = display.topedge;
+        
+        var boltgraphic = {};
+        boltgraphic.graphic = "fireicelightning.gif";
+        boltgraphic.yoffset = 0;
+        boltgraphic.xoffset = 0;
+        boltgraphic.directionalammo = 1;
+        boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
+        var desc = val.getDesc();
+        desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+        var descval = {txt: desc};
+
+        var sounds = {};
+        var fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+        var tocoords = getCoords(val.getHomeMap(),val.getx(), val.gety());
+        var duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+        var destgraphic = {graphic:"702.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+        AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:final, retval:descval, dmgtype:"fire"});
+
       }
     }
   });
