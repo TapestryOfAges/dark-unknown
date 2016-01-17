@@ -1,4 +1,3 @@
-
 "use strict";
 
 function SetLoots() {
@@ -132,6 +131,18 @@ function SetLoots() {
   loots['castlechest'].loot[12].chance = 30;
   loots['castlechest'].trap = 'strong';
 
+  loots['potslow'] = new LootTable();
+  loots['potslow'].goldDice = '2d20';
+  loots['potslow'].goldChance = 80;
+  loots['potslow'].loot[0] = {};
+  loots['potslow'].loot[0].objname = 'Potions2';
+  loots['potslow'].loot[0].quantity = '1';
+  loots['potslow'].loot[0].chance = 20;
+  loots['potslow'].loot[1] = {};
+  loots['potslow'].loot[1].objname = 'Potions1';
+  loots['potslow'].loot[1].quantity = '1d3';
+  loots['potslow'].loot[1].chance = 100;
+
   loots['Giant Spider'] = new LootTable();
   loots['Giant Spider'].goldDice = '2d6+3';
   loots['Giant Spider'].goldChance = 45;
@@ -178,13 +189,24 @@ function SetLoots() {
 function SetLootGroups() {
   var DULootGroup = new LootGroups();
 
+  DULootGroup.setTreasureType('Scrolls5',
+  [
+    'ScrollSummonAlly', 1,
+    'ScrollShockwave', 1,
+    'ScrollPeer', 1,
+    'ScrollSwordstrike', 1,
+    'ScrollMirrorWard', 1,
+    'ScrollCrystalBarrier', 1,
+    'ScrollParalyze', 1,
+  ]);
+
   DULootGroup.setTreasureType('Heavy Armor',
   [
     'PlateArmor', 2,
     'ChainArmor', 3,
   ]);
 
-  DULootGroup.setTreasureType('Scroll8',
+  DULootGroup.setTreasureType('Scrolls8',
   [
     'ScrollTimeStop', 1,
     'ScrollConjureDaemon', 1,
@@ -195,9 +217,11 @@ function SetLootGroups() {
   [
     'ScrollDisruptUndead', 1,
     'ScrollFireArmor', 1,
+    'ScrollDispel', 1,
     'ScrollFireball', 1,
     'ScrollWallOfFlame', 1,
     'ScrollIceball', 1,
+    'ScrollTelepathy', 1,
   ]);
 
   DULootGroup.setTreasureType('Lesser Weapon',
@@ -206,12 +230,19 @@ function SetLootGroups() {
     'Shortsword', 1,
   ]);
 
-  DULootGroup.setTreasureType('Scroll4',
+  DULootGroup.setTreasureType('Scrolls6',
   [
-    'ScrollLifeDrain', 1,
-    'ScrollHeal', 1,
-    'ScrollSmite', 1,
-    'ScrollBlessing', 1,
+    'ScrollExplosion', 1,
+    'ScrollStorm', 1,
+    'ScrollTremor', 1,
+  ]);
+
+  DULootGroup.setTreasureType('Scrolls7',
+  [
+    'ScrollFear', 1,
+    'ScrollFireAndIce', 1,
+    'ScrollMindBlast', 1,
+    'ScrollMeteorSwarm', 1,
   ]);
 
   DULootGroup.setTreasureType('Scrolls1',
@@ -219,18 +250,20 @@ function SetLootGroups() {
     'ScrollFlameBlade', 1,
     'ScrollDistract', 1,
     'ScrollDisarmTrap', 1,
+    'ScrollAwaken', 1,
     'ScrollLight', 1,
     'ScrollVulnerability', 1,
     'ScrollCure', 1,
   ]);
 
-  DULootGroup.setTreasureType('Scroll5',
+  DULootGroup.setTreasureType('Scrolls4',
   [
-    'ScrollSummonAlly', 1,
-    'ScrollShockwave', 1,
-    'ScrollSwordstrike', 1,
-    'ScrollMirrorWard', 1,
-    'ScrollParalyze', 1,
+    'ScrollEtherealVision', 1,
+    'ScrollBlink', 1,
+    'ScrollLifeDrain', 1,
+    'ScrollHeal', 1,
+    'ScrollSmite', 1,
+    'ScrollBlessing', 1,
   ]);
 
   DULootGroup.setTreasureType('Lesser Armor',
@@ -250,12 +283,6 @@ function SetLootGroups() {
     'Longsword', 2,
     'Axe', 3,
     'Mace', 5,
-  ]);
-
-  DULootGroup.setTreasureType('Scroll6',
-  [
-    'ScrollExplosion', 1,
-    'ScrollStorm', 1,
   ]);
 
   DULootGroup.setTreasureType('Potions3',
@@ -288,9 +315,9 @@ function SetLootGroups() {
 
   DULootGroup.setTreasureType('Scrolls2',
   [
-    'ScrollUnlock', 1,
     'ScrollMagicBolt', 1,
     'ScrollProtection', 1,
+    'ScrollIronFlesh', 1,
     'ScrollIllusion', 1,
     'ScrollPoisonCloud', 1,
     'ScrollLesserHeal', 1,
@@ -312,13 +339,6 @@ function SetLootGroups() {
     'ClothArmor', 2,
     'PlateArmor', 1,
     'ChainArmor', 1,
-  ]);
-
-  DULootGroup.setTreasureType('Scroll7',
-  [
-    'ScrollFear', 1,
-    'ScrollFireAndIce', 1,
-    'ScrollMeteorSwarm', 1,
   ]);
 
   DULootGroup.setTreasureType('Potions2',
