@@ -780,10 +780,10 @@ function PerformTrap(who, trap, traplvl, trapped) {
       return 0;
     }
     var def = who.getDefense();
-    var tohit = (2*traplvl - def)/100;
+    var tohit = (2*traplvl - def + 10)/100;
     if (tohit < .05) { tohit = .05; }
 //    if (debug && debugflags.gameobj) { dbs.writeln("Dart trap fires, lvl " + traplvl + ", player defense is " + def + ", change to hit is " + tohit + "<br />"); }
-    DebugWrite("gameobj", "Dart trap fires, lvl " + traplvl + ", player defense is " + def + ", change to hit is " + tohit + "<br />");
+    DebugWrite("gameobj", "Dart trap fires, lvl " + traplvl + ", player defense is " + def + ", chance to hit is " + tohit + "<br />");
     if (Math.random() < tohit) {  // dart hits!
       maintext.addText("TRAP! A dart strikes you. You are poisoned.");
       var poison = localFactory.createTile("Poison");
@@ -826,7 +826,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
       return 0;
     }
     maintext.addText("TRAP! There is an explosion!");
-    var firedmg = RollDice("3d6");
+    var firedmg = RollDice("3d6+4");
     who.dealDamage(firedmg,trapped);
     DrawCharFrame();
     return 1;
@@ -1113,7 +1113,7 @@ function AddLoot(towhat) {
 
   if (DULoot[lootgroup].trap) {
     var trapname = DULoot[lootgroup].trap;
-    DebugWrite("gameobj", "Chest created, might be trapped with: " + trapname + ".<br />");
+    DebugWrite("gameobj", "Chest created, might be trapped with strength: " + trapname + ".<br />");
     var trap = DUTraps[trapname].getTrap();
     if (trap.trap) {
       towhat.setTrap(trap.trap, trap.level);
@@ -1143,7 +1143,7 @@ function CheckAbsorb(dam,to,from,type) {
 
   if (!absorb) { return dam; }
   
-  if (to.checkType("npc") && from && (type === "physical")) {
+  if (to.checkType("npc") && from && (type === "physical") && (typeof from.getEquipment === "function")) {
     var weapon = from.getEquipment("weapon");
     absorb = absorb - weapon.getReduceArmor();
     if (absorb < 0) { absorb = 0; }

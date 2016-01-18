@@ -254,7 +254,7 @@ magic[1][GetSpellID(2)].executeSpell = function(caster, infused, free) {
   if (effects) {
     for (var i=0; i<effects.length; i++) {
       if (effects[i].getName() === "Poison") {
-        ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+        ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
         if (caster === PC) {
           maintext.addText("You are cured of poison!");
         }

@@ -1027,9 +1027,9 @@ function PerformSearch(who) {
 	  // search for traps and such rather than searching for items
 	  if (searched.trapped && (who.getInt() >= searched.trapchallenge-5)) {
 	    var descriptor = "complex ";
-	    if (who.getDex() >= searched.trapchallenge-6) { // 80% chance to disarm
+	    if (who.getDex() >= searched.trapchallenge+6) { // 80% chance to disarm
 	      descriptor = "simple ";
-	    } else if (who.getDex() <= searched.trapchallenge+6) { // 20% chance or worse
+	    } else if (who.getDex() <= searched.trapchallenge-6) { // 20% chance or worse
 	      descriptor = "challenging ";
 	    }
 	    retval["txt"] = "Search: You find a " + descriptor + "trap!";
