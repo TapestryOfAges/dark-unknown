@@ -1858,6 +1858,11 @@ tileFactory.prototype.makeOrangePotionTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeScrollAwakenTile = function() {
+  var newTile = new ScrollAwakenTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeScrollCureTile = function() {
   var newTile = new ScrollCureTile();
   return newTile;
@@ -1893,6 +1898,11 @@ tileFactory.prototype.makeScrollIllusionTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeScrollIronFleshTile = function() {
+  var newTile = new ScrollIronFleshTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeScrollLesserHealTile = function() {
   var newTile = new ScrollLesserHealTile();
   return newTile;
@@ -1915,6 +1925,11 @@ tileFactory.prototype.makeScrollProtectionTile = function() {
 
 tileFactory.prototype.makeScrollUnlockTile = function() {
   var newTile = new ScrollUnlockTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollDispelTile = function() {
+  var newTile = new ScrollDispelTile();
   return newTile;
 }
 
@@ -1943,6 +1958,11 @@ tileFactory.prototype.makeScrollTelekinesisTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeScrollTelepathyTile = function() {
+  var newTile = new ScrollTelepathyTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeScrollWallOfFlameTile = function() {
   var newTile = new ScrollWallOfFlameTile();
   return newTile;
@@ -1950,6 +1970,16 @@ tileFactory.prototype.makeScrollWallOfFlameTile = function() {
 
 tileFactory.prototype.makeScrollBlessingTile = function() {
   var newTile = new ScrollBlessingTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollBlinkTile = function() {
+  var newTile = new ScrollBlinkTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollEtherealVisionTile = function() {
+  var newTile = new ScrollEtherealVisionTile();
   return newTile;
 }
 
@@ -1968,6 +1998,11 @@ tileFactory.prototype.makeScrollSmiteTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeScrollCrystalBarrierTile = function() {
+  var newTile = new ScrollCrystalBarrierTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeScrollMirrorWardTile = function() {
   var newTile = new ScrollMirrorWardTile();
   return newTile;
@@ -1975,6 +2010,11 @@ tileFactory.prototype.makeScrollMirrorWardTile = function() {
 
 tileFactory.prototype.makeScrollParalyzeTile = function() {
   var newTile = new ScrollParalyzeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollPeerTile = function() {
+  var newTile = new ScrollPeerTile();
   return newTile;
 }
 
@@ -2003,6 +2043,11 @@ tileFactory.prototype.makeScrollStormTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeScrollTremorTile = function() {
+  var newTile = new ScrollTremorTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeScrollFearTile = function() {
   var newTile = new ScrollFearTile();
   return newTile;
@@ -2015,6 +2060,11 @@ tileFactory.prototype.makeScrollFireAndIceTile = function() {
 
 tileFactory.prototype.makeScrollMeteorSwarmTile = function() {
   var newTile = new ScrollMeteorSwarmTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollMindBlastTile = function() {
+  var newTile = new ScrollMindBlastTile();
   return newTile;
 }
 

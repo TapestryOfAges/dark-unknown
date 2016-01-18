@@ -819,6 +819,9 @@ function PerformLook() {
   	  } else {
       	if (( seethis == "" ) && (i === len-1)) {
       		seethis = features[i].getFullDesc();
+      		if (features[i].searched) {
+      		  seethis = seethis + " [Searched]";
+      		}
   	   	}
   	    else if ( typeof features[i].isItem === "function" ) {
   		    if (seethis == "") { seethis = features[i].getFullDesc(); }
@@ -1014,6 +1017,7 @@ function PerformSearch(who) {
   var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
   var searched = localacre.features.getTop();
   var retval = {};
+  retval["fin"] = 1;
   if (!searched) {
 		retval["txt"] = "There is nothing there.";
 		retval["fin"] = 0;
@@ -1029,14 +1033,13 @@ function PerformSearch(who) {
 	      descriptor = "challenging ";
 	    }
 	    retval["txt"] = "Search: You find a " + descriptor + "trap!";
-	    retval["fin"] = 1;
 	    searched.setDesc(searched.getDesc() + " [Trap (" + descriptor + ")]");
 //	    searched.trapchallenge = Math.floor(searched.trapchallenge / 2);
       searched.trapchallenge = searched.trapchallenge - 5;
 	    // finding a trap reduces the challenge of removing it
 	  } else {
 	    retval["txt"] = "Search: You find nothing there.";
-	    searched.setDesc(searched.getDesc() + " [Searched]");
+	    searched.searched = 1;
 	  }
 	  return retval;
 	}
@@ -1050,7 +1053,7 @@ function PerformSearch(who) {
     }
 
     if (searched.getShowSearched()) {
-      searched.setDesc(searched.getDesc() + " [Searched]");
+      searched.searched = 1;
     }
     retval["txt"] = "Search: You find ";
     retval["fin"] = 1;
@@ -1092,7 +1095,7 @@ function PerformSearch(who) {
     searched.setDesc(searched.getSearchDesc());
   }  else {
     if (searched.getShowSearched()) {
-      searched.setDesc(searched.getDesc() + " [Searched]");
+      searched.searched = 1;
     }
     retval["txt"] = "You find nothing there.";
     retval["fin"] = 1;
