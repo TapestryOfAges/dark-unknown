@@ -82,7 +82,7 @@ TrapGroups.prototype.getTrap = function() {   // returns which trap name and wha
   var i = 0;
   var resp = {};
   resp.level = this.level;
-  while (dice > 0) {
+  while ((dice > 0) && (this.traps[i])){
     if (this.traps[i] > dice) {
       resp.trap = this.trapnames[i];
 //      if (debug && debugflags.gameobj) { dbs.writeln("Trap is: " + resp.trap + " , level: " + resp.level + "<br />"); }
@@ -90,6 +90,7 @@ TrapGroups.prototype.getTrap = function() {   // returns which trap name and wha
       return resp;
     }
     dice -= this.traps[i];
+    i++;
   }
   resp.trap = "";
   return resp; 
@@ -98,9 +99,9 @@ TrapGroups.prototype.getTrap = function() {   // returns which trap name and wha
 function SetTraps() {
   var traps = {};
   
-  traps["weak"] = new TrapGroups(20,10,0,0,0,7);  // 70% chance of no trap
-  traps["medium"] = new TrapGroups(30,20,10,0,0,10); // 40% chance no trap
-  traps["strong"] = new TrapGroups(15,15,15,15,15,15); // 25% chance of no trap
+  traps["weak"] = new TrapGroups(20,10,0,0,0,12);  // 70% chance of no trap
+  traps["medium"] = new TrapGroups(30,20,10,0,0,17); // 40% chance no trap
+  traps["strong"] = new TrapGroups(15,15,15,15,15,22); // 25% chance of no trap
   
   return traps;
 }

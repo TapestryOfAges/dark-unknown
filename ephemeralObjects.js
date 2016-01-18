@@ -705,6 +705,7 @@ function PoisonTile() {
   this.addType("debuff");
   this.name = "Poison";
   this.damagePerTick = 2 * (1/SCALE_TIME);  // poison is slow-maps only
+  this.damagetype = "poison";
   this.display = "<span style='color:#58FA58'>P</span>";
   this.zstatdesc = "Poison courses through your veins.";
   this.desc = "poison";

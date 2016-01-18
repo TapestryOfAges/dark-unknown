@@ -512,13 +512,17 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	  }
 	}
 	
-	this.setTrap = function(trap, challenge) { this.trapped = trap; this.trapchallenge = challenge; }
+	this.setTrap = function(trap, challenge) { 
+	  this.trapped = trap; 
+	  var diff = Math.floor(Math.random()*5)+1 - 3;
+	  this.trapchallenge = challenge + diff; 
+	}
 	this.tryTrap = function(who) { 
 	  // if your Dex === the challenge rating for the trap, you have a 50/50 chance of opening it. Once your dex is twice the
 	  // challenge you will always succeed. NOTE: Changed that to challenge+10.
 	  var resp = 0;
 //	  var chance = who.getDex() / (this.trapchallenge * 2);
-    var chance = ((who.getDex() + 10) - (this.trapchallenge)) /20;
+    var chance = (who.getDex() - this.trapchallenge + 10) /20;
     if (chance < .05) { chance = .05; }
 	  var roll = Math.random();
 	  if (roll < chance) { this.disarmTrap(); resp = 1; maintext.addText("You disarm a trap!"); }
@@ -7652,7 +7656,7 @@ ScrollLesserHealTile.prototype = new ScrollItemObject;
 
 function ScrollMagicBoltTile() {
   this.name = "ScrollMagicBolt";
-  this.desc = "scroll of MagicBolt";
+  this.desc = "scroll of Magic Bolt";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
@@ -7664,7 +7668,7 @@ ScrollMagicBoltTile.prototype = new ScrollItemObject;
 
 function ScrollPoisonCloudTile() {
   this.name = "ScrollPoisonCloud";
-  this.desc = "scroll of PoisonCloud";
+  this.desc = "scroll of Poison Cloud";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
