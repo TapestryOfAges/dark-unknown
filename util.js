@@ -1111,6 +1111,15 @@ function AddLoot(towhat) {
     else {alert (towhat.getName() + " has a loottable that is not defined (" + lootgroup + ") ."); }
   }
 
+  if (DULoot[lootgroup].trap) {
+    var trapname = DULoot[lootgroup].trap;
+    DebugWrite("gameobj", "Chest created, might be trapped with: " + trapname + ".<br />");
+    var trap = DUTraps[trapname].getTrap();
+    if (trap.trap) {
+      towhat.setTrap(trap.trap, trap.level);
+    }
+  }
+
 }
 
 function RollDamage(dam_val,extra) {

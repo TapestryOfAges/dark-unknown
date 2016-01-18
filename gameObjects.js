@@ -8060,7 +8060,7 @@ ScrollConjureDaemonTile.prototype = new ScrollItemObject;
 
 function ScrollTimeStopTile() {
   this.name = "ScrollTimeStop";
-  this.desc = "scroll of TimeStop";
+  this.desc = "scroll of Time Stop";
   this.prefix = "a";
   this.graphic = "items.gif";
   this.spritexoffset = "-224";

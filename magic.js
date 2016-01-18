@@ -290,7 +290,7 @@ magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   }
   resp["fin"] = 1;
   var mult = 1;
-  var power = who.getInt();
+  var power = caster.getInt();
   if (free) {
     power = 15;
   }
