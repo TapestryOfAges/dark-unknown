@@ -314,7 +314,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	if ((DU.gameflags.music) && (who === PC) && (tomap.getMusic() !== frommap.getMusic())) {
 	  StopMusic(nowplaying);
 	  var song = tomap.getMusic();
-	  nowplaying = PlaySound(song);
+	  nowplaying = DUPlayMusic(song);
 	}
 	
 	if ((who === PC) && (DU.gameflags.autosave)) {
