@@ -67,21 +67,24 @@ DUMusic["Lullaby"] = "Lullaby";
 DUMusic["Lament"] = "Shelaria's Lament";
 
 var musicloaded = {};
+var musicsloaded = 0;
 
 function audio_init() {
   createjs.Sound.initializeDefaultPlugins();
-//  createjs.Sound.alternateExtensions = ["mp3"];
+  createjs.Sound.alternateExtensions = ["mp3"];
+  createjs.Sound.addEventListener("fileload", handleFileLoad);
 //  createjs.Sound.registerSounds(DUSound, soundpath);
   
   $.each(DUMusic, function(idx, val) {
     var fullpath = musicpath + "" + val + ".ogg";
     createjs.Sound.registerSound(fullpath, idx);
   });
+}
 
+function audio_init_2() {
   $.each(DUSound, function(idx, val) {
     createjs.Sound.registerSound(val, idx);
   });
-
 }
 
 function populate_audio(soundlist, preload, loop, soundtype) {
@@ -169,8 +172,11 @@ function play_footstep(onwhat) {
   }
 }
 
-createjs.Sound.addEventListener("fileload", handleFileLoad);
 function handleFileLoad(event) {
-    // A sound has been preloaded.
-    musicloaded[event.id] = 1;
+  // A sound has been preloaded.
+  musicloaded[event.id] = 1;
+  musicsloaded++;
+  if (musicsloaded === 20) {
+    SoundLoaded();
+  }
 }
