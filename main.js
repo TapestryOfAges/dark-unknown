@@ -155,14 +155,13 @@ $(document).ready(function() {
 //  populate_audio(sfxlist, 1, 0, "sfx");
   audio_init();  
 	CreateUI();
-  gamestate.loadGame();
-//  gamestate.loadTmp();
-  DrawCharFrame();
   
+});
 
-  
-  
-//  PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
+function SoundLoaded() {
+  gamestate.loadGame();
+  audio_init_2();
+  DrawCharFrame();
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
 
@@ -176,7 +175,7 @@ $(document).ready(function() {
   e.preventDefault();
   DoAction(code, e.ctrlKey);
   });
-});
+}
 
 function DoAction(code, ctrl) {
   if (debug && ctrl && (code === 88)) { 
