@@ -334,7 +334,7 @@ GameStateData.prototype.loadGame = function() {
 
   if (DU.gameflags.music) {  
     var song = PC.getHomeMap().getMusic();
-    nowplaying = PlaySound(song);
+    nowplaying = DUPlayMusic(song);
   }
   startScheduler();
 }
