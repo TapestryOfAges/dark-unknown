@@ -188,7 +188,7 @@ GameObject.prototype.copy = function(type) {
       if (val != base_version[idx]) {
         copydata[idx] = val;
 //        if (debug && debugflags.saveload) { dbs.writeln(idx + " different, copying... "); }
-        DebugWrite("saveload", " different, copying... ");
+        DebugWrite("saveload", idx + " different, copying... ");
       } else {
 //        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " the same, moving on...</span>  "); }
         DebugWrite("saveload", idx + " the same, moving on...</span>  ");
@@ -202,7 +202,7 @@ GameObject.prototype.copy = function(type) {
         if (debug && debugflags.saveload) { 
 //          dbs.writeln(idx + " an array and different, copying... <br /> ["); 
           DebugWrite("saveload", idx + " an array and different, copying... <br /> [");
-          for (var i = 0; i < val.length; i++) { dbs.writeln(val[i] + ", "); }
+//          for (var i = 0; i < val.length; i++) { dbs.writeln(val[i] + ", "); }
 //          dbs.writeln("] vs [");
           DebugWrite("saveload", "] vs [");
           if ($.isArray(base_version[idx])) {
