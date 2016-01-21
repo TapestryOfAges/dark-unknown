@@ -332,6 +332,7 @@ GameStateData.prototype.loadGame = function() {
     
   });
 
+  maxserial = topserial;
   if (DU.gameflags.music) {  
     var song = PC.getHomeMap().getMusic();
     nowplaying = DUPlayMusic(song);
