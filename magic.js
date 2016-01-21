@@ -218,7 +218,7 @@ function PerformAwaken(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
     
-  var sleep = tgt.getSpellEffectByName("Sleep");
+  var sleep = tgt.getSpellEffectsByName("Sleep");
   if (sleep) {
     sleep.endEffect();
     ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
@@ -451,16 +451,35 @@ magic[1][GetSpellID(6)].executeSpell = function(caster, infused, free) {
 }
 
 // Mend
+magic[1][GetSpellID(7)].executeSpell = function(caster, infused, free, tgt) {
+  DebugWrite("magic", "Casting Mend.<br />");
+  var resp = {};
+  resp["fin"] = 1;
+  
+  var inv = caster.getInventory();
+  var anything = 0;
+  $.each(inv, function(idx, val) {
+    if (val.broken) {
+      anything = 1;
+    }
+  });
+  
+  if (!anything) {
+    resp["fin"] = 2;
+    maintext.addText("You have nothing in need of Mending.");
+    return resp;
+  }
+}
 
 // Vulnerability
 magic[1][GetSpellID(8)].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Vulnerability.<br />");
+  var resp = {};
+  resp["fin"] = 1;
   if (caster !== PC) {
-    var resp = PerformVulnerability(caster, infused, free, tgt);
+    resp = PerformVulnerability(caster, infused, free, tgt);
     return resp;
   }
-//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Vulnerability.<br /></span>"); }
-  var resp = {};
   
   targetCursor.x = PC.getx();
   targetCursor.y = PC.gety();
@@ -3382,6 +3401,8 @@ function PerformSpellcast() {
         resp = PerformCharm(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Arrow of Glass") {
         resp = PerformArrowOfGlass(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+      } else if (targetCursor.spellName === "Awaken") {
+        resp = PerformAwaken(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       }
       delete targetCursor.spellName;
       

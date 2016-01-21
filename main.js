@@ -304,15 +304,13 @@ function DoAction(code, ctrl) {
   else if (gamestate.getMode() === "choosedir") {
     var response = PerformChooseDir(code);
     if (response["fin"] === 1) { // direction chosen
-      if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && (targetCursor.command === "u")) {
-//        maintext.addText("Use from inventory not yet implemented.");
-        PerformUseFromInventory();
-//        maintext.setInputLine("&gt;");
-//        maintext.drawTextFrame();
-//        gamestate.setMode("equip");
-        return;
+      if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety())) {
+        if (targetCursor.command === "u") {
+          PerformUseFromInventory();
+          return;
+        }
       }
-      else if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "g") || (targetCursor.command === "a") || (targetCursor.command === "s"))) {
+      else if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "g") || (targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c"))) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         gamestate.setMode("player");
