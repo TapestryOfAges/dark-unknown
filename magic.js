@@ -639,6 +639,34 @@ function PerformIllusion(caster, infused, free, tgt) {
 }
 
 // Iron Flesh
+magic[2][GetSpellID(2)].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Iron Flesh.<br />");
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  resp["fin"] = 1;
+  
+  var liobj = localFactory.createTile("IronFlesh");
+  
+  var dur = caster.getInt() * .15;
+  if (free) { dur = 3; }
+  if (infused) {dur = dur * 2; }
+  var endtime = dur + DU.DUTime.getGameClock();
+  DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
+  liobj.setExpiresTime(endtime);
+  var power = 10;
+  if (infused) { power = 25;}   
+  liobj.setPower(power);
+  
+//  DUPlaySound("sfx_spell_light"); 
+  caster.addSpellEffect(liobj);
+  
+  DrawCharFrame();
+  return resp;
+}
 
 // Lesser Heal
 magic[2][GetSpellID(3)].executeSpell = function(caster, infused, free, tgt) {

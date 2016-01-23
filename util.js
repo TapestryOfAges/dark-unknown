@@ -1157,7 +1157,17 @@ function CheckAbsorb(dam,to,from,type) {
     DebugWrite("combat", dam + ".<br />");
   }
 //  if (dam < 1) { dam = 1; }
-  
+  if (to.checkType("npc")) {
+    var ironflesh = to.getSpellEffectsByName("IronFlesh");
+    if (ironflesh) {
+      dam = (max(0,dam-5));
+      var power = ironflesh.getPower();
+      power -= 5;
+      if (power <= 0) {
+        ironflesh.endEffect();
+      }
+    }
+  }
   return dam;
 }
 
