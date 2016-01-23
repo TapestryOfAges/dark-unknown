@@ -701,6 +701,44 @@ InvulnerableTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
+function IronFleshTile() {
+  this.addType("buff");
+  this.name = "IronFlesh";
+  this.display = "<span style='color:#aaaaaa'>I</span>";
+  this.zstatdesc = "Your skin is like iron.";
+  this.desc = "Iron Flesh";
+  this.level = 2;
+}
+IronFleshTile.prototype = new EphemeralObject();
+
+IronFleshTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if (who) {
+    if ((who === PC) && !silent) {
+      maintext.addText("Your skin becomes hard as iron.");
+    }
+  }
+  return 1;
+}
+
+IronFleshTile.prototype.doEffect = function() {
+  var resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+IronFleshTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("Your skin returns to normal.");
+  }
+  DrawCharFrame();
+  return -1;
+}
+
 function PoisonTile() {
   this.addType("debuff");
   this.name = "Poison";
@@ -956,7 +994,6 @@ ParalyzeTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
-
 function ProtectionTile() {
   this.addType("buff");
   this.name = "Protection";
@@ -994,7 +1031,6 @@ ProtectionTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
   return -1;
 }
-
 
 function QuicknessTile() {
   this.addType("buff");
