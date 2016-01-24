@@ -2683,6 +2683,11 @@ tileFactory.prototype.makeNegatorGnomeNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCrystalBarrierNPCTile = function() {
+  var newTile = new CrystalBarrierNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGiantRatGroupSmallTile = function() {
   var newTile = new GiantRatGroupSmallTile();
   return newTile;
@@ -2918,6 +2923,11 @@ tileFactory.prototype.makeDistractTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEtherealVisionTile = function() {
+  var newTile = new EtherealVisionTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeFearTile = function() {
   var newTile = new FearTile();
   return newTile;
@@ -2940,6 +2950,11 @@ tileFactory.prototype.makeFrozenTile = function() {
 
 tileFactory.prototype.makeInvulnerableTile = function() {
   var newTile = new InvulnerableTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeIronFleshTile = function() {
+  var newTile = new IronFleshTile();
   return newTile;
 }
 
@@ -2995,6 +3010,11 @@ tileFactory.prototype.makeSlowTile = function() {
 
 tileFactory.prototype.makeStormTile = function() {
   var newTile = new StormTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTelepathyTile = function() {
+  var newTile = new TelepathyTile();
   return newTile;
 }
 

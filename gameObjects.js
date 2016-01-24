@@ -496,6 +496,7 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	this.getLocked = function() { return this.locked; }
 	this.lockMe = function(lock) {
 		this.setLocked(lock);
+		if (lock > 2) { lock = 2; }
 		this.setOverlay(this.lockedgraphics[lock]);
 		this.setDesc(this.lockeddescs[lock]);
 		this.setPrefix(this.lockedprefixes[lock]);

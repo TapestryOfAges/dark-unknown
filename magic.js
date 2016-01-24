@@ -628,6 +628,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   
   var duration = caster.getInt();
   if (free) { duration = RollDice("1d6+12"); }
+  duration = duration*2*SCALE_TIME;
   illusion.expiresTime = DUTime.getGameClock() + duration;  // illusion AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
   DrawMainFrame("one",caster.getHomeMap().getName(),illusion.getx(),illusion.gety());
@@ -962,9 +963,81 @@ magic[2][GetSpellID(7)].executeSpell = function(caster, infused, free) {
 }
 
 // Wind Change
+magic[2][GetSpellID(8)].executeSpell = function(caster, infused, free, tgt) {
+  DebugWrite("magic", "Casting Wind Change.<br />");
+  if (caster !== PC) {
+    var resp = PerformWindChange(caster, infused, free, tgt);
+    return resp;
+  }
 
-// Dispel
+  var resp = {};
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Wind Change";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "dir"};
 
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose direction- ";
+  resp["fin"] = 4;
+  gamestate.setMode("choosedir");
+  return resp;
+}
+
+function PerformWindChange(caster,infused,free,tgt) {
+  var dir = "";
+  var resp = {};
+  resp["fin"] = 1;
+  if (tgt[0] > 0) { dir = "east"; }
+  else if (tgt[0] < 0) { dir = "west"; }
+  else if (tgt[1] > 0) { dir = "south"; }
+  else if (tgt[1] > 0) { dir = "north"; }
+  else {
+    maintext.addText("The wind swirls in confused directions.");
+    return resp; 
+  }
+  var desc = "wind";
+  if (infused) {desc = "gale";}
+  maintext.addText("The breeze shifts as you summon a " + desc + " from the " + dir + "!");
+  return resp;
+}
+
+// Dispel 
+magic[3][GetSpellID(1)].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Dispel.<br />");
+  var resp = {};
+  resp["fin"] = 1;
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  
+  var casterspells = caster.getSpellEffects();
+  var dispellables = [];
+  $.each(casterspells, function(idx, val) {
+    if (val.dispellable) { dispellables.push(val); }
+  });
+  if (dispellables.length > 0) {
+    var idx = Math.floor(Math.random()*dispellables.length);
+    var lvl = dispellables[idx].getLevel();
+    DebugWrite("magic", "Attempting to dispel " + dispellables[idx] + ", which is level " + lvl + ".");
+    var chance = .8 - .1*lvl;
+    if (infused) { chance += .3; }
+    if (Math.random() < chance) {
+      maintext.addText("You dispel " + dispellables[idx].getDesc() + "!");
+      dispellables[idx].endEffect();
+    } else {
+      maintext.AddText("You attempt to dispel " + dispellables[idx].getDesc() + ", but it fails.");
+    }
+  } else {
+    maintext.addText("There are no effects upon you that can be dispelled.");
+  }
+  return resp;
+}
+  
+  
 // Disrupt Undead
 magic[3][GetSpellID(2)].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Disrupt Undead.<br /></span>"); }
@@ -1308,6 +1381,28 @@ function PerformTelekinesis(caster, infused, free, tgt) {
 }
 
 // Telepathy
+magic[3][GetSpellID(7)].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Telepathy.<br />");
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  resp["fin"] = 1;
+  var prot = localFactory.createTile("Telepathy");
+  duration = caster.getInt() * 2 * SCALE_TIME;
+  if (free) { duration = RollDice("1d6 + 12") * 2 * SCALE_TIME; }
+  if (infused) { 
+    duration = duration * 2; 
+  }
+  var endtime = duration + DUTime.getGameClock();
+  DebugWrite("magic", "End time is " + endtime + ".<br />");
+  prot.setExpiresTime(endtime);
+  caster.addSpellEffect(prot);
+  
+  return resp;
+}
 
 // Wall of Flame
 magic[3][GetSpellID(8)].executeSpell = function(caster, infused, free, tgt) {
@@ -1590,8 +1685,99 @@ magic[4][GetSpellID(1)].executeSpell = function(caster, infused, free) {
 }
 
 // Blink
+magic[4][GetSpellID(2)].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Blink.<br />");
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  resp["fin"] = 1;
+
+  var success = 0;
+  var castermap = caster.getHomeMap();
+  var casterx = caster.getx();
+  var castery = caster.gety();
+  var castermove = caster.getMovetype();
+  var possdest = [];
+  for (var i=-4;i<=4;i++) {
+    for (var j=-4;j<=4;j++) {
+      if ((i==casterx) && (j==castery)) { next; }
+      var loc = {};
+      loc.x = casterx+i;
+      loc.y = castery+j;
+      possdest.push(loc);
+    }
+  }
+  ShuffleArray(possdest);
+  while (!success && possdest[0]) {
+    var tile = castermap.getTile(possdest[0].x,possdest[0].y);
+    if (tile.canMoveHere(castermovetype, 1)) {
+      success = PerformBlink(caster,possdest[0].x,possdest[0].y);
+      if (!success) { possdest.shift(); }
+    }
+  }
+
+  if (!success) { 
+    maintext.addText("The spell fizzles.");
+  }
+  // be sure to test this in a location with no valid destinations
+  return resp;  
+}
+
+function PerformBlink(caster,destx, desty) {
+  var retval = {};
+  var map = caster.getHomeMap();
+  var exittile = map.getTile(caster.getx(),caster.gety());
+  var walkofftile = exittile.executeWalkoffs(caster);
+  if (walkofftile) {
+    retval["msg"] += walkoffval;
+  }
+  map.moveThing(destx,desty,caster);
+
+  var walkonval = tile.executeWalkons(this);
+  if (walkonval) {
+    if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
+      retval["msg"] += walkonval;
+    }
+  }
+  DrawMainFrame("draw", PC.getHomemap().getName() , PC.getx(), PC.gety());
+  maintext.addText(retval["msg"]);
+  if ((caster.getx() === destx) && (caster.gety() === desty)) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
 
 // Ethereal Vision
+magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Ethereal Vision.<br />");
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  resp["fin"] = 1;
+
+  var levobj = localFactory.createTile("EtherealVision");
+  
+  var dur = 3 * SCALE_TIME;
+  if (infused) { dur = dur * 2; }
+
+  var endtime = dur + DU.DUTime.getGameClock();
+  DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
+  levobj.setExpiresTime(endtime);
+  
+  caster.addSpellEffect(levobj);
+//  levobj.applyEffect();
+  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+    
+  DrawCharFrame();
+  return resp;  
+}
 
 // Heal
 magic[4][GetSpellID(4)].executeSpell = function(caster, infused, free, tgt) {
@@ -1825,6 +2011,73 @@ magic[4][GetSpellID(8)].executeSpell = function(caster, infused, free) {
 }
 
 // Crystal Barrier
+magic[5][GetSpellID(1)].executeSpell = function(caster, infused, free, tgt) {
+  DebugWrite("magic", "Casting Crystal Barrier.<br />");
+  if (caster !== PC) {
+    var resp = PerformCrystalBarrier(caster, infused, free, tgt);
+    return resp;
+  }
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+
+  var resp = {};
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Crystal Barrier";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open"};
+  targetCursor.targetlimit = (viewsizex -1)/2;
+  targetCursor.targetCenterlimit = 3;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 0;
+  gamestate.setMode("target");
+  return resp;
+}
+
+function PerformCrystalBarrier(caster, infused, free, tgt) {
+  var resp = {};
+  resp["fin"] = 1;
+  var desc = "";
+
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.x, tgt.x, losgrid, 1) >= LOS_THRESHOLD) { 
+    resp["fin"] = 2;
+    resp["txt"] = "You cannot place your barrier there.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+  
+  if (!free) {
+    var mana = magic[5][GetSpellID(1)].getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  var crystal;
+  crystal = localFactory.createTile("ConjuredCrystal");
+  
+  var duration = caster.getInt() * SCALE_TIME;
+  if (free) { duration = RollDice("1d6+12") * SCALE_TIME; }
+  crystal.expiresTime = DUTime.getGameClock() + duration;  // barrier AI needs to check expiresTime and go poof if it is reached
+  caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
+  DrawMainFrame("one",caster.getHomeMap().getName(),crystal.getx(),crystal.gety());
+  
+  resp["txt"] = "You conjure a crystal barrier.";
+  resp["input"] = "&gt;";
+  return resp;
+
+}
 
 //Mirror Ward
 magic[5][GetSpellID(2)].executeSpell = function(caster, infused, free) {
@@ -2459,7 +2712,6 @@ magic[6][GetSpellID(4)].executeSpell = function(caster, infused, free) {
 
   return resp;
 }
-
 
 //Negate Magic
 magic[6][GetSpellID(5)].executeSpell = function(caster, infused, free) {
@@ -3431,6 +3683,8 @@ function PerformSpellcast() {
         resp = PerformArrowOfGlass(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Awaken") {
         resp = PerformAwaken(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+      } else if (targetCursor.spellName === "Crystal Barrier") {
+        resp = PerformCrystalBarrier(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       }
       delete targetCursor.spellName;
       
@@ -3482,6 +3736,15 @@ function PerformSpellcast() {
     alert(targetCursor.spelldetails.targettype);
   }
   delete targetCursor.spellName;
+  return resp;
+}
+
+function PerformDirSpellcast() {
+  var resp;
+  var tgt = [targetCursor.x - caster.getx(), targetCursor.y - caster.gety()];
+  if (targetCursor.spellName === "Wind Change") {
+    resp = PerformWindChange(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+  }
   return resp;
 }
 

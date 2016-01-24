@@ -2999,7 +2999,7 @@ function IllusionNPCTile() {
   this.int = 15;
   this.alignment = 'Good';
   this.attitude = 'friendly';
-  this.peaceAI = 'stationary';
+  this.peaceAI = 'followPC';
   this.forgetAt = 0;
   this.withdraw = '0';
   this.graphic = '338.gif';
@@ -3029,7 +3029,7 @@ function InfusedIllusionNPCTile() {
   this.int = 18;
   this.alignment = 'Good';
   this.attitude = 'friendly';
-  this.peaceAI = 'stationary';
+  this.peaceAI = 'followPC';
   this.forgetAt = 0;
   this.withdraw = '0';
   this.graphic = '338.gif';
@@ -3133,6 +3133,38 @@ function NegatorGnomeNPCTile() {
   this.resists = {};
 }
 NegatorGnomeNPCTile.prototype = new NPCObject();
+
+
+// Summoned
+
+function CrystalBarrierNPCTile() {
+  this.name = 'CrystalBarrierNPC';
+  this.level = 5;
+  this.addhp = 0;
+  this.str = 10;
+  this.dex = 3;
+  this.int = 3;
+  this.alignment = 'Neutral';
+  this.attitude = 'friendly';
+  this.peaceAI = 'stationary';
+  this.forgetAt = 0;
+  this.withdraw = '0';
+  this.graphic = 'crystals.gif';
+  this.meleeAttackAs = 'Fists';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'none';
+  this.armorDefense = 0;
+  this.armorAbsorb = 30;
+  this.armorResist = 0;
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = 'crystal barrier';
+  this.resists = {};
+  this.special = 'crumbles';
+}
+CrystalBarrierNPCTile.prototype = new NPCObject();
 
 function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';

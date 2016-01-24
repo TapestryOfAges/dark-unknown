@@ -17,6 +17,7 @@ function EphemeralObject() {
   this.attachedTo;
   this.desc;
   this.level = 0;
+  this.dispellable = 0;
 }
 EphemeralObject.prototype = new ProtoObject();
 
@@ -341,6 +342,7 @@ function CharmTile() {
   this.zstatdesc = "You are charmed.";
   this.desc = "charm";
   this.level = 7;
+  this.dispellable = 1;
 }
 CharmTile.prototype = new EphemeralObject();
 
@@ -377,6 +379,7 @@ function ConfusedTile() {
   this.zstatdesc = "You are confused.";
   this.desc = "confuse";
   this.level = 6;
+  this.dispellable = 1;
 }
 ConfusedTile.prototype = new EphemeralObject();
 
@@ -410,6 +413,7 @@ function CurseTile() {
   this.zstatdesc = "You have been cursed.";
   this.desc = "Curse";
   this.level = 6;
+  this.dispellable = 1;
 }
 CurseTile.prototype = new EphemeralObject();
 
@@ -478,6 +482,8 @@ function DistractTile() {
   this.display = "<span style='color:777777'>D</span>";
   this.zstatdesc = "You are distracted.";
   this.desc = "Distract";
+  this.level = 1;
+  this.dispellable = 1;
 }
 DistractTile.prototype = new EphemeralObject();
 
@@ -507,6 +513,44 @@ DistractTile.prototype.endEffect = function(silent) {
   return -1;
 }
 
+function EtherealVisionTile() {
+  this.addType("buff");
+  this.name = "Telepathy";
+  this.display = "<span style='color:white'>E</span>";
+  this.zstatdesc = "You can detect nearby minds.";
+  this.desc = "Telepathy";
+  this.level = 3;
+}
+EtherealVisionTile.prototype = new EphemeralObject();
+
+EtherealVisionTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if (who) {
+    if ((who === PC) && !silent) {
+      maintext.addText("Your mind expands.");
+    }
+  }
+  return 1;
+}
+
+EtherealVisionTile.prototype.doEffect = function() {
+  var resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+EtherealVisionTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("Your mind contracts.");
+  }
+  DrawCharFrame();
+  return -1;
+}
+
 function FearTile() {
   this.addType("debuff");
   this.name = "Fear";
@@ -514,6 +558,7 @@ function FearTile() {
   this.zstatdesc = "You are afraid.";
   this.desc = "fear";
   this.level = 7;
+  this.dispellable = 1;
 }
 FearTile.prototype = new EphemeralObject();
 
@@ -643,6 +688,8 @@ function FrozenTile() {
   this.display = "<span style='color:lightblue'>F</span>";
   this.zstatdesc = "You are frozen.";
   this.desc = "frozen";
+  this.level = 7;
+  this.dispellable = 1;
 }
 FrozenTile.prototype = new EphemeralObject();
 
@@ -675,6 +722,7 @@ function InvulnerableTile() {
   this.display = "<span style='color:cyan'>I</span>";
   this.zstatdesc = "You are invulnerable.";
   this.desc = "invulnerable";
+  this.level = 7;
 }
 InvulnerableTile.prototype = new EphemeralObject();
 
@@ -747,6 +795,7 @@ function PoisonTile() {
   this.display = "<span style='color:#58FA58'>P</span>";
   this.zstatdesc = "Poison courses through your veins.";
   this.desc = "poison";
+  this.level = 2;
 }
 PoisonTile.prototype = new DamageOverTimeObject();
 
@@ -968,6 +1017,8 @@ function ParalyzeTile() {
   this.display = "<span style='color:cyan'>P</span>";
   this.zstatdesc = "You are paralyzed.";
   this.desc = "paralyze";
+  this.level = 5;
+  this.dispellable = 1;
 }
 ParalyzeTile.prototype = new EphemeralObject();
 
@@ -1077,6 +1128,8 @@ function SleepTile() {
   this.display = "<span style='color:#e600e5'>S</span>";
   this.zstatdesc = "You are asleep.";
   this.desc = "sleep";
+  this.level = 1;
+  this.dispellable = 1;
 }
 SleepTile.prototype = new EphemeralObject();
 
@@ -1111,6 +1164,7 @@ function SlowTile() {
   this.zstatdesc = "You are moving more slowly.";
   this.desc = "Slow";
   this.level = 3;
+  this.dispellable = 1;
 }
 SlowTile.prototype = new EphemeralObject();
 
@@ -1230,12 +1284,51 @@ StormTile.prototype.endEffect = function(silent) {
   DrawCharFrame();  
 }
 
+function TelepathyTile() {
+  this.addType("buff");
+  this.name = "Telepathy";
+  this.display = "<span style='color:white'>T</span>";
+  this.zstatdesc = "You can detect nearby minds.";
+  this.desc = "Telepathy";
+  this.level = 3;
+}
+TelepathyTile.prototype = new EphemeralObject();
+
+TelepathyTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if (who) {
+    if ((who === PC) && !silent) {
+      maintext.addText("Your mind expands.");
+    }
+  }
+  return 1;
+}
+
+TelepathyTile.prototype.doEffect = function() {
+  var resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+TelepathyTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("Your mind contracts.");
+  }
+  DrawCharFrame();
+  return -1;
+}
+
 function TimeStopTile() {
   this.addType("buff");
   this.name = "TimeStop";
-  this.display = "<span style='color:blue'>T</span>";
+  this.display = "<span style='color:cyan'>T</span>";
   this.zstatdesc = "Time bends to your will.";
   this.desc = "time stop";
+  this.level = 8;
 }
 TimeStopTile.prototype = new EphemeralObject();
 
@@ -1278,6 +1371,7 @@ function VulnerabilityTile() {
   this.zstatdesc = "You are vulnerable to attack.";
   this.desc = "Vulnerability";
   this.level = 1;
+  this.dispellable = 1;
 }
 VulnerabilityTile.prototype = new EphemeralObject();
 
@@ -1305,7 +1399,7 @@ VulnerabilityTile.prototype.endEffect = function(silent) {
 }
 
 // This whole thing is deprecated
-var runedefs = {};
+/* var runedefs = {};
 runedefs[RUNE_KINGS] = {name: "Earthbond", pre: "Rune of Kings", focus: 3};  // heal
 runedefs[RUNE_WAVES] = {name: "Mana Tide", pre: "Rune of Waves", focus: 4};  // temp mana
 runedefs[RUNE_WINDS] = {name: "Buffet", pre: "Rune of Winds", focus: 3};  // push back one nearby foe
@@ -1327,3 +1421,4 @@ runedefs[RUNE_WAVES + RUNE_FLAMES] = {name: "??", pre: "Runes of Waves and Flame
 runedefs[RUNE_WAVES + RUNE_FLAMES + RUNE_VOID] = {name: "??", pre: "Runes of Waves, Flames, and Void", focus: 8}; // ??
 runedefs[RUNE_WINDS + RUNE_FLAMES] = {name: "Burning Winds", pre: "Runes of Winds and Flames", focus: 5}; // ranged fire AoE
 runedefs[RUNE_WINDS + RUNE_FLAMES + RUNE_VOID] = {name: "Conflagration", pre: "Runes of Winds, Flames, and Void", focus: 8}; // fire to all foes?
+*/
