@@ -112,7 +112,10 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
             var damagedesc = GetDamageDescriptor(def); 
             retval["txt"] += ": " + damagedesc + "!"; 
           }
-          else { retval["txt"] += ": Killed!"; }
+          else { 
+            if (def.specials.crumbles) { retval["txt"] += ": It crumbles to dust!"; }
+            else {retval["txt"] += ": Killed!"; }
+          }
         } 
         maintext.addText(retval["txt"]);
         maintext.setInputLine("&gt;");
@@ -131,7 +134,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   });
 }
 
-function getDisplayCell(mapname, centerx, centery, x, y) {
+function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
 
   var displayCell = {};
   var localacre = mapname.getTile(x,y);
@@ -183,6 +186,8 @@ function getDisplayCell(mapname, centerx, centery, x, y) {
     mapname = retval.map;
     displaytile = localacre.getTop();
   }
+  var isnpc = 0;
+  if (displaytile.checkType("NPC") && !displaytile.specials.mindless) { isnpc = 1; }
   var graphics = displaytile.getGraphicArray();
   var showGraphic = graphics[0];
   if (typeof displaytile.setBySurround === "function") {
@@ -201,7 +206,7 @@ function getDisplayCell(mapname, centerx, centery, x, y) {
     
 //    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1;" title="' + displaytile.getDesc() + '" /></td>';
   }
-  else if (losresult < LOS_THRESHOLD) {
+  else if ((losresult < LOS_THRESHOLD) || ((tp === 1) && isnpc) || ev) {
     if (typeof displaytile.doTile === "function") {
       showGraphic = displaytile.doTile(x,y,showGraphic);
     }

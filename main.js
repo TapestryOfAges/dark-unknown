@@ -100,15 +100,18 @@ function DrawMainFrame(how, mapname, centerx, centery) {
       $("#worldlayer").css("background-image", "");
     }
     mapdiv += "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20;\">";
+    var tp = 0; // telepathy
+    var ev = 0; // ethereal vision
+    if (PC.getSpellEffectsByName("Telepathy")) { tp = 1; }
+    if (PC.getSpellEffectsByName("EtherealVision")) { ev = 1; }
     for (var i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
       mapdiv += "<tr>";
       for (var j=displayspecs.leftedge;j<=displayspecs.rightedge;j++) {
-      	var thiscell = getDisplayCell(themap,centerx,centery,j,i);
+      	var thiscell = getDisplayCell(themap,centerx,centery,j,i,tp,ev);
       	opac = 1;
-      	if ((thiscell.lighthere >= SHADOW_THRESHOLD) && (thiscell.lighthere < 1)) {
+      	if ((thiscell.lighthere >= SHADOW_THRESHOLD) && (thiscell.lighthere < 1) && !ev) {
       	  opac = 0.3;
-      	}
-      	if (thiscell.lighthere < SHADOW_THRESHOLD) {
+      	} else if (thiscell.lighthere < SHADOW_THRESHOLD && !ev) {
       	  opac = 0;
       	}
         mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="opacity: ' + opac + '; background-image:url(\'graphics/' + thiscell.showGraphic + '\'); background-repeat:no-repeat; background-position: ' + thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px; position:relative; z-index:20;"><img id="tile'+j+'x'+i+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+j+'x'+i+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:20" title="' + thiscell.desc + '" /></td>';
@@ -310,7 +313,7 @@ function DoAction(code, ctrl) {
           return;
         }
       }
-      else if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "g") || (targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c"))) {
+      if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "g") || (targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c"))) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         gamestate.setMode("player");
@@ -332,6 +335,8 @@ function DoAction(code, ctrl) {
           if (targetCursor.x === PC.getx()+1) { dir = "East"; }
           dir = "Attack " + dir + ".";
           resp = PerformAttackMap(PC);  			  
+        } else if (targetCursor.command === "c") { // CAST
+          resp = PerformDirSpellcast();          
         }
         if (resp["fin"] === 2) {
           maintext.addText(resp["txt"]);
