@@ -1015,6 +1015,7 @@ function InanimateObject() {
   this.initdelay = 1;  // multiplicative
   this.walkonscript = "";
   this.usescript = "";
+  this.peerview = "";
   
   this.addType("InanimateObject");
 }
@@ -1035,6 +1036,14 @@ InanimateObject.prototype.getUseScript = function() {
 
 InanimateObject.prototype.setUseScript = function(newscript) {
 	this.usescript = newscript;
+}
+
+InanimateObject.prototype.getPeerview = function() {
+	return this.peerview;
+}
+
+InanimateObject.prototype.setPeerview = function(newview) {
+	this.peerview = newview;
 }
 
 InanimateObject.prototype.walkon = function() {
@@ -1106,6 +1115,7 @@ function BlankWhiteTile() {
   this.desc = "";
   this.blocklos = 1;
   this.passable = MOVE_ETHEREAL;
+  this.peerview = "white";
 }
 BlankWhiteTile.prototype = new TerrainObject();
 
@@ -1118,6 +1128,7 @@ function OceanTile() {
   this.spritexoffset = "-128";
   this.spriteyoffset = "0";
   this.combatmap = "Water";
+  this.peerview = "#0000e0";
 }
 OceanTile.prototype = new TerrainObject();
 
@@ -1130,6 +1141,7 @@ function WaterTile() {
   this.spritexoffset = "-160";
   this.spriteyoffset = "0";
   this.combatmap = "Water";
+  this.peerview = "#4040fc";
 }
 WaterTile.prototype = new TerrainObject();
 
@@ -1152,6 +1164,7 @@ function ShallowsTile() {
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
   this.combatmap = "Water";
+  this.peerview = "#8080fc";
 }
 ShallowsTile.prototype = new TerrainObject();
 
@@ -1174,6 +1187,7 @@ function ShadowOceanTile() {
   this.spritexoffset = "-128";
   this.spriteyoffset = "0";
   this.combatmap = "Water";
+  this.peerview = "#172915";
 }
 ShadowOceanTile.prototype = new TerrainObject();
 
@@ -1186,6 +1200,7 @@ function ShadowWaterTile() {
   this.spritexoffset = "-160";
   this.spriteyoffset = "0";
   this.combatmap = "Water";
+  this.peerview = "#273425";
 }
 ShadowWaterTile.prototype = new TerrainObject();
 
@@ -1208,6 +1223,7 @@ function ShadowShallowsTile() {
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
   this.combatmap = "Water";
+  this.peerview = "#809d7d";
 }
 ShadowShallowsTile.prototype = new TerrainObject();
 
@@ -1263,6 +1279,7 @@ function MountainTile() {
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
 }
 MountainTile.prototype = new TerrainObject();
 
@@ -1276,6 +1293,7 @@ function MountainPassTile() {
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK;
   this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
 }
 MountainPassTile.prototype = new TerrainObject();
 
@@ -1289,6 +1307,7 @@ function StoneWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "stone wall";
+  this.peerview = "#ffffff";
 }
 StoneWallTile.prototype = new TerrainObject();
 
@@ -1302,6 +1321,7 @@ function StoneTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "stone";
+  this.peerview = "#606060";
 }
 StoneTile.prototype = new TerrainObject();
 
@@ -1315,6 +1335,7 @@ function DirtStoneTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "stone";
+  this.peerview = "#606060";
 }
 DirtStoneTile.prototype = new TerrainObject();
 
@@ -1329,6 +1350,7 @@ function MastTile() {
   this.blockloe = .2;
   this.prefix = "a";
   this.desc = "mast";
+  this.peerview = "#602000";
 }
 MastTile.prototype = new TerrainObject();
 
@@ -1341,6 +1363,7 @@ function RiggingTile() {
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "ship's rigging";
+  this.peerview = "#602000";
 }
 RiggingTile.prototype = new TerrainObject();
 
@@ -1354,6 +1377,7 @@ function PillarTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "pillar";
+  this.peerview = "#707070";
 }
 PillarTile.prototype = new TerrainObject();
 
@@ -1366,6 +1390,7 @@ function PurplePillarTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "pillar";
+  this.peerview = "#707070";
 }
 PurplePillarTile.prototype = new TerrainObject();
 
@@ -1378,9 +1403,11 @@ function FancyFloorTile() {
   this.blocklos = 0;
   this.prefix = "the";
   this.desc = "floor";
+  this.peerview = "#600060";
 }
 FancyFloorTile.prototype = new TerrainObject();
 
+/*
 function FountainSWTile() {
   this.name = "FountainSW";
 //  this.graphic = "017.gif";
@@ -1391,6 +1418,7 @@ function FountainSWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fountain";
+  this.peerview = "white";
 }
 FountainSWTile.prototype = new TerrainObject();
 
@@ -1404,6 +1432,7 @@ function FountainSETile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fountain";
+  this.peerview = "white";
 }
 FountainSETile.prototype = new TerrainObject();
 
@@ -1796,6 +1825,7 @@ function LetterZTile() {
   this.desc = "Z";
 }
 LetterZTile.prototype = new TerrainObject();
+*/
 
 function HorizontalCounterTile() {
   this.name = "HorizontalCounter";
@@ -1808,6 +1838,7 @@ function HorizontalCounterTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
+  this.peerview = "black";
 }
 HorizontalCounterTile.prototype = new TerrainObject();
 
@@ -1822,6 +1853,7 @@ function RightCounterTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
+  this.peerview = "black";
 }
 RightCounterTile.prototype = new TerrainObject();
 
@@ -1836,6 +1868,7 @@ function LeftCounterTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
+  this.peerview = "black";
 }
 LeftCounterTile.prototype = new TerrainObject();
 
@@ -1850,6 +1883,7 @@ function CounterBoxTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
+  this.peerview = "black";
 }
 CounterBoxTile.prototype = new TerrainObject();
 
@@ -1862,6 +1896,7 @@ function BlankBlackTile() {
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.desc = "darkness";
+  this.peerview = "black";
 }
 BlankBlackTile.prototype = new TerrainObject();
 
@@ -1874,6 +1909,7 @@ function DarknessTile() {
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "darkness";
+  this.peerview = "black";
 }
 DarknessTile.prototype = new TerrainObject();
 
@@ -1887,6 +1923,7 @@ function WallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
+  this.peerview = "white";
 }
 WallTile.prototype = new TerrainObject();
 
@@ -1900,6 +1937,7 @@ function RuinsWallTallLeftMidRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
+  this.peerview = "white";
 }
 RuinsWallTallLeftMidRightTile.prototype = new TerrainObject();
 
@@ -1913,6 +1951,7 @@ function RuinsWallMidLeftMidRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
+  this.peerview = "white";
 }
 RuinsWallMidLeftMidRightTile.prototype = new TerrainObject();
 
@@ -1926,6 +1965,7 @@ function RuinsWallMidLeftTallRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
+  this.peerview = "white";
 }
 RuinsWallMidLeftTallRightTile.prototype = new TerrainObject();
 
@@ -1939,6 +1979,7 @@ function RuinsWallTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
+  this.peerview = "white";
 }
 RuinsWallTile.prototype = new TerrainObject();
 
@@ -1952,6 +1993,7 @@ function RuinsWallMidLeftBottomRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
+  this.peerview = "white";
 }
 RuinsWallMidLeftBottomRightTile.prototype = new TerrainObject();
 
@@ -1965,6 +2007,7 @@ function RuinsWallBottomLeftMidRightTile() {
   this.blocklos = 2;
   this.prefix = "a";
   this.desc = "wall";
+  this.peerview = "white";
 }
 RuinsWallBottomLeftMidRightTile.prototype = new TerrainObject();
 
@@ -1981,7 +2024,7 @@ function ArrowSlitTile() {
 	this.loeupclose = {distance : 0 , blocklow : .2 };
 	this.prefix = "an";
 	this.desc = "arrow slit";
-
+  this.peerview = "white";
 }
 ArrowSlitTile.prototype = new TerrainObject();
 
@@ -1996,7 +2039,7 @@ function WindowTile() {
 	this.blockloe = 1;
 	this.prefix = "a";
 	this.desc = "window";
-
+  this.peerview = "white";
 }
 WindowTile.prototype = new TerrainObject();
 
@@ -2010,6 +2053,7 @@ function WallNETile() {
   this.blocklos = 1;
   this.prefix = "a";
   this.desc = "wall";
+  this.peerview = "white";
 }
 WallNETile.prototype = new TerrainObject();
 
@@ -2023,6 +2067,7 @@ function WallNWTile() {
   this.blocklos = 1;
   this.prefix = "a";
   this.desc = "wall";
+  this.peerview = "white";
 }
 WallNWTile.prototype = new TerrainObject();
 
@@ -2036,6 +2081,7 @@ function WallSWTile() {
   this.blocklos = 1;
   this.prefix = "a";
   this.desc = "wall";
+  this.peerview = "white";
 }
 WallSWTile.prototype = new TerrainObject();
 
@@ -2049,6 +2095,7 @@ function WallSETile() {
   this.blocklos = 1;
   this.prefix = "a";
   this.desc = "wall";
+  this.peerview = "white";
 }
 WallSETile.prototype = new TerrainObject();
 
@@ -2063,6 +2110,7 @@ function VerticalCounterTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
+  this.peerview = "black";
 }
 VerticalCounterTile.prototype = new TerrainObject();
 
@@ -2077,6 +2125,7 @@ function BottomCounterTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
+  this.peerview = "black";
 }
 BottomCounterTile.prototype = new TerrainObject();
 
@@ -2091,6 +2140,7 @@ function TopCounterTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "counter";
+  this.peerview = "black";
 }
 TopCounterTile.prototype = new TerrainObject();
 
@@ -2103,6 +2153,7 @@ function PlanksNSTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
+  this.peerview = "#602000";
 }
 PlanksNSTile.prototype = new TerrainObject();
 
@@ -2115,6 +2166,7 @@ function ShadowPlanksNSTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
+  this.peerview = "#1c6000";
 }
 ShadowPlanksNSTile.prototype = new TerrainObject();
 
@@ -2128,6 +2180,7 @@ function SouthCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#00c000";
 }
 SouthCoastTile.prototype = new TerrainObject();
 
@@ -2141,6 +2194,7 @@ function NorthCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#00c000";
 }
 NorthCoastTile.prototype = new TerrainObject();
 
@@ -2154,6 +2208,8 @@ function NorthCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  
 }
 NorthCoastSandTile.prototype = new TerrainObject();
 
@@ -2167,6 +2223,7 @@ function EastCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#00c000";
 }
 EastCoastTile.prototype = new TerrainObject();
 
@@ -2180,6 +2237,7 @@ function WestCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#00c000";
 }
 WestCoastTile.prototype = new TerrainObject();
 
@@ -2193,6 +2251,7 @@ function NortheastCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#00c000";
   
   SetBySurroundCoast.call(this);
 }
@@ -2208,6 +2267,7 @@ function NortheastCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
   
   SetBySurroundCoast.call(this);
 }
@@ -2223,6 +2283,7 @@ function SouthwestCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#00c000";
   
   SetBySurroundCoast.call(this);
 }
@@ -2238,6 +2299,7 @@ function NorthwestCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#00c000";
   
   SetBySurroundCoast.call(this);
 }
@@ -2253,6 +2315,7 @@ function NorthwestCoastSandTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
   
   SetBySurroundCoast.call(this);
 }
@@ -2268,6 +2331,7 @@ function SoutheastCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#00c000";
   
   SetBySurroundCoast.call(this);
 }
@@ -2283,6 +2347,7 @@ function ShadowSouthCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#0065a0";
 }
 ShadowSouthCoastTile.prototype = new TerrainObject();
 
@@ -2296,6 +2361,7 @@ function ShadowNorthCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#0065a0";
 }
 ShadowNorthCoastTile.prototype = new TerrainObject();
 
@@ -2309,6 +2375,7 @@ function ShadowEastCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#0065a0";
 }
 ShadowEastCoastTile.prototype = new TerrainObject();
 
@@ -2322,6 +2389,7 @@ function ShadowWestCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#0065a0";
 }
 ShadowWestCoastTile.prototype = new TerrainObject();
 
@@ -2335,6 +2403,7 @@ function ShadowNortheastCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#0065a0";
   
   SetBySurroundCoast.call(this);
 }
@@ -2350,6 +2419,7 @@ function ShadowSouthwestCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#0065a0";
   
   SetBySurroundCoast.call(this);
 }
@@ -2365,6 +2435,7 @@ function ShadowNorthwestCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#0065a0";
   
   SetBySurroundCoast.call(this);
 }
@@ -2380,6 +2451,7 @@ function ShadowSoutheastCoastTile() {
   this.blocklos = 0;
   this.desc = "coast";
   this.combatmap = "Grass";
+  this.peerview = "#0065a0";
   
   SetBySurroundCoast.call(this);
 }
@@ -2397,6 +2469,7 @@ function RiverTile() {
   this.prefix = "a";
   this.desc = "river";
   this.combatmap = "Water";
+  this.peerview = "#8080fc";
   
   SetBySurroundRiver.call(this);
 }
@@ -2411,6 +2484,7 @@ function CobblestoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
+  this.peerview = "#800000";
 }
 CobblestoneTile.prototype = new TerrainObject();
 
@@ -2423,6 +2497,7 @@ function BlueTilesTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "tiles";
+  this.peerview = "#345de1";
 }
 BlueTilesTile.prototype = new TerrainObject();
 
@@ -2436,6 +2511,7 @@ function PlanksEWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
+  this.peerview = "#602000";
 }
 PlanksEWTile.prototype = new TerrainObject();
 
@@ -2448,6 +2524,7 @@ function GrassTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "grass";
+  this.peerview = "#00c000";
 
   this.combatmap = "Grass"; 
 }
@@ -2462,6 +2539,7 @@ function ShadowGrassTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "grass";
+  this.peerview = "#0065a0";
 
   this.combatmap = "Grass"; 
 }
@@ -2477,6 +2555,7 @@ function DirtTile() {
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
 }
 DirtTile.prototype = new TerrainObject();
 
@@ -2490,6 +2569,7 @@ function ShadowDirtTile() {
   this.blocklos = 0;
   this.desc = "dirt";
   this.combatmap = "Grass";
+  this.peerview = "#60003c";
 }
 ShadowDirtTile.prototype = new TerrainObject();
 
@@ -2502,6 +2582,7 @@ function RoadTile() {
   this.prefix = "a";
   this.desc = "dirt road";
   this.combatmap = "Grass";
+  this.peerview = "#7a3a1a";
   
   this.initdelay = 0.8;
   
@@ -2520,6 +2601,7 @@ function BrushTile() {
   this.desc = "brush";
   this.initdelay = 1.1;
   this.combatmap = "Brush";
+  this.peerview = "#008000";
 }
 BrushTile.prototype = new TerrainObject();
 
@@ -2534,6 +2616,7 @@ function ShadowBrushTile() {
   this.desc = "brush";
   this.initdelay = 1.1;
   this.combatmap = "Brush";
+  this.peerview = "#005080";
 }
 ShadowBrushTile.prototype = new TerrainObject();
 
@@ -2548,6 +2631,7 @@ function BrushNCoastTile() {
   this.desc = "brush";
   this.initdelay = 1.1;
   this.combatmap = "Brush";
+  this.peerview = "#008000";
 }
 BrushNCoastTile.prototype = new TerrainObject();
 
@@ -2562,6 +2646,7 @@ function BrushECoastTile() {
   this.desc = "brush";
   this.initdelay = 1.1;
   this.combatmap = "Brush";
+  this.peerview = "#008000";
 }
 BrushECoastTile.prototype = new TerrainObject();
 
@@ -2576,6 +2661,7 @@ function BrushSCoastTile() {
   this.desc = "brush";
   this.initdelay = 1.1;
   this.combatmap = "Brush";
+  this.peerview = "#008000";
 }
 BrushSCoastTile.prototype = new TerrainObject();
 
@@ -2590,6 +2676,7 @@ function BrushWCoastTile() {
   this.desc = "brush";
   this.initdelay = 1.1;  
   this.combatmap = "Brush";
+  this.peerview = "#008000";
 }
 BrushWCoastTile.prototype = new TerrainObject();
 
@@ -2606,6 +2693,7 @@ function ForestTile() {
   this.desc = "forest";
   this.initdelay = 1.3;
   this.combatmap = "Forest";
+  this.peerview = "#004000";
 }
 ForestTile.prototype = new TerrainObject();
 
@@ -2620,6 +2708,7 @@ function GroveTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "trees";
   this.initdelay = 1.3;
+  this.peerview = "#004000";
 }
 GroveTile.prototype = new TerrainObject();
 
@@ -2634,6 +2723,7 @@ function ShadowGroveTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "trees";
   this.initdelay = 1.3;
+  this.peerview = "#002840";
 }
 ShadowGroveTile.prototype = new TerrainObject();
 	
@@ -2650,6 +2740,7 @@ function ForestNCoastTile() {
   this.desc = "forest";
   this.initdelay = 1.3;
   this.combatmap = "Forest";
+  this.peerview = "#004000";
 }
 ForestNCoastTile.prototype = new TerrainObject();
 
@@ -2666,6 +2757,7 @@ function ForestECoastTile() {
   this.desc = "forest";
   this.initdelay = 1.3;
   this.combatmap = "Forest";
+  this.peerview = "#004000";
 }
 ForestECoastTile.prototype = new TerrainObject();
 
@@ -2682,6 +2774,7 @@ function ForestSCoastTile() {
   this.desc = "forest";
   this.initdelay = 1.3;
   this.combatmap = "Forest";
+  this.peerview = "#004000";
 }
 ForestSCoastTile.prototype = new TerrainObject();
 
@@ -2698,6 +2791,7 @@ function ForestWCoastTile() {
   this.desc = "forest";
   this.initdelay = 1.3;
   this.combatmap = "Forest";
+  this.peerview = "#004000";
 }
 ForestWCoastTile.prototype = new TerrainObject();
 
@@ -2715,6 +2809,7 @@ function HillsTile() {
   this.desc = "hills";
   this.initdelay = 1.5;
   this.combatmap = "Hill";
+  this.peerview = "#49473a";
 }
 HillsTile.prototype = new TerrainObject();
 
@@ -2727,6 +2822,7 @@ function PurpleCobblestoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestone";
+  this.peerview = "#600060";
 }
 PurpleCobblestoneTile.prototype = new TerrainObject();
 
@@ -2739,6 +2835,7 @@ function ShadowPurpleCobblestoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestone";
+  this.peerview = "#602300";
 }
 ShadowPurpleCobblestoneTile.prototype = new TerrainObject();
 
@@ -2753,6 +2850,7 @@ function SwampTile() {
   this.desc = "swamp";
   this.initdelay = 1.2;
   this.combatmap = "Swamp";
+  this.peerview = "#004000";
 }
 SwampTile.prototype = new TerrainObject();
 
@@ -2776,6 +2874,7 @@ function ShadowSwampTile() {
   this.desc = "swamp";
   this.initdelay = 1.2;
   this.combatmap = "Swamp";
+  this.peerview = "#002840";
 }
 ShadowSwampTile.prototype = new TerrainObject();
 
@@ -2827,6 +2926,7 @@ function ShinglesTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "roof";
+  this.peerview = "#474747";
 }
 ShinglesTile.prototype = new TerrainObject();
 
@@ -2840,6 +2940,7 @@ function ShinglesTopTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "roof";
+  this.peerview = "#474747";
 }
 ShinglesTopTile.prototype = new TerrainObject();
 
@@ -2850,6 +2951,7 @@ function CaveFloorTile() {
 	this.blocklos = 0;
 	this.prefix = "a";
 	this.desc = "cave floor";
+	this.peerview = "#6c6c6c";
 	
 	Tiling.call(this, 2);
 }
@@ -2862,6 +2964,7 @@ function CaveWallTile() {
 	this.blocklos = 1;
 	this.prefix = "a";
 	this.desc = "cave wall";
+	this.peerview = "black";
 	
 	Tiling.call(this, 2);
 	SetBySurround.call(this);
@@ -2877,6 +2980,7 @@ function HexFloorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
+	this.peerview = "#675151";
 }
 HexFloorTile.prototype = new TerrainObject();
 
@@ -2888,6 +2992,7 @@ function GoldOutlineFloorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
+	this.peerview = "#9b8727";
 }
 GoldOutlineFloorTile.prototype = new TerrainObject();
 
@@ -2899,6 +3004,7 @@ function DiamondFloorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
+	this.peerview = "#868585";
 }
 DiamondFloorTile.prototype = new TerrainObject();
 
@@ -2910,6 +3016,7 @@ function BlueDiamondFloorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
+	this.peerview = "#5050ff";
 }
 BlueDiamondFloorTile.prototype = new TerrainObject();
 
@@ -2921,6 +3028,7 @@ function PurpleDiamondFloorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
+	this.peerview = "#b650ff";
 }
 PurpleDiamondFloorTile.prototype = new TerrainObject();
 
@@ -2932,6 +3040,7 @@ function RedDiamondFloorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
+	this.peerview = "#ff5c50";
 }
 RedDiamondFloorTile.prototype = new TerrainObject();
 
@@ -2943,6 +3052,7 @@ function GreenDiamondFloorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
+	this.peerview = "#50ff61";
 }
 GreenDiamondFloorTile.prototype = new TerrainObject();
 
@@ -2954,9 +3064,9 @@ function YellowDiamondFloorTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
+	this.peerview = "#cf790b";
 }
 YellowDiamondFloorTile.prototype = new TerrainObject();
-
 
 function BannerTile() {
   this.name = "Banner";
@@ -2967,6 +3077,7 @@ function BannerTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "banner of Olympus";
+  this.peerview = "white";
 }
 BannerTile.prototype = new TerrainObject();
 
@@ -3088,6 +3199,7 @@ function LavaTile() {
   this.spriteyoffset = "0";
   
   LightEmitting.call(this, 1);
+  this.peerview = "#fc2000";
 }
 LavaTile.prototype = new FeatureObject();
 
@@ -3113,6 +3225,7 @@ function CoralTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "coral reef";
+  this.peerview = "white";
   
   LightEmitting.call(this, 1);
 }
@@ -3149,6 +3262,7 @@ function TowneTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "towne";
+  this.peerview = "#e0e0e0";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -3161,6 +3275,7 @@ function KeepTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "keep";
+  this.peerview = "#e0e0e0";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -3173,6 +3288,7 @@ function GrassTowerTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tower";
+  this.peerview = "#e0e0e0";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -3185,6 +3301,7 @@ function HillTowerTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tower";
+  this.peerview = "#e0e0e0";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -3197,6 +3314,7 @@ function LighthouseTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lighthouse";
+  this.peerview = "#e0e0e0";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -3209,6 +3327,7 @@ function VillageTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "village";
+  this.peerview = "#e0e0e0";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -3219,7 +3338,8 @@ function CastleTile() {
   this.graphic = "155.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "Castle Olympus";
+  this.desc = "Castle Dea Olympus";
+  this.peerview = "#e0e0e0";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -3244,7 +3364,8 @@ function LeftCastleTile() {
   this.graphic = "005.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Olympus";
+  this.desc = "Castle Dea Olympus";
+  this.peerview = "#e0e0e0";
 }
 LeftCastleTile.prototype = new FeatureObject();
 
@@ -3253,7 +3374,8 @@ function RightCastleTile() {
   this.graphic = "006.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
-  this.desc = "Castle Olympus";
+  this.desc = "Castle Dea Olympus";
+  this.peerview = "#e0e0e0";
 }
 RightCastleTile.prototype = new FeatureObject();
 
@@ -3303,6 +3425,7 @@ function ShrineTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "gate";
+  this.peerview = "#9d9d9d";
 
 //  Enterable.call(this, "null", 0, 0);
 }
@@ -3315,6 +3438,7 @@ function BrokenShrineTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "broken gate";
+  this.peerview = "#9d9d9d";
 
 //  Enterable.call(this, "null", 0, 0);
 }
@@ -3327,6 +3451,7 @@ function RuinsTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "ruin";
+  this.peerview = "#e0e0e0";
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -3560,6 +3685,7 @@ function FireplaceTile() {
 	this.blocklos = 2;
   this.prefix = "a";
 	this.desc = "fireplace";
+	this.peerview = "white";
 	
 	LightEmitting.call(this, 2);
 }
@@ -3572,6 +3698,7 @@ function AltarTile() {
 	this.blocklos = 0;
 	this.prefix = "an";
 	this.desc = "altar";
+	this.peerview = "white";
 }
 AltarTile.prototype = new FeatureObject();
 
@@ -3807,6 +3934,7 @@ function LadderDownTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "ladder";
+  this.peerview = "#808080";
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -3822,6 +3950,7 @@ function LadderUpTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "ladder";
+  this.peerview = "#808080";
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -3836,6 +3965,7 @@ function StairDownTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
+  this.peerview = "#808080";
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -3850,6 +3980,7 @@ function StairUpTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
+  this.peerview = "#808080";
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -3864,6 +3995,7 @@ function StairDown2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
+  this.peerview = "#808080";
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -3878,6 +4010,7 @@ function StairUp2Tile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
+  this.peerview = "#808080";
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -3893,6 +4026,7 @@ function SingleSignpostTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "signpost";
+  this.peerview = "#541909";
 }
 SingleSignpostTile.prototype = new FeatureObject();
 
@@ -3905,6 +4039,7 @@ function SignpostLeftTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "signpost";
+  this.peerview = "#541909";
 }
 SignpostLeftTile.prototype = new FeatureObject();
 
@@ -3917,6 +4052,7 @@ function SignpostRightTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "signpost";
+  this.peerview = "#541909";
 }
 SignpostRightTile.prototype = new FeatureObject();
 
@@ -3929,6 +4065,7 @@ function InnSignTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "inn";
+  this.peerview = "#541909";
 }
 InnSignTile.prototype = new FeatureObject();
 
@@ -3941,6 +4078,7 @@ function TavernSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tavern";
+  this.peerview = "#541909";
 }
 TavernSignTile.prototype = new FeatureObject();
 
@@ -3953,6 +4091,7 @@ function ArmourySignTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "armoury";
+  this.peerview = "#541909";
 }
 ArmourySignTile.prototype = new FeatureObject();
 
@@ -3965,6 +4104,7 @@ function GrocerSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "grocer";
+  this.peerview = "#541909";
 }
 GrocerSignTile.prototype = new FeatureObject();
 
@@ -3977,6 +4117,7 @@ function GrocerSign2Tile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "grocer";
+  this.peerview = "#541909";
 }
 GrocerSign2Tile.prototype = new FeatureObject();
 
@@ -3989,6 +4130,7 @@ function WeaponSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "weaponsmith";
+  this.peerview = "#541909";
 }
 WeaponSignTile.prototype = new FeatureObject();
 
@@ -4001,6 +4143,7 @@ function AlchemistSignTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "alchemist";
+  this.peerview = "#541909";
 }
 AlchemistSignTile.prototype = new FeatureObject();
 
@@ -4013,6 +4156,7 @@ function MagicShoppeSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "magic shoppe";
+  this.peerview = "#541909";
 }
 MagicShoppeSignTile.prototype = new FeatureObject();
 
@@ -4025,6 +4169,7 @@ function HealerSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "healer";
+  this.peerview = "#541909";
 }
 HealerSignTile.prototype = new FeatureObject();
 
@@ -4037,6 +4182,7 @@ function CasinoSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "casino";
+  this.peerview = "#541909";
 }
 CasinoSignTile.prototype = new FeatureObject();
   
@@ -4049,6 +4195,7 @@ function PaladinSignTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "sign showing a chalice";
+  this.peerview = "#541909";
 }
 PaladinSignTile.prototype = new FeatureObject();
 
@@ -4083,6 +4230,7 @@ function WBridgeNSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
+  this.peerview = "#602000";
 }
 WBridgeNSTile.prototype = new FeatureObject();
 
@@ -4093,6 +4241,7 @@ function EBridgeNSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
+  this.peerview = "#602000";
 }
 EBridgeNSTile.prototype = new FeatureObject();
 
@@ -4103,6 +4252,7 @@ function BridgeNSTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
+  this.peerview = "#602000";
 }
 BridgeNSTile.prototype = new FeatureObject();
 
@@ -4113,6 +4263,7 @@ function NBridgeEWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
+  this.peerview = "#602000";
 }
 NBridgeEWTile.prototype = new FeatureObject();
 
@@ -4123,6 +4274,7 @@ function SBridgeEWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
+  this.peerview = "#602000";
 }
 SBridgeEWTile.prototype = new FeatureObject();
 
@@ -4133,6 +4285,7 @@ function BridgeEWTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bridge";
+  this.peerview = "#602000";
 }
 BridgeEWTile.prototype = new FeatureObject();
 
@@ -4480,6 +4633,7 @@ function SecretDoorTile() {
 	
 	this.searchDesc = "secret door";
 	this.searchPrefix = "a";
+	this.peerview = "white";
 	
   SetByBelow.call(this);
   Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
@@ -5166,6 +5320,7 @@ function ArmorCounterLeatherTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
+  this.peerview = "black";
 }
 ArmorCounterLeatherTile.prototype = new FeatureObject();
 
@@ -5180,6 +5335,7 @@ function ArmorCounterChainTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
+  this.peerview = "black";
 }
 ArmorCounterChainTile.prototype = new FeatureObject();
 
@@ -5194,6 +5350,7 @@ function ArmorCounterPlateTile() {
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "display counter";
+  this.peerview = "black";
 }
 ArmorCounterPlateTile.prototype = new FeatureObject();
 
@@ -5208,6 +5365,7 @@ function ArmorRackLeatherTile() {
   this.blockloe = 0;
   this.prefix = "a";
   this.desc = "display suit of leather armor";
+  this.peerview = "black";
 }
 ArmorRackLeatherTile.prototype = new FeatureObject();
 
@@ -5222,6 +5380,7 @@ function ArmorRackChainTile() {
   this.blockloe = 0;
   this.prefix = "a";
   this.desc = "display suit of chain mail";
+  this.peerview = "black";
 }
 ArmorRackChainTile.prototype = new FeatureObject();
 
@@ -5236,6 +5395,7 @@ function ArmorRackPlateTile() {
   this.blockloe = 0;
   this.prefix = "a";
   this.desc = "display suit of plate armor";
+  this.peerview = "black";
 }
 ArmorRackPlateTile.prototype = new FeatureObject();
 
@@ -5517,6 +5677,7 @@ function SandstoneWallTile() {
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a"
   this.desc = "sandstone wall";
+  this.peerview = "#b0b0b0";
   
   LightEmitting.call(this, 3);
 }
@@ -5552,6 +5713,7 @@ function WallOfWavesTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Waves";
+  this.peerview = "white";
 }
 WallOfWavesTile.prototype = new FeatureObject();
 
@@ -5581,6 +5743,7 @@ function RuneOfWavesTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Waves";
+  this.peerview = "white";
 }
 RuneOfWavesTile.prototype = new FeatureObject();
 
@@ -5611,6 +5774,7 @@ function WallOfWindsTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Winds";
+  this.peerview = "white";
 }
 WallOfWindsTile.prototype = new FeatureObject();
 
@@ -5640,6 +5804,7 @@ function RuneOfWindsTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Winds";
+  this.peerview = "white";
 }
 RuneOfWindsTile.prototype = new FeatureObject();
 
@@ -5670,6 +5835,7 @@ function WallOfKingsTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Kings";
+  this.peerview = "white";
 }
 WallOfKingsTile.prototype = new FeatureObject();
 
@@ -5699,6 +5865,7 @@ function RuneOfKingsTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Kings";
+  this.peerview = "white";
 }
 RuneOfKingsTile.prototype = new FeatureObject();
 
@@ -5728,6 +5895,7 @@ function WallOfFlamesTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Flames";
+  this.peerview = "white";
 }
 WallOfFlamesTile.prototype = new FeatureObject();
 
@@ -5757,6 +5925,7 @@ function RuneOfFlamesTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Flames";
+  this.peerview = "white";
 }
 RuneOfFlamesTile.prototype = new FeatureObject();
 
@@ -5787,6 +5956,7 @@ function WallOfVoidTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Void";
+  this.peerview = "white";
 }
 WallOfVoidTile.prototype = new FeatureObject();
 
@@ -5816,6 +5986,7 @@ function RuneOfVoidTile() {
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Void";
+  this.peerview = "white";
 }
 RuneOfVoidTile.prototype = new FeatureObject();
 
@@ -6070,6 +6241,7 @@ function BrightFountainTile() {
   this.spriteyoffset = "0";
   this.prefix = "a";
   this.desc = "fountain";
+  this.peerview = "#a0a0a0";
 }
 BrightFountainTile.prototype = new FeatureObject();
 
@@ -6080,6 +6252,7 @@ function BlueFountainTile() {
   this.spriteyoffset = "0";
   this.prefix = "a";
   this.desc = "fountain";
+  this.peerview = "#a0a0a0";
 }
 BlueFountainTile.prototype = new FeatureObject();
 
@@ -6090,6 +6263,7 @@ function BloodFountainTile() {
   this.spriteyoffset = "0";
   this.prefix = "a";
   this.desc = "fountain";
+  this.peerview = "#a0a0a0";
 }
 BloodFountainTile.prototype = new FeatureObject();
 
@@ -6098,6 +6272,7 @@ function FountainTile() {
   this.graphic = "fountain.gif";
   this.prefix = "a";
   this.desc = "fountain";
+  this.peerview = "#a0a0a0";
 }
 FountainTile.prototype = new FeatureObject();
 
@@ -6109,6 +6284,7 @@ function BlueCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
+  this.peerview = "#65ceff";
 }
 BlueCrystalTile.prototype = new FeatureObject();
 
@@ -6120,6 +6296,7 @@ function PurpleCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
+  this.peerview = "#9b65ff";
 }
 PurpleCrystalTile.prototype = new FeatureObject();
 
@@ -6131,6 +6308,7 @@ function YellowCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
+  this.peerview = "#ffc465";
 }
 YellowCrystalTile.prototype = new FeatureObject();
 
@@ -6142,6 +6320,7 @@ function GreenCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
+  this.peerview = "#9bff65";
 }
 GreenCrystalTile.prototype = new FeatureObject();
 
@@ -6153,6 +6332,7 @@ function RedCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   LightEmitting.call(this, 2);
+  this.peerview = "#ff658b";
 }
 RedCrystalTile.prototype = new FeatureObject();
 
@@ -6163,6 +6343,7 @@ function WhiteCrystalTile() {
   this.spriteyoffset = "0";
   this.prefix = "a";
   this.desc = "crystal";
+  this.peerview = "#b0cbc4";
 }
 WhiteCrystalTile.prototype = new FeatureObject();
 
@@ -6216,6 +6397,7 @@ function ToshinPanelTile() {
   this.val[67] = 0;
   this.val[68] = 0;
   this.val[69] = 0;
+  this.peerview = "white";
 }
 ToshinPanelTile.prototype = new FeatureObject();
 
@@ -6589,6 +6771,7 @@ function AltarWithSwordTile() {
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "sword driven into the stone of an altar";
+  this.peerview = "white";
 }
 AltarWithSwordTile.prototype = new FeatureObject();
 

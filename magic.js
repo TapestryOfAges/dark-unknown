@@ -1739,8 +1739,7 @@ function PerformBlink(caster,destx, desty) {
   var walkonval = tile.executeWalkons(this);
   if (walkonval) {
     if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
-      retval["msg"] += walkonval;
-    }
+    retval["msg"] += walkonval;
   }
   DrawMainFrame("draw", PC.getHomemap().getName() , PC.getx(), PC.gety());
   maintext.addText(retval["msg"]);
