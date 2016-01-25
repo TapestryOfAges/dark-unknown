@@ -1714,9 +1714,12 @@ magic[4][GetSpellID(2)].executeSpell = function(caster, infused, free) {
   while (!success && possdest[0]) {
     var tile = castermap.getTile(possdest[0].x,possdest[0].y);
     if (tile.canMoveHere(castermovetype, 1)) {
-      success = PerformBlink(caster,possdest[0].x,possdest[0].y);
-      if (!success) { possdest.shift(); }
+      var path = castermap.getPath(casterx,castery,possdest[0].x,possdest[0].y,MOVE_WALK);
+      if (path) {
+        success = PerformBlink(caster,possdest[0].x,possdest[0].y);
+      }
     }
+    if (!success) { possdest.shift(); }
   }
 
   if (!success) { 
