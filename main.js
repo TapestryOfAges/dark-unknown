@@ -71,7 +71,7 @@ function DrawCharFrame() {
 function DrawMainFrame(how, mapname, centerx, centery) {
   // how options are "draw" and "one"
 
-  var mapdiv = "&nbsp;";
+  var mapdiv = "";
   var themap = maps.getMap(mapname);
   var opac = 1;
   
@@ -99,7 +99,7 @@ function DrawMainFrame(how, mapname, centerx, centery) {
     } else {
       $("#worldlayer").css("background-image", "");
     }
-    mapdiv += "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20;\">";
+    mapdiv += "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20; top:20px\">";
     var tp = 0; // telepathy
     var ev = 0; // ethereal vision
     if (PC.getSpellEffectsByName("Telepathy")) { tp = 1; }
@@ -137,6 +137,16 @@ function DrawMainFrame(how, mapname, centerx, centery) {
       $(tileid).css("background-position",thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px');
       $(tileid).html('<img id="tile'+centerx+'x'+centery+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+centerx+'x'+centery+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:20" title="' + thiscell.desc + '" />');
     }
+    $.each(spellcount, function(idx, val) {
+      if ((val.getx() >= displayspecs.leftedge) && (val.getx() <= displayspecs.rightedge) && (val.gety() >= displayspecs.topedge) && (val.gety() <= displayspecs.bottomedge)) {
+        var where = getCoords(val.getHomeMap(),val.getx(), val.gety());
+//        where.x += 192;
+//        where.y += 192;
+        $("#" + idx).css("left", where.x);
+        $("#" + idx).css("top", where.y);
+      }
+    });
+
   }
   
 }
@@ -214,6 +224,9 @@ function DoAction(code, ctrl) {
     } else {
       if (((code >= 65) && (code <= 90)) || (code === 32) || (code === 13)) {  // letter, space, or enter
         if (targetCursor.command === "c") {
+          maintext.setInputLine("&gt;");
+          maintext.drawTextFrame();
+          DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
           PC.endTurn();
         } else {
           var retval = PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), targetCursor.keyword); 
