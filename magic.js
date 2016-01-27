@@ -2200,6 +2200,32 @@ function PerformParalyze(caster, infused, free, tgt) {
 }
 
 // Peer
+magic[5][GetSpellID(4)].executeSpell = function(caster, infused, free) {
+  DebugWrite("magic", "Casting Peer.<br />");
+  var resp = {};
+  if (!free) {
+    var mana = this.getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+  resp["fin"] = 1;
+  var castermap = caster.getHomeMap();
+  var eachwayx = Math.floor(viewsizex/2)*4+1;
+  var eachwayy = Math.floor(viewsizey/2)*4+1;
+  var leftx = caster.getx()-eachwayx;
+  var rightx = caster.getx()+eachwayx;
+  var topy = caster.gety()-eachwayy;
+  var bottomy = caster.gety()+eachwayy;
+  var peerhtml = "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20;\">";
+  for (var j=topy;j<=bottomy;j++) {
+    peerhtml += "<tr>";
+    for (var i=leftx;i<=rightx;i++) {
+      var tile = castermap.getTile(i,j);
+      // WORKING HERE
+    }
+    peerhtml += "</tr>";
+  }
+}
 
 //Return
 magic[5][GetSpellID(5)].executeSpell = function(caster, infused, free) {
