@@ -2208,7 +2208,7 @@ magic[5][GetSpellID(4)].executeSpell = function(caster, infused, free) {
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
-  resp["fin"] = 1;
+  resp["fin"] = 0;
   var castermap = caster.getHomeMap();
   var eachwayx = Math.floor(viewsizex/2)*4+1;
   var eachwayy = Math.floor(viewsizey/2)*4+1;
@@ -2218,13 +2218,42 @@ magic[5][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   var bottomy = caster.gety()+eachwayy;
   var peerhtml = "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20;\">";
   for (var j=topy;j<=bottomy;j++) {
-    peerhtml += "<tr>";
+    peerhtml += "<tr><td style='background-color:black; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>";
     for (var i=leftx;i<=rightx;i++) {
       var tile = castermap.getTile(i,j);
-      // WORKING HERE
+      if (tile === "OoB") { peerhtml += "<td style='background-color:black; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; }
+      else {
+        var npc = tile.getTopVisibleNPC();
+        if (npc) { peerhtml += "<td style='background-color:purple; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; }
+        else {
+          fea = tile.getTopVisibleFeature();
+          var peer = fea.getPeerview();
+          if (peer) { peerhtml += "<td style='background-color:"+peer+"; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; }
+          else {
+            var terr = tile.getTerrain();
+            var peer = terr.getPeerview();
+            if (peer) { peerhtml += "<td style='background-color:"+peer+"; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; }
+            else {
+              alert(terr.getName() + " has no peerview!");
+              peerhtml += "<td style='background-color:black; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>";
+            }
+          }
+        }
+      }
+      peerhtml += "</tr>";
     }
-    peerhtml += "</tr>";
   }
+  peerhtml += "<tr>";
+  for (var i=leftx;i<=rightx;i++) {
+    peerhtml += "<td style='background-color:black; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>";
+  }
+  peerhtml += "</tr></table>";
+  $('#displayframe').html(mapdiv);
+  gamestate.setMode("anykey");
+  targetCursor.command = "c";
+  maintext.addText("You receive a bird's eye view.");
+  resp["input"] = "[MORE]";
+  return resp;
 }
 
 //Return
