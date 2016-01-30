@@ -28,6 +28,8 @@ health_ingrid - has asked Ingrid HEALTH
 all_health - has set all the above health_ flags
 spellbook - has low level spellbook
 spellbook2 - has full sized spellbook
+get_shield - you've agreed to get Nyrani's shield
+has_shield - you've given the shield to Nyrani
 rescued_sam - rescued Samantha from Shadow
 shadow_safe - monsters in shadow between Sam and the entrance are dead.
 end_rebel - finished Prince plot
@@ -42,5 +44,6 @@ garrick_attack - garrick has attacked you
 anna_damien_response - Damien has thanked you for Anna's return.
 anna_brooke_response - Brooke has thanked you for Anna's return.
 pc_abyss - the PC has crossed the Great Abyss
+ivan_magic - Ivan has sent you to Asharden (NOT USED BY ASHARDEN)
 met_ash - you've spoken with Asharden at least once
 ash_quest1 - Asharden has given you the quest to get bark
