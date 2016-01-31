@@ -70,25 +70,16 @@ function SetMerchants() {
   bill.brooke.type = "stuff";
 
   bill.alexis = {};
-  bill.alexis.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap", lvl: 1, sid: GetSpellID(2), price: 100} ,
-                  { item: "DistractSpell", desc: "Distract", lvl: 1, sid: GetSpellID(3), price: 100},
-                  { item: "FlameBladeSpell", desc: "Flame Blade", lvl:1, sid: GetSpellID(4), price: 100},
-                  { item: "StrikeSpell", desc: "Strike", lvl: 1, sid: GetSpellID(6), price: 100},
-                  { item: "LesserHealSpell", desc: "Lesser Heal", lvl: 2, sid: GetSpellID(2), price: 200},
-                  { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: 2, sid: GetSpellID(3), price: 200},
-                  { item: "ProtectSpell", desc: "Protect", lvl: 2, sid: GetSpellID(5), price: 200},
-                  { item: "FireArmorSpell", desc: "Fire Armor", lvl: 3, sid: GetSpellID(1), price: 400},
+  bill.alexis.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap", lvl: 1, sid: GetSpellID(3), price: 100} ,
+                  { item: "DistractSpell", desc: "Distract", lvl: 1, sid: GetSpellID(4), price: 100},
+                  { item: "FlameBladeSpell", desc: "Flame Blade", lvl:1, sid: GetSpellID(5), price: 100},
+                  { item: "MendSpell", desc: "Mend", lvl: 1, sid: GetSpellID(7), price: 100},
+                  { item: "LesserHealSpell", desc: "Lesser Heal", lvl: 2, sid: GetSpellID(3), price: 200},
+                  { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: 2, sid: GetSpellID(4), price: 200},
+                  { item: "ProtectionSpell", desc: "Protection", lvl: 2, sid: GetSpellID(6), price: 200},
+                  { item: "FireArmorSpell", desc: "Fire Armor", lvl: 3, sid: GetSpellID(3), price: 400},
                 ];
   bill.alexis.type = "spells";
-  
-  bill.ivan = {};
-  bill.ivan.stock = [ { item: "LesserHealSpell", desc: "Lesser Heal", lvl: 2, sid: GetSpellID(2), price: 150},
-                { item: "ProtectSpell", desc: "Protect", lvl: 2, sid: GetSpellID(5), price: 150},
-                { item: "IllusionSpell", desc: "Illusion", lvl: 2, sid: GetSpellID(1), price: 150},
-                { item: "TelekinesisSpell", desc: "Telekinesis", lvl: 3, sid: GetSpellID(5), price: 330},
-                { item: "HealSpell", desc: "Heal", lvl: 4, sid: GetSpellID(2), price: 700},
-              ];
-  bill.ivan.type = "spells";
   
   
   return bill;
