@@ -663,6 +663,7 @@ magic[2][GetSpellID(2)].executeSpell = function(caster, infused, free) {
   liobj.setPower(power);
   
 //  DUPlaySound("sfx_spell_light"); 
+  ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   caster.addSpellEffect(liobj);
   
   DrawCharFrame();
@@ -1027,6 +1028,7 @@ magic[3][GetSpellID(1)].executeSpell = function(caster, infused, free) {
     if (infused) { chance += .3; }
     if (Math.random() < chance) {
       maintext.addText("You dispel " + dispellables[idx].getDesc() + "!");
+      ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
       dispellables[idx].endEffect();
     } else {
       maintext.AddText("You attempt to dispel " + dispellables[idx].getDesc() + ", but it fails.");
@@ -2072,7 +2074,11 @@ function PerformCrystalBarrier(caster, infused, free, tgt) {
   var duration = caster.getInt() * SCALE_TIME;
   if (free) { duration = RollDice("1d6+12") * SCALE_TIME; }
   crystal.expiresTime = DUTime.getGameClock() + duration;  // barrier AI needs to check expiresTime and go poof if it is reached
-  caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
+  caster.getHomeMap().placeThing(tgt.x,tgt.y,crystal);
+  if (infused) { 
+    crystal.setMaxHP(crystal.getMaxHP()*1.5);
+    crystal.setHP(crystal.getMaxHP());
+  }
   DrawMainFrame("one",caster.getHomeMap().getName(),crystal.getx(),crystal.gety());
   
   resp["txt"] = "You conjure a crystal barrier.";
@@ -2227,9 +2233,13 @@ magic[5][GetSpellID(4)].executeSpell = function(caster, infused, free) {
         var tile = castermap.getTile(i,j);
         if (tile === "OoB") { peerhtml += "<td style='background-color:black; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; }
         else {
-          var npc = tile.getTopVisibleNPC();
-          if (npc) { peerhtml += "<td style='background-color:purple; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; }
-          else {
+          var shown = 0;
+          if (infused) {
+            var npc = tile.getTopVisibleNPC();
+            if (npc) { peerhtml += "<td style='background-color:purple; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; }
+            shown = 1;
+          }
+          if (!shown) {
             var fea = tile.getTopVisibleFeature();
             if (fea && fea.getPeerview()) {
               var peer = fea.getPeerview();
