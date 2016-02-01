@@ -4500,6 +4500,7 @@ function BookshelfLeftTile() {
   this.desc = "bookshelf";
   this.showsearched = 1;
   this.searchedgraphic = ["furniture.gif", "", "-96", "-32"];
+  this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
 }
@@ -4516,6 +4517,7 @@ function BookshelfRightTile() {
   this.desc = "bookshelf";
   this.showsearched = 1;
   this.searchedgraphic = ["furniture.gif", "", "-128", "-32"];
+  this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
 }
@@ -4532,6 +4534,7 @@ function BookshelfOneTile() {
   this.desc = "bookshelf";
   this.showsearched = 1;
   this.searchedgraphic = ["furniture.gif", "", "-160", "-32"];
+  this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
 }
