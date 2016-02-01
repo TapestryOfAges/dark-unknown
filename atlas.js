@@ -1538,7 +1538,8 @@ GameMap.prototype.loadMap = function (name) {
     	  }
       	if (newfeature.getLootedID()) {
       	  if (DU.gameflags[newfeature.getLootedID()]) {
-      	    newfeature.setLootgroup("prev_looted");
+      	    if (newfeature.lootonce) { newfeature.setLootgroup(""); }
+      	    else  { newfeature.setLootgroup("prev_looted"); }
       	  }
       	}
       	if (newfeature.getLootgroup()) {
