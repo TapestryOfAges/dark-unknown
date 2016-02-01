@@ -1275,12 +1275,13 @@ function PerformUse(who) {
 		  usedname = usedname.replace(/^a /, "");
   		retval["txt"] = "Use " + usedname + ": " + retval["txt"];
 	  	var drawtype = "one";
-		  if (used.checkType("Consumable")) {
+		  if (used.checkType("Consumable") && !retval["preserve"]) {
 		    if (used.getHomeMap()) {
 		      // being used from the ground
   		    used.getHomeMap().deleteThing(used);
 	  	  } else {
 		      // being used from inventory
+		      // also, will never be executed as use from inventory is elsewhere
 		      who.removeFromInventory(used);
 		    }
   		}
