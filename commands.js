@@ -688,9 +688,7 @@ function PerformSpellbook(code) {
       if (lvl > 1) { newlvl = lvl - 1; }
     }
     if ((code === 39) || (code === 222)) { // right
-      var maxlvl = 2;
-      if (DU.gameflags["spellbook2"]) { maxlvl = 8; }
-      if (lvl < maxlvl) { newlvl = lvl + 1; }
+      if (lvl < 8) { newlvl = lvl + 1; }
     }
     // figure out how many spells down we are
     var spellsdown = 0;
