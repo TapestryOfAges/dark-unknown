@@ -47,12 +47,12 @@ mappages["kaltonmine1"].terrain[41] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 
 mappages["kaltonmine1"].features = [];
 mappages["kaltonmine1"].features[0] = {name : 'LadderUp', x : 15, y : 5, entermap : 'darkunknown', enterx : 39, entery : 48};
-mappages["kaltonmine1"].features[1] = {name : 'PetrifiedReaper', x : 34, y : 19};
-mappages["kaltonmine1"].features[2] = {name : 'PetrifiedReaper', x : 36, y : 19};
-mappages["kaltonmine1"].features[3] = {name : 'PetrifiedReaper', x : 37, y : 18};
-mappages["kaltonmine1"].features[4] = {name : 'PetrifiedReaper', x : 35, y : 17};
-mappages["kaltonmine1"].features[5] = {name : 'PetrifiedReaper', x : 37, y : 15};
-mappages["kaltonmine1"].features[6] = {name : 'PetrifiedReaper', x : 35, y : 13};
+mappages["kaltonmine1"].features[1] = {name : 'PetrifiedRoper', x : 34, y : 19};
+mappages["kaltonmine1"].features[2] = {name : 'PetrifiedRoper', x : 36, y : 19};
+mappages["kaltonmine1"].features[3] = {name : 'PetrifiedRoper', x : 37, y : 18};
+mappages["kaltonmine1"].features[4] = {name : 'PetrifiedRoper', x : 35, y : 17};
+mappages["kaltonmine1"].features[5] = {name : 'PetrifiedRoper', x : 37, y : 15};
+mappages["kaltonmine1"].features[6] = {name : 'PetrifiedRoper', x : 35, y : 13};
 
 
 mappages["kaltonmine1"].npcs = [];

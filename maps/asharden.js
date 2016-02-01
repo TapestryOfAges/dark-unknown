@@ -49,10 +49,10 @@ mappages["asharden1"].features[7] = {name : 'LadderUp', x : 29, y : 20, entermap
 mappages["asharden1"].features[8] = {name : 'BottomChair', x : 17, y : 19};
 mappages["asharden1"].features[9] = {name : 'Well', x : 17, y : 14};
 mappages["asharden1"].features[10] = {name : 'Fountain', x : 25, y : 15};
-mappages["asharden1"].features[11] = {name : 'BookshelfLeft', x : 31, y : 17, lootgroup : 'ash_book1', lootedid : 'ash_book1'};
-mappages["asharden1"].features[12] = {name : 'BookshelfRight', x : 32, y : 17, lootgroup : 'ash_book3', lootedid : 'ash_book2'};
-mappages["asharden1"].features[13] = {name : 'BookshelfLeft', x : 33, y : 17, lootgroup : 'ash_book3', lootedid : 'ash_book3'};
-mappages["asharden1"].features[14] = {name : 'BookshelfRight', x : 34, y : 17, lootgroup : 'ash_book2', lootedid : 'ash_book4'};
+mappages["asharden1"].features[11] = {name : 'BookshelfLeft', x : 31, y : 17};
+mappages["asharden1"].features[12] = {name : 'BookshelfRight', x : 32, y : 17};
+mappages["asharden1"].features[13] = {name : 'BookshelfLeft', x : 33, y : 17};
+mappages["asharden1"].features[14] = {name : 'BookshelfRight', x : 34, y : 17};
 mappages["asharden1"].features[15] = {name : 'Mirror', x : 23, y : 15};
 mappages["asharden1"].features[16] = {name : 'Altar', x : 27, y : 15};
 mappages["asharden1"].features[17] = {name : 'RightChair', x : 34, y : 19};
@@ -63,7 +63,7 @@ mappages["asharden1"].features[21] = {name : 'Brazier', x : 14, y : 18};
 
 
 mappages["asharden1"].npcs = [];
-mappages["asharden1"].npcs[0] = {name : 'MageVillagerNPC', x : 25, y : 17, NPCName: 'Asharden', Desc: 'a wizard', Level: 6, int: 24, Conversation: 'asharden', ConversationFlag: 'spellbook2', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0'};
+mappages["asharden1"].npcs[0] = {name : 'MageVillagerNPC', x : 25, y : 17, NPCName: 'Asharden', Desc: 'a wizard', Level: 6, int: 24, Conversation: 'asharden', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0'};
 
 mappages["asharden1"].desc = "Asharden's Tower";
 mappages["asharden1"].music = 'Magic';

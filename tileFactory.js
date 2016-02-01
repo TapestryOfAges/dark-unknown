@@ -1603,8 +1603,8 @@ tileFactory.prototype.makeMoongateTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makePetrifiedReaperTile = function() {
-  var newTile = new PetrifiedReaperTile();
+tileFactory.prototype.makePetrifiedRoperTile = function() {
+  var newTile = new PetrifiedRoperTile();
   return newTile;
 }
 
@@ -1673,8 +1673,8 @@ tileFactory.prototype.makeKeyOfShadowTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeReaperBarkTile = function() {
-  var newTile = new ReaperBarkTile();
+tileFactory.prototype.makeRoperBarkTile = function() {
+  var newTile = new RoperBarkTile();
   return newTile;
 }
 

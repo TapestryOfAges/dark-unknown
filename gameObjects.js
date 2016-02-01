@@ -6748,20 +6748,20 @@ MoongateTile.prototype.walkon = function(who) {
   return "";
 }
 
-function PetrifiedReaperTile() {
-  this.name = "PetrifiedReaper";
-  this.graphic = "petrifiedreaper.gif";
+function PetrifiedRoperTile() {
+  this.name = "PetrifiedRoper";
+  this.graphic = "petrifiedroper.gif";
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
-  this.desc = "petrified reaper";
+  this.desc = "petrified roper";
 }
-PetrifiedReaperTile.prototype = new FeatureObject();
+PetrifiedRoperTile.prototype = new FeatureObject();
 
-PetrifiedReaperTile.prototype.use = function(who) {
+PetrifiedRoperTile.prototype.use = function(who) {
   if (IsAdjacent(who,this)) {
-    var loot = localFactory.createTile("ReaperBark");
+    var loot = localFactory.createTile("RoperBark");
     PC.addToInventory(loot,1);
-    maintext.delayedAddText("You take some petrified reaper bark.");
+    maintext.delayedAddText("You take some petrified roper bark.");
   } else {
     maintext.delayedAddText("Nothing happens.");
   }
@@ -6964,18 +6964,18 @@ function KeyOfShadowTile() {
 }
 KeyOfShadowTile.prototype = new ItemObject();  
 
-function ReaperBarkTile() {
-  this.name = "ReaperBark";
+function RoperBarkTile() {
+  this.name = "RoperBark";
   this.graphic = "items.gif";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-64";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "piece of petrified reaper bark";
+  this.desc = "piece of petrified roper bark";
   this.prefix = "a";
   this.addType("Quest");
 }
-ReaperBarkTile.prototype = new ItemObject();
+RoperBarkTile.prototype = new ItemObject();
 
 function AmuletOfReflectionsTile() {
   this.name = "AmuletOfReflections";
@@ -7103,7 +7103,7 @@ function BookOfLoreTile() {
   this.name = "BookOfLore";
   this.graphic = "items.gif";
   this.spritexoffset = "-224";
-  this.spriteyoffset = "-192";
+  this.spriteyoffset = "-128";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Book of Lore";
