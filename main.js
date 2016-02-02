@@ -41,13 +41,7 @@ var displayspecs = {};
 var finder = new PF.AStarFinder({
   heuristic: PF.Heuristic.euclidean
 });
-DU.gameflags = {};
-DU.gameflags.music = 0;
-DU.gameflags.sound = 1;
-DU.gameflags.tablet = 0;
-DU.gameflags.autosave = 0;
-DU.gameflags.negate = {};
-DU.gameflags.karma = 0;
+DU.gameflags = new Gameflags();
 
 var targetCursor = {};
     targetCursor.skipahead = 0;

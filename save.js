@@ -8,6 +8,19 @@ function GameStateData() {
 	// player, NPC, null, target, conversation, anykey
 }
 
+function Gameflags() {
+  this.music = 0;
+  this.sound = 1;
+  this.tablet = 0;
+  this.autosave = 0;
+  this.negate = {};
+  this.karma = 0;
+  
+  this.getFlag = function(flag) { return this.flag; }
+  this.setFlag = function(flag, val) { this[flag] = val; return this[flag]; }
+  this.deleteFlag = function(flag) { delete this[flag]; }
+}
+
 
 
 GameStateData.prototype.loadTmp = function() {

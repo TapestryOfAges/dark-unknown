@@ -338,7 +338,7 @@ ais.townsfolk = function(who) {
 ais.Trevor = function(who) {
   var retval = {};
   retval["fin"] = 1;
-  if (DU.gameflags["kyvek_fetch"]) {
+  if (DU.gameflags.getFlag("kyvek_fetch")) {
     if (!who.steps) {
       var walk = who.moveMe(1,0);
       if (walk["canmove"]) {
@@ -411,9 +411,9 @@ ais.Trevor = function(who) {
           maintext.addText("Trevor hands you a wooden box, sealed with wax. \"Give this to Kyvek and all debts will be paid.\" He makes a mark in his ledger.");
           var box = localFactory.createTile("KyvekBox");
           PC.addToInventory(box,1);
-          delete DU.gameflags["kyvek_fetch"];
-          delete DU.gameflags["pay_kyvek"];
-          DU.gameflags["given_box"] = 1;
+          DU.gameflags.deleteFlag("kyvek_fetch");
+          DU.gameflags.deleteFlag("pay_kyvek");
+          DU.gameflags.setFlag("given_box",1);
         }
       }
     }
@@ -429,7 +429,7 @@ ais.AnnaLeaves = function(who) {
   var annax = who.getx();
   var annay = who.gety();
   if (who.gety() === 39) {
-    DU.gameflags.anna_left = 1;
+    DU.gameflags.setFlag("anna_left",1);
     themap.deleteThing(who);
     DrawMainFrame("one",themap.getName(),annax,annay);
     return retval;

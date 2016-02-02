@@ -8263,18 +8263,18 @@ ScrollTimeStopTile.prototype = new ScrollItemObject;
 
 // Manuals
 
-function ManualEtheriumObject() {
+function ManualEtherumObject() {
   this.addType("Manual");
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.spelllevel = 0;
   this.spellnum = 0;
 }
-ManualEtheriumObject.prototype = new ConsumableItemObject();
+ManualEtherumObject.prototype = new ConsumableItemObject();
 
-ManualEtheriumTile.prototype.use = function(who) {
+ManualEtherumObject.prototype.use = function(who) {
   var retval = {};
   retval["fin"] = 1;
-  if (who.knowsSpell(this.spelllevel, this.spellnum) {
+  if (who.knowsSpell(this.spelllevel, this.spellnum)) {
     retval["txt"] = "You already know that spell!";
     retval["preserve"] = 1;
   } else {
@@ -8285,9 +8285,9 @@ ManualEtheriumTile.prototype.use = function(who) {
   return retval;    
 }
 
-function ManualEtheriumAwakenTile() {
-  this.name = "ManualEtheriumAwaken";
-  this.desc = "Manual Etherium: Awaken";
+function ManualEtherumAwakenTile() {
+  this.name = "ManualEtherumAwaken";
+  this.desc = "Manual Etherum: Awaken";
   this.prefix = "the";
   this.graphic = "items.gif";
   this.spritexoffset = "-128";
@@ -8296,7 +8296,7 @@ function ManualEtheriumAwakenTile() {
   this.spellnum = 1;
   this.spellname = "Awaken";
 }
-ManualEtheriumAwakenTile.prototype = new ManualEtheriumObject();
+ManualEtherumAwakenTile.prototype = new ManualEtherumObject();
 
 // Prototype for armor and weapons
 
