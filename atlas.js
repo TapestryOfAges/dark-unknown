@@ -1482,7 +1482,7 @@ GameMap.prototype.loadMap = function (name) {
   this.setScale(mappages.readPage(name, "scale"));
   this.setReturn(mappages.readPage(name, "returnmap"), mappages.readPage(name, "returnx"), mappages.readPage(name, "returny"));
   this.setReturnInfused(mappages.readPage(name, "returninfused"));
-  if (!DU.gameflags.editor) {
+  if (!DU.gameflags.getFlag("editor")) {
     if(mappages.readPage(name, "enterscript")) {
       mappages[name][mappages.readPage(name, "enterscript")](this);
     }
@@ -1537,7 +1537,7 @@ GameMap.prototype.loadMap = function (name) {
       		mappages[name][usescript](newfeature);
     	  }
       	if (newfeature.getLootedID()) {
-      	  if (DU.gameflags[newfeature.getLootedID()]) {
+      	  if (DU.gameflags.getFlag(newfeature.getLootedID())) {
       	    if (newfeature.lootonce) { newfeature.setLootgroup(""); }
       	    else  { newfeature.setLootgroup("prev_looted"); }
       	  }
@@ -2329,7 +2329,7 @@ MapMemory.prototype.deleteMap = function(mapname) {
 		for (var i = 0; i < this.data[mapname].linkedMaps.length; i++) {
 			delete this.data[this.data[mapname].linkedMaps[i]];
 			// also stop tracking that magic is negated on this map
-			delete DU.gameflags.negate[this.data[mapname].linkedMaps[i]];
+			delete DU.gameflags.negate[this.data[mapname].linkedMaps[i]];   // WORK HERE
 //			if (debug && debugflags.map) { dbs.writeln("<span style='color:brown; font-style:italic'>Deleting map " + this.data[mapname].linkedMaps[i] + ".</span><br />"); }	
 			DebugWrite("map", "* Deleting map " + this.data[mapname].linkedMaps[i] + ".</span><br />");
 		}
