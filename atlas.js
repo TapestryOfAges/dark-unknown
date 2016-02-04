@@ -2325,17 +2325,19 @@ MapMemory.prototype.addMapByRef = function(mapref) {
 }
 
 MapMemory.prototype.deleteMap = function(mapname) {
+  var negated = DU.gameflags.getFlag("negate");
 	if (this.data[mapname].linkedMaps[0] && this.data[mapname].linkedMaps[0] !== "") {
 		for (var i = 0; i < this.data[mapname].linkedMaps.length; i++) {
 			delete this.data[this.data[mapname].linkedMaps[i]];
 			// also stop tracking that magic is negated on this map
-			delete DU.gameflags.negate[this.data[mapname].linkedMaps[i]];   // WORK HERE
+			delete negated[this.data[mapname].linkedMaps[i]];   
 //			if (debug && debugflags.map) { dbs.writeln("<span style='color:brown; font-style:italic'>Deleting map " + this.data[mapname].linkedMaps[i] + ".</span><br />"); }	
 			DebugWrite("map", "* Deleting map " + this.data[mapname].linkedMaps[i] + ".</span><br />");
 		}
 	}
 	delete this.data[mapname];
-	delete DU.gameflags.negate[mapname];
+	delete negated[mapname];
+	DU.gameflags.setFlag("negate", negated);
 	if (debug && debugflags.map) {
 //	  dbs.writeln("<span style='color:brown; font-style:italic'>Remaining maps: "); 
 	  DebugWrite("map", "Remaining maps: ");

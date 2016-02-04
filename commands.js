@@ -203,12 +203,12 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 77) { // m
 		// was mix - now, toggles music
-    if (DU.gameflags.music) {
-      DU.gameflags.music = 0;
+    if (DU.gameflags.getFlag("music")) {
+      DU.gameflags.setFlag("music", 0);
       StopMusic(nowplaying);
       retval["txt"] = "Music off.";
     } else {
-      DU.gameflags.music = 1;
+      DU.gameflags.setFlag("music", 1);
       var song = PC.getHomeMap().getMusic();
       nowplaying = PlaySound(song);
       retval["txt"] = "Music on.";
@@ -298,12 +298,12 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 86) { // v
 		// volume - turns sound effects on and off
-		if (DU.gameflags.sound) { 
-		  DU.gameflags.sound = 0; 
+		if (DU.gameflags.getFlag("sound") { 
+		  DU.gameflags.setFlag("sound", 0); 
 		  retval["txt"] = "Sound effects off.";
 		}
 		else { 
-      DU.gameflags.sound = 1; 
+      DU.gameflags.setFlag("sound", 1); 
       retval["txt"] = "Sound effects on.";
     }
     retval["input"] = "&gt;";
@@ -625,7 +625,7 @@ function PerformCast(infuse) {
   }
   
   var castermap = PC.getHomeMap();
-  if (DU.gameflags.negate[castermap.getName()]) {
+  if (DU.gameflags.getFlag("negate")[castermap.getName()]) {
     retval["txt"] = "Cast - Magic has been negated, you cannot cast spells here.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
@@ -1045,11 +1045,11 @@ function PerformSearch(who) {
 	}
   else if ((searched.getSearchYield().length)) {
     var stuff = searched.getSearchYield();
-    if (searched.getLootedID() && DU.gameflags[searched.searchedid]) {
+    if (searched.getLootedID() && DU.gameflags.getFlag(searched.searchedid)) {
       stuff = [];
     }
     else if (searched.getLootedID()) {
-      DU.gameflags[searched.getLootedID()] = 1;
+      DU.gameflags.setFlag(searched.getLootedID(),1);
     }
 
     if (searched.getShowSearched()) {
@@ -1106,7 +1106,7 @@ function PerformSearch(who) {
 
   }
   if (searched.searchid) {
-    DU.gameflags[searched.searchedid] = 1;
+    DU.gameflags.setFlag(searched.searchedid, 1);
   }
   return retval;
 }
@@ -1175,7 +1175,7 @@ function PerformTalkTarget() {
     return retval;    
   }
   if (top.getConversationFlag()) {
-    if (DU.gameflags[top.getConversationFlag()]) {
+    if (DU.gameflags.getFlag(top.getConversationFlag())) {
       top.setConversationFlagged();
     }
   }
@@ -1195,7 +1195,7 @@ function PerformTalkTarget() {
     maintext.addText('"Hail, ' + PC.getPCName() + '! I am well pleased with your progress."');
     PC.setLevel(PC.getLevel()+1);
     PC.settp(PC.gettp()+TP_PER_LEVEL);
-    DU.gameflags["can_train"] = 1;
+    DU.gameflags.setFlag("can_train", 1);
     maintext.addText(PC.getPCName() + " is now level " + PC.getLevel() + "!");
     retval = PreformTalk(top, convo, "_level");
   } else {
@@ -2147,7 +2147,7 @@ function DrawOptions() {
     optdiv += " class='highlight'";
   }
   optdiv += ">";
-  if (DU.gameflags.music) {
+  if (DU.gameflags.getFlag("music")) {
     optdiv += "YES";
   } else {
     optdiv += "NO";
@@ -2158,7 +2158,7 @@ function DrawOptions() {
     optdiv += " class='highlight'";
   }
   optdiv += ">";
-  if (DU.gameflags.sound) {
+  if (DU.gameflags.getFlag("sound")) {
     optdiv += "YES";
   } else {
     optdiv += "NO";
@@ -2169,7 +2169,7 @@ function DrawOptions() {
     optdiv += " class='highlight'";
   }
   optdiv += ">";
-  if (DU.gameflags.tablet) {
+  if (DU.gameflags.getFlag("tablet")) {
     optdiv += "YES";
   } else {
     optdiv += "NO";
@@ -2180,7 +2180,7 @@ function DrawOptions() {
     optdiv += " class='highlight'";
   }
   optdiv += ">";
-  if (DU.gameflags.autosave) {
+  if (DU.gameflags.getFlag("autosave")) {
     optdiv += "YES";
   } else {
     optdiv += "NO";
@@ -2445,33 +2445,33 @@ function ToggleDebugOption(opt) {
 
 function ToggleOption(opt) {
   if (opt === 1) {
-    if (DU.gameflags.music) {
-      DU.gameflags.music = 0;
+    if (DU.gameflags.getFlag("music")) {
+      DU.gameflags.setFlag("music", 0);
       StopMusic(nowplaying);
     } else {
-      DU.gameflags.music = 1;
+      DU.gameflags.setFlag("music", 1);
       var song = PC.getHomeMap().getMusic();
       nowplaying = PlaySound(song);
     }		
   } else if (opt === 2) {
-   	if (DU.gameflags.sound) { 
-	    DU.gameflags.sound = 0; 
+   	if (DU.gameflags.getFlag("sound")) { 
+	    DU.gameflags.setFlag("sound", 0); 
 	  } else { 
-      DU.gameflags.sound = 1; 
+      DU.gameflags.setFlag("sound", 1); 
     }
   } else if (opt === 3) {
-    if (DU.gameflags.tablet) {
-      DU.gameflags.tablet = 0;
+    if (DU.gameflags.setFlag("tablet")) {
+      DU.gameflags.setFlag("tablet", 0);
       TabletUI(-1);
     } else {
-      DU.gameflags.tablet = 1;
+      DU.gameflags.setFlag("tablet", 1);
       TabletUI(1);
     }
   } else if (opt === 4) {
-    if (DU.gameflags.autosave) {
-      DU.gameflags.autosave = 0;
+    if (DU.gameflags.getFlag("autosave")) {
+      DU.gameflags.setFlag("autosave", 0);
     } else {
-      DU.gameflags.autosave = 1;
+      DU.gameflags.setFlag("autosave", 1);
     }
   }
 }
