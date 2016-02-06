@@ -122,7 +122,7 @@ GameObject.prototype.getFullDesc = function() {
   full = full + this.getDesc();
   if (this.conversation) {
     var knowsflag = "knows_" + this.conversation;
-    if (DU.gameflags[knowsflag]) {
+    if (DU.gameflags.getFlag(knowsflag)) {
       full = this.npcname;
     }
   } 
@@ -673,7 +673,7 @@ function OpenContainer() {
     var retval = {}; 
     
     if (this.getLootedID()) {
-      if (DU.gameflags[this.getLootedID()]) {
+      if (DU.gameflags.getFlag(this.getLootedID())) {
         this.setLootgroup("prev_looted");
       }
     }
@@ -697,7 +697,7 @@ function OpenContainer() {
     
     if (this.container.length) { // there's something inside
       if (this.getLootedID()) {
-        DU.gameflags[this.getLootedID()] = 1;
+        DU.gameflags.setFlag(this.getLootedID(), 1);
       }
       
       retval["fin"] = 1;
@@ -4591,7 +4591,7 @@ function MirrorTile() {
 MirrorTile.prototype = new FeatureObject();
 
 MirrorTile.prototype.activate = function() {
-  if (!DU.gameflags.editor) {
+  if (!DU.gameflags.getFlag("editor")) {
     var reflection = localFactory.createTile("Reflection");
     reflection.mirror = this;
     var homemap = this.getHomeMap();
@@ -7372,7 +7372,7 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
   retval["fin"] = 1;
   if (code === 89) {
     retval["txt"] = "You break the seal and empty the coin into your own pouches. You gain 600 gold.";
-    DU.gameflags["karma"]--;
+    DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")-1);
     PC.addGold(600);
     PC.removeFromInventory(this);
   } else {
@@ -9001,7 +9001,7 @@ function AddNPCProperties() {
 
 NPCObject.prototype.getDesc = function() {
   var knowsflag = "knows_" + this.conversation;
-  if (DU.gameflags[knowsflag]) {
+  if (DU.gameflags.getFlag(knowsflag)) {
     return this.npcname;
   } 
   return this.desc;
@@ -9282,7 +9282,7 @@ NPCObject.prototype.processDeath = function(droploot){
           safe = 0;
         }
       });
-      if (safe === 1) { DU.gameflags["shadow_safe"] = 1; } 
+      if (safe === 1) { DU.gameflags.setFlag("shadow_safe", 1); } 
     }
     if ((this.getLeavesCorpse()) && (this.getLeavesCorpse() !== "none")) {
       corpse = localFactory.createTile(this.getLeavesCorpse());
@@ -9989,7 +9989,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	    retval["msg"] += walkoffval;
 	  }
 		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
-		if ((this === PC) && (DU.gameflags.sound)) {
+		if (this === PC) {
 		  if (tile.getFeatures().length) {
 		    play_footstep("Feature");
 		  } else {
@@ -10677,7 +10677,7 @@ PCObject.prototype.setInfusion = function(infuse) {
 
 PCObject.prototype.getMaxMana = function() {
   var maxmana = this.getBaseInt() + this.getOrbInt();
-  if (DU.gameflags.pc_abyss) {
+  if (DU.gameflags.getFlag("pc_abyss")) {
     maxmana = maxmana * 2;
   }
   return maxmana;

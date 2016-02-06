@@ -33,7 +33,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   
     var flags = this[keyword].flags;
     if (flags.hasOwnProperty("flags_met")) {
-      if (!DU.gameflags[flags.flags_met]) { flags_met = 0; }  
+      if (!DU.gameflags.getFlag(flags.flags_met)) { flags_met = 0; }  
     }
     if (flags.hasOwnProperty("has_item")) {
       necessary_item = PC.checkInventory(flags.has_item);
@@ -74,7 +74,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     PC.addGold(parseInt(triggers.give_gold));
   }
   if (triggers.hasOwnProperty("give_karma")) {
-    DU.gameflags["karma"] += parseInt(triggers.give_karma);
+    DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma") + parseInt(triggers.give_karma));
   }
   if (triggers.hasOwnProperty("yes_no")) {
     inputText.subcmd = "yn";
@@ -82,11 +82,11 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   if (triggers.hasOwnProperty("set_flag")) {
     if (triggers.set_flag.indexOf("unset_") !== -1) {
       var tmpflag = triggers.set_flag.replace(/unset_/, "");
-      if (DU.gameflags[tmpflag]) {
-        delete DU.gameflags[tmpflag];
+      if (DU.gameflags.getFlag(tmpflag)) {
+        DU.gameflags.deleteFlag(tmpflag);
       }
     } else {
-      DU.gameflags[triggers.set_flag] = 1;
+      DU.gameflags.setFlag(triggers.set_flag, 1);
     
       // special cases
       if (triggers.set_flag === "ash_password") {
@@ -105,14 +105,14 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
 	  		door.open = 1;
 			
 		  	DrawMainFrame("draw",door.getHomeMap().getName(),PC.getx(),PC.gety());
-			  delete DU.gameflags[triggers.set_flag];
+			  DU.gameflags.deleteFlag(triggers.set_flag);
       } else if (triggers.set_flag === "spellbook") {
         PC.addSpell(1,GetSpellID(5)); 
         // spellbook starts with Light in it
       } else if (triggers.set_flag === "knows_samantha") {
-        DU.gameflags["knows_samantha2"] = 1;
+        DU.gameflags.setFlag("knows_samantha2", 1);
       } else if (triggers.set_flag === "king_heal") {
-        delete DU.gameflags[triggers.set_flag];
+        DU.gameflags.deleteFlag(triggers.set_flag);
         PC.healMe(1000);
         var effects = PC.getSpellEffects();
         if (effects) {
@@ -138,9 +138,9 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
           maintext.addText("Your intelligence cannot be raised further by training.");
         }
         if (PC.gettp() === 0) {
-          delete DU.gameflags["can_train"];
+          DU.gameflags.deleteFlag("can_train");
         }
-        delete DU.gameflags[triggers.set_flag];
+        DU.gameflags.deleteFlag(triggers.set_flag);
       } else if (triggers.set_flag === "train_dex") {
         if (PC.gettp() === 0) {
           alert("Somehow training Dex without any tp.");
@@ -152,9 +152,9 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
           maintext.addText("Your dexterity cannot be raised further by training.");
         }
         if (PC.gettp() === 0) {
-          delete DU.gameflags["can_train"];
+          DU.gameflags.deleteFlag("can_train");
         }
-        delete DU.gameflags[triggers.set_flag];
+        DU.gameflags.deleteFlag(triggers.set_flag);
       } else if (triggers.set_flag === "train_str") {
         if (PC.gettp() === 0) {
           alert("Somehow training Str without any tp.");
@@ -166,12 +166,12 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
           maintext.addText("Your strength cannot be raised further by training.");
         }
         if (PC.gettp() === 0) {
-          delete DU.gameflags["can_train"];
+          DU.gameflags.deleteFlag("can_train");
         }
-        delete DU.gameflags[triggers.set_flag];
+        DU.gameflags.deleteFlag(triggers.set_flag);
       } else if (triggers.set_flag === "inn_20_y") {
-        delete DU.gameflags["inn_20_y"];
-        delete DU.gameflags["inn_20"];
+        DU.gameflags.deleteFlag("inn_20_y");
+        DU.gameflags.deleteFlag("inn_20");
         if (PC.getGold() < 20) {
           maintext.addText("You don't have enough gold!");
         } else {
@@ -181,18 +181,18 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
           setTimeout(function() { InnRoom(28,17,[21,14,25,20]); }, 50);
         }
       } else if (triggers.set_flag === "inn_20_n") {
-        delete DU.gameflags["inn_20_n"];
-        delete DU.gameflags["inn_20"];
+        DU.gameflags.deleteFlag("inn_20_n");
+        DU.gameflags.deleteFlag("inn_20");
       } else if (triggers.set_flag === "give_100g_k") {
-        delete DU.gameflags["give_100g_k"];
-        DU.gameflags["debt_paid"] = 1;
+        DU.gameflags.deleteFlag("give_100g_k");
+        DU.gameflags.setFlag("debt_paid", 1);
         PC.addGold(100);
-        DU.gameflags["karma"]++;
-      } else if (!DU.gameflags["all_health"] && DU.gameflags["health_kyvek"] &&  DU.gameflags["health_daniel"] && DU.gameflags["health_kylee"] && DU.gameflags["health_garen"] && DU.gameflags["health_guard"] && DU.gameflags["health_amaeryl"] && DU.gameflags["health_warren"] && DU.gameflags["health_samuel"] && DU.gameflags["health_ingrid"]) {
-        DU.gameflags["all_health"] = 1;    
+        DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")+1);
+      } else if (!DU.gameflags.getFlag("all_health") && DU.gameflags.getFlag("health_kyvek") &&  DU.gameflags.getFlag("health_daniel") && DU.gameflags.getFlag("health_kylee") && DU.gameflags.getFlag("health_garen") && DU.gameflags.getFlag("health_guard") && DU.gameflags.getFlag("health_amaeryl") && DU.gameflags.getFlag("health_warren") && DU.gameflags.getFlag("health_samuel") && DU.gameflags.getFlag("health_ingrid")) {
+        DU.gameflags.setFlag("all_health", 1);    
       } else if (triggers.set_flag === "shield_gotten") {
-        delete DU.gameflags["get_shield"];
-        delete DU.gameflags["shield_gotten"];
+        DU.gameflags.deleteFlag("get_shield");
+        DU.gameflags.deleteFlag("shield_gotten");
       } else if (triggers.set_flag === "anna_return") {
         var annamap = PC.getHomeMap(); // she has to be on the PC's map since they just talked to her
         var npcs = annamap.npcs.getAll();
@@ -236,7 +236,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
           // to set her back, just reset to PeaceAI
         }
       } else if (triggers.set_flag === "kiba_rumor") {
-        delete DU.gameflags["kiba_question"];
+        DU.gameflags.getFlag("kiba_question");
       }
     } 
   }

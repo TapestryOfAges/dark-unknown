@@ -2793,7 +2793,9 @@ magic[6][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   
   var castermap = caster.getHomeMap();
   var duration = caster.getInt() + DU.DUTime.getGameClock();
-  DU.gameflags.negate[castermap.getName()] = duration * SCALE_TIME;
+  var negated = DU.gameflags.getFlag("negate");
+  negated[castermap.getName()] = duration * SCALE_TIME;
+  DU.gameflags.setFlag("negate", negated);
   
   var gnome = localFactory.createTile("NegatorGnomeNPC");
   var gnomemap = maps.getMap("gnomeland");

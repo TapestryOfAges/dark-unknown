@@ -46,12 +46,9 @@ var eidos = new Platonic();
 var gamestate = new GameStateData();
 gamestate.setMode("null");
 var DU = {};
-DU.gameflags = {};
-DU.gameflags.music = 1;
-DU.gameflags.sound = 1;
-DU.gameflags.tablet = 0;
-DU.gameflags.autosave = 0;
-DU.gameflags.negate = {};
+DU.gameflags = new Gameflags();
+DU.gameflags.setFlag("music", 1);
+
 var nowplaying;
 var optselect = 0;
 var charname = "";
@@ -74,7 +71,7 @@ themap = new GameMap();
 
 
 $(document).ready(function() {
-  audio_init();  
+  audio_init_title();  
   
   var browserheight = $(window).height();
   var browserwidth = $(window).width();

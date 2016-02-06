@@ -1000,7 +1000,9 @@ NegateMagicTile.prototype.doEffect = function() {
 NegateMagicTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
   var negmap = who.getHomeMap();
-  delete DU.gameflags.negate[negmap.getName()];
+  var negated = DU.gameflags.getFlag("negate");
+  delete negated[negmap.getName()];
+  DU.gameflags.setFlag("negate", negated);
   negmap.deleteThing(who);
   
   if (PC.getHomeMap() === negmap) {
