@@ -64,6 +64,16 @@ function audio_init_2() {
   });
 }
 
+function audio_init_title() {
+  createjs.Sound.initializeDefaultPlugins();
+  createjs.Sound.alternateExtensions = ["mp3"];
+//  createjs.Sound.addEventListener("fileload", handleFileLoadTitle);
+//  createjs.Sound.registerSounds(DUSound, soundpath);
+  
+  var fullpath = musicpath + "The Dark Unknown.ogg";
+  createjs.Sound.registerSound(fullpath, "Dark Unknown");
+}
+
 function populate_audio(soundlist, preload, loop, soundtype) {
   var preloadtext = "";
   if (preload) {
@@ -97,13 +107,13 @@ function create_audio() {
 // checks to see if the player has turned off sound
 function DUPlaySound(sound) {
   var playing;
-  if (DU.gameflags.sound) { playing = createjs.Sound.play(sound); }
+  if (DU.gameflags.getFlag("sound")) { playing = createjs.Sound.play(sound); }
   return playing;
 }
 
 function DUPlayMusic(sound) {
   var playing;
-  if (DU.gameflags.music) { playing = createjs.Sound.play(sound, {loop:-1}); }
+  if (DU.gameflags.getFlag("music")) { playing = createjs.Sound.play(sound, {loop:-1}); }
   return playing;
 }
 

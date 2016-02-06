@@ -15,7 +15,7 @@ function CreateUI() {
 }
 
 function UIClick(direction, icoord, jcoord) {
-  if (DU.gameflags.tablet) {
+  if (DU.gameflags.getFlag("tablet")) {
     // Send a move when I figure out where it is!
   } else {
     if (direction === "dbl") {

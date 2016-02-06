@@ -31,8 +31,8 @@ var DUTraps = SetTraps();           //
 var graphicpicks = [];
 var optindex = 0;
 
-DU.gameflags = {};  // empty games flags because atlas will look for it
-DU.gameflags.editor = 1;  // for atlas to look for
+DU.gameflags = new Gameflags();  // empty games flags because atlas will look for it
+DU.gameflags.setFlag("editor", 1);  // for atlas to look for
 
 $(document).ready(function() {
   browserheight = $(window).height();

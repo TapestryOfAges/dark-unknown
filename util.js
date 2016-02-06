@@ -316,13 +316,13 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   	DrawCharFrame();  // to remove Negate if it's present
   }
 	
-	if ((DU.gameflags.music) && (who === PC) && (tomap.getMusic() !== frommap.getMusic())) {
+	if ((DU.gameflags.getFlag("music")) && (who === PC) && (tomap.getMusic() !== frommap.getMusic())) {
 	  StopMusic(nowplaying);
 	  var song = tomap.getMusic();
 	  nowplaying = DUPlayMusic(song);
 	}
 	
-	if ((who === PC) && (DU.gameflags.autosave)) {
+	if ((who === PC) && (DU.gameflags.getFlag("autosave"))) {
 	  var prevstate = gamestate.getMode();
     gamestate.setMode("saving");
     gamestate.saveGame();

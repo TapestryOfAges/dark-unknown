@@ -212,7 +212,7 @@ GameStateData.prototype.loadGame = function() {
   var universe = {};
   
   DUTime.setGameClock(savedata.time);
-  DU.gameflags = {};
+  DU.gameflags = new Gameflags();
   $.extend(true,DU.gameflags,savedata.gameflags);
   
   var loadmaps = {};
@@ -346,7 +346,7 @@ GameStateData.prototype.loadGame = function() {
   });
 
   maxserial = topserial;
-  if (DU.gameflags.music) {  
+  if (DU.gameflags.getFlag("music")) {  
     var song = PC.getHomeMap().getMusic();
     nowplaying = DUPlayMusic(song);
   }

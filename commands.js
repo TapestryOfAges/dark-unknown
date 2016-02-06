@@ -298,7 +298,7 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 86) { // v
 		// volume - turns sound effects on and off
-		if (DU.gameflags.getFlag("sound") { 
+		if (DU.gameflags.getFlag("sound")) { 
 		  DU.gameflags.setFlag("sound", 0); 
 		  retval["txt"] = "Sound effects off.";
 		}
