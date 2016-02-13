@@ -346,62 +346,71 @@ function FindBelow(upx,upy,map) {
 	return 0;
 }
 
-function ParseDice(die) {
-  var dieobj = {};
-  if (parseInt(die) == die) {
-    dieobj.plus = die;
-    dieobj.quantity = 0;
-    dieobj.dice = 0;
-    return dieobj;
-  }
-  var tmpobj = [];
-  tmpobj = die.split("+");
-  if (tmpobj[1]){
-    dieobj.plus = parseInt(tmpobj[1]);
-    tmpobj = tmpobj[0].split("d");
-    if (tmpobj[1]) {
-      dieobj.dice = parseInt(tmpobj[1]);
-      dieobj.quantity = parseInt(tmpobj[0]);
-    } else {
-      dieobj.dice = 1;
+function DiceObject() {
+	
+  this.parse = function(die) {
+    var dieobj = {};
+    if (parseInt(die) == die) {
+      dieobj.plus = parseInt(die);
       dieobj.quantity = 0;
+      dieobj.dice = 0;
+      return dieobj;
     }
-  } else {
-    dieobj.plus = 0;
-    tmpobj = die.split("d");
-    if (tmpobj[1]) {
-      dieobj.dice = parseInt(tmpobj[1]);
-      dieobj.quantity = parseInt(tmpobj[0]);
+    if (/\d+d\d+\-\d+/.test(die)) {
+      die = die.replace(/\-/,'+-');
+    }
+    var tmpobj = [];
+    tmpobj = die.split("+");
+    if (tmpobj[1]){
+      dieobj.plus = parseInt(tmpobj[1]);
+      tmpobj = tmpobj[0].split("d");
+      if (tmpobj[1]) {
+        dieobj.dice = parseInt(tmpobj[1]);
+        dieobj.quantity = parseInt(tmpobj[0]);
+        if (isNaN(dieobj.quantity)) { dieobj.quantity = 1; }
+      } else {
+        dieobj.dice = 1;
+        dieobj.quantity = 0;
+      }
     } else {
-      dieobj.dice = 1;
-      dieobj.quantity = 0;
+      dieobj.plus = 0;
+      tmpobj = die.split("d");
+      if (tmpobj[1]) {
+        dieobj.dice = parseInt(tmpobj[1]);
+        dieobj.quantity = parseInt(tmpobj[0]);
+        if (isNaN(dieobj.quantity)) { dieobj.quantity = 1; }
+      } else {
+        dieobj.dice = 1;
+        dieobj.quantity = 0;
+      }
     }
+
+    return dieobj;		
+	}
+	
+  this.roll = function(die) {
+    var dieobj = this.parse(die);
+    var roll = dieobj.plus;
+    if (dieobj.quantity > 0) {
+      for (var i = 1; i <= dieobj.quantity; i++) {
+        roll += Math.floor(Math.random() * dieobj.dice)+ 1;
+      }
+    }	 
+
+    return roll;  
   }
-
-  return dieobj;
+  
+  this.rollmin = function(die) {
+    var dieobj = this.parse(die);
+    return (dieobj.plus + dieobj.quantity);
+  }
+  
+  this.rollave = function(die) {
+    var dieobj = this.parse(die);
+    return (dieobj.plus + dieobj.quantity * (1+dieobj.dice)/2);  
+  }
 }
-
-function RollDice(die) {
-  var dieobj = ParseDice(die);
-  var roll = dieobj.plus;
-  if (dieobj.quantity > 0) {
-    for (var i = 1; i <= dieobj.quantity; i++) {
-      roll += Math.floor(Math.random() * dieobj.dice)+ 1;
-    }
-  }	
-
-  return roll;
-}
-
-function RollMin(die) {
-  var dieobj = ParseDice(die);
-  return (dieobj.plus + dieobj.quantity);
-}
-
-function RollAve(die) {
-  var dieobj = ParseDice(die);
-  return (dieobj.plus + dieobj.quantity * (1+dieobj.dice)/2);
-}
+DiceObject.prototype = new Object();
 
 function PlaceMonsters(battlemap,group,whoseturn) {
   var monsters = [];
@@ -806,7 +815,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
       maintext.addText("TRAP! Acid spews forth, missing everything.");
       return 0;
     }
-    var aciddmg = RollDice("1d6+3");
+    var aciddmg = Dice.roll("1d6+3");
     who.dealDamage(aciddmg, trapped);
     maintext.addText("TRAP! You are splashed with acid.");
     DrawCharFrame();
@@ -831,7 +840,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
       return 0;
     }
     maintext.addText("TRAP! There is an explosion!");
-    var firedmg = RollDice("3d6+4");
+    var firedmg = Dice.roll("3d6+4");
     who.dealDamage(firedmg,trapped);
     DrawCharFrame();
     return 1;
@@ -844,7 +853,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
     }
 
     maintext.addText("TRAP! You feel a pull on your mind.");
-    var drain = RollDice("2d4");
+    var drain = Dice.roll("2d4");
     if (drain > who.getMana()) {
       drain = who.getMana();
     }
@@ -1128,8 +1137,8 @@ function AddLoot(towhat) {
 }
 
 function RollDamage(dam_val,extra) {
-  var dmg = RollDice(dam_val);
-  if (extra) { dmg += RollDice(extra); }
+  var dmg = Dice.roll(dam_val);
+  if (extra) { dmg += Dice.roll(extra); }
   return parseInt(dmg);
 }
 

@@ -20,7 +20,7 @@ LootTable.prototype.getLoot = function() {
   var hasgold = 0;
   
   if ((this.goldDice) && (Math.random() <= (this.goldChance/100))) {
-    lootobj.gold = RollDice(this.goldDice);
+    lootobj.gold = Dice.roll(this.goldDice);
     hasgold = 1;
   }
   if (this.loot.length) {
@@ -29,7 +29,7 @@ LootTable.prototype.getLoot = function() {
         if (Math.random() <= (this.loot[i].chance / 100)) {
           var lootquant = this.loot[i].quantity;
           var theloot = this.loot[i].objname;
-          var quant = RollDice(this.loot[i].quantity);
+          var quant = Dice.roll(this.loot[i].quantity);
           for (var j=1;j<=quant;j++) {
 //            if (theloot.match("_")) {
             if (DULootGroups.treasureTypes[theloot]) {

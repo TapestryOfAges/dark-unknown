@@ -271,7 +271,7 @@ magic[1][GetSpellID(2)].executeSpell = function(caster, infused, free) {
   }
   if (infused) {
     var die = caster.getLevel() + "d4+2";
-    var heal = RollDice(die);
+    var heal = Dice.roll(die);
     caster.healMe(heal, caster);
   }
   return resp;
@@ -341,7 +341,7 @@ magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   if (!free & caster.getInt() > 20) { radius = 4; }
   if (infused) { radius = radius * 1.5; } 
   var power = caster.getInt()/2;
-  if (free) { power = RollDice("1d3+7"); }
+  if (free) { power = Dice.roll("1d3+7"); }
   if (infused) { power = power*1.5; }
   var castermap = caster.getHomeMap();
   var npcs = castermap.npcs.getAll();
@@ -404,7 +404,7 @@ magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   
   if (infused) { 
     duration = duration * 2; 
-    flameblade.uses = RollDice("1d4+1");
+    flameblade.uses = Dice.roll("1d4+1");
     flameblade.damage = DMG_LIGHT;
     flameblade.power = 3;
   }
@@ -531,7 +531,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
   
     var dur = caster.getInt()/2;
     if (infused) { dur = dur * 1.5;}
-    if (free) { dur = RollDice("1d4+5"); }
+    if (free) { dur = Dice.roll("1d4+5"); }
     ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
     if (tgt !== PC) {
       desc = tgt.getDesc() + " is vulnerable!";
@@ -627,7 +627,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   }
   
   var duration = caster.getInt();
-  if (free) { duration = RollDice("1d6+12"); }
+  if (free) { duration = Dice.roll("1d6+12"); }
   duration = duration*2*SCALE_TIME;
   illusion.expiresTime = DUTime.getGameClock() + duration;  // illusion AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
@@ -685,11 +685,11 @@ magic[2][GetSpellID(3)].executeSpell = function(caster, infused, free, tgt) {
   var lvl = Math.ceil(caster.getLevel()/2);
   var plus = caster.getLevel();
   if (free) { 
-    lvl = RollDice("1d2+2"); 
-    plus = RollDice("1d3+2");
+    lvl = Dice.roll("1d2+2"); 
+    plus = Dice.roll("1d3+2");
   }
   
-  var healamt = RollDice(lvl + "d8+" + plus);
+  var healamt = Dice.roll(lvl + "d8+" + plus);
   if (infused) { healamt = healamt * 1.5; }
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
   DebugWrite("magic", "Healing " + healamt + " hp.<br />");
@@ -765,9 +765,9 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
-//  var dmg = RollDice("2d6+" + Math.floor(caster.getInt()/5));
+//  var dmg = Dice.roll("2d6+" + Math.floor(caster.getInt()/5));
   var power = caster.getInt();
-  if (free) { power = RollDice("1d5+12"); }
+  if (free) { power = Dice.roll("1d5+12"); }
   var dmg = RollDamage(DMG_NEGLIGABLE, Math.floor(power/5)+1);
   if (infused) {
     dmg = dmg * 1.5;
@@ -848,7 +848,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
   }
   
   var power = caster.getInt();
-  if (free) { power = RollDice("1d5+12"); }  
+  if (free) { power = Dice.roll("1d5+12"); }  
   var radius = Math.floor(power/10) +1; 
     
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Calculating poison cloud.<br /></span>"); }
@@ -874,7 +874,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           desc = desc.charAt(0).toUpperCase() + desc.slice(1);        
           maintext.addText(desc);
           var poisontile = localFactory.createTile("Poison");
-          var duration = (RollDice("2d10") + power - 15);
+          var duration = (Dice.roll("2d10") + power - 15);
           if (duration < 2) { duration = 2; }
           duration = duration * SCALE_TIME;
           poison.setExpiresTime(duration + DUTime.getGameClock());
@@ -882,7 +882,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           // poisoned!
           
           if (infused) {
-            var dmg = RollDice(DMG_LIGHT);
+            var dmg = Dice.roll(DMG_LIGHT);
             val.dealDamage(dmg,caster,"poison");
             // additionally deals some damage
           }
@@ -915,7 +915,7 @@ magic[2][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   }
   if (free) {
     duration = 40 * SCALE_TIME;
-    power = RollDice("1d5+8");
+    power = Dice.roll("1d5+8");
   }
   var endtime = duration + DUTime.getGameClock();
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: End time is " + endtime + ".<br /></span>"); }
@@ -1094,7 +1094,7 @@ magic[3][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   resp["fin"] = 1;
   var prot = localFactory.createTile("FireArmor");
   duration = caster.getInt() * 3 * SCALE_TIME;
-  if (free) { duration = RollDice("1d6 + 12") * 3 * SCALE_TIME; }
+  if (free) { duration = Dice.roll("1d6 + 12") * 3 * SCALE_TIME; }
   var power = DMG_NEGLIGABLE;
   if (infused) { 
     duration = duration * 2; 
@@ -1170,7 +1170,7 @@ function PerformFireball(caster, infused, free, tgt) {
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
-//  var dmg = RollDice("2d6+" + Math.floor(caster.getInt()/5));
+//  var dmg = Dice.roll("2d6+" + Math.floor(caster.getInt()/5));
   var dmg = RollDamage(DMG_MEDIUM);
   if (infused) {
     dmg = dmg * 1.5;
@@ -1260,7 +1260,7 @@ function PerformIceball(caster, infused, free, tgt) {
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
-//  var dmg = RollDice("2d6+" + Math.floor(caster.getInt()/5));
+//  var dmg = Dice.roll("2d6+" + Math.floor(caster.getInt()/5));
   var dmg = RollDamage(DMG_LIGHT);
   if (infused) {
     dmg = dmg * 1.5;
@@ -1275,7 +1275,7 @@ function PerformIceball(caster, infused, free, tgt) {
   
   var frozen = localFactory.createTile("Slow");
   var dur = caster.getInt()/3;
-  if (free) { dur = RollDice("1d2+3"); }
+  if (free) { dur = Dice.roll("1d2+3"); }
   var endtime = dur*SCALE_TIME + DU.DUTime.getGameClock();
   frozen.setExpiresTime(endtime);
   tgt.addSpellEffect(frozen);
@@ -1392,7 +1392,7 @@ magic[3][GetSpellID(7)].executeSpell = function(caster, infused, free) {
   resp["fin"] = 1;
   var prot = localFactory.createTile("Telepathy");
   duration = caster.getInt() * 2 * SCALE_TIME;
-  if (free) { duration = RollDice("1d6 + 12") * 2 * SCALE_TIME; }
+  if (free) { duration = Dice.roll("1d6 + 12") * 2 * SCALE_TIME; }
   if (infused) { 
     duration = duration * 2; 
   }
@@ -1667,8 +1667,8 @@ magic[4][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   if (infused) { dur = dur * 3; }
   var power = Math.floor(caster.getInt()/5)+1;
   if (free) {
-    dur = RollDice("2d10+15") * SCALE_TIME;
-    power = RollDice("1d4+1");
+    dur = Dice.roll("2d10+15") * SCALE_TIME;
+    power = Dice.roll("1d4+1");
   }
   var endtime = dur + DU.DUTime.getGameClock();
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
@@ -1795,8 +1795,8 @@ magic[4][GetSpellID(4)].executeSpell = function(caster, infused, free, tgt) {
   resp["fin"] = 1;
   
   var plus = caster.getLevel()*2;
-  var healamt = RollDice(caster.getLevel() + "d8+" + plus);
-  if (free) { healamt = RollDice("4d8+10"); }
+  var healamt = Dice.roll(caster.getLevel() + "d8+" + plus);
+  if (free) { healamt = Dice.roll("4d8+10"); }
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
   DebugWrite("magic", "Healing " + healamt + " hp.<br />");
   if (infused) { healamt = healamt * 1.5; }
@@ -1871,13 +1871,13 @@ function PerformLifeDrain(caster, infused, free, tgt) {
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
-//  var dmg = RollDice("2d6+" + Math.floor(caster.getInt()/5));
+//  var dmg = Dice.roll("2d6+" + Math.floor(caster.getInt()/5));
   var dmg = RollDamage(DMG_MEDIUM);
   if (infused) {
     dmg = dmg * 1.5;
   }
 
-  var healamt = RollDice("2d8+" + 10);  
+  var healamt = Dice.roll("2d8+" + 10);  
   if (infused) { healamt = healamt * 1.5; }
   if (CheckResist(caster,tgt,infused,0)) {
     dmg = Math.floor(dmg/2)+1;
@@ -1996,7 +1996,7 @@ magic[4][GetSpellID(8)].executeSpell = function(caster, infused, free) {
   var levobj = localFactory.createTile("Levitate");
   
   var dur = caster.getInt()+5;
-  if (free) { dur = RollDice("1d10+35"); }
+  if (free) { dur = Dice.roll("1d10+35"); }
   if (infused) { dur = dur * 3; }
   var endtime = dur + DU.DUTime.getGameClock();
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
@@ -2070,7 +2070,7 @@ function PerformCrystalBarrier(caster, infused, free, tgt) {
   crystal = localFactory.createTile("ConjuredCrystal");
   
   var duration = caster.getInt() * SCALE_TIME;
-  if (free) { duration = RollDice("1d6+12") * SCALE_TIME; }
+  if (free) { duration = Dice.roll("1d6+12") * SCALE_TIME; }
   crystal.expiresTime = DUTime.getGameClock() + duration;  // barrier AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
   DrawMainFrame("one",caster.getHomeMap().getName(),crystal.getx(),crystal.gety());
@@ -2096,7 +2096,7 @@ magic[5][GetSpellID(2)].executeSpell = function(caster, infused, free) {
   var mwobj = localFactory.createTile("MirrorWard");
   
   var dur = caster.getInt();
-  if (free) { dur = RollDice("1d10+35"); }
+  if (free) { dur = Dice.roll("1d10+35"); }
   if (infused) { dur = dur * 3; }
   var endtime = (dur * SCALE_TIME) + DU.DUTime.getGameClock();
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
@@ -2170,7 +2170,7 @@ function PerformParalyze(caster, infused, free, tgt) {
   
     var dur = caster.getInt()/2;
     if (infused) { dur = dur * 1.5;}
-    if (free) { dur = RollDice("1d4+5"); }
+    if (free) { dur = Dice.roll("1d4+5"); }
     ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
     if (tgt !== PC) {
       desc = tgt.getDesc() + " is paralyzed!";
@@ -2355,7 +2355,7 @@ magic[5][GetSpellID(6)].executeSpell = function(caster, infused, free) {
       var tile = spellmap.getTile(caster.getx()+xdiff, caster.gety()+ydiff);
       var badguy = tile.getTopNPC();
       if (badguy) {
-        var dmg = RollDice(DMG_MEDIUM);
+        var dmg = Dice.roll(DMG_MEDIUM);
         if (infused) { dmg = dmg * 1.5; }
         var resist = 0;
         if (CheckResist(caster,badguy,infused,0)) {
@@ -2450,7 +2450,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   }
   ally = localFactory.createTile(eletype+"NPC");
   var duration = caster.getInt() * SCALE_TIME;
-  if (free) { duration = RollDice("1d6+12"); }
+  if (free) { duration = Dice.roll("1d6+12"); }
   if (infused) {
     ally.setStr(ally.getStr()+5);
     ally.setStr(ally.getDex()+5);
@@ -2705,7 +2705,7 @@ magic[6][GetSpellID(3)].executeSpell = function(caster, infused, free) {
             ShowEffect(val, 700, "X.gif");
           }       
         } else {
-          var duration = 8 + RollDice("1d4") - val.getInt()/5;
+          var duration = 8 + Dice.roll("1d4") - val.getInt()/5;
           var jinx = localFactory.createTile("Confused");
           jinx.setPower(power);
           jinx.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
@@ -2761,7 +2761,7 @@ magic[6][GetSpellID(4)].executeSpell = function(caster, infused, free) {
             desc = "You are cursed! Your thoughts feel sluggish, you feel clumsier, and you feel weaker.";
           }
         }
-        var duration = 10 + RollDice("1d8") - val.getInt()/4;
+        var duration = 10 + Dice.roll("1d8") - val.getInt()/4;
         curse.setPower(power);
         curse.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
         val.addSpellEffect(curse);          
@@ -2931,7 +2931,7 @@ function PerformCharm(caster, infused, free, tgt) {
   
     var dur = caster.getInt()/2;
     if (infused) { dur = dur * 1.5;}  // can't be infused, but just in case
-    if (free) { dur = RollDice("1d4+5"); }
+    if (free) { dur = Dice.roll("1d4+5"); }
     ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
     if (tgt !== PC) {
       desc = tgt.getDesc() + " is charmed!";
@@ -2992,7 +2992,7 @@ magic[7][GetSpellID(3)].executeSpell = function(caster, infused, free) {
             desc = val.getDesc() + " was already afraid!";
           } else {
             var fear = localFactory.createTile("Fear");
-            var duration = 10 + RollDice("1d8") - val.getInt()/4;
+            var duration = 10 + Dice.roll("1d8") - val.getInt()/4;
             fear.setPower(1);
             fear.setExpiresTime(duration*SCALE_TIME + DUTime.getGameClock());
             val.addSpellEffect(fear);          
@@ -3037,7 +3037,7 @@ magic[7][GetSpellID(4)].executeSpell = function(caster, infused, free) {
           var tile = castermap.getTile(i,j);
           var tgt = tile.getTopVisibleNPC();
           if (tgt) {
-            var dmg = RollDice(DMG_MEDIUM);
+            var dmg = Dice.roll(DMG_MEDIUM);
             if (CheckResist(center,tgt,0,0)) {
               dmg = Math.floor(dmg/2);
             }
@@ -3059,7 +3059,7 @@ magic[7][GetSpellID(4)].executeSpell = function(caster, infused, free) {
             if (!CheckResist(center,tgt,0,0)) {
               var freeze = localFactory.createTile("Frozen");
               freeze.setPower(1);
-              freeze.setExpiresTime(RollDice("1d3+1")*SCALE_TIME + DUTime.getGameClock());
+              freeze.setExpiresTime(Dice.roll("1d3+1")*SCALE_TIME + DUTime.getGameClock());
               tgt.addSpellEffect(freeze);
               var desc = tgt.getDesc() + " is frozen!";
               maintext.addText(desc);
@@ -3136,7 +3136,7 @@ magic[7][GetSpellID(6)].executeSpell = function(caster, infused, free) {
         npccount--;
         var final = 0;
         if (!npccount) { final = 1; }
-        var dmg = RollDice(DMG_MEDIUM);
+        var dmg = Dice.roll(DMG_MEDIUM);
         if (CheckResist(caster,val,infused,0)) {
           dmg = dmg/2;
         } 
@@ -3232,9 +3232,9 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
-//  var dmg = RollDice("2d6+" + Math.floor(caster.getInt()/5));
+//  var dmg = Dice.roll("2d6+" + Math.floor(caster.getInt()/5));
   var power = caster.getInt();
-  if (free) { power = RollDice("1d5+12"); }
+  if (free) { power = Dice.roll("1d5+12"); }
   var dmg = RollDamage(DMG_TREMENDOUS);
   if (infused) {  // can't be infused, but check anyway
     dmg = dmg * 1.5;
@@ -3290,7 +3290,7 @@ magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
-        var dmg = RollDice(DMG_HEAVY);
+        var dmg = Dice.roll(DMG_HEAVY);
         if (CheckResist(caster,val,infused,0)) {
           dmg = dmg/2+1;
         } 
@@ -3364,7 +3364,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
 
   var ally = localFactory.createTile("Daemon");
   var duration = caster.getInt() * SCALE_TIME;
-  if (free) { duration = RollDice("1d6+12"); }
+  if (free) { duration = Dice.roll("1d6+12"); }
   if (infused) {  // once again, can't be infused, but hey, if you somehow do you get a HELLA daemon
     // note, this means Daemon is from California. Use at your own risk.
     ally.setStr(ally.getStr()+5);
@@ -3402,7 +3402,7 @@ magic[8][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   
   var dur = caster.getInt() * SCALE_TIME;
   if (free) { 
-    dur = RollDice("1d10+5") * SCALE_TIME;
+    dur = Dice.roll("1d10+5") * SCALE_TIME;
   }
   if (infused) {dur = dur * 1.5; }
   var endtime = dur + DU.DUTime.getGameClock();
