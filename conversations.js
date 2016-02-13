@@ -370,7 +370,7 @@ function InnRoom(xc,yc,doors) {
     setTimeout(function() {
       $("#mainview").fadeIn(1000, function() {
         maintext.addText("You awake refreshed!");
-        PC.healMe(RollDice("20d5+20"));
+        PC.healMe(Dice.roll("20d5+20"));
         gamestate.setMode("player");
         PC.endTurn();
       });

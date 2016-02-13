@@ -11,7 +11,7 @@ function PerformCommand(code, ctrl) {
 	  retval["fin"] = 1;
 	  if (Math.random() < .5) { 
 	    // confused and randomly wandering
-	    var dir = RollDice("1d4");
+	    var dir = Dice.roll("1d4");
 	    if (dir === 1) { PC.moveMe(0,-1,0); }
 	    if (dir === 2) { PC.moveMe(1,0,0); }
 	    if (dir === 3) { PC.moveMe(0,1,0); }

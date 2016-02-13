@@ -3798,7 +3798,7 @@ function InASleepField(who) {
     if (who.getSpellEffectsByName("Sleep")) { return 0; }
     var fieldeffect = localFactory.createTile("Sleep");
     
-    var duration = (RollDice("2d3") - who.getInt()/20) * SCALE_TIME;
+    var duration = (Dice.roll("2d3") - who.getInt()/20) * SCALE_TIME;
     fieldeffect.setExpiresTime(duration + DUTime.getGameClock());
     who.addSpellEffect(fieldeffect);
     
@@ -3866,7 +3866,7 @@ FireFieldTile.prototype.myTurn = function() {
   return 1;
 }
 function InAFireField(who) {
-  var dmg = RollDice("2d6+3");
+  var dmg = Dice.roll("2d6+3");
   dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
   var response = "The fire field burns you!";
   var resist = who.getResist("magic");
@@ -3913,7 +3913,7 @@ function InAPoisonField(who){
     if (who.getSpellEffectsByName("Poison")) { return 0; }
     var poison = localFactory.createTile("Poison");
     
-    var duration = (20+RollDice("2d10") + who.getInt() - 15) * SCALE_TIME;
+    var duration = (20+Dice.roll("2d10") + who.getInt() - 15) * SCALE_TIME;
     poison.setExpiresTime(duration + DUTime.getGameClock());
     who.addSpellEffect(poison);
     
@@ -7406,7 +7406,7 @@ GreenPotionTile.prototype.use = function(who) {
   var retval = {}
   retval["fin"] = 1;
   var poisontile = localFactory.createTile("Poison");
-  var duration = RollDice("2d8") * SCALE_TIME;
+  var duration = Dice.roll("2d8") * SCALE_TIME;
   poison.setExpiresTime(duration + DUTime.getGameClock());
   who.addSpellEffect(poison);
   if (who === PC) {
@@ -7453,8 +7453,8 @@ SilverPotionTile.prototype.use = function(who) {
 
   var levobj = localFactory.createTile("BlessingStr");
   
-  var dur = RollDice("2d10+15");
-  var power = RollDice("1d4+1");
+  var dur = Dice.roll("2d10+15");
+  var power = Dice.roll("1d4+1");
   var endtime = dur + DU.DUTime.getGameClock();
 //  if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green'>Potion of Strength: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
   if (!DebugWrite("gameobj", "Potion of Strength: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />")) {
@@ -7488,8 +7488,8 @@ PinkPotionTile.prototype.use = function(who) {
 
   var levobj = localFactory.createTile("BlessingDex");
   
-  var dur = RollDice("2d10+15");
-  var power = RollDice("1d4+1");
+  var dur = Dice.roll("2d10+15");
+  var power = Dice.roll("1d4+1");
   var endtime = dur + DU.DUTime.getGameClock();
 //  if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green'>Potion of Dexterity: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
   if (!DebugWrite("gameobj", "Potion of Dexterity: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />")) {
@@ -7524,8 +7524,8 @@ GreyPotionTile.prototype.use = function(who) {
 
   var levobj = localFactory.createTile("BlessingInt");
   
-  var dur = RollDice("2d10+15");
-  var power = RollDice("1d4+1");
+  var dur = Dice.roll("2d10+15");
+  var power = Dice.roll("1d4+1");
   var endtime = dur + DU.DUTime.getGameClock();
 //  if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green'>Potion of Intelligence: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
   if (!DebugWrite("gameobj", "Potion of Intelligence: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />")) {
@@ -7693,7 +7693,7 @@ OrangePotionTile.prototype = new PotionItemObject();
 
 OrangePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var mana = RollDice("2d6+1");
+  var mana = Dice.roll("2d6+1");
   who.setMana(who.getMana() + mana);
   if (who.getMana() > who.getMaxMana()) { who.setMana(who.getMaxMana()); }
   var retval = {};
@@ -8578,13 +8578,13 @@ WeaponObject.prototype.setStrDamage = function(newdam) {
 }
 
 WeaponObject.prototype.parseDamage = function() {
-  var dmgobj = ParseDice(this.getDamage());
+  var dmgobj = Dice.parse(this.getDamage());
   
   return dmgobj;
 }
 
 WeaponObject.prototype.rollDamage = function(wielder) {
-  var damage = RollDice(this.getDamage());
+  var damage = Dice.roll(this.getDamage());
   if (wielder && this.getStrDamage()) {
     var str = wielder.getStr();
     var strmod = parseFloat(this.getStrDamage());
@@ -8598,7 +8598,7 @@ WeaponObject.prototype.rollDamage = function(wielder) {
     if (!DebugWrite("magic", "Flame blade adds " + fb.damage + "damage.<br />")) {
       DebugWrite("combat", "Flame blade adds " + fb.damage + "damage.<br />");
     }
-    fbdmg = RollDice(fb.damage);
+    fbdmg = Dice.roll(fb.damage);
     damage += parseInt(fbdmg);
     fb.doEffect();
   }
@@ -8606,9 +8606,10 @@ WeaponObject.prototype.rollDamage = function(wielder) {
 }
 
 WeaponObject.prototype.getAveDamage = function(wielder) {
-  var dmgobj = this.parseDamage();
-  var damage = dmgobj.plus;
-  damage += (dmgobj.quantity * (dmgobj.dice + 1)/2);
+//  var dmgobj = this.parseDamage();
+//  var damage = dmgobj.plus;
+//  damage += (dmgobj.quantity * (dmgobj.dice + 1)/2);
+  var damage = Dice.rollave(this.getDamage());
   if (wielder && this.getStrDamage()) {
     var str = wielder.getStr();
     var strmod = parseFloat(this.getStrDamage());
@@ -10056,7 +10057,7 @@ NPCObject.prototype.myTurn = function() {
     awake = 0;
     if (Math.random() < .5) { 
 	    // confused and randomly wandering
-	    var dir = RollDice("1d4");
+	    var dir = Dice.roll("1d4");
 	    if (dir === 1) { this.moveMe(0,-1,0); }
 	    if (dir === 2) { this.moveMe(1,0,0); }
 	    if (dir === 3) { this.moveMe(0,1,0); }
@@ -10462,7 +10463,7 @@ function NPCList(npcs,num) {
 NPCGroupObject.prototype.populate = function() {
   var population = [];
   for (var i=0; i< this.group.length; i++) {
-    var num = RollDice(this.group[i].count);
+    var num = Dice.roll(this.group[i].count);
     for (var j=1; j<=num; j++) {
       if (population.length < 8) {
         var monster = localFactory.createTile(this.group[i].npc);

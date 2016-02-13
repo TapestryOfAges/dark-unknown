@@ -38,6 +38,7 @@ var DULoot = SetLoots();            //
 var DULootGroups = SetLootGroups(); //  see loot.js and lootset.js for population
 var DUTraps = SetTraps();           //
 var displayspecs = {};
+var Dice = new DiceObject();
 var finder = new PF.AStarFinder({
   heuristic: PF.Heuristic.euclidean
 });

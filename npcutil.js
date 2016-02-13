@@ -185,7 +185,7 @@ function Attack(atk, def) {
 
 function prepareSpellDamage(damsrc, damtar, damval, damtype) {
   var retval = {};
-  retval.dmg = RollDice(damval);
+  retval.dmg = Dice.roll(damval);
 
   if (damtype === "magic") {
     var armor = damtar.getEquipment("armor");
@@ -197,7 +197,7 @@ function prepareSpellDamage(damsrc, damtar, damval, damtype) {
     }    
     if (Math.random() < resist) {
       retval.msg = "RESIST!";
-      retval.dmg = RollMin(damval);
+      retval.dmg = Dice.rollmin(damval);
     }
   }
 

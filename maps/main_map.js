@@ -253,7 +253,7 @@ function Placespawns(mapref) {
   onyxspawn.evolve[3][0] = "spawngroup";
   onyxspawn.evolve[3][1] = new Array("HoodGroupLarge","RogueGroupSmall","RogueGroupLarge","ThiefGroupSmall","ThiefGroupLarge");
   
-  var freq = 90 + RollDice("1d20");
+  var freq = 90 + Dice.roll("1d20");
   onyxspawn.setSpawnFreq(freq);
   
   mapref.placeThing(57,122,onyxspawn);
@@ -272,7 +272,7 @@ function Placespawns(mapref) {
   spawn.evolve[6] = [];
   spawn.evolve[6][0] = "spawnLeash";
   spawn.evolve[6][1] = 20;
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(18,17,spawn);
@@ -299,7 +299,7 @@ function Placespawns(mapref) {
   spawn.evolve[4][0] = "spawngroup";
   spawn.evolve[4][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "MidPartyGroup", "MidHeadlessGroup");
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(60,25,spawn);
@@ -321,7 +321,7 @@ function Placespawns(mapref) {
   spawn.evolve[3][0] = "spawngroup";
   spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupSmall", "InsectsGroupLarge");
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(90,16,spawn);
@@ -351,7 +351,7 @@ function Placespawns(mapref) {
   spawn.evolve[5][0] = "spawngroup";
   spawn.evolve[5][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "OrcPartyHighGroup", "OrcPartyLowGroup");
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(97,30,spawn);
@@ -379,7 +379,7 @@ function Placespawns(mapref) {
   spawn.evolve[5][1] = new Array("MidSnakesGroup", "DrakesSmallGroup", "DragonsGroup");
 
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(118,31,spawn);
@@ -403,7 +403,7 @@ function Placespawns(mapref) {
   spawn.evolve[3][0] = "spawngroup";
   spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "OrcGroupSmall");
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(81,46,spawn);
@@ -438,7 +438,7 @@ function Placespawns(mapref) {
   spawn.evolve[7][1] = new Array("MidPartyGroup", "MidHighPartyGroup", "HighPartyGroup", "NecromancerGroup", "ElementalistGroup");
   
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(88,81,spawn);
@@ -477,7 +477,7 @@ function Placespawns(mapref) {
   spawn.evolve[8][3] = 200;
 
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(134,77,spawn);
@@ -505,7 +505,7 @@ function Placespawns(mapref) {
   spawn.evolve[3][0] = "spawngroup";
   spawn.evolve[3][1] = new Array("PitRogueGroupSmall","PitRogueGroupSmall","ThiefGroupSmall","ThiefGroupLarge");
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(119,75,spawn);
@@ -541,7 +541,7 @@ function Placespawns(mapref) {
   spawn.evolve[7][0] = "spawngroup";
   spawn.evolve[7][1] = new Array("TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","HighPartyGroup","MidHighPartyGroup");
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(42,49,spawn);
@@ -570,7 +570,7 @@ function Placespawns(mapref) {
   spawn.evolve[6][0] = "spawngroup";
   spawn.evolve[6][1] = new Array("HeadlessGroupSmall","HeadlessGroupLarge","HeadlessGroupLarge","DrakesSmallGroup","DrakesLargeGroup","DragonsGroup");
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(29,47,spawn);
@@ -594,7 +594,7 @@ function Placespawns(mapref) {
   spawn.evolve[3][0] = "spawngroup";
   spawn.evolve[3][1] = new Array("SnakesGroup","MidSnakesGroup","MidSnakesGroup","GazersGroup");
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(125,124,spawn);
@@ -618,7 +618,7 @@ function Placespawns(mapref) {
   spawn.evolve[3][0] = "spawngroup";
   spawn.evolve[3][1] = new Array("OrcGroupSmall","OrcGroupLarge","OrcGroupLarge");
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(83,102,spawn);
@@ -644,7 +644,7 @@ function Placespawns(mapref) {
   spawn.evolve[4][1] = 1;
   
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(31,124,spawn);
@@ -667,7 +667,7 @@ function Placespawns(mapref) {
   spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "InsectsGroupLarge");
   
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(25,92,spawn);
@@ -693,7 +693,7 @@ function Placespawns(mapref) {
   spawn.evolve[3][2] = "maxSpawns";
   spawn.evolve[3][3] = 2;
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(26,115,spawn);
@@ -717,7 +717,7 @@ function Placespawns(mapref) {
   spawn.evolve[6][0] = "spawngroup";
   spawn.evolve[6][1] = new Array("GazersGroup","HeadlessGroupLarge","HeadlessGroupLarge","OrcPartyHighGroup","DaemonGroup");
   
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   spawn.altPoI = "mordor";
@@ -738,7 +738,7 @@ function Placespawns(mapref) {
   spawn.setSpawnLeash(0);
   spawn.setSpawnSoftLeash(0);
 
-  freq = 90 + RollDice("1d20");
+  freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
   spawn.altPoI = "mordor";
