@@ -16,10 +16,11 @@ function Gameflags() {
   this.negate = {};
   this.karma = 0;
   
-  this.getFlag = function(flag) { return this.flag; }
+  this.getFlag = function(flag) { return this[flag]; }
   this.setFlag = function(flag, val) { this[flag] = val; return this[flag]; }
   this.deleteFlag = function(flag) { delete this[flag]; }
 }
+Gameflags.prototype = new Object();
 
 
 
