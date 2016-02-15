@@ -77,3 +77,48 @@ function RunTest() {
   DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
   
 }
+
+mappages["unittest"] = {};
+mappages["unittest"].terrain = [];
+ mappages["unittest"].terrain[0] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest"].terrain[1] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest"].terrain[2] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest"].terrain[3] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest"].terrain[4] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest"].terrain[5] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest"].terrain[6] = '## ## ## ## ## ## ## ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest"].terrain[7] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest"].terrain[8] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest"].terrain[9] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["unittest"].terrain[10] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["unittest"].terrain[11] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["unittest"].terrain[12] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["unittest"].terrain[13] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["unittest"].terrain[14] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+
+mappages["unittest"].features = [];
+
+
+mappages["unittest"].npcs = [];
+
+mappages["unittest"].desc = "Unit Tests";
+mappages["unittest"].music = 'Lullaby';
+mappages["unittest"].exitmap = '';
+mappages["unittest"].exitx = '65';
+mappages["unittest"].exity = '70';
+mappages["unittest"].wraps = 'None';
+mappages["unittest"].enterx = '65';
+mappages["unittest"].entery = '70';
+mappages["unittest"].seeBelow = '';
+mappages["unittest"].lightLevel = 'bright';
+mappages["unittest"].alwaysRemember = '0';
+mappages["unittest"].scale = '1';
+mappages["unittest"].enterscript = '';
+mappages["unittest"].entertestscript = '';
+mappages["unittest"].exitscript = '';
+mappages["unittest"].exittestscript = '';
+mappages["unittest"].returnmap = '';
+mappages["unittest"].returnx = 'NaN';
+mappages["unittest"].returny = 'NaN';
+mappages["unittest"].returninfused = '0';
+mappages["unittest"].linkedMaps = [""];
