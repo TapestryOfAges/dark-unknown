@@ -24,8 +24,8 @@ var timeouts = {};
 PC.assignSerial();
 var nowplaying;
 var laststep = "left";
-DU.maps = new MapMemory();
-var maps = DU.maps; // alias
+//DU.maps = new MapMemory();
+//var maps = DU.maps; // alias
 var losgrid = new LOSMatrix(30);  // BIGGER FOR AI USE
 
 DU.DUTime = new Timeline(0);
@@ -65,6 +65,7 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff) {}
 //}  
 
 QUnit.test( "Test Awaken spell", function( assert ) {
+  var maps = new MapMemory();
   maps.addMap("unittest");
   var testmap = maps.getMap("unittest");
 
@@ -106,6 +107,7 @@ QUnit.test( "Test Awaken spell", function( assert ) {
 });
 
 QUnit.test( "Test Cure spell", function( assert ) {
+  var maps = new MapMemory();
   maps.addMap("unittest");
   var testmap = maps.getMap("unittest");
   
@@ -165,5 +167,39 @@ QUnit.test( "Test Cure spell", function( assert ) {
 });
 
 QUnit.test( "Test Disarm Trap spell", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("unittest");
+  var testmap = maps.getMap("unittest");
+
+  var castermob = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(2,11,castermob);
   
+  var chests = [];
+  chests[0] = localFactory.createTile("Chest");
+  testmap.placeThing(1,10,chests[0]);
+  chests[1] = localFactory.createTile("Chest");
+  testmap.placeThing(2,1,chests[1]);
+  chests[2] = localFactory.createTile("Chest");
+  testmap.placeThing(3,10,chests[2]);
+  chests[3] = localFactory.createTile("Chest");
+  testmap.placeThing(3,11,chests[3]);
+  chests[4] = localFactory.createTile("Chest");
+  testmap.placeThing(3,12,chests[4]);
+  chests[5] = localFactory.createTile("Chest");
+  testmap.placeThing(2,12,chests[5]);
+  chests[6] = localFactory.createTile("Chest");
+  testmap.placeThing(1,12,chests[6]);
+  chests[7] = localFactory.createTile("Chest");
+  testmap.placeThing(1,11,chests[7]);
+  
+  for (var i=0; i<=7; i++) {
+    chests[i].trapchallenge = 10+i*10;
+    chests[i].trapped = "testtrap";
+  }
+  
+  Dice.roll = function(die) { return .6; }
+  
+  
+
+  maps.deleteMap("unittest");
 });
