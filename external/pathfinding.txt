@@ -1,0 +1,2 @@
+Pathfinding is now https://github.com/paulrobello/PathFinding.js , forked off of the qiao version.
+New version includes weighted costs when using A*.
