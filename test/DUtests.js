@@ -193,22 +193,22 @@ QUnit.test( "Test Disarm Trap spell", function( assert ) {
   testmap.placeThing(1,11,chests[7]);
   
   for (var i=0; i<=7; i++) {
-    chests[i].trapchallenge = 10+i*10;
+    chests[i].trapchallenge = 10+i;
     chests[i].trapped = "testtrap";
   }
   
-  Dice.roll = function(die) { return .6; }
+  Dice.roll = function(die) { return 60; }
   
   var resp = magic[1][GetSpellID(3)].executeSpell(castermob,0,0);
   
   assert.deepEqual(chests[0].trapped, "", "Looking at chest 0 (challenge = 10): expecting the trap to be removed.");
-  assert.deepEqual(chests[1].trapped, "", "Looking at chest 1 (challenge = 20): expecting the trap to be removed.");
-  assert.deepEqual(chests[2].trapped, "testtrap", "Looking at chest 2 (challenge = 30): expecting spell failed.");
-  assert.deepEqual(chests[3].trapped, "testtrap", "Looking at chest 3 (challenge = 40): expecting spell failed.");
-  assert.deepEqual(chests[4].trapped, "testtrap", "Looking at chest 4 (challenge = 50): expecting spell failed.");
-  assert.deepEqual(chests[5].trapped, "testtrap", "Looking at chest 5 (challenge = 60): expecting spell failed.");
-  assert.deepEqual(chests[6].trapped, "testtrap", "Looking at chest 6 (challenge = 70): expecting spell failed.");
-  assert.deepEqual(chests[7].trapped, "testtrap", "Looking at chest 7(challenge = 80): expecting spell failed.");
+  assert.deepEqual(chests[1].trapped, "", "Looking at chest 1 (challenge = 11): expecting the trap to be removed.");
+  assert.deepEqual(chests[2].trapped, "", "Looking at chest 2 (challenge = 12): expecting the trap to be removed.");
+  assert.deepEqual(chests[3].trapped, "testtrap", "Looking at chest 3 (challenge = 13): expecting spell failed.");
+  assert.deepEqual(chests[4].trapped, "testtrap", "Looking at chest 4 (challenge = 14): expecting spell failed.");
+  assert.deepEqual(chests[5].trapped, "testtrap", "Looking at chest 5 (challenge = 15): expecting spell failed.");
+  assert.deepEqual(chests[6].trapped, "testtrap", "Looking at chest 6 (challenge = 16): expecting spell failed.");
+  assert.deepEqual(chests[7].trapped, "testtrap", "Looking at chest 7(challenge = 17): expecting spell failed.");
 
   maps.deleteMap("unittest");
 });
