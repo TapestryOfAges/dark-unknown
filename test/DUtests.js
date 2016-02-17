@@ -178,7 +178,7 @@ QUnit.test( "Test Disarm Trap spell", function( assert ) {
   chests[0] = localFactory.createTile("Chest");
   testmap.placeThing(1,10,chests[0]);
   chests[1] = localFactory.createTile("Chest");
-  testmap.placeThing(2,1,chests[1]);
+  testmap.placeThing(2,10,chests[1]);
   chests[2] = localFactory.createTile("Chest");
   testmap.placeThing(3,10,chests[2]);
   chests[3] = localFactory.createTile("Chest");
@@ -199,7 +199,16 @@ QUnit.test( "Test Disarm Trap spell", function( assert ) {
   
   Dice.roll = function(die) { return .6; }
   
+  var resp = magic[1][GetSpellID(3)].executeSpell(castermob,0,0);
   
+  assert.deepEqual(chests[0].trapped, "", "Looking at chest 0 (challenge = 10): expecting the trap to be removed.");
+  assert.deepEqual(chests[1].trapped, "", "Looking at chest 1 (challenge = 20): expecting the trap to be removed.");
+  assert.deepEqual(chests[2].trapped, "testtrap", "Looking at chest 2 (challenge = 30): expecting spell failed.");
+  assert.deepEqual(chests[3].trapped, "testtrap", "Looking at chest 3 (challenge = 40): expecting spell failed.");
+  assert.deepEqual(chests[4].trapped, "testtrap", "Looking at chest 4 (challenge = 50): expecting spell failed.");
+  assert.deepEqual(chests[5].trapped, "testtrap", "Looking at chest 5 (challenge = 60): expecting spell failed.");
+  assert.deepEqual(chests[6].trapped, "testtrap", "Looking at chest 6 (challenge = 70): expecting spell failed.");
+  assert.deepEqual(chests[7].trapped, "testtrap", "Looking at chest 7(challenge = 80): expecting spell failed.");
 
   maps.deleteMap("unittest");
 });
