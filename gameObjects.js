@@ -1013,6 +1013,7 @@ function IsWet(tile) {
 
 function InanimateObject() {
   this.initdelay = 1;  // multiplicative
+  this.pathweight = 0; // additive
   this.walkonscript = "";
   this.usescript = "";
   this.peerview = "";
@@ -1065,6 +1066,15 @@ InanimateObject.prototype.getInitDelay = function() {
 InanimateObject.prototype.setInitDelay = function(newdelay) {
 	this.initdelay = newdelay;
 	return this.initdelay;
+}
+
+InanimateObject.prototype.getPathWeight = function() {
+	return this.pathweight;
+}
+
+InanimateObject.prototype.setPathWeight = function(neww) {
+	this.pathweight = neww;
+	return this.pathweight;
 }
 
 // And now, on with the show!
@@ -2585,6 +2595,7 @@ function RoadTile() {
   this.peerview = "#7a3a1a";
   
   this.initdelay = 0.8;
+  this.pathweight = -.2;
   
   SetBySurroundRoad.call(this);
 }
@@ -2600,6 +2611,7 @@ function BrushTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
+  this.pathweight = .1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
 }
@@ -2615,6 +2627,7 @@ function ShadowBrushTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
+  this.pathweight = .1;
   this.combatmap = "Brush";
   this.peerview = "#005080";
 }
@@ -2630,6 +2643,7 @@ function BrushNCoastTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
+  this.pathweight = .1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
 }
@@ -2645,6 +2659,7 @@ function BrushECoastTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
+  this.pathweight = .1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
 }
@@ -2660,6 +2675,7 @@ function BrushSCoastTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
+  this.pathweight = .1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
 }
@@ -2675,6 +2691,7 @@ function BrushWCoastTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;  
+  this.pathweight = .1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
 }
@@ -2692,6 +2709,7 @@ function ForestTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
+  this.pathweight = .3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
 }
@@ -2708,6 +2726,7 @@ function GroveTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "trees";
   this.initdelay = 1.3;
+  this.pathweight = .3;
   this.peerview = "#004000";
 }
 GroveTile.prototype = new TerrainObject();
@@ -2723,6 +2742,7 @@ function ShadowGroveTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "trees";
   this.initdelay = 1.3;
+  this.pathweight = .3;
   this.peerview = "#002840";
 }
 ShadowGroveTile.prototype = new TerrainObject();
@@ -2739,6 +2759,7 @@ function ForestNCoastTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
+  this.pathweight = .3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
 }
@@ -2756,6 +2777,7 @@ function ForestECoastTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
+  this.pathweight = .3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
 }
@@ -2773,6 +2795,7 @@ function ForestSCoastTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
+  this.pathweight = .3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
 }
@@ -2790,6 +2813,7 @@ function ForestWCoastTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
+  this.pathweight = .3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
 }
@@ -2808,6 +2832,7 @@ function HillsTile() {
 //  this.losatdistance = { distance : 5 , blocklos : .5 };
   this.desc = "hills";
   this.initdelay = 1.5;
+  this.pathweight = .5;
   this.combatmap = "Hill";
   this.peerview = "#49473a";
 }
@@ -2849,6 +2874,7 @@ function SwampTile() {
   this.blocklos = 0;
   this.desc = "swamp";
   this.initdelay = 1.2;
+  this.pathweight = 1;
   this.combatmap = "Swamp";
   this.peerview = "#004000";
 }
@@ -2873,6 +2899,7 @@ function ShadowSwampTile() {
   this.blocklos = 0;
   this.desc = "swamp";
   this.initdelay = 1.2;
+  this.pathweight = 1;
   this.combatmap = "Swamp";
   this.peerview = "#002840";
 }
@@ -3195,6 +3222,7 @@ function LavaTile() {
   this.blocklos = 0;
   this.desc = "lava";
   this.initdelay = 1.2;
+  this.pathweight = 3;
   this.spritexoffset = "-224";
   this.spriteyoffset = "0";
   
@@ -3774,6 +3802,7 @@ function SleepFieldTile() {
   this.prefix = "a";
 	this.desc = "sleep field";
 	this.initdelay = 1.5;
+	this.pathweight = 3;
   this.spritexoffset = "-96";
   this.spriteyoffset = "0";
 	
@@ -3822,6 +3851,7 @@ function FireFieldTile() {
 	
 	LightEmitting.call(this, 3);
 	this.initdelay = 1.5;
+	this.pathweight = 3;
 }
 FireFieldTile.prototype = new FeatureObject();
 
@@ -3886,6 +3916,7 @@ function PoisonFieldTile() {
   this.prefix = "a";
 	this.desc = "poison field";
 	this.initdelay = 1.5;
+	this.pathweight = 3;
   this.spritexoffset = "0";
   this.spriteyoffset = "0";
 	
