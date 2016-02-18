@@ -308,7 +308,7 @@ magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
           var chance = ((power*mult + 10) - (val.trapchallenge)) /20;
           if (chance < .05) { chance = .05; }
           var roll = Dice.roll("1d100")/100;
-          if (roll < chance) { 
+          if (roll <= chance) { 
             val.disarmTrap(); 
             maintext.addText("Trap disarmed!"); 
             ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
