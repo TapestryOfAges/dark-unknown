@@ -623,6 +623,15 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	return retval;
 }
 
+Acre.prototype.getPathWeight = function() {
+  var pathweight = this.getTerrain().getPathWeight();
+  var fea = this.getFeatures();
+  $.each(fea, function(idx,val) {
+    pathweight += val.getPathWeight();
+  });
+  return pathweight;
+};
+
 Acre.prototype.executeWalkons = function(walker) {
 	var terrain = this.getTerrain();
 	var response = "";
@@ -977,6 +986,9 @@ GameMap.prototype.createPathGrid = function() {
       for (var k=1; k<=32; k=k*2) {
         var response = thisspot.canMoveHere(k, 1);
         if (!response["canmove"]) { this.setWalkableAt(i,j,false,k); }
+        var pathweight = thisspot.getPathWeight();
+        if (!pathweight) { pathweight = 0; }
+        this.setCostAt(i,j,pathweight);
       }
     }
   }
