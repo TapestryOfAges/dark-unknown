@@ -258,10 +258,19 @@ QUnit.test("Test magic resistance calculation", function( assert ) {
   resist = CheckResist(castermob, tgtmob, 1, 0);
   assert.deepEqual(resist, 0, "Expected: NOT resisted.");
 
-
+  maps.deleteMap("unittest");
 });
 
 
-//QUnit.test( "Test Distract spell", function( assert ) {
+QUnit.test( "Test Distract spell", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("unittest");
+  var testmap = maps.getMap("unittest");
+
+  var castermob = localFactory.createTile("PaladinNPC");
+  var tgt1mob = localFactory.createTile("HeadlessNPC");
+  var tgt2mob = localFactory.createTile("DelverNPC");
   
-//});
+
+  maps.deleteMap("unittest");
+});
