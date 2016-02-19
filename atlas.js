@@ -988,7 +988,7 @@ GameMap.prototype.createPathGrid = function() {
         if (!response["canmove"]) { this.setWalkableAt(i,j,false,k); }
         var pathweight = thisspot.getPathWeight();
         if (!pathweight) { pathweight = 0; }
-        this.setCostAt(i,j,pathweight);
+        this.setCostAt(i,j,pathweight,k);
       }
     }
   }
@@ -1012,6 +1012,10 @@ GameMap.prototype.getPath = function(fromx,fromy,tox,toy,movetype) {
 
 GameMap.prototype.setWalkableAt = function(x,y,canwalk,movetype) {
   this.pathGrid[movetype].setWalkableAt(x,y,canwalk);
+}
+
+GameMap.prototype.setCostAt = function(x,y,cost,movetype) {
+  this.pathGrid[movetype].setCostAt(x,y,cost);
 }
 
 
