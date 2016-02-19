@@ -1,5 +1,7 @@
 "use strict";
 
+var Dice = new DiceObject();
+
 function preload(arrayOfImages) {
     $(arrayOfImages).each(function(){
         $('<img/>')[0].src = this;
@@ -169,7 +171,7 @@ function SecondPage() {
     spage += "<div id='create' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt1' src='graphics/title/create.gif' onClick='makeChoice(\'create\')' /></div>";
     opttop += 60;
     var journey = "journey.gif";
-    if (!localStorage.savegame) {
+    if (!localStorage.savegame && !localStorage.charsave) {
       journey = "journey-d.gif";
       optnames[2] = "graphics/title/journey-d";
     } else {
@@ -211,7 +213,7 @@ function DoAction(code, e) {
         $("#"+img).attr("src", optnames[optselect] + ".gif");
         optselect--;
         img = "opt" + optselect;
-        if ((optselect !== 2) || (localStorage.savegame)) {
+        if ((optselect !== 2) || (localStorage.savegame || localStorage.charsave)) {
           $("#"+img).attr("src", optnames[optselect] + "-g.gif");
         } else {
           optselect--;
@@ -226,7 +228,7 @@ function DoAction(code, e) {
         $("#"+img).attr("src", optnames[optselect] + ".gif");
         optselect++;
         img = "opt" + optselect;
-        if ((optselect !== 2) || (localStorage.savegame)) {
+        if ((optselect !== 2) || (localStorage.savegame || localStorage.charsave)) {
           $("#"+img).attr("src", optnames[optselect] + "-g.gif");
         } else {
           optselect++;
