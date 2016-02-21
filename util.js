@@ -1293,3 +1293,13 @@ function GetAllWithin(type,rad,map,center) {
   
   return within;
 }
+
+function IsOnPentagram(who) {
+  var themap = who.getHomeMap();
+  var tile = themap.getTile(who.getx(), who.gety());
+  var terrain = tile.getTerrain();
+  if (terrain.getGraphic() === "pentagram.gif") {
+    return 1;
+  } 
+  return 0;
+}
