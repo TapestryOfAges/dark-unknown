@@ -268,9 +268,42 @@ QUnit.test( "Test Distract spell", function( assert ) {
   var testmap = maps.getMap("unittest");
 
   var castermob = localFactory.createTile("PaladinNPC");
+  castermob.setAttitude("Friendly");
   var tgt1mob = localFactory.createTile("HeadlessNPC");
   var tgt2mob = localFactory.createTile("DelverNPC");
+  var tgt3mob = localFactory.createTile("HeadlessNPC");
   
+  testmap.placeThing(4,7,castermob);
+  testmap.placeThing(3,7,tgt1mob);
+  testmap.placeThing(5,7,tgt2mob);
+  testmap.placeThing(4,5,tgt3mob);  // far side of a wall
+  
+  assert.deepEqual(tgt1mob.getHitChance("melee"), (BASE_HIT_CHANCE+2*HIT_PER_LEVEL+5), "Checking chance to hit, pre-distraction.");
+  
+  Dice.roll = function(die) { return 70; }
+  magic[1][GetSpellID(4)].executeSpell(castermob, 0, 0);
+  
+  var distract = tgt1mob.getSpellEffectsByName("Distract");
+  var isdistract = 0;
+  if (distract) { isdistract = 1; }
+  
+  assert.deepEqual(isdistract, 1, "tgt1 should be distracted (failed resist)");
+  assert.deepEqual(tgt1mob.getHitChance("melee"), (BASE_HIT_CHANCE+2*HIT_PER_LEVEL+5-7), "Checking chance to hit, post-distraction.");
+  
+  distract = tgt2mob.getSpellEffectsByName("Distract");
+  isdistract = 0;
+  if (distract) { isdistract = 1; }
 
+  assert.deepEqual(isdistract, 0, "tgt2 should have resisted");
+
+//  var loe = testmap.getLOS(castermob.getx(), castermob.gety(), tgt3mob.getx(), tgt3mob.gety(),losgrid,1);
+//  alert(loe);
+
+  distract = tgt3mob.getSpellEffectsByName("Distract");
+  isdistract = 0;
+  if (distract) { isdistract = 1; }
+  
+  assert.deepEqual(isdistract, 0, "tgt3 had no LoE");
+  
   maps.deleteMap("unittest");
 });
