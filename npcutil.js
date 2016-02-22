@@ -33,7 +33,7 @@ function TurnMapHostile(map) {
 
 function Attack(atk, def) {
   var retval = {};
-  var type = "weapon";
+  var type = "melee";
   var rad = 1;
   if (atk.specials.reach) { 
     rad = 2; 
@@ -97,7 +97,7 @@ function Attack(atk, def) {
   }
 //  if (debug && debugflags.combat) { dbs.writeln("Attacking: weapon is " + weapon.getName() + "<br />"); }
   DebugWrite("combat", "Attacking: weapon is " + weapon.getName() + "<br />");
-  var tohit = atk.getHitChance(weapon) / 100;
+  var tohit = atk.getHitChance(type) / 100;
   tohit -= loeresult/2; // harder to hit if foe has cover
 //  if (debug && debugflags.combat) { dbs.writeln("Attacking: reducing to-hit chance by " + loeresult/2 + " due to cover<br />"); }
   DebugWrite("combat", "Attacking: reducing to-hit chance by " + loeresult/2 + " due to cover<br />");
