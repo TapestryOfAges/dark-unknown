@@ -347,7 +347,7 @@ magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   var npcs = castermap.npcs.getAll();
   $.each(npcs, function (idx, val) {
     if (val.getAttitude() !== caster.getAttitude()) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
         if (!CheckResist(caster,val,infused,0)) {
           var distract = localFactory.createTile("Distract");
           ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
@@ -357,6 +357,7 @@ magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
           }
           var duration = power * SCALE_TIME;
           distract.setExpiresTime(duration + DUTime.getGameClock());
+          distract.setPower(power);
           val.addSpellEffect(distract);
         } else {
           var desc = val.getDesc() + " resists!";
