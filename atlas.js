@@ -1619,6 +1619,7 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
       DebugWrite("light", "<br />LIGHT " + serial + ": Checking shine on x:"+i+",y:"+j+", which blocks " + block + ".<br />");
 			if ((block > LOS_THRESHOLD) && (!lightsource.checkType("PC"))) {   
         var LOSval = this.getLOS(x,y,i,j,losgrid,0,1,1);
+        if (LOSval > LOS_THRESHOLD) { LOSval = LOS_THRESHOLD; }
         var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
         var totlight = {};
 //        if (debug && debugflags.light) {dbs.writeln("LOSVAL ne: " + LOSval.ne + ", nw: " + LOSval.nw + ", se: " + LOSval.se + ", sw: " + LOSval.sw + ".<br />"); }
@@ -1638,6 +1639,7 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
         }
 			} else {
         var LOSval = this.getLOS(x,y,i,j,losgrid,0,0,1);
+        if (LOSval > LOS_THRESHOLD) { LOSval = LOS_THRESHOLD; }
         var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
         var totlight = {};
         totlight.center = (light + 1.5 - dist) * ( 1- (LOSval / LOS_THRESHOLD) );
@@ -1685,15 +1687,15 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
   // checkforlight is a universal "is this check on the behalf of light", since the previous variable is insufficient for
   // that and adding this was easier than refactoring
   
-	var trueLOS = LOS_THRESHOLD;
+	var trueLOS = 100;
 	var totalLOS = 0;
 	var quartersLOS = {};
 
- 	quartersLOS.nw = LOS_THRESHOLD;
-  quartersLOS.ne = LOS_THRESHOLD;
-  quartersLOS.sw = LOS_THRESHOLD;
-  quartersLOS.se = LOS_THRESHOLD;
-  quartersLOS.center = LOS_THRESHOLD;
+ 	quartersLOS.nw = 100;
+  quartersLOS.ne = 100;
+  quartersLOS.sw = 100;
+  quartersLOS.se = 100;
+  quartersLOS.center = 100;
 
   if (( (x2-x1) === 0) && ( (y2-y1) === 0)) {
 //    if (debug && (debugflags.map || debugflags.light)) { dbs.writeln("<span style='color:grey;font-style:italic'>&nbsp;Own tile, returning 0.<br /></span>");  }

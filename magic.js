@@ -2694,7 +2694,7 @@ magic[6][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   $.each(npcs, function (idx, val) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
         var resist = CheckResist(caster,val,infused,0);
         var power = 66-resist;
         if (resist < 33) {
@@ -2745,7 +2745,7 @@ magic[6][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   $.each(npcs, function (idx, val) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
         var resist = CheckResist(caster,val,infused,0);
         var curse = localFactory.createTile("Curse");
         var power = 5 + Math.floor(caster.getInt()/5);
@@ -2980,7 +2980,7 @@ magic[7][GetSpellID(3)].executeSpell = function(caster, infused, free) {
   $.each(npcs, function (idx, val) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
         if (CheckResist(caster,val,infused,0)) {
           if (val === PC) {
             desc = "You resist.";
@@ -3125,7 +3125,7 @@ magic[7][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   $.each(npcs, function (idx, val) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
         npccount++;
       }
     }
@@ -3133,7 +3133,7 @@ magic[7][GetSpellID(6)].executeSpell = function(caster, infused, free) {
   $.each(npcs, function (idx, val) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
         npccount--;
         var final = 0;
         if (!npccount) { final = 1; }
@@ -3290,7 +3290,7 @@ magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
   $.each(npcs, function (idx, val) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) <= LOS_THRESHOLD )) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
         var dmg = Dice.roll(DMG_HEAVY);
         if (CheckResist(caster,val,infused,0)) {
           dmg = dmg/2+1;

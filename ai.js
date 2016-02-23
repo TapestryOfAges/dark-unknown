@@ -51,7 +51,7 @@ ais.seekPC = function(who,radius) {
     if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= radius) {
       // if can see
       var losresult = whomap.getLOS(who.getx(), who.gety(), PC.getx(), PC.gety(), losgrid);
-      if (losresult < 1) {
+      if (losresult < LOS_THRESHOLD) {
 //        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Nearby and can see the PC! Aggroing.</span><br />"); }
         DebugWrite("ai", "SeekPC: Nearby and can see the PC! Aggroing.<br />");
         // WORKING HERE
