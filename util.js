@@ -151,7 +151,7 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     lighthere = 1;
   }
   else {
-    if ((blocks > LOS_THRESHOLD) && ((centerx != x) || (centery != y) )) {
+    if ((blocks >= LOS_THRESHOLD) && ((centerx != x) || (centery != y) )) {
       var dirnum = GetViewDirection(centerx,centery,x,y);
       if ((dirnum === 6) || (dirnum === 7) || (dirnum === 0)) {
         var selight = localacre.getLocalLight("se");
