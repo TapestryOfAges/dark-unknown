@@ -63,7 +63,7 @@ mappages["asharden1"].features[21] = {name : 'Brazier', x : 14, y : 18};
 
 
 mappages["asharden1"].npcs = [];
-mappages["asharden1"].npcs[0] = {name : 'MageVillagerNPC', x : 25, y : 17, NPCName: 'Asharden', Desc: 'a wizard', Level: 6, int: 24, Conversation: 'asharden', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0'};
+mappages["asharden1"].npcs[0] = {name : 'MageVillagerNPC', x : 25, y : 17, NPCName: 'Asharden', Desc: 'a wizard', Level: 6, int: 24, Conversation: 'asharden', ConversationFlag: 'spellbook2', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0'};
 
 mappages["asharden1"].desc = "Asharden's Tower";
 mappages["asharden1"].music = 'Magic';
@@ -92,10 +92,14 @@ mappages["asharden1"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
     var doorloc = mapref.getTile(25,21);
     var door = doorloc.getTopFeature();
-    if (DU.gameflags.ash_password) {  
+    if (DU.gameflags.getFlag("ash_password")) {  
     // gave password previously, unlock the door
       door.unlockMe();
     } 
+    if (DU.gameflags.getFlag("ash_get_book")) {
+      DU.gameflags.deleteFlag("ash_get_book");
+      DU.gameflags.setFlag("ash_has_book",1);
+    }
   }
 }
 
