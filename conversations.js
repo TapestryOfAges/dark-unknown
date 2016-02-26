@@ -193,9 +193,19 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       } else if (triggers.set_flag === "shield_gotten") {
         DU.gameflags.deleteFlag("get_shield");
         DU.gameflags.deleteFlag("shield_gotten");
-      } else if (triggers.set_flag("ash_get_book") {
-        // WORKING HERE
-        // find Asharden and change his AI to one that walks to a bookshelf and gets a book
+      } else if (triggers.set_flag("ash_get_book")) {
+        var ashmap = PC.getHomeMap(); // she has to be on the PC's map since they just talked to her
+        var npcs = ashmap.npcs.getAll();
+        var ash;
+        $.each(npcs, function(idx,val) {
+          if (val.getNPCName() === "Asharden") { ash = val; }
+        });
+        if (!ash) { alert("Couldn't find Asharden to change his AI."); }
+        else {
+          ash.setCurrentAI("AshardenBook");
+//          if (debug && (debugflags.plot || debugflags.ai)) { dbs.writeln("Anna's AI changes to AnnaLeaves.<br />"); }        
+          DebugWrite("plot", "Asharden's AI changes to AshardenBook.<br />");
+        }        
       } else if (triggers.set_flag === "anna_return") {
         var annamap = PC.getHomeMap(); // she has to be on the PC's map since they just talked to her
         var npcs = annamap.npcs.getAll();
