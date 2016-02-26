@@ -6779,20 +6779,20 @@ MoongateTile.prototype.walkon = function(who) {
   return "";
 }
 
-function PetrifiedRoperTile() {
-  this.name = "PetrifiedRoper";
-  this.graphic = "petrifiedroper.gif";
+function PetrifiedReaperTile() {
+  this.name = "PetrifiedReaper";
+  this.graphic = "petrifiedreaper.gif";
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
-  this.desc = "petrified roper";
+  this.desc = "petrified reaper";
 }
-PetrifiedRoperTile.prototype = new FeatureObject();
+PetrifiedReaperTile.prototype = new FeatureObject();
 
-PetrifiedRoperTile.prototype.use = function(who) {
+PetrifiedReaperTile.prototype.use = function(who) {
   if (IsAdjacent(who,this)) {
-    var loot = localFactory.createTile("RoperBark");
+    var loot = localFactory.createTile("ReaperBark");
     PC.addToInventory(loot,1);
-    maintext.delayedAddText("You take some petrified roper bark.");
+    maintext.delayedAddText("You take some petrified reaper bark.");
   } else {
     maintext.delayedAddText("Nothing happens.");
   }
@@ -6995,18 +6995,18 @@ function KeyOfShadowTile() {
 }
 KeyOfShadowTile.prototype = new ItemObject();  
 
-function RoperBarkTile() {
-  this.name = "RoperBark";
+function ReaperBarkTile() {
+  this.name = "ReaperBark";
   this.graphic = "items.gif";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-64";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "piece of petrified roper bark";
+  this.desc = "piece of petrified reaper bark";
   this.prefix = "a";
   this.addType("Quest");
 }
-RoperBarkTile.prototype = new ItemObject();
+ReaperBarkTile.prototype = new ItemObject();
 
 function AmuletOfReflectionsTile() {
   this.name = "AmuletOfReflections";
