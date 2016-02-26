@@ -47,3 +47,5 @@ pc_abyss - the PC has crossed the Great Abyss
 ivan_magic - Ivan has sent you to Asharden (NOT USED BY ASHARDEN)
 met_ash - you've spoken with Asharden at least once
 ash_quest1 - Asharden has given you the quest to get bark
+ash_get_book - you've given Asharden the bark and he is fetching you a spellbook.
+ash_has_book - Asharden has the book, next time you talk to him he'll give it to you.
