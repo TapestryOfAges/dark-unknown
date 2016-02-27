@@ -8567,6 +8567,8 @@ function WeaponObject() {
 	this.reduceArmor = 0;
 	this.damage = "1d1+0";
 	this.strdamage = 0;
+	this.hitSound = "sfx_melee_hit";
+	this.missSound = "sfx_melee_miss";
 	
 	this.addType("Weapon");
 }
@@ -8648,6 +8650,24 @@ WeaponObject.prototype.getAveDamage = function(wielder) {
     damage += parseInt(strdam);
   }
   return damage;
+}
+
+WeaponObject.prototype.getMissSound = function() {
+	return this.missSound;
+}
+
+WeaponObject.prototype.setMissSound = function(newsnd) {
+	this.missSound = newsnd;
+	return this.missSound;
+}
+
+WeaponObject.prototype.getHitSound = function() {
+	return this.hitSound;
+}
+
+WeaponObject.prototype.setHitSound = function(newsnd) {
+	this.hitSound = newsnd;
+	return this.hitSound;
 }
 
 function FistsTile() {
@@ -8762,6 +8782,8 @@ function NaturalWeaponTile() {
 	this.spriteyoffset = "-32";
 	this.desc = "natural weapon";
 	this.prefix = "a";
+	this.hitSound = "sfx_animal_hit";
+	this.missSound = "sfx_melee_miss";
 }
 NaturalWeaponTile.prototype = new WeaponObject();
 
@@ -8772,7 +8794,10 @@ function MissileWeaponObject() {
 	this.ammoxoffset = "0";
 	this.ammoyoffset = "0";
 	this.directionalammo = 0;
-	this.ammoReturn = 0;
+	this.ammoReturn = 0;	
+  this.hitSound = "sfx_missile_hit";
+  this.missSound = "sfx_missile_miss";
+
 	
 	this.addType("Missile");
 }
@@ -8877,6 +8902,9 @@ function WandTile() {
 	this.prefix = "a";
   this.ammoxoffset = "-64";
   this.ammoyoffset = "-128";
+  this.hitSound = "sfx_wand_zap";
+  this.missSound = "sfx_wand_zap";
+
 }
 WandTile.prototype = new MissileWeaponObject();
 
@@ -8893,6 +8921,8 @@ function MagicAxeTile() {
   this.ammoxoffset = "0";
   this.ammoyoffset = "-128";
   this.ammoReturn = 1;
+  this.hitSound = "sfx_magic_axe_hit";
+  this.missSound = "sfx_magic_axe_miss";
 }
 MagicAxeTile.prototype = new MissileWeaponObject();
 
@@ -8977,6 +9007,10 @@ function NPCObject() {
 	this.armorDefense = -1;
 	this.armorAbsorb = -1;
 	this.armorResist = -1;
+	this.meleeHitSound = "";
+	this.meleeMissSound = "";
+	this.missileHitSound = "";
+	this.missileMissSound = "";
 	this.initmult = 1;
 	this.movetype = MOVE_WALK;
 	this.meleeChance = 100;
@@ -9420,6 +9454,42 @@ NPCObject.prototype.getGenderedTerms = function() {
     gt.kiddie = "child";    
   }
   return gt;
+}
+
+NPCObject.prototype.getMeleeHitSound = function() {
+  return this.meleeHitSound;
+}
+
+NPCObject.prototype.setMeleeHitSound = function(newsnd) {
+  this.meleeHitSound = newsnd;
+  return this.meleeHitSound;
+}
+
+NPCObject.prototype.getMissileHitSound = function() {
+  return this.missileHitSound;
+}
+
+NPCObject.prototype.setMissileHitSound = function(newsnd) {
+  this.missleHitSound = newsnd;
+  return this.missleHitSound;
+}
+
+NPCObject.prototype.getMeleeMissSound = function() {
+  return this.meleeMissSound;
+}
+
+NPCObject.prototype.setMeleeMissSound = function(newsnd) {
+  this.meleeMissSound = newsnd;
+  return this.meleeMissSound;
+}
+
+NPCObject.prototype.getMissileMissSound = function() {
+  return this.missileMissSound;
+}
+
+NPCObject.prototype.setMissileMissSound = function(newsnd) {
+  this.missleMissSound = newsnd;
+  return this.missleMissSound;
 }
 
 NPCObject.prototype.setStr = function(newstr) {
@@ -10524,6 +10594,10 @@ function PCObject() {
 	this.graphic = "300.gif";
 	this.meleeAttackAs = "Fists";
 	this.missileAttackAs = "none";
+	this.meleeHitSound = "";
+	this.meleeMissSound = "";
+	this.missileHitSound = "";
+	this.missileMissSound = "";	
   this.equipment = {};
   this.equipment.armor = "";
   this.equipment.weapon = "";

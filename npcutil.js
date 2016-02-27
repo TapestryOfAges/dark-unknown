@@ -116,6 +116,16 @@ function Attack(atk, def) {
     // Hit!
     
     dmg = weapon.rollDamage(atk);
+    var snd;
+    if (type === "melee") {
+      snd = atk.getMeleeSoundHit();
+    } else {
+      snd = atk.getMissileSoundHit();
+    }
+    if (!snd) {
+      weapon.getHitSound();
+    }
+    DUPlaySound(snd);
 //    var armor = def.getEquipment("armor");
 //    var absorb = 0;
 //    if (armor) {
@@ -139,6 +149,17 @@ function Attack(atk, def) {
   else { // Miss!
     // animation and sound here, too
     retval["txt"] = retval["txt"] + " - missed!";
+    var snd;
+    if (type === "melee") {
+      snd = atk.getMeleeSoundMiss();
+    } else {
+      snd = atk.getMissileSoundMiss();
+    }
+    if (!snd) {
+      weapon.getMissSound();
+    }
+    DUPlaySound(snd);
+    
   }
   
   // animate attack
