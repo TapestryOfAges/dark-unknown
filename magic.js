@@ -397,7 +397,7 @@ magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
   }
   resp["fin"] = 1;
   var flameblade = localFactory.createTile("FlameBlade");
-  duration = caster.getInt() * 2 * SCALE_TIME;
+  var duration = caster.getInt() * 2 * SCALE_TIME;
   if (free) { duration = 30*SCALE_TIME; }
   flameblade.uses = 1;
   flameblade.damage = DMG_NEGLIGABLE;
@@ -540,8 +540,8 @@ function PerformVulnerability(caster, infused, free, tgt) {
       desc = "You are vulnerable!";
     }
     vulobj.setExpiresTime(dur + DUTime.getGameClock());
-    var power = 4;
-    if (infused) { power = 6; }
+    var power = 10;
+    if (infused) { power = 15; }
     vulobj.setPower(power);
     tgt.addSpellEffect(vulobj);
   }
@@ -551,7 +551,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
       desc = "You resist.";
       // no X over the PC
     } else {
-      ShowEffect(val, 700, "X.gif");
+      ShowEffect(tgt, 700, "X.gif");
     }
   }
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);

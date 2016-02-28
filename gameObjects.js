@@ -8631,8 +8631,7 @@ WeaponObject.prototype.rollDamage = function(wielder) {
     if (!DebugWrite("magic", "Flame blade adds " + fb.damage + "damage.<br />")) {
       DebugWrite("combat", "Flame blade adds " + fb.damage + "damage.<br />");
     }
-    fbdmg = Dice.roll(fb.damage);
-    damage += parseInt(fbdmg);
+    damage += parseInt(Dice.roll(fb.damage));
     fb.doEffect();
   }
   return damage;
@@ -9033,6 +9032,8 @@ function NPCObject() {
 	this.aggro = 0;
 	this.npcband = 0;
 	this.wait;
+	
+	LightEmitting.call(this, 0);
 	
 	this.addType("npc");
 //	AddNPCProperties.call(this);

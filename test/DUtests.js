@@ -47,7 +47,7 @@ var inputText = {};
 
 var raceWarning = 0;
 
-
+function DrawMainFrame() { }
 function DrawCharFrame() {}
 function ShowEffect(onwhat, duration, graphic, xoff, yoff) {}
   
@@ -221,7 +221,7 @@ QUnit.test( "Test Disarm Trap spell", function( assert ) {
   assert.deepEqual(chests[4].trapped, "", "Looking at chest 4 (challenge = 14): expecting the trap to be removed.");
   assert.deepEqual(chests[5].trapped, "", "Looking at chest 5 (challenge = 15): expecting the trap to be removed.");
   assert.deepEqual(chests[6].trapped, "", "Looking at chest 6 (challenge = 16): expecting the trap to be removed.");
-  assert.deepEqual(chests[7].trapped, "", "Looking at chest 7(challenge = 17): expecting the trap to be removed.");
+  assert.deepEqual(chests[7].trapped, "", "Looking at chest 7 (challenge = 17): expecting the trap to be removed.");
   assert.deepEqual(oldmana-castermob.getMana(), 2, "Cast spell- should have lost 2 mana.");
 
   maps.deleteMap("unittest");
@@ -262,7 +262,7 @@ QUnit.test("Test magic resistance calculation", function( assert ) {
 });
 
 
-QUnit.test( "Test Distract spell", function( assert ) {
+QUnit.test("Test Distract spell", function( assert ) {
   var maps = new MapMemory();
   maps.addMap("unittest");
   var testmap = maps.getMap("unittest");
@@ -281,7 +281,9 @@ QUnit.test( "Test Distract spell", function( assert ) {
   assert.deepEqual(tgt1mob.getHitChance("melee"), (BASE_HIT_CHANCE+2*HIT_PER_LEVEL+5), "Checking chance to hit, pre-distraction.");
   
   Dice.roll = function(die) { return 70; }
+  var oldmana = castermob.getMana();
   magic[1][GetSpellID(4)].executeSpell(castermob, 0, 0);
+  assert.deepEqual(castermob.getMana()-oldmana, -1, "Should have cost 1.");
   
   var distract = tgt1mob.getSpellEffectsByName("Distract");
   var isdistract = 0;
@@ -289,6 +291,8 @@ QUnit.test( "Test Distract spell", function( assert ) {
   
   assert.deepEqual(isdistract, 1, "tgt1 should be distracted (failed resist)");
   assert.deepEqual(tgt1mob.getHitChance("melee"), (BASE_HIT_CHANCE+2*HIT_PER_LEVEL+5-7), "Checking chance to hit, post-distraction.");
+  var endtime = distract.getExpiresTime();
+  assert.deepEqual(endtime - DUTime.getGameClock(), 7*SCALE_TIME, "Duration should be 7 (scale time)");
   
   distract = tgt2mob.getSpellEffectsByName("Distract");
   isdistract = 0;
@@ -304,6 +308,87 @@ QUnit.test( "Test Distract spell", function( assert ) {
   if (distract) { isdistract = 1; }
   
   assert.deepEqual(isdistract, 0, "tgt3 had no LoE");
+
+  oldmana = castermob.getMana();  
+  magic[1][GetSpellID(4)].executeSpell(castermob, 1, 0);
+  distract = tgt1mob.getSpellEffectsByName("Distract");
+  assert.deepEqual(distract.getPower(), 7*1.5, "Power of infused distract should be 10.5");
+  assert.deepEqual(tgt1mob.getHitChance("melee"), (BASE_HIT_CHANCE+2*HIT_PER_LEVEL+5-7*1.5), "Checking chance to hit, post-distraction.");
+  assert.deepEqual(distract.getExpiresTime()-DUTime.getGameClock(), (1/1.5)*.07 + .105, "Extended duration of merged spells.");
+  assert.deepEqual(castermob.getMana()-oldmana, -2, "Should have used 2 mana.");
   
+  maps.deleteMap("unittest");
+});
+
+QUnit.test("Test Flame Blade spell", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("unittest");
+  var testmap = maps.getMap("unittest");
+
+  var castermob = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(4,7,castermob);
+  testmap.placeThing(0,0,PC);
+  
+  var wpn = castermob.getWeapon();
+  Dice.roll = function(die) { return 10; }
+  assert.deepEqual(wpn.rollDamage(castermob), 14, "Testing longsword base damage.");
+  magic[1][GetSpellID(5)].executeSpell(castermob,0,0);
+  var fb = castermob.getSpellEffectsByName("FlameBlade");
+  assert.deepEqual(fb.damage, DMG_NEGLIGABLE, "Checking FB damage.");
+  assert.deepEqual(wpn.rollDamage(castermob), 24, "Testing longsword with flame damage.");  
+
+  maps.deleteMap("unittest");
+});
+
+QUnit.test("Test Light spell", function( assert ) {
+  
+  var maps = new MapMemory();
+  maps.addMap("unittest");
+  var testmap = maps.getMap("unittest");
+
+  var castermob = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(4,7,castermob);
+  testmap.placeThing(0,0,PC);
+
+  var oldmana = castermob.getMana();
+  var oldlight = castermob.getLight();
+  magic[1][GetSpellID(6)].executeSpell(castermob,0,1);
+  assert.deepEqual(castermob.getMana()-oldmana, 0, "Free spell!");
+  assert.deepEqual(oldlight, 0, "Should have started unlit.");
+  assert.deepEqual(castermob.getLight(), 2, "Lit!");
+  assert.deepEqual(castermob.getSpellEffectsByName("Light").getExpiresTime()-DUTime.getGameClock(), 5, "duration test, free spell so duration === 5.");
+
+  var castermob2 = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(5,7,castermob2);
+
+  var oldmana = castermob2.getMana();
+  var oldlight = castermob2.getLight();
+  magic[1][GetSpellID(6)].executeSpell(castermob2,0,0);
+  assert.deepEqual(castermob2.getMana()-oldmana, -1, "1 mana!");
+  assert.deepEqual(oldlight, 0, "Should have started unlit.");
+  assert.deepEqual(castermob2.getLight(), 2, "Lit!");
+  assert.deepEqual(castermob2.getSpellEffectsByName("Light").getExpiresTime()-DUTime.getGameClock(), 14*.3, "duration test, not free.");
+
+  maps.deleteMap("unittest");
+});
+
+QUnit.test("Test Vulnerability spell", function( assert ) {
+  Dice.roll = function(die) { return 70; }
+  
+  var maps = new MapMemory();
+  maps.addMap("unittest");
+  var testmap = maps.getMap("unittest");
+
+  var castermob = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(4,7,castermob);
+  var tgtmob = localFactory.createTile("TownGuardNPC");
+  testmap.placeThing(6,7,tgtmob);
+  
+  var olddef = tgtmob.getDefense();
+  assert.deepEqual(olddef, 20+DEF_PER_LEVEL*5, "Pre-vuln defense.");
+  var vuln = PerformVulnerability(castermob, 0, 0, tgtmob);
+  
+  assert.deepEqual(tgtmob.getDefense(), 10, "Post-vuln defense.");
+
   maps.deleteMap("unittest");
 });
