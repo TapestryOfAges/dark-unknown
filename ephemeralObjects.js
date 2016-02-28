@@ -62,7 +62,7 @@ EphemeralObject.prototype.getExpiresTime = function() {
 }
 
 EphemeralObject.prototype.setPower = function(newpower) {
-  this.power = parseInt(newpower);
+  this.power = parseFloat(newpower);
   return this.power;
 }
 
