@@ -8947,6 +8947,8 @@ function BoulderWeaponTile() {
   this.ammoxoffset = "0";
   this.ammoyoffset = "0";  // probably not final values
   this.strDamage = 1;  // only missile weapon with a strength bonus
+  this.hitSound = "sfx_boulder_hit";
+  this.missSouns = "sfx_bounder_miss";
 }
 BoulderWeaponTile.prototype = new MissileWeaponObject();
 
