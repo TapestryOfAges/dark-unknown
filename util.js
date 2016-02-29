@@ -1143,6 +1143,7 @@ function RollDamage(dam_val,extra) {
 }
 
 function IsAdjacent(one,two) {
+  if (one.getHomeMap() !== two.getHomeMap()) { return 0; }
   if (Math.abs(one.getx() - two.getx()) <= 1) {
     if (Math.abs(one.gety() - two.gety()) <= 1) {
       return 1;
