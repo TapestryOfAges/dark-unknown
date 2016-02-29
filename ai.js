@@ -631,6 +631,68 @@ ais.GarrickEscort = function(who) {
   return retval;
 }
 
+ais.AshardenBook = function(who) {
+  if (!who.dest) { who.dest = 1; }
+  var retval = {};
+  retval["fin"] = 1;
+  var themap = who.getHomeMap();
+  var gx = who.getx();
+  var gy = who.gety();
+    
+  var path;
+  var pathfound;
+  while (!pathfound) {
+    if (who.dest === 1) {
+      path = themap.getPath(gx, gy, 29, 18, MOVE_WALK);
+    } else if (who.dest === 2) {
+      var tile = themap.getTile(30,18);
+      var fea = tile.getFeatures();
+      var field;
+      $.each(fea, function(idx,val) {
+        if (val.getName === "SleepField") { field = val; }
+      });
+      if (field) {
+        themap.deleteThing(field);
+        maintext.addText("Asharden gestures and the magic field disappears.");
+      } 
+      who.dest++;
+      return retval;
+    } else if (who.dest === 3) {
+      path = themap.getPath(gx, gy, 32, 18, who.getMovetype());
+    } else if (who.dest === 4) {
+      maintext.addText("Asharden rummages through his bookshelf.");
+      who.dest++;
+      return retval;
+    } else if (who.dest ===5) {
+      if ((PC.getHomeMap() === themap) && (PC.getx() < 35) && (PC.getx() > 13) && (PC.gety() < 21) && *PC.gety() > 14)) {
+        path = themap.getPath(gx,gy,PC.getx()+1, PC.gety(), who.getMoveType());
+      } else {
+        path = themap.getPath(gx,gy,28,18, who.getMoveType()); 
+      }
+    } else if (who.dest === 6) {
+      if (IsAdjacent(who,PC)) {
+        maintext.addText("Asharden hands you a spellbook!");
+        who.setConversation("asharden");
+        who.setCurrentAI(who.prevai);
+        delete who.prevai;
+        return retval;
+      } else {
+        who.dest--;
+      }
+    }
+    path.shift();
+    if (!path[0]) { who.dest++; }
+    else { pathfound = 1; }
+  }
+  
+  // step on the path
+  // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
+  var moved = StepOrSidestep(who, path[0], [6,32]);
+  
+  return retval;
+}
+
+
 ais.AoifeEscort = function(who) {
   var retval = {};
   retval["fin"] = 1;
