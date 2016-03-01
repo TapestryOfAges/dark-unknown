@@ -118,9 +118,9 @@ function Attack(atk, def) {
     dmg = weapon.rollDamage(atk);
     var snd;
     if (type === "melee") {
-      snd = atk.getMeleeSoundHit();
+      snd = atk.getMeleeHitSound();
     } else {
-      snd = atk.getMissileSoundHit();
+      snd = atk.getMissileHitSound();
     }
     if (!snd) {
       weapon.getHitSound();
@@ -151,9 +151,9 @@ function Attack(atk, def) {
     retval["txt"] = retval["txt"] + " - missed!";
     var snd;
     if (type === "melee") {
-      snd = atk.getMeleeSoundMiss();
+      snd = atk.getMeleeMissSound();
     } else {
-      snd = atk.getMissileSoundMiss();
+      snd = atk.getMissileMissSound();
     }
     if (!snd) {
       weapon.getMissSound();

@@ -175,6 +175,7 @@ GameObject.prototype.copy = function(type) {
     copydata.traceback.push("timeline");
   }
   $.each(this, function(idx, val) {
+    DebugWrite("save " + idx + ":");
     if ((typeof val === "function") && (typeof base_version[idx] === "function")) { 
 //      if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " is a function, moving on...</span>  "); }
       DebugWrite("saveload", idx + " is a function, moving on...</span>  ");
@@ -182,7 +183,7 @@ GameObject.prototype.copy = function(type) {
       // both have a function. Assuming they're the same, not worth caring
     }
     if (typeof val === "function") {  // real one has a function base one does not
-      alert("Function on " + this.getName() + ": " + idx);
+      alert("Function on " + copydata.name + ": " + idx);
     }
     if (typeof val !== "object") { 
       if (val != base_version[idx]) {
@@ -3780,7 +3781,7 @@ TalkingDoorTile.prototype.getGenderedTerms = function() {
 }
 
 TalkingDoorTile.prototype.activate = function(timeoverride) {
-  this.use_old = this.use;
+//  this.use_old = this.use;
   this.use = function(who) {
     var retval;
     maintext.addText("Use " + this.getDesc() + ":");

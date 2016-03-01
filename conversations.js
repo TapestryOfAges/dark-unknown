@@ -91,8 +91,11 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       // special cases
       if (triggers.set_flag === "ash_password") {
         var door = PC.getHomeMap().getTile(25,21).getTopFeature();
-        door.use = door.use_old;
-        door.unlockMe();
+//        door.use = door.use_old;
+//        door.unlockMe();
+        PC.getHomeMap().deleteThing(door);
+        door = localFactory.createTile("Door");
+        PC.getHomeMap().placeThing(25,21,door);
       
         // replicating a door's Use code without a user
         door.setGraphicArray(door.opengraphic);
@@ -104,7 +107,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   			DUPlaySound("sfx_open_door"); 
 	  		door.open = 1;
 			
-		  	DrawMainFrame("draw",door.getHomeMap().getName(),PC.getx(),PC.gety());
+		  	DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
 			  DU.gameflags.deleteFlag(triggers.set_flag);
       } else if (triggers.set_flag === "spellbook") {
         PC.addSpell(1,GetSpellID(5)); 
@@ -193,7 +196,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       } else if (triggers.set_flag === "shield_gotten") {
         DU.gameflags.deleteFlag("get_shield");
         DU.gameflags.deleteFlag("shield_gotten");
-      } else if (triggers.set_flag("ash_get_book")) {
+      } else if (triggers.set_flag === "ash_get_book") {
         var ashmap = PC.getHomeMap(); // he has to be on the PC's map since they just talked to him
         var npcs = ashmap.npcs.getAll();
         var ash;

@@ -94,7 +94,10 @@ mappages["asharden1"].onload = function(mapref) {
     var door = doorloc.getTopFeature();
     if (DU.gameflags.getFlag("ash_password")) {  
     // gave password previously, unlock the door
-      door.unlockMe();
+      //door.unlockMe();
+      mapref.deleteThing(door);
+      var newdoor = localFactory.createTile("Door");
+      mapref.placeThing(25,21,newdoor);
     } 
     if (DU.gameflags.getFlag("ash_get_book")) {
       DU.gameflags.deleteFlag("ash_get_book");

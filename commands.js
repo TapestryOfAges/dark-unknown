@@ -1764,6 +1764,10 @@ function PerformYell() {
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,46,28);		  
       DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+    } else if (inputText.txt === "GETBARK") {
+      var bark = localFactory.createTile("ReaperBark");
+      var themap = PC.getHomeMap();
+      themap.placeThing(PC.getx(),PC.gety()-1,bark);
 // REAL YELLS START HERE
 		} else if (inputText.txt === "KARIS") {
 		  if (PC.getHomeMap().getName() === "asharden1") {

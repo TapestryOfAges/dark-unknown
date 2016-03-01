@@ -649,11 +649,12 @@ ais.AshardenBook = function(who) {
       var fea = tile.getFeatures();
       var field;
       $.each(fea, function(idx,val) {
-        if (val.getName === "SleepField") { field = val; }
+        if (val.getName() === "SleepField") { field = val; }
       });
       if (field) {
         themap.deleteThing(field);
         maintext.addText("Asharden gestures and the magic field disappears.");
+        DrawMainFrame("one",who.getHomeMap().getName(),30,18);
       } 
       who.dest++;
       return retval;
@@ -664,14 +665,15 @@ ais.AshardenBook = function(who) {
       who.dest++;
       return retval;
     } else if (who.dest ===5) {
-      if ((PC.getHomeMap() === themap) && (PC.getx() < 35) && (PC.getx() > 13) && (PC.gety() < 21) && *PC.gety() > 14)) {
-        path = themap.getPath(gx,gy,PC.getx()+1, PC.gety(), who.getMoveType());
+      if ((PC.getHomeMap() === themap) && (PC.getx() < 35) && (PC.getx() > 13) && (PC.gety() < 21) && (PC.gety() > 14)) {
+        path = themap.getPath(gx,gy,PC.getx()+1, PC.gety(), who.getMovetype());
       } else {
         path = themap.getPath(gx,gy,28,18, who.getMoveType()); 
       }
     } else if (who.dest === 6) {
       if (IsAdjacent(who,PC)) {
         maintext.addText("Asharden hands you a spellbook!");
+        DU.gameflags.setFlag("spellbook2",1);
         who.setConversation("asharden");
         who.setCurrentAI(who.prevai);
         delete who.prevai;
@@ -687,7 +689,16 @@ ais.AshardenBook = function(who) {
   
   // step on the path
   // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
-  var moved = StepOrSidestep(who, path[0], [6,32]);
+  var desttile = themap.getTile(path[0][0],path[0][1]);
+  var npcs = desttile.getNPCs();
+  if (npcs.length) {
+    if (Dice.roll("1d4") === 1) {
+      if ((PC.getHomeMap() === who.getHomeMap()) && (GetSquareDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= 5)) {
+        maintext.addText('Asharden says, "Excuse me."');
+      }
+    }
+  }
+  var moved = StepOrSidestep(who, path[0], [32,18]);
   
   return retval;
 }
