@@ -416,33 +416,37 @@ function SetBandAggro(band, map) {
 function StepOrDoor(who, where) {
   var whomap = who.getHomeMap();
   var tile = whomap.getTile(where[0],where[1]);
-  var fea = tile.getTopFeature();
-  if (fea && fea.closedgraphic && who.specials["open_door"]) {
-    if (!((typeof fea.getLocked === "function") && (fea.getLocked()))) {
-      // door is not locked    
-      if (!fea.open) {
+  if (tile !== "OoB") {
+    var fea = tile.getTopFeature();
+    if (fea && fea.closedgraphic && who.specials["open_door"]) {
+      if (!((typeof fea.getLocked === "function") && (fea.getLocked()))) {
+        // door is not locked    
+        if (!fea.open) {
 //        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
-        DebugWrite("ai", "opening a door in StepOrDoor.<br />");
-        fea.use(who);
-        DrawMainFrame("one",who.getHomeMap().getName(),fea.getx(),fea.gety());
-        return 2;  // opened a door
+          DebugWrite("ai", "opening a door in StepOrDoor.<br />");
+          fea.use(who);
+          DrawMainFrame("one",who.getHomeMap().getName(),fea.getx(),fea.gety());
+          var moved = {canmove:0, opendoor:2, fin:1, diffx: where[0]-who.getx(), diffy: where[1]-who.gety() };
+          return moved;  // opened a door
+        }
       }
     }
   }
   var diffx = where[0] - who.getx();
   var diffy = where[1] - who.gety();
   var moved = who.moveMe(diffx,diffy);
+//  moved["diffx"] = diffx;
+//  moved["diffy"] = diffy;
   if (moved["canmove"]) { 
 //    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>moved in StepOrDoor.</span><br />"); }
     DebugWrite("ai", "moved in StepOrDoor.<br />");
-    return 1; }
-  
-  return 0;
+  }
+  return moved;
 }
 
 function StepOrSidestep(who, path, finaldest) {
-  var moved = StepOrDoor(who,[path[0], path[1]]);
-  if (!moved) {
+  var moved = StepOrDoor(who,path);
+  if (!moved["canmove"] && !moved["opendoor"]) {
     var diffx = path[0] - who.getx();
     var diffy = path[1] - who.gety();
     var fullx = finaldest[0] - who.getx();
@@ -453,7 +457,7 @@ function StepOrSidestep(who, path, finaldest) {
       else if (fully < 0 ) { moved = who.moveMe(0,-1,1); }
       else { 
         var parity = 1;
-        if (Math.random() < .5) { 
+        if (Dice.roll("1d2") === 1) { 
           parity = -1;
         }
         moved = who.moveMe(0,parity,1); 
@@ -463,7 +467,7 @@ function StepOrSidestep(who, path, finaldest) {
       else if (fullx < 0) { moved = who.moveMe(-1,0,1); }
       else {
         var parity = 1;
-        if (Math.random() < .5) {
+        if (Dice.roll("1d2") === 1) {
           parity = -1;
         } 
         moved = who.moveMe(parity,0,1);
