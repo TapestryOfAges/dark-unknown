@@ -293,7 +293,7 @@ ais.townsfolk = function(who) {
       var path = themap.getPath(who.getx(),who.gety(),who.startx, who.starty, MOVE_WALK_DOOR);
       path.shift();  // first entry in the path is where it already stands
       if (path[0]){
-        var acre = themap.getTile(path[0][0],path[0][1]);
+/*        var acre = themap.getTile(path[0][0],path[0][1]);
         var possdoor = acre.getTopFeature();
         if (possdoor && (possdoor.closedgraphic)) { 
           // there is a door in the way
@@ -306,6 +306,7 @@ ais.townsfolk = function(who) {
             return retval;
           }
         } 
+*/
 //        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Moving to " + path[0][0] + "," + path[0][1] + ".</span><br />"); }
         DebugWrite("ai", "Moving to " + path[0][0] + "," + path[0][1] + ".<br />");
 //        who.moveMe(path[0][0]-who.getx(), path[0][1]-who.gety());
