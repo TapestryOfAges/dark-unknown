@@ -56,8 +56,150 @@ QUnit.test( "Test randomwalk", function( assert ) {
   var mage = localFactory.createTile("MageVillagerNPC");
   testmap.placeThing(8,10,mage);
   
-  assert.deepEquals(mage.startx,8,"Placed, startx should be set.");
-  assert.deepEquals(mage.starty,10,"Placed, starty should be set.");
+  assert.deepEqual(mage.startx,8,"Placed, startx should be set.");
+  assert.deepEqual(mage.starty,10,"Placed, starty should be set.");
  
+  Dice.roll = function() { return 10; }
+  
+  var moveval = ais.Randomwalk(mage,25,25,25,25);
+  assert.deepEqual(mage.getx(),8,"New x position: 8");
+  assert.deepEqual(mage.gety(),9,"New y position: 9");
+  assert.deepEqual(moveval.diffx,0,"Didn't move EW.");
+  assert.deepEqual(moveval.diffy,-1,"Moved north.");
+  assert.deepEqual(moveval.nomove,0,"Nomove = 0, moved.");
+  assert.deepEqual(moveval.canmove,1,"Canmove = 1, moved.");
+
+  Dice.roll = function() { return 30; }
+  
+  moveval = ais.Randomwalk(mage,25,25,25,25);
+  assert.deepEqual(mage.getx(),9,"New x position: 9");
+  assert.deepEqual(mage.gety(),9,"New y position: 9");
+  assert.deepEqual(moveval.diffx,1,"Moved E.");
+  assert.deepEqual(moveval.diffy,0,"Didn't move NS.");
+  assert.deepEqual(moveval.nomove,0,"Nomove = 0, moved.");
+  assert.deepEqual(moveval.canmove,1,"Canmove = 1, moved.");
+
+  Dice.roll = function() { return 60; }
+  
+  moveval = ais.Randomwalk(mage,25,25,25,25);
+  assert.deepEqual(mage.getx(),9,"New x position: 9");
+  assert.deepEqual(mage.gety(),10,"New y position: 10");
+  assert.deepEqual(moveval.diffx,0,"Didn't move EW.");
+  assert.deepEqual(moveval.diffy,1,"Moved S.");
+  assert.deepEqual(moveval.nomove,0,"Nomove = 0, moved.");
+  assert.deepEqual(moveval.canmove,1,"Canmove = 1, moved.");
+
+  Dice.roll = function() { return 80; }
+  
+  moveval = ais.Randomwalk(mage,25,25,25,25);
+  assert.deepEqual(mage.getx(),8,"New x position: 8");
+  assert.deepEqual(mage.gety(),10,"New y position: 10");
+  assert.deepEqual(moveval.diffx,-1,"Moved W.");
+  assert.deepEqual(moveval.diffy,0,"Didn't move NS.");
+  assert.deepEqual(moveval.nomove,0,"Nomove = 0, moved.");
+  assert.deepEqual(moveval.canmove,1,"Canmove = 1, moved.");
+  
+  moveval = ais.Randomwalk(mage,25,25,0,0);
+  assert.deepEqual(mage.getx(),8,"Didn't move (x=8).");
+  assert.deepEqual(mage.gety(),10,"Didn't move (y=10)");
+  assert.deepEqual(moveval.diffx,0,"Didn't move (diffx=0).");
+  assert.deepEqual(moveval.diffy,0,"Didn't move (diffy=0).");
+  assert.deepEqual(moveval.nomove,1,"Didn't move (nomove = 1).");
+  assert.deepEqual(moveval.canmove,0,"Canmove = 0, didn't move.");
+  
+  Dice.roll = function() {return 40; }
+  moveval = ais.Randomwalk(mage,25,0,0,25);
+  assert.deepEqual(mage.getx(),7,"New x position: 7");
+  assert.deepEqual(mage.gety(),10,"New y position: 10");
+  assert.deepEqual(moveval.diffx,-1,"Moved W.");
+  assert.deepEqual(moveval.diffy,0,"Didn't move NS.");
+  assert.deepEqual(moveval.nomove,0,"Nomove = 0, moved.");
+  assert.deepEqual(moveval.canmove,1,"Canmove = 1, moved.");
+  
+  var field = localFactory.createTile("SleepField");
+  testmap.placeThing(8,10,field);
+  moveval = ais.Randomwalk(mage,0,50,0,0);
+  assert.deepEqual(mage.getx(),7,"New x position: 7 (unchanged)");
+  assert.deepEqual(mage.gety(),10,"New y position: 10 (unchanged)");
+  assert.deepEqual(moveval.diffx,1,"Tried to move E, didn't.");
+  assert.deepEqual(moveval.diffy,0,"Didn't move NS.");
+  assert.deepEqual(moveval.nomove,1,"Nomove = 1, no move.");
+  assert.deepEqual(moveval.canmove,0,"Canmove = 0, no move.");
+
+  moveval = ais.Randomwalk(mage,0,0,0,50);
+  assert.deepEqual(mage.getx(),7,"New x position: 7 (unchanged)");
+  assert.deepEqual(mage.gety(),10,"New y position: 10 (unchanged)");
+  assert.deepEqual(moveval.diffx,-1,"Tried to move W, didn't.");
+  assert.deepEqual(moveval.diffy,0,"Didn't move NS.");
+  assert.deepEqual(moveval.nomove,0,"Nomove = 0, despite no move, because move was attempted but failed.");
+  assert.deepEqual(moveval.canmove,0,"Canmove = 0, no move.");
+
   maps.deleteMap("unittest2");
-}
+});
+
+QUnit.test( "Test townsfolk AI", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("unittest2");
+  var testmap = maps.getMap("unittest2");
+ 
+  var mage = localFactory.createTile("MageVillagerNPC");
+  testmap.placeThing(8,11,mage);
+
+  mage.setLeash(3);
+  assert.deepEqual(mage.getLeash(),3,"Leash = 3");
+  
+  testmap.placeThing(0,0,PC);
+  
+  Dice.roll = function() { return 2; } // townsfolk AI will not wander
+  assert.deepEqual(mage.getCurrentAI(),"townsfolk", "AI is townsfolk.");
+  
+  var airesult = ais.townsfolk(mage);
+  assert.deepEqual(mage.getx(),8,"Townsfolk didn't move (x=8).")
+  assert.deepEqual(mage.gety(),11,"Townsfolk didn't move (y=11).")
+
+  Dice.roll = function() { return 1; }
+  airesult = ais.townsfolk(mage);
+  assert.deepEqual(mage.getx(),8,"Townsfolk randomwalked north (x=8).")
+  assert.deepEqual(mage.gety(),10,"Townsfolk randomwalked north (y=10).")
+  
+  Dice.roll = function() {
+    if (!Dice.rollnum) { Dice.rollnum = 1; }
+    if (Dice.rollnum === 1) { Dice.rollnum++; return 1; } // yes, move
+    if (Dice.rollnum === 2) { Dice.rollnum++; return 80; } // randomwalk west
+  }
+
+  airesult = ais.townsfolk(mage);
+  assert.deepEqual(mage.getx(),7,"Walked west (x=7).");
+  assert.deepEqual(mage.gety(),10," (y=10).")
+  
+  Dice.rollnum = 1;
+  airesult = ais.townsfolk(mage);
+  assert.deepEqual(mage.getx(),7,"Tried to walk west, opened door instead (x=7).");
+  assert.deepEqual(mage.gety(),10," (y=10).")
+
+  Dice.rollnum = 1;
+  airesult = ais.townsfolk(mage);
+  assert.deepEqual(mage.getx(),6,"Stepped through open door (x=6).");
+  assert.deepEqual(mage.gety(),10," (y=10).")
+  
+  Dice.rollnum = 1;
+  airesult = ais.townsfolk(mage);
+  assert.deepEqual(mage.getx(),5,"Still west (x=5).");
+  assert.deepEqual(mage.gety(),10," (y=10).")
+  
+  var tile = testmap.getTile(6,10);
+  var door = tile.getFeatures();
+  door[0].use(mage);
+  
+  Dice.rollnum = 1;
+  airesult = ais.townsfolk(mage);
+  assert.deepEqual(mage.getx(),5,"Outside leash, heading back (x=5, opened door).");
+  assert.deepEqual(mage.gety(),10," (y=10).")  
+  
+  Dice.rollnum = 1;
+  airesult = ais.townsfolk(mage);
+  assert.deepEqual(mage.getx(),6,"Outside leash, heading back (x=6).");
+  assert.deepEqual(mage.gety(),10," (y=10).")
+  
+  maps.deleteMap("unittest2");
+});
