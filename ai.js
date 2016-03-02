@@ -279,8 +279,14 @@ ais.townsfolk = function(who) {
   var retval = {};
   retval["fin"] = 1;
   
+  if (!(who.startx && who.starty)) {
+    DebugWrite("ai", "WARNING: missing startx or starty. Setting to current position...");
+    who.startx = who.getx();
+    who.starty = who.gety();
+    alert(who.getName() + " WARNING: missing startx or starty. Setting to current position...");
+  }
   var themap = who.getHomeMap();
-  if (Math.random() < .25) {   // 25% chance of moving, slow wander
+  if (Dice.roll("1d4") === 1) {   // 25% chance of moving, slow wander
 //    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Moving... </span>"); }
     DebugWrite("ai", "Moving... ");
     if (who.getLeash() && (who.getLeash() < GetDistance(who.getx(), who.gety(), who.startx, who.starty))) {
@@ -312,19 +318,21 @@ ais.townsfolk = function(who) {
     } else if (who.getLeash()) {
       // able to wander (leash = 0 means stationary)
       var moveval = ais.Randomwalk(who,25,25,25,25);
-      if (moveval["canmove"] === 0) {
+      if ((moveval["canmove"] === 0) && (retval["nomove"] !== 1)) {
         // it picked a direction to move but failed to move
         var acre = themap.getTile(who.getx()+moveval['diffx'], who.gety()+moveval['diffy']);
-        var possdoor = acre.getTopFeature();
-        if (possdoor && (possdoor.closedgraphic)) { 
-          // there is a door in the way
-          if (!((typeof possdoor.getLocked === "function") && (possdoor.getLocked()))) {
-            // door is not locked
-//            if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
-            DebugWrite("ai", "opening a door.<br />");
-            possdoor.use(who);
-            DrawMainFrame("one",who.getHomeMap().getName(),possdoor.getx(),possdoor.gety());
-            return retval;
+        if (acre !== "OoB") {
+          var possdoor = acre.getTopFeature();
+          if (possdoor && (possdoor.closedgraphic)) { 
+            // there is a door in the way
+            if (!((typeof possdoor.getLocked === "function") && (possdoor.getLocked()))) {
+              // door is not locked
+//              if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
+              DebugWrite("ai", "opening a door.<br />");
+              possdoor.use(who);
+              DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
+              return retval;
+            }
           }
         }
         
@@ -1121,7 +1129,7 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
     chance_west = 25;
   }
   
-  var roll = Math.floor(Math.random() * 100)+ 1;
+  var roll = Dice.roll("1d100");
   if (roll <= chance_north) { diffy = -1; }
   else if (roll - chance_north < chance_east) { diffx = 1; }
   else if (roll - chance_north - chance_east < chance_south) { diffy = 1; }
