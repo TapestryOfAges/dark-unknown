@@ -108,8 +108,10 @@
 		<tr><td>Exit to Map:<br />Dest X:<br />Dest Y:</td>
 	<td><select name="mapexitmap"><option value=""></option>
 			<script language="JavaScript">
-		  	for (var keyz in mapslist) {
-		  		document.writeln('<option value="' + keyz + '">' + keyz + '</option>');
+		  	for (var keyz in mappages) {
+        	if (keyz != "readPage") {
+     	      document.writeln('<option value="' + keyz + '">' + keyz + '</option>');
+          }
 		  	}
 			</script>
 		</select>
