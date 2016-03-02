@@ -122,3 +122,49 @@ mappages["unittest"].returnx = 'NaN';
 mappages["unittest"].returny = 'NaN';
 mappages["unittest"].returninfused = '0';
 mappages["unittest"].linkedMaps = [""];
+
+mappages["unittest2"] = {};
+mappages["unittest2"].terrain = [];
+ mappages["unittest2"].terrain[0] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest2"].terrain[1] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest2"].terrain[2] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest2"].terrain[3] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest2"].terrain[4] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest2"].terrain[5] = '++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest2"].terrain[6] = '## ## ## ## ## ## ## ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest2"].terrain[7] = '## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest2"].terrain[8] = '## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++';
+ mappages["unittest2"].terrain[9] = '## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["unittest2"].terrain[10] = '## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["unittest2"].terrain[11] = '## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["unittest2"].terrain[12] = '## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["unittest2"].terrain[13] = '## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++';
+mappages["unittest2"].terrain[14] = '## ## ## ## ## ## ## ++ ++ ++ ++ ++ ++ ++ ++';
+
+mappages["unittest2"].features = [];
+mappages["unittest2"].features[0] = {name : 'DoorWindow', x : 6, y : 10};
+
+
+mappages["unittest2"].npcs = [];
+
+mappages["unittest2"].desc = "Unit Tests";
+mappages["unittest2"].music = 'Lullaby';
+mappages["unittest2"].exitmap = '';
+mappages["unittest2"].exitx = '65';
+mappages["unittest2"].exity = '70';
+mappages["unittest2"].wraps = 'None';
+mappages["unittest2"].enterx = '65';
+mappages["unittest2"].entery = '70';
+mappages["unittest2"].seeBelow = '';
+mappages["unittest2"].lightLevel = 'bright';
+mappages["unittest2"].alwaysRemember = '0';
+mappages["unittest2"].scale = '1';
+mappages["unittest2"].enterscript = '';
+mappages["unittest2"].entertestscript = '';
+mappages["unittest2"].exitscript = '';
+mappages["unittest2"].exittestscript = '';
+mappages["unittest2"].returnmap = '';
+mappages["unittest2"].returnx = 'NaN';
+mappages["unittest2"].returny = 'NaN';
+mappages["unittest2"].returninfused = '0';
+mappages["unittest2"].linkedMaps = [""];
