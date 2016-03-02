@@ -297,7 +297,7 @@ ais.townsfolk = function(who) {
         var possdoor = acre.getTopFeature();
         if (possdoor && (possdoor.closedgraphic)) { 
           // there is a door in the way
-          if (!((typeof possdoor.getLocked === "function") && (possdoor.getLocked()))) {
+          if (!possdoor.open && !((typeof possdoor.getLocked === "function") && (possdoor.getLocked()))) {
             // door is not locked
 //            if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
             DebugWrite("ai", "opening a door.<br />");
@@ -1118,7 +1118,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
 
 ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_west) {
   // default values, 25 25 25 25. If it doesn't sum to 100, the remainder is chance_none.
-  var retval = { nomove: 0 };
+  var retval = {};
   var diffx = 0;
   var diffy = 0;
   
@@ -1138,6 +1138,8 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
   if (diffx === diffy) {  // which at this point can only happen if we aren't moving
     retval["nomove"] = 1;
     retval["canmove"] = 0;
+    retval["diffx"] = diffx;
+    retval["diffy"] = diffy;
     return retval;
   }
   var desttile = who.getHomeMap().getTile(who.getx()+diffx, who.gety()+diffy);
@@ -1145,11 +1147,20 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
   
   if (fea) {
     for (var i=0; i<fea.length; i++){
-      if (fea[i].getName().indexOf("Field") !== -1) { return retval; }  // won't wander into a Field
+      if (fea[i].getName().indexOf("Field") !== -1) {  // won't wander into a Field
+        retval["nomove"] = 1;
+        retval["canmove"] = 0;
+        retval["diffx"] = diffx;
+        retval["diffy"] = diffy;
+        return retval; 
+      } 
     }
   }
   
   retval = who.moveMe(diffx,diffy);
+  retval.nomove = 0;   // NOTE- this is 0 even if they didn't move. If it gets to this point,
+                       // canmove is the only reliable indicator of whether it moved. Checking
+                       // for canmove=0 AND nomove=0 reveals that a move was attempted but failed.
   retval["diffx"] = diffx;
   retval["diffy"] = diffy;
   return retval;
