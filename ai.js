@@ -321,7 +321,7 @@ ais.townsfolk = function(who) {
       var moveval = ais.Randomwalk(who,25,25,25,25);
       if ((moveval["canmove"] === 0) && (retval["nomove"] !== 1)) {
         // it picked a direction to move but failed to move
-        var acre = themap.getTile(who.getx()+moveval['diffx'], who.gety()+moveval['diffy']);
+ /*       var acre = themap.getTile(who.getx()+moveval['diffx'], who.gety()+moveval['diffy']);
         if (acre !== "OoB") {
           var possdoor = acre.getTopFeature();
           if (possdoor && (possdoor.closedgraphic)) { 
@@ -336,6 +336,7 @@ ais.townsfolk = function(who) {
             }
           }
         }
+ */  // this part obviated by putting door opening into randomwalk
         
       }
     }
@@ -1158,13 +1159,12 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
     }
   }
   
-  retval = who.moveMe(diffx,diffy);
-  retval.nomove = 0;   // NOTE- this is 0 even if they didn't move. If it gets to this point,
-                       // canmove is the only reliable indicator of whether it moved. Checking
-                       // for canmove=0 AND nomove=0 reveals that a move was attempted but failed.
-  retval["diffx"] = diffx;
-  retval["diffy"] = diffy;
+  retval = StepOrSidestep(who, [who.getx()+diffx,who.gety()+diffy], [who.getx()+diffx,who.gety()+diffy]);
+  retval["nomove"] = 0;  // NOTE- this is 0 even if they didn't move. If it gets to this point,
+                         // canmove is the only reliable indicator of whether it moved. Checking
+                         // for canmove=0 AND nomove=0 reveals that a move was attempted but failed.
   return retval;
+
 }
 
 
