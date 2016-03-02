@@ -10044,6 +10044,8 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	    // NPC won't step out of the map
 	    DebugWrite("map", this.getDesc() + " won't move out of the map.<br />");
 	    retval["canmove"] = 0;
+	    retval["diffx"] = diffx;
+	    retval["diffy"] = diffy;
 	    return retval;
 	  }
 		if (map.getExitToMap()) {
@@ -10122,6 +10124,8 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
     }
 	}
 	retval["initdelay"] = tile.getInitDelay(this);
+	retval["diffx"] = diffx;
+	retval["diffy"] = diffy;
 	return retval;
 }
 
