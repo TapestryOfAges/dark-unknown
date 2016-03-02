@@ -1271,7 +1271,7 @@ function DisplayTestMap() {
   var debugmap = window.open('','debugmapscreen');
   debugmap.document.writeln(mapdiv);
   
-  debugmap.close()
+  debugmap.document.close()
 }
 
 function GetAllWithin(type,rad,map,center) {
