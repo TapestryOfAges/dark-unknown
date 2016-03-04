@@ -890,7 +890,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
       // because these values can never be 1 away via GetDistance
     }
   }
-  if (GetDistance(who.getx(), who.gety(), locx, locy) === 1) {
+  if (IsAdjacent(who,PC,"nodiag")) {
     if (pcmap === who.getHomeMap()) {
 //      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " attacks the PC!</span><br />"); }
       DebugWrite("ai", "<span style='font-weight:bold'>AI " + who.getName() + " attacks the PC!</span><br />"); 
@@ -904,12 +904,6 @@ ais.OutdoorHostile = function(who, radius, pname) {
       return retval;
     }
   }
-  
-  // Next, check to see if it's outside its leash radius (moved to SurfaceFollowPath)
-//  var spawner = who.getSpawnedBy();
-//  if ((spawner) && ) {
-    
-//  }
   
   // Next, check and see if there is already a path that has not expired
   // but only if the PC is not within close range- in that case, always wait to hunt
