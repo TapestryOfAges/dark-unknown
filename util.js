@@ -1142,13 +1142,10 @@ function RollDamage(dam_val,extra) {
   return parseInt(dmg);
 }
 
-function IsAdjacent(one,two) {
+function IsAdjacent(one,two,nodiag) {
   if (one.getHomeMap() !== two.getHomeMap()) { return 0; }
-  if (Math.abs(one.getx() - two.getx()) <= 1) {
-    if (Math.abs(one.gety() - two.gety()) <= 1) {
-      return 1;
-    }
-  }
+  if (!nodiag && (Math.abs(one.getx() - two.getx()) <== 1) && (Math.abs(one.gety() - two.gety()) <== 1) { return 1; }
+  if (((Math.abs(one.getx() - two.getx()) === 1) && (Math.abs(one.gety() - two.gety()) === 0)) || ((Math.abs(one.getx() - two.getx()) === 0) && (Math.abs(one.gety() - two.gety()) === 1))) { return 1; }
   return 0;
 }
 
