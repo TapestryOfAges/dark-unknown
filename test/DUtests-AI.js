@@ -18,6 +18,8 @@ var PC = DU.PC;  // alias
 
 var timeouts = {};
 
+var debugarray = [];
+
 PC.assignSerial();
 var nowplaying;
 var laststep = "left";
@@ -202,4 +204,65 @@ QUnit.test( "Test townsfolk AI", function( assert ) {
   assert.deepEqual(mage.gety(),10," (y=10).")
   
   maps.deleteMap("unittest2");
+});
+
+QUnit.test( "Test ProcessPoI", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("darkunknown");
+  var testmap = maps.getMap("darkunknown");
+
+  var testnpc = localFactory.createTile("HoodNPC");
+  testmap.placeThing(59,122,testnpc);
+
+  Dice = new DiceObject();
+  Dice.roll = function() { return 0; }
+  var score = ais.ProcessPoI(testnpc,"road");
+
+  assert.deepEqual(testnpc.getPoI().x,55,"x coord of new PoI");
+  assert.deepEqual(testnpc.getPoI().y,115,"y coord of new PoI");
+  assert.deepEqual(testnpc.getCurrentPath().length,11,"Check for length of path.");
+  assert.deepEqual(testnpc.getTurnsToRecalcDest(),6,"Duration of path");
+  assert.deepEqual(testnpc.getDestination().x,55,"x coord of new PoI");
+  assert.deepEqual(testnpc.getDestination().y,115,"y coord of new PoI");
+  assert.deepEqual(testnpc.getDestinationType(),"PoI","Test of destination type.");
+  assert.deepEqual(testnpc.getCurrentPath()[0][0],59,"First step is not E/W");
+  assert.deepEqual(testnpc.getCurrentPath()[0][1],121,"First step is N/S");
+  assert.deepEqual(score,1,"Went through the first path in ProcessPoI.");
+  
+  var firststep = testnpc.getNextStep()
+  assert.deepEqual(firststep[0],59,"First step is not E/W");
+  assert.deepEqual(firststep[1],121,"First step is N/S");
+  
+  score = ais.ProcessPoI(testnpc,"road");
+  assert.deepEqual(score,3,"Went through third path.");
+  assert.deepEqual(testnpc.getCurrentPath()[0][0],59,"First step is not E/W");
+  assert.deepEqual(testnpc.getCurrentPath()[0][1],121,"First step is N/S");
+
+  testnpc.setTurnsToRecalcDest(0);
+  score = ais.ProcessPoI(testnpc,"road");
+  assert.deepEqual(score,2,"Went through second (path expired) codepath.");
+  assert.deepEqual(testnpc.getDestination().x,36,"Path expired, looking at new PoI");
+  assert.deepEqual(testnpc.getDestination().y,100,"Path expired, looking at new PoI");
+  assert.deepEqual(testnpc.getTurnsToRecalcDest(),30,"New duration");
+  assert.deepEqual(testnpc.getCurrentPath()[0][0],59,"First step is not E/W");
+  assert.deepEqual(testnpc.getCurrentPath()[0][1],121,"First step is N/S");
+  
+  maps.deleteMap("darkunknown");
+});
+
+QUnit.test( "Test Hunt For PC", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("darkunknown");
+  var testmap = maps.getMap("darkunknown");
+
+  var testnpc = localFactory.createTile("HoodNPC");
+  testmap.placeThing(59,122,testnpc);
+
+  maps.addMap("combatGrass1");
+  var combatmap = maps.getMap("combatGrass1");
+  
+  combatmap.placeThing(5,5,PC);
+  
+
+  maps.deleteMap("darkunknown");
 });
