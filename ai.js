@@ -880,7 +880,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
   var locy = PC.gety();
   var pcmap = PC.getHomeMap();
   if (who.getHomeMap() !== pcmap) {
-    if (pcmap.getName().match(/combat/)) {
+    if ((pcmap.getName().match(/combat/)) && (pcmap.getExitToMap() === who.getHomeMap().getName())) {
       // if PC is on a combat map, use map's exit coords to determine location
       locx = pcmap.getExitToX();
       locy = pcmap.getExitToY();
@@ -890,15 +890,14 @@ ais.OutdoorHostile = function(who, radius, pname) {
       // because these values can never be 1 away via GetDistance
     }
   }
-  if (IsAdjacent(who,PC,"nodiag")) {
+  // not using IsAdjacent because don't want to check for same map
+  if (((Math.abs(who.getx() - locx) === 1) && (Math.abs(who.gety() - locy) === 0)) || ((Math.abs(who.getx() - locx) === 0) && (Math.abs(who.gety() - locy)))) {
     if (pcmap === who.getHomeMap()) {
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " attacks the PC!</span><br />"); }
       DebugWrite("ai", "<span style='font-weight:bold'>AI " + who.getName() + " attacks the PC!</span><br />"); 
       NPCAttackPCMap(who);
       retval.removed = 1;
       return retval;
     } else { // PC is already in a fight
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " adjacent to PC on world map, waiting its turn.</span><br />"); }
       DebugWrite("ai", "<span style='font-weight:bold'>AI " + who.getName() + " adjacent to PC on world map, waiting its turn.</span><br />");
       retval["initdelay"] = .1;
       return retval;
@@ -907,7 +906,6 @@ ais.OutdoorHostile = function(who, radius, pname) {
   
   // Next, check and see if there is already a path that has not expired
   // but only if the PC is not within close range- in that case, always wait to hunt
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Comparing distance: Radius=" + radius + "; PC is " + GetDistance(who.getx(), who.gety(), locx, locy) + " away .</span><br />"); }
   DebugWrite("ai", "Comparing distance: Radius=" + radius + "; PC is " + GetDistance(who.getx(), who.gety(), locx, locy) + " away .<br />");
   if (GetDistance(who.getx(), who.gety(), locx, locy) > radius/3) {
 //    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>PC on another map or not Close. Trying to follow a path.</span><br />"); }
@@ -918,12 +916,10 @@ ais.OutdoorHostile = function(who, radius, pname) {
   
   // If there is a radius attached, hunt for the PC next
   if (radius) {
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>AI hunts within " + radius + ", hunting for PC.</span><br />"); }
     DebugWrite("ai", "AI hunts within " + radius + ", hunting for PC.<br />");
     var hunt = ais.HuntPC(who,radius);
 
     if (hunt) { 
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Hunt was successful, trying to follow the path.</span><br />"); }
       DebugWrite("ai", "Hunt was successful, trying to follow the path.<br />");
       retval = ais.SurfaceFollowPath(who,40,1);   
       return retval; // we're done here either way
@@ -932,9 +928,9 @@ ais.OutdoorHostile = function(who, radius, pname) {
 
   if (pname !== "none") {
     // we have neither attacked, moved, nor hunted- now we look for a PoI to go towards
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>AI " + who.getName() + " has neither attacked, moved, nor hunted- now look for a PoI.</span><br />"); }
     DebugWrite("ai", "AI " + who.getName() + " has neither attacked, moved, nor hunted- now look for a PoI.<br />");
-    retval = ais.ProcessPoI(who, pname);
+    ais.ProcessPoI(who, pname);
+    retval = ais.SurfaceFollowPath(who,40,1); 
     return retval;
   } else {
     // animal, only randomwalk
@@ -956,9 +952,10 @@ ais.HuntPC = function(who, radius) {
 	var locy = PC.gety();
 	if (PC.getHomeMap() !== themap) {
 	  var pcmap = PC.getHomeMap();
-	  if (pcmap.getName().match(/combat/)) {
+	  if ((pcmap.getName().match(/combat/) && (pcmap.getExitToMap() === themap.getName()))) {
 	    locx = pcmap.getExitToX();
 	    locy = pcmap.getExitToY();
+	    DebugWrite("ai", "Hunting, PC is in combat, using combat map's exit coords for PC position.<br />");
 	  } else {
 	    // far away so all GetDistance calls fail
 	    locx = 300;
@@ -966,7 +963,6 @@ ais.HuntPC = function(who, radius) {
 	  }
 	}
 	if (GetDistance(who.getx(), who.gety(), locx, locy) > radius) {
-//	  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>PC is not in range to hunt.</span><br />"); }
 	  DebugWrite("ai", "PC is not in range to hunt.<br />");
 		return 0;  // no hunting
 	}
@@ -996,13 +992,10 @@ ais.HuntPC = function(who, radius) {
 	var path = themap.getPath(who.getx(), who.gety(), destination.x, destination.y, who.getMovetype());
 	if (path.length) {
    	path.shift();  // because the first step is where it is already standing.
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:purple; font-weight:bold'>From: " + who.getx() + ", " + who.gety() + " to " + destination.x + ", " + destination.y+ "</span><br />"); }
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:purple; font-weight:bold'>First step is: " + path[0][0] + ", " + path[0][1] + "</span><br />"); }
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:purple; font-weight:bold'>Next step is: " + path[1][0] + ", " + path[1][1] + "</span><br />"); }
     DebugWrite("ai", "<span style='font-weight:bold'>From: " + who.getx() + ", " + who.gety() + " to " + destination.x + ", " + destination.y+ "<br />First step is: " + path[0][0] + ", " + path[0][1] + "<br />Next step is: " + path[1][0] + ", " + path[1][1] + "</span><br />");
     who.setCurrentPath(path);
 
-    var dur = Math.floor(Math.random()*3)-1; 
+    var dur = Dice.roll("1d3-2"); 
     dur = dur + Math.floor(path.length / 3);
     if (dur < 1) { dur = 1; }
     who.setDestination(destination, dur);
@@ -1165,65 +1158,68 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
 ais.ProcessPoI = function(who,poiname) {
   var themap = who.getHomeMap();
   if (!who.getPoI().x) {
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + who.getName() + ", which follows " + poiname + " on map " + themap.getName() + ", has no PoI yet. Searching...</span><br />"); }
     DebugWrite("ai", who.getName() + ", which follows " + poiname + " on map " + themap.getName() + ", has no PoI yet. Searching...<br />");
     var poi = FindClosestPoI(who.getx(), who.gety(), themap, poiname);
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:red; font-weight:bold'>Closest PoI: " + poi.x + ", " + poi.y + "</span><br />"); }
     DebugWrite("ai", "Closest PoI: " + poi.x + ", " + poi.y + "<br />");
     who.setPoI(poi);
     // random scatter the actual destination to near the PoI
     
     var path = [];
     while (path.length === 0) {
-      var xval = Math.floor(Math.random()*9)-4 + poi.x;
-      var yval = Math.floor(Math.random()*9)-4 + poi.y;
+      var xval = Dice.roll("1d9-5") + poi.x;
+      var yval = Dice.roll("1d9-5") + poi.y;
     
+      if (xval < 0) { xval = 0; }
+      if (xval > themap.getWidth()-1) { xval = themap.getWidth()-1; }
+      if (yval < 0) { yval = 0; }
+      if (yval > themap.getHeight()-1) { yval = themap.getHeight()-1; }
+      // it shouldn't be possible to try to walk off the map, but let's make sure.
+      
       path = themap.getPath(who.getx(), who.gety(), xval, yval, who.getMovetype());
+      path.shift();
     }
-    path.shift();
-    var dur = Math.floor(path.length / 3) + Math.floor(Math.random() * 3);
+    var dur = 2*Math.floor(path.length / 3) + Dice.roll("1d5-3");
     if (dur > path.length) { dur = path.length; }
     who.setCurrentPath(path);
     who.setDestination({x: xval, y: yval}, dur);
     who.setDestinationType("PoI");
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>Set path to: " + xval + ", " + yval + "</span><br />"); }
     DebugWrite("ai", "Set path to: " + xval + ", " + yval + "<br />");
+    return 1;
   } else {
     var coords = who.getCurrentPath()[0];
     if (who.getTurnsToRecalcDest() <= 0) {
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>Path expired, find a new PoI!</span><br />"); }
       DebugWrite("ai", "Path expired, find a new PoI!<br />");
       var connections = who.getPoI().connections;
-      var connind = Math.floor(Math.random() * connections.length);
+      var connind = Dice.roll("1d" + connections.length + "-1");
       var poi = who.getPoI().connections[connind];
       who.setPoI(poi);
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>New PoI coords: " + poi.x + ", " + poi.y + "</span><br />"); }
       DebugWrite("ai", "New PoI coords: " + poi.x + ", " + poi.y + "<br />");
       var path = [];
       while (path.length === 0) {
-        var xval = Math.floor(Math.random()*9)-4 + poi.x;
-        var yval = Math.floor(Math.random()*9)-4 + poi.y;
+        var xval = Dice.roll("1d9-5") + poi.x;
+        var yval = Dice.roll("1d9-5") + poi.y;
     
         path = themap.getPath(who.getx(), who.gety(), xval, yval, who.getMovetype());
+        path.shift();
       }
-      path.shift();
-      var dur = path.length / 3 + Math.floor(Math.random() * 3);
+      var dur = 2*(path.length/3) + Dice.roll("1d3-1");;
       who.setCurrentPath(path);
       who.setDestination({x: xval, y: yval}, dur);   
       who.setDestinationType("PoI");
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>New path to: " + xval + ", " + yval + "</span><br />"); }
       DebugWrite("ai", "New path to: " + xval + ", " + yval + "<br />");
+      return 2;
     } else if (GetDistance(who.getx(), who.gety(), coords[0], coords[1]) !== 1) {
       // next step is not adjacent but destination is still valid: find a new path!
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>Path not expired, but path invalid. Recalculate.</span><br />"); }
       DebugWrite("ai", "Path not expired, but path invalid. Recalculate.<br />");
       var coords = who.getDestination();
       var path = themap.getPath(who.getx(), who.gety(), coords.x, coords.y, who.getMovetype());
+      path.shift();
       who.setCurrentPath(path);
+      return 3;
     } 
   }
-  var retval = ais.SurfaceFollowPath(who,30,1);
-  return retval;
+
+  return 0;
 }
 
 function NPCAttackPCMap(npc) {

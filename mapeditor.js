@@ -27,6 +27,7 @@ var gamestate = new GameStateData();
 var DULoot = SetLoots();            //
 var DULootGroups = SetLootGroups(); //  see loot.js and lootset.js for population
 var DUTraps = SetTraps();           //
+var Dice = new DiceObject();
 
 var graphicpicks = [];
 var optindex = 0;
