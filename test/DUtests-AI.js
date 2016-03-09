@@ -262,7 +262,17 @@ QUnit.test( "Test Hunt For PC", function( assert ) {
   var combatmap = maps.getMap("combatGrass1");
   
   combatmap.placeThing(5,5,PC);
+  combatmap.setExitToMap("darkunknown");
+  combatmap.setExitToX(120);
+  combatmap.setExitToY(122);
   
+  var debugtxt = [];
+  DebugWrite = function(what,msg) { debugtxt.push(msg); }
+  var retval = ais.HuntPC(testnpc,10);
+  
+  assert.deepEqual(retval,0,"Hunt for PC in combat far away- should have returned 0.");
+  assert.deepEqual(debugtxt[0], "Hunting, PC is in combat, using combat map's exit coords for PC position.<br />", "Should have written to debug about PC being on a combat map.");
+  assert.deepEqual(debugtxt[1], "PC is not in range to hunt.<br />", "Should have written that PC is too far away in debug.");
 
   maps.deleteMap("darkunknown");
 });
