@@ -274,5 +274,12 @@ QUnit.test( "Test Hunt For PC", function( assert ) {
   assert.deepEqual(debugtxt[0], "Hunting, PC is in combat, using combat map's exit coords for PC position.<br />", "Should have written to debug about PC being on a combat map.");
   assert.deepEqual(debugtxt[1], "PC is not in range to hunt.<br />", "Should have written that PC is too far away in debug.");
 
+  debugtxt = [];
+  combatmap.setExitToX(53);
+  retval = ais.HuntPC(testnpc,10);
+  
+  assert.deepEqual(retval,0,"Hunt for PC, nearby but unseen.");
+  assert.deepEqual(debugtxt[1], "PC is within radius but not in sight, no hunt.<br />", "Should have written that the PC is in radius but not in sight.");
+  
   maps.deleteMap("darkunknown");
 });
