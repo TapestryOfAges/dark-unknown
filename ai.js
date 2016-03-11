@@ -995,8 +995,7 @@ ais.HuntPC = function(who, radius) {
     DebugWrite("ai", "<span style='font-weight:bold'>From: " + who.getx() + ", " + who.gety() + " to " + destination.x + ", " + destination.y+ "<br />First step is: " + path[0][0] + ", " + path[0][1] + "<br />Next step is: " + path[1][0] + ", " + path[1][1] + "</span><br />");
     who.setCurrentPath(path);
 
-    var dur = Dice.roll("1d3-2"); 
-    dur = dur + Math.floor(path.length / 3);
+    var dur = Dice.roll("1d3-2") + Math.floor(path.length / 3);
     if (dur < 1) { dur = 1; }
     who.setDestination(destination, dur);
     who.setDestinationType("PC");
@@ -1028,18 +1027,16 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       var civilized = 0;
       // check to see if move would bring close to a settlement
       if (who.getHomeMap().getScale() === 0) {  // only care about it if on an outdoor map
-//        if (debug && debugflags.ai) { dbs.writeln("Checking for civilization proximity."); }
         DebugWrite("ai", "Checking for civilization proximity.");
         civilized = CheckTownProximity( { x: coords[0], y: coords[1] }, who.getHomeMap());
         if (civilized) { 
-//          if (debug && debugflags.ai) { dbs.writeln(" Civilized!"); }
           DebugWrite("ai", " Civilized!");
           retval["canmove"] = 0; 
         }
 //        if (debug && debugflags.ai) { dbs.writeln("<br />"); }
         DebugWrite("ai", "<br />");
       }  
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " moving from " + who.getx() + ", " + who.gety() + " to " + coords[0] + ", " + coords[1] + " :"); }      
+
       DebugWrite("ai", "AI " + who.getName() + " moving from " + who.getx() + ", " + who.gety() + " to " + coords[0] + ", " + coords[1] + " :");
       who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
       var leashed = 0;
@@ -1073,6 +1070,9 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       // in scale map, could be a closed door.
 //      if (debug && debugflags.ai) { dbs.writeln("unsuccessfully.</span><br />"); }
       DebugWrite("ai", "unsuccessfully.<br />");
+
+// HERE: ADD IF LEASHED, RETURN TO SPAWNER
+// WORKING HERE
       
       // if there is another AI in the way, randomwalk
       if (!random_tries) { random_tries = 1; }

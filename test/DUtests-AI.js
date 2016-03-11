@@ -281,5 +281,34 @@ QUnit.test( "Test Hunt For PC", function( assert ) {
   assert.deepEqual(retval,0,"Hunt for PC, nearby but unseen.");
   assert.deepEqual(debugtxt[1], "PC is within radius but not in sight, no hunt.<br />", "Should have written that the PC is in radius but not in sight.");
   
+  var testnpc2 = localFactory.createTile("HoodNPC");
+  combatmap.placeThing(10,10,testnpc2);
+  
+  Dice.roll = function() { return 2; }
+  debugtxt = [];
+  retval = ais.HuntPC(testnpc2,10);
+  
+  assert.deepEqual(retval,1,"Hunting");
+  assert.deepEqual(debugtxt[0], "HUNTING!<br />", "Debug should write Hunting.");
+  assert.deepEqual(debugtxt[1], "<span style='font-weight:bold'>From: 10, 10 to 5, 5<br />First step is: 10, 9<br />Next step is: 9, 9</span><br />", "Debug- path goes from A to B.");
+  assert.deepEqual(testnpc2.getDestination().x,5,"Final destination x=5");
+  assert.deepEqual(testnpc2.getDestination().y,5,"Final destination y=5");
+  assert.deepEqual(testnpc2.getDestinationType(),"PC", "Destination is the PC.");
+  assert.deepEqual(testnpc2.getTurnsToRecalcDest(),5,"5 turns until recalc.");
+  
+  Dice.roll = function() { return -6; }
+  retval = ais.HuntPC(testnpc2,10);
+  assert.deepEqual(testnpc2.getTurnsToRecalcDest(),1,"1 turn until recalc.");
+
+  var testnpc3 = localFactory.createTile("HoodNPC");
+  testmap.placeThing(25,38,testnpc3);
+  testmap.placeThing(25,31,PC);
+  debugtxt = [];
+  
+  retval = ais.HuntPC(testnpc3,10);
+  assert.deepEqual(retval,0,"No path");
+  assert.deepEqual(debugtxt[0], "HUNTING!<br />", "Debug should write Hunting.");
+  assert.deepEqual(debugtxt[1], "No available path, hunt abandoned.<br />", "Debug no path.");
+  
   maps.deleteMap("darkunknown");
 });
