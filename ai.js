@@ -1010,7 +1010,6 @@ ais.HuntPC = function(who, radius) {
 }
 
 ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " in SurfaceFollowPath.</span><br />"); }
   DebugWrite("ai", "<span style='font-weight:bold'>AI " + who.getName() + " in SurfaceFollowPath.</span><br />");
   var retval = { fin: 0 };
   var spawnedby = who.getSpawnedBy();
@@ -1019,7 +1018,6 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
   
   if ((who.getCurrentPath().length > 0) && (who.getTurnsToRecalcDest() > 0)) {
     var coords = who.getNextStep();
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:red; font-weight:bold'>Check path distance? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + coords[0] + ", " + coords[1] + ".</span><br />"); }
     DebugWrite("ai", "Check path distance? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + coords[0] + ", " + coords[1] + ".<br />");
     if (GetDistance(who.getx(), who.gety(), coords[0], coords[1]) === 1) {  // the next step is only a step away
       var diffx = coords[0] - who.getx();
@@ -1033,19 +1031,19 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
           DebugWrite("ai", " Civilized!");
           retval["canmove"] = 0; 
         }
-//        if (debug && debugflags.ai) { dbs.writeln("<br />"); }
         DebugWrite("ai", "<br />");
       }  
 
       DebugWrite("ai", "AI " + who.getName() + " moving from " + who.getx() + ", " + who.gety() + " to " + coords[0] + ", " + coords[1] + " :");
-      who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
+      var turnscheck = who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
+      DebugWrite("ai", "There are now " + turnscheck + " turns left on the existing path.<br />");
       var leashed = 0;
       if (leashpresent) {
         var spawndist = GetDistance(coords[0], coords[1], spawnedby.getx(), spawnedby.gety());  // distance from spawner to target location
-        if ((who.getDestinationType() === "PC") && (spawndist > spawnedby.getSpawnLeash())) { // chasing the PC, but trying to move beyond leash
+        if (spawndist > spawnedby.getSpawnLeash()) { // Presumably got here by chasing the PC, but trying to move beyond leash
           retval["canmove"] = 0;
           leashed = 1;
-        } else if (spawndist > spawnedby.getSpawnSoftLeash()) { // doing anything else but threatening to move past soft leash
+        } else if ((who.getDestinationType() !== "PC") && spawnedby.getSpawnSoftLeash() && (spawndist > spawnedby.getSpawnSoftLeash())) { // moving past soft leash without going after the PC
           retval["canmove"] = 0;
           leashed = 1;
         }
@@ -1055,12 +1053,10 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       }
       if (retval["canmove"] === 1) { // it moved!
         retval["fin"] = 1;
-//        if (debug && debugflags.ai) { dbs.writeln("successfully. New location: " + who.getx() + ", " + who.gety() + "</span><br />"); }
         DebugWrite("ai", "successfully. New location: " + who.getx() + ", " + who.gety() + "<br />");
         if (debug && debugflags.ai) {
           var tile = who.getHomeMap().getTile(who.getx(), who.gety());
           if (!tile.canMoveHere(MOVE_WALK)) {
-//            dbs.writeln("<span style='color:orange; font-weight:bold; text-decoration:underline'>AI moved onto a tile that cannot be walked on: " + tile.getTerrain().getName() + ".</span><br />");
             DebugWrite("ai", "<span style='font-weight:bold; text-decoration:underline'>AI moved onto a tile that cannot be walked on: " + tile.getTerrain().getName() + ".</span><br />");
           }
         }
@@ -1068,11 +1064,25 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       }
       // failed to move. On the surface, this means there was another AI there, or it hit its leash.
       // in scale map, could be a closed door.
-//      if (debug && debugflags.ai) { dbs.writeln("unsuccessfully.</span><br />"); }
       DebugWrite("ai", "unsuccessfully.<br />");
 
-// HERE: ADD IF LEASHED, RETURN TO SPAWNER
-// WORKING HERE
+      if (leashed) {
+        var path = who.getHomeMap().getPath(who.getx(), who.gety(), spawnedby.getx(), spawnedby.gety(), who.getMovetype());
+        if (path) {
+          path.shift();
+          if (path) {
+            var dur = Math.floor(path.length / 3) + Dice.roll("1d5-3");
+            if (dur > path.length) { dur = path.length; }
+            if (dur < 0) { dur = 0; }
+            who.setCurrentPath(path);
+            who.setDestination({x: spawnedby.getx(), y: spawnedby.gety()}, dur);
+            who.setDestinationType("PoI");
+            DebugWrite("ai", "Set path to: " + spawnedby.getx() + ", " + spawnedby.gety() + "<br />");
+            retval["fin"] = 1;
+            return retval;
+          }
+        }
+      }
       
       // if there is another AI in the way, randomwalk
       if (!random_tries) { random_tries = 1; }
@@ -1097,10 +1107,8 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       
     } 
     // if next step is more than one step away, a previous move failed, recalculate now
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:red; font-weight:bold'>Path distant? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + who.getCurrentPath()[0][0] + ", " + who.getCurrentPath()[0][1] + ".</span><br />"); }
-    DebugWrite("ai", "Path distant? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + who.getCurrentPath()[0][0] + ", " + who.getCurrentPath()[0][1] + ".<br />");
+    DebugWrite("ai", "Path distant? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + coords[0] + ", " + coords[1] + ".<br />");
   }
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>No path to follow. Path length: " + who.getCurrentPath().length + ". Turns: " + who.getTurnsToRecalcDest() + ".</span><br />"); }
   DebugWrite("ai", "No path to follow. Path length: " + who.getCurrentPath().length + ". Turns: " + who.getTurnsToRecalcDest() + ".<br />");
   return retval;
 }
@@ -1180,6 +1188,7 @@ ais.ProcessPoI = function(who,poiname) {
     }
     var dur = 2*Math.floor(path.length / 3) + Dice.roll("1d5-3");
     if (dur > path.length) { dur = path.length; }
+    if (dur < 0) { dur = 0; }
     who.setCurrentPath(path);
     who.setDestination({x: xval, y: yval}, dur);
     who.setDestinationType("PoI");
@@ -1202,7 +1211,9 @@ ais.ProcessPoI = function(who,poiname) {
         path = themap.getPath(who.getx(), who.gety(), xval, yval, who.getMovetype());
         path.shift();
       }
-      var dur = 2*(path.length/3) + Dice.roll("1d3-1");;
+      var dur = 2*(path.length/3) + Dice.roll("1d3-1");
+      if (dur < 0) { dur = 0; }
+      if (dur > path.length) { dir = path.length; }
       who.setCurrentPath(path);
       who.setDestination({x: xval, y: yval}, dur);   
       who.setDestinationType("PoI");
@@ -1252,11 +1263,11 @@ function NPCAttackPCMap(npc) {
 
 function CheckTownProximity(coords, map) {
   var mapfeatures = map.features.getAll();  // weirdly, this assumes that all maps this will be run on have features. Probably a safe assumption.
-//  var town = { x: 0};
+  if (!mapfeatures[0]) { return 0; }  // just in case one doesn't!
+
   for (var i = 0; i < mapfeatures.length; i++) {
-    if ((mapfeatures[i].getName().match(/Town/)) || (mapfeatures[i].getName().match(/Castle/)) || (mapfeatures[i].getName().match(/Keep/)) || (mapfeatures[i].getName().match(/Village/))) {
+    if (mapfeatures[i].civilized) {
       if (GetDistance(coords.x, coords.y, mapfeatures[i].getx(), mapfeatures[i].gety()) < 4) {  // your little walk will take you too close to civilization
-//        if (debug && debugflags.ai) { dbs.writeln("Destination too close to " + mapfeatures[i].getDesc() + ".<br />"); }
         DebugWrite("ai", "Destination too close to " + mapfeatures[i].getDesc() + ".<br />");
         return 1;
       }

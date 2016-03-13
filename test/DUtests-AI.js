@@ -312,3 +312,80 @@ QUnit.test( "Test Hunt For PC", function( assert ) {
   
   maps.deleteMap("darkunknown");
 });
+
+QUnit.test( "Test Surface Follow Path", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("darkunknown");
+  var testmap = maps.getMap("darkunknown");
+
+  var testnpc = localFactory.createTile("HoodNPC");
+  testmap.placeThing(59,122,testnpc);
+  
+  var testnpc2 = localFactory.createTile("HoodNPC");
+  testmap.placeThing(60,122,testnpc2);
+  
+  var testspawner = localFactory.createTile("Spawner");
+  testmap.placeThing(57,120,testspawner);
+  
+  testnpc.setSpawnedBy(testspawner);
+  testspawner.setSpawnLeash(30);
+  testspawner.setSpawnSoftLeash(20);
+
+  var debugtxt = [];
+  DebugWrite = function(what,msg) { debugtxt.push(msg); }
+
+  var path = testmap.getPath(59,122,41,109,testnpc.getMovetype());
+  path.shift();
+  testnpc.setCurrentPath(path);
+  testnpc.setTurnsToRecalcDest(6);
+  
+  var retval = ais.SurfaceFollowPath(testnpc2,25,3);
+  assert.deepEqual(debugtxt[1], "No path to follow. Path length: 0. Turns: 0.<br />", "Has no path.");
+
+  debugtxt = [];
+  
+  retval = ais.SurfaceFollowPath(testnpc,25,3);
+  assert.deepEqual(debugtxt[1], "Check path distance? My location: 59, 122, next step is: 59, 121.<br />", "Checking debug txt from having a leash and an unexpired path.");
+  assert.deepEqual(debugtxt[5], "There are now 5 turns left on the existing path.<br />", "Checking debug for new turns until recalc.");
+  assert.deepEqual(debugtxt[7], "successfully. New location: 59, 121<br />", "Debug, post move");
+  
+  debugtxt = [];
+  
+  var testnpc3 = localFactory.createTile("HoodNPC");
+  testmap.placeThing(32,122,testnpc3);
+  
+  path = testmap.getPath(32,122,22,118,testnpc3.getMovetype());
+  path.shift();
+  testnpc3.setCurrentPath(path);
+  testnpc3.setTurnsToRecalcDest(6);
+
+  testnpc3.setSpawnedBy(testspawner);
+  Dice.roll = function() { return 0; }
+
+  retval = ais.SurfaceFollowPath(testnpc3,25,3);
+  assert.deepEqual(retval["fin"],1,"Outside soft, inside hard; retval = 1");
+  assert.deepEqual(retval["canmove"],0,"Outside soft, inside hard; canmove=0");
+  assert.deepEqual(testnpc3.getCurrentPath()[0][0],33, "Next step is back towards spawner: x=33.");
+  assert.deepEqual(testnpc3.getCurrentPath()[0][1],122, "Next step is back towards spawner: y=122.");
+  assert.deepEqual(testnpc3.getDestination().x,57, "Destination is x=57.");
+  assert.deepEqual(testnpc3.getDestination().y,120, "Destination is y=120.");
+  assert.deepEqual(testnpc3.getTurnsToRecalcDest(),13,"13 turns back towards the spawner.");
+  
+  path = testmap.getPath(32,122,22,118,testnpc3.getMovetype());
+  path.shift();
+  testnpc3.setCurrentPath(path);
+  testnpc3.setTurnsToRecalcDest(6);
+  testnpc3.setDestinationType("PC");
+  
+  debugtxt = [];
+  retval = ais.SurfaceFollowPath(testnpc3,25,3);
+  assert.deepEqual(retval["fin"],1,"Outside soft, inside hard; retval = 1");
+  assert.deepEqual(retval["canmove"],1,"Chasing PC, can still go outside soft leash.");
+  assert.deepEqual(debugtxt[1], "Check path distance? My location: 32, 122, next step is: 32, 121.<br />", "Checking debugtxt");
+  assert.deepEqual(testnpc3.getx(),32,"Moved north.");    
+  assert.deepEqual(testnpc3.gety(),121,"Moved north.");    
+  
+  // Still should test bumping into another NPC
+  
+  maps.deleteMap("darkunknown");
+});

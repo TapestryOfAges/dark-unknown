@@ -3292,6 +3292,7 @@ function TowneTile() {
   this.prefix = "a";
   this.desc = "towne";
   this.peerview = "#e0e0e0";
+  this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -3305,6 +3306,7 @@ function KeepTile() {
   this.prefix = "a";
   this.desc = "keep";
   this.peerview = "#e0e0e0";
+  this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -3357,6 +3359,7 @@ function VillageTile() {
   this.prefix = "a";
   this.desc = "village";
   this.peerview = "#e0e0e0";
+  this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -3369,6 +3372,7 @@ function CastleTile() {
   this.blocklos = 0;
   this.desc = "Castle Dea Olympus";
   this.peerview = "#e0e0e0";
+  this.civilized = 1;
 
   Enterable.call(this, "null", 0, 0);
 }
@@ -3395,6 +3399,7 @@ function LeftCastleTile() {
   this.blocklos = 0;
   this.desc = "Castle Dea Olympus";
   this.peerview = "#e0e0e0";
+  this.civilized = 1;
 }
 LeftCastleTile.prototype = new FeatureObject();
 
@@ -3405,6 +3410,7 @@ function RightCastleTile() {
   this.blocklos = 0;
   this.desc = "Castle Dea Olympus";
   this.peerview = "#e0e0e0";
+  this.civilized = 1;
 }
 RightCastleTile.prototype = new FeatureObject();
 
@@ -10522,7 +10528,8 @@ NPCObject.prototype.getTurnsToRecalcDest = function() {
 }
 
 NPCObject.prototype.setTurnsToRecalcDest = function(timeuntil) {
-  this.turnsToRecalcDest = timeuntil;
+  this.turnsToRecalcDest = parseInt(timeuntil);
+  return this.turnsToRecalcDest;
 }
 
 NPCObject.prototype.getPoI = function() {
