@@ -551,6 +551,13 @@ function PerformAttack(who) {
     return retval;
   }  
   if (!atkwho) {  // nothing there
+    var fea = localacre.features.getTop();
+    if (fea && IsAdjacent(who,fea)) {
+      if (fea.breakable) {
+        retval = fea.break(who);
+        return retval;
+      }
+    }
     retval["txt"] = "Attack: Nothing there!";
     retval["fin"] = 0;  
     retval["input"] = "&gt;";
@@ -992,6 +999,11 @@ function PerformEquip(code) {
 	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
     // equip selected item
     var newequip = targetCursor.itemlist[targetCursor.scrolllocation];
+    if (newequip.breakable && newequip.getBroken()) {
+      retval["fin"] = 2;
+      retval["txt"] = "That is broken and cannot be equipped.";
+      return retval;
+    }
     var success = newequip.equipMe(PC);
     retval["fin"] = 2;
     retval["txt"] = "";
@@ -1346,7 +1358,7 @@ function PerformUseFromInventory() {
           return -1
         if (nameA > nameB)
           return 1
-       return 0 
+        return 0 
        }); 
        statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Potions</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</span></td></tr>";
        for (var i = 0; i < pots.length; i++ ) {
