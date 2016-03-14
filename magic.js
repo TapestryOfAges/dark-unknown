@@ -456,20 +456,55 @@ magic[1][GetSpellID(7)].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Mend.<br />");
   var resp = {};
   resp["fin"] = 1;
-  
-  var inv = caster.getInventory();
-  var anything = 0;
-  $.each(inv, function(idx, val) {
-    if (val.broken) {
-      anything = 1;
-    }
-  });
-  
-  if (!anything) {
-    resp["fin"] = 2;
-    maintext.addText("You have nothing in need of Mending.");
+
+  if (caster !== PC) {
+    resp = PerformVulnerability(caster, infused, free, tgt);
     return resp;
   }
+  
+  targetCursor.x = PC.getx();
+  targetCursor.y = PC.gety();
+  targetCursor.command = "c";
+  targetCursor.spellName = "Mend";
+  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "feature"};
+  targetCursor.targetlimit = (viewsizex -1)/2;
+  targetCursor.targetCenterlimit = 1;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 0;
+  gamestate.setMode("target");
+  return resp;
+}
+
+function PerformMend(caster,infused,free,tgt) {
+  var resp = {};
+  resp["fin"] = 1;
+  var desc = "";
+  
+  if (!free) {
+    var mana = magic[1][GetSpellID(8)].getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  if (tgt.repairNeedsInfusion && !infused) {
+    var desc = "The " + tgt.getDesc() + " glows briefly, but is not mended.";
+    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    resp["txt"] = desc;
+  } else {
+    tgt.repair();
+    var desc = "The " + tgt.getDesc() + " glows briefly, and is mended!";
+    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    resp["txt"] = desc;    
+  }
+  resp["input"] = "&gt;";
+  return resp;
+  
 }
 
 // Vulnerability
@@ -3799,11 +3834,141 @@ function PerformSpellcast() {
       
       return resp;   
     }
+  } else if (targetCursor.spelldetails.targettype === "feature") {
+    if ((targetCursor.x === targetCursor.spelldetails.caster.getx()) && (targetCursor.y === targetCursor.spelldetails.caster.gety())) {
+      var mademenu = CreateMendMenu();
+      if (!mademenu) {
+        resp["fin"] = 0;
+        resp["txt"] = "You have nothing in need of mending.";
+        resp["input"] = "&gt;";
+        var tileid = targetCursor.tileid;
+        $(tileid).html(targetCursor.basetile); 
+        delete targetCursor.spellName;
+
+        return resp;
+      }
+
+   	  gamestate.setMode("equip");
+		  resp["txt"] = "";
+  		resp["input"] = "&gt; Cast Mending on: ";
+	  	resp["fin"] = 2;	
+	  } else {
+	    var thetile = targetCursor.spelldetails.caster.getHomeMap().getTile(targetCursor.x, targetCursor.y);
+	    var fea = thetile.getTopFeature();
+	    if (fea.breakable && fea.getBroken()) {
+	      resp = PerformMend(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, fea);
+	    } else {
+        resp["fin"] = 0;
+        resp["txt"] = "That is not in need of mending.";
+        resp["input"] = "&gt;";
+      }	      
+      var tileid = targetCursor.tileid;
+      $(tileid).html(targetCursor.basetile); 
+      delete targetCursor.spellName;
+	  }
+		
+		return resp;
   } else {
     alert(targetCursor.spelldetails.targettype);
   }
   delete targetCursor.spellName;
   return resp;
+}
+
+function CreateMendMenu() {
+  var mendables = [];
+  var inv = PC.getInventory();
+  for (var i =0; i<inv.length; i++) {
+    if (inv[i].breakable && inv[i].getBroken()) {
+      mendables.push(inv[i]);
+    }
+  }
+  if (!mendables.length) {
+    return 0;
+  }
+  var statsdiv = "&nbsp;";
+  statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+  statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
+  statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
+  mendables.sort(function(a,b) {
+    var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+    if (nameA < nameB) 
+      return -1
+    if (nameA > nameB)
+      return 1
+    return 0 
+  }); 
+  statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Broken Items</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</span></td></tr>";
+  var iter = 0;
+  var itemarray = [];
+  for (var i = 0; i < mendables.length; i++ ) {
+    var itemdesc = mendables[i].getDesc();
+    itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
+    statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + mendables[i].getQuantity() + ")</td></tr>";
+    itemarray[iter] = mendables[i];
+    iter++;
+  }
+  statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
+  
+  statsdiv += "</table></div></div>";
+  DrawTopbarFrame("<p>Broken Items</p>");
+  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
+  $("#worldlayer").css("background-image", "");
+  $("#worldlayer").css("background-color", "black");
+   
+  $('#displayframe').html(statsdiv);
+   
+	var scrollelem = $('.zstats').jScrollPane();
+  var scrollapi = scrollelem.data('jsp');
+  targetCursor.scrollapi = scrollapi;
+  targetCursor.scrolllocation = 0;
+  targetCursor.itemlist = [];
+  targetCursor.itemlist = itemarray;
+  
+  $('#inv0').toggleClass('highlight');
+
+  return 1;
+}
+
+function PerformSpellcastEquip(code) {
+  var retval = {};
+  if (targetCursor.itemlist.length === 0) {
+    code = 27;
+  }
+  if (code === 27) { // ESC
+    retval["fin"] = 0;
+    delete targetCursor.itemlist;
+  }
+	else if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
+	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrolllocation--;
+	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
+	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
+	    retval["fin"] = 1;
+	}
+  else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
+      $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrolllocation++;
+	    if (targetCursor.scrolllocation > targetCursor.itemlist.length-1) { targetCursor.scrolllocation = 0; }
+	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
+	    retval["fin"] = 1;
+  }
+	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
+    // cast on selected item
+    var tgt = targetCursor.itemlist[targetCursor.scrolllocation];
+    if (tgt) {
+      if (targetCursor.spellName === "Mend") {
+  		  retval = PerformMend(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+  		}
+    } else {
+      retval["fin"] = 0;
+      delete targetCursor.itemlist;
+    }
+  }
+  return retval;
+  
 }
 
 function PerformDirSpellcast() {
