@@ -586,6 +586,40 @@ function LightEmitting(lightlevel) {
 	}
 }
 
+// Abstract class
+function Breakable(brokengraphicarray, startsbroken) {
+  if (!startsbroken) { startsbroken = 0; }
+  this.broken = startsbroken;
+  this.breakable = 1;
+  
+  this.getBroken = function() { return this.broken; }
+  this.setBroken = function(broke) { this.broken = broke; return this.broken; }  // note, set broken doesn't change graphics, etc
+  this.break = function(who) { 
+    this.broken = 1; 
+    this.setGraphicArray(brokengraphicarray);
+    //play sound effect
+    DrawMainFrame("one", this.getHomeMap().getName(), this.getx(), this.gety());
+    if (this.karmamod && (who === PC)) { 
+      DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")+this.karmamod);
+    }
+    var retval = {};
+    retval["fin"] = 1;
+    retval["txt"] =  "You break the " + this.getDesc() + "!";
+    retval["input"] = "&gt;";
+    return retval;
+  }
+  this.repair = function() {
+    this.broken = 0;
+    var tmpcopy = localFactory.createTile(this.getName());
+    this.setGraphicArray(tmpcopy.getGraphicArray());
+    if (this.getName() === "Mirror") {
+      this.setGraphicArray([who.getGraphic(), "mirror-reflection.gif", "0", "7"]);
+    }
+    DrawMainFrame("one", this.getHomeMap().getName(), this.getx(), this.gety());  // will try to draw 0,0 if in inventory, which is ok
+  }
+  
+}
+
 // Abstract class 
 function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound, lockedsound) {
 	this.open = startsopen;
@@ -4625,6 +4659,9 @@ function MirrorTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "mirror";
+  this.karmamod = -1;
+  
+  Breakable.call(this,["furniture.gif", "", "-224", "0"]);
 }
 MirrorTile.prototype = new FeatureObject();
 
@@ -4652,12 +4689,16 @@ ReflectionTile.prototype = new FeatureObject();
 
 ReflectionTile.prototype.walkon = function(who) {
   // add reflection to attached mirror
-  this.mirror.setGraphicArray([who.getGraphic(), "mirror-reflection.gif", "0", "7"]);
+  if (!this.mirror.getBroken()) {
+    this.mirror.setGraphicArray([who.getGraphic(), "mirror-reflection.gif", "0", "7"]);
+  }
 }
 
 ReflectionTile.prototype.walkoff = function(who) {
   // remove reflection from attached mirror
-  this.mirror.setGraphicArray(["furniture.gif", "", "-192", "0"]);
+  if (!this.mirror.getBroken()) {
+    this.mirror.setGraphicArray(["furniture.gif", "", "-192", "0"]);
+  }
 }
 
 function SecretDoorTile() {
