@@ -434,6 +434,8 @@ function DoAction(code, ctrl) {
 //        gamestate.setMode("talk");      // not needed, set in talk code
         // new response code (need a lot for targeting!)
         
+      } else if (newresponse["fin"] === 4) {
+        // don't do anything, already set to Equip
       }
     }
     else if (response["fin"] === 0) { 
@@ -460,6 +462,8 @@ function DoAction(code, ctrl) {
       response = PerformUseFromInventoryState(code);
     } else if (targetCursor.command === "r") {
       response = PerformRuneChoice(code);
+    } else if (targetCursor.command === "c") {
+      response = PerformSpellcastEquip(code);
     }
     if (response["fin"] === 0) {
       maintext.setInputLine("&gt;");
