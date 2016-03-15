@@ -597,6 +597,10 @@ function Breakable(brokengraphicarray, startsbroken) {
   this.break = function(who) { 
     this.broken = 1; 
     this.setGraphicArray(brokengraphicarray);
+    if (!this.fixeddesc) {
+      this.fixeddesc = this.getDesc();
+    }
+    this.setDesc(this.brokendesc);
     //play sound effect
     DrawMainFrame("one", this.getHomeMap().getName(), this.getx(), this.gety());
     if (this.karmamod && (who === PC)) { 
@@ -615,6 +619,7 @@ function Breakable(brokengraphicarray, startsbroken) {
     if (this.getName() === "Mirror") {
       this.setGraphicArray([who.getGraphic(), "mirror-reflection.gif", "0", "7"]);
     }
+    this.setDesc(this.fixeddesc);
     DrawMainFrame("one", this.getHomeMap().getName(), this.getx(), this.gety());  // will try to draw 0,0 if in inventory, which is ok
   }
   
@@ -4662,6 +4667,7 @@ function MirrorTile() {
   this.karmamod = -1;
   
   Breakable.call(this,["furniture.gif", "", "-224", "0"]);
+  this.brokendesc = "broken mirror";
 }
 MirrorTile.prototype = new FeatureObject();
 
