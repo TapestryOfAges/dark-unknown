@@ -738,6 +738,7 @@ function GameMap() {
   this.alwaysRemember = 0;
   this.scale = 1;
   this.backgroundimage = '';
+  this.underground = 0;
   
   this.exitScript = "";
   this.exitTestScript = "";
@@ -775,6 +776,17 @@ GameMap.prototype.setBackground = function(bgimg) {
 
 GameMap.prototype.getBackground = function() {
   return this.backgroundimage;
+}
+
+GameMap.prototype.setUnderground = function(ug) {
+  if (ug) {
+    this.underground = 1;
+  }
+  return this.underground;
+}
+
+GameMap.prototype.getUnderground = function() {
+  return this.underground;
 }
 
 GameMap.prototype.setScale = function(newscale) {
@@ -1430,6 +1442,7 @@ GameMap.prototype.saveMap = function (name) {
  printerwin.document.write(name + ".lightLevel = '" + this.getLightLevel() + "';\n");
  printerwin.document.write(name + ".alwaysRemember = '" + this.getAlwaysRemember() + "';\n");
  printerwin.document.write(name + ".scale = '" + this.getScale() + "';\n");
+ printerwin.document.write(name + ".underground = '" + this.getUnderground() + "';\n");
  printerwin.document.write(name + ".enterscript = '" + this.getEnterScript() + "';\n");
  printerwin.document.write(name + ".entertestscript = '" + this.getEnterTestScript() + "';\n");
  printerwin.document.write(name + ".exitscript = '" + this.getExitScript() + "';\n");
@@ -1496,6 +1509,7 @@ GameMap.prototype.loadMap = function (name) {
   this.setLightLevel(mappages.readPage(name, "lightLevel"));
   this.setAlwaysRemember(mappages.readPage(name, "alwaysRemember"));
   this.setScale(mappages.readPage(name, "scale"));
+  this.setUnderground(mappages.readPage(name, "underground"));
   this.setReturn(mappages.readPage(name, "returnmap"), mappages.readPage(name, "returnx"), mappages.readPage(name, "returny"));
   this.setReturnInfused(mappages.readPage(name, "returninfused"));
   if (!DU.gameflags.getFlag("editor")) {

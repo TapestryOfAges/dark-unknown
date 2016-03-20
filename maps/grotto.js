@@ -146,6 +146,7 @@ mappages["grotto"].seeBelow = '';
 mappages["grotto"].lightLevel = 'dark';
 mappages["grotto"].alwaysRemember = '0';
 mappages["grotto"].scale = '1';
+mappages["grotto"].underground = '1';
 mappages["grotto"].enterscript = '';
 mappages["grotto"].entertestscript = '';
 mappages["grotto"].exitscript = '';
