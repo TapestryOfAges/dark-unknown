@@ -821,6 +821,7 @@ function editorEditMapDetails() {
   document.detailseditpopup.maponexitscript.value = amap.getExitScript();
   document.detailseditpopup.maponentertest.value = amap.getEnterTestScript();
   document.detailseditpopup.maponexittest.value = amap.getExitTestScript();
+  document.detailseditpopup.mapunderground.value = amap.getUnderground();
   document.detailseditpopup.mapreturnmap.value = amap.getReturnMap();
   document.detailseditpopup.mapreturnx.value = amap.getReturnx();
   document.detailseditpopup.mapreturny.value = amap.getReturny();
@@ -844,6 +845,7 @@ function submitEditDetails(change) {
     amap.setEnterY(document.detailseditpopup.mapentery.value);			
     amap.setLinkedMaps(document.detailseditpopup.maplinkedmaps.value);
     amap.setSeeBelow(document.detailseditpopup.mapseebelow.value);
+    amap.setUnderground(document.detailseditpopup.mapunderground.value);
     amap.setLightLevel(document.detailseditpopup.maplightlevel.value);
     amap.setAlwaysRemember(document.detailseditpopup.mapalwaysremember.value);
     amap.setScale(document.detailseditpopup.mapscale.value);
