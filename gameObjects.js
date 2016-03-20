@@ -1057,6 +1057,7 @@ function InanimateObject() {
   this.walkonscript = "";
   this.usescript = "";
   this.peerview = "";
+  this.walkSound = "";
   
   this.addType("InanimateObject");
 }
@@ -1069,6 +1070,14 @@ InanimateObject.prototype.getWalkOnScript = function() {
 
 InanimateObject.prototype.setWalkOnScript = function(newscript) {
 	this.walkonscript = newscript;
+}
+
+InanimateObject.prototype.getWalkSound = function() {
+	return this.walkSound;
+}
+
+InanimateObject.prototype.setWalkSound = function(newsound) {
+	this.walkSound = newsound;
 }
 
 InanimateObject.prototype.getUseScript = function() {
@@ -1179,6 +1188,7 @@ function OceanTile() {
   this.spriteyoffset = "0";
   this.combatmap = "Water";
   this.peerview = "#0000e0";
+  this.walkSound = "water";
 }
 OceanTile.prototype = new TerrainObject();
 
@@ -1192,6 +1202,7 @@ function WaterTile() {
   this.spriteyoffset = "0";
   this.combatmap = "Water";
   this.peerview = "#4040fc";
+  this.walkSound = "water";
 }
 WaterTile.prototype = new TerrainObject();
 
@@ -1215,6 +1226,7 @@ function ShallowsTile() {
   this.spriteyoffset = "0";
   this.combatmap = "Water";
   this.peerview = "#8080fc";
+  this.walkSound = "water";
 }
 ShallowsTile.prototype = new TerrainObject();
 
@@ -1238,6 +1250,7 @@ function ShadowOceanTile() {
   this.spriteyoffset = "0";
   this.combatmap = "Water";
   this.peerview = "#172915";
+  this.walkSound = "water";
 }
 ShadowOceanTile.prototype = new TerrainObject();
 
@@ -1251,6 +1264,7 @@ function ShadowWaterTile() {
   this.spriteyoffset = "0";
   this.combatmap = "Water";
   this.peerview = "#273425";
+  this.walkSound = "water";
 }
 ShadowWaterTile.prototype = new TerrainObject();
 
@@ -1274,6 +1288,7 @@ function ShadowShallowsTile() {
   this.spriteyoffset = "0";
   this.combatmap = "Water";
   this.peerview = "#809d7d";
+  this.walkSound = "water";
 }
 ShadowShallowsTile.prototype = new TerrainObject();
 
@@ -1330,6 +1345,7 @@ function MountainTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.combatmap = "Hill";
   this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
 }
 MountainTile.prototype = new TerrainObject();
 
@@ -1344,6 +1360,7 @@ function MountainPassTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK;
   this.combatmap = "Hill";
   this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
 }
 MountainPassTile.prototype = new TerrainObject();
 
@@ -1454,6 +1471,7 @@ function FancyFloorTile() {
   this.prefix = "the";
   this.desc = "floor";
   this.peerview = "#600060";
+  this.walkSound = "stone";
 }
 FancyFloorTile.prototype = new TerrainObject();
 
@@ -2204,6 +2222,7 @@ function PlanksNSTile() {
   this.blocklos = 0;
   this.desc = "wooden planks";
   this.peerview = "#602000";
+  this.walkSound = "stone";
 }
 PlanksNSTile.prototype = new TerrainObject();
 
@@ -2217,6 +2236,7 @@ function ShadowPlanksNSTile() {
   this.blocklos = 0;
   this.desc = "wooden planks";
   this.peerview = "#1c6000";
+  this.walkSound = "stone";
 }
 ShadowPlanksNSTile.prototype = new TerrainObject();
 
@@ -2231,6 +2251,7 @@ function SouthCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#00c000";
+  this.walkSound = "grass";
 }
 SouthCoastTile.prototype = new TerrainObject();
 
@@ -2245,6 +2266,7 @@ function NorthCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#00c000";
+  this.walkSound = "grass";
 }
 NorthCoastTile.prototype = new TerrainObject();
 
@@ -2259,7 +2281,7 @@ function NorthCoastSandTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#7a2a1a";
-  
+  this.walkSound = "grass";
 }
 NorthCoastSandTile.prototype = new TerrainObject();
 
@@ -2274,6 +2296,7 @@ function EastCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#00c000";
+  this.walkSound = "grass";
 }
 EastCoastTile.prototype = new TerrainObject();
 
@@ -2288,6 +2311,7 @@ function WestCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#00c000";
+  this.walkSound = "grass";
 }
 WestCoastTile.prototype = new TerrainObject();
 
@@ -2302,6 +2326,7 @@ function NortheastCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#00c000";
+  this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -2318,6 +2343,7 @@ function NortheastCoastSandTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -2334,6 +2360,7 @@ function SouthwestCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#00c000";
+  this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -2350,6 +2377,7 @@ function NorthwestCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#00c000";
+  this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -2366,6 +2394,7 @@ function NorthwestCoastSandTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -2382,6 +2411,7 @@ function SoutheastCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#00c000";
+  this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -2398,6 +2428,7 @@ function ShadowSouthCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#0065a0";
+  this.walkSound = "grass";
 }
 ShadowSouthCoastTile.prototype = new TerrainObject();
 
@@ -2412,6 +2443,7 @@ function ShadowNorthCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#0065a0";
+  this.walkSound = "grass";
 }
 ShadowNorthCoastTile.prototype = new TerrainObject();
 
@@ -2426,6 +2458,7 @@ function ShadowEastCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#0065a0";
+  this.walkSound = "grass";
 }
 ShadowEastCoastTile.prototype = new TerrainObject();
 
@@ -2440,6 +2473,7 @@ function ShadowWestCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#0065a0";
+  this.walkSound = "grass";
 }
 ShadowWestCoastTile.prototype = new TerrainObject();
 
@@ -2454,6 +2488,7 @@ function ShadowNortheastCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#0065a0";
+  this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -2470,6 +2505,7 @@ function ShadowSouthwestCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#0065a0";
+  this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -2486,6 +2522,7 @@ function ShadowNorthwestCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#0065a0";
+  this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -2502,6 +2539,7 @@ function ShadowSoutheastCoastTile() {
   this.desc = "coast";
   this.combatmap = "Grass";
   this.peerview = "#0065a0";
+  this.walkSound = "grass";
   
   SetBySurroundCoast.call(this);
 }
@@ -2520,6 +2558,7 @@ function RiverTile() {
   this.desc = "river";
   this.combatmap = "Water";
   this.peerview = "#8080fc";
+  this.walkSound = "water";
   
   SetBySurroundRiver.call(this);
 }
@@ -2535,6 +2574,7 @@ function CobblestoneTile() {
   this.blocklos = 0;
   this.desc = "cobblestones";
   this.peerview = "#800000";
+  this.walkSound = "stone";
 }
 CobblestoneTile.prototype = new TerrainObject();
 
@@ -2548,6 +2588,7 @@ function BlueTilesTile() {
   this.blocklos = 0;
   this.desc = "tiles";
   this.peerview = "#345de1";
+  this.walkSound = "stone";
 }
 BlueTilesTile.prototype = new TerrainObject();
 
@@ -2562,6 +2603,7 @@ function PlanksEWTile() {
   this.blocklos = 0;
   this.desc = "wooden planks";
   this.peerview = "#602000";
+  this.walkSound = "stone";
 }
 PlanksEWTile.prototype = new TerrainObject();
 
@@ -2575,7 +2617,7 @@ function GrassTile() {
   this.blocklos = 0;
   this.desc = "grass";
   this.peerview = "#00c000";
-
+  this.walkSound = "grass";
   this.combatmap = "Grass"; 
 }
 GrassTile.prototype = new TerrainObject();
@@ -2590,7 +2632,7 @@ function ShadowGrassTile() {
   this.blocklos = 0;
   this.desc = "grass";
   this.peerview = "#0065a0";
-
+  this.walkSound = "grass";
   this.combatmap = "Grass"; 
 }
 ShadowGrassTile.prototype = new TerrainObject();
@@ -2606,6 +2648,7 @@ function DirtTile() {
   this.desc = "dirt";
   this.combatmap = "Grass";
   this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
 }
 DirtTile.prototype = new TerrainObject();
 
@@ -2620,6 +2663,7 @@ function ShadowDirtTile() {
   this.desc = "dirt";
   this.combatmap = "Grass";
   this.peerview = "#60003c";
+  this.walkSound = "grass";
 }
 ShadowDirtTile.prototype = new TerrainObject();
 
@@ -2636,6 +2680,7 @@ function RoadTile() {
   
   this.initdelay = 0.8;
   this.pathweight = -.2;
+  this.walkSound = "grass";
   
   SetBySurroundRoad.call(this);
 }
@@ -2654,6 +2699,7 @@ function BrushTile() {
   this.pathweight = .1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
+  this.walkSound = "grass";
 }
 BrushTile.prototype = new TerrainObject();
 
@@ -2670,6 +2716,7 @@ function ShadowBrushTile() {
   this.pathweight = .1;
   this.combatmap = "Brush";
   this.peerview = "#005080";
+  this.walkSound = "grass";
 }
 ShadowBrushTile.prototype = new TerrainObject();
 
@@ -2686,6 +2733,7 @@ function BrushNCoastTile() {
   this.pathweight = .1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
+  this.walkSound = "grass";
 }
 BrushNCoastTile.prototype = new TerrainObject();
 
@@ -2702,6 +2750,7 @@ function BrushECoastTile() {
   this.pathweight = .1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
+  this.walkSound = "grass";
 }
 BrushECoastTile.prototype = new TerrainObject();
 
@@ -2718,6 +2767,7 @@ function BrushSCoastTile() {
   this.pathweight = .1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
+  this.walkSound = "grass";
 }
 BrushSCoastTile.prototype = new TerrainObject();
 
@@ -2734,6 +2784,7 @@ function BrushWCoastTile() {
   this.pathweight = .1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
+  this.walkSound = "grass";
 }
 BrushWCoastTile.prototype = new TerrainObject();
 
@@ -2752,6 +2803,7 @@ function ForestTile() {
   this.pathweight = .3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
+  this.walkSound = "forest";
 }
 ForestTile.prototype = new TerrainObject();
 
@@ -2768,6 +2820,7 @@ function GroveTile() {
   this.initdelay = 1.3;
   this.pathweight = .3;
   this.peerview = "#004000";
+  this.walkSound = "forest";
 }
 GroveTile.prototype = new TerrainObject();
 
@@ -2784,6 +2837,7 @@ function ShadowGroveTile() {
   this.initdelay = 1.3;
   this.pathweight = .3;
   this.peerview = "#002840";
+  this.walkSound = "forest";
 }
 ShadowGroveTile.prototype = new TerrainObject();
 	
@@ -2802,6 +2856,7 @@ function ForestNCoastTile() {
   this.pathweight = .3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
+  this.walkSound = "forest";
 }
 ForestNCoastTile.prototype = new TerrainObject();
 
@@ -2820,6 +2875,7 @@ function ForestECoastTile() {
   this.pathweight = .3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
+  this.walkSound = "forest";
 }
 ForestECoastTile.prototype = new TerrainObject();
 
@@ -2838,6 +2894,7 @@ function ForestSCoastTile() {
   this.pathweight = .3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
+  this.walkSound = "forest";
 }
 ForestSCoastTile.prototype = new TerrainObject();
 
@@ -2856,6 +2913,7 @@ function ForestWCoastTile() {
   this.pathweight = .3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
+  this.walkSound = "forest";
 }
 ForestWCoastTile.prototype = new TerrainObject();
 
@@ -2875,6 +2933,7 @@ function HillsTile() {
   this.pathweight = .5;
   this.combatmap = "Hill";
   this.peerview = "#49473a";
+  this.walkSound = "hill";
 }
 HillsTile.prototype = new TerrainObject();
 
@@ -2888,6 +2947,7 @@ function PurpleCobblestoneTile() {
   this.blocklos = 0;
   this.desc = "cobblestone";
   this.peerview = "#600060";
+  this.walkSound = "stone";
 }
 PurpleCobblestoneTile.prototype = new TerrainObject();
 
@@ -2901,6 +2961,7 @@ function ShadowPurpleCobblestoneTile() {
   this.blocklos = 0;
   this.desc = "cobblestone";
   this.peerview = "#602300";
+  this.walkSound = "stone";
 }
 ShadowPurpleCobblestoneTile.prototype = new TerrainObject();
 
@@ -2917,6 +2978,7 @@ function SwampTile() {
   this.pathweight = 1;
   this.combatmap = "Swamp";
   this.peerview = "#004000";
+  this.walkSound = "swamp";
 }
 SwampTile.prototype = new TerrainObject();
 
@@ -2942,6 +3004,7 @@ function ShadowSwampTile() {
   this.pathweight = 1;
   this.combatmap = "Swamp";
   this.peerview = "#002840";
+  this.walkSound = "swamp";
 }
 ShadowSwampTile.prototype = new TerrainObject();
 
@@ -3019,6 +3082,7 @@ function CaveFloorTile() {
 	this.prefix = "a";
 	this.desc = "cave floor";
 	this.peerview = "#6c6c6c";
+	this.walkSound = "stone";
 	
 	Tiling.call(this, 2);
 }
@@ -3048,6 +3112,7 @@ function HexFloorTile() {
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#675151";
+	this.walkSound = "stone";
 }
 HexFloorTile.prototype = new TerrainObject();
 
@@ -3060,6 +3125,7 @@ function GoldOutlineFloorTile() {
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#9b8727";
+	this.walkSound = "stone";
 }
 GoldOutlineFloorTile.prototype = new TerrainObject();
 
@@ -3072,6 +3138,7 @@ function DiamondFloorTile() {
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#868585";
+	this.walkSound = "stone";
 }
 DiamondFloorTile.prototype = new TerrainObject();
 
@@ -3084,6 +3151,7 @@ function BlueDiamondFloorTile() {
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#5050ff";
+	this.walkSound = "stone";
 }
 BlueDiamondFloorTile.prototype = new TerrainObject();
 
@@ -3096,6 +3164,7 @@ function PurpleDiamondFloorTile() {
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#b650ff";
+	this.walkSound = "stone";
 }
 PurpleDiamondFloorTile.prototype = new TerrainObject();
 
@@ -3108,6 +3177,7 @@ function RedDiamondFloorTile() {
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#ff5c50";
+	this.walkSound = "stone";
 }
 RedDiamondFloorTile.prototype = new TerrainObject();
 
@@ -3120,6 +3190,7 @@ function GreenDiamondFloorTile() {
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#50ff61";
+	this.walkSound = "stone";
 }
 GreenDiamondFloorTile.prototype = new TerrainObject();
 
@@ -3132,6 +3203,7 @@ function YellowDiamondFloorTile() {
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#cf790b";
+	this.walkSound = "stone";
 }
 YellowDiamondFloorTile.prototype = new TerrainObject();
 
@@ -4308,6 +4380,7 @@ function WBridgeNSTile() {
   this.prefix = "a";
   this.desc = "bridge";
   this.peerview = "#602000";
+  this.walkSound = "stone";
 }
 WBridgeNSTile.prototype = new FeatureObject();
 
@@ -4319,6 +4392,7 @@ function EBridgeNSTile() {
   this.prefix = "a";
   this.desc = "bridge";
   this.peerview = "#602000";
+  this.walkSound = "stone";
 }
 EBridgeNSTile.prototype = new FeatureObject();
 
@@ -4330,6 +4404,7 @@ function BridgeNSTile() {
   this.prefix = "a";
   this.desc = "bridge";
   this.peerview = "#602000";
+  this.walkSound = "stone";
 }
 BridgeNSTile.prototype = new FeatureObject();
 
@@ -4341,6 +4416,7 @@ function NBridgeEWTile() {
   this.prefix = "a";
   this.desc = "bridge";
   this.peerview = "#602000";
+  this.walkSound = "stone";
 }
 NBridgeEWTile.prototype = new FeatureObject();
 
@@ -4352,6 +4428,7 @@ function SBridgeEWTile() {
   this.prefix = "a";
   this.desc = "bridge";
   this.peerview = "#602000";
+  this.walkSound = "stone";
 }
 SBridgeEWTile.prototype = new FeatureObject();
 
@@ -4363,6 +4440,7 @@ function BridgeEWTile() {
   this.prefix = "a";
   this.desc = "bridge";
   this.peerview = "#602000";
+  this.walkSound = "stone";
 }
 BridgeEWTile.prototype = new FeatureObject();
 
@@ -10151,13 +10229,18 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	  }
 		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
 		if (this === PC) {
-		  if (tile.getFeatures().length) {
-		    play_footstep("Feature");
+		  var sfx = "sfx_walk_";
+		  if (map.getUnderground()) { sfx = sfx + "ug_"; }
+		  if (tile.getTopFeature() && tile.getTopFeature().getWalkSound()) {
+		    sfx = sfx + tile.getTopFeature().getWalkSound();
+		  } else if (tile.getTerrain().getWalkSound()) {
+		    sfx = sfx + tile.getTerrain().getWalkSound();
 		  } else {
-		    play_footstep(tile.getTerrain().getName());
+		    sfx = sfx + "grass";
 		  }
+		  play_footstep(sfx);
 		}
-//    if (GetDistance(this.getx(), this.gety(), PC.getx(), PC.gety()) < 1+Math.pow(( (viewsizex-1)/2*(viewsizex-1)/2 + (viewsizey-1)/2*(viewsizey-1)/2 ),.5) ) {
+
     var distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
 		var walkonval = tile.executeWalkons(this);
 		if (walkonval) {
