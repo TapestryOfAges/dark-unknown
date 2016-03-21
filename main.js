@@ -44,6 +44,8 @@ var finder = new PF.AStarFinder({
 });
 DU.gameflags = new Gameflags();
 
+var Listener = new DUListener();
+
 var targetCursor = {};
     targetCursor.skipahead = 0;
 var inputText = {};
