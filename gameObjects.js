@@ -6042,14 +6042,14 @@ RuneOfKingsTile.prototype.use = function(user) {
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
   }
-  ApplyRune(user, "winds", this);
+  ApplyRune(user, "kings", this);
   return retval;
 }
 
 RuneOfKingsTile.prototype.bumpInto = function(who) {
   var retval = {};
   retval["fin"] = 1;
-  ApplyRune(user, "winds", this);
+  ApplyRune(user, "kings", this);
   return retval;
 }
 
