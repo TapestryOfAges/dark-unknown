@@ -1209,6 +1209,9 @@ function PerformTalkTarget() {
     PC.settp(PC.gettp()+TP_PER_LEVEL);
     DU.gameflags.setFlag("can_train", 1);
     maintext.addText(PC.getPCName() + " is now level " + PC.getLevel() + "!");
+    if (PC.getLevel() === 4) {
+      DU.gameflags.setFlag("lvl4",1);
+    } 
     retval = PreformTalk(top, convo, "_level");
   } else {
     retval = PerformTalk(top, convo, "_start");
