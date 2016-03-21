@@ -115,6 +115,16 @@ GameStateData.prototype.saveGame = function(flag) {
 	savedata.objs = {};
 	savedata.maps = [];       // this turns into a list of names of maps, to be re-loaded on load
 	
+	savedata.events = {};
+	Listener.clearListeners(); // clear out unneeded listeners
+	var currlisteners = Listener.listeners.getAll();
+	$.each(currlisteners, function(idx,val) {
+	  savedata.events[val.name] = {};
+	  savedata.events[val.name].listenforname = val.listenforname;
+	  savedata.events[val.name].flagsreq = val.flagsreq;
+	  savedata.events[val.name].linkedtomap = val.linkedtomap;
+	});
+	
 	$.each(DU.maps.data, function(idx, val) {
 	  savedata.maps.push(idx);
 	  
@@ -215,6 +225,15 @@ GameStateData.prototype.loadGame = function() {
   DUTime.setGameClock(savedata.time);
   DU.gameflags = new Gameflags();
   $.extend(true,DU.gameflags,savedata.gameflags);
+  
+  $.each(savedata.events, function(idx,val) {
+    var tmplistener = new DUEar();
+    tmplistener.name = idx;
+    tmplistener.listenforname = val.listenforname;
+    tmplistener.linkedtomap = val.linkedtomap;
+    tmplistener.flagsreq = val.flagsreq;
+    Listener.addListener(tmplistener);
+  });
   
   var loadmaps = {};
   
