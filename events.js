@@ -13,20 +13,21 @@ DUListener.prototype.addListener = function(newlistener) {
 
 DUListener.prototype.clearListeners = function() {
   var allears = this.listeners.getAll();
-  $.each(allears, function(idx, val) {
-    if (val.linkedtomap) {
-      var mapexists = maps.getMap(val.linkedtomap);
-      if (mapexists === undefined) {
-        this.clearListener(val.name);
+  if (allears.length) {
+    for (var i = 0; i<allears.length; i++) {
+      if (allears[i].linkedtomap) {
+        var mapexists = maps.getMap(allears[i].linkedtomap);
+        if (mapexists === undefined) {
+          this.clearListener(allears[i].name);
+        }
       }
     }
-  });
+  }
 }
 
 DUListener.prototype.clearListener = function(listname) {
-  findlistener = this.listeners.getByName(listname);
+  var findlistener = this.listeners.getByName(listname);
   if (findlistener) {
-//    if (debug && debugflags.events) { dbs.writeln("<span style='color:magenta'>Deleting listener " + findlistener.getName() + ".<br /></span>"); }
     DebugWrite("events", "Deleting listener " + findlistener.getName() + ".<br />");
     this.listeners.deleteFrom(findlistener);
   }
@@ -37,34 +38,39 @@ DUListener.prototype.sendEvent = function(ev) {
   
   var allears = this.listeners.getAll();
   if (allears.length === 0) { 
-//    if (debug && debugflags.events) { dbs.writeln("<span style='color:magenta'>Event sent, no listeners.<br /></span>"); }
     DebugWrite("events", "Event sent, no listeners.<br />");
     return;
   }
-  $.each(allears, function(idx, val) {
-    if (val.linkedtomap === ev.source.getHomeMap().getName()) {
-      if (val.listenforname === ev.name) {
+  for (var i=0; i<allears.length; i++) {
+    if (allears[i].linkedtomap === ev.source.getHomeMap().getName()) {
+      if (allears[i].listenforname === ev.name) {
         var flagsmatch = 1;
-        $.each(val.flagsreq, function(idx2, val2) {
-          if (ev.idx2 && (ev.idx2 === val2)) {
-//            if (debug && debugflags.events) { dbs.writeln("<span style='color:magenta'>Flag " + idx2 + " matched - values " + val2 + ".<br /></span>"); }
+        $.each(allears[i].flagsreq, function(idx2, val2) {
+          if (ev.flags[idx2] && (ev.flags[idx2] === val2)) {
             DebugWrite("events", "Flag " + idx2 + " matched - values " + val2 + ".<br />");
           } else {
             flagsmatch = 0;
           }
         });
+        $.each(ev.flags, function(idx2, val2) {
+          if (allears[i].flagsreq[idx2] && (allears[i].flagsreq[idx2] === val2)) {
+            DebugWrite("events", "Flag " + idx2 + " matched - values " + val2 + ".<br />");
+          } else {
+            flagsmatch = 0;
+          }          
+        });
         if (flagsmatch) {
-          this.callfunc(ev);
+          EventFunctions[allears[i].name](ev);
         }
       }
     }
-  });
+  }
 }
 
 function DUEar() {
   this.name;
   this.listenforname;
-  this.callfunc;
+//  this.callfunc;
   this.flagsreq = {};
   this.linkedtomap;  // name
 }
@@ -74,9 +80,13 @@ DUEar.prototype.getName = function() {
   return this.name;
 }
 
-function DUEvent() {
-  this.name;
-  this.source;
-  this.flags;
+function DUEvent(nm, srcs, flags) {
+  this.name = nm;
+  this.source = srcs;
+  this.flags = flags;
 }
 DUEvent.prototype = new Object();
+
+
+var EventFunctions = new Object();
+// all listener funccalls must be attacked to this object globally, for purposes of managing save/load
