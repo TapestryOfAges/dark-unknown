@@ -70,7 +70,7 @@ var musictries = 0;
 var firsttime = 1;
 var themap;
 themap = new GameMap();
-
+var Listener = new DUListener();
 
 $(document).ready(function() {
   audio_init_title();  
