@@ -913,7 +913,10 @@ function ApplyRune(who, rune, runeref) {
   maintext.delayedAddText("You have been marked with the Rune of " + runecap + "!");
   if (who.runes[rune] ===1) { maintext.delayedAddText("No effect!"); }
   else {
-    if (rune === "kings") { DU.gameflags.setFlag("rune_kings_1",1); }
+    if (rune === "kings") { 
+      DU.gameflags.setFlag("rune_kings_1",1); 
+      DU.gameflags.setFlag("rune_kings",1);
+    }
     who.runes[rune] = 1;
   }
   

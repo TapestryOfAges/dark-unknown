@@ -1204,15 +1204,20 @@ function PerformTalkTarget() {
   maintext.addText("Talk to: " + top.getDesc());
 
   if (EarnedLevel(PC) && (top.getName() === "KingNPC")) {
-    maintext.addText('"Hail, ' + PC.getPCName() + '! I am well pleased with your progress."');
-    PC.setLevel(PC.getLevel()+1);
-    PC.settp(PC.gettp()+TP_PER_LEVEL);
-    DU.gameflags.setFlag("can_train", 1);
-    maintext.addText(PC.getPCName() + " is now level " + PC.getLevel() + "!");
-    if (PC.getLevel() === 4) {
-      DU.gameflags.setFlag("lvl4",1);
-    } 
-    retval = PreformTalk(top, convo, "_level");
+    if ((PC.getLevel() < 4) || (PC.runes.kings)) {
+      maintext.addText('"Hail, ' + PC.getPCName() + '! I am well pleased with your progress."');
+      PC.setLevel(PC.getLevel()+1);
+      PC.settp(PC.gettp()+TP_PER_LEVEL);
+      DU.gameflags.setFlag("can_train", 1);
+      maintext.addText(PC.getPCName() + " is now level " + PC.getLevel() + "!");
+      if (PC.getLevel() === 4) {
+        DU.gameflags.setFlag("lvl4",1);
+      } 
+      retval = PreformTalk(top, convo, "_level");
+    } else {
+      maintext.addText('"Hail, ' + PC.getPCName() + '! You have made great progress, but you cannot advance without the =Rune=!."');
+      retval = PreformTalk(top, convo, "_level");
+    }
   } else {
     retval = PerformTalk(top, convo, "_start");
   }
