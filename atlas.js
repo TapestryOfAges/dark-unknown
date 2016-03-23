@@ -576,8 +576,9 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	var features = this.getFeatures();
 	if (features[0]) {
 	  for (var i=0; i< features.length; i++) {
-	    if (doors && (features[i].opengraphic) && (!features[i].locked)) {
+	    if (doors && (((features[i].opengraphic) && (!features[i].locked)) || (features[i].pushable)) {
 	      // skip doors for this check
+	      // new: also skip things which can be pushed out of the way
 	    } else {
 		    featurepassability = featurepassability & features[i].getPassable();
 		  }
