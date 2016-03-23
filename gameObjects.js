@@ -484,6 +484,34 @@ GameObject.prototype.activate = function() {
 // These below are abstract classes, to be used only in JS's halfassed
 // version of multiple inheritance. 
 
+// Abstract class Pushable
+function Pushable() {
+  this.pushable = 1;
+  
+  this.pushMe = function(who) {
+    var retval = {};
+    retval["fin"] = 0;
+    retval["input"] = "&gt;";
+    if (IsAdjacent(this,who,"nodiag")) {
+      var diffx = this.getx() - who.getx();
+      var diffy = this.gety() - who.gety();
+      var pushto = who.getHomeMap().getTile(this.getx()+diffx,this.gety()+diffy);
+      var canmove = pushto.canMoveHere(MOVE_WALK);
+      if (canmove["canmove"]) {
+        // WORKING HERE
+      } else {
+        retval = this.pullMe();
+      }
+    } else {
+      retval["txt"] = "You can't push that from here.";
+    }
+    return retval;
+  }
+  this.pullMe = function(who) {
+    
+  }
+}
+
 // Abstract class Lockable
 function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedprefix, unlockeddesc, lockedprefix, lockeddesc, maglockedprefix, maglockeddesc) {
 	this.locked = 0;
