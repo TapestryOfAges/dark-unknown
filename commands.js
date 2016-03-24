@@ -234,8 +234,15 @@ function PerformCommand(code, ctrl) {
 		
 	}
 	else if (code === 80) { // p
-		// peer into gem - not used
-		
+		// push
+		gamestate.setMode("choosedir");
+		retval["txt"] = "";
+		retval["input"] = "&gt; Push- ";
+		retval["fin"] = 2;
+
+		targetCursor.command = "p";
+		targetCursor.x = PC.getx();
+		targetCursor.y = PC.gety();
 	}
 	else if (code === 81) { // q
 //		var mymap = PC.getHomeMap();
@@ -1023,6 +1030,11 @@ function PerformEquip(code) {
 //  targetCursor.scrolllocation = 0;
 //  targetCursor.itemlist = itemarray;
  
+}
+
+function PerformPush(who) {
+  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  // WORKING HERE
 }
 
 function PerformSearch(who) {

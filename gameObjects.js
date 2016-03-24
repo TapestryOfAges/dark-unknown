@@ -493,12 +493,26 @@ function Pushable() {
     retval["fin"] = 0;
     retval["input"] = "&gt;";
     if (IsAdjacent(this,who,"nodiag")) {
+      retval["fin"] = 1;
       var diffx = this.getx() - who.getx();
       var diffy = this.gety() - who.gety();
-      var pushto = who.getHomeMap().getTile(this.getx()+diffx,this.gety()+diffy);
+      var objmap = who.getHomeMap();
+      var pushto = objmap.getTile(this.getx()+diffx,this.gety()+diffy);
+      if (pushto === "OoB") { return this.pullMe(); }
       var canmove = pushto.canMoveHere(MOVE_WALK);
       if (canmove["canmove"]) {
-        // WORKING HERE
+        objmap.moveThing(this.getx()+diffx,this.gety()+diffy,this);
+        retval["txt"] = "Push: " + this.getDesc() + ".";
+        if ((typeof this.getLight === function) && (this.getLight() !== 0)) {
+          if (PC.getHomeMap() === objmap) {
+            DrawMainFrame("draw",objmap.getName(),PC.getx(),PC.gety());
+          }
+        } else {
+          if ((PC.getHomeMap() === objmap) && (GetDistance(PC,this,"square") <= 6)) {
+            DrawMainFrame("one",objmap.getName(),this.getx(),this.gety());
+            DrawMainFrame("one",objmap.getName(),this.getx()-diffx,this.gety()-diffy);
+          }
+        }
       } else {
         retval = this.pullMe();
       }
@@ -508,7 +522,17 @@ function Pushable() {
     return retval;
   }
   this.pullMe = function(who) {
+    var retval = {};
+    retval["fin"] = 1;
+    retval["input"] = "&gt;";
+    var objmap = this.getHomeMap();
+    var diffx = this.getx()-who.getx();
+    var diffy = this.gety()-who.gety();
+    objmap.moveThing(who.getx(),who.gety(),this);
+    var moveval = who.moveMe(diffx,diffy);
+    retval["txt"] = "Pull: " + this.getDesc() + ".";
     
+    return retval;
   }
 }
 
