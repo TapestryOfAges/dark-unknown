@@ -1229,7 +1229,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
   this.data[y][x][type].addTop(thing);
   thing.setx(x);
   thing.sety(y);
- 	if ((typeof thing.getLight === "function") && (Math.abs(thing.getLight()) > 0)) {
+ 	if ((typeof thing.getLight === "function") && (Math.abs(thing.getLight()) !== 0)) {
     this.setMapLight(thing,thing.getLight(),x,y);
   }
   // update pathfinding
