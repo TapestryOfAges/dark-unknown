@@ -324,7 +324,7 @@ function DoAction(code, ctrl) {
         PerformUseFromInventory();
         return;
       }
-      if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c"))) {
+      if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c") || (targetCursor.command === "p"))) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         gamestate.setMode("player");
@@ -348,6 +348,8 @@ function DoAction(code, ctrl) {
           resp = PerformAttackMap(PC);  			  
         } else if (targetCursor.command === "c") { // CAST
           resp = PerformDirSpellcast();          
+        } else if (targetCursor.command === "p") { // PUSH
+          resp = PerformPush(PC);
         }
         if (resp["fin"] === 2) {
           maintext.addText(resp["txt"]);
