@@ -531,6 +531,7 @@ function Pushable() {
     objmap.moveThing(who.getx(),who.gety(),this);
     var moveval = who.moveMe(diffx,diffy);
     retval["txt"] = "Pull: " + this.getDesc() + ".";
+    retval["canmove"] = moveval["canmove"];
     
     return retval;
   }
