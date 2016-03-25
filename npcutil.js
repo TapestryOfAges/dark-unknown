@@ -418,28 +418,49 @@ function StepOrDoor(who, where) {
   var tile = whomap.getTile(where[0],where[1]);
   if (tile !== "OoB") {
     var fea = tile.getTopFeature();
-    if (fea && fea.closedgraphic && who.specials["open_door"]) {
-      if (!((typeof fea.getLocked === "function") && (fea.getLocked()))) {
-        // door is not locked    
-        if (!fea.open) {
-//        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
-          DebugWrite("ai", "opening a door in StepOrDoor.<br />");
-          fea.use(who);
-          DrawMainFrame("one",who.getHomeMap().getName(),fea.getx(),fea.gety());
-          var moved = {canmove:0, opendoor:2, fin:1, diffx: where[0]-who.getx(), diffy: where[1]-who.gety() };
-          return moved;  // opened a door
+    if (fea && who.specials["open_door"]) {
+      if (fea.closedgraphic) {
+        if (!((typeof fea.getLocked === "function") && (fea.getLocked()))) {
+          // door is not locked    
+          if (!fea.open) {
+            DebugWrite("ai", "opening a door in StepOrDoor.<br />");
+            fea.use(who);
+            DrawMainFrame("one",who.getHomeMap().getName(),fea.getx(),fea.gety());
+            var moved = {canmove:0, opendoor:2, fin:1, diffx: where[0]-who.getx(), diffy: where[1]-who.gety() };
+            return moved;  // opened a door
+          }
         }
-      }
+      } 
     }
   }
   var diffx = where[0] - who.getx();
   var diffy = where[1] - who.gety();
   var moved = who.moveMe(diffx,diffy);
-//  moved["diffx"] = diffx;
-//  moved["diffy"] = diffy;
   if (moved["canmove"]) { 
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>moved in StepOrDoor.</span><br />"); }
     DebugWrite("ai", "moved in StepOrDoor.<br />");
+  } else {
+    DebugWrite("ai", "didn't move in StepOrDoor.<br />");
+    if (fea && who.specials["open_door"]) {
+      // If you can open a door, you can move a barrel.
+      
+      // WORKING HERE- need to add something to check to see if the AI is following a path- if not, don't want them to
+      // futz around with barrels.
+      var allfea = tile.getFeatures();
+      var pushyou;
+      $.each(allfea, function(idx,val) {
+        if (val.pushable) {
+          if (!pushyou) { pushyou = val; }
+          else {
+            if (!(val.getPassable & who.getMovetype())) {
+              pushyou = val;
+            }
+          }
+        }
+      });
+      if (pushyou) {
+        pushyou.pullMe();
+      }
+    }
   }
   return moved;
 }
