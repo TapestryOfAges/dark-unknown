@@ -503,7 +503,7 @@ function Pushable() {
       if (canmove["canmove"]) {
         objmap.moveThing(this.getx()+diffx,this.gety()+diffy,this);
         retval["txt"] = "Push: " + this.getDesc() + ".";
-        if ((typeof this.getLight === function) && (this.getLight() !== 0)) {
+        if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
           if (PC.getHomeMap() === objmap) {
             DrawMainFrame("draw",objmap.getName(),PC.getx(),PC.gety());
           }
