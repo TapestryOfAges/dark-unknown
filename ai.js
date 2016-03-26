@@ -1154,7 +1154,7 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
     }
   }
   
-  retval = StepOrSidestep(who, [who.getx()+diffx,who.gety()+diffy], [who.getx()+diffx,who.gety()+diffy]);
+  retval = StepOrSidestep(who, [who.getx()+diffx,who.gety()+diffy], [who.getx()+diffx,who.gety()+diffy], "nopush");
   retval["nomove"] = 0;  // NOTE- this is 0 even if they didn't move. If it gets to this point,
                          // canmove is the only reliable indicator of whether it moved. Checking
                          // for canmove=0 AND nomove=0 reveals that a move was attempted but failed.

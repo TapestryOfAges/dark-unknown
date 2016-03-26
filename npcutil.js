@@ -413,7 +413,7 @@ function SetBandAggro(band, map) {
   });
 }
 
-function StepOrDoor(who, where) {
+function StepOrDoor(who, where, nopush) {
   var whomap = who.getHomeMap();
   var tile = whomap.getTile(where[0],where[1]);
   if (tile !== "OoB") {
@@ -440,11 +440,9 @@ function StepOrDoor(who, where) {
     DebugWrite("ai", "moved in StepOrDoor.<br />");
   } else {
     DebugWrite("ai", "didn't move in StepOrDoor.<br />");
-    if (fea && who.specials["open_door"]) {
+    if (!nopush && fea && who.specials["open_door"]) {
       // If you can open a door, you can move a barrel.
       
-      // WORKING HERE- need to add something to check to see if the AI is following a path- if not, don't want them to
-      // futz around with barrels.
       var allfea = tile.getFeatures();
       var pushyou;
       $.each(allfea, function(idx,val) {
@@ -465,8 +463,8 @@ function StepOrDoor(who, where) {
   return moved;
 }
 
-function StepOrSidestep(who, path, finaldest) {
-  var moved = StepOrDoor(who,path);
+function StepOrSidestep(who, path, finaldest, nopush) {
+  var moved = StepOrDoor(who,path,nopush);
   if (!moved["canmove"] && !moved["opendoor"]) {
     var diffx = path[0] - who.getx();
     var diffy = path[1] - who.gety();
