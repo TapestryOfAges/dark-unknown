@@ -1033,8 +1033,25 @@ function PerformEquip(code) {
 }
 
 function PerformPush(who) {
+  var retval = {};
+  retval["fin"] = 2;
+  retval["input"] = "&gt;";
+
   var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-  // WORKING HERE
+  var pushit = localacre.features.getTop();
+  if (!pushit) { 
+    retval["txt"] = "Nothing there.";
+    return retval; 
+  }
+  if (pushit.pushable) {
+    return pushit.pushMe(who);
+  }
+  var retval = {};
+  retval["fin"] = 2;
+  retval["input"] = "&gt;";
+  retval["txt"] = "That won't budge!";
+  
+  return retval;
 }
 
 function PerformSearch(who) {
