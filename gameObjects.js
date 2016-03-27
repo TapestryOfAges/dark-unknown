@@ -503,6 +503,15 @@ function Pushable() {
       if (canmove["canmove"]) {
         objmap.moveThing(this.getx()+diffx,this.gety()+diffy,this);
         retval["txt"] = "Push: " + this.getDesc() + ".";
+        if ("facing" in this) {
+          var graphic = this.getOverlay();
+          graphic = graphic.replace(/\d\.gif/,"");
+          if (diffx > 0) { graphic = graphic + "1.gif"; }
+          else if (diffx < 0) { graphic = graphic + "3.gif"; }
+          else if (diffy > 0) { graphic = graphic + "2.gif"; }
+          else if (diffy < 0) { graphic = graphic + "0.gif"; }
+          this.setOverlay(graphic);
+        }
         if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
           if (PC.getHomeMap() === objmap) {
             DrawMainFrame("draw",objmap.getName(),PC.getx(),PC.gety());
@@ -532,6 +541,15 @@ function Pushable() {
     var moveval = who.moveMe(diffx,diffy);
     retval["txt"] = "Pull: " + this.getDesc() + ".";
     retval["canmove"] = moveval["canmove"];
+    if ("facing" in this) {
+      var graphic = this.getOverlay();
+      graphic = graphic.replace(/\d\.gif/,"");
+      if (diffx > 0) { graphic = graphic + "1.gif"; }
+      else if (diffx < 0) { graphic = graphic + "3.gif"; }
+      else if (diffy > 0) { graphic = graphic + "2.gif"; }
+      else if (diffy < 0) { graphic = graphic + "0.gif"; }
+      this.setOverlay(graphic);
+    }
 
     if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
       if (PC.getHomeMap() === objmap) {
@@ -4531,6 +4549,10 @@ function LeftChairTile() {
 }
 LeftChairTile.prototype = new FeatureObject();
 
+LeftChairTile.prototype.use = function(who) {
+  return TurnFacing(this);
+}
+
 function RightChairTile() {
   this.name = "RightChair";
   this.graphic = "chairs3.gif";
@@ -4547,6 +4569,10 @@ function RightChairTile() {
   SetByBelow.call(this)
 }
 RightChairTile.prototype = new FeatureObject();
+
+RightChairTile.prototype.use = function(who) {
+  return TurnFacing(this);
+}
 
 function TopChairTile() {
   this.name = "TopChair";
@@ -4565,6 +4591,10 @@ function TopChairTile() {
 }
 TopChairTile.prototype = new FeatureObject();
 
+TopChairTile.prototype.use = function(who) {
+  return TurnFacing(this);
+}
+
 function BottomChairTile() {
   this.name = "BottomChair";
   this.graphic = "chairs0.gif";
@@ -4581,6 +4611,25 @@ function BottomChairTile() {
   SetByBelow.call(this)
 }
 BottomChairTile.prototype = new FeatureObject();
+
+BottomChairTile.prototype.use = function(who) {
+  return TurnFacing(this);
+}
+
+function TurnFacing(what) {
+  var graphic = what.getOverlay();
+  var num = /\d/.exec(graphic);
+  num = parseInt(num)+1;
+  if (num > 3) { num = 0; }
+  graphic = graphic.replace(/\d/,num);
+  what.setOverlay(graphic);
+  
+  var retval = {};
+  retval["fin"] = 1;
+  retval["input"] = "&gt;";
+  retval["txt"] = "Turned.";
+  return retval;
+}
 
 /*
 function LeftChairWoodTile() {
