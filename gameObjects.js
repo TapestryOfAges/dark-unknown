@@ -508,13 +508,13 @@ function Pushable() {
             DrawMainFrame("draw",objmap.getName(),PC.getx(),PC.gety());
           }
         } else {
-          if ((PC.getHomeMap() === objmap) && (GetDistance(PC,this,"square") <= 6)) {
+          if ((PC.getHomeMap() === objmap) && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety(),"square") <= 6)) {
             DrawMainFrame("one",objmap.getName(),this.getx(),this.gety());
             DrawMainFrame("one",objmap.getName(),this.getx()-diffx,this.gety()-diffy);
           }
         }
       } else {
-        retval = this.pullMe();
+        retval = this.pullMe(who);
       }
     } else {
       retval["txt"] = "You can't push that from here.";
@@ -532,7 +532,18 @@ function Pushable() {
     var moveval = who.moveMe(diffx,diffy);
     retval["txt"] = "Pull: " + this.getDesc() + ".";
     retval["canmove"] = moveval["canmove"];
-    
+
+    if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
+      if (PC.getHomeMap() === objmap) {
+        DrawMainFrame("draw",objmap.getName(),PC.getx(),PC.gety());
+      }
+    } else {
+      if ((PC.getHomeMap() === objmap) && (GetDistance(PC,this,"square") <= 6)) {
+        DrawMainFrame("one",objmap.getName(),this.getx(),this.gety());
+        DrawMainFrame("one",objmap.getName(),this.getx()-diffx,this.gety()-diffy);
+      }
+    }
+     
     return retval;
   }
 }
@@ -3670,6 +3681,7 @@ function ChestTile() {
 	
 	this.container = [];
 	OpenContainer.call(this);
+	Pushable.call(this);
 }
 ChestTile.prototype = new FeatureObject();
 
@@ -3734,6 +3746,8 @@ function CorpseTile() {
 	this.prefix = "a";
 	this.desc = "corpse";
 	this.showSearched = 1;
+	
+	Pushable.call(this);
 }
 CorpseTile.prototype = new FeatureObject();
 
@@ -4410,6 +4424,9 @@ function TrainingDummyTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "training dummy";
+  
+  Pushable.call(this);
+  this.heavy = 1;
 }
 TrainingDummyTile.prototype = new FeatureObject();
 
@@ -4499,52 +4516,73 @@ BridgeEWTile.prototype = new FeatureObject();
 
 function LeftChairTile() {
   this.name = "LeftChair";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
+  this.graphic = "chairs1.gif";
+  this.overlay = "chairs1.gif";
+//  this.spritexoffset = "-32";
+//  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chair";
+  Pushable.call(this);
+  this.facing = 1;
+  
+  SetByBelow.call(this);
 }
 LeftChairTile.prototype = new FeatureObject();
 
 function RightChairTile() {
   this.name = "RightChair";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "0";
+  this.graphic = "chairs3.gif";
+  this.overlay = "chairs3.gif";
+//  this.spritexoffset = "-96";
+//  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chair";
+  Pushable.call(this);
+  this.facing = 3;
+  
+  SetByBelow.call(this)
 }
 RightChairTile.prototype = new FeatureObject();
 
 function TopChairTile() {
   this.name = "TopChair";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "0";
+  this.graphic = "chairs2.gif";
+  this.overlay = "chairs2.gif";
+//  this.spritexoffset = "0";
+//  this.spriteyoffset = "-64";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chair";
+  Pushable.call(this);
+  this.facing = 2;
+  
+  SetByBelow.call(this)
 }
 TopChairTile.prototype = new FeatureObject();
 
 function BottomChairTile() {
   this.name = "BottomChair";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "0";
+  this.graphic = "chairs0.gif";
+  this.overlay = "chairs0.gif";
+//  this.spritexoffset = "0";
+//  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chair";
+  Pushable.call(this);
+  this.facing = 0;
+  
+  SetByBelow.call(this)
 }
 BottomChairTile.prototype = new FeatureObject();
 
+/*
 function LeftChairWoodTile() {
   this.name = "LeftChairWood";
   this.graphic = "furniture.gif";
@@ -4592,6 +4630,8 @@ function BottomChairWoodTile() {
   this.desc = "chair";
 }
 BottomChairWoodTile.prototype = new FeatureObject();
+
+*/
 
 function LeftTableTile() {
   this.name = "LeftTable";
@@ -4783,6 +4823,7 @@ function BarrelTile() {
 	
 	this.container = [];
 	OpenContainer.call(this);
+	Pushable.call(this);
 }
 BarrelTile.prototype = new FeatureObject();
 
@@ -5924,6 +5965,10 @@ SandstoneWallTile.prototype.use = function(who) {
   return retval;
 }
 
+SandstoneWallTile.prototype.pushMe = function(who) {
+  return this.use(who);
+}
+
 function WallOfWavesTile() {
   this.name = "WallOfWaves";
   this.graphic = "runes.gif";
@@ -7013,6 +7058,8 @@ AltarWithSwordTile.prototype.use = function(who) {
 function ItemObject() {
 	this.addType("Item");
 	this.quantity = 1;
+	
+	Pushable.call(this);
 }
 ItemObject.prototype = new FeatureObject();
 
