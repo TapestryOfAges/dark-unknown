@@ -1416,6 +1416,46 @@ function PerformTelekinesis(caster, infused, free, tgt) {
   return retval;
 }
 
+function PerformTelekinesisMove(caster, infused, free, tgt) {
+  gamestate.setMode("null");
+  
+  var retval = {};
+  retval["input"] = "&gt;";
+  retval["fin"] = 1;
+  if (!free) {
+    var mana = magic[3][GetSpellID(6)].getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  var usemap = tgt.getHomeMap();
+  if (tgt.heavy && !infused) {
+    retval["txt"] = "That object is too heavy.";
+    retval["override"] = 1;
+    return retval;
+  } 
+  var oldx = tgt.getx();
+  var oldy = tgt.gety();
+  usemap.moveThing(targetCursor.x,targetCursor.y,tgt);
+  retval["txt"] = "Moved!";
+
+  if ((typeof tgt.getLight === "function") && (tgt.getLight() !== 0)) {
+    if (PC.getHomeMap() === usemap) {
+      DrawMainFrame("draw",usemap.getName(),PC.getx(),PC.gety());
+    }
+  } else {
+    if ((PC.getHomeMap() === usemap) && (GetDistance(PC.getx(),PC.gety(),tgt.getx(),tgt.gety(),"square") <= 6)) {
+      DrawMainFrame("one",usemap.getName(),tgt.getx(),tgt.gety());
+      DrawMainFrame("one",usemap.getName(),oldx,oldy);
+    }
+  }
+  
+  var usedname = tgt.getDesc();
+  retval["txt"] = "Telekinesis on " + usedname + ": " + retval["txt"];
+
+  return retval;
+}
+
 // Telepathy
 magic[3][GetSpellID(7)].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Telepathy.<br />");
@@ -3819,10 +3859,29 @@ function PerformSpellcast() {
       resp = PerformWallOfFlame(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
     } else if (targetCursor.spellName === "Conjure Daemon") {
       resp = PerformConjureDaemon(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+    } else if (targetCursor.spellName === "Telekinesis") {
+      resp = PerformTelekinesisMove(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, targetCursor.spelldetails.tgt);
     }
   } else if (targetCursor.spelldetails.targettype === "usable") {
     var topfeature = targettile.getTopVisibleFeature();
-    if (typeof topfeature.use === "function") {
+    if (topfeature.pushable) {
+      targetCursor.x = PC.getx();
+      targetCursor.y = PC.gety();
+      targetCursor.command = "c";
+      targetCursor.spellName = "Telekinesis";
+      targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open", tgt: topfeature};
+      targetCursor.targetlimit = (viewsizex -1)/2;
+      targetCursor.targetCenterlimit = 0;
+
+      var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+      targetCursor.tileid = tileid;
+      targetCursor.basetile = $(tileid).html();
+      $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+      resp["txt"] = "";
+      resp["input"] = "&gt; Choose where to move it- ";
+      resp["fin"] = 0;
+      gamestate.setMode("target");
+    } else  if (typeof topfeature.use === "function") {
       resp = PerformTelekinesis(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, topfeature);
     } else {
       resp["fin"] = 0;
@@ -3831,9 +3890,8 @@ function PerformSpellcast() {
       var tileid = targetCursor.tileid;
       $(tileid).html(targetCursor.basetile); 
       delete targetCursor.spellName;
-      
-      return resp;   
     }
+    return resp;
   } else if (targetCursor.spelldetails.targettype === "feature") {
     if ((targetCursor.x === targetCursor.spelldetails.caster.getx()) && (targetCursor.y === targetCursor.spelldetails.caster.gety())) {
       var mademenu = CreateMendMenu();

@@ -791,7 +791,7 @@ function OpenContainer() {
   
   this.isContainer = 1;
   
-  this.use = function(who) {
+  this.use = function(who, fire) {
     var retval = {}; 
     
     if (this.getLootedID()) {
@@ -800,11 +800,11 @@ function OpenContainer() {
       }
     }
 
-    if (this.trapped) {
+    if (this.trapped && !fire) {
       var trapresult = this.tryTrap(who);
     }
 
-    if (typeof this.getLocked === "function") {
+    if ((typeof this.getLocked === "function") && !fire) {
       if (this.getLocked() == 1) {
         retval["fin"] = 1;
         retval["txt"] = "Locked.";
@@ -3700,9 +3700,13 @@ function ChestTile() {
 	this.container = [];
 	OpenContainer.call(this);
 	Pushable.call(this);
+	this.flammable = 20;
 }
 ChestTile.prototype = new FeatureObject();
 
+ChestTile.prototype.flamed = function() {
+  ContainerOnFire(what);
+}
 
 function DoorWindowTile() {
   Lockable.call(this, "009.gif", "010.gif", "067.gif", "a", "door", "a", "locked door", "a", "magically locked door");
@@ -3828,14 +3832,60 @@ TorchEastTile.prototype = new FeatureObject();
 function CampfireTile() {
 	this.name = "Campfire";
 	this.graphic = "campfire.gif";
-	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "campfire";
+	this.pathweight = 3;
+	this.firedamage = "2d4";
 	
 	LightEmitting.call(this, 2);
 }
 CampfireTile.prototype = new FeatureObject();
+
+CampfireTile.prototype.activate = function() {
+  if (!gamestate.getMode("loadgame")) {
+    var NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  }
+  return;
+}
+
+CampfireTile.prototype.walkon = function(person) {
+  var resp = OnFire(person, this);
+  return resp;
+}
+CampfireTile.prototype.idle = function(person) {
+  var resp = OnFire(person, this);
+  return resp;
+}
+
+CampfireTile.prototype.myTurn = function() {
+  var mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+  var feas = mytile.getFeatures();
+  $.each(feas, function(idx,val) {
+    if (val.flammable) {
+      if (Dice.roll("1d100") <= val.flammable) {
+        val.flamed();
+      }
+    }
+  });
+
+  var NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  
+  return 1;  
+}
+
+function OnFire(who, what) {
+  var dmg = Dice.roll(what.firedamage);
+  dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
+  var response = "The " + what.getDesc() + " burns you!";
+  who.dealDamage(dmg, what, "fire");
+  
+  return response;
+}
+
 
 function BrazierTile() {
 	this.name = "Brazier";
@@ -3912,15 +3962,53 @@ SpitTile.prototype = new FeatureObject();
 function FireplaceTile() {
 	this.name = "Fireplace";
 	this.graphic = "fireplace.gif";
-	this.passable = MOVE_ETHEREAL;
+	this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 2;
   this.prefix = "a";
 	this.desc = "fireplace";
 	this.peerview = "white";
+	this.pathweight = 3;
+	this.firedamage = "3d4";
 	
 	LightEmitting.call(this, 2);
 }
 FireplaceTile.prototype = new FeatureObject();
+
+FireplaceTile.prototype.activate = function() {
+  if (gamestate.getMode() !== "loadgame") {
+    var NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+    DebugWrite("gameobj", "Adding fireplace to the timeline.");
+  }
+  return;
+}
+
+FireplaceTile.prototype.walkon = function(person) {
+  var resp = OnFire(person, this);
+  return resp;
+}
+FireplaceTile.prototype.idle = function(person) {
+  var resp = OnFire(person, this);
+  return resp;
+}
+
+FireplaceTile.prototype.myTurn = function() {
+  var mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+  var feas = mytile.getFeatures();
+  $.each(feas, function(idx,val) {
+    if (val.flammable) {
+      if (Dice.roll("1d100") <= val.flammable) {
+        val.flamed();
+      }
+    }
+  });
+
+  var NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  
+  return 1;  
+}
+
 
 function AltarTile() {
 	this.name = "Altar";
@@ -4067,6 +4155,15 @@ FireFieldTile.prototype.idle = function(person) {
   return resp;
 }
 
+FireFieldTile.prototype.activate = function() {
+  if (!gamestate.getMode("loadgame")) {
+    var NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  }
+
+  return;
+}
+
 FireFieldTile.prototype.myTurn = function() {
   if (!maps.getMap(this.getHomeMap().getName())) {
     // removing from timeline, its map is gone
@@ -4081,8 +4178,8 @@ FireFieldTile.prototype.myTurn = function() {
     return 1;
   }
  
-  if (this.expires && (this.expires > DUTime.getGameClock())) {
-    if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green;font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />"); }
+  if (this.expiresTime && (this.expiresTime > DUTime.getGameClock())) {
+//    if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green;font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />"); }
         if (!DebugWrite("magic", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />")) {
       DebugWrite("gameobj", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />");
     }
@@ -4090,6 +4187,17 @@ FireFieldTile.prototype.myTurn = function() {
     
     return 1;
   }
+  
+  var mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+  var feas = mytile.getFeatures();
+  $.each(feas, function(idx,val) {
+    if (val.flammable) {
+      if (Dice.roll("1d100") <= val.flammable) {
+        val.flamed();
+      }
+    }
+  });
+
   var NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   
@@ -4864,11 +4972,12 @@ function BarrelTile() {
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
-  this.desc = "small box";
+  this.desc = "barrel";
   this.showsearched = 1;
   this.searchedgraphic = ["furniture.gif", "", "-192", "-96"];
 	this.lootgroup = "";
 	this.lootedid = "";
+	this.flammable = 20; // 20% chance it burns if in a fire
 	
 	this.container = [];
 	OpenContainer.call(this);
@@ -4876,6 +4985,28 @@ function BarrelTile() {
 }
 BarrelTile.prototype = new FeatureObject();
 
+BarrelTile.prototype.flamed = function() {
+  ContainerOnFire(what);
+}
+
+function ContainerOnFire(what) {
+  maintext.addText("The " + what.getDesc() + " is consumed by flame!");
+  var burnup = what.use(what,1); // ignore locked and trapped
+  if (burnup["txt"] === "Empty.") {
+    maintext.addText("It was empty.");
+  } else {
+    maintext.addText(burnup["txt"]);
+  }
+  var thisx = what.getx();
+  var thisy = what.gety();
+  
+  var itsmap = what.getHomeMap();
+  itsmap.deleteThing(what);
+  DrawMainFrame("one",itsmap.getName(),thisx,thisy);
+  
+  return 1; 
+  
+}
 function MirrorTile() {
   this.name = "Mirror";
   this.graphic = "furniture.gif";
@@ -7698,8 +7829,21 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
 
 function PotionItemObject() {
   this.addType("Potion");
+  this.flammable = 10;
 }
 PotionItemObject.prototype = new ConsumableItemObject();
+
+PotionItemObject.prototype.flamed = function() {
+  maintext.addText("The " + this.getDesc() + " boils away!");
+  var thisx = this.getx();
+  var thisy = this.gety();
+  
+  var itsmap = this.getHomeMap();
+  itsmap.deleteThing(this);
+  DrawMainFrame("one",itsmap.getName(),thisx,thisy);
+  
+  return 1; 
+}
 
 // poison potions
 function GreenPotionTile() {
@@ -7712,6 +7856,38 @@ function GreenPotionTile() {
   this.spriteyoffset = "0";
 }
 GreenPotionTile.prototype = new PotionItemObject();
+
+GreenPotionTile.prototype.flamed = function() {
+  maintext.addText("The " + this.getDesc() + " boils away!");
+  var thisx = this.getx();
+  var thisy = this.gety();
+  var itsmap = this.getHomeMap();
+    
+  for (var i=thisx-1;i<=thisx+1;i++) {
+    for (var j=thisy-1;j<=thisy+1;j++) {
+      var tile = itsmap.getTile(i,j);
+      if (tile !== "OoB") {
+        var npcs = tile.getNPCs();
+        $.each(npcs, function(idx,val) {
+          if (Dice.roll("1d100") < (55-val.getLevel()*5)) {
+            // poisoned by fumes
+            maintext.addText(val.getFullDesc() + " is poisoned by the fumes!");
+            var poison = localFactory.createTile("Poison");
+            var duration = Dice.roll("2d8") * SCALE_TIME;
+            poison.setExpiresTime(duration + DUTime.getGameClock());
+            val.addSpellEffect(poison);
+            ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_GREEN);
+          }
+        });
+      }
+    }
+  }
+  
+  itsmap.deleteThing(this);
+  DrawMainFrame("one",itsmap.getName(),thisx,thisy);
+  
+  return 1; 
+}
 
 GreenPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -8024,6 +8200,7 @@ function ScrollItemObject() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.spelllevel = 1;
   this.spellnumber = 1;
+  this.flammable = 90;
 }
 ScrollItemObject.prototype = new ConsumableItemObject();
 
@@ -8031,6 +8208,18 @@ ScrollItemObject.prototype.use = function(who) {
   var retval = {};
   retval = magic[this.spelllevel][GetSpellID(this.spellnumber)].executeSpell(PC, 0, 1);
   return retval;
+}
+
+ScrollItemObject.prototype.flamed = function() {
+  maintext.addText("The " + this.getDesc() + " burns away!");
+  var thisx = this.getx();
+  var thisy = this.gety();
+  
+  var itsmap = this.getHomeMap();
+  itsmap.deleteThing(this);
+  DrawMainFrame("one",itsmap.getName(),thisx,thisy);
+  
+  return 1; 
 }
 
 function ScrollAwakenTile() {
@@ -8090,6 +8279,7 @@ function ScrollFlameBladeTile() {
   this.spriteyoffset = "-32";
   this.spelllevel = 1;
   this.spellnum = 5;
+  this.flammable = 50;
 }
 ScrollFlameBladeTile.prototype = new ScrollItemObject;
 
@@ -8234,6 +8424,7 @@ function ScrollFireArmorTile() {
   this.spriteyoffset = "-32";
   this.spelllevel = 3;
   this.spellnum = 3;
+  this.flammable = 30;
 }
 ScrollFireArmorTile.prototype = new ScrollItemObject;
 
@@ -8246,6 +8437,7 @@ function ScrollFireballTile() {
   this.spriteyoffset = "-32";
   this.spelllevel = 3;
   this.spellnum = 4;
+  this.flammable = 50;
 }
 ScrollFireballTile.prototype = new ScrollItemObject;
 
@@ -8294,6 +8486,7 @@ function ScrollWallOfFlameTile() {
   this.spriteyoffset = "-32";
   this.spelllevel = 3;
   this.spellnum = 8;
+  this.flammable = 20;
 }
 ScrollWallOfFlameTile.prototype = new ScrollItemObject;
 
@@ -8546,6 +8739,7 @@ function ScrollConflagrationTile() {
   this.spriteyoffset = "-32";
   this.spelllevel = 8;
   this.spellnum = 4;
+  this.flammable = 30;
 }
 ScrollConflagrationTile.prototype = new ScrollItemObject;
 
@@ -8580,6 +8774,7 @@ function ManualEtherumObject() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.spelllevel = 0;
   this.spellnum = 0;
+  this.flammable = 40;
 }
 ManualEtherumObject.prototype = new ConsumableItemObject();
 
@@ -8596,6 +8791,19 @@ ManualEtherumObject.prototype.use = function(who) {
   retval["input"] = "&gt;";
   return retval;    
 }
+
+ManualEtherumObject.prototype.flamed = function() {
+  maintext.addText("The " + this.getDesc() + " is ruined in the fire!");
+  var thisx = this.getx();
+  var thisy = this.gety();
+  
+  var itsmap = this.getHomeMap();
+  itsmap.deleteThing(this);
+  DrawMainFrame("one",itsmap.getName(),thisx,thisy);
+  
+  return 1; 
+}
+
 
 function ManualEtherumAwakenTile() {
   this.name = "ManualEtherumAwaken";
@@ -10502,6 +10710,8 @@ NPCObject.prototype.myTurn = function() {
 	  var NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,this.nextActionTime(response["initdelay"]));
   }
+  
+  delete this.pushed;
   
 //  var nextEntity = DUTime.executeNextEvent().getEntity();
 //  nextEntity.myTurn();
