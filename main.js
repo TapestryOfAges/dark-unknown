@@ -351,11 +351,13 @@ function DoAction(code, ctrl) {
         } else if (targetCursor.command === "p") { // PUSH
           resp = PerformPush(PC);
         }
-        if (resp["fin"] === 2) {
+        if (resp["fin"] >= 2) {
           maintext.addText(resp["txt"]);
           maintext.setInputLine(resp["input"]);
           maintext.drawTextFrame();
-          
+          if (resp["fin"] > 2) {
+            gamestate.setMode("player");
+          }
         }
         if (resp["fin"] < 2) {
           maintext.addText(resp["txt"]);
