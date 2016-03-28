@@ -235,6 +235,13 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 80) { // p
 		// push
+    if (!PC.getHomeMap().getScale()) {
+      retval["txt"] = "Push: There is nothing to push here.";
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+      return retval;
+    }
+
 		gamestate.setMode("choosedir");
 		retval["txt"] = "";
 		retval["input"] = "&gt; Push- ";
@@ -1034,20 +1041,26 @@ function PerformEquip(code) {
 
 function PerformPush(who) {
   var retval = {};
-  retval["fin"] = 2;
+  retval["fin"] = 3;
   retval["input"] = "&gt;";
-
   var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  var blocker = localacre.getTopNPC();
+  if (!blocker) { blocker = localacre.getTopPC(); }
+  if (blocker) {
+    blocker.pushed = 1;
+    retval["txt"] = "Push: There is something in the way.";
+    return retval;
+  }
   var pushit = localacre.features.getTop();
   if (!pushit) { 
-    retval["txt"] = "Nothing there.";
+    retval["txt"] = "Push: Nothing there.";
     return retval; 
   }
   if (pushit.pushable) {
     return pushit.pushMe(who);
   }
   var retval = {};
-  retval["fin"] = 2;
+  retval["fin"] = 1;
   retval["input"] = "&gt;";
   retval["txt"] = "That won't budge!";
   
@@ -1304,10 +1317,17 @@ function PerformTalk(talkto, convo, topic) {
 }
 
 function PerformUse(who) {
+  var retval = {};
   var usemap = who.getHomeMap();
 	var localacre = usemap.getTile(targetCursor.x,targetCursor.y);
+	var someone = localacre.getTopNPC();
+	if (!someone) { someone = localacre.getTopPC(); }
+	if (someone) {
+    retval["txt"] = "Use: There is something in the way.";
+    retval["fin"] = 0;
+    return retval;
+  }
 	var used = localacre.features.getTop();
-	var retval = {};
 	if (!used) {
 		retval["txt"] = "There is nothing to use there.";
 		retval["fin"] = 0;
