@@ -1180,7 +1180,6 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
       this.Enter(newthing,"",0,0,x,y);
     }
 
-//  	var type = newthing.type + "s";
     var type = newthing.getTypeForMap() + "s";
     if (!this.data[type]) { this.data[type] = new Collection(); }
   	newthing.setx(x);
@@ -1193,15 +1192,11 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
     this.data[y][x][type].addTop(newthing);
 
  	  if ((typeof newthing.getLight === "function") && (newthing.getLight() > 0)) {
-//  	  if (debug && debugflags.light) { dbs.writeln("<br /><br />LIGHT: Placing new light source: " + newthing.getName() + ", light value: " + newthing.getLight() + ", serial: " + newthing.getSerial()); } 	    
   	  DebugWrite("light", "<br /><br />LIGHT: Placing new light source: " + newthing.getName() + ", light value: " + newthing.getLight() + ", serial: " + newthing.getSerial());
   	  this.setMapLight(newthing, newthing.getLight(),x,y);
   	}       
   
-//if ( typeof newthing.activate == "function") {
-//    if (newthing.getTypeForMap() == "npc") {
-      newthing.activate(timeoverride);
-//    }
+    newthing.activate(timeoverride);
 
 	  //update pathfinding
 	  if ((type !== "npcs") && (type !== "pcs")) {
@@ -1477,20 +1472,14 @@ GameMap.prototype.loadMap = function (name) {
   var loadfrom = mappages.readPage(name, "terrain");
   var localatlas = new Atlas();
   for (var i=0;i<=loadfrom.length-1;i++) {
-//    if (debug && debugflags.map) {debugscreen.document.writeln("<br>Starting line: " +i+ ", length " + loadfrom[i].length + " <br>");}
     DebugWrite("map", "<br>Starting line: " +i+ ", length " + loadfrom[i].length + " <br>");
     var tileserials = [];
     tileserials = loadfrom[i].split(" ");
     this.data[i] = [];
     for (var j=0;j<=tileserials.length-1;j++) {
-//      if (debug && debugflags.map) {debugscreen.document.writeln(" " + tileserials[j]);}
       DebugWrite("map", " " + tileserials[j]);
       var loadedtile = localatlas.key[tileserials[j]];
-//      this.data[i][j] = new Acre;
-//      this.data[i][j].terrain = localFactory.createTile(loadedtile);
-//      this.data[i][j].terrain.setHomeMap(this);
 
-//      var newterrain = localFactory.createTile(loadedtile);
       var newterrain = eidos.getForm(loadedtile);
       this.setTerrain(j,i,newterrain);
     }
