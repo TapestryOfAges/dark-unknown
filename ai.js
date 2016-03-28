@@ -286,8 +286,8 @@ ais.townsfolk = function(who) {
     alert(who.getName() + " WARNING: missing startx or starty. Setting to current position...");
   }
   var themap = who.getHomeMap();
-  if (Dice.roll("1d4") === 1) {   // 25% chance of moving, slow wander
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Moving... </span>"); }
+  if (who.pushed || (Dice.roll("1d4") === 1)) {   // 25% chance of moving, slow wander
+                                                  // automatically wanders if was pushed
     DebugWrite("ai", "Moving... ");
     if (who.getLeash() && (who.getLeash() < GetDistance(who.getx(), who.gety(), who.startx, who.starty))) {
       var path = themap.getPath(who.getx(),who.gety(),who.startx, who.starty, MOVE_WALK_DOOR);
