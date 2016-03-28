@@ -1061,7 +1061,7 @@ function GetOctant(diffx, diffy) {
         diffx = Math.abs(diffx);
         horflip = 1;
       }
-      slope = diffy/diffx;
+      var slope = diffy/diffx;
       if ((slope > 2.42) && (verflip === 0)) {
         return 0;
       }
