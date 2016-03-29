@@ -389,5 +389,7 @@ var PCEvent = new GameEvent(PC);
 	gamestate.saveGame(9);
 	latestidx = gamestate.getLatestSaveIndex();
 	
-	testvar = localStorage.saveIndex;
+	testvar = JSON.parse(localStorage.saveIndex);
+	testvar[9].loc = "Char Create";
+	localStorage.saveIndex = JSON.stringify(testvar);
 }
