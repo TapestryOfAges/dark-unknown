@@ -72,8 +72,15 @@ var themap;
 themap = new GameMap();
 var Listener = new DUListener();
 
+var latestidx;
+
 $(document).ready(function() {
   audio_init_title();  
+  
+  latestidx = gamestate.getLatestSaveIndex();
+  if (latestidx === -1) {
+    gamestate.initializeSaveGames();
+  }
   
   var browserheight = $(window).height();
   var browserwidth = $(window).width();
@@ -171,7 +178,8 @@ function SecondPage() {
     spage += "<div id='create' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt1' src='graphics/title/create.gif' onClick='makeChoice(\'create\')' /></div>";
     opttop += 60;
     var journey = "journey.gif";
-    if (!localStorage.savegame && !localStorage.charsave) {
+//    if (!localStorage.savegame && !localStorage.charsave) {
+    if (latestidx === -1) {
       journey = "journey-d.gif";
       optnames[2] = "graphics/title/journey-d";
     } else {
@@ -213,7 +221,8 @@ function DoAction(code, e) {
         $("#"+img).attr("src", optnames[optselect] + ".gif");
         optselect--;
         img = "opt" + optselect;
-        if ((optselect !== 2) || (localStorage.savegame || localStorage.charsave)) {
+//        if ((optselect !== 2) || (localStorage.savegame || localStorage.charsave)) {
+        if ((optselect !== 2) || (latestidx !== -1)) {
           $("#"+img).attr("src", optnames[optselect] + "-g.gif");
         } else {
           optselect--;
@@ -228,7 +237,8 @@ function DoAction(code, e) {
         $("#"+img).attr("src", optnames[optselect] + ".gif");
         optselect++;
         img = "opt" + optselect;
-        if ((optselect !== 2) || (localStorage.savegame || localStorage.charsave)) {
+//        if ((optselect !== 2) || (localStorage.savegame || localStorage.charsave)) {
+        if ((optselect !== 2) || (latestidx !== -1)) {
           $("#"+img).attr("src", optnames[optselect] + "-g.gif");
         } else {
           optselect++;
@@ -375,5 +385,6 @@ var PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,.0001);
 	startScheduler();
 	
-	gamestate.saveGame("charsave");
+	gamestate.saveGame(9);
+	latestidx = 9;
 }
