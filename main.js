@@ -168,7 +168,13 @@ $(document).ready(function() {
 });
 
 function SoundLoaded() {
-  gamestate.loadGame();
+  var whichsave = gamestate.getLatestSaveIndex();
+  if (whichsave = -1) {
+    gamestate.initializeSaveGames();
+    gamestate.loadGame("tmp");
+  } else {
+    gamestate.loadGame(whichsave);
+  }
   audio_init_2();
   DrawCharFrame();
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");

@@ -182,19 +182,57 @@ GameStateData.prototype.saveGame = function(flag) {
 	if (flag === 'external') {
 	  savescreen = window.open('','savescreen');
 	  savescreen.document.write(serialized);
-	} else if (flag === "charsave") {
+/*	} else if (flag === "charsave") {
 	  localStorage.charsave = compressed;
 	} else {
 	  localStorage.savegame = compressed;
 	}
-	
+*/
+  }	else {
+    localStorage["save"+flag] = compressed;
+    var saveidx = localStorage.saveIndex;
+    saveidx[flag].datestamp = Date.now();
+    saveidx[flag].charname = PC.getPCName();
+    saveidx[flag].loc = PC.getHomeMap().getName();
+    localStorage.saveIndex = saveidx;
+    
+  }
 }
 
-GameStateData.prototype.loadGame = function() {
+GameStateData.prototype.initializeSaveGames = function() {
+  var saves = [];
+  for (var i=0;i<=9;i++) {
+    saves[i] = {};
+    saves[i].datestamp = 0;
+    saves[i].charname = "";
+    saves[i].loc = "";
+    var saveslot = "save" + i;
+    localStorage[saveslot] = {};
+  }
+  localStorage.saveIndex = saves;
+  
+}
+
+GameStateData.prototype.getLatestSaveIndex = function() {
+  var lastIdx = 0;
+  var lastDate = 0;
+  var saveIdx = localStorage.saveIndex;
+  if (!saveIdx) { return -1; }
+  for (var i=1;i<=9;i++) {
+    if (saveIdx[i].datestamp > lastDate) {
+      lastIdx = i;
+    }
+  }
+  if (!saveIdx[i].charname) { lastIdx = -1; }
+  return lastIdx;
+}
+
+GameStateData.prototype.loadGame = function(idx) {
   gamestate.setMode("loadgame");
   
-  if (!localStorage.savegame && !localStorage.manualsave && !localStorage.charsave) {
+//  if (!localStorage.savegame && !localStorage.manualsave && !localStorage.charsave) {
 //    if (debug && debugflags.saveload) { dbs.writeln("<br /><br /><p>LOADING TMP VALUES</p><br />"); }
+  if (idx === "tmp") {
     DebugWrite("saveload", "<br /><br /><p>LOADING TMP VALUES</p><br />");
     gamestate.loadTmp();
     return;
@@ -206,6 +244,7 @@ GameStateData.prototype.loadGame = function() {
 //  if (debug && debugflags.saveload) { dbs.writeln("<p><span style='font-weight:bold'>Start load procedure:</span><br />"); }
   DebugWrite("saveload", "<p><span style='font-weight:bold'>Start load procedure:</span><br />");
 
+/*
   if (localStorage.charsave) {
     compressed = localStorage.charsave;
     serialized = LZString.decompressFromUTF16(compressed);
@@ -217,6 +256,15 @@ GameStateData.prototype.loadGame = function() {
     compressed = localStorage.savegame;
     serialized = LZString.decompressFromUTF16(compressed);
   }
+*/
+
+  if (localStorage.manualsave) {
+    serialized = localStorage.manualsave;
+  } else {
+    compressed = localStorage["save"+idx];
+    serialized = LZString.decompressFromUTF16(compressed);
+  }
+
 //  if (debug && debugflags.saveload) { dbs.writeln("<br /><br /><p>" + serialized + "</p><br />"); }
   DebugWrite("saveload", "<br /><br /><p>" + serialized + "</p><br />");
   var savedata = JSON.parse(serialized);  
