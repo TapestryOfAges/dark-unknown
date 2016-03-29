@@ -190,11 +190,13 @@ GameStateData.prototype.saveGame = function(flag) {
 */
   }	else {
     localStorage["save"+flag] = compressed;
-    var saveidx = localStorage.saveIndex;
+    var saveidx = JSON.parse(localStorage.saveIndex);
+    if (!saveidx) { saveidx =[]; }
     saveidx[flag].datestamp = Date.now();
     saveidx[flag].charname = PC.getPCName();
-    saveidx[flag].loc = PC.getHomeMap().getName();
-    localStorage.saveIndex = saveidx;
+    saveidx[flag].loc = PC.getHomeMap().getDesc();
+    saveidx[flag].graphic = PC.getGraphic();
+    localStorage.saveIndex = JSON.stringify(saveidx);
     
   }
 }
@@ -202,28 +204,28 @@ GameStateData.prototype.saveGame = function(flag) {
 GameStateData.prototype.initializeSaveGames = function() {
   var saves = [];
   for (var i=0;i<=9;i++) {
-    saves[i] = {};
-    saves[i].datestamp = 0;
-    saves[i].charname = "";
-    saves[i].loc = "";
+    saves[i] = {datestamp: 0, charname:"",loc:"",graphic:""};
     var saveslot = "save" + i;
     localStorage[saveslot] = {};
   }
-  localStorage.saveIndex = saves;
+  localStorage.saveIndex = JSON.stringify(saves);
   
 }
 
 GameStateData.prototype.getLatestSaveIndex = function() {
   var lastIdx = 0;
   var lastDate = 0;
-  var saveIdx = localStorage.saveIndex;
+  var saveIdx = localStorage.saveIndex; 
+  if (!saveIdx) { return -1; }
+  saveIdx = JSON.parse(saveIdx);
   if (!saveIdx) { return -1; }
   for (var i=1;i<=9;i++) {
     if (saveIdx[i].datestamp > lastDate) {
       lastIdx = i;
+      lastDate = saveIdx[i].datestamp;
     }
   }
-  if (!saveIdx[i].charname) { lastIdx = -1; }
+  if (!saveIdx[lastIdx].charname) { lastIdx = -1; }
   return lastIdx;
 }
 

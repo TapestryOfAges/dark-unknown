@@ -73,6 +73,7 @@ themap = new GameMap();
 var Listener = new DUListener();
 
 var latestidx;
+var testvar;
 
 $(document).ready(function() {
   audio_init_title();  
@@ -386,5 +387,7 @@ var PCEvent = new GameEvent(PC);
 	startScheduler();
 	
 	gamestate.saveGame(9);
-	latestidx = 9;
+	latestidx = gamestate.getLatestSaveIndex();
+	
+	testvar = localStorage.saveIndex;
 }
