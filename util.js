@@ -322,10 +322,10 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	  nowplaying = DUPlayMusic(song);
 	}
 	
-	if ((who === PC) && (DU.gameflags.getFlag("autosave"))) {
+	if (who === PC) {
 	  var prevstate = gamestate.getMode();
     gamestate.setMode("saving");
-    gamestate.saveGame();
+    gamestate.saveGame(0);
     gamestate.setMode(prevstate);
 	}
 	return tile;
