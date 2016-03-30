@@ -183,23 +183,32 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 76) { // l
     // U4's Locate, here, Look
-    gamestate.setMode("null");
-    targetCursor.x = PC.getx();
-    targetCursor.y = PC.gety();
-    targetCursor.command = "l";
-    targetCursor.targetlimit = (viewsizex -1)/2;
-    targetCursor.targetCenterlimit = 0;
+    if (ctrl) { 
+      gamestate.setMode("choosesave");
+      ShowSaveGames("Select a game to load:");
+      retval["txt"] = "";
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+      targetCursor.command = "l";
+    } else {
+      gamestate.setMode("null");
+      targetCursor.x = PC.getx();
+      targetCursor.y = PC.gety();
+      targetCursor.command = "l";
+      targetCursor.targetlimit = (viewsizex -1)/2;
+      targetCursor.targetCenterlimit = 0;
 //    var targetcoords = getCoords(PC.getHomeMap(), PC.getx(), PC.gety());
 //    targetx = targetcoords.x;
 //    targety = targetcoords.y;
-    var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-    targetCursor.tileid = tileid;
-    targetCursor.basetile = $(tileid).html();
-    $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
-    retval["txt"] = "";
-    retval["input"] = "&gt; Look: ";
-    retval["fin"] = 2;
-    gamestate.setMode("target");
+      var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+      targetCursor.tileid = tileid;
+      targetCursor.basetile = $(tileid).html();
+      $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+      retval["txt"] = "";
+      retval["input"] = "&gt; Look: ";
+      retval["fin"] = 2;
+      gamestate.setMode("target");
+    }
 	}
 	else if (code === 77) { // m
 		// was mix - now, toggles music
@@ -254,14 +263,16 @@ function PerformCommand(code, ctrl) {
 	else if (code === 81) { // q
 //		var mymap = PC.getHomeMap();
 //		var testnpc = mymap.npcs.getTop();
-//		testnpc.copy();
-    gamestate.setMode("saving");
+//		testnpc.copy()
     if (ctrl) { gamestate.saveGame("external"); }
-    else { gamestate.saveGame(); }
-		retval["txt"] = "Quit &amp; Save: Saving game...";
-		retval["input"] = "&gt;";
-		retval["fin"] = 2;
-		gamestate.setMode("player");
+    else {
+      gamestate.setMode("choosesave");
+      ShowSaveGames("Select a game to load:");
+      retval["txt"] = "";
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+      targetCursor.command = "q";
+    }
 	}
 	else if (code === 82) { // r
     // was Ready, merged with Wear/Wield
@@ -2248,17 +2259,6 @@ function DrawOptions() {
     optdiv += "NO";
   }
   optdiv += "</td></tr>";
-  optdiv += "<tr><td>AUTOSAVE:</td><td></td><td";
-  if (targetCursor.page === 4) { 
-    optdiv += " class='highlight'";
-  }
-  optdiv += ">";
-  if (DU.gameflags.getFlag("autosave")) {
-    optdiv += "YES";
-  } else {
-    optdiv += "NO";
-  }
-  optdiv += "</td></tr>";
   optdiv += "</table></div></div>";
   
   DrawTopbarFrame("<p>Options</p>");
@@ -2540,11 +2540,37 @@ function ToggleOption(opt) {
       DU.gameflags.setFlag("tablet", 1);
       TabletUI(1);
     }
-  } else if (opt === 4) {
-    if (DU.gameflags.getFlag("autosave")) {
-      DU.gameflags.setFlag("autosave", 0);
-    } else {
-      DU.gameflags.setFlag("autosave", 1);
-    }
   }
+}
+
+function ShowSaveGames(toptext) {
+  var table = "<div class='zstats'><table cellpadding='2' cellspacing='0' border='0' style='background-color:black'>";
+  var saveIndex = JSON.parse(localStorage.saveIndex);
+  for (var i=-1;i<=9;i++) {
+    table += "<tr style='height:36; background-image:url(\"graphics/frame/saveui.gif\"); width:416px'>";
+    if (i === -1) {
+      table += "<td style='color:white;text-align:center;v-align:center;width:35'><img src='graphics/spacer.gif' width='32' /></td>";
+      table += "<td style='color:white;text-align:center;v-align:center;width:35'><img src='graphics/spacer.gif' width='32' /></td>";
+      table += "<td style='color:white;v-align:center;padding-left:5px;width:100%'>" + toptext + "</td>";      
+    } else if (saveIndex[i].charname) {
+      var tmpdate = saveIndex[i].datestamp;
+      var thisdate = new Date();
+      thisdate.setTime(tmpdate);
+      var thistime = thisdate.toLocaleTimeString();
+      var parts = thistime.split(/ /);
+      var timepart = parts[0].split(":");
+      thistime = timepart[0] + ":" + timepart[1] + " " + parts[1];
+      var thisloc = saveIndex[i].loc.slice(0,13);
+      table += "<td style='color:white;text-align:center;v-align:center;width:35'>" + i + "</td>";
+      table += "<td style='color:white;text-align:center;v-align:center;width:35'><img src='graphics/" + saveIndex[i].graphic + "' /></td>";
+      table += "<td style='color:white;v-align:center;padding-left:5px;width:100%;font-size:smaller'>" + saveIndex[i].charname + " (" + thisloc + ") " + thisdate.toLocaleDateString() + " " + thistime + "</td>";
+    } else {
+      table += "<td style='color:white;text-align:center;v-align:center;width:35'>" + i + "</td>";
+      table += "<td style='color:white;text-align:center;v-align:center;width:35'></td>";
+      table += "<td style='color:white;v-align:center;padding-left:5px;width:100%'></td>";      
+    }
+    table += "</tr>";
+  }
+  table += "</table></div>";
+  $("#uiinterface").html(table);
 }

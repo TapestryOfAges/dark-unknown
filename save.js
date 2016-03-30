@@ -206,7 +206,7 @@ GameStateData.prototype.initializeSaveGames = function() {
   for (var i=0;i<=9;i++) {
     saves[i] = {datestamp: 0, charname:"",loc:"",graphic:""};
     var saveslot = "save" + i;
-    localStorage[saveslot] = {};
+    localStorage[saveslot] = "";
   }
   localStorage.saveIndex = JSON.stringify(saves);
   

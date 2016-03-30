@@ -169,7 +169,7 @@ $(document).ready(function() {
 
 function SoundLoaded() {
   var whichsave = gamestate.getLatestSaveIndex();
-  if (whichsave = -1) {
+  if (whichsave === -1) {
     gamestate.initializeSaveGames();
     gamestate.loadGame("tmp");
   } else {
@@ -560,8 +560,41 @@ function DoAction(code, ctrl) {
     else { // ignore
     	
     }
-  }
-  else if (gamestate.getMode() === "spellbook") {
+  } else if (gamestate.getMode() === "choosesave") {
+    if (code === 27) { // esc
+      $("#uiinterface").html("");
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      gamestate.setMode("player");
+      gamestate.setTurn(PC);
+    } else if (targetCursor.command === "l") {
+      if ((code >= 48) && (code <= 57)) {
+        var saveIndex = JSON.parse(localStorage.saveIndex);
+        var idx = code-48;
+        if (saveIndex[idx].charname) { 
+          gamestate.loadGame(idx); 
+          DrawCharFrame();
+          DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+          DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+
+          maintext.addText("Game loaded.");
+          maintext.setInputLine("&gt;");
+          maintext.drawTextFrame(); 
+          $("#uiinterface").html("");
+        }
+      }
+    } else if (targetCursor.command === "q") {
+      if ((code >= 49) && (code <= 56)) {
+        var saveIndex = JSON.parse(localStorage.saveIndex);
+        var idx = code-48;
+        gamestate.setMode("saving");
+        gamestate.saveGame(idx); 
+		    response["txt"] = "Quit &amp; Save: Saving game...";
+		    response["input"] = "&gt;";
+		    response["fin"] = 2;
+      }
+    }
+  } else if (gamestate.getMode() === "spellbook") {
     if (code === 27) { // esc
       $('#spellbookdiv').jqmHide();
       maintext.setInputLine("&gt;");
