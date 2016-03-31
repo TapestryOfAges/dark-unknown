@@ -126,15 +126,6 @@ function Attack(atk, def) {
       weapon.getHitSound();
     }
     DUPlaySound(snd);
-//    var armor = def.getEquipment("armor");
-//    var absorb = 0;
-//    if (armor) {
-//      absorb = armor.getAbsorb() - weapon.getReduceArmor();
-//      absorb /= 100;
-//      if (absorb < 0) { absorb = 0; }
-//    }
-//    dmg = Math.floor(dmg * (1-absorb));
-// moved to CheckAbsorb, called in dealDamage
 
     if (dmg < 1) { dmg = 1; }  // min dmg 1 on a hit
 
@@ -142,6 +133,17 @@ function Attack(atk, def) {
     if (firearmor) {
       if (IsAdjacent(atk,def)) {
         firearmor.flashback(atk);
+      }
+    }
+    
+    if (atk.getOnHit()) {
+      var onhits = atk.getOnHit().split(",");
+      for (var i=0;i<=onhits.length;i++) {
+        if (typeof OnHitFuncs[onhits[i]] === "function") {
+          OnHitFuncs[onhits[i]](atk,def,dmg);
+        } else {
+          DebugWrite("combat", "**Attacker has an On Hit (" + onhits[i] + ") that does not have a function!**<br />");
+        }
       }
     }
     // handle onDamaged stuff here
