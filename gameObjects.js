@@ -3116,7 +3116,7 @@ function InASwamp(who) {
   
   // percent chance of infection- 10% per step, prorated by speed
   var chance = 10 * (DUTime.getGameClock() - who.getLastTurnTime());  
-  if (Math.random()*100 < chance) {  // diseased!
+  if (Dice.roll("1d100") < chance) {  // diseased!
     if (who.getSpellEffectsByName("Disease")) { return 0; }
     var disease = localFactory.createTile("Disease");
     who.addSpellEffect(disease);
@@ -9982,6 +9982,16 @@ NPCObject.prototype.getMissileMissSound = function() {
 NPCObject.prototype.setMissileMissSound = function(newsnd) {
   this.missleMissSound = newsnd;
   return this.missleMissSound;
+}
+
+NPCObject.prototype.getOnHit = function() {
+  // OnHit is what happens when the NPC hits something
+  return this.onHit;
+}
+
+NPCObject.prototype.setOnHit = function(newoh) {
+  this.onHit = newoh;
+  return this.onHit;
 }
 
 NPCObject.prototype.setStr = function(newstr) {
