@@ -33,9 +33,25 @@ OnHitFuncs["venom"] = function(atk,def,dmg) {
 }
 
 OnHitFuncs["steal gold"] = function(atk,def,dmg) {
-  
+  var chance = 25 - def.getDex();  // start with a 15% chance against the PC
+  if (Dice.roll("1d100") < chance) {
+    if (def.checkType("PC")) {
+      var die = atk.getLevel() * 2;
+      var loss = Dice.roll(die + "d6");
+      loss = 0-loss;
+      def.addGold(loss);
+      if (def.getGold() < 0) { def.setGold(0); }
+      mainframe.delayedAddText("The " + atk.getDesc() + " steals some gold!");
+      DrawCharFrame();
+    }
+  }
 }
 
 OnHitFuncs["stealfood"] = function(atk,def,dmg) {
-  
+  if (Dice.roll("1d100") < 30) {
+    if (def.checkType("PC") {
+      mainframe.delayedAddText("The " + atk.getDesc() + " has stolen some food! It consumes it greedily.");
+      atk.fed = 1;
+    }
+  }
 }
