@@ -741,6 +741,55 @@ ais.AoifeEscort = function(who) {
   return retval;
 }
 
+ais.CourierPath = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  var whomap = who.getHomeMap();
+  if (!who.direction) { who.direction = "n"; }
+  if (who.getx() === 0) {
+    if (!who.count) { who.count = 0; }
+    if (who.count < 3) { 
+      who.count++; 
+      DebugWrite("ai","Waiting in town.");
+      return retval; 
+    }
+    
+    if (who.direction === "n") {
+      var tile = whomap.getTile(48,90);
+      var npcs = tile.getNPCs();
+      if (!npcs) {
+        var pcs = tile.getPCs();
+        if (!pcs) {
+          whomap.moveThing(48,90,who);
+          who.direction = "s";
+          DebugWrite("ai","Exiting Black Dragon Castle, by which I mean teleporting in from the corner.");
+        } else { DebugWrite("ai","Didn't come out of town- PC in the way."); }
+      } else { DebugWrite("ai","Didn't come out of town- NPC in the way."); }
+    } else {
+      var tile = whomap.getTile(63,119);
+      var npcs = tile.getNPCs();
+      if (!npcs) {
+        var pcs = tile.getPCs();
+        if (!pcs) {
+          whomap.moveThing(63,119,who);
+          who.direction = "n";
+          DebugWrite("ai","Exiting Onyx, by which I mean teleporting in from the corner.");
+        } else { DebugWrite("ai","Didn't come out of town- PC in the way."); }
+      } else { DebugWrite("ai","Didn't come out of town- NPC in the way."); }
+      
+    }
+  } else if (((who.getx()===64) && (who.gety()===119)) || ((who.getx()===49) && (who.gety()===90))) {
+    whomap.moveThing(0,0,who);
+    DebugWrite("ai", "Entering town, by which I mean teleporting to the corner.");
+  } else {
+    var dest = [];
+    if (who.direction === "n") { dest[0]=49; dest[1]=90; }
+    else { dest[0]=64;dest[1]=119; }
+    
+    
+  }
+}
+
 ais.Sentinel = function(who) {
   var destinations = [];
   var jumps = [];

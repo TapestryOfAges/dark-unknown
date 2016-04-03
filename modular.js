@@ -49,7 +49,7 @@ OnHitFuncs["steal gold"] = function(atk,def,dmg) {
 
 OnHitFuncs["stealfood"] = function(atk,def,dmg) {
   if (Dice.roll("1d100") < 30) {
-    if (def.checkType("PC") {
+    if (def.checkType("PC")) {
       mainframe.delayedAddText("The " + atk.getDesc() + " has stolen some food! It consumes it greedily.");
       atk.fed = 1;
     }
