@@ -24,11 +24,13 @@ function DruidVillagerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
-  this.desc = 'druid';
+  this.desc = "druid";
   this.meleeChance = 30;
   this.spellsknown = { heal: 1, control: 1, };
   this.resists = {};
   this.special = 'open_door';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 DruidVillagerNPCTile.prototype = new NPCObject();
 
@@ -56,7 +58,7 @@ function ShepherdVillagerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
-  this.desc = 'shepherd';
+  this.desc = "shepherd";
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'open_door';
@@ -87,10 +89,12 @@ function MageVillagerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
-  this.desc = 'mage';
+  this.desc = "mage";
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
   this.special = 'open_door';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 MageVillagerNPCTile.prototype = new NPCObject();
 
@@ -118,7 +122,7 @@ function TinkerVillagerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
-  this.desc = 'tinker';
+  this.desc = "tinker";
   this.meleeChance = 30;
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
@@ -150,7 +154,7 @@ function RangerVillagerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
-  this.desc = 'ranger';
+  this.desc = "ranger";
   this.meleeChance = 50;
   this.spellsknown = { heal: 1, control: 1, buff: 1, };
   this.resists = {};
@@ -181,7 +185,7 @@ function AdventurerVillagerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'an';
-  this.desc = 'adventurer';
+  this.desc = "adventurer";
   this.meleeChance = 50;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
@@ -213,7 +217,7 @@ function PaladinVillagerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
-  this.desc = 'paladin';
+  this.desc = "paladin";
   this.meleeChance = 75;
   this.spellsknown = { heal: 1, attack: 1, };
   this.resists = {};
@@ -245,7 +249,7 @@ function FighterVillagerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
-  this.desc = 'fighter';
+  this.desc = "fighter";
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'open_door';
@@ -276,7 +280,7 @@ function TownsfolkVillagerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
-  this.desc = 'citizen';
+  this.desc = "citizen";
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'coward, open_door';
@@ -307,7 +311,7 @@ function BardVillagerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
   this.prefix = 'a';
-  this.desc = 'bard';
+  this.desc = "bard";
   this.meleeChance = 40;
   this.spellsknown = { control: 1, buff: 1, };
   this.resists = {};
@@ -341,9 +345,11 @@ function ChildVillagerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'small child';
+  this.desc = "small child";
   this.resists = {};
   this.special = 'coward, open_door';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 ChildVillagerNPCTile.prototype = new NPCObject();
 
@@ -373,9 +379,11 @@ function BeggarVillagerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'beggar';
+  this.desc = "beggar";
   this.resists = {};
   this.special = 'coward, open_door';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 BeggarVillagerNPCTile.prototype = new NPCObject();
 
@@ -405,9 +413,11 @@ function JesterNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'jester';
+  this.desc = "jester";
   this.resists = {};
   this.special = 'coward, open_door';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 JesterNPCTile.prototype = new NPCObject();
 
@@ -434,7 +444,7 @@ function TownGuardNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Town Guard';
   this.prefix = 'a';
-  this.desc = 'guard';
+  this.desc = "guard";
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'open_door';
@@ -463,7 +473,7 @@ function KingNPCTile() {
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
-  this.desc = 'your father the King';
+  this.desc = "your father the King";
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
@@ -493,7 +503,7 @@ function QueenNPCTile() {
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Townsman';
-  this.desc = 'your mother the Queen';
+  this.desc = "your mother the Queen";
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
@@ -523,7 +533,7 @@ function PrinceNPCTile() {
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Town Guard';
-  this.desc = 'your brother the prince';
+  this.desc = "your brother the prince";
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
@@ -555,9 +565,11 @@ function HorseNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'horse';
+  this.desc = "horse";
   this.meleeChance = 100;
   this.resists = {};
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 HorseNPCTile.prototype = new NPCObject();
 
@@ -583,7 +595,7 @@ function CorruptPrinceNPCTile() {
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Town Guard';
-  this.desc = 'your brother the prince';
+  this.desc = "your brother the prince";
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
@@ -614,12 +626,71 @@ function CorruptGuardsNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Town Guard';
   this.prefix = 'a';
-  this.desc = 'guard';
+  this.desc = "guard";
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'open_door';
 }
 CorruptGuardsNPCTile.prototype = new NPCObject();
+
+
+// CorruptTownsfolk
+
+function CourierNPCTile() {
+  this.name = 'CourierNPC';
+  this.level = 2;
+  this.addhp = 200;
+  this.str = 10;
+  this.dex = 10;
+  this.int = 10;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'townsfolk';
+  this.forgetAt = 0;
+  this.withdraw = '0';
+  this.graphic = '310.2.gif';
+  this.meleeAttackAs = 'Shortsword';
+  this.missileAttackAs = 'Sling';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'Corpse';
+  this.lootTable = 'Courier';
+  this.prefix = 'a';
+  this.desc = "courier";
+  this.resists = {};
+  this.special = 'open_door, courierSurrender';
+}
+CourierNPCTile.prototype = new NPCObject();
+
+
+// CorruptTownsfolk
+
+function CourierGuardNPCTile() {
+  this.name = 'CourierGuardNPC';
+  this.level = 3;
+  this.addhp = 200;
+  this.str = 14;
+  this.dex = 14;
+  this.int = 10;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'townsfolk';
+  this.forgetAt = 0;
+  this.withdraw = '0';
+  this.graphic = '309.gif';
+  this.meleeAttackAs = 'Longsword';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'ChainArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'Corpse';
+  this.lootTable = 'CourierGuard';
+  this.prefix = 'a';
+  this.desc = "courier's guard";
+  this.meleeChance = 100;
+  this.resists = {};
+  this.special = 'open_door, courierFlee';
+}
+CourierGuardNPCTile.prototype = new NPCObject();
 
 
 // Animal
@@ -648,9 +719,11 @@ function GiantBatNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'giant bat';
+  this.desc = "giant bat";
   this.meleeChance = 100;
   this.resists = {};
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 GiantBatNPCTile.prototype = new NPCObject();
 
@@ -681,10 +754,12 @@ function GiantInsectsNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'swarm of insects';
+  this.desc = "swarm of insects";
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'mindless';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 GiantInsectsNPCTile.prototype = new NPCObject();
 
@@ -715,10 +790,12 @@ function GiantRatNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Small Animal';
   this.prefix = 'a';
-  this.desc = 'giant rat';
+  this.desc = "giant rat";
   this.onHit = 'disease';
   this.meleeChance = 100;
   this.resists = {};
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 GiantRatNPCTile.prototype = new NPCObject();
 
@@ -746,7 +823,7 @@ function HoodNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'a';
-  this.desc = 'hood';
+  this.desc = "hood";
   this.onHit = 'steal gold';
   this.meleeChance = 100;
   this.resists = {};
@@ -777,7 +854,7 @@ function MinstrelNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'a';
-  this.desc = 'minstrel';
+  this.desc = "minstrel";
   this.onHit = ' ';
   this.meleeChance = 40;
   this.spellsknown = { buff: 1, };
@@ -812,11 +889,13 @@ function SlimeNPCTile() {
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
-  this.desc = 'slime';
+  this.desc = "slime";
   this.onDamaged = 'split';
   this.meleeChance = 70;
   this.resists = { fire:20 };
   this.special = 'mindless';
+  this.meleeHitSound = 'sfx_slime_hit';
+  this.meleeMissSound = 'sfx_slime_miss';
 }
 SlimeNPCTile.prototype = new NPCObject();
 
@@ -844,10 +923,12 @@ function ApprenticeNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'an';
-  this.desc = 'apprentice';
+  this.desc = "apprentice";
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
   this.special = 'open_door';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 ApprenticeNPCTile.prototype = new NPCObject();
 
@@ -875,7 +956,7 @@ function FighterNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'a';
-  this.desc = 'fighter';
+  this.desc = "fighter";
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'open_door';
@@ -909,7 +990,7 @@ function PythonNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Small Animal';
   this.prefix = 'a';
-  this.desc = 'python';
+  this.desc = "python";
   this.onHit = 'venom';
   this.meleeChance = 100;
   this.resists = {};
@@ -940,7 +1021,7 @@ function HeadlessNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Headless';
   this.prefix = 'a';
-  this.desc = 'headless';
+  this.desc = "headless";
   this.meleeChance = 100;
   this.resists = {};
 }
@@ -970,7 +1051,7 @@ function NixieNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Nixie';
   this.prefix = 'a';
-  this.desc = 'nixie';
+  this.desc = "nixie";
   this.meleeChance = 50;
   this.resists = {};
 }
@@ -1003,7 +1084,7 @@ function OrcNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Orcs';
   this.prefix = 'an';
-  this.desc = 'orc';
+  this.desc = "orc";
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'open_door';
@@ -1033,7 +1114,7 @@ function RogueNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'a';
-  this.desc = 'rogue';
+  this.desc = "rogue";
   this.onHit = 'steal gold';
   this.meleeChance = 100;
   this.resists = {};
@@ -1064,7 +1145,7 @@ function PitRogueNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Pit Rogue';
   this.prefix = 'a';
-  this.desc = 'rogue';
+  this.desc = "rogue";
   this.onHit = 'steal gold';
   this.meleeChance = 100;
   this.resists = {};
@@ -1096,10 +1177,12 @@ function SkeletonNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'a';
-  this.desc = 'skeleton';
+  this.desc = "skeleton";
   this.meleeChance = 100;
   this.resists = { ice:33 };
   this.special = 'undead';
+  this.meleeHitSound = 'sfx_skeleton_hit';
+  this.meleeMissSound = 'sfx_skeleton_miss';
 }
 SkeletonNPCTile.prototype = new NPCObject();
 
@@ -1126,7 +1209,7 @@ function AnimatedArmorNPCTile() {
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
   this.lootTable = 'AnimArmor';
-  this.desc = 'animated armor';
+  this.desc = "animated armor";
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'construct';
@@ -1156,7 +1239,7 @@ function ArcherNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Lesser Adventurer';
   this.prefix = 'an';
-  this.desc = 'archer';
+  this.desc = "archer";
   this.initmult = 0.8;
   this.meleeChance = 30;
   this.resists = {};
@@ -1187,7 +1270,7 @@ function BardNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Lesser Adventurer';
   this.prefix = 'a';
-  this.desc = 'bard';
+  this.desc = "bard";
   this.meleeChance = 40;
   this.spellsknown = { control: 1, buff: 1, };
   this.resists = {};
@@ -1219,7 +1302,7 @@ function DruidNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Lesser Adventurer';
   this.prefix = 'a';
-  this.desc = 'druid';
+  this.desc = "druid";
   this.meleeChance = 30;
   this.spellsknown = { heal: 1, control: 1, buff: 1, };
   this.resists = {};
@@ -1251,10 +1334,12 @@ function FireLizardNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'fire lizard';
+  this.desc = "fire lizard";
   this.meleeChance = 80;
   this.resists = { fire:66 };
   this.special = 'firebreath';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 FireLizardNPCTile.prototype = new NPCObject();
 
@@ -1284,11 +1369,13 @@ function FlukeNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'fluke';
+  this.desc = "fluke";
   this.meleeChance = 40;
   this.spellsknown = { control: 1, };
   this.resists = { ice:33 };
   this.special = 'whirlpool, invisible';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 FlukeNPCTile.prototype = new NPCObject();
 
@@ -1316,11 +1403,13 @@ function GhostNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Ghost';
   this.prefix = 'a';
-  this.desc = 'ghost';
+  this.desc = "ghost";
   this.onDamaged = 'incorporeal';
   this.meleeChance = 100;
   this.resists = { ice:50 };
   this.special = 'undead';
+  this.meleeHitSound = 'sfx_ghost_hit';
+  this.meleeMissSound = 'sfx_ghost_miss';
 }
 GhostNPCTile.prototype = new NPCObject();
 
@@ -1351,10 +1440,12 @@ function GiantSpiderNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Spiders';
   this.prefix = 'a';
-  this.desc = 'giant spider';
+  this.desc = "giant spider";
   this.onHit = 'venom';
   this.meleeChance = 100;
   this.resists = {};
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 GiantSpiderNPCTile.prototype = new NPCObject();
 
@@ -1382,11 +1473,13 @@ function GremlinNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Gremlin';
   this.prefix = 'a';
-  this.desc = 'gremlin';
+  this.desc = "gremlin";
   this.onHit = 'stealfood';
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'stealfood,breedsexplosively';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 GremlinNPCTile.prototype = new NPCObject();
 
@@ -1413,7 +1506,7 @@ function HandlerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Lesser Adventurer';
   this.prefix = 'an';
-  this.desc = 'animal handler';
+  this.desc = "animal handler";
   this.meleeChance = 70;
   this.spellsknown = { buff: 1, };
   this.resists = {};
@@ -1445,10 +1538,12 @@ function MimicNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Mimic';
   this.prefix = 'a';
-  this.desc = 'chest';
+  this.desc = "chest";
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'hides:008.gif, aggroname:a mimic, spitter';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 MimicNPCTile.prototype = new NPCObject();
 
@@ -1475,7 +1570,7 @@ function OrcShamanNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Orcs';
   this.prefix = 'an';
-  this.desc = 'orc shaman';
+  this.desc = "orc shaman";
   this.meleeChance = 33;
   this.spellsknown = { heal: 1, buff: 1, };
   this.resists = {};
@@ -1509,11 +1604,13 @@ function GiantSnakeNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Medium Animal';
   this.prefix = 'a';
-  this.desc = 'giant snake';
+  this.desc = "giant snake";
   this.onHit = 'venom';
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'spitter';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 GiantSnakeNPCTile.prototype = new NPCObject();
 
@@ -1544,10 +1641,12 @@ function SeahorseNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'seahorse';
+  this.desc = "seahorse";
   this.meleeChance = 80;
   this.resists = {};
   this.special = 'lbolt';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 SeahorseNPCTile.prototype = new NPCObject();
 
@@ -1577,7 +1676,7 @@ function ThiefNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Adventurer';
   this.prefix = 'a';
-  this.desc = 'thief';
+  this.desc = "thief";
   this.onHit = 'steal gold';
   this.meleeChance = 100;
   this.resists = {};
@@ -1609,7 +1708,7 @@ function TrollNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Trolls';
   this.prefix = 'a';
-  this.desc = 'troll';
+  this.desc = "troll";
   this.meleeChance = 50;
   this.resists = {};
   this.special = 'open_door';
@@ -1639,10 +1738,12 @@ function TwisterNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'twister';
+  this.desc = "twister";
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'mindless';
+  this.meleeHitSound = 'sfx_air_hit';
+  this.meleeMissSound = 'sfx_air_miss';
 }
 TwisterNPCTile.prototype = new NPCObject();
 
@@ -1669,10 +1770,12 @@ function AirElementalNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'an';
-  this.desc = 'air elemental';
+  this.desc = "air elemental";
   this.meleeChance = 70;
   this.resists = {};
   this.special = 'lbolt, mindless';
+  this.meleeHitSound = 'sfx_air_hit';
+  this.meleeMissSound = 'sfx_air_miss';
 }
 AirElementalNPCTile.prototype = new NPCObject();
 
@@ -1700,7 +1803,7 @@ function CyclopsNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Cyclops';
   this.prefix = 'a';
-  this.desc = 'cyclops';
+  this.desc = "cyclops";
   this.onHit = 'knockback';
   this.meleeChance = 60;
   this.resists = {};
@@ -1731,7 +1834,7 @@ function DeepNixieNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'deep nixie';
+  this.desc = "deep nixie";
   this.meleeChance = 60;
   this.spellsknown = { attack: 1, buff: 1, };
   this.resists = {};
@@ -1765,11 +1868,13 @@ function DrakeNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Drake';
   this.prefix = 'a';
-  this.desc = 'drake';
+  this.desc = "drake";
   this.meleeChance = 85;
   this.spellsknown = { attack: 1, };
   this.resists = { fire:50 };
   this.special = 'firebreath';
+  this.meleeHitSound = 'sfx_roar_hit';
+  this.meleeMissSound = 'sfx_roar_miss';
 }
 DrakeNPCTile.prototype = new NPCObject();
 
@@ -1799,11 +1904,13 @@ function EarthElementalNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'an';
-  this.desc = 'earth elemental';
+  this.desc = "earth elemental";
   this.initmult = 1.2;
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'mindless';
+  this.meleeHitSound = 'sfx_boulder_hit';
+  this.meleeMissSound = 'sfx_boulder_miss';
 }
 EarthElementalNPCTile.prototype = new NPCObject();
 
@@ -1830,11 +1937,13 @@ function FireElementalNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'fire elemental';
+  this.desc = "fire elemental";
   this.meleeChance = 60;
   this.spellsknown = { attack: 1, };
   this.resists = { fire:100, ice:-50 };
   this.special = 'flamearmor, mindless,light:1';
+  this.meleeHitSound = 'sfx_fire_hit';
+  this.meleeMissSound = 'sfx_fire_miss';
 }
 FireElementalNPCTile.prototype = new NPCObject();
 
@@ -1864,11 +1973,13 @@ function LurkerNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Lurker';
   this.prefix = 'a';
-  this.desc = 'lurker';
+  this.desc = "lurker";
   this.onHit = 'entangle';
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'invisible';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 LurkerNPCTile.prototype = new NPCObject();
 
@@ -1895,7 +2006,7 @@ function OrcCaptainNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'HighOrcs';
   this.prefix = 'an';
-  this.desc = 'orc captain';
+  this.desc = "orc captain";
   this.meleeChance = 66;
   this.spellsknown = { buff: 1, };
   this.resists = {};
@@ -1927,7 +2038,7 @@ function PaladinNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'HighAdventurer';
   this.prefix = 'a';
-  this.desc = 'paladin';
+  this.desc = "paladin";
   this.meleeChance = 66;
   this.spellsknown = { heal: 1, attack: 1, buff: 1, };
   this.resists = {};
@@ -1962,10 +2073,12 @@ function SeaSerpentNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'sea serpent';
+  this.desc = "sea serpent";
   this.meleeChance = 80;
   this.resists = {};
   this.special = 'firebreath';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 SeaSerpentNPCTile.prototype = new NPCObject();
 
@@ -1996,11 +2109,13 @@ function TremendousSpiderNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'Giant Spider';
   this.prefix = 'a';
-  this.desc = 'giant spider';
+  this.desc = "giant spider";
   this.onHit = 'paralyze';
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'spitter';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 TremendousSpiderNPCTile.prototype = new NPCObject();
 
@@ -2027,11 +2142,13 @@ function WaterElementalNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'water elemental';
+  this.desc = "water elemental";
   this.onHit = 'slow';
   this.meleeChance = 75;
   this.resists = { ice:50, fire:-25 };
   this.special = 'mindless';
+  this.meleeHitSound = 'sfx_water_hit';
+  this.meleeMissSound = 'sfx_water_miss';
 }
 WaterElementalNPCTile.prototype = new NPCObject();
 
@@ -2058,7 +2175,7 @@ function WizardNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'HighAdventurer';
   this.prefix = 'a';
-  this.desc = 'wizard';
+  this.desc = "wizard";
   this.meleeChance = 10;
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
   this.resists = {};
@@ -2092,11 +2209,13 @@ function CorpserNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Corpser';
   this.prefix = 'a';
-  this.desc = 'corpser';
+  this.desc = "corpser";
   this.onHit = 'entangle';
   this.meleeChance = 50;
   this.resists = {};
   this.special = 'invisible, reach';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 CorpserNPCTile.prototype = new NPCObject();
 
@@ -2127,7 +2246,7 @@ function EttinNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'Ettin';
   this.prefix = 'an';
-  this.desc = 'ettin';
+  this.desc = "ettin";
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'open_door';
@@ -2157,9 +2276,11 @@ function FloorNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'the';
-  this.desc = 'floor';
+  this.desc = "floor";
   this.meleeChance = 100;
   this.resists = {};
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 FloorNPCTile.prototype = new NPCObject();
 
@@ -2187,11 +2308,13 @@ function GazerNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'gazer';
   this.prefix = 'a';
-  this.desc = 'gazer';
+  this.desc = "gazer";
   this.meleeChance = 20;
   this.spellsknown = { attack: 1, };
   this.resists = {};
   this.special = 'sleep, ondeathInsects';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 GazerNPCTile.prototype = new NPCObject();
 
@@ -2219,12 +2342,14 @@ function HydraNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'hydra';
   this.prefix = 'a';
-  this.desc = 'hydra';
+  this.desc = "hydra";
   this.onHit = 'venom';
   this.initmult = 1.2;
   this.meleeChance = 80;
   this.resists = {};
   this.special = 'firebreath, multiattack';
+  this.meleeHitSound = 'sfx_roar_hit';
+  this.meleeMissSound = 'sfx_roar_miss';
 }
 HydraNPCTile.prototype = new NPCObject();
 
@@ -2252,10 +2377,12 @@ function MagmaSpawnNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'magmaspawn';
   this.prefix = 'a';
-  this.desc = 'magma spawn';
+  this.desc = "magma spawn";
   this.meleeChance = 80;
   this.resists = {};
   this.special = 'magmaspit, magmaheal';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 MagmaSpawnNPCTile.prototype = new NPCObject();
 
@@ -2283,11 +2410,13 @@ function PhantomNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'phantom';
   this.prefix = 'a';
-  this.desc = 'phantom';
+  this.desc = "phantom";
   this.meleeChance = 75;
   this.spellsknown = { attack: 1, };
   this.resists = {};
   this.special = 'undead';
+  this.meleeHitSound = 'sfx_ghost_hit';
+  this.meleeMissSound = 'sfx_ghost_miss';
 }
 PhantomNPCTile.prototype = new NPCObject();
 
@@ -2314,7 +2443,7 @@ function RangerNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'HighAdventurer';
   this.prefix = 'a';
-  this.desc = 'ranger';
+  this.desc = "ranger";
   this.meleeChance = 25;
   this.spellsknown = { heal: 1, control: 1, };
   this.resists = {};
@@ -2349,12 +2478,14 @@ function WillotheWispNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'willowisp';
   this.prefix = 'a';
-  this.desc = 'will-o-the-wisp';
+  this.desc = "will-o-the-wisp";
   this.onHit = 'mana clash';
   this.meleeChance = 35;
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
   this.special = 'teleport, energy bolt';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 WillotheWispNPCTile.prototype = new NPCObject();
 
@@ -2385,9 +2516,11 @@ function DelverNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'delver';
   this.prefix = 'a';
-  this.desc = 'delver';
+  this.desc = "delver";
   this.meleeChance = 100;
   this.resists = {};
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 DelverNPCTile.prototype = new NPCObject();
 
@@ -2418,7 +2551,7 @@ function ArchmageNPCTile() {
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'archmage';
   this.prefix = 'an';
-  this.desc = 'archmage';
+  this.desc = "archmage";
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
@@ -2448,11 +2581,13 @@ function BlackDragonNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'blackdragon';
   this.prefix = 'a';
-  this.desc = 'black dragon';
+  this.desc = "black dragon";
   this.meleeChance = 70;
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
   this.special = 'firebreath';
+  this.meleeHitSound = 'sfx_roar_hit';
+  this.meleeMissSound = 'sfx_roar_miss';
 }
 BlackDragonNPCTile.prototype = new NPCObject();
 
@@ -2480,12 +2615,14 @@ function DevourerNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'devourer';
   this.prefix = 'the';
-  this.desc = 'devourer';
+  this.desc = "devourer";
   this.onHit = 'venom';
   this.meleeChance = 70;
   this.spellsknown = { control: 1, buff: 1, };
   this.resists = { fire:50, ice:50 };
   this.special = 'firebreath, icebreath, multiattack';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 DevourerNPCTile.prototype = new NPCObject();
 
@@ -2513,11 +2650,13 @@ function DragonNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'dragon';
   this.prefix = 'a';
-  this.desc = 'dragon';
+  this.desc = "dragon";
   this.meleeChance = 70;
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = { fire:50 };
   this.special = 'firebreath';
+  this.meleeHitSound = 'sfx_roar_hit';
+  this.meleeMissSound = 'sfx_roar_miss';
 }
 DragonNPCTile.prototype = new NPCObject();
 
@@ -2548,7 +2687,7 @@ function EttinSorcererNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'ettinsorcerer';
   this.prefix = 'an';
-  this.desc = 'ettin sorcerer';
+  this.desc = "ettin sorcerer";
   this.meleeChance = 40;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
@@ -2580,7 +2719,7 @@ function GiantNPCTile() {
   this.leavesCorpse = 'Blood';
   this.lootTable = 'giant';
   this.prefix = 'a';
-  this.desc = 'giant';
+  this.desc = "giant";
   this.onHit = 'knockback';
   this.meleeChance = 60;
   this.resists = {};
@@ -2615,11 +2754,13 @@ function KrakenNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'kraken';
+  this.desc = "kraken";
   this.onDamaged = 'shock';
   this.meleeChance = 85;
   this.resists = {};
   this.special = 'lbolt';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 KrakenNPCTile.prototype = new NPCObject();
 
@@ -2650,10 +2791,12 @@ function ReaperNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'reaper';
   this.prefix = 'a';
-  this.desc = 'reaper';
+  this.desc = "reaper";
   this.meleeChance = 50;
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 ReaperNPCTile.prototype = new NPCObject();
 
@@ -2681,12 +2824,14 @@ function SpecterNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'specter';
   this.prefix = 'a';
-  this.desc = 'specter';
+  this.desc = "specter";
   this.onDamaged = 'incorporeal';
   this.meleeChance = 66;
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
   this.special = 'phase';
+  this.meleeHitSound = 'sfx_ghost_hit';
+  this.meleeMissSound = 'sfx_ghost_miss';
 }
 SpecterNPCTile.prototype = new NPCObject();
 
@@ -2717,7 +2862,7 @@ function DaemonNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'daemon';
   this.prefix = 'a';
-  this.desc = 'daemon';
+  this.desc = "daemon";
   this.meleeChance = 75;
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
@@ -2752,10 +2897,12 @@ function EarthenTyrantNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'earthentyrant';
   this.prefix = 'an';
-  this.desc = 'earthen tyrant';
+  this.desc = "earthen tyrant";
   this.meleeChance = 90;
   this.resists = {};
   this.special = 'summonearthelemental';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 EarthenTyrantNPCTile.prototype = new NPCObject();
 
@@ -2786,7 +2933,7 @@ function LicheNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'liche';
   this.prefix = 'a';
-  this.desc = 'liche';
+  this.desc = "liche";
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
   this.resists = { ice:66 };
   this.special = 'necromancer, undead, open_door';
@@ -2817,12 +2964,14 @@ function EyesofSpiteNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'eyes';
   this.prefix = 'the';
-  this.desc = 'eyes of spite';
+  this.desc = "eyes of spite";
   this.onHit = 'paralyze';
   this.meleeChance = 15;
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'sleep, ondeathInsects';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 EyesofSpiteNPCTile.prototype = new NPCObject();
 
@@ -2853,10 +3002,12 @@ function ReaperLordNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'reaperlord';
   this.prefix = 'a';
-  this.desc = 'reaper lord';
+  this.desc = "reaper lord";
   this.meleeChance = 50;
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 ReaperLordNPCTile.prototype = new NPCObject();
 
@@ -2883,11 +3034,13 @@ function ElderDragonNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'elderdragon';
   this.prefix = 'an';
-  this.desc = 'elder dragon';
+  this.desc = "elder dragon";
   this.meleeChance = 65;
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
   this.resists = { fire:50 };
   this.special = 'firebreath';
+  this.meleeHitSound = 'sfx_roar_hit';
+  this.meleeMissSound = 'sfx_roar_miss';
 }
 ElderDragonNPCTile.prototype = new NPCObject();
 
@@ -2915,7 +3068,7 @@ function BalronNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'balron';
   this.prefix = 'a';
-  this.desc = 'balron';
+  this.desc = "balron";
   this.meleeChance = 75;
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = { fire:100 };
@@ -2947,7 +3100,7 @@ function TitanNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'titan';
   this.prefix = 'a';
-  this.desc = 'titan';
+  this.desc = "titan";
   this.onHit = 'knockback, stun';
   this.meleeChance = 70;
   this.resists = {};
@@ -2979,11 +3132,13 @@ function AbyssalKrakenNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'an';
-  this.desc = 'abyssal kraken';
+  this.desc = "abyssal kraken";
   this.onDamaged = 'shock';
   this.meleeChance = 90;
   this.resists = {};
   this.special = 'lbolt';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 AbyssalKrakenNPCTile.prototype = new NPCObject();
 
@@ -3010,7 +3165,7 @@ function IllusionNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'an';
-  this.desc = 'illusion';
+  this.desc = "illusion";
   this.onDamaged = 'die';
   this.meleeChance = 100;
   this.resists = {};
@@ -3040,7 +3195,7 @@ function InfusedIllusionNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'an';
-  this.desc = 'illusion';
+  this.desc = "illusion";
   this.onDamaged = 'die';
   this.meleeChance = 100;
   this.resists = {};
@@ -3070,8 +3225,10 @@ function ToshinSentinelNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'floating sentinel';
+  this.desc = "floating sentinel";
   this.resists = {};
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
 }
 ToshinSentinelNPCTile.prototype = new NPCObject();
 
@@ -3100,7 +3257,7 @@ function AbyssYouNPCTile() {
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
-  this.desc = 'yourself';
+  this.desc = "yourself";
   this.resists = {};
   this.special = 'mirror';
 }
@@ -3129,7 +3286,7 @@ function NegatorGnomeNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'negator gnome';
+  this.desc = "negator gnome";
   this.resists = {};
 }
 NegatorGnomeNPCTile.prototype = new NPCObject();
@@ -3160,7 +3317,7 @@ function CrystalBarrierNPCTile() {
   this.leavesCorpse = 'none';
   this.lootTable = 'none';
   this.prefix = 'a';
-  this.desc = 'crystal barrier';
+  this.desc = "crystal barrier";
   this.resists = {};
   this.special = 'crumbles';
 }
@@ -3696,4 +3853,17 @@ function InsectsGroupLargeTile() {
   this.attackword = 'attack';
 }
 InsectsGroupLargeTile.prototype = new NPCGroupObject();
+
+function CourierGroupTile() {
+  this.name = 'CourierGroup';
+  this.desc = 'a courier';
+  this.peaceAI = 'Courier';
+  this.graphic = '310.2.gif';
+  this.group = [];
+  this.group[0] = new NPCList('CourierNPC', '1d1');
+  this.group[1] = new NPCList('CourierGuardNPC', '1d1+1');
+  this.movetype = MOVE_WALK;
+  this.attackword = 'attacks';
+}
+CourierGroupTile.prototype = new NPCGroupObject();
 

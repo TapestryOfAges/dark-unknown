@@ -89,172 +89,10 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       DU.gameflags.setFlag(triggers.set_flag, 1);
     
       // special cases
-      if (triggers.set_flag === "ash_password") {
-        var door = PC.getHomeMap().getTile(25,21).getTopFeature();
-//        door.use = door.use_old;
-//        door.unlockMe();
-        PC.getHomeMap().deleteThing(door);
-        door = localFactory.createTile("Door");
-        PC.getHomeMap().placeThing(25,21,door);
-      
-        // replicating a door's Use code without a user
-        door.setGraphicArray(door.opengraphic);
-        door.closedLOS = door.getBlocksLOSArray();
-        var seethru = [];
-	  		seethru[0] = 0;
-		  	door.setBlocksLOSArray(seethru);
-			  door.addPassable(MOVE_WALK);
-  			DUPlaySound("sfx_open_door"); 
-	  		door.open = 1;
-			
-		  	DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
-			  DU.gameflags.deleteFlag(triggers.set_flag);
-      } else if (triggers.set_flag === "spellbook") {
-        PC.addSpell(1,GetSpellID(5)); 
-        // spellbook starts with Light in it
-      } else if (triggers.set_flag === "knows_samantha") {
-        DU.gameflags.setFlag("knows_samantha2", 1);
-      } else if (triggers.set_flag === "king_heal") {
-        DU.gameflags.deleteFlag(triggers.set_flag);
-        PC.healMe(1000);
-        var effects = PC.getSpellEffects();
-        if (effects) {
-          for (var i=0; i<effects.length; i++) {
-            if (effects[i].getName() === "Poison") {
-              effects[i].endEffect();
-            }
-            if ((infused) && (effects[i].getName() === "Disease")) {
-              effects[i].endEffect();
-            }
-          }
-        }
-        ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
-        DrawCharFrame();
-      } else if (triggers.set_flag === "train_int") {
-        if (PC.gettp() === 0) {
-          alert("Somehow training Int without any tp.");
-        } else if ((PC.getBaseInt() < STAT_MAX) && (PC.gettp() > 0)) {
-          PC.setBaseInt(PC.getBaseInt()+1);
-          PC.settp(PC.gettp()-1);
-          maintext.addText("Your intelligence is now " + PC.getInt());
-        } else {
-          maintext.addText("Your intelligence cannot be raised further by training.");
-        }
-        if (PC.gettp() === 0) {
-          DU.gameflags.deleteFlag("can_train");
-        }
-        DU.gameflags.deleteFlag(triggers.set_flag);
-      } else if (triggers.set_flag === "train_dex") {
-        if (PC.gettp() === 0) {
-          alert("Somehow training Dex without any tp.");
-        } else if ((PC.getBaseDex() < STAT_MAX) && (PC.gettp() > 0)) {
-          PC.setBaseDex(PC.getBaseDex()+1);
-          PC.settp(PC.gettp()-1);
-          maintext.addText("Your dexterity is now " + PC.getDex());
-        } else {
-          maintext.addText("Your dexterity cannot be raised further by training.");
-        }
-        if (PC.gettp() === 0) {
-          DU.gameflags.deleteFlag("can_train");
-        }
-        DU.gameflags.deleteFlag(triggers.set_flag);
-      } else if (triggers.set_flag === "train_str") {
-        if (PC.gettp() === 0) {
-          alert("Somehow training Str without any tp.");
-        } else if ((PC.getBaseStr() < STAT_MAX) && (PC.gettp() > 0)) {
-          PC.setBaseStr(PC.getBaseStr()+1);
-          PC.settp(PC.gettp()-1);
-          maintext.addText("Your strength is now " + PC.getStr());
-        } else {
-          maintext.addText("Your strength cannot be raised further by training.");
-        }
-        if (PC.gettp() === 0) {
-          DU.gameflags.deleteFlag("can_train");
-        }
-        DU.gameflags.deleteFlag(triggers.set_flag);
-      } else if (triggers.set_flag === "inn_20_y") {
-        DU.gameflags.deleteFlag("inn_20_y");
-        DU.gameflags.deleteFlag("inn_20");
-        if (PC.getGold() < 20) {
-          maintext.addText("You don't have enough gold!");
-        } else {
-          keep_talking = -1;
-          PC.addGold(-20);
-          maintext.addText("He leads you to your room.");
-          setTimeout(function() { InnRoom(28,17,[21,14,25,20]); }, 50);
-        }
-      } else if (triggers.set_flag === "inn_20_n") {
-        DU.gameflags.deleteFlag("inn_20_n");
-        DU.gameflags.deleteFlag("inn_20");
-      } else if (triggers.set_flag === "give_100g_k") {
-        DU.gameflags.deleteFlag("give_100g_k");
-        DU.gameflags.setFlag("debt_paid", 1);
-        PC.addGold(100);
-        DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")+1);
-      } else if (!DU.gameflags.getFlag("all_health") && DU.gameflags.getFlag("health_kyvek") &&  DU.gameflags.getFlag("health_daniel") && DU.gameflags.getFlag("health_kylee") && DU.gameflags.getFlag("health_garen") && DU.gameflags.getFlag("health_guard") && DU.gameflags.getFlag("health_amaeryl") && DU.gameflags.getFlag("health_warren") && DU.gameflags.getFlag("health_samuel") && DU.gameflags.getFlag("health_ingrid")) {
-        DU.gameflags.setFlag("all_health", 1);    
-      } else if (triggers.set_flag === "shield_gotten") {
-        DU.gameflags.deleteFlag("get_shield");
-        DU.gameflags.deleteFlag("shield_gotten");
-      } else if (triggers.set_flag === "ash_get_book") {
-        var ashmap = PC.getHomeMap(); // he has to be on the PC's map since they just talked to him
-        var npcs = ashmap.npcs.getAll();
-        var ash;
-        $.each(npcs, function(idx,val) {
-          if (val.getNPCName() === "Asharden") { ash = val; }
-        });
-        if (!ash) { alert("Couldn't find Asharden to change his AI."); }
-        else {
-          ash.prevai = ash.getCurrentAI();
-          ash.setCurrentAI("AshardenBook");
-          ash.setConversation("asharden_book");
-          DebugWrite("plot", "Asharden's AI changes to AshardenBook.<br />");
-        }        
-      } else if (triggers.set_flag === "anna_return") {
-        var annamap = PC.getHomeMap(); // she has to be on the PC's map since they just talked to her
-        var npcs = annamap.npcs.getAll();
-        var anna;
-        $.each(npcs, function(idx,val) {
-          if (val.getNPCName() === "Anna") { anna = val; }
-        });
-        if (!anna) { alert("Couldn't find Anna to change her AI."); }
-        else {
-          anna.setCurrentAI("AnnaLeaves");
-//          if (debug && (debugflags.plot || debugflags.ai)) { dbs.writeln("Anna's AI changes to AnnaLeaves.<br />"); }        
-          DebugWrite("plot", "Anna's AI changes to AnnaLeaves.<br />");
-        }
-      } else if (triggers.set_flag === "garrick_flipout") {
-        var garrickmap = PC.getHomeMap();
-        var npcs = garrickmap.npcs.getAll();
-        var garrick;
-        var aoife;
-        $.each(npcs, function(idx,val) {
-          if (val.getNPCName() === "Garrick") { garrick = val; }
-          if (val.getNPCName() === "Aoife") { aoife = val; }
-        });
-        if (!garrick) { alert("Couldn't find Garrick to change his AI."); }
-        else {
-          garrick.setCurrentAI("GarrickAttack");
-//          if (debug && (debugflags.plot || debugflags.ai)) { dbs.writeln("Garrick's AI changes to GarrickAttack.<br />"); }        
-          DebugWrite("plot", "Garrick's AI changes to GarrickAttack.<br />");
-          garrick.setMaxHP(1030);
-          garrick.setHP(1030);
-          garrick.setAttitude("enraged");
-        }
-        if (!aoife) { alert("Couldn't find Aoife to change her AI."); }
-        else {
-          aoife.setCurrentAI("AoifeAttack");
-//          if (debug && (debugflags.plot || debugflags.ai)) { dbs.writeln("Aoife's AI changes to AoifeAttack.<br />"); }        
-          DebugWrite("plot", "Aoife's AI changes to AoifeAttack.<br />");
-          var mace = localFactory.createTile("Shortsword");
-          aoife.addToInventory(mace,1);
-          aoife.setWeapon(mace);  // no longer actually a mace
-          aoife.setAttitude("defensive");
-          // to set her back, just reset to PeaceAI
-        }
-      } else if (triggers.set_flag === "kiba_rumor") {
-        DU.gameflags.getFlag("kiba_question");
+      if (typeof OnConvTriggers[triggers.set_flag] === "function") {
+        OnConvTriggers[triggers.set_flag](speaker,keyword);
       }
+
     } 
   }
   if (triggers.hasOwnProperty("end_convo")) {
@@ -394,4 +232,260 @@ function InnRoom(xc,yc,doors) {
     },1000);
   });
 
+}
+
+function OnConvTriggers() {};
+
+OnConvTriggers["ash_password"] = function(speaker,keyword) {
+  var door = PC.getHomeMap().getTile(25,21).getTopFeature();
+
+  PC.getHomeMap().deleteThing(door);
+  door = localFactory.createTile("Door");
+  PC.getHomeMap().placeThing(25,21,door);
+      
+  // replicating a door's Use code without a user
+  door.setGraphicArray(door.opengraphic);
+  door.closedLOS = door.getBlocksLOSArray();
+  var seethru = [];
+  seethru[0] = 0;
+  door.setBlocksLOSArray(seethru);
+  door.addPassable(MOVE_WALK);
+  DUPlaySound("sfx_open_door"); 
+  door.open = 1;
+			
+  DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
+  DU.gameflags.deleteFlag(triggers.set_flag);
+  
+  return;
+}
+
+OnConvTriggers["spellbook"] = function(speaker,keyword) {
+  PC.addSpell(1,GetSpellID(5)); 
+  return;
+}
+
+OnConvTriggers["knows_samantha"] = function(speaker,keyword) {
+  DU.gameflags.setFlag("knows_samantha2", 1);
+  return; 
+}
+
+OnConvTriggers["king_heal"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("king_heal");
+  PC.healMe(1000);
+  var effects = PC.getSpellEffects();
+  if (effects) {
+    for (var i=0; i<effects.length; i++) {
+      if (effects[i].getName() === "Poison") {
+        effects[i].endEffect();
+      }
+      if (effects[i].getName() === "Disease") {
+        effects[i].endEffect();
+      }
+    }
+  }
+  ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+  DrawCharFrame();
+  
+  return;
+}
+
+OnConvTriggers["train_int"] = function(speaker,keyword) {
+  if (PC.gettp() === 0) {
+    alert("Somehow training Int without any tp.");
+  } else if ((PC.getBaseInt() < STAT_MAX) && (PC.gettp() > 0)) {
+    PC.setBaseInt(PC.getBaseInt()+1);
+    PC.settp(PC.gettp()-1);
+    maintext.addText("Your intelligence is now " + PC.getInt());
+  } else {
+    maintext.addText("Your intelligence cannot be raised further by training.");
+  }
+  if (PC.gettp() === 0) {
+    DU.gameflags.deleteFlag("can_train");
+  }
+  DU.gameflags.deleteFlag("train_int");
+  return;
+}
+
+OnConvTriggers["train_dex"] = function(speaker,keyword) {
+  if (PC.gettp() === 0) {
+    alert("Somehow training Dex without any tp.");
+  } else if ((PC.getBaseDex() < STAT_MAX) && (PC.gettp() > 0)) {
+    PC.setBaseDex(PC.getBaseDex()+1);
+    PC.settp(PC.gettp()-1);
+    maintext.addText("Your dexterity is now " + PC.getDex());
+  } else {
+    maintext.addText("Your dexterity cannot be raised further by training.");
+  }
+  if (PC.gettp() === 0) {
+    DU.gameflags.deleteFlag("can_train");
+  }
+  DU.gameflags.deleteFlag("train_dex");
+  return;
+}
+
+OnConvTriggers["train_str"] = function(speaker,keyword) {
+  if (PC.gettp() === 0) {
+    alert("Somehow training Str without any tp.");
+  } else if ((PC.getBaseStr() < STAT_MAX) && (PC.gettp() > 0)) {
+    PC.setBaseStr(PC.getBaseStr()+1);
+    PC.settp(PC.gettp()-1);
+    maintext.addText("Your strength is now " + PC.getStr());
+  } else {
+    maintext.addText("Your strength cannot be raised further by training.");
+  }
+  if (PC.gettp() === 0) {
+    DU.gameflags.deleteFlag("can_train");
+  }
+  DU.gameflags.deleteFlag("train_str");
+  return;
+}
+
+OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("inn_20_y");
+  DU.gameflags.deleteFlag("inn_20");
+  if (PC.getGold() < 20) {
+    maintext.addText("You don't have enough gold!");
+  } else {
+    keep_talking = -1;
+    PC.addGold(-20);
+    maintext.addText("He leads you to your room.");
+    setTimeout(function() { InnRoom(28,17,[21,14,25,20]); }, 50);
+  }
+}
+
+OnConvTriggers["inn_20_n"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("inn_20_n");
+  DU.gameflags.deleteFlag("inn_20");
+  return;
+}
+
+OnConvTriggers["health_kyvek"] = function(speaker,keyword) {
+  if (!DU.gameflags.getFlag("all_health")){
+    DU.gameflags.setFlag("all_health", 1);
+  }
+}
+
+OnConvTriggers["health_daniel"] = function(speaker,keyword) {
+  if (!DU.gameflags.getFlag("all_health")){
+    DU.gameflags.setFlag("all_health", 1);
+  }
+}
+
+OnConvTriggers["health_kylee"] = function(speaker,keyword) {
+  if (!DU.gameflags.getFlag("all_health")){
+    DU.gameflags.setFlag("all_health", 1);
+  }
+}
+
+OnConvTriggers["health_garen"] = function(speaker,keyword) {
+  if (!DU.gameflags.getFlag("all_health")){
+    DU.gameflags.setFlag("all_health", 1);
+  }
+}
+
+OnConvTriggers["health_guard"] = function(speaker,keyword) {
+  if (!DU.gameflags.getFlag("all_health")){
+    DU.gameflags.setFlag("all_health", 1);
+  }
+}
+
+OnConvTriggers["health_amaeryl"] = function(speaker,keyword) {
+  if (!DU.gameflags.getFlag("all_health")){
+    DU.gameflags.setFlag("all_health", 1);
+  }
+}
+
+OnConvTriggers["health_warren"] = function(speaker,keyword) {
+  if (!DU.gameflags.getFlag("all_health")){
+    DU.gameflags.setFlag("all_health", 1);
+  }
+}
+
+OnConvTriggers["health_samuel"] = function(speaker,keyword) {
+  if (!DU.gameflags.getFlag("all_health")){
+    DU.gameflags.setFlag("all_health", 1);
+  }
+}
+
+OnConvTriggers["health_ingrid"] = function(speaker,keyword) {
+  if (!DU.gameflags.getFlag("all_health")){
+    DU.gameflags.setFlag("all_health", 1);
+  }
+}
+
+OnConvTriggers["shield_gotten"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("get_shield");
+  DU.gameflags.deleteFlag("shield_gotten");
+}
+
+OnConvTriggers["ash_get_book"] = function(speaker,keyword) {
+  var ashmap = PC.getHomeMap(); // he has to be on the PC's map since they just talked to him
+  var npcs = ashmap.npcs.getAll();
+  var ash;
+  $.each(npcs, function(idx,val) {
+    if (val.getNPCName() === "Asharden") { ash = val; }
+  });
+  if (!ash) { alert("Couldn't find Asharden to change his AI."); }
+  else {
+    ash.prevai = ash.getCurrentAI();
+    ash.setCurrentAI("AshardenBook");
+    ash.setConversation("asharden_book");
+    DebugWrite("plot", "Asharden's AI changes to AshardenBook.<br />");
+  }        
+}
+
+OnConvTriggers["anna_return"] = function(speaker,keyword) {
+  var annamap = PC.getHomeMap(); // she has to be on the PC's map since they just talked to her
+  var npcs = annamap.npcs.getAll();
+  var anna;
+  $.each(npcs, function(idx,val) {
+    if (val.getNPCName() === "Anna") { anna = val; }
+  });
+  if (!anna) { alert("Couldn't find Anna to change her AI."); }
+  else {
+    anna.setCurrentAI("AnnaLeaves");
+    DebugWrite("plot", "Anna's AI changes to AnnaLeaves.<br />");
+  }
+}
+
+OnConvTriggers["garrick_flipout"] = function(speaker,keyword) {
+  var garrickmap = PC.getHomeMap();
+  var npcs = garrickmap.npcs.getAll();
+  var garrick;
+  var aoife;
+  $.each(npcs, function(idx,val) {
+    if (val.getNPCName() === "Garrick") { garrick = val; }
+    if (val.getNPCName() === "Aoife") { aoife = val; }
+  });
+  if (!garrick) { alert("Couldn't find Garrick to change his AI."); }
+  else {
+    garrick.setCurrentAI("GarrickAttack");
+    DebugWrite("plot", "Garrick's AI changes to GarrickAttack.<br />");
+    garrick.setMaxHP(1030);
+    garrick.setHP(1030);
+    garrick.setAttitude("enraged");
+  }
+  if (!aoife) { alert("Couldn't find Aoife to change her AI."); }
+  else {
+    aoife.setCurrentAI("AoifeAttack");
+    DebugWrite("plot", "Aoife's AI changes to AoifeAttack.<br />");
+    var mace = localFactory.createTile("Shortsword");
+    aoife.addToInventory(mace,1);
+    aoife.setWeapon(mace);  // no longer actually a mace
+    aoife.setAttitude("defensive");
+    // to set her back, just reset to PeaceAI
+  }
+}
+
+OnConvTriggers["kiba_rumor"] = function(speaker,keyword) {
+  if (DU.gameflags.getFlag("kiba_question")) {
+    DU.gameflags.deleteFlag("kiba_question")
+  }
+}
+
+OnConvTriggers["start_courier"] = function(speaker,keyword) {
+  var courier = localFactory.createTile("CourierGroup");
+  var worldmap = maps.getMap("darkunknown");
+  worldmap.placeThing(45,111,courier);
+  courier.setCurrentAI("CourierPath");
 }

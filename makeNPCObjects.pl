@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-open (my $npcdoc, "<", "NPCdoc.txt") or die "Can't open NPCdoc.txt\n";
+open (my $npcdoc, "<", "DU NPCs - Monsters.tsv") or die "Can't open NPCdoc.txt\n";
 open (my $out, ">", "npcObjects.js") or die "Can't open output file.\n";
 
 my $firstline = 1;
@@ -83,7 +83,8 @@ foreach my $line (<$npcdoc>) {
     print $out "  this.prefix = '$1';\n";
     $fields[19] =~ s/^the //;
   }
-  print $out "  this.desc = '$fields[19]';\n";
+  my $desc = $fields[19];
+  print $out "  this.desc = \"$desc\";\n";
   if ($fields[20]) {
     print $out "  this.onHit = '$fields[20]';\n";
   }
@@ -130,7 +131,7 @@ foreach my $line (<$npcdoc>) {
 
 close $npcdoc;
 
-open (my $groupdoc, "<", "Groupdoc.txt") or die "Can't open Groupdoc.txt\n";
+open (my $groupdoc, "<", "DU NPCs - Groups.tsv") or die "Can't open Groupdoc.txt\n";
 $firstline = 1;
 
 foreach my $line (<$groupdoc>) {
