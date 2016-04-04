@@ -785,9 +785,13 @@ ais.CourierPath = function(who) {
     var dest = [];
     if (who.direction === "n") { dest[0]=49; dest[1]=90; }
     else { dest[0]=64;dest[1]=119; }
-    
-    
+    var path = whomap.getPath(who.getx(),who.gety(),dest[0],dest[1],who.getMovetype());
+    path.shift();
+    if (path.length) {
+      retval = StepOrSidestep(who, [path[0],path[1]], [dest[0],dest[1]], "nopush");
+    }
   }
+  return retval;
 }
 
 ais.Sentinel = function(who) {

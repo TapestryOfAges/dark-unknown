@@ -645,7 +645,7 @@ function CourierNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'townsfolk';
+  this.peaceAI = 'seekPC-15';
   this.forgetAt = 0;
   this.withdraw = '0';
   this.graphic = '310.2.gif';
@@ -674,7 +674,7 @@ function CourierGuardNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'townsfolk';
+  this.peaceAI = 'seekPC-15';
   this.forgetAt = 0;
   this.withdraw = '0';
   this.graphic = '309.gif';
