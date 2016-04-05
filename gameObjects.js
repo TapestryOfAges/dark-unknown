@@ -10460,49 +10460,21 @@ NPCObject.prototype.activate = function(timeoverride) {
         if (val.indexOf(":") > -1) {
           var bluh = val.split(":");
           tmpspc[bluh[0]] = bluh[1];
+          if (typeof NPCSpecialFuncs[bluh[0]] === "function") {
+            var ret = NPCSpecialFuncs[bluh[0]](this, bluh[1]);
+            if (ret) { tmpspc[bluh[0]] = ret; }
+          }
         } else {
           tmpspc[val] = 1;
+          if (typeof NPCSpecialFuncs[val] === "function") {
+            var ret = NPCSpecialFuncs[val](this);
+            if (ret) { tmpspc[val] = ret; }
+          }
         }
       });
       this.specials = tmpspc;
     }
-    if (this.specials["quick"]) {
-      var qobj = localFactory.createTile("Quickness");
-      qobj.setExpiresTime(-1);
-      this.addSpellEffect(qobj);
-    }
-    
-    if (this.specials["mirror"]) {
-      this.setGraphicArray(PC.getGraphicArray());
-      this.gender = PC.gender
-      this.npcname = PC.pcname;
-    }
-
-    if (this.specials["light"]) {
-      LightEmitting.call(this, this.specials["light"]);
-    }
-    
-    if (this.specials["flamearmor"]) {
-      var qobj = localFactory.createTile("FireArmor");
-      if (this.specials["flamearmor"] !== 1) {
-        qobj.setPower(this.specials["flamearmor"]);
-      } else {
-        qobj.setPower("2d4");
-      }
-      qobj.setExpiresTime(-1);
-      this.addSpellEffect(qobj);
-    }
-  
-    if (this.specials["invisible"]) {
-      this.invisible = 1;
-    }
-    
-    if (this.specials["hides"]) {
-      var oldgraph = this.getGraphic();
-      this.setGraphic(this.specials["hides"]);
-      this.specials["hides"] = oldgraph;
-    }
-    
+                  
     var timing = this.nextActionTime(0);
     timing = timing/2;
     if (timeoverride) {
