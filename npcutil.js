@@ -16,6 +16,44 @@ function Anchor() {
 }
 Anchor.prototype = new Object();
 
+var NPCSpecialFuncs = {};
+
+NPCSpecialFuncs["quick"] = function(who, how) {
+  var qobj = localFactory.createTile("Quickness");
+  qobj.setExpiresTime(-1);
+  who.addSpellEffect(qobj);  
+}
+
+NPCSpecialFuncs["mirror"] = function(who, how) {
+  who.setGraphicArray(PC.getGraphicArray());
+  who.gender = PC.gender
+  who.npcname = PC.pcname;  
+}
+
+NPCSpecialFuncs["light"] = function(who,how) {
+  LightEmitting.call(who, how);
+}
+
+NPCSpecialFuncs["flamearmor"] = function(who,how) {
+  var qobj = localFactory.createTile("FireArmor");
+  if (how !== 1) {
+    qobj.setPower(how);
+  } else {
+    qobj.setPower("2d4");
+  }
+  qobj.setExpiresTime(-1);
+  who.addSpellEffect(qobj);  
+}
+
+NPCSpecialFuncs["invisible"] = function(who,how) {
+  who.invisible = 1;
+}
+
+NPCSpecialFuncs["hides"] = function(who,how) {
+  var oldgraph = who.getGraphic();
+  who.setGraphic(how);
+  return oldgraph;
+}
 function TurnMapHostile(map) {
 //  if (debug && debugflags.combat) { dbs.writeln("Attacked a friendly! Turning hostile...<br />"); }
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
