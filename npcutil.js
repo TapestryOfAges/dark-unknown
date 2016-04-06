@@ -54,6 +54,18 @@ NPCSpecialFuncs["hides"] = function(who,how) {
   who.setGraphic(how);
   return oldgraph;
 }
+
+NPCSpecialFuncs["couriersurrender"] = function(who,how) {
+  var eobj = localFactory.createTile("CourierSurrender");
+  who.addSpellEffect(eobj);
+}
+
+NPCSpecialFuncs["courierflee"] = function(who,how) {
+  var eobj = localFactory.createTile("CourierFlee");
+  who.addSpellEffect(eobj);
+}
+
+
 function TurnMapHostile(map) {
 //  if (debug && debugflags.combat) { dbs.writeln("Attacked a friendly! Turning hostile...<br />"); }
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
