@@ -1514,3 +1514,21 @@ function FindCombatPath(who,approach,path) {
   }      
   return moved;
 }
+
+ai.courier = function(who) {
+  //stay a few steps away from the PC, check to see if both guards are cowards/dead and surrender if so.
+  var couriermap = who.getHomeMap();
+  var npcs = couriermap.getNPCs();
+  var stillfighting = 0;
+  $.each(npcs, function(idx,val) {
+    if (val.getName() === "CourierGuard") {
+      if (!val.coward) { stillfighting = 1; }
+    }
+  });
+  
+  if (stillfighting) {
+    // WORKING HERE
+  } else { 
+    
+  }
+}

@@ -1400,27 +1400,59 @@ VulnerabilityTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
-// This whole thing is deprecated
-/* var runedefs = {};
-runedefs[RUNE_KINGS] = {name: "Earthbond", pre: "Rune of Kings", focus: 3};  // heal
-runedefs[RUNE_WAVES] = {name: "Mana Tide", pre: "Rune of Waves", focus: 4};  // temp mana
-runedefs[RUNE_WINDS] = {name: "Buffet", pre: "Rune of Winds", focus: 3};  // push back one nearby foe
-runedefs[RUNE_FLAMES] = {name: "Firetouched", pre: "Rune of Flames", focus:2};  // magic resist
-runedefs[RUNE_VOID] = {name: "Blank Slate", pre: "Rune of the Void", focus:0};  // ??
-runedefs[RUNE_KINGS + RUNE_VOID] = {name: "Earthborn", pre: "Runes of Kings and Void", focus: 6};  // more heal
-runedefs[RUNE_WAVES + RUNE_VOID] = {name: "Tidal Surge", pre: "Runes of Waves and Void", focus: 7};  // more mana
-runedefs[RUNE_WINDS + RUNE_VOID] = {name: "Cyclone", pre: "Runes of Winds and Void", focus: 5};  // pushback in all directions
-runedefs[RUNE_FLAMES + RUNE_VOID] = {name: "Fireblast", pre: "Runes of Flames and Void", focus: 5};  // fireball
-runedefs[RUNE_KINGS + RUNE_WAVES] = {name: "Crestbearer", pre: "Runes of Kings and Waves", focus: 5}; // ??
-runedefs[RUNE_KINGS + RUNE_WAVES + RUNE_VOID] = {name: "??", pre: "Runes of Kings, Waves, and Void", focus: 8}; // ??
-runedefs[RUNE_KINGS + RUNE_WINDS] = {name: "Protective Gale", pre: "Runes of Kings and Winds", focus: 4};  // defense against ranged
-runedefs[RUNE_KINGS + RUNE_WINDS + RUNE_VOID] = {name: "??", pre: "Runes of Kings, Winds, and Void", focus: 7}; // ??
-runedefs[RUNE_KINGS + RUNE_FLAMES] = {name: "Sparkcaller", pre: "Runes of Kings and Flames", focus: 7};  // summon fire elemental
-runedefs[RUNE_KINGS + RUNE_FLAMES + RUNE_VOID] = {name: "Liege of Fires", pre: "Runes of Kings, Flames, and Void", focus: 10};  // summon dragon
-runedefs[RUNE_WAVES + RUNE_WINDS] = {name: "??", pre: "Runes of Waves and Winds", focus: 5}; // ??
-runedefs[RUNE_WAVES + RUNE_WINDS + RUNE_VOID] = {name: "??", pre: "Runes of Waves, Winds, and Void", focus: 8}; // ??
-runedefs[RUNE_WAVES + RUNE_FLAMES] = {name: "??", pre: "Runes of Waves and Flames", focus: 5}; // ??
-runedefs[RUNE_WAVES + RUNE_FLAMES + RUNE_VOID] = {name: "??", pre: "Runes of Waves, Flames, and Void", focus: 8}; // ??
-runedefs[RUNE_WINDS + RUNE_FLAMES] = {name: "Burning Winds", pre: "Runes of Winds and Flames", focus: 5}; // ranged fire AoE
-runedefs[RUNE_WINDS + RUNE_FLAMES + RUNE_VOID] = {name: "Conflagration", pre: "Runes of Winds, Flames, and Void", focus: 8}; // fire to all foes?
-*/
+
+
+// Pseudo spell effects
+
+function CourierFleeTile() {
+  this.addType("debuff");
+  this.name = "CourierFlee";
+  this.display = "<span style='color:#0000ee'>C</span>";
+  this.zstatdesc = "You will flee at low hp.";
+  this.desc = "Courier Flee";
+  this.level = 1;
+  this.dispellable = 0;
+}
+CourierFleeTile.prototype = new EphemeralObject();
+
+CourierFleeTile.prototype.applyEffect = function(silent) {
+  return 1;
+}
+
+CourierFleeTile.prototype.doEffect = function() {
+  var who = this.getAttachedTo();
+  if (who.gethp() < who.getmaxhp()-50) {
+    who.sethp(15);
+    maintext.addText("The courier guard panics!");
+    who.coward = 1;
+  }
+}
+
+CourierFleeTile.prototype.endEffect = function(silent) {
+  return 1;
+}
+
+function CourierSurrenderTile() {
+  this.addType("debuff");
+  this.name = "CourierSurrender";
+  this.display = "<span style='color:#0000ee'>C</span>";
+  this.zstatdesc = "You will surrender without guards.";
+  this.desc = "Courier Surrender";
+  this.level = 1;
+  this.dispellable = 0;
+}
+CourierSurrenderTile.prototype = new EphemeralObject();
+
+CourierSurrenderTile.prototype.applyEffect = function(silent) {
+  return 1;
+}
+
+CourierSurrenderTile.prototype.doEffect = function() {
+  var who = this.getAttachedTo();
+  who.setCurrentAI("courier");
+}
+
+CourierSurrenderTile.prototype.endEffect = function(silent) {
+  return 1;
+}
+

@@ -10372,7 +10372,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.currentPath = [];
     this.destType;
 
-    this.maxhp = this.level * 10 + (parseInt(Math.random()*11) - 5);
+    this.maxhp = this.level * 10 + Dice.roll("1d10-6");
     if (this.addhp) { this.maxhp += this.addhp; }
     this.hp = this.maxhp;
     
