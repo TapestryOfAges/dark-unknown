@@ -54,7 +54,6 @@ ais.seekPC = function(who,radius) {
       if (losresult < LOS_THRESHOLD) {
 //        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Nearby and can see the PC! Aggroing.</span><br />"); }
         DebugWrite("ai", "SeekPC: Nearby and can see the PC! Aggroing.<br />");
-        // WORKING HERE
         // Go aggro, turn team aggro if part of a band
         if (who.getNPCBand()) {
           SetBandAggro(who.getNPCBand(), who.getHomeMap());
@@ -142,8 +141,8 @@ ais.combat = function(who) {
     var diffy = whoy - runfrom.gety();
     var rundest = [];
     var pathdest = [];
-    var coin = Math.random();
-    if ((Math.abs(diffx) > Math.abs(diffy)) || ((coin < .5) && (Math.abs(diffx) === Math.abs(diffy)))) {
+    var coin = Dice.roll("1d2");
+    if ((Math.abs(diffx) > Math.abs(diffy)) || ((coin === 1) && (Math.abs(diffx) === Math.abs(diffy)))) {
       if (diffx > 0) {
         pathdest = [whox+1,whoy];
         rundest = [whomap.getWidth()-1,whoy];
@@ -1515,8 +1514,9 @@ function FindCombatPath(who,approach,path) {
   return moved;
 }
 
-ai.courier = function(who) {
+ais.Courier = function(who) {
   //stay a few steps away from the PC, check to see if both guards are cowards/dead and surrender if so.
+  DebugWrite("ai", "Starting Courier AI.<br />");
   var couriermap = who.getHomeMap();
   var npcs = couriermap.getNPCs();
   var stillfighting = 0;
@@ -1527,8 +1527,52 @@ ai.courier = function(who) {
   });
   
   if (stillfighting) {
-    // WORKING HERE
+    var runfrom = FindNearestNPC(who, "enemy");
+    if (runfrom) {  // should be no way there can not be, but...
+      var diffx = whox - runfrom.getx();
+      var diffy = whoy - runfrom.gety();
+      var rundest = [];
+      var pathdest = [];
+      var coin = Dice.roll("1d2");
+      if ((Math.abs(diffx) > Math.abs(diffy)) || ((coin === 1) && (Math.abs(diffx) === Math.abs(diffy)))) {
+        if (diffx > 0) {
+          pathdest = [whox+1,whoy];
+          rundest = [whomap.getWidth()-1,whoy];
+        } else {
+          pathdest = [whox-1,whoy];
+          rundest = [0,whoy];
+        }
+      } else {
+        if (diffy > 0) {
+          pathdest = [whox,whoy+1];
+          rundest = [whox,whomap.getHeight()-1];
+        } else {
+          pathdest = [whox,whoy-1];
+          rundest = [whox,0];
+        }
+      }
+      var trymove = StepOrSidestep(who,pathdest,rundest);    
+    }
   } else { 
+    var currx = who.getx();
+    var curry = who.gety();
+    if (who.gety() !== 0) {
+      var path = couriermap.getPath(currx,curry,currx,0);
+      path.shift();
+      StepOrSidestep(who,[path[0][0],path[0][1]],[currx,0]);
+    }
+      
+    if (!who.surrendered) {
+      maintext.addText("The courier surrenders and drops the letter pouch!");
+      var chest = localFactory.createTile("Chest");
+      chest.addToContainer("CourierPouch",1);
+      chest.addToCountainer("Gold",30);
+      couriermap.placeThing(currx,curry,chest);
+      who.surrendered = 1;
+    }
     
   }
+  var retval = {};
+  retval["fin"] = 1;
+  return retval;
 }
