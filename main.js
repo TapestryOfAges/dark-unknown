@@ -22,9 +22,11 @@ var PC = DU.PC;  // alias
 var timeouts = {};
 
 PC.assignSerial();
-//var audioplayers = create_audio();
-var nowplaying;
+
+var nowplaying = {};  // .song = a SoundJS object for current music, .name = name of the song
+var ambient = {};  // .song = a SoundJS object for current ambient noise, .name = name of the sound
 var laststep = "left";
+
 DU.maps = new MapMemory();
 var maps = DU.maps; // alias
 //var worldmap = new GameMap();
