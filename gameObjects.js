@@ -889,6 +889,14 @@ function Tiling(tileval) {
 	}
 }
 
+//Abstract class Ambient
+function Ambient(ambientsound, radius) {
+  this.ambientNoise = ambientsound;
+  this.getAmbientNoise = function() { return this.ambientNoise; }
+  this.ambientRadius = radius;
+  this.getAmbientRadius = function() { return this.ambientRadius; }
+}
+
 // General func 
 function SetByBelow() {
 	this.setByBelow = function(x,y,themap) {
@@ -7276,6 +7284,27 @@ function RobertMapTile() {
   this.addType("Quest");
 }
 RobertMapTile.prototype = new ItemObject();
+
+function CourierPouchTile() {
+  this.name = "CourierPouch";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-160";
+  this.spritexoffset = "-224";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "pouch full of papers";
+  this.prefix = "a";
+  this.addType("Quest");
+}
+CourierPouchTile.prototype = new ItemObject();
+
+CourierPouchTile.prototype.use = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  retval["input"] = "&gt;";
+  retval["txt"] = "You open the pouch and scan through the documents. They appear to be written in some kind of code- hopefully the Loyalists know how to read it.";
+  return retval;
+}
 
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
