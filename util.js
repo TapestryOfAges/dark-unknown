@@ -316,7 +316,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   	DrawCharFrame();  // to remove Negate if it's present
   }
 	
-	if ((DU.gameflags.getFlag("music")) && (who === PC) && (tomap.getMusic() !== frommap.getMusic())) {
+	if ((DU.gameflags.getFlag("music")) && (who === PC) && (tomap.getMusic() !== nowplaying.name)) {
 	  StopMusic(nowplaying);
 	  var song = tomap.getMusic();
 	  nowplaying = DUPlayMusic(song);
