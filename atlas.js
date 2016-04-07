@@ -740,6 +740,7 @@ function GameMap() {
   this.scale = 1;
   this.backgroundimage = '';
   this.underground = 0;
+  this.noiseSources = [];
   
   this.exitScript = "";
   this.exitTestScript = "";
@@ -1195,6 +1196,10 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
   	  DebugWrite("light", "<br /><br />LIGHT: Placing new light source: " + newthing.getName() + ", light value: " + newthing.getLight() + ", serial: " + newthing.getSerial());
   	  this.setMapLight(newthing, newthing.getLight(),x,y);
   	}       
+  	
+  	if (newthing.ambientNoise) {
+  	  this.setNoiseSource(newthing, newthing.getAmbientNoise(), newthing.getAmbientRadius());
+  	}
   
     newthing.activate(timeoverride);
 
@@ -1608,6 +1613,15 @@ GameMap.prototype.loadMap = function (name) {
   }
   
   return;
+}
+
+GameMap.prototype.setNoiseSource = function(noisesource, noise, radius) {
+  var noiseobj = { source: noisesource, sound: noise, radius: radius };
+  this.noiseSources.push(noiseobj);
+}
+
+GameMap.prototype.getAmbientNoise = function(wherex,wherey) {
+  // working here
 }
 
 GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
