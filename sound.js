@@ -133,24 +133,34 @@ function create_audio() {
 
 // checks to see if the player has turned off sound
 function DUPlaySound(sound) {
-  var playing;
-  if (DU.gameflags.getFlag("sound")) { playing = createjs.Sound.play(sound); }
+  var playing = {};
+  if (DU.gameflags.getFlag("sound")) { playing.song = createjs.Sound.play(sound); playing.name = sound; }
   return playing;
 }
 
 function DUPlayMusic(sound) {
-  var playing;
-  if (DU.gameflags.getFlag("music")) { playing = createjs.Sound.play(sound, {loop:-1}); }
+  var playing = {};
+  if (DU.gameflags.getFlag("music")) { playing.song = createjs.Sound.play(sound, {loop:-1}); playing.name = sound; }
+  return playing;
+}
+
+function DUPlayAmbient(sound) {
+  var playing = {};
+  if (DU.gameflags.getFlag("music")) { playing.song = createjs.Sound.play(sound, {loop:-1}); playing.name = sound; }
   return playing;
 }
 
 function PlaySound(sound) {
-  var playing = createjs.Sound.play(sound);
+  var playing = {};
+  playing.song = createjs.Sound.play(sound);
+  playing.name = sound;
   return playing;
 }
 
 function StopMusic(playing) {
-  playing.stop();
+  if (!playing) { playing = nowplaying; }
+  playing.song.stop();
+  nowplaying = {};
 }
 
 //function play_audio(atype, music) {
