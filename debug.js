@@ -1,7 +1,7 @@
 
 "use strict";
 
-var debug = 0;
+var debug = 1;
 var debugscreen;
 var dbs;
 var debugflags = {};
@@ -35,9 +35,9 @@ debugstyle.events = "color:magenta";
 debugstyle.gameobj = "color:black";
 debugstyle.all = "color:black";
 
-if (debug) {  ActivateDebug(); }
+// if (debug) {  ActivateDebug(1); }
 
-function ActivateDebug() { 
+function ActivateDebug(startup) { 
   if (!dbs) {
     debugscreen = window.open('','debugscreen');
     dbs = debugscreen.document;
@@ -51,11 +51,13 @@ function ActivateDebug() {
   var buttontop = tall+10;
   $("body").append("<div style='position:absolute;left:" + buttonleft + ";top:" + buttontop + ";background-color:white' onClick='ClearDebug()'>Clear Debug</div>");
   $("#debugdiv").html("<div style='text-align:center'>DEBUG PANE");
-  
-  targetCursor.page = 1;
-  targetCursor.cmd = "debug";
+
+  if (!startup) {  
+    targetCursor.page = 1;
+    targetCursor.cmd = "debug";
     
-  DrawDebugOptions();		
+    DrawDebugOptions();		
+  }
 
 }
 
