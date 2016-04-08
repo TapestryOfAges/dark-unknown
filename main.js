@@ -165,6 +165,7 @@ $(document).ready(function() {
   // create audio players
 //  populate_audio(musiclist, 0, 1, "music");
 //  populate_audio(sfxlist, 1, 0, "sfx");
+  if (debug) {  ActivateDebug(1); }
   audio_init();  
 	CreateUI();
 });
@@ -591,9 +592,12 @@ function DoAction(code, ctrl) {
         var idx = code-48;
         gamestate.setMode("saving");
         gamestate.saveGame(idx); 
-		    response["txt"] = "Quit &amp; Save: Saving game...";
-		    response["input"] = "&gt;";
-		    response["fin"] = 2;
+		    maintext.addText("Quit &amp; Save: Saving game...");
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame(); 
+        $("#uiinterface").html("");
+        gamestate.setMode("player");
+        gamestate.setTurn(PC);
       }
     }
   } else if (gamestate.getMode() === "spellbook") {
