@@ -189,7 +189,8 @@ GameStateData.prototype.saveGame = function(flag) {
 	}
 */
   }	else {
-    localStorage["save"+flag] = compressed;
+//    localStorage["save"+flag] = compressed;
+    localStorage["save"+flag] = serialized;
     var saveidx = JSON.parse(localStorage.saveIndex);
     if (!saveidx) { saveidx =[]; }
     saveidx[flag].datestamp = Date.now();
@@ -244,7 +245,7 @@ GameStateData.prototype.loadGame = function(idx) {
   var serialized;
   
 //  if (debug && debugflags.saveload) { dbs.writeln("<p><span style='font-weight:bold'>Start load procedure:</span><br />"); }
-  DebugWrite("saveload", "<p><span style='font-weight:bold'>Start load procedure:</span><br />");
+  DebugWrite("saveload", "<p><span style='font-weight:bold'>Start load procedure from slot " + idx + ":</span><br />");
 
 /*
   if (localStorage.charsave) {
@@ -263,8 +264,9 @@ GameStateData.prototype.loadGame = function(idx) {
   if (localStorage.manualsave) {
     serialized = localStorage.manualsave;
   } else {
-    compressed = localStorage["save"+idx];
-    serialized = LZString.decompressFromUTF16(compressed);
+//    compressed = localStorage["save"+idx];
+//    serialized = LZString.decompressFromUTF16(compressed);
+    serialized = localStorage["save"+idx];
   }
 
 //  if (debug && debugflags.saveload) { dbs.writeln("<br /><br /><p>" + serialized + "</p><br />"); }
@@ -276,6 +278,10 @@ GameStateData.prototype.loadGame = function(idx) {
   DU.gameflags = new Gameflags();
   $.extend(true,DU.gameflags,savedata.gameflags);
   
+  nowplaying = {};  
+  ambient = {};  
+
+  
   $.each(savedata.events, function(idx,val) {
     var tmplistener = new DUEar();
     tmplistener.name = idx;
@@ -286,6 +292,9 @@ GameStateData.prototype.loadGame = function(idx) {
   });
   
   var loadmaps = {};
+  DU.maps = new MapMemory();
+  maps = DU.maps; // re-alias
+  DU.DUTime = new Timeline(0);
   
   $.each(savedata.maps, function(idx, val) {
     //load all the maps
