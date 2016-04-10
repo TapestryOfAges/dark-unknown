@@ -943,7 +943,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
     }
   }
   // not using IsAdjacent because don't want to check for same map
-  if (((Math.abs(who.getx() - locx) === 1) && (Math.abs(who.gety() - locy) === 0)) || ((Math.abs(who.getx() - locx) === 0) && (Math.abs(who.gety() - locy)))) {
+  if (((Math.abs(who.getx() - locx) === 1) && (Math.abs(who.gety() - locy) === 0)) || ((Math.abs(who.getx() - locx) === 0) && (Math.abs(who.gety() - locy) === 1))) {
     if (pcmap === who.getHomeMap()) {
       DebugWrite("ai", "<span style='font-weight:bold'>AI " + who.getName() + " attacks the PC!</span><br />"); 
       NPCAttackPCMap(who);
