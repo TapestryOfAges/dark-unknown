@@ -3310,6 +3310,18 @@ function BannerTile() {
 }
 BannerTile.prototype = new TerrainObject();
 
+function LavaTubeTile() {
+	this.name = "LavaTube";
+  this.graphic = "lavatubes.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "a";
+	this.desc = "lava tube";
+	this.peerview = "#853e3e";
+	this.walkSound = "stone";
+}
+LavaTubeTile.prototype = new TerrainObject();
+
 function SeeBelowTile() {
   this.name = "SeeBelow";
   this.graphic = "see-below.gif";
