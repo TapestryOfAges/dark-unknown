@@ -5386,10 +5386,6 @@ SpawnerTile.prototype.activate = function() {
 SpawnerTile.prototype.myTurn = function() {
   if (!maps.getMap(this.getHomeMap().getName())) {
     // removing from timeline, its map is gone
-//    var nextEntity = DUTime.executeNextEvent().getEntity();
-//    nextEntity.myTurn();
-
-//    if (debug && debugflags.gameobj) { dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getSerial() + " removed from game- map gone.</span><br />"); }
     DebugWrite("gameobj", "<span style='font-weight:bold'>Spawner " + this.getSerial() + " removed from game- map gone.</span><br />");
   
     return 1;
@@ -5398,7 +5394,6 @@ SpawnerTile.prototype.myTurn = function() {
     for (var i = this.level+1; i<=PC.getLevel(); i++) {
       if (this.evolve[i]) {
         this.level = i;
-//        if (debug && debugflags.gameobj) { dbs.writeln("<span style='color:#00cc00'>Spawner at " + this.x + ", " + this.y + " has evolved.</span><br />"); }
         DebugWrite("gameobj", "Spawner at " + this.x + ", " + this.y + " has evolved.<br />");
         while (this.evolve[i][0]) {
           var idx = this.evolve[i].shift();
@@ -5439,9 +5434,6 @@ SpawnerTile.prototype.myTurn = function() {
   var NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,timetonext);
   
-//  var nextEntity = DUTime.executeNextEvent().getEntity();
-  //setTimeout(function(){ nextEntity.myTurn(); }, 1);
-//  nextEntity.myTurn();
   return 1;
 }
 
