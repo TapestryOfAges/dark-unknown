@@ -613,6 +613,11 @@ function PerformAttackMap(who) {
     maps.addMapByRef(newmap);
 
     PC.getHomeMap().deleteThing(atkwho);
+    var spawner=atkwho.getSpawnedBy();
+    if (spawner) {
+      spawner.deleteSpawned(atkwho);
+    }
+
     var desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
     
     var monsters = PlaceMonsters(newmap,atkwho,1);

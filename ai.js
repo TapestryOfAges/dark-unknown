@@ -756,30 +756,35 @@ ais.CourierPath = function(who) {
     if (who.direction === "n") {
       var tile = whomap.getTile(48,90);
       var npcs = tile.getNPCs();
-      if (!npcs) {
+      if (!npcs.length) {
         var pcs = tile.getPCs();
-        if (!pcs) {
+        if (!pcs.length) {
           whomap.moveThing(48,90,who);
           who.direction = "s";
           DebugWrite("ai","Exiting Black Dragon Castle, by which I mean teleporting in from the corner.");
-        } else { DebugWrite("ai","Didn't come out of town- PC in the way."); }
-      } else { DebugWrite("ai","Didn't come out of town- NPC in the way."); }
+        } else { DebugWrite("ai","Didn't come out of BDC- PC in the way."); }
+      } else { DebugWrite("ai","Didn't come out of BDC- NPC in the way."); }
     } else {
       var tile = whomap.getTile(63,119);
       var npcs = tile.getNPCs();
-      if (!npcs) {
+      if (!npcs.length) {
         var pcs = tile.getPCs();
-        if (!pcs) {
+        if (!pcs.length) {
           whomap.moveThing(63,119,who);
           who.direction = "n";
           DebugWrite("ai","Exiting Onyx, by which I mean teleporting in from the corner.");
-        } else { DebugWrite("ai","Didn't come out of town- PC in the way."); }
-      } else { DebugWrite("ai","Didn't come out of town- NPC in the way."); }
+        } else { DebugWrite("ai","Didn't come out of Onyx- PC in the way."); }
+      } else { DebugWrite("ai","Didn't come out of Onyx- NPC in the way."); }
       
     }
-  } else if (((who.getx()===64) && (who.gety()===119)) || ((who.getx()===49) && (who.gety()===90))) {
+  } else if ((who.getx()===64) && (who.gety()===119)) {
     whomap.moveThing(0,0,who);
-    DebugWrite("ai", "Entering town, by which I mean teleporting to the corner.");
+    DebugWrite("ai", "Entering Onyx, by which I mean teleporting to the corner.");
+    DrawMainFrame("one",whomap.getName(),64,119);
+  } else if ((who.getx()===49) && (who.gety()===90)) {
+    whomap.moveThing(0,0,who);
+    DebugWrite("ai", "Entering BDC, by which I mean teleporting to the corner.");
+    DrawMainFrame("one",whomap.getName(),49,90);
   } else {
     var dest = [];
     if (who.direction === "n") { dest[0]=49; dest[1]=90; }
@@ -787,7 +792,7 @@ ais.CourierPath = function(who) {
     var path = whomap.getPath(who.getx(),who.gety(),dest[0],dest[1],who.getMovetype());
     path.shift();
     if (path.length) {
-      retval = StepOrSidestep(who, [path[0],path[1]], [dest[0],dest[1]], "nopush");
+      retval = StepOrSidestep(who, [path[0][0],path[0][1]], [dest[0],dest[1]], "nopush");
     }
   }
   return retval;
@@ -1292,6 +1297,11 @@ function NPCAttackPCMap(npc) {
   maps.addMapByRef(newmap);
 
   PC.getHomeMap().deleteThing(npc);
+  var spawner=npc.getSpawnedBy();
+  if (spawner) {
+    spawner.deleteSpawned(npc);
+  }
+
   var desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
     
   var monsters = PlaceMonsters(newmap,npc,0);
