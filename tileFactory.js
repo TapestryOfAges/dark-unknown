@@ -668,6 +668,11 @@ tileFactory.prototype.makeBannerTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeLavaTubeTile = function() {
+  var newTile = new LavaTubeTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSeeBelowTile = function() {
   var newTile = new SeeBelowTile();
   return newTile;
@@ -1623,6 +1628,11 @@ tileFactory.prototype.makeRobertMapTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCourierPouchTile = function() {
+  var newTile = new CourierPouchTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePitOfDespairKeyTile = function() {
   var newTile = new PitOfDespairKeyTile();
   return newTile;
@@ -2298,6 +2308,16 @@ tileFactory.prototype.makeCorruptGuardsNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCourierNPCTile = function() {
+  var newTile = new CourierNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCourierGuardNPCTile = function() {
+  var newTile = new CourierGuardNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGiantBatNPCTile = function() {
   var newTile = new GiantBatNPCTile();
   return newTile;
@@ -2883,6 +2903,11 @@ tileFactory.prototype.makeInsectsGroupLargeTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCourierGroupTile = function() {
+  var newTile = new CourierGroupTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBlessingTile = function() {
   var newTile = new BlessingTile();
   return newTile;
@@ -3030,6 +3055,16 @@ tileFactory.prototype.makeTimeStopTile = function() {
 
 tileFactory.prototype.makeVulnerabilityTile = function() {
   var newTile = new VulnerabilityTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCourierFleeTile = function() {
+  var newTile = new CourierFleeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCourierSurrenderTile = function() {
+  var newTile = new CourierSurrenderTile();
   return newTile;
 }
 
