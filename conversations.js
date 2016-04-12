@@ -484,8 +484,19 @@ OnConvTriggers["kiba_rumor"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["start_courier"] = function(speaker,keyword) {
-  var courier = localFactory.createTile("CourierGroup");
   var worldmap = maps.getMap("darkunknown");
-  worldmap.placeThing(45,111,courier);
-  courier.setCurrentAI("CourierPath");
+  var npcs = worldmap.getNPCs();
+  var courierexists = 0;
+  $.each(npcs, function(idx,val) {
+    if (val.getName() === "CourierGroup") { courierexists = 1; }
+  });
+  
+  if (!courierexists) {
+    var courier = localFactory.createTile("CourierGroup");
+    worldmap.placeThing(45,111,courier);
+    courier.setCurrentAI("CourierPath");
+    DebugWrite("plot","Courier spawned.");
+  } else {
+    DebugWrite("plot","Courier already exists.");
+  }
 }
