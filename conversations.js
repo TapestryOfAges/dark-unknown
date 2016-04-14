@@ -485,7 +485,7 @@ OnConvTriggers["kiba_rumor"] = function(speaker,keyword) {
 
 OnConvTriggers["start_courier"] = function(speaker,keyword) {
   var worldmap = maps.getMap("darkunknown");
-  var npcs = worldmap.getNPCs();
+  var npcs = worldmap.npcs.getAll();
   var courierexists = 0;
   $.each(npcs, function(idx,val) {
     if (val.getName() === "CourierGroup") { courierexists = 1; }
