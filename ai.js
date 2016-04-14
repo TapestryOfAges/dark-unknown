@@ -1197,6 +1197,13 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
     return retval;
   }
   var desttile = who.getHomeMap().getTile(who.getx()+diffx, who.gety()+diffy);
+  if (desttile === "OoB") {
+    retval["nomove"] = 1;
+    retval["canmove"] = 0;
+    retval["diffx"] = diffx;
+    retval["diffy"] = diffy;
+    return retval;     
+  }
   var fea = desttile.getFeatures();
   
   if (fea) {
