@@ -55,12 +55,12 @@ NPCSpecialFuncs["hides"] = function(who,how) {
   return oldgraph;
 }
 
-NPCSpecialFuncs["couriersurrender"] = function(who,how) {
+NPCSpecialFuncs["courierSurrender"] = function(who,how) {
   var eobj = localFactory.createTile("CourierSurrender");
   who.addSpellEffect(eobj);
 }
 
-NPCSpecialFuncs["courierflee"] = function(who,how) {
+NPCSpecialFuncs["courierFlee"] = function(who,how) {
   var eobj = localFactory.createTile("CourierFlee");
   who.addSpellEffect(eobj);
 }
