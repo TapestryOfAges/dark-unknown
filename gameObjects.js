@@ -5414,7 +5414,8 @@ SpawnerTile.prototype.myTurn = function() {
       var mymap = this.getHomeMap();
       if (this.altPoI) {
         newspawn.altPoI = this.altPoI;
-        if (debug && debugflags.gameobj) { dbs.writeln("About to spawn, adding an altPoI.<br />"); }
+//        if (debug && debugflags.gameobj) { dbs.writeln("About to spawn, adding an altPoI.<br />"); }
+        DebugWrite("gameobj","About to spawn, adding an altPoI.<br />");
       }
       
       var tile = mymap.getTile(this.getx() + diffx, this.gety() + diffy);
@@ -10427,8 +10428,10 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.setMaxMana(-1);
   
     if (this.getHomeMap().getName().indexOf("combat") !== -1) {
+      DebugWrite("ai","Setting AI to combat because of being on a combat map.<br />");
       this.setCurrentAI("combat");
     } else {
+      DebugWrite("ai","Setting AI to " + this.getPeaceAI() + ". <br />");
       this.setCurrentAI(this.getPeaceAI());
     }
   
@@ -10488,23 +10491,24 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.specials = {};
     var tmpspc = {};
     if (this.special) {
-      var tmp = this.special.split(",");
-      $.each(tmp, function(idx,val) {
-        if (val.indexOf(":") > -1) {
-          var bluh = val.split(":");
+      var tmp = this.special.replace(" ","");
+      tmp = tmp.split(",");
+      for (var i=0; i<tmp.length;i++){
+        if (tmp[i].indexOf(":") > -1) {
+          var bluh = tmp[i].split(":");
           tmpspc[bluh[0]] = bluh[1];
           if (typeof NPCSpecialFuncs[bluh[0]] === "function") {
             var ret = NPCSpecialFuncs[bluh[0]](this, bluh[1]);
             if (ret) { tmpspc[bluh[0]] = ret; }
           }
         } else {
-          tmpspc[val] = 1;
-          if (typeof NPCSpecialFuncs[val] === "function") {
-            var ret = NPCSpecialFuncs[val](this);
-            if (ret) { tmpspc[val] = ret; }
+          tmpspc[tmp[i]] = 1;
+          if (typeof NPCSpecialFuncs[tmp[i]] === "function") {
+            var ret = NPCSpecialFuncs[tmp[i]](this);
+            if (ret) { tmpspc[tmp[i]] = ret; }
           }
         }
-      });
+      }
       this.specials = tmpspc;
     }
                   
