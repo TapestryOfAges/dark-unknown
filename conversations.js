@@ -495,8 +495,8 @@ OnConvTriggers["start_courier"] = function(speaker,keyword) {
     var courier = localFactory.createTile("CourierGroup");
     worldmap.placeThing(45,111,courier);
     courier.setCurrentAI("CourierPath");
-    DebugWrite("plot","Courier spawned.");
+    DebugWrite("plot","Courier spawned.<br />");
   } else {
-    DebugWrite("plot","Courier already exists.");
+    DebugWrite("plot","Courier already exists.<br />");
   }
 }
