@@ -274,6 +274,12 @@ GameStateData.prototype.loadGame = function(idx) {
   var savedata = JSON.parse(serialized);  
   var universe = {};
   
+  var loadmaps = {};
+  DU.maps = new MapMemory();
+  maps = DU.maps; // re-alias
+  DU.DUTime = new Timeline(0);
+  DUTime = DU.DUTime;
+
   DUTime.setGameClock(savedata.time);
   DU.gameflags = new Gameflags();
   $.extend(true,DU.gameflags,savedata.gameflags);
@@ -290,12 +296,7 @@ GameStateData.prototype.loadGame = function(idx) {
     tmplistener.flagsreq = val.flagsreq;
     Listener.addListener(tmplistener);
   });
-  
-  var loadmaps = {};
-  DU.maps = new MapMemory();
-  maps = DU.maps; // re-alias
-  DU.DUTime = new Timeline(0);
-  
+    
   $.each(savedata.maps, function(idx, val) {
     //load all the maps
     loadmaps[val] = new GameMap();
