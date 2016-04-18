@@ -827,10 +827,12 @@ function maps_check_escape(mapref) {
     if (who === PC) {
       // possibly check for bribery if I decide to go that route
       if (PC.getHP() > (PC.getMaxHP() * (1/5))) {
-        if (debug) { dbs.writeln("<span style='color:red'>PC has more than 1/5 its hp, gains coward point for fleeing.<br /></span>"); }
+//        if (debug) { dbs.writeln("<span style='color:red'>PC has more than 1/5 its hp, gains coward point for fleeing.<br /></span>"); }
+        DebugWrite("combat","PC has more than 1/5 its hp, gains coward point for fleeing.<br />");
         DU.gameflags["coward"]++;
       } else {
-        if (debug) { dbs.writeln("<span style='color:red'>PC has less than 1/5 its hp, able to flee freely.<br /></span>"); }
+//        if (debug) { dbs.writeln("<span style='color:red'>PC has less than 1/5 its hp, able to flee freely.<br /></span>"); }
+        DebugWrite("combat","PC has less than 1/5 its hp, able to flee freely.<br />");
       }
       
       return 1;
