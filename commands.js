@@ -1785,6 +1785,12 @@ function PerformYell() {
 		  Earthquake();
 		} else if (inputText.txt === "RUNTEST") {
 		  RunTest();
+		} else if (inputText.txt === "TESTPAIN") {
+		  var hurtnpcs = PC.getHomeMap().npcs;
+		  hurtnpcs = hurtnpcs.getAll();
+		  $.each(hurtnpcs, function(idx,val) {
+		    val.setHP(2);
+		  });
 		} else if (inputText.txt === "TESTRING") {
 		  TestRing();
 		} else if (inputText.txt === "SOUNDCHK") {
