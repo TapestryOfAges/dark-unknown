@@ -123,7 +123,7 @@ ais.combat = function(who) {
     }
   }
   
-  if (!who.specials.undead && !who.specials.construct && !who.specials.mindless && !who.specials.tempbrave && (who.getHP() < .15*who.getMaxHP()) && (Math.random() < .5)) {
+  if (!who.specials.undead && !who.specials.construct && !who.specials.mindless && !who.specials.tempbrave && (who.getHP() < .15*who.getMaxHP()) && (Dice.roll("1d2") === 1)) {
     // 50/50 chance each turn at 15% of life of dropping it all and fleeing
 //    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Too wounded, becoming a coward.</span><br />"); }
     DebugWrite("ai", "Too wounded, becoming a coward.<br />");
@@ -139,6 +139,9 @@ ais.combat = function(who) {
     var runfrom = FindNearestNPC(who, "enemy");
     var diffx = whox - runfrom.getx();
     var diffy = whoy - runfrom.gety();
+    // WORKING HERE
+    // add check for destination tile being off map, and if so implement check for fleeing.
+    
     var rundest = [];
     var pathdest = [];
     var coin = Dice.roll("1d2");
@@ -160,8 +163,9 @@ ais.combat = function(who) {
       }
     }
     var trymove = StepOrSidestep(who,pathdest,rundest);
-    if (who.specials.canbebrave && (Math.random() < .2)) {
+    if (who.specials.canbebrave && (Dice.roll("1d5") === 1)) {
       // 20% chance each turn that a coward who didn't start cowardly will return to the fight
+      DebugWrite("ai", "Has become brave again!");
       delete who.specials.coward;
       delete who.specials.canbebrave;
       who.specials.tempbrave = 1;
@@ -1535,15 +1539,18 @@ ais.Courier = function(who) {
   //stay a few steps away from the PC, check to see if both guards are cowards/dead and surrender if so.
   DebugWrite("ai", "Starting Courier AI.<br />");
   var couriermap = who.getHomeMap();
-  var npcs = couriermap.getNPCs();
+  var npcs = couriermap.npcs.getAll();
+  var whox = who.getx();
+  var whoy = who.gety();
   var stillfighting = 0;
   $.each(npcs, function(idx,val) {
-    if (val.getName() === "CourierGuard") {
-      if (!val.coward) { stillfighting = 1; }
+    if (val.getName() === "CourierGuardNPC") {
+      if (!val.specials.coward) { stillfighting = 1; }
     }
   });
   
   if (stillfighting) {
+    DebugWrite("ai", "Guards are still fighting!<br />");
     var runfrom = FindNearestNPC(who, "enemy");
     if (runfrom) {  // should be no way there can not be, but...
       var diffx = whox - runfrom.getx();
@@ -1571,10 +1578,11 @@ ais.Courier = function(who) {
       var trymove = StepOrSidestep(who,pathdest,rundest);    
     }
   } else { 
+    DebugWrite("ai", "Guards have fled!<br />");
     var currx = who.getx();
     var curry = who.gety();
     if (who.gety() !== 0) {
-      var path = couriermap.getPath(currx,curry,currx,0);
+      var path = couriermap.getPath(currx,curry,currx,0,MOVE_WALK);
       path.shift();
       StepOrSidestep(who,[path[0][0],path[0][1]],[currx,0]);
     }
@@ -1583,8 +1591,9 @@ ais.Courier = function(who) {
       maintext.addText("The courier surrenders and drops the letter pouch!");
       var chest = localFactory.createTile("Chest");
       chest.addToContainer("CourierPouch",1);
-      chest.addToCountainer("Gold",30);
+      chest.addToContainer("Gold",30);
       couriermap.placeThing(currx,curry,chest);
+      DrawMainFrame("one",who.getHomeMap().getName(),currx,curry);
       who.surrendered = 1;
     }
     
