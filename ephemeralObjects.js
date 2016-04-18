@@ -101,8 +101,14 @@ EphemeralObject.prototype.onTurn = function() {
   var resp = 0;
   if ((this.getExpiresTime() > 0) && (DUTime.getGameClock() > this.getExpiresTime())) {
     resp = this.endEffect();
+    return resp;
   }
+  resp = this.eachTurn();
   return resp;
+}
+
+EphemeralObject.prototype.eachTurn = function() {
+  return 0;
 }
 
 EphemeralObject.prototype.mergeSpells = function(oldornew) {
@@ -1277,6 +1283,10 @@ StormTile.prototype.doEffect = function() {
   }
 }
 
+StormTile.prototype.eachTurn = function() {
+  return this.doEffect();
+}
+
 StormTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
   who.deleteSpellEffect(this);
@@ -1357,6 +1367,10 @@ TimeStopTile.prototype.doEffect = function() {
   }
 }
 
+TimeStopTile.prototype.eachTurn = function() {
+  return this.doEffect();
+}
+
 TimeStopTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
   who.deleteSpellEffect(this);
@@ -1421,13 +1435,18 @@ CourierFleeTile.prototype.applyEffect = function(silent) {
 
 CourierFleeTile.prototype.doEffect = function() {
   var who = this.getAttachedTo();
-  if (who.gethp() < who.getmaxhp()-50) {
-    who.sethp(15);
-    maintext.addText("The courier guard panics!");
-    who.coward = 1;
+  if (who.getHP() < who.getMaxHP()-50) {
+    who.setHP(15);
+    if (!who.specials.coward) {
+      maintext.addText("The courier guard panics!");
+    }
+    who.specials.coward = 1;
   }
 }
 
+CourierFleeTile.prototype.eachTurn = function() {
+  return this.doEffect();
+}
 CourierFleeTile.prototype.endEffect = function(silent) {
   return 1;
 }
@@ -1449,7 +1468,13 @@ CourierSurrenderTile.prototype.applyEffect = function(silent) {
 
 CourierSurrenderTile.prototype.doEffect = function() {
   var who = this.getAttachedTo();
-  who.setCurrentAI("courier");
+  who.setCurrentAI("Courier");
+  who.setAggro(0);
+  DebugWrite("ai","Set courier's AI to 'courier'.");
+}
+
+CourierSurrenderTile.prototype.eachTurn = function() {
+  return this.doEffect();
 }
 
 CourierSurrenderTile.prototype.endEffect = function(silent) {
