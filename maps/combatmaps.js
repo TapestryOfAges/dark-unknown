@@ -824,6 +824,25 @@ function maps_set_exits(mapref) {
 
 function maps_check_escape(mapref) {
   mapref.ExitTest = function(who,tomap,fromx,fromy,tox,toy) {
+    var enemytype = "hostile";
+    if (who.getAttitude() === "hostile") { enemytype = "friendly"; }
+    var numenemies = 0;
+    var npcs = this.npcs.getAll();
+    for (var i=0;i<npcs.length;i++) {
+      // counting number of non-coward enemies on the combat map to determine chance to successfully flee
+      if ((npcs[i].getAttitude() === enemytype) && !npcs[i].specials.coward) { numenemies++; }
+    }
+    var chance = 100;
+    if (numenemies) {
+      chance = 100 - (20 + 7*numenemies);
+      if (chance < 10) { chance = 10; }
+    }
+    if (Dice.roll("1d100") <= chance) {
+      // WORKING HERE
+    } else {
+      
+    }
+    
     if (who === PC) {
       // possibly check for bribery if I decide to go that route
       if (PC.getHP() > (PC.getMaxHP() * (1/5))) {
