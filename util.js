@@ -250,7 +250,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   if (!overridetests) {  
     // check exit test
     if (typeof frommap.ExitTest === "function") {
-      frommap.ExitTest(who,tomap,who.getx(),who.gety(),destx,desty);
+      var exittest = frommap.ExitTest(who,tomap,who.getx(),who.gety(),destx,desty);
     }
     
     if (typeof tomap.EnterTest === "function") {
