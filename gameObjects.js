@@ -671,7 +671,7 @@ function LightEmitting(lightlevel) {
 // Abstract class
 function Breakable(brokengraphicarray, startsbroken) {
   if (!startsbroken) { startsbroken = 0; }
-  this.broken = startsbroken;
+
   this.breakable = 1;
   
   this.getBroken = function() { return this.broken; }
@@ -4190,7 +4190,6 @@ FireFieldTile.prototype.myTurn = function() {
 //    var nextEntity = DUTime.executeNextEvent().getEntity();
 //    nextEntity.myTurn();
 
-//    if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green;font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />"); }
     if (!DebugWrite("gameobj", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />")) {
       DebugWrite("magic", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />");
     }
@@ -7668,8 +7667,6 @@ function QuestExecutionersHoodTile() {
 }
 QuestExecutionersHoodTile.prototype = new ItemObject();
 
-
-
 function NightshadeTile() {
   this.name = "Nightshade";
   this.graphic = "items.gif";
@@ -7763,7 +7760,6 @@ function DecorativeArmorTile() {
 	this.desc = "decorative suit of armor";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.passable = MOVE_ETHEREAL;
 	this.prefix = "a";
 }
 DecorativeArmorTile.prototype = new ItemObject();
@@ -9294,6 +9290,27 @@ function MagicSwordTile() {
 	this.prefix = "a";
 }
 MagicSwordTile.prototype = new WeaponObject();
+
+function UnenchantedSwordTile() {
+  this.name = "UnenchantedSword";
+  this.damage = "4d6+10";  // when broken, 2d4
+  this.strdamage = .5;
+  this.graphic = "magic-sword.gif";
+  this.spritexoffset = "-32";
+  this.desc = "unenchanted sword";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.prefix = "an";
+	
+  this.brokendesc = "unenchanted, broken sword";
+  this.repairNeedsInfusion = 1;
+  Breakable.call(this,["magic-sword.gif", "", "0", "0"]);
+}
+UnenchantedSwordTile.prototype = new WeaponObject();
+
+UnenchantedSwordTile.prototype.activate = function() {
+  this.break();
+}
 
 function NaturalWeaponTile() {
 	this.name = "NaturalWeapon";
