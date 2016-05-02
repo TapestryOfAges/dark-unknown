@@ -2168,6 +2168,11 @@ tileFactory.prototype.makeMagicSwordTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeUnenchantedSwordTile = function() {
+  var newTile = new UnenchantedSwordTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNaturalWeaponTile = function() {
   var newTile = new NaturalWeaponTile();
   return newTile;
