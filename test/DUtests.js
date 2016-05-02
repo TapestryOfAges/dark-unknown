@@ -372,6 +372,32 @@ QUnit.test("Test Light spell", function( assert ) {
   maps.deleteMap("unittest");
 });
 
+QUnit.test("Test Mend spell", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("unittest");
+  var testsword = localFactory.createTile("UnenchantedSword"); 
+  var testmap = maps.getMap("unittest");
+  var castermob2 = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(2,3,castermob2);
+  
+  testmap.placeThing(2,2,testsword);
+  assert.deepEqual(testsword.getFullDesc(),"an unenchanted, broken sword");
+  assert.deepEqual(testsword.getGraphicArray()[0],"magic-sword.gif");
+  assert.deepEqual(testsword.getGraphicArray()[2],"0");
+
+  PerformMend(castermob2,0,0,testsword);
+  assert.deepEqual(testsword.getFullDesc(),"an unenchanted, broken sword");
+  assert.deepEqual(testsword.getGraphicArray()[0],"magic-sword.gif");
+  assert.deepEqual(testsword.getGraphicArray()[2],"0");
+
+  PerformMend(castermob2,1,0,testsword);
+
+  assert.deepEqual(testsword.getFullDesc(),"an unenchanted sword");
+  assert.deepEqual(testsword.getGraphicArray()[0],"magic-sword.gif");
+  assert.deepEqual(testsword.getGraphicArray()[2],"-32");
+  
+});
+
 QUnit.test("Test Vulnerability spell", function( assert ) {
   Dice.roll = function(die) { return 70; }
   
