@@ -1503,7 +1503,7 @@ function FindCombatPath(who,approach,path) {
     $.each(availdests, function(idx,val){ 
       var evenmoretempgrid = temppathgrid.clone();
       evenmoretempgrid.setWalkableAt(availdests[idx][0], availdests[idx][1]);
-      var tmp = finder.findPath(whox,whoy,availdests[idx][0],availdests[idx][1],evenmoretempgrid);
+      var tmp = finder.findPath(who.getx(),who.gety(),availdests[idx][0],availdests[idx][1],evenmoretempgrid);
       if (tmp) {
         availpaths[idx] = tmp;
       }
