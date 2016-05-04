@@ -838,9 +838,16 @@ function maps_check_escape(mapref) {
       if (chance < 10) { chance = 10; }
     }
     if (Dice.roll("1d100") <= chance) {
-      // WORKING HERE
+      if (who === PC) {
+        maintext.delayedAddText("You failed to escape!");
+      }
+      return 0;
     } else {
-      
+      if (who === PC) {
+        maintext.delayedAddText("Escaped!");
+      } else {
+        // say that the NPC fled
+      }
     }
     
     if (who === PC) {
@@ -854,9 +861,8 @@ function maps_check_escape(mapref) {
         DebugWrite("combat","PC has less than 1/5 its hp, able to flee freely.<br />");
       }
       
-      return 1;
     }
     
-    return 1;  // allow to leave, later will depend on bribery
+    return 1;  
   }
 }
