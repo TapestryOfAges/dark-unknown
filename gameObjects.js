@@ -10597,12 +10597,21 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 				maps.addMapByRef(newmap);
 			}
 			tile = MoveBetweenMaps(this,map,newmap,map.getExitToX(),map.getExitToY());
-			DebugWrite("map", "Exited from MoveBetweenMaps. New map is " + this.getHomeMap().getName() + ".<br />");
-      retval["canmove"] = 0;
-			if (this === PC) {
-				DrawMainFrame("draw", newmap.getName() , PC.getx(), PC.gety());
-				DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
-				retval["msg"] = ".<br />Exiting " + oldmapname + ".";
+			if (tile) {
+  			DebugWrite("map", "Exited from MoveBetweenMaps. New map is " + this.getHomeMap().getName() + ".<br />");
+        retval["canmove"] = 0;
+		  	if (this === PC) {
+			  	DrawMainFrame("draw", newmap.getName() , PC.getx(), PC.gety());
+				  DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
+  				retval["msg"] = ".<br />Exiting " + oldmapname + ".";
+  			}
+			} else {
+			  DebugWrite("map", "Failed to exit due to exittest.");
+  	    retval["canmove"] = 0;
+  	    retval["diffx"] = diffx;
+	      retval["diffy"] = diffy;
+	      retval["msg"] = "Failed!";
+	      return retval;
 			}
 		}
 	}
