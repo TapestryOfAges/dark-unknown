@@ -395,7 +395,8 @@ QUnit.test("Test Mend spell", function( assert ) {
   assert.deepEqual(testsword.getFullDesc(),"an unenchanted sword");
   assert.deepEqual(testsword.getGraphicArray()[0],"magic-sword.gif");
   assert.deepEqual(testsword.getGraphicArray()[2],"-32");
-  
+
+  maps.deleteMap("unittest");  
 });
 
 QUnit.test("Test Vulnerability spell", function( assert ) {
@@ -417,4 +418,15 @@ QUnit.test("Test Vulnerability spell", function( assert ) {
   assert.deepEqual(tgtmob.getDefense(), 10, "Post-vuln defense.");
 
   maps.deleteMap("unittest");
+});
+
+QUnit.test("Test Illusion spell", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("unittest");
+  var testmap = maps.getMap("unittest");
+
+  var castermob = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(4,7,castermob);
+
+
 });

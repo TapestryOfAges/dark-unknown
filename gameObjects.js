@@ -1426,7 +1426,6 @@ function InWater(who) {
 
 function MountainTile() {
   this.name = "Mountain";
-//  this.graphic = "004.gif";
   this.graphic = "terrain_tiles.gif";
   this.spritexoffset = "0";
   this.spriteyoffset = "0";
@@ -1441,7 +1440,6 @@ MountainTile.prototype = new TerrainObject();
 
 function MountainPassTile() {
   this.name = "MountainPass";
-//  this.graphic = "004.gif";
   this.graphic = "terrain_tiles.gif";
   this.spritexoffset = "0";
   this.spriteyoffset = "0";
@@ -1453,6 +1451,21 @@ function MountainPassTile() {
   this.walkSound = "hill";
 }
 MountainPassTile.prototype = new TerrainObject();
+
+function FlameMountainTile() {
+  this.name = "FlameMountain";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-288";
+  this.desc = "fiery mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#e42217";
+  this.walkSound = "hill";
+}
+MountainTile.prototype = new TerrainObject();
+
 
 function StoneWallTile() {
   this.name = "StoneWall";
