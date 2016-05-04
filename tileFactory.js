@@ -63,6 +63,11 @@ tileFactory.prototype.makeMountainPassTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFlameMountainTile = function() {
+  var newTile = new FlameMountainTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeStoneWallTile = function() {
   var newTile = new StoneWallTile();
   return newTile;
