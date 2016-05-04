@@ -251,6 +251,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
     // check exit test
     if (typeof frommap.ExitTest === "function") {
       var exittest = frommap.ExitTest(who,tomap,who.getx(),who.gety(),destx,desty);
+      if (!exittest) { return 0; }
     }
     
     if (typeof tomap.EnterTest === "function") {
