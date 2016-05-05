@@ -9848,6 +9848,8 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
 }
 
 NPCObject.prototype.processDeath = function(droploot){
+  var thisx = this.getx();
+  var thisy = this.gety();
   if (this.checkType("PC")) {
     maintext.addText("You have died!");
     var newmap = new GameMap();
@@ -9908,7 +9910,7 @@ NPCObject.prototype.processDeath = function(droploot){
     }
     if ((this.getLeavesCorpse()) && (this.getLeavesCorpse() !== "none")) {
       corpse = localFactory.createTile(this.getLeavesCorpse());
-      map.placeThing(this.getx(),this.gety(), corpse);
+      map.placeThing(thisx,thisy, corpse);
     } else {
       chest = localFactory.createTile("Chest");
     }
@@ -9949,10 +9951,10 @@ NPCObject.prototype.processDeath = function(droploot){
           chest.setTrap(trap.trap, trap.level);
         }
       }
-      map.placeThing(this.getx(),this.gety(), chest);
+      map.placeThing(thisx,thisy, chest);
     }
     map.deleteThing(this);
-    DrawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
+    DrawMainFrame("one",map.getName(),thisx,thisy);
     DUTime.removeEntityFrom(this);
 //    delete universe.this.getSerial();
 //    delete map.lightsList[this.getSerial()];    // handled in map.deleteThing now
