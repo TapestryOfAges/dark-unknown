@@ -846,7 +846,7 @@ function maps_check_escape(mapref) {
       if (who === PC) {
         maintext.delayedAddText("Escaped!");
       } else {
-        // say that the NPC fled
+        maintext.addText(who.getDesc() + " fled!");
       }
     }
     
