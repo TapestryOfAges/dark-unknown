@@ -250,27 +250,39 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   if (!overridetests) {  
     // check exit test
     if (typeof frommap.ExitTest === "function") {
-      var exittest = frommap.ExitTest(who,tomap,who.getx(),who.gety(),destx,desty);
+      var exittest = frommap.ExitTest(who,tomap,oldx,oldy,destx,desty);
       if (!exittest) { return 0; }
     }
     
     if (typeof tomap.EnterTest === "function") {
-      tomap.Enter(who,frommap,who.getx(),who.gety(),destx,desty);
+      var entertest = tomap.Enter(who,frommap,oldx,oldy,destx,desty);
+      if (!entertest) { return 0; }
     }
   }
 
   if (typeof frommap.Exit === "function") {
-    frommap.Exit(who,tomap,who.getx(),who.gety(),destx,desty);
+    frommap.Exit(who,tomap,oldx,oldy,destx,desty);
   }
   
   if (typeof tomap.Enter === "function") {
-    tomap.Enter(who,frommap,who.getx(),who.gety(),destx,desty);
+    tomap.Enter(who,frommap,oldx,oldy,destx,desty);
     
   }
 
   
   // determine time scale for this move
   if ((frommap.getScale()) || tomap.getScale()) { who.smallscalemove = 1; }
+  if ((who !== PC) && (!tomap.getScale()) {
+    // a non-PC is fleeing to a world map. Delete instead.
+    frommap.deleteThing(who);
+    DrawMainFrame("one",frommap.getName(),oldx,oldy);
+    DUTime.removeEntityFrom(who);
+    var spawner=who.getSpawnedBy();
+    if (spawner) {
+      spawner.deleteSpawned(who);
+    }
+
+  }
   
 	// remove entity from current map
 	frommap.deleteThing(who);
