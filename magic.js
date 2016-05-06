@@ -2721,7 +2721,7 @@ function PerformExplosion(caster, infused, free, tgt) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
   DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
   ShowEffect(tgt, 700, "702.gif", 0, 0);
-  tgt.dealDamage(dmg,caster,"physical");
+  tgt.dealDamage(dmg,caster,"fire");
   
   for (var diffx = -1; diffx <=1; diffx++) {
     for (var diffy = -1; diffy <=1; diffy++) {
@@ -2729,7 +2729,7 @@ function PerformExplosion(caster, infused, free, tgt) {
       dmg = RollDamage(DMG_LIGHT);
       if ((tgt.getx()+diffx === PC.getx()) && (tgt.gety()+diffy === PC.gety())) {
         if (CheckResist(caster,PC,infused,0)) { dmg = dmg/2 +1; }
-        PC.dealDamage(dmg,caster,"physical");
+        PC.dealDamage(dmg,caster,"fire");
         ShowEffect(PC, 700, "702.gif", 0, 0);
         next;
       }
@@ -2737,7 +2737,7 @@ function PerformExplosion(caster, infused, free, tgt) {
       var badguy = tile.getTopNPC();
       if (badguy) {
         if (CheckResist(caster,badguy,infused,0)) { dmg = dmg/2+1; }
-        badguy.dealDamage(dmg,caster,"physical");
+        badguy.dealDamage(dmg,caster,"fire");
         ShowEffect(badguy, 700, "702.gif", 0, 0);
         if (!hostile && (caster === PC) && (tgt.getAttitude() === "friendly")) {
           TurnMapHostile(castmap);
