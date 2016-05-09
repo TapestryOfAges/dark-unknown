@@ -1,3 +1,5 @@
+"use strict";
+
 mappages["onyx"] = {};
 mappages["onyx"].terrain = [];
  mappages["onyx"].terrain[0] = '.| uu uu |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
@@ -88,6 +90,7 @@ mappages["onyx"].npcs[5] = {name : 'CorruptGuardsNPC', x : 20, y : 15};
 mappages["onyx"].npcs[6] = {name : 'CorruptGuardsNPC', x : 14, y : 11};
 mappages["onyx"].npcs[7] = {name : 'CorruptGuardsNPC', x : 33, y : 19};
 mappages["onyx"].npcs[8] = {name : 'CorruptGuardsNPC', x : 33, y : 17};
+mappages["onyx"].npcs[9] = {name : 'TinkerVillagerNPC', x : 28, y : 27, NPCName: 'Heather', Conversation: 'heather', Gender: 'female', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: '304.2.gif'};
 
 mappages["onyx"].desc = "the Towne of Onyx";
 mappages["onyx"].music = 'Dark Towne';
@@ -101,6 +104,7 @@ mappages["onyx"].seeBelow = '';
 mappages["onyx"].lightLevel = 'bright';
 mappages["onyx"].alwaysRemember = '0';
 mappages["onyx"].scale = '1';
+mappages["onyx"].underground = '0';
 mappages["onyx"].enterscript = '';
 mappages["onyx"].entertestscript = '';
 mappages["onyx"].exitscript = '';
