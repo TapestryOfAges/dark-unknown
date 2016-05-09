@@ -1391,12 +1391,6 @@ GameMap.prototype.saveMap = function (name) {
   if (basenpc.getPCThreatAI() !== mapnpcs[i].getPCThreatAI()) {
  		printerwin.document.write(", PCThreatAI: '" + mapnpcs[i].getPCThreatAI() + "'");
  	}
-// 	if (basenpc.getMeleeAttackAs() !== mapnpcs[i].getMeleeAttackAs()) {
-// 		printerwin.document.write(", Melee: '" + mapnpcs[i].getMeleeAttackAs() + "'");
-// 	}
-// 	if (basenpc.getMissileAttackAs() !== mapnpcs[i].getMissileAttackAs()) {
-// 		printerwin.document.write(", Missile: '" + mapnpcs[i].getMissileAttackAs() + "'");
-// 	}
  	if (basenpc.getConversation() !== mapnpcs[i].getConversation()) {
  		printerwin.document.write(", Conversation: '" + mapnpcs[i].getConversation() + "'");
  	} 	
