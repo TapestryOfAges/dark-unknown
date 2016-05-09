@@ -7323,6 +7323,19 @@ CourierPouchTile.prototype.use = function(who) {
   return retval;
 }
 
+function TrustedPlansTile() {
+  this.name = "TrustedPlans";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "0";
+  this.spritexoffset = "-96";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "plans for a Trusted pin";
+  this.prefix = "the";
+  this.addType("Quest");
+}
+TrustedPlansTile.prototype = new ItemObject();
+
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
   this.graphic = "items.gif";
