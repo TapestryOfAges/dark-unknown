@@ -428,5 +428,11 @@ QUnit.test("Test Illusion spell", function( assert ) {
   var castermob = localFactory.createTile("PaladinNPC");
   testmap.placeThing(4,7,castermob);
 
+  var ill = PerformIllusion(castermob,0,0,{x:2,y:3});
+  assert.deepEqual(ill.txt, "You cannot place your illusion there.", "Got conjure fail response.");
+
+
+  var ill2 = PerformIllusion(castermob,0,0,{x:2,y:7});
+  assert.deepEqual(ill2.txt, "You conjure an illusion to aid you in battle.", "Got conjure response.");
 
 });
