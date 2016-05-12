@@ -641,7 +641,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   resp["fin"] = 1;
   var desc = "";
 
-  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.x, tgt.x, losgrid, 1) >= LOS_THRESHOLD) { 
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.x, tgt.y, losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "You cannot place your illusion there.";
     resp["input"] = "&gt;";
