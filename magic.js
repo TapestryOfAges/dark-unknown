@@ -730,7 +730,7 @@ magic[2][GetSpellID(3)].executeSpell = function(caster, infused, free, tgt) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Healing " + healamt + " hp.<br /></span>"); }
   DebugWrite("magic", "Healing " + healamt + " hp.<br />");
   
-  if (caster === PC) {
+  if (!tgt || (caster === PC)) {
     tgt = caster;
   }
   
