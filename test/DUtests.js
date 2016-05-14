@@ -435,4 +435,48 @@ QUnit.test("Test Illusion spell", function( assert ) {
   var ill2 = PerformIllusion(castermob,0,0,{x:2,y:7});
   assert.deepEqual(ill2.txt, "You conjure an illusion to aid you in battle.", "Got conjure response.");
 
+  var tile = testmap.getTile(2,7);
+  var npc = tile.getTopNPC();
+  assert.deepEqual(npc.getName(), "IllusionNPC", "Checking that there is something called an illusion there.");
+
+  maps.deleteMap("unittest");
+});
+
+QUnit.test("Test Iron Flesh spell", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("unittest");
+  var testmap = maps.getMap("unittest");
+
+  var castermob = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(4,7,castermob);
+
+  assert.deepEqual(CheckAbsorb(20,castermob,castermob,"physical"), 10, "Checking how much is absorbed before casting.");
+
+  magic[2][GetSpellID(2)].executeSpell(castermob,0,0);
+  
+  assert.deepEqual(CheckAbsorb(20,castermob,castermob,"physical"), 5, "Checking how much is absorbed after casting, 1.");  
+  assert.deepEqual(CheckAbsorb(20,castermob,castermob,"physical"), 5, "Checking how much is absorbed after casting, 2.");  
+  assert.deepEqual(CheckAbsorb(20,castermob,castermob,"physical"), 10, "Checking how much is absorbed after casting, 3.");  
+
+  maps.deleteMap("unittest");
+});
+
+QUnit.test("Test Lesser Heal spell", function( assert ) {
+  Dice.roll = function(die) { return 8; }
+  var maps = new MapMemory();
+  maps.addMap("unittest");
+  var testmap = maps.getMap("unittest");
+
+  var castermob = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(4,7,castermob);
+
+  castermob.setHP(2);
+  
+  magic[2][GetSpellID(3)].executeSpell(castermob,0,0);
+  
+  assert.deepEqual(castermob.getHP(),10,"HP total after Lesser Heal.");
+  magic[2][GetSpellID(3)].executeSpell(castermob,1,1);
+  assert.deepEqual(castermob.getHP(),22,"HP total after infused Lesser Heal.");
+  
+  maps.deleteMap("unittest");
 });
