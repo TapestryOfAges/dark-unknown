@@ -4430,6 +4430,45 @@ function SignpostRightTile() {
 }
 SignpostRightTile.prototype = new FeatureObject();
 
+function SingleSignpost2Tile() {
+  this.name = "SingleSignpost2";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-96";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "signpost";
+  this.peerview = "#541909";
+}
+SingleSignpost2Tile.prototype = new FeatureObject();
+
+function SignpostLeft2Tile() {
+  this.name = "SignpostLeft2";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-96";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "signpost";
+  this.peerview = "#541909";
+}
+SignpostLeft2Tile.prototype = new FeatureObject();
+
+function SignpostRight2Tile() {
+  this.name = "SignpostRight2";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-96";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "signpost";
+  this.peerview = "#541909";
+}
+SignpostRight2Tile.prototype = new FeatureObject();
+
 function InnSignTile() {
   this.name = "InnSign";
   this.graphic = "features.gif";
