@@ -933,6 +933,21 @@ tileFactory.prototype.makeSignpostRightTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSingleSignpost2Tile = function() {
+  var newTile = new SingleSignpost2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSignpostLeft2Tile = function() {
+  var newTile = new SignpostLeft2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSignpostRight2Tile = function() {
+  var newTile = new SignpostRight2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeInnSignTile = function() {
   var newTile = new InnSignTile();
   return newTile;
@@ -1635,6 +1650,11 @@ tileFactory.prototype.makeRobertMapTile = function() {
 
 tileFactory.prototype.makeCourierPouchTile = function() {
   var newTile = new CourierPouchTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTrustedPlansTile = function() {
+  var newTile = new TrustedPlansTile();
   return newTile;
 }
 
