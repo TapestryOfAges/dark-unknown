@@ -75,9 +75,27 @@ var Listener = new DUListener();
 var latestidx;
 var testvar;
 
+var lastanim = "";
+
 $(document).ready(function() {
   audio_init_title();  
   
+  if (firsttime) {
+    $(document).keydown(function(e) {
+      var code = (e.keyCode ? e.keyCode : e.which);
+      e.preventDefault();
+    
+      if (gamestate.getMode() !== "null") {
+        DoAction(code, e);
+      } else {
+        $(lastanim).stop(true,false);
+        finishedFinalPage();
+      }
+        
+    });
+    firsttime = 0;
+  }
+
   latestidx = gamestate.getLatestSaveIndex();
   if (latestidx === -1) {
     gamestate.initializeSaveGames();
@@ -116,6 +134,7 @@ function start_animations() {
     dusong = DUPlayMusic("Dark Unknown");
     $("#ToA").fadeIn(1700, function() {
       $("#over").css("display", "inline");
+      lastanim = "#over";
       $("#over").animate({ width: "800px" }, 3700, function() {
         $("#sign").css("display", "inline");
         Signature(-52);
@@ -131,6 +150,7 @@ function start_animations() {
 
 function Signature(val) {
   if (val === -4212) { FirstPage(); return; }
+  lastanim = "#sign";
   $("#sign").css("background-position", "0px " + val + "px");
   setTimeout(function() { Signature(val-52);}, 25);
 }
@@ -139,8 +159,11 @@ function FirstPage() {
   $("#ToA").html("<img src='graphics/title/ToA_banner-b.gif' />");
   $("#sign").css("display","none");
   $("#over").css("display","none");
+  lastanim = "#and";
   $("#and").fadeIn(1200, function() {
+    lastanim = "#gf";
     $("#gf").fadeIn(700, function() {
+      lastanim = "#present";
       $("#present").fadeIn(1400, function() {
         setTimeout(function() {
           $("#present").fadeOut(1000);
@@ -172,6 +195,7 @@ function SecondPage() {
   optselect = 0;
   var spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;display:none'><img src='graphics/title/du_logo.gif' /></div><div id='options'></div>";
   $("#maindiv").html(spage);
+  lastanim = "#DU";
   $("#DU").fadeIn(1000, function() {
     
     spage = "<div id='intro' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt0' src='graphics/title/intro-g.gif' onClick='makeChoice(\'intro\')' /></div>";
@@ -197,20 +221,41 @@ function SecondPage() {
   });
 }
 
+function finishedFinalPage() {
+  var browserheight = $(window).height();
+  var browserwidth = $(window).width();
+
+  var sleft = browserwidth/2 - 200;
+  var sptop = browserheight/2 - 300;
+  if (sptop < 0 ) { sptop = 0; }
+  var opttop = sptop + 250;
+  if (opttop === 250) { opttop = 200; }
+  var optleft = browserwidth/2 - 215;
+  optselect = 0;
+  var spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;'><img src='graphics/title/du_logo.gif' /></div><div id='options'></div>";
+  $("#maindiv").html(spage);
+  spage = "<div id='intro' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt0' src='graphics/title/intro-g.gif' onClick='makeChoice(\'intro\')' /></div>";
+  opttop += 60;
+  spage += "<div id='create' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt1' src='graphics/title/create.gif' onClick='makeChoice(\'create\')' /></div>";
+  opttop += 60;
+  var journey = "journey.gif";
+  if (latestidx === -1) {
+    journey = "journey-d.gif";
+    optnames[2] = "graphics/title/journey-d";
+  } else {
+    optnames[2] = "graphics/title/journey";
+  }
+  spage += "<div id='journey' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt2' src='graphics/title/" + journey + "' onClick='makeChoice(\'journey\')' /></div>";
+  opttop += 60;
+  spage += "<div id='credits' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt3' src='graphics/title/credits.gif' onClick='makeChoice(\'credits\')' /></div>";
+  $("#options").html(spage);
+  pagelive();
+
+}
+
 function pagelive() {
   gamestate.setMode("on");
   
-  if (firsttime) {
-    $(document).keydown(function(e) {
-      var code = (e.keyCode ? e.keyCode : e.which);
-      e.preventDefault();
-    
-      if (gamestate.getMode() !== "null") {
-        DoAction(code, e);
-      }
-    });
-    firsttime = 0;
-  }
 }
 
 
