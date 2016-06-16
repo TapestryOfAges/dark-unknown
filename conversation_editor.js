@@ -544,6 +544,7 @@ function makescript() {
       }
     });
   });
+  script.close();
 }
 
 function PrintDialogue(speech, keyword) {
