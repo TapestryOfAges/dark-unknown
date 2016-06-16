@@ -39,6 +39,9 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       necessary_item = PC.checkInventory(flags.has_item);
       if (!necessary_item) { flags_met = 0; }
     }
+    if (flags.hasOwnProperty("has_gold")) {
+      if (PC.getGold() < parseInt(flags.has_gold)) { flags_met = 0; }
+    }
   
     if (this[keyword].responses[flags_met].indexOf("->") != -1) {
       var holder = this[keyword].responses[flags_met];
