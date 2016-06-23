@@ -9639,6 +9639,7 @@ function NPCObject() {
 	this.aggro = 0;
 	this.npcband = 0;
 	this.wait;
+	this.xpval = 0;
 	
 	LightEmitting.call(this, 0);
 	
@@ -9894,6 +9895,10 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
   this.modHP(dmg*-1);
   if (this.getHP() <= 0) { // killed!
     this.processDeath(1);
+    if (src === PC) {
+      var XP = this.getXPVal();
+      PC.addXP(XP);
+    }
     return -1;
   }
   else { return dmg; }
@@ -10240,6 +10245,11 @@ NPCObject.prototype.setLevel = function(newlevel) {
 }
 
 NPCObject.prototype.getLevel = function() {
+	return this.level;
+}
+
+NPCObject.prototype.getXPVal = function() {
+  if (this.xpval) { return this.xpval; }
 	return this.level;
 }
 

@@ -125,6 +125,9 @@ foreach my $line (<$npcdoc>) {
   if ($fields[33]) {
     print $out "  this.missileMissSound = '$fields[33]';\n";
   }
+  if ($fields[34]) {
+    print $out "  this.xpval = $fields[34];\n";
+  }
   print $out "}\n";
   print $out "$fields[0]" . "NPCTile.prototype = new NPCObject();\n\n";
 }
