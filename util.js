@@ -115,6 +115,10 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
           else { 
             if (def.specials.crumbles) { retval["txt"] += ": It crumbles to dust!"; }
             else {retval["txt"] += ": Killed!"; }
+            
+            if (def.getXPVal()) {
+              retval["txt"] += " (XP gained: " + def.getXPVal() + ")";
+            }
           }
         } 
         maintext.addText(retval["txt"]);
