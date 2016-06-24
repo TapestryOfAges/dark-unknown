@@ -226,6 +226,14 @@ function DoAction(code, ctrl) {
       } else {
         gamestate.setMode("anykey");
       }
+    } else if (targetCursor.command === "u") {
+      var retval = PerformRead();
+      maintext.addText(retval["txt"]);
+      if (retval["fin"] === 1) {
+        maintext.setInputLine("%gt;");
+        maintext.drawTextFrame();
+        PC.endTurn(retval["initdelay"]);
+      }
     } else {
       if (((code >= 65) && (code <= 90)) || (code === 32) || (code === 13)) {  // letter, space, or enter
         if (targetCursor.command === "c") {
@@ -361,9 +369,16 @@ function DoAction(code, ctrl) {
           resp = PerformPush(PC);
         }
         if (resp["fin"] >= 2) {
-          maintext.addText(resp["txt"]);
-          maintext.setInputLine(resp["input"]);
-          maintext.drawTextFrame();
+          if ((targetCursor.command === "u") && (resp["fin"] = 3)) {
+            maintext.setInputLine("[MORE]");
+            maintext.addText(resp["txt"]);
+            gamestate.setMode("anykey");
+            maintext.drawTextFrame();
+          } else {
+            maintext.addText(resp["txt"]);
+            maintext.setInputLine(resp["input"]);
+            maintext.drawTextFrame();
+          }
           if (resp["fin"] > 2) {
             gamestate.setMode("player");
           }

@@ -7877,9 +7877,41 @@ GoldTile.prototype.onGet = function(who) {
 
 // Books/Journals
 function BookItemObject() {
-  
+  this.contents = "";
 }
 BookItemObject.prototype = new ItemObject();
+
+BookItemObject.prototype.use = function(who) {
+  var bookcontents = this.contents.split("%%");
+  var retval = {};
+  if (bookcontents) {
+    retval["txt"] = bookcontents.shift();
+    if (bookcontents.length > 0) {
+      retval["override"] = 1;
+	  	var usedname = used.getDesc();
+		  usedname = usedname.replace(/^a /, "");
+      
+      maintext.addText("Use " + usedname + ": Reading...");
+      retval["fin"] = 3;
+      targetCursor.booktext = bookcontents;
+    } else {
+      retval["fin"] = 1;
+    }
+  }
+  return retval;
+}
+
+function PerformRead() {
+  var retval = {};
+  retval["txt"] = targetCursor.booktext.shift();
+  if (targetCursor.booktext.length > 0) {
+    retval["fin"] = 0;
+    return retval;
+  } else {
+    retval["fin"] = 1;
+    return retval;
+  }
+}
 
 function ConsumableItemObject() {
   this.addType("Consumable");
