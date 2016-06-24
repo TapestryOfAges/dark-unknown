@@ -7875,6 +7875,12 @@ GoldTile.prototype.onGet = function(who) {
   // this should delete the item entirely
 }
 
+// Books/Journals
+function BookItemObject() {
+  
+}
+BookItemObject.prototype = new ItemObject();
+
 function ConsumableItemObject() {
   this.addType("Consumable");
 }
@@ -7918,7 +7924,6 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
   }
   return retval;
 }
-
 
 // potions
 

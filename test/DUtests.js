@@ -480,3 +480,25 @@ QUnit.test("Test Lesser Heal spell", function( assert ) {
   
   maps.deleteMap("unittest");
 });
+
+QUnit.test("Test Magic Bolt spell and resistance", function( assert ) {
+  Dice.roll = function(die) { return 8; }
+  var maps = new MapMemory();
+  maps.addMap("unittest");
+  var testmap = maps.getMap("unittest");
+
+  Dice.roll = function() {
+    if (!Dice.rollnum) { Dice.rollnum = 1; }
+    if (Dice.rollnum === 1) { Dice.rollnum++; return 10; } // dmg
+    if (Dice.rollnum === 2) { Dice.rollnum++; return 10; } // +dmg
+    if (Dice.rollnum === 3) { Dice.rollnum++; return 10; } // succeed at resist
+  }
+
+  var castermob = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(4,7,castermob);
+
+  var tgtmob = localFactory.createTile("TownGuardNPC");
+  testmap.placeThing(6,7,tgtmob);
+
+  maps.deleteMap("unittest");
+});
