@@ -506,34 +506,70 @@ OnConvTriggers["start_courier"] = function(speaker,keyword) {
 
 OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("jharden_teaches");
-  if ((PC.getLevel() >= 2) && (!PC.knowsSpell(1,2)) {
+  DU.gameflags.deleteFlag("jharden_newspell");
+  var taught = 0;
+  if ((PC.getLevel() >= 2) && (!PC.knowsSpell(1,2))) {
     maintext.addText("Jharden teaches you Cure!");
     PC.addSpell(1,2);
+    taught = 1;
   }
-  if ((PC.getLevel() >= 3) && (!PC.knowsSpell(2,1)) {
+  if ((PC.getLevel() >= 3) && (!PC.knowsSpell(2,1))) {
     maintext.addText("Jharden teaches you Illusion!");
     PC.addSpell(2,1);
+    taught = 1;
   }
-  if ((PC.getLevel() >= 4) && (!PC.knowsSpell(3,3)) {
+  if ((PC.getLevel() >= 4) && (!PC.knowsSpell(3,3))) {
     maintext.addText("Jharden teaches you Fireball!");
     PC.addSpell(3,3);
+    taught = 1;
   }
-  if ((PC.getLevel() >= 5) && (!PC.knowsSpell(4,1)) {
+  if ((PC.getLevel() >= 5) && (!PC.knowsSpell(4,1))) {
     maintext.addText("Jharden teaches you Blessing!");
     PC.addSpell(4,1);
+    taught = 1;
   }
-  if ((PC.getLevel() >= 6) && (!PC.knowsSpell(5,5)) {
+  if ((PC.getLevel() >= 6) && (!PC.knowsSpell(5,5))) {
     maintext.addText("Jharden teaches you Return!");
     PC.addSpell(5,5);
+    taught = 1;
   }
-  if ((PC.getLevel() >= 7) && (!PC.knowsSpell(6,4)) {
+  if ((PC.getLevel() >= 7) && (!PC.knowsSpell(6,4))) {
     maintext.addText('"This is a spell I have only just mastered myself!"');
     maintest.addText("Jharden teaches you Mass Curse!");
     PC.addSpell(6,4);
+    taught = 1;
   }
-  if ((PC.getLevel() >= 8) && (!PC.knowsSpell(6,6)) {
+  if ((PC.getLevel() >= 8) && (!PC.knowsSpell(6,6))) {
     maintext.addText('"This is a spell I have only just mastered myself!"');
     maintext.addText("Jharden teaches you Storm!");
     PC.addSpell(6,6);
+    taught = 1;
   }
+  if (!taught) {
+    maintext.addText("Jharden has nothing to teach you.");
+  }
+}
+
+OnConvTriggers["ash_teaches"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("ash_teaches");
+  DU.gameflags.deleteFlag("ash_newspell");
+  var taught = 0;
+  if ((PC.getLevel() >= 3) && (!PC.knowsSpell(3,1))) {
+    maintext.addText("Asharden teaches you Dispel!");
+    PC.addSpell(3,1);
+    taught = 1;
+  }
+  if ((PC.getLevel() >= 4) && (!PC.knowsSpell(4,2))) {
+    maintext.addText("Asharden teaches you Blink!");
+    PC.addSpell(4,2);
+    taught = 1;
+  }
+  if ((PC.getLevel() >= 5) && (!PC.knowsSpell(5,7))) {
+    maintext.addText("Asharden teaches you Summon Ally!");
+    PC.addSpell(5,7);
+    taught = 1;
+  }
+  if (!taught) {
+    maintext.addText("Asharden has nothing to teach you.");
+  }  
 }

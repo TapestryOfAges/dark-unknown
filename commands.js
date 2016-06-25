@@ -1271,7 +1271,9 @@ function PerformTalkTarget() {
         maintext.addText('"In addition, Jharden may have more to teach you of magic!"');
       }
       DU.gameflags.setFlag("jharden_newspell",1);
-      DU.gameflags.setFlag("ash_newspell",1);
+      if ((PC.getLevel() > 2) && (PC.getLevel() < 6)) {
+        DU.gameflags.setFlag("ash_newspell",1);
+      }
       maintext.addText(PC.getPCName() + " is now level " + PC.getLevel() + "!");
       if (PC.getLevel() === 4) {
         DU.gameflags.setFlag("lvl4",1);
