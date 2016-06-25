@@ -1263,10 +1263,15 @@ function PerformTalkTarget() {
 
   if (EarnedLevel(PC) && (top.getName() === "KingNPC")) {
     if ((PC.getLevel() < 4) || (PC.runes.kings)) {
-      maintext.addText('"Hail, ' + PC.getPCName() + '! I am well pleased with your progress."');
+      maintext.addText('"Hail, ' + PC.getPCName() + '! I am well pleased with your progress. Seek Nyrani and Jharden for further training."');
       PC.setLevel(PC.getLevel()+1);
       PC.settp(PC.gettp()+TP_PER_LEVEL);
       DU.gameflags.setFlag("can_train", 1);
+      if (DU.gameflags.getFlag("spellbook")) {
+        maintext.addText('"In addition, Jharden may have more to teach you of magic!"');
+      }
+      DU.gameflags.setFlag("jharden_newspell",1);
+      DU.gameflags.setFlag("ash_newspell",1);
       maintext.addText(PC.getPCName() + " is now level " + PC.getLevel() + "!");
       if (PC.getLevel() === 4) {
         DU.gameflags.setFlag("lvl4",1);

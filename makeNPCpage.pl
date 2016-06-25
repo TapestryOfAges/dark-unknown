@@ -250,3 +250,4 @@ print $out "<b>quick</b>: Has the Quickness spell applied to it.<br />\n";
 print $out "<b>undead</b>: The creature is undead. Immune to poison.<br />\n";
 print $out "<b>construct</b>: The creature is a mindless construct. Cannot be Jinxed or Charmed.<br />\n";
 print $out "<b>coward</b>: Will always run in aggroed.<br />\n";
+print $out "<b>nopeer</b>: Does not appear in the view of a Peer spell.<br />\n";

@@ -503,3 +503,37 @@ OnConvTriggers["start_courier"] = function(speaker,keyword) {
     DebugWrite("plot","Courier already exists.<br />");
   }
 }
+
+OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("jharden_teaches");
+  if ((PC.getLevel() >= 2) && (!PC.knowsSpell(1,2)) {
+    maintext.addText("Jharden teaches you Cure!");
+    PC.addSpell(1,2);
+  }
+  if ((PC.getLevel() >= 3) && (!PC.knowsSpell(2,1)) {
+    maintext.addText("Jharden teaches you Illusion!");
+    PC.addSpell(2,1);
+  }
+  if ((PC.getLevel() >= 4) && (!PC.knowsSpell(3,3)) {
+    maintext.addText("Jharden teaches you Fireball!");
+    PC.addSpell(3,3);
+  }
+  if ((PC.getLevel() >= 5) && (!PC.knowsSpell(4,1)) {
+    maintext.addText("Jharden teaches you Blessing!");
+    PC.addSpell(4,1);
+  }
+  if ((PC.getLevel() >= 6) && (!PC.knowsSpell(5,5)) {
+    maintext.addText("Jharden teaches you Return!");
+    PC.addSpell(5,5);
+  }
+  if ((PC.getLevel() >= 7) && (!PC.knowsSpell(6,4)) {
+    maintext.addText('"This is a spell I have only just mastered myself!"');
+    maintest.addText("Jharden teaches you Mass Curse!");
+    PC.addSpell(6,4);
+  }
+  if ((PC.getLevel() >= 8) && (!PC.knowsSpell(6,6)) {
+    maintext.addText('"This is a spell I have only just mastered myself!"');
+    maintext.addText("Jharden teaches you Storm!");
+    PC.addSpell(6,6);
+  }
+}
