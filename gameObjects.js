@@ -7910,7 +7910,7 @@ function TomeOfSightTile() {
   this.desc = "Tome of Sight";
   this.prefix = "the";
   this.addType("Quest");
-  this.contents = "You open to a random page:%%'...for the Eye can be deceived, but the Eye of Magic is Immutable.' [addmore]";
+  this.contents = "You open to a random page:%%'...for the Eye of Man can be deceived, but the Eye of Magic is Immutable.' [addmore]";
 }
 TomeOfSightTile.prototype = new BookItemObject();
 
