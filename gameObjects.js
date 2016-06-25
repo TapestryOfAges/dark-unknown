@@ -70,90 +70,7 @@ ProtoObject.prototype.setName = function(newname) {  // USE SPARINGLY
 	return this.name;
 }
 
-function GameObject() {
-  this.x;
-  this.y;
-  
-  this.type = "XGameObjectX";
-}
-GameObject.prototype = new ProtoObject();
-
-GameObject.prototype.getx = function() {
-	return parseInt(this.x,10);
-}
-
-GameObject.prototype.setx = function(x) {
-	if (isNaN(parseInt(x))) { alert("X being set to a string."); }
-  this.x = parseInt(x,10);
-}
-
-GameObject.prototype.gety = function() {
-	return parseInt(this.y,10);
-}
-
-GameObject.prototype.sety = function(y) {
-	if (isNaN(parseInt(y))) { alert("Y being set to a string."); }
-  this.y = parseInt(y,10);
-}
-
-GameObject.prototype.setHomeMap = function(mapref) {
-  this.homeMap = mapref;
-  return this.homeMap;
-}
-
-GameObject.prototype.getHomeMap = function() {
-  return this.homeMap;
-}
-
-GameObject.prototype.setDesc = function(newdesc) {
-	this.desc = newdesc;
-}
-
-GameObject.prototype.getDesc = function() {
-	return this.desc;
-}
-
-GameObject.prototype.getFullDesc = function() {
-  var full = "";
-  if (this.getPrefix()) {
-    full = this.getPrefix() + " ";
-  }
-  
-  full = full + this.getDesc();
-  if (this.conversation) {
-    var knowsflag = "knows_" + this.conversation;
-    if (DU.gameflags.getFlag(knowsflag)) {
-      full = this.npcname;
-    }
-  } 
-  return full;
-  
-}
-
-GameObject.prototype.setPrefix = function(newpref) {
-	this.prefix = newpref;
-}
-
-GameObject.prototype.getPrefix = function() {
-  if (this.prefix) {
-	  return this.prefix;
-	} else {
-	  return "";
-	}
-}
-
-GameObject.prototype.moveTo = function(x,y) {
-	this.homeMap.moveThing(this,x,y)
-}
-
-GameObject.prototype.bumpinto = function(who) {
-	var retval = {};
-	retval["canmove"] = 1;
-	retval["msg"] = "";
-  return(retval);
-}
-
-GameObject.prototype.copy = function(type) {
+ProtoObject.prototype.copy = function(type) {
   if (type === "clean") {
     var tilename = this.name;
     return localFactory.createTile(tilename);
@@ -339,6 +256,89 @@ GameObject.prototype.copy = function(type) {
   DebugWrite("saveload", "<br /><span style='font-weight:bold'>Copying " + copies.length + " objects.</span><br />  ");
   return copies;
   
+}
+
+function GameObject() {
+  this.x;
+  this.y;
+  
+  this.type = "XGameObjectX";
+}
+GameObject.prototype = new ProtoObject();
+
+GameObject.prototype.getx = function() {
+	return parseInt(this.x,10);
+}
+
+GameObject.prototype.setx = function(x) {
+	if (isNaN(parseInt(x))) { alert("X being set to a string."); }
+  this.x = parseInt(x,10);
+}
+
+GameObject.prototype.gety = function() {
+	return parseInt(this.y,10);
+}
+
+GameObject.prototype.sety = function(y) {
+	if (isNaN(parseInt(y))) { alert("Y being set to a string."); }
+  this.y = parseInt(y,10);
+}
+
+GameObject.prototype.setHomeMap = function(mapref) {
+  this.homeMap = mapref;
+  return this.homeMap;
+}
+
+GameObject.prototype.getHomeMap = function() {
+  return this.homeMap;
+}
+
+GameObject.prototype.setDesc = function(newdesc) {
+	this.desc = newdesc;
+}
+
+GameObject.prototype.getDesc = function() {
+	return this.desc;
+}
+
+GameObject.prototype.getFullDesc = function() {
+  var full = "";
+  if (this.getPrefix()) {
+    full = this.getPrefix() + " ";
+  }
+  
+  full = full + this.getDesc();
+  if (this.conversation) {
+    var knowsflag = "knows_" + this.conversation;
+    if (DU.gameflags.getFlag(knowsflag)) {
+      full = this.npcname;
+    }
+  } 
+  return full;
+  
+}
+
+GameObject.prototype.setPrefix = function(newpref) {
+	this.prefix = newpref;
+}
+
+GameObject.prototype.getPrefix = function() {
+  if (this.prefix) {
+	  return this.prefix;
+	} else {
+	  return "";
+	}
+}
+
+GameObject.prototype.moveTo = function(x,y) {
+	this.homeMap.moveThing(this,x,y)
+}
+
+GameObject.prototype.bumpinto = function(who) {
+	var retval = {};
+	retval["canmove"] = 1;
+	retval["msg"] = "";
+  return(retval);
 }
 
 GameObject.prototype.setGraphic = function(newgraphic) {
@@ -7640,33 +7640,6 @@ function StoneOfConflagrationsTile() {
 }
 StoneOfConflagrationsTile.prototype = new ItemObject();
 
-function BookOfLoreTile() {
-  this.name = "BookOfLore";
-  this.graphic = "items.gif";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-128";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Book of Lore";
-  this.prefix = "the";
-  this.addType("Quest");
-}
-BookOfLoreTile.prototype = new ItemObject();
-
-function TomeOfSightTile() {
-  this.name = "TomeOfSight";
-  this.graphic = "items.gif";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-96";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Tome of Sight";
-  this.prefix = "the";
-  this.addType("Quest");
-}
-TomeOfSightTile.prototype = new ItemObject();
-
-
 function TreasuryTokenTile() {
   this.name = "TreasuryToken";
   this.graphic = "items.gif";
@@ -7912,6 +7885,35 @@ function PerformRead() {
     return retval;
   }
 }
+
+function BookOfLoreTile() {
+  this.name = "BookOfLore";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-128";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Book of Lore";
+  this.prefix = "the";
+  this.addType("Quest");
+  this.contents = "";
+}
+BookOfLoreTile.prototype = new BookItemObject();
+
+function TomeOfSightTile() {
+  this.name = "TomeOfSight";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-96";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Tome of Sight";
+  this.prefix = "the";
+  this.addType("Quest");
+  this.contents = "You open to a random page:%%'...for the Eye can be deceived, but the Eye of Magic is Immutable.' [addmore]";
+}
+TomeOfSightTile.prototype = new BookItemObject();
+
 
 function ConsumableItemObject() {
   this.addType("Consumable");
