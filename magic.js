@@ -2305,9 +2305,8 @@ magic[5][GetSpellID(4)].executeSpell = function(caster, infused, free) {
         else {
           var npc = tile.getTopVisibleNPC();
           if (npc && !npc.specials.nopeer) { 
-            peerhtml += "<td style='background-color:purple; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; }
-          }
-          else {
+            peerhtml += "<td style='background-color:purple; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; 
+          } else {
             var fea = tile.getTopVisibleFeature();
             if (fea && fea.getPeerview()) {
               var peer = fea.getPeerview();
