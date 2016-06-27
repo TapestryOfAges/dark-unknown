@@ -77,7 +77,6 @@ ProtoObject.prototype.copy = function(type) {
   }
   
   var savename = this.getName();
-//  if (debug && debugflags.saveload) { dbs.writeln("<br /><span style='font-weight:bold'><br />Copying " + savename + ", serial " + this.getSerial() + ":</span><br />"); }
   DebugWrite("saveload", "<br /><span style='font-weight:bold'><br />Copying " + savename + ", serial " + this.getSerial() + ":</span><br />");
   var base_version = eidos.getForm(this.getName());
   var copydata = {};
@@ -94,8 +93,7 @@ ProtoObject.prototype.copy = function(type) {
   $.each(this, function(idx, val) {
     DebugWrite("save " + idx + ":");
     if ((typeof val === "function") && (typeof base_version[idx] === "function")) { 
-//      if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " is a function, moving on...</span>  "); }
-      DebugWrite("saveload", idx + " is a function, moving on...</span>  ");
+      DebugWrite("saveload", idx + " is a <span style='color:darkblue'>function, moving on</span>...  ");
       return;
       // both have a function. Assuming they're the same, not worth caring
     }
@@ -105,61 +103,44 @@ ProtoObject.prototype.copy = function(type) {
     if (typeof val !== "object") { 
       if (val != base_version[idx]) {
         copydata[idx] = val;
-//        if (debug && debugflags.saveload) { dbs.writeln(idx + " different, copying... "); }
-        DebugWrite("saveload", idx + " different, copying... ");
+        DebugWrite("saveload", idx + " <span style='color:lime'>different, copying</span>... ");
       } else {
-//        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " the same, moving on...</span>  "); }
-        DebugWrite("saveload", idx + " the same, moving on...</span>  ");
+        DebugWrite("saveload", idx + " <span style='color:firebrick'>the same, moving on</span>...  ");
       }
     } else if ($.isArray(val)) {
       if ($.isArray(base_version[idx]) && arrayCompare(val, base_version[idx])) {
-//        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an array and the same, moving on...</span>  "); }
-        DebugWrite("saveload", idx + " an array and the same, moving on...</span>  ");
+        DebugWrite("saveload", idx + " an array and <span style='color:firebrick'>the same, moving on</span>...  ");
       } else {
         copydata[idx] = val;
         if (debug && debugflags.saveload) { 
-//          dbs.writeln(idx + " an array and different, copying... <br /> ["); 
-          DebugWrite("saveload", idx + " an array and different, copying... <br /> [");
-//          for (var i = 0; i < val.length; i++) { dbs.writeln(val[i] + ", "); }
-//          dbs.writeln("] vs [");
+          DebugWrite("saveload", idx + " an array and <span style='color:lime'>different, copying</span>... <br /> [");
           DebugWrite("saveload", "] vs [");
           if ($.isArray(base_version[idx])) {
             for (var i = 0; i < base_version[idx].length; i++) { 
-//              dbs.writeln(base_version[idx][i] + ", "); 
               DebugWrite("saveload", base_version[idx][i] + ", ");
             }
           } else {
-//            dbs.writeln("Not an array");
             DebugWrite("saveload", "Not an array");
           }
-//          dbs.writeln("]. <br />");
           DebugWrite("saveload", "]. <br />");
         }
       }
     } else if (idx === "homeMap") {
       copydata.homeMap = val.getName();
       copydata.traceback.push("homeMap");
-//      if (debug && debugflags.saveload) { dbs.writeln(idx + " copied... "); }
       DebugWrite("saveload", idx + " copied... ");
     } else if ((idx === "resists") || (idx === "specials")) {
       if ((typeof base_version[idx] === "object") && objectCompare(val, base_version[idx])) {
-//        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
-        DebugWrite("saveload", idx + " an object and the same, moving on...</span>  ");
+        DebugWrite("saveload", idx + " an object and the <span style='color:firebrick'>same, moving on</span>...  ");
       } else {
         copydata[idx] = val;
-//        if (debug && debugflags.saveload) {
-//          dbs.writeln(idx + " an object and different, copying... ");
-//        }
-        DebugWrite("saveload", idx + " an object and different, copying... ");
+        DebugWrite("saveload", idx + " an object and <span style='color:lime'>different, copying</span>... ");
       }
     } else if ((idx === "currentDestination") || (idx === "lastLocation")) {
       copydata[idx] = val;
-//      if (debug && debugflags.saveload) { dbs.writeln(idx + " different, copying... "); }
-      DebugWrite("saveload", idx + " different, copying... ");
+      DebugWrite("saveload", idx + " <span style='color:lime'>different, copying</span>... ");
     } else if ((idx === "currentPoI") || (idx === "losupclose")){
-//      copydata[idx] = {};
-//      if (debug && debugflags.saveload) { dbs.writeln(idx + " deliberately not saved... "); }
-      DebugWrite("saveload", idx + " deliberately not saved... ");
+      DebugWrite("saveload", idx + " <span style='color:maroon'>deliberately not saved</span>... ");
     } else if (idx === "spawned") { 
       // for things with collections
       var spawnlist = val.getAll();
@@ -168,53 +149,44 @@ ProtoObject.prototype.copy = function(type) {
         spawnserials.push(spaval.getSerial());
       });
       copydata[idx] = spawnserials;
-//      if (debug && debugflags.saveload) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serials, serial# " + copydata[idx] + "...</span> "); }
-      DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " saved as serials, serial# " + copydata[idx] + "...</span>");
+      DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " <span style='color:lime'>saved as serials, serial# " + copydata[idx] + "</span>...</span>");
     } else if ((idx === "equippedTo") || (idx === "attachedTo") || (idx === "spawnedBy")) {
       if (val) {
         copydata[idx] = val.getSerial();
-//        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:purple'>" + idx + " saved as serial, serial# " + copydata[idx] + "...</span> "); }
-        DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " saved as serial, serial# " + copydata[idx] + "...</span> ");
+        DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " <span style='color:lime'>saved as serial, serial# " + copydata[idx] + "</span>...</span> ");
       } else {
-//        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:purple'>" + idx + " is empty, not saved...</span> "); }
-        DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " is empty, not saved...</span> ");
+        DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " is <span style='color:magenta'>empty, not saved</span>...</span> ");
       }
     } else if (idx === "equipment") {
       copydata[idx] = {};
       $.each(val, function(eqidx, eqval) {
         if (eqval) {
-//          if (debug && debugflags.saveload) { dbs.writeln("<span>" + idx + ": " + eqidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
-          DebugWrite("saveload", idx + ": " + eqidx + " being copied in a subthread...<br /><nbsp /><nbsp />");
+          DebugWrite("saveload", idx + ": " + eqidx + " being <span style='color:lightseagreen'>copied in a subthread</span>...<br /><nbsp /><nbsp />");
           var equipcopy = eqval.copy();
           copydata[idx][eqidx] = equipcopy[0].serial;
           copies.push(equipcopy[0]);   // using index rather than each here because equipment can't chain farther
-//          if (debug && debugflags.saveload) { dbs.writeln("<span>Copy made, " + eqidx + " added as serial to main object...</span> "); }
-          DebugWrite("saveload", "Copy made, " + eqidx + " added as serial to main object... ");
+          DebugWrite("saveload", "Copy made, " + eqidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
         }
       });
     } else if (idx === "inventory") {
       var inv = val.getAll();
       copydata[idx] = [];
       $.each(inv, function(invidx, invval) {
-//        if (debug && debugflags.saveload) { dbs.writeln("<span>" + idx + ": " + invidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
-        DebugWrite("saveload", idx + ": " + invidx + " being copied in a subthread... <br /><nbsp /><nbsp />");
+        DebugWrite("saveload", idx + ": " + invidx + " being <span style='color:lightseagreen'>copied in a subthread</span>... <br /><nbsp /><nbsp />");
         var invcopy = invval.copy();
         copydata[idx][invidx] = invcopy[0].serial;
         copies.push(invcopy[0]);   // using index rather than each here as well for the same reason
-//        if (debug && debugflags.saveload) { dbs.writeln("<span>Copy made, " + invidx + " added as serial to main object...</span> "); }
-        DebugWrite("saveload", "Copy made, " + invidx + " added as serial to main object... ");
+        DebugWrite("saveload", "Copy made, " + invidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
       });
     } else if (idx === "spellEffects") {
       var spells = val.getAll();
       copydata[idx] = [];
       $.each(spells, function(spellidx, spellval) {
-//        if (debug && debugflags.saveload) { dbs.writeln("<span>" + idx + ": " + spellidx + " being copied in a subthread...</span> <br /><nbsp /><nbsp />"); }
-        DebugWrite("saveload", idx + ": " + spellidx + " being copied in a subthread... <br /><nbsp /><nbsp />");
+        DebugWrite("saveload", idx + ": " + spellidx + " being <span style='color:lightseagreen'>copied in a subthread</span>... <br /><nbsp /><nbsp />");
         var spellcopy = spellval.copy();
-        copydata[idx].push(spellcopy.serial);
+        copydata[idx].push(spellcopy[0].serial);
         copies.push(spellcopy[0]);  // probably should make this each as future proofing
-//        if (debug && debugflags.saveload) { dbs.writeln("<span>Copy made, " + spellidx + " added as serial to main object...</span> "); }
-        DebugWrite("saveload", "Copy made, " + spellidx + " added as serial to main object... ");
+        DebugWrite("saveload", "Copy made, " + spellidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
       });
     } else if (idx === "spellsknown") {
       if (objectCompare(val, base_version[idx])) {
