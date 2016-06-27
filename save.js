@@ -269,7 +269,6 @@ GameStateData.prototype.loadGame = function(idx) {
     serialized = localStorage["save"+idx];
   }
 
-//  if (debug && debugflags.saveload) { dbs.writeln("<br /><br /><p>" + serialized + "</p><br />"); }
   DebugWrite("saveload", "<br /><br /><p>" + serialized + "</p><br />");
   var savedata = JSON.parse(serialized);  
   var universe = {};
@@ -302,36 +301,29 @@ GameStateData.prototype.loadGame = function(idx) {
     loadmaps[val] = new GameMap();
     loadmaps[val].loadMap(val);
   	maps.addMapByRef(loadmaps[val]);
-//    if (debug && debugflags.saveload) { dbs.writeln("Loaded map: " + val + "<br />"); }
     DebugWrite("saveload", "Loaded map: " + val + "<br />");
   });
   
-//  if (debug && debugflags.saveload) { dbs.writeln("<br /><h3>Done loading maps, on to objs...</h3>"); }
   DebugWrite("saveload", "<br /><h3>Done loading maps, on to objs...</h3>");
   
   // go through all the objects that were saved
   $.each(savedata.objs, function(idx, val) {
     // idx is the serial, val is the object with only saved properties
     var savename = val.name;
-//    if (debug && debugflags.saveload) { dbs.writeln("Loading object: " + savename + ", serial # " + idx + "...<br />"); }
     DebugWrite("saveload", "Loading object: " + savename + ", serial # " + idx + "...<br />");
     var newobj = localFactory.createTile(savename);
     $.each(val, function(svidx, svval) {
-//      if (debug && debugflags.saveload) { dbs.writeln("&nbsp;&nbsp;Loading property " + svidx + ", saving " + svval + "...<br />"); }  
       DebugWrite("saveload", "&nbsp;&nbsp;Loading property " + svidx + ", saving " + svval + "...<br />");
       newobj[svidx] = svval;
     });
     universe[idx] = newobj;
   });
 
-//  if (debug && debugflags.saveload) { dbs.writeln("<br />SECOND RUN THROUGH LOADED OBJECTS<br />"); }
   DebugWrite("saveload", "<br />SECOND RUN THROUGH LOADED OBJECTS<br />");
   var topserial = 1;
   $.each(universe, function(idx, val) {
     
     if (val.serial > topserial) { topserial = val.serial; }
-//    if (debug && debugflags.saveload) { dbs.writeln("Processing object: " + val.name + ", serial # + " + idx + "...<br />"); }
-//    if (debug && debugflags.saveload) { dbs.writeln("SERIALIZED NEW VERSION: " + JSON.stringify(val) +"<br />"); }
     DebugWrite("saveload", "Processing object: " + val.name + ", serial # + " + idx + "...<br />SERIALIZED NEW VERSION: " + JSON.stringify(val) +"<br />");
     if (val.serial == 1) { PC = val; }
 
@@ -343,56 +335,42 @@ GameStateData.prototype.loadGame = function(idx) {
       });
     } 
     if (val.inventory) {
-//      if (debug && debugflags.saveload) { dbs.writeln(val.name + " has an inventory, processing..."); }
       DebugWrite("saveload", val.name + " has an inventory, processing...");
       var inv = val.inventory;
       val.inventory = new Collection();
       $.each(inv, function(invidx, invval) {
-//        if (debug && debugflags.saveload) { dbs.writeln("adding " + universe[invval].name + "... "); }
         DebugWrite("saveload", "adding " + universe[invval].name + "... ");
         val.addToInventory(universe[invval], 1);
       });
-//      if (debug && debugflags.saveload) { dbs.writeln("<br />"); }
       DebugWrite("saveload", "<br />");
     } else {
       val.inventory = new Collection();
     }
     if (val.spawnedBy) {
-//      if (debug && debugflags.saveload) { dbs.writeln(val.name + " was spawned by something, processing..."); }
       DebugWrite("saveload", val.name + " was spawned by something, processing...");
       val.spawnedBy = universe[val.spawnedBy];
     }
     if (val.equipment) {
-//      if (debug && debugflags.saveload) { dbs.writeln(val.name + " has equipment, processing..."); }
       DebugWrite("saveload", val.name + " has equipment, processing...");
       var inv = val.equipment;
       val.equipment = {};
       $.each(inv,function(invidx, invval) {
         var equipment = universe[invval];
         if (equipment.checkType("Armor")) {
-//          if (debug && debugflags.saveload) { dbs.writeln("adding " + equipment.name + "... "); }
           DebugWrite("saveload", "adding " + equipment.name + "... ");
           val.setArmor(equipment);
         }
         if (equipment.checkType("Weapon") && !equipment.checkType("Missile")) {
-//          if (debug && debugflags.saveload) { dbs.writeln("adding " + equipment.name + "... "); }
           DebugWrite("saveload", "adding " + equipment.name + "... ");
           val.setWeapon(equipment);
         }
         if (equipment.checkType("Missile")) {
-//          if (debug && debugflags.saveload) { dbs.writeln("adding " + equipment.name + "... "); }
           DebugWrite("saveload", "adding " + equipment.name + "... ");
           val.setMissile(equipment);
         }
       });
-//      if (debug && debugflags.saveload) { dbs.writeln("<br />"); }
       DebugWrite("saveload", "<br />");
     } 
-//    if (val.target) {
-//      val.target = universe[val.target];
-//    } else {
-//      val.target = {};
-//    }
     if (val.spellEffects) {
       var inv = val.spellEffects;
       val.spellEffects = new Collection();
@@ -406,7 +384,6 @@ GameStateData.prototype.loadGame = function(idx) {
       $.each(val.traceback, function(tbidx, ibval) {
         // things will have 0 (if in inventory or the like), 1 (on a map), or 2 (map and timeline) entries here
         if (ibval === "homeMap") {
-//          if (debug && debugflags.saveload) { dbs.writeln("&nbsp;&nbsp;Setting home map to " + val.homeMap + "...<br />"); }          
           DebugWrite("saveload", "&nbsp;&nbsp;Setting home map to " + val.homeMap + "...<br />");
           loadmaps[val.homeMap].placeThing(val.x, val.y, val);
         }

@@ -267,7 +267,7 @@ function PerformCommand(code, ctrl) {
     if (ctrl) { gamestate.saveGame("external"); }
     else {
       gamestate.setMode("choosesave");
-      ShowSaveGames("Select a game to load:");
+      ShowSaveGames("Select a slot to save in:");
       retval["txt"] = "";
       retval["input"] = "&gt;";
       retval["fin"] = 2;
