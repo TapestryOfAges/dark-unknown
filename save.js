@@ -375,7 +375,8 @@ GameStateData.prototype.loadGame = function(idx) {
       var inv = val.spellEffects;
       val.spellEffects = new Collection();
       $.each(inv, function(invidx, invval) {
-        val.addSpellEffect(universe[invval], 1);
+        // don't use addSpellEffect, as that activates it and will double the effect
+        val.spellEffects.addBottom(universe[invval]);
       });
     } else {
       val.spellEffects = new Collection();
