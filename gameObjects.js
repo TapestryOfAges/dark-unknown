@@ -625,7 +625,7 @@ function LightEmitting(lightlevel) {
     this.setLight(0);
 	}
 	this.setLight = function(light) {
-	  if (this.light > 0) {
+	  if (this.light !== 0) {
 	    this.getHomeMap().removeMapLight(this.getSerial(), this.light, this.getx(), this.gety());
 	  }
 	  if (light !== 0) {
