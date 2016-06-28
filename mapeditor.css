@@ -34,4 +34,12 @@
   	           border: 1px solid #c93;
   	           position: absolute;  }
 
+  div.ibubble { display: none; 
+  	           left:50; 
+  	           top:50; 
+  	           color: #aaaaff; 
+  	           background-color: silver; 
+  	           border: 1px solid white;
+  	           position: absolute;  }
+
  td { font-size:small; }
