@@ -313,7 +313,7 @@ function DoAction(code, e) {
       }
       else if (optselect === 4) {
         // import save
-        alert("import");
+        ImportSave();
       }
     }
   }
@@ -446,4 +446,11 @@ var PCEvent = new GameEvent(PC);
 	testvar = JSON.parse(localStorage.saveIndex);
 	testvar[9].loc = "Char Create";
 	localStorage.saveIndex = JSON.stringify(testvar);
+}
+
+function ImportSave() {
+  var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+  $('#importbubble').jqm({onShow:myOpen});
+  $('#importbubble').jqmShow();
+
 }
