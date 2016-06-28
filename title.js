@@ -20,6 +20,8 @@ preload([
   "graphics/title/journey.gif",
   "graphics/title/journey-g.gif",
   "graphics/title/journey-d.gif",
+  "graphics/title/import.gif",
+  "graphics/title/import-g.gif",
   "graphics/title/present.gif",
   "graphics/title/and.gif",
 ]);
@@ -29,6 +31,7 @@ optnames[0] = "graphics/title/intro";
 optnames[1] = "graphics/title/create";
 optnames[2] = "graphics/title/journey";
 optnames[3] = "graphics/title/credits";
+optnames[4] = "graphics/title/import";
 
 var avatars = [];
 avatars[0] = ["300.2.gif", "300.gif", "301.gif", "shepherd-offcolor.gif", "302.gif", "druid-offcolor.gif"];
@@ -203,7 +206,6 @@ function SecondPage() {
     spage += "<div id='create' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt1' src='graphics/title/create.gif' onClick='makeChoice(\'create\')' /></div>";
     opttop += 60;
     var journey = "journey.gif";
-//    if (!localStorage.savegame && !localStorage.charsave) {
     if (latestidx === -1) {
       journey = "journey-d.gif";
       optnames[2] = "graphics/title/journey-d";
@@ -213,10 +215,13 @@ function SecondPage() {
     spage += "<div id='journey' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt2' src='graphics/title/" + journey + "' onClick='makeChoice(\'journey\')' /></div>";
     opttop += 60;
     spage += "<div id='credits' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt3' src='graphics/title/credits.gif' onClick='makeChoice(\'credits\')' /></div>";
+    opttop += 60;
+    spage += "<div id='import' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt4' src='graphics/title/import.gif' onClick='makeChoice(\'import\')' /></div>";
     $("#options").html(spage);
     $("#intro").fadeIn(1000);
     $("#create").fadeIn(1000);
     $("#journey").fadeIn(1000);
+    $("#import").fadeIn(1000);
     $("#credits").fadeIn(1000, function() { pagelive(); });
   });
 }
@@ -248,6 +253,8 @@ function finishedFinalPage() {
   spage += "<div id='journey' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt2' src='graphics/title/" + journey + "' onClick='makeChoice(\'journey\')' /></div>";
   opttop += 60;
   spage += "<div id='credits' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt3' src='graphics/title/credits.gif' onClick='makeChoice(\'credits\')' /></div>";
+  opttop += 60;
+  spage += "<div id='import' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt4' src='graphics/title/import.gif' onClick='makeChoice(\'import\')' /></div>";
   $("#options").html(spage);
   pagelive();
 
@@ -261,13 +268,12 @@ function pagelive() {
 
 function DoAction(code, e) {
   if (gamestate.getMode() === "on") {
-    if ((code === 38) || (code === 219)) {
+    if ((code === 38) || (code === 219)) {    // up arrow or [
       if (optselect > 0) {
         var img = "opt" + optselect;
         $("#"+img).attr("src", optnames[optselect] + ".gif");
         optselect--;
         img = "opt" + optselect;
-//        if ((optselect !== 2) || (localStorage.savegame || localStorage.charsave)) {
         if ((optselect !== 2) || (latestidx !== -1)) {
           $("#"+img).attr("src", optnames[optselect] + "-g.gif");
         } else {
@@ -278,12 +284,11 @@ function DoAction(code, e) {
       }
     }
     else if ((code === 40) || (code === 191)) {
-      if (optselect < 3) {
+      if (optselect < 4) {
         var img = "opt" + optselect;
         $("#"+img).attr("src", optnames[optselect] + ".gif");
         optselect++;
         img = "opt" + optselect;
-//        if ((optselect !== 2) || (localStorage.savegame || localStorage.charsave)) {
         if ((optselect !== 2) || (latestidx !== -1)) {
           $("#"+img).attr("src", optnames[optselect] + "-g.gif");
         } else {
@@ -305,6 +310,10 @@ function DoAction(code, e) {
       }
       else if (optselect === 3) {
         alert("credits");
+      }
+      else if (optselect === 4) {
+        // import save
+        alert("import");
       }
     }
   }
