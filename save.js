@@ -373,10 +373,12 @@ GameStateData.prototype.loadGame = function(idx) {
       DebugWrite("saveload", "<br />");
     } 
     if (val.spellEffects) {
+      DebugWrite("saveload", val.name + " has spell effects, processing...");
       var inv = val.spellEffects;
       val.spellEffects = new Collection();
       $.each(inv, function(invidx, invval) {
         // don't use addSpellEffect, as that activates it and will double the effect
+        DebugWrite("saveload", "adding " + universe[invval].name + "... ");
         val.spellEffects.addBottom(universe[invval]);
         attaches.push(val);
       });
@@ -408,7 +410,7 @@ GameStateData.prototype.loadGame = function(idx) {
   if (attaches[0]) {
     DebugWrite("saveload", "<br />Adding circular refs to spelleffects:");
     for (var i=0;i<attaches.length;i++) {
-      DebugWrite("saveload", "<br />Attaching to " + attaches[0].getName() + "... ");
+      DebugWrite("saveload", "<br />Attaching to " + attaches[i].getName() + "... ");
       var thespells = attaches[i].getSpellEffects();
       if (thespells.length) {
         for (var j=0;j<thespells.length;j++) {

@@ -1,7 +1,7 @@
 
 "use strict";
 
-var debug = 0;
+var debug = 1;
 var debugscreen;
 var dbs;
 var debugflags = {};
