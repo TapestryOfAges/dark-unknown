@@ -86,7 +86,9 @@ $(document).ready(function() {
   if (firsttime) {
     $(document).keydown(function(e) {
       var code = (e.keyCode ? e.keyCode : e.which);
-      e.preventDefault();
+      if (gamestate.getMode() !== "import") {
+        e.preventDefault();
+      }
     
       if (gamestate.getMode() !== "null") {
         DoAction(code, e);
@@ -449,8 +451,25 @@ var PCEvent = new GameEvent(PC);
 }
 
 function ImportSave() {
+  gamestate.setMode("import");
   var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
   $('#importbubble').jqm({onShow:myOpen});
   $('#importbubble').jqmShow();
 
+}
+
+function SubmitImport(val) {
+  if (val) {
+    var serialized = document.forms[0].importjson.value;
+    try {
+      var savedata = JSON.parse(serialized); 
+      localStorage.manualsave = serialized;
+    }
+    catch(err) {
+      alert("Save is invalid.");
+    }
+    finally {
+      gamestate.setMode("on");  
+    }
+  }
 }

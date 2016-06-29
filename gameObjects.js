@@ -180,14 +180,16 @@ ProtoObject.prototype.copy = function(type) {
       });
     } else if (idx === "spellEffects") {
       var spells = val.getAll();
-      copydata[idx] = [];
-      $.each(spells, function(spellidx, spellval) {
-        DebugWrite("saveload", idx + ": " + spellidx + " being <span style='color:lightseagreen'>copied in a subthread</span>... <br /><nbsp /><nbsp />");
-        var spellcopy = spellval.copy();
-        copydata[idx].push(spellcopy[0].serial);
-        copies.push(spellcopy[0]);  // probably should make this each as future proofing
-        DebugWrite("saveload", "Copy made, " + spellidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
-      });
+      if (spells[0]) {
+        copydata[idx] = [];
+        $.each(spells, function(spellidx, spellval) {
+          DebugWrite("saveload", idx + ": " + spellidx + " being <span style='color:lightseagreen'>copied in a subthread</span>... <br /><nbsp /><nbsp />");
+          var spellcopy = spellval.copy();
+          copydata[idx].push(spellcopy[0].serial);
+          copies.push(spellcopy[0]);  // probably should make this each as future proofing
+          DebugWrite("saveload", "Copy made, " + spellidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
+        });
+      }
     } else if (idx === "spellsknown") {
       if (objectCompare(val, base_version[idx])) {
 //        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }

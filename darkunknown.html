@@ -50,9 +50,11 @@
     <div id="load" style="position:absolute;left:200px;top:200px"><img src="graphics/title/load.gif" /></div>  
   </div>
   <div style="display:none"><img src='graphics/title/ToA_banner-b.gif' /></div>
-  <div class="ibubble" id="importbubble">
-    <p>Paste save game here:</p>
-    <form name="import"><textarea name="importjson" rows="10" cols="40"></textarea></form>
-  </div>
+  <center><div class="bubble" id="importbubble" style="text-align:center">
+    <p style="font-weight:bold">Paste save game here:</p>
+    <form name="import"><textarea name="importjson" rows="40" cols="80"></textarea><br />
+      <input type="submit" value="Import Save" onClick="SubmitImport(1);" class="jqmClose" /><input type="submit" value="Cancel" onClick="SubmitImport(0);" class="jqmClose" />
+    </form>
+  </div></center>
 </body>
 </html>
