@@ -180,7 +180,7 @@ GameStateData.prototype.saveGame = function(flag) {
 	//this is where we would add a prompt for save game name if we want to allow multiple saves
 	
 	if (flag === 'external') {
-	  savescreen = window.open('','savescreen');
+	  var savescreen = window.open('','savescreen');
 	  savescreen.document.write(serialized);
 /*	} else if (flag === "charsave") {
 	  localStorage.charsave = compressed;
@@ -263,6 +263,7 @@ GameStateData.prototype.loadGame = function(idx) {
 
   if (localStorage.manualsave) {
     serialized = localStorage.manualsave;
+    delete localStorage.manualsave;
   } else {
 //    compressed = localStorage["save"+idx];
 //    serialized = LZString.decompressFromUTF16(compressed);
@@ -285,7 +286,7 @@ GameStateData.prototype.loadGame = function(idx) {
   
   nowplaying = {};  
   ambient = {};  
-
+  var attaches = [];
   
   $.each(savedata.events, function(idx,val) {
     var tmplistener = new DUEar();
@@ -377,6 +378,7 @@ GameStateData.prototype.loadGame = function(idx) {
       $.each(inv, function(invidx, invval) {
         // don't use addSpellEffect, as that activates it and will double the effect
         val.spellEffects.addBottom(universe[invval]);
+        attaches.push(val);
       });
     } else {
       val.spellEffects = new Collection();
@@ -402,6 +404,20 @@ GameStateData.prototype.loadGame = function(idx) {
     }
     
   });
+
+  if (attaches[0]) {
+    DebugWrite("saveload", "<br />Adding circular refs to spelleffects:");
+    for (var i=0;i<attaches.length;i++) {
+      DebugWrite("saveload", "<br />Attaching to " + attaches[0].getName() + "... ");
+      var thespells = attaches[i].getSpellEffects();
+      if (thespells.length) {
+        for (var j=0;j<thespells.length;j++) {
+          DebugWrite("saveload", thespells[j].getName() + "... ");
+          thespells[j].setAttachedTo(attaches[i]);
+        }
+      }
+    }
+  }
 
   maxserial = topserial;
   if (DU.gameflags.getFlag("music")) {  
