@@ -335,7 +335,8 @@ GameStateData.prototype.loadGame = function(idx) {
         val.spawned.addTop(universe[spawnval]);
       });
     } 
-    if (val.inventory) {
+    if (val.inventory && !val.inventory.container) {
+      // if it has inventory.container, it's a Collection, which means it wasn't overwritten from the loaded game and so is empty
       DebugWrite("saveload", val.name + " has an inventory, processing...");
       var inv = val.inventory;
       val.inventory = new Collection();
@@ -345,13 +346,13 @@ GameStateData.prototype.loadGame = function(idx) {
       });
       DebugWrite("saveload", "<br />");
     } else {
-      val.inventory = new Collection();
+//      val.inventory = new Collection();
     }
     if (val.spawnedBy) {
       DebugWrite("saveload", val.name + " was spawned by something, processing...");
       val.spawnedBy = universe[val.spawnedBy];
     }
-    if (val.equipment) {
+    if (val.equipment && !val.equipment.container) {
       DebugWrite("saveload", val.name + " has equipment, processing...");
       var inv = val.equipment;
       val.equipment = {};
@@ -372,7 +373,7 @@ GameStateData.prototype.loadGame = function(idx) {
       });
       DebugWrite("saveload", "<br />");
     } 
-    if (val.spellEffects) {
+    if (val.spellEffects && !val.spellEffects.container) {
       DebugWrite("saveload", val.name + " has spell effects, processing...");
       var inv = val.spellEffects;
       val.spellEffects = new Collection();
