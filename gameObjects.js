@@ -4521,6 +4521,19 @@ function WeaponSignTile() {
 }
 WeaponSignTile.prototype = new FeatureObject();
 
+function BowyerSignTile() {
+  this.name = "BowyerSign";
+  this.graphic = "features.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-96";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bowyer";
+  this.peerview = "#541909";
+}
+BowyerSignTile.prototype = new FeatureObject();
+
 function AlchemistSignTile() {
   this.name = "AlchemistSign";
   this.graphic = "features.gif";
