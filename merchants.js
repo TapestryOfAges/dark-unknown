@@ -52,8 +52,8 @@ function SetMerchants() {
   bill.low_armor = {};
   bill.low_armor.stock = [ { item: "ClothArmor", quantity: 99, price: 100, desc: "Cloth Armor" },
                        { item: "LeatherArmor", quantity: 99, price: 400, desc: "Leather Armor" },
-                       { item: "ChainArmor", quantity: 99, price: 2000, desc: "Chain" },
-                       { item: "PlateArmor", quantity: 0, price: 4000, desc: "Plate" },
+                       { item: "ChainArmor", quantity: 99, price: 2000, desc: "Chain Mail" },
+                       { item: "PlateArmor", quantity: 0, price: 4000, desc: "Plate Armor" },
                   ];
   bill.low_armor.type = "stuff";
   
@@ -105,23 +105,24 @@ function DisplayWares(who) {
       if (qty) {
         var displayname = val.item;
         if (val.desc) { displayname = val.desc; }
-        if ((qty > 0) && (qty < 99)) {
+        if ((qty > 0) && (qty <= 99)) {
           displayname = displayname + " (" + qty + ")";
         }
-        var spaces = 23 - displayname.length;
+//        var spaces = 23 - displayname.length;
         var addme = String.fromCharCode(code+idx) + ") " + displayname;
-        for (var i=0; i<spaces; i++) {
-          addme = addme + "&nbsp;";
-        }
+//        for (var i=0; i<spaces; i++) {
+//          addme = addme + "-";
+//        }
         var price = val.price + " gp";
-        spaces = 8-price.length;
-        if (spaces < 8) {
-          for (var i = 0; i<spaces; i++) {
-            price = "&nbsp;" + price;
-          }
-        }
-        addme = addme + price;
-        maintext.addText(addme);
+//        spaces = 8-price.length;
+//        if (spaces < 8) {
+//          for (var i = 0; i<spaces; i++) {
+//            price = "=" + price;
+//          }
+//        }
+        var addedtext = addme + "<span style='float:right'>" + price + "</span>";
+//        addme = addme + price;
+        maintext.addText(addedtext);
       }
     });
     
