@@ -2,15 +2,15 @@
 
 function SetMerchants() {
   var bill = {};
-  bill.low_wpns = {};
-  bill.low_wpns.stock = [ { item: "Dagger", quantity: 99, price: 5 },
-                    { item: "Shortsword", quantity: 99, price: 45 },
-                    { item: "Mace", quantity: 99, price: 200 },
-                    { item: "Axe", quantity: 99, price: 500},
+  bill.aaron = {};
+  bill.aaron.stock = [ { item: "Dagger", quantity: 99, price: 5, sale: "Thank you. May it serve you well." },
+                    { item: "Shortsword", quantity: 99, price: 50, sale: "Thank you. May it serve you well." },
+                    { item: "Mace", quantity: 99, price: 200, sale: "Thank you. May it serve you well." },
+                    { item: "Axe", quantity: 99, price: 500, sale: "Thank you. May it serve you well."},
                     { item: "Longsword", quantity: 0, price: 1700}, 
                     { item: "Halberd", quantity: 0, price: 3500},
                     { item: "MagicSword", quantity: 0, price: 6000, desc: "Magic Sword"} ];
-  bill.low_wpns.type = "stuff";
+  bill.aaron.type = "stuff";
   
   bill.all_wpns = {};
   bill.all_wpns.stock = [ { item: "Dagger", quantity: 99, price: 10 },
@@ -138,23 +138,24 @@ function DisplayWares(who) {
 //        anyspells.push(idx);
         yesspells = 1;
         var displayname = val.desc + " (" + val.lvl + ")";
-        var spaces = 23 - displayname.length;
+//        var spaces = 23 - displayname.length;
         var addme = String.fromCharCode(code+idx) + ") " + displayname;
-        for (var i=0; i<spaces; i++) {
-          addme = addme + "&nbsp;";
-        }
+//        for (var i=0; i<spaces; i++) {
+//          addme = addme + "&nbsp;";
+//        }
         var price = val.price + " gp";
-        spaces = 8-price.length;
-        if (spaces < 8) {
-          for (var i = 0; i<spaces; i++) {
-            price = "&nbsp;" + price;
-          }
-        }
-        addme = addme + price;
+//        spaces = 8-price.length;
+//        if (spaces < 8) {
+//          for (var i = 0; i<spaces; i++) {
+//            price = "&nbsp;" + price;
+//          }
+//        }
+//        addme = addme + price;
+        var addedtext = addme + "<span style='float:right'>" + price + "</span>";
         if (PC.knowsSpell(val.lvl, val.sid)) {
-          addme = "<span style='color:aaa'>" + addme + "</span>";
+          addedtext = "<span style='color:aaa'>" + addedtext + "</span>";
         }
-        maintext.addText(addme);
+        maintext.addText(addedtext);
         
 //      }
     });
@@ -182,20 +183,21 @@ function GetSellBack(seller, merchant) {
       if (qty) {
         var displayname = ininv.desc;
         displayname = displayname + " (" + qty + ")";
-        var spaces = 23 - displayname.length;
+//        var spaces = 23 - displayname.length;
         var addme = String.fromCharCode(code+idx) + ") " + displayname;
-        for (var i=0; i<spaces; i++) {
-          addme = addme + "&nbsp;";
-        }
-        var price = val.price/10 + " gp";
-        spaces = 8-price.length;
-        if (spaces < 8) {
-          for (var i = 0; i<spaces; i++) {
-            price = "&nbsp;" + price;
-          }
-        }
-        addme = addme + price;
-        selllist.push(addme);
+//        for (var i=0; i<spaces; i++) {
+//          addme = addme + "&nbsp;";
+//        }
+        var price = Math.ceil(val.price/10) + " gp";
+//        spaces = 8-price.length;
+//        if (spaces < 8) {
+//          for (var i = 0; i<spaces; i++) {
+//            price = "&nbsp;" + price;
+//          }
+//        }
+//        addme = addme + price;
+        var addedtext = addme + "<span style='float:right'>" + price + "</span>";
+        selllist.push(addedtext);
       }
     }
   });
