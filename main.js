@@ -672,11 +672,11 @@ function DoAction(code, ctrl) {
       var idx = code-65;
       if (merinv.stock[idx] && ((merinv.stock[idx].quantity) || (merinv.type === "spells"))) {  
         // that letter goes to something, and it is either spells or has a quantity
-        if ((merinv.type === "spells") && (!PC.knowsSpell(1,GetSpellID(5)))) {  
+        if ((merinv.type === "spells") && (!PC.knowsSpell(1,GetSpellID(6)))) {  
           // Doesn't have a spellbook, which starts with Light in it
           maintext.addText(" ");
           maintext.addText("You need a spellbook to learn spells.");
-        } else if (merinv.stock[idx].price < PC.getGold()) { // can afford it!
+        } else if (merinv.stock[idx].price <= PC.getGold()) { // can afford it!
           if (merinv.stock[idx].quantity) {  // item
             var newitem = localFactory.createTile(merinv.stock[idx].item);
             if (merinv.stock[idx].quantity != 99) { marinv.stock[idx].quantity = marinv.stock[idx].quantity -1; }
@@ -684,6 +684,7 @@ function DoAction(code, ctrl) {
             PC.addToInventory(newitem,1);
             maintext.addText(" ");
             maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + ": Purchased. Anything else?");
+            DrawCharFrame();
           } else { // spell 
             if (PC.knowsSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid)) {
               maintext.addText(" ");
