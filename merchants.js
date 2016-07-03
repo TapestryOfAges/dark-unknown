@@ -3,59 +3,61 @@
 function SetMerchants() {
   var bill = {};
   bill.aaron = {};
-  bill.aaron.stock = [ { item: "Dagger", quantity: 99, price: 5, sale: "Thank you. May it serve you well." },
-                    { item: "Shortsword", quantity: 99, price: 50, sale: "Thank you. May it serve you well." },
-                    { item: "Mace", quantity: 99, price: 200, sale: "Thank you. May it serve you well." },
-                    { item: "Axe", quantity: 99, price: 500, sale: "Thank you. May it serve you well."},
+  bill.aaron.stock = [ { item: "Dagger", quantity: 10, price: 5, sale: '"Thank you. May it serve you well."' },
+                    { item: "Shortsword", quantity: 10, price: 50, sale: '"Thank you. May it serve you well."' },
+                    { item: "Mace", quantity: 7, price: 200, sale: '"Thank you. May it serve you well."' },
+                    { item: "Axe", quantity: 4, price: 500, sale: '"Thank you. May it serve you well."'},
                     { item: "Longsword", quantity: 0, price: 1700}, 
                     { item: "Halberd", quantity: 0, price: 3500},
                     { item: "MagicSword", quantity: 0, price: 6000, desc: "Magic Sword"} ];
   bill.aaron.type = "stuff";
   
-  bill.all_wpns = {};
-  bill.all_wpns.stock = [ { item: "Dagger", quantity: 99, price: 10 },
-                    { item: "Shortsword", quantity: 99, price: 60 },
-                    { item: "Mace", quantity: 99, price: 240 },
-                    { item: "Axe", quantity: 99, price: 560},
-                    { item: "Longsword", quantity: 99, price: 2000}, 
-                    { item: "Halberd", quantity: 99, price: 4200},
+  bill.gretchen = {};
+  bill.gretchen.stock = [ { item: "Dagger", quantity: 5, price: 10, sale: '"Remember, keep this between us."' },
+                    { item: "Shortsword", quantity: 5, price: 75, sale: '"Remember, keep this between us."' },
+                    { item: "Mace", quantity: 5, price: 260, sale: '"Remember, keep this between us."' },
+                    { item: "Axe", quantity: 3, price: 650, sale: '"Remember, keep this between us."'},
+                    { item: "Longsword", quantity: 2, price: 2200, sale: '"Remember, keep this between us."'}, 
+                    { item: "Halberd", quantity: 1, price: 4200, sale: '"Remember, keep this between us."'},
                     { item: "MagicSword", quantity: 0, price: 6600, desc: "Magic Sword"}, 
                   ];
-  bill.all_wpns.type = "stuff";
+  bill.gretchen.type = "stuff";
   
-  bill.poverty_wpns = {};
-  bill.poverty_wpns.stock = [ { item: "Dagger", quantity: 99, price: 5 },
-                           { item: "Shortsword", quantity: 99, price: 30 },
-                           { item: "Mace", quantity: 99, price: 160 },
-                           { item: "Sling", quantity: 99, price: 35 },
-                   ];       
-  bill.poverty_wpns.type = "stuff";
-             
-  bill.low_missile = {};
-  bill.low_missile.stock = [ { item: "Sling", quantity: 99, price: 50 }, 
-                       { item: "Bow", quantity: 99, price: 500 },
-                       { item: "Crossbow", quantity: 0, price: 1000 },
+  bill.ariel = {};
+  bill.ariel.stock = [ { item: "Dagger", quantity: 10, price: 7, sale: '"Remember, keep this between us."' },
+                    { item: "Shortsword", quantity: 10, price: 60, sale: '"Remember, keep this between us."' },
+                    { item: "Mace", quantity: 10, price: 220, sale: '"Remember, keep this between us."' },
+                    { item: "Axe", quantity: 10, price: 575, sale: '"Remember, keep this between us."'},
+                    { item: "Longsword", quantity: 10, price: 1800, sale: '"Remember, keep this between us."'}, 
+                    { item: "Halberd", quantity: 10, price: 3500, sale: '"Remember, keep this between us."'},
+                    { item: "MagicSword", quantity: 0, price: 6600, desc: "Magic Sword"}, 
+                  ];
+  bill.ariel.type = "stuff";
+               
+  bill.lisa = {};
+  bill.lisa.stock = [ { item: "Sling", quantity: 99, price: 25, sale: '"Thank you, come again."' }, 
+                       { item: "Bow", quantity: 15, price: 500, sale: '"Thank you, come again."' },
+                       { item: "Crossbow", quantity: 10, price: 3000, sale: '"Thank you, come again."' },
                        { item: "Wand", quantity: 0, price: 5000 },
                        { item: "MagicAxe", quantity: 0, price: 7500, desc: "Magic Axe" },
                   ];
-  bill.low_missile.type = "stuff";
-  
-  bill.all_missile = {};
-  bill.all_missile.stock = [ { item: "Sling", quantity: 99, price: 60 }, 
-                       { item: "Bow", quantity: 99, price: 600 },
-                       { item: "Crossbow", quantity: 99, price: 2000 },
-                       { item: "Wand", quantity: 0, price: 5000 },
-                       { item: "MagicAxe", quantity: 0, price: 7500, desc: "Magic Axe" },
-                  ];
-  bill.all_missile.type = "stuff";
-  
-  bill.low_armor = {};
-  bill.low_armor.stock = [ { item: "ClothArmor", quantity: 99, price: 100, desc: "Cloth Armor" },
-                       { item: "LeatherArmor", quantity: 99, price: 400, desc: "Leather Armor" },
-                       { item: "ChainArmor", quantity: 99, price: 2000, desc: "Chain Mail" },
+  bill.lisa.type = "stuff";
+    
+  bill.erin = {};
+  bill.erin.stock = [ { item: "ClothArmor", quantity: 10, price: 100, desc: "Cloth Armor", sale: '"May it serve you well."' },
+                       { item: "LeatherArmor", quantity: 10, price: 400, desc: "Leather Armor", sale: '"May it serve you well."' },
+                       { item: "ChainArmor", quantity: 5, price: 2000, desc: "Chain Mail", sale: '"May it serve you well."' },
                        { item: "PlateArmor", quantity: 0, price: 4000, desc: "Plate Armor" },
                   ];
-  bill.low_armor.type = "stuff";
+  bill.erin.type = "stuff";
+
+  bill.deirdre = {};
+  bill.deirdre.stock = [ { item: "ClothArmor", quantity: 25, price: 100, desc: "Cloth Armor", sale: '"It will protect you in your adventures!."' },
+                       { item: "LeatherArmor", quantity: 25, price: 400, desc: "Leather Armor", sale: '"It will protect you in your adventures!."' },
+                       { item: "ChainArmor", quantity: 20, price: 2000, desc: "Chain Mail", sale: '"It will protect you in your adventures!."' },
+                       { item: "PlateArmor", quantity: 10, price: 5000, desc: "Plate Armor", sale: '"It will protect you in your adventures!."' },
+                  ];
+  bill.deirdre.type = "stuff";
   
   bill.low_alchemist = {};
   bill.low_alchemist.stock = [ { item: "RedPotion", quantity: 10, price: 80, desc: "Red Potion"},
