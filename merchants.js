@@ -24,12 +24,12 @@ function SetMerchants() {
   bill.gretchen.type = "stuff";
   
   bill.ariel = {};
-  bill.ariel.stock = [ { item: "Dagger", quantity: 10, price: 7, sale: '"Remember, keep this between us."' },
-                    { item: "Shortsword", quantity: 10, price: 60, sale: '"Remember, keep this between us."' },
-                    { item: "Mace", quantity: 10, price: 220, sale: '"Remember, keep this between us."' },
-                    { item: "Axe", quantity: 10, price: 575, sale: '"Remember, keep this between us."'},
-                    { item: "Longsword", quantity: 10, price: 1800, sale: '"Remember, keep this between us."'}, 
-                    { item: "Halberd", quantity: 10, price: 3500, sale: '"Remember, keep this between us."'},
+  bill.ariel.stock = [ { item: "Dagger", quantity: 10, price: 7, sale: '"May your blade be sharp."' },
+                    { item: "Shortsword", quantity: 10, price: 60, sale: '"May your blade be sharp."' },
+                    { item: "Mace", quantity: 10, price: 220, sale: '"Heavy enough to crush bone!"' },
+                    { item: "Axe", quantity: 10, price: 575, sale: '"For when you absolutely need to chop something in half."'},
+                    { item: "Longsword", quantity: 10, price: 1800, sale: '"May your blade be sharp."'}, 
+                    { item: "Halberd", quantity: 10, price: 3500, sale: '"Enjoy your glaive. Halberd? I can never keep track, to be honest."'},
                     { item: "MagicSword", quantity: 0, price: 6600, desc: "Magic Sword"}, 
                   ];
   bill.ariel.type = "stuff";
@@ -67,14 +67,14 @@ function SetMerchants() {
   bill.brooke.type = "stuff";
 
   bill.alexis = {};
-  bill.alexis.stock = [ { item: "DistractSpell", desc: "Distract", lvl: 1, sid: GetSpellID(4), price: 100},
-                  { item: "FlameBladeSpell", desc: "Flame Blade", lvl:1, sid: GetSpellID(5), price: 100},
-                  { item: "MendSpell", desc: "Mend", lvl: 1, sid: GetSpellID(7), price: 100},
-                  { item: "LesserHealSpell", desc: "Lesser Heal", lvl: 2, sid: GetSpellID(3), price: 200},
-                  { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: 2, sid: GetSpellID(4), price: 200},
-                  { item: "ProtectSpell", desc: "Protect", lvl: 2, sid: GetSpellID(6), price: 200},
-                  { item: "FireArmorSpell", desc: "Fire Armor", lvl: 3, sid: GetSpellID(3), price: 400},
-                  { item: "WallofFlameSpell", desc: "Wall of Flame", lvl: 3, sid: GetSpellID(8), price: 400},
+  bill.alexis.stock = [ { item: "DistractSpell", desc: "Distract", lvl: 1, sid: GetSpellID(4), price: 100, sale: '"A simple glamour, but a useful one."'},
+                  { item: "FlameBladeSpell", desc: "Flame Blade", lvl:1, sid: GetSpellID(5), price: 100, sale: '"Comes in your choice of red or blue!"'},
+                  { item: "MendSpell", desc: "Mend", lvl: 1, sid: GetSpellID(7), price: 100, sale: '"Excellent at keeping your boots in good repair."'},
+                  { item: "LesserHealSpell", desc: "Lesser Heal", lvl: 2, sid: GetSpellID(3), price: 200, sale: '"Guaranteed to make you feel better."'},
+                  { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: 2, sid: GetSpellID(4), price: 200, sale: '"The easiest of the spells that do damage directly."'},
+                  { item: "ProtectSpell", desc: "Protect", lvl: 2, sid: GetSpellID(6), price: 200, sale: '"Because it\'s often better to just prevent the damage in the first place."'},
+                  { item: "FireArmorSpell", desc: "Fire Armor", lvl: 3, sid: GetSpellID(3), price: 400, sale: '"Alas, it only comes in red."'},
+                  { item: "WallofFlameSpell", desc: "Wall of Flame", lvl: 3, sid: GetSpellID(8), price: 400, sale: '"This? Also just red."'},
                 ];
   bill.alexis.type = "spells"; 
   
