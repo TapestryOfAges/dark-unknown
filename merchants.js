@@ -59,39 +59,48 @@ function SetMerchants() {
                   ];
   bill.deirdre.type = "stuff";
   
-  bill.low_alchemist = {};
-  bill.low_alchemist.stock = [ { item: "RedPotion", quantity: 10, price: 80, desc: "Red Potion"},
-                               { item: "YellowPotion", quantity: 25, price: 75, desc: "Yellow Potion"},
-                                ];
-  bill.low_alchemist.type = "stuff";
 
   bill.brooke = {};
-  bill.brooke.stock = [ { item: "RedPotion", quantity: 2, price: 50, desc: "Red Potion"},
-                        { item: "YellowPotion", quantity: 4, price: 35, desc: "Yellow Potion"},
+  bill.brooke.stock = [ { item: "RedPotion", quantity: 2, price: 50, desc: "Red Potion", sale: '"I added extra sugar, to make it go down easier."'},
+                        { item: "YellowPotion", quantity: 4, price: 35, desc: "Yellow Potion", sale: '"You can never have too many of these."'},
                                 ];
   bill.brooke.type = "stuff";
 
   bill.alexis = {};
-  bill.alexis.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap", lvl: 1, sid: GetSpellID(2), price: 100} ,
-                  { item: "DistractSpell", desc: "Distract", lvl: 1, sid: GetSpellID(3), price: 100},
-                  { item: "FlameBladeSpell", desc: "Flame Blade", lvl:1, sid: GetSpellID(4), price: 100},
-                  { item: "StrikeSpell", desc: "Strike", lvl: 1, sid: GetSpellID(6), price: 100},
-                  { item: "LesserHealSpell", desc: "Lesser Heal", lvl: 2, sid: GetSpellID(2), price: 200},
-                  { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: 2, sid: GetSpellID(3), price: 200},
-                  { item: "ProtectSpell", desc: "Protect", lvl: 2, sid: GetSpellID(5), price: 200},
-                  { item: "FireArmorSpell", desc: "Fire Armor", lvl: 3, sid: GetSpellID(1), price: 400},
+  bill.alexis.stock = [ { item: "DistractSpell", desc: "Distract", lvl: 1, sid: GetSpellID(4), price: 100},
+                  { item: "FlameBladeSpell", desc: "Flame Blade", lvl:1, sid: GetSpellID(5), price: 100},
+                  { item: "MendSpell", desc: "Mend", lvl: 1, sid: GetSpellID(7), price: 100},
+                  { item: "LesserHealSpell", desc: "Lesser Heal", lvl: 2, sid: GetSpellID(3), price: 200},
+                  { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: 2, sid: GetSpellID(4), price: 200},
+                  { item: "ProtectSpell", desc: "Protect", lvl: 2, sid: GetSpellID(6), price: 200},
+                  { item: "FireArmorSpell", desc: "Fire Armor", lvl: 3, sid: GetSpellID(3), price: 400},
+                  { item: "WallofFlameSpell", desc: "Wall of Flame", lvl: 3, sid: GetSpellID(8), price: 400},
                 ];
-  bill.alexis.type = "spells";
+  bill.alexis.type = "spells"; 
   
-  bill.ivan = {};
-  bill.ivan.stock = [ { item: "LesserHealSpell", desc: "Lesser Heal", lvl: 2, sid: GetSpellID(2), price: 150},
-                { item: "ProtectSpell", desc: "Protect", lvl: 2, sid: GetSpellID(5), price: 150},
-                { item: "IllusionSpell", desc: "Illusion", lvl: 2, sid: GetSpellID(1), price: 150},
-                { item: "TelekinesisSpell", desc: "Telekinesis", lvl: 3, sid: GetSpellID(5), price: 330},
-                { item: "HealSpell", desc: "Heal", lvl: 4, sid: GetSpellID(2), price: 700},
-              ];
-  bill.ivan.type = "spells";
-  
+  bill.megan = {};
+  bill.megan.stock = [ { item: "DistractSpell", desc: "Distract", lvl: 1, sid: GetSpellID(4), price: 150},
+                  { item: "FireArmorSpell", desc: "Fire Armor", lvl: 3, sid: GetSpellID(3), price: 600},
+                  { item: "IceballSpell", desc: "Iceball", lvl: 3, sid: GetSpellID(5), price: 600},
+                  { item: "TelepathySpell", desc: "Telepathy", lvl: 3, sid: GetSpellID(7), price: 600},
+                  { item: "HealSpell", desc: "Heal", lvl: 4, sid: GetSpellID(4), price: 1000},
+                  { item: "ParalyzeSpell", desc: "Paralyze", lvl: 5, sid: GetSpellID(3), price: 1300},
+                  { item: "ShockwaveSpell", desc: "Shockwave", lvl: 5, sid: GetSpellID(6), price: 1300},
+                  { item: "ShockwaveSpell", desc: "Swordstrike", lvl: 5, sid: GetSpellID(8), price: 1300},
+                ];
+  bill.megan.type = "spells"; 
+
+  bill.megan = {};
+  bill.megan.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap", lvl: 1, sid: GetSpellID(3), price: 100},
+                  { item: "VulnerabilitySpell", desc: "Vulnerability", lvl: 1, sid: GetSpellID(8), price: 100},
+                  { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: 2, sid: GetSpellID(4), price: 200},
+                  { item: "DisruptUndeadSpell", desc: "Disrupt Undead", lvl: 3, sid: GetSpellID(2), price: 400},
+                  { item: "TelekinesisSpell", desc: "Telekinesis", lvl: 3, sid: GetSpellID(6), price: 400},
+                  { item: "LifeDrainSpell", desc: "Life Drain", lvl: 4, sid: GetSpellID(5), price: 750},
+                  { item: "SmiteSpell", desc: "Smite", lvl: 4, sid: GetSpellID(6), price: 750},
+                  { item: "CrystalBarrierSpell", desc: "Crystal Barrier", lvl: 5, sid: GetSpellID(1), price: 1100},
+                ];
+  bill.megan.type = "spells"; 
   
   return bill;
 }
