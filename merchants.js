@@ -61,8 +61,8 @@ function SetMerchants() {
   
 
   bill.brooke = {};
-  bill.brooke.stock = [ { item: "RedPotion", quantity: 2, price: 50, desc: "Red Potion", sale: '"I added extra sugar, to make it go down easier."'},
-                        { item: "YellowPotion", quantity: 4, price: 35, desc: "Yellow Potion", sale: '"You can never have too many of these."'},
+  bill.brooke.stock = [ { item: "RedPotion", quantity: 2, price: 50, desc: "Red Potion", sale: '"I added extra sugar, to make it go down easier."', sellqty: 1},
+                        { item: "YellowPotion", quantity: 4, price: 35, desc: "Yellow Potion", sale: '"You can never have too many of these."', sellqty: 1},
                                 ];
   bill.brooke.type = "stuff";
 
