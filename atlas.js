@@ -781,7 +781,7 @@ GameMap.prototype.getBackground = function() {
 }
 
 GameMap.prototype.setUnderground = function(ug) {
-  if (ug) {
+  if (parseInt(ug)) {
     this.underground = 1;
   }
   return this.underground;

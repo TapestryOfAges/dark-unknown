@@ -117,7 +117,7 @@ function DisplayWares(who) {
         var displayname = val.item;
         if (val.desc) { displayname = val.desc; }
         if ((qty > 0) && (qty <= 99)) {
-          displayname = displayname + " (" + qty + ")";
+          displayname = displayname + " (qty: " + qty + ")";
         }
 //        var spaces = 23 - displayname.length;
         var addme = String.fromCharCode(code+idx) + ") " + displayname;
@@ -148,7 +148,7 @@ function DisplayWares(who) {
         }
 //        anyspells.push(idx);
         yesspells = 1;
-        var displayname = val.desc + " (" + val.lvl + ")";
+        var displayname = val.desc + " (lvl: " + val.lvl + ")";
 //        var spaces = 23 - displayname.length;
         var addme = String.fromCharCode(code+idx) + ") " + displayname;
 //        for (var i=0; i<spaces; i++) {
