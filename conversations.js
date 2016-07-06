@@ -75,6 +75,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   if (triggers.hasOwnProperty("give_gold")) {
     PC.addGold(parseInt(triggers.give_gold));
+    DrawCharFrame();
   }
   if (triggers.hasOwnProperty("give_karma")) {
     DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma") + parseInt(triggers.give_karma));
@@ -263,7 +264,7 @@ OnConvTriggers["ash_password"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["spellbook"] = function(speaker,keyword) {
-  PC.addSpell(1,GetSpellID(5)); 
+  PC.addSpell(1,GetSpellID(6)); 
   return;
 }
 

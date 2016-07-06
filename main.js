@@ -767,11 +767,14 @@ function DoAction(code, ctrl) {
       } else {
         var idx = targetCursor.buychoice;
         var newitem = localFactory.createTile(merinv.stock[idx].item);
-        if (merinv.stock[idx].quantity != 99) { marinv.stock[idx].quantity = marinv.stock[idx].quantity -1; }
+        if (merinv.stock[idx].quantity != 99) { merinv.stock[idx].quantity = merinv.stock[idx].quantity -1; }
         PC.addGold(-(merinv.stock[idx].price));
         PC.addToInventory(newitem,1);
         maintext.addText(" ");
         maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + ": Purchased. Anything else?");
+        maintext.setInputLine("Buy what: ");
+        maintext.drawTextFrame();
+
         DrawCharFrame();
         gamestate.setMode("buy");
       }
@@ -793,6 +796,8 @@ function DoAction(code, ctrl) {
         PC.addToInventory(newitem,buyqty);
         maintext.addText(" ");
         maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + " x" + buyqty + ": Purchased. Anything else?");
+        maintext.setInputLine("Buy what: ");
+        maintext.drawTextFrame();
         DrawCharFrame();
         gamestate.setMode("buy");        
       } else {
@@ -811,8 +816,11 @@ function DoAction(code, ctrl) {
       }
     } else if ((!merinv.stock[idx].sellqty && (code === 78)) || (code === 27)) {
       // saying NO (non-qty) or ESC (any)
+      maintext.addText(" ");
       PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "_nobuy");
-      DisplayWares(targetCursor.talkingto);
+      maintext.setInputLine("Buy what: ");
+      maintext.drawTextFrame();
+//      DisplayWares(targetCursor.talkingto);
       gamestate.setMode("buy");
     } else if ((code === 8) && (merinv.stock[idx].sellqty)) {
       // backspace
