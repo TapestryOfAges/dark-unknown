@@ -684,10 +684,11 @@ function DoAction(code, ctrl) {
               maintext.addText(merinv.stock[idx].presale);
             }
             if (!merinv.stock[idx].sellqty) {
-              maintext.addText("Purchase " + merinv.stock[idx].desc + "?");
+              maintext.setInputLine("Purchase " + merinv.stock[idx].desc + "?");
             } else {
-              maintext.addText("Purchase how many?");
+              maintext.setInputLine("Purchase how many?");
             }
+            maintext.drawTextFrame();
             gamestate.setMode("buy-choose");
           } else { // spell 
             if (PC.knowsSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid)) {
@@ -703,7 +704,8 @@ function DoAction(code, ctrl) {
               if (merinv.stock[idx].presale) {
                 maintext.addText(merinv.stock[idx].presale);
               }
-              maintext.addText("Purchase " + merinv.stock[idx].desc + "?");
+              maintext.setInputLine("Purchase " + merinv.stock[idx].desc + "?");
+              maintext.drawTextFrame();
               gamestate.setMode("buy-choose");
             }
 
@@ -753,7 +755,8 @@ function DoAction(code, ctrl) {
   }
   else if (gamestate.getMode() === "buy-choose") {
     var merinv = DU.merchants[targetCursor.talkingto.getMerch()];
-    if (!marinv.stock[idx].sellqty && (code === 89)) { // buy one at a time, choosing to buy (pressing Y)
+    var idx = targetCursor.buychoice;
+    if (!merinv.stock[idx].sellqty && (code === 89)) { // buy one at a time, choosing to buy (pressing Y)
       if (merinv.type === "spells") {
         PC.addSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid);
         maintext.addText(" ");
@@ -772,7 +775,7 @@ function DoAction(code, ctrl) {
         DrawCharFrame();
         gamestate.setMode("buy");
       }
-    } else if (marinv.stock[idx].sellqty && (code === 13)) {  // buy in a batch, have hit Enter
+    } else if (merinv.stock[idx].sellqty && (code === 13)) {  // buy in a batch, have hit Enter
       var idx = targetCursor.buychoice;
       var buyqty = parseInt(targetCursor.buyqty);
       delete targetCursor.buyqty; 
@@ -806,12 +809,12 @@ function DoAction(code, ctrl) {
       } else if ( targetCursor.buyqty.length <= 2) {
         targetCursor.buyqty = targetCursor.buyqty + "" + typednum;
       }
-    } else if ((!marinv.stock[idx].sellqty && (code === 78)) || (code === 27)) {
+    } else if ((!merinv.stock[idx].sellqty && (code === 78)) || (code === 27)) {
       // saying NO (non-qty) or ESC (any)
       PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "_nobuy");
-      PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "buy");
+      DisplayWares(targetCursor.talkingto);
       gamestate.setMode("buy");
-    } else if ((code === 8) && (marinv.stock[idx].sellqty)) {
+    } else if ((code === 8) && (merinv.stock[idx].sellqty)) {
       // backspace
       if (targetCursor.buyqty) {
         targetCursor.buyqty = targetCursor.buyqty.charAt(0);
