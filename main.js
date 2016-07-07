@@ -671,7 +671,7 @@ function DoAction(code, ctrl) {
       var idx = code-65;
       if (merinv.stock[idx] && ((merinv.stock[idx].quantity) || (merinv.type === "spells"))) {  
         // that letter goes to something, and it is either spells or has a quantity
-        if ((merinv.type === "spells") && (!PC.knowsSpell(1,GetSpellID(6)))) {  
+        if ((merinv.type === "spells") && (!PC.knowsSpell(SPELL_LIGHT_LEVEL,SPELL_LIGHT_ID))) {  
           // Doesn't have a spellbook, which starts with Light in it
           maintext.addText(" ");
           maintext.addText("You need a spellbook to learn spells.");
