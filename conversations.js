@@ -264,7 +264,7 @@ OnConvTriggers["ash_password"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["spellbook"] = function(speaker,keyword) {
-  PC.addSpell(1,GetSpellID(6)); 
+  PC.addSpell(SPELL_LIGHT_LEVEL,SPELL_LIGHT_ID); 
   return;
 }
 

@@ -103,130 +103,215 @@ for (var i=1;i<=8;i++) {
 
 // Create Spell Consts
 var SPELL_AWAKEN_LEVEL = 1;
-var SPELL_AWAKEN_ID = 1;
+var SPELL_AWAKEN_ID = GetSpellID(1);
 var SPELL_CURE_LEVEL = 1;
-var SPELL_CURE_ID = 2;
+var SPELL_CURE_ID = GetSpellID(2);
 var SPELL_DISARM_TRAP_LEVEL = 1;
-var SPELL_DISARM_TRAP_ID = 3;
+var SPELL_DISARM_TRAP_ID = GetSpellID(3);
 var SPELL_DISTRACT_LEVEL = 1;
-var SPELL_DISTRACT_ID = 4;
+var SPELL_DISTRACT_ID = GetSpellID(4);
 var SPELL_FLAME_BLADE_LEVEL = 1;
-var SPELL_FLAME_BLADE_ID = 5;
+var SPELL_FLAME_BLADE_ID = GetSpellID(5);
 var SPELL_LIGHT_LEVEL = 1;
-var SPELL_LIGHT_ID = 6;
+var SPELL_LIGHT_ID = GetSpellID(6);
 var SPELL_MEND_LEVEL = 1;
-var SPELL_MEND_ID = 7;
+var SPELL_MEND_ID = GetSpellID(7);
 var SPELL_VULNERABILITY_LEVEL = 1;
-var SPELL_VULNERABILITY_ID = 8;
+var SPELL_VULNERABILITY_ID = GetSpellID(8);
 
 var SPELL_ILLUSION_LEVEL = 2;
-var SPELL_ILLUSION_ID = 1;
+var SPELL_ILLUSION_ID = GetSpellID(1);
 var SPELL_IRON_FLESH_LEVEL = 2;
-var SPELL_IRON_FLESH_ID = 2;
+var SPELL_IRON_FLESH_ID = GetSpellID(2);
 var SPELL_LESSER_HEAL_LEVEL = 2;
-var SPELL_LESSER_HEAL_ID = 3;
+var SPELL_LESSER_HEAL_ID = GetSpellID(3);
 var SPELL_MAGIC_BOLT_LEVEL = 2;
-var SPELL_MAGIC_BOLT_ID = 4;
+var SPELL_MAGIC_BOLT_ID = GetSpellID(4);
 var SPELL_POISON_CLOUD_LEVEL = 2;
-var SPELL_POISON_CLOUD_ID = 5;
+var SPELL_POISON_CLOUD_ID = GetSpellID(5);
 var SPELL_PROTECTION_LEVEL = 2;
-var SPELL_PROTECTION_ID = 6;
+var SPELL_PROTECTION_ID = GetSpellID(6);
 var SPELL_UNLOCK_LEVEL = 2;
-var SPELL_UNLOCK_ID = 7;
+var SPELL_UNLOCK_ID = GetSpellID(7);
 var SPELL_WIND_CHANGE_LEVEL = 2;
-var SPELL_WIND_CHANGE_ID = 8;
+var SPELL_WIND_CHANGE_ID = GetSpellID(8);
 
 var SPELL_DISPEL_LEVEL = 3;
-var SPELL_DISPEL_ID = 1;
+var SPELL_DISPEL_ID = GetSpellID(1);
 var SPELL_DISRUPT_UNDEAD_LEVEL = 3;
-var SPELL_DISRUPT_UNDEAD_ID = 2;
+var SPELL_DISRUPT_UNDEAD_ID = GetSpellID(2);
 var SPELL_FIRE_ARMOR_LEVEL = 3;
-var SPELL_FIRE_ARMOR_ID = 3;
+var SPELL_FIRE_ARMOR_ID = GetSpellID(3);
 var SPELL_FIREBALL_LEVEL = 3;
-var SPELL_FIREBALL_ID = 4;
+var SPELL_FIREBALL_ID = GetSpellID(4);
 var SPELL_ICEBALL_LEVEL = 3;
-var SPELL_ICEBALL_ID = 5;
+var SPELL_ICEBALL_ID = GetSpellID(5);
 var SPELL_TELEKINESIS_LEVEL = 3;
-var SPELL_TELEKINESIS_ID = 6;
+var SPELL_TELEKINESIS_ID = GetSpellID(6);
 var SPELL_TELEPATHY_LEVEL = 3;
-var SPELL_TELEPATHY_ID = 7;
+var SPELL_TELEPATHY_ID = GetSpellID(7);
 var SPELL_WALL_OF_FLAME_LEVEL = 3;
-var SPELL_WALL_OF_FLAME_ID = 8;
+var SPELL_WALL_OF_FLAME_ID = GetSpellID(8);
 
-magic[1][GetSpellID(1)] = new SpellObject("Awaken", "An Zu", 1, 1);      // heal?
-magic[1][GetSpellID(2)] = new SpellObject("Cure", "An Nox", 1, 0);      // heal
-magic[1][GetSpellID(3)] = new SpellObject("Disarm Trap", "An Jux", 1, 0);   // sound effect is sfx_unlock
-magic[1][GetSpellID(4)] = new SpellObject("Distract", "An Wis Xen", 1, 0);  // debuff
-magic[1][GetSpellID(5)] = new SpellObject("Flame Blade", "Flam Bet Ylem", 1, 0);     // flames
-magic[1][GetSpellID(6)] = new SpellObject("Light", "In Lor", 1, 0);  // has sound
-magic[1][GetSpellID(7)] = new SpellObject("Mend", "In Mani Ylem", 1, 1);  // heal?
-magic[1][GetSpellID(8)] = new SpellObject("Vulnerability", "An Sanct", 1, 1);  // melee hit
+var SPELL_BLESSING_LEVEL = 4;
+var SPELL_BLESSING_ID = GetSpellID(1);
+var SPELL_BLINK_LEVEL = 4;
+var SPELL_BLINK_ID = GetSpellID(2);
+var SPELL_ETHEREAL_VISION_LEVEL = 4;
+var SPELL_ETHEREAL_VISION_ID = GetSpellID(3);
+var SPELL_HEAL_LEVEL = 4;
+var SPELL_HEAL_ID = GetSpellID(4);
+var SPELL_LIFE_DRAIN_LEVEL = 4;
+var SPELL_LIFE_DRAIN_ID = GetSpellID(5);
+var SPELL_SMITE_LEVEL = 4;
+var SPELL_SMITE_ID = GetSpellID(6);
+var SPELL_TRANSPORT_LEVEL = 4;
+var SPELL_TRANSPORT_ID = GetSpellID(7);
+var SPELL_WATER_WALK_LEVEL = 4;
+var SPELL_WATER_WALK_ID = GetSpellID(8);
 
-magic[2][GetSpellID(1)] = new SpellObject("Illusion", "Quas Xen", 2, 1);  // generic
-magic[2][GetSpellID(2)] = new SpellObject("Iron Flesh", "Sanct Ylem Mani", 2, 0);   // blessing?
-magic[2][GetSpellID(3)] = new SpellObject("Lesser Heal", "Bet Mani", 2, 0);   // heal
-magic[2][GetSpellID(4)] = new SpellObject("Magic Bolt", "Grav Por", 2, 1);   // attack spell, missile hit?
-magic[2][GetSpellID(5)] = new SpellObject("Poison Cloud", "In Nox Hur", 2, 1);  // generic
-magic[2][GetSpellID(6)] = new SpellObject("Protection", "In Sanct", 2, 0);   // blessing
-magic[2][GetSpellID(7)] = new SpellObject("Unlock", "Ex Por", 2, 0);     // sfx_unlock
-magic[2][GetSpellID(8)] = new SpellObject("Wind Change", "Rel Hur", 2, 0);     // whoosh?
+var SPELL_CRYSTAL_BARRIER_LEVEL = 5;
+var SPELL_CRYSTAL_BARRIER_ID = GetSpellID(1);
+var SPELL_MIRROR_WARD_LEVEL = 5;
+var SPELL_MIRROR_WARD_ID = GetSpellID(2);
+var SPELL_PARALYZE_LEVEL = 5;
+var SPELL_PARALYZE_ID = GetSpellID(3);
+var SPELL_PEER_LEVEL = 5;
+var SPELL_PEER_ID = GetSpellID(4);
+var SPELL_RETURN_LEVEL = 5;
+var SPELL_RETURN_ID = GetSpellID(5);
+var SPELL_SHOCKWAVE_LEVEL = 5;
+var SPELL_SHOCKWAVE_ID = GetSpellID(6);
+var SPELL_SUMMON_ALLY_LEVEL = 5;
+var SPELL_SUMMON_ALLY_ID = GetSpellID(7);
+var SPELL_SWORDSTRIKE_LEVEL = 5;
+var SPELL_SWORDSTRIKE_ID = GetSpellID(8);
 
-magic[3][GetSpellID(1)] = new SpellObject("Dispel", "An Bet Ort", 3, 0);   // heal?
-magic[3][GetSpellID(2)] = new SpellObject("Disrupt Undead", "An Xen Corp", 3, 0);   // attack spell
-magic[3][GetSpellID(3)] = new SpellObject("Fire Armor", "In Sanct Flam", 3, 0);  // flames
-magic[3][GetSpellID(4)] = new SpellObject("Fireball", "Flam Por", 3, 1);  // attack spell, explosion
-magic[3][GetSpellID(5)] = new SpellObject("Iceball", "Frio Por", 3, 1);  // attack spell, glass shatter
-magic[3][GetSpellID(6)] = new SpellObject("Telekinesis", "Ylem Por", 3, 1);   // generic
-magic[3][GetSpellID(7)] = new SpellObject("Telepathy", "Rel Wis", 3, 0);   // generic
-magic[3][GetSpellID(8)] = new SpellObject("Wall of Flame", "Kal Flam", 3, 1);    // flames
+var SPELL_EMPOWER_LEVEL = 6;
+var SPELL_EMPOWER_ID = GetSpellID(1);
+var SPELL_EXPLOSION_LEVEL = 6;
+var SPELL_EXPLOSION_ID = GetSpellID(2);
+var SPELL_JINX_LEVEL = 6;
+var SPELL_JINX_ID = GetSpellID(3);
+var SPELL_MASS_CURSE_LEVEL = 6;
+var SPELL_MASS_CURSE_ID = GetSpellID(4);
+var SPELL_NEGATE_MAGIC_LEVEL = 6;
+var SPELL_NEGATE_MAGIC_ID = GetSpellID(5);
+var SPELL_STORM_LEVEL = 6;
+var SPELL_STORM_ID = GetSpellID(6);
+var SPELL_TREMOR_LEVEL = 6;
+var SPELL_TREMOR_ID = GetSpellID(7);
+var SPELL_WEATHER_CONTROL_LEVEL = 6;
+var SPELL_WEATHER_CONTROL_ID = GetSpellID(8);
 
-magic[4][GetSpellID(1)] = new SpellObject("Blessing", "In Mani Xen", 4, 0);  // blessing
-magic[4][GetSpellID(2)] = new SpellObject("Blink", "Rel Por", 4, 0);  // blessing
-magic[4][GetSpellID(3)] = new SpellObject("Ethereal Vision", "In Wis", 4, 0);  // blessing
-magic[4][GetSpellID(4)] = new SpellObject("Heal", "In Mani", 4, 0);  // heal
-magic[4][GetSpellID(5)] = new SpellObject("Life Drain", "In Corp Mani", 4, 1);  // # M Dam  curse
-magic[4][GetSpellID(6)] = new SpellObject("Smite", "Corp Por", 4, 0);  // # M Dam on 3 random nearby foes   attack spell, thunder
-magic[4][GetSpellID(7)] = new SpellObject("Transport", "Vas Rel Por", 4, 0);    // teleport (effect generated from moongate)
-magic[4][GetSpellID(8)] = new SpellObject("Water Walk", "Uus Xen", 4, 0);   // blessing
+var SPELL_CHARM_LEVEL = 7;
+var SPELL_CHARM_ID = GetSpellID(1);
+var SPELL_ETHEREAL_TRAVEL_LEVEL = 7;
+var SPELL_ETHEREAL_TRAVEL_ID = GetSpellID(2);
+var SPELL_FEAR_LEVEL = 7;
+var SPELL_FEAR_ID = GetSpellID(3);
+var SPELL_FIRE_AND_ICE_LEVEL = 7;
+var SPELL_FIRE_AND_ICE_ID = GetSpellID(4);
+var SPELL_INVULNERABILITY_LEVEL = 7;
+var SPELL_INVULNERABILITY_ID = GetSpellID(5);
+var SPELL_METEOR_SWARM_LEVEL = 7;
+var SPELL_METEOR_SWARM_ID = GetSpellID(6);
+var SPELL_MIND_BLAST_LEVEL = 7;
+var SPELL_MIND_BLAST_ID = GetSpellID(7);
+var SPELL_PERMANENCE_LEVEL = 7;
+var SPELL_PERMANENCE_ID = GetSpellID(8);
+
+var SPELL_ARMAGEDDON_LEVEL = 8;
+var SPELL_ARMAGEDDON_ID = GetSpellID(1);
+var SPELL_ARROW_OF_GLASS_LEVEL = 8;
+var SPELL_ARROW_OF_GLASS_ID = GetSpellID(2);
+var SPELL_BUILD_GATE_LEVEL = 8;
+var SPELL_BUILD_GATE_ID = GetSpellID(3);
+var SPELL_CONFLAGRATION_LEVEL = 8;
+var SPELL_CONFLAGRATION_ID = GetSpellID(4);
+var SPELL_CONJURE_DAEMON_LEVEL = 8;
+var SPELL_CONJURE_DAEMON_ID = GetSpellID(5);
+var SPELL_QUICKNESS_LEVEL = 8;
+var SPELL_QUICKNESS_ID = GetSpellID(6);
+var SPELL_REINCARNATE_LEVEL = 8;
+var SPELL_REINCARNATE_ID = GetSpellID(7);
+var SPELL_TIME_STOP_LEVEL = 8;
+var SPELL_TIME_STOP_ID = GetSpellID(8);
+
+magic[SPELL_AWAKEN_LEVEL][SPELL_AWAKEN_ID] = new SpellObject("Awaken", "An Zu", 1, 1);      // heal?
+magic[SPELL_CURE_LEVEL][SPELL_CURE_ID] = new SpellObject("Cure", "An Nox", 1, 0);      // heal
+magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID] = new SpellObject("Disarm Trap", "An Jux", 1, 0);   // sound effect is sfx_unlock
+magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID] = new SpellObject("Distract", "An Wis Xen", 1, 0);  // debuff
+magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID] = new SpellObject("Flame Blade", "Flam Bet Ylem", 1, 0);     // flames
+magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID] = new SpellObject("Light", "In Lor", 1, 0);  // has sound
+magic[SPELL_MEND_LEVEL][SPELL_MEND_ID] = new SpellObject("Mend", "In Mani Ylem", 1, 1);  // heal?
+magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID] = new SpellObject("Vulnerability", "An Sanct", 1, 1);  // melee hit
+
+magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID] = new SpellObject("Illusion", "Quas Xen", 2, 1);  // generic
+magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID] = new SpellObject("Iron Flesh", "Sanct Ylem Mani", 2, 0);   // blessing?
+magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID] = new SpellObject("Lesser Heal", "Bet Mani", 2, 0);   // heal
+magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID] = new SpellObject("Magic Bolt", "Grav Por", 2, 1);   // attack spell, missile hit?
+magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID] = new SpellObject("Poison Cloud", "In Nox Hur", 2, 1);  // generic
+magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID] = new SpellObject("Protection", "In Sanct", 2, 0);   // blessing
+magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID] = new SpellObject("Unlock", "Ex Por", 2, 0);     // sfx_unlock
+magic[SPELL_WIND_CHANGE_LEVEL][SPELL_WIND_CHANGE_ID] = new SpellObject("Wind Change", "Rel Hur", 2, 0);     // whoosh?
+
+magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID] = new SpellObject("Dispel", "An Bet Ort", 3, 0);   // heal?
+magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID] = new SpellObject("Disrupt Undead", "An Xen Corp", 3, 0);   // attack spell
+magic[SPELL_FIRE_ARMOR_LEVEL][SPELL_FIRE_ARMOR_ID] = new SpellObject("Fire Armor", "In Sanct Flam", 3, 0);  // flames
+magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID] = new SpellObject("Fireball", "Flam Por", 3, 1);  // attack spell, explosion
+magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID] = new SpellObject("Iceball", "Frio Por", 3, 1);  // attack spell, glass shatter
+magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID] = new SpellObject("Telekinesis", "Ylem Por", 3, 1);   // generic
+magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID] = new SpellObject("Telepathy", "Rel Wis", 3, 0);   // generic
+magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID] = new SpellObject("Wall of Flame", "Kal Flam", 3, 1);    // flames
+
+magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID] = new SpellObject("Blessing", "In Mani Xen", 4, 0);  // blessing
+magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID] = new SpellObject("Blink", "Rel Por", 4, 0);  // blessing
+magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID] = new SpellObject("Ethereal Vision", "In Wis", 4, 0);  // blessing
+magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID] = new SpellObject("Heal", "In Mani", 4, 0);  // heal
+magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID] = new SpellObject("Life Drain", "In Corp Mani", 4, 1);  // # M Dam  curse
+magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID] = new SpellObject("Smite", "Corp Por", 4, 0);  // # M Dam on 3 random nearby foes   attack spell, thunder
+magic[SPELL_TRANSPORT_LEVEL][SPELL_TRANSPORT_ID] = new SpellObject("Transport", "Vas Rel Por", 4, 0);    // teleport (effect generated from moongate)
+magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID] = new SpellObject("Water Walk", "Uus Xen", 4, 0);   // blessing
  
-magic[5][GetSpellID(1)] = new SpellObject("Crystal Barrier", "In Ylem Sanct", 5, 1);  // generic?
-magic[5][GetSpellID(2)] = new SpellObject("Mirror Ward", "Ort Sanct", 5, 0);  // blessing
-magic[5][GetSpellID(3)] = new SpellObject("Paralyze", "An Ex Por", 5, 1);    // curse
-magic[5][GetSpellID(4)] = new SpellObject("Peer", "Vas Wis", 5, 0);    // generic?
-magic[5][GetSpellID(5)] = new SpellObject("Return", "Kal Ort Por", 5, 0);    // none (moongate)
-magic[5][GetSpellID(6)] = new SpellObject("Shockwave", "Vas Grav Por Ylem", 5, 0);   // # M Dam in ring around caster, pushes back  // thunder
-magic[5][GetSpellID(7)] = new SpellObject("Summon Ally", "Kal Xen", 5, 1);   // generic
-magic[5][GetSpellID(8)] = new SpellObject("Swordstrike", "Vas Jux Ylem", 5, 1);  // attack spell, melee hit  # H Dam to single, L to surrounding foes  
+magic[SPELL_CRYSTAL_BARRIER_LEVEL][SPELL_CRYSTAL_BARRIER_ID] = new SpellObject("Crystal Barrier", "In Ylem Sanct", 5, 1);  // generic?
+magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID] = new SpellObject("Mirror Ward", "Ort Sanct", 5, 0);  // blessing
+magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID] = new SpellObject("Paralyze", "An Ex Por", 5, 1);    // curse
+magic[SPELL_PEER_LEVEL][SPELL_PEER_ID] = new SpellObject("Peer", "Vas Wis", 5, 0);    // generic?
+magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID] = new SpellObject("Return", "Kal Ort Por", 5, 0);    // none (moongate)
+magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID] = new SpellObject("Shockwave", "Vas Grav Por Ylem", 5, 0);   // # M Dam in ring around caster, pushes back  // thunder
+magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID] = new SpellObject("Summon Ally", "Kal Xen", 5, 1);   // generic
+magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID] = new SpellObject("Swordstrike", "Vas Jux Ylem", 5, 1);  // attack spell, melee hit  # H Dam to single, L to surrounding foes  
 
-magic[6][GetSpellID(1)] = new SpellObject("Empower", "In Ort Ylem", 6, 0);  // bless
-magic[6][GetSpellID(2)] = new SpellObject("Explosion", "Vas Flam Por", 6, 1);  // explosion
-magic[6][GetSpellID(3)] = new SpellObject("Jinx", "Vas Quas", 6, 0);  // curse
-magic[6][GetSpellID(4)] = new SpellObject("Mass Curse", "Vas An Sanct", 6, 0);  // curse
-magic[6][GetSpellID(5)] = new SpellObject("Negate Magic", "An Ort", 6, 0);  // curse
-magic[6][GetSpellID(6)] = new SpellObject("Storm", "In Grav Hur", 6, 0);  // lightning zap
-magic[6][GetSpellID(7)] = new SpellObject("Tremor", "In Rel Ylem", 6, 0);  // ??
-magic[6][GetSpellID(8)] = new SpellObject("Weather Control", "In Vas Rel Hur", 6, 0);  // whoosh?
+magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID] = new SpellObject("Empower", "In Ort Ylem", 6, 0);  // bless
+magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID] = new SpellObject("Explosion", "Vas Flam Por", 6, 1);  // explosion
+magic[SPELL_JINX_LEVEL][SPELL_JINX_ID] = new SpellObject("Jinx", "Vas Quas", 6, 0);  // curse
+magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID] = new SpellObject("Mass Curse", "Vas An Sanct", 6, 0);  // curse
+magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID] = new SpellObject("Negate Magic", "An Ort", 6, 0);  // curse
+magic[SPELL_STORM_LEVEL][SPELL_STORM_ID] = new SpellObject("Storm", "In Grav Hur", 6, 0);  // lightning zap
+magic[SPELL_TREMOR_LEVEL][SPELL_TREMOR_ID] = new SpellObject("Tremor", "In Rel Ylem", 6, 0);  // ??
+magic[SPELL_WEATHER_CONTROL_LEVEL][SPELL_WEATHER_CONTROL_ID] = new SpellObject("Weather Control", "In Vas Rel Hur", 6, 0);  // whoosh?
 
-magic[7][GetSpellID(1)] = new SpellObject("Charm", "An Xen Ex", 7, 1);   // curse
-magic[7][GetSpellID(2)] = new SpellObject("Ethereal Travel", "Rel Ex Ylem", 7, 0);   // ?? none (moongate?) (red)
-magic[7][GetSpellID(3)] = new SpellObject("Fear", "Quas Wis", 7, 0);   // curse
-magic[7][GetSpellID(4)] = new SpellObject("Fire and Ice", "Vas Frio Flam Ex Por", 7, 1);  // explosion, glass shatter
-magic[7][GetSpellID(5)] = new SpellObject("Invulnerability", "In Vas Sanct", 7, 0);   // bless
-magic[7][GetSpellID(6)] = new SpellObject("Meteor Swarm", "Vas Flam Ylem", 7, 0);  // explosion
-magic[7][GetSpellID(7)] = new SpellObject("Mind Blast", "An Wis Ort", 7, 1);  // ??
-magic[7][GetSpellID(8)] = new SpellObject("Permanence", "In Vas Ort Tym", 7, 0);  // bless 
+magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID] = new SpellObject("Charm", "An Xen Ex", 7, 1);   // curse
+magic[SPELL_ETHEREAL_TRAVEL_LEVEL][SPELL_ETHEREAL_TRAVEL_ID] = new SpellObject("Ethereal Travel", "Rel Ex Ylem", 7, 0);   // ?? none (moongate?) (red)
+magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID] = new SpellObject("Fear", "Quas Wis", 7, 0);   // curse
+magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID] = new SpellObject("Fire and Ice", "Vas Frio Flam Ex Por", 7, 1);  // explosion, glass shatter
+magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID] = new SpellObject("Invulnerability", "In Vas Sanct", 7, 0);   // bless
+magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID] = new SpellObject("Meteor Swarm", "Vas Flam Ylem", 7, 0);  // explosion
+magic[SPELL_MIND_BLAST_LEVEL][SPELL_MIND_BLAST_ID] = new SpellObject("Mind Blast", "An Wis Ort", 7, 1);  // ??
+magic[SPELL_PERMANENCE_LEVEL][SPELL_PERMANENCE_ID] = new SpellObject("Permanence", "In Vas Ort Tym", 7, 0);  // bless 
 
-magic[8][GetSpellID(1)] = new SpellObject("Armageddon", "Kal Vas An Mani Corp Xen", 8, 0); // ??
-magic[8][GetSpellID(2)] = new SpellObject("Arrow of Glass", "Corp Ylem", 8, 1);  // glass shatter
-magic[8][GetSpellID(3)] = new SpellObject("Build Gate", "In Ort Rel Por Ylem", 8, 1);  // ??
-magic[8][GetSpellID(4)] = new SpellObject("Conflagration", "In Vas Grav Flam Hur", 8, 1);  // explosion
-magic[8][GetSpellID(5)] = new SpellObject("Conjure Daemon", "Kal Vas Des Xen", 7, 1);  // generic
-magic[8][GetSpellID(6)] = new SpellObject("Quickness", "Rel Tym", 8, 0);   // bless
-magic[8][GetSpellID(7)] = new SpellObject("Reincarnate", "An Corp", 8, 0);  // bless
-magic[8][GetSpellID(8)] = new SpellObject("Time Stop", "An Tym", 8, 0);  // bless
+magic[SPELL_ARMAGEDDON_LEVEL][SPELL_ARMAGEDDON_ID] = new SpellObject("Armageddon", "Kal Vas An Mani Corp Xen", 8, 0); // ??
+magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID] = new SpellObject("Arrow of Glass", "Corp Ylem", 8, 1);  // glass shatter
+magic[SPELL_BUILD_GATE_LEVEL][SPELL_BUILD_GATE_ID] = new SpellObject("Build Gate", "In Ort Rel Por Ylem", 8, 1);  // ??
+magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID] = new SpellObject("Conflagration", "In Vas Grav Flam Hur", 8, 1);  // explosion
+magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID] = new SpellObject("Conjure Daemon", "Kal Vas Des Xen", 7, 1);  // generic
+magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID] = new SpellObject("Quickness", "Rel Tym", 8, 0);   // bless
+magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID] = new SpellObject("Reincarnate", "An Corp", 8, 0);  // bless
+magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID] = new SpellObject("Time Stop", "An Tym", 8, 0);  // bless
 
 // Awaken
-magic[1][GetSpellID(1)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_AWAKEN_LEVEL][SPELL_AWAKEN_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Awaken.<br />");
   if (caster !== PC) {
     var resp = PerformAwaken(caster, infused, free, tgt);
@@ -265,7 +350,7 @@ function PerformAwaken(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[1][GetSpellID(1)].getManaCost(infused);
+    var mana = magic[SPELL_AWAKEN_LEVEL][SPELL_AWAKEN_ID].getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
@@ -291,7 +376,7 @@ function PerformAwaken(caster, infused, free, tgt) {
 }
 
 // Cure
-magic[1][GetSpellID(2)].executeSpell = function(caster, infused, free) {
+magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Cure.<br /></span>"); }
   DebugWrite("magic", "Casting Cure.<br />");
   var resp = {};
@@ -330,7 +415,7 @@ magic[1][GetSpellID(2)].executeSpell = function(caster, infused, free) {
 }
 
 // Disarm Trap
-magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
+magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Disarm Trap.<br /></span>"); }
   DebugWrite("magic", "Casting Disarm Trap.<br />");
   var resp = {};
@@ -377,7 +462,7 @@ magic[1][GetSpellID(3)].executeSpell = function(caster, infused, free) {
 }
 
 // Distract
-magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
+magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Distract.<br /></span>"); }
   DebugWrite("magic", "Casting Distract.<br />");
   var resp = {};
@@ -430,7 +515,7 @@ magic[1][GetSpellID(4)].executeSpell = function(caster, infused, free) {
 }
 
 // Flame Blade
-magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
+magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Flame Blade.<br /></span>"); }
   DebugWrite("magic", "Casting Flame Blade.<br />");
   var resp = {};
@@ -472,7 +557,7 @@ magic[1][GetSpellID(5)].executeSpell = function(caster, infused, free) {
 }
 
 // Light
-magic[1][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Light.<br /></span>"); }
   DebugWrite("magic", "Casting Light.<br />");
   var resp = {};
@@ -504,7 +589,7 @@ magic[1][GetSpellID(6)].executeSpell = function(caster, infused, free) {
 }
 
 // Mend
-magic[1][GetSpellID(7)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Mend.<br />");
   var resp = {};
   resp["fin"] = 1;
@@ -539,7 +624,7 @@ function PerformMend(caster,infused,free,tgt) {
   var desc = "";
   
   if (!free) {
-    var mana = magic[1][GetSpellID(8)].getManaCost(infused);
+    var mana = magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
@@ -560,7 +645,7 @@ function PerformMend(caster,infused,free,tgt) {
 }
 
 // Vulnerability
-magic[1][GetSpellID(8)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Vulnerability.<br />");
   var resp = {};
   resp["fin"] = 1;
@@ -600,7 +685,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[1][GetSpellID(8)].getManaCost(infused);
+    var mana = magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -649,7 +734,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
 }
 
 // Illusion
-magic[2][GetSpellID(1)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Illusion.<br />");
   
   if (caster !== PC) {
@@ -701,7 +786,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[2][GetSpellID(1)].getManaCost(infused);
+    var mana = magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -728,7 +813,7 @@ function PerformIllusion(caster, infused, free, tgt) {
 }
 
 // Iron Flesh
-magic[2][GetSpellID(2)].executeSpell = function(caster, infused, free) {
+magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Iron Flesh.<br />");
   var resp = {};
   if (!free) {
@@ -758,7 +843,7 @@ magic[2][GetSpellID(2)].executeSpell = function(caster, infused, free) {
 }
 
 // Lesser Heal
-magic[2][GetSpellID(3)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell = function(caster, infused, free, tgt) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Lesser Heal.<br /></span>"); }
   DebugWrite("magic", "Casting Lesser Heal.<br />");
   var resp = {};
@@ -795,7 +880,7 @@ magic[2][GetSpellID(3)].executeSpell = function(caster, infused, free, tgt) {
 }
 
 // Magic Bolt
-magic[2][GetSpellID(4)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Magic Bolt.<br />");
   if (caster !== PC) {
     var resp = PerformMagicBolt(caster, infused, free, tgt);
@@ -837,7 +922,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[2][GetSpellID(4)].getManaCost(infused);
+    var mana = magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -888,7 +973,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
 }
 
 // Poison Cloud
-magic[2][GetSpellID(5)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Poison Cloud.<br />");
   if (caster !== PC) {
     var resp = PerformPoisonCloud(caster, infused, free, tgt);
@@ -929,7 +1014,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[2][GetSpellID(5)].getManaCost(infused);
+    var mana = magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -983,7 +1068,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
 }
 
 // Protection
-magic[2][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Protection.<br /></span>"); }
   DebugWrite("magic", "Casting Protection.<br />");
   var resp = {};
@@ -1017,7 +1102,7 @@ magic[2][GetSpellID(6)].executeSpell = function(caster, infused, free) {
 }
 
 // Unlock
-magic[2][GetSpellID(7)].executeSpell = function(caster, infused, free) {
+magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Unlock.<br /></span>"); }
   DebugWrite("magic", "Casting Unlock.<br />");
   var resp = {};
@@ -1051,7 +1136,7 @@ magic[2][GetSpellID(7)].executeSpell = function(caster, infused, free) {
 }
 
 // Wind Change
-magic[2][GetSpellID(8)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_WIND_CHANGE_LEVEL][SPELL_WIND_CHANGE_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Wind Change.<br />");
   if (caster !== PC) {
     var resp = PerformWindChange(caster, infused, free, tgt);
@@ -1074,6 +1159,13 @@ magic[2][GetSpellID(8)].executeSpell = function(caster, infused, free, tgt) {
 }
 
 function PerformWindChange(caster,infused,free,tgt) {
+  
+  if (!free) {
+    var mana = magic[SPELL_WIND_CHANGE_LEVEL][SPELL_WIND_CHANGE_ID].getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
   var dir = "";
   var resp = {};
   resp["fin"] = 1;
@@ -1092,7 +1184,7 @@ function PerformWindChange(caster,infused,free,tgt) {
 }
 
 // Dispel 
-magic[3][GetSpellID(1)].executeSpell = function(caster, infused, free) {
+magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Dispel.<br />");
   var resp = {};
   resp["fin"] = 1;
@@ -1127,7 +1219,7 @@ magic[3][GetSpellID(1)].executeSpell = function(caster, infused, free) {
   
   
 // Disrupt Undead
-magic[3][GetSpellID(2)].executeSpell = function(caster, infused, free) {
+magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Disrupt Undead.<br /></span>"); }
   DebugWrite("magic", "Casting Disrupt Undead.<br />");
   var resp = {};
@@ -1169,7 +1261,7 @@ magic[3][GetSpellID(2)].executeSpell = function(caster, infused, free) {
 }
 
 // Fire Armor
-magic[3][GetSpellID(3)].executeSpell = function(caster, infused, free) {
+magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Fire Armor.<br /></span>"); }
   DebugWrite("magic", "Casting Fire Armor.<br />");
   var resp = {};
@@ -1200,7 +1292,7 @@ magic[3][GetSpellID(3)].executeSpell = function(caster, infused, free) {
 }
 
 // Fireball
-magic[3][GetSpellID(4)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Fireball.<br />");
   if (caster !== PC) {
     var resp = PerformFireball(caster, infused, free, tgt);
@@ -1242,7 +1334,7 @@ function PerformFireball(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[3][GetSpellID(4)].getManaCost(infused);
+    var mana = magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -1291,7 +1383,7 @@ function PerformFireball(caster, infused, free, tgt) {
 }
 
 // Iceball
-magic[3][GetSpellID(5)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Iceball.<br />");
   if (caster !== PC) {
     var resp = PerformIceball(caster, infused, free, tgt);
@@ -1332,7 +1424,7 @@ function PerformIceball(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[3][GetSpellID(5)].getManaCost(infused);
+    var mana = magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -1388,7 +1480,7 @@ function PerformIceball(caster, infused, free, tgt) {
 }
 
 // Telekinesis
-magic[3][GetSpellID(6)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Telekinesis.<br />");
   if (caster !== PC) {
     var resp = PerformTelekinesis(caster, infused, free, tgt);
@@ -1421,7 +1513,7 @@ function PerformTelekinesis(caster, infused, free, tgt) {
   
   var retval = {};
   if (!free) {
-    var mana = magic[3][GetSpellID(6)].getManaCost(infused);
+    var mana = magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -1475,7 +1567,7 @@ function PerformTelekinesisMove(caster, infused, free, tgt) {
   retval["input"] = "&gt;";
   retval["fin"] = 1;
   if (!free) {
-    var mana = magic[3][GetSpellID(6)].getManaCost(infused);
+    var mana = magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID].getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
@@ -1509,7 +1601,7 @@ function PerformTelekinesisMove(caster, infused, free, tgt) {
 }
 
 // Telepathy
-magic[3][GetSpellID(7)].executeSpell = function(caster, infused, free) {
+magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Telepathy.<br />");
   var resp = {};
   if (!free) {
@@ -1533,7 +1625,7 @@ magic[3][GetSpellID(7)].executeSpell = function(caster, infused, free) {
 }
 
 // Wall of Flame
-magic[3][GetSpellID(8)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Wall of Flame.<br />");
   if (caster !== PC) {
     var resp = PerformWallOfFlame(caster, infused, free, tgt);
@@ -1583,7 +1675,7 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[3][GetSpellID(6)].getManaCost(infused);
+    var mana = magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -1777,8 +1869,7 @@ function TryToPlaceField(mapref, wherex, wherey, fieldname) {
 }
 
 // Blessing
-magic[4][GetSpellID(1)].executeSpell = function(caster, infused, free) {
-//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Blessing.<br /></span>"); }
+magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Blessing.<br />");
   var resp = {};
   if (!free) {
@@ -1813,7 +1904,7 @@ magic[4][GetSpellID(1)].executeSpell = function(caster, infused, free) {
 }
 
 // Blink
-magic[4][GetSpellID(2)].executeSpell = function(caster, infused, free) {
+magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Blink.<br />");
   var resp = {};
   if (!free) {
@@ -1882,7 +1973,7 @@ function PerformBlink(caster,destx, desty) {
 }
 
 // Ethereal Vision
-magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free) {
+magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Ethereal Vision.<br />");
   var resp = {};
   if (!free) {
@@ -1910,8 +2001,7 @@ magic[4][GetSpellID(3)].executeSpell = function(caster, infused, free) {
 }
 
 // Heal
-magic[4][GetSpellID(4)].executeSpell = function(caster, infused, free, tgt) {
-//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Heal.<br /></span>"); }
+magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Heal.<br />");
   var resp = {};
   if (!free) {
@@ -1942,7 +2032,7 @@ magic[4][GetSpellID(4)].executeSpell = function(caster, infused, free, tgt) {
 }
 
 //Life Drain
-magic[4][GetSpellID(5)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Life Drain.<br />");
   if (caster !== PC) {
     var resp = PerformLifeDrain(caster, infused, free, tgt);
@@ -1983,7 +2073,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[4][GetSpellID(5)].getManaCost(infused);
+    var mana = magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -2029,7 +2119,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
 }
 
 //Smite
-magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Smite.<br /></span>"); }
   DebugWrite("magic", "Casting Smite.<br />");
   var resp = {};
@@ -2065,7 +2155,7 @@ magic[4][GetSpellID(6)].executeSpell = function(caster, infused, free) {
 }
 
 //Transport
-magic[4][GetSpellID(7)].executeSpell = function(caster, infused, free) {
+magic[SPELL_TRANSPORT_LEVEL][SPELL_TRANSPORT_ID].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Transport.<br /></span>"); }
   DebugWrite("magic", "Casting Transport.<br />");
   var resp = {};
@@ -2109,8 +2199,7 @@ magic[4][GetSpellID(7)].executeSpell = function(caster, infused, free) {
 }
 
 // Levitate/Waterwalk
-magic[4][GetSpellID(8)].executeSpell = function(caster, infused, free) {
-//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Water Walk.<br /></span>"); }
+magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Water Walk.<br />");
   var resp = {};
   if (!free) {
@@ -2141,7 +2230,7 @@ magic[4][GetSpellID(8)].executeSpell = function(caster, infused, free) {
 }
 
 // Crystal Barrier
-magic[5][GetSpellID(1)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_CRYSTAL_BARRIER_LEVEL][SPELL_CRYSTAL_BARRIER_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Crystal Barrier.<br />");
   if (caster !== PC) {
     var resp = PerformCrystalBarrier(caster, infused, free, tgt);
@@ -2189,7 +2278,7 @@ function PerformCrystalBarrier(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[5][GetSpellID(1)].getManaCost(infused);
+    var mana = magic[SPELL_CRYSTAL_BARRIOR_LEVEL][SPELL_CRYSTAL_BARRIOR_ID].getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
@@ -2210,7 +2299,7 @@ function PerformCrystalBarrier(caster, infused, free, tgt) {
 }
 
 //Mirror Ward
-magic[5][GetSpellID(2)].executeSpell = function(caster, infused, free) {
+magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Mirror Ward.<br />");
   var resp = {};
   if (!free) {
@@ -2239,7 +2328,7 @@ magic[5][GetSpellID(2)].executeSpell = function(caster, infused, free) {
 }
 
 //Paralyze
-magic[5][GetSpellID(3)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Paralyze.<br />");
   if (caster !== PC) {
     var resp = PerformParalyze(caster, infused, free, tgt);
@@ -2279,7 +2368,7 @@ function PerformParalyze(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[5][GetSpellID(3)].getManaCost(infused);
+    var mana = magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -2328,7 +2417,7 @@ function PerformParalyze(caster, infused, free, tgt) {
 }
 
 // Peer
-magic[5][GetSpellID(4)].executeSpell = function(caster, infused, free) {
+magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Peer.<br />");
   var resp = {};
   if (!free) {
@@ -2393,7 +2482,7 @@ magic[5][GetSpellID(4)].executeSpell = function(caster, infused, free) {
 }
 
 //Return
-magic[5][GetSpellID(5)].executeSpell = function(caster, infused, free) {
+magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Return.<br />");
   var resp = {};
   if (!free) {
@@ -2465,8 +2554,7 @@ magic[5][GetSpellID(5)].executeSpell = function(caster, infused, free) {
 }
 
 // Shockwave
-magic[5][GetSpellID(6)].executeSpell = function(caster, infused, free) {
-//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Shockwave.<br /></span>"); }
+magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Shockwave.<br />");
   var resp = {};
   if (!free) {
@@ -2505,7 +2593,7 @@ magic[5][GetSpellID(6)].executeSpell = function(caster, infused, free) {
 }
 
 // Summon Ally
-magic[5][GetSpellID(7)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Summon Ally.<br />");
   if (caster !== PC) {
     var resp = PerformSummonAlly(caster, infused, free, tgt);
@@ -2555,7 +2643,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[5][GetSpellID(7)].getManaCost(infused);
+    var mana = magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -2604,7 +2692,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
 }
 
 // Swordstrike
-magic[5][GetSpellID(8)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Swordstrike.<br />");
   if (caster !== PC) {
     var resp = PerformSwordstrike(caster, infused, free, tgt);
@@ -2647,7 +2735,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[5][GetSpellID(6)].getManaCost(infused);
+    var mana = magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -2709,7 +2797,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
 // Empower
 
 // Explosion
-magic[6][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Explosion.<br />");
   if (caster !== PC) {
     var resp = PerformExplosion(caster, infused, free, tgt);
@@ -2751,7 +2839,7 @@ function PerformExplosion(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[6][GetSpellID(2)].getManaCost(infused);
+    var mana = magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -2804,7 +2892,7 @@ function PerformExplosion(caster, infused, free, tgt) {
 }
 
 // Jinx
-magic[6][GetSpellID(3)].executeSpell = function(caster, infused, free) {
+magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Jinx.<br />");
   var resp = {};
   if (!free) {
@@ -2855,7 +2943,7 @@ magic[6][GetSpellID(3)].executeSpell = function(caster, infused, free) {
 }
 
 // Mass Curse
-magic[6][GetSpellID(4)].executeSpell = function(caster, infused, free) {
+magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Mass Curse.<br />");
   var resp = {};
   if (!free) {
@@ -2907,7 +2995,7 @@ magic[6][GetSpellID(4)].executeSpell = function(caster, infused, free) {
 }
 
 //Negate Magic
-magic[6][GetSpellID(5)].executeSpell = function(caster, infused, free) {
+magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(caster, infused, free) {
   if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Negate Magic.<br /></span>"); }
   DebugWrite("magic", "Casting Negate Magic.<br />");
   
@@ -2966,7 +3054,7 @@ magic[6][GetSpellID(5)].executeSpell = function(caster, infused, free) {
 }
 
 // Lightning Storm
-magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+magic[SPELL_STORM_LEVEL][SPELL_STORM_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Storm.<br />");
   var resp = {};
   if (!free) {
@@ -3003,7 +3091,7 @@ magic[6][GetSpellID(6)].executeSpell = function(caster, infused, free) {
 // Weather Control
 
 // Charm
-magic[7][GetSpellID(1)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Charm.<br />");
   if (caster !== PC) {
     var resp = PerformCharm(caster, infused, free, tgt);
@@ -3042,7 +3130,7 @@ function PerformCharm(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[7][GetSpellID(1)].getManaCost(infused);
+    var mana = magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
@@ -3090,7 +3178,7 @@ function PerformCharm(caster, infused, free, tgt) {
 // Ethereal Travel
 
 // Fear
-magic[7][GetSpellID(3)].executeSpell = function(caster, infused, free) {
+magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Fear.<br />");
   var resp = {};
   if (!free) {
@@ -3146,7 +3234,7 @@ magic[7][GetSpellID(3)].executeSpell = function(caster, infused, free) {
 }
 
 // Fire and Ice
-magic[7][GetSpellID(4)].executeSpell = function(caster, infused, free) {
+magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Fire and Ice.<br />");
   var resp = {};
   if (!free) {
@@ -3203,7 +3291,7 @@ magic[7][GetSpellID(4)].executeSpell = function(caster, infused, free) {
 }
 
 // Invulnerability
-magic[7][GetSpellID(5)].executeSpell = function(caster, infused, free) {
+magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Invulnerability.<br />");
   var resp = {};
   if (!free) {
@@ -3233,7 +3321,7 @@ magic[7][GetSpellID(5)].executeSpell = function(caster, infused, free) {
 }
 
 // Meteor Swarm
-magic[7][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Meteor Swarm.<br />");
   var resp = {};
   if (!free) {
@@ -3304,7 +3392,7 @@ magic[7][GetSpellID(6)].executeSpell = function(caster, infused, free) {
 // Armageddon
 
 // Arrow of Glass
-magic[8][GetSpellID(2)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Arrow of Glass.<br />");
   if (caster !== PC) {
     var resp = PerformArrowOfGlass(caster, infused, free, tgt);
@@ -3345,7 +3433,7 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[8][GetSpellID(2)].getManaCost(infused);
+    var mana = magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID].getManaCost(infused);
     caster.modMana(-1*mana);
 //    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -3398,7 +3486,7 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
 // Build Gate
 
 // Conflagration
-magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
+magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Conflagration.<br />");
   var resp = {};
   if (!free) {
@@ -3437,7 +3525,7 @@ magic[8][GetSpellID(4)].executeSpell = function(caster, infused, free) {
 }
 
 // Conjure Daemon
-magic[8][GetSpellID(5)].executeSpell = function(caster, infused, free, tgt) {
+magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Conjure Daemon.<br />");
   if (caster !== PC) {
     var resp = PerformConjureDaemon(caster, infused, free, tgt);
@@ -3486,7 +3574,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
   }
   
   if (!free) {
-    var mana = magic[8][GetSpellID(5)].getManaCost(infused);
+    var mana = magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID].getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
@@ -3515,7 +3603,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
 }
 
 //Quickness
-magic[8][GetSpellID(6)].executeSpell = function(caster, infused, free) {
+magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell = function(caster, infused, free) {
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Quickness.<br /></span>"); }
   DebugWrite("magic", "Casting Quickness.<br />");
   var resp = {};
@@ -3550,7 +3638,7 @@ magic[8][GetSpellID(6)].executeSpell = function(caster, infused, free) {
 // Reincarnate 
 
 // Time Stop
-magic[8][GetSpellID(8)].executeSpell = function(caster, infused, free) {
+magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Time Stop.<br />");
   var resp = {};
   if (!free) {
