@@ -168,3 +168,76 @@ mappages["unittest2"].returnx = 'NaN';
 mappages["unittest2"].returny = 'NaN';
 mappages["unittest2"].returninfused = '0';
 mappages["unittest2"].linkedMaps = [""];
+
+
+mappages["greenacres"] = {};
+mappages["greenacres"].terrain = [];
+ mappages["greenacres"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["greenacres"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["greenacres"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["greenacres"].terrain[3] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["greenacres"].terrain[4] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["greenacres"].terrain[5] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["greenacres"].terrain[6] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["greenacres"].terrain[7] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["greenacres"].terrain[8] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["greenacres"].terrain[9] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[10] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[13] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[14] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[15] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[16] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[17] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[18] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[19] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[20] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[21] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[22] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[23] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[24] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[25] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[26] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[27] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[28] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[29] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[30] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[31] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[32] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[33] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[34] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[35] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[36] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[37] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[38] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["greenacres"].terrain[39] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
+
+mappages["greenacres"].features = [];
+
+
+mappages["greenacres"].npcs = [];
+
+mappages["greenacres"].desc = "Green Acres";
+mappages["greenacres"].music = 'Ruins';
+mappages["greenacres"].exitmap = '';
+mappages["greenacres"].exitx = '65';
+mappages["greenacres"].exity = '70';
+mappages["greenacres"].wraps = '';
+mappages["greenacres"].enterx = '65';
+mappages["greenacres"].entery = '70';
+mappages["greenacres"].seeBelow = '';
+mappages["greenacres"].lightLevel = 'bright';
+mappages["greenacres"].alwaysRemember = '0';
+mappages["greenacres"].scale = '1';
+mappages["greenacres"].underground = '0';
+mappages["greenacres"].enterscript = '';
+mappages["greenacres"].entertestscript = '';
+mappages["greenacres"].exitscript = '';
+mappages["greenacres"].exittestscript = '';
+mappages["greenacres"].returnmap = '';
+mappages["greenacres"].returnx = 'NaN';
+mappages["greenacres"].returny = 'NaN';
+mappages["greenacres"].returninfused = '0';
+mappages["greenacres"].linkedMaps = [""];
+
