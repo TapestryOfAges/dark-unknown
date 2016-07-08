@@ -127,7 +127,7 @@ QUnit.test( "Test Cure spell", function( assert ) {
   assert.deepEqual(isdiseased, 1, "Caster starts diseased.");
   
   var oldmana = castermob.getMana();
-  var cure = magic[1][GetSpellID(2)].executeSpell(castermob,0,0);
+  var cure = magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell(castermob,0,0);
   ispoisoned = 0;
   isdiseased = 0;
   if (castermob.getSpellEffectsByName("poison")) { ispoisoned = 1; }
@@ -152,7 +152,7 @@ QUnit.test( "Test Cure spell", function( assert ) {
     castermob.washealed = amt;
   }
   var oldmana = castermob.getMana();
-  var cure = magic[1][GetSpellID(2)].executeSpell(castermob,1,0);
+  var cure = magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell(castermob,1,0);
   ispoisoned = 0;
   isdiseased = 0;
   if (castermob.getSpellEffectsByName("poison")) { ispoisoned = 1; }
@@ -199,7 +199,7 @@ QUnit.test( "Test Disarm Trap spell", function( assert ) {
   
   Dice.roll = function(die) { return 60; }
   var oldmana = castermob.getMana();
-  var resp = magic[1][GetSpellID(3)].executeSpell(castermob,0,0);
+  var resp = magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell(castermob,0,0);
   
   assert.deepEqual(chests[0].trapped, "", "Looking at chest 0 (challenge = 10): expecting the trap to be removed.");
   assert.deepEqual(chests[1].trapped, "", "Looking at chest 1 (challenge = 11): expecting the trap to be removed.");
@@ -212,7 +212,7 @@ QUnit.test( "Test Disarm Trap spell", function( assert ) {
   assert.deepEqual(oldmana-castermob.getMana(), 1, "Cast spell- should have lost 1 mana.");
   
   oldmana = castermob.getMana();
-  resp = magic[1][GetSpellID(3)].executeSpell(castermob,1,0);
+  resp = magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell(castermob,1,0);
   
   assert.deepEqual(chests[0].trapped, "", "Looking at chest 0 (challenge = 10): expecting the trap to be removed.");
   assert.deepEqual(chests[1].trapped, "", "Looking at chest 1 (challenge = 11): expecting the trap to be removed.");
@@ -282,7 +282,7 @@ QUnit.test("Test Distract spell", function( assert ) {
   
   Dice.roll = function(die) { return 70; }
   var oldmana = castermob.getMana();
-  magic[1][GetSpellID(4)].executeSpell(castermob, 0, 0);
+  magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell(castermob, 0, 0);
   assert.deepEqual(castermob.getMana()-oldmana, -1, "Should have cost 1.");
   
   var distract = tgt1mob.getSpellEffectsByName("Distract");
@@ -310,7 +310,7 @@ QUnit.test("Test Distract spell", function( assert ) {
   assert.deepEqual(isdistract, 0, "tgt3 had no LoE");
 
   oldmana = castermob.getMana();  
-  magic[1][GetSpellID(4)].executeSpell(castermob, 1, 0);
+  magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell(castermob, 1, 0);
   distract = tgt1mob.getSpellEffectsByName("Distract");
   assert.deepEqual(distract.getPower(), 7*1.5, "Power of infused distract should be 10.5");
   assert.deepEqual(tgt1mob.getHitChance("melee"), (BASE_HIT_CHANCE+2*HIT_PER_LEVEL+5-7*1.5), "Checking chance to hit, post-distraction.");
@@ -332,7 +332,7 @@ QUnit.test("Test Flame Blade spell", function( assert ) {
   var wpn = castermob.getWeapon();
   Dice.roll = function(die) { return 10; }
   assert.deepEqual(wpn.rollDamage(castermob), 14, "Testing longsword base damage.");
-  magic[1][GetSpellID(5)].executeSpell(castermob,0,0);
+  magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell(castermob,0,0);
   var fb = castermob.getSpellEffectsByName("FlameBlade");
   assert.deepEqual(fb.damage, DMG_NEGLIGABLE, "Checking FB damage.");
   assert.deepEqual(wpn.rollDamage(castermob), 24, "Testing longsword with flame damage.");  
@@ -352,7 +352,7 @@ QUnit.test("Test Light spell", function( assert ) {
 
   var oldmana = castermob.getMana();
   var oldlight = castermob.getLight();
-  magic[1][GetSpellID(6)].executeSpell(castermob,0,1);
+  magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell(castermob,0,1);
   assert.deepEqual(castermob.getMana()-oldmana, 0, "Free spell!");
   assert.deepEqual(oldlight, 0, "Should have started unlit.");
   assert.deepEqual(castermob.getLight(), 2, "Lit!");
@@ -363,7 +363,7 @@ QUnit.test("Test Light spell", function( assert ) {
 
   var oldmana = castermob2.getMana();
   var oldlight = castermob2.getLight();
-  magic[1][GetSpellID(6)].executeSpell(castermob2,0,0);
+  magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell(castermob2,0,0);
   assert.deepEqual(castermob2.getMana()-oldmana, -1, "1 mana!");
   assert.deepEqual(oldlight, 0, "Should have started unlit.");
   assert.deepEqual(castermob2.getLight(), 2, "Lit!");
@@ -452,7 +452,7 @@ QUnit.test("Test Iron Flesh spell", function( assert ) {
 
   assert.deepEqual(CheckAbsorb(20,castermob,castermob,"physical"), 10, "Checking how much is absorbed before casting.");
 
-  magic[2][GetSpellID(2)].executeSpell(castermob,0,0);
+  magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(castermob,0,0);
   
   assert.deepEqual(CheckAbsorb(20,castermob,castermob,"physical"), 5, "Checking how much is absorbed after casting, 1.");  
   assert.deepEqual(CheckAbsorb(20,castermob,castermob,"physical"), 5, "Checking how much is absorbed after casting, 2.");  
@@ -472,20 +472,26 @@ QUnit.test("Test Lesser Heal spell", function( assert ) {
 
   castermob.setHP(2);
   
-  magic[2][GetSpellID(3)].executeSpell(castermob,0,0);
+  magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(castermob,0,0);
   
   assert.deepEqual(castermob.getHP(),10,"HP total after Lesser Heal.");
-  magic[2][GetSpellID(3)].executeSpell(castermob,1,1);
+  magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(castermob,1,1);
   assert.deepEqual(castermob.getHP(),22,"HP total after infused Lesser Heal.");
   
   maps.deleteMap("unittest");
 });
 
 QUnit.test("Test Magic Bolt spell and resistance", function( assert ) {
-  Dice.roll = function(die) { return 8; }
+
   var maps = new MapMemory();
   maps.addMap("unittest");
   var testmap = maps.getMap("unittest");
+
+  var castermob = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(4,7,castermob);
+
+  var tgtmob = localFactory.createTile("TownGuardNPC");
+  testmap.placeThing(6,7,tgtmob);
 
   Dice.roll = function() {
     if (!Dice.rollnum) { Dice.rollnum = 1; }
@@ -494,11 +500,18 @@ QUnit.test("Test Magic Bolt spell and resistance", function( assert ) {
     if (Dice.rollnum === 3) { Dice.rollnum++; return 10; } // succeed at resist
   }
 
-  var castermob = localFactory.createTile("PaladinNPC");
-  testmap.placeThing(4,7,castermob);
+  tgtmob.setHP(40);
+  assert.deepEqual(tgtmob.getHP(),40,"HP set to 40.");
+  
+  PerformMagicBolt(castermob,0,0,tgtmob);
 
-  var tgtmob = localFactory.createTile("TownGuardNPC");
-  testmap.placeThing(6,7,tgtmob);
+  var done = assert.async();
+  var duration = (Math.pow( Math.pow(tgtmob.getx() - castermob.getx(), 2) + Math.pow (tgtmob.gety() - castermob.gety(), 2)  , .5)) * 100;
+  duration += 200;
+  setTimeout(function() {
+    assert.deepEqual(tgtmob.getHP(),33,"Took 7 damage.");
+    done();
+  }, duration);
 
   maps.deleteMap("unittest");
 });

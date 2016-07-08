@@ -73,7 +73,6 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
 // param.dmg - damage dealt by whatever generates this effect
 // param.endturn - 1 if this ends atk's turn
 // param.retval - retval from calling function
-
   var type = param.type;
   var duration = param.duration;
   var ammoreturn = param.ammoreturn;
