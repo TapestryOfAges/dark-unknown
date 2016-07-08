@@ -949,7 +949,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   if (CheckResist(caster,tgt,infused,0)) {
     dmg = Math.floor(dmg/2)+1;
   }
-//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Dealing " + dmg + " damage.<br /></span>"); }
+
   DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   
