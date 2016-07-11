@@ -179,7 +179,7 @@ mappages["hildendain"].features[111] = {name : 'Door', x : 22, y : 13};
 
 
 mappages["hildendain"].npcs = [];
-mappages["hildendain"].npcs[0] = {name : 'MageVillagerNPC', x : 39, y : 38, NPCName: 'Alexis', Conversation: 'alexis', Gender: 'female', Merch: 'alexis', Bark: '0', NPCBand: '0', OverrideGraphic: '303.2.gif'};
+mappages["hildendain"].npcs[0] = {name : 'MageVillagerNPC', x : 39, y : 38, NPCName: 'Alexis', Conversation: 'alexis', Gender: 'female', Merch: 'alexis', Bark: '0', NPCBand: '0', OverrideGraphic: '303.gif'};
 mappages["hildendain"].npcs[1] = {name : 'FighterVillagerNPC', x : 4, y : 27, NPCName: 'Dave', Conversation: 'dave', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '308.gif'};
 mappages["hildendain"].npcs[2] = {name : 'PaladinVillagerNPC', x : 6, y : 44, NPCName: 'Sarah', Conversation: 'sarah', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'paladin-offcolor.gif'};
 mappages["hildendain"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 34, y : 31, NPCName: 'Anna', Conversation: 'anna', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
