@@ -759,6 +759,7 @@ function DoAction(code, ctrl) {
           maintext.addText(sold + ": sold.");
           PC.removeFromInventory(ininv);  // already handles only subtracting 1 if there are multiples
           PC.addGold(Math.floor(merinv.stock[idx].price/10));
+          DrawCharFrame();
         }
       }
     }
@@ -774,6 +775,9 @@ function DoAction(code, ctrl) {
         PC.addGold(-(merinv.stock[idx].price));
         PC.addSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid);
         gamestate.setMode("buy");
+        maintext.setInputLine("Buy what: ");
+        maintext.drawTextFrame();
+        DrawCharFrame();
       } else {
         var idx = targetCursor.buychoice;
         var newitem = localFactory.createTile(merinv.stock[idx].item);

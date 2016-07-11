@@ -3,7 +3,7 @@
 function SetMerchants() {
   var bill = {};
   bill.aaron = {};
-  bill.aaron.stock = [ { item: "Dagger", quantity: 10, price: 5, sale: '"Thank you. May it serve you well."' },
+  bill.aaron.stock = [ { item: "Dagger", quantity: 10, price: 5, desc: "Dagger", presale: "Small, but deadly.", sale: '"Thank you. May it serve you well."' },
                     { item: "Shortsword", quantity: 10, price: 50, sale: '"Thank you. May it serve you well."' },
                     { item: "Mace", quantity: 7, price: 200, sale: '"Thank you. May it serve you well."' },
                     { item: "Axe", quantity: 4, price: 500, sale: '"Thank you. May it serve you well."'},
