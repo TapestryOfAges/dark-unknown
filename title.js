@@ -79,6 +79,7 @@ var latestidx;
 var testvar;
 
 var lastanim = "";
+var whoseturn; 
 
 $(document).ready(function() {
   audio_init_title();  

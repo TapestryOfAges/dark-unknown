@@ -53,6 +53,7 @@ var targetCursor = {};
 var inputText = {};
 
 var raceWarning = 0;
+var whoseturn;
 
 function DrawCharFrame() {
   var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%' style='margin-top:1px'><tr><td colspan='2'>";
@@ -158,7 +159,16 @@ $(document).ready(function() {
 //  var worldmap = new GameMap();
 //  worldmap.loadMap("darkunknown");
 //  maps.addMapByRef(worldmap);
-    
+
+  var browserheight = $(window).height();
+  var browserwidth = $(window).width();
+
+  var blackwidth = browserwidth - 776;
+  var blackheight = browserheight - 456;
+  
+  $("body").append('<div style="position:absolute;left:776px;top:0px;z-index:99; width:' + blackwidth + 'px; height:' + browserheight + 'px; background-color:black;"><img src="graphics/spacer.gif" width="' + blackwidth + '" height = "' + browserheight + '" /></div>');
+  $("body").append('<div style="position:absolute;left:0px;top:456px;z-index:99; width:' + browserwidth + 'px; height:' + blackheight + 'px; background-color:black;"><img src="graphics/spacer.gif" width="' + browserwidth + '" height = "' + blackheight + '" /></div>');
+      
   set_conversations();
   DU.merchants = {};
   DU.merchants = SetMerchants();

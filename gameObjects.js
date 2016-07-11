@@ -10869,34 +10869,37 @@ NPCObject.prototype.myTurn = function() {
 }
 
 NPCObject.prototype.endTurn = function(init) {
-  gamestate.setMode("null");
-  
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>*" + this.getName() + ", serial " + this.getSerial() + " is ending its turn.*</span><br />"); }	
-  DebugWrite("ai", "Ending its turn at (" + this.getx() + "," + this.gety() + ").");
-  
-  // did this entity idle?
-  var oldloc = this.getLastLocation();
-  var idleval;
-  if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // player did not move
-    var tile = this.getHomeMap().getTile(this.getx(),this.gety());
-    idleval = tile.executeIdles(this);
+  if (whoseturn !== this) {
+    alert("Somehow trying to end a turn when it isn't their turn, aborting.");
   } else {
-    var newloc = {};
-    newloc.map = this.getHomeMap().getName();
-    newloc.x = this.getx();
-    newloc.y = this.gety();
-    this.setLastLocation(newloc);
-  }
+    gamestate.setMode("null");
   
-  if (idleval && (this === PC)) { maintext.addText(idleval); }
-  this.setLastTurnTime(DUTime.getGameClock());
+    DebugWrite("ai", "Ending its turn at (" + this.getx() + "," + this.gety() + ").");
   
-  var myevent = new GameEvent(this);
-  DUTime.addAtTimeInterval(myevent,this.nextActionTime(init));
+    // did this entity idle?
+    var oldloc = this.getLastLocation();
+    var idleval;
+    if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // player did not move
+      var tile = this.getHomeMap().getTile(this.getx(),this.gety());
+      idleval = tile.executeIdles(this);
+    } else {
+      var newloc = {};
+      newloc.map = this.getHomeMap().getName();
+      newloc.x = this.getx();
+      newloc.y = this.gety();
+      this.setLastLocation(newloc);
+    }
+  
+    if (idleval && (this === PC)) { maintext.addText(idleval); }
+    this.setLastTurnTime(DUTime.getGameClock());
+  
+    var myevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(myevent,this.nextActionTime(init));
 
 //  var nextEntity = DUTime.executeNextEvent().getEntity();
 //  nextEntity.myTurn();
-  startScheduler();
+    startScheduler();
+  }
 }
 
 NPCObject.prototype.addToInventory = function(item, thinAir, qty) {

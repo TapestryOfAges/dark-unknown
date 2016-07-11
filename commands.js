@@ -1876,14 +1876,14 @@ function PerformYell() {
       }
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap, 20,20);
       var tmpdude = localFactory.createTile("PaladinVillagerNPC");
-      newmap.placeThing(25,20,tmpdude);
+      newmap.placeThing(20,25,tmpdude);
       var tmpdude2 = localFactory.createTile("PaladinVillagerNPC");
-      newmap.placeThing(30,20,tmpdude2);
+      newmap.placeThing(20,30,tmpdude2);
       DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTANIMA") {
       var tmpmap = maps.getMap("greenacres");
-      var castermob = tmpmap.getTile(25,20).getTopNPC();
-      var tgtmob = tmpmap.getTile(30,20).getTopNPC();
+      var castermob = tmpmap.getTile(20,25).getTopNPC();
+      var tgtmob = tmpmap.getTile(20,30).getTopNPC();
       PerformMagicBolt(castermob,0,0,tgtmob);
 // REAL YELLS START HERE
 		} else if (inputText.txt === "KARIS") {
