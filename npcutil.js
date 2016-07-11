@@ -356,7 +356,7 @@ function CanMissileAttack(who) {
       if (tile != "OoB") { 
         var npcs = tile.getNPCs();
         if (npcs) {
-          for (k=0; k<npcs.length; k++) {
+          for (var k=0; k<npcs.length; k++) {
             if (npcs[k].getAttitude() === enemystring) { return 0; }
           }
         }
