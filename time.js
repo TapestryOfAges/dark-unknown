@@ -223,6 +223,7 @@ function startScheduler() {
   while (cont) {
     var nextEvent = DUTime.executeNextEvent();
     var nextEntity = nextEvent.getEntity();
+    whoseturn = nextEntity;
     cont = nextEntity.myTurn();  
   }
 }

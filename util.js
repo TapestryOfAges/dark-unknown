@@ -123,7 +123,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
         maintext.addText(retval["txt"]);
         maintext.setInputLine("&gt;");
         maintext.drawInputLine();
-        
+
         if ((!doagain) && (endturn)) {
           atk.endTurn(retval["initdelay"]);
         } else if (doagain) {
