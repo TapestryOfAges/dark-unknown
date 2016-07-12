@@ -4,32 +4,32 @@ function SetMerchants() {
   var bill = {};
   bill.aaron = {};
   bill.aaron.stock = [ { item: "Dagger", quantity: 10, price: 5, desc: "Dagger", presale: "Small, but deadly.", sale: '"Thank you. May it serve you well."' },
-                    { item: "Shortsword", quantity: 10, price: 50, sale: '"Thank you. May it serve you well."' },
-                    { item: "Mace", quantity: 7, price: 200, sale: '"Thank you. May it serve you well."' },
-                    { item: "Axe", quantity: 4, price: 500, sale: '"Thank you. May it serve you well."'},
+                    { item: "Shortsword", quantity: 10, price: 50, desc: "Shortsword", presale: "Quality goods, I promise you.", sale: '"Thank you. May it serve you well."' },
+                    { item: "Mace", quantity: 7, price: 200, desc: "Mace", presale: "Got some heft to it.", sale: '"Thank you. May it serve you well."' },
+                    { item: "Axe", quantity: 4, price: 500, desc: "Axe", presale: "Good for chopping people out of armor.", sale: '"Thank you. May it serve you well."'},
                     { item: "Longsword", quantity: 0, price: 1700}, 
                     { item: "Halberd", quantity: 0, price: 3500},
                     { item: "MagicSword", quantity: 0, price: 6000, desc: "Magic Sword"} ];
   bill.aaron.type = "stuff";
   
   bill.gretchen = {};
-  bill.gretchen.stock = [ { item: "Dagger", quantity: 5, price: 10, sale: '"Remember, keep this between us."' },
-                    { item: "Shortsword", quantity: 5, price: 75, sale: '"Remember, keep this between us."' },
-                    { item: "Mace", quantity: 5, price: 260, sale: '"Remember, keep this between us."' },
-                    { item: "Axe", quantity: 3, price: 650, sale: '"Remember, keep this between us."'},
-                    { item: "Longsword", quantity: 2, price: 2200, sale: '"Remember, keep this between us."'}, 
-                    { item: "Halberd", quantity: 1, price: 4200, sale: '"Remember, keep this between us."'},
+  bill.gretchen.stock = [ { item: "Dagger", quantity: 5, price: 10, desc: "Dagger", sale: '"Remember, keep this between us."' },
+                    { item: "Shortsword", quantity: 5, price: 75, desc: "Shortsword", sale: '"Remember, keep this between us."' },
+                    { item: "Mace", quantity: 5, price: 260, desc: "Mace", sale: '"Remember, keep this between us."' },
+                    { item: "Axe", quantity: 3, price: 650, desc: "Axe", sale: '"Remember, keep this between us."'},
+                    { item: "Longsword", quantity: 2, price: 2200, desc: "Longsword", sale: '"Remember, keep this between us."'}, 
+                    { item: "Halberd", quantity: 1, price: 4200, desc: "Halberd", sale: '"Remember, keep this between us."'},
                     { item: "MagicSword", quantity: 0, price: 6600, desc: "Magic Sword"}, 
                   ];
   bill.gretchen.type = "stuff";
   
   bill.ariel = {};
-  bill.ariel.stock = [ { item: "Dagger", quantity: 10, price: 7, sale: '"May your blade be sharp."' },
-                    { item: "Shortsword", quantity: 10, price: 60, sale: '"May your blade be sharp."' },
-                    { item: "Mace", quantity: 10, price: 220, sale: '"Heavy enough to crush bone!"' },
-                    { item: "Axe", quantity: 10, price: 575, sale: '"For when you absolutely need to chop something in half."'},
-                    { item: "Longsword", quantity: 10, price: 1800, sale: '"May your blade be sharp."'}, 
-                    { item: "Halberd", quantity: 10, price: 3500, sale: '"Enjoy your glaive. Halberd? I can never keep track, to be honest."'},
+  bill.ariel.stock = [ { item: "Dagger", quantity: 10, price: 7, desc: "Dagger", sale: '"May your blade be sharp."' },
+                    { item: "Shortsword", quantity: 10, price: 60, desc: "Shortsword", sale: '"May your blade be sharp."' },
+                    { item: "Mace", quantity: 10, price: 220, desc: "Mace", sale: '"Heavy enough to crush bone!"' },
+                    { item: "Axe", quantity: 10, price: 575, desc: "Axe", sale: '"For when you absolutely need to chop something in half."'},
+                    { item: "Longsword", quantity: 10, price: 1800, desc: "Longsword", sale: '"May your blade be sharp."'}, 
+                    { item: "Halberd", quantity: 10, price: 3500, desc: "Halberd", sale: '"Enjoy your glaive. Halberd? I can never keep track, to be honest."'},
                     { item: "MagicSword", quantity: 0, price: 6600, desc: "Magic Sword"}, 
                   ];
   bill.ariel.type = "stuff";
