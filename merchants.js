@@ -3,10 +3,10 @@
 function SetMerchants() {
   var bill = {};
   bill.aaron = {};
-  bill.aaron.stock = [ { item: "Dagger", quantity: 10, price: 5, desc: "Dagger", presale: "Small, but deadly.", sale: '"Thank you. May it serve you well."' },
-                    { item: "Shortsword", quantity: 10, price: 50, desc: "Shortsword", presale: "Quality goods, I promise you.", sale: '"Thank you. May it serve you well."' },
-                    { item: "Mace", quantity: 7, price: 200, desc: "Mace", presale: "Got some heft to it.", sale: '"Thank you. May it serve you well."' },
-                    { item: "Axe", quantity: 4, price: 500, desc: "Axe", presale: "Good for chopping people out of armor.", sale: '"Thank you. May it serve you well."'},
+  bill.aaron.stock = [ { item: "Dagger", quantity: 10, price: 5, desc: "Dagger", presale: '"Small, but deadly."', sale: '"Thank you. May it serve you well."' },
+                    { item: "Shortsword", quantity: 10, price: 50, desc: "Shortsword", presale: '"Quality goods, I promise you."', sale: '"Thank you. May it serve you well."' },
+                    { item: "Mace", quantity: 7, price: 200, desc: "Mace", presale: '"Got some heft to it."', sale: '"Thank you. May it serve you well."' },
+                    { item: "Axe", quantity: 4, price: 500, desc: "Axe", presale: '"Good for chopping people out of armor."', sale: '"Thank you. May it serve you well."'},
                     { item: "Longsword", quantity: 0, price: 1700}, 
                     { item: "Halberd", quantity: 0, price: 3500},
                     { item: "MagicSword", quantity: 0, price: 6000, desc: "Magic Sword"} ];
@@ -26,8 +26,8 @@ function SetMerchants() {
   bill.ariel = {};
   bill.ariel.stock = [ { item: "Dagger", quantity: 10, price: 7, desc: "Dagger", sale: '"May your blade be sharp."' },
                     { item: "Shortsword", quantity: 10, price: 60, desc: "Shortsword", sale: '"May your blade be sharp."' },
-                    { item: "Mace", quantity: 10, price: 220, desc: "Mace", sale: '"Heavy enough to crush bone!"' },
-                    { item: "Axe", quantity: 10, price: 575, desc: "Axe", sale: '"For when you absolutely need to chop something in half."'},
+                    { item: "Mace", quantity: 10, price: 220, desc: "Mace", presale: '"Heavy enough to crush bone!"', sale: '"Thank you for your patronage!"' },
+                    { item: "Axe", quantity: 10, price: 575, desc: "Axe", presale: '"For when you absolutely need to chop something in half."', sale: '"Thank you for your patronage!"'},
                     { item: "Longsword", quantity: 10, price: 1800, desc: "Longsword", sale: '"May your blade be sharp."'}, 
                     { item: "Halberd", quantity: 10, price: 3500, desc: "Halberd", sale: '"Enjoy your glaive. Halberd? I can never keep track, to be honest."'},
                     { item: "MagicSword", quantity: 0, price: 6600, desc: "Magic Sword"}, 
