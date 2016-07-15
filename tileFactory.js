@@ -698,6 +698,11 @@ tileFactory.prototype.makeCoralTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWaterRockTile = function() {
+  var newTile = new WaterRockTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDungeonTile = function() {
   var newTile = new DungeonTile();
   return newTile;
@@ -975,6 +980,11 @@ tileFactory.prototype.makeGrocerSign2Tile = function() {
 
 tileFactory.prototype.makeWeaponSignTile = function() {
   var newTile = new WeaponSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBowyerSignTile = function() {
+  var newTile = new BowyerSignTile();
   return newTile;
 }
 
@@ -1743,16 +1753,6 @@ tileFactory.prototype.makeStoneOfConflagrationsTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeBookOfLoreTile = function() {
-  var newTile = new BookOfLoreTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeTomeOfSightTile = function() {
-  var newTile = new TomeOfSightTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeTreasuryTokenTile = function() {
   var newTile = new TreasuryTokenTile();
   return newTile;
@@ -1820,6 +1820,16 @@ tileFactory.prototype.makeDecorativeArmorTile = function() {
 
 tileFactory.prototype.makeGoldTile = function() {
   var newTile = new GoldTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBookOfLoreTile = function() {
+  var newTile = new BookOfLoreTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTomeOfSightTile = function() {
+  var newTile = new TomeOfSightTile();
   return newTile;
 }
 

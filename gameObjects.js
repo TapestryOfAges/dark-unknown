@@ -3460,6 +3460,20 @@ function CoralTile() {
 }
 CoralTile.prototype = new FeatureObject();
 
+function WaterRockTile() {
+  this.name = "WaterRock";
+  this.graphic = "flowing_animations.gif";
+  this.overlay = "rock-floating.gif";
+  this.spritexoffset = "-192";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "rock";
+  
+//  SetByBelow.call(this);
+}
+WaterRockTile.prototype = new FeatureObject();
+
 function DungeonTile() {
   this.name = "Dungeon";
   this.graphic = "151.gif";
