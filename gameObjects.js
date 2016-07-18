@@ -3193,6 +3193,17 @@ function HexFloorTile() {
 }
 HexFloorTile.prototype = new TerrainObject();
 
+function HexTransparentFloorTile() {
+	this.name = "HexTransparentFloor";
+  this.graphic = "hex-transparent.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.desc = "floor";
+	this.peerview = "#675151";
+	this.walkSound = "stone";
+}
+HexTransparentFloorTile.prototype = new TerrainObject();
+
 function GoldOutlineFloorTile() {
 	this.name = "GoldOutlineFloor";
   this.graphic = "terrain_tiles.gif";
