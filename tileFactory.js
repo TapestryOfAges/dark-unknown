@@ -633,6 +633,11 @@ tileFactory.prototype.makeHexFloorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeHexTransparentFloorTile = function() {
+  var newTile = new HexTransparentFloorTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGoldOutlineFloorTile = function() {
   var newTile = new GoldOutlineFloorTile();
   return newTile;
