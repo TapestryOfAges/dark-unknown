@@ -9948,7 +9948,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
     this.processDeath(1);
     if (src === PC) {
       var XP = this.getXPVal();
-      PC.addXP(XP);
+      PC.addxp(XP);
     }
     return -1;
   }

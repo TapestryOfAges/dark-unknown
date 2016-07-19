@@ -9,7 +9,7 @@ OnHitFuncs["disease"] = function(atk,def,dmg) {
    
     if (def === PC) {  
       DrawCharFrame();
-      mainframe.delayedAddText("The bite was diseased!");
+      maintext.delayedAddText("The bite was diseased!");
     }
   }
   
@@ -25,7 +25,7 @@ OnHitFuncs["venom"] = function(atk,def,dmg) {
    
     if (def === PC) {  
       DrawCharFrame();
-      mainframe.delayedAddText("You have been poisoned!");
+      maintext.delayedAddText("You have been poisoned!");
     }
   }
   
@@ -41,7 +41,7 @@ OnHitFuncs["steal gold"] = function(atk,def,dmg) {
       loss = 0-loss;
       def.addGold(loss);
       if (def.getGold() < 0) { def.setGold(0); }
-      mainframe.delayedAddText("The " + atk.getDesc() + " steals some gold!");
+      maintext.delayedAddText("The " + atk.getDesc() + " steals some gold!");
       DrawCharFrame();
     }
   }
@@ -50,7 +50,7 @@ OnHitFuncs["steal gold"] = function(atk,def,dmg) {
 OnHitFuncs["stealfood"] = function(atk,def,dmg) {
   if (Dice.roll("1d100") < 30) {
     if (def.checkType("PC")) {
-      mainframe.delayedAddText("The " + atk.getDesc() + " has stolen some food! It consumes it greedily.");
+      maintext.delayedAddText("The " + atk.getDesc() + " has stolen some food! It consumes it greedily.");
       atk.fed = 1;
     }
   }
