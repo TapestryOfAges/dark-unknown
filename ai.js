@@ -316,7 +316,6 @@ ais.townsfolk = function(who) {
         StepOrSidestep(who, path[0], [who.startx, who.starty]);
         return retval;
       } else {
-//        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Leashed and outside leash, but no path home.</span><br />"); }
         DebugWrite("ai", "Leashed and outside leash, but no path home.<br />");
       }
     } else if (who.getLeash()) {
@@ -1281,7 +1280,7 @@ ais.ProcessPoI = function(who,poiname) {
       }
       var dur = 2*(path.length/3) + Dice.roll("1d3-1");
       if (dur < 0) { dur = 0; }
-      if (dur > path.length) { dir = path.length; }
+      if (dur > path.length) { dur = path.length; }
       who.setCurrentPath(path);
       who.setDestination({x: xval, y: yval}, dur);   
       who.setDestinationType("PoI");

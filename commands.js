@@ -1278,10 +1278,10 @@ function PerformTalkTarget() {
       if (PC.getLevel() === 4) {
         DU.gameflags.setFlag("lvl4",1);
       } 
-      retval = PreformTalk(top, convo, "_level");
+      retval = PerformTalk(top, convo, "_level");
     } else {
       maintext.addText('"Hail, ' + PC.getPCName() + '! You have made great progress, but you cannot advance without the =Rune=!."');
-      retval = PreformTalk(top, convo, "_level");
+      retval = PerformTalk(top, convo, "_level");
     }
   } else {
     retval = PerformTalk(top, convo, "_start");
