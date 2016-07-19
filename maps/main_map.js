@@ -516,6 +516,7 @@ function Placespawns(mapref) {
   spawn.evolve[3][0] = "spawngroup";
   spawn.evolve[3][1] = new Array("PitRogueGroupSmall","PitRogueGroupSmall","ThiefGroupSmall","ThiefGroupLarge");
 
+  spawn.evolve[4] = [];
   spawn.evolve[4][0] = "spawnLeash";
   spawn.evolve[4][1] = 0;
   spawn.evolve[4][2] = "spawnSoftLeash";

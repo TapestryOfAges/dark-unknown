@@ -441,7 +441,7 @@ function validate() {
   $("#mainbody").html("<p>");
   $.each(conversations, function(idx,val) {
     var allgood = 1;
-    $("#mainbody").html($("#mainbody").html() + "Processing " + idx + "...");
+    $("#mainbody").html($("#mainbody").html() + "Processing " + idx + " in " + val['_location'] + "...");
     if (!val["_start"]) { 
       allgood = 0;
       $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>_start missing</span>");
@@ -469,6 +469,14 @@ function validate() {
     if (!val["look"]) { 
       allgood = 0;
       $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>look missing</span>");
+    }
+    if (val["bye"] && !val["bye"].triggers[1].end_convo) {
+      allgood = 0;
+      $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>Bye[1] missing end_convo</span>");
+    }
+    if (val["bye"] && val["bye"].responses[0] && !val["bye"].triggers[0].end_convo) {
+      allgood = 0;
+      $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>Bye[0] missing end_convo</span>");
     }
     
     $.each(val, function(idx2,val2) {
