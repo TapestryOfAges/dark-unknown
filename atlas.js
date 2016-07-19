@@ -337,6 +337,8 @@ function Atlas() {
     'cw' : "CaveWall",
     "HexFloor" : 'hf',
     'hf' : "HexFloor",
+    "HexTransparentFloor" : 'ht',
+    'ht' : "HexTransparentFloor",
     "BlueTiles" : 'bb',
     'bb' : "BlueTiles",    
     "GoldOutlineFloor" : 'go',
