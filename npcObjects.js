@@ -3169,6 +3169,7 @@ function IllusionNPCTile() {
   this.onDamaged = 'die';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'mindless';
 }
 IllusionNPCTile.prototype = new NPCObject();
 
@@ -3199,6 +3200,7 @@ function InfusedIllusionNPCTile() {
   this.onDamaged = 'die';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'mindless';
 }
 InfusedIllusionNPCTile.prototype = new NPCObject();
 
@@ -3323,6 +3325,19 @@ function CrystalBarrierNPCTile() {
 }
 CrystalBarrierNPCTile.prototype = new NPCObject();
 
+function GiantRatGroupTinyTile() {
+  this.name = 'GiantRatGroupTiny';
+  this.desc = 'giant rats';
+  this.peaceAI = 'Animal-20';
+  this.graphic = '327.gif';
+  this.altgraphic = ['361.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('GiantRatNPC', '1d2+1');
+  this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
+}
+GiantRatGroupTinyTile.prototype = new NPCGroupObject();
+
 function GiantRatGroupSmallTile() {
   this.name = 'GiantRatGroupSmall';
   this.desc = 'giant rats';
@@ -3349,6 +3364,19 @@ function GiantRatGroupLargeTile() {
 }
 GiantRatGroupLargeTile.prototype = new NPCGroupObject();
 
+function OrcGroupTinyTile() {
+  this.name = 'OrcGroupTiny';
+  this.desc = 'orcs';
+  this.peaceAI = 'Monster-20';
+  this.graphic = '339.gif';
+  this.altgraphic = ['373.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('OrcNPC', '1d2+1');
+  this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
+}
+OrcGroupTinyTile.prototype = new NPCGroupObject();
+
 function OrcGroupSmallTile() {
   this.name = 'OrcGroupSmall';
   this.desc = 'orcs';
@@ -3374,6 +3402,19 @@ function OrcGroupLargeTile() {
   this.attackword = 'attack';
 }
 OrcGroupLargeTile.prototype = new NPCGroupObject();
+
+function HoodGroupTinyTile() {
+  this.name = 'HoodGroupTiny';
+  this.desc = 'hoods';
+  this.peaceAI = 'Bandit-20';
+  this.graphic = '375.gif';
+  this.altgraphic = ['341.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('HoodNPC', '1d2+2');
+  this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
+}
+HoodGroupTinyTile.prototype = new NPCGroupObject();
 
 function HoodGroupSmallTile() {
   this.name = 'HoodGroupSmall';
@@ -3484,6 +3525,19 @@ function LowbiePartyGroupTile() {
 }
 LowbiePartyGroupTile.prototype = new NPCGroupObject();
 
+function HeadlessGroupTinyTile() {
+  this.name = 'HeadlessGroupTiny';
+  this.desc = 'headlesses';
+  this.peaceAI = 'Monster-20';
+  this.graphic = '344.gif';
+  this.altgraphic = ['378.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('HeadlessNPC', '1d2+1');
+  this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
+}
+HeadlessGroupTinyTile.prototype = new NPCGroupObject();
+
 function HeadlessGroupSmallTile() {
   this.name = 'HeadlessGroupSmall';
   this.desc = 'headlesses';
@@ -3509,6 +3563,19 @@ function HeadlessGroupLargeTile() {
   this.attackword = 'attack';
 }
 HeadlessGroupLargeTile.prototype = new NPCGroupObject();
+
+function SnakesGroupSmallTile() {
+  this.name = 'SnakesGroupSmall';
+  this.desc = 'giant snakes';
+  this.peaceAI = 'Animal-20';
+  this.graphic = '342.gif';
+  this.altgraphic = ['376.gif',];
+  this.group = [];
+  this.group[0] = new NPCList('GiantSnakeNPC', '1d2+1');
+  this.movetype = MOVE_WALK;
+  this.attackword = 'attack';
+}
+SnakesGroupSmallTile.prototype = new NPCGroupObject();
 
 function SnakesGroupTile() {
   this.name = 'SnakesGroup';

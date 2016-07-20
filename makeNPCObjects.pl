@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-open (my $npcdoc, "<", "DU NPCs - Monsters.tsv") or die "Can't open NPCdoc.txt\n";
+open (my $npcdoc, "<", "DU NPCs - Monsters.tsv") or die "Can't open DU NPCs - Monsters.tsv\n";
 open (my $out, ">", "npcObjects.js") or die "Can't open output file.\n";
 
 my $firstline = 1;
@@ -134,7 +134,7 @@ foreach my $line (<$npcdoc>) {
 
 close $npcdoc;
 
-open (my $groupdoc, "<", "DU NPCs - Groups.tsv") or die "Can't open Groupdoc.txt\n";
+open (my $groupdoc, "<", "DU NPCs - Groups.tsv") or die "Can't open DU NPCs - Groups.tsv\n";
 $firstline = 1;
 
 foreach my $line (<$groupdoc>) {
