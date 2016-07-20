@@ -750,6 +750,7 @@ function GameMap() {
   this.enterTestScript = "";
   this.pathGrid = {};
   this.network = [];
+  this.opacity = .6;
   
   this.lightsList = {};
 }
@@ -771,6 +772,15 @@ GameMap.prototype.setDesc = function(desc) {
 
 GameMap.prototype.getDesc = function() {
   return this.desc;
+}
+
+GameMap.prototype.setOpacity = function(newo) {
+  this.opacity = newo;
+  return this.opacity;
+}
+
+GameMap.prototype.getOpacity = function() {
+  return this.opacity;
 }
 
 GameMap.prototype.setBackground = function(bgimg) {

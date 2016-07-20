@@ -313,34 +313,34 @@ mappages["swainhil3"].terrain[59] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb s
 mappages["swainhil3"].features = [];
 mappages["swainhil3"].features[0] = {name : 'StairDown2', x : 43, y : 49, entermap : 'null', enterx : 0, entery : 0};
 mappages["swainhil3"].features[1] = {name : 'Door', x : 40, y : 45};
-mappages["swainhil3"].features[2] = {name : 'WalkOn', x : 41, y : 45};
-mappages["swainhil3"].features[3] = {name : 'WalkOn', x : 37, y : 41};
-mappages["swainhil3"].features[4] = {name : 'WalkOn', x : 37, y : 42};
-mappages["swainhil3"].features[5] = {name : 'WalkOn', x : 37, y : 43};
-mappages["swainhil3"].features[6] = {name : 'WalkOn', x : 37, y : 44};
-mappages["swainhil3"].features[7] = {name : 'WalkOn', x : 37, y : 45};
-mappages["swainhil3"].features[8] = {name : 'WalkOn', x : 37, y : 46};
-mappages["swainhil3"].features[9] = {name : 'WalkOn', x : 37, y : 47};
-mappages["swainhil3"].features[10] = {name : 'WalkOn', x : 37, y : 48};
-mappages["swainhil3"].features[11] = {name : 'WalkOn', x : 37, y : 49};
-mappages["swainhil3"].features[12] = {name : 'WalkOn', x : 38, y : 41};
-mappages["swainhil3"].features[13] = {name : 'WalkOn', x : 38, y : 42};
-mappages["swainhil3"].features[14] = {name : 'WalkOn', x : 38, y : 43};
-mappages["swainhil3"].features[15] = {name : 'WalkOn', x : 38, y : 44};
+mappages["swainhil3"].features[2] = {name : 'WalkOn', x : 41, y : 45, walkonscript : 'nogalaxy'};
+mappages["swainhil3"].features[3] = {name : 'WalkOn', x : 37, y : 41, walkonscript : 'galaxy2'};
+mappages["swainhil3"].features[4] = {name : 'WalkOn', x : 37, y : 42, walkonscript : 'galaxy2'};
+mappages["swainhil3"].features[5] = {name : 'WalkOn', x : 37, y : 43, walkonscript : 'galaxy2'};
+mappages["swainhil3"].features[6] = {name : 'WalkOn', x : 37, y : 44, walkonscript : 'galaxy2'};
+mappages["swainhil3"].features[7] = {name : 'WalkOn', x : 37, y : 45, walkonscript : 'galaxy2'};
+mappages["swainhil3"].features[8] = {name : 'WalkOn', x : 37, y : 46, walkonscript : 'galaxy2'};
+mappages["swainhil3"].features[9] = {name : 'WalkOn', x : 37, y : 47, walkonscript : 'galaxy2'};
+mappages["swainhil3"].features[10] = {name : 'WalkOn', x : 37, y : 48, walkonscript : 'galaxy2'};
+mappages["swainhil3"].features[11] = {name : 'WalkOn', x : 37, y : 49, walkonscript : 'galaxy2'};
+mappages["swainhil3"].features[12] = {name : 'WalkOn', x : 38, y : 41, walkonscript : 'galaxy1'};
+mappages["swainhil3"].features[13] = {name : 'WalkOn', x : 38, y : 42, walkonscript : 'galaxy1'};
+mappages["swainhil3"].features[14] = {name : 'WalkOn', x : 38, y : 43, walkonscript : 'galaxy1'};
+mappages["swainhil3"].features[15] = {name : 'WalkOn', x : 38, y : 44, walkonscript : 'galaxy1'};
 mappages["swainhil3"].features[16] = {name : 'WalkOn', x : 38, y : 45, walkonscript : 'galaxy1'};
-mappages["swainhil3"].features[17] = {name : 'WalkOn', x : 38, y : 46};
-mappages["swainhil3"].features[18] = {name : 'WalkOn', x : 38, y : 47};
-mappages["swainhil3"].features[19] = {name : 'WalkOn', x : 38, y : 48};
-mappages["swainhil3"].features[20] = {name : 'WalkOn', x : 38, y : 49};
-mappages["swainhil3"].features[21] = {name : 'WalkOn', x : 36, y : 41};
-mappages["swainhil3"].features[22] = {name : 'WalkOn', x : 36, y : 42};
-mappages["swainhil3"].features[23] = {name : 'WalkOn', x : 36, y : 43};
-mappages["swainhil3"].features[24] = {name : 'WalkOn', x : 36, y : 44};
-mappages["swainhil3"].features[25] = {name : 'WalkOn', x : 36, y : 45};
-mappages["swainhil3"].features[26] = {name : 'WalkOn', x : 36, y : 46};
-mappages["swainhil3"].features[27] = {name : 'WalkOn', x : 36, y : 47};
-mappages["swainhil3"].features[28] = {name : 'WalkOn', x : 36, y : 48};
-mappages["swainhil3"].features[29] = {name : 'WalkOn', x : 36, y : 49};
+mappages["swainhil3"].features[17] = {name : 'WalkOn', x : 38, y : 46, walkonscript : 'galaxy1'};
+mappages["swainhil3"].features[18] = {name : 'WalkOn', x : 38, y : 47, walkonscript : 'galaxy1'};
+mappages["swainhil3"].features[19] = {name : 'WalkOn', x : 38, y : 48, walkonscript : 'galaxy1'};
+mappages["swainhil3"].features[20] = {name : 'WalkOn', x : 38, y : 49, walkonscript : 'galaxy1'};
+mappages["swainhil3"].features[21] = {name : 'WalkOn', x : 36, y : 41, walkonscript : 'galaxy3'};
+mappages["swainhil3"].features[22] = {name : 'WalkOn', x : 36, y : 42, walkonscript : 'galaxy3'};
+mappages["swainhil3"].features[23] = {name : 'WalkOn', x : 36, y : 43, walkonscript : 'galaxy3'};
+mappages["swainhil3"].features[24] = {name : 'WalkOn', x : 36, y : 44, walkonscript : 'galaxy3'};
+mappages["swainhil3"].features[25] = {name : 'WalkOn', x : 36, y : 45, walkonscript : 'galaxy3'};
+mappages["swainhil3"].features[26] = {name : 'WalkOn', x : 36, y : 46, walkonscript : 'galaxy3'};
+mappages["swainhil3"].features[27] = {name : 'WalkOn', x : 36, y : 47, walkonscript : 'galaxy3'};
+mappages["swainhil3"].features[28] = {name : 'WalkOn', x : 36, y : 48, walkonscript : 'galaxy3'};
+mappages["swainhil3"].features[29] = {name : 'WalkOn', x : 36, y : 49, walkonscript : 'galaxy3'};
 mappages["swainhil3"].features[30] = {name : 'Brazier', x : 39, y : 44};
 mappages["swainhil3"].features[31] = {name : 'Brazier', x : 39, y : 46};
 
@@ -370,3 +370,66 @@ mappages["swainhil3"].returnx = '69';
 mappages["swainhil3"].returny = '74';
 mappages["swainhil3"].returninfused = '0';
 mappages["swainhil3"].linkedMaps = ["swainhil","swainhil2"];
+
+mappages["swainhil3"].nogalaxy = function(feature) {
+  feature.walkon = function(walker) {
+    var mymap = walker.getHomeMap();
+    mymap.setBackground("");
+    
+    var normalsong = mymap.getMusic();
+    if (nowplaying !== normalsong) {
+      StopMusic(nowplaying);
+      nowplaying = DUPlayMusic(normalsong);
+    }
+    DrawMainFrame("draw",mymap.getName(),walker.getx(),walker.gety());
+    return;
+  }
+}
+
+mappages["swainhil3"].galaxy1 = function(feature) {
+  feature.walkon = function(walker) {
+    var mymap = walker.getHomeMap();
+    mymap.setBackground("ether.gif");
+    mymap.setOpacity(.2);
+    
+    var song = "Sirius";
+    if (nowplaying !== song) {
+      StopMusic(nowplaying);
+      nowplaying = DUPlayMusic(song);
+    }
+    DrawMainFrame("draw",mymap.getName(),walker.getx(),walker.gety());
+    return;
+  }
+}
+
+mappages["swainhil3"].galaxy2 = function(feature) {
+  feature.walkon = function(walker) {
+    var mymap = walker.getHomeMap();
+    mymap.setBackground("ether.gif");
+    mymap.setOpacity(.4);
+    
+    var song = "Sirius";
+    if (nowplaying !== song) {
+      StopMusic(nowplaying);
+      nowplaying = DUPlayMusic(song);
+    }
+    DrawMainFrame("draw",mymap.getName(),walker.getx(),walker.gety());
+    return;
+  }
+}
+
+mappages["swainhil3"].galaxy3 = function(feature) {
+  feature.walkon = function(walker) {
+    var mymap = walker.getHomeMap();
+    mymap.setBackground("ether.gif");
+    mymap.setOpacity(.6);
+    
+    var song = "Sirius";
+    if (nowplaying !== song) {
+      StopMusic(nowplaying);
+      nowplaying = DUPlayMusic(song);
+    }
+    DrawMainFrame("draw",mymap.getName(),walker.getx(),walker.gety());
+    return;
+  }
+}

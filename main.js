@@ -90,7 +90,8 @@ function DrawMainFrame(how, mapname, centerx, centery) {
     var mapbg = '';
     if (themap.getBackground()) {
       //mapbg = 'background-image:url(\'graphics/' + themap.getBackground() + '\'); background-repeat:no-repeat;';
-      $("#worldlayer").html("<div id='cloudlayer' style='background-image:url(\"graphics/" + themap.getBackground() + "\");opacity:.6;position:relative;z-index:10;background-position: " + wind.xoff + "px " + wind.yoff + "px;'><img src='graphics/spacer.gif' width='416' height='416' /></div>");
+      var opacity = themap.getOpacity();
+      $("#worldlayer").html("<div id='cloudlayer' style='background-image:url(\"graphics/" + themap.getBackground() + "\");opacity:" + opacity + ";position:relative;z-index:10;background-position: " + wind.xoff + "px " + wind.yoff + "px;'><img src='graphics/spacer.gif' width='416' height='416' /></div>");
     } else {
       $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
     }
