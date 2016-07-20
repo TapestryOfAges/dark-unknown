@@ -2758,6 +2758,11 @@ tileFactory.prototype.makeCrystalBarrierNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGiantRatGroupTinyTile = function() {
+  var newTile = new GiantRatGroupTinyTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGiantRatGroupSmallTile = function() {
   var newTile = new GiantRatGroupSmallTile();
   return newTile;
@@ -2768,6 +2773,11 @@ tileFactory.prototype.makeGiantRatGroupLargeTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeOrcGroupTinyTile = function() {
+  var newTile = new OrcGroupTinyTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeOrcGroupSmallTile = function() {
   var newTile = new OrcGroupSmallTile();
   return newTile;
@@ -2775,6 +2785,11 @@ tileFactory.prototype.makeOrcGroupSmallTile = function() {
 
 tileFactory.prototype.makeOrcGroupLargeTile = function() {
   var newTile = new OrcGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHoodGroupTinyTile = function() {
+  var newTile = new HoodGroupTinyTile();
   return newTile;
 }
 
@@ -2818,6 +2833,11 @@ tileFactory.prototype.makeLowbiePartyGroupTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeHeadlessGroupTinyTile = function() {
+  var newTile = new HeadlessGroupTinyTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeHeadlessGroupSmallTile = function() {
   var newTile = new HeadlessGroupSmallTile();
   return newTile;
@@ -2825,6 +2845,11 @@ tileFactory.prototype.makeHeadlessGroupSmallTile = function() {
 
 tileFactory.prototype.makeHeadlessGroupLargeTile = function() {
   var newTile = new HeadlessGroupLargeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSnakesGroupSmallTile = function() {
+  var newTile = new SnakesGroupSmallTile();
   return newTile;
 }
 
