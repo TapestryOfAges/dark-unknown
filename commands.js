@@ -1818,6 +1818,16 @@ function PerformYell() {
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,16,13);		  
       DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+    } else if (inputText.txt === "TESTBARD") {
+      var newmap = new GameMap();
+      if (maps.getMap("swainhil")) {
+				newmap = maps.getMap("swainhil");
+			} else {
+				newmap.loadMap("swainhil");
+				maps.addMapByRef(newmap);
+			}
+      MoveBetweenMaps(PC,PC.getHomeMap(),newmap,48,19);		  
+      DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
     } else if (inputText.txt === "GOGROTTO") {
 		    var homemap = PC.getHomeMap();
 		    homemap.moveThing(30,45,PC);

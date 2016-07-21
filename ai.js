@@ -225,11 +225,11 @@ ais.combat = function(who) {
     }
     if (approach) {
       var path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),who.getMovetype());
-      if (!path) {
+      if (!path.length) {
         approach = oldapproach;
         path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),who.getMovetype());
       }
-      if (path) { 
+      if (path.length) { 
         var moved = FindCombatPath(who,approach,path);
       } else {
         // no path found to target
@@ -1128,9 +1128,9 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
 
       if (leashed) {
         var path = who.getHomeMap().getPath(who.getx(), who.gety(), spawnedby.getx(), spawnedby.gety(), who.getMovetype());
-        if (path) {
+        if (path.length) {
           path.shift();
-          if (path) {
+          if (path.length) {
             var dur = Math.floor(path.length / 3) + Dice.roll("1d5-3");
             if (dur > path.length) { dur = path.length; }
             if (dur < 0) { dur = 0; }
@@ -1523,7 +1523,7 @@ function FindCombatPath(who,approach,path) {
       }
     }
     
-    if (shortest) {
+    if (shortest.length) {
       shortest.shift(); // paths start with the starting location
       moved = StepOrSidestep(who,shortest[0],[approach.getx(),approach.gety()]);
     } else {

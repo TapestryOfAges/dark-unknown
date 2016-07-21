@@ -81,7 +81,7 @@ mappages["swainhil"].features[13] = {name : 'Door', x : 33, y : 36};
 mappages["swainhil"].features[14] = {name : 'DoorWindow', x : 35, y : 43};
 mappages["swainhil"].features[15] = {name : 'DoorWindow', x : 29, y : 42};
 mappages["swainhil"].features[16] = {name : 'DoorWindow', x : 29, y : 45};
-mappages["swainhil"].features[17] = {name : 'StairUp', x : 26, y : 43, entermap : 'null', enterx : 0, entery : 0};
+mappages["swainhil"].features[17] = {name : 'StairUp', x : 26, y : 43, entermap : 'swainhil2', enterx : 26, entery : 43};
 mappages["swainhil"].features[18] = {name : 'TopChair', x : 37, y : 37};
 mappages["swainhil"].features[19] = {name : 'TopChair', x : 39, y : 37};
 mappages["swainhil"].features[20] = {name : 'TopChair', x : 41, y : 37};
@@ -214,11 +214,11 @@ mappages["swainhil2"].terrain[58] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb s
 mappages["swainhil2"].terrain[59] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
 
 mappages["swainhil2"].features = [];
-mappages["swainhil2"].features[0] = {name : 'StairDown', x : 26, y : 43, entermap : 'null', enterx : 0, entery : 0};
+mappages["swainhil2"].features[0] = {name : 'StairDown', x : 26, y : 43, entermap : 'swainhil', enterx : 26, entery : 43};
 mappages["swainhil2"].features[1] = {name : 'Door', x : 32, y : 41};
 mappages["swainhil2"].features[2] = {name : 'Door', x : 32, y : 45};
 mappages["swainhil2"].features[3] = {name : 'Door', x : 37, y : 41};
-mappages["swainhil2"].features[4] = {name : 'StairUp2', x : 43, y : 49, entermap : 'null', enterx : 0, entery : 0};
+mappages["swainhil2"].features[4] = {name : 'StairUp2', x : 43, y : 49, entermap : 'swainhil3', enterx : 43, entery : 49};
 
 
 mappages["swainhil2"].npcs = [];
@@ -231,7 +231,7 @@ mappages["swainhil2"].exity = '104';
 mappages["swainhil2"].wraps = 'None';
 mappages["swainhil2"].enterx = '39';
 mappages["swainhil2"].entery = '14';
-mappages["swainhil2"].seeBelow = '';
+mappages["swainhil2"].seeBelow = 'swainhil';
 mappages["swainhil2"].lightLevel = 'bright';
 mappages["swainhil2"].alwaysRemember = '0';
 mappages["swainhil2"].scale = '1';
@@ -311,7 +311,7 @@ mappages["swainhil3"].terrain[58] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb s
 mappages["swainhil3"].terrain[59] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
 
 mappages["swainhil3"].features = [];
-mappages["swainhil3"].features[0] = {name : 'StairDown2', x : 43, y : 49, entermap : 'null', enterx : 0, entery : 0};
+mappages["swainhil3"].features[0] = {name : 'StairDown2', x : 43, y : 49, entermap : 'swainhil2', enterx : 43, entery : 49};
 mappages["swainhil3"].features[1] = {name : 'Door', x : 40, y : 45};
 mappages["swainhil3"].features[2] = {name : 'WalkOn', x : 41, y : 45, walkonscript : 'nogalaxy'};
 mappages["swainhil3"].features[3] = {name : 'WalkOn', x : 37, y : 41, walkonscript : 'galaxy2'};
@@ -356,7 +356,7 @@ mappages["swainhil3"].exity = '104';
 mappages["swainhil3"].wraps = 'None';
 mappages["swainhil3"].enterx = '39';
 mappages["swainhil3"].entery = '14';
-mappages["swainhil3"].seeBelow = '';
+mappages["swainhil3"].seeBelow = 'swainhil2';
 mappages["swainhil3"].lightLevel = 'bright';
 mappages["swainhil3"].alwaysRemember = '0';
 mappages["swainhil3"].scale = '1';
@@ -377,7 +377,7 @@ mappages["swainhil3"].nogalaxy = function(feature) {
     mymap.setBackground("");
     
     var normalsong = mymap.getMusic();
-    if (nowplaying !== normalsong) {
+    if (nowplaying.name !== normalsong) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(normalsong);
     }
@@ -393,7 +393,7 @@ mappages["swainhil3"].galaxy1 = function(feature) {
     mymap.setOpacity(.2);
     
     var song = "Sirius";
-    if (nowplaying !== song) {
+    if (nowplaying.name !== song) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(song);
     }
@@ -406,10 +406,10 @@ mappages["swainhil3"].galaxy2 = function(feature) {
   feature.walkon = function(walker) {
     var mymap = walker.getHomeMap();
     mymap.setBackground("ether.gif");
-    mymap.setOpacity(.4);
+    mymap.setOpacity(.5);
     
     var song = "Sirius";
-    if (nowplaying !== song) {
+    if (nowplaying.name !== song) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(song);
     }
@@ -422,10 +422,10 @@ mappages["swainhil3"].galaxy3 = function(feature) {
   feature.walkon = function(walker) {
     var mymap = walker.getHomeMap();
     mymap.setBackground("ether.gif");
-    mymap.setOpacity(.6);
+    mymap.setOpacity(.8);
     
     var song = "Sirius";
-    if (nowplaying !== song) {
+    if (nowplaying.name !== song) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(song);
     }
