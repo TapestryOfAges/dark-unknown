@@ -837,7 +837,7 @@ function maps_check_escape(mapref) {
       chance = 100 - (20 + 7*numenemies);
       if (chance < 10) { chance = 10; }
     }
-    if (Dice.roll("1d100") <= chance) {
+    if (Dice.roll("1d100") > chance) {
       if (who === PC) {
         maintext.delayedAddText("You failed to escape!");
       }

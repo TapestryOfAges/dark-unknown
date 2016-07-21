@@ -335,6 +335,9 @@ GameStateData.prototype.loadGame = function(idx) {
         val.spawned.addTop(universe[spawnval]);
       });
     } 
+    if (val.walkonscript) {
+      mappages[val.homeMap][val.walkonscript](val);
+    }
     if (val.inventory && !val.inventory.container) {
       // if it has inventory.container, it's a Collection, which means it wasn't overwritten from the loaded game and so is empty
       DebugWrite("saveload", val.name + " has an inventory, processing...");

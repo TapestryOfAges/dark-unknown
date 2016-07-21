@@ -69,6 +69,7 @@ DUMusic["Ruins"] = "Among the Ruins";
 DUMusic["Ether"] = "The Beyond";
 DUMusic["Lullaby"] = "Lullaby";
 DUMusic["Lament"] = "Shelaria's Lament";
+DUMusic["Sirius"] = "This Bardic Life";
 
 var musicloaded = {};
 var musicsloaded = 0;
