@@ -108,14 +108,17 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     }
   }
   if (triggers.hasOwnProperty("start_shop")) {
-    var sell = DisplayWares(speaker);
+    if (HasStock(speaker.getMerch())) {
+      var sell = DisplayWares(speaker);
     
-    if (sell) {
-      targetCursor.alreadyBought = {};
-      keep_talking = 3; 
-      // set up merchanting!
+      if (sell) {
+        targetCursor.alreadyBought = {};
+        keep_talking = 3; 
+        // set up merchanting!
+      }
+    } else {
+      keep_talking = this.say(speaker, this["_soldout"].responses[flags_met], skipahead);
     }
-    
 
   }
   if (triggers.hasOwnProperty("start_sell")) {

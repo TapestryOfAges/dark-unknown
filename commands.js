@@ -1784,6 +1784,8 @@ function PerformYell() {
 		  }
 		} else if (inputText.txt === "ONEUP") {
 		  PC.setLevel(PC.getLevel()+1);
+		} else if (inputText.txt === "LOOPLEPR") {
+		  PC.addGold(1000);
 		} else if (inputText.txt === "REFRESH") {
 		  PC.setMana(PC.getMaxMana());
 		} else if (inputText.txt === "FUTHARK") {

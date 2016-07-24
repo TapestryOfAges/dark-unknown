@@ -797,37 +797,57 @@ function DoAction(code, ctrl) {
       var idx = targetCursor.buychoice;
       var buyqty = parseInt(targetCursor.buyqty);
       delete targetCursor.buyqty; 
+      if (isNaN(buyqty)) { buyqty = 0; }
       if (buyqty <= 0) { 
         PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "_nobuy");
-        PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "buy");
         gamestate.setMode("buy");
-      }
-      if ((merinv.stock[idx].price * parseInt(buyqty)) <= PC.getGold()) {
+        maintext.setInputLine("Buy what: ");
+        maintext.drawTextFrame();
+      } else if (buyqty > merinv.stock[idx].quantity) {
+        maintext.addText("There are not that many available.");
+        targetCursor.buyqty = buyqty;
+      } else if ((merinv.stock[idx].price * parseInt(buyqty)) <= PC.getGold()) {
         maintext.addText(merinv.stock[idx].sale);
         var idx = targetCursor.buychoice;
         var newitem = localFactory.createTile(merinv.stock[idx].item);
-        if (merinv.stock[idx].quantity != 99) { marinv.stock[idx].quantity = marinv.stock[idx].quantity - buyqty; }
+        if (merinv.stock[idx].quantity != 99) { merinv.stock[idx].quantity = merinv.stock[idx].quantity - buyqty; }
         PC.addGold(-(merinv.stock[idx].price * buyqty));
         PC.addToInventory(newitem,buyqty);
         maintext.addText(" ");
         maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + " x" + buyqty + ": Purchased. Anything else?");
-        maintext.setInputLine("Buy what: ");
-        maintext.drawTextFrame();
-        DrawCharFrame();
-        gamestate.setMode("buy");        
+        if (HasStock(targetCursor.talkingto.getMerch())) {
+          maintext.setInputLine("Buy what: ");
+          maintext.drawTextFrame();
+          DrawCharFrame();
+          gamestate.setMode("buy");        
+        } else {
+          var retval = PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "_soldout");
+          maintext.addText(retval["txt"]);
+          maintext.setInputLine(retval["input"]);
+          maintext.drawTextFrame();
+        
+          if (retval["fin"] === 1) {
+            PC.endTurn(retval["initdelay"]);
+          }
+        }
       } else {
         maintext.addText("You don't have enough gold for that.");
         gamestate.setMode("buy");
       }
-    } else if ((code >= 48) && (code <= 57) && (marinv.stock[idx].sellqty)) {
+    } else if ((code >= 48) && (code <= 57) && (merinv.stock[idx].sellqty)) {
       // picking a number
+      var typednum = code-48;
       if (!targetCursor.buyqty) {
-        var typednum = code-48;
         if (typednum) {  // there's no buyqty yet, so you can't add 0 to it.
           targetCursor.buyqty = code-48;
+          targetCursor.buyqty = targetCursor.buyqty.toString();
         } 
       } else if ( targetCursor.buyqty.length <= 2) {
         targetCursor.buyqty = targetCursor.buyqty + "" + typednum;
+      }
+      if (targetCursor.buyqty) {
+        maintext.setInputLine("Purchase how many? " + targetCursor.buyqty);
+        maintext.drawTextFrame();
       }
     } else if ((!merinv.stock[idx].sellqty && (code === 78)) || (code === 27)) {
       // saying NO (non-qty) or ESC (any)
@@ -839,9 +859,13 @@ function DoAction(code, ctrl) {
       gamestate.setMode("buy");
     } else if ((code === 8) && (merinv.stock[idx].sellqty)) {
       // backspace
-      if (targetCursor.buyqty) {
+      if (targetCursor.buyqty.length > 1) {
         targetCursor.buyqty = targetCursor.buyqty.charAt(0);
+      } else {
+        targetCursor.buyqty = "";
       }
+      maintext.setInputLine("Purchase how many? " + targetCursor.buyqty);
+      maintext.drawTextFrame();
     }
   }
 }
