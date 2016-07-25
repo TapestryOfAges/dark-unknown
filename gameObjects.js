@@ -10937,6 +10937,7 @@ NPCObject.prototype.addToInventory = function(item, thinAir, qty) {
   if (!thinAir) {
     // otherwise, this will remove the item from the NPC/PC's map first.
     this.getHomeMap().deleteThing(item);
+    this.setHomeMap("");
   }
   if (!qty) { qty = 1; }
   var alreadyIn = this.inventory.getByName(item.getName());
