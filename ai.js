@@ -685,6 +685,7 @@ ais.AshardenBook = function(who) {
     } else if (who.dest === 6) {
       if (IsAdjacent(who,PC)) {
         maintext.addText("Asharden hands you a spellbook!");
+        DU.gameflags.setFlag("spellbook",1);
         DU.gameflags.setFlag("spellbook2",1);
         who.setConversation("asharden");
         who.setCurrentAI(who.prevai);
