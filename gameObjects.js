@@ -7275,14 +7275,18 @@ function PetrifiedReaperTile() {
 PetrifiedReaperTile.prototype = new FeatureObject();
 
 PetrifiedReaperTile.prototype.use = function(who) {
+  var retval  ={};
+  retval["fin"] = 1;
+
   if (IsAdjacent(who,this)) {
     var loot = localFactory.createTile("ReaperBark");
     PC.addToInventory(loot,1);
-    maintext.delayedAddText("You take some petrified reaper bark.");
+    retval["txt"] = "You take some petrified reaper bark.";
   } else {
-    maintext.delayedAddText("Nothing happens.");
+    retval["txt"] = "Nothing happens.";
   }
-  return;
+
+  return retval;
 }  
 
 function AltarWithSwordTile() {
