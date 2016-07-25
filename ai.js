@@ -440,7 +440,7 @@ ais.AnnaLeaves = function(who) {
   var themap = who.getHomeMap();
   var annax = who.getx();
   var annay = who.gety();
-  if (who.gety() === 39) {
+  if (who.gety() === 59) {
     DU.gameflags.setFlag("anna_left",1);
     themap.deleteThing(who);
     DrawMainFrame("one",themap.getName(),annax,annay);
@@ -452,13 +452,13 @@ ais.AnnaLeaves = function(who) {
   
   while (!pathfound) {
     if (who.dest === 1) {
-      path = themap.getPath(annax, annay, 26, 13, who.getMovetype());
+      path = themap.getPath(annax, annay, 26, 33, who.getMovetype());
     } else if (who.dest === 2) {
-      path = themap.getPath(annax, annay, 26, 21, who.getMovetype());
+      path = themap.getPath(annax, annay, 26, 41, who.getMovetype());
     } else if (who.dest === 3) {
-      path = themap.getPath(annax, annay, 25, 21, who.getMovetype());
+      path = themap.getPath(annax, annay, 25, 41, who.getMovetype());
     } else if (who.dest === 4) {
-      path = themap.getPath(annax, annay, 25, 39, who.getMovetype());
+      path = themap.getPath(annax, annay, 25, 59, who.getMovetype());
     }
     path.shift();
     if (!path[0]) { who.dest++; pathfound = 0;}
@@ -470,7 +470,7 @@ ais.AnnaLeaves = function(who) {
   var diffx = path[0][0] - annax;
   var diffy = path[0][1] - annay;
   var fullx = 25 - annax;
-  var fully = 39 - annay;
+  var fully = 59 - annay;
   
   var moved = who.moveMe(diffx,diffy);
   if (!moved["canmove"]) {
@@ -598,13 +598,13 @@ ais.GarrickEscort = function(who) {
   var pathfound;
   while (!pathfound) {
     if (who.dest === 1) {
-      path = themap.getPath(gx, gy, 26, 20, MOVE_WALK_DOOR);
+      path = themap.getPath(gx, gy, 26, 40, MOVE_WALK_DOOR);
     } else if (who.dest === 2) {
-      path = themap.getPath(gx, gy, 25, 21, who.getMovetype());
+      path = themap.getPath(gx, gy, 25, 41, who.getMovetype());
     } else if (who.dest === 3) {
-      path = themap.getPath(gx, gy, 24, 30, who.getMovetype());
+      path = themap.getPath(gx, gy, 24, 50, who.getMovetype());
     } else if (who.dest === 4) {
-      path = themap.getPath(gx, gy, 22, 30, MOVE_WALK_DOOR);
+      path = themap.getPath(gx, gy, 22, 50, MOVE_WALK_DOOR);
     } else if (who.dest ===5) {
       var doortile = themap.getTile(gx-1,gy);
       var door = doortile.getTopFeature();
@@ -612,7 +612,7 @@ ais.GarrickEscort = function(who) {
       who.dest++;
       return retval;
     } else if (who.dest === 6) {
-      path = themap.getPath(gx, gy, 6, 32, MOVE_WALK_DOOR);
+      path = themap.getPath(gx, gy, 6, 52, MOVE_WALK_DOOR);
     } else if (who.dest === 7) {
       var doortile = themap.getTile(gx,gy+1);
       var door = doortile.getTopFeature();
@@ -624,7 +624,7 @@ ais.GarrickEscort = function(who) {
       who.dest++;
       return retval;
     } else if (who.dest === 11) {
-      var doortile = themap.getTile(6,33);
+      var doortile = themap.getTile(6,53);
       var door = doortile.getTopFeature();
       door.use(who);
       door.lockMe(1);
@@ -638,7 +638,7 @@ ais.GarrickEscort = function(who) {
   
   // step on the path
   // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
-  var moved = StepOrSidestep(who, path[0], [6,32]);
+  var moved = StepOrSidestep(who, path[0], [6,52]);
   
   return retval;
 }
