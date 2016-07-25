@@ -69,6 +69,8 @@ var PC = new PCObject();
 PC.assignSerial();
 var musicloaded = {};
 var musictries = 0;
+DU.merchants = {};
+DU.merchants = SetMerchants();
 
 var firsttime = 1;
 var themap;
@@ -83,7 +85,7 @@ var whoseturn;
 
 $(document).ready(function() {
   audio_init_title();  
-  
+
   if (firsttime) {
     $(document).keydown(function(e) {
       var code = (e.keyCode ? e.keyCode : e.which);
