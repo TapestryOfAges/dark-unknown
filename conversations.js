@@ -261,7 +261,7 @@ OnConvTriggers["ash_password"] = function(speaker,keyword) {
   door.open = 1;
 			
   DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
-  DU.gameflags.deleteFlag(triggers.set_flag);
+  DU.gameflags.deleteFlag("ash_password");
   
   return;
 }
