@@ -380,18 +380,18 @@ function DoAction(code, ctrl) {
           resp = PerformPush(PC);
         }
         if (resp["fin"] >= 2) {
-          if ((targetCursor.command === "u") && (resp["fin"] = 3)) {
+          if ((targetCursor.command === "u") && (resp["fin"] === 3)) {
             maintext.setInputLine("[MORE]");
             maintext.addText(resp["txt"]);
             gamestate.setMode("anykey");
             maintext.drawTextFrame();
           } else {
+            if ((resp["fin"] > 2) && (targetCursor.command !== "t")) {
+              gamestate.setMode("player");
+            }      
             maintext.addText(resp["txt"]);
             maintext.setInputLine(resp["input"]);
             maintext.drawTextFrame();
-          }
-          if (resp["fin"] > 2) {
-            gamestate.setMode("player");
           }
         }
         if (resp["fin"] < 2) {
