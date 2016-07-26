@@ -503,7 +503,8 @@ QUnit.test("Test Magic Bolt spell and resistance", function( assert ) {
   tgtmob.setHP(40);
   assert.deepEqual(tgtmob.getHP(),40,"HP set to 40.");
   
-  PerformMagicBolt(castermob,0,0,tgtmob);
+  var resp = PerformMagicBolt(castermob,0,0,tgtmob);
+  assert.deepEqual(resp["fin"],-1,"Resp is -1 (spell cast, waiting for animation).");
 
   var done = assert.async();
   var duration = (Math.pow( Math.pow(tgtmob.getx() - castermob.getx(), 2) + Math.pow (tgtmob.gety() - castermob.gety(), 2)  , .5)) * 100;
