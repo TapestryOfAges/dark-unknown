@@ -799,6 +799,17 @@ function GetManhattenDistance(x1,y1,x2,y2) {
   return (Math.abs(x1-x2) + Math.abs(y1-y2));
 }
 
+function GetDistanceByPath(who1,who2,movetype) {
+  var themap = who1.getHomeMap();
+  if (themap !== who2.getHomeMap()){ return 0; }
+  
+  var path = themap.getPath(who1.getx(), who1.gety(), who2.getx(), who2.gety(),movetype);
+  if (path.length) {
+    path.shift();
+    return path.length;
+  } else { return 0; }
+}
+
 function PerformTrap(who, trap, traplvl, trapped) {
   // Traps can be: Dart (makes atk roll, poison), acid (physical damage), gas (poison), explosion (magical damage), drain (mana)
   
@@ -1265,7 +1276,9 @@ function FindNearestNPC(from, align, except) {
   $.each(found, function(idx,val) {
     if ((val !== from) && ($.inArray(val,except) === -1)) {
       if (!align || ((align === "enemy") && (from.getAttitude() !== val.getAttitude())) || ((align === "ally") && (from.getAttitude() === val.getAttitude()))) {
-        var dist = GetDistance(val.getx(),val.gety(),from.getx(),from.gety());
+        var movetype = from.getMovetype();
+        if ((movetype === MOVE_WALK) && (from.specials.open_door)) { movetype = MOVE_DOOR; }
+        var dist = GetDistanceByPath(from,val,movetype);
         if (dist < distance) {
           nearest = val;
           distance = dist;
