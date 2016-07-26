@@ -10010,16 +10010,6 @@ NPCObject.prototype.processDeath = function(droploot){
     var corpse = {};
     var chest;
     var map = this.getHomeMap();
-    if (map.getName() === "shadow1") {
-      var npcs = map.npcs.getAll();
-      var safe = 1;
-      $.each(npcs, function(idx, val) {
-        if (val.getNPCBand()) {
-          safe = 0;
-        }
-      });
-      if (safe === 1) { DU.gameflags.setFlag("shadow_safe", 1); } 
-    }
     if ((this.getLeavesCorpse()) && (this.getLeavesCorpse() !== "none")) {
       corpse = localFactory.createTile(this.getLeavesCorpse());
       map.placeThing(thisx,thisy, corpse);
@@ -10066,6 +10056,16 @@ NPCObject.prototype.processDeath = function(droploot){
       map.placeThing(thisx,thisy, chest);
     }
     map.deleteThing(this);
+    if (map.getName() === "shadow1") {
+      var npcs = map.npcs.getAll();
+      var safe = 1;
+      $.each(npcs, function(idx, val) {
+        if (val.getNPCBand()) {
+          safe = 0;
+        }
+      });
+      if (safe === 1) { DU.gameflags.setFlag("shadow_safe", 1); } 
+    }
     DrawMainFrame("one",map.getName(),thisx,thisy);
     DUTime.removeEntityFrom(this);
 //    delete universe.this.getSerial();
