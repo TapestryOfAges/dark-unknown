@@ -139,8 +139,6 @@ ais.combat = function(who) {
     var runfrom = FindNearestNPC(who, "enemy");
     var diffx = whox - runfrom.getx();
     var diffy = whoy - runfrom.gety();
-    // WORKING HERE
-    // add check for destination tile being off map, and if so implement check for fleeing.
     
     var rundest = [];
     var pathdest = [];
@@ -162,7 +160,16 @@ ais.combat = function(who) {
         rundest = [whox,0];
       }
     }
-    var trymove = StepOrSidestep(who,pathdest,rundest);
+    var desttile = whomap.getTile(pathdest[0],pathdest[1]);
+    if (desttile === "OoB") {
+      if (whomap.ExitTest(who)) {
+        whomap.deleteThing(who);
+        return retval;
+      }
+    } else {
+      var trymove = StepOrSidestep(who,pathdest,rundest);
+    }
+    
     if (who.specials.canbebrave && (Dice.roll("1d5") === 1)) {
       // 20% chance each turn that a coward who didn't start cowardly will return to the fight
       DebugWrite("ai", "Has become brave again!");

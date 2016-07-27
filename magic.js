@@ -943,7 +943,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   if (free) { power = Dice.roll("1d5+12"); }
   var dmg = RollDamage(DMG_NEGLIGABLE, Math.floor(power/5)+1);
   if (infused) {
-    dmg = dmg * 1.5;
+    dmg *= 1.5;
   }
   
   if (CheckResist(caster,tgt,infused,0)) {
