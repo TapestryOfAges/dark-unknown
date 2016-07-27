@@ -825,8 +825,8 @@ function maps_set_exits(mapref) {
 function maps_check_escape(mapref) {
   mapref.ExitTest = function(who,tomap,fromx,fromy,tox,toy) {
     var enemytype = "hostile";
-    if (who.getAttitude() === "hostile") { enemytype = "friendly"; }
     var numenemies = 0;
+    if (who.getAttitude() === "hostile") { enemytype = "friendly"; numenemies = 1; // The PC!}
     var npcs = this.npcs.getAll();
     for (var i=0;i<npcs.length;i++) {
       // counting number of non-coward enemies on the combat map to determine chance to successfully flee
@@ -852,7 +852,7 @@ function maps_check_escape(mapref) {
     
     if (who === PC) {
       // possibly check for bribery if I decide to go that route
-      if (PC.getHP() > (PC.getMaxHP() * (1/5))) {
+      if ((PC.getHP() > (PC.getMaxHP() * (1/5))) || (PC.getLevel() === 1)) {
 //        if (debug) { dbs.writeln("<span style='color:red'>PC has more than 1/5 its hp, gains coward point for fleeing.<br /></span>"); }
         DebugWrite("combat","PC has more than 1/5 its hp, gains coward point for fleeing.<br />");
         DU.gameflags["coward"]++;
