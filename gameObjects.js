@@ -7357,6 +7357,18 @@ function RobertMapTile() {
 }
 RobertMapTile.prototype = new ItemObject();
 
+function SmallRockTile() {
+  this.name = "SmallRock";
+  this.graphic = "items.gif";
+  this.spriteyoffset = "-224";
+  this.spritexoffset = "-128";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "small rock to bring to Garen";
+  this.prefix = "a";
+  this.addType("Quest");  
+}
+
 function CourierPouchTile() {
   this.name = "CourierPouch";
   this.graphic = "items.gif";

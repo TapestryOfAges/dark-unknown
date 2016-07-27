@@ -1663,6 +1663,11 @@ tileFactory.prototype.makeRobertMapTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSmallRockTile = function() {
+  var newTile = new SmallRockTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCourierPouchTile = function() {
   var newTile = new CourierPouchTile();
   return newTile;
