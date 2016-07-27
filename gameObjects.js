@@ -971,7 +971,7 @@ function SetBySurroundCoast() {
     else if (water) { chosentile = water; }
     else if (ocean) { chosentile = ocean; }
     // kludge fix for clear lagoon
-    else if (themap.getName() === "clearlagoon") { 
+    else if (themap.getName() === "clearlake") { 
       shallow = eidos.getForm("Shallows");
       chosentile = shallow;
     }

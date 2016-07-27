@@ -127,7 +127,8 @@ mappages["clearlake"].features[67] = {name : 'TopChair', x : 5, y : 29};
 mappages["clearlake"].features[68] = {name : 'LeftTable', x : 4, y : 30};
 mappages["clearlake"].features[69] = {name : 'RightTable', x : 5, y : 30};
 mappages["clearlake"].features[70] = {name : 'RightChair', x : 8, y : 30};
-
+mappages["clearlake"].features[71] = {name : 'BowyerSign', x : 8, y : 34};
+mappages["clearlake"].features[72] = {name : 'SingleSignpost', x : 8, y : 35};
 
 mappages["clearlake"].npcs = [];
 mappages["clearlake"].npcs[0] = {name : 'BardVillagerNPC', x : 32, y : 4, NPCName: 'Xylia', Conversation: 'xylia', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif'};
