@@ -826,7 +826,7 @@ function maps_check_escape(mapref) {
   mapref.ExitTest = function(who,tomap,fromx,fromy,tox,toy) {
     var enemytype = "hostile";
     var numenemies = 0;
-    if (who.getAttitude() === "hostile") { enemytype = "friendly"; numenemies = 1; // The PC!}
+    if (who.getAttitude() === "hostile") { enemytype = "friendly"; numenemies = 1; }  // The PC!
     var npcs = this.npcs.getAll();
     for (var i=0;i<npcs.length;i++) {
       // counting number of non-coward enemies on the combat map to determine chance to successfully flee
