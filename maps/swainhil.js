@@ -377,7 +377,7 @@ mappages["swainhil3"].nogalaxy = function(feature) {
     mymap.setBackground("");
     
     var normalsong = mymap.getMusic();
-    if (nowplaying.name !== normalsong) {
+    if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== normalsong)) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(normalsong);
     }
@@ -393,7 +393,7 @@ mappages["swainhil3"].galaxy1 = function(feature) {
     mymap.setOpacity(.2);
     
     var song = "Sirius";
-    if (nowplaying.name !== song) {
+    if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(song);
     }
@@ -409,7 +409,7 @@ mappages["swainhil3"].galaxy2 = function(feature) {
     mymap.setOpacity(.5);
     
     var song = "Sirius";
-    if (nowplaying.name !== song) {
+    if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(song);
     }
@@ -425,7 +425,7 @@ mappages["swainhil3"].galaxy3 = function(feature) {
     mymap.setOpacity(.8);
     
     var song = "Sirius";
-    if (nowplaying.name !== song) {
+    if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(song);
     }
