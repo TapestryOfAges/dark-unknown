@@ -50,19 +50,72 @@ var raceWarning = 0;
 function DrawMainFrame() { }
 function DrawCharFrame() {}
 function ShowEffect(onwhat, duration, graphic, xoff, yoff) {}
-  
-//maps.addMap("unittest");
+function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, sounds, param, doagain) {
+  // new version that doesn't actually animate, and so has no time delays
+  var type = param.type;
+  var duration = param.duration;
+  var ammoreturn = param.ammoreturn;
+  var dmg = param.dmg;
+  var dmgtype = param.dmgtype;
+  var endturn = param.endturn;
+  var retval = param.retval;
+  var callback = param.callback;
+  var ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
+  var returnhtml;
 
-//function ClearMap(mapref) {
-//  var fea = mapref.features.getAll();
-//  var npcs = mapref.npcs.getAll();
-//  $.each(fea, function(idx, val) {
-//    mapref.deleteThing(val);
+//  var tablehtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+
+//  $("#combateffects").html(tablehtml);
+  
+//  $("#animtable").animate({ left: ammocoords.tox , top: ammocoords.toy } , duration, 'linear', function() {
+
+//    $("#combateffects").html("");
+//    var hitanimhtml = '<div id="hitdiv" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:40; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
+
+//    $("#combateffects").html(hitanimhtml);
+//    setTimeout(function() {
+//      $("#combateffects").html("");
+//      if ((type !== "missile") || (!ammoreturn)) {
+//        duration = 50;
+//        ammographic.graphic = "spacer.gif";
+//        ammographic.xoffset = 0;
+//        ammographic.yoffset = 0;
+//      }
+//      returnhtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
+//      $("#combateffects").html(returnhtml);
+//      $("#animtable").animate({ left: ammocoords.fromx , top: ammocoords.fromy } , duration, 'linear', function() {
+        if (dmg != 0) {
+          var stillalive = def.dealDamage(dmg, atk, dmgtype);    
+          if (stillalive > -1) {
+            var damagedesc = GetDamageDescriptor(def); 
+            retval["txt"] += ": " + damagedesc + "!"; 
+          }
+          else { 
+            if (def.specials.crumbles) { retval["txt"] += ": It crumbles to dust!"; }
+            else {retval["txt"] += ": Killed!"; }
+            
+            if (def.getXPVal() && (atk === PC)) {
+              retval["txt"] += " (XP gained: " + def.getXPVal() + ")";
+            }
+          }
+        } 
+        maintext.addText(retval["txt"]);
+        maintext.setInputLine("&gt;");
+        maintext.drawInputLine();
+
+        if ((!doagain) && (endturn)) {
+//          atk.endTurn(retval["initdelay"]);
+        } else if (doagain) {
+          var doit = doagain.shift();
+//          AnimateEffect(doit.atk, doit.def, doit.fromcoords, doit.tocoords, doit.ammocoords, doit.destgraphic, doit.type, doit.duration, doit.ammoreturn, doit.dmg, endturn, doit.retval, doagain);
+        }
+
+//      });
+
+//    }, 400);
 //  });
-//  $.each(npcs, function(idx,val) {
-//    mapref.deleteThing(val);
-//  });
-//}  
+  
+}  
 
 QUnit.test( "Test Awaken spell", function( assert ) {
   var maps = new MapMemory();
@@ -498,6 +551,9 @@ QUnit.test("Test Magic Bolt spell and resistance", function( assert ) {
     if (Dice.rollnum === 1) { Dice.rollnum++; return 10; } // dmg
     if (Dice.rollnum === 2) { Dice.rollnum++; return 10; } // +dmg
     if (Dice.rollnum === 3) { Dice.rollnum++; return 10; } // succeed at resist
+    if (Dice.rollnum === 4) { Dice.rollnum++; return 10; } // dmg
+    if (Dice.rollnum === 5) { Dice.rollnum++; return 10; } // +dmg
+    if (Dice.rollnum === 6) { Dice.rollnum++; return 100; } // fail at resist
   }
 
   tgtmob.setHP(40);
@@ -506,13 +562,19 @@ QUnit.test("Test Magic Bolt spell and resistance", function( assert ) {
   var resp = PerformMagicBolt(castermob,0,0,tgtmob);
   assert.deepEqual(resp["fin"],-1,"Resp is -1 (spell cast, waiting for animation).");
 
-  var done = assert.async();
-  var duration = (Math.pow( Math.pow(tgtmob.getx() - castermob.getx(), 2) + Math.pow (tgtmob.gety() - castermob.gety(), 2)  , .5)) * 100;
-  duration += 200;
-  setTimeout(function() {
-    assert.deepEqual(tgtmob.getHP(),33,"Took 7 damage.");
-    done();
-  }, duration);
+//  var done = assert.async();
+//  var duration = (Math.pow( Math.pow(tgtmob.getx() - castermob.getx(), 2) + Math.pow (tgtmob.gety() - castermob.gety(), 2)  , .5)) * 100 *2;
+//  duration += 600;
+  
+//  setTimeout(function() {
+    assert.deepEqual(tgtmob.getHP(),29,"Took 11 damage.");
+//    done();
+//  }, duration);
+
+  tgtmob.setHP(40);
+  
+  resp = PerformMagicBolt(castermob,1,0,tgtmob);
+  assert.deepEqual(tgtmob.getHP(),10,"Took 30 damage."); 
 
   maps.deleteMap("unittest");
 });
