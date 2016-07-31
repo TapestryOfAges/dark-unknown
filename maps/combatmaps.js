@@ -825,6 +825,7 @@ function maps_set_exits(mapref) {
 function maps_check_escape(mapref) {
   mapref.ExitTest = function(who,tomap,fromx,fromy,tox,toy) {
     // check for player death
+    if (who.getHP() <= 0) { return 1; }
     
     var enemytype = "hostile";
     var numenemies = 0;
