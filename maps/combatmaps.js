@@ -824,6 +824,8 @@ function maps_set_exits(mapref) {
 
 function maps_check_escape(mapref) {
   mapref.ExitTest = function(who,tomap,fromx,fromy,tox,toy) {
+    // check for player death
+    
     var enemytype = "hostile";
     var numenemies = 0;
     if (who.getAttitude() === "hostile") { enemytype = "friendly"; numenemies = 1; }  // The PC!
