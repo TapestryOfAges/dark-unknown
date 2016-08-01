@@ -9984,7 +9984,15 @@ NPCObject.prototype.processDeath = function(droploot){
       newmap.loadMap("landsbeyond");
       maps.addMapByRef(newmap);
     }
-    var tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, 7, 7);
+    var tile = MoveBetweenMaps(this,this.getHomeMap(),newmap, 7, 7);
+    var spellobjs = this.getSpellEffects();
+    if (spellobjs.length) {
+      for (var i = 0; i < spellobjs.length; i++ ) {
+        if (spellobjs[i].getExpiresTime() !== -1) {
+          spellobjs[i].endEffect();
+        }
+      }
+    }
     $("#mainview").fadeOut(2500, function() {
       maintext.addText("You find yourself floating bodiless in the void.");
       setTimeout(function() {
@@ -10014,8 +10022,8 @@ NPCObject.prototype.processDeath = function(droploot){
         } , 2000);
       });
     });
-    PC.setHP(PC.getMaxHP());
-    PC.setMana(PC.getMaxMana());
+    this.setHP(this.getMaxHP());
+    this.setMana(this.getMaxMana());
     DrawCharFrame();
     return;
   } else {
