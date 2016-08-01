@@ -2596,7 +2596,8 @@ function ShowSaveGames(toptext) {
   var table = "<div class='zstats'><table cellpadding='2' cellspacing='0' border='0' style='background-color:black'>";
   var saveIndex = JSON.parse(localStorage.saveIndex);
   for (var i=-1;i<=9;i++) {
-    table += "<tr style='height:36; background-image:url(\"graphics/frame/saveui.gif\"); width:416px'>";
+    if ((i === 0) || (i === 9)) { table += "<tr style='height:36; background-image:url(\"graphics/frame/saveui-lock.gif\"); width:416px'>"; }
+    else { table += "<tr style='height:36; background-image:url(\"graphics/frame/saveui.gif\"); width:416px'>"; }
     if (i === -1) {
       table += "<td style='color:white;text-align:center;v-align:center;width:35'><img src='graphics/spacer.gif' width='32' /></td>";
       table += "<td style='color:white;text-align:center;v-align:center;width:35'><img src='graphics/spacer.gif' width='32' /></td>";
