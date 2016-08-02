@@ -2273,9 +2273,10 @@ function DrawOptions() {
   var optdiv = "<div><div id='opt' class='zstats'>";
   optdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
-  optdiv += "<tr><td>OPTIONS</td><td></td><td></td></tr>";
+  optdiv += "<tr><td style='text-decoration:underline'>OPTIONS</td><td></td><td></td></tr>";
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td></tr>";
-  optdiv += "<tr><td>MUSIC:</td><td></td><td";
+  optdiv += "<tr><td>SOUND AND MUSIC</td><td></td><td></td></tr>";
+  optdiv += "<tr><td>PLAY MUSIC:</td><td></td><td";
   if (targetCursor.page === 1) { 
     optdiv += " class='highlight'";
   }
@@ -2286,8 +2287,19 @@ function DrawOptions() {
     optdiv += "NO";
   }
   optdiv += "</td></tr>";
-  optdiv += "<tr><td>SOUND:</td><td></td><td";
+  optdiv += "<tr><td>LOOP MUSIC:</td><td></td><td";
   if (targetCursor.page === 2) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.getFlag("loopmusic")) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+  optdiv += "<tr><td>PLAY SOUND:</td><td></td><td";
+  if (targetCursor.page === 3) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
@@ -2297,8 +2309,20 @@ function DrawOptions() {
     optdiv += "NO";
   }
   optdiv += "</td></tr>";
+  optdiv += "<tr><td>AMBIENT SOUND:</td><td></td><td";
+  if (targetCursor.page === 4) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.getFlag("ambientsound")) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";  
+  optdiv += "<tr><td><br />USER INTERFACE</td><td></td><td></td></tr>";
   optdiv += "<tr><td>TABLET:</td><td></td><td";
-  if (targetCursor.page === 3) { 
+  if (targetCursor.page === 5) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
@@ -2471,7 +2495,7 @@ function performOptions(code) {
     else if ((code === 40) || (code === 191)) { // scroll down
       targetCursor.page++;
       if (targetCursor.cmd === "o") {
-        if (targetCursor.page === 5) { targetCursor.page = 4; }
+        if (targetCursor.page === 6) { targetCursor.page = 5; }
       } else if (targetCursor.cmd === "debug") {
         if (targetCursor.page === 12) { targetCursor.page = 11; }
       }
@@ -2573,15 +2597,32 @@ function ToggleOption(opt) {
     } else {
       DU.gameflags.setFlag("music", 1);
       var song = PC.getHomeMap().getMusic();
-      nowplaying = PlaySound(song);
-    }		
+      nowplaying = DUPlayMusic(song);
+    }
   } else if (opt === 2) {
+   	if (DU.gameflags.getFlag("loopmusic")) { 
+	    DU.gameflags.setFlag("loopmusic", 0); 
+	  } else { 
+      DU.gameflags.setFlag("loopmusic", 1); 
+    }		
+    if (DU.gameflags.getFlag("music")) {
+      var todaysmusic = nowplaying;
+      StopMusic(nowplaying);
+      nowplaying = DUPlayMusic(song);
+    }
+  } else if (opt === 3) {
    	if (DU.gameflags.getFlag("sound")) { 
 	    DU.gameflags.setFlag("sound", 0); 
 	  } else { 
       DU.gameflags.setFlag("sound", 1); 
     }
-  } else if (opt === 3) {
+  } else if (opt === 4) {
+   	if (DU.gameflags.getFlag("ambientsound")) { 
+	    DU.gameflags.setFlag("ambientsound", 0); 
+	  } else { 
+      DU.gameflags.setFlag("ambientsound", 1); 
+    }
+  } else if (opt === 5) {
     if (DU.gameflags.setFlag("tablet")) {
       DU.gameflags.setFlag("tablet", 0);
       TabletUI(-1);

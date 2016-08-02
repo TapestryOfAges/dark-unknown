@@ -53,6 +53,9 @@ gamestate.setMode("null");
 var DU = {};
 DU.gameflags = new Gameflags();
 DU.gameflags.setFlag("music", 1);
+DU.gameflags.setFlag("loopmusic", 1);
+DU.gameflags.setFlag("sound", 1);
+DU.gameflags.setFlag("ambientsound", 1);
 
 var nowplaying;
 var optselect = 0;

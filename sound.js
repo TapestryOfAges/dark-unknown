@@ -141,13 +141,15 @@ function DUPlaySound(sound) {
 
 function DUPlayMusic(sound) {
   var playing = {};
-  if (DU.gameflags.getFlag("music")) { playing.song = createjs.Sound.play(sound, {loop:-1}); playing.name = sound; }
+  var loopval = 0;
+  if (DU.gameflags.getFlag("loopmusic")) { loopval = -1; }
+  if (DU.gameflags.getFlag("music")) { playing.song = createjs.Sound.play(sound, {loop:loopval}); playing.name = sound; }
   return playing;
 }
 
 function DUPlayAmbient(sound) {
   var playing = {};
-  if (DU.gameflags.getFlag("music")) { playing.song = createjs.Sound.play(sound, {loop:-1}); playing.name = sound; }
+  if (DU.gameflags.getFlag("ambientsound")) { playing.song = createjs.Sound.play(sound, {loop:-1}); playing.name = sound; }
   return playing;
 }
 
