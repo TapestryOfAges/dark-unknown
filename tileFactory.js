@@ -2138,8 +2138,8 @@ tileFactory.prototype.makeScrollTimeStopTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeManualEtherumAwakenTile = function() {
-  var newTile = new ManualEtherumAwakenTile();
+tileFactory.prototype.makeAudachtaNemesosAwakenTile = function() {
+  var newTile = new AudachtaNemesosAwakenTile();
   return newTile;
 }
 

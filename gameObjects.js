@@ -8929,18 +8929,18 @@ function ScrollTimeStopTile() {
 }
 ScrollTimeStopTile.prototype = new ScrollItemObject;
 
-// Manuals
+// Audachta
 
-function ManualEtherumObject() {
-  this.addType("Manual");
+function AudachtaNemesosObject() {
+  this.addType("Audachta");
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.spelllevel = 0;
   this.spellnum = 0;
   this.flammable = 40;
 }
-ManualEtherumObject.prototype = new ConsumableItemObject();
+AudachtaNemesosObject.prototype = new ConsumableItemObject();
 
-ManualEtherumObject.prototype.use = function(who) {
+AudachtaNemesosObject.prototype.use = function(who) {
   var retval = {};
   retval["fin"] = 1;
   if (who.knowsSpell(this.spelllevel, this.spellnum)) {
@@ -8954,7 +8954,7 @@ ManualEtherumObject.prototype.use = function(who) {
   return retval;    
 }
 
-ManualEtherumObject.prototype.flamed = function() {
+AudachtaNemesosObject.prototype.flamed = function() {
   maintext.addText("The " + this.getDesc() + " is ruined in the fire!");
   var thisx = this.getx();
   var thisy = this.gety();
@@ -8967,9 +8967,9 @@ ManualEtherumObject.prototype.flamed = function() {
 }
 
 
-function ManualEtherumAwakenTile() {
-  this.name = "ManualEtherumAwaken";
-  this.desc = "Manual Etherum: Awaken";
+function AudachtaNemesosAwakenTile() {
+  this.name = "AudachtaNemesosAwaken";
+  this.desc = "Audachta Nemesos: Awaken";
   this.prefix = "the";
   this.graphic = "items.gif";
   this.spritexoffset = "-128";
@@ -8978,7 +8978,7 @@ function ManualEtherumAwakenTile() {
   this.spellnum = 1;
   this.spellname = "Awaken";
 }
-ManualEtherumAwakenTile.prototype = new ManualEtherumObject();
+AudachtaNemesosAwakenTile.prototype = new AudachtaNemesosObject();
 
 // Prototype for armor and weapons
 
