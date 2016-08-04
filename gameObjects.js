@@ -8970,15 +8970,171 @@ AudachtaNemesosObject.prototype.flamed = function() {
 function AudachtaNemesosAwakenTile() {
   this.name = "AudachtaNemesosAwaken";
   this.desc = "Audachta Nemesos: Awaken";
-  this.prefix = "the";
+  this.prefix = "an";
   this.graphic = "items.gif";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-160";
-  this.spelllevel = 1;
-  this.spellnum = 1;
+  this.spelllevel = SPELL_AWAKEN_LEVEL;
+  this.spellnum = SPELL_AWAKEN_ID;
   this.spellname = "Awaken";
 }
 AudachtaNemesosAwakenTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosDisarmTrapTile() {
+  this.name = "AudachtaNemesosDisarmTrap";
+  this.desc = "Audachta Nemesos: Disarm Trap";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_DISARM_TRAP_LEVEL;
+  this.spellnum = SPELL_DISARM_TRAP_ID;
+  this.spellname = "Disarm Trap";
+}
+AudachtaNemesosDisarmTrapTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosDistractTile() {
+  this.name = "AudachtaNemesosDistract";
+  this.desc = "Audachta Nemesos: Distract";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_DISTRACT_LEVEL;
+  this.spellnum = SPELL_DISTRACT_ID;
+  this.spellname = "Distract";
+}
+AudachtaNemesosDistractTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosFlameBladeTile() {
+  this.name = "AudachtaNemesosFlameBlade";
+  this.desc = "Audachta Nemesos: Flame Blade";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_FLAME_BLADE_LEVEL;
+  this.spellnum = SPELL_FLAME_BLADE_ID;
+  this.spellname = "Flame Blade";
+}
+AudachtaNemesosFlameBladeTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosVulnerabilityTile() {
+  this.name = "AudachtaNemesosVulnerability";
+  this.desc = "Audachta Nemesos: Vulnerability";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_VULNERABILITY_LEVEL;
+  this.spellnum = SPELL_VULNERABILITY_ID;
+  this.spellname = "Vulnerability";
+}
+AudachtaNemesosVulnerabilityTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosLesserHealTile() {
+  this.name = "AudachtaNemesosLesserHeal";
+  this.desc = "Audachta Nemesos: Lesser Heal";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_LESSER_HEAL_LEVEL;
+  this.spellnum = SPELL_LESSER_HEAL_ID;
+  this.spellname = "Lesser Heal";
+}
+AudachtaNemesosLesserHealTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosPoisonCloudTile() {
+  this.name = "AudachtaNemesosPoisonCloud";
+  this.desc = "Audachta Nemesos: Poison Cloud";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_POISON_CLOUD_LEVEL;
+  this.spellnum = SPELL_POISON_CLOUD_ID;
+  this.spellname = "Poison Cloud";
+}
+AudachtaNemesosPoisonCloudTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosProtectionTile() {
+  this.name = "AudachtaNemesosProtection";
+  this.desc = "Audachta Nemesos: Protection";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_PROTECTION_LEVEL;
+  this.spellnum = SPELL_PROTECTION_ID;
+  this.spellname = "Protection";
+}
+AudachtaNemesosProtectionTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosFireArmorTile() {
+  this.name = "AudachtaNemesosFireArmor";
+  this.desc = "Audachta Nemesos: Fire Armor";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_FIRE_ARMOR_LEVEL;
+  this.spellnum = SPELL_FIRE_ARMOR_ID;
+  this.spellname = "Fire Armor";
+}
+AudachtaNemesosFireArmorTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosIceballTile() {
+  this.name = "AudachtaNemesosIceball";
+  this.desc = "Audachta Nemesos: Iceball";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_ICEBALL_LEVEL;
+  this.spellnum = SPELL_ICEBALL_ID;
+  this.spellname = "Iceball";
+}
+AudachtaNemesosIceballTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosTelekinesisTile() {
+  this.name = "AudachtaNemesosTelekinesis";
+  this.desc = "Audachta Nemesos: Telekinesis";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_TELEKINESIS_LEVEL;
+  this.spellnum = SPELL_TELEKINESIS_ID;
+  this.spellname = "Telekinesis";
+}
+AudachtaNemesosTelekinesisTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosTelepathyTile() {
+  this.name = "AudachtaNemesosTelepathy";
+  this.desc = "Audachta Nemesos: Telepathy";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_TELEPATHY_LEVEL;
+  this.spellnum = SPELL_TELEPATHY_ID;
+  this.spellname = "Telepathy";
+}
+AudachtaNemesosTelepathyTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosWallOfFlameTile() {
+  this.name = "AudachtaNemesosWallOfFlame";
+  this.desc = "Audachta Nemesos: Wall of Flame";
+  this.prefix = "an";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_WALL_OF_FLAME_LEVEL;
+  this.spellnum = SPELL_WALL_OF_FLAME_ID;
+  this.spellname = "Wall of Flame";
+}
+AudachtaNemesosWallOfFlameTile.prototype = new AudachtaNemesosObject();
 
 // Prototype for armor and weapons
 
