@@ -2143,6 +2143,66 @@ tileFactory.prototype.makeAudachtaNemesosAwakenTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAudachtaNemesosDisarmTrapTile = function() {
+  var newTile = new AudachtaNemesosDisarmTrapTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosDistractTile = function() {
+  var newTile = new AudachtaNemesosDistractTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosFlameBladeTile = function() {
+  var newTile = new AudachtaNemesosFlameBladeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosVulnerabilityTile = function() {
+  var newTile = new AudachtaNemesosVulnerabilityTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosLesserHealTile = function() {
+  var newTile = new AudachtaNemesosLesserHealTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosPoisonCloudTile = function() {
+  var newTile = new AudachtaNemesosPoisonCloudTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosProtectionTile = function() {
+  var newTile = new AudachtaNemesosProtectionTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosFireArmorTile = function() {
+  var newTile = new AudachtaNemesosFireArmorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosIceballTile = function() {
+  var newTile = new AudachtaNemesosIceballTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosTelekinesisTile = function() {
+  var newTile = new AudachtaNemesosTelekinesisTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosTelepathyTile = function() {
+  var newTile = new AudachtaNemesosTelepathyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosWallOfFlameTile = function() {
+  var newTile = new AudachtaNemesosWallOfFlameTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNaturalArmorTile = function() {
   var newTile = new NaturalArmorTile();
   return newTile;
