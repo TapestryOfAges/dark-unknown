@@ -91,6 +91,7 @@ mappages["onyx"].npcs[6] = {name : 'CorruptGuardsNPC', x : 14, y : 11};
 mappages["onyx"].npcs[7] = {name : 'CorruptGuardsNPC', x : 33, y : 19};
 mappages["onyx"].npcs[8] = {name : 'CorruptGuardsNPC', x : 33, y : 17};
 mappages["onyx"].npcs[9] = {name : 'TinkerVillagerNPC', x : 28, y : 27, NPCName: 'Heather', Conversation: 'heather', Gender: 'female', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: '304.2.gif'};
+mappages["onyx"].npcs[10] = {name : 'FighterVillagerNPC', x : 36, y : 17, NPCName: 'Aithne', Conversation: 'aithne', Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: '308.gif'};
 
 mappages["onyx"].desc = "the Towne of Onyx";
 mappages["onyx"].music = 'Dark Towne';
