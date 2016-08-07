@@ -7390,6 +7390,27 @@ CourierPouchTile.prototype.use = function(who) {
   return retval;
 }
 
+function CourierLetterTile() {
+  this.name = "CourierLetter";
+  this.graphic = "items.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-96";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "letter to bring to the Prince";
+  this.prefix = "a";
+  this.addType("Quest");
+}
+CourierLetterTile.prototype = new ItemObject();
+
+CourierPouchTile.prototype.use = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  retval["input"] = "&gt;";
+  retval["txt"] = "WORKING HERE";
+  return retval;
+}
+
 function TrustedPlansTile() {
   this.name = "TrustedPlans";
   this.graphic = "items.gif";
