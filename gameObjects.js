@@ -7393,8 +7393,8 @@ CourierPouchTile.prototype.use = function(who) {
 function TrustedPlansTile() {
   this.name = "TrustedPlans";
   this.graphic = "items.gif";
-  this.spriteyoffset = "0";
-  this.spritexoffset = "-96";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-96";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "plans for a Trusted pin";
@@ -7402,6 +7402,19 @@ function TrustedPlansTile() {
   this.addType("Quest");
 }
 TrustedPlansTile.prototype = new ItemObject();
+
+function TrustedPinTile() {
+  this.name = "TrustedPin";
+  this.graphic = "items.gif";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-160";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Trusted pin";
+  this.prefix = "a";
+  this.addType("Quest");
+}
+TrustedPinTile.prototype = new ItemObject();
 
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
