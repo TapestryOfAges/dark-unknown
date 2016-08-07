@@ -778,6 +778,15 @@ function PerformSpellbook(code) {
       retval["input"] = "&gt;";
       return retval;
     }      
+    if (lvl > PC.getInt()*3) {
+      spelltxt += "...";
+      maintext.addText(spelltxt);
+      maintext.addText("Your intelligence is insufficient to cast that spell.");
+      var retval = {};
+      retval["fin"] = 2;
+      retval["input"] = "&gt;";
+      return retval;      
+    }
     if (PC.getMana() >= manacost) {
       spelltxt += "!";
       maintext.addText(spelltxt);
