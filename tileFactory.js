@@ -1678,6 +1678,11 @@ tileFactory.prototype.makeTrustedPlansTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTrustedPinTile = function() {
+  var newTile = new TrustedPinTile();
+  return newTile;
+}
+
 tileFactory.prototype.makePitOfDespairKeyTile = function() {
   var newTile = new PitOfDespairKeyTile();
   return newTile;

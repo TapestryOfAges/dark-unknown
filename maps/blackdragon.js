@@ -233,3 +233,8 @@ mappages["blackdragon"].returnx = '69';
 mappages["blackdragon"].returny = '74';
 mappages["blackdragon"].returninfused = '0';
 mappages["blackdragon"].linkedMaps = [""];
+
+
+mappages["blackdragon"].onload = function(mapref) {
+
+}
