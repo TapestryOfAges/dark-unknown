@@ -233,6 +233,7 @@ function InnRoom(xc,yc,doors) {
       $("#mainview").fadeIn(1000, function() {
         maintext.addText("You awake refreshed!");
         PC.healMe(Dice.roll("20d5+20"));
+        PC.setMana(PC.getMaxMana());
         gamestate.setMode("player");
         PC.endTurn();
       });
