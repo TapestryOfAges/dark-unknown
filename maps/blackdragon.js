@@ -197,17 +197,16 @@ mappages["blackdragon"].features[144] = {name : 'BlueCarpetSE', x : 27, y : 16};
 mappages["blackdragon"].features[145] = {name : 'BedHead', x : 25, y : 17};
 mappages["blackdragon"].features[146] = {name : 'BedFoot', x : 26, y : 17};
 
-
 mappages["blackdragon"].npcs = [];
-mappages["blackdragon"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 40};
-mappages["blackdragon"].npcs[1] = {name : 'TownGuardNPC', x : 13, y : 35};
-mappages["blackdragon"].npcs[2] = {name : 'TownGuardNPC', x : 11, y : 35};
+mappages["blackdragon"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 40, NPCName: 'Guard', Conversation: 'bdc_outer_guard', Gender: 'female', Bark: '0', NPCBand: '0'};
+mappages["blackdragon"].npcs[1] = {name : 'TownGuardNPC', x : 13, y : 35, NPCName: 'Guard', Conversation: 'bdc_guard', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["blackdragon"].npcs[2] = {name : 'TownGuardNPC', x : 11, y : 35, NPCName: 'Guard', Conversation: 'bdc_guard', Gender: 'female', Bark: '0', NPCBand: '0'};
 mappages["blackdragon"].npcs[3] = {name : 'PrinceNPC', x : 37, y : 12, NPCName: 'Prince Lance', Conversation: 'lance', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["blackdragon"].npcs[4] = {name : 'BlackDragonNPC', x : 39, y : 15, NPCName: 'Black Dragon', Conversation: 'blackdragon', Gender: 'male', Leash: 2, Bark: '0', NPCBand: '0'};
-mappages["blackdragon"].npcs[5] = {name : 'TownGuardNPC', x : 34, y : 20};
-mappages["blackdragon"].npcs[6] = {name : 'TownGuardNPC', x : 33, y : 16};
-mappages["blackdragon"].npcs[7] = {name : 'TownGuardNPC', x : 8, y : 34};
-mappages["blackdragon"].npcs[8] = {name : 'TownGuardNPC', x : 8, y : 27};
+mappages["blackdragon"].npcs[5] = {name : 'TownGuardNPC', x : 34, y : 20, NPCName: 'Guard', Conversation: 'bdc_throne_guard', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["blackdragon"].npcs[6] = {name : 'TownGuardNPC', x : 33, y : 16, NPCName: 'Guard', Conversation: 'bdc_throne_guard', Gender: 'female', Bark: '0', NPCBand: '0'};
+mappages["blackdragon"].npcs[7] = {name : 'TownGuardNPC', x : 8, y : 34, NPCName: 'Guard', Conversation: 'bdc_guard', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["blackdragon"].npcs[8] = {name : 'TownGuardNPC', x : 8, y : 27, NPCName: 'Guard', Conversation: 'bdc_guard', Gender: 'monster', Bark: '0', NPCBand: '0'};
 mappages["blackdragon"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 16, y : 9, NPCName: 'Laurie', Conversation: 'laurie', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["blackdragon"].npcs[10] = {name : 'MageVillagerNPC', x : 26, y : 20, NPCName: 'Justice', Conversation: 'justice', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '303.gif'};
 
