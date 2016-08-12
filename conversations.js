@@ -80,6 +80,9 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   if (triggers.hasOwnProperty("give_karma")) {
     DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma") + parseInt(triggers.give_karma));
   }
+  if (triggers.hasOwnProperty("give_xp")) {
+    PC.addxp(parseInt(triggers.give_xp));
+  }
   if (triggers.hasOwnProperty("yes_no")) {
     inputText.subcmd = "yn";
   }
@@ -178,6 +181,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   saywhat = saywhat.replace(/%SIBLING%/g, gterms.sibling);
   saywhat = saywhat.replace(/%KIDDIE%/g, gterms.kiddie);
   saywhat = saywhat.replace(/%SELF_PRONOUN%/g, npcterms.pronoun);
+  saywhat = saywhat.replace(/%SYS%(.+?)%SYS%/g, "<span class='sysconv'>$1</span>");
   
   var speech = saywhat.split("%%");
   while (skipahead) {
