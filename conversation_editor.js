@@ -124,6 +124,8 @@ function edit_response(convname, keyword) {
   document.responseeditpopup.gold_given1.value = "";
   document.responseeditpopup.give_karma1.checked = false;
   document.responseeditpopup.karma_given1.value = "";
+  document.responseeditpopup.give_xp1.checked = false;
+  document.responseeditpopup.xp_given1.value = "";
   document.responseeditpopup.set_yesno1.checked = false;
   document.responseeditpopup.start_shop1.checked = false;
   document.responseeditpopup.start_sell1.checked = false;
@@ -142,6 +144,8 @@ function edit_response(convname, keyword) {
   document.responseeditpopup.gold_given2.value = "";
   document.responseeditpopup.give_karma2.checked = false;
   document.responseeditpopup.karma_given2.value = "";
+  document.responseeditpopup.give_xp2.checked = false;
+  document.responseeditpopup.xp_given2.value = "";
   document.responseeditpopup.set_yesno2.checked = false;
   document.responseeditpopup.start_shop2.checked = false;
   document.responseeditpopup.start_sell2.checked = false;
@@ -174,6 +178,10 @@ function edit_response(convname, keyword) {
       else if (idx === "give_karma") {
         document.responseeditpopup.give_karma1.checked = "true";
         document.responseeditpopup.karma_given1.value = val;
+      }
+      else if (idx === "give_xp") {
+        document.responseeditpopup.give_xp1.checked = "true";
+        document.responseeditpopup.xp_given1.value = val;
       }
       else if (idx === "yes_no") {
         document.responseeditpopup.set_yesno1.checked = "true";
@@ -223,6 +231,10 @@ function edit_response(convname, keyword) {
       else if (idx === "give_karma") {
         document.responseeditpopup.give_karma2.checked = "true";
         document.responseeditpopup.karma_given2.value = val;
+      }
+      else if (idx === "give_xp") {
+        document.responseeditpopup.give_xp2.checked = "true";
+        document.responseeditpopup.xp_given2.value = val;
       }
       else if (idx === "yes_no") {
         document.responseeditpopup.set_yesno2.checked = "true";
@@ -315,6 +327,18 @@ function submitEditResponse(val) {
         return;
       }
     }
+    if (document.responseeditpopup.give_xp1.checked) {
+      if (document.responseeditpopup.xp_given1.value) {
+        triggers1.give_xp = document.responseeditpopup.xp_given1.value;
+      } else {
+        alert("Needs an amount of xp given for xp_given1.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
     if (document.responseeditpopup.take_item1.checked) {
       if (document.responseeditpopup.item_taken1.value) {
         triggers1.take_item = document.responseeditpopup.item_taken1.value;
@@ -380,6 +404,18 @@ function submitEditResponse(val) {
         triggers2.give_karma = document.responseeditpopup.karma_given2.value;
       } else {
         alert("Needs an amount of karma given for karma_given2.");
+        setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
+          $('#responsebubble').jqm({onShow:myOpen});
+          $('#responsebubble').jqmShow();
+        }, 200);
+        return;
+      }
+    }
+    if (document.responseeditpopup.give_xp2.checked) {
+      if (document.responseeditpopup.xp_given2.value) {
+        triggers2.give_xp = document.responseeditpopup.xp_given2.value;
+      } else {
+        alert("Needs an amount of xp given for xp_given2.");
         setTimeout(function() {var myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
           $('#responsebubble').jqm({onShow:myOpen});
           $('#responsebubble').jqmShow();
