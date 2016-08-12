@@ -161,11 +161,17 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   var gterms = PC.getGenderedTerms();
   var pcname = PC.getPCName();
   var npcterms = speaker.getGenderedTerms();
+  var npcname = speaker.getNPCName();
   
   saywhat = saywhat.replace(/=(\w+)=/g, "<span style='color:cyan'>$1</span>");
   saywhat = saywhat.replace(/%FORMAL%/g, gterms.formal);
   saywhat = saywhat.replace(/%TITLED%/g, gterms.titled);
   saywhat = saywhat.replace(/%NAME%/g, pcname);
+  if (DU.gameflags.getFlag("knows_" + speaker.conversation)) {
+    saywhat = saywhat.replace(/%MYNAME%/g, npcname); 
+  } else {
+    saywhat = saywhat.replace(/%MYNAME%/g, "the " + speaker.getDesc());
+  }
   saywhat = saywhat.replace(/%PRONOUN%/g, gterms.pronoun);
   saywhat = saywhat.replace(/%POSSESSIVE%/g, gterms.possessive);
   saywhat = saywhat.replace(/%OBJ%/g, gterms.objective);
@@ -303,7 +309,7 @@ OnConvTriggers["train_int"] = function(speaker,keyword) {
   } else if ((PC.getBaseInt() < STAT_MAX) && (PC.gettp() > 0)) {
     PC.setBaseInt(PC.getBaseInt()+1);
     PC.settp(PC.gettp()-1);
-    maintext.addText("Your intelligence is now " + PC.getInt());
+    maintext.addText("Your intelligence is now " + PC.getInt() + ".");
   } else {
     maintext.addText("Your intelligence cannot be raised further by training.");
   }
@@ -320,7 +326,7 @@ OnConvTriggers["train_dex"] = function(speaker,keyword) {
   } else if ((PC.getBaseDex() < STAT_MAX) && (PC.gettp() > 0)) {
     PC.setBaseDex(PC.getBaseDex()+1);
     PC.settp(PC.gettp()-1);
-    maintext.addText("Your dexterity is now " + PC.getDex());
+    maintext.addText("Your dexterity is now " + PC.getDex() + ".");
   } else {
     maintext.addText("Your dexterity cannot be raised further by training.");
   }
@@ -337,7 +343,7 @@ OnConvTriggers["train_str"] = function(speaker,keyword) {
   } else if ((PC.getBaseStr() < STAT_MAX) && (PC.gettp() > 0)) {
     PC.setBaseStr(PC.getBaseStr()+1);
     PC.settp(PC.gettp()-1);
-    maintext.addText("Your strength is now " + PC.getStr());
+    maintext.addText("Your strength is now " + PC.getStr() + ".");
   } else {
     maintext.addText("Your strength cannot be raised further by training.");
   }

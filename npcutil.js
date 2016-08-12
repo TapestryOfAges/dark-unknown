@@ -450,7 +450,7 @@ function EarnedLevel(who) {
   if (who.getLevel === LVL_MAX) { return 0; }
   var needed = Math.pow(2, who.getLevel()-1) * 100;
 //  alert(needed);
-  if (who.getxp() > needed) {
+  if (who.getxp() >= needed) {
     return 1;
   }
   return 0;
