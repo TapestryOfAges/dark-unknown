@@ -1797,6 +1797,8 @@ function PerformYell() {
 		  PC.addGold(1000);
 		} else if (inputText.txt === "REFRESH") {
 		  PC.setMana(PC.getMaxMana());
+		} else if (inputText.txt === "SANS") {
+		  PC.addxp(100);
 		} else if (inputText.txt === "FUTHARK") {
 		  PC.runes.kings = 1;
 		} else if (inputText.txt === "QUAKE") {
