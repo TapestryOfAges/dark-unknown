@@ -28,7 +28,7 @@ function create_header() {
 function select_place(pname) {
   curr_place=pname;
   
-  var txt = "<h3>" + pname + "</h3><p><form name='convform'><select name='pickconv' onChange='select_conv()'><option value=''></option>";
+  var txt = "<h3>" + pname + "</h3><p><form name='convform'><select id='pickconv' name='pickconv' onChange='select_conv()'><option value=''></option>";
   var frst = "";
   $.each(conversations, function(idx, val) {
     if (val._location === pname) {
@@ -50,12 +50,16 @@ function new_conv() {
   }
   conversations[convname] = {};
   conversations[convname]._location = curr_place;
-  document.convform.pickconv.value = convname;
+
+  select_place(curr_place)
+  $("#pickconv").val(convname);
+
   edit_response(convname, "");
 }
 
 function select_conv() {
   var thisconv = document.convform.pickconv.value;
+  if (!thisconv) { return; }
 
   var txt = "<div style='margin-10'><form name='speechform'><table cellpadding='2' cellspacing='0' border='1'>";
   txt = txt + "<th>KEYWORD</th><th>FLAG</th><th>RESPONSE</th><th>TRIGGERS</th><th></th></tr>";
