@@ -588,3 +588,12 @@ OnConvTriggers["ash_teaches"] = function(speaker,keyword) {
     maintext.addText("Asharden has nothing to teach you.");
   }  
 }
+
+OnConvTriggers["open_bdc_gate"] = function(speaker,keyword) {
+  DU.gameflags.setFlag("been_in_bdc",1);
+  DU.gameflags.deleteFlag("open_bdc_gate");
+  if (DU.gameflags.getFlag("bdc_gate_open")) { return; }
+  DU.gameflags.setFlag("bdc_gate_open",1);
+  
+  Open_BDC_Gate();
+}
