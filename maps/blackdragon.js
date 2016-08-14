@@ -226,7 +226,7 @@ mappages["blackdragon"].scale = '1';
 mappages["blackdragon"].underground = '0';
 mappages["blackdragon"].enterscript = '';
 mappages["blackdragon"].entertestscript = '';
-mappages["blackdragon"].exitscript = '';
+mappages["blackdragon"].exitscript = 'maps_exit';
 mappages["blackdragon"].exittestscript = '';
 mappages["blackdragon"].returnmap = 'darkunknown';
 mappages["blackdragon"].returnx = '69';
@@ -235,5 +235,16 @@ mappages["blackdragon"].returninfused = '0';
 mappages["blackdragon"].linkedMaps = [""];
 
 mappages["blackdragon"].onload = function(mapref) {
+  // check for act 1 to be over, if so, gate is open
+}
 
+function maps_exit(mapref) {
+  mapref.Exit = function(who,tomap,fromx,fromy,tox,toy) {
+    DU.gameflags.deleteFlag("bdc_gate_open");
+  }
+}
+
+function Open_BDC_Gate() {
+  // makes sense for this to be here. Called in onload if rebellion is over, and by the outer guard if you have the pin
+  // working here
 }
