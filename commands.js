@@ -1885,6 +1885,10 @@ function PerformYell() {
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,46,28);		  
       DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+    } else if (inputText.txt === "BAKEDBEANS") {
+      var itemname = prompt("Create what item?");
+      var newthing = localFactory.createTile(itemname);
+      PC.addToInventory(newthing,1);
     } else if (inputText.txt === "GETBARK") {
       var bark = localFactory.createTile("ReaperBark");
       var themap = PC.getHomeMap();
