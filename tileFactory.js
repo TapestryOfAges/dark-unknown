@@ -1098,6 +1098,11 @@ tileFactory.prototype.makeBottomChairWoodTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSmallTableTile = function() {
+  var newTile = new SmallTableTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeLeftTableTile = function() {
   var newTile = new LeftTableTile();
   return newTile;
@@ -1408,6 +1413,11 @@ tileFactory.prototype.makeLeverOffTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBDCLeverTile = function() {
+  var newTile = new BDCLeverTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGrottoLeverOffTile = function() {
   var newTile = new GrottoLeverOffTile();
   return newTile;
@@ -1673,6 +1683,11 @@ tileFactory.prototype.makeCourierPouchTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCourierLetterTile = function() {
+  var newTile = new CourierLetterTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTrustedPlansTile = function() {
   var newTile = new TrustedPlansTile();
   return newTile;
@@ -1820,6 +1835,31 @@ tileFactory.prototype.makeMistletoeTile = function() {
 
 tileFactory.prototype.makeBloodMossTile = function() {
   var newTile = new BloodMossTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePerfectRubyTile = function() {
+  var newTile = new PerfectRubyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRubyTile = function() {
+  var newTile = new RubyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSmallSapphireTile = function() {
+  var newTile = new SmallSapphireTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSapphireTile = function() {
+  var newTile = new SapphireTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGemsTile = function() {
+  var newTile = new GemsTile();
   return newTile;
 }
 
