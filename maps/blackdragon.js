@@ -52,7 +52,7 @@ mappages["blackdragon"].features = [];
 mappages["blackdragon"].features[0] = {name : 'Doorway', x : 12, y : 29};
 mappages["blackdragon"].features[1] = {name : 'Door', x : 22, y : 29, desc : "locked door", locked : 1};
 mappages["blackdragon"].features[2] = {name : 'Door', x : 19, y : 31, desc : "locked door", locked : 1};
-mappages["blackdragon"].features[3] = {name : 'MoatLeverOff', x : 11, y : 39};
+mappages["blackdragon"].features[3] = {name : 'BDCLever', x : 11, y : 39};
 mappages["blackdragon"].features[4] = {name : 'BedHead', x : 20, y : 32};
 mappages["blackdragon"].features[5] = {name : 'BedHead', x : 20, y : 34};
 mappages["blackdragon"].features[6] = {name : 'BedHead', x : 20, y : 36};
@@ -236,15 +236,32 @@ mappages["blackdragon"].linkedMaps = [""];
 
 mappages["blackdragon"].onload = function(mapref) {
   // check for act 1 to be over, if so, gate is open
+  if (DU.gameflags.getFlag("act2")) {
+    Open_BDC_Gate(this);
+  }
 }
 
-function maps_exit(mapref) {
-  mapref.Exit = function(who,tomap,fromx,fromy,tox,toy) {
+mappages["blackdragon"].maps_exit = function() {
+  this.Exit = function(who,tomap,fromx,fromy,tox,toy) {
     DU.gameflags.deleteFlag("bdc_gate_open");
   }
 }
 
-function Open_BDC_Gate() {
+function Open_BDC_Gate(mapref) {
   // makes sense for this to be here. Called in onload if rebellion is over, and by the outer guard if you have the pin
   // working here
+  if (mapref.getName() === "blackdragon") {
+    mapref.getTile(11,39).getTopFeature().setGraphicArray(["moatLever-on.gif","moatLever-on.gif",0,0]);
+    var gate = mapref.getTile(12,38).getTopFeature();
+    gate.unlockMe();
+    gate.use();
+    var planks = localFactory.createTile("PlanksNS");
+    mapref.setTerrain(11,41,planks);
+    mapref.setTerrain(12,41,planks);
+    mapref.setTerrain(13,41,planks);
+    mapref.setTerrain(11,42,planks);
+    mapref.setTerrain(12,42,planks);
+    mapref.setTerrain(13,42,planks);
+    DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
+  }
 }
