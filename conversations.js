@@ -66,15 +66,24 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   var triggers = this[keyword].triggers[flags_met];
   
   if (triggers.hasOwnProperty("give_item")) {
-    PC.addToInventory(localFactory.createTile(triggers.give_item),1);
+    var newitem = localFactory.createTile(triggers.give_item)
+    PC.addToInventory(newitem,1);
+    maintext.addText("<span class='sysconv'>You have obtained: " + newitem.getFullDesc() + ".</span>");
   }
   if (triggers.hasOwnProperty("take_item")) {
     if (necessary_item) {
       PC.removeFromInventory(necessary_item);
+      maintext.addText("<span class='sysconv'>You no longer have one: " + newitem.getDesc() + ".</span>");
     }
   }
   if (triggers.hasOwnProperty("give_gold")) {
     PC.addGold(parseInt(triggers.give_gold));
+    if (triggers.give_gold > 0) {
+      maintext.addText("<span class='sysconv'>You have obtained: " + triggers.give_gold + " gold.</span>");
+    } else {
+      var amt = Math.abs(triggers.give_gold);
+      maintext.addText("<span class='sysconv'>You have lost: " + amt + " gold.</span>");
+    }
     DrawCharFrame();
   }
   if (triggers.hasOwnProperty("give_karma")) {
@@ -82,6 +91,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   if (triggers.hasOwnProperty("give_xp")) {
     PC.addxp(parseInt(triggers.give_xp));
+    maintext.addText("<span class='sysconv'>You have gained: " + triggers.give_xp + " XP.</span>");
   }
   if (triggers.hasOwnProperty("yes_no")) {
     inputText.subcmd = "yn";
@@ -313,9 +323,9 @@ OnConvTriggers["train_int"] = function(speaker,keyword) {
   } else if ((PC.getBaseInt() < STAT_MAX) && (PC.gettp() > 0)) {
     PC.setBaseInt(PC.getBaseInt()+1);
     PC.settp(PC.gettp()-1);
-    maintext.addText("Your intelligence is now " + PC.getInt() + ".");
+    maintext.addText("<span class='sysconv'>Your intelligence is now " + PC.getInt() + ".</span>");
   } else {
-    maintext.addText("Your intelligence cannot be raised further by training.");
+    maintext.addText("<span class='sysconv'>Your intelligence cannot be raised further by training.</span>");
   }
   if (PC.gettp() === 0) {
     DU.gameflags.deleteFlag("can_train");
@@ -330,9 +340,9 @@ OnConvTriggers["train_dex"] = function(speaker,keyword) {
   } else if ((PC.getBaseDex() < STAT_MAX) && (PC.gettp() > 0)) {
     PC.setBaseDex(PC.getBaseDex()+1);
     PC.settp(PC.gettp()-1);
-    maintext.addText("Your dexterity is now " + PC.getDex() + ".");
+    maintext.addText("<span class='sysconv'>Your dexterity is now " + PC.getDex() + ".</span>");
   } else {
-    maintext.addText("Your dexterity cannot be raised further by training.");
+    maintext.addText("<span class='sysconv'>Your dexterity cannot be raised further by training.</span>");
   }
   if (PC.gettp() === 0) {
     DU.gameflags.deleteFlag("can_train");
@@ -347,9 +357,9 @@ OnConvTriggers["train_str"] = function(speaker,keyword) {
   } else if ((PC.getBaseStr() < STAT_MAX) && (PC.gettp() > 0)) {
     PC.setBaseStr(PC.getBaseStr()+1);
     PC.settp(PC.gettp()-1);
-    maintext.addText("Your strength is now " + PC.getStr() + ".");
+    maintext.addText("<span class='sysconv'>Your strength is now " + PC.getStr() + ".</span>");
   } else {
-    maintext.addText("Your strength cannot be raised further by training.");
+    maintext.addText("<span class='sysconv'>Your strength cannot be raised further by training.</span>");
   }
   if (PC.gettp() === 0) {
     DU.gameflags.deleteFlag("can_train");
@@ -595,5 +605,5 @@ OnConvTriggers["open_bdc_gate"] = function(speaker,keyword) {
   if (DU.gameflags.getFlag("bdc_gate_open")) { return; }
   DU.gameflags.setFlag("bdc_gate_open",1);
   
-  Open_BDC_Gate();
+  Open_BDC_Gate(speaker.getHomeMap());
 }
