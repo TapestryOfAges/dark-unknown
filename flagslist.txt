@@ -54,3 +54,4 @@ rune_kings - has Rune
 rune_kings_1 - have gotten Rune, King hasn't remarked upon it yet, goes away once he does
 x_theory - you have asked Xavier about his theory.
 trusted_courier - you've delivered the message to the Prince
+act2 - prince has recovered his mind
