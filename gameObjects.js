@@ -5951,6 +5951,25 @@ function LeverOffTile() {
 }
 LeverOffTile.prototype = new FeatureObject();
 
+function BDCLeverTile() {
+  this.name = "BDCLever";
+  this.graphic = "moatLever-off.gif";
+  this.overlay = "moatLever-off.gif";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "lever";
+  
+  SetByBelow.call(this);
+}
+BDCLeverTile.prototype = new FeatureObject();
+
+BDCLeverTile.prototype.use = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  retval["txt"] = "The lever refuses to budge.";
+  return retval;
+}
+
 function GrottoLeverOffTile() {
   this.name = "GrotoLeverOff";
   this.graphic = "switch-off.gif";
