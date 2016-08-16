@@ -9398,7 +9398,7 @@ function AudachtaNemesosSummonAllyTile() {
 }
 AudachtaNemesosSummonAllyTile.prototype = new AudachtaNemesosObject();
 
-function AudachtaNemesosHealTile() {
+function AudachtaNemesosSwordstrikeTile() {
   this.name = "AudachtaNemesosSwordstrike";
   this.desc = "Audachta Nemesos: Swordstrike";
   this.prefix = "an";
@@ -9410,6 +9410,110 @@ function AudachtaNemesosHealTile() {
   this.spellname = "Swordstrike";
 }
 AudachtaNemesosSwordstrikeTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosEmpowerTile() {
+  this.name = "AudachtaNemesosEmpower";
+  this.desc = "Audachta Nemesos: Empower";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_EMPOWER_LEVEL;
+  this.spellnum = SPELL_EMPOWER_ID;
+  this.spellname = "Empower";
+}
+AudachtaNemesosEmpowerTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosExplosionTile() {
+  this.name = "AudachtaNemesosExplosion";
+  this.desc = "Audachta Nemesos: Explosion";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-190";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_EXPLOSION_LEVEL;
+  this.spellnum = SPELL_EXPLOSION_ID;
+  this.spellname = "Explosion";
+}
+AudachtaNemesosExplosionTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosJinxTile() {
+  this.name = "AudachtaNemesosJinx";
+  this.desc = "Audachta Nemesos: Jinx";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_JINX_LEVEL;
+  this.spellnum = SPELL_JINX_ID;
+  this.spellname = "Jinx";
+}
+AudachtaNemesosJinxTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosNegateMagicTile() {
+  this.name = "AudachtaNemesosNegateMagic";
+  this.desc = "Audachta Nemesos: Negate Magic";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_NEGATE_MAGIC_LEVEL;
+  this.spellnum = SPELL_NEGATE_MAGIC_ID;
+  this.spellname = "Negate Magic";
+}
+AudachtaNemesosNegateMagicTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosTremorTile() {
+  this.name = "AudachtaNemesosTremor";
+  this.desc = "Audachta Nemesos: Tremor";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_TREMOR_LEVEL;
+  this.spellnum = SPELL_TREMOR_ID;
+  this.spellname = "Tremor";
+}
+AudachtaNemesosTremorTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosWeatherControlTile() {
+  this.name = "AudachtaNemesosWeatherControl";
+  this.desc = "Audachta Nemesos: Weather Control";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_WEATHER_CONTROL_LEVEL;
+  this.spellnum = SPELL_WEATHER_CONTROL_ID;
+  this.spellname = "Weather Control";
+}
+AudachtaNemesosWeatherControlTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosFearTile() {
+  this.name = "AudachtaNemesosFear";
+  this.desc = "Audachta Nemesos: Fear";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_FEAR_LEVEL;
+  this.spellnum = SPELL_FEAR_ID;
+  this.spellname = "Fear";
+}
+AudachtaNemesosFearTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosFireAndIceTile() {
+  this.name = "AudachtaNemesosFireAndIce";
+  this.desc = "Audachta Nemesos: Fire and Ice";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_FIRE_AND_ICE_LEVEL;
+  this.spellnum = SPELL_FIRE_AND_ICE_ID;
+  this.spellname = "Fire and Ice";
+}
+AudachtaNemesosFireAndIceTile.prototype = new AudachtaNemesosObject();
 
 // Prototype for armor and weapons
 
