@@ -9104,7 +9104,7 @@ function AudachtaNemesosAwakenTile() {
   this.desc = "Audachta Nemesos: Awaken";
   this.prefix = "an";
   this.graphic = "items.png";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "0";
   this.spriteyoffset = "-160";
   this.spelllevel = SPELL_AWAKEN_LEVEL;
   this.spellnum = SPELL_AWAKEN_ID;
@@ -9117,7 +9117,7 @@ function AudachtaNemesosDisarmTrapTile() {
   this.desc = "Audachta Nemesos: Disarm Trap";
   this.prefix = "an";
   this.graphic = "items.png";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "-160";
   this.spriteyoffset = "-160";
   this.spelllevel = SPELL_DISARM_TRAP_LEVEL;
   this.spellnum = SPELL_DISARM_TRAP_ID;
@@ -9143,7 +9143,7 @@ function AudachtaNemesosFlameBladeTile() {
   this.desc = "Audachta Nemesos: Flame Blade";
   this.prefix = "an";
   this.graphic = "items.png";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "-192";
   this.spriteyoffset = "-160";
   this.spelllevel = SPELL_FLAME_BLADE_LEVEL;
   this.spellnum = SPELL_FLAME_BLADE_ID;
@@ -9156,7 +9156,7 @@ function AudachtaNemesosVulnerabilityTile() {
   this.desc = "Audachta Nemesos: Vulnerability";
   this.prefix = "an";
   this.graphic = "items.png";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "-160";
   this.spriteyoffset = "-160";
   this.spelllevel = SPELL_VULNERABILITY_LEVEL;
   this.spellnum = SPELL_VULNERABILITY_ID;
@@ -9169,7 +9169,7 @@ function AudachtaNemesosLesserHealTile() {
   this.desc = "Audachta Nemesos: Lesser Heal";
   this.prefix = "an";
   this.graphic = "items.png";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "-64";
   this.spriteyoffset = "-160";
   this.spelllevel = SPELL_LESSER_HEAL_LEVEL;
   this.spellnum = SPELL_LESSER_HEAL_ID;
@@ -9182,7 +9182,7 @@ function AudachtaNemesosPoisonCloudTile() {
   this.desc = "Audachta Nemesos: Poison Cloud";
   this.prefix = "an";
   this.graphic = "items.png";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "-96";
   this.spriteyoffset = "-160";
   this.spelllevel = SPELL_POISON_CLOUD_LEVEL;
   this.spellnum = SPELL_POISON_CLOUD_ID;
@@ -9195,7 +9195,7 @@ function AudachtaNemesosProtectionTile() {
   this.desc = "Audachta Nemesos: Protection";
   this.prefix = "an";
   this.graphic = "items.png";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "-192";
   this.spriteyoffset = "-160";
   this.spelllevel = SPELL_PROTECTION_LEVEL;
   this.spellnum = SPELL_PROTECTION_ID;
@@ -9208,7 +9208,7 @@ function AudachtaNemesosFireArmorTile() {
   this.desc = "Audachta Nemesos: Fire Armor";
   this.prefix = "an";
   this.graphic = "items.png";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "-64";
   this.spriteyoffset = "-160";
   this.spelllevel = SPELL_FIRE_ARMOR_LEVEL;
   this.spellnum = SPELL_FIRE_ARMOR_ID;
@@ -9221,7 +9221,7 @@ function AudachtaNemesosIceballTile() {
   this.desc = "Audachta Nemesos: Iceball";
   this.prefix = "an";
   this.graphic = "items.png";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "-160";
   this.spriteyoffset = "-160";
   this.spelllevel = SPELL_ICEBALL_LEVEL;
   this.spellnum = SPELL_ICEBALL_ID;
@@ -9234,7 +9234,7 @@ function AudachtaNemesosTelekinesisTile() {
   this.desc = "Audachta Nemesos: Telekinesis";
   this.prefix = "an";
   this.graphic = "items.png";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "-64";
   this.spriteyoffset = "-160";
   this.spelllevel = SPELL_TELEKINESIS_LEVEL;
   this.spellnum = SPELL_TELEKINESIS_ID;
@@ -9247,7 +9247,7 @@ function AudachtaNemesosTelepathyTile() {
   this.desc = "Audachta Nemesos: Telepathy";
   this.prefix = "an";
   this.graphic = "items.png";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "-32";
   this.spriteyoffset = "-160";
   this.spelllevel = SPELL_TELEPATHY_LEVEL;
   this.spellnum = SPELL_TELEPATHY_ID;
@@ -9260,7 +9260,7 @@ function AudachtaNemesosWallOfFlameTile() {
   this.desc = "Audachta Nemesos: Wall of Flame";
   this.prefix = "an";
   this.graphic = "items.png";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "0";
   this.spriteyoffset = "-160";
   this.spelllevel = SPELL_WALL_OF_FLAME_LEVEL;
   this.spellnum = SPELL_WALL_OF_FLAME_ID;
