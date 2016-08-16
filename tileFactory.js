@@ -2248,6 +2248,61 @@ tileFactory.prototype.makeAudachtaNemesosWallOfFlameTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAudachtaNemesosBlessingTile = function() {
+  var newTile = new AudachtaNemesosBlessingTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosHealTile = function() {
+  var newTile = new AudachtaNemesosHealTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosLifeDrainTile = function() {
+  var newTile = new AudachtaNemesosLifeDrainTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosSmiteTile = function() {
+  var newTile = new AudachtaNemesosSmiteTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosCrystalBarrierTile = function() {
+  var newTile = new AudachtaNemesosCrystalBarrierTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosMirrorWardTile = function() {
+  var newTile = new AudachtaNemesosMirrorWardTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosParalyzeTile = function() {
+  var newTile = new AudachtaNemesosParalyzeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosReturnTile = function() {
+  var newTile = new AudachtaNemesosReturnTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosShockwaveTile = function() {
+  var newTile = new AudachtaNemesosShockwaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosSummonAllyTile = function() {
+  var newTile = new AudachtaNemesosSummonAllyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosHealTile = function() {
+  var newTile = new AudachtaNemesosHealTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNaturalArmorTile = function() {
   var newTile = new NaturalArmorTile();
   return newTile;

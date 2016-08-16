@@ -9268,6 +9268,149 @@ function AudachtaNemesosWallOfFlameTile() {
 }
 AudachtaNemesosWallOfFlameTile.prototype = new AudachtaNemesosObject();
 
+function AudachtaNemesosBlessingTile() {
+  this.name = "AudachtaNemesosBlessing";
+  this.desc = "Audachta Nemesos: Blessing";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_BLESSING_LEVEL;
+  this.spellnum = SPELL_BLESSING_ID;
+  this.spellname = "Blessing";
+}
+AudachtaNemesosBlessingTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosHealTile() {
+  this.name = "AudachtaNemesosHeal";
+  this.desc = "Audachta Nemesos: Heal";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_HEAL_LEVEL;
+  this.spellnum = SPELL_HEAL_ID;
+  this.spellname = "Heal";
+}
+AudachtaNemesosHealTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosLifeDrainTile() {
+  this.name = "AudachtaNemesosLifeDrain";
+  this.desc = "Audachta Nemesos: Life Drain";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_LIFE_DRAIN_LEVEL;
+  this.spellnum = SPELL_LIFE_DRAIN_ID;
+  this.spellname = "Life Drain";
+}
+AudachtaNemesosLifeDrainTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosSmiteTile() {
+  this.name = "AudachtaNemesosSmite";
+  this.desc = "Audachta Nemesos: Smite";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_SMITE_LEVEL;
+  this.spellnum = SPELL_SMITE_ID;
+  this.spellname = "Smite";
+}
+AudachtaNemesosSmiteTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosCrystalBarrierTile() {
+  this.name = "AudachtaNemesosCrystalBarrier";
+  this.desc = "Audachta Nemesos: Crystal Barrier";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_CRYSTAL_BARRIER_LEVEL;
+  this.spellnum = SPELL_CRYSTAL_BARRIER_ID;
+  this.spellname = "Crystal Barrier";
+}
+AudachtaNemesosCrystalBarrierTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosMirrorWardTile() {
+  this.name = "AudachtaNemesosMirrorWard";
+  this.desc = "Audachta Nemesos: Mirror Ward";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_MIRROR_WARD_LEVEL;
+  this.spellnum = SPELL_MIRROR_WARD_ID;
+  this.spellname = "Mirror Ward";
+}
+AudachtaNemesosMirrorWardTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosParalyzeTile() {
+  this.name = "AudachtaNemesosParalyze";
+  this.desc = "Audachta Nemesos: Paralyze";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_PARALYZE_LEVEL;
+  this.spellnum = SPELL_PARALYZE_ID;
+  this.spellname = "Paralyze";
+}
+AudachtaNemesosParalyzeTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosReturnTile() {
+  this.name = "AudachtaNemesosReturn";
+  this.desc = "Audachta Nemesos: Return";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_RETURN_LEVEL;
+  this.spellnum = SPELL_RETURN_ID;
+  this.spellname = "Return";
+}
+AudachtaNemesosReturnTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosShockwaveTile() {
+  this.name = "AudachtaNemesosShockwave";
+  this.desc = "Audachta Nemesos: Shockwave";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_SHOCKWAVE_LEVEL;
+  this.spellnum = SPELL_SHOCKWAVE_ID;
+  this.spellname = "Shockwave";
+}
+AudachtaNemesosShockwaveTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosSummonAllyTile() {
+  this.name = "AudachtaNemesosSummonAlly";
+  this.desc = "Audachta Nemesos: Summon Ally";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_SUMMON_ALLY_LEVEL;
+  this.spellnum = SPELL_SUMMON_ALLY_ID;
+  this.spellname = "Summon Ally";
+}
+AudachtaNemesosSummonAllyTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosHealTile() {
+  this.name = "AudachtaNemesosSwordstrike";
+  this.desc = "Audachta Nemesos: Swordstrike";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_SWORDSTRIKE_LEVEL;
+  this.spellnum = SPELL_SWORDSTRIKE_ID;
+  this.spellname = "Swordstrike";
+}
+AudachtaNemesosSwordstrikeTile.prototype = new AudachtaNemesosObject();
+
 // Prototype for armor and weapons
 
 function equipableItemObject() {
