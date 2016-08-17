@@ -9489,6 +9489,19 @@ function AudachtaNemesosWeatherControlTile() {
 }
 AudachtaNemesosWeatherControlTile.prototype = new AudachtaNemesosObject();
 
+function AudachtaNemesosCharmTile() {
+  this.name = "AudachtaNemesosCharm";
+  this.desc = "Audachta Nemesos: Charm";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_CHARM_LEVEL;
+  this.spellnum = SPELL_CHARM_ID;
+  this.spellname = "Charm";
+}
+AudachtaNemesosCharmTile.prototype = new AudachtaNemesosObject();
+
 function AudachtaNemesosFearTile() {
   this.name = "AudachtaNemesosFear";
   this.desc = "Audachta Nemesos: Fear";
@@ -9514,6 +9527,32 @@ function AudachtaNemesosFireAndIceTile() {
   this.spellname = "Fire and Ice";
 }
 AudachtaNemesosFireAndIceTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosMeteorSwarmTile() {
+  this.name = "AudachtaNemesosMeteorSwarm";
+  this.desc = "Audachta Nemesos: Meteor Swarm";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_METEOR_SWARM_LEVEL;
+  this.spellnum = SPELL_METEOR_SWARM_ID;
+  this.spellname = "Meteor Swarm";
+}
+AudachtaNemesosMeteorSwarmTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosMindBlastTile() {
+  this.name = "AudachtaNemesosMindBlast";
+  this.desc = "Audachta Nemesos: Mind Blast";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_MIND_BLAST_LEVEL;
+  this.spellnum = SPELL_MIND_BLAST_ID;
+  this.spellname = "Mind Blast";
+}
+AudachtaNemesosMindBlastTile.prototype = new AudachtaNemesosObject();
 
 // Prototype for armor and weapons
 
