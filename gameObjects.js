@@ -1306,7 +1306,7 @@ ShallowsTile.prototype.idle = function(walker) {
 
 function ShadowOceanTile() {
   this.name = "ShadowOcean";
-  this.graphic = "flowing_animations.gif";
+  this.graphic = "flow_ethereal.gif";
   this.desc = "deep water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
@@ -1320,7 +1320,7 @@ ShadowOceanTile.prototype = new TerrainObject();
 
 function ShadowWaterTile() {
   this.name = "ShadowWater";
-  this.graphic = "flowing_animations.gif";
+  this.graphic = "flow_ethereal.gif";
   this.desc = "water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
@@ -1344,7 +1344,7 @@ ShadowWaterTile.prototype.idle = function(walker) {
 
 function ShadowShallowsTile() {
   this.name = "ShadowShallows";
-  this.graphic = "flowing_animations.gif";
+  this.graphic = "flow_ethereal.gif";
   this.desc = "shallow water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
@@ -1438,8 +1438,7 @@ function FlameMountainTile() {
   this.peerview = "#e42217";
   this.walkSound = "hill";
 }
-MountainTile.prototype = new TerrainObject();
-
+FlameMountainTile.prototype = new TerrainObject();
 
 function StoneWallTile() {
   this.name = "StoneWall";
@@ -1551,426 +1550,6 @@ function FancyFloorTile() {
   this.walkSound = "stone";
 }
 FancyFloorTile.prototype = new TerrainObject();
-
-/*
-function FountainSWTile() {
-  this.name = "FountainSW";
-//  this.graphic = "017.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-32";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "fountain";
-  this.peerview = "white";
-}
-FountainSWTile.prototype = new TerrainObject();
-
-function FountainSETile() {
-  this.name = "FountainSE";
-//  this.graphic = "018.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-32";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "fountain";
-  this.peerview = "white";
-}
-FountainSETile.prototype = new TerrainObject();
-
-function FountainNWTile() {
-  this.name = "FountainNW";
-//  this.graphic = "019.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "fountain";
-}
-FountainNWTile.prototype = new TerrainObject();
-
-function FountainNETile() {
-  this.name = "FountainNE";
-//  this.graphic = "020.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "fountain";
-}
-FountainNETile.prototype = new TerrainObject();
-
-function LetterATile() {
-  this.name = "LetterA";
-//  this.graphic = "025.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "an";
-  this.desc = "A";
-}
-LetterATile.prototype = new TerrainObject();
-
-function LetterBTile() {
-  this.name = "LetterB";
-//  this.graphic = "026.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-32";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "B";
-}
-LetterBTile.prototype = new TerrainObject();
-
-function LetterCTile() {
-  this.name = "LetterC";
-//  this.graphic = "027.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-32";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "C";
-}
-LetterCTile.prototype = new TerrainObject();
-
-function LetterDTile() {
-  this.name = "LetterD";
-//  this.graphic = "028.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-32";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "D";
-}
-LetterDTile.prototype = new TerrainObject();
-
-function LetterETile() {
-  this.name = "LetterE";
-//  this.graphic = "029.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-32";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "an";
-  this.desc = "E";
-}
-LetterETile.prototype = new TerrainObject();
-
-function LetterFTile() {
-  this.name = "LetterF";
-//  this.graphic = "030.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "an";
-  this.desc = "F";
-}
-LetterFTile.prototype = new TerrainObject();
-
-function LetterGTile() {
-  this.name = "LetterG";
-//  this.graphic = "031.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-32";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "G";
-}
-LetterGTile.prototype = new TerrainObject();
-
-function LetterHTile() {
-  this.name = "LetterH";
-//  this.graphic = "032.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-32";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "an";
-  this.desc = "H";
-}
-LetterHTile.prototype = new TerrainObject();
-
-function LetterITile() {
-  this.name = "LetterI";
-//  this.graphic = "033.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "an";
-  this.desc = "I";
-}
-LetterITile.prototype = new TerrainObject();
-
-function LetterJTile() {
-  this.name = "LetterJ";
-//  this.graphic = "034.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "J";
-}
-LetterJTile.prototype = new TerrainObject();
-
-function LetterKTile() {
-  this.name = "LetterK";
-//  this.graphic = "035.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "K";
-}
-LetterKTile.prototype = new TerrainObject();
-
-function LetterLTile() {
-  this.name = "LetterL";
-//  this.graphic = "036.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "an";
-  this.desc = "L";
-}
-LetterLTile.prototype = new TerrainObject();
-
-function LetterMTile() {
-  this.name = "LetterM";
-//  this.graphic = "037.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "an";
-  this.desc = "M";
-}
-LetterMTile.prototype = new TerrainObject();
-
-function LetterNTile() {
-  this.name = "LetterN";
-//  this.graphic = "038.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "an";
-  this.desc = "N";
-}
-LetterNTile.prototype = new TerrainObject();
-
-function LetterOTile() {
-  this.name = "LetterO";
-//  this.graphic = "039.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "an";
-  this.desc = "O";
-}
-LetterOTile.prototype = new TerrainObject();
-
-function LetterPTile() {
-  this.name = "LetterP";
-//  this.graphic = "040.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "P";
-}
-LetterPTile.prototype = new TerrainObject();
-
-function LetterQTile() {
-  this.name = "LetterQ";
-//  this.graphic = "041.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "Q";
-}
-LetterQTile.prototype = new TerrainObject();
-
-function LetterRTile() {
-  this.name = "LetterR";
-//  this.graphic = "042.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "an";
-  this.desc = "R";
-}
-LetterRTile.prototype = new TerrainObject();
-
-function LetterSTile() {
-  this.name = "LetterS";
-//  this.graphic = "043.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "an";
-  this.desc = "S";
-}
-LetterSTile.prototype = new TerrainObject();
-
-function LetterTTile() {
-  this.name = "LetterT";
-//  this.graphic = "044.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "T";
-}
-LetterTTile.prototype = new TerrainObject();
-
-function LetterUTile() {
-  this.name = "LetterU";
-//  this.graphic = "045.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "U";
-}
-LetterUTile.prototype = new TerrainObject();
-
-function LetterVTile() {
-  this.name = "LetterV";
-//  this.graphic = "046.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "V";
-}
-LetterVTile.prototype = new TerrainObject();
-
-function LetterWTile() {
-  this.name = "LetterW";
-//  this.graphic = "047.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "W";
-}
-LetterWTile.prototype = new TerrainObject();
-
-function LetterXTile() {
-  this.name = "LetterX";
-//  this.graphic = "048.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "an";
-  this.desc = "X";
-}
-LetterXTile.prototype = new TerrainObject();
-
-function LetterYTile() {
-  this.name = "LetterY";
-//  this.graphic = "049.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "Y";
-}
-LetterYTile.prototype = new TerrainObject();
-
-function LetterZTile() {
-  this.name = "LetterZ";
-//  this.graphic = "050.gif";
-  this.graphic = "terrain_tiles.gif";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "Z";
-}
-LetterZTile.prototype = new TerrainObject();
-*/
 
 function HorizontalCounterTile() {
   this.name = "HorizontalCounter";
@@ -7391,14 +6970,15 @@ RobertMapTile.prototype = new ItemObject();
 function SmallRockTile() {
   this.name = "SmallRock";
   this.graphic = "items.png";
-  this.spriteyoffset = "-224";
-  this.spritexoffset = "-128";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-128";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "small rock to bring to Garen";
   this.prefix = "a";
   this.addType("Quest");  
 }
+SmallRockTile.prototype = new ItemObject();
 
 function CourierPouchTile() {
   this.name = "CourierPouch";
@@ -8049,7 +7629,7 @@ function PerformRead() {
 function BookOfLoreTile() {
   this.name = "BookOfLore";
   this.graphic = "items.png";
-  this.spritexoffset = "-224";
+  this.spritexoffset = "-288";
   this.spriteyoffset = "-128";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -8526,7 +8106,7 @@ function ScrollAwakenTile() {
   this.spelllevel = SPELL_AWAKEN_LEVEL;
   this.spellnum = SPELL_AWAKEN_ID;
 }
-ScrollAwakenTile.prototype = new ScrollItemObject;
+ScrollAwakenTile.prototype = new ScrollItemObject();
 
 function ScrollCureTile() {
   this.name = "ScrollCure";
@@ -8538,7 +8118,7 @@ function ScrollCureTile() {
   this.spelllevel = SPELL_CURE_LEVEL;
   this.spellnum = SPELL_CURE_ID;
 }
-ScrollCureTile.prototype = new ScrollItemObject;
+ScrollCureTile.prototype = new ScrollItemObject();
 
 function ScrollDisarmTrapTile() {
   this.name = "ScrollDisarmTrap";
@@ -8550,7 +8130,7 @@ function ScrollDisarmTrapTile() {
   this.spelllevel = SPELL_DISARM_TRAP_LEVEL;
   this.spellnum = SPELL_DISARM_TRAP_ID;
 }
-ScrollDisarmTrapTile.prototype = new ScrollItemObject;
+ScrollDisarmTrapTile.prototype = new ScrollItemObject();
 
 function ScrollDistractTile() {
   this.name = "ScrollDistract";
@@ -8562,7 +8142,7 @@ function ScrollDistractTile() {
   this.spelllevel = SPELL_DISTRACT_LEVEL;
   this.spellnum = SPELL_DISTRACT_ID;
 }
-ScrollDistractTile.prototype = new ScrollItemObject;
+ScrollDistractTile.prototype = new ScrollItemObject();
 
 function ScrollFlameBladeTile() {
   this.name = "ScrollFlameBlade";
@@ -8575,7 +8155,7 @@ function ScrollFlameBladeTile() {
   this.spellnum = SPELL_FLAME_BLADE_ID;
   this.flammable = 50;
 }
-ScrollFlameBladeTile.prototype = new ScrollItemObject;
+ScrollFlameBladeTile.prototype = new ScrollItemObject();
 
 function ScrollLightTile() {
   this.name = "ScrollLight";
@@ -8587,7 +8167,7 @@ function ScrollLightTile() {
   this.spelllevel = SPELL_LIGHT_LEVEL;
   this.spellnum = SPELL_LIGHT_ID;
 }
-ScrollLightTile.prototype = new ScrollItemObject;
+ScrollLightTile.prototype = new ScrollItemObject();
 
 function ScrollVulnerabilityTile() {
   this.name = "ScrollVulnerability";
@@ -8599,7 +8179,7 @@ function ScrollVulnerabilityTile() {
   this.spelllevel = SPELL_VULNERABILITY_LEVEL;
   this.spellnum = SPELL_VULNERABILITY_ID;
 }
-ScrollVulnerabilityTile.prototype = new ScrollItemObject;
+ScrollVulnerabilityTile.prototype = new ScrollItemObject();
 
 function ScrollIllusionTile() {
   this.name = "ScrollIllusion";
@@ -8611,7 +8191,7 @@ function ScrollIllusionTile() {
   this.spelllevel = SPELL_ILLUSION_LEVEL;
   this.spellnum = SPELL_ILLUSION_ID;
 }
-ScrollIllusionTile.prototype = new ScrollItemObject;
+ScrollIllusionTile.prototype = new ScrollItemObject();
 
 function ScrollIronFleshTile() {
   this.name = "ScrollIronFlesh";
@@ -8623,7 +8203,7 @@ function ScrollIronFleshTile() {
   this.spelllevel = SPELL_IRON_FLESH_LEVEL;
   this.spellnum = SPELL_IRON_FLESH_ID;
 }
-ScrollIronFleshTile.prototype = new ScrollItemObject;
+ScrollIronFleshTile.prototype = new ScrollItemObject();
 
 function ScrollLesserHealTile() {
   this.name = "ScrollLesserHeal";
@@ -8635,7 +8215,7 @@ function ScrollLesserHealTile() {
   this.spelllevel = SPELL_LESSER_HEAL_LEVEL;
   this.spellnum = SPELL_LESSER_HEAL_ID;
 }
-ScrollLesserHealTile.prototype = new ScrollItemObject;
+ScrollLesserHealTile.prototype = new ScrollItemObject();
 
 function ScrollMagicBoltTile() {
   this.name = "ScrollMagicBolt";
@@ -8647,7 +8227,7 @@ function ScrollMagicBoltTile() {
   this.spelllevel = SPELL_MAGIC_BOLT_LEVEL;
   this.spellnum = SPELL_MAGIC_BOLT_ID;
 }
-ScrollMagicBoltTile.prototype = new ScrollItemObject;
+ScrollMagicBoltTile.prototype = new ScrollItemObject();
 
 function ScrollPoisonCloudTile() {
   this.name = "ScrollPoisonCloud";
@@ -8659,7 +8239,7 @@ function ScrollPoisonCloudTile() {
   this.spelllevel = SPELL_POISON_CLOUD_LEVEL;
   this.spellnum = SPELL_POISON_CLOUD_ID;
 }
-ScrollPoisonCloudTile.prototype = new ScrollItemObject;
+ScrollPoisonCloudTile.prototype = new ScrollItemObject();
 
 function ScrollProtectionTile() {
   this.name = "ScrollProtection";
@@ -8671,7 +8251,7 @@ function ScrollProtectionTile() {
   this.spelllevel = SPELL_PROTECTION_LEVEL;
   this.spellnum = SPELL_PROTECTION_ID;
 }
-ScrollProtectionTile.prototype = new ScrollItemObject;
+ScrollProtectionTile.prototype = new ScrollItemObject();
 
 function ScrollUnlockTile() {
   this.name = "ScrollUnlock";
@@ -8683,7 +8263,7 @@ function ScrollUnlockTile() {
   this.spelllevel = SPELL_UNLOCK_LEVEL;
   this.spellnum = SPELL_UNLOCK_ID;
 }
-ScrollUnlockTile.prototype = new ScrollItemObject;
+ScrollUnlockTile.prototype = new ScrollItemObject();
 
 function ScrollDispelTile() {
   this.name = "ScrollDispel";
@@ -8695,7 +8275,7 @@ function ScrollDispelTile() {
   this.spelllevel = SPELL_DISPEL_LEVEL;
   this.spellnum = SPELL_DISPEL_ID;
 }
-ScrollDispelTile.prototype = new ScrollItemObject;
+ScrollDispelTile.prototype = new ScrollItemObject();
 
 function ScrollDisruptUndeadTile() {
   this.name = "ScrollDisruptUndead";
@@ -8707,7 +8287,7 @@ function ScrollDisruptUndeadTile() {
   this.spelllevel = SPELL_DISRUPT_UNDEAD_LEVEL;
   this.spellnum = SPELL_DISRUPT_UNDEAD_ID;
 }
-ScrollDisruptUndeadTile.prototype = new ScrollItemObject;
+ScrollDisruptUndeadTile.prototype = new ScrollItemObject();
 
 function ScrollFireArmorTile() {
   this.name = "ScrollFireArmor";
@@ -8720,7 +8300,7 @@ function ScrollFireArmorTile() {
   this.spellnum = SPELL_FIRE_ARMOR_ID;
   this.flammable = 30;
 }
-ScrollFireArmorTile.prototype = new ScrollItemObject;
+ScrollFireArmorTile.prototype = new ScrollItemObject();
 
 function ScrollFireballTile() {
   this.name = "ScrollFireball";
@@ -8733,7 +8313,7 @@ function ScrollFireballTile() {
   this.spellnum = SPELL_FIREBALL_ID;
   this.flammable = 50;
 }
-ScrollFireballTile.prototype = new ScrollItemObject;
+ScrollFireballTile.prototype = new ScrollItemObject();
 
 function ScrollIceballTile() {
   this.name = "ScrollIceball";
@@ -8745,7 +8325,7 @@ function ScrollIceballTile() {
   this.spelllevel = SPELL_ICEBALL_LEVEL;
   this.spellnum = SPELL_ICEBALL_ID;
 }
-ScrollIceballTile.prototype = new ScrollItemObject;
+ScrollIceballTile.prototype = new ScrollItemObject();
 
 function ScrollTelekinesisTile() {
   this.name = "ScrollTelekinesis";
@@ -8757,7 +8337,7 @@ function ScrollTelekinesisTile() {
   this.spelllevel = SPELL_TELEKINESIS_LEVEL;
   this.spellnum = SPELL_TELEKINESIS_ID;
 }
-ScrollTelekinesisTile.prototype = new ScrollItemObject;
+ScrollTelekinesisTile.prototype = new ScrollItemObject();
 
 function ScrollTelepathyTile() {
   this.name = "ScrollTelepathy";
@@ -8769,7 +8349,7 @@ function ScrollTelepathyTile() {
   this.spelllevel = SPELL_TELEPATHY_LEVEL;
   this.spellnum = SPELL_TELEPATHY_ID;
 }
-ScrollTelepathyTile.prototype = new ScrollItemObject;
+ScrollTelepathyTile.prototype = new ScrollItemObject();
 
 function ScrollWallOfFlameTile() {
   this.name = "ScrollWallOfFlame";
@@ -8782,7 +8362,7 @@ function ScrollWallOfFlameTile() {
   this.spellnum = SPELL_WALL_OF_FLAME_ID;
   this.flammable = 20;
 }
-ScrollWallOfFlameTile.prototype = new ScrollItemObject;
+ScrollWallOfFlameTile.prototype = new ScrollItemObject();
 
 function ScrollBlessingTile() {
   this.name = "ScrollBlessing";
@@ -8794,7 +8374,7 @@ function ScrollBlessingTile() {
   this.spelllevel = SPELL_BLESSING_LEVEL;
   this.spellnum = SPELL_BLESSING_ID;
 }
-ScrollBlessingTile.prototype = new ScrollItemObject;
+ScrollBlessingTile.prototype = new ScrollItemObject();
 
 function ScrollBlinkTile() {
   this.name = "ScrollBlink";
@@ -8806,7 +8386,7 @@ function ScrollBlinkTile() {
   this.spelllevel = SPELL_BLINK_LEVEL;
   this.spellnum = SPELL_BLINK_ID;
 }
-ScrollBlinkTile.prototype = new ScrollItemObject;
+ScrollBlinkTile.prototype = new ScrollItemObject();
 
 function ScrollEtherealVisionTile() {
   this.name = "ScrollEtherealVision";
@@ -8818,7 +8398,7 @@ function ScrollEtherealVisionTile() {
   this.spelllevel = SPELL_ETHEREAL_VISION_LEVEL;
   this.spellnum = SPELL_ETHEREAL_VISION_ID;
 }
-ScrollEtherealVisionTile.prototype = new ScrollItemObject;
+ScrollEtherealVisionTile.prototype = new ScrollItemObject();
 
 function ScrollHealTile() {
   this.name = "ScrollHeal";
@@ -8830,7 +8410,7 @@ function ScrollHealTile() {
   this.spelllevel = SPELL_HEAL_LEVEL;
   this.spellnum = SPELL_HEAL_ID;
 }
-ScrollHealTile.prototype = new ScrollItemObject;
+ScrollHealTile.prototype = new ScrollItemObject();
 
 function ScrollLifeDrainTile() {
   this.name = "ScrollLifeDrain";
@@ -8842,7 +8422,7 @@ function ScrollLifeDrainTile() {
   this.spelllevel = SPELL_LIFE_DRAIN_LEVEL;
   this.spellnum = SPELL_LIFE_DRAIN_ID;
 }
-ScrollLifeDrainTile.prototype = new ScrollItemObject;
+ScrollLifeDrainTile.prototype = new ScrollItemObject();
 
 function ScrollSmiteTile() {
   this.name = "ScrollSmite";
@@ -8854,7 +8434,7 @@ function ScrollSmiteTile() {
   this.spelllevel = SPELL_SMITE_LEVEL;
   this.spellnum = SPELL_SMITE_ID;
 }
-ScrollSmiteTile.prototype = new ScrollItemObject;
+ScrollSmiteTile.prototype = new ScrollItemObject();
 
 function ScrollCrystalBarrierTile() {
   this.name = "ScrollCrystalBarrier";
@@ -8866,7 +8446,7 @@ function ScrollCrystalBarrierTile() {
   this.spelllevel = SPELL_CRYSTAL_BARRIER_LEVEL;
   this.spellnum = SPELL_CRYSTAL_BARRIER_ID;
 }
-ScrollCrystalBarrierTile.prototype = new ScrollItemObject;
+ScrollCrystalBarrierTile.prototype = new ScrollItemObject();
 
 function ScrollMirrorWardTile() {
   this.name = "ScrollMirrorWard";
@@ -8878,7 +8458,7 @@ function ScrollMirrorWardTile() {
   this.spelllevel = SPELL_MIRROR_WARD_LEVEL;
   this.spellnum = SPELL_MIRROR_WARD_ID;
 }
-ScrollMirrorWardTile.prototype = new ScrollItemObject;
+ScrollMirrorWardTile.prototype = new ScrollItemObject();
 
 function ScrollParalyzeTile() {
   this.name = "ScrollParalyze";
@@ -8890,7 +8470,7 @@ function ScrollParalyzeTile() {
   this.spelllevel = SPELL_PARALYZE_LEVEL;
   this.spellnum = SPELL_PARALYZE_ID;
 }
-ScrollParalyzeTile.prototype = new ScrollItemObject;
+ScrollParalyzeTile.prototype = new ScrollItemObject();
 
 function ScrollPeerTile() {
   this.name = "ScrollPeer";
@@ -8902,7 +8482,7 @@ function ScrollPeerTile() {
   this.spelllevel = SPELL_PEER_LEVEL;
   this.spellnum = SPELL_PEER_ID;
 }
-ScrollPeerTile.prototype = new ScrollItemObject;
+ScrollPeerTile.prototype = new ScrollItemObject();
 
 function ScrollShockwaveTile() {
   this.name = "ScrollShockwave";
@@ -8914,7 +8494,7 @@ function ScrollShockwaveTile() {
   this.spelllevel = SPELL_SHOCKWAVE_LEVEL;
   this.spellnum = SPELL_SHOCKWAVE_ID;
 }
-ScrollShockwaveTile.prototype = new ScrollItemObject;
+ScrollShockwaveTile.prototype = new ScrollItemObject();
 
 function ScrollSummonAllyTile() {
   this.name = "ScrollSummonAlly";
@@ -8926,7 +8506,7 @@ function ScrollSummonAllyTile() {
   this.spelllevel = SPELL_SUMMON_ALLY_LEVEL;
   this.spellnum = SPELL_SUMMON_ALLY_ID;
 }
-ScrollSummonAllyTile.prototype = new ScrollItemObject;
+ScrollSummonAllyTile.prototype = new ScrollItemObject();
 
 function ScrollSwordstrikeTile() {
   this.name = "ScrollSwordstrike";
@@ -8938,7 +8518,7 @@ function ScrollSwordstrikeTile() {
   this.spelllevel = SPELL_SWORDSTRIKE_LEVEL;
   this.spellnum = SPELL_SWORDSTRIKE_ID;
 }
-ScrollSwordstrikeTile.prototype = new ScrollItemObject;
+ScrollSwordstrikeTile.prototype = new ScrollItemObject();
 
 function ScrollExplosionTile() {
   this.name = "ScrollExplosion";
@@ -8950,7 +8530,7 @@ function ScrollExplosionTile() {
   this.spelllevel = SPELL_EXPLOSION_LEVEL;
   this.spellnum = SPELL_EXPLOSION_ID;
 }
-ScrollExplosionTile.prototype = new ScrollItemObject;
+ScrollExplosionTile.prototype = new ScrollItemObject();
 
 function ScrollStormTile() {
   this.name = "ScrollStorm";
@@ -8962,7 +8542,7 @@ function ScrollStormTile() {
   this.spelllevel = SPELL_STORM_LEVEL;
   this.spellnum = SPELL_STORM_ID;
 }
-ScrollStormTile.prototype = new ScrollItemObject;
+ScrollStormTile.prototype = new ScrollItemObject();
 
 function ScrollTremorTile() {
   this.name = "ScrollTremor";
@@ -8974,7 +8554,7 @@ function ScrollTremorTile() {
   this.spelllevel = SPELL_TREMOR_LEVEL;
   this.spellnum = SPELL_TREMOR_ID;
 }
-ScrollTremorTile.prototype = new ScrollItemObject;
+ScrollTremorTile.prototype = new ScrollItemObject();
 
 function ScrollFearTile() {
   this.name = "ScrollFear";
@@ -8986,7 +8566,7 @@ function ScrollFearTile() {
   this.spelllevel = SPELL_FEAR_LEVEL;
   this.spellnum = SPELL_FEAR_ID;
 }
-ScrollFearTile.prototype = new ScrollItemObject;
+ScrollFearTile.prototype = new ScrollItemObject();
 
 function ScrollFireAndIceTile() {
   this.name = "ScrollFireAndIce";
@@ -8998,7 +8578,7 @@ function ScrollFireAndIceTile() {
   this.spelllevel = SPELL_FIRE_AND_ICE_LEVEL;
   this.spellnum = SPELL_FIRE_AND_ICE_ID;
 }
-ScrollFireAndIceTile.prototype = new ScrollItemObject;
+ScrollFireAndIceTile.prototype = new ScrollItemObject();
 
 function ScrollMeteorSwarmTile() {
   this.name = "ScrollMeteorSwarm";
@@ -9010,7 +8590,7 @@ function ScrollMeteorSwarmTile() {
   this.spelllevel = SPELL_METEOR_SWARM_LEVEL;
   this.spellnum = SPELL_METEOR_SWARM_ID;
 }
-ScrollMeteorSwarmTile.prototype = new ScrollItemObject;
+ScrollMeteorSwarmTile.prototype = new ScrollItemObject();
 
 function ScrollMindBlastTile() {
   this.name = "ScrollMindBlast";
@@ -9022,7 +8602,7 @@ function ScrollMindBlastTile() {
   this.spelllevel = SPELL_MIND_BLAST_LEVEL;
   this.spellnum = SPELL_MIND_BLAST_ID;
 }
-ScrollMindBlastTile.prototype = new ScrollItemObject;
+ScrollMindBlastTile.prototype = new ScrollItemObject();
 
 function ScrollConflagrationTile() {
   this.name = "ScrollConflagration";
@@ -9035,7 +8615,7 @@ function ScrollConflagrationTile() {
   this.spellnum = SPELL_CONFLAGRATION_ID;
   this.flammable = 30;
 }
-ScrollConflagrationTile.prototype = new ScrollItemObject;
+ScrollConflagrationTile.prototype = new ScrollItemObject();
 
 function ScrollConjureDaemonTile() {
   this.name = "ScrollConjureDaemon";
@@ -9047,7 +8627,7 @@ function ScrollConjureDaemonTile() {
   this.spelllevel = SPELL_SUMMON_DAEMON_LEVEL;
   this.spellnum = SPELL_SUMMON_DAEMON_ID;
 }
-ScrollConjureDaemonTile.prototype = new ScrollItemObject;
+ScrollConjureDaemonTile.prototype = new ScrollItemObject();
 
 function ScrollTimeStopTile() {
   this.name = "ScrollTimeStop";
@@ -9059,7 +8639,7 @@ function ScrollTimeStopTile() {
   this.spelllevel = SPELL_TIME_STOP_LEVEL;
   this.spellnum = SPELL_TIME_STOP_ID;
 }
-ScrollTimeStopTile.prototype = new ScrollItemObject;
+ScrollTimeStopTile.prototype = new ScrollItemObject();
 
 // Audachta
 
@@ -9203,6 +8783,19 @@ function AudachtaNemesosProtectionTile() {
 }
 AudachtaNemesosProtectionTile.prototype = new AudachtaNemesosObject();
 
+function AudachtaNemesosWindChangeTile() {
+  this.name = "AudachtaNemesosWindChange";
+  this.desc = "Audachta Nemesos: Wind Change";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_WIND_CHANGE_LEVEL;
+  this.spellnum = SPELL_WIND_CHANGE_ID;
+  this.spellname = "Wind Change";
+}
+AudachtaNemesosWindChangeTile.prototype = new AudachtaNemesosObject();
+
 function AudachtaNemesosFireArmorTile() {
   this.name = "AudachtaNemesosFireArmor";
   this.desc = "Audachta Nemesos: Fire Armor";
@@ -9319,6 +8912,19 @@ function AudachtaNemesosSmiteTile() {
   this.spellname = "Smite";
 }
 AudachtaNemesosSmiteTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosTransportTile() {
+  this.name = "AudachtaNemesosTransport";
+  this.desc = "Audachta Nemesos: Transport";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_TRANSPORT_LEVEL;
+  this.spellnum = SPELL_TRANSPORT_ID;
+  this.spellname = "Transport";
+}
+AudachtaNemesosTransportTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosCrystalBarrierTile() {
   this.name = "AudachtaNemesosCrystalBarrier";
@@ -9553,6 +9159,97 @@ function AudachtaNemesosMindBlastTile() {
   this.spellname = "Mind Blast";
 }
 AudachtaNemesosMindBlastTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosArrowOfGlassTile() {
+  this.name = "AudachtaNemesosArrowOfGlass";
+  this.desc = "Audachta Nemesos: Arrow of Glass";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_ARROW_OF_GLASS_LEVEL;
+  this.spellnum = SPELL_ARROW_OF_GLASS_ID;
+  this.spellname = "Arrow of Glass";
+}
+AudachtaNemesosArrowOfGlassTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosBuildGateTile() {
+  this.name = "AudachtaNemesosBuildGate";
+  this.desc = "Audachta Nemesos: Build Gate";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_BUILD_GATE_LEVEL;
+  this.spellnum = SPELL_BUILD_GATE_ID;
+  this.spellname = "Build Gate";
+}
+AudachtaNemesosBuildGateTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosConflagrationTile() {
+  this.name = "AudachtaNemesosConflagration";
+  this.desc = "Audachta Nemesos: Conflagration";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_CONFLAGRATION_LEVEL;
+  this.spellnum = SPELL_CONFLAGRATION_ID;
+  this.spellname = "Conflagration";
+}
+AudachtaNemesosConflagrationTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosConjureDaemonTile() {
+  this.name = "AudachtaNemesosConjureDaemon";
+  this.desc = "Audachta Nemesos: Conjure Daemon";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_CONJURE_DAEMON_LEVEL;
+  this.spellnum = SPELL_CONJURE_DAEMON_ID;
+  this.spellname = "Conjure Daemon";
+}
+AudachtaNemesosConjureDaemonTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosQuicknessTile() {
+  this.name = "AudachtaNemesosQuickness";
+  this.desc = "Audachta Nemesos: Quickness";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_QUICKNESS_LEVEL;
+  this.spellnum = SPELL_QUICKNESS_ID;
+  this.spellname = "Quickness";
+}
+AudachtaNemesosQuicknessTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosReincarnateTile() {
+  this.name = "AudachtaNemesosReincarnate";
+  this.desc = "Audachta Nemesos: Reincarnate";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_REINCARNATE_LEVEL;
+  this.spellnum = SPELL_REINCARNATE_ID;
+  this.spellname = "Reincarnate";
+}
+AudachtaNemesosReincarnateTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosTimeStopTile() {
+  this.name = "AudachtaNemesosTimeStop";
+  this.desc = "Audachta Nemesos: Time Stop";
+  this.prefix = "an";
+  this.graphic = "items.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-160";
+  this.spelllevel = SPELL_TIME_STOP_LEVEL;
+  this.spellnum = SPELL_TIME_STOP_ID;
+  this.spellname = "Time Stop";
+}
+AudachtaNemesosTimeStopTile.prototype = new AudachtaNemesosObject();
 
 // Prototype for armor and weapons
 
@@ -12112,7 +11809,7 @@ PCObject.prototype.setRuneCooldown = function(rune, timediff) {
   return this.runeCooldown[rune];
 }
 
-
+//NOPARSE
 
 function PointOfInterest(xval,yval) {
   
