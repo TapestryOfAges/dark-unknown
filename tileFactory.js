@@ -108,156 +108,6 @@ tileFactory.prototype.makeFancyFloorTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeFountainSWTile = function() {
-  var newTile = new FountainSWTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeFountainSETile = function() {
-  var newTile = new FountainSETile();
-  return newTile;
-}
-
-tileFactory.prototype.makeFountainNWTile = function() {
-  var newTile = new FountainNWTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeFountainNETile = function() {
-  var newTile = new FountainNETile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterATile = function() {
-  var newTile = new LetterATile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterBTile = function() {
-  var newTile = new LetterBTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterCTile = function() {
-  var newTile = new LetterCTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterDTile = function() {
-  var newTile = new LetterDTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterETile = function() {
-  var newTile = new LetterETile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterFTile = function() {
-  var newTile = new LetterFTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterGTile = function() {
-  var newTile = new LetterGTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterHTile = function() {
-  var newTile = new LetterHTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterITile = function() {
-  var newTile = new LetterITile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterJTile = function() {
-  var newTile = new LetterJTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterKTile = function() {
-  var newTile = new LetterKTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterLTile = function() {
-  var newTile = new LetterLTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterMTile = function() {
-  var newTile = new LetterMTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterNTile = function() {
-  var newTile = new LetterNTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterOTile = function() {
-  var newTile = new LetterOTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterPTile = function() {
-  var newTile = new LetterPTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterQTile = function() {
-  var newTile = new LetterQTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterRTile = function() {
-  var newTile = new LetterRTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterSTile = function() {
-  var newTile = new LetterSTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterTTile = function() {
-  var newTile = new LetterTTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterUTile = function() {
-  var newTile = new LetterUTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterVTile = function() {
-  var newTile = new LetterVTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterWTile = function() {
-  var newTile = new LetterWTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterXTile = function() {
-  var newTile = new LetterXTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterYTile = function() {
-  var newTile = new LetterYTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLetterZTile = function() {
-  var newTile = new LetterZTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeHorizontalCounterTile = function() {
   var newTile = new HorizontalCounterTile();
   return newTile;
@@ -2223,6 +2073,11 @@ tileFactory.prototype.makeAudachtaNemesosProtectionTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAudachtaNemesosWindChangeTile = function() {
+  var newTile = new AudachtaNemesosWindChangeTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAudachtaNemesosFireArmorTile = function() {
   var newTile = new AudachtaNemesosFireArmorTile();
   return newTile;
@@ -2265,6 +2120,11 @@ tileFactory.prototype.makeAudachtaNemesosLifeDrainTile = function() {
 
 tileFactory.prototype.makeAudachtaNemesosSmiteTile = function() {
   var newTile = new AudachtaNemesosSmiteTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosTransportTile = function() {
+  var newTile = new AudachtaNemesosTransportTile();
   return newTile;
 }
 
@@ -2355,6 +2215,41 @@ tileFactory.prototype.makeAudachtaNemesosMeteorSwarmTile = function() {
 
 tileFactory.prototype.makeAudachtaNemesosMindBlastTile = function() {
   var newTile = new AudachtaNemesosMindBlastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosArrowOfGlassTile = function() {
+  var newTile = new AudachtaNemesosArrowOfGlassTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosBuildGateTile = function() {
+  var newTile = new AudachtaNemesosBuildGateTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosConflagrationTile = function() {
+  var newTile = new AudachtaNemesosConflagrationTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosConjureDaemonTile = function() {
+  var newTile = new AudachtaNemesosConjureDaemonTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosQuicknessTile = function() {
+  var newTile = new AudachtaNemesosQuicknessTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosReincarnateTile = function() {
+  var newTile = new AudachtaNemesosReincarnateTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosTimeStopTile = function() {
+  var newTile = new AudachtaNemesosTimeStopTile();
   return newTile;
 }
 
