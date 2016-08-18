@@ -14,7 +14,9 @@ my $inobj = 0;
 my $currentobj = "";
 
 foreach my $line (@gameobjects) {
+	if ($line =~ /NOPARSE/) { print STDERR "Hit NOPARSE.\n"; last; }
 	if ($line =~ /^\/\//) { next; }
+	
 	if ($inobj) {
 	  if ($line =~ /$currentobj\.prototype \=\s+new (\w+)\(\)\;/) {
 	  	# finished with properties, now we know what we inherit from
@@ -172,7 +174,12 @@ printcat("EquippableItemObject");
 printcat("ArmorObject");
 printcat("WeaponObject");
 printcat("MissileWeaponObject");
-printcat("AnimateObject");
+printcat("BookItemObject");
+printcat("ConsumableItemObject");
+printcat("PotionItemObject");
+printcat("ScrollItemObject");
+printcat("AudachtaNemesosObject");
+#printcat("AnimateObject");
 
 sub printcat() {
   my ($category) = @_;
