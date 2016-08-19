@@ -10308,36 +10308,35 @@ NPCObject.prototype.processDeath = function(droploot){
       chest = localFactory.createTile("Chest");
     }
     if ((droploot) && (this.lootTable !== "none")) {
-      var loot = {};
-      if (DULoot[this.lootTable]) {
-        loot = DULoot[this.lootTable].getLoot(); 
-        if (loot.lootlist.length) {
-          if (chest) {
-            for (var i=0; i<loot.lootlist.length;i++){
-              chest.addToContainer(loot.lootlist[i], 1);
+      var loottables = this.lootTable.split(",");
+      for (var i=0;i<loottables.length;i++) {
+        var loot = {};
+        if (DULoot[loottables[i]]) {
+          loot = DULoot[loottables[i]].getLoot(); 
+          if (loot.lootlist.length) {
+            if (chest) {
+              for (var i=0; i<loot.lootlist.length;i++){
+                chest.addToContainer(loot.lootlist[i], 1);
+              }
+            } else {
+              corpse.setSearchYield(loot.lootlist);
             }
-          } else {
-            corpse.setSearchYield(loot.lootlist);
+          }
+          if (loot.gold) {
+            if (chest) {
+              chest.addToContainer("Gold", loot.gold);
+            } else {
+              corpse.addToSearchYield("Gold");
+              corpse.setGold(corpse.getGold() + loot.gold);
+            }
           }
         }
-        if (loot.gold) {
-          if (chest) {
-            chest.addToContainer("Gold", loot.gold);
-          } else {
-            corpse.addToSearchYield("Gold");
-//            var foo = new Array;
-//            foo[0] = "Gold";
-//            corpse.setSearchYield(foo);
-            corpse.setGold(loot.gold);
-          }
-        }
+        else {alert (this.getName() + " has a loottable that is not defined."); }
       }
-      else {alert (this.getName() + " has a loottable that is not defined."); }
     }
     if ((chest) && (chest.container.length)) {
-      if (DULoot[this.lootTable].trap) {
-        var trapname = DULoot[this.lootTable].trap;
-//        if (debug && debugflags.gameobj) { dbs.writeln("Chest created, might be trapped with: " + trapname + ".<br />"); }        
+      var trapname = GetStrongestTrap(loottables);
+      if (trapname) {
         DebugWrite("gameobj", "Chest created, might be trapped with: " + trapname + ".<br />");
         var trap = DUTraps[trapname].getTrap();
         if (trap.trap) {
