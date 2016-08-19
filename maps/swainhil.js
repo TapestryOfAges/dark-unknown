@@ -122,9 +122,9 @@ mappages["swainhil"].features[52] = {name : 'RightTable', x : 28, y : 39};
 mappages["swainhil"].npcs = [];
 mappages["swainhil"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 28, y : 10, Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
 mappages["swainhil"].npcs[1] = {name : 'AdventurerVillagerNPC', x : 19, y : 25, Gender: 'monster', Bark: '0', NPCBand: '0'};
-mappages["swainhil"].npcs[2] = {name : 'BardVillagerNPC', x : 27, y : 19, Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif'};
+mappages["swainhil"].npcs[2] = {name : 'BardVillagerNPC', x : 27, y : 19, NPCName: 'Rebecca', Conversation: 'rebecca', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif'};
 mappages["swainhil"].npcs[3] = {name : 'MageVillagerNPC', x : 19, y : 10, Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif'};
-mappages["swainhil"].npcs[4] = {name : 'DruidVillagerNPC', x : 9, y : 10, Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: '302.gif'};
+mappages["swainhil"].npcs[4] = {name : 'DruidVillagerNPC', x : 9, y : 10, NPCName: 'Severyn', Conversation: 'severyn', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '302.gif'};
 
 mappages["swainhil"].desc = "The Towne of Swainhil";
 mappages["swainhil"].music = 'Towne';
