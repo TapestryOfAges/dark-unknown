@@ -105,3 +105,15 @@ function SetTraps() {
   
   return traps;
 }
+
+function GetStrongestTrap(loottables) {
+  var trap;
+  for (var i=0;i<loottables.length;i++) {
+    if (DULoot[loottables[i]].trap) {
+      if (DULoot[loottables[i]].trap === "strong") { return "strong"; }
+      if (DULoot[loottables[i]].trap === "medium") { trap = "medium"; }
+      else if ((DULoot[loottables[i]].trap === "weak") && (trap !== "medium")) { trap = "weak"; }
+    }
+  }
+  return trap;
+}
