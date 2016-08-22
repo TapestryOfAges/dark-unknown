@@ -1027,7 +1027,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
     
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Calculating poison cloud.<br /></span>"); }
   DebugWrite("magic", "Calculating poison cloud.<br />");
-  $.each(tgtmap.npcs.getAll(), function(idx, val) {
+  $.each(tgtmap.getNPCsAndPCs(), function(idx, val) {
     if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) < radius) && (val !== caster)) {
       if (tgtmap.getLOE(val.getx(),val.gety(),tgt.x,tgt.y) < LOS_THRESHOLD) {
         if (CheckResist(caster,val,infused,0) || (val.getSpellEffectsByName("Poison"))) {
