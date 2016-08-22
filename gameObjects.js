@@ -4401,56 +4401,6 @@ function TurnFacing(what) {
   return retval;
 }
 
-/*
-function LeftChairWoodTile() {
-  this.name = "LeftChairWood";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "chair";
-}
-LeftChairWoodTile.prototype = new FeatureObject();
-
-function RightChairWoodTile() {
-  this.name = "RightChairWood";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-32";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "chair";
-}
-RightChairWoodTile.prototype = new FeatureObject();
-
-function TopChairWoodTile() {
-  this.name = "TopChairWood";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "chair";
-}
-TopChairWoodTile.prototype = new FeatureObject();
-
-function BottomChairWoodTile() {
-  this.name = "BottomChairWood";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "chair";
-}
-BottomChairWoodTile.prototype = new FeatureObject();
-
-*/
 function SmallTableTile() {
   this.name = "SmallTable";
   this.graphic = "furniture.gif";
@@ -6356,7 +6306,7 @@ MarkOfFlamesTile.prototype.use = function(user) {
 
 function FlameEternalTile() {
   this.name = "FlameEternal";
-  this.graphic = "eternal_flame.gif";
+  this.graphic = "eternal_flame0.gif"; // remove 0 for active fire
   this.spritexoffset = "0";  // -32 is active fire
   this.spriteyoffset = "0";
   this.prefix = "the";
