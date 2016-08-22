@@ -578,3 +578,25 @@ QUnit.test("Test Magic Bolt spell and resistance", function( assert ) {
 
   maps.deleteMap("unittest");
 });
+
+QUnit.test("Test Poison Cloud", function( assert ) {
+
+  var maps = new MapMemory();
+  maps.addMap("unittest");
+  var testmap = maps.getMap("unittest");
+
+  var castermob = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(4,7,castermob);
+
+  var tgtmob = localFactory.createTile("TownGuardNPC");
+  testmap.placeThing(6,7,tgtmob);
+  
+  Dice.roll = function() {
+    if (!Dice.rollnum) { Dice.rollnum = 1; }
+    if (Dice.rollnum === 1) { Dice.rollnum++; return 100; } // fail resist
+  }  
+  
+  resp = PerformPoisonCloud(castermob,0,0,{x:5,y:5);
+  
+  maps.deleteMap("unittest");
+});

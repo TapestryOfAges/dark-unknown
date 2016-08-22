@@ -756,6 +756,12 @@ function GameMap() {
 }
 GameMap.prototype = new Object();
 
+GameMap.prototype.getNPCsAndPCs = function() {
+  var alltargets = this.npcs.getAll();
+  alltargets.push(PC);
+  return alltargets;
+}
+
 GameMap.prototype.setName = function(name) {
   this.name = name;
   return this.name;
