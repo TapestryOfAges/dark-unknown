@@ -481,7 +481,7 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
   if (free) { power = Dice.roll("1d3+7"); }
   if (infused) { power = power*1.5; }
   var castermap = caster.getHomeMap();
-  var npcs = castermap.npcs.getAll();
+  var npcs = castermap.getNPCsAndPCs();
   $.each(npcs, function (idx, val) {
     if (val.getAttitude() !== caster.getAttitude()) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
@@ -2907,7 +2907,7 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
   if (!free & caster.getInt() > 20) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   var castermap = caster.getHomeMap();
-  var npcs = castermap.npcs.getAll();
+  var npcs = castermap.getNPCsAndPCs();
   $.each(npcs, function (idx, val) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
@@ -2958,7 +2958,7 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
   if (!free & caster.getInt() > 20) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   var castermap = caster.getHomeMap();
-  var npcs = castermap.npcs.getAll();
+  var npcs = castermap.getNPCsAndPCs();
   $.each(npcs, function (idx, val) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
@@ -3029,7 +3029,7 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
   gnome.addSpellEffect(negtile);
   
 
-  var everyone = castermap.npcs.getAll();
+  var everyone = castermap.getNPCsAndPCs();
   $.each(everyone, function(idx, val) {
     var effects = val.getSpellEffects();
     $.each(effects, function(effidx, effval) {
@@ -3193,7 +3193,7 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
   if (!free & caster.getInt() > 20) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   var castermap = caster.getHomeMap();
-  var npcs = castermap.npcs.getAll();
+  var npcs = castermap.getNPCsAndPCs();
   $.each(npcs, function (idx, val) {
     var desc;
     if (caster.getAttitude() !== val.getAttitude()) {
@@ -3336,7 +3336,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
   if (!free & caster.getInt() > 20) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   var castermap = caster.getHomeMap();
-  var npcs = castermap.npcs.getAll();
+  var npcs = castermap.getNPCsAndPCs();
   var display = getDisplayCenter(PC.getHomeMap(), PC.getx(), PC.gety());
   var npccount = 0;
   $.each(npcs, function (idx, val) {
@@ -3501,7 +3501,7 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
   if (!free & caster.getInt() > 25) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   var castermap = caster.getHomeMap();
-  var npcs = castermap.npcs.getAll();
+  var npcs = castermap.getNPCsAndPCs();
   var display = getDisplayCenter(PC.getHomeMap(), PC.getx(), PC.gety());
   var npccount = 0;
   $.each(npcs, function (idx, val) {
