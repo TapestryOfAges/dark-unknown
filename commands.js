@@ -287,30 +287,38 @@ function PerformCommand(code, ctrl) {
 		targetCursor.y = PC.gety();
 	}
 	else if (code === 84) { // t
-		// talk
-		if (PC.getHomeMap().getScale() === '0') {
-		  retval["txt"] = "No one to talk to.";
-		  retval["fin"] = 2;
-		  return retval; 
-		}
-    gamestate.setMode("target");
+	  if (ctrl) { // output conversation log
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+	    var serialized = JSON.stringify(convlog);  
+	    var savescreen = window.open('','savescreen');
+  	  savescreen.document.write(serialized);
+	  } else {
+  		// talk
+	  	if (PC.getHomeMap().getScale() === '0') {
+		    retval["txt"] = "No one to talk to.";
+		    retval["fin"] = 2;
+  		  return retval; 
+	  	}
+      gamestate.setMode("target");
 //    var newx = PC.getx();
 //    var newy = PC.gety();
-    targetCursor.x = PC.getx();
-    targetCursor.y = PC.gety();
-    targetCursor.command = "t";
-    targetCursor.targetlimit = (viewsizex -1)/2;
-    targetCursor.targetCenterlimit = 3;
+      targetCursor.x = PC.getx();
+      targetCursor.y = PC.gety();
+      targetCursor.command = "t";
+      targetCursor.targetlimit = (viewsizex -1)/2;
+      targetCursor.targetCenterlimit = 3;
 //    var targetcoords = getCoords(PC.getHomeMap(), PC.getx(), PC.gety());
 //    targetx = targetcoords.x;
 //    targety = targetcoords.y;
-    var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-    targetCursor.tileid = tileid;
-    targetCursor.basetile = $(tileid).html();
-    $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
-    retval["txt"] = "";
-    retval["input"] = "&gt; Talk: ";
-    retval["fin"] = 2;
+      var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+      targetCursor.tileid = tileid;
+      targetCursor.basetile = $(tileid).html();
+      $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+      retval["txt"] = "";
+      retval["input"] = "&gt; Talk: ";
+      retval["fin"] = 2;
+    }
 	}
 	else if (code === 85) { // u
 		gamestate.setMode("choosedir");
@@ -1301,6 +1309,9 @@ function PerformTalkTarget() {
 }
 
 function PerformTalk(talkto, convo, topic) {
+  var forlog = {NPC: talkto.getNPCName(), conversation: convo, keyword: topic, timestamp: DUTime.getGameClock()};
+  convlog.push(forlog);
+  
   var retval = {};
   var conval = conversations[convo].respond(talkto, topic);
   
