@@ -55,6 +55,8 @@ var inputText = {};
 var raceWarning = 0;
 var whoseturn;
 
+var convlog = [];
+
 function DrawCharFrame() {
   var txt = "<table cellpadding='0' cellspacing='0' border='0' width='100%' style='margin-top:1px'><tr><td colspan='2'>";
   var dishp = "" + PC.getDisplayHP();

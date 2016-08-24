@@ -24,23 +24,28 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   keyword = keyword.toLowerCase();
 
   var checkkeyword = 1;
+  var addtolog = { hasResponse: 1, flagsmet: "", itemsowned: ""};
 
   while (checkkeyword)  {
     flags_met = 1;
     if (!this.hasOwnProperty(keyword)) {
       keyword = "_confused";
+      addtolog.hasResponse = 0;
     }
   
     var flags = this[keyword].flags;
     if (flags.hasOwnProperty("flags_met")) {
       if (!DU.gameflags.getFlag(flags.flags_met)) { flags_met = 0; }  
+      else { addtolog.flagsmet += " " + flags.flags_met; }
     }
     if (flags.hasOwnProperty("has_item")) {
       necessary_item = PC.checkInventory(flags.has_item);
       if (!necessary_item) { flags_met = 0; }
+      else { addtolog.itemsowned += " " + flags.has_item; }
     }
     if (flags.hasOwnProperty("has_gold")) {
       if (PC.getGold() < parseInt(flags.has_gold)) { flags_met = 0; }
+      else { addtolog.itemsowned += " gold"; }
     }
   
     if (this[keyword].responses[flags_met].indexOf("->") != -1) {
@@ -53,6 +58,11 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     
   }
   
+  if (!convlog[convlog.length-1].hasOwnProperty("hasResponse")) { 
+    convlog[convlog.length-1].hasResponse = addtolog.hasResponse;
+    convlog[convlog.length-1].flagsmet = addtolog.flagsmet;
+    convlog[convlog.length-1].itemsowned = addtolog.itemsowned;
+  }
   keep_talking = this.say(speaker, this[keyword].responses[flags_met], skipahead);
   
   if (keep_talking === 2) { 

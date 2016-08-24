@@ -163,10 +163,10 @@ var SPELL_HEAL_LEVEL = 4;
 var SPELL_HEAL_ID = GetSpellID(4);
 var SPELL_LIFE_DRAIN_LEVEL = 4;
 var SPELL_LIFE_DRAIN_ID = GetSpellID(5);
+var SPELL_OPEN_GATE_LEVEL = 4;
+var SPELL_OPEN_GATE_ID = GetSpellID(6);
 var SPELL_SMITE_LEVEL = 4;
-var SPELL_SMITE_ID = GetSpellID(6);
-var SPELL_TRANSPORT_LEVEL = 4;
-var SPELL_TRANSPORT_ID = GetSpellID(7);
+var SPELL_SMITE_ID = GetSpellID(7);
 var SPELL_WATER_WALK_LEVEL = 4;
 var SPELL_WATER_WALK_ID = GetSpellID(8);
 
@@ -270,8 +270,8 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID] = new SpellObject("Blink", "Rel Por", 4
 magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID] = new SpellObject("Ethereal Vision", "In Wis", 4, 0);  // blessing
 magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID] = new SpellObject("Heal", "In Mani", 4, 0);  // heal
 magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID] = new SpellObject("Life Drain", "In Corp Mani", 4, 1);  // # M Dam  curse
+magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID] = new SpellObject("Open Gate", "Vas Rel Por", 4, 0);    // teleport (effect generated from moongate)
 magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID] = new SpellObject("Smite", "Corp Por", 4, 0);  // # M Dam on 3 random nearby foes   attack spell, thunder
-magic[SPELL_TRANSPORT_LEVEL][SPELL_TRANSPORT_ID] = new SpellObject("Transport", "Vas Rel Por", 4, 0);    // teleport (effect generated from moongate)
 magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID] = new SpellObject("Water Walk", "Uus Xen", 4, 0);   // blessing
  
 magic[SPELL_CRYSTAL_BARRIER_LEVEL][SPELL_CRYSTAL_BARRIER_ID] = new SpellObject("Crystal Barrier", "In Ylem Sanct", 5, 1);  // generic?
@@ -2155,10 +2155,10 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
   return resp;  
 }
 
-//Transport
-magic[SPELL_TRANSPORT_LEVEL][SPELL_TRANSPORT_ID].executeSpell = function(caster, infused, free) {
-//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Transport.<br /></span>"); }
-  DebugWrite("magic", "Casting Transport.<br />");
+//Open Gate
+magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster, infused, free) {
+//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Open Gate.<br /></span>"); }
+  DebugWrite("magic", "Casting Open Gate.<br />");
   var resp = {};
   if (!free) {
     var mana = this.getManaCost(infused);
@@ -2191,7 +2191,7 @@ magic[SPELL_TRANSPORT_LEVEL][SPELL_TRANSPORT_ID].executeSpell = function(caster,
       }
     }
   } else {
-    maintext.addText("The spell sputters, finding no transport node to open."); 
+    maintext.addText("The spell sputters, finding no gate node to open."); 
     resp["fin"] = 1;
   }
   

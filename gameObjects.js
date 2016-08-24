@@ -7118,8 +7118,8 @@ KeyOfSunTile.prototype = new ItemObject();
 function KeyOfShadowTile() {
   this.name = "KeyOfShadow";
   this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "-192";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-256";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Shadow";
@@ -8863,18 +8863,18 @@ function AudachtaNemesosSmiteTile() {
 }
 AudachtaNemesosSmiteTile.prototype = new AudachtaNemesosObject();
 
-function AudachtaNemesosTransportTile() {
-  this.name = "AudachtaNemesosTransport";
-  this.desc = "Audachta Nemesos: Transport";
+function AudachtaNemesosOpenGateTile() {
+  this.name = "AudachtaNemesosOpenGate";
+  this.desc = "Audachta Nemesos: Open Gate";
   this.prefix = "an";
   this.graphic = "items.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-160";
-  this.spelllevel = SPELL_TRANSPORT_LEVEL;
-  this.spellnum = SPELL_TRANSPORT_ID;
-  this.spellname = "Transport";
+  this.spelllevel = SPELL_OPEN_GATE_LEVEL;
+  this.spellnum = SPELL_OPEN_GATE_ID;
+  this.spellname = "Open Gate";
 }
-AudachtaNemesosTransportTile.prototype = new AudachtaNemesosObject();
+AudachtaNemesosOpenGateTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosCrystalBarrierTile() {
   this.name = "AudachtaNemesosCrystalBarrier";

@@ -928,26 +928,6 @@ tileFactory.prototype.makeBottomChairTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeLeftChairWoodTile = function() {
-  var newTile = new LeftChairWoodTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeRightChairWoodTile = function() {
-  var newTile = new RightChairWoodTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeTopChairWoodTile = function() {
-  var newTile = new TopChairWoodTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeBottomChairWoodTile = function() {
-  var newTile = new BottomChairWoodTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeSmallTableTile = function() {
   var newTile = new SmallTableTile();
   return newTile;
@@ -2123,8 +2103,8 @@ tileFactory.prototype.makeAudachtaNemesosSmiteTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeAudachtaNemesosTransportTile = function() {
-  var newTile = new AudachtaNemesosTransportTile();
+tileFactory.prototype.makeAudachtaNemesosOpenGateTile = function() {
+  var newTile = new AudachtaNemesosOpenGateTile();
   return newTile;
 }
 
