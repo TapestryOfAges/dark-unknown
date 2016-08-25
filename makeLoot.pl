@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-open (my $fh, "<", "loot.txt") or die "can't open loot\n";
+open (my $fh, "<", "DU NPCs - Loot.tsv") or die "can't open loot\n";
 
 my %loots;
 my %groups;
@@ -44,9 +44,11 @@ print $outfile '"use strict";';
 print $outfile "\n\nfunction SetLoots() {\n  var loots = {};\n\n";
 foreach my $key (keys %loots) {
   print $outfile "  loots['$key'] = new LootTable();\n";
-  print $outfile "  loots['$key'].goldDice = '$loots{$key}{'Gold'}{'val'}';\n";
-  $loots{$key}{'Gold'}{'perc'} =~ s/%//;
-  print $outfile "  loots['$key'].goldChance = $loots{$key}{'Gold'}{'perc'};\n";
+  if ($loots{$key}{'Gold'}{'val'}) {
+    print $outfile "  loots['$key'].goldDice = '$loots{$key}{'Gold'}{'val'}';\n";
+    $loots{$key}{'Gold'}{'perc'} =~ s/%//;
+    print $outfile "  loots['$key'].goldChance = $loots{$key}{'Gold'}{'perc'};\n";
+  }
   my $idx = 0;
   foreach my $thing (keys %{$loots{$key}}) {
     if (($thing eq "Gold") or ($thing eq "Trap")) { next; }

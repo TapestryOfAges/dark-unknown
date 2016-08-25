@@ -15,6 +15,7 @@ var eidos = new Platonic();
 //var universe = new Object;
 
 var DU = {};  // attach all saveable global objects to me
+DU.version = 0.7;
 
 DU.PC = new PCObject();
 var PC = DU.PC;  // alias

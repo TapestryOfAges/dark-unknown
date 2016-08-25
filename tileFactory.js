@@ -998,6 +998,21 @@ tileFactory.prototype.makeBarrelTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeKitchenBarrelTile = function() {
+  var newTile = new KitchenBarrelTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeKitchenBarrel2Tile = function() {
+  var newTile = new KitchenBarrel2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeKitchenBarrel3Tile = function() {
+  var newTile = new KitchenBarrel3Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeMirrorTile = function() {
   var newTile = new MirrorTile();
   return newTile;
