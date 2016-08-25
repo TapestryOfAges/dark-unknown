@@ -385,12 +385,12 @@ function clickmap(xval,yval) {
       document.featureeditpopup.tiledesc.value = editable.getDesc();
       document.featureeditpopup.walkonscript.value = editable.getWalkOnScript();
       document.featureeditpopup.usescript.value = editable.getUseScript();
-      if (editable.getLocked != null) {
+      if (editable.getLocked !== null) {
       	var lockedblock = document.getElementById("bubblelock");
     	  lockedblock.style.display = "table-row";
       	document.featureeditpopup.tilelocked.value = editable.getLocked();
       }
-      if (editable.getEnterMap != null) {
+      if (editable.getEnterMap !== null) {
       	var portalblock = document.getElementById("bubbleportal");
     	  portalblock.style.display = "table-row";
       	var mapinfo = editable.getEnterMap();
@@ -398,7 +398,7 @@ function clickmap(xval,yval) {
       	document.featureeditpopup.tileenterx.value = mapinfo.enterx;
     	  document.featureeditpopup.tileentery.value = mapinfo.entery;
       }
-      if (editable.container != null) {
+      if ((editable.container !== null) || (editable.hasOwnProperty("lootgroup")) {
         var chestblock = document.getElementById("bubblechest");
         chestblock.style.display = "table-row";
         document.featureeditpopup.lootgroup.value = editable.getLootgroup();

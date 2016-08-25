@@ -4631,6 +4631,37 @@ function ContainerOnFire(what) {
   return 1; 
   
 }
+
+function KitchenBarrelTile() {
+  
+}
+KitchenBarrelTile.prototype = new BarrelTile();
+
+KitchenBarrelTile.prototype.use = function(who) {
+  var retval = { fin: 1, txt: "It is full of salt and spices."};
+  return retval;
+}
+
+function KitchenBarrel2Tile() {
+  
+}
+KitchenBarrel2Tile.prototype = new BarrelTile();
+
+KitchenBarrel2Tile.prototype.use = function(who) {
+  var retval = { fin: 1, txt: "It is full of salted meat."};
+  return retval;
+}
+
+function KitchenBarrel3Tile() {
+  
+}
+KitchenBarrel3Tile.prototype = new BarrelTile();
+
+KitchenBarrel3Tile.prototype.use = function(who) {
+  var retval = { fin: 1, txt: "It is full of delicious cheeses."};
+  return retval;
+}
+
 function MirrorTile() {
   this.name = "Mirror";
   this.graphic = "furniture.gif";

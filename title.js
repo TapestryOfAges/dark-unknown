@@ -74,6 +74,7 @@ var musicloaded = {};
 var musictries = 0;
 DU.merchants = {};
 DU.merchants = SetMerchants();
+DU.randomseed = Math.floor(Math.random()*100)+1;
 
 var firsttime = 1;
 var themap;
