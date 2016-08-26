@@ -385,12 +385,12 @@ function clickmap(xval,yval) {
       document.featureeditpopup.tiledesc.value = editable.getDesc();
       document.featureeditpopup.walkonscript.value = editable.getWalkOnScript();
       document.featureeditpopup.usescript.value = editable.getUseScript();
-      if (editable.getLocked !== null) {
+      if (editable.getLocked && (typeof editable.getLocked === "function")) {
       	var lockedblock = document.getElementById("bubblelock");
     	  lockedblock.style.display = "table-row";
       	document.featureeditpopup.tilelocked.value = editable.getLocked();
       }
-      if (editable.getEnterMap !== null) {
+      if (editable.getEnterMap && (typeof editable.getEnterMap === "function")) {
       	var portalblock = document.getElementById("bubbleportal");
     	  portalblock.style.display = "table-row";
       	var mapinfo = editable.getEnterMap();
@@ -398,11 +398,26 @@ function clickmap(xval,yval) {
       	document.featureeditpopup.tileenterx.value = mapinfo.enterx;
     	  document.featureeditpopup.tileentery.value = mapinfo.entery;
       }
-      if ((editable.container !== null) || (editable.hasOwnProperty("lootgroup")) {
+      if ((editable.hasOwnProperty("container")) || (editable.hasOwnProperty("lootgroup")) {
         var chestblock = document.getElementById("bubblechest");
         chestblock.style.display = "table-row";
         document.featureeditpopup.lootgroup.value = editable.getLootgroup();
         document.featureeditpopup.lootedid.value = editable.getLootedID();
+      }
+      if (editable.hasOwnProperty("searchYield") {
+        var chestblock = document.getElementById("bubblesearch");
+        chestblock.style.display = "table-row";
+        var tmpsearch = editable.getSearchYield();
+        var tmpval = "";
+        if (tmpsearch[0]) {
+          tmpval = tmpsearch[0];
+          if (tmpsearch[1]) {
+            for (var i=1;i<tmpsearch.length;i++) {
+              tmpval += "," + tmpsearch[i];
+            }
+          }
+        } 
+        document.featureeditpopup.searchyield.value = tmpval;
       }
     }
   }
@@ -441,6 +456,14 @@ function submitEditFeature(change) {
 		}
 		if ((document.featureeditpopup.lootedid.value) && (editable.container != null) && (document.featureeditpopup.lootedid.value != editable.getLootedID())) {
 		  editable.setLootedID(document.featureeditpopup.lootedid.value);
+		}
+		// searchyield
+		var syarray = [];
+		if (editable.getOwnProperty("searchYield") {
+  		if (document.featureeditpopup.searchyield.value) {
+	  	  syarray = document.featureeditpopup.searchyield.value.split(",");
+		  }
+		  editable.setSearchYield(syarray);
 		}
 
 	}
