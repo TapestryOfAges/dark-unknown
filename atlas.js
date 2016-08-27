@@ -1365,6 +1365,19 @@ GameMap.prototype.saveMap = function (name) {
    if (baseobj.getUseScript() !== mapfeatures[i].getUseScript()) {
    	printerwin.document.write(", usescript : '" + mapfeatures[i].getUseScript() + "'");
    }   
+   if (baseobj.getSearchYield() !== mapfeatures[i].getSearchYield()) {
+    var printyield = "";
+    var itsyield = baseobj.getSearchYield();
+    if (itsyield.length) {
+      printyield = itsyield[0];
+      if (itsyield.length > 1) {
+        for (var i=1;i<=itsyield.length;i++) {
+          printyield += "," + itsyield[i];
+        }
+      }
+    }
+   	printerwin.document.write(", searchyield : '" + printyield + "'");
+   }   
    printerwin.document.write("};\n");
  }
  
@@ -1563,6 +1576,12 @@ GameMap.prototype.loadMap = function (name) {
     	  for (var featurekey in loadfeatures[fi]) {
     		  if (featurekey === "name") { continue; }
       		if (featurekey === "locked") { newfeature.lockMe(loadfeatures[fi]["locked"]); continue; }
+      		if (featurekey === "searchyield") { 
+      		  alert(loadfeatures[fi][featurekey]);
+      		  var tmpyield = loadfeatures[fi][featurekey].split(",");
+      		  newfeature[featurekey] = tmpyield;
+      		  continue;
+      		}
       		newfeature[featurekey] = loadfeatures[fi][featurekey];
       	}
     	  if (newfeature.getWalkOnScript()) {

@@ -398,13 +398,13 @@ function clickmap(xval,yval) {
       	document.featureeditpopup.tileenterx.value = mapinfo.enterx;
     	  document.featureeditpopup.tileentery.value = mapinfo.entery;
       }
-      if ((editable.hasOwnProperty("container")) || (editable.hasOwnProperty("lootgroup")) {
+      if ((editable.hasOwnProperty("container")) || (editable.hasOwnProperty("lootgroup"))) {
         var chestblock = document.getElementById("bubblechest");
         chestblock.style.display = "table-row";
         document.featureeditpopup.lootgroup.value = editable.getLootgroup();
         document.featureeditpopup.lootedid.value = editable.getLootedID();
       }
-      if (editable.hasOwnProperty("searchYield") {
+      if ("searchYield" in editable) {
         var chestblock = document.getElementById("bubblesearch");
         chestblock.style.display = "table-row";
         var tmpsearch = editable.getSearchYield();
@@ -459,8 +459,9 @@ function submitEditFeature(change) {
 		}
 		// searchyield
 		var syarray = [];
-		if (editable.getOwnProperty("searchYield") {
+		if ("searchYield" in editable) {
   		if (document.featureeditpopup.searchyield.value) {
+  		  var tmpsy = document.featureeditpopup.searchyield.value.replace(/ /g,"");
 	  	  syarray = document.featureeditpopup.searchyield.value.split(",");
 		  }
 		  editable.setSearchYield(syarray);
