@@ -1355,8 +1355,13 @@ GameMap.prototype.saveMap = function (name) {
    	 var mapdest = mapfeatures[i].getEnterMap();
    	 printerwin.document.write(", entermap : '" + mapdest.entermap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
    }
-   if (baseobj.container != null) {
-     printerwin.document.write(", lootgroup : '" + mapfeatures[i].getLootgroup() + "'");
+   if (baseobj.isContainer) {
+     if (mapfeatures[i].getLootgroup()) {
+       printerwin.document.write(", lootgroup : '" + mapfeatures[i].getLootgroup() + "'");
+     }
+     if (mapfeatures[i].getKarmaPenalty()) {
+       printerwin.document.write(", karmaPenalty : '" + mapfeatures[i].getKarmaPenalty() + "'");
+     }
    }
    if (baseobj.getWalkOnScript() !== mapfeatures[i].getWalkOnScript()) {
    	printerwin.document.write(", walkonscript : '" + mapfeatures[i].getWalkOnScript() + "'");
@@ -1373,8 +1378,8 @@ GameMap.prototype.saveMap = function (name) {
     if (itsyield.length) {
       printyield = itsyield[0];
       if (itsyield.length > 1) {
-        for (var i=1;i<=itsyield.length;i++) {
-          printyield += "," + itsyield[i];
+        for (var j=1;j<itsyield.length;j++) {
+          printyield += "," + itsyield[j];
         }
       }
     }
