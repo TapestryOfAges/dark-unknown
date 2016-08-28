@@ -1011,7 +1011,9 @@ function PerformGet(who) {
     }
     retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
     retval["fin"] = 1;
-    DrawMainFrame("one",getitem.getHomeMap().getName(),targetCursor.x,targetCursor.y);
+    if (getitem.getHomeMap() === PC.getHomeMap()) {
+      DrawMainFrame("one",getitem.getHomeMap().getName(),targetCursor.x,targetCursor.y);
+    }
     return retval;    
   } 
   else {

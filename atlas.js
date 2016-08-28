@@ -1357,17 +1357,19 @@ GameMap.prototype.saveMap = function (name) {
    }
    if (baseobj.container != null) {
      printerwin.document.write(", lootgroup : '" + mapfeatures[i].getLootgroup() + "'");
-     printerwin.document.write(", lootedid : '" + mapfeatures[i].getLootedID() + "'");
    }
    if (baseobj.getWalkOnScript() !== mapfeatures[i].getWalkOnScript()) {
    	printerwin.document.write(", walkonscript : '" + mapfeatures[i].getWalkOnScript() + "'");
    }
    if (baseobj.getUseScript() !== mapfeatures[i].getUseScript()) {
    	printerwin.document.write(", usescript : '" + mapfeatures[i].getUseScript() + "'");
-   }   
-   if (baseobj.getSearchYield() !== mapfeatures[i].getSearchYield()) {
+   } 
+   if (baseobj.getLootedID() !== mapfeatures[i].getLootedID()) {  
+     printerwin.document.write(", lootedid : '" + mapfeatures[i].getLootedID() + "'");
+   }
+   if (mapfeatures[i].getSearchYield().length) {
     var printyield = "";
-    var itsyield = baseobj.getSearchYield();
+    var itsyield = mapfeatures[i].getSearchYield();
     if (itsyield.length) {
       printyield = itsyield[0];
       if (itsyield.length > 1) {
@@ -1577,9 +1579,8 @@ GameMap.prototype.loadMap = function (name) {
     		  if (featurekey === "name") { continue; }
       		if (featurekey === "locked") { newfeature.lockMe(loadfeatures[fi]["locked"]); continue; }
       		if (featurekey === "searchyield") { 
-      		  alert(loadfeatures[fi][featurekey]);
       		  var tmpyield = loadfeatures[fi][featurekey].split(",");
-      		  newfeature[featurekey] = tmpyield;
+      		  newfeature["searchYield"] = tmpyield;
       		  continue;
       		}
       		newfeature[featurekey] = loadfeatures[fi][featurekey];
