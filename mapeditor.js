@@ -404,10 +404,11 @@ function clickmap(xval,yval) {
         var portalblock = document.getElementById("bubbleportal");
     	  portalblock.style.display = "none";
       }
-      if (editable.hasOwnProperty("container")) {
+      if (editable.isContainer) {
         var chestblock = document.getElementById("bubblechest");
         chestblock.style.display = "table-row";
         document.featureeditpopup.lootgroup.value = editable.getLootgroup();
+        document.featureeditpopup.karmapenalty.value = editable.getKarmaPenalty();
       } else {
         var chestblock = document.getElementById("bubblechest");
         chestblock.style.display = "none";
@@ -470,8 +471,9 @@ function submitEditFeature(change) {
 		if ((document.featureeditpopup.tileentermap.value) && (editable.getEnterMap != null) && (document.featureeditpopup.tileentermap.value !== editable.getEnterMap().entermap)) {
 			editable.setEnterMap(document.featureeditpopup.tileentermap.value, document.featureeditpopup.tileenterx.value, document.featureeditpopup.tileentery.value);
 		}
-		if ((document.featureeditpopup.lootgroup.value) && (editable.container != null) && (document.featureeditpopup.lootgroup.value != editable.getLootgroup())) {
+		if ((document.featureeditpopup.lootgroup.value) && (editable.isContainer) && (document.featureeditpopup.lootgroup.value != editable.getLootgroup())) {
 		  editable.setLootgroup(document.featureeditpopup.lootgroup.value);
+		  editable.setKarmaPenalty(document.featureeditpopup.karmapenalty.value);
 		}
 		if ((document.featureeditpopup.lootedid.value) && (document.featureeditpopup.lootedid.value != editable.getLootedID())) {
 		  editable.setLootedID(document.featureeditpopup.lootedid.value);
