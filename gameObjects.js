@@ -764,12 +764,26 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 function OpenContainer() {
   
   this.isContainer = 1;
+  this.karmaPenalty = 0;
+  
+  this.setKarmaPenalty = function(kp) {
+    this.karmaPenalty = parseInt(kp);
+    return this.karmaPenalty;
+  }
+  
+  this.getKarmaPenalty = function() {
+    return this.karmaPenalty;
+  }
   
   this.use = function(who, fire) {
     var retval = {}; 
     
+    if (this.getKarmaPenalty() && (who === PC)) {
+      DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")-this.getKarmaPenalty);
+    }
+    
     if (this.getLootedID()) {
-      if (DU.gameflags.getFlag(this.getLootedID())) {
+      if (DU.gameflags.getFlag("lid_" + this.getLootedID())) {
         this.setLootgroup("prev_looted");
       }
     }
@@ -793,7 +807,7 @@ function OpenContainer() {
     
     if (this.container.length) { // there's something inside
       if (this.getLootedID()) {
-        DU.gameflags.setFlag(this.getLootedID(), 1);
+        DU.gameflags.setFlag("lid_" + this.getLootedID(), 1);
       }
       
       retval["fin"] = 1;
