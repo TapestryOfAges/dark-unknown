@@ -389,6 +389,9 @@ function clickmap(xval,yval) {
       	var lockedblock = document.getElementById("bubblelock");
     	  lockedblock.style.display = "table-row";
       	document.featureeditpopup.tilelocked.value = editable.getLocked();
+      } else {
+        var lockedblock = document.getElementById("bubblelock");
+    	  lockedblock.style.display = "none";
       }
       if (editable.getEnterMap && (typeof editable.getEnterMap === "function")) {
       	var portalblock = document.getElementById("bubbleportal");
@@ -397,12 +400,17 @@ function clickmap(xval,yval) {
       	document.featureeditpopup.tileentermap.value = mapinfo.entermap;
       	document.featureeditpopup.tileenterx.value = mapinfo.enterx;
     	  document.featureeditpopup.tileentery.value = mapinfo.entery;
+      } else {
+        var portalblock = document.getElementById("bubbleportal");
+    	  portalblock.style.display = "none";
       }
-      if ((editable.hasOwnProperty("container")) || (editable.hasOwnProperty("lootgroup"))) {
+      if (editable.hasOwnProperty("container")) {
         var chestblock = document.getElementById("bubblechest");
         chestblock.style.display = "table-row";
         document.featureeditpopup.lootgroup.value = editable.getLootgroup();
-        document.featureeditpopup.lootedid.value = editable.getLootedID();
+      } else {
+        var chestblock = document.getElementById("bubblechest");
+        chestblock.style.display = "none";
       }
       if ("searchYield" in editable) {
         var chestblock = document.getElementById("bubblesearch");
@@ -418,6 +426,17 @@ function clickmap(xval,yval) {
           }
         } 
         document.featureeditpopup.searchyield.value = tmpval;
+      } else {
+        var chestblock = document.getElementById("bubblesearch");
+        chestblock.style.display = "none";
+      }
+      if (editable.hasOwnProperty("lootedid")) {
+        var chestblock = document.getElementById("bubbleloot");
+        chestblock.style.display = "table-row";
+        document.featureeditpopup.lootedid.value = editable.getLootedID();
+      } else {
+        var chestblock = document.getElementById("bubbleloot");
+        chestblock.style.display = "none";
       }
     }
   }
@@ -454,7 +473,7 @@ function submitEditFeature(change) {
 		if ((document.featureeditpopup.lootgroup.value) && (editable.container != null) && (document.featureeditpopup.lootgroup.value != editable.getLootgroup())) {
 		  editable.setLootgroup(document.featureeditpopup.lootgroup.value);
 		}
-		if ((document.featureeditpopup.lootedid.value) && (editable.container != null) && (document.featureeditpopup.lootedid.value != editable.getLootedID())) {
+		if ((document.featureeditpopup.lootedid.value) && (document.featureeditpopup.lootedid.value != editable.getLootedID())) {
 		  editable.setLootedID(document.featureeditpopup.lootedid.value);
 		}
 		// searchyield
