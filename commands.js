@@ -1134,11 +1134,11 @@ function PerformSearch(who) {
 	}
   else if ((searched.getSearchYield().length)) {
     var stuff = searched.getSearchYield();
-    if (searched.getLootedID() && DU.gameflags.getFlag(searched.searchedid)) {
+    if (searched.getLootedID() && DU.gameflags.getFlag("lid_" + searched.getLootedID())) {
       stuff = [];
     }
     else if (searched.getLootedID()) {
-      DU.gameflags.setFlag(searched.getLootedID(),1);
+      DU.gameflags.setFlag("lid_" + searched.getLootedID(),1);
     }
 
     if (searched.getShowSearched()) {
