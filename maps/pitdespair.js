@@ -370,7 +370,7 @@ mappages["pitdespair2"].features[29] = {name : 'StoneDoorway', x : 20, y : 34};
 mappages["pitdespair2"].features[30] = {name : 'StonePortcullis', x : 37, y : 19, locked : 1};
 mappages["pitdespair2"].features[31] = {name : 'StonePortcullis', x : 38, y : 43, locked : 1};
 mappages["pitdespair2"].features[32] = {name : 'Door', x : 24, y : 46, desc : "locked door", locked : 1};
-mappages["pitdespair2"].features[33] = {name : 'TeleporterPlatform', x : 10, y : 43};
+mappages["pitdespair2"].features[33] = {name : 'PitTeleporterPlatform', x : 10, y : 43};
 
 
 mappages["pitdespair2"].npcs = [];
