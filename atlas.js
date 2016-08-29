@@ -378,6 +378,7 @@ function Acre() {
   
 //  AssignSerial.call(this);
   this.localLight = {};
+  this.localSound = {};
 }
 
 Acre.prototype.addLocalLight = function(lightsource, lightlevel, map) {
@@ -742,7 +743,7 @@ function GameMap() {
   this.scale = 1;
   this.backgroundimage = '';
   this.underground = 0;
-  this.noiseSources = [];
+  this.noiseSources = {};
   
   this.exitScript = "";
   this.exitTestScript = "";
@@ -753,6 +754,7 @@ function GameMap() {
   this.opacity = .6;
   
   this.lightsList = {};
+  this.soundList = {};
 }
 GameMap.prototype = new Object();
 
@@ -1216,6 +1218,7 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
   	}       
   	
   	if (newthing.ambientNoise) {
+  	  DebugWrite("sound", "<br /><br />Placing new ambient sound source: " + newthing.getName() + ", sound played: " + newthing.getAmbientNoise() + ", radius: " + newthing.getAmbientRadius() + " serial: " + newthing.getSerial());
   	  this.setNoiseSource(newthing, newthing.getAmbientNoise(), newthing.getAmbientRadius());
   	}
   
@@ -1653,12 +1656,11 @@ GameMap.prototype.loadMap = function (name) {
 }
 
 GameMap.prototype.setNoiseSource = function(noisesource, noise, radius) {
-  var noiseobj = { source: noisesource, sound: noise, radius: radius };
-  this.noiseSources.push(noiseobj);
+  this.soundList[noisesource.getSerial()] = noisesource;
 }
 
 GameMap.prototype.getAmbientNoise = function(wherex,wherey) {
-  // working here
+  // working here MOVE TO ACRE
 }
 
 GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
