@@ -877,8 +877,8 @@ function Tiling(tileval) {
 	}
 }
 
-//Abstract class Ambient
-function Ambient(ambientsound, radius) {
+//Abstract class HasAmbientNoise
+function HasAmbientNoise(ambientsound, radius) {
   this.ambientNoise = ambientsound;
   this.getAmbientNoise = function() { return this.ambientNoise; }
   this.ambientRadius = radius;
@@ -6398,6 +6398,8 @@ function FountainTile() {
   this.prefix = "a";
   this.desc = "fountain";
   this.peerview = "#a0a0a0";
+  
+  HasAmbientNoise.call(this,"sfx_fountain_splash",2);
 }
 FountainTile.prototype = new FeatureObject();
 
@@ -6495,6 +6497,47 @@ TeleporterPlatformTile.prototype.getDestination = function() {
 
 TeleporterPlatformTile.prototype.walkon = function(who) {
   if (this.getDestination()) {
+    var themap = who.getHomeMap();
+    var dest = this.getDestination();
+    if (themap.getName() === dest.map) {
+      themap.moveThing(dest.x, dest.y, who);
+    } else {
+      DU.maps.addMap(dest.map);
+      var destmap = DU.maps.getMap(dest.map);
+      MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
+    }
+    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
+    // NEEDS SFX/SOUND
+  }
+}
+
+function PitTeleporterPlatformTile() {
+  this.name = "PitTeleporterPlatform";
+  this.graphic = "teleporter.gif";
+  this.prefix = "a";
+  this.desc = "platform";
+  this.destination;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+}
+PitTeleporterPlatformTile.prototype = new FeatureObject();
+
+PitTeleporterPlatformTile.prototype.setDestination = function(destobj) {
+  this.destination = {};
+  if (destobj.map && destobj.x && destobj.y) {
+    this.destination = destobj;
+  }
+}
+
+PitTeleporterPlatformTile.prototype.getDestination = function() {
+  return this.destination;
+}
+
+PitTeleporterPlatformTile.prototype.walkon = function(who) {
+  if ((who.getLevel() < 4) && (who === PC)) {
+    maintext.addText("You hear a voice in your head: 'Thou'rt not yet ready for this trial.' Nothing happens.");
+  }
+  else if (this.getDestination()) {
     var themap = who.getHomeMap();
     var dest = this.getDestination();
     if (themap.getName() === dest.map) {
@@ -11058,6 +11101,20 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		    sfx = sfx + "grass";
 		  }
 		  play_footstep(sfx);
+		  
+		  if (tile.getLocalSound()) {
+		    var ambsound = tile.getLocalSound();
+		    if ($.isEmptyObject(ambient)) {
+		      ambient = DUPlayAmbient(ambsound);
+		    } else if (ambient.name !== ambsound) {
+		      ambient.song.stop();
+		      ambient = DUPlayAmbient(ambsound);
+		    } else {
+		      // same thing playing, no need to change
+		    }
+		  } else {
+		    if (!$.isEmptyObject(ambient)) { ambient.song.stop(); ambient = {}; }
+		  }
 		}
 
     var distfrom = getDisplayCenter(map, PC.getx(), PC.gety());

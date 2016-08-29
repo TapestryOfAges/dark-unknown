@@ -379,6 +379,32 @@ function Acre() {
 //  AssignSerial.call(this);
   this.localLight = {};
   this.localSound = {};
+  this.topSound = "";
+}
+
+Acre.prototype.addLocalSound = function(snd, sndsrc, map) {
+  this.localSound[sndsrc.getSerial()] = snd;
+  this.topSound = sndsrc.getSerial();
+  DebugWrite("sound", "Added " + snd + " sound to this acre.<br />");
+}
+
+Acre.prototype.removeLocalSound = function(sndsrc) {
+  delete this.localSound[sndsrc.getSerial()];
+  if (this.topSound === sndsrc.getSerial()) {
+    var newsnd = "";
+    $.each(this.localSound, function(idx,val) {
+      newsnd = idx;
+    });
+    this.topSound = newsnd;
+  }
+  DebugWrite("sound", "Removed " + snd + " sound from this acre.<br />");
+}
+
+Acre.prototype.getLocalSound = function() {
+  if (this.topSound) {
+    return this.localSound[this.topSound];
+  }
+  else return "";
 }
 
 Acre.prototype.addLocalLight = function(lightsource, lightlevel, map) {
@@ -1218,7 +1244,7 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
   	}       
   	
   	if (newthing.ambientNoise) {
-  	  DebugWrite("sound", "<br /><br />Placing new ambient sound source: " + newthing.getName() + ", sound played: " + newthing.getAmbientNoise() + ", radius: " + newthing.getAmbientRadius() + " serial: " + newthing.getSerial());
+  	  DebugWrite("sound", "<br /><br />Placing new ambient sound source: " + newthing.getName() + ", sound played: " + newthing.getAmbientNoise() + ", radius: " + newthing.getAmbientRadius() + " serial: " + newthing.getSerial() + "<br />");
   	  this.setNoiseSource(newthing, newthing.getAmbientNoise(), newthing.getAmbientRadius());
   	}
   
@@ -1244,6 +1270,9 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
  	if ((typeof thing.getLight === "function") && (Math.abs(thing.getLight()) > 0)) {
     this.removeMapLight(thing.getSerial(),thing.getLight(),thing.getx(),thing.gety());
   }
+  if (this.ambientNoise) {
+    this.removeNoiseSource(thing,thing.getAmbientRadius());
+  }
   var type = thing.getTypeForMap() + "s";
 	this.data[thing.gety()][thing.getx()][type].deleteFrom(thing);
 	if (!this.data[y][x][type]) { this.data[y][x][type] = new Collection(); }
@@ -1252,6 +1281,9 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
   thing.sety(y);
  	if ((typeof thing.getLight === "function") && (Math.abs(thing.getLight()) !== 0)) {
     this.setMapLight(thing,thing.getLight(),x,y);
+  }
+  if (thing.ambientNoise) {
+    this.setNoiseSource(thing, thing.getAmbientNoise(), thing.getAmbientRadius());
   }
   // update pathfinding
   if (type !== "npcs") {
@@ -1280,6 +1312,9 @@ GameMap.prototype.deleteThing = function(thing) {
   var type = thing.getTypeForMap() + "s";
   if ((typeof thing.getLight === "function") && (Math.abs(thing.getLight()) > 0)) {
     this.removeMapLight(thing.getSerial(),thing.getLight(),thing.getx(),thing.gety());
+  }
+  if (thing.ambientNoise) {
+    this.removeNoiseSource(thing, thing.getAmbientRadius());
   }
 	this[type].deleteFrom(thing);
 	this.data[thing.gety()][thing.getx()][type].deleteFrom(thing);
@@ -1657,10 +1692,30 @@ GameMap.prototype.loadMap = function (name) {
 
 GameMap.prototype.setNoiseSource = function(noisesource, noise, radius) {
   this.soundList[noisesource.getSerial()] = noisesource;
+  for (var i=noisesource.getx()-radius;i<=noisesource.getx()+radius;i++) {
+    for (var j=noisesource.gety()-radius;j<=noisesource.gety()+radius;j++) {
+      var tile = this.getTile(i,j);
+      if (tile !== "OoB") {
+        if (GetDistance(noisesource.getx(),noisesource.gety(),i,j) <= radius) {
+          tile.addLocalSound(noise,noisesource,this);
+        }
+      }
+    }
+  }
 }
 
-GameMap.prototype.getAmbientNoise = function(wherex,wherey) {
-  // working here MOVE TO ACRE
+GameMap.prototype.removeNoiseSource = function(noisesource, radius) {
+  var serial = noisesource.getSerial();
+  for (var i=noisesource.getx()-radius;i<=noisesource.getx()+radius;i++) {
+    for (var j=noisesource.gety()-radius;j<=noisesource.gety()+radius;j++) {
+      var tile = this.getTile(i,j);
+      if (tile !== "OoB") {
+        if (GetDistance(noisesource.getx(),noisesource.gety(),i,j) <= radius) {
+          tile.removeLocalSound(noisesource);
+        }
+      }
+    }
+  }  
 }
 
 GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
