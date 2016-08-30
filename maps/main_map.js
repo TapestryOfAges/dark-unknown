@@ -227,7 +227,7 @@ mappages["darkunknown"].onload = function(mapref) {
   }
   CreateNetwork(mapref);
   
-  
+  CreateBeaches(mapref);
 }
 
 function Placespawns(mapref) {
@@ -884,6 +884,30 @@ function CreateNetwork(mapref) {
 //  if (debug) { TestNetwork(mapref, "wild"); }
 }
 
+function CreateBeaches(mapref) {
+  for (var i=0;i<=mapref.data.length;i++){ 
+    for (var j=0;j<=mapref.data[0].length;j++) {
+      var tile = mapref.getTile(j,i);
+      var isCoastal=0;
+      coastloop:
+      for (k=-1;k<=1;k++) {
+        for (l=-1;l<=1;l++) {
+          var checktile = mapref.getTile(j+k,i+l);
+          if (checktile !== "OoB") {
+            var checkforcoast = checktile.getTerrain();
+            if ((checkforcoast.getName() === "Ocean") || (checkforcoast.getName() === "Water") || (checkforcoast.getName() === "Shallows")) {
+              var path = mapref.getPath(j+k,i+l,0, 0, MOVE_SWIM);
+              if (path.length) { isCoastal=1; break coastloop; }
+            }
+          }
+        }
+      }
+      if (isCoastal) {
+        tile.addLocalSound("sfx_ocean_waves",tile);
+      }
+    }
+  }
+}
 
 mappages["gnomeland"] = {};
 mappages["gnomeland"].terrain = [];
