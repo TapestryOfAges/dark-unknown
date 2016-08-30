@@ -166,5 +166,6 @@ mappages["volcano"].onload = function(mapref) {
     shrine.gotox = 60;
     shrine.gotoy = 63;
   }
-
+  
+  CreateBeaches(mapref);
 }

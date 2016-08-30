@@ -382,7 +382,7 @@ function Acre() {
   this.topSound = "";
 }
 
-Acre.prototype.addLocalSound = function(snd, sndsrc, map) {
+Acre.prototype.addLocalSound = function(snd, sndsrc) {
   this.localSound[sndsrc.getSerial()] = snd;
   this.topSound = sndsrc.getSerial();
   DebugWrite("sound", "Added " + snd + " sound to this acre.<br />");

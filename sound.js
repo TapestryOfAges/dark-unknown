@@ -46,6 +46,7 @@ DUSound["sfx_walk_swamp_right"] = "sfx/sfx_walk_swamp.mp3";
 DUSound["sfx_walk_ug_swamp_left"] = "sfx/sfx_ug_walk_swamp.mp3";   // Dungeon SFX Pack / Misc / Step 14 (flood)
 DUSound["sfx_walk_ug_swamp_right"] = "sfx/sfx_ug_walk_swamp.mp3";
 DUSound["sfx_fountain_splash"] = "sfx/sfx_fountain_splash.mp3"; // Soniss 2015/Soundopolis - Water 01/Water_Fountain_Fienup_002.wav
+DUSound["sfx_ocean_waves"] = "sfx/sfx_ocean_waves.mp3"; // Soniss 2015/Soundopolis - Water Ambiences 01/Beach_Ocean_Waves_Fienup_001.wav
 
 var musicpath = "music/";
 var DUMusic = {};

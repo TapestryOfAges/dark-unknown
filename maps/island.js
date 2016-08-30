@@ -158,6 +158,8 @@ mappages["island"].onload = function(mapref) {
     shrine.gotox = 11;
     shrine.gotoy = 34;
   }
+  
+  CreateBeaches(mapref);
 }
 
 mappages["island_cave"] = {};
