@@ -885,25 +885,39 @@ function CreateNetwork(mapref) {
 }
 
 function CreateBeaches(mapref) {
-  for (var i=0;i<=mapref.data.length;i++){ 
-    for (var j=0;j<=mapref.data[0].length;j++) {
-      var tile = mapref.getTile(j,i);
-      var isCoastal=0;
-      coastloop:
-      for (k=-1;k<=1;k++) {
-        for (l=-1;l<=1;l++) {
-          var checktile = mapref.getTile(j+k,i+l);
-          if (checktile !== "OoB") {
-            var checkforcoast = checktile.getTerrain();
-            if ((checkforcoast.getName() === "Ocean") || (checkforcoast.getName() === "Water") || (checkforcoast.getName() === "Shallows")) {
-              var path = mapref.getPath(j+k,i+l,0, 0, MOVE_SWIM);
-              if (path.length) { isCoastal=1; break coastloop; }
+  if (!DU.gameflags.getFlag("editor")) {
+    for (var i=0;i<mapref.data.length;i++){ 
+      for (var j=0;j<mapref.data[0].length;j++) {
+        DebugWrite("sound","Testing tile " + j + "," + i + ": ");
+        var tile = mapref.getTile(j,i);
+        var isWater=0;
+        var isLand=0;
+        coastloop:
+        for (var k=-1;k<=1;k++) {
+          for (var l=-1;l<=1;l++) {
+            var checkx = j+k;
+            var checky = i+l;
+            var checktile = mapref.getTile(checkx,checky);
+            if (checktile !== "OoB") {
+              var checkforcoast = checktile.getTerrain();
+              DebugWrite("sound","checking " + checkx + "," + checky + " - " + checkforcoast.getName() + " ");
+              if ((checkforcoast.getName() === "Ocean") || (checkforcoast.getName() === "Water") || (checkforcoast.getName() === "Shallows")) {
+//                var path = mapref.getPath(checkx,checky,0, 0, MOVE_SWIM);
+//                if (path.length) { isCoastal=1; break coastloop; }
+                isWater=1;
+                if (isLand === 1) { break coastloop; }
+              } else {
+                isLand=1;
+                if (isWater === 1) { break coastloop; }
+              }
             }
           }
         }
-      }
-      if (isCoastal) {
-        tile.addLocalSound("sfx_ocean_waves",tile);
+        if (isWater && isLand) {
+          tile.addLocalSound("sfx_ocean_waves",PC);
+          DebugWrite("sound","PLAYING OCEAN");
+        }
+        DebugWrite("sound","<br />");
       }
     }
   }
