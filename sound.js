@@ -12,7 +12,7 @@ DUSound["sfx_open_door"] = "sfx/sfx3.ogg";
 DUSound["sfx_close_door"] = "sfx/sfx4.ogg";
 DUSound["sfx_locked_door"] = "sfx/sfx5.ogg";
 DUSound["sfx_spell_light"] = "sfx/sfx2.ogg";
-DUSound["sfx_unlock"] = "sfx/sfx7.ogg";
+DUSound["sfx_unlock"] = "sfx/sfx_open_lock.mp3";  // REPLACED: Medieval Fantasy SFX Pack / Misc / Open Lock
 DUSound["sfx_potion"] = "sfx/sfx8.ogg";
 DUSound["sfx_melee_miss"] = "sfx/sfx9.ogg";
 DUSound["sfx_melee_hit"] = "sfx/sfx10.ogg";
@@ -47,6 +47,8 @@ DUSound["sfx_walk_ug_swamp_left"] = "sfx/sfx_ug_walk_swamp.mp3";   // Dungeon SF
 DUSound["sfx_walk_ug_swamp_right"] = "sfx/sfx_ug_walk_swamp.mp3";
 DUSound["sfx_fountain_splash"] = "sfx/sfx_fountain_splash.mp3"; // Soniss 2015/Soundopolis - Water 01/Water_Fountain_Fienup_002.wav
 DUSound["sfx_ocean_waves"] = "sfx/sfx_ocean_waves.mp3"; // Soniss 2015/Soundopolis - Water Ambiences 01/Beach_Ocean_Waves_Fienup_001.wav
+DUSound["sfx_bubbling_lava"] = "sfx/sfx_bubbling_lava.mp3"; // RPG Sound Effects Bundle v1/Bubbling Lava.wav
+DUSound["sfx_fire_crackle"] = "sfx/sfx_fire_crackle.mp3"; // Dungeon SFX Pack v1/Misc/Torch 2 (loop).mp3
 
 var musicpath = "music/";
 var DUMusic = {};
