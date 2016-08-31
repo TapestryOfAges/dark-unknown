@@ -2910,6 +2910,8 @@ function LavaTubeTile() {
 	this.desc = "lava tube";
 	this.peerview = "#853e3e";
 	this.walkSound = "stone";
+	
+	HasAmbientNoise.call(this,"sfx_lava_bubble",1.5);
 }
 LavaTubeTile.prototype = new TerrainObject();
 
@@ -3465,6 +3467,7 @@ function CampfireTile() {
 	this.firedamage = "2d4";
 	
 	LightEmitting.call(this, 2);
+	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
 }
 CampfireTile.prototype = new FeatureObject();
 
@@ -3596,6 +3599,7 @@ function FireplaceTile() {
 	this.firedamage = "3d4";
 	
 	LightEmitting.call(this, 2);
+	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
 }
 FireplaceTile.prototype = new FeatureObject();
 
@@ -3768,6 +3772,8 @@ function FireFieldTile() {
 	LightEmitting.call(this, 3);
 	this.initdelay = 1.5;
 	this.pathweight = 3;
+	
+	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
 }
 FireFieldTile.prototype = new FeatureObject();
 
@@ -6367,6 +6373,8 @@ function BrightFountainTile() {
   this.prefix = "a";
   this.desc = "fountain";
   this.peerview = "#a0a0a0";
+  
+  HasAmbientNoise.call(this,"sfx_fountain_splash",1.5);
 }
 BrightFountainTile.prototype = new FeatureObject();
 
@@ -6378,6 +6386,8 @@ function BlueFountainTile() {
   this.prefix = "a";
   this.desc = "fountain";
   this.peerview = "#a0a0a0";
+  
+  HasAmbientNoise.call(this,"sfx_fountain_splash",1.5);
 }
 BlueFountainTile.prototype = new FeatureObject();
 
@@ -6389,6 +6399,8 @@ function BloodFountainTile() {
   this.prefix = "a";
   this.desc = "fountain";
   this.peerview = "#a0a0a0";
+  
+  HasAmbientNoise.call(this,"sfx_fountain_splash",1.5);
 }
 BloodFountainTile.prototype = new FeatureObject();
 
