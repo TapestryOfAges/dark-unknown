@@ -88,6 +88,8 @@ mappages["naurglen"].features[48] = {name : 'BookshelfRight', x : 9, y : 19};
 mappages["naurglen"].features[49] = {name : 'LeftTable', x : 4, y : 20};
 mappages["naurglen"].features[50] = {name : 'RightTable', x : 5, y : 20};
 mappages["naurglen"].features[51] = {name : 'Door', x : 9, y : 23, desc : "locked door", locked : 1};
+mappages["naurglen"].features[52] = {name : 'SingleSignpost', x : 11, y : 24};
+mappages["naurglen"].features[53] = {name : 'HealerSign', x : 11, y : 23};
 
 
 mappages["naurglen"].npcs = [];

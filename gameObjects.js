@@ -11649,8 +11649,8 @@ function PCObject() {
 	this.xp = 0;
 	this.tp = 0;  // training points
   this.spells = [];
-  this.lastspelllevel = 1;
-  this.lastspell = 1;
+  this.lastspelllevel = SPELL_LIGHT_LEVEL;
+  this.lastspell = SPELL_LIGHT_ID;
   this.infuse = 0;
   this.gender = "other";
 	
