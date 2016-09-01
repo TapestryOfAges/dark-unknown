@@ -146,5 +146,5 @@ p.charcreate { color:white;
 }
 
 span.leveled { color: red; }
-
+span.conv {color: lightyellow; }
 span.sysconv { color: yellow; }

@@ -205,7 +205,7 @@ mappages["olympus1"].features[153] = {name : 'KitchenBarrel', x : 47, y : 32, lo
 
 
 mappages["olympus1"].npcs = [];
-mappages["olympus1"].npcs[0] = {name : 'KingNPC', x : 29, y : 14, NPCName: 'King Daragen', Desc: 'the King of Olympus', Conversation: 'king', Gender: 'male'};
+mappages["olympus1"].npcs[0] = {name : 'KingNPC', x : 29, y : 14, NPCName: 'King Daragen', Desc: 'King Daragen of Olympus', Conversation: 'king', Gender: 'male'};
 mappages["olympus1"].npcs[1] = {name : 'MageVillagerNPC', x : 31, y : 15, NPCName: 'Jharden', Desc: 'royal advisor', Level: 6, str: 12, dex: 12, int: 26, Conversation: 'jharden', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif'};
 mappages["olympus1"].npcs[2] = {name : 'TownGuardNPC', x : 27, y : 18, Conversation: 'castleguard1', Gender: 'male'};
 mappages["olympus1"].npcs[3] = {name : 'TownGuardNPC', x : 31, y : 18, Conversation: 'castleguard1', Gender: 'female'};
@@ -215,7 +215,7 @@ mappages["olympus1"].npcs[6] = {name : 'TownGuardNPC', x : 26, y : 33, Conversat
 mappages["olympus1"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 24, y : 22, NPCName: 'Katrina', Desc: 'librarian', Conversation: 'katrina', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 mappages["olympus1"].npcs[8] = {name : 'BardVillagerNPC', x : 13, y : 14, NPCName: 'Olivia', Conversation: 'olivia', Gender: 'female', Leash: 8, Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif'};
 mappages["olympus1"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 47, y : 28};
-mappages["olympus1"].npcs[10] = {name : 'QueenNPC', x : 44, y : 14, NPCName: 'Shelaria', Conversation: 'shelaria', Gender: 'female'};
+mappages["olympus1"].npcs[10] = {name : 'QueenNPC', x : 44, y : 14, NPCName: 'Shelaria', Conversation: 'shelaria', Gender: 'female', Desc: 'your mother, Queen Shelaria'};
 mappages["olympus1"].npcs[11] = {name : 'FighterVillagerNPC', x : 25, y : 13, NPCName: 'Nyrani', Desc: 'guard captain', Level: 5, str: 24, dex: 18, int: 12, PeaceAI: 'guard', PCThreatAI: 'melee', Conversation: 'nyrani', ConversationFlag: 'has_shield', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '308.gif'};
 mappages["olympus1"].npcs[12] = {name : 'JesterNPC', x : 28, y : 15, NPCName: 'Kaye', Alignment: 'good', Conversation: 'kaye', Gender: 'male', Leash: 4, BarkFreq: 5, Bark: 'jester', BarkRad: 6};
 mappages["olympus1"].npcs[13] = {name : 'BardVillagerNPC', x : 42, y : 13, NPCName: 'Sonya', Conversation: 'sonya', Gender: 'female', Leash: 1, Bark: '0', NPCBand: '0', OverrideGraphic: 'bard-offcolor.gif'};

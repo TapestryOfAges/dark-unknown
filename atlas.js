@@ -1692,8 +1692,8 @@ GameMap.prototype.loadMap = function (name) {
 
 GameMap.prototype.setNoiseSource = function(noisesource, noise, radius) {
   this.soundList[noisesource.getSerial()] = noisesource;
-  for (var i=noisesource.getx()-radius;i<=noisesource.getx()+radius;i++) {
-    for (var j=noisesource.gety()-radius;j<=noisesource.gety()+radius;j++) {
+  for (var i=noisesource.getx()-Math.ceil(radius);i<=noisesource.getx()+Math.ceil(radius);i++) {
+    for (var j=noisesource.gety()-Math.ceil(radius);j<=noisesource.gety()+Math.ceil(radius);j++) {
       var tile = this.getTile(i,j);
       if (tile !== "OoB") {
         if (GetDistance(noisesource.getx(),noisesource.gety(),i,j) <= radius) {

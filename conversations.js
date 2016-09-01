@@ -83,7 +83,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   if (triggers.hasOwnProperty("take_item")) {
     if (necessary_item) {
       PC.removeFromInventory(necessary_item);
-      maintext.addText("<span class='sysconv'>You no longer have one: " + newitem.getDesc() + ".</span>");
+      maintext.addText("<span class='sysconv'>You no longer have one: " + necessary_item.getDesc() + ".</span>");
     }
   }
   if (triggers.hasOwnProperty("give_gold")) {
@@ -209,7 +209,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
     skipahead--;
   }
   speech[0] = speech[0].charAt(0).toUpperCase() + speech[0].slice(1);
-  maintext.addText(speech[0]);
+  maintext.addText("<span class='conv'>" + speech[0] + "</span>");
   speech.shift();
   
   if (speech[0]) {
