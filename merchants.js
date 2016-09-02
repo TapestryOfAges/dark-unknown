@@ -218,6 +218,7 @@ function GetSellBack(seller, merchant) {
 
 function HasStock(whose) {
   if (DU.merchants[whose]) {
+    if (DU.merchants[whose].type === "spells") { return 1; }
     for (var i = 0; i < DU.merchants[whose].stock.length; i++) {
       if (DU.merchants[whose].stock[i].quantity > 0) { return 1; }
     }

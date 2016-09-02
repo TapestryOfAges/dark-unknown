@@ -339,7 +339,7 @@ mappages["olympus0"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 24, y : 8, NP
 mappages["olympus0"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 8, y : 16, NPCName: 'Trevor', Desc: 'treasurer', PeaceAI: 'Trevor', Conversation: 'trevor', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 mappages["olympus0"].npcs[6] = {name : 'PaladinVillagerNPC', x : 20, y : 10, NPCName: 'Erica', Conversation: 'erica', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '307.gif'};
 
-mappages["olympus0"].desc = "Castle Olympus Basement";
+mappages["olympus0"].desc = "Castle Dea Olympus Basement";
 mappages["olympus0"].music = 'Olympus';
 mappages["olympus0"].exitmap = 'olympus1';
 mappages["olympus0"].exitx = 'NaN';
@@ -571,7 +571,7 @@ mappages["olympus2"].features[156] = {name : 'RedCarpetC', x : 34, y : 16};
 
 mappages["olympus2"].npcs = [];
 
-mappages["olympus2"].desc = "Castle Olympus";
+mappages["olympus2"].desc = "Castle Dea Olympus";
 mappages["olympus2"].music = 'Olympus';
 mappages["olympus2"].exitmap = '';
 mappages["olympus2"].exitx = '69';

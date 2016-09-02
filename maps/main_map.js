@@ -434,10 +434,10 @@ function Placespawns(mapref) {
   
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("GiantRatGroupSmall", "SnakesGroup", "InsectsGroupLarge");
+  spawn.evolve[2][1] = new Array("GiantRatGroupSmall", "InsectsGroupLarge");
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "RogueGroupSmall", "LowbiePartyGroup");
+  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "SnakesGroup", "RogueGroupSmall", "LowbiePartyGroup");
   spawn.evolve[4] = [];
   spawn.evolve[4][0] = "spawngroup";
   spawn.evolve[4][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "RogueGroupSmall", "LowbiePartyGroup", "MidPartyGroup");
