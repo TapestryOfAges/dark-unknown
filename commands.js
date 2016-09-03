@@ -1828,9 +1828,7 @@ function PerformYell() {
 		  TestRing();
 		} else if (inputText.txt === "SOUNDCHK") {
 		  createjs.Sound.play("Mainland", {loop: -1});
-		} else if (inputText.txt === "SLINGS") {
-		  PC.addToInventory(localFactory.createTile("Sling"),1);
-    } else if (inputText.txt === "SHOWMAP") {
+		} else if (inputText.txt === "SHOWMAP") {
       if (debug) {
         DisplayTestMap();
       }

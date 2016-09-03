@@ -43,23 +43,6 @@ function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
   return coords;
 }
 
-//function animateEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset,destsound) {
-//  var fromcoords = getCoords(mapref, fromx, fromy);
-//  var tocoords = getCoords(mapref,tox,toy);
-  
-//  var tablehtml = '<table id="animtable" style="z-index:40; position: absolute; left: ' + fromcoords.x + 'px; top: ' + fromcoords.y + '><tr><td style="background-image:url(\'graphics/' + graphic + '\',background-repeat:no-repeat; background-position: ' + xoffset + 'px ' + yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32"></td></tr></table>';
-//  tilecursor.tileid = "#td-tile" + displayspecs.leftedge + "x" + displayspecs.topedge;
-//  tilecursor.basetile = $(tilecursor.tileid).html(); 
-//  $(tilecursor.tileid).html($tilecursor.tileid.html() + tablehtml);
-//  var duration = Math.pow( Math.pow(tox - fromx, 2) + Math.pow (toy - fromy, 2)  , .5);
-//  $("#animtable").animate({ left: tocoords.x , top: tocoords.y } , duration, function() {
-
-//    });
-
-
-//}
-
-
 function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, sounds, param, doagain) {
 // atk - source/attacker
 // def - target/defender, if any
@@ -951,7 +934,7 @@ function ApplyRune(who, rune, runeref) {
 }
 
 function DoPCDeath() {
-  
+  DebugWrite("all","IN DoPCDeath().<br />");
 }
 
 // these two functions found on stackexchange
@@ -1277,7 +1260,7 @@ function FindNearestNPC(from, align, except) {
     if ((val !== from) && ($.inArray(val,except) === -1)) {
       if (!align || ((align === "enemy") && (from.getAttitude() !== val.getAttitude())) || ((align === "ally") && (from.getAttitude() === val.getAttitude()))) {
         var movetype = from.getMovetype();
-        if ((movetype === MOVE_WALK) && (from.specials.open_door)) { movetype = MOVE_DOOR; }
+        if ((movetype === MOVE_WALK) && (from.specials.open_door)) { movetype = MOVE_WALK_DOOR; }
         var dist = GetDistanceByPath(from,val,movetype);
         if (dist < distance) {
           nearest = val;

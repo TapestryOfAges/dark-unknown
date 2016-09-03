@@ -1,13 +1,5 @@
 "use strict";
 
-var gamestate = new GameStateData();
-
-function GameStateData() {
-	this.mode = "null";
-	this.turn = {};
-	// player, NPC, null, target, conversation, anykey
-}
-
 function Gameflags() {
   this.music = 0;
   this.sound = 1;
@@ -22,7 +14,13 @@ function Gameflags() {
 }
 Gameflags.prototype = new Object();
 
+var gamestate = new GameStateData();
 
+function GameStateData() {
+	this.mode = "null";
+	this.turn = {};
+	// player, NPC, null, target, conversation, anykey
+}
 
 GameStateData.prototype.loadTmp = function() {
   gamestate.setMode("null");

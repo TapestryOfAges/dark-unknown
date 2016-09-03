@@ -233,11 +233,7 @@ mappages["darkunknown"].onload = function(mapref) {
 function Placespawns(mapref) {
   
   var onyxspawn = localFactory.createTile("Spawner");
-  var onyxgroup = [];
-  onyxgroup[0] = "HoodGroupTiny";
-  onyxgroup[1] = "HoodGroupTiny";
-  onyxgroup[2] = "HoodGroupTiny";
-  onyxgroup[3] = "HoodGroupSmall";
+  var onyxgroup = ["HoodGroupTiny","HoodGroupTiny","HoodGroupTiny","HoodGroupSmall"];
 
   onyxspawn.setSpawngroup(onyxgroup);
   onyxspawn.setMaxSpawns(3);
@@ -247,15 +243,15 @@ function Placespawns(mapref) {
 
   onyxspawn.evolve[2] = [];
   onyxspawn.evolve[2][0] = "spawngroup";
-  onyxspawn.evolve[2][1] = new Array("HoodGroupSmall","HoodGroupSmall","HoodGroupLarge","RogueGroupSmall");
+  onyxspawn.evolve[2][1] = ["HoodGroupSmall","HoodGroupSmall","HoodGroupLarge","RogueGroupSmall"];
 
   onyxspawn.evolve[3] = [];
   onyxspawn.evolve[3][0] = "spawngroup";
-  onyxspawn.evolve[3][1] = new Array("HoodGroupSmall","HoodGroupLarge","RogueGroupSmall","RogueGroupLarge","RogueGroupLarge","ThiefGroupSmall");
+  onyxspawn.evolve[3][1] = ["HoodGroupSmall","HoodGroupLarge","RogueGroupSmall","RogueGroupLarge","RogueGroupLarge","ThiefGroupSmall"];
 
   onyxspawn.evolve[4] = [];
   onyxspawn.evolve[4][0] = "spawngroup";
-  onyxspawn.evolve[4][1] = new Array("HoodGroupLarge","RogueGroupSmall","RogueGroupLarge","ThiefGroupSmall","ThiefGroupLarge");
+  onyxspawn.evolve[4][1] = ["HoodGroupLarge","RogueGroupSmall","RogueGroupLarge","ThiefGroupSmall","ThiefGroupLarge"];
   
   var freq = 90 + Dice.roll("1d20");
   onyxspawn.setSpawnFreq(freq);
@@ -264,8 +260,7 @@ function Placespawns(mapref) {
   // Forest SW of Onyx  
       
   var spawn = localFactory.createTile("Spawner");
-  var group = [];
-  group[0] = "DrakesSmallGroup";
+  var group = ["DrakesSmallGroup"];
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(5);
@@ -283,9 +278,7 @@ function Placespawns(mapref) {
   // center of NW island
     
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "GiantRatGroupTiny";
-  group[1] = "SnakesGroup";
+  group = ["GiantRatGroupTiny","SnakesGroup"];
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
@@ -295,13 +288,13 @@ function Placespawns(mapref) {
   
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("GiantRatGroupSmall", "SnakesGroup");
+  spawn.evolve[2][1] = ["GiantRatGroupSmall", "SnakesGroup"];
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupSmall", "GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "LowbiePartyGroup");
+  spawn.evolve[3][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupSmall", "GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "LowbiePartyGroup"];
   spawn.evolve[4] = [];
   spawn.evolve[4][0] = "spawngroup";
-  spawn.evolve[4][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "MidPartyGroup", "MidHeadlessGroup");
+  spawn.evolve[4][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "MidPartyGroup", "MidHeadlessGroup"];
   
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
@@ -310,10 +303,7 @@ function Placespawns(mapref) {
   // entrance to valley with Asharden Tower
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "GiantRatGroupTiny";
-  group[1] = "SnakesGroupSmall";
-  group[2] = "InsectsGroupSmall";
+  group = ["GiantRatGroupTiny","SnakesGroupSmall","InsectsGroupSmall"];
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(1);
@@ -323,11 +313,11 @@ function Placespawns(mapref) {
   
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("GiantRatGroupSmall", "SnakesGroup", "InsectsGroupSmall");
+  spawn.evolve[2][1] = ["GiantRatGroupSmall", "SnakesGroup", "InsectsGroupSmall"];
 
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupSmall", "InsectsGroupLarge");
+  spawn.evolve[3][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupSmall", "InsectsGroupLarge"];
   
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
@@ -336,9 +326,7 @@ function Placespawns(mapref) {
   // NE of Clear Lagoon
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "GiantRatGroupTiny";
-  group[1] = "SnakesGroupSmall";
+  group = ["GiantRatGroupTiny","SnakesGroupSmall"];
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
@@ -348,16 +336,16 @@ function Placespawns(mapref) {
   
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("GiantRatGroupSmall", "Snakes Group", "MidSnakesGroup", "OrcGroupSmall");
+  spawn.evolve[2][1] = ["GiantRatGroupSmall", "Snakes Group", "MidSnakesGroup", "OrcGroupSmall"];
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "OrcGroupLarge");
+  spawn.evolve[3][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "OrcGroupLarge"];
   spawn.evolve[4] = [];
   spawn.evolve[4][0] = "spawngroup";
-  spawn.evolve[4][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "OrcGroupLarge", "OrcPartyLowGroup");
+  spawn.evolve[4][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "OrcGroupLarge", "OrcPartyLowGroup"];
   spawn.evolve[5] = [];
   spawn.evolve[5][0] = "spawngroup";
-  spawn.evolve[5][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "OrcPartyHighGroup", "OrcPartyLowGroup");
+  spawn.evolve[5][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "OrcPartyHighGroup", "OrcPartyLowGroup"];
   
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
@@ -366,9 +354,7 @@ function Placespawns(mapref) {
   // Shadow
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "GiantRatGroupTiny";
-  group[1] = "SnakesGroupSmall";
+  group = ["GiantRatGroupTiny","SnakesGroupSmall"];
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
@@ -378,18 +364,18 @@ function Placespawns(mapref) {
   
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("GiantRatGroupSmall", "SnakesGroup");
+  spawn.evolve[3][1] = ["GiantRatGroupSmall", "SnakesGroup"];
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "DrakesSmallGroup");
+  spawn.evolve[3][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "DrakesSmallGroup"];
   spawn.evolve[4] = [];
   spawn.evolve[4][0] = "spawngroup";
-  spawn.evolve[4][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "DrakesSmallGroup", "DrakesLargeGroup");
+  spawn.evolve[4][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "DrakesSmallGroup", "DrakesLargeGroup"];
   spawn.evolve[5] = [];
   spawn.evolve[5][0] = "spawngroup";
-  spawn.evolve[5][1] = new Array("MidSnakesGroup", "DrakesSmallGroup", "DragonsGroup");
+  spawn.evolve[5][1] = ["MidSnakesGroup", "DrakesSmallGroup", "DragonsGroup"];
 
-  
+
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
   
@@ -397,9 +383,7 @@ function Placespawns(mapref) {
   // SW of Wealth/Beldskae
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "GiantRatGroupTiny";
-  group[1] = "SnakesGroupSmall";
+  group = ["GiantRatGroupTiny","SnakesGroupSmall"];
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
@@ -409,10 +393,10 @@ function Placespawns(mapref) {
   
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("GiantRatGroupSmall", "SnakesGroup");
+  spawn.evolve[2][1] = ["GiantRatGroupSmall","SnakesGroup"];
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "OrcGroupSmall");
+  spawn.evolve[3][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "OrcGroupSmall"];
   
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
@@ -421,10 +405,7 @@ function Placespawns(mapref) {
   // South of big lake
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "GiantRatGroupTiny";
-  group[1] = "SnakesGroupSmall";
-  group[2] = "InsectsGroupSmall";
+  group = ["GiantRatGroupTiny","SnakesGroupSmall","InsectsGroupSmall"];
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
@@ -434,19 +415,19 @@ function Placespawns(mapref) {
   
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("GiantRatGroupSmall", "InsectsGroupLarge");
+  spawn.evolve[2][1] = ["GiantRatGroupSmall", "InsectsGroupLarge"];
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "SnakesGroup", "RogueGroupSmall", "LowbiePartyGroup");
+  spawn.evolve[3][1] = ["GiantRatGroupLarge", "SnakesGroup", "RogueGroupSmall", "LowbiePartyGroup"];
   spawn.evolve[4] = [];
   spawn.evolve[4][0] = "spawngroup";
-  spawn.evolve[4][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "RogueGroupSmall", "LowbiePartyGroup", "MidPartyGroup");
+  spawn.evolve[4][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "RogueGroupSmall", "LowbiePartyGroup", "MidPartyGroup"];
   spawn.evolve[5] = [];
   spawn.evolve[5][0] = "spawngroup";
-  spawn.evolve[5][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "MidHighPartyGroup", "LowbiePartyGroup", "MidPartyGroup");
+  spawn.evolve[5][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "MidHighPartyGroup", "LowbiePartyGroup", "MidPartyGroup"];
   spawn.evolve[7] = [];
   spawn.evolve[7][0] = "spawngroup";
-  spawn.evolve[7][1] = new Array("MidPartyGroup", "MidHighPartyGroup", "HighPartyGroup", "NecromancerGroup", "ElementalistGroup");
+  spawn.evolve[7][1] = ["MidPartyGroup", "MidHighPartyGroup", "HighPartyGroup", "NecromancerGroup", "ElementalistGroup"];
   
   
   freq = 90 + Dice.roll("1d20");
@@ -457,9 +438,7 @@ function Placespawns(mapref) {
 
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "DrakesSmallGroup";
-  group[1] = "SnakesGroup";
+  group = ["DrakesSmallGroup","SnakesGroup"];
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(1);
@@ -469,13 +448,13 @@ function Placespawns(mapref) {
   
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("DrakesSmallGroup", "DrakesLargeGroup");
+  spawn.evolve[3][1] = ["DrakesSmallGroup", "DrakesLargeGroup"];
   spawn.evolve[4] = [];
   spawn.evolve[4][0] = "spawngroup";
-  spawn.evolve[4][1] = new Array("DrakesSmallGroup", "DrakesLargeGroup", "DragonsGroup");
+  spawn.evolve[4][1] = ["DrakesSmallGroup", "DrakesLargeGroup", "DragonsGroup"];
   spawn.evolve[6] = [];
   spawn.evolve[6][0] = "spawngroup";
-  spawn.evolve[6][1] = new Array("MidSnakesGroup", "DrakesSmallGroup", "DragonsGroup", "DaemonGroup");
+  spawn.evolve[6][1] = ["MidSnakesGroup", "DrakesSmallGroup", "DragonsGroup", "DaemonGroup"];
   spawn.evolve[7] = [];
   spawn.evolve[7][0] = "spawnLeash";
   spawn.evolve[7][1] = 46;
@@ -496,11 +475,7 @@ function Placespawns(mapref) {
   
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "HoodGroupSmall";
-  group[1] = "HoodGroupSmall";
-  group[2] = "HoodGroupLarge";
-  group[3] = "PitRogueGroupSmall";
+  group = ["HoodGroupSmall","HoodGroupSmall","HoodGroupLarge","PitRogueGroupSmall"];
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(3);
@@ -510,11 +485,11 @@ function Placespawns(mapref) {
 
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("HoodGroupSmall","HoodGroupLarge","PitRogueGroupSmall","PitRogueGroupSmall","ThiefGroupSmall");
+  spawn.evolve[2][1] = ["HoodGroupSmall","HoodGroupLarge","PitRogueGroupSmall","PitRogueGroupSmall","ThiefGroupSmall"];
 
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("PitRogueGroupSmall","PitRogueGroupSmall","ThiefGroupSmall","ThiefGroupLarge");
+  spawn.evolve[3][1] = ["PitRogueGroupSmall","PitRogueGroupSmall","ThiefGroupSmall","ThiefGroupLarge"];
 
   spawn.evolve[4] = [];
   spawn.evolve[4][0] = "spawnLeash";
@@ -531,8 +506,7 @@ function Placespawns(mapref) {
   // Pit
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "OrcGroupSmall";
+  group = ["OrcGroupSmall"];
 
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
@@ -542,15 +516,15 @@ function Placespawns(mapref) {
 
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("OrcGroupSmall","OrcGroupLarge","LowbiePartyGroup");
+  spawn.evolve[3][1] = ["OrcGroupSmall","OrcGroupLarge","LowbiePartyGroup"];
   
   spawn.evolve[5] = [];
   spawn.evolve[5][0] = "spawngroup";
-  spawn.evolve[5][1] = new Array("TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","LowbiePartyGroup","MidPartyGroup");
+  spawn.evolve[5][1] = ["TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","LowbiePartyGroup","MidPartyGroup"];
 
   spawn.evolve[6] = [];
   spawn.evolve[6][0] = "spawngroup";
-  spawn.evolve[6][1] = new Array("TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","MidHighPartyGroup","MidPartyGroup");
+  spawn.evolve[6][1] = ["TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","MidHighPartyGroup","MidPartyGroup"];
   spawn.evolve[6][2] = "spawnLeash";
   spawn.evolve[6][3] = 0;
   spawn.evolve[6][4] = "spawnSoftLeash";
@@ -558,7 +532,7 @@ function Placespawns(mapref) {
 
   spawn.evolve[7] = [];
   spawn.evolve[7][0] = "spawngroup";
-  spawn.evolve[7][1] = new Array("TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","HighPartyGroup","MidHighPartyGroup");
+  spawn.evolve[7][1] = ["TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","HighPartyGroup","MidHighPartyGroup"];
   
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
@@ -568,8 +542,7 @@ function Placespawns(mapref) {
   
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "HeadlessGroupTiny";
+  group = ["HeadlessGroupTiny"];
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(3);
@@ -579,19 +552,19 @@ function Placespawns(mapref) {
 
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("HeadlessGroupSmall");
+  spawn.evolve[2][1] = ["HeadlessGroupSmall"];
 
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("HeadlessGroupSmall","HeadlessGroupLarge","HeadlessGroupLarge");
+  spawn.evolve[3][1] = ["HeadlessGroupSmall","HeadlessGroupLarge","HeadlessGroupLarge"];
 
   spawn.evolve[5] = [];
   spawn.evolve[5][0] = "spawngroup";
-  spawn.evolve[5][1] = new Array("HeadlessGroupSmall","HeadlessGroupLarge","HeadlessGroupLarge","DrakesSmallGroup");
+  spawn.evolve[5][1] = ["HeadlessGroupSmall","HeadlessGroupLarge","HeadlessGroupLarge","DrakesSmallGroup"];
 
   spawn.evolve[6] = [];
   spawn.evolve[6][0] = "spawngroup";
-  spawn.evolve[6][1] = new Array("HeadlessGroupSmall","HeadlessGroupLarge","HeadlessGroupLarge","DrakesSmallGroup","DrakesLargeGroup","DragonsGroup");
+  spawn.evolve[6][1] = ["HeadlessGroupSmall","HeadlessGroupLarge","HeadlessGroupLarge","DrakesSmallGroup","DrakesLargeGroup","DragonsGroup"];
   
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
@@ -600,8 +573,7 @@ function Placespawns(mapref) {
   // World's Ending
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "SnakesGroup";
+  group = ["SnakesGroup"];
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(6);
@@ -611,11 +583,11 @@ function Placespawns(mapref) {
 
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("SnakesGroup","MidSnakesGroup");
+  spawn.evolve[2][1] = ["SnakesGroup","MidSnakesGroup"];
 
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("SnakesGroup","MidSnakesGroup","MidSnakesGroup","GazersGroup");
+  spawn.evolve[3][1] = ["SnakesGroup","MidSnakesGroup","MidSnakesGroup","GazersGroup"];
   
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
@@ -624,8 +596,7 @@ function Placespawns(mapref) {
   // great swamp
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "OrcGroupTiny";
+  group = ["OrcGroupTiny"];
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(4);
@@ -635,11 +606,11 @@ function Placespawns(mapref) {
 
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("OrcGroupSmall","OrcGroupSmall","OrcGroupLarge");
+  spawn.evolve[2][1] = ["OrcGroupSmall","OrcGroupSmall","OrcGroupLarge"];
 
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("OrcGroupSmall","OrcGroupLarge","OrcGroupLarge");
+  spawn.evolve[3][1] = ["OrcGroupSmall","OrcGroupLarge","OrcGroupLarge"];
   
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
@@ -648,10 +619,7 @@ function Placespawns(mapref) {
   // west of the two bridges
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "GiantRatGroupTiny";
-  group[1] = "SnakesGroupSmall";
-  group[2] = "InsectsGroupSmall";
+  group = ["GiantRatGroupTiny","SnakesGroupSmall","InsectsGroupSmall"];
     
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
@@ -661,10 +629,10 @@ function Placespawns(mapref) {
   
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("GiantRatGroupSmall", "SnakesGroup", "InsectsGroupSmall");
+  spawn.evolve[2][1] = ["GiantRatGroupSmall", "SnakesGroup", "InsectsGroupSmall"];
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "InsectsGroupLarge");
+  spawn.evolve[3][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "InsectsGroupLarge"];
   spawn.evolve[4] = [];
   spawn.evolve[4][0] = "maxSpawns";
   spawn.evolve[4][1] = 1;
@@ -677,10 +645,7 @@ function Placespawns(mapref) {
   // south end of western leg of continent
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "GiantRatGroupTiny";
-  group[1] = "SnakesGroupSmall";
-  group[2] = "InsectsGroupSmall";
+  group = ["GiantRatGroupTiny","SnakesGroupSmall","InsectsGroupSmall"];
     
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(1);
@@ -690,10 +655,10 @@ function Placespawns(mapref) {
   
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("GiantRatGroupSmall", "SnakesGroup", "InsectsGroupSmall");
+  spawn.evolve[2][1] = ["GiantRatGroupSmall", "SnakesGroup", "InsectsGroupSmall"];
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("GiantRatGroupLarge", "MidSnakesGroup", "InsectsGroupLarge");
+  spawn.evolve[3][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "InsectsGroupLarge"];
   
   
   freq = 90 + Dice.roll("1d20");
@@ -714,11 +679,11 @@ function Placespawns(mapref) {
 
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = new Array("OrcGroupSmall","OrcGroupSmall","OrcGroupLarge");
+  spawn.evolve[2][1] = ["OrcGroupSmall","OrcGroupSmall","OrcGroupLarge"];
 
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = new Array("OrcGroupSmall","OrcGroupLarge","OrcGroupLarge");
+  spawn.evolve[3][1] = ["OrcGroupSmall","OrcGroupLarge","OrcGroupLarge"];
   spawn.evolve[3][2] = "maxSpawns";
   spawn.evolve[3][3] = 2;
   
@@ -730,11 +695,7 @@ function Placespawns(mapref) {
   
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "HeadlessGroupLarge";
-  group[1] = "GazersGroup";
-  group[2] = "OrcPartyLowGroup";
-  group[3] = "OrcPartyHighGroup";
+  group = ["HeadlessGroupLarge","GazersGroup","OrcPartyLowGroup","OrcPartyHighGroup"];
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(3);
@@ -744,7 +705,7 @@ function Placespawns(mapref) {
 
   spawn.evolve[6] = [];
   spawn.evolve[6][0] = "spawngroup";
-  spawn.evolve[6][1] = new Array("GazersGroup","HeadlessGroupLarge","HeadlessGroupLarge","OrcPartyHighGroup","DaemonGroup");
+  spawn.evolve[6][1] = ["GazersGroup","HeadlessGroupLarge","HeadlessGroupLarge","OrcPartyHighGroup","DaemonGroup"];
   
   freq = 90 + Dice.roll("1d20");
   spawn.setSpawnFreq(freq);
@@ -756,10 +717,7 @@ function Placespawns(mapref) {
 
 
   spawn = localFactory.createTile("Spawner");
-  group = [];
-  group[0] = "TrollGroup";
-  group[1] = "TrollGroup";
-  group[2] = "GiantsGroup";
+  group = ["TrollGroup","TrollGroup","GiantsGroup"];
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(3);
