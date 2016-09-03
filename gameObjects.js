@@ -10296,7 +10296,9 @@ NPCObject.prototype.processDeath = function(droploot){
   var thisx = this.getx();
   var thisy = this.gety();
   if (this.checkType("PC")) {
-    maintext.addText("You have died!");
+    // just in case you died on your turn:
+    gamestate.setMode("null");
+    maintext.delayedAddText("You have died!");
     var newmap = new GameMap();
     if (maps.getMap("landsbeyond")) {
       newmap = maps.getMap("landsbeyond");
@@ -10316,36 +10318,37 @@ NPCObject.prototype.processDeath = function(droploot){
     }
     $("#mainview").fadeOut(2500, function() {
       maintext.addText("You find yourself floating bodiless in the void.");
-      setTimeout(function() {
-        DrawMainFrame("draw", "landsbeyond", 7,7);
-        $("#mainview").fadeIn(2000, function() {
-          maintext.addText("There is nought to do but meditate upon your life, and the triumphs and errors it contained.");
+      DrawMainFrame("draw", "landsbeyond", 7,7);
+      $("#mainview").css('display','none');
+      $("#mainview").fadeIn(2000, "swing", function() {
+        maintext.addText("There is nought to do but meditate upon your life, and the triumphs and errors it contained.");
+        setTimeout(function() {
+          maintext.addText("Suddenly a voice cries out in the darkness!");
           setTimeout(function() {
-            maintext.addText("Suddenly a voice cries out in the darkness!");
+            maintext.addText('"The world is not finished with thee, ' + PC.getPCName() + '!"');
             setTimeout(function() {
-              maintext.addText('"The world is not finished with thee, ' + PC.getPCName() + '!"');
-              setTimeout(function() {
-                maintext.addText('"By the strength of this land I bid thee return!"');
-                // play sound effect
-                var returnmap = new GameMap();
-                if (maps.getMap("olympus1")) {
-                  returnmap = maps.getMap("olympus1");
-                  // though again, this shouldn't be in memory
-                } else {
-                  returnmap.loadMap("olympus1");
-                  maps.addMapByRef(returnmap);
-                }
-                tile = MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,29,16);
-                DrawMainFrame("draw","olympus1",29,16);
-              }, 2000);
+              maintext.addText('"By the strength of this land I bid thee return!"');
+              // play sound effect
+              var returnmap = new GameMap();
+              if (maps.getMap("olympus1")) {
+                returnmap = maps.getMap("olympus1");
+                // though again, this shouldn't be in memory
+              } else {
+                returnmap.loadMap("olympus1");
+                maps.addMapByRef(returnmap);
+              }
+              tile = MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,29,16);
+              DrawMainFrame("draw","olympus1",29,16);
+              PC.setHP(PC.getMaxHP());
+              PC.setMana(PC.getMaxMana());
+              DrawCharFrame();
+              gamestate.setMode("player");
+              gamestate.setTurn(PC);
             }, 2000);
           }, 2000);
-        } , 2000);
-      });
+        }, 2000);
+      } , 2000);
     });
-    this.setHP(this.getMaxHP());
-    this.setMana(this.getMaxMana());
-    DrawCharFrame();
     return;
   } else {
     var corpse = {};
@@ -11235,6 +11238,15 @@ NPCObject.prototype.myTurn = function() {
   }
   
 	this.setLastTurnTime(DUTime.getGameClock());
+
+  if (!maps.getMap(this.getHomeMap().getName())) {
+    // map removed during its turn (probably because it killed the player
+    // therefore it deserves valhalla
+
+    DebugWrite("gameobj", "<span style='font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone. Not re-adding to timeline.</span><br />");
+  
+    return 1;
+  }
 	
 	gamestate.setMode("null");
   if (!response.removed) {
@@ -11276,8 +11288,16 @@ NPCObject.prototype.endTurn = function(init) {
     if (idleval && (this === PC)) { maintext.addText(idleval); }
     this.setLastTurnTime(DUTime.getGameClock());
   
-    var myevent = new GameEvent(this);
-    DUTime.addAtTimeInterval(myevent,this.nextActionTime(init));
+    if (!maps.getMap(this.getHomeMap().getName())) {
+      // map removed during its turn (probably because it killed the player
+      // therefore it deserves valhalla
+
+      DebugWrite("gameobj", "<span style='font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone. Not re-adding to timeline.</span><br />");
+  
+    } else {
+      var myevent = new GameEvent(this);
+      DUTime.addAtTimeInterval(myevent,this.nextActionTime(init));
+    }
 
 //  var nextEntity = DUTime.executeNextEvent().getEntity();
 //  nextEntity.myTurn();
@@ -11708,6 +11728,7 @@ PCObject.prototype.myTurn = function() {
     if (this.getHP() <= 0) {
       DebugWrite("all", "PC is dead.<br />");
       DoPCDeath();
+      return 0;
     }
   }
     
