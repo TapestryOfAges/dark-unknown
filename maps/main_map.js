@@ -232,6 +232,8 @@ mappages["darkunknown"].onload = function(mapref) {
 
 function Placespawns(mapref) {
   
+  // Forest SW of Onyx  
+  // ZONE: SW
   var onyxspawn = localFactory.createTile("Spawner");
   var onyxgroup = ["HoodGroupTiny","HoodGroupTiny","HoodGroupTiny","HoodGroupSmall"];
 
@@ -257,8 +259,10 @@ function Placespawns(mapref) {
   onyxspawn.setSpawnFreq(freq);
   
   mapref.placeThing(57,122,onyxspawn);
-  // Forest SW of Onyx  
+
       
+  // center of NW island
+  // Zone: REMOTE      
   var spawn = localFactory.createTile("Spawner");
   var group = ["DrakesSmallGroup"];
 
@@ -275,8 +279,9 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(18,17,spawn);
-  // center of NW island
-    
+
+  // entrance to valley with Asharden Tower
+  // Zone: NW    
   spawn = localFactory.createTile("Spawner");
   group = ["GiantRatGroupTiny","SnakesGroup"];
   
@@ -300,8 +305,9 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(60,25,spawn);
-  // entrance to valley with Asharden Tower
 
+  // NE of Clear Lagoon
+  // Zone: N
   spawn = localFactory.createTile("Spawner");
   group = ["GiantRatGroupTiny","SnakesGroupSmall","InsectsGroupSmall"];
   
@@ -323,8 +329,10 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(90,16,spawn);
-  // NE of Clear Lagoon
 
+
+  // Shadow
+  // Zone: N
   spawn = localFactory.createTile("Spawner");
   group = ["GiantRatGroupTiny","SnakesGroupSmall"];
   
@@ -351,8 +359,9 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(97,30,spawn);
-  // Shadow
 
+  // SW of Wealth/Beldskae
+  // Zone: NE
   spawn = localFactory.createTile("Spawner");
   group = ["GiantRatGroupTiny","SnakesGroupSmall"];
   
@@ -380,8 +389,9 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(118,31,spawn);
-  // SW of Wealth/Beldskae
 
+  // South of big lake
+  // Zone: CENTER
   spawn = localFactory.createTile("Spawner");
   group = ["GiantRatGroupTiny","SnakesGroupSmall"];
   
@@ -402,8 +412,9 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(81,46,spawn);
-  // South of big lake
 
+  // great plain
+  // Zone: E
   spawn = localFactory.createTile("Spawner");
   group = ["GiantRatGroupTiny","SnakesGroupSmall","InsectsGroupSmall"];
   
@@ -434,9 +445,10 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(88,81,spawn);
-  // great plain
 
 
+  // Mt Drash
+  // Zone: WING
   spawn = localFactory.createTile("Spawner");
   group = ["DrakesSmallGroup","SnakesGroup"];
   
@@ -471,9 +483,10 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(134,77,spawn);
-  // Mt Drash
-  
 
+  
+  // Pit
+  // Zone: E
   spawn = localFactory.createTile("Spawner");
   group = ["HoodGroupSmall","HoodGroupSmall","HoodGroupLarge","PitRogueGroupSmall"];
 
@@ -503,8 +516,9 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(119,75,spawn);
-  // Pit
 
+  // Death Unending
+  // Zone: NW
   spawn = localFactory.createTile("Spawner");
   group = ["OrcGroupSmall"];
 
@@ -538,9 +552,10 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(42,49,spawn);
-  // Death Unending
-  
 
+  
+  // World's Ending
+  // Zone: NW
   spawn = localFactory.createTile("Spawner");
   group = ["HeadlessGroupTiny"];
 
@@ -570,8 +585,9 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(29,47,spawn);
-  // World's Ending
 
+  // great swamp
+  // Zone: SE
   spawn = localFactory.createTile("Spawner");
   group = ["SnakesGroup"];
 
@@ -593,8 +609,9 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(125,124,spawn);
-  // great swamp
 
+  // west of the two bridges
+  // Zone: SE
   spawn = localFactory.createTile("Spawner");
   group = ["OrcGroupTiny"];
 
@@ -616,8 +633,9 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(83,102,spawn);
-  // west of the two bridges
 
+  // south end of western leg of continent
+  // Zone: SW
   spawn = localFactory.createTile("Spawner");
   group = ["GiantRatGroupTiny","SnakesGroupSmall","InsectsGroupSmall"];
     
@@ -642,8 +660,9 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(31,124,spawn);
-  // south end of western leg of continent
 
+  // SE of Circle of Stones
+  // Zone: SW
   spawn = localFactory.createTile("Spawner");
   group = ["GiantRatGroupTiny","SnakesGroupSmall","InsectsGroupSmall"];
     
@@ -665,8 +684,9 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(25,92,spawn);
-  // SE of Circle of Stones
 
+  // Metal Twister
+  // Zone: SW
   spawn = localFactory.createTile("Spawner");
   group = [];
   group[0] = "OrcGroupTiny";
@@ -691,9 +711,10 @@ function Placespawns(mapref) {
   spawn.setSpawnFreq(freq);
   
   mapref.placeThing(26,115,spawn);
-  // Metal Twister
-  
 
+  
+  // northern section of troll land
+  //Zone: REMOTE
   spawn = localFactory.createTile("Spawner");
   group = ["HeadlessGroupLarge","GazersGroup","OrcPartyLowGroup","OrcPartyHighGroup"];
 
@@ -713,9 +734,10 @@ function Placespawns(mapref) {
   spawn.altPoI = "mordor";
   
   mapref.placeThing(81,112,spawn);
-  // northern section of troll land
 
 
+  // Vault
+  // Zone: REMOTE
   spawn = localFactory.createTile("Spawner");
   group = ["TrollGroup","TrollGroup","GiantsGroup"];
 
@@ -731,7 +753,7 @@ function Placespawns(mapref) {
   spawn.altPoI = "mordor";
   
   mapref.placeThing(84,127,spawn);
-  // Vault
+
    
 }
 

@@ -1453,6 +1453,11 @@ tileFactory.prototype.makeTeleporterPlatformTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePitTeleporterPlatformTile = function() {
+  var newTile = new PitTeleporterPlatformTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeToshinPanelTile = function() {
   var newTile = new ToshinPanelTile();
   return newTile;
