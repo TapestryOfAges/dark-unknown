@@ -6,11 +6,60 @@ use POSIX;
 
 open (my $npcdoc, "<", "NPCdoc.txt") or die "Can't open NPCdoc.txt\n";
 open (my $out, ">", "NPCcomp.html") or die "Can't open NPCcomp.html\n";
+open (my $out2, ">", "NPCcheck.html") or die "Can't open NPCcheck.html\n";
+open (my $spawns, "<", "maps/main_map.js") or die "Can't open main_map.js\n";
 
 my $firstline = 1;
 my $idx = 1;
 
+my @spawners; 
+# Contains zone, leash, and array of spawns by level
+
+my $inspawns = 0;
+my $evolvetype = "";
+
+foreach my $line (<$spawns>) {
+  if ($line =~ /function Placespawns/) { $inspawns = 1; }
+  if (!$inspawns) { next; }
+  
+  if ($line =~ /Zone: (.+)$/) {
+    $spawners[$#spawners+1] = { zone => $1 };
+    next;
+  }
+  
+  if ($line =~ /group =\s*\[(.+)\]/) {
+    my $tmpgrp = $1;
+    $tmpgrp =~ s/\"//g;
+    my @groups = split(",",$tmpgrp);
+    $spawners[$#spawners]{'spawns'} = [];
+    $spawners[$#spawners]{'spawns'}[1] = {};
+    foreach my $grp (@groups) {
+      $spawners[$#spawners]{'spawns'}[1]{$grp} = 1;
+    }
+    next;
+  }
+  
+  if ($line =~ /SpawnLeash\((.+)\)/) {
+    $spawners[$#spawners]{'leash'} = [];
+    $spawners[$#spawners]{'leash'}[1] =$1;
+    next;
+  }
+  
+  if ($line =~ /evolve\[(\d)\]\[0\] = \"(.+\)\")/ {
+    $evolvetype = $2;
+    next;
+  }
+  
+  if ($line =~ /evolve\[(\d)\]\[1\] = \"(.+\)\")/ {
+    
+    next;
+  }
+
+}
+
 print $out "<html><head><title>Dark Unknown NPC Values</title></head><body>\n<h1 style='text-align:center'>Dark Unknown NPC Values</h1>\n<table cellpadding='1' cellspacing='1' border='1'>\n";
+
+print $out2 "<html><head><title>Dark Unknown NPC comparison</title></head><body>\n<h1 style='text-align:center'>Dark Unknown NPC Check</h1>\n<table cellpadding='1' cellspacing='1' border='1'>\n";
 
 foreach my $line (<$npcdoc>) {
   if ($firstline) {
