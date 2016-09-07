@@ -5551,7 +5551,7 @@ BDCLeverTile.prototype.use = function(who) {
 }
 
 function GrottoLeverOffTile() {
-  this.name = "GrotoLeverOff";
+  this.name = "GrottoLeverOff";
   this.graphic = "switch-off.gif";
   this.overlay = "switch-off.gif";
   this.blocklos = 0;
@@ -10321,6 +10321,7 @@ NPCObject.prototype.processDeath = function(droploot){
       DrawMainFrame("draw", "landsbeyond", 7,7);
       $("#mainview").css('display','none');
       $("#mainview").fadeIn(2000, "swing", function() {
+        DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
         maintext.addText("There is nought to do but meditate upon your life, and the triumphs and errors it contained.");
         setTimeout(function() {
           maintext.addText("Suddenly a voice cries out in the darkness!");

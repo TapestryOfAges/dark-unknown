@@ -258,6 +258,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   
   // determine time scale for this move
   if ((frommap.getScale()) || tomap.getScale()) { who.smallscalemove = 1; }
+
   if ((who !== PC) && (!tomap.getScale())) {
     // a non-PC is fleeing to a world map. Delete instead.
     frommap.deleteThing(who);
@@ -277,17 +278,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	who.setHomeMap(tomap);
 	var tile = tomap.getTile(destx,desty);
   var oldtile = frommap.getTile(oldx,oldy);
-  
-  // update pathfinding   // NO LONGER NECESSARY, mobs no longer impact paths
-//	for (var i=1; i<=16; i=i*2) {
-//	  var response = oldtile.canMoveHere(i, 1);
-//	  if (response["canmove"]) { frommap.setWalkableAt(oldx,oldy,true,i); }
-//	  else { frommap.setWalkableAt(oldx,oldy,false,i); }
-//	  response = tile.canMoveHere(i, 1);
-//	  if (response["canmove"]) { tomap.setWalkableAt(destx,desty,true,i); }
-//	  else { tomap.setWalkableAt(destx,desty,false,i); }
-//	}
-	
+  	
 	// Remove unneeded maps from mapmemory
 	if (who === PC){
 	  spellcount = {};  // see magic.js, this prevents animations from continuing
