@@ -3,8 +3,9 @@
 use strict;
 use warnings;
 use POSIX;
+use Data::Dumper;
 
-open (my $npcdoc, "<", "NPCdoc.txt") or die "Can't open NPCdoc.txt\n";
+open (my $npcdoc, "<", "DU NPCs - Monsters.tsv") or die "Can't open NPCdoc.txt\n";
 open (my $out, ">", "NPCcomp.html") or die "Can't open NPCcomp.html\n";
 open (my $out2, ">", "NPCcheck.html") or die "Can't open NPCcheck.html\n";
 open (my $spawns, "<", "maps/main_map.js") or die "Can't open main_map.js\n";
@@ -46,21 +47,34 @@ foreach my $line (<$spawns>) {
     next;
   }
   
-  if ($line =~ /evolve\[(\d)\]\[[024]\] = \"(.+\)\")/) {
+  if ($line =~ /evolve\[(\d)\]\[[024]\]\s*=\s*\"(.+)\"/) {
     $evolvetype = $2;
     next;
   }
   
-  if ($line =~ /evolve\[(\d)\]\[[135]\] = \"(.+\)\")/) {
+  if ($line =~ /evolve\[(\d)\]\[[135]\]\s*=\s*\"*(.+)\"*/) {
     if ($evolvetype eq "spawnLeash") {
-      $spawners[$#spawners]{'leash'}[$1] =$2;
+      $spawners[$#spawners]{'leash'}[int($1)] = $2;
     } elsif ($evolvetype eq "spawngroup") {
-      $spawners[$#spawners]{'spawns'}[$1] =$2;
+      my $idx = int($1);
+      my $tmpgrp = $2;
+      $tmpgrp =~ s/\"//g;
+      $tmpgrp =~ s/\[//g;
+      $tmpgrp =~ s/\]//g;
+      $tmpgrp =~ s/ //g;
+      my @groups = split(",",$tmpgrp);
+      $spawners[$#spawners]{'spawns'}[$idx] = {};
+      foreach my $grp (@groups) {
+        $spawners[$#spawners]{'spawns'}[$idx]{$grp} = 1;
+      }
+      
     }
     next;
   }
 
 }
+
+print STDERR Dumper(@spawners);
 
 my @checkout;
 
@@ -100,44 +114,46 @@ foreach my $line (<$npcdoc>) {
   my $hp = 10*$fields[2] + $fields[3];
   print $out "<tr><td>HP: $hp</td><td style='text-align:right'>Alignment: $fields[7]</td></tr>\n";
   my $melee;
+  my $meleemin;
+  my $meleemax;
   if ($fields[13] =~ /Fists/i) {
-    my $meleemin = ceil(1 + 1/3*($fields[4]-10));
-    my $meleemax = ceil(2 + 1/3*($fields[4]-10));
+    $meleemin = ceil(1 + 1/3*($fields[4]-10));
+    $meleemax = ceil(2 + 1/3*($fields[4]-10));
     $melee = "$meleemin - $meleemax (1d2 + 1/3S)";
   }
   elsif ($fields[13] =~ /Dagger/i) {
-    my $meleemin = ceil(2 + 1/3*($fields[4]-10));
-    my $meleemax = ceil(5 + 1/3*($fields[4]-10));
+    $meleemin = ceil(2 + 1/3*($fields[4]-10));
+    $meleemax = ceil(5 + 1/3*($fields[4]-10));
     $melee = "$meleemin - $meleemax (1d4+1 + 1/3S)";
   }
   elsif ($fields[13] =~ /Shortsword/i) {
-    my $meleemin = ceil(3 + 1/2*($fields[4]-10));
-    my $meleemax = ceil(9 + 1/2*($fields[4]-10));
+    $meleemin = ceil(3 + 1/2*($fields[4]-10));
+    $meleemax = ceil(9 + 1/2*($fields[4]-10));
     $melee = "$meleemin - $meleemax (2d4+1 + 1/2S)";
   }
   elsif ($fields[13] =~ /Mace/i) {
-    my $meleemin = ceil(5 + ($fields[4]-10));
-    my $meleemax = ceil(11 + ($fields[4]-10));
+    $meleemin = ceil(5 + ($fields[4]-10));
+    $meleemax = ceil(11 + ($fields[4]-10));
     $melee = "$meleemin - $meleemax (2d4+3 + S)";
   }
   elsif ($fields[13] =~ /Axe/i) {
-    my $meleemin = ceil(10 + 2/3*($fields[4]-10));
-    my $meleemax = ceil(16 + 2/3*($fields[4]-10));
+    $meleemin = ceil(10 + 2/3*($fields[4]-10));
+    $meleemax = ceil(16 + 2/3*($fields[4]-10));
     $melee = "$meleemin - $meleemax (2d4+8 + 2/3S)";
   }
   elsif ($fields[13] =~ /Longsword/i) {
-    my $meleemin = ceil(13 + 2/3*($fields[4]-10));
-    my $meleemax = ceil(25 + 2/3*($fields[4]-10));
+    $meleemin = ceil(13 + 2/3*($fields[4]-10));
+    $meleemax = ceil(25 + 2/3*($fields[4]-10));
     $melee = "$meleemin - $meleemax (4d4+9 + 2/3S)";
   }
   elsif ($fields[13] =~ /Halberd/i) {
-    my $meleemin = ceil(20 + ($fields[4]-10));
-    my $meleemax = ceil(35 + ($fields[4]-10));
+    $meleemin = ceil(20 + ($fields[4]-10));
+    $meleemax = ceil(35 + ($fields[4]-10));
     $melee = "$meleemin - $meleemax (5d4+15 + S)";
   }
   elsif ($fields[13] =~ /MagicSword/i) {
-    my $meleemin = ceil(27 + ($fields[4]-10));
-    my $meleemax = ceil(72 + ($fields[4]-10));
+    $meleemin = ceil(27 + ($fields[4]-10));
+    $meleemax = ceil(72 + ($fields[4]-10));
     $melee = "$meleemin - $meleemax (5d10+22 + S)";
   }
   elsif ($fields[13] =~ /none/i) {
@@ -164,24 +180,39 @@ foreach my $line (<$npcdoc>) {
   }
 
   my $missile;
+  my $missilemin;
+  my $missilemax;
   if ($fields[14] =~ /Sling/i) {
     $missile = "1 - 3 (1d3)";
+    $missilemin = 1;
+    $missilemax = 3;
   }
   elsif ($fields[14] =~ /Crossbow/i) {
     $missile = "3 - 31 (4d8-1)";
+    $missilemin = 3;
+    $missilemax = 31;
   }
   elsif ($fields[14] =~ /Bow/i) {
     $missile = "1 - 12 (1d12)";
+    $missilemin = 1;
+    $missilemax = 12;
+
   }
   elsif ($fields[14] =~ /Wand/i) {
     $missile = "4 - 48 (4d12)";
+    $missilemin = 4;
+    $missilemax = 48;
+
   }
   elsif ($fields[14] =~ /MagicAxe/i) {
     $missile = "16 - 60 (4d12+12)";
+    $missilemin = 16;
+    $missilemax = 60;
+
   }
   elsif ($fields[14] =~ /Boulder/i) {
-    my $missilemin = 5 + $fields[4] - 10;
-    my $missilemax = 27 + $fields[4] - 10;
+    $missilemin = 5 + $fields[4] - 10;
+    $missilemax = 27 + $fields[4] - 10;
     $missile = "$missilemin - $missilemax (2d12+3 + S)";
   }
   elsif ($fields[14] =~ /none/i) {
