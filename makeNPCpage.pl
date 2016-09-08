@@ -20,9 +20,10 @@ my $evolvetype = "";
 
 foreach my $line (<$spawns>) {
   if ($line =~ /function Placespawns/) { $inspawns = 1; }
+  if ($line =~ /function CreateNetwork/) { $inspawns = 0; }
   if (!$inspawns) { next; }
   
-  if ($line =~ /Zone: (.+)$/) {
+  if ($line =~ /Zone: (.+)$/i) {
     $spawners[$#spawners+1] = { zone => $1 };
     next;
   }
@@ -45,17 +46,23 @@ foreach my $line (<$spawns>) {
     next;
   }
   
-  if ($line =~ /evolve\[(\d)\]\[0\] = \"(.+\)\")/ {
+  if ($line =~ /evolve\[(\d)\]\[[024]\] = \"(.+\)\")/) {
     $evolvetype = $2;
     next;
   }
   
-  if ($line =~ /evolve\[(\d)\]\[1\] = \"(.+\)\")/ {
-    
+  if ($line =~ /evolve\[(\d)\]\[[135]\] = \"(.+\)\")/) {
+    if ($evolvetype eq "spawnLeash") {
+      $spawners[$#spawners]{'leash'}[$1] =$2;
+    } elsif ($evolvetype eq "spawngroup") {
+      $spawners[$#spawners]{'spawns'}[$1] =$2;
+    }
     next;
   }
 
 }
+
+my @checkout;
 
 print $out "<html><head><title>Dark Unknown NPC Values</title></head><body>\n<h1 style='text-align:center'>Dark Unknown NPC Values</h1>\n<table cellpadding='1' cellspacing='1' border='1'>\n";
 
