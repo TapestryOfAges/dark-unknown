@@ -233,7 +233,7 @@ mappages["darkunknown"].onload = function(mapref) {
 function Placespawns(mapref) {
   
   // Forest SW of Onyx  
-  // ZONE: SW
+  // Zone: SW
   var onyxspawn = localFactory.createTile("Spawner");
   var onyxgroup = ["HoodGroupTiny","HoodGroupTiny","HoodGroupTiny","HoodGroupSmall"];
 
@@ -714,7 +714,7 @@ function Placespawns(mapref) {
 
   
   // northern section of troll land
-  //Zone: REMOTE
+  // Zone: REMOTE
   spawn = localFactory.createTile("Spawner");
   group = ["HeadlessGroupLarge","GazersGroup","OrcPartyLowGroup","OrcPartyHighGroup"];
 
