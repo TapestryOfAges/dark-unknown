@@ -5,7 +5,8 @@ use warnings;
 use POSIX;
 use Data::Dumper;
 
-open (my $npcdoc, "<", "DU NPCs - Monsters.tsv") or die "Can't open NPCdoc.txt\n";
+open (my $npcdoc, "<", "DU NPCs - Monsters.tsv") or die "Can't open DU NPCs - Monsters.tsv\n";
+open (my $groupdoc, "<", "DU NPCs - Groups.tsv") or die "Can't open DU NPCs - Groups.tsv\n";
 open (my $out, ">", "NPCcomp.html") or die "Can't open NPCcomp.html\n";
 open (my $out2, ">", "NPCcheck.html") or die "Can't open NPCcheck.html\n";
 open (my $spawns, "<", "maps/main_map.js") or die "Can't open main_map.js\n";
@@ -54,7 +55,11 @@ foreach my $line (<$spawns>) {
   
   if ($line =~ /evolve\[(\d)\]\[[135]\]\s*=\s*\"*(.+)\"*/) {
     if ($evolvetype eq "spawnLeash") {
-      $spawners[$#spawners]{'leash'}[int($1)] = $2;
+      my $lsh = $2;
+      #$lsh =~ s/;//g;
+      my $idx = int($1);
+      $spawners[$#spawners]{'leash'}[$idx] = $2;
+      $spawners[$#spawners]{'leash'}[$idx] =~ s/\;//g;
     } elsif ($evolvetype eq "spawngroup") {
       my $idx = int($1);
       my $tmpgrp = $2;
@@ -74,7 +79,31 @@ foreach my $line (<$spawns>) {
 
 }
 
+#print STDERR Dumper(@spawners);
+
+my %groupdata;
+
+foreach my $line (<$groupdoc>) {
+  chomp $line;
+  my @fields = split("\t",$line);
+  if ($fields[0] =~ /Group Name/) { next; }
+  
+  my $name = $fields[0];
+  $groupdata{$name} = [ $fields[4],$fields[6],$fields[8],$fields[10] ];
+  
+}
+
+#print STDERR Dumper(%groupdata);
+
+foreach my $spn (@spawners) {
+  for (my $i=1;$i<=8;$i++) {
+    if (!exists $spn->{'leash'}[$i]) { $spn->{'leash'}[$i] = $spn->{'leash'}[$i-1]; }
+    if (!exists $spn->{'spawns'}[$i]) { $spn->{'spawns'}[$i] = $spn->{'spawns'}[$i-1]; }
+  }
+}
+
 print STDERR Dumper(@spawners);
+
 
 my @checkout;
 
@@ -193,9 +222,9 @@ foreach my $line (<$npcdoc>) {
     $missilemax = 31;
   }
   elsif ($fields[14] =~ /Bow/i) {
-    $missile = "1 - 12 (1d12)";
-    $missilemin = 1;
-    $missilemax = 12;
+    $missile = "2 - 13 (1d12+1)";
+    $missilemin = 2;
+    $missilemax = 13;
 
   }
   elsif ($fields[14] =~ /Wand/i) {
@@ -290,6 +319,11 @@ foreach my $line (<$npcdoc>) {
     $idx = 1;
   } else {$idx++}
    
+   
+  # Check section
+  
+  my $monsterline = "<tr><td>$fields[0]</td>";
+  
 }
 
 if ($idx != 3) { print $out "</tr>"; }
