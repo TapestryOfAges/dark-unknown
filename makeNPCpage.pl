@@ -67,6 +67,7 @@ foreach my $line (<$spawns>) {
       $tmpgrp =~ s/\[//g;
       $tmpgrp =~ s/\]//g;
       $tmpgrp =~ s/ //g;
+      $tmpgrp =~ s/;//g;
       my @groups = split(",",$tmpgrp);
       $spawners[$#spawners]{'spawns'}[$idx] = {};
       foreach my $grp (@groups) {
@@ -96,9 +97,15 @@ foreach my $line (<$groupdoc>) {
 #print STDERR Dumper(%groupdata);
 
 foreach my $spn (@spawners) {
+  $spn->{'names'} = [];
   for (my $i=1;$i<=8;$i++) {
     if (!exists $spn->{'leash'}[$i]) { $spn->{'leash'}[$i] = $spn->{'leash'}[$i-1]; }
     if (!exists $spn->{'spawns'}[$i]) { $spn->{'spawns'}[$i] = $spn->{'spawns'}[$i-1]; }
+    
+    $spn->{'names'}[$i] = [];
+    foreach my $key (keys %{$spn->{'spawns'}[$i]}) {
+      push @{$spn->{'names'}[$i]}, @{$groupdata{$key}};
+    }
   }
 }
 
@@ -322,7 +329,18 @@ foreach my $line (<$npcdoc>) {
    
   # Check section
   
-  my $monsterline = "<tr><td>$fields[0]</td>";
+  for (my $i=1;$i<=8;$i++) {
+    my $class = "";
+    my $leash = "";
+    foreach my $spn (@spawners) {
+      if ($fields[0] ~~ $spn->{'names'}[$i]) {
+        $class = " style='background-color:green'";
+        if ($spn->{'zone'} eq "REMOTE") { $class = " style='background-color:blue'"; }
+        if ($spn->{'leash'}[$i]) { $leash = "[] "; }
+      }
+    }
+    $checkout[$i] = "<tr" . $class . "><td>$leash";
+  }
   
 }
 

@@ -645,7 +645,7 @@ function CourierNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'courier';
+  this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = '0';
   this.graphic = '310.2.gif';
@@ -674,7 +674,7 @@ function CourierGuardNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'seekPC-15';
+  this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = '0';
   this.graphic = '309.gif';
@@ -3169,7 +3169,6 @@ function IllusionNPCTile() {
   this.onDamaged = 'die';
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'mindless';
 }
 IllusionNPCTile.prototype = new NPCObject();
 
@@ -3200,7 +3199,6 @@ function InfusedIllusionNPCTile() {
   this.onDamaged = 'die';
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'mindless';
 }
 InfusedIllusionNPCTile.prototype = new NPCObject();
 
