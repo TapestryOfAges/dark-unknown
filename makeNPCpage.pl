@@ -109,7 +109,7 @@ foreach my $spn (@spawners) {
   }
 }
 
-print STDERR Dumper(@spawners);
+#print STDERR Dumper(@spawners);
 
 
 my @checkout;
@@ -332,16 +332,41 @@ foreach my $line (<$npcdoc>) {
   for (my $i=1;$i<=8;$i++) {
     my $class = "";
     my $leash = "";
+    my $evernotleashed = 0;
     foreach my $spn (@spawners) {
       if ($fields[0] ~~ $spn->{'names'}[$i]) {
         $class = " style='background-color:green'";
         if ($spn->{'zone'} eq "REMOTE") { $class = " style='background-color:blue'"; }
         if ($spn->{'leash'}[$i]) { $leash = "[] "; }
+        else { $evernotleashed = 1; }
       }
     }
-    $checkout[$i] = "<tr" . $class . "><td>$leash";
+    if ($evernotleashed) { $leash = ""; }
+    $checkout[$i] .= "<tr" . $class . "><td>$fields[2]</td><td>$leash $fields[0]</td>";
+    $checkout[$i] .= "<td>$meleemin - $meleemax</td>";
+    my $avg = ($meleemax + $meleemin)/2;
+    my $chance = (70 + $fields[4] - 10 + $fields[2]*4)/100;
+    my $dpr = $avg*$chance;
+    $checkout[$i] .= "<td>$avg ($dpr)</td>";
+    my $armor = $avg*.9;
+    $dpr = $armor*($chance - .05);
+    $checkout[$i] .= "<td>$armor ($dpr)</td>";
+    $armor = $avg*.8;
+    $dpr = $armor*($chance - .1);
+    $checkout[$i] .= "<td>$armor ($dpr)</td>";
+    $armor = $avg*.67;
+    $dpr = $armor*($chance - .2);
+    $checkout[$i] .= "<td>$armor ($dpr)</td>";
+    $armor = $avg*.5;
+    $dpr = $armor*($chance - .35);
+    $checkout[$i] .= "<td>$armor ($dpr)</td>";
+    $armor = $avg*.4;
+    $dpr = $armor*($chance - .4);
+    $checkout[$i] .= "<td>$armor ($dpr)</td></tr>\n";
+    
   }
-  
+ 
+#  print Dumper(@checkout);
 }
 
 if ($idx != 3) { print $out "</tr>"; }
@@ -390,3 +415,10 @@ print $out "<b>undead</b>: The creature is undead. Immune to poison.<br />\n";
 print $out "<b>construct</b>: The creature is a mindless construct. Cannot be Jinxed or Charmed.<br />\n";
 print $out "<b>coward</b>: Will always run in aggroed.<br />\n";
 print $out "<b>nopeer</b>: Does not appear in the view of a Peer spell.<br />\n";
+
+for (my $i=1;$i<=8;$i++) {
+  print $out2 "<h2>Level $i</h2> <table cellpadding='0' cellspacing='0' border='1'>";
+  print $out2 "<tr><th>Lvl</th><th>Creature</th><th>Damage</th><th>Avg</th><th>vs Cloth</th><th>vs Leather</th><th>vs Chain</th><th>vs Plate</th><th>vs Exotic</th></tr>";
+  print $out2 $checkout[$i];
+  print $out2 "</table>";
+}
