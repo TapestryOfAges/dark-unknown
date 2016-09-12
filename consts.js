@@ -30,6 +30,7 @@ var BASE_RESIST_CHANCE = 30;
 var BASE_HIT_CHANCE = 70;
 var HIT_PER_LEVEL = 4;
 var DEF_PER_LEVEL = 0;
+var DEF_PER_DEX = 2;
 
 var RUNE_KINGS  = 1;
 var RUNE_WAVES  = 2;
