@@ -11483,6 +11483,7 @@ NPCObject.prototype.getHitChance = function(atkwith) {
 
 NPCObject.prototype.getDefense = function() {
   var def = this.getLevel() * DEF_PER_LEVEL;
+  def = def + (this.getDex()-10)*DEF_PER_DEX;
   var armor = this.getEquipment("armor");
   if (armor) {
     if (this.getStr() < armor.getStrReq()) {
