@@ -240,12 +240,16 @@ function Placespawns(mapref) {
   onyxspawn.setSpawngroup(onyxgroup);
   onyxspawn.setMaxSpawns(3);
   onyxspawn.setSpawnRadius(3);
-  onyxspawn.setSpawnLeash(0);
-  onyxspawn.setSpawnSoftLeash(0);
+  onyxspawn.setSpawnLeash(15);
+  onyxspawn.setSpawnSoftLeash(20);
 
   onyxspawn.evolve[2] = [];
   onyxspawn.evolve[2][0] = "spawngroup";
   onyxspawn.evolve[2][1] = ["HoodGroupSmall","HoodGroupSmall","HoodGroupLarge","RogueGroupSmall"];
+  onyxspawn.evolve[2][2] = "spawnLeash";
+  onyxspawn.evolve[2][3] = 0;
+  onyxspawn.evolve[2][4] = "spawnSoftLeash";
+  onyxspawn.evolve[2][5] = 0;
 
   onyxspawn.evolve[3] = [];
   onyxspawn.evolve[3][0] = "spawngroup";
