@@ -645,7 +645,7 @@ function CourierNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'townsfolk';
+  this.peaceAI = 'courier';
   this.forgetAt = 0;
   this.withdraw = '0';
   this.graphic = '310.2.gif';
@@ -674,11 +674,11 @@ function CourierGuardNPCTile() {
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'townsfolk';
+  this.peaceAI = 'seekPC-15';
   this.forgetAt = 0;
   this.withdraw = '0';
   this.graphic = '309.gif';
-  this.meleeAttackAs = 'Longsword';
+  this.meleeAttackAs = 'Axe';
   this.missileAttackAs = 'none';
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
@@ -1019,7 +1019,7 @@ function HeadlessNPCTile() {
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Headless';
+  this.lootTable = 'Orcs';
   this.prefix = 'a';
   this.desc = "headless";
   this.meleeChance = 100;
@@ -1049,7 +1049,7 @@ function NixieNPCTile() {
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_SWIM;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Nixie';
+  this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "nixie";
   this.meleeChance = 50;
@@ -1143,7 +1143,7 @@ function PitRogueNPCTile() {
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'Pit Rogue';
+  this.lootTable = 'Pit Rogue,Minor Adventurer';
   this.prefix = 'a';
   this.desc = "rogue";
   this.onHit = 'steal gold';
@@ -2036,7 +2036,7 @@ function PaladinNPCTile() {
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'HighAdventurer';
+  this.lootTable = 'High Adventurer';
   this.prefix = 'a';
   this.desc = "paladin";
   this.meleeChance = 66;
@@ -2173,7 +2173,7 @@ function WizardNPCTile() {
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'HighAdventurer';
+  this.lootTable = 'High Adventurer';
   this.prefix = 'a';
   this.desc = "wizard";
   this.meleeChance = 10;
@@ -2306,7 +2306,7 @@ function GazerNPCTile() {
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
-  this.lootTable = 'gazer';
+  this.lootTable = 'Gazer';
   this.prefix = 'a';
   this.desc = "gazer";
   this.meleeChance = 20;
@@ -2340,7 +2340,7 @@ function HydraNPCTile() {
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'hydra';
+  this.lootTable = 'Hydra';
   this.prefix = 'a';
   this.desc = "hydra";
   this.onHit = 'venom';
@@ -2375,7 +2375,7 @@ function MagmaSpawnNPCTile() {
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'magmaspawn';
+  this.lootTable = 'Magmaspawn';
   this.prefix = 'a';
   this.desc = "magma spawn";
   this.meleeChance = 80;
@@ -2408,7 +2408,7 @@ function PhantomNPCTile() {
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_ETHEREAL;
   this.leavesCorpse = 'none';
-  this.lootTable = 'phantom';
+  this.lootTable = 'Phantom';
   this.prefix = 'a';
   this.desc = "phantom";
   this.meleeChance = 75;
@@ -2441,7 +2441,7 @@ function RangerNPCTile() {
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'HighAdventurer';
+  this.lootTable = 'High Adventurer';
   this.prefix = 'a';
   this.desc = "ranger";
   this.meleeChance = 25;
@@ -2476,7 +2476,7 @@ function WillotheWispNPCTile() {
   this.armorResist = 30;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'willowisp';
+  this.lootTable = 'Willowisp';
   this.prefix = 'a';
   this.desc = "will-o-the-wisp";
   this.onHit = 'mana clash';
@@ -2514,7 +2514,7 @@ function DelverNPCTile() {
   this.armorResist = 100;
   this.movetype = MOVE_ETHEREAL;
   this.leavesCorpse = 'none';
-  this.lootTable = 'delver';
+  this.lootTable = 'Delver';
   this.prefix = 'a';
   this.desc = "delver";
   this.meleeChance = 100;
@@ -2549,7 +2549,7 @@ function ArchmageNPCTile() {
   this.armorResist = 30;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'archmage';
+  this.lootTable = 'Archmage';
   this.prefix = 'an';
   this.desc = "archmage";
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
@@ -2579,7 +2579,7 @@ function BlackDragonNPCTile() {
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'blackdragon';
+  this.lootTable = 'Blackdragon';
   this.prefix = 'a';
   this.desc = "black dragon";
   this.meleeChance = 70;
@@ -2613,7 +2613,7 @@ function DevourerNPCTile() {
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'devourer';
+  this.lootTable = 'Devourer';
   this.prefix = 'the';
   this.desc = "devourer";
   this.onHit = 'venom';
@@ -2685,7 +2685,7 @@ function EttinSorcererNPCTile() {
   this.armorResist = 0;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'ettinsorcerer';
+  this.lootTable = 'Ettin Sorcerer';
   this.prefix = 'an';
   this.desc = "ettin sorcerer";
   this.meleeChance = 40;
@@ -2717,7 +2717,7 @@ function GiantNPCTile() {
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Blood';
-  this.lootTable = 'giant';
+  this.lootTable = 'Giant';
   this.prefix = 'a';
   this.desc = "giant";
   this.onHit = 'knockback';
@@ -2789,7 +2789,7 @@ function ReaperNPCTile() {
   this.armorResist = 25;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'reaper';
+  this.lootTable = 'Reaper';
   this.prefix = 'a';
   this.desc = "reaper";
   this.meleeChance = 50;
@@ -2822,7 +2822,7 @@ function SpecterNPCTile() {
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_ETHEREAL;
   this.leavesCorpse = 'none';
-  this.lootTable = 'specter';
+  this.lootTable = 'Specter';
   this.prefix = 'a';
   this.desc = "specter";
   this.onDamaged = 'incorporeal';
@@ -2860,7 +2860,7 @@ function DaemonNPCTile() {
   this.armorResist = 30;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'daemon';
+  this.lootTable = 'Daemon';
   this.prefix = 'a';
   this.desc = "daemon";
   this.meleeChance = 75;
@@ -2895,7 +2895,7 @@ function EarthenTyrantNPCTile() {
   this.armorResist = 100;
   this.movetype = MOVE_ETHEREAL;
   this.leavesCorpse = 'none';
-  this.lootTable = 'earthentyrant';
+  this.lootTable = 'Earthen Tyrant';
   this.prefix = 'an';
   this.desc = "earthen tyrant";
   this.meleeChance = 90;
@@ -2931,7 +2931,7 @@ function LicheNPCTile() {
   this.armorResist = 40;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'liche';
+  this.lootTable = 'Liche';
   this.prefix = 'a';
   this.desc = "liche";
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
@@ -2962,7 +2962,7 @@ function EyesofSpiteNPCTile() {
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
-  this.lootTable = 'eyes';
+  this.lootTable = 'Eyes';
   this.prefix = 'the';
   this.desc = "eyes of spite";
   this.onHit = 'paralyze';
@@ -3000,7 +3000,7 @@ function ReaperLordNPCTile() {
   this.armorResist = 40;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'reaperlord';
+  this.lootTable = 'Reaper Lord';
   this.prefix = 'a';
   this.desc = "reaper lord";
   this.meleeChance = 50;
@@ -3032,7 +3032,7 @@ function ElderDragonNPCTile() {
   this.armorAs = 'ExoticArmor';
   this.movetype = MOVE_FLY;
   this.leavesCorpse = 'none';
-  this.lootTable = 'elderdragon';
+  this.lootTable = 'Elder Dragon';
   this.prefix = 'an';
   this.desc = "elder dragon";
   this.meleeChance = 65;
@@ -3066,7 +3066,7 @@ function BalronNPCTile() {
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'balron';
+  this.lootTable = 'Balron';
   this.prefix = 'a';
   this.desc = "balron";
   this.meleeChance = 75;
@@ -3098,7 +3098,7 @@ function TitanNPCTile() {
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'titan';
+  this.lootTable = 'Titan';
   this.prefix = 'a';
   this.desc = "titan";
   this.onHit = 'knockback, stun';
@@ -3169,6 +3169,7 @@ function IllusionNPCTile() {
   this.onDamaged = 'die';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'mindless';
 }
 IllusionNPCTile.prototype = new NPCObject();
 
@@ -3199,6 +3200,7 @@ function InfusedIllusionNPCTile() {
   this.onDamaged = 'die';
   this.meleeChance = 100;
   this.resists = {};
+  this.special = 'mindless';
 }
 InfusedIllusionNPCTile.prototype = new NPCObject();
 
@@ -3408,7 +3410,7 @@ function HoodGroupTinyTile() {
   this.graphic = '375.gif';
   this.altgraphic = ['341.gif',];
   this.group = [];
-  this.group[0] = new NPCList('HoodNPC', '1d2+2');
+  this.group[0] = new NPCList('HoodNPC', '1d2+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
 }
@@ -3569,7 +3571,7 @@ function SnakesGroupSmallTile() {
   this.graphic = '342.gif';
   this.altgraphic = ['376.gif',];
   this.group = [];
-  this.group[0] = new NPCList('GiantSnakeNPC', '1d2+1');
+  this.group[0] = new NPCList('PythonNPC', '1d2+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
 }
@@ -3582,7 +3584,7 @@ function SnakesGroupTile() {
   this.graphic = '342.gif';
   this.altgraphic = ['376.gif',];
   this.group = [];
-  this.group[0] = new NPCList('GiantSnakeNPC', '1d4+2');
+  this.group[0] = new NPCList('PythonNPC', '1d4+2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
 }
@@ -3595,8 +3597,8 @@ function MidSnakesGroupTile() {
   this.graphic = '342.gif';
   this.altgraphic = ['376.gif',];
   this.group = [];
-  this.group[0] = new NPCList('GiantSnakeNPC', '1d4+2');
-  this.group[1] = new NPCList('PythonNPC', '1d2');
+  this.group[0] = new NPCList('PythonNPC', '1d4+2');
+  this.group[1] = new NPCList('GiantSnakeNPC', '1d2');
   this.movetype = MOVE_WALK;
   this.attackword = 'attack';
 }
