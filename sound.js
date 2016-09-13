@@ -152,7 +152,7 @@ function DUPlayMusic(sound) {
 
 function DUPlayAmbient(sound) {
   var playing = {};
-  if (DU.gameflags.getFlag("ambientsound")) { playing.song = createjs.Sound.play(sound, {loop:-1}); playing.name = sound; }
+  if (DU.gameflags.getFlag("ambientsound") && DU.gameflags.getFlag("sound")) { playing.song = createjs.Sound.play(sound, {loop:-1}); playing.name = sound; }
   return playing;
 }
 
