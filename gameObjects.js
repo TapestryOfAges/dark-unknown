@@ -11123,13 +11123,18 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		    if ($.isEmptyObject(ambient)) {
 		      ambient = DUPlayAmbient(ambsound);
 		    } else if (ambient.name !== ambsound) {
-		      ambient.song.stop();
+//		      ambient.song.stop();
+          DecAmbientVol(ambient);
 		      ambient = DUPlayAmbient(ambsound);
 		    } else {
 		      // same thing playing, no need to change
 		    }
 		  } else {
-		    if (!$.isEmptyObject(ambient)) { ambient.song.stop(); ambient = {}; }
+		    if (!$.isEmptyObject(ambient)) { 
+		      //ambient.song.stop(); 
+		      DecAmbientVol(ambient);
+		      ambient = {}; 
+		    }
 		  }
 		}
 

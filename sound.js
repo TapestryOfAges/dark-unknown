@@ -153,8 +153,29 @@ function DUPlayMusic(sound) {
 function DUPlayAmbient(sound) {
   var playing = {};
   if (DU.gameflags.getFlag("ambientsound") && DU.gameflags.getFlag("sound")) { playing.song = createjs.Sound.play(sound, {loop:-1}); playing.name = sound; }
+  playing.song.volume = 0;
+  setTimeout(function() { IncAmbientVol(playing); }, 500);
   return playing;
 }
+
+function IncAmbientVol(playing) {
+  if (playing.name === ambient.name) {
+    if (playing.song.volume < 1) {
+      playing.song.volume += .25;
+      setTimeout(function() { IncAmbientVol(playing); }, 500);
+    }
+  }
+}
+
+function DecAmbientVol(playing) {
+  if (playing.song.volume > 0) {
+    playing.song.volume -= .25;
+    setTimeout(function() { DecAmbientVol(playing); }, 300);
+  } else {
+    playing.song.stop();
+  }
+}
+
 
 function PlaySound(sound) {
   var playing = {};
