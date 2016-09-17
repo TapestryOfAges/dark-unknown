@@ -43,10 +43,10 @@ mappages["naurglen"].features[3] = {name : 'Door', x : 25, y : 20};
 mappages["naurglen"].features[4] = {name : 'DoorWindow', x : 16, y : 8};
 mappages["naurglen"].features[5] = {name : 'Well', x : 26, y : 4};
 mappages["naurglen"].features[6] = {name : 'SingleSignpost', x : 19, y : 16};
-mappages["naurglen"].features[7] = {name : 'InnSign', x : 19, y : 15, desc : "Ye Olde Inn", prefix : ""};
+mappages["naurglen"].features[7] = {name : 'InnSign', x : 19, y : 15, prefix : "a", desc : "sign: Ye Olde Inn", prefix : ""};
 mappages["naurglen"].features[8] = {name : 'SignpostLeft', x : 13, y : 10};
 mappages["naurglen"].features[9] = {name : 'SignpostRight', x : 15, y : 10};
-mappages["naurglen"].features[10] = {name : 'TavernSign', x : 14, y : 10, desc : "The Red Hen Tavern", prefix : ""};
+mappages["naurglen"].features[10] = {name : 'TavernSign', x : 14, y : 10, prefix : "a", desc : "sign: The Red Hen Tavern", prefix : ""};
 mappages["naurglen"].features[11] = {name : 'LeftTable', x : 4, y : 3};
 mappages["naurglen"].features[12] = {name : 'MiddleTable', x : 5, y : 3};
 mappages["naurglen"].features[13] = {name : 'MiddleTable', x : 6, y : 3};
@@ -89,7 +89,7 @@ mappages["naurglen"].features[49] = {name : 'LeftTable', x : 4, y : 20};
 mappages["naurglen"].features[50] = {name : 'RightTable', x : 5, y : 20};
 mappages["naurglen"].features[51] = {name : 'Door', x : 9, y : 23, desc : "locked door", locked : 1};
 mappages["naurglen"].features[52] = {name : 'SingleSignpost', x : 11, y : 24};
-mappages["naurglen"].features[53] = {name : 'HealerSign', x : 11, y : 23};
+mappages["naurglen"].features[53] = {name : 'HealerSign', x : 11, y : 23, prefix : "a", desc : "sign: Healer Hazel"};
 
 
 mappages["naurglen"].npcs = [];
