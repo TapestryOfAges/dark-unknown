@@ -7729,6 +7729,7 @@ KyvekBoxTile.prototype.use = function(who) {
     retval["fin"] = -1;
     retval["preserve"] = 1;
     retval["txt"] = "This will break the seal and you will be unable to return the money to Kyvek. Are you sure?";
+    retval["input"] = "(Y/N): ";
     return retval;
   }
   retval["fin"] = 1;
