@@ -518,7 +518,7 @@ function DoAction(code, ctrl) {
     else if (response["fin"] === -1) {
       gamestate.setMode("useprompt");
       maintext.addText(response["txt"]);
-      maintext.setInputLine("&gt;");
+      maintext.setInputLine(response["input"]);
       maintext.drawTextFrame();
     }
     else if (response["fin"] === 2) {
