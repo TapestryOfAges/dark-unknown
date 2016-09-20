@@ -1564,12 +1564,12 @@ function PerformUseFromInventory() {
    }
 
    if (itemarray.length === 0) {
-    statsdiv += "<tr><td>You have no usable items.</td></tr>";
+    statsdiv += "<tr><td></td><td>You have no usable items.</td></tr>";
    }
    statsdiv += "<td></td></tr>";
   
    statsdiv += "</table></div></div>";
-   DrawTopbarFrame("<p>Consumables</p>");
+   DrawTopbarFrame("<p>Use Which:</p>");
    $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
    $("#worldlayer").css("background-image", "");
    $("#worldlayer").css("background-color", "black");
@@ -1814,6 +1814,7 @@ function PerformYell() {
 		  PC.addxp(100);
 		} else if (inputText.txt === "FUTHARK") {
 		  PC.runes.kings = 1;
+		  PC.setRuneCooldown("kings",0);
 		} else if (inputText.txt === "QUAKE") {
 		  Earthquake();
 		} else if (inputText.txt === "RUNTEST") {
