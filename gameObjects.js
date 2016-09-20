@@ -7744,6 +7744,7 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
     DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")-1);
     PC.addGold(600);
     PC.removeFromInventory(this);
+    DrawCharFrame();
   } else {
     retval["txt"] = "You put the box away, unopened.";
   }

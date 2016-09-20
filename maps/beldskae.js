@@ -110,7 +110,7 @@ mappages["beldskae"].features[62] = {name : 'CasinoSign', x : 21, y : 26, prefix
 mappages["beldskae"].features[63] = {name : 'WeaponSign', x : 17, y : 11, prefix : "a", desc : "sign: Ariel's New and Used Weapons"};
 mappages["beldskae"].features[64] = {name : 'MagicShoppeSign', x : 17, y : 28, prefix : "a", desc : "sign: Mountain Peaks Magics"};
 mappages["beldskae"].features[65] = {name : 'GrocerSign', x : 17, y : 20, prefix: "a", desc : "sign: Wing Tip Meats"};
-mappages["beldskae"].features[66] = {name : 'TavernSign', x : 25, y : 8}, prefix: "a", desc : "sign: Firehen Tavern";
+mappages["beldskae"].features[66] = {name : 'TavernSign', x : 25, y : 8, prefix: "a", desc : "sign: Firehen Tavern"};
 mappages["beldskae"].features[67] = {name : 'InnSign', x : 25, y : 32, prefix: "a", desc : "sign: Firehen Inn"};
 
 
