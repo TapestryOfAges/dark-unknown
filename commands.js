@@ -998,6 +998,7 @@ function PerformEnter(cmd) {
 function PerformGet(who) {
   var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
   var getitem = localacre.features.getTop();
+  var itemmap = getitem.getHomeMap();
   var retval = {};
   if (!getitem) {
     retval["txt"] = "There is nothing there.";
@@ -1011,8 +1012,8 @@ function PerformGet(who) {
     }
     retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
     retval["fin"] = 1;
-    if (getitem.getHomeMap() === PC.getHomeMap()) {
-      DrawMainFrame("one",getitem.getHomeMap().getName(),targetCursor.x,targetCursor.y);
+    if (itemmap === PC.getHomeMap()) {
+      DrawMainFrame("one",itemmap.getName(),targetCursor.x,targetCursor.y);
     }
     return retval;    
   } 
