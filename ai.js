@@ -635,6 +635,7 @@ ais.GarrickEscort = function(who) {
       var doortile = themap.getTile(6,53);
       var door = doortile.getTopFeature();
       door.use(who);
+      DrawMainFrame("one",who.getHomeMap().getName(),6,53);
       door.lockMe(1);
       who.setCurrentAI(who.getPeaceAI());
       return retval;      
