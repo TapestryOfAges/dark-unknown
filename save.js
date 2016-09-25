@@ -181,6 +181,7 @@ GameStateData.prototype.saveGame = function(flag) {
 	if (flag === 'external') {
 	  var savescreen = window.open('','savescreen');
 	  savescreen.document.write(serialized);
+	  savescreen.document.close();
 /*	} else if (flag === "charsave") {
 	  localStorage.charsave = compressed;
 	} else {
@@ -337,6 +338,9 @@ GameStateData.prototype.loadGame = function(idx) {
     } 
     if (val.walkonscript) {
       mappages[val.homeMap][val.walkonscript](val);
+    }
+    if (val.equippedTo) {
+      val.equippedTo = universe[val.equippedTo];
     }
     if (val.inventory && !val.inventory.container) {
       // if it has inventory.container, it's a Collection, which means it wasn't overwritten from the loaded game and so is empty

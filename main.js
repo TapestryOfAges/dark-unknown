@@ -227,7 +227,7 @@ function DoAction(code, ctrl) {
         PC.endTurn(response["initdelay"]);
       } else if (response["fin"] === 3) {
         gamestate.setMode("waiting");
-      }
+      } 
     }  
   }
   else if (gamestate.getMode() === "anykey") {

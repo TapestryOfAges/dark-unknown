@@ -9332,7 +9332,7 @@ equipableItemObject.prototype.equipMe = function(who) {
       return 0;
     }
     var currentarmor = who.getArmor();
-    if (currentarmor) {
+    if (currentarmor && (currentarmor !== this)) {
       currentarmor.unEquipMe();
     }
     this.setEquippedTo(who);
@@ -9344,7 +9344,7 @@ equipableItemObject.prototype.equipMe = function(who) {
       return 0;
     }
     var currentmissile = who.getMissile();
-    if (currentmissile) {
+    if (currentmissile && (currentmissile !== this)) {
       currentmissile.unEquipMe();
     }
     this.setEquippedTo(who);
@@ -9353,7 +9353,7 @@ equipableItemObject.prototype.equipMe = function(who) {
 
   else if (this.checkType("Weapon")) {
     var currentweapon = who.getWeapon();
-    if (currentweapon) {
+    if (currentweapon && (currentweapon !== this)) {
       currentweapon.unEquipMe();
     }
     this.setEquippedTo(who);

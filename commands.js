@@ -264,7 +264,13 @@ function PerformCommand(code, ctrl) {
 //		var mymap = PC.getHomeMap();
 //		var testnpc = mymap.npcs.getTop();
 //		testnpc.copy()
-    if (ctrl) { gamestate.saveGame("external"); }
+    if (ctrl) { 
+      gamestate.saveGame("external"); 
+      retval["txt"] = "";
+      retval["input"] = "&gt;";
+      retval["fin"] = 0;
+      gamestate.setMode("player");
+    }
     else {
       gamestate.setMode("choosesave");
       ShowSaveGames("Select a slot to save in:");
