@@ -105,7 +105,7 @@ mappages["naurglen"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 25, y : 3, NP
 mappages["naurglen"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 5, y : 2, NPCName: 'Ingrid', Conversation: 'ingrid', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 
 mappages["naurglen"].desc = "the Village of Naurglen";
-mappages["naurglen"].music = 'Towne';
+mappages["naurglen"].music = 'Village';
 mappages["naurglen"].exitmap = 'darkunknown';
 mappages["naurglen"].exitx = '72';
 mappages["naurglen"].exity = '75';
