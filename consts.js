@@ -1,61 +1,59 @@
 
 "use strict";
 
-var ailist = new Array("townsfolk","runaway","guard","melee","spellcaster","missile","adventurer","paladin","ranger","stationary","smallwander","fullwander");
+const DAY = 0;
+const NIGHT = 2;
+const DAWN = 1;
+const DUSK = 3;
 
-var DAY = 0;
-var NIGHT = 2;
-var DAWN = 1;
-var DUSK = 3;
-
-var worldlight = {};
+const worldlight = {};
 worldlight["bright"] = 1;
 worldlight["dim"] = .5;
 worldlight["dark"] = 0;
 
-var LOS_THRESHOLD = .98;
+const LOS_THRESHOLD = .98;
 //var LOE_THRESHOLD = .7;
-var SHADOW_THRESHOLD = .3;
+const SHADOW_THRESHOLD = .3;
 
-var MOVE_FLY = 1;
-var MOVE_SWIM = 2;
-var MOVE_ETHEREAL = 4;
-var MOVE_LEVITATE = 8;
-var MOVE_WALK = 16;
-var MOVE_WALK_DOOR = 32;
+const MOVE_FLY = 1;
+const MOVE_SWIM = 2;
+const MOVE_ETHEREAL = 4;
+const MOVE_LEVITATE = 8;
+const MOVE_WALK = 16;
+const MOVE_WALK_DOOR = 32;
 
-var SCALE_TIME = .01;
+const SCALE_TIME = .01;
 
-var BASE_RESIST_CHANCE = 30;
-var BASE_HIT_CHANCE = 70;
-var HIT_PER_LEVEL = 4;
-var DEF_PER_LEVEL = 0;
-var DEF_PER_DEX = 2;
+const BASE_RESIST_CHANCE = 30;
+const BASE_HIT_CHANCE = 70;
+const HIT_PER_LEVEL = 4;
+const DEF_PER_LEVEL = 0;
+const DEF_PER_DEX = 2;
 
-var RUNE_KINGS  = 1;
-var RUNE_WAVES  = 2;
-var RUNE_WINDS  = 4;
-var RUNE_FLAMES = 8;
-var RUNE_VOID   = 16;
+const RUNE_KINGS  = 1;
+const RUNE_WAVES  = 2;
+const RUNE_WINDS  = 4;
+const RUNE_FLAMES = 8;
+const RUNE_VOID   = 16;
 
-var DMG_NEGLIGABLE = "2d4";
-var DMG_LIGHT = "3d4+3";
-var DMG_MEDIUM = "4d4+16";
-var DMG_HEAVY = "5d4+30";
-var DMG_TREMENDOUS = "5d8+55";
-var DMG_AUTOKILL = "255";
+const DMG_NEGLIGABLE = "2d4";
+const DMG_LIGHT = "3d4+3";
+const DMG_MEDIUM = "4d4+16";
+const DMG_HEAVY = "5d4+30";
+const DMG_TREMENDOUS = "5d8+55";
+const DMG_AUTOKILL = "255";
 
-var MANA_REGEN = 4;
-var HP_REGEN = 20;
+const MANA_REGEN = 4;
+const HP_REGEN = 20;
 
 // For sparkles
-var COLOR_YELLOW = 0;
-var COLOR_GREEN = -32;
-var COLOR_BLUE = -64;
-var COLOR_ORANGE = -96;
-var COLOR_PURPLE = -128;
-var COLOR_RED = -160;
+const COLOR_YELLOW = 0;
+const COLOR_GREEN = -32;
+const COLOR_BLUE = -64;
+const COLOR_ORANGE = -96;
+const COLOR_PURPLE = -128;
+const COLOR_RED = -160;
 
-var STAT_MAX = 25;
-var LVL_MAX = 8;
-var TP_PER_LEVEL = 3;
+const STAT_MAX = 25;
+const LVL_MAX = 8;
+const TP_PER_LEVEL = 3;
