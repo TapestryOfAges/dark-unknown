@@ -87,7 +87,7 @@ mappages["poverty"].npcs[6] = {name : 'DruidVillagerNPC', x : 23, y : 14, NPCNam
 mappages["poverty"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 19, y : 29, NPCName: 'Anna', Conversation: 'anna', ConversationFlag: 'anna_return', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 
 mappages["poverty"].desc = "Towne of Poverty";
-mappages["poverty"].music = 'Towne';
+mappages["poverty"].music = 'Village';
 mappages["poverty"].exitmap = 'darkunknown';
 mappages["poverty"].exitx = '41';
 mappages["poverty"].exity = '26';
