@@ -11075,7 +11075,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
   	    retval["canmove"] = 0;
   	    retval["diffx"] = diffx;
 	      retval["diffy"] = diffy;
-	      retval["msg"] = "Failed!";
+	      retval["msg"] = ": Failed!";
 	      return retval;
 			}
 		}

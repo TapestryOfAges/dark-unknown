@@ -233,8 +233,10 @@ ais.combat = function(who) {
     if (approach) {
       var path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),who.getMovetype());
       if (!path.length) {
-        approach = oldapproach;
-        path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),who.getMovetype());
+        if (oldapproach) {
+          approach = oldapproach;
+          path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),who.getMovetype());
+        }
       }
       if (path.length) { 
         var moved = FindCombatPath(who,approach,path);
@@ -1575,6 +1577,20 @@ ais.Courier = function(who) {
           pathdest = [whox-1,whoy];
           rundest = [0,whoy];
         }
+        if (couriermap.getTile(pathdest[0],pathdest[1]) === "OoB") {
+          pathdest = rundest;
+          if (diffy > 0) { 
+            pathdest = [pathdest[0],pathdest[1]+1];
+            if (couriermap.getTile(pathdest[0],pathdest[1]) === "OoB") {
+              pathdest = [pathdest[0],pathdest[1]-2];
+            }
+          } else {
+            pathdest = [pathdest[0],pathdest[1]-1];
+            if (couriermap.getTile(pathdest[0],pathdest[1]) === "OoB") {
+              pathdest = [pathdest[0],pathdest[1]+2];
+            }            
+          }
+        }
       } else {
         if (diffy > 0) {
           pathdest = [whox,whoy+1];
@@ -1583,17 +1599,52 @@ ais.Courier = function(who) {
           pathdest = [whox,whoy-1];
           rundest = [whox,0];
         }
+        if (couriermap.getTile(pathdest[0],pathdest[1]) === "OoB") {
+          pathdest = rundest;
+          if (diffx > 0) { 
+            pathdest = [pathdest[0]+1,pathdest[1]];
+            if (couriermap.getTile(pathdest[0],pathdest[1]) === "OoB") {
+              pathdest = [pathdest[0]-2,pathdest[1]];
+            }
+          } else {
+            pathdest = [pathdest[0]-1,pathdest[1]];
+            if (couriermap.getTile(pathdest[0],pathdest[1]) === "OoB") {
+              pathdest = [pathdest[0]+2,pathdest[1]];
+            }            
+          }
+        }
       }
-      var trymove = StepOrSidestep(who,pathdest,rundest);    
+      if (couriermap.getTile(pathdest[0],pathdest[1]) !== "OoB") {
+        var trymove = StepOrSidestep(who,pathdest,rundest);    
+      }
     }
   } else { 
     DebugWrite("ai", "Guards have fled!<br />");
     var currx = who.getx();
     var curry = who.gety();
-    if (who.gety() !== 0) {
-      var path = couriermap.getPath(currx,curry,currx,0,MOVE_WALK);
+    
+    var mindist = currx;
+    var dest = [0,curry];
+    if (curry < currx) {
+      mindist = curry;
+      dest = [currx,0];
+    }
+    if (couriermap.getWidth()-1-currx < middist) {
+      mindist = couriermap.getWidth()-1-currx;
+      dest = [couriermap.getWidth()-1,0];
+    }
+    if (couriermap.getHeight()-1-curry < middist) {
+      mindist = couriermap.getHeight()-1-curry;
+      dest = [0,couriermap.getHeight()-1];
+    }
+    
+    var runaway = 0;
+    if (mindist > 0) {
+      var path = couriermap.getPath(currx,curry,dest[0],dest[1],MOVE_WALK);
       path.shift();
       StepOrSidestep(who,[path[0][0],path[0][1]],[currx,0]);
+    } else {
+      runaway = 1;
     }
       
     if (!who.surrendered) {
@@ -1604,6 +1655,11 @@ ais.Courier = function(who) {
       couriermap.placeThing(currx,curry,chest);
       DrawMainFrame("one",who.getHomeMap().getName(),currx,curry);
       who.surrendered = 1;
+    }
+    
+    if (runaway) {
+      couriermap.deleteThing(who);
+      DrawMainFrame("one",who.getHomeMap().getName(),currx,curry);
     }
     
   }
