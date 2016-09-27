@@ -2940,6 +2940,7 @@ function FeatureObject() {
   this.addType("Feature");
   this.searchYield = [];   // be careful here
   this.showSearched = 0;
+  this.searchDelete = 0;
   this.gold = 0;
 }
 FeatureObject.prototype = new InanimateObject();
@@ -2977,6 +2978,15 @@ FeatureObject.prototype.addToSearchYield = function(searchable) {
     this.searchYield = [];
   }
   this.searchYield.push(searchable);
+}
+
+FeatureObject.prototype.getSearchDelete = function() {
+  return this.searchDelete;
+}
+
+FeatureObject.prototype.setSearchDelete = function(sd) {
+  this.searchDelete = sd;
+  return this.searchDelete;
 }
 
 FeatureObject.prototype.getShowSearched = function() {
@@ -10359,6 +10369,7 @@ NPCObject.prototype.processDeath = function(droploot){
     var map = this.getHomeMap();
     if ((this.getLeavesCorpse()) && (this.getLeavesCorpse() !== "none")) {
       corpse = localFactory.createTile(this.getLeavesCorpse());
+      corpse.setSearchDelete(1);
       map.placeThing(thisx,thisy, corpse);
     } else {
       chest = localFactory.createTile("Chest");
