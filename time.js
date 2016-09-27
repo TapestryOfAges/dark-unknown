@@ -172,7 +172,9 @@ Timeline.prototype.createDebugTimeline = function() {
   var tltable = "<table border='1'><tr><td>Time<br />Name<br />Serial</td>";
   var pointer = this.tickstream;
   while (pointer) {
-    tltable = tltable + "<td>" + pointer.getTimestamp().toFixed(5) + "<br />" + pointer.getEvent().getEntity().getName() + "<br />" + pointer.getEvent().getEntity().getSerial() + "</td>";
+    var timestamp = pointer.getTimestamp();
+    if (!timestamp) { timestamp = 0; }
+    tltable = tltable + "<td>" + timestamp.toFixed(5) + "<br />" + pointer.getEvent().getEntity().getName() + "<br />" + pointer.getEvent().getEntity().getSerial() + "</td>";
     pointer = pointer.nexttick;
   }
   tltable = tltable + "</tr></table><br />";

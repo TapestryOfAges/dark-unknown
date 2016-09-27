@@ -1204,6 +1204,10 @@ function PerformSearch(who) {
   if (searched.searchid) {
     DU.gameflags.setFlag(searched.searchedid, 1);
   }
+  if (searched.getSearchDelete()) {
+    searched.getHomeMap().deleteThing(searched);
+    DrawMainFrame("one",who.getHomeMap().getName(),targetCursor.x,targetCursor.y);
+  }
   return retval;
 }
 
