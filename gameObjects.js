@@ -3709,6 +3709,10 @@ TalkingDoorTile.prototype.getGenderedTerms = function() {
   return gt;  
 }
 
+TalkingDoorTile.prototype.getNPCName = function() {
+	return "The front door";
+}
+
 TalkingDoorTile.prototype.activate = function(timeoverride) {
 //  this.use_old = this.use;
   this.use = function(who) {
