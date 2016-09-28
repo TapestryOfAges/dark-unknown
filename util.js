@@ -306,6 +306,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   	DrawCharFrame();  // to remove Negate if it's present
   }
 	
+	ProcessAmbientNoise(tile);
 	if ((DU.gameflags.getFlag("music")) && (who === PC) && (tomap.getMusic() !== nowplaying.name)) {
 	  StopMusic(nowplaying);
 	  var song = tomap.getMusic();
@@ -735,6 +736,26 @@ function GetCombatMap(atk,def) {
   var final = "combat" + def_terrain + rand;
   return final;
   
+}
+
+function ProcessAmbientNoise(newtile) {
+  if (newtile.getLocalSound()) {
+    var ambsound = newtile.getLocalSound();
+    if ($.isEmptyObject(ambient)) {
+      ambient = DUPlayAmbient(ambsound);
+    } else if (ambient.name !== ambsound) {
+      DecAmbientVol(ambient);
+      ambient = DUPlayAmbient(ambsound);
+    } else {
+      // same thing playing, no need to change
+    }
+  } else {
+    if (!$.isEmptyObject(ambient)) { 
+      //ambient.song.stop(); 
+      DecAmbientVol(ambient);
+      ambient = {}; 
+    }
+  }
 }
 
 function SpellInitials(who) {
