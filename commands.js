@@ -219,7 +219,7 @@ function PerformCommand(code, ctrl) {
     } else {
       DU.gameflags.setFlag("music", 1);
       var song = PC.getHomeMap().getMusic();
-      nowplaying = PlaySound(song);
+      nowplaying = DUPlayMusic(song);
       retval["txt"] = "Music on.";
     }		
     retval["input"] = "&gt;";

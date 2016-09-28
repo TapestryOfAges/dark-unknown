@@ -4644,7 +4644,7 @@ function BarrelTile() {
 BarrelTile.prototype = new FeatureObject();
 
 BarrelTile.prototype.flamed = function() {
-  ContainerOnFire(what);
+  ContainerOnFire(this);
 }
 
 function ContainerOnFire(what) {
@@ -4667,7 +4667,7 @@ function ContainerOnFire(what) {
 }
 
 function KitchenBarrelTile() {
-  
+  this.name = "KitchenBarrel";
 }
 KitchenBarrelTile.prototype = new BarrelTile();
 
@@ -4677,7 +4677,7 @@ KitchenBarrelTile.prototype.use = function(who) {
 }
 
 function KitchenBarrel2Tile() {
-  
+  this.name = "KitchenBarrel2";
 }
 KitchenBarrel2Tile.prototype = new BarrelTile();
 
@@ -4687,7 +4687,7 @@ KitchenBarrel2Tile.prototype.use = function(who) {
 }
 
 function KitchenBarrel3Tile() {
-  
+  this.name = "KitchenBarrel3";
 }
 KitchenBarrel3Tile.prototype = new BarrelTile();
 
@@ -11135,24 +11135,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		  }
 		  play_footstep(sfx);
 		  
-		  if (tile.getLocalSound()) {
-		    var ambsound = tile.getLocalSound();
-		    if ($.isEmptyObject(ambient)) {
-		      ambient = DUPlayAmbient(ambsound);
-		    } else if (ambient.name !== ambsound) {
-//		      ambient.song.stop();
-          DecAmbientVol(ambient);
-		      ambient = DUPlayAmbient(ambsound);
-		    } else {
-		      // same thing playing, no need to change
-		    }
-		  } else {
-		    if (!$.isEmptyObject(ambient)) { 
-		      //ambient.song.stop(); 
-		      DecAmbientVol(ambient);
-		      ambient = {}; 
-		    }
-		  }
+      ProcessAmbientNoise(tile);
 		}
 
     var distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
