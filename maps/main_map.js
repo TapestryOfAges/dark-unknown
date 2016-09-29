@@ -529,8 +529,8 @@ function Placespawns(mapref) {
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
   spawn.setSpawnRadius(3);
-  spawn.setSpawnLeash(25);
-  spawn.setSpawnSoftLeash(18);
+  spawn.setSpawnLeash(20);
+  spawn.setSpawnSoftLeash(14);
 
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
