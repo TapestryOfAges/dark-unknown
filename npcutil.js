@@ -472,49 +472,53 @@ function StepOrDoor(who, where, nopush) {
     var fea = tile.getTopFeature();
     if (fea && who.specials["open_door"]) {
       if (fea.closedgraphic) {
+        // Destination tile has a door
         if (!((typeof fea.getLocked === "function") && (fea.getLocked()))) {
           // door is not locked    
           if (!fea.open) {
+            // Door is not open- opening
             DebugWrite("ai", "opening a door in StepOrDoor.<br />");
             fea.use(who);
             if (GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) {
               DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
             } 
             var moved = {canmove:0, opendoor:2, fin:1, diffx: where[0]-who.getx(), diffy: where[1]-who.gety() };
-            return moved;  // opened a door
+            return moved;  // opened a door, didn't take a step
           }
         }
       } 
     }
-  }
-  var diffx = where[0] - who.getx();
-  var diffy = where[1] - who.gety();
-  var moved = who.moveMe(diffx,diffy);
-  if (moved["canmove"]) { 
-    DebugWrite("ai", "moved in StepOrDoor.<br />");
-  } else {
-    DebugWrite("ai", "didn't move in StepOrDoor.<br />");
-    if (!nopush && fea && who.specials["open_door"]) {
-      // If you can open a door, you can move a barrel.
+    var diffx = where[0] - who.getx();
+    var diffy = where[1] - who.gety();
+    var moved = who.moveMe(diffx,diffy);
+    if (moved["canmove"]) { 
+      DebugWrite("ai", "moved in StepOrDoor.<br />");
+    } else {
+      DebugWrite("ai", "didn't move in StepOrDoor.<br />");
+      if (!nopush && fea && who.specials["open_door"]) {
+        // If you can open a door, you can move a barrel.
       
-      var allfea = tile.getFeatures();
-      var pushyou;
-      $.each(allfea, function(idx,val) {
-        if (val.pushable) {
-          if (!pushyou) { pushyou = val; }
-          else {
-            if (!(val.getPassable & who.getMovetype())) {
-              pushyou = val;
+        var allfea = tile.getFeatures();
+        var pushyou;
+        $.each(allfea, function(idx,val) {
+          if (val.pushable) {
+            if (!pushyou) { pushyou = val; }
+            else {
+              if (!(val.getPassable & who.getMovetype())) {
+                pushyou = val;
+              }
             }
           }
+        });
+        if (pushyou) {
+          pushyou.pullMe();
         }
-      });
-      if (pushyou) {
-        pushyou.pullMe();
       }
     }
+    return moved;
   }
-  return moved;
+  // step was off the map somehow, returning can't move
+  return {canmove: 0 };
 }
 
 function StepOrSidestep(who, path, finaldest, nopush) {
