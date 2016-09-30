@@ -1305,9 +1305,7 @@ function PerformTalkTarget() {
         DU.gameflags.setFlag("ash_newspell",1);
       }
       maintext.addText(PC.getPCName() + " is now level " + PC.getLevel() + "!");
-      if (PC.getLevel() === 4) {
-        DU.gameflags.setFlag("lvl4",1);
-      } 
+      DU.gameflags.setFlag("lvl"+PC.getLevel()),1);
       retval = PerformTalk(top, convo, "_level");
     } else {
       maintext.addText('"Hail, ' + PC.getPCName() + '! You have made great progress, but you cannot advance without the =Rune=!."');

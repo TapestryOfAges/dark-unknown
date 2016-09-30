@@ -4,6 +4,7 @@ sound
 tablet
 autosave
 
+DU.randomseed - random number generated on game creation
 karma - tracks PC's karma
 
 kingspeech  - talked to king at beginning of game
@@ -30,12 +31,12 @@ spellbook - has low level spellbook
 spellbook2 - has full sized spellbook
 get_shield - you've agreed to get Nyrani's shield
 has_shield - you've given the shield to Nyrani
-rescued_sam - rescued Samantha from Shadow
+rescued_sam - rescued Samantha from Shadow  ** (endgame support)
 shadow_safe - monsters in shadow between Sam and the entrance are dead.
 end_rebel - finished Prince plot
 anna_romance - you've mentioned Damien or Brooke to Anna
 anna_return - Anna has moved back to Poverty (or is on her way out of Gauntlet)
-anna_left - she's made it out of Gauntlet (set in her AI or when player leaves)
+anna_left - she's made it out of Gauntlet (set in her AI or when player leaves) ** (endgame support)
 garrick_flipout - garrick has been tossed in jail. Set once he surrenders to Aiofe.
 kiba_question - Kiba has asked who garrick is engaged to
 kiba_rumor - she's responded about garrick marrying anna
@@ -55,3 +56,4 @@ rune_kings_1 - have gotten Rune, King hasn't remarked upon it yet, goes away onc
 x_theory - you have asked Xavier about his theory.
 trusted_courier - you've delivered the message to the Prince
 act2 - prince has recovered his mind
+returned_cloak - did quest for warren/garren  ** (endgame support)

@@ -47,7 +47,7 @@ mappages["shadow1"].features[1] = {name : 'LadderDown', x : 7, y : 30, entermap 
 mappages["shadow1"].npcs = [];
 mappages["shadow1"].npcs[0] = {name : 'GiantRatNPC', x : 20, y : 10, Gender: 'monster', Bark: '0', NPCBand: '1'};
 mappages["shadow1"].npcs[1] = {name : 'GiantRatNPC', x : 23, y : 14, Gender: 'monster', Bark: '0', NPCBand: '1'};
-mappages["shadow1"].npcs[2] = {name : 'GiantSnakeNPC', x : 26, y : 9, NPCBand: '1'};
+mappages["shadow1"].npcs[2] = {name : 'PythonNPC', x : 26, y : 9, NPCBand: '1'};
 mappages["shadow1"].npcs[3] = {name : 'GiantRatNPC', x : 18, y : 15, NPCBand: '1'};
 mappages["shadow1"].npcs[4] = {name : 'GiantRatNPC', x : 26, y : 13, NPCBand: '1'};
 mappages["shadow1"].npcs[5] = {name : 'SlimeNPC', x : 27, y : 26, NPCBand: '3'};
@@ -56,6 +56,7 @@ mappages["shadow1"].npcs[7] = {name : 'SlimeNPC', x : 26, y : 29, NPCBand: '3'};
 mappages["shadow1"].npcs[8] = {name : 'GiantRatNPC', x : 23, y : 8, NPCBand: '1'};
 mappages["shadow1"].npcs[9] = {name : 'GiantRatNPC', x : 22, y : 12, NPCBand: '1'};
 mappages["shadow1"].npcs[10] = {name : 'ChildVillagerNPC', x : 18, y : 21, NPCName: 'Samantha', Conversation: 'samantha', Gender: 'female'};
+mappages["shadow1"].npcs[11] = {name : 'HeadlessNPC', x : 9, y : 26};
 
 mappages["shadow1"].desc = "Dungeon of Shadow (L1)";
 mappages["shadow1"].music = 'Dungeon';
