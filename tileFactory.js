@@ -1528,6 +1528,11 @@ tileFactory.prototype.makeSmallRockTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSiriCloakTile = function() {
+  var newTile = new SiriCloakTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCourierPouchTile = function() {
   var newTile = new CourierPouchTile();
   return newTile;

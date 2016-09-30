@@ -7044,6 +7044,19 @@ function SmallRockTile() {
 }
 SmallRockTile.prototype = new ItemObject();
 
+function SiriCloakTile() {
+  this.name = "SiriCloak";
+  this.graphic = "items.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-192";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "blue cloak";
+  this.prefix = "a";
+  this.addType("Quest");  
+}
+SiriCloakTile.prototype = new ItemObject();
+
 function CourierPouchTile() {
   this.name = "CourierPouch";
   this.graphic = "items.png";
