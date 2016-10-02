@@ -5522,6 +5522,19 @@ function ArmorRackPlateTile() {
 }
 ArmorRackPlateTile.prototype = new FeatureObject();
 
+function SkeletonDecorationTile() {
+  this.name = "SkeletonDecoration";
+  this.graphic = "103.gif";
+  this.overlay = "skeleton-deco.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "skeleton";
+  
+  SetByBelow.call(this);
+}
+SkeletonDecorationTile.prototype = new FeatureObject();
+
 function MoatLeverOffTile() {
   this.name = "MoatLeverOff";
   this.graphic = "moatLever-off.gif";

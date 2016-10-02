@@ -1248,6 +1248,11 @@ tileFactory.prototype.makeArmorRackPlateTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSkeletonDecorationTile = function() {
+  var newTile = new SkeletonDecorationTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeMoatLeverOffTile = function() {
   var newTile = new MoatLeverOffTile();
   return newTile;
