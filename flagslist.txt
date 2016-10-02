@@ -30,6 +30,7 @@ all_health - has set all the above health_ flags
 spellbook - has low level spellbook
 spellbook2 - has full sized spellbook
 get_shield - you've agreed to get Nyrani's shield
+shield_gotten - you've gotten the shield
 has_shield - you've given the shield to Nyrani
 rescued_sam - rescued Samantha from Shadow  ** (endgame support)
 shadow_safe - monsters in shadow between Sam and the entrance are dead.
@@ -51,9 +52,15 @@ ash_quest1 - Asharden has given you the quest to get bark
 ash_get_book - you've given Asharden the bark and he is fetching you a spellbook.
 ash_has_book - Asharden has the book, next time you talk to him he'll give it to you.
 lvl4 - reached level four and has not yet heard the "rune of kings" spiel
+lvl* - reached level *
 rune_kings - has Rune
 rune_kings_1 - have gotten Rune, King hasn't remarked upon it yet, goes away once he does
 x_theory - you have asked Xavier about his theory.
 trusted_courier - you've delivered the message to the Prince
 act2 - prince has recovered his mind
 returned_cloak - did quest for warren/garren  ** (endgame support)
+can_train - PC has training points
+jharden_newspell - At this new level, Jharden has a spell to teach you
+ash_newspell - At this new level, Asharden has a spell to teach you
+been_in_bdc - you've been in Black Dragon Castle by the front door
+bdc_gate_open - the gate is currently open
