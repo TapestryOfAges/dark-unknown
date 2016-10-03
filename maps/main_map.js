@@ -177,6 +177,7 @@ mappages["darkunknown"].features[27] = {name : 'HillTower', x : 102, y : 126, en
 mappages["darkunknown"].features[28] = {name : 'BridgeNS', x : 92, y : 101};
 mappages["darkunknown"].features[29] = {name : 'BridgeEW', x : 87, y : 102};
 mappages["darkunknown"].features[30] = {name : 'HillTower', x : 18, y : 11, entermap : 'towerofwizardry', enterx : 0, entery : 0};
+mappages["darkunknown"].features[31] = {name : 'Cave', x : 47, y : 74, entermap : 'bdcave', enterx : 0, entery : 0};
 
 
 mappages["darkunknown"].npcs = [];
