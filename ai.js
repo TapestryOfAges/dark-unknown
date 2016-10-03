@@ -978,8 +978,9 @@ ais.OutdoorHostile = function(who, radius, pname) {
   
   // Next, check and see if there is already a path that has not expired
   // but only if the PC is not within close range- in that case, always wait to hunt
+  // reminder: locx and locy are the PC's coords
   DebugWrite("ai", "Comparing distance: Radius=" + radius + "; PC is " + GetDistance(who.getx(), who.gety(), locx, locy) + " away .<br />");
-  if (GetDistance(who.getx(), who.gety(), locx, locy) > radius/3) {
+  if ((GetDistance(who.getx(), who.gety(), locx, locy) > radius/3) || (who.getDestinationType("spawn")) {
 //    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>PC on another map or not Close. Trying to follow a path.</span><br />"); }
     DebugWrite("ai", "PC on another map or not Close. Trying to follow a path.<br />");
     retval = ais.SurfaceFollowPath(who,40,1);   
@@ -1150,7 +1151,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
             if (dur < 0) { dur = 0; }
             who.setCurrentPath(path);
             who.setDestination({x: spawnedby.getx(), y: spawnedby.gety()}, dur);
-            who.setDestinationType("PoI");
+            who.setDestinationType("spawn");
             DebugWrite("ai", "Set path to: " + spawnedby.getx() + ", " + spawnedby.gety() + "<br />");
             retval["fin"] = 1;
             return retval;

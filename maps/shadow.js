@@ -155,9 +155,10 @@ mappages["shadow2"].terrain[58] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK 
 mappages["shadow2"].terrain[59] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["shadow2"].features = [];
-mappages["shadow2"].features[0] = {name : 'LadderUp', x : 7, y : 30, entermap : 'null', enterx : 0, entery : 0};
-mappages["shadow2"].features[1] = {name : 'LadderDown', x : 43, y : 30, entermap : 'null', enterx : 0, entery : 0};
+mappages["shadow2"].features[0] = {name : 'LadderUp', x : 7, y : 30, entermap : 'shadow1', enterx : 7, entery : 30};
+mappages["shadow2"].features[1] = {name : 'LadderDown', x : 43, y : 30, entermap : 'shadow3', enterx : 43, entery : 30};
 mappages["shadow2"].features[2] = {name : 'SiriCloak', x : 40, y : 49};
+mappages["shadow2"].features[2] = {name : 'SkeletonDecoration', x : 39, y : 49};
 
 
 mappages["shadow2"].npcs = [];
