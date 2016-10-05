@@ -638,7 +638,7 @@ function LightEmitting(lightlevel) {
 		this.light = light;
 	}
 	this.getLight = function() {
-		return this.light;
+		return parseInt(this.light);
 	}
 }
 
