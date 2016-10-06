@@ -638,6 +638,7 @@ function LightEmitting(lightlevel) {
 		this.light = light;
 	}
 	this.getLight = function() {
+	  if (parseInt(this.light) === "NaN") { alert(this.getName() + " has lightlevel that is NaN."); }
 		return parseInt(this.light);
 	}
 }

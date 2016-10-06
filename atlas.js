@@ -1238,7 +1238,7 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
     }
     this.data[y][x][type].addTop(newthing);
 
- 	  if ((typeof newthing.getLight === "function") && (newthing.getLight() > 0)) {
+ 	  if ((typeof newthing.getLight === "function") && (newthing.getLight() !== 0)) {
   	  DebugWrite("light", "<br /><br />LIGHT: Placing new light source: " + newthing.getName() + ", light value: " + newthing.getLight() + ", serial: " + newthing.getSerial());
   	  this.setMapLight(newthing, newthing.getLight(),x,y);
   	}       
