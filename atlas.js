@@ -1267,7 +1267,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
 //	var type = thing.type + "s";
   var oldx = thing.getx();
   var oldy = thing.gety();
- 	if ((typeof thing.getLight === "function") && (Math.abs(thing.getLight()) > 0)) {
+ 	if ((typeof thing.getLight === "function") && (thing.getLight() !== 0)) {
     this.removeMapLight(thing.getSerial(),thing.getLight(),thing.getx(),thing.gety());
   }
   if (this.ambientNoise) {
@@ -1279,7 +1279,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
   this.data[y][x][type].addTop(thing);
   thing.setx(x);
   thing.sety(y);
- 	if ((typeof thing.getLight === "function") && (Math.abs(thing.getLight()) !== 0)) {
+ 	if ((typeof thing.getLight === "function") && (thing.getLight() !== 0)) {
     this.setMapLight(thing,thing.getLight(),x,y);
   }
   if (thing.ambientNoise) {
@@ -1727,14 +1727,16 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
 		for (var j = (y-(Math.ceil(Math.abs(light))+1)); j<=(y+(Math.ceil(Math.abs(light))+1)); j++) {
 			if (this.getTile(i,j) === "OoB") { continue; }
 			var block = this.getTile(i,j).getBlocksLOS();
-//      if (debug && debugflags.light) { dbs.writeln("<br />LIGHT " + serial + ": Checking shine on x:"+i+",y:"+j+", which blocks " + block + ".<br />"); }
-      DebugWrite("light", "<br />LIGHT " + serial + ": Checking shine on x:"+i+",y:"+j+", which blocks " + block + ".<br />");
+      DebugWrite("light", "<br />LIGHT " + serial + " (" + x + "," + y + "): Checking shine on x:"+i+",y:"+j+", which blocks " + block + ".<br />");
 			if ((block > LOS_THRESHOLD) && (!lightsource.checkType("PC"))) {   
         var LOSval = this.getLOS(x,y,i,j,losgrid,0,1,1);
-        if (LOSval > LOS_THRESHOLD) { LOSval = LOS_THRESHOLD; }
+        if (LOSval.ne > LOS_THRESHOLD) { LOSval.ne = LOS_THRESHOLD; }
+        if (LOSval.nw > LOS_THRESHOLD) { LOSval.nw = LOS_THRESHOLD; }
+        if (LOSval.se > LOS_THRESHOLD) { LOSval.se = LOS_THRESHOLD; }
+        if (LOSval.sw > LOS_THRESHOLD) { LOSval.sw = LOS_THRESHOLD; }
+        if (LOSval.center > LOS_THRESHOLD) { LOSval.center = LOS_THRESHOLD; }
         var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
         var totlight = {};
-//        if (debug && debugflags.light) {dbs.writeln("LOSVAL ne: " + LOSval.ne + ", nw: " + LOSval.nw + ", se: " + LOSval.se + ", sw: " + LOSval.sw + ".<br />"); }
         DebugWrite("light", "LOSVAL ne: " + LOSval.ne + ", nw: " + LOSval.nw + ", se: " + LOSval.se + ", sw: " + LOSval.sw + ".<br />");
         totlight.ne = (light + 1.5 - dist) * ( 1- (LOSval.ne / LOS_THRESHOLD) );
         if ((light >= 0) && (totlight.ne < 0)) { totlight.ne = 0; }
@@ -1751,7 +1753,11 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
         }
 			} else {
         var LOSval = this.getLOS(x,y,i,j,losgrid,0,0,1);
-        if (LOSval > LOS_THRESHOLD) { LOSval = LOS_THRESHOLD; }
+        if (LOSval.ne > LOS_THRESHOLD) { LOSval.ne = LOS_THRESHOLD; }
+        if (LOSval.nw > LOS_THRESHOLD) { LOSval.nw = LOS_THRESHOLD; }
+        if (LOSval.se > LOS_THRESHOLD) { LOSval.se = LOS_THRESHOLD; }
+        if (LOSval.sw > LOS_THRESHOLD) { LOSval.sw = LOS_THRESHOLD; }
+        if (LOSval.center > LOS_THRESHOLD) { LOSval.center = LOS_THRESHOLD; }
         var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
         var totlight = {};
         totlight.center = (light + 1.5 - dist) * ( 1- (LOSval / LOS_THRESHOLD) );
