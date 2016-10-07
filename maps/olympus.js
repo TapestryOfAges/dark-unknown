@@ -348,11 +348,13 @@ mappages["olympus0"].features[63] = {name : 'TorchWest', x : 16, y : 13};
 mappages["olympus0"].npcs = [];
 mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 8, y : 21, Conversation: 'castleguard0', Gender: 'female', Bark: '0', NPCBand: '0'};
 mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 10, y : 16, Conversation: 'castleguard0', Gender: 'male', Bark: '0', NPCBand: '0'};
-mappages["olympus0"].npcs[2] = {name : 'TownGuardNPC', x : 19, y : 12, Conversation: 'castleguard0', Gender: 'male', Bark: '0', NPCBand: '0'};
-mappages["olympus0"].npcs[3] = {name : 'TownGuardNPC', x : 19, y : 14, Conversation: 'castleguard0', Gender: 'female', Bark: '0', NPCBand: '0'};
+mappages["olympus0"].npcs[2] = {name : 'TownGuardNPC', x : 19, y : 12, Conversation: 'castleguard0p', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["olympus0"].npcs[3] = {name : 'TownGuardNPC', x : 19, y : 14, Conversation: 'castleguard0p', Gender: 'female', Bark: '0', NPCBand: '0'};
 mappages["olympus0"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 24, y : 8, NPCName: 'Jeremiah', Conversation: 'jeremiah', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["olympus0"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 8, y : 16, NPCName: 'Trevor', Desc: 'treasurer', PeaceAI: 'Trevor', Conversation: 'trevor', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 mappages["olympus0"].npcs[6] = {name : 'PaladinVillagerNPC', x : 20, y : 10, NPCName: 'Erica', Conversation: 'erica', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '307.gif'};
+mappages["olympus0"].npcs[7] = {name : 'TinkerVillagerNPC', x : 24, y : 18, NPCName: 'Aara', Conversation: 'aara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
+mappages["olympus0"].npcs[8] = {name : 'ShepherdVillagerNPC', x : 24, y : 13, NPCName: 'Rose', Conversation: 'rose', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
 
 mappages["olympus0"].desc = "Castle Basement";
 mappages["olympus0"].music = 'Olympus';
@@ -609,3 +611,17 @@ mappages["olympus2"].returnx = '69';
 mappages["olympus2"].returny = '74';
 mappages["olympus2"].returninfused = '0';
 mappages["olympus2"].linkedMaps = ["olympus1","olympus0"];
+
+
+mappages["shadow0"].onload = function(mapref) {
+  if (gamestate.getMode() !== "loadgame") {
+    if (!DU.gameflags.getFlag("lvl2")) {
+      var prisoner = mapref.getTile(24,13).getTopNPC();
+      mapref.deleteThing(prisoner);
+    }
+    if (!DU.gameflags.getFlag("rebel_prisoner")) {
+      var prisoner = mapref.getTile(24,18).getTopNPC();
+      mapref.deleteThing(prisoner);      
+    }
+  }
+}
