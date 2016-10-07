@@ -205,7 +205,7 @@ mappages["shadow2"].linkedMaps = ["shadow1","shadow3"];
 
 mappages["shadow2"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
-    if ((DU.gameflags["returned_cloak"]) || (PC.checkInventory("SiriCloak"))) {
+    if ((DU.gameflags.getFlag("returned_cloak")) || (PC.checkInventory("SiriCloak"))) {
       var cloak = mapref.getTile(40,49).getTopFeature();
       mapref.deleteThing(cloak);
     }
