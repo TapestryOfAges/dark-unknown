@@ -28,7 +28,7 @@ const BASE_RESIST_CHANCE = 30;
 const BASE_HIT_CHANCE = 70;
 const HIT_PER_LEVEL = 4;
 const DEF_PER_LEVEL = 0;
-const DEF_PER_DEX = 2;
+const DEF_PER_DEX = 1;
 
 const RUNE_KINGS  = 1;
 const RUNE_WAVES  = 2;
