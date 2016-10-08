@@ -1291,14 +1291,14 @@ function PerformTalkTarget() {
 
   maintext.addText("Talk to: " + top.getDesc());
 
-  if (EarnedLevel(PC) && (top.getName() === "KingNPC")) {
+  if (EarnedLevel(PC) && (top.getName() === "KingNPC") && DU.gameflags.getFlag("kingspeech")) {
     if ((PC.getLevel() < 4) || (PC.runes.kings)) {
-      maintext.addText('"Hail, ' + PC.getPCName() + '! I am well pleased with your progress. Seek Nyrani and Jharden for further training."');
+      maintext.addText('<span class="conv">"Hail, ' + PC.getPCName() + '! I am well pleased with your progress. Seek Nyrani and Jharden for further training."</span>');
       PC.setLevel(PC.getLevel()+1);
       PC.settp(PC.gettp()+TP_PER_LEVEL);
       DU.gameflags.setFlag("can_train", 1);
       if (DU.gameflags.getFlag("spellbook")) {
-        maintext.addText('"In addition, Jharden may have more to teach you of magic!"');
+        maintext.addText('<span class="conv">"In addition, Jharden may have more to teach you of magic!"</span>');
       }
       DU.gameflags.setFlag("jharden_newspell",1);
       if ((PC.getLevel() > 2) && (PC.getLevel() < 6)) {
@@ -1306,9 +1306,12 @@ function PerformTalkTarget() {
       }
       maintext.addText(PC.getPCName() + " is now level " + PC.getLevel() + "!");
       DU.gameflags.setFlag("lvl"+PC.getLevel(),1);
+      if (PC.getLevel() === 2) {
+        maintext.addText("<span class='conv'>\"Oh, and another thing! We have captured a rebel instigator and are holding her in our <span style='color:cyan'>prison</span>. I charge you with seeing what information you can get from her!\"</span>");
+      }
       retval = PerformTalk(top, convo, "_level");
     } else {
-      maintext.addText('"Hail, ' + PC.getPCName() + '! You have made great progress, but you cannot advance without the =Rune=!."');
+      maintext.addText('<span class="conv">"Hail, ' + PC.getPCName() + '! You have made great progress, but you cannot advance without the =Rune=!."</span>');
       retval = PerformTalk(top, convo, "_level");
     }
   } else {
