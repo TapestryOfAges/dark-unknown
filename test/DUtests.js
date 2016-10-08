@@ -465,10 +465,10 @@ QUnit.test("Test Vulnerability spell", function( assert ) {
   testmap.placeThing(6,7,tgtmob);
   
   var olddef = tgtmob.getDefense();
-  assert.deepEqual(olddef, 20+DEF_PER_LEVEL*5, "Pre-vuln defense.");
+  assert.deepEqual(olddef, 20+DEF_PER_LEVEL*5+13*DEF_PER_DEX, "Pre-vuln defense.");
   var vuln = PerformVulnerability(castermob, 0, 0, tgtmob);
   
-  assert.deepEqual(tgtmob.getDefense(), 10, "Post-vuln defense.");
+  assert.deepEqual(tgtmob.getDefense(), 10+13*DEF_PER_DEX, "Post-vuln defense.");
 
   maps.deleteMap("unittest");
 });
@@ -596,7 +596,7 @@ QUnit.test("Test Poison Cloud", function( assert ) {
     if (Dice.rollnum === 1) { Dice.rollnum++; return 100; } // fail resist
   }  
   
-  resp = PerformPoisonCloud(castermob,0,0,{x:5,y:5);
+  resp = PerformPoisonCloud(castermob,0,0,{x:5,y:5});
   
   maps.deleteMap("unittest");
 });
