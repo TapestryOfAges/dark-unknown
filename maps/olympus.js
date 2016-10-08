@@ -615,7 +615,7 @@ mappages["olympus2"].linkedMaps = ["olympus1","olympus0"];
 
 mappages["olympus0"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
-    if (!DU.gameflags.getFlag("lvl2")) {
+    if (!DU.gameflags.getFlag("lvl2") && (!DU.gameflags.getFlag("rebel_prisoner"))) {
       var prisoner = mapref.getTile(24,13).getTopNPC();
       mapref.deleteThing(prisoner);
     }
