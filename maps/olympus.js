@@ -613,7 +613,7 @@ mappages["olympus2"].returninfused = '0';
 mappages["olympus2"].linkedMaps = ["olympus1","olympus0"];
 
 
-mappages["shadow0"].onload = function(mapref) {
+mappages["olympus0"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
     if (!DU.gameflags.getFlag("lvl2")) {
       var prisoner = mapref.getTile(24,13).getTopNPC();
