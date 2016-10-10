@@ -125,6 +125,8 @@ mappages["swainhil"].npcs[1] = {name : 'AdventurerVillagerNPC', x : 19, y : 25, 
 mappages["swainhil"].npcs[2] = {name : 'BardVillagerNPC', x : 27, y : 19, NPCName: 'Rebecca', Conversation: 'rebecca', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif'};
 mappages["swainhil"].npcs[3] = {name : 'MageVillagerNPC', x : 19, y : 10, Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif'};
 mappages["swainhil"].npcs[4] = {name : 'DruidVillagerNPC', x : 9, y : 10, NPCName: 'Severyn', Conversation: 'severyn', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '302.gif'};
+mappages["swainhil"].npcs[5] = {name : 'BardVillagerNPC', x : 27, y : 38, NPCName: 'Markus', Conversation: 'markus', Gender: 'male', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif'};
+mappages["swainhil"].npcs[6] = {name : 'BardVillagerNPC', x : 41, y : 41, NPCName: 'Simon', Conversation: 'simon', Gender: 'male', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: 'bard-offcolor.gif'};
 
 mappages["swainhil"].desc = "The Towne of Swainhil";
 mappages["swainhil"].music = 'Towne';
@@ -147,7 +149,7 @@ mappages["swainhil"].returnmap = 'darkunknown';
 mappages["swainhil"].returnx = '69';
 mappages["swainhil"].returny = '74';
 mappages["swainhil"].returninfused = '0';
-mappages["swainhil"].linkedMaps = ["swainhil2", "swainhil3"];
+mappages["swainhil"].linkedMaps = ["swainhil2","swainhil3"];
 
 
 mappages["swainhil2"] = {};
@@ -222,6 +224,7 @@ mappages["swainhil2"].features[4] = {name : 'StairUp2', x : 43, y : 49, entermap
 
 
 mappages["swainhil2"].npcs = [];
+mappages["swainhil2"].npcs[0] = {name : 'BardVillagerNPC', x : 38, y : 44, NPCName: 'Alison', Conversation: 'alison', Gender: 'female', Leash: 10, Bark: '0', NPCBand: '0', OverrideGraphic: 'bard-offcolor.gif'};
 
 mappages["swainhil2"].desc = "The Towne of Swainhil";
 mappages["swainhil2"].music = 'Towne';
@@ -244,7 +247,7 @@ mappages["swainhil2"].returnmap = 'darkunknown';
 mappages["swainhil2"].returnx = '69';
 mappages["swainhil2"].returny = '74';
 mappages["swainhil2"].returninfused = '0';
-mappages["swainhil2"].linkedMaps = ["swainhil", "swainhil3"];
+mappages["swainhil2"].linkedMaps = ["swainhil","swainhil3"];
 
 
 mappages["swainhil3"] = {};
