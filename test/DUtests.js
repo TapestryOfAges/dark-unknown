@@ -594,9 +594,13 @@ QUnit.test("Test Poison Cloud", function( assert ) {
   Dice.roll = function() {
     if (!Dice.rollnum) { Dice.rollnum = 1; }
     if (Dice.rollnum === 1) { Dice.rollnum++; return 100; } // fail resist
+    if (Dice.rollnum === 2) { Dice.rollnum++; return 1; } // short duration
   }  
   
-  resp = PerformPoisonCloud(castermob,0,0,{x:5,y:5});
+  resp = PerformPoisonCloud(castermob,0,0,{x:7,y:8});
+  
+  var poison = tgtmob.getSpellEffectsByName("Poison");
+  assert.deepEqual(poison.getExpiresTime(),DUTime.getGameClock()+2,"Checking poison duration and incidentally, existence.");
   
   maps.deleteMap("unittest");
 });
