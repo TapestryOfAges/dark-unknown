@@ -61,6 +61,9 @@ returned_cloak - did quest for warren/garren  ** (endgame support)
 can_train - PC has training points
 jharden_newspell - At this new level, Jharden has a spell to teach you
 ash_newspell - At this new level, Asharden has a spell to teach you
+heather_serene - you've given Heather the password
 been_in_bdc - you've been in Black Dragon Castle by the front door
 bdc_gate_open - the gate is currently open
 rebel_prisoner - you've talked to the prince and he's asked you to look in on the prisoner
+taran_serene - you've given Taran the password
+rebel_talked - you've talked to the rebel prisoner
