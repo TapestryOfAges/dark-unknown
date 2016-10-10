@@ -178,7 +178,8 @@ mappages["darkunknown"].features[28] = {name : 'BridgeNS', x : 92, y : 101};
 mappages["darkunknown"].features[29] = {name : 'BridgeEW', x : 87, y : 102};
 mappages["darkunknown"].features[30] = {name : 'HillTower', x : 18, y : 11, entermap : 'towerofwizardry', enterx : 0, entery : 0};
 mappages["darkunknown"].features[31] = {name : 'Cave', x : 47, y : 74, entermap : 'bdcave', enterx : 0, entery : 0};
-
+mappages["darkunknown"].features[32] = {name : 'Waterfall', x : 77, y : 70};
+mappages["darkunknown"].features[33] = {name : 'Waterfall', x : 99, y : 87};
 
 mappages["darkunknown"].npcs = [];
 
@@ -207,7 +208,7 @@ mappages["darkunknown"].linkedMaps = [""];
 mappages["darkunknown"].onload = function(mapref) {
     
   // Place spawners  
-  if (gamestate.getMode() !== "loadgame") {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     Placespawns(mapref);
   // give specs to teleporters
     var shrinetile = mapref.getTile(13,82);
