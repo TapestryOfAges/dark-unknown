@@ -192,7 +192,7 @@ function SoundLoaded() {
   } else {
     gamestate.loadGame(whichsave);
   }
-  audio_init_2();
+//  audio_init_2();   // moved into audio_init
   DrawCharFrame();
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
