@@ -131,22 +131,25 @@ mappages["volcano"].features[73] = {name : 'Lava', x : 21, y : 19};
 mappages["volcano"].features[74] = {name : 'Lava', x : 34, y : 22};
 mappages["volcano"].features[75] = {name : 'BridgeEW', x : 13, y : 38};
 mappages["volcano"].features[76] = {name : 'BridgeEW', x : 16, y : 38};
+mappages["volcano"].features[77] = {name : 'Waterfall', x : 18, y : 30};
+mappages["volcano"].features[78] = {name : 'Waterfall', x : 17, y : 33};
 
 
 mappages["volcano"].npcs = [];
 
-mappages["volcano"].desc = 'Volcanic Island';
+mappages["volcano"].desc = "Volcanic Island";
 mappages["volcano"].music = 'Island';
 mappages["volcano"].exitmap = '';
-mappages["volcano"].exitx = '';
-mappages["volcano"].exity = '';
+mappages["volcano"].exitx = '65';
+mappages["volcano"].exity = '70';
 mappages["volcano"].wraps = '';
-mappages["volcano"].enterx = '';
-mappages["volcano"].entery = '';
+mappages["volcano"].enterx = '14';
+mappages["volcano"].entery = '76';
 mappages["volcano"].seeBelow = '';
 mappages["volcano"].lightLevel = 'bright';
-mappages["volcano"].alwaysRemember = '';
+mappages["volcano"].alwaysRemember = '1';
 mappages["volcano"].scale = '0';
+mappages["volcano"].underground = '0';
 mappages["volcano"].enterscript = '';
 mappages["volcano"].entertestscript = '';
 mappages["volcano"].exitscript = '';
