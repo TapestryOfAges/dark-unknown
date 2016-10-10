@@ -49,6 +49,8 @@ DUSound["sfx_fountain_splash"] = "sfx/sfx_fountain_splash.mp3"; // Soniss 2015/S
 DUSound["sfx_ocean_waves"] = "sfx/sfx_ocean_waves.mp3"; // Soniss 2015/Soundopolis - Water Ambiences 01/Beach_Ocean_Waves_Fienup_001.wav
 DUSound["sfx_bubbling_lava"] = "sfx/sfx_bubbling_lava.mp3"; // RPG Sound Effects Bundle v1/Bubbling Lava.wav
 DUSound["sfx_fire_crackle"] = "sfx/sfx_fire_crackle.mp3"; // Dungeon SFX Pack v1/Misc/Torch 2 (loop).mp3
+DUSound["sfx_waterfall"] = "sfx/sfx_waterfall.mp3"; // Soniss 2015/Sound Ex Machine - Water Flow/Small waterfall (closer perspective) 02.wav
+DUSound["sfx_waterfall_fall"] = "sfx/sfx_waterfall_fall.mp3"; // Soniss 2015/Soundopolis - Water 01/Splash_Dive_Fienup_002.wav
 
 var musicpath = "music/";
 var DUMusic = {};
@@ -77,6 +79,8 @@ DUMusic["Sirius"] = "This Bardic Life";
 
 var musicloaded = {};
 var musicsloaded = 0;
+var soundsloaded = 0;
+var numsounds = Object.keys(DUSound).length;
 
 function audio_init() {
   createjs.Sound.initializeDefaultPlugins();
@@ -91,6 +95,7 @@ function audio_init() {
 }
 
 function audio_init_2() {
+  createjs.Sound.addEventListener("fileload", handleFileLoadSfx);
   $.each(DUSound, function(idx, val) {
     createjs.Sound.registerSound(val, idx);
   });
@@ -221,6 +226,14 @@ function handleFileLoad(event) {
   musicloaded[event.id] = 1;
   musicsloaded++;
   if (musicsloaded === 20) {
+    audio_init_2();
+  }
+}
+
+function handleFileLoadSfx(event) {
+  // A sound has been preloaded.
+  soundsloaded++;
+  if (soundsloaded === numsounds) {
     SoundLoaded();
   }
 }

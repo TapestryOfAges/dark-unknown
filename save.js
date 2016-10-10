@@ -434,6 +434,7 @@ GameStateData.prototype.loadGame = function(idx) {
     var song = PC.getHomeMap().getMusic();
     nowplaying = DUPlayMusic(song);
   }
+  ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
   startScheduler();
 }
 
