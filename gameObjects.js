@@ -4750,6 +4750,69 @@ ReflectionTile.prototype.walkoff = function(who) {
   }
 }
 
+function WaterfallTile() {
+  this.name = "Waterfall";
+  this.graphic = "waterfall-2.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "waterfall";
+    
+  HasAmbientNoise.call(this,"sfx_waterfall",1.5);
+}
+WaterfallTile.prototype = new FeatureObject();
+
+WaterfallTile.prototype.activate = function() {
+  if (!DU.gameflags.getFlag("editor")) {
+    var flow = localFactory.createTile("WaterfallFlow");
+    flow.waterfall = this;
+    var homemap = this.getHomeMap();
+    homemap.placeThing(this.getx(),this.gety()-1,flow);
+  }
+  return 1;
+}
+
+function WaterfallFlowTile() {
+  this.name = "WaterfallFlow";
+  this.graphic = "walkon.gif";
+  this.invisible = 1;
+  this.passable = MOVE_SWIM + MOVE_LEVITATE + MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "waterfall flow walkon";
+  this.nosave = 1;
+}
+WaterfallFlowTile.prototype = new FeatureObject();
+
+WaterfallFlowTile.prototype.walkon = function(who) {
+  // Go falling down
+  gamestate.setMode("null");
+  var waterfall = this.waterfall;
+  setTimeout(function() {
+    DescendWaterfall(who, waterfall);
+  }, 300);
+}
+
+function DescendWaterfall(who, waterfall) {
+  var thismap = who.getHomeMap();
+  thismap.moveThing(who.getx(),who.gety()+1,who);
+  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());  
+  if (who.gety() === waterfall.gety()) {
+    setTimeout(function() {
+      DescendWaterfall(who,waterfall);
+    }, 100);
+  } else {
+    DUPlaySound("sfx_waterfall_fall");
+    if (who === PC) {
+      maintext.addText("You are swept down the waterfall!");
+    }
+    who.dealDamage(Dice.roll("1d10"));
+    who.endTurn(0);
+  }
+}
+
 function SecretDoorTile() {
 	this.name = "SecretDoor";
 	this.graphic = "056.gif";   // note: 024 is U4's secret door

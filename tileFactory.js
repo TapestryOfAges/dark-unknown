@@ -1023,6 +1023,16 @@ tileFactory.prototype.makeReflectionTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWaterfallTile = function() {
+  var newTile = new WaterfallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWaterfallFlowTile = function() {
+  var newTile = new WaterfallFlowTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSecretDoorTile = function() {
   var newTile = new SecretDoorTile();
   return newTile;
