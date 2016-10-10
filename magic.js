@@ -484,7 +484,7 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
   var npcs = castermap.getNPCsAndPCs();
   $.each(npcs, function (idx, val) {
     if (val.getAttitude() !== caster.getAttitude()) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOE(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
         if (!CheckResist(caster,val,infused,0)) {
           var distract = localFactory.createTile("Distract");
           ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
@@ -889,6 +889,13 @@ magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].executeSpell = function(caste
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Magic Bolt.<br /></span>"); }
   var resp = {};
   
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+
   targetCursor.x = PC.getx();
   targetCursor.y = PC.gety();
   targetCursor.command = "c";
@@ -982,7 +989,14 @@ magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].executeSpell = function(c
   }
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Poison Cloud.<br /></span>"); }
   var resp = {};
-  
+
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+    
   targetCursor.x = PC.getx();
   targetCursor.y = PC.gety();
   targetCursor.command = "c";
@@ -1024,7 +1038,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
   var power = caster.getInt();
   if (free) { power = Dice.roll("1d5+12"); }  
   var radius = Math.floor(power/10) +1; 
-    
+
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Calculating poison cloud.<br /></span>"); }
   DebugWrite("magic", "Calculating poison cloud.<br />");
   $.each(tgtmap.getNPCsAndPCs(), function(idx, val) {
@@ -1054,6 +1068,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           poison.setExpiresTime(duration + DUTime.getGameClock());
           val.addSpellEffect(poison);
           // poisoned!
+          alert("poisoned " + val.getName());
           
           if (infused) {
             var dmg = Dice.roll(DMG_LIGHT);
