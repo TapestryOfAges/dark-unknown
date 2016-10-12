@@ -433,7 +433,7 @@ function TownGuardNPCTile() {
   this.int = 14;
   this.alignment = 'Good';
   this.attitude = 'friendly';
-  this.peaceAI = 'guard';
+  this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = '0';
   this.graphic = '309.gif';
@@ -615,7 +615,7 @@ function CorruptGuardsNPCTile() {
   this.int = 14;
   this.alignment = 'Evil';
   this.attitude = 'friendly';
-  this.peaceAI = 'guard';
+  this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = '0';
   this.graphic = '309.gif';
