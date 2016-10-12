@@ -210,8 +210,8 @@ mappages["olympus1"].npcs[1] = {name : 'MageVillagerNPC', x : 31, y : 15, NPCNam
 mappages["olympus1"].npcs[2] = {name : 'TownGuardNPC', x : 27, y : 18, Conversation: 'castleguard1', Gender: 'male'};
 mappages["olympus1"].npcs[3] = {name : 'TownGuardNPC', x : 31, y : 18, Conversation: 'castleguard1', Gender: 'female'};
 mappages["olympus1"].npcs[4] = {name : 'TownGuardNPC', x : 30, y : 23, Conversation: 'castleguard1', Gender: 'female'};
-mappages["olympus1"].npcs[5] = {name : 'TownGuardNPC', x : 32, y : 33, Conversation: 'castleguard1', Gender: 'male'};
-mappages["olympus1"].npcs[6] = {name : 'TownGuardNPC', x : 26, y : 33, Conversation: 'castleguard1', Gender: 'male'};
+mappages["olympus1"].npcs[5] = {name : 'TownGuardNPC', x : 32, y : 33, Conversation: 'castleguard1', Gender: 'male', Bark: 'startguard', BarkFreq: 3, BarkRad: 6};
+mappages["olympus1"].npcs[6] = {name : 'TownGuardNPC', x : 26, y : 33, Conversation: 'castleguard1', Gender: 'male', Bark: 'startguard', BarkFreq: 2, BarkRad: 6};
 mappages["olympus1"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 24, y : 22, NPCName: 'Katrina', Desc: 'librarian', Conversation: 'katrina', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 mappages["olympus1"].npcs[8] = {name : 'BardVillagerNPC', x : 13, y : 14, NPCName: 'Olivia', Conversation: 'olivia', Gender: 'female', Leash: 8, Bark: '0', NPCBand: '0', OverrideGraphic: '311.gif'};
 mappages["olympus1"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 47, y : 28};
@@ -612,6 +612,16 @@ mappages["olympus2"].returny = '74';
 mappages["olympus2"].returninfused = '0';
 mappages["olympus2"].linkedMaps = ["olympus1","olympus0"];
 
+mappages["olympus1"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (DU.gameflags.getFlag("kingspeech")) {
+      var guard = mapref.getTile(26,33).getTopNPC();
+      guard.setBark();
+      guard = mapref.getTile(32,33).getTopNPC();
+      guard.setBark();
+    }
+  }
+}
 
 mappages["olympus0"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {

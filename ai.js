@@ -4,6 +4,7 @@
 var barks = {};
 barks['jester'] = ['%THEDESC% sings, "Ho eye he hum!"'];
 barks['sam'] = ['%THEDESC% shouts, "Look at me!"'];
+barks['startguard'] = ['%THEDESC% says, "You father wishes to speak with you!"'];
 
 barks.getBark = function(idx) {
   if (barks[idx]) {
@@ -14,7 +15,7 @@ barks.getBark = function(idx) {
 
 barks.checkBark = function(who) {
  if ((who.getBark()) && (who.getHomeMap() === PC.getHomeMap())) {
-    if (Math.floor(Math.random()*100)+1  < who.getBarkFreq()) {
+    if (Dice.roll("1d100")  < who.getBarkFreq()) {
       if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= who.getBarkRad()) {
         // bark!
 //        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Townfolk barking.</span><br />"); }
