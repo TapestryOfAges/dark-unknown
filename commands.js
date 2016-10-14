@@ -1115,7 +1115,7 @@ function PerformSearch(who) {
   var retval = {};
   retval["fin"] = 1;
   if (!searched) {
-		retval["txt"] = "There is nothing there.";
+		retval["txt"] = "Search: There is nothing there.";
 		retval["fin"] = 0;
 		return retval;
 	}
@@ -1142,7 +1142,8 @@ function PerformSearch(who) {
   else if ((searched.getSearchYield().length)) {
     var stuff = searched.getSearchYield();
     if (searched.getLootedID() && DU.gameflags.getFlag("lid_" + searched.getLootedID())) {
-      stuff = [];
+      retval["txt"] = "Search: You find nothing there.";
+      stuff = 0;
     }
     else if (searched.getLootedID()) {
       DU.gameflags.setFlag("lid_" + searched.getLootedID(),1);
@@ -1151,36 +1152,29 @@ function PerformSearch(who) {
     if (searched.getShowSearched()) {
       searched.searched = 1;
     }
-    retval["txt"] = "Search: You find ";
-    retval["fin"] = 1;
-    if (stuff.length) {
-      for (var i=0; i < stuff.length; i++) {
-        var newthing = localFactory.createTile(stuff[i]);
-        if (stuff[i] === "Gold") {
-          newthing.setQuantity(searched.getGold());
+    if (stuff) {
+      retval["txt"] = "Search: You find ";
+      retval["fin"] = 1;
+      if (stuff.length) {
+        for (var i=0; i < stuff.length; i++) {
+          var newthing = localFactory.createTile(stuff[i]);
+          if (stuff[i] === "Gold") {
+            newthing.setQuantity(searched.getGold());
+          }
+          who.getHomeMap().placeThing(targetCursor.x,targetCursor.y,newthing);
+          if (i) {
+            retval["txt"] += ", ";
+          }
+          if (newthing.getPrefix()) {
+            retval["txt"] += " " + newthing.getPrefix();
+          }
+          retval["txt"] += " " + newthing.getDesc();
         }
-        who.getHomeMap().placeThing(targetCursor.x,targetCursor.y,newthing);
-        if (i) {
-          retval["txt"] += ", ";
-        }
-        if (newthing.getPrefix()) {
-          retval["txt"] += " " + newthing.getPrefix();
-        }
-        retval["txt"] += " " + newthing.getDesc();
       }
+      var blanksearch = [];
+      searched.setSearchYield(blanksearch);
+      retval["txt"] += ".";
     }
-    var blanksearch = [];
-    searched.setSearchYield(blanksearch);
-//    if (searched.getGold()) {
-//      var newthing = localFactory.createTile("Gold");
-//      newthing.setQuantity(searched.getGold());
-//      who.getHomeMap().placeThing(targetCursor.x,targetCursor.y,newthing);
-//      if (searched.getSearchYield().length) {
-//        retval["txt"] += ", ";
-//      }
-//      retval["txt"] += newthing.getDesc();
-//    }
-    retval["txt"] += ".";
     if (searched.getSearchedGraphic()) {
       searched.setGraphicArray(searched.getSearchedGraphic());
     }
@@ -1193,7 +1187,7 @@ function PerformSearch(who) {
     if (searched.getShowSearched()) {
       searched.searched = 1;
     }
-    retval["txt"] = "You find nothing there.";
+    retval["txt"] = "Search: You find nothing there.";
     retval["fin"] = 1;
     if (searched.getSearchedGraphic()) {
       searched.setGraphicArray(searched.getSearchedGraphic());
