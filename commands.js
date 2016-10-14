@@ -1456,8 +1456,9 @@ function PerformUseFromInventory() {
    if (inv.length) {
      for (var i = 0; i < inv.length; i++) {
        if ((inv[i].checkType("Consumable")) && (!inv[i].checkType("Potion")) && (!inv[i].checkType("Scroll"))) { other[other.length] = inv[i]; }
-       if (inv[i].checkType("Potion")) { pots[pots.length] = inv[i]; }
-       if (inv[i].checkType("Scroll")) { scrolls[scrolls.length] = inv[i];}
+       else if (inv[i].checkType("Potion")) { pots[pots.length] = inv[i]; }
+       else if (inv[i].checkType("Scroll")) { scrolls[scrolls.length] = inv[i];}
+       else if (typeof inv[i].use === "function")  { other[other.length] = inv[i]; }
      }
      if (pots.length) {
        pots.sort(function(a,b) {
