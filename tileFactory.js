@@ -1758,6 +1758,11 @@ tileFactory.prototype.makeTomeOfSightTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeMapsAndLegendsTile = function() {
+  var newTile = new MapsAndLegendsTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeKyvekBoxTile = function() {
   var newTile = new KyvekBoxTile();
   return newTile;

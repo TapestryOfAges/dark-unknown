@@ -2970,7 +2970,9 @@ FeatureObject.prototype.getSearchYield = function() {
 
 FeatureObject.prototype.setSearchYield = function(searchable) {
   // searchable must be an array, even if an empty one
-  if ($.isArray(searchable)) {
+  if (!searchable) {
+    delete this.searchYield;
+  } else if ($.isArray(searchable)) {
     this.searchYield = searchable;
   }
 }
@@ -7756,7 +7758,7 @@ BookItemObject.prototype.use = function(who) {
     retval["txt"] = bookcontents.shift();
     if (bookcontents.length > 0) {
       retval["override"] = 1;
-	  	var usedname = used.getDesc();
+	  	var usedname = this.getDesc();
 		  usedname = usedname.replace(/^a /, "");
       
       maintext.addText("Use " + usedname + ": Reading...");
@@ -7808,6 +7810,20 @@ function TomeOfSightTile() {
   this.contents = "You open to a random page:%%'...for the Eye of Man can be deceived, but the Eye of Magic is Immutable.' [addmore]";
 }
 TomeOfSightTile.prototype = new BookItemObject();
+
+function MapsAndLegendsTile() {
+  this.name = "MapsAndLegends";
+  this.graphic = "items.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-192";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Maps and Legends";
+  this.prefix = "";
+  this.addType("Quest");
+  this.contents = "You flip through the pages and find a chapter on magical phenomenon.%%Searching, you find the section you seek:%%\"The Brilliant Pool\"%%<span class='conv'>Once, this mythical place was considered the source of all magic.%%Now, it is known that magic's power is drawn from the ethereal plane, and it is not known whether the Brilliant Pool ever truly existed, or still exists.%%Another story has it that it is a star, misplaced on our plane, its power too great for any mortal to harness directly.</span>";
+}
+MapsAndLegendsTile.prototype = new BookItemObject();
 
 
 function ConsumableItemObject() {
