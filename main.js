@@ -352,8 +352,13 @@ function DoAction(code, ctrl) {
     var response = PerformChooseDir(code);
     if (response["fin"] === 1) { // direction chosen
       if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && (targetCursor.command === "u") ) {
-        PerformUseFromInventory();
-        return;
+        var resp = PerformUseFromInventory();
+        if (resp["fin"] === 3) {
+          maintext.setInputLine("[MORE]");
+          maintext.addText(resp["txt"]);
+          gamestate.setMode("anykey");
+          maintext.drawTextFrame();
+        }
       }
       if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c") || (targetCursor.command === "p"))) {
         maintext.setInputLine("&gt;");
