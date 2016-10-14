@@ -617,3 +617,11 @@ OnConvTriggers["open_bdc_gate"] = function(speaker,keyword) {
   
   Open_BDC_Gate(speaker.getHomeMap());
 }
+
+OnConvTriggers["place_mal"] = function(speaker,keyword) {
+  var tile = speaker.getHomeMap().getTile(14,17);
+  var shelf = tile.getTopFeature();
+  if (shelf.getName() !== "MapsAndLegends") {
+    shelf.setSearchYield(["MapsAndLegends"]);
+  }
+}
