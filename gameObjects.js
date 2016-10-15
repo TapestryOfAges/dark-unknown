@@ -7755,7 +7755,7 @@ BookItemObject.prototype = new ItemObject();
 BookItemObject.prototype.use = function(who) {
   var bookcontents = this.contents.split("%%");
   var retval = {};
-  maintext.addText("Use " + usedname + ": Reading...");
+  maintext.delayedAddText("Reading...");
   if (bookcontents) {
     retval["txt"] = bookcontents.shift();
     if (bookcontents.length > 0) {
