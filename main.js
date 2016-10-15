@@ -244,7 +244,7 @@ function DoAction(code, ctrl) {
       var retval = PerformRead();
       maintext.addText(retval["txt"]);
       if (retval["fin"] === 1) {
-        maintext.setInputLine("%gt;");
+        maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         PC.endTurn(retval["initdelay"]);
       }
