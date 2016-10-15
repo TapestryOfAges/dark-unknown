@@ -1350,7 +1350,7 @@ function PerformTalk(talkto, convo, topic) {
     gamestate.setMode("null");
   } else {
     if (inputText.subcmd === "yn") {
-      retval["input"] = "You answer:";
+      retval["input"] = "You answer (y/n):";
     } else {
       retval["input"] = "You say: ";
     }
@@ -1595,7 +1595,7 @@ function PerformUseFromInventoryState(code) {
       delete targetCursor.itemlist;
     }
   }
-  alert(retval["fin"]);
+  
   return retval;
 
 //  targetCursor.scrolllocation = 0;

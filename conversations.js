@@ -81,9 +81,10 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     maintext.addText("<span class='sysconv'>You have obtained: " + newitem.getFullDesc() + ".</span>");
   }
   if (triggers.hasOwnProperty("take_item")) {
-    if (necessary_item) {
-      PC.removeFromInventory(necessary_item);
-      maintext.addText("<span class='sysconv'>You no longer have one: " + necessary_item.getDesc() + ".</span>");
+    var takeme = PC.checkInventory(triggers.take_item)
+    if (takeme) {
+      PC.removeFromInventory(takeme);
+      maintext.addText("<span class='sysconv'>You no longer have one: " + takeme.getDesc() + ".</span>");
     }
   }
   if (triggers.hasOwnProperty("give_gold")) {

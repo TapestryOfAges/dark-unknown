@@ -314,12 +314,12 @@ function DoAction(code, ctrl) {
           if ((inputText.txt === "Y") || (inputText.txt === "YES")) {
             inputText.txt = "YES";
             maintext.addText(" ");
-            maintext.addText("You answer: " + inputText.txt);
+            maintext.addText("You answer (y/n): " + inputText.txt);
             retval = PerformTalk(targetCursor.talkingto, convo, "_yes");
           } else {
             inputText.txt = "NO";
             maintext.addText(" ");
-            maintext.addText("You answer: " + inputText.txt);
+            maintext.addText("You answer (y/n): " + inputText.txt);
             retval = PerformTalk(targetCursor.talkingto, convo, "_no");
           }
         } else {
