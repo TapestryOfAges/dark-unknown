@@ -7755,9 +7755,8 @@ BookItemObject.prototype = new ItemObject();
 BookItemObject.prototype.use = function(who) {
   var bookcontents = this.contents.split("%%");
   var retval = {};
-  maintext.delayedAddText("Reading...");
   if (bookcontents) {
-    retval["txt"] = bookcontents.shift();
+    retval["txt"] = "Use: " + this.getDesc() + "<br /> Reading...<br />" + bookcontents.shift();
     if (bookcontents.length > 0) {
       retval["override"] = 1;
 	  	var usedname = this.getDesc();
@@ -7767,6 +7766,7 @@ BookItemObject.prototype.use = function(who) {
       targetCursor.booktext = bookcontents;
     } else {
       retval["fin"] = 1;
+      DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
     }
   }
   return retval;
@@ -7822,7 +7822,7 @@ function MapsAndLegendsTile() {
   this.desc = "Maps and Legends";
   this.prefix = "";
   this.addType("Quest");
-  this.contents = "You flip through the pages and find a chapter on magical phenomenon.%%Searching, you find the section you seek:%%\"The Brilliant Pool\"%%<span class='conv'>Once, this mythical place was considered the source of all magic.%%Now, it is known that magic's power is drawn from the ethereal plane, and it is not known whether the Brilliant Pool ever truly existed, or still exists.%%Another story has it that it is a star, misplaced on our plane, its power too great for any mortal to harness directly.</span>";
+  this.contents = "You flip through the pages and find a chapter on magical phenomenon.%%Searching, you find the section you seek:%%\"The Brilliant Pool\"%%<span class='conv'>Once, this mythical place was considered the source of all magic.</span>%%<span class='conv'>Now, it is known that magic's power is drawn from the ethereal plane, and it is not known whether the Brilliant Pool ever truly existed, or still exists.</span>%%<span class='conv'>Another story has it that it is a star, misplaced on our plane, its power too great for any mortal to harness directly.</span>%%You close the book.";
 }
 MapsAndLegendsTile.prototype = new BookItemObject();
 
