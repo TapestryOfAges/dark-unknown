@@ -353,14 +353,8 @@ function DoAction(code, ctrl) {
     if (response["fin"] === 1) { // direction chosen
       if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && (targetCursor.command === "u") ) {
         var resp = PerformUseFromInventory();
-        if (resp["fin"] === 3) {
-          maintext.setInputLine("[MORE]");
-          maintext.addText(resp["txt"]);
-          gamestate.setMode("anykey");
-          maintext.drawTextFrame();
-        }
       }
-      if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c") || (targetCursor.command === "p"))) {
+      else if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c") || (targetCursor.command === "p"))) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         gamestate.setMode("player");
@@ -534,6 +528,13 @@ function DoAction(code, ctrl) {
       DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
       PC.endTurn(response["initdelay"]);
     }
+    else if (response["fin"] === 3) {
+      maintext.setInputLine("[MORE]");
+      maintext.addText(response["txt"]);
+      gamestate.setMode("anykey");
+      maintext.drawTextFrame();
+    }
+
             
   }
   else if (gamestate.getMode() === "useprompt") {

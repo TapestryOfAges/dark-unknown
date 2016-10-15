@@ -1385,42 +1385,7 @@ function PerformUse(who) {
 		return retval;
 	}
 	if (typeof used.use === "function") {
-		retval = used.use(who);
-		if (retval["override"] === 1) {
-		  delete retval["override"];
-		  
-		} else {
-  		retval["fin"] = 1;
-	  	var usedname = used.getDesc();
-		  usedname = usedname.replace(/^a /, "");
-  		retval["txt"] = "Use " + usedname + ": " + retval["txt"];
-	  	var drawtype = "one";
-		  if (used.checkType("Consumable") && !retval["preserve"]) {
-		    if (used.getHomeMap()) {
-		      // being used from the ground
-  		    used.getHomeMap().deleteThing(used);
-	  	  } else {
-		      // being used from inventory
-		      // also, will never be executed as use from inventory is elsewhere
-		      who.removeFromInventory(used);
-		    }
-  		}
-	  	if (retval["redrawtype"]) {
-		    delete retval["redrawtype"];
-  		  // if more of the map needs to be redrawn, need to recheck light sources
-		  
-	  	  $.each(localacre.localLight, function(index, value) {
-		      // each object that is casting light on the door might be casting light through the door.
-		      var lightsource = usemap.lightsList[index];
-		      who.getHomeMap().removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
-  		    who.getHomeMap().setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
-	  	  });
-		  
-		    DrawMainFrame("draw",used.getHomeMap().getName(),PC.getx(),PC.gety());
-		  } else {		
-		    DrawMainFrame("one",used.getHomeMap().getName(),used.getx(),used.gety());
-  		}
-  	}
+	  retval = MakeUseHappen(who,used,"map");
   } else {
 		retval["txt"] = "There is nothing to use there.";
 		retval["fin"] = 0;
@@ -1591,6 +1556,7 @@ function PerformUseFromInventory() {
   targetCursor.itemlist = itemarray;
   
   $('#inv0').toggleClass('highlight');
+  return retval;
 		
 }
 
@@ -1623,27 +1589,59 @@ function PerformUseFromInventoryState(code) {
     // use selected item
     var used = targetCursor.itemlist[targetCursor.scrolllocation];
     if (used) {
-  		retval = used.use(PC);
-	  	retval["fin"] = 2;
-  		if (retval.override) {
-  		  retval["fin"] = retval.override;
-  		}
-		  var usedname = used.getDesc();
-  		usedname = usedname.replace(/^a /, "");
-	  	retval["txt"] = "Use " + usedname + ": " + retval["txt"];
-	  	if (used.checkType("Consumable") && !retval["preserve"]) {
-        PC.removeFromInventory(used);
-      }
+      retval = MakeUseHappen(PC,used,"inventory");
     } else {
       retval["fin"] = 0;
       delete targetCursor.itemlist;
     }
   }
+  alert(retval["fin"]);
   return retval;
 
 //  targetCursor.scrolllocation = 0;
 //  targetCursor.itemlist = itemarray;
  
+}
+
+function MakeUseHappen(who,used,where) {
+  var retval = used.use(who);
+  if (retval["override"] === 1) {
+    delete retval["override"];
+		  
+  } else {
+    retval["fin"] = 1;
+    var usedname = used.getDesc();
+    usedname = usedname.replace(/^a /, "");
+    retval["txt"] = "Use " + usedname + ": " + retval["txt"];
+    var drawtype = "one";
+    if (used.checkType("Consumable") && !retval["preserve"]) {
+      if ("map") {
+      // being used from the ground
+        used.getHomeMap().deleteThing(used);
+	  	} else {
+		    // being used from inventory
+		    who.removeFromInventory(used);
+		  }
+      if (where === "map") {
+        if (retval["redrawtype"]) {
+          delete retval["redrawtype"];
+  	    	// if more of the map needs to be redrawn, need to recheck light sources
+		  
+	  	    $.each(localacre.localLight, function(index, value) {
+		        // each object that is casting light on the door might be casting light through the door.
+  		      var lightsource = usemap.lightsList[index];
+  	  	    who.getHomeMap().removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
+    	  	  who.getHomeMap().setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
+	    	  });
+		  
+  		    DrawMainFrame("draw",used.getHomeMap().getName(),PC.getx(),PC.gety());
+  	  	} else {		
+	  	    DrawMainFrame("one",used.getHomeMap().getName(),used.getx(),used.gety());
+  	    }
+  	  }
+    }
+  }
+  return retval;
 }
 
 function ChooseRune() {
