@@ -10502,11 +10502,14 @@ NPCObject.prototype.processDeath = function(droploot){
             }
           }
           if (loot.gold) {
+            var totgold = loot.gold;
+            if (this.stolengold) { totgold += this.stolengold; }
+
             if (chest) {
-              chest.addToContainer("Gold", loot.gold);
+              chest.addToContainer("Gold", totgold);
             } else {
               corpse.addToSearchYield("Gold");
-              corpse.setGold(corpse.getGold() + loot.gold);
+              corpse.setGold(corpse.getGold() + totgold);
             }
           }
         }

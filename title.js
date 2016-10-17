@@ -205,7 +205,7 @@ function SecondPage() {
   if (opttop === 250) { opttop = 200; }
   var optleft = browserwidth/2 - 215;
   optselect = 0;
-  var spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;display:none'><img src='graphics/title/du_logo.gif' /></div><div id='options'></div>";
+  var spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;display:none'><img src='graphics/title/du_logo.png' /></div><div id='options'></div>";
   $("#maindiv").html(spage);
   lastanim = "#DU";
   $("#DU").fadeIn(1000, function() {
@@ -246,7 +246,7 @@ function finishedFinalPage() {
   if (opttop === 250) { opttop = 200; }
   var optleft = browserwidth/2 - 215;
   optselect = 0;
-  var spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;'><img src='graphics/title/du_logo.gif' /></div><div id='options'></div>";
+  var spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;'><img src='graphics/title/du_logo.png' /></div><div id='options'></div>";
   $("#maindiv").html(spage);
   spage = "<div id='intro' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt0' src='graphics/title/intro-g.gif' onClick='makeChoice(\'intro\')' /></div>";
   opttop += 60;
