@@ -93,7 +93,7 @@ function show_response(convname, keyword) {
     $.each(conversations[convname][keyword].triggers[0], function(idx, val) {
       triggers = triggers + idx + " " + "(" + val + ") ";
     });
-    tmptxt = tmptxt + "<tr><td>" + keyword + "</td><td style='color:blue'>[no flag]</td><td>" + conversations[convname][keyword].responses[0] + "</td><td style='font-weight:bold'>" + triggers + "</td><td rowspan='2'><a href='javascript:edit_response(\"" + convname + "\", \"" + keyword + "\")'>Edit</a></td></tr>";
+    tmptxt = tmptxt + "<tr><td>" + keyword + "</td><td style='color:blue'>[flag unmet]</td><td>" + conversations[convname][keyword].responses[0] + "</td><td style='font-weight:bold'>" + triggers + "</td><td rowspan='2'><a href='javascript:edit_response(\"" + convname + "\", \"" + keyword + "\")'>Edit</a></td></tr>";
     triggers = "";
     $.each(conversations[convname][keyword].triggers[1], function(idx, val) {
       triggers = triggers + idx + " " + "(" + val + ") ";
@@ -610,7 +610,7 @@ function PrintDialogue(speech, keyword) {
     $.each(speech[keyword].triggers[0], function(idx, val) {
       triggers = triggers + idx + " " + "(" + val + ") ";
     });
-    tmptxt = tmptxt + "<tr><td>" + keyword.toUpperCase() + "</td><td style='color:blue'>[no flag]</td><td>" + speech[keyword].responses[0] + "</td><td style='font-weight:bold'>" + triggers + "</td></tr>";
+    tmptxt = tmptxt + "<tr><td>" + keyword.toUpperCase() + "</td><td style='color:blue'>[flag unmet]</td><td>" + speech[keyword].responses[0] + "</td><td style='font-weight:bold'>" + triggers + "</td></tr>";
     triggers = "";
     $.each(speech[keyword].triggers[1], function(idx, val) {
       triggers = triggers + idx + " " + "(" + val + ") ";
