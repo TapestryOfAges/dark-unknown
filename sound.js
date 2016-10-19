@@ -167,16 +167,16 @@ function DUPlayAmbient(sound) {
 function IncAmbientVol(playing) {
   if (playing.name === ambient.name) {
     if (playing.song.volume < 1) {
-      playing.song.volume += .25;
-      setTimeout(function() { IncAmbientVol(playing); }, 500);
+      playing.song.volume += .125;
+      setTimeout(function() { IncAmbientVol(playing); }, 250);
     }
   }
 }
 
 function DecAmbientVol(playing) {
   if (playing.song.volume > 0) {
-    playing.song.volume -= .25;
-    setTimeout(function() { DecAmbientVol(playing); }, 300);
+    playing.song.volume -= .125;
+    setTimeout(function() { DecAmbientVol(playing); }, 150);
   } else {
     playing.song.stop();
   }
