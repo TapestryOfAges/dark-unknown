@@ -35,7 +35,11 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   
     var flags = this[keyword].flags;
     if (flags.hasOwnProperty("flags_met")) {
-      if (!DU.gameflags.getFlag(flags.flags_met)) { flags_met = 0; }  
+      if (flags.flags_met.indexOf("self_") !== -1) {
+        var tmpflag = flags.flags_met.replace(/self_/, "");
+        if (!speaker[flags.flags_met]) { flags_met = 0; }
+      }      
+      else if (!DU.gameflags.getFlag(flags.flags_met)) { flags_met = 0; }  
       else { addtolog.flagsmet += " " + flags.flags_met; }
     }
     if (flags.hasOwnProperty("has_item")) {
