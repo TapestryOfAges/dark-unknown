@@ -104,6 +104,28 @@ mappages["asharden1"].onload = function(mapref) {
       DU.gameflags.deleteFlag("ash_get_book");
       DU.gameflags.setFlag("ash_has_book",1);
     }
+    
+    var place_ivan = 0;
+    if ((DU.gameflags.getFlag("ivan_lastvisitchecktime") && ((DUTime.getGameClock() - DU.gameflags.getFlag("ivan_lastvisitchecktime")) > 20)) || (!DU.gameflags.getFlag("ivan_lastvisitchecktime"))) {
+      // decide if placing Ivan
+      if (Dice.roll("1d4") === 1) {
+        place_ivan=1;
+      }
+    } else {
+      // use last value for Ivan's presence
+      if (DU.gameflags.getFlag("ivan_lastvisit") === 1) {
+        place_ivan = 1;
+      }
+    }
+    
+    DU.gameflags.setFlag("ivan_lastvisit",place_ivan);
+    DU.gameflags.setFlag("ivan_lastvisitchecktime",DUTime.getGameClock());
+    
+    if (place_ivan) {
+      // place him at 22,19
+      // place walkon at 25,20 to start dialog
+      // WORKING HERE
+    }
   }
 }
 
