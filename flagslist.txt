@@ -29,6 +29,8 @@ health_ingrid - has asked Ingrid HEALTH
 all_health - has set all the above health_ flags
 spellbook - has low level spellbook
 spellbook2 - has full sized spellbook
+ivan_lastvisitchecktime - the time of the most recent check to see if Ivan is in Ash's tower
+ivan_lastvisit - whether Ivan was there
 get_shield - you've agreed to get Nyrani's shield
 shield_gotten - you've gotten the shield
 has_shield - you've given the shield to Nyrani
