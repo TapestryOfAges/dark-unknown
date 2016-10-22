@@ -1172,7 +1172,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
         else { alert("How did I get here? ais.FollowPath."); }
         if (!retval["nomove"]) { 
 //          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>Successful randomwalk.</span><br />"); }
-          DebugWrite("ai", "Successful randomwalk.<br />");
+          DebugWrite("ai", "Successful randomwalk to (" + who.getx() + "," + who.gety() + ").<br />");
           return retval; 
         }  // moved
       }
