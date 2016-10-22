@@ -114,6 +114,7 @@ mappages["poverty"].onload = function(mapref) {
     var anna = tile.getTopNPC();
     if (anna) {
       mapref.deleteThing(anna);
+      DUTime.removeEntityFrom(anna);
     }
   }
 }
