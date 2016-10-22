@@ -628,10 +628,12 @@ mappages["olympus0"].onload = function(mapref) {
     if (!DU.gameflags.getFlag("lvl2") && (!DU.gameflags.getFlag("rebel_prisoner"))) {
       var prisoner = mapref.getTile(24,13).getTopNPC();
       mapref.deleteThing(prisoner);
+      DUTime.removeEntityFrom(prisoner);
     }
     if (!DU.gameflags.getFlag("rebel_prisoner")) {
       var prisoner = mapref.getTile(24,18).getTopNPC();
       mapref.deleteThing(prisoner);      
+      DUTime.removeEntityFrom(prisoner);
     }
   }
 }

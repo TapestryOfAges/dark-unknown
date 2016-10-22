@@ -86,6 +86,7 @@ mappages["shadow1"].onload = function(mapref) {
     if (DU.gameflags["rescued_sam"]) {
       var sam = mapref.getTile(18,21).getTopNPC();
       mapref.deleteThing(sam);
+      DUTime.removeEntityFrom(sam);
     }
     delete DU.gameflags["shadow_safe"];
   }

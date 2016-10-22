@@ -63,7 +63,8 @@ mappages["asharden1"].features[21] = {name : 'Brazier', x : 14, y : 18};
 
 
 mappages["asharden1"].npcs = [];
-mappages["asharden1"].npcs[0] = {name : 'MageVillagerNPC', x : 25, y : 17, NPCName: 'Asharden', Desc: 'a wizard', Level: 6, int: 24, Conversation: 'asharden', ConversationFlag: 'spellbook2', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif'};
+mappages["asharden1"].npcs[0] = {name : 'MageVillagerNPC', x : 25, y : 17, NPCName: 'Asharden', Desc: 'wizard', Level: 6, int: 24, Conversation: 'asharden', ConversationFlag: 'spellbook2', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif'};
+mappages["asharden1"].npcs[1] = {name : 'MageVillagerNPC', x : 22, y : 19, NPCName: 'Ivan', Conversation: 'ivan_ash', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: '303.gif'};
 
 mappages["asharden1"].desc = "Asharden's Tower";
 mappages["asharden1"].music = 'Magic';
@@ -125,6 +126,10 @@ mappages["asharden1"].onload = function(mapref) {
       // place him at 22,19
       // place walkon at 25,20 to start dialog
       // WORKING HERE
+    } else {
+      var ivan = mapref.getTile(22,19).getTopNPC();
+      mapref.deleteThing(ivan);
+      DUTime.removeEntityFrom(ivan);
     }
   }
 }
