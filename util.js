@@ -128,7 +128,7 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
   
   var displaytile;
   // decide whether to draw a tile, draw it shaded, or make it darkness
-  var losresult = mapname.getLOS(centerx, centery, x, y, losgrid);
+  var losresult = mapname.getLOS(centerx, centery, x, y);
 
   var blocks = localacre.getBlocksLOS();
   

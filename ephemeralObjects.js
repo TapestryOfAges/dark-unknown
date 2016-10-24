@@ -951,7 +951,7 @@ MirrorWardTile.prototype.findNewTarget = function(caster) {
         // check for on screen from caster
         if ((displayspecs.leftedge <= val.getx()) && (val.getx() <= displayspecs.rightedge) && (displayspecs.topedge <= val.gety()) && (val.gety() <= displayspecs.bottomedge)) {
           // check for LoE from curtarget 
-          if (curtarget.getHomeMap().getLOS(curtarget.getx(), curtarget.gety(), val.getx(), val.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+          if (curtarget.getHomeMap().getLOS(curtarget.getx(), curtarget.gety(), val.getx(), val.gety(), 1) >= LOS_THRESHOLD) { 
             newtgt.push(val);
           }
         }
@@ -1237,7 +1237,7 @@ StormTile.prototype.doEffect = function() {
     var targetlist = [];
     $.each(npcs, function (idx, val) {
       if (caster.getAttitude() !== val.getAttitude()) {
-        if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
+        if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
           targetlist.push(val);
         }
       }

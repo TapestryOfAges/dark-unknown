@@ -1729,7 +1729,7 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
 			var block = this.getTile(i,j).getBlocksLOS();
       DebugWrite("light", "<br />LIGHT " + serial + " (" + x + "," + y + "): Checking shine on x:"+i+",y:"+j+", which blocks " + block + ".<br />");
 			if ((block > LOS_THRESHOLD) && (!lightsource.checkType("PC"))) {   
-        var LOSval = this.getLOS(x,y,i,j,losgrid,0,1,1);
+        var LOSval = this.getLOS(x,y,i,j,0,1,1);
         if (LOSval.ne > LOS_THRESHOLD) { LOSval.ne = LOS_THRESHOLD; }
         if (LOSval.nw > LOS_THRESHOLD) { LOSval.nw = LOS_THRESHOLD; }
         if (LOSval.se > LOS_THRESHOLD) { LOSval.se = LOS_THRESHOLD; }
@@ -1752,7 +1752,7 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
           this.getTile(i,j).addLocalLight(lightsource,totlight,this);
         }
 			} else {
-        var LOSval = this.getLOS(x,y,i,j,losgrid,0,0,1);
+        var LOSval = this.getLOS(x,y,i,j,0,0,1);
         if (LOSval.ne > LOS_THRESHOLD) { LOSval.ne = LOS_THRESHOLD; }
         if (LOSval.nw > LOS_THRESHOLD) { LOSval.nw = LOS_THRESHOLD; }
         if (LOSval.se > LOS_THRESHOLD) { LOSval.se = LOS_THRESHOLD; }
@@ -1797,7 +1797,7 @@ GameMap.prototype.removeMapLight = function(serial,light,x,y) {
 //  return genLOS(x1,y1,x2,y2,losgrid,"center","center",this, 1, 0);
 //}
 
-GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, checkforlight) {
+GameMap.prototype.getLOS = function(x1,y1,x2,y2, useloe, checklight, checkforlight) {
 //  if (debug) { dbs.writeln("<span style='color:grey;font-style:italic'>&nbsp;Getting LOS between " + x1 + ", " + y1 + " and " + x2 +", " + y2 + ".<br /></span>");  }
   // checklight = 0, check is for LOS only or light on an object that does not block LOS or the light source is the PC
   // checklight = 1, check is for light on an object that does block LOS
@@ -1828,7 +1828,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
     }
     return 0;
   } else if (( (x2-x1) === 0) && ( (y2-y1) < 0)) {  // north line
-    totalLOS = genLOS(x1,y1,x2,y2,losgrid,"center","center",this, useloe, checklight);
+    totalLOS = genLOS(x1,y1,x2,y2,"center","center",this, useloe, checklight);
 
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -1839,7 +1839,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		  else { return totalLOS; }		   
 		}
   } else if (( (x2-x1) > 0) && ( (y2-y1) < 0)) { // NE quadrant
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","sw",this, useloe, checklight);
+		totalLOS = genLOS(x1,y1,x2,y2,"ne","sw",this, useloe, checklight);
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
@@ -1850,12 +1850,12 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-		  totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","nw",this, useloe, checklight);
+		  totalLOS = genLOS(x1,y1,x2,y2,"ne","nw",this, useloe, checklight);
 		} else {
 		  // look at the sw of the tile above rather than the nw of the dest tile so the dest tile's 
 		  // effect on los is calculated. The same is true everywhere else in this function that 
 		  // I split the totalLOS check in two.
-		  totalLOS = genLOS(x1,y1,x2,y2-1,losgrid,"ne","sw",this, useloe, checklight);
+		  totalLOS = genLOS(x1,y1,x2,y2-1,"ne","sw",this, useloe, checklight);
 		}
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -1867,9 +1867,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","se",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"ne","se",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2+1,y2,losgrid,"ne","sw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2+1,y2,"ne","sw",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -1880,7 +1880,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 		
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","sw",this, useloe, checklight);
+		totalLOS = genLOS(x1,y1,x2,y2,"nw","sw",this, useloe, checklight);
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
@@ -1891,9 +1891,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","nw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"nw","nw",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2,y2-1,losgrid,"nw","sw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2-1,"nw","sw",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -1905,9 +1905,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","se",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"nw","se",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2+1,y2,losgrid,"nw","sw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2+1,y2,"nw","sw",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -1918,7 +1918,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","sw",this, useloe, checklight);
+		totalLOS = genLOS(x1,y1,x2,y2,"se","sw",this, useloe, checklight);
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
@@ -1929,9 +1929,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","nw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"se","nw",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2,y2-1,losgrid,"se","sw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2-1,"se","sw",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -1943,9 +1943,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","se",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"se","se",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2+1,y2,losgrid,"se","sw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2+1,y2,"se","sw",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -1957,7 +1957,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
   } else if (( (x2-x1) > 0) && ( (y2-y1) === 0)) {  // east line
-    totalLOS = genLOS(x1,y1,x2,y2,losgrid,"center","center",this, useloe, checklight);
+    totalLOS = genLOS(x1,y1,x2,y2,"center","center",this, useloe, checklight);
 
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -1969,9 +1969,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		}    
   } else if (( (x2-x1) > 0) && ( (y2-y1) > 0)) { // SE quadrant
     if (!checklight) {
-		  totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","sw",this, useloe, checklight);
+		  totalLOS = genLOS(x1,y1,x2,y2,"se","sw",this, useloe, checklight);
 		} else {
-		  totalLOS = genLOS(x1,y1,x2,y2+1,losgrid,"se","nw",this, useloe, checklight);
+		  totalLOS = genLOS(x1,y1,x2,y2+1,"se","nw",this, useloe, checklight);
 		}
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -1982,7 +1982,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","nw",this, useloe, checklight);
+		totalLOS = genLOS(x1,y1,x2,y2,"se","nw",this, useloe, checklight);
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
@@ -1993,9 +1993,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","ne",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"se","ne",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2+1,y2,losgrid,"se","nw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2+1,y2,"se","nw",this, useloe, checklight);
     }
 		if  (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2007,9 +2007,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 		
 		if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","sw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"sw","sw",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2,y2+1,losgrid,"sw","nw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2+1,"sw","nw",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2020,7 +2020,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","nw",this, useloe, checklight);
+		totalLOS = genLOS(x1,y1,x2,y2,"sw","nw",this, useloe, checklight);
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
@@ -2031,9 +2031,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","ne",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"sw","ne",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2+1,y2,losgrid,"sw","nw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2+1,y2,"sw","nw",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2045,9 +2045,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
 		if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","sw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"ne","sw",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2,y2+1,losgrid,"ne","nw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2+1,"ne","nw",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2058,7 +2058,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","nw",this, useloe, checklight);
+		totalLOS = genLOS(x1,y1,x2,y2,"ne","nw",this, useloe, checklight);
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
@@ -2069,9 +2069,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","ne",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"ne","ne",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2+1,y2,losgrid,"ne","nw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2+1,y2,"ne","nw",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2083,7 +2083,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
   } else if (( (x2-x1) === 0) && ( (y2-y1) > 0)) {  // south line
-    totalLOS = genLOS(x1,y1,x2,y2,losgrid,"center","center",this, useloe, checklight);
+    totalLOS = genLOS(x1,y1,x2,y2,"center","center",this, useloe, checklight);
 
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2094,7 +2094,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		  else { return totalLOS; }		   
 		}    
   } else if (( (x2-x1) < 0) && ( (y2-y1) > 0)) { // SW quadrant
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","ne",this, useloe, checklight);
+		totalLOS = genLOS(x1,y1,x2,y2,"sw","ne",this, useloe, checklight);
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
@@ -2105,9 +2105,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
 		if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","nw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"sw","nw",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2-1,y2,losgrid,"sw","ne",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2-1,y2,"sw","ne",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2119,9 +2119,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","se",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"sw","se",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2,y2+1,losgrid,"sw","ne",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2+1,"sw","ne",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2132,7 +2132,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 		
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","ne",this, useloe, checklight);
+		totalLOS = genLOS(x1,y1,x2,y2,"nw","ne",this, useloe, checklight);
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
@@ -2143,9 +2143,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
 		if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","nw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"nw","nw",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2-1,y2,losgrid,"nw","ne",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2-1,y2,"nw","ne",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2157,9 +2157,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
 		if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","se",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"nw","se",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2,y2+1,losgrid,"nw","ne",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2+1,"nw","ne",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2170,7 +2170,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","ne",this, useloe, checklight);
+		totalLOS = genLOS(x1,y1,x2,y2,"se","ne",this, useloe, checklight);
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
@@ -2181,9 +2181,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
 		if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","nw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"se","nw",this, useloe, checklight);
     } else  {
-      totalLOS = genLOS(x1,y1,x2-1,y2,losgrid,"se","ne",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2-1,y2,"se","ne",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2195,9 +2195,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
 		if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"se","se",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"se","se",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2,y2+1,losgrid,"se","ne",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2+1,"se","ne",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2209,7 +2209,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
   } else if (( (x2-x1) < 0) && ( (y2-y1) === 0)) {  // west line
-    totalLOS = genLOS(x1,y1,x2,y2,losgrid,"center","center",this, useloe, checklight);
+    totalLOS = genLOS(x1,y1,x2,y2,"center","center",this, useloe, checklight);
 
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2221,9 +2221,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		}    
   } else if (( (x2-x1) < 0) && ( (y2-y1) < 0)) { // NW quadrant
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","ne",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"sw","ne",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2,y2-1,losgrid,"sw","se",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2-1,"sw","se",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2235,9 +2235,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","sw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"sw","sw",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2-1,y2,losgrid,"sw","se",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2-1,y2,"sw","se",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2248,7 +2248,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"sw","se",this, useloe, checklight);
+		totalLOS = genLOS(x1,y1,x2,y2,"sw","se",this, useloe, checklight);
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
@@ -2259,9 +2259,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 		
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","ne",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"nw","ne",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2,y2-1,losgrid,"nw","se",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2-1,"nw","se",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2273,9 +2273,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","sw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"nw","sw",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2-1,y2,losgrid,"nw","se",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2-1,y2,"nw","se",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2286,7 +2286,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"nw","se",this, useloe, checklight);
+		totalLOS = genLOS(x1,y1,x2,y2,"nw","se",this, useloe, checklight);
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
@@ -2297,9 +2297,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }    
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","ne",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"ne","ne",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2,y2-1,losgrid,"ne","se",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2-1,"ne","se",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2311,9 +2311,9 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
     if (!checklight) {
-      totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","sw",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2,y2,"ne","sw",this, useloe, checklight);
     } else {
-      totalLOS = genLOS(x1,y1,x2-1,y2,losgrid,"ne","se",this, useloe, checklight);
+      totalLOS = genLOS(x1,y1,x2-1,y2,"ne","se",this, useloe, checklight);
     }
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
@@ -2324,7 +2324,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
 		}
 		if (totalLOS < trueLOS) { trueLOS = totalLOS; }
 
-		totalLOS = genLOS(x1,y1,x2,y2,losgrid,"ne","se",this, useloe, checklight);
+		totalLOS = genLOS(x1,y1,x2,y2,"ne","se",this, useloe, checklight);
 		if (totalLOS < LOS_THRESHOLD) { 
 		  if (checklight) {
 		    if (totalLOS < quartersLOS.center) { quartersLOS.center = totalLOS; }
@@ -2340,7 +2340,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
   return trueLOS;
 }
 
-function genLOS(x1,y1,x2,y2,xlosgrid,startsection,endsection,losmap, useloe, allin) {
+function genLOS(x1,y1,x2,y2,startsection,endsection,losmap, useloe, allin) {
 	  var LOSes = losgrid.getLOS(x1,y1,x2,y2,startsection,endsection);
 	  var totalLOS = 0;
 	  if (LOSes[0]) {

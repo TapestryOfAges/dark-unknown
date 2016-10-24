@@ -51,7 +51,7 @@ ais.seekPC = function(who,radius) {
   if (whomap === PC.getHomeMap()) {
     if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= radius) {
       // if can see
-      var losresult = whomap.getLOS(who.getx(), who.gety(), PC.getx(), PC.gety(), losgrid);
+      var losresult = whomap.getLOS(who.getx(), who.gety(), PC.getx(), PC.gety());
       if (losresult < LOS_THRESHOLD) {
 //        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Nearby and can see the PC! Aggroing.</span><br />"); }
         DebugWrite("ai", "SeekPC: Nearby and can see the PC! Aggroing.<br />");
@@ -269,7 +269,7 @@ function TryMelee(who) {
           var doatk = 1;
           if (radius > 1) { 
             // check LOE first
-            if (whomap.getLOS(who.getx(), who.gety(), val.getx(), val.gety(), losgrid, 1) >= LOS_THRESHOLD) { doatk = 0; }
+            if (whomap.getLOS(who.getx(), who.gety(), val.getx(), val.gety(), "loe") >= LOS_THRESHOLD) { doatk = 0; }
           }
           // attack val and call it a day!
           if (doatk) {
@@ -1047,7 +1047,7 @@ ais.HuntPC = function(who, radius) {
 	// in the game display
 	if (GetDistance(who.getx(), who.gety(), locx, locy) > (radius/3)) {   
     
-    var losresult = themap.getLOS(who.getx(), who.gety(), locx, locy, losgrid);
+    var losresult = themap.getLOS(who.getx(), who.gety(), locx, locy);
     if (losresult > 2) { 
 //      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>PC is within radius but not in sight, no hunt.</span><br />"); }
       DebugWrite("ai", "PC is within radius but not in sight, no hunt.<br />");

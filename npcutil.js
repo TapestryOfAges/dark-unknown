@@ -122,7 +122,7 @@ function Attack(atk, def) {
     
     var themap = atk.getHomeMap();
       
-    loeresult = themap.getLOS(atk.getx(), atk.gety(), def.getx(), def.gety(), losgrid, 1);
+    loeresult = themap.getLOS(atk.getx(), atk.gety(), def.getx(), def.gety(), 1);
     
     if (loeresult > LOS_THRESHOLD) {
       retval["txt"] = "You cannot attack that target from here.";
