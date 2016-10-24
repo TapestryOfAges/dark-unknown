@@ -841,7 +841,7 @@ function PerformLook() {
       losval = 1;
     }
   }
-//  var losval = map.getLOS(PC.getx(), PC.gety(), targetCursor.x, targetCursor.y, losgrid);
+
   if (losval >= LOS_THRESHOLD) { 
   	var retval = {};
   	retval["txt"] = "You cannot see that.";
@@ -1223,7 +1223,7 @@ function PerformTalkTarget() {
       losval = 1;
     }
   }
-//  var losval = map.getLOS(PC.getx(), PC.gety(), targetCursor.x, targetCursor.y, losgrid);
+
   if (losval >= LOS_THRESHOLD) { 
   	var retval = {};
   	retval["txt"] = "You cannot see that.";
