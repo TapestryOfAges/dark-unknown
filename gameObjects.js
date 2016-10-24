@@ -11166,7 +11166,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	var passx = startx + parseInt(diffx);
 	var passy = starty + parseInt(diffy);
 	var tile = map.getTile(passx,passy);
-	var retval = {};
+	var retval = { fin:1 };
 	if (tile === "OoB") { 
 	  if (noexit) {
 	    // NPC won't step out of the map

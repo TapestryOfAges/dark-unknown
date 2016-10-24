@@ -38,10 +38,10 @@ debugstyle.all = "color:black";
 // if (debug) {  ActivateDebug(1); }
 
 function ActivateDebug(startup) { 
-  if (!dbs) {
-    debugscreen = window.open('','debugscreen');
-    dbs = debugscreen.document;
-  }
+//  if (!dbs) {
+//    debugscreen = window.open('','debugscreen');
+//    dbs = debugscreen.document;
+//  }
   
   var wide = $(window).width() - 800;
   if (!wide) { wide = 300; }

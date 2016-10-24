@@ -269,7 +269,7 @@ function TryMelee(who) {
           var doatk = 1;
           if (radius > 1) { 
             // check LOE first
-            if (whomap.getLOE(who.getx(), who.gety(), val.getx(), val.gety(), losgrid, 1) >= LOS_THRESHOLD) { doatk = 0; }
+            if (whomap.getLOS(who.getx(), who.gety(), val.getx(), val.gety(), losgrid, 1) >= LOS_THRESHOLD) { doatk = 0; }
           }
           // attack val and call it a day!
           if (doatk) {
