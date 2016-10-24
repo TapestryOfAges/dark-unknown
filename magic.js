@@ -343,7 +343,7 @@ function PerformAwaken(caster, infused, free, tgt) {
   resp["fin"] = 1;
   var desc = "";
 
-  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -484,7 +484,7 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
   var npcs = castermap.getNPCsAndPCs();
   $.each(npcs, function (idx, val) {
     if (val.getAttitude() !== caster.getAttitude()) {
-      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOE(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
+      if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),losgrid,1) < LOS_THRESHOLD )) {
         if (!CheckResist(caster,val,infused,0)) {
           var distract = localFactory.createTile("Distract");
           ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
@@ -678,7 +678,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
   resp["fin"] = 1;
   var desc = "";
 
-  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -922,7 +922,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   resp["fin"] = 1;
   var desc = tgt.getDesc();
 
-  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -1022,7 +1022,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
   resp["fin"] = 1;
 
   var tgtmap = caster.getHomeMap();
-  if (tgtmap.getLOE(caster.getx(), caster.gety(), tgt.x, tgt.y, losgrid, 1) >= LOS_THRESHOLD) { 
+  if (tgtmap.getLOS(caster.getx(), caster.gety(), tgt.x, tgt.y, losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach there!";
     return resp;
@@ -1039,11 +1039,15 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
   if (free) { power = Dice.roll("1d5+12"); }  
   var radius = Math.floor(power/10) +1; 
 
-//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Calculating poison cloud.<br /></span>"); }
-  DebugWrite("magic", "Calculating poison cloud.<br />");
-  $.each(tgtmap.getNPCsAndPCs(), function(idx, val) {
+  DebugWrite("magic", "Calculating poison cloud. Radius: " + radius + "<br />");
+  
+  var anyonepoisoned = 0;
+  var potential_targets = tgtmap.getNPCsAndPCs();
+  
+  $.each(potential_targets, function(idx, val) {
     if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) < radius) && (val !== caster)) {
-      if (tgtmap.getLOE(val.getx(),val.gety(),tgt.x,tgt.y) < LOS_THRESHOLD) {
+      if (tgtmap.getLOS(val.getx(),val.gety(),tgt.x,tgt.y,losgrid,1) < LOS_THRESHOLD) {
+        anyonepoisoned = 1;
         if (CheckResist(caster,val,infused,0) || (val.getSpellEffectsByName("Poison"))) {
           // poison resisted
           ShowEffect(val, 700, "X.gif");
@@ -1079,7 +1083,11 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
       }
     }
   });
-    
+  
+  if (!anyonepoisoned) {
+    maintext.addText("No one is within the cloud.");
+  }
+  resp["input"] = "&gt;";
   return resp;
 }
 
@@ -1343,7 +1351,7 @@ function PerformFireball(caster, infused, free, tgt) {
   resp["fin"] = 1;
   var desc = tgt.getDesc();
 
-  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -1433,7 +1441,7 @@ function PerformIceball(caster, infused, free, tgt) {
   resp["fin"] = 1;
   var desc = tgt.getDesc();
 
-  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -2082,7 +2090,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
   resp["fin"] = 1;
   var desc = tgt.getDesc();
 
-  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -2377,7 +2385,7 @@ function PerformParalyze(caster, infused, free, tgt) {
   resp["fin"] = 1;
   var desc = "";
 
-  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -2744,7 +2752,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
   var desc = tgt.getDesc();
   var castmap = caster.getHomeMap();
 
-  if (castmap.getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+  if (castmap.getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -2848,7 +2856,7 @@ function PerformExplosion(caster, infused, free, tgt) {
   var desc = tgt.getDesc();
   var castmap = caster.getHomeMap();
 
-  if (castmap.getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+  if (castmap.getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -3139,7 +3147,7 @@ function PerformCharm(caster, infused, free, tgt) {
   resp["fin"] = 1;
   var desc = "";
 
-  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -3442,7 +3450,7 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
   resp["fin"] = 1;
   var desc = tgt.getDesc();
 
-  if (caster.getHomeMap().getLOE(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
+  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), losgrid, 1) >= LOS_THRESHOLD) { 
     resp["fin"] = 2;
     resp["txt"] = "Your spell cannot reach that target!";
     return resp;
@@ -3933,7 +3941,7 @@ function PerformSpellcast() {
   	return retval;
   }
 
-  if (themap.getLOE(PC.getx(), PC.gety(), targetCursor.x, targetCursor.y, losgrid, 1) >= LOS_THRESHOLD) { 
+  if (themap.getLOS(PC.getx(), PC.gety(), targetCursor.x, targetCursor.y, losgrid, 1) >= LOS_THRESHOLD) { 
     retval["fin"] = 0;
     retval["txt"] = "Your spell cannot reach there!";
    	retval["input"] = "&gt;";

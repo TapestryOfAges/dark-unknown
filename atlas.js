@@ -1793,9 +1793,9 @@ GameMap.prototype.removeMapLight = function(serial,light,x,y) {
 	}
 }
 
-GameMap.prototype.getLOE = function(x1,y1,x2,y2,losgrid) {
-  return genLOS(x1,y1,x2,y2,losgrid,"center","center",this, 1, 0);
-}
+//GameMap.prototype.getLOE = function(x1,y1,x2,y2,losgrid) {
+//  return genLOS(x1,y1,x2,y2,losgrid,"center","center",this, 1, 0);
+//}
 
 GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, checkforlight) {
 //  if (debug) { dbs.writeln("<span style='color:grey;font-style:italic'>&nbsp;Getting LOS between " + x1 + ", " + y1 + " and " + x2 +", " + y2 + ".<br /></span>");  }
@@ -2340,7 +2340,7 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2,losgrid, useloe, checklight, che
   return trueLOS;
 }
 
-function genLOS(x1,y1,x2,y2,losgrid,startsection,endsection,losmap, useloe, allin) {
+function genLOS(x1,y1,x2,y2,xlosgrid,startsection,endsection,losmap, useloe, allin) {
 	  var LOSes = losgrid.getLOS(x1,y1,x2,y2,startsection,endsection);
 	  var totalLOS = 0;
 	  if (LOSes[0]) {
