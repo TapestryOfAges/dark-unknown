@@ -1067,12 +1067,13 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           maintext.addText(desc);
           var poisontile = localFactory.createTile("Poison");
           var duration = (Dice.roll("2d10") + power - 15);
+          alert(duration);
           if (duration < 2) { duration = 2; }
           duration = duration * SCALE_TIME;
-          poison.setExpiresTime(duration + DUTime.getGameClock());
-          val.addSpellEffect(poison);
+          poisontile.setExpiresTime(duration + DUTime.getGameClock());
+          val.addSpellEffect(poisontile);
           // poisoned!
-          alert("poisoned " + val.getName());
+          alert("poisoned " + val.getName() + " for + " + duration);
           
           if (infused) {
             var dmg = Dice.roll(DMG_LIGHT);
