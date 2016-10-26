@@ -547,7 +547,6 @@ QUnit.test("Test Magic Bolt spell and resistance", function( assert ) {
   testmap.placeThing(6,7,tgtmob);
 
   Dice.roll = function() {
-    if (!Dice.rollnum) { Dice.rollnum = 1; }
     if (Dice.rollnum === 1) { Dice.rollnum++; return 10; } // dmg
     if (Dice.rollnum === 2) { Dice.rollnum++; return 10; } // +dmg
     if (Dice.rollnum === 3) { Dice.rollnum++; return 10; } // succeed at resist
@@ -555,6 +554,7 @@ QUnit.test("Test Magic Bolt spell and resistance", function( assert ) {
     if (Dice.rollnum === 5) { Dice.rollnum++; return 10; } // +dmg
     if (Dice.rollnum === 6) { Dice.rollnum++; return 100; } // fail at resist
   }
+  Dice.rollnum = 1;
 
   tgtmob.setHP(40);
   assert.deepEqual(tgtmob.getHP(),40,"HP set to 40.");
@@ -592,16 +592,34 @@ QUnit.test("Test Poison Cloud", function( assert ) {
   testmap.placeThing(6,7,tgtmob);
   
   Dice.roll = function() {
-    if (!Dice.rollnum) { Dice.rollnum = 1; }
-    if (Dice.rollnum === 1) { Dice.rollnum++; return 100; alert("resist");} // fail resist
-    if (Dice.rollnum === 2) { Dice.rollnum++; return 1; alert("duration"); } // short duration
-    if (Dice.rollnum === 3) { alert("what?"); }
+    if (Dice.rollnum === 1) { Dice.rollnum++; return 100; } // fail resist
+    if (Dice.rollnum === 2) { Dice.rollnum++; return 1; } // short duration
+    if (Dice.rollnum === 3) { Dice.rollnum++; return 100; } // fail resist
+    if (Dice.rollnum === 4) { Dice.rollnum++; return 100; } // fail resist
+    if (Dice.rollnum === 5) { Dice.rollnum++; return 8; } // longer duration
+    if (Dice.rollnum === 6) { Dice.rollnum++; return 10; } // damage
   }  
+  Dice.rollnum = 1;
   
   resp = PerformPoisonCloud(castermob,0,0,{x:7,y:8});
   
   var poison = tgtmob.getSpellEffectsByName("Poison");
   assert.deepEqual(poison.getExpiresTime(),DUTime.getGameClock()+2*SCALE_TIME,"Checking poison duration and incidentally, existence.");
+  
+  var tgtmob2 = localFactory.createTile("TownGuardNPC");
+  testmap.placeThing(7,7,tgtmob2);
+  
+  tgtmob2.dealDamage = function(dmg,from,type) {
+    this.dealtDamage = dmg;
+  }
+  resp = PerformPoisonCloud(castermob,1,0,{x:7,y:8});
+  
+  poison = tgtmob.getSpellEffectsByName("Poison");
+  assert.deepEqual(poison.getExpiresTime(),DUTime.getGameClock()+2*SCALE_TIME,"Checking poison duration again- shouldn't have changed.");
+  
+  poison = tgtmob2.getSpellEffectsByName("Poison");
+  assert.deepEqual(poison.getExpiresTime(),DUTime.getGameClock()+7*SCALE_TIME,"Checking poison duration on second guy.");
+  assert.deepEqual(tgtmob2.dealtDamage,10,"Hit for 10.");
   
   maps.deleteMap("unittest");
 });
