@@ -1048,7 +1048,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
     if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) < radius) && (val !== caster)) {
       if (tgtmap.getLOS(val.getx(),val.gety(),tgt.x,tgt.y,1) < LOS_THRESHOLD) {
         anyonepoisoned = 1;
-        if (CheckResist(caster,val,infused,0) || (val.getSpellEffectsByName("Poison"))) {
+        if (val.getSpellEffectsByName("Poison") || CheckResist(caster,val,infused,0)) {
           // poison resisted
           ShowEffect(val, 700, "X.gif");
           var desc = val.getDesc() + " resists!";
@@ -1067,13 +1067,11 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
           maintext.addText(desc);
           var poisontile = localFactory.createTile("Poison");
           var duration = (Dice.roll("2d10") + power - 15);
-          alert(duration);
           if (duration < 2) { duration = 2; }
           duration = duration * SCALE_TIME;
           poisontile.setExpiresTime(duration + DUTime.getGameClock());
           val.addSpellEffect(poisontile);
           // poisoned!
-          alert("poisoned " + val.getName() + " for + " + duration);
           
           if (infused) {
             var dmg = Dice.roll(DMG_LIGHT);
