@@ -880,7 +880,7 @@ function SlimeNPCTile() {
   this.withdraw = '0';
   this.graphic = '331.gif';
   this.altgraphic = ['365.gif',];
-  this.meleeAttackAs = 'Fists';
+  this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
   this.armorDefense = 10;
@@ -970,7 +970,7 @@ function PythonNPCTile() {
   this.name = 'PythonNPC';
   this.level = 2;
   this.addhp = 0;
-  this.str = 10;
+  this.str = 8;
   this.dex = 12;
   this.int = 3;
   this.alignment = 'Neutral';
@@ -2033,7 +2033,10 @@ function PaladinNPCTile() {
   this.altgraphic = ['307.2.gif','paladin-offcolor.gif',];
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
-  this.armorAs = 'PlateArmor';
+  this.armorAs = 'none';
+  this.armorDefense = 35;
+  this.armorAbsorb = 50;
+  this.armorResist = 15;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'High Adventurer';
