@@ -1103,7 +1103,7 @@ magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caste
   }
   resp["fin"] = 1;
   var prot = localFactory.createTile("Protection");
-  duration = caster.getInt() * 3 * SCALE_TIME;
+  var duration = caster.getInt() * 3 * SCALE_TIME;
   var power = Math.floor(caster.getInt()*2/3)+1;
   if (infused) { 
     duration = duration * 2; 
@@ -1141,7 +1141,7 @@ magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID].executeSpell = function(caster, infus
   var features = castermap.features.getAll();
   $.each(features, function (idx, val) {
     if (typeof val.getLocked == "function") {
-      if (GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) <= 1) {
+      if (GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety(), "square") <= 1) {
         var lock = val.getLocked();
         if ((lock === 1) || ((lock === 2) && (infused))) {
           val.unlockMe();
