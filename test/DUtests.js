@@ -601,7 +601,7 @@ QUnit.test("Test Poison Cloud", function( assert ) {
   }  
   Dice.rollnum = 1;
   
-  resp = PerformPoisonCloud(castermob,0,0,{x:7,y:8});
+  var resp = PerformPoisonCloud(castermob,0,0,{x:7,y:8});
   
   var poison = tgtmob.getSpellEffectsByName("Poison");
   assert.deepEqual(poison.getExpiresTime(),DUTime.getGameClock()+2*SCALE_TIME,"Checking poison duration and incidentally, existence.");
@@ -623,3 +623,24 @@ QUnit.test("Test Poison Cloud", function( assert ) {
   
   maps.deleteMap("unittest");
 });
+
+QUnit.test("Test Protection", function( assert ) {
+
+  var maps = new MapMemory();
+  maps.addMap("unittest");
+  var testmap = maps.getMap("unittest");
+
+  var castermob = localFactory.createTile("PaladinNPC");
+  testmap.placeThing(4,7,castermob);
+  
+  assert.deepEqual(castermob.getDefense(),41,"Checking starting defense (41).");
+  
+  var resp = magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell(castermob,0,0);
+  
+  assert.deepEqual(castermob.getDefense(),51,"Checking Protected defense (51).");
+  var prot = castermob.getSpellEffectsByName("Protection");
+  assert.deepEqual(prot.getExpiresTime(),DUTime.getGameClock()+(14*3*SCALE_TIME),"Checking Protection duration.");
+  
+  maps.deleteMap("unittest");
+});
+  
