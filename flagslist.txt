@@ -69,3 +69,8 @@ bdc_gate_open - the gate is currently open
 rebel_prisoner - you've talked to the prince and he's asked you to look in on the prisoner
 taran_serene - you've given Taran the password
 rebel_talked - you've talked to the rebel prisoner
+bard_neophyte - you've talked to markus about joining the bards
+bard_journeyman - you've joined the guild as an apprentice
+bard_master - you're a full member of the guild
+bard_book_quest - you've found the book Olivia is looking for
+
