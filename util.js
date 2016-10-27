@@ -780,7 +780,7 @@ function DamageFlash() {
 }
 
 function GetDistance(x1,y1,x2,y2,disttype) {
-  if (disttype === "square") { return GetSquareDistance(x1,y2,x2,y2); }
+  if (disttype === "square") { return GetSquareDistance(x1,y1,x2,y2); }
   if (disttype === "manhatten") { return GetManhattenDistance(x1,y1,x2,y2); }
   var dist = Math.pow(Math.pow(x1-x2,2) + Math.pow(y1-y2,2), 1/2)
   return dist;
