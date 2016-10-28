@@ -3554,6 +3554,8 @@ BrazierTile.prototype.use = function(who) {
     DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
     
     retval["txt"] = "You extinguish the brazier.";
+  } else {
+    retval["txt"] = "The brazier refuses to go out.";
   }
   
   return retval;
@@ -3584,8 +3586,76 @@ UnlitBrazierTile.prototype.use = function(who) {
     DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
     
     retval["txt"] = "You light the brazier.";
+  } else {
+    retval["txt"] = "The brazier refuses to light.";
   }
   
+  return retval;
+}
+
+function WEBrazierTile() {
+	this.name = "WEBrazier";
+	this.graphic = "brazier.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "brazier";
+	
+	LightEmitting.call(this, 2);  
+}
+WEBrazierTile.prototype = new FeatureObject();
+
+WEBrazierTile.prototype.use = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  if (!this.alwayslit) {
+    var map = this.getHomeMap();
+    var unlit = localFactory.createTile("UnlitWEBrazier");
+    var x = this.getx();
+    var y = this.gety();
+    map.deleteThing(this);
+    map.placeThing(x,y,unlit);
+    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    
+    retval["txt"] = "You extinguish the brazier.";
+  } else {
+    retval["txt"] = "The brazier refuses to go out.";
+  }
+  
+  retval = CheckWEEntrance(retval);
+  return retval;
+}
+
+function UnlitWEBrazierTile() {
+	this.name = "UnlitWEBrazier";
+	this.graphic = "features.gif";
+	this.spritexoffset = "-128";
+	this.spriteyoffset = "-64";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+  this.prefix = "an";
+	this.desc = "unlit brazier";
+}
+UnlitWEBrazierTile.prototype = new FeatureObject();
+
+UnlitWEBrazierTile.prototype.use = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  if (!this.alwaysout) {
+    var map = this.getHomeMap();
+    var lit = localFactory.createTile("WEBrazier");
+    var x = this.getx();
+    var y = this.gety();
+    map.deleteThing(this);
+    map.placeThing(x,y,lit);
+    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    
+    retval["txt"] = "You light the brazier.";
+  } else {
+    retval["txt"] = "The brazier refuses to light.";
+  }
+  
+  retval = CheckWEEntrance(retval);
   return retval;
 }
 
