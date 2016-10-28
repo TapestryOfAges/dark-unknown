@@ -703,6 +703,11 @@ tileFactory.prototype.makeUnlitBrazierTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeUnlitWEBrazierTile = function() {
+  var newTile = new UnlitWEBrazierTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpitTile = function() {
   var newTile = new SpitTile();
   return newTile;
