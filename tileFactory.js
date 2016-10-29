@@ -163,6 +163,11 @@ tileFactory.prototype.makeRuinsWallTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeIllusionaryRuinsWallTile = function() {
+  var newTile = new IllusionaryRuinsWallTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRuinsWallMidLeftBottomRightTile = function() {
   var newTile = new RuinsWallMidLeftBottomRightTile();
   return newTile;
@@ -703,8 +708,18 @@ tileFactory.prototype.makeUnlitBrazierTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWEBrazierTile = function() {
+  var newTile = new WEBrazierTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeUnlitWEBrazierTile = function() {
   var newTile = new UnlitWEBrazierTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeIllusionaryEnergyFieldTile = function() {
+  var newTile = new IllusionaryEnergyFieldTile();
   return newTile;
 }
 

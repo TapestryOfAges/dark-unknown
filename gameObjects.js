@@ -1723,6 +1723,20 @@ function RuinsWallTile() {
 }
 RuinsWallTile.prototype = new TerrainObject();
 
+function IllusionaryRuinsWallTile() {
+  this.name = "IllusionaryRuinsWall";
+//  this.graphic = "056.gif";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "#600060";
+}
+IllusionaryRuinsWallTile.prototype = new TerrainObject();
+
 function RuinsWallMidLeftBottomRightTile() {
   this.name = "RuinsWallMidLeftBottomRight";
 //  this.graphic = "056.gif";
@@ -3622,7 +3636,7 @@ WEBrazierTile.prototype.use = function(who) {
     retval["txt"] = "The brazier refuses to go out.";
   }
   
-  retval = CheckWEEntrance(retval);
+  retval = CheckWEEntrance(this.getHomeMap());
   return retval;
 }
 
@@ -3655,9 +3669,37 @@ UnlitWEBrazierTile.prototype.use = function(who) {
     retval["txt"] = "The brazier refuses to light.";
   }
   
-  retval = CheckWEEntrance(retval);
+  retval = CheckWEEntrance(this.getHomeMap());
   return retval;
 }
+
+function CheckWEEntrance(themap) {
+  var ne_brazier = themap.getTile(11,43).getFeatures().getByName("UnlitWEBrazierTile");
+  if (!ne_brazier) { ne_brazier = themap.getTile(7,43).getFeatures().getByName("WEBrazierTile"); }
+  var nw_brazier = themap.getTile(7,43).getFeatures().getByName("UnlitWEBrazierTile");
+  if (!nw_brazier) { ne_brazier = themap.getTile(7,43).getFeatures().getByName("WEBrazierTile"); }
+  var se_brazier = themap.getTile(11,47).getFeatures().getByName("UnlitWEBrazierTile");
+  if (!se_brazier) { ne_brazier = themap.getTile(7,43).getFeatures().getByName("WEBrazierTile"); }
+  var sw_brazier = themap.getTile(7,47).getFeatures().getByName("UnlitWEBrazierTile");
+  if (!sw_brazier) { ne_brazier = themap.getTile(7,43).getFeatures().getByName("WEBrazierTile"); }
+  
+}
+
+function IllusionaryEnergyFieldTile() {
+	this.name = "IllusionaryEnergyField";
+  this.graphic = "fields.gif";
+	this.passable = 0; // impassable - wonky outdoors, but necessary indoors
+	this.blocklos = 0;
+	this.blockloe = 1;
+//	this.light = 1;
+  this.prefix = "a"; 
+	this.desc = "wall";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "0";
+	
+  this.invisible = 1;
+}
+IllusionaryEnergyFieldTile.prototype = new FeatureObject();
 
 function SpitTile() {
 	this.name = "Spit";
