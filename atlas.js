@@ -477,6 +477,10 @@ Acre.prototype.getTopFeature = function() {
 	return (this.features.getTop());
 }
 
+Acre.prototype.getFeatureByName = function(featurename) {
+  return (this.features.getByName(featurename));
+}
+
 Acre.prototype.getTopVisibleFeature = function() {
 	var features = this.features.getAll();
 	var ind = features.length;
