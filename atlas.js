@@ -121,6 +121,8 @@ function Atlas() {
     "Wall" : '##',
     '!#' : "RuinsWall",
     "RuinsWall" : '!#',
+    'i#' : "IllusionaryRuinsWall",
+    "IllusionaryRuinsWall" : 'i#',
     '~_' : "RuinsWallMidLeftBottomRight",
     "RuinsWallMidLeftBottomRight" : '~_',
     '_~' : "RuinsWallBottomLeftMidRight",
