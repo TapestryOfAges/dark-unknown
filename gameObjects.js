@@ -3636,7 +3636,7 @@ WEBrazierTile.prototype.use = function(who) {
     retval["txt"] = "The brazier refuses to go out.";
   }
   
-  retval = CheckWEEntrance(this.getHomeMap());
+  CheckWEEntrance(this.getHomeMap());
   return retval;
 }
 
@@ -3669,28 +3669,44 @@ UnlitWEBrazierTile.prototype.use = function(who) {
     retval["txt"] = "The brazier refuses to light.";
   }
   
-  retval = CheckWEEntrance(this.getHomeMap());
+  CheckWEEntrance(this.getHomeMap());
   return retval;
 }
 
 function CheckWEEntrance(themap) {
-  var ne_brazier = themap.getTile(11,43).getFeatures().getByName("UnlitWEBrazierTile");
-  if (!ne_brazier) { ne_brazier = themap.getTile(7,43).getFeatures().getByName("WEBrazierTile"); }
-  var nw_brazier = themap.getTile(7,43).getFeatures().getByName("UnlitWEBrazierTile");
-  if (!nw_brazier) { ne_brazier = themap.getTile(7,43).getFeatures().getByName("WEBrazierTile"); }
-  var se_brazier = themap.getTile(11,47).getFeatures().getByName("UnlitWEBrazierTile");
-  if (!se_brazier) { ne_brazier = themap.getTile(7,43).getFeatures().getByName("WEBrazierTile"); }
-  var sw_brazier = themap.getTile(7,47).getFeatures().getByName("UnlitWEBrazierTile");
-  if (!sw_brazier) { ne_brazier = themap.getTile(7,43).getFeatures().getByName("WEBrazierTile"); }
+  var ne_brazier = themap.getTile(11,43).getFeatureByName("UnlitWEBrazier");
+  if (!ne_brazier) { ne_brazier = themap.getTile(11,43).getFeatureByName("WEBrazier"); }
+  var nw_brazier = themap.getTile(7,43).getFeatureByName("UnlitWEBrazier");
+  if (!nw_brazier) { ne_brazier = themap.getTile(7,43).getFeatureByName("WEBrazier"); }
+  var se_brazier = themap.getTile(11,47).getFeatureByName("UnlitWEBrazier");
+  if (!se_brazier) { ne_brazier = themap.getTile(11,47).getFeatureByName("WEBrazier"); }
+  var sw_brazier = themap.getTile(7,47).getFeatureByName("UnlitWEBrazier");
+  if (!sw_brazier) { ne_brazier = themap.getTile(7,47).getFeatureByName("WEBrazier"); }
   
+  var barrier = themap.getTile(12,45).getTopFeature();
+  
+  var set_barrier = 1;
+  
+  if ((ne_brazier.getName() === "UnlitWEBrazier") && (nw_brazier.getName() === "WEBrazier") && (se_brazier.getName() === "UnlitWEBrazier") && (sw_brazier.getName() === "WEBrazier")) {
+    set_barrier = 0;
+  }
+  
+  if (set_barrier && (!barrier || (barrier.getName() !== "IllusionaryEnergyField"))) {
+    barrier = localFactory.createTile("IllusionaryEnergyField");
+    themap.placeThing(12,45,barrier);
+  } else if (!set_barrier && (barrier.getName() === "IllusionaryEnergyField")) {
+    themap.deleteThing(barrier);
+  }
+  
+  return;
 }
 
 function IllusionaryEnergyFieldTile() {
 	this.name = "IllusionaryEnergyField";
   this.graphic = "fields.gif";
 	this.passable = 0; // impassable - wonky outdoors, but necessary indoors
-	this.blocklos = 0;
-	this.blockloe = 1;
+	this.blocklos = 2;
+	this.blockloe = 2;
 //	this.light = 1;
   this.prefix = "a"; 
 	this.desc = "wall";
