@@ -47,7 +47,7 @@ mappages["worldsending"].terrain[41] = 'cw cw BK BK BK BK BK BK BK BK BK BK BK B
 mappages["worldsending"].terrain[42] = 'cw cw BK BK BK BK !# !# !# !# !# !# !# BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf ## p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending"].terrain[43] = 'cw cw BK BK BK BK !# p* p* p* p* p* !# BK BK cw cw cw cw BK BK BK BK cw cw cf cw cf p* ## p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending"].terrain[44] = 'cw cw BK BK BK BK !# p* p* p* p* p* !# cw cw cw cf cf cw cw cw cw cw cw cf p* cf cf p* ## p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending"].terrain[45] = 'cw cw BK BK BK BK !# p* p* p* p* p* !# cf cf cf cf cf cf cf cf cf cf cf cf cf cf p* cf p* p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending"].terrain[45] = 'cw cw BK BK BK BK !# p* p* p* p* p* i# cf cf cf cf cf cf cf cf cf cf cf cf cf cf p* cf p* p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending"].terrain[46] = 'cw cw BK BK BK BK !# p* p* p* p* p* !# cw cw cw cf cf cf cf cf cf cf cf p* cf cf cf cf ## p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending"].terrain[47] = 'cw cw BK BK BK BK !# p* p* p* p* p* !# BK BK cw cw cf cf cf cf cw cw cf cf cf p* p* p* ## p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending"].terrain[48] = 'cw cw BK BK BK BK !# !# !# !# !# !# !# BK BK BK cw cw cw cw cw cw cw cw cw cf cf cf p* ## p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -127,7 +127,7 @@ mappages["worldsending"].features[19] = {name : 'Door', x : 43, y : 41};
 mappages["worldsending"].features[20] = {name : 'Door', x : 43, y : 49};
 mappages["worldsending"].features[21] = {name : 'Door', x : 43, y : 57};
 mappages["worldsending"].features[22] = {name : 'Door', x : 101, y : 99};
-
+mappages["worldsending"].features[23] = {name : 'IllusionaryEnergyField', x : 12, y : 45};
 
 mappages["worldsending"].npcs = [];
 
