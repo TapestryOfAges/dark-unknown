@@ -3674,14 +3674,10 @@ UnlitWEBrazierTile.prototype.use = function(who) {
 }
 
 function CheckWEEntrance(themap) {
-  var ne_brazier = themap.getTile(11,43).getFeatureByName("UnlitWEBrazier");
-  if (!ne_brazier) { ne_brazier = themap.getTile(11,43).getFeatureByName("WEBrazier"); }
-  var nw_brazier = themap.getTile(7,43).getFeatureByName("UnlitWEBrazier");
-  if (!nw_brazier) { ne_brazier = themap.getTile(7,43).getFeatureByName("WEBrazier"); }
-  var se_brazier = themap.getTile(11,47).getFeatureByName("UnlitWEBrazier");
-  if (!se_brazier) { ne_brazier = themap.getTile(11,47).getFeatureByName("WEBrazier"); }
-  var sw_brazier = themap.getTile(7,47).getFeatureByName("UnlitWEBrazier");
-  if (!sw_brazier) { ne_brazier = themap.getTile(7,47).getFeatureByName("WEBrazier"); }
+  var ne_brazier = themap.getTile(11,43).getTopFeature();
+  var nw_brazier = themap.getTile(7,43).getTopFeature();
+  var se_brazier = themap.getTile(11,47).getTopFeature();
+  var sw_brazier = themap.getTile(7,47).getTopFeature();
   
   var barrier = themap.getTile(12,45).getTopFeature();
   
