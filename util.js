@@ -176,7 +176,7 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
   if (displaytile.checkType("NPC") && !displaytile.specials.mindless) { isnpc = 1; }
   var graphics = displaytile.getGraphicArray();
   var showGraphic = graphics[0];
-  if (typeof displaytile.setBySurround === "function") {
+  if ((typeof displaytile.setBySurround === "function") && (losresult < LOS_THRESHOLD)) {
    	graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
     showGraphic = graphics[0];
     if (typeof displaytile.doTile === "function") {

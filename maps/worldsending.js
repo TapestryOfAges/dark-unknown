@@ -153,3 +153,9 @@ mappages["worldsending"].returnx = '27';
 mappages["worldsending"].returny = '44';
 mappages["worldsending"].returninfused = '0';
 mappages["worldsending"].linkedMaps = [""];
+
+mappages["darkunknown"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    
+  }
+}
