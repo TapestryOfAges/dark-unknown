@@ -1727,7 +1727,7 @@ GameMap.prototype.removeNoiseSource = function(noisesource, radius) {
 GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
   if (this.getLightLevel() === "bright") { return; }
   var serial = lightsource.getSerial();
-//  if (debug && debugflags.light) { dbs.writeln("LIGHT: " + lightsource.getHomeMap().getName() + ", " + serial + ", " + light + ", " + x + ", " + y + "<br />"); }
+
   DebugWrite("light", "LIGHT: " + lightsource.getHomeMap().getName() + ", " + serial + ", " + light + ", " + x + ", " + y + "<br />");
 	for (var i = (x-(Math.ceil(Math.abs(light))+1)); i<=(x+(Math.ceil(Math.abs(light))+1)); i++) {
 		for (var j = (y-(Math.ceil(Math.abs(light))+1)); j<=(y+(Math.ceil(Math.abs(light))+1)); j++) {
@@ -1759,6 +1759,8 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
         }
 			} else {
         var LOSval = this.getLOS(x,y,i,j,0,0,1);
+        DebugWrite("light", "LIGHT " + serial + ": LOSval: " + JSON.stringify(LOSval) + ".<br />");
+        if (typeof LOSval === "number") { if (LOSval > LOS_THRESHOLD) { LOSval = LOS_THRESHOLD; } };
         if (LOSval.ne > LOS_THRESHOLD) { LOSval.ne = LOS_THRESHOLD; }
         if (LOSval.nw > LOS_THRESHOLD) { LOSval.nw = LOS_THRESHOLD; }
         if (LOSval.se > LOS_THRESHOLD) { LOSval.se = LOS_THRESHOLD; }
