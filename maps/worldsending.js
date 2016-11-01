@@ -156,6 +156,57 @@ mappages["worldsending"].linkedMaps = [""];
 
 mappages["darkunknown"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    WE_PlaceWalkon(mapref,31,34);
+    WE_PlaceWalkon(mapref,35,34);
+    WE_PlaceWalkon(mapref,39,34);
+    WE_PlaceWalkon(mapref,31,56);
+    WE_PlaceWalkon(mapref,35,56);
+    WE_PlaceWalkon(mapref,39,56);
+    WE_PlaceWalkon(mapref,43,50);
+    WE_PlaceWalkon(mapref,43,40);
+  }
+}
+
+function WE_PlaceWalkon(mapref, walkonx, walkony) {
+  var walkontile = localFactory.createTile("WalkOn");
+  mapref.placeThing(walkonx, walkony, walkontile);
+  var desty;
+  var destx = [31,35,39];
+  if ((walkony === 34) || (walkony === 50)) { desty = 50; }
+  if ((walkony === 56) || (walkony === 40)) { desty = 40; }
+  walkontile.destx = destx;
+  walkontile.desty = desty;
+  
+  walkontile.walkon = function(who) {
+    CloseWEDoors(mapref);
+    mapref.moveThing(this.destx[Dice.roll("1d3")],this.desty,who);
     
+    // set last traveled to check patterns
+  }
+}
+
+function CloseWEDoors(mapref) {
+  var doorslist = [];
+  doorslist[0] = mapref.getTile(31,33).getTopFeature();
+  doorslist[1] = mapref.getTile(35,33).getTopFeature();
+  doorslist[2] = mapref.getTile(39,33).getTopFeature();
+  doorslist[3] = mapref.getTile(43,33).getTopFeature();
+  doorslist[4] = mapref.getTile(31,41).getTopFeature();
+  doorslist[5] = mapref.getTile(35,41).getTopFeature();
+  doorslist[6] = mapref.getTile(39,41).getTopFeature();
+  doorslist[7] = mapref.getTile(43,41).getTopFeature();
+  doorslist[8] = mapref.getTile(31,49).getTopFeature();
+  doorslist[9] = mapref.getTile(35,49).getTopFeature();
+  doorslist[10] = mapref.getTile(39,49).getTopFeature();
+  doorslist[11] = mapref.getTile(43,49).getTopFeature();
+  doorslist[12] = mapref.getTile(31,57).getTopFeature();
+  doorslist[13] = mapref.getTile(35,57).getTopFeature();
+  doorslist[14] = mapref.getTile(39,57).getTopFeature();
+  doorslist[15] = mapref.getTile(43,57).getTopFeature();
+  
+  for (var i =0; i<=15; i++) {
+    if (doorslist[i].open) {
+      doorslist[i].use(PC, "silent");
+    }
   }
 }

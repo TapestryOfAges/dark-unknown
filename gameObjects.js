@@ -691,7 +691,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 	this.opengraphic = opengraphic;
 	// NOTE: These should be arrays in the standard graphics[0-3] style.
 	
-	this.use = function(who) {
+	this.use = function(who, silentdoors) {
 		var retval = {};
 		retval["fin"] = 0;
 		
@@ -717,7 +717,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			retval["fin"] = 1;
 			retval["txt"] = "Closed!";
 			retval["redrawtype"] = "draw";
-			if ((closesound) && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 10)) {
+			if (!silentdoors && closesound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 10)) {
 			  DUPlaySound(closesound); 
 			}
 			
@@ -727,7 +727,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 				if (this.getLocked()) {
 					retval["fin"] = 1;
 					retval["txt"] = "Locked.";
-					if ((lockedsound) && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 10)) {
+					if (!silentdoors && lockedsound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 10)) {
 					  DUPlaySound(lockedsound); 
 					}
 					return retval;
@@ -747,7 +747,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_LEVITATE);
 			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_SWIM);
 			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_FLY);
-			if ((opensound)&& (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 10)) {
+			if (!silentdoors && opensound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 10)) {
 			  DUPlaySound(opensound); 
 			}
 			
@@ -3700,7 +3700,7 @@ function CheckWEEntrance(themap) {
 function IllusionaryEnergyFieldTile() {
 	this.name = "IllusionaryEnergyField";
   this.graphic = "fields.gif";
-	this.passable = 0; // impassable - wonky outdoors, but necessary indoors
+	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 2;
 	this.blockloe = 2;
 //	this.light = 1;
