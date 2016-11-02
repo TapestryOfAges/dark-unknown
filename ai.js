@@ -1365,7 +1365,9 @@ function CheckTownProximity(coords, map) {
 }
 
 function FindClosestPoI(xval, yval, themap, poiname) {
-  if (!themap.network[poiname]) { alert("Unknown poi network!"); }
+  if (!themap.network[poiname]) { 
+    alert("Unknown poi network! (" + poiname + ")"); 
+  }
   
   var closeind = 0;
   var closest = GetDistance(xval,yval,themap.network[poiname][0].x, themap.network[poiname][0].y);
