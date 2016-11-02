@@ -154,7 +154,7 @@ mappages["worldsending"].returny = '44';
 mappages["worldsending"].returninfused = '0';
 mappages["worldsending"].linkedMaps = [""];
 
-mappages["darkunknown"].onload = function(mapref) {
+mappages["worldsending"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     WE_PlaceWalkon(mapref,31,34);
     WE_PlaceWalkon(mapref,35,34);
@@ -170,7 +170,7 @@ mappages["darkunknown"].onload = function(mapref) {
 function WE_PlaceWalkon(mapref, walkonx, walkony) {
   var walkontile = localFactory.createTile("WalkOn");
   mapref.placeThing(walkonx, walkony, walkontile);
-  var desty;
+  var desty = 0;
   var destx = [31,35,39];
   if ((walkony === 34) || (walkony === 50)) { desty = 50; }
   if ((walkony === 56) || (walkony === 40)) { desty = 40; }
@@ -179,9 +179,21 @@ function WE_PlaceWalkon(mapref, walkonx, walkony) {
   
   walkontile.walkon = function(who) {
     CloseWEDoors(mapref);
-    mapref.moveThing(this.destx[Dice.roll("1d3")],this.desty,who);
+    if ((this.getx() === 35) && (this.gety() === 34) && ((this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn").lastteleport === "39,56") && (this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn").secondlastteleport === "31,56"))) {
+      // SE, SW, N
+      mapref.moveThing(43,34,who);        
+    } else if ((this.getx() === 31) && (this.gety() === 56) && ((this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn").lastteleport === "39,34") && (this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn").secondlastteleport === "35,34"))) { 
+      // NE, N, SW
+      mapref.moveThing(43,56,who);        
+    } else {
+      mapref.moveThing(this.destx[Dice.roll("1d3")],this.desty,who);
+    }
     
     // set last traveled to check patterns
+    var trackteleports = this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn");
+    trackteleports.secondlastteleport = trackteleports.lastteleport;
+    trackteleports.lastteleport = this.getx() + "," + this.gety();
+    if (who === PC) { DrawMainFrame("draw", PC.getHomeMap().getName(), PC.getx(), PC.gety()); }
   }
 }
 
