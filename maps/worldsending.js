@@ -186,7 +186,11 @@ function WE_PlaceWalkon(mapref, walkonx, walkony) {
       // NE, N, SW
       mapref.moveThing(43,56,who);        
     } else {
-      mapref.moveThing(this.destx[Dice.roll("1d3")],this.desty,who);
+      if (typeof this.destx === "number") { 
+        mapref.moveThing(this.destx,this.desty,who);
+      } else {
+        mapref.moveThing(this.destx[Dice.roll("1d3-1")],this.desty,who);
+      }
     }
     
     // set last traveled to check patterns
