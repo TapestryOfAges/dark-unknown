@@ -117,7 +117,7 @@ mappages["swainhil"].features[49] = {name : 'TopChair', x : 27, y : 38};
 mappages["swainhil"].features[50] = {name : 'LeftTable', x : 26, y : 39};
 mappages["swainhil"].features[51] = {name : 'MiddleTable', x : 27, y : 39};
 mappages["swainhil"].features[52] = {name : 'RightTable', x : 28, y : 39};
-
+mappages["swainhil"].features[53] = {name : 'Harpsichord', x : 43, y : 39};
 
 mappages["swainhil"].npcs = [];
 mappages["swainhil"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 28, y : 10, Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
