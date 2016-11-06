@@ -242,8 +242,8 @@ function Placespawns(mapref) {
   onyxspawn.setSpawngroup(onyxgroup);
   onyxspawn.setMaxSpawns(3);
   onyxspawn.setSpawnRadius(3);
-  onyxspawn.setSpawnLeash(15);
-  onyxspawn.setSpawnSoftLeash(20);
+  onyxspawn.setSpawnLeash(20);
+  onyxspawn.setSpawnSoftLeash(15);
 
   onyxspawn.evolve[2] = [];
   onyxspawn.evolve[2][0] = "spawngroup";
