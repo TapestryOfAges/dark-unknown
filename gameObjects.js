@@ -310,6 +310,7 @@ GameObject.prototype.moveTo = function(x,y) {
 
 GameObject.prototype.bumpinto = function(who) {
 	var retval = {};
+	retval["fin"] = 1;
 	retval["canmove"] = 1;
 	retval["msg"] = "";
   return(retval);
@@ -4654,7 +4655,17 @@ function RightTableOnWoodTile() {
 }
 RightTableOnWoodTile.prototype = new FeatureObject();
 
-
+function HarpsichordTile() {
+  this.name = "Harpsichord";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-96";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "harpsichord";
+}
+HarpsichordTile.prototype = new FeatureObject();
 
 function BedHeadTile() {
   this.name = "BedHead";
@@ -11329,8 +11340,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	      return retval;
 			}
 		}
-	}
-	else {
+	}	else {
 		retval = tile.getBumpIntoResult(this);
 		if (retval["canmove"] === 0) { return retval; }
 //		var moveval = tile.canMoveHere(this, map.getTile(this.getx(),this.gety()));
