@@ -1114,7 +1114,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       var leashed = 0;
       if (leashpresent) {
         var spawndist = GetDistance(coords[0], coords[1], spawnedby.getx(), spawnedby.gety());  // distance from spawner to target location
-        if (spawndist > spawnedby.getSpawnLeash()) { // Presumably got here by chasing the PC, but trying to move beyond leash
+        if ((spawndist > spawnedby.getSpawnLeash()) && (who.getDestinationType() !== "spawn")) { // Presumably got here by chasing the PC, but trying to move beyond leash
           retval["canmove"] = 0;
           DebugWrite("ai", "AI " + who.getName() + " restricted from moving: hard leash at " + spawnedby.getx() + "," + spawnedby.gety() + ".<br />");
           leashed = 1;
