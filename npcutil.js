@@ -522,8 +522,10 @@ function StepOrDoor(who, where, nopush) {
 }
 
 function StepOrSidestep(who, path, finaldest, nopush) {
+  DebugWrite("ai", "In StepOrSideStep...");
   var moved = StepOrDoor(who,path,nopush);
   if (!moved["canmove"] && !moved["opendoor"]) {
+    DebugWrite("ai", " !canmove and !opendoor, trying here.");
     var diffx = path[0] - who.getx();
     var diffy = path[1] - who.gety();
     var fullx = finaldest[0] - who.getx();
@@ -551,5 +553,6 @@ function StepOrSidestep(who, path, finaldest, nopush) {
       }
     }
   }
+  DebugWrite("ai", "<br />");
   return moved;
 }
