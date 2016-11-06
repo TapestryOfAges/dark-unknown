@@ -983,6 +983,11 @@ tileFactory.prototype.makeRightTableOnWoodTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeHarpsichordTile = function() {
+  var newTile = new HarpsichordTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBedHeadTile = function() {
   var newTile = new BedHeadTile();
   return newTile;
