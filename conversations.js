@@ -630,3 +630,19 @@ OnConvTriggers["place_mal"] = function(speaker,keyword) {
     shelf.setSearchYield(["MapsAndLegends"]);
   }
 }
+
+OnConvTriggers["sirius_book1"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("sirius_book1");
+  var bookshelfLeft = localFactory.createTile("BookshelfLeft");
+  var bookshelfRight = localFactory.createTile("BookshelfRight");
+  var thismap = speaker.getHomeMap();
+  thismap.placeThing(32,41,bookshelfLeft);
+  thismap.placeThing(33,41,bookshelfRight);
+  if (!PC.checkInventory("AdelusLetter")) {
+    bookshelfLeft.setSearchYield(["AdelusLetter"]);
+  }
+  var lightsource = localFactory.createTile("TorchWest");
+  thismap.placeThing(31,41,lightsource);
+  
+  DrawMainFrame("draw", thismap.getName(), PC.getx(), PC.gety());
+}
