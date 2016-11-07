@@ -4667,6 +4667,25 @@ function HarpsichordTile() {
 }
 HarpsichordTile.prototype = new FeatureObject();
 
+HarpsichordTile.prototype.use = function(who) {
+  var retval = { fin: 1 };
+  var distanceToMe = getDistance(who.getx(),who.gety(),this.getx(),this.gety(),"square");
+  if (distanceToMe > 1) { 
+    retval["txt"] = "The harpsichord makes a few discordant sounds, and then is silent.";
+  } else if ((this.gety() - who.gety()) !== 1) { 
+    retval["txt"] = "You can't reach the keys from here.";
+    retval["fin"] = 0;
+    return retval;
+  } else {  
+    retval["txt"] = "Drawing upon your years of training from your tutors, you give a passable performance.";
+    if (DU.gameflags.getFlag("bard_simon_ask") && (this.getHomeMap().getName() === "swainhil1")) {
+      DU.gameflags.setFlag("bard_simon_played", 1);
+      DebugWrite("plot", "Simon has heard you play music.");
+    }
+  }
+  return retval;
+}
+
 function BedHeadTile() {
   this.name = "BedHead";
   this.graphic = "furniture.gif";
@@ -7961,6 +7980,19 @@ function MapsAndLegendsTile() {
 }
 MapsAndLegendsTile.prototype = new BookItemObject();
 
+function AdelusLetterTile() {
+  this.name = "AdelusLetter";
+  this.graphic = "items.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-96";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "letter to Adelus";
+  this.prefix = "a";
+  this.addType("Quest");
+  this.contents = "<span class='conv'>Dearest Adelus,</span>%%<span class='conv'>Please visit when you can. I will admit that I have made the way difficult, for I do not wish other visitors, so let these instructions lay out a map for you.</span>%%<span class='conv'>When you enter World's Ending, you must create the sunset, and then walk with the light at your back. The wall will let you pass.</span>%%<span class='conv'>In the next chamber, go through the hallways in this order: far right, near right, mid left.</span>%%<span class='conv'>This will bring you to me. And once you are here...</span>%%...The rest of the letter is embarrassingly personal. You put it away.";
+}
+AdelusLetterTile.prototype = new BookItemObject();
 
 function ConsumableItemObject() {
   this.addType("Consumable");
