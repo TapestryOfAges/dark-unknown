@@ -8,6 +8,7 @@ DU.randomseed - random number generated on game creation
 karma - tracks PC's karma
 
 kingspeech  - talked to king at beginning of game
+talked_shelaria - talked to queen
 knows_NPCNAME  - has learned this NPC's name        -- note, requires name uniqueness. One Steve Limit!
 ash_password - gave Asharden's door the password
 pay_kyvek - king has agreed to pay Kyvek
@@ -73,4 +74,8 @@ bard_neophyte - you've talked to markus about joining the bards
 bard_journeyman - you've joined the guild as an apprentice
 bard_master - you're a full member of the guild
 bard_book_quest - you've found the book Olivia is looking for
+bard_simon_ask - Simon has asked for a performance
+bard_simon_played - you've played for Simon
+bard_simon_acknowledge - Simon congratulates your performance 
+
 
