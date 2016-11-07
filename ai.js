@@ -27,7 +27,10 @@ barks.checkBark = function(who) {
             if (mybark.indexOf("%THEDESC%") !== -1) {
               if ((pref === "a") || (pref === "an")) { pref = "the"; }
             }
-            var desc = pref + " " + who.getDesc();
+            var desc = who.getDesc();
+            if (who.getDesc() !== who.getNPCName()) {
+              desc = pref + " " + desc;
+            }
             mybark = mybark.replace(/%THEDESC%/g, desc);
             mybark = mybark.replace(/%DESC%/g, desc);
           }
