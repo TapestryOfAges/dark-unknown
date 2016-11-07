@@ -1788,6 +1788,11 @@ tileFactory.prototype.makeMapsAndLegendsTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAdelusLetterTile = function() {
+  var newTile = new AdelusLetterTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeKyvekBoxTile = function() {
   var newTile = new KyvekBoxTile();
   return newTile;
