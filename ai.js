@@ -384,7 +384,7 @@ ais.Trevor = function(who) {
       var doortile = who.getHomeMap().getTile(9,14);
       var door = doortile.getTopFeature();
       door.use(who);
-      DrawMainFrame("one",who.getHomeMap().getName(),9,14);
+      DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
       who.steps = 3;
     } else if ((who.steps >= 3) && (who.steps <= 5)) {
       var walk = who.moveMe(0,-1);
@@ -412,7 +412,7 @@ ais.Trevor = function(who) {
       var doortile = who.getHomeMap().getTile(9,14);
       var door = doortile.getTopFeature();
       door.use(who);
-      DrawMainFrame("one",who.getHomeMap().getName(),9,14);
+      DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
       who.steps++;
     } else if (who.steps === 13) {
       var doortile = who.getHomeMap().getTile(9,14);
