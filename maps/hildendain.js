@@ -176,7 +176,8 @@ mappages["hildendain"].features[108] = {name : 'Door', x : 22, y : 20, desc : "l
 mappages["hildendain"].features[109] = {name : 'Doorway', x : 32, y : 11};
 mappages["hildendain"].features[110] = {name : 'Door', x : 22, y : 13};
 mappages["hildendain"].features[111] = {name : 'Fireplace', x : 41, y : 53};
-
+mappages["hildendain"].features[112] = {name : 'Mirror', x : 46, y : 53};
+mappages["hildendain"].features[113] = {name : 'SmallTable', x : 46, y : 56};
 
 mappages["hildendain"].npcs = [];
 mappages["hildendain"].npcs[0] = {name : 'MageVillagerNPC', x : 39, y : 38, NPCName: 'Alexis', Conversation: 'alexis', Gender: 'female', Merch: 'alexis', Bark: '0', NPCBand: '0', OverrideGraphic: '303.gif'};
