@@ -648,3 +648,14 @@ OnConvTriggers["sirius_book1"] = function(speaker,keyword) {
   
   DrawMainFrame("draw", thismap.getName(), PC.getx(), PC.gety());
 }
+
+OnConvTriggers["talked_shelaria"] = function(speaker,keyword) {
+  StopMusic(nowplaying);
+  nowplaying = DUPlayMusic("Lament");
+}
+
+OnConvTriggers["reset_music"] = function(speaker,keyword) {
+  var song = speaker.getHomeMap().getMusic();
+  StopMusic(nowplaying);
+  nowplaying = DUPlayMusic(song);
+}
