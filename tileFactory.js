@@ -1253,6 +1253,21 @@ tileFactory.prototype.makePentagramSETile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWeaponCounterDaggerTile = function() {
+  var newTile = new WeaponCounterDaggerTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWeaponCounterMaceTile = function() {
+  var newTile = new WeaponCounterMaceTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWeaponCounterSwordTile = function() {
+  var newTile = new WeaponCounterSwordTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeArmorCounterLeatherTile = function() {
   var newTile = new ArmorCounterLeatherTile();
   return newTile;
