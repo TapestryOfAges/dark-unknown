@@ -122,7 +122,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     
       // special cases
       if (typeof OnConvTriggers[triggers.set_flag] === "function") {
-        OnConvTriggers[triggers.set_flag](speaker,keyword);
+        var modkeep = OnConvTriggers[triggers.set_flag](speaker,keyword);
+        if (modkeep) { keep_talking = modkeep; }
       }
 
     } 
@@ -243,12 +244,19 @@ ConvNode.prototype = new Object();
 //Deprecated
 
 function InnRoom(xc,yc,doors) {
+  if (DU.gameflags.getFlag("music")) {
+    nowplaying.song.stop();
+    nowplaying = DUPlayMusic("Lullaby");
+  }
   var innmap = PC.getHomeMap();
   maintext.setInputLine("&gt;");
   maintext.drawTextFrame();
   
   $("#mainview").fadeOut(1500, function() {
     maintext.addText("ZZZZZZ...");
+    if (DU.gameflags.getFlag("music")) {
+      QueueMusic(PC.getHomeMap().getMusic());
+    }
     while(doors[0]) {
       innmap.moveThing(0,0,PC);
       if (GetDistance(0,0,doors[0],doors[1]) <= 10) {
@@ -391,17 +399,26 @@ OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
   if (PC.getGold() < 20) {
     maintext.addText("You don't have enough gold!");
   } else {
-    keep_talking = -1;
     PC.addGold(-20);
     maintext.addText("He leads you to your room.");
     setTimeout(function() { InnRoom(28,17,[21,14,25,20]); }, 50);
   }
+  return -1;
 }
 
 OnConvTriggers["inn_20_n"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("inn_20_n");
   DU.gameflags.deleteFlag("inn_20");
   return;
+}
+
+OnConvTriggers["inn_25"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("inn_25");
+
+  PC.addGold(-25);
+  setTimeout(function() { InnRoom(43,56,[28,50,34,51,38,50,41,49,44,52]); }, 50);
+  
+  return -1;
 }
 
 OnConvTriggers["health_kyvek"] = function(speaker,keyword) {
