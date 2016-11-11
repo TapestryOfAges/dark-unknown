@@ -237,3 +237,10 @@ function handleFileLoadSfx(event) {
     SoundLoaded();
   }
 }
+
+function QueueMusic(songname) {
+  nowplaying.song.loop = 0;
+  nowplaying.song.addEventListener("complete", function(event) {
+    nowplaying = DUPlayMusic(songname);
+  });
+}
