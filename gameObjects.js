@@ -3777,6 +3777,18 @@ FireplaceTile.prototype.myTurn = function() {
   return 1;  
 }
 
+function DustyFireplaceTile() {
+	this.name = "DustyFireplace";
+	this.graphic = "furniture.gif";
+	this.spritexoffset = "0";
+	this.spriteyoffset = "-96";
+	this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 2;
+  this.prefix = "a";
+	this.desc = "dusty fireplace";
+	this.peerview = "white";
+}
+DustyFireplaceTile.prototype = new FeatureObject();
 
 function AltarTile() {
 	this.name = "Altar";
