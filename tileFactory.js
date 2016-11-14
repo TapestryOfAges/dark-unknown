@@ -733,6 +733,11 @@ tileFactory.prototype.makeFireplaceTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDustyFireplaceTile = function() {
+  var newTile = new DustyFireplaceTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAltarTile = function() {
   var newTile = new AltarTile();
   return newTile;
