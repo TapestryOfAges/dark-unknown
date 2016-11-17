@@ -1282,7 +1282,7 @@ ais.ProcessPoI = function(who,poiname) {
     return 1;
   } else {
     var coords = who.getCurrentPath()[0];
-    if (who.getTurnsToRecalcDest() <= 0) {
+    if ((who.getTurnsToRecalcDest() <= 0) || !coords) {
       DebugWrite("ai", "Path expired, find a new PoI!<br />");
       var connections = who.getPoI().connections;
       var connind = Dice.roll("1d" + connections.length + "-1");
