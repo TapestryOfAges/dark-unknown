@@ -181,7 +181,7 @@ mappages["hildendain"].features[113] = {name : 'SmallTable', x : 46, y : 56};
 mappages["hildendain"].features[114] = {name : 'WeaponCounterDagger', x : 14, y : 31};
 mappages["hildendain"].features[115] = {name : 'WeaponCounterMace', x : 14, y : 32};
 mappages["hildendain"].features[116] = {name : 'WeaponCounterSword', x : 14, y : 33};
-mappages["hildendain"].features[118] = {name : 'TopChair', x : 9, y : 33};
+mappages["hildendain"].features[117] = {name : 'TopChair', x : 9, y : 33};
 
 mappages["hildendain"].npcs = [];
 mappages["hildendain"].npcs[0] = {name : 'MageVillagerNPC', x : 39, y : 38, NPCName: 'Alexis', Conversation: 'alexis', Gender: 'female', Merch: 'alexis', Bark: '0', NPCBand: '0', OverrideGraphic: '303.gif'};
