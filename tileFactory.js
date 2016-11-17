@@ -53,6 +53,11 @@ tileFactory.prototype.makeShadowShallowsTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeNoBlockMountainTile = function() {
+  var newTile = new NoBlockMountainTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeMountainTile = function() {
   var newTile = new MountainTile();
   return newTile;
