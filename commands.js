@@ -1020,6 +1020,7 @@ function PerformGet(who) {
     retval["fin"] = 1;
     if (itemmap === PC.getHomeMap()) {
       DrawMainFrame("one",itemmap.getName(),targetCursor.x,targetCursor.y);
+      DrawCharFrame();
     }
     return retval;    
   } 
