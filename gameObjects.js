@@ -1415,6 +1415,20 @@ function InWater(who) {
   return response;
 }
 
+function NoBlockMountainTile() {
+  this.name = "NoBlockMountain";
+  this.graphic = "terrain_tiles.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "0";
+  this.desc = "mountains";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+NoBlockMountainTile.prototype = new TerrainObject();
+
 function MountainTile() {
   this.name = "Mountain";
   this.graphic = "terrain_tiles.gif";
