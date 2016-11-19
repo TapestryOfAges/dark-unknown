@@ -985,7 +985,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
   // reminder: locx and locy are the PC's coords
   DebugWrite("ai", "Comparing distance: Radius=" + radius + "; PC is " + GetDistance(who.getx(), who.gety(), locx, locy) + " away .<br />");
   if ((GetDistance(who.getx(), who.gety(), locx, locy) > radius/3) || (who.getDestinationType("spawn"))) {
-    if (who.getDestinationType("spawn")) { DebugWrite("ai", "Current destination: returning to spawn anchor<br />"); }
+    if (who.getDestinationType("spawn")) { DebugWrite("ai", "Current destination: returning to spawn anchor (" + who.getSpawnedBy().getx() + "," + who.getSpawnedBy().gety() + ")<br />"); }
     else { DebugWrite("ai", "PC on another map or not Close. Trying to follow a path.<br />"); }
     retval = ais.SurfaceFollowPath(who,40,1);   
     if (retval["fin"] === 1) { return retval; }
