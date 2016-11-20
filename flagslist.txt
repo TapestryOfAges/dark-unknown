@@ -77,5 +77,6 @@ bard_book_quest - you've found the book Olivia is looking for
 bard_simon_ask - Simon has asked for a performance
 bard_simon_played - you've played for Simon
 bard_simon_acknowledge - Simon congratulates your performance 
-
-
+cave_cleared - you've cleared out the cave west of the castle
+cave_cleared_paid - Nyrani has paid you for clearing the cave
+nyrani_supplied - Nyrani has given you some supplies to hit the cave with
