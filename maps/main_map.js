@@ -529,7 +529,7 @@ function Placespawns(mapref) {
   // Death Unending
   // Zone: NW
   spawn = localFactory.createTile("Spawner");
-  group = ["OrcGroupSmall"];
+  group = ["HeadlessGroupTiny","HeadlessGroupTiny","HeadlessGroupSmall"];
 
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
@@ -539,11 +539,11 @@ function Placespawns(mapref) {
 
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
-  spawn.evolve[3][1] = ["OrcGroupSmall","OrcGroupLarge","LowbiePartyGroup"];
+  spawn.evolve[3][1] = ["HeadlessGroupLarge","OrcGroupSmall","OrcGroupLarge","LowbiePartyGroup"];
   
   spawn.evolve[5] = [];
   spawn.evolve[5][0] = "spawngroup";
-  spawn.evolve[5][1] = ["TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","LowbiePartyGroup","MidPartyGroup"];
+  spawn.evolve[5][1] = ["HeadlessGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","TrollGroup","OrcGroupLarge","LowbiePartyGroup","MidPartyGroup"];
 
   spawn.evolve[6] = [];
   spawn.evolve[6][0] = "spawngroup";
