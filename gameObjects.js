@@ -8108,6 +8108,30 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
   return retval;
 }
 
+function SupplyBoxTile() {
+  this.name = "SupplyBox";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-96";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "small box of supplies";
+  this.addType("Quest");
+}
+SupplyBoxTile.prototype = new ConsumableItemObject();
+
+SupplyBoxTile.prototype.use = function(who) {
+  var retval = { fin: 1 };
+  who.addToInventory(localFactory.createTile("WhitePotion"),1,2);
+  who.addToInventory(localFactory.createTile("RedPotion"),1);
+  who.addToInventory(localFactory.createTile("YellowPotion"),1,2);
+  who.addToInventory(localFactory.createTile("ScrollVulnerability"),1);
+  retval["txt"] = "The box contains: two white potions, two yellow potions, a red potion, and a scroll of Vulnerability.";
+  
+  return retval;
+}
+
 // potions
 
 function PotionItemObject() {
@@ -8200,8 +8224,9 @@ DarkGreenPotionTile.prototype = new PotionItemObject();
 
 DarkGreenPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {};
+  var retval = {fin:1};
   retval = magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell(PC, 0, 1);
+  retval["txt"] = "You feel yourself moving more quickly!";
   return retval;
 }
 
@@ -8237,6 +8262,7 @@ SilverPotionTile.prototype.use = function(who) {
   who.addSpellEffect(levobj);
     
   DrawCharFrame();
+  resp["txt"] = "You feel stronger!";
   return resp;  
 }
   
@@ -8273,6 +8299,7 @@ PinkPotionTile.prototype.use = function(who) {
   who.addSpellEffect(levobj);
     
   DrawCharFrame();
+  resp["txt"] = "You feel quicker!";
   return resp;  
 }
 
@@ -8309,6 +8336,7 @@ GreyPotionTile.prototype.use = function(who) {
   who.addSpellEffect(levobj);
     
   DrawCharFrame();
+  resp["txt"] = "You feel smarter!";
   return resp;  
 }
 
@@ -8369,8 +8397,9 @@ WhitePotionTile.prototype = new PotionItemObject();
 
 WhitePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {};
+  var retval = { fin:1};
   retval = magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell(PC, 0, 1);
+  retval["txt"] = "You begin to glow.";
   return retval;
 }
 
@@ -8388,8 +8417,9 @@ YellowPotionTile.prototype = new PotionItemObject();
 
 YellowPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {};
+  var retval = {fin:1};
   retval = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(PC, 0, 1);
+  retval["txt"] = "You are healed!";
   return retval;
 }
 
@@ -8407,8 +8437,9 @@ PurplePotionTile.prototype = new PotionItemObject();
 
 PurplePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {};
+  var retval = {fin:1};
   retval = magic[SPELL_PROTECT_LEVEL][SPELL_PROTECT_ID].executeSpell(PC, 0, 1);
+  retval["txt"] = "You feel an aura of protection around you.";
   return retval;
 }
 
@@ -8426,8 +8457,9 @@ BlackPotionTile.prototype = new PotionItemObject();
 
 BlackPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {};
+  var retval = {fin:1};
   retval = magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(PC, 0, 1);
+  retval["txt"] = "You feel blessed!";
   return retval;
 }
 
@@ -8445,8 +8477,9 @@ BluePotionTile.prototype = new PotionItemObject();
 
 BluePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {};
+  var retval = {fin:1};
   retval = magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell(PC, 0, 1);
+  retval["txt"] = "You are healed!"
   return retval;
 }
 
@@ -11012,7 +11045,7 @@ NPCObject.prototype.getLevel = function() {
 
 NPCObject.prototype.getXPVal = function() {
   if (this.xpval) { return this.xpval; }
-	return this.level;
+	return this.level * XP_MULTIPLIER;
 }
 
 NPCObject.prototype.getAlignment = function() {
@@ -11675,6 +11708,7 @@ NPCObject.prototype.addToInventory = function(item, thinAir, qty) {
   }
   else {
     this.inventory.addTop(item);
+    item.setQuantity(qty);
   }
   item.setx(0);
   item.sety(0);  
