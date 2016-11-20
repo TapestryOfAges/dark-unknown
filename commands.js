@@ -1591,12 +1591,12 @@ function PerformUseFromInventoryState(code) {
     var used = targetCursor.itemlist[targetCursor.scrolllocation];
     if (used) {
       retval = MakeUseHappen(PC,used,"inventory");
+      retval["fin"] = 2;
     } else {
       retval["fin"] = 0;
       delete targetCursor.itemlist;
     }
   }
-  
   return retval;
 
 //  targetCursor.scrolllocation = 0;
@@ -1616,7 +1616,7 @@ function MakeUseHappen(who,used,where) {
     retval["txt"] = "Use " + usedname + ": " + retval["txt"];
     var drawtype = "one";
     if (used.checkType("Consumable") && !retval["preserve"]) {
-      if ("map") {
+      if (where === "map") {
       // being used from the ground
         used.getHomeMap().deleteThing(used);
 	  	} else {
