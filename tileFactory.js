@@ -1823,6 +1823,11 @@ tileFactory.prototype.makeKyvekBoxTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSupplyBoxTile = function() {
+  var newTile = new SupplyBoxTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGreenPotionTile = function() {
   var newTile = new GreenPotionTile();
   return newTile;
