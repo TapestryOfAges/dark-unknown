@@ -6,10 +6,7 @@ const NIGHT = 2;
 const DAWN = 1;
 const DUSK = 3;
 
-const worldlight = {};
-worldlight["bright"] = 1;
-worldlight["dim"] = .5;
-worldlight["dark"] = 0;
+const worldlight = { bright: 1, dim: .5, dark: 0};
 
 const LOS_THRESHOLD = .98;
 //var LOE_THRESHOLD = .7;
@@ -29,6 +26,7 @@ const BASE_HIT_CHANCE = 70;
 const HIT_PER_LEVEL = 4;
 const DEF_PER_LEVEL = 0;
 const DEF_PER_DEX = 1;
+const XP_MULTIPLIER = 2;
 
 const RUNE_KINGS  = 1;
 const RUNE_WAVES  = 2;
