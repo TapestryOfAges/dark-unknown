@@ -1121,7 +1121,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
           retval["canmove"] = 0;
           DebugWrite("ai", "AI " + who.getName() + " restricted from moving: hard leash at " + spawnedby.getx() + "," + spawnedby.gety() + ".<br />");
           leashed = 1;
-        } else if ((who.getDestinationType() !== "PC") && spawnedby.getSpawnSoftLeash() && (spawndist > spawnedby.getSpawnSoftLeash())) { // moving past soft leash without going after the PC
+        } else if ((who.getDestinationType() !== "spawn") && (who.getDestinationType() !== "PC") && spawnedby.getSpawnSoftLeash() && (spawndist > spawnedby.getSpawnSoftLeash())) { // moving past soft leash without going after the PC
           retval["canmove"] = 0;
           DebugWrite("ai", "AI " + who.getName() + " restricted from moving: trying to go past soft leash at " + spawnedby.getx() + "," + spawnedby.gety() + " w/o targetting PC.<br />");
           leashed = 1;
