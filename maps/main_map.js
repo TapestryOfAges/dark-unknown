@@ -80,7 +80,7 @@ mappages["darkunknown"].terrain = [];
  mappages["darkunknown"].terrain[75] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww /. .. .. rd .. RR .. .. ,, nn ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ;; ;; _; _, _, __ __ __ .. .. .. rd rd rd .. .. ./ uu /. ,, ;; ;; ;; ;; ;; ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. rd .. .. .. .. .. .. .. .. ^^ ^^ ^^ ^^ .. .| ww ww ww WW WW ww ww ^^ ^^ ^^ nn ^^ ,, ff ,, .` ww ww WW WW WW WW WW WW';
  mappages["darkunknown"].terrain[76] = 'WW WW WW WW WW WW WW WW WW WW WW ww ww ww WW WW ww WW ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww /. .. .. ,, rd .. RR RR nn ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ;; ;; ;; ;; ,, ./ ww ww ww ww ww ww `. .. .. .. .. .. .. ./ uu uu |; ;; ,, ;; ;; ;; .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. rd .. .. .. .. .. .. .. nn ^^ ^^ nn ^^ nn .| ww ww ww WW WW ww ww ^^ ww ^^ ^^ ^^ ff ff .. ff ww ww WW WW WW WW WW WW';
  mappages["darkunknown"].terrain[77] = 'WW WW WW WW WW WW WW WW WW WW ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu |. .. .. .. rd .. .. RR RR RR ^^ ^^ ^^ ^^ ;; ;; ;; ,, ;; ;; ./ `. _; _; ./ ww ww ww ww ww ww ww ww `. __ __ __ __ ./ uu uu uu |; ,, ;; ,, ;; ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. rd .. .. .. .. .. .. .. nn ^^ ^^ nn nn nn nn ^^ ww ww WW WW WW ww ww ww ww ^^ ^^ .. ff ff ff ww ww WW WW WW WW WW WW';
- mappages["darkunknown"].terrain[78] = 'WW WW WW WW WW WW WW WW WW WW ww ww uu uu ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu ww uu /. .. ,, .. .. rd .. .. nn ^^ ^^ ^^ ^^ ^^ ^^ ;; ,, ;; ;; ;; ;| ww ww ww ww ww ww ww ww ww WW ww WW ww ww ww uu uu uu uu uu uu uu |; ;; ;; ;; ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. rd rd rd rd .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ww ww ww WW WW ww ww ww ww ^^ ^^ ^^ ff ff ,| ww ww WW WW WW WW WW WW';
+ mappages["darkunknown"].terrain[78] = 'WW WW WW WW WW WW WW WW WW WW ww ww uu uu ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww uu uu ww uu /. .. ,, .. .. rd .. .. nn ^^ ^^ ^^ ^^ ^^ nn ;; ,, ;; ;; ;; ;| ww ww ww ww ww ww ww ww ww WW ww WW ww ww ww uu uu uu uu uu uu uu |; ;; ;; ;; ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. rd rd rd rd .. .. .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ^^ ww ww ww WW WW ww ww ww ww ^^ ^^ ^^ ff ff ,| ww ww WW WW WW WW WW WW';
  mappages["darkunknown"].terrain[79] = 'WW WW WW WW WW WW WW WW WW ww ww ww nn nn nn ww ww ww ww ww ww ww ww ww ww ww ww ww ww /. .` uu uu /. .. .. ,, .. .. rd .. .. .. ^^ ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ;; ;; ./ ww ww ww ww ww ww WW WW WW WW WW WW WW ww ww ww ww ww uu uu uu uu `. _; ,, ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. rd .. .. .. .. .. nn ^^ ^^ ^^ ^^ ^^ ww ww ww WW WW WW WW ww ww ww ^^ ^^ nn ff ff ff ww ww ww WW WW WW WW WW';
  mappages["darkunknown"].terrain[80] = 'WW WW WW WW WW WW WW WW WW ww ww ^^ ^^ ^^ ^^ ^^ nn nn ^^ ww ww ww ww ww ww ww ww /. -- .. .. -, -- ,, ,, .. .. .. .. rd ,, .. .. nn nn ^^ ^^ ^^ ^^ ^^ ;; ;; ;; ./ ww ww ww ww ww WW WW WW WW WW WW WW WW WW WW ww ww ww ww ww ww ww ww ww ww `. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ,, ;; ;; ;; .. .. .. .. .. .. .. .. rd .. .. .. .. .. .. nn ^^ ^^ ^^ nn ww ww ww WW WW WW WW WW ww ww ww ^^ ^^ ^^ ^^ ^^ ww ww ww WW WW WW WW WW';
  mappages["darkunknown"].terrain[81] = 'WW WW WW WW WW WW WW WW WW ww nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn ww ww ww ww nn -- -- ;; ;; ,, ;; .. ,, ;; ;; ,, .. .. .. rd rd .. .. nn .. nn ^^ ^^ ^^ ^^ ^^ ;; ;| ww ww ww ww ww WW WW WW WW WW WW WW WW WW WW WW WW WW WW WW ww ww ww ww ww ww ww `. __ __ .. .. .. .. .. .. .. .. .. .. .. .. .. ,, ;; ;; ;; ,, .. .. .. .. .. .. .. .. rd rd rd rd rd rd .. nn ^^ ^^ nn nn ww ww ww WW WW WW WW WW ww ww ww ww ^^ ^^ ^^ ^^ ww ww ww WW WW WW WW WW';
@@ -180,6 +180,8 @@ mappages["darkunknown"].features[30] = {name : 'HillTower', x : 18, y : 11, ente
 mappages["darkunknown"].features[31] = {name : 'Cave', x : 47, y : 74, entermap : 'bdcave', enterx : 0, entery : 0};
 mappages["darkunknown"].features[32] = {name : 'Waterfall', x : 77, y : 70};
 mappages["darkunknown"].features[33] = {name : 'Waterfall', x : 99, y : 87};
+mappages["darkunknown"].features[34] = {name : 'Cave', x : 48, y : 78, entermap : 'headlesscave', enterx : 28, entery : 13};
+
 
 mappages["darkunknown"].npcs = [];
 
@@ -195,6 +197,7 @@ mappages["darkunknown"].seeBelow = '';
 mappages["darkunknown"].lightLevel = 'bright';
 mappages["darkunknown"].alwaysRemember = '1';
 mappages["darkunknown"].scale = '0';
+mappages["darkunknown"].underground = '0';
 mappages["darkunknown"].enterscript = '';
 mappages["darkunknown"].entertestscript = '';
 mappages["darkunknown"].exitscript = '';
