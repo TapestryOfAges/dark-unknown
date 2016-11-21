@@ -67,10 +67,38 @@ mappages["headlesscave"].scale = '1';
 mappages["headlesscave"].underground = '1';
 mappages["headlesscave"].enterscript = '';
 mappages["headlesscave"].entertestscript = '';
-mappages["headlesscave"].exitscript = '';
+mappages["headlesscave"].exitscript = 'hc_check_clear';
 mappages["headlesscave"].exittestscript = '';
 mappages["headlesscave"].returnmap = 'darkunknown';
 mappages["headlesscave"].returnx = '48';
 mappages["headlesscave"].returny = '78';
 mappages["headlesscave"].returninfused = '0';
 mappages["headlesscave"].linkedMaps = [""];
+
+mappages["headlesscave"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    var allnpcs = mapref.npcs.getAll();
+    for (var i=0;i<allnpcs.length;i++) {
+      if (allnpcs[i].getName() === "HeadlessNPC") {
+        mapref.deleteThing(allnpcs[i]);
+      }
+    }
+  }
+}
+
+mappages["headlesscave"].hc_check_clear = function(mapref) {
+  mapref.Exit = function(who,tomap,fromx,fromy,tox,toy) {
+    var allnpcs = mapref.npcs.getAll();
+    var anyheadlesses = 0;
+    for (var i=0; i<allnpcs.length;i++) {
+      if (allnpcs[i].getName() === "HeadlessNPC") {
+        anyheadlesses = 1;
+      }
+    }
+  }
+  if (!anyheadlesses) {
+    DU.gameflags.setFlag("cave_cleared",1);
+  }
+  
+  return 1;
+}
