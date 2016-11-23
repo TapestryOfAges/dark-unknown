@@ -389,3 +389,24 @@ QUnit.test( "Test Surface Follow Path", function( assert ) {
   
   maps.deleteMap("darkunknown");
 });
+
+QUnit.test( "Test Withdraw from melee", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("unittest2");
+  var testmap = maps.getMap("unittest2");
+
+  Dice = new DiceObject();
+  Dice.roll = function() { return 45; }
+
+  var testnpc = localFactory.createTile("MinstrelNPC");
+  testmap.placeThing(11,5,testnpc);
+  testnpc.withdraw = 50;
+  
+  testmap.placeThing(12,6,PC);
+  ais.combat(testnpc);
+  
+  assert.deepEqual(testnpc.getx(),11,"Minstrel x is 11.");
+  assert.deepEqual(testnpc.gety(),4,"Minstrel y is 4.");
+  
+  maps.deleteMap("unittest2");
+});

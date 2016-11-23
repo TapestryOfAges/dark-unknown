@@ -67,7 +67,6 @@ NPCSpecialFuncs["courierFlee"] = function(who,how) {
 
 
 function TurnMapHostile(map) {
-//  if (debug && debugflags.combat) { dbs.writeln("Attacked a friendly! Turning hostile...<br />"); }
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
   DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma") - 10); 
   var localnpcs = map.npcs.getAll();
@@ -75,7 +74,6 @@ function TurnMapHostile(map) {
     if (val.getAttitude() === "friendly") {
       val.setAttitude("hostile");
       val.setAggro(1);
-//      if (debug && debugflags.combat) { dbs.writeln(val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />"); }
       DebugWrite("combat", val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />");
     }
   });
@@ -88,7 +86,6 @@ function Attack(atk, def) {
   if (atk.specials.reach) { 
     rad = 2; 
   }
-//  if (debug && debugflags.combat) { dbs.writeln("Attacking: reach is " + rad + ", atk coords: " + atk.getx() + ", " + atk.gety() + " ; def coords: " + def.getx() + ", " + def.gety() + ".<br />"); }
   DebugWrite("combat", "Attacking: reach is " + rad + ", atk coords: " + atk.getx() + ", " + atk.gety() + " ; def coords: " + def.getx() + ", " + def.gety() + ".<br />");
   if (Math.abs(atk.getx() - def.getx()) > rad) { type = "missile";}
   if (Math.abs(atk.gety() - def.gety()) > rad) { type = "missile";}
