@@ -11300,9 +11300,6 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.hp = this.maxhp;
     
 
-//    if (debug && debugflags.ai) {
-//      dbs.writeln("<span style='color:green;font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") activating.</span><br />");
-//    }
     DebugWrite("ai", "<span style='font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") activating.</span><br />");
   
     if (this.overrideGraphic) {

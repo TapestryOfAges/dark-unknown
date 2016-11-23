@@ -91,16 +91,13 @@ ais.combat = function(who) {
   var whox = who.getx();
   var whoy = who.gety();
   
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>" + who.getName() + " " + who.getSerial() + " in combat AI.</span><br />"); } 
   DebugWrite("ai", "<span style='font-weight:bold'>In Combat AI...</span><br />");
  
   if (whomap !== PC.getHomeMap()) {
     // what happens if the PC is on another map?
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>On a different map, waiting...</span><br />"); }
     DebugWrite("ai", "On a different map, waiting...<br />");
     who.wait++;
     if (who.wait > 30) {
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Waited long enough, dropping aggro.</span><br />"); }
       DebugWrite("ai", "Waited long enough, dropping aggro.<br />");
       who.setAggro(0);
     }
@@ -120,7 +117,6 @@ ais.combat = function(who) {
       if (!val.getForgetAt()) { anysee = 1; }
     });
     if (!anysee) {
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Distant, and no one in the band can see- dropping aggro.</span><br />"); }
       DebugWrite("ai", "Distant, and no one in the band can see- dropping aggro.<br />");
       who.setAggro(0);
       return retval;
@@ -129,20 +125,22 @@ ais.combat = function(who) {
   
   if (!who.specials.undead && !who.specials.construct && !who.specials.mindless && !who.specials.tempbrave && (who.getHP() < .15*who.getMaxHP()) && (Dice.roll("1d2") === 1)) {
     // 50/50 chance each turn at 15% of life of dropping it all and fleeing
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Too wounded, becoming a coward.</span><br />"); }
     DebugWrite("ai", "Too wounded, becoming a coward.<br />");
     // consider making this a check of some kind
     who.specials.coward = 1;
     who.specials.canbebrave = 1; // things that start out as cowards can't decide to stop being cowards
   }
   
-  if (who.specials.coward) {
-    // run away! run away!
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Running away!</span><br />"); }
-    DebugWrite("ai", "Running away!<br />");
-    var runfrom = FindNearestNPC(who, "enemy");
-    var diffx = whox - runfrom.getx();
-    var diffy = whoy - runfrom.gety();
+  var nearest = FindNearestNPC(who, "enemy");
+  if (who.specials.coward || ((Dice.roll("1d100") < who.withdraw) && IsAdjacent(who,nearest))) {
+    if (who.specials.coward) {
+      // run away! run away!
+      DebugWrite("ai", "Running away!<br />");
+    } else {
+      DebugWrite("ai", "Backing away.<br />");
+    }
+    var diffx = whox - nearest.getx();
+    var diffy = whoy - nearest.gety();
     
     var rundest = [];
     var pathdest = [];
@@ -188,15 +186,12 @@ ais.combat = function(who) {
 
   // decide if meleeing/approaching
   var chance = who.meleechance;
-  if (chance) { chance = chance/100; }
-  else { chance = 1; }
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Chance of melee: " + chance + ".</span><br />"); }
+  if (!chance) { chance = 1; }
   DebugWrite("ai", "Chance of melee: " + chance + ".<br />");
-  if (Math.random() < chance) {
+  if (Dice.roll("1d100") < chance) {
     // yes
     //now find targets
     // top priority: adjacent foes
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Chosen to melee/approach!</span><br />"); }
     DebugWrite("ai", "Chosen to melee/approach!<br />");
     var melee = TryMelee(who);
     if (melee) { 
@@ -206,10 +201,9 @@ ais.combat = function(who) {
     // didn't melee anything, time to try to find something to approach
     var approach = FindNearestNPC(who, "enemy");
     if (!approach) {
-      alert("How do I not have a nearest enemy while still aggro?");
+      alert("How do I (" + who.getName() + " (" + who.getx() + "," + who.gety() + ")) not have a nearest enemy while still aggro?");
       return retval;
     }
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Nearest enemy is: " + approach.getName() + " " + approach.getSerial() + " .</span><br />"); }
     DebugWrite("ai", "Nearest enemy is: " + approach.getName() + " " + approach.getSerial() + " .<br />");
     var others = FindNearby("npcs",approach.getHomeMap(),1,"square",approach.getx(),approach.gety());
     var count = 0;
@@ -249,6 +243,12 @@ ais.combat = function(who) {
         var moved = ais.Randomwalk(who,25,25,25,25);
       }
     }
+  } else {
+    // Not meleeing, not what?
+    var nonmeleeoptions = [];
+    if (who.getMissile()) { nonmeleeoptions.push("missile"); }
+    if (who.spellsknown) { nonmeleeoptions.push("cast"); }
+    if (who.specials.sing) { nonmeleeoptions.push("sing"); }
   }
 
   return retval;
@@ -256,13 +256,11 @@ ais.combat = function(who) {
 }
 
 function TryMelee(who) {
-// if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Attempting melee.</span><br />"); }
   DebugWrite("ai", "In TryMelee.<br />");
   var radius = 1;
   if (who.specials.reach) { radius = 2; }
   var nearby = FindNearby("npcs",who.getHomeMap(),radius,"box",who.getx(),who.gety());
   var atked = 0;
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Seeking entities in melee range. There are " + nearby.length + ".</span><br />"); }
   DebugWrite("ai", "Seeking entities in melee range. There are " + nearby.length + ".<br />");
   if (nearby.length > 0) {
     ShuffleArray(nearby);

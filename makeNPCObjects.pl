@@ -31,7 +31,7 @@ foreach my $line (<$npcdoc>) {
   print $out "  this.attitude = '$fields[8]';\n";
   print $out "  this.peaceAI = '$fields[9]';\n";
   print $out "  this.forgetAt = $fields[10];\n";
-  print $out "  this.withdraw = '$fields[11]';\n";
+  print $out "  this.withdraw = $fields[11];\n";
   if ($fields[12] =~ /,/) {
     $fields[12] =~ s/ //g;
 #    $fields[12] =~ /^(.+),(.+)/;
