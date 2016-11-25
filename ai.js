@@ -246,9 +246,15 @@ ais.combat = function(who) {
   } else {
     // Not meleeing, not what?
     var nonmeleeoptions = [];
-    if (who.getMissile()) { nonmeleeoptions.push("missile"); }
-    if (who.spellsknown) { nonmeleeoptions.push("cast"); }
-    if (who.specials.sing) { nonmeleeoptions.push("sing"); }
+    if (who.getMissile()) { nonmeleeoptions.push("ai_missile"); }
+    if (who.spellsknown) { nonmeleeoptions.push("ai_cast"); }
+    if (who.specials.sing) { nonmeleeoptions.push("ai_sing"); }
+    // there will be more!
+    
+    var performed_action = 0;
+    while (!performed_action) {
+      performed_action = ais[nonmeleeoptions[Dice.roll("1d" + nonmeleeoptions.length + "-1")]](who);
+    }
   }
 
   return retval;
@@ -1673,4 +1679,65 @@ ais.Courier = function(who) {
   var retval = {};
   retval["fin"] = 1;
   return retval;
+}
+
+ais.ai_sing = function(who) {
+  
+}
+
+ais.ai_missile = function(who) {
+  var melee = TryMelee(who);
+  if (melee) { 
+    return "melee"; 
+  }
+  
+  // find a target
+  var shoot_at = FindMissileTarget(who);
+  
+}
+
+ais.ai_cast = function(who) {
+  
+}
+
+function FindMissileTarget(who) {
+  var thismap = who.getHomeMap();
+  var nearby = FindNearby("npcs",thismap,5,"box",who.getx(),who.gety());
+  var listtargets = [];
+  var weakest;
+  var closest;
+  $.each(nearby, function(idx,val) {
+    if (!weakest) { weakest=val; }
+    else { 
+      if ((weakest.getHP()/weakest.getMaxHP()) > (val.getHP()/val.getMaxHP())) { 
+        weakest = val;
+      }
+    }
+   
+    if (!closest) { closest = val; }
+    else {
+      if (GetDistance(who.getx(),who.gety(),val.getx(),val.gety()) < (GetDistance(who.getx(),who.gety(),closest.getx(),closest.gety())) {
+        closest = val;
+      }
+    }
+    
+    listtargets.push(val);
+  });
+  
+  if (weakest) { 
+    listtargets.push(weakest); 
+    if (who.specials.ruthless) {
+      for (var i=0; i<=8; i++) {
+        // make choosing weakest more likely
+        listtargets.push(weakest);
+      }
+    }
+  }
+  if (closest) { listtargets.push(closest); }
+  
+  if (listtargets[0]) {
+    return (listtargets[Dice.roll("1d"+listtargets.length+"-1")]);
+  } else {
+    return 0;
+  }
 }
