@@ -415,6 +415,7 @@ print $out "<b>undead</b>: The creature is undead. Immune to poison.<br />\n";
 print $out "<b>construct</b>: The creature is a mindless construct. Cannot be Jinxed or Charmed.<br />\n";
 print $out "<b>coward</b>: Will always run in aggroed.<br />\n";
 print $out "<b>nopeer</b>: Does not appear in the view of a Peer spell.<br />\n";
+print $out "<b>ruthless</b>: Weights the foe with the fewest hp extremely highly.<br />\n";
 
 for (my $i=1;$i<=8;$i++) {
   print $out2 "<h2>Level $i</h2> <table cellpadding='0' cellspacing='0' border='1'>";
