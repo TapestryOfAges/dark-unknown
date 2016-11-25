@@ -595,7 +595,7 @@ magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].executeSpell = function(caster, infused, 
   resp["fin"] = 1;
 
   if (caster !== PC) {
-    resp = PerformVulnerability(caster, infused, free, tgt);
+    resp = PerformMend(caster, infused, free, tgt);
     return resp;
   }
   
