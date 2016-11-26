@@ -410,3 +410,25 @@ QUnit.test( "Test Withdraw from melee", function( assert ) {
   
   maps.deleteMap("unittest2");
 });
+
+QUnit.test( "Test choose missile (non ruthless)", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("unittest2");
+  var testmap = maps.getMap("unittest2");
+
+  var testenemy = localFactory.createTile("HeadlessNPC");
+  testmap.placeThing(11,2,testenemy);
+  var testfriendly1 = localFactory.createTile("PaladinVillagerNPC");
+  testmap.placeThing(11,7,testfriendly1);
+  var testfriendly2 = localFactory.createTile("RangerVillagerNPC");
+  testmap.placeThing(13,8,testfriendly2);
+  var testfriendly3 = localFactory.createTile("DruidVillagerNPC");
+  testmap.placeThing(12,10,testfriendly3);
+
+  Dice = new DiceObject();
+  Dice.roll = function() { return 0; }
+  
+  var headlesstarget = FindMissileTarget(testenemy,10);
+  
+  assert.deepEqual(headlesstarget.getName(), "PaladinVillagerNPC", "Chose the paladin (first in the list).");
+});  
