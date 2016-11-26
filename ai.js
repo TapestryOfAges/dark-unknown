@@ -1692,7 +1692,7 @@ ais.ai_missile = function(who) {
   }
   
   // find a target
-  var shoot_at = FindMissileTarget(who);
+  var shoot_at = FindMissileTarget(who,10);
   
 }
 
@@ -1700,29 +1700,30 @@ ais.ai_cast = function(who) {
   
 }
 
-function FindMissileTarget(who) {
+function FindMissileTarget(who,radius) {
   var thismap = who.getHomeMap();
-  var nearby = FindNearby("npcs",thismap,5,"box",who.getx(),who.gety());
+  var nearby = FindNearby("npcs",thismap,radius,"circle",who.getx(),who.gety());
   var listtargets = [];
   var weakest;
   var closest;
-  $.each(nearby, function(idx,val) {
-    if (!weakest) { weakest=val; }
+  for (var i=0;i<nearby.length;i++) {
+    if (nearby[i].getAttitude() === who.getAttitude()) { continue; }
+    if (!weakest) { weakest=nearby[i]; }
     else { 
-      if ((weakest.getHP()/weakest.getMaxHP()) > (val.getHP()/val.getMaxHP())) { 
-        weakest = val;
+      if ((weakest.getHP()/weakest.getMaxHP()) > (nearby[i].getHP()/nearby[i].getMaxHP())) { 
+        weakest = nearby[i];
       }
     }
    
-    if (!closest) { closest = val; }
+    if (!closest) { closest = nearby[i]; }
     else {
-      if (GetDistance(who.getx(),who.gety(),val.getx(),val.gety()) < (GetDistance(who.getx(),who.gety(),closest.getx(),closest.gety())) {
-        closest = val;
+      if (GetDistance(who.getx(),who.gety(),nearby[i].getx(),nearby[i].gety()) < (GetDistance(who.getx(),who.gety(),closest.getx(),closest.gety()))) {
+        closest = nearby[i];
       }
     }
     
-    listtargets.push(val);
-  });
+    listtargets.push(nearby[i]);
+  }
   
   if (weakest) { 
     listtargets.push(weakest); 
