@@ -245,6 +245,7 @@ ais.combat = function(who) {
     }
   } else {
     // Not meleeing, not what?
+    DebugWrite("ai", "In special/missile<br />");
     var nonmeleeoptions = [];
     if (who.getMissile()) { nonmeleeoptions.push("ai_missile"); }
     if (who.spellsknown) { nonmeleeoptions.push("ai_cast"); }
@@ -252,8 +253,20 @@ ais.combat = function(who) {
     // there will be more!
     
     var performed_action = 0;
-    while (!performed_action) {
+    var num_attempts = 0;
+    while (!performed_action && (num_attempts < 10)) {
       performed_action = ais[nonmeleeoptions[Dice.roll("1d" + nonmeleeoptions.length + "-1")]](who);
+      num_attempts++;
+    }
+    if (num_attempts === 10) {
+      alert("10 tries, " + who.getName() + " (" + who.getSerial() + ") failed to choose a special action.");
+      DebugWrite("ai", "10 tries, " + who.getName() + " (" + who.getSerial() + ") failed to choose a special action.");
+      return retval;
+    }
+    
+    if ((performed_action === "melee") || (performed_action === "missile") || (performed_action === "special")) {
+      retval["wait"] = 1;
+      return retval;
     }
   }
 
@@ -1688,11 +1701,21 @@ ais.ai_sing = function(who) {
 ais.ai_missile = function(who) {
   var melee = TryMelee(who);
   if (melee) { 
+    DebugWrite("ai", "In missile, but something was adjacent so meleeing. THIS SHOULDN'T HAPPEN!!<br />");
     return "melee"; 
   }
   
   // find a target
   var shoot_at = FindMissileTarget(who,10);
+  if (shoot_at) {
+    DebugWrite("ai", "Firing a missile attack!<br />");
+    var result = Attack(who,shoot_at);
+    maintext.addText(result["txt"]);
+  
+    return "missile";
+  }
+  
+  return 0;
   
 }
 
@@ -1701,9 +1724,11 @@ ais.ai_cast = function(who) {
 }
 
 function FindMissileTarget(who,radius) {
+  DebugWrite("ai", "In FindMissileTarget.<br />");
   var thismap = who.getHomeMap();
   var nearby = FindNearby("npcs",thismap,radius,"circle",who.getx(),who.gety());
   var listtargets = [];
+  var listtargetname = [];
   var weakest;
   var closest;
   for (var i=0;i<nearby.length;i++) {
@@ -1711,33 +1736,38 @@ function FindMissileTarget(who,radius) {
     if (!weakest) { weakest=nearby[i]; }
     else { 
       if ((weakest.getHP()/weakest.getMaxHP()) > (nearby[i].getHP()/nearby[i].getMaxHP())) { 
+ //       alert("replaced weakest with " + nearby[i].getName());
         weakest = nearby[i];
       }
     }
    
     if (!closest) { closest = nearby[i]; }
     else {
-      if (GetDistance(who.getx(),who.gety(),nearby[i].getx(),nearby[i].gety()) < (GetDistance(who.getx(),who.gety(),closest.getx(),closest.gety()))) {
+      if (GetDistance(who.getx(),who.gety(),nearby[i].getx(),nearby[i].gety()) < GetDistance(who.getx(),who.gety(),closest.getx(),closest.gety())) {
         closest = nearby[i];
       }
     }
     
     listtargets.push(nearby[i]);
+    listtargetname.push(nearby[i].getName());
   }
-  
+//alert(weakest.getName());
   if (weakest) { 
     listtargets.push(weakest); 
+    listtargetname.push(weakest.getName());
     if (who.specials.ruthless) {
       for (var i=0; i<=8; i++) {
         // make choosing weakest more likely
         listtargets.push(weakest);
+        listtargetname.push(weakest.getName());
       }
     }
   }
-  if (closest) { listtargets.push(closest); }
-  
+  if (closest) { listtargets.push(closest); listtargetname.push(closest.getName()); }
+//  alert(JSON.stringify(listtargetname));
   if (listtargets[0]) {
-    return (listtargets[Dice.roll("1d"+listtargets.length+"-1")]);
+    var idx = Dice.roll("1d"+listtargets.length+"-1");
+    return (listtargets[idx]);
   } else {
     return 0;
   }
