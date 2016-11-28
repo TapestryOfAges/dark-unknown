@@ -14,7 +14,7 @@ function DruidVillagerNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '75';
+  this.withdraw = 75;
   this.graphic = '302.gif';
   this.altgraphic = ['druid-offcolor.1.gif','druid-offcolor.gif',];
   this.meleeAttackAs = 'Fists';
@@ -48,7 +48,7 @@ function ShepherdVillagerNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '301.gif';
   this.altgraphic = ['shepherd-offcolor.1.gif',];
   this.meleeAttackAs = 'Dagger';
@@ -79,7 +79,7 @@ function MageVillagerNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '50';
+  this.withdraw = 50;
   this.graphic = '303.gif';
   this.altgraphic = ['303.2.gif','mage-offcolor.gif',];
   this.meleeAttackAs = 'Fists';
@@ -112,7 +112,7 @@ function TinkerVillagerNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '50';
+  this.withdraw = 50;
   this.graphic = '304.gif';
   this.altgraphic = ['304.2.gif','tinker-offcolor.gif',];
   this.meleeAttackAs = 'Dagger';
@@ -144,7 +144,7 @@ function RangerVillagerNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '50';
+  this.withdraw = 50;
   this.graphic = '305.gif';
   this.altgraphic = ['ranger-offcolor.gif',];
   this.meleeAttackAs = 'Dagger';
@@ -176,7 +176,7 @@ function AdventurerVillagerNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '306.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'Sling';
@@ -207,7 +207,7 @@ function PaladinVillagerNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '307.gif';
   this.altgraphic = ['307.2.gif','paladin-offcolor.gif',];
   this.meleeAttackAs = 'Shortsword';
@@ -239,7 +239,7 @@ function FighterVillagerNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '308.gif';
   this.altgraphic = ['fighter-offcolor.gif',];
   this.meleeAttackAs = 'Shortsword';
@@ -270,7 +270,7 @@ function TownsfolkVillagerNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '310.gif';
   this.altgraphic = ['310.2.gif',];
   this.meleeAttackAs = 'Dagger';
@@ -301,7 +301,7 @@ function BardVillagerNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '66';
+  this.withdraw = 66;
   this.graphic = '311.gif';
   this.altgraphic = ['bard-offcolor.gif',];
   this.meleeAttackAs = 'Dagger';
@@ -333,7 +333,7 @@ function ChildVillagerNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '312.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
@@ -367,7 +367,7 @@ function BeggarVillagerNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '313.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
@@ -401,7 +401,7 @@ function JesterNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '314.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
@@ -435,7 +435,7 @@ function TownGuardNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '309.gif';
   this.meleeAttackAs = 'Halberd';
   this.missileAttackAs = 'none';
@@ -465,7 +465,7 @@ function KingNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '315.gif';
   this.meleeAttackAs = 'MagicSword';
   this.missileAttackAs = 'none';
@@ -495,7 +495,7 @@ function QueenNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '315.2.gif';
   this.meleeAttackAs = 'MagicSword';
   this.missileAttackAs = 'none';
@@ -525,7 +525,7 @@ function PrinceNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'prince.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
@@ -555,7 +555,7 @@ function HorseNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '105.gif';
   this.altgraphic = ['204.gif',];
   this.meleeAttackAs = 'Shortsword';
@@ -587,7 +587,7 @@ function CorruptPrinceNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'prince.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
@@ -617,7 +617,7 @@ function CorruptGuardsNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '309.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
@@ -647,7 +647,7 @@ function CourierNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'courier';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '310.2.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'Sling';
@@ -676,7 +676,7 @@ function CourierGuardNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-15';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '309.gif';
   this.meleeAttackAs = 'Axe';
   this.missileAttackAs = 'none';
@@ -706,7 +706,7 @@ function GiantBatNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-15';
   this.forgetAt = 15;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '362.gif';
   this.altgraphic = ['328.gif',];
   this.meleeAttackAs = 'Dagger';
@@ -741,7 +741,7 @@ function GiantInsectsNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-12';
   this.forgetAt = 14;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '336.gif';
   this.altgraphic = ['370.gif',];
   this.meleeAttackAs = 'Fists';
@@ -777,7 +777,7 @@ function GiantRatNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '327.gif';
   this.altgraphic = ['361.gif',];
   this.meleeAttackAs = 'Dagger';
@@ -813,7 +813,7 @@ function HeadlessNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '344.gif';
   this.altgraphic = ['378.gif',];
   this.meleeAttackAs = 'Shortsword';
@@ -843,7 +843,7 @@ function HoodNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '375.gif';
   this.altgraphic = ['341.gif',];
   this.meleeAttackAs = 'Dagger';
@@ -875,7 +875,7 @@ function MinstrelNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '50';
+  this.withdraw = 50;
   this.graphic = '311.gif';
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'Sling';
@@ -907,7 +907,7 @@ function SlimeNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 7;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '331.gif';
   this.altgraphic = ['365.gif',];
   this.meleeAttackAs = 'Dagger';
@@ -943,7 +943,7 @@ function ApprenticeNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '75';
+  this.withdraw = 75;
   this.graphic = '303.gif';
   this.altgraphic = ['303.2.gif',];
   this.meleeAttackAs = 'Fists';
@@ -976,7 +976,7 @@ function FighterNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '308.gif';
   this.altgraphic = ['fighter-offcolor.gif',];
   this.meleeAttackAs = 'Mace';
@@ -1007,7 +1007,7 @@ function PythonNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '342.gif';
   this.altgraphic = ['376.gif',];
   this.meleeAttackAs = 'Shortsword';
@@ -1041,7 +1041,7 @@ function NixieNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '323.gif';
   this.altgraphic = ['357.gif',];
   this.meleeAttackAs = 'Shortsword';
@@ -1071,7 +1071,7 @@ function OrcNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '339.gif';
   this.altgraphic = ['373.gif',];
   this.meleeAttackAs = 'Mace';
@@ -1105,7 +1105,7 @@ function RogueNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '306.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
@@ -1136,7 +1136,7 @@ function PitRogueNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '306.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
@@ -1167,7 +1167,7 @@ function SkeletonNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '340.gif';
   this.altgraphic = ['374.gif',];
   this.meleeAttackAs = 'Shortsword';
@@ -1200,7 +1200,7 @@ function AnimatedArmorNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'wander-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '338.gif';
   this.altgraphic = ['372.gif',];
   this.meleeAttackAs = 'Shortsword';
@@ -1230,7 +1230,7 @@ function ArcherNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '66';
+  this.withdraw = 66;
   this.graphic = 'ranger-offcolor.gif';
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'Bow';
@@ -1261,7 +1261,7 @@ function BardNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '50';
+  this.withdraw = 50;
   this.graphic = 'bard-offcolor.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'Bow';
@@ -1292,7 +1292,7 @@ function DruidNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '50';
+  this.withdraw = 50;
   this.graphic = '302.gif';
   this.altgraphic = ['druid-offcolor.gif','druid-offcolor.1.gif',];
   this.meleeAttackAs = 'Shortsword';
@@ -1324,7 +1324,7 @@ function FireLizardNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '349.gif';
   this.altgraphic = ['383.gif',];
   this.meleeAttackAs = 'Axe';
@@ -1357,7 +1357,7 @@ function FlukeNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-15';
   this.forgetAt = 15;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'fluke.gif';
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
@@ -1393,7 +1393,7 @@ function GhostNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-20';
   this.forgetAt = 30;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '330.gif';
   this.altgraphic = ['364.gif',];
   this.meleeAttackAs = 'Axe';
@@ -1427,7 +1427,7 @@ function GiantSpiderNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '329.gif';
   this.altgraphic = ['363.gif',];
   this.meleeAttackAs = 'Axe';
@@ -1463,7 +1463,7 @@ function GremlinNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '333.gif';
   this.altgraphic = ['367.gif',];
   this.meleeAttackAs = 'Shortsword';
@@ -1497,7 +1497,7 @@ function HandlerNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'shepherd-offcolor.1.gif';
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
@@ -1528,7 +1528,7 @@ function MimicNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'stationary-3';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '368.gif';
   this.altgraphic = ['334.gif',];
   this.meleeAttackAs = 'Axe';
@@ -1561,7 +1561,7 @@ function OrcShamanNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'orc_shaman.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
@@ -1592,7 +1592,7 @@ function GiantSnakeNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'python.gif';
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
@@ -1628,7 +1628,7 @@ function SeahorseNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '326.gif';
   this.altgraphic = ['360.gif',];
   this.meleeAttackAs = 'Mace';
@@ -1664,7 +1664,7 @@ function ThiefNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '306.gif';
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
@@ -1698,7 +1698,7 @@ function TrollNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '332.gif';
   this.altgraphic = ['366.gif',];
   this.meleeAttackAs = 'Mace';
@@ -1729,7 +1729,7 @@ function TwisterNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'wander-10';
   this.forgetAt = 8;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '324.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
@@ -1761,7 +1761,7 @@ function AirElementalNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'wander-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'air_elemental.gif';
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
@@ -1793,7 +1793,7 @@ function CyclopsNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '345.gif';
   this.altgraphic = ['379.gif',];
   this.meleeAttackAs = 'Axe';
@@ -1825,7 +1825,7 @@ function DeepNixieNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'deep_nixie.gif';
   this.meleeAttackAs = 'Axe';
   this.missileAttackAs = 'none';
@@ -1855,7 +1855,7 @@ function DrakeNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'wander-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '353.gif';
   this.altgraphic = ['387.gif',];
   this.meleeAttackAs = 'Mace';
@@ -1892,7 +1892,7 @@ function EarthElementalNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'wander-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'earth_elemental.gif';
   this.meleeAttackAs = 'Halberd';
   this.missileAttackAs = 'none';
@@ -1928,7 +1928,7 @@ function FireElementalNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'wander-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'fire_elemental.gif';
   this.meleeAttackAs = 'Axe';
   this.missileAttackAs = 'none';
@@ -1961,7 +1961,7 @@ function LurkerNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'wander-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'lurker.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
@@ -1997,7 +1997,7 @@ function OrcCaptainNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'orc_captain.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'Bow';
@@ -2028,7 +2028,7 @@ function PaladinNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '307.gif';
   this.altgraphic = ['307.2.gif','paladin-offcolor.gif',];
   this.meleeAttackAs = 'Longsword';
@@ -2063,7 +2063,7 @@ function SeaSerpentNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'wander-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '321.gif';
   this.altgraphic = ['355.gif',];
   this.meleeAttackAs = 'Longsword';
@@ -2099,7 +2099,7 @@ function TremendousSpiderNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '329.gif';
   this.altgraphic = ['363.gif',];
   this.meleeAttackAs = 'Longsword';
@@ -2136,7 +2136,7 @@ function WaterElementalNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'wander-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '325.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
@@ -2169,7 +2169,7 @@ function WizardNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '50';
+  this.withdraw = 50;
   this.graphic = 'mage-offcolor.gif';
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
@@ -2200,7 +2200,7 @@ function CorpserNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'wander-15';
   this.forgetAt = 15;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'corpser.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
@@ -2236,7 +2236,7 @@ function EttinNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '343.gif';
   this.altgraphic = ['377.gif',];
   this.meleeAttackAs = 'Longsword';
@@ -2270,7 +2270,7 @@ function FloorNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '103.gif';
   this.meleeAttackAs = 'Halberd';
   this.missileAttackAs = 'none';
@@ -2301,7 +2301,7 @@ function GazerNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '337.gif';
   this.altgraphic = ['371.gif',];
   this.meleeAttackAs = 'Shortsword';
@@ -2315,7 +2315,7 @@ function GazerNPCTile() {
   this.meleeChance = 20;
   this.spellsknown = { attack: 1, };
   this.resists = {};
-  this.special = 'sleep, ondeathInsects';
+  this.special = 'sleep, ondeathInsects, ruthless';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeMissSound = 'sfx_animal_miss';
 }
@@ -2335,7 +2335,7 @@ function HydraNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '352.gif';
   this.altgraphic = ['386.gif',];
   this.meleeAttackAs = 'Longsword';
@@ -2370,7 +2370,7 @@ function MagmaSpawnNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '349.gif';
   this.altgraphic = ['383.gif',];
   this.meleeAttackAs = 'Longsword';
@@ -2403,7 +2403,7 @@ function PhantomNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-15';
   this.forgetAt = 15;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '338.gif';
   this.altgraphic = ['372.gif',];
   this.meleeAttackAs = 'Longsword';
@@ -2437,7 +2437,7 @@ function RangerNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '305.gif';
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'Crossbow';
@@ -2468,7 +2468,7 @@ function WillotheWispNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'wander-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '346.gif';
   this.altgraphic = ['380.gif',];
   this.meleeAttackAs = 'Mace';
@@ -2506,7 +2506,7 @@ function DelverNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '350.gif';
   this.altgraphic = ['384.gif',];
   this.meleeAttackAs = 'Halberd';
@@ -2541,7 +2541,7 @@ function ArchmageNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '50';
+  this.withdraw = 50;
   this.graphic = '347.gif';
   this.altgraphic = ['381.gif',];
   this.meleeAttackAs = 'Mace';
@@ -2575,7 +2575,7 @@ function BlackDragonNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'stationary';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'blackdragon.gif';
   this.meleeAttackAs = 'Halberd';
   this.missileAttackAs = 'none';
@@ -2588,7 +2588,7 @@ function BlackDragonNPCTile() {
   this.meleeChance = 70;
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
-  this.special = 'firebreath';
+  this.special = 'firebreath, ruthless';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeMissSound = 'sfx_roar_miss';
 }
@@ -2608,7 +2608,7 @@ function DevourerNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '352.gif';
   this.altgraphic = ['386.gif',];
   this.meleeAttackAs = 'Halberd';
@@ -2643,7 +2643,7 @@ function DragonNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '353.gif';
   this.altgraphic = ['387.gif',];
   this.meleeAttackAs = 'Halberd';
@@ -2677,7 +2677,7 @@ function EttinSorcererNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '343.gif';
   this.altgraphic = ['377.gif',];
   this.meleeAttackAs = 'Longsword';
@@ -2712,7 +2712,7 @@ function GiantNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '345.gif';
   this.altgraphic = ['379.gif',];
   this.meleeAttackAs = 'Longsword';
@@ -2744,7 +2744,7 @@ function KrakenNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '322.gif';
   this.altgraphic = ['356.gif',];
   this.meleeAttackAs = 'Halberd';
@@ -2781,7 +2781,7 @@ function ReaperNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'stationary-9';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '335.gif';
   this.altgraphic = ['369.gif',];
   this.meleeAttackAs = 'Longsword';
@@ -2798,6 +2798,7 @@ function ReaperNPCTile() {
   this.meleeChance = 50;
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.special = 'ruthless';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeMissSound = 'sfx_animal_miss';
 }
@@ -2817,7 +2818,7 @@ function SpecterNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '330.gif';
   this.altgraphic = ['364.gif',];
   this.meleeAttackAs = 'Longsword';
@@ -2852,7 +2853,7 @@ function DaemonNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '351.gif';
   this.altgraphic = ['385.gif',];
   this.meleeAttackAs = 'Halberd';
@@ -2887,7 +2888,7 @@ function EarthenTyrantNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '350.gif';
   this.altgraphic = ['384.gif',];
   this.meleeAttackAs = 'Halberd';
@@ -2923,7 +2924,7 @@ function LicheNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '348.gif';
   this.altgraphic = ['382.gif',];
   this.meleeAttackAs = 'Axe';
@@ -2957,7 +2958,7 @@ function EyesofSpiteNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '337.gif';
   this.altgraphic = ['371.gif',];
   this.meleeAttackAs = 'Longsword';
@@ -2992,7 +2993,7 @@ function ReaperLordNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'stationary-9';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '335.gif';
   this.altgraphic = ['369.gif',];
   this.meleeAttackAs = 'Halberd';
@@ -3009,6 +3010,7 @@ function ReaperLordNPCTile() {
   this.meleeChance = 50;
   this.spellsknown = { control: 1, attack: 1, buff: 1, };
   this.resists = {};
+  this.special = 'ruthless';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeMissSound = 'sfx_animal_miss';
 }
@@ -3028,7 +3030,7 @@ function ElderDragonNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-12';
   this.forgetAt = 13;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'elder_dragon.gif';
   this.meleeAttackAs = 'MagicSword';
   this.missileAttackAs = 'none';
@@ -3061,7 +3063,7 @@ function BalronNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '354.gif';
   this.altgraphic = ['388.gif',];
   this.meleeAttackAs = 'MagicSword';
@@ -3093,7 +3095,7 @@ function TitanNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '345.gif';
   this.altgraphic = ['379.gif',];
   this.meleeAttackAs = 'Halberd';
@@ -3125,7 +3127,7 @@ function AbyssalKrakenNPCTile() {
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-12';
   this.forgetAt = 12;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '322.gif';
   this.altgraphic = ['356.gif',];
   this.meleeAttackAs = 'MagicSword';
@@ -3159,7 +3161,7 @@ function IllusionNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'followPC';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '338.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
@@ -3190,7 +3192,7 @@ function InfusedIllusionNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'followPC';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '338.gif';
   this.meleeAttackAs = 'Axe';
   this.missileAttackAs = 'none';
@@ -3221,7 +3223,7 @@ function ToshinSentinelNPCTile() {
   this.attitude = 'neutral';
   this.peaceAI = 'Sentinel';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'sentinel.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
@@ -3251,7 +3253,7 @@ function AbyssYouNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'abyssyou ';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = '388.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
@@ -3282,7 +3284,7 @@ function NegatorGnomeNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'negator';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'sentinel.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
@@ -3310,7 +3312,7 @@ function CrystalBarrierNPCTile() {
   this.attitude = 'friendly';
   this.peaceAI = 'stationary';
   this.forgetAt = 0;
-  this.withdraw = '0';
+  this.withdraw = 0;
   this.graphic = 'crystals.gif';
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';

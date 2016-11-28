@@ -425,10 +425,29 @@ QUnit.test( "Test choose missile (non ruthless)", function( assert ) {
   var testfriendly3 = localFactory.createTile("DruidVillagerNPC");
   testmap.placeThing(12,10,testfriendly3);
 
+  testfriendly3.setHP(9);
+
   Dice = new DiceObject();
   Dice.roll = function() { return 0; }
   
   var headlesstarget = FindMissileTarget(testenemy,10);
   
-  assert.deepEqual(headlesstarget.getName(), "PaladinVillagerNPC", "Chose the paladin (first in the list).");
+  assert.deepEqual(headlesstarget.getName(), "PaladinVillagerNPC", "Chose the paladin (array index 0).");
+  
+  Dice.roll = function() { return 1; }
+  var headlesstarget = FindMissileTarget(testenemy,10);
+  assert.deepEqual(headlesstarget.getName(), "RangerVillagerNPC", "Chose the ranger (array index 1).");
+  
+  Dice.roll = function() { return 2; }
+  var headlesstarget = FindMissileTarget(testenemy,10);
+  assert.deepEqual(headlesstarget.getName(), "DruidVillagerNPC", "Chose the druid (array index 2).");
+
+  Dice.roll = function() { return 3; }
+  var headlesstarget = FindMissileTarget(testenemy,10);
+  assert.deepEqual(headlesstarget.getName(), "DruidVillagerNPC", "Chose the druid (array index 3).");
+
+  Dice.roll = function() { return 4; }
+  var headlesstarget = FindMissileTarget(testenemy,10);
+  assert.deepEqual(headlesstarget.getName(), "PaladinVillagerNPC", "Chose the paladin (array index 4).");
+
 });  
