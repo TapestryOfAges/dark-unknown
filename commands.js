@@ -2311,7 +2311,7 @@ function DrawOptions() {
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
   optdiv += "<tr><td style='text-decoration:underline'>OPTIONS</td><td></td><td></td></tr>";
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td></tr>";
-  optdiv += "<tr><td>SOUND AND MUSIC</td><td></td><td></td></tr>";
+  optdiv += "<tr><td><span style='text-decoration:underline'>SOUND AND MUSIC</span></td><td></td><td></td></tr>";
   optdiv += "<tr><td>PLAY MUSIC:</td><td></td><td";
   if (targetCursor.page === 1) { 
     optdiv += " class='highlight'";
@@ -2356,18 +2356,43 @@ function DrawOptions() {
     optdiv += "NO";
   }
   optdiv += "</td></tr>";  
-  optdiv += "<tr><td><br />USER INTERFACE</td><td></td><td></td></tr>";
-  optdiv += "<tr><td>TABLET:</td><td></td><td";
+  optdiv += "<tr><td><br /><span style='text-decoration:underline'>USER INTERFACE</span></td><td></td><td></td></tr>";
+  optdiv += "<tr><td>MOVE OPENS DOORS:</td><td></td><td";
   if (targetCursor.page === 5) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
-  if (DU.gameflags.getFlag("tablet")) {
+  if (DU.gameflags.getFlag("move_opens_doors")) {
     optdiv += "YES";
   } else {
     optdiv += "NO";
   }
   optdiv += "</td></tr>";
+
+  optdiv += "<tr><td>MOVE ATTACKS/TALKS:</td><td></td><td";
+  if (targetCursor.page === 6) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.getFlag("move_attacks")) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+
+  optdiv += "<tr><td>STICKY TARGETING:</td><td></td><td";
+  if (targetCursor.page === 7) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.getFlag("sticky_target")) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+
   optdiv += "</table></div></div>";
   
   DrawTopbarFrame("<p>Options</p>");
@@ -2531,7 +2556,7 @@ function performOptions(code) {
     else if ((code === 40) || (code === 191)) { // scroll down
       targetCursor.page++;
       if (targetCursor.cmd === "o") {
-        if (targetCursor.page === 6) { targetCursor.page = 5; }
+        if (targetCursor.page === 8) { targetCursor.page = 7; }
       } else if (targetCursor.cmd === "debug") {
         if (targetCursor.page === 12) { targetCursor.page = 11; }
       }
@@ -2659,12 +2684,24 @@ function ToggleOption(opt) {
       DU.gameflags.setFlag("ambientsound", 1); 
     }
   } else if (opt === 5) {
-    if (DU.gameflags.setFlag("tablet")) {
-      DU.gameflags.setFlag("tablet", 0);
-      TabletUI(-1);
+    if (DU.gameflags.getFlag("move_opens_doors")) {
+      DU.gameflags.setFlag("move_opens_doors", 0);
+//      TabletUI(-1);
     } else {
-      DU.gameflags.setFlag("tablet", 1);
-      TabletUI(1);
+      DU.gameflags.setFlag("move_opens_doors", 1);
+//      TabletUI(1);
+    }
+  } else if (opt === 6) {
+    if (DU.gameflags.getFlag("move_attacks")) {
+      DU.gameflags.setFlag("move_attacks", 0);
+    } else {
+      DU.gameflags.setFlag("move_attacks", 1);
+    }
+  } else if (opt === 7) {
+    if (DU.gameflags.getFlag("sticky_target")) {
+      DU.gameflags.setFlag("sticky_target", 0);
+    } else {
+      DU.gameflags.setFlag("sticky_target", 1);
     }
   }
 }
