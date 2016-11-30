@@ -3,6 +3,9 @@ music
 sound
 tablet
 autosave
+move_opens_doors
+move_attacks  - which also covers move_talks
+sticky_target
 
 DU.randomseed - random number generated on game creation
 karma - tracks PC's karma
