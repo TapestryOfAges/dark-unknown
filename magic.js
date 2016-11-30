@@ -3916,19 +3916,7 @@ function AnimateSparkles(onwhat, color, animframe) {
 function PerformSpellcast() {
   var themap = PC.getHomeMap();
   var targettile = themap.getTile(targetCursor.x, targetCursor.y);
-  var onscreen = $('#td-tile' + targetCursor.x + 'x' + targetCursor.y).html();
-  var losval = 0;
-  if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
-  else {
-    var light = targettile.getLocalLight();
-    if (themap.getLightLevel() === "bright") {
-      light += 1;
-    }
-    if (light < SHADOW_THRESHOLD) {
-      losval = 1;
-    }
-  }
-  if (losval >= LOS_THRESHOLD) {
+  if (!IsVisibleOnScreen(targetCursor.x,targetCursor.y)) {
    	var retval = {};
   	retval["txt"] = "You cannot see that.";
   	retval["fin"] = 0;
@@ -3964,6 +3952,7 @@ function PerformSpellcast() {
       $(tileid).html(targetCursor.basetile); 
 
     } else {
+      targetCursor.lastTarget = tgt;
       var tileid = targetCursor.tileid;
       $(tileid).html(targetCursor.basetile); 
 
