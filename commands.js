@@ -112,8 +112,18 @@ function PerformCommand(code, ctrl) {
 //		  var targetx = 192;
 //		  var targety = 192;
 //		  var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
-		    targetCursor.x = PC.getx();
-		    targetCursor.y = PC.gety();
+        var setcoords = 0;
+        if (DU.gameflags.getFlag("sticky_target") && targetCursor.lastTarget) {
+          if (IsVisibleOnScreen(targetCursor.lastTarget.getx(),targetCursor.lastTarget.gety())) {
+            targetCursor.x = targetCursor.lastTarget.getx();
+            targetCursor.y = targetCursor.lastTarget.gety();
+            setcoords = 1;
+          }
+        } 
+        if (!setcoords) {
+  		    targetCursor.x = PC.getx();
+	  	    targetCursor.y = PC.gety();
+	  	  }
   		  targetCursor.command = "a";
 	  	  targetCursor.targetlimit = (viewsizex -1)/2;
 		    targetCursor.targetCenterlimit = 0;
@@ -601,7 +611,9 @@ function PerformAttack(who) {
     retval["fin"] = 0;  
     retval["input"] = "&gt;";
     return retval;
-  } 
+  } else {
+    targetCursor.lastTarget = atkwho;
+  }
   retval = Attack(who, atkwho);
   return retval;
 }
