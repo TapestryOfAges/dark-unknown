@@ -1335,3 +1335,28 @@ function IsOnPentagram(who) {
   } 
   return 0;
 }
+
+function IsVisibleOnScreen(x,y) {
+  var themap = PC.getHomeMap();
+  var display = getDisplayCenter(themap,PC.getx(),PC.gety());
+  if ((display.leftedge > x) || (display.rightedge < x)) { return 0; }
+  if ((display.topedge > y) || (display.bottomedge < y)) { return 0; }
+  var targettile = themap.getTile(x, y);
+  var onscreen = $('#td-tile' + x + 'x' + y).html();
+  var losval = 0;
+  if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
+  else {
+    var light = targettile.getLocalLight();
+    if (themap.getLightLevel() === "bright") {
+      light += 1;
+    }
+    if (light < SHADOW_THRESHOLD) {
+      losval = 1;
+    }
+  }
+  if (losval >= LOS_THRESHOLD) {
+    return 0;
+  }
+  
+  return 1;
+}
