@@ -10687,6 +10687,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
 NPCObject.prototype.processDeath = function(droploot){
   var thisx = this.getx();
   var thisy = this.gety();
+  if (targetCursor.lastTarget === this) { delete targetCursor.lastTarget; }
   if (this.checkType("PC")) {
     // just in case you died on your turn:
     gamestate.setMode("null");
