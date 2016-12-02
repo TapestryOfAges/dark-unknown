@@ -114,10 +114,12 @@ function PerformCommand(code, ctrl) {
 //		  var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
         var setcoords = 0;
         if (DU.gameflags.getFlag("sticky_target") && targetCursor.lastTarget) {
-          if (IsVisibleOnScreen(targetCursor.lastTarget.getx(),targetCursor.lastTarget.gety())) {
-            targetCursor.x = targetCursor.lastTarget.getx();
-            targetCursor.y = targetCursor.lastTarget.gety();
-            setcoords = 1;
+          if (targetCursor.lastTarget.getHomeMap() === PC.getHomeMap()) {
+            if (IsVisibleOnScreen(targetCursor.lastTarget.getx(),targetCursor.lastTarget.gety())) {
+              targetCursor.x = targetCursor.lastTarget.getx();
+              targetCursor.y = targetCursor.lastTarget.gety();
+              setcoords = 1;
+            }
           }
         } 
         if (!setcoords) {

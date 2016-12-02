@@ -1314,6 +1314,7 @@ GameMap.prototype.deleteThing = function(thing) {
 //  alert(thingmap.getName());
 //  alert(thing.getName());
   if (thingmap !== this) { alert("tried to delete " + thing.getName() + " which is not on this map."); return 0; }
+  if (thing === targetCursor.lastTarget) { delete targetCursor.lastTarget; }
 //	var type = thing.type + "s";
   var oldx = thing.getx()
   var oldy = thing.gety();
