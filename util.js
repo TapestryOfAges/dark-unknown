@@ -1360,3 +1360,14 @@ function IsVisibleOnScreen(x,y) {
   
   return 1;
 }
+
+function GetStickyTargetCursorCoords() {
+  if (DU.gameflags.getFlag("sticky_target") && targetCursor.lastTarget) {
+    if (targetCursor.lastTarget.getHomeMap() === PC.getHomeMap()) {
+      if (IsVisibleOnScreen(targetCursor.lastTarget.getx(), targetCursor.lastTarget.gety())) {
+        return { x: targetCursor.lastTarget.getx(), y: targetCursor.lastTarget.gety() };
+      }
+    }
+  }
+  return {};
+}
