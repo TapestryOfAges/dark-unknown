@@ -1371,3 +1371,27 @@ function GetStickyTargetCursorCoords() {
   }
   return {};
 }
+
+function CreateTargetCursor(params) {
+  var coords = {};
+  if (params.sticky) {
+    coords = GetStickyTargetCursorCoords();
+  }
+  if (coords.hasOwnProperty('x')) {
+    targetCursor.x = coords.x;
+    targetCursor.y = coords.y;
+  } else {
+    targetCursor.x = PC.getx();
+    targetCursor.y = PC.gety();
+  }
+  targetCursor.command = params.command;
+  targetCursor.spellName = params.spellName;
+  targetCursor.spelldetails = params.spelldetails;
+  targetCursor.targetlimit = params.targetlimit;
+  targetCursor.targetCenterlimit = params.targetCenterlimit;
+
+  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  targetCursor.tileid = tileid;
+  targetCursor.basetile = $(tileid).html();
+  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');  
+}

@@ -319,18 +319,19 @@ magic[SPELL_AWAKEN_LEVEL][SPELL_AWAKEN_ID].executeSpell = function(caster, infus
   }
   var resp = {};
   
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Awaken";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
+//  targetCursor.x = PC.getx();
+//  targetCursor.y = PC.gety();
+//  targetCursor.command = "c";
+//  targetCursor.spellName = "Awaken";
+//  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
+//  targetCursor.targetlimit = (viewsizex -1)/2;
+//  targetCursor.targetCenterlimit = 0;
 
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+//  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+//  targetCursor.tileid = tileid;
+//  targetCursor.basetile = $(tileid).html();
+//  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Awaken',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 0;
@@ -599,18 +600,7 @@ magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].executeSpell = function(caster, infused, 
     return resp;
   }
   
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Mend";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "feature"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 1;
-
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Mend',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 1});
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 0;
@@ -653,19 +643,8 @@ magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].executeSpell = function
     resp = PerformVulnerability(caster, infused, free, tgt);
     return resp;
   }
-  
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Vulnerability";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
 
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Vulnerability',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});  
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 0;
@@ -753,19 +732,7 @@ magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID].executeSpell = function(caster, i
   }
   
   // check for existing illusion if I want to limit to just 1, but for now I don't
-  
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Illusion";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 3;
-
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Illusion',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 3});    
   resp["txt"] = "";
   resp["input"] = "&gt; Choose where to conjure- ";
   resp["fin"] = 4;
@@ -896,18 +863,7 @@ magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].executeSpell = function(caste
     return resp;
   }
 
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Magic Bolt";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
-
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Magic Bolt',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});    
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -997,18 +953,7 @@ magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].executeSpell = function(c
     return resp;
   }
     
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Poison Cloud";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
-
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Poison Cloud',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});    
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -1167,7 +1112,7 @@ magic[SPELL_WIND_CHANGE_LEVEL][SPELL_WIND_CHANGE_ID].executeSpell = function(cas
   }
 
   var resp = {};
-  
+
   targetCursor.x = PC.getx();
   targetCursor.y = PC.gety();
   targetCursor.command = "c";
@@ -1323,19 +1268,8 @@ magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].executeSpell = function(caster, i
   }
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Fireball.<br /></span>"); }
   var resp = {};
-  
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Fireball";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
 
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Fireball',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -1415,18 +1349,7 @@ magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell = function(caster, inf
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Iceball.<br /></span>"); }
   var resp = {};
   
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Iceball";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
-
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Iceball',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -1511,19 +1434,8 @@ magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID].executeSpell = function(cas
   }
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Telekinesis.<br /></span>"); }
   var resp = {};
-  
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Telekinesis";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "usable"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
 
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Telekinesis',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "usable"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});        
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 0;
@@ -1663,19 +1575,8 @@ magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].executeSpell = function
     resp["input"] = "&gt;";
     return resp;
   }
-  
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Wall of Flame";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
 
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Wall of Flame',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});        
   resp["txt"] = "";
   resp["input"] = "&gt; Choose where to conjure- ";
   resp["fin"] = 4;
@@ -2063,19 +1964,8 @@ magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].executeSpell = function(caste
   }
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Life Drain.<br /></span>"); }
   var resp = {};
-  
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Life Drain";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
 
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Life Drain',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});        
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -2269,18 +2159,7 @@ magic[SPELL_CRYSTAL_BARRIER_LEVEL][SPELL_CRYSTAL_BARRIER_ID].executeSpell = func
 
   var resp = {};
   
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Crystal Barrier";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 3;
-
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Crystal Barrier',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 3}); 
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 0;
@@ -2360,18 +2239,7 @@ magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].executeSpell = function(caster, i
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Paralyze.<br /></span>"); }
   var resp = {};
   
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Paralyze";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
-
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Paralyze',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 0;
@@ -2633,19 +2501,8 @@ magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID].executeSpell = function(cas
   }
   
   // check for existing illusion if I want to limit to just 1, but for now I don't
-  
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Summon Ally";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 3;
 
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Summon Ally',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 3});        
   resp["txt"] = "";
   resp["input"] = "&gt; Choose where to conjure- ";
   resp["fin"] = 4;
@@ -2724,18 +2581,7 @@ magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID].executeSpell = function(cas
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Swordstrike.<br /></span>"); }
   var resp = {};
   
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Swordstrike";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
-
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Swordstrike',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -2829,18 +2675,7 @@ magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].executeSpell = function(caster,
 //  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Explosion.<br /></span>"); }
   var resp = {};
   
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Explosion";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
-
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Explosion',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -3122,18 +2957,7 @@ magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].executeSpell = function(caster, infused
   }
   var resp = {};
   
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Charm";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
-
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Charm',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 0;
@@ -3423,18 +3247,7 @@ magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID].executeSpell = functi
   }
   var resp = {};
   
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Arrow of Glass";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 0;
-
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Arrow of Glass',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -3563,20 +3376,8 @@ magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID].executeSpell = functi
     return resp;
   }
   
-  // check for existing illusion if I want to limit to just 1, but for now I don't
-  
-  targetCursor.x = PC.getx();
-  targetCursor.y = PC.gety();
-  targetCursor.command = "c";
-  targetCursor.spellName = "Conjure Daemon";
-  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open"};
-  targetCursor.targetlimit = (viewsizex -1)/2;
-  targetCursor.targetCenterlimit = 3;
-
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+  // check for existing summon if I want to limit to just 1, but for now I don't
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Conjure Daemon',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 3});        
   resp["txt"] = "";
   resp["input"] = "&gt; Choose where to conjure- ";
   resp["fin"] = 4;
