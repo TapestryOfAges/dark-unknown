@@ -8048,6 +8048,21 @@ function MapsAndLegendsTile() {
 }
 MapsAndLegendsTile.prototype = new BookItemObject();
 
+
+function ATreatiseOnDragonsTile() {
+  this.name = "ATreatiseOnDragons";
+  this.graphic = "items.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-192";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "A Treatise On Dragons";
+  this.prefix = "";
+  this.addType("Quest");
+  this.contents = "You open the book.%%<span class='conv'>A dragon is a mighty reptile with great magical and physical power. Its destructive power is so great that it is hardly a surprise that it came to be associated with Tethlokel the Destroyer.</span>%%<span class='conv'>WORKING HERE</span>%%You close the book.";
+}
+ATreatiseOnDragonsTile.prototype = new BookItemObject();
+
 function AdelusLetterTile() {
   this.name = "AdelusLetter";
   this.graphic = "items.png";
