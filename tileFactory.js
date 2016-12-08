@@ -1813,6 +1813,11 @@ tileFactory.prototype.makeMapsAndLegendsTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeATreatiseOnDragonsTile = function() {
+  var newTile = new ATreatiseOnDragonsTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAdelusLetterTile = function() {
   var newTile = new AdelusLetterTile();
   return newTile;
@@ -2578,6 +2583,11 @@ tileFactory.prototype.makeGiantRatNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeHeadlessNPCTile = function() {
+  var newTile = new HeadlessNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeHoodNPCTile = function() {
   var newTile = new HoodNPCTile();
   return newTile;
@@ -2605,11 +2615,6 @@ tileFactory.prototype.makeFighterNPCTile = function() {
 
 tileFactory.prototype.makePythonNPCTile = function() {
   var newTile = new PythonNPCTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeHeadlessNPCTile = function() {
-  var newTile = new HeadlessNPCTile();
   return newTile;
 }
 

@@ -7393,11 +7393,11 @@ function CourierLetterTile() {
 }
 CourierLetterTile.prototype = new ItemObject();
 
-CourierPouchTile.prototype.use = function(who) {
+CourierLetterTile.prototype.use = function(who) {
   var retval = {};
   retval["fin"] = 1;
   retval["input"] = "&gt;";
-  retval["txt"] = "WORKING HERE";
+  retval["txt"] = "The letter appears to be in a simple code. Hopefully Prince Lance knows how to read it.";
   return retval;
 }
 
@@ -7599,7 +7599,7 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
           effval.endEffect();
         }
       });
-      
+      gamestate.setMode("null");
       FadeOut(2000);
       setTimeout(function() {
         var newmap = new GameMap();
@@ -7617,7 +7617,7 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
         },2000);
       }, 2000);
       retval["txt"] = "The room fades to black around you as your mind accepts the challenge of the Stygian Abyss.";
-      retval["fin"] = 3;
+      retval["fin"] = -2;
       // play SOUND generic spellcast
       return retval;
     } 
