@@ -1590,7 +1590,7 @@ function PerformUseFromInventoryState(code) {
 	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
 	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
 	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
-	    retval["fin"] = 1;
+	    retval["fin"] = -2;
 	}
   else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
       $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
@@ -1598,14 +1598,14 @@ function PerformUseFromInventoryState(code) {
 	    if (targetCursor.scrolllocation > targetCursor.itemlist.length-1) { targetCursor.scrolllocation = 0; }
 	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
 	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
-	    retval["fin"] = 1;
+	    retval["fin"] = -2;
   }
 	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
     // use selected item
     var used = targetCursor.itemlist[targetCursor.scrolllocation];
     if (used) {
       retval = MakeUseHappen(PC,used,"inventory");
-      retval["fin"] = 2;
+//      retval["fin"] = 2;
     } else {
       retval["fin"] = 0;
       delete targetCursor.itemlist;

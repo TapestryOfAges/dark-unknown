@@ -650,6 +650,14 @@ OnConvTriggers["place_mal"] = function(speaker,keyword) {
   }
 }
 
+OnConvTriggers["place_tod"] = function(speaker,keyword) {
+  var tile = speaker.getHomeMap().getTile(22,15);
+  var shelf = tile.getTopFeature();
+  if (shelf.getName() !== "ATreatiseOnDragons") {
+    shelf.setSearchYield(["ATreatiseOnDragons"]);
+  }
+}
+
 OnConvTriggers["sirius_book1"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("sirius_book1");
   var bookshelfLeft = localFactory.createTile("BookshelfLeft");

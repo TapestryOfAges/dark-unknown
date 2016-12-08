@@ -520,7 +520,7 @@ function DoAction(code, ctrl) {
       maintext.setInputLine(response["input"]);
       maintext.drawTextFrame();
     }
-    else if (response["fin"] === 2) {
+    else if (response["fin"] === 1) {
       maintext.addText(response["txt"]);
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
@@ -529,6 +529,7 @@ function DoAction(code, ctrl) {
       PC.endTurn(response["initdelay"]);
     }
     else if (response["fin"] === 3) {
+      // books
       maintext.setInputLine("[MORE]");
       maintext.addText(response["txt"]);
       gamestate.setMode("anykey");
