@@ -1,4 +1,3 @@
-The Dark Unknown
-A game by Adam Burr, aka Goldenflame Dragon
-
-More information will be given here as I bother to fill this out.
+Dark Unknown branch set up and designed to be a staging ground if I ever want to merge 
+files from MASTER into DEMO at a later point without fully updating DEMO.
+This branch will never be the working branch.
