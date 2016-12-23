@@ -1,3 +1,4 @@
-Dark Unknown branch set up and designed to be a staging ground if I ever want to merge 
-files from MASTER into DEMO at a later point without fully updating DEMO.
-This branch will never be the working branch.
+This branch is for the Dark Unknown demo. Primary changes will be converting the main
+landmass into an island including only Castle dea Olympus, Naurglen, Hildendain, and 
+the Headless cave. Spawners will be mostly removed, a low level one added near the 
+cave, and additional loot added to the cave.
