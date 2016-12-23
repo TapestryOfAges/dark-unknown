@@ -1,4 +1,4 @@
-This branch is for the Dark Unknown demo. Primary changes will be converting the main
-landmass into an island including only Castle dea Olympus, Naurglen, Hildendain, and 
-the Headless cave. Spawners will be mostly removed, a low level one added near the 
-cave, and additional loot added to the cave.
+The Dark Unknown
+A game by Adam Burr, aka Goldenflame Dragon
+
+More information will be given here as I bother to fill this out.
