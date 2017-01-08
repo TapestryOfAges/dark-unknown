@@ -185,10 +185,10 @@ ais.combat = function(who) {
   // whoo boy, here we are: still aggro, still on right map. Go!
 
   // decide if meleeing/approaching
-  var chance = who.meleechance;
+  var chance = who.meleeChance;
   if (!chance) { chance = 1; }
   DebugWrite("ai", "Chance of melee: " + chance + ".<br />");
-  if (Dice.roll("1d100") < chance) {
+  if (Dice.roll("1d100") <= chance) {
     // yes
     //now find targets
     // top priority: adjacent foes
