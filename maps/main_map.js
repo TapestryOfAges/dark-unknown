@@ -970,7 +970,7 @@ mappages["landsbeyond"].features = [];
 mappages["landsbeyond"].npcs = [];
 
 mappages["landsbeyond"].desc = "The Lands Beyond";
-mappages["landsbeyond"].music = '';
+mappages["landsbeyond"].music = 'Death';
 mappages["landsbeyond"].exitmap = '';
 mappages["landsbeyond"].exitx = '65';
 mappages["landsbeyond"].exity = '70';
