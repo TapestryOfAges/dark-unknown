@@ -309,7 +309,7 @@ function DoAction(code, e) {
     }
     else if ((code === 32) || (code === 13)) {
       if (optselect === 0) {
-        alert("intro");
+        RunIntro();
       }
       else if (optselect === 1) {
         CharCreate();
@@ -479,4 +479,9 @@ function SubmitImport(val) {
       gamestate.setMode("on");  
     }
   }
+}
+
+function RunIntro() {
+  // add float image to each page if/when I have them.
+  var firstpage = "<div></div>";
 }
