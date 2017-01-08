@@ -76,6 +76,12 @@ DUMusic["Ether"] = "The Beyond";
 DUMusic["Lullaby"] = "Lullaby";
 DUMusic["Lament"] = "Shelaria's Lament";
 DUMusic["Sirius"] = "This Bardic Life";
+DUMusic["Death"] = "Death";
+DUMusic["Final"] = "Final Steps";
+DUMusic["Heartbeat"] = "Alone in the Darkness";
+DUMusic["Despair"] = "Depths of Despair";
+DUMusic["Alone"] = "You Are Not Alone";
+DUMusic["Light"] = "A Light in the Darkness";
 
 var musicloaded = {};
 var musicsloaded = 0;
