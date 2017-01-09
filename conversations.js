@@ -684,3 +684,14 @@ OnConvTriggers["reset_music"] = function(speaker,keyword) {
   StopMusic(nowplaying);
   nowplaying = DUPlayMusic(song);
 }
+
+OnConvTriggers["franklin_offered"] = function(speaker, keyword) {
+  // grant karma only once
+  if (!DU.gameflags.getFlag("franklin_karma")) {
+    if (!DU.gameflags.getFlag("franklin_yn")) {  // flag is set if you are lying about being able to afford it 
+      DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")+1);
+      DU.gameflags.deleteFlag("franklin_yn");
+    }
+    DU.gameflags.setFlag("franklin_karma",1);
+  }
+}
