@@ -74,7 +74,7 @@ mappages["poverty"].features[26] = {name : 'TrainingDummy', x : 30, y : 22};
 mappages["poverty"].features[27] = {name : 'SmallBox', x : 31, y : 24, lootgroup : '', lootedid : ''};
 mappages["poverty"].features[28] = {name : 'SmallBox', x : 31, y : 26, lootgroup : '', lootedid : ''};
 mappages["poverty"].features[29] = {name : 'SmallBox', x : 31, y : 28, lootgroup : '', lootedid : ''};
-
+mappages["poverty"].features[30] = {name : 'Dresser', x : 31, y : 22};
 
 mappages["poverty"].npcs = [];
 mappages["poverty"].npcs[0] = {name : 'RangerVillagerNPC', x : 15, y : 16, NPCName: 'Steadman', Conversation: 'steadman', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif'};

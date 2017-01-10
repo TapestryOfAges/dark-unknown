@@ -78,7 +78,8 @@ mappages["onyx"].features[38] = {name : 'WeaponSign', x : 11, y : 19, prefix : "
 mappages["onyx"].features[39] = {name : 'SignpostLeft', x : 10, y : 19};
 mappages["onyx"].features[40] = {name : 'SignpostRight', x : 12, y : 19};
 mappages["onyx"].features[41] = {name : 'Anvil', x : 28, y : 28};
-
+mappages["onyx"].features[42] = {name : 'Dresser', x : 17, y : 5};
+mappages["onyx"].features[43] = {name : 'Dresser', x : 17, y : 7};
 
 mappages["onyx"].npcs = [];
 mappages["onyx"].npcs[0] = {name : 'MageVillagerNPC', x : 5, y : 6, NPCName: 'Xavier', Conversation: 'xavier', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif'};

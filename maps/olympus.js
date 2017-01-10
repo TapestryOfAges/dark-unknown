@@ -585,7 +585,12 @@ mappages["olympus2"].features[153] = {name : 'RedCarpetC', x : 33, y : 16};
 mappages["olympus2"].features[154] = {name : 'RedCarpetC', x : 34, y : 14};
 mappages["olympus2"].features[155] = {name : 'RedCarpetC', x : 34, y : 15};
 mappages["olympus2"].features[156] = {name : 'RedCarpetC', x : 34, y : 16};
-
+mappages["olympus2"].features[157] = {name : 'Dresser', x : 22, y : 11};
+mappages["olympus2"].features[158] = {name : 'Dresser', x : 13, y : 12};
+mappages["olympus2"].features[159] = {name : 'Dresser', x : 13, y : 19};
+mappages["olympus2"].features[160] = {name : 'Dresser', x : 13, y : 26};
+mappages["olympus2"].features[161] = {name : 'Dresser', x : 38, y : 11};
+mappages["olympus2"].features[162] = {name : 'Dresser', x : 39, y : 11};
 
 mappages["olympus2"].npcs = [];
 
