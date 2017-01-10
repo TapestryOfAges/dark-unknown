@@ -12,6 +12,7 @@ var amap = new GameMap();
 var debug = 0;
 var debugscreen;
 var togglehide = 0;
+var targetCursor = {};
 
 var brushdown = 0;
 var editable;
