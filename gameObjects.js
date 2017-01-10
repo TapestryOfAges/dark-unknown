@@ -17,9 +17,7 @@ ProtoObject.prototype.assignSerial = function() {
   if (gamestate && (gamestate.getMode() !== "loadgame")) {
    	maxserial++;
 	  this.serial = maxserial;
-//	  if (debug && debugflags.gameobj) { dbs.writeln("Serial #" + maxserial + " assigned to " + this.getName() + "<br />"); }
     DebugWrite("gameobj", "Serial #" + maxserial + " assigned to " + this.getName() + "<br />");
-//	universe[this.serial] = this;
   }
 }
 
@@ -4804,6 +4802,23 @@ function SmallBoxTile() {
 	OpenContainer.call(this);
 }
 SmallBoxTile.prototype = new FeatureObject();
+
+function DresserTile() {
+  this.name = "Dresser";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "dresser";
+	this.lootgroup = "";
+	this.lootedid = "";
+	
+	this.container = [];
+	OpenContainer.call(this);
+}
+DresserTile.prototype = new FeatureObject();
 
 function BarrelTile() {
   this.name = "Barrel";
@@ -10723,7 +10738,7 @@ NPCObject.prototype.processDeath = function(droploot){
         }
       }
     }
-    $("#mainview").fadeOut(2500, function() {
+    $("#mainview").fadeOut(2600, function() {
       maintext.addText("You find yourself floating bodiless in the void.");
       DrawMainFrame("draw", "landsbeyond", 7,7);
       $("#mainview").css('display','none');
@@ -10736,26 +10751,31 @@ NPCObject.prototype.processDeath = function(droploot){
             maintext.addText('"The world is not finished with thee, ' + PC.getPCName() + '!"');
             setTimeout(function() {
               maintext.addText('"By the strength of this land I bid thee return!"');
-              // play sound effect
-              var returnmap = new GameMap();
-              if (maps.getMap("olympus1")) {
-                returnmap = maps.getMap("olympus1");
-                // though again, this shouldn't be in memory
-              } else {
-                returnmap.loadMap("olympus1");
-                maps.addMapByRef(returnmap);
-              }
-              tile = MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,29,16);
-              DrawMainFrame("draw","olympus1",29,16);
-              PC.setHP(PC.getMaxHP());
-              PC.setMana(PC.getMaxMana());
-              DrawCharFrame();
-              gamestate.setMode("player");
-              gamestate.setTurn(PC);
+              setTimeout(function() {
+                maintext.addText("All is light...");
+                setTimeout(function() {
+                  // play sound effect
+                  var returnmap = new GameMap();
+                  if (maps.getMap("olympus1")) {
+                    returnmap = maps.getMap("olympus1");
+                    // though again, this shouldn't be in memory
+                  } else {
+                    returnmap.loadMap("olympus1");
+                    maps.addMapByRef(returnmap);
+                  }
+                  tile = MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,29,16);
+                  DrawMainFrame("draw","olympus1",29,16);
+                  PC.setHP(PC.getMaxHP());
+                  PC.setMana(PC.getMaxMana());
+                  DrawCharFrame();
+                  gamestate.setMode("player");
+                  gamestate.setTurn(PC);
+                }, 2000);
+              }, 2000);
             }, 2000);
           }, 2000);
         }, 2000);
-      } , 2000);
+      }, 2000);
     });
     return;
   } else {

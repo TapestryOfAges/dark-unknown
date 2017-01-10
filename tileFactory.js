@@ -1028,6 +1028,11 @@ tileFactory.prototype.makeSmallBoxTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDresserTile = function() {
+  var newTile = new DresserTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBarrelTile = function() {
   var newTile = new BarrelTile();
   return newTile;
