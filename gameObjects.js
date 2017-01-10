@@ -4803,6 +4803,23 @@ function SmallBoxTile() {
 }
 SmallBoxTile.prototype = new FeatureObject();
 
+function DresserTile() {
+  this.name = "Dresser";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "dresser";
+	this.lootgroup = "";
+	this.lootedid = "";
+	
+	this.container = [];
+	OpenContainer.call(this);
+}
+DresserTile.prototype = new FeatureObject();
+
 function BarrelTile() {
   this.name = "Barrel";
   this.graphic = "furniture.gif";
