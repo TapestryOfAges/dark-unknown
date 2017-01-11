@@ -482,6 +482,7 @@ function SubmitImport(val) {
 }
 
 function RunIntro() {
+  dusong = DUPlayMusic("CharCreate");
   // add float image to each page if/when I have them.
-  var firstpage = "<div></div>";
+  var firstpage = "<div id='intro1'>You were born the second child of the ruling family of Ellusus- King Daragan and Queen Shelaria Olympus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</div>";
 }
