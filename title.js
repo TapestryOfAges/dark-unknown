@@ -309,7 +309,7 @@ function DoAction(code, e) {
     }
     else if ((code === 32) || (code === 13)) {
       if (optselect === 0) {
-        RunIntro();
+        RunIntro(0);
       }
       else if (optselect === 1) {
         CharCreate();
@@ -481,8 +481,12 @@ function SubmitImport(val) {
   }
 }
 
-function RunIntro() {
-  dusong = DUPlayMusic("CharCreate");
-  // add float image to each page if/when I have them.
-  var firstpage = "<div id='intro1'>You were born the second child of the ruling family of Ellusus- King Daragan and Queen Shelaria Olympus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</div>";
+function RunIntro(idx) {
+  if (idx === 0) {
+    gamestate.setMode("intro");
+    dusong = DUPlayMusic("CharCreate");
+    // add float image to each page if/when I have them.
+    var firstpage = "<div id='intro1' style='display:none'>You were born the second child of the ruling family of Ellusus- King Daragan and Queen Shelaria Olympus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</div>";
+
+  }
 }
