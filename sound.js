@@ -115,6 +115,8 @@ function audio_init_title() {
   
   var fullpath = musicpath + "The Dark Unknown.mp3";
   createjs.Sound.registerSound(fullpath, "Dark Unknown");
+  fullpath = musicpath + "The Journey Begins.mp3";
+  createjs.Sound.registerSound(fullpath, "Charcreate");
 }
 
 function populate_audio(soundlist, preload, loop, soundtype) {

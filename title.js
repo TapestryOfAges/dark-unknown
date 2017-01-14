@@ -142,7 +142,7 @@ $(document).ready(function() {
 });
 
 function start_animations() {
-  if (musicloaded["Dark Unknown"] || (musictries >= 10)) {
+  if ((musicloaded["Dark Unknown"] && musicloaded["Charcreate"]) || (musictries >= 10)) {
     dusong = DUPlayMusic("Dark Unknown");
     $("#ToA").fadeIn(1700, function() {
       $("#over").css("display", "inline");
@@ -484,9 +484,14 @@ function SubmitImport(val) {
 function RunIntro(idx) {
   if (idx === 0) {
     gamestate.setMode("intro");
-    dusong = DUPlayMusic("CharCreate");
+    dusong.song.stop();
+    dusong = {};
+    dusong = DUPlayMusic("Charcreate");
     // add float image to each page if/when I have them.
-    var firstpage = "<div id='intro1' style='display:none'>You were born the second child of the ruling family of Ellusus- King Daragan and Queen Shelaria Olympus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</div>";
-
+    var firstpage = "<div id='intro1'>You were born the second child of the ruling family of Ellusus- King Daragan and Queen Shelaria Olympus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</div>";
+    $('#maindiv').fadeOut(1000, function() {
+      $('#maindiv').html(firstpage);
+      $('#maindiv').fadeIn(1000);
+    });
   }
 }
