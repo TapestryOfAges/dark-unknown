@@ -75,6 +75,7 @@ var musictries = 0;
 DU.merchants = {};
 DU.merchants = SetMerchants();
 DU.randomseed = Math.floor(Math.random()*100)+1;
+var introidx = 0;
 
 var firsttime = 1;
 var themap;
@@ -276,6 +277,9 @@ function pagelive() {
 
 
 function DoAction(code, e) {
+  if (gamestate.getMode() === "intro") {
+    RunIntro(introidx);
+  }
   if (gamestate.getMode() === "on") {
     if ((code === 38) || (code === 219)) {    // up arrow or [
       if (optselect > 0) {
@@ -309,7 +313,8 @@ function DoAction(code, e) {
     }
     else if ((code === 32) || (code === 13)) {
       if (optselect === 0) {
-        RunIntro(0);
+        introidx = 0;
+        RunIntro(introidx);
       }
       else if (optselect === 1) {
         CharCreate();
@@ -483,15 +488,27 @@ function SubmitImport(val) {
 
 function RunIntro(idx) {
   if (idx === 0) {
-    gamestate.setMode("intro");
+    gamestate.setMode("null");
     dusong.song.stop();
     dusong = {};
     dusong = DUPlayMusic("Charcreate");
+    var introleft = ($(window).width())/2 - 300;
+    
     // add float image to each page if/when I have them.
-    var firstpage = "<div id='intro1'>You were born the second child of the ruling family of Ellusus- King Daragan and Queen Shelaria Olympus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</div>";
+    var firstpage = "<div style='width:600;position: relative;left:" + introleft + "' id='introcontainer'><div id='intro1' style='color:white'><p class='charcreate'>You were born the second child of the ruling family of Ellusus- King Daragan and Queen Shelaria Olympus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</p></div></div>";
     $('#maindiv').fadeOut(1000, function() {
       $('#maindiv').html(firstpage);
       $('#maindiv').fadeIn(1000);
+      gamestate.setMode("intro");
     });
+    introidx++;
+  } else if (idx === 1) {
+    var secondpage = "<div id='intro2' style='color:white;display:none'><p class='charcreate'>And Lance seemed made for the role. All things came easily to him- his studies of magic, of combat, of dance, of diplomacy. Which makes these events all the more surprising.</p></div>";
+    $('#introcontainer').append(secondpage);
+    $('#intro2').fadeIn(1000);
+  } else if (idx === 2) {
+    var thirdpage = "<div id='intro3' style='color:white;display:none'><p class='charcreate'>Which is not to say that you did not excel, when you began your studies years behind your older brother. Guard Captain Nyrani has been teaching you to fight. Your tutor in wizardry says that you show promise, and someday will earn your own spellbook. And you have surprised your parents with your skill on the harpsichord. Of limited use in statecraft, perhaps, but still satisfying.</p></div>";
+    $('#introcontainer').append(thirdpage);
+    $('#intro3').fadeIn(1000);
   }
 }
