@@ -510,5 +510,22 @@ function RunIntro(idx) {
     var thirdpage = "<div id='intro3' style='color:white;display:none'><p class='charcreate'>Which is not to say that you did not excel, when you began your studies years behind your older brother. Guard Captain Nyrani has been teaching you to fight. Your tutor in wizardry says that you show promise, and someday will earn your own spellbook. And you have surprised your parents with your skill on the harpsichord. Of limited use in statecraft, perhaps, but still satisfying.</p></div>";
     $('#introcontainer').append(thirdpage);
     $('#intro3').fadeIn(1000);
+  } else if (idx === 3) {
+    var nextpage = "<div id='intro4' style='color:white;display:none'><p class='charcreate'>The land has been at peace since the end of the civil war nearly 40 years ago. Six years ago, your grandfather passed away and your parents ascended the throne of Ellusus. The transition was smooth, and while King Erik was beloved as the one who had ended the war, that goodwill had seemed to pass readily enough to the new monarchs.</p></div>";
+    $('#introcontainer').append(nextpage);
+    $('#intro4').fadeIn(1000);
+  } else if (idx === 4) {
+    var nextpage = "<div id='intro5' style='color:white;display:none'><p class='charcreate'>Lance, then, completed his tutelage a few years ago, and was then charged with getting to know the kingdom, and so he has been away traveling, and you have not seen him in some time. There are rumors of the time he has spent- he has saved an old crone, and won a boon; he has battled a dragon; he has fallen into drunkeness and embarrassed your parents.</p></div>";
+    $('#introcontainer').append(nextpage);
+    $('#intro5').fadeIn(1000);
+  } else if (idx === 5) {
+    var nextpage = "<div id='intro6' style='color:white;display:none'><p class='charcreate'>But a few months ago, Lance moved into an old castle, ruined from the war, and begun rebuilding. And then, to the surprise of everyone, he planted his banner and declared that he was in rebellion- that he, rather than your father, should rule Ellusus.</p></div>";
+    $('#introcontainer').append(nextpage);
+    $('#intro6').fadeIn(1000);
+  } else if (idx === 6) {
+    var nextpage = "<div id='intro7' style='color:white;display:none'><p class='charcreate'>Shocked and saddened, your parents have summoned you to the ruling seat, Castle dea Olympus. The time for study is over. The time for leisure is past. As you stand now outside the gates, you prepare to enter and learn what lies in store for you...</p></div>";
+    $('#introcontainer').append(nextpage);
+    $('#intro7').fadeIn(1000);
   }
 }
+
