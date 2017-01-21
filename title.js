@@ -279,6 +279,7 @@ function pagelive() {
 function DoAction(code, e) {
   if (gamestate.getMode() === "intro") {
     RunIntro(introidx);
+    introidx++;
   }
   if (gamestate.getMode() === "on") {
     if ((code === 38) || (code === 219)) {    // up arrow or [
@@ -315,6 +316,7 @@ function DoAction(code, e) {
       if (optselect === 0) {
         introidx = 0;
         RunIntro(introidx);
+        introidx++;
       }
       else if (optselect === 1) {
         CharCreate();
@@ -501,7 +503,6 @@ function RunIntro(idx) {
       $('#maindiv').fadeIn(1000);
       gamestate.setMode("intro");
     });
-    introidx++;
   } else if (idx === 1) {
     var secondpage = "<div id='intro2' style='color:white;display:none'><p class='charcreate'>And Lance seemed made for the role. All things came easily to him- his studies of magic, of combat, of dance, of diplomacy. Which makes these events all the more surprising.</p></div>";
     $('#introcontainer').append(secondpage);
@@ -526,6 +527,10 @@ function RunIntro(idx) {
     var nextpage = "<div id='intro7' style='color:white;display:none'><p class='charcreate'>Shocked and saddened, your parents have summoned you to the ruling seat, Castle dea Olympus. The time for study is over. The time for leisure is past. As you stand now outside the gates, you prepare to enter and learn what lies in store for you...</p></div>";
     $('#introcontainer').append(nextpage);
     $('#intro7').fadeIn(1000);
+  } else if (idx === 7) {
+    gamestate.setMode("on");
+    SecondPage();
   }
+  return;
 }
 
