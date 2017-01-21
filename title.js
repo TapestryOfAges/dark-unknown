@@ -528,7 +528,7 @@ function RunIntro(idx) {
     $('#introcontainer').append(nextpage);
     $('#intro7').fadeIn(1000);
   } else if (idx === 7) {
-    gamestate.setMode("on");
+    gamestate.setMode("null");
     SecondPage();
   }
   return;
