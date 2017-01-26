@@ -185,10 +185,10 @@ ais.combat = function(who) {
   // whoo boy, here we are: still aggro, still on right map. Go!
 
   // decide if meleeing/approaching
-  var chance = who.meleechance;
+  var chance = who.meleeChance;
   if (!chance) { chance = 1; }
   DebugWrite("ai", "Chance of melee: " + chance + ".<br />");
-  if (Dice.roll("1d100") < chance) {
+  if (Dice.roll("1d100") <= chance) {
     // yes
     //now find targets
     // top priority: adjacent foes
@@ -1023,17 +1023,18 @@ ais.OutdoorHostile = function(who, radius, pname) {
   if (pname !== "none") {
     // we have neither attacked, moved, nor hunted- now we look for a PoI to go towards
     DebugWrite("ai", "AI " + who.getName() + " has neither attacked, moved, nor hunted- now look for a PoI.<br />");
-    ais.ProcessPoI(who, pname);
-    retval = ais.SurfaceFollowPath(who,40,1); 
-    return retval;
-  } else {
-    // animal, only randomwalk
-    retval = this.Randomwalk(who,25,25,25,25);
-    if (retval["nomove"] === 1) {
-      retval = this.Randomwalk(who,25,25,25,25);
+    var movepoi = ais.ProcessPoI(who, pname);
+    if (movepoi) {
+      retval = ais.SurfaceFollowPath(who,40,1); 
+      return retval;
     }
-    return retval;
+  } 
+  // animal, only randomwalk
+  retval = this.Randomwalk(who,25,25,25,25);
+  if (retval["nomove"] === 1) {
+    retval = this.Randomwalk(who,25,25,25,25);
   }
+  return retval;
 }
 
 
@@ -1276,7 +1277,8 @@ ais.ProcessPoI = function(who,poiname) {
     // random scatter the actual destination to near the PoI
     
     var path = [];
-    while (path.length === 0) {
+    var pathcount = 0;
+    while ((path.length === 0) && (pathcount < 10)) {
       var xval = Dice.roll("1d9-5") + poi.x;
       var yval = Dice.roll("1d9-5") + poi.y;
     
@@ -1288,7 +1290,9 @@ ais.ProcessPoI = function(who,poiname) {
       
       path = themap.getPath(who.getx(), who.gety(), xval, yval, who.getMovetype());
       path.shift();
+      pathcount++;
     }
+    if (path.length === 0) { return 0; }
     var dur = 2*Math.floor(path.length / 3) + Dice.roll("1d5-3");
     if (dur > path.length) { dur = path.length; }
     if (dur < 0) { dur = 0; }
