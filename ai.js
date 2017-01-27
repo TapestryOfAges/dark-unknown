@@ -1311,13 +1311,16 @@ ais.ProcessPoI = function(who,poiname) {
       who.setPoI(poi);
       DebugWrite("ai", "New PoI coords: " + poi.x + ", " + poi.y + "<br />");
       var path = [];
-      while (path.length === 0) {
+      var pathcount = 0;
+      while ((path.length === 0) && (pathcount < 10)) {
         var xval = Dice.roll("1d9-5") + poi.x;
         var yval = Dice.roll("1d9-5") + poi.y;
     
         path = themap.getPath(who.getx(), who.gety(), xval, yval, who.getMovetype());
         path.shift();
+        pathcount++;
       }
+      if (path.length === 0) { return 0; }
       var dur = 2*(path.length/3) + Dice.roll("1d3-1");
       if (dur < 0) { dur = 0; }
       if (dur > path.length) { dur = path.length; }
