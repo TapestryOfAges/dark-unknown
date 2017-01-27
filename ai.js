@@ -1292,7 +1292,10 @@ ais.ProcessPoI = function(who,poiname) {
       path.shift();
       pathcount++;
     }
-    if (path.length === 0) { return 0; }
+    if (path.length === 0) { 
+      DebugWrite("ai", "Couldn't find a path to anything near the PoI, gave up. Will randomwalk.")
+      return 0; 
+    }
     var dur = 2*Math.floor(path.length / 3) + Dice.roll("1d5-3");
     if (dur > path.length) { dur = path.length; }
     if (dur < 0) { dur = 0; }
@@ -1320,7 +1323,10 @@ ais.ProcessPoI = function(who,poiname) {
         path.shift();
         pathcount++;
       }
-      if (path.length === 0) { return 0; }
+      if (path.length === 0) { 
+        DebugWrite("ai", "Couldn't find a path to anything near the PoI, gave up. Will randomwalk.")
+        return 0; 
+      }
       var dur = 2*(path.length/3) + Dice.roll("1d3-1");
       if (dur < 0) { dur = 0; }
       if (dur > path.length) { dur = path.length; }
