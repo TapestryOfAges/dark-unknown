@@ -11733,7 +11733,13 @@ NPCObject.prototype.addToInventory = function(item, thinAir, qty) {
     this.getHomeMap().deleteThing(item);
     item.setHomeMap("");
   }
-  if (!qty) { qty = 1; }
+  if (!qty) { 
+    if (item.getQuantity()) {
+      qty = item.getQuantity();
+    } else {
+      qty = 1; 
+    }
+  }
   var alreadyIn = this.checkInventory(item.getName());
   if (alreadyIn) {
     alreadyIn.setQuantity(alreadyIn.getQuantity()+qty);
