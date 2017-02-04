@@ -1057,7 +1057,7 @@ function PerformEquip(code) {
 	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
 	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
 	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
-	    retval["fin"] = 1;
+	    retval["fin"] = 2;
 	}
   else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
       $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
@@ -1065,18 +1065,18 @@ function PerformEquip(code) {
 	    if (targetCursor.scrolllocation > targetCursor.itemlist.length-1) { targetCursor.scrolllocation = 0; }
 	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
 	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
-	    retval["fin"] = 1;
+	    retval["fin"] = 2;
   }
 	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
     // equip selected item
     var newequip = targetCursor.itemlist[targetCursor.scrolllocation];
     if (newequip.breakable && newequip.getBroken()) {
-      retval["fin"] = 2;
+      retval["fin"] = 1;
       retval["txt"] = "That is broken and cannot be equipped.";
       return retval;
     }
     var success = newequip.equipMe(PC);
-    retval["fin"] = 2;
+    retval["fin"] = 1;
     retval["txt"] = "";
     if (newequip.checkType("Armor")) { 
       if (success) { retval["txt"] = "Wear: "; }
