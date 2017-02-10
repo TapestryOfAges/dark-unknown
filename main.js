@@ -269,13 +269,16 @@ function DoAction(code, ctrl) {
     }
   }
   else if (gamestate.getMode() === "talk") {
-    if (((code >= 65) && (code <= 90)) || (code === 32)) {  // letter
+    if ((code >= 65) && (code <= 90)) {  // letter, NOT SPACE 
       var letter = String.fromCharCode(code);    	
       if (inputText.txt.length < 14) {
         inputText.txt += letter;
         maintext.setInputLine(maintext.getInputLine() + letter);
         maintext.drawInputLine();
       }
+    } 
+    else if (code === 32) { // space
+      // nothing 
     }
     else if (code === 8) { // backspace
       var txt = maintext.getInputLine();
