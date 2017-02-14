@@ -2,6 +2,7 @@
 
 function SetMerchants() {
   var bill = {};
+  // Hildendain
   bill.aaron = {};
   bill.aaron.stock = [ { item: "Dagger", quantity: 10, price: 5, desc: "Dagger", presale: '"Small, but deadly."', sale: '"Thank you. May it serve you well."' },
                     { item: "Shortsword", quantity: 10, price: 50, desc: "Shortsword", presale: '"Quality goods, I promise you."', sale: '"Thank you. May it serve you well."' },
@@ -12,6 +13,7 @@ function SetMerchants() {
                     { item: "MagicSword", quantity: 0, price: 6000, desc: "Magic Sword"} ];
   bill.aaron.type = "stuff";
   
+  // Onyx
   bill.gretchen = {};
   bill.gretchen.stock = [ { item: "Dagger", quantity: 5, price: 10, desc: "Dagger", sale: '"Remember, keep this between us."' },
                     { item: "Shortsword", quantity: 5, price: 75, desc: "Shortsword", sale: '"Remember, keep this between us."' },
@@ -23,6 +25,7 @@ function SetMerchants() {
                   ];
   bill.gretchen.type = "stuff";
   
+  // Beldskae
   bill.ariel = {};
   bill.ariel.stock = [ { item: "Dagger", quantity: 10, price: 7, desc: "Dagger", sale: '"May your blade be sharp."' },
                     { item: "Shortsword", quantity: 10, price: 60, desc: "Shortsword", sale: '"May your blade be sharp."' },
