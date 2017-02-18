@@ -95,9 +95,9 @@ mappages["headlesscave"].hc_check_clear = function(mapref) {
         anyheadlesses = 1;
       }
     }
-  }
-  if (!anyheadlesses) {
-    DU.gameflags.setFlag("cave_cleared",1);
+    if (!anyheadlesses) {
+      DU.gameflags.setFlag("cave_cleared",1);
+    }
   }
   
   return 1;
