@@ -278,6 +278,7 @@ function InnRoom(xc,yc,doors) {
         PC.healMe(Dice.roll("20d5+20"));
         PC.setMana(PC.getMaxMana());
         gamestate.setMode("player");
+        DrawCharFrame();
         PC.endTurn();
       });
     },1000);
