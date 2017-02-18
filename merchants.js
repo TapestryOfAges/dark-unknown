@@ -47,18 +47,18 @@ function SetMerchants() {
   bill.lisa.type = "stuff";
     
   bill.erin = {};
-  bill.erin.stock = [ { item: "ClothArmor", quantity: 10, price: 100, desc: "Cloth Armor", sale: '"May it serve you well."' },
-                       { item: "LeatherArmor", quantity: 10, price: 400, desc: "Leather Armor", sale: '"May it serve you well."' },
-                       { item: "ChainArmor", quantity: 5, price: 2000, desc: "Chain Mail", sale: '"May it serve you well."' },
-                       { item: "PlateArmor", quantity: 0, price: 4000, desc: "Plate Armor" },
+  bill.erin.stock = [ { item: "ClothArmor", quantity: 10, price: 10, desc: "Cloth Armor", sale: '"May it serve you well."' },
+                       { item: "LeatherArmor", quantity: 10, price: 50, desc: "Leather Armor", sale: '"May it serve you well."' },
+                       { item: "ChainArmor", quantity: 5, price: 1000, desc: "Chain Mail", sale: '"May it serve you well."' },
+                       { item: "PlateArmor", quantity: 0, price: 2000, desc: "Plate Armor" },
                   ];
   bill.erin.type = "stuff";
 
   bill.deirdre = {};
-  bill.deirdre.stock = [ { item: "ClothArmor", quantity: 25, price: 100, desc: "Cloth Armor", sale: '"It will protect you in your adventures!."' },
-                       { item: "LeatherArmor", quantity: 25, price: 400, desc: "Leather Armor", sale: '"It will protect you in your adventures!."' },
-                       { item: "ChainArmor", quantity: 20, price: 2000, desc: "Chain Mail", sale: '"It will protect you in your adventures!."' },
-                       { item: "PlateArmor", quantity: 10, price: 5000, desc: "Plate Armor", sale: '"It will protect you in your adventures!."' },
+  bill.deirdre.stock = [ { item: "ClothArmor", quantity: 25, price: 10, desc: "Cloth Armor", sale: '"It will protect you in your adventures!."' },
+                       { item: "LeatherArmor", quantity: 25, price: 50, desc: "Leather Armor", sale: '"It will protect you in your adventures!."' },
+                       { item: "ChainArmor", quantity: 20, price: 1000, desc: "Chain Mail", sale: '"It will protect you in your adventures!."' },
+                       { item: "PlateArmor", quantity: 10, price: 2500, desc: "Plate Armor", sale: '"It will protect you in your adventures!."' },
                   ];
   bill.deirdre.type = "stuff";
   
