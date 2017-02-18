@@ -1395,3 +1395,11 @@ function CreateTargetCursor(params) {
   targetCursor.basetile = $(tileid).html();
   $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');  
 }
+
+function BeginAct2() {
+  // this should be called on the death of the Black Dragon
+  DU.merchants.gretchen.stock[4].qty = 2;
+  DU.merchants.gretchen.stock[5].qty = 1;
+  DU.merchants.ariel.stock[4].qty = 10;
+  DU.merchants.ariel.stock[5].qty = 10;
+}
