@@ -11753,7 +11753,7 @@ NPCObject.prototype.addToInventory = function(item, thinAir, qty) {
 }
 
 NPCObject.prototype.removeFromInventory = function(item, map, x, y) {
-  if (item.getQuantity > 1) {
+  if (item.getQuantity() > 1) {
     item.setQuantity(item.getQuantity()-1);
   } else {
     // If this is equipped, unequip it first
