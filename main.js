@@ -763,18 +763,20 @@ function DoAction(code, ctrl) {
       var idx = code-65;
       if (merinv.stock[idx]) {
         var ininv = PC.checkInventory(merinv.stock[idx].item);
-        var qty = ininv.getQuantity();
-        if ((ininv === PC.getArmor()) || (ininv === PC.getWeapon()) || (ininv === PC.getMissile())) {
-          qty = qty-1;
-        }
-        if (qty) { // sell it!
-          var sold = ininv.desc;
-          sold = sold.charAt(0).toUpperCase() + sold.slice(1)
-          maintext.addText(sold + ": sold.");
-          PC.removeFromInventory(ininv);  // already handles only subtracting 1 if there are multiples
-          PC.addGold(Math.ceil(merinv.stock[idx].price/10));
-          DrawCharFrame();
-        }
+        if (ininv) {
+          var qty = ininv.getQuantity();
+          if ((ininv === PC.getArmor()) || (ininv === PC.getWeapon()) || (ininv === PC.getMissile())) {
+            qty = qty-1;
+          }
+          if (qty) { // sell it!
+            var sold = ininv.desc;
+            sold = sold.charAt(0).toUpperCase() + sold.slice(1)
+            maintext.addText(sold + ": sold.");
+            PC.removeFromInventory(ininv);  // already handles only subtracting 1 if there are multiples
+            PC.addGold(Math.ceil(merinv.stock[idx].price/10));
+            DrawCharFrame();
+          }
+        } 
       }
     }
   }
