@@ -397,10 +397,10 @@ OnConvTriggers["train_str"] = function(speaker,keyword) {
 OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("inn_20_y");
   DU.gameflags.deleteFlag("inn_20");
-  if (PC.getGold() < 20) {
+  if (PC.getGold() < 5) {
     maintext.addText("You don't have enough gold!");
   } else {
-    PC.addGold(-20);
+    PC.addGold(-5);
     maintext.addText("He leads you to your room.");
     setTimeout(function() { InnRoom(28,17,[21,14,25,20]); }, 50);
   }
@@ -416,7 +416,7 @@ OnConvTriggers["inn_20_n"] = function(speaker,keyword) {
 OnConvTriggers["inn_25"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("inn_25");
 
-  PC.addGold(-25);
+  PC.addGold(-10);
   setTimeout(function() { InnRoom(43,56,[28,50,34,51,38,50,41,49,44,52]); }, 50);
   
   return -1;
