@@ -8235,6 +8235,7 @@ GreenPotionTile.prototype.use = function(who) {
   who.addSpellEffect(poison);
   if (who === PC) {
     retval["txt"] = "You are poisoned!";
+    DrawCharFrame();
   }
   return retval;
 }
@@ -8256,6 +8257,7 @@ DarkGreenPotionTile.prototype.use = function(who) {
   var retval = {fin:1};
   retval = magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell(PC, 0, 1);
   retval["txt"] = "You feel yourself moving more quickly!";
+  DrawCharFrame();
   return retval;
 }
 
@@ -8388,6 +8390,7 @@ BrownPotionTile.prototype.use = function(who) {
   retval["fin"] = 1;
   if (who === PC) {
     retval["txt"] = "You feel refreshed!";
+    DrawCharFrame();
   }
   return retval;
 }
@@ -8408,7 +8411,7 @@ RedPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
   var resp = magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell(who,1,1);
   resp["txt"] = "You feel purified.";
-  
+  DrawCharFrame();
   return resp;
 }
 
@@ -8429,6 +8432,7 @@ WhitePotionTile.prototype.use = function(who) {
   var retval = { fin:1};
   retval = magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell(PC, 0, 1);
   retval["txt"] = "You begin to glow.";
+  DrawCharFrame();
   return retval;
 }
 
@@ -8448,6 +8452,7 @@ YellowPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
   var retval = {fin:1};
   retval = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(PC, 0, 1);
+  if (who.checkType("PC")) { DrawCharFrame(); }
   retval["txt"] = "You are healed!";
   return retval;
 }
@@ -8469,6 +8474,7 @@ PurplePotionTile.prototype.use = function(who) {
   var retval = {fin:1};
   retval = magic[SPELL_PROTECT_LEVEL][SPELL_PROTECT_ID].executeSpell(PC, 0, 1);
   retval["txt"] = "You feel an aura of protection around you.";
+  DrawCharFrame();
   return retval;
 }
 
@@ -8489,6 +8495,7 @@ BlackPotionTile.prototype.use = function(who) {
   var retval = {fin:1};
   retval = magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(PC, 0, 1);
   retval["txt"] = "You feel blessed!";
+  DrawCharFrame();
   return retval;
 }
 
@@ -8509,6 +8516,7 @@ BluePotionTile.prototype.use = function(who) {
   var retval = {fin:1};
   retval = magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell(PC, 0, 1);
   retval["txt"] = "You are healed!"
+  DrawCharFrame();
   return retval;
 }
 
@@ -8533,6 +8541,7 @@ OrangePotionTile.prototype.use = function(who) {
   retval["fin"] = 1;
   if (who === PC) {
     retval["txt"] = "You feel refreshed!";
+    DrawCharFrame();
   }
   return retval;
 }
