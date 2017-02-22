@@ -82,6 +82,7 @@ mappages["headlesscave"].onload = function(mapref) {
       for (var i=0;i<allnpcs.length;i++) {
         if (allnpcs[i].getName() === "HeadlessNPC") {
           mapref.deleteThing(allnpcs[i]);
+          DU.DUTime.removeEntityFrom(allnpcs[i]);
         }
       }
     }
