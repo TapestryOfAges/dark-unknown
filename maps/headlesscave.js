@@ -76,11 +76,13 @@ mappages["headlesscave"].returninfused = '0';
 mappages["headlesscave"].linkedMaps = [""];
 
 mappages["headlesscave"].onload = function(mapref) {
-  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    var allnpcs = mapref.npcs.getAll();
-    for (var i=0;i<allnpcs.length;i++) {
-      if (allnpcs[i].getName() === "HeadlessNPC") {
-        mapref.deleteThing(allnpcs[i]);
+  if (DU.gameflags.getFlag("cave_cleared")) {
+    if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+      var allnpcs = mapref.npcs.getAll();
+      for (var i=0;i<allnpcs.length;i++) {
+        if (allnpcs[i].getName() === "HeadlessNPC") {
+          mapref.deleteThing(allnpcs[i]);
+        }
       }
     }
   }
