@@ -76,6 +76,12 @@ DUMusic["Ether"] = "The Beyond";
 DUMusic["Lullaby"] = "Lullaby";
 DUMusic["Lament"] = "Shelaria's Lament";
 DUMusic["Sirius"] = "This Bardic Life";
+DUMusic["Death"] = "Death";
+DUMusic["Final"] = "Final Steps";
+DUMusic["Heartbeat"] = "Alone in the Darkness";
+DUMusic["Despair"] = "Depths of Despair";
+DUMusic["Alone"] = "You Are Not Alone";
+DUMusic["Light"] = "A Light in the Darkness";
 
 var musicloaded = {};
 var musicsloaded = 0;
@@ -109,6 +115,8 @@ function audio_init_title() {
   
   var fullpath = musicpath + "The Dark Unknown.mp3";
   createjs.Sound.registerSound(fullpath, "Dark Unknown");
+  fullpath = musicpath + "The Journey Begins.mp3";
+  createjs.Sound.registerSound(fullpath, "Charcreate");
 }
 
 function populate_audio(soundlist, preload, loop, soundtype) {
