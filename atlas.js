@@ -1646,7 +1646,7 @@ GameMap.prototype.loadMap = function (name) {
       		mappages[name][usescript](newfeature);
     	  }
       	if (newfeature.getLootedID()) {
-      	  if (DU.gameflags.getFlag(newfeature.getLootedID())) {
+      	  if (DU.gameflags.getFlag("lid_" + newfeature.getLootedID())) {
       	    if (newfeature.lootonce) { newfeature.setLootgroup(""); }
       	    else  { newfeature.setLootgroup("prev_looted"); }
       	  }
