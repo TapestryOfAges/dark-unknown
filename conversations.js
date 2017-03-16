@@ -80,12 +80,12 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   var triggers = this[keyword].triggers[flags_met];
   
   if (triggers.hasOwnProperty("give_item")) {
-    var newitem = localFactory.createTile(triggers.give_item)
+    var newitem = localFactory.createTile(triggers.give_item);
     PC.addToInventory(newitem,1);
     maintext.addText("<span class='sysconv'>You have obtained: " + newitem.getFullDesc() + ".</span>");
   }
   if (triggers.hasOwnProperty("take_item")) {
-    var takeme = PC.checkInventory(triggers.take_item)
+    var takeme = PC.checkInventory(triggers.take_item);
     if (takeme) {
       PC.removeFromInventory(takeme);
       maintext.addText("<span class='sysconv'>You no longer have one: " + takeme.getDesc() + ".</span>");
@@ -313,8 +313,6 @@ OnConvTriggers["ash_password"] = function(speaker,keyword) {
 
 OnConvTriggers["spellbook"] = function(speaker,keyword) {
   PC.addSpell(SPELL_LIGHT_LEVEL,SPELL_LIGHT_ID); 
-  PC.setLastSpellLevel(SPELL_LIGHT_LEVEL);
-  PC.setLastSpell(SPELL_LIGHT_ID);
   return;
 }
 
@@ -348,6 +346,7 @@ OnConvTriggers["train_int"] = function(speaker,keyword) {
     alert("Somehow training Int without any tp.");
   } else if ((PC.getBaseInt() < STAT_MAX) && (PC.gettp() > 0)) {
     PC.setBaseInt(PC.getBaseInt()+1);
+    PC.setMaxMana(PC.getInt());
     PC.settp(PC.gettp()-1);
     maintext.addText("<span class='sysconv'>Your intelligence is now " + PC.getInt() + ".</span>");
   } else {
@@ -424,61 +423,67 @@ OnConvTriggers["inn_25"] = function(speaker,keyword) {
 
 OnConvTriggers["health_kyvek"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
-    DU.gameflags.setFlag("all_health", 1);
+    CheckAllHealth();
   }
 }
 
 OnConvTriggers["health_daniel"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
-    DU.gameflags.setFlag("all_health", 1);
+    CheckAllHealth();
   }
 }
 
 OnConvTriggers["health_kylee"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
-    DU.gameflags.setFlag("all_health", 1);
+    CheckAllHealth();
   }
 }
 
 OnConvTriggers["health_garen"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
-    DU.gameflags.setFlag("all_health", 1);
+    CheckAllHealth();
   }
 }
 
 OnConvTriggers["health_guard"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
-    DU.gameflags.setFlag("all_health", 1);
+    CheckAllHealth();
   }
 }
 
 OnConvTriggers["health_amaeryl"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
-    DU.gameflags.setFlag("all_health", 1);
+    CheckAllHealth();
   }
 }
 
 OnConvTriggers["health_warren"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
-    DU.gameflags.setFlag("all_health", 1);
+    CheckAllHealth();
   }
 }
 
 OnConvTriggers["health_samuel"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
-    DU.gameflags.setFlag("all_health", 1);
+    CheckAllHealth();
   }
 }
 
 OnConvTriggers["health_ingrid"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
-    DU.gameflags.setFlag("all_health", 1);
+    CheckAllHealth();
   }
 }
 
 OnConvTriggers["shield_gotten"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("get_shield");
   DU.gameflags.deleteFlag("shield_gotten");
+}
+
+function CheckAllHealth() {
+  if (DU.gameflags.getFlag("health_amaeryl") && DU.gameflags.getFlag("health_daniel") && DU.gameflags.getFlag("health_garen") && DU.gameflags.getFlag("health_guard") && DU.gameflags.getFlag("health_ingrid") && DU.gameflags.getFlag("health_kylee") && DU.gameflags.getFlag("health_kyvek") && DU.gameflags.getFlag("health_samuel") && DU.gameflags.getFlag("health_warren")) {
+    DU.gameflags.setFlag("all_health", 1);
+  }
 }
 
 OnConvTriggers["ash_get_book"] = function(speaker,keyword) {
