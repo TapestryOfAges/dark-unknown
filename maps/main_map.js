@@ -180,7 +180,7 @@ mappages["darkunknown"].features[30] = {name : 'HillTower', x : 18, y : 11, ente
 mappages["darkunknown"].features[31] = {name : 'Cave', x : 47, y : 74, entermap : 'bdcave', enterx : 0, entery : 0};
 mappages["darkunknown"].features[32] = {name : 'Waterfall', x : 77, y : 70};
 mappages["darkunknown"].features[33] = {name : 'Waterfall', x : 99, y : 87};
-mappages["darkunknown"].features[34] = {name : 'Cave', x : 48, y : 78, entermap : 'headlesscave', enterx : 28, entery : 13};
+mappages["darkunknown"].features[34] = {name : 'Cave', x : 48, y : 78, entermap : 'headlesscave', enterx : 29, entery : 15};
 
 
 mappages["darkunknown"].npcs = [];
