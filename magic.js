@@ -417,7 +417,6 @@ magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, 
 
 // Disarm Trap
 magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(caster, infused, free) {
-//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Disarm Trap.<br /></span>"); }
   DebugWrite("magic", "Casting Disarm Trap.<br />");
   var resp = {};
   if (!free) {
