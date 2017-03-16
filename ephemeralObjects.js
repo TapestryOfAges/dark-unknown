@@ -464,7 +464,7 @@ CurseTile.prototype.endEffect = function(silent) {
 function DiseaseTile() {
   this.addType("debuff");
   this.name = "Disease";
-  this.damagePerTick = 1;
+  this.damagePerTick = .4;
   this.display = "<span style='color:#58FA58'>D</span>";
   this.zstatdesc = "You have been infected by a disease.";
   this.desc = "disease";
