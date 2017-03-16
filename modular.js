@@ -4,7 +4,9 @@ var OnHitFuncs = {};
 OnHitFuncs["disease"] = function(atk,def,dmg) {
   if (Dice.roll("1d100") < 15) {  // diseased!
     if (def.getSpellEffectsByName("Disease")) { return 0; }
+    var duration = Dice.roll("2d10+10");
     var disease = localFactory.createTile("Disease");
+    disease.setExpiresTime(duration + DUTime.getGameClock());
     def.addSpellEffect(disease);
    
     if (def === PC) {  
@@ -38,6 +40,7 @@ OnHitFuncs["steal gold"] = function(atk,def,dmg) {
     if (def.checkType("PC")) {
       var die = atk.getLevel() * 2;
       var loss = Dice.roll(die + "d6");
+      if (loss > def.getGold()) { loss = def.getGold(); } 
       loss = 0-loss;
       def.addGold(loss);
       if (def.getGold() < 0) { def.setGold(0); }
