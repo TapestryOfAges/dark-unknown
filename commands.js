@@ -646,9 +646,9 @@ function PerformAttackMap(who) {
       spawner.deleteSpawned(atkwho);
     }
 
+    var monsters = PlaceMonsters(newmap,atkwho,1);
     var desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
     
-    var monsters = PlaceMonsters(newmap,atkwho,1);
     DUTime.removeEntityFrom(atkwho);
     
     DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
@@ -1018,7 +1018,6 @@ function PerformEnter(cmd) {
 function PerformGet(who) {
   var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
   var getitem = localacre.features.getTop();
-  var itemmap = getitem.getHomeMap();
   var retval = {};
   if (!getitem) {
     retval["txt"] = "There is nothing there.";
@@ -1026,6 +1025,7 @@ function PerformGet(who) {
     return retval;    
   } 
   else if (getitem.checkType("Item")) {
+    var itemmap = getitem.getHomeMap();
     who.addToInventory(getitem);
     if (typeof getitem.onGet === "function") {
       getitem.onGet(who);
@@ -1304,6 +1304,19 @@ function PerformTalkTarget() {
     if ((PC.getLevel() < 4) || (PC.runes.kings)) {
       maintext.addText('<span class="conv">"Hail, ' + PC.getPCName() + '! I am well pleased with your progress. Seek Nyrani and Jharden for further training."</span>');
       PC.setLevel(PC.getLevel()+1);
+      PC.setMaxHP(PC.getLevel()*30);
+      PC.setHP(PC.getMaxHP());
+      var effects = PC.getSpellEffects();
+      if (effects) {
+        for (var i=0; i<effects.length; i++) {
+          if (effects[i].getName() === "Poison") {
+            effects[i].endEffect();
+          }
+          if (effects[i].getName() === "Disease") {
+            effects[i].endEffect();
+          }
+        }
+      }
       PC.settp(PC.gettp()+TP_PER_LEVEL);
       DU.gameflags.setFlag("can_train", 1);
       if (DU.gameflags.getFlag("spellbook")) {
@@ -1318,6 +1331,7 @@ function PerformTalkTarget() {
       if (PC.getLevel() === 2) {
         maintext.addText("<span class='conv'>\"Oh, and another thing! We have captured a rebel instigator and are holding her in our <span style='color:cyan'>prison</span>. I charge you with seeing what information you can get from her!\"</span>");
       }
+      DrawCharFrame();
       retval = PerformTalk(top, convo, "_level");
     } else {
       maintext.addText('<span class="conv">"Hail, ' + PC.getPCName() + '! You have made great progress, but you cannot advance without the =Rune=!."</span>');
