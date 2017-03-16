@@ -656,6 +656,7 @@ function Breakable(brokengraphicarray, startsbroken) {
     if (!this.fixeddesc) {
       this.fixeddesc = this.getDesc();
     }
+    var olddesc = this.getDesc();
     this.setDesc(this.brokendesc);
     //play sound effect
     DrawMainFrame("one", this.getHomeMap().getName(), this.getx(), this.gety());
@@ -664,7 +665,7 @@ function Breakable(brokengraphicarray, startsbroken) {
     }
     var retval = {};
     retval["fin"] = 1;
-    retval["txt"] =  "You break the " + this.getDesc() + "!";
+    retval["txt"] =  "You break the " + olddesc + "!";
     retval["input"] = "&gt;";
     return retval;
   }
@@ -4814,6 +4815,8 @@ function DresserTile() {
   this.desc = "dresser";
 	this.lootgroup = "";
 	this.lootedid = "";
+  this.showsearched = 1;
+  this.searchedgraphic = ["furniture.gif","","-192","-32"];
 	
 	this.container = [];
 	OpenContainer.call(this);
@@ -8553,14 +8556,16 @@ function ScrollItemObject() {
   this.addType("Scroll"); 
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.spelllevel = 1;
-  this.spellnumber = 1;
+  this.spellnum = 1;
   this.flammable = 90;
 }
 ScrollItemObject.prototype = new ConsumableItemObject();
 
 ScrollItemObject.prototype.use = function(who) {
   var retval = {};
-  retval = magic[this.spelllevel][GetSpellID(this.spellnumber)].executeSpell(PC, 0, 1);
+  retval = magic[this.spelllevel][this.spellnum].executeSpell(PC, 0, 1);
+  if (!retval["txt"]) { retval["txt"] = "Spell cast!"; }
+  DrawCharFrame();
   return retval;
 }
 
