@@ -348,7 +348,7 @@ mappages["spire2"].features[65] = {name : 'BookshelfRight', x : 26, y : 13};
 mappages["spire2"].features[66] = {name : 'BookshelfLeft', x : 25, y : 13};
 mappages["spire2"].features[67] = {name : 'EnergyField', x : 24, y : 18};
 mappages["spire2"].features[68] = {name : 'EnergyField', x : 27, y : 15};
-
+mappages["spire2"].features[69] = {name : 'Harpsichord', x : 21, y : 11};
 
 mappages["spire2"].npcs = [];
 
