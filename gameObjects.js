@@ -8033,7 +8033,7 @@ function BookOfLoreTile() {
   this.desc = "Book of Lore";
   this.prefix = "the";
   this.addType("Quest");
-  this.contents = "";
+  this.contents = "You open to a random page:%%'[addmore]'";
 }
 BookOfLoreTile.prototype = new BookItemObject();
 
@@ -8047,7 +8047,7 @@ function TomeOfSightTile() {
   this.desc = "Tome of Sight";
   this.prefix = "the";
   this.addType("Quest");
-  this.contents = "You open to a random page:%%'...for the Eye of Man can be deceived, but the Eye of Magic is Immutable.' [addmore]";
+  this.contents = "You open to a random page:%%'...for the Eye of Man can be deceived, but the Eye of Magic is Immutable.%%' [addmore]";
 }
 TomeOfSightTile.prototype = new BookItemObject();
 
@@ -8064,7 +8064,6 @@ function MapsAndLegendsTile() {
   this.contents = "You flip through the pages and find a chapter on magical phenomenon.%%Searching, you find the section you seek:%%\"The Brilliant Pool\"%%<span class='conv'>Once, this mythical place was considered the source of all magic.</span>%%<span class='conv'>Now, it is known that magic's power is drawn from the ethereal plane, and it is not known whether the Brilliant Pool ever truly existed, or still exists.</span>%%<span class='conv'>Another story has it that it is a star, misplaced on our plane, its power too great for any mortal to harness directly.</span>%%You close the book.";
 }
 MapsAndLegendsTile.prototype = new BookItemObject();
-
 
 function ATreatiseOnDragonsTile() {
   this.name = "ATreatiseOnDragons";
