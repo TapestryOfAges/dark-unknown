@@ -42,11 +42,11 @@ function SetLoots() {
 
   loots['smallguard'] = new LootTable();
   loots['smallguard'].loot[0] = {};
-  loots['smallguard'].loot[0].objname = 'LesserArmor';
+  loots['smallguard'].loot[0].objname = 'Lesser Armor';
   loots['smallguard'].loot[0].quantity = '1';
   loots['smallguard'].loot[0].chance = 100;
   loots['smallguard'].loot[1] = {};
-  loots['smallguard'].loot[1].objname = 'LesserWeapon';
+  loots['smallguard'].loot[1].objname = 'Lesser Weapon';
   loots['smallguard'].loot[1].quantity = '1';
   loots['smallguard'].loot[1].chance = 100;
 
