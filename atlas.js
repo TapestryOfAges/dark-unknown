@@ -4,122 +4,59 @@
 function Atlas() {
 
   this.key = {
-    "WE" : "BlankWhite",   // 0
+    "WE" : "BlankWhite",   
     "BlankWhite" : "WE",
-    "WW" : "Ocean",   // 1
+    "WW" : "Ocean",   
     "Ocean" : "WW",  
-    "ww" : "Water",   // 2
+    "ww" : "Water",   
     "Water" : "ww",  
-    "uu" : "Shallows", // 3
+    "uu" : "Shallows", 
     "Shallows" : "uu",
-    "sW" : "ShadowOcean",   // 1
+    "sW" : "ShadowOcean",   
     "ShadowOcean" : "sW",  
-    "sw" : "ShadowWater",   // 2
+    "sw" : "ShadowWater",   
     "ShadowWater" : "sw",  
-    "su" : "ShadowShallows", // 3
+    "su" : "ShadowShallows", 
     "ShadowShallows" : "su",
-    '^^' : "Mountain", // 4
+    '^^' : "Mountain", 
     "Mountain" : '^^', 
-    '^_' : "MountainPass", // 4
+    '^_' : "MountainPass", 
     "MountainPass" : '^_', 
-    '_^' : "NoBlockMountain", // 4
+    '_^' : "NoBlockMountain", 
     "NoBlockMountain" : '_^', 
-    '$=' : "LeftCastle", // 5
+    '$=' : "LeftCastle", 
     "LeftCastle" : '$=',
-    '=$' : "RightCastle", // 6
+    '=$' : "RightCastle", 
     "RightCastle" : '=$', 
-  // 7-10 are features
-    '%%' : "StoneWall", // 11
+    '%%' : "StoneWall", 
     "StoneWall" : '%%',
     'c#' : "Coral",
     "Coral" : 'c#',
-  // 12 is a feature
-    '#%' : "Stone",     // 13
+    '#%' : "Stone",     
     "Stone": '#%',
-    ',%' : "DirtStone",     // 13
+    ',%' : "DirtStone",     
     "DirtStone": ',%',
-    '#*' : "Mast",  // 14
+    '#*' : "Mast",  
     "Mast" : '#*',
-    '#!' : "Rigging", // 15
+    '#!' : "Rigging", 
     "Rigging" : '#!',
-    '+o' : "Pillar", // 16
+    '+o' : "Pillar", 
     "Pillar" : '+o',
-    'xo' : "PurplePillar", // 16
+    'xo' : "PurplePillar", 
     "PurplePillar" : 'xo',
-    'u`' : "FountainSW", // 17
-    "FountainSW" : 'u`',
-    '/u' : "FountainSE", // 18
-    "FountainSE" : '/u',
-    'u/' : "FountainNW", // 19
-    "FountainNW" : 'u/',
-    '`u' : "FountainNE", // 20
-    "FountainNE" : '`u',
-// 21-24 are features
-    '_A' : "LetterA",  //25
-    "LetterA" : '_A',
-    '_B' : "LetterB",  //26
-    "LetterB" : '_B',
-    '_C' : "LetterC",  //27
-    "LetterC" : '_C', 
-    '_D' : "LetterD",  //28
-    "LetterD" : '_D',
-    '_E' : "LetterE",  //29
-    "LetterE" : '_E',
-    '_F' : "LetterF",  //30
-    "LetterF" : '_F',
-    '_G' : "LetterG",  //31
-    "LetterG" : '_G',
-    '_H' : "LetterH",  //32
-    "LetterH" : '_H',
-    '_I' : "LetterI",  //33
-    "LetterI" : '_I',
-    '_J' : "LetterJ",  //34
-    "LetterJ" : '_J',
-    '_K' : "LetterK",  //35
-    "LetterK" : '_K',
-    '_L' : "LetterL",  //36
-    "LetterL" : '_L',
-    '_M' : "LetterM",  //37
-    "LetterM" : '_M',
-    '_N' : "LetterN",  //38
-    "LetterN" : '_N',
-    '_O' : "LetterO",  //39
-    "LetterO" : '_O',
-    '_P' : "LetterP",  //40
-    "LetterP" : '_P',
-    '_Q' : "LetterQ",  //41
-    "LetterQ" : '_Q',
-    '_R' : "LetterR",  //42
-    "LetterR" : '_R',
-    '_S' : "LetterS",  //43
-    "LetterS" : '_S',
-    '_T' : "LetterT",  //44
-    "LetterT" : '_T',
-    '_U' : "LetterU",  //45
-    "LetterU" : '_U',
-    '_V' : "LetterV",  //46
-    "LetterV" : '_V',
-    '_W' : "LetterW",  //47
-    "LetterW" : '_W',
-    '_X' : "LetterX",  //48
-    "LetterX" : '_X',
-    '_Y' : "LetterY",  //49
-    "LetterY" : '_Y',
-    '_Z' : "LetterZ",  //50
-    "LetterZ" : '_Z',
-    '::' : "HorizontalCounter", // 51
+    '::' : "HorizontalCounter", 
     "HorizontalCounter" : '::',
-    ':]' : "RightCounter",  // 52
+    ':]' : "RightCounter",  
     "RightCounter" : ':]', 
-    '[:' : "LeftCounter", // 53
+    '[:' : "LeftCounter", 
     "LeftCounter" : '[:',
-    '[]' : "CounterBox",  // 54
+    '[]' : "CounterBox",  
     "CounterBox" : '[]',
-    'BK' : "BlankBlack", // 55
+    'BK' : "BlankBlack", 
     "BlankBlack" : 'BK',
-    'DK' : "Darkness", // 55
+    'DK' : "Darkness", 
     "Darkness" : 'DK',
-    '##' : "Wall", // 56
+    '##' : "Wall", 
     "Wall" : '##',
     '!#' : "RuinsWall",
     "RuinsWall" : '!#',
@@ -139,81 +76,79 @@ function Atlas() {
     "ArrowSlit" : '#+',
     '#O' : "Window",
     "Window" : '#O',
-    '+`' : "WallNE", // 57
+    '+`' : "WallNE", 
     "WallNE" : '+`',
-    '/+' : "WallNW", // 58
+    '/+' : "WallNW", 
     "WallNW" : '/+',
-    '`+' : "WallSW", // 59
+    '`+' : "WallSW", 
     "WallSW" : '`+',
-    '+/' : "WallSE", // 60
+    '+/' : "WallSE", 
     "WallSE" : '+/', 
-    '()' : "VerticalCounter", // 61
+    '()' : "VerticalCounter", 
     "VerticalCounter" : '()',
-    '(_' : "BottomCounter", // 62
+    '(_' : "BottomCounter", 
     "BottomCounter" : '(_',
-    '(^' : "TopCounter", // 63
+    '(^' : "TopCounter", 
     "TopCounter" : '(^',
-// 64 - 67 is features (doors)
-//    '+D' : "Doorway", // 68
-//    "Doorway" : '+D',
-    '!!' : "PlanksNS", // 69
+    '!!' : "PlanksNS", 
     "PlanksNS" : '!!',
-    's!' : "ShadowPlanksNS", // 69
+    's!' : "ShadowPlanksNS", 
     "ShadowPlanksNS" : 's!',
-// 70 - 72 are features (bridges)
-    '__' : "SouthCoast", // 73
+    '__' : "SouthCoast", 
     "SouthCoast" : '__',
-    '--' : "NorthCoast", // 74
+    '--' : "NorthCoast", 
     "NorthCoast" : '--',
-    '-b' : "NorthCoastSand", // 74
+    '-b' : "NorthCoastSand", 
     "NorthCoastSand" : '-b',
-    '.|' : "EastCoast", // 75
+    '.|' : "EastCoast", 
     "EastCoast" : '.|',
-    '|.' : "WestCoast", // 76
+    '|.' : "WestCoast", 
     "WestCoast" : '|.',
-    '.`' : "NortheastCoast", // 77
+    '.`' : "NortheastCoast", 
     "NortheastCoast" : '.`',
-    'b`' : "NortheastCoastSand", // 77
+    'b`' : "NortheastCoastSand", 
     "NortheastCoastSand" : 'b`',
-    '`.' : "SouthwestCoast", // 78
+    '`.' : "SouthwestCoast", 
     "SouthwestCoast" : '`.', 
-    '/.' : "NorthwestCoast", // 79
+    '/.' : "NorthwestCoast", 
     "NorthwestCoast" : '/.',
-    '/b' : "NorthwestCoastSand", // 79
+    '/b' : "NorthwestCoastSand", 
     "NorthwestCoastSand" : '/b',
-    './' : "SoutheastCoast", // 80
+    './' : "SoutheastCoast", 
     "SoutheastCoast" : './',
-    's_' : "ShadowSouthCoast", // 73
+    's_' : "ShadowSouthCoast", 
     "ShadowSouthCoast" : 's_',
-    's-' : "ShadowNorthCoast", // 74
+    's-' : "ShadowNorthCoast", 
     "ShadowNorthCoast" : 's-',
-    's|' : "ShadowEastCoast", // 75
+    's|' : "ShadowEastCoast", 
     "ShadowEastCoast" : 's|',
-    '|s' : "ShadowWestCoast", // 76
+    '|s' : "ShadowWestCoast", 
     "ShadowWestCoast" : '|s',
-    's`' : "ShadowNortheastCoast", // 77
+    's`' : "ShadowNortheastCoast", 
     "ShadowNortheastCoast" : 's`',
-    '`s' : "ShadowSouthwestCoast", // 78
+    '`s' : "ShadowSouthwestCoast", 
     "ShadowSouthwestCoast" : '`s', 
-    '/s' : "ShadowNorthwestCoast", // 79
+    '/s' : "ShadowNorthwestCoast", 
     "ShadowNorthwestCoast" : '/s',
-    's/' : "ShadowSoutheastCoast", // 80
+    's/' : "ShadowSoutheastCoast", 
     "ShadowSoutheastCoast" : 's/',
-// 101-102 are features (bridge)
-    '++' : "Cobblestone", // 103
+    '++' : "Cobblestone", 
     "Cobblestone" : '++',
-    '-=' : "PlanksEW", // 104
+    '-=' : "PlanksEW", 
     "PlanksEW" : '-=',
-// 105 is a feature or an NPC, depending
-    '..' : "Grass", // 121
+    '..' : "Grass", 
     "Grass" : '..',
-    'ss' : "ShadowGrass", // 121
+    'ss' : "ShadowGrass", 
     "ShadowGrass" : 'ss',
-    '.,' : "Dirt", // 121
+    '.,' : "Dirt", 
     "Dirt" : '.,',
+    'FF' : "FallowFarm",
+    "FallowFarm" : 'FF',
+    'gF' : "Farm",
+    "Farm" : 'gF',
     's,' : "ShadowDirt", 
     "ShadowDirt" : 's,',
-    ',,' : "Brush", // 122
+    ',,' : "Brush", 
     "Brush" : ',,',
     ',s' : "ShadowBrush",
     "ShadowBrush" : ',s',
@@ -225,11 +160,11 @@ function Atlas() {
     "BrushSCoast" : '_,',
     '-,' : "BrushNCoast",
     "BrushNCoast" : '-,',
-    ';;' : "Forest", // 123
+    ';;' : "Forest", 
     "Forest" : ';;',
-    ',;' : "Grove", // 123
+    ',;' : "Grove", 
     "Grove" : ',;',
-    's;' : "ShadowGrove", // 123
+    's;' : "ShadowGrove", 
     "ShadowGrove" : 's;',
     '|;' : "ForestWCoast",
     "ForestWCoast" : '|;',
@@ -239,128 +174,92 @@ function Atlas() {
     "ForestSCoast" : '_;',
     '-;' : "ForestNCoast",
     "ForestNCoast" : '-;',
-    'nn' : "Hills", // 124
+    'nn' : "Hills", 
     "Hills" : 'nn',
-    '+*' : "PurpleCobblestone", // 125
+    '+*' : "PurpleCobblestone", 
     "PurpleCobblestone" : '+*',
-    '+S' : "ShadowPurpleCobblestone", // 125
+    '+S' : "ShadowPurpleCobblestone", 
     "ShadowPurpleCobblestone" : '+S',
     'p*' : "FancyFloor",
     "FancyFloor" : 'p*',
-// 126 is a feature (bridge)
-    'ff' : "Swamp", // 141
+    'ff' : "Swamp", 
     "Swamp" : 'ff',
     'sf' : "ShadowSwamp", 
     "ShadowSwamp" : 'sf',
-// 142 - 146 are features
-//    '~~' : "Lava", // 147
-//    "Lava" : '~~',
-    '@D' : "Dungeon", // 151
-    "Dungeon" : '@D',
-    '@T' : "Towne", // 152
-    "Towne" : '@T',
-    '@K' : "Keep", // 153
-    "Keep" : '@K',
-    '@V' : "Village", // 154
-    "Village" : '@V',
-    '@C' : "Castle", // 155
-    "Castle" : '@C',
-    '@S' : "Shrine", // 156
-    "Shrine" : '@S', 
-    '@R' : "Ruins", // 157
-    "Ruins" : '@R',
-    'nT' : "HillTower",
-    "HillTower" : 'nT',
-    '.T' : "GrassTower",
-    "GrassTower" : '.T',
-    "River" : 'RR',
     'RR' : "River",
-    "RiverNS" : '||',
-    '||' : "RiverNS",
-    "RiverEW" : '==',
-    '==' : "RiverEW",
-    "RiverNE" : '`=',
-    '`=' : "RiverNE",
-    "RiverSE" : '/=',
-    '/=' : "RiverSE",
-    "RiverNW" : '=/',
-    '=/' : "RiverNW",
-    "RiverSW" : '=`',
-    '=`' : "RiverSW",
-    "RiverTtop" : '-L',
-    '-L' : "RiverTtop",
-    "RiverTbottom" : 'TT',
-    'TT' : "RiverTbottom",
-    "RiverTleft" : '=|',
-    '=|' : "RiverTleft",
-    "RiverTright" : '|=',
-    '|=' : "RiverTright",
-    "RiverSourceN" : 'xv',
-    'xv' : "RiverSourceN",
-    "RiverSourceS" : 'x^',
-    'x^' : "RiverSourceS",
-    "RiverSourceE" : 'x=',
-    'x=' : "RiverSourceE",
-    "RiverSourceW" : '=x',
-    '=x' : "RiverSourceW",
-    "Road" : 'rd',
+    "River" : 'RR',
     'rd' : "Road",
-    "RoadEN" : 'r/',
-    'r/' : "RoadEN",
-    "RoadENS" : 'r<',
-    'r<' : "RoadENS",
-    "RoadES" : 'rr',
-    'rr' : "RoadES",
-    "RoadEW" : 'r=',
-    'r=' : "RoadEW",
-    "RoadEWN" : 'rV',
-    'rV' : "RoadEWN",
-    "RoadEWS" : 'rT',
-    'rT' : "RoadEWS",
-    "RoadNS" : 'r|',
-    'r|' : "RoadNS",
-    "RoadWN" : 'r]',
-    'r]' : "RoadWN",
-    "RoadWNS" : 'r>',
-    'r>' : "RoadWNS",
-    "RoadWS" : 'r[',
-    'r[' : "RoadWS",
-    "RoadX" : 'rX',
-    'rX' : "RoadX",
-    "Shingles" : 'rf',
+    "Road" : 'rd',
     'rf' : "Shingles",
-    "ShinglesTop" : 'rc',
+    "Shingles" : 'rf',
     'rc' : "ShinglesTop",
-    "SeeBelow" : 'sb',
+    "ShinglesTop" : 'rc',
     'sb' : "SeeBelow",
-    "WorldBelow" : 'wb',
+    "SeeBelow" : 'sb',
     'wb' : "WorldBelow",
-    "CaveFloor" : 'cf',
+    "WorldBelow" : 'wb',
     'cf' : "CaveFloor",
-    "CaveWall" : 'cw',
+    "CaveFloor" : 'cf',
     'cw' : "CaveWall",
-    "HexFloor" : 'hf',
+    "CaveWall" : 'cw',
     'hf' : "HexFloor",
-    "HexTransparentFloor" : 'ht',
+    "HexFloor" : 'hf',
     'ht' : "HexTransparentFloor",
-    "BlueTiles" : 'bb',
+    "HexTransparentFloor" : 'ht',
     'bb' : "BlueTiles",    
-    "GoldOutlineFloor" : 'go',
+    "BlueTiles" : 'bb',
     'go' : "GoldOutlineFloor",    
-    "DiamondFloor" : 'df',
+    "GoldOutlineFloor" : 'go',
     'df' : "DiamondFloor",    
-    "BlueDiamondFloor" : 'bd',
+    "DiamondFloor" : 'df',
     'bd' : "BlueDiamondFloor",    
-    "PurpleDiamondFloor" : 'pd',
+    "BlueDiamondFloor" : 'bd',
     'pd' : "PurpleDiamondFloor",    
-    "RedDiamondFloor" : 'r^',
+    "PurpleDiamondFloor" : 'pd',
     'r^' : "RedDiamondFloor",    
-    "YellowDiamondFloor" : 'yd',
+    "RedDiamondFloor" : 'r^',
     'yd' : "YellowDiamondFloor",    
-    "GreenDiamondFloor" : 'gd',
+    "YellowDiamondFloor" : 'yd',
     'gd' : "GreenDiamondFloor",    
-    "Banner" : 'br',
+    "GreenDiamondFloor" : 'gd',
     'br' : "Banner",
+    "Banner" : 'br',
+    'r1' : "RedCarpetNW",
+    "RedCarpetNW" : 'r1',
+    'r2' : "RedCarpetN",
+    "RedCarpetN" : 'r2',
+    'r3' : "RedCarpetNE",
+    "RedCarpetNE" : 'r3',
+    'r4' : "RedCarpetE",
+    "RedCarpetE" : 'r4',
+    'r5' : "RedCarpetSE",
+    "RedCarpetSE" : 'r5',
+    'r6' : "RedCarpetS",
+    "RedCarpetS" : 'r6',
+    'r7' : "RedCarpetSW",
+    "RedCarpetSW" : 'r7',
+    'r8' : "RedCarpetW",
+    "RedCarpetW" : 'r8',
+    'r0' : "RedCarpetC",
+    "RedCarpetC" : 'r0',
+    'b1' : "BlueCarpetNW",
+    "BlueCarpetNW" : 'b1',
+    'b2' : "BlueCarpetN",
+    "BlueCarpetN" : 'b2',
+    'b3' : "BlueCarpetNE",
+    "BlueCarpetNE" : 'b3',
+    'b4' : "BlueCarpetE",
+    "BlueCarpetE" : 'b4',
+    'b5' : "BlueCarpetSE",
+    "BlueCarpetSE" : 'b5',
+    'b6' : "BlueCarpetS",
+    "BlueCarpetS" : 'b6',
+    'b7' : "BlueCarpetSW",
+    "BlueCarpetSW" : 'b7',
+    'b8' : "BlueCarpetW",
+    "BlueCarpetW" : 'b8',
+    'b0' : "BlueCarpetC",
+    "BlueCarpetC" : 'b0',
   }
 
 }
