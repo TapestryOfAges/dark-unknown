@@ -96,9 +96,9 @@ mappages["pitdespair1"].features[41] = {name : 'Chest', x : 9, y : 36, lootgroup
 mappages["pitdespair1"].features[42] = {name : 'Chest', x : 10, y : 36, lootgroup : '', lootedid : ''};
 mappages["pitdespair1"].features[43] = {name : 'BottomChair', x : 15, y : 39};
 mappages["pitdespair1"].features[44] = {name : 'BookshelfOne', x : 12, y : 37};
-mappages["pitdespair1"].features[45] = {name : 'LeftTable', x : 14, y : 38};
-mappages["pitdespair1"].features[46] = {name : 'MiddleTable', x : 15, y : 38};
-mappages["pitdespair1"].features[47] = {name : 'RightTable', x : 16, y : 38};
+mappages["pitdespair1"].features[45] = {name : 'LeftTableOnWood', x : 14, y : 38};
+mappages["pitdespair1"].features[46] = {name : 'MiddleTableOnWood', x : 15, y : 38};
+mappages["pitdespair1"].features[47] = {name : 'RightTableOnWood', x : 16, y : 38};
 
 mappages["pitdespair1"].npcs = [];
 mappages["pitdespair1"].npcs[0] = {name : 'SlimeNPC', x : 8, y : 23};
