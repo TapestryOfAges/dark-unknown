@@ -261,7 +261,7 @@ function clickmap(xval,yval) {
   changes = 1;
   var x=0;
   var y=0;
-  if (document.brushes.elements[0].checked) {
+  if (document.brushes.elements[0].checked) {   // point
   	if (selectionval.checkType("Terrain")) {
       changemaptile(xval,yval);
     }
@@ -276,41 +276,13 @@ function clickmap(xval,yval) {
     	alert("Unknown type.");
     }
   }
-  else if (document.brushes.elements[1].checked) {
+  else if (document.brushes.elements[1].checked) {   // rectangle
     if (cornerx === -1) {
       cornerx = xval;
       cornery = yval;
     }
     else {
-      if (cornerx > xval) {
-        x=xval;
-        xval=cornerx;
-        cornerx=x;
-      }
-      if (cornery > yval) {
-        y=yval;
-        yval=cornery;
-        cornery=y;
-      }
-      for (var x=cornerx;x<=xval;x++) {
-        for (var y=cornery;y<=yval;y++) {
-        	if (selectionval.checkType("Terrain")) {
-            changemaptile(x,y);
-          }
-          else if (selectionval.checkType("Feature")) {
-    	      if (selectionval.getName() === "Eraser") { erasefeature(x,y); }
-    	      else { addfeaturetomap(x,y,selectionval); }
-          }
-          else if (selectionval.checkType("npc")) {
-    	      addnpctomap(x,y,selectionval);
-          }
-          else {
-    	      alert("Unknown type.");
-          }
-        }
-      }
-      cornerx=-1;
-      cornery=-1;
+      DrawRectangle(xval,yval);
     }
   }
   else if (document.brushes.elements[2].checked) {
@@ -908,3 +880,34 @@ function submitEditDetails(change) {
 	}
 }
 
+function DrawRectangle(xval,yval) {
+  if (cornerx > xval) {
+    var xx=xval;
+    xval=cornerx;
+    cornerx=xx;
+  }
+  if (cornery > yval) {
+    var yy=yval;
+    yval=cornery;
+    cornery=yy;
+  }
+  for (var x=cornerx;x<=xval;x++) {
+    for (var y=cornery;y<=yval;y++) {
+      if (selectionval.checkType("Terrain")) {
+        changemaptile(x,y);
+      }
+      else if (selectionval.checkType("Feature")) {
+        if (selectionval.getName() === "Eraser") { erasefeature(x,y); }
+        else { addfeaturetomap(x,y,selectionval); }
+      }
+      else if (selectionval.checkType("npc")) {
+  	    addnpctomap(x,y,selectionval);
+      }
+      else {
+        alert("Unknown type.");
+      }
+    }
+  }
+  cornerx=-1;
+  cornery=-1;
+}
