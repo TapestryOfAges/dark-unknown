@@ -1,82 +1,61 @@
 <html>
-<head>
-<title>Dark Unknown Map Editor</title>
-</head>
-<body>
-<h2>Dark Unknown Map Editor v3.5</h2>
+  <head>
+    <title>The Dark Unknown</title>
+    <link rel="stylesheet" type="text/css" href="darkunknown.css" />
+  </head>
+  <body>
+    <center>
+    <div class="demotop">
+      <img src="graphics/title/du_logo.png" /><br />DEMO
+    </div>
+    <div class="demo">
+      <p>Welcome to the Dark Unknown Demo. To create this demo from the main game I 
+        simply put a wall of force fields around the starting areas- you will have 
+        some NPCs ask you to visit locations outside the wall, but those quests are
+        outside the scope of the demo. You will basically have run through all of the 
+        demo content when you have been rewarded for clearing the cave.</p>
+      <h3 style="text-align:center">How to Play</h3>
+      <p>Before you begin, you should read the <a href="Player Reference Guide.pdf">Player Reference Guide</a>.</p>
+      <p>The keyboard commands are explained in detail there, but to refresh once you've read it, here is a 
+        handy <a href="Player Reference Card-p1.pdf">Reference Card</a>.</p>
+      <p>There are two ways to access the Dark Unknown demo- locally or remotely. Locally is recommended, but 
+        involves downloading the game to your computer. Remotely allows you to play it from this server, but
+        there will be noticeable load times for some music and graphics.</p>
+      <p><u>Locally:</u></p>
+      <p><ul>
+        <li>Download the demo <a href="Dark Unknown Demo.zip">here</a>.</li>
+        <li>Unzip it and place it anywhere. Once you've started a game, don't move the Dark Unknown Demo folder-
+          your saved games are linked to its location.</li>
+        <li>Find and open "darkunknown.html" to launch the game.</li>
+        </ul></p>
+      <p><u>Remotely</u></p>
+      <p><ul><li>Click <a href="darkunknown.html">here!</a> NOTE: If there is no music, try reloading- the
+       game is not yet optimized for remote play and the music can desync.</li></ul></p>
+      <p>NOTE: At the moment, only Firefox is fully supported. Chrome recently started showing this weird bug
+        where it would sometimes just not redraw the screen despite being told to, but otherwise has been fine.
+        Edge does not support the uses I put localStorage to, and Safari and Opera are untested. Additionally,
+        the Noscript addon seems to cause huge problems- without it, the game is pretty snappy, but with it 
+        it takes several seconds between each command. It needs to be disabled entirely, not just told to 
+        permit scripts on that one page.</p> 
+      <h3 style="text-align:center">Bugs</h3>
+      <p>There are no known bugs in the demo at this point, but that doesn't mean there aren't any. If you find 
+        something that you think is a bug, please send an email to gf@tapestryofages.com with BUG in the subject
+        line. If we are so lucky that your bug is reproducible, I'd love it if you would send me a saved game-
+        use ctrl-Q to export your save file, and copy/paste it into the email. Please let me know what OS and 
+        browser you are on, as well as what you were doing.</p>
+      <h3>Afterwards</h3>
+      <p>When you are done, there are two things I would very much appreciate you doing for me!</p>
+      <p><ol><li>Before you close the browser tab you were playing in, hit Ctrl-S. This will pop open 
+        another tab and put in it a log of all of the dialog from your run through. This will allow
+        me to scan for keywords that people tend to expect responses to but don't give them.</li> 
+        <li>Please fill out <a href="https://docs.google.com/forms/d/1EauwJgvI9aCYbO5p8hbmQ1gmZobZqSi9oTYcfLtYPm4">this survey!</a>
+        Feel free to include keywords you think should be put into dialog responses and any other 
+        examples of expectations that were not fulfilled.</li>
+      </ol></p>
+      <p>Thank you and I hope you enjoy your stay in The Dark Unknown!</p>
 
-<p><a href="mapeditor.html">Go to the editor</a>.</p>
-
-<p>A quick and dirty instruction file for using the map editor. Note: This requires Javascript to be turned on.</p>
-
-<h3>Top Menu</h3>
-
-<ul>
-<li>Leftmost button (shows a triangle): Hide/reveal the rest of the interface. (To-do: move it up and off the top tiles a bit.)</li>
-<li>New Map: Creates a 5x5 water map. Use the "resize" buttons in the upper right to create a map of the desired size. (To-do: Make "New Map"
-ask for input about new map size.) New Map is the same as clicking "Load Map" with the "test" map selected.</li>
-<li>Load Map: loads whichever map is selected in the dropdown. Be patient if the map is very large (like the "world" map).</li>
-<li>Save Map: Opens a new window/tab and saves the JS for the map you are working on there. Use Save As to save it to disk.</li>
-<li>Edit Details: Lets you change the map details, like what map it exits to or what it is called when it is entered or whether it
-wraps at the edges. Two details require further explanation: LinkedMaps is a list of other maps that will be held in memory for as long as 
-this one is (for multi-story towns, etc), and SeeBelow is the map located beneath this one. Tiles that are transparent (the "SeeBelow" tile) 
-will display the tile in the map underneath.</li>
-</ul>
-
-<h3>Upper Right</h3>
-<ul>
-<li>The square shows which tile you are "painting" with.</li>
-<li>Resize: Select one of the 9 boxes to show where in your new map the current map should be anchored. Same as in Photoshop/whatever when
-changing canvas size. If you choose the middle left box and then add columns they will all be added to the right, etc.</li>
-<li>Debug: Turns on the debug code, which pops info into a separate window. You are unlikely to want to do this. What stuff appears there is
-by and large dependant on which bits of code were giving me strange errors.</li>
-</ul>
-
-<h3>Right Column</h3>
-
-<ul>
-<li>Choose which category of tiles to choose from: Outdoor or Indoor for terrain, Features, or NPCs. </li>
-<li>Click any of the tiles to select that tile to add to the map. You can see the tilenames in the status bar on the browser as you mouseover.
-</li>
-<li>The "SeeBelow" tile at the top of the Outdoor list is transparent and tells the game to show whatever is in the map underneath at that 
-	location. (See the Edit Details above.)
-</ul>
-
-<h3>Bottom Menu</h3>
-
-<ul>
-<li>Point/Rectangle: If "Point" is selected, each click places one tile. If "rectangle" is selected, the first click is one corner, and the
-second click the opposite corner. The map will then fill in all the squares in the rectangle (which you can of course also use to make lines).
-As of version 3.5, clicking and dragging works for placing tiles, as you would expect a paintbrush to work.
-</li>
-<li>Base Map/Features/NPCs: Switching to Base Map redraws the map without any of the features showing. Selecting Features redraws it with the 
-features. Selecting NPCs redraws it with features and NPCs. 
-</li>
-</ul>
-
-<h3>Features vs Terrain:</h3>
-<p>Terrain is anything totally immutable and unusable on the map. Grass, mountains, walls, floors. Pillars and fountains if you don't want the
-PC to be able to (U)se the fountain. <br />
-Features are placed on top of terrain and are things like cities, dungeon entrances, doors, chairs, etc. <br />
-When making a map make it first as just terrain and then add the features.</p>
-
-<h3>How to save a map to edit later:</h3>
-<p>JavaScript doesn't have the ability to modify files on your hard drive. Hitting Save Map will open a new window and print the JS code for your
-map there. Perform the following steps if you want to be able to later Load the map you've built:</p>
-<ol>
-<li>Save Map. Give it a unique name.</li>
-<li>Go to the window with the map JS code and select File->Save As. Save it in the maps/ directory of the editor. (Note: you can only save a 
-map to reload later when running the editor locally. If you just want to send me the built map, save it anywhere and email it to me.)</li>
-<li>Open the file mapeditor.html. Find the comment "Maps follow" and add the following line at the end of that block:<br />
-<code>&lt;script language="JavaScript" src="maps/YOURFILENAME"&gt;&lt;/script&gt;</code></li>
-<li>Reload the map editor (hit refresh on the page). Your map should now appear in the dropdown next to Load Maps.</li>
-</ol>
-
-<p>If your map is complete and you would like to offer it to me for use in The Dark Unknown, send me the file after you Save As.</p>
-
-<p><a href="mapeditor.html">Go to the editor</a>.</p>
-
-</body>
+      
+    </div>
+    </center>
+  </body>
 </html>
-
-
