@@ -148,3 +148,24 @@ p.charcreate { color:white;
 span.leveled { color: red; }
 span.conv {color: lightyellow; }
 span.sysconv { color: yellow; }
+
+
+div.demotop { text-align:center; 
+	           color:yellow;
+	           vertical-align:top;
+	           font-weight:bold;
+	           font-family:"Commodore64";
+	           font-size:16pt; 
+						 line-height:16px;
+}
+
+div.demo { color:white;
+	           vertical-align:top;
+	           font-family:"Commodore64";
+	           font-size:16pt; 
+						 line-height:16px;
+						 width: 600px;
+						 text-align:left;
+}
+
+div.demo a { color:lightblue; }
