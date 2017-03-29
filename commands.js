@@ -2691,14 +2691,20 @@ function ToggleOption(opt) {
   } else if (opt === 2) {
    	if (DU.gameflags.getFlag("loopmusic")) { 
 	    DU.gameflags.setFlag("loopmusic", 0); 
+      if (DU.gameflags.getFlag("music")) {
+        nowplaying.song.loop = 0;
+      }
 	  } else { 
       DU.gameflags.setFlag("loopmusic", 1); 
+      if (DU.gameflags.getFlag("music")) {
+        if (nowplaying.song.playState === "playFinished") {
+          var song = PC.getHomeMap().getMusic();
+          nowplaying = DUPlayMusic(song);  
+        } else {
+          nowplaying.song.loop = -1;
+        }
+      }
     }		
-    if (DU.gameflags.getFlag("music")) {
-      var todaysmusic = nowplaying;
-      StopMusic(nowplaying);
-      nowplaying = DUPlayMusic(song);
-    }
   } else if (opt === 3) {
    	if (DU.gameflags.getFlag("sound")) { 
 	    DU.gameflags.setFlag("sound", 0); 
