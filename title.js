@@ -497,7 +497,7 @@ function RunIntro(idx) {
     var introleft = ($(window).width())/2 - 300;
     
     // add float image to each page if/when I have them.
-    var firstpage = "<div style='width:600;position: relative;left:" + introleft + "' id='introcontainer'><div id='intro1' style='color:white'><p class='charcreate'>You were born the second child of the ruling family of Ellusus- King Daragan and Queen Shelaria Olympus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</p></div></div>";
+    var firstpage = "<div style='width:600;position: relative;left:" + introleft + "' id='introcontainer'><div id='intro1' style='color:white'><p class='charcreate'>You were born the second child of the ruling family of Ellusus- King Daragen and Queen Shelaria Olympus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</p></div></div>";
     $('#maindiv').fadeOut(1000, function() {
       $('#maindiv').html(firstpage);
       $('#maindiv').fadeIn(1000);
