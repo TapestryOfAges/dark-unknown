@@ -2671,7 +2671,7 @@ function PurpleCobblestoneTile() {
   this.spriteyoffset = "-224";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "cobblestone";
+  this.desc = "cobblestones";
   this.peerview = "#600060";
   this.walkSound = "stone";
 }
@@ -2685,7 +2685,7 @@ function ShadowPurpleCobblestoneTile() {
   this.spriteyoffset = "-224";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-  this.desc = "cobblestone";
+  this.desc = "cobblestones";
   this.peerview = "#602300";
   this.walkSound = "stone";
 }
