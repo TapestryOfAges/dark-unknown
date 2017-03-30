@@ -883,4 +883,5 @@ function DoAction(code, ctrl) {
       maintext.drawTextFrame();
     }
   }
+  maintext.flushDelayedText();
 }
