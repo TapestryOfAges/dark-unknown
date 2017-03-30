@@ -28,6 +28,10 @@ TextFrame.prototype.addText = function(newtext) {
   }
 }
 
+TextFrame.prototype.flushDelayedText = function() {
+  this.addText();
+}
+
 TextFrame.prototype.delayedAddText = function(newtext) {
   if (this.delayedappend) {
     this.delayedappend = this.delayedappend + "<br />" + newtext;
