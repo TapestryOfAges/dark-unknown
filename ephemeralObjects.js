@@ -814,7 +814,7 @@ PoisonTile.prototype.endEffect = function(silent) {
   who.deleteSpellEffect(this);
   DrawCharFrame();
   if ((who === PC) && !silent) {
-    maintext.delayedAddText("The poison wears off.");
+    maintext.addText("The poison wears off.");
   }
 }
 
@@ -1109,7 +1109,7 @@ QuicknessTile.prototype.applyEffect = function(silent) {
   
   who.initmult *= power;
   if ((who === PC) && !silent) {
-    maintext.addText("You begin to move faster.");
+    maintext.delayedAddText("You begin to move more quickly.");
   }
   return 1;
 }
