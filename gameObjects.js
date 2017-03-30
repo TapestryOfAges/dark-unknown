@@ -2980,6 +2980,7 @@ function RedCarpetNWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 RedCarpetNWTile.prototype = new TerrainObject();
 
@@ -2992,6 +2993,7 @@ function RedCarpetNTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 RedCarpetNTile.prototype = new TerrainObject();
 
@@ -3004,6 +3006,7 @@ function RedCarpetNETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 RedCarpetNETile.prototype = new TerrainObject();
 
@@ -3016,6 +3019,7 @@ function RedCarpetWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 RedCarpetWTile.prototype = new TerrainObject();
 
@@ -3028,6 +3032,7 @@ function RedCarpetCTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 RedCarpetCTile.prototype = new TerrainObject();
 
@@ -3040,6 +3045,7 @@ function RedCarpetETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 RedCarpetETile.prototype = new TerrainObject();
 
@@ -3052,6 +3058,7 @@ function RedCarpetSWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 RedCarpetSWTile.prototype = new TerrainObject();
 
@@ -3064,6 +3071,7 @@ function RedCarpetSTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 RedCarpetSTile.prototype = new TerrainObject();
 
@@ -3076,6 +3084,7 @@ function RedCarpetSETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 RedCarpetSETile.prototype = new TerrainObject();
 
@@ -3088,6 +3097,7 @@ function BlueCarpetNWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 BlueCarpetNWTile.prototype = new TerrainObject();
 
@@ -3100,6 +3110,7 @@ function BlueCarpetNTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 BlueCarpetNTile.prototype = new TerrainObject();
 
@@ -3112,6 +3123,7 @@ function BlueCarpetNETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 BlueCarpetNETile.prototype = new TerrainObject();
 
@@ -3124,6 +3136,7 @@ function BlueCarpetWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 BlueCarpetWTile.prototype = new TerrainObject();
 
@@ -3136,6 +3149,7 @@ function BlueCarpetCTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 BlueCarpetCTile.prototype = new TerrainObject();
 
@@ -3148,6 +3162,7 @@ function BlueCarpetETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 BlueCarpetETile.prototype = new TerrainObject();
 
@@ -3160,6 +3175,7 @@ function BlueCarpetSWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 BlueCarpetSWTile.prototype = new TerrainObject();
 
@@ -3172,6 +3188,7 @@ function BlueCarpetSTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 BlueCarpetSTile.prototype = new TerrainObject();
 
@@ -3184,6 +3201,7 @@ function BlueCarpetSETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
+  this.walkSound = "stone";
 }
 BlueCarpetSETile.prototype = new TerrainObject();
 
@@ -8429,12 +8447,12 @@ GreenPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
   var retval = {}
   retval["fin"] = 1;
-  var poisontile = localFactory.createTile("Poison");
+  var poison = localFactory.createTile("Poison");
   var duration = Dice.roll("2d8") * SCALE_TIME;
   poison.setExpiresTime(duration + DUTime.getGameClock());
   who.addSpellEffect(poison);
   if (who === PC) {
-    retval["txt"] = "You are poisoned!";
+    retval["txt"] = "Gulp!<br />You are poisoned!";
     DrawCharFrame();
   }
   return retval;
@@ -8455,8 +8473,8 @@ DarkGreenPotionTile.prototype = new PotionItemObject();
 DarkGreenPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
   var retval = {fin:1};
-  retval = magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell(PC, 0, 1);
-  retval["txt"] = "You feel yourself moving more quickly!";
+  retval = magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell(PC, 0, 2);
+  retval["txt"] = "Gulp!<br />You begin to move more quickly!";
   DrawCharFrame();
   return retval;
 }
@@ -8493,7 +8511,7 @@ SilverPotionTile.prototype.use = function(who) {
   who.addSpellEffect(levobj);
     
   DrawCharFrame();
-  resp["txt"] = "You feel stronger!";
+  resp["txt"] = "Gulp!<br />You feel stronger!";
   return resp;  
 }
   
@@ -8530,7 +8548,7 @@ PinkPotionTile.prototype.use = function(who) {
   who.addSpellEffect(levobj);
     
   DrawCharFrame();
-  resp["txt"] = "You feel quicker!";
+  resp["txt"] = "Gulp!<br />You feel more agile!";
   return resp;  
 }
 
@@ -8567,7 +8585,7 @@ GreyPotionTile.prototype.use = function(who) {
   who.addSpellEffect(levobj);
     
   DrawCharFrame();
-  resp["txt"] = "You feel smarter!";
+  resp["txt"] = "Gulp!<br />You feel smarter!";
   return resp;  
 }
 
@@ -8589,7 +8607,7 @@ BrownPotionTile.prototype.use = function(who) {
   var retval = {};
   retval["fin"] = 1;
   if (who === PC) {
-    retval["txt"] = "You feel refreshed!";
+    retval["txt"] = "Gulp!<br />You feel refreshed!";
     DrawCharFrame();
   }
   return retval;
@@ -8609,8 +8627,12 @@ RedPotionTile.prototype = new PotionItemObject();
 
 RedPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var resp = magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell(who,1,1);
-  resp["txt"] = "You feel purified.";
+  var poisoned;
+  if (who.getSpellEffectsByName("Poison")) { poisoned = 1; }
+  if (who.getSpellEffectsByName("Disease")) { poisoned = 1; }
+  var resp = magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell(who,1,2);
+  resp["txt"] = "Gulp!";
+  if (!poisoned) { maintext.delayedAddText("Nothing happens."); } 
   DrawCharFrame();
   return resp;
 }
@@ -8630,8 +8652,8 @@ WhitePotionTile.prototype = new PotionItemObject();
 WhitePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
   var retval = { fin:1};
-  retval = magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell(PC, 0, 1);
-  retval["txt"] = "You begin to glow.";
+  retval = magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell(PC, 0, 2);
+  retval["txt"] = "Gulp!<br />You begin to glow.";
   DrawCharFrame();
   return retval;
 }
@@ -8651,9 +8673,9 @@ YellowPotionTile.prototype = new PotionItemObject();
 YellowPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
   var retval = {fin:1};
-  retval = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(PC, 0, 1);
+  retval = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(PC, 0, 2);
   if (who.checkType("PC")) { DrawCharFrame(); }
-  retval["txt"] = "You are healed!";
+  retval["txt"] = "Gulp!<br />You are healed!";
   return retval;
 }
 
@@ -8672,8 +8694,8 @@ PurplePotionTile.prototype = new PotionItemObject();
 PurplePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
   var retval = {fin:1};
-  retval = magic[SPELL_PROTECT_LEVEL][SPELL_PROTECT_ID].executeSpell(PC, 0, 1);
-  retval["txt"] = "You feel an aura of protection around you.";
+  retval = magic[SPELL_PROTECT_LEVEL][SPELL_PROTECT_ID].executeSpell(PC, 0, 2);
+  retval["txt"] = "Gulp!<br />You feel an aura of protection around you.";
   DrawCharFrame();
   return retval;
 }
@@ -8693,8 +8715,8 @@ BlackPotionTile.prototype = new PotionItemObject();
 BlackPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
   var retval = {fin:1};
-  retval = magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(PC, 0, 1);
-  retval["txt"] = "You feel blessed!";
+  retval = magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(PC, 0, 2);
+  retval["txt"] = "Gulp!<br />You feel blessed!";
   DrawCharFrame();
   return retval;
 }
@@ -8714,8 +8736,8 @@ BluePotionTile.prototype = new PotionItemObject();
 BluePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
   var retval = {fin:1};
-  retval = magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell(PC, 0, 1);
-  retval["txt"] = "You are healed!"
+  retval = magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell(PC, 0, 2);
+  retval["txt"] = "Gulp!<br />You are healed!"
   DrawCharFrame();
   return retval;
 }
@@ -8740,7 +8762,7 @@ OrangePotionTile.prototype.use = function(who) {
   var retval = {};
   retval["fin"] = 1;
   if (who === PC) {
-    retval["txt"] = "You feel refreshed!";
+    retval["txt"] = "Gulp!<br />You feel refreshed!";
     DrawCharFrame();
   }
   return retval;
@@ -11442,10 +11464,10 @@ NPCObject.prototype.getSpellEffectsByName = function(checkname) {
   return this.spellEffects.getByName(checkname);
 }
 
-NPCObject.prototype.addSpellEffect = function(spellobj) {
+NPCObject.prototype.addSpellEffect = function(spellobj, silent) {
   var otherEffects = this.getSpellEffects();
   var addme = 1;
-  var silent = 0;
+  if (!silent) { silent = 0; }
   if (otherEffects.length) {
     for (var i=0; i < otherEffects.length; i++) {
       if (otherEffects[i].getName() === spellobj.getName()) {
