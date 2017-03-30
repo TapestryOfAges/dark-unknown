@@ -48,8 +48,13 @@ SpellObject.prototype.myTurn = function() {
   nextEntity.myTurn(); 
 }
 
-SpellObject.prototype.executeSpell = function(caster, infused) {
+SpellObject.prototype.executeSpell = function(caster, infused, free, tgt) {
   // this will be overridden by each spell object
+  // caster - the caster of the spell, reader of the scroll, drinker of the potion, etc 
+  // infused - was this spell infused when cast 
+  // free - If nonzero, don't consume any mana. free === 1 -> scroll, free === 2 -> potion. 
+  //        free === 2 will suppress spell ephemeralObject apply text.
+  // tgt - target of the spell when it is cast by an NPC. 
 
   var retval = {};
   retval["fin"] = 1;
@@ -358,7 +363,7 @@ function PerformAwaken(caster, infused, free, tgt) {
     
   var sleep = tgt.getSpellEffectsByName("Sleep");
   if (sleep) {
-    sleep.endEffect();
+    sleep.endEffect(1);
     ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
     if (tgt !== PC) {
       desc = tgt.getDesc() + " is awake!";
@@ -392,14 +397,14 @@ magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, 
       if (effects[i].getName() === "Poison") {
         ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
         if (caster === PC) {
-          maintext.addText("You are cured of poison!");
+          maintext.delayedAddText("You are cured of poison!");
         }
-        effects[i].endEffect();
+        effects[i].endEffect(1);
       }
       if ((infused) && (effects[i].getName() === "Disease")) {
-        effects[i].endEffect();
+        effects[i].endEffect(1);
         if (caster === PC) {
-          maintext.addText("You are cured of disease!");
+          maintext.delayedAddText("You are cured of disease!");
         }
         ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
       }
@@ -463,6 +468,7 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
   DebugWrite("magic", "Casting Distract.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -484,13 +490,11 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
           var distract = localFactory.createTile("Distract");
           ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
           var desc = val.getDesc() + " is distracted!";
-          if (val === PC) {
-            desc = "You are distracted!";
-          }
+          // Not necessary for PC - ephemeral object's start desc is sufficient
           var duration = power * SCALE_TIME;
           distract.setExpiresTime(duration + DUTime.getGameClock());
           distract.setPower(power);
-          val.addSpellEffect(distract);
+          val.addSpellEffect(distract, Math.max(0,free-1) );
         } else {
           var desc = val.getDesc() + " resists!";
           if (val === PC) {
@@ -521,6 +525,7 @@ magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell = function(cas
     return resp;  
   }
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -542,7 +547,7 @@ magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell = function(cas
   var endtime = duration + DUTime.getGameClock();
   DebugWrite("magic", "End time is " + endtime + ".<br />");
   flameblade.setExpiresTime(endtime);
-  caster.addSpellEffect(flameblade);
+  caster.addSpellEffect(flameblade, Math.max(0,free-1) );
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
   
   return resp;
@@ -553,6 +558,7 @@ magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell = function(caster, infused
   DebugWrite("magic", "Casting Light.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -570,7 +576,7 @@ magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell = function(caster, infused
   if (infused) { liobj.setPower(4); }   // defaults to 2
   
   DUPlaySound("sfx_spell_light"); 
-  caster.addSpellEffect(liobj);
+  caster.addSpellEffect(liobj, Math.max(0,free-1) );
   
   DrawCharFrame();
   return resp;
@@ -651,6 +657,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
   }
   
   if (!free) {
+    free = 0;
     var mana = magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -680,7 +687,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
     var power = 10;
     if (infused) { power = 15; }
     vulobj.setPower(power);
-    tgt.addSpellEffect(vulobj);
+    tgt.addSpellEffect(vulobj, Math.max(0,free-1) );
   }
   else {
     desc = tgt.getDesc() + " resists!";
@@ -768,6 +775,7 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
   DebugWrite("magic", "Casting Iron Flesh.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -786,7 +794,7 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
   if (infused) { power = 25;}   
   liobj.setPower(power);
   
-  caster.addSpellEffect(liobj);
+  caster.addSpellEffect(liobj, Math.max(0, free-1) );
   
   DrawCharFrame();
   return resp;
@@ -797,6 +805,7 @@ magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell = function(cas
   DebugWrite("magic", "Casting Lesser Heal.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -820,7 +829,9 @@ magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell = function(cas
   
   ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
   tgt.healMe(healamt, caster);
-  resp["txt"] = "You feel better!";
+  if (free !== 2) {
+    resp["txt"] = "You feel better!";
+  }
   
   return resp;
   
@@ -1014,6 +1025,7 @@ magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caste
   DebugWrite("magic", "Casting Protection.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -1034,7 +1046,7 @@ magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caste
   DebugWrite("magic", "End time is " + endtime + ".<br />");
   prot.setExpiresTime(endtime);
   prot.setPower(power);
-  caster.addSpellEffect(prot);
+  caster.addSpellEffect(prot, Math.max(0, free-1) );
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   
   return resp;
@@ -1106,10 +1118,10 @@ function PerformWindChange(caster,infused,free,tgt) {
   var dir = "";
   var resp = {};
   resp["fin"] = 1;
-  if (tgt[0] > 0) { dir = "east"; }
-  else if (tgt[0] < 0) { dir = "west"; }
-  else if (tgt[1] > 0) { dir = "south"; }
+  if (tgt[0] > 0) { dir = "west"; }
+  else if (tgt[0] < 0) { dir = "east"; }
   else if (tgt[1] > 0) { dir = "north"; }
+  else if (tgt[1] < 0) { dir = "south"; }
   else {
     maintext.addText("The wind swirls in confused directions.");
     return resp; 
@@ -1117,6 +1129,8 @@ function PerformWindChange(caster,infused,free,tgt) {
   var desc = "wind";
   if (infused) {desc = "gale";}
   maintext.addText("The breeze shifts as you summon a " + desc + " from the " + dir + "!");
+
+  // add here for elemental plane of air 
   return resp;
 }
 
@@ -1199,6 +1213,7 @@ magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].executeSpell = function(caster, 
   DebugWrite("magic", "Casting Fire Armor.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -1216,7 +1231,7 @@ magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].executeSpell = function(caster, 
   DebugWrite("magic", "End time is " + endtime + ".<br />");
   prot.setExpiresTime(endtime);
   prot.setPower(power);
-  caster.addSpellEffect(prot);
+  caster.addSpellEffect(prot, Math.max(0, free-1) );
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
   
   return resp;
@@ -1495,6 +1510,7 @@ magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster,
   DebugWrite("magic", "Casting Telepathy.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -1509,7 +1525,7 @@ magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster,
   var endtime = duration + DUTime.getGameClock();
   DebugWrite("magic", "End time is " + endtime + ".<br />");
   prot.setExpiresTime(endtime);
-  caster.addSpellEffect(prot);
+  caster.addSpellEffect(prot, Math.max(0, free-1) );
   
   return resp;
 }
@@ -1750,6 +1766,7 @@ magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell = function(caster, i
   DebugWrite("magic", "Casting Blessing.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -1770,7 +1787,7 @@ magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell = function(caster, i
   levobj.setPower(power);
   levobj.setExpiresTime(endtime);
   
-  caster.addSpellEffect(levobj);
+  caster.addSpellEffect(levobj, Math.max(0,free-1) );
 
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
     
@@ -1783,6 +1800,7 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
   DebugWrite("magic", "Casting Blink.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -1852,6 +1870,7 @@ magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell = func
   DebugWrite("magic", "Casting Ethereal Vision.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -1867,7 +1886,7 @@ magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell = func
   DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
   levobj.setExpiresTime(endtime);
   
-  caster.addSpellEffect(levobj);
+  caster.addSpellEffect(levobj, Math.max(0,free-1) );
 
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
     
@@ -1898,7 +1917,9 @@ magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell = function(caster, infused, 
   
   ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
   tgt.healMe(healamt, caster);
-  resp["txt"] = "You feel better!";
+  if (free !== 2) {
+    resp["txt"] = "You feel better!";
+  }
   
   return resp;
   
@@ -2014,9 +2035,9 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
   DebugWrite("magic", "Casting Open Gate.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
-    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Spent " + mana + " mana.<br /></span>"); }
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   resp["fin"] = 3;  // end of turn waits on end of animation
@@ -2053,6 +2074,7 @@ magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].executeSpell = function(caste
   DebugWrite("magic", "Casting Water Walk.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -2070,7 +2092,7 @@ magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].executeSpell = function(caste
   levobj.setPower(dur);
   levobj.setExpiresTime(endtime);
   
-  caster.addSpellEffect(levobj);
+  caster.addSpellEffect(levobj, Math.max(0, free-1) );
     
   DrawCharFrame();
   return resp;  
@@ -2139,6 +2161,7 @@ magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID].executeSpell = function(cas
   DebugWrite("magic", "Casting Mirror Ward.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -2155,7 +2178,7 @@ magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID].executeSpell = function(cas
   mwobj.setPower(dur);
   mwobj.setExpiresTime(endtime);
   
-  caster.addSpellEffect(mwobj);
+  caster.addSpellEffect(mwobj, Math.max(0, free-1) );
 
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   return resp;
@@ -2190,6 +2213,7 @@ function PerformParalyze(caster, infused, free, tgt) {
   }
   
   if (!free) {
+    free = 0;
     var mana = magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -2219,7 +2243,7 @@ function PerformParalyze(caster, infused, free, tgt) {
     var power = 4;
     if (infused) { power = 6; }
     vulobj.setPower(power);
-    tgt.addSpellEffect(vulobj);
+    tgt.addSpellEffect(vulobj, Math.max(0, free-1) );
   }
   else {
     desc = tgt.getDesc() + " resists!";
@@ -2242,6 +2266,7 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
   DebugWrite("magic", "Casting Peer.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -2297,7 +2322,9 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
   $('#displayframe').html(peerhtml);
   gamestate.setMode("anykey");
   targetCursor.command = "c";
-  maintext.addText("You receive a bird's eye view.");
+  if (free !== 2) {
+    resp["txt"] = "You receive a bird's eye view.";
+  }
   resp["input"] = "[MORE]";
   return resp;
 }
@@ -2307,6 +2334,7 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infus
   DebugWrite("magic", "Casting Return.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -2765,11 +2793,11 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
 
 //Negate Magic
 magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(caster, infused, free) {
-  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Casting Negate Magic.<br /></span>"); }
   DebugWrite("magic", "Casting Negate Magic.<br />");
   
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -2793,8 +2821,7 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
   gnome.activate(0);
   var negtile = localFactory.createTile("NegateMagic");
   negtile.negatedmap = castermap.getName();
-  gnome.addSpellEffect(negtile);
-  
+  gnome.addSpellEffect(negtile, Math.max(0, free-1) );  
 
   var everyone = castermap.getNPCsAndPCs();
   $.each(everyone, function(idx, val) {
@@ -3045,6 +3072,7 @@ magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID].executeSpell = func
   DebugWrite("magic", "Casting Invulnerability.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -3063,7 +3091,7 @@ magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID].executeSpell = func
   DebugWrite("magic", "End time is " + endtime + ".<br />");
   prot.setExpiresTime(endtime);
   prot.setPower(power);
-  caster.addSpellEffect(prot);
+  caster.addSpellEffect(prot, Math.max(0, free-1) );
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   
   return resp;
@@ -3332,6 +3360,7 @@ magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell = function(caster,
   DebugWrite("magic", "Casting Quickness.<br />");
   var resp = {};
   if (!free) {
+    free = 0;
     var mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
@@ -3349,7 +3378,7 @@ magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell = function(caster,
   DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
   liobj.setExpiresTime(endtime);
   
-  caster.addSpellEffect(liobj);
+  caster.addSpellEffect(liobj, Math.max(0, free-1) );
 
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   DrawCharFrame();
