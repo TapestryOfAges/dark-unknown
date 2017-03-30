@@ -1636,9 +1636,10 @@ function MakeUseHappen(who,used,where) {
   var retval = used.use(who);
   if (retval["override"] === 1) {
     delete retval["override"];
-		  
   } else {
-    retval["fin"] = 1;
+    if (retval["override"] !== -1) {
+      retval["fin"] = 1;
+    }
     var usedname = used.getDesc();
     usedname = usedname.replace(/^a /, "");
     retval["txt"] = "Use " + usedname + ": " + retval["txt"];
