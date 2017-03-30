@@ -14,7 +14,7 @@ kingspeech  - talked to king at beginning of game
 talked_shelaria - talked to queen
 knows_NPCNAME  - has learned this NPC's name        -- note, requires name uniqueness. One Steve Limit!
 ash_password - gave Asharden's door the password
-pay_kyvek - king has agreed to pay Kyvek
+token_given - king has given you the token
 kyvek_fetch - Trevor is currently pathing to get Kyvek's payment
 debt_paid - Kyvek has been paid
 negate[mapname] - magic negated here
