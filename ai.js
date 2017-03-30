@@ -454,7 +454,6 @@ ais.Trevor = function(who) {
           var box = localFactory.createTile("KyvekBox");
           PC.addToInventory(box,1);
           DU.gameflags.deleteFlag("kyvek_fetch");
-          DU.gameflags.deleteFlag("pay_kyvek");
           DU.gameflags.setFlag("given_box",1);
           maintext.addText("<span class='sysconv'>You have obtained: " + box.getFullDesc() + ".</span>");
         }
