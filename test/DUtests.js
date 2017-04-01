@@ -287,7 +287,7 @@ QUnit.test("Test magic resistance calculation", function( assert ) {
 
   var castermob = localFactory.createTile("PaladinNPC"); // lvl 4
   testmap.placeThing(12,12,castermob);
-  var tgtmob = localFactory.createTile("HeadlessNPC"); // lvl 2
+  var tgtmob = localFactory.createTile("OrcNPC"); // lvl 2
   testmap.placeThing(13,13,tgtmob);
   
   // chance to resist should be: BASE_RESIST_CHANCE + tgt.getResist("magic") + tgt.getLevel()*5 - caster.getLevel()*5 - infused*15;
@@ -298,15 +298,15 @@ QUnit.test("Test magic resistance calculation", function( assert ) {
   // infused = 0
   // 20% chance of resist
   
-  Dice.roll = function(die) { return 29; }
+  Dice.roll = function(die) { return 19; }
   var resist = CheckResist(castermob, tgtmob, 0, 0);
-  assert.deepEqual(resist, 29, "Expected: resisted.");
+  assert.deepEqual(resist, 19, "Expected: resisted.");
   Dice.roll = function(die) { return 31; }
   resist = CheckResist(castermob, tgtmob, 0, 0);
   assert.deepEqual(resist, 0, "Expected: NOT resisted.");
-  Dice.roll = function(die) { return 14; }
+  Dice.roll = function(die) { return 4; }
   resist = CheckResist(castermob, tgtmob, 1, 0);
-  assert.deepEqual(resist, 14, "Expected: resisted.");
+  assert.deepEqual(resist, 4, "Expected: resisted.");
   Dice.roll = function(die) { return 16; }
   resist = CheckResist(castermob, tgtmob, 1, 0);
   assert.deepEqual(resist, 0, "Expected: NOT resisted.");
