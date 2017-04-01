@@ -89,6 +89,7 @@ function CheckResist (caster, tgt, infused, diffmod) {
   if (tgt.getSpellEffectsByName("Curse")) { chance = chance/2; }
   
   var resist = Dice.roll("1d100-1");
+  alert(resist); 
   
   if (resist <= chance) {
     if (resist === 0) { resist = chance; }
@@ -339,7 +340,7 @@ magic[SPELL_AWAKEN_LEVEL][SPELL_AWAKEN_ID].executeSpell = function(caster, infus
   CreateTargetCursor({sticky: 1, command:'c',spellName:'Awaken',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 0;
+  resp["fin"] = 4; // was 0
   gamestate.setMode("target");
   return resp;
 }
@@ -596,7 +597,7 @@ magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].executeSpell = function(caster, infused, 
   CreateTargetCursor({sticky: 0, command:'c',spellName:'Mend',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 1});
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 0;
+  resp["fin"] = 4;  // was 0
   gamestate.setMode("target");
   return resp;
 }
@@ -640,7 +641,7 @@ magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].executeSpell = function
   CreateTargetCursor({sticky: 1, command:'c',spellName:'Vulnerability',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});  
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 0;
+  resp["fin"] = 4; // was 0
   gamestate.setMode("target");
   return resp;
 }
@@ -1409,7 +1410,7 @@ magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID].executeSpell = function(cas
   CreateTargetCursor({sticky: 0, command:'c',spellName:'Telekinesis',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "usable"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});        
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 0;
+  resp["fin"] = 4; // was 0
   gamestate.setMode("target");
   return resp;
 }
@@ -2118,7 +2119,7 @@ magic[SPELL_CRYSTAL_BARRIER_LEVEL][SPELL_CRYSTAL_BARRIER_ID].executeSpell = func
   CreateTargetCursor({sticky: 0, command:'c',spellName:'Crystal Barrier',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 3}); 
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 0;
+  resp["fin"] = 4; // was 0
   gamestate.setMode("target");
   return resp;
 }
@@ -2196,7 +2197,7 @@ magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].executeSpell = function(caster, i
   CreateTargetCursor({sticky: 1, command:'c',spellName:'Paralyze',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 0;
+  resp["fin"] = 4; // was 0
   gamestate.setMode("target");
   return resp;
 }
@@ -2893,7 +2894,7 @@ magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].executeSpell = function(caster, infused
   CreateTargetCursor({sticky: 1, command:'c',spellName:'Charm',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 0;
+  resp["fin"] = 4;  // was 0
   gamestate.setMode("target");
   return resp;
 }

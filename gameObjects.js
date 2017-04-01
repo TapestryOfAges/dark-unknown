@@ -8783,9 +8783,25 @@ ScrollItemObject.prototype = new ConsumableItemObject();
 ScrollItemObject.prototype.use = function(who) {
   var retval = {};
   retval = magic[this.spelllevel][this.spellnum].executeSpell(PC, 0, 1);
-  if (!retval["txt"]) { retval["txt"] = "Spell cast!"; }
-  DrawCharFrame();
+  if (retval["fin"] === 4) { 
+    retval["override"] = 1; 
+    targetCursor.castFrom = this;
+  }
+  else {
+    if (!retval["txt"]) { retval["txt"] = "Spell cast!"; }
+    DrawCharFrame();
+  }
   return retval;
+}
+
+ScrollItemObject.prototype.spellcast = function(who) {
+  if (this.getHomeMap()) {
+    // cast from floor 
+    this.getHomeMap().deleteThing(this);
+    DrawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
+  } else {
+    who.removeFromInventory(this);
+  }
 }
 
 ScrollItemObject.prototype.flamed = function() {
