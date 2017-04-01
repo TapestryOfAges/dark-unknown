@@ -1372,7 +1372,8 @@ function GetStickyTargetCursorCoords() {
   return {};
 }
 
-function CreateTargetCursor(params) {
+function CreateTargetCursor(params, noredraw) {
+  if (!noredraw) { DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety()); }
   var coords = {};
   if (params.sticky) {
     coords = GetStickyTargetCursorCoords();
