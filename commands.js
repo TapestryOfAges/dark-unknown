@@ -667,6 +667,7 @@ function PerformAttackMap(who) {
 
 function PerformCast(infuse) {
   gamestate.setMode("spellbook");
+  delete targetCursor.castFrom;
   PC.setInfusion(infuse);
   var hasSpellbook = 0;
   var retval = {};
@@ -1315,6 +1316,21 @@ function PerformTalkTarget() {
           if (effects[i].getName() === "Disease") {
             effects[i].endEffect();
           }
+        }
+      }
+      if (PC.getLevel() === 2) { 
+        var basement = maps.getMap("olympus0");
+        var allnpcs = basement.npcs.getAll();
+        var rose;
+        for (var i=0; i< allnpcs.length; i++) {
+          if (allnpcs[i].getNPCName() === "Rose") {
+            rose = allnpcs[i];
+          }
+        }
+        if (rose) {
+          basement.moveThing(24,13,rose);
+        } else {
+          alert("Can't find Rose!");
         }
       }
       PC.settp(PC.gettp()+TP_PER_LEVEL);
