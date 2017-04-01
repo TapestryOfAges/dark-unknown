@@ -223,8 +223,8 @@ mappages["olympus0"] = {};
 mappages["olympus0"].terrain = [];
  mappages["olympus0"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["olympus0"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["olympus0"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["olympus0"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["olympus0"].terrain[2] = 'BK BK ++ ++ BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["olympus0"].terrain[3] = 'BK BK ++ ++ BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["olympus0"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["olympus0"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["olympus0"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ## ## ## ## ## ## ## ## BK BK BK BK BK';
@@ -546,11 +546,10 @@ mappages["olympus1"].onload = function(mapref) {
 }
 
 mappages["olympus0"].onload = function(mapref) {
-  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    if (!DU.gameflags.getFlag("lvl2") && (!DU.gameflags.getFlag("rebel_prisoner"))) {
+  if ((gamestate.getMode() !== "loadgame") && !DU.gameflags.getFlag("editor")) {
+    if (!DU.gameflags.getFlag("lvl2") && !DU.gameflags.getFlag("rebel_prisoner")) {
       var prisoner = mapref.getTile(24,13).getTopNPC();
-      mapref.deleteThing(prisoner);
-      DUTime.removeEntityFrom(prisoner);
+      mapref.moveThing(3,3,prisoner);
     }
     if (!DU.gameflags.getFlag("rebel_prisoner")) {
       var prisoner = mapref.getTile(24,18).getTopNPC();
