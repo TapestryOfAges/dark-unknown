@@ -461,6 +461,9 @@ function DoAction(code, ctrl) {
         maintext.addText(newresponse["txt"]);
         maintext.setInputLine(newresponse["input"]);
         maintext.drawTextFrame();        
+        if (targetCursor.castFrom) {
+          targetCursor.castFrom.spellcast(PC);
+        }
       }
       if ((newresponse["fin"] === 0) || (newresponse["fin"] === 2)) {
         gamestate.setMode("player");
@@ -509,6 +512,7 @@ function DoAction(code, ctrl) {
     } else if (targetCursor.command === "c") {
       response = PerformSpellcastEquip(code);
     }
+
     if (response["fin"] === 0) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
@@ -536,6 +540,13 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("[MORE]");
       maintext.addText(response["txt"]);
       gamestate.setMode("anykey");
+      maintext.drawTextFrame();
+    } 
+    else if (response["fin"] === 4) {
+      // scroll was used, spell cast is looking for a target
+      maintext.setInputLine(response["input"]);
+      maintext.addText(response["txt"]);
+      // gamestate set by spell
       maintext.drawTextFrame();
     }
 
