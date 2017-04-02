@@ -85,11 +85,11 @@ function SetMerchants() {
   bill.megan.stock = [ { item: "DistractSpell", desc: "Distract", lvl: SPELL_DISTRACT_LEVEL, sid: SPELL_DISTRACT_ID, price: 150},
                   { item: "FireArmorSpell", desc: "Fire Armor", lvl: SPELL_FIRE_ARMOR_LEVEL, sid: SPELL_FIRE_ARMOR_ID, price: 600},
                   { item: "IceballSpell", desc: "Iceball", lvl: SPELL_ICEBALL_LEVEL, sid: SPELL_ICEBALL_ID, price: 600},
-                  { item: "TelepathySpell", desc: "Telepathy", lvl: SPELL_TELEPATHY_LEVEL, sid: SPELL_TELEPATHY_ID, price: 600},
                   { item: "HealSpell", desc: "Heal", lvl: SPELL_HEAL_LEVEL, sid: SPELL_HEAL_ID, price: 1000},
+                  { item: "TelepathySpell", desc: "Telepathy", lvl: SPELL_TELEPATHY_LEVEL, sid: SPELL_TELEPATHY_ID, price: 1000},
                   { item: "ParalyzeSpell", desc: "Paralyze", lvl: SPELL_PARALYZE_LEVEL, sid: SPELL_PARALYZE_ID, price: 1300},
                   { item: "ShockwaveSpell", desc: "Shockwave", lvl: SPELL_SHOCKWAVE_LEVEL, sid: SPELL_SHOCKWAVE_ID, price: 1300},
-                  { item: "ShockwaveSpell", desc: "Swordstrike", lvl: SPELL_SWORDSTRIKE_LEVEL, sid: SPELL_SWORDSTRIKE_ID, price: 1300},
+                  { item: "SwordstrikeSpell", desc: "Swordstrike", lvl: SPELL_SWORDSTRIKE_LEVEL, sid: SPELL_SWORDSTRIKE_ID, price: 1300},
                 ];
   bill.megan.type = "spells"; 
 

@@ -578,8 +578,8 @@ OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
     PC.addSpell(1,2);
     taught = 1;
   }
-  if ((PC.getLevel() >= 3) && (!PC.knowsSpell(2,2))) {
-    maintext.addText("Jharden teaches you Iron Flesh!");
+  if ((PC.getLevel() >= 3) && (!PC.knowsSpell(3,6))) {
+    maintext.addText("Jharden teaches you Return!");
     PC.addSpell(2,2);
     taught = 1;
   }
@@ -594,7 +594,7 @@ OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
     taught = 1;
   }
   if ((PC.getLevel() >= 6) && (!PC.knowsSpell(5,5))) {
-    maintext.addText("Jharden teaches you Return!");
+    maintext.addText("Jharden teaches you Peer!");
     PC.addSpell(5,5);
     taught = 1;
   }
