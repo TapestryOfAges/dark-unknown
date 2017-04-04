@@ -413,6 +413,16 @@ function clickmap(xval,yval) {
         chestblock.style.display = "none";
       }
     }
+  } else if (document.brushes.elements[3].checked) {   // copy
+    if (cornerx === -1) {
+      cornerx = xval;
+      cornery = yval;
+    }
+    else {
+      MakeCopy(xval,yval);
+    }
+  } else if (document.brushes.elements[4].checked) { // PASTE
+    PasteCopy(xval,yval);
   }
 }
 
