@@ -289,7 +289,7 @@ mappages["spire2"].features[6] = {name : 'Door', x : 17, y : 12};
 mappages["spire2"].features[7] = {name : 'DustyFireplace', x : 17, y : 6};
 mappages["spire2"].features[8] = {name : 'BedHead', x : 12, y : 9};
 mappages["spire2"].features[9] = {name : 'BedFoot', x : 13, y : 9};
-mappages["spire2"].features[10] = {name : 'Mirror', x : 12, y : 7};
+mappages["spire2"].features[10] = {name : 'Mirror', x : 19, y : 7};
 mappages["spire2"].features[11] = {name : 'UnlitBrazier', x : 12, y : 11};
 mappages["spire2"].features[12] = {name : 'UnlitBrazier', x : 22, y : 11};
 mappages["spire2"].features[13] = {name : 'SmallBox', x : 22, y : 7};
@@ -328,6 +328,8 @@ mappages["spire2"].features[45] = {name : 'BookshelfRight', x : 26, y : 13};
 mappages["spire2"].features[46] = {name : 'BookshelfLeft', x : 25, y : 13};
 mappages["spire2"].features[47] = {name : 'EnergyField', x : 24, y : 18};
 mappages["spire2"].features[48] = {name : 'EnergyField', x : 27, y : 15};
+mappages["spire2"].features[49] = {name : 'Vanity', x : 12, y : 7};
+mappages["spire2"].features[50] = {name : 'BookshelfOne', x : 13, y : 7, lootedid : 'spireshelf1', searchyield : 'NatassaJournal'};
 
 mappages["spire2"].npcs = [];
 
