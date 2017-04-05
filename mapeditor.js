@@ -921,3 +921,18 @@ function DrawRectangle(xval,yval) {
   cornerx=-1;
   cornery=-1;
 }
+
+function MakeCopy(xval,yval) {
+  var minx = Math.min(xval,cornerx);
+  var maxx = Math.max(xval,cornerx);
+  var miny = Math.min(yval,cornery);
+  var maxy = Math.max(yval,cornery);
+  var copyterrain = [];
+  var curridx = 0;
+  for (var i=miny; i<=maxy; i++) {
+    for (var j=minx; j<=maxx; j++) {
+      copyterrain[curridx] = copyterrain[curridx] + "" + amap.getTile(j,i).getTerrain().serialize() + " "; 
+    }
+    curridx++;
+  }
+}
