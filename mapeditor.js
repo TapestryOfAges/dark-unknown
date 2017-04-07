@@ -420,6 +420,8 @@ function clickmap(xval,yval) {
     }
     else {
       MakeCopy(xval,yval);
+      cornerx = -1;
+      cornery = -1;
     }
   } else if (document.brushes.elements[4].checked) { // PASTE
     PasteCopy(xval,yval);
@@ -928,11 +930,50 @@ function MakeCopy(xval,yval) {
   var miny = Math.min(yval,cornery);
   var maxy = Math.max(yval,cornery);
   var copyterrain = [];
+  var copyfeatures = {};
+  var copynpcs = {};
   var curridx = 0;
   for (var i=miny; i<=maxy; i++) {
+    copyterrain[curridx] = "";
     for (var j=minx; j<=maxx; j++) {
       copyterrain[curridx] = copyterrain[curridx] + "" + amap.getTile(j,i).getTerrain().serialize() + " "; 
     }
     curridx++;
   }
+
+  var mapfeatures = amap.features.getAll();
+  $.each(mapfeatures, function(feaidx, feaval) {
+    if (!feaval.nosave) {
+      if ((feaval.getx() >= minx) && (feaval.getx() <= maxx) && (feaval.gety() >= miny) && (feaval.gety() <= maxy)) {
+ 	      var copies = feaval.copy();
+        $.each(copies, function(copidx, copval) {
+          copyfeatures[copval.serial] = copval;
+        });
+      }
+    }
+  });
+	  
+	var mapnpcs = amap.npcs.getAll();
+  $.each(mapnpcs, function (npcidx, npcval) {
+    if (!npcval.nosave) {
+      if ((npcval.getx() >= minx) && (npcval.getx() <= maxx) && (npcval.gety() >= miny) && (npcval.gety() <= maxy)) {
+        var copies = npcval.copy();
+        $.each(copies, function(copidx, copval) {
+          copynpcs[copval.serial] = copval;
+        });
+      }
+    }
+	    
+  });
+
+
+  var saveobj = {};
+  saveobj.terrain = copyterrain;
+  saveobj.features = copyfeatures;
+  saveobj.npcs = copynpcs;
+
+  var serialized = JSON.stringify(saveobj);
+  alert(serialized);
+  localStorage["editorCopy"] = serialized;
+  
 }
