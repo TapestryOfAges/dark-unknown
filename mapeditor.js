@@ -414,7 +414,17 @@ function clickmap(xval,yval) {
         chestblock.style.display = "none";
       }
     }
-  } else if (document.brushes.elements[3].checked) {   // copy
+  } else if (document.brushes.elements[3].checked) {   // raze
+    if (cornerx === -1) {
+      cornerx = xval;
+      cornery = yval;
+    }
+    else {
+      RazeArea(Math.min(cornerx, xval), Math.max(cornerx, xval), Math.min(cornery, yval), Math.max(cornery, yval));
+      cornerx = -1;
+      cornery = -1;
+    }
+  } else if (document.brushes.elements[4].checked) {   // copy
     if (cornerx === -1) {
       cornerx = xval;
       cornery = yval;
@@ -424,7 +434,7 @@ function clickmap(xval,yval) {
       cornerx = -1;
       cornery = -1;
     }
-  } else if (document.brushes.elements[4].checked) { // PASTE
+  } else if (document.brushes.elements[5].checked) { // PASTE
     PasteCopy(xval,yval);
     cornerx = -1;
     cornery = -1;
@@ -994,21 +1004,22 @@ function PasteCopy(startx,starty) {
     var endx = Math.min(amap.getWidth()-1, startx+saveobj.width-1);
     var endy = Math.min(amap.getHeight()-1, starty+saveobj.height-1);
     RazeArea(startx,endx, starty, endy);
-    alert(startx + "," + endx + "," + starty + "," + endy);
+//    alert(startx + "," + endx + "," + starty + "," + endy);
     for (var j = starty; j<= endy; j++) {
-      alert(saveobj.terrain[j-starty]);
+//      alert(saveobj.terrain[j-starty]);
       var thisRow = saveobj.terrain[j-starty];
       var terrainRow = thisRow.split(" ");
-      alert(terrainRow.length);
-      alert("##" + terrainRow[2] + "##");
+//      alert(terrainRow.length);
+//      alert("##" + terrainRow[2] + "##");
       for (var i = startx; i<= endx; i++) {
-        alert(terrainRow[i-startx]);
+//        alert(terrainRow[i-startx]);
         var thisTerrain = localatlas.key[terrainRow[i-startx]];
-        alert(thisTerrain);
+//        alert(thisTerrain);
         var newTerrain = localFactory.createTile(thisTerrain);
         amap.setTerrain(i,j,newTerrain);
       }
     }
+    
   }
 }
 
