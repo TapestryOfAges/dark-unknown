@@ -29,6 +29,7 @@ var DULoot = SetLoots();            //
 var DULootGroups = SetLootGroups(); //  see loot.js and lootset.js for population
 var DUTraps = SetTraps();           //
 var Dice = new DiceObject();
+var localatlas = new Atlas();
 
 var graphicpicks = [];
 var optindex = 0;
@@ -425,6 +426,8 @@ function clickmap(xval,yval) {
     }
   } else if (document.brushes.elements[4].checked) { // PASTE
     PasteCopy(xval,yval);
+    cornerx = -1;
+    cornery = -1;
   }
 }
 
@@ -947,6 +950,8 @@ function MakeCopy(xval,yval) {
       if ((feaval.getx() >= minx) && (feaval.getx() <= maxx) && (feaval.gety() >= miny) && (feaval.gety() <= maxy)) {
  	      var copies = feaval.copy();
         $.each(copies, function(copidx, copval) {
+          copval.x = copval.x-minx;
+          copval.y = copval.y-miny;
           copyfeatures[copval.serial] = copval;
         });
       }
@@ -959,6 +964,8 @@ function MakeCopy(xval,yval) {
       if ((npcval.getx() >= minx) && (npcval.getx() <= maxx) && (npcval.gety() >= miny) && (npcval.gety() <= maxy)) {
         var copies = npcval.copy();
         $.each(copies, function(copidx, copval) {
+          copval.x = copval.x-minx;
+          copval.y = copval.y-miny;          
           copynpcs[copval.serial] = copval;
         });
       }
@@ -971,9 +978,57 @@ function MakeCopy(xval,yval) {
   saveobj.terrain = copyterrain;
   saveobj.features = copyfeatures;
   saveobj.npcs = copynpcs;
+  saveobj.width = maxx - minx +1;
+  saveobj.height = maxy - miny +1;
 
   var serialized = JSON.stringify(saveobj);
-  alert(serialized);
   localStorage["editorCopy"] = serialized;
   
+}
+
+function PasteCopy(startx,starty) {
+  if (localStorage["editorCopy"]) {
+    //alert(localStorage["editorCopy"]);
+    var saveobj = JSON.parse(localStorage["editorCopy"]);
+    //alert(saveobj.terrain[0]);
+    var endx = Math.min(amap.getWidth()-1, startx+saveobj.width-1);
+    var endy = Math.min(amap.getHeight()-1, starty+saveobj.height-1);
+    RazeArea(startx,endx, starty, endy);
+    alert(startx + "," + endx + "," + starty + "," + endy);
+    for (var j = starty; j<= endy; j++) {
+      alert(saveobj.terrain[j-starty]);
+      var thisRow = saveobj.terrain[j-starty];
+      var terrainRow = thisRow.split(" ");
+      alert(terrainRow.length);
+      alert("##" + terrainRow[2] + "##");
+      for (var i = startx; i<= endx; i++) {
+        alert(terrainRow[i-startx]);
+        var thisTerrain = localatlas.key[terrainRow[i-startx]];
+        alert(thisTerrain);
+        var newTerrain = localFactory.createTile(thisTerrain);
+        amap.setTerrain(i,j,newTerrain);
+      }
+    }
+  }
+}
+
+function RazeArea(startx,endx,starty,endy) {
+  for (var j = starty; j<= endy; j++) {
+    for (var i = startx; i<= endx; i++) {
+      var localacre = amap.getTile(i,j);
+      var acreFeatures= localacre.features.getAll();
+      if (acreFeatures.length) {
+        for (var k=0; k<acreFeatures.length; k++) {
+          amap.deleteThing(acreFeatures[k]);
+        }
+      }
+      var acrenpcs = localacre.npcs.getAll();
+      if (acrenpcs.length) {
+        for (var k=0; k<acrenpcs.length; k++) {
+          amap.deleteThing(acrenpcs[k]);
+        }
+      }
+    }
+  }
+  drawMap();
 }
