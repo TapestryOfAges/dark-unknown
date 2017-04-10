@@ -89,7 +89,6 @@ function CheckResist (caster, tgt, infused, diffmod) {
   if (tgt.getSpellEffectsByName("Curse")) { chance = chance/2; }
   
   var resist = Dice.roll("1d100-1");
-  alert(resist); 
   
   if (resist <= chance) {
     if (resist === 0) { resist = chance; }
