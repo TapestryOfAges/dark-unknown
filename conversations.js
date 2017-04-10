@@ -497,7 +497,7 @@ OnConvTriggers["ash_get_book"] = function(speaker,keyword) {
   else {
     ash.prevai = ash.getCurrentAI();
     ash.setCurrentAI("AshardenBook");
-    ash.setConversation("asharden_book");
+//    ash.setConversation("asharden_book");
     DebugWrite("plot", "Asharden's AI changes to AshardenBook.<br />");
   }        
 }
