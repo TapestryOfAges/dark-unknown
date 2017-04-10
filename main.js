@@ -625,6 +625,7 @@ function DoAction(code, ctrl) {
         var saveIndex = JSON.parse(localStorage.saveIndex);
         var idx = code-48;
         if (saveIndex[idx].charname) { 
+          if (nowplaying.song) { StopMusic(); }
           gamestate.loadGame(idx); 
           DrawCharFrame();
           DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
