@@ -166,6 +166,10 @@ ais.combat = function(who) {
     if (desttile === "OoB") {
       if (whomap.ExitTest(who)) {
         whomap.deleteThing(who);
+        DUTime.removeEntityFrom(who);
+        if (PC.getHomeMap() === whomap) {
+          DrawMainFrame("draw", whomap, PC.getx(), PC.gety());
+        }
         return retval;
       }
     } else {
@@ -718,7 +722,8 @@ ais.AshardenBook = function(who) {
         maintext.addText("Asharden hands you a spellbook!");
         DU.gameflags.setFlag("spellbook",1);
         DU.gameflags.setFlag("spellbook2",1);
-        who.setConversation("asharden");
+//        who.setConversation("asharden");
+        DU.deleteFlag("ash_get_book");
         who.setCurrentAI(who.prevai);
         delete who.prevai;
         return retval;
