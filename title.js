@@ -516,7 +516,7 @@ function RunIntro(idx) {
     $('#introcontainer').html(nextpage);
     $('#intro4').fadeIn(1000);
   } else if (idx === 4) {
-    var nextpage = "<div id='intro5' style='color:white;display:none'><p class='charcreate'>Lance, then, completed his tutelage a few years ago, and was then charged with getting to know the kingdom, and so he has been away traveling, and you have not seen him in some time. There are rumors of the time he has spent- he has saved an old crone, and won a boon; he has battled a dragon; he has fallen into drunkeness and embarrassed your parents.</p></div>";
+    var nextpage = "<div id='intro5' style='color:white;display:none'><p class='charcreate'>Lance, then, completed his tutelage a few years ago, and was then charged with getting to know the kingdom, and so he has been away traveling, and you have not seen him in some time. There are rumors of the time he has spent- he has saved an old crone, and won a boon; he has battled a dragon; he has fallen into drunkenness and embarrassed your parents.</p></div>";
     $('#introcontainer').append(nextpage);
     $('#intro5').fadeIn(1000);
   } else if (idx === 5) {
