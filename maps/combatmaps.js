@@ -847,7 +847,9 @@ function maps_check_escape(mapref) {
       return 0;
     } else {
       if (who === PC) {
-        maintext.delayedAddText("Escaped!");
+        if (numenemies) {
+          maintext.delayedAddText("Escaped!");
+        }
       } else {
         maintext.addText(who.getDesc() + " fled!");
       }
