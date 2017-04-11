@@ -573,41 +573,41 @@ OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("jharden_teaches");
   DU.gameflags.deleteFlag("jharden_newspell");
   var taught = 0;
-  if ((PC.getLevel() >= 2) && (!PC.knowsSpell(1,2))) {
+  if ((PC.getLevel() >= 2) && (!PC.knowsSpell(SPELL_CURE_LEVEL,SPELL_CURE_ID))) {
     maintext.addText("Jharden teaches you Cure!");
-    PC.addSpell(1,2);
+    PC.addSpell(SPELL_CURE_LEVEL,SPELL_CURE_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 3) && (!PC.knowsSpell(3,6))) {
+  if ((PC.getLevel() >= 3) && (!PC.knowsSpell(SPELL_RETURN_LEVEL,SPELL_RETURN_ID))) {
     maintext.addText("Jharden teaches you Return!");
-    PC.addSpell(2,2);
+    PC.addSpell(SPELL_RETURN_LEVEL,SPELL_RETURN_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 4) && (!PC.knowsSpell(3,3))) {
+  if ((PC.getLevel() >= 4) && (!PC.knowsSpell(SPELL_FIREBALL_LEVEL,SPELL_FIREBALL_ID))) {
     maintext.addText("Jharden teaches you Fireball!");
-    PC.addSpell(3,3);
+    PC.addSpell(SPELL_FIREBALL_LEVEL,SPELL_FIREBALL_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 5) && (!PC.knowsSpell(4,1))) {
+  if ((PC.getLevel() >= 5) && (!PC.knowsSpell(SPELL_BLESSING_LEVEL,SPELL_BLESSING_ID))) {
     maintext.addText("Jharden teaches you Blessing!");
-    PC.addSpell(4,1);
+    PC.addSpell(SPELL_BLESSING_LEVEL,SPELL_BLESSING_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 6) && (!PC.knowsSpell(5,5))) {
+  if ((PC.getLevel() >= 6) && (!PC.knowsSpell(SPELL_PEER_LEVEL,SPELL_PEER_ID))) {
     maintext.addText("Jharden teaches you Peer!");
-    PC.addSpell(5,5);
+    PC.addSpell(SPELL_PEER_LEVEL,SPELL_PEER_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 7) && (!PC.knowsSpell(6,4))) {
+  if ((PC.getLevel() >= 7) && (!PC.knowsSpell(SPELL_MASS_CURSE_LEVEL,SPELL_MASS_CURSE_ID))) {
     maintext.addText('"This is a spell I have only just mastered myself!"');
     maintest.addText("Jharden teaches you Mass Curse!");
-    PC.addSpell(6,4);
+    PC.addSpell(SPELL_MASS_CURSE_LEVEL,SPELL_MASS_CURSE_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 8) && (!PC.knowsSpell(6,6))) {
+  if ((PC.getLevel() >= 8) && (!PC.knowsSpell(SPELL_STORM_LEVEL,SPELL_STORM_ID))) {
     maintext.addText('"This is a spell I have only just mastered myself!"');
     maintext.addText("Jharden teaches you Storm!");
-    PC.addSpell(6,6);
+    PC.addSpell(SPELL_STORM_LEVEL,SPELL_STORM_ID);
     taught = 1;
   }
   if (!taught) {
@@ -619,19 +619,19 @@ OnConvTriggers["ash_teaches"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("ash_teaches");
   DU.gameflags.deleteFlag("ash_newspell");
   var taught = 0;
-  if ((PC.getLevel() >= 3) && (!PC.knowsSpell(3,1))) {
+  if ((PC.getLevel() >= 3) && (!PC.knowsSpell(SPELL_DISPEL_LEVEL,SPELL_DISPEL_ID))) {
     maintext.addText("Asharden teaches you Dispel!");
-    PC.addSpell(3,1);
+    PC.addSpell(SPELL_DISPEL_LEVEL,SPELL_DISPEL_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 4) && (!PC.knowsSpell(4,2))) {
+  if ((PC.getLevel() >= 4) && (!PC.knowsSpell(SPELL_BLINK_LEVEL,SPELL_BLINK_ID))) {
     maintext.addText("Asharden teaches you Blink!");
-    PC.addSpell(4,2);
+    PC.addSpell(SPELL_BLINK_LEVEL,SPELL_BLINK_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 5) && (!PC.knowsSpell(5,7))) {
+  if ((PC.getLevel() >= 5) && (!PC.knowsSpell(SPELL_SUMMON_ALLY_LEVEL,SPELL_SUMMON_ALLY_ID))) {
     maintext.addText("Asharden teaches you Summon Ally!");
-    PC.addSpell(5,7);
+    PC.addSpell(SPELL_SUMMON_ALLY_LEVEL,SPELL_SUMMON_ALLY_ID);
     taught = 1;
   }
   if (!taught) {
