@@ -674,7 +674,15 @@ function Breakable(brokengraphicarray, startsbroken) {
     var tmpcopy = localFactory.createTile(this.getName());
     this.setGraphicArray(tmpcopy.getGraphicArray());
     if (this.getName() === "Mirror") {
-      this.setGraphicArray([who.getGraphic(), "mirror-reflection.gif", "0", "7"]);
+      var who;
+      if ((PC.getx() === this.getx()) && (PC.gety() === (this.gety()+1))) { who = PC; }
+      else {
+        var south = this.getHomeMap().getTile(this.getx(),this.gety()+1);
+        who = south.getTopNPC();
+      }
+      if (who) {
+        this.setGraphicArray([who.getGraphic(), "mirror-reflection.gif", "0", "7"]);
+      }
     }
     this.setDesc(this.fixeddesc);
     DrawMainFrame("one", this.getHomeMap().getName(), this.getx(), this.gety());  // will try to draw 0,0 if in inventory, which is ok
@@ -4302,6 +4310,7 @@ FireFieldTile.prototype.activate = function() {
 }
 
 FireFieldTile.prototype.myTurn = function() {
+  DebugWrite("all", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + ", serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
   if (!maps.getMap(this.getHomeMap().getName())) {
     // removing from timeline, its map is gone
 //    var nextEntity = DUTime.executeNextEvent().getEntity();
@@ -4350,6 +4359,7 @@ function InAFireField(who) {
   resist = 1-(resist/100);
   dmg = dmg*resist;
   who.dealDamage(dmg, this, "fire");
+  DebugWrite("gameobj", "Firefield deals " + dmg + " damage to " + who.getName() + ".");
   
   return response;
 }
@@ -11032,6 +11042,7 @@ NPCObject.prototype.processDeath = function(droploot){
                   PC.setMana(PC.getMaxMana());
                   DrawCharFrame();
                   gamestate.setMode("player");
+                  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
                   gamestate.setTurn(PC);
                 }, 2000);
               }, 2000);
