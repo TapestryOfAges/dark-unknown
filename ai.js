@@ -190,7 +190,7 @@ ais.combat = function(who) {
 
   // decide if meleeing/approaching
   var chance = who.meleeChance;
-  if (!chance) { chance = 1; }
+//  if (!chance) { chance = 1; }
   DebugWrite("ai", "Chance of melee: " + chance + ".<br />");
   if (Dice.roll("1d100") <= chance) {
     // yes
@@ -263,7 +263,7 @@ ais.combat = function(who) {
       num_attempts++;
     }
     if (num_attempts === 10) {
-      alert("10 tries, " + who.getName() + " (" + who.getSerial() + ") failed to choose a special action.");
+//      alert("10 tries, " + who.getName() + " (" + who.getSerial() + ") failed to choose a special action.");
       DebugWrite("ai", "10 tries, " + who.getName() + " (" + who.getSerial() + ") failed to choose a special action.");
       return retval;
     }
