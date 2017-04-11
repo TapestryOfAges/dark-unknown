@@ -401,7 +401,7 @@ magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, 
         }
         effects[i].endEffect(1);
       }
-      if ((infused) && (effects[i].getName() === "Disease")) {
+      if (effects[i].getName() === "Disease") {
         effects[i].endEffect(1);
         if (caster === PC) {
           maintext.delayedAddText("You are cured of disease!");
@@ -3773,7 +3773,7 @@ function PerformSpellcast() {
 	  } else {
 	    var thetile = targetCursor.spelldetails.caster.getHomeMap().getTile(targetCursor.x, targetCursor.y);
 	    var fea = thetile.getTopFeature();
-	    if (fea.breakable && fea.getBroken()) {
+	    if (fea && fea.breakable && fea.getBroken()) {
 	      resp = PerformMend(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, fea);
 	    } else {
         resp["fin"] = 0;
