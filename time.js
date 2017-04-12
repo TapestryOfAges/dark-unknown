@@ -149,8 +149,6 @@ Timeline.prototype.removeEntityFrom = function(entity) {
 	  } else {
 		  prevtick.setNextTick(checktick.getNextTick());
 		}
-//		if (debug && debugflags.time) { dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline: " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />"); }
-//		if (debug && debugflags.time) { dbs.writeln(this.createDebugTimeline()); }
 		DebugWrite("time", "Entity removed from timeline: " + entity.getName() + " with serial " + entity.getSerial() + ".<br />" + this.createDebugTimeline());
 	}
 }
