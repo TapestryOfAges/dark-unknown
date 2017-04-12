@@ -8273,7 +8273,7 @@ function TomeOfSightTile() {
   this.desc = "Tome of Sight";
   this.prefix = "the";
   this.addType("Quest");
-  this.contents = "You open to a random page:%%'...for the Eye of Man can be deceived, but the Eye of Magic is Immutable.%%' [addmore]";
+  this.contents = "You open to a random page:%%'...for the Eye of Man can be deceived, but the Eye of Magic is Immutable.%%Mortals all live in the fog of illusion and unseeing, but the talent of seeing the truth below need not be the sole providence of the gods.%%We toil in darkness, but with their fire may we be forged anew...'";
 }
 TomeOfSightTile.prototype = new BookItemObject();
 
@@ -11939,7 +11939,7 @@ NPCObject.prototype.myTurn = function() {
   }
 	
 	gamestate.setMode("null");
-  if (!response.removed) {
+  if (!response.removed && (this.getHP() > 0)) {
 	  var NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,this.nextActionTime(response["initdelay"]));
   }
@@ -11956,6 +11956,9 @@ NPCObject.prototype.myTurn = function() {
 NPCObject.prototype.endTurn = function(init) {
   if (whoseturn !== this) {
     alert("Somehow trying to end a turn when it isn't their turn, aborting.");
+  } else if (this.getHP() <= 0) {
+    DebugWrite("ai", "Ending turn while dead, not going back on the stack!");
+    startScheduler();
   } else {
     gamestate.setMode("null");
   
