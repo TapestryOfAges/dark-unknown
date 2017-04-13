@@ -8346,6 +8346,7 @@ function KyvekBoxTile() {
   this.desc = "box with the payment of a debt to Kyvek";
   this.prefix = "a";
   this.addType("Quest");
+  this.openAsUsed = 1;
 }
 KyvekBoxTile.prototype = new ConsumableItemObject();
 
@@ -8389,6 +8390,7 @@ function SupplyBoxTile() {
   this.prefix = "a";
   this.desc = "small box of supplies";
   this.addType("Quest");
+  this.openAsUsed = 1;
 }
 SupplyBoxTile.prototype = new ConsumableItemObject();
 

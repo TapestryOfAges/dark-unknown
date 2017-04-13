@@ -1442,7 +1442,7 @@ function PerformUse(who) {
 		  retval["fin"] = 0;
   	}
   } else if (targetCursor.command === "o") {
-    if ((typeof used.use === "function") && (used.openAsUse)) {
+    if ((typeof used.use === "function") && (CheckOpenAsUsed(used))) {
       retval = MakeUseHappen(who,used,"map");
     } else {
       retval["txt"] = "There is nothing you can open there.";
@@ -1651,7 +1651,7 @@ function PerformUseFromInventoryState(code) {
 	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
     var used = targetCursor.itemlist[targetCursor.scrolllocation];
     if (targetCursor.command === "o") {
-      if (!used.openAsUse) {
+      if (!CheckOpenAsUsed(used)) {
         retval["txt"] = "You cannot open that.";
         retval["fin"] = 0;
         delete targetCursor.itemlist;

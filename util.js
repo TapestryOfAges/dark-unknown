@@ -1404,3 +1404,11 @@ function BeginAct2() {
   DU.merchants.ariel.stock[4].qty = 10;
   DU.merchants.ariel.stock[5].qty = 10;
 }
+
+function CheckOpenAsUse(used) {
+  if (used.openAsUse) { return 1; }
+  if (used.opengraphic) { return 1; }
+  if (used.isContainer) { return 1; }
+
+  return 0;
+}
