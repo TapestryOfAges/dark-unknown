@@ -1451,7 +1451,6 @@ function PerformUseFromInventory() {
 		retval["txt"] = "";
 		retval["input"] = "&gt; Use: ";
 		retval["fin"] = 2;
-		targetCursor.command = "u";		
 		
    var statsdiv = "&nbsp;";
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
@@ -1527,7 +1526,8 @@ function PerformUseFromInventory() {
        }
        statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
      }
-     if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) {  // in theory, kings is required for the rest, but let's be sure
+     if ((PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) && (targetCursor.command === "u")) {  // in theory, kings is required for the rest, but let's be sure
+      // only show if Use rather than Open
        var rune;
        statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Runes</span></td><td>&nbsp;</td></tr>";
        if (PC.runes.kings) {
