@@ -354,7 +354,7 @@ function DoAction(code, ctrl) {
   else if (gamestate.getMode() === "choosedir") {
     var response = PerformChooseDir(code);
     if (response["fin"] === 1) { // direction chosen
-      if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && (targetCursor.command === "u") ) {
+      if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "u")||(targetCursor.command === "o")) ) {
         var resp = PerformUseFromInventory();
       }
       else if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c") || (targetCursor.command === "p"))) {
@@ -365,7 +365,7 @@ function DoAction(code, ctrl) {
       }
       else {
         var resp;
-        if (targetCursor.command === "u") { // USE
+        if ((targetCursor.command === "u")||(targetCursor.command === "o")) { // USE
           resp = PerformUse(PC);
         } else if (targetCursor.command === "g") { // GET
           resp = PerformGet(PC);
@@ -505,7 +505,7 @@ function DoAction(code, ctrl) {
     var response;
     if (targetCursor.command === "w") {
       response = PerformEquip(code);
-    } else if (targetCursor.command === "u") {
+    } else if ((targetCursor.command === "u") || (targetCursor.command === "o")) {
       response = PerformUseFromInventoryState(code);
     } else if (targetCursor.command === "r") {
       response = PerformRuneChoice(code);

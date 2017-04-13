@@ -1419,22 +1419,36 @@ function PerformUse(who) {
 	var someone = localacre.getTopNPC();
 	if (!someone) { someone = localacre.getTopPC(); }
 	if (someone) {
-    retval["txt"] = "Use: There is something in the way.";
+    var commandname = "Use";
+    if (targetCursor.command === "o") { commandname = "Open"; }
+    retval["txt"] = commandname + ": There is something in the way.";
     retval["fin"] = 0;
     return retval;
   }
 	var used = localacre.features.getTop();
 	if (!used) {
 		retval["txt"] = "There is nothing to use there.";
+    if (targetCursor.command === "o") {
+      retval["txt"] = "There is nothing you can open there."; 
+    }
 		retval["fin"] = 0;
 		return retval;
 	}
-	if (typeof used.use === "function") {
-	  retval = MakeUseHappen(who,used,"map");
-  } else {
-		retval["txt"] = "There is nothing to use there.";
-		retval["fin"] = 0;
-	}
+  if (targetCursor.command === "u") {
+  	if (typeof used.use === "function") {
+	    retval = MakeUseHappen(who,used,"map");
+    } else {
+	  	retval["txt"] = "There is nothing to use there.";
+		  retval["fin"] = 0;
+  	}
+  } else if (targetCursor.command === "o") {
+    if ((typeof used.use === "function") && (used.openAsUse)) {
+      retval = MakeUseHappen(who,used,"map");
+    } else {
+      retval["txt"] = "There is nothing you can open there.";
+      retval["fin"] = 0;
+    }
+  }
 	return retval;
 }
 
@@ -1449,7 +1463,11 @@ function PerformUseFromInventory() {
 		gamestate.setMode("equip");
 		var retval = {};
 		retval["txt"] = "";
-		retval["input"] = "&gt; Use: ";
+    if (targetCursor.command === "u") {
+  		retval["input"] = "&gt; Use: ";
+    } else if (targetCursor.command === "o") {
+      retval["input"] = "&gt; Open: "; 
+    }
 		retval["fin"] = 2;
 		
    var statsdiv = "&nbsp;";
@@ -1631,8 +1649,16 @@ function PerformUseFromInventoryState(code) {
 	    retval["fin"] = -2;
   }
 	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
-    // use selected item
     var used = targetCursor.itemlist[targetCursor.scrolllocation];
+    if (targetCursor.command === "o") {
+      if (!used.openAsUse) {
+        retval["txt"] = "You cannot open that.";
+        retval["fin"] = 0;
+        delete targetCursor.itemlist;
+        return retval;
+      }
+    }
+    // use selected item
     if (used) {
       retval = MakeUseHappen(PC,used,"inventory");
 //      retval["fin"] = 2;
@@ -1658,7 +1684,11 @@ function MakeUseHappen(who,used,where) {
     }
     var usedname = used.getDesc();
     usedname = usedname.replace(/^a /, "");
-    retval["txt"] = "Use " + usedname + ": " + retval["txt"];
+    var commandname = "Use";
+    if (targetCursor.command === "o") {
+      commandname = "Open";
+    }
+    retval["txt"] = commandname + " " + usedname + ": " + retval["txt"];
     var drawtype = "one";
     if (used.checkType("Consumable") && !retval["preserve"]) {
       if (where === "map") {

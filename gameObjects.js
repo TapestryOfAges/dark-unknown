@@ -10292,13 +10292,15 @@ WeaponObject.prototype.rollDamage = function(wielder) {
   }
   
   var fb = wielder.getSpellEffectsByName("FlameBlade");
-  if (wielder && fb) {
-    if (debug && (debugflags.magic || debugflags.combat)) { dbs.writeln("<span style='color:green'>Flame blade adds " + fb.damage + " damage.<br /></span>"); }
-    if (!DebugWrite("magic", "Flame blade adds " + fb.damage + "damage.<br />")) {
-      DebugWrite("combat", "Flame blade adds " + fb.damage + "damage.<br />");
+  if (!this.checkType("Missile")) {
+    if (wielder && fb) {
+      if (debug && (debugflags.magic || debugflags.combat)) { dbs.writeln("<span style='color:green'>Flame blade adds " + fb.damage + " damage.<br /></span>"); }
+      if (!DebugWrite("magic", "Flame blade adds " + fb.damage + "damage.<br />")) {
+        DebugWrite("combat", "Flame blade adds " + fb.damage + "damage.<br />");
+      }
+      damage += parseInt(Dice.roll(fb.damage));
+      fb.doEffect();
     }
-    damage += parseInt(Dice.roll(fb.damage));
-    fb.doEffect();
   }
   return damage;
 }
