@@ -244,15 +244,24 @@ function PerformCommand(code, ctrl) {
 	else if (code === 79) { // o
 		// was open - merged with use
 		// now, Options
-		gamestate.setMode("options");
-    retval["txt"] = "";
-    retval["input"] = "&gt; Options- ";
-    retval["fin"] = 2;		
-    targetCursor.page = 1;
-    targetCursor.cmd = "o";
+    if (ctrl) {
+  		gamestate.setMode("options");
+      retval["txt"] = "";
+      retval["input"] = "&gt; Options- ";
+      retval["fin"] = 2;		
+      targetCursor.page = 1;
+      targetCursor.cmd = "o";
     
-    DrawOptions();		
-		
+      DrawOptions();		
+    } else {
+   		gamestate.setMode("choosedir");
+	  	retval["txt"] = "";
+		  retval["input"] = "&gt; Open: ";
+  		retval["fin"] = 2;
+	  	targetCursor.command = "o";
+		  targetCursor.x = PC.getx();
+  		targetCursor.y = PC.gety();
+    }
 	}
 	else if (code === 80) { // p
 		// push
@@ -1442,7 +1451,7 @@ function PerformUse(who) {
 		  retval["fin"] = 0;
   	}
   } else if (targetCursor.command === "o") {
-    if ((typeof used.use === "function") && (CheckOpenAsUsed(used))) {
+    if ((typeof used.use === "function") && (CheckOpenAsUse(used))) {
       retval = MakeUseHappen(who,used,"map");
     } else {
       retval["txt"] = "There is nothing you can open there.";
@@ -1651,8 +1660,8 @@ function PerformUseFromInventoryState(code) {
 	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
     var used = targetCursor.itemlist[targetCursor.scrolllocation];
     if (targetCursor.command === "o") {
-      if (!CheckOpenAsUsed(used)) {
-        retval["txt"] = "You cannot open that.";
+      if (!CheckOpenAsUse(used)) {
+        maintext.delayedAddText("You cannot open that.");
         retval["fin"] = 0;
         delete targetCursor.itemlist;
         return retval;
