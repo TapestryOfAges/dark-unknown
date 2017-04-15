@@ -431,6 +431,7 @@ function clickmap(xval,yval) {
     }
     else {
       MakeCopy(xval,yval);
+      alert("Copy made.");
       cornerx = -1;
       cornery = -1;
     }
@@ -603,21 +604,21 @@ function submitEditNPC(change) {
 	}
 }
 
-function changemaptile(xval,yval) {
+function changemaptile(xval,yval,toTerrain) {
+  if (!toTerrain) { toTerrain = selectionval; }
   var tileid = "tile" + xval + "x" + yval;
   var tdid = "#td_" + tileid;
-  var graphics = selectionval.getGraphicArray();
+  var graphics = toTerrain.getGraphicArray();
   var showGraphic = graphics[0];
-  if (typeof selectionval.setBySurround === "function") {
-    graphics = selectionval.setBySurround(xval,yval,amap,graphics,0,0,0);
+  if (typeof toTerrain.setBySurround === "function") {
+    graphics = toTerrain.setBySurround(xval,yval,amap,graphics,0,0,0);
     showGraphic = graphics[0];
   }
-  if (typeof selectionval.doTile === "function") {
-  	showGraphic = selectionval.doTile(xval,yval,showGraphic);
+  if (typeof toTerrain.doTile === "function") {
+  	showGraphic = toTerrain.doTile(xval,yval,showGraphic);
   }
-  if (typeof selectionval.setByBelow === "function") {
-//   	showGraphic = selectionval.setByBelow(xval,yval,amap);
-      var setbelow = selectionval.setByBelow(xval,yval,amap);
+  if (typeof toTerrain.setByBelow === "function") {
+      var setbelow = toTerrain.setByBelow(xval,yval,amap);
       showGraphic = setbelow[0];
       graphics[2] = setbelow[2];
       graphics[3] = setbelow[3];
@@ -626,7 +627,7 @@ function changemaptile(xval,yval) {
   $(tdid).css("background-image","url('graphics/" + graphics[0] + "')");
   $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
   document.images[tileid].src="graphics/"+graphics[1];
-  amap.setTerrain(xval,yval,selectionval);
+  amap.setTerrain(xval,yval,toTerrain);
 
 }
 
@@ -949,7 +950,8 @@ function MakeCopy(xval,yval) {
   for (var i=miny; i<=maxy; i++) {
     copyterrain[curridx] = "";
     for (var j=minx; j<=maxx; j++) {
-      copyterrain[curridx] = copyterrain[curridx] + "" + amap.getTile(j,i).getTerrain().serialize() + " "; 
+      if (j !== minx) { copyterrain[curridx] = copyterrain[curridx] + " "; }
+      copyterrain[curridx] = copyterrain[curridx] + "" + amap.getTile(j,i).getTerrain().serialize(); 
     }
     curridx++;
   }
@@ -983,7 +985,6 @@ function MakeCopy(xval,yval) {
 	    
   });
 
-
   var saveobj = {};
   saveobj.terrain = copyterrain;
   saveobj.features = copyfeatures;
@@ -998,28 +999,42 @@ function MakeCopy(xval,yval) {
 
 function PasteCopy(startx,starty) {
   if (localStorage["editorCopy"]) {
-    //alert(localStorage["editorCopy"]);
     var saveobj = JSON.parse(localStorage["editorCopy"]);
-    //alert(saveobj.terrain[0]);
-    var endx = Math.min(amap.getWidth()-1, startx+saveobj.width-1);
-    var endy = Math.min(amap.getHeight()-1, starty+saveobj.height-1);
+    var savewidth = saveobj.width;
+    var saveheight = saveobj.height;
+    var endx = Math.min(amap.getWidth()-1, startx+savewidth-1);
+    var endy = Math.min(amap.getHeight()-1, starty+saveheight-1);
     RazeArea(startx,endx, starty, endy);
-//    alert(startx + "," + endx + "," + starty + "," + endy);
     for (var j = starty; j<= endy; j++) {
-//      alert(saveobj.terrain[j-starty]);
       var thisRow = saveobj.terrain[j-starty];
       var terrainRow = thisRow.split(" ");
-//      alert(terrainRow.length);
-//      alert("##" + terrainRow[2] + "##");
       for (var i = startx; i<= endx; i++) {
-//        alert(terrainRow[i-startx]);
         var thisTerrain = localatlas.key[terrainRow[i-startx]];
-//        alert(thisTerrain);
         var newTerrain = localFactory.createTile(thisTerrain);
-        amap.setTerrain(i,j,newTerrain);
+        changemaptile(i,j,newTerrain);
       }
     }
-    
+    $.each(saveobj.features, function(idx,val) {
+      alert(JSON.stringify(val));
+      var copyOfFeature = localFactory.createTile(val.name);
+      $.each(val, function(svidx, svval) {
+        copyOfFeature[svidx] = svval;
+      });
+      copyOfFeature.x = copyOfFeature.x + startx;
+      copyOfFeature.y = copyOfFeature.y + starty;
+      addfeaturetomap(copyOfFeature.x, copyOfFeature.y, copyOfFeature);
+    });
+    $.each(saveobj.npcs, function(idx,val) {
+      var copyOfNPC = localFactory.createTile(val.name);
+      $.each(val, function(svidx, svval) {
+        alert("&nbsp;&nbsp;Loading property " + svidx + ", saving " + svval + "...<br />");
+        copyOfNPC[svidx] = svval;
+      });
+      copyOfNPC.x = copyOfNPC.x + startx;
+      copyOfNPC.y = copyOfNPC.y + starty;
+      addnpctomap(copyOfNPC.x, copyOfNPC.y, copyOfNPC);
+    });
+   
   }
 }
 
