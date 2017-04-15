@@ -233,8 +233,6 @@ GameStateData.prototype.getLatestSaveIndex = function() {
 GameStateData.prototype.loadGame = function(idx) {
   gamestate.setMode("loadgame");
   
-//  if (!localStorage.savegame && !localStorage.manualsave && !localStorage.charsave) {
-//    if (debug && debugflags.saveload) { dbs.writeln("<br /><br /><p>LOADING TMP VALUES</p><br />"); }
   if (idx === "tmp") {
     DebugWrite("saveload", "<br /><br /><p>LOADING TMP VALUES</p><br />");
     gamestate.loadTmp();
@@ -244,7 +242,6 @@ GameStateData.prototype.loadGame = function(idx) {
   var compressed;
   var serialized;
   
-//  if (debug && debugflags.saveload) { dbs.writeln("<p><span style='font-weight:bold'>Start load procedure:</span><br />"); }
   DebugWrite("saveload", "<p><span style='font-weight:bold'>Start load procedure from slot " + idx + ":</span><br />");
 
 /*
