@@ -653,13 +653,18 @@ function resize(forminfo) {
 }
 
 
-function addfeaturetomap(x,y,selection) {
+function addfeaturetomap(x,y,selection,noFactory) {
 	if (!amap.data[y][x].features) {
 		amap.data[y][x].features = new Collection();
 	}
-	var newfeature = localFactory.createTile(selection.getName());
-	newfeature.setx(x);
-	newfeature.sety(y);
+	var newfeature;
+  if (!noFactory) {
+    newfeature = localFactory.createTile(selection.getName());
+	  newfeature.setx(x);
+	  newfeature.sety(y);
+  } else {
+    newfeature = selection; 
+  }
 	amap.data[y][x].features.addTop(newfeature);
 	amap.features.addTop(newfeature);
 
@@ -687,16 +692,21 @@ function addfeaturetomap(x,y,selection) {
   
 }
 
-function addnpctomap(x,y,selection) {
+function addnpctomap(x,y,selection,noFactory) {
 	if (!amap.data[y][x].npcs) { 
 		amap.data[y][x].npcs = new Collection();
 	}
-	var newnpc = localFactory.createTile(selection.getName());
-	newnpc.setx(x);
-	newnpc.sety(y);
-	if (document.brushes.npcband.value) {
-	  newnpc.setNPCBand(document.brushes.npcband.value);
-	}
+	var newnpc;
+  if (!noFactory) {
+    newnpc = localFactory.createTile(selection.getName());
+	  newnpc.setx(x);
+	  newnpc.sety(y);
+  	if (document.brushes.npcband.value) {
+	    newnpc.setNPCBand(document.brushes.npcband.value);
+  	}
+  } else {
+    newnpc = selection;
+  }
 	amap.data[y][x].npcs.addTop(newnpc);
 	amap.npcs.addTop(newnpc);
 	
@@ -866,6 +876,7 @@ function editorEditMapDetails() {
   document.detailseditpopup.maponentertest.value = amap.getEnterTestScript();
   document.detailseditpopup.maponexittest.value = amap.getExitTestScript();
   document.detailseditpopup.mapunderground.value = amap.getUnderground();
+  document.detailseditpopup.mapsavename.value = amap.getSaveName();
   document.detailseditpopup.mapreturnmap.value = amap.getReturnMap();
   document.detailseditpopup.mapreturnx.value = amap.getReturnx();
   document.detailseditpopup.mapreturny.value = amap.getReturny();
@@ -890,6 +901,7 @@ function submitEditDetails(change) {
     amap.setLinkedMaps(document.detailseditpopup.maplinkedmaps.value);
     amap.setSeeBelow(document.detailseditpopup.mapseebelow.value);
     amap.setUnderground(document.detailseditpopup.mapunderground.value);
+    amap.setSaveName(document.detailseditpopup.mapsavename.value);
     amap.setLightLevel(document.detailseditpopup.maplightlevel.value);
     amap.setAlwaysRemember(document.detailseditpopup.mapalwaysremember.value);
     amap.setScale(document.detailseditpopup.mapscale.value);
@@ -975,11 +987,14 @@ function MakeCopy(xval,yval) {
     if (!npcval.nosave) {
       if ((npcval.getx() >= minx) && (npcval.getx() <= maxx) && (npcval.gety() >= miny) && (npcval.gety() <= maxy)) {
         var copies = npcval.copy();
-        $.each(copies, function(copidx, copval) {
-          copval.x = copval.x-minx;
-          copval.y = copval.y-miny;          
-          copynpcs[copval.serial] = copval;
-        });
+//        $.each(copies, function(copidx, copval) {
+//          copval.x = copval.x-minx;
+//          copval.y = copval.y-miny;          
+//          copynpcs[copval.serial] = copval;       
+//        });
+        copies[0].x = copies[0].x-minx;
+        copies[0].y = copies[0].y-miny;
+        copynpcs[copies[0].serial] = copies[0];
       }
     }
 	    
@@ -1015,24 +1030,22 @@ function PasteCopy(startx,starty) {
       }
     }
     $.each(saveobj.features, function(idx,val) {
-      alert(JSON.stringify(val));
       var copyOfFeature = localFactory.createTile(val.name);
       $.each(val, function(svidx, svval) {
         copyOfFeature[svidx] = svval;
       });
       copyOfFeature.x = copyOfFeature.x + startx;
       copyOfFeature.y = copyOfFeature.y + starty;
-      addfeaturetomap(copyOfFeature.x, copyOfFeature.y, copyOfFeature);
+      addfeaturetomap(copyOfFeature.x,copyOfFeature.y,copyOfFeature,1);
     });
     $.each(saveobj.npcs, function(idx,val) {
       var copyOfNPC = localFactory.createTile(val.name);
       $.each(val, function(svidx, svval) {
-        alert("&nbsp;&nbsp;Loading property " + svidx + ", saving " + svval + "...<br />");
         copyOfNPC[svidx] = svval;
       });
       copyOfNPC.x = copyOfNPC.x + startx;
       copyOfNPC.y = copyOfNPC.y + starty;
-      addnpctomap(copyOfNPC.x, copyOfNPC.y, copyOfNPC);
+      addnpctomap(copyOfNPC.x, copyOfNPC.y, copyOfNPC, 1);
     });
    
   }

@@ -677,6 +677,7 @@ function GameMap() {
   this.backgroundimage = '';
   this.underground = 0;
   this.noiseSources = {};
+  this.savename = '';
   
   this.exitScript = "";
   this.exitTestScript = "";
@@ -742,6 +743,14 @@ GameMap.prototype.setUnderground = function(ug) {
 
 GameMap.prototype.getUnderground = function() {
   return this.underground;
+}
+
+GameMap.prototype.setSaveName = function(newname) {
+  this.savename = newname;
+}
+
+GameMap.prototype.getSaveName = function() {
+  return this.savename;
 }
 
 GameMap.prototype.setScale = function(newscale) {
@@ -1422,6 +1431,7 @@ GameMap.prototype.saveMap = function (name) {
  printerwin.document.write(name + ".alwaysRemember = '" + this.getAlwaysRemember() + "';\n");
  printerwin.document.write(name + ".scale = '" + this.getScale() + "';\n");
  printerwin.document.write(name + ".underground = '" + this.getUnderground() + "';\n");
+ printerwin.document.write(name + ".savename = '" + this.getSaveName() + "';\n");
  printerwin.document.write(name + ".enterscript = '" + this.getEnterScript() + "';\n");
  printerwin.document.write(name + ".entertestscript = '" + this.getEnterTestScript() + "';\n");
  printerwin.document.write(name + ".exitscript = '" + this.getExitScript() + "';\n");
@@ -1483,6 +1493,7 @@ GameMap.prototype.loadMap = function (name) {
   this.setAlwaysRemember(mappages.readPage(name, "alwaysRemember"));
   this.setScale(mappages.readPage(name, "scale"));
   this.setUnderground(mappages.readPage(name, "underground"));
+  this.setSaveName(mappages.readPage(name, "savename"));
   this.setReturn(mappages.readPage(name, "returnmap"), mappages.readPage(name, "returnx"), mappages.readPage(name, "returny"));
   this.setReturnInfused(mappages.readPage(name, "returninfused"));
   if (!DU.gameflags.getFlag("editor")) {
