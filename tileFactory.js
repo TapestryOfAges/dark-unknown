@@ -398,6 +398,11 @@ tileFactory.prototype.makeShadowBrushTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeUnderbrushTile = function() {
+  var newTile = new UnderbrushTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBrushNCoastTile = function() {
   var newTile = new BrushNCoastTile();
   return newTile;
@@ -1028,6 +1033,41 @@ tileFactory.prototype.makePaladinSignTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeHerbalistSignTile = function() {
+  var newTile = new HerbalistSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCartographerSignTile = function() {
+  var newTile = new CartographerSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWhitesmithSignTile = function() {
+  var newTile = new WhitesmithSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCourthouseSignTile = function() {
+  var newTile = new CourthouseSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBardSignTile = function() {
+  var newTile = new BardSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTombstoneTile = function() {
+  var newTile = new TombstoneTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTombstoneRIPTile = function() {
+  var newTile = new TombstoneRIPTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTrainingDummyTile = function() {
   var newTile = new TrainingDummyTile();
   return newTile;
@@ -1185,6 +1225,11 @@ tileFactory.prototype.makeDeadTreeTile = function() {
 
 tileFactory.prototype.makeCactusTile = function() {
   var newTile = new CactusTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAppleTreeTile = function() {
+  var newTile = new AppleTreeTile();
   return newTile;
 }
 
@@ -1863,6 +1908,41 @@ tileFactory.prototype.makeDecorativeArmorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFluteTile = function() {
+  var newTile = new FluteTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDrumTile = function() {
+  var newTile = new DrumTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHarpTile = function() {
+  var newTile = new HarpTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeLuteTile = function() {
+  var newTile = new LuteTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHornTile = function() {
+  var newTile = new HornTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMortarTile = function() {
+  var newTile = new MortarTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrystalMortarTile = function() {
+  var newTile = new CrystalMortarTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGoldTile = function() {
   var newTile = new GoldTile();
   return newTile;
@@ -1968,8 +2048,18 @@ tileFactory.prototype.makeBluePotionTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDeepBluePotionTile = function() {
+  var newTile = new DeepBluePotionTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeOrangePotionTile = function() {
   var newTile = new OrangePotionTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrownPotionTile = function() {
+  var newTile = new BrownPotionTile();
   return newTile;
 }
 
