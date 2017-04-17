@@ -2422,7 +2422,6 @@ RoadTile.prototype = new TerrainObject();
 
 function BrushTile() {
   this.name = "Brush";
-//  this.graphic = "122.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-192";
@@ -2453,6 +2452,22 @@ function ShadowBrushTile() {
   this.walkSound = "grass";
 }
 ShadowBrushTile.prototype = new TerrainObject();
+
+function UnderbrushTile() {
+  this.name = "Underbrush";
+  this.graphic = "terrain_tiles.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-288";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "underbrush";
+  this.initdelay = 1.1;
+  this.pathweight = .1;
+  this.combatmap = "Brush";
+  this.peerview = "#008000";
+  this.walkSound = "grass";
+}
+UnderbrushTile.prototype = new TerrainObject();
 
 function BrushNCoastTile() {
   this.name = "BrushNCoast";
@@ -4739,6 +4754,97 @@ function PaladinSignTile() {
 }
 PaladinSignTile.prototype = new FeatureObject();
 
+function HerbalistSignTile() {
+  this.name = "HerbalistSign";
+  this.graphic = "features.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "herbalist";
+  this.peerview = "#541909";
+}
+HerbalistSignTile.prototype = new FeatureObject();
+
+function CartographerSignTile() {
+  this.name = "CartographerSign";
+  this.graphic = "features.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "cartographer";
+  this.peerview = "#541909";
+}
+CartographerSignTile.prototype = new FeatureObject();
+
+function WhitesmithSignTile() {
+  this.name = "WhitesmithSign";
+  this.graphic = "features.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "whitesmith";
+  this.peerview = "#541909";
+}
+WhitesmithSignTile.prototype = new FeatureObject();
+
+function CourthouseSignTile() {
+  this.name = "CourthouseSign";
+  this.graphic = "features.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "courthouse";
+  this.peerview = "#541909";
+}
+CourthouseSignTile.prototype = new FeatureObject();
+
+function BardSignTile() {
+  this.name = "BardSign";
+  this.graphic = "features.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "the";
+  this.desc = "Bardic College";
+  this.peerview = "#541909";
+}
+BardSignTile.prototype = new FeatureObject();
+
+function TombstoneTile() {
+  this.name = "Tombstone";
+  this.graphic = "features.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "tombstone";
+  this.peerview = "#541909";
+}
+TombstoneTile.prototype = new FeatureObject();
+
+function TombstoneRIPTile() {
+  this.name = "TombstoneRIP";
+  this.graphic = "features.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "tombstone";
+  this.peerview = "#541909";
+}
+TombstoneRIPTile.prototype = new FeatureObject();
+
 function TrainingDummyTile() {
   this.name = "TrainingDummy";
   this.graphic = "features.png";
@@ -5198,13 +5304,6 @@ function TreeTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "tree";
-	this.lootgroup = "";
-	this.lootedid = "";
-  this.showsearched = 0;
-  this.searchedgraphic = ["trees.gif","","0","0"];
-	
-	this.container = [];
-	OpenContainer.call(this);
 }
 TreeTile.prototype = new FeatureObject();
 
@@ -5217,13 +5316,6 @@ function EvergreenTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "evergreen tree";
-	this.lootgroup = "";
-	this.lootedid = "";
-  this.showsearched = 0;
-  this.searchedgraphic = ["trees.gif","","-32","0"];
-	
-	this.container = [];
-	OpenContainer.call(this);
 }
 EvergreenTile.prototype = new FeatureObject();
 
@@ -5255,15 +5347,20 @@ function CactusTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "cactus";
-	this.lootgroup = "";
-	this.lootedid = "";
-  this.showsearched = 0;
-  this.searchedgraphic = ["trees.gif","","-96","0"];
-	
-	this.container = [];
-	OpenContainer.call(this);
 }
 CactusTile.prototype = new FeatureObject();
+
+function AppleTreeTile() {
+  this.name = "AppleTree";
+  this.graphic = "trees.gif";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "apple tree";
+}
+AppleTreeTile.prototype = new FeatureObject();
 
 function BarrelTile() {
   this.name = "Barrel";
@@ -8164,6 +8261,90 @@ function DecorativeArmorTile() {
 }
 DecorativeArmorTile.prototype = new ItemObject();
 
+function FluteTile() {
+  this.name = "Flute";
+	this.graphic = "items.png";
+	this.spritexoffset = "0";
+  this.spriteyoffset = "-224";
+	this.desc = "flute";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.prefix = "a";
+}
+FluteTile.prototype = new ItemObject();
+
+function DrumTile() {
+  this.name = "Drum";
+	this.graphic = "items.png";
+	this.spritexoffset = "-32";
+  this.spriteyoffset = "-224";
+	this.desc = "drum";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.prefix = "a";
+}
+DrumTile.prototype = new ItemObject();
+
+function HarpTile() {
+  this.name = "Harp";
+	this.graphic = "items.png";
+	this.spritexoffset = "-64";
+  this.spriteyoffset = "-224";
+	this.desc = "harp";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.prefix = "a";
+}
+HarpTile.prototype = new ItemObject();
+
+function LuteTile() {
+  this.name = "Lute";
+	this.graphic = "items.png";
+	this.spritexoffset = "-96";
+  this.spriteyoffset = "-224";
+	this.desc = "lute";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.prefix = "a";
+}
+LuteTile.prototype = new ItemObject();
+
+function HornTile() {
+  this.name = "Horn";
+	this.graphic = "items.png";
+	this.spritexoffset = "-160";
+  this.spriteyoffset = "-224";
+	this.desc = "horn";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.prefix = "a";
+}
+HornTile.prototype = new ItemObject();
+
+function MortarTile() {
+  this.name = "Mortar";
+	this.graphic = "items.png";
+	this.spritexoffset = "-224";
+  this.spriteyoffset = "-224";
+	this.desc = "mortar and pestle";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.prefix = "a";
+}
+MortarTile.prototype = new ItemObject();
+
+function CrystalMortarTile() {
+  this.name = "CrystalMortar";
+	this.graphic = "items.png";
+	this.spritexoffset = "-128";
+  this.spriteyoffset = "-224";
+	this.desc = "crystal mortar";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.prefix = "a";
+}
+CrystalMortarTile.prototype = new ItemObject();
+
 function GoldTile() {
   this.name = "Gold";
   this.graphic = "items.png";  
@@ -8768,6 +8949,27 @@ BluePotionTile.prototype.use = function(who) {
   return retval;
 }
 
+// ethereal vision potion
+function DeepBluePotionTile() {
+  this.name = "DeepBluePotion";
+  this.desc = "deep blue potion";
+  this.prefix = "a";
+  this.graphic = "items.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+}
+DeepBluePotionTile.prototype = new PotionItemObject();
+
+DeepBluePotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
+  var retval = {fin:1};
+  retval = magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell(PC, 0, 2);
+  retval["txt"] = "Gulp!<br />Your vision becomes strange!"
+  DrawCharFrame();
+  return retval;
+}
+
 // mana potion
 function OrangePotionTile() {
   this.name = "OrangePotion";
@@ -8794,6 +8996,26 @@ OrangePotionTile.prototype.use = function(who) {
   return retval;
 }
 
+// iron flesh potion
+function BrownPotionTile() {
+  this.name = "BrownPotion";
+  this.desc = "brown potion";
+  this.prefix = "a";
+  this.graphic = "items.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-192";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+}
+BrownPotionTile.prototype = new PotionItemObject();
+
+BrownPotionTile.prototype.use = function(who) {
+  DUPlaySound("sfx_potion");
+  var retval = {fin:1};
+  retval = magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(PC, 0, 2);
+  retval["txt"] = "Gulp!<br />Your skin is as hard as iron!"
+  DrawCharFrame();
+  return retval;
+}
 
 // scrolls
 
