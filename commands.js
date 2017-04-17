@@ -496,11 +496,56 @@ function PerformCommand(code, ctrl) {
 		retval["input"] = "&gt;";
 		retval["fin"] = 1;
 	}
+  else if (code === 27) {  // ESC
+    retval = PerformEscape();
+  }
 	else {
 		//alert(code);
 	}
 	
 	return retval;
+}
+
+function PerformEscape() {
+  var retval = {};
+  retval["fin"] = 0;
+  var pcmap = PC.getHomeMap();
+  if (pcmap.getDesc() === "Combat") {
+    var enemies = 0;
+    var npcs = pcmap.npcs.getAll();
+    $.each(npcs, function(idx,val) {
+      if (val.getAttitude() === "hostile") { enemies = 1; }
+    });
+    if (enemies === 1) {
+      return retval;
+    } else {
+      var newmap = new GameMap();
+			if (maps.getMap(pcmap.getExitToMap())) {
+			  DebugWrite("map", "destination map already exists.<br />");
+				newmap = maps.getMap(pcmap.getExitToMap());
+			} else {
+			  DebugWrite("map", "destination map needs to be loaded.<br />");
+			  newmap.loadMap(pcmap.getExitToMap());
+		  	maps.addMapByRef(newmap);
+	  	}
+  		var tile = MoveBetweenMaps(PC,pcmap,newmap,pcmap.getExitToX(),pcmap.getExitToY());
+ 			if (tile) {
+ 			  DebugWrite("map", "Exited from MoveBetweenMaps. New map is " + newmap.getName() + ".<br />");
+        retval["canmove"] = 0;
+	    	DrawMainFrame("draw", newmap.getName() , PC.getx(), PC.gety());
+  		  DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
+ 				maintext.addText(".<br />Exiting " + pcmap.getName() + ".");
+ 			} else {
+			  DebugWrite("map", "Failed to exit due to exittest.");
+  	    retval["canmove"] = 0;
+  	    retval["diffx"] = diffx;
+	      retval["diffy"] = diffy;
+	      retval["txt"] = ": Failed!";
+	      return retval;
+			}
+    }
+  } 
+  return retval;
 }
 
 function PerformChooseDir(code) {
