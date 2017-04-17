@@ -150,6 +150,8 @@ function Atlas() {
     "ShadowDirt" : 's,',
     ',,' : "Brush", 
     "Brush" : ',,',
+    'u,' : "Underbrush", 
+    "Underbrush" : 'u,',
     ',s' : "ShadowBrush",
     "ShadowBrush" : ',s',
     ',|' : "BrushECoast",
