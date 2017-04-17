@@ -36,7 +36,7 @@ function select_place(pname) {
       if (!frst) { frst = idx; }
     }
   });
-  txt = txt + "</select></form> <a href='javascript:new_conv()'>New Conversation</a></p>";
+  txt = txt + "</select></form> <a href='javascript:new_conv()'>New Conversation</a> <a href='javascript:del_conv()'>Delete Conversation</a></p>";
   $('#convs').html(txt);
 }
 
@@ -55,6 +55,19 @@ function new_conv() {
   $("#pickconv").val(convname);
 
   edit_response(convname, "");
+}
+
+function del_conv() {
+  var thisconv = document.convform.pickconv.value;
+  if (thisconv) {
+    var conf = confirm("Are you sure you want to delete this conversation?");
+    if (conf) {
+      delete conversations[thisconv];
+      $("#mainbody").html(" ");
+    }
+  } else {
+    alert("No selected conversation.");
+  }
 }
 
 function select_conv() {
@@ -510,11 +523,11 @@ function validate() {
       allgood = 0;
       $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>look missing</span>");
     }
-    if (val["bye"] && !val["bye"].triggers[1].end_convo) {
+    if (val["bye"] && !val["bye"].triggers[1].end_convo && (!val["bye"].responses[1].match(/->/))) {
       allgood = 0;
       $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>Bye[1] missing end_convo</span>");
     }
-    if (val["bye"] && val["bye"].responses[0] && !val["bye"].triggers[0].end_convo) {
+    if (val["bye"] && val["bye"].responses[0] && !val["bye"].triggers[0].end_convo && (!val["bye"].responses[0].match(/->/))) {
       allgood = 0;
       $("#mainbody").html($("#mainbody").html() + "<br /> * <span style='color:red'>Bye[0] missing end_convo</span>");
     }
