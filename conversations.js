@@ -51,7 +51,11 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       if (PC.getGold() < parseInt(flags.has_gold)) { flags_met = 0; }
       else { addtolog.itemsowned += " gold"; }
     }
-  
+    if (flags.hasOwnProperty("has_condition")) {
+      if (!PC.getSpellEffectsByName(flags.has_condition)) { flags_met = 0; }
+      else { addtolog.flagsmet += " " + flags.has_condition; }
+    }
+
     if (this[keyword].responses[flags_met].indexOf("->") != -1) {
       var holder = this[keyword].responses[flags_met];
       holder = holder.replace(/\-\>/, "");
@@ -341,6 +345,25 @@ OnConvTriggers["king_heal"] = function(speaker,keyword) {
   return;
 }
 
+OnConvTriggers["hazel_cure"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("hazel_cure");
+  var effects = PC.getSpellEffects();
+  if (effects) {
+    for (var i=0; i<effects.length; i++) {
+      if (effects[i].getName() === "Poison") {
+        effects[i].endEffect();
+      }
+      if (effects[i].getName() === "Disease") {
+        effects[i].endEffect();
+      }
+    }
+  }
+  ShowEffect(PC, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+  DrawCharFrame();
+  
+  return;
+}
+
 OnConvTriggers["train_int"] = function(speaker,keyword) {
   if (PC.gettp() === 0) {
     alert("Somehow training Int without any tp.");
@@ -549,6 +572,10 @@ OnConvTriggers["kiba_rumor"] = function(speaker,keyword) {
   if (DU.gameflags.getFlag("kiba_question")) {
     DU.gameflags.deleteFlag("kiba_question")
   }
+}
+
+OnConvTriggers["franklin_karma"] = function(speaker,keyword) {
+  DU.gameflags.setFlag("franklin_offered",1)
 }
 
 OnConvTriggers["start_courier"] = function(speaker,keyword) {
