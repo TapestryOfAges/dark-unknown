@@ -1073,6 +1073,11 @@ tileFactory.prototype.makeTrainingDummyTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeArcheryTargetTile = function() {
+  var newTile = new ArcheryTargetTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAnvilTile = function() {
   var newTile = new AnvilTile();
   return newTile;
