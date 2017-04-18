@@ -4860,6 +4860,21 @@ function TrainingDummyTile() {
 }
 TrainingDummyTile.prototype = new FeatureObject();
 
+function ArcheryTargetTile() {
+  this.name = "ArcheryTarget";
+  this.graphic = "features.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "archery target";
+  
+  Pushable.call(this);
+  this.heavy = 1;
+}
+ArcheryTargetTile.prototype = new FeatureObject();
+
 function AnvilTile() {
   this.name = "Anvil";
   this.graphic = "features.png";
