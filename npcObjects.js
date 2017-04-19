@@ -544,6 +544,40 @@ PrinceNPCTile.prototype = new NPCObject();
 
 // Townsfolk
 
+function ChickenNPCTile() {
+  this.name = 'ChickenNPC';
+  this.level = 1;
+  this.addhp = -5;
+  this.str = 3;
+  this.dex = 3;
+  this.int = 3;
+  this.alignment = 'Good';
+  this.attitude = 'friendly';
+  this.peaceAI = 'townsfolk';
+  this.forgetAt = 0;
+  this.withdraw = 0;
+  this.graphic = 'chicken.gif';
+  this.meleeAttackAs = 'Fists';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'none';
+  this.armorDefense = 0;
+  this.armorAbsorb = 0;
+  this.armorResist = 0;
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = "chicken";
+  this.meleeChance = 100;
+  this.resists = {};
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
+}
+ChickenNPCTile.prototype = new NPCObject();
+
+
+// Townsfolk
+
 function HorseNPCTile() {
   this.name = 'HorseNPC';
   this.level = 2;
@@ -556,8 +590,8 @@ function HorseNPCTile() {
   this.peaceAI = 'townsfolk';
   this.forgetAt = 0;
   this.withdraw = 0;
-  this.graphic = '105.gif';
-  this.altgraphic = ['204.gif',];
+  this.graphic = 'horse.gif';
+  this.altgraphic = ['horse2.gif',];
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'LeatherArmor';
@@ -572,6 +606,37 @@ function HorseNPCTile() {
   this.meleeMissSound = 'sfx_animal_miss';
 }
 HorseNPCTile.prototype = new NPCObject();
+
+
+// Townsfolk
+
+function BullNPCTile() {
+  this.name = 'BullNPC';
+  this.level = 2;
+  this.addhp = 10;
+  this.str = 25;
+  this.dex = 12;
+  this.int = 3;
+  this.alignment = 'Good';
+  this.attitude = 'friendly';
+  this.peaceAI = 'townsfolk';
+  this.forgetAt = 0;
+  this.withdraw = 0;
+  this.graphic = '316.gif';
+  this.meleeAttackAs = 'Shortsword';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = "bull";
+  this.meleeChance = 100;
+  this.resists = {};
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeMissSound = 'sfx_animal_miss';
+}
+BullNPCTile.prototype = new NPCObject();
 
 
 // CorruptTownsfolk
@@ -2137,7 +2202,8 @@ function WaterElementalNPCTile() {
   this.peaceAI = 'wander-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '325.gif';
+  this.graphic = '326.gif';
+  this.altgraphic = ['360.gif',];
   this.meleeAttackAs = 'Longsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'ChainArmor';
