@@ -1457,6 +1457,7 @@ GameMap.prototype.saveMap = function (name) {
  else {
    printerwin.document.write(name + ".linkedMaps = [];\n");
  }
+ printerwin.document.write(name + ".editorLabels = '" + JSON.stringify(this.allLabels) + "';\n");
  printerwin.document.close();
 }
 
@@ -1498,6 +1499,13 @@ GameMap.prototype.loadMap = function (name) {
   this.setSaveName(mappages.readPage(name, "savename"));
   this.setReturn(mappages.readPage(name, "returnmap"), mappages.readPage(name, "returnx"), mappages.readPage(name, "returny"));
   this.setReturnInfused(mappages.readPage(name, "returninfused"));
+  if (DU.gameflags.getFlag("editor")) {
+    if (mappages.readPage(name, "editorLabels")) {
+      this.allLabels = JSON.parse(mappages.readPage(name, "editorLabels"));
+    } else {
+      this.allLabels = {};
+    }
+  }
   if (!DU.gameflags.getFlag("editor")) {
     if(mappages.readPage(name, "enterscript")) {
       mappages[name][mappages.readPage(name, "enterscript")](this);

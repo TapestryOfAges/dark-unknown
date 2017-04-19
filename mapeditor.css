@@ -43,3 +43,8 @@
   	           position: absolute;  }
 
  td { font-size:small; }
+
+ div.labelsLayer { opacity: .7;
+                  background-color: lightgrey; 
+									z-index:3;
+									font-weight:bold; }

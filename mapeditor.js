@@ -13,6 +13,7 @@ var debug = 0;
 var debugscreen;
 var togglehide = 0;
 var targetCursor = {};
+var workInLayers = 0;
 
 var brushdown = 0;
 var editable;
@@ -262,7 +263,18 @@ function clickmap(xval,yval) {
   changes = 1;
   var x=0;
   var y=0;
-  if (document.brushes.elements[0].checked) {   // point
+  if (workInLayers) {
+    var square = document.getElementById("td_tile"+xval+"x"+yval);
+    var rect = square.getBoundingClientRect();
+    brushdown = 0;
+    var mytext = prompt("Label:");
+    if (mytext) {
+      var divtileid = "div_tile"+xval+"x"+yval;
+      $("body").append('<div id="'+divtileid+'" style="position:absolute;left:'+rect.left+';top:'+rect.top+'" class="labelsLayer" onClick="DeleteLabel(\''+divtileid+'\')">&nbsp;'+mytext+'&nbsp;</div>');
+    }
+    amap.allLabels[divtileid] = mytext;
+  }
+  else if (document.brushes.elements[0].checked) {   // point
   	if (selectionval.checkType("Terrain")) {
       changemaptile(xval,yval);
     }
@@ -1070,4 +1082,21 @@ function RazeArea(startx,endx,starty,endy) {
     }
   }
   drawMap();
+}
+
+function ToggleLabels() {
+  if (workInLayers) {
+    workInLayers = 0;
+    $(".labelsLayer").css("display","none");
+    // hide all the labels
+  } else {
+    workInLayers = 1;
+    // show all the labels
+    $(".labelsLayer").css("display","inline");
+  }
+}
+
+function DeleteLabel(labelid) {
+  $("#"+labelid).remove();
+  delete amap.allLabels[labelid];
 }
