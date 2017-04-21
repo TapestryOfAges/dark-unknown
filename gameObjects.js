@@ -3228,84 +3228,6 @@ function BlueCarpetSETile() {
 }
 BlueCarpetSETile.prototype = new TerrainObject();
 
-function FenceNWTile() {
-  this.name = "FenceNW";
-  this.graphic = "fence-nw.gif";
-  this.overlay = "fence-nw.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "fence";
-  
-  SetByBelow.call(this)
-}
-FenceNWTile.prototype = new TerrainObject();
-
-function FenceNETile() {
-  this.name = "FenceNE";
-  this.graphic = "fence-ne.gif";
-  this.overlay = "fence-ne.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "fence";
-  
-  SetByBelow.call(this)
-}
-FenceNETile.prototype = new TerrainObject();
-
-function FenceEWTile() {
-  this.name = "FenceEW";
-  this.graphic = "fence-ew.gif";
-  this.overlay = "fence-ew.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "fence";
-  
-  SetByBelow.call(this)
-}
-FenceEWTile.prototype = new TerrainObject();
-
-function FenceSETile() {
-  this.name = "FenceSE";
-  this.graphic = "fence-se.gif";
-  this.overlay = "fence-se.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "fence";
-  
-  SetByBelow.call(this)
-}
-FenceSETile.prototype = new TerrainObject();
-
-function FenceSWTile() {
-  this.name = "FenceSW";
-  this.graphic = "fence-sw.gif";
-  this.overlay = "fence-sw.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "fence";
-  
-  SetByBelow.call(this)
-}
-FenceSWTile.prototype = new TerrainObject();
-
-function FenceNSTile() {
-  this.name = "FenceNS";
-  this.graphic = "fence-ns.gif";
-  this.overlay = "fence-ns.gif";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "fence";
-  
-  SetByBelow.call(this)
-}
-FenceNSTile.prototype = new TerrainObject();
-
 function SeeBelowTile() {
   this.name = "SeeBelow";
   this.graphic = "see-below.gif";
@@ -3455,6 +3377,114 @@ LavaTile.prototype.idle = function(person) {
 function InLava(who) {
   // WORK HERE
 }
+
+function FenceNWTile() {
+  this.name = "FenceNW";
+  this.graphic = "fence-nw.gif";
+  this.overlay = "fence-nw.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+  
+  SetByBelow.call(this)
+}
+FenceNWTile.prototype = new FeatureObject();
+
+function FenceNETile() {
+  this.name = "FenceNE";
+  this.graphic = "fence-ne.gif";
+  this.overlay = "fence-ne.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+  
+  SetByBelow.call(this)
+}
+FenceNETile.prototype = new FeatureObject();
+
+function FenceEWTile() {
+  this.name = "FenceEW";
+  this.graphic = "fence-ew.gif";
+  this.overlay = "fence-ew.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+  
+  SetByBelow.call(this)
+}
+FenceEWTile.prototype = new FeatureObject();
+
+function FenceSETile() {
+  this.name = "FenceSE";
+  this.graphic = "fence-se.gif";
+  this.overlay = "fence-se.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+  
+  SetByBelow.call(this)
+}
+FenceSETile.prototype = new FeatureObject();
+
+function FenceSWTile() {
+  this.name = "FenceSW";
+  this.graphic = "fence-sw.gif";
+  this.overlay = "fence-sw.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+  
+  SetByBelow.call(this)
+}
+FenceSWTile.prototype = new FeatureObject();
+
+function FenceNSTile() {
+  this.name = "FenceNS";
+  this.graphic = "fence-ns.gif";
+  this.overlay = "fence-ns.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+  
+  SetByBelow.call(this)
+}
+FenceNSTile.prototype = new FeatureObject();
+
+function FenceEWSTile() {
+  this.name = "FenceEWS";
+  this.graphic = "fence-ews.gif";
+  this.overlay = "fence-ews.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+  
+  SetByBelow.call(this)
+}
+FenceEWSTile.prototype = new FeatureObject();
+
+function FenceEWGateTile() {
+  Lockable.call(this, "009.gif", "010.gif", "067.gif", "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "FenceEWGate";
+	this.graphic = "fence-ew-gate-closed.gif";
+	this.overlay = "fence-ew-gate-closed.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0; 
+	this.prefix = "a";
+	this.desc = "gate";
+
+  SetByBelow.call(this);
+  Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "fence-ew-gate-open.gif", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  // WORKING- NEED TO REPLACE SOUNDS
+}
+FenceEWGateTile.prototype = new FeatureObject();
 
 function CoralTile() {
   this.name = "Coral";
@@ -4875,6 +4905,32 @@ function ArcheryTargetTile() {
 }
 ArcheryTargetTile.prototype = new FeatureObject();
 
+function PottedPlantTile() {
+  this.name = "PottedPlant";
+  this.graphic = "features.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "potted plant";
+  
+  Pushable.call(this);
+}
+PottedPlantTile.prototype = new FeatureObject();
+
+function WallPlaqueTile() {
+  this.name = "WallPlaque";
+  this.graphic = "features.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "wall with a plaque";
+}
+WallPlaqueTile.prototype = new FeatureObject();
+
 function AnvilTile() {
   this.name = "Anvil";
   this.graphic = "features.png";
@@ -5376,6 +5432,16 @@ function AppleTreeTile() {
   this.desc = "apple tree";
 }
 AppleTreeTile.prototype = new FeatureObject();
+
+function GrandfatherClockTile() {
+  this.name = "GrandfatherClock";
+  this.graphic = "grandfatherclock.gif";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "grandfather clock";
+}
+GrandfatherClockTile.prototype = new FeatureObject();
 
 function BarrelTile() {
   this.name = "Barrel";

@@ -648,6 +648,21 @@ tileFactory.prototype.makeBlueCarpetSETile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSeeBelowTile = function() {
+  var newTile = new SeeBelowTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWorldBelowTile = function() {
+  var newTile = new WorldBelowTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeLavaTile = function() {
+  var newTile = new LavaTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeFenceNWTile = function() {
   var newTile = new FenceNWTile();
   return newTile;
@@ -678,18 +693,13 @@ tileFactory.prototype.makeFenceNSTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeSeeBelowTile = function() {
-  var newTile = new SeeBelowTile();
+tileFactory.prototype.makeFenceEWSTile = function() {
+  var newTile = new FenceEWSTile();
   return newTile;
 }
 
-tileFactory.prototype.makeWorldBelowTile = function() {
-  var newTile = new WorldBelowTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeLavaTile = function() {
-  var newTile = new LavaTile();
+tileFactory.prototype.makeFenceEWGateTile = function() {
+  var newTile = new FenceEWGateTile();
   return newTile;
 }
 
@@ -1078,6 +1088,16 @@ tileFactory.prototype.makeArcheryTargetTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePottedPlantTile = function() {
+  var newTile = new PottedPlantTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWallPlaqueTile = function() {
+  var newTile = new WallPlaqueTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAnvilTile = function() {
   var newTile = new AnvilTile();
   return newTile;
@@ -1235,6 +1255,11 @@ tileFactory.prototype.makeCactusTile = function() {
 
 tileFactory.prototype.makeAppleTreeTile = function() {
   var newTile = new AppleTreeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGrandfatherClockTile = function() {
+  var newTile = new GrandfatherClockTile();
   return newTile;
 }
 
@@ -2713,8 +2738,18 @@ tileFactory.prototype.makePrinceNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeChickenNPCTile = function() {
+  var newTile = new ChickenNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeHorseNPCTile = function() {
   var newTile = new HorseNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBullNPCTile = function() {
+  var newTile = new BullNPCTile();
   return newTile;
 }
 
