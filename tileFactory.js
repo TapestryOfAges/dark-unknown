@@ -703,6 +703,41 @@ tileFactory.prototype.makeFenceEWGateTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeStatueBaseTile = function() {
+  var newTile = new StatueBaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStatueTopTile = function() {
+  var newTile = new StatueTopTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePaintingCrossTile = function() {
+  var newTile = new PaintingCrossTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePaintingGreenTile = function() {
+  var newTile = new PaintingGreenTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePaintingPurpleTile = function() {
+  var newTile = new PaintingPurpleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePaintingTreeTile = function() {
+  var newTile = new PaintingTreeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePedestalTile = function() {
+  var newTile = new PedestalTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCoralTile = function() {
   var newTile = new CoralTile();
   return newTile;
@@ -1965,6 +2000,11 @@ tileFactory.prototype.makeHornTile = function() {
 
 tileFactory.prototype.makeMortarTile = function() {
   var newTile = new MortarTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAppleTile = function() {
+  var newTile = new AppleTile();
   return newTile;
 }
 
