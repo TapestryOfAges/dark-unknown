@@ -3486,6 +3486,88 @@ function FenceEWGateTile() {
 }
 FenceEWGateTile.prototype = new FeatureObject();
 
+function StatueBaseTile() {
+  this.name = "StatueBase";
+  this.graphic = "statue.gif";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-32";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "statue";
+}
+StatueBaseTile.prototype = new FeatureObject();
+
+function StatueTopTile() {
+  this.name = "StatueTop";
+  this.graphic = "statue.gif";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "statue";
+}
+StatueTopTile.prototype = new FeatureObject();
+
+function PaintingCrossTile() {
+  this.name = "PaintingCross";
+  this.graphic = "features.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "painting";
+}
+PaintingCrossTile.prototype = new FeatureObject();
+
+function PaintingGreenTile() {
+  this.name = "PaintingGreen";
+  this.graphic = "features.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "painting";
+}
+PaintingGreenTile.prototype = new FeatureObject();
+
+function PaintingPurpleTile() {
+  this.name = "PaintingPurple";
+  this.graphic = "features.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "painting";
+}
+PaintingPurpleTile.prototype = new FeatureObject();
+
+function PaintingTreeTile() {
+  this.name = "PaintingTree";
+  this.graphic = "features.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "painting";
+}
+PaintingTreeTile.prototype = new FeatureObject();
+
+function PedestalTile() {
+  this.name = "Pedestal";
+  this.graphic = "features.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pedestal";
+}
+PedestalTile.prototype = new FeatureObject();
+
 function CoralTile() {
   this.name = "Coral";
   this.graphic = "coral.gif";
@@ -8413,6 +8495,28 @@ function MortarTile() {
 	this.prefix = "a";
 }
 MortarTile.prototype = new ItemObject();
+
+function AppleTile() {
+  this.name = "Apple";
+	this.graphic = "items.png";
+	this.spritexoffset = "-256";
+  this.spriteyoffset = "-224";
+	this.desc = "apple";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.prefix = "an";
+}
+AppleTile.prototype = new ItemObject();
+
+AppleTile.prototype.use = function(who) { 
+  var retval = {};
+  retval["fin"] = 1;
+  if (who === PC) {
+    retval["txt"] = "You crunch into the apple. It's delicious!";
+  }
+  who.setHP(Math.min(who.getMaxHP(), who.getHP()+1);
+  return retval;
+}
 
 function CrystalMortarTile() {
   this.name = "CrystalMortar";
