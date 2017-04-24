@@ -851,7 +851,7 @@ function maps_check_escape(mapref) {
           maintext.delayedAddText("Escaped!");
         }
       } else {
-        maintext.addText(who.getDesc() + " fled!");
+        maintext.addText("The " + who.getDesc() + " fled!");
       }
     }
     
