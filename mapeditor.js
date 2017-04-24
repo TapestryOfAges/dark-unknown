@@ -368,6 +368,7 @@ function clickmap(xval,yval) {
       $('#td_bubbletile').css("background-position", graphics[2] + "px " + graphics[3] + "px");
   	  document.images["bubbletile"].src = "graphics/" + graphics[1];
   	  $('#featurecoordstd').text("x: " + editable.getx() + ", y: " + editable.gety());
+      document.featureeditpopup.tileprefix.value = editable.getPrefix();
       document.featureeditpopup.tiledesc.value = editable.getDesc();
       document.featureeditpopup.walkonscript.value = editable.getWalkOnScript();
       document.featureeditpopup.usescript.value = editable.getUseScript();
@@ -467,6 +468,9 @@ function selectGraphic(optnum, selgraph) {
 
 function submitEditFeature(change) {
 	if (change === 1) {
+		if (document.featureeditpopup.tileprefix.value !== editable.getPrefix()) {
+			editable.setPrefix(document.featureeditpopup.tileprefix.value);
+		}    
 		if (document.featureeditpopup.tiledesc.value !== editable.getDesc()) {
 			editable.setDesc(document.featureeditpopup.tiledesc.value);
 		}
@@ -1064,23 +1068,19 @@ function PasteCopy(startx,starty) {
 }
 
 function RazeArea(startx,endx,starty,endy) {
-  for (var j = starty; j<= endy; j++) {
-    for (var i = startx; i<= endx; i++) {
-      var localacre = amap.getTile(i,j);
-      var acreFeatures= localacre.features.getAll();
-      if (acreFeatures.length) {
-        for (var k=0; k<acreFeatures.length; k++) {
-          amap.deleteThing(acreFeatures[k]);
-        }
-      }
-      var acrenpcs = localacre.npcs.getAll();
-      if (acrenpcs.length) {
-        for (var k=0; k<acrenpcs.length; k++) {
-          amap.deleteThing(acrenpcs[k]);
-        }
-      }
+  var allfeatures = amap.features.getAll();
+  for (var i = 0; i<allfeatures.length; i++) {
+    if ((allfeatures[i].getx() >= startx) && (allfeatures[i].getx() <= endx) && (allfeatures[i].gety() >= starty) && (allfeatures[i].gety() <= endy)) {
+      amap.deleteThing(allfeatures[i]);
     }
   }
+
+  var allnpcs = amap.npcs.getAll();
+  for (var i = 0; i<allnpcs.length; i++) {
+    if ((allnpcs[i].getx() >= startx) && (allnpcs[i].getx() <= endx) && (allnpcs[i].gety() >= starty) && (allnpcs[i].gety() <= endy)) {
+      amap.deleteThing(allnpcs[i]);
+    }
+  }  
   drawMap();
 }
 
