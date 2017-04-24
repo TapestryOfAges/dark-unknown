@@ -838,8 +838,8 @@ function PerformTrap(who, trap, traplvl, trapped) {
       return 0;
     }
     var aciddmg = Dice.roll("1d6+3");
-    who.dealDamage(aciddmg, trapped);
     maintext.addText("TRAP! You are splashed with acid.");
+    who.dealDamage(aciddmg, trapped, "acid");
     DrawCharFrame();
     return 1;
   } else if (trap === "gas") {
@@ -863,7 +863,7 @@ function PerformTrap(who, trap, traplvl, trapped) {
     }
     maintext.addText("TRAP! There is an explosion!");
     var firedmg = Dice.roll("3d6+4");
-    who.dealDamage(firedmg,trapped);
+    who.dealDamage(firedmg,trapped,"fire");
     DrawCharFrame();
     return 1;
   } else if (trap === "drain") {
