@@ -483,7 +483,9 @@ function SubmitImport(val) {
       alert("Save is invalid.");
     }
     finally {
-      gamestate.setMode("on");  
+      gamestate.setMode("null");  
+      latestidx = "manual";
+      SecondPage();
     }
   }
 }
