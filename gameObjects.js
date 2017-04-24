@@ -797,10 +797,6 @@ function OpenContainer() {
       }
     }
 
-    if (this.trapped && !fire) {
-      var trapresult = this.tryTrap(who);
-    }
-
     if ((typeof this.getLocked === "function") && !fire) {
       if (this.getLocked() == 1) {
         retval["fin"] = 1;
@@ -810,6 +806,14 @@ function OpenContainer() {
       else if (this.getLocked() === 2){
         retval["fin"] = 1;
         retval["txt"] = "Magically locked.";
+        return retval;
+      }
+    }
+
+    if (this.trapped && !fire) {
+      var trapresult = this.tryTrap(who);
+      if (this.getHomeMap() !== who.getHomeMap()) { // trap killed them
+        retval["override"] = 1;
         return retval;
       }
     }
@@ -5450,6 +5454,19 @@ function VanityTile() {
 }
 VanityTile.prototype = new FeatureObject();
 
+function CaskTile() {
+  this.name = "Cask";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-64";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "cask";
+	
+}
+CaskTile.prototype = new FeatureObject();
+
 function TreeTile() {
   this.name = "Tree";
   this.graphic = "trees.gif";
@@ -8514,7 +8531,7 @@ AppleTile.prototype.use = function(who) {
   if (who === PC) {
     retval["txt"] = "You crunch into the apple. It's delicious!";
   }
-  who.setHP(Math.min(who.getMaxHP(), who.getHP()+1);
+  who.setHP(Math.min(who.getMaxHP(), who.getHP()+1));
   return retval;
 }
 
@@ -11413,6 +11430,8 @@ NPCObject.prototype.processDeath = function(droploot){
       newmap.loadMap("landsbeyond");
       maps.addMapByRef(newmap);
     }
+    maintext.setInputLine("&gt;");
+    maintext.drawTextFrame(); 
     var tile = MoveBetweenMaps(this,this.getHomeMap(),newmap, 7, 7);
     var spellobjs = this.getSpellEffects();
     if (spellobjs.length) {

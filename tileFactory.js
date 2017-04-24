@@ -1268,6 +1268,11 @@ tileFactory.prototype.makeVanityTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCaskTile = function() {
+  var newTile = new CaskTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTreeTile = function() {
   var newTile = new TreeTile();
   return newTile;
