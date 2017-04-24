@@ -180,8 +180,12 @@ GameStateData.prototype.saveGame = function(flag) {
 	
 	if (flag === 'external') {
 	  var savescreen = window.open('','savescreen');
-	  savescreen.document.write(serialized);
-	  savescreen.document.close();
+    if (savescreen) {
+  	  savescreen.document.write(serialized);
+	    savescreen.document.close();
+    } else {
+      maintext.addText("<span style='sysconv'>Unable to open new window for save export.</span>");
+    }
 /*	} else if (flag === "charsave") {
 	  localStorage.charsave = compressed;
 	} else {
@@ -233,34 +237,18 @@ GameStateData.prototype.getLatestSaveIndex = function() {
 GameStateData.prototype.loadGame = function(idx) {
   gamestate.setMode("loadgame");
   
-  if (idx === "tmp") {
-    DebugWrite("saveload", "<br /><br /><p>LOADING TMP VALUES</p><br />");
-    gamestate.loadTmp();
-    return;
-  }
-
   var compressed;
   var serialized;
   
   DebugWrite("saveload", "<p><span style='font-weight:bold'>Start load procedure from slot " + idx + ":</span><br />");
 
-/*
-  if (localStorage.charsave) {
-    compressed = localStorage.charsave;
-    serialized = LZString.decompressFromUTF16(compressed);
-    delete localStorage.charsave;    
-  } else if (localStorage.manualsave) {
-    serialized = localStorage.manualsave;
-    delete localStorage.manualsave;
-  } else {
-    compressed = localStorage.savegame;
-    serialized = LZString.decompressFromUTF16(compressed);
-  }
-*/
-
   if (localStorage.manualsave) {
     serialized = localStorage.manualsave;
     delete localStorage.manualsave;
+  } else if (idx === "tmp") {
+    DebugWrite("saveload", "<br /><br /><p>LOADING TMP VALUES</p><br />");
+    gamestate.loadTmp();
+    return;
   } else {
 //    compressed = localStorage["save"+idx];
 //    serialized = LZString.decompressFromUTF16(compressed);
