@@ -1299,7 +1299,8 @@ GameMap.prototype.saveMap = function (name) {
  //  }
    if (baseobj.getDesc() !== mapfeatures[i].getDesc()) {
    	 var thedesc = mapfeatures[i].getDesc();
-     thedesc = thedesc.replace('"','\\"');
+     var replacequote = new RegExp('"', "g");
+     thedesc = thedesc.replace(replacequote,'\\"');
      printerwin.document.write(", desc : \"" + thedesc + "\"");
    }
    if (baseobj.getPrefix() !== mapfeatures[i].getPrefix()) {
