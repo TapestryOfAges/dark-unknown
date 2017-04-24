@@ -168,7 +168,7 @@ ais.combat = function(who) {
         whomap.deleteThing(who);
         DUTime.removeEntityFrom(who);
         if (PC.getHomeMap() === whomap) {
-          DrawMainFrame("draw", whomap, PC.getx(), PC.gety());
+          DrawMainFrame("draw", whomap.getName(), PC.getx(), PC.gety());
         }
         return retval;
       }
