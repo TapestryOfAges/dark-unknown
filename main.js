@@ -71,18 +71,18 @@ function DrawCharFrame() {
   $("#charstats").html(txt);
 }
 
-function DrawMainFrame(how, mapname, centerx, centery) {
+function DrawMainFrame(how, themap, centerx, centery) {
   // how options are "draw" and "one"
 
   var mapdiv = "";
-  var themap = maps.getMap(mapname);
+//  var themap = maps.getMap(mapname);
   var opac = 1;
   
-  if (themap === undefined) {
-    alert("How am I here? (Drawmap)");
-    maps.addMap(mapname);
-    themap = maps.getMap(mapname);
-  }
+//  if (themap === undefined) {
+//    alert("How am I here? (Drawmap)");
+//    maps.addMap(mapname);
+//    themap = maps.getMap(mapname);
+//  }
 
 //  var debugcolor = "#0000cc";
 //  if (debug) { dbs.writeln("<br /><br />"); }
@@ -195,7 +195,7 @@ function SoundLoaded() {
 //  audio_init_2();   // moved into audio_init
   DrawCharFrame();
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
 
   maintext.addText("Game loaded.");
   maintext.setInputLine("&gt;");
@@ -253,7 +253,7 @@ function DoAction(code, ctrl) {
         if (targetCursor.command === "c") {
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame();
-          DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
+          DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
           PC.endTurn();
         } else {
           var retval = PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), targetCursor.keyword); 
@@ -517,7 +517,7 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     }
@@ -532,7 +532,7 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       PC.endTurn(response["initdelay"]);
     }
     else if (response["fin"] === 3) {
@@ -560,7 +560,7 @@ function DoAction(code, ctrl) {
     maintext.setInputLine("&gt;");
     maintext.drawTextFrame();
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     PC.endTurn(response["initdelay"]);
   }
   else if (gamestate.getMode() === "zstats") {
@@ -569,7 +569,7 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     } else if (response["fin"] === 1) {
@@ -582,7 +582,7 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     } else if (response["fin"] === 1) {
@@ -629,7 +629,7 @@ function DoAction(code, ctrl) {
           gamestate.loadGame(idx); 
           DrawCharFrame();
           DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-          DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+          DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
 
           maintext.addText("Game loaded.");
           maintext.setInputLine("&gt;");

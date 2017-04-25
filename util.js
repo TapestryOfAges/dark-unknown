@@ -262,7 +262,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   if ((who !== PC) && (!tomap.getScale())) {
     // a non-PC is fleeing to a world map. Delete instead.
     frommap.deleteThing(who);
-    DrawMainFrame("one",frommap.getName(),oldx,oldy);
+    DrawMainFrame("one",frommap,oldx,oldy);
     DUTime.removeEntityFrom(who);
     var spawner=who.getSpawnedBy();
     if (spawner) {
@@ -889,7 +889,7 @@ function animateImage(startx, endx, obj, repeat, dir, waitdur, destroywhendone, 
   if (timeouts[obj.getSerial()]) { clearTimeout(timeouts[obj.getSerial()]); }
   if (settostart) { obj.spritexoffset = startx; }
   if (PC.getHomeMap() === obj.getHomeMap()) {
-    DrawMainFrame("one", obj.getHomeMap().getName(), obj.getx(), obj.gety());
+    DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
     timeouts[obj.getSerial()] = setTimeout(function() { continueAnimation(startx, endx, obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
   }
 }
@@ -903,14 +903,14 @@ function continueAnimation(startx, endx, obj,repeat, dir, waitdur, destroywhendo
     if (obj.spritexoffset == endx) {
       if (repeat) {
         obj.spritexoffset = startx;
-        DrawMainFrame("one", obj.getHomeMap().getName(), obj.getx(), obj.gety());
+        DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
         timeouts[obj.getSerial()] = setTimeout(function() { continueAnimation(startx, endx, obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
       }  else if (destroywhendone) {
         setTimeout(function() { destroyAnimation(obj) }, waitdur);
       }
     } else {
       obj.spritexoffset = parseInt(obj.spritexoffset) + diff;
-      DrawMainFrame("one", obj.getHomeMap().getName(), obj.getx(), obj.gety());
+      DrawMainFrame("one", obj.getHomeMap(), obj.getx(), obj.gety());
       timeouts[obj.getSerial()] = setTimeout(function() { continueAnimation(startx, endx, obj, repeat, dir, waitdur, destroywhendone) }, waitdur);
     }
   }
@@ -923,7 +923,7 @@ function destroyAnimation(thing) {
   var thingy = thing.gety();
   thingmap.deleteThing(thing);
   if (thingmap === PC.getHomeMap()) {
-    DrawMainFrame("one", thingmap.getName(), thingx, thingy);
+    DrawMainFrame("one", thingmap, thingx, thingy);
   }
 }
 
@@ -1373,7 +1373,7 @@ function GetStickyTargetCursorCoords() {
 }
 
 function CreateTargetCursor(params, noredraw) {
-  if (!noredraw) { DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety()); }
+  if (!noredraw) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
   var coords = {};
   if (params.sticky) {
     coords = GetStickyTargetCursorCoords();

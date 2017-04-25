@@ -497,7 +497,7 @@ function CheckLasers(themap) {
       }
     }
   }
-  DrawMainFrame("draw",themap.getName(),PC.getx(),PC.gety());
+  DrawMainFrame("draw",themap,PC.getx(),PC.gety());
 }
 
 mappages["pitdespair3"] = {};

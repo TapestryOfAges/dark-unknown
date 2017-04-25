@@ -762,7 +762,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   duration = duration*2*SCALE_TIME;
   illusion.expiresTime = DUTime.getGameClock() + duration;  // illusion AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
-  DrawMainFrame("one",caster.getHomeMap().getName(),illusion.getx(),illusion.gety());
+  DrawMainFrame("one",caster.getHomeMap(),illusion.getx(),illusion.gety());
   
   resp["txt"] = "You conjure an illusion to aid you in battle.";
   resp["input"] = "&gt;";
@@ -1071,7 +1071,7 @@ magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID].executeSpell = function(caster, infus
         var lock = val.getLocked();
         if ((lock === 1) || ((lock === 2) && (infused))) {
           val.unlockMe();
-          DrawMainFrame("one", castermap.getName(), val.getx(), val.gety());
+          DrawMainFrame("one", castermap, val.getx(), val.gety());
           var desc = "The " + val.getDesc() + " is unlocked.";
           ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
           desc = desc.charAt(0).toUpperCase() + desc.slice(1);      
@@ -1457,9 +1457,9 @@ function PerformTelekinesis(caster, infused, free, tgt) {
         usemap.setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
       });
 		  
-      DrawMainFrame("draw",usemap.getName(),PC.getx(),PC.gety());
+      DrawMainFrame("draw",usemap,PC.getx(),PC.gety());
     } else {		
-      DrawMainFrame("one",usemap.getName(),tgt.getx(),tgt.gety());
+      DrawMainFrame("one",usemap,tgt.getx(),tgt.gety());
     }
   }
   return retval;
@@ -1490,12 +1490,12 @@ function PerformTelekinesisMove(caster, infused, free, tgt) {
 
   if ((typeof tgt.getLight === "function") && (tgt.getLight() !== 0)) {
     if (PC.getHomeMap() === usemap) {
-      DrawMainFrame("draw",usemap.getName(),PC.getx(),PC.gety());
+      DrawMainFrame("draw",usemap,PC.getx(),PC.gety());
     }
   } else {
     if ((PC.getHomeMap() === usemap) && (GetDistance(PC.getx(),PC.gety(),tgt.getx(),tgt.gety(),"square") <= 6)) {
-      DrawMainFrame("one",usemap.getName(),tgt.getx(),tgt.gety());
-      DrawMainFrame("one",usemap.getName(),oldx,oldy);
+      DrawMainFrame("one",usemap,tgt.getx(),tgt.gety());
+      DrawMainFrame("one",usemap,oldx,oldy);
     }
   }
   
@@ -1746,7 +1746,7 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
   } else {
     alert("Finding facing isn't working.");
   }
-  DrawMainFrame("draw",castermap.getName(),PC.getx(),PC.gety());
+  DrawMainFrame("draw",castermap,PC.getx(),PC.gety());
   
   return resp;
 }
@@ -1856,7 +1856,7 @@ function PerformBlink(caster,destx, desty) {
     if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
     retval["msg"] += walkonval;
   }
-  DrawMainFrame("draw", PC.getHomemap().getName() , PC.getx(), PC.gety());
+  DrawMainFrame("draw", PC.getHomemap(), PC.getx(), PC.gety());
   maintext.addText(retval["msg"]);
   if ((caster.getx() === destx) && (caster.gety() === desty)) {
     return 1;
@@ -2148,7 +2148,7 @@ function PerformCrystalBarrier(caster, infused, free, tgt) {
   if (free) { duration = Dice.roll("1d6+12") * SCALE_TIME; }
   crystal.expiresTime = DUTime.getGameClock() + duration;  // barrier AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
-  DrawMainFrame("one",caster.getHomeMap().getName(),crystal.getx(),crystal.gety());
+  DrawMainFrame("one",caster.getHomeMap(),crystal.getx(),crystal.gety());
   
   resp["txt"] = "You conjure a crystal barrier.";
   resp["input"] = "&gt;";
@@ -2505,9 +2505,9 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
   if (eletype !== "FireElemental") {
-    DrawMainFrame("one",caster.getHomeMap().getName(),ally.getx(),ally.gety());
+    DrawMainFrame("one",caster.getHomeMap(),ally.getx(),ally.gety());
   } else {
-    DrawMainFrame("draw",caster.getHomeMap().getName(),PC.getx(),PC.gety());
+    DrawMainFrame("draw",caster.getHomeMap(),PC.getx(),PC.gety());
   }
   
   resp["txt"] = "You conjure an elemental to aid you in battle.";
@@ -3347,7 +3347,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
   
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
-  DrawMainFrame("one",caster.getHomeMap().getName(),ally.getx(),ally.gety());
+  DrawMainFrame("one",caster.getHomeMap(),ally.getx(),ally.gety());
   
   resp["txt"] = "You conjure a daemon to aid you in battle!";
   resp["input"] = "&gt;";
@@ -3427,52 +3427,52 @@ function TravelByMoongate(who, color, belowgraphic, destbelow, destmap, destx, d
   var oldgraphic = who.getGraphicArray();
   // play sound effect
   who.setGraphicArray(graphicarray);
-  DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+  DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
   setTimeout(function() {
     graphicarray[2] += 32;
     who.setGraphicArray(graphicarray);
-    DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+    DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
     setTimeout(function() {
       graphicarray[2] += 32;
       who.setGraphicArray(graphicarray);
-      DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+      DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
       setTimeout(function() {
         graphicarray[2] += 32;
         who.setGraphicArray(graphicarray);
-        DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+        DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
         setTimeout(function() {
           graphicarray[2] += 32; // at this point it should be 0
           who.setGraphicArray(graphicarray);
-          DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+          DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
           setTimeout(function() {
             who.setGraphicArray(belowgraphic);
-            DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+            DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
             setTimeout(function() {
               MoveBetweenMaps(who,who.getHomeMap(), destmap, destx, desty);
               who.setGraphicArray(destbelow);
-              DrawMainFrame("draw", who.getHomeMap().getName(), who.getx(), who.gety());
+              DrawMainFrame("draw", who.getHomeMap(), who.getx(), who.gety());
               setTimeout(function() {
                 who.setGraphicArray(graphicarray);
-                DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                 setTimeout(function() {
                   graphicarray[2] -= 32;
                   who.setGraphicArray(graphicarray);
-                  DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                  DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                   setTimeout(function() {
                     graphicarray[2] -= 32;
                     who.setGraphicArray(graphicarray);
-                    DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                    DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                     setTimeout(function() {
                       graphicarray[2] -= 32;
                       who.setGraphicArray(graphicarray);
-                      DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                      DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                       setTimeout(function() {
                         graphicarray[2] -= 32;
                         who.setGraphicArray(graphicarray);
-                        DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                        DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                         setTimeout(function() {
                           who.setGraphicArray(oldgraphic);
-                          DrawMainFrame("one", who.getHomeMap().getName(), who.getx(), who.gety());
+                          DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                           DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");  
                           who.endTurn();  // currently only PC has endturn
                                           // if an NPC spell can use this function, add an endturn to NPCs

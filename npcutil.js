@@ -477,7 +477,7 @@ function StepOrDoor(who, where, nopush) {
             DebugWrite("ai", "opening a door in StepOrDoor.<br />");
             fea.use(who);
             if (GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) {
-              DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
+              DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
             } 
             var moved = {canmove:0, opendoor:2, fin:1, diffx: where[0]-who.getx(), diffy: where[1]-who.gety() };
             return moved;  // opened a door, didn't take a step

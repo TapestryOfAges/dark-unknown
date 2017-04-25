@@ -251,6 +251,6 @@ function Open_BDC_Gate(mapref) {
     mapref.setTerrain(11,42,planks);
     mapref.setTerrain(12,42,planks);
     mapref.setTerrain(13,42,planks);
-    DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
 }

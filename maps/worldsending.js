@@ -214,7 +214,7 @@ function WE_PlaceWalkon(mapref, walkonx, walkony) {
     var trackteleports = this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn");
     trackteleports.secondlastteleport = trackteleports.lastteleport;
     trackteleports.lastteleport = this.getx() + "," + this.gety();
-    if (who === PC) { DrawMainFrame("draw", PC.getHomeMap().getName(), PC.getx(), PC.gety()); }
+    if (who === PC) { DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety()); }
   }
 }
 

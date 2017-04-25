@@ -74,7 +74,7 @@ function RunTest() {
   
   var torch = localFactory.createTile("TorchEast");
 //  testmap.placeThing(11,22,torch);
-  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   
 }
 

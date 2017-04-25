@@ -532,7 +532,7 @@ function PerformEscape() {
  			if (tile) {
  			  DebugWrite("map", "Exited from MoveBetweenMaps. New map is " + newmap.getName() + ".<br />");
         retval["canmove"] = 0;
-	    	DrawMainFrame("draw", newmap.getName() , PC.getx(), PC.gety());
+	    	DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
   		  DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
  				maintext.addText(".<br />Exiting " + pcmap.getName() + ".");
  			} else {
@@ -705,7 +705,7 @@ function PerformAttackMap(who) {
     
     DUTime.removeEntityFrom(atkwho);
     
-    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     retval["txt"] = "Attack: " + atkwho.getDesc() + ".";
     retval["fin"] = 0;
     retval["input"] = "&gt;";
@@ -1063,7 +1063,7 @@ function PerformEnter(cmd) {
 			} else if (klimb != "") {
 				retval["txt"] = klimb;
 			}
-			DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+			DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
 			DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 			
 		}
@@ -1088,7 +1088,7 @@ function PerformGet(who) {
     retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
     retval["fin"] = 1;
     if (itemmap === PC.getHomeMap()) {
-      DrawMainFrame("one",itemmap.getName(),targetCursor.x,targetCursor.y);
+      DrawMainFrame("one",itemmap,targetCursor.x,targetCursor.y);
       DrawCharFrame();
     }
     return retval;    
@@ -1248,7 +1248,7 @@ function PerformSearch(who) {
     if (searched.getSearchedGraphic()) {
       searched.setGraphicArray(searched.getSearchedGraphic());
     }
-    DrawMainFrame("one",who.getHomeMap().getName(),targetCursor.x,targetCursor.y);
+    DrawMainFrame("one",who.getHomeMap(),targetCursor.x,targetCursor.y);
   } else if (searched.getSearchDesc()) {
     retval["txt"] = "You see: " + searched.getSearchPrefix() + " " + searched.getSearchDesc() + ".";
     retval["fin"] = 1;
@@ -1261,7 +1261,7 @@ function PerformSearch(who) {
     retval["fin"] = 1;
     if (searched.getSearchedGraphic()) {
       searched.setGraphicArray(searched.getSearchedGraphic());
-      DrawMainFrame("one",who.getHomeMap().getName(),targetCursor.x,targetCursor.y);
+      DrawMainFrame("one",who.getHomeMap(),targetCursor.x,targetCursor.y);
     }
 
   }
@@ -1270,7 +1270,7 @@ function PerformSearch(who) {
   }
   if (searched.getSearchDelete()) {
     searched.getHomeMap().deleteThing(searched);
-    DrawMainFrame("one",who.getHomeMap().getName(),targetCursor.x,targetCursor.y);
+    DrawMainFrame("one",who.getHomeMap(),targetCursor.x,targetCursor.y);
   }
   return retval;
 }
@@ -1768,9 +1768,9 @@ function MakeUseHappen(who,used,where) {
     		  who.getHomeMap().setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
 	      });
 		  
-  		  DrawMainFrame("draw",used.getHomeMap().getName(),PC.getx(),PC.gety());
+  		  DrawMainFrame("draw",used.getHomeMap(),PC.getx(),PC.gety());
   	  } else {		
-	  	  DrawMainFrame("one",used.getHomeMap().getName(),used.getx(),used.gety());
+	  	  DrawMainFrame("one",used.getHomeMap(),used.getx(),used.gety());
   	  }
     }
   }
@@ -1981,7 +1981,7 @@ function PerformYell() {
 				maps.addMapByRef(newmap);
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,16,13);		  
-      DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTBARD") {
       var newmap = new GameMap();
       if (maps.getMap("swainhil")) {
@@ -1991,11 +1991,11 @@ function PerformYell() {
 				maps.addMapByRef(newmap);
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,48,19);		  
-      DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "GOGROTTO") {
 		    var homemap = PC.getHomeMap();
 		    homemap.moveThing(30,45,PC);
-		    DrawMainFrame("draw", homemap.getName(), PC.getx(), PC.gety());
+		    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTGROTTO") {
       var newmap = new GameMap();
       if (maps.getMap("grotto")) {
@@ -2005,7 +2005,7 @@ function PerformYell() {
 				maps.addMapByRef(newmap);
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,22,53);		  
-      DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTETHER") {
       var newmap = new GameMap();
       if (maps.getMap("ether")) {
@@ -2015,7 +2015,7 @@ function PerformYell() {
 				maps.addMapByRef(newmap);
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,46,64);		  
-      DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTPALACE") {
       var newmap = new GameMap();
       if (maps.getMap("skypalace")) {
@@ -2025,7 +2025,7 @@ function PerformYell() {
 				maps.addMapByRef(newmap);
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,47,49);		  
-      DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTROYAL") {
       var newmap = new GameMap();
       if (maps.getMap("pitdespair2")) {
@@ -2035,7 +2035,7 @@ function PerformYell() {
 				maps.addMapByRef(newmap);
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,46,28);		  
-      DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "BAKEDBEANS") {
       var itemname = prompt("Create what item?");
       var newthing = localFactory.createTile(itemname);
@@ -2057,7 +2057,7 @@ function PerformYell() {
       newmap.placeThing(20,25,tmpdude);
       var tmpdude2 = localFactory.createTile("PaladinVillagerNPC");
       newmap.placeThing(20,30,tmpdude2);
-      DrawMainFrame("draw", newmap.getName(), PC.getx(), PC.gety());
+      DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTANIMA") {
       var tmpmap = maps.getMap("greenacres");
       var castermob = tmpmap.getTile(20,25).getTopNPC();
@@ -2070,7 +2070,7 @@ function PerformYell() {
 		    maintext.delayedAddText("In a blink, you are elsewhere.");
 		    var homemap = PC.getHomeMap();
 		    homemap.moveThing(25,23,PC);
-		    DrawMainFrame("draw", homemap.getName(), PC.getx(), PC.gety());
+		    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
 		  }
 		}
 		retval["txt"] = "Yell: " + inputText.txt + "!";

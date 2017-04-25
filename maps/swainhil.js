@@ -385,7 +385,7 @@ mappages["swainhil3"].nogalaxy = function(feature) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(normalsong);
     }
-    DrawMainFrame("draw",mymap.getName(),walker.getx(),walker.gety());
+    DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
     return;
   }
 }
@@ -401,7 +401,7 @@ mappages["swainhil3"].galaxy1 = function(feature) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(song);
     }
-    DrawMainFrame("draw",mymap.getName(),walker.getx(),walker.gety());
+    DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
     return;
   }
 }
@@ -417,7 +417,7 @@ mappages["swainhil3"].galaxy2 = function(feature) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(song);
     }
-    DrawMainFrame("draw",mymap.getName(),walker.getx(),walker.gety());
+    DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
     return;
   }
 }
@@ -433,7 +433,7 @@ mappages["swainhil3"].galaxy3 = function(feature) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(song);
     }
-    DrawMainFrame("draw",mymap.getName(),walker.getx(),walker.gety());
+    DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
     return;
   }
 }

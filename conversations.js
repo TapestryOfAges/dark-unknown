@@ -214,12 +214,14 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   saywhat = saywhat.replace(/%SYS%(.+?)%SYS%/g, "<span class='sysconv'>$1</span>");
   
   var speech = saywhat.split("%%");
+  var skipped = "";
   while (skipahead) {
     speech.shift();
     skipahead--;
+    skipped = "<br />";
   }
   speech[0] = speech[0].charAt(0).toUpperCase() + speech[0].slice(1);
-  maintext.addText("<span class='conv'>" + speech[0] + "</span>");
+  maintext.addText(skipped + "<span class='conv'>" + speech[0] + "</span>");
   speech.shift();
   
   if (speech[0]) {
@@ -275,7 +277,7 @@ function InnRoom(xc,yc,doors) {
       doors.shift();
     }
     innmap.moveThing(xc,yc,PC);
-    DrawMainFrame("draw", PC.getHomeMap().getName(), PC.getx(),PC.gety());
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(),PC.gety());
     setTimeout(function() {
       $("#mainview").fadeIn(1000, function() {
         maintext.addText("You awake refreshed!");
@@ -309,7 +311,7 @@ OnConvTriggers["ash_password"] = function(speaker,keyword) {
   DUPlaySound("sfx_open_door"); 
   door.open = 1;
 			
-  DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
+  DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   DU.gameflags.deleteFlag("ash_password");
   
   return;
@@ -704,7 +706,7 @@ OnConvTriggers["sirius_book1"] = function(speaker,keyword) {
   var lightsource = localFactory.createTile("TorchWest");
   thismap.placeThing(31,41,lightsource);
   
-  DrawMainFrame("draw", thismap.getName(), PC.getx(), PC.gety());
+  DrawMainFrame("draw", thismap, PC.getx(), PC.gety());
 }
 
 OnConvTriggers["talked_shelaria"] = function(speaker,keyword) {
