@@ -738,6 +738,31 @@ tileFactory.prototype.makePedestalTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWoodSignTile = function() {
+  var newTile = new WoodSignTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWoodSign1Tile = function() {
+  var newTile = new WoodSign1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWoodSign2Tile = function() {
+  var newTile = new WoodSign2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWoodSign3Tile = function() {
+  var newTile = new WoodSign3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWoodSign4Tile = function() {
+  var newTile = new WoodSign4Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCoralTile = function() {
   var newTile = new CoralTile();
   return newTile;
