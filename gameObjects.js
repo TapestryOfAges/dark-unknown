@@ -487,12 +487,12 @@ function Pushable() {
         }
         if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
           if (PC.getHomeMap() === objmap) {
-            DrawMainFrame("draw",objmap.getName(),PC.getx(),PC.gety());
+            DrawMainFrame("draw",objmap,PC.getx(),PC.gety());
           }
         } else {
           if ((PC.getHomeMap() === objmap) && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety(),"square") <= 6)) {
-            DrawMainFrame("one",objmap.getName(),this.getx(),this.gety());
-            DrawMainFrame("one",objmap.getName(),this.getx()-diffx,this.gety()-diffy);
+            DrawMainFrame("one",objmap,this.getx(),this.gety());
+            DrawMainFrame("one",objmap,this.getx()-diffx,this.gety()-diffy);
           }
         }
       } else {
@@ -526,12 +526,12 @@ function Pushable() {
 
     if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
       if (PC.getHomeMap() === objmap) {
-        DrawMainFrame("draw",objmap.getName(),PC.getx(),PC.gety());
+        DrawMainFrame("draw",objmap,PC.getx(),PC.gety());
       }
     } else {
       if ((PC.getHomeMap() === objmap) && (GetDistance(PC,this,"square") <= 6)) {
-        DrawMainFrame("one",objmap.getName(),this.getx(),this.gety());
-        DrawMainFrame("one",objmap.getName(),this.getx()-diffx,this.gety()-diffy);
+        DrawMainFrame("one",objmap,this.getx(),this.gety());
+        DrawMainFrame("one",objmap,this.getx()-diffx,this.gety()-diffy);
       }
     }
      
@@ -633,7 +633,7 @@ function LightEmitting(lightlevel) {
 	    this.getHomeMap().setMapLight(this,light,this.getx(),this.gety());
 	  }
 	    
-	  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+	  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
 		this.light = light;
 	}
 	this.getLight = function() {
@@ -659,7 +659,7 @@ function Breakable(brokengraphicarray, startsbroken) {
     var olddesc = this.getDesc();
     this.setDesc(this.brokendesc);
     //play sound effect
-    DrawMainFrame("one", this.getHomeMap().getName(), this.getx(), this.gety());
+    DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
     if (this.karmamod && (who === PC)) { 
       DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")+this.karmamod);
     }
@@ -685,7 +685,7 @@ function Breakable(brokengraphicarray, startsbroken) {
       }
     }
     this.setDesc(this.fixeddesc);
-    DrawMainFrame("one", this.getHomeMap().getName(), this.getx(), this.gety());  // will try to draw 0,0 if in inventory, which is ok
+    DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());  // will try to draw 0,0 if in inventory, which is ok
   }
   
 }
@@ -3572,6 +3572,66 @@ function PedestalTile() {
 }
 PedestalTile.prototype = new FeatureObject();
 
+function WoodSignTile() {
+  this.name = "WoodSign";
+  this.graphic = "features.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "sign";
+}
+WoodSignTile.prototype = new FeatureObject();
+
+function WoodSign1Tile() {
+  this.name = "WoodSign1";
+  this.graphic = "features.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "sign";
+}
+WoodSign1Tile.prototype = new FeatureObject();
+
+function WoodSign2Tile() {
+  this.name = "WoodSign2";
+  this.graphic = "features.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "sign";
+}
+WoodSign2Tile.prototype = new FeatureObject();
+
+function WoodSign3Tile() {
+  this.name = "WoodSign3";
+  this.graphic = "features.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "sign";
+}
+WoodSign3Tile.prototype = new FeatureObject();
+
+function WoodSign4Tile() {
+  this.name = "WoodSign4";
+  this.graphic = "features.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "sign";
+}
+WoodSignTile4.prototype = new FeatureObject();
+
 function CoralTile() {
   this.name = "Coral";
   this.graphic = "coral.gif";
@@ -4056,7 +4116,7 @@ BrazierTile.prototype.use = function(who) {
     var y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,unlit);
-    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     
     retval["txt"] = "You extinguish the brazier.";
   } else {
@@ -4088,7 +4148,7 @@ UnlitBrazierTile.prototype.use = function(who) {
     var y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,lit);
-    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     
     retval["txt"] = "You light the brazier.";
   } else {
@@ -4120,7 +4180,7 @@ WEBrazierTile.prototype.use = function(who) {
     var y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,unlit);
-    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     
     retval["txt"] = "You extinguish the brazier.";
   } else {
@@ -4153,7 +4213,7 @@ UnlitWEBrazierTile.prototype.use = function(who) {
     var y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,lit);
-    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     
     retval["txt"] = "You light the brazier.";
   } else {
@@ -5580,7 +5640,7 @@ function ContainerOnFire(what) {
   
   var itsmap = what.getHomeMap();
   itsmap.deleteThing(what);
-  DrawMainFrame("one",itsmap.getName(),thisx,thisy);
+  DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
   
@@ -5716,7 +5776,7 @@ WaterfallFlowTile.prototype.walkon = function(who) {
 function DescendWaterfall(who, waterfall) {
   var thismap = who.getHomeMap();
   thismap.moveThing(who.getx(),who.gety()+1,who);
-  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());  
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());  
   if (who.gety() === waterfall.gety()) {
     setTimeout(function() {
       DescendWaterfall(who,waterfall);
@@ -5827,7 +5887,7 @@ WalkOnAbyssTile.prototype.walkon = function(walker) {
     this.desty = walker.gety();
   }
   MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
-  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   if (this.say) {
     maintext.addText(this.say);
@@ -6417,7 +6477,7 @@ GrottoLeverOffTile.prototype.use = function(who) {
   });
   MoveBetweenMaps(PC,frommap,tomap,PC.getx(),PC.gety());
   
-  DrawMainFrame("draw", "grotto2", PC.getx(), PC.gety());
+  DrawMainFrame("draw", tomap, PC.getx(), PC.gety());
   return retval;
 }
 
@@ -7017,7 +7077,7 @@ function whoosh(whozat, windlist, spawnwhere, spawnthing) {
   
   var windmap = whozat.getHomeMap();
   windmap.moveThing(tox,toy,whozat);
-  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());  
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());  
   
   if (windlist[2]) {
     setTimeout( function() { whoosh(whozat, windlist.slice(2), spawnwhere, spawnthing); }, 100);
@@ -7105,7 +7165,7 @@ MarkOfKingsTile.prototype.use = function(user) {
         }
         
         user.getHomeMap().moveThing(111,67,user);
-        DrawMainFrame("draw", "darkunknown", user.getx(), user.gety());
+        DrawMainFrame("draw", themap, user.getx(), user.gety());
         // teleport to entrance to air
         setTimeout(function() {
           var moongate = localFactory.createTile("Moongate");
@@ -7354,7 +7414,7 @@ TeleporterPlatformTile.prototype.walkon = function(who) {
       var destmap = DU.maps.getMap(dest.map);
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
-    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
     // NEEDS SFX/SOUND
   }
@@ -7395,7 +7455,7 @@ PitTeleporterPlatformTile.prototype.walkon = function(who) {
       var destmap = DU.maps.getMap(dest.map);
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
-    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
     // NEEDS SFX/SOUND
   }
@@ -7575,7 +7635,7 @@ function PerformToshinAltar(code) {
     retval["fin"] = 2;
     return retval;
   } 
-  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   return retval;
 }
 
@@ -7617,9 +7677,9 @@ ToshinMoatLeverOffTile.prototype.use = function(who) {
     lever2.setGraphic("moatLever-off.gif");
     lever2.setOverlay("moatLever-off.gif");    
   }
-  DrawMainFrame("one",themap.getName(),lever1.getx(), lever1.gety());
-  DrawMainFrame("one",themap.getName(),lever2.getx(), lever2.gety());
-  DrawMainFrame("one",themap.getName(),door.getx(), door.gety());
+  DrawMainFrame("one",themap,lever1.getx(), lever1.gety());
+  DrawMainFrame("one",themap,lever2.getx(), lever2.gety());
+  DrawMainFrame("one",themap,door.getx(), door.gety());
   
   return retval;
 }
@@ -7729,7 +7789,7 @@ EtherGateTile.prototype.walkon = function(who) {
     });
   }
   homemap.moveThing(this.destx,this.desty,who);
-  DrawMainFrame("draw", homemap.getName(), PC.getx(), PC.gety());
+  DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
 }
 
 function MoongateTile() {
@@ -7753,7 +7813,7 @@ MoongateTile.prototype.walkon = function(who) {
       maps.addMapByRef(newmap);
     }
     MoveBetweenMaps(PC,PC.getHomeMap(),newmap, this.destx, this.desty);
-    DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
 
   } 
@@ -8614,7 +8674,7 @@ BookItemObject.prototype.use = function(who) {
       targetCursor.booktext = bookcontents;
     } else {
       retval["fin"] = 1;
-      DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
+      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
     }
   }
   return retval;
@@ -8803,7 +8863,7 @@ PotionItemObject.prototype.flamed = function() {
   
   var itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
-  DrawMainFrame("one",itsmap.getName(),thisx,thisy);
+  DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
 }
@@ -8847,7 +8907,7 @@ GreenPotionTile.prototype.flamed = function() {
   }
   
   itsmap.deleteThing(this);
-  DrawMainFrame("one",itsmap.getName(),thisx,thisy);
+  DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
 }
@@ -9248,7 +9308,7 @@ ScrollItemObject.prototype.spellcast = function(who) {
   if (this.getHomeMap()) {
     // cast from floor 
     this.getHomeMap().deleteThing(this);
-    DrawMainFrame("one",this.getHomeMap().getName(),this.getx(),this.gety());
+    DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
   } else {
     who.removeFromInventory(this);
   }
@@ -9261,7 +9321,7 @@ ScrollItemObject.prototype.flamed = function() {
   
   var itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
-  DrawMainFrame("one",itsmap.getName(),thisx,thisy);
+  DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
 }
@@ -9843,7 +9903,7 @@ AudachtaNemesosObject.prototype.flamed = function() {
   
   var itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
-  DrawMainFrame("one",itsmap.getName(),thisx,thisy);
+  DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
 }
@@ -11443,7 +11503,7 @@ NPCObject.prototype.processDeath = function(droploot){
     }
     $("#mainview").fadeOut(2600, function() {
       maintext.addText("You find yourself floating bodiless in the void.");
-      DrawMainFrame("draw", "landsbeyond", 7,7);
+      DrawMainFrame("draw", newmap, 7,7);
       $("#mainview").css('display','none');
       $("#mainview").fadeIn(2000, "swing", function() {
         DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
@@ -11467,7 +11527,7 @@ NPCObject.prototype.processDeath = function(droploot){
                     maps.addMapByRef(returnmap);
                   }
                   tile = MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,29,16);
-                  DrawMainFrame("draw","olympus1",29,16);
+                  DrawMainFrame("draw",returnmap,29,16);
                   PC.setHP(PC.getMaxHP());
                   PC.setMana(PC.getMaxMana());
                   DrawCharFrame();
@@ -11545,7 +11605,7 @@ NPCObject.prototype.processDeath = function(droploot){
       });
       if (safe === 1) { DU.gameflags.setFlag("shadow_safe", 1); } 
     }
-    DrawMainFrame("one",map.getName(),thisx,thisy);
+    DrawMainFrame("one",map,thisx,thisy);
     DUTime.removeEntityFrom(this);
 //    delete universe.this.getSerial();
 //    delete map.lightsList[this.getSerial()];    // handled in map.deleteThing now
@@ -12196,7 +12256,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
   			DebugWrite("map", "Exited from MoveBetweenMaps. New map is " + this.getHomeMap().getName() + ".<br />");
         retval["canmove"] = 0;
 		  	if (this === PC) {
-			  	DrawMainFrame("draw", newmap.getName() , PC.getx(), PC.gety());
+			  	DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
 				  DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
   				retval["msg"] = ".<br />Exiting " + oldmapname + ".";
   			}
@@ -12262,11 +12322,11 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
       // uncommented version checks from current display center, not from PC position.
       if (typeof this.getLight === "function") {
-			  DrawMainFrame("draw", map.getName() , PC.getx(), PC.gety());
+			  DrawMainFrame("draw", map, PC.getx(), PC.gety());
 			} else {
 			  // only redraw these two spaces
-			  DrawMainFrame("one", map.getName(), startx, starty);
-			  DrawMainFrame("one", map.getName(), passx, passy);
+			  DrawMainFrame("one", map, startx, starty);
+			  DrawMainFrame("one", map, passx, passy);
 			}
     }
 	}
