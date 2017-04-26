@@ -3630,7 +3630,7 @@ function WoodSign4Tile() {
   this.prefix = "a";
   this.desc = "sign";
 }
-WoodSignTile4.prototype = new FeatureObject();
+WoodSign4Tile.prototype = new FeatureObject();
 
 function CoralTile() {
   this.name = "Coral";
