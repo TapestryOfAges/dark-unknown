@@ -11526,8 +11526,8 @@ NPCObject.prototype.processDeath = function(droploot){
                     returnmap.loadMap("olympus1");
                     maps.addMapByRef(returnmap);
                   }
-                  tile = MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,29,16);
-                  DrawMainFrame("draw",returnmap,29,16);
+                  tile = MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,49,22);
+                  DrawMainFrame("draw",returnmap,49,22);
                   PC.setHP(PC.getMaxHP());
                   PC.setMana(PC.getMaxMana());
                   DrawCharFrame();

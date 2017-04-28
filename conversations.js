@@ -678,7 +678,7 @@ OnConvTriggers["open_bdc_gate"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["place_mal"] = function(speaker,keyword) {
-  var tile = speaker.getHomeMap().getTile(14,17);
+  var tile = speaker.getHomeMap().getTile(30,34);
   var shelf = tile.getTopFeature();
   if (shelf.getName() !== "MapsAndLegends") {
     shelf.setSearchYield(["MapsAndLegends"]);
@@ -686,7 +686,7 @@ OnConvTriggers["place_mal"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["place_tod"] = function(speaker,keyword) {
-  var tile = speaker.getHomeMap().getTile(22,15);
+  var tile = speaker.getHomeMap().getTile(38,32);
   var shelf = tile.getTopFeature();
   if (shelf.getName() !== "ATreatiseOnDragons") {
     shelf.setSearchYield(["ATreatiseOnDragons"]);
