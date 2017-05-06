@@ -1218,6 +1218,10 @@ InanimateObject.prototype.setPathWeight = function(neww) {
 	return this.pathweight;
 }
 
+InanimateObject.prototype.isHostileTo = function(who) {
+  return 0;
+}
+
 // And now, on with the show!
 // TERRAIN
 
@@ -2744,6 +2748,13 @@ SwampTile.prototype.idle = function(person) {
   return resp;
 }
 
+SwampTile.prototype.isHostileTo = function(who) {
+  if (IsNonliving(who)) {
+    return 0;
+  }
+  return 1;
+}
+
 function ShadowSwampTile() {
   this.name = "ShadowSwamp";
 //  this.graphic = "141.gif";
@@ -2770,13 +2781,16 @@ ShadowSwampTile.prototype.idle = function(person) {
   return resp;
 }
 
-function InASwamp(who) {
-  if (MOVE_LEVITATE & who.getMovetype()) {
-    // entity is levitating and cannot be diseased
-    return "";
+ShadowSwampTile.prototype.isHostileTo = function(who) {
+  if (IsNonliving(who)) {
+    return 0;
   }
-  if (MOVE_FLY & who.getMovetype()) {
-    // entity flies and cannot be diseased
+  return 1;
+}
+
+function InASwamp(who) {
+  if ((MOVE_LEVITATE & who.getMovetype()) || (MOVE_FLY & who.getMovetype())) {
+    // entity is flying/levitating and cannot be diseased
     return "";
   }
   
@@ -2784,7 +2798,12 @@ function InASwamp(who) {
     // entity is an NPC group, immune to disease
     return "";
   }
-  
+
+  if (IsNonliving(who)) {
+    // entity is not biological and cannot be diseased
+    return "";
+  }
+
   // percent chance of infection- 10% per step, prorated by speed
   var chance = 10 * (DUTime.getGameClock() - who.getLastTurnTime());  
   if (Dice.roll("1d100") < chance) {  // diseased!
@@ -3378,6 +3397,11 @@ LavaTile.prototype.idle = function(person) {
   return resp;
 }
 
+LavaTile.prototype.isHostileTo = function(who) {
+  if (who.getResist("fire") >= 100) { return 0; }
+  return 1;
+}
+
 function InLava(who) {
   // WORK HERE
 }
@@ -3474,8 +3498,6 @@ function FenceEWSTile() {
 FenceEWSTile.prototype = new FeatureObject();
 
 function FenceEWGateTile() {
-  Lockable.call(this, "009.gif", "010.gif", "067.gif", "a", "door", "a", "locked door", "a", "magically locked door");
-	
 	this.name = "FenceEWGate";
 	this.graphic = "fence-ew-gate-closed.gif";
 	this.overlay = "fence-ew-gate-closed.gif";
@@ -4067,6 +4089,11 @@ CampfireTile.prototype.idle = function(person) {
   return resp;
 }
 
+CampfireTile.prototype.isHostileTo = function(who) {
+  if (who.getResist("fire") >= 100) { return 0; }
+  return 1;
+}
+
 CampfireTile.prototype.myTurn = function() {
   var mytile = this.getHomeMap().getTile(this.getx(),this.gety());
   var feas = mytile.getFeatures();
@@ -4310,6 +4337,11 @@ FireplaceTile.prototype.idle = function(person) {
   return resp;
 }
 
+FireplaceTile.prototype.isHostileTo = function(who) {
+  if (who.getResist("fire") >= 100) { return 0; }
+  return 1;
+}
+
 FireplaceTile.prototype.myTurn = function() {
   var mytile = this.getHomeMap().getTile(this.getx(),this.gety());
   var feas = mytile.getFeatures();
@@ -4444,7 +4476,14 @@ SleepFieldTile.prototype.idle = function(person) {
   return resp;
 }
 
+SleepFieldTile.prototype.isHostileTo = function(who) {
+  if (who.getResist("magic") >= 100) { return 0; }
+  if (IsNonliving(who) || who.specials.mindless) { return 0; }
+  return 1;
+}
+
 function InASleepField(who) {
+  if (IsNonliving(who) || who.specials.mindless)  { return ""; }
   var resist = who.getResist("magic");
   resist = 1-(resist/100);
   var chance = .5 * resist;
@@ -4489,6 +4528,12 @@ FireFieldTile.prototype.walkon = function(person) {
 FireFieldTile.prototype.idle = function(person) {
   var resp = InAFireField(person);
   return resp;
+}
+
+FireFieldTile.prototype.isHostileTo = function(who) {
+  if (who.getResist("magic") >= 100) { return 0; }
+  if (who.getResist("fire") >= 100) { return 0; }
+  return 1;
 }
 
 FireFieldTile.prototype.activate = function() {
@@ -4581,8 +4626,13 @@ PoisonFieldTile.prototype.idle = function(person) {
   return resp;
 }
 
+PoisonFieldTile.prototype.isHostileTo = function(who) {
+  if (IsNonliving(who)) { return 0; }
+  return 1;
+}
+
 function InAPoisonField(who){
-  if ((who.special.indexOf("undead") > -1) || (who.special.indexOf("construct") > -1)) {
+  if (IsNonliving(who)) {
     return "";
   }
   var poisonchance = .75;
@@ -11467,6 +11517,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
     this.processDeath(1);
     if (src === PC) {
       var XP = this.getXPVal();
+      XP = XP * (1 + DU.gameflags.getFlag("karma")/100);
       PC.addxp(XP);
     }
     return -1;
@@ -12829,8 +12880,6 @@ NPCGroupObject.prototype.populate = function() {
 // NPCs have moved into npcObjects.js
 
 
-
-
 function PCObject() {
 	this.name = "PC";
 	this.str = 10;
@@ -12970,6 +13019,7 @@ PCObject.prototype.setxp = function(newxp) {
 PCObject.prototype.addxp = function(diffxp) {
   diffxp = parseInt(diffxp);
   this.xp += diffxp;
+  this.xp = Math.min(this.xp,XP_MAX);
   return this.xp;
 }
 
