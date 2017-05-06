@@ -2151,7 +2151,7 @@ function DrawStats(page) {
   if (EarnedLevel(PC)) {
     statsdiv += "<span class='leveled'>";
   }
-  statsdiv += PC.getxp();
+  statsdiv += Math.floor(PC.getxp());
   if (EarnedLevel(PC)) {
     statsdiv += "</span>";
   }
