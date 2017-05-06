@@ -473,6 +473,10 @@ function DiseaseTile() {
 DiseaseTile.prototype = new DamageOverTimeObject();
 
 DiseaseTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if (IsNonLiving(who)) {
+    this.endEffect();
+  }
   return 1;
 }
 
@@ -806,6 +810,10 @@ function PoisonTile() {
 PoisonTile.prototype = new DamageOverTimeObject();
 
 PoisonTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if (IsNonLiving(who)) {
+    this.endEffect();
+  }
   return 1;
 }
 
