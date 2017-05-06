@@ -55,3 +55,4 @@ const COLOR_RED = -160;
 const STAT_MAX = 25;
 const LVL_MAX = 8;
 const TP_PER_LEVEL = 3;
+const XP_MAX = 9999;
