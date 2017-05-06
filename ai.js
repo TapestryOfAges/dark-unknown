@@ -168,7 +168,7 @@ ais.combat = function(who) {
         whomap.deleteThing(who);
         DUTime.removeEntityFrom(who);
         if (PC.getHomeMap() === whomap) {
-          DrawMainFrame("draw", whomap.getName(), PC.getx(), PC.gety());
+          DrawMainFrame("draw", whomap, PC.getx(), PC.gety());
         }
         return retval;
       }
@@ -233,11 +233,13 @@ ais.combat = function(who) {
       }
     }
     if (approach) {
-      var path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),who.getMovetype());
+      var movetype = who.getMovetype();
+      if (who.specials.open_door) { movetype = MOVE_WALK_DOOR; }  // note, currently this is a problem if it can fly and open doors
+      var path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),movetype);
       if (!path.length) {
         if (oldapproach) {
           approach = oldapproach;
-          path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),who.getMovetype());
+          path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),movetype);
         }
       }
       if (path.length) { 
@@ -399,13 +401,13 @@ ais.Trevor = function(who) {
       var doortile = who.getHomeMap().getTile(9,14);
       var door = doortile.getTopFeature();
       door.unlockMe();
-      DrawMainFrame("one",who.getHomeMap().getName(),9,14);
+      DrawMainFrame("one",who.getHomeMap(),9,14);
       who.steps = 2;
     } else if (who.steps === 2) { 
       var doortile = who.getHomeMap().getTile(9,14);
       var door = doortile.getTopFeature();
       door.use(who);
-      DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
+      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
       who.steps = 3;
     } else if ((who.steps >= 3) && (who.steps <= 5)) {
       var walk = who.moveMe(0,-1);
@@ -433,13 +435,13 @@ ais.Trevor = function(who) {
       var doortile = who.getHomeMap().getTile(9,14);
       var door = doortile.getTopFeature();
       door.use(who);
-      DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
+      DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
       who.steps++;
     } else if (who.steps === 13) {
       var doortile = who.getHomeMap().getTile(9,14);
       var door = doortile.getTopFeature();
       door.lockMe(2);
-      DrawMainFrame("one",who.getHomeMap().getName(),9,14);
+      DrawMainFrame("one",who.getHomeMap(),9,14);
       who.steps = 13.5;
     } else if (who.steps === 13.5) {
       var walk = who.moveMe(0,1);
@@ -477,7 +479,7 @@ ais.AnnaLeaves = function(who) {
   if (who.gety() === 59) {
     DU.gameflags.setFlag("anna_left",1);
     themap.deleteThing(who);
-    DrawMainFrame("one",themap.getName(),annax,annay);
+    DrawMainFrame("one",themap,annax,annay);
     return retval;
   }
   
@@ -661,7 +663,7 @@ ais.GarrickEscort = function(who) {
       var doortile = themap.getTile(6,53);
       var door = doortile.getTopFeature();
       door.use(who);
-      DrawMainFrame("one",who.getHomeMap().getName(),6,53);
+      DrawMainFrame("one",who.getHomeMap(),6,53);
       door.lockMe(1);
       who.setCurrentAI(who.getPeaceAI());
       return retval;      
@@ -701,7 +703,7 @@ ais.AshardenBook = function(who) {
       if (field) {
         themap.deleteThing(field);
         maintext.addText("Asharden gestures and the magic field disappears.");
-        DrawMainFrame("one",who.getHomeMap().getName(),30,18);
+        DrawMainFrame("one",who.getHomeMap(),30,18);
       } 
       who.dest++;
       return retval;
@@ -820,11 +822,11 @@ ais.CourierPath = function(who) {
   } else if ((who.getx()===64) && (who.gety()===119)) {
     whomap.moveThing(0,0,who);
     DebugWrite("ai", "Entering Onyx, by which I mean teleporting to the corner.");
-    DrawMainFrame("one",whomap.getName(),64,119);
+    DrawMainFrame("one",whomap,64,119);
   } else if ((who.getx()===49) && (who.gety()===90)) {
     whomap.moveThing(0,0,who);
     DebugWrite("ai", "Entering BDC, by which I mean teleporting to the corner.");
-    DrawMainFrame("one",whomap.getName(),49,90);
+    DrawMainFrame("one",whomap,49,90);
   } else {
     var dest = [];
     if (who.direction === "n") { dest[0]=49; dest[1]=90; }
@@ -1248,18 +1250,14 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
     retval["diffy"] = diffy;
     return retval;     
   }
-  var fea = desttile.getFeatures();
   
-  if (fea) {
-    for (var i=0; i<fea.length; i++){
-      if (fea[i].getName().indexOf("Field") !== -1) {  // won't wander into a Field
-        retval["nomove"] = 1;
-        retval["canmove"] = 0;
-        retval["diffx"] = diffx;
-        retval["diffy"] = diffy;
-        return retval; 
-      } 
-    }
+  if (desttile.isHostileTo(who)) {
+    DebugWrite("ai", who.getName() + " refused to randomwalk onto a hostile tile at " + diffx + "," + diffy + ".");
+    retval["nomove"] = 1;
+    retval["canmove"] = 0;
+    retval["diffx"] = diffx;
+    retval["diffy"] = diffy;
+    return retval; 
   }
   
   retval = StepOrSidestep(who, [who.getx()+diffx,who.gety()+diffy], [who.getx()+diffx,who.gety()+diffy], "nopush");
@@ -1373,7 +1371,7 @@ function NPCAttackPCMap(npc) {
   var NPCevent = new GameEvent(PC);
   DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
       
-  DrawMainFrame("draw", PC.getHomeMap().getName() , PC.getx(), PC.gety());
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   
   var npcname = npc.getDesc();
   npcname = npcname.charAt(0).toUpperCase() + npcname.slice(1);
@@ -1697,13 +1695,13 @@ ais.Courier = function(who) {
       chest.addToContainer("CourierPouch",1);
       chest.addToContainer("Gold",30);
       couriermap.placeThing(currx,curry,chest);
-      DrawMainFrame("one",who.getHomeMap().getName(),currx,curry);
+      DrawMainFrame("one",who.getHomeMap(),currx,curry);
       who.surrendered = 1;
     }
     
     if (runaway) {
       couriermap.deleteThing(who);
-      DrawMainFrame("one",who.getHomeMap().getName(),currx,curry);
+      DrawMainFrame("one",who.getHomeMap(),currx,curry);
     }
     
   }
