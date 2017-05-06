@@ -553,3 +553,8 @@ function StepOrSidestep(who, path, finaldest, nopush) {
   DebugWrite("ai", "<br />");
   return moved;
 }
+
+function IsNonliving(who) {
+  if (who.specials.undead || who.specials.construct) { return 1;}
+  return 0;
+}
