@@ -447,11 +447,13 @@ function clickmap(xval,yval) {
       alert("Copy made.");
       cornerx = -1;
       cornery = -1;
+      document.brushes.elements[0].checked = true; 
     }
   } else if (document.brushes.elements[5].checked) { // PASTE
     PasteCopy(xval,yval);
     cornerx = -1;
     cornery = -1;
+    document.brushes.elements[0].checked = true; 
   }
 }
 
