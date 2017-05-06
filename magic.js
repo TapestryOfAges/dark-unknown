@@ -978,7 +978,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
     if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) < radius) && (val !== caster)) {
       if (tgtmap.getLOS(val.getx(),val.gety(),tgt.x,tgt.y,1) < LOS_THRESHOLD) {
         anyonepoisoned = 1;
-        if (val.getSpellEffectsByName("Poison") || CheckResist(caster,val,infused,0)) {
+        if (val.getSpellEffectsByName("Poison") || CheckResist(caster,val,infused,0) || IsNonliving(val)) {
           // poison resisted
           ShowEffect(val, 700, "X.gif");
           var desc = val.getDesc() + " resists!";
@@ -1014,7 +1014,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
   });
   
   if (!anyonepoisoned) {
-    maintext.addText("No one is within the cloud.");
+    maintext.addText("No one was poisoned by the cloud.");
   }
   resp["input"] = "&gt;";
   return resp;
@@ -1154,9 +1154,9 @@ magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell = function(caster, infus
     var idx = Math.floor(Math.random()*dispellables.length);
     var lvl = dispellables[idx].getLevel();
     DebugWrite("magic", "Attempting to dispel " + dispellables[idx] + ", which is level " + lvl + ".");
-    var chance = .8 - .1*lvl;
-    if (infused) { chance += .3; }
-    if (Math.random() < chance) {
+    var chance = 80 - 10*lvl;
+    if (infused) { chance += 30; }
+    if (Dice.roll("1d100") <= chance) {
       maintext.addText("You dispel " + dispellables[idx].getDesc() + "!");
       dispellables[idx].endEffect();
     } else {
@@ -1167,7 +1167,6 @@ magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell = function(caster, infus
   }
   return resp;
 }
-  
   
 // Disrupt Undead
 magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = function(caster, infused, free) {
@@ -1465,7 +1464,7 @@ function PerformTelekinesis(caster, infused, free, tgt) {
   return retval;
 }
 
-function PerformTelekinesisMove(caster, infused, free, tgt) {
+function PerformTelekinesisMove(caster, infused, free, tgt) {  // NOTE- tgt needs to hold both moved item and target coords
   gamestate.setMode("null");
   
   var retval = {};
@@ -3720,26 +3719,19 @@ function PerformSpellcast() {
     } else if (targetCursor.spellName === "Conjure Daemon") {
       resp = PerformConjureDaemon(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
     } else if (targetCursor.spellName === "Telekinesis") {
-      resp = PerformTelekinesisMove(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, targetCursor.spelldetails.tgt);
+      resp = PerformTelekinesisMove(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, targetCursor.tgt);
     }
   } else if (targetCursor.spelldetails.targettype === "usable") {
     var topfeature = targettile.getTopVisibleFeature();
     if (topfeature.pushable) {
-      targetCursor.x = PC.getx();
-      targetCursor.y = PC.gety();
-      targetCursor.command = "c";
-      targetCursor.spellName = "Telekinesis";
-      targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "open", tgt: topfeature};
-      targetCursor.targetlimit = (viewsizex -1)/2;
-      targetCursor.targetCenterlimit = 0;
+      var tileid = targetCursor.tileid;
+      $(tileid).html(targetCursor.basetile); 
 
-      var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-      targetCursor.tileid = tileid;
-      targetCursor.basetile = $(tileid).html();
-      $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+      CreateTargetCursor({sticky: 0, command:'c',spellName:'Telekinesis',spelldetails:{ caster: targetCursor.spelldetails.caster, infused: targetCursor.spelldetails.infused, free: targetCursor.spelldetails.free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: targetCursor.targetCenterlimit});
+      targetCursor.tgt = topfeature;
       resp["txt"] = "";
       resp["input"] = "&gt; Choose where to move it- ";
-      resp["fin"] = 0;
+      resp["fin"] = 4;
       gamestate.setMode("target");
     } else  if (typeof topfeature.use === "function") {
       resp = PerformTelekinesis(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, topfeature);
