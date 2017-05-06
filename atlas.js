@@ -494,16 +494,6 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	var totalpassability = terrain.getPassable();
 	var retval = {};
 	
-//  NO LONGER ALLOWING SWIMMERS TO CROSS BRIDGES
-
-//	if (totalpassability & MOVE_SWIM & mover.getMovetype()) {
-//		if (fromtile.getTerrain().getPassable() & MOVE_SWIM) {
-//			// moving from a water tile to a water tile. This bypasses the blocking ability of bridges, etc.
-//			retval["canmove"] = 1;
-//			retval["msg"] = "";
-//			return retval;
-//		}
-//	}
   var doors = 0;
   if (movetype === MOVE_WALK_DOOR) { 
     movetype = MOVE_WALK; 
@@ -515,8 +505,7 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	if (features[0]) {
 	  for (var i=0; i< features.length; i++) {
 	    if (doors && (((features[i].opengraphic) && (!features[i].locked)) || (features[i].pushable))) {
-	      // skip doors for this check
-	      // new: also skip things which can be pushed out of the way
+	      // skip doors and things that can be pushed for this check
 	    } else {
 		    featurepassability = featurepassability & features[i].getPassable();
 		  }
@@ -639,6 +628,19 @@ Acre.prototype.executeIdles = function(walker) {
 		}
 	}
 	return response;
+}
+
+Acre.prototype.isHostileTo = function(who) {
+  if (this.getTerrain().isHostileTo(who)) { return 1; }
+
+  var fea = this.getFeatures();
+  if (fea) {
+    for (var i = 0; i < fea.length; i++) {
+      if (fea[i].isHostileTo(who)) { return 1; }
+    }
+  }
+
+  return 0;
 }
 
 // Map Object - one per map.
