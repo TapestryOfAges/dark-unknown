@@ -89,10 +89,15 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
       $("#combateffects").html(returnhtml);
       $("#animtable").animate({ left: ammocoords.fromx , top: ammocoords.fromy } , duration, 'linear', function() {
         if (dmg != 0) {
+          var prehp = def.getHP();
           var stillalive = def.dealDamage(dmg, atk, dmgtype);    
           if (stillalive > -1) {
-            var damagedesc = GetDamageDescriptor(def); 
-            retval["txt"] += ": " + damagedesc + "!"; 
+            if (Math.floor(prehp) === Math.floor(def.getHP())) {
+              retval["txt"] += ": Scratched!"; 
+            } else {
+              var damagedesc = GetDamageDescriptor(def); 
+              retval["txt"] += ": " + damagedesc + "!"; 
+            }
           }
           else { 
             if (def.specials.crumbles) { retval["txt"] += ": It crumbles to dust!"; }
@@ -1411,4 +1416,16 @@ function CheckOpenAsUse(used) {
   if (used.isContainer) { return 1; }
 
   return 0;
+}
+
+function BumpIntoDoor(door,who) {
+  if (door.open) { return {msg:"", canmove:1}; }
+  var retval = {};
+  retval["msg"] = "Blocked!";
+  retval["canmove"] = 0;
+
+  if (DU.gameflags.getFlag("move_opens_doors") && !door.locked) {
+    retval = door.use(who);
+  }
+  return retval;
 }
