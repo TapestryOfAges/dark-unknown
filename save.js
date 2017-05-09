@@ -199,7 +199,7 @@ GameStateData.prototype.saveGame = function(flag) {
     if (!saveidx) { saveidx =[]; }
     saveidx[flag].datestamp = Date.now();
     saveidx[flag].charname = PC.getPCName();
-    saveidx[flag].loc = PC.getHomeMap().getDesc();
+    saveidx[flag].loc = PC.getHomeMap().getSaveName();
     saveidx[flag].graphic = PC.getGraphic();
     localStorage.saveIndex = JSON.stringify(saveidx);
     
