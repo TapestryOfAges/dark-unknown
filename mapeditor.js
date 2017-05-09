@@ -873,6 +873,7 @@ function editorEditMapDetails() {
   $('#detailsbubble').jqmShow();
   document.detailseditpopup.mapname.value = amap.getName();
   document.detailseditpopup.mapdesc.value = amap.getDesc();
+  document.detailseditpopup.savename.value = amap.getSaveName();
   document.detailseditpopup.mapmusic.value = amap.getMusic();
   document.detailseditpopup.mapexitmap.value = amap.getExitToMap();
   document.detailseditpopup.mapexitx.value = amap.getExitToX();
@@ -909,6 +910,7 @@ function submitEditDetails(change) {
 	if (change === 1) {
     amap.setName(document.detailseditpopup.mapname.value);
     amap.setDesc(document.detailseditpopup.mapdesc.value);
+    amap.setSaveName(document.detailseditpopup.savename.value);
     amap.setMusic(document.detailseditpopup.mapmusic.value);
     amap.setExitToMap(document.detailseditpopup.mapexitmap.value);
     amap.setExitToX(document.detailseditpopup.mapexitx.value);
