@@ -1426,6 +1426,7 @@ GameMap.prototype.saveMap = function (name) {
  name = 'mappages["' + oldname + '"]';
  printerwin.document.write("\n" + name + ".desc = \"" + this.getDesc() + "\";\n");
  printerwin.document.write(name + ".music = '" + this.getMusic() + "';\n");
+ printerwin.document.write(name + ".savename = '" + this.getSaveName() + "';\n");
  printerwin.document.write(name + ".exitmap = '" + this.getExitToMap() + "';\n");
  printerwin.document.write(name + ".exitx = '" + this.getExitToX() + "';\n");
  printerwin.document.write(name + ".exity = '" + this.getExitToY() + "';\n");
@@ -1437,7 +1438,6 @@ GameMap.prototype.saveMap = function (name) {
  printerwin.document.write(name + ".alwaysRemember = '" + this.getAlwaysRemember() + "';\n");
  printerwin.document.write(name + ".scale = '" + this.getScale() + "';\n");
  printerwin.document.write(name + ".underground = '" + this.getUnderground() + "';\n");
- printerwin.document.write(name + ".savename = '" + this.getSaveName() + "';\n");
  printerwin.document.write(name + ".enterscript = '" + this.getEnterScript() + "';\n");
  printerwin.document.write(name + ".entertestscript = '" + this.getEnterTestScript() + "';\n");
  printerwin.document.write(name + ".exitscript = '" + this.getExitScript() + "';\n");
@@ -1488,6 +1488,7 @@ GameMap.prototype.loadMap = function (name) {
   // load map details
   this.setDesc(mappages.readPage(name, "desc"));
   this.setMusic(mappages.readPage(name, "music"));
+  this.setSaveName(mappages.readPage(name, "savename"));
   this.setExitToMap(mappages.readPage(name, "exitmap"));
   this.setExitToX(mappages.readPage(name, "exitx"));
   this.setExitToY(mappages.readPage(name, "exity"));
