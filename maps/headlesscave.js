@@ -54,6 +54,7 @@ mappages["headlesscave"].npcs[8] = {name : 'HeadlessNPC', x : 9, y : 7};
 
 mappages["headlesscave"].desc = "A Small Cave";
 mappages["headlesscave"].music = 'Cave';
+mappages["headlesscave"].savename = "A Small Cave";
 mappages["headlesscave"].exitmap = 'darkunknown';
 mappages["headlesscave"].exitx = '48';
 mappages["headlesscave"].exity = '78';

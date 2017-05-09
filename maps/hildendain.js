@@ -200,6 +200,7 @@ mappages["hildendain"].npcs[12] = {name : 'BardVillagerNPC', x : 39, y : 53, NPC
 
 mappages["hildendain"].desc = "The Towne of Hildendain";
 mappages["hildendain"].music = 'Towne';
+mappages["hildendain"].savename = 'Hildendain';
 mappages["hildendain"].exitmap = 'darkunknown';
 mappages["hildendain"].exitx = '52';
 mappages["hildendain"].exity = '63';

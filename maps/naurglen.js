@@ -106,6 +106,7 @@ mappages["naurglen"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 5, y : 2, NPC
 
 mappages["naurglen"].desc = "the Village of Naurglen";
 mappages["naurglen"].music = 'Village';
+mappages["naurglen"].savename = "Naurglen";
 mappages["naurglen"].exitmap = 'darkunknown';
 mappages["naurglen"].exitx = '72';
 mappages["naurglen"].exity = '75';

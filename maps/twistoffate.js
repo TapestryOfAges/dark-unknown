@@ -88,6 +88,7 @@ mappages["twistoffate1"].npcs = new Array;
 
 mappages["twistoffate1"].desc = 'Twist of Fate (L1)';
 mappages["twistoffate1"].music = 'Dungeon';
+mappages["twistoffate1"].savename = 'Twist of Fate';
 mappages["twistoffate1"].exitmap = 'darkunknown';
 mappages["twistoffate1"].exitx = '18';
 mappages["twistoffate1"].exity = '114';
@@ -239,6 +240,7 @@ mappages["twistoffate2"].npcs = new Array;
 
 mappages["twistoffate2"].desc = 'Twist of Fate (L2)';
 mappages["twistoffate2"].music = 'Dungeon';
+mappages["twistoffate2"].savename = 'Twist of Fate';
 mappages["twistoffate2"].exitmap = '';
 mappages["twistoffate2"].exitx = '';
 mappages["twistoffate2"].exity = '';
@@ -306,6 +308,7 @@ mappages["twistoffate3"].npcs = new Array;
 
 mappages["twistoffate3"].desc = 'Twist of Fate (L3)';
 mappages["twistoffate3"].music = 'Dungeon';
+mappages["twistoffate3"].savename = 'Twist of Fate';
 mappages["twistoffate3"].exitmap = '';
 mappages["twistoffate3"].exitx = '';
 mappages["twistoffate3"].exity = '';

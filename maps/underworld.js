@@ -85,8 +85,9 @@ mappages["underworld"].features[0] = {name : 'Whirlpool', x : 37, y : 62, enterm
 
 mappages["underworld"].npcs = new Array;
 
-mappages["underworld"].desc = 'The  Underworld';
+mappages["underworld"].desc = 'The Underworld';
 mappages["underworld"].music = 'Underworld';
+mappages["underworld"].savename = 'The Underworld';
 mappages["underworld"].exitmap = 'darkunknown';
 mappages["underworld"].exitx = '';
 mappages["underworld"].exity = '';

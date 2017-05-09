@@ -118,6 +118,7 @@ mappages["beldskae"].npcs = [];
 
 mappages["beldskae"].desc = "The Towne of Beldskae";
 mappages["beldskae"].music = 'Towne';
+mappages["beldskae"].savename = 'Beldskae';
 mappages["beldskae"].exitmap = 'darkunknown';
 mappages["beldskae"].exitx = '120';
 mappages["beldskae"].exity = '104';

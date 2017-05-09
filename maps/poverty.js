@@ -88,6 +88,7 @@ mappages["poverty"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 19, y : 29, NP
 
 mappages["poverty"].desc = "Towne of Poverty";
 mappages["poverty"].music = 'Village';
+mappages["poverty"].savename = "Poverty";
 mappages["poverty"].exitmap = 'darkunknown';
 mappages["poverty"].exitx = '41';
 mappages["poverty"].exity = '26';

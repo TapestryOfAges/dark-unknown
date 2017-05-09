@@ -150,6 +150,7 @@ mappages["worldsending1"].npcs = [];
 
 mappages["worldsending1"].desc = "World's Ending (L1)";
 mappages["worldsending1"].music = 'Dungeon';
+mappages["worldsending1"].savename = "World's Ending";
 mappages["worldsending1"].exitmap = '';
 mappages["worldsending1"].exitx = '65';
 mappages["worldsending1"].exity = '70';
@@ -335,6 +336,7 @@ mappages["spire2"].npcs = [];
 
 mappages["spire2"].desc = "The Spire";
 mappages["spire2"].music = 'Magic';
+mappages["spire2"].savename = "The Spire";
 mappages["spire2"].exitmap = '';
 mappages["spire2"].exitx = '65';
 mappages["spire2"].exity = '70';
@@ -402,6 +404,7 @@ mappages["spire3"].npcs = [];
 
 mappages["spire3"].desc = "The Spire";
 mappages["spire3"].music = 'Magic';
+mappages["spire3"].savename = "The Spire";
 mappages["spire3"].exitmap = '';
 mappages["spire3"].exitx = '65';
 mappages["spire3"].exity = '70';

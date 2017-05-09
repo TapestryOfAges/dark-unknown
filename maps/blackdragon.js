@@ -202,6 +202,7 @@ mappages["blackdragon"].npcs[10] = {name : 'MageVillagerNPC', x : 26, y : 20, NP
 
 mappages["blackdragon"].desc = "Black Dragon Castle";
 mappages["blackdragon"].music = 'Dark Towne';
+mappages["blackdragon"].savename = 'B Drag Castle';
 mappages["blackdragon"].exitmap = 'darkunknown';
 mappages["blackdragon"].exitx = '49';
 mappages["blackdragon"].exity = '90';

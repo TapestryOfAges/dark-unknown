@@ -74,6 +74,7 @@ mappages["cairns"].npcs = new Array;
 
 mappages["cairns"].desc = 'The Cairns';
 mappages["cairns"].music = 'Cave';
+mappages["cairns"].savename = 'The Cairns';
 mappages["cairns"].exitmap = 'island';
 mappages["cairns"].exitx = '15';
 mappages["cairns"].exity = '48';

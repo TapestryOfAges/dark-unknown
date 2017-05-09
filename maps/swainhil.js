@@ -131,6 +131,7 @@ mappages["swainhil"].npcs[7] = {name : 'PaladinVillagerNPC', x : 19, y : 32, NPC
 
 mappages["swainhil"].desc = "The Towne of Swainhil";
 mappages["swainhil"].music = 'Towne';
+mappages["swainhil"].savename = 'Swainhil';
 mappages["swainhil"].exitmap = 'darkunknown';
 mappages["swainhil"].exitx = '120';
 mappages["swainhil"].exity = '104';
@@ -229,6 +230,7 @@ mappages["swainhil2"].npcs[0] = {name : 'BardVillagerNPC', x : 38, y : 44, NPCNa
 
 mappages["swainhil2"].desc = "The Towne of Swainhil";
 mappages["swainhil2"].music = 'Towne';
+mappages["swainhil2"].savename = 'Swainhil';
 mappages["swainhil2"].exitmap = 'darkunknown';
 mappages["swainhil2"].exitx = '120';
 mappages["swainhil2"].exity = '104';
@@ -354,6 +356,7 @@ mappages["swainhil3"].npcs[0] = {name : 'BardVillagerNPC', x : 32, y : 45, NPCNa
 
 mappages["swainhil3"].desc = "The Towne of Swainhil";
 mappages["swainhil3"].music = 'Towne';
+mappages["swainhil3"].savename = 'Swainhil';
 mappages["swainhil3"].exitmap = 'darkunknown';
 mappages["swainhil3"].exitx = '120';
 mappages["swainhil3"].exity = '104';

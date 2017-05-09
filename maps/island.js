@@ -119,6 +119,7 @@ mappages["island"].npcs = [];
 
 mappages["island"].desc = "Land of Lost Hope";
 mappages["island"].music = 'Island';
+mappages["island"].savename = "Lost Hope";
 mappages["island"].exitmap = '';
 mappages["island"].exitx = '65';
 mappages["island"].exity = '70';
@@ -130,7 +131,6 @@ mappages["island"].lightLevel = 'bright';
 mappages["island"].alwaysRemember = '1';
 mappages["island"].scale = '0';
 mappages["island"].underground = '0';
-mappages["island"].savename = 'Land Lost Hope';
 mappages["island"].enterscript = '';
 mappages["island"].entertestscript = '';
 mappages["island"].exitscript = '';
@@ -282,8 +282,9 @@ mappages["island_cave"].features[36] = {name : 'Lava', x : 56, y : 21};
 
 mappages["island_cave"].npcs = [];
 
-mappages["island_cave"].desc = "Cave";
+mappages["island_cave"].desc = "A Cave";
 mappages["island_cave"].music = 'Cave';
+mappages["island_cave"].savename = "A Cave";
 mappages["island_cave"].exitmap = 'island';
 mappages["island_cave"].exitx = '33';
 mappages["island_cave"].exity = '47';

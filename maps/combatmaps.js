@@ -23,6 +23,7 @@ mappages["combatGrass1"].npcs = new Array;
 
 mappages["combatGrass1"].desc = 'Combat';
 mappages["combatGrass1"].music = 'Combat';
+mappages["combatGrass1"].savename = 'Combat';
 mappages["combatGrass1"].exitmap = '';
 mappages["combatGrass1"].exitx = '';
 mappages["combatGrass1"].exity = '';
@@ -73,6 +74,7 @@ mappages["combatGrass2"].npcs = new Array;
 
 mappages["combatGrass2"].desc = 'Combat';
 mappages["combatGrass2"].music = 'Combat';
+mappages["combatGrass2"].savename = 'Combat';
 mappages["combatGrass2"].exitmap = '';
 mappages["combatGrass2"].exitx = '';
 mappages["combatGrass2"].exity = '';
@@ -121,14 +123,15 @@ mappages["combatShore1"].features = new Array;
 
 mappages["combatShore1"].npcs = new Array;
 
-mappages["combatShore1"].desc = '';
-mappages["combatShore1"].music = '';
+mappages["combatShore1"].desc = 'Combat';
+mappages["combatShore1"].music = 'Combat';
+mappages["combatShore1"].savename = 'Combat';
 mappages["combatShore1"].exitmap = '';
-mappages["combatShore1"].exitx = '6';
-mappages["combatShore1"].exity = '9';
+mappages["combatShore1"].exitx = '';
+mappages["combatShore1"].exity = '';
 mappages["combatShore1"].wraps = '';
-mappages["combatShore1"].enterx = '';
-mappages["combatShore1"].entery = '';
+mappages["combatShore1"].enterx = '6';
+mappages["combatShore1"].entery = '9';
 mappages["combatShore1"].seeBelow = '';
 mappages["combatShore1"].lightLevel = 'bright';
 mappages["combatShore1"].alwaysRemember = '0';
@@ -137,7 +140,7 @@ mappages["combatShore1"].enterscript = 'set_exits';
 mappages["combatShore1"].entertestscript = '';
 mappages["combatShore1"].exitscript = '';
 mappages["combatShore1"].exittestscript = 'check_escape';
-mappages["combatShore1"].linkedMaps = new Array;
+mappages["combatShore1"].linkedMaps = new Array("");
 
 // manually added
 
@@ -170,8 +173,9 @@ mappages["combatShore2"].features = new Array;
 
 mappages["combatShore2"].npcs = new Array;
 
-mappages["combatShore2"].desc = '';
-mappages["combatShore2"].music = '';
+mappages["combatShore2"].desc = 'Combat';
+mappages["combatShore2"].music = 'Combat';
+mappages["combatShore2"].savename = 'Combat';
 mappages["combatShore2"].exitmap = '';
 mappages["combatShore2"].exitx = '';
 mappages["combatShore2"].exity = '';
@@ -223,6 +227,7 @@ mappages["combatWater1"].npcs = new Array;
 
 mappages["combatWater1"].desc = 'Combat';
 mappages["combatWater1"].music = 'Combat';
+mappages["combatWater1"].savename = 'Combat';
 mappages["combatWater1"].exitmap = '';
 mappages["combatWater1"].exitx = '';
 mappages["combatWater1"].exity = '';
@@ -273,6 +278,7 @@ mappages["combatWater2"].npcs = new Array;
 
 mappages["combatWater2"].desc = 'Combat';
 mappages["combatWater2"].music = 'Combat';
+mappages["combatWater2"].savename = 'Combat';
 mappages["combatWater2"].exitmap = '';
 mappages["combatWater2"].exitx = '';
 mappages["combatWater2"].exity = '';
@@ -324,6 +330,7 @@ mappages["combatBrush1"].npcs = new Array;
 
 mappages["combatBrush1"].desc = 'Combat';
 mappages["combatBrush1"].music = 'Combat';
+mappages["combatBrush1"].savename = 'Combat';
 mappages["combatBrush1"].exitmap = '';
 mappages["combatBrush1"].exitx = '';
 mappages["combatBrush1"].exity = '';
@@ -374,6 +381,7 @@ mappages["combatBrush2"].npcs = new Array;
 
 mappages["combatBrush2"].desc = 'Combat';
 mappages["combatBrush2"].music = 'Combat';
+mappages["combatBrush2"].savename = 'Combat';
 mappages["combatBrush2"].exitmap = '';
 mappages["combatBrush2"].exitx = '';
 mappages["combatBrush2"].exity = '';
@@ -425,6 +433,7 @@ mappages["combatHill1"].npcs = new Array;
 
 mappages["combatHill1"].desc = 'Combat';
 mappages["combatHill1"].music = 'Combat';
+mappages["combatHill1"].savename = 'Combat';
 mappages["combatHill1"].exitmap = '';
 mappages["combatHill1"].exitx = '';
 mappages["combatHill1"].exity = '';
@@ -475,6 +484,7 @@ mappages["combatHill2"].npcs = new Array;
 
 mappages["combatHill2"].desc = 'Combat';
 mappages["combatHill2"].music = 'Combat';
+mappages["combatHill2"].savename = 'Combat';
 mappages["combatHill2"].exitmap = '';
 mappages["combatHill2"].exitx = '';
 mappages["combatHill2"].exity = '';
@@ -527,6 +537,7 @@ mappages["combatForest1"].npcs = new Array;
 
 mappages["combatForest1"].desc = 'Combat';
 mappages["combatForest1"].music = 'Combat';
+mappages["combatForest1"].savename = 'Combat';
 mappages["combatForest1"].exitmap = '';
 mappages["combatForest1"].exitx = '';
 mappages["combatForest1"].exity = '';
@@ -576,6 +587,7 @@ mappages["combatForest2"].npcs = new Array;
 
 mappages["combatForest2"].desc = 'Combat';
 mappages["combatForest2"].music = 'Combat';
+mappages["combatForest2"].savename = 'Combat';
 mappages["combatForest2"].exitmap = '';
 mappages["combatForest2"].exitx = '';
 mappages["combatForest2"].exity = '';
@@ -627,6 +639,7 @@ mappages["combatSwamp1"].npcs = new Array;
 
 mappages["combatSwamp1"].desc = 'Combat';
 mappages["combatSwamp1"].music = 'Combat';
+mappages["combatSwamp1"].savename = 'Combat';
 mappages["combatSwamp1"].exitmap = '';
 mappages["combatSwamp1"].exitx = '';
 mappages["combatSwamp1"].exity = '';
@@ -677,6 +690,7 @@ mappages["combatSwamp2"].npcs = new Array;
 
 mappages["combatSwamp2"].desc = 'Combat';
 mappages["combatSwamp2"].music = 'Combat';
+mappages["combatSwamp2"].savename = 'Combat';
 mappages["combatSwamp2"].exitmap = '';
 mappages["combatSwamp2"].exitx = '';
 mappages["combatSwamp2"].exity = '';
@@ -726,12 +740,13 @@ mappages["combatCoast1"].features = new Array;
 
 mappages["combatCoast1"].npcs = new Array;
 
-mappages["combatCoast1"].desc = '';
-mappages["combatCoast1"].music = '';
+mappages["combatCoast1"].desc = 'Combat';
+mappages["combatCoast1"].music = 'Combat';
+mappages["combatCoast1"].savename = 'Combat';
 mappages["combatCoast1"].exitmap = '';
 mappages["combatCoast1"].exitx = '';
 mappages["combatCoast1"].exity = '';
-mappages["combatCoast1"].wraps = '';
+mappages["combatCoast1"].wraps = 'None';
 mappages["combatCoast1"].enterx = '6';
 mappages["combatCoast1"].entery = '9';
 mappages["combatCoast1"].seeBelow = '';
@@ -742,7 +757,7 @@ mappages["combatCoast1"].enterscript = 'set_exits';
 mappages["combatCoast1"].entertestscript = '';
 mappages["combatCoast1"].exitscript = '';
 mappages["combatCoast1"].exittestscript = 'check_escape';
-mappages["combatCoast1"].linkedMaps = new Array;
+mappages["combatCoast1"].linkedMaps = new Array("");
 
 // manually added
 
@@ -776,12 +791,13 @@ mappages["combatCoast2"].features = new Array;
 
 mappages["combatCoast2"].npcs = new Array;
 
-mappages["combatCoast2"].desc = '';
-mappages["combatCoast2"].music = '';
+mappages["combatCoast2"].desc = 'Combat';
+mappages["combatCoast2"].music = 'Combat';
+mappages["combatCoast2"].savename = 'Combat';
 mappages["combatCoast2"].exitmap = '';
 mappages["combatCoast2"].exitx = '';
 mappages["combatCoast2"].exity = '';
-mappages["combatCoast2"].wraps = '';
+mappages["combatCoast2"].wraps = 'None';
 mappages["combatCoast2"].enterx = '6';
 mappages["combatCoast2"].entery = '9';
 mappages["combatCoast2"].seeBelow = '';
@@ -792,7 +808,7 @@ mappages["combatCoast2"].enterscript = 'set_exits';
 mappages["combatCoast2"].entertestscript = '';
 mappages["combatCoast2"].exitscript = '';
 mappages["combatCoast2"].exittestscript = 'check_escape';
-mappages["combatCoast2"].linkedMaps = new Array;
+mappages["combatCoast2"].linkedMaps = new Array("");
 
 // manually added
 

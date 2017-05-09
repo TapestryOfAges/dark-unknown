@@ -42,6 +42,7 @@ mappages["abyss0"].npcs = [];
 
 mappages["abyss0"].desc = "The Stygian Abyss";
 mappages["abyss0"].music = 'Magic';
+mappages["abyss0"].savename = 'Stygian Abyss';
 mappages["abyss0"].exitmap = '';
 mappages["abyss0"].exitx = '65';
 mappages["abyss0"].exity = '70';
@@ -97,6 +98,7 @@ mappages["abyss1"].npcs = [];
 
 mappages["abyss1"].desc = "The Stygian Abyss";
 mappages["abyss1"].music = 'Magic';
+mappages["abyss1"].savename = 'Stygian Abyss';
 mappages["abyss1"].exitmap = '';
 mappages["abyss1"].exitx = '65';
 mappages["abyss1"].exity = '70';
@@ -173,6 +175,7 @@ mappages["abyss2"].npcs = [];
 
 mappages["abyss2"].desc = "The Stygian Abyss";
 mappages["abyss2"].music = 'Magic';
+mappages["abyss2"].savename = 'Stygian Abyss';
 mappages["abyss2"].exitmap = '';
 mappages["abyss2"].exitx = '65';
 mappages["abyss2"].exity = '70';
@@ -273,6 +276,7 @@ mappages["abyss3"].npcs = [];
 
 mappages["abyss3"].desc = "The Stygian Abyss";
 mappages["abyss3"].music = 'Magic';
+mappages["abyss3"].savename = 'Stygian Abyss';
 mappages["abyss3"].exitmap = '';
 mappages["abyss3"].exitx = '65';
 mappages["abyss3"].exity = '70';
@@ -329,6 +333,7 @@ mappages["abyss4"].npcs[0] = {name : 'AbyssYouNPC', x : 10, y : 10};
 
 mappages["abyss4"].desc = "The Stygian Abyss";
 mappages["abyss4"].music = 'Magic';
+mappages["abyss4"].savename = 'Stygian Abyss';
 mappages["abyss4"].exitmap = '';
 mappages["abyss4"].exitx = '65';
 mappages["abyss4"].exity = '70';

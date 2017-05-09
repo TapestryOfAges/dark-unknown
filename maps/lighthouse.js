@@ -53,6 +53,7 @@ mappages["lighthouse1"].npcs = [];
 
 mappages["lighthouse1"].desc = "Lighthouse of Cabran";
 mappages["lighthouse1"].music = 'Towne';
+mappages["lighthouse1"].savename = "Lighthouse";
 mappages["lighthouse1"].exitmap = 'darkunknown';
 mappages["lighthouse1"].exitx = '69';
 mappages["lighthouse1"].exity = '125';

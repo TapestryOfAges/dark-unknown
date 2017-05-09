@@ -139,6 +139,7 @@ mappages["volcano"].npcs = [];
 
 mappages["volcano"].desc = "Volcanic Island";
 mappages["volcano"].music = 'Island';
+mappages["volcano"].savename = "Volcanic Isle";
 mappages["volcano"].exitmap = '';
 mappages["volcano"].exitx = '65';
 mappages["volcano"].exity = '70';

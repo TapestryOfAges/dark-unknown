@@ -59,6 +59,7 @@ mappages["kaltonmine1"].npcs = [];
 
 mappages["kaltonmine1"].desc = "Kalton Mine (L1)";
 mappages["kaltonmine1"].music = 'Dungeon';
+mappages["kaltonmine1"].savename = "Kalton Mine";
 mappages["kaltonmine1"].exitmap = 'darkunknown';
 mappages["kaltonmine1"].exitx = '39';
 mappages["kaltonmine1"].exity = '48';

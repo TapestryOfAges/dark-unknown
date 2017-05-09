@@ -96,6 +96,7 @@ mappages["onyx"].npcs[10] = {name : 'FighterVillagerNPC', x : 36, y : 17, NPCNam
 
 mappages["onyx"].desc = "the Towne of Onyx";
 mappages["onyx"].music = 'Dark Towne';
+mappages["onyx"].savename = "Onyx";
 mappages["onyx"].exitmap = 'darkunknown';
 mappages["onyx"].exitx = '64';
 mappages["onyx"].exity = '119';

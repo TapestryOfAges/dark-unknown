@@ -149,6 +149,7 @@ mappages["skypalace"].npcs[32] = {name : 'SlimeNPC', x : 52, y : 30};
 
 mappages["skypalace"].desc = "Palace of the Skies";
 mappages["skypalace"].music = 'Cave';
+mappages["skypalace"].savename = "Palace Skies";
 mappages["skypalace"].exitmap = '';
 mappages["skypalace"].exitx = '65';
 mappages["skypalace"].exity = '70';
@@ -356,6 +357,7 @@ mappages["skypalace2"].npcs = [];
 
 mappages["skypalace2"].desc = "Palace of the Skies";
 mappages["skypalace2"].music = 'Cave';
+mappages["skypalace2"].savename = "Palace Skies";
 mappages["skypalace2"].exitmap = '';
 mappages["skypalace2"].exitx = '65';
 mappages["skypalace2"].exity = '70';

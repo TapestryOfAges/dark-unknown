@@ -136,6 +136,7 @@ mappages["grotto"].npcs = [];
 
 mappages["grotto"].desc = "Underwater Grotto";
 mappages["grotto"].music = 'Cave';
+mappages["grotto"].savename = "Grotto";
 mappages["grotto"].exitmap = 'darkunknown';
 mappages["grotto"].exitx = '27';
 mappages["grotto"].exity = '30';
@@ -287,6 +288,7 @@ mappages["grotto2"].npcs = [];
 
 mappages["grotto2"].desc = "Underwater Grotto";
 mappages["grotto2"].music = 'Cave';
+mappages["grotto2"].savename = "Grotto";
 mappages["grotto2"].exitmap = 'darkunknown';
 mappages["grotto2"].exitx = '27';
 mappages["grotto2"].exity = '30';
@@ -334,6 +336,7 @@ mappages["undergrotto"].npcs = [];
 
 mappages["undergrotto"].desc = "Underwater Grotto";
 mappages["undergrotto"].music = 'Cave';
+mappages["undergrotto"].savename = "Grotto";
 mappages["undergrotto"].exitmap = 'darkunknown';
 mappages["undergrotto"].exitx = '27';
 mappages["undergrotto"].exity = '30';

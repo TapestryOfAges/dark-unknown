@@ -60,6 +60,7 @@ mappages["shadow1"].npcs[11] = {name : 'HeadlessNPC', x : 9, y : 26};
 
 mappages["shadow1"].desc = "Dungeon Shadow (L1)";
 mappages["shadow1"].music = 'Dungeon';
+mappages["shadow1"].savename = 'Shadow';
 mappages["shadow1"].exitmap = 'darkunknown';
 mappages["shadow1"].exitx = '96';
 mappages["shadow1"].exity = '31';
@@ -183,6 +184,7 @@ mappages["shadow2"].npcs[16] = {name : 'SlimeNPC', x : 10, y : 33};
 
 mappages["shadow2"].desc = "Dungeon Shadow (L2)";
 mappages["shadow2"].music = 'Dungeon';
+mappages["shadow2"].savename = 'Shadow';
 mappages["shadow2"].exitmap = '';
 mappages["shadow2"].exitx = '65';
 mappages["shadow2"].exity = '70';

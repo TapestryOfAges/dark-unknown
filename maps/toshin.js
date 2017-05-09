@@ -69,6 +69,7 @@ mappages["toshin1"].npcs = [];
 
 mappages["toshin1"].desc = "Toshin's Tower";
 mappages["toshin1"].music = 'Magic';
+mappages["toshin1"].savename = "Toshin's Tower";
 mappages["toshin1"].exitmap = 'darkunknown';
 mappages["toshin1"].exitx = '65';
 mappages["toshin1"].exity = '70';
@@ -150,6 +151,7 @@ mappages["toshin2"].npcs = [];
 
 mappages["toshin2"].desc = "Toshin's Tower";
 mappages["toshin2"].music = 'Magic';
+mappages["toshin2"].savename = "Toshin's Tower";
 mappages["toshin2"].exitmap = 'darkunknown';
 mappages["toshin2"].exitx = '65';
 mappages["toshin2"].exity = '70';
@@ -314,6 +316,7 @@ mappages["toshin3"].npcs[3] = {name : 'ToshinSentinelNPC', x : 9, y : 12};
 
 mappages["toshin3"].desc = "Toshin's Tower";
 mappages["toshin3"].music = 'Magic';
+mappages["toshin3"].savename = "Toshin's Tower";
 mappages["toshin3"].exitmap = 'darkunknown';
 mappages["toshin3"].exitx = '65';
 mappages["toshin3"].exity = '70';
@@ -452,6 +455,7 @@ mappages["toshin4"].npcs = [];
 
 mappages["toshin4"].desc = "Toshin's Tower";
 mappages["toshin4"].music = 'Magic';
+mappages["toshin4"].savename = "Toshin's Tower";
 mappages["toshin4"].exitmap = 'darkunknown';
 mappages["toshin4"].exitx = '65';
 mappages["toshin4"].exity = '70';

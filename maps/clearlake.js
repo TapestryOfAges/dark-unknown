@@ -167,6 +167,7 @@ mappages["clearlake"].npcs[20] = {name : 'RangerVillagerNPC', x : 5, y : 29, NPC
 
 mappages["clearlake"].desc = "Clear Lake";
 mappages["clearlake"].music = 'Towne';
+mappages["clearlake"].savename = 'Clear Lake';
 mappages["clearlake"].exitmap = 'darkunknown';
 mappages["clearlake"].exitx = '81';
 mappages["clearlake"].exity = '23';
@@ -261,6 +262,7 @@ mappages["clearlake2"].npcs = new Array;
 
 mappages["clearlake2"].desc = 'Clear Lake';
 mappages["clearlake2"].music = 'Towne';
+mappages["clearlake2"].savename = 'Clear Lake';
 mappages["clearlake2"].exitmap = 'clearlake';
 mappages["clearlake2"].exitx = '';
 mappages["clearlake2"].exity = '';

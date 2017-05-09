@@ -140,6 +140,7 @@ mappages["pitdespair1"].npcs[35] = {name : 'GiantRatNPC', x : 22, y : 39};
 
 mappages["pitdespair1"].desc = "Pit of Despair (L1)";
 mappages["pitdespair1"].music = 'Dungeon';
+mappages["pitdespair1"].savename = "Pit of Despair";
 mappages["pitdespair1"].exitmap = 'darkunknown';
 mappages["pitdespair1"].exitx = '65';
 mappages["pitdespair1"].exity = '70';
@@ -377,6 +378,7 @@ mappages["pitdespair2"].npcs = [];
 
 mappages["pitdespair2"].desc = "Pit of Despair (L2)";
 mappages["pitdespair2"].music = 'Dungeon';
+mappages["pitdespair2"].savename = "Pit of Despair";
 mappages["pitdespair2"].exitmap = '';
 mappages["pitdespair2"].exitx = '65';
 mappages["pitdespair2"].exity = '70';
@@ -602,6 +604,7 @@ mappages["pitdespair3"].npcs = [];
 
 mappages["pitdespair3"].desc = "Pit of Despair (L3)";
 mappages["pitdespair3"].music = 'Dungeon';
+mappages["pitdespair3"].savename = "Pit of Despair";
 mappages["pitdespair3"].exitmap = '';
 mappages["pitdespair3"].exitx = '65';
 mappages["pitdespair3"].exity = '70';
@@ -736,6 +739,7 @@ mappages["pitdespair4"].npcs = [];
 
 mappages["pitdespair4"].desc = "Pit of Despair (L4)";
 mappages["pitdespair4"].music = 'Dungeon';
+mappages["pitdespair4"].savename = "Pit of Despair";
 mappages["pitdespair4"].exitmap = '';
 mappages["pitdespair4"].exitx = '65';
 mappages["pitdespair4"].exity = '70';

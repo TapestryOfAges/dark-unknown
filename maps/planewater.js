@@ -111,6 +111,7 @@ mappages["waterplane"].npcs = [];
 
 mappages["waterplane"].desc = "Plane of Water";
 mappages["waterplane"].music = 'Ether';
+mappages["waterplane"].savename = "Plane of Water";
 mappages["waterplane"].exitmap = '';
 mappages["waterplane"].exitx = '65';
 mappages["waterplane"].exity = '70';

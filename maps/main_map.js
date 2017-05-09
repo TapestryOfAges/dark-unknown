@@ -181,12 +181,13 @@ mappages["darkunknown"].features[31] = {name : 'Cave', x : 47, y : 74, entermap 
 mappages["darkunknown"].features[32] = {name : 'Waterfall', x : 77, y : 70};
 mappages["darkunknown"].features[33] = {name : 'Waterfall', x : 99, y : 87};
 mappages["darkunknown"].features[34] = {name : 'Cave', x : 48, y : 78, entermap : 'headlesscave', enterx : 29, entery : 15};
-
+mappages["darkunknown"].features[35] = {name : 'CastleGrass', x : 69, y : 72};
 
 mappages["darkunknown"].npcs = [];
 
 mappages["darkunknown"].desc = "Lands of Ellusus";
 mappages["darkunknown"].music = 'Mainland';
+mappages["darkunknown"].savename = 'Ellusus';
 mappages["darkunknown"].exitmap = '';
 mappages["darkunknown"].exitx = '65';
 mappages["darkunknown"].exity = '70';
@@ -198,7 +199,6 @@ mappages["darkunknown"].lightLevel = 'bright';
 mappages["darkunknown"].alwaysRemember = '1';
 mappages["darkunknown"].scale = '0';
 mappages["darkunknown"].underground = '0';
-mappages["darkunknown"].savename = 'Ellusus';
 mappages["darkunknown"].enterscript = '';
 mappages["darkunknown"].entertestscript = '';
 mappages["darkunknown"].exitscript = '';
@@ -927,6 +927,7 @@ mappages["gnomeland"].npcs = [];
 
 mappages["gnomeland"].desc = "Gnomeland";
 mappages["gnomeland"].music = 'Charcreate';
+mappages["gnomeland"].savename = "Gnomeland";
 mappages["gnomeland"].exitmap = '';
 mappages["gnomeland"].exitx = '65';
 mappages["gnomeland"].exity = '70';
@@ -972,6 +973,7 @@ mappages["landsbeyond"].npcs = [];
 
 mappages["landsbeyond"].desc = "The Lands Beyond";
 mappages["landsbeyond"].music = 'Death';
+mappages["landsbeyond"].savename = "Lands Beyond";
 mappages["landsbeyond"].exitmap = '';
 mappages["landsbeyond"].exitx = '65';
 mappages["landsbeyond"].exity = '70';

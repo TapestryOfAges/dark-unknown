@@ -68,6 +68,7 @@ mappages["asharden1"].npcs[1] = {name : 'MageVillagerNPC', x : 22, y : 19, NPCNa
 
 mappages["asharden1"].desc = "Asharden's Tower";
 mappages["asharden1"].music = 'Magic';
+mappages["asharden1"].savename = 'Ash Tower 1';
 mappages["asharden1"].exitmap = 'darkunknown';
 mappages["asharden1"].exitx = '56';
 mappages["asharden1"].exity = '37';
@@ -180,6 +181,7 @@ mappages["asharden2"].npcs = [];
 
 mappages["asharden2"].desc = "Asharden's Tower";
 mappages["asharden2"].music = 'Magic';
+mappages["asharden2"].savename = 'Ash Tower 2';
 mappages["asharden2"].exitmap = 'darkunknown';
 mappages["asharden2"].exitx = '56';
 mappages["asharden2"].exity = '37';
@@ -245,6 +247,7 @@ mappages["asharden3"].npcs = [];
 
 mappages["asharden3"].desc = "Asharden's Tower";
 mappages["asharden3"].music = 'Magic';
+mappages["asharden3"].savename = 'Ash Tower 3';
 mappages["asharden3"].exitmap = 'darkunknown';
 mappages["asharden3"].exitx = '56';
 mappages["asharden3"].exity = '37';

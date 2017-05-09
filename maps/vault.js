@@ -80,6 +80,7 @@ mappages["vault"].npcs[6] = {name : 'EttinSorcererNPC', x : 11, y : 19, Gender: 
 
 mappages["vault"].desc = "The Vault";
 mappages["vault"].music = 'Cave';
+mappages["vault"].savename = "The Vault";
 mappages["vault"].exitmap = 'darkunknown';
 mappages["vault"].exitx = '81';
 mappages["vault"].exity = '128';
