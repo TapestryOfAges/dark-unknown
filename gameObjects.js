@@ -3370,6 +3370,33 @@ FeatureObject.prototype.setLootedID = function(lid) {
 
 // end definitions, begin features
 
+function CastleGrassTile() {
+  this.name = "CastleGrass";
+  this.graphic = "terrain_tiles.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+  this.combatmap = "Grass"; 
+}
+CastleGrassTile.prototype = new FeatureObject();
+
+CastleGrassTile.prototype.bumpinto = function(who) {
+	var retval = {};
+	retval["canmove"] = 1;
+	retval["msg"] = "";
+	
+	if ((who.getx() === this.getx()) && ((this.gety() - who.gety()) === -1)) {
+	  // mover is moving north from the castle
+	  retval["canmove"] = 0;
+	  retval["msg"] = "Blocked!";
+	}
+  return(retval);
+}
+
 function LavaTile() {
   this.name = "Lava";
   this.graphic = "flowing_animations.gif";
@@ -3511,6 +3538,10 @@ function FenceEWGateTile() {
   // WORKING- NEED TO REPLACE SOUNDS
 }
 FenceEWGateTile.prototype = new FeatureObject();
+
+FenceEWGateTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
 
 function StatueBaseTile() {
   this.name = "StatueBase";
@@ -3811,7 +3842,6 @@ CastleTile.prototype.bumpinto = function(who) {
 	}
   return(retval);
 }
-
 
 function LeftCastleTile() {
   this.name = "LeftCastle";

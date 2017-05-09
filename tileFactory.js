@@ -658,6 +658,11 @@ tileFactory.prototype.makeWorldBelowTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCastleGrassTile = function() {
+  var newTile = new CastleGrassTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeLavaTile = function() {
   var newTile = new LavaTile();
   return newTile;
