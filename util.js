@@ -1424,8 +1424,31 @@ function BumpIntoDoor(door,who) {
   retval["msg"] = "Blocked!";
   retval["canmove"] = 0;
 
-  if (DU.gameflags.getFlag("move_opens_doors") && !door.locked) {
-    retval = door.use(who);
+  if (DU.gameflags.getFlag("move_opens_doors") && !door.locked && (who === PC)) {
+    door.use(who);
+    retval["msg"] = "Open door!";
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   }
   return retval;
+}
+
+function IsWantedCode(code) {
+  //  8    backspace
+  // 13    enter
+  // 27    ESC
+  // 32    space
+  // 33    pg up
+  // 34    pg down
+  // 37-40 arrow keys
+  // 48-57 number
+  // 59    ;
+  // 65-90 letter
+  // 191   /
+  // 219   [
+  // 222   '
+
+  if ((code === 8) || (code === 13) || (code === 27) || ((code >= 32) && (code <= 34)) || ((code >= 37) && (code <= 40)) || ((code >=48) && (code <= 57)) || (code === 59) || ((code >= 65) && (code <=90)) || (code === 191) || (code === 219) || (code === 222)) {
+    return 1; 
+  }
+  return 0;
 }

@@ -15,7 +15,7 @@ var eidos = new Platonic();
 //var universe = new Object;
 
 var DU = {};  // attach all saveable global objects to me
-DU.version = 0.7;
+DU.version = "0.7.3";
 
 DU.PC = new PCObject();
 var PC = DU.PC;  // alias
@@ -144,8 +144,6 @@ function DrawMainFrame(how, themap, centerx, centery) {
     $.each(spellcount, function(idx, val) {
       if ((val.getx() >= displayspecs.leftedge) && (val.getx() <= displayspecs.rightedge) && (val.gety() >= displayspecs.topedge) && (val.gety() <= displayspecs.bottomedge)) {
         var where = getCoords(val.getHomeMap(),val.getx(), val.gety());
-//        where.x += 192;
-//        where.y += 192;
         $("#" + idx).css("left", where.x);
         $("#" + idx).css("top", where.y);
       }
@@ -160,9 +158,6 @@ function DrawTopbarFrame(txt) {
 }
 
 $(document).ready(function() {
-//  var worldmap = new GameMap();
-//  worldmap.loadMap("darkunknown");
-//  maps.addMapByRef(worldmap);
 
   var browserheight = $(window).height();
   var browserwidth = $(window).width();
@@ -176,9 +171,6 @@ $(document).ready(function() {
   set_conversations();
   DU.merchants = {};
   DU.merchants = SetMerchants();
-  // create audio players
-//  populate_audio(musiclist, 0, 1, "music");
-//  populate_audio(sfxlist, 1, 0, "sfx");
   if (debug) {  ActivateDebug(1); }
   audio_init();  
 	CreateUI();
@@ -192,7 +184,7 @@ function SoundLoaded() {
   } else {
     gamestate.loadGame(whichsave);
   }
-//  audio_init_2();   // moved into audio_init
+
   DrawCharFrame();
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
@@ -202,10 +194,12 @@ function SoundLoaded() {
   maintext.drawTextFrame(); 
   
   $(document).keydown(function(e) {
-  var code = (e.keyCode ? e.keyCode : e.which);
-//   if (code == 27) { e.preventDefault(); }
-  e.preventDefault();
-  DoAction(code, e.ctrlKey);
+    var code = (e.keyCode ? e.keyCode : e.which);
+
+    if (IsWantedCode(code)) {
+      e.preventDefault();
+      DoAction(code, e.ctrlKey);
+    }
   });
 }
 
@@ -216,7 +210,6 @@ function DoAction(code, ctrl) {
     gamestate.setMode("player");
   }
   if (gamestate.getMode() === "player") {  // PC's turn, awaiting commands
-//   	 alert(DUTime.getGameClock());
     var response = PerformCommand(code, ctrl);
     if (response["fin"]) { 
       maintext.addText(response["txt"]);
