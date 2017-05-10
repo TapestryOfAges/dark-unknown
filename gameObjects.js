@@ -3984,6 +3984,10 @@ function DoorWindowTile() {
 }
 DoorWindowTile.prototype = new FeatureObject();
 
+DoorWindowTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
 function StonePortcullisTile() {
   Lockable.call(this, "stone-portcullis.gif", "stone-portcullis.gif", "stone-portcullis.gif", "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
@@ -4001,6 +4005,10 @@ function StonePortcullisTile() {
 }
 StonePortcullisTile.prototype = new FeatureObject();
 
+StonePortcullisTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
 function WallPortcullisTile() {
   Lockable.call(this, "wall-portcullis.gif", "wall-portcullis.gif", "wall-portcullis.gif", "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
@@ -4017,6 +4025,10 @@ function WallPortcullisTile() {
   Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "wall-arch.gif", 0, 0], 0, "", "", "sfx_locked_door");  // HERE TOO
 }
 WallPortcullisTile.prototype = new FeatureObject();
+
+WallPortcullisTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
 
 function CorpseTile() {
 	this.name = "Corpse";
@@ -4440,6 +4452,10 @@ function DoorTile() {
 	Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorTile.prototype = new FeatureObject();
+
+DoorTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
 
 function TalkingDoorTile() {
   this.name = "TalkingDoor";
