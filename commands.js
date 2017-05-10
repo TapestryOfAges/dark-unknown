@@ -106,12 +106,6 @@ function PerformCommand(code, ctrl) {
         targetCursor.y = PC.gety();		  
   		} else {  // on a 1:1 scale map, choose target
 	  	  gamestate.setMode("target");
-//		  var targetcoords = getCoords(PC.getHomeMap(), PC.getx(), PC.gety());
-//		  var newx = PC.getx();
-//		  var newy = PC.gety();
-//		  var targetx = 192;
-//		  var targety = 192;
-//		  var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
         var setcoords = 0;
         if (DU.gameflags.getFlag("sticky_target") && targetCursor.lastTarget) {
           if (targetCursor.lastTarget.getHomeMap() === PC.getHomeMap()) {
@@ -129,10 +123,6 @@ function PerformCommand(code, ctrl) {
   		  targetCursor.command = "a";
 	  	  targetCursor.targetlimit = (viewsizex -1)/2;
 		    targetCursor.targetCenterlimit = 0;
-//		  targetx += (PC.x - edges.centerx) * 32;
-//		  targety += (PC.y - edges.centery) * 32;
-//      var targetx = targetcoords.x;
-//      var targety = targetcoords.y;
 		    var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
   		  targetCursor.tileid = tileid;
 	  	  targetCursor.basetile = $(tileid).html();
@@ -209,9 +199,6 @@ function PerformCommand(code, ctrl) {
       targetCursor.command = "l";
       targetCursor.targetlimit = (viewsizex -1)/2;
       targetCursor.targetCenterlimit = 0;
-//    var targetcoords = getCoords(PC.getHomeMap(), PC.getx(), PC.gety());
-//    targetx = targetcoords.x;
-//    targety = targetcoords.y;
       var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
       targetCursor.tileid = tileid;
       targetCursor.basetile = $(tileid).html();
@@ -242,8 +229,8 @@ function PerformCommand(code, ctrl) {
 		
 	}
 	else if (code === 79) { // o
-		// was open - merged with use
-		// now, Options
+		// open (calls use if openable)
+		// with ctrl, Options
     if (ctrl) {
   		gamestate.setMode("options");
       retval["txt"] = "";
@@ -282,9 +269,6 @@ function PerformCommand(code, ctrl) {
 		targetCursor.y = PC.gety();
 	}
 	else if (code === 81) { // q
-//		var mymap = PC.getHomeMap();
-//		var testnpc = mymap.npcs.getTop();
-//		testnpc.copy()
     if (ctrl) { 
       gamestate.saveGame("external"); 
       retval["txt"] = "";
@@ -329,16 +313,11 @@ function PerformCommand(code, ctrl) {
   	 return retval; 
 	  }
     gamestate.setMode("target");
-//    var newx = PC.getx();
-//    var newy = PC.gety();
     targetCursor.x = PC.getx();
     targetCursor.y = PC.gety();
     targetCursor.command = "t";
     targetCursor.targetlimit = (viewsizex -1)/2;
     targetCursor.targetCenterlimit = 3;
-//    var targetcoords = getCoords(PC.getHomeMap(), PC.getx(), PC.gety());
-//    targetx = targetcoords.x;
-//    targety = targetcoords.y;
     var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
     targetCursor.tileid = tileid;
     targetCursor.basetile = $(tileid).html();
@@ -348,6 +327,7 @@ function PerformCommand(code, ctrl) {
     retval["fin"] = 2;
 	}
 	else if (code === 85) { // u
+    // use
 		gamestate.setMode("choosedir");
 		retval["txt"] = "";
 		retval["input"] = "&gt; Use: ";
@@ -370,6 +350,7 @@ function PerformCommand(code, ctrl) {
     retval["fin"] = 2;
 	}
 	else if (code === 87) { // w
+    // wear/wield
     if (PC.getHomeMap().getName().indexOf("abyss") > -1) {
       retval["txt"] = "You cannot do that here.";
       retval["fin"] = 2;
@@ -679,16 +660,6 @@ function PerformAttackMap(who) {
   var atkwho = localacre.npcs.getTop();
   var retval = {};
   if (atkwho) { // there's something there!
-//    retval["txt"] = "You attack ";
-//    if (atkwho.getPrefix()){ 
-//      retval["txt"] += atkwho.getPrefix() + " ";
-//    }
-//    retval["txt"] += atkwho.getDesc() + ".";
-//    retval["fin"] = 2;
-//    retval["input"] = "&gt;";
-    
-//    var combatmapname = localacre.terrain.getCombatMap();
-//    if (!combatmapname) { combatmapname = "combatGrass1"; }
     var combatmapname = GetCombatMap(who,atkwho);
     var newmap = new GameMap();
     newmap.loadMap(combatmapname);
@@ -897,7 +868,6 @@ function PerformLook() {
   var seethis = "";
   var map = PC.getHomeMap();
   var onscreen = $('#td-tile' + targetCursor.x + 'x' + targetCursor.y).html();
-//  alert(onscreen);
   var losval = 0;
   if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
   else {
@@ -1145,9 +1115,6 @@ function PerformEquip(code) {
     retval["txt"] = retval["txt"] + " " + newequip.getDesc() + ".";
   }
   return retval;
-
-//  targetCursor.scrolllocation = 0;
-//  targetCursor.itemlist = itemarray;
  
 }
 
