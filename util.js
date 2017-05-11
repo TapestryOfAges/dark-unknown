@@ -1277,7 +1277,7 @@ function FindNearestNPC(from, align, except) {
     if ((val !== from) && ($.inArray(val,except) === -1)) {
       if (!align || ((align === "enemy") && (from.getAttitude() !== val.getAttitude())) || ((align === "ally") && (from.getAttitude() === val.getAttitude()))) {
         var movetype = from.getMovetype();
-        if ((movetype === MOVE_WALK) && (from.specials.open_door)) { movetype = MOVE_WALK_DOOR; }
+        if (from.specials.open_door) { movetype += MOVE_WALK_DOOR; }
         var dist = GetDistanceByPath(from,val,movetype);
         if (dist < distance) {
           nearest = val;

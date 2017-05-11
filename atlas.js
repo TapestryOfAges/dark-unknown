@@ -495,8 +495,8 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	var retval = {};
 	
   var doors = 0;
-  if (movetype === MOVE_WALK_DOOR) { 
-    movetype = MOVE_WALK; 
+  if (movetype & MOVE_WALK_DOOR) { 
+    movetype -= MOVE_WALK; 
     doors = 1;
   }
   
