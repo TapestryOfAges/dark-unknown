@@ -79,25 +79,6 @@ function editorLoadMap(mapname) {
 	drawMap();
 }
 
-// Thanks to http://www.howtocreate.co.uk/tutorials/javascript/browserwindow for this function
-function getSize() {
-  var myWidth = 0, myHeight = 0;
-  if( typeof( window.innerWidth ) == 'number' ) {
-    //Non-IE
-    myWidth = window.innerWidth;
-    myHeight = window.innerHeight;
-  } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
-    //IE 6+ in 'standards compliant mode'
-    myWidth = document.documentElement.clientWidth;
-    myHeight = document.documentElement.clientHeight;
-  } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
-    //IE 4 compatible
-    myWidth = document.body.clientWidth;
-    myHeight = document.body.clientHeight;
-  }
-  return (myHeight);
-}
-
 function drawMap() {
   var mapdiv = "";
  if (amap.data.length) {
@@ -121,12 +102,18 @@ function drawMap() {
    mapdiv  += '</table>';
  }
  $("div.mapscreen").html(mapdiv);
- //$("td.maptd").bind("mouseenter", function() {
- 	
- //});
- //$("td.maptd").bind("mouseleave", function() {
- 	
- //});
+ $.each(amap.allLabels, function(idx,val) {
+   var rect = {};
+   var labelcoords = idx.replace('div_tile','');
+   var labelarray = labelcoords.split('x');
+   rect.left = labelarray[0]*32+3;
+   rect.top = labelarray[1]*32+3;
+   $("div.mapscreen").append('<div id="'+idx+'" style="position:absolute;left:'+rect.left+';top:'+rect.top+'" class="labelsLayer" onClick="DeleteLabel(\''+idx+'\')">&nbsp;'+val+'&nbsp;</div>');
+
+ });
+ workInLayers = 0;
+ $(".labelsLayer").css("display","none");
+
  $("div.mapscreen").css("height", browserheight-130);
  $("div.tiles").css("height", browserheight-100);
  drawFeatures();
@@ -265,12 +252,14 @@ function clickmap(xval,yval) {
   var y=0;
   if (workInLayers) {
     var square = document.getElementById("td_tile"+xval+"x"+yval);
-    var rect = square.getBoundingClientRect();
+    var rect = {};
+    rect.left = xval*32+3;
+    rect.top = yval*32+3;
     brushdown = 0;
     var mytext = prompt("Label:");
     if (mytext) {
       var divtileid = "div_tile"+xval+"x"+yval;
-      $("body").append('<div id="'+divtileid+'" style="position:absolute;left:'+rect.left+';top:'+rect.top+'" class="labelsLayer" onClick="DeleteLabel(\''+divtileid+'\')">&nbsp;'+mytext+'&nbsp;</div>');
+      $("div.mapscreen").append('<div id="'+divtileid+'" style="position:absolute;left:'+rect.left+';top:'+rect.top+'" class="labelsLayer" onClick="DeleteLabel(\''+divtileid+'\')">&nbsp;'+mytext+'&nbsp;</div>');
     }
     amap.allLabels[divtileid] = mytext;
   }
@@ -767,28 +756,6 @@ function erasefeature(x,y) {
   document.images[tileid].src = "graphics/"+terraingraphics[1];
   drawFeatures();
 
-  
-//	delete amap.data[y][x].features;
-//        amap.data[y][x].features = new Collection;
-//	var featureshere = amap.features.getAt(x,y);
-//	for (i in featureshere) {
-//	  amap.features.deleteFrom(featureshere[i]);
-//	}
-//        var tileid = "tile" + x + "x" + y;
-//        var tdid = "#td_" + tileid;
-//        var localacre = amap.getTile(x,y);
-//        var terraingraphics = localacre.getTerrain().getGraphicArray();
-//        var showGraphic = terraingraphics[0];
-//        if (typeof localacre.getTerrain().setBySurround == "function") {
-//       	  graphics = localacre.getTerrain().setBySurround(x,y,amap,graphics,0,0,0);
-//       	  showGraphic = graphics[0];
-//        }
-//        if (typeof localacre.getTerrain().doTile == "function") {
-//        	showGraphic = localacre.getTerrain().doTile(x,y,showGraphic);
-//        }
-//        $(tdid).css("background-image","url('graphics/" + showGraphic + "')");
-//        $(tdid).css("background-position", terraingraphics[2] + "px " + terraingraphics[3] + "px");
-//        document.images[tileid].src = "graphics/"+terraingraphics[1];
 }
 
 function initialSelect() {

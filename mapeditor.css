@@ -23,6 +23,7 @@
   div.mapscreen { overflow: auto;
   	              border-width : 1px;
   	              border-style : solid;
+									position:relative;
   	            }
   div.mainmenu  { 
   	            }
