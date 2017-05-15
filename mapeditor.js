@@ -260,8 +260,8 @@ function clickmap(xval,yval) {
     if (mytext) {
       var divtileid = "div_tile"+xval+"x"+yval;
       $("div.mapscreen").append('<div id="'+divtileid+'" style="position:absolute;left:'+rect.left+';top:'+rect.top+'" class="labelsLayer" onClick="DeleteLabel(\''+divtileid+'\')">&nbsp;'+mytext+'&nbsp;</div>');
+      amap.allLabels[divtileid] = mytext;
     }
-    amap.allLabels[divtileid] = mytext;
   }
   else if (document.brushes.elements[0].checked) {   // point
   	if (selectionval.checkType("Terrain")) {
