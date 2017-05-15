@@ -55,7 +55,7 @@ mappages["shadow1"].npcs[6] = {name : 'SlimeNPC', x : 28, y : 27, NPCBand: '3'};
 mappages["shadow1"].npcs[7] = {name : 'SlimeNPC', x : 26, y : 29, NPCBand: '3'};
 mappages["shadow1"].npcs[8] = {name : 'GiantRatNPC', x : 23, y : 8, NPCBand: '1'};
 mappages["shadow1"].npcs[9] = {name : 'GiantRatNPC', x : 22, y : 12, NPCBand: '1'};
-mappages["shadow1"].npcs[10] = {name : 'ChildVillagerNPC', x : 18, y : 21, NPCName: 'Samantha', Conversation: 'samantha', Gender: 'female'};
+mappages["shadow1"].npcs[10] = {name : 'ChildVillagerNPC', x : 18, y : 21, NPCName: 'Samantha', Conversation: 'samantha', ConversationFlag: 'samantha', Gender: 'female'};
 mappages["shadow1"].npcs[11] = {name : 'HeadlessNPC', x : 9, y : 26};
 
 mappages["shadow1"].desc = "Dungeon Shadow (L1)";

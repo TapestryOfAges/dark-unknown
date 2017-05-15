@@ -93,16 +93,16 @@ mappages["naurglen"].features[53] = {name : 'HealerSign', x : 11, y : 23, prefix
 
 
 mappages["naurglen"].npcs = [];
-mappages["naurglen"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 28, y : 4, NPCName: 'Samuel', Desc: 'blind shepherd', Conversation: 'samuel', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
-mappages["naurglen"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 28, y : 12, NPCName: 'Daniel', Conversation: 'daniel', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-mappages["naurglen"].npcs[2] = {name : 'TinkerVillagerNPC', x : 23, y : 24, NPCName: 'Kyvek', Conversation: 'kyvek', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '304.2.gif'};
-mappages["naurglen"].npcs[3] = {name : 'DruidVillagerNPC', x : 3, y : 20, NPCName: 'Hazel', Desc: 'healer', Conversation: 'hazel', Gender: 'female', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif'};
-mappages["naurglen"].npcs[4] = {name : 'RangerVillagerNPC', x : 11, y : 3, NPCName: 'Garen', Conversation: 'garen', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif'};
-mappages["naurglen"].npcs[5] = {name : 'AdventurerVillagerNPC', x : 13, y : 4, NPCName: 'Warren', Conversation: 'warren', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '306.gif'};
-mappages["naurglen"].npcs[6] = {name : 'PaladinVillagerNPC', x : 9, y : 6, NPCName: 'Amaeryl', Conversation: 'amaeryl', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '307.2.gif'};
+mappages["naurglen"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 28, y : 4, NPCName: 'Samuel', Desc: 'blind shepherd', Conversation: 'samuel', ConversationFlag: 'samuel', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
+mappages["naurglen"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 28, y : 12, NPCName: 'Daniel', Conversation: 'daniel', ConversationFlag: 'daniel', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
+mappages["naurglen"].npcs[2] = {name : 'TinkerVillagerNPC', x : 23, y : 24, NPCName: 'Kyvek', Conversation: 'kyvek', ConversationFlag: 'kyvek', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '304.2.gif'};
+mappages["naurglen"].npcs[3] = {name : 'DruidVillagerNPC', x : 3, y : 20, NPCName: 'Hazel', Desc: 'healer', Conversation: 'hazel', ConversationFlag: 'hazel', Gender: 'female', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif'};
+mappages["naurglen"].npcs[4] = {name : 'RangerVillagerNPC', x : 11, y : 3, NPCName: 'Garen', Conversation: 'garen', ConversationFlag: 'garen', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif'};
+mappages["naurglen"].npcs[5] = {name : 'AdventurerVillagerNPC', x : 13, y : 4, NPCName: 'Warren', Conversation: 'warren', ConversationFlag: 'warren', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '306.gif'};
+mappages["naurglen"].npcs[6] = {name : 'PaladinVillagerNPC', x : 9, y : 6, NPCName: 'Amaeryl', Conversation: 'amaeryl', ConversationFlag: 'amaeryl', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '307.2.gif'};
 mappages["naurglen"].npcs[7] = {name : 'TownGuardNPC', x : 8, y : 13, NPCName: 'Guard', Alignment: 'good', Conversation: 'naurglen_guard', Gender: 'male'};
-mappages["naurglen"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 25, y : 3, NPCName: 'Kylee', Desc: 'farmer', Conversation: 'kylee', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
-mappages["naurglen"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 5, y : 2, NPCName: 'Ingrid', Conversation: 'ingrid', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
+mappages["naurglen"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 25, y : 3, NPCName: 'Kylee', Desc: 'farmer', Conversation: 'kylee', ConversationFlag: 'kylee', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["naurglen"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 5, y : 2, NPCName: 'Ingrid', Conversation: 'ingrid', ConversationFlag: 'ingrid', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 
 mappages["naurglen"].desc = "the Village of Naurglen";
 mappages["naurglen"].music = 'Village';

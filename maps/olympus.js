@@ -607,15 +607,15 @@ mappages["olympus1"].features[534] = {name : 'StairUp2', x : 40, y : 16, enterma
 
 
 mappages["olympus1"].npcs = [];
-mappages["olympus1"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 35, y : 40, NPCName: 'Katrina', Desc: 'librarian', Conversation: 'katrina', Gender: 'female', OverrideGraphic: '310.2.gif'};
-mappages["olympus1"].npcs[1] = {name : 'BardVillagerNPC', x : 29, y : 30, NPCName: 'Olivia', Conversation: 'olivia', Gender: 'female', Leash: 8, OverrideGraphic: '311.gif'};
-mappages["olympus1"].npcs[2] = {name : 'KingNPC', x : 49, y : 20, NPCName: 'King Daragen', Desc: 'King Daragen of Olympus', Conversation: 'king', Gender: 'male'};
-mappages["olympus1"].npcs[3] = {name : 'MageVillagerNPC', x : 51, y : 21, NPCName: 'Jharden', Desc: 'royal advisor', Level: 6, str: 12, dex: 12, int: 26, Conversation: 'jharden', Gender: 'male', OverrideGraphic: 'mage-offcolor.gif'};
-mappages["olympus1"].npcs[4] = {name : 'JesterNPC', x : 48, y : 21, NPCName: 'Kaye', Alignment: 'good', Conversation: 'kaye', Gender: 'male', Leash: 4, BarkFreq: 5, Bark: 'jester', BarkRad: 6};
+mappages["olympus1"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 35, y : 40, NPCName: 'Katrina', Desc: 'librarian', Conversation: 'katrina', ConversationFlag: 'katrina', Gender: 'female', OverrideGraphic: '310.2.gif'};
+mappages["olympus1"].npcs[1] = {name : 'BardVillagerNPC', x : 29, y : 30, NPCName: 'Olivia', Conversation: 'olivia', ConversationFlag: 'olivia', Gender: 'female', Leash: 8, OverrideGraphic: '311.gif'};
+mappages["olympus1"].npcs[2] = {name : 'KingNPC', x : 49, y : 20, NPCName: 'King Daragen', Desc: 'King Daragen of Olympus', Conversation: 'king', ConversationFlag: 'king', Gender: 'male'};
+mappages["olympus1"].npcs[3] = {name : 'MageVillagerNPC', x : 51, y : 21, NPCName: 'Jharden', Desc: 'royal advisor', Level: 6, str: 12, dex: 12, int: 26, Conversation: 'jharden', ConversationFlag: 'jharden', Gender: 'male', OverrideGraphic: 'mage-offcolor.gif'};
+mappages["olympus1"].npcs[4] = {name : 'JesterNPC', x : 48, y : 21, NPCName: 'Kaye', Alignment: 'good', Conversation: 'kaye', ConversationFlag: 'kaye', Gender: 'male', Leash: 4, BarkFreq: 5, Bark: 'jester', BarkRad: 6};
 mappages["olympus1"].npcs[5] = {name : 'FighterVillagerNPC', x : 44, y : 20, NPCName: 'Nyrani', Desc: 'guard captain', Level: 5, str: 24, dex: 18, int: 12, PeaceAI: 'guard', PCThreatAI: 'melee', Conversation: 'nyrani', Gender: 'female', OverrideGraphic: '308.gif'};
-mappages["olympus1"].npcs[6] = {name : 'QueenNPC', x : 68, y : 22, NPCName: 'Shelaria', Desc: 'your mother, Queen Shelaria', Conversation: 'shelaria', Gender: 'female'};
-mappages["olympus1"].npcs[7] = {name : 'BardVillagerNPC', x : 66, y : 21, NPCName: 'Sonya', Conversation: 'sonya', Gender: 'female', Leash: 1, OverrideGraphic: 'bard-offcolor.gif'};
-mappages["olympus1"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 67, y : 17, NPCName: 'Sean', Conversation: 'sean', Gender: 'male', Leash: 2};
+mappages["olympus1"].npcs[6] = {name : 'QueenNPC', x : 68, y : 22, NPCName: 'Shelaria', Desc: 'your mother, Queen Shelaria', Conversation: 'shelaria', ConversationFlag: 'shelaria', Gender: 'female'};
+mappages["olympus1"].npcs[7] = {name : 'BardVillagerNPC', x : 66, y : 21, NPCName: 'Sonya', Conversation: 'sonya', ConversationFlag: 'sonya', Gender: 'female', Leash: 1, OverrideGraphic: 'bard-offcolor.gif'};
+mappages["olympus1"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 67, y : 17, NPCName: 'Sean', Conversation: 'sean', ConversationFlag: 'sean', Gender: 'male', Leash: 2};
 mappages["olympus1"].npcs[9] = {name : 'TownGuardNPC', x : 48, y : 40, Conversation: 'castleguard1', Gender: 'male', BarkFreq: 2, Bark: 'startguard', BarkRad: 6};
 mappages["olympus1"].npcs[10] = {name : 'TownGuardNPC', x : 50, y : 40, Conversation: 'castleguard1', Gender: 'male', BarkFreq: 2, Bark: 'startguard', BarkRad: 6};
 mappages["olympus1"].npcs[11] = {name : 'HorseNPC', x : 65, y : 45};
@@ -624,7 +624,7 @@ mappages["olympus1"].npcs[13] = {name : 'HorseNPC', x : 69, y : 46};
 mappages["olympus1"].npcs[14] = {name : 'HorseNPC', x : 71, y : 45};
 mappages["olympus1"].npcs[15] = {name : 'BullNPC', x : 78, y : 47};
 mappages["olympus1"].npcs[16] = {name : 'BullNPC', x : 83, y : 49};
-mappages["olympus1"].npcs[17] = {name : 'TownsfolkVillagerNPC', x : 64, y : 48, NPCName: 'Alex', Desc: 'stablemaster', Conversation: 'alex', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["olympus1"].npcs[17] = {name : 'TownsfolkVillagerNPC', x : 64, y : 48, NPCName: 'Alex', Desc: 'stablemaster', Conversation: 'alex', ConversationFlag: 'alex', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 mappages["olympus1"].npcs[18] = {name : 'ChickenNPC', x : 38, y : 49};
 mappages["olympus1"].npcs[19] = {name : 'ChickenNPC', x : 39, y : 49};
 mappages["olympus1"].npcs[20] = {name : 'ChickenNPC', x : 40, y : 51};
@@ -632,10 +632,11 @@ mappages["olympus1"].npcs[21] = {name : 'ChickenNPC', x : 42, y : 49};
 mappages["olympus1"].npcs[22] = {name : 'ChickenNPC', x : 42, y : 50};
 mappages["olympus1"].npcs[23] = {name : 'ChickenNPC', x : 44, y : 52};
 mappages["olympus1"].npcs[24] = {name : 'ChickenNPC', x : 40, y : 48};
-mappages["olympus1"].npcs[25] = {name : 'TownsfolkVillagerNPC', x : 68, y : 40, NPCName: 'Tyler', Desc: 'chancellor', Conversation: 'tyler', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
+mappages["olympus1"].npcs[25] = {name : 'TownsfolkVillagerNPC', x : 68, y : 40, NPCName: 'Tyler', Desc: 'chancellor', Conversation: 'tyler', ConversationFlag: 'tyler', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["olympus1"].npcs[26] = {name : 'TownGuardNPC', x : 47, y : 25, Conversation: 'castleguard2', Gender: 'monster', Bark: '0', NPCBand: '0'};
 mappages["olympus1"].npcs[27] = {name : 'TownGuardNPC', x : 51, y : 25, Conversation: 'castleguard2', Gender: 'monster', Bark: '0', NPCBand: '0'};
 mappages["olympus1"].npcs[28] = {name : 'TownGuardNPC', x : 36, y : 20, Conversation: 'castleguard2', Gender: 'monster', Bark: '0', NPCBand: '0'};
+mappages["olympus1"].npcs[29] = {name : 'AdventurerVillagerNPC', x : 26, y : 49, NPCName: 'Peter', Conversation: 'peter', ConversationFlag: 'peter', Gender: 'male', Leash: 6, Bark: '0', NPCBand: '0'};
 
 mappages["olympus1"].desc = "Castle dea Olympus";
 mappages["olympus1"].music = 'Olympus';
@@ -660,7 +661,7 @@ mappages["olympus1"].returnx = '69';
 mappages["olympus1"].returny = '74';
 mappages["olympus1"].returninfused = '0';
 mappages["olympus1"].linkedMaps = ["olympus2","olympus0"];
-mappages["olympus1"].editorLabels = '{}';
+mappages["olympus1"].editorLabels = '{"div_tile14x24":"Tyler and Sonya","div_tile81x37":"Peter","div_tile81x28":"Sean","div_tile80x19":"Katrina","div_tile26x48":"Peter","div_tile64x49":"Alex","div_tile68x39":"Tyler","div_tile68x21":"Shelaria","div_tile66x20":"Sonya","div_tile67x16":"Sean","div_tile52x21":"Jharden","div_tile48x22":"Kaye","div_tile49x19":"Daragen","div_tile44x19":"Nyrani","div_tile29x31":"Olivia","div_tile35x39":"Katrina"}';
 
 mappages["olympus2"] = {};
 mappages["olympus2"].terrain = [];
@@ -939,6 +940,7 @@ mappages["olympus2"].features[204] = {name : 'SmallBox', x : 60, y : 29};
 
 
 mappages["olympus2"].npcs = [];
+mappages["olympus2"].npcs[0] = {name : 'FighterVillagerNPC', x : 69, y : 40, NPCName: 'Elizabeth', Conversation: 'liz', ConversationFlag: 'liz', Gender: 'female', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif'};
 
 mappages["olympus2"].desc = "Castle dea Olympus";
 mappages["olympus2"].music = 'Olympus';
@@ -1078,11 +1080,11 @@ mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 8, y : 21, Conversati
 mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 10, y : 16, Conversation: 'castleguard0', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["olympus0"].npcs[2] = {name : 'TownGuardNPC', x : 19, y : 12, Conversation: 'castleguard0p', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["olympus0"].npcs[3] = {name : 'TownGuardNPC', x : 19, y : 14, Conversation: 'castleguard0p', Gender: 'female', Bark: '0', NPCBand: '0'};
-mappages["olympus0"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 24, y : 8, NPCName: 'Jeremiah', Conversation: 'jeremiah', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-mappages["olympus0"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 8, y : 16, NPCName: 'Trevor', Desc: 'treasurer', PeaceAI: 'Trevor', Conversation: 'trevor', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
-mappages["olympus0"].npcs[6] = {name : 'PaladinVillagerNPC', x : 20, y : 10, NPCName: 'Erica', Conversation: 'erica', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '307.gif'};
-mappages["olympus0"].npcs[7] = {name : 'TinkerVillagerNPC', x : 24, y : 18, NPCName: 'Aara', Conversation: 'aara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
-mappages["olympus0"].npcs[8] = {name : 'ShepherdVillagerNPC', x : 24, y : 13, NPCName: 'Rose', Conversation: 'rose', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
+mappages["olympus0"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 24, y : 8, NPCName: 'Jeremiah', Conversation: 'jeremiah', ConversationFlag: 'jeremiah', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
+mappages["olympus0"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 8, y : 16, NPCName: 'Trevor', Desc: 'treasurer', PeaceAI: 'Trevor', Conversation: 'trevor', ConversationFlag: 'trevor', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["olympus0"].npcs[6] = {name : 'PaladinVillagerNPC', x : 20, y : 10, NPCName: 'Erica', Conversation: 'erica', ConversationFlag: 'erica', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '307.gif'};
+mappages["olympus0"].npcs[7] = {name : 'TinkerVillagerNPC', x : 24, y : 18, NPCName: 'Aara', Conversation: 'aara', ConversationFlag: 'aara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
+mappages["olympus0"].npcs[8] = {name : 'ShepherdVillagerNPC', x : 24, y : 13, NPCName: 'Rose', Conversation: 'rose', ConversationFlag: 'rose', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
 
 mappages["olympus0"].desc = "Castle Basement";
 mappages["olympus0"].music = 'Olympus';

@@ -82,17 +82,17 @@ mappages["onyx"].features[42] = {name : 'Dresser', x : 17, y : 5};
 mappages["onyx"].features[43] = {name : 'Dresser', x : 17, y : 7};
 
 mappages["onyx"].npcs = [];
-mappages["onyx"].npcs[0] = {name : 'MageVillagerNPC', x : 5, y : 6, NPCName: 'Xavier', Conversation: 'xavier', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif'};
-mappages["onyx"].npcs[1] = {name : 'DruidVillagerNPC', x : 27, y : 11, NPCName: 'Daniel', Conversation: 'daniel', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif'};
-mappages["onyx"].npcs[2] = {name : 'RangerVillagerNPC', x : 31, y : 7, NPCName: 'Dawne', Conversation: 'dawne', Gender: 'female', Bark: '0', NPCBand: '0'};
+mappages["onyx"].npcs[0] = {name : 'MageVillagerNPC', x : 5, y : 6, NPCName: 'Xavier', Conversation: 'xavier', ConversationFlag: 'xavier', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif'};
+mappages["onyx"].npcs[1] = {name : 'DruidVillagerNPC', x : 27, y : 11, NPCName: 'William', Conversation: 'william', ConversationFlag: 'william', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif'};
+mappages["onyx"].npcs[2] = {name : 'RangerVillagerNPC', x : 31, y : 7, NPCName: 'Dawne', Conversation: 'dawne', ConversationFlag: 'dawne', Gender: 'female', Bark: '0', NPCBand: '0'};
 mappages["onyx"].npcs[3] = {name : 'CorruptGuardsNPC', x : 3, y : 14};
 mappages["onyx"].npcs[4] = {name : 'CorruptGuardsNPC', x : 3, y : 16};
 mappages["onyx"].npcs[5] = {name : 'CorruptGuardsNPC', x : 20, y : 15};
 mappages["onyx"].npcs[6] = {name : 'CorruptGuardsNPC', x : 14, y : 11};
 mappages["onyx"].npcs[7] = {name : 'CorruptGuardsNPC', x : 33, y : 19};
 mappages["onyx"].npcs[8] = {name : 'CorruptGuardsNPC', x : 33, y : 17};
-mappages["onyx"].npcs[9] = {name : 'TinkerVillagerNPC', x : 28, y : 27, NPCName: 'Heather', Conversation: 'heather', Gender: 'female', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: '304.2.gif'};
-mappages["onyx"].npcs[10] = {name : 'FighterVillagerNPC', x : 36, y : 17, NPCName: 'Aithne', Conversation: 'aithne', Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: '308.gif'};
+mappages["onyx"].npcs[9] = {name : 'TinkerVillagerNPC', x : 28, y : 27, NPCName: 'Heather', Conversation: 'heather', ConversationFlag: 'heather', Gender: 'female', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: '304.2.gif'};
+mappages["onyx"].npcs[10] = {name : 'FighterVillagerNPC', x : 36, y : 17, NPCName: 'Aithne', Conversation: 'aithne', ConversationFlag: 'aithne', Gender: 'monster', Bark: '0', NPCBand: '0', OverrideGraphic: '308.gif'};
 
 mappages["onyx"].desc = "the Towne of Onyx";
 mappages["onyx"].music = 'Dark Towne';
