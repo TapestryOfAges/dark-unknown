@@ -11341,7 +11341,7 @@ function AddNPCProperties() {
 }
 
 NPCObject.prototype.getDesc = function() {
-  var knowsflag = "knows_" + this.conversation;
+  var knowsflag = "knows_" + this.conversationflag;
   if (DU.gameflags.getFlag(knowsflag)) {
     return this.npcname;
   } 
