@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-open (my $fh, "<", "DU NPCs - Loot.tsv") or die "can't open loot\n";
+open (my $fh, "<", "MOB stats - Loot.tsv") or die "can't open loot\n";
 
 my %loots;
 my %groups;
