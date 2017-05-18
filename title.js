@@ -446,7 +446,7 @@ function SaveChar() {
   PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
   var dagger = localFactory.createTile("Dagger");
   PC.addToInventory(dagger, 1);
-  PC.addGold(100);
+//  PC.addGold(100);
   PC.setEquipment("weapon",dagger);
   var armor = localFactory.createTile("ClothArmor");
   PC.addToInventory(armor, 1);
@@ -522,14 +522,18 @@ function RunIntro(idx) {
     $('#introcontainer').append(nextpage);
     $('#intro5').fadeIn(1000);
   } else if (idx === 5) {
-    var nextpage = "<div id='intro6' style='color:white;display:none'><p class='charcreate'>But a few months ago, Lance moved into an old castle, ruined from the war, and begun rebuilding. And then, to the surprise of everyone, he planted his banner and declared that he was in rebellion- that he, rather than your father, should rule Ellusus.</p></div>";
+    var nextpage = "<div id='intro6' style='color:white;display:none'><p class='charcreate'>You are meanwhile ensconced in a house on the outskirts of the nearby village of Naurglen. It is less necessary for you to be at the center of things, and it is quieter here. You pursue your studies, and visit when the mood strikes you.</p></div>";
     $('#introcontainer').html(nextpage);
     $('#intro6').fadeIn(1000);
   } else if (idx === 6) {
-    var nextpage = "<div id='intro7' style='color:white;display:none'><p class='charcreate'>Shocked and saddened, your parents have summoned you to the ruling seat, Castle dea Olympus. The time for study is over. The time for leisure is past. As you stand now outside the gates, you prepare to enter and learn what lies in store for you...</p></div>";
-    $('#introcontainer').append(nextpage);
+    var nextpage = "<div id='intro7' style='color:white;display:none'><p class='charcreate'>But a few months ago, Lance moved into an old castle, ruined from the war, and begun rebuilding. And then, to the surprise of everyone, he planted his banner and declared that he was in rebellion- that he, rather than your father, should rule Ellusus.</p></div>";
+    $('#introcontainer').html(nextpage);
     $('#intro7').fadeIn(1000);
   } else if (idx === 7) {
+    var nextpage = "<div id='intro8' style='color:white;display:none'><p class='charcreate'>Shocked and saddened, your parents have summoned you to the ruling seat, Castle dea Olympus. The time for study is over. The time for leisure is past. You lock your dwelling behind you, and now as you stand outside the gates you prepare to enter and learn what lies in store for you...</p></div>";
+    $('#introcontainer').append(nextpage);
+    $('#intro8').fadeIn(1000);
+  } else if (idx === 8) {
     gamestate.setMode("null");
     SecondPage();
   }
