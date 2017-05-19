@@ -106,7 +106,7 @@
 	<div class="bubble" id="detailsbubble"><form name="detailseditpopup"><table cellpadding="1" cellspacing="1" border="0">
 		<tr><td>Map name:</td><td><input type="text" name="mapname" value="" size="40" /></td></tr>
 		<tr><td>Map desc:</td><td><input type="text" name="mapdesc" value="" size="40" /></td></tr>
-		<tr><td>Save name:</td><td><input type="text" name="savename" value="" size="40" maxlength="14" /></td></tr>
+		<tr><td>Save name:</td><td><input type="text" name="mapsavename" value="" size="40" maxlength="14" /></td></tr>
 	  <tr><td>Music:</td><td><select name="mapmusic"><option value=""></option>
 		  <script language="JavaScript">
 		  	for (var keyz in DUMusic) {
@@ -210,6 +210,7 @@
 	<td style="background-color:mediumpurple"><input onClick="cornerx=-1;cornery=-1" type="radio" name="brushtype" value="razeselect" />Raze</td>
 	<td style="background-color:mediumpurple"><input onClick="cornerx=-1;cornery=-1" type="radio" name="brushtype" value="copybox" />Copy</td>
 	<td style="background-color:mediumpurple"><input onClick="cornerx=-1;cornery=-1" type="radio" name="brushtype" value="pasteselect" />Paste</td>
+	<td style="background-color:mediumpurple;display:none"><input onClick="cornerx=-1;cornery=-1" type="radio" name="brushtype" value="nullselect" />Null</td>
 	<td>NPCBand: <input type="text" name="npcband" value="" size="5" /></td>
 </tr>
 </table>
