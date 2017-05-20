@@ -7407,6 +7407,15 @@ function FountainTile() {
 }
 FountainTile.prototype = new FeatureObject();
 
+function BrokenFountainTile() {
+  this.name = "BrokenFountain";
+  this.graphic = "brokenfountain.gif";
+  this.prefix = "a";
+  this.desc = "broken fountain";
+  this.peerview = "#a0a0a0";
+}
+BrokenFountainTile.prototype = new FeatureObject();
+
 function BlueCrystalTile() {
   this.name = "BlueCrystal";
   this.graphic = "crystals.gif";

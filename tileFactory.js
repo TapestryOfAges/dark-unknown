@@ -1698,6 +1698,11 @@ tileFactory.prototype.makeFountainTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBrokenFountainTile = function() {
+  var newTile = new BrokenFountainTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBlueCrystalTile = function() {
   var newTile = new BlueCrystalTile();
   return newTile;
