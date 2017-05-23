@@ -6,6 +6,8 @@ var places = {};
 var curr_place = "";
 var curr_person = "";
 
+var last_unknown_idx = 0;
+
 $(document).ready(function() {
   set_conversations();
   create_header();
@@ -72,21 +74,47 @@ function del_conv() {
 
 function select_conv() {
   var thisconv = document.convform.pickconv.value;
+  last_unknown_idx = 0;
   if (!thisconv) { return; }
 
   var txt = "<div style='margin-10'><form name='speechform'><table cellpadding='2' cellspacing='0' border='1'>";
-  txt = txt + "<th>KEYWORD</th><th>FLAG</th><th>RESPONSE</th><th>TRIGGERS</th><th></th></tr>";
-  if (conversations[thisconv]._start) { txt = txt + show_response(thisconv, "_start"); }
-  if (conversations[thisconv]._confused) { txt = txt + show_response(thisconv, "_confused"); }
-  
-  $.each(conversations[thisconv], function(idx, val) {
-    if ((idx != "_start") && (idx != "_confused") && (idx != "bye") && (idx != "_location") && (idx != "respond") && (idx != "say")) {
-      txt = txt + show_response(thisconv, idx);
+  txt = txt + "<th>#</th><th>KEYWORD</th><th>FLAG</th><th>RESPONSE</th><th>TRIGGERS</th><th></th></tr>";
+//  if (conversations[thisconv]._start) { txt = txt + show_response(thisconv, "_start"); }
+//  if (conversations[thisconv]._confused) { txt = txt + show_response(thisconv, "_confused"); }
+
+  if (conversations[thisconv]["name"].editor_idx) {
+    var conv_array = [];
+    var high_idx = 1000;
+    $.each(conversations[thisconv], function (idx,val) {
+      if ((idx != "_location") && (idx != "respond") && (idx != "say")) {
+        if (conversations[thisconv][idx].editor_idx) {
+          conv_array[conversations[thisconv][idx].editor_idx] = idx;
+        } else {
+          conv_array[high_idx] = idx;
+          high_idx++;
+        }
+      }
+    });
+
+    var i=1;
+    while (i<conv_array.length) {
+      if (conv_array[i]) {
+        txt = txt + show_response(thisconv, conv_array[i]);
+        i++;
+      } else {
+        convarray.splice(i,1);
+      }
     }
-    
-  });
+
+  } else {   
+    $.each(conversations[thisconv], function(idx, val) {
+      if ((idx != "_location") && (idx != "respond") && (idx != "say")) {
+        txt = txt + show_response(thisconv, idx);
+      }    
+    });
+  }
   
-  if (conversations[thisconv].bye) { txt = txt + show_response(thisconv, "bye"); }
+//  if (conversations[thisconv].bye) { txt = txt + show_response(thisconv, "bye"); }
   txt = txt + "</table></form><p><a href='javascript:edit_response(\""+ thisconv + "\", \"\");'>New Response</a></p></div>";
   $('#mainbody').html(txt);
 }
@@ -101,25 +129,48 @@ function show_response(convname, keyword) {
     flag = val;
   });
 
+  if (!conversations[convname][keyword].editor_idx) { conversations[convname][keyword].editor_idx = ++last_unknown_idx; }
+  var idx_display = "<table><tr><td><img src='graphics/frame/north.gif' width='10' height='10' onClick='MoveResponse(\"up\",\""+convname+"\",\""+keyword+"\")' /></td><td rowspan='2' verticle-align='center'>" + conversations[convname][keyword].editor_idx + "</tr><tr><td><img src='graphics/frame/south.gif' width='10' height='10' onClick='MoveResponse(\"down\",\""+convname+"\",\""+keyword+"\")' /></td></tr></table>";  
   if (keytype) {
     var triggers = "";
     $.each(conversations[convname][keyword].triggers[0], function(idx, val) {
       triggers = triggers + idx + " " + "(" + val + ") ";
     });
-    tmptxt = tmptxt + "<tr><td>" + keyword + "</td><td style='color:blue'>[flag unmet]</td><td>" + conversations[convname][keyword].responses[0] + "</td><td style='font-weight:bold'>" + triggers + "</td><td rowspan='2'><a href='javascript:edit_response(\"" + convname + "\", \"" + keyword + "\")'>Edit</a></td></tr>";
+    tmptxt = tmptxt + "<tr><td rowspan='2'>" + idx_display + "</td><td rowspan='2'>" + keyword + "</td><td style='color:blue'>[flag unmet]</td><td>" + conversations[convname][keyword].responses[0] + "</td><td style='font-weight:bold'>" + triggers + "</td><td rowspan='2'><a href='javascript:edit_response(\"" + convname + "\", \"" + keyword + "\")'>Edit</a></td></tr>";
     triggers = "";
     $.each(conversations[convname][keyword].triggers[1], function(idx, val) {
       triggers = triggers + idx + " " + "(" + val + ") ";
     });
-    tmptxt = tmptxt + "<tr><td></td><td style='color:blue'>"+ keytype + " : " + flag + "</td><td>" + conversations[convname][keyword].responses[1] + "</td><td style='font-weight:bold'>" + triggers + "</td></tr>";
+    tmptxt = tmptxt + "<tr><td style='color:blue'>"+ keytype + " : " + flag + "</td><td>" + conversations[convname][keyword].responses[1] + "</td><td style='font-weight:bold'>" + triggers + "</td></tr>";
   } else {
     var triggers = "";
     $.each(conversations[convname][keyword].triggers[1], function(idx, val) {
       triggers = triggers + idx + " " + "(" + val + ") ";
     });
-    tmptxt = tmptxt + "<tr><td>" + keyword + "</td><td style='color:blue'></td><td>" + conversations[convname][keyword].responses[1] + "</td><td style='font-weight:bold'>" + triggers + "</td><td><a href='javascript:edit_response(\"" + convname + "\", \"" + keyword + "\")'>Edit</a></td></tr>";
+    tmptxt = tmptxt + "<tr><td>" + idx_display + "</td><td>" + keyword + "</td><td style='color:blue'></td><td>" + conversations[convname][keyword].responses[1] + "</td><td style='font-weight:bold'>" + triggers + "</td><td><a href='javascript:edit_response(\"" + convname + "\", \"" + keyword + "\")'>Edit</a></td></tr>";
   }
   return tmptxt;
+}
+
+function MoveResponse(dir, convname, keyword) {
+  var conv_idx = conversations[convname][keyword].editor_idx;
+  var diff = 1;
+  if (dir === "up") { diff = -1; }
+
+  var swapwith = FindKeywordByIndex(convname, conv_idx+diff);
+  if (swapwith) {
+    conversations[convname][keyword].editor_idx = conv_idx+diff;
+    conversations[convname][swapwith].editor_idx = conv_idx;
+  }
+  select_conv();
+}
+
+function FindKeywordByIndex(convname, findidx) {
+  var returnme = 0;
+  $.each(conversations[convname], function(idx,val) {
+    if (conversations[convname][idx].editor_idx === findidx) { returnme = idx; }
+  });
+  return returnme;
 }
 
 function edit_response(convname, keyword) {
