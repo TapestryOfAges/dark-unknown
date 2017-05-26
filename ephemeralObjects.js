@@ -464,11 +464,9 @@ CurseTile.prototype.endEffect = function(silent) {
 function DiseaseTile() {
   this.addType("debuff");
   this.name = "Disease";
-  this.damagePerTick = .4;
   this.display = "<span style='color:#58FA58'>D</span>";
   this.zstatdesc = "You have been infected by a disease.";
   this.desc = "disease";
-  this.damagetype = "disease";
 }
 DiseaseTile.prototype = new DamageOverTimeObject();
 
@@ -800,7 +798,7 @@ IronFleshTile.prototype.endEffect = function(silent) {
 function PoisonTile() {
   this.addType("debuff");
   this.name = "Poison";
-  this.damagePerTick = 2 * (1/SCALE_TIME);  // poison is slow-maps only
+  this.damagePerTick = 2;  // will deal very slow damage in combat maps
   this.damagetype = "poison";
   this.display = "<span style='color:#58FA58'>P</span>";
   this.zstatdesc = "Poison courses through your veins.";
