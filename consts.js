@@ -19,7 +19,7 @@ const MOVE_LEVITATE = 8;
 const MOVE_WALK = 16;
 const MOVE_WALK_DOOR = 32;
 
-const SCALE_TIME = .01;
+const SCALE_TIME = .2;
 
 const BASE_RESIST_CHANCE = 30;
 const BASE_HIT_CHANCE = 70;
