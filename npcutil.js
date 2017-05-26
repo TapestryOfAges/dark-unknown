@@ -433,6 +433,8 @@ function PushOff(what) {
 }
 
 function Regen(who) {
+  if (who.getSpellEffectsByName("Disease")) { return; } 
+  
   if (DUTime.getGameClock() > who.nextMana) {
     if (who.getMana() < who.getMaxMana()) {
       who.modMana(1);
