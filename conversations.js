@@ -322,11 +322,6 @@ OnConvTriggers["spellbook"] = function(speaker,keyword) {
   return;
 }
 
-OnConvTriggers["knows_samantha"] = function(speaker,keyword) {
-  DU.gameflags.setFlag("knows_samantha2", 1);
-  return; 
-}
-
 OnConvTriggers["king_heal"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("king_heal");
   PC.healMe(1000);
@@ -426,7 +421,7 @@ OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
   } else {
     PC.addGold(-5);
     maintext.addText("He leads you to your room.");
-    setTimeout(function() { InnRoom(28,17,[21,14,25,20]); }, 50);
+    setTimeout(function() { InnRoom(93,38,[91,38,88,29]); }, 50);
   }
   return -1;
 }
@@ -500,13 +495,25 @@ OnConvTriggers["health_ingrid"] = function(speaker,keyword) {
   }
 }
 
+OnConvTriggers["health_derek"] = function(speaker,keyword) {
+  if (!DU.gameflags.getFlag("all_health")){
+    CheckAllHealth();
+  }
+}
+
+OnConvTriggers["health_amy"] = function(speaker,keyword) {
+  if (!DU.gameflags.getFlag("all_health")){
+    CheckAllHealth();
+  }
+}
+
 OnConvTriggers["shield_gotten"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("get_shield");
   DU.gameflags.deleteFlag("shield_gotten");
 }
 
 function CheckAllHealth() {
-  if (DU.gameflags.getFlag("health_amaeryl") && DU.gameflags.getFlag("health_daniel") && DU.gameflags.getFlag("health_garen") && DU.gameflags.getFlag("health_guard") && DU.gameflags.getFlag("health_ingrid") && DU.gameflags.getFlag("health_kylee") && DU.gameflags.getFlag("health_kyvek") && DU.gameflags.getFlag("health_samuel") && DU.gameflags.getFlag("health_warren")) {
+  if (DU.gameflags.getFlag("health_amaeryl") && DU.gameflags.getFlag("health_daniel") && DU.gameflags.getFlag("health_garen") && DU.gameflags.getFlag("health_guard") && DU.gameflags.getFlag("health_ingrid") && DU.gameflags.getFlag("health_kylee") && DU.gameflags.getFlag("health_kyvek") && DU.gameflags.getFlag("health_samuel") && DU.gameflags.getFlag("health_warren") && DU.gameflags.getFlag("health_derek") && DU.gameflags.getFlag("health_amy")) {
     DU.gameflags.setFlag("all_health", 1);
   }
 }
