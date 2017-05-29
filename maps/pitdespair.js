@@ -52,9 +52,9 @@ mappages["pitdespair1"].terrain[46] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 
 mappages["pitdespair1"].features = [];
 mappages["pitdespair1"].features[0] = {name : 'LadderUp', x : 8, y : 19, entermap : 'darkunknown', enterx : 117, entery : 76};
-mappages["pitdespair1"].features[1] = {name : 'Door', x : 11, y : 20, desc : "locked door", locked : 1};
+mappages["pitdespair1"].features[1] = {name : 'Door', x : 11, y : 20, desc : "locked door", locked : 1, keyname : "PitOfDespairKey"};
 mappages["pitdespair1"].features[2] = {name : 'LadderDown', x : 16, y : 21, entermap : 'pitdespair2', enterx : 18, entery : 19};
-mappages["pitdespair1"].features[3] = {name : 'Door', x : 15, y : 20, desc : "locked door", locked : 1};
+mappages["pitdespair1"].features[3] = {name : 'Door', x : 15, y : 20, desc : "locked door", locked : 1, keyname : "PitOfDespairKey"};
 mappages["pitdespair1"].features[4] = {name : 'Door', x : 20, y : 9};
 mappages["pitdespair1"].features[5] = {name : 'WallPortcullis', x : 11, y : 9, locked : 1};
 mappages["pitdespair1"].features[6] = {name : 'WallPortcullis', x : 11, y : 14, locked : 1};
@@ -88,17 +88,18 @@ mappages["pitdespair1"].features[33] = {name : 'PitDespairLever', x : 22, y : 15
 mappages["pitdespair1"].features[34] = {name : 'PitDespairLever', x : 22, y : 13};
 mappages["pitdespair1"].features[35] = {name : 'PitDespairLever', x : 22, y : 11};
 mappages["pitdespair1"].features[36] = {name : 'PitDespairLever', x : 18, y : 12};
-mappages["pitdespair1"].features[37] = {name : 'Door', x : 14, y : 36, desc : "locked door", locked : 1};
+mappages["pitdespair1"].features[37] = {name : 'Door', x : 14, y : 36, desc : "locked door", locked : 1, keyname : "PitOfDespairKey"};
 mappages["pitdespair1"].features[38] = {name : 'Doorway', x : 11, y : 39};
 mappages["pitdespair1"].features[39] = {name : 'ExecutionersHood', x : 20, y : 19};
-mappages["pitdespair1"].features[40] = {name : 'Chest', x : 8, y : 36, lootgroup : '', lootedid : ''};
-mappages["pitdespair1"].features[41] = {name : 'Chest', x : 9, y : 36, lootgroup : '', lootedid : ''};
-mappages["pitdespair1"].features[42] = {name : 'Chest', x : 10, y : 36, lootgroup : '', lootedid : ''};
+mappages["pitdespair1"].features[40] = {name : 'Chest', x : 8, y : 36};
+mappages["pitdespair1"].features[41] = {name : 'Chest', x : 9, y : 36};
+mappages["pitdespair1"].features[42] = {name : 'Chest', x : 10, y : 36};
 mappages["pitdespair1"].features[43] = {name : 'BottomChair', x : 15, y : 39};
 mappages["pitdespair1"].features[44] = {name : 'BookshelfOne', x : 12, y : 37};
 mappages["pitdespair1"].features[45] = {name : 'LeftTableOnWood', x : 14, y : 38};
 mappages["pitdespair1"].features[46] = {name : 'MiddleTableOnWood', x : 15, y : 38};
 mappages["pitdespair1"].features[47] = {name : 'RightTableOnWood', x : 16, y : 38};
+
 
 mappages["pitdespair1"].npcs = [];
 mappages["pitdespair1"].npcs[0] = {name : 'SlimeNPC', x : 8, y : 23};
@@ -140,7 +141,7 @@ mappages["pitdespair1"].npcs[35] = {name : 'GiantRatNPC', x : 22, y : 39};
 
 mappages["pitdespair1"].desc = "Pit of Despair (L1)";
 mappages["pitdespair1"].music = 'Dungeon';
-mappages["pitdespair1"].savename = "Pit of Despair";
+mappages["pitdespair1"].savename = 'Pit of Despair';
 mappages["pitdespair1"].exitmap = 'darkunknown';
 mappages["pitdespair1"].exitx = '65';
 mappages["pitdespair1"].exity = '70';
@@ -161,24 +162,11 @@ mappages["pitdespair1"].returnx = '117';
 mappages["pitdespair1"].returny = '76';
 mappages["pitdespair1"].returninfused = '0';
 mappages["pitdespair1"].linkedMaps = ["pitdespair2","pitdespair3","pitdespair4"];
-
+mappages["pitdespair1"].editorLabels = '{}';
 
 mappages["pitdespair1"].onload = function(mapref) {
     
   if (gamestate.getMode() !== "loadgame") {
-
-    // add a key to three of the locked doors. They still unlock to the Unlock spell as well    
-    var doortile = mapref.getTile(11,20);
-    var door = doortile.getTopFeature();
-    door.keyname = "PitOfDespairKey";
-    
-    doortile = mapref.getTile(15,20);
-    door = doortile.getTopFeature();
-    door.keyname = "PitOfDespairKey";
-
-    doortile = mapref.getTile(14,36);
-    door = doortile.getTopFeature();
-    door.keyname = "PitOfDespairKey";
 
     var ports = [];
     doortile = mapref.getTile(11,24);
