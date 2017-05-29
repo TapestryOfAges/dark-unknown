@@ -308,10 +308,10 @@ mappages["spire2"].features[24] = {name : 'Barrel', x : 14, y : 18};
 mappages["spire2"].features[25] = {name : 'Chest', x : 13, y : 18};
 mappages["spire2"].features[26] = {name : 'Chest', x : 12, y : 18};
 mappages["spire2"].features[27] = {name : 'Chest', x : 11, y : 18};
-mappages["spire2"].features[28] = {name : 'BookshelfLeft', x : 10, y : 13};
-mappages["spire2"].features[29] = {name : 'BookshelfLeft', x : 12, y : 13};
-mappages["spire2"].features[30] = {name : 'BookshelfRight', x : 13, y : 13};
-mappages["spire2"].features[31] = {name : 'BookshelfRight', x : 11, y : 13};
+mappages["spire2"].features[28] = {name : 'BookshelfLeft', x : 10, y : 13, lootedid : 'windchange', searchyield : 'AudachtaNemesosWindChange'};
+mappages["spire2"].features[29] = {name : 'BookshelfLeft', x : 12, y : 13, lootedid : 'spireshelf3', searchyield : 'ScrollPeer'};
+mappages["spire2"].features[30] = {name : 'BookshelfRight', x : 13, y : 13, lootedid : 'opengate', searchyield : 'AudachtaNemesosOpenGate'};
+mappages["spire2"].features[31] = {name : 'BookshelfRight', x : 11, y : 13, lootedid : 'spireshelf2', searchyield : 'ScrollLifeDrain'};
 mappages["spire2"].features[32] = {name : 'BottomChair', x : 11, y : 16};
 mappages["spire2"].features[33] = {name : 'PentagramNW', x : 25, y : 16};
 mappages["spire2"].features[34] = {name : 'PentagramN', x : 26, y : 16};
@@ -331,12 +331,16 @@ mappages["spire2"].features[47] = {name : 'EnergyField', x : 24, y : 18};
 mappages["spire2"].features[48] = {name : 'EnergyField', x : 27, y : 15};
 mappages["spire2"].features[49] = {name : 'Vanity', x : 12, y : 7};
 mappages["spire2"].features[50] = {name : 'BookshelfOne', x : 13, y : 7, lootedid : 'spireshelf1', searchyield : 'NatassaJournal'};
+mappages["spire2"].features[51] = {name : 'Chest', x : 20, y : 15};
+mappages["spire2"].features[52] = {name : 'Mirror', x : 22, y : 13};
+mappages["spire2"].features[53] = {name : 'RightChair', x : 22, y : 10};
+
 
 mappages["spire2"].npcs = [];
 
 mappages["spire2"].desc = "The Spire";
 mappages["spire2"].music = 'Magic';
-mappages["spire2"].savename = "The Spire";
+mappages["spire2"].savename = 'The Spire';
 mappages["spire2"].exitmap = '';
 mappages["spire2"].exitx = '65';
 mappages["spire2"].exity = '70';
@@ -357,6 +361,7 @@ mappages["spire2"].returnx = '27';
 mappages["spire2"].returny = '44';
 mappages["spire2"].returninfused = '0';
 mappages["spire2"].linkedMaps = ["spire3","worldsending1"];
+mappages["spire2"].editorLabels = '{}';
 
 
 mappages["spire3"] = {};
