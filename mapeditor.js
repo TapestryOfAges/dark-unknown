@@ -365,6 +365,7 @@ function clickmap(xval,yval) {
       	var lockedblock = document.getElementById("bubblelock");
     	  lockedblock.style.display = "table-row";
       	document.featureeditpopup.tilelocked.value = editable.getLocked();
+        if (editable.keyname) { document.featureeditpopup.tilekeyname.value = editable.keyname; }
       } else {
         var lockedblock = document.getElementById("bubblelock");
     	  lockedblock.style.display = "none";
@@ -473,6 +474,9 @@ function submitEditFeature(change) {
 		}
 		if ((document.featureeditpopup.tilelocked.value) && (editable.getLocked != null) && (document.featureeditpopup.tilelocked.value !== editable.getLocked())) {
 			editable.lockMe(document.featureeditpopup.tilelocked.value);
+		}
+		if ((document.featureeditpopup.tilekeyname.value) && (editable.getLocked != null) && (document.featureeditpopup.tilekeyname.value !== editable.keyname)) {
+			editable.keyname = document.featureeditpopup.tilekeyname.value;
 		}
 		if ((document.featureeditpopup.tileentermap.value) && (editable.getEnterMap != null) && (document.featureeditpopup.tileentermap.value !== editable.getEnterMap().entermap)) {
 			editable.setEnterMap(document.featureeditpopup.tileentermap.value, document.featureeditpopup.tileenterx.value, document.featureeditpopup.tileentery.value);

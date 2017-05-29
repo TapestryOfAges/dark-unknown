@@ -1312,6 +1312,9 @@ GameMap.prototype.saveMap = function (name) {
    if ((baseobj.getLocked != null) && (baseobj.getLocked() !== mapfeatures[i].getLocked())) {
    	 printerwin.document.write(", locked : " + mapfeatures[i].getLocked());
    }
+   if (mapfeatures[i].keyname) {
+     printerwin.document.write(", keyname : \"" + mapfeatures[i].keyname + "\"");
+   }
    if (baseobj.getEnterMap != null) {
    	 var mapdest = mapfeatures[i].getEnterMap();
    	 printerwin.document.write(", entermap : '" + mapdest.entermap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
