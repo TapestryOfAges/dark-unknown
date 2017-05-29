@@ -82,14 +82,19 @@ function select_conv() {
 //  if (conversations[thisconv]._start) { txt = txt + show_response(thisconv, "_start"); }
 //  if (conversations[thisconv]._confused) { txt = txt + show_response(thisconv, "_confused"); }
 
-  if (conversations[thisconv]["name"].editor_idx) {
+  if ((conversations[thisconv]["name"] && conversations[thisconv]["name"].editor_idx) || (conversations[thisconv]["_start"] && conversations[thisconv]["_start"].editor_idx)) {
     var conv_array = [];
     var high_idx = 1000;
     $.each(conversations[thisconv], function (idx,val) {
-      if ((idx != "_location") && (idx != "respond") && (idx != "say")) {
+      if ((idx !== "_location") && (idx !== "respond") && (idx !== "say")) {
         if (conversations[thisconv][idx].editor_idx) {
+          while (conv_array[conversations[thisconv][idx].editor_idx]) {
+            alert("Conv number collision between " + idx + " and " + conv_array[conversations[thisconv][idx].editor_idx] + ".");
+            conversations[thisconv][idx].editor_idx++;
+          }
           conv_array[conversations[thisconv][idx].editor_idx] = idx;
         } else {
+//          alert(idx + " has no editor_idx.");
           conv_array[high_idx] = idx;
           high_idx++;
         }
@@ -99,10 +104,17 @@ function select_conv() {
     var i=1;
     while (i<conv_array.length) {
       if (conv_array[i]) {
+        if (!conversations[thisconv][conv_array[i]].editor_idx) {
+          conversations[thisconv][conv_array[i]].editor_idx = i;
+        }
+        if (conversations[thisconv][conv_array[i]].editor_idx !== i) {
+          console.log("Mismatched index for: " + conv_array[i] );
+          conversations[thisconv][conv_array[i]].editor_idx = i;
+        }
         txt = txt + show_response(thisconv, conv_array[i]);
         i++;
       } else {
-        convarray.splice(i,1);
+        conv_array.splice(i,1);
       }
     }
 
