@@ -8112,6 +8112,18 @@ function TrustedPinTile() {
 }
 TrustedPinTile.prototype = new ItemObject();
 
+function HomeKeyTile() {
+  this.name = "HomeKey";
+  this.graphic = "items.png";
+  this.spriteyoffset = "-256";
+  this.spritexoffset = "-64";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "key to your manor in Naurglen";
+  this.prefix = "the";
+}
+HomeKeyTile.prototype = new ItemObject();
+
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
   this.graphic = "items.png";
