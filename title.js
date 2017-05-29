@@ -451,6 +451,8 @@ function SaveChar() {
   var armor = localFactory.createTile("ClothArmor");
   PC.addToInventory(armor, 1);
   PC.setEquipment("armor",armor);
+  var homekey = localFactory.createTile("HomeKey");
+  PC.addToInventory(homekey,1);
 
 var PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,.0001);
