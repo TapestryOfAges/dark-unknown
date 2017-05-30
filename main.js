@@ -350,7 +350,7 @@ function DoAction(code, ctrl) {
       if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "u")||(targetCursor.command === "o")) ) {
         var resp = PerformUseFromInventory();
       }
-      else if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c") || (targetCursor.command === "p"))) {
+      else if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c") || (targetCursor.command === "p") || (targetCursor.command === "uk"))) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
         gamestate.setMode("player");
@@ -360,6 +360,8 @@ function DoAction(code, ctrl) {
         var resp;
         if ((targetCursor.command === "u")||(targetCursor.command === "o")) { // USE
           resp = PerformUse(PC);
+        } else if (targetCursor.command === "uk") {
+          resp = KeyUse(PC,targetCursor.useditem);
         } else if (targetCursor.command === "g") { // GET
           resp = PerformGet(PC);
         } else if (targetCursor.command === "s") { // SEARCH
