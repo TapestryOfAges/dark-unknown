@@ -551,6 +551,7 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	this.setLocked = function(lock) { this.locked = lock; }
 	this.getLocked = function() { return this.locked; }
 	this.lockMe = function(lock) {
+    if (lock == undefined) { lock = 1; }
 		this.setLocked(lock);
 		if (lock > 2) { lock = 2; }
 		this.setOverlay(this.lockedgraphics[lock]);
@@ -4405,7 +4406,7 @@ function DustyFireplaceTile() {
 	this.name = "DustyFireplace";
 	this.graphic = "furniture.gif";
 	this.spritexoffset = "0";
-	this.spriteyoffset = "-96";
+	this.spriteyoffset = "0";
 	this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 2;
   this.prefix = "a";
@@ -4429,7 +4430,7 @@ function ThroneTile() {
 	this.name = "Throne";
 	this.graphic = "furniture.gif";
 	this.spritexoffset = "-224";
-	this.spriteyoffset = "-96";
+	this.spriteyoffset = "-64";
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
 	this.prefix = "the";
@@ -5358,100 +5359,61 @@ function TurnFacing(what) {
 
 function SmallTableTile() {
   this.name = "SmallTable";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-96";
+  this.graphic = "small_table.gif";
+  this.overlay = "small_table.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
+  SetByBelow.call(this);
 }
 SmallTableTile.prototype = new FeatureObject();
 
 function LeftTableTile() {
   this.name = "LeftTable";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-64";
+  this.graphic = "table_left.gif";
+  this.overlay = "table_left.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
+  SetByBelow.call(this);
 }
 LeftTableTile.prototype = new FeatureObject();
 
 function MiddleTableTile() {
   this.name = "MiddleTable";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-64";
+  this.graphic = "table_middle.gif";
+  this.overlay = "table_middle.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
+  SetByBelow.call(this);
 }
 MiddleTableTile.prototype = new FeatureObject();
 
 function RightTableTile() {
   this.name = "RightTable";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-64";
+  this.graphic = "table_right.gif";
+  this.overlay = "table_right.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
+  SetByBelow.call(this);
 }
 RightTableTile.prototype = new FeatureObject();
-
-function LeftTableOnWoodTile() {
-  this.name = "LeftTableOnWood";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "table";
-}
-LeftTableOnWoodTile.prototype = new FeatureObject();
-
-function MiddleTableOnWoodTile() {
-  this.name = "MiddleTableOnWood";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "table";
-}
-MiddleTableOnWoodTile.prototype = new FeatureObject();
-
-function RightTableOnWoodTile() {
-  this.name = "RightTableOnWood";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-64";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.blockloe = .3;
-  this.prefix = "a";
-  this.desc = "table";
-}
-RightTableOnWoodTile.prototype = new FeatureObject();
 
 function HarpsichordTile() {
   this.name = "Harpsichord";
   this.graphic = "furniture.gif";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "-96";
+  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5480,25 +5442,25 @@ HarpsichordTile.prototype.use = function(who) {
 
 function BedHeadTile() {
   this.name = "BedHead";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "0";
+  this.graphic = "bed_head.gif";
+  this.overlay = "bed_head.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bed";
+  SetByBelow.call(this);
 }
 BedHeadTile.prototype = new FeatureObject();
 
 function BedFootTile() {
   this.name = "BedFoot";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "0";
+  this.graphic = "bed_foot.gif";
+  this.overlay = "bed_foot.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bed";
+  SetByBelow.call(this);
 }
 BedFootTile.prototype = new FeatureObject();
 
@@ -5556,14 +5518,14 @@ BookshelfOneTile.prototype = new FeatureObject();
 function SmallBoxTile() {
   this.name = "SmallBox";
   this.graphic = "furniture.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-96";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "0";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "small box";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "", "-128", "-96"];
+  this.searchedgraphic = ["furniture.gif", "", "-96", "0"];
 	this.lootgroup = "";
 	this.lootedid = "";
 	
@@ -5701,14 +5663,14 @@ GrandfatherClockTile.prototype = new FeatureObject();
 function BarrelTile() {
   this.name = "Barrel";
   this.graphic = "furniture.gif";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-96";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "0";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "barrel";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "", "-192", "-96"];
+  this.searchedgraphic = ["furniture.gif", "", "-160", "0"];
 	this.lootgroup = "";
 	this.lootedid = "";
 	this.flammable = 20; // 20% chance it burns if in a fire
@@ -8112,148 +8074,6 @@ function TrustedPinTile() {
 }
 TrustedPinTile.prototype = new ItemObject();
 
-function HomeKeyTile() {
-  this.name = "HomeKey";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-256";
-  this.spritexoffset = "-64";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "key to your manor in Naurglen";
-  this.prefix = "the";
-}
-HomeKeyTile.prototype = new ItemObject();
-
-function PitOfDespairKeyTile() {
-  this.name = "PitOfDespairKey";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-64";
-  this.spritexoffset = "-224";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Pit of Despair dungeon key";
-  this.prefix = "the";
-  this.addType("Quest");
-}
-PitOfDespairKeyTile.prototype = new ItemObject();
-
-function KeyOfSpiritsTile() {
-  this.name = "KeyOfSpirits";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-64";
-  this.spritexoffset = "0";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Spirits";
-  this.prefix = "the";
-  this.addType("Quest");
-}
-KeyOfSpiritsTile.prototype = new ItemObject();
-
-function RoyalKeyTile() {
-  this.name = "RoyalKey";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "0";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Royal Key";
-  this.prefix = "the";
-  this.addType("Quest");
-}
-RoyalKeyTile.prototype = new ItemObject();  
-
-function BlackDragonKeyTile() {
-  this.name = "BlackDragonKey";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-32";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Black Dragon Key";
-  this.prefix = "the";
-  this.addType("Quest");
-}
-BlackDragonKeyTile.prototype = new ItemObject();  
-
-function KeyOfAshesTile() {
-  this.name = "KeyOfAshes";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-64";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Ashes";
-  this.prefix = "the";
-  this.addType("Quest");
-}
-KeyOfAshesTile.prototype = new ItemObject();  
-
-function KeyOfIceTile() {
-  this.name = "KeyOfIce";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-96";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Ice";
-  this.prefix = "the";
-  this.addType("Quest");
-}
-KeyOfIceTile.prototype = new ItemObject();  
-
-function KeyOfBoneTile() {
-  this.name = "KeyOfBone";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-128";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Bone";
-  this.prefix = "the";
-  this.addType("Quest");
-}
-KeyOfBoneTile.prototype = new ItemObject();  
-
-function KeyOfDustTile() {
-  this.name = "KeyOfDust";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-160";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Dust";
-  this.prefix = "the";
-  this.addType("Quest");
-}
-KeyOfDustTile.prototype = new ItemObject();  
-
-function KeyOfSunTile() {
-  this.name = "KeyOfSun";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-192";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of the Sun";
-  this.prefix = "the";
-  this.addType("Quest");
-}
-KeyOfSunTile.prototype = new ItemObject();  
-
-function KeyOfShadowTile() {
-  this.name = "KeyOfShadow";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-256";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Key of Shadow";
-  this.prefix = "the";
-  this.addType("Quest");
-}
-KeyOfShadowTile.prototype = new ItemObject();  
-
 function ReaperBarkTile() {
   this.name = "ReaperBark";
   this.graphic = "items.png";
@@ -8769,6 +8589,197 @@ GoldTile.prototype.onGet = function(who) {
 
   // this should delete the item entirely
 }
+
+function KeyItemObject() {
+  this.addType("Key");
+}
+KeyItemObject.prototype = new ItemObject();
+
+KeyItemObject.prototype.use = function(who) {
+  gamestate.setMode("choosedir");
+  var retval={};
+  retval["override"] = 1;
+  retval["fin"] = 4;
+  retval["input"] = "&gt; Choose direction-";
+  if (who === PC) {
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  }
+  targetCursor.command = "uk";
+  targetCursor.useditem = this;
+  return retval;
+}
+
+function KeyUse(who,what,tgt) {
+  var retval= {};
+  if (!tgt) {
+    var locktile = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+    var tgt = locktile.getTopFeature();
+  }
+  if (!tgt) {
+    retval["fin"] = 0;
+    retval["txt"] = "Use: " + what.getDesc() + "- Nothing there.";
+    retval["input"] = "&gt;";
+  } else {
+    if (tgt.getLocked && (typeof tgt.getLocked === "function")) {
+      if (tgt.keyname === what.getName()) {
+        if (tgt.getLocked()) { 
+          tgt.unlockMe(); 
+          DrawMainFrame("one",tgt.getHomeMap(),tgt.getx(),tgt.gety());
+        }
+        else { 
+          tgt.lockMe(1);
+          DrawMainFrame("one",tgt.getHomeMap(),tgt.getx(),tgt.gety());
+        }
+        retval["fin"] = 1;
+        retval["txt"] = "Use " + what.getDesc() + "- Click!";
+        retval["input"] = "&gt;";
+        DUPlaySound("sfx_open_lock");
+      } else {
+        retval["fin"] = 0;
+        retval["txt"] = "Use " + what.getDesc() + "- Your key doesn't fit the lock.";
+        retval["input"] = "&gt;";
+        DUPlaySound("sfx_locked_door");
+      }
+    } else {
+      retval["fin"] = 0;
+      retval["txt"] = "Use: " + what.getDesc() + "- That is not locked.";
+      retval["input"] = "&gt;";
+    }
+  }
+  return retval;
+}
+
+function HomeKeyTile() {
+  this.name = "HomeKey";
+  this.graphic = "items.png";
+  this.spriteyoffset = "-256";
+  this.spritexoffset = "-64";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "key to your manor in Naurglen";
+  this.prefix = "the";
+}
+HomeKeyTile.prototype = new KeyItemObject();
+
+function PitOfDespairKeyTile() {
+  this.name = "PitOfDespairKey";
+  this.graphic = "items.png";
+  this.spriteyoffset = "-64";
+  this.spritexoffset = "-224";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Pit of Despair dungeon key";
+  this.prefix = "the";
+}
+PitOfDespairKeyTile.prototype = new KeyItemObject();
+
+function KeyOfSpiritsTile() {
+  this.name = "KeyOfSpirits";
+  this.graphic = "items.png";
+  this.spriteyoffset = "-64";
+  this.spritexoffset = "0";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Spirits";
+  this.prefix = "the";
+}
+KeyOfSpiritsTile.prototype = new KeyItemObject();
+
+function RoyalKeyTile() {
+  this.name = "RoyalKey";
+  this.graphic = "items.png";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "0";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Royal Key";
+  this.prefix = "the";
+}
+RoyalKeyTile.prototype = new KeyItemObject();  
+
+function BlackDragonKeyTile() {
+  this.name = "BlackDragonKey";
+  this.graphic = "items.png";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-32";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Black Dragon Key";
+  this.prefix = "the";
+}
+BlackDragonKeyTile.prototype = new KeyItemObject();  
+
+function KeyOfAshesTile() {
+  this.name = "KeyOfAshes";
+  this.graphic = "items.png";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-64";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Ashes";
+  this.prefix = "the";
+}
+KeyOfAshesTile.prototype = new KeyItemObject();  
+
+function KeyOfIceTile() {
+  this.name = "KeyOfIce";
+  this.graphic = "items.png";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-96";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Ice";
+  this.prefix = "the";
+}
+KeyOfIceTile.prototype = new KeyItemObject();  
+
+function KeyOfBoneTile() {
+  this.name = "KeyOfBone";
+  this.graphic = "items.png";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-128";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Bone";
+  this.prefix = "the";
+}
+KeyOfBoneTile.prototype = new KeyItemObject();  
+
+function KeyOfDustTile() {
+  this.name = "KeyOfDust";
+  this.graphic = "items.png";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-160";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Dust";
+  this.prefix = "the";
+}
+KeyOfDustTile.prototype = new KeyItemObject();  
+
+function KeyOfSunTile() {
+  this.name = "KeyOfSun";
+  this.graphic = "items.png";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-192";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of the Sun";
+  this.prefix = "the";
+}
+KeyOfSunTile.prototype = new KeyItemObject();  
+
+function KeyOfShadowTile() {
+  this.name = "KeyOfShadow";
+  this.graphic = "items.png";
+  this.spriteyoffset = "-128";
+  this.spritexoffset = "-256";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Key of Shadow";
+  this.prefix = "the";
+}
+KeyOfShadowTile.prototype = new KeyItemObject();  
 
 // Books/Journals
 function BookItemObject() {
