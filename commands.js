@@ -2250,6 +2250,8 @@ function DrawStats(page) {
    var scrolls = [];
    var reagents = [];
    var quest = [];
+   var keys = [];
+   var books = [];
    var inv = PC.getInventory();
    if (inv.length) {
      for (var i = 0; i < inv.length; i++) {
@@ -2257,6 +2259,8 @@ function DrawStats(page) {
        if (inv[i].checkType("Scroll")) { scrolls[scrolls.length] = inv[i];}
        if (inv[i].checkType("Reagent")) { reagents[reagents.length] = inv[i];}
        if (inv[i].checkType("Quest")) { quest[quest.length] = inv[i];}
+       if (inv[i].checkType("Key")) { keys[keys.length] = inv[i];}
+       if (inv[i].checkType("Book")) { books[books.length] = inv[i];}
      }
      if (pots.length) {
        statsdiv += StatsCategory(pots, "Potions");
@@ -2269,6 +2273,12 @@ function DrawStats(page) {
      }
      if (quest.length) {
        statsdiv += StatsCategory(quest, "Quest Items"); 
+     }
+     if (keys.length) {
+       statsdiv += StatsCategory(keys, "Keys"); 
+     }
+     if (books.length) {
+       statsdiv += StatsCategory(books, "Books"); 
      }
    }
    statsdiv += "<td></td></tr>";
