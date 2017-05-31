@@ -2073,6 +2073,16 @@ tileFactory.prototype.makeNatassaJournalTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeNatassaResearchTile = function() {
+  var newTile = new NatassaResearchTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNatassaResearch2Tile = function() {
+  var newTile = new NatassaResearch2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAdelusLetterTile = function() {
   var newTile = new AdelusLetterTile();
   return newTile;

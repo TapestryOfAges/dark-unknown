@@ -8829,7 +8829,6 @@ function BookOfLoreTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Book of Lore";
   this.prefix = "the";
-  this.addType("Quest");
   this.contents = "You open to a random page:%%'[addmore]'";
 }
 BookOfLoreTile.prototype = new BookItemObject();
@@ -8843,7 +8842,6 @@ function TomeOfSightTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Tome of Sight";
   this.prefix = "the";
-  this.addType("Quest");
   this.contents = "You open to a random page:%%'...for the Eye of Man can be deceived, but the Eye of Magic is Immutable.%%Mortals all live in the fog of illusion and unseeing, but the talent of seeing the truth below need not be the sole providence of the gods.%%We toil in darkness, but with their fire may we be forged anew...'";
 }
 TomeOfSightTile.prototype = new BookItemObject();
@@ -8857,7 +8855,6 @@ function MapsAndLegendsTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Maps and Legends";
   this.prefix = "";
-  this.addType("Quest");
   this.contents = "You flip through the pages and find a chapter on magical phenomenon.%%Searching, you find the section you seek:%%\"The Brilliant Pool\"%%<span class='conv'>Once, this mythical place was considered the source of all magic.</span>%%<span class='conv'>Now, it is known that magic's power is drawn from the ethereal plane, and it is not known whether the Brilliant Pool ever truly existed, or still exists.</span>%%<span class='conv'>Another story has it that it is a star, misplaced on our plane, its power too great for any mortal to harness directly.</span>%%You close the book.";
 }
 MapsAndLegendsTile.prototype = new BookItemObject();
@@ -8871,7 +8868,6 @@ function ATreatiseOnDragonsTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "A Treatise On Dragons";
   this.prefix = "";
-  this.addType("Quest");
   this.contents = "You open the book.%%<span class='conv'>A dragon is a mighty reptile with great magical and physical power. Its destructive power is so great that it is hardly a surprise that it came to be associated with Tethlokel the Destroyer.</span>%%<span class='conv'>The average dragon is roughly 60 feet long, breathes fire hot enough to easily set wooden buildings aflame, and can fly for hours without rest.</span>%%<span class='conv'>They prefer to live in caves in high mountains far from civilization, and so are infrequently seen.</span>%%<span class='conv'>Rarely, a dragon may grow to become an Elder. Elder Dragons are thought to have better than human intelligence and incredible magical power, allowing them to make plans that span decades.</span>%%<span class='conv'>It is fortunate that they are so rare, as they are evil of bent and desire power and conquest.</span>%%The book is long, but you feel like you have gotten the gist. You close the book.";
 }
 ATreatiseOnDragonsTile.prototype = new BookItemObject();
@@ -8885,10 +8881,35 @@ function NatassaJournalTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "The Journals of Natassa";
   this.prefix = "";
-  this.addType("Quest");
   this.contents = "You search through the journal for something useful.%%<span class='conv'>With the passing of Master Xoricco, I find myself maintaining two homes.</span>%%<span class='conv'>My Spire will continue to be my primary sanctuary, but the Palace of the Skies is too great an achievement to let fall.</span>%%<span class='conv'>There are two ways to get to the Palace. My way is the Way of the Sky- magics taught to me by Xoricco and known by no others.</span>%%<span class='conv'>But there is another way- the Way of Earth. Certain persons who have shown exceptional loyalty, to both the kings and the land, are granted the Rune of Kings.</span>%%<span class='conv'>If you are reading this, Adelus, I believe King Erik will be willing to grant you that honor- you've certainly done enough.</span>%%<span class='conv'>Invoke the Mark of Kings at the crook of the Dragon's elbow, and take the Road of Earth.<span>";
 }
 NatassaJournalTile.prototype = new BookItemObject();
+
+function NatassaResearchTile() {
+  this.name = "NatassaResearch";
+  this.graphic = "items.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-192";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Natassa's Research Notes, Vol 1";
+  this.prefix = "";
+  this.contents = "You flip through the notes.%%<span class='conv'>7-23-86: The Brilliant Pool is the subject of so many legends, yet I am convinced it exists. What's more- I believe my master knows more about it than she lets on. I must discover what she knows!</span>%%<span class='conv'>3-27-92: Her journals speak of many magical experiments but are silent on the Pool. And yet I remain convinced she not only knew of it but has utilized it herself.<span>%%<span class='conv'>10-3-103: I believe it to reside in the dungeon of World's Ending. I have cleared out the foul creatures that reside near the surface and may even build here. The solitude appeals.</span>%%<span class='conv'>3-16-104: It is not here. I have scoured the place, even down to the Underworld below. I detect no sign. It is not here.</span>%%<span class='conv'>9-3-105: THE POOL MOVES. It was once here, yes, but no longer. It could be ANYWHERE. I may have tried to cause a local volcano to erupt in my fury, but I restrained.</span>";
+}
+NatassaResearchTile.prototype = new BookItemObject();
+
+function NatassaResearch2Tile() {
+  this.name = "NatassaResearch2";
+  this.graphic = "items.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-192";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Natassa's Research Notes, Vol 2";
+  this.prefix = "";
+  this.contents = "You flip through the notes.%%<span class='conv'>7-4-107: I continue to research the Pool alongside my other research. While recreating Xoricco's Wind Change spell was satisfying, there are other goals. Perhaps I should consult the oracle.</span>%%<span class='conv'>11-21-107: The underworld is even more dangerous than I had considered. I reached the Oracle- blessings upon Xoricco's research that revealed it to me! But was unable to obtain a full answer before I was forced to flee to the surface. I will work on the riddles.</span>%%<span class='conv'>4-15-109: Wind Change is not enough. King Erik has called upon me to try to recreate Xoricco's magics that made sea travel possible. The storms are too great to be uncreated just by temporarily stilling their winds. The Pool can wait.</span>%%<span class='conv'>10-19-113: Toshin is seeking the Pool. I must find it first- she cannot be permitted to draw upon its powers. She could be a second Tharock.</span>%%<span class='conv'>1-9-114: I have narrowed it down- the Pool has strong magic but it hides itself. But the Oracle taught me how to find the secondary resonances, and it is either underneath the city of Onyx, in the ruins under old Hildendain, or in the dungeon of Mt Drash.</span>%%<span class='conv'>3-21-114: I fear she has found it. I must confront her.</span>";
+}
+NatassaResearch2Tile.prototype = new BookItemObject();
 
 function AdelusLetterTile() {
   this.name = "AdelusLetter";
@@ -8899,7 +8920,6 @@ function AdelusLetterTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "letter to Adelus";
   this.prefix = "a";
-  this.addType("Quest");
   this.contents = "<span class='conv'>Dearest Adelus,</span>%%<span class='conv'>Please visit when you can. I will admit that I have made the way difficult, for I do not wish other visitors, so let these instructions lay out a map for you.</span>%%<span class='conv'>When you enter World's Ending, you must create the sunset, and then walk with the light at your back. Close your eyes, and the wall will let you pass.</span>%%<span class='conv'>In the next chamber, go through the hallways in this order: far right, near right, mid left.</span>%%<span class='conv'>This will bring you to me. And once you are here...</span>%%...The rest of the letter is embarrassingly personal. You put it away.";
 }
 AdelusLetterTile.prototype = new BookItemObject();

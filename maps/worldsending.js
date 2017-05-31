@@ -325,8 +325,8 @@ mappages["spire2"].features[41] = {name : 'PentagramSW', x : 25, y : 18};
 mappages["spire2"].features[42] = {name : 'DustyFireplace', x : 28, y : 14};
 mappages["spire2"].features[43] = {name : 'UnlitBrazier', x : 24, y : 15};
 mappages["spire2"].features[44] = {name : 'SmallBox', x : 27, y : 13};
-mappages["spire2"].features[45] = {name : 'BookshelfRight', x : 26, y : 13};
-mappages["spire2"].features[46] = {name : 'BookshelfLeft', x : 25, y : 13};
+mappages["spire2"].features[45] = {name : 'BookshelfRight', x : 26, y : 13, lootedid : 'spireshelf4', searchyield : 'ScrollHeal'};
+mappages["spire2"].features[46] = {name : 'BookshelfLeft', x : 25, y : 13, lootedid : 'natassaresearch', searchyield : 'NatassaResearch,NatassaResearch2'};
 mappages["spire2"].features[47] = {name : 'EnergyField', x : 24, y : 18};
 mappages["spire2"].features[48] = {name : 'EnergyField', x : 27, y : 15};
 mappages["spire2"].features[49] = {name : 'Vanity', x : 12, y : 7};
@@ -362,6 +362,24 @@ mappages["spire2"].returny = '44';
 mappages["spire2"].returninfused = '0';
 mappages["spire2"].linkedMaps = ["spire3","worldsending1"];
 mappages["spire2"].editorLabels = '{}';
+
+mappages["spire2"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (PC.checkInventory("NatassaResearch") && PC.checkInventory("NatassaResearch2")) { 
+      var tile = mapref.getTile(25,13);
+      var shelf = tile.getTopFeature();
+      shelf.searchyield = '';
+    } else if (PC.checkInventory("NatassaResearch")) {
+      var tile = mapref.getTile(25,13);
+      var shelf = tile.getTopFeature();
+      shelf.searchyield = 'NatassaResearch2';
+    } else if (PC.checkInventory("NatassaResearch2")) {
+      var tile = mapref.getTile(25,13);
+      var shelf = tile.getTopFeature();
+      shelf.searchyield = 'NatassaResearch';
+    } 
+  }
+}
 
 
 mappages["spire3"] = {};
