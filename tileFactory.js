@@ -908,6 +908,21 @@ tileFactory.prototype.makeTorchEastTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeTorchWestOutTile = function() {
+  var newTile = new TorchWestOutTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTorchEastOutTile = function() {
+  var newTile = new TorchEastOutTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWoodpileTile = function() {
+  var newTile = new WoodpileTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCampfireTile = function() {
   var newTile = new CampfireTile();
   return newTile;

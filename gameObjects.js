@@ -4079,12 +4079,16 @@ function TorchWestTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "a";
-	this.desc = "torch";
+	this.desc = "burning torch";
 
   SetByBelow.call(this);	
 	LightEmitting.call(this, 2);
 }
 TorchWestTile.prototype = new FeatureObject();  
+
+TorchWestTile.prototype.use = function(who) {
+  return UseTorch(who,this);
+}
 
 function TorchEastTile() {
 	this.name = "TorchEast";
@@ -4093,12 +4097,93 @@ function TorchEastTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "a";
-	this.desc = "torch";
+	this.desc = "burning torch";
 
   SetByBelow.call(this);	
 	LightEmitting.call(this, 2);
 }
 TorchEastTile.prototype = new FeatureObject();  
+
+TorchEastTile.prototype.use = function(who) {
+  return UseTorch(who,this);
+}
+
+function TorchWestOutTile() {
+	this.name = "TorchWestOut";
+	this.graphic = "torch_l_out.gif";
+	this.overlay = "torch_l_out.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "torch";
+
+  SetByBelow.call(this);	
+}
+TorchWestOutTile.prototype = new FeatureObject();  
+
+TorchWestOutTile.prototype.use = function(who) {
+  return UseTorch(who,this);
+}
+
+function TorchEastOutTile() {
+	this.name = "TorchEastOut";
+	this.graphic = "torch_r_out.gif";
+	this.overlay = "torch_r_out.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "torch";
+
+  SetByBelow.call(this);	
+}
+TorchEastOutTile.prototype = new FeatureObject();  
+
+TorchEastOutTile.prototype.use = function(who) {
+  return UseTorch(who,this);
+}
+
+function UseTorch(who,torch) {
+  var retval = {};
+  var torchmap = torch.getHomeMap();
+  var torchx = torch.getx();
+  var torchy = torch.gety();
+
+  var torchname = torch.getName();
+  torchmap.deleteThing(torch);
+
+  var newtorch;
+  if (torchname === "TorchEast") {
+    newtorch = localFactory.createTile("TorchEastOut");
+    retval["txt"] = "Extinguished!";
+  } else if (torchname === "TorchWest") {
+    newtorch = localFactory.createTile("TorchWestOut");
+    retval["txt"] = "Extinguished!";
+  } else if (torchname === "TorchEastOut") {
+    newtorch = localFactory.createTile("TorchEast");
+    retval["txt"] = "You light the torch.";
+  } else if (torchname === "TorchWestOut") {
+    newtorch = localFactory.createTile("TorchWest");
+    retval["txt"] = "You light the torch.";
+  }
+
+  torchmap.placeThing(torchx,torchy,newtorch);
+  retval["fin"] = 1;
+  if (torchmap === PC.getHomeMap()) {
+    DrawMainFrame("draw",torchmap,PC.getx(),PC.gety());
+  }
+
+  return retval;
+}
+
+function WoodpileTile() {
+	this.name = "Woodpile";
+	this.graphic = "woodpile.gif";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "wood pile";
+}
+WoodpileTile.prototype = new FeatureObject();
 
 function CampfireTile() {
 	this.name = "Campfire";
