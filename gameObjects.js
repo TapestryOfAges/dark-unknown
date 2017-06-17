@@ -4419,6 +4419,83 @@ function IllusionaryEnergyFieldTile() {
 }
 IllusionaryEnergyFieldTile.prototype = new FeatureObject();
 
+function CrystalTrapSpaceTile() {
+	this.name = "CrystalTrapSpace";
+  this.graphic = "crystal-trap.gif";
+	this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_FLY + MOVE_ETHEREAL;
+  this.prefix = "a"; 
+	this.desc = "Crystal Trap spell";
+	
+  this.invisible = 1;  
+}
+CrystalTrapSpaceTile.prototype = new FeatureObject();
+
+CrystalTrapSpaceTile.prototype.walkOn = function(who) {
+  if (who.getSerial() !== this.owner) {
+    var trap = localFactory.createTile("CrystalTrap");
+    trap.setDuration = this.duration;
+    trap.setPower = this.power;
+    who.addSpellEffect(trap);
+
+    var trapmap = this.getHomeMap();
+    var feas = trapmap.features.getAll();
+    var owner = this.owner;
+    $.each(feas, function(idx,val) {
+      if (val.getName() === "CrystalTrapSpace") {
+        if (val.owner === owner) {
+          trapmap.deleteThing(val);
+        }
+      }
+    }
+  
+    var resp = {};
+    resp["fin"] = 1;
+    resp["txt"] = "You are engulfed in crystal!";
+    resp["input"] = "&gt;";
+    return resp;
+  } else {
+    var resp = { fin: 1};
+    return resp;
+  }
+}
+
+CrystalTrapSpaceTile.prototype.activate = function() {
+  if (!gamestate.getMode("loadgame")) {
+    var NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,this.duration);
+  }
+
+  return;
+}
+
+CrystalTrapSpaceTile.prototype.myTurn = function() {
+  DebugWrite("all", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + ", serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
+  if (!maps.getMap(this.getHomeMap().getName())) {
+    // removing from timeline, its map is gone
+
+    if (!DebugWrite("gameobj", "<span style='font-weight:bold'>Crystal Trap " + this.getSerial() + " removed from game- map gone.</span><br />")) {
+      DebugWrite("magic", "<span style='font-weight:bold'>Crystal Trap " + this.getSerial() + " removed from game- map gone.</span><br />");
+    }
+  
+    return 1;
+  }
+ 
+  if (this.expiresTime && (this.expiresTime > DUTime.getGameClock())) {
+    if (!DebugWrite("magic", "<span style='font-weight:bold'>Crystal Trap " + this.getSerial() + " expired, removing itself.</span><br />")) {
+      DebugWrite("gameobj", "<span style='font-weight:bold'>Crystal Trap " + this.getSerial() + " expired, removing itself.</span><br />");
+    }
+    this.getHomeMap().deleteThing(this);
+    
+    return 1;
+  }
+
+  // in the case of this thing, this part should never trigger.  
+  var NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+  
+  return 1;
+}
+
 function SpitTile() {
 	this.name = "Spit";
 	this.graphic = "spit.gif";
