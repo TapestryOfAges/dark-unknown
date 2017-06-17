@@ -953,6 +953,11 @@ tileFactory.prototype.makeIllusionaryEnergyFieldTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCrystalTrapSpaceTile = function() {
+  var newTile = new CrystalTrapSpaceTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpitTile = function() {
   var newTile = new SpitTile();
   return newTile;

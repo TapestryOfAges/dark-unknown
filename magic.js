@@ -2097,11 +2097,29 @@ magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].executeSpell = function(caste
   return resp;  
 }
 
+//Crystal Trap
+magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].executeSpell = function(caster,infused,free,tgt) {
+  DebugWrite("magic", "Casting Crystal Trap.<br />");  
+
+  var resp = {};
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+  
+  var trap = localFactory.createTile("CrystalTrapSpace");
+  trap.owner = caster.getSerial();
+   
+}
+
 // Crystal Barrier
 magic[SPELL_CRYSTAL_BARRIER_LEVEL][SPELL_CRYSTAL_BARRIER_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Crystal Barrier.<br />");
+  var resp = {};
   if (caster !== PC) {
-    var resp = PerformCrystalBarrier(caster, infused, free, tgt);
+    resp = PerformCrystalBarrier(caster, infused, free, tgt);
     return resp;
   }
 
