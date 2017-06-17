@@ -101,7 +101,7 @@ function SetMerchants() {
                   { item: "TelekinesisSpell", desc: "Telekinesis", lvl: SPELL_TELEKINESIS_LEVEL, sid: SPELL_TELEKINESIS_ID, price: 400},
                   { item: "LifeDrainSpell", desc: "Life Drain", lvl: SPELL_LIFE_DRAIN_LEVEL, sid: SPELL_LIFE_DRAIN_ID, price: 750},
                   { item: "SmiteSpell", desc: "Smite", lvl: SPELL_SMITE_LEVEL, sid: SPELL_SMITE_ID, price: 750},
-                  { item: "CrystalBarrierSpell", desc: "Crystal Barrier", lvl: SPELL_CRYSTAL_BARRIER_LEVEL, sid: SPELL_CRYSTAL_BARRIER_ID, price: 1100},
+                  { item: "CrystalTrapSpell", desc: "Crystal Trap", lvl: SPELL_CRYSTAL_TRAP_LEVEL, sid: SPELL_CRYSTAL_TRAP_ID, price: 1100},
                 ];
   bill.dale.type = "spells"; 
   

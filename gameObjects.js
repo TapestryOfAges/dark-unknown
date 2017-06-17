@@ -4438,15 +4438,16 @@ CrystalTrapSpaceTile.prototype.walkOn = function(who) {
     who.addSpellEffect(trap);
 
     var trapmap = this.getHomeMap();
-    var feas = trapmap.features.getAll();
-    var owner = this.owner;
-    $.each(feas, function(idx,val) {
-      if (val.getName() === "CrystalTrapSpace") {
-        if (val.owner === owner) {
-          trapmap.deleteThing(val);
-        }
-      }
-    }
+    trapmap.deleteThing(this);
+//    var feas = trapmap.features.getAll();
+//    var owner = this.owner;
+//    $.each(feas, function(idx,val) {
+//      if (val.getName() === "CrystalTrapSpace") {
+//        if (val.owner === owner) {
+//          trapmap.deleteThing(val);
+//        }
+//      }
+//    });
   
     var resp = {};
     resp["fin"] = 1;
@@ -9976,17 +9977,17 @@ function ScrollSmiteTile() {
 }
 ScrollSmiteTile.prototype = new ScrollItemObject();
 
-function ScrollCrystalBarrierTile() {
-  this.name = "ScrollCrystalBarrier";
-  this.desc = "scroll of Crystal Barrier";
+function ScrollCrystalTrapTile() {
+  this.name = "ScrollCrystalTrap";
+  this.desc = "scroll of Crystal Trap";
   this.prefix = "a";
   this.graphic = "items.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
-  this.spelllevel = SPELL_CRYSTAL_BARRIER_LEVEL;
-  this.spellnum = SPELL_CRYSTAL_BARRIER_ID;
+  this.spelllevel = SPELL_CRYSTAL_TRAP_LEVEL;
+  this.spellnum = SPELL_CRYSTAL_TRAP_ID;
 }
-ScrollCrystalBarrierTile.prototype = new ScrollItemObject();
+ScrollCrystalTrapTile.prototype = new ScrollItemObject();
 
 function ScrollMirrorWardTile() {
   this.name = "ScrollMirrorWard";
@@ -10466,18 +10467,18 @@ function AudachtaNemesosOpenGateTile() {
 }
 AudachtaNemesosOpenGateTile.prototype = new AudachtaNemesosObject();
 
-function AudachtaNemesosCrystalBarrierTile() {
-  this.name = "AudachtaNemesosCrystalBarrier";
-  this.desc = "Audachta Nemesos: Crystal Barrier";
+function AudachtaNemesosCrystalTrapTile() {
+  this.name = "AudachtaNemesosCrystalTrap";
+  this.desc = "Audachta Nemesos: Crystal Trap";
   this.prefix = "an";
   this.graphic = "items.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-160";
-  this.spelllevel = SPELL_CRYSTAL_BARRIER_LEVEL;
-  this.spellnum = SPELL_CRYSTAL_BARRIER_ID;
-  this.spellname = "Crystal Barrier";
+  this.spelllevel = SPELL_CRYSTAL_TRAP_LEVEL;
+  this.spellnum = SPELL_CRYSTAL_TRAP_ID;
+  this.spellname = "Crystal Trap";
 }
-AudachtaNemesosCrystalBarrierTile.prototype = new AudachtaNemesosObject();
+AudachtaNemesosCrystalTrapTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosMirrorWardTile() {
   this.name = "AudachtaNemesosMirrorWard";
@@ -12677,7 +12678,7 @@ NPCObject.prototype.myTurn = function() {
 	
 	Regen(this);
   var awake = 1;
-  if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze") || this.getSpellEffectsByName("Frozen")) { awake = 0; }
+  if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze") || this.getSpellEffectsByName("Frozen") || this.getSpellEffectsByName("CrystalTrap")) { awake = 0; }
   var confused = this.getSpellEffectsByName("Confused");
   if (confused && (Math.random() < (confused.getPower()/100))) {
     // confused and Confused

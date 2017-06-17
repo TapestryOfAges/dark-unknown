@@ -175,8 +175,8 @@ var SPELL_TELEPATHY_ID = GetSpellID(7);
 var SPELL_WATER_WALK_LEVEL = 4;
 var SPELL_WATER_WALK_ID = GetSpellID(8);
 
-var SPELL_CRYSTAL_BARRIER_LEVEL = 5;
-var SPELL_CRYSTAL_BARRIER_ID = GetSpellID(1);
+var SPELL_CRYSTAL_TRAP_LEVEL = 5;
+var SPELL_CRYSTAL_TRAP_ID = GetSpellID(1);
 var SPELL_ETHEREAL_VISION_LEVEL = 5;
 var SPELL_ETHEREAL_VISION_ID = GetSpellID(2);
 var SPELL_MIRROR_WARD_LEVEL = 5;
@@ -279,7 +279,7 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID] = new SpellObject("Open Gate", 
 magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID] = new SpellObject("Smite", "Corp Por", 4, 0);  // # M Dam on 3 random nearby foes   attack spell, thunder
 magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID] = new SpellObject("Water Walk", "Uus Xen", 4, 0);   // blessing
  
-magic[SPELL_CRYSTAL_BARRIER_LEVEL][SPELL_CRYSTAL_BARRIER_ID] = new SpellObject("Crystal Barrier", "In Ylem Sanct", 5, 1);  // generic?
+magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID] = new SpellObject("Crystal Barrier", "In Ylem Sanct", 5, 1);  // generic?
 magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID] = new SpellObject("Mirror Ward", "Ort Sanct", 5, 0);  // blessing
 magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID] = new SpellObject("Paralyze", "An Ex Por", 5, 1);    // curse
 magic[SPELL_PEER_LEVEL][SPELL_PEER_ID] = new SpellObject("Peer", "Vas Wis", 5, 0);    // generic?
@@ -2111,64 +2111,16 @@ magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].executeSpell = function(c
   
   var trap = localFactory.createTile("CrystalTrapSpace");
   trap.owner = caster.getSerial();
-   
-}
+  trap.duration = caster.getInt() * 2.5 * SCALE_TIME;
+  trap.power = caster.getInt();
 
-// Crystal Barrier
-magic[SPELL_CRYSTAL_BARRIER_LEVEL][SPELL_CRYSTAL_BARRIER_ID].executeSpell = function(caster, infused, free, tgt) {
-  DebugWrite("magic", "Casting Crystal Barrier.<br />");
-  var resp = {};
-  if (caster !== PC) {
-    resp = PerformCrystalBarrier(caster, infused, free, tgt);
-    return resp;
-  }
+  caster.getHomeMap().placeThing(caster.getx(), caster.gety(), trap);
 
-  if (!caster.getHomeMap().getScale()) {
-    resp["fin"] = 2;
-    resp["txt"] = "There is no benefit to casting that spell here.";
-    resp["input"] = "&gt;";
-    return resp;
-  }
-
-  var resp = {};
-  
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Crystal Barrier',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 3}); 
-  resp["txt"] = "";
-  resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 4; // was 0
-  gamestate.setMode("target");
-  return resp;
-}
-
-function PerformCrystalBarrier(caster, infused, free, tgt) {
   var resp = {};
   resp["fin"] = 1;
-  var desc = "";
-
-  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.x, tgt.y, 1) >= LOS_THRESHOLD) { 
-    resp["fin"] = 2;
-    resp["txt"] = "You cannot place your barrier there.";
-    resp["input"] = "&gt;";
-    return resp;
-  }
-  
-  if (!free) {
-    var mana = magic[SPELL_CRYSTAL_BARRIOR_LEVEL][SPELL_CRYSTAL_BARRIOR_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
-    DebugWrite("magic", "Spent " + mana + " mana.<br />");
-  }
-
-  var crystal;
-  crystal = localFactory.createTile("ConjuredCrystal");
-  
-  var duration = caster.getInt() * SCALE_TIME;
-  if (free) { duration = Dice.roll("1d6+12") * SCALE_TIME; }
-  crystal.expiresTime = DUTime.getGameClock() + duration;  // barrier AI needs to check expiresTime and go poof if it is reached
-  caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
-  DrawMainFrame("one",caster.getHomeMap(),crystal.getx(),crystal.gety());
-  
-  resp["txt"] = "You conjure a crystal barrier.";
+  resp["txt"] = "A crystal trap is buried under your feet.";
   resp["input"] = "&gt;";
+
   return resp;
 
 }

@@ -412,6 +412,51 @@ ConfusedTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
+function CrystalTrapTile() {
+  this.addType("debuff");
+  this.name = "Curse";
+  this.display = "<span style='color:silver'>C</span>";
+  this.zstatdesc = "You are trapped in crystal.";
+  this.desc = "Crystal Trap";
+  this.level = 5;  
+}
+CrystalTrapTile.prototype = new EphemeralObject();
+
+CrystalTrapTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("Magic erupts around you and you are encased in crystal!");
+  }
+  return 1;
+}
+
+CrystalTrapTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+  var who = this.getAttachedTo();
+  var chance = 50 + who.getStr() - this.getPower();
+  if (RollDice("1d100") <= chance) { 
+    if (who === PC) {
+      maintext.delayedAddText("With a burst of strength, you break free of the crystal prison!");
+    } else {
+      maintext.addText("With a burst of strength, the " + who.getDesc() + " breaks free!");
+    }
+    who.dealDamage(DMG_MEDIUM);
+    this.endEffect(1);
+  }
+  // else, didn't break free, nothing happens.
+}
+
+CrystalTrapTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("The crystal falls to pieces around you.");
+  }
+  DrawCharFrame();
+}
+
 function CurseTile() {
   this.addType("debuff");
   this.name = "Curse";
