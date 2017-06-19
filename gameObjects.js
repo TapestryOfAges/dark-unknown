@@ -4430,11 +4430,23 @@ function CrystalTrapSpaceTile() {
 }
 CrystalTrapSpaceTile.prototype = new FeatureObject();
 
-CrystalTrapSpaceTile.prototype.walkOn = function(who) {
+CrystalTrapSpaceTile.prototype.walkon = function(who) {
+  if ((who.getMovetype() & MOVE_FLY) || (who.getMovetype() & MOVE_LEVITATE) || (who.getMovetype() & MOVE_ETHEREAL)) {
+    DebugWrite("magic", who.getName() + " flies/floats/flits over the crystal trap.<br />");
+    return;
+  }
+
+  if (who.getSpellEffectsByName("CrystalTrap")) { 
+    DebugWrite("magic", "Crystal prison does not go off- victim already in one.<br />");
+    return;
+  }
+
   if (who.getSerial() !== this.owner) {
     var trap = localFactory.createTile("CrystalTrap");
-    trap.setDuration = this.duration;
-    trap.setPower = this.power;
+    trap.duration = this.duration;
+    trap.power = this.power;
+    trap.setExpiresTime(this.duration + DUTime.getGameClock());
+    DebugWrite("magic", "Crystal Prison sprung. Expires at " + trap.getExpiresTime() + ".<br />");
     who.addSpellEffect(trap);
 
     var trapmap = this.getHomeMap();
@@ -4449,21 +4461,19 @@ CrystalTrapSpaceTile.prototype.walkOn = function(who) {
 //      }
 //    });
   
-    var resp = {};
-    resp["fin"] = 1;
-    resp["txt"] = "You are engulfed in crystal!";
-    resp["input"] = "&gt;";
-    return resp;
+    return ("You are engulfed in crystal!");
   } else {
-    var resp = { fin: 1};
-    return resp;
+    DebugWrite("magic", "Owner has passed over a crystal prison.");
+    return;
   }
 }
 
 CrystalTrapSpaceTile.prototype.activate = function() {
-  if (!gamestate.getMode("loadgame")) {
+  if (gamestate.getMode() !== "loadgame") {
     var NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,this.duration);
+    var expiresat = this.duration + DUTime.getGameClock();
+    DebugWrite("magic", "Crystal Prison trap created. Expires at " + expiresat + ".<br />");    
   }
 
   return;
@@ -4474,16 +4484,16 @@ CrystalTrapSpaceTile.prototype.myTurn = function() {
   if (!maps.getMap(this.getHomeMap().getName())) {
     // removing from timeline, its map is gone
 
-    if (!DebugWrite("gameobj", "<span style='font-weight:bold'>Crystal Trap " + this.getSerial() + " removed from game- map gone.</span><br />")) {
-      DebugWrite("magic", "<span style='font-weight:bold'>Crystal Trap " + this.getSerial() + " removed from game- map gone.</span><br />");
+    if (!DebugWrite("gameobj", "<span style='font-weight:bold'>Crystal Prison " + this.getSerial() + " removed from game- map gone.</span><br />")) {
+      DebugWrite("magic", "<span style='font-weight:bold'>Crystal Prison " + this.getSerial() + " removed from game- map gone.</span><br />");
     }
   
     return 1;
   }
  
   if (this.expiresTime && (this.expiresTime > DUTime.getGameClock())) {
-    if (!DebugWrite("magic", "<span style='font-weight:bold'>Crystal Trap " + this.getSerial() + " expired, removing itself.</span><br />")) {
-      DebugWrite("gameobj", "<span style='font-weight:bold'>Crystal Trap " + this.getSerial() + " expired, removing itself.</span><br />");
+    if (!DebugWrite("magic", "<span style='font-weight:bold'>Crystal Prison " + this.getSerial() + " expired, removing itself.</span><br />")) {
+      DebugWrite("gameobj", "<span style='font-weight:bold'>Crystal Prison " + this.getSerial() + " expired, removing itself.</span><br />");
     }
     this.getHomeMap().deleteThing(this);
     
@@ -5822,6 +5832,22 @@ function GrandfatherClockTile() {
   this.desc = "grandfather clock";
 }
 GrandfatherClockTile.prototype = new FeatureObject();
+
+// override
+GrandfatherClockTile.prototype.getFullDesc = function() {
+  var full = "";
+  if (this.getPrefix()) {
+    full = this.getPrefix() + " ";
+  }
+  
+  full = full + this.getDesc();
+
+  full = full + " that reads ";
+  var gfclocktime = GetDisplayTime();
+  full = full + gfclocktime;
+
+  return full;
+}
 
 function BarrelTile() {
   this.name = "Barrel";

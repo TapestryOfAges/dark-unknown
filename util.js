@@ -1465,17 +1465,17 @@ function GetClockTime(usethistime) {
   return ([years,months,days,hours,minutes]);
 }
 
-function DisplayDate(usethistime) {
+function GetDisplayDate(usethistime) {
   var calendar = GetClockTime(usethistime);
   return (calendar[1] + "-" + calendar[2] + "-" + calendar[0]);
 }
 
-function DisplayTime(usethistime) {
-  var clock = GetClockTime(usethistime);
+function GetDisplayTime(usethistime) {
+  var calendar = GetClockTime(usethistime);
   var ampm = "am";
   var hours = calendar[3];
   if (hours === 0) {hours = 12; }
   else if (hours === 12) { ampm = "pm"; }
   else if (hours > 12) { hours = hours - 12; ampm = "pm"; }
-  return (hours + ":" + calendar[4]);
+  return (hours + ":" + calendar[4] + " " + ampm);
 }
