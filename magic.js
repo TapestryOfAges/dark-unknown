@@ -279,7 +279,7 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID] = new SpellObject("Open Gate", 
 magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID] = new SpellObject("Smite", "Corp Por", 4, 0);  // # M Dam on 3 random nearby foes   attack spell, thunder
 magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID] = new SpellObject("Water Walk", "Uus Xen", 4, 0);   // blessing
  
-magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID] = new SpellObject("Crystal Barrier", "In Ylem Sanct", 5, 1);  // generic?
+magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID] = new SpellObject("Crystal Prison", "In Ylem Sanct", 5, 1);  // generic?
 magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID] = new SpellObject("Mirror Ward", "Ort Sanct", 5, 0);  // blessing
 magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID] = new SpellObject("Paralyze", "An Ex Por", 5, 1);    // curse
 magic[SPELL_PEER_LEVEL][SPELL_PEER_ID] = new SpellObject("Peer", "Vas Wis", 5, 0);    // generic?
@@ -567,8 +567,8 @@ magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell = function(caster, infused
   
   var liobj = localFactory.createTile("Light");
   
-  var dur = caster.getInt() * .3;
-  if (free) { dur = 5; }
+  var dur = 20 * caster.getInt() * .3;
+  if (free) { dur = 100; }
   if (infused) {dur = dur * 3; }
   var endtime = dur + DU.DUTime.getGameClock();
   DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
@@ -2097,7 +2097,7 @@ magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].executeSpell = function(caste
   return resp;  
 }
 
-//Crystal Trap
+//Crystal Prison (aka Crystal Trap)
 magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].executeSpell = function(caster,infused,free,tgt) {
   DebugWrite("magic", "Casting Crystal Trap.<br />");  
 
@@ -2111,8 +2111,10 @@ magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].executeSpell = function(c
   
   var trap = localFactory.createTile("CrystalTrapSpace");
   trap.owner = caster.getSerial();
-  trap.duration = caster.getInt() * 2.5 * SCALE_TIME;
+  trap.duration = caster.getInt() * SCALE_TIME;
   trap.power = caster.getInt();
+  trap.infused = infused;
+  if (infused) { trap.power = trap.power + 4; }
 
   caster.getHomeMap().placeThing(caster.getx(), caster.gety(), trap);
 

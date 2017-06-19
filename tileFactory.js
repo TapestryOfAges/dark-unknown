@@ -2333,8 +2333,8 @@ tileFactory.prototype.makeScrollSmiteTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeScrollCrystalBarrierTile = function() {
-  var newTile = new ScrollCrystalBarrierTile();
+tileFactory.prototype.makeScrollCrystalTrapTile = function() {
+  var newTile = new ScrollCrystalTrapTile();
   return newTile;
 }
 
@@ -2513,8 +2513,8 @@ tileFactory.prototype.makeAudachtaNemesosOpenGateTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeAudachtaNemesosCrystalBarrierTile = function() {
-  var newTile = new AudachtaNemesosCrystalBarrierTile();
+tileFactory.prototype.makeAudachtaNemesosCrystalTrapTile = function() {
+  var newTile = new AudachtaNemesosCrystalTrapTile();
   return newTile;
 }
 
@@ -3515,6 +3515,11 @@ tileFactory.prototype.makeCharmTile = function() {
 
 tileFactory.prototype.makeConfusedTile = function() {
   var newTile = new ConfusedTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrystalTrapTile = function() {
+  var newTile = new CrystalTrapTile();
   return newTile;
 }
 

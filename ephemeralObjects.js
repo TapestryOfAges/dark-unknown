@@ -414,7 +414,7 @@ ConfusedTile.prototype.endEffect = function(silent) {
 
 function CrystalTrapTile() {
   this.addType("debuff");
-  this.name = "Curse";
+  this.name = "CrystalTrap";
   this.display = "<span style='color:silver'>C</span>";
   this.zstatdesc = "You are trapped in crystal.";
   this.desc = "Crystal Trap";
@@ -427,22 +427,29 @@ CrystalTrapTile.prototype.applyEffect = function(silent) {
   if ((who === PC) && !silent) {
     maintext.delayedAddText("Magic erupts around you and you are encased in crystal!");
   }
+  who.oldoverlay = who.getOverlay();
+  who.setOverlay("crystal-trap.gif");
   return 1;
 }
 
-CrystalTrapTile.prototype.doEffect = function() {
+CrystalTrapTile.prototype.onTurn = function() {
   if (DUTime.getGameClock() > this.getExpiresTime()) {
+    DebugWrite("magic", "CrystalPrison drops.");
     this.endEffect();
   }
   var who = this.getAttachedTo();
-  var chance = 50 + who.getStr() - this.getPower();
-  if (RollDice("1d100") <= chance) { 
+  var chance = 30 + who.getStr() - this.getPower();
+  if (chance < 5) { chance = 5; }
+  var rollresult = Dice.roll("1d100");
+  DebugWrite("magic", who.getName() + " tries to break free of crystal prison with chance " + chance + ". Rolls: " + rollresult + ".<br />");
+  if (rollresult <= chance) { 
     if (who === PC) {
       maintext.delayedAddText("With a burst of strength, you break free of the crystal prison!");
     } else {
       maintext.addText("With a burst of strength, the " + who.getDesc() + " breaks free!");
     }
-    who.dealDamage(DMG_MEDIUM);
+    if (trap.infused) { who.dealDamage(DMG_HEAVY); }
+    else { who.dealDamage(DMG_MEDIUM); }
     this.endEffect(1);
   }
   // else, didn't break free, nothing happens.
@@ -451,6 +458,7 @@ CrystalTrapTile.prototype.doEffect = function() {
 CrystalTrapTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
   who.deleteSpellEffect(this);
+  who.setOverlay(who.oldoverlay);
   if ((who === PC) && !silent) {
     maintext.addText("The crystal falls to pieces around you.");
   }
