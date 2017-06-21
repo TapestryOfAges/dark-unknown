@@ -149,8 +149,8 @@ var SPELL_FIRE_ARMOR_LEVEL = 3;
 var SPELL_FIRE_ARMOR_ID = GetSpellID(3);
 var SPELL_FIREBALL_LEVEL = 3;
 var SPELL_FIREBALL_ID = GetSpellID(4);
-var SPELL_ICEBALL_LEVEL = 3;
-var SPELL_ICEBALL_ID = GetSpellID(5);
+var SPELL_OPEN_GATE_LEVEL = 3;
+var SPELL_OPEN_GATE_ID = GetSpellID(5);
 var SPELL_RETURN_LEVEL = 3;
 var SPELL_RETURN_ID = GetSpellID(6);
 var SPELL_TELEKINESIS_LEVEL = 3;
@@ -164,10 +164,10 @@ var SPELL_BLINK_LEVEL = 4;
 var SPELL_BLINK_ID = GetSpellID(2);
 var SPELL_HEAL_LEVEL = 4;
 var SPELL_HEAL_ID = GetSpellID(3);
+var SPELL_ICEBALL_LEVEL = 4;
+var SPELL_ICEBALL_ID = GetSpellID(4);
 var SPELL_LIFE_DRAIN_LEVEL = 4;
-var SPELL_LIFE_DRAIN_ID = GetSpellID(4);
-var SPELL_OPEN_GATE_LEVEL = 4;
-var SPELL_OPEN_GATE_ID = GetSpellID(5);
+var SPELL_LIFE_DRAIN_ID = GetSpellID(5);
 var SPELL_SMITE_LEVEL = 4;
 var SPELL_SMITE_ID = GetSpellID(6);
 var SPELL_TELEPATHY_LEVEL = 4;
@@ -1359,7 +1359,7 @@ function PerformIceball(caster, infused, free, tgt) {
     TurnMapHostile(caster.getHomeMap());
   }
 
-  var dmg = RollDamage(DMG_LIGHT);
+  var dmg = RollDamage(DMG_MEDIUM);
   if (infused) {
     dmg = dmg * 1.5;
   }
