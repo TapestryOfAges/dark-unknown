@@ -74,7 +74,7 @@ function DrawCharFrame() {
 function DrawMainFrame(how, themap, centerx, centery) {
   // how options are "draw" and "one"
 
-  var mapdiv = "";
+//  var mapdiv = "";
 //  var themap = maps.getMap(mapname);
   var opac = 1;
   
@@ -103,13 +103,13 @@ function DrawMainFrame(how, themap, centerx, centery) {
     } else {
       $("#worldlayer").css("background-image", "");
     }
-    mapdiv += "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20; top:20px\">";
+//    mapdiv += "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20; top:20px\">";
     var tp = 0; // telepathy
     var ev = 0; // ethereal vision
     if (PC.getSpellEffectsByName("Telepathy")) { tp = 1; }
     if (PC.getSpellEffectsByName("EtherealVision")) { ev = 1; }
     for (var i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
-      mapdiv += "<tr>";
+//      mapdiv += "<tr>";
       for (var j=displayspecs.leftedge;j<=displayspecs.rightedge;j++) {
       	var thiscell = getDisplayCell(themap,centerx,centery,j,i,tp,ev);
       	opac = 1;
@@ -118,12 +118,34 @@ function DrawMainFrame(how, themap, centerx, centery) {
       	} else if (thiscell.lighthere < SHADOW_THRESHOLD && !ev) {
       	  opac = 0;
       	}
-        mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="opacity: ' + opac + '; background-image:url(\'graphics/' + thiscell.showGraphic + '\'); background-repeat:no-repeat; background-position: ' + thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px; position:relative; z-index:20;"><img id="tile'+j+'x'+i+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+j+'x'+i+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:20" title="' + thiscell.desc + '" /></td>';
+        var yidx = i-displayspecs.topedge;
+        var xidx = j-displayspecs.leftedge;
+//        mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="opacity: ' + opac + '; background-image:url(\'graphics/' + thiscell.showGraphic + '\'); background-repeat:no-repeat; background-position: ' + thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px; position:relative; z-index:20;"><img id="tile'+j+'x'+i+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+j+'x'+i+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:20" title="' + thiscell.desc + '" /></td>';
+        if (thiscell.terrain) {
+          $("#mainview_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/spacer.gif' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>");
+          $("#mainview_"+xidx+"x"+yidx).css("opacity", opac);
+          $("#mainview_"+xidx+"x"+yidx).css("background-image", "url('graphics/spacer.gif')");
+          $("#mainview_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
+          $("#mainview_"+xidx+"x"+yidx).css("background-position", "0px 0px");
+        } else {
+          $("#mainview_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/"+thiscell.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>");
+          $("#mainview_"+xidx+"x"+yidx).css("opacity", opac);
+          $("#mainview_"+xidx+"x"+yidx).css("background-image", "url('graphics/" + thiscell.showGraphic + "')");
+          $("#mainview_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
+          $("#mainview_"+xidx+"x"+yidx).css("background-position", thiscell.graphics2 + "px " + thiscell.graphics3 + "px");
+        }
+        var terr = GetDisplayTerrain(themap,j,i,centerx,centery,thiscell.losresult);
+        $("#terrain_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/"+terr.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + terr.desc + "'/>");
+        $("#terrain_"+xidx+"x"+yidx).css("opacity", opac);
+        $("#terrain_"+xidx+"x"+yidx).css("background-image", "url('graphics/" + terr.showGraphic + "')");
+        $("#terrain_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
+        $("#terrain_"+xidx+"x"+yidx).css("background-position", terr.graphics2 + "px " + terr.graphics3 + "px");
+
       }  
-      mapdiv += '</tr>';
+//      mapdiv += '</tr>';
     }
-    mapdiv  += '</table>';
-    $('#displayframe').html(mapdiv);
+//    mapdiv  += '</table>';
+//    $('#displayframe').html(mapdiv);
     $.each(spellcount, function(idx, val) {
       if ((val.getx() >= displayspecs.leftedge) && (val.getx() <= displayspecs.rightedge) && (val.gety() >= displayspecs.topedge) && (val.gety() <= displayspecs.bottomedge)) {
         var where = getCoords(val.getHomeMap(),val.getx(), val.gety());
@@ -167,7 +189,8 @@ $(document).ready(function() {
   
   $("body").append('<div style="position:absolute;left:776px;top:0px;z-index:99; width:' + blackwidth + 'px; height:' + browserheight + 'px; background-color:black;"><img src="graphics/spacer.gif" width="' + blackwidth + '" height = "' + browserheight + '" /></div>');
   $("body").append('<div style="position:absolute;left:0px;top:456px;z-index:99; width:' + browserwidth + 'px; height:' + blackheight + 'px; background-color:black;"><img src="graphics/spacer.gif" width="' + browserwidth + '" height = "' + blackheight + '" /></div>');
-      
+  CreateDisplayTables();
+
   set_conversations();
   DU.merchants = {};
   DU.merchants = SetMerchants();
@@ -416,17 +439,14 @@ function DoAction(code, ctrl) {
   else if (gamestate.getMode() === "target") {
     var response = PerformTarget(code);
     if (response["fin"] === 1) {  // move the cursor
-//  		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
-//      var pos = getCoords(PC.getHomeMap(), targetCursor.x, targetCursor.y);
-//      var posleft = 192 + (targetCursor.x - displayspecs.centerx)*32;
-//      var postop = 192 + (targetCursor.y - displayspecs.centery)*32;
+   		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+      var posleft = targetCursor.x - edges.leftedge;
+      var postop = targetCursor.y - edges.topedge;
       var tileid = targetCursor.tileid;
       $(tileid).html(targetCursor.basetile);
-      tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+      tileid = "#mainview_" + posleft + "x" + postop;
       targetCursor.tileid = tileid;
       targetCursor.basetile = $(tileid).html();
-//      pos.x = 0;
-//      pos.y = 0;
       $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0;top:0;z-index:50" />');
       gamestate.setMode("target");
     }

@@ -199,7 +199,10 @@ function PerformCommand(code, ctrl) {
       targetCursor.command = "l";
       targetCursor.targetlimit = (viewsizex -1)/2;
       targetCursor.targetCenterlimit = 0;
-      var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+      var displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
+      var xcoord = targetCursor.x - displaystats.leftedge;
+      var ycoord = targetCursor.y - displaystats.topedge;
+      var tileid = "#mainview_" + xcoord + "x" + ycoord;
       targetCursor.tileid = tileid;
       targetCursor.basetile = $(tileid).html();
       $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
@@ -318,7 +321,12 @@ function PerformCommand(code, ctrl) {
     targetCursor.command = "t";
     targetCursor.targetlimit = (viewsizex -1)/2;
     targetCursor.targetCenterlimit = 3;
-    var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+
+    var edges = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
+    var leftedge = targetCursor.x - edges.leftedge;
+    var topedge = targetCursor.y - edges.topedge;
+
+    var tileid = "#mainview_" + leftedge + "x" + topedge;
     targetCursor.tileid = tileid;
     targetCursor.basetile = $(tileid).html();
     $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
@@ -437,7 +445,8 @@ function PerformCommand(code, ctrl) {
     $("#worldlayer").css("background-image", "");
     $("#worldlayer").css("background-color", "black");
 
-    $('#displayframe').html(statsdiv);
+    $('#uiinterface').html(statsdiv);
+    $("#uiinterface").css("background-color", "black");
    
  	  var scrollelem = $('.zstats').jScrollPane();
     var scrollapi = scrollelem.data('jsp');
@@ -867,7 +876,10 @@ function PerformLook() {
 	var txt = "";
   var seethis = "";
   var map = PC.getHomeMap();
-  var onscreen = $('#td-tile' + targetCursor.x + 'x' + targetCursor.y).html();
+  var boundaries = getDisplayCenter(map,PC.getx(),PC.gety());
+  var xcoord = targetCursor.x - boundaries.leftedge;
+  var ycoord = targetCursor.y - boundaries.topedge;
+  var onscreen = $('#mainview_' + xcoord + 'x' + ycoord).html();
   var losval = 0;
   if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
   else {
@@ -1075,6 +1087,9 @@ function PerformEquip(code) {
   if (code === 27) { // ESC
     retval["fin"] = 0;
     delete targetCursor.itemlist;
+    $('#uiinterface').html("");
+    $("#uiinterface").css("background-color", "");
+
   }
 	else if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
 	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
@@ -1114,6 +1129,9 @@ function PerformEquip(code) {
     if (newequip.getPrefix()) { retval["txt"] = retval["txt"] + newequip.getPrefix(); }
     retval["txt"] = retval["txt"] + " " + newequip.getDesc() + ".";
   }
+  $('#uiinterface').html("");
+  $("#uiinterface").css("background-color", "");
+
   return retval;
  
 }
@@ -2050,6 +2068,9 @@ function performZstats(code) {
   var retval = {};
     if ((code === 27) || (code === 90)) { // ESC or Z again
       retval["fin"] = 0;
+      $('#uiinterface').html("");
+      $("#uiinterface").css("background-color", "");
+
     }
     else if ((code === 37) || (code === 59)) {  // previous page
       targetCursor.page--;
@@ -2385,7 +2406,8 @@ function DrawStats(page) {
   $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
   $("#worldlayer").css("background-image", "");
   $("#worldlayer").css("background-color", "black");
-  $('#displayframe').html(statsdiv);
+  $('#uiinterface').html(statsdiv);
+  $("#uiinterface").css("background-color", "black");
   
 	var scrollelem = $('.zstats').jScrollPane();
   var scrollapi = scrollelem.data('jsp');

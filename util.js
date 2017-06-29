@@ -1,5 +1,25 @@
 "use strict";
 
+function CreateDisplayTables() {
+  var terraintable = "<table id='mainterrainview' style='position:fixed; top:38px; left:19px; z-index:21' border='0' cellspacing='0' cellpadding='0'>";
+  var maintable = "<table id='mainview' style='position:fixed; top:38px; left:19px; z-index:22' border='0' cellspacing='0' cellpadding='0'>";
+  for (var j = 0; j< viewsizey; j++) {
+    terraintable += "<tr>";
+    maintable += "<tr>";
+    for (var i = 0; i< viewsizex; i++) {
+      terraintable += "<td id='terrain_"+i+"x"+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
+      maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
+    }
+    terraintable += "</tr>";
+    maintable += "</tr>";
+  }
+  terraintable += "</table>";
+  maintable += "</table>";
+
+  $("#displayframe").html(terraintable + "\n" + maintable);
+  return;
+}
+
 function getDisplayCenter(themap,fromx,fromy) {
 	var edge = {};
 	var leftedge = fromx - (viewsizex - 1)/2;
@@ -229,9 +249,43 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     displayCell.desc = "You cannot see that";
 //    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="You cannot see that" /></td>';
   }
-return displayCell;
+  if (displaytile.checkType("Terrain") && (displaytile.getName() !== "BlankBlack")) { displayCell.terrain = 1; }
+  return displayCell;
 }
 
+function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery) {
+  var localacre = mapref.getTile(xcoord, ycoord);
+  var displaytile = localacre.getTerrain();
+
+  while (displaytile.getName() === "SeeBelow") {
+    var retval = FindBelow(xcoord,ycoord,mapname);
+    localacre = retval.tile;
+    mapref = retval.map;
+    displaytile = localacre.getTerrain();
+  }
+
+  var graphics = displaytile.getGraphicArray();
+  var showGraphic = graphics[0];
+
+  var displayCell = {};
+  displayCell.desc = displaytile.getDesc();
+  if (typeof displaytile.setBySurround === "function") {
+   	graphics = displaytile.setBySurround(xcoord,ycoord,mapref,graphics,0,centerx,centery);
+    showGraphic = graphics[0];
+  }
+
+  if (typeof displaytile.doTile === "function") {
+    showGraphic = displaytile.doTile(xcoord,ycoord,showGraphic);
+  }
+
+  displayCell.showGraphic = showGraphic;
+  displayCell.graphics2 = graphics[2];
+  displayCell.graphics3 = graphics[3];
+  displayCell.graphics1 = graphics[1];
+
+  return displayCell;
+
+}
 
 function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   var retval = {};
@@ -1396,7 +1450,11 @@ function CreateTargetCursor(params, noredraw) {
   targetCursor.targetlimit = params.targetlimit;
   targetCursor.targetCenterlimit = params.targetCenterlimit;
 
-  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
+  var edges = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
+  var leftedge = targetCursor.x - edges.leftedge;
+  var topedge = targetCursor.y - edges.topedge;
+
+  var tileid = "#mainview_" + leftedge + "x" + topedge;
   targetCursor.tileid = tileid;
   targetCursor.basetile = $(tileid).html();
   $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');  
