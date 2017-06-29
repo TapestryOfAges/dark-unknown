@@ -273,7 +273,6 @@ mappages["skypalace"].useorb = function(feature) {
     var orb2 = orb2tile.getTopFeature();
     var orb3tile = sp.getTile(37,32);
     var orb3 = orb3tile.getTopFeature();
-//    alert(orb1.spritexoffset + " , " + orb2.spritexoffset + " , " + orb3.spritexoffset);
     if ((orb1.spritexoffset == '-32') && (orb2.spritexoffset == '-96') && (orb3.spritexoffset == '-64')) {
       var moongate = localFactory.createTile("Moongate");
       moongate.destmap = "skypalace2";
