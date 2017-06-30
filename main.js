@@ -74,19 +74,8 @@ function DrawCharFrame() {
 function DrawMainFrame(how, themap, centerx, centery) {
   // how options are "draw" and "one"
 
-//  var mapdiv = "";
-//  var themap = maps.getMap(mapname);
   var opac = 1;
-  
-//  if (themap === undefined) {
-//    alert("How am I here? (Drawmap)");
-//    maps.addMap(mapname);
-//    themap = maps.getMap(mapname);
-//  }
-
-//  var debugcolor = "#0000cc";
-//  if (debug) { dbs.writeln("<br /><br />"); }
-	
+  	
   if (how === "draw") {
     displayspecs = getDisplayCenter(themap,centerx,centery);
     
@@ -111,57 +100,19 @@ function DrawMainFrame(how, themap, centerx, centery) {
     for (var i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
 //      mapdiv += "<tr>";
       for (var j=displayspecs.leftedge;j<=displayspecs.rightedge;j++) {
-      	var thiscell = getDisplayCell(themap,centerx,centery,j,i,tp,ev);
-      	opac = 1;
-      	if ((thiscell.lighthere >= SHADOW_THRESHOLD) && (thiscell.lighthere < 1) && !ev) {
-      	  opac = 0.3;
-      	} else if (thiscell.lighthere < SHADOW_THRESHOLD && !ev) {
-      	  opac = 0;
-      	}
-        var yidx = i-displayspecs.topedge;
-        var xidx = j-displayspecs.leftedge;
-//        mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="opacity: ' + opac + '; background-image:url(\'graphics/' + thiscell.showGraphic + '\'); background-repeat:no-repeat; background-position: ' + thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px; position:relative; z-index:20;"><img id="tile'+j+'x'+i+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+j+'x'+i+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:20" title="' + thiscell.desc + '" /></td>';
-        if (thiscell.terrain) {
-          $("#mainview_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/spacer.gif' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>");
-          $("#mainview_"+xidx+"x"+yidx).css("opacity", opac);
-          $("#mainview_"+xidx+"x"+yidx).css("background-image", "url('graphics/spacer.gif')");
-          $("#mainview_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
-          $("#mainview_"+xidx+"x"+yidx).css("background-position", "0px 0px");
-        } else {
-          $("#mainview_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/"+thiscell.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>");
-          $("#mainview_"+xidx+"x"+yidx).css("opacity", opac);
-          $("#mainview_"+xidx+"x"+yidx).css("background-image", "url('graphics/" + thiscell.showGraphic + "')");
-          $("#mainview_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
-          $("#mainview_"+xidx+"x"+yidx).css("background-position", thiscell.graphics2 + "px " + thiscell.graphics3 + "px");
-        }
-        var terr = GetDisplayTerrain(themap,j,i,centerx,centery,thiscell.losresult);
-        $("#terrain_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/"+terr.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + terr.desc + "'/>");
-        $("#terrain_"+xidx+"x"+yidx).css("opacity", opac);
-        $("#terrain_"+xidx+"x"+yidx).css("background-image", "url('graphics/" + terr.showGraphic + "')");
-        $("#terrain_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
-        $("#terrain_"+xidx+"x"+yidx).css("background-position", terr.graphics2 + "px " + terr.graphics3 + "px");
-
+        MainViewDrawTile(themap,centerx,centery,j,i,tp,ev,displayspecs);
       }  
-//      mapdiv += '</tr>';
     }
-//    mapdiv  += '</table>';
-//    $('#displayframe').html(mapdiv);
     $.each(spellcount, function(idx, val) {
       if ((val.getx() >= displayspecs.leftedge) && (val.getx() <= displayspecs.rightedge) && (val.gety() >= displayspecs.topedge) && (val.gety() <= displayspecs.bottomedge)) {
         var where = getCoords(val.getHomeMap(),val.getx(), val.gety());
-//        where.x += 192;
-//        where.y += 192;
         $("#" + idx).css("left", where.x);
         $("#" + idx).css("top", where.y);
       }
     });
   } else if (how === "one") {
     if ((themap === PC.getHomeMap()) && (centerx <= displayspecs.rightedge) && (centerx >= displayspecs.leftedge) && (centery >= displayspecs.topedge) && (centery <= displayspecs.bottomedge)) {
-      var thiscell = getDisplayCell(themap,PC.getx(),PC.gety(),centerx,centery);
-      var tileid = "#td-tile" + centerx + "x" + centery;
-      $(tileid).css("background-image","url('graphics/" + thiscell.showGraphic + "')");
-      $(tileid).css("background-position",thiscell.graphics2 + 'px ' + thiscell.graphics3 + 'px');
-      $(tileid).html('<img id="tile'+centerx+'x'+centery+'" src="graphics/'+thiscell.graphics1+'" border="0" alt="tile'+centerx+'x'+centery+' los:' + thiscell.losresult + ' light:' + thiscell.lighthere + '" width="32" height="32" style="position: relative; z-index:20" title="' + thiscell.desc + '" />');
+      MainViewDrawTile(themap,PC.getx(),PC.gety(),centerx,centery,tp,ev,displayspecs);
     }
     $.each(spellcount, function(idx, val) {
       if ((val.getx() >= displayspecs.leftedge) && (val.getx() <= displayspecs.rightedge) && (val.gety() >= displayspecs.topedge) && (val.gety() <= displayspecs.bottomedge)) {
@@ -170,9 +121,38 @@ function DrawMainFrame(how, themap, centerx, centery) {
         $("#" + idx).css("top", where.y);
       }
     });
+  }  
+}
 
+function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) {
+ 	var thiscell = getDisplayCell(themap,centerx,centery,j,i,tp,ev);
+ 	var opac = 1;
+ 	if ((thiscell.lighthere >= SHADOW_THRESHOLD) && (thiscell.lighthere < 1) && !ev) {
+ 	  opac = 0.3;
+ 	} else if (thiscell.lighthere < SHADOW_THRESHOLD && !ev) {
+ 	  opac = 0;
+ 	}
+  var yidx = i-displayspecs.topedge;
+  var xidx = j-displayspecs.leftedge;
+  if (thiscell.terrain) {
+    $("#mainview_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/spacer.gif' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>");
+    $("#mainview_"+xidx+"x"+yidx).css("opacity", opac);
+    $("#mainview_"+xidx+"x"+yidx).css("background-image", "url('graphics/spacer.gif')");
+    $("#mainview_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
+    $("#mainview_"+xidx+"x"+yidx).css("background-position", "0px 0px");
+  } else {
+    $("#mainview_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/"+thiscell.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>");
+    $("#mainview_"+xidx+"x"+yidx).css("opacity", opac);
+    $("#mainview_"+xidx+"x"+yidx).css("background-image", "url('graphics/" + thiscell.showGraphic + "')");
+    $("#mainview_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
+    $("#mainview_"+xidx+"x"+yidx).css("background-position", thiscell.graphics2 + "px " + thiscell.graphics3 + "px");
   }
-  
+  var terr = GetDisplayTerrain(themap,j,i,centerx,centery,thiscell.losresult);
+  $("#terrain_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/"+terr.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + terr.desc + "'/>");
+  $("#terrain_"+xidx+"x"+yidx).css("opacity", opac);
+  $("#terrain_"+xidx+"x"+yidx).css("background-image", "url('graphics/" + terr.showGraphic + "')");
+  $("#terrain_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
+  $("#terrain_"+xidx+"x"+yidx).css("background-position", terr.graphics2 + "px " + terr.graphics3 + "px");
 }
 
 function DrawTopbarFrame(txt) {
