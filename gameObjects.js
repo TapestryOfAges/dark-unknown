@@ -3437,105 +3437,82 @@ function InLava(who) {
 function FenceNWTile() {
   this.name = "FenceNW";
   this.graphic = "fence-nw.gif";
-  this.overlay = "fence-nw.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
-  
-  SetByBelow.call(this)
 }
 FenceNWTile.prototype = new FeatureObject();
 
 function FenceNETile() {
   this.name = "FenceNE";
   this.graphic = "fence-ne.gif";
-  this.overlay = "fence-ne.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
-  
-  SetByBelow.call(this)
 }
 FenceNETile.prototype = new FeatureObject();
 
 function FenceEWTile() {
   this.name = "FenceEW";
   this.graphic = "fence-ew.gif";
-  this.overlay = "fence-ew.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
-  
-  SetByBelow.call(this)
 }
 FenceEWTile.prototype = new FeatureObject();
 
 function FenceSETile() {
   this.name = "FenceSE";
   this.graphic = "fence-se.gif";
-  this.overlay = "fence-se.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
-  
-  SetByBelow.call(this)
 }
 FenceSETile.prototype = new FeatureObject();
 
 function FenceSWTile() {
   this.name = "FenceSW";
   this.graphic = "fence-sw.gif";
-  this.overlay = "fence-sw.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
-  
-  SetByBelow.call(this)
 }
 FenceSWTile.prototype = new FeatureObject();
 
 function FenceNSTile() {
   this.name = "FenceNS";
   this.graphic = "fence-ns.gif";
-  this.overlay = "fence-ns.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
-  
-  SetByBelow.call(this)
 }
 FenceNSTile.prototype = new FeatureObject();
 
 function FenceEWSTile() {
   this.name = "FenceEWS";
   this.graphic = "fence-ews.gif";
-  this.overlay = "fence-ews.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "fence";
-  
-  SetByBelow.call(this)
 }
 FenceEWSTile.prototype = new FeatureObject();
 
 function FenceEWGateTile() {
 	this.name = "FenceEWGate";
 	this.graphic = "fence-ew-gate-closed.gif";
-	this.overlay = "fence-ew-gate-closed.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
 	this.desc = "gate";
 
-  SetByBelow.call(this);
-  Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "fence-ew-gate-open.gif", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, [this.graphic, this.overlay, 0, 0], ["fence-ew-gate-open.gif", this.overlay, 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
   // WORKING- NEED TO REPLACE SOUNDS
 }
 FenceEWGateTile.prototype = new FeatureObject();
@@ -3563,6 +3540,7 @@ function StatueTopTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "statue";
+  this.alwaystop = 1;
 }
 StatueTopTile.prototype = new FeatureObject();
 
@@ -3708,8 +3686,6 @@ function WaterRockTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "rock";
-  
-//  SetByBelow.call(this);
 }
 WaterRockTile.prototype = new FeatureObject();
 
@@ -3868,40 +3844,31 @@ RightCastleTile.prototype = new FeatureObject();
 
 function DoorwayTile() {
   this.name = "Doorway";
-  this.graphic = "103.gif";
-  this.overlay = "archway.gif";
+  this.graphic = "archway.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archway";
-  
-  SetByBelow.call(this);
 }
 DoorwayTile.prototype = new FeatureObject();
 
 function StoneDoorwayTile() {
   this.name = "StoneDoorway";
-  this.graphic = "055.gif";
-  this.overlay = "stone-arch.gif";
+  this.graphic = "stone-arch.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archway";
-  
-//  SetByBelow.call(this);
 }
 StoneDoorwayTile.prototype = new FeatureObject();
 
 function WallDoorwayTile() {
   this.name = "WallDoorway";
-  this.graphic = "055.gif";
-  this.overlay = "wall-arch.gif";
+  this.graphic = "wall-arch.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archway";
-  
-//  SetByBelow.call(this);
 }
 WallDoorwayTile.prototype = new FeatureObject();
 
@@ -3913,8 +3880,6 @@ function ShrineTile() {
   this.prefix = "a";
   this.desc = "gate";
   this.peerview = "#9d9d9d";
-
-//  Enterable.call(this, "null", 0, 0);
 }
 ShrineTile.prototype = new FeatureObject();
 
@@ -3926,8 +3891,6 @@ function BrokenShrineTile() {
   this.prefix = "a";
   this.desc = "broken gate";
   this.peerview = "#9d9d9d";
-
-//  Enterable.call(this, "null", 0, 0);
 }
 BrokenShrineTile.prototype = new FeatureObject();
 
@@ -3972,7 +3935,6 @@ function DoorWindowTile() {
 	
 	this.name = "DoorWindow";
 	this.graphic = "009.gif";
-	this.overlay = "009.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.losupclose = {distance: 1 , blocklos: 0};
@@ -3980,8 +3942,7 @@ function DoorWindowTile() {
 	this.prefix = "a";
 	this.desc = "door";
 
-  SetByBelow.call(this);
-  Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, [this.graphic, "", 0, 0], ["archway.gif", "", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorWindowTile.prototype = new FeatureObject();
 
@@ -3994,15 +3955,13 @@ function StonePortcullisTile() {
 	
 	this.name = "StonePortcullis";
 	this.graphic = "stone-portcullis.gif";
-	this.overlay = "stone-portcullis.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
 	this.desc = "portcullis";
 	this.heavy = 1;
 
-//	SetByBelow.call(this);
-  Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "stone-arch.gif", 0, 0], 0, "", "", "sfx_locked_door");  // ADD WHEN SOUNDS ADDED
+  Openable.call(this, [this.graphic, "", 0, 0], ["stone-arch.gif", "", 0, 0], 0, "", "", "sfx_locked_door");  // ADD WHEN SOUNDS ADDED
 }
 StonePortcullisTile.prototype = new FeatureObject();
 
@@ -4015,15 +3974,13 @@ function WallPortcullisTile() {
 	
 	this.name = "WallPortcullis";
 	this.graphic = "wall-portcullis.gif";
-	this.overlay = "wall-portcullis.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
 	this.desc = "portcullis";
 	this.heavy = 1;
 
-//	SetByBelow.call(this);
-  Openable.call(this, [this.graphic, this.overlay, 0, 0], ["055.gif", "wall-arch.gif", 0, 0], 0, "", "", "sfx_locked_door");  // HERE TOO
+  Openable.call(this, [this.graphic, "", 0, 0], ["wall-arch.gif", "", 0, 0], 0, "", "", "sfx_locked_door");  // HERE TOO
 }
 WallPortcullisTile.prototype = new FeatureObject();
 
@@ -4075,13 +4032,11 @@ EnergyFieldTile.prototype = new FeatureObject();
 function TorchWestTile() {
 	this.name = "TorchWest";
 	this.graphic = "torch_l.gif";
-	this.overlay = "torch_l.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "burning torch";
 
-  SetByBelow.call(this);	
 	LightEmitting.call(this, 2);
 }
 TorchWestTile.prototype = new FeatureObject();  
@@ -4093,13 +4048,11 @@ TorchWestTile.prototype.use = function(who) {
 function TorchEastTile() {
 	this.name = "TorchEast";
 	this.graphic = "torch_r.gif";
-	this.overlay = "torch_r.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "burning torch";
 
-  SetByBelow.call(this);	
 	LightEmitting.call(this, 2);
 }
 TorchEastTile.prototype = new FeatureObject();  
@@ -4111,13 +4064,10 @@ TorchEastTile.prototype.use = function(who) {
 function TorchWestOutTile() {
 	this.name = "TorchWestOut";
 	this.graphic = "torch_l_out.gif";
-	this.overlay = "torch_l_out.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "torch";
-
-  SetByBelow.call(this);	
 }
 TorchWestOutTile.prototype = new FeatureObject();  
 
@@ -4128,13 +4078,10 @@ TorchWestOutTile.prototype.use = function(who) {
 function TorchEastOutTile() {
 	this.name = "TorchEastOut";
 	this.graphic = "torch_r_out.gif";
-	this.overlay = "torch_r_out.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "torch";
-
-  SetByBelow.call(this);	
 }
 TorchEastOutTile.prototype = new FeatureObject();  
 
@@ -4616,14 +4563,12 @@ function DoorTile() {
   	
 	this.name = "Door";
 	this.graphic = "064.gif";
-	this.overlay = "064.gif";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.prefix = "a";
 	this.desc = "door";
 
-	SetByBelow.call(this);
-	Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+	Openable.call(this, [this.graphic, "", 0, 0], ["archway.gif", "", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorTile.prototype = new FeatureObject();
 
@@ -5434,17 +5379,12 @@ BridgeEWTile.prototype = new FeatureObject();
 function LeftChairTile() {
   this.name = "LeftChair";
   this.graphic = "chairs1.gif";
-  this.overlay = "chairs1.gif";
-//  this.spritexoffset = "-32";
-//  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 1;
-  
-  SetByBelow.call(this);
 }
 LeftChairTile.prototype = new FeatureObject();
 
@@ -5455,17 +5395,12 @@ LeftChairTile.prototype.use = function(who) {
 function RightChairTile() {
   this.name = "RightChair";
   this.graphic = "chairs3.gif";
-  this.overlay = "chairs3.gif";
-//  this.spritexoffset = "-96";
-//  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 3;
-  
-  SetByBelow.call(this)
 }
 RightChairTile.prototype = new FeatureObject();
 
@@ -5476,17 +5411,12 @@ RightChairTile.prototype.use = function(who) {
 function TopChairTile() {
   this.name = "TopChair";
   this.graphic = "chairs2.gif";
-  this.overlay = "chairs2.gif";
-//  this.spritexoffset = "0";
-//  this.spriteyoffset = "-64";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 2;
-  
-  SetByBelow.call(this)
 }
 TopChairTile.prototype = new FeatureObject();
 
@@ -5497,17 +5427,12 @@ TopChairTile.prototype.use = function(who) {
 function BottomChairTile() {
   this.name = "BottomChair";
   this.graphic = "chairs0.gif";
-  this.overlay = "chairs0.gif";
-//  this.spritexoffset = "0";
-//  this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 0;
-  
-  SetByBelow.call(this)
 }
 BottomChairTile.prototype = new FeatureObject();
 
@@ -5533,52 +5458,44 @@ function TurnFacing(what) {
 function SmallTableTile() {
   this.name = "SmallTable";
   this.graphic = "small_table.gif";
-  this.overlay = "small_table.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
-  SetByBelow.call(this);
 }
 SmallTableTile.prototype = new FeatureObject();
 
 function LeftTableTile() {
   this.name = "LeftTable";
   this.graphic = "table_left.gif";
-  this.overlay = "table_left.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
-  SetByBelow.call(this);
 }
 LeftTableTile.prototype = new FeatureObject();
 
 function MiddleTableTile() {
   this.name = "MiddleTable";
   this.graphic = "table_middle.gif";
-  this.overlay = "table_middle.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
-  SetByBelow.call(this);
 }
 MiddleTableTile.prototype = new FeatureObject();
 
 function RightTableTile() {
   this.name = "RightTable";
   this.graphic = "table_right.gif";
-  this.overlay = "table_right.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
   this.prefix = "a";
   this.desc = "table";
-  SetByBelow.call(this);
 }
 RightTableTile.prototype = new FeatureObject();
 
@@ -5616,24 +5533,20 @@ HarpsichordTile.prototype.use = function(who) {
 function BedHeadTile() {
   this.name = "BedHead";
   this.graphic = "bed_head.gif";
-  this.overlay = "bed_head.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bed";
-  SetByBelow.call(this);
 }
 BedHeadTile.prototype = new FeatureObject();
 
 function BedFootTile() {
   this.name = "BedFoot";
   this.graphic = "bed_foot.gif";
-  this.overlay = "bed_foot.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bed";
-  SetByBelow.call(this);
 }
 BedFootTile.prototype = new FeatureObject();
 
@@ -6041,10 +5954,6 @@ function DescendWaterfall(who, waterfall) {
 function SecretDoorTile() {
 	this.name = "SecretDoor";
 	this.graphic = "056.gif";   // note: 024 is U4's secret door
-	this.overlay = "056.gif";
-//  this.graphic = "terrain_tiles.png";
-//  this.spritexoffset = "-96";
-//  this.spriteyoffset = "-128";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 2; 
 	this.prefix = "a";
@@ -6054,8 +5963,7 @@ function SecretDoorTile() {
 	this.searchPrefix = "a";
 	this.peerview = "white";
 	
-  SetByBelow.call(this);
-  Openable.call(this, [this.graphic, this.overlay, 0, 0], [this.graphic, "archway.gif", 0, 0], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
+  Openable.call(this, [this.graphic, "", 0, 0], ["archway.gif", "", 0, 0], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
 }
 SecretDoorTile.prototype = new FeatureObject();
 
@@ -6639,50 +6547,38 @@ ArmorRackPlateTile.prototype = new FeatureObject();
 
 function SkeletonDecorationTile() {
   this.name = "SkeletonDecoration";
-  this.graphic = "103.gif";
-  this.overlay = "skeleton-deco.gif";
+  this.graphic = "skeleton-deco.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "skeleton";
-  
-  SetByBelow.call(this);
 }
 SkeletonDecorationTile.prototype = new FeatureObject();
 
 function MoatLeverOffTile() {
   this.name = "MoatLeverOff";
   this.graphic = "moatLever-off.gif";
-  this.overlay = "moatLever-off.gif";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
-  
-  SetByBelow.call(this);
 }
 MoatLeverOffTile.prototype = new FeatureObject();
 
 function LeverOffTile() {
   this.name = "LeverOff";
   this.graphic = "switch-off.gif";
-  this.overlay = "switch-off.gif";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
-  
-  SetByBelow.call(this);
 }
 LeverOffTile.prototype = new FeatureObject();
 
 function BDCLeverTile() {
   this.name = "BDCLever";
   this.graphic = "moatLever-off.gif";
-  this.overlay = "moatLever-off.gif";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
-  
-  SetByBelow.call(this);
 }
 BDCLeverTile.prototype = new FeatureObject();
 
@@ -6696,12 +6592,9 @@ BDCLeverTile.prototype.use = function(who) {
 function GrottoLeverOffTile() {
   this.name = "GrottoLeverOff";
   this.graphic = "switch-off.gif";
-  this.overlay = "switch-off.gif";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
-  
-  SetByBelow.call(this);
 }
 GrottoLeverOffTile.prototype = new FeatureObject();
 
@@ -6731,12 +6624,9 @@ GrottoLeverOffTile.prototype.use = function(who) {
 function MetalTwisterLeverTile() {
   this.name = "MetalTwisterLever";
   this.graphic = "switch-off.gif";
-  this.overlay = "switch-off.gif";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
-  
-  SetByBelow.call(this);
 }
 MetalTwisterLeverTile.prototype = new FeatureObject();
   
@@ -6790,12 +6680,9 @@ MetalTwisterLeverTile.prototype.use = function(user) {
 function PitDespairLeverTile() {
   this.name = "PitDespairLever";
   this.graphic = "switch-off.gif";
-  this.overlay = "switch-off.gif";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
-  
-  SetByBelow.call(this);
 }
 PitDespairLeverTile.prototype = new FeatureObject();
 
@@ -7898,12 +7785,9 @@ function PerformToshinAltar(code) {
 function ToshinMoatLeverOffTile() {
   this.name = "ToshinMoatLeverOff";
   this.graphic = "moatLever-off.gif";
-  this.overlay = "moatLever-off.gif";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
-  
-  SetByBelow.call(this);
 }
 ToshinMoatLeverOffTile.prototype = new FeatureObject();
 
