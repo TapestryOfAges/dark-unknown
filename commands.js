@@ -2440,16 +2440,17 @@ function DrawOptions() {
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
   optdiv += "<tr><td style='text-decoration:underline'>OPTIONS</td><td></td><td></td></tr>";
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td>&nbsp;&nbsp;&nbsp;</td></tr>";
-  optdiv += "<tr><td><span style='text-decoration:underline'>SOUND AND MUSIC</span></td><td></td><td></td></tr>";
-  optdiv += "<tr><td>PLAY MUSIC:</td><td></td><td";
+  optdiv += "<tr><td><span style='text-decoration:underline'>SOUND AND MUSIC</span><br /></td><td></td><td></td></tr>";
+  optdiv += "<tr><td>MUSIC VOLUME:</td><td></td><td";
   if (targetCursor.page === 1) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
   if (DU.gameflags.getFlag("music")) {
-    optdiv += "YES";
+    var modmusic = DU.gameflags.getFlag('music')*10;
+    optdiv += modmusic;
   } else {
-    optdiv += "NO";
+    optdiv += "0";
   }
   optdiv += "</td></tr>";
   optdiv += "<tr><td>LOOP MUSIC:</td><td></td><td";
@@ -2463,15 +2464,16 @@ function DrawOptions() {
     optdiv += "NO";
   }
   optdiv += "</td></tr>";
-  optdiv += "<tr><td>PLAY SOUND:</td><td></td><td";
+  optdiv += "<tr><td>SOUND VOLUME:</td><td></td><td";
   if (targetCursor.page === 3) { 
     optdiv += " class='highlight'";
   }
   optdiv += ">";
   if (DU.gameflags.getFlag("sound")) {
-    optdiv += "YES";
+    var modsound = DU.gameflags.getFlag("sound")*10;
+    optdiv += modsound;
   } else {
-    optdiv += "NO";
+    optdiv += "0";
   }
   optdiv += "</td></tr>";
   optdiv += "<tr><td>AMBIENT SOUND:</td><td></td><td";
@@ -2485,7 +2487,7 @@ function DrawOptions() {
     optdiv += "NO";
   }
   optdiv += "</td></tr>";  
-  optdiv += "<tr><td><br /><span style='text-decoration:underline'>USER INTERFACE</span></td><td></td><td></td></tr>";
+  optdiv += "<tr><td><br /><span style='text-decoration:underline'>USER INTERFACE</span><br /></td><td></td><td></td></tr>";
   optdiv += "<tr><td>MOVE OPENS DOORS:</td><td></td><td";
   if (targetCursor.page === 5) { 
     optdiv += " class='highlight'";
@@ -2528,8 +2530,9 @@ function DrawOptions() {
   $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
   $("#worldlayer").css("background-image", "");
   $("#worldlayer").css("background-color", "black");
-  $('#displayframe').html(optdiv);
-  
+  $('#uiinterface').html(optdiv);
+  $("#uiinterface").css("background-color", "black");
+
 }
 
 function DrawDebugOptions() {
@@ -2666,7 +2669,8 @@ function DrawDebugOptions() {
   $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
   $("#worldlayer").css("background-image", "");
   $("#worldlayer").css("background-color", "black");
-  $('#displayframe').html(optdiv);
+  $('#uiinterface').html(optdiv);
+  $("#uiinterface").css("background-color", "black");
   
 }
 
@@ -2676,6 +2680,8 @@ function performOptions(code) {
     if ((code === 27) || (code === 79)) { // ESC or O again
       retval["fin"] = 0;
       delete targetCursor.cmd;
+      $('#uiinterface').html("");
+      $("#uiinterface").css("background-color", "");
     }
     else if ((code === 38) || (code === 219)) { // scroll up
       targetCursor.page--;
@@ -2691,9 +2697,67 @@ function performOptions(code) {
       }
       retval["fin"] = 1;
     }
+    else if ((code === 37) || (code === 59)) {  // left, for volumes
+      if (targetCursor.cmd === "o") {
+        if (targetCursor.page === 1) {
+          if (DU.gameflags.getFlag("music")) {
+            DU.gameflags.setFlag("music", Math.round(Math.max(0,DU.gameflags.getFlag("music")-.1)));
+            if (nowplaying.song) {
+              nowplaying.song.volume = DU.gameflags.getFlag("music");
+            }
+          }
+        } else if (targetCursor.page === 3) {
+          if (DU.gameflags.getFlag("sound")) {
+            DU.gameflags.setFlag("sound", Math.round(Math.max(0,DU.gameflags.getFlag("sound")-.1)));
+          }
+        }
+      }
+    }
+    else if ((code === 39) || (code === 222)) {  // right, for volumes
+      if (targetCursor.cmd === "o") {
+        if (targetCursor.page === 1) {
+          if (DU.gameflags.getFlag("music")) {
+            DU.gameflags.setFlag("music", Math.round(Math.min(1,DU.gameflags.getFlag("music")+.1)));
+            if (nowplaying.song) {
+              nowplaying.song.volume = DU.gameflags.getFlag("music");
+            } else {
+              var song = PC.getHomeMap().getMusic();
+              nowplaying = DUPlayMusic(song);
+            }
+          }
+        } else if (targetCursor.page === 3) {
+          if (DU.getFlag("sound")) {
+            DU.setFlag("sound", Math.round(Math.min(1,DU.getFlag("sound")+.1)));
+          }
+        }
+      }
+    }
     else if ((code === 32) || (code === 13)) {  // space or enter
       if (targetCursor.cmd === "o") {
-        ToggleOption(targetCursor.page);
+        if (targetCursor.page === 1) {
+          if (DU.gameflags.getFlag("music")) {
+            DU.gameflags.setFlag("music",0);
+            if (nowplaying.song) {
+              nowplaying.song.volume = 0;
+            }
+          } else {
+            DU.gameflags.setFlag("music",1);
+            if (nowplaying.song) {
+              nowplaying.song.volume = 1;
+            } else {
+              var song = PC.getHomeMap().getMusic();
+              nowplaying = DUPlayMusic(song);
+            }
+          }
+        } else if (targetCursor.page === 3) {
+          if (DU.gameflags.getFlag("sound")) {
+            DU.gameflags.setFlag("sound",0);
+          } else {
+            DU.gameflags.setFlag("sound",1);
+          }
+        } else {
+          ToggleOption(targetCursor.page);
+        }
       } else if (targetCursor.cmd === "debug") {
         ToggleDebugOption(targetCursor.page);
       }

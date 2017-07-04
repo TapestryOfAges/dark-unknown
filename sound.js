@@ -153,7 +153,7 @@ function create_audio() {
 // checks to see if the player has turned off sound
 function DUPlaySound(sound) {
   var playing = {};
-  if (DU.gameflags.getFlag("sound")) { playing.song = createjs.Sound.play(sound); playing.name = sound; }
+  if (DU.gameflags.getFlag("sound")) { playing.song = createjs.Sound.play(sound); playing.name = sound; playing.song.volume = DU.gameflags.getFlag("sound");}
   return playing;
 }
 
@@ -161,13 +161,13 @@ function DUPlayMusic(sound) {
   var playing = {};
   var loopval = 0;
   if (DU.gameflags.getFlag("loopmusic")) { loopval = -1; }
-  if (DU.gameflags.getFlag("music")) { playing.song = createjs.Sound.play(sound, {loop:loopval}); playing.name = sound; }
+  if (DU.gameflags.getFlag("music")) { playing.song = createjs.Sound.play(sound, {loop:loopval}); playing.name = sound; playing.volume = DU.gameflags.getFlag("music");}
   return playing;
 }
 
 function DUPlayAmbient(sound) {
   var playing = {};
-  if (DU.gameflags.getFlag("ambientsound") && DU.gameflags.getFlag("sound")) { playing.song = createjs.Sound.play(sound, {loop:-1}); playing.name = sound; }
+  if (DU.gameflags.getFlag("ambientsound") && DU.gameflags.getFlag("sound")) { playing.song = createjs.Sound.play(sound, {loop:-1}); playing.name = sound; playing.song.volume = DU.gameflags.getFlag("sound");}
   playing.song.volume = 0;
   setTimeout(function() { IncAmbientVol(playing); }, 500);
   return playing;
@@ -175,8 +175,8 @@ function DUPlayAmbient(sound) {
 
 function IncAmbientVol(playing) {
   if (playing.name === ambient.name) {
-    if (playing.song.volume < 1) {
-      playing.song.volume += .125;
+    if (playing.song.volume < DU.gameflags.getFlag("sound")) {
+      playing.song.volume = Math.min(playing.song.volume + .125, DU.gameflags.getFlag("sound"));
       setTimeout(function() { IncAmbientVol(playing); }, 250);
     }
   }
