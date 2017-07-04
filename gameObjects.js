@@ -13127,6 +13127,8 @@ PCObject.prototype.activate = function() {
 
 PCObject.prototype.myTurn = function() {
 
+  SetSky();
+
   if (debugflags.first) { delete debugflags.first; } 
   else { DebugWrite("all", "</div>"); }
   DebugWrite("all", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>=== PC TURN ===   Timestamp: " + DU.DUTime.getGameClock().toFixed(5) + "; x: " + PC.getx() + ", y: " + PC.gety() + "<br />");
