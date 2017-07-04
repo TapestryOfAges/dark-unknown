@@ -66,6 +66,7 @@ mappages["headlesscave"].lightLevel = 'dark';
 mappages["headlesscave"].alwaysRemember = '0';
 mappages["headlesscave"].scale = '1';
 mappages["headlesscave"].underground = '1';
+mappages["headlesscave"].undergroundDesc = 'Underground';
 mappages["headlesscave"].enterscript = '';
 mappages["headlesscave"].entertestscript = '';
 mappages["headlesscave"].exitscript = 'hc_check_clear';

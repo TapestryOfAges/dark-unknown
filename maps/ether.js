@@ -321,6 +321,7 @@ mappages["ether"].returnmap = '';
 mappages["ether"].returnx = 'NaN';
 mappages["ether"].returny = 'NaN';
 mappages["ether"].returninfused = '0';
+mappages["ether"].undergroundDesc = 'Otherworldly';
 mappages["ether"].linkedMaps = [""];
 
 

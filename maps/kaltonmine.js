@@ -71,6 +71,7 @@ mappages["kaltonmine1"].lightLevel = 'bright';
 mappages["kaltonmine1"].alwaysRemember = '0';
 mappages["kaltonmine1"].scale = '1';
 mappages["kaltonmine1"].underground = '1';
+mappages["kaltonmine1"].undergroundDesc = 'Underground';
 mappages["kaltonmine1"].enterscript = '';
 mappages["kaltonmine1"].entertestscript = '';
 mappages["kaltonmine1"].exitscript = '';

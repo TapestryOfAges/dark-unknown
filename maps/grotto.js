@@ -156,6 +156,8 @@ mappages["grotto"].returnmap = 'darkunknown';
 mappages["grotto"].returnx = '27';
 mappages["grotto"].returny = '30';
 mappages["grotto"].returninfused = '0';
+mappages["grotto"].underground = '1';
+mappages["grotto"].undergroundDesc = 'Underwater';
 mappages["grotto"].linkedMaps = ["grotto2","undergrotto"];
 
 

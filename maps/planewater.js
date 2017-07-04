@@ -123,6 +123,7 @@ mappages["waterplane"].lightLevel = 'bright';
 mappages["waterplane"].alwaysRemember = '0';
 mappages["waterplane"].scale = '1';
 mappages["waterplane"].underground = '0';
+mappages["waterplane"].undergroundDesc = 'Otherworldly';
 mappages["waterplane"].enterscript = '';
 mappages["waterplane"].entertestscript = '';
 mappages["waterplane"].exitscript = '';

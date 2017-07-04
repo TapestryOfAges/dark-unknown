@@ -672,7 +672,7 @@ mappages["olympus1"].returnx = '69';
 mappages["olympus1"].returny = '74';
 mappages["olympus1"].returninfused = '0';
 mappages["olympus1"].linkedMaps = ["olympus2","olympus0"];
-mappages["olympus1"].editorLabels = '{"div_tile14x24":"Tyler and Sonya","div_tile81x37":"Peter","div_tile81x28":"Sean","div_tile80x19":"Katrina","div_tile26x48":"Peter","div_tile64x49":"Alex","div_tile68x39":"Tyler","div_tile68x21":"Shelaria","div_tile66x20":"Sonya","div_tile67x16":"Sean","div_tile52x21":"Jharden","div_tile48x22":"Kaye","div_tile49x19":"Daragen","div_tile44x19":"Nyrani","div_tile29x31":"Olivia","div_tile35x39":"Katrina","div_tile11x53":"Barracks","div_tile83x28":"Plus Eli","div_tile16x25":"plus Yoshi"}';
+mappages["olympus1"].editorLabels = '{"div_tile14x24":"Tyler and Sonya","div_tile81x37":"Peter","div_tile81x28":"Sean","div_tile80x19":"Katrina","div_tile26x48":"Peter","div_tile64x49":"Alex","div_tile68x39":"Tyler","div_tile68x21":"Shelaria","div_tile66x20":"Sonya","div_tile67x16":"Sean","div_tile52x21":"Jharden","div_tile48x22":"Kaye","div_tile49x19":"Daragen","div_tile44x19":"Nyrani","div_tile29x31":"Olivia","div_tile35x39":"Katrina","div_tile11x53":"Barracks","div_tile83x28":"Plus Eli","div_tile16x25":"plus Yoshi","div_tile35x15":"Yoshi","div_tile37x16":"Eli"}';
 
 mappages["olympus2"] = {};
 mappages["olympus2"].terrain = [];

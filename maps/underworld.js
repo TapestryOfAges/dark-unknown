@@ -104,3 +104,4 @@ mappages["underworld"].returninfused = '1';
 mappages["underworld"].linkedMaps = new Array("");
 mappages["underworld"].scale = '1';
 mappages["underworld"].underground = '1';
+mappages["underworld"].undergroundDesc = 'Underground';
