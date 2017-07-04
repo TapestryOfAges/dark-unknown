@@ -1513,6 +1513,7 @@ function IsWantedCode(code) {
 
 function GetClockTime(usethistime) {
   if (!usethistime) { usethistime = DUTime.getGameClock(); }
+  usethistime = usethistime*5;   // Without this, a step is 1 min on world map and .2 in town
   usethistime = usethistime + 9*60;  // Game starts at 9am on day 1
   usethistime = usethistime + 4*28*24*60 + 3*24*60; // Game starts on 4/3
   var minutes = Math.floor(usethistime%60);
@@ -1525,6 +1526,7 @@ function GetClockTime(usethistime) {
 
 function GetDisplayDate(usethistime) {
   var calendar = GetClockTime(usethistime);
+  calendar[0]+=143;
   return (calendar[1] + "-" + calendar[2] + "-" + calendar[0]);
 }
 
@@ -1535,5 +1537,45 @@ function GetDisplayTime(usethistime) {
   if (hours === 0) {hours = 12; }
   else if (hours === 12) { ampm = "pm"; }
   else if (hours > 12) { hours = hours - 12; ampm = "pm"; }
+  if (calendar[4] == 0) { calendar[4] = "00"; }
   return (hours + ":" + calendar[4] + " " + ampm);
+}
+
+function SetSky() {
+  if (PC.getHomeMap().getUndergroundDesc()) {
+    for (var i = 1; i<=8; i++) {
+      $("#sky"+i).css("background-image","");
+      $("#sky"+i).css("background-position","0px 0px");
+    }
+    $("#oversky").html(PC.getHomeMap().getUndergroundDesc());
+  } else {
+    var currenttime = DUTime.getGameClock();
+    currenttime += 9*60 + 4*28*24*60 + 3*24*60;
+    currenttime = Math.floor((currenttime/60)/24);
+    var moon1phase = currenttime%8;
+    var moon2phase = Math.floor((currenttime%24)/3);
+    var moon1location = 3*moon1phase;
+    var moon2location = 3*moon2phase;
+    if (moon1phase === moon2phase) { moon2location++; }
+    var daytime = GetClockTime();
+    var sunposition = daytime[3]-5;
+    if (sunposition < 1) { sunposition += 24; }
+    $("#oversky").html("");
+    for (var i = 1; i<=8; i++) {
+      $("#sky"+i).css("background-image","");
+      $("#sky"+i).css("background-position","0px 0px");
+    }
+    if (sunposition < 13) { $("#sky"+sunposition).css("background-image", "url('graphics/sun.gif')"); }
+    var moon1position = (sunposition+moon1location-1)%24 +1;
+    var moon2position = (sunposition+moon2location-1)%24 +1;
+    if (moon1position < 13) { 
+      $("#sky"+moon1position).css("background-image", "url('graphics/moons.gif')");
+      $("#sky"+moon1position).css("background-position", moon1phase*16 + "px 16px");
+    }
+    if (moon2position < 13) { 
+      $("#sky"+moon2position).css("background-image", "url('graphics/moons.gif')");
+      $("#sky"+moon2position).css("background-position", moon1phase*16 + "px 0px");
+    }
+  }
+  return;
 }
