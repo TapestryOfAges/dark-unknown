@@ -20,7 +20,6 @@ body { background-color: black; }
 div.topbar { text-align:center; 
 	           color:white;
 	           vertical-align:top;
-	           font-weight:bold;
 	           font-family:"Commodore64";
 	           font-size:16pt; 
 	           line-height:24px;
