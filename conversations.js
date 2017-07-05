@@ -55,6 +55,13 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       if (!PC.getSpellEffectsByName(flags.has_condition)) { flags_met = 0; }
       else { addtolog.flagsmet += " " + flags.has_condition; }
     }
+    if (flags.hasOwnProperty("function_call")) {
+      if (typeof ConvTestFlags[flags.function_call] === "function") {
+        if (!ConvTestFlags[flags.function_call](speaker, keyword)) {
+          flags_met = 0;
+        }
+      } else { flags_met = 0; }
+    }
 
     if (this[keyword].responses[flags_met].indexOf("->") != -1) {
       var holder = this[keyword].responses[flags_met];
@@ -737,3 +744,7 @@ OnConvTriggers["franklin_offered"] = function(speaker, keyword) {
     DU.gameflags.setFlag("franklin_karma",1);
   }
 }
+
+function ConvTestFlags() {};
+
+
