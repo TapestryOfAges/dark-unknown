@@ -158,35 +158,44 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
   var blocks = localacre.getBlocksLOS();
   
   var lighthere = 0;
+  var sunlight = 0;
+  if (ambientlight === "cycle") {
+    if (CheckTimeBetween("6:00","17:59")) {
+      ambientlight === "bright";
+    } else if (CheckTimeBetween("18:00","18:29") || CheckTimeBetween("5:30","5:59")) {
+      sunlight = .7;
+    } else if (CheckTimeBetween("18:30","18:59") || CheckTimeBetween("5:00","5:29")) {
+      sunlight = .3;
+    }
+  }
   if (ambientlight === "bright") {
     lighthere = 1;
-  }
-  else {
+  } else {
     if ((blocks >= LOS_THRESHOLD) && ((centerx != x) || (centery != y) )) {
       var dirnum = GetViewDirection(centerx,centery,x,y);
       if ((dirnum === 6) || (dirnum === 7) || (dirnum === 0)) {
-        var selight = localacre.getLocalLight("se");
+        var selight = localacre.getLocalLight("se") + sunlight;
         if (selight > lighthere) {
           lighthere = selight;
         }
       } if ((dirnum >= 0) && (dirnum <= 2)) {
-        var swlight = localacre.getLocalLight("sw");
+        var swlight = localacre.getLocalLight("sw") + sunlight;
         if (swlight > lighthere) {
           lighthere = swlight;
         }
       } if ((dirnum >= 2) && (dirnum <= 4)) {
-        var nwlight = localacre.getLocalLight("nw");
+        var nwlight = localacre.getLocalLight("nw") + sunlight;
         if (nwlight > lighthere) {
           lighthere = nwlight;
         }
       } if ((dirnum >= 4) && (dirnum <= 6)) {
-        var nelight = localacre.getLocalLight("ne");
+        var nelight = localacre.getLocalLight("ne") + sunlight;
         if (nelight > lighthere) {
           lighthere = nelight;
         }
       }
     } else {
-      lighthere = localacre.getLocalLight("center");
+      lighthere = localacre.getLocalLight("center") + sunlight;
     }
   }
   
@@ -214,10 +223,7 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     displayCell.losresult = losresult;
     displayCell.lighthere = lighthere;
     displayCell.desc = displaytile.getDesc();
-    
-//    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1;" title="' + displaytile.getDesc() + '" /></td>';
-  }
-  else if ((losresult < LOS_THRESHOLD) || ((tp === 1) && isnpc) || ev) {
+  } else if ((losresult < LOS_THRESHOLD) || ((tp === 1) && isnpc) || ev) {
     if (typeof displaytile.doTile === "function") {
       showGraphic = displaytile.doTile(x,y,showGraphic);
     }
@@ -226,7 +232,6 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
       showGraphic = setbelow[0];
       graphics[2] = setbelow[2];
       graphics[3] = setbelow[3];
-//      showGraphic = displaytile.setByBelow(x,y,mapname);
     }
     displayCell.showGraphic = showGraphic;
     displayCell.graphics2 = graphics[2];
@@ -235,7 +240,6 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     displayCell.losresult = losresult;
     displayCell.lighthere = lighthere;
     displayCell.desc = displaytile.getDesc();
-//    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="' + displaytile.getDesc() + '" /></td>';
   } else {
     displaytile = eidos.getForm('BlankBlack');
     graphics = displaytile.getGraphicArray();
@@ -247,13 +251,24 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     displayCell.losresult = losresult;
     displayCell.lighthere = lighthere;
     displayCell.desc = "You cannot see that";
-//    mapdiv += '<td class="maptd" id="td-tile'+x+'x'+y+'" style="background-image:url(\'graphics/' + showGraphic + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;"><img id="tile'+x+'x'+y+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+x+'x'+y+' los:' + losresult + ' light:' + lighthere + '" width="32" height="32" style="position: relative; z-index:1" title="You cannot see that" /></td>';
   }
   if (displaytile.checkType("Terrain") && (displaytile.getName() !== "BlankBlack")) { displayCell.terrain = 1; }
   return displayCell;
 }
 
-function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery) {
+function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
+  
+  if (losresult >= LOS_THRESHOLD) {
+    var displaytile = eidos.getForm('BlankBlack');
+    var graphics = displaytile.getGraphicArray();
+    var showGraphic = graphics[0];
+    var displayCell = {};
+    displayCell.showGraphic = showGraphic;
+    displayCell.graphics2 = graphics[2];
+    displayCell.graphics3 = graphics[3];
+    displayCell.graphics1 = graphics[1];
+    return displayCell;
+  }
   var localacre = mapref.getTile(xcoord, ycoord);
   var displaytile = localacre.getTerrain();
 
@@ -1578,4 +1593,26 @@ function SetSky() {
     }
   }
   return;
+}
+
+function CheckTimeBetween(time1,time2) {
+  var time1arr = time1.split(":");
+  var time2arr = time2.split(":");
+  var clocktime = GetClockTime();
+  
+  time1 = parseInt(time1arr[0])*60+parseInt(time1arr[1]);
+  time2 = parseInt(time2arr[0])*60+parseInt(time2arr[1]);
+  var clock0 = parseInt(clocktime[3])*60+parseInt(clocktime[4]);
+
+  if (time2 > time1) {
+    if ((clock0 >= time1) && (time2 >= clock0)) {
+      return 1;
+    }
+    return 0;
+  } else {
+    if ((clock0 >= time1) || (clock0 <= time2)) {
+      return 1;
+    }
+    return 0;
+  }
 }
