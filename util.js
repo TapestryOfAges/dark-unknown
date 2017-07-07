@@ -149,7 +149,6 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
 
   var displayCell = {};
   var localacre = mapname.getTile(x,y);
-  var ambientlight = mapname.getLightLevel();
   
   var displaytile;
   // decide whether to draw a tile, draw it shaded, or make it darkness
@@ -158,17 +157,8 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
   var blocks = localacre.getBlocksLOS();
   
   var lighthere = 0;
-  var sunlight = 0;
-  if (ambientlight === "cycle") {
-    if (CheckTimeBetween("6:00","17:59")) {
-      ambientlight === "bright";
-    } else if (CheckTimeBetween("18:00","18:29") || CheckTimeBetween("5:30","5:59")) {
-      sunlight = .7;
-    } else if (CheckTimeBetween("18:30","18:59") || CheckTimeBetween("5:00","5:29")) {
-      sunlight = .3;
-    }
-  }
-  if (ambientlight === "bright") {
+  var sunlight = mapname.getAmbientLight();
+  if (sunlight === 1) {
     lighthere = 1;
   } else {
     if ((blocks >= LOS_THRESHOLD) && ((centerx != x) || (centery != y) )) {
@@ -239,6 +229,7 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     displayCell.graphics1 = graphics[1];
     displayCell.losresult = losresult;
     displayCell.lighthere = lighthere;
+    displayCell.isnpc = isnpc;
     displayCell.desc = displaytile.getDesc();
   } else {
     displaytile = eidos.getForm('BlankBlack');
@@ -1416,14 +1407,12 @@ function IsVisibleOnScreen(x,y) {
   if ((display.leftedge > x) || (display.rightedge < x)) { return 0; }
   if ((display.topedge > y) || (display.bottomedge < y)) { return 0; }
   var targettile = themap.getTile(x, y);
-  var onscreen = $('#td-tile' + x + 'x' + y).html();
+  var onscreen = $('#mainview_' + x + 'x' + y).html();
   var losval = 0;
   if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
   else {
     var light = targettile.getLocalLight();
-    if (themap.getLightLevel() === "bright") {
-      light += 1;
-    }
+    light += themap.getAmbientLight();
     if (light < SHADOW_THRESHOLD) {
       losval = 1;
     }
