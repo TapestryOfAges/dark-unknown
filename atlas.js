@@ -926,6 +926,23 @@ GameMap.prototype.setLightLevel = function(lightlevel) {
 	this.lightLevel = lightlevel;
 }
 
+GameMap.prototype.getAmbientLight = function() {
+  if (this.getLightLevel() === "bright") { return 1; }
+  if (this.getLightLevel() === "cycle") {
+    var sunlight = 0;
+    if (CheckTimeBetween("6:00","17:59")) {
+      sunlight = 1;
+    } else if (CheckTimeBetween("18:00","18:29") || CheckTimeBetween("5:30","5:59")) {
+      sunlight = .7;
+    } else if (CheckTimeBetween("18:30","18:59") || CheckTimeBetween("5:00","5:29")) {
+      sunlight = .3;
+    }
+    return sunlight;
+  } else {
+    return 0;
+  }
+}
+
 GameMap.prototype.getExitScript = function() {
 	return this.exitScript;
 }
