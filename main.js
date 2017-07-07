@@ -92,13 +92,12 @@ function DrawMainFrame(how, themap, centerx, centery) {
     } else {
       $("#worldlayer").css("background-image", "");
     }
-//    mapdiv += "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20; top:20px\">";
+
     var tp = 0; // telepathy
     var ev = 0; // ethereal vision
     if (PC.getSpellEffectsByName("Telepathy")) { tp = 1; }
     if (PC.getSpellEffectsByName("EtherealVision")) { ev = 1; }
     for (var i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
-//      mapdiv += "<tr>";
       for (var j=displayspecs.leftedge;j<=displayspecs.rightedge;j++) {
         MainViewDrawTile(themap,centerx,centery,j,i,tp,ev,displayspecs);
       }  
@@ -127,29 +126,32 @@ function DrawMainFrame(how, themap, centerx, centery) {
 function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) {
  	var thiscell = getDisplayCell(themap,centerx,centery,j,i,tp,ev);
  	var opac = 1;
- 	if ((thiscell.lighthere >= SHADOW_THRESHOLD) && (thiscell.lighthere < 1) && !ev) {
+ 	if ((thiscell.lighthere >= SHADOW_THRESHOLD) && (thiscell.lighthere < 1) && !ev && !(tp && thiscell.isnpc)) {
  	  opac = 0.3;
- 	} else if (thiscell.lighthere < SHADOW_THRESHOLD && !ev) {
+ 	} else if (thiscell.lighthere < SHADOW_THRESHOLD && !ev && !(tp && thiscell.isnpc)) {
  	  opac = 0;
  	}
   var yidx = i-displayspecs.topedge;
   var xidx = j-displayspecs.leftedge;
   if (thiscell.terrain) {
     $("#mainview_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/spacer.gif' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>");
-    $("#mainview_"+xidx+"x"+yidx).css("opacity", opac);
     $("#mainview_"+xidx+"x"+yidx).css("background-image", "url('graphics/spacer.gif')");
     $("#mainview_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
     $("#mainview_"+xidx+"x"+yidx).css("background-position", "0px 0px");
   } else {
     $("#mainview_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/"+thiscell.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>");
-    $("#mainview_"+xidx+"x"+yidx).css("opacity", opac);
     $("#mainview_"+xidx+"x"+yidx).css("background-image", "url('graphics/" + thiscell.showGraphic + "')");
     $("#mainview_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
     $("#mainview_"+xidx+"x"+yidx).css("background-position", thiscell.graphics2 + "px " + thiscell.graphics3 + "px");
   }
+  if ((opac > 0) && (opac < 1)) {
+    $("#mainview_"+xidx+"x"+yidx).append("<img src='graphics/shadow.gif' style='position:absolute;left:0px;top:0px' />");
+  } else if (opac === 0) {
+    $("#mainview_"+xidx+"x"+yidx).append("<div style='background-image: url(\"graphics/terrain_tiles.png\"); background-position:-64px -128px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>");
+  }
+
   var terr = GetDisplayTerrain(themap,j,i,centerx,centery,thiscell.losresult);
   $("#terrain_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/"+terr.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + terr.desc + "'/>");
-  $("#terrain_"+xidx+"x"+yidx).css("opacity", opac);
   $("#terrain_"+xidx+"x"+yidx).css("background-image", "url('graphics/" + terr.showGraphic + "')");
   $("#terrain_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
   $("#terrain_"+xidx+"x"+yidx).css("background-position", terr.graphics2 + "px " + terr.graphics3 + "px");
