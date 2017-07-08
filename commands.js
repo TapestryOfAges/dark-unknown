@@ -885,9 +885,7 @@ function PerformLook() {
   else {
     var tile = map.getTile(targetCursor.x,targetCursor.y);
     var light = tile.getLocalLight();
-    if (map.getLightLevel() === "bright") {
-      light += 1;
-    }
+    light += map.getAmbientLight();
     if (light < SHADOW_THRESHOLD) {
       losval = 1;
     }
@@ -1271,9 +1269,7 @@ function PerformTalkTarget() {
   else {
     var tile = map.getTile(targetCursor.x,targetCursor.y);
     var light = tile.getLocalLight();
-    if (map.getLightLevel() === "bright") {
-      light += 1;
-    }
+    light += map.getAmbientLight();
     if (light < SHADOW_THRESHOLD) {
       losval = 1;
     }
