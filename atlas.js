@@ -755,7 +755,10 @@ GameMap.prototype.setUndergroundDesc = function(desc) {
 }
 
 GameMap.prototype.getUndergroundDesc = function() {
-  return this.undergroundDesc;
+  if (this.undergroundDesc) {
+    return this.undergroundDesc;
+  }
+  return "";
 }
 
 GameMap.prototype.setSaveName = function(newname) {

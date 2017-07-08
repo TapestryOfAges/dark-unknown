@@ -1553,7 +1553,7 @@ function SetSky() {
     }
     $("#oversky").html(PC.getHomeMap().getUndergroundDesc());
   } else {
-    var currenttime = DUTime.getGameClock();
+    var currenttime = DUTime.getGameClock() * 5;
     currenttime += 9*60 + 4*28*24*60 + 3*24*60;
     currenttime = Math.floor((currenttime/60)/24);
     var moon1phase = currenttime%8;
@@ -1565,7 +1565,7 @@ function SetSky() {
     var sunposition = daytime[3]-5;
     if (sunposition < 1) { sunposition += 24; }
     $("#oversky").html("");
-    for (var i = 1; i<=8; i++) {
+    for (var i = 1; i<=12; i++) {
       $("#sky"+i).css("background-image","");
       $("#sky"+i).css("background-position","0px 0px");
     }
