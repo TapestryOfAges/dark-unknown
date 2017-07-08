@@ -76,6 +76,7 @@ DU.merchants = {};
 DU.merchants = SetMerchants();
 DU.randomseed = Math.floor(Math.random()*100)+1;
 var introidx = 0;
+var losgrid = new LOSMatrix(30);
 
 var firsttime = 1;
 var themap;
