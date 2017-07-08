@@ -192,6 +192,3 @@ function GetLineArray(x1,y1,x2,y2,cornerx1,cornery1,cornerx2,cornery2) {
   return lineArray;
 }
 
-function GetVisibility(currentmap, x, y) {
-	if (currentmap.getLightLevel() === "bright") { return 1; }
-}
