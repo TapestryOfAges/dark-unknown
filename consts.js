@@ -1,13 +1,6 @@
 
 "use strict";
 
-const DAY = 0;
-const NIGHT = 2;
-const DAWN = 1;
-const DUSK = 3;
-
-const worldlight = { bright: 1, dim: .5, dark: 0};
-
 const LOS_THRESHOLD = .98;
 //var LOE_THRESHOLD = .7;
 const SHADOW_THRESHOLD = .3;

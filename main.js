@@ -3,7 +3,6 @@
 var maxserial = 0;
 var viewsizex = 13;
 var viewsizey = 13;
-var DAYNIGHT = DAY;
 
 var wind = {};
 wind.xoff = 0;
