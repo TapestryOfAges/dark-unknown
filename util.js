@@ -1570,8 +1570,8 @@ function SetSky() {
       $("#sky"+i).css("background-position","0px 0px");
     }
     if (sunposition < 13) { $("#sky"+sunposition).css("background-image", "url('graphics/sun.gif')"); }
-    var moon1position = (sunposition+moon1location-1)%24 +1;
-    var moon2position = (sunposition+moon2location-1)%24 +1;
+    var moon1position = (sunposition-moon1location-1)%24 +1;
+    var moon2position = (sunposition-moon2location-1)%24 +1;
     if (moon1position < 13) { 
       $("#sky"+moon1position).css("background-image", "url('graphics/moons.gif')");
       $("#sky"+moon1position).css("background-position", moon1phase*16 + "px 16px");
