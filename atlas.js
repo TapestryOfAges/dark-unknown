@@ -935,10 +935,8 @@ GameMap.prototype.getAmbientLight = function() {
     var sunlight = 0;
     if (CheckTimeBetween("6:00","17:59")) {
       sunlight = 1;
-    } else if (CheckTimeBetween("18:00","18:29") || CheckTimeBetween("5:30","5:59")) {
+    } else if (CheckTimeBetween("18:00","18:59") || CheckTimeBetween("5:00","5:59")) {
       sunlight = .7;
-    } else if (CheckTimeBetween("18:30","18:59") || CheckTimeBetween("5:00","5:29")) {
-      sunlight = .3;
     }
     return sunlight;
   } else {
@@ -1576,6 +1574,8 @@ GameMap.prototype.loadMap = function (name) {
   this.setName(name);
   this.createPathGrid();
 
+  var litfeatures = [];
+
   if (gamestate.getMode() !== "loadgame") {
     var loadfeatures = mappages.readPage(name, "features");
 //  this.features = new Collection;
@@ -1613,8 +1613,20 @@ GameMap.prototype.loadMap = function (name) {
       	if (newfeature.getLootgroup()) {
       	  AddLoot(newfeature);
       	}
-  	    this.placeThing(loadfeatures[fi].x,loadfeatures[fi].y,newfeature);
+        if (typeof newfeature.getLight === "function") {
+          var tmpobj = {};
+          tmpobj.feature = newfeature;
+          tmpobj.x = loadfeatures[fi].x;
+          tmpobj.y = loadfeatures[fi].y;
+          litfeatures.push(tmpobj);
+        } else {
+    	    this.placeThing(loadfeatures[fi].x,loadfeatures[fi].y,newfeature);
+        }
       }
+    }
+
+    for (var i=0; i<litfeatures.length;i++) {
+      this.placeThing(litfeatures[i].x,litfeatures[i].y,litfeatures[i].feature);
     }
 
     var loadnpcs = mappages.readPage(name, "npcs");
