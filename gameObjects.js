@@ -13127,6 +13127,8 @@ PCObject.prototype.activate = function() {
 
 PCObject.prototype.myTurn = function() {
 
+  var clockface = GetClockTime(this.getLastTurnTime());
+  if (clockface[3] !== GetClockTime()[3]) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
   SetSky();
 
   if (debugflags.first) { delete debugflags.first; } 
