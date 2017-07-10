@@ -1503,13 +1503,13 @@ function IsWantedCode(code) {
   // 34    pg down
   // 37-40 arrow keys
   // 48-57 number
-  // 59    ;
   // 65-90 letter
+  // 186    ;
   // 191   /
   // 219   [
   // 222   '
 
-  if ((code === 8) || (code === 13) || (code === 27) || ((code >= 32) && (code <= 34)) || ((code >= 37) && (code <= 40)) || ((code >=48) && (code <= 57)) || (code === 59) || ((code >= 65) && (code <=90)) || (code === 191) || (code === 219) || (code === 222)) {
+  if ((code === 8) || (code === 13) || (code === 27) || ((code >= 32) && (code <= 34)) || ((code >= 37) && (code <= 40)) || ((code >=48) && (code <= 57)) || ((code >= 65) && (code <=90)) || (code === 186) || (code === 191) || (code === 219) || (code === 222)) {
     return 1; 
   }
   return 0;
@@ -1541,7 +1541,7 @@ function GetDisplayTime(usethistime) {
   if (hours === 0) {hours = 12; }
   else if (hours === 12) { ampm = "pm"; }
   else if (hours > 12) { hours = hours - 12; ampm = "pm"; }
-  if (calendar[4] == 0) { calendar[4] = "00"; }
+  if (calendar[4] < 10) { calendar[4] = "0" + calendar[4]; }
   return (hours + ":" + calendar[4] + " " + ampm);
 }
 
@@ -1552,6 +1552,7 @@ function SetSky() {
       $("#sky"+i).css("background-position","0px 0px");
     }
     $("#oversky").html(PC.getHomeMap().getUndergroundDesc());
+    return(PC.getHomeMap().getUndergroundDesc());
   } else {
     var currenttime = DUTime.getGameClock() * 5;
     currenttime += 9*60 + 4*28*24*60 + 3*24*60;
@@ -1561,8 +1562,8 @@ function SetSky() {
     var moon1location = 3*moon1phase;
     var moon2location = 3*moon2phase;
     if (moon1phase === moon2phase) { 
-      if (moon1phase <= 3) { moon2phase++; }
-      else { moon1phase--; }
+      if (moon1phase <= 3) { moon2location++; }
+      else { moon1location--; }
     }
     var daytime = GetClockTime();
     var sunposition = daytime[3]-5;
@@ -1578,15 +1579,17 @@ function SetSky() {
     var moon2position = sunposition-moon2location;
     if (moon2position <= 0) { moon2position += 24; }
     if (moon1position < 13) { 
+      var phaseoffset = -1*moon1phase*16;
       $("#sky"+moon1position).css("background-image", "url('graphics/moons.gif')");
-      $("#sky"+moon1position).css("background-position", moon1phase*16 + "px 16px");
+      $("#sky"+moon1position).css("background-position", phaseoffset + "px 16px");
     }
     if (moon2position < 13) { 
+      var phaseoffset = -1*moon2phase*16;
       $("#sky"+moon2position).css("background-image", "url('graphics/moons.gif')");
-      $("#sky"+moon2position).css("background-position", moon1phase*16 + "px 0px");
+      $("#sky"+moon2position).css("background-position", phaseoffset + "px 0px");
     }
+    return([moon1phase,moon1position,moon2phase,moon2position]);
   }
-  return;
 }
 
 function CheckTimeBetween(time1,time2) {
