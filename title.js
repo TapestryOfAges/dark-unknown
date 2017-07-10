@@ -377,7 +377,7 @@ function DoAction(code, e) {
         avatarselect.y--;
         $("#" + avatarselect.y + "x" + avatarselect.x).css("background-color","white");
       }
-    } else if ((code === 37) || (code === 59)) {  // left
+    } else if ((code === 37) || (code === 186)) {  // left
       if (avatarselect.x > 0) {
         $("#" + avatarselect.y + "x" + avatarselect.x).css("background-color","black");
         avatarselect.x--;
