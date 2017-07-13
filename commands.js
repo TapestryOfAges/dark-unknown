@@ -2984,6 +2984,13 @@ function DisplayInventory(restrictTo) {
       else if (PCinv[i].checkType("quest")) { inventorylist.quest.push(PCinv[i]); }
       else if (PCinv[i].getName() === "Gold") { inventorylist.other.push(PCinv[i]); }
     }
-
   }
+
+  $("$uiinterface").html("");
+  for (var i=0;i<8;i++) {
+    var leftedge = 9+40*i;
+    var topedge = 0;
+    $("$uiinterface").append("<div style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; border:4px; border-color:black'></div>");
+  }
+
 }
