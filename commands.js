@@ -2938,59 +2938,102 @@ function DisplayInventory(restrictTo) {
   if (!targetCursor.invx) { targetCursor.invx = 0; }
   if (!targetCursor.invy) { targetCursor.invy = 0; }
   
-  var inventorylist = {};
+  var inventorylist = [];
   var PCinv = PC.getInventory();
-  if (restrictTo === "equip") {
-    inventorylist.armor = [];
-    inventorylist.weapon = [];
-    inventorylist.missile = [];
-  } else if (restrictTo === "consumable") {
-    inventorylist.potion = [];
-    inventorylist.scroll = [];
-    inventorylist.audachta = [];
-    inventorylist.other = [];
-  } else {
-    inventorylist.armor = [];
-    inventorylist.weapon = [];
-    inventorylist.missile = [];
-    inventorylist.potion = [];
-    inventorylist.scroll = [];
-    inventorylist.audachta = [];
-    inventorylist.key = [];
-    inventorylist.reagent = [];
-    inventorylist.quest = [];
-    inventorylist.other = [];
-  }
+//  if (restrictTo === "equip") {
+//    inventorylist.armor = [];
+//    inventorylist.weapon = [];
+//    inventorylist.missile = [];
+//  } else if (restrictTo === "consumable") {
+//    inventorylist.potion = [];
+//    inventorylist.scroll = [];
+//    inventorylist.audachta = [];
+//    inventorylist.other = [];
+//  } else {
+//    inventorylist.armor = [];
+//    inventorylist.weapon = [];
+//    inventorylist.missile = [];
+//    inventorylist.potion = [];
+//    inventorylist.scroll = [];
+//    inventorylist.audachta = [];
+//    inventorylist.key = [];
+//    inventorylist.reagent = [];
+//    inventorylist.quest = [];
+//    inventorylist.other = [];
+//  }
 
   for (var i=0; i<PCinv.length; i++) {
     if (restrictTo === "equip") {
-      if (PCinv[i].checkType("armor")) { inventorylist.armor.push(PCinv[i]); }
-      else if (PCinv[i].checkType("missile")) { inventorylist.missile.push(PCinv[i]); }
-      else if (PCinv[i].checkType("weapon")) { inventorylist.weapon.push(PCinv[i]); }
-    } else if (restrictTo === "consumable") {
-      if (PCinv[i].checkType("potion")) { inventorylist.potion.push(PCinv[i]); }
-      else if (PCinv[i].checkType("scroll")) { inventorylist.scroll.push(PCinv[i]); }
-      else if (PCinv[i].checkType("audachta")) { inventorylist.audachta.push(PCinv[i]); }
-      else if (PCinv[i].checkType("comsumable")) { inventorylist.other.push(PCinv[i]); }
+      if (PCinv[i].checkType("armor")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("missile")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("weapon")) { inventorylist.push(PCinv[i]); }
+    } else if (restrictTo === "usable") {
+      if (PCinv[i].checkType("potion")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("scroll")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
+      else if (typeof PCinv[i].use === "function") { inventorylist.push(PCinv[i]); }
     } else {
-      if (PCinv[i].checkType("armor")) { inventorylist.armor.push(PCinv[i]); }
-      else if (PCinv[i].checkType("missile")) { inventorylist.missile.push(PCinv[i]); }
-      else if (PCinv[i].checkType("weapon")) { inventorylist.weapon.push(PCinv[i]); }
-      else if (PCinv[i].checkType("potion")) { inventorylist.potion.push(PCinv[i]); }
-      else if (PCinv[i].checkType("scroll")) { inventorylist.scroll.push(PCinv[i]); }
-      else if (PCinv[i].checkType("audachta")) { inventorylist.audachta.push(PCinv[i]); }
-      else if (PCinv[i].checkType("key")) { inventorylist.key.push(PCinv[i]); }
-      else if (PCinv[i].checkType("reagent")) { inventorylist.reagent.push(PCinv[i]); }
-      else if (PCinv[i].checkType("quest")) { inventorylist.quest.push(PCinv[i]); }
-      else if (PCinv[i].getName() === "Gold") { inventorylist.other.push(PCinv[i]); }
+      if (PCinv[i].checkType("armor")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("missile")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("weapon")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("potion")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("scroll")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("key")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("reagent")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("quest")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].getName() !== "Gold") { inventorylist.push(PCinv[i]); }
     }
   }
 
-  $("$uiinterface").html("");
-  for (var i=0;i<8;i++) {
-    var leftedge = 9+40*i;
-    var topedge = 0;
-    $("$uiinterface").append("<div style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; border:4px; border-color:black'></div>");
+  $("#uiinterface").html("");
+  $("#uiinterface").css("background-color","black");
+  for (var j=0;j<5;j++) {
+    for (var i=0;i<8;i++) {
+      var leftedge = 30+45*i;
+      var topedge = 20+45*j;
+      $("#uiinterface").append("<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#ccc;'></div>");
+    }
   }
+
+  $("#uiinterface").append("<div id='inv_desc_window' style='position:absolute; left: 35px; top: 260px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 100px'></div>");
+  $("#inv_desc_window").html("<table cellpadding='1' cellspacing='1' border='0'><tr><td colspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 16px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:52px; width:100px; text-align:center'></p></td><td id='inv_desc'></td></tr><td id='inv_use'></td></tr></table>");
+  var invselect = 0;
+  var writetox = 0;
+  var writetoy = 0;
+
+  writetoy = Math.floor(invselect/8);
+  writetox = invselect%8;
+
+  for (var i=invselect;i<inventorylist.length;i++) {
+    writetoy = Math.floor(i/8);
+    writetox = i%8;
+    
+    var showgraphic = inventorylist[i].getGraphicArray();
+    var bordercolor = "#ccc";
+    $("#inv_"+writetox+"x"+writetoy).css("background-image", "url('graphics/" + showgraphic[0] + "')");
+    $("#inv_"+writetox+"x"+writetoy).css("background-repeat", "no-repeat");
+    $("#inv_"+writetox+"x"+writetoy).css("background-position", showgraphic[2] + "px " + showgraphic[3] + "px");
+
+    if (PC.isEquipped(inventorylist[i])) {
+      $("#inv_"+writetox+"x"+writetoy).css("border-color", "#000099");
+    }
+  }
+
+  invselect = 0;
+  writetoy = Math.floor(invselect/8);
+  writetox = invselect%8;
+
+  if (PC.isEquipped(inventorylist[invselect])) { 
+    $("#inv_"+writetox+"x"+writetoy).css("border-color", "#66ccff");
+  } else {
+    $("#inv_"+writetox+"x"+writetoy).css("border-color", "#ffffff");
+  }
+  
+  var showgraphic = inventorylist[invselect].getGraphicArray();
+  $("#inv_image").css("background-image", "url('graphics/" + showgraphic[0] + "')");
+  $("#inv_image").css("background-repeat", "no-repeat");
+  $("#inv_image").css("background-position", showgraphic[2] + "px " + showgraphic[3] + "px");
+  $("#inv_name").html(inventorylist[invselect].getDesc());  
 
 }
