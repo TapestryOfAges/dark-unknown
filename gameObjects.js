@@ -12802,6 +12802,19 @@ NPCObject.prototype.setEquipment = function(which,what) {
   else { return 0; }
 }
 
+NPCObject.prototype.isEquipped = function(checkItem) {
+  if (checkItem === this.getEquipment("armor")) {
+    return 1;
+  }
+  if (checkItem === this.getEquipment("missile")) {
+    return 1;
+  }
+  if (checkItem === this.getEquipment("weapon")) {
+    return 1;
+  }
+  return 0;
+}
+
 NPCObject.prototype.getArmor = function() {
   if (this.equipment.armor) { return this.equipment.armor; }
   else { return ""; } 
