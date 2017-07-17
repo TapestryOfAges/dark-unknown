@@ -2996,8 +2996,8 @@ function DisplayInventory(restrictTo) {
     }
   }
 
-  $("#uiinterface").append("<div id='inv_desc_window' style='position:absolute; left: 35px; top: 260px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 100px'></div>");
-  $("#inv_desc_window").html("<table cellpadding='1' cellspacing='1' border='0'><tr><td colspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 16px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:52px; width:100px; text-align:center'></p></td><td id='inv_desc'></td></tr><td id='inv_use'></td></tr></table>");
+  $("#uiinterface").append("<div id='inv_desc_window' style='position:absolute; left: 35px; top: 260px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 125px'></div>");
+  $("#inv_desc_window").html("<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 16px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:52px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>");
   var invselect = 0;
   var writetox = 0;
   var writetoy = 0;
@@ -3034,6 +3034,9 @@ function DisplayInventory(restrictTo) {
   $("#inv_image").css("background-image", "url('graphics/" + showgraphic[0] + "')");
   $("#inv_image").css("background-repeat", "no-repeat");
   $("#inv_image").css("background-position", showgraphic[2] + "px " + showgraphic[3] + "px");
-  $("#inv_name").html(inventorylist[invselect].getDesc());  
-
+  var descname = inventorylist[invselect].getDesc();
+  descname = descname.charAt(0).toUpperCase() + descname.slice(1);
+  $("#inv_name").html(descname);  
+  $("#inv_desc").html(inventorylist[invselect].getLongDesc());
+  $("#inv_use").html("Use: " + inventorylist[invselect].getUseDesc());
 }
