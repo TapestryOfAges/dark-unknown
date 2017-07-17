@@ -8013,7 +8013,10 @@ AltarWithSwordTile.prototype.use = function(who) {
 
 function ItemObject() {
 	this.addType("Item");
-	this.quantity = 1;
+  this.quantity = 1;
+  
+  this.longdesc = "";
+  this.usedesc = "";
 	
 	Pushable.call(this);
 }
@@ -8027,6 +8030,14 @@ ItemObject.prototype.setQuantity = function(quant) {
 	this.quantity = quant;
 }
 
+ItemObject.prototype.getLongDesc = function() {
+  return this.longdesc;
+}
+
+ItemObject.prototype.getUseDesc = function() {
+  return this.usedesc;
+}
+
 function AmbroseShieldTile() {
   this.name = "AmbroseShield";
   this.graphic = "items.png";
@@ -8034,8 +8045,9 @@ function AmbroseShieldTile() {
   this.spritexoffset = "-256";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "shield commissioned by Nyrani";
+  this.desc = "shield";
   this.prefix = "the";
+  this.longdesc = "This shield was commissioned by Nyrani and made by Erin of Hildendain. It should be brought to Nyrani.";
   this.addType("Quest");
 }
 AmbroseShieldTile.prototype = new ItemObject();
@@ -8047,8 +8059,9 @@ function RobertMapTile() {
   this.spritexoffset = "-0";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "map to bring to Robert";
+  this.desc = "map";
   this.prefix = "a";
+  this.longdesc = "A map. You were asked to bring it to Robert in Clear Lake.";
   this.addType("Quest");
 }
 RobertMapTile.prototype = new ItemObject();
@@ -8060,8 +8073,9 @@ function SmallRockTile() {
   this.spriteyoffset = "-128";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "small rock to bring to Garen";
+  this.desc = "small rock";
   this.prefix = "a";
+  this.longdesc = "A small rock. That's it. You were asked to bring it to Garen in Naurglen.";
   this.addType("Quest");  
 }
 SmallRockTile.prototype = new ItemObject();
@@ -8074,7 +8088,9 @@ function SiriCloakTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "blue cloak";
+  this.longdesc = "A blue cloak, once worn by Siri in her adventures. It should be returned to Garen in Naurglen.";
   this.prefix = "a";
+
   this.addType("Quest");  
 }
 SiriCloakTile.prototype = new ItemObject();
@@ -8088,6 +8104,8 @@ function CourierPouchTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "pouch full of papers";
   this.prefix = "a";
+  this.longdesc = "The pouch of letters and other papers carried by a courier for the rebels. Bring it to Dawne to prove yourself.";
+  this.usedesc = "Read the contents of the pouch.";
   this.addType("Quest");
 }
 CourierPouchTile.prototype = new ItemObject();
@@ -8107,7 +8125,9 @@ function CourierLetterTile() {
   this.spriteyoffset = "-96";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "letter to bring to the Prince";
+  this.desc = "Rebel letter";
+  this.longdesc = "A letter for your brother, from Aithne of the Rebels.";
+  this.usedesc = "Read the letter.";
   this.prefix = "a";
   this.addType("Quest");
 }
@@ -8130,6 +8150,7 @@ function TrustedPlansTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "plans for a Trusted pin";
   this.prefix = "the";
+  this.longdesc = "Plans that show the design of a pin that will signify that you are one of the Trusted. Colin in Clear Lake can make the pin from these.";  
   this.addType("Quest");
 }
 TrustedPlansTile.prototype = new ItemObject();
@@ -8143,6 +8164,7 @@ function TrustedPinTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Trusted pin";
   this.prefix = "a";
+  this.longdesc = "Wearing this pin marks you as one of the Trusted, able to gain access to Prince Lance.";
   this.addType("Quest");
 }
 TrustedPinTile.prototype = new ItemObject();
@@ -8156,6 +8178,7 @@ function ReaperBarkTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "piece of petrified reaper bark";
   this.prefix = "a";
+  this.longdesc = "A piece of bark taken off a petrified reaper. Asharden asked you to bring it to him.";
   this.addType("Quest");
 }
 ReaperBarkTile.prototype = new ItemObject();
@@ -8169,6 +8192,8 @@ function AmuletOfReflectionsTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Amulet of Reflections";
   this.prefix = "an";
+  this.longdesc = "A gold amulet, inscribed with magical runes.";
+  this.usedesc = "Attempt the ritual of the Abyss.";
   this.addType("Quest");
 }
 AmuletOfReflectionsTile.prototype = new ItemObject();
@@ -8226,6 +8251,7 @@ function DragonBoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "dragon fingerbone";
   this.prefix = "a";
+  this.longdesc = "The fingerbone of a dragon, usable as a pestle.";
   this.addType("Quest");
 }
 DragonBoneTile.prototype = new ItemObject();
@@ -8239,6 +8265,7 @@ function StoneOfSparksTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Sparks";
   this.prefix = "the";
+  this.longdesc = "The Stone of Sparks. It pulses with a red glow.";
   this.addType("Quest");
 }
 StoneOfSparksTile.prototype = new ItemObject();
@@ -8252,6 +8279,7 @@ function StoneOfEmbersTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Embers";
   this.prefix = "the";
+  this.longdesc = "The Stone of Embers. It hums with a strange power.";
   this.addType("Quest");
 }
 StoneOfEmbersTile.prototype = new ItemObject();
@@ -8265,6 +8293,7 @@ function StoneOfTheBlazeTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of the Blaze";
   this.prefix = "the";
+  this.longdesc = "The Stone of the Blaze. It is warm to the touch.";
   this.addType("Quest");
 }
 StoneOfTheBlazeTile.prototype = new ItemObject();
@@ -8278,6 +8307,7 @@ function StoneOfConflagrationsTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Conflagrations";
   this.prefix = "the";
+  this.longdesc = "The Stone of Conflagrations. It has an aura of fiery power.";
   this.addType("Quest");
 }
 StoneOfConflagrationsTile.prototype = new ItemObject();
@@ -8291,6 +8321,7 @@ function TreasuryTokenTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "treasury token";
   this.prefix = "a";
+  this.longdesc = "A token given to you by the King. Bring it to the treasury.";
   this.addType("Quest");
 }
 TreasuryTokenTile.prototype = new ItemObject();
@@ -8304,6 +8335,7 @@ function SpiderSilkTile() {
   this.prefix = "a";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "bit of spider silk";
+  this.longdesc = "Spider silk. A useful reagent in certain magical rituals.";
   this.addType("Reagent");
 }
 SpiderSilkTile.prototype = new ItemObject();
@@ -8317,6 +8349,7 @@ function BlackPearlTile() {
   this.prefix = "a";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "black pearl";
+  this.longdesc = "Black pearl. A useful reagent in certain magical rituals.";
   this.addType("Reagent");
 }
 BlackPearlTile.prototype = new ItemObject();
@@ -8330,6 +8363,7 @@ function ExecutionersHoodTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
   this.desc = "executioner's hood";
+  this.longdesc = "A head of an executioner's hood mushroom.";
   this.addType("Reagent");
 }
 ExecutionersHoodTile.prototype = new ItemObject();
@@ -8343,6 +8377,7 @@ function QuestExecutionersHoodTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
   this.desc = "executioner's hood";
+  this.longdesc = "A head of an executioner's hood mushroom. Jharden is seeking it.";
   this.addType("Quest");
 }
 QuestExecutionersHoodTile.prototype = new ItemObject();
@@ -8356,6 +8391,7 @@ function NightshadeTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "some";
   this.desc = "nightshade";
+  this.longdesc = "Deadly nightshade. A useful reagent in certain magical rituals.";
   this.addType("Reagent");
 }
 NightshadeTile.prototype = new ItemObject();
@@ -8369,6 +8405,7 @@ function SulfurousAshTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "pile of sulfurous ash";
+  this.longdesc = "Sulfurous ash, found in a volcano. A useful reagent in certain magical rituals.";
   this.addType("Reagent");
 }
 SulfurousAshTile.prototype = new ItemObject();
@@ -8381,6 +8418,7 @@ function MandrakeRootTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "mandrake root";
+  this.longdesc = "A sprig of mandrake root. A useful reagent in certain magical rituals.";
   this.addType("Reagent");
 }
 MandrakeRootTile.prototype = new ItemObject();
@@ -8394,6 +8432,7 @@ function LightningWoodTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "twig of lightning wood";
   this.prefix = "a";
+  this.longdesc = "The branch of a tree that has been struck by lightning. A useful reagent in certain magical rituals.";
   this.addType("Reagent");
 }
 LightningWoodTile.prototype = new ItemObject();
@@ -8406,6 +8445,7 @@ function MistletoeTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "mistletoe";
+  this.longdesc = "A sprig of mistletoe. A useful reagent in certain magical rituals.";
   this.addType("Reagent");
 }
 MistletoeTile.prototype = new ItemObject();
@@ -8418,6 +8458,7 @@ function BloodMossTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "blood moss";
+  this.longdesc = "Some blood moss. A useful reagent in certain magical rituals.";
   this.addType("Reagent");
 }
 BloodMossTile.prototype = new ItemObject();
@@ -8429,7 +8470,8 @@ function PerfectRubyTile() {
   this.spritexoffset = "0";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "perfect ruby gemstone";
+  this.desc = "perfect ruby gemstone";
+  this.longdesc = "A perfect ruby gemstone. Flawless.";
 	this.prefix = "a";
 }
 PerfectRubyTile.prototype = new ItemObject();
@@ -8441,7 +8483,8 @@ function RubyTile() {
   this.spritexoffset = "-32";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "small ruby gemstone";
+  this.desc = "ruby";
+  this.longdesc = "A small ruby gemstone.";
 	this.prefix = "a";
 }
 RubyTile.prototype = new ItemObject();
@@ -8453,8 +8496,9 @@ function SmallSapphireTile() {
   this.spritexoffset = "-64";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "small sapphire gemstone";
-	this.prefix = "a";
+	this.desc = "sapphire";
+  this.prefix = "a";
+  this.longdesc = "A small sapphire gemstone.";
 }
 SmallSapphireTile.prototype = new ItemObject();
 
@@ -8465,8 +8509,9 @@ function SapphireTile() {
   this.spritexoffset = "-96";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "sapphire gemstone";
-	this.prefix = "a";
+	this.desc = "sapphire";
+  this.prefix = "a";
+  this.longdesc = "A moderately sized sapphire gemstone.";
 }
 SapphireTile.prototype = new ItemObject();
 
@@ -8477,8 +8522,9 @@ function GemsTile() {
   this.spritexoffset = "-128";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "pile of tiny gemstones";
-	this.prefix = "a";
+  this.desc = "gemstones";
+  this.prefix = "a";
+  this.longdesc = "A small pile of tiny gemstones.";
 }
 GemsTile.prototype = new ItemObject();
 
@@ -8489,8 +8535,10 @@ function RubyGemoftheSunTile() {
   this.spritexoffset = "-288";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "ruby gem that harnesses the power of the sun";
-	this.prefix = "a";
+	this.desc = "ruby gem";
+  this.prefix = "the";
+  this.longdesc = "Your ruby gem that harnesses the power of the sun.";
+  this.usedesc = "Call upon the power of sunlight.";
 }
 RubyGemoftheSunTile.prototype = new ItemObject();
 
@@ -8504,10 +8552,11 @@ function DecorativeArmorTile() {
 	this.name = "DecorativeArmor";
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-160";
-	this.desc = "decorative suit of armor";
+	this.desc = "suit of armor";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "a suit of purely decorative armor. It would not actually provide protection.";
 }
 DecorativeArmorTile.prototype = new ItemObject();
 
@@ -8519,7 +8568,8 @@ function FluteTile() {
 	this.desc = "flute";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A flute.";
 }
 FluteTile.prototype = new ItemObject();
 
@@ -8531,7 +8581,8 @@ function DrumTile() {
 	this.desc = "drum";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A drum.";
 }
 DrumTile.prototype = new ItemObject();
 
@@ -8543,7 +8594,8 @@ function HarpTile() {
 	this.desc = "harp";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A harp.";
 }
 HarpTile.prototype = new ItemObject();
 
@@ -8555,7 +8607,8 @@ function LuteTile() {
 	this.desc = "lute";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A lute.";
 }
 LuteTile.prototype = new ItemObject();
 
@@ -8567,7 +8620,8 @@ function HornTile() {
 	this.desc = "horn";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A horn.";
 }
 HornTile.prototype = new ItemObject();
 
@@ -8579,7 +8633,8 @@ function MortarTile() {
 	this.desc = "mortar and pestle";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A mortar and pestle. Useful in alchemy.";
 }
 MortarTile.prototype = new ItemObject();
 
@@ -8591,7 +8646,9 @@ function AppleTile() {
 	this.desc = "apple";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.prefix = "an";
+  this.prefix = "an";
+  this.longdesc = "An apple. Delicious.";
+  this.usedesc = "Eat the apple, or offer it to someone.";
 }
 AppleTile.prototype = new ItemObject();
 
@@ -8613,7 +8670,8 @@ function CrystalMortarTile() {
 	this.desc = "crystal mortar";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A mortar made of crystal. Strong enough to mix the most powerful of magics.";
 }
 CrystalMortarTile.prototype = new ItemObject();
 
@@ -8627,6 +8685,7 @@ function GoldTile() {
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "";
+  this.longdesc = "Gold coins. May be exchanged for goods and services.";
 }
 GoldTile.prototype = new ItemObject();
 
@@ -8729,8 +8788,9 @@ function HomeKeyTile() {
   this.spritexoffset = "-64";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "key to your manor in Naurglen";
-  this.prefix = "the";
+  this.desc = "your housekey";
+  this.longdesc = "The key to your manor in West Naurglen.";
+  this.usedesc = "Unlocks your front door.";
 }
 HomeKeyTile.prototype = new KeyItemObject();
 
@@ -8743,6 +8803,8 @@ function PitOfDespairKeyTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Pit of Despair dungeon key";
   this.prefix = "the";
+  this.longdesc = "The key to many doors in the Pit of Despair.";
+  this.usedesc = "Unlocks doors in the Pit of Despair.";
 }
 PitOfDespairKeyTile.prototype = new KeyItemObject();
 
@@ -8755,6 +8817,8 @@ function KeyOfSpiritsTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Spirits";
   this.prefix = "the";
+  this.longdesc = "The Key of Spirits.";
+  this.usedesc = "Perhaps you'll find a lock it fits...";
 }
 KeyOfSpiritsTile.prototype = new KeyItemObject();
 
@@ -8767,6 +8831,8 @@ function RoyalKeyTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Royal Key";
   this.prefix = "the";
+  this.longdesc = "The Royal Key.";
+  this.usedesc = "Opens locked doors in Castle dea'Saryn.";
 }
 RoyalKeyTile.prototype = new KeyItemObject();  
 
@@ -8779,6 +8845,8 @@ function BlackDragonKeyTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Black Dragon Key";
   this.prefix = "the";
+  this.longdesc = "The Black Dragon Key.";
+  this.usedesc = "Opens locked doors in Black Dragon Castle.";
 }
 BlackDragonKeyTile.prototype = new KeyItemObject();  
 
@@ -8791,6 +8859,8 @@ function KeyOfAshesTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Ashes";
   this.prefix = "the";
+  this.longdesc = "The key of ashes. It feels strangely fragile...";
+  this.usedesc = "Unknown.";
 }
 KeyOfAshesTile.prototype = new KeyItemObject();  
 
@@ -8803,6 +8873,8 @@ function KeyOfIceTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Ice";
   this.prefix = "the";
+  this.longdesc = "The Key of Ice. Cold to the touch, but does not seem to melt.";
+  this.usedesc = "Unknown.";
 }
 KeyOfIceTile.prototype = new KeyItemObject();  
 
@@ -8815,6 +8887,8 @@ function KeyOfBoneTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Bone";
   this.prefix = "the";
+  this.longdesc = "The Key of Bone. Looking at it gives you an uncomfortable feeling.";
+  this.usedesc = "Unknown.";
 }
 KeyOfBoneTile.prototype = new KeyItemObject();  
 
@@ -8827,6 +8901,8 @@ function KeyOfDustTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Dust";
   this.prefix = "the";
+  this.longdesc = "The Key of Dust. How is it held together...?";
+  this.usedesc = "Unknown.";
 }
 KeyOfDustTile.prototype = new KeyItemObject();  
 
@@ -8839,6 +8915,8 @@ function KeyOfSunTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of the Sun";
   this.prefix = "the";
+  this.longdesc = "The Key of the Sun.";
+  this.usedesc = "Unknown.";
 }
 KeyOfSunTile.prototype = new KeyItemObject();  
 
@@ -8851,6 +8929,8 @@ function KeyOfShadowTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Shadow";
   this.prefix = "the";
+  this.longdesc = "The Key of Shadow.";
+  this.usedesc = "Maybe you'll find a lock that it fits...";
 }
 KeyOfShadowTile.prototype = new KeyItemObject();  
 
@@ -8858,6 +8938,7 @@ KeyOfShadowTile.prototype = new KeyItemObject();
 function BookItemObject() {
   this.contents = "";
   this.addType("Book");
+  this.usedesc = "Read it.";
 }
 BookItemObject.prototype = new ItemObject();
 
@@ -8903,6 +8984,7 @@ function BookOfLoreTile() {
   this.desc = "Book of Lore";
   this.prefix = "the";
   this.contents = "You open to a random page:%%'[addmore]'";
+  this.longdesc = "The Book of Lore. Its simple cover belies its rich contents. Sought by Arlan.";
 }
 BookOfLoreTile.prototype = new BookItemObject();
 
@@ -8916,6 +8998,7 @@ function TomeOfSightTile() {
   this.desc = "Tome of Sight";
   this.prefix = "the";
   this.contents = "You open to a random page:%%'...for the Eye of Man can be deceived, but the Eye of Magic is Immutable.%%Mortals all live in the fog of illusion and unseeing, but the talent of seeing the truth below need not be the sole providence of the gods.%%We toil in darkness, but with their fire may we be forged anew...'";
+  this.longdesc = "The Tome of Sight. The leather cover is decorated with eye motifs.";
 }
 TomeOfSightTile.prototype = new BookItemObject();
 
@@ -8929,6 +9012,7 @@ function MapsAndLegendsTile() {
   this.desc = "Maps and Legends";
   this.prefix = "";
   this.contents = "You flip through the pages and find a chapter on magical phenomenon.%%Searching, you find the section you seek:%%\"The Brilliant Pool\"%%<span class='conv'>Once, this mythical place was considered the source of all magic.</span>%%<span class='conv'>Now, it is known that magic's power is drawn from the ethereal plane, and it is not known whether the Brilliant Pool ever truly existed, or still exists.</span>%%<span class='conv'>Another story has it that it is a star, misplaced on our plane, its power too great for any mortal to harness directly.</span>%%You close the book.";
+  this.longdesc = "The book <i>Maps and Legends</i>. Within are described many rumored and legendary phenomenon.";
 }
 MapsAndLegendsTile.prototype = new BookItemObject();
 
@@ -8942,6 +9026,7 @@ function ATreatiseOnDragonsTile() {
   this.desc = "A Treatise On Dragons";
   this.prefix = "";
   this.contents = "You open the book.%%<span class='conv'>A dragon is a mighty reptile with great magical and physical power. Its destructive power is so great that it is hardly a surprise that it came to be associated with Tethlokel the Destroyer.</span>%%<span class='conv'>The average dragon is roughly 60 feet long, breathes fire hot enough to easily set wooden buildings aflame, and can fly for hours without rest.</span>%%<span class='conv'>They prefer to live in caves in high mountains far from civilization, and so are infrequently seen.</span>%%<span class='conv'>Rarely, a dragon may grow to become an Elder. Elder Dragons are thought to have better than human intelligence and incredible magical power, allowing them to make plans that span decades.</span>%%<span class='conv'>It is fortunate that they are so rare, as they are evil of bent and desire power and conquest.</span>%%The book is long, but you feel like you have gotten the gist. You close the book.";
+  this.longdesc = "The book <i>A Treatise on Dragons</i>. A summary of facts known, rumored, and debated about dragons and dragonkind.";
 }
 ATreatiseOnDragonsTile.prototype = new BookItemObject();
 
@@ -8952,9 +9037,10 @@ function NatassaJournalTile() {
   this.spriteyoffset = "-192";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "The Journals of Natassa";
-  this.prefix = "";
+  this.desc = "journal";
+  this.prefix = "a";
   this.contents = "You search through the journal for something useful.%%<span class='conv'>With the passing of Master Xoricco, I find myself maintaining two homes.</span>%%<span class='conv'>My Spire will continue to be my primary sanctuary, but the Palace of the Skies is too great an achievement to let fall.</span>%%<span class='conv'>There are two ways to get to the Palace. My way is the Way of the Sky- magics taught to me by Xoricco and known by no others.</span>%%<span class='conv'>But there is another way- the Way of Earth. Certain persons who have shown exceptional loyalty, to both the kings and the land, are granted the Rune of Kings.</span>%%<span class='conv'>If you are reading this, Adelus, I believe King Erik will be willing to grant you that honor- you've certainly done enough.</span>%%<span class='conv'>Invoke the Mark of Kings at the crook of the Dragon's elbow, and take the Road of Earth.<span>";
+  this.longdesc = "The Journals of Natassa.";
 }
 NatassaJournalTile.prototype = new BookItemObject();
 
@@ -8965,9 +9051,10 @@ function NatassaResearchTile() {
   this.spriteyoffset = "-192";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Natassa's Research Notes, Vol 1";
-  this.prefix = "";
+  this.desc = "journal";
+  this.prefix = "a";
   this.contents = "You flip through the notes.%%<span class='conv'>7-23-86: The Brilliant Pool is the subject of so many legends, yet I am convinced it exists. What's more- I believe my master knows more about it than she lets on. I must discover what she knows!</span>%%<span class='conv'>3-27-92: Her journals speak of many magical experiments but are silent on the Pool. And yet I remain convinced she not only knew of it but has utilized it herself.<span>%%<span class='conv'>10-3-103: I believe it to reside in the dungeon of World's Ending. I have cleared out the foul creatures that reside near the surface and may even build here. The solitude appeals.</span>%%<span class='conv'>3-16-104: It is not here. I have scoured the place, even down to the Underworld below. I detect no sign. It is not here.</span>%%<span class='conv'>9-3-105: THE POOL MOVES. It was once here, yes, but no longer. It could be ANYWHERE. I may have tried to cause a local volcano to erupt in my fury, but I restrained.</span>";
+  this.longdesc = "Natassa's Research Notes, Vol 1.";
 }
 NatassaResearchTile.prototype = new BookItemObject();
 
@@ -8978,9 +9065,10 @@ function NatassaResearch2Tile() {
   this.spriteyoffset = "-192";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Natassa's Research Notes, Vol 2";
-  this.prefix = "";
+  this.desc = "journal";
+  this.prefix = "a";
   this.contents = "You flip through the notes.%%<span class='conv'>7-4-107: I continue to research the Pool alongside my other research. While recreating Xoricco's Wind Change spell was satisfying, there are other goals. Perhaps I should consult the oracle.</span>%%<span class='conv'>11-21-107: The underworld is even more dangerous than I had considered. I reached the Oracle- blessings upon Xoricco's research that revealed it to me! But was unable to obtain a full answer before I was forced to flee to the surface. I will work on the riddles.</span>%%<span class='conv'>4-15-109: Wind Change is not enough. King Erik has called upon me to try to recreate Xoricco's magics that made sea travel possible. The storms are too great to be uncreated just by temporarily stilling their winds. The Pool can wait.</span>%%<span class='conv'>10-19-113: Toshin is seeking the Pool. I must find it first- she cannot be permitted to draw upon its powers. She could be a second Tharock.</span>%%<span class='conv'>1-9-114: I have narrowed it down- the Pool has strong magic but it hides itself. But the Oracle taught me how to find the secondary resonances, and it is either underneath the city of Onyx, in the ruins under old Hildendain, or in the dungeon of Mt Drash.</span>%%<span class='conv'>3-21-114: I fear she has found it. I must confront her.</span>";
+  this.longdesc = "Natassa's Research Notes, Vol 2.";
 }
 NatassaResearch2Tile.prototype = new BookItemObject();
 
@@ -8991,9 +9079,10 @@ function AdelusLetterTile() {
   this.spriteyoffset = "-96";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "letter to Adelus";
+  this.desc = "letter";
   this.prefix = "a";
   this.contents = "<span class='conv'>Dearest Adelus,</span>%%<span class='conv'>Please visit when you can. I will admit that I have made the way difficult, for I do not wish other visitors, so let these instructions lay out a map for you.</span>%%<span class='conv'>When you enter World's Ending, you must create the sunset, and then walk with the light at your back. Close your eyes, and the wall will let you pass.</span>%%<span class='conv'>In the next chamber, go through the hallways in this order: far right, near right, mid left.</span>%%<span class='conv'>This will bring you to me. And once you are here...</span>%%...The rest of the letter is embarrassingly personal. You put it away.";
+  this.longdesc = "A letter from Natassa to Adelus the bard.";
 }
 AdelusLetterTile.prototype = new BookItemObject();
 
@@ -9007,10 +9096,12 @@ function KyvekBoxTile() {
   this.graphic = "008.gif";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "box with the payment of a debt to Kyvek";
+  this.desc = "box";
   this.prefix = "a";
   this.addType("Quest");
   this.openAsUse = 1;
+  this.longdesc = "A box with the payment of a debt to Kyvek in Naurglen.";
+  this.usedesc = "Open the box.";
 }
 KyvekBoxTile.prototype = new ConsumableItemObject();
 
@@ -9052,9 +9143,11 @@ function SupplyBoxTile() {
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
-  this.desc = "small box of supplies";
+  this.desc = "small box";
   this.addType("Quest");
   this.openAsUse = 1;
+  this.longdesc = "A small box of supplies, given to you by Nyrani.";
+  this.usedesc = "Open the box.";
 }
 SupplyBoxTile.prototype = new ConsumableItemObject();
 
@@ -9098,8 +9191,16 @@ function GreenPotionTile() {
   this.graphic = "items.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "0";
+  this.usedesc = "Drink the potion, or throw the potion.";
 }
 GreenPotionTile.prototype = new PotionItemObject();
+
+GreenPotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowsgreenpotion")) {
+    return "A poison potion.";
+  }
+  return "A green potion.";
+}
 
 GreenPotionTile.prototype.flamed = function() {
   maintext.addText("The " + this.getDesc() + " boils away!");
@@ -9157,8 +9258,16 @@ function DarkGreenPotionTile() {
   this.spritexoffset = "-128";
   this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 DarkGreenPotionTile.prototype = new PotionItemObject();
+
+DarkGreenPotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowsdarkgreenpotion")) {
+    return "A quickness potion.";
+  }
+  return "A dark green potion.";
+}  
 
 DarkGreenPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9178,8 +9287,16 @@ function SilverPotionTile() {
   this.spritexoffset = "-160";
   this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 SilverPotionTile.prototype = new PotionItemObject();
+
+SilverPotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowssilverpotion")) {
+    return "A strength potion.";
+  }
+  return "A silver potion.";
+}
 
 SilverPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9214,8 +9331,16 @@ function PinkPotionTile() {
   this.spritexoffset = "-224";
   this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 PinkPotionTile.prototype = new PotionItemObject();
+
+PinkPotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowspinkpotion")) {
+    return "A dexterity potion.";
+  }
+  return "A pink potion.";
+}
 
 PinkPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9251,8 +9376,16 @@ function GreyPotionTile() {
   this.spritexoffset = "-256";
   this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 GreyPotionTile.prototype = new PotionItemObject();
+
+GreyPotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowsgreypotion")) {
+    return "An intelligence potion.";
+  }
+  return "A grey potion.";
+}
 
 GreyPotionTile.prototype.use = function(who) {
   var resp = {};
@@ -9288,8 +9421,16 @@ function BrownPotionTile() {
   this.spritexoffset = "-288";
   this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 BrownPotionTile.prototype = new PotionItemObject();
+
+BrownPotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowsbrownpotion")) {
+    return "A greater mana potion.";
+  }
+  return "A brown potion.";
+}
 
 BrownPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9312,8 +9453,16 @@ function RedPotionTile() {
   this.spritexoffset = "0";
   this.spriteyoffset = "-32";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 RedPotionTile.prototype = new PotionItemObject();
+
+RedPotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowsredpotion")) {
+    return "A cure potion.";
+  }
+  return "A red potion.";
+}
 
 RedPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9336,8 +9485,16 @@ function WhitePotionTile() {
   this.spritexoffset = "-32";
   this.spriteyoffset = "-32";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 WhitePotionTile.prototype = new PotionItemObject();
+
+WhitePotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowswhitepotion")) {
+    return "A light potion.";
+  }
+  return "A white potion.";
+}
 
 WhitePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9357,8 +9514,16 @@ function YellowPotionTile() {
   this.spritexoffset = "-64";
   this.spriteyoffset = "-32";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 YellowPotionTile.prototype = new PotionItemObject();
+
+YellowPotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowsyellowpotion")) {
+    return "A lesser heal potion.";
+  }
+  return "A yellow potion.";
+}
 
 YellowPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9378,8 +9543,16 @@ function PurplePotionTile() {
   this.spritexoffset = "-96";
   this.spriteyoffset = "-32";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 PurplePotionTile.prototype = new PotionItemObject();
+
+PurplePotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowspurplepotion")) {
+    return "A protection potion.";
+  }
+  return "A purple potion.";
+}
 
 PurplePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9399,8 +9572,16 @@ function BlackPotionTile() {
   this.spritexoffset = "-128";
   this.spriteyoffset = "-32";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 BlackPotionTile.prototype = new PotionItemObject();
+
+BlackPotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowsblackpotion")) {
+    return "A bless potion.";
+  }
+  return "A black potion.";
+}
 
 BlackPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9420,8 +9601,16 @@ function BluePotionTile() {
   this.spritexoffset = "-160";
   this.spriteyoffset = "-32";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 BluePotionTile.prototype = new PotionItemObject();
+
+BluePotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowsbluepotion")) {
+    return "A heal potion.";
+  }
+  return "A blue potion.";
+}
 
 BluePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9441,8 +9630,16 @@ function DeepBluePotionTile() {
   this.spritexoffset = "-288";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 DeepBluePotionTile.prototype = new PotionItemObject();
+
+DeepBluePotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowsdeepbluepotion")) {
+    return "An ethereal vision potion.";
+  }
+  return "A deep blue potion.";
+}
 
 DeepBluePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9462,8 +9659,16 @@ function OrangePotionTile() {
   this.spritexoffset = "-192";
   this.spriteyoffset = "-32";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 OrangePotionTile.prototype = new PotionItemObject();
+
+OrangePotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowsorangepotion")) {
+    return "A mana potion.";
+  }
+  return "A orange potion.";
+}
 
 OrangePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9488,8 +9693,16 @@ function BrownPotionTile() {
   this.spritexoffset = "-288";
   this.spriteyoffset = "-192";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.usedesc = "Drink it.";
 }
 BrownPotionTile.prototype = new PotionItemObject();
+
+BrownPotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowsbrownpotion")) {
+    return "An iron flesh potion.";
+  }
+  return "A brown potion.";
+}
 
 BrownPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
@@ -9508,8 +9721,14 @@ function ScrollItemObject() {
   this.spelllevel = 1;
   this.spellnum = 1;
   this.flammable = 90;
+  this.usedesc = "Read the scroll, casting the spell for free.";
 }
 ScrollItemObject.prototype = new ConsumableItemObject();
+
+ScrollItemObject.prototype.longdesc = function() {
+  var spellname = magic[spelllevel][spellnum].getName();
+  return "A scroll of " + spellname + ".";
+}
 
 ScrollItemObject.prototype.use = function(who) {
   var retval = {};
@@ -10100,8 +10319,14 @@ function AudachtaNemesosObject() {
   this.spelllevel = 0;
   this.spellnum = 0;
   this.flammable = 40;
+  this.usedesc = "Read the book, learning the spell and consuming the book.";
 }
 AudachtaNemesosObject.prototype = new ConsumableItemObject();
+
+AudachtaNemesosObject.prototype.getLongDesc = function() {
+  var spellname = magic[spelllevel][spellnum].getName();
+  return "Audachta Nemesos: " + spellname + ". A book that teaches the spell " + spellname + ".";
+}
 
 AudachtaNemesosObject.prototype.use = function(who) {
   var retval = {};
@@ -10875,7 +11100,9 @@ function ClothArmorTile() {
 	this.spritexoffset = "0";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "cloth armor";
+  this.desc = "cloth armor";
+  this.longdesc = "A suit of cloth armor. Better than nothing.";
+  this.usedesc = "Equip the armor.";
 }
 ClothArmorTile.prototype = new ArmorObject();
 
@@ -10888,7 +11115,9 @@ function LeatherArmorTile() {
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "leather armor";
+  this.desc = "leather armor";
+  this.longdesc = "A suit of leather armor. Provides some protection.";
+  this.usedesc = "Equip the armor.";
 }
 LeatherArmorTile.prototype = new ArmorObject();
 
@@ -10902,7 +11131,9 @@ function ChainArmorTile() {
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "chain mail armor";
+  this.desc = "chain mail armor";
+  this.longdesc = "A suit of chain mail. Requires a 16 Strength to wear.";
+  this.usedesc = "Equip the armor.";
 }
 ChainArmorTile.prototype = new ArmorObject();
 
@@ -10916,7 +11147,9 @@ function PlateArmorTile() {
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "plate armor";
+  this.desc = "plate armor";
+  this.longdesc = "A suit of plate armor. Requires a 20 Strength to wear.";
+  this.usedesc = "Equip the armor.";
 }
 PlateArmorTile.prototype = new ArmorObject();
 
@@ -10929,7 +11162,9 @@ function ExoticArmorTile() {
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "exotic armor";
+  this.desc = "exotic armor";
+  this.longdesc = "A suit of exotic armor, magically crafted by you.";
+  this.usedesc = "Equip the armor.";
 }
 ExoticArmorTile.prototype = new ArmorObject();
 
@@ -10942,7 +11177,8 @@ function WeaponObject() {
 	this.strdamage = 0;
 	this.hitSound = "sfx_melee_hit";
 	this.missSound = "sfx_melee_miss";
-	
+  
+  this.usedesc = "Ready the weapon.";
 	this.addType("Weapon");
 }
 WeaponObject.prototype = new equipableItemObject();
@@ -11065,7 +11301,8 @@ function DaggerTile() {
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "dagger";
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A dagger. In your hands does " + this.getAveDamage(PC) + "damage on average.";
 }
 DaggerTile.prototype = new WeaponObject();
 
@@ -11078,7 +11315,8 @@ function ShortswordTile() {
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "shortsword";
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A shortsword. In your hands does " + this.getAveDamage(PC) + "damage on average.";
 }
 ShortswordTile.prototype = new WeaponObject();
 
@@ -11091,7 +11329,8 @@ function MaceTile() {
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "mace";
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A mace. In your hands does " + this.getAveDamage(PC) + "damage on average.";
 }
 MaceTile.prototype = new WeaponObject();
 
@@ -11104,7 +11343,8 @@ function AxeTile() {
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "axe";
-	this.prefix = "an";
+  this.prefix = "an";
+  this.longdesc = "An axe. In your hands does " + this.getAveDamage(PC) + "damage on average.";
 }
 AxeTile.prototype = new WeaponObject();
 
@@ -11117,7 +11357,8 @@ function LongswordTile() {
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "longsword";
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A longsword. In your hands does " + this.getAveDamage(PC) + "damage on average.";
 }
 LongswordTile.prototype = new WeaponObject();
 
@@ -11130,7 +11371,8 @@ function HalberdTile() {
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "halberd";
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A halberd. In your hands does " + this.getAveDamage(PC) + "damage on average.";
 }
 HalberdTile.prototype = new WeaponObject();
 
@@ -11143,7 +11385,8 @@ function MagicSwordTile() {
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "magic sword";
-	this.prefix = "a";
+  this.prefix = "a";
+  this.longdesc = "A magic sword. In your hands does " + this.getAveDamage(PC) + "damage on average.";
 }
 MagicSwordTile.prototype = new WeaponObject();
 
@@ -11156,13 +11399,21 @@ function UnenchantedSwordTile() {
   this.desc = "unenchanted sword";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.prefix = "an";
-	
+  this.prefix = "an";
+  this.longdesc = "Set this during enchantment.";
+  
   this.brokendesc = "unenchanted, broken sword";
   this.repairNeedsInfusion = 1;
   Breakable.call(this,["magic-sword.gif", "", "0", "0"]);
 }
 UnenchantedSwordTile.prototype = new WeaponObject();
+
+UnenchantedSwordTile.prototype.getLongDesc = function() {
+  if (this.broken) {
+    return "A broken sword. Once it was enchanted.";
+  }
+  return this.longdesc + "In your hands, it deals " + this.getAveDamage(PC) + " damage on average.";
+}
 
 UnenchantedSwordTile.prototype.activate = function() {
   this.break();
@@ -11192,7 +11443,6 @@ function MissileWeaponObject() {
 	this.ammoReturn = 0;	
   this.hitSound = "sfx_missile_hit";
   this.missSound = "sfx_missile_miss";
-
 	
 	this.addType("Missile");
 }
@@ -11250,7 +11500,8 @@ function SlingTile() {
 	this.desc = "sling";
 	this.prefix = "a";
 	this.ammoxoffset = "-32";
-	this.ammoyoffset = "-128";
+  this.ammoyoffset = "-128";
+  this.longdesc = "A sling, made of simple leather. In your hands it does " + this.getAveDamage(PC) + " damage on average.";
 }
 SlingTile.prototype = new MissileWeaponObject();
 
@@ -11267,6 +11518,7 @@ function BowTile() {
   this.ammoxoffset = "0";
   this.ammoyoffset = "0";
   this.directionalammo = 1;
+  this.longdesc = "A bow. It requires a Dexterity of 16 to use. In your hands it does " + this.getAveDamage(PC) + " damage on average.";
 }
 BowTile.prototype = new MissileWeaponObject();
 
@@ -11283,6 +11535,7 @@ function CrossbowTile() {
   this.ammoxoffset = "0";
   this.ammoyoffset = "-32";
   this.directionalammo = 1;
+  this.longdesc = "A crossbow. It requires a Dexterity of 19 to use. In your hands it does " + this.getAveDamage(PC) + " damage on average.";
 }
 CrossbowTile.prototype = new MissileWeaponObject();
 
@@ -11299,7 +11552,7 @@ function WandTile() {
   this.ammoyoffset = "-128";
   this.hitSound = "sfx_wand_zap";
   this.missSound = "sfx_wand_zap";
-
+  this.longdesc = "A wand that channels thunder. In your hands it does " + this.getAveDamage(PC) + " damage on average.";
 }
 WandTile.prototype = new MissileWeaponObject();
 
@@ -11318,6 +11571,7 @@ function MagicAxeTile() {
   this.ammoReturn = 1;
   this.hitSound = "sfx_magic_axe_hit";
   this.missSound = "sfx_magic_axe_miss";
+  this.longdesc = "A magic throwing axe. It requires a Dexterity of 22 to use. In your hands it does " + this.getAveDamage(PC) + " damage on average.";
 }
 MagicAxeTile.prototype = new MissileWeaponObject();
 
