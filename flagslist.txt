@@ -88,3 +88,17 @@ franklin_debt - you have discharged Franklin's debt
 franklin_debt_paid - Franklin has acknowledged that you have paid his debt
 franklin_offered - you offered money to Franklin (and could actually afford to)
 franklin_karma - you had your one shot at karma for offering him money
+knowsgreenpotion - you know that green potions are poison
+knowsdarkgreenpotion - you know that dark green potions are quickness
+knowssilverpotion - you know that silver potions are strength
+knowspinkpotion - you know that pink potions are dexterity
+knowsgreypotion - you know that grey potions are intelligence
+knowsbrownpotion
+knowsredpotion
+knowswhitepotion
+knowsyellowpotion
+knowspurplepotion
+knowsblackpotion
+knowsdeepbluepotion
+knowsorangepotion
+knowsbrownpotion
