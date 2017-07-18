@@ -11302,7 +11302,7 @@ function DaggerTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "dagger";
   this.prefix = "a";
-  this.longdesc = "A dagger. In your hands does " + this.getAveDamage(PC) + "damage on average.";
+  this.longdesc = "A dagger. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 DaggerTile.prototype = new WeaponObject();
 
@@ -11316,7 +11316,7 @@ function ShortswordTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "shortsword";
   this.prefix = "a";
-  this.longdesc = "A shortsword. In your hands does " + this.getAveDamage(PC) + "damage on average.";
+  this.longdesc = "A shortsword. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 ShortswordTile.prototype = new WeaponObject();
 
@@ -11330,7 +11330,7 @@ function MaceTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "mace";
   this.prefix = "a";
-  this.longdesc = "A mace. In your hands does " + this.getAveDamage(PC) + "damage on average.";
+  this.longdesc = "A mace. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 MaceTile.prototype = new WeaponObject();
 
@@ -11344,7 +11344,7 @@ function AxeTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "axe";
   this.prefix = "an";
-  this.longdesc = "An axe. In your hands does " + this.getAveDamage(PC) + "damage on average.";
+  this.longdesc = "An axe. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 AxeTile.prototype = new WeaponObject();
 
@@ -11358,7 +11358,7 @@ function LongswordTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "longsword";
   this.prefix = "a";
-  this.longdesc = "A longsword. In your hands does " + this.getAveDamage(PC) + "damage on average.";
+  this.longdesc = "A longsword. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 LongswordTile.prototype = new WeaponObject();
 
@@ -11372,7 +11372,7 @@ function HalberdTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "halberd";
   this.prefix = "a";
-  this.longdesc = "A halberd. In your hands does " + this.getAveDamage(PC) + "damage on average.";
+  this.longdesc = "A halberd. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 HalberdTile.prototype = new WeaponObject();
 
@@ -11386,7 +11386,7 @@ function MagicSwordTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "magic sword";
   this.prefix = "a";
-  this.longdesc = "A magic sword. In your hands does " + this.getAveDamage(PC) + "damage on average.";
+  this.longdesc = "A magic sword. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 MagicSwordTile.prototype = new WeaponObject();
 
@@ -11501,7 +11501,7 @@ function SlingTile() {
 	this.prefix = "a";
 	this.ammoxoffset = "-32";
   this.ammoyoffset = "-128";
-  this.longdesc = "A sling, made of simple leather. In your hands it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A sling, made of simple leather. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 SlingTile.prototype = new MissileWeaponObject();
 
@@ -11518,7 +11518,7 @@ function BowTile() {
   this.ammoxoffset = "0";
   this.ammoyoffset = "0";
   this.directionalammo = 1;
-  this.longdesc = "A bow. It requires a Dexterity of 16 to use. In your hands it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A bow. It requires a Dexterity of 16 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 BowTile.prototype = new MissileWeaponObject();
 
@@ -11535,7 +11535,7 @@ function CrossbowTile() {
   this.ammoxoffset = "0";
   this.ammoyoffset = "-32";
   this.directionalammo = 1;
-  this.longdesc = "A crossbow. It requires a Dexterity of 19 to use. In your hands it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A crossbow. It requires a Dexterity of 19 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 CrossbowTile.prototype = new MissileWeaponObject();
 
@@ -11552,7 +11552,7 @@ function WandTile() {
   this.ammoyoffset = "-128";
   this.hitSound = "sfx_wand_zap";
   this.missSound = "sfx_wand_zap";
-  this.longdesc = "A wand that channels thunder. In your hands it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A wand that channels thunder. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 WandTile.prototype = new MissileWeaponObject();
 
@@ -11571,7 +11571,7 @@ function MagicAxeTile() {
   this.ammoReturn = 1;
   this.hitSound = "sfx_magic_axe_hit";
   this.missSound = "sfx_magic_axe_miss";
-  this.longdesc = "A magic throwing axe. It requires a Dexterity of 22 to use. In your hands it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A magic throwing axe. It requires a Dexterity of 22 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 MagicAxeTile.prototype = new MissileWeaponObject();
 
