@@ -170,7 +170,7 @@ mappages["pitdespair1"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
 
     var ports = [];
-    doortile = mapref.getTile(11,24);
+    var doortile = mapref.getTile(11,24);
     ports[0] = doortile.getTopFeature();
     doortile = mapref.getTile(15,24);
     ports[1] = doortile.getTopFeature();
