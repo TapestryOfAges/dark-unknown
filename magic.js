@@ -315,71 +315,7 @@ magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID] = new SpellObject("Quickness", 
 magic[SPELL_REINCARNATE_LEVEL][SPELL_REINCARNATE_ID] = new SpellObject("Reincarnate", "An Corp", 8, 0);  // bless
 magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID] = new SpellObject("Time Stop", "An Tym", 8, 0);  // bless
 
-// Awaken
-magic[SPELL_AWAKEN_LEVEL][SPELL_AWAKEN_ID].executeSpell = function(caster, infused, free, tgt) {
-  DebugWrite("magic", "Casting Awaken.<br />");
-  if (caster !== PC) {
-    var resp = PerformAwaken(caster, infused, free, tgt);
-    return resp;
-  }
-  var resp = {};
-  
-//  targetCursor.x = PC.getx();
-//  targetCursor.y = PC.gety();
-//  targetCursor.command = "c";
-//  targetCursor.spellName = "Awaken";
-//  targetCursor.spelldetails = { caster: caster, infused: infused, free: free, targettype: "npc"};
-//  targetCursor.targetlimit = (viewsizex -1)/2;
-//  targetCursor.targetCenterlimit = 0;
-
-//  var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-//  targetCursor.tileid = tileid;
-//  targetCursor.basetile = $(tileid).html();
-//  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
-  CreateTargetCursor({sticky: 1, command:'c',spellName:'Awaken',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});
-  resp["txt"] = "";
-  resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 4; // was 0
-  gamestate.setMode("target");
-  return resp;
-}
-  
-function PerformAwaken(caster, infused, free, tgt) {
-  var resp = {};
-  resp["fin"] = 1;
-  var desc = "";
-
-  if (caster.getHomeMap().getLOS(caster.getx(), caster.gety(), tgt.getx(), tgt.gety(), 1) >= LOS_THRESHOLD) { 
-    resp["fin"] = 2;
-    resp["txt"] = "Your spell cannot reach that target!";
-    return resp;
-  }
-  
-  if (!free) {
-    var mana = magic[SPELL_AWAKEN_LEVEL][SPELL_AWAKEN_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
-    DebugWrite("magic", "Spent " + mana + " mana.<br />");
-  }
-    
-  var sleep = tgt.getSpellEffectsByName("Sleep");
-  if (sleep) {
-    sleep.endEffect(1);
-    ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
-    if (tgt !== PC) {
-      desc = tgt.getDesc() + " is awake!";
-    } else {
-      desc = "You are awakened!";
-    }
-  }
-  else {
-    desc = tgt.getDesc() + " is not asleep- no effect.";
-  }
-  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-
-  resp["txt"] = desc;
-  resp["input"] = "&gt;";
-  return resp;
-}
+// Spell begin below
 
 // Cure
 magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, free) {
