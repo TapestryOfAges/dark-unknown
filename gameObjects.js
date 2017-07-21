@@ -9766,17 +9766,17 @@ ScrollItemObject.prototype.flamed = function() {
   return 1; 
 }
 
-function ScrollAwakenTile() {
-  this.name = "ScrollAwaken";
-  this.desc = "scroll of Awaken";
+function ScrollAudachtaScribeTile() {
+  this.name = "ScrollAudachtaScribe";
+  this.desc = "scroll of Audachta Scribe";
   this.prefix = "a";
   this.graphic = "items.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-32";
-  this.spelllevel = SPELL_AWAKEN_LEVEL;
-  this.spellnum = SPELL_AWAKEN_ID;
+  this.spelllevel = SPELL_AUDACHTA_SCRIBE_LEVEL;
+  this.spellnum = SPELL_AUDACHTA_SCRIBE_ID;
 }
-ScrollAwakenTile.prototype = new ScrollItemObject();
+ScrollAudachtaScribeTile.prototype = new ScrollItemObject();
 
 function ScrollCureTile() {
   this.name = "ScrollCure";
@@ -10353,20 +10353,6 @@ AudachtaNemesosObject.prototype.flamed = function() {
   
   return 1; 
 }
-
-
-function AudachtaNemesosAwakenTile() {
-  this.name = "AudachtaNemesosAwaken";
-  this.desc = "Audachta Nemesos: Awaken";
-  this.prefix = "an";
-  this.graphic = "items.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-160";
-  this.spelllevel = SPELL_AWAKEN_LEVEL;
-  this.spellnum = SPELL_AWAKEN_ID;
-  this.spellname = "Awaken";
-}
-AudachtaNemesosAwakenTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosDisarmTrapTile() {
   this.name = "AudachtaNemesosDisarmTrap";

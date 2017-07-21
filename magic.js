@@ -107,8 +107,8 @@ for (var i=1;i<=8;i++) {
 }
 
 // Create Spell Consts
-var SPELL_AWAKEN_LEVEL = 1;
-var SPELL_AWAKEN_ID = GetSpellID(1);
+var SPELL_AUDACHTA_SCRIBE_LEVEL = 1;
+var SPELL_AUDACHTA_SCRIBE_ID = GetSpellID(1);
 var SPELL_CURE_LEVEL = 1;
 var SPELL_CURE_ID = GetSpellID(2);
 var SPELL_DISARM_TRAP_LEVEL = 1;
@@ -243,7 +243,7 @@ var SPELL_REINCARNATE_ID = GetSpellID(7);
 var SPELL_TIME_STOP_LEVEL = 8;
 var SPELL_TIME_STOP_ID = GetSpellID(8);
 
-magic[SPELL_AWAKEN_LEVEL][SPELL_AWAKEN_ID] = new SpellObject("Awaken", "An Zu", 1, 1);      // heal?
+magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID] = new SpellObject("Audachta Scribe", "An Zu", 1, 1);      // heal?
 magic[SPELL_CURE_LEVEL][SPELL_CURE_ID] = new SpellObject("Cure", "An Nox", 1, 0);      // heal
 magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID] = new SpellObject("Disarm Trap", "An Jux", 1, 0);   // sound effect is sfx_unlock
 magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID] = new SpellObject("Distract", "An Wis Xen", 1, 0);  // debuff

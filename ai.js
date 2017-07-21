@@ -726,6 +726,7 @@ ais.AshardenBook = function(who) {
         DU.gameflags.setFlag("spellbook2",1);
 //        who.setConversation("asharden");
         DU.deleteFlag("ash_get_book");
+        PC.addSpell(SPELL_AUDACHTA_SCRIBE_LEVEL, SPELL_AUDACHTA_SCRIBE_ID);
         who.setCurrentAI(who.prevai);
         delete who.prevai;
         return retval;
