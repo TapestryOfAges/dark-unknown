@@ -2113,242 +2113,170 @@ function DrawStats(page) {
 
   var statsdiv = "&nbsp;";
    
- if (page === 1) {
-  var spanstr = "<span>";
-  if (PC.getStr() > PC.getBaseStr()) { spanstr = '<span style="color:cyan">'; }
-  if (PC.getStr() < PC.getBaseStr()) { spanstr = '<span style="color:orange">'; }
-  var spandex = "<span>";
-  if (PC.getDex() > PC.getBaseDex()) { spandex = '<span style="color:cyan">'; }
-  if (PC.getDex() < PC.getBaseDex()) { spandex = '<span style="color:orange">'; }
-  var spanint = "<span>";
-  if (PC.getInt() > PC.getBaseInt()) { spanint = '<span style="color:cyan">'; }
-  if (PC.getInt() < PC.getBaseInt()) { spanint = '<span style="color:orange">'; }
+  if (page === 1) {
+    var spanstr = "<span>";
+    if (PC.getStr() > PC.getBaseStr()) { spanstr = '<span style="color:cyan">'; }
+    if (PC.getStr() < PC.getBaseStr()) { spanstr = '<span style="color:orange">'; }
+    var spandex = "<span>";
+    if (PC.getDex() > PC.getBaseDex()) { spandex = '<span style="color:cyan">'; }
+    if (PC.getDex() < PC.getBaseDex()) { spandex = '<span style="color:orange">'; }
+    var spanint = "<span>";
+    if (PC.getInt() > PC.getBaseInt()) { spanint = '<span style="color:cyan">'; }
+    if (PC.getInt() < PC.getBaseInt()) { spanint = '<span style="color:orange">'; }
     
-  statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-  statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'><tr>";
-  statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
-  statsdiv += "<tr><td style='width:50%'>HP: " + PC.getDisplayHP() + "/" + PC.getMaxHP() + "</td><td></td>";
-  statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
-  statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
-  statsdiv += "<tr><td>STR: " + spanstr + "" + PC.getStr() + "</span></td><td></td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
-  statsdiv += "<tr><td>DEX: " + spandex + "" + PC.getDex() + "</span></td><td></td><td>XP: ";
-  if (EarnedLevel(PC)) {
-    statsdiv += "<span class='leveled'>";
-  }
-  statsdiv += Math.floor(PC.getxp());
-  if (EarnedLevel(PC)) {
-    statsdiv += "</span>";
-  }
-  statsdiv += "</td></tr>";
-  statsdiv += "<tr><td>INT: " + spanint + "" + PC.getInt() + "</span></td><td></td><td>Training: " + PC.gettp() + "</td></tr>";
-  statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
-  statsdiv += "<tr><td>Gold: " + PC.getGold() + "</td><td></td><td></td></tr>";
-  statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
-  if (PC.getEquipment("weapon")) { 
-    var wpndesc = PC.getEquipment("weapon").getDesc();
-    wpndesc = wpndesc.charAt(0).toUpperCase() + wpndesc.slice(1);
-    statsdiv += "<tr><td>Weapon: " + wpndesc + "</td><td></td>";
-  } else {
-    statsdiv += "<tr><td>Weapon: None</td><td></td>";
-  }
-  if (PC.getEquipment("armor")) {
-    var armordesc = PC.getEquipment("armor").getDesc();
-    armordesc = armordesc.charAt(0).toUpperCase() + armordesc.slice(1);
-    statsdiv += "<td>Armor: " + armordesc + "</td></tr>";
-  } else {
-    statsdiv += "<td>Armor: None</td></tr>";
-  }
-  if (PC.getEquipment("weapon")) {
-    statsdiv += "<tr><td>Ave Dmg: " + PC.getEquipment("weapon").getAveDamage(PC) + "</td><td></td>";
-  } else {
+    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'><tr>";
+    statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
+    statsdiv += "<tr><td style='width:50%'>HP: " + PC.getDisplayHP() + "/" + PC.getMaxHP() + "</td><td></td>";
+    statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
+    statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
+    statsdiv += "<tr><td>STR: " + spanstr + "" + PC.getStr() + "</span></td><td></td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
+    statsdiv += "<tr><td>DEX: " + spandex + "" + PC.getDex() + "</span></td><td></td><td>XP: ";
+    if (EarnedLevel(PC)) {
+      statsdiv += "<span class='leveled'>";
+    }
+    statsdiv += Math.floor(PC.getxp());
+    if (EarnedLevel(PC)) {
+      statsdiv += "</span>";
+    }
+    statsdiv += "</td></tr>";
+    statsdiv += "<tr><td>INT: " + spanint + "" + PC.getInt() + "</span></td><td></td><td>Training: " + PC.gettp() + "</td></tr>";
+    statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
+    statsdiv += "<tr><td>Gold: " + PC.getGold() + "</td><td></td><td></td></tr>";
+    statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
+    if (PC.getEquipment("weapon")) { 
+      var wpndesc = PC.getEquipment("weapon").getDesc();
+      wpndesc = wpndesc.charAt(0).toUpperCase() + wpndesc.slice(1);
+      statsdiv += "<tr><td>Weapon: " + wpndesc + "</td><td></td>";
+    } else {
+      statsdiv += "<tr><td>Weapon: None</td><td></td>";
+    }
+    if (PC.getEquipment("armor")) {
+      var armordesc = PC.getEquipment("armor").getDesc();
+      armordesc = armordesc.charAt(0).toUpperCase() + armordesc.slice(1);
+      statsdiv += "<td>Armor: " + armordesc + "</td></tr>";
+    } else {
+      statsdiv += "<td>Armor: None</td></tr>";
+    }
+    if (PC.getEquipment("weapon")) {
+      statsdiv += "<tr><td>Ave Dmg: " + PC.getEquipment("weapon").getAveDamage(PC) + "</td><td></td>";
+    } else {
+      statsdiv += "<tr><td></td><td></td>";
+    }
+    if (PC.getEquipment("armor")) {
+      statsdiv += "<td>Defense: " + PC.getEquipment("armor").getDefense() + "</td></tr>";
+    } else {
+      statsdiv += "<td></td></tr>";
+    }
     statsdiv += "<tr><td></td><td></td>";
-  }
-  if (PC.getEquipment("armor")) {
-    statsdiv += "<td>Defense: " + PC.getEquipment("armor").getDefense() + "</td></tr>";
-  } else {
-    statsdiv += "<td></td></tr>";
-  }
-  statsdiv += "<tr><td></td><td></td>";
-  if (PC.getEquipment("armor")) {
-    statsdiv += "<td>Absorb: " + PC.getEquipment("armor").getAbsorb() + "</td></tr>";
-  } else {
-    statsdiv += "<td></td></tr>";
-  }
-  if (PC.getEquipment("missile")) {    
-    var missdesc = PC.getEquipment("missile").getDesc();
-    missdesc = missdesc.charAt(0).toUpperCase() + missdesc.slice(1);
-    statsdiv += "<tr><td>Missile: " + missdesc + "</td><td></td>";
-  } else {
-    statsdiv += "<tr><td></td><td></td>";
-  }
-  if (PC.getEquipment("armor")) {
-    statsdiv += "<td>Resist: " + PC.getEquipment("armor").getResist() + "</td></tr>";
-  } else {
-    statsdiv += "<td></td></tr>";
-  }
-  if (PC.getEquipment("missile")){
-    statsdiv += "<tr><td>Ave Dmg: " + PC.getEquipment("missile").getAveDamage(PC) + "</td><td></td>";
-  } else {
-    statsdiv += "<tr><td></td><td></td>";
-  }
-  statsdiv += "<td></td></tr>";
-  
-  statsdiv += "</table></div></div>";
-  DrawTopbarFrame("<p>Character</p>");
-  
- }
- else if (page === 2) {
-   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
-   statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
-   var inv = PC.getInventory();
-   var melee = [];
-   var missile = [];
-   var armor = [];
-   if (inv.length) {
-     for (var i = 0; i < inv.length; i++) {
-       if ((inv[i].checkType("Weapon")) && (!inv[i].checkType("Missile"))) { melee[melee.length] = inv[i]; }
-       if (inv[i].checkType("Missile")) { missile[missile.length] = inv[i]; }
-       if (inv[i].checkType("Armor")) { armor[armor.length] = inv[i];}
-     }
-     if (armor.length) {
-       armor.sort(function(a,b) { return (b.getDefense() - a.getDefense()); });
-       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Armour</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
-       for (var i = 0; i < armor.length; i++ ) {
-         var itemdesc = armor[i].getDesc();
-         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-         if (armor[i] === PC.getEquipment("armor")) {
-           statsdiv += "<tr><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
-         } else {
-           statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
-         }
-       }
-       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
-     }
-     if (melee.length) {
-       melee.sort(function(a,b) { return (b.getAveDamage(PC) - a.getAveDamage(PC)); });
-       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Weapons</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
-       for (var i = 0; i < melee.length; i++ ) {
-         var itemdesc = melee[i].getDesc();
-         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-         if (melee[i] === PC.getEquipment("Weapon")) {
-           statsdiv += "<tr><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
-         } else {
-           statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
-         }
-       }
-       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
-     }
-     if (missile.length) {
-       missile.sort(function(a,b) { return (b.getAveDamage(PC) - a.getAveDamage(PC)); });
-       statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Missile Weapons</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
-       for (var i = 0; i < missile.length; i++ ) {
-         var itemdesc = missile[i].getDesc();
-         itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-         if (missile[i] === PC.getEquipment("Missile")) {
-           statsdiv += "<tr><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
-         } else {
-           statsdiv += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
-         }
-       }
-       statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
-     }
-       
-   }
-   statsdiv += "<td></td></tr>";
-  
-   statsdiv += "</table></div></div>";
-   DrawTopbarFrame("<p>Inventory</p>");
- } else if (page === 3) {
-   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
-   statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
-   var pots = [];
-   var scrolls = [];
-   var reagents = [];
-   var quest = [];
-   var keys = [];
-   var books = [];
-   var inv = PC.getInventory();
-   if (inv.length) {
-     for (var i = 0; i < inv.length; i++) {
-       if (inv[i].checkType("Potion")) { pots[pots.length] = inv[i]; }
-       if (inv[i].checkType("Scroll")) { scrolls[scrolls.length] = inv[i];}
-       if (inv[i].checkType("Reagent")) { reagents[reagents.length] = inv[i];}
-       if (inv[i].checkType("Quest")) { quest[quest.length] = inv[i];}
-       if (inv[i].checkType("Key")) { keys[keys.length] = inv[i];}
-       if (inv[i].checkType("Book")) { books[books.length] = inv[i];}
-     }
-     if (pots.length) {
-       statsdiv += StatsCategory(pots, "Potions");
-     }
-     if (scrolls.length) {
-       statsdiv += StatsCategory(scrolls, "Scrolls");
-     }
-     if (reagents.length) {
-       statsdiv += StatsCategory(reagents, "Reagents");
-     }
-     if (quest.length) {
-       statsdiv += StatsCategory(quest, "Quest Items"); 
-     }
-     if (keys.length) {
-       statsdiv += StatsCategory(keys, "Keys"); 
-     }
-     if (books.length) {
-       statsdiv += StatsCategory(books, "Books"); 
-     }
-   }
-   statsdiv += "<td></td></tr>";
-  
-   statsdiv += "</table></div></div>";
-   DrawTopbarFrame("<p>Inventory</p>");
+    if (PC.getEquipment("armor")) {
+      statsdiv += "<td>Absorb: " + PC.getEquipment("armor").getAbsorb() + "</td></tr>";
+    } else {
+      statsdiv += "<td></td></tr>";
+    }
+    if (PC.getEquipment("missile")) {    
+      var missdesc = PC.getEquipment("missile").getDesc();
+      missdesc = missdesc.charAt(0).toUpperCase() + missdesc.slice(1);
+      statsdiv += "<tr><td>Missile: " + missdesc + "</td><td></td>";
+    } else {
+      statsdiv += "<tr><td></td><td></td>";
+    }
+    if (PC.getEquipment("armor")) {
+      statsdiv += "<td>Resist: " + PC.getEquipment("armor").getResist() + "</td></tr>";
+    } else {
+      statsdiv += "<td></td></tr>";
+    }
+    if (PC.getEquipment("missile")){
+      statsdiv += "<tr><td>Ave Dmg: " + PC.getEquipment("missile").getAveDamage(PC) + "</td><td></td>";
+    } else {
+      statsdiv += "<tr><td></td><td></td>";
+    }
+    statsdiv += "<td></td></tr><tr><td colspan='3'>&nbsp;</td></tr>";
+    statsdiv += "<tr><td colspan='3' style='text-decoration:underline'>Spells and effects</td></tr>";
+    var alleffects = PC.getSpellEffects();
+    if (!alleffects[0]) {
+      statsdiv += "<tr><td colspan='3'>You have no effects or afflictions upon you.</td></tr>";
+    } else {
+      for (var i=0; i < alleffects.length; i++) {
+        if (alleffects[i].display) {
+          statsdiv += "<tr><td colspan='3'>" + alleffects[i].display + ": " + alleffects[i].zstatdesc + "</td></tr>";
+        }
+      }
+    } 
 
- } else if (page === 4) {
-   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
-   statsdiv += "<tr><td>&nbsp;</td></tr>";
-   
-   var hasSpellbook = 0;
-   
-   for (var lvl = 1; lvl <= 8; lvl++ ){
-     var hasLevel = 0;
-     for (var i=1; i<=8; i++) {
-       var spellnum = GetSpellID(i);
-       if (PC.knowsSpell(lvl, spellnum)) {
-         if (!hasLevel) {
-           if (lvl !== 1) { statsdiv += "<tr><td>&nbsp;</td></tr>"; }
-           if (lvl === 1) {
-             statsdiv += "<tr><td class='circleheader'>First Circle</td></tr>";
-           } else if (lvl === 2) {
-             statsdiv += "<tr><td class='circleheader'>Second Circle</td></tr>";
-           } else if (lvl === 3) {
-             statsdiv += "<tr><td class='circleheader'>Third Circle</td></tr>";
-           } else if (lvl === 4) {
-             statsdiv += "<tr><td class='circleheader'>Fourth Circle</td></tr>";
-           } else if (lvl === 5) {
-             statsdiv += "<tr><td class='circleheader'>Fifth Circle</td></tr>";
-           } else if (lvl === 6) {
-             statsdiv += "<tr><td class='circleheader'>Sixth Circle</td></tr>";
-           } else if (lvl === 7) {
-             statsdiv += "<tr><td class='circleheader'>Seventh Circle</td></tr>";
-           } else if (lvl === 8) {
-             statsdiv += "<tr><td class='circleheader'>Eighth Circle</td></tr>";
-           }
-         }
-         statsdiv += "<tr><td class='spellstat'>" + magic[lvl][spellnum].getName() + "</td></tr>";
-         hasLevel = 1;
-         hasSpellbook = 1;
-         
-       }
-     }
-   }
-   if (!hasSpellbook) {
-    statsdiv += "<tr><td>You do not have a spellbook.</td></tr>";
-   }
+    statsdiv += "</table></div></div>";
+    DrawTopbarFrame("<p>Character</p>");
   
-   statsdiv += "</table></div></div>";  
-   DrawTopbarFrame("<p>Spellbook</p>");
- } else if (page === 5) {
+    $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
+    $("#worldlayer").css("background-image", "");
+    $("#worldlayer").css("background-color", "black");
+    $('#uiinterface').html(statsdiv);
+    $("#uiinterface").css("background-color", "black");
+  
+  	var scrollelem = $('.zstats').jScrollPane();
+    var scrollapi = scrollelem.data('jsp');
+    targetCursor.scrollapi = scrollapi;
+
+  } else if (page === 2) {
+    DisplayInventory();
+    DrawTopbarFrame("<p>Inventory</p>");
+  } else if (page === 3) {
+    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
+    statsdiv += "<tr><td>&nbsp;</td></tr>";
+   
+    var hasSpellbook = 0;
+   
+    for (var lvl = 1; lvl <= 8; lvl++ ){
+      var hasLevel = 0;
+      for (var i=1; i<=8; i++) {
+        var spellnum = GetSpellID(i);
+        if (PC.knowsSpell(lvl, spellnum)) {
+          if (!hasLevel) {
+            if (lvl !== 1) { statsdiv += "<tr><td>&nbsp;</td></tr>"; }
+            if (lvl === 1) {
+              statsdiv += "<tr><td class='circleheader'>First Circle</td></tr>";
+            } else if (lvl === 2) {
+              statsdiv += "<tr><td class='circleheader'>Second Circle</td></tr>";
+            } else if (lvl === 3) {
+              statsdiv += "<tr><td class='circleheader'>Third Circle</td></tr>";
+            } else if (lvl === 4) {
+              statsdiv += "<tr><td class='circleheader'>Fourth Circle</td></tr>";
+            } else if (lvl === 5) {
+              statsdiv += "<tr><td class='circleheader'>Fifth Circle</td></tr>";
+            } else if (lvl === 6) {
+              statsdiv += "<tr><td class='circleheader'>Sixth Circle</td></tr>";
+            } else if (lvl === 7) {
+              statsdiv += "<tr><td class='circleheader'>Seventh Circle</td></tr>";
+            } else if (lvl === 8) {
+              statsdiv += "<tr><td class='circleheader'>Eighth Circle</td></tr>";
+            }
+          }
+          statsdiv += "<tr><td class='spellstat'>" + magic[lvl][spellnum].getName() + "</td></tr>";
+          hasLevel = 1;
+          hasSpellbook = 1;
+         
+        }
+      }
+    }
+    if (!hasSpellbook) {
+      statsdiv += "<tr><td>You do not have a spellbook.</td></tr>";
+    }
+  
+    statsdiv += "</table></div></div>";  
+
+    $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
+    $("#worldlayer").css("background-image", "");
+    $("#worldlayer").css("background-color", "black");
+    $('#uiinterface').html(statsdiv);
+    $("#uiinterface").css("background-color", "black");
+  
+  	var scrollelem = $('.zstats').jScrollPane();
+    var scrollapi = scrollelem.data('jsp');
+    targetCursor.scrollapi = scrollapi;
+
+    DrawTopbarFrame("<p>Spellbook</p>");
+  } else if (page === 5) {
    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
    statsdiv += "<tr><td>&nbsp;</td></tr>";
@@ -3041,4 +2969,9 @@ function DisplayInventory(restrictTo) {
   $("#inv_name").html(descname);  
   $("#inv_desc").html(inventorylist[invselect].getLongDesc());
   $("#inv_use").html("Use: " + inventorylist[invselect].getUseDesc());
+
+  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
+  $("#worldlayer").css("background-image", "");
+  $("#worldlayer").css("background-color", "black");
+
 }
