@@ -2972,6 +2972,8 @@ function DisplayInventory(restrictTo) {
       else if (PCinv[i].checkType("scroll")) { inventorylist.push(PCinv[i]); }
       else if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
       else if (typeof PCinv[i].use === "function") { inventorylist.push(PCinv[i]); }
+    } else if (restrictTo === "audachta") {
+      if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
     } else {
       if (PCinv[i].checkType("armor")) { inventorylist.push(PCinv[i]); }
       else if (PCinv[i].checkType("missile")) { inventorylist.push(PCinv[i]); }
