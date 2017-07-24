@@ -562,6 +562,13 @@ function DoAction(code, ctrl) {
   else if (gamestate.getMode() === "zstats") {
     var response = performZstats(code);
     if (response["fin"] === 0) {
+      delete targetCursor.invx;
+      delete targetCursor.invy;
+      delete targetCursor.invskiprow;
+      delete targetCursor.invlength;
+      $('#uiinterface').html(" ");
+      $("#uiinterface").css("background-color", "");
+
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
@@ -569,7 +576,7 @@ function DoAction(code, ctrl) {
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     } else if (response["fin"] === 1) {
-      
+      // stay in zstats mode
     }
   }
   else if (gamestate.getMode() === "options") {

@@ -2062,51 +2062,83 @@ function PerformYell() {
 
 function performZstats(code) {
   var retval = {};
-    if ((code === 27) || (code === 90)) { // ESC or Z again
-      retval["fin"] = 0;
-      $('#uiinterface').html("");
-      $("#uiinterface").css("background-color", "");
-
-    }
-    else if ((code === 37) || (code === 186)) {  // previous page
+  var exitInv = 1;
+  if ((code === 27) || (code === 90)) { // ESC or Z again
+    retval["fin"] = 0;
+  }
+  else if ((code === 37) || (code === 186)) {  // previous page
+    if (targetCursor.page === 2) { 
+      // special inventory screen, move around it instead
+      exitInv = PerformInventoryScreen(code, 0);
+    } 
+    if (exitInv) {
       targetCursor.page--;
       if (targetCursor.page === 0) { 
-        targetCursor.page = 5; 
+        targetCursor.page = 3; 
         if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) {
-          targetCursor.page = 6;
+          targetCursor.page = 4;
         }
       }  // set to the last page when I know what that will be
       DrawStats(targetCursor.page);
-      retval["fin"] = 1;
     }
-    else if ((code === 39) || (code === 222)) { // next page
+    retval["fin"] = 1;
+  }
+  else if ((code === 39) || (code === 222)) { // next page
+    if (targetCursor.page === 2) {
+      // special inventory screen, move around it instead
+      exitInv = PerformInventoryScreen(code, 0);
+    } 
+    if (exitInv) {
       targetCursor.page++;
-      if (targetCursor.page === 7) { targetCursor.page = 1; }
-      if ((targetCursor.page === 6) && !(PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void)) {
+      if (targetCursor.page === 5) { targetCursor.page = 1; }
+      if ((targetCursor.page === 4) && !(PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void)) {
         targetCursor.page = 1;
       }
       DrawStats(targetCursor.page);
-      retval["fin"] = 1;
     }
-    else if ((code === 38) || (code === 219)) { // scroll up
+    retval["fin"] = 1;
+  }
+  else if ((code === 38) || (code === 219)) { // scroll up
+    if (targetCursor.page === 2) {
+      // inventory
+      exitInv = PerformInventoryScreen(code, 0);
+    } 
+    if (exitInv) {
       targetCursor.scrollapi.scrollByY(-50,1);
-      retval["fin"] = 1;
     }
-    else if ((code === 13) || (code === 40) || (code === 191)) { // scroll down
+    retval["fin"] = 1;
+  }
+  else if ((code === 13) || (code === 40) || (code === 191)) { // scroll down
+    if (targetCursor.page === 2) {
+      exitInv = PerformInventoryScreen(code, 0);
+    }
+    if (exitInv) {
       targetCursor.scrollapi.scrollByY(50,1);
-      retval["fin"] = 1;
     }
-    else if ((code === 32) || (code === 34)) {  // space or page down
+    retval["fin"] = 1;
+  }
+  else if ((code === 32) || (code === 34)) {  // space or page down
+    if (targetCursor.page === 2) {
+      exitInv = PerformInventoryScreen(code, 0);
+    }
+    if (exitInv) {
       targetCursor.scrollapi.scrollByY(350,1);
-      retval["fin"] = 1;
-    }       
-    else if ((code === 33)) {  // page up
+    }
+    retval["fin"] = 1;
+  }       
+  else if ((code === 33)) {  // page up
+    if (targetCursor.page === 2) {
+      exitInv = PerformInventoryScreen(code, 0);
+    }
+    if (exitInv) {
       targetCursor.scrollapi.scrollByY(-350,1);
-      retval["fin"] = 1;
-    }       
-    else { retval["fin"] = 1; }
-      
-    return retval;
+    }
+    retval["fin"] = 1;
+  }       
+  else { retval["fin"] = 1; }
+
+  if (targetCursor.page === 2) { DisplayInventory(); }
+  return retval;
 }
 
 function DrawStats(page) {
@@ -2276,55 +2308,48 @@ function DrawStats(page) {
     targetCursor.scrollapi = scrollapi;
 
     DrawTopbarFrame("<p>Spellbook</p>");
-  } else if (page === 5) {
-   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
-   statsdiv += "<tr><td>&nbsp;</td></tr>";
+  } else if (page === 4) {
+    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
+    statsdiv += "<tr><td>&nbsp;</td></tr>";
    
-   var alleffects = PC.getSpellEffects();
-   if (!alleffects[0]) {
-     statsdiv += "<tr><td>You have no effects or afflictions upon you.</td></tr>";
-   } else {
-     for (var i=0; i < alleffects.length; i++) {
-       if (alleffects[i].display) {
-         statsdiv += "<tr><td>" + alleffects[i].display + ": " + alleffects[i].zstatdesc + "</td></tr>";
-       }
-     }
-   }
+    var hasrunes = 0;
+    if (PC.runes.kings) { 
+     statsdiv += "<tr><td>Rune of Kings</td></tr>";
+     hasrunes = 1;
+    }
+    if (PC.runes.waves) { 
+     statsdiv += "<tr><td>Rune of Waves</td></tr>";
+     hasrunes = 1;
+    }
+    if (PC.runes.winds) { 
+     statsdiv += "<tr><td>Rune of Winds</td></tr>";
+     hasrunes = 1;
+    }
+    if (PC.runes.flames) { 
+     statsdiv += "<tr><td>Rune of Flames</td></tr>";
+     hasrunes = 1;
+    }
+    if (PC.runes.void) { 
+     statsdiv += "<tr><td>Rune of Void</td></tr>";
+     hasrunes = 1;
+    }
+    if (!hasrunes) {
+      statsdiv += "<tr><td>You have discovered no runes.</td></tr>";
+    }
+    statsdiv += "</table></div></div>";  
+    DrawTopbarFrame("<p>Runes</p>");
 
-   statsdiv += "</table></div></div>";  
-   DrawTopbarFrame("<p>Effects</p>");
- } else if (page === 6) {
-   statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-   statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
-   statsdiv += "<tr><td>&nbsp;</td></tr>";
-   
-   var hasrunes = 0;
-   if (PC.runes.kings) { 
-    statsdiv += "<tr><td>Rune of Kings</td></tr>";
-    hasrunes = 1;
-   }
-   if (PC.runes.waves) { 
-    statsdiv += "<tr><td>Rune of Waves</td></tr>";
-    hasrunes = 1;
-   }
-   if (PC.runes.winds) { 
-    statsdiv += "<tr><td>Rune of Winds</td></tr>";
-    hasrunes = 1;
-   }
-   if (PC.runes.flames) { 
-    statsdiv += "<tr><td>Rune of Flames</td></tr>";
-    hasrunes = 1;
-   }
-   if (PC.runes.void) { 
-    statsdiv += "<tr><td>Rune of Void</td></tr>";
-    hasrunes = 1;
-   }
-   if (!hasrunes) {
-     statsdiv += "<tr><td>You have discovered no runes.</td></tr>";
-   }
-   statsdiv += "</table></div></div>";  
-   DrawTopbarFrame("<p>Runes</p>");
+    $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
+    $("#worldlayer").css("background-image", "");
+    $("#worldlayer").css("background-color", "black");
+    $('#uiinterface').html(statsdiv);
+    $("#uiinterface").css("background-color", "black");
+  
+  	var scrollelem = $('.zstats').jScrollPane();
+    var scrollapi = scrollelem.data('jsp');
+    targetCursor.scrollapi = scrollapi;
+
   }
  
   $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
@@ -2865,30 +2890,11 @@ function ShowSaveGames(toptext) {
 function DisplayInventory(restrictTo) {
   if (!targetCursor.invx) { targetCursor.invx = 0; }
   if (!targetCursor.invy) { targetCursor.invy = 0; }
+  if (!targetCursor.invskiprow) { targetCursor.invskiprow = 0; }
+  if (!targetCursor.invlength) { targetCursor.invlength = 0; }
   
   var inventorylist = [];
   var PCinv = PC.getInventory();
-//  if (restrictTo === "equip") {
-//    inventorylist.armor = [];
-//    inventorylist.weapon = [];
-//    inventorylist.missile = [];
-//  } else if (restrictTo === "consumable") {
-//    inventorylist.potion = [];
-//    inventorylist.scroll = [];
-//    inventorylist.audachta = [];
-//    inventorylist.other = [];
-//  } else {
-//    inventorylist.armor = [];
-//    inventorylist.weapon = [];
-//    inventorylist.missile = [];
-//    inventorylist.potion = [];
-//    inventorylist.scroll = [];
-//    inventorylist.audachta = [];
-//    inventorylist.key = [];
-//    inventorylist.reagent = [];
-//    inventorylist.quest = [];
-//    inventorylist.other = [];
-//  }
 
   for (var i=0; i<PCinv.length; i++) {
     if (restrictTo === "equip") {
@@ -2916,24 +2922,22 @@ function DisplayInventory(restrictTo) {
     }
   }
 
+  targetCursor.invlength = inventorylist.length;
   $("#uiinterface").html("");
   $("#uiinterface").css("background-color","black");
   for (var j=0;j<5;j++) {
     for (var i=0;i<8;i++) {
       var leftedge = 30+45*i;
       var topedge = 20+45*j;
-      $("#uiinterface").append("<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#ccc;'></div>");
+      $("#uiinterface").append("<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>");
     }
   }
 
   $("#uiinterface").append("<div id='inv_desc_window' style='position:absolute; left: 35px; top: 260px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 125px'></div>");
   $("#inv_desc_window").html("<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 16px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:52px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>");
-  var invselect = 0;
+  var invselect = targetCursor.invskiprow*8;
   var writetox = 0;
   var writetoy = 0;
-
-  writetoy = Math.floor(invselect/8);
-  writetox = invselect%8;
 
   for (var i=invselect;i<inventorylist.length;i++) {
     writetoy = Math.floor(i/8);
@@ -2950,28 +2954,72 @@ function DisplayInventory(restrictTo) {
     }
   }
 
-  invselect = 0;
+  invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
   writetoy = Math.floor(invselect/8);
   writetox = invselect%8;
 
-  if (PC.isEquipped(inventorylist[invselect])) { 
-    $("#inv_"+writetox+"x"+writetoy).css("border-color", "#66ccff");
+  if (invselect < inventorylist.length) {
+    if (PC.isEquipped(inventorylist[invselect])) { 
+      $("#inv_"+writetox+"x"+writetoy).css("border-color", "#66ccff");
+    } else {
+      $("#inv_"+writetox+"x"+writetoy).css("border-color", "#ffffff");
+    }
+  
+    var showgraphic = inventorylist[invselect].getGraphicArray();
+    $("#inv_image").css("background-image", "url('graphics/" + showgraphic[0] + "')");
+    $("#inv_image").css("background-repeat", "no-repeat");
+    $("#inv_image").css("background-position", showgraphic[2] + "px " + showgraphic[3] + "px");
+    var descname = inventorylist[invselect].getDesc();
+    descname = descname.charAt(0).toUpperCase() + descname.slice(1);
+    $("#inv_name").html(descname);  
+    $("#inv_desc").html(inventorylist[invselect].getLongDesc());
+    $("#inv_use").html("Use: " + inventorylist[invselect].getUseDesc());
   } else {
     $("#inv_"+writetox+"x"+writetoy).css("border-color", "#ffffff");
   }
-  
-  var showgraphic = inventorylist[invselect].getGraphicArray();
-  $("#inv_image").css("background-image", "url('graphics/" + showgraphic[0] + "')");
-  $("#inv_image").css("background-repeat", "no-repeat");
-  $("#inv_image").css("background-position", showgraphic[2] + "px " + showgraphic[3] + "px");
-  var descname = inventorylist[invselect].getDesc();
-  descname = descname.charAt(0).toUpperCase() + descname.slice(1);
-  $("#inv_name").html(descname);  
-  $("#inv_desc").html(inventorylist[invselect].getLongDesc());
-  $("#inv_use").html("Use: " + inventorylist[invselect].getUseDesc());
 
   $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
   $("#worldlayer").css("background-image", "");
   $("#worldlayer").css("background-color", "black");
 
+}
+
+function PerformInventoryScreen(code, restrict) {
+  if ((code === 37) || (code === 186)) {
+    if (targetCursor.invx > 0) {
+      targetCursor.invx--;
+    } else { return 1; } // off the left edge
+  } else if ((code ===39) || (code === 222)) {
+    if (targetCursor.invx < 7) {
+      targetCursor.invx++;
+    } else { return 1; } // off the right edge
+  } else if ((code === 38) || (code === 219)) {
+    if (targetCursor.invy > 0) { targetCursor.invy--; }
+    else if (targetCursor.invskiprow) {
+      targetCursor.invskiprow--;
+    }
+  } else if ((code === 40) || (code === 191)) {
+    if (targetCursor.invy === 4) {
+      if (targetCursor.invlength > (targetCursor.invskiprow*8 +40 )) {
+        targetCursor.invskiprow++;
+      }
+    } else {
+      targetCursor.invy++;
+    }
+  } else if ((code === 13) || (code === 32)) {
+    // use selected item
+  } else if (code === 34) { 
+    if (targetCursor.invy !== 4) { targetCursor.invy = 4; }
+    else {
+
+    }
+  } else if (code === 35) {
+    if (targetCursor.invy !== 0) { targetCursor.invy = 0; }
+    else {
+
+    }
+  }
+
+  DisplayInventory(restrict);
+  return 0;
 }
