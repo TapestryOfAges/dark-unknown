@@ -514,6 +514,8 @@ function DoAction(code, ctrl) {
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
       DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      $("#uiinterface").html(" ");
+      $("#uiinterface").css("background-color", "");
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     }
@@ -527,7 +529,10 @@ function DoAction(code, ctrl) {
       maintext.addText(response["txt"]);
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
-      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>"); 
+      $("#uiinterface").html(" ");
+      $("#uiinterface").css("background-color", "");
+      alert($("#uiinterface").html()); 	
       DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       PC.endTurn(response["initdelay"]);
     }

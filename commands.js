@@ -1703,9 +1703,6 @@ function PerformUseFromInventoryState(code) {
     }
   }
   return retval;
-
-//  targetCursor.scrolllocation = 0;
-//  targetCursor.itemlist = itemarray;
  
 }
 
