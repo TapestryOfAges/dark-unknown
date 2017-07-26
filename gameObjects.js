@@ -11002,6 +11002,23 @@ equipableItemObject.prototype.unEquipMe = function() {
   return 1;
 }
 
+equipableItemObject.prototype.use = function(who) {
+  var success = this.equipMe(PC);
+  var retval = {};
+  retval["fin"] = 1;
+  retval["txt"] = "";
+  if (this.checkType("Armor")) { 
+    if (success) { retval["txt"] = "Worn!"; }
+    else { retval["txt"] = "You are not strong enough to wear that."; return retval; }
+  }
+  else { 
+    if (success) { retval["txt"] = "Wielded!"; }
+    else { retval["txt"] = "You are not agile enough to equip that."; return retval; }
+  }
+
+  return retval;
+}
+
 equipableItemObject.prototype.getToHitBonus = function() {
   return this.toHitBonus;
 }
