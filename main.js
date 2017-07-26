@@ -582,6 +582,19 @@ function DoAction(code, ctrl) {
       gamestate.setTurn(PC);
     } else if (response["fin"] === 1) {
       // stay in zstats mode
+    } else if (response["fin"] === 2) {
+      // something was Used from zstats
+      delete targetCursor.invx;
+      delete targetCursor.invy;
+      delete targetCursor.invskiprow;
+      delete targetCursor.invlength;
+      $('#uiinterface').html(" ");
+      $("#uiinterface").css("background-color", "");
+
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      PC.endTurn();
     }
   }
   else if (gamestate.getMode() === "options") {

@@ -1703,6 +1703,9 @@ function PerformUseFromInventoryState(code) {
     }
   }
   return retval;
+
+//  targetCursor.scrolllocation = 0;
+//  targetCursor.itemlist = itemarray;
  
 }
 
@@ -2068,7 +2071,9 @@ function performZstats(code) {
       // special inventory screen, move around it instead
       exitInv = PerformInventoryScreen(code, 0);
     } 
-    if (exitInv) {
+    if (typeof exitInv === "Object") {
+      // (U)se return
+    } else if (exitInv) {
       targetCursor.page--;
       if (targetCursor.page === 0) { 
         targetCursor.page = 3; 
@@ -2085,7 +2090,9 @@ function performZstats(code) {
       // special inventory screen, move around it instead
       exitInv = PerformInventoryScreen(code, 0);
     } 
-    if (exitInv) {
+    if (typeof exitInv === "Object") {
+      // (U)se return
+    } else if (exitInv) {
       targetCursor.page++;
       if (targetCursor.page === 5) { targetCursor.page = 1; }
       if ((targetCursor.page === 4) && !(PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void)) {
@@ -2100,7 +2107,9 @@ function performZstats(code) {
       // inventory
       exitInv = PerformInventoryScreen(code, 0);
     } 
-    if (exitInv) {
+    if (typeof exitInv === "Object") {
+      // (U)se return
+    } else if (exitInv) {
       targetCursor.scrollapi.scrollByY(-50,1);
     }
     retval["fin"] = 1;
@@ -2109,7 +2118,9 @@ function performZstats(code) {
     if (targetCursor.page === 2) {
       exitInv = PerformInventoryScreen(code, 0);
     }
-    if (exitInv) {
+    if (typeof exitInv === "Object") {
+      // (U)se return
+    } else if (exitInv) {
       targetCursor.scrollapi.scrollByY(50,1);
     }
     retval["fin"] = 1;
@@ -2118,7 +2129,9 @@ function performZstats(code) {
     if (targetCursor.page === 2) {
       exitInv = PerformInventoryScreen(code, 0);
     }
-    if (exitInv) {
+    if (typeof exitInv === "Object") {
+      // (U)se return
+    } else if (exitInv) {
       targetCursor.scrollapi.scrollByY(350,1);
     }
     retval["fin"] = 1;
@@ -2127,7 +2140,9 @@ function performZstats(code) {
     if (targetCursor.page === 2) {
       exitInv = PerformInventoryScreen(code, 0);
     }
-    if (exitInv) {
+    if (typeof exitInv === "Object") {
+      // (U)se return
+    } else if (exitInv) {
       targetCursor.scrollapi.scrollByY(-350,1);
     }
     retval["fin"] = 1;
@@ -2890,34 +2905,7 @@ function DisplayInventory(restrictTo) {
   if (!targetCursor.invskiprow) { targetCursor.invskiprow = 0; }
   if (!targetCursor.invlength) { targetCursor.invlength = 0; }
   
-  var inventorylist = [];
-  var PCinv = PC.getInventory();
-
-  for (var i=0; i<PCinv.length; i++) {
-    if (restrictTo === "equip") {
-      if (PCinv[i].checkType("armor")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("missile")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("weapon")) { inventorylist.push(PCinv[i]); }
-    } else if (restrictTo === "usable") {
-      if (PCinv[i].checkType("potion")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("scroll")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
-      else if (typeof PCinv[i].use === "function") { inventorylist.push(PCinv[i]); }
-    } else if (restrictTo === "audachta") {
-      if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
-    } else {
-      if (PCinv[i].checkType("armor")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("missile")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("weapon")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("potion")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("scroll")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("key")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("reagent")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("quest")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].getName() !== "Gold") { inventorylist.push(PCinv[i]); }
-    }
-  }
+  var inventorylist = MakeInventoryList(restrictTo);
 
   targetCursor.invlength = inventorylist.length;
   $("#uiinterface").html("");
@@ -2955,7 +2943,6 @@ function DisplayInventory(restrictTo) {
       $("#inv_"+writetox+"x"+writetoy).css("line-height","24px");
       $("#inv_"+writetox+"x"+writetoy).html("<p>" + inventorylist[i].getQuantity() + "</p>");
     }
-
 
     if (PC.isEquipped(inventorylist[i])) {
       $("#inv_"+writetox+"x"+writetoy).css("border-color", "#000099");
@@ -3016,6 +3003,10 @@ function PerformInventoryScreen(code, restrict) {
     }
   } else if ((code === 13) || (code === 32)) {
     // use selected item
+    var invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
+    var inventorylist = MakeInventoryList(restrict);
+    var used = inventorylist[invselect].use(PC);
+    return used;    
   } else if (code === 34) { 
     if (targetCursor.invy !== 4) { targetCursor.invy = 4; }
     else {
@@ -3030,4 +3021,36 @@ function PerformInventoryScreen(code, restrict) {
 
   DisplayInventory(restrict);
   return 0;
+}
+
+function MakeInventoryList(restrictTo) {
+  var inventorylist = [];
+  var PCinv = PC.getInventory();
+
+  for (var i=0; i<PCinv.length; i++) {
+    if (restrictTo === "equip") {
+      if (PCinv[i].checkType("armor")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("missile")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("weapon")) { inventorylist.push(PCinv[i]); }
+    } else if (restrictTo === "usable") {
+      if (PCinv[i].checkType("potion")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("scroll")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
+      else if (typeof PCinv[i].use === "function") { inventorylist.push(PCinv[i]); }
+    } else if (restrictTo === "audachta") {
+      if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
+    } else {
+      if (PCinv[i].checkType("armor")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("missile")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("weapon")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("potion")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("scroll")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("key")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("reagent")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].checkType("quest")) { inventorylist.push(PCinv[i]); }
+      else if (PCinv[i].getName() !== "Gold") { inventorylist.push(PCinv[i]); }
+    }
+  }
+  return inventorylist;
 }
