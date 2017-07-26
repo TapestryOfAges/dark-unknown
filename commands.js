@@ -2949,6 +2949,17 @@ function DisplayInventory(restrictTo) {
     $("#inv_"+writetox+"x"+writetoy).css("background-repeat", "no-repeat");
     $("#inv_"+writetox+"x"+writetoy).css("background-position", showgraphic[2] + "px " + showgraphic[3] + "px");
 
+    if (inventorylist[i].getQuantity() && (inventorylist[i].getQuantity() > 1)) {
+      $("#inv_"+writetox+"x"+writetoy).css("vertical-align", "bottom");
+      $("#inv_"+writetox+"x"+writetoy).css("text-align", "right");
+      $("#inv_"+writetox+"x"+writetoy).css("font-size", 12);
+      $("#inv_"+writetox+"x"+writetoy).css("color", "white");
+      $("#inv_"+writetox+"x"+writetoy).css("font-family","Commodore64");
+      $("#inv_"+writetox+"x"+writetoy).css("line-height","24px");
+      $("#inv_"+writetox+"x"+writetoy).html("<p>" + inventorylist[i].getQuantity() + "</p>");
+    }
+
+
     if (PC.isEquipped(inventorylist[i])) {
       $("#inv_"+writetox+"x"+writetoy).css("border-color", "#000099");
     }
