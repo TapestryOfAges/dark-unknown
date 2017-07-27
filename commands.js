@@ -3036,33 +3036,150 @@ function PerformInventoryScreen(code, restrict) {
 }
 
 function MakeInventoryList(restrictTo) {
-  var inventorylist = [];
+  var inventorylist = {};
+  inventorylist.armor = [];
+  inventorylist.weapon = [];
+  inventorylist.missile = [];
+  inventorylist.potion = [];
+  inventorylist.scroll = [];
+  inventorylist.audachta = [];
+  inventorylist.usable = [];
+  inventorylist.key = [];
+  inventorylist.reagent = [];
+  inventorylist.quest = [];
+  inventorylist.other = [];
+  inventorylist.total = [];
   var PCinv = PC.getInventory();
 
   for (var i=0; i<PCinv.length; i++) {
     if (restrictTo === "equip") {
-      if (PCinv[i].checkType("armor")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("missile")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("weapon")) { inventorylist.push(PCinv[i]); }
+      if (PCinv[i].checkType("armor")) { inventorylist.armor.push(PCinv[i]); }
+      else if (PCinv[i].checkType("missile")) { inventorylist.missile.push(PCinv[i]); }
+      else if (PCinv[i].checkType("weapon")) { inventorylist.weapon.push(PCinv[i]); }
     } else if (restrictTo === "usable") {
-      if (PCinv[i].checkType("potion")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("scroll")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
-      else if (typeof PCinv[i].use === "function") { inventorylist.push(PCinv[i]); }
+      if (PCinv[i].checkType("potion")) { inventorylist.potion.push(PCinv[i]); }
+      else if (PCinv[i].checkType("scroll")) { inventorylist.scroll.push(PCinv[i]); }
+      else if (PCinv[i].checkType("audachta")) { inventorylist.audachta.push(PCinv[i]); }
+      else if (typeof PCinv[i].use === "function") { inventorylist.usable.push(PCinv[i]); }
     } else if (restrictTo === "audachta") {
-      if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
+      if (PCinv[i].checkType("audachta")) { inventorylist.audachta.push(PCinv[i]); }
     } else {
-      if (PCinv[i].checkType("armor")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("missile")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("weapon")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("potion")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("scroll")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("audachta")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("key")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("reagent")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].checkType("quest")) { inventorylist.push(PCinv[i]); }
-      else if (PCinv[i].getName() !== "Gold") { inventorylist.push(PCinv[i]); }
+      if (PCinv[i].checkType("armor")) { inventorylist.armor.push(PCinv[i]); }
+      else if (PCinv[i].checkType("missile")) { inventorylist.missile.push(PCinv[i]); }
+      else if (PCinv[i].checkType("weapon")) { inventorylist.weapon.push(PCinv[i]); }
+      else if (PCinv[i].checkType("potion")) { inventorylist.potion.push(PCinv[i]); }
+      else if (PCinv[i].checkType("scroll")) { inventorylist.scroll.push(PCinv[i]); }
+      else if (PCinv[i].checkType("audachta")) { inventorylist.audachta.push(PCinv[i]); }
+      else if (PCinv[i].checkType("key")) { inventorylist.key.push(PCinv[i]); }
+      else if (PCinv[i].checkType("reagent")) { inventorylist.reagent.push(PCinv[i]); }
+      else if (PCinv[i].checkType("quest")) { inventorylist.quest.push(PCinv[i]); }
+      else if (PCinv[i].getName() !== "Gold") { inventorylist.other.push(PCinv[i]); }
     }
   }
-  return inventorylist;
+
+  if (inventorylist.armor.length) { inventorylist.armor.sort(function(a,b) { return (b.getDefense() - a.getDefense()); }); }
+  if (inventorylist.weapon.length) { inventorylist.weapon.sort(function(a,b) { return (b.getAveDamage(PC) - a.getAveDamage(PC)); }); }
+  if (inventorylist.missile.length) { inventorylist.missile.sort(function(a,b) { return (b.getAveDamage(PC) - a.getAveDamage(PC)); }); }
+  if (inventorylist.potion.length) {
+    inventorylist.potion.sort(function(a,b) {
+      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      if (nameA < nameB) 
+        return -1
+      if (nameA > nameB)
+        return 1
+      return 0 
+    }); 
+  }
+  if (inventorylist.key.length) {
+    inventorylist.key.sort(function(a,b) {
+      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      if (nameA < nameB) 
+        return -1
+      if (nameA > nameB)
+        return 1
+      return 0 
+    }); 
+  }
+  if (inventorylist.reagent.length) {
+    inventorylist.reagent.sort(function(a,b) {
+      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      if (nameA < nameB) 
+        return -1
+      if (nameA > nameB)
+        return 1
+      return 0 
+    }); 
+  }
+  if (inventorylist.quest.length) {
+    inventorylist.quest.sort(function(a,b) {
+      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      if (nameA < nameB) 
+        return -1
+      if (nameA > nameB)
+        return 1
+      return 0 
+    }); 
+  }
+  if (inventorylist.usable.length) {
+    inventorylist.usable.sort(function(a,b) {
+      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      if (nameA < nameB) 
+        return -1
+      if (nameA > nameB)
+        return 1
+      return 0 
+    }); 
+  }  
+  if (inventorylist.other.length) {
+    inventorylist.other.sort(function(a,b) {
+      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      if (nameA < nameB) 
+        return -1
+      if (nameA > nameB)
+        return 1
+      return 0 
+    }); 
+  }
+  if (inventorylist.scroll.length) {
+    inventorylist.scroll.sort(function(a,b) {
+      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      if (a.spelllevel < b.spelllevel) { return -1; }
+      if (b.spelllevel < a.spelllevel) { return 1; }
+      else {
+        if (nameA < nameB) 
+          return -1
+        if (nameA > nameB)
+          return 1
+      }
+      return 0 
+    }); 
+  }  
+  if (inventorylist.audachta.length) {
+    inventorylist.audachta.sort(function(a,b) {
+      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      if (a.spelllevel < b.spelllevel) { return -1; }
+      if (b.spelllevel < a.spelllevel) { return 1; }
+      else {
+        if (nameA < nameB) 
+          return -1
+        if (nameA > nameB)
+          return 1
+      }
+      return 0 
+    }); 
+  }  
+
+  if (inventorylist.armor.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.armor); }
+  if (inventorylist.weapon.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.weapon); }
+  if (inventorylist.missile.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.missile); }
+  if (inventorylist.potion.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.potion); }
+  if (inventorylist.scroll.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.scroll); }
+  if (inventorylist.audachta.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.audachta); }
+  if (inventorylist.usable.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.usable); }
+  if (inventorylist.key.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.key); }
+  if (inventorylist.reagent.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.reagent); }
+  if (inventorylist.quest.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.quest); }
+  if (inventorylist.other.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.other); }
+  
+  return inventorylist.total;
 }
