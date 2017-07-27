@@ -3010,12 +3010,24 @@ function PerformInventoryScreen(code, restrict) {
   } else if (code === 34) { 
     if (targetCursor.invy !== 4) { targetCursor.invy = 4; }
     else {
-
+      var invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
+      var inventorylist = MakeInventoryList(restrict);
+      var i=0;
+      while(((invselect+8*i) < inventorylist.length) && (i<4)) {
+        i++;
+      }
+      targetCursor.invskiprow += i;
     }
-  } else if (code === 35) {
+  } else if (code === 33) {
     if (targetCursor.invy !== 0) { targetCursor.invy = 0; }
     else {
-
+      var invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
+      var inventorylist = MakeInventoryList(restrict);
+      var i=0;
+      while(((invselect-8*i) >= 0) && (i<4)) {
+        i++;
+      }
+      targetCursor.invskiprow -= i;
     }
   }
 
