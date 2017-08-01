@@ -149,8 +149,9 @@ function PerformCommand(code, ctrl) {
 		// enter
 		retval = PerformEnter("e");
 	}
-	else if (code === 70) { // f
-		// fire - not used in DU, no boats
+  else if (code === 70) { // f
+    // focus (since it isn't Fire)
+		retval["txt"] = "Focus not hooked up yet.";
 	}
 	else if (code === 71) { // g
 		// get 
@@ -289,7 +290,24 @@ function PerformCommand(code, ctrl) {
     }
 	}
 	else if (code === 82) { // r
-    // was Ready, merged with Wear/Wield
+    // Ready (contains functionality that used to be Wear/Weild
+
+    if (PC.getHomeMap().getName().indexOf("abyss") > -1) {
+      retval["txt"] = "You cannot do that here.";
+      retval["fin"] = 2;
+      return retval;
+    }
+
+    gamestate.setMode("zstats");
+    retval["txt"] = "";
+    retval["input"] = "&gt; Ready- ";
+    retval["fin"] = 2;	
+    targetCursor.command = "r";			
+    targetCursor.restrictTo = "equip";
+    targetCursor.page = 2;
+    
+    DisplayInventory("equip");
+
 	}
 	else if (code === 83) { // s
     if (ctrl) { // output conversation log
@@ -358,104 +376,7 @@ function PerformCommand(code, ctrl) {
     retval["fin"] = 2;
 	}
 	else if (code === 87) { // w
-    // wear/wield
-    if (PC.getHomeMap().getName().indexOf("abyss") > -1) {
-      retval["txt"] = "You cannot do that here.";
-      retval["fin"] = 2;
-      return retval;
-    }
-    retval["txt"] = "";
-    retval["input"] = "&gt; Wear/Wield: ";
-    retval["fin"] = 2;
-    targetCursor.command = "w";		
-    gamestate.setMode("equip");
-		
-    var statsdiv = "&nbsp;";
-    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
-    statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
-    var inv = PC.getInventory();
-    var melee = [];
-    var missile = [];
-    var armor = [];
-    var iter = 0;
-    var itemarray = [];
-    if (inv.length) {
-      for (var i = 0; i < inv.length; i++) {
-        if ((inv[i].checkType("Weapon")) && (!inv[i].checkType("Missile"))) { melee[melee.length] = inv[i]; }
-        if (inv[i].checkType("Missile")) { missile[missile.length] = inv[i]; }
-        if (inv[i].checkType("Armor")) { armor[armor.length] = inv[i];}
-      }
-      if (armor.length) {
-        armor.sort(function(a,b) { return (b.getDefense() - a.getDefense()); });
-        statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Armour</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
-        for (var i = 0; i < armor.length; i++ ) {
-          var itemdesc = armor[i].getDesc();
-          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-          if (armor[i] === PC.getEquipment("armor")) {
-            statsdiv += "<tr id='inv" + iter + "'><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
-          } else {
-            statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + armor[i].getQuantity() + ")</td></tr>";
-          }
-          itemarray[iter] = armor[i];
-          iter++;
-        }
-        statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
-      }
-      if (melee.length) {
-        melee.sort(function(a,b) { return (b.getAveDamage(PC) - a.getAveDamage(PC)); });
-        statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Weapons</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
-        for (var i = 0; i < melee.length; i++ ) {
-          var itemdesc = melee[i].getDesc();
-          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-          if (melee[i] === PC.getEquipment("Weapon")) {
-            statsdiv += "<tr id='inv" + iter + "'><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
-          } else {
-            statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + melee[i].getQuantity() + ")</td></tr>";
-          }
-          itemarray[iter] = melee[i];
-          iter++;
-        }
-        statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
-      }
-      if (missile.length) {
-        missile.sort(function(a,b) { return (b.getAveDamage(PC) - a.getAveDamage(PC)); });
-        statsdiv += "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>Missile Weapons</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
-        for (var i = 0; i < missile.length; i++ ) {
-          var itemdesc = missile[i].getDesc();
-          itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
-          if (missile[i] === PC.getEquipment("Missile")) {
-            statsdiv += "<tr id='inv" + iter + "'><td class='selected'>*</td><td class='selected'>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
-          } else {
-            statsdiv += "<tr id='inv" + iter + "'><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + missile[i].getQuantity() + ")</td></tr>";
-          }
-          itemarray[iter] = missile[i];
-          iter++;
-        }
-        statsdiv += "<tr><td></td><td>&nbsp;</td></tr>";
-      }
-       
-    }
-    statsdiv += "<td></td></tr>";
-  
-    statsdiv += "</table></div></div>";
-    DrawTopbarFrame("<p>Equipment</p>");
-   
-    $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-    $("#worldlayer").css("background-image", "");
-    $("#worldlayer").css("background-color", "black");
-
-    $('#uiinterface').html(statsdiv);
-    $("#uiinterface").css("background-color", "black");
-   
- 	  var scrollelem = $('.zstats').jScrollPane();
-    var scrollapi = scrollelem.data('jsp');
-    targetCursor.scrollapi = scrollapi;
-    targetCursor.scrolllocation = 0;
-    targetCursor.itemlist = [];
-    targetCursor.itemlist = itemarray;
-  
-    $('#inv0').toggleClass('highlight');
+    // wait, was wear/wield
 		
 	}
 	else if (code === 88) { // x
@@ -475,7 +396,8 @@ function PerformCommand(code, ctrl) {
     gamestate.setMode("zstats");
     retval["txt"] = "";
     retval["input"] = "&gt; Zstats- ";
-    retval["fin"] = 2;		
+    retval["fin"] = 2;	
+    targetCursor.command = "z";			
     targetCursor.page = 1;
     
     DrawStats(targetCursor.page);
@@ -1489,12 +1411,30 @@ function PerformUse(who) {
 
 function PerformUseFromInventory() {
 
-    if (PC.getHomeMap().getName().indexOf("abyss") > -1) {
-      retval["txt"] = "You cannot do that here.";
-      retval["fin"] = 2;
-      return retval;
-    }
+  if (PC.getHomeMap().getName().indexOf("abyss") > -1) {
+    retval["txt"] = "You cannot do that here.";
+    retval["fin"] = 2;
+    return retval;
+  }
 
+  gamestate.setMode("zstats");
+  var retval = {};
+	retval["txt"] = "";
+  if (targetCursor.command === "u") {
+    retval["input"] = "&gt; Use: ";
+  } else if (targetCursor.command === "o") {
+    retval["input"] = "&gt; Open: "; 
+  }
+  retval["fin"] = 2;
+
+  targetCursor.restrictTo = "usable";
+  targetCursor.page = 2;
+  
+  DisplayInventory("usable");
+
+}
+
+function _OldPerformUseFromInventory() {
 		gamestate.setMode("equip");
 		var retval = {};
 		retval["txt"] = "";
@@ -2021,10 +1961,6 @@ function PerformYell() {
       var itemname = prompt("Create what item?");
       var newthing = localFactory.createTile(itemname);
       PC.addToInventory(newthing,1);
-    } else if (inputText.txt === "GETBARK") {
-      var bark = localFactory.createTile("ReaperBark");
-      var themap = PC.getHomeMap();
-      themap.placeThing(PC.getx(),PC.gety()-1,bark);
     } else if (inputText.txt === "TESTANIM") {
       var newmap = new GameMap();
       if (maps.getMap("greenacres")) {
@@ -2053,6 +1989,8 @@ function PerformYell() {
 		    homemap.moveThing(25,23,PC);
 		    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
 		  }
+    } else if (inputText.txt === "XYZZY") {
+	    maintext.delayedAddText("Nothing happens here.");
 		}
 		retval["txt"] = "Yell: " + inputText.txt + "!";
 		retval["fin"] = 1;
@@ -2063,13 +2001,16 @@ function PerformYell() {
 function performZstats(code) {
   var retval = {};
   var exitInv = 1;
+  var restrict = 0;
+  if (targetCursor.restrictTo) { restrict = targetCursor.restrictTo; }
+
   if ((code === 27) || (code === 90)) { // ESC or Z again
     retval["fin"] = 0;
   }
   else if ((code === 37) || (code === 186)) {  // previous page
     if (targetCursor.page === 2) { 
       // special inventory screen, move around it instead
-      exitInv = PerformInventoryScreen(code, 0);
+      exitInv = PerformInventoryScreen(code, restrict);
     } 
     if (typeof exitInv === "Object") {
       // (U)se return
@@ -2088,7 +2029,7 @@ function performZstats(code) {
   else if ((code === 39) || (code === 222)) { // next page
     if (targetCursor.page === 2) {
       // special inventory screen, move around it instead
-      exitInv = PerformInventoryScreen(code, 0);
+      exitInv = PerformInventoryScreen(code, restrict);
     } 
     if (typeof exitInv === "Object") {
       // (U)se return
@@ -2105,7 +2046,7 @@ function performZstats(code) {
   else if ((code === 38) || (code === 219)) { // scroll up
     if (targetCursor.page === 2) {
       // inventory
-      exitInv = PerformInventoryScreen(code, 0);
+      exitInv = PerformInventoryScreen(code, restrict);
     } 
     if (typeof exitInv === "Object") {
       // (U)se return
@@ -2116,10 +2057,11 @@ function performZstats(code) {
   }
   else if ((code === 13) || (code === 40) || (code === 191)) { // scroll down
     if (targetCursor.page === 2) {
-      exitInv = PerformInventoryScreen(code, 0);
+      exitInv = PerformInventoryScreen(code, restrict);
     }
-    if (typeof exitInv === "Object") {
+    if (typeof exitInv === "object") {
       // (U)se return
+      return exitInv;
     } else if (exitInv) {
       targetCursor.scrollapi.scrollByY(50,1);
     }
@@ -2127,7 +2069,7 @@ function performZstats(code) {
   }
   else if ((code === 32) || (code === 34)) {  // space or page down
     if (targetCursor.page === 2) {
-      exitInv = PerformInventoryScreen(code, 0);
+      exitInv = PerformInventoryScreen(code, restrict);
     }
     if (typeof exitInv === "Object") {
       // (U)se return
@@ -2138,7 +2080,7 @@ function performZstats(code) {
   }       
   else if ((code === 33)) {  // page up
     if (targetCursor.page === 2) {
-      exitInv = PerformInventoryScreen(code, 0);
+      exitInv = PerformInventoryScreen(code, restrict);
     }
     if (typeof exitInv === "Object") {
       // (U)se return
@@ -2149,7 +2091,7 @@ function performZstats(code) {
   }       
   else { retval["fin"] = 1; }
 
-  if (targetCursor.page === 2) { DisplayInventory(); }
+  if (targetCursor.page === 2) { DisplayInventory(restrict); }
   return retval;
 }
 
@@ -2967,6 +2909,9 @@ function DisplayInventory(restrictTo) {
     var descname = inventorylist[invselect].getDesc();
     descname = descname.charAt(0).toUpperCase() + descname.slice(1);
     $("#inv_name").html(descname);  
+    if (inventorylist[invselect].getQuantity() > 1) {
+      $("#inv_name").append(" (" + inventorylist[invselect].getQuantity() + ")"); 
+    }
     $("#inv_desc").html(inventorylist[invselect].getLongDesc());
     $("#inv_use").html("Use: " + inventorylist[invselect].getUseDesc());
   } else {
@@ -2983,11 +2928,11 @@ function PerformInventoryScreen(code, restrict) {
   if ((code === 37) || (code === 186)) {
     if (targetCursor.invx > 0) {
       targetCursor.invx--;
-    } else { return 1; } // off the left edge
+    } else if (targetCursor.command === "z") { return 1; } // off the left edge
   } else if ((code ===39) || (code === 222)) {
     if (targetCursor.invx < 7) {
       targetCursor.invx++;
-    } else { return 1; } // off the right edge
+    } else if (targetCursor.command === "z") { return 1; } // off the right edge
   } else if ((code === 38) || (code === 219)) {
     if (targetCursor.invy > 0) { targetCursor.invy--; }
     else if (targetCursor.invskiprow) {
@@ -3005,8 +2950,20 @@ function PerformInventoryScreen(code, restrict) {
     // use selected item
     var invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
     var inventorylist = MakeInventoryList(restrict);
-    var used = inventorylist[invselect].use(PC);
-    return used;    
+    if (targetCursor.command === "o") {
+      if (!CheckOpenAsUse(inventorylist[invselect])) {
+        maintext.delayedAddText("You cannot open that.");
+        var retval = {};
+        retval["fin"] = 0;
+        delete targetCursor.itemlist;
+        return retval;
+      }
+    }    
+    targetCursor.command = 'u';
+    var retval = MakeUseHappen(PC, inventorylist[invselect], "inventory");
+    retval["usefin"] = retval["fin"];
+    retval["fin"] = 2;
+    return retval;
   } else if (code === 34) { 
     if (targetCursor.invy !== 4) { targetCursor.invy = 4; }
     else {

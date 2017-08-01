@@ -281,8 +281,6 @@ function DoAction(code, ctrl) {
       var txt = maintext.getInputLine();
       if (inputText.txt.length) {
         inputText.txt = inputText.txt.substr(0,inputText.txt.length-1);
-//      }
-//      if (txt.length > 11) {
         txt = txt.substr(0,txt.length-1);
         maintext.setInputLine(txt);
         maintext.drawInputLine();
@@ -457,8 +455,10 @@ function DoAction(code, ctrl) {
         maintext.addText(newresponse["txt"]);
         maintext.setInputLine(newresponse["input"]);
         maintext.drawTextFrame();        
-        if (targetCursor.castFrom) {
-          targetCursor.castFrom.spellcast(PC);
+        if (newresponse["fin"]) {
+          if (targetCursor.castFrom) {
+            targetCursor.castFrom.spellcast(PC);
+          }
         }
       }
       if ((newresponse["fin"] === 0) || (newresponse["fin"] === 2)) {
@@ -509,13 +509,13 @@ function DoAction(code, ctrl) {
       response = PerformSpellcastEquip(code);
     }
 
+    $("#uiinterface").html(" ");
+    $("#uiinterface").css("background-color", "");
     if (response["fin"] === 0) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
       DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
-      $("#uiinterface").html(" ");
-      $("#uiinterface").css("background-color", "");
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     }
@@ -530,9 +530,6 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>"); 
-      $("#uiinterface").html(" ");
-      $("#uiinterface").css("background-color", "");
-      alert($("#uiinterface").html()); 	
       DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
       PC.endTurn(response["initdelay"]);
     }
@@ -571,6 +568,7 @@ function DoAction(code, ctrl) {
       delete targetCursor.invy;
       delete targetCursor.invskiprow;
       delete targetCursor.invlength;
+      delete targetCursor.restrictTo;
       $('#uiinterface').html(" ");
       $("#uiinterface").css("background-color", "");
 
@@ -588,13 +586,47 @@ function DoAction(code, ctrl) {
       delete targetCursor.invy;
       delete targetCursor.invskiprow;
       delete targetCursor.invlength;
+      delete targetCursor.restrictTo;
       $('#uiinterface').html(" ");
       $("#uiinterface").css("background-color", "");
 
-      maintext.setInputLine("&gt;");
-      maintext.drawTextFrame();
-      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-      PC.endTurn();
+      if (response["usefin"] === 0) {
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+        DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+        gamestate.setMode("player");
+        gamestate.setTurn(PC);
+      }
+      else if (response["usefin"] === -1) {
+        gamestate.setMode("useprompt");
+        maintext.addText(response["txt"]);
+        maintext.setInputLine(response["input"]);
+        maintext.drawTextFrame();
+      }
+      else if (response["usefin"] === 1) {
+        maintext.addText(response["txt"]);
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>"); 
+        DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+        PC.endTurn(response["initdelay"]);
+      }
+      else if (response["usefin"] === 3) {
+        // books
+        maintext.setInputLine("[MORE]");
+        maintext.addText(response["txt"]);
+        gamestate.setMode("anykey");
+        maintext.drawTextFrame();
+      } 
+      else if (response["usefin"] === 4) {
+        // scroll was used, spell cast is looking for a target
+        maintext.setInputLine(response["input"]);
+        maintext.addText(response["txt"]);
+        // gamestate set by spell
+        maintext.drawTextFrame();
+      }
+
     }
   }
   else if (gamestate.getMode() === "options") {
