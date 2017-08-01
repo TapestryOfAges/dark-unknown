@@ -1181,6 +1181,13 @@ magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].executeSpell = function(caster, i
   }
   var resp = {};
 
+  if (!caster.getHomeMap().getScale()) {
+    resp["fin"] = 2;
+    resp["txt"] = "There is no benefit to casting that spell here.";
+    resp["input"] = "&gt;";
+    return resp;
+  }
+
   CreateTargetCursor({sticky: 1, command:'c',spellName:'Fireball',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
