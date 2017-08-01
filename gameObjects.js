@@ -9725,8 +9725,8 @@ function ScrollItemObject() {
 }
 ScrollItemObject.prototype = new ConsumableItemObject();
 
-ScrollItemObject.prototype.longdesc = function() {
-  var spellname = magic[spelllevel][spellnum].getName();
+ScrollItemObject.prototype.getLongDesc = function() {
+  var spellname = magic[this.spelllevel][this.spellnum].getName();
   return "A scroll of " + spellname + ".";
 }
 
