@@ -1407,6 +1407,8 @@ function IsVisibleOnScreen(x,y) {
   if ((display.leftedge > x) || (display.rightedge < x)) { return 0; }
   if ((display.topedge > y) || (display.bottomedge < y)) { return 0; }
   var targettile = themap.getTile(x, y);
+  x = x-display.leftedge;
+  y = y-display.topedge;
   var onscreen = $('#mainview_' + x + 'x' + y).html();
   var losval = 0;
   if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
