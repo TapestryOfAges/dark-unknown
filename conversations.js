@@ -59,8 +59,13 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       if (typeof ConvTestFlags[flags.function_call] === "function") {
         if (!ConvTestFlags[flags.function_call](speaker, keyword)) {
           flags_met = 0;
-        }
+        } else { addtolog.flagsmet += " " + flags.function_call; }
       } else { flags_met = 0; }
+    }
+    if (flags.hasOwnProperty("between_times")) {
+      var times = split("-",flags.between_times);
+      if (!CheckTimeBetween(times[0],times[1])) { flags_met = 0; }
+      else { addtolog.flagsmet += " " + flags.between_times; }
     }
 
     if (this[keyword].responses[flags_met].indexOf("->") != -1) {
