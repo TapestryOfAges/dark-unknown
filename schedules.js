@@ -33,17 +33,37 @@ NPCSchedule.prototype.getNPCLocationByTime(time) {
 
 function NPCActivity(type, params) {
   if (type === "RouteTo") {  // Route To location
-    if (params.hasOwnProperty(startCondition)) {
-      if ((params.startCondition === "Time") || (params.startCondition === "PreviousComplete")) {
-        this.startCondition = params.startCondition;
-        if (params.startCondition === "Time") {
-          if (params.hasOwnProperty("startTime")) {
-            this.startTime = params.startTime;
-          } else { alert("This activity's startCondition (Time) is missing a time."); }
+    if (params.hasOwnProperty(destination)) {
+      if (params.destination.hasOwnProperty(x) && params.destination.hasOwnProperty(y)) {
+        this.destination = params.destination;
+      } else { alert("Invalid destination."); }
+    } else { alert("This activity is missing its destination."); }
+    if (params.hasOwnProperty(endCondition)) {
+      if (params.endCondition === "Time") {
+        if (params.hasOwnProperty(endTime)) {
+          this.endTime = params.endTime;
+        } else {
+          alert("This activity's endCondition (Time) is missing a time."); }
         }
       }
-    } else { alert("This activity is missing its start condition."); }
+    }
+  } else if (type === "WaitHere") {
+    if (params.hasOwnProperty("sleep")) { this.sleep = params.sleep; }
+  }
 
+  if (params.hasOwnProperty(startCondition)) {
+    if (params.startCondition === "Time") {
+      this.startCondition = params.startCondition;
+      if (params.hasOwnProperty("startTime")) {
+        this.startTime = params.startTime;
+      } else { alert("This activity's startCondition (Time) is missing a time."); }
+    } else if (params.startCondition === "PreviousComplete") {
+
+    } else { alert("This activity's startCondition is invalid."); }
+  } else { alert("This activity is missing its start condition."); }
+
+  if (params.hasOwnProperty("setFlag")) {
+    this.setFlag = params.setFlag;
   }
 }
 NPCActivity.prototype = new Object();
