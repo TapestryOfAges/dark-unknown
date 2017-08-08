@@ -49,8 +49,15 @@ function NPCActivity(type, params) {
     }
   } else if (type === "WaitHere") {
     if (params.hasOwnProperty("sleep")) { this.sleep = params.sleep; }
+    
+    if (params.hasOwnProperty("leashLength")) { this.leashLength = params.leashLength; }
+    else { alert("This activity has no leashLength property!"); }
+    
+    
   }
 
+
+  // All activities
   if (params.hasOwnProperty(startCondition)) {
     if (params.startCondition === "Time") {
       this.startCondition = params.startCondition;
