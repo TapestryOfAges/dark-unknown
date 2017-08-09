@@ -70,7 +70,7 @@ function NPCActivity(type, params) {
 
     if (params.hasOwnProperty("params")) { this.params = params.params; } // nicely recursive, eh?
     else { alert("This activity is missing params for its AI!"); }
-    
+
   }
 
 
@@ -88,6 +88,13 @@ function NPCActivity(type, params) {
 
   if (params.hasOwnProperty("setFlag")) {
     this.setFlag = params.setFlag;  // as usual, "unset_" works to unset
+  }
+
+  if (params.hasOwnProperty("bark") && params.hasOwnProperty("barkfreq")) {
+    this.bark = params.bark;  // array of bark txts
+    this.barkfreq = params.barkfreq;
+  } else if (params.hasOwnProperty("bark") || params.hasOwnProperty("barkfreq")) {
+    alert("Activity has incomplete bark information.");
   }
 }
 NPCActivity.prototype = new Object();
