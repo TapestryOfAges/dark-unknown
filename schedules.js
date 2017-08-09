@@ -43,16 +43,33 @@ function NPCActivity(type, params) {
         if (params.hasOwnProperty(endTime)) {
           this.endTime = params.endTime;
         } else {
-          alert("This activity's endCondition (Time) is missing a time."); }
+          alert("This activity's endCondition (Time) is missing a time."); 
         }
       }
     }
-  } else if (type === "WaitHere") {
+  } else if (type === "WaitHere") {  // Hang out in current location
     if (params.hasOwnProperty("sleep")) { this.sleep = params.sleep; }
     
     if (params.hasOwnProperty("leashLength")) { this.leashLength = params.leashLength; }
-    else { alert("This activity has no leashLength property!"); }
-    
+    else { alert("This activity has no leashLength property!"); }    // should have property even if just 0
+
+    if (params.hasOwnProperty("responsibleFor")) { this.responsibleFor = params.responsibleFor; }  // array of coordinates for doors
+        
+  } else if (type === "ChangeMap") {  // Can only move to a linked map
+    if (params.hasOwnProperty("destination")) { 
+      if (params.destination.hasOwnProperty("mapName") && params.destination.hasOwnProperty("x") && params.destination.hasOwnProperty("y")) {
+        this.destination = params.destination;
+      } else { alert("This activity's destination is incomplete!"); }
+    } else { alert("This activity is missing the destination!"); }
+
+  } else if (type === "LeaveMap") { // exit to world map
+
+  } else if (type === "CallAI") { // Something other than what's here
+    if (params.hasOwnProperty("AIName")) { this.AIName = params.AIName; }
+    else { alert("This activity is missing its AIName!"); }
+
+    if (params.hasOwnProperty("params")) { this.params = params.params; } // nicely recursive, eh?
+    else { alert("This activity is missing params for its AI!"); }
     
   }
 
@@ -70,7 +87,7 @@ function NPCActivity(type, params) {
   } else { alert("This activity is missing its start condition."); }
 
   if (params.hasOwnProperty("setFlag")) {
-    this.setFlag = params.setFlag;
+    this.setFlag = params.setFlag;  // as usual, "unset_" works to unset
   }
 }
 NPCActivity.prototype = new Object();
