@@ -2291,6 +2291,7 @@ function CobblestoneTile() {
   this.desc = "cobblestones";
   this.peerview = "#800000";
   this.walkSound = "stone";
+  this.pathweight = -.8;
 }
 CobblestoneTile.prototype = new TerrainObject();
 
@@ -2422,7 +2423,7 @@ function RoadTile() {
   this.peerview = "#7a3a1a";
   
   this.initdelay = 0.8;
-  this.pathweight = -.2;
+  this.pathweight = -.8;
   this.walkSound = "grass";
   
   SetBySurroundRoad.call(this);
@@ -2706,6 +2707,7 @@ function PurpleCobblestoneTile() {
   this.desc = "cobblestones";
   this.peerview = "#600060";
   this.walkSound = "stone";
+  this.pathweight = -.8;
 }
 PurpleCobblestoneTile.prototype = new TerrainObject();
 
@@ -2720,6 +2722,7 @@ function ShadowPurpleCobblestoneTile() {
   this.desc = "cobblestones";
   this.peerview = "#602300";
   this.walkSound = "stone";
+  this.pathweight = -.8;
 }
 ShadowPurpleCobblestoneTile.prototype = new TerrainObject();
 
