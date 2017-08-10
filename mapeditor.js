@@ -314,6 +314,7 @@ function clickmap(xval,yval) {
 //      document.npceditpopup.npcmelee.value = editnpcs.getMeleeAttackAs();
 //      document.npceditpopup.npcmissile.value = editnpcs.getMissileAttackAs();
       document.npceditpopup.npcconvo.value = editnpcs.getConversation();
+      document.npceditpopup.npcschedule.value = editnpcs.getSchedule();
       document.npceditpopup.npcconvflag.value = editnpcs.getConversationFlag();
       document.npceditpopup.npcgender.value = editnpcs.getGender();
       document.npceditpopup.npcmerch.value = editnpcs.getMerch();
@@ -567,6 +568,9 @@ function submitEditNPC(change) {
 //		}
 		if (document.npceditpopup.npcconvo.value !== editnpcs.getConversation()) {
 			editnpcs.setConversation(document.npceditpopup.npcconvo.value);
+		}
+		if (document.npceditpopup.npcschedule.value !== editnpcs.getSchedule()) {
+			editnpcs.setSchedule(document.npceditpopup.npcschedule.value);
 		}
     if (document.npceditpopup.npcconvo.value !== editnpcs.getConversationFlag()) {
 			editnpcs.setConversationFlag(document.npceditpopup.npcconvflag.value);

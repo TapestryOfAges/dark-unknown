@@ -11676,7 +11676,8 @@ function NPCObject() {
 	this.lootTable = "";
 	this.lastTurnTime = 0;
 	this.knowsInfusion = 0;
-	this.conversation = "";
+  this.conversation = "";
+  this.schedule = "";
 	this.conversationflag = "";
 	this.merch = "";
 	this.spawnedBy;
@@ -11861,6 +11862,14 @@ NPCObject.prototype.setLastTurnTime = function(newtime) {
     this.lastTurnTime = newtime;
   }
   return this.lastTurnTime;
+}
+
+NPCObject.prototype.getSchedule = function() {
+  return this.schedule; 
+}
+
+NPCObject.prototype.setSchedule = function (sched) {
+  this.schedule = sched;
 }
 
 NPCObject.prototype.getConversation = function() {
