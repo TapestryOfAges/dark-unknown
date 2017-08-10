@@ -652,3 +652,16 @@ mappages["naurglen2"].returny = '75';
 mappages["naurglen2"].returninfused = '0';
 mappages["naurglen2"].linkedMaps = ["naurglen"];
 mappages["naurglen2"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"Grayson","div_tile89x17":"Dora and Ingrid","div_tile92x33":"Kyvek Room","div_tile56x37":"Amaeryl","div_tile26x39":"Kylee and Sam","div_tile45x8":"Warren and Garen","div_tile23x22":"Derek","div_tile9x38":"PC Home","div_tile74x37":"Hazel","div_tile22x6":"Soldier","div_tile7x23":"Soldier"}';
+
+
+// Naurglen NPC Schedules
+
+DU.schedules["avery"] = new NPCSchedule();
+DU.schedules["avery"].addActivity("RouteTo", {startCondition: "Time", time: "6:00", destination: {x:8,y:41} });
+DU.schedules["avery"].addActivity("CallAI", { startCondition: "PreviousComplete", AIName: "CloseDoor", params: { x:8,y:40}});
+DU.schedules["avery"].addActivity("RouteTo", {startCondition: "PreviousComplete", destination: {x:7,y:42} });
+DU.schedules["avery"].addActivity("ChangeMap", {startCondition: "PreviousComplete", destination: { x:7, y:42, mapName: "naurglen"}});
+DU.schedules["avery"].addActivity("RouteTo", {startCondition: "PreviousComplete", destination: {x:11,y:42} });
+DU.schedules["avery"].addActivity("CallAI", { startCondition: "PreviousComplete", AIName: "PlaceItem", params: { name: "PlateWithFood", x:11,y:41});
+DU.schedules["avery"].addActivity("CallAI", { startCondition: "Time", time: "7:00", AIName: "DeleteLastItem" } );
+DU.schedules["avery"].addActivity("RouteTo", {startCondition: "PreviousComplete", destination: {x:10,y:39}, leashLength: 3 });

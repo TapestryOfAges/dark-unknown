@@ -175,6 +175,7 @@ $(document).ready(function() {
   set_conversations();
   DU.merchants = {};
   DU.merchants = SetMerchants();
+  DU.schedules = {};
   if (debug) {  ActivateDebug(1); }
   audio_init();  
 	CreateUI();

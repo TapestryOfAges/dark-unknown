@@ -71,8 +71,17 @@ function NPCActivity(type, params) {
     if (params.hasOwnProperty("params")) { this.params = params.params; } // nicely recursive, eh?
     else { alert("This activity is missing params for its AI!"); }
 
-  }
+    if (params.hasOwnProperty(endCondition)) {
+      if (params.endCondition === "Time") {
+        if (params.hasOwnProperty(endTime)) {
+          this.endTime = params.endTime;
+        } else {
+          alert("This activity's endCondition (Time) is missing a time."); 
+        }
+      }
+    }
 
+  }
 
   // All activities
   if (params.hasOwnProperty(startCondition)) {
