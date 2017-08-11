@@ -8,15 +8,54 @@
          $("#sched").html("<center>" + document.schedform.startbutton.value + "</center>");
          $("#sched").append("<table id='schedtable' border='1' cellpadding='1' cellspacing='1'><tr><th>Start Condition</th><th>Activity</th><th>Parameters</th></tr></table>");
          
-         $("#options").html("<form name='optform'>Activity: <select name='activities' id='activities'><option value=''></option><option value='RouteTo'>Route To</option><option value='WaitHere'>Wait Here</option><option value='ChangeMap'>Change Map</option><option value='LeaveMap'>Leave Map</option><option value='CallAI'>Call AI</option></select>");
-         $("#options").append("<input type='button' value='Add Activity' onclick='select_activity()' /></form><br /><div id='activityparams'></div>");
+         $("#options").html("<form name='optform'>Activity: <select name='activities' id='activities' onChange='select_activity()'><option value=''></option><option value='RouteTo'>Route To</option><option value='WaitHere'>Wait Here</option><option value='ChangeMap'>Change Map</option><option value='LeaveMap'>Leave Map</option><option value='CallAI'>Call AI</option></select>");
+         $("#options").append("</form><br /><div id='activityparams'></div>");
       }  
       
       function select_activity() {
         var activityname = document.optform.activities.value;
         
-        $("#activityparams").html("Start Condition: <select name='start_condition'><option value=''></option><option value='Time'>Time</option><option value='PreviousComplete'>Previous Complete</option></select>");
+        $("#activityparams").html("<form name='activityparamsform'>Start Condition: <select name='start_condition' onChange='select_start()'><option value=''></option><option value='Time'>Time</option><option value='PreviousComplete'>Previous Complete</option></select><div id='starttime'></div><br />");
+        $("#activityparams").append("Set Flag [Opt]: <input type='text' name='set_flag' size='20' /><br />");
+
+        if (activityname === "RouteTo") {
+          $("#activityparams").append("Destination: x: <input type='text' name='destination_x' size='3' /> y: <input type='text' name=destination_y' size='3' /><br />");
+          $("#activityparams").append("End Condition [Opt]: <select name='end_condition' id='end_condition' onChange='select_end();'><option value=''></option><option value='Time'>Time</option></select><div id='endtime'></div><br />");
+        } else if (activityname === "WaitHere") {
+          $("activityparams").append("Sleep [Opt]: <select name='sleep'><option value=''></option><option value='1'>Yes</option></select><br />");
+          $("activityparams").append("Leash Length: <input type='text' name='leash_length' size='3' /><br />");
+          $("activityparams").append("Responsible For: <input type='text' name='responsible_for' size='20' /><br />(Enter in array format: (\"20,11\",\"17,14\"), etc.)<br />");
+        } else if (activityname === "ChangeMap") {
+          $("#activityparams").append("Destination: Map Name: <input type='text' name='destmapname' size='15' /> x: <input type='text' name='destmapx' size='2' /> y: <input type='text' name='destmapy' size='2' />");
+        } else if (activityname === "CallAI") {
+          $("#activityparams").append("AI Script Name: <input type='text' name='ai_name' size='15' /><br />");
+          $("#activityparams").append("Parameters: <textarea name='ai_params' rows='10' cols='20'></textarea>");
+        }
+
+        $("#activityparams").append("<input type='button' value='Add Activity' onClick='add_activity(); />");
+        $("#activityparams").append("</form>");
       }
+
+      function select_start() {
+        if (document.activityparamsform.start_condition.value === "Time") {
+          $("#starttime").html("Start time: <input type='text' name='start_time_value' size='8' />");
+        } else {
+          $("#starttime").html("");
+        }
+      }
+
+      function select_end() {
+        if ($("#end_condition").val() === "Time") {
+          $("#endtime").html("End time: <input type='text' name='end_time_value' size='8' />");
+        } else {
+          $("#endtime").html("");
+        }
+      }
+
+      function add_activity() {
+
+      }
+
     </script>
   </head>
   <body>
