@@ -1076,28 +1076,28 @@ function SetBySurroundRiver() {
 			if (IsWet(northtile)) {
 				north = 1;
 			}
-		}
+		} else { north = 1; }
 		var southacre = themap.getTile(x,y+1);
 		var southtile = southacre.terrain;
 		if (southacre !== "OoB") {
 			if (IsWet(southtile)) {
 				south = 1;
 			}
-		}
+		} else { south = 1; }
 		var eastacre = themap.getTile(x+1,y);
 		var easttile = eastacre.terrain;
 		if (eastacre !== "OoB") {
 			if (IsWet(easttile)) {
 				east = 1;
 			}
-		}
+		} else { east = 1; }
 		var westacre = themap.getTile(x-1,y);
 		var westtile = westacre.terrain;
 		if (westacre !== "OoB") {
 			if (IsWet(westtile)) {
 				west = 1;
 			}
-		}
+		} else { west = 1; }
 		if ((north === 1) && (south === 1) && (east === 1) && (west === 1)) {
 			// this shouldn't happen, if it does I need to draw a + river piece
 			graphics[1] = "spacer.gif";
