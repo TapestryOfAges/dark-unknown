@@ -173,9 +173,10 @@ $(document).ready(function() {
   CreateDisplayTables();
 
   set_conversations();
+  set_schedules();
   DU.merchants = {};
   DU.merchants = SetMerchants();
-  DU.schedules = {};
+  
   if (debug) {  ActivateDebug(1); }
   audio_init();  
 	CreateUI();

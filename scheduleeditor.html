@@ -3,42 +3,92 @@
     <title>Dark Unknown NPC Schedule Editor</title>
     <script language="JavaScript" src="external/jquery-1.3.2.js"></script>
     <script language="JavaScript" src="external/jqModal.js"></script>
+    <script language="JavaScript" src="schedules.js"></script>
     <script language="JavaScript">
+      var DU = {};
+
+      $(document).ready(function() {
+        set_schedules();   // creates DU.schedules = {};
+        create_header();
+      });
+
+      var places = {};
+
+      var curr_place = "";
+      var curr_person = "";
+
+      function create_header() {
+        $.each(DU.schedules, function(idx,val) { 
+          places[val._location] = 1;
+        });        
+
+        $('#header').html("<p><a href='javascript:saveconv()'>[Save Schedules]</a> <a href='javascript:create_header()'>[Refresh]</a> <a href='javascript:start_schedule()'>[New Schedule]</a></p><p>");
+
+        $.each(places, function(idx,val) {
+          $('#header').append("<a href='javascript:select_place(\"" + idx + "\")'>" + idx + "</a> | ");
+        });
+  
+        $('#header').append("</p>");
+      }
+
+      function select_place(pname) {
+        curr_place=pname;
+  
+        var txt = "<h3>" + pname + "</h3><p><form name='convform'><select id='pickconv' name='pickconv' onChange='select_sched()'><option value=''></option>";
+        var frst = "";
+        $.each(DU.schedules, function(idx, val) {
+          if (val.baseLocation === pname) {
+            txt = txt + "<option value='"+idx+"'>"+idx+"</option>";
+            if (!frst) { frst = idx; }
+          }
+        });
+        txt = txt + "</select></form> <a href='javascript:start_schedule()'>New Schedule</a> <a href='javascript:del_conv()'>Delete Schedule</a></p>";
+        $('#midhead').html(txt);
+      }
+
       function start_schedule() {
-         $("#sched").html("<center>" + document.schedform.startbutton.value + "</center>");
-         $("#sched").append("<table id='schedtable' border='1' cellpadding='1' cellspacing='1'><tr><th>Start Condition</th><th>Activity</th><th>Parameters</th></tr></table>");
+
+        if (!curr_place) { curr_place = prompt("Which location?"); }
+        
+        curr_person = prompt("Whose schedule?"); 
+
+        $("#mainbody").html("<center>" + curr_person + "</center>");
+        $("#mainbody").append("<table id='schedtable' border='1' cellpadding='1' cellspacing='1'><tr><th>Start Condition</th><th>Activity</th><th>Parameters</th></tr></table>");
          
-         $("#options").html("<form name='optform'>Activity: <select name='activities' id='activities' onChange='select_activity()'><option value=''></option><option value='RouteTo'>Route To</option><option value='WaitHere'>Wait Here</option><option value='ChangeMap'>Change Map</option><option value='LeaveMap'>Leave Map</option><option value='CallAI'>Call AI</option></select>");
-         $("#options").append("</form><br /><div id='activityparams'></div>");
+        $("#options").html("<form name='optform'>Activity: <select name='activities' id='activities' onChange='select_activity()'><option value=''></option><option value='RouteTo'>Route To</option><option value='WaitHere'>Wait Here</option><option value='ChangeMap'>Change Map</option><option value='LeaveMap'>Leave Map</option><option value='CallAI'>Call AI</option></select>");
+        $("#options").append("</form><br /><div id='activityparams'></div>");
       }  
       
       function select_activity() {
         var activityname = document.optform.activities.value;
         
-        $("#activityparams").html("<form name='activityparamsform'>Start Condition: <select name='start_condition' onChange='select_start()'><option value=''></option><option value='Time'>Time</option><option value='PreviousComplete'>Previous Complete</option></select><div id='starttime'></div><br />");
-        $("#activityparams").append("Set Flag [Opt]: <input type='text' name='set_flag' size='20' /><br />");
+        $("#activityparams").html("<form name='activityparamsform'>Start Condition: <select name='start_condition' id='start_condition' onChange='select_start()'><option value=''></option><option value='Time'>Time</option><option value='PreviousComplete'>Previous Complete</option></select><div id='starttime'></div><br />");
+        $("#activityparams").append("Set Flag [Opt]: <input type='text' name='set_flag' id='set_flag' size='20' /><br />");
 
         if (activityname === "RouteTo") {
-          $("#activityparams").append("Destination: x: <input type='text' name='destination_x' size='3' /> y: <input type='text' name=destination_y' size='3' /><br />");
+          $("#activityparams").append("Destination: x: <input type='text' name='destination_x' id='destination_x' size='3' /> y: <input type='text' name=destination_y' id='destination_y' size='3' /><br />");
           $("#activityparams").append("End Condition [Opt]: <select name='end_condition' id='end_condition' onChange='select_end();'><option value=''></option><option value='Time'>Time</option></select><div id='endtime'></div><br />");
         } else if (activityname === "WaitHere") {
-          $("activityparams").append("Sleep [Opt]: <select name='sleep'><option value=''></option><option value='1'>Yes</option></select><br />");
-          $("activityparams").append("Leash Length: <input type='text' name='leash_length' size='3' /><br />");
-          $("activityparams").append("Responsible For: <input type='text' name='responsible_for' size='20' /><br />(Enter in array format: (\"20,11\",\"17,14\"), etc.)<br />");
+          $("activityparams").append("Sleep [Opt]: <select name='sleep' id='sleep'><option value=''></option><option value='1'>Yes</option></select><br />");
+          $("activityparams").append("Leash Length: <input type='text' name='leash_length' id='leash_length' size='3' /><br />");
+          $("activityparams").append("Responsible For [Opt]: <input type='text' name='responsible_for' id='responsible_for' size='20' /><br />(Enter in array format: (\"20,11\",\"17,14\"), etc.)<br />");
         } else if (activityname === "ChangeMap") {
-          $("#activityparams").append("Destination: Map Name: <input type='text' name='destmapname' size='15' /> x: <input type='text' name='destmapx' size='2' /> y: <input type='text' name='destmapy' size='2' />");
+          $("#activityparams").append("Destination: Map Name: <input type='text' name='destmapname' id='destmapname' size='15' /> x: <input type='text' name='destmapx' id='destmapx' size='2' /> y: <input type='text' name='destmapy' id='destmapy' size='2' />");
         } else if (activityname === "CallAI") {
-          $("#activityparams").append("AI Script Name: <input type='text' name='ai_name' size='15' /><br />");
-          $("#activityparams").append("Parameters: <textarea name='ai_params' rows='10' cols='20'></textarea>");
+          $("#activityparams").append("AI Script Name: <input type='text' name='ai_name' id='ai_name' size='15' /><br />");
+          $("#activityparams").append("Parameters: <textarea name='ai_params' id='ai_params' rows='10' cols='20'></textarea>");
+          $("#activityparams").append("End Condition [Opt]: <select name='end_condition' id='end_condition' onChange='select_end();'><option value=''></option><option value='Time'>Time</option></select><div id='endtime'></div><br />");
         }
 
-        $("#activityparams").append("<input type='button' value='Add Activity' onClick='add_activity(); />");
+        $("#activityparams").append("Bark (array of txts) [Opt]: <input type='text' name='bark' id='bark' size='20' /><br />");
+        $("#activityparams").append("Bark (freq) [Opt]: <input type='text' name='barkfreq' id='barkfreq' size='3' /><br />");
+        $("#activityparams").append("<input type='button' value='Add Activity' onClick='add_activity();' />");
         $("#activityparams").append("</form>");
       }
 
       function select_start() {
-        if (document.activityparamsform.start_condition.value === "Time") {
-          $("#starttime").html("Start time: <input type='text' name='start_time_value' size='8' />");
+        if ($("#start_condition").val() === "Time") {
+          $("#starttime").html("Start time: <input type='text' name='start_time_value' id='start_time_value' size='8' />");
         } else {
           $("#starttime").html("");
         }
@@ -46,20 +96,141 @@
 
       function select_end() {
         if ($("#end_condition").val() === "Time") {
-          $("#endtime").html("End time: <input type='text' name='end_time_value' size='8' />");
+          $("#endtime").html("End time: <input type='text' name='end_time_value' id='end_time_value' size='8' />");
         } else {
           $("#endtime").html("");
         }
       }
 
       function add_activity() {
+        var params = {};
+        var type = $("#activities").val();
+        params.startCondition = $("#start_condition").val();
+        if (params.startCondition === "Time") {
+          params.startTime = $("#start_time_value").val();
+        }
+        if ($("#set_flag").val()) {
+          params.setFlag = ("#set_flag").val();
+        }
+        if ($("#bark").val()) {
+          params.bark = $("#bark").val();
+          if ($("#barkfreq").val()) {
+            params.barkfreq = $("#bark").val();
+          } else {
+            alert("Bark filled in, with no frequency.");
+            return;
+          }
+        }
 
+        if (type === "RouteTo") {
+          if ($("#destination_x").val() && $("#destination_y").val()) {
+            params.destination = {};
+            params.destination.x = $("#destination_x").val();
+            params.destination.y = $("#destination_y").val();
+          } else {
+            alert("Destination of route not filled in.");
+            return;
+          }
+
+          if ($("#end_condition").val()) {
+            params.endCondition = $("#end_condition").val();
+            if (params.endCondition === "Time") {
+              if ($("#end_time_value").val()) {
+                params.endTime = $("#end_time_value").val();
+              } else {
+                alert("End condition is time, no time filled in.");
+                return;
+              }
+            }
+          }
+        }
+
+        else if (type === "WaitHere") {
+          if ($("#sleep").val()) {
+            params.sleep = $("#sleep").val();
+          }
+          if ($("#leash_length").val()) {
+            params.leashLength = $("#leash_length").val();
+          } else {
+            params.leashLength = 0;
+          }
+          if ($("#responsible_for").val()) {
+            params.responsibleFor = $("#responsible_for").val();
+          }
+        }
+
+        else if (type === "ChangeMap") {
+          if ($("#destmapname").val() && ($("#destmapx").val() !== "") && ($("#destmapy").val() !== "")) {
+            var destination = {};
+            destination.mapName = $("#destmapname").val();
+            destination.x = $("#destmapx").val();
+            destination.y = $("#destmapy").val();
+            params.destination = destination;
+          } else {
+            alert("ChangeMap requires all destination filled in.");
+            return;
+          }
+        }
+
+        else if (type === "CallAI") {
+          if ($("#ai_name").val() && $("#ai_params").val()) {
+            params.AIName = $("#ai_name").val();
+          } else {
+            alert("CallAI requires AI name and parameters.");
+            return;
+          }
+
+          if ($("#end_condition").val()) {
+            params.endCondition = $("#end_condition").val();
+            if (params.endCondition === "Time") {
+              if ($("#end_time_value").val()) {
+                params.endTime = $("#end_time_value").val();
+              } else {
+                alert("End condition is time, no time filled in.");
+                return;
+              }
+            }
+          }
+        }
+
+        if (!DU.schedules[curr_person]) {
+          DU.schedules[curr_person] = new NPCSchedule();
+          DU.schedules[curr_person].baseLocation = curr_place;
+        }
+        var activity = new NPCActivity(type, params);
+        DU.schedules[curr_person].addActivity(activity);
+
+        display_schedule();
       }
 
+      function display_schedule() {
+        var thissched = DU.schedules[curr_person].scheduleArray;
+        $("#mainbody").html("<center>" + curr_person + "</center>");
+        $("#mainbody").append("<table id='schedtable' border='1' cellpadding='1' cellspacing='1'><tr><th>Start Condition</th><th>Activity</th><th>Parameters</th></tr>");
+        var txt;
+        for (var i=0; i<thissched.length; i++) {
+          txt = txt + "<tr><td>" + thissched[i].params.startCondition;
+          if (thissched[i].params.startCondition === "Time") {
+            txt = txt + " (" + thissched[i].params.startTime + ")";
+          }
+          txt = txt + "</td><td>" + thissched[i].type + "</td><td>";
+          $.each(thissched[i].params, function(idx,val) {
+            if ((idx !== "Time") && (idx !== "endTime")) {
+              txt = txt + idx + " : " + val;
+              if ((idx === "endCondition") && (val === "Time")) {
+                txt = txt + " (" + thissched.params.endTime + ")";
+              }
+              if (i<(thissched[i].length - 1)) { txt = txt + ", "; }
+            }
+          });
+        }
+        txt = txt + "</td></tr>";
+        $("#mainbody").append(txt);
+      }
     </script>
   </head>
   <body>
-    <div id="sched" style='width:66%'><form id='schedform' name='schedform'>Schedule Name:<input type='text' id='schedname' name='startbutton' size='10' /> <input type="button"  value="Start Schedule" onClick='start_schedule()' /> </form></div>    
+    <div id="sched" style='width:66%'><div id='header'></div><div id='midhead'></div><div id='mainbody'></div></div>    
     <div id="options" style='width:33%; background-color:#dddddd; float:right'></div>    
   </body>
 </html>
