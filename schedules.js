@@ -34,6 +34,7 @@ NPCSchedule.prototype.getNPCLocationByTime = function(time) {
 
 function NPCActivity(type, params) {
   this.params = {};
+  this.type = type;
   if (type === "RouteTo") {  // Route To location
     if (params.hasOwnProperty("destination")) {
       if (params.destination.hasOwnProperty("x") && params.destination.hasOwnProperty("y")) {
@@ -111,6 +112,8 @@ function NPCActivity(type, params) {
 NPCActivity.prototype = new Object();
 
 function set_schedules() {
-  DU.schedules = {};
+  var sched = "";
+
+  DU.schedules = JSON.parse(sched);
 
 }
