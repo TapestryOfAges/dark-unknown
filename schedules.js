@@ -50,6 +50,9 @@ function NPCActivity(type, params) {
         }
       }
     }
+    if (params.hasOwnProperty("closeDoors")) {
+      this.params.closeDoors = params.closeDoors;
+    }
   } else if (type === "WaitHere") {  // Hang out in current location
     if (params.hasOwnProperty("sleep")) { this.params.sleep = params.sleep; }
     
@@ -112,7 +115,7 @@ function NPCActivity(type, params) {
 NPCActivity.prototype = new Object();
 
 function set_schedules() {
-  var sched = "";
+  var sched = '{"avery":{"scheduleArray":[{"params":{"destination":{"x":"7","y":"42"},"closeDoors":"1","startCondition":"Time","startTime":"6:00"},"type":"RouteTo"},{"params":{"destination":{"mapName":"naurglen","x":"7","y":"42"},"startCondition":"PreviousComplete"},"type":"ChangeMap"},{"params":{"destination":{"x":"11","y":"42"},"startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"AIName":"PlaceItem","params":"{name: \\"PlateWithFood\\", x:11,y:41}","startCondition":"PreviousComplete"},"type":"CallAI"},{"params":{"AIName":"DeleteItem","params":"{param: \\"last\\"}","startCondition":"Time","startTime":"7:00"},"type":"CallAI"},{"params":{"destination":{"x":"10","y":"39"},"startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"leashLength":"3","startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"destination":{"x":"13","y":"38"},"startCondition":"Time","startTime":"15:30"},"type":"RouteTo"},{"params":{"AIName":"PlayHarpsichord","params":"{}","startCondition":"PreviousComplete"},"type":"CallAI"},{"params":{"destination":{"x":"10","y":"39"},"startCondition":"Time","startTime":"16:00"},"type":"RouteTo"},{"params":{"leashLength":"3","startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"destination":{"x":"10","y":"39"},"startCondition":"Time","startTime":"18:30"},"type":"RouteTo"},{"params":{"AIName":"PlaceItem","params":"{name: \\"PlateWithFood\\", x:11,y:41}","startCondition":"PreviousComplete"},"type":"CallAI"},{"params":{"AIName":"DeleteItem","params":"{param:last}","startCondition":"Time","startTime":"19:00"},"type":"CallAI"},{"params":{"destination":{"x":"10","y":"39"},"startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"leashLength":"3","startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"destination":{"x":"7","y":"49"},"startCondition":"Time","startTime":"21:30"},"type":"RouteTo"},{"params":{"destination":{"mapName":"naurglen2","x":"7","y":"49"},"startCondition":"PreviousComplete"},"type":"ChangeMap"},{"params":{"destination":{"x":"7","y":"37"},"closeDoors":"1","startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"sleep":"1","leashLength":"0","startCondition":"PreviousComplete"},"type":"WaitHere"}],"currentIndex":0,"baseLocation":"Naurglen"}}';
 
   DU.schedules = JSON.parse(sched);
 

@@ -656,12 +656,12 @@ mappages["naurglen2"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":
 
 // Naurglen NPC Schedules
 
-DU.schedules["avery"] = new NPCSchedule();
-DU.schedules["avery"].addActivity("RouteTo", {startCondition: "Time", time: "6:00", destination: {x:8,y:41} });
-DU.schedules["avery"].addActivity("CallAI", { startCondition: "PreviousComplete", AIName: "CloseDoor", params: { x:8,y:40}});
-DU.schedules["avery"].addActivity("RouteTo", {startCondition: "PreviousComplete", destination: {x:7,y:42} });
-DU.schedules["avery"].addActivity("ChangeMap", {startCondition: "PreviousComplete", destination: { x:7, y:42, mapName: "naurglen"}});
-DU.schedules["avery"].addActivity("RouteTo", {startCondition: "PreviousComplete", destination: {x:11,y:42} });
-DU.schedules["avery"].addActivity("CallAI", { startCondition: "PreviousComplete", AIName: "PlaceItem", params: { name: "PlateWithFood", x:11,y:41}});
-DU.schedules["avery"].addActivity("CallAI", { startCondition: "Time", time: "7:00", AIName: "DeleteLastItem" } );
-DU.schedules["avery"].addActivity("RouteTo", {startCondition: "PreviousComplete", destination: {x:10,y:39}, leashLength: 3 });
+//DU.schedules["avery"] = new NPCSchedule();
+//DU.schedules["avery"].addActivity("RouteTo", {startCondition: "Time", time: "6:00", destination: {x:8,y:41} });
+//DU.schedules["avery"].addActivity("CallAI", { startCondition: "PreviousComplete", AIName: "CloseDoor", params: { x:8,y:40}});
+//DU.schedules["avery"].addActivity("RouteTo", {startCondition: "PreviousComplete", destination: {x:7,y:42} });
+//DU.schedules["avery"].addActivity("ChangeMap", {startCondition: "PreviousComplete", destination: { x:7, y:42, mapName: "naurglen"}});
+//DU.schedules["avery"].addActivity("RouteTo", {startCondition: "PreviousComplete", destination: {x:11,y:42} });
+//DU.schedules["avery"].addActivity("CallAI", { startCondition: "PreviousComplete", AIName: "PlaceItem", params: { name: "PlateWithFood", x:11,y:41}});
+//DU.schedules["avery"].addActivity("CallAI", { startCondition: "Time", time: "7:00", AIName: "DeleteLastItem" } );
+//DU.schedules["avery"].addActivity("RouteTo", {startCondition: "PreviousComplete", destination: {x:10,y:39}, leashLength: 3 });
