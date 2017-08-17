@@ -1594,14 +1594,18 @@ function SetSky() {
   }
 }
 
-function CheckTimeBetween(time1,time2) {
+function CheckTimeBetween(time1,time2, clocktime) {
   var time1arr = time1.split(":");
   var time2arr = time2.split(":");
-  var clocktime = GetClockTime();
+  if (!clocktime) {
+    clocktime = GetClockTime();
+    clocktime = clocktime[3] + ":" + clocktime[4];
+  }
+  var clockarr = clocktime.split(":");
   
   time1 = parseInt(time1arr[0])*60+parseInt(time1arr[1]);
   time2 = parseInt(time2arr[0])*60+parseInt(time2arr[1]);
-  var clock0 = parseInt(clocktime[3])*60+parseInt(clocktime[4]);
+  var clock0 = parseInt(clockarr[0])*60+parseInt(clockarr[1]);
 
   if (time2 > time1) {
     if ((clock0 >= time1) && (time2 >= clock0)) {
@@ -1614,4 +1618,15 @@ function CheckTimeBetween(time1,time2) {
     }
     return 0;
   }
+}
+
+function CheckTimeAfterTime(time1,time2) {
+  var time2arr = time2.split(":");
+  var time3hr = time2[0] + 12;
+  if (time3hr > 23) { time3hr = time3hr - 24; }
+  var time3 = time3hr + ":" + time2[1];
+  
+  if (CheckTimeBetween(time2,time3,time1)) { return 1; }
+  else { return 0;}
+  
 }
