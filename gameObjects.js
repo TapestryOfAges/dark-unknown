@@ -11678,6 +11678,7 @@ function NPCObject() {
 	this.knowsInfusion = 0;
   this.conversation = "";
   this.schedule = "";
+  this.currentScheduleIndex = 0;
 	this.conversationflag = "";
 	this.merch = "";
 	this.spawnedBy;
@@ -11870,6 +11871,15 @@ NPCObject.prototype.getSchedule = function() {
 
 NPCObject.prototype.setSchedule = function (sched) {
   this.schedule = sched;
+}
+
+NPCObject.prototype.getCurrentScheduleIndex = function() {
+  return this.currentScheduleIndex; 
+}
+
+NPCObject.prototype.setCurrentScheduleIndex = function (sched) {
+  sched = parseInt(sched);
+  this.currentScheduleIndex = sched;
 }
 
 NPCObject.prototype.getConversation = function() {

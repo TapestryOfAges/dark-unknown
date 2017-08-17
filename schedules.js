@@ -2,7 +2,6 @@
 
 function NPCSchedule() {
   this.scheduleArray = [];
-  this.currentIndex = 0;
   this.baseLocation = "";
 }
 NPCSchedule.prototype = new Object();
