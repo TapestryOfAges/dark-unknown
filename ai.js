@@ -1,10 +1,11 @@
 
 "use strict";
 
+// barks deprecated
 var barks = {};
 barks['jester'] = ['%THEDESC% sings, "Ho eye he hum!"'];
 barks['sam'] = ['%THEDESC% shouts, "Look at me!"'];
-barks['startguard'] = ['%THEDESC% says, "You father wishes to speak with you!"'];
+barks['startguard'] = ['%THEDESC% says, "Your father wishes to speak with you!"'];
 
 barks.getBark = function(idx) {
   if (barks[idx]) {
