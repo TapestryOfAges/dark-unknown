@@ -1664,7 +1664,8 @@ GameMap.prototype.loadMap = function (name) {
   			  if (npckey === "OverrideGraphic") { newnpc.overrideGraphic = loadnpcs[npci].OverrideGraphic; }
         }
         if (newnpc.getPeaceAI === "scheduled") {
-
+          var loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime, 1);
+          this.placeThing(loc.x,loc.y,newnpc);
         } else {
           this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
         }
