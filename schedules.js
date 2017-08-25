@@ -3,6 +3,7 @@
 function NPCSchedule() {
   this.scheduleArray = [];
   this.baseLocation = "";
+  this.currentIndex = 0;
 }
 NPCSchedule.prototype = new Object();
 
@@ -10,24 +11,27 @@ NPCSchedule.prototype.addActivity = function(activity) {
   this.scheduleArray.push(activity);
 }
 
-NPCSchedule.prototype.getNPCLocationByTime = function(time) {
+NPCSchedule.prototype.getNPCLocationByTime = function(time, setIndex) {
   if (!time) {
     time = GetClockTime();
   }
   time = time[3]*60+time[4];
   var location;
   var lastlocation = {};
-  
+  var lastindex = 0;
+
   for (var i=0; i<this.scheduleArray.length; i++) {
-    if ((scheduleArray[i].type === "RouteTo") && (scheduleArray[i].startCondition === "Time")) {
-      var schtime = scheduleArray[i].startTime.split(":");
+    if ((this.scheduleArray[i].type === "RouteTo") && (this.scheduleArray[i].startCondition === "Time")) {
+      var schtime = this.scheduleArray[i].startTime.split(":");
       var comptime = schtime[0]*comptime[1];
       if (comptime < time) { location = scheduleArray[i].destination; }
-      lastlocation = scheduleArray[i].destination;
+      lastlocation = this.scheduleArray[i].destination;
+      lastindex = i;
     }
   }
   if (!location) { location = lastlocation; }
 
+  if (setIndex) { this.currentIndex = lastindex; }
   return location; 
 }
 
@@ -116,6 +120,14 @@ NPCActivity.prototype = new Object();
 function set_schedules() {
   var sched = '{"avery":{"scheduleArray":[{"params":{"destination":{"x":"7","y":"42"},"closeDoors":"1","startCondition":"Time","startTime":"6:00"},"type":"RouteTo"},{"params":{"destination":{"mapName":"naurglen","x":"7","y":"42"},"startCondition":"PreviousComplete"},"type":"ChangeMap"},{"params":{"destination":{"x":"11","y":"42"},"startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"AIName":"PlaceItem","params":"{name: \\"PlateWithFood\\", x:11,y:41}","startCondition":"PreviousComplete"},"type":"CallAI"},{"params":{"AIName":"DeleteItem","params":"{param: \\"last\\"}","startCondition":"Time","startTime":"7:00"},"type":"CallAI"},{"params":{"destination":{"x":"10","y":"39"},"startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"leashLength":"3","startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"destination":{"x":"13","y":"38"},"startCondition":"Time","startTime":"15:30"},"type":"RouteTo"},{"params":{"AIName":"PlayHarpsichord","params":"{}","startCondition":"PreviousComplete"},"type":"CallAI"},{"params":{"destination":{"x":"10","y":"39"},"startCondition":"Time","startTime":"16:00"},"type":"RouteTo"},{"params":{"leashLength":"3","startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"destination":{"x":"10","y":"39"},"startCondition":"Time","startTime":"18:30"},"type":"RouteTo"},{"params":{"AIName":"PlaceItem","params":"{name: \\"PlateWithFood\\", x:11,y:41}","startCondition":"PreviousComplete"},"type":"CallAI"},{"params":{"AIName":"DeleteItem","params":"{param:last}","startCondition":"Time","startTime":"19:00"},"type":"CallAI"},{"params":{"destination":{"x":"10","y":"39"},"startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"leashLength":"3","startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"destination":{"x":"7","y":"49"},"startCondition":"Time","startTime":"21:30"},"type":"RouteTo"},{"params":{"destination":{"mapName":"naurglen2","x":"7","y":"49"},"startCondition":"PreviousComplete"},"type":"ChangeMap"},{"params":{"destination":{"x":"7","y":"37"},"closeDoors":"1","startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"sleep":"1","leashLength":"0","startCondition":"PreviousComplete"},"type":"WaitHere"}],"currentIndex":0,"baseLocation":"Naurglen"}}';
 
-  DU.schedules = JSON.parse(sched);
+  var tmpschedules = JSON.parse(sched);
+
+  DU.schedules = {};
+  $.each(tmpschedules, function(idx,val) {
+    DU.schedules[idx] = new NPCSchedule();
+    DU.schedules[idx]["scheduleArray"] = val.scheduleArray;
+    DU.schedules[idx]["currentIndex"] = val.currentIndex;
+    DU.schedules[idx]["baseLocation"] = val.baseLocation;
+  });
 
 }
