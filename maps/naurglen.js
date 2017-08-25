@@ -480,7 +480,7 @@ mappages["naurglen"].npcs[13] = {name : 'ChickenNPC', x : 38, y : 15};
 mappages["naurglen"].npcs[14] = {name : 'ChickenNPC', x : 40, y : 14};
 mappages["naurglen"].npcs[15] = {name : 'ChickenNPC', x : 40, y : 17};
 mappages["naurglen"].npcs[16] = {name : 'TownsfolkVillagerNPC', x : 37, y : 23, NPCName: 'Derek', Conversation: 'derek', ConversationFlag: 'derek', Gender: 'male', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-mappages["naurglen"].npcs[17] = {name : 'TownsfolkVillagerNPC', x : 10, y : 39, NPCName: 'Avery', Conversation: 'avery', ConversationFlag: 'avery', Gender: 'male', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
+mappages["naurglen"].npcs[17] = {name : 'TownsfolkVillagerNPC', x : 10, y : 39, NPCName: 'Avery', PeaceAI: 'scheduled', Conversation: 'avery', ConversationFlag: 'avery', Gender: 'male', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["naurglen"].npcs[18] = {name : 'ChildVillagerNPC', x : 54, y : 14, NPCName: 'Amy', Conversation: 'amy', ConversationFlag: 'amy', Gender: 'female', Leash: 4, Bark: '0', NPCBand: '0'};
 
 mappages["naurglen"].desc = "Naurglen";
