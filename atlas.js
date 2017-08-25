@@ -1662,8 +1662,12 @@ GameMap.prototype.loadMap = function (name) {
   			  if (npckey === "BarkRad") { newnpc.setBarkRad(loadnpcs[npci].BarkRad); }
   			  if (npckey === "NPCBand") { newnpc.setNPCBand(loadnpcs[npci].NPCBand); }
   			  if (npckey === "OverrideGraphic") { newnpc.overrideGraphic = loadnpcs[npci].OverrideGraphic; }
-    		}
-    		this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
+        }
+        if (newnpc.getPeaceAI === "scheduled") {
+
+        } else {
+          this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
+        }
   	  }
     }
   }
