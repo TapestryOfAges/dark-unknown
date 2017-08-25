@@ -148,7 +148,7 @@ ProtoObject.prototype.copy = function(type) {
       });
       copydata[idx] = spawnserials;
       DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " <span style='color:lime'>saved as serials, serial# " + copydata[idx] + "</span>...</span>");
-    } else if ((idx === "equippedTo") || (idx === "attachedTo") || (idx === "spawnedBy")) {
+    } else if ((idx === "equippedTo") || (idx === "attachedTo") || (idx === "spawnedBy") || (idx === "linkedItem")) {
       if (val) {
         copydata[idx] = val.getSerial();
         DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " <span style='color:lime'>saved as serial, serial# " + copydata[idx] + "</span>...</span> ");

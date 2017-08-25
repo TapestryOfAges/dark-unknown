@@ -327,6 +327,9 @@ GameStateData.prototype.loadGame = function(idx) {
     if (val.equippedTo) {
       val.equippedTo = universe[val.equippedTo];
     }
+    if (val.linkedItem) {
+      val.linkedItem = universe[val.linkedItem];
+    }
     if (val.inventory && !val.inventory.container) {
       // if it has inventory.container, it's a Collection, which means it wasn't overwritten from the loaded game and so is empty
       DebugWrite("saveload", val.name + " has an inventory, processing...");
