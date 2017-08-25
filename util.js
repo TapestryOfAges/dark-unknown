@@ -343,8 +343,14 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	who.setHomeMap(tomap);
 	var tile = tomap.getTile(destx,desty);
   var oldtile = frommap.getTile(oldx,oldy);
-  	
-	// Remove unneeded maps from mapmemory
+
+  if (PC.getHomeMap() === frommap) {
+    DrawMainFrame("one",frommap,oldx,oldy);
+  } else if (PC.getHomeMap() === tomap) {
+    DrawMainFrame("one",tomap,destx,desty);    
+  }
+
+  // Remove unneeded maps from mapmemory
 	if (who === PC){
 	  spellcount = {};  // see magic.js, this prevents animations from continuing
   	var keepmap = frommap.getAlwaysRemember();
@@ -1594,12 +1600,17 @@ function SetSky() {
   }
 }
 
+function GetUsableClockTime() {
+  var clocktime = GetClockTime();
+  clocktime = clocktime[3] + ":" + clocktime[4];
+  return clocktime;
+}
+
 function CheckTimeBetween(time1,time2, clocktime) {
   var time1arr = time1.split(":");
   var time2arr = time2.split(":");
   if (!clocktime) {
-    clocktime = GetClockTime();
-    clocktime = clocktime[3] + ":" + clocktime[4];
+    clocktime = GetUsableClockTime();
   }
   var clockarr = clocktime.split(":");
   
