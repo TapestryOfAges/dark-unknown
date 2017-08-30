@@ -1,7 +1,9 @@
+"use strict;" 
+
 var maxserial = 0;
 var viewsizex = 13;
 var viewsizey = 13;
-var DAYNIGHT = DAY;
+var DAYNIGHT = "DAY";
 
 var wind = {};
 wind.xoff = 0;
@@ -243,7 +245,8 @@ QUnit.test( "Test ProcessPoI", function( assert ) {
   assert.deepEqual(score,2,"Went through second (path expired) codepath.");
   assert.deepEqual(testnpc.getDestination().x,36,"Path expired, looking at new PoI");
   assert.deepEqual(testnpc.getDestination().y,100,"Path expired, looking at new PoI");
-  assert.deepEqual(testnpc.getTurnsToRecalcDest(),30,"New duration");
+  assert.deepEqual(testnpc.getCurrentPath().length,47,"Path length for new path.");
+  assert.deepEqual(testnpc.getTurnsToRecalcDest(),(47*2/3),"New duration");
   assert.deepEqual(testnpc.getCurrentPath()[0][0],59,"First step is not E/W");
   assert.deepEqual(testnpc.getCurrentPath()[0][1],121,"First step is N/S");
   
