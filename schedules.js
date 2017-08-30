@@ -21,11 +21,11 @@ NPCSchedule.prototype.getNPCLocationByTime = function(time, setIndex) {
   var lastindex = 0;
 
   for (var i=0; i<this.scheduleArray.length; i++) {
-    if ((this.scheduleArray[i].type === "RouteTo") && (this.scheduleArray[i].startCondition === "Time")) {
-      var schtime = this.scheduleArray[i].startTime.split(":");
-      var comptime = schtime[0]*comptime[1];
-      if (comptime < time) { location = scheduleArray[i].destination; }
-      lastlocation = this.scheduleArray[i].destination;
+    if ((this.scheduleArray[i].type === "RouteTo") && (this.scheduleArray[i].params.startCondition === "Time")) {
+      var schtime = this.scheduleArray[i].params.startTime.split(":");
+      var comptime = schtime[0]*schtime[1];
+      if (comptime < time) { location = this.scheduleArray[i].params.destination; }
+      lastlocation = this.scheduleArray[i].params.destination;
       lastindex = i;
     }
   }
