@@ -172,7 +172,9 @@ Timeline.prototype.createDebugTimeline = function() {
   while (pointer) {
     var timestamp = pointer.getTimestamp();
     if (!timestamp) { timestamp = 0; }
-    tltable = tltable + "<td>" + timestamp.toFixed(5) + "<br />" + pointer.getEvent().getEntity().getName() + "<br />" + pointer.getEvent().getEntity().getSerial() + "</td>";
+		tltable = tltable + "<td>" + timestamp.toFixed(5) + "<br />" + pointer.getEvent().getEntity().getName();
+		if (typeof pointer.getEvent().getEntity().getNPCName === "function") { tltable = tltable + " (" + pointer.getEvent().getEntity().getNPCName() + ")"; }
+		tltable = tltable + "<br />" + pointer.getEvent().getEntity().getSerial() + "</td>";
     pointer = pointer.nexttick;
   }
   tltable = tltable + "</tr></table><br />";
