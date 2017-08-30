@@ -12845,14 +12845,12 @@ NPCObject.prototype.myTurn = function() {
   if (!maps.getMap(this.getHomeMap().getName())) {
     // removing from timeline, its map is gone
 
-//    if (debug && debugflags.gameobj) { dbs.writeln("<span style='color:green;font-weight:orange'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone.</span><br />"); }
     DebugWrite("gameobj", "<span style='font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone.</span><br />");
   
     return 1;
   }
 
   if (this.expiresTime && (this.expiresTime > DUTime.getGameClock())) {
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:green;font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " expired, removing itself.</span><br />"); }
     DebugWrite("gameobj", "<span style='font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " expired, removing itself.</span><br />");
     this.getHomeMap().deleteThing(this);
     
@@ -12862,7 +12860,6 @@ NPCObject.prototype.myTurn = function() {
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
 
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock() + ".</span><br />"); }	
 	RunEffects(this);
 	
 	Regen(this);
@@ -12886,15 +12883,16 @@ NPCObject.prototype.myTurn = function() {
   var response = {};  
   // will be = return value of AI call
   
-	// actual AI!
+  // actual AI!
   if (awake) {	
-  	var ainame=this.getCurrentAI().split("-");
+    var ainame=this.getCurrentAI().split("-");
     if (this.getAggro() && ((this.getAttitude() === "friendly") || (this.getAttitude() === "hostile") || (this.getAttitude() === "neutral"))) {
       ainame[0] = "combat";
     }
-    
+
     if (ais[ainame[0]]) {
-	    if (ainame.length === 1) { ainame[1] = ""; }
+      if (ainame.length === 1) { ainame[1] = ""; }
+      if (this.getNPCName() === "Avery"){ alert(ainame[0]); }
 	    response = ais[ainame[0]](this, ainame[1]);
 	  }
 	  if (typeof response.initdelay === 'undefined') {
