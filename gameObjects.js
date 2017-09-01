@@ -1147,6 +1147,7 @@ function IsWet(tile) {
 function InanimateObject() {
   this.initdelay = 1;  // multiplicative
   this.pathweight = 0; // additive
+  this.civilizedpathweight = 0; // additive, more to keep npcs on roads/paths
   this.walkonscript = "";
   this.usescript = "";
   this.peerview = "";
@@ -1210,12 +1211,14 @@ InanimateObject.prototype.setInitDelay = function(newdelay) {
 	return this.initdelay;
 }
 
-InanimateObject.prototype.getPathWeight = function() {
-	return this.pathweight;
+InanimateObject.prototype.getPathWeight = function(civ) {
+  if (civ) { return this.civilizedpathweight; }
+  return this.pathweight;
 }
 
-InanimateObject.prototype.setPathWeight = function(neww) {
-	this.pathweight = neww;
+InanimateObject.prototype.setPathWeight = function(neww, civ) {
+  if (civ) { this.civilizedpathweight = neww; return this.civilizedpathweight; }
+  this.pathweight = neww;
 	return this.pathweight;
 }
 
@@ -2291,7 +2294,7 @@ function CobblestoneTile() {
   this.desc = "cobblestones";
   this.peerview = "#800000";
   this.walkSound = "stone";
-  this.pathweight = -.8;
+  this.civilizedpathweight = -.8;
 }
 CobblestoneTile.prototype = new TerrainObject();
 
@@ -2423,7 +2426,8 @@ function RoadTile() {
   this.peerview = "#7a3a1a";
   
   this.initdelay = 0.8;
-  this.pathweight = -.8;
+  this.pathweight = -.2;
+  this.civilizedpathweight = -.5;
   this.walkSound = "grass";
   
   SetBySurroundRoad.call(this);
@@ -2707,7 +2711,7 @@ function PurpleCobblestoneTile() {
   this.desc = "cobblestones";
   this.peerview = "#600060";
   this.walkSound = "stone";
-  this.pathweight = -.8;
+  this.civilizedpathweight = -.8;
 }
 PurpleCobblestoneTile.prototype = new TerrainObject();
 
@@ -2722,7 +2726,7 @@ function ShadowPurpleCobblestoneTile() {
   this.desc = "cobblestones";
   this.peerview = "#602300";
   this.walkSound = "stone";
-  this.pathweight = -.8;
+  this.civilizedpathweight = -.8;
 }
 ShadowPurpleCobblestoneTile.prototype = new TerrainObject();
 
