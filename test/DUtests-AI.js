@@ -245,8 +245,8 @@ QUnit.test( "Test ProcessPoI", function( assert ) {
   assert.deepEqual(score,2,"Went through second (path expired) codepath.");
   assert.deepEqual(testnpc.getDestination().x,36,"Path expired, looking at new PoI");
   assert.deepEqual(testnpc.getDestination().y,100,"Path expired, looking at new PoI");
-  assert.deepEqual(testnpc.getCurrentPath().length,47,"Path length for new path.");
-  assert.deepEqual(testnpc.getTurnsToRecalcDest(),(47*2/3),"New duration");
+  assert.deepEqual(testnpc.getCurrentPath().length,45,"Path length for new path.");
+  assert.deepEqual(testnpc.getTurnsToRecalcDest(),(45*2/3),"New duration");
   assert.deepEqual(testnpc.getCurrentPath()[0][0],59,"First step is not E/W");
   assert.deepEqual(testnpc.getCurrentPath()[0][1],121,"First step is N/S");
   
@@ -366,6 +366,7 @@ QUnit.test( "Test Surface Follow Path", function( assert ) {
   Dice.roll = function() { return 0; }
 
   retval = ais.SurfaceFollowPath(testnpc3,25,3);
+  alert(JSON.stringify(testnpc3.getCurrentPath()));
   assert.deepEqual(retval["fin"],1,"Outside soft, inside hard; retval = 1");
   assert.deepEqual(retval["canmove"],0,"Outside soft, inside hard; canmove=0");
   assert.deepEqual(testnpc3.getCurrentPath()[0][0],33, "Next step is back towards spawner: x=33.");
