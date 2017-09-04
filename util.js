@@ -1,7 +1,5 @@
 "use strict";
 
-/* TEST COMMENT */
-
 function CreateDisplayTables() {
   var terraintable = "<table id='mainterrainview' style='position:fixed; top:38px; left:19px; z-index:21' border='0' cellspacing='0' cellpadding='0'>";
   var maintable = "<table id='mainview' style='position:fixed; top:38px; left:19px; z-index:22' border='0' cellspacing='0' cellpadding='0'>";
