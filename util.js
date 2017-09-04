@@ -343,14 +343,8 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	who.setHomeMap(tomap);
 	var tile = tomap.getTile(destx,desty);
   var oldtile = frommap.getTile(oldx,oldy);
-
-  if (PC.getHomeMap() === frommap) {
-    DrawMainFrame("one",frommap,oldx,oldy);
-  } else if (PC.getHomeMap() === tomap) {
-    DrawMainFrame("one",tomap,destx,desty);    
-  }
-
-  // Remove unneeded maps from mapmemory
+  	
+	// Remove unneeded maps from mapmemory
 	if (who === PC){
 	  spellcount = {};  // see magic.js, this prevents animations from continuing
   	var keepmap = frommap.getAlwaysRemember();
@@ -1336,14 +1330,18 @@ function FindNearby(what,map,radius,shape,tox,toy) {
 function FindNearestNPC(from, align, except) {
   if (!except) { except = []; }
   var found = from.getHomeMap().npcs.getAll();
-  if (PC.getHomeMap() === from.getHomeMap()) { found.push(PC); }
+  if (PC.getHomeMap() === from.getHomeMap()) { 
+    if (!align || ((align === "enemy") && (from.getAttitude() !== PC.getAttitude())) || ((align === "ally") && (from.getAttitude() === PC.getAttitude()))) {
+      found.push(PC); 
+    }
+  }
   var nearest;
   var distance = 10000;
   $.each(found, function(idx,val) {
     if ((val !== from) && ($.inArray(val,except) === -1)) {
       if (!align || ((align === "enemy") && (from.getAttitude() !== val.getAttitude())) || ((align === "ally") && (from.getAttitude() === val.getAttitude()))) {
         var movetype = from.getMovetype();
-        if (from.specials.open_door) { movetype += MOVE_WALK_DOOR; }
+        if (from.specials.open_door) { movetype = MOVE_WALK_DOOR; }
         var dist = GetDistanceByPath(from,val,movetype);
         if (dist < distance) {
           nearest = val;
@@ -1600,12 +1598,6 @@ function SetSky() {
   }
 }
 
-function GetUsableClockTime() {
-  var clocktime = GetClockTime();
-  clocktime = clocktime[3] + ":" + clocktime[4];
-  return clocktime;
-}
-
 function CheckTimeBetween(time1,time2, clocktime) {
   var time1arr = time1.split(":");
   var time2arr = time2.split(":");
@@ -1631,6 +1623,13 @@ function CheckTimeBetween(time1,time2, clocktime) {
   }
 }
 
+function GetUsableClockTime() {
+  var clocktime = GetClockTime();
+  clocktime = clocktime[3] + ":" + clocktime[4];
+  return clocktime;
+}
+
+// Is time1 after time2
 function CheckTimeAfterTime(time1,time2) {
   var time2arr = time2.split(":");
   var time3hr = time2[0] + 12;
