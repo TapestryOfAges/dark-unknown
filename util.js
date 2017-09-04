@@ -343,7 +343,13 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	who.setHomeMap(tomap);
 	var tile = tomap.getTile(destx,desty);
   var oldtile = frommap.getTile(oldx,oldy);
-  	
+    
+  if (PC.getHomeMap() === frommap) {
+    DrawMainFrame("one",frommap,oldx,oldy);
+  } else if (PC.getHomeMap() === tomap) {
+    DrawMainFrame("one",tomap,destx,desty);
+  }
+  
 	// Remove unneeded maps from mapmemory
 	if (who === PC){
 	  spellcount = {};  // see magic.js, this prevents animations from continuing
