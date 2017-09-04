@@ -366,11 +366,10 @@ QUnit.test( "Test Surface Follow Path", function( assert ) {
   Dice.roll = function() { return 0; }
 
   retval = ais.SurfaceFollowPath(testnpc3,25,3);
-  alert(JSON.stringify(testnpc3.getCurrentPath()));
   assert.deepEqual(retval["fin"],1,"Outside soft, inside hard; retval = 1");
   assert.deepEqual(retval["canmove"],0,"Outside soft, inside hard; canmove=0");
-  assert.deepEqual(testnpc3.getCurrentPath()[0][0],33, "Next step is back towards spawner: x=33.");
-  assert.deepEqual(testnpc3.getCurrentPath()[0][1],122, "Next step is back towards spawner: y=122.");
+  assert.deepEqual(testnpc3.getCurrentPath()[0][0],32, "Next step is back towards spawner: x=32.");
+  assert.deepEqual(testnpc3.getCurrentPath()[0][1],121, "Next step is back towards spawner: y=121.");
   assert.deepEqual(testnpc3.getDestination().x,57, "Destination is x=57.");
   assert.deepEqual(testnpc3.getDestination().y,120, "Destination is y=120.");
   assert.deepEqual(testnpc3.getTurnsToRecalcDest(),13,"13 turns back towards the spawner.");
@@ -385,9 +384,9 @@ QUnit.test( "Test Surface Follow Path", function( assert ) {
   retval = ais.SurfaceFollowPath(testnpc3,25,3);
   assert.deepEqual(retval["fin"],1,"Outside soft, inside hard; retval = 1");
   assert.deepEqual(retval["canmove"],1,"Chasing PC, can still go outside soft leash.");
-  assert.deepEqual(debugtxt[1], "Check path distance? My location: 32, 122, next step is: 32, 121.<br />", "Checking debugtxt");
-  assert.deepEqual(testnpc3.getx(),32,"Moved north.");    
-  assert.deepEqual(testnpc3.gety(),121,"Moved north.");    
+  assert.deepEqual(debugtxt[1], "Check path distance? My location: 32, 122, next step is: 31, 122.<br />", "Checking debugtxt");
+  assert.deepEqual(testnpc3.getx(),31,"Moved west.");    
+  assert.deepEqual(testnpc3.gety(),122,"Moved west.");    
   
   // Still should test bumping into another NPC
   
