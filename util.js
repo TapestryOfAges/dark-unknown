@@ -1631,7 +1631,9 @@ function CheckTimeBetween(time1,time2, clocktime) {
 
 function GetUsableClockTime() {
   var clocktime = GetClockTime();
-  clocktime = clocktime[3] + ":" + clocktime[4];
+  var min = clocktime[4];
+  if (min < 10) { min = "0" + min; }
+  clocktime = clocktime[3] + ":" + min;
   return clocktime;
 }
 
