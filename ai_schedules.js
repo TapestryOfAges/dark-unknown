@@ -31,6 +31,7 @@ ais.scheduled = function(who) {
       }
     }
     if (who.flags.activityComplete) {
+      console.log("Next activity due to activity complete.");
       who.setCurrentScheduleIndex(nextidx);
       delete who.flags.activityComplete;
     }
@@ -96,7 +97,7 @@ function CheckNPCBark(who,nowactivity) {
 ais.RouteTo = function(who, params) {
   DebugWrite("ai", "In scheduled ai: RouteTo.");
 
-  if (params.closeDoors && (who.flags.closedoor.steps = 3)) {
+  if (params.closeDoors && (who.flags.closedoor) && (who.flags.closedoor.steps === 3)) {
     var fea = who.getHomeMap().getTile(who.flags.closedoor.x,who.flags.closedoor.y).getTopFeature();
     if (fea.closedgraphic) {
       if (fea.open) {  // door hasn't been closed already
@@ -115,16 +116,19 @@ ais.RouteTo = function(who, params) {
     }
   }
 
-  var path = whomap.getPath(who.getx(),who.gety(),params.destination.x,params.destination.y,who.getMovetype());
+  var movetype = who.getMovetype();
+  if ((movetype === MOVE_WALK) && (who.specials["open_door"])) { movetype = MOVE_WALK_DOOR; }
+  var path = who.getHomeMap().getPath(who.getx(),who.gety(),params.destination.x,params.destination.y,movetype);
   path.shift();
   var moved = StepOrSidestep(who,path[0],[params.destination.x, params.destination.y]);
-  if (moved[opendoor]) {
+  if (moved["opendoor"]) {
+    who.flags.closedoor = {};
     who.flags.closedoor.steps = 1;
     who.flags.closedoor.x = path[0][0];
     who.flags.closedoor.y = path[0][1];
-  }
+  } else if (who.flags.closedoor && who.flags.closedoor.steps) { who.flags.closedoor.steps++; }
 
-  if ((who.getx() === params.destination.x) && (who.gety() === params.destination.y)) {
+  if ((who.getx() === parseInt(params.destination.x)) && (who.gety() === parseInt(params.destination.y))) {
     who.flags.activityComplete = 1;
     DebugWrite("ai", "Arrived at destination, setting activityComplete.");
   }
@@ -132,6 +136,8 @@ ais.RouteTo = function(who, params) {
 }
 
 ais.WaitHere = function(who,params) {
+  var retval = {};
+  retval["fin"] = 1;
   var whomap = who.getHomeMap();
   DebugWrite("ai", "In WaitHere.");
   if (params.sleep) { who.flags.sleep = 1; DebugWrite("ai", "ZZzzzz."); }
@@ -160,6 +166,7 @@ ais.WaitHere = function(who,params) {
               DrawMainFrame("draw",whomap,PC.getx(),PC.gety());
             }             
             delete who.flags.closingResponsibleDoor;
+            return retval;
           } else {
             DebugWrite("ai", "Approaching the door.");            
             var path = whomap.getPath(who.getx(), who.gety(), params.responsibleFor[door].x, params.responsibleFor[door].y,MOVE_WALK_DOOR);
@@ -171,6 +178,7 @@ ais.WaitHere = function(who,params) {
               path.shift();
               StepOrSidestep(who, path[0], [params.responsibleFor[door].x, params.responsibleFor[door].y]);
               DebugWrite("ai", "Moved towards the door.");
+              return retval;
             }
           }
         } else {
@@ -203,7 +211,7 @@ ais.WaitHere = function(who,params) {
     }
   }
 
-  return;
+  return retval;
 }
 
 ais.LeaveMap = function(who,params) {
@@ -213,18 +221,26 @@ ais.LeaveMap = function(who,params) {
   DrawMainFrame("one",themap,whox,whoy); 
   DebugWrite('ai', "I have left the map.");
   DUTime.removeEntityFrom(who);  
-  return;
+
+  var retval = {};
+  retval["fin"] = 1;
+  return retval;
 }
 
 ais.ChangeMap = function(who,params) {
-  var desttile = MoveBetweenMaps(who,who.getHomeMap(),params.destination.mapName,params.destination.x,params.destination.y);
+  var destmap = maps.getMap(params.destination.mapName);
+  if (!destmap) { alert("Failure to find map " + params.destination.mapName); }
+  var desttile = MoveBetweenMaps(who,who.getHomeMap(),destmap,params.destination.x,params.destination.y);
   if (desttile) {
     who.flags.activityComplete = 1;
     DebugWrite("ai", "Changed maps.");
   } else {
     DebugWrite("ai", "Failed to change maps. Will try again next turn.");
   }
-  return;
+
+  var retval = {};
+  retval["fin"] = 1;
+  return retval;
 }
 
 ais.CallAI = function(who,params) {
