@@ -2884,7 +2884,6 @@ CaveWallTile.prototype = new TerrainObject();
 
 function HexFloorTile() {
 	this.name = "HexFloor";
-//	this.graphic = "hexfloor.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-224";
@@ -2898,7 +2897,9 @@ HexFloorTile.prototype = new TerrainObject();
 
 function HexTransparentFloorTile() {
 	this.name = "HexTransparentFloor";
-  this.graphic = "hex-transparent.gif";
+  this.graphic = "terrain_tiles.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-288";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
@@ -3027,9 +3028,9 @@ LavaTubeTile.prototype = new TerrainObject();
 
 function RedCarpetNWTile() {
   this.name = "RedCarpetNW";
-  this.graphic = "red-carpet.gif";
-	this.spritexoffset = "0";
-	this.spriteyoffset = "0";
+  this.graphic = "terrain_tiles.png";
+	this.spritexoffset = "-96";
+	this.spriteyoffset = "-32";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3040,9 +3041,9 @@ RedCarpetNWTile.prototype = new TerrainObject();
 
 function RedCarpetNTile() {
   this.name = "RedCarpetN";
-  this.graphic = "red-carpet.gif";
-	this.spritexoffset = "-32";
-	this.spriteyoffset = "0";
+  this.graphic = "terrain_tiles.png";
+	this.spritexoffset = "-128";
+	this.spriteyoffset = "-32";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3053,9 +3054,9 @@ RedCarpetNTile.prototype = new TerrainObject();
 
 function RedCarpetNETile() {
   this.name = "RedCarpetNE";
-  this.graphic = "red-carpet.gif";
-	this.spritexoffset = "-64";
-	this.spriteyoffset = "0";
+  this.graphic = "terrain_tiles.png";
+	this.spritexoffset = "-160";
+	this.spriteyoffset = "-32";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3066,9 +3067,9 @@ RedCarpetNETile.prototype = new TerrainObject();
 
 function RedCarpetWTile() {
   this.name = "RedCarpetW";
-  this.graphic = "red-carpet.gif";
-	this.spritexoffset = "0";
-	this.spriteyoffset = "-32";
+  this.graphic = "terrain_tiles.png";
+	this.spritexoffset = "-96";
+	this.spriteyoffset = "-64";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3079,9 +3080,9 @@ RedCarpetWTile.prototype = new TerrainObject();
 
 function RedCarpetCTile() {
   this.name = "RedCarpetC";
-  this.graphic = "red-carpet.gif";
-	this.spritexoffset = "-32";
-	this.spriteyoffset = "-32";
+  this.graphic = "terrain_tiles.png";
+	this.spritexoffset = "-128";
+	this.spriteyoffset = "-64";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3092,9 +3093,9 @@ RedCarpetCTile.prototype = new TerrainObject();
 
 function RedCarpetETile() {
   this.name = "RedCarpetE";
-  this.graphic = "red-carpet.gif";
-	this.spritexoffset = "-64";
-	this.spriteyoffset = "-32";
+  this.graphic = "terrain_tiles.png";
+	this.spritexoffset = "-160";
+	this.spriteyoffset = "-64";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3105,9 +3106,9 @@ RedCarpetETile.prototype = new TerrainObject();
 
 function RedCarpetSWTile() {
   this.name = "RedCarpetSW";
-  this.graphic = "red-carpet.gif";
-	this.spritexoffset = "0";
-	this.spriteyoffset = "-64";
+  this.graphic = "terrain_tiles.png";
+	this.spritexoffset = "-96";
+	this.spriteyoffset = "-96";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3118,9 +3119,9 @@ RedCarpetSWTile.prototype = new TerrainObject();
 
 function RedCarpetSTile() {
   this.name = "RedCarpetS";
-  this.graphic = "red-carpet.gif";
-	this.spritexoffset = "-32";
-	this.spriteyoffset = "-64";
+  this.graphic = "terrain_tiles.png";
+	this.spritexoffset = "-128";
+	this.spriteyoffset = "-96";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3131,9 +3132,9 @@ RedCarpetSTile.prototype = new TerrainObject();
 
 function RedCarpetSETile() {
   this.name = "RedCarpetSE";
-  this.graphic = "red-carpet.gif";
-	this.spritexoffset = "-64";
-	this.spriteyoffset = "-64";
+  this.graphic = "terrain_tiles.png";
+	this.spritexoffset = "-160";
+	this.spriteyoffset = "-96";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3144,9 +3145,9 @@ RedCarpetSETile.prototype = new TerrainObject();
 
 function BlueCarpetNWTile() {
   this.name = "BlueCarpetNW";
-  this.graphic = "blue-carpet.gif";
+  this.graphic = "terrain_tiles.png";
 	this.spritexoffset = "0";
-	this.spriteyoffset = "0";
+	this.spriteyoffset = "-32";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3157,9 +3158,9 @@ BlueCarpetNWTile.prototype = new TerrainObject();
 
 function BlueCarpetNTile() {
   this.name = "BlueCarpetN";
-  this.graphic = "blue-carpet.gif";
+  this.graphic = "terrain_tiles.png";
 	this.spritexoffset = "-32";
-	this.spriteyoffset = "0";
+	this.spriteyoffset = "-32";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3170,9 +3171,9 @@ BlueCarpetNTile.prototype = new TerrainObject();
 
 function BlueCarpetNETile() {
   this.name = "BlueCarpetNE";
-  this.graphic = "blue-carpet.gif";
+  this.graphic = "terrain_tiles.png";
 	this.spritexoffset = "-64";
-	this.spriteyoffset = "0";
+	this.spriteyoffset = "-32";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3183,9 +3184,9 @@ BlueCarpetNETile.prototype = new TerrainObject();
 
 function BlueCarpetWTile() {
   this.name = "BlueCarpetW";
-  this.graphic = "blue-carpet.gif";
+  this.graphic = "terrain_tiles.png";
 	this.spritexoffset = "0";
-	this.spriteyoffset = "-32";
+	this.spriteyoffset = "-64";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3196,9 +3197,9 @@ BlueCarpetWTile.prototype = new TerrainObject();
 
 function BlueCarpetCTile() {
   this.name = "BlueCarpetC";
-  this.graphic = "blue-carpet.gif";
+  this.graphic = "terrain_tiles.png";
 	this.spritexoffset = "-32";
-	this.spriteyoffset = "-32";
+	this.spriteyoffset = "-64";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3209,9 +3210,9 @@ BlueCarpetCTile.prototype = new TerrainObject();
 
 function BlueCarpetETile() {
   this.name = "BlueCarpetE";
-  this.graphic = "blue-carpet.gif";
+  this.graphic = "terrain_tiles.png";
 	this.spritexoffset = "-64";
-	this.spriteyoffset = "-32";
+	this.spriteyoffset = "-64";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3222,9 +3223,9 @@ BlueCarpetETile.prototype = new TerrainObject();
 
 function BlueCarpetSWTile() {
   this.name = "BlueCarpetSW";
-  this.graphic = "blue-carpet.gif";
+  this.graphic = "terrain_tiles.png";
 	this.spritexoffset = "0";
-	this.spriteyoffset = "-64";
+	this.spriteyoffset = "-96";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3235,9 +3236,9 @@ BlueCarpetSWTile.prototype = new TerrainObject();
 
 function BlueCarpetSTile() {
   this.name = "BlueCarpetS";
-  this.graphic = "blue-carpet.gif";
+  this.graphic = "terrain_tiles.png";
 	this.spritexoffset = "-32";
-	this.spriteyoffset = "-64";
+	this.spriteyoffset = "-96";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -3248,9 +3249,9 @@ BlueCarpetSTile.prototype = new TerrainObject();
 
 function BlueCarpetSETile() {
   this.name = "BlueCarpetSE";
-  this.graphic = "blue-carpet.gif";
+  this.graphic = "terrain_tiles.png";
 	this.spritexoffset = "-64";
-	this.spriteyoffset = "-64";
+	this.spriteyoffset = "-96";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -11696,7 +11697,8 @@ function NPCObject() {
 	this.aggro = 0;
 	this.npcband = 0;
 	this.wait;
-	this.xpval = 0;
+  this.xpval = 0;
+  this.flags = {};
 	
 	LightEmitting.call(this, 0);
 	
