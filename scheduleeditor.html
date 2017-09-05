@@ -66,6 +66,19 @@
 
       }
 
+      function del_sched() {
+        var thisconv = document.convform.picksched.value;
+        if (thisconv) {
+          var conf = confirm("Are you sure you want to delete this schedule?");
+          if (conf) {
+            delete DU.schedules[thisconv];
+            $("#mainbody").html(" ");
+          }
+        } else {
+          alert("No selected schedule.");
+        }
+      }
+
       function start_schedule() {
 
         if (!curr_place) { curr_place = prompt("Which location?"); }
