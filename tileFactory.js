@@ -278,6 +278,11 @@ tileFactory.prototype.makeSouthwestCoastTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSouthwestCoastSandTile = function() {
+  var newTile = new SouthwestCoastSandTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNorthwestCoastTile = function() {
   var newTile = new NorthwestCoastTile();
   return newTile;
@@ -290,6 +295,11 @@ tileFactory.prototype.makeNorthwestCoastSandTile = function() {
 
 tileFactory.prototype.makeSoutheastCoastTile = function() {
   var newTile = new SoutheastCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSoutheastCoastSandTile = function() {
+  var newTile = new SoutheastCoastSandTile();
   return newTile;
 }
 
@@ -2193,8 +2203,8 @@ tileFactory.prototype.makeBrownPotionTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeScrollAwakenTile = function() {
-  var newTile = new ScrollAwakenTile();
+tileFactory.prototype.makeScrollAudachtaScribeTile = function() {
+  var newTile = new ScrollAudachtaScribeTile();
   return newTile;
 }
 
@@ -2415,11 +2425,6 @@ tileFactory.prototype.makeScrollConjureDaemonTile = function() {
 
 tileFactory.prototype.makeScrollTimeStopTile = function() {
   var newTile = new ScrollTimeStopTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeAudachtaNemesosAwakenTile = function() {
-  var newTile = new AudachtaNemesosAwakenTile();
   return newTile;
 }
 
