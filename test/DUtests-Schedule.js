@@ -130,8 +130,33 @@ QUnit.test( "Test randomwalk", function( assert ) {
   assert.deepEqual(mage.getx(),9,"Moved east.");
   assert.deepEqual(mage.flags.activityComplete,1,"Activity complete");
 
-  Dice.roll = function() { return 10; }
+  Dice.roll = function() { return 2; }
   
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),9,"Randomly chose to wander north.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),8,"Randomly chose to wander north.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),7,"Randomly chose to wander north.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),6,"Randomly chose to wander north.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),7,"Returning from outside the leash.");
+
+  Dice.roll = function() { return 1; }
+
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),7,"Decided not to wander.");
+
+  door.use(mage);
+  assert.deepEqual(door.open,1,"Door is open for testing.");
+
+  
+
   maps.deleteMap("unittest");
   maps.deleteMap("unittest2");
 });
