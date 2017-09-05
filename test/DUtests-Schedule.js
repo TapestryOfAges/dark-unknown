@@ -55,15 +55,16 @@ var whoseturn;
 function DrawMainFrame() { }
 function DrawCharFrame() {}
 function ShowEffect(onwhat, duration, graphic, xoff, yoff) {}
+
+var maps = new MapMemory();
   
 QUnit.test( "Test randomwalk", function( assert ) {
-  var maps = new MapMemory();
   maps.addMap("unittest");
   var testmap = maps.getMap("unittest");
   maps.addMap("unittest2");
   var testmap1 = maps.getMap("unittest2");
 
-  var sched = '{"avery":{"scheduleArray":[{"params":{"destination":{"x":"7","y":"42"},"closeDoors":"1","startCondition":"Time","startTime":"6:00"},"type":"RouteTo"},{"params":{"destination":{"mapName":"naurglen","x":"7","y":"42"},"startCondition":"PreviousComplete"},"type":"ChangeMap"},{"params":{"destination":{"x":"11","y":"42"},"startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"AIName":"PlaceItem","params":"{name: \\"PlateWithFood\\", x:11,y:41}","startCondition":"PreviousComplete"},"type":"CallAI"},{"params":{"AIName":"DeleteItem","params":"{param: \\"last\\"}","startCondition":"Time","startTime":"7:00"},"type":"CallAI"},{"params":{"destination":{"x":"10","y":"39"},"startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"leashLength":"3","startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"destination":{"x":"13","y":"38"},"startCondition":"Time","startTime":"15:30"},"type":"RouteTo"},{"params":{"AIName":"PlayHarpsichord","params":"{}","startCondition":"PreviousComplete"},"type":"CallAI"},{"params":{"destination":{"x":"10","y":"39"},"startCondition":"Time","startTime":"16:00"},"type":"RouteTo"},{"params":{"leashLength":"3","startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"destination":{"x":"10","y":"39"},"startCondition":"Time","startTime":"18:30"},"type":"RouteTo"},{"params":{"AIName":"PlaceItem","params":"{name: \\"PlateWithFood\\", x:11,y:41}","startCondition":"PreviousComplete"},"type":"CallAI"},{"params":{"AIName":"DeleteItem","params":"{param:last}","startCondition":"Time","startTime":"19:00"},"type":"CallAI"},{"params":{"destination":{"x":"10","y":"39"},"startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"leashLength":"3","startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"destination":{"x":"7","y":"49"},"startCondition":"Time","startTime":"21:30"},"type":"RouteTo"},{"params":{"destination":{"mapName":"naurglen2","x":"7","y":"49"},"startCondition":"PreviousComplete"},"type":"ChangeMap"},{"params":{"destination":{"x":"7","y":"37"},"closeDoors":"1","startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"sleep":"1","leashLength":"0","startCondition":"PreviousComplete"},"type":"WaitHere"}],"baseLocation":"Naurglen","currentIndex":0},"testmage":{"scheduleArray":[{"params":{"destination":{"x":"8","y":"6"},"startCondition":"Time","startTime":"9:00"},"type":"RouteTo"},{"params":{"destination":{"mapName":"unittest2","x":"3","y":"10"},"startCondition":"PreviousComplete"},"type":"ChangeMap"},{"params":{"destination":{"x":"9","y":"10"},"closeDoors":"1","startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"leashLength":"3","responsibleFor":"\\"6,10\\"","startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"AIName":"PlaceItem","params":"name: \\"RedPotion\\", x: 3, y:3","startCondition":"Time","startTime":"9:30"},"type":"CallAI"}],"baseLocation":"unittest","currentIndex":0}}';  
+  var sched = '{"testmage":{"scheduleArray":[{"params":{"destination":{"x":"8","y":"6"},"startCondition":"Time","startTime":"9:00"},"type":"RouteTo"},{"params":{"destination":{"mapName":"unittest2","x":"3","y":"10"},"startCondition":"PreviousComplete"},"type":"ChangeMap"},{"params":{"destination":{"x":"9","y":"10"},"closeDoors":"1","startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"leashLength":"3","responsibleFor":"\\"6,10\\"","startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"AIName":"PlaceItem","params":"name: \\"RedPotion\\", x: 3, y:3","startCondition":"Time","startTime":"11:30"},"type":"CallAI"}],"baseLocation":"unittest","currentIndex":0}}';  
   
   var tmpschedules = JSON.parse(sched);
   
@@ -79,13 +80,59 @@ QUnit.test( "Test randomwalk", function( assert ) {
   testmap.placeThing(8,10,mage);
   mage.setPeaceAI("scheduled");
   mage.setCurrentAI("scheduled");
+  mage.schedule="testmage";
   
-  DUTime = 24;
-  assert.deepEqual(GetUsableClockTime(), "9:02", "Clock should be set to 9:02.");
- 
+  DUTime.setGameClock(25);
+  assert.deepEqual(GetUsableClockTime(), "11:05", "Clock should be set to 11:05.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),9, "Moved north.");
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),8, "Moved north.");
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),7, "Moved north.");
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),6, "Moved north.");
+  assert.deepEqual(mage.getx(),8, "Still at x=8.");
+  assert.deepEqual(mage.flags.activityComplete,1,"Activity complete");
+
+  assert.deepEqual(mage.getHomeMap().getName(),"unittest", "On map unittest.");
+  mage.myTurn();
+  assert.deepEqual(mage.getHomeMap().getName(),"unittest2", "On map unittest2 (moved due to schedule).");
+  assert.deepEqual(mage.getx(),3,"new x=3");
+  assert.deepEqual(mage.gety(),10,"new y=10");
+
+  var door = mage.getHomeMap().getTile(6,10).getTopFeature();
+  mage.myTurn();
+  assert.deepEqual(mage.getx(),4,"Moved east.");
+  assert.deepEqual(mage.flags.activityComplete,undefined,"Activity complete deleted.");
+  mage.myTurn();
+  assert.deepEqual(mage.getx(),5,"Moved east.");
+  assert.deepEqual(door.open,0,"Door is closed.");
+  mage.myTurn();
+  assert.deepEqual(mage.getx(),5,"Opened the door.");
+  assert.deepEqual(door.open,1,"Door is open.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.getx(),6,"Moved east.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.getx(),7,"Moved east.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.getx(),7,"Closed the door.");
+  assert.deepEqual(door.open,0,"Door is closed.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.getx(),8,"Moved east.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.getx(),9,"Moved east.");
+  assert.deepEqual(mage.flags.activityComplete,1,"Activity complete");
+
   Dice.roll = function() { return 10; }
   
-  maps.delete("unittest");
+  maps.deleteMap("unittest");
   maps.deleteMap("unittest2");
 });
 
