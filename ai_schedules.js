@@ -143,8 +143,8 @@ ais.WaitHere = function(who,params) {
   if (params.sleep) { who.flags.sleep = 1; DebugWrite("ai", "ZZzzzz."); }
   else {
     if (params.responsibleFor) {
-      if (who.flags.closingResponsibleDoor >= 0) {
-        for (var i=0;i<params.responsibeFor.length;i++) {
+      if (!who.flags.closingResponsibleDoor) {
+        for (var i=0;i<params.responsibleFor.length;i++) {
           var fea = who.getHomeMap().getTile(params.responsibleFor[i].x,params.responsibleFor[i].y).getTopFeature();
           if (fea.open) {
             if (RollDice("1d5") === 1) { 
@@ -201,7 +201,7 @@ ais.WaitHere = function(who,params) {
         }
       } else {
         // I am permitted to wander
-        if (RollDice("1d2") === 2) {
+        if (Dice.roll("1d2") === 2) {
           var moveval = ais.Randomwalk(who,25,25,25,25);
           DebugWrite("ai", "Wander wander wander.");
         } else {
