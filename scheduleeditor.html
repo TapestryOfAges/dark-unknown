@@ -106,7 +106,7 @@
         } else if (activityname === "WaitHere") {
           $("#activityparams").append("Sleep [Opt]: <select name='sleep' id='sleep'><option value=''></option><option value='1'>Yes</option></select><br />");
           $("#activityparams").append("Leash Length: <input type='text' name='leash_length' id='leash_length' size='3' /><br />");
-          $("#activityparams").append("Responsible For [Opt]: <input type='text' name='responsible_for' id='responsible_for' size='20' /><br />(Enter in array format: (\"20,11\",\"17,14\"), etc.)<br />");
+          $("#activityparams").append("Responsible For [Opt]: <input type='text' name='responsible_for' id='responsible_for' size='20' /><br />(Enter in coord format: \"(20,11),(17,14)\", etc.)<br />");
         } else if (activityname === "ChangeMap") {
           $("#activityparams").append("Destination: Map Name: <input type='text' name='destmapname' id='destmapname' size='10' /> x: <input type='text' name='destmapx' id='destmapx' size='2' /> y: <input type='text' name='destmapy' id='destmapy' size='2' /><br />");
         } else if (activityname === "CallAI") {
@@ -200,7 +200,17 @@
             params.leashLength = 0;
           }
           if ($("#responsible_for").val()) {
-            params.responsibleFor = $("#responsible_for").val();
+            var responsibilities = $("#responsible_for").val();
+            responsibilities.replace(/ /g,"");
+            var response = responsibilities.split("),(");
+            responsibilities = [];
+            for (var i=0; i<response.length; i++) {
+              response[i].replace(/\(/g, "");
+              response[i].replace(/\)/g, "");
+              var coords = response[i].split(",");
+              responsibilities.push({x: coords[0], y: coords[1]});
+            }
+            params.responsibleFor = responsibilities;
           }
         }
 
@@ -276,6 +286,12 @@
                   txt = txt + idx + " : " + val.mapName + " (" + val.x + "," + val.y + ")";
                 } else {
                   txt = txt + idx + " : (" + val.x + "," + val.y + ")";
+                }
+              } else if (idx === "responsibleFor") {
+                txt = txt + idx + " : ";
+                for (var i=0; i<val.length; i++) {
+                  if (i>0) { txt = txt + ","; } 
+                  txt = txt + "(" + val[i].x + "," + val[i].y + ")";
                 }
               } else {
                 txt = txt + idx + " : " + val;
