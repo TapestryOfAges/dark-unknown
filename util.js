@@ -202,31 +202,40 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
   var showGraphic = graphics[0];
   if ((typeof displaytile.setBySurround === "function") && ((losresult < LOS_THRESHOLD) || ev)) {
    	graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
-    showGraphic = graphics[0];
-    if (typeof displaytile.doTile === "function") {
-      showGraphic = displaytile.doTile(x,y,showGraphic);
-    }
-    displayCell.showGraphic = showGraphic;
+    displayCell.showGraphic = graphics[0];
     displayCell.graphics2 = graphics[2];
     displayCell.graphics3 = graphics[3];
     displayCell.graphics1 = graphics[1];
+    if (typeof displaytile.doTile === "function") {
+      showGraphic = displaytile.doTile(x,y,graphics[0]);
+      if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
+      if (showGraphic.spritexoffset) { 
+        displayCell.graphics2 = showGraphic.spritexoffset;
+        displayCell.graphics3 = showGraphic.spriteyoffset;
+      }
+    }
     displayCell.losresult = losresult;
     displayCell.lighthere = lighthere;
     displayCell.desc = displaytile.getDesc();
   } else if ((losresult < LOS_THRESHOLD) || ((tp === 1) && isnpc) || ev) {
-    if (typeof displaytile.doTile === "function") {
-      showGraphic = displaytile.doTile(x,y,showGraphic);
-    }
-    if (typeof displaytile.setByBelow === "function") {
-      var setbelow = displaytile.setByBelow(x,y,mapname);
-      showGraphic = setbelow[0];
-      graphics[2] = setbelow[2];
-      graphics[3] = setbelow[3];
-    }
     displayCell.showGraphic = showGraphic;
     displayCell.graphics2 = graphics[2];
     displayCell.graphics3 = graphics[3];
     displayCell.graphics1 = graphics[1];
+    if (typeof displaytile.doTile === "function") {
+      showGraphic = displaytile.doTile(x,y,showGraphic);
+      if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
+      if (showGraphic.hasOwnProperty("spritexoffset")) { 
+        displayCell.graphics2 = showGraphic.spritexoffset;
+        displayCell.graphics3 = showGraphic.spriteyoffset;
+      }      
+    }
+    if (typeof displaytile.setByBelow === "function") {
+      var setbelow = displaytile.setByBelow(x,y,mapname);
+      displayCell.showGraphic = setbelow[0];
+      displayCell.graphics2 = setbelow[2];
+      displayCell.graphics3 = setbelow[3];
+    }
     displayCell.losresult = losresult;
     displayCell.lighthere = lighthere;
     displayCell.isnpc = isnpc;
@@ -280,14 +289,18 @@ function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
     showGraphic = graphics[0];
   }
 
-  if (typeof displaytile.doTile === "function") {
-    showGraphic = displaytile.doTile(xcoord,ycoord,showGraphic);
-  }
-
   displayCell.showGraphic = showGraphic;
   displayCell.graphics2 = graphics[2];
   displayCell.graphics3 = graphics[3];
   displayCell.graphics1 = graphics[1];
+  if (typeof displaytile.doTile === "function") {
+    showGraphic = displaytile.doTile(xcoord,ycoord,showGraphic);
+    if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
+    if (showGraphic.hasOwnProperty("spritexoffset")) { 
+      displayCell.graphics2 = showGraphic.spritexoffset;
+      displayCell.graphics3 = showGraphic.spriteyoffset;
+    }        
+  }
 
   return displayCell;
 

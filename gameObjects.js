@@ -127,7 +127,7 @@ ProtoObject.prototype.copy = function(type) {
       copydata.homeMap = val.getName();
       copydata.traceback.push("homeMap");
       DebugWrite("saveload", idx + " copied... ");
-    } else if ((idx === "resists") || (idx === "specials")) {
+    } else if ((idx === "resists") || (idx === "specials") || (idx === "flags")) {
       if ((typeof base_version[idx] === "object") && objectCompare(val, base_version[idx])) {
         DebugWrite("saveload", idx + " an object and the <span style='color:firebrick'>same, moving on</span>...  ");
       } else {
@@ -887,8 +887,20 @@ function Tiling(tileval) {
 		tilingx = (tilingx % tileval); 
 		tilingy = (tilingy % tileval);
 		var foo = tilegraphic.split('.');
-	  return(foo[0] + "-" + tilingy + tilingx + "." + foo[1]);
+	  return({graphic: foo[0] + "-" + tilingy + tilingx + "." + foo[1]});
 	}
+}
+
+// Abstract class Tiling-spritesheet
+function TilingSpritesheet(tileval) {
+  this.doTile = function(tilingx,tilingy,tilegraphic) {
+		tilingx = (tilingx % tileval)*32; 
+    tilingy = (tilingy % tileval)*32;
+    var tileme = {};
+    tileme.spritexoffset = parseInt(this.spritexoffset) - tilingx;
+    tileme.spriteyoffset = parseInt(this.spriteyoffset) - tilingy;
+    return tileme;
+  }
 }
 
 //Abstract class HasAmbientNoise
@@ -2890,7 +2902,9 @@ ShinglesTopTile.prototype = new TerrainObject();
 
 function CaveFloorTile() {
 	this.name = "CaveFloor";
-	this.graphic = "cavefloor.gif";
+  this.graphic = "terrain_tiles.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-32";  
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.prefix = "a";
@@ -2898,7 +2912,7 @@ function CaveFloorTile() {
 	this.peerview = "#6c6c6c";
 	this.walkSound = "stone";
 	
-	Tiling.call(this, 2);
+	TilingSpritesheet.call(this, 2);
 }
 CaveFloorTile.prototype = new TerrainObject();
 
