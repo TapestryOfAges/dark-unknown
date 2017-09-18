@@ -142,8 +142,8 @@ ais.WaitHere = function(who,params) {
   DebugWrite("ai", "In WaitHere.");
   if (params.sleep) { who.flags.sleep = 1; DebugWrite("ai", "ZZzzzz."); }
   else {
-    if (params.responsibleFor) {
-      if (!who.flags.closingResponsibleDoor) {
+    if (params.hasOwnProperty("responsibleFor")) {
+      if (!who.flags.hasOwnProperty("closingResponsibleDoor")) {
         for (var i=0;i<params.responsibleFor.length;i++) {
           var fea = who.getHomeMap().getTile(params.responsibleFor[i].x,params.responsibleFor[i].y).getTopFeature();
           if (fea.open) {

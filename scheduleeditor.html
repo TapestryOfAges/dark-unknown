@@ -279,10 +279,11 @@
           if (thissched[i].type === "ChangeMap") { symbol = "&rArr;"; }
           if (thissched[i].type === "LeaveMap") { symbol = "&#8667;"; }
           txt = txt + "</td><td>" +symbol+ " " + thissched[i].type + "</td><td>";
+          var tmptype = thissched[i].type;
           $.each(thissched[i].params, function(idx,val) {
             if ((idx !== "Time") && (idx !== "endTime") && (idx !== "startCondition") && (idx !== "startTime")) {
               if (idx === "destination") {
-                if (thissched[i].type === "ChangeMap") {
+                if (tmptype === "ChangeMap") {
                   txt = txt + idx + " : " + val.mapName + " (" + val.x + "," + val.y + ")";
                 } else {
                   txt = txt + idx + " : (" + val.x + "," + val.y + ")";
