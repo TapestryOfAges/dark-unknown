@@ -147,14 +147,14 @@ ais.WaitHere = function(who,params) {
         for (var i=0;i<params.responsibleFor.length;i++) {
           var fea = who.getHomeMap().getTile(params.responsibleFor[i].x,params.responsibleFor[i].y).getTopFeature();
           if (fea.open) {
-            if (RollDice("1d5") === 1) { 
+            if (Dice.roll("1d5") === 1) { 
               DebugWrite("ai", "Chosen to close door at " + fea.getx() + "," + fea.gety() +".");
               who.flags.closingResponsibleDoor = i; 
             }
           }
         }
       }
-      if (who.flags.closingResponsibleDoor) {
+      if (who.flags.hasOwnProperty("closingResponsibleDoor")) {
         var door = who.flags.closingResponsibleDoor;
         var fea = who.getHomeMap().getTile(params.responsibleFor[door].x,params.responsibleFor[door].y).getTopFeature();
         if (fea.open) {

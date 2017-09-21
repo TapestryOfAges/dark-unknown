@@ -64,7 +64,7 @@ QUnit.test( "Test randomwalk", function( assert ) {
   maps.addMap("unittest2");
   var testmap1 = maps.getMap("unittest2");
 
-  var sched = '{"testmage":{"scheduleArray":[{"params":{"destination":{"x":"8","y":"6"},"startCondition":"Time","startTime":"9:00"},"type":"RouteTo"},{"params":{"destination":{"mapName":"unittest2","x":"3","y":"10"},"startCondition":"PreviousComplete"},"type":"ChangeMap"},{"params":{"destination":{"x":"9","y":"10"},"closeDoors":"1","startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"leashLength":"3","responsibleFor":[{"x":"(6","y":"10"}],"startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"AIName":"PlaceItem","params":"name: \\"RedPotion\\", x: 3, y:3","startCondition":"Time","startTime":"11:30"},"type":"CallAI"}],"baseLocation":"unittest","currentIndex":0}}';  
+  var sched = '{"testmage":{"scheduleArray":[{"params":{"destination":{"x":"8","y":"6"},"startCondition":"Time","startTime":"9:00"},"type":"RouteTo"},{"params":{"destination":{"mapName":"unittest2","x":"3","y":"10"},"startCondition":"PreviousComplete"},"type":"ChangeMap"},{"params":{"destination":{"x":"9","y":"10"},"closeDoors":"1","startCondition":"PreviousComplete"},"type":"RouteTo"},{"params":{"leashLength":"3","responsibleFor":[{"x":"6","y":"10"}],"startCondition":"PreviousComplete"},"type":"WaitHere"},{"params":{"AIName":"PlaceItem","params":"name: \\"RedPotion\\", x: 3, y:3","startCondition":"Time","startTime":"11:30"},"type":"CallAI"}],"baseLocation":"unittest","currentIndex":0}}';  
   
   var tmpschedules = JSON.parse(sched);
   
@@ -150,6 +150,7 @@ QUnit.test( "Test randomwalk", function( assert ) {
   Dice.roll = function() { return 1; }
 
   mage.myTurn();
+  assert.deepEqual(mage.getx(),9,"Decided not to wander.");
   assert.deepEqual(mage.gety(),7,"Decided not to wander.");
 
   door.use(mage);
@@ -157,6 +158,8 @@ QUnit.test( "Test randomwalk", function( assert ) {
 
   mage.myTurn();
   assert.deepEqual(mage.flags.closingResponsibleDoor,0,"Chosen to close door.");  
+
+  
 
   maps.deleteMap("unittest");
   maps.deleteMap("unittest2");
