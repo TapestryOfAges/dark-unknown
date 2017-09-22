@@ -11,6 +11,10 @@ NPCSchedule.prototype.addActivity = function(activity) {
   this.scheduleArray.push(activity);
 }
 
+NPCSchedule.prototype.editActivity = function(activity, idx) {
+  this.scheduleArray[idx] = activity;
+}
+
 NPCSchedule.prototype.getNPCLocationByTime = function(time, setIndex) {
   if (!time) {
     time = GetClockTime();

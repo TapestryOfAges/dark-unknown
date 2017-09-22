@@ -16,6 +16,7 @@
     <script language="JavaScript" src="schedules.js"></script>
     <script language="JavaScript">
       var DU = {};
+      var editing = -1;
 
       $(document).ready(function() {
         set_schedules();   // creates DU.schedules = {};
@@ -254,7 +255,12 @@
           DU.schedules[curr_person].baseLocation = curr_place;
         }
         var activity = new NPCActivity(type, params);
-        DU.schedules[curr_person].addActivity(activity);
+        if (editing !== -1) {
+          DU.schedules[curr_person].editActivity(activity,editing);
+          editing = -1;
+        } else {
+          DU.schedules[curr_person].addActivity(activity);
+        }
 
         display_schedule();
         $("#activityparams").html("");
@@ -266,7 +272,7 @@
         txt = "<center>" + curr_person + "</center>";
         txt = txt + "<table id='schedtable' border='1' cellpadding='1' cellspacing='1'><tr><th></th><th>Start Condition</th><th>Activity</th><th>Parameters</th></tr>";
         for (var i=0; i<thissched.length; i++) {
-          txt = txt + "<tr><td><a href='javascript:edit(" + i + ");'>Edit</td><td class='"+thissched[i].params.startCondition+"'>";
+          txt = txt + "<tr><td><a href='javascript:editActivity(" + i + ");'>Edit</td><td class='"+thissched[i].params.startCondition+"'>";
           if (thissched[i].params.startCondition === "Time") {
             txt = txt + "&#9200; " + thissched[i].params.startCondition + " (" + thissched[i].params.startTime + ")";
           } else if (thissched[i].params.startCondition === "PreviousComplete") {
@@ -308,6 +314,17 @@
         $("#mainbody").html(txt);
       }
 
+      function editActivity(idx) {
+        editing = idx;
+        // WORKING HERE
+
+
+      }
+
+      function clearForm() {
+
+      }
+      
       function savesched() {
         var serialized = JSON.stringify(DU.schedules);
 

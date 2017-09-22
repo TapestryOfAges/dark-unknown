@@ -283,7 +283,7 @@ ais.DeleteItem = function(who,params) {
     var item = who.linkedItem;
     if (!item) {
       DebugWrite("ai", "Trying to delete last item, cannot find. Marking complete...");
-      who.activityComplete = 1;
+      who.flags.activityComplete = 1;
     }
     var itemx = item.getx();
     var itemy = item.gety();
@@ -292,13 +292,14 @@ ais.DeleteItem = function(who,params) {
     item.itemmap.deleteThing(item);
 
     if (itemmap === PC.getHomeMap()) { DrawMainFrame("one",itemmap,itemx,itemy); }
+    who.flags.activityComplete = 1;
   }
 
-  return;
+  return {fin:1};
 }
 
 ais.PlayHarpsichord = function(who,params) {
   // ?? Need to decide what this entails
 
-  return;
+  return {fin:1};
 }
