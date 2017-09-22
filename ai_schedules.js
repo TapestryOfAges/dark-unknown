@@ -244,29 +244,42 @@ ais.ChangeMap = function(who,params) {
 }
 
 ais.CallAI = function(who,params) {
-  var retval = ais[params.ai_name](who,params);
+  var callparams = params.params;
+  var allparams = callparams.split(",");
+  var finalparams = {};
+  for (var i=0;i<allparams.length;i++) {
+    var entry = allparams[i].split(":");
+    entry[0] = entry[0].replace(/^ /,"");
+    entry[0] = entry[0].replace(/ $/,"");
+    entry[1] = entry[1].replace(/^ /,"");
+    entry[1] = entry[1].replace(/ $/,"");
+    entry[1] = entry[1].replace(/^"/,"");
+    entry[1] = entry[1].replace(/"$/,"");    
+    finalparams[entry[0]] = entry[1];
+  }
+  var retval = ais[params.AIName](who,finalparams);
   if (retval["fin"] = 1) {
     who.flags.activityComplete = 1;
   }
-  return;
+  return retval;
 }
 
 ais.PlaceItem = function(who,params) {
-  var item = localFactory.createTile(params.params.name);
+  var item = localFactory.createTile(params.name);
   if (item) {
-    who.getHomeMap().placeThing(params.params.x, params.params.y, item);
+    who.getHomeMap().placeThing(params.x, params.y, item);
     if (who.getHomeMap() === PC.getHomeMap()) {
-      DrawMainFrame("one",who.getHomeMap(),params.params.x,params.params.y);
+      DrawMainFrame("one",who.getHomeMap(),params.x,params.y);
     }      
   }
   who.flags.activityComplete = 1;
   who.linkedItem = item;
 
-  return;
+  return {fin:1};
 }
 
 ais.DeleteItem = function(who,params) {
-  if (params.params.param === "last") {
+  if (params.param === "last") {
     var item = who.linkedItem;
     if (!item) {
       DebugWrite("ai", "Trying to delete last item, cannot find. Marking complete...");

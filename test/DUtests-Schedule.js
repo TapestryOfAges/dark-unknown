@@ -158,8 +158,36 @@ QUnit.test( "Test randomwalk", function( assert ) {
 
   mage.myTurn();
   assert.deepEqual(mage.flags.closingResponsibleDoor,0,"Chosen to close door.");  
+  assert.deepEqual(mage.gety(),8,"Moving towards door.");
 
-  
+  mage.myTurn();
+  assert.deepEqual(mage.getx(),8,"Moving towards door.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),9,"Moving towards door.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.getx(),7,"Moving towards door.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),10,"Moving towards door.");
+
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),10,"Didn't move y.");
+  assert.deepEqual(mage.getx(),7,"Didn't move x.");
+  assert.deepEqual(door.open,0,"Door has been closed.");
+
+  Dice.roll = function() { return 2; }
+  mage.myTurn();
+  assert.deepEqual(mage.gety(),9,"Randomwalked north.");  
+
+  DUTime.setGameClock(31);
+  assert.deepEqual(GetUsableClockTime(), "11:35", "Clock should be set to 11:35.");
+
+  mage.myTurn();
+  var potion = mage.getHomeMap().getTile(3,3).getTopFeature();
+  assert.deepEqual(potion.getName(),"RedPotion","A red potion was created.");
+  assert.deepEqual(mage.linkedItem,potion,"It is linked to the mage.");
 
   maps.deleteMap("unittest");
   maps.deleteMap("unittest2");
