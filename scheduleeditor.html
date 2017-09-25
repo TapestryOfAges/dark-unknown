@@ -314,15 +314,40 @@
         $("#mainbody").html(txt);
       }
 
-      function editActivity(idx) {
+      function EditActivity(idx) {
         editing = idx;
+        ClearForm();
         // WORKING HERE
 
 
       }
 
-      function clearForm() {
+      function ClearForm() {
+        $("#activities").val("");
+        $("#start_condition").val("");
+        $("#start_time_value").val("");
+        $("#set_flag").val("");
+        $("#bark").val("");
+        $("#barkfreq").val("");
+        $("#barkrad").val("");
+        $("#destination_x").val("");
+        $("#destination_y").val("");
+        $("#end_condition").val("");
+        $("#end_time_value").val("");
+        $("#closedoors").val("");
+        $("#sleep").val("");
+        $("#leash_length").val("");
+        $("#responsible_for").val("");
+        $("#destmapname").val("");
+        $("#destmapx").val("");
+        $("#destmapy").val("");
+        $("#ai_name").val("");
+        $("#ai_params").val("");
+        $("#end_condition").val("");
+        $("#end_time_value").val("");
 
+        $("#activityparams").html("");
+      
       }
       
       function savesched() {
