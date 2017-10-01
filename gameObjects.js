@@ -5569,18 +5569,20 @@ HarpsichordTile.prototype = new FeatureObject();
 
 HarpsichordTile.prototype.use = function(who) {
   var retval = { fin: 1 };
-  var distanceToMe = getDistance(who.getx(),who.gety(),this.getx(),this.gety(),"square");
-  if (distanceToMe > 1) { 
-    retval["txt"] = "The harpsichord makes a few discordant sounds, and then is silent.";
-  } else if ((this.gety() - who.gety()) !== 1) { 
-    retval["txt"] = "You can't reach the keys from here.";
-    retval["fin"] = 0;
-    return retval;
-  } else {  
-    retval["txt"] = "Drawing upon your years of training from your tutors, you give a passable performance.";
-    if (DU.gameflags.getFlag("bard_simon_ask") && (this.getHomeMap().getName() === "swainhil1")) {
-      DU.gameflags.setFlag("bard_simon_played", 1);
-      DebugWrite("plot", "Simon has heard you play music.");
+  if (who === PC) {
+    var distanceToMe = GetDistance(who.getx(),who.gety(),this.getx(),this.gety(),"square");
+    if (distanceToMe > 1) { 
+      retval["txt"] = "The harpsichord makes a few discordant sounds, and then is silent.";
+    } else if ((this.gety() - who.gety()) !== 1) { 
+      retval["txt"] = "You can't reach the keys from here.";
+      retval["fin"] = 0;
+      return retval;
+    } else {  
+      retval["txt"] = "Drawing upon your years of training from your tutors, you give a passable performance.";
+      if (DU.gameflags.getFlag("bard_simon_ask") && (this.getHomeMap().getName() === "swainhil1")) {
+        DU.gameflags.setFlag("bard_simon_played", 1);
+        DebugWrite("plot", "Simon has heard you play music.");
+      }
     }
   }
   return retval;
