@@ -272,7 +272,7 @@
         txt = "<center>" + curr_person + "</center>";
         txt = txt + "<table id='schedtable' border='1' cellpadding='1' cellspacing='1'><tr><th></th><th>Start Condition</th><th>Activity</th><th>Parameters</th></tr>";
         for (var i=0; i<thissched.length; i++) {
-          txt = txt + "<tr><td><a href='javascript:editActivity(" + i + ");'>Edit</td><td class='"+thissched[i].params.startCondition+"'>";
+          txt = txt + "<tr><td><a href='javascript:EditActivity(" + i + ");'>Edit</td><td class='"+thissched[i].params.startCondition+"'>";
           if (thissched[i].params.startCondition === "Time") {
             txt = txt + "&#9200; " + thissched[i].params.startCondition + " (" + thissched[i].params.startTime + ")";
           } else if (thissched[i].params.startCondition === "PreviousComplete") {
@@ -317,8 +317,48 @@
       function EditActivity(idx) {
         editing = idx;
         ClearForm();
-        // WORKING HERE
+        
+        $("#activities").val(DU.schedules[curr_person].scheduleArray[idx].type);
+        select_activity();
+        
+        FillInForm(idx);
+      }
 
+      function FillInForm(idx) {
+        var activityname = document.optform.activities.value;
+
+        $("#start_condition").val(DU.schedules[curr_person].scheduleArray[idx].params.startCondition);
+        $("#starttime").val(DU.schedules[curr_person].scheduleArray[idx].params.startTime);
+        $("#set_flag").val(DU.schedules[curr_person].scheduleArray[idx].params.setFlag);
+
+        if (activityname === "RouteTo") {
+          $("#destination_x").val(DU.schedules[curr_person].scheduleArray[idx].params.destination.x);
+          $("#destination_y").val(DU.schedules[curr_person].scheduleArray[idx].params.destination.y);
+          $("#end_condition").val(DU.schedules[curr_person].scheduleArray[idx].params.endCondition);
+          if (DU.schedules[curr_person].scheduleArray[idx].params.endCondition === "Time") {
+            $("#end_condition").val(DU.schedules[curr_person].scheduleArray[idx].params.endTime);
+          }
+          $("#closedoors").val(DU.schedules[curr_person].scheduleArray[idx].params.closeDoors);
+        } else if (activityname === "WaitHere") {
+          $("#sleep").val(DU.schedules[curr_person].scheduleArray[idx].params.sleep);
+          $("#leash_length").val(DU.schedules[curr_person].scheduleArray[idx].params.leashLength);
+          $("#responsible_for").val(DU.schedules[curr_person].scheduleArray[idx].params.responsibleFor);
+        } else if (activityname === "ChangeMap") {
+          $("#destmapname").val(DU.schedules[curr_person].scheduleArray[idx].params.destination.mapName);
+          $("#destmapx").val(DU.schedules[curr_person].scheduleArray[idx].params.destination.x);
+          $("#destmapy").val(DU.schedules[curr_person].scheduleArray[idx].params.destination.y);
+        } else if (activityname === "CallAI") {
+          $("#ai_name").val(DU.schedules[curr_person].scheduleArray[idx].params.AIName);
+          $("#ai_params").val(DU.schedules[curr_person].scheduleArray[idx].params.params);
+          $("#end_condition").val(DU.schedules[curr_person].scheduleArray[idx].params.endCondition);
+          if (DU.schedules[curr_person].scheduleArray[idx].params.endCondition === "Time") {
+            $("#end_condition").val(DU.schedules[curr_person].scheduleArray[idx].params.endTime);
+          }
+        }
+
+        $("#bark").val(DU.schedules[curr_person].scheduleArray[idx].params.bark);
+        $("#barkfreq").val(DU.schedules[curr_person].scheduleArray[idx].params.barkfreq);
+        $("#barkrad").val(DU.schedules[curr_person].scheduleArray[idx].params.barkrad);
 
       }
 
