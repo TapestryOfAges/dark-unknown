@@ -74,17 +74,18 @@
 	  <select name="mapnameslist" style="vertical-align:top">
 	  	<script language="JavaScript">
 	  	for (var keyz in mappages) {
-      	if (keyz != "readPage") {
-   	      document.writeln('<option value="' + keyz + '">' + keyz + '</option>');
+        	if (keyz != "readPage") {
+   	          document.writeln('<option value="' + keyz + '">' + keyz + '</option>');
+            }
         }
-      }
-      </script>
-    </select>
-    <img onClick="editorLoadMap('');" src="editor/loadmapbutton.gif" />
-    <img onClick="amap.saveMap('');" src="editor/savemapbutton.gif" />
-    <img onClick="editorEditMapDetails();" src="editor/editdetailsbutton.gif" />
-    <img onClick="drawMap();" src="editor/refresh.gif" />
-		<a href="javascript:ToggleLabels()">[Labels]</a>
+        </script>
+      </select>
+      <img onClick="editorLoadMap('');" src="editor/loadmapbutton.gif" />
+      <img onClick="amap.saveMap('');" src="editor/savemapbutton.gif" />
+      <img onClick="editorEditMapDetails();" src="editor/editdetailsbutton.gif" />
+      <img onClick="drawMap();" src="editor/refresh.gif" />
+	  <a href="javascript:ToggleLabels()">[Labels]</a>
+      &#9200; <span id='clockface'></span> <input type='button' value='Set Clock' onClick='SetClock()' />
     </span>
     </form>
 	</div>

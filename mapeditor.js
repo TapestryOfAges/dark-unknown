@@ -771,7 +771,32 @@ function initialSelect() {
 // 	displayval='all';
  	drawFeatures();
 // 	document.editlayer.layer[2].checked = true;
+  SetGameTimeByClockTime("0:00");
+  $("#clockface").html(GetUsableClockTime());
 
+}
+
+function SetClock() {
+  var intime = prompt("Set time to: ");
+  SetGameTimeByClockTime(intime);
+  $("#clockface").html(GetUsableClockTime());
+
+  PlaceNPCsByTime();
+
+}
+
+function PlaceNPCsByTime() {
+  // loop over NPCs on map
+  // figure where they are at time, move them
+  var allnpcs = amap.npcs.getAll()
+  
+  for (var i=0;i<allnpcs.length;i++) {
+    if (allnpcs[i].getSchedule()) {
+      var sched = DU.schedules[allnpcs[i].getSchedule()];
+      var loc = sched.getNPCLocationByTime();
+      amap.moveThing(loc.x,loc.y,allnpcs[i]);
+    }
+  }
 }
 
 function getManual() {
