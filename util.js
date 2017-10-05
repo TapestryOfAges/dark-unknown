@@ -1553,6 +1553,28 @@ function GetClockTime(usethistime) {
   return ([years,months,days,hours,minutes]);
 }
 
+function SetGameTimeByClockTime(targetTime) {
+  var tmp = targetTime.split(":");
+  var hour = parseInt(tmp[0]);
+  var min = parseInt(tmp[1]);
+
+  if (isNaN(hour) || isNaN(min)) { return; }
+
+  var currtime = GetUsableClockTime();
+  tmp = currtime.split(":");
+  var currhour = parseInt(tmp[0]);
+  var currmin = parseInt(tmp[1]);
+
+  if (min < currmin) { min = min+60; currhour--; }
+  var diffmin = min-currmin;
+  
+  if (hour < currhour) { hour = hour+24; }
+
+  diffmin = diffmin + (hour-currhour)*60;
+  DUTime.setGameClock(DUTime.getGameClock() + diffmin*.2);
+  
+}
+
 function GetDisplayDate(usethistime) {
   var calendar = GetClockTime(usethistime);
   calendar[0]+=143;
