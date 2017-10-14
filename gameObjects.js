@@ -12948,7 +12948,6 @@ NPCObject.prototype.myTurn = function() {
 
     if (ais[ainame[0]]) {
       if (ainame.length === 1) { ainame[1] = ""; }
-      if (this.getNPCName() === "Avery"){ alert(ainame[0]); }
 	    response = ais[ainame[0]](this, ainame[1]);
 	  }
 	  if (typeof response.initdelay === 'undefined') {
