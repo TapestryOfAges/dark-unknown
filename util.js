@@ -1572,7 +1572,6 @@ function SetGameTimeByClockTime(targetTime) {
 
   diffmin = diffmin + (hour-currhour)*60;
   DUTime.setGameClock(DUTime.getGameClock() + diffmin*.2);
-  
 }
 
 function GetDisplayDate(usethistime) {
