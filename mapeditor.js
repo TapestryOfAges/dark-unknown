@@ -14,6 +14,7 @@ var debugscreen;
 var togglehide = 0;
 var targetCursor = {};
 var workInLayers = 0;
+var maps = new MapMemory();
 
 var brushdown = 0;
 var editable;
@@ -40,6 +41,7 @@ DU.gameflags.setFlag("editor", 1);  // for atlas to look for
 
 $(document).ready(function() {
   browserheight = $(window).height();
+  set_schedules();
 });
 
 if (debug) {
@@ -76,7 +78,8 @@ function editorLoadMap(mapname) {
 		mapname = document.menuinterface.mapnameslist.value;
 	}
 	amap.loadMap(mapname);
-	drawMap();
+  drawMap();
+  maps.addMapByRef(amap);
 }
 
 function drawMap() {
@@ -741,12 +744,27 @@ function addnpctomap(x,y,selection,noFactory) {
   document.images[tileid].src="graphics/"+graphics[1];
 }
 
-function erasefeature(x,y) {
-  var editable = amap.getTile(x,y).features.getTop();
-  var mapfeature = amap.features;
+function erasefeature(x,y,npc) {
+
+  var editable;
+  if (npc) {
+    editable = amap.getTile(x,y).npcs.getTop();
+  } else {
+    editable = amap.getTile(x,y).features.getTop();
+  }
+  var mapfeature;
+  if (npc) {
+    mapfeature = amap.npcs;
+  } else {
+    mapfeature = amap.features;
+  }
   mapfeature.deleteFrom(editable);
   mapfeature = amap.getTile(editable.getx(),editable.gety());
-  mapfeature.features.deleteFrom(editable);
+  if (npc) {
+    mapfeature.npcs.deleteFrom(editable);
+  } else {
+    mapfeature.features.deleteFrom(editable);
+  }
   var tileid = "tile" + editable.getx() + "x" + editable.gety();
   var tdtileid = "#td_" + tileid;
   var localacre = amap.getTile(editable.getx(),editable.gety());
@@ -788,15 +806,46 @@ function SetClock() {
 function PlaceNPCsByTime() {
   // loop over NPCs on map
   // figure where they are at time, move them
-  var allnpcs = amap.npcs.getAll()
+  var allnpcs = amap.npcs.getAll();
+  var linked = amap.getLinkedMaps();
+
+  if (linked && (linked.length > 0)) {
+    var othermap = new GameMap();
+    
+    for (var j=0;j<linked.length;j++) {
+      othermap = maps.getMap(linked[j]);
+      var othernpcs = othermap.npcs.getAll();
+      for (var i=0;i<othernpcs.length;i++) {
+        allnpcs.push(othernpcs[i]);
+      }
+    }
+  }
   
   for (var i=0;i<allnpcs.length;i++) {
     if (allnpcs[i].getSchedule()) {
       var sched = DU.schedules[allnpcs[i].getSchedule()];
       var loc = sched.getNPCLocationByTime();
-      amap.moveThing(loc.x,loc.y,allnpcs[i]);
+      console.log(JSON.stringify(loc));
+      var destmap = new GameMap();
+      var frommap = allnpcs[i].getHomeMap();
+      if (loc.mapName) {
+        destmap = maps.getMap(loc.mapName);
+      } else { destmap = frommap; }
+
+      var editable = allnpcs[i];
+      var mapfeature = frommap.npcs;
+      mapfeature.deleteFrom(editable);
+      mapfeature = frommap.getTile(editable.getx(),editable.gety());
+      mapfeature.npcs.deleteFrom(editable);
+      
+      allnpcs[i].setx(loc.x);
+      allnpcs[i].sety(loc.y);
+      allnpcs[i].setHomeMap(destmap);
+      destmap.data[loc.y][loc.x].npcs.addTop(allnpcs[i]);
+      destmap.npcs.addTop(allnpcs[i]);
     }
   }
+  drawMap();
 }
 
 function getManual() {
