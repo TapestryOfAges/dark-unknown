@@ -525,7 +525,7 @@ OnConvTriggers["shield_gotten"] = function(speaker,keyword) {
 }
 
 function CheckAllHealth() {
-  if (DU.gameflags.getFlag("health_amaeryl") && DU.gameflags.getFlag("health_daniel") && DU.gameflags.getFlag("health_garen") && DU.gameflags.getFlag("health_guard") && DU.gameflags.getFlag("health_ingrid") && DU.gameflags.getFlag("health_kylee") && DU.gameflags.getFlag("health_kyvek") && DU.gameflags.getFlag("health_samuel") && DU.gameflags.getFlag("health_warren") && DU.gameflags.getFlag("health_derek") && DU.gameflags.getFlag("health_amy")) {
+  if (DU.gameflags.getFlag("health_amaeryl") && DU.gameflags.getFlag("health_daniel") && DU.gameflags.getFlag("health_garen") && DU.gameflags.getFlag("health_ingrid") && DU.gameflags.getFlag("health_kylee") && DU.gameflags.getFlag("health_kyvek") && DU.gameflags.getFlag("health_samuel") && DU.gameflags.getFlag("health_warren") && DU.gameflags.getFlag("health_derek") && DU.gameflags.getFlag("health_amy")) {
     DU.gameflags.setFlag("all_health", 1);
   }
 }
