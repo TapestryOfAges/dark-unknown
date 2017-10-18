@@ -270,14 +270,14 @@ function InnRoom(xc,yc,doors) {
   maintext.setInputLine("&gt;");
   maintext.drawTextFrame();
   
-  $("#mainview").fadeOut(1500, function() {
+  $("#displayview").fadeOut(1500, function() {
     maintext.addText("ZZZZZZ...");
     if (DU.gameflags.getFlag("music")) {
       QueueMusic(PC.getHomeMap().getMusic());
     }
     while(doors[0]) {
       innmap.moveThing(0,0,PC);
-      if (GetDistance(0,0,doors[0],doors[1]) <= 10) {
+      if (GetDistance(0,0,doors[0],doors[1]) <= 8) {
         innmap.moveThing(30,30,PC);
       }
       var inndoor = innmap.getTile(doors[0],doors[1]);
@@ -290,16 +290,10 @@ function InnRoom(xc,yc,doors) {
     }
     innmap.moveThing(xc,yc,PC);
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(),PC.gety());
-    setTimeout(function() {
-      $("#mainview").fadeIn(1000, function() {
-        maintext.addText("You awake refreshed!");
-        PC.healMe(Dice.roll("20d5+20"));
-        PC.setMana(PC.getMaxMana());
-        gamestate.setMode("player");
-        DrawCharFrame();
-        PC.endTurn();
-      });
-    },1000);
+    gamestate.setMode("null");
+    var duration = 8*12;
+    PC.setWaiting(DUTime.getGameClock() + duration);
+    PC.atinn = 1;
   });
 
 }
