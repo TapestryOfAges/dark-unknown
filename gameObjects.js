@@ -726,7 +726,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			retval["fin"] = 1;
 			retval["txt"] = "Closed!";
 			retval["redrawtype"] = "draw";
-			if (!silentdoors && closesound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 10)) {
+			if (!silentdoors && closesound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 6) && (PC.getHomeMap() === this.getHomeMap())) {
 			  DUPlaySound(closesound); 
 			}
 			
@@ -736,7 +736,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 				if (this.getLocked()) {
 					retval["fin"] = 1;
 					retval["txt"] = "Locked.";
-					if (!silentdoors && lockedsound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 10)) {
+					if (!silentdoors && lockedsound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 6) && (PC.getHomeMap() === this.getHomeMap())) {
 					  DUPlaySound(lockedsound); 
 					}
 					return retval;
@@ -756,7 +756,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_LEVITATE);
 			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_SWIM);
 			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_FLY);
-			if (!silentdoors && opensound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 10)) {
+			if (!silentdoors && opensound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 6) && (PC.getHomeMap() === this.getHomeMap())) {
 			  DUPlaySound(opensound); 
 			}
 			
@@ -13002,7 +13002,7 @@ NPCObject.prototype.endTurn = function(init) {
     alert("Somehow trying to end a turn when it isn't their turn, aborting.");
   } else if (this.getHP() <= 0) {
     DebugWrite("ai", "Ending turn while dead, not going back on the stack!");
-    startScheduler();
+    setTimeout(function() { startScheduler(); }, 5 );
   } else {
     gamestate.setMode("null");
   
@@ -13038,7 +13038,7 @@ NPCObject.prototype.endTurn = function(init) {
 
 //  var nextEntity = DUTime.executeNextEvent().getEntity();
 //  nextEntity.myTurn();
-    startScheduler();
+    setTimeout(function() { startScheduler(); }, 5 );
   }
 }
 
@@ -13456,7 +13456,9 @@ function PCObject() {
 	this.lastLocation = {};
 	this.lastLocation.map = "";
 	this.lastLocation.x = 0;
-	this.lastLocation.y = 0;
+  this.lastLocation.y = 0;
+  
+  this.waiting = 0;
 	
 	this.nextMana = MANA_REGEN;
 	this.nextHP = HP_REGEN;
@@ -13473,7 +13475,7 @@ PCObject.prototype.activate = function() {
 PCObject.prototype.myTurn = function() {
 
   var clockface = GetClockTime(this.getLastTurnTime());
-  if (clockface[3] !== GetClockTime()[3]) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
+  if ((clockface[3] !== GetClockTime()[3]) && !this.getWaiting()) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
   SetSky();
 
   if (debugflags.first) { delete debugflags.first; } 
@@ -13497,7 +13499,12 @@ PCObject.prototype.myTurn = function() {
   var sleep = this.getSpellEffectsByName("Sleep");
   var paralyzed = this.getSpellEffectsByName("Paralyze");
   var frozen = this.getSpellEffectsByName("Frozen");
-  if (sleep || paralyzed || frozen) { awake = 0; }  
+  var waiting = this.getWaiting();
+  if (waiting && (waiting < DUTime.getGameClock())) { 
+    waiting = 0;
+    EndWaiting(this,this.atinn);
+  }
+  if (sleep || paralyzed || frozen || waiting) { awake = 0; }  
 
   SetDebugToBottom();
   
@@ -13517,6 +13524,13 @@ PCObject.prototype.myTurn = function() {
 	}
 }
 
+PCObject.prototype.setWaiting = function(newwait) {
+  this.waiting = newwait;
+}
+
+PCObject.prototype.getWaiting = function() {
+  return this.waiting;
+}
 
 PCObject.prototype.getPCName = function() {
 	return this.pcname;
