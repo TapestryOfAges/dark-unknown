@@ -377,7 +377,16 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 87) { // w
     // wait, was wear/wield
-		
+    var poisoned = PC.getSpellEffectsByName("Poison");
+    if (poisoned) {
+      retval["txt"] = "You are poisoned- waiting might be a bad idea.";
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+    }
+    gamestate.setMode("anykey");
+    targetCursor.command = 'w';
+    retval['input'] = "Wait - how long? ";
+    retval["fin"] = 2;
 	}
 	else if (code === 88) { // x
 		// eXit - not used
@@ -1833,7 +1842,25 @@ function PerformRuneChoice(code) {
  
 }
 
+function PerformWait(code) {
+  var retval = {fin:2};
+  if ((code === 27) || (code === 48)) { 
+    return retval;
+  }
+  gamestate.setMode("null");
+  var duration = parseInt(code) - 48;
+  retval["txt"] = "Waiting for " + duration + " hours.";
+  if (duration === 1) { retval["txt"] = "Waiting for 1 hour."; }
+  duration = duration * 12;
+  PC.setWaiting(DUTime.getGameClock() + duration);
+  PC.moveAfterWaiting = {x : PC.getx(), y: PC.gety()};
+  $("#displayframe").fadeOut(1500, function() {});
+  PC.getHomeMap().moveThing(0,0,PC);
 
+  retval["fin"] = 1;
+  retval["input"] = "&gt;";
+  return retval;
+}
 
 function PerformYell() {
 	var retval = {};
