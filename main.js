@@ -247,6 +247,20 @@ function DoAction(code, ctrl) {
         maintext.drawTextFrame();
         PC.endTurn(retval["initdelay"]);
       }
+    } else if (targetCursor.command === "w") {
+      if ((code === 27) || ((code <= 57) && (code >= 48))) {
+        var retval = PerformWait(code);
+        if (retval["fin"] === 2) {
+          maintext.setInputLine("&gt;");
+          maintext.drawTextFrame();
+          gamestate.setMode("player");
+        } else {
+          maintext.addText(retval["txt"]);
+          maintext.setInputLine(retval["input"]);
+          maintext.drawTextFrame();
+          PC.endTurn(retval["initdelay"]);
+        }          
+      }
     } else {
       if (((code >= 65) && (code <= 90)) || (code === 32) || (code === 13)) {  // letter, space, or enter
         if (targetCursor.command === "c") {
@@ -347,8 +361,7 @@ function DoAction(code, ctrl) {
     else { // ignore
     	
     }
-  }
-  else if (gamestate.getMode() === "choosedir") {
+  } else if (gamestate.getMode() === "choosedir") {
     var response = PerformChooseDir(code);
     if (response["fin"] === 1) { // direction chosen
       if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "u")||(targetCursor.command === "o")) ) {
@@ -501,11 +514,11 @@ function DoAction(code, ctrl) {
   } 
   else if (gamestate.getMode() === "equip") {
     var response;
-    if (targetCursor.command === "w") {
+    if (targetCursor.command === "r") {
       response = PerformEquip(code);
     } else if ((targetCursor.command === "u") || (targetCursor.command === "o")) {
       response = PerformUseFromInventoryState(code);
-    } else if (targetCursor.command === "r") {
+    } else if (targetCursor.command === "f") {
       response = PerformRuneChoice(code);
     } else if (targetCursor.command === "c") {
       response = PerformSpellcastEquip(code);
