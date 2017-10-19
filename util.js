@@ -1554,6 +1554,10 @@ function GetClockTime(usethistime) {
 }
 
 function SetGameTimeByClockTime(targetTime) {
+  DUTime.setGameClock(GetGameClockByClockTime(targetTime));
+}
+
+function GetGameClockByClockTime(targetTime) {
   var tmp = targetTime.split(":");
   var hour = parseInt(tmp[0]);
   var min = parseInt(tmp[1]);
@@ -1571,7 +1575,7 @@ function SetGameTimeByClockTime(targetTime) {
   if (hour < currhour) { hour = hour+24; }
 
   diffmin = diffmin + (hour-currhour)*60;
-  DUTime.setGameClock(DUTime.getGameClock() + diffmin*.2);
+  return (DUTime.getGameClock() + diffmin*.2);
 }
 
 function GetDisplayDate(usethistime) {
@@ -1681,4 +1685,26 @@ function CheckTimeAfterTime(time1,time2) {
   if (CheckTimeBetween(time2,time3,time1)) { return 1; }
   else { return 0;}
   
+}
+
+function EndWaiting(who, inn) {
+  $("#displayframe").fadeIn(1000, function() {});
+  if (who.moveAfterWaiting) {
+    who.getHomeMap().moveThing(who.moveAfterWaiting.x,who.moveAfterWaiting.y,who);
+    delete who.moveAfterWaiting;
+  }
+  if (inn) {
+    maintext.addText("You awake refreshed!");
+    PC.healMe(Dice.roll("20d5+20"));
+    PC.setMana(PC.getMaxMana());
+    delete who.atinn;
+  }
+  if (who === PC) {   // I mean, it only can be, but why not check?
+    gamestate.setMode("player");
+    DrawCharFrame();
+    DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  }
+  who.setWaiting(0);
+
+  return 1;
 }
