@@ -5555,6 +5555,36 @@ function RightTableTile() {
 }
 RightTableTile.prototype = new FeatureObject();
 
+function FoodSouth() {
+  this.name = "FoodSouth";
+  this.graphic = "table_middle_food_s.gif";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "table with food";
+}
+FoodSouthTile.prototype = new FeatureObject();
+
+function FoodNorth() {
+  this.name = "FoodNorth";
+  this.graphic = "table_middle_food_n.gif";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "table with food";
+}
+FoodNorthTile.prototype = new FeatureObject();
+
+function FoodSouthNorth() {
+  this.name = "FoodSouthNorth";
+  this.graphic = "table_middle_food_ns.gif";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "table with food";
+}
+FoodSouthNorthTile.prototype = new FeatureObject();
+
 function HarpsichordTile() {
   this.name = "Harpsichord";
   this.graphic = "furniture.gif";
