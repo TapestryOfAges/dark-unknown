@@ -318,7 +318,7 @@ mappages["naurglen"].features[263] = {name : 'RightTable', x : 7, y : 22};
 mappages["naurglen"].features[264] = {name : 'BottomChair', x : 6, y : 23};
 mappages["naurglen"].features[265] = {name : 'Harpsichord', x : 10, y : 24};
 mappages["naurglen"].features[266] = {name : 'TopChair', x : 10, y : 23};
-mappages["naurglen"].features[267] = {name : 'Door', x : 20, y : 7, desc : "locked door", locked : 1};
+mappages["naurglen"].features[267] = {name : 'Door', x : 20, y : 7};
 mappages["naurglen"].features[268] = {name : 'UnlitBrazier', x : 5, y : 24};
 mappages["naurglen"].features[269] = {name : 'DustyFireplace', x : 26, y : 4};
 mappages["naurglen"].features[270] = {name : 'LeftTable', x : 22, y : 7};
@@ -467,11 +467,11 @@ mappages["naurglen"].npcs = [];
 mappages["naurglen"].npcs[0] = {name : 'DruidVillagerNPC', x : 67, y : 36, NPCName: 'Hazel', Desc: 'healer', Conversation: 'hazel', ConversationFlag: 'hazel', Gender: 'female', Leash: 2, OverrideGraphic: 'druid-offcolor.1.gif'};
 mappages["naurglen"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 93, y : 26, NPCName: 'Daniel', Conversation: 'daniel', ConversationFlag: 'daniel', Gender: 'male', OverrideGraphic: '310.gif'};
 mappages["naurglen"].npcs[2] = {name : 'TinkerVillagerNPC', x : 93, y : 34, NPCName: 'Kyvek', Conversation: 'kyvek', ConversationFlag: 'kyvek', Gender: 'male', OverrideGraphic: '304.2.gif'};
-mappages["naurglen"].npcs[3] = {name : 'TownsfolkVillagerNPC', x :21, y : 24, NPCName: 'Derek', Conversation: 'derek', ConversationFlag: 'derek', Gender: 'male', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
+mappages["naurglen"].npcs[3] = {name : 'TownsfolkVillagerNPC', x :21, y : 24, NPCName: 'Derek', Conversation: 'derek', PeaceAI: 'scheduled', Schedule: 'derek', ConversationFlag: 'derek', Gender: 'male', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["naurglen"].npcs[4] = {name : 'ChildVillagerNPC', x : 67, y : 38, NPCName: 'Amy', Conversation: 'amy', ConversationFlag: 'amy', Gender: 'female', Leash: 4, Bark: '0', NPCBand: '0'};
 mappages["naurglen"].npcs[5] = {name : 'PaladinVillagerNPC', x : 51, y : 38, NPCName: 'Amaeryl', Conversation: 'amaeryl', ConversationFlag: 'amaeryl', Gender: 'female', OverrideGraphic: '307.2.gif'};
 mappages["naurglen"].npcs[6] = {name : 'TownGuardNPC', x : 59, y : 30, NPCName: 'Grayson', Alignment: '', Conversation: 'naurglen_guard', PeaceAI: 'scheduled', Schedule: 'grayson', ConversationFlag: 'grayson', Gender: 'male', Bark: '0', NPCBand: '0'};
-mappages["naurglen"].npcs[7] = {name : 'ShepherdVillagerNPC', x : 54, y : 22, NPCName: 'Samuel', Desc: 'blind shepherd', Conversation: 'samuel', ConversationFlag: 'samuel', Gender: 'male', OverrideGraphic: '301.gif'};
+mappages["naurglen"].npcs[7] = {name : 'ShepherdVillagerNPC', x :23, y : 4, NPCName: 'Samuel', Desc: 'blind shepherd', Conversation: 'samuel', Schedule: 'samuel', ConversationFlag: 'samuel', Gender: 'male', OverrideGraphic: '301.gif'};
 mappages["naurglen"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 29, y : 40, NPCName: 'Kylee', Desc: 'farmer', Conversation: 'kylee', ConversationFlag: 'kylee', Gender: 'female', OverrideGraphic: '310.2.gif'};
 mappages["naurglen"].npcs[9] = {name : 'ChickenNPC', x : 36, y : 14};
 mappages["naurglen"].npcs[10] = {name : 'ChickenNPC', x : 38, y : 15};
@@ -506,6 +506,13 @@ mappages["naurglen"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"
 mappages["naurglen"].onload = function(mapref) {
   
   if (DU.gameflags["rescued_sam"]) {
+    var npcs = mapref.npcs.getAll();
+    for (var i=0;i<npcs.length;i++) {
+      if (npcs[i].getNPCName() === "Kylee"){
+        npcs[i].setSchedule("kylee2");
+        break;
+      }
+    }
     var sam = localFactory.createTile("ChildVillagerNPC");
     sam.setNPCName("Samantha");
     sam.setConversation("samantha2");
@@ -513,8 +520,11 @@ mappages["naurglen"].onload = function(mapref) {
     sam.setDesc("excited girl");
     sam.setPrefix("an");
     sam.setBark("sam");
+    sam.setSchedule("samantha2");
+    sam.setPeaceAI("scheduled");
     sam.setLeash(3);
-    mapref.placeThing(50,21,sam);
+    var loc = DU.schedules["samantha2"].getNPCLocationByTime(GetClockTime(), 1);
+    mapref.placeThing(loc.x,loc.y,sam);
   }
 }
 
