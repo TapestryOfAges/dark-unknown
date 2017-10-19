@@ -447,18 +447,6 @@ OnConvTriggers["inn_25"] = function(speaker,keyword) {
   return -1;
 }
 
-OnConvTriggers["health_kyvek"] = function(speaker,keyword) {
-  if (!DU.gameflags.getFlag("all_health")){
-    CheckAllHealth();
-  }
-}
-
-OnConvTriggers["health_daniel"] = function(speaker,keyword) {
-  if (!DU.gameflags.getFlag("all_health")){
-    CheckAllHealth();
-  }
-}
-
 OnConvTriggers["health_kylee"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
     CheckAllHealth();
@@ -471,43 +459,13 @@ OnConvTriggers["health_garen"] = function(speaker,keyword) {
   }
 }
 
-OnConvTriggers["health_guard"] = function(speaker,keyword) {
-  if (!DU.gameflags.getFlag("all_health")){
-    CheckAllHealth();
-  }
-}
-
-OnConvTriggers["health_amaeryl"] = function(speaker,keyword) {
-  if (!DU.gameflags.getFlag("all_health")){
-    CheckAllHealth();
-  }
-}
-
 OnConvTriggers["health_warren"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
     CheckAllHealth();
   }
 }
 
-OnConvTriggers["health_samuel"] = function(speaker,keyword) {
-  if (!DU.gameflags.getFlag("all_health")){
-    CheckAllHealth();
-  }
-}
-
-OnConvTriggers["health_ingrid"] = function(speaker,keyword) {
-  if (!DU.gameflags.getFlag("all_health")){
-    CheckAllHealth();
-  }
-}
-
-OnConvTriggers["health_derek"] = function(speaker,keyword) {
-  if (!DU.gameflags.getFlag("all_health")){
-    CheckAllHealth();
-  }
-}
-
-OnConvTriggers["health_amy"] = function(speaker,keyword) {
+OnConvTriggers["health_dora"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
     CheckAllHealth();
   }
@@ -519,7 +477,7 @@ OnConvTriggers["shield_gotten"] = function(speaker,keyword) {
 }
 
 function CheckAllHealth() {
-  if (DU.gameflags.getFlag("health_amaeryl") && DU.gameflags.getFlag("health_daniel") && DU.gameflags.getFlag("health_garen") && DU.gameflags.getFlag("health_ingrid") && DU.gameflags.getFlag("health_kylee") && DU.gameflags.getFlag("health_kyvek") && DU.gameflags.getFlag("health_samuel") && DU.gameflags.getFlag("health_warren") && DU.gameflags.getFlag("health_derek") && DU.gameflags.getFlag("health_amy")) {
+  if (DU.gameflags.getFlag("health_garen") && DU.gameflags.getFlag("health_kylee") && DU.gameflags.getFlag("health_warren") && DU.gameflags.getFlag("health_dora")) {
     DU.gameflags.setFlag("all_health", 1);
   }
 }
