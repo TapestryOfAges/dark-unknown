@@ -85,7 +85,6 @@
         curr_place = prompt("Which location?", curr_place); 
         
         curr_person = prompt("Whose schedule?"); 
-        mode = "new";
 
         $("#mainbody").html("<center>" + curr_person + "</center>");
         $("#mainbody").append("<table id='schedtable' border='1' cellpadding='1' cellspacing='1'><tr><th></th><th>Start Condition</th><th>Activity</th><th>Parameters</th></tr></table>");
@@ -139,7 +138,7 @@
         }
       }
 
-      function add_activity() {
+      function add_activity(atIndex) {
         var params = {};
         var type = $("#activities").val();
         params.startCondition = $("#start_condition").val();
@@ -258,12 +257,15 @@
         if (editing !== -1) {
           DU.schedules[curr_person].editActivity(activity,editing);
           editing = -1;
-        } else {
+        } else if (isNaN(atIndex) || (atIndex < 0)) {
           DU.schedules[curr_person].addActivity(activity);
+        } else {
+          DU.schedules[curr_person].addActivity(activity,atIndex);
         }
 
         display_schedule();
         $("#activityparams").html("");
+        $("#activities").val("");
       }
 
       function display_schedule() {
@@ -272,6 +274,10 @@
         txt = "<center>" + curr_person + "</center>";
         txt = txt + "<table id='schedtable' border='1' cellpadding='1' cellspacing='1'><tr><th></th><th>Start Condition</th><th>Activity</th><th>Parameters</th></tr>";
         for (var i=0; i<thissched.length; i++) {
+          if (i>0) {
+            var j=i-1;
+            txt = txt + "<td><a href='javascript:add_activity("+j+")'>Insert</a> <a href='javascript:delete_activity("+j+")'>Del</a></td></tr>";
+          }
           txt = txt + "<tr><td><a href='javascript:EditActivity(" + i + ");'>Edit</td><td class='"+thissched[i].params.startCondition+"'>";
           if (thissched[i].params.startCondition === "Time") {
             txt = txt + "&#9200; " + thissched[i].params.startCondition + " (" + thissched[i].params.startTime + ")";
@@ -310,8 +316,15 @@
             }
           });
         }
-        txt = txt + "</td></tr>";
+        txt = txt + "</td><td><a href='javascript:add_activity("+i+")'>Insert</a> <a href='delete_activity("+i+")'>Del</a></td></tr>";
         $("#mainbody").html(txt);
+      }
+
+      function delete_activity(idx) {
+        DU.schedules[curr_person].deleteActivity(idx);
+        display_schedule();
+
+        return;
       }
 
       function EditActivity(idx) {
