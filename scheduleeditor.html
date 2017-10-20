@@ -292,27 +292,30 @@
           if (thissched[i].type === "LeaveMap") { symbol = "&#8667;"; }
           txt = txt + "</td><td>" +symbol+ " " + thissched[i].type + "</td><td>";
           var tmptype = thissched[i].type;
+          if (thissched[i].params.destination) {
+            if (tmptype === "ChangeMap") {
+              txt = txt + "dest : " + thissched[i].params.destination.mapName + " (" + thissched[i].params.destination.x + "," + thissched[i].params.destination.y + "), ";
+            } else {
+              txt = txt + "dest : (" + thissched[i].params.destination.x + "," + thissched[i].params.destination.y + "), ";
+            }
+          }
+          if (thissched[i].params.responsibleFor) {
+            txt = txt + "RF" + " : ";
+            for (var j=0; j<thissched[i].params.responsibleFor.length; j++) {
+              if (j>0) { txt = txt + ","; } 
+              txt = txt + "(" + thissched[i].params.responsibleFor[j].x + "," + thissched[i].params.responsibleFor[j].y + ")";
+            }
+          }
+          if (thissched[i].params.endCondition) {
+            txt = txt + "(End : ";
+            if (thissched[i].params.endCondition === "Time") {
+              txt = txt + thissched[i].params.endTime;
+            }
+            txt = txt + "), ";
+          }
           $.each(thissched[i].params, function(idx,val) {
-            if ((idx !== "Time") && (idx !== "endTime") && (idx !== "startCondition") && (idx !== "startTime")) {
-              if (idx === "destination") {
-                if (tmptype === "ChangeMap") {
-                  txt = txt + idx + " : " + val.mapName + " (" + val.x + "," + val.y + ")";
-                } else {
-                  txt = txt + idx + " : (" + val.x + "," + val.y + ")";
-                }
-              } else if (idx === "responsibleFor") {
-                txt = txt + idx + " : ";
-                for (var i=0; i<val.length; i++) {
-                  if (i>0) { txt = txt + ","; } 
-                  txt = txt + "(" + val[i].x + "," + val[i].y + ")";
-                }
-              } else {
-                txt = txt + idx + " : " + val;
-              }
-              if ((idx === "endCondition") && (val === "Time")) {
-                txt = txt + " (" + thissched.params.endTime + ")";
-              }
-              txt = txt + ", ";
+            if ((idx !== "destination") && (idx !== "responsibleFor") && (idx !== "endCondition") && (idx !== "endTime") && (idx !== "startCondition") && (idx !== "startTime")) {
+              txt = txt + idx + " : " + val + ", ";
             }
           });
         }

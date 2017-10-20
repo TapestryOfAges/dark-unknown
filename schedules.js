@@ -83,6 +83,7 @@ function NPCActivity(type, params) {
     } else { alert("This activity is missing its destination."); }
     if (params.hasOwnProperty("endCondition")) {
       if (params.endCondition === "Time") {
+        this.params.endCondition = "Time";
         if (params.hasOwnProperty("endTime")) {
           this.params.endTime = params.endTime;
         } else {
