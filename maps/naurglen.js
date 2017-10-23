@@ -464,11 +464,11 @@ mappages["naurglen"].features[409] = {name : 'BridgeEW', x : 21, y : 34};
 
 
 mappages["naurglen"].npcs = [];
-mappages["naurglen"].npcs[0] = {name : 'DruidVillagerNPC', x : 67, y : 36, NPCName: 'Hazel', Desc: 'healer', Conversation: 'hazel', ConversationFlag: 'hazel', Gender: 'female', Leash: 2, OverrideGraphic: 'druid-offcolor.1.gif'};
+mappages["naurglen"].npcs[0] = {name : 'DruidVillagerNPC', x : 67, y : 36, NPCName: 'Hazel', Desc: 'healer', PeaceAI: 'scheduled', Schedule: 'hazek', Conversation: 'hazel', ConversationFlag: 'hazel', Gender: 'female', Leash: 2, OverrideGraphic: 'druid-offcolor.1.gif'};
 mappages["naurglen"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 93, y : 26, NPCName: 'Daniel', Conversation: 'daniel', ConversationFlag: 'daniel', Gender: 'male', OverrideGraphic: '310.gif'};
 mappages["naurglen"].npcs[2] = {name : 'TinkerVillagerNPC', x : 93, y : 34, NPCName: 'Kyvek', Conversation: 'kyvek', ConversationFlag: 'kyvek', Gender: 'male', OverrideGraphic: '304.2.gif'};
 mappages["naurglen"].npcs[3] = {name : 'TownsfolkVillagerNPC', x :21, y : 24, NPCName: 'Derek', Conversation: 'derek', PeaceAI: 'scheduled', Schedule: 'derek', ConversationFlag: 'derek', Gender: 'male', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-mappages["naurglen"].npcs[4] = {name : 'ChildVillagerNPC', x : 67, y : 38, NPCName: 'Amy', Conversation: 'amy', ConversationFlag: 'amy', Gender: 'female', Leash: 4, Bark: '0', NPCBand: '0'};
+mappages["naurglen"].npcs[4] = {name : 'ChildVillagerNPC', x : 67, y : 38, NPCName: 'Amy', PeaceAI: 'scheduled', Schedule: 'amy', Conversation: 'amy', ConversationFlag: 'amy', Gender: 'female', Leash: 4, Bark: '0', NPCBand: '0'};
 mappages["naurglen"].npcs[5] = {name : 'PaladinVillagerNPC', x : 51, y : 38, NPCName: 'Amaeryl', PeaceAI: 'scheduled', Schedule: 'amaeryl', Conversation: 'amaeryl', ConversationFlag: 'amaeryl', Gender: 'female', OverrideGraphic: '307.2.gif'};
 mappages["naurglen"].npcs[6] = {name : 'TownGuardNPC', x : 59, y : 30, NPCName: 'Grayson', Alignment: '', Conversation: 'grayson', PeaceAI: 'scheduled', Schedule: 'grayson', ConversationFlag: 'grayson', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["naurglen"].npcs[7] = {name : 'ShepherdVillagerNPC', x :23, y : 4, NPCName: 'Samuel', Desc: 'blind shepherd', Conversation: 'samuel', Schedule: 'samuel', ConversationFlag: 'samuel', Gender: 'male', OverrideGraphic: '301.gif'};
@@ -663,8 +663,8 @@ mappages["naurglen2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 7, y : 37, N
 mappages["naurglen2"].npcs[1] = {name : 'RangerVillagerNPC', x : 49, y : 8, NPCName: 'Garen', PeaceAI: 'scheduled', Schedule: 'garen', Conversation: 'garen', ConversationFlag: 'garen', Gender: 'male', OverrideGraphic: 'ranger-offcolor.gif'};
 mappages["naurglen2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 49, y : 9, NPCName: 'Warren', PeaceAI: 'scheduled', Schedule: 'warren', Conversation: 'warren', ConversationFlag: 'warren', Gender: 'male', OverrideGraphic: '306.gif'};
 mappages["naurglen2"].npcs[3] = {name : 'TownGuardNPC', x : 65, y : 13, NPCName: 'Evelyn', PeaceAI: 'scheduled', Schedule: 'evelyn', Conversation: 'evelyn', ConversationFlag: 'evelyn', Gender: 'female', Bark: '0', NPCBand: '0'};
-mappages["naurglen2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 89, y : 15, NPCName: 'Dora', Conversation: 'dora', ConversationFlag: 'dora', Gender: 'female', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-mappages["naurglen2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 89, y : 19, NPCName: 'Ingrid', Conversation: 'ingrid', ConversationFlag: 'ingrid', Gender: 'female', OverrideGraphic: '310.gif'};
+mappages["naurglen2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 89, y : 15, NPCName: 'Dora', PeaceAI: 'scheduled', Schedule: 'ingrid', Conversation: 'dora', ConversationFlag: 'dora', Gender: 'female', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
+mappages["naurglen2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 89, y : 19, NPCName: 'Ingrid', PeaceAI: 'scheduled', Schedule: 'ingrid', Conversation: 'ingrid', ConversationFlag: 'ingrid', Gender: 'female', OverrideGraphic: '310.gif'};
 mappages["naurglen2"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 89, y : 30, NPCName: 'Sand', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'sand', Conversation: 'sand', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 
 mappages["naurglen2"].desc = "Naurglen";

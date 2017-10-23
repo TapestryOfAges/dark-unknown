@@ -5555,7 +5555,7 @@ function RightTableTile() {
 }
 RightTableTile.prototype = new FeatureObject();
 
-function FoodSouth() {
+function FoodSouthTile() {
   this.name = "FoodSouth";
   this.graphic = "table_middle_food_s.gif";
   this.passable = MOVE_ETHEREAL;
@@ -5565,7 +5565,7 @@ function FoodSouth() {
 }
 FoodSouthTile.prototype = new FeatureObject();
 
-function FoodNorth() {
+function FoodNorthTile() {
   this.name = "FoodNorth";
   this.graphic = "table_middle_food_n.gif";
   this.passable = MOVE_ETHEREAL;
@@ -5575,7 +5575,7 @@ function FoodNorth() {
 }
 FoodNorthTile.prototype = new FeatureObject();
 
-function FoodSouthNorth() {
+function FoodSouthNorthTile() {
   this.name = "FoodSouthNorth";
   this.graphic = "table_middle_food_ns.gif";
   this.passable = MOVE_ETHEREAL;

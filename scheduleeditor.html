@@ -301,9 +301,9 @@
           }
           if (thissched[i].params.responsibleFor) {
             txt = txt + "RF" + " : ";
-            for (var j=0; j<thissched[i].params.responsibleFor.length; j++) {
-              if (j>0) { txt = txt + ","; } 
-              txt = txt + "(" + thissched[i].params.responsibleFor[j].x + "," + thissched[i].params.responsibleFor[j].y + ")";
+            for (var k=0; k<thissched[i].params.responsibleFor.length; k++) {
+              if (k>0) { txt = txt + ","; } 
+              txt = txt + "(" + thissched[i].params.responsibleFor[k].x + "," + thissched[i].params.responsibleFor[k].y + ")";
             }
           }
           if (thissched[i].params.endCondition) {
@@ -319,7 +319,8 @@
             }
           });
         }
-        txt = txt + "</td><td><a href='javascript:add_activity("+i+")'>Insert</a> <a href='delete_activity("+i+")'>Del</a></td></tr>";
+        var j=i-1;
+        txt = txt + "</td><td><a href='javascript:add_activity("+j+")'>Insert</a> <a href='javascript:delete_activity("+j+")'>Del</a></td></tr>";
         $("#mainbody").html(txt);
       }
 

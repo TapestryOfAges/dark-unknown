@@ -525,6 +525,43 @@ function StepOrSidestep(who, path, finaldest, nopush) {
   var moved = StepOrDoor(who,path,nopush);
   if (!moved["canmove"] && !moved["opendoor"]) {
     DebugWrite("ai", " !canmove and !opendoor, trying here.");
+
+    if (who.getCurrentAI() === "scheduled") {
+      var tile = who.getHomeMap().getTile(path[0],path[1]);
+      if (tile.getTop().checkType("pc")) {
+        if (who.pushing) {
+          delete who.pushing;
+          who.getHomeMap().moveThing(path[0],path[1],who);
+          // Puts the NPC on the same tile as the player
+          // This is necessary, otherwise the player could still block the NPC's path
+          // by standing in front of a closed door.
+          // Will only come up if path is truly blocked
+          moved["canmove"] = 1;
+          maintext.delayedAddText(who.getFullDesc + " steps past you.");
+          moved["intoPC"] = 1; // dunno if I'll want this, but might as well
+          return moved;
+        } else { 
+          var gridbackup = who.getHomeMap().getPathGrid(MOVE_WALK_DOOR).clone();
+          // destination tile must always be walkable.
+          gridbackup.setWalkableAt(tox,toy,true);
+          
+          // so must start tile, for some reason
+          gridbackup.setWalkableAt(fromx,fromy,true);
+
+          gridbackup.setWalkableAt(path[0],path[1],false);
+          // make PC not walkable, see what path we get now
+
+          // get path
+          var foundpath = finder.findPath(fromx,fromy,tox,toy,gridbackup);
+
+          if (!foundpath[0] || ((foundpath.length - path.length) > 9)) {
+        
+            who.pushing = 1; 
+            return moved;
+          }
+        }
+      }
+    }
     var diffx = path[0] - who.getx();
     var diffy = path[1] - who.gety();
     var fullx = finaldest[0] - who.getx();
