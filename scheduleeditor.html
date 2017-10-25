@@ -146,7 +146,7 @@
           params.startTime = $("#start_time_value").val();
         }
         if ($("#set_flag").val()) {
-          params.setFlag = ("#set_flag").val();
+          params.setFlag = $("#set_flag").val();
         }
         if ($("#bark").val()) {
           params.bark = $("#bark").val();
@@ -345,7 +345,11 @@
         var activityname = document.optform.activities.value;
 
         $("#start_condition").val(DU.schedules[curr_person].scheduleArray[idx].params.startCondition);
-        $("#starttime").val(DU.schedules[curr_person].scheduleArray[idx].params.startTime);
+        if (DU.schedules[curr_person].scheduleArray[idx].params.startCondition === "Time") {
+          $("#starttime").html("Start time: <input type='text' name='start_time_value' id='start_time_value' size='8' />");
+          $("#start_time_value").val(DU.schedules[curr_person].scheduleArray[idx].params.startTime);
+        }
+
         $("#set_flag").val(DU.schedules[curr_person].scheduleArray[idx].params.setFlag);
 
         if (activityname === "RouteTo") {
@@ -354,6 +358,8 @@
           $("#end_condition").val(DU.schedules[curr_person].scheduleArray[idx].params.endCondition);
           if (DU.schedules[curr_person].scheduleArray[idx].params.endCondition === "Time") {
             $("#end_condition").val(DU.schedules[curr_person].scheduleArray[idx].params.endTime);
+            $("#endtime").html("End time: <input type='text' name='end_time_value' id='end_time_value' size='8' />");
+            $("#end_time_value").val(DU.schedules[curr_person].scheduleArray[idx].params.endTime);
           }
           $("#closedoors").val(DU.schedules[curr_person].scheduleArray[idx].params.closeDoors);
         } else if (activityname === "WaitHere") {
@@ -369,7 +375,9 @@
           $("#ai_params").val(DU.schedules[curr_person].scheduleArray[idx].params.params);
           $("#end_condition").val(DU.schedules[curr_person].scheduleArray[idx].params.endCondition);
           if (DU.schedules[curr_person].scheduleArray[idx].params.endCondition === "Time") {
-            $("#end_condition").val(DU.schedules[curr_person].scheduleArray[idx].params.endTime);
+            $("#end_condition").val("Time");
+            $("#endtime").html("End time: <input type='text' name='end_time_value' id='end_time_value' size='8' />");
+            $("#end_time_value").val(DU.schedules[curr_person].scheduleArray[idx].params.endTime);
           }
         }
 

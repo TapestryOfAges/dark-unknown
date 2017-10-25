@@ -48,13 +48,17 @@ ais.scheduled = function(who) {
   }
 
   if (nowactivity.params.setFlag) {
-    if (nowactivity.params.setFlag.indexOf("unset_") !== -1) {
-      var tmpflag = nowactivity.params.set_flag.replace(/unset_/, "");
-      if (who.flags[tmpflag]) {
-        delete who.flags[tmpflag];
+    var allparams = nowactivity.params.setFlag.split(",");
+    for (var i=0;i<allparams.length;i++) {
+      allparams[i].replace(/ /g,"");
+      if (allparams[i].indexOf("unset_") !== -1) {
+        var tmpflag = allparams[i].replace(/unset_/, "");
+        if (who.flags[tmpflag]) {
+          delete who.flags[tmpflag];
+        }
+      } else {
+        who.flags[allparams[i]] = 1;
       }
-    } else {
-      who.flags[nowactivity.params.set_flag] = 1;
     }
   }
 
@@ -244,20 +248,8 @@ ais.ChangeMap = function(who,params) {
 }
 
 ais.CallAI = function(who,params) {
-  var callparams = params.params;
-  var allparams = callparams.split(",");
-  var finalparams = {};
-  for (var i=0;i<allparams.length;i++) {
-    var entry = allparams[i].split(":");
-    entry[0] = entry[0].replace(/^ /,"");
-    entry[0] = entry[0].replace(/ $/,"");
-    entry[1] = entry[1].replace(/^ /,"");
-    entry[1] = entry[1].replace(/ $/,"");
-    entry[1] = entry[1].replace(/^"/,"");
-    entry[1] = entry[1].replace(/"$/,"");    
-    finalparams[entry[0]] = entry[1];
-  }
-  var retval = ais[params.AIName](who,finalparams);
+  alert(JSON.parse(params.params));
+  var retval = ais[params.AIName](who,JSON.parse(params.params));
   if (retval["fin"] = 1) {
     who.flags.activityComplete = 1;
   }
@@ -272,7 +264,6 @@ ais.PlaceItem = function(who,params) {
       DrawMainFrame("one",who.getHomeMap(),params.x,params.y);
     }      
   }
-  who.flags.activityComplete = 1;
   who.linkedItem = item;
 
   return {fin:1};
@@ -292,7 +283,6 @@ ais.DeleteItem = function(who,params) {
     item.itemmap.deleteThing(item);
 
     if (itemmap === PC.getHomeMap()) { DrawMainFrame("one",itemmap,itemx,itemy); }
-    who.flags.activityComplete = 1;
   }
 
   return {fin:1};
@@ -301,5 +291,51 @@ ais.DeleteItem = function(who,params) {
 ais.PlayHarpsichord = function(who,params) {
   // ?? Need to decide what this entails
 
+  return {fin:1};
+}
+
+ais.PrintThing = function(who,params) {
+  if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= params.rad) {
+    var mybark = params.print;
+    if ((mybark.indexOf("%THEDESC%") !== -1) || (mybark.indexOf("%DESC%") !== -1)) {
+      var pref = who.getPrefix();
+      if (mybark.indexOf("%THEDESC%") !== -1) {
+        if ((pref === "a") || (pref === "an")) { pref = "the"; }
+      }
+      var desc = who.getDesc();
+      if (who.getDesc() !== who.getNPCName()) {
+        desc = pref + " " + desc;
+      }
+      mybark = mybark.replace(/%THEDESC%/g, desc);
+      mybark = mybark.replace(/%DESC%/g, desc);
+    }
+    mybark = mybark.charAt(0).toUpperCase() + mybark.slice(1);
+    maintext.addText(mybark);
+  }
+  return {fin:1};
+}
+
+// params:
+// x,y of door
+// lock = unlock/lock
+ais.LockDoor = function(who,params){
+  var tile = who.getHomeMap().getTile(params.x,params.y);
+  var door = tile.getTopFeature();
+  if (door.hasOwnProperty(locked)) {
+    if (door.locked && (params.lock === "unlock")) {
+      door.unLockMe();
+    } else if (!door.locked && (params.lock === "lock")) {
+      door.lockMe();
+    }
+  }
+  return {fin:1};
+}
+
+ais.UseThing = function(who,params) {
+  var tile = who.getHomeMap().getTile(params.x,params.y);
+  var thing = tile.getTopFeature();
+  if (typeof thing.use === "function") {
+    thing.use(who);
+  }
   return {fin:1};
 }
