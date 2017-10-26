@@ -822,6 +822,7 @@ function PlaceNPCsByTime() {
   }
   
   for (var i=0;i<allnpcs.length;i++) {
+    console.log(allnpcs[i].getName() + " " + allnpcs[i].getx() + "," + allnpcs[i].gety() + " : " + allnpcs[i].getNPCName());
     if (allnpcs[i].getSchedule()) {
       var sched = DU.schedules[allnpcs[i].getSchedule()];
       var loc = sched.getNPCLocationByTime();

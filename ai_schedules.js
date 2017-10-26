@@ -5,7 +5,7 @@
 // Time to declare that this schedule is done (endCondition, endTime)
 // Flags to set (setFlag)
 ais.scheduled = function(who) {
-  DebugWrite("ai", "In SCHEDULED.");
+  DebugWrite("ai", "In SCHEDULED. ");
   delete who.flags.sleep;
   // will be re-set in WaitHere if still asleep
 
@@ -37,10 +37,6 @@ ais.scheduled = function(who) {
     }
   }
 
-  if (who.getCurrentScheduleIndex() === nextidx) { 
-    DebugWrite("ai", "Moving to next schedule, setting center for possible leash to current position.<br />");
-    who.leashCenter = {x: who.getx(), y: who.gety()}; 
-  }
   nowactivity = schedule.scheduleArray[who.getCurrentScheduleIndex()];
 
   if (nowactivity.params.bark) {
@@ -124,13 +120,20 @@ ais.RouteTo = function(who, params) {
   if ((movetype === MOVE_WALK) && (who.specials["open_door"])) { movetype = MOVE_WALK_DOOR; }
   var path = who.getHomeMap().getPath(who.getx(),who.gety(),params.destination.x,params.destination.y,movetype);
   path.shift();
-  var moved = StepOrSidestep(who,path[0],[params.destination.x, params.destination.y]);
-  if (moved["opendoor"]) {
-    who.flags.closedoor = {};
-    who.flags.closedoor.steps = 1;
-    who.flags.closedoor.x = path[0][0];
-    who.flags.closedoor.y = path[0][1];
-  } else if (who.flags.closedoor && who.flags.closedoor.steps) { who.flags.closedoor.steps++; }
+  if (path[0]) {
+    var moved = StepOrSidestep(who,path[0],[params.destination.x, params.destination.y]);
+    if (moved["opendoor"]) {
+      who.flags.closedoor = {};
+      who.flags.closedoor.steps = 1;
+      who.flags.closedoor.x = path[0][0];
+      who.flags.closedoor.y = path[0][1];
+    } else if (who.flags.closedoor && who.flags.closedoor.steps) { who.flags.closedoor.steps++; }
+  } else {
+    alert(movetype);
+    alert(who.getNPCName());
+    alert(who.getx() + "," + who.gety());
+    alert(DU.schedules[who.getSchedule()]["currentIndex"]);
+  }
 
   if ((who.getx() === parseInt(params.destination.x)) && (who.gety() === parseInt(params.destination.y))) {
     who.flags.activityComplete = 1;
@@ -144,7 +147,7 @@ ais.WaitHere = function(who,params) {
   retval["fin"] = 1;
   var whomap = who.getHomeMap();
   DebugWrite("ai", "In WaitHere.");
-  if (params.sleep) { who.flags.sleep = 1; DebugWrite("ai", "ZZzzzz."); }
+  if (params.sleep) { who.flags.sleep = 1; DebugWrite("ai", "ZZzzzz.<br />"); }
   else {
     if (params.hasOwnProperty("responsibleFor")) {
       if (!who.flags.hasOwnProperty("closingResponsibleDoor")) {
@@ -193,11 +196,24 @@ ais.WaitHere = function(who,params) {
     }
 
     if (params.leashLength) {
-      if (GetDistance(who.getx(),who.gety(),who.leashCenter.x,who.leashCenter.y) > params.leashLength) {
-        var path = whomap.getPath(who.getx(),who.gety(),who.leashCenter.x,who.leashCenter.y,MOVE_WALK_DOOR);
+      var leashCenter;
+      var ii = who.getCurrentScheduleIndex();
+      ii--;
+      while (!leashCenter) {
+        if (DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination) {
+          leashCenter = {};
+          leashCenter.x = DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination.x;
+          leashCenter.y = DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination.y;
+        } else {
+          ii--;
+          if (ii < 0) { ii = DU.schedules[who.getSchedule()].scheduleArray.length - 1; }
+        }
+      }
+      if (GetDistance(who.getx(),who.gety(),leashCenter.x,leashCenter.y) > params.leashLength) {
+        var path = whomap.getPath(who.getx(),who.gety(),leashCenter.x,leashCenter.y,MOVE_WALK_DOOR);
         if (path) {
           path.shift();
-          StepOrSidestep(who,path[0], [who.leashCenter.x,who.leashCenter.y]);
+          StepOrSidestep(who,path[0], [leashCenter.x,leashCenter.y]);
           DebugWrite("ai", "Tried to move toward the center of my leash.");
         } else {
           DebugWrite("ai", "No path back into my leash.");
@@ -248,7 +264,6 @@ ais.ChangeMap = function(who,params) {
 }
 
 ais.CallAI = function(who,params) {
-  alert(JSON.parse(params.params));
   var retval = ais[params.AIName](who,JSON.parse(params.params));
   if (retval["fin"] = 1) {
     who.flags.activityComplete = 1;

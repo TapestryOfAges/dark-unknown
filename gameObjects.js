@@ -12686,7 +12686,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.hp = this.maxhp;
     
 
-    DebugWrite("ai", "<span style='font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") activating.</span><br />");
+    DebugWrite("ai", "<span style='font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") activating at " + this.getx() + "," + this.gety() + ".</span><br />");
   
     if (this.overrideGraphic) {
       this.graphic = this.overrideGraphic;
@@ -12805,6 +12805,10 @@ NPCObject.prototype.activate = function(timeoverride) {
     var NPCEvent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCEvent,timing);  
     
+    if (this.getSchedule()) {
+      this.setCurrentScheduleIndex(DU.schedules[this.getSchedule()].currentIndex);
+      DebugWrite("ai", "Set schedule index to: " + this.getCurrentScheduleIndex() + ".<br />");
+    }
   }
 }
 

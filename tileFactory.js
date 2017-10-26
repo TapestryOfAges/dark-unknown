@@ -1268,6 +1268,21 @@ tileFactory.prototype.makeRightTableTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFoodSouthTile = function() {
+  var newTile = new FoodSouthTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFoodNorthTile = function() {
+  var newTile = new FoodNorthTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFoodSouthNorthTile = function() {
+  var newTile = new FoodSouthNorthTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeHarpsichordTile = function() {
   var newTile = new HarpsichordTile();
   return newTile;

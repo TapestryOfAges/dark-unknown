@@ -278,7 +278,7 @@
             var j=i-1;
             txt = txt + "<td><a href='javascript:add_activity("+j+")'>Insert</a> <a href='javascript:delete_activity("+j+")'>Del</a></td></tr>";
           }
-          txt = txt + "<tr><td><a href='javascript:EditActivity(" + i + ");'>Edit</td><td class='"+thissched[i].params.startCondition+"'>";
+          txt = txt + "<tr><td>" + i + "</td><td><a href='javascript:EditActivity(" + i + ");'>Edit</td><td class='"+thissched[i].params.startCondition+"'>";
           if (thissched[i].params.startCondition === "Time") {
             txt = txt + "&#9200; " + thissched[i].params.startCondition + " (" + thissched[i].params.startTime + ")";
           } else if (thissched[i].params.startCondition === "PreviousComplete") {
