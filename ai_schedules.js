@@ -151,8 +151,10 @@ ais.WaitHere = function(who,params) {
   else {
     if (params.hasOwnProperty("responsibleFor")) {
       if (!who.flags.hasOwnProperty("closingResponsibleDoor")) {
+        DebugWrite("ai","Has door responsibilities.<br />");
         for (var i=0;i<params.responsibleFor.length;i++) {
-          var fea = who.getHomeMap().getTile(params.responsibleFor[i].x,params.responsibleFor[i].y).getTopFeature();
+          var fea = who.getHomeMap().getTile(parseInt(params.responsibleFor[i].x),parseInt(params.responsibleFor[i].y)).getTopFeature();
+          DebugWrite("ai","Responsible for door at " + parseInt(params.responsibleFor[i].x) + "," + parseInt(params.responsibleFor[i].y + ".<br />");
           if (fea.open) {
             if (Dice.roll("1d5") === 1) { 
               DebugWrite("ai", "Chosen to close door at " + fea.getx() + "," + fea.gety() +".");
@@ -163,7 +165,7 @@ ais.WaitHere = function(who,params) {
       }
       if (who.flags.hasOwnProperty("closingResponsibleDoor")) {
         var door = who.flags.closingResponsibleDoor;
-        var fea = who.getHomeMap().getTile(params.responsibleFor[door].x,params.responsibleFor[door].y).getTopFeature();
+        var fea = who.getHomeMap().getTile(parseInt(params.responsibleFor[door].x),parseInt(params.responsibleFor[door].y)).getTopFeature();
         if (fea.open) {
           DebugWrite("ai", "Working on closing the door at " + fea.getx() + "," + fea.gety() +" as previously decided upon.");
           if (IsAdjacent(who,fea,1)) {
@@ -176,7 +178,7 @@ ais.WaitHere = function(who,params) {
             return retval;
           } else {
             DebugWrite("ai", "Approaching the door.");            
-            var path = whomap.getPath(who.getx(), who.gety(), params.responsibleFor[door].x, params.responsibleFor[door].y,MOVE_WALK_DOOR);
+            var path = whomap.getPath(who.getx(), who.gety(), parseInt(params.responsibleFor[door].x), parseInt(params.responsibleFor[door].y),MOVE_WALK_DOOR);
             if (path.length === 0) {
               // There is no path to the door, giving up on closing it... this time
               DebugWrite("ai", "No path to the door, giving up.");
@@ -195,38 +197,36 @@ ais.WaitHere = function(who,params) {
       }
     }
 
-    if (params.leashLength) {
-      var leashCenter;
-      var ii = who.getCurrentScheduleIndex();
-      ii--;
-      while (!leashCenter) {
-        if (DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination) {
-          leashCenter = {};
-          leashCenter.x = DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination.x;
-          leashCenter.y = DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination.y;
-        } else {
-          ii--;
-          if (ii < 0) { ii = DU.schedules[who.getSchedule()].scheduleArray.length - 1; }
-        }
-      }
-      if (GetDistance(who.getx(),who.gety(),leashCenter.x,leashCenter.y) > params.leashLength) {
-        var path = whomap.getPath(who.getx(),who.gety(),leashCenter.x,leashCenter.y,MOVE_WALK_DOOR);
-        if (path) {
-          path.shift();
-          StepOrSidestep(who,path[0], [leashCenter.x,leashCenter.y]);
-          DebugWrite("ai", "Tried to move toward the center of my leash.");
-        } else {
-          DebugWrite("ai", "No path back into my leash.");
-          // skipping turn in confusion
-        }
+    var leashCenter;
+    var ii = who.getCurrentScheduleIndex();
+    ii--;
+    while (!leashCenter) {
+      if (DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination) {
+        leashCenter = {};
+        leashCenter.x = DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination.x;
+        leashCenter.y = DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination.y;
       } else {
-        // I am permitted to wander
-        if (Dice.roll("1d2") === 2) {
-          var moveval = ais.Randomwalk(who,25,25,25,25);
-          DebugWrite("ai", "Wander wander wander.");
-        } else {
-          DebugWrite("ai", "Could have wandered, chose not to.");
-        }
+        ii--;
+        if (ii < 0) { ii = DU.schedules[who.getSchedule()].scheduleArray.length - 1; }
+      }
+    }
+    if (!params.leashLength) { params.leashLength = 0; }
+      if (GetDistance(who.getx(),who.gety(),leashCenter.x,leashCenter.y) > params.leashLength) {
+        var path = whomap.getPath(who.getx(),who.gety(),leashCenter.x,leashCenter.y,MOVE_WALK_DOOR);        if (path) {
+        path.shift();
+        StepOrSidestep(who,path[0], [leashCenter.x,leashCenter.y]);
+        DebugWrite("ai", "Tried to move toward the center of my leash.");
+      } else {
+        DebugWrite("ai", "No path back into my leash.");
+        // skipping turn in confusion
+      }
+    } else if (params.leashLength > 0) {
+      // I am permitted to wander
+      if (Dice.roll("1d2") === 2) {
+        var moveval = ais.Randomwalk(who,25,25,25,25);
+        DebugWrite("ai", "Wander wander wander.");
+      } else {
+        DebugWrite("ai", "Could have wandered, chose not to.");
       }
     }
   }

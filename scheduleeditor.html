@@ -201,12 +201,12 @@
           }
           if ($("#responsible_for").val()) {
             var responsibilities = $("#responsible_for").val();
-            responsibilities.replace(/ /g,"");
+            responsibilities = responsibilities.replace(/ /g,"");
             var response = responsibilities.split("),(");
             responsibilities = [];
             for (var i=0; i<response.length; i++) {
-              response[i].replace(/\(/g, "");
-              response[i].replace(/\)/g, "");
+              response[i] = response[i].replace(/\(/g, "");
+              response[i] = response[i].replace(/\)/g, "");
               var coords = response[i].split(",");
               responsibilities.push({x: coords[0], y: coords[1]});
             }
