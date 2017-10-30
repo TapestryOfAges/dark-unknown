@@ -127,16 +127,16 @@ ProtoObject.prototype.copy = function(type) {
       copydata.homeMap = val.getName();
       copydata.traceback.push("homeMap");
       DebugWrite("saveload", idx + " copied... ");
-    } else if ((idx === "resists") || (idx === "specials") || (idx === "flags")) {
+    } else if ((idx === "resists") || (idx === "specials")) {
       if ((typeof base_version[idx] === "object") && objectCompare(val, base_version[idx])) {
         DebugWrite("saveload", idx + " an object and the <span style='color:firebrick'>same, moving on</span>...  ");
       } else {
         copydata[idx] = val;
         DebugWrite("saveload", idx + " an object and <span style='color:lime'>different, copying</span>... ");
       }
-    } else if ((idx === "currentDestination") || (idx === "lastLocation")) {
+    } else if ((idx === "currentDestination") || (idx === "lastLocation") || (idx === "flags")) {
       copydata[idx] = val;
-      DebugWrite("saveload", idx + " <span style='color:lime'>different, copying</span>... ");
+      DebugWrite("saveload", idx + " <span style='color:lime'> copying regardless</span>... ");
     } else if ((idx === "currentPoI") || (idx === "losupclose")){
       DebugWrite("saveload", idx + " <span style='color:maroon'>deliberately not saved</span>... ");
     } else if (idx === "spawned") { 
@@ -12686,7 +12686,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.hp = this.maxhp;
     
 
-    DebugWrite("ai", "<span style='font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") activating at " + this.getx() + "," + this.gety() + ".</span><br />");
+    DebugWrite("ai", "<span style='font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") (" + this.getNPCName() + ") activating at " + this.getx() + "," + this.gety() + ".</span><br />");
   
     if (this.overrideGraphic) {
       this.graphic = this.overrideGraphic;
