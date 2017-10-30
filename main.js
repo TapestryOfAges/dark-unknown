@@ -150,7 +150,7 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
   }
 
   var terr = GetDisplayTerrain(themap,j,i,centerx,centery,thiscell.losresult);
-  $("#terrain_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/"+terr.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + terr.desc + "'/>");
+  $("#terrain_"+xidx+"x"+yidx).html("<img id='terr_tile"+j+"x"+i+"' src='graphics/"+terr.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + terr.desc + "'/>");
   $("#terrain_"+xidx+"x"+yidx).css("background-image", "url('graphics/" + terr.showGraphic + "')");
   $("#terrain_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
   $("#terrain_"+xidx+"x"+yidx).css("background-position", terr.graphics2 + "px " + terr.graphics3 + "px");
