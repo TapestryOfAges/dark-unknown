@@ -434,15 +434,25 @@ Acre.prototype.getTerrain = function() {
 	return this.terrain;
 }
 
-Acre.prototype.getTop = function(nopc) {
-	var toptile;
-	if (this.getTopPC() && !nopc) {
-  	toptile = this.getTopPC();
-  } else if (this.getTopVisibleNPC()) {
-  	toptile = this.getTopVisibleNPC();
-  } else if (this.getTopVisibleFeature()) {
-  	toptile = this.getTopVisibleFeature();
-  } else { toptile = this.getTerrain(); }
+Acre.prototype.getTop = function(nopc, sortnpctotop) {
+  var toptile;
+  if (!sortnpctotop) {
+  	if (this.getTopPC() && !nopc) {
+    	toptile = this.getTopPC();
+    } else if (this.getTopVisibleNPC()) {
+    	toptile = this.getTopVisibleNPC();
+    } else if (this.getTopVisibleFeature()) {
+    	toptile = this.getTopVisibleFeature();
+    } else { toptile = this.getTerrain(); }
+  } else {
+    if (this.getTopVisibleNPC()) {
+    	toptile = this.getTopVisibleNPC();
+    } else if (this.getTopPC() && !nopc) {
+      toptile = this.getTopPC();
+    } else if (this.getTopVisibleFeature()) {
+    	toptile = this.getTopVisibleFeature();
+    } else { toptile = this.getTerrain(); }
+  }
 
 	return toptile;
 }
@@ -1168,7 +1178,7 @@ GameMap.prototype.setNPCsCoord = function() {
 }
 
 
-GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
+GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
   if (newthing) {
     newthing.setHomeMap(this);
     
@@ -1197,7 +1207,9 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride) {
   	  this.setNoiseSource(newthing, newthing.getAmbientNoise(), newthing.getAmbientRadius());
   	}
   
-    newthing.activate(timeoverride);
+    if (!noactivate) {
+      newthing.activate(timeoverride);
+    }
 
 	  //update pathfinding
 	  if ((type !== "npcs") && (type !== "pcs")) {
@@ -1666,8 +1678,10 @@ GameMap.prototype.loadMap = function (name) {
   			  if (npckey === "OverrideGraphic") { newnpc.overrideGraphic = loadnpcs[npci].OverrideGraphic; }
         }
         if (newnpc.getPeaceAI() === "scheduled") {
-          var loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime(), 1);
+          var loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1);
+          newnpc._mapName = loc.mapName;
           this.placeThing(loc.x,loc.y,newnpc);
+          newnpc.flags = loc.flags;
         } else {
           this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
         }
