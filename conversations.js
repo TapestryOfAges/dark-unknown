@@ -432,12 +432,6 @@ OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
   return -1;
 }
 
-OnConvTriggers["inn_20_n"] = function(speaker,keyword) {
-  DU.gameflags.deleteFlag("inn_20_n");
-  DU.gameflags.deleteFlag("inn_20");
-  return;
-}
-
 OnConvTriggers["inn_25"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("inn_25");
 
