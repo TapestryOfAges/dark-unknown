@@ -189,7 +189,7 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     }
   }
   
-  displaytile = localacre.getTop();
+  displaytile = localacre.getTop(0,1);  // sorts NPCs to top
   while (displaytile.getName() === "SeeBelow") {
     var retval = FindBelow(x,y,mapname);
     localacre = retval.tile;
@@ -352,7 +352,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	// remove entity from current map
 	frommap.deleteThing(who);
 	// also delete any NPCs following PC (summoned demons) FIXTHIS
-	tomap.placeThing(destx,desty,who);
+  tomap.placeThing(destx,desty,who,0,"noactivate");
 	who.setHomeMap(tomap);
 	var tile = tomap.getTile(destx,desty);
   var oldtile = frommap.getTile(oldx,oldy);
@@ -389,7 +389,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   	}
   	DrawCharFrame();  // to remove Negate if it's present
   }
-	
+
 	ProcessAmbientNoise(tile);
 	if ((DU.gameflags.getFlag("music")) && (who === PC) && (tomap.getMusic() !== nowplaying.name)) {
 	  StopMusic(nowplaying);
@@ -405,6 +405,35 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	}
 	return tile;
 
+}
+
+function AdjustStartingLocations(amap) {
+  var allnpcs = amap.npcs.getAll();
+  var linked = amap.getLinkedMaps();
+
+  if (linked && (linked.length > 0)) {
+    var othermap = new GameMap();
+    for (var j=0;j<linked.length;j++) {
+      othermap = maps.getMap(linked[j]);
+      var othernpcs = othermap.npcs.getAll();
+      for (var i=0;i<othernpcs.length;i++) {
+        allnpcs.push(othernpcs[i]);
+        console.log("Pushing " + othernpcs[i].getNPCName());
+      }
+    }
+  }
+
+  for (var i=0;i<allnpcs.length;i++) {
+
+    if (allnpcs[i]._mapName && (allnpcs[i].getHomeMap().getName() !== allnpcs[i]._mapName)) {
+      var destmap = maps.getMap(allnpcs[i]._mapName);
+      var oldmap = allnpcs[i].getHomeMap().getName();
+      if (!destmap) { alert("Failure to find map " + allnpcs[i]._mapName); }
+      var desttile = MoveBetweenMaps(allnpcs[i],allnpcs[i].getHomeMap(),destmap,allnpcs[i].getx(),allnpcs[i].gety());
+      DebugWrite("ai", "During map population, moved this NPC (" + allnpcs[i].getNPCName() + ") to its correct map by schedule (from " + oldmap + " to " + destmap.getName() + ").<br />");
+      delete allnpcs[i]._mapName;
+    }
+  }
 }
 
 function FindBelow(upx,upy,map) {
