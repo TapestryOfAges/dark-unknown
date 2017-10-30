@@ -154,9 +154,9 @@ ais.WaitHere = function(who,params) {
         DebugWrite("ai","Has door responsibilities.<br />");
         for (var i=0;i<params.responsibleFor.length;i++) {
           var fea = who.getHomeMap().getTile(parseInt(params.responsibleFor[i].x),parseInt(params.responsibleFor[i].y)).getTopFeature();
-          DebugWrite("ai","Responsible for door at " + parseInt(params.responsibleFor[i].x) + "," + parseInt(params.responsibleFor[i].y + ".<br />");
+          DebugWrite("ai","Responsible for door at " + parseInt(params.responsibleFor[i].x) + "," + parseInt(params.responsibleFor[i].y + ".<br />"));
           if (fea.open) {
-            if (Dice.roll("1d5") === 1) { 
+            if (Dice.roll("1d8") === 1) { 
               DebugWrite("ai", "Chosen to close door at " + fea.getx() + "," + fea.gety() +".");
               who.flags.closingResponsibleDoor = i; 
             }
@@ -336,7 +336,7 @@ ais.PrintThing = function(who,params) {
 ais.LockDoor = function(who,params){
   var tile = who.getHomeMap().getTile(params.x,params.y);
   var door = tile.getTopFeature();
-  if (door.hasOwnProperty(locked)) {
+  if (door.hasOwnProperty("locked")) {
     if (door.locked && (params.lock === "unlock")) {
       door.unLockMe();
     } else if (!door.locked && (params.lock === "lock")) {
