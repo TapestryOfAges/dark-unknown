@@ -322,9 +322,7 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcgender.value = editnpcs.getGender();
       document.npceditpopup.npcmerch.value = editnpcs.getMerch();
       document.npceditpopup.npcleash.value = editnpcs.getLeash();
-      document.npceditpopup.npcbarkfreq.value = editnpcs.getBarkFreq();
-      document.npceditpopup.npcbark.value = editnpcs.getBark();
-      document.npceditpopup.npcbarkrad.value = editnpcs.getBarkRad();
+      document.npceditpopup.npcprefix.value = editnpcs.getPrefix();
       document.npceditpopup.npcnpcband.value = editnpcs.getNPCBand();
       
       graphicpicks = [];
@@ -587,14 +585,8 @@ function submitEditNPC(change) {
 		if (document.npceditpopup.npcleash.value !== editnpcs.getLeash()) {
 			editnpcs.setLeash(document.npceditpopup.npcleash.value);
 		}
-		if (document.npceditpopup.npcbarkfreq.value !== editnpcs.getBarkFreq()) {
-			editnpcs.setBarkFreq(document.npceditpopup.npcbarkfreq.value);
-		}
-		if (document.npceditpopup.npcbark.value !== editnpcs.getBark()) {
-			editnpcs.setBark(document.npceditpopup.npcbark.value);
-		}
-		if (document.npceditpopup.npcbarkrad.value !== editnpcs.getBarkRad()) {
-			editnpcs.setBarkRad(document.npceditpopup.npcbarkrad.value);
+		if (document.npceditpopup.npcprefix.value !== editnpcs.getPrefix()) {
+			editnpcs.setPrefix(document.npceditpopup.npcprefix.value);
 		}
 		if (document.npceditpopup.npcnpcband.value !== editnpcs.getNPCBand()) {
 			editnpcs.setNPCBand(document.npceditpopup.npcnpcband.value);
