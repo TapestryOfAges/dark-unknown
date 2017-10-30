@@ -967,7 +967,8 @@ function PerformEnter(cmd) {
           }
         }
       }			  
-			var tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
+      var tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
+      AdjustStartingLocations(newmap);
 			retval["txt"] = "Entering " + newmap.getDesc() + ".";
 			if (descend != "") {
 				retval["txt"] = descend;
@@ -1193,7 +1194,7 @@ function PerformTalkTarget() {
   var tileid = targetCursor.tileid;
   $(tileid).html(targetCursor.basetile); 
   var map = PC.getHomeMap();
-  var onscreen = $('#td-tile' + targetCursor.x + 'x' + targetCursor.y).html();
+  var onscreen = $('#tile' + targetCursor.x + 'x' + targetCursor.y).html();
 //  alert(onscreen);
   var losval = 0;
   if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
