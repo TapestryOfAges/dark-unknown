@@ -537,22 +537,22 @@ function StepOrSidestep(who, path, finaldest, nopush) {
           // by standing in front of a closed door.
           // Will only come up if path is truly blocked
           moved["canmove"] = 1;
-          maintext.delayedAddText(who.getFullDesc + " steps past you.");
+          maintext.delayedAddText(who.getFullDesc() + " steps past you.");
           moved["intoPC"] = 1; // dunno if I'll want this, but might as well
           return moved;
         } else { 
           var gridbackup = who.getHomeMap().getPathGrid(MOVE_WALK_DOOR).clone();
           // destination tile must always be walkable.
-          gridbackup.setWalkableAt(tox,toy,true);
+          gridbackup.setWalkableAt(finaldest[0],finaldest[1],true);
           
           // so must start tile, for some reason
-          gridbackup.setWalkableAt(fromx,fromy,true);
+          gridbackup.setWalkableAt(who.getx(),who.gety(),true);
 
           gridbackup.setWalkableAt(path[0],path[1],false);
           // make PC not walkable, see what path we get now
 
           // get path
-          var foundpath = finder.findPath(fromx,fromy,tox,toy,gridbackup);
+          var foundpath = finder.findPath(who.getx(),who.gety(),finaldest[0],finaldest[1],gridbackup);
 
           if (!foundpath[0] || ((foundpath.length - path.length) > 9)) {
         
