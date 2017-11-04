@@ -128,6 +128,10 @@ ais.RouteTo = function(who, params) {
       who.flags.closedoor.x = path[0][0];
       who.flags.closedoor.y = path[0][1];
     } else if (who.flags.closedoor && who.flags.closedoor.steps) { who.flags.closedoor.steps++; }
+    if (!moved["canmove"] && moved["intoPC"]) {
+      who.flags.activityComplete = 1;
+      DebugWrite("ai", "PC at destination, giving up and setting activityComplete.");
+    }
   } else {
     alert(movetype);
     alert(who.getNPCName());
