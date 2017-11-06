@@ -611,7 +611,7 @@ mappages["olympus1"].features[538] = {name : 'BedHead', x : 13, y : 21};
 mappages["olympus1"].features[539] = {name : 'BedFoot', x : 14, y : 21};
 mappages["olympus1"].features[540] = {name : 'BedHead', x : 82, y : 27};
 mappages["olympus1"].features[541] = {name : 'BedFoot', x : 83, y : 27};
-
+mappages["olympus1"].features[542] = {name : 'RightChair', x : 16, y : 25};
 
 mappages["olympus1"].npcs = [];
 mappages["olympus1"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 35, y : 40, NPCName: 'Katrina', Desc: 'librarian', Conversation: 'katrina', ConversationFlag: 'katrina', Gender: 'female', OverrideGraphic: '310.2.gif'};
