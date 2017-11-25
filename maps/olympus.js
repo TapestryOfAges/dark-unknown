@@ -743,7 +743,7 @@ mappages["olympus2"].terrain[63] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb
 mappages["olympus2"].terrain[64] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
 
 mappages["olympus2"].features = [];
-mappages["olympus2"].features[0] = {name : 'StairDown', x : 40, y : 25, entermap : 'null', enterx : 0, entery : 0};
+mappages["olympus2"].features[0] = {name : 'StairDown', x : 40, y : 25, entermap : 'olympus1', enterx : 40, entery : 25};
 mappages["olympus2"].features[1] = {name : 'BookshelfLeft', x : 52, y : 17};
 mappages["olympus2"].features[2] = {name : 'BookshelfRight', x : 53, y : 17};
 mappages["olympus2"].features[3] = {name : 'BookshelfOne', x : 54, y : 17};
