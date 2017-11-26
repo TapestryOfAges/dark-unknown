@@ -9,7 +9,9 @@ function SpellObject(name, incant, level, targets) {
   this.level = level;
   this.targets = targets;
   this.reduceresist = 0;
-   
+  this.longdesc = "";
+  this.infuseddesc = "";
+  this.saledesc = ""; 
 }
 SpellObject.prototype = new Object();
 
@@ -318,6 +320,9 @@ magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID] = new SpellObject("Time Stop", 
 // Spell begin below
 
 // Cure
+magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].longdesc = "Removes <style='color:#58FA58'>poison</style> and <style='color:#58FA58'>Disease</style>.";
+magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].infuseddesc = "Also heals for " + Dice.rollmin(PC.getLevel() + "d4+2") + "-" + Dice.rollmax(PC.getLevel() + "d4+2") + ".";
+
 magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Cure.<br />");
   var resp = {};
@@ -355,6 +360,9 @@ magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, 
 }
 
 // Disarm Trap
+magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].longdesc = "Attempts to disarm all adjacent traps.";
+magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].infuseddesc = "Significantly increases the chance of success.";
+
 magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Disarm Trap.<br />");
   var resp = {};
@@ -400,6 +408,13 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
 }
 
 // Distract
+if (PC.getInt() > 20) {
+  magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].longdesc = "Enemies within a radius of 4 resist or become distracted, lowering their chance to hit by " + Math.round(caster.getInt()/2) + "%.";
+} else {
+  magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].longdesc = "Enemies within a radius of 3 resist or become distracted, lowering their chance to hit " + Math.round(caster.getInt()/2) + "%.";
+}
+magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].infuseddesc = "Increases the radius and the difficulty to resist to " + Math.round((caster.getInt()/2)*1.5) + "%.";
+
 magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Distract.<br />");
   var resp = {};
@@ -450,6 +465,9 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
 }
 
 // Flame Blade
+magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].longdesc = "Sheathes your melee weapon in flame, dealing an extra " + Dice.rollmin(DMG_NEGLIGABLE) + "-" + Dice.rollmax(DMG_NEGLIGABLE) + "damage for 1 hit.";
+magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].infuseddesc = "Damage increases to " + Dice.rollmin(DMG_NEGLIGABLE) + ".";
+
 magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Flame Blade.<br />");
   var resp = {};
