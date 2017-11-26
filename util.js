@@ -513,6 +513,11 @@ function DiceObject() {
     var dieobj = this.parse(die);
     return (dieobj.plus + dieobj.quantity * (1+dieobj.dice)/2);  
   }
+
+  this.rollmax = function(die) {
+    var dieobj = this.parse(die);
+    return (dieobj.dice*dieobj.quantity + dieobj.plus);
+  }
 }
 DiceObject.prototype = new Object();
 
