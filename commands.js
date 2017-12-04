@@ -2042,7 +2042,7 @@ function performZstats(code) {
       // special inventory screen, move around it instead
       exitInv = PerformInventoryScreen(code, restrict);
     } 
-    if (typeof exitInv === "Object") {
+    if (typeof exitInv === "object") {
       // (U)se return
     } else if (exitInv) {
       targetCursor.page--;
@@ -2061,7 +2061,7 @@ function performZstats(code) {
       // special inventory screen, move around it instead
       exitInv = PerformInventoryScreen(code, restrict);
     } 
-    if (typeof exitInv === "Object") {
+    if (typeof exitInv === "object") {
       // (U)se return
     } else if (exitInv) {
       targetCursor.page++;
@@ -2078,7 +2078,7 @@ function performZstats(code) {
       // inventory
       exitInv = PerformInventoryScreen(code, restrict);
     } 
-    if (typeof exitInv === "Object") {
+    if (typeof exitInv === "object") {
       // (U)se return
     } else if (exitInv) {
       targetCursor.scrollapi.scrollByY(-50,1);
@@ -2101,7 +2101,7 @@ function performZstats(code) {
     if (targetCursor.page === 2) {
       exitInv = PerformInventoryScreen(code, restrict);
     }
-    if (typeof exitInv === "Object") {
+    if (typeof exitInv === "object") {
       // (U)se return
     } else if (exitInv) {
       targetCursor.scrollapi.scrollByY(350,1);
@@ -2112,7 +2112,7 @@ function performZstats(code) {
     if (targetCursor.page === 2) {
       exitInv = PerformInventoryScreen(code, restrict);
     }
-    if (typeof exitInv === "Object") {
+    if (typeof exitInv === "object") {
       // (U)se return
     } else if (exitInv) {
       targetCursor.scrollapi.scrollByY(-350,1);
@@ -2980,6 +2980,10 @@ function PerformInventoryScreen(code, restrict) {
     // use selected item
     var invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
     var inventorylist = MakeInventoryList(restrict);
+    if (targetCursor.command === "c") {
+      // here for Scribe or Mend
+      // WORKING HERE
+    }
     if (targetCursor.command === "o") {
       if (!CheckOpenAsUse(inventorylist[invselect])) {
         maintext.delayedAddText("You cannot open that.");

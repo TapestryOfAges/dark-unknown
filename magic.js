@@ -4031,8 +4031,8 @@ function PerformSpellcast() {
     return resp;
   } else if (targetCursor.spelldetails.targettype === "feature") {
     if ((targetCursor.x === targetCursor.spelldetails.caster.getx()) && (targetCursor.y === targetCursor.spelldetails.caster.gety())) {
-      var mademenu = CreateMendMenu();
-      if (!mademenu) {
+      var mademenu = MakeInventoryList("broken");
+      if (!mademenu.length) {
         resp["fin"] = 0;
         resp["txt"] = "You have nothing in need of mending.";
         resp["input"] = "&gt;";
@@ -4043,7 +4043,12 @@ function PerformSpellcast() {
         return resp;
       }
 
-   	  gamestate.setMode("equip");
+      gamestate.setMode("zstats");
+      targetCursor.restrictTo = "broken";
+      targetCursor.page = 2;
+      
+      DisplayInventory("broken");
+
 		  resp["txt"] = "";
   		resp["input"] = "&gt; Cast Mending on: ";
 	  	resp["fin"] = 2;	
