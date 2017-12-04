@@ -134,6 +134,22 @@ table.spells td.spelllevel { width : 160;
                 font-weight: bold;
                  }
 
+div.spelldescs { position:absolute; 
+								 top: 250; 
+								 left: 0; 
+								 width: 425; 
+								 height: 100; 
+								 background-color:black; 
+								 color:white; 
+								 border-color:white; 
+								 border-style: double; 
+								 border-width: 3px;
+								 font-family:"Commodore64";
+								 font-size:16pt;
+								 color:white; 
+								 line-height:20px;
+								 padding: 5px }
+
 span.selected { color: red; }
 
 
