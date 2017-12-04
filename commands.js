@@ -290,7 +290,7 @@ function PerformCommand(code, ctrl) {
     }
 	}
 	else if (code === 82) { // r
-    // Ready (contains functionality that used to be Wear/Weild
+    // Ready (contains functionality that used to be Wear/Weild)
 
     if (PC.getHomeMap().getName().indexOf("abyss") > -1) {
       retval["txt"] = "You cannot do that here.";
@@ -685,6 +685,7 @@ function PerformSpellbook(code) {
       if (PC.knowsSpell(lvl,GetSpellID(spell))) {
         HighlightSpell(lvl,spell);
         PC.setLastSpell(spell);
+        WriteSpellDesc();
         spell = 0;
       } else { 
         spell--;
@@ -702,6 +703,7 @@ function PerformSpellbook(code) {
       if (PC.knowsSpell(lvl,GetSpellID(spell))) {
         HighlightSpell(lvl,spell);
         PC.setLastSpell(spell);
+        WriteSpellDesc();
         spell = 9;
       } else { 
         spell++;
@@ -3033,6 +3035,7 @@ function MakeInventoryList(restrictTo) {
   inventorylist.reagent = [];
   inventorylist.quest = [];
   inventorylist.other = [];
+  inventorylist.broken = [];
   inventorylist.total = [];
   var PCinv = PC.getInventory();
 
@@ -3048,6 +3051,8 @@ function MakeInventoryList(restrictTo) {
       else if (typeof PCinv[i].use === "function") { inventorylist.usable.push(PCinv[i]); }
     } else if (restrictTo === "audachta") {
       if (PCinv[i].checkType("audachta")) { inventorylist.audachta.push(PCinv[i]); }
+    } else if (restrictTo === "broken") {
+      if (PCinv[i].getBroken()) { inventorylist.broken.push(PCinv[i]); }
     } else {
       if (PCinv[i].checkType("armor")) { inventorylist.armor.push(PCinv[i]); }
       else if (PCinv[i].checkType("missile")) { inventorylist.missile.push(PCinv[i]); }
@@ -3153,6 +3158,16 @@ function MakeInventoryList(restrictTo) {
       return 0 
     }); 
   }  
+  if (inventorylist.broken.length) {
+    inventorylist.broken.sort(function(a,b) {
+      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      if (nameA < nameB) 
+        return -1
+      if (nameA > nameB)
+        return 1
+      return 0 
+    }); 
+  }
 
   if (inventorylist.armor.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.armor); }
   if (inventorylist.weapon.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.weapon); }
@@ -3165,6 +3180,7 @@ function MakeInventoryList(restrictTo) {
   if (inventorylist.reagent.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.reagent); }
   if (inventorylist.quest.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.quest); }
   if (inventorylist.other.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.other); }
+  if (inventorylist.broken.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.broken); }
   
   return inventorylist.total;
 }
