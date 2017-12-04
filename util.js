@@ -802,6 +802,19 @@ function WritePages() {
   if (PC.getLastSpell()) {
     var spellspan = "#level" + PC.getLastSpellLevel() + "spell" + PC.getLastSpell();
     $(spellspan).addClass("selected");
+    $("#spellbookinnerdiv").append("<div class='spelldescs' id='spelldesc'></div>");
+    WriteSpellDesc();
+  }
+}
+
+function WriteSpellDesc() {
+  if (typeof magic[PC.getLastSpellLevel()][GetSpellID(PC.getLastSpell())].getLongDesc === "function") {
+    $("#spelldesc").html(magic[PC.getLastSpellLevel()][GetSpellID(PC.getLastSpell())].getLongDesc());
+    if (PC.getKnowsInfusion() && (typeof magic[PC.getLastSpellLevel()][GetSpellID(PC.getLastSpell())].getInfusedDesc === "function")) {
+      $("#spelldesc").append("<br /><span style='color:yellow'>INFUSED:</span> " + magic[PC.getLastSpellLevel()][GetSpellID(PC.getLastSpell())].getInfusedDesc());
+    }
+  } else {
+    $("#spelldesc").html(" ");
   }
 }
 
