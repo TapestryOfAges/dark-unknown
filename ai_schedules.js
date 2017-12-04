@@ -342,7 +342,7 @@ ais.LockDoor = function(who,params){
   var door = tile.getTopFeature();
   if (door.hasOwnProperty("locked")) {
     if (door.locked && (params.lock === "unlock")) {
-      door.unLockMe();
+      door.unlockMe();
     } else if (!door.locked && (params.lock === "lock")) {
       door.lockMe();
     }
