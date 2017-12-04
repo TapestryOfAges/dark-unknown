@@ -320,8 +320,12 @@ magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID] = new SpellObject("Time Stop", 
 // Spell begin below
 
 // Cure
-magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].longdesc = "Removes <style='color:#58FA58'>poison</style> and <style='color:#58FA58'>Disease</style>.";
-magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].infuseddesc = "Also heals for " + Dice.rollmin(PC.getLevel() + "d4+2") + "-" + Dice.rollmax(PC.getLevel() + "d4+2") + ".";
+magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].getLongDesc = function() {
+  return "Removes <style='color:#58FA58'>poison</style> and <style='color:#58FA58'>Disease</style>.";
+}
+magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].getInfusedDesc = function () {
+  return "Also heals for " + Dice.rollmin(PC.getLevel() + "d4+2") + "-" + Dice.rollmax(PC.getLevel() + "d4+2") + ".";
+}
 
 magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Cure.<br />");
@@ -360,8 +364,12 @@ magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, 
 }
 
 // Disarm Trap
-magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].longdesc = "Attempts to disarm all adjacent traps.";
-magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].infuseddesc = "Significantly increases the chance of success.";
+magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].getLongDesc = function () {
+  return "Attempts to disarm all adjacent traps.";
+}
+magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].getInfusedDesc = function() {
+  return "Significantly increases the chance of success.";
+}
 
 magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Disarm Trap.<br />");
@@ -408,12 +416,16 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
 }
 
 // Distract
-if (PC.getInt() > 20) {
-  magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].longdesc = "Enemies within a radius of 4 resist or become distracted, lowering their chance to hit by " + Math.round(caster.getInt()/2) + "%.";
-} else {
-  magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].longdesc = "Enemies within a radius of 3 resist or become distracted, lowering their chance to hit " + Math.round(caster.getInt()/2) + "%.";
+magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].getLongDesc = function () {
+  if (PC.getInt() > 20) {
+    return "Enemies within a radius of 4 resist or become distracted, lowering their chance to hit by " + Math.round(PC.getInt()/2) + "%.";
+  } else {
+    return "Enemies within a radius of 3 resist or become distracted, lowering their chance to hit " + Math.round(PC.getInt()/2) + "%.";
+  }
 }
-magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].infuseddesc = "Increases the radius and the difficulty to resist to " + Math.round((caster.getInt()/2)*1.5) + "%.";
+magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].getInfusedDesc = function () {
+  return "Increases the radius by 2 and makes it more difficult to resist.";
+}
 
 magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Distract.<br />");
@@ -465,8 +477,12 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
 }
 
 // Flame Blade
-magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].longdesc = "Sheathes your melee weapon in flame, dealing an extra " + Dice.rollmin(DMG_NEGLIGABLE) + "-" + Dice.rollmax(DMG_NEGLIGABLE) + "damage for 1 hit.";
-magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].infuseddesc = "Damage increases to " + Dice.rollmin(DMG_NEGLIGABLE) + ".";
+magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].getLongDesc = function () {
+  return "Sheathes your melee weapon in flame, dealing an extra " + Dice.rollmin(DMG_NEGLIGABLE) + "-" + Dice.rollmax(DMG_NEGLIGABLE) + "damage for 1 hit.";
+}
+magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].getInfusedDesc = function() {
+  return "Damage increases to " + Dice.rollmin(DMG_NEGLIGABLE) + ".";
+}
 
 magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Flame Blade.<br />");
@@ -508,6 +524,13 @@ magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell = function(cas
 }
 
 // Light
+magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].getLongDesc = function() {
+  return "Generates light (radius 3).";
+}
+magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].getInfusedDesc = function () {
+  return "Radius expands to 5.";
+}
+
 magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Light.<br />");
   var resp = {};
@@ -537,6 +560,13 @@ magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell = function(caster, infused
 }
 
 // Mend
+magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].getLongDesc = function () {
+  return "Repairs a cracked, ripped, or otherwise damaged item.";
+}
+magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].getInfusedDesc = function() {
+  return "Can even repair something that has been broken in half.";
+}
+
 magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Mend.<br />");
   var resp = {};
@@ -545,6 +575,12 @@ magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].executeSpell = function(caster, infused, 
   if (caster !== PC) {
     resp = PerformMend(caster, infused, free, tgt);
     return resp;
+  }
+
+  if (caster.getHomeMap().getName().indexOf("abyss") > -1) {
+    retval["txt"] = "You cannot do that here.";
+    retval["fin"] = 2;
+    return retval;
   }
   
   CreateTargetCursor({sticky: 0, command:'c',spellName:'Mend',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 1});
@@ -582,6 +618,13 @@ function PerformMend(caster,infused,free,tgt) {
 }
 
 // Vulnerability
+magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].getLongDesc = function() {
+  return "Decreases the target's chance to avoid an attack by 10%.";
+}
+magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].getInfusedDesc = function() {
+  return "Increases the duration, and the decrease becomes 15%.";
+}
+
 magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Vulnerability.<br />");
   var resp = {};
@@ -660,6 +703,13 @@ function PerformVulnerability(caster, infused, free, tgt) {
 }
 
 // Illusion
+magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID].getLongDesc = function() {
+  return "Conjures an illusion to help you in battle. It disappears if struck.";
+}
+magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID].getInfusedDesc = function() { 
+  return "The illusion is stronger.";
+}
+
 magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Illusion.<br />");
   
@@ -725,6 +775,13 @@ function PerformIllusion(caster, infused, free, tgt) {
 }
 
 // Iron Flesh
+magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].getLongDesc = function() {
+  return "Absorbs 5 points from hits on you until it has absorbed 10.";
+}
+magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].getInfusedDesc = function() {
+  return "Until it has absorbed 25 points of damage.";
+}
+
 magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Iron Flesh.<br />");
   var resp = {};
@@ -755,6 +812,13 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
 }
 
 // Lesser Heal
+magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].getLongDesc = function() {
+  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d6" + PC.getLevel()) + "-" + Dice.rollmax(PC.getLevel() + "d6" + PC.getLevel()) + "HP.";
+}
+magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].getInfusedDesc = function() {
+  return "Heals for 1.5x as much.";
+}
+
 magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Lesser Heal.<br />");
   var resp = {};
@@ -766,14 +830,14 @@ magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell = function(cas
   }
   resp["fin"] = 1;
   
-  var lvl = Math.ceil(caster.getLevel()/2);
+  var lvl = caster.getLevel();
   var plus = caster.getLevel();
   if (free) { 
     lvl = Dice.roll("1d2+2"); 
     plus = Dice.roll("1d3+2");
   }
   
-  var healamt = Dice.roll(lvl + "d8+" + plus);
+  var healamt = Dice.roll(lvl + "d6+" + plus);
   if (infused) { healamt = healamt * 1.5; }
   DebugWrite("magic", "Healing " + healamt + " hp.<br />");
   
@@ -792,6 +856,13 @@ magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell = function(cas
 }
 
 // Magic Bolt
+magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].getLongDesc = function() {
+  return "Deals " + (Dice.rollmin(DMG_NEGLIGABLE)+Math.floor(PC.getInt()/5)+1) + "-" + (Dice.rollmax(DMG_NEGLIGABLE)+Math.floor(PC.getInt()/5)+1) + " magic damage to a single target. Half damage if resisted.";
+}
+magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].getInfusedDesc = function() {
+  return "Damage is increased by 1.5x.";
+}
+
 magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Magic Bolt.<br />");
   if (caster !== PC) {
@@ -878,6 +949,14 @@ function PerformMagicBolt(caster, infused, free, tgt) {
 }
 
 // Poison Cloud
+magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].getLongDesc = function() {
+  let rad = Math.floor(PC.getInt()/10)+1;
+  return "Attempts to poison anyone within " + rad + " spaces of the selected space.";
+}
+magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].getInfusedDesc = function() {
+  return "Also deals " + Dice.rollmin(DMG_LIGHT) + "-" + Dice.rollmax(DMG_LIGHT) + " damage to each poisoned creature.";
+}
+
 magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Poison Cloud.<br />");
   if (caster !== PC) {
@@ -975,6 +1054,13 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
 }
 
 // Protection
+magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].getLongDesc = function() {
+  return "Decreases your chance of being hit by " + ((PC.getInt()*2/3)+1) + "%.";
+}
+magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].getLongDesc = function() {
+  return "Decreases your chance of being hit by " + Math.floor(((PC.getInt()*2/3)+1)*1.5) + "% instead.";
+}
+
 magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Protection.<br />");
   var resp = {};
@@ -990,7 +1076,7 @@ magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caste
   var power = Math.floor(caster.getInt()*2/3)+1;
   if (infused) { 
     duration = duration * 2; 
-    power = Math.floor(power*3/2);
+    power = Math.floor(power*1.5);
   }
   if (free) {
     duration = 40 * SCALE_TIME;
@@ -1039,6 +1125,13 @@ magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID].executeSpell = function(caster, infus
 }
 
 // Wind Change
+magic[SPELL_WIND_CHANGE_LEVEL][SPELL_WIND_CHANGE_ID].getLongDesc = function() {
+  return "Changes the direction of the wind.";
+}
+magic[SPELL_WIND_CHANGE_LEVEL][SPELL_WIND_CHANGE_ID].getInfusedDesc = function() {
+  return "The wind blows more powerfully.";
+}
+
 magic[SPELL_WIND_CHANGE_LEVEL][SPELL_WIND_CHANGE_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Wind Change.<br />");
   if (caster !== PC) {
@@ -1089,6 +1182,13 @@ function PerformWindChange(caster,infused,free,tgt) {
 }
 
 // Dispel 
+magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].getLongDesc = function() {
+  return "Has a chance to dispel each hostile spell effect upon you.";
+}
+magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].getInfusedDesc = function() {
+  return "The chance of successfully dispelling a spell is 30% higher.";
+}
+
 magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Dispel.<br />");
   var resp = {};
@@ -1123,6 +1223,13 @@ magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell = function(caster, infus
 }
   
 // Disrupt Undead
+magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].getLongDesc = function() {
+  return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " damage to all undead within 6 spaces.";
+}
+magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].getInfusedDesc = function() {
+  return "Damage increased by 1.5x.";
+}
+
 magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Disrupt Undead.<br />");
   var resp = {};
@@ -1138,7 +1245,7 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
   var hitany = 0;
   $.each(npcs, function (idx, val) {
     if (val.special.indexOf("undead") > -1) {
-      if (GetDistance(val.getx(),val.gety(), caster.getx(), caster.gety()) < 8) {
+      if (GetDistance(val.getx(),val.gety(), caster.getx(), caster.gety()) < 7) {
         var dmg = RollDamage(DMG_MEDIUM);
         if (infused) {
           dmg *= 1.5;
@@ -1162,6 +1269,13 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
 }
 
 // Fire Armor
+magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].getLongDesc = function() {
+  return "Any adjacent foe who strikes you takes " + Dice.rollmin(DMG_NEGLIGABLE) + "-" + Dice.rollmax(DMG_NEGLIGABLE) + " fire damage.";
+}
+magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].getInfusedDesc = function() {
+  return "Damage increased to " + Dice.rollmin(DMG_LIGHT) + "-" + Dice.rollmax(DMG_LIGHT) + " and duration doubled.";
+}
+
 magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Fire Armor.<br />");
   var resp = {};
@@ -1191,6 +1305,13 @@ magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].executeSpell = function(caster, 
 }
 
 // Fireball
+magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].getLongDesc = function() {
+  return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " fire damage to a single target. Half damage if resisted."
+}
+magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].getInfusedDesc = function() {
+  return "Damage increased by 1.5x.";
+}
+
 magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Fireball.<br />");
   if (caster !== PC) {
@@ -1275,6 +1396,13 @@ function PerformFireball(caster, infused, free, tgt) {
 }
 
 // Iceball
+magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].getLongDesc = function() {
+  return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " ice damage to a single target, half if resisted. The target is slowed.";
+}
+magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].getInfusedDesc = function() {
+  return "Damage increased by 1.5x.";
+}
+
 magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Iceball.<br />");
   if (caster !== PC) {
@@ -1358,6 +1486,13 @@ function PerformIceball(caster, infused, free, tgt) {
 }
 
 // Telekinesis
+magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID].getLongDesc = function() {
+  return "Manipulate or retrieve an object at a distance.";
+}
+magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID].getInfusedDesc = function() {
+  return "Telekinesis works on heavier objects.";
+}
+
 magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Telekinesis.<br />");
   if (caster !== PC) {
@@ -1466,6 +1601,13 @@ function PerformTelekinesisMove(caster, infused, free, tgt) {  // NOTE- tgt need
 }
 
 // Telepathy
+magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].getLongDesc = function() {
+  return "Allows you to see the location of all nearby creatures with a mind, even if they are behind walls or invisible.";
+}
+magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].getInfusedDesc = function() {
+  return "Doubles the duration of the spell.";
+}
+
 magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Telepathy.<br />");
   var resp = {};
@@ -1491,6 +1633,13 @@ magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster,
 }
 
 // Wall of Flame
+magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].getLongDesc = function() {
+  return "Conjures a three space wide wall of fire that deals " + Dice.rollmin("2d6+3") + "-" + Dice.rollmax("2d6+3") + " damage to anything in it.";
+}
+magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].getInfusedDesc = function() {
+  return "Extends the duration of the wall.";
+}
+
 magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Wall of Flame.<br />");
   if (caster !== PC) {
@@ -1722,6 +1871,13 @@ function TryToPlaceField(mapref, wherex, wherey, fieldname) {
 }
 
 // Blessing
+magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].getLongDesc = function() {
+  return "Raises your STR, DEX, and INT by " + (Math.floor(PC.getInt()/5)+1) + ".";
+}
+magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].getInfusedDesc = function() {
+  return "Extends the duration.";
+}
+
 magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Blessing.<br />");
   var resp = {};
@@ -1756,6 +1912,13 @@ magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell = function(caster, i
 }
 
 // Blink
+magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].getLongDesc = function() {
+  return "Teleports you to a random space within 4 spaces that you could otherwise reach by walking.";
+}
+magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].getInfusedDesc = function() {
+  return "This spell is not improved by infusion."
+}
+
 magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Blink.<br />");
   var resp = {};
@@ -1826,6 +1989,13 @@ function PerformBlink(caster,destx, desty) {
 }
 
 // Ethereal Vision
+magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].getLongDesc = function() {
+  return "You can briefly see through solid objects.";
+}
+magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].getInfusedDesc = function() {
+  return "The duration is doubled.";
+}
+
 magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Ethereal Vision.<br />");
   var resp = {};
@@ -1855,6 +2025,13 @@ magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell = func
 }
 
 // Heal
+magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].getLongDesc = function() {
+  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d8" + (PC.getLevel()*2)) + "-" + Dice.rollmax(PC.getLevel() + "d8" + (PC.getLevel()*2)) + ".";
+}
+magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].getInfusedDesc = function() {
+  return "Heal is increased by 1.5x.";
+}
+
 magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Heal.<br />");
   var resp = {};
@@ -1886,6 +2063,13 @@ magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell = function(caster, infused, 
 }
 
 //Life Drain
+magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].getLongDesc = function() {
+  return "Deals a single target " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " and heals you for " + Dice.rollmin("2d8+10") + "-" + Dice.rollmax("2d8+10") + ".";
+}
+magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].getInfusedDesc = function() {
+  return "Damage and healing increased by 1.5x."
+}
+
 magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Life Drain.<br />");
   if (caster !== PC) {
@@ -1958,6 +2142,13 @@ function PerformLifeDrain(caster, infused, free, tgt) {
 }
 
 //Smite
+magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].getLongDesc = function() {
+  return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " magic damage to three random nearby enemies.";
+}
+magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].getInfusedDesc = function() {
+  return "Damage is increased by 1.5x."
+}
+
 magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Smite.<br />");
   var resp = {};
@@ -1991,6 +2182,13 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
 }
 
 //Open Gate
+magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].getLongDesc = function()  {
+  return "When cast at a circle of stones Gate, opens a portal to the destination circle.";
+}
+magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].getInfusedDesc = function() {
+  return "Opens the portal even if the gate has been damaged.";
+}
+
 magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Open Gate.<br />");
   var resp = {};
@@ -2030,6 +2228,13 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
 }
 
 // Levitate/Waterwalk
+magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].getLongDesc = function() {
+  return "Allows you to walk on water that is not too deep.";
+}
+magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].getInfusedDesc = function() {
+  return "Extends the duration.";
+} 
+
 magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Water Walk.<br />");
   var resp = {};
@@ -2059,6 +2264,13 @@ magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].executeSpell = function(caste
 }
 
 //Crystal Prison (aka Crystal Trap)
+magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].getLongDesc = function() {
+  return "Places a hidden trap on a space. Imprisons the next enemy to walk on it in a crystal prison.";
+}
+magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].getInfusedDesc = function() {
+  return "The crystal prison is harder to escape.";
+}
+
 magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].executeSpell = function(caster,infused,free,tgt) {
   DebugWrite("magic", "Casting Crystal Trap.<br />");  
 
@@ -2089,6 +2301,13 @@ magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].executeSpell = function(c
 }
 
 //Mirror Ward
+magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID].getLongDesc = function() {
+  return "The next hostile spell to target you is redirected at a random other nearby creature, if possible.";
+}
+magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID].getInfusedDesc = function() {
+  return "Extends the duration of the spell. (It still expires after one use.)";
+}
+
 magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Mirror Ward.<br />");
   var resp = {};
@@ -2117,6 +2336,13 @@ magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID].executeSpell = function(cas
 }
 
 //Paralyze
+magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].getLongDesc = function() {
+  return "Paralyzes a target enemy. No effect if the enemy resists.";
+}
+magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].getInfusedDesc = function() {
+  return "Chance to resist decreased and duration increased.";
+}
+
 magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Paralyze.<br />");
   if (caster !== PC) {
@@ -2194,6 +2420,13 @@ function PerformParalyze(caster, infused, free, tgt) {
 }
 
 // Peer
+magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].getLongDesc = function() {
+  return "Shows a zoomed out view of the area.";
+}
+magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].getInfusedDesc = function() {
+  return "No additional effect.";
+}
+
 magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Peer.<br />");
   var resp = {};
@@ -2262,6 +2495,30 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
 }
 
 //Return
+magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getLongDesc = function() {
+  if (PC.getHomeMap().getReturnInfused()) {
+    return "No effect from this location.";
+  } else {
+    var dest = PC.getHomeMap().getReturnMap();
+    var destx = PC.getHomeMap().getReturnx();
+    var desty = PC.getHomeMap().getReturny();
+    if ((dest === "darkunknown") && (destx === 69) && (desty === 74)) {
+      return "Transports you to Castle dea Olympus.";
+    } else if (PC.getHomeMap().underground) {
+      return "Brings you to the surface.";
+    } else {
+      return "Brings you to the entrance to this map.";
+    }
+  }
+}
+magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].getInfusedDesc = function() {
+  if (PC.getHomeMap().getReturnInfused()) {
+    return "Transports you to Castle dea Olympus.";
+  } else {
+    return "No additional effect from this location.";
+  }
+}
+
 magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Return.<br />");
   var resp = {};
@@ -2325,6 +2582,13 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infus
 }
 
 // Shockwave
+magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].getLongDesc = function() {
+  return "Deals " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " to all adjacent enemies and pushes them. Half damage and unmoved if resisted.";
+}
+magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].getInfusedDesc = function() {
+  return "More difficult to resist, and damage increased by 1.5x.";
+}
+
 magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Shockwave.<br />");
   var resp = {};
@@ -2363,6 +2627,13 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
 }
 
 // Summon Ally
+magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID].getLongDesc = function() {
+  return "Conjures a random type of elemental to assist you in battle.";
+}
+magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID].getInfusedDesc = function() {
+  return "Conjures a more powerful elemental.";
+}
+
 magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Summon Ally.<br />");
   if (caster !== PC) {
@@ -2449,6 +2720,13 @@ function PerformSummonAlly(caster, infused, free, tgt) {
 }
 
 // Swordstrike
+magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID].getLongDesc = function() {
+  return "Deals " + Dice.rollmin(DMG_HEAVY) + "-" + Dice.rollmax(DMG_HEAVY) + " physical damage to a single target, and " + Dice.rollmin(DMG_LIGHT) + "-" + Dice.rollmax(DMG_LIGHT) + " damage to each neighboring enemy. Half damage if resisted.";
+}
+magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID].getInfusedDesc = function() {
+  return "Increases the damage by 1.5x.";
+}
+
 magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Swordstrike.<br />");
   if (caster !== PC) {
@@ -2540,6 +2818,12 @@ function PerformSwordstrike(caster, infused, free, tgt) {
 // Empower
 
 // Explosion
+magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].getLongDesc = function() {
+  let mindam = Dice.rollmin(DMG_MEDIUM) + Dice.rollmin(DMG_LIGHT);
+  let maxdam = Dice.rollmax(DMG_MEDIUM) + Dice.rollmax(DMG_LIGHT);
+  return "Deals " + mindam + "-" + maxdam + " fire damage to target space and all adjacent spaces. Half damage if resisted.";
+}
+
 magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Explosion.<br />");
   if (caster !== PC) {
@@ -2581,7 +2865,7 @@ function PerformExplosion(caster, infused, free, tgt) {
     hostile = 1;
   }
 
-  var dmg = RollDamage(DMG_HEAVY);
+  var dmg = RollDamage(DMG_MEDIUM,DMG_LIGHT);
   if (infused) {
     dmg = dmg * 1.5;
   }
@@ -2596,7 +2880,7 @@ function PerformExplosion(caster, infused, free, tgt) {
   for (var diffx = -1; diffx <=1; diffx++) {
     for (var diffy = -1; diffy <=1; diffy++) {
       if ((diffx === 0) && (diffy === 0)) { next; }
-      dmg = RollDamage(DMG_LIGHT);
+//      dmg = RollDamage(DMG_LIGHT);
       if ((tgt.getx()+diffx === PC.getx()) && (tgt.gety()+diffy === PC.gety())) {
         if (CheckResist(caster,PC,infused,0)) { dmg = dmg/2 +1; }
         PC.dealDamage(dmg,caster,"fire");
@@ -2621,6 +2905,10 @@ function PerformExplosion(caster, infused, free, tgt) {
 }
 
 // Jinx
+magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].getLongDesc = function() {
+  return "Creatures in the target space and adjacent spaces have a chance of becoming confused, and may attack their allies.";
+}
+
 magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Jinx.<br />");
   var resp = {};
@@ -2672,6 +2960,12 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
 }
 
 // Mass Curse
+magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].getLongDesc = function() {
+  let rad = "four";
+  if (PC.getInt() > 20) { rad = "five"; }
+  return "All creatures within " +rad+ " spaces of you have their stats lowered by " + (2+Math.floor(PC.getInt()/5)) + " unless they resist.";
+}
+
 magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Mass Curse.<br />");
   var resp = {};
@@ -2693,7 +2987,7 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         var resist = CheckResist(caster,val,infused,0);
         var curse = localFactory.createTile("Curse");
-        var power = 5 + Math.floor(caster.getInt()/5);
+        var power = 2 + Math.floor(caster.getInt()/5);
         if (resist) {
           if (val === PC) {
             desc = "You resist, but are more vulnerable to magic.";
@@ -2724,6 +3018,10 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
 }
 
 //Negate Magic
+magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].getLongDesc = function() {
+  return "Dispels magical effects on you and prevents the use of magic in the area.";
+}
+
 magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Negate Magic.<br />");
   
@@ -2779,6 +3077,10 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
 }
 
 // Lightning Storm
+magic[SPELL_STORM_LEVEL][SPELL_STORM_ID].getLongDesc = function() {
+  return "Conjures a storm that will, each turn, strike two enemies with lightning for " + Dice.rollmin(DMG_MEDIUM) + "-" + Dice.rollmax(DMG_MEDIUM) + " damage per hit. Deals half damage if resisted.";
+}
+
 magic[SPELL_STORM_LEVEL][SPELL_STORM_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Storm.<br />");
   var resp = {};
@@ -2814,6 +3116,10 @@ magic[SPELL_STORM_LEVEL][SPELL_STORM_ID].executeSpell = function(caster, infused
 // Weather Control
 
 // Charm
+magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].getLongDesc = function() {
+  return "Target creature, if it does not resist the spell, becomes your ally and will attack its former friends.";
+}
+
 magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Charm.<br />");
   if (caster !== PC) {
@@ -2890,6 +3196,12 @@ function PerformCharm(caster, infused, free, tgt) {
 // Ethereal Travel
 
 // Fear
+magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].getLongDesc = function() {
+  let rad = "four";
+  if (PC.getInt() > 20) { rad = "five"; }
+  return "Enemies within " + rad + " spaces will become afraid and flee from you unless they resist.";
+}
+
 magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Fear.<br />");
   var resp = {};
@@ -2943,6 +3255,10 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
 }
 
 // Fire and Ice
+magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].getLongDesc = function() {
+  return "All adjacent enemies take " + Dice.rollmin(DMG_HEAVY) + "-" + Dice.rollmax(DMG_HEAVY) + " fire damage (half on resist), and are frozen.";
+}
+
 magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Fire and Ice.<br />");
   var resp = {};
@@ -2963,7 +3279,7 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
           var tile = castermap.getTile(i,j);
           var tgt = tile.getTopVisibleNPC();
           if (tgt) {
-            var dmg = Dice.roll(DMG_MEDIUM);
+            var dmg = Dice.roll(DMG_HEAVY);
             if (CheckResist(center,tgt,0,0)) {
               dmg = Math.floor(dmg/2);
             }
@@ -3000,6 +3316,10 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
 }
 
 // Invulnerability
+magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID].getLongDesc = function() {
+  return "Makes you totally immune to damage for a brief time.";
+}
+
 magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Invulnerability.<br />");
   var resp = {};
@@ -3030,6 +3350,14 @@ magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID].executeSpell = func
 }
 
 // Meteor Swarm
+magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].getLongDesc = function() {
+  let rad = "four";
+  if (PC.getInt() > 20) { rad = "five"; }
+  let min = Dice.rollmin(DMG_MEDIUM) + Dice.rollmin(DMG_LIGHT);
+  let max = Dice.rollmax(DMG_MEDIUM) + Dice.rollmax(DMG_LIGHT);
+  return "All enemies within " + rad + " spaces are dealt " + min + "-" + max + " fire damage, half if they resist.";
+}
+
 magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Meteor Swarm.<br />");
   var resp = {};
@@ -3062,11 +3390,11 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
         npccount--;
         var final = 0;
         if (!npccount) { final = 1; }
-        var dmg = Dice.roll(DMG_MEDIUM);
+        var dmg = Dice.roll(DMG_MEDIUM, DMG_LIGHT);
         if (CheckResist(caster,val,infused,0)) {
           dmg = dmg/2;
         } 
-        // In theory, it is impossible for targets to be offscreen.
+        // In theory, it is impossible for targets to be offscreen. Unless maybe a monster is attacking a summoned/charmed ally?
         var skysourcex = Math.random()*(display.rightedge - displey.leftedge +1) + display.leftedge;
         var skysourcey = display.topedge;
         
@@ -3101,6 +3429,10 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
 // Armageddon
 
 // Arrow of Glass
+magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID].getLongDesc = function() {
+  return "Deals enough damage to instantly slay most foes.";
+}
+
 magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Arrow of Glass.<br />");
   if (caster !== PC) {
@@ -3183,6 +3515,14 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
 // Build Gate
 
 // Conflagration
+magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].getLongDesc = function() {
+  let rad = "four";
+  if (PC.getInt() > 20) { rad = "five"; }
+  let min = Dice.rollmin(DMG_HEAVY);
+  let max = Dice.rollmax(DMG_HEAVY);
+  return "All enemies within " + rad + " spaces are dealt " + min + "-" + max + " fire damage, half if they resist.";
+}
+
 magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Conflagration.<br />");
   var resp = {};
@@ -3222,6 +3562,10 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
 }
 
 // Conjure Daemon
+magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID].getLongDesc = function() {
+  return "Conjures a powerful daemon to help you in battle.";
+}
+
 magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Conjure Daemon.<br />");
   if (caster !== PC) {
@@ -3288,6 +3632,10 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
 }
 
 //Quickness
+magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].getLongDesc = function() {
+  return "Doubles the rate at which you take actions.";
+}
+
 magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Quickness.<br />");
   var resp = {};
@@ -3320,6 +3668,10 @@ magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell = function(caster,
 // Reincarnate 
 
 // Time Stop
+magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].getLongDesc = function() {
+  return "Stops time. Each moment you live while time is stopped will drain some of your mana.";
+}
+
 magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Time Stop.<br />");
   var resp = {};
