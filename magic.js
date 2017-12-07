@@ -332,49 +332,60 @@ magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID].executeSpell = func
   var resp = {};
   resp["fin"] = 1;
 
-  if (caster !== PC) {
-    resp = PerformMend(caster, infused, free, tgt);
-    return resp;
-  }
-
   if (caster.getHomeMap().getName().indexOf("abyss") > -1) {
     retval["txt"] = "You cannot do that here.";
     retval["fin"] = 2;
     return retval;
   }
+
+  var mademenu = MakeInventoryList("audachta");
+  if (!mademenu.length) {
+    resp["fin"] = 0;
+    resp["txt"] = "You have no audachta nemesos.";
+    resp["input"] = "&gt;";
+
+    return resp;
+  }
+
+  gamestate.setMode("zstats");
+  targetCursor.restrictTo = "audachta";
+  targetCursor.page = 2;
+  targetCursor.command = "c";
+  targetCursor.spellName = "AudachtaScribe";
+  targetCursor.spelldetails = {caster:caster, infused:infused, free:free};
   
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Mend',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 1});
+  DisplayInventory("audachta");
+
   resp["txt"] = "";
-  resp["input"] = "&gt; Choose target- ";
-  resp["fin"] = 4;  // was 0
-  gamestate.setMode("target");
+  resp["input"] = "&gt; Cast Audachta Scribe on: ";
+  resp["fin"] = 3;	
+  gamestate.setMode("zstats");
   return resp;
 }
 
-function PerformMend(caster,infused,free,tgt) {
+function PerformAudachtaScribe(caster,infused,free,tgt) {
   var resp = {};
   resp["fin"] = 2;
   resp["usefin"] = 1;
   var desc = "";
-  
-  if (!free) {
-    var mana = magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
-    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+
+  if (caster.knowsSpell(tgt.spelllevel, tgt.spellnum)) {
+    resp["txt"] = "You already know that spell!";
+
+  } else {
+    if (!free) {
+      var mana = magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID].getManaCost(0);
+      caster.modMana(-1*mana);
+      DebugWrite("magic", "Spent " + mana + " mana.<br />");
+    }  
+    caster.addSpell(tgt.spelllevel, tgt.spellnum);
+    resp["txt"] = "You learn the spell " + tgt.spellname + "!";
+    caster.removeFromInventory(tgt);
   }
 
-  if (tgt.repairNeedsInfusion && !infused) {
-    var desc = "The " + tgt.getDesc() + " glows briefly, but is not mended.";
-    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-    resp["txt"] = desc;
-  } else {
-    tgt.repair();
-    var desc = "The " + tgt.getDesc() + " glows briefly, and is mended!";
-    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-    resp["txt"] = desc;    
-  }
   resp["input"] = "&gt;";
   return resp;
+
   
 }
 

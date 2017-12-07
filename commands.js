@@ -2988,6 +2988,8 @@ function PerformInventoryScreen(code, restrict) {
       if (tgt) {
         if (targetCursor.spellName === "Mend") {
           retval = PerformMend(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+        } else if (targetCursor.spellName === "AudachtaScribe") {
+          retval = PerformAudachtaScribe(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
         }
       } else {
         retval["fin"] = 0;
