@@ -2980,9 +2980,20 @@ function PerformInventoryScreen(code, restrict) {
     // use selected item
     var invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
     var inventorylist = MakeInventoryList(restrict);
+    var retval = {};
     if (targetCursor.command === "c") {
       // here for Scribe or Mend
       // WORKING HERE
+      var tgt = inventorylist[invselect];
+      if (tgt) {
+        if (targetCursor.spellName === "Mend") {
+          retval = PerformMend(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+        }
+      } else {
+        retval["fin"] = 0;
+      }
+      delete targetCursor.spelldetails;
+      return retval;      
     }
     if (targetCursor.command === "o") {
       if (!CheckOpenAsUse(inventorylist[invselect])) {
@@ -3056,7 +3067,9 @@ function MakeInventoryList(restrictTo) {
     } else if (restrictTo === "audachta") {
       if (PCinv[i].checkType("audachta")) { inventorylist.audachta.push(PCinv[i]); }
     } else if (restrictTo === "broken") {
-      if (PCinv[i].getBroken()) { inventorylist.broken.push(PCinv[i]); }
+      if (typeof PCinv[i].getBroken === "function") { 
+        if (PCinv[i].getBroken()) {inventorylist.broken.push(PCinv[i]); }
+      }
     } else {
       if (PCinv[i].checkType("armor")) { inventorylist.armor.push(PCinv[i]); }
       else if (PCinv[i].checkType("missile")) { inventorylist.missile.push(PCinv[i]); }

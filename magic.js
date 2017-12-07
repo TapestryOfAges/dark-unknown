@@ -317,7 +317,66 @@ magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID] = new SpellObject("Quickness", 
 magic[SPELL_REINCARNATE_LEVEL][SPELL_REINCARNATE_ID] = new SpellObject("Reincarnate", "An Corp", 8, 0);  // bless
 magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID] = new SpellObject("Time Stop", "An Tym", 8, 0);  // bless
 
-// Spell begin below
+// Spells begin below
+
+// Audachta Scribe
+magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID].getLongDesc = function () {
+  return "Adds a spell for which you have an Audachta Nemesos to your spellbook. Consumes the Audachta.";
+}
+magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID].getInfusedDesc = function() {
+  return "No additional effect.";
+}
+
+magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID].executeSpell = function(caster, infused, free, tgt) {
+  DebugWrite("magic", "Casting Audachta Scribe.<br />");
+  var resp = {};
+  resp["fin"] = 1;
+
+  if (caster !== PC) {
+    resp = PerformMend(caster, infused, free, tgt);
+    return resp;
+  }
+
+  if (caster.getHomeMap().getName().indexOf("abyss") > -1) {
+    retval["txt"] = "You cannot do that here.";
+    retval["fin"] = 2;
+    return retval;
+  }
+  
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Mend',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 1});
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 4;  // was 0
+  gamestate.setMode("target");
+  return resp;
+}
+
+function PerformMend(caster,infused,free,tgt) {
+  var resp = {};
+  resp["fin"] = 2;
+  resp["usefin"] = 1;
+  var desc = "";
+  
+  if (!free) {
+    var mana = magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].getManaCost(infused);
+    caster.modMana(-1*mana);
+    DebugWrite("magic", "Spent " + mana + " mana.<br />");
+  }
+
+  if (tgt.repairNeedsInfusion && !infused) {
+    var desc = "The " + tgt.getDesc() + " glows briefly, but is not mended.";
+    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    resp["txt"] = desc;
+  } else {
+    tgt.repair();
+    var desc = "The " + tgt.getDesc() + " glows briefly, and is mended!";
+    desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    resp["txt"] = desc;    
+  }
+  resp["input"] = "&gt;";
+  return resp;
+  
+}
 
 // Cure
 magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].getLongDesc = function() {
@@ -593,7 +652,8 @@ magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].executeSpell = function(caster, infused, 
 
 function PerformMend(caster,infused,free,tgt) {
   var resp = {};
-  resp["fin"] = 1;
+  resp["fin"] = 2;
+  resp["usefin"] = 1;
   var desc = "";
   
   if (!free) {
@@ -4051,7 +4111,7 @@ function PerformSpellcast() {
 
 		  resp["txt"] = "";
   		resp["input"] = "&gt; Cast Mending on: ";
-	  	resp["fin"] = 2;	
+	  	resp["fin"] = 3;	
 	  } else {
 	    var thetile = targetCursor.spelldetails.caster.getHomeMap().getTile(targetCursor.x, targetCursor.y);
 	    var fea = thetile.getTopFeature();
@@ -4138,6 +4198,7 @@ function PerformSpellcastEquip(code) {
   if (code === 27) { // ESC
     retval["fin"] = 0;
     delete targetCursor.itemlist;
+    delete targetCursor.spelldetails;
   }
 	else if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
 	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
@@ -4165,6 +4226,7 @@ function PerformSpellcastEquip(code) {
     } else {
       retval["fin"] = 0;
       delete targetCursor.itemlist;
+      delete targetCursor.spelldetails;
     }
   }
   return retval;
