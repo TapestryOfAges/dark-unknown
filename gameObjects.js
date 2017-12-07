@@ -11485,8 +11485,7 @@ function UnenchantedSwordTile() {
   this.name = "UnenchantedSword";
   this.damage = "4d6+10";  // when broken, 2d4
   this.strdamage = .5;
-  this.graphic = "magic-sword.gif";
-  this.spritexoffset = "-32";
+  this.graphic = "magic-sword0.gif";
   this.desc = "unenchanted sword";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
