@@ -14,6 +14,7 @@
     <script language="JavaScript" src="external/jquery-1.3.2.js"></script>
     <script language="JavaScript" src="external/jqModal.js"></script>
     <script language="JavaScript" src="schedules.js"></script>
+    <script language="JavaScript" src="util.js"></script>
     <script language="JavaScript">
       var DU = {};
       var editing = -1;
@@ -34,7 +35,7 @@
           places[val.baseLocation] = 1;
         });        
 
-        $('#header').html("<p><a href='javascript:savesched()'>[Save Schedules]</a> <a href='javascript:create_header()'>[Refresh]</a> <a href='javascript:start_schedule()'>[New Schedule]</a></p><p>");
+        $('#header').html("<p><a href='javascript:savesched()'>[Save Schedules]</a> <a href='javascript:create_header()'>[Refresh]</a> <a href='javascript:start_schedule()'>[New Schedule]</a> <a href='javascript:make_sched_table()'>[Schedule Table]</a></p><p>");
 
         $.each(places, function(idx,val) {
           $('#header').append("<a href='javascript:select_place(\"" + idx + "\")'>" + idx + "</a> | ");
@@ -427,6 +428,51 @@
         printerwin.document.close();
   
         var deser = JSON.parse(serialized);
+      }
+
+      function make_sched_table() {
+        var table_loc = "";
+        if ((curr_place === "naurglen") || (curr_place === "naurglen2") || (curr_place === "naurglen_limbo")) {
+          table_loc = "naurglen";
+        }
+
+        var table = [];
+        $.each(DU.schedules, function(idx,val) {
+          var isin = 0;
+          if (table_loc === "naurglen") {
+            if ((val.baseLocation === "naurglen") || (val.baseLocation === "naurglen2") || (val.baseLocation === "naurglen_limbo")) {
+              isin = 1;
+            }
+          }
+
+          if (isin) {
+            var mytable = [];
+            var currx = -1;
+            var curry = -1;
+            for (var i=0; i<val.schedArray.length;i++) {
+              mytable[i] = {};
+              if (val.schedArray[i].params.startCondition === "Time") {
+                mytable[i].time = val.schedArray[i].params.startTime;
+              } else {
+                var basetime = ModTime(mytable[i-1].time,"0:01");
+                if (mytable[i-1].type === "RouteTo") {
+                  if (currx < 0) {
+                    // Don't know previous position
+                    var j=i-2;
+                    while ((currx<0) && j !== (i-1)) {
+                      if (j<0) { j=val.schedArray.length-1; }
+                    }
+                  } 
+                  var addmins = Math.abs(mytable[i-1].destx - currx) + Math.abs(mytable[i-1].desty - curry);
+                  currx = mytable[i-1].destx;
+                  curry = mytable[i-1].desty;
+                  basetime += ModTime(basetime,"0:"+addmins);
+                }
+              }
+
+            }
+          }
+        });
       }
 
     </script>

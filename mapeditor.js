@@ -26,6 +26,7 @@ var DUTime = new Timeline(0);
 //var mode = "editor";
 var PC = new PCObject();
 var DU = {};
+DU.DUTime = DUTime;
 var gamestate = new GameStateData();
 var DULoot = SetLoots();            //
 var DULootGroups = SetLootGroups(); //  see loot.js and lootset.js for population
@@ -83,44 +84,65 @@ function editorLoadMap(mapname) {
 }
 
 function drawMap() {
-  var mapdiv = "";
- if (amap.data.length) {
-   mapdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'><tr>";
-   for (var i=0;i<=amap.data.length-1;i++) {
-     for (var j=0;j<=amap.data[0].length-1;j++) {
-       var localacre = amap.getTile(j,i);
-       var graphics = localacre.getTerrain().getGraphicArray();
-       var showGraphic = graphics[0];
-       if (typeof localacre.getTerrain().setBySurround === "function") {
-       	graphics = localacre.getTerrain().setBySurround(j,i,amap,graphics,0,0,0);
-       	showGraphic = graphics[0];
+  if (amap.data.length) {
+    
+    // create map tables
+    var terraintable = "<table id='mainterrainview' border='0' cellspacing='0' cellpadding='0'>";
+    var maintable = "<table id='mainview' border='0' cellspacing='0' cellpadding='0'>";
+    for (var j = 0; j<amap.data.length; j++) {
+      terraintable += "<tr>";
+      maintable += "<tr>";
+      for (var i = 0; i< amap.data[0].length; i++) {
+        terraintable += "<td id='terrain_"+i+"x"+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
+        maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative' onClick='clickmap("+i+","+j+")' alt='"+i+","+j+"' title='"+i+","+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
       }
-       if (typeof localacre.getTerrain().doTile === "function") {
-  	     showGraphic = localacre.getTerrain().doTile(j,i,showGraphic);
-       }
-       mapdiv += '<td id="td_tile'+j+'x'+i+'" class="maptd" style="background-repeat:no-repeat;width:32;height:32;background-image:url(\'graphics/' + showGraphic + '\'); background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px;" onMouseDown="brushdown=1;clickmap('+j+','+i+');return(false);" onMouseOver="enterTile('+j+','+i+');"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" title="tile'+j+'x'+i+'" width="32" height="32" /></td>';
-     }
-     mapdiv += '</tr><tr>';
-   }
-   mapdiv  += '</table>';
- }
- $("div.mapscreen").html(mapdiv);
- $.each(amap.allLabels, function(idx,val) {
-   var rect = {};
-   var labelcoords = idx.replace('div_tile','');
-   var labelarray = labelcoords.split('x');
-   rect.left = labelarray[0]*32+3;
-   rect.top = labelarray[1]*32+3;
-   $("div.mapscreen").append('<div id="'+idx+'" style="position:absolute;left:'+rect.left+';top:'+rect.top+'" class="labelsLayer" onClick="DeleteLabel(\''+idx+'\')">&nbsp;'+val+'&nbsp;</div>');
+      terraintable += "</tr>";
+      maintable += "</tr>";
+    }
+    terraintable += "</table>";
+    maintable += "</table>";
 
- });
- workInLayers = 0;
- $(".labelsLayer").css("display","none");
+    $("#bottommap").html(terraintable);
+    $("#topmap").html(maintable);
 
- $("div.mapscreen").css("height", browserheight-130);
- $("div.tiles").css("height", browserheight-100);
- drawFeatures();
- $().ready(function() { $('#featurebubble').jqm({modal : true}) });
+    for (var i=0;i<=amap.data.length-1;i++) {
+      for (var j=0;j<=amap.data[0].length-1;j++) {
+        var thiscell = getDisplayCell(amap,j,i,j,i);
+        var yidx = i;
+        var xidx = j;
+        if (thiscell.terrain) {
+          $("#mainview_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/spacer.gif' border='0' alt='tile"+j+"x"+i+"' width='32' height='32' />");
+          $("#mainview_"+xidx+"x"+yidx).css("background-image", "url('graphics/spacer.gif')");
+          $("#mainview_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
+          $("#mainview_"+xidx+"x"+yidx).css("background-position", "0px 0px");
+        }
+                   
+        var terr = GetDisplayTerrain(amap,j,i,j,i,0);
+        $("#terrain_"+xidx+"x"+yidx).html("<img id='terr_tile"+j+"x"+i+"' src='graphics/"+terr.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + terr.desc + "' />");
+        $("#terrain_"+xidx+"x"+yidx).css("background-image", "url('graphics/" + terr.showGraphic + "')");
+        $("#terrain_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
+        $("#terrain_"+xidx+"x"+yidx).css("background-position", terr.graphics2 + "px " + terr.graphics3 + "px");
+     
+      }
+    }
+ 
+    $.each(amap.allLabels, function(idx,val) {
+      var rect = {};
+      var labelcoords = idx.replace('div_tile','');
+      var labelarray = labelcoords.split('x');
+      rect.left = labelarray[0]*32+3;
+      rect.top = labelarray[1]*32+3;
+      $("div.mapscreen").append('<div id="'+idx+'" style="position:absolute;left:'+rect.left+';top:'+rect.top+'" class="labelsLayer" onClick="DeleteLabel(\''+idx+'\')">&nbsp;'+val+'&nbsp;</div>');
+
+    });
+    workInLayers = 0;
+    $(".labelsLayer").css("display","none");
+
+    $("div.mapscreen").css("height", browserheight-130);
+    $("div.tiles").css("height", browserheight-100);
+    drawFeatures();
+    $().ready(function() { $('#featurebubble').jqm({modal : true}) });
+  }
 }
 
 function enterTile(x,y) {
@@ -135,7 +157,7 @@ function drawFeatures() {
     for (var i=0;i<=allfeatures.length-1;i++) {
       if ((allfeatures[i].invisible) && (!document.editlayer.showinvis.checked)) { continue; }
       var tileid = "tile" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
-      var tdid = "#td_" + tileid;
+      var tdid = "#mainview_" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
       var graphics = allfeatures[i].getGraphicArray();
       var showGraphic = graphics[0];
       if (typeof allfeatures[i].setBySurround === "function") {
@@ -154,29 +176,19 @@ function drawFeatures() {
       }
       $(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
       $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
-      document.images[tileid].src="graphics/"+graphics[1];
+//      document.images[tileid].src="graphics/"+graphics[1];
+      $(tdid).html("<img src='graphics/"+graphics[1]+"' width='32' height='32' alt='"+allfeatures[i].getx()+"x"+allfeatures[i].gety()+"' />");
     }
   }
   else {
     var allfeatures = amap.features.getAll();
     for (var i=0;i<=allfeatures.length-1;i++) {
       var tileid = "tile" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
-      var tdid = "#td_" + tileid;
-      var terrainthere = amap.getTile(allfeatures[i].getx(),allfeatures[i].gety());
-      var showTerrain = terrainthere.getTerrain();
-      var graphics = showTerrain.getGraphicArray();
-      var showGraphic = graphics[0];
-      if (typeof showTerrain.setBySurround === "function") {
-       	graphics = showTerrain.setBySurround(allfeatures[i].getx(),allfeatures[i].gety(),amap,graphics,0,0,0);
-       	showGraphic = graphics[0];
-      }
-      if (typeof showTerrain.doTile === "function") {
-  	    showGraphic = showTerrain.doTile(allfeatures[i].getx(),allfeatures[i].gety(),showGraphic);
-      }
+      var tdid = "#mainview_" + allfeatures[i].getx() + "x" + allfeatures[i].gety();
 
-      $(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
-      $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
-      document.images[tileid].src="graphics/"+graphics[1];
+      $(tdid).css("background-image", "");
+      $(tdid).css("background-position", "");
+      $(tdid).html("<img src='graphics/spacer.gif' width='32' height='32' alt='"+allfeatures[i].getx()+"x"+allfeatures[i].gety()+"' />");
     }
   }
   if (document.editlayer.shownpcs.checked) {
@@ -184,7 +196,7 @@ function drawFeatures() {
  	    for (var i=0;i<=allnpcs.length-1;i++) {
  	      if ((allnpcs[i].invisible) && (!document.editlayer.showinvis.checked)) { continue; }
         var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
-        var tdid = "#td_" + tileid;
+        var tdid = "#mainview_" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
         var graphics = allnpcs[i].getGraphicArray();
         var showGraphic = graphics[0];
         if (typeof allnpcs[i].setBySurround === "function") {
@@ -196,32 +208,22 @@ function drawFeatures() {
         }
       	$(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
         $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
-      	document.images[tileid].src="graphics/"+graphics[1];
+      	$(tdid).html("<img src='graphics/"+graphics[1]+"' width='32' height='32' alt='"+allnpcs[i].getx()+"x"+allnpcs[i].gety()+"' />");
       }
   }
   else {
-    var allnpcs = amap.npcs.getAll();
-    for (var i=0;i<=allnpcs.length-1;i++) {
-      var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
-      var tdid = "#td_" + tileid;
-      var terrainthere = amap.getTile(allnpcs[i].getx(),allnpcs[i].gety());
-      var showTerrain = terrainthere.getTerrain();
-      var graphics = showTerrain.getGraphicArray();
-      var showGraphic = graphics[0];
-      if (typeof showTerrain.setBySurround === "function") {
-       	graphics = showTerrain.setBySurround(allnpcs[i].getx(),allnpcs[i].gety(),amap,graphics,0,0,0);
-       	showGraphic = graphics[0];
+    if (!document.editlayer.showfeatures.checked) {
+      var allnpcs = amap.npcs.getAll();
+      for (var i=0;i<=allnpcs.length-1;i++) {
+        var tileid = "tile" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
+        var tdid = "#mainview_" + allnpcs[i].getx() + "x" + allnpcs[i].gety();
+        $(tdid).css("background-image", "");
+        $(tdid).css("background-position", "");
+        $(tdid).html("<img src='graphics/spacer.gif' width='32' height='32' alt='"+allnpcs[i].getx()+"x"+allnpcs[i].gety()+"' />");
       }
-      if (typeof showTerrain.doTile === "function") {
-  	    showGraphic = showTerrain.doTile(allnpcs[i].getx(),allnpcs[i].gety(),showGraphic);
-      }
-      $(tdid).css("background-image", "url('graphics/" + showGraphic + "')");
-      $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
-      document.images[tileid].src="graphics/"+graphics[1];
     }
   } 	
 }
-
 
 
 function changeselection(tilename) {
@@ -254,7 +256,7 @@ function clickmap(xval,yval) {
   var x=0;
   var y=0;
   if (workInLayers) {
-    var square = document.getElementById("td_tile"+xval+"x"+yval);
+    var square = document.getElementById("mainview_"+xval+"x"+yval);
     var rect = {};
     rect.left = xval*32+3;
     rect.top = yval*32+3;
@@ -314,8 +316,6 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcpeaceai.value = editnpcs.getPeaceAI();
       document.npceditpopup.npcint.value = editnpcs.getInt();
       document.npceditpopup.npcpcthreatai.value = editnpcs.getPCThreatAI();      
-//      document.npceditpopup.npcmelee.value = editnpcs.getMeleeAttackAs();
-//      document.npceditpopup.npcmissile.value = editnpcs.getMissileAttackAs();
       document.npceditpopup.npcconvo.value = editnpcs.getConversation();
       document.npceditpopup.npcschedule.value = editnpcs.getSchedule();
       document.npceditpopup.npcconvflag.value = editnpcs.getConversationFlag();
@@ -507,13 +507,13 @@ function submitEditFeature(change) {
 		mapfeature.deleteFrom(editable);
 		mapfeature = amap.getTile(editable.getx(),editable.gety());
 		mapfeature.features.deleteFrom(editable);
-    var tileid = "tile" + editable.getx() + "x" + editable.gety();
-    var tdtileid = "#td_" + tileid;
+//    var tileid = "tile" + editable.getx() + "x" + editable.gety();
+    var tdtileid = "#mainview_" + editable.getx() + "x" + editable.gety();
     var localacre = amap.getTile(editable.getx(),editable.gety());
     var terraingraphics = localacre.terrain.getGraphicArray();
     $(tdtileid).css("background-image", "url('graphics/" + terraingraphics[0] + "')");
     $(tdtileid).css("background-position", terraingraphics[2] + "px " + terraingraphics[3] + "px");
-    document.images[tileid].src = "graphics/"+terraingraphics[1];
+    $(tdtileid).html('<img src="graphics/'+terraingraphics[1]+'" alt="' + editable.getx() + 'x' + editable.gety()+ '" />');
     drawFeatures();
 
 	}
@@ -561,12 +561,6 @@ function submitEditNPC(change) {
 		if (document.npceditpopup.npcpcthreatai.value !== editnpcs.getPCThreatAI()) {
 			editnpcs.setPCThreatAI(document.npceditpopup.npcpcthreatai.value);
 		}
-//		if (document.npceditpopup.npcmelee.value !== editnpcs.getMeleeAttackAs()) {
-//			editnpcs.setMeleeAttackAs(document.npceditpopup.npcmelee.value);
-//		}
-//		if (document.npceditpopup.npcmissile.value !== editnpcs.getMissileAttackAs()) {
-//			editnpcs.setMissileAttackAs(document.npceditpopup.npcmissile.value);
-//		}
 		if (document.npceditpopup.npcconvo.value !== editnpcs.getConversation()) {
 			editnpcs.setConversation(document.npceditpopup.npcconvo.value);
 		}
@@ -604,20 +598,20 @@ function submitEditNPC(change) {
     mapnpc = amap.getTile(editnpcs.getx(),editnpcs.gety());
 	  mapnpc.npcs.deleteFrom(editnpcs);
     var tileid = "tile" + editnpcs.getx() + "x" + editnpcs.gety();
-    var tdid = "#td_" + tileid;
+    var tdid = "#mainview_" + tileid;
     var localacre = amap.getTile(editnpcs.getx(),editnpcs.gety());
     var terraingraphics = localacre.terrain.getGraphicArray();
     $(tdid).css("background-image","url('graphics/" + terraingraphics[0] + "')");
     $(tdid).css("background-position", terraingraphics[2] + "px " + terraingraphics[3] + "px");
-    document.images[tileid].src = "graphics/"+terraingraphics[1];
+    $(tdid).html('<img src="graphics/spacer.gif" />');
     drawFeatures();
 	}
 }
 
 function changemaptile(xval,yval,toTerrain) {
   if (!toTerrain) { toTerrain = selectionval; }
-  var tileid = "tile" + xval + "x" + yval;
-  var tdid = "#td_" + tileid;
+  var tileid = xval + "x" + yval;
+  var tdid = "#terrain_" + tileid;
   var graphics = toTerrain.getGraphicArray();
   var showGraphic = graphics[0];
   if (typeof toTerrain.setBySurround === "function") {
@@ -636,7 +630,7 @@ function changemaptile(xval,yval,toTerrain) {
   }
   $(tdid).css("background-image","url('graphics/" + graphics[0] + "')");
   $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
-  document.images[tileid].src="graphics/"+graphics[1];
+  $(tdid).html('<img src="graphics/'+graphics[1]+'" />');
   amap.setTerrain(xval,yval,toTerrain);
 
 }
@@ -678,8 +672,8 @@ function addfeaturetomap(x,y,selection,noFactory) {
 	amap.data[y][x].features.addTop(newfeature);
 	amap.features.addTop(newfeature);
 
-  var tileid = "tile" + x + "x" + y;  
-  var tdid = "#td_" + tileid;
+  var tileid = x + "x" + y;  
+  var tdid = "#mainview_" + tileid;
   var graphics = selection.getGraphicArray()
   var showGraphic = graphics[0];
   if (typeof selection.setBySurround === "function") {
@@ -698,7 +692,7 @@ function addfeaturetomap(x,y,selection,noFactory) {
   }
   $(tdid).css("background-image","url('graphics/" + showGraphic + "')");
   $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
-  document.images[tileid].src="graphics/"+graphics[1];
+  $(tdid).html('<img src="graphics/'+graphics[1]+'" />');
   
 }
 
@@ -720,8 +714,8 @@ function addnpctomap(x,y,selection,noFactory) {
 	amap.data[y][x].npcs.addTop(newnpc);
 	amap.npcs.addTop(newnpc);
 	
-	var tileid = "tile" + x + "x" + y;
-	var tdid = "#td_" + tileid;
+	var tileid = x + "x" + y;
+	var tdid = "#mainview_" + tileid;
 	var graphics = selection.getGraphicArray();
   var showGraphic = graphics[0];
   if (typeof selection.setBySurround === "function") {
@@ -733,7 +727,7 @@ function addnpctomap(x,y,selection,noFactory) {
   }
   $(tdid).css("background-image","url('graphics/" + showGraphic + "')");
   $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
-  document.images[tileid].src="graphics/"+graphics[1];
+  $(tdid).html('<img src="graphics/'+graphics[1]+'" />');
 }
 
 function erasefeature(x,y,npc) {
@@ -757,21 +751,11 @@ function erasefeature(x,y,npc) {
   } else {
     mapfeature.features.deleteFrom(editable);
   }
-  var tileid = "tile" + editable.getx() + "x" + editable.gety();
-  var tdtileid = "#td_" + tileid;
-  var localacre = amap.getTile(editable.getx(),editable.gety());
-  var terraingraphics = localacre.terrain.getGraphicArray();
-  var showGraphic = terraingraphics[0];
-  if (typeof localacre.getTerrain().setBySurround === "function") {
- 	  var graphics = localacre.getTerrain().setBySurround(x,y,amap,terraingraphics,0,0,0);
-    showGraphic = graphics[0];
-  }
-  if (typeof localacre.getTerrain().doTile === "function") {
-    showGraphic = localacre.getTerrain().doTile(x,y,showGraphic);
-  }
-  $(tdtileid).css("background-image", "url('graphics/" + showGraphic + "')");
-  $(tdtileid).css("background-position", terraingraphics[2] + "px " + terraingraphics[3] + "px");
-  document.images[tileid].src = "graphics/"+terraingraphics[1];
+  var tileid = editable.getx() + "x" + editable.gety();
+  var tdtileid = "#mainview_" + tileid;
+  $(tdtileid).css("background-image", "");
+  $(tdtileid).css("background-position", "");
+  $(tdtileid).html('<img src="graphics/spacer.gif" />');
   drawFeatures();
 
 }

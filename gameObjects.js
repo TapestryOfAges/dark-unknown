@@ -83,10 +83,12 @@ ProtoObject.prototype.copy = function(type) {
   copydata.traceback = [];    // traceback holds the places this was found. On a map or in the timeline are the main options.
 //  var copyserial = this.getSerial();
   copydata.name = this.getName(); 
-  var ontime = DUTime.findEntityTime(this);
-  if (ontime !== -1) {
-    copydata.timestamp = ontime;
-    copydata.traceback.push("timeline");
+  if (!DU.gameflags.getFlag("editor")) {
+    var ontime = DUTime.findEntityTime(this);
+    if (ontime !== -1) {
+      copydata.timestamp = ontime;
+      copydata.traceback.push("timeline");
+    }
   }
   $.each(this, function(idx, val) {
     DebugWrite("save " + idx + ":");
@@ -10407,28 +10409,27 @@ function AudachtaNemesosObject() {
   this.spelllevel = 0;
   this.spellnum = 0;
   this.flammable = 40;
-  this.usedesc = "Read the book, learning the spell and consuming the book.";
 }
 AudachtaNemesosObject.prototype = new ConsumableItemObject();
 
 AudachtaNemesosObject.prototype.getLongDesc = function() {
   var spellname = magic[spelllevel][spellnum].getName();
-  return "Audachta Nemesos: " + spellname + ". A book that teaches the spell " + spellname + ".";
+  return "Audachta Nemesos: " + spellname + ". A book that teaches the spell " + spellname + " when the spell Audachta Scribe is cast upon the book.";
 }
 
-AudachtaNemesosObject.prototype.use = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
-  if (who.knowsSpell(this.spelllevel, this.spellnum)) {
-    retval["txt"] = "You already know that spell!";
-    retval["preserve"] = 1;
-  } else {
-    who.addSpell(this.spelllevel, this.spellnum);
-    retval["txt"] = "You learn the spell " + this.spellname + "!";
-  }
-  retval["input"] = "&gt;";
-  return retval;    
-}
+//AudachtaNemesosObject.prototype.use = function(who) {
+//  var retval = {};
+//  retval["fin"] = 1;
+//  if (who.knowsSpell(this.spelllevel, this.spellnum)) {
+//    retval["txt"] = "You already know that spell!";
+//    retval["preserve"] = 1;
+//  } else {
+//    who.addSpell(this.spelllevel, this.spellnum);
+//    retval["txt"] = "You learn the spell " + this.spellname + "!";
+//  }
+//  retval["input"] = "&gt;";
+//  return retval;    
+//}
 
 AudachtaNemesosObject.prototype.flamed = function() {
   maintext.addText("The " + this.getDesc() + " is ruined in the fire!");

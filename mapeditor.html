@@ -191,8 +191,9 @@
     </td></tr>
     <tr><td colspan="4"><input type="submit" value="Edit" onClick="submitEditNPC(1);" class="jqmClose" /> <input type="submit" value="Cancel" onClick="submitEditNPC(0);" class="jqmClose" /> <input type="submit" value="Delete NPC" onClick="submitEditNPC(-1);" class="jqmClose" /></td></tr>		
 	</table></form></div>
-  <div class="mapscreen">
-  	
+  <div style="position:relative" class="mapscreen">
+		<div style="position:absolute;z-index:0" id="bottommap"></div>
+		<div style="position:absolute;z-index:1" id="topmap"></div>
   </div>
   <div class="brush">
     <table>

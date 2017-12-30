@@ -273,7 +273,7 @@ function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
   var displaytile = localacre.getTerrain();
 
   while (displaytile.getName() === "SeeBelow") {
-    var retval = FindBelow(xcoord,ycoord,mapname);
+    var retval = FindBelow(xcoord,ycoord,mapref);
     localacre = retval.tile;
     mapref = retval.map;
     displaytile = localacre.getTerrain();
@@ -1712,6 +1712,38 @@ function CheckTimeBetween(time1,time2, clocktime) {
     }
     return 0;
   }
+}
+
+function ModTime(time1,addTime) {
+  var add = 1;
+  if (addTime.indexOf("-") !== -1) {
+    add = -1;
+    addTime = addTime.replace("-","");
+  }
+
+  var time = time1.split(":");
+  var difftime = addTime.split(":");
+  
+  var finmin = parseInt(time[1]) + parseInt(difftime[1])*add;
+  var finhour = parseInt(time[0]) + parseInt(difftime[0])*add;
+
+  while (finmin > 59) {
+    finmin -= 60;
+    finhour++;
+  }
+  while (finmin < 0) {
+    finmin += 60;
+    finhour--;
+  }
+  if (finmin < 10) { finmin = "0" + finmin; }
+  while (finhour > 23) {
+    finhour -= 24;
+  }
+  while (finhour < 0) {
+    finhour += 24;
+  }
+
+  return finhour + ":" + finmin;
 }
 
 function GetUsableClockTime() {

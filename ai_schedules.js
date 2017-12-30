@@ -31,7 +31,7 @@ ais.scheduled = function(who) {
       }
     }
     if (who.flags.activityComplete) {
-      console.log("Next activity due to activity complete.");
+      console.log(who.getNPCName() + ": Next activity due to activity complete at " + currtime + ".");
       who.setCurrentScheduleIndex(nextidx);
       delete who.flags.activityComplete;
     }
