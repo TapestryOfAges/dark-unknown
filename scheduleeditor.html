@@ -430,13 +430,18 @@
         var deser = JSON.parse(serialized);
       }
 
-      function make_sched_table() {
+      function make_sched_table() {   // Note: THIS ASSUMES THE FIRST ENTRY IN ANY SCHEDULE STARTS AT A TIME
         var table_loc = "";
         if ((curr_place === "naurglen") || (curr_place === "naurglen2") || (curr_place === "naurglen_limbo")) {
           table_loc = "naurglen";
         }
 
         var table = [];
+        var alltimes = [];
+
+        var list_of_names = [];
+        var time_then_person = {};
+
         $.each(DU.schedules, function(idx,val) {
           var isin = 0;
           if (table_loc === "naurglen") {
@@ -446,33 +451,81 @@
           }
 
           if (isin) {
+            list_of_names.push(idx);
             var mytable = [];
-            var currx = -1;
-            var curry = -1;
-            for (var i=0; i<val.schedArray.length;i++) {
+            var tableidx = table.length;
+            table[tableidx] = {};
+            table[tableidx].npcname = idx;
+            
+            for (var i=0; i<val.scheduleArray.length;i++) {
               mytable[i] = {};
-              if (val.schedArray[i].params.startCondition === "Time") {
-                mytable[i].time = val.schedArray[i].params.startTime;
+              mytable[i].x = -1;
+              mytable[i].y = -1;
+
+              // figure out where I am 
+              if (i===0) {  
+                let j=val.scheduleArray.length-1;
+                while (mytable[i].x === -1) {
+                  if ((val.scheduleArray[j].type === "RouteTo") || (val.scheduleArray[j].type === "ChangeMap")) {
+                    mytable[i].x = val.scheduleArray[j].params.destination.x;
+                    mytable[i].y = val.scheduleArray[j].params.destination.y;
+                  }
+                  j--;
+                }
+              } else {
+                if ((mytable[i-1].type === "RouteTo") || (mytable[i-1].type === "ChangeMap")) {
+                  mytable[i].x = val.scheduleArray[i-1].params.destination.x;
+                  mytable[i].y = val.scheduleArray[i-1].params.destination.y;
+                } else {
+                  mytable[i].x = mytable[i-1].x;
+                  mytable[i].y = mytable[i-1].y;
+                }
+              }
+              
+              // set start time
+              if (val.scheduleArray[i].params.startCondition === "Time") {
+                mytable[i].time = val.scheduleArray[i].params.startTime;
               } else {
                 var basetime = ModTime(mytable[i-1].time,"0:01");
                 if (mytable[i-1].type === "RouteTo") {
-                  if (currx < 0) {
-                    // Don't know previous position
-                    var j=i-2;
-                    while ((currx<0) && j !== (i-1)) {
-                      if (j<0) { j=val.schedArray.length-1; }
-                    }
-                  } 
-                  var addmins = Math.abs(mytable[i-1].destx - currx) + Math.abs(mytable[i-1].desty - curry);
-                  currx = mytable[i-1].destx;
-                  curry = mytable[i-1].desty;
-                  basetime += ModTime(basetime,"0:"+addmins);
+                  var addmins = Math.abs(mytable[i-1].x - val.scheduleArray[i-1].params.destination.x) + Math.abs(mytable[i-1].y - val.scheduleArray[i-1].params.destination.y);
+                  mytable[i].time = ModTime(basetime,"0:"+addmins);
+                } else {
+                  mytable[i].time = basetime;
                 }
               }
 
+              if (mytable[i].time.length === 5) { mytable[i].time = "0" + mytable[i].time; }
+              alltimes.push(mytable[i].time);
+
+              mytable[i].type = val.scheduleArray[i].type;
+              mytable[i].params = val.scheduleArray[i].params;
+
+              if (!time_then_person.hasOwnProperty(mytable[i].time)) {
+                time_then_person[mytable[i].time] = {};
+              }
+              time_then_person[mytable[i].time][idx] = mytable[i];
+              
             }
+            table[tableidx].data = mytable;
           }
         });
+
+        alltimes.sort();
+
+        $("#mainbody").html("<table>");
+        for (var i=0; i<alltimes.length;i++) {
+          $("#mainbody").append("<tr>");
+          for (var j=0; j<list_of_names.length;j++) {
+            if (time_then_person[alltimes[i]].hasOwnProperty(list_of_names[j])){
+              
+            } else {
+              $("#mainbody").append("<td></td>");
+            }
+          }
+          $("#mainbody").append("</tr>");
+        }
+        $("#mainbody").append("</table>");
       }
 
     </script>
