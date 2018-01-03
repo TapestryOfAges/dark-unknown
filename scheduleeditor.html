@@ -495,7 +495,7 @@
                 }
               }
 
-              if (mytable[i].time.length === 5) { mytable[i].time = "0" + mytable[i].time; }
+              if (mytable[i].time.length === 4) { mytable[i].time = "0" + mytable[i].time; }
               alltimes.push(mytable[i].time);
 
               mytable[i].type = val.scheduleArray[i].type;
@@ -513,12 +513,14 @@
 
         alltimes.sort();
 
-        $("#mainbody").html("<table>");
+        $("#mainbody").html("<table cellpadding='0' cellspacing='0' border='1'>");
         for (var i=0; i<alltimes.length;i++) {
-          $("#mainbody").append("<tr>");
+          if ((i>0) && (alltimes[i] === alltimes[i-1])) { continue; }
+          $("#mainbody").append("<tr><td>" + alltimes[i] + "</td>");
           for (var j=0; j<list_of_names.length;j++) {
             if (time_then_person[alltimes[i]].hasOwnProperty(list_of_names[j])){
-              
+              let tmpsched = time_then_person[alltimes[i]][list_of_names[j]];
+              $("#mainbody").append("<td>" + tmpsched.type + "</td>");
             } else {
               $("#mainbody").append("<td></td>");
             }
