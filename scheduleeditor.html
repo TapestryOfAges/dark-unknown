@@ -514,18 +514,43 @@
         alltimes.sort();
 
         let newbody = "<table cellpadding='0' cellspacing='0' border='1'>";
+        newbody = newbody + "<tr><td>Time</td>";
+        let currentcolor = [];
+        let colorlist = ["#33ccff","#ff2222","#ffffff","#cc66ff","#ccff33","#33ff66","#dddddd","#ff9900"];
+        for (let i=0; i<list_of_names.length;i++) {
+          newbody = newbody + "<td style='background-color:black;color:white;text-align:center'>"+list_of_names[i]+"</td>";
+          currentcolor[i] = i%8;
+        }
+        newbody = newbody + "<td>Time</td></tr>";
         for (var i=0; i<alltimes.length;i++) {
           if ((i>0) && (alltimes[i] === alltimes[i-1])) { continue; }
           newbody = newbody + "<tr><td>" + alltimes[i] + "</td>";
           for (var j=0; j<list_of_names.length;j++) {
             if (time_then_person[alltimes[i]].hasOwnProperty(list_of_names[j])){
+              currentcolor[j]++;
+              if (currentcolor[j] > 7) { currentcolor[j] = 0; }
               let tmpsched = time_then_person[alltimes[i]][list_of_names[j]];
-              newbody = newbody + "<td>" + tmpsched.type + "</td>";
+              newbody = newbody + "<td style='background-color:"+colorlist[currentcolor[j]]+"'>";
+              if (tmpsched.type === "RouteTo") {
+                newbody = newbody + "RouteTo: (" + tmpsched.params.destination.x + "," + tmpsched.params.destination.y + ")";
+              } else if (tmpsched.type === "ChangeMap") {
+                newbody = newbody + "ChangeMap: " + tmpsched.params.destination.mapName;
+              } else if (tmpsched.type = "WaitHere") {
+                if (tmpsched.params.sleep) { newbody = newbody + "Sleep"; }
+                else {
+                  let leash = tmpsched.params.leashLength;
+                  if (!leash) { leash = 0; }
+                  newbody = newbody + "Wait (" + leash + ")";
+                }
+              } else {
+                newbody = newbody + tmpsched.type;
+              }
+              newbody = newbody + "</td>";
             } else {
-              newbody = newbody + "<td></td>";
+              newbody = newbody + "<td style='background-color:"+colorlist[currentcolor[j]]+"'></td>";
             }
           }
-          newbody = newbody + "</tr>";
+          newbody = newbody + "<td>" + alltimes[i] + "</td></tr>";
         }
         newbody = newbody + "</table>";
         $("#mainbody").html(newbody);
