@@ -6635,6 +6635,21 @@ function ArmorRackPlateTile() {
 }
 ArmorRackPlateTile.prototype = new FeatureObject();
 
+function ShieldDisplayTile() {
+  this.name = "ShieldDisplay";
+  this.graphic = "furniture.gif";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-64";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = 0;
+  this.prefix = "a";
+  this.desc = "shield on a rack";
+  this.peerview = "black";
+}
+ShieldDisplayTile.prototype = new FeatureObject();
+
+
 function SkeletonDecorationTile() {
   this.name = "SkeletonDecoration";
   this.graphic = "skeleton-deco.gif";
