@@ -2263,12 +2263,6 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].getInfusedDesc = function() {
 magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Open Gate.<br />");
   var resp = {};
-  if (!free) {
-    free = 0;
-    var mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
-    DebugWrite("magic", "Spent " + mana + " mana.<br />");
-  }
   resp["fin"] = 3;  // end of turn waits on end of animation
 
   var loc = caster.getHomeMap().getTile(caster.getx(), caster.gety());
@@ -2276,17 +2270,40 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
   if ((shrine) && (shrine.gotomap)) {
     var belowgraphic = shrine.getGraphicArray();
     if (shrine.getName() === "Shrine") {
-      DU.maps.addMap(shrine.gotomap);
-      var destmap = DU.maps.getMap(shrine.gotomap);
-      TravelByMoongate(caster,"blue",belowgraphic,belowgraphic, destmap, shrine.gotox, shrine.gotoy);
+      if (shrine.hasOwnProperty("gotomap")) {
+        DU.maps.addMap(shrine.gotomap);
+        var destmap = DU.maps.getMap(shrine.gotomap);
+        if (!free) {
+          free = 0;
+          var mana = this.getManaCost(infused);
+          caster.modMana(-1*mana);
+          DebugWrite("magic", "Spent " + mana + " mana.<br />");
+        }    
+        TravelByMoongate(caster,"blue",belowgraphic,belowgraphic, destmap, shrine.gotox, shrine.gotoy);
+      } else {
+        maintext.addText("The gateway seems incomplete. The spell will not work until there is another gate linked to this one.");
+        resp["fin"] = 1;
+      }
     } else if (shrine.getName() === "BrokenShrine") {
       if (infused) {
         DU.maps.addMap(shrine.gotomap);
         var destmap = DU.maps.getMap(shrine.gotomap);
         TravelByMoongate(caster,"blue",belowgraphic,belowgraphic, destmap, shrine.gotox, shrine.gotoy);
+        if (!free) {
+          free = 0;
+          var mana = this.getManaCost(infused);
+          caster.modMana(-1*mana);
+          DebugWrite("magic", "Spent " + mana + " mana.<br />");
+        }      
       } else {
         maintext.addText("The spell sputters and the broken node remains closed.");
         resp["fin"] = 1;
+        if (!free) {
+          free = 0;
+          var mana = this.getManaCost(infused);
+          caster.modMana(-1*mana);
+          DebugWrite("magic", "Spent " + mana + " mana.<br />");
+        }      
       }
     }
   } else {
