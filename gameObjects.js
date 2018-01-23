@@ -5630,6 +5630,39 @@ function BedHeadTile() {
 }
 BedHeadTile.prototype = new FeatureObject();
 
+BedHeadTile.prototype.walkon = function(who) {
+  let sleepgraphic = "bed_head-sleep1.gif";
+  if (who.getGraphic().indexOf(".2.")) { 
+    sleepgraphic = "bed_head-sleep2.gif";
+  }
+  who.realgraphic = who.getGraphic();
+  who.setGraphic(sleepgraphic);
+
+  return;
+}
+
+BedHeadTile.prototype.walkoff = function(who) {
+  if (who.realgraphic) {
+    who.setGraphic(who.realgraphic);
+    delete who.realgraphic;
+  } else {
+    alert("Entity failed to have a waking graphic. See console.");
+    console.log(who);
+  }
+}
+
+BedHeadTile.prototype.bumpinto = function(who) {
+	var retval = {};
+	retval["fin"] = 1;
+	retval["canmove"] = 1;
+  retval["msg"] = "";
+  
+  // Prevent NPCs from randomwalking into the sleeping position
+  if (who.aiWandering) { retval["canmove"] = 0; } 
+
+  return(retval);
+}
+
 function BedFootTile() {
   this.name = "BedFoot";
   this.graphic = "bed_foot.gif";
@@ -12806,11 +12839,8 @@ NPCObject.prototype.activate = function(timeoverride) {
     }
     timing = timing + (Math.random() / 500);
 
-//    if (debug && (debugflags.ai || debugflags.time)) {
-//      dbs.writeln("<span style='color:green;font-weight:bold'>Curr time: " + DUTime.getGameClock() + ", NPC will go in " + timing + ".</span><br />");
-//    }
     DebugWrite("ai", "Curr time: " + DUTime.getGameClock().toFixed(5) + ", NPC will go in " + timing + ".<br />");
-  
+
     this.startx = this.getx();
     this.starty = this.gety();
     
