@@ -215,8 +215,9 @@ ais.WaitHere = function(who,params) {
       }
     }
     if (!params.leashLength) { params.leashLength = 0; }
-      if (GetDistance(who.getx(),who.gety(),leashCenter.x,leashCenter.y) > params.leashLength) {
-        var path = whomap.getPath(who.getx(),who.gety(),leashCenter.x,leashCenter.y,MOVE_WALK_DOOR);        if (path) {
+    if (GetDistance(who.getx(),who.gety(),leashCenter.x,leashCenter.y) > params.leashLength) {
+      var path = whomap.getPath(who.getx(),who.gety(),leashCenter.x,leashCenter.y,MOVE_WALK_DOOR);        
+      if (path) {
         path.shift();
         StepOrSidestep(who,path[0], [leashCenter.x,leashCenter.y]);
         DebugWrite("ai", "Tried to move toward the center of my leash.");
@@ -227,7 +228,9 @@ ais.WaitHere = function(who,params) {
     } else if (params.leashLength > 0) {
       // I am permitted to wander
       if (Dice.roll("1d2") === 2) {
+        who.aiWandering = 1;
         var moveval = ais.Randomwalk(who,25,25,25,25);
+        delete who.aiWandering;
         DebugWrite("ai", "Wander wander wander.");
       } else {
         DebugWrite("ai", "Could have wandered, chose not to.");
