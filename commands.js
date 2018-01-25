@@ -2595,6 +2595,17 @@ function DrawDebugOptions() {
     optdiv += "NO";
   }
   optdiv += "</td></tr>";
+  optdiv += "<tr><td>Schedules:</td><td></td><td";
+  if (targetCursor.page === 12) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (debugflags.schedules) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
 
   optdiv += "</table></div></div>";
   
@@ -2626,7 +2637,7 @@ function performOptions(code) {
       if (targetCursor.cmd === "o") {
         if (targetCursor.page === 8) { targetCursor.page = 7; }
       } else if (targetCursor.cmd === "debug") {
-        if (targetCursor.page === 12) { targetCursor.page = 11; }
+        if (targetCursor.page === 13) { targetCursor.page = 12; }
       }
       retval["fin"] = 1;
     }
@@ -2773,7 +2784,14 @@ function ToggleDebugOption(opt) {
     } else {
       debugflags.gameobj = 1;
     }
+  } else if (opt === 12) {
+    if (debugflags.schedules === 1) {
+      debugflags.schedules = 0;
+    } else {
+      debugflags.schedules = 1;
+    }
   }
+  
 }
 
 function ToggleOption(opt) {

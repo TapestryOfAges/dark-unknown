@@ -19,19 +19,20 @@ ais.scheduled = function(who) {
   var nextactivity = schedule.scheduleArray[nextidx];
   if (nextactivity.params.startCondition === "Time") {
     if (CheckTimeAfterTime(currtime, nextactivity.params.startTime)) {
-      DebugWrite("ai", "Moving to next scheduled activity- startTime met.");
+      DebugWrite("schedules", "Moving to next scheduled activity- startTime met.");
       who.setCurrentScheduleIndex(nextidx);
     }
   }
   else if (nextactivity.params.startCondition === "PreviousComplete") {
     if (nowactivity.params.endCondition === "Time") {
       if (CheckTimeAfterTime(currtime, nowactivity.params.endTime)) {
-        DebugWrite("ai", "Moving to next scheduled activity- endTime met.");
+        DebugWrite("schedules", "Moving to next scheduled activity- endTime met.");
         who.setCurrentScheduleIndex(nextidx);
       }
     }
     if (who.flags.activityComplete) {
       console.log(who.getNPCName() + ": Next activity due to activity complete at " + currtime + ".");
+      DebugWrite("schedules", who.getNPCName() + ": Next activity due to activity complete at " + currtime + ".");
       who.setCurrentScheduleIndex(nextidx);
       delete who.flags.activityComplete;
     }
@@ -66,7 +67,7 @@ function CheckNPCBark(who,nowactivity) {
     if (Dice.roll("1d100")  < nowactivity.params.barkfreq) {
       if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= nowactivity.params.barkrad) {
         // bark!
-        DebugWrite("ai", "Townfolk barking.");
+        DebugWrite("schedules", "Townfolk barking.");
         var barkarr = nowactivity.params.bark;
         var idx = RollDice("1d" + barkarr.length + "-1");
         var mybark = barkarr[idx];
@@ -95,7 +96,7 @@ function CheckNPCBark(who,nowactivity) {
 // Destination (obj: x,y)
 // Close doors behind (closeDoors)
 ais.RouteTo = function(who, params) {
-  DebugWrite("ai", "In scheduled ai: RouteTo.");
+  DebugWrite("schedules", "In scheduled ai: RouteTo.");
 
   if (params.closeDoors && (who.flags.closedoor) && (who.flags.closedoor.steps === 3)) {
     var fea = who.getHomeMap().getTile(who.flags.closedoor.x,who.flags.closedoor.y).getTopFeature();
@@ -106,7 +107,7 @@ ais.RouteTo = function(who, params) {
           DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
         } 
         delete who.flags.closedoor;
-        DebugWrite("ai", "Turn spent closing a door.");
+        DebugWrite("schedules", "Turn spent closing a door.");
         var retval = {};
         retval["fin"] = 1;
         return retval; 
@@ -130,7 +131,7 @@ ais.RouteTo = function(who, params) {
     } else if (who.flags.closedoor && who.flags.closedoor.steps) { who.flags.closedoor.steps++; }
     if (!moved["canmove"] && moved["intoPC"]) {
       who.flags.activityComplete = 1;
-      DebugWrite("ai", "PC at destination, giving up and setting activityComplete.");
+      DebugWrite("schedules", "PC at destination, giving up and setting activityComplete.");
     }
   } else {
     alert(movetype);
@@ -141,7 +142,7 @@ ais.RouteTo = function(who, params) {
 
   if ((who.getx() === parseInt(params.destination.x)) && (who.gety() === parseInt(params.destination.y))) {
     who.flags.activityComplete = 1;
-    DebugWrite("ai", "Arrived at destination, setting activityComplete.");
+    DebugWrite("schedules", "Arrived at destination, setting activityComplete.");
   }
   return moved;
 }
@@ -150,18 +151,18 @@ ais.WaitHere = function(who,params) {
   var retval = {};
   retval["fin"] = 1;
   var whomap = who.getHomeMap();
-  DebugWrite("ai", "In WaitHere.");
-  if (params.sleep) { who.flags.sleep = 1; DebugWrite("ai", "ZZzzzz.<br />"); }
+  DebugWrite("schedules", "In WaitHere.");
+  if (params.sleep) { who.flags.sleep = 1; DebugWrite("schedules", "ZZzzzz.<br />"); }
   else {
     if (params.hasOwnProperty("responsibleFor")) {
       if (!who.flags.hasOwnProperty("closingResponsibleDoor")) {
-        DebugWrite("ai","Has door responsibilities.<br />");
+        DebugWrite("schedules","Has door responsibilities.<br />");
         for (var i=0;i<params.responsibleFor.length;i++) {
           var fea = who.getHomeMap().getTile(parseInt(params.responsibleFor[i].x),parseInt(params.responsibleFor[i].y)).getTopFeature();
-          DebugWrite("ai","Responsible for door at " + parseInt(params.responsibleFor[i].x) + "," + parseInt(params.responsibleFor[i].y + ".<br />"));
+          DebugWrite("schedules","Responsible for door at " + parseInt(params.responsibleFor[i].x) + "," + parseInt(params.responsibleFor[i].y + ".<br />"));
           if (fea.open) {
             if (Dice.roll("1d8") === 1) { 
-              DebugWrite("ai", "Chosen to close door at " + fea.getx() + "," + fea.gety() +".");
+              DebugWrite("schedules", "Chosen to close door at " + fea.getx() + "," + fea.gety() +".");
               who.flags.closingResponsibleDoor = i; 
             }
           }
@@ -220,9 +221,9 @@ ais.WaitHere = function(who,params) {
       if (path) {
         path.shift();
         StepOrSidestep(who,path[0], [leashCenter.x,leashCenter.y]);
-        DebugWrite("ai", "Tried to move toward the center of my leash.");
+        DebugWrite("schedules", "Tried to move toward the center of my leash.");
       } else {
-        DebugWrite("ai", "No path back into my leash.");
+        DebugWrite("schedules", "No path back into my leash.");
         // skipping turn in confusion
       }
     } else if (params.leashLength > 0) {
@@ -231,9 +232,9 @@ ais.WaitHere = function(who,params) {
         who.aiWandering = 1;
         var moveval = ais.Randomwalk(who,25,25,25,25);
         delete who.aiWandering;
-        DebugWrite("ai", "Wander wander wander.");
+        DebugWrite("schedules", "Wander wander wander.");
       } else {
-        DebugWrite("ai", "Could have wandered, chose not to.");
+        DebugWrite("schedules", "Could have wandered, chose not to.");
       }
     }
   }
@@ -246,7 +247,7 @@ ais.LeaveMap = function(who,params) {
   var whoy = who.gety();
   who.getHomeMap().deleteThing(who);
   DrawMainFrame("one",themap,whox,whoy); 
-  DebugWrite('ai', "I have left the map.");
+  DebugWrite('schedules', "I have left the map.");
   DUTime.removeEntityFrom(who);  
 
   var retval = {};
@@ -260,9 +261,9 @@ ais.ChangeMap = function(who,params) {
   var desttile = MoveBetweenMaps(who,who.getHomeMap(),destmap,params.destination.x,params.destination.y);
   if (desttile) {
     who.flags.activityComplete = 1;
-    DebugWrite("ai", "Changed maps.");
+    DebugWrite("schedules", "Changed maps.");
   } else {
-    DebugWrite("ai", "Failed to change maps. Will try again next turn.");
+    DebugWrite("schedules", "Failed to change maps. Will try again next turn.");
   }
 
   var retval = {};
@@ -295,7 +296,7 @@ ais.DeleteItem = function(who,params) {
   if (params.param === "last") {
     var item = who.linkedItem;
     if (!item) {
-      DebugWrite("ai", "Trying to delete last item, cannot find. Marking complete...");
+      DebugWrite("schedules", "Trying to delete last item, cannot find. Marking complete...");
       who.flags.activityComplete = 1;
     }
     var itemx = item.getx();

@@ -17,6 +17,7 @@ var debugflags = {};
   debugflags.plot = 1;
   debugflags.events = 1;
   debugflags.gameobj = 1;
+  debugflags.schedules = 1;
   debugflags.first = 1;
 // var deeptest = 0;
 
