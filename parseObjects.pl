@@ -5,6 +5,7 @@ use warnings;
 open GAMEOBJECTS, "gameObjects.js" or die "Can't open gameObjects\n";
 
 open OUTFILE, ">objlist.html";
+open (my $fh, ">", "tilelist.html";
 
 my @gameobjects = <GAMEOBJECTS>;
 
@@ -165,6 +166,10 @@ print OUTFILE ".obj {\n  color: #fff;\n	padding: 20px;\n	background: #111;\n	bor
 print OUTFILE "</style>";
 print OUTFILE "</head><body>";
 
+print $fh "<html><head><title>The Dark Unknown: tile master list</title>\n";
+print $fh "</head><body>\n":
+print $fh "<table cellpadding='1' cellspacing='1' border='1'>";
+
 printcat("GameObject");
 printcat("InanimateObject");
 printcat("TerrainObject");
@@ -184,6 +189,8 @@ printcat("AudachtaNemesosObject");
 sub printcat() {
   my ($category) = @_;
   print OUTFILE "<center><table border='0' padding='0' cellspacing='0' class='obj'><tr><td><span style='color:#dddddd; font-weight:bold'>$category</span><br />";
+  print $fh "<tr><th colspan='4'>$category</th></tr>\n";
+  print $fh "<tr><th>Current Tile</th><th>Add. Ref.</th><th>Name</th><th>Desc/Notes</th></tr>\n";
   if (exists $allobjs{$category}{"prefix"}) {
     print OUTFILE "<span style='font-style:italic'>$allobjs{$category}{'prefix'}</span> ";
   }
@@ -208,6 +215,10 @@ sub printcat() {
       if (!exists $allobjs{$obj}{'spritexoffset'}) { $allobjs{$obj}{'spritexoffset'} = "0"; }
       if (!exists $allobjs{$obj}{'spriteyoffset'}) { $allobjs{$obj}{'spriteyoffset'} = "0"; }
       if (!exists $allobjs{$obj}{'overlay'}) { $allobjs{$obj}{'overlay'} = "spacer.gif"; }
+      
+      print $fh "<tr><td><center><div style='background-image: url(\"graphics/$allobjs{$obj}{'graphic'}\"); background-position: $allobjs{$obj}{'spritexoffset'}px $allobjs{$obj}{'spriteyoffset'}px; width: 32px; height:32px'><img src='graphics/spacer.gif' width='32' height='32' /></div></center></td>\n";
+      print $fh "<td></td><td>$allobjs{$obj}{'name'}</td><td></td></tr>\n";
+      
       print OUTFILE "<tr><td width='32' height='32' style=\"background-image:url('graphics/$allobjs{$obj}{'graphic'}'); background-repeat:no-repeat; background-position: $allobjs{$obj}{'spritexoffset'}px $allobjs{$obj}{'spriteyoffset'}px;\"><img src=\"graphics/$allobjs{$obj}{'overlay'}\" border=\"0\" width=\"32\" height=\"32\" style=\"position: relative; z-index:1;\" /></td>";
       print OUTFILE "<td><span style='color:#dddddd; font-weight: bold'>$allobjs{$obj}{'name'}</span></td></tr>";
       print OUTFILE "<tr><td colspan='2'>";
@@ -242,5 +253,7 @@ sub printcat() {
       if ($celliter % 3 == 0) { print OUTFILE "</tr><tr>\n"; }
     }
   }
+  print OUTFILE "</tr></table>\n";
+  print $fh "</table></body></html>\n";
 }
 
