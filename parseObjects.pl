@@ -5,7 +5,7 @@ use warnings;
 open GAMEOBJECTS, "gameObjects.js" or die "Can't open gameObjects\n";
 
 open OUTFILE, ">objlist.html";
-open (my $fh, ">", "tilelist.html";
+open (my $fh, ">", "tilelist.html");
 
 my @gameobjects = <GAMEOBJECTS>;
 
@@ -167,7 +167,7 @@ print OUTFILE "</style>";
 print OUTFILE "</head><body>";
 
 print $fh "<html><head><title>The Dark Unknown: tile master list</title>\n";
-print $fh "</head><body>\n":
+print $fh "</head><body>\n";
 print $fh "<table cellpadding='1' cellspacing='1' border='1'>";
 
 printcat("GameObject");
@@ -253,7 +253,7 @@ sub printcat() {
       if ($celliter % 3 == 0) { print OUTFILE "</tr><tr>\n"; }
     }
   }
-  print OUTFILE "</tr></table>\n";
-  print $fh "</table></body></html>\n";
 }
 
+print OUTFILE "</tr></table>\n";
+print $fh "</table></body></html>\n";
