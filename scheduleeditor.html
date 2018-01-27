@@ -436,6 +436,10 @@
           table_loc = "naurglen";
         }
 
+        if ((curr_place === "olympus0") || (curr_place === "olympus1") || (curr_place === "olympus2") || (curr_place === "olympus_limbo")) {
+          table_loc = "olympus";
+        }
+
         var table = [];
         var alltimes = [];
 
@@ -446,6 +450,10 @@
           var isin = 0;
           if (table_loc === "naurglen") {
             if ((val.baseLocation === "naurglen") || (val.baseLocation === "naurglen2") || (val.baseLocation === "naurglen_limbo")) {
+              isin = 1;
+            }
+          } else if (table_loc === "olympus") {
+            if ((val.baseLocation === "olympus0") || (val.baseLocation === "olympus1") || (val.baseLocation === "olympus2") || (val.baseLocation === "olympus_limbo")) {
               isin = 1;
             }
           }
