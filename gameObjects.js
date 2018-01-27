@@ -13559,7 +13559,7 @@ PCObject.prototype.myTurn = function() {
 
   if (debugflags.first) { delete debugflags.first; } 
   else { DebugWrite("all", "</div>"); }
-  DebugWrite("all", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'><span style='color:purple'>=== PC TURN ===</span>   Timestamp: " + DU.DUTime.getGameClock().toFixed(5) + "; Clock: " + GetUsableClock Time() + "; x: " + PC.getx() + ", y: " + PC.gety() + "<br />");
+  DebugWrite("all", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'><span style='color:purple'>=== PC TURN ===</span>   Timestamp: " + DU.DUTime.getGameClock().toFixed(5) + "; Clock: " + GetUsableClockTime() + "; x: " + PC.getx() + ", y: " + PC.gety() + "<br />");
 
   if (gamestate !== "loadgame") {
     // this half of myTurn has already run before the player saved
