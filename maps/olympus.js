@@ -1008,7 +1008,7 @@ mappages["olympus2"].features[267] = {name : 'SmallTable', x : 9, y : 20};
 mappages["olympus2"].features[268] = {name : 'BottomChair', x : 9, y : 21};
 
 mappages["olympus2"].npcs = [];
-mappages["olympus2"].npcs[0] = {name : 'FighterVillagerNPC', x : 69, y : 40, NPCName: 'Elizabeth', Conversation: 'liz', ConversationFlag: 'liz', Gender: 'female', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif'};
+mappages["olympus2"].npcs[0] = {name : 'FighterVillagerNPC', x : 60, y : 27, NPCName: 'Elizabeth', Conversation: 'liz', ConversationFlag: 'liz', Gender: 'female', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif'};
 mappages["olympus2"].npcs[1] = {name : 'TownGuardNPC', x : 57, y : 24, NPCName: 'Poe', Conversation: 'castleguard1', ConversationFlag: 'poe', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["olympus2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 9, y : 50, NPCName: 'Benedig', Conversation: 'castleguard2', ConversationFlag: 'benedig', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["olympus2"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 9, y : 52, NPCName: 'Aler', Conversation: 'castleguard2', ConversationFlag: 'aler', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
