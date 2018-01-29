@@ -1251,8 +1251,14 @@ mappages["olympus1"].onload = function(mapref) {
 
     // Changes made due to schedules
     if (CheckTimeBetween("5:13","21:12")) {
-      // Tyler/Sonya/Eli house is unlocked during the day.
+      // Tyler/Sonya/Yoshi house is unlocked during the day.
       let door = mapref.getTile(20,25).getTopFeature();
+      door.unlockMe();
+    }
+
+    if (CheckTimeBetween("6:48","20:19")) {
+      // Sean/Eli house unlocked during the day
+      let door = mapref.getTile(78,30);
       door.unlockMe();
     }
 
