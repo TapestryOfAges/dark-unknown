@@ -65,10 +65,12 @@ ais.scheduled = function(who) {
 function CheckNPCBark(who,nowactivity) {
   if (who.getHomeMap() === PC.getHomeMap()) { 
     if (Dice.roll("1d100")  < nowactivity.params.barkfreq) {
-      if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= nowactivity.params.barkrad) {
+      let barkrad = nowactivity.params.barkrad;
+      if (barkrad) { barkrad = 3; }
+      if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= barkrad) {
         // bark!
         DebugWrite("schedules", "Townfolk barking.");
-        var barkarr = nowactivity.params.bark;
+        var barkarr = nowactivity.params.bark.split("^^");
         var idx = RollDice("1d" + barkarr.length + "-1");
         var mybark = barkarr[idx];
         if (mybark) {
