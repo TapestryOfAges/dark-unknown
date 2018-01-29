@@ -734,7 +734,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			
 			this.open = 0;
 		} else {
-			if (typeof this.getLocked == "function") {
+			if (typeof this.getLocked === "function") {
 				if (this.getLocked()) {
 					retval["fin"] = 1;
 					retval["txt"] = "Locked.";
