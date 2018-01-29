@@ -612,6 +612,7 @@ mappages["olympus1"].features[539] = {name : 'BedFoot', x : 14, y : 21};
 mappages["olympus1"].features[540] = {name : 'BedHead', x : 82, y : 27};
 mappages["olympus1"].features[541] = {name : 'BedFoot', x : 83, y : 27};
 mappages["olympus1"].features[542] = {name : 'RightChair', x : 16, y : 25};
+mappages["olympus1"].features[543] = {name : 'RightChair', x : 71, y : 16};
 
 mappages["olympus1"].npcs = [];
 mappages["olympus1"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 79, y : 18, NPCName: 'Katrina', Desc: 'librarian', Conversation: 'katrina', ConversationFlag: 'katrina', Gender: 'female', OverrideGraphic: '310.2.gif'};
@@ -1247,6 +1248,14 @@ mappages["olympus1"].onload = function(mapref) {
       guard = mapref.getTile(50,40).getTopNPC();
       guard.setBark();
     }
+
+    // Changes made due to schedules
+    if (CheckTimeBetween("5:13","21:12")) {
+      // Tyler/Sonya/Eli house is unlocked during the day.
+      let door = mapref.getTile(20,25).getTopFeature();
+      door.unlockMe();
+    }
+
   }
 }
 
