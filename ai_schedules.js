@@ -313,6 +313,35 @@ ais.DeleteItem = function(who,params) {
   return {fin:1};
 }
 
+// params:
+// x,y of door
+// lock = unlock/lock
+ais.LockDoor = function(who,params){
+  var tile = who.getHomeMap().getTile(params.x,params.y);
+  var door = tile.getTopFeature();
+  if (door.hasOwnProperty("locked")) {
+    if (door.locked && (params.lock === "unlock")) {
+      door.unlockMe();
+    } else if (!door.locked && (params.lock === "lock")) {
+      if (door.open) {
+        door.use(who);
+      }
+      door.lockMe();
+    }
+  }
+  return {fin:1};
+}
+
+
+ais.PlaceFood = function(who,which) {
+  // Sean 1 is table 67,23 to 70,23
+  // Sean 2 is table 66,27 to 70,27
+  // Manny 1 is table 61,23 to 64,23
+  // Manny 2 is table 61,27 to 65,27
+
+  return {fin:1};
+}
+
 ais.PlayHarpsichord = function(who,params) {
   // ?? Need to decide what this entails
 
@@ -336,22 +365,6 @@ ais.PrintThing = function(who,params) {
     }
     mybark = mybark.charAt(0).toUpperCase() + mybark.slice(1);
     maintext.addText(mybark);
-  }
-  return {fin:1};
-}
-
-// params:
-// x,y of door
-// lock = unlock/lock
-ais.LockDoor = function(who,params){
-  var tile = who.getHomeMap().getTile(params.x,params.y);
-  var door = tile.getTopFeature();
-  if (door.hasOwnProperty("locked")) {
-    if (door.locked && (params.lock === "unlock")) {
-      door.unlockMe();
-    } else if (!door.locked && (params.lock === "lock")) {
-      door.lockMe();
-    }
   }
   return {fin:1};
 }
