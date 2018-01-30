@@ -13553,6 +13553,8 @@ PCObject.prototype.activate = function() {
 
 PCObject.prototype.myTurn = function() {
 
+  if (debugmaps.open) { ShowDebugMaps(); }
+
   var clockface = GetClockTime(this.getLastTurnTime());
   if ((clockface[3] !== GetClockTime()[3]) && !this.getWaiting()) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
   SetSky();

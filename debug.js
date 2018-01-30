@@ -21,6 +21,9 @@ var debugflags = {};
   debugflags.first = 1;
 // var deeptest = 0;
 
+var debugmaps = {};
+debugmaps.open = 0;
+
 var debugstyle = {};
 debugstyle.header = "font-weight:bold";
 debugstyle.map = "color:grey";
@@ -96,4 +99,129 @@ function TestNetwork(mapref, network) {
     if (!loopback) { alert(i + " does not loop back."); }
   }
   alert("Check complete.");
+}
+
+function OpenDebugMaps() {
+  debugmaps.open = 1;
+  var PCMap = PC.getHomeMap();
+  debugmaps[PCMap.getName()] = window.open("",PCMap.getName());
+  
+  if (PCMap.getLinkedMaps().length > 0) {
+    for (let i=0;i<PCMap.getLinkedMaps().length;i++) {
+      debugmaps[PCMap.getLinkedMaps()[i]] = window.open("",PCMap.getLinkedMaps()[i]);
+    }
+  }
+
+  return;
+}
+
+function ShowDebugMaps() {
+  let showcontent;
+  let ourmaps = [];
+  ourmaps[0] = PC.getHomeMap();
+  for (let i=0;i<PC.getHomeMap().getLinkedMaps().length;i++) {
+    ourmaps[i+1] = maps.getMap(PC.getHomeMap().getLinkedMaps()[i]);
+  }
+
+  for (let i=0;i<ourmaps.length;i++) {
+    let mapname = ourmaps[i].getName();
+
+    var terrain = "";
+    var mainview = "";
+    
+  }
+}
+
+function DebugGetDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
+
+  var displayCell = {};
+  var localacre = mapname.getTile(x,y);
+  
+  var displaytile;
+  // decide whether to draw a tile, draw it shaded, or make it darkness
+  var losresult = 0;
+
+  var blocks = localacre.getBlocksLOS();
+  
+  var lighthere = 1;
+  
+  displaytile = localacre.getTop(0,1);  // sorts NPCs to top
+  var isnpc = 0;
+  if (displaytile.checkType("NPC")) { isnpc = 1; }
+  var graphics = displaytile.getGraphicArray();
+  var showGraphic = graphics[0];
+  if (typeof displaytile.setBySurround === "function") {
+   	graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
+    displayCell.showGraphic = graphics[0];
+    displayCell.graphics2 = graphics[2];
+    displayCell.graphics3 = graphics[3];
+    displayCell.graphics1 = graphics[1];
+    if (typeof displaytile.doTile === "function") {
+      showGraphic = displaytile.doTile(x,y,graphics[0]);
+      if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
+      if (showGraphic.spritexoffset) { 
+        displayCell.graphics2 = showGraphic.spritexoffset;
+        displayCell.graphics3 = showGraphic.spriteyoffset;
+      }
+    }
+    displayCell.losresult = losresult;
+    displayCell.lighthere = lighthere;
+    displayCell.desc = displaytile.getDesc();
+  } else {
+    displayCell.showGraphic = showGraphic;
+    displayCell.graphics2 = graphics[2];
+    displayCell.graphics3 = graphics[3];
+    displayCell.graphics1 = graphics[1];
+    if (typeof displaytile.doTile === "function") {
+      showGraphic = displaytile.doTile(x,y,showGraphic);
+      if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
+      if (showGraphic.hasOwnProperty("spritexoffset")) { 
+        displayCell.graphics2 = showGraphic.spritexoffset;
+        displayCell.graphics3 = showGraphic.spriteyoffset;
+      }      
+    }
+    if (typeof displaytile.setByBelow === "function") {
+      var setbelow = displaytile.setByBelow(x,y,mapname);
+      displayCell.showGraphic = setbelow[0];
+      displayCell.graphics2 = setbelow[2];
+      displayCell.graphics3 = setbelow[3];
+    }
+    displayCell.losresult = losresult;
+    displayCell.lighthere = lighthere;
+    displayCell.isnpc = isnpc;
+    displayCell.desc = displaytile.getDesc();
+  }
+  if (displaytile.checkType("Terrain") && (displaytile.getName() !== "BlankBlack")) { displayCell.terrain = 1; }
+  return displayCell;
+}
+
+function DebugGetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
+  
+  var localacre = mapref.getTile(xcoord, ycoord);
+  var displaytile = localacre.getTerrain();
+
+  var graphics = displaytile.getGraphicArray();
+  var showGraphic = graphics[0];
+
+  var displayCell = {};
+  displayCell.desc = displaytile.getDesc();
+  if (typeof displaytile.setBySurround === "function") {
+   	graphics = displaytile.setBySurround(xcoord,ycoord,mapref,graphics,0,centerx,centery);
+    showGraphic = graphics[0];
+  }
+
+  displayCell.showGraphic = showGraphic;
+  displayCell.graphics2 = graphics[2];
+  displayCell.graphics3 = graphics[3];
+  displayCell.graphics1 = graphics[1];
+  if (typeof displaytile.doTile === "function") {
+    showGraphic = displaytile.doTile(xcoord,ycoord,showGraphic);
+    if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
+    if (showGraphic.hasOwnProperty("spritexoffset")) { 
+      displayCell.graphics2 = showGraphic.spritexoffset;
+      displayCell.graphics3 = showGraphic.spriteyoffset;
+    }        
+  }
+
+  return displayCell;
 }
