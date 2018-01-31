@@ -126,9 +126,30 @@ function ShowDebugMaps() {
   for (let i=0;i<ourmaps.length;i++) {
     let mapname = ourmaps[i].getName();
 
-    var terrain = "";
-    var mainview = "";
+    let terrain = "<table border='0' cellspacing='0' cellpadding='0'>";
+    let mainview = "<table border='0' cellspacing='0' cellpadding='0'>";
     
+    for (let y=0;y<ourmaps[i].length;y++) {
+      terrain += "<tr>";
+      mainview += "<tr>";
+      for (let x=0;x<outmaps[i][y].length;x++) {
+        let terr = DebugGetDisplayTerrain(ourmaps[i],x,y,x,y,0);
+        terrain += "<td style='width:32px;height:32px;background-image:url(\"graphics/" + terr.showGraphic + "\"); background-repeat: no-repeat; background-position: " + terr.graphics2 + "px " + terr.graphics3 + "px'>";
+        terrain += "<img width='32' height='32' src='graphics/" + terr.graphics1 + "' border='0' alt='tile " + x + "," + y + "' /></td>";
+        
+        let thiscell = DebugGetDisplayCell(outmaps[i],x,y,x,y);
+        if (thiscell.terrain) {
+          mainview += "<td><img width='32' height='32' src='graphics/spacer.gif' border='0' alt='tile " + x + "," + y + "' /></td>";
+        } else {
+          
+        }
+      }
+      terrain += "</tr>";
+      mainview += "</tr>";
+    }
+    
+    terrain += "</table>";
+    mainview += "</table>";
   }
 }
 
