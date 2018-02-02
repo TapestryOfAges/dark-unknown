@@ -109,10 +109,26 @@ function OpenDebugMaps() {
   if (PCMap.getLinkedMaps().length > 0) {
     for (let i=0;i<PCMap.getLinkedMaps().length;i++) {
       debugmaps[PCMap.getLinkedMaps()[i]] = window.open("",PCMap.getLinkedMaps()[i]);
+//      debugmaps[PCMap.getLinkedMaps()[i]].document.write("<html><head></head><body><div style='position:fixed;left:0px;top:0px' id='terrain_" + PCMap.getLinkedMaps()[i] + "'>What is this?</div><div style='position:fixed;left:0px;top:0px' id='main_" + PCMap.getLinkedMaps()[i] + "'></div></body></html>");
     }
   }
-
+  
+  setTimeout(SeedDebugMaps(0), 100);
   return;
+}
+
+function SeedDebugMaps(j) {
+  let PCMap = PC.getHomeMap();
+  let ourmaps = [];
+  ourmaps[0] = PC.getHomeMap().getName();
+  for (let i=0;i<PC.getHomeMap().getLinkedMaps().length;i++) {
+    ourmaps[i+1] = PC.getHomeMap().getLinkedMaps()[i];
+  }
+  
+  if (j === ourmaps.length) { return; }
+
+  debugmaps[ourmaps[j]].document.write("<html><head></head><body><div style='position:fixed;left:0px;top:0px' id='terrain_" + ourmaps[j] + "'>What is this?</div><div style='position:fixed;left:0px;top:0px' id='main_" + ourmaps[j] + "'></div></body></html>");  
+  setTimeout(SeedDebugMaps(j+1), 100);
 }
 
 function ShowDebugMaps() {
@@ -141,7 +157,8 @@ function ShowDebugMaps() {
         if (thiscell.terrain) {
           mainview += "<td><img width='32' height='32' src='graphics/spacer.gif' border='0' alt='tile " + x + "," + y + "' /></td>";
         } else {
-          
+          mainview += "<td style='width:32px;height:32px;background-image:url(\"graphics/" + thiscell.showGraphic + "\"); background-repeat: no-repeat; background-position: " + thiscell.graphics2 + "px " + thiscell.graphics3 + "px'>";
+          mainview += "<img width='32' height='32' src='graphics/" + thiscell.graphics1 + "' border='0' alt='tile " + x + "," + y + "' /></td>";          
         }
       }
       terrain += "</tr>";
@@ -150,6 +167,12 @@ function ShowDebugMaps() {
     
     terrain += "</table>";
     mainview += "</table>";
+    
+    var docterr = debugmaps[mapname].document.getElementById("terrain_" + mapname);
+    docterr.innerHTML = terrain;
+    var docmain = debugmaps[mapname].document.getElementById("main_" + mapname);
+    docmain.innerHTML = mainview;
+    
   }
 }
 
