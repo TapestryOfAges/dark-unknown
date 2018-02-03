@@ -125,14 +125,13 @@ function SeedDebugMaps(j) {
     ourmaps[i+1] = PC.getHomeMap().getLinkedMaps()[i];
   }
   
-  if (j === ourmaps.length) { return; }
+  if (j === ourmaps.length) { ShowDebugMaps(); return; }
 
-  debugmaps[ourmaps[j]].document.write("<html><head></head><body><div style='position:fixed;left:0px;top:0px' id='terrain_" + ourmaps[j] + "'>What is this?</div><div style='position:fixed;left:0px;top:0px' id='main_" + ourmaps[j] + "'></div></body></html>");  
+  debugmaps[ourmaps[j]].document.write("<html><head></head><body><div style='position:absolute;left:0px;top:0px;' id='terrain_" + ourmaps[j] + "'>What is this?</div><div style='position:absolute;left:0px;top:0px' id='main_" + ourmaps[j] + "'></div></body></html>");  
   setTimeout(SeedDebugMaps(j+1), 100);
 }
 
 function ShowDebugMaps() {
-  let showcontent;
   let ourmaps = [];
   ourmaps[0] = PC.getHomeMap();
   for (let i=0;i<PC.getHomeMap().getLinkedMaps().length;i++) {
@@ -145,20 +144,20 @@ function ShowDebugMaps() {
     let terrain = "<table border='0' cellspacing='0' cellpadding='0'>";
     let mainview = "<table border='0' cellspacing='0' cellpadding='0'>";
     
-    for (let y=0;y<ourmaps[i].length;y++) {
+    for (let yy=0;yy<ourmaps[i].data.length;yy++) {
       terrain += "<tr>";
       mainview += "<tr>";
-      for (let x=0;x<outmaps[i][y].length;x++) {
-        let terr = DebugGetDisplayTerrain(ourmaps[i],x,y,x,y,0);
+      for (let xx=0;xx<ourmaps[i].data[yy].length;xx++) {
+        let terr = DebugGetDisplayTerrain(ourmaps[i],xx,yy,xx,yy,0);
         terrain += "<td style='width:32px;height:32px;background-image:url(\"graphics/" + terr.showGraphic + "\"); background-repeat: no-repeat; background-position: " + terr.graphics2 + "px " + terr.graphics3 + "px'>";
-        terrain += "<img width='32' height='32' src='graphics/" + terr.graphics1 + "' border='0' alt='tile " + x + "," + y + "' /></td>";
+        terrain += "<img width='32' height='32' src='graphics/" + terr.graphics1 + "' border='0' alt='tile " + xx + "," + yy + "' /></td>";
         
-        let thiscell = DebugGetDisplayCell(outmaps[i],x,y,x,y);
+        let thiscell = DebugGetDisplayCell(ourmaps[i],xx,yy,xx,yy);
         if (thiscell.terrain) {
-          mainview += "<td><img width='32' height='32' src='graphics/spacer.gif' border='0' alt='tile " + x + "," + y + "' /></td>";
+          mainview += "<td><img width='32' height='32' src='graphics/spacer.gif' border='0' alt='tile " + xx + "," + yy + "' /></td>";
         } else {
           mainview += "<td style='width:32px;height:32px;background-image:url(\"graphics/" + thiscell.showGraphic + "\"); background-repeat: no-repeat; background-position: " + thiscell.graphics2 + "px " + thiscell.graphics3 + "px'>";
-          mainview += "<img width='32' height='32' src='graphics/" + thiscell.graphics1 + "' border='0' alt='tile " + x + "," + y + "' /></td>";          
+          mainview += "<img width='32' height='32' src='graphics/" + thiscell.graphics1 + "' border='0' alt='tile " + xx + "," + yy + "' /></td>";          
         }
       }
       terrain += "</tr>";
