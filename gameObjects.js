@@ -913,6 +913,16 @@ function HasAmbientNoise(ambientsound, radius) {
   this.getAmbientRadius = function() { return this.ambientRadius; }
 }
 
+//Abstract class MobileEnterable
+function MobileEnterable(destmap, destx, desty) {
+  this.enterable = 1;
+  this.enterto = { mapname: destmap, destx: destx, desty: desty };
+
+  this.getEnterMap = function() {
+    return enterto;
+  }
+}
+
 // General func 
 function SetByBelow() {
 	this.setByBelow = function(x,y,themap) {
@@ -1156,6 +1166,7 @@ function IsWet(tile) {
 	if (tile.getName() === "River") { return 1; }
 	return 0;
 }
+
 // end multiple inheritance
 
 function InanimateObject() {
@@ -8146,6 +8157,8 @@ AltarWithSwordTile.prototype.use = function(who) {
   
   return;
 }
+
+
 
 // Items
 
