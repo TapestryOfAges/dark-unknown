@@ -910,6 +910,20 @@ function DamageFlash() {
   setTimeout(function() { $('#hpcell').css("background-color", "black"); $('#hpcell').css("color", "white"); }, 250);
 }
 
+function CheckMapForHostiles(who) {
+  let themap = who.getHomeMap();
+  let npcs = themap.npcs.getAll();
+  let arehostiles = -1;
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getAttitude() === "hostile") { 
+      let tmprad =  GetManhattenDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety());  
+      if (tmprad < arehostiles) { arehostiles = tmprad; }
+    }
+  }
+
+  return arehostiles;
+}
+
 function GetDistance(x1,y1,x2,y2,disttype) {
   if (disttype === "square") { return GetSquareDistance(x1,y1,x2,y2); }
   if (disttype === "manhatten") { return GetManhattenDistance(x1,y1,x2,y2); }

@@ -1850,15 +1850,25 @@ function PerformWait(code) {
   if ((code === 27) || (code === 48)) { 
     return retval;
   }
+  let anyhostiles = CheckMapForHostiles(PC);
+  if (anyhostiles <= 10) { 
+    retval["fin"] = 0;
+    retval["txt"] = "You cannot wait here- it is too dangerous.";
+    retval["input"] = "&gt;";
+    return retval;
+  }
+
   gamestate.setMode("null");
   var duration = parseInt(code) - 48;
   retval["txt"] = "Waiting for " + duration + " hours.";
   if (duration === 1) { retval["txt"] = "Waiting for 1 hour."; }
   duration = duration * 12;
   PC.setWaiting(DUTime.getGameClock() + duration);
-  PC.moveAfterWaiting = {x : PC.getx(), y: PC.gety()};
   $("#displayframe").fadeOut(1500, function() {});
-  PC.getHomeMap().moveThing(0,0,PC);
+  if (anyhostiles === -1) {
+    PC.moveAfterWaiting = {x : PC.getx(), y: PC.gety()};
+    PC.getHomeMap().moveThing(0,0,PC);
+  }
 
   retval["fin"] = 1;
   retval["input"] = "&gt;";

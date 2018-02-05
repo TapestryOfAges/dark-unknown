@@ -13596,6 +13596,14 @@ PCObject.prototype.myTurn = function() {
   if (waiting && (waiting < DUTime.getGameClock())) { 
     waiting = 0;
     EndWaiting(this,this.atinn);
+  } else if (waiting && (PC.getx() !== 0) && (PC.gety() !== 0)) {  // waiting somewhere that can have hostiles
+    let closemonsters = CheckMapForHostiles(PC);
+    if (closemonsters <= 4) {
+      waiting = 0;
+      EndWaiting(this,0);
+      maintest.addText("You become alert due to nearby enemies.");
+      // consider checking LOS so you aren't alerted by stuff behind walls?
+    }
   }
   if (sleep || paralyzed || frozen || waiting) { awake = 0; }  
 
