@@ -65,7 +65,6 @@ NPCSpecialFuncs["courierFlee"] = function(who,how) {
   who.addSpellEffect(eobj);
 }
 
-
 function TurnMapHostile(map) {
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
   DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma") - 10); 
