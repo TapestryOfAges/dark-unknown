@@ -916,9 +916,15 @@ function HasAmbientNoise(ambientsound, radius) {
 //Abstract class MobileEnterable
 function MobileEnterable(destmap, destx, desty) {
   this.enterable = 1;
-  this.enterto = { mapname: destmap, destx: destx, desty: desty };
+  this.enterto = destmap;
+  this.enterx = destx; 
+  this.entery = desty;
 
   this.getEnterMap = function() {
+  	var mapdata = { entermap : this.destmap , enterx : this.destx, entery : this.desty };
+  	return mapdata;
+  }
+
     return enterto;
   }
 }

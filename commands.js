@@ -916,6 +916,21 @@ function PerformEnter(cmd) {
 				}
 			}
 		}
+		if (!destination && PC.getHomeMap().getScale()) {  // check for mobile scenes- only on world scale maps
+		  for (let xx=PC.getx()-1;xx<=PC.getx()+1;xx++) {
+		    for (let yy=PC.gety()-1;yy<=PC.gety()+1;yy++) {
+		      if ((xx > -1) && (yy > -1)) {
+		        let topthing = PC.getHomeMap().getAcre(xx,yy).getTop();
+		        if (topthing.enterable) {
+    					var mapdata = topthing.getEnterMap();
+		    			destination = mapdata["entermap"];
+				    	destx = mapdata["enterx"];
+					    desty = mapdata["entery"];
+		        }
+		      }
+		    }
+		  }
+		}
 		if (!destination) {
 			retval["fin"] = 2;
 			if (cmd === "e") {
