@@ -924,9 +924,6 @@ function MobileEnterable(destmap, destx, desty) {
   	var mapdata = { entermap : this.destmap , enterx : this.destx, entery : this.desty };
   	return mapdata;
   }
-
-    return enterto;
-  }
 }
 
 // General func 
