@@ -94,7 +94,7 @@ function drawMap() {
       maintable += "<tr>";
       for (var i = 0; i< amap.data[0].length; i++) {
         terraintable += "<td id='terrain_"+i+"x"+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
-        maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative' onClick='clickmap("+i+","+j+")' alt='"+i+","+j+"' title='"+i+","+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
+        maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative' onMouseDown='brushdown=1;clickmap("+i+","+j+");return(false);' onMouseOver='enterTile("+i+","+j+");' alt='"+i+","+j+"' title='"+i+","+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
       }
       terraintable += "</tr>";
       maintable += "</tr>";
