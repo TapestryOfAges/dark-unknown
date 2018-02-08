@@ -377,3 +377,14 @@ ais.UseThing = function(who,params) {
   }
   return {fin:1};
 }
+
+ais.CloseDoor = function(who,params) {
+  var tile = who.getHomeMap().getTile(params.x,params.y);
+  var thing = tile.getTopFeature();
+  if (typeof thing.use === "function") {
+    if (thing.open) {
+      thing.use(who);
+    }
+  }
+  return {fin:1};
+}
