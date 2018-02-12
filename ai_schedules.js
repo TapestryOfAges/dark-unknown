@@ -388,3 +388,16 @@ ais.CloseDoor = function(who,params) {
   }
   return {fin:1};
 }
+
+ais.LightLight = function(who,params) {
+  var tile = who.getHomeMap().getTile(params.x,params.y);
+  var thing = tile.getTopFeature();
+  if (typeof thing.getLight === "function") {
+    if (thing.getLight() && (params.light === 0)) {
+      thing.use(who);
+    } else if (!thing.getLight() && (params.light === 1)) {
+      thing.use(who);
+    }
+  }
+  return {fin:1};
+}
