@@ -1324,11 +1324,11 @@ GameMap.prototype.saveMap = function (name) {
      }
      printerwin.document.write(""+savethis);
    }
-   printerwin.document.write("';\n");
+   printerwin.document.write("';<br />\n");
  }
  // ADD FEATURES/NPCs
  name = 'mappages["' + oldname + '"].features';
- printerwin.document.write("\n" + name + " = [];\n");
+ printerwin.document.write("\n" + name + " = [];<br />\n");
  var mapfeatures = this.features.getAll();
  for (var i=0;i<=mapfeatures.length-1;i++) {
    printerwin.document.write(name + "[" + i + "] = {name : '" + mapfeatures[i].getName() + "',");
@@ -1390,12 +1390,12 @@ GameMap.prototype.saveMap = function (name) {
     }
    	printerwin.document.write(", searchyield : '" + printyield + "'");
    }   
-   printerwin.document.write("};\n");
+   printerwin.document.write("};<br />\n");
  }
  
  name = 'mappages["' + oldname + '"].npcs';
- printerwin.document.write("\n");
- printerwin.document.write("\n" + name + " = [];\n");
+ printerwin.document.write("<br />\n");
+ printerwin.document.write("<br />\n" + name + " = [];<br />\n");
  var mapnpcs = this.npcs.getAll();
  for (var i=0;i<=mapnpcs.length-1;i++) {
  	printerwin.document.write(name + "[" + i + "] = {name : '" + mapnpcs[i].getName() + "'");
@@ -1467,33 +1467,33 @@ GameMap.prototype.saveMap = function (name) {
  	if (mapnpcs[i].overrideGraphic) {
  	  printerwin.document.write(", OverrideGraphic: '" + mapnpcs[i].overrideGraphic + "'");
  	}
- 	printerwin.document.write("};\n");
+ 	printerwin.document.write("};<br />\n");
 }
  
  name = 'mappages["' + oldname + '"]';
- printerwin.document.write("\n" + name + ".desc = \"" + this.getDesc() + "\";\n");
- printerwin.document.write(name + ".music = '" + this.getMusic() + "';\n");
- printerwin.document.write(name + ".savename = '" + this.getSaveName() + "';\n");
- printerwin.document.write(name + ".exitmap = '" + this.getExitToMap() + "';\n");
- printerwin.document.write(name + ".exitx = '" + this.getExitToX() + "';\n");
- printerwin.document.write(name + ".exity = '" + this.getExitToY() + "';\n");
- printerwin.document.write(name + ".wraps = '" + this.getWrap() + "';\n");
- printerwin.document.write(name + ".enterx = '" + this.getEnterX() + "';\n");
- printerwin.document.write(name + ".entery = '" + this.getEnterY() + "';\n");
- printerwin.document.write(name + ".seeBelow = '" + this.getSeeBelow() + "';\n");
- printerwin.document.write(name + ".lightLevel = '" + this.getLightLevel() + "';\n");
- printerwin.document.write(name + ".alwaysRemember = '" + this.getAlwaysRemember() + "';\n");
- printerwin.document.write(name + ".scale = '" + this.getScale() + "';\n");
- printerwin.document.write(name + ".underground = '" + this.getUnderground() + "';\n");
- printerwin.document.write(name + ".undergroundDesc = '" + this.getUndergroundDesc() + "';\n");
- printerwin.document.write(name + ".enterscript = '" + this.getEnterScript() + "';\n");
- printerwin.document.write(name + ".entertestscript = '" + this.getEnterTestScript() + "';\n");
- printerwin.document.write(name + ".exitscript = '" + this.getExitScript() + "';\n");
- printerwin.document.write(name + ".exittestscript = '" + this.getExitTestScript() + "';\n");
- printerwin.document.write(name + ".returnmap = '" + this.getReturnMap() + "';\n");
- printerwin.document.write(name + ".returnx = '" + this.getReturnx() + "';\n");
- printerwin.document.write(name + ".returny = '" + this.getReturny() + "';\n");
- printerwin.document.write(name + ".returninfused = '" + this.getReturnInfused() + "';\n");
+ printerwin.document.write("<br />\n" + name + ".desc = \"" + this.getDesc() + "\";<br />\n");
+ printerwin.document.write(name + ".music = '" + this.getMusic() + "';<br />\n");
+ printerwin.document.write(name + ".savename = '" + this.getSaveName() + "';<br />\n");
+ printerwin.document.write(name + ".exitmap = '" + this.getExitToMap() + "';<br />\n");
+ printerwin.document.write(name + ".exitx = '" + this.getExitToX() + "';<br />\n");
+ printerwin.document.write(name + ".exity = '" + this.getExitToY() + "';<br />\n");
+ printerwin.document.write(name + ".wraps = '" + this.getWrap() + "';<br />\n");
+ printerwin.document.write(name + ".enterx = '" + this.getEnterX() + "';<br />\n");
+ printerwin.document.write(name + ".entery = '" + this.getEnterY() + "';<br />\n");
+ printerwin.document.write(name + ".seeBelow = '" + this.getSeeBelow() + "';<br />\n");
+ printerwin.document.write(name + ".lightLevel = '" + this.getLightLevel() + "';<br />\n");
+ printerwin.document.write(name + ".alwaysRemember = '" + this.getAlwaysRemember() + "';<br />\n");
+ printerwin.document.write(name + ".scale = '" + this.getScale() + "';<br />\n");
+ printerwin.document.write(name + ".underground = '" + this.getUnderground() + "';<br />\n");
+ printerwin.document.write(name + ".undergroundDesc = '" + this.getUndergroundDesc() + "';<br />\n");
+ printerwin.document.write(name + ".enterscript = '" + this.getEnterScript() + "';<br />\n");
+ printerwin.document.write(name + ".entertestscript = '" + this.getEnterTestScript() + "';<br />\n");
+ printerwin.document.write(name + ".exitscript = '" + this.getExitScript() + "';<br />\n");
+ printerwin.document.write(name + ".exittestscript = '" + this.getExitTestScript() + "';<br />\n");
+ printerwin.document.write(name + ".returnmap = '" + this.getReturnMap() + "';<br />\n");
+ printerwin.document.write(name + ".returnx = '" + this.getReturnx() + "';<br />\n");
+ printerwin.document.write(name + ".returny = '" + this.getReturny() + "';<br />\n");
+ printerwin.document.write(name + ".returninfused = '" + this.getReturnInfused() + "';<br />\n");
  var linkedMapList;
  var linkedMapArray = this.getLinkedMaps();
  if (linkedMapArray.length > 0) {
@@ -1504,12 +1504,12 @@ GameMap.prototype.saveMap = function (name) {
  	 		linkedMapList = linkedMapList + ',"' + linkedMapArray[i] + '"';
  	 	}
  	}
- 	printerwin.document.write(name + ".linkedMaps = [" + linkedMapList + "];\n");
+ 	printerwin.document.write(name + ".linkedMaps = [" + linkedMapList + "];<br />\n");
  }
  else {
-   printerwin.document.write(name + ".linkedMaps = [];\n");
+   printerwin.document.write(name + ".linkedMaps = [];<br />\n");
  }
- printerwin.document.write(name + ".editorLabels = '" + JSON.stringify(this.allLabels).replace("'","\\'") + "';\n");
+ printerwin.document.write(name + ".editorLabels = '" + JSON.stringify(this.allLabels).replace("'","\\'") + "';<br />\n");
  printerwin.document.close();
 }
 
