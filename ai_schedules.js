@@ -401,3 +401,8 @@ ais.LightLight = function(who,params) {
   }
   return {fin:1};
 }
+
+ais.ChangeGraphic = function(who,params) {
+  who.setGraphic(params.graphic);
+  return {fin:1};
+}
