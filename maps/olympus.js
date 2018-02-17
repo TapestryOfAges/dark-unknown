@@ -614,6 +614,11 @@ mappages["olympus1"].features[541] = {name : 'Brazier', x : 9, y : 50};
 mappages["olympus1"].features[542] = {name : 'Fireplace', x : 10, y : 20};
 mappages["olympus1"].features[543] = {name : 'Fireplace', x : 26, y : 18};
 mappages["olympus1"].features[544] = {name : 'Fireplace', x : 26, y : 18};
+mappages["olympus1"].features[545] = {name : 'BookshelfLeft', x : 33, y : 23};
+mappages["olympus1"].features[546] = {name : 'BookshelfLeft', x : 35, y : 23};
+mappages["olympus1"].features[547] = {name : 'BookshelfRight', x : 34, y : 23};
+mappages["olympus1"].features[548] = {name : 'BookshelfRight', x : 36, y : 23};
+mappages["olympus1"].features[549] = {name : 'BlueFountain', x : 27, y : 22};
 
 
 mappages["olympus1"].npcs = [];
@@ -1042,6 +1047,7 @@ mappages["olympus2"].npcs[18] = {name : 'JesterNPC', x : 29, y : 30, NPCName: 'K
 mappages["olympus2"].npcs[19] = {name : 'FighterVillagerNPC', x : 9, y : 18, NPCName: 'Nyrani', Desc: 'guard captain', Level: 5, str: 24, dex: 18, int: 12, PeaceAI: 'guard', PCThreatAI: 'melee', Conversation: 'nyrani', Gender: 'female', OverrideGraphic: '308.gif'};
 mappages["olympus2"].npcs[20] = {name : 'QueenNPC', x : 27, y : 16, NPCName: 'Shelaria', Desc: 'your mother, Queen Shelaria', Conversation: 'shelaria', ConversationFlag: 'shelaria', Gender: 'female'};
 mappages["olympus2"].npcs[21] = {name : 'TownsfolkVillagerNPC', x : 34, y : 34, NPCName: 'Alex', Desc: 'stablemaster', Conversation: 'alex', ConversationFlag: 'alex', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["olympus2"].npcs[22] = {name : 'TownsfolkVillagerNPC', x : 29, y : 38, NPCName: 'Joe', Conversation: 'joe', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif'};
 
 mappages["olympus2"].desc = "Castle dea Olympus";
 mappages["olympus2"].music = 'Olympus';
