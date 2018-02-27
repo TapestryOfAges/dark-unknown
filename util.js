@@ -52,13 +52,10 @@ function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
     centerfromx = PC.getx();
     centerfromy = PC.gety();
   }
-//  var edges = getDisplayCenter(mapref,newx,newy);
   var edges = getDisplayCenter(mapref,centerfromx,centerfromy);
   var coords = {};
   coords.x = 192 + (newx - edges.centerx) * 32;
   coords.y = 192 + (newy - edges.centery) * 32 +2;
-//  coords.x = 0 + (newx - edges.centerx) * 32;
-//  coords.y = 0 + (newy - edges.centery) * 32;
 
   return coords;
 }
@@ -1483,6 +1480,21 @@ function IsOnPentagram(who) {
     return 1;
   } 
   return 0;
+}
+
+function ShouldShowFrames() {
+  if (PC.getHomeMap().getScale()) {
+    let npcs = PC.getHomeMap().npcs.getAll();
+    for (let i=0; i<npcs.length;i++) {
+      if (npcs[i].getAttitude() === "hostile") { return 1; }
+    }
+  }
+  return 0;
+}
+
+function IsObjectVisibleOnScreen(what) {
+  if (what.getHomeMap() !== PC.getHomeMap()) { return 0; }
+  return IsVisibleOnScreen(what.getx(),what.gety());
 }
 
 function IsVisibleOnScreen(x,y) {

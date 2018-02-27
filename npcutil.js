@@ -495,21 +495,22 @@ function StepOrDoor(who, where, nopush) {
       DebugWrite("ai", "didn't move in StepOrDoor.<br />");
       if (!nopush && fea && who.specials["open_door"]) {
         // If you can open a door, you can move a barrel.
-      
-        var allfea = tile.getFeatures();
-        var pushyou;
-        $.each(allfea, function(idx,val) {
-          if (val.pushable) {
-            if (!pushyou) { pushyou = val; }
-            else {
-              if (!(val.getPassable & who.getMovetype())) {
-                pushyou = val;
+        if (!tile.getTopNPC()) {      
+          var allfea = tile.getFeatures();
+          var pushyou;
+          $.each(allfea, function(idx,val) {
+            if (val.pushable) {
+              if (!pushyou) { pushyou = val; }
+              else {
+                if (!(val.getPassable & who.getMovetype())) {
+                  pushyou = val;
+                }
               }
             }
+          });
+          if (pushyou) {
+            pushyou.pullMe(who);
           }
-        });
-        if (pushyou) {
-          pushyou.pullMe();
         }
       }
     }
@@ -616,4 +617,29 @@ function StepOrSidestep(who, path, finaldest, nopush) {
 function IsNonliving(who) {
   if (who.specials.undead || who.specials.construct) { return 1;}
   return 0;
+}
+
+function ShowTurnFrame(who) {
+  let framegraph = "turn-frame-friendly.gif";
+  if (who.getAttitude() === "hostile") { framegraph = "turn-frame-enemy.gif"; }
+
+  let coords = getCoords(who.getHomeMap(),who.getx(),who.gety());
+  $("#turnframe").css("left",coords.x+18);
+  $("#turnframe").css("top",coords.y+17);
+//  $("#turnframe").src("graphics/frame/"+framegraph);
+  $("#turnframe").css("display","block");
+
+  who.hasFrame = 1;
+}
+
+function MoveTurnFrame(who) {
+  let coords = getCoords(who.getHomeMap(),who.getx(),who.gety());
+  $("#turnframe").css("left",coords.x+18);
+  $("#turnframe").css("top",coords.y+17);
+}
+
+function HideTurnFrame(who) {
+  $("#turnframe").css("display","none");
+
+  delete who.hasFrame;
 }

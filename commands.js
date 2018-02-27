@@ -95,8 +95,8 @@ function PerformCommand(code, ctrl) {
 		  retval["fin"] = 0;
 		  retval["input"] = "&gt;";
 		} else {
-  	  var mapscale = PC.getHomeMap().getScale();
-  		if (mapscale == '0') { // on a world map, attack is adjacent only
+      var mapscale = PC.getHomeMap().getScale();
+  		if (!mapscale) { // on a world map, attack is adjacent only
         gamestate.setMode("choosedir");
         retval["txt"] = "";
         retval["input"] = "&gt; Attack: ";
@@ -120,14 +120,17 @@ function PerformCommand(code, ctrl) {
   		    targetCursor.x = PC.getx();
 	  	    targetCursor.y = PC.gety();
 	  	  }
-  		  targetCursor.command = "a";
-	  	  targetCursor.targetlimit = (viewsizex -1)/2;
-		    targetCursor.targetCenterlimit = 0;
-		    var tileid = "#td-tile" + targetCursor.x + "x" + targetCursor.y;
-  		  targetCursor.tileid = tileid;
-	  	  targetCursor.basetile = $(tileid).html();
-		    $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
-		    retval["txt"] = "";
+        targetCursor.command = "a";
+        targetCursor.targetlimit = (viewsizex -1)/2;
+        targetCursor.targetCenterlimit = 0;
+        var displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
+        var xcoord = targetCursor.x - displaystats.leftedge;
+        var ycoord = targetCursor.y - displaystats.topedge;
+        var tileid = "#mainview_" + xcoord + "x" + ycoord;
+        targetCursor.tileid = tileid;
+        targetCursor.basetile = $(tileid).html();
+        $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+        retval["txt"] = "";
   		  retval["input"] = "&gt; Attack: ";
 	  	  retval["fin"] = 2;
       }

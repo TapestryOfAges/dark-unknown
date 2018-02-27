@@ -13011,6 +13011,14 @@ NPCObject.prototype.myTurn = function() {
 	gamestate.setMode("NPC");
 	gamestate.setTurn(this);
 
+  let tileid;
+
+  this.hasFrame = 0;
+  if (PC.showFrames && IsObjectVisibleOnScreen(this)) {
+    // add turn frame
+    ShowTurnFrame(this);
+  }
+
 	RunEffects(this);
 	
 	Regen(this);
@@ -13073,6 +13081,11 @@ NPCObject.prototype.myTurn = function() {
     // therefore it deserves valhalla
 
     DebugWrite("gameobj", "<span style='font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone. Not re-adding to timeline.</span><br />");
+
+    if (this.hasFrame) {
+      // remove turn frame
+      HideTurnFrame(this);
+    }
   
     return 1;
   }
@@ -13085,6 +13098,11 @@ NPCObject.prototype.myTurn = function() {
   
   delete this.pushed;
   
+  if (this.hasFrame) {
+    // remove turn frame
+    HideTurnFrame(this);
+  }
+
 //  var nextEntity = DUTime.executeNextEvent().getEntity();
 //  nextEntity.myTurn();
 //  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>*" + this.getName() + ", serial " + this.getSerial() + " is ending its turn at " + this.getx() + "," + this.gety() + ".*</span><br />"); }	
@@ -13093,6 +13111,11 @@ NPCObject.prototype.myTurn = function() {
 }
 
 NPCObject.prototype.endTurn = function(init) {
+  if (this.hasFrame && IsObjectVisibleOnScreen(this)) {
+    // remove turn frame
+    HideTurnFrame(this);
+  }
+
   if (whoseturn !== this) {
     alert("Somehow trying to end a turn when it isn't their turn, aborting.");
   } else if (this.getHP() <= 0) {
@@ -13121,7 +13144,7 @@ NPCObject.prototype.endTurn = function(init) {
     this.setLastTurnTime(DUTime.getGameClock());
   
     if (!maps.getMap(this.getHomeMap().getName())) {
-      // map removed during its turn (probably because it killed the player
+      // map removed during its turn (probably because it killed the player)
       // therefore it deserves valhalla
 
       DebugWrite("gameobj", "<span style='font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone. Not re-adding to timeline.</span><br />");
@@ -13568,6 +13591,9 @@ PCObject.prototype.activate = function() {
 }
 
 PCObject.prototype.myTurn = function() {
+
+  if (ShouldShowFrames()) { PC.showFrames = 1; }
+  else {delete PC.showFrames}
 
   if (debugmaps.open) { ShowDebugMaps(); }
 
