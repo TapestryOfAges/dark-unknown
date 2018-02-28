@@ -624,8 +624,8 @@ function ShowTurnFrame(who) {
   if (who.getAttitude() === "hostile") { framegraph = "turn-frame-enemy.gif"; }
 
   let coords = getCoords(who.getHomeMap(),who.getx(),who.gety());
-  $("#turnframe").css("left",coords.x+18);
-  $("#turnframe").css("top",coords.y+17);
+  $("#turnframe").css("left",coords.x+16);
+  $("#turnframe").css("top",coords.y+16);
 //  $("#turnframe").src("graphics/frame/"+framegraph);
   $("#turnframe").css("display","block");
 

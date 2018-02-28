@@ -12924,8 +12924,6 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	}	else {
 		retval = tile.getBumpIntoResult(this);
 		if (retval["canmove"] === 0) { return retval; }
-//		var moveval = tile.canMoveHere(this, map.getTile(this.getx(),this.gety()));
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:brown'>" + this.getName() + " trying to move, checking canMoveHere for " + passx + "," + passy +".</span><br />"); }
     DebugWrite("ai", this.getName() + " trying to move, checking canMoveHere for " + passx + "," + passy +".</span><br />");
 		var moveval = tile.canMoveHere(this.getMovetype());
 		retval["canmove"] = moveval["canmove"];
@@ -12984,7 +12982,16 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	}
 	retval["initdelay"] = tile.getInitDelay(this);
 	retval["diffx"] = diffx;
-	retval["diffy"] = diffy;
+  retval["diffy"] = diffy;
+  
+  if (this.hasFrame) {
+    if ((this.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(this.getx(),this.gety()))) {
+      MoveTurnFrame(who);
+    } else {
+      HideTurnFrame();
+      delete who.hasFrame;
+    }
+  }
 	return retval;
 }
 
