@@ -1300,10 +1300,10 @@ GameMap.prototype.saveMap = function (name) {
  }
  if (name === null) {return;}
  var printerwin = window.open('','printarray');
- printerwin.document.writeln('mappages["' + name + '"] = {};');
+ printerwin.document.writeln('mappages["' + name + '"] = {};<br />');
  var oldname=name;
  name = 'mappages["' + name + '"].terrain';
- printerwin.document.writeln(name + " = [];");
+ printerwin.document.writeln(name + " = [];<br />");
  var maxindex = this.data.length-1;
  for (var i=0;i<=maxindex;i++) {
  	 var saveind = i;

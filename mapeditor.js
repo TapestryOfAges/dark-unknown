@@ -612,6 +612,7 @@ function changemaptile(xval,yval,toTerrain) {
   if (!toTerrain) { toTerrain = selectionval; }
   var tileid = xval + "x" + yval;
   var tdid = "#terrain_" + tileid;
+  console.log(tdid);
   var graphics = toTerrain.getGraphicArray();
   var showGraphic = graphics[0];
   if (typeof toTerrain.setBySurround === "function") {
@@ -630,7 +631,7 @@ function changemaptile(xval,yval,toTerrain) {
   }
   $(tdid).css("background-image","url('graphics/" + graphics[0] + "')");
   $(tdid).css("background-position", graphics[2] + "px " + graphics[3] + "px");
-  $(tdid).html('<img src="graphics/'+graphics[1]+'" />');
+  $(tdid).html('<img src="graphics/'+graphics[1]+'" width="32" height="32" alt="tile'+xval+'x'+yval+'" />');
   amap.setTerrain(xval,yval,toTerrain);
 
 }
