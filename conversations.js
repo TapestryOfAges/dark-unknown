@@ -197,7 +197,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
 
     keep_talking = 4;
   }
-  
+
+  if (keep_talking === 0) { HideTurnFrame(); }  
   return keep_talking;
   
 }
@@ -224,6 +225,25 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   saywhat = saywhat.replace(/%KIDDIE%/g, gterms.kiddie);
   saywhat = saywhat.replace(/%SELF_PRONOUN%/g, npcterms.pronoun);
   saywhat = saywhat.replace(/%SYS%(.+?)%SYS%/g, "<span class='sysconv'>$1</span>");
+
+  let diffspeak = /\@\w+/.exec(saywhat);
+  if (diffspeak) {
+    diffspeak = diffspeak.replace(/\@/, "");
+    if (diffspeak === "me") {
+      if (IsVisibleOnScreen(speaker) {
+        ShowTurnFrame(speaker);
+      } else {
+        HideTurnFrame();
+      }
+    } else {
+      let findme = FindNPCByName(diffspeak,speaker.getHomeMap());
+      if (findme) {
+        ShowTurnFrame(findme);
+      } else {
+        DebugWrite("all", "Conversation with " + speaker.getNPCName() + " failed to find conversation partner. Trying to say: " + saywhat + " .<br />");
+      }
+    }
+  }
   
   var speech = saywhat.split("%%");
   var skipped = "";

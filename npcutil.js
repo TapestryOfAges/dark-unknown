@@ -626,7 +626,7 @@ function ShowTurnFrame(who) {
   let coords = getCoords(who.getHomeMap(),who.getx(),who.gety());
   $("#turnframe").css("left",coords.x+16);
   $("#turnframe").css("top",coords.y+16);
-//  $("#turnframe").src("graphics/frame/"+framegraph);
+  $("#turnframe").attr("src","graphics/frame/"+framegraph);
   $("#turnframe").css("display","block");
 
   who.hasFrame = 1;
@@ -634,12 +634,20 @@ function ShowTurnFrame(who) {
 
 function MoveTurnFrame(who) {
   let coords = getCoords(who.getHomeMap(),who.getx(),who.gety());
-  $("#turnframe").css("left",coords.x+18);
-  $("#turnframe").css("top",coords.y+17);
+  $("#turnframe").css("left",coords.x+16);
+  $("#turnframe").css("top",coords.y+16);
 }
 
 function HideTurnFrame(who) {
   $("#turnframe").css("display","none");
 
   delete who.hasFrame;
+}
+
+function FindNPCByName(findname, map) {
+  let npcs = map.npcs.getAll();
+  for (let i=0;i<=npcs.length;i++) {
+    if (npcs[i].getNPCName() === findname) { return npcs[i];}
+  }
+  return 0;
 }

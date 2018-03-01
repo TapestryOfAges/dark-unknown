@@ -13024,6 +13024,8 @@ NPCObject.prototype.myTurn = function() {
   if (PC.showFrames && IsObjectVisibleOnScreen(this)) {
     // add turn frame
     ShowTurnFrame(this);
+  } else {
+    HideTurnFrame();
   }
 
 	RunEffects(this);

@@ -1215,7 +1215,6 @@ function PerformTalkTarget() {
   $(tileid).html(targetCursor.basetile); 
   var map = PC.getHomeMap();
   var onscreen = $('#tile' + targetCursor.x + 'x' + targetCursor.y).html();
-//  alert(onscreen);
   var losval = 0;
   if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
   else {
@@ -1287,6 +1286,10 @@ function PerformTalkTarget() {
   }
 
   maintext.addText("Talk to: " + top.getDesc());
+
+  if (IsVisibleOnScreen(top)) {
+    ShowTurnFrame(top);
+  }
 
   if (EarnedLevel(PC) && (top.getName() === "KingNPC") && DU.gameflags.getFlag("kingspeech")) {
     if ((PC.getLevel() < 4) || (PC.runes.kings)) {
