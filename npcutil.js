@@ -641,7 +641,9 @@ function MoveTurnFrame(who) {
 function HideTurnFrame(who) {
   $("#turnframe").css("display","none");
 
-  delete who.hasFrame;
+  if (who) {
+    delete who.hasFrame;
+  }
 }
 
 function FindNPCByName(findname, map) {

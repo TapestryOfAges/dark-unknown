@@ -230,7 +230,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   if (diffspeak) {
     diffspeak = diffspeak.replace(/\@/, "");
     if (diffspeak === "me") {
-      if (IsVisibleOnScreen(speaker) {
+      if (IsVisibleOnScreen(speaker)) {
         ShowTurnFrame(speaker);
       } else {
         HideTurnFrame();

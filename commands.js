@@ -1287,7 +1287,7 @@ function PerformTalkTarget() {
 
   maintext.addText("Talk to: " + top.getDesc());
 
-  if (IsVisibleOnScreen(top)) {
+  if (IsVisibleOnScreen(top.getx(),top.gety())) {
     ShowTurnFrame(top);
   }
 
