@@ -17,6 +17,8 @@ var workInLayers = 0;
 var maps = new MapMemory();
 
 var brushdown = 0;
+var brushdownx = -1;
+var brushdowny = -1;
 var editable;
 var editnpcs;
 
@@ -81,6 +83,7 @@ function editorLoadMap(mapname) {
 	amap.loadMap(mapname);
   drawMap();
   maps.addMapByRef(amap);
+  changes = 0;
 }
 
 function drawMap() {
@@ -94,7 +97,7 @@ function drawMap() {
       maintable += "<tr>";
       for (var i = 0; i< amap.data[0].length; i++) {
         terraintable += "<td id='terrain_"+i+"x"+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
-        maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative' onMouseDown='brushdown=1;clickmap("+i+","+j+");return(false);' onMouseOver='enterTile("+i+","+j+");' alt='"+i+","+j+"' title='"+i+","+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
+        maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative' onMouseDown='brushdown=1;brushdownx="+i+";brushdowny="+j+";clickmap("+i+","+j+");return(false);' onMouseOver='enterTile("+i+","+j+");' alt='"+i+","+j+"' title='"+i+","+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
       }
       terraintable += "</tr>";
       maintable += "</tr>";
@@ -146,7 +149,9 @@ function drawMap() {
 }
 
 function enterTile(x,y) {
-	if ((document.brushes.elements[0].checked) && (brushdown === 1)) {
+	if ((document.brushes.elements[0].checked) && (brushdown === 1) && ((brushdownx !== x) || (brushdowny !== y))) {
+    brushdownx = -1;
+    brushdowny = -1;
 		clickmap(x,y);
 	}
 }
@@ -252,6 +257,7 @@ function changeselection(tilename) {
 
 function clickmap(xval,yval) {
 //	if (lockout == 1) {return;}
+  console.log(xval + "x" + yval);
   changes = 1;
   var x=0;
   var y=0;
@@ -612,7 +618,6 @@ function changemaptile(xval,yval,toTerrain) {
   if (!toTerrain) { toTerrain = selectionval; }
   var tileid = xval + "x" + yval;
   var tdid = "#terrain_" + tileid;
-  console.log(tdid);
   var graphics = toTerrain.getGraphicArray();
   var showGraphic = graphics[0];
   if (typeof toTerrain.setBySurround === "function") {
@@ -739,6 +744,7 @@ function erasefeature(x,y,npc) {
   } else {
     editable = amap.getTile(x,y).features.getTop();
   }
+  if (!editable) { return; }
   var mapfeature;
   if (npc) {
     mapfeature = amap.npcs;

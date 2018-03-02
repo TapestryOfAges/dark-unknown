@@ -1313,7 +1313,7 @@ GameMap.prototype.saveMap = function (name) {
    var n = maxindex.toString().length - saveind.toString().length;
    if (n > 0) {
    	for (var m = 1; m<=n; m++) {
-   		printerwin.document.write(" ");
+   		printerwin.document.write("&nbsp;");
    	}
    }
    printerwin.document.write(name + "[" + saveind + "] = '");
@@ -1324,11 +1324,11 @@ GameMap.prototype.saveMap = function (name) {
      }
      printerwin.document.write(""+savethis);
    }
-   printerwin.document.write("';<br />\n");
+   printerwin.document.write("';<br />");
  }
  // ADD FEATURES/NPCs
  name = 'mappages["' + oldname + '"].features';
- printerwin.document.write("\n" + name + " = [];<br />\n");
+ printerwin.document.write("<br />" + name + " = [];<br />");
  var mapfeatures = this.features.getAll();
  for (var i=0;i<=mapfeatures.length-1;i++) {
    printerwin.document.write(name + "[" + i + "] = {name : '" + mapfeatures[i].getName() + "',");
@@ -2392,7 +2392,6 @@ function Pages() {
 }
 
 Pages.prototype.readPage = function (name,type) {
-
   if (this[name][type]) {
     return this[name][type];
   } else {
