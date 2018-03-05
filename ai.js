@@ -477,9 +477,10 @@ ais.AnnaLeaves = function(who) {
   var themap = who.getHomeMap();
   var annax = who.getx();
   var annay = who.gety();
-  if (who.gety() === 59) {
+  if (who.gety() === 60) {
     DU.gameflags.setFlag("anna_left",1);
     themap.deleteThing(who);
+    DUTime.removeEntityFrom(who);
     DrawMainFrame("one",themap,annax,annay);
     return retval;
   }
@@ -488,18 +489,8 @@ ais.AnnaLeaves = function(who) {
   var pathfound;
   
   while (!pathfound) {
-    if (who.dest === 1) {
-      path = themap.getPath(annax, annay, 26, 33, who.getMovetype());
-    } else if (who.dest === 2) {
-      path = themap.getPath(annax, annay, 26, 41, who.getMovetype());
-    } else if (who.dest === 3) {
-      path = themap.getPath(annax, annay, 25, 41, who.getMovetype());
-    } else if (who.dest === 4) {
-      path = themap.getPath(annax, annay, 25, 59, who.getMovetype());
-    }
+    path = themap.getPath(annax, annay, 26, 60, who.getMovetype());
     path.shift();
-    if (!path[0]) { who.dest++; pathfound = 0;}
-    else { pathfound = 1; }
   }
   
   // step on the path
@@ -584,9 +575,8 @@ function GarrickScene(stage) {
       targetCursor.stage++;
     } else if (stage === 3) {
       maintext.addText('She turns to you. "He\'ll get a cell to himself, for a while. You won\'t have to worry about him again." She shakes her head. "Sorry that happened."');
-      var NPCevent = new GameEvent(garrick);
-      DUTime.addAtTimeInterval(NPCevent,garrick.nextActionTime());
       retval["fin"] = 1;
+      retval["garrick"] = garrick;
     }
     return retval;
   } else {
@@ -623,7 +613,7 @@ ais.AoifeAttack = function(who) {
   return retval;
 }
 
-ais.GarrickEscort = function(who) {
+ais.AoifeEscort = function(who) {
   if (!who.dest) { who.dest = 1; }
   var retval = {};
   retval["fin"] = 1;
@@ -635,33 +625,41 @@ ais.GarrickEscort = function(who) {
   var pathfound;
   while (!pathfound) {
     if (who.dest === 1) {
-      path = themap.getPath(gx, gy, 26, 40, MOVE_WALK_DOOR);
+      path = themap.getPath(gx, gy, 24, 23, MOVE_WALK_DOOR);
     } else if (who.dest === 2) {
-      path = themap.getPath(gx, gy, 25, 41, who.getMovetype());
-    } else if (who.dest === 3) {
-      path = themap.getPath(gx, gy, 24, 50, who.getMovetype());
-    } else if (who.dest === 4) {
-      path = themap.getPath(gx, gy, 22, 50, MOVE_WALK_DOOR);
-    } else if (who.dest ===5) {
       var doortile = themap.getTile(gx-1,gy);
       var door = doortile.getTopFeature();
       door.unlockMe();
       who.dest++;
       return retval;
-    } else if (who.dest === 6) {
-      path = themap.getPath(gx, gy, 6, 52, MOVE_WALK_DOOR);
-    } else if (who.dest === 7) {
+    } else if (who.dest === 3) {
+      path = themap.getPath(gx, gy, 14, 23, who.getMovetype());
+    } else if (who.dest === 4) {
       var doortile = themap.getTile(gx,gy+1);
       var door = doortile.getTopFeature();
       door.unlockMe();
       who.dest++;
       return retval;
-    } else if ((who.dest >= 8) && (who.dest <= 10)) {
-      StepOrDoor(who,[gx,gy+1]);
+    } else if (who.dest ===5) {
+      StepOrDoor(who,[gx-1,gy]);
       who.dest++;
       return retval;
-    } else if (who.dest === 11) {
-      var doortile = themap.getTile(6,53);
+    } else if (who.dest === 6) {
+      let npcs = who.getHomeMap().npcs.getAll();
+      let garrick;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getNPCName() === "Garrick") { garrick = npcs[i]; }
+      }
+      if ((garrick.getx() >= 13) && (garrick.getx()<=15) && (garrick.gety() >= 25) && (garrick.gety() <= 27)) {
+        who.dest++;
+      }
+      return retval;
+    } else if (who.dest === 7) {
+      StepOrDoor(who,[gx+1,gy]);
+      who.dest++;
+      return retval;
+    } else if (who.dest === 8) {
+      var doortile = themap.getTile(14,24);
       var door = doortile.getTopFeature();
       door.use(who);
       DrawMainFrame("one",who.getHomeMap(),6,53);
@@ -678,6 +676,40 @@ ais.GarrickEscort = function(who) {
   // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
   var moved = StepOrSidestep(who, path[0], [6,52]);
   
+  return retval;
+}
+
+ais.GarrickEscort = function(who) {
+  var retval = {};
+  retval["fin"] = 1;
+  var themap = who.getHomeMap();
+  var allnpcs = themap.npcs.getAll();
+  var aoife;
+  let destx = aoife.getx();
+  let desty = aoife.gety();
+
+  $.each(allnpcs, function(idx,val) {
+    if (val.getNPCName() === "Aoife") { aoife = val;}
+  });
+  if ((who.getx() === 14) && (who.gety() === 26)) { 
+    who.setSchedule("garrickImprisoned");
+    who.setCurrentAI("scheduled");
+    return retval;
+  }
+  if (aoife.getx() <= 13) {
+    destx = 14;
+    desty = 26;
+  }
+  var path = themap.getPath(who.getx(), who.gety(), destx, desty, MOVE_WALK_DOOR);
+  path.shift();
+  path.pop();
+  if (path[0]) {
+    StepOrSidestep(who,path[0],[14,26]);
+  } else {
+    if (Dice.roll("1d8") === 1) {
+      SayNear(aoife.getx(),aoife.gety(),aoife.getHomeMap(),'Aoife says, "Come on, let\'s go."');
+    }
+  }
   return retval;
 }
 
@@ -753,34 +785,6 @@ ais.AshardenBook = function(who) {
   }
   var moved = StepOrSidestep(who, path[0], [32,18]);
   
-  return retval;
-}
-
-
-ais.AoifeEscort = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
-  var themap = who.getHomeMap();
-  var allnpcs = themap.npcs.getAll();
-  var garrick;
-  $.each(allnpcs, function(idx,val) {
-    if (val.getNPCName() === "Garrick") { garrick = val;}
-  });
-  if (garrick.getx() < 7) {
-    who.setCurrentAI(who.getPeaceAI());
-    return retval;
-  }
-  var path = themap.getPath(who.getx(), who.gety(), garrick.getx(), garrick.gety(), MOVE_WALK_DOOR);
-  path.shift();
-  path.pop();
-  if (path[0]) {
-    StepOrSidestep(who,path[0],[6,32]);
-
-  } else {
-    if ((themap === PC.getHomeMap()) && (GetDistance(who.getx(), who.gety(), PC.getx(), PC.gety()) < 6) && (Math.random() < .3)) {
-      maintext.addText('Aoife says, "Come on, let\'s go."');
-    }
-  }
   return retval;
 }
 
