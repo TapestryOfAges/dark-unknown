@@ -1509,7 +1509,7 @@ GameMap.prototype.saveMap = function (name) {
  else {
    printerwin.document.write(name + ".linkedMaps = [];<br />\n");
  }
- printerwin.document.write(name + ".editorLabels = '" + JSON.stringify(this.allLabels).replace("'","\\'") + "';<br />\n");
+ printerwin.document.write(name + ".editorLabels = '" + JSON.stringify(this.allLabels).replace("'","\\'") + "';<br /><br />\n");
  printerwin.document.close();
 }
 
