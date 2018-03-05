@@ -235,7 +235,7 @@ function DoAction(code, ctrl) {
       if (retval["fin"] === 1) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
-        startScheduler();
+        retval["garrick"].endTurn();
       } else {
         gamestate.setMode("anykey");
       }
