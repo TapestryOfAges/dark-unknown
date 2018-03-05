@@ -653,3 +653,11 @@ function FindNPCByName(findname, map) {
   }
   return 0;
 }
+
+function SayNear(sayx,sayy,saymap,saywhat) {
+  if (PC.getHomeMap() === saymap) {
+    if (GetDistance(sayx,sayy,PC.getx(),PC.gety()) <= 5) {
+      maintext.addText(saywhat);
+    }
+  }
+}
