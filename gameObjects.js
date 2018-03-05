@@ -6672,7 +6672,7 @@ function ArmorRackPlateTile() {
 //  this.graphic = "051.gif";
   this.graphic = "features.png";
   this.spritexoffset = "-224";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-96";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = 0;
