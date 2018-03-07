@@ -1291,9 +1291,13 @@ function PerformTalkTarget() {
     ShowTurnFrame(top);
   }
 
-  if (EarnedLevel(PC) && (top.getName() === "KingNPC") && DU.gameflags.getFlag("kingspeech")) {
+  if (EarnedLevel(PC) && ((top.getName() === "KingNPC") || (top.getName() === "QueenNPC")) && DU.gameflags.getFlag("kingspeech")) {
     if ((PC.getLevel() < 4) || (PC.runes.kings)) {
-      maintext.addText('<span class="conv">"Hail, ' + PC.getPCName() + '! I am well pleased with your progress. Seek Nyrani and Jharden for further training."</span>');
+      if (top.getName() === "KingNPC") {
+        maintext.addText('<span class="conv">"Hail, ' + PC.getPCName() + '! I am well pleased with your progress. Seek Nyrani and Jharden for further training."</span>');
+      } else { // Queen
+        maintext.addText('<span class="conv">"Well, well, ' + PC.getPCName() + '! I am pleased with your progress. Seek out Nyrani and Jharden for further training."</span>');
+      }
       PC.setLevel(PC.getLevel()+1);
       PC.setMaxHP(PC.getLevel()*30);
       PC.setHP(PC.getMaxHP());
@@ -1326,7 +1330,11 @@ function PerformTalkTarget() {
       PC.settp(PC.gettp()+TP_PER_LEVEL);
       DU.gameflags.setFlag("can_train", 1);
       if (DU.gameflags.getFlag("spellbook")) {
-        maintext.addText('<span class="conv">"In addition, Jharden may have more to teach you of magic!"</span>');
+        if (top.getName() === "KingNPC") {
+          maintext.addText('<span class="conv">"In addition, Jharden may have more to teach you of magic!"</span>');
+        } else { // Queen
+          maintext.addText('<span class="conv">"And please talk to Jharden! He may have more to teach you of magic."</span>');
+        }        
       }
       DU.gameflags.setFlag("jharden_newspell",1);
       if ((PC.getLevel() > 2) && (PC.getLevel() < 6)) {
