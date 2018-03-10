@@ -4,6 +4,7 @@
 var debug = 0;
 var debugscreen;
 var dbs;
+var watchon;  // must be set in console
 var debugflags = {};
   debugflags.all = 1;
   debugflags.map = 1
@@ -66,7 +67,7 @@ function ActivateDebug(startup) {
 }
 
 function DebugWrite(category, html) {
-  if (debug && debugflags[category]) {
+  if (debug && (debugflags[category] || (whoseturn === watchon))) {
     $("#debugdiv").append("<span style='" + debugstyle[category] + "'>" + html + "</span>");
     return 1;
   } 
@@ -122,12 +123,15 @@ function SeedDebugMaps(j) {
   let ourmaps = [];
   ourmaps[0] = PC.getHomeMap().getName();
   for (let i=0;i<PC.getHomeMap().getLinkedMaps().length;i++) {
-    ourmaps[i+1] = PC.getHomeMap().getLinkedMaps()[i];
+    if (PC.getHomeMap().getLinkedMaps()[i] !== "") {
+      ourmaps[i+1] = PC.getHomeMap().getLinkedMaps()[i];
+    }
   }
   
   if (j === ourmaps.length) { ShowDebugMaps(); return; }
 
   debugmaps[ourmaps[j]].document.write("<html><head></head><body><div style='position:absolute;left:0px;top:0px;' id='terrain_" + ourmaps[j] + "'>What is this?</div><div style='position:absolute;left:0px;top:0px' id='main_" + ourmaps[j] + "'></div></body></html>");  
+  debugmaps[outmaps[j]].close();
   setTimeout(SeedDebugMaps(j+1), 100);
 }
 
