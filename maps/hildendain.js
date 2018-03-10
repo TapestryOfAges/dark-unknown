@@ -68,7 +68,7 @@ mappages["hildendain"].terrain[62] = '.. .. .. .. .. .. .. .. .. .. #% .. .. .. 
 mappages["hildendain"].terrain[63] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ++ ++ ++ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
 
 mappages["hildendain"].features = [];
-mappages["hildendain"].features[0] = {name : 'StairUp2', x : 29, y : 34, entermap : 'null', enterx : 0, entery : 0};
+mappages["hildendain"].features[0] = {name : 'StairUp2', x : 29, y : 34, entermap : 'hildendain2', enterx : 29, entery : 34};
 mappages["hildendain"].features[1] = {name : 'SignpostLeft', x : 25, y : 44};
 mappages["hildendain"].features[2] = {name : 'SignpostRight', x : 27, y : 44};
 mappages["hildendain"].features[3] = {name : 'InnSign', x : 26, y : 44, desc : "sign: Bronze Gauntlet Inn"};
@@ -352,7 +352,7 @@ mappages["hildendain"].features[280] = {name : 'Barrel', x : 19, y : 57};
 mappages["hildendain"].features[281] = {name : 'Barrel', x : 19, y : 57};
 mappages["hildendain"].features[282] = {name : 'Barrel', x : 20, y : 57};
 mappages["hildendain"].features[283] = {name : 'Barrel', x : 20, y : 57};
-mappages["hildendain"].features[284] = {name : 'StairUp', x : 19, y : 52, entermap : 'null', enterx : 0, entery : 0};
+mappages["hildendain"].features[284] = {name : 'StairUp', x : 19, y : 52, entermap : 'hildendain2', enterx : 19, entery : 52};
 mappages["hildendain"].features[285] = {name : 'Fountain', x : 4, y : 25};
 mappages["hildendain"].features[286] = {name : 'Fireplace', x : 26, y : 33};
 mappages["hildendain"].features[287] = {name : 'TorchEast', x : 34, y : 52};
@@ -373,18 +373,15 @@ mappages["hildendain"].features[301] = {name : 'BedHead', x : 32, y : 23};
 mappages["hildendain"].features[302] = {name : 'BedFoot', x : 33, y : 23};
 
 mappages["hildendain"].npcs = [];
-mappages["hildendain"].npcs[0] = {name : 'PaladinVillagerNPC', x : 34, y : 28, NPCName: 'Sarah', Conversation: 'sarah', PeaceAI: 'scheduled', Schedule: 'sarah', Gender: 'female', NPCBand: '0', OverrideGraphic: 'paladin-offcolor.gif'};
-mappages["hildendain"].npcs[1] = {name : 'AdventurerVillagerNPC', x : 9, y : 33, NPCName: 'Erin', Conversation: 'erin', Gender: 'female', Merch: 'erin', NPCBand: '0'};
-mappages["hildendain"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 13, y : 33, NPCName: 'Aaron', Conversation: 'aaron', Gender: 'male', Merch: 'aaron', NPCBand: '0'};
-mappages["hildendain"].npcs[3] = {name : 'MageVillagerNPC', x : 43, y : 45, NPCName: 'Alexis', Conversation: 'alexis', Gender: 'female', Merch: 'alexis', NPCBand: '0', OverrideGraphic: '303.gif'};
-mappages["hildendain"].npcs[4] = {name : 'BardVillagerNPC', x : 23, y : 36, NPCName: 'Franklin', Conversation: 'franklin', PeaceAI: 'scheduled', Schedule: 'franklin', Gender: 'male', NPCBand: '0', OverrideGraphic: '311.gif'};
-mappages["hildendain"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 26, y : 42, NPCName: 'Rhiannon', Conversation: 'rhiannon', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif'};
-mappages["hildendain"].npcs[6] = {name : 'FighterVillagerNPC', x : 5, y : 28, NPCName: 'David', Conversation: 'dave', Gender: 'male', NPCBand: '0', OverrideGraphic: '308.gif'};
-mappages["hildendain"].npcs[7] = {name : 'TinkerVillagerNPC', x : 31, y : 45, NPCName: 'Kiba', Conversation: 'kiba', Gender: 'female', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
-mappages["hildendain"].npcs[8] = {name : 'RangerVillagerNPC', x : 32, y : 53, NPCName: 'Garrick', Conversation: 'garrick', Gender: 'male', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif'};
-mappages["hildendain"].npcs[9] = {name : 'TownGuardNPC', x : 30, y : 54, NPCName: 'Aoife', Conversation: 'aoife', Gender: 'female', NPCBand: '0'};
-mappages["hildendain"].npcs[10] = {name : 'TownsfolkVillagerNPC', x : 34, y : 50, NPCName: 'Anna', Conversation: 'anna', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif'};
-mappages["hildendain"].npcs[11] = {name : 'TownsfolkVillagerNPC', x : 21, y : 55, NPCName: 'Evan', PeaceAI: 'scheduled', Schedule: 'evan', Conversation: 'evan', Gender: 'male', Merch: 'evan', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["hildendain"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 34, y : 50, NPCName: 'Anna', Conversation: 'anna', PeaceAI: 'scheduled', Schedule: 'anna', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["hildendain"].npcs[1] = {name : 'AdventurerVillagerNPC', x : 9, y : 33, NPCName: 'Erin', Conversation: 'erin', PeaceAI: 'scheduled', Schedule: 'erin', Gender: 'female', Merch: 'erin', NPCBand: '0'};
+mappages["hildendain"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 13, y : 33, NPCName: 'Aaron', Conversation: 'aaron', PeaceAI: 'scheduled', Schedule: 'aaron', Gender: 'male', Merch: 'aaron', NPCBand: '0'};
+mappages["hildendain"].npcs[3] = {name : 'MageVillagerNPC', x : 43, y : 45, NPCName: 'Alexis', Conversation: 'alexis', PeaceAI: 'scheduled', Schedule: 'alexis', Gender: 'female', Merch: 'alexis', NPCBand: '0', OverrideGraphic: '303.gif'};
+mappages["hildendain"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 26, y : 42, NPCName: 'Rhiannon', Conversation: 'rhiannon', PeaceAI: 'scheduled', Schedule: 'rhiannon', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif'};
+mappages["hildendain"].npcs[5] = {name : 'FighterVillagerNPC', x : 5, y : 28, NPCName: 'David', Conversation: 'dave', PeaceAI: 'scheduled', Schedule: 'dave', Gender: 'male', NPCBand: '0', OverrideGraphic: '308.gif'};
+mappages["hildendain"].npcs[6] = {name : 'TinkerVillagerNPC', x : 31, y : 45, NPCName: 'Kiba', Conversation: 'kiba', PeaceAI: 'scheduled', Schedule: 'kiba', Gender: 'female', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
+mappages["hildendain"].npcs[7] = {name : 'RangerVillagerNPC', x : 32, y : 53, NPCName: 'Garrick', Conversation: 'garrick', PeaceAI: 'scheduled', Schedule: 'garrick', Gender: 'male', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif'};
+mappages["hildendain"].npcs[8] = {name : 'TownGuardNPC', x : 30, y : 54, NPCName: 'Aoife', Conversation: 'aoife', PeaceAI: 'scheduled', Schedule: 'aoife', Gender: 'female', NPCBand: '0'};
 
 mappages["hildendain"].desc = "The Towne of Hildendain";
 mappages["hildendain"].music = 'Towne';
@@ -507,14 +504,14 @@ mappages["hildendain2"].features[23] = {name : 'BottomChair', x : 21, y : 54};
 mappages["hildendain2"].features[24] = {name : 'GrandfatherClock', x : 19, y : 54};
 mappages["hildendain2"].features[25] = {name : 'BedHead', x : 21, y : 56};
 mappages["hildendain2"].features[26] = {name : 'BedHead', x : 21, y : 57};
-mappages["hildendain2"].features[27] = {name : 'BedHead', x : 21, y : 57};
 mappages["hildendain2"].features[28] = {name : 'BedFoot', x : 22, y : 56};
-mappages["hildendain2"].features[29] = {name : 'BedFoot', x : 22, y : 57};
 mappages["hildendain2"].features[30] = {name : 'BedFoot', x : 22, y : 57};
 mappages["hildendain2"].features[31] = {name : 'Dresser', x : 19, y : 56};
 
-
 mappages["hildendain2"].npcs = [];
+mappages["hildendain2"].npcs[0] = {name : 'PaladinVillagerNPC', x : 34, y : 28, NPCName: 'Sarah', Conversation: 'sarah', PeaceAI: 'scheduled', Schedule: 'sarah', Gender: 'female', NPCBand: '0', OverrideGraphic: 'paladin-offcolor.gif'};
+mappages["hildendain2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 21, y : 55, NPCName: 'Evan', PeaceAI: 'scheduled', PeaceAI: 'scheduled', Schedule: 'evan', Schedule: 'evan', Conversation: 'evan', Gender: 'male', Merch: 'evan', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["hildendain2"].npcs[2] = {name : 'BardVillagerNPC', x : 23, y : 36, NPCName: 'Franklin', Conversation: 'franklin', PeaceAI: 'scheduled', Schedule: 'franklin', Gender: 'male', NPCBand: '0', OverrideGraphic: '311.gif'};
 
 mappages["hildendain2"].desc = "The Towne of Hildendain";
 mappages["hildendain2"].music = 'Towne';
@@ -544,31 +541,38 @@ mappages["hildendain2"].editorLabels = '{}';
 
 
 mappages["hildendain"].onload = function(mapref) {
-  if (DU.gameflags.anna_return) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let npcs = mapref.npcs.getAll();
     let anna;
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Anna") { anna = npcs[i]; }
     }
-    if (anna) {
-      mapref.deleteThing(anna);
-      DUTime.removeEntityFrom(anna);
+
+    if (DU.gameflags.anna_return) {
+      if (anna) {
+        mapref.deleteThing(anna);
+        DUTime.removeEntityFrom(anna);
+      }
+    } else {
+      if (anna.getCurrentScheduleIndex() >= 9) {
+        anna.setGraphic("012.gif");
+      }
+    }
+  
+    if (DU.gameflags.garrick_flipout) {
+      let npcs = mapref.npcs.getAll();
+      let garrick;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getNPCName() === "Garrick") { anna = npcs[i]; }
+      }
+      if (garrick) {
+        mapref.moveThing(14,26,garrick);
+        garrick.startx = 14;
+        garrick.starty = 26;
+        garrick.setSchedule("garrickImprisoned");
+      } 
     }
   }
-  
-  if (DU.gameflags.garrick_flipout) {
-    let npcs = mapref.npcs.getAll();
-    let garrick;
-    for (let i=0;i<npcs.length;i++) {
-      if (npcs[i].getNPCName() === "Garrick") { anna = npcs[i]; }
-    }
-    if (garrick) {
-      mapref.moveThing(14,26,garrick);
-      garrick.startx = 14;
-      garrick.starty = 26;
-    } 
-  }
-  
 }
 
 mappages["hildendain"].check_anne = function(mapref) {
