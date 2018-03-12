@@ -1685,11 +1685,10 @@ GameMap.prototype.loadMap = function (name) {
         } else {
           this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
         }
+        let placedacre = this.getAcre(loadnpcs[npci].x,loadnpcs[npci].y);
+        placedacre.executeWalkons(newnpc);
   	  }
     }
-  }
-  if(typeof mappages[name]["onload"] === "function") {
-    mappages[name]["onload"](this);
   }
   
   return;
@@ -2434,16 +2433,9 @@ MapMemory.prototype.addMap = function(mapname) {
 	
 	this.addMapByRef(newmap);
 
-//	this.data[mapname] = newmap;
-	
-	// also load any linked maps
-//	if (newmap.linkedMaps[0] && newmap.linkedMaps[0] != "") {
-//		for (var i = 0; i < newmap.linkedMaps.length; i++) {
-//			var anothermap = new GameMap();
-//			anothermap.loadMap(newmap.linkedMaps[i]);
-//			this.data[newmap.linkedMaps[i]] = anothermap;
-//		}
-//	}
+  if(typeof mappages[mapname]["onload"] === "function") {
+    mappages[mapname]["onload"](newmap);
+  }
 	
 	return newmap;
 }
