@@ -6788,8 +6788,7 @@ MetalTwisterLeverTile.prototype.use = function(user) {
     var retval = {};
     if (!level2) {  // somehow level 2 is not in memory. Load it.
       var otherlevel = new GameMap();
-      otherlevel.loadMap("metaltwister2");
-      maps.addMapByRef(otherlevel);
+      otherlevel = maps.addMap("metaltwister2");
       level2 = otherlevel;
     }
     if (this.getOverlay() == "switch-off.gif") {  // This switch hasn't been thrown
@@ -8101,8 +8100,7 @@ MoongateTile.prototype.walkon = function(who) {
     if (maps.getMap(this.destmap)) {
       newmap = maps.getMap(this.destmap);
     } else {
-      newmap.loadMap(this.destmap);
-      maps.addMapByRef(newmap);
+      newmap = maps.addMap(this.destmap);
     }
     MoveBetweenMaps(PC,PC.getHomeMap(),newmap, this.destx, this.desty);
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
@@ -8375,8 +8373,7 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
         if (maps.getMap("abyss0")) {
           newmap = maps.getMap("abyss0");
         } else {
-          newmap.loadMap("abyss0");
-          maps.addMapByRef(newmap);
+          newmap = maps.addMap("abyss0");
         }
         MoveBetweenMaps(who,themap,newmap,8,8);
         FadeIn(2000);
@@ -12138,8 +12135,7 @@ NPCObject.prototype.processDeath = function(droploot){
       newmap = maps.getMap("landsbeyond");
       // though I'm confused about why this is already in memory!
     } else {
-      newmap.loadMap("landsbeyond");
-      maps.addMapByRef(newmap);
+      newmap = maps.addMap("landsbeyond");
     }
     maintext.setInputLine("&gt;");
     maintext.drawTextFrame(); 
@@ -12174,8 +12170,7 @@ NPCObject.prototype.processDeath = function(droploot){
                     returnmap = maps.getMap("olympus1");
                     // though again, this shouldn't be in memory
                   } else {
-                    returnmap.loadMap("olympus1");
-                    maps.addMapByRef(returnmap);
+                    returnmap = maps.addMap("olympus1");
                   }
                   tile = MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,49,22);
                   DrawMainFrame("draw",returnmap,49,22);
@@ -12900,8 +12895,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 				newmap = maps.getMap(map.getExitToMap());
 			} else {
 			  DebugWrite("map", "destination map needs to be loaded.<br />");
-				newmap.loadMap(map.getExitToMap());
-				maps.addMapByRef(newmap);
+				newmap = maps.addMap(map.getExitToMap());
 			}
 			tile = MoveBetweenMaps(this,map,newmap,map.getExitToX(),map.getExitToY());
 			if (tile) {
