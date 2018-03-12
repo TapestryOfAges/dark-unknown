@@ -449,8 +449,7 @@ function PerformEscape() {
 				newmap = maps.getMap(pcmap.getExitToMap());
 			} else {
 			  DebugWrite("map", "destination map needs to be loaded.<br />");
-			  newmap.loadMap(pcmap.getExitToMap());
-		  	maps.addMapByRef(newmap);
+			  newmap = maps.addMap(pcmap.getExitToMap());
 	  	}
   		var tile = MoveBetweenMaps(PC,pcmap,newmap,pcmap.getExitToX(),pcmap.getExitToY());
  			if (tile) {
@@ -605,8 +604,7 @@ function PerformAttackMap(who) {
   if (atkwho) { // there's something there!
     var combatmapname = GetCombatMap(who,atkwho);
     var newmap = new GameMap();
-    newmap.loadMap(combatmapname);
-    maps.addMapByRef(newmap);
+    newmap = maps.addMap(combatmapname);
 
     PC.getHomeMap().deleteThing(atkwho);
     var spawner=atkwho.getSpawnedBy();
@@ -965,8 +963,7 @@ function PerformEnter(cmd) {
 			if (maps.getMap(destination)) {
 				newmap = maps.getMap(destination);
 			} else {
-				newmap.loadMap(destination);
-				maps.addMapByRef(newmap);
+				newmap = maps.addMap(destination);
 			}
 			// check for someone in the way at destination
 			if ($.inArray(newmap.getName(), oldmap.linkedMaps) != -1) {
@@ -1265,6 +1262,15 @@ function PerformTalkTarget() {
     var pronoun = top.getGenderedTerms().pronoun;
     pronoun = pronoun.charAt(0).toUpperCase() + pronoun.slice(1);
     retval["txt"] = pronoun + " does not want to talk to you.";
+    retval["fin"] = 2;
+    retval["input"] = "&gt;";
+  
+    return retval;    
+  }
+  if (top.flags.hasOwnProperty("sleep")) {
+    var pronoun = top.getGenderedTerms().pronoun;
+    pronoun = pronoun.charAt(0).toUpperCase() + pronoun.slice(1);
+    retval["txt"] = pronoun + " is asleep.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
   
@@ -1967,8 +1973,7 @@ function PerformYell() {
       if (maps.getMap("toshin3")) {
 				newmap = maps.getMap("toshin3");
 			} else {
-				newmap.loadMap("toshin3");
-				maps.addMapByRef(newmap);
+				newmap = maps.addMap("toshin3");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,16,13);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
@@ -1977,8 +1982,7 @@ function PerformYell() {
       if (maps.getMap("swainhil")) {
 				newmap = maps.getMap("swainhil");
 			} else {
-				newmap.loadMap("swainhil");
-				maps.addMapByRef(newmap);
+				newmap = maps.addMap("swainhil");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,48,19);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
@@ -1991,8 +1995,7 @@ function PerformYell() {
       if (maps.getMap("grotto")) {
 				newmap = maps.getMap("grotto");
 			} else {
-				newmap.loadMap("grotto");
-				maps.addMapByRef(newmap);
+				newmap = maps.addMap("grotto");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,22,53);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
@@ -2001,8 +2004,7 @@ function PerformYell() {
       if (maps.getMap("ether")) {
 				newmap = maps.getMap("ether");
 			} else {
-				newmap.loadMap("ether");
-				maps.addMapByRef(newmap);
+				newmap = maps.addMap("ether");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,46,64);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
@@ -2011,8 +2013,7 @@ function PerformYell() {
       if (maps.getMap("skypalace")) {
 				newmap = maps.getMap("skypalace");
 			} else {
-				newmap.loadMap("skypalace");
-				maps.addMapByRef(newmap);
+				newmap = maps.addMap("skypalace");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,47,49);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
@@ -2021,8 +2022,7 @@ function PerformYell() {
       if (maps.getMap("pitdespair2")) {
 				newmap = maps.getMap("pitdespair2");
 			} else {
-				newmap.loadMap("pitdespair2");
-				maps.addMapByRef(newmap);
+				newmap = maps.addMap("pitdespair2");
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,46,28);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
@@ -2035,8 +2035,7 @@ function PerformYell() {
       if (maps.getMap("greenacres")) {
         newmap = maps.getMap("greenacres");
       } else {
-        newmap.loadMap("greenacres");
-        maps.addMapByRef(newmap);
+        newmap = maps.addMap("greenacres");
       }
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap, 20,20);
       var tmpdude = localFactory.createTile("PaladinVillagerNPC");
