@@ -213,6 +213,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   saywhat = saywhat.replace(/%FORMAL%/g, gterms.formal);
   saywhat = saywhat.replace(/%TITLED%/g, gterms.titled);
   saywhat = saywhat.replace(/%NAME%/g, pcname);
+  saywhat = saywhat.replace(/%BR%/g, "<br />");
   if (DU.gameflags.getFlag("knows_" + speaker.conversation)) {
     saywhat = saywhat.replace(/%MYNAME%/g, npcname); 
   } else {
@@ -714,6 +715,10 @@ OnConvTriggers["franklin_offered"] = function(speaker, keyword) {
     }
     DU.gameflags.setFlag("franklin_karma",1);
   }
+}
+
+OnConvTriggers["kyvek_fetch"] = function(speaker,keyword) {
+  speaker.setCurrentAI("scheduled");
 }
 
 function ConvTestFlags() {};
