@@ -438,8 +438,7 @@ function SaveChar() {
   PC.setGraphic(graphic);
   PC.setGender(gender);
   
-  themap.loadMap("darkunknown");
-  maps.addMapByRef(themap);
+  themap = maps.addMap("darkunknown");
 
   PC.setHomeMap(themap);
   PC.setx(69);
