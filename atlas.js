@@ -1682,11 +1682,14 @@ GameMap.prototype.loadMap = function (name) {
           newnpc._mapName = loc.mapName;
           this.placeThing(loc.x,loc.y,newnpc);
           newnpc.flags = loc.flags;
+          if (!newnpc.hasOwnProperty("_mapname") || ( this.getName() === newnpc._mapname)) {
+            // it has been placed on the correct map
+            let placedacre = this.getTile(loc.x,loc.y);
+            placedacre.executeWalkons(newnpc);  
+          }
         } else {
           this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
         }
-        let placedacre = this.getAcre(loadnpcs[npci].x,loadnpcs[npci].y);
-        placedacre.executeWalkons(newnpc);
   	  }
     }
   }

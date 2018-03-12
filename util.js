@@ -415,7 +415,7 @@ function AdjustStartingLocations(amap) {
       var othernpcs = othermap.npcs.getAll();
       for (var i=0;i<othernpcs.length;i++) {
         allnpcs.push(othernpcs[i]);
-        console.log("Pushing " + othernpcs[i].getNPCName());
+//        console.log("Pushing " + othernpcs[i].getNPCName());
       }
     }
   }
@@ -427,7 +427,8 @@ function AdjustStartingLocations(amap) {
       var oldmap = allnpcs[i].getHomeMap().getName();
       if (!destmap) { alert("Failure to find map " + allnpcs[i]._mapName); }
       var desttile = MoveBetweenMaps(allnpcs[i],allnpcs[i].getHomeMap(),destmap,allnpcs[i].getx(),allnpcs[i].gety());
-      DebugWrite("ai", "During map population, moved this NPC (" + allnpcs[i].getNPCName() + ") to its correct map by schedule (from " + oldmap + " to " + destmap.getName() + ").<br />");
+      desttile.executeWalkons(allnpcs[i]);
+      DebugWrite("schedules", "During map population, moved this NPC (" + allnpcs[i].getNPCName() + ") to its correct map by schedule (from " + oldmap + " to " + destmap.getName() + ").<br />");
       delete allnpcs[i]._mapName;
     }
   }
