@@ -3132,8 +3132,7 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
   var gnomemap = maps.getMap("gnomeland");
 	if (!gnomemap) {
 	  gnomemap = new GameMap();
-    gnomemap.loadMap("gnomeland");
-    maps.addMapByRef(gnomemap);
+    gnomemap = maps.addMap("gnomeland");
 	}
   gnomemap.placeThing(2,2,gnome);
   gnome.activate(0);
