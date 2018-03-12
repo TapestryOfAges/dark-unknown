@@ -1281,7 +1281,7 @@ mappages["olympus1"].onload = function(mapref) {
 
     // Changes made due to schedules
 
-    let tyler, sean, katrina;
+    let tyler, sean, katrina, manny;
 
     let npcs = mapref.npcs.getAll();
 
@@ -1289,6 +1289,13 @@ mappages["olympus1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Tyler") { tyler = npcs[i]; }
       if (npcs[i].getNPCName() === "Sean") { sean = npcs[i]; }
       if (npcs[i].getNPCName() === "Katrina") { katrina = npcs[i]; }
+    }
+
+    map2 = maps.getMap("olympus2");
+    npcs = map2.npcs.getAll();
+
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getNPCName() === "Manny") { manny = npcs[i]; }
     }
 
     if ((tyler.getCurrentScheduleIndex() >= 4) && (tyler.getCurrentScheduleIndex() <= 16)) {
@@ -1311,6 +1318,26 @@ mappages["olympus1"].onload = function(mapref) {
       mapref.getTile(38,40).getTopFeature().use(katrina);
     }
 
+    if ((manny.getCurrentScheduleIndex() >= 22) && (manny.getCurrentScheduleIndex() <= 55)) {
+      mapref.getTile(26,18).getTopFeature().use(manny);
+    }
+    if ((manny.getCurrentScheduleIndex() >= 25) && (manny.getCurrentScheduleIndex() <= 52)) {
+      mapref.getTile(72,32).getTopFeature().use(manny);
+    }
+    if ((manny.getCurrentScheduleIndex() >= 27) && (manny.getCurrentScheduleIndex() <= 50)) {
+      mapref.getTile(72,25).getTopFeature().use(manny);
+    }
+    if ((manny.getCurrentScheduleIndex() >= 77) || (manny.getCurrentScheduleIndex() <= 19)) {
+      mapref.getTile(40,18).getTopFeature().use(manny);
+      mapref.getTile(40,23).getTopFeature().use(manny);
+      mapref.getTile(45,18).getTopFeature().use(manny);
+      mapref.getTile(43,25).getTopFeature().use(manny);
+      mapref.getTile(55,25).getTopFeature().use(manny);
+      mapref.getTile(53,18).getTopFeature().use(manny);
+      mapref.getTile(58,18).getTopFeature().use(manny);
+      mapref.getTile(58,23).getTopFeature().use(manny);
+    }    
+
   }
 }
 
@@ -1319,39 +1346,17 @@ mappages["olympus2"].onload = function(mapref) {
 
     // Changes made due to schedules
 
-    let jharden, manny;
+    let jharden;
 
     let npcs = mapref.npcs.getAll();
 
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Jharden") { jharden = npcs[i]; }
-      if (npcs[i].getNPCName() === "Manny") { manny = npcs[i]; }
     }
 
-    let map1 = maps.getMap("olympus1");
     if ((jharden.getCurrentScheduleIndex() >= 12) || (manny.getCurrentScheduleIndex() <= 0)) {
-      map1.getTile(72,20).getTopFeature().use(jharden);
+      mapref.getTile(72,20).getTopFeature().use(jharden);
     }
-
-    if ((manny.getCurrentScheduleIndex() >= 22) && (manny.getCurrentScheduleIndex() <= 55)) {
-      map1.getTile(26,18).getTopFeature().use(manny);
-    }
-    if ((manny.getCurrentScheduleIndex() >= 25) && (manny.getCurrentScheduleIndex() <= 52)) {
-      map1.getTile(72,32).getTopFeature().use(manny);
-    }
-    if ((manny.getCurrentScheduleIndex() >= 27) && (manny.getCurrentScheduleIndex() <= 50)) {
-      map1.getTile(72,25).getTopFeature().use(manny);
-    }
-    if ((manny.getCurrentScheduleIndex() >= 77) || (manny.getCurrentScheduleIndex() <= 19)) {
-      map1.getTile(40,18).getTopFeature().use(manny);
-      map1.getTile(40,23).getTopFeature().use(manny);
-      map1.getTile(45,18).getTopFeature().use(manny);
-      map1.getTile(43,25).getTopFeature().use(manny);
-      map1.getTile(55,25).getTopFeature().use(manny);
-      map1.getTile(53,18).getTopFeature().use(manny);
-      map1.getTile(58,18).getTopFeature().use(manny);
-      map1.getTile(58,23).getTopFeature().use(manny);
-    }    
 
   }
 }
