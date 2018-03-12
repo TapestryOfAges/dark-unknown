@@ -131,7 +131,6 @@ function SeedDebugMaps(j) {
   if (j === ourmaps.length) { ShowDebugMaps(); return; }
 
   debugmaps[ourmaps[j]].document.write("<html><head></head><body><div style='position:absolute;left:0px;top:0px;' id='terrain_" + ourmaps[j] + "'>What is this?</div><div style='position:absolute;left:0px;top:0px' id='main_" + ourmaps[j] + "'></div></body></html>");  
-  debugmaps[outmaps[j]].close();
   setTimeout(SeedDebugMaps(j+1), 100);
 }
 
