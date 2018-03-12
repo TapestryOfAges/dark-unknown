@@ -80,9 +80,8 @@ function editorLoadMap(mapname) {
 	if (mapname !== "test") { 
 		mapname = document.menuinterface.mapnameslist.value;
 	}
-	amap.loadMap(mapname);
+	amap = maps.addMap(mapname);
   drawMap();
-  maps.addMapByRef(amap);
   changes = 0;
 }
 
