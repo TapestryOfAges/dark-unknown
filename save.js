@@ -36,13 +36,11 @@ GameStateData.prototype.loadTmp = function() {
 	  themap = maps.getMap("darkunknown");
 	} else {
 	  themap = new GameMap();
-    themap.loadMap("darkunknown");
-    maps.addMapByRef(themap);
+    themap = maps.addMap("darkunknown");
 	}
   var anothermap = new GameMap();
-  anothermap.loadMap("pitdespair1");
+  anothermap = maps.addMap("pitdespair1");
 	PC.setHomeMap(anothermap);
-	maps.addMapByRef(anothermap);
 //  PC.setHomeMap(themap);
   var rats = localFactory.createTile("GiantBatNPC");
   anothermap.placeThing(12,20,rats);
@@ -86,8 +84,7 @@ GameStateData.prototype.loadTmp = function() {
 		for (var i = 0; i < themap.getLinkedMaps().length; i++) {
 			if (themap.getLinkedMaps()[i] != "") {
 				var anothermap = new GameMap();
-				anothermap.loadMap(themap.getLinkedMaps()[i]);
-				maps.addMapByRef(anothermap);
+				anothermap = maps.addMap(themap.getLinkedMaps()[i]);
 			}
 		}
 	}
@@ -285,9 +282,7 @@ GameStateData.prototype.loadGame = function(idx) {
     
   $.each(savedata.maps, function(idx, val) {
     //load all the maps
-    loadmaps[val] = new GameMap();
-    loadmaps[val].loadMap(val);
-  	maps.addMapByRef(loadmaps[val]);
+    loadmaps[val] = maps.addMap(val);
     DebugWrite("saveload", "Loaded map: " + val + "<br />");
   });
   
