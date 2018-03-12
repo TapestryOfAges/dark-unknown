@@ -1886,7 +1886,7 @@ function PerformWait(code) {
     return retval;
   }
   let anyhostiles = CheckMapForHostiles(PC);
-  if (anyhostiles <= 10) { 
+  if ((anyhostiles <= 10) && (anyhostiles > 0)) { 
     retval["fin"] = 0;
     retval["txt"] = "You cannot wait here- it is too dangerous.";
     retval["input"] = "&gt;";
