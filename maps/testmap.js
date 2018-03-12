@@ -67,8 +67,7 @@ function RunTest() {
   ActivateDebug();
   //PC.setLight(0);
   var testmap = new GameMap();
-  testmap.loadMap("testmap");
-  maps.addMapByRef(testmap);
+  testmap = maps.addMap("testmap");
   
   MoveBetweenMaps(PC, PC.getHomeMap(), testmap, 9, 23);
   

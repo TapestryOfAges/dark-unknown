@@ -336,8 +336,7 @@ mappages["twistoffate3"].throwswitch = function(feature) {
     var retval = new Object;
     if (!level2) {  // somehow level 2 is not in memory. Load it.
       var otherlevel = new GameMap();
-      otherlevel.loadMap("twistoffate2");
-      maps.addMapByRef(otherlevel);
+      otherlevel = maps.addMap("twistoffate2");
       level2 = otherlevel;
     }
     if (this.getOverlay() == "switch-off.gif") {  // This switch hasn't been thrown
