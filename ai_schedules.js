@@ -119,32 +119,34 @@ ais.RouteTo = function(who, params) {
     }
   }
 
-  var movetype = who.getMovetype();
-  if ((movetype === MOVE_WALK) && (who.specials["open_door"])) { movetype = MOVE_WALK_DOOR; }
-  var path = who.getHomeMap().getPath(who.getx(),who.gety(),params.destination.x,params.destination.y,movetype);
-  path.shift();
-  if (path[0]) {
-    var moved = StepOrSidestep(who,path[0],[params.destination.x, params.destination.y]);
-    if (moved["opendoor"]) {
-      who.flags.closedoor = {};
-      who.flags.closedoor.steps = 1;
-      who.flags.closedoor.x = path[0][0];
-      who.flags.closedoor.y = path[0][1];
-    } else if (who.flags.closedoor && who.flags.closedoor.steps) { who.flags.closedoor.steps++; }
-    if (!moved["canmove"] && moved["intoPC"]) {
-      who.flags.activityComplete = 1;
-      DebugWrite("schedules", "PC at destination, giving up and setting activityComplete.");
+  if ((who.getx() !== params.destination.x) || (who.gety() !== params.destination.y)) {
+    var movetype = who.getMovetype();
+    if ((movetype === MOVE_WALK) && (who.specials["open_door"])) { movetype = MOVE_WALK_DOOR; }
+    var path = who.getHomeMap().getPath(who.getx(),who.gety(),params.destination.x,params.destination.y,movetype);
+    path.shift();
+    if (path[0]) {
+      var moved = StepOrSidestep(who,path[0],[params.destination.x, params.destination.y]);
+      if (moved["opendoor"]) {
+        who.flags.closedoor = {};
+        who.flags.closedoor.steps = 1;
+        who.flags.closedoor.x = path[0][0];
+        who.flags.closedoor.y = path[0][1];
+      } else if (who.flags.closedoor && who.flags.closedoor.steps) { who.flags.closedoor.steps++; }
+      if (!moved["canmove"] && moved["intoPC"]) {
+        who.flags.activityComplete = 1;
+        DebugWrite("schedules", "PC at destination, giving up and setting activityComplete.<br />");
+      }
+    } else {
+      alert(movetype);
+      alert(who.getNPCName());
+      alert(who.getx() + "," + who.gety());
+      alert(DU.schedules[who.getSchedule()]["currentIndex"]);
     }
-  } else {
-    alert(movetype);
-    alert(who.getNPCName());
-    alert(who.getx() + "," + who.gety());
-    alert(DU.schedules[who.getSchedule()]["currentIndex"]);
-  }
+  } else { DebugWrite("schedules", "Already at destination... "); }
 
   if ((who.getx() === parseInt(params.destination.x)) && (who.gety() === parseInt(params.destination.y))) {
     who.flags.activityComplete = 1;
-    DebugWrite("schedules", "Arrived at destination, setting activityComplete.");
+    DebugWrite("schedules", "Arrived at destination, setting activityComplete.<br />");
   }
   return moved;
 }
@@ -184,17 +186,29 @@ ais.WaitHere = function(who,params) {
             delete who.flags.closingResponsibleDoor;
             return retval;
           } else {
-            DebugWrite("ai", "Approaching the door.");            
-            var path = whomap.getPath(who.getx(), who.gety(), parseInt(params.responsibleFor[door].x), parseInt(params.responsibleFor[door].y),MOVE_WALK_DOOR);
-            if (path.length === 0) {
-              // There is no path to the door, giving up on closing it... this time
-              DebugWrite("ai", "No path to the door, giving up.");
-              delete who.flags.closingResponsibleDoor;
+            DebugWrite("ai", "Approaching the door.");       
+            if ((who.getx() === parseInt(params.responsibleFor[door].x) && (who.gety() === parseInt(params.responsibleFor[door].y)))) {
+              var path = whomap.getPath(who.getx(),who.gety(),leashCenter.x,leashCenter.y,MOVE_WALK_DOOR);        
+              if (path) {
+                path.shift();
+                StepOrSidestep(who,path[0], [leashCenter.x,leashCenter.y]);
+                DebugWrite("schedules", "Standing in my doorway, tried to move toward the center of my leash.");
+              } else {
+                DebugWrite("schedules", "Standing in my doorway, no path back into my leash.");
+                // skipping turn in confusion
+              }        
             } else {
+              var path = whomap.getPath(who.getx(), who.gety(), parseInt(params.responsibleFor[door].x), parseInt(params.responsibleFor[door].y),MOVE_WALK_DOOR);
               path.shift();
-              StepOrSidestep(who, path[0], [params.responsibleFor[door].x, params.responsibleFor[door].y]);
-              DebugWrite("ai", "Moved towards the door.");
-              return retval;
+              if (path.length === 0) {
+                // There is no path to the door, giving up on closing it... this time
+                DebugWrite("ai", "No path to the door, giving up.");
+                delete who.flags.closingResponsibleDoor;
+              } else {
+                StepOrSidestep(who, path[0], [params.responsibleFor[door].x, params.responsibleFor[door].y]);
+                DebugWrite("ai", "Moved towards the door.");
+                return retval;
+              }
             }
           }
         } else {
@@ -295,6 +309,7 @@ ais.PlaceItem = function(who,params) {
 }
 
 ais.DeleteItem = function(who,params) {
+  DebugWrite("schedules", "In DeleteItem... ");
   if (params.param === "last") {
     var item = who.linkedItem;
     if (!item) {
@@ -305,11 +320,13 @@ ais.DeleteItem = function(who,params) {
     var itemy = item.gety();
     var itemmap = item.getHomeMap();
 
-    item.itemmap.deleteThing(item);
+    DebugWrite("schedules", "Deleting " + item.getName() + " from " + item.getx() + "," + item.gety() + " on map " + itemmap.getName() + " ...");
+
+    itemmap.deleteThing(item);
 
     if (itemmap === PC.getHomeMap()) { DrawMainFrame("one",itemmap,itemx,itemy); }
   }
-
+  DebugWrite("schedules", "<br />");
   return {fin:1};
 }
 
