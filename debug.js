@@ -7,18 +7,18 @@ var dbs;
 var watchon;  // must be set in console
 var debugflags = {};
   debugflags.all = 1;
-  debugflags.map = 1
-  debugflags.sound = 1;
-  debugflags.light = 1;
-  debugflags.saveload = 1;
-  debugflags.ai = 1;
-  debugflags.combat = 1;
-  debugflags.magic = 1;
-  debugflags.time = 1;
-  debugflags.plot = 1;
-  debugflags.events = 1;
-  debugflags.gameobj = 1;
-  debugflags.schedules = 1;
+  debugflags.map = 0;
+  debugflags.sound = 0;
+  debugflags.light = 0;
+  debugflags.saveload = 0;
+  debugflags.ai = 0;
+  debugflags.combat = 0;
+  debugflags.magic = 0;
+  debugflags.time = 0;
+  debugflags.plot = 0;
+  debugflags.events = 0;
+  debugflags.gameobj = 0;
+  debugflags.schedules = 0;
   debugflags.first = 1;
 // var deeptest = 0;
 
