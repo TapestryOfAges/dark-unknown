@@ -723,4 +723,18 @@ OnConvTriggers["kyvek_fetch"] = function(speaker,keyword) {
 
 function ConvTestFlags() {};
 
-
+ConvTestFlags["warren_close"] = function(speaker,keyword) {
+  var warren;
+  var garen;
+  var npcs = speaker.getHomeMap().npcs.getAll();
+  for (let i=0;i<=npcs.length;i++) {
+    if (npcs[i].getNPCName() === "warren") { warren = npcs[i]; }
+    if (npcs[i].getNPCName() === "garen") { garen = npcs[i]; }
+  }
+  if (warren && garen) {
+    if (GetDistance(warren.getx(),warren.gety(),garen.getx(),garen.gety(),"square") <= 5) {
+      return 1;
+    }
+  }
+  return 0;
+}
