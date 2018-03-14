@@ -454,7 +454,9 @@ function SaveChar() {
   var homekey = localFactory.createTile("HomeKey");
   PC.addToInventory(homekey,1);
 
-var PCEvent = new GameEvent(PC);
+  DU.gameflags.setFlag("knows_avery", 1);
+  
+  var PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,.0001);
 	startScheduler();
 	
