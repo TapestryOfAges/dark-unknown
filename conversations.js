@@ -558,12 +558,19 @@ OnConvTriggers["garrick_flipout"] = function(speaker,keyword) {
 
 OnConvTriggers["kiba_rumor"] = function(speaker,keyword) {
   if (DU.gameflags.getFlag("kiba_question")) {
-    DU.gameflags.deleteFlag("kiba_question")
+    DU.gameflags.deleteFlag("kiba_question");
   }
 }
 
 OnConvTriggers["franklin_karma"] = function(speaker,keyword) {
-  DU.gameflags.setFlag("franklin_offered",1)
+  DU.gameflags.setFlag("franklin_offered",1);
+}
+
+OnConvTriggers["knows_horses"] = function(speaker,keyword) {
+  DU.gameflags.setFlag("knows_feather",1);
+  DU.gameflags.setFlag("knows_sunlight",1);
+  DU.gameflags.setFlag("knows_emperor",1);
+  DU.gameflags.setFlag("knows_graceful",1);
 }
 
 OnConvTriggers["start_courier"] = function(speaker,keyword) {
