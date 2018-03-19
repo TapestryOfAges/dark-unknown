@@ -426,6 +426,8 @@ function AdjustStartingLocations(amap) {
       var destmap = maps.getMap(allnpcs[i]._mapName);
       var oldmap = allnpcs[i].getHomeMap().getName();
       if (!destmap) { alert("Failure to find map " + allnpcs[i]._mapName); }
+      let oldtile = allnpcs[i].getHomeMap().getTile(allnpcs[i].gety(),allnpcs[i].gety());
+      oldtile.executeWalkoffs(allnpcs[i]);
       var desttile = MoveBetweenMaps(allnpcs[i],allnpcs[i].getHomeMap(),destmap,allnpcs[i].getx(),allnpcs[i].gety());
       desttile.executeWalkons(allnpcs[i]);
       DebugWrite("schedules", "During map population, moved this NPC (" + allnpcs[i].getNPCName() + ") to its correct map by schedule (from " + oldmap + " to " + destmap.getName() + ").<br />");
@@ -1784,9 +1786,9 @@ function GetUsableClockTime() {
 // Is time1 after time2
 function CheckTimeAfterTime(time1,time2) {
   var time2arr = time2.split(":");
-  var time3hr = time2[0] + 12;
+  var time3hr = parseInt(time2arr[0]) + 12;
   if (time3hr > 23) { time3hr = time3hr - 24; }
-  var time3 = time3hr + ":" + time2[1];
+  var time3 = time3hr + ":" + time2arr[1];
   
   if (CheckTimeBetween(time2,time3,time1)) { return 1; }
   else { return 0;}
