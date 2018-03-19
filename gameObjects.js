@@ -335,7 +335,7 @@ GameObject.prototype.getGraphic = function() {
 
 GameObject.prototype.getGraphicArray = function() {
 	var returnGraphic = this.graphic;
-	if (this.overrideGraphic) { returnGraphic = this.overrideGraphic; }
+//	if (this.overrideGraphic) { returnGraphic = this.overrideGraphic; }    // this is redundant, and also was killing beds
   var returnOverlay = this.overlay;
   var returnVars = [];
   returnVars[0] = returnGraphic;
@@ -1218,9 +1218,9 @@ InanimateObject.prototype.setPeerview = function(newview) {
 	this.peerview = newview;
 }
 
-InanimateObject.prototype.walkon = function() {
-  return("");
-}
+//InanimateObject.prototype.walkon = function() {
+//  return("");
+//}
 
 InanimateObject.prototype.leave = function() {
   return("");
@@ -5646,12 +5646,11 @@ BedHeadTile.prototype = new FeatureObject();
 
 BedHeadTile.prototype.walkon = function(who) {
   let sleepgraphic = "bed_head-sleep1.gif";
-  if (who.getGraphic().indexOf(".2.")) { 
+  if (who.getGraphic().indexOf(".2.") > -1) { 
     sleepgraphic = "bed_head-sleep2.gif";
   }
   who.realgraphic = who.getGraphic();
   who.setGraphic(sleepgraphic);
-
   return;
 }
 
@@ -12172,6 +12171,7 @@ NPCObject.prototype.processDeath = function(droploot){
                   } else {
                     returnmap = maps.addMap("olympus1");
                   }
+                  AdjustStartingLocations(returnmap);
                   tile = MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,49,22);
                   DrawMainFrame("draw",returnmap,49,22);
                   PC.setHP(PC.getMaxHP());
@@ -12748,7 +12748,11 @@ NPCObject.prototype.activate = function(timeoverride) {
     DebugWrite("ai", "<span style='font-weight:bold'>NPC " + this.getName() + "(" + this.getSerial() + ") (" + this.getNPCName() + ") activating at " + this.getx() + "," + this.gety() + ".</span><br />");
   
     if (this.overrideGraphic) {
-      this.graphic = this.overrideGraphic;
+      if (this.realgraphic) {
+        this.realgraphic = this.overrideGraphic; 
+      } else {
+        this.graphic = this.overrideGraphic;
+      }
     } else if (this.altgraphic.length) {
       this.altgraphic.push(this.graphic);
       this.graphic = PickOne(this.altgraphic);
