@@ -1289,12 +1289,6 @@ mappages["olympus1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Tyler") { tyler = npcs[i]; }
       if (npcs[i].getNPCName() === "Sean") { sean = npcs[i]; }
       if (npcs[i].getNPCName() === "Katrina") { katrina = npcs[i]; }
-    }
-
-    map2 = maps.getMap("olympus2");
-    npcs = map2.npcs.getAll();
-
-    for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Manny") { manny = npcs[i]; }
     }
 
@@ -1318,25 +1312,27 @@ mappages["olympus1"].onload = function(mapref) {
       mapref.getTile(38,40).getTopFeature().use(katrina);
     }
 
-    if ((manny.getCurrentScheduleIndex() >= 22) && (manny.getCurrentScheduleIndex() <= 55)) {
-      mapref.getTile(26,18).getTopFeature().use(manny);
+    if (manny) {
+      if ((manny.getCurrentScheduleIndex() >= 22) && (manny.getCurrentScheduleIndex() <= 55)) {
+        mapref.getTile(26,18).getTopFeature().use(manny);
+      }
+      if ((manny.getCurrentScheduleIndex() >= 25) && (manny.getCurrentScheduleIndex() <= 52)) {
+        mapref.getTile(72,32).getTopFeature().use(manny);
+      }
+      if ((manny.getCurrentScheduleIndex() >= 27) && (manny.getCurrentScheduleIndex() <= 50)) {
+        mapref.getTile(72,25).getTopFeature().use(manny);
+      }
+      if ((manny.getCurrentScheduleIndex() >= 77) || (manny.getCurrentScheduleIndex() <= 19)) {
+        mapref.getTile(40,18).getTopFeature().use(manny);
+        mapref.getTile(40,23).getTopFeature().use(manny);
+        mapref.getTile(45,18).getTopFeature().use(manny);
+        mapref.getTile(43,25).getTopFeature().use(manny);
+        mapref.getTile(55,25).getTopFeature().use(manny);
+        mapref.getTile(53,18).getTopFeature().use(manny);
+        mapref.getTile(58,18).getTopFeature().use(manny);
+        mapref.getTile(58,23).getTopFeature().use(manny);
+      }    
     }
-    if ((manny.getCurrentScheduleIndex() >= 25) && (manny.getCurrentScheduleIndex() <= 52)) {
-      mapref.getTile(72,32).getTopFeature().use(manny);
-    }
-    if ((manny.getCurrentScheduleIndex() >= 27) && (manny.getCurrentScheduleIndex() <= 50)) {
-      mapref.getTile(72,25).getTopFeature().use(manny);
-    }
-    if ((manny.getCurrentScheduleIndex() >= 77) || (manny.getCurrentScheduleIndex() <= 19)) {
-      mapref.getTile(40,18).getTopFeature().use(manny);
-      mapref.getTile(40,23).getTopFeature().use(manny);
-      mapref.getTile(45,18).getTopFeature().use(manny);
-      mapref.getTile(43,25).getTopFeature().use(manny);
-      mapref.getTile(55,25).getTopFeature().use(manny);
-      mapref.getTile(53,18).getTopFeature().use(manny);
-      mapref.getTile(58,18).getTopFeature().use(manny);
-      mapref.getTile(58,23).getTopFeature().use(manny);
-    }    
 
   }
 }
