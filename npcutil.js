@@ -536,9 +536,12 @@ function StepOrSidestep(who, path, finaldest, nopush) {
             var fea = tile.getTopFeature();
             if (fea && (fea.getName() === "BedHead")) {
               // PC is in your bed. Kick them out.
+              npctile = who.getHomeMap().geTile(who.getx(),who.gety());
               PC.getHomeMap().moveThing(who.getx(),who.gety(),PC);
               tile.executeWalkoffs(PC);
+              npctile.executeWalkons(PC);
               who.getHomeMap().moveThing(path[0],path[1],who);
+              npctile.executeWalkoffs(who);
               tile.executeWalkons(who);
               moved["canmove"] = 1;
               maintext.delayedAddText(who.getFullDesc() + " pushes you out of their bed.");
