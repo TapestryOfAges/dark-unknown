@@ -1553,6 +1553,11 @@ tileFactory.prototype.makeArmorRackPlateTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeShieldDisplayTile = function() {
+  var newTile = new ShieldDisplayTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSkeletonDecorationTile = function() {
   var newTile = new SkeletonDecorationTile();
   return newTile;
