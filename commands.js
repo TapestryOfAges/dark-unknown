@@ -388,7 +388,7 @@ function PerformCommand(code, ctrl) {
     }
     gamestate.setMode("anykey");
     targetCursor.command = 'w';
-    retval['input'] = "Wait - how long? ";
+    retval['input'] = "Wait - how many hours (1-9)? ";
     retval["fin"] = 2;
 	}
 	else if (code === 88) { // x
