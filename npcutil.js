@@ -537,7 +537,9 @@ function StepOrSidestep(who, path, finaldest, nopush) {
             if (fea && (fea.getName() === "BedHead")) {
               // PC is in your bed. Kick them out.
               PC.getHomeMap().moveThing(who.getx(),who.gety(),PC);
+              tile.executeWalkoffs(PC);
               who.getHomeMap().moveThing(path[0],path[1],who);
+              tile.executeWalkons(who);
               moved["canmove"] = 1;
               maintext.delayedAddText(who.getFullDesc() + " pushes you out of their bed.");
               DebugWrite("ai", "Kicked PC out of bed.<br />");
@@ -552,6 +554,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
             }
           } else {
             who.getHomeMap().moveThing(path[0],path[1],who);
+            tile.executeWalkons(who);
             // Puts the NPC on the same tile as the player
             // This is necessary, otherwise the player could still block the NPC's path
             // by standing in front of a closed door.
