@@ -587,7 +587,7 @@ Acre.prototype.executeWalkons = function(walker) {
 				if (resp) {
 				  if (response) { response += "<br />"; }
 				  response += resp;
-				}
+        }
 			}
 		}
 	}
@@ -1600,7 +1600,6 @@ GameMap.prototype.loadMap = function (name) {
 //  	alert(loadfeatures.length + " features loading...");
       for (var fi=0;fi<=loadfeatures.length-1;fi++) {
         var newfeature = localFactory.createTile(loadfeatures[fi].name);
-//        if (debug && debugflags.map) {debugscreen.document.writeln("<br>Loading features: " +newfeature.getName()+ "...<br>");}
         DebugWrite("map", "<br />Loading features: " +newfeature.getName()+ "...<br />");
 //    	newfeature.setHomeMap(this);
     	  for (var featurekey in loadfeatures[fi]) {
@@ -1613,14 +1612,16 @@ GameMap.prototype.loadMap = function (name) {
       		}
       		newfeature[featurekey] = loadfeatures[fi][featurekey];
       	}
-    	  if (newfeature.getWalkOnScript()) {
-      		var walkonscript = newfeature.getWalkOnScript();
-      		mappages[name][walkonscript](newfeature);
-      	}
-      	if (newfeature.getUseScript()) {
-      		var usescript = newfeature.getUseScript();
-      		mappages[name][usescript](newfeature);
-    	  }
+//    	  if (newfeature.getWalkOnScript()) {
+//          alert("Does this ever happen?");
+//      		var walkonscript = newfeature.getWalkOnScript();
+//      		mappages[name][walkonscript](newfeature);
+//      	}
+//      	if (newfeature.getUseScript()) {
+//      		var usescript = newfeature.getUseScript();
+//      		mappages[name][usescript](newfeature);
+//   	  }
+// Pretty sure these are long since deprecated
       	if (newfeature.getLootedID()) {
       	  if (DU.gameflags.getFlag("lid_" + newfeature.getLootedID())) {
       	    if (newfeature.lootonce) { newfeature.setLootgroup(""); }
