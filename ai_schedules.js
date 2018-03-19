@@ -19,7 +19,7 @@ ais.scheduled = function(who) {
   var nextactivity = schedule.scheduleArray[nextidx];
   if (nextactivity.params.startCondition === "Time") {
     if (CheckTimeAfterTime(currtime, nextactivity.params.startTime)) {
-      DebugWrite("schedules", "Moving to next scheduled activity- startTime met.");
+      DebugWrite("schedules", "Moving to next scheduled activity (" + nextidx + ")- startTime met.");
       who.setCurrentScheduleIndex(nextidx);
     }
   }
@@ -188,6 +188,20 @@ ais.WaitHere = function(who,params) {
           } else {
             DebugWrite("ai", "Approaching the door.");       
             if ((who.getx() === parseInt(params.responsibleFor[door].x) && (who.gety() === parseInt(params.responsibleFor[door].y)))) {
+              let leashCenter;
+              let ii = who.getCurrentScheduleIndex();
+              ii--;
+              while (!leashCenter) {
+                if (DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination) {
+                  leashCenter = {};
+                  leashCenter.x = DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination.x;
+                  leashCenter.y = DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination.y;
+                } else {
+                  ii--;
+                  if (ii < 0) { ii = DU.schedules[who.getSchedule()].scheduleArray.length - 1; }
+                }
+              }
+          
               var path = whomap.getPath(who.getx(),who.gety(),leashCenter.x,leashCenter.y,MOVE_WALK_DOOR);        
               if (path) {
                 path.shift();
@@ -299,7 +313,7 @@ ais.PlaceItem = function(who,params) {
   var item = localFactory.createTile(params.name);
   if (item) {
     who.getHomeMap().placeThing(params.x, params.y, item);
-    if (who.getHomeMap() === PC.getHomeMap()) {
+    if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(params.x,params.y))) {
       DrawMainFrame("one",who.getHomeMap(),params.x,params.y);
     }      
   }
@@ -320,11 +334,11 @@ ais.DeleteItem = function(who,params) {
     var itemy = item.gety();
     var itemmap = item.getHomeMap();
 
-    DebugWrite("schedules", "Deleting " + item.getName() + " from " + item.getx() + "," + item.gety() + " on map " + itemmap.getName() + " ...");
+    DebugWrite("schedules", "Deleting " + item.getName() + " from " + itemx + "," + itemy + " on map " + itemmap.getName() + " ...");
 
     itemmap.deleteThing(item);
 
-    if (itemmap === PC.getHomeMap()) { DrawMainFrame("one",itemmap,itemx,itemy); }
+    if ((itemmap === PC.getHomeMap()) && (IsVisibleOnScreen(itemx,itemy))) { DrawMainFrame("one",itemmap,itemx,itemy); }
   }
   DebugWrite("schedules", "<br />");
   return {fin:1};
