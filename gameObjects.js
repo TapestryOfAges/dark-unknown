@@ -5627,7 +5627,7 @@ HarpsichordTile.prototype.use = function(who) {
       retval["txt"] = "Drawing upon your years of training from your tutors, you give a passable performance.";
       if (DU.gameflags.getFlag("bard_simon_ask") && (this.getHomeMap().getName() === "swainhil1")) {
         DU.gameflags.setFlag("bard_simon_played", 1);
-        DebugWrite("plot", "Simon has heard you play music.");
+        DebugWrite("plot", "Simon has heard you play music.<br />");
       }
     }
   }
@@ -5651,6 +5651,7 @@ BedHeadTile.prototype.walkon = function(who) {
   }
   who.realgraphic = who.getGraphic();
   who.setGraphic(sleepgraphic);
+  DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " to sleeping.<br />");
   return;
 }
 
@@ -5658,6 +5659,7 @@ BedHeadTile.prototype.walkoff = function(who) {
   if (who.realgraphic) {
     who.setGraphic(who.realgraphic);
     delete who.realgraphic;
+    DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sleeping.<br />");
   } else {
     alert("Entity failed to have a waking graphic. See console.");
     console.log(who);

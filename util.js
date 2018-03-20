@@ -420,17 +420,16 @@ function AdjustStartingLocations(amap) {
     }
   }
 
-  for (var i=0;i<allnpcs.length;i++) {
+  for (let i=0;i<allnpcs.length;i++) {
 
     if (allnpcs[i]._mapName && (allnpcs[i].getHomeMap().getName() !== allnpcs[i]._mapName)) {
       var destmap = maps.getMap(allnpcs[i]._mapName);
-      var oldmap = allnpcs[i].getHomeMap().getName();
+      var oldmap = allnpcs[i].getHomeMap();
       if (!destmap) { alert("Failure to find map " + allnpcs[i]._mapName); }
-      let oldtile = allnpcs[i].getHomeMap().getTile(allnpcs[i].gety(),allnpcs[i].gety());
-      oldtile.executeWalkoffs(allnpcs[i]);
+      let oldtile = oldmap.getTile(allnpcs[i].gety(),allnpcs[i].gety());
       var desttile = MoveBetweenMaps(allnpcs[i],allnpcs[i].getHomeMap(),destmap,allnpcs[i].getx(),allnpcs[i].gety());
       desttile.executeWalkons(allnpcs[i]);
-      DebugWrite("schedules", "During map population, moved this NPC (" + allnpcs[i].getNPCName() + ") to its correct map by schedule (from " + oldmap + " to " + destmap.getName() + ").<br />");
+      DebugWrite("schedules", "During map population, moved this NPC (" + allnpcs[i].getNPCName() + ") to its correct map by schedule (from " + oldmap.getName() + " to " + destmap.getName() + ").<br />");
       delete allnpcs[i]._mapName;
     }
   }
