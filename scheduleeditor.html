@@ -97,7 +97,7 @@
       function select_activity() {
         var activityname = document.optform.activities.value;
         
-        $("#activityparams").html("<form name='activityparamsform'>Start Condition: <select name='start_condition' id='start_condition' onChange='select_start()'><option value=''></option><option value='Time'>Time</option><option value='PreviousComplete'>Previous Complete</option></select><div id='starttime'></div><br />");
+        $("#activityparams").html("<form name='activityparamsform'>Start Condition: <select name='start_condition' id='start_condition' onChange='select_start()'><option value='PreviousComplete'>Previous Complete</option><option value='Time'>Time</option></select><div id='starttime'></div><br />");
         $("#activityparams").append("Set Flag [Opt]: <input type='text' name='set_flag' id='set_flag' size='20' /><br />");
 
         if (activityname === "RouteTo") {
