@@ -76,6 +76,7 @@ function editorLoadMap(mapname) {
   if (changes === 1) {
     var doload = confirm("Do you wish to load a new map? All progress will be lost.");
     if (!doload) { return; }
+    changes = 0; 
   }
 	if (mapname !== "test") { 
 		mapname = document.menuinterface.mapnameslist.value;
