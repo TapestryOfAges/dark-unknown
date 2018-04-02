@@ -579,6 +579,17 @@ function StepOrSidestep(who, path, finaldest, nopush) {
           gridbackup.setWalkableAt(path[0],path[1],false);
           // make PC not walkable, see what path we get now
 
+          let npcs = who.getHomeMap().npcs.getAll();
+          for (let i=0;i<npcs.length;i++) {
+            if ((npcs[i].getCurrentAI() === "scheduled") && ((npcs[i].currentActivity !== "RouteTo") && (npcs[i].currentActivity !== "ChangeMap"))) {
+              // creating a one-time pathmap that makes NPCs who are not currently moving (RouteTo or ChangeMap)
+              gridbackup.setWalkableAt(npcs[i].getx(),npcs[i].gety(),false);
+            }
+          }
+          gridbackup.setWalkableAt(params.destination.x,params.destination.y,true);
+          gridbackup.setWalkableAt(who.getx(),who.gety(),true);
+          // make NPCs who are not moving block movement as well      
+
           // get path
           var foundpath = finder.findPath(who.getx(),who.gety(),finaldest[0],finaldest[1],gridbackup);
 
