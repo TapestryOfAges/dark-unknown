@@ -1794,6 +1794,18 @@ function CheckTimeAfterTime(time1,time2) {
   
 }
 
+function DiffTime(time1,time2) {
+  // returns time2-time1 in minutes
+  let time2arr = time2.split(":");
+  let time1arr = time1.split(":");
+  let time2min = 60*parseInt(time2arr[0]) + parseInt(time2arr[1]);
+  let time1min = 60*parseInt(time1arr[0]) + parseInt(time1arr[1]);
+  if (time2min < time1min) {
+    time2min += 24*60;
+  }
+  return time2min - time1min;
+}
+
 function EndWaiting(who, inn) {
   $("#displayframe").fadeIn(1000, function() {});
   if (who.moveAfterWaiting) {
