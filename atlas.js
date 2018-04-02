@@ -1678,12 +1678,12 @@ GameMap.prototype.loadMap = function (name) {
   			  if (npckey === "NPCBand") { newnpc.setNPCBand(loadnpcs[npci].NPCBand); }
   			  if (npckey === "OverrideGraphic") { newnpc.overrideGraphic = loadnpcs[npci].OverrideGraphic; }
         }
-        if (newnpc.getPeaceAI() === "scheduled") {
+        if ((newnpc.getPeaceAI() === "scheduled") && (!DU.gameflags.getFlag("editor"))) {
           var loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1);
           newnpc._mapName = loc.mapName;
           this.placeThing(loc.x,loc.y,newnpc);
           newnpc.flags = loc.flags;
-          if (this.getName() === newnpc._mapname) {
+          if (this.getName() === newnpc._mapName) {
             // it has been placed on the correct map
             let placedacre = this.getTile(loc.x,loc.y);
             placedacre.executeWalkons(newnpc);  
