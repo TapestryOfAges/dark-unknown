@@ -627,7 +627,7 @@ mappages["naurglen2"].features[44] = {name : 'Dresser', x : 69, y : 15};
 mappages["naurglen2"].features[45] = {name : 'Dresser', x : 73, y : 15};
 mappages["naurglen2"].features[46] = {name : 'SmallBox', x : 65, y : 16};
 mappages["naurglen2"].features[47] = {name : 'SmallBox', x : 77, y : 16};
-mappages["naurglen2"].features[48] = {name : 'StairDown', x : 44, y : 7, entermap : 'null', enterx : 0, entery : 0};
+mappages["naurglen2"].features[48] = {name : 'StairDown', x : 44, y : 7, entermap : 'naurglen', enterx : 44, entery : 7};
 mappages["naurglen2"].features[49] = {name : 'BedHead', x : 49, y : 8};
 mappages["naurglen2"].features[50] = {name : 'BedHead', x : 49, y : 9};
 mappages["naurglen2"].features[51] = {name : 'BedFoot', x : 50, y : 8};
@@ -706,7 +706,7 @@ mappages["naurglen_limbo"].features = [];
 
 
 mappages["naurglen_limbo"].npcs = [];
-mappages["naurglen_limbo"].npcs[0] = {name : 'BardVillagerNPC', x : 29, y : 30, NPCName: 'Olivia', Conversation: 'olivia_naurglen', PeaceAI: 'scheduled', Schedule: 'olivia_naurglen', ConversationFlag: 'olivia', Gender: 'female', OverrideGraphic: '311.gif'};
+mappages["naurglen_limbo"].npcs[0] = {name : 'BardVillagerNPC', x : 2, y : 2, NPCName: 'Olivia', Conversation: 'olivia_naurglen', PeaceAI: 'scheduled', Schedule: 'olivia_naurglen', ConversationFlag: 'olivia', Gender: 'female', OverrideGraphic: '311.gif'};
 
 mappages["naurglen_limbo"].desc = "Naurglen Limbo";
 mappages["naurglen_limbo"].music = 'Village';
