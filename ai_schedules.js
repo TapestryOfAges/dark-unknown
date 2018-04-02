@@ -18,7 +18,16 @@ ais.scheduled = function(who) {
   var nowactivity = schedule.scheduleArray[who.getCurrentScheduleIndex()];
   var nextactivity = schedule.scheduleArray[nextidx];
   if (nextactivity.params.startCondition === "Time") {
-    if (CheckTimeAfterTime(currtime, nextactivity.params.startTime)) {
+    let prevtime;
+    let previdx = who.getCurrentScheduleIndex() - 1;
+    while (!prevtime) {
+      if (previdx < 0) { previdx = schedule.scheduleArray.length-1; }
+      if (schedule.scheduleArray[previdx].params.startCondition === "Time") {
+        prevtime = schedule.scheduleArray[previdx].params.startTime;
+      }
+      previdx--;
+    }
+    if (DiffTime(nextactivity.params.startTime,currtime) <= DiffTime(prevtime,currtime)) {
       DebugWrite("schedules", "Moving to next scheduled activity (" + nextidx + ")- startTime met.");
       who.setCurrentScheduleIndex(nextidx);
     }
@@ -59,6 +68,7 @@ ais.scheduled = function(who) {
     }
   }
 
+  who.currentActivity = nowactivity.type;
   return ais[nowactivity.type](who, nowactivity.params);
 }
 
@@ -119,13 +129,28 @@ ais.RouteTo = function(who, params) {
     }
   }
 
-  if ((who.getx() !== params.destination.x) || (who.gety() !== params.destination.y)) {
-    var movetype = who.getMovetype();
+  let moved = {};
+  if ((who.getx() !== parseInt(params.destination.x)) || (who.gety() !== parseInt(params.destination.y))) {
+    var movetype = who.getMovetype();    
     if ((movetype === MOVE_WALK) && (who.specials["open_door"])) { movetype = MOVE_WALK_DOOR; }
-    var path = who.getHomeMap().getPath(who.getx(),who.gety(),params.destination.x,params.destination.y,movetype);
+    var gridbackup = who.getHomeMap().getPathGrid(movetype).clone();
+    
+    let npcs = who.getHomeMap().npcs.getAll();
+    for (let i=0;i<npcs.length;i++) {
+      if ((npcs[i].getCurrentAI() === "scheduled") && ((npcs[i].currentActivity !== "RouteTo") && (npcs[i].currentActivity !== "ChangeMap"))) {
+        // creating a one-time pathmap that makes NPCs who are not currently moving (RouteTo or ChangeMap)
+        gridbackup.setWalkableAt(npcs[i].getx(),npcs[i].gety(),false);
+      }
+    }
+    gridbackup.setWalkableAt(params.destination.x,params.destination.y,true);
+    gridbackup.setWalkableAt(who.getx(),who.gety(),true);
+
+    var path = finder.findPath(who.getx(),who.gety(),params.destination.x,params.destination.y,gridbackup);
+
+//    var path = who.getHomeMap().getPath(who.getx(),who.gety(),params.destination.x,params.destination.y,movetype);
     path.shift();
     if (path[0]) {
-      var moved = StepOrSidestep(who,path[0],[params.destination.x, params.destination.y]);
+      moved = StepOrSidestep(who,path[0],[params.destination.x, params.destination.y]);
       if (moved["opendoor"]) {
         who.flags.closedoor = {};
         who.flags.closedoor.steps = 1;
@@ -403,8 +428,10 @@ ais.PrintThing = function(who,params) {
 ais.UseThing = function(who,params) {
   var tile = who.getHomeMap().getTile(params.x,params.y);
   var thing = tile.getTopFeature();
-  if (typeof thing.use === "function") {
+  if (thing && (typeof thing.use === "function")) {
     thing.use(who);
+  } else {
+    console.log(who.getNPCName() + " tried to use a thing at " + params.x + "," + params.y + " but it wasn't there to use.");
   }
   return {fin:1};
 }
