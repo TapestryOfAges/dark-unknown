@@ -586,8 +586,6 @@ function StepOrSidestep(who, path, finaldest, nopush) {
               gridbackup.setWalkableAt(npcs[i].getx(),npcs[i].gety(),false);
             }
           }
-          gridbackup.setWalkableAt(params.destination.x,params.destination.y,true);
-          gridbackup.setWalkableAt(who.getx(),who.gety(),true);
           // make NPCs who are not moving block movement as well      
 
           // get path
