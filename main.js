@@ -1,3 +1,5 @@
+/* global phaserUI */
+
 "use strict";
 
 var maxserial = 0;
@@ -137,11 +139,13 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
     $("#mainview_"+xidx+"x"+yidx).css("background-image", "url('graphics/spacer.gif')");
     $("#mainview_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
     $("#mainview_"+xidx+"x"+yidx).css("background-position", "0px 0px");
+    phaserUI.setMainViewTile(xidx, yidx, 'blank');
   } else {
     $("#mainview_"+xidx+"x"+yidx).html("<img id='tile"+j+"x"+i+"' src='graphics/"+thiscell.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>");
     $("#mainview_"+xidx+"x"+yidx).css("background-image", "url('graphics/" + thiscell.showGraphic + "')");
     $("#mainview_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
     $("#mainview_"+xidx+"x"+yidx).css("background-position", thiscell.graphics2 + "px " + thiscell.graphics3 + "px");
+    phaserUI.setMainViewTile(xidx, yidx, thiscell);
   }
   if ((opac > 0) && (opac < 1)) {
     $("#mainview_"+xidx+"x"+yidx).append("<img src='graphics/shadow.gif' style='position:absolute;left:0px;top:0px' />");
@@ -154,6 +158,7 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
   $("#terrain_"+xidx+"x"+yidx).css("background-image", "url('graphics/" + terr.showGraphic + "')");
   $("#terrain_"+xidx+"x"+yidx).css("background-repeat", "no-repeat");
   $("#terrain_"+xidx+"x"+yidx).css("background-position", terr.graphics2 + "px " + terr.graphics3 + "px");
+  phaserUI.setTerrainTile(xidx, yidx, thiscell);
 }
 
 function DrawTopbarFrame(txt) {
@@ -180,6 +185,7 @@ $(document).ready(function() {
   if (debug) {  ActivateDebug(1); }
   audio_init();  
 	CreateUI();
+  phaserUI.init();
 });
 
 function SoundLoaded() {
