@@ -1,0 +1,23 @@
+{
+  "name": "dark-unknown",
+  "version": "0.7.3",
+  "description": "The Dark Unknown A game by Adam Burr, aka Goldenflame Dragon",
+  "main": "darkunknown.html",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "http-server ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TapestryOfAges/dark-unknown.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TapestryOfAges/dark-unknown/issues"
+  },
+  "homepage": "https://github.com/TapestryOfAges/dark-unknown#readme"
+}
