@@ -1732,11 +1732,12 @@ function MakeUseHappen(who,used,where) {
 	  	  $.each(localacre.localLight, function(index, value) {
 		      // each object that is casting light on the door might be casting light through the door.
   		    var lightsource = usemap.lightsList[index];
-  	      who.getHomeMap().removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
-    		  who.getHomeMap().setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
+  	      usemap.removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
+    		  usemap.setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
 	      });
-		  
-  		  DrawMainFrame("draw",used.getHomeMap(),PC.getx(),PC.gety());
+        if (used.getHomeMap() === PC.getHomeMap()) {
+          DrawMainFrame("draw",used.getHomeMap(),PC.getx(),PC.gety());
+        }
   	  } else {		
 	  	  DrawMainFrame("one",used.getHomeMap(),used.getx(),used.gety());
   	  }
