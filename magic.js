@@ -1622,8 +1622,10 @@ function PerformTelekinesis(caster, infused, free, tgt) {
         usemap.removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
         usemap.setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
       });
-		  
-      DrawMainFrame("draw",usemap,PC.getx(),PC.gety());
+      
+      if (usemap === PC.getHomeMap()) { 
+        DrawMainFrame("draw",usemap,PC.getx(),PC.gety());
+      }
     } else {		
       DrawMainFrame("one",usemap,tgt.getx(),tgt.gety());
     }
@@ -1926,7 +1928,9 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
   } else {
     alert("Finding facing isn't working.");
   }
-  DrawMainFrame("draw",castermap,PC.getx(),PC.gety());
+  if (castermap === PC.getHomeMap()) {
+    DrawMainFrame("draw",castermap,PC.getx(),PC.gety());
+  }
   
   return resp;
 }
@@ -2798,7 +2802,9 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   if (eletype !== "FireElemental") {
     DrawMainFrame("one",caster.getHomeMap(),ally.getx(),ally.gety());
   } else {
-    DrawMainFrame("draw",caster.getHomeMap(),PC.getx(),PC.gety());
+    if (caster.getHomeMap() === PC.getHomeMap()) {
+      DrawMainFrame("draw",caster.getHomeMap(),PC.getx(),PC.gety());
+    }
   }
   
   resp["txt"] = "You conjure an elemental to aid you in battle.";
