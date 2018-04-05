@@ -380,7 +380,8 @@ ais.LockDoor = function(who,params){
       door.unlockMe();
     } else if (!door.locked && (params.lock === "lock")) {
       if (door.open) {
-        door.use(who);
+        MakeUseHappen(who,door,"map");
+//        door.use(who);
       }
       door.lockMe();
     }
@@ -429,7 +430,8 @@ ais.UseThing = function(who,params) {
   var tile = who.getHomeMap().getTile(params.x,params.y);
   var thing = tile.getTopFeature();
   if (thing && (typeof thing.use === "function")) {
-    thing.use(who);
+    MakeUseHappen(who,thing,"map");
+//    thing.use(who);
   } else {
     console.log(who.getNPCName() + " tried to use a thing at " + params.x + "," + params.y + " but it wasn't there to use.");
   }
@@ -441,7 +443,8 @@ ais.CloseDoor = function(who,params) {
   var thing = tile.getTopFeature();
   if (typeof thing.use === "function") {
     if (thing.open) {
-      thing.use(who);
+      MakeUseHappen(who,thing,"map");
+//      thing.use(who);
     }
   }
   return {fin:1};
