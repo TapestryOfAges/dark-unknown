@@ -477,7 +477,8 @@ function StepOrDoor(who, where, nopush) {
           if (!fea.open) {
             // Door is not open- opening
             DebugWrite("ai", "opening a door in StepOrDoor.<br />");
-            fea.use(who);
+//            fea.use(who);
+            MakeUseHappen(who,fea,"map");
             if (GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) {
               DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
             } 
