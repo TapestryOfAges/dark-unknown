@@ -1746,7 +1746,7 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
         if (LOSval.se > LOS_THRESHOLD) { LOSval.se = LOS_THRESHOLD; }
         if (LOSval.sw > LOS_THRESHOLD) { LOSval.sw = LOS_THRESHOLD; }
         if (LOSval.center > LOS_THRESHOLD) { LOSval.center = LOS_THRESHOLD; }
-        var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
+        var dist = GetDistance(x,y,i,j);
         var totlight = {};
         DebugWrite("light", "LOSVAL ne: " + LOSval.ne + ", nw: " + LOSval.nw + ", se: " + LOSval.se + ", sw: " + LOSval.sw + ".<br />");
         totlight.ne = (light + 1.5 - dist) * ( 1- (LOSval.ne / LOS_THRESHOLD) );
@@ -1771,7 +1771,7 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
         if (LOSval.se > LOS_THRESHOLD) { LOSval.se = LOS_THRESHOLD; }
         if (LOSval.sw > LOS_THRESHOLD) { LOSval.sw = LOS_THRESHOLD; }
         if (LOSval.center > LOS_THRESHOLD) { LOSval.center = LOS_THRESHOLD; }
-        var dist = Math.pow((Math.pow((x-i),2) + Math.pow((y-j),2)),(.5));
+        var dist = GetDistance(x,y,i,j);
         var totlight = {};
         totlight.center = (light + 1.5 - dist) * ( 1- (LOSval / LOS_THRESHOLD) );
         if ((light >= 0) && (totlight.center < 0)) { totlight.center = 0; }
