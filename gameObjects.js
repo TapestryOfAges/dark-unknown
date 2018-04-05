@@ -635,8 +635,10 @@ function LightEmitting(lightlevel) {
 	  if (light !== 0) {
 	    this.getHomeMap().setMapLight(this,light,this.getx(),this.gety());
 	  }
-	    
-	  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    
+    if (this.getHomeMap() === PC.getHomeMap()) {
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    }
 		this.light = light;
 	}
 	this.getLight = function() {
@@ -704,7 +706,9 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 	
 	this.use = function(who, silentdoors) {
 		var retval = {};
-		retval["fin"] = 0;
+    retval["fin"] = 0;
+    
+    let mymap = this.getHomeMap();
 		
 		if (this.locked && this.keyname) {
 		  if (who.inventory.getByName(this.keyname)) {
@@ -720,15 +724,15 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			this.removePassable(MOVE_WALK);
 			this.removePassable(MOVE_LEVITATE);
 			this.removePassable(MOVE_FLY);
-			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK);
-			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),false,MOVE_SWIM);
-			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),false,MOVE_LEVITATE);
-			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),false,MOVE_FLY);
+			mymap.setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK);
+			mymap.setWalkableAt(this.getx(),this.gety(),false,MOVE_SWIM);
+			mymap.setWalkableAt(this.getx(),this.gety(),false,MOVE_LEVITATE);
+			mymap.setWalkableAt(this.getx(),this.gety(),false,MOVE_FLY);
 			
 			retval["fin"] = 1;
 			retval["txt"] = "Closed!";
 			retval["redrawtype"] = "draw";
-			if (!silentdoors && closesound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 6) && (PC.getHomeMap() === this.getHomeMap())) {
+			if (!silentdoors && closesound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 6) && (PC.getHomeMap() === mymap)) {
 			  DUPlaySound(closesound); 
 			}
 			
@@ -738,7 +742,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 				if (this.getLocked()) {
 					retval["fin"] = 1;
 					retval["txt"] = "Locked.";
-					if (!silentdoors && lockedsound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 6) && (PC.getHomeMap() === this.getHomeMap())) {
+					if (!silentdoors && lockedsound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 6) && (PC.getHomeMap() === mymap)) {
 					  DUPlaySound(lockedsound); 
 					}
 					return retval;
@@ -754,10 +758,10 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			this.addPassable(MOVE_WALK);
 			this.addPassable(MOVE_LEVITATE);
 			this.addPassable(MOVE_FLY);
-			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK);
-			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_LEVITATE);
-			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_SWIM);
-			this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_FLY);
+			mymap.setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK);
+			mymap.setWalkableAt(this.getx(),this.gety(),true,MOVE_LEVITATE);
+			mymap.setWalkableAt(this.getx(),this.gety(),true,MOVE_SWIM);
+			mymap.setWalkableAt(this.getx(),this.gety(),true,MOVE_FLY);
 			if (!silentdoors && opensound && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 6) && (PC.getHomeMap() === this.getHomeMap())) {
 			  DUPlaySound(opensound); 
 			}
@@ -4290,7 +4294,9 @@ BrazierTile.prototype.use = function(who) {
     var y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,unlit);
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    if (map === PC.getHomeMap()) {
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    }
     
     retval["txt"] = "You extinguish the brazier.";
   } else {
@@ -4322,7 +4328,9 @@ UnlitBrazierTile.prototype.use = function(who) {
     var y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,lit);
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    if (map === PC.getHomeMap()) {
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    }
     
     retval["txt"] = "You light the brazier.";
   } else {
