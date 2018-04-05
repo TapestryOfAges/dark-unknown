@@ -205,7 +205,7 @@ ais.WaitHere = function(who,params) {
           if (IsAdjacent(who,fea,1)) {
             DebugWrite("ai", "Closing the door.");             
             fea.use(who);
-            if (GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) {
+            if ((GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) && (whomap === PC.getHomeMap())) {
               DrawMainFrame("draw",whomap,PC.getx(),PC.gety());
             }             
             delete who.flags.closingResponsibleDoor;
