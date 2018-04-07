@@ -412,6 +412,22 @@ GameStateData.prototype.loadGame = function(idx) {
     }
   }
 
+  $.each(loadmaps, function(idx,val) {
+    let checknpcs = val.npcs.getAll();
+    for (let i=0;i<checknpcs.length;i++) {
+      if ((typeof checknpcs[i].getLight === "function") && (checknpcs[i].getLight())) {
+        val.moveThing(checknpcs[i].getx(),checknpcs[i].gety(),checknpcs[i]);
+      }
+    }
+    let checkfeas = val.features.getAll();
+    for (let i=0;i<checkfeas.length;i++) {
+      if ((typeof checkfeas[i].getLight === "function") && (checkfeas[i].getLight())) {
+        val.moveThing(checkfeas[i].getx(),checkfeas[i].gety(),checkfeas[i]);
+      }
+    }
+  });
+  PC.getHomeMap().moveThing(PC.getx(),PC.gety(),PC);
+  
   maxserial = topserial;
   if (DU.gameflags.getFlag("music")) {  
     var song = PC.getHomeMap().getMusic();
