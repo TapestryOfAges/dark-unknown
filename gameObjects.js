@@ -5325,6 +5325,8 @@ function TrainingDummyTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "training dummy";
+  this.pathweight = 10; 
+  this.civilizedpathweight = 10; // paths should never go through this unless there is no choice
   
   Pushable.call(this);
   this.heavy = 1;
@@ -5340,6 +5342,8 @@ function ArcheryTargetTile() {
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archery target";
+  this.pathweight = 10; 
+  this.civilizedpathweight = 10; // paths should never go through this unless there is no choice
   
   Pushable.call(this);
   this.heavy = 1;
@@ -5355,6 +5359,8 @@ function PottedPlantTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "potted plant";
+  this.pathweight = 10; 
+  this.civilizedpathweight = 10; // paths should never go through this unless there is no choice
   
   Pushable.call(this);
 }
@@ -5921,7 +5927,9 @@ function BarrelTile() {
   this.searchedgraphic = ["furniture.gif", "", "-160", "0"];
 	this.lootgroup = "";
 	this.lootedid = "";
-	this.flammable = 20; // 20% chance it burns if in a fire
+  this.flammable = 20; // 20% chance it burns if in a fire
+  this.pathweight = 10; 
+  this.civilizedpathweight = 10; // paths should never go through this unless there is no choice
 	
 	this.container = [];
 	OpenContainer.call(this);
