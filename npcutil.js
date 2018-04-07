@@ -558,6 +558,8 @@ function StepOrSidestep(who, path, finaldest, nopush) {
               return moved;
             }
           } else {
+            let fromx = who.getx();
+            let fromy = who.gety();
             who.getHomeMap().moveThing(path[0],path[1],who);
             tile.executeWalkons(who);
             // Puts the NPC on the same tile as the player
@@ -567,6 +569,12 @@ function StepOrSidestep(who, path, finaldest, nopush) {
             moved["canmove"] = 1;
             maintext.delayedAddText(who.getFullDesc() + " steps past you.");
             moved["intoPC"] = 1; // dunno if I'll want this, but might as well
+
+            if (who.getLight()) {
+              DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+            } else {
+              DrawMainFrame("one",PC.getHomeMap(),fromx,fromy);
+            }
             return moved;
           }
         } else { 
