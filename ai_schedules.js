@@ -114,7 +114,7 @@ ais.RouteTo = function(who, params) {
     var fea = who.getHomeMap().getTile(who.flags.closedoor.x,who.flags.closedoor.y).getTopFeature();
     if (fea.closedgraphic) {
       if (fea.open) {  // door hasn't been closed already
-        fea.use(who);
+        MakeUseHappen(who,fea,"map");
         if (GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) {
           DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
         } 
@@ -204,7 +204,7 @@ ais.WaitHere = function(who,params) {
           DebugWrite("ai", "Working on closing the door at " + fea.getx() + "," + fea.gety() +" as previously decided upon.");
           if (IsAdjacent(who,fea,1)) {
             DebugWrite("ai", "Closing the door.");             
-            fea.use(who);
+            MakeUseHappen(who,fea,"map");
             if ((GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) && (whomap === PC.getHomeMap())) {
               DrawMainFrame("draw",whomap,PC.getx(),PC.gety());
             }             
