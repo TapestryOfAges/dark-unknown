@@ -334,10 +334,6 @@ Acre.prototype.getLocalLight = function(dir) {
 	return lightlevel;
 }
 
-Acre.prototype.getLocalLightFrom = function(viewer) {
-  alert("IN OTHERWISE EMPTY FUNCTION getLocalLightFrom");
-}
-
 Acre.prototype.removeLocalLight = function(source) {
 	delete this.localLight[source];
 }
@@ -1739,7 +1735,7 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
 			if (this.getTile(i,j) === "OoB") { continue; }
 			var block = this.getTile(i,j).getBlocksLOS();
       DebugWrite("light", "<br />LIGHT " + serial + " (" + x + "," + y + "): Checking shine on x:"+i+",y:"+j+", which blocks " + block + ".<br />");
-			if ((block > LOS_THRESHOLD) && (!lightsource.checkType("PC"))) {   
+			if (block > LOS_THRESHOLD) {   
         var LOSval = this.getLOS(x,y,i,j,0,1,1);
         if (LOSval.ne > LOS_THRESHOLD) { LOSval.ne = LOS_THRESHOLD; }
         if (LOSval.nw > LOS_THRESHOLD) { LOSval.nw = LOS_THRESHOLD; }
@@ -1765,7 +1761,8 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
 			} else {
         var LOSval = this.getLOS(x,y,i,j,0,0,1);
         DebugWrite("light", "LIGHT " + serial + ": LOSval: " + JSON.stringify(LOSval) + ".<br />");
-        if (typeof LOSval === "number") { if (LOSval > LOS_THRESHOLD) { LOSval = LOS_THRESHOLD; } };
+        if (typeof LOSval === "number") { if (LOSval > LOS_THRESHOLD) { LOSval = LOS_THRESHOLD; } }
+        else { alert("SetMapLight actually got an object in the number section."); console.log(LOSval); }
         if (LOSval.ne > LOS_THRESHOLD) { LOSval.ne = LOS_THRESHOLD; }
         if (LOSval.nw > LOS_THRESHOLD) { LOSval.nw = LOS_THRESHOLD; }
         if (LOSval.se > LOS_THRESHOLD) { LOSval.se = LOS_THRESHOLD; }
