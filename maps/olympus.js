@@ -1056,7 +1056,7 @@ mappages["olympus2"].npcs[19] = {name : 'FighterVillagerNPC', x : 9, y : 18, NPC
 mappages["olympus2"].npcs[20] = {name : 'QueenNPC', x : 27, y : 16, NPCName: 'Shelaria', Desc: 'your mother, Queen Shelaria', Conversation: 'shelaria', ConversationFlag: 'shelaria', PeaceAI: 'scheduled', Schedule: 'shelaria', Gender: 'female'};
 mappages["olympus2"].npcs[21] = {name : 'TownsfolkVillagerNPC', x : 34, y : 34, NPCName: 'Alex', Desc: 'stablemaster', Conversation: 'alex', ConversationFlag: 'alex', PeaceAI: 'scheduled', Schedule: 'alex', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 mappages["olympus2"].npcs[22] = {name : 'TownsfolkVillagerNPC', x : 29, y : 38, NPCName: 'Joe', Conversation: 'joe', PeaceAI: 'scheduled', Schedule: 'joe', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif'};
-mappages["olympus2"].npcs[23] = {name : 'PaladinVillagerNPC', x : 20, y : 10, NPCName: 'Erica', Conversation: 'erica', ConversationFlag: 'erica', PeaceAI: 'scheduled', Schedule: 'erica', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '307.gif'};
+mappages["olympus2"].npcs[23] = {name : 'PaladinVillagerNPC', x : 60, y : 31, NPCName: 'Erica', Conversation: 'erica', ConversationFlag: 'erica', PeaceAI: 'scheduled', Schedule: 'erica', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '307.gif'};
 
 mappages["olympus2"].desc = "Castle dea Olympus";
 mappages["olympus2"].music = 'Olympus';
