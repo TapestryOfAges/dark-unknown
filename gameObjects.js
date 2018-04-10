@@ -4941,6 +4941,9 @@ function StairDownTile() {
   this.desc = "stairs down";
   this.peerview = "#808080";
 
+  this.pathweight = 2; 
+  this.civilizedpathweight = 2; // prefer to go around
+
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
 }
@@ -4955,6 +4958,9 @@ function StairUpTile() {
   this.blocklos = 0;
   this.desc = "stairs up";
   this.peerview = "#808080";
+
+  this.pathweight = 2; 
+  this.civilizedpathweight = 2; // prefer to go around
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -4971,6 +4977,9 @@ function StairDown2Tile() {
   this.desc = "stairs down";
   this.peerview = "#808080";
 
+  this.pathweight = 2; 
+  this.civilizedpathweight = 2; // prefer to go around
+
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
 }
@@ -4985,6 +4994,9 @@ function StairUp2Tile() {
   this.blocklos = 0;
   this.desc = "stairs up";
   this.peerview = "#808080";
+
+  this.pathweight = 2; 
+  this.civilizedpathweight = 2; // prefer to go around
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
