@@ -1745,15 +1745,15 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
         var dist = GetDistance(x,y,i,j);
         var totlight = {};
         DebugWrite("light", "LOSVAL ne: " + LOSval.ne + ", nw: " + LOSval.nw + ", se: " + LOSval.se + ", sw: " + LOSval.sw + ".<br />");
-        totlight.ne = (light + 1.5 - dist) * ( 1- (LOSval.ne / LOS_THRESHOLD) );
+        totlight.ne = LightAmount(light,dist) * ( 1- (LOSval.ne / LOS_THRESHOLD) );
         if ((light >= 0) && (totlight.ne < 0)) { totlight.ne = 0; }
-        totlight.nw = (light + 1.5 - dist) * ( 1- (LOSval.nw / LOS_THRESHOLD) );
+        totlight.nw = LightAmount(light,dist) * ( 1- (LOSval.nw / LOS_THRESHOLD) );
         if ((light >= 0) && (totlight.nw < 0)) { totlight.nw = 0; }
-        totlight.se = (light + 1.5 - dist) * ( 1- (LOSval.se / LOS_THRESHOLD));
+        totlight.se = LightAmount(light,dist) * ( 1- (LOSval.se / LOS_THRESHOLD));
         if ((light >= 0) && (totlight.se < 0)) { totlight.se = 0; }
-        totlight.sw = (light + 1.5 - dist) * ( 1- (LOSval.sw / LOS_THRESHOLD) );
+        totlight.sw = LightAmount(light,dist) * ( 1- (LOSval.sw / LOS_THRESHOLD) );
         if ((light >= 0) && (totlight.sw < 0)) { totlight.sw = 0; }
-        totlight.center = (light + 1.5 - dist) * ( 1- (LOSval.center / LOS_THRESHOLD) );
+        totlight.center = LightAmount(light,dist) * ( 1- (LOSval.center / LOS_THRESHOLD) );
         if ((light >= 0) && (totlight.center < 0)) { totlight.center = 0; }
         if ((totlight.ne > 0) || (totlight.nw > 0) || (totlight.se > 0) || (totlight.sw > 0)) {
           this.getTile(i,j).addLocalLight(lightsource,totlight,this);
@@ -1770,8 +1770,8 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
         if (LOSval.center > LOS_THRESHOLD) { LOSval.center = LOS_THRESHOLD; }
         var dist = GetDistance(x,y,i,j);
         var totlight = {};
-        totlight.center = (light + 1.5 - dist) * ( 1- (LOSval / LOS_THRESHOLD) );
-        if ((light >= 0) && (totlight.center < 0)) { totlight.center = 0; }
+        totlight.center = LightAmount(light,dist) * ( 1- (LOSval / LOS_THRESHOLD) );
+//        if ((light >= 0) && (totlight.center < 0)) { totlight.center = 0; }
         if ((lightsource.checkType("PC")) && (block > LOS_THRESHOLD)) {
           totlight.ne = totlight.center;
           totlight.se = totlight.center;
@@ -1783,14 +1783,26 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
         }
 			}
 			if (block > LOS_THRESHOLD) {
-//			  if (debug && debugflags.light) {dbs.writeln("LIGHT " + serial + ": LOSval was (center:" + LOSval.center + ", nw:" + LOSval.nw + ", ne:" + LOSval.ne + ", sw:" + LOSval.sw + ", se:" + LOSval.se + "), light values: center=" + totlight.center + ", ne=" + totlight.ne + ", nw=" + totlight.nw + ", se=" + totlight.se + ", sw=" +totlight.sw + ".<br />"); }
 			  DebugWrite("light", "LIGHT " + serial + ": LOSval was (center:" + LOSval.center + ", nw:" + LOSval.nw + ", ne:" + LOSval.ne + ", sw:" + LOSval.sw + ", se:" + LOSval.se + "), light values: center=" + totlight.center + ", ne=" + totlight.ne + ", nw=" + totlight.nw + ", se=" + totlight.se + ", sw=" +totlight.sw + ".<br />");
 			} else {
-//			  if (debug && debugflags.light) {dbs.writeln("LIGHT " + serial + ": LOSval was " + LOSval + ", light values: center=" + totlight.center + ", ne=" + totlight.ne + ", nw=" + totlight.nw + ", se=" + totlight.se + ", sw=" +totlight.sw + ".<br />"); }
 			  DebugWrite("light", "LIGHT " + serial + ": LOSval was " + LOSval + ", light values: center=" + totlight.center + ", ne=" + totlight.ne + ", nw=" + totlight.nw + ", se=" + totlight.se + ", sw=" +totlight.sw + ".<br />");
 			}
 		}
 	}
+}
+
+function LightAmount(light,dist) {
+  let result=0;
+  if (light > 0) {
+    result = light + 1.5 - dist;
+    if (result < 0) { result = 0; }
+  } else if (light < 0) {
+    result = (-1*light + 1.5 - dist) * -1;
+    if (result > 0) { result = 0; }
+  } else { 
+    alert("Setting light with light===0, shouldn't happen.");
+  }
+  return result;
 }
 
 GameMap.prototype.removeMapLight = function(serial,light,x,y) {
