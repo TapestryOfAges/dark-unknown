@@ -467,3 +467,11 @@ ais.ChangeGraphic = function(who,params) {
   who.setGraphic(params.graphic);
   return {fin:1};
 }
+
+ais.CheckTreasuryLock = function(who,params) {
+  let doortile = who.getHomeMap().getTile(9,20);
+  let door = doortile.getTopFeature();
+  if (door.locked) { return {fin:0}; }
+
+  return {fin:1};
+}
