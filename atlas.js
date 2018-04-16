@@ -1675,7 +1675,7 @@ GameMap.prototype.loadMap = function (name) {
   			  if (npckey === "OverrideGraphic") { newnpc.overrideGraphic = loadnpcs[npci].OverrideGraphic; }
         }
         if ((newnpc.getPeaceAI() === "scheduled") && (!DU.gameflags.getFlag("editor"))) {
-          var loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1);
+          var loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1, this);
           newnpc._mapName = loc.mapName;
           this.placeThing(loc.x,loc.y,newnpc);
           newnpc.flags = loc.flags;
