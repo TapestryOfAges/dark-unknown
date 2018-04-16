@@ -425,7 +425,7 @@ function AdjustStartingLocations(amap) {
     if (allnpcs[i]._mapName && (allnpcs[i].getHomeMap().getName() !== allnpcs[i]._mapName)) {
       var destmap = maps.getMap(allnpcs[i]._mapName);
       var oldmap = allnpcs[i].getHomeMap();
-      if (!destmap) { alert("Failure to find map " + allnpcs[i]._mapName); }
+      if (!destmap) { alert("Failure to find map " + allnpcs[i]._mapName + " while moving " + allnpcs[i].getNPCName()); }
       let oldtile = oldmap.getTile(allnpcs[i].gety(),allnpcs[i].gety());
       var desttile = MoveBetweenMaps(allnpcs[i],allnpcs[i].getHomeMap(),destmap,allnpcs[i].getx(),allnpcs[i].gety());
       desttile.executeWalkons(allnpcs[i]);
