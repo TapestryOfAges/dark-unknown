@@ -162,7 +162,7 @@ ais.RouteTo = function(who, params) {
         DebugWrite("schedules", "PC at destination, giving up and setting activityComplete.<br />");
       }
     } else {
-      alert(movetype);
+      alert(who.getHomeMap().getName());
       alert(who.getNPCName());
       alert(who.getx() + "," + who.gety());
       alert(DU.schedules[who.getSchedule()]["currentIndex"]);
