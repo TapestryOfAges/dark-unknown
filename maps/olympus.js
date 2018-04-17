@@ -1197,8 +1197,8 @@ mappages["olympus0"].features[73] = {name : 'RightTable', x : 21, y : 7};
 
 
 mappages["olympus0"].npcs = [];
-mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 16, NPCName: 'Mariadoc', Conversation: 'castleguard0', ConversationFlag: 'mariadoc', Gender: 'male', Bark: '0', NPCBand: '0'};
-mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 19, y : 14, NPCName: 'Kristell', Conversation: 'castleguard0p', ConversationFlag: 'kristell', Gender: 'female', Bark: '0', NPCBand: '0'};
+mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 16, NPCName: 'Mariadoc', Conversation: 'castleguard0', ConversationFlag: 'mariadoc', PeaceAI: 'scheduled', Schedule: 'mariadoc', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 19, y : 14, NPCName: 'Kristell', Conversation: 'castleguard0p', ConversationFlag: 'kristell', PeaceAI: 'scheduled', Schedule: 'kristell', Gender: 'female', Bark: '0', NPCBand: '0'};
 mappages["olympus0"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 24, y : 8, NPCName: 'Jeremiah', Conversation: 'jeremiah', ConversationFlag: 'jeremiah', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["olympus0"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 8, y : 16, NPCName: 'Trevor', Desc: 'treasurer', PeaceAI: 'scheduled', Schedule: 'trevor', Conversation: 'trevor', ConversationFlag: 'trevor', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 mappages["olympus0"].npcs[4] = {name : 'TinkerVillagerNPC', x : 24, y : 18, NPCName: 'Aara', Conversation: 'aara', ConversationFlag: 'aara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
