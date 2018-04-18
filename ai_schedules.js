@@ -475,3 +475,25 @@ ais.CheckTreasuryLock = function(who,params) {
 
   return {fin:1};
 }
+
+ai.PassOlympusGuardDoor = function(who,params) {
+  let door = who.getHomeMap().getTile(47,57).getTopFeature();
+  if (who.getx() === 46) {
+    door.unlock();
+    door.use(who);
+    who.moveMe(1,0);
+    return {fin:0};
+  } else if (who.getx() === 48) {
+    door.unlock();
+    door.use(who);
+    who.moveMe(-1,0);
+    return {fin:0};
+  } else if (params.dir === "east") {
+    who.moveMe(1,0);
+  } else {
+    who.moveMe(-1,0);
+  }
+  door.use(who);
+  door.lock();
+  return {fin:1};
+}
