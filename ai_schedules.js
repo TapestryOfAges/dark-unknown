@@ -40,7 +40,7 @@ ais.scheduled = function(who) {
       }
     }
     if (who.flags.activityComplete) {
-      console.log(who.getNPCName() + ": Next activity due to activity complete at " + currtime + ".");
+      console.log(who.getNPCName() + ": Next activity due to activity complete at " + currtime + ". Moving to index " + nextidx + ".");
       DebugWrite("schedules", who.getNPCName() + ": Next activity due to activity complete at " + currtime + ".");
       who.setCurrentScheduleIndex(nextidx);
       delete who.flags.activityComplete;
@@ -455,9 +455,9 @@ ais.LightLight = function(who,params) {
   var thing = tile.getTopFeature();
   if (typeof thing.getLight === "function") {
     if (thing.getLight() && (params.light === 0)) {
-      thing.use(who);
+      MakeUseHappen(who,thing,"map");
     } else if (!thing.getLight() && (params.light === 1)) {
-      thing.use(who);
+      MakeUseHappen(who,thing,"map");
     }
   }
   return {fin:1};
@@ -476,27 +476,27 @@ ais.CheckTreasuryLock = function(who,params) {
   return {fin:1};
 }
 
-ai.PassOlympusGuardDoor = function(who,params) {
+ais.PassOlympusGuardDoor = function(who,params) {
   let door = who.getHomeMap().getTile(47,57).getTopFeature();
   if (who.getx() === 46) {
-    door.unlock();
+    door.unlockMe();
     MakeUseHappen(who,door,"map");
     who.moveMe(1,0);
     return {fin:0};
   } else if (who.getx() === 48) {
-    door.unlock();
+    door.unlockMe();
     MakeUseHappen(who,door,"map");
     who.moveMe(-1,0);
     return {fin:0};
   } else if (params.dir === "east") {
     who.moveMe(1,0);
-    door.use(who);
-    door.lock();
+    MakeUseHappen(who,door,"map");
+    door.lockMe();
     return {fin:1};  
   } else {
     who.moveMe(-1,0);
-    door.use(who);
-    door.lock();
+    MakeUseHappen(who,door,"map");
+    door.lockMe();
     return {fin:1};  
   }
   alert("Error in PassOlympusGuardDoor - called by " + who.getNPCName())
