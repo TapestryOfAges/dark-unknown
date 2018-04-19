@@ -480,20 +480,24 @@ ai.PassOlympusGuardDoor = function(who,params) {
   let door = who.getHomeMap().getTile(47,57).getTopFeature();
   if (who.getx() === 46) {
     door.unlock();
-    door.use(who);
+    MakeUseHappen(who,door,"map");
     who.moveMe(1,0);
     return {fin:0};
   } else if (who.getx() === 48) {
     door.unlock();
-    door.use(who);
+    MakeUseHappen(who,door,"map");
     who.moveMe(-1,0);
     return {fin:0};
   } else if (params.dir === "east") {
     who.moveMe(1,0);
+    door.use(who);
+    door.lock();
+    return {fin:1};  
   } else {
     who.moveMe(-1,0);
+    door.use(who);
+    door.lock();
+    return {fin:1};  
   }
-  door.use(who);
-  door.lock();
-  return {fin:1};
+  alert("Error in PassOlympusGuardDoor - called by " + who.getNPCName())
 }
