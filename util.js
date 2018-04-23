@@ -1818,12 +1818,12 @@ function EndWaiting(who, inn) {
     PC.setMana(PC.getMaxMana());
     delete who.atinn;
   }
+  who.setWaiting(0);
   if (who === PC) {   // I mean, it only can be, but why not check?
     gamestate.setMode("player");
     DrawCharFrame();
     DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
-  who.setWaiting(0);
 
   return 1;
 }
