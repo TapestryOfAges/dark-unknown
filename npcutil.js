@@ -530,7 +530,8 @@ function StepOrSidestep(who, path, finaldest, nopush) {
 
     if (who.getCurrentAI() === "scheduled") {
       var tile = who.getHomeMap().getTile(path[0],path[1]);
-      if (tile.getTop().checkType("pc")) {
+      let topentity = tile.getTop();
+      if (topentity.checkType("pc")) {
         if (who.pushing) {
           delete who.pushing;
           if ((path[0] === finaldest[0]) && (path[1] === finaldest[1])) {
@@ -567,7 +568,9 @@ function StepOrSidestep(who, path, finaldest, nopush) {
             // by standing in front of a closed door.
             // Will only come up if path is truly blocked
             moved["canmove"] = 1;
-            maintext.delayedAddText(who.getFullDesc() + " steps past you.");
+            if (topentity === PC) {
+              maintext.delayedAddText(who.getFullDesc() + " steps past you.");
+            }
             moved["intoPC"] = 1; // dunno if I'll want this, but might as well
 
             if (who.getLight()) {

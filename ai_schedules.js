@@ -30,6 +30,7 @@ ais.scheduled = function(who) {
     if (DiffTime(nextactivity.params.startTime,currtime) <= DiffTime(prevtime,currtime)) {
       DebugWrite("schedules", "Moving to next scheduled activity (" + nextidx + ")- startTime met.");
       who.setCurrentScheduleIndex(nextidx);
+      delete who.pushing;
     }
   }
   else if (nextactivity.params.startCondition === "PreviousComplete") {
@@ -37,6 +38,7 @@ ais.scheduled = function(who) {
       if (CheckTimeAfterTime(currtime, nowactivity.params.endTime)) {
         DebugWrite("schedules", "Moving to next scheduled activity- endTime met.");
         who.setCurrentScheduleIndex(nextidx);
+        delete who.pushing;
       }
     }
     if (who.flags.activityComplete) {
@@ -44,6 +46,7 @@ ais.scheduled = function(who) {
       DebugWrite("schedules", who.getNPCName() + ": Next activity due to activity complete at " + currtime + ".");
       who.setCurrentScheduleIndex(nextidx);
       delete who.flags.activityComplete;
+      delete who.pushing;
     }
   }
 
@@ -138,9 +141,16 @@ ais.RouteTo = function(who, params) {
     let npcs = who.getHomeMap().npcs.getAll();
     for (let i=0;i<npcs.length;i++) {
       if ((npcs[i].getCurrentAI() === "scheduled") && ((npcs[i].currentActivity !== "RouteTo") && (npcs[i].currentActivity !== "ChangeMap"))) {
-        // creating a one-time pathmap that makes NPCs who are not currently moving (RouteTo or ChangeMap)
+        // creating a one-time pathmap that makes NPCs who are not currently moving (RouteTo or ChangeMap) considered impassable 
         gridbackup.setWalkableAt(npcs[i].getx(),npcs[i].gety(),false);
+      } else {
+        // other NPCs get a path weight cost- walk around if possible, push through if not
+        gridbackup.setCostAt(npcs[i].getx(),npcs[i].gety(),5);
       }
+    }
+    if (who.getHomeMap() === PC.getHomeMap()) {
+      // make PC a difficult square
+      gridbackup.setCostAt(PC.getx(),PC.gety(),5);
     }
     gridbackup.setWalkableAt(params.destination.x,params.destination.y,true);
     gridbackup.setWalkableAt(who.getx(),who.gety(),true);
@@ -162,10 +172,8 @@ ais.RouteTo = function(who, params) {
         DebugWrite("schedules", "PC at destination, giving up and setting activityComplete.<br />");
       }
     } else {
-      alert(who.getHomeMap().getName());
-      alert(who.getNPCName());
-      alert(who.getx() + "," + who.gety());
-      alert(DU.schedules[who.getSchedule()]["currentIndex"]);
+      console.log(who.getNPCName() + " on " + who.getHomeMap().getName() + " at " + who.getx() + "," + who.gety());
+      console.log("Failed to move, in schedule index " + DU.schedules[who.getSchedule()]["currentIndex"]);
     }
   } else { DebugWrite("schedules", "Already at destination... "); }
 
