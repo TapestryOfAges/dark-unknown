@@ -72,7 +72,7 @@ function DrawCharFrame() {
 
 function DrawMainFrame(how, themap, centerx, centery) {
   // how options are "draw" and "one"
-
+  if (PC.getWaiting()) { return; }  // Don't draw the screen if PC is using (W)ait- should avoid a draw during the fade in/out.
   var opac = 1;
   	
   if (how === "draw") {
