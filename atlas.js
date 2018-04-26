@@ -1685,17 +1685,18 @@ GameMap.prototype.loadMap = function (name) {
           newnpc._mapName = loc.mapName;
           newnpc._x = loc.x;
           newnpc._y = loc.y;
-          this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
           newnpc.flags = loc.flags;
-          if (this.getName() === newnpc._mapName) {
+          if (this.getName() !== newnpc._mapName) {
+            this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
+            DebugWrite("schedules", "Put " + newnpc.getNPCName() + " on wrong map for now.<br />");
+          } else {
             // it has been placed on the correct map
+            this.placeThing(loc.x,loc.y,newnpc);
             let placedacre = this.getTile(loc.x,loc.y);
             placedacre.executeWalkons(newnpc);  
             delete newnpc._mapName;
             delete newnpc._x;
             delete newnpc._y;
-          } else {
-            DebugWrite("schedules", "Put " + newnpc.getNPCName() + " on wrong map for now.<br />");
           }
         } else {
           this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);

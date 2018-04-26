@@ -426,7 +426,7 @@ function AdjustStartingLocations(amap) {
       var oldmap = allnpcs[i].getHomeMap();
       if (!destmap) { alert("Failure to find map " + allnpcs[i]._mapName + " while moving " + allnpcs[i].getNPCName()); }
       let oldtile = oldmap.getTile(allnpcs[i].gety(),allnpcs[i].gety());
-      oldtile.executeWalkoffs(allnpcs[i]);
+      // no need to execute walkoffs, didn't execute walkons
       var desttile = MoveBetweenMaps(allnpcs[i],allnpcs[i].getHomeMap(),destmap,allnpcs[i]._x,allnpcs[i]._y);
       desttile.executeWalkons(allnpcs[i]);
       DebugWrite("schedules", "During map population, moved this NPC (" + allnpcs[i].getNPCName() + ") to its correct map by schedule (from " + oldmap.getName() + " to " + destmap.getName() + ").<br />");
