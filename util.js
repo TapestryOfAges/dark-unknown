@@ -377,7 +377,6 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   	}
 	
 	  if (keepmap === 0) {
-//	    if (debug && debugflags.map) { dbs.writeln("<span style='color:brown; font-weight:bold'>DESTROYING MAP " + frommap.getName() + ".</span><br />"); }	
 	    DebugWrite("map", "<span style='font-weight:bold'>DESTROYING MAP " + frommap.getName() + ".</span><br />");
 		  maps.deleteMap(frommap.getName());
 		  
@@ -427,10 +426,13 @@ function AdjustStartingLocations(amap) {
       var oldmap = allnpcs[i].getHomeMap();
       if (!destmap) { alert("Failure to find map " + allnpcs[i]._mapName + " while moving " + allnpcs[i].getNPCName()); }
       let oldtile = oldmap.getTile(allnpcs[i].gety(),allnpcs[i].gety());
-      var desttile = MoveBetweenMaps(allnpcs[i],allnpcs[i].getHomeMap(),destmap,allnpcs[i].getx(),allnpcs[i].gety());
+      oldtile.executeWalkoffs(allnpcs[i]);
+      var desttile = MoveBetweenMaps(allnpcs[i],allnpcs[i].getHomeMap(),destmap,allnpcs[i]._x,allnpcs[i]._y);
       desttile.executeWalkons(allnpcs[i]);
       DebugWrite("schedules", "During map population, moved this NPC (" + allnpcs[i].getNPCName() + ") to its correct map by schedule (from " + oldmap.getName() + " to " + destmap.getName() + ").<br />");
       delete allnpcs[i]._mapName;
+      delete allnpcs[i]._x;
+      delete allnpcs[i]._y;
     }
   }
 }
