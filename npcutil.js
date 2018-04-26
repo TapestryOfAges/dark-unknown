@@ -531,25 +531,27 @@ function StepOrSidestep(who, path, finaldest, nopush) {
     if (who.getCurrentAI() === "scheduled") {
       var tile = who.getHomeMap().getTile(path[0],path[1]);
       let topentity = tile.getTop();
-      if (topentity.checkType("pc")) {
+      if (topentity.checkType("pc") || topentity.checkType("npc")) {
         if (who.pushing) {
           delete who.pushing;
           if ((path[0] === finaldest[0]) && (path[1] === finaldest[1])) {
-            // PC is on last step of path, no point to pushing through
+            // PC or NPC is on last step of path, no point to pushing through  -- consider if I want to change this for NPC
             var fea = tile.getTopFeature();
             if (fea && (fea.getName() === "BedHead")) {
-              // PC is in your bed. Kick them out.
+              // PC is in your bed. Kick them out. Hopefully this never comes up with an NPC. If it does, though, kick them out too
               npctile = who.getHomeMap().geTile(who.getx(),who.gety());
-              PC.getHomeMap().moveThing(who.getx(),who.gety(),PC);
-              tile.executeWalkoffs(PC);
-              npctile.executeWalkons(PC);
+              topentity.getHomeMap().moveThing(who.getx(),who.gety(),PC);
+              tile.executeWalkoffs(topentity);
+              npctile.executeWalkons(topentity);
               who.getHomeMap().moveThing(path[0],path[1],who);
               npctile.executeWalkoffs(who);
               tile.executeWalkons(who);
               moved["canmove"] = 1;
-              maintext.delayedAddText(who.getFullDesc() + " pushes you out of their bed.");
-              DebugWrite("ai", "Kicked PC out of bed.<br />");
-              moved["intoPC"] = 1; // dunno if I'll want this, but might as well
+              if (topentity === PC) {
+                maintext.delayedAddText(who.getFullDesc() + " pushes you out of their bed.");
+                DebugWrite("ai", "Kicked PC out of bed.<br />");
+                moved["intoPC"] = 1; // dunno if I'll want this, but might as well
+              }
               return moved;
             } else {
               // PC is probably in your chair or something. Give up and let them keep it.
@@ -563,15 +565,19 @@ function StepOrSidestep(who, path, finaldest, nopush) {
             let fromy = who.gety();
             who.getHomeMap().moveThing(path[0],path[1],who);
             tile.executeWalkons(who);
-            // Puts the NPC on the same tile as the player
+            // Puts the NPC on the same tile as the player/NPC
             // This is necessary, otherwise the player could still block the NPC's path
-            // by standing in front of a closed door.
+            // by standing in front of a closed door. Or, an NPC going the other way down a hallway
             // Will only come up if path is truly blocked
             moved["canmove"] = 1;
             if (topentity === PC) {
               maintext.delayedAddText(who.getFullDesc() + " steps past you.");
+              moved["intoPC"] = 1; // dunno if I'll want this, but might as well
+            } else {
+              if (debug) {
+                console.log(who.getNPCName() + " has stepped past " + topentity.getNPCName() + " at (" + who.getx() + "," + who.gety() + "), at " + GetUsableClockTime() + ", on " + who.getHomeMap().getName() + ".");
+              }
             }
-            moved["intoPC"] = 1; // dunno if I'll want this, but might as well
 
             if (who.getLight()) {
               DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
@@ -606,6 +612,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
           if (!foundpath[0] || ((foundpath.length - path.length) > 9)) {
         
             who.pushing = 1; 
+            if (debug) { console.log(who.getNPCName() + " is ready to push past " + topentity.getNPCName() + " at (" + topentity.getx() + "," + topentity.gety() + ") on " + topentity.getHomeMap().getName() + "."); }
             return moved;
           }
         }
