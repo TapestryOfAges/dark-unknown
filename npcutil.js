@@ -689,3 +689,16 @@ function SayNear(sayx,sayy,saymap,saywhat) {
     }
   }
 }
+
+function WhereIs(npcname) {
+  let npc;
+  $.each(maps.data, function(idx,val) {
+    let mapnpcs = val.npcs.getAll();
+    for (let i=0;i<mapnpcs.length;i++) {
+      if (mapnpcs[i].getNPCName() === npcname) {
+        npc = mapnpcs[i];
+      }
+    }
+  });
+  return npc.getLocation();
+}
