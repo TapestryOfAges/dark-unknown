@@ -1188,6 +1188,12 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
   	newthing.sety(y);
     this[type].addTop(newthing);
 
+    // TEMP DEBUG 
+    let tmpname = "";
+    if (newthing.checkType("NPC")) { tmpname = newthing.getNPCName() }
+console.log(this.getName() + " " + newthing.getName() + " (" + x + "," + y +")" + " - " + tmpname);
+    // END TEMP DEBUG
+
     if (!this.data[y][x][type]) {
       this.data[y][x][type] = new Collection();
     }
@@ -1677,13 +1683,17 @@ GameMap.prototype.loadMap = function (name) {
         if ((newnpc.getPeaceAI() === "scheduled") && (!DU.gameflags.getFlag("editor"))) {
           var loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1, this);
           newnpc._mapName = loc.mapName;
-          this.placeThing(loc.x,loc.y,newnpc);
+          newnpc._x = loc.x;
+          newnpc._y = loc.y;
+          this.placeThing(loadnpcs[npci].x,loadnpcs[npci].y,newnpc);
           newnpc.flags = loc.flags;
           if (this.getName() === newnpc._mapName) {
             // it has been placed on the correct map
             let placedacre = this.getTile(loc.x,loc.y);
             placedacre.executeWalkons(newnpc);  
             delete newnpc._mapName;
+            delete newnpc._x;
+            delete newnpc._y;
           } else {
             DebugWrite("schedules", "Put " + newnpc.getNPCName() + " on wrong map for now.<br />");
           }
