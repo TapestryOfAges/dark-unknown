@@ -267,6 +267,15 @@ GameObject.prototype.getHomeMap = function() {
   return this.homeMap;
 }
 
+GameObject.prototype.getLocation = function() {
+  let location = {};
+  location.mapname = this.getHomeMap().getName();
+  location.x = this.getx();
+  location.y = this.gety();
+
+  return location;
+}
+
 GameObject.prototype.setDesc = function(newdesc) {
 	this.desc = newdesc;
 }
