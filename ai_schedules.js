@@ -487,23 +487,31 @@ ais.CheckTreasuryLock = function(who,params) {
 ais.PassOlympusGuardDoor = function(who,params) {
   let door = who.getHomeMap().getTile(47,57).getTopFeature();
   if (who.getx() === 46) {
-    door.unlockMe();
-    MakeUseHappen(who,door,"map");
+    if (!door.open) {
+      door.unlockMe();
+      MakeUseHappen(who,door,"map");
+    }
     who.moveMe(1,0);
     return {fin:0};
   } else if (who.getx() === 48) {
-    door.unlockMe();
-    MakeUseHappen(who,door,"map");
+    if (!door.open) {
+      door.unlockMe();
+      MakeUseHappen(who,door,"map");
+    }
     who.moveMe(-1,0);
     return {fin:0};
   } else if (params.dir === "east") {
     who.moveMe(1,0);
-    MakeUseHappen(who,door,"map");
+    if (door.open) {
+      MakeUseHappen(who,door,"map");
+    }
     door.lockMe();
     return {fin:1};  
   } else {
     who.moveMe(-1,0);
-    MakeUseHappen(who,door,"map");
+    if (door.open) {
+      MakeUseHappen(who,door,"map");
+    }
     door.lockMe();
     return {fin:1};  
   }
