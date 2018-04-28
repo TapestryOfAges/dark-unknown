@@ -40,7 +40,9 @@ NPCSchedule.prototype.getNPCLocationByTime = function(time, setIndex, setFlag, l
   var location;
   var lastlocation = {};
   var lastindex = 0;
-  lastlocation.mapName = loadedFrom.getName();
+  if (loadedFrom) {
+    lastlocation.mapName = loadedFrom.getName();
+  }
 
   var i=0;
   var lowerboundmet = 0;
@@ -61,14 +63,12 @@ NPCSchedule.prototype.getNPCLocationByTime = function(time, setIndex, setFlag, l
       if (comptime <= time) { lowerboundmet = 1; }
     }
 
-//    if (lowerboundmet) {
-      if (this.scheduleArray[i].type === "RouteTo") {
-        lastlocation.x = this.scheduleArray[i].params.destination.x;
-        lastlocation.y = this.scheduleArray[i].params.destination.y;
-      } else if (this.scheduleArray[i].type === "ChangeMap") {
-        lastlocation = this.scheduleArray[i].params.destination;
-      }
-//    }
+    if (this.scheduleArray[i].type === "RouteTo") {
+      lastlocation.x = this.scheduleArray[i].params.destination.x;
+      lastlocation.y = this.scheduleArray[i].params.destination.y;
+    } else if (this.scheduleArray[i].type === "ChangeMap") {
+      lastlocation = this.scheduleArray[i].params.destination;
+    }
 
     i++;
     if (i === this.scheduleArray.length) { i=0; lowerboundmet=1; }
