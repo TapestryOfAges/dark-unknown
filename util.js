@@ -429,7 +429,7 @@ function AdjustStartingLocations(amap) {
       // no need to execute walkoffs, didn't execute walkons
       var desttile = MoveBetweenMaps(allnpcs[i],allnpcs[i].getHomeMap(),destmap,allnpcs[i]._x,allnpcs[i]._y);
       desttile.executeWalkons(allnpcs[i]);
-      DebugWrite("schedules", "During map population, moved this NPC (" + allnpcs[i].getNPCName() + ") to its correct map by schedule (from " + oldmap.getName() + " to " + destmap.getName() + ").<br />");
+      DebugWrite("schedules", "During map population, moved this NPC (" + allnpcs[i].getNPCName() + ") to its correct map by schedule (from " + oldmap.getName() + " to " + destmap.getName() + " at " + allnpcs[i]._x + "," + allnpcs[i]._y + ").<br />");
       delete allnpcs[i]._mapName;
       delete allnpcs[i]._x;
       delete allnpcs[i]._y;
