@@ -431,14 +431,7 @@
       }
 
       function make_sched_table() {   // Note: THIS ASSUMES THE FIRST ENTRY IN ANY SCHEDULE STARTS AT A TIME
-        var table_loc = "";
-        if ((curr_place === "naurglen") || (curr_place === "naurglen2") || (curr_place === "naurglen_limbo")) {
-          table_loc = "naurglen";
-        }
-
-        if ((curr_place === "olympus0") || (curr_place === "olympus1") || (curr_place === "olympus2") || (curr_place === "olympus_limbo")) {
-          table_loc = "olympus";
-        }
+        var table_loc = curr_place;
 
         var table = [];
         var alltimes = [];
@@ -448,15 +441,7 @@
 
         $.each(DU.schedules, function(idx,val) {
           var isin = 0;
-          if (table_loc === "naurglen") {
-            if ((val.baseLocation === "naurglen") || (val.baseLocation === "naurglen2") || (val.baseLocation === "naurglen_limbo")) {
-              isin = 1;
-            }
-          } else if (table_loc === "olympus") {
-            if ((val.baseLocation === "olympus0") || (val.baseLocation === "olympus1") || (val.baseLocation === "olympus2") || (val.baseLocation === "olympus_limbo")) {
-              isin = 1;
-            }
-          }
+          if (table_loc === val.baseLocation) { isin = 1; }
 
           if (isin) {
             list_of_names.push(idx);
