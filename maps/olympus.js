@@ -622,7 +622,6 @@ mappages["olympus1"].features[549] = {name : 'TorchEast', x : 15, y : 52};
 mappages["olympus1"].features[550] = {name : 'Brazier', x : 9, y : 50};
 mappages["olympus1"].features[551] = {name : 'Fireplace', x : 10, y : 20};
 mappages["olympus1"].features[552] = {name : 'Fireplace', x : 26, y : 18};
-mappages["olympus1"].features[553] = {name : 'Fireplace', x : 26, y : 18};
 
 
 mappages["olympus1"].npcs = [];
@@ -1057,6 +1056,7 @@ mappages["olympus2"].npcs[20] = {name : 'QueenNPC', x : 27, y : 16, NPCName: 'Sh
 mappages["olympus2"].npcs[21] = {name : 'TownsfolkVillagerNPC', x : 34, y : 34, NPCName: 'Alex', Desc: 'stablemaster', Conversation: 'alex', ConversationFlag: 'alex', PeaceAI: 'scheduled', Schedule: 'alex', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 mappages["olympus2"].npcs[22] = {name : 'TownsfolkVillagerNPC', x : 29, y : 38, NPCName: 'Joe', Conversation: 'joe', PeaceAI: 'scheduled', Schedule: 'joe', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["olympus2"].npcs[23] = {name : 'PaladinVillagerNPC', x : 60, y : 31, NPCName: 'Erica', Conversation: 'erica', ConversationFlag: 'erica', PeaceAI: 'scheduled', Schedule: 'erica', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '307.gif'};
+mappages["olympus0"].npcs[24] = {name : 'TownsfolkVillagerNPC', x : 34, y : 30, NPCName: 'Trevor', Desc: 'treasurer', PeaceAI: 'scheduled', Schedule: 'trevor', Conversation: 'trevor', ConversationFlag: 'trevor', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 
 mappages["olympus2"].desc = "Castle dea Olympus";
 mappages["olympus2"].music = 'Olympus';
@@ -1200,9 +1200,8 @@ mappages["olympus0"].npcs = [];
 mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 16, NPCName: 'Mariadoc', Conversation: 'castleguard0', ConversationFlag: 'mariadoc', PeaceAI: 'scheduled', Schedule: 'mariadoc', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 19, y : 14, NPCName: 'Kristell', Conversation: 'castleguard0p', ConversationFlag: 'kristell', PeaceAI: 'scheduled', Schedule: 'kristell', Gender: 'female', Bark: '0', NPCBand: '0'};
 mappages["olympus0"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 24, y : 8, NPCName: 'Jeremiah', Conversation: 'jeremiah', ConversationFlag: 'jeremiah', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-mappages["olympus0"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 8, y : 16, NPCName: 'Trevor', Desc: 'treasurer', PeaceAI: 'scheduled', Schedule: 'trevor', Conversation: 'trevor', ConversationFlag: 'trevor', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
-mappages["olympus0"].npcs[4] = {name : 'TinkerVillagerNPC', x : 24, y : 18, NPCName: 'Aara', Conversation: 'aara', ConversationFlag: 'aara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
-mappages["olympus0"].npcs[5] = {name : 'ShepherdVillagerNPC', x : 24, y : 13, NPCName: 'Rose', Conversation: 'rose', ConversationFlag: 'rose', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
+mappages["olympus0"].npcs[3] = {name : 'TinkerVillagerNPC', x : 24, y : 18, NPCName: 'Aara', Conversation: 'aara', ConversationFlag: 'aara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
+mappages["olympus0"].npcs[4] = {name : 'ShepherdVillagerNPC', x : 24, y : 13, NPCName: 'Rose', Conversation: 'rose', ConversationFlag: 'rose', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
 
 mappages["olympus0"].desc = "Castle Basement";
 mappages["olympus0"].music = 'Olympus';
@@ -1242,7 +1241,7 @@ mappages["olympus_limbo"].features = [];
 
 
 mappages["olympus_limbo"].npcs = [];
-mappages["olympus_limbo"].npcs[0] = {name : 'BardVillagerNPC', x : 2, y : 2, NPCName: 'Olivia', Conversation: 'olivia', ConversationFlag: 'olivia', Gender: 'female', OverrideGraphic: '311.gif'};
+mappages["olympus_limbo"].npcs[0] = {name : 'BardVillagerNPC', x : 2, y : 2, NPCName: 'Olivia', Conversation: 'olivia', ConversationFlag: 'olivia', PeaceAI: 'scheduled', Schedule: 'olivia_castle', Gender: 'female', OverrideGraphic: '311.gif'};
 
 mappages["olympus_limbo"].desc = "Olympus Limbo";
 mappages["olympus_limbo"].music = 'Olympus';
