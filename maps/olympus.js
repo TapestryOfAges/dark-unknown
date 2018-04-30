@@ -574,9 +574,9 @@ mappages["olympus1"].features[501] = {name : 'BedFoot', x : 83, y : 27};
 mappages["olympus1"].features[502] = {name : 'RightChair', x : 16, y : 25};
 mappages["olympus1"].features[503] = {name : 'RightChair', x : 71, y : 16};
 mappages["olympus1"].features[504] = {name : 'BookshelfLeft', x : 33, y : 23};
-mappages["olympus1"].features[505] = {name : 'BookshelfLeft', x : 35, y : 23};
+mappages["olympus1"].features[505] = {name : 'BookshelfOne', x : 35, y : 23};
 mappages["olympus1"].features[506] = {name : 'BookshelfRight', x : 34, y : 23};
-mappages["olympus1"].features[507] = {name : 'BookshelfRight', x : 36, y : 23};
+mappages["olympus1"].features[507] = {name : 'Fireplace', x : 26, y : 18};
 mappages["olympus1"].features[508] = {name : 'BlueFountain', x : 27, y : 22};
 mappages["olympus1"].features[509] = {name : 'Door', x : 24, y : 28};
 mappages["olympus1"].features[510] = {name : 'Door', x : 26, y : 28};
@@ -621,7 +621,6 @@ mappages["olympus1"].features[548] = {name : 'Brazier', x : 11, y : 25};
 mappages["olympus1"].features[549] = {name : 'TorchEast', x : 15, y : 52};
 mappages["olympus1"].features[550] = {name : 'Brazier', x : 9, y : 50};
 mappages["olympus1"].features[551] = {name : 'Fireplace', x : 10, y : 20};
-mappages["olympus1"].features[552] = {name : 'Fireplace', x : 26, y : 18};
 
 
 mappages["olympus1"].npcs = [];
