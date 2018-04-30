@@ -128,13 +128,13 @@ function SeedDebugMaps(j) {
     }
   }
   
-  if (j === ourmaps.length) { ShowDebugMaps(); return; }
+  if (j === ourmaps.length) { ShowDebugMaps(1); return; }
 
   debugmaps[ourmaps[j]].document.write("<html><head></head><body><div style='position:absolute;left:0px;top:0px;' id='terrain_" + ourmaps[j] + "'>What is this?</div><div style='position:absolute;left:0px;top:0px' id='main_" + ourmaps[j] + "'></div></body></html>");  
   setTimeout(SeedDebugMaps(j+1), 100);
 }
 
-function ShowDebugMaps() {
+function ShowDebugMaps(first) {
   let ourmaps = [];
   ourmaps[0] = PC.getHomeMap();
   for (let i=0;i<PC.getHomeMap().getLinkedMaps().length;i++) {
@@ -151,9 +151,11 @@ function ShowDebugMaps() {
       terrain += "<tr>";
       mainview += "<tr>";
       for (let xx=0;xx<ourmaps[i].data[yy].length;xx++) {
-        let terr = DebugGetDisplayTerrain(ourmaps[i],xx,yy,xx,yy,0);
-        terrain += "<td style='width:32px;height:32px;background-image:url(\"graphics/" + terr.showGraphic + "\"); background-repeat: no-repeat; background-position: " + terr.graphics2 + "px " + terr.graphics3 + "px'>";
-        terrain += "<img width='32' height='32' src='graphics/" + terr.graphics1 + "' border='0' alt='tile " + xx + "," + yy + "' /></td>";
+        if (first) {
+          let terr = DebugGetDisplayTerrain(ourmaps[i],xx,yy,xx,yy,0);
+          terrain += "<td style='width:32px;height:32px;background-image:url(\"graphics/" + terr.showGraphic + "\"); background-repeat: no-repeat; background-position: " + terr.graphics2 + "px " + terr.graphics3 + "px'>";
+          terrain += "<img width='32' height='32' src='graphics/" + terr.graphics1 + "' border='0' alt='tile " + xx + "," + yy + "' /></td>";
+        }
         
         let thiscell = DebugGetDisplayCell(ourmaps[i],xx,yy,xx,yy);
         if (thiscell.terrain) {
@@ -169,9 +171,11 @@ function ShowDebugMaps() {
     
     terrain += "</table>";
     mainview += "</table>";
-    
-    var docterr = debugmaps[mapname].document.getElementById("terrain_" + mapname);
-    docterr.innerHTML = terrain;
+
+    if (first) {
+      var docterr = debugmaps[mapname].document.getElementById("terrain_" + mapname);
+      docterr.innerHTML = terrain;
+    }
     var docmain = debugmaps[mapname].document.getElementById("main_" + mapname);
     docmain.innerHTML = mainview;
     
