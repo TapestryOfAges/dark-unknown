@@ -558,7 +558,7 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 }
 
 Acre.prototype.getPathWeight = function(civ) {
-  var pathweight = this.getTerrain().getPathWeight(civ);
+  var pathweight = 1+this.getTerrain().getPathWeight(civ);
   var fea = this.getFeatures();
   $.each(fea, function(idx,val) {
     pathweight += val.getPathWeight(civ);
@@ -1189,9 +1189,9 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
     this[type].addTop(newthing);
 
     // TEMP DEBUG 
-    let tmpname = "";
-    if (newthing.checkType("NPC")) { tmpname = newthing.getNPCName() }
-console.log(this.getName() + " " + newthing.getName() + " (" + x + "," + y +")" + " - " + tmpname);
+//    let tmpname = "";
+//    if (newthing.checkType("NPC")) { tmpname = newthing.getNPCName() }
+//console.log(this.getName() + " " + newthing.getName() + " (" + x + "," + y +")" + " - " + tmpname);
     // END TEMP DEBUG
 
     if (!this.data[y][x][type]) {
