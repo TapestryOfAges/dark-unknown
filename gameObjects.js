@@ -4921,6 +4921,9 @@ function LadderDownTile() {
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
+
+  this.pathweight = 4; 
+  this.civilizedpathweight = 4; // prefer to go around
 }
 LadderDownTile.prototype = new FeatureObject();
 
@@ -4937,6 +4940,9 @@ function LadderUpTile() {
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
+
+  this.pathweight = 4; 
+  this.civilizedpathweight = 4; // prefer to go around
 }
 LadderUpTile.prototype = new FeatureObject();
 
@@ -4950,8 +4956,8 @@ function StairDownTile() {
   this.desc = "stairs down";
   this.peerview = "#808080";
 
-  this.pathweight = 2; 
-  this.civilizedpathweight = 2; // prefer to go around
+  this.pathweight = 4; 
+  this.civilizedpathweight = 4; // prefer to go around
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -4968,8 +4974,8 @@ function StairUpTile() {
   this.desc = "stairs up";
   this.peerview = "#808080";
 
-  this.pathweight = 2; 
-  this.civilizedpathweight = 2; // prefer to go around
+  this.pathweight = 4; 
+  this.civilizedpathweight = 4; // prefer to go around
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -4986,8 +4992,8 @@ function StairDown2Tile() {
   this.desc = "stairs down";
   this.peerview = "#808080";
 
-  this.pathweight = 2; 
-  this.civilizedpathweight = 2; // prefer to go around
+  this.pathweight = 4; 
+  this.civilizedpathweight = 4; // prefer to go around
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -5004,8 +5010,8 @@ function StairUp2Tile() {
   this.desc = "stairs up";
   this.peerview = "#808080";
 
-  this.pathweight = 2; 
-  this.civilizedpathweight = 2; // prefer to go around
+  this.pathweight = 4; 
+  this.civilizedpathweight = 4; // prefer to go around
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
