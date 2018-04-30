@@ -528,7 +528,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
   if (!moved["canmove"] && !moved["opendoor"]) {
     DebugWrite("ai", " !canmove and !opendoor, trying here.");
 
-    if (who.getCurrentAI() === "scheduled") {
+    if ((who.getCurrentAI() === "scheduled") && (who.currentActivity === "RouteTo")) {
       var tile = who.getHomeMap().getTile(path[0],path[1]);
       let topentity = tile.getTop();
       if (topentity.checkType("pc") || topentity.checkType("npc")) {
