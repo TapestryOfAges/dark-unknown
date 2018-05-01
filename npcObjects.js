@@ -31,6 +31,7 @@ function DruidVillagerNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeMissSound = 'sfx_animal_miss';
+  this.initOverride = 10;
 }
 DruidVillagerNPCTile.prototype = new NPCObject();
 
@@ -62,6 +63,7 @@ function ShepherdVillagerNPCTile() {
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'open_door';
+  this.initOverride = 10;
 }
 ShepherdVillagerNPCTile.prototype = new NPCObject();
 
@@ -95,6 +97,7 @@ function MageVillagerNPCTile() {
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeMissSound = 'sfx_animal_miss';
+  this.initOverride = 10;
 }
 MageVillagerNPCTile.prototype = new NPCObject();
 
@@ -127,6 +130,7 @@ function TinkerVillagerNPCTile() {
   this.spellsknown = { control: 1, attack: 1, };
   this.resists = {};
   this.special = 'open_door';
+  this.initOverride = 10;
 }
 TinkerVillagerNPCTile.prototype = new NPCObject();
 
@@ -159,6 +163,7 @@ function RangerVillagerNPCTile() {
   this.spellsknown = { heal: 1, control: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
+  this.initOverride = 10;
 }
 RangerVillagerNPCTile.prototype = new NPCObject();
 
@@ -190,6 +195,7 @@ function AdventurerVillagerNPCTile() {
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
+  this.initOverride = 10;
 }
 AdventurerVillagerNPCTile.prototype = new NPCObject();
 
@@ -222,6 +228,7 @@ function PaladinVillagerNPCTile() {
   this.spellsknown = { heal: 1, attack: 1, };
   this.resists = {};
   this.special = 'open_door';
+  this.initOverride = 10;
 }
 PaladinVillagerNPCTile.prototype = new NPCObject();
 
@@ -253,6 +260,7 @@ function FighterVillagerNPCTile() {
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'open_door';
+  this.initOverride = 10;
 }
 FighterVillagerNPCTile.prototype = new NPCObject();
 
@@ -284,6 +292,7 @@ function TownsfolkVillagerNPCTile() {
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'coward, open_door';
+  this.initOverride = 10;
 }
 TownsfolkVillagerNPCTile.prototype = new NPCObject();
 
@@ -316,6 +325,7 @@ function BardVillagerNPCTile() {
   this.spellsknown = { control: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
+  this.initOverride = 10;
 }
 BardVillagerNPCTile.prototype = new NPCObject();
 
@@ -350,6 +360,7 @@ function ChildVillagerNPCTile() {
   this.special = 'coward, open_door';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeMissSound = 'sfx_animal_miss';
+  this.initOverride = 10;
 }
 ChildVillagerNPCTile.prototype = new NPCObject();
 
@@ -384,6 +395,7 @@ function BeggarVillagerNPCTile() {
   this.special = 'coward, open_door';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeMissSound = 'sfx_animal_miss';
+  this.initOverride = 10;
 }
 BeggarVillagerNPCTile.prototype = new NPCObject();
 
@@ -418,6 +430,7 @@ function JesterNPCTile() {
   this.special = 'coward, open_door';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeMissSound = 'sfx_animal_miss';
+  this.initOverride = 10;
 }
 JesterNPCTile.prototype = new NPCObject();
 
@@ -448,6 +461,7 @@ function TownGuardNPCTile() {
   this.meleeChance = 100;
   this.resists = {};
   this.special = 'open_door';
+  this.initOverride = 10;
 }
 TownGuardNPCTile.prototype = new NPCObject();
 
@@ -478,6 +492,7 @@ function KingNPCTile() {
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
+  this.initOverride = 10;
 }
 KingNPCTile.prototype = new NPCObject();
 
@@ -508,6 +523,7 @@ function QueenNPCTile() {
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
+  this.initOverride = 10;
 }
 QueenNPCTile.prototype = new NPCObject();
 
@@ -538,6 +554,7 @@ function PrinceNPCTile() {
   this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
+  this.initOverride = 10;
 }
 PrinceNPCTile.prototype = new NPCObject();
 

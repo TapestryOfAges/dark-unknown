@@ -11884,7 +11884,8 @@ function NPCObject() {
 	this.wait;
   this.xpval = 0;
   this.flags = {};
-	
+  this.initOverride = 0;
+  
 	LightEmitting.call(this, 0);
 	
 	this.addType("npc");
@@ -12042,6 +12043,15 @@ NPCObject.prototype.getBarkRad = function() {
 NPCObject.prototype.setBarkRad = function(radius) {
   this.barkrad = parseInt(radius);
   return this.barkrad;
+}
+
+NPCObject.prototype.getInitOverride = function() {
+  return this.initOverride;
+}
+
+NPCObject.prototype.setInitOverride = function(newinit) {
+  this.initOverride = parseInt(newinit);
+  return this.initOverride;
 }
 
 NPCObject.prototype.getLastTurnTime = function() {
@@ -12633,6 +12643,8 @@ NPCObject.prototype.nextActionTime = function(initdelay) {
   if (scale) {
     effectiveDex = this.getDex();
   }
+  if (this.getInitOverride() && (this.getAttitude() === "friendly")) { effectiveDex = this.getInitOverride(); }
+
 //  var isQuick = 1;  // replace with a check for the presence of the Quickness spell.  // actually, quickness spell should just modify initmult
 //  var init = ((-1/60) * effectiveDex + (7/6)) * this.initmult * (isQuick);
   var init = ((-1/60) * effectiveDex + (7/6)) * this.initmult;
