@@ -618,6 +618,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
         }
       }
     }
+    delete who.pushing;
     var diffx = path[0] - who.getx();
     var diffy = path[1] - who.gety();
     var fullx = finaldest[0] - who.getx();
@@ -644,7 +645,8 @@ function StepOrSidestep(who, path, finaldest, nopush) {
         moved = who.moveMe(parity,0,1);
       }
     }
-  }
+  } else { delete who.pushing; }
+
   DebugWrite("ai", "<br />");
   return moved;
 }
