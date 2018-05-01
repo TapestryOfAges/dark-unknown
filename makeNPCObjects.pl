@@ -128,6 +128,9 @@ foreach my $line (<$npcdoc>) {
   if ($fields[34]) {
     print $out "  this.xpval = $fields[34];\n";
   }
+  if ($fields[35]) {
+    print $out "  this.initOverride = $fields[35];\n";
+  }
   print $out "}\n";
   print $out "$fields[0]" . "NPCTile.prototype = new NPCObject();\n\n";
 }
