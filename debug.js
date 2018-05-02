@@ -38,6 +38,7 @@ debugstyle.time = "color:cyan";
 debugstyle.plot = "color:pink";
 debugstyle.events = "color:magenta";
 debugstyle.gameobj = "color:black";
+debugstyle.schedules = "color:purple";
 debugstyle.all = "color:black";
 
 // if (debug) {  ActivateDebug(1); }
