@@ -532,7 +532,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
       var tile = who.getHomeMap().getTile(path[0],path[1]);
       let topentity = tile.getTop();
       if (topentity.checkType("pc") || topentity.checkType("npc")) {
-        if (who.pushing) {
+        if (who.pushing === topentity.getSerial()) {
           delete who.pushing;
           if ((path[0] === finaldest[0]) && (path[1] === finaldest[1])) {
             // PC or NPC is on last step of path, no point to pushing through  -- consider if I want to change this for NPC
@@ -576,6 +576,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
             } else {
               if (debug) {
                 console.log(who.getNPCName() + " has stepped past " + topentity.getNPCName() + " at (" + who.getx() + "," + who.gety() + "), at " + GetUsableClockTime() + ", on " + who.getHomeMap().getName() + ".");
+                EndWaiting(PC,0);
               }
             }
 
@@ -611,7 +612,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
 
           if (!foundpath[0] || ((foundpath.length - path.length) > 9)) {
         
-            who.pushing = 1; 
+            who.pushing = topentity.getSerial(); 
             if (debug) { console.log(who.getNPCName() + " is ready to push past " + topentity.getNPCName() + " at (" + topentity.getx() + "," + topentity.gety() + ") on " + topentity.getHomeMap().getName() + "."); }
             return moved;
           }
