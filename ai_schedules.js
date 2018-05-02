@@ -139,15 +139,18 @@ ais.RouteTo = function(who, params) {
     var gridbackup = who.getHomeMap().getPathGrid(movetype).clone();
     
     let npcs = who.getHomeMap().npcs.getAll();
+    DebugWrite("schedules","Making NPCs block paths: ");
     for (let i=0;i<npcs.length;i++) {
       if ((npcs[i].getCurrentAI() === "scheduled") && ((npcs[i].currentActivity !== "RouteTo") && (npcs[i].currentActivity !== "ChangeMap"))) {
         // creating a one-time pathmap that makes NPCs who are not currently moving (RouteTo or ChangeMap) considered impassable 
         gridbackup.setWalkableAt(npcs[i].getx(),npcs[i].gety(),false);
+        DebugWrite("schedules",npcs[i].getNPCName() + " (" + npcs[i].getx() + "," + npcs[i].gety() + "), ");
       } else {
         // other NPCs get a path weight cost- walk around if possible, push through if not
         gridbackup.setCostAt(npcs[i].getx(),npcs[i].gety(),5);
       }
     }
+    DebugWrite("schedules","<br />");
     if (who.getHomeMap() === PC.getHomeMap()) {
       // make PC a difficult square
       gridbackup.setCostAt(PC.getx(),PC.gety(),5);
@@ -159,6 +162,7 @@ ais.RouteTo = function(who, params) {
 
 //    var path = who.getHomeMap().getPath(who.getx(),who.gety(),params.destination.x,params.destination.y,movetype);
     path.shift();
+
     if (path[0]) {
       moved = StepOrSidestep(who,path[0],[params.destination.x, params.destination.y]);
       if (moved["opendoor"]) {
