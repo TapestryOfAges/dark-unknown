@@ -733,7 +733,10 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			this.removePassable(MOVE_WALK);
 			this.removePassable(MOVE_LEVITATE);
 			this.removePassable(MOVE_FLY);
-			mymap.setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK);
+      mymap.setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK);
+      if (this.getName() === "SecretDoor") {
+        mymap.setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK_DOOR);
+      }
 			mymap.setWalkableAt(this.getx(),this.gety(),false,MOVE_SWIM);
 			mymap.setWalkableAt(this.getx(),this.gety(),false,MOVE_LEVITATE);
 			mymap.setWalkableAt(this.getx(),this.gety(),false,MOVE_FLY);
@@ -767,7 +770,10 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 			this.addPassable(MOVE_WALK);
 			this.addPassable(MOVE_LEVITATE);
 			this.addPassable(MOVE_FLY);
-			mymap.setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK);
+      mymap.setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK);
+      if (this.getName() === "SecretDoor") {
+        mymap.setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK_DOOR);
+      }
 			mymap.setWalkableAt(this.getx(),this.gety(),true,MOVE_LEVITATE);
 			mymap.setWalkableAt(this.getx(),this.gety(),true,MOVE_SWIM);
 			mymap.setWalkableAt(this.getx(),this.gety(),true,MOVE_FLY);
@@ -4640,7 +4646,7 @@ function ThroneTile() {
 	this.graphic = "furniture.gif";
 	this.spritexoffset = "-224";
 	this.spriteyoffset = "-64";
-	this.passable = MOVE_ETHEREAL + MOVE_FLY;
+	this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.prefix = "the";
 	this.desc = "throne";
