@@ -488,6 +488,7 @@ ais.CheckTreasuryLock = function(who,params) {
   return {fin:1};
 }
 
+// CHECK THIS
 ais.PassOlympusGuardDoor = function(who,params) {
   let door = who.getHomeMap().getTile(47,57).getTopFeature();
   if (who.getx() === 46) {
