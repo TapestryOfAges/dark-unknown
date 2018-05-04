@@ -614,6 +614,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
         
             who.pushing = topentity.getSerial(); 
             if (debug) { console.log(who.getNPCName() + " is ready to push past " + topentity.getNPCName() + " at (" + topentity.getx() + "," + topentity.gety() + ") on " + topentity.getHomeMap().getName() + "."); }
+            topentity.pushed = 1;
             return moved;
           }
         }

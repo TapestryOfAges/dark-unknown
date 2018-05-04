@@ -177,7 +177,8 @@ ais.RouteTo = function(who, params) {
       }
     } else {
       console.log(who.getNPCName() + " on " + who.getHomeMap().getName() + " at " + who.getx() + "," + who.gety());
-      console.log("Failed to move, in schedule index " + DU.schedules[who.getSchedule()]["currentIndex"]);
+      console.log("Failed to move, in schedule index " + who.getCurrentScheduleIndex());
+      EndWaiting(PC,0);
     }
   } else { DebugWrite("schedules", "Already at destination... "); }
 
@@ -295,7 +296,7 @@ ais.WaitHere = function(who,params) {
       }
     } else if (params.leashLength > 0) {
       // I am permitted to wander
-      if (Dice.roll("1d2") === 2) {
+      if ((Dice.roll("1d2") === 2) || who.pushed) {
         who.aiWandering = 1;
         var moveval = ais.Randomwalk(who,25,25,25,25);
         delete who.aiWandering;
