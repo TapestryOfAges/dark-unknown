@@ -601,21 +601,23 @@ function StepOrSidestep(who, path, finaldest, nopush) {
           let npcs = who.getHomeMap().npcs.getAll();
           for (let i=0;i<npcs.length;i++) {
             if ((npcs[i].getCurrentAI() === "scheduled") && ((npcs[i].currentActivity !== "RouteTo") && (npcs[i].currentActivity !== "ChangeMap"))) {
-              // creating a one-time pathmap that makes NPCs who are not currently moving (RouteTo or ChangeMap)
+              // creating a one-time pathmap that makes NPCs who are not currently moving (RouteTo or ChangeMap) impassable
               gridbackup.setWalkableAt(npcs[i].getx(),npcs[i].gety(),false);
             }
           }
-          // make NPCs who are not moving block movement as well      
 
           // get path
           var foundpath = finder.findPath(who.getx(),who.gety(),finaldest[0],finaldest[1],gridbackup);
 
-          if (!foundpath[0] || ((foundpath.length - path.length) > 9)) {
+          let oldpath = who.getHomeMap().getPath(who.getx(),who.gety(),finaldest[0],finaldest[1],MOVE_WALK_DOOR);
+          if (!foundpath.length || ((foundpath.length - oldpath.length) > 9)) {
         
             who.pushing = topentity.getSerial(); 
-            if (debug) { console.log(who.getNPCName() + " is ready to push past " + topentity.getNPCName() + " at (" + topentity.getx() + "," + topentity.gety() + ") on " + topentity.getHomeMap().getName() + "."); }
+            if (debug) { console.log(who.getNPCName() + " is ready to push past " + topentity.getNPCName() + " at (" + topentity.getx() + "," + topentity.gety() + ") on " + topentity.getHomeMap().getName() + " at " + GetUsableClockTime() + "."); }
             topentity.pushed = 1;
             return moved;
+          } else {
+            console.log(who.getNPCName() + " bumped into " + topentity.getNPCName() + " but is going to try to sidestep.");
           }
         }
       }
