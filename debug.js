@@ -119,6 +119,19 @@ function OpenDebugMaps() {
   return;
 }
 
+function CloseDebugMaps() {
+  delete debugmaps.open;
+  let PCMap = PC.getHomeMap();
+  debugmaps[PC.getHomeMap().getName()].close();
+  delete debugmaps[PC.getHomeMap().getName()];
+  for (let i=0;i<PC.getHomeMap().getLinkedMaps().length;i++) {
+    if (PC.getHomeMap().getLinkedMaps()[i] !== "") {
+      debugmaps[PC.getHomeMap().getLinkedMaps()[i]].close();
+      delete debugmaps[PC.getHomeMap().getLinkedMaps()[i]];
+    }
+  }  
+}
+
 function SeedDebugMaps(j) {
   let PCMap = PC.getHomeMap();
   let ourmaps = [];
