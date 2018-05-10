@@ -175,6 +175,10 @@ ais.RouteTo = function(who, params) {
         who.flags.activityComplete = 1;
         DebugWrite("schedules", "PC at destination, giving up and setting activityComplete.<br />");
       }
+    } else if ((who.getx() === params.destination.x) && (who.gety() === params.destination.y)) {
+      who.flags.activityComplete = 1;
+      DebugWrite("schedules", "I am already at my destination somehow.<br />");
+      console.log(who.getNPCName() + " somehow is already at her destination.");
     } else {
       console.log(who.getNPCName() + " on " + who.getHomeMap().getName() + " at " + who.getx() + "," + who.gety());
       console.log("Failed to move, in schedule index " + who.getCurrentScheduleIndex());
