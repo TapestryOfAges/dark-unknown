@@ -629,24 +629,38 @@ function StepOrSidestep(who, path, finaldest, nopush) {
     var fully = finaldest[1] - who.gety();
 
     if (diffx !== 0) {
-      if (fully > 0) { moved = who.moveMe(0,1,1); }
-      else if (fully < 0 ) { moved = who.moveMe(0,-1,1); }
+      if (fully > 0) { 
+        moved = who.moveMe(0,1,1);
+        if (!moved["canmove"]) { moved = who.moveMe(0,-1,1); } 
+      }
+      else if (fully < 0 ) { 
+        moved = who.moveMe(0,-1,1);
+        if (!moved["canmove"]) { moved = who.moveMe(0,1,1); } 
+      }
       else { 
         var parity = 1;
         if (Dice.roll("1d2") === 1) { 
           parity = -1;
         }
         moved = who.moveMe(0,parity,1); 
+        if (!moved["canmove"]) { moved = who.moveMe(0,-1*parity,1); }
       }
     } else {
-      if (fullx > 0) { moved = who.moveMe(1,0,1); }
-      else if (fullx < 0) { moved = who.moveMe(-1,0,1); }
+      if (fullx > 0) { 
+        moved = who.moveMe(1,0,1); 
+        if (!moved["canmove"]) { moved = who.moveMe(-1,0,1); }
+      }
+      else if (fullx < 0) { 
+        moved = who.moveMe(-1,0,1);
+        if (!moved["canmove"]) { moved = who.moveMe(1,0,1); } 
+      }
       else {
         var parity = 1;
         if (Dice.roll("1d2") === 1) {
           parity = -1;
         } 
         moved = who.moveMe(parity,0,1);
+        if (!moved["canmove"]) { moved = who.moveMe(-1*parity,0,1); }
       }
     }
   } else { delete who.pushing; }
