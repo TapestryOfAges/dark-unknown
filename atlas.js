@@ -545,7 +545,7 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	   featurepassability = 0;
     }    
   }
-//	if (totalpassability & featurepassability & mover.getMovetype()) {
+
   if (totalpassability & featurepassability & movetype) {
 		retval["canmove"] = 1;
 		retval["msg"] = "";
@@ -2492,7 +2492,6 @@ MapMemory.prototype.deleteMap = function(mapname) {
 			delete this.data[this.data[mapname].linkedMaps[i]];
 			// also stop tracking that magic is negated on this map
 			delete negated[this.data[mapname].linkedMaps[i]];   
-//			if (debug && debugflags.map) { dbs.writeln("<span style='color:brown; font-style:italic'>Deleting map " + this.data[mapname].linkedMaps[i] + ".</span><br />"); }	
 			DebugWrite("map", "* Deleting map " + this.data[mapname].linkedMaps[i] + ".</span><br />");
 		}
 	}
@@ -2500,13 +2499,10 @@ MapMemory.prototype.deleteMap = function(mapname) {
 	delete negated[mapname];
 	DU.gameflags.setFlag("negate", negated);
 	if (debug && debugflags.map) {
-//	  dbs.writeln("<span style='color:brown; font-style:italic'>Remaining maps: "); 
 	  DebugWrite("map", "Remaining maps: ");
 	  $.each(this.data, function(idx,val) {
-//	    dbs.writeln(idx + ", "); 
 	    DebugWrite("map", idx + ", ");
 	  });
-//	  dbs.writeln(".</span><br />");
 	  DebugWrite("map", ".</span><br />");
 	}
 	
@@ -2515,4 +2511,8 @@ MapMemory.prototype.deleteMap = function(mapname) {
 MapMemory.prototype.getMap = function(mapname) {
 	if (this.data[mapname]) { return this.data[mapname]; }
 	else { return undefined; }
+}
+
+MapMemory.prototype.getAllMaps = function() {
+  return this.data;
 }
