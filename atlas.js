@@ -1002,8 +1002,8 @@ GameMap.prototype.createPathGrid = function() {
         var pathweight;
         if (k===32) { pathweight = thisspot.getPathWeight("civilized"); }
         else { pathweight = thisspot.getPathWeight(); }
-        if (!pathweight) { pathweight = 0; }
-        this.setCostAt(i,j,pathweight,k);
+        if (!pathweight) { pathweight = 1; }
+        this.setWeightAt(i,j,pathweight,k);
       }
     }
   }
@@ -1029,8 +1029,8 @@ GameMap.prototype.setWalkableAt = function(x,y,canwalk,movetype) {
   this.pathGrid[movetype].setWalkableAt(x,y,canwalk);
 }
 
-GameMap.prototype.setCostAt = function(x,y,cost,movetype) {
-  this.pathGrid[movetype].setCostAt(x,y,cost);
+GameMap.prototype.setWeightAt = function(x,y,cost,movetype) {
+  this.pathGrid[movetype].setWeightAt(x,y,cost);
 }
 
 

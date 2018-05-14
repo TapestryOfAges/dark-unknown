@@ -147,13 +147,13 @@ ais.RouteTo = function(who, params) {
         DebugWrite("schedules",npcs[i].getNPCName() + " (" + npcs[i].getx() + "," + npcs[i].gety() + "), ");
       } else {
         // other NPCs get a path weight cost- walk around if possible, push through if not
-        gridbackup.setCostAt(npcs[i].getx(),npcs[i].gety(),5);
+        gridbackup.setWeightAt(npcs[i].getx(),npcs[i].gety(),5);
       }
     }
     DebugWrite("schedules","<br />");
     if (who.getHomeMap() === PC.getHomeMap()) {
       // make PC a difficult square
-      gridbackup.setCostAt(PC.getx(),PC.gety(),5);
+      gridbackup.setWeightAt(PC.getx(),PC.gety(),5);
     }
     gridbackup.setWalkableAt(params.destination.x,params.destination.y,true);
     gridbackup.setWalkableAt(who.getx(),who.gety(),true);
