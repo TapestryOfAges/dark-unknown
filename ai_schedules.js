@@ -29,7 +29,7 @@ ais.scheduled = function(who) {
     }
     if (DiffTime(nextactivity.params.startTime,currtime) <= DiffTime(prevtime,currtime)) {
       DebugWrite("schedules", "Moving to next scheduled activity (" + nextidx + ")- startTime met.");
-      who.setCurrentScheduleIndex(nextidx);
+      who.incrementCurrentScheduleIndex();
       delete who.pushing;
     }
   }
@@ -37,14 +37,14 @@ ais.scheduled = function(who) {
     if (nowactivity.params.endCondition === "Time") {
       if (CheckTimeAfterTime(currtime, nowactivity.params.endTime)) {
         DebugWrite("schedules", "Moving to next scheduled activity- endTime met.");
-        who.setCurrentScheduleIndex(nextidx);
+        who.incrementCurrentScheduleIndex();
         delete who.pushing;
       }
     }
     if (who.flags.activityComplete) {
 //      console.log(who.getNPCName() + ": Next activity due to activity complete at " + currtime + ". Moving to index " + nextidx + ".");
       DebugWrite("schedules", who.getNPCName() + ": Next activity due to activity complete at " + currtime + ".");
-      who.setCurrentScheduleIndex(nextidx);
+      who.incrementCurrentScheduleIndex();
       delete who.flags.activityComplete;
       delete who.pushing;
     }
