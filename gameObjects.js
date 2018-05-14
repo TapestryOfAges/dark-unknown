@@ -12084,9 +12084,15 @@ NPCObject.prototype.getCurrentScheduleIndex = function() {
   return this.currentScheduleIndex; 
 }
 
-NPCObject.prototype.setCurrentScheduleIndex = function (sched) {
+NPCObject.prototype.setCurrentScheduleIndex = function(sched) {
   sched = parseInt(sched);
   this.currentScheduleIndex = sched;
+  return this.currentScheduleIndex;
+}
+
+NPCObject.prototype.incrementCurrentScheduleIndex = function() {
+  this.currentScheduleIndex = this.currentScheduleIndex++;
+  return this.currentScheduleIndex;
 }
 
 NPCObject.prototype.getConversation = function() {
