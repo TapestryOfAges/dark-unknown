@@ -1193,8 +1193,8 @@ function IsWet(tile) {
 
 function InanimateObject() {
   this.initdelay = 1;  // multiplicative
-  this.pathweight = 0; // additive
-  this.civilizedpathweight = 0; // additive, more to keep npcs on roads/paths
+  this.pathweight = 1; // multiplicative
+  this.civilizedpathweight = 1; // multiplicative, more to keep npcs on roads/paths
   this.walkonscript = "";
   this.usescript = "";
   this.peerview = "";
@@ -2375,7 +2375,7 @@ function CobblestoneTile() {
   this.desc = "cobblestones";
   this.peerview = "#800000";
   this.walkSound = "stone";
-  this.civilizedpathweight = -.8;
+  this.civilizedpathweight = .3;
 }
 CobblestoneTile.prototype = new TerrainObject();
 
@@ -2507,8 +2507,8 @@ function RoadTile() {
   this.peerview = "#7a3a1a";
   
   this.initdelay = 0.8;
-  this.pathweight = -.2;
-  this.civilizedpathweight = -.5;
+  this.pathweight = .8;
+  this.civilizedpathweight = .5;
   this.walkSound = "grass";
   
   SetBySurroundRoad.call(this);
@@ -2524,7 +2524,7 @@ function BrushTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
-  this.pathweight = .1;
+  this.pathweight = 1.1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
   this.walkSound = "grass";
@@ -2541,7 +2541,7 @@ function ShadowBrushTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
-  this.pathweight = .1;
+  this.pathweight = 1.1;
   this.combatmap = "Brush";
   this.peerview = "#005080";
   this.walkSound = "grass";
@@ -2557,7 +2557,7 @@ function UnderbrushTile() {
   this.blocklos = 0;
   this.desc = "underbrush";
   this.initdelay = 1.1;
-  this.pathweight = .1;
+  this.pathweight = 1.1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
   this.walkSound = "grass";
@@ -2574,7 +2574,7 @@ function BrushNCoastTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
-  this.pathweight = .1;
+  this.pathweight = 1.1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
   this.walkSound = "grass";
@@ -2591,7 +2591,7 @@ function BrushECoastTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
-  this.pathweight = .1;
+  this.pathweight = 1.1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
   this.walkSound = "grass";
@@ -2608,7 +2608,7 @@ function BrushSCoastTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;
-  this.pathweight = .1;
+  this.pathweight = 1.1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
   this.walkSound = "grass";
@@ -2625,7 +2625,7 @@ function BrushWCoastTile() {
   this.blocklos = 0;
   this.desc = "brush";
   this.initdelay = 1.1;  
-  this.pathweight = .1;
+  this.pathweight = 1.1;
   this.combatmap = "Brush";
   this.peerview = "#008000";
   this.walkSound = "grass";
@@ -2644,7 +2644,7 @@ function ForestTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
-  this.pathweight = .3;
+  this.pathweight = 1.3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
   this.walkSound = "forest";
@@ -2662,7 +2662,7 @@ function GroveTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "trees";
   this.initdelay = 1.3;
-  this.pathweight = .3;
+  this.pathweight = 1.3;
   this.peerview = "#004000";
   this.walkSound = "forest";
 }
@@ -2679,7 +2679,7 @@ function ShadowGroveTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "trees";
   this.initdelay = 1.3;
-  this.pathweight = .3;
+  this.pathweight = 1.3;
   this.peerview = "#002840";
   this.walkSound = "forest";
 }
@@ -2697,7 +2697,7 @@ function ForestNCoastTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
-  this.pathweight = .3;
+  this.pathweight = 1.3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
   this.walkSound = "forest";
@@ -2716,7 +2716,7 @@ function ForestECoastTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
-  this.pathweight = .3;
+  this.pathweight = 1.3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
   this.walkSound = "forest";
@@ -2735,7 +2735,7 @@ function ForestSCoastTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
-  this.pathweight = .3;
+  this.pathweight = 1.3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
   this.walkSound = "forest";
@@ -2754,7 +2754,7 @@ function ForestWCoastTile() {
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
-  this.pathweight = .3;
+  this.pathweight = 1.3;
   this.combatmap = "Forest";
   this.peerview = "#004000";
   this.walkSound = "forest";
@@ -2774,7 +2774,7 @@ function HillsTile() {
 //  this.losatdistance = { distance : 5 , blocklos : .5 };
   this.desc = "hills";
   this.initdelay = 1.5;
-  this.pathweight = .5;
+  this.pathweight = 1.5;
   this.combatmap = "Hill";
   this.peerview = "#49473a";
   this.walkSound = "hill";
@@ -2792,7 +2792,7 @@ function PurpleCobblestoneTile() {
   this.desc = "cobblestones";
   this.peerview = "#600060";
   this.walkSound = "stone";
-  this.civilizedpathweight = -.8;
+  this.civilizedpathweight = .3;
 }
 PurpleCobblestoneTile.prototype = new TerrainObject();
 
@@ -2807,7 +2807,7 @@ function ShadowPurpleCobblestoneTile() {
   this.desc = "cobblestones";
   this.peerview = "#602300";
   this.walkSound = "stone";
-  this.civilizedpathweight = -.8;
+  this.civilizedpathweight = .3;
 }
 ShadowPurpleCobblestoneTile.prototype = new TerrainObject();
 
@@ -2821,7 +2821,7 @@ function SwampTile() {
   this.blocklos = 0;
   this.desc = "swamp";
   this.initdelay = 1.2;
-  this.pathweight = 1;
+  this.pathweight = 2;
   this.combatmap = "Swamp";
   this.peerview = "#004000";
   this.walkSound = "swamp";
@@ -2854,7 +2854,7 @@ function ShadowSwampTile() {
   this.blocklos = 0;
   this.desc = "swamp";
   this.initdelay = 1.2;
-  this.pathweight = 1;
+  this.pathweight = 2;
   this.combatmap = "Swamp";
   this.peerview = "#002840";
   this.walkSound = "swamp";
@@ -3496,7 +3496,7 @@ function LavaTile() {
   this.blocklos = 0;
   this.desc = "lava";
   this.initdelay = 1.2;
-  this.pathweight = 3;
+  this.pathweight = 5;
   this.spritexoffset = "-224";
   this.spriteyoffset = "0";
   
@@ -4230,7 +4230,7 @@ function CampfireTile() {
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "campfire";
-	this.pathweight = 3;
+	this.pathweight = 4;
 	this.firedamage = "2d4";
 	
 	LightEmitting.call(this, 2);
@@ -4569,7 +4569,7 @@ function FireplaceTile() {
   this.prefix = "a";
 	this.desc = "fireplace";
 	this.peerview = "white";
-	this.pathweight = 3;
+	this.pathweight = 4;
 	this.firedamage = "3d4";
 	
 	LightEmitting.call(this, 2);
@@ -4719,7 +4719,7 @@ function SleepFieldTile() {
   this.prefix = "a";
 	this.desc = "sleep field";
 	this.initdelay = 1.5;
-	this.pathweight = 3;
+	this.pathweight = 4;
   this.spritexoffset = "-96";
   this.spriteyoffset = "0";
 	
@@ -4775,7 +4775,7 @@ function FireFieldTile() {
 	
 	LightEmitting.call(this, 3);
 	this.initdelay = 1.5;
-	this.pathweight = 3;
+	this.pathweight = 5;
 	
 	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
 }
@@ -4869,7 +4869,7 @@ function PoisonFieldTile() {
   this.prefix = "a";
 	this.desc = "poison field";
 	this.initdelay = 1.5;
-	this.pathweight = 3;
+	this.pathweight = 4;
   this.spritexoffset = "0";
   this.spriteyoffset = "0";
 	

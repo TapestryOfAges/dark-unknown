@@ -650,6 +650,7 @@ Grid.prototype.clone = function() {
         newNodes[i] = new Array(width);
         for (j = 0; j < width; ++j) {
             newNodes[i][j] = new Node(j, i, thisNodes[i][j].walkable);
+            newNodes[i][j].weight = thisNodes[i][j].weight;
         }
     }
 

@@ -558,10 +558,10 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 }
 
 Acre.prototype.getPathWeight = function(civ) {
-  var pathweight = 1+this.getTerrain().getPathWeight(civ);
+  var pathweight = this.getTerrain().getPathWeight(civ);
   var fea = this.getFeatures();
   $.each(fea, function(idx,val) {
-    pathweight += val.getPathWeight(civ);
+    pathweight *= val.getPathWeight(civ);
   });
   return pathweight;
 };
