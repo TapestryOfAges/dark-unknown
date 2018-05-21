@@ -134,6 +134,8 @@ function Atlas() {
     "ShadowSoutheastCoast" : 's/',
     '++' : "Cobblestone", 
     "Cobblestone" : '++',
+    '+r' : "CobblestoneRoad", 
+    "CobblestoneRoad" : '+r',
     '-=' : "PlanksEW", 
     "PlanksEW" : '-=',
     '..' : "Grass", 
@@ -996,11 +998,11 @@ GameMap.prototype.createPathGrid = function() {
   for (var i=0; i<this.getWidth(); i++) {
     for (var j=0; j<this.getHeight(); j++) {
       var thisspot = this.getTile(i,j);
-      for (var k=1; k<=32; k=k*2) {
+      for (var k=1; k<=MOVE_WALK_DOOR; k=k*2) {
         var response = thisspot.canMoveHere(k, 1);
         if (!response["canmove"]) { this.setWalkableAt(i,j,false,k); }
         var pathweight;
-        if (k===32) { pathweight = thisspot.getPathWeight("civilized"); }
+        if (k===MOVE_WALK_DOOR) { pathweight = thisspot.getPathWeight("civilized"); }
         else { pathweight = thisspot.getPathWeight(); }
         if (!pathweight) { pathweight = 1; }
         this.setWeightAt(i,j,pathweight,k);
@@ -1219,7 +1221,12 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
       for (var itr=1; itr<=32; itr=itr*2) {
         var response = tile.canMoveHere(itr, 1);
 	      if (response["canmove"]) { this.setWalkableAt(x,y,true,itr); }
-  	    else { this.setWalkableAt(x,y,false,itr); }
+        else { this.setWalkableAt(x,y,false,itr); }
+        if (itr < 32) {
+          this.setWeightAt(x,y,this.getTile(x,y).getPathWeight(),itr);
+        } else {
+          this.setWeightAt(x,y,this.getTile(x,y).getPathWeight("civilized"),itr);
+        }
     	}
     }
 
@@ -1599,7 +1606,6 @@ GameMap.prototype.loadMap = function (name) {
     var loadfeatures = mappages.readPage(name, "features");
 //  this.features = new Collection;
     if (loadfeatures) {
-//  	alert(loadfeatures.length + " features loading...");
       for (var fi=0;fi<=loadfeatures.length-1;fi++) {
         var newfeature = localFactory.createTile(loadfeatures[fi].name);
         DebugWrite("map", "<br />Loading features: " +newfeature.getName()+ "...<br />");
@@ -1652,7 +1658,7 @@ GameMap.prototype.loadMap = function (name) {
     var loadnpcs = mappages.readPage(name, "npcs");
     if (loadnpcs)  {
   	  for (var npci=0;npci<=loadnpcs.length-1;npci++) {
-    		var newnpc = localFactory.createTile(loadnpcs[npci].name);
+        var newnpc = localFactory.createTile(loadnpcs[npci].name);
 //  		newnpc.setHomeMap(this);
     		for (var npckey in loadnpcs[npci]) {
   	  		if (npckey === "NPCName") { newnpc.setNPCName(loadnpcs[npci].NPCName); }
@@ -2456,13 +2462,12 @@ function MapMemory() {
 
 MapMemory.prototype.addMap = function(mapname) {
 	var newmap = new GameMap();
-	newmap.loadMap(mapname);
-	
+	newmap.loadMap(mapname);	
 	this.addMapByRef(newmap);
 
-  if(typeof mappages[mapname]["onload"] === "function") {
-    mappages[mapname]["onload"](newmap);
-  }
+//  if(typeof mappages[mapname]["onload"] === "function") {
+//    mappages[mapname]["onload"](newmap);
+//  }
 	
 	return newmap;
 }
@@ -2478,9 +2483,23 @@ MapMemory.prototype.addMapByRef = function(mapref) {
 	      var anothermap = new GameMap();
 	      anothermap.loadMap(mapref.linkedMaps[i]);
   	    this.data[mapref.linkedMaps[i]] = anothermap;
-	    }
+      }
 	  }
-	}
+  }
+  
+  if(typeof mappages[mapname]["onload"] === "function") {
+    mappages[mapname]["onload"](mapref);
+  }
+
+  if (gamestate.getMode() !== "loadgame") {  // but only if not loading- on load they get called individually
+    if (mapref.linkedMaps[0] && mapref.linkedMaps[0] !== "") {
+      for (let i=0;i<mapref.linkedMaps.length;i++) {
+        if(typeof mappages[this.data[mapref.linkedMaps[i]].getName()]["onload"] === "function") {
+          mappages[this.data[mapref.linkedMaps[i]].getName()]["onload"](this.data[mapref.linkedMaps[i]]);
+        }
+      }
+    }
+  }
 	
 	return mapref;
 }
