@@ -53,6 +53,7 @@ ais.scheduled = function(who) {
   nowactivity = schedule.scheduleArray[who.getCurrentScheduleIndex()];
 
   if (nowactivity.params.bark) {
+    DebugWrite("schedules", "Checking bark... ");
     CheckNPCBark(who,nowactivity);
   }
 
@@ -77,14 +78,15 @@ ais.scheduled = function(who) {
 
 function CheckNPCBark(who,nowactivity) {
   if (who.getHomeMap() === PC.getHomeMap()) { 
-    if (Dice.roll("1d100")  < nowactivity.params.barkfreq) {
+    let chanceroll = Dice.roll("1d100");
+    if (chanceroll < parseInt(nowactivity.params.barkfreq)) { 
       let barkrad = nowactivity.params.barkrad;
-      if (barkrad) { barkrad = 3; }
+      if (!barkrad) { barkrad = 3; }
       if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= barkrad) {
         // bark!
         DebugWrite("schedules", "Townfolk barking.");
         var barkarr = nowactivity.params.bark.split("^^");
-        var idx = RollDice("1d" + barkarr.length + "-1");
+        var idx = Dice.roll("1d" + barkarr.length + "-1");
         var mybark = barkarr[idx];
         if (mybark) {
           if ((mybark.indexOf("%THEDESC%") !== -1) || (mybark.indexOf("%DESC%") !== -1)) {
@@ -141,7 +143,7 @@ ais.RouteTo = function(who, params) {
     let npcs = who.getHomeMap().npcs.getAll();
     DebugWrite("schedules","Making NPCs block paths: ");
     for (let i=0;i<npcs.length;i++) {
-      if ((npcs[i].getCurrentAI() === "scheduled") && ((npcs[i].currentActivity !== "RouteTo") && (npcs[i].currentActivity !== "ChangeMap"))) {
+      if ((npcs[i] !== who) && (npcs[i].getCurrentAI() === "scheduled") && ((npcs[i].currentActivity !== "RouteTo") && (npcs[i].currentActivity !== "ChangeMap"))) {
         // creating a one-time pathmap that makes NPCs who are not currently moving (RouteTo or ChangeMap) considered impassable 
         gridbackup.setWalkableAt(npcs[i].getx(),npcs[i].gety(),false);
         DebugWrite("schedules",npcs[i].getNPCName() + " (" + npcs[i].getx() + "," + npcs[i].gety() + "), ");
@@ -333,7 +335,7 @@ ais.ChangeMap = function(who,params) {
   var desttile = MoveBetweenMaps(who,who.getHomeMap(),destmap,params.destination.x,params.destination.y);
   if (desttile) {
     who.flags.activityComplete = 1;
-    DebugWrite("schedules", "Changed maps.");
+    DebugWrite("schedules", "Changed maps. Going to (" + params.destination.x + "," + params.destination.y + "), wound up at (" + who.getx() + "," + who.gety() + ").<br />");
   } else {
     DebugWrite("schedules", "Failed to change maps. Will try again next turn.");
   }
@@ -345,7 +347,7 @@ ais.ChangeMap = function(who,params) {
 
 ais.CallAI = function(who,params) {
   var retval = ais[params.AIName](who,JSON.parse(params.params));
-  if (retval["fin"] = 1) {
+  if (retval["fin"] === 1) {
     who.flags.activityComplete = 1;
   }
   return retval;
@@ -482,6 +484,7 @@ ais.LightLight = function(who,params) {
 
 ais.ChangeGraphic = function(who,params) {
   who.setGraphic(params.graphic);
+  DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
   return {fin:1};
 }
 
@@ -495,35 +498,48 @@ ais.CheckTreasuryLock = function(who,params) {
 
 // CHECK THIS
 ais.PassOlympusGuardDoor = function(who,params) {
+  DebugWrite("schedules", "In PassOlympusGuardDoor going " + params.dir + ".<br />");
   let door = who.getHomeMap().getTile(47,57).getTopFeature();
   if (who.getx() === 46) {
+    DebugWrite("schedules", "West of door, going east. ");
     if (!door.open) {
+      DebugWrite("schedules", "Unlock and open door. ");
       door.unlockMe();
       MakeUseHappen(who,door,"map");
     }
     who.moveMe(1,0);
+    DebugWrite("schedules", "Step through. Activity unfinished.<br />");
     return {fin:0};
   } else if (who.getx() === 48) {
+    DebugWrite("schedules", "East of door, going west. ");
     if (!door.open) {
+      DebugWrite("schedules", "Unlock and open door. ");
       door.unlockMe();
       MakeUseHappen(who,door,"map");
     }
     who.moveMe(-1,0);
+    DebugWrite("schedules", "Step through. Activity unfinished.<br />");
     return {fin:0};
   } else if (params.dir === "east") {
     who.moveMe(1,0);
+    DebugWrite("schedules", "In doorway, heading east. Stepped out. ");
     if (door.open) {
+      DebugWrite("schedules", "Door was open, closing.");
       MakeUseHappen(who,door,"map");
     }
     door.lockMe();
+    DebugWrite("schedules", "Door locked : " + door.getLocked() + ". Activity complete.<br />");
     return {fin:1};  
   } else {
     who.moveMe(-1,0);
+    DebugWrite("schedules", "In doorway, heading west. Stepped out. ");
     if (door.open) {
+      DebugWrite("schedules", "Door was open, closing.");
       MakeUseHappen(who,door,"map");
     }
     door.lockMe();
+    DebugWrite("schedules", "Door locked : " + door.getLocked() + ". Activity complete.<br />");
     return {fin:1};  
   }
-  alert("Error in PassOlympusGuardDoor - called by " + who.getNPCName())
+  alert("Error in PassOlympusGuardDoor - called by " + who.getNPCName());
 }
