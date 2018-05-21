@@ -958,7 +958,7 @@ function PerformEnter(cmd) {
 			retval["fin"] = 2;
 			retval["txt"] = "You cannot climb that.";
 		} else {
-			retval["fin"] = 1;
+      retval["fin"] = 1;
 			var newmap = new GameMap();
 			if (maps.getMap(destination)) {
 				newmap = maps.getMap(destination);
