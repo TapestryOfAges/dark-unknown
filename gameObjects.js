@@ -571,14 +571,20 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 		var homemap = this.getHomeMap();
 		if (homemap) {
 		  homemap.setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK_DOOR);
-		}
+    }
+    if (!DU.gameflags.getFlag("editor")) {
+      DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
+    }
 	}
 	this.unlockMe = function() { 
 	  this.lockMe(0);
 	  var homemap = this.getHomeMap();
 	  if (homemap) {
 	    this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK_DOOR);
-	  }
+    }
+    if (!DU.gameflags.getFlag("editor")) {
+      DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
+    }
 	}
 	
 	this.setTrap = function(trap, challenge) { 
@@ -2375,9 +2381,22 @@ function CobblestoneTile() {
   this.desc = "cobblestones";
   this.peerview = "#800000";
   this.walkSound = "stone";
-  this.civilizedpathweight = .3;
 }
 CobblestoneTile.prototype = new TerrainObject();
+
+function CobblestoneRoadTile() {
+  this.name = "CobblestoneRoad";
+  this.graphic = "terrain_tiles.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-160";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "cobblestones";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+  this.civilizedpathweight = .6;
+}
+CobblestoneRoadTile.prototype = new TerrainObject();
 
 function BlueTilesTile() {
   this.name = "BlueTiles";
@@ -2792,7 +2811,6 @@ function PurpleCobblestoneTile() {
   this.desc = "cobblestones";
   this.peerview = "#600060";
   this.walkSound = "stone";
-  this.civilizedpathweight = .3;
 }
 PurpleCobblestoneTile.prototype = new TerrainObject();
 
@@ -2807,7 +2825,6 @@ function ShadowPurpleCobblestoneTile() {
   this.desc = "cobblestones";
   this.peerview = "#602300";
   this.walkSound = "stone";
-  this.civilizedpathweight = .3;
 }
 ShadowPurpleCobblestoneTile.prototype = new TerrainObject();
 
@@ -2821,7 +2838,7 @@ function SwampTile() {
   this.blocklos = 0;
   this.desc = "swamp";
   this.initdelay = 1.2;
-  this.pathweight = 2;
+  this.pathweight = 4;
   this.combatmap = "Swamp";
   this.peerview = "#004000";
   this.walkSound = "swamp";
@@ -2854,7 +2871,7 @@ function ShadowSwampTile() {
   this.blocklos = 0;
   this.desc = "swamp";
   this.initdelay = 1.2;
-  this.pathweight = 2;
+  this.pathweight = 3;
   this.combatmap = "Swamp";
   this.peerview = "#002840";
   this.walkSound = "swamp";
@@ -3603,6 +3620,8 @@ function FenceEWGateTile() {
 	this.prefix = "a";
 	this.desc = "gate";
 
+  this.pathweight = 2; 
+
   Openable.call(this, [this.graphic, this.overlay, 0, 0], ["fence-ew-gate-open.gif", this.overlay, 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
   // WORKING- NEED TO REPLACE SOUNDS
 }
@@ -4031,7 +4050,9 @@ function DoorWindowTile() {
 	this.losupclose = {distance: 1 , blocklos: 0};
 	this.blockloe = 1;
 	this.prefix = "a";
-	this.desc = "door";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
 
   Openable.call(this, [this.graphic, "", 0, 0], ["archway.gif", "", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
@@ -4052,6 +4073,8 @@ function StonePortcullisTile() {
 	this.desc = "portcullis";
 	this.heavy = 1;
 
+  this.pathweight = 2; 
+
   Openable.call(this, [this.graphic, "", 0, 0], ["stone-arch.gif", "", 0, 0], 0, "", "", "sfx_locked_door");  // ADD WHEN SOUNDS ADDED
 }
 StonePortcullisTile.prototype = new FeatureObject();
@@ -4070,6 +4093,8 @@ function WallPortcullisTile() {
 	this.prefix = "a";
 	this.desc = "portcullis";
 	this.heavy = 1;
+
+  this.pathweight = 2; 
 
   Openable.call(this, [this.graphic, "", 0, 0], ["wall-arch.gif", "", 0, 0], 0, "", "", "sfx_locked_door");  // HERE TOO
 }
@@ -4230,7 +4255,7 @@ function CampfireTile() {
 	this.blocklos = 0;
   this.prefix = "a";
 	this.desc = "campfire";
-	this.pathweight = 4;
+	this.pathweight = 5;
 	this.firedamage = "2d4";
 	
 	LightEmitting.call(this, 2);
@@ -4295,7 +4320,7 @@ function BrazierTile() {
   this.prefix = "a";
 	this.desc = "brazier";
 	
-	LightEmitting.call(this, 2);  
+	LightEmitting.call(this, 3);  
 }
 BrazierTile.prototype = new FeatureObject();
 
@@ -4329,7 +4354,9 @@ function UnlitBrazierTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "an";
-	this.desc = "unlit brazier";
+  this.desc = "unlit brazier";
+  
+  LightEmitting.call(this, 0);  
 }
 UnlitBrazierTile.prototype = new FeatureObject();
 
@@ -4569,7 +4596,7 @@ function FireplaceTile() {
   this.prefix = "a";
 	this.desc = "fireplace";
 	this.peerview = "white";
-	this.pathweight = 4;
+	this.pathweight = 5;
 	this.firedamage = "3d4";
 	
 	LightEmitting.call(this, 2);
@@ -4661,7 +4688,9 @@ function DoorTile() {
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.prefix = "a";
-	this.desc = "door";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
 
 	Openable.call(this, [this.graphic, "", 0, 0], ["archway.gif", "", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
@@ -4719,7 +4748,7 @@ function SleepFieldTile() {
   this.prefix = "a";
 	this.desc = "sleep field";
 	this.initdelay = 1.5;
-	this.pathweight = 4;
+	this.pathweight = 5;
   this.spritexoffset = "-96";
   this.spriteyoffset = "0";
 	
@@ -4869,7 +4898,7 @@ function PoisonFieldTile() {
   this.prefix = "a";
 	this.desc = "poison field";
 	this.initdelay = 1.5;
-	this.pathweight = 4;
+	this.pathweight = 5;
   this.spritexoffset = "0";
   this.spriteyoffset = "0";
 	
@@ -4928,8 +4957,8 @@ function LadderDownTile() {
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
 
-  this.pathweight = 4; 
-  this.civilizedpathweight = 4; // prefer to go around
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5; // prefer to go around
 }
 LadderDownTile.prototype = new FeatureObject();
 
@@ -4947,8 +4976,8 @@ function LadderUpTile() {
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
 
-  this.pathweight = 4; 
-  this.civilizedpathweight = 4; // prefer to go around
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5; // prefer to go around
 }
 LadderUpTile.prototype = new FeatureObject();
 
@@ -4962,8 +4991,8 @@ function StairDownTile() {
   this.desc = "stairs down";
   this.peerview = "#808080";
 
-  this.pathweight = 4; 
-  this.civilizedpathweight = 4; // prefer to go around
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5; // prefer to go around
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -4980,8 +5009,8 @@ function StairUpTile() {
   this.desc = "stairs up";
   this.peerview = "#808080";
 
-  this.pathweight = 4; 
-  this.civilizedpathweight = 4; // prefer to go around
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5; // prefer to go around
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -4998,8 +5027,8 @@ function StairDown2Tile() {
   this.desc = "stairs down";
   this.peerview = "#808080";
 
-  this.pathweight = 4; 
-  this.civilizedpathweight = 4; // prefer to go around
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5; // prefer to go around
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -5016,8 +5045,8 @@ function StairUp2Tile() {
   this.desc = "stairs up";
   this.peerview = "#808080";
 
-  this.pathweight = 4; 
-  this.civilizedpathweight = 4; // prefer to go around
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5; // prefer to go around
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -5504,6 +5533,10 @@ function LeftChairTile() {
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 1;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5; // prefer to go around
+
 }
 LeftChairTile.prototype = new FeatureObject();
 
@@ -5520,6 +5553,9 @@ function RightChairTile() {
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 3;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5; // prefer to go around
 }
 RightChairTile.prototype = new FeatureObject();
 
@@ -5536,6 +5572,9 @@ function TopChairTile() {
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 2;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5; // prefer to go around
 }
 TopChairTile.prototype = new FeatureObject();
 
@@ -5552,6 +5591,9 @@ function BottomChairTile() {
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 0;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5; // prefer to go around
 }
 BottomChairTile.prototype = new FeatureObject();
 
@@ -6148,7 +6190,9 @@ function SecretDoorTile() {
 	
 	this.searchDesc = "secret door";
 	this.searchPrefix = "a";
-	this.peerview = "white";
+  this.peerview = "white";
+  
+  this.pathweight = 2; 
 	
   Openable.call(this, [this.graphic, "", 0, 0], ["archway.gif", "", 0, 0], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
 }
@@ -7593,6 +7637,7 @@ function FlameEternalTile() {
   this.spriteyoffset = "0";
   this.prefix = "the";
   this.desc = "Flame Eternal";
+  this.passable = MOVE_ETHEREAL;
 }
 FlameEternalTile.prototype = new FeatureObject();
 
@@ -7604,6 +7649,7 @@ function BrightFountainTile() {
   this.prefix = "a";
   this.desc = "fountain";
   this.peerview = "#a0a0a0";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",1.5);
 }
@@ -7617,6 +7663,7 @@ function BlueFountainTile() {
   this.prefix = "a";
   this.desc = "fountain";
   this.peerview = "#a0a0a0";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",1.5);
 }
@@ -7630,6 +7677,7 @@ function BloodFountainTile() {
   this.prefix = "a";
   this.desc = "fountain";
   this.peerview = "#a0a0a0";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",1.5);
 }
@@ -7641,6 +7689,7 @@ function FountainTile() {
   this.prefix = "a";
   this.desc = "fountain";
   this.peerview = "#a0a0a0";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
   
   HasAmbientNoise.call(this,"sfx_fountain_splash",2);
 }
@@ -7652,6 +7701,7 @@ function BrokenFountainTile() {
   this.prefix = "a";
   this.desc = "broken fountain";
   this.peerview = "#a0a0a0";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
 }
 BrokenFountainTile.prototype = new FeatureObject();
 
@@ -7664,6 +7714,7 @@ function BlueCrystalTile() {
   this.desc = "crystal";
   LightEmitting.call(this, 2);
   this.peerview = "#65ceff";
+  this.passable = MOVE_ETHEREAL;
 }
 BlueCrystalTile.prototype = new FeatureObject();
 
@@ -7676,6 +7727,7 @@ function PurpleCrystalTile() {
   this.desc = "crystal";
   LightEmitting.call(this, 2);
   this.peerview = "#9b65ff";
+  this.passable = MOVE_ETHEREAL;
 }
 PurpleCrystalTile.prototype = new FeatureObject();
 
@@ -7688,6 +7740,7 @@ function YellowCrystalTile() {
   this.desc = "crystal";
   LightEmitting.call(this, 2);
   this.peerview = "#ffc465";
+  this.passable = MOVE_ETHEREAL;
 }
 YellowCrystalTile.prototype = new FeatureObject();
 
@@ -7700,6 +7753,7 @@ function GreenCrystalTile() {
   this.desc = "crystal";
   LightEmitting.call(this, 2);
   this.peerview = "#9bff65";
+  this.passable = MOVE_ETHEREAL;
 }
 GreenCrystalTile.prototype = new FeatureObject();
 
@@ -7712,6 +7766,7 @@ function RedCrystalTile() {
   this.desc = "crystal";
   LightEmitting.call(this, 2);
   this.peerview = "#ff658b";
+  this.passable = MOVE_ETHEREAL;
 }
 RedCrystalTile.prototype = new FeatureObject();
 
@@ -7723,6 +7778,7 @@ function WhiteCrystalTile() {
   this.prefix = "a";
   this.desc = "crystal";
   this.peerview = "#b0cbc4";
+  this.passable = MOVE_ETHEREAL;
 }
 WhiteCrystalTile.prototype = new FeatureObject();
 
@@ -12091,7 +12147,10 @@ NPCObject.prototype.setCurrentScheduleIndex = function(sched) {
 }
 
 NPCObject.prototype.incrementCurrentScheduleIndex = function() {
-  this.currentScheduleIndex = this.currentScheduleIndex++;
+  var schedule = DU.schedules[this.getSchedule()];
+  var nextidx = this.currentScheduleIndex+1;
+  if (nextidx >= schedule.scheduleArray.length) { nextidx = 0; }
+  this.currentScheduleIndex = nextidx;
   return this.currentScheduleIndex;
 }
 
@@ -13703,10 +13762,10 @@ PCObject.prototype.myTurn = function() {
     EndWaiting(this,this.atinn);
   } else if (waiting && (PC.getx() !== 0) && (PC.gety() !== 0)) {  // waiting somewhere that can have hostiles
     let closemonsters = CheckMapForHostiles(PC);
-    if (closemonsters <= 4) {
+    if ((closemonsters >= 0) && (closemonsters <= 4)) {
       waiting = 0;
       EndWaiting(this,0);
-      maintest.addText("You become alert due to nearby enemies.");
+      maintext.addText("You become alert due to nearby enemies.");
       // consider checking LOS so you aren't alerted by stuff behind walls?
     }
   }
