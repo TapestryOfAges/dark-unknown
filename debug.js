@@ -71,14 +71,14 @@ function SetDebugWatch(watchname) {
   watchon = "";
   if (!watchname) { return; }
   let stuff = maps.getAllMaps();
-  for (let i=0;i<stuff.length;i++) {
-    let npclist = stuff[i].getAllNPCs();
+  $.each(stuff, function(idx,val) {
+    let npclist = val.npcs.getAll();
     for (let j=0;j<npclist.length;j++) {
       if (npclist[j].getNPCName() === watchname) {
         watchon = npclist[j];
       }
     }
-  }
+  });
   if (!watchon) { return ("Failed to find " + watchname); }
   return; 
 }
@@ -88,7 +88,7 @@ function DebugWait(mins) {
 }
 
 function DebugWrite(category, html) {
-  if (debug && (debugflags[category] || (whoseturn === watchon))) {
+  if (debug && (debugflags[category] || ((whoseturn === watchon) && (category === "schedules")))) {
     $("#debugdiv").append("<span style='" + debugstyle[category] + "'>" + html + "</span>");
     return 1;
   } 
