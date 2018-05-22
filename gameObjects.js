@@ -5730,6 +5730,8 @@ function BedHeadTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bed";
+
+  this.pathweight = 5; 
 }
 BedHeadTile.prototype = new FeatureObject();
 
@@ -5774,6 +5776,8 @@ function BedFootTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bed";
+
+  this.pathweight = 5; 
 }
 BedFootTile.prototype = new FeatureObject();
 
