@@ -143,8 +143,8 @@ ais.RouteTo = function(who, params) {
     let npcs = who.getHomeMap().npcs.getAll();
     DebugWrite("schedules","Making NPCs block paths: ");
     for (let i=0;i<npcs.length;i++) {
-      if ((npcs[i] !== who) && (npcs[i].getCurrentAI() === "scheduled") && ((npcs[i].currentActivity !== "RouteTo") && (npcs[i].currentActivity !== "ChangeMap"))) {
-        // creating a one-time pathmap that makes NPCs who are not currently moving (RouteTo or ChangeMap) considered impassable 
+      if ((npcs[i] !== who) && (npcs[i].getCurrentAI() === "scheduled") && ((npcs[i].currentActivity !== "RouteTo") && (npcs[i].currentActivity !== "ChangeMap") && (npcs[i].currentActivity !== "CallAI"))) {
+        // creating a one-time pathmap that makes NPCs who are not currently moving (RouteTo or ChangeMap) or doing something quick (CallAI) considered impassable 
         gridbackup.setWalkableAt(npcs[i].getx(),npcs[i].gety(),false);
         DebugWrite("schedules",npcs[i].getNPCName() + " (" + npcs[i].getx() + "," + npcs[i].gety() + "), ");
       } else {
