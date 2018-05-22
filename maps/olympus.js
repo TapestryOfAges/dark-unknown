@@ -1042,6 +1042,7 @@ mappages["olympus2"].npcs[9] = {name : 'FighterVillagerNPC', x : 9, y : 18, NPCN
 mappages["olympus2"].npcs[10] = {name : 'JesterNPC', x : 29, y : 30, NPCName: 'Kaye', Alignment: 'good', Conversation: 'kaye', ConversationFlag: 'kaye', PeaceAI: 'scheduled', Schedule: 'kaye', Gender: 'male', Leash: 4, BarkFreq: 5, Bark: 'jester', BarkRad: 6};
 mappages["olympus2"].npcs[11] = {name : 'PaladinVillagerNPC', x : 60, y : 31, NPCName: 'Erica', Conversation: 'erica', ConversationFlag: 'erica', PeaceAI: 'scheduled', Schedule: 'erica', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '307.gif'};
 mappages["olympus2"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 34, y : 30, NPCName: 'Trevor', Desc: 'treasurer', PeaceAI: 'scheduled', Schedule: 'trevor', Conversation: 'trevor', ConversationFlag: 'trevor', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["olympus2"].npcs[13] = {name : 'TownsfolkVillagerNPC', x : 29, y : 34, NPCName: 'Manny', Desc: 'servant', Conversation: 'manny', PeaceAI: 'scheduled', Schedule: 'manny', Gender: 'male', NPCBand: '0'};
 //mappages["olympus2"].npcs[6] = {name : 'TownGuardNPC', x : 14, y : 53, NPCName: 'Lena', Conversation: 'castleguard2', ConversationFlag: 'lena', PeaceAI: 'scheduled', Schedule: 'lena', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 //mappages["olympus2"].npcs[7] = {name : 'TownGuardNPC', x : 57, y : 24, NPCName: 'Poe', Conversation: 'castleguard1', ConversationFlag: 'poe', PeaceAI: 'scheduled', Schedule: 'poe', Gender: 'male', Bark: '0', NPCBand: '0'};
 //mappages["olympus2"].npcs[8] = {name : 'TownGuardNPC', x : 13, y : 18, NPCName: 'Liam', Conversation: 'castleguard2', ConversationFlag: 'liam', PeaceAI: 'scheduled', Schedule: 'liam', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
@@ -1050,7 +1051,6 @@ mappages["olympus2"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 34, y : 30, 
 //mappages["olympus2"].npcs[11] = {name : 'TownGuardNPC', x : 17, y : 20, NPCName: 'Armaelle', Conversation: 'castleguard2', ConversationFlag: 'armaelle', PeaceAI: 'scheduled', Schedule: 'armaelle', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 //mappages["olympus2"].npcs[12] = {name : 'TownGuardNPC', x : 14, y : 51, NPCName: 'Barbara', Conversation: 'castleguard2', ConversationFlag: 'barbara', PeaceAI: 'scheduled', Schedule: 'barbara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 //mappages["olympus2"].npcs[13] = {name : 'TownGuardNPC', x : 18, y : 26, NPCName: 'Vivian', Conversation: 'castleguard2', ConversationFlag: 'vivian', PeaceAI: 'scheduled', Schedule: 'vivian', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-//mappages["olympus2"].npcs[14] = {name : 'TownGuardNPC', x : 29, y : 34, NPCName: 'Manny', Desc: 'servant', Conversation: 'manny', PeaceAI: 'scheduled', Schedule: 'manny', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif'};
 //mappages["olympus2"].npcs[15] = {name : 'TownGuardNPC', x : 40, y : 38, NPCName: 'Gwen', Conversation: 'castleguard2', ConversationFlag: 'gwen', PeaceAI: 'scheduled', Schedule: 'gwen', Gender: 'female', Bark: '0', NPCBand: '0'};
 //mappages["olympus2"].npcs[16] = {name : 'TownGuardNPC', x : 9, y : 52, NPCName: 'Aler', Conversation: 'castleguard2', ConversationFlag: 'aler', PeaceAI: 'scheduled', Schedule: 'aler', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 //mappages["olympus2"].npcs[20] = {name : 'TownGuardNPC', x : 9, y : 54, NPCName: 'Brian', Conversation: 'castleguard2', ConversationFlag: 'brian', PeaceAI: 'scheduled', Schedule: 'brian', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
@@ -1318,27 +1318,27 @@ mappages["olympus1"].onload = function(mapref) {
       alban.realgraphic = "310.2.gif";
     }
 
-//    if (manny) {
-//      if ((manny.getCurrentScheduleIndex() >= 22) && (manny.getCurrentScheduleIndex() <= 55)) {
-//        mapref.getTile(26,18).getTopFeature().use(manny);
-//      }
-//      if ((manny.getCurrentScheduleIndex() >= 25) && (manny.getCurrentScheduleIndex() <= 52)) {
-//        mapref.getTile(72,32).getTopFeature().use(manny);
-//      }
-//      if ((manny.getCurrentScheduleIndex() >= 27) && (manny.getCurrentScheduleIndex() <= 50)) {
-//        mapref.getTile(72,25).getTopFeature().use(manny);
-//      }
-//      if ((manny.getCurrentScheduleIndex() >= 77) || (manny.getCurrentScheduleIndex() <= 19)) {
-//        mapref.getTile(40,18).getTopFeature().use(manny);
-//        mapref.getTile(40,23).getTopFeature().use(manny);
-//        mapref.getTile(45,18).getTopFeature().use(manny);
-//        mapref.getTile(43,25).getTopFeature().use(manny);
-//        mapref.getTile(55,25).getTopFeature().use(manny);
-//        mapref.getTile(53,18).getTopFeature().use(manny);
-//        mapref.getTile(58,18).getTopFeature().use(manny);
-//        mapref.getTile(58,23).getTopFeature().use(manny);
-//      }    
-//    }
+    if (manny) {
+      if ((manny.getCurrentScheduleIndex() >= 22) && (manny.getCurrentScheduleIndex() <= 55)) {
+        mapref.getTile(26,18).getTopFeature().use(manny);
+      }
+      if ((manny.getCurrentScheduleIndex() >= 25) && (manny.getCurrentScheduleIndex() <= 52)) {
+        mapref.getTile(72,32).getTopFeature().use(manny);
+      }
+      if ((manny.getCurrentScheduleIndex() >= 27) && (manny.getCurrentScheduleIndex() <= 50)) {
+        mapref.getTile(72,25).getTopFeature().use(manny);
+      }
+      if ((manny.getCurrentScheduleIndex() >= 77) || (manny.getCurrentScheduleIndex() <= 19)) {
+        mapref.getTile(40,18).getTopFeature().use(manny);
+        mapref.getTile(40,23).getTopFeature().use(manny);
+        mapref.getTile(45,18).getTopFeature().use(manny);
+        mapref.getTile(43,25).getTopFeature().use(manny);
+        mapref.getTile(55,25).getTopFeature().use(manny);
+        mapref.getTile(53,18).getTopFeature().use(manny);
+        mapref.getTile(58,18).getTopFeature().use(manny);
+        mapref.getTile(58,23).getTopFeature().use(manny);
+      }    
+    }
 
   }
 }
