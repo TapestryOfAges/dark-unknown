@@ -148,8 +148,8 @@ ais.RouteTo = function(who, params) {
         gridbackup.setWalkableAt(npcs[i].getx(),npcs[i].gety(),false);
         DebugWrite("schedules",npcs[i].getNPCName() + " (" + npcs[i].getx() + "," + npcs[i].gety() + "), ");
       } else {
-        // other NPCs get a path weight cost- walk around if possible, push through if not
-        gridbackup.setWeightAt(npcs[i].getx(),npcs[i].gety(),5);
+        // other NPCs get a path weight cost- walk around if easy, push through (or bump into and sidestep) if not
+        gridbackup.setWeightAt(npcs[i].getx(),npcs[i].gety(),2);
       }
     }
     DebugWrite("schedules","<br />");
@@ -162,7 +162,6 @@ ais.RouteTo = function(who, params) {
 
     var path = finder.findPath(who.getx(),who.gety(),params.destination.x,params.destination.y,gridbackup);
 
-//    var path = who.getHomeMap().getPath(who.getx(),who.gety(),params.destination.x,params.destination.y,movetype);
     path.shift();
 
     if (path[0]) {
