@@ -649,7 +649,7 @@ mappages["olympus1"].npcs[23] = {name : 'ChickenNPC', x : 44, y : 52, Leash: 3};
 mappages["olympus1"].npcs[24] = {name : 'TownGuardNPC', x : 36, y : 20, NPCName: 'Una', Conversation: 'castleguard2', ConversationFlag: 'una', PeaceAI: 'scheduled', Schedule: 'una', Gender: 'female', Bark: '0', NPCBand: '0'};
 mappages["olympus1"].npcs[25] = {name : 'TownGuardNPC', x : 50, y : 40, NPCName: 'Martin', Conversation: 'castleguard1', ConversationFlag: 'martin', PeaceAI: 'scheduled', Schedule: 'martin', Gender: 'male', NPCBand: '0'};
 mappages["olympus1"].npcs[26] = {name : 'TownGuardNPC', x : 48, y : 40, NPCName: 'Donn', Conversation: 'castleguard1', ConversationFlag: 'donn', PeaceAI: 'scheduled', Schedule: 'donn', Gender: 'male', NPCBand: '0'};
-//mappages["olympus1"].npcs[27] = {name : 'TownGuardNPC', x : 51, y : 25, NPCName: 'Davin', Conversation: 'castleguard2', ConversationFlag: 'davin', PeaceAI: 'scheduled', Schedule: 'davin', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["olympus1"].npcs[27] = {name : 'TownGuardNPC', x : 51, y : 25, NPCName: 'Davin', Conversation: 'castleguard2', ConversationFlag: 'davin', PeaceAI: 'scheduled', Schedule: 'davin', Gender: 'male', Bark: '0', NPCBand: '0'};
 
 mappages["olympus1"].desc = "Castle dea Olympus";
 mappages["olympus1"].music = 'Olympus';
@@ -1047,8 +1047,8 @@ mappages["olympus2"].npcs[14] = {name : 'TownGuardNPC', x : 14, y : 53, NPCName:
 mappages["olympus2"].npcs[15] = {name : 'TownGuardNPC', x : 14, y : 51, NPCName: 'Barbara', Conversation: 'castleguard2', ConversationFlag: 'barbara', PeaceAI: 'scheduled', Schedule: 'barbara', Gender: 'female', Bark: '0', NPCBand: '0'};
 mappages["olympus2"].npcs[16] = {name : 'TownGuardNPC', x : 9, y : 52, NPCName: 'Aler', Conversation: 'castleguard2', ConversationFlag: 'aler', PeaceAI: 'scheduled', Schedule: 'aler', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["olympus2"].npcs[17] = {name : 'TownGuardNPC', x : 9, y : 54, NPCName: 'Brian', Conversation: 'castleguard2', ConversationFlag: 'brian', PeaceAI: 'scheduled', Schedule: 'brian', Gender: 'male', Bark: '0', NPCBand: '0'};
-//mappages["olympus2"].npcs[7] = {name : 'TownGuardNPC', x : 57, y : 24, NPCName: 'Poe', Conversation: 'castleguard1', ConversationFlag: 'poe', PeaceAI: 'scheduled', Schedule: 'poe', Gender: 'male', Bark: '0', NPCBand: '0'};
-//mappages["olympus2"].npcs[8] = {name : 'TownGuardNPC', x : 13, y : 18, NPCName: 'Liam', Conversation: 'castleguard2', ConversationFlag: 'liam', PeaceAI: 'scheduled', Schedule: 'liam', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["olympus2"].npcs[18] = {name : 'TownGuardNPC', x : 13, y : 18, NPCName: 'Liam', Conversation: 'castleguard2', ConversationFlag: 'liam', PeaceAI: 'scheduled', Schedule: 'liam', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["olympus2"].npcs[19] = {name : 'TownGuardNPC', x : 57, y : 24, NPCName: 'Poe', Conversation: 'castleguard1', ConversationFlag: 'poe', PeaceAI: 'scheduled', Schedule: 'poe', Gender: 'male', Bark: '0', NPCBand: '0'};
 //mappages["olympus2"].npcs[9] = {name : 'TownGuardNPC', x : 17, y : 18, NPCName: 'Andrew', Conversation: 'castleguard2', ConversationFlag: 'andrew', PeaceAI: 'scheduled', Schedule: 'andrew', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 //mappages["olympus2"].npcs[10] = {name : 'TownGuardNPC', x : 9, y : 50, NPCName: 'Benedig', Conversation: 'castleguard2', ConversationFlag: 'benedig', PeaceAI: 'scheduled', Schedule: 'benedig', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 //mappages["olympus2"].npcs[11] = {name : 'TownGuardNPC', x : 17, y : 20, NPCName: 'Armaelle', Conversation: 'castleguard2', ConversationFlag: 'armaelle', PeaceAI: 'scheduled', Schedule: 'armaelle', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
@@ -1277,7 +1277,7 @@ mappages["olympus1"].onload = function(mapref) {
 
     // Changes made due to schedules
 
-    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn;
+    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin;
 
     let npcs = mapref.npcs.getAll();
 
@@ -1292,6 +1292,7 @@ mappages["olympus1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Una") { una = npcs[i]; }
       if (npcs[i].getNPCName() === "Martin") { martin = npcs[i]; }
       if (npcs[i].getNPCName() === "Donn") { donn = npcs[i]; }
+      if (npcs[i].getNPCName() === "Davin") { davin = npcs[i]; }
     }
 
     if ((tyler.getCurrentScheduleIndex() >= 4) && (tyler.getCurrentScheduleIndex() <= 16)) {
@@ -1338,6 +1339,10 @@ mappages["olympus1"].onload = function(mapref) {
       donn.realgraphic = "310.gif";
     }
 
+    if ((davin.getCurrentScheduleIndex() >= 8) && (davin.getCurrentScheduleIndex() < 11)) {
+      davin.realgraphic = "310s.gif";
+    }
+
     if (manny) {
       if ((manny.getCurrentScheduleIndex() >= 22) && (manny.getCurrentScheduleIndex() <= 55)) {
         mapref.getTile(26,18).getTopFeature().use(manny);
@@ -1368,7 +1373,7 @@ mappages["olympus2"].onload = function(mapref) {
 
     // Changes made due to schedules
 
-    let jharden, colin, yvette, brandan, lena, barbara, aler, brian;
+    let jharden, colin, yvette, brandan, lena, barbara, aler, brian, liam, poe;
 
     let npcs = mapref.npcs.getAll();
 
@@ -1381,6 +1386,8 @@ mappages["olympus2"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Barbara") { barbara = npcs[i]; }
       if (npcs[i].getNPCName() === "Aler") { aler = npcs[i]; }
       if (npcs[i].getNPCName() === "Brian") { brian = npcs[i]; }
+      if (npcs[i].getNPCName() === "Liam") { liam = npcs[i]; }
+      if (npcs[i].getNPCName() === "Poe") { poe = npcs[i]; }
     }
 
     if ((jharden.getCurrentScheduleIndex() >= 12) || (manny.getCurrentScheduleIndex() <= 0)) {
@@ -1419,6 +1426,14 @@ mappages["olympus2"].onload = function(mapref) {
 
     if ((brian.getCurrentScheduleIndex() >= 18) || (brian.getCurrentScheduleIndex() === 0)) {
       brian.realgraphic = "310.gif";
+    }
+
+    if ((liam.getCurrentScheduleIndex() >= 18) || (liam.getCurrentScheduleIndex() === 0)) {
+      liam.realgraphic = "310.2.gif";
+    }
+
+    if ((poe.getCurrentScheduleIndex() >= 18) || (poe.getCurrentScheduleIndex() === 0)) {
+      poe.realgraphic = "310.2.gif";
     }
 
   }
