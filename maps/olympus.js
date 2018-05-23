@@ -1049,11 +1049,11 @@ mappages["olympus2"].npcs[16] = {name : 'TownGuardNPC', x : 9, y : 52, NPCName: 
 mappages["olympus2"].npcs[17] = {name : 'TownGuardNPC', x : 9, y : 54, NPCName: 'Brian', Conversation: 'castleguard2', ConversationFlag: 'brian', PeaceAI: 'scheduled', Schedule: 'brian', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["olympus2"].npcs[18] = {name : 'TownGuardNPC', x : 13, y : 18, NPCName: 'Liam', Conversation: 'castleguard2', ConversationFlag: 'liam', PeaceAI: 'scheduled', Schedule: 'liam', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["olympus2"].npcs[19] = {name : 'TownGuardNPC', x : 57, y : 24, NPCName: 'Poe', Conversation: 'castleguard1', ConversationFlag: 'poe', PeaceAI: 'scheduled', Schedule: 'poe', Gender: 'male', Bark: '0', NPCBand: '0'};
-//mappages["olympus2"].npcs[9] = {name : 'TownGuardNPC', x : 17, y : 18, NPCName: 'Andrew', Conversation: 'castleguard2', ConversationFlag: 'andrew', PeaceAI: 'scheduled', Schedule: 'andrew', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
-//mappages["olympus2"].npcs[10] = {name : 'TownGuardNPC', x : 9, y : 50, NPCName: 'Benedig', Conversation: 'castleguard2', ConversationFlag: 'benedig', PeaceAI: 'scheduled', Schedule: 'benedig', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-//mappages["olympus2"].npcs[11] = {name : 'TownGuardNPC', x : 17, y : 20, NPCName: 'Armaelle', Conversation: 'castleguard2', ConversationFlag: 'armaelle', PeaceAI: 'scheduled', Schedule: 'armaelle', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-//mappages["olympus2"].npcs[13] = {name : 'TownGuardNPC', x : 18, y : 26, NPCName: 'Vivian', Conversation: 'castleguard2', ConversationFlag: 'vivian', PeaceAI: 'scheduled', Schedule: 'vivian', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-//mappages["olympus2"].npcs[15] = {name : 'TownGuardNPC', x : 40, y : 38, NPCName: 'Gwen', Conversation: 'castleguard2', ConversationFlag: 'gwen', PeaceAI: 'scheduled', Schedule: 'gwen', Gender: 'female', Bark: '0', NPCBand: '0'};
+mappages["olympus2"].npcs[20] = {name : 'TownGuardNPC', x : 9, y : 50, NPCName: 'Benedig', Conversation: 'castleguard2', ConversationFlag: 'benedig', PeaceAI: 'scheduled', Schedule: 'benedig', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["olympus2"].npcs[21] = {name : 'TownGuardNPC', x : 17, y : 18, NPCName: 'Andrew', Conversation: 'castleguard2', ConversationFlag: 'andrew', PeaceAI: 'scheduled', Schedule: 'andrew', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["olympus2"].npcs[22] = {name : 'TownGuardNPC', x : 17, y : 20, NPCName: 'Armaelle', Conversation: 'castleguard2', ConversationFlag: 'armaelle', PeaceAI: 'scheduled', Schedule: 'armaelle', Gender: 'female', Bark: '0', NPCBand: '0'};
+mappages["olympus2"].npcs[23] = {name : 'TownGuardNPC', x : 40, y : 38, NPCName: 'Gwen', Conversation: 'castleguard2', ConversationFlag: 'gwen', PeaceAI: 'scheduled', Schedule: 'gwen', Gender: 'female', Bark: '0', NPCBand: '0'};
+mappages["olympus2"].npcs[24] = {name : 'TownGuardNPC', x : 18, y : 26, NPCName: 'Vivian', Conversation: 'castleguard2', ConversationFlag: 'vivian', PeaceAI: 'scheduled', Schedule: 'vivian', Gender: 'female', Bark: '0', NPCBand: '0'};
 
 mappages["olympus2"].desc = "Castle dea Olympus";
 mappages["olympus2"].music = 'Olympus';
@@ -1194,11 +1194,11 @@ mappages["olympus0"].features[73] = {name : 'RightTable', x : 21, y : 7};
 
 
 mappages["olympus0"].npcs = [];
-//mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 16, NPCName: 'Mariadoc', Conversation: 'castleguard0', ConversationFlag: 'mariadoc', PeaceAI: 'scheduled', Schedule: 'mariadoc', Gender: 'male', Bark: '0', NPCBand: '0'};
-//mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 19, y : 14, NPCName: 'Kristell', Conversation: 'castleguard0p', ConversationFlag: 'kristell', PeaceAI: 'scheduled', Schedule: 'kristell', Gender: 'female', Bark: '0', NPCBand: '0'};
-//mappages["olympus0"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 24, y : 8, NPCName: 'Jeremiah', Conversation: 'jeremiah', ConversationFlag: 'jeremiah', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-//mappages["olympus0"].npcs[3] = {name : 'TinkerVillagerNPC', x : 24, y : 18, NPCName: 'Aara', Conversation: 'aara', ConversationFlag: 'aara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
-//mappages["olympus0"].npcs[4] = {name : 'ShepherdVillagerNPC', x : 24, y : 13, NPCName: 'Rose', Conversation: 'rose', ConversationFlag: 'rose', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
+mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 16, NPCName: 'Mariadoc', Conversation: 'castleguard0', ConversationFlag: 'mariadoc', PeaceAI: 'scheduled', Schedule: 'mariadoc', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 19, y : 14, NPCName: 'Kristell', Conversation: 'castleguard0p', ConversationFlag: 'kristell', PeaceAI: 'scheduled', Schedule: 'kristell', Gender: 'female', Bark: '0', NPCBand: '0'};
+mappages["olympus0"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 24, y : 8, NPCName: 'Jeremiah', Conversation: 'jeremiah', ConversationFlag: 'jeremiah', PeaceAI: 'scheduled', Schedule: 'jeremiah', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
+mappages["olympus0"].npcs[3] = {name : 'TinkerVillagerNPC', x : 24, y : 18, NPCName: 'Aara', Conversation: 'aara', ConversationFlag: 'aara', PeaceAI: 'scheduled', Schedule: 'aara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
+mappages["olympus0"].npcs[4] = {name : 'ShepherdVillagerNPC', x : 24, y : 13, NPCName: 'Rose', Conversation: 'rose', ConversationFlag: 'rose', PeaceAI: 'scheduled', Schedule: 'rose', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
 
 mappages["olympus0"].desc = "Castle Basement";
 mappages["olympus0"].music = 'Olympus';
@@ -1373,7 +1373,7 @@ mappages["olympus2"].onload = function(mapref) {
 
     // Changes made due to schedules
 
-    let jharden, colin, yvette, brandan, lena, barbara, aler, brian, liam, poe;
+    let jharden, colin, yvette, brandan, lena, barbara, aler, brian, liam, poe, benedig, andrew, armaelle, gwen, vivian;
 
     let npcs = mapref.npcs.getAll();
 
@@ -1388,6 +1388,11 @@ mappages["olympus2"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Brian") { brian = npcs[i]; }
       if (npcs[i].getNPCName() === "Liam") { liam = npcs[i]; }
       if (npcs[i].getNPCName() === "Poe") { poe = npcs[i]; }
+      if (npcs[i].getNPCName() === "Benedig") { benedig = npcs[i]; }
+      if (npcs[i].getNPCName() === "Andrew") { andrew = npcs[i]; }
+      if (npcs[i].getNPCName() === "Armaelle") { armaelle = npcs[i]; }
+      if (npcs[i].getNPCName() === "Gwen") { gwen = npcs[i]; }
+      if (npcs[i].getNPCName() === "Vivian") { vivian = npcs[i]; }
     }
 
     if ((jharden.getCurrentScheduleIndex() >= 12) || (manny.getCurrentScheduleIndex() <= 0)) {
@@ -1432,23 +1437,60 @@ mappages["olympus2"].onload = function(mapref) {
       liam.realgraphic = "310.2.gif";
     }
 
-    if ((poe.getCurrentScheduleIndex() >= 18) || (poe.getCurrentScheduleIndex() === 0)) {
-      poe.realgraphic = "310.2.gif";
+    if ((poe.getCurrentScheduleIndex() >= 8) || (poe.getCurrentScheduleIndex() <= 10)) {
+      poe.realgraphic = "310.gif";
     }
 
+    if ((benedig.getCurrentScheduleIndex() >= 15) || (benedig.getCurrentScheduleIndex() === 0)) {
+      benedig.realgraphic = "310.gif";
+    }
+
+    if ((andrew.getCurrentScheduleIndex() >= 22) || (andrew.getCurrentScheduleIndex() === 0)) {
+      andrew.realgraphic = "310.2.gif";
+    }
+
+    if ((armaelle.getCurrentScheduleIndex() >= 18) || (armaelle.getCurrentScheduleIndex() === 0)) {
+      armaelle.realgraphic = "310.gif";
+    }
+
+    if ((gwen.getCurrentScheduleIndex() >= 18) || (gwen.getCurrentScheduleIndex() <= 20)) {
+      gwen.realgraphic = "310.gif";
+    }
+
+    if ((vivian.getCurrentScheduleIndex() >= 29) || (vivian.getCurrentScheduleIndex() === 0)) {
+      vivian.realgraphic = "310.gif";
+    }
   }
 }
 
 mappages["olympus0"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && !DU.gameflags.getFlag("editor")) {
-//    if (!DU.gameflags.getFlag("lvl2") && !DU.gameflags.getFlag("rebel_prisoner")) {
-//      var prisoner = mapref.getTile(24,13).getTopNPC();
-//      mapref.moveThing(3,3,prisoner);
-//    }
-    if (!DU.gameflags.getFlag("rebel_prisoner")) {
-//      var prisoner = mapref.getTile(24,18).getTopNPC();
-//      mapref.deleteThing(prisoner);      
-//      DUTime.removeEntityFrom(prisoner);
+    if (!DU.gameflags.getFlag("lvl2") && !DU.gameflags.getFlag("rebel_prisoner")) {
+      var prisoner = FindNPCByName("Rose",mapref);
+      mapref.moveThing(3,3,prisoner);
+      prisoner.setSchedule("nothere");
     }
+    if (!DU.gameflags.getFlag("rebel_prisoner")) {
+      var prisoner = FindNPCByName("Aara",mapref);
+      mapref.moveThing(3,3,prisoner);
+      prisoner.setSchedule("nothere");
+    }
+
+    let npcs = mapref.npcs.getAll();
+    let mariadoc, kristell;
+
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getNPCName() === "Mariadoc") { mariadoc = npcs[i]; }
+      if (npcs[i].getNPCName() === "Kristell") { kristell = npcs[i]; }
+    }
+
+    if ((mariadoc.getCurrentScheduleIndex() >= 12) || (mariadoc.getCurrentScheduleIndex() <= 14)) {
+      mariadoc.realgraphic = "310.gif";
+    }
+
+    if ((kristell.getCurrentScheduleIndex() >= 14) || (kristell.getCurrentScheduleIndex() <= 16)) {
+      kristell.realgraphic = "310.2.gif";
+    }
+
   }
 }
