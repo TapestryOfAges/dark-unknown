@@ -1329,6 +1329,7 @@ function PerformTalkTarget() {
         }
         if (rose) {
           basement.moveThing(24,13,rose);
+          rose.setSchedule("rose");
         } else {
           alert("Can't find Rose!");
         }
