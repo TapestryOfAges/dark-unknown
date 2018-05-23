@@ -5732,6 +5732,7 @@ function BedHeadTile() {
   this.desc = "bed";
 
   this.pathweight = 5; 
+  this.civilizedpathweight = 5;
 }
 BedHeadTile.prototype = new FeatureObject();
 
@@ -5778,6 +5779,7 @@ function BedFootTile() {
   this.desc = "bed";
 
   this.pathweight = 5; 
+  this.civilizedpathweight = 5;
 }
 BedFootTile.prototype = new FeatureObject();
 
