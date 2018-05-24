@@ -13258,6 +13258,7 @@ NPCObject.prototype.endTurn = function(init) {
   }
 
   if (whoseturn !== this) {
+    console.log(this);
     alert("Somehow trying to end a turn when it isn't their turn, aborting.");
   } else if (this.getHP() <= 0) {
     DebugWrite("ai", "Ending turn while dead, not going back on the stack!");
