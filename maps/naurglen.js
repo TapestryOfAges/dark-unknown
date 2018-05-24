@@ -75,7 +75,7 @@ mappages["naurglen"].features[20] = {name : 'LeftTable', x : 69, y : 39};
 mappages["naurglen"].features[21] = {name : 'RightTable', x : 70, y : 39};
 mappages["naurglen"].features[22] = {name : 'TopChair', x : 70, y : 38};
 mappages["naurglen"].features[23] = {name : 'BottomChair', x : 69, y : 40};
-mappages["naurglen"].features[24] = {name : 'PottedPlant', x : 71, y : 40};
+mappages["naurglen"].features[24] = {name : 'PottedPlant', x : 73, y : 40};
 mappages["naurglen"].features[25] = {name : 'Vanity', x : 70, y : 35};
 mappages["naurglen"].features[26] = {name : 'Dresser', x : 71, y : 35};
 mappages["naurglen"].features[27] = {name : 'GrandfatherClock', x : 67, y : 40};
@@ -461,22 +461,23 @@ mappages["naurglen"].features[406] = {name : 'Tree', x : 48, y : 3};
 mappages["naurglen"].features[407] = {name : 'BedHead', x : 67, y : 38};
 mappages["naurglen"].features[408] = {name : 'BedFoot', x : 68, y : 38};
 mappages["naurglen"].features[409] = {name : 'BridgeEW', x : 21, y : 34};
-
+mappages["naurglen"].features[410] = {name : 'TorchEast', x : 77, y : 24};
+mappages["naurglen"].features[411] = {name : 'Brazier', x : 74, y : 25};
 
 mappages["naurglen"].npcs = [];
-mappages["naurglen"].npcs[0] = {name : 'DruidVillagerNPC', x : 67, y : 36, NPCName: 'Hazel', Desc: 'healer', PeaceAI: 'scheduled', Schedule: 'hazel', Conversation: 'hazel', ConversationFlag: 'hazel', Gender: 'female', Leash: 2, OverrideGraphic: 'druid-offcolor.1.gif'};
-mappages["naurglen"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 93, y : 26, NPCName: 'Daniel', Prefix: 'an', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'daniel', Conversation: 'daniel', ConversationFlag: 'daniel', Gender: 'male', OverrideGraphic: '310.gif'};
-mappages["naurglen"].npcs[2] = {name : 'TinkerVillagerNPC', x : 93, y : 34, NPCName: 'Kyvek', Conversation: 'kyvek', PeaceAI: 'scheduled', Schedule: 'kyvek', ConversationFlag: 'kyvek', Gender: 'male', OverrideGraphic: '304.2.gif'};
-mappages["naurglen"].npcs[3] = {name : 'TownsfolkVillagerNPC', x :21, y : 24, NPCName: 'Derek', Conversation: 'derek', PeaceAI: 'scheduled', Schedule: 'derek', ConversationFlag: 'derek', Gender: 'male', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-mappages["naurglen"].npcs[4] = {name : 'ChildVillagerNPC', x : 67, y : 38, NPCName: 'Amy', PeaceAI: 'scheduled', Schedule: 'amy', Conversation: 'amy', ConversationFlag: 'amy', Gender: 'female', Leash: 4, Bark: '0', NPCBand: '0'};
-mappages["naurglen"].npcs[5] = {name : 'PaladinVillagerNPC', x : 51, y : 38, NPCName: 'Amaeryl', PeaceAI: 'scheduled', Schedule: 'amaeryl', Conversation: 'amaeryl', ConversationFlag: 'amaeryl', Gender: 'female', OverrideGraphic: '307.2.gif'};
+mappages["naurglen"].npcs[0] = {name : 'ChickenNPC', x : 36, y : 14};
+mappages["naurglen"].npcs[1] = {name : 'ChickenNPC', x : 38, y : 15};
+mappages["naurglen"].npcs[2] = {name : 'ChickenNPC', x : 40, y : 14};
+mappages["naurglen"].npcs[3] = {name : 'ChickenNPC', x : 40, y : 17};
+mappages["naurglen"].npcs[4] = {name : 'DruidVillagerNPC', x : 67, y : 36, NPCName: 'Hazel', Desc: 'healer', PeaceAI: 'scheduled', Schedule: 'hazel', Conversation: 'hazel', ConversationFlag: 'hazel', Gender: 'female', Leash: 2, OverrideGraphic: 'druid-offcolor.1.gif'};
+mappages["naurglen"].npcs[5] = {name : 'ChildVillagerNPC', x : 67, y : 38, NPCName: 'Amy', PeaceAI: 'scheduled', Schedule: 'amy', Conversation: 'amy', ConversationFlag: 'amy', Gender: 'female', Leash: 4, Bark: '0', NPCBand: '0'};
 mappages["naurglen"].npcs[6] = {name : 'TownGuardNPC', x : 59, y : 30, NPCName: 'Grayson', Alignment: '', Conversation: 'grayson', PeaceAI: 'scheduled', Schedule: 'grayson', ConversationFlag: 'grayson', Gender: 'male', Bark: '0', NPCBand: '0'};
-mappages["naurglen"].npcs[7] = {name : 'ShepherdVillagerNPC', x :23, y : 4, NPCName: 'Samuel', Desc: 'blind shepherd', Conversation: 'samuel', PeaceAI: 'scheduled', Schedule: 'samuel', ConversationFlag: 'samuel', Gender: 'male', OverrideGraphic: '301.gif'};
-mappages["naurglen"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 29, y : 40, NPCName: 'Kylee', Desc: 'farmer', PeaceAI: 'scheduled', Schedule: 'kylee', Conversation: 'kylee', ConversationFlag: 'kylee', Gender: 'female', OverrideGraphic: '310.2.gif'};
-mappages["naurglen"].npcs[9] = {name : 'ChickenNPC', x : 36, y : 14};
-mappages["naurglen"].npcs[10] = {name : 'ChickenNPC', x : 38, y : 15};
-mappages["naurglen"].npcs[11] = {name : 'ChickenNPC', x : 40, y : 14};
-mappages["naurglen"].npcs[12] = {name : 'ChickenNPC', x : 40, y : 17};
+//mappages["naurglen"].npcs[7] = {name : 'ShepherdVillagerNPC', x :23, y : 4, NPCName: 'Samuel', Desc: 'blind shepherd', Conversation: 'samuel', PeaceAI: 'scheduled', Schedule: 'samuel', ConversationFlag: 'samuel', Gender: 'male', OverrideGraphic: '301.gif'};
+//mappages["naurglen"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 29, y : 40, NPCName: 'Kylee', Desc: 'farmer', PeaceAI: 'scheduled', Schedule: 'kylee', Conversation: 'kylee', ConversationFlag: 'kylee', Gender: 'female', OverrideGraphic: '310.2.gif'};
+//mappages["naurglen"].npcs[0] = {name : 'PaladinVillagerNPC', x : 51, y : 38, NPCName: 'Amaeryl', PeaceAI: 'scheduled', Schedule: 'amaeryl', Conversation: 'amaeryl', ConversationFlag: 'amaeryl', Gender: 'female', OverrideGraphic: '307.2.gif'};
+//mappages["naurglen"].npcs[10] = {name : 'TownsfolkVillagerNPC', x : 93, y : 26, NPCName: 'Daniel', Prefix: 'an', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'daniel', Conversation: 'daniel', ConversationFlag: 'daniel', Gender: 'male', OverrideGraphic: '310.gif'};
+//mappages["naurglen"].npcs[11] = {name : 'TinkerVillagerNPC', x : 93, y : 34, NPCName: 'Kyvek', Conversation: 'kyvek', PeaceAI: 'scheduled', Schedule: 'kyvek', ConversationFlag: 'kyvek', Gender: 'male', OverrideGraphic: '304.2.gif'};
+//mappages["naurglen"].npcs[12] = {name : 'TownsfolkVillagerNPC', x :21, y : 24, NPCName: 'Derek', Conversation: 'derek', PeaceAI: 'scheduled', Schedule: 'derek', ConversationFlag: 'derek', Gender: 'male', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 
 mappages["naurglen"].desc = "Naurglen";
 mappages["naurglen"].music = 'Village';
@@ -657,15 +658,14 @@ mappages["naurglen2"].features[74] = {name : 'UnlitBrazier', x : 91, y : 38};
 mappages["naurglen2"].features[75] = {name : 'Dresser', x : 89, y : 38};
 mappages["naurglen2"].features[76] = {name : 'Dresser', x : 89, y : 32};
 
-
 mappages["naurglen2"].npcs = [];
 mappages["naurglen2"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 7, y : 37, NPCName: 'Avery', PeaceAI: 'scheduled', Schedule: 'avery', Conversation: 'avery', ConversationFlag: 'avery', Gender: 'male', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["naurglen2"].npcs[1] = {name : 'RangerVillagerNPC', x : 49, y : 8, NPCName: 'Garen', PeaceAI: 'scheduled', Schedule: 'garen', Conversation: 'garen', ConversationFlag: 'garen', Gender: 'male', OverrideGraphic: 'ranger-offcolor.gif'};
-mappages["naurglen2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 49, y : 9, NPCName: 'Warren', PeaceAI: 'scheduled', Schedule: 'warren', Conversation: 'warren', ConversationFlag: 'warren', Gender: 'male', OverrideGraphic: '306.gif'};
-mappages["naurglen2"].npcs[3] = {name : 'TownGuardNPC', x : 65, y : 13, NPCName: 'Evelyn', PeaceAI: 'scheduled', Schedule: 'evelyn', Conversation: 'evelyn', ConversationFlag: 'evelyn', Gender: 'female', Bark: '0', NPCBand: '0'};
-mappages["naurglen2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 89, y : 15, NPCName: 'Dora', PeaceAI: 'scheduled', Schedule: 'dora', Conversation: 'dora', ConversationFlag: 'dora', Gender: 'female', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
-mappages["naurglen2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 89, y : 19, NPCName: 'Ingrid', PeaceAI: 'scheduled', Schedule: 'ingrid', Conversation: 'ingrid', ConversationFlag: 'ingrid', Gender: 'female', OverrideGraphic: '310.gif'};
-mappages["naurglen2"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 89, y : 30, NPCName: 'Sand', Prefix: 'an', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'sand', Conversation: 'sand', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
+//mappages["naurglen2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 49, y : 9, NPCName: 'Warren', PeaceAI: 'scheduled', Schedule: 'warren', Conversation: 'warren', ConversationFlag: 'warren', Gender: 'male', OverrideGraphic: '306.gif'};
+//mappages["naurglen2"].npcs[3] = {name : 'TownGuardNPC', x : 65, y : 13, NPCName: 'Evelyn', PeaceAI: 'scheduled', Schedule: 'evelyn', Conversation: 'evelyn', ConversationFlag: 'evelyn', Gender: 'female', Bark: '0', NPCBand: '0'};
+//mappages["naurglen2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 89, y : 15, NPCName: 'Dora', PeaceAI: 'scheduled', Schedule: 'dora', Conversation: 'dora', ConversationFlag: 'dora', Gender: 'female', Leash: 2, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
+//mappages["naurglen2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 89, y : 19, NPCName: 'Ingrid', PeaceAI: 'scheduled', Schedule: 'ingrid', Conversation: 'ingrid', ConversationFlag: 'ingrid', Gender: 'female', OverrideGraphic: '310.gif'};
+//mappages["naurglen2"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 89, y : 30, NPCName: 'Sand', Prefix: 'an', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'sand', Conversation: 'sand', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 
 mappages["naurglen2"].desc = "Naurglen";
 mappages["naurglen2"].music = 'Village';
@@ -733,16 +733,3 @@ mappages["naurglen_limbo"].returny = 'NaN';
 mappages["naurglen_limbo"].returninfused = '0';
 mappages["naurglen_limbo"].linkedMaps = ["naurglen","naurglen2"];
 mappages["naurglen_limbo"].editorLabels = '{}';
-
-
-// Naurglen NPC Schedules
-
-//DU.schedules["avery"] = new NPCSchedule();
-//DU.schedules["avery"].addActivity("RouteTo", {startCondition: "Time", time: "6:00", destination: {x:8,y:41} });
-//DU.schedules["avery"].addActivity("CallAI", { startCondition: "PreviousComplete", AIName: "CloseDoor", params: { x:8,y:40}});
-//DU.schedules["avery"].addActivity("RouteTo", {startCondition: "PreviousComplete", destination: {x:7,y:42} });
-//DU.schedules["avery"].addActivity("ChangeMap", {startCondition: "PreviousComplete", destination: { x:7, y:42, mapName: "naurglen"}});
-//DU.schedules["avery"].addActivity("RouteTo", {startCondition: "PreviousComplete", destination: {x:11,y:42} });
-//DU.schedules["avery"].addActivity("CallAI", { startCondition: "PreviousComplete", AIName: "PlaceItem", params: { name: "PlateWithFood", x:11,y:41}});
-//DU.schedules["avery"].addActivity("CallAI", { startCondition: "Time", time: "7:00", AIName: "DeleteLastItem" } );
-//DU.schedules["avery"].addActivity("RouteTo", {startCondition: "PreviousComplete", destination: {x:10,y:39}, leashLength: 3 });
