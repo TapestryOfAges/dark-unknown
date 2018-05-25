@@ -6162,6 +6162,7 @@ WaterfallFlowTile.prototype = new FeatureObject();
 WaterfallFlowTile.prototype.walkon = function(who) {
   // Go falling down
   gamestate.setMode("null");
+  if (who.getMovetype() & MOVE_FLY) { return; }
   var waterfall = this.waterfall;
   setTimeout(function() {
     DescendWaterfall(who, waterfall);
