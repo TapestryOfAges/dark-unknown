@@ -468,7 +468,7 @@ function StepOrDoor(who, where, nopush) {
   var tile = whomap.getTile(where[0],where[1]);
   if (tile !== "OoB") {
     var fea = tile.getTopFeature();
-    if (fea && !(MOVE_WALK & fea.getPassable()) && who.specials["open_door"] && (who.currentActivity !== "WaitHere")) {
+    if (fea && !(MOVE_WALK & fea.getPassable()) && who.specials["open_door"] && ((who.currentActivity !== "WaitHere") || (who.getCurrentAI() !== "scheduled"))) {
       // if there is a feature, that blocks movement, while I can open doors and am not randomwalking
       if (fea.closedgraphic) {
         // Destination tile has a door
