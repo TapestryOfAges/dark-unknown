@@ -318,6 +318,7 @@ ais.WaitHere = function(who,params) {
 ais.LeaveMap = function(who,params) {
   var whox = who.getx();
   var whoy = who.gety();
+  let themap = who.getHomeMap();
   who.getHomeMap().deleteThing(who);
   DrawMainFrame("one",themap,whox,whoy); 
   DebugWrite('schedules', "I have left the map.");
