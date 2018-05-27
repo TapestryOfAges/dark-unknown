@@ -22,32 +22,32 @@ mappages["hildendain"].terrain[16] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. 
 mappages["hildendain"].terrain[17] = '.. .. ,, .. .. .. .. .. +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r .. .. .. .. ..';
 mappages["hildendain"].terrain[18] = '.. ,, ,, #% .. .. .. +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r .. #% .. ..';
 mappages["hildendain"].terrain[19] = '.. ,, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. +r +r +r .. .. .. ., .. .. .. .. .. .. ., .. .. .. .. .. .. ., .. .. .. .. .. .. .. ..';
-mappages["hildendain"].terrain[20] = '.. .. .. .. ,, .. .. .. ## ## ## ## ## #O ## ## ## ## #O ## ## ## ## ## .. +r +r +r .. ## ## ++ ## ## ## .. ## ## ++ ## ## ## .. ## ## ++ ## ## ## .. .. .. .. ..';
-mappages["hildendain"].terrain[21] = '.. ,, .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. ## ++ ++ ++ ++ ## .. ## ++ ++ ++ ++ ## .. ## ++ ++ ++ ++ ## .. .. .. .. ..';
-mappages["hildendain"].terrain[22] = '.. ,, .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. #O ++ ++ ++ ++ ## .. ## ++ ++ ++ ++ ## .. ## ++ ++ ++ ++ #O .. .. .. .. ..';
-mappages["hildendain"].terrain[23] = '.. .. #% .. __ .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ .. +r +r +r .. ## ++ ++ ++ ++ ## .. ## ++ ++ ++ ++ ## .. ## ++ ++ ++ ++ ## .. .. .. .. ..';
-mappages["hildendain"].terrain[24] = '.. .. .. ./ uu `. .. .. ## ## ++ ## ## ## ++ ## ## ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. ## ++ ++ ++ ++ ## .. ## ++ ++ ++ ++ ## .. ## ++ ++ ++ ++ ## .. #% .. .. ..';
-mappages["hildendain"].terrain[25] = '.. .. .| uu uu uu |. .. ## ++ ++ ++ ## ++ ++ ++ ## ## ## ## ## ## ## ## .. +r +r +r .. ## ## #O ## ## ## .. ## ## ## #O ## ## .. ## ## ## #O ## ## .. .. .. .. ..';
+mappages["hildendain"].terrain[20] = '.. .. .. .. ,, .. .. .. ## ## ## ## ## #O ## ## ## ## #O ## ## ## ## ## .. +r +r +r .. ## ## ++ ## ## ## ## ## ## ++ ## ## ## ## ## ## ++ ## ## ## .. .. .. .. ..';
+mappages["hildendain"].terrain[21] = '.. ,, .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. ## ++ ++ ++ ++ ## ## ## ++ ++ ++ ++ ## ## ## ++ ++ ++ ++ ## .. .. .. .. ..';
+mappages["hildendain"].terrain[22] = '.. ,, .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. #O ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ #O .. .. .. .. ..';
+mappages["hildendain"].terrain[23] = '.. .. #% .. __ .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ .. +r +r +r .. ## ++ ++ ++ ++ ## ## ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ## .. .. .. .. ..';
+mappages["hildendain"].terrain[24] = '.. .. .. ./ uu `. .. .. ## ## ++ ## ## ## ++ ## ## ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. ## ++ ++ ++ ++ ## ## ## ++ ++ ++ ++ ## ## ## ++ ++ ++ ++ ## .. #% .. .. ..';
+mappages["hildendain"].terrain[25] = '.. .. .| uu uu uu |. .. ## ++ ++ ++ ## ++ ++ ++ ## ## ## ## ## ## ## ## .. +r +r +r .. ## ## #O ## ## ## ## ## ## ## #O ## ## ## ## ## ## #O ## ## .. .. .. .. ..';
 mappages["hildendain"].terrain[26] = '.. .. .. .` uu /. .. .. ## ++ ++ ++ ## ++ ++ ++ ## .. .. u, u, .. .. .. .. +r +r +r .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
 mappages["hildendain"].terrain[27] = '.. .. .. .. -- .. .. .. ## ++ ++ ++ ## ++ ++ ++ ## u, .. .. .. .. .. .. +r +r +r +r +r .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
 mappages["hildendain"].terrain[28] = '.. .. .. .. .. .. .. .. ## ## ## ## ## ## ## ## ## .. .. u, .. .. +r +r +r +r +r +r +r +r +r .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
 mappages["hildendain"].terrain[29] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. +r +r +r +r +r +r +r +r +r +r +r +r +r .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. #% .. ..';
-mappages["hildendain"].terrain[30] = '.. .. .. .. .. .. ## ++ ## ## ## ## ## ## ## ## ## .. +r +r +r +r +r +r +r .. .. .. +r +r +r +r +r +r +r .. ## ## #O ## ## ## .. ## ## ## #O ## ## .. .. .. #% ..';
-mappages["hildendain"].terrain[31] = '.. .. .. .. .. .. #O ++ ++ ++ ++ ++ ++ ++ ++ ++ #O .. +r +r +r +r +r .. .. .. .. .. .. u, +r +r +r +r +r .. ## ++ ++ ++ ++ ## .. ## ++ ++ ++ ++ ## .. .. .. .. ..';
-mappages["hildendain"].terrain[32] = '.. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. .. .. u, ## ## ## u, .. .. .. +r +r +r .. #O ++ ++ ++ ++ ## .. ## ++ ++ ++ ++ #O .. .. .. .. ..';
-mappages["hildendain"].terrain[33] = '.. .. ,, #% .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. ## ## ## ## ++ ## ## ## ## .. +r +r +r .. ## ++ ++ ++ ++ ## .. ## ++ ++ ++ ++ ## .. .. .. .. ..';
-mappages["hildendain"].terrain[34] = '.. .. ,, .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. ## ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. ## ++ ++ ++ ++ ## .. ## ++ ++ ++ ++ ## .. .. .. .. ..';
-mappages["hildendain"].terrain[35] = '.. .. .. .. .. .. ## ## ++ ## ## ## ## ## ++ ## ## .. +r +r +r .. #O ++ ++ ++ ++ ++ ++ ++ #O .. +r +r +r .. ## ## ++ ## ## ## .. ## ## ## ++ ## ## .. .. .. .. ..';
+mappages["hildendain"].terrain[30] = '.. .. .. .. .. .. ## ++ ## ## ## ## ## ## ## ## ## .. +r +r +r +r +r +r +r .. .. .. +r +r +r +r +r +r +r .. ## ## #O ## ## ## ## ## ## ## #O ## ## .. .. .. #% ..';
+mappages["hildendain"].terrain[31] = '.. .. .. .. .. .. #O ++ ++ ++ ++ ++ ++ ++ ++ ++ #O .. +r +r +r +r +r .. .. .. .. .. .. u, +r +r +r +r +r .. ## ++ ++ ++ ++ ## ## ## ++ ++ ++ ++ ## .. .. .. .. ..';
+mappages["hildendain"].terrain[32] = '.. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. .. .. u, ## ## ## u, .. .. .. +r +r +r .. #O ++ ++ ++ ++ ## ## ++ ++ ++ ++ ++ #O .. .. .. .. ..';
+mappages["hildendain"].terrain[33] = '.. .. ,, #% .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. ## ## ## ## ++ ## ## ## ## .. +r +r +r .. ## ++ ++ ++ ++ ++ ## ## ++ ++ ++ ++ ## .. .. .. .. ..';
+mappages["hildendain"].terrain[34] = '.. .. ,, .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. ## ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. ## ++ ++ ++ ++ ## ## ## ++ ++ ++ ++ ## .. .. .. .. ..';
+mappages["hildendain"].terrain[35] = '.. .. .. .. .. .. ## ## ++ ## ## ## ## ## ++ ## ## .. +r +r +r .. #O ++ ++ ++ ++ ++ ++ ++ #O .. +r +r +r .. ## ## ++ ## ## ## ## ## ## ## ++ ## ## .. .. .. .. ..';
 mappages["hildendain"].terrain[36] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. +r +r +r u, ## ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. .. .. ., .. .. .. .. .. .. .. ., .. .. .. .. #% .. ..';
 mappages["hildendain"].terrain[37] = '.. ,, .. .. #% .. +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r .. #O ++ ++ ++ ++ ++ ++ ++ #O .. +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r .. .. .. ..';
 mappages["hildendain"].terrain[38] = '.. .. .. .. .. +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r .. ## ++ ++ ++ ++ ++ ++ ++ ## u, +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r .. .. ..';
 mappages["hildendain"].terrain[39] = '.. .. .. .. .. .. +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r u, ## ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r +r #% .. .. ..';
 mappages["hildendain"].terrain[40] = ',, .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. +r +r +r .. ## ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
-mappages["hildendain"].terrain[41] = '.. ,, .. .. ## ## ## ## #O ## ## #O ## ## ++ ## ## .. +r +r +r .. ++ ++ ++ ++ ++ ++ ++ ++ ++ .. +r +r +r .. .. .. .. ## ## ++ ## ## ## ## ## .. .. .. .. .. .. ..';
+mappages["hildendain"].terrain[41] = '.. ,, .. .. ## ## ## #O ## ## ## #O ## ## ++ ## ## .. +r +r +r .. ++ ++ ++ ++ ++ ++ ++ ++ ++ .. +r +r +r .. .. .. .. ## ## ++ ## ## ## ## ## .. .. .. .. .. .. ..';
 mappages["hildendain"].terrain[42] = '.. #% .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. ## ++ ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. .. .. .. ## ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. ..';
-mappages["hildendain"].terrain[43] = '.. .. .. .. #O ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ #O .. +r +r +r .. ## ## ## ## ## ## ## ## ## .. +r +r +r .. .. .. .. ## ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. ..';
-mappages["hildendain"].terrain[44] = '.. .. .. .. ## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ## .. +r +r +r .. .. .. .. .. .. .. .. .. .. .. +r +r +r .. u, .. .. #O ++ ++ ++ ++ ++ ++ #O .. .. .. .. .. .. ..';
-mappages["hildendain"].terrain[45] = '.. .. ,, #% ## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ## .. +r +r +r +r +r .. .. .. .. .. .. .. +r +r +r +r +r .. .. .. .. ## ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. ..';
+mappages["hildendain"].terrain[43] = '.. .. .. .. #O ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ #O .. +r +r +r .. ## ## ## ## ## ## ## ## ## .. +r +r +r .. .. .. .. ## ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. ..';
+mappages["hildendain"].terrain[44] = '.. .. .. .. ## ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ## .. +r +r +r .. .. .. .. .. .. .. .. .. .. .. +r +r +r .. u, .. .. #O ++ ++ ++ ++ ++ ++ #O .. .. .. .. .. .. ..';
+mappages["hildendain"].terrain[45] = '.. .. ,, #% ## ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ## .. +r +r +r +r +r .. .. .. .. .. .. .. +r +r +r +r +r .. .. .. .. ## ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. ..';
 mappages["hildendain"].terrain[46] = '.. .. .. .. ## ## ## ## ## ## ## ## ## ## ## ## ## .. +r +r +r +r +r +r +r .. .. .. +r +r +r +r +r +r +r .. .. u, .. ## ++ ++ ++ ++ ++ ++ ## .. .. .. .. #% .. ..';
 mappages["hildendain"].terrain[47] = '.. .. .. .. .. .. .. .. .. .. .. .. .. ,, .. .. .. .. .. .. +r +r +r +r +r +r +r +r +r +r +r +r +r .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. ..';
 mappages["hildendain"].terrain[48] = ',, .. #% .. .. .. .. .. .. ## ## ## ## ## ## ## ## .. .. .. .. .. +r +r +r +r +r +r +r +r +r .. .. .. u, u, .. .. .. ## ## ## ## ## ## ## ## .. .. .. .. .. .. ..';
@@ -284,76 +284,76 @@ mappages["hildendain"].features[212] = {name : 'SmallBox', x : 40, y : 24};
 mappages["hildendain"].features[213] = {name : 'SmallBox', x : 30, y : 21};
 mappages["hildendain"].features[214] = {name : 'SmallBox', x : 46, y : 31};
 mappages["hildendain"].features[215] = {name : 'PottedPlant', x : 47, y : 34};
-mappages["hildendain"].features[216] = {name : 'Door', x : 10, y : 42};
-mappages["hildendain"].features[217] = {name : 'Door', x : 14, y : 41, desc : "locked door", locked : 1};
-mappages["hildendain"].features[218] = {name : 'BedHead', x : 5, y : 45};
-mappages["hildendain"].features[219] = {name : 'BedHead', x : 5, y : 44};
-mappages["hildendain"].features[220] = {name : 'BedFoot', x : 6, y : 44};
-mappages["hildendain"].features[221] = {name : 'BedFoot', x : 6, y : 45};
-mappages["hildendain"].features[222] = {name : 'Mirror', x : 6, y : 42};
-mappages["hildendain"].features[223] = {name : 'Dresser', x : 5, y : 42};
-mappages["hildendain"].features[224] = {name : 'GrandfatherClock', x : 15, y : 42};
-mappages["hildendain"].features[225] = {name : 'LeftTable', x : 12, y : 44};
-mappages["hildendain"].features[226] = {name : 'MiddleTable', x : 13, y : 44};
-mappages["hildendain"].features[227] = {name : 'RightTable', x : 14, y : 44};
-mappages["hildendain"].features[228] = {name : 'BookshelfLeft', x : 12, y : 42};
-mappages["hildendain"].features[229] = {name : 'BookshelfRight', x : 13, y : 42};
-mappages["hildendain"].features[230] = {name : 'LeftChair', x : 11, y : 44};
-mappages["hildendain"].features[231] = {name : 'BottomChair', x : 12, y : 45};
-mappages["hildendain"].features[232] = {name : 'BottomChair', x : 13, y : 45};
-mappages["hildendain"].features[233] = {name : 'PottedPlant', x : 9, y : 45};
-mappages["hildendain"].features[234] = {name : 'Tree', x : 5, y : 14};
-mappages["hildendain"].features[235] = {name : 'Tree', x : 2, y : 15};
-mappages["hildendain"].features[236] = {name : 'Tree', x : 5, y : 17};
-mappages["hildendain"].features[237] = {name : 'Tree', x : 6, y : 22};
-mappages["hildendain"].features[238] = {name : 'Tree', x : 41, y : 13};
-mappages["hildendain"].features[239] = {name : 'Tree', x : 43, y : 12};
-mappages["hildendain"].features[240] = {name : 'Tree', x : 46, y : 15};
-mappages["hildendain"].features[241] = {name : 'Tree', x : 49, y : 13};
-mappages["hildendain"].features[242] = {name : 'Tree', x : 51, y : 20};
-mappages["hildendain"].features[243] = {name : 'Tree', x : 48, y : 43};
-mappages["hildendain"].features[244] = {name : 'Tree', x : 49, y : 47};
-mappages["hildendain"].features[245] = {name : 'Tree', x : 47, y : 51};
-mappages["hildendain"].features[246] = {name : 'Tree', x : 48, y : 55};
-mappages["hildendain"].features[247] = {name : 'Tree', x : 47, y : 60};
-mappages["hildendain"].features[248] = {name : 'Tree', x : 43, y : 60};
-mappages["hildendain"].features[249] = {name : 'Tree', x : 41, y : 62};
-mappages["hildendain"].features[250] = {name : 'Tree', x : 37, y : 60};
-mappages["hildendain"].features[251] = {name : 'Tree', x : 34, y : 62};
-mappages["hildendain"].features[252] = {name : 'Tree', x : 30, y : 61};
-mappages["hildendain"].features[253] = {name : 'Tree', x : 19, y : 60};
-mappages["hildendain"].features[254] = {name : 'Tree', x : 16, y : 62};
-mappages["hildendain"].features[255] = {name : 'Tree', x : 7, y : 60};
-mappages["hildendain"].features[256] = {name : 'Tree', x : 1, y : 58};
-mappages["hildendain"].features[257] = {name : 'Tree', x : 4, y : 50};
-mappages["hildendain"].features[258] = {name : 'Tree', x : 7, y : 52};
-mappages["hildendain"].features[259] = {name : 'Tree', x : 1, y : 44};
-mappages["hildendain"].features[260] = {name : 'Tree', x : 3, y : 37};
-mappages["hildendain"].features[261] = {name : 'Tree', x : 1, y : 29};
-mappages["hildendain"].features[262] = {name : 'LeftTable', x : 18, y : 23};
-mappages["hildendain"].features[263] = {name : 'MiddleTable', x : 19, y : 23};
-mappages["hildendain"].features[264] = {name : 'RightTable', x : 20, y : 23};
-mappages["hildendain"].features[265] = {name : 'BottomChair', x : 19, y : 24};
-mappages["hildendain"].features[266] = {name : 'BookshelfLeft', x : 15, y : 21};
-mappages["hildendain"].features[267] = {name : 'BookshelfRight', x : 16, y : 21};
-mappages["hildendain"].features[268] = {name : 'TopChair', x : 17, y : 21};
-mappages["hildendain"].features[269] = {name : 'BedHead', x : 13, y : 27};
-mappages["hildendain"].features[270] = {name : 'BedHead', x : 9, y : 27};
-mappages["hildendain"].features[271] = {name : 'BedFoot', x : 10, y : 27};
-mappages["hildendain"].features[272] = {name : 'BedFoot', x : 14, y : 27};
-mappages["hildendain"].features[273] = {name : 'Evergreen', x : 26, y : 31};
-mappages["hildendain"].features[274] = {name : 'LeftTable', x : 19, y : 53};
-mappages["hildendain"].features[275] = {name : 'MiddleTable', x : 20, y : 53};
-mappages["hildendain"].features[276] = {name : 'RightTable', x : 21, y : 53};
-mappages["hildendain"].features[277] = {name : 'Barrel', x : 19, y : 55};
-mappages["hildendain"].features[278] = {name : 'Barrel', x : 19, y : 56};
-mappages["hildendain"].features[279] = {name : 'Barrel', x : 19, y : 56};
-mappages["hildendain"].features[280] = {name : 'Barrel', x : 19, y : 57};
-mappages["hildendain"].features[281] = {name : 'Barrel', x : 19, y : 57};
-mappages["hildendain"].features[282] = {name : 'Barrel', x : 20, y : 57};
-mappages["hildendain"].features[283] = {name : 'Barrel', x : 20, y : 57};
-mappages["hildendain"].features[284] = {name : 'StairUp', x : 19, y : 52, entermap : 'hildendain2', enterx : 19, entery : 52};
-mappages["hildendain"].features[285] = {name : 'Fountain', x : 4, y : 25};
+mappages["hildendain"].features[216] = {name : 'Door', x : 14, y : 41, desc : "locked door", locked : 1};
+mappages["hildendain"].features[217] = {name : 'BedHead', x : 5, y : 45};
+mappages["hildendain"].features[218] = {name : 'BedHead', x : 5, y : 44};
+mappages["hildendain"].features[219] = {name : 'BedFoot', x : 6, y : 44};
+mappages["hildendain"].features[220] = {name : 'BedFoot', x : 6, y : 45};
+mappages["hildendain"].features[221] = {name : 'Mirror', x : 6, y : 42};
+mappages["hildendain"].features[222] = {name : 'Dresser', x : 5, y : 42};
+mappages["hildendain"].features[223] = {name : 'GrandfatherClock', x : 15, y : 42};
+mappages["hildendain"].features[224] = {name : 'LeftTable', x : 12, y : 44};
+mappages["hildendain"].features[225] = {name : 'MiddleTable', x : 13, y : 44};
+mappages["hildendain"].features[226] = {name : 'RightTable', x : 14, y : 44};
+mappages["hildendain"].features[227] = {name : 'BookshelfLeft', x : 12, y : 42};
+mappages["hildendain"].features[228] = {name : 'BookshelfRight', x : 13, y : 42};
+mappages["hildendain"].features[229] = {name : 'LeftChair', x : 11, y : 44};
+mappages["hildendain"].features[230] = {name : 'BottomChair', x : 12, y : 45};
+mappages["hildendain"].features[231] = {name : 'BottomChair', x : 13, y : 45};
+mappages["hildendain"].features[232] = {name : 'Tree', x : 5, y : 14};
+mappages["hildendain"].features[233] = {name : 'Tree', x : 2, y : 15};
+mappages["hildendain"].features[234] = {name : 'Tree', x : 5, y : 17};
+mappages["hildendain"].features[235] = {name : 'Tree', x : 6, y : 22};
+mappages["hildendain"].features[236] = {name : 'Tree', x : 41, y : 13};
+mappages["hildendain"].features[237] = {name : 'Tree', x : 43, y : 12};
+mappages["hildendain"].features[238] = {name : 'Tree', x : 46, y : 15};
+mappages["hildendain"].features[239] = {name : 'Tree', x : 49, y : 13};
+mappages["hildendain"].features[240] = {name : 'Tree', x : 51, y : 20};
+mappages["hildendain"].features[241] = {name : 'Tree', x : 48, y : 43};
+mappages["hildendain"].features[242] = {name : 'Tree', x : 49, y : 47};
+mappages["hildendain"].features[243] = {name : 'Tree', x : 47, y : 51};
+mappages["hildendain"].features[244] = {name : 'Tree', x : 48, y : 55};
+mappages["hildendain"].features[245] = {name : 'Tree', x : 47, y : 60};
+mappages["hildendain"].features[246] = {name : 'Tree', x : 43, y : 60};
+mappages["hildendain"].features[247] = {name : 'Tree', x : 41, y : 62};
+mappages["hildendain"].features[248] = {name : 'Tree', x : 37, y : 60};
+mappages["hildendain"].features[249] = {name : 'Tree', x : 34, y : 62};
+mappages["hildendain"].features[250] = {name : 'Tree', x : 30, y : 61};
+mappages["hildendain"].features[251] = {name : 'Tree', x : 19, y : 60};
+mappages["hildendain"].features[252] = {name : 'Tree', x : 16, y : 62};
+mappages["hildendain"].features[253] = {name : 'Tree', x : 7, y : 60};
+mappages["hildendain"].features[254] = {name : 'Tree', x : 1, y : 58};
+mappages["hildendain"].features[255] = {name : 'Tree', x : 4, y : 50};
+mappages["hildendain"].features[256] = {name : 'Tree', x : 7, y : 52};
+mappages["hildendain"].features[257] = {name : 'Tree', x : 1, y : 44};
+mappages["hildendain"].features[258] = {name : 'Tree', x : 3, y : 37};
+mappages["hildendain"].features[259] = {name : 'Tree', x : 1, y : 29};
+mappages["hildendain"].features[260] = {name : 'LeftTable', x : 18, y : 23};
+mappages["hildendain"].features[261] = {name : 'MiddleTable', x : 19, y : 23};
+mappages["hildendain"].features[262] = {name : 'RightTable', x : 20, y : 23};
+mappages["hildendain"].features[263] = {name : 'BottomChair', x : 19, y : 24};
+mappages["hildendain"].features[264] = {name : 'BookshelfLeft', x : 15, y : 21};
+mappages["hildendain"].features[265] = {name : 'BookshelfRight', x : 16, y : 21};
+mappages["hildendain"].features[266] = {name : 'TopChair', x : 17, y : 21};
+mappages["hildendain"].features[267] = {name : 'BedHead', x : 13, y : 27};
+mappages["hildendain"].features[268] = {name : 'BedHead', x : 9, y : 27};
+mappages["hildendain"].features[269] = {name : 'BedFoot', x : 10, y : 27};
+mappages["hildendain"].features[270] = {name : 'BedFoot', x : 14, y : 27};
+mappages["hildendain"].features[271] = {name : 'Evergreen', x : 26, y : 31};
+mappages["hildendain"].features[272] = {name : 'LeftTable', x : 19, y : 53};
+mappages["hildendain"].features[273] = {name : 'MiddleTable', x : 20, y : 53};
+mappages["hildendain"].features[274] = {name : 'RightTable', x : 21, y : 53};
+mappages["hildendain"].features[275] = {name : 'Barrel', x : 19, y : 55};
+mappages["hildendain"].features[276] = {name : 'Barrel', x : 19, y : 56};
+mappages["hildendain"].features[277] = {name : 'Barrel', x : 19, y : 56};
+mappages["hildendain"].features[278] = {name : 'Barrel', x : 19, y : 57};
+mappages["hildendain"].features[279] = {name : 'Barrel', x : 19, y : 57};
+mappages["hildendain"].features[280] = {name : 'Barrel', x : 20, y : 57};
+mappages["hildendain"].features[281] = {name : 'Barrel', x : 20, y : 57};
+mappages["hildendain"].features[282] = {name : 'StairUp', x : 19, y : 52, entermap : 'hildendain2', enterx : 19, entery : 52};
+mappages["hildendain"].features[283] = {name : 'Fountain', x : 4, y : 25};
+mappages["hildendain"].features[284] = {name : 'BedHead', x : 32, y : 23};
+mappages["hildendain"].features[285] = {name : 'BedFoot', x : 33, y : 23};
 mappages["hildendain"].features[286] = {name : 'Fireplace', x : 26, y : 33};
 mappages["hildendain"].features[287] = {name : 'TorchEast', x : 34, y : 52};
 mappages["hildendain"].features[288] = {name : 'TorchWest', x : 30, y : 52};
@@ -369,19 +369,33 @@ mappages["hildendain"].features[297] = {name : 'TorchEast', x : 22, y : 21};
 mappages["hildendain"].features[298] = {name : 'TorchWest', x : 19, y : 54};
 mappages["hildendain"].features[299] = {name : 'TorchEast', x : 29, y : 42};
 mappages["hildendain"].features[300] = {name : 'TorchWest', x : 23, y : 42};
-mappages["hildendain"].features[301] = {name : 'BedHead', x : 32, y : 23};
-mappages["hildendain"].features[302] = {name : 'BedFoot', x : 33, y : 23};
+mappages["hildendain"].features[301] = {name : 'Brazier', x : 11, y : 34};
+mappages["hildendain"].features[302] = {name : 'PottedPlant', x : 8, y : 45};
+mappages["hildendain"].features[303] = {name : 'Door', x : 9, y : 42};
+mappages["hildendain"].features[304] = {name : 'Brazier', x : 10, y : 45};
+mappages["hildendain"].features[305] = {name : 'Fireplace', x : 43, y : 22};
+mappages["hildendain"].features[306] = {name : 'Fireplace', x : 41, y : 23};
+mappages["hildendain"].features[307] = {name : 'Fireplace', x : 34, y : 22};
+mappages["hildendain"].features[308] = {name : 'Fireplace', x : 43, y : 32};
+mappages["hildendain"].features[309] = {name : 'Fireplace', x : 41, y : 33};
+mappages["hildendain"].features[310] = {name : 'Brazier', x : 25, y : 37};
+mappages["hildendain"].features[311] = {name : 'Brazier', x : 27, y : 37};
+mappages["hildendain"].features[312] = {name : 'TorchWest', x : 30, y : 57};
 
 mappages["hildendain"].npcs = [];
-mappages["hildendain"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 34, y : 50, NPCName: 'Anna', Conversation: 'anna', PeaceAI: 'scheduled', Schedule: 'anna', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["hildendain"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 13, y : 33, NPCName: 'Aaron', Conversation: 'aaron', PeaceAI: 'scheduled', Schedule: 'aaron', Gender: 'male', Merch: 'aaron', NPCBand: '0'};
 mappages["hildendain"].npcs[1] = {name : 'AdventurerVillagerNPC', x : 9, y : 33, NPCName: 'Erin', Conversation: 'erin', PeaceAI: 'scheduled', Schedule: 'erin', Gender: 'female', Merch: 'erin', NPCBand: '0'};
-mappages["hildendain"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 13, y : 33, NPCName: 'Aaron', Conversation: 'aaron', PeaceAI: 'scheduled', Schedule: 'aaron', Gender: 'male', Merch: 'aaron', NPCBand: '0'};
+mappages["hildendain"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 34, y : 50, NPCName: 'Anna', Conversation: 'anna', PeaceAI: 'scheduled', Schedule: 'anna', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 mappages["hildendain"].npcs[3] = {name : 'MageVillagerNPC', x : 43, y : 45, NPCName: 'Alexis', Conversation: 'alexis', PeaceAI: 'scheduled', Schedule: 'alexis', Gender: 'female', Merch: 'alexis', NPCBand: '0', OverrideGraphic: '303.gif'};
 mappages["hildendain"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 26, y : 42, NPCName: 'Rhiannon', Conversation: 'rhiannon', PeaceAI: 'scheduled', Schedule: 'rhiannon', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["hildendain"].npcs[5] = {name : 'FighterVillagerNPC', x : 5, y : 28, NPCName: 'David', Conversation: 'dave', PeaceAI: 'scheduled', Schedule: 'dave', Gender: 'male', NPCBand: '0', OverrideGraphic: '308.gif'};
 mappages["hildendain"].npcs[6] = {name : 'TinkerVillagerNPC', x : 31, y : 45, NPCName: 'Kiba', Conversation: 'kiba', PeaceAI: 'scheduled', Schedule: 'kiba', Gender: 'female', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
 mappages["hildendain"].npcs[7] = {name : 'RangerVillagerNPC', x : 32, y : 53, NPCName: 'Garrick', Conversation: 'garrick', PeaceAI: 'scheduled', Schedule: 'garrick', Gender: 'male', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif'};
 mappages["hildendain"].npcs[8] = {name : 'TownGuardNPC', x : 30, y : 54, NPCName: 'Aoife', Conversation: 'aoife', PeaceAI: 'scheduled', Schedule: 'aoife', Gender: 'female', NPCBand: '0'};
+mappages["hildendain"].npcs[9] = {name : 'TownGuardNPC', x : 44, y : 53, PeaceAI: 'scheduled', NPCName: 'Meredith', Schedule: 'meredith', Conversation: 'meredith', Gender: 'female', NPCBand: '0'};
+mappages["hildendain"].npcs[10] = {name : 'TownGuardNPC', x : 44, y : 55, NPCName: 'Linda', PeaceAI: 'scheduled', Schedule: 'linda', Conversation: 'linda', Gender: 'female', NPCBand: '0'};
+mappages["hildendain"].npcs[11] = {name : 'TownGuardNPC', x : 44, y : 57, NPCName: 'Ceil', PeaceAI: 'scheduled', Schedule: 'ceil', Conversation: 'ceil', Gender: 'female', NPCBand: '0'};
+mappages["hildendain"].npcs[12] = {name : 'TownGuardNPC', x : 41, y : 57, NPCName: 'Thomas', PeaceAI: 'scheduled', Schedule: 'thomas', Conversation: 'thomas', Gender: 'male', NPCBand: '0'};
 
 mappages["hildendain"].desc = "The Towne of Hildendain";
 mappages["hildendain"].music = 'Towne';
@@ -477,8 +491,8 @@ mappages["hildendain2"].terrain[62] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb
 mappages["hildendain2"].terrain[63] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb';
 
 mappages["hildendain2"].features = [];
-mappages["hildendain2"].features[0] = {name : 'StairDown2', x : 29, y : 34, entermap : 'null', enterx : 0, entery : 0};
-mappages["hildendain2"].features[1] = {name : 'StairDown', x : 19, y : 52, entermap : 'null', enterx : 0, entery : 0};
+mappages["hildendain2"].features[0] = {name : 'StairDown2', x : 29, y : 34, entermap : 'hildendain', enterx : 29, entery : 34};
+mappages["hildendain2"].features[1] = {name : 'StairDown', x : 19, y : 52, entermap : 'hildendain', enterx : 19, entery : 52};
 mappages["hildendain2"].features[2] = {name : 'Door', x : 27, y : 38, desc : "locked door", locked : 1};
 mappages["hildendain2"].features[3] = {name : 'Door', x : 27, y : 35};
 mappages["hildendain2"].features[4] = {name : 'Door', x : 27, y : 42};
@@ -522,7 +536,7 @@ mappages["hildendain2"].exity = '63';
 mappages["hildendain2"].wraps = '';
 mappages["hildendain2"].enterx = '31';
 mappages["hildendain2"].entery = '62';
-mappages["hildendain2"].seeBelow = '';
+mappages["hildendain2"].seeBelow = 'hildendain';
 mappages["hildendain2"].lightLevel = 'cycle';
 mappages["hildendain2"].alwaysRemember = '0';
 mappages["hildendain2"].scale = '1';
@@ -543,9 +557,37 @@ mappages["hildendain2"].editorLabels = '{}';
 mappages["hildendain"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let npcs = mapref.npcs.getAll();
-    let anna;
+    let anna, aaron, alexis, rhi, kiba;
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Anna") { anna = npcs[i]; }
+      if (npcs[i].getNPCName() === "Aaron") { aaron = npcs[i]; }
+      if (npcs[i].getNPCName() === "Alexis") { alexis = npcs[i]; }
+      if (npcs[i].getNPCName() === "Rhiannon") { rhi = npcs[i]; }
+      if (npcs[i].getNPCName() === "Kiba") { kiba = npcs[i]; }
+    }
+
+    if (aaron) {
+      if ((aaron.getCurrentScheduleIndex() >= 4) && (aaron.getCurrentScheduleIndex() <= 7)) {
+        aaron.getHomeMap().getTile(14,41).getTopFeature().unlockMe(aaron);
+      }
+    }
+
+    if (alexis) {
+      if ((alexis.getCurrentScheduleIndex() >= 4) && (alexis.getCurrentScheduleIndex() <= 12)) {
+        alexis.getHomeMap().getTile(38,35).getTopFeature().unlockMe(alexis);
+      }
+    }
+
+    if (rhi) {
+      if ((rhi.getCurrentScheduleIndex() === 4) || (rhi.getCurrentScheduleIndex() === 10)) {
+        alexis.getHomeMap().getTile(31,20).getTopFeature().unlockMe(alexis);
+      }
+    }
+
+    if (kiba) {
+      if ((kiba.getCurrentScheduleIndex() >= 4) && (kiba.getCurrentScheduleIndex() <= 10)) {
+        kiba.getHomeMap().getTile(46,35).getTopFeature().unlockMe(kiba);
+      }
     }
 
     if (DU.gameflags.anna_return) {
@@ -554,16 +596,19 @@ mappages["hildendain"].onload = function(mapref) {
         DUTime.removeEntityFrom(anna);
       }
     } else {
-      if (anna.getCurrentScheduleIndex() >= 9) {
-        anna.setGraphic("012.gif");
+      if (anna) {
+        if (anna.getCurrentScheduleIndex() >= 9) {
+          anna.setGraphic("012.gif");
+        }
       }
     }
   
     if (DU.gameflags.garrick_flipout) {
       let npcs = mapref.npcs.getAll();
-      let garrick;
+      let garrick, aoife;
       for (let i=0;i<npcs.length;i++) {
         if (npcs[i].getNPCName() === "Garrick") { anna = npcs[i]; }
+        if (npcs[i].getNPCName() === "Aoife") { aoife = npcs[i]; }
       }
       if (garrick) {
         mapref.moveThing(14,26,garrick);
@@ -571,6 +616,10 @@ mappages["hildendain"].onload = function(mapref) {
         garrick.starty = 26;
         garrick.setSchedule("garrickImprisoned");
       } 
+      if (aoife) {
+        aoife.setSchedule("aoife2");
+        let loc = DU.schedules["aoife2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref);
+      }
     }
   }
 }
