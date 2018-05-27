@@ -522,8 +522,10 @@ OnConvTriggers["anna_return"] = function(speaker,keyword) {
   });
   if (!anna) { alert("Couldn't find Anna to change her AI."); }
   else {
-    anna.setCurrentAI("AnnaLeaves");
-    DebugWrite("plot", "Anna's AI changes to AnnaLeaves.<br />");
+//    anna.setCurrentAI("AnnaLeaves");
+//    DebugWrite("plot", "Anna's AI changes to AnnaLeaves.<br />");
+    anna.setSchedule("anna_leaves");
+    anna.setCurrentScheduleIndex(0);
   }
 }
 
