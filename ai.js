@@ -471,50 +471,6 @@ ais.Trevor = function(who) {
   return retval;
 }
 
-ais.AnnaLeaves = function(who) {
-  if (!who.dest) { who.dest = 1; }
-  var retval = {};
-  retval["fin"] = 1;
-  var themap = who.getHomeMap();
-  var annax = who.getx();
-  var annay = who.gety();
-  if (who.gety() === 60) {
-    DU.gameflags.setFlag("anna_left",1);
-    themap.deleteThing(who);
-    DUTime.removeEntityFrom(who);
-    DrawMainFrame("one",themap,annax,annay);
-    return retval;
-  }
-  
-  var path;
-  var pathfound;
-  
-  while (!pathfound) {
-    path = themap.getPath(annax, annay, 26, 60, who.getMovetype());
-    path.shift();
-  }
-  
-  // step on the path
-  // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
-  var diffx = path[0][0] - annax;
-  var diffy = path[0][1] - annay;
-  var fullx = 25 - annax;
-  var fully = 59 - annay;
-  
-  var moved = who.moveMe(diffx,diffy);
-  if (!moved["canmove"]) {
-    if (diffx !== 0) {
-      if (fully > 0) { who.moveMe(0,1); }
-      else { who.moveMe(0,-1); }
-    } else {
-      if (fullx > 0) { who.moveMe(1,0); }
-      else { who.moveMe(-1,0); }
-    }
-  }
-  
-  return retval;
-}
-
 ais.GarrickAttack = function(who) {
   var retval = {};
   retval["fin"] = 1;
@@ -634,7 +590,7 @@ ais.AoifeEscort = function(who) {
       who.dest++;
       return retval;
     } else if (who.dest === 3) {
-      path = themap.getPath(gx, gy, 14, 23, who.getMovetype());
+      path = themap.getPath(gx, gy, 14, 23, MOVE_WALK_DOOR);
     } else if (who.dest === 4) {
       var doortile = themap.getTile(gx,gy+1);
       var door = doortile.getTopFeature();
@@ -675,7 +631,7 @@ ais.AoifeEscort = function(who) {
   
   // step on the path
   // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
-  var moved = StepOrSidestep(who, path[0], [6,52]);
+  var moved = StepOrSidestep(who, path[0], [14,23]);
   
   return retval;
 }
@@ -686,18 +642,21 @@ ais.GarrickEscort = function(who) {
   var themap = who.getHomeMap();
   var allnpcs = themap.npcs.getAll();
   var aoife;
-  let destx = aoife.getx();
-  let desty = aoife.gety();
 
   $.each(allnpcs, function(idx,val) {
     if (val.getNPCName() === "Aoife") { aoife = val;}
   });
-  if ((who.getx() === 14) && (who.gety() === 26)) { 
+
+  let destx = aoife.getx();
+  let desty = aoife.gety();
+
+  if ((who.getx() === 14) && (who.gety() === 25)) { 
     who.setSchedule("garrickImprisoned");
     who.setCurrentAI("scheduled");
+    who.setCurrentScheduleIndex(0);
     return retval;
   }
-  if (aoife.getx() <= 13) {
+  if (aoife.getx() <= 14) {
     destx = 14;
     desty = 26;
   }
