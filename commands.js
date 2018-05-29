@@ -369,11 +369,18 @@ function PerformCommand(code, ctrl) {
 		// volume - turns sound effects on and off
 		if (DU.gameflags.getFlag("sound")) { 
 		  DU.gameflags.setFlag("sound", 0); 
-		  retval["txt"] = "Sound effects off.";
+      retval["txt"] = "Sound effects off.";
+      
+      if (!$.isEmptyObject(ambient)) { 
+        DecAmbientVol(ambient);
+        ambient = {}; 
+      }
 		}
 		else { 
       DU.gameflags.setFlag("sound", 1); 
       retval["txt"] = "Sound effects on.";
+
+      ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
     }
     retval["input"] = "&gt;";
     retval["fin"] = 2;
