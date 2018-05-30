@@ -619,6 +619,9 @@ mappages["hildendain"].onload = function(mapref) {
       if (aoife) {
         aoife.setSchedule("aoife2");
         let loc = DU.schedules["aoife2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref);
+        mapref.moveThing(loc.x,loc.y,aoife);
+        aoife.startx = loc.x;
+        aoife.starty = loc.y
       }
     }
   }
