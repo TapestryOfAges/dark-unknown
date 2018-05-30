@@ -72,15 +72,15 @@ mappages["poverty"].features[29] = {name : 'Campfire', x : 20, y : 14};
 
 
 mappages["poverty"].npcs = [];
-mappages["poverty"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 25, NPCName: 'Jessica', Desc: 'herbalist', Conversation: 'jessica', Gender: 'female', Leash: 2, NPCBand: '0', OverrideGraphic: '302.gif'};
-mappages["poverty"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 24, y : 27, NPCName: 'Brooke', Desc: 'apprentice', Conversation: 'brooke', Gender: 'female', Leash: 2, NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["poverty"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 25, NPCName: 'Jessica', Desc: 'herbalist', PeaceAI: 'scheduled', Schedule: 'jessica', Conversation: 'jessica', Gender: 'female', Leash: 2, NPCBand: '0', OverrideGraphic: '302.gif'};
+mappages["poverty"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 24, y : 27, NPCName: 'Brooke', Desc: 'apprentice', Conversation: 'brooke', PeaceAI: 'scheduled', Schedule: 'brooke', Gender: 'female', Leash: 2, NPCBand: '0', OverrideGraphic: '310.2.gif'};
 mappages["poverty"].npcs[2] = {name : 'MageVillagerNPC', x : 17, y : 8, NPCName: 'Ivan', PeaceAI: 'scheduled', Schedule: 'ivan', Conversation: 'ivan', Gender: 'male', NPCBand: '0', OverrideGraphic: '303.gif'};
-mappages["poverty"].npcs[3] = {name : 'RangerVillagerNPC', x : 19, y : 8, NPCName: 'Steadman', Conversation: 'steadman', Gender: 'male', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif'};
+mappages["poverty"].npcs[3] = {name : 'RangerVillagerNPC', x : 19, y : 8, NPCName: 'Steadman', Conversation: 'steadman', PeaceAI: 'scheduled', Schedule: 'steadman', Gender: 'male', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif'};
 mappages["poverty"].npcs[4] = {name : 'TownGuardNPC', x : 12, y : 20, NPCName: 'Arthur', Conversation: 'arthur', PeaceAI: 'scheduled', Schedule: 'arthur', Gender: 'male', NPCBand: '0'};
-mappages["poverty"].npcs[5] = {name : 'BardVillagerNPC', x : 7, y : 12, NPCName: 'Kelly', Desc: 'mayor', Conversation: 'kelly', Gender: 'female', NPCBand: '0', OverrideGraphic: '311.gif'};
-mappages["poverty"].npcs[6] = {name : 'AdventurerVillagerNPC', x : 5, y : 16, NPCName: 'Damien', Desc: 'farmer', Conversation: 'damien', Gender: 'male', NPCBand: '0'};
-mappages["poverty"].npcs[7] = {name : 'BeggarVillagerNPC', x : 4, y : 12, NPCName: 'Garth', Conversation: 'garth', Gender: 'male', NPCBand: '0'};
-mappages["poverty"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 10, y : 15, NPCName: 'Anna', Conversation: 'anna', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["poverty"].npcs[5] = {name : 'BardVillagerNPC', x : 7, y : 12, NPCName: 'Kelly', Desc: 'mayor', Conversation: 'kelly', PeaceAI: 'scheduled', Schedule: 'kelly', Gender: 'female', NPCBand: '0', OverrideGraphic: '311.gif'};
+mappages["poverty"].npcs[6] = {name : 'AdventurerVillagerNPC', x : 5, y : 16, NPCName: 'Damien', Desc: 'farmer', Conversation: 'damien', PeaceAI: 'scheduled', Schedule: 'damien', Gender: 'male', NPCBand: '0'};
+mappages["poverty"].npcs[7] = {name : 'BeggarVillagerNPC', x : 4, y : 12, NPCName: 'Garth', Conversation: 'garth', PeaceAI: 'scheduled', Schedule: 'garth', Gender: 'male', NPCBand: '0'};
+mappages["poverty"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 10, y : 15, NPCName: 'Anna', Conversation: 'anna', PeaceAI: 'scheduled', Schedule: 'anna_poverty', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 
 mappages["poverty"].desc = "Village of Poverty";
 mappages["poverty"].music = 'Village';
@@ -110,15 +110,27 @@ mappages["poverty"].editorLabels = '{}';
 
 mappages["poverty"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    let npcs = mapref.npcs.getAll();
     if (!DU.gameflags.getFlag("anna_return")) { 
       let anna;
-      let npcs = mapref.npcs.getAll();
       for (let i=0;i<npcs.length;i++) {
         if (npcs[i].getNPCName() === "Anna") { anna = npcs[i]; }
       }
       if (anna) {
         mapref.deleteThing(anna);
         DUTime.removeEntityFrom(anna);
+      }
+    } else {
+      let brooke;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getNPCName() === "Brooke") { brooke = npcs[i]; }
+      }
+      if (brooke) {
+        brooke.setSchedule("brooke2");
+        let loc = DU.schedules["brooke2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref);
+        mapref.moveThing(loc.x,loc.y,brooke);
+        brooke.startx = loc.x;
+        brooke.starty = loc.y
       }
     }
   }
