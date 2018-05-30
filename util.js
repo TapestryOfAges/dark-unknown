@@ -407,7 +407,7 @@ function AdjustStartingLocations(amap) {
   var allnpcs = amap.npcs.getAll();
   var linked = amap.getLinkedMaps();
 
-  if (linked && (linked.length > 0)) {
+  if (linked && (linked.length > 0) && (linked[0] !== "")) {
     var othermap = new GameMap();
     for (var j=0;j<linked.length;j++) {
       othermap = maps.getMap(linked[j]);
