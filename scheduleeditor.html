@@ -432,7 +432,7 @@
 
       function save_chunked_sched() {
         let printerwin = window.open('','printarray');
-        printerwin.document.writeln("var sched = {");
+        printerwin.document.writeln("let chunked_sched = {");
 
         $.each(DU.schedules, function (idx, val) {
           let serialized = JSON.stringify(val);
@@ -440,10 +440,10 @@
           serialized = serialized.replace(/\\/g, "\\\\");
           serialized = serialized.replace(/\'/g, "\\'");
 
-          printerwin.document.writeln(idx + ": '" + serialized + ",");
+          printerwin.document.writeln("'" + idx + "': '" + serialized + ",");
         });
 
-        printerwin.document.writeln("};");
+        printerwin.document.writeln("}';");
         printerwin.document.close();
       }
 
