@@ -427,7 +427,24 @@
         printerwin.document.writeln("var sched = '" + serialized + "';");
         printerwin.document.close();
   
-        var deser = JSON.parse(serialized);
+//        var deser = JSON.parse(serialized);
+      }
+
+      function save_chunked_sched() {
+        let printerwin = window.open('','printarray');
+        printerwin.document.writeln("var sched = {");
+
+        $.each(DU.schedules, function (idx, val) {
+          let serialized = JSON.stringify(val);
+
+          serialized = serialized.replace(/\\/g, "\\\\");
+          serialized = serialized.replace(/\'/g, "\\'");
+
+          printerwin.document.writeln(idx + ": '" + serialized + ",");
+        });
+
+        printerwin.document.writeln("};");
+        printerwin.document.close();
       }
 
       function make_sched_table() {   // Note: THIS ASSUMES THE FIRST ENTRY IN ANY SCHEDULE STARTS AT A TIME
