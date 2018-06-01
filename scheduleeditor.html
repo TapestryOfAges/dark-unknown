@@ -440,7 +440,7 @@
           serialized = serialized.replace(/\\/g, "\\\\");
           serialized = serialized.replace(/\'/g, "\\'");
 
-          printerwin.document.writeln("'" + idx + "': '" + serialized + ",");
+          printerwin.document.writeln(idx + ": '" + serialized + ",");
         });
 
         printerwin.document.writeln("}';");
