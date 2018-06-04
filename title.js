@@ -404,6 +404,9 @@ function DoAction(code, e) {
 }
 
 function CharCreate() {
+  charname = "";
+  gender = "";
+  graphic = "";
   var charprompt = "<div style='position:absolute;left:100px;top:100px'><p class='charcreate' id='charprompt'>Enter character name: _</p></div>";
   $("#maindiv").html(charprompt);
   gamestate.setMode("name");
