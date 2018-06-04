@@ -2027,6 +2027,20 @@ function SouthCoastTile() {
 }
 SouthCoastTile.prototype = new TerrainObject();
 
+function SouthCoastSandTile() {
+  this.name = "SouthCoastSand";
+  this.graphic = "terrain_tiles.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-96";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+SouthCoastSandTile.prototype = new TerrainObject();
+
 function NorthCoastTile() {
   this.name = "NorthCoast";
 //  this.graphic = "074.gif";
@@ -2072,6 +2086,20 @@ function EastCoastTile() {
 }
 EastCoastTile.prototype = new TerrainObject();
 
+function EastCoastSandTile() {
+  this.name = "EastCoastSand";
+  this.graphic = "terrain_tiles.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-96";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+EastCoastSandTile.prototype = new TerrainObject();
+
 function WestCoastTile() {
   this.name = "WestCoast";
 //  this.graphic = "076.gif";
@@ -2086,6 +2114,20 @@ function WestCoastTile() {
   this.walkSound = "grass";
 }
 WestCoastTile.prototype = new TerrainObject();
+
+function WestCoastSandTile() {
+  this.name = "WestCoastSand";
+  this.graphic = "terrain_tiles.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-96";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+WestCoastSandTile.prototype = new TerrainObject();
 
 function NortheastCoastTile() {
   this.name = "NortheastCoast";
