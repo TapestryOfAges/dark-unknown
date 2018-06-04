@@ -35,7 +35,7 @@
           places[val.baseLocation] = 1;
         });        
 
-        $('#header').html("<p><a href='javascript:savesched()'>[Save Schedules]</a> <a href='javascript:create_header()'>[Refresh]</a> <a href='javascript:start_schedule()'>[New Schedule]</a> <a href='javascript:make_sched_table()'>[Schedule Table]</a></p><p>");
+        $('#header').html("<p><a href='javascript:save_chunked_sched()'>[Save Schedules]</a> <a href='javascript:create_header()'>[Refresh]</a> <a href='javascript:start_schedule()'>[New Schedule]</a> <a href='javascript:make_sched_table()'>[Schedule Table]</a></p><p>");
 
         $.each(places, function(idx,val) {
           $('#header').append("<a href='javascript:select_place(\"" + idx + "\")'>" + idx + "</a> | ");
@@ -416,7 +416,7 @@
       
       }
       
-      function savesched() {
+      function savesched() {   // deprecated
         var serialized = JSON.stringify(DU.schedules);
 
         serialized = serialized.replace(/\\/g, "\\\\");
@@ -432,7 +432,7 @@
 
       function save_chunked_sched() {
         let printerwin = window.open('','printarray');
-        printerwin.document.writeln("let chunked_sched = {");
+        printerwin.document.writeln("let sched = {");
 
         $.each(DU.schedules, function (idx, val) {
           let serialized = JSON.stringify(val);
@@ -440,10 +440,10 @@
           serialized = serialized.replace(/\\/g, "\\\\");
           serialized = serialized.replace(/\'/g, "\\'");
 
-          printerwin.document.writeln(idx + ": '" + serialized + ",");
+          printerwin.document.writeln(idx + ": '" + serialized + "',");
         });
 
-        printerwin.document.writeln("}';");
+        printerwin.document.writeln("};");
         printerwin.document.close();
       }
 
