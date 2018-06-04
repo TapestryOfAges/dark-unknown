@@ -732,6 +732,21 @@ OnConvTriggers["kyvek_fetch"] = function(speaker,keyword) {
 
 function ConvTestFlags() {};
 
+OnConvTriggers["where_king"] = function(speaker,keyword) {
+  if (CheckBetweenTime("6:15","7:30")) {
+    maintext.addText("The King is at his morning meeting with the chancellor. He will soon make his way to the throne room.");
+  } else if (CheckBetweenTime("7:31","12:00")) {
+    maintext.addText("Your father can be found in the throne room.");
+  } else if (CheckBetweenTime("12:01","17:00")) {
+    maintext.addText("Your father can be found in the great hall.");
+  } else if (CheckBetweenTime("17:01","19:00")) {
+    maintext.addText("Your father can be found in the throne room.");
+  } else {
+    maintext.addText("The King has retired for the night.");
+  }
+  DU.gameflags.deleteFlag("where_king");
+}
+
 ConvTestFlags["warren_close"] = function(speaker,keyword) {
   var warren;
   var garen;
@@ -747,3 +762,5 @@ ConvTestFlags["warren_close"] = function(speaker,keyword) {
   }
   return 0;
 }
+
+
