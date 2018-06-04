@@ -243,6 +243,11 @@ tileFactory.prototype.makeSouthCoastTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSouthCoastSandTile = function() {
+  var newTile = new SouthCoastSandTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNorthCoastTile = function() {
   var newTile = new NorthCoastTile();
   return newTile;
@@ -258,8 +263,18 @@ tileFactory.prototype.makeEastCoastTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEastCoastSandTile = function() {
+  var newTile = new EastCoastSandTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWestCoastTile = function() {
   var newTile = new WestCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWestCoastSandTile = function() {
+  var newTile = new WestCoastSandTile();
   return newTile;
 }
 
