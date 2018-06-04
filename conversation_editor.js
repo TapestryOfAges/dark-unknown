@@ -18,7 +18,7 @@ function create_header() {
     places[val._location] = 1;
   });
   
-  $('#locations').html("<p><a href='javascript:validate()'>[Validate]</a> <a href='javascript:saveconv()'>[Save Conversations]</a> <a href='javascript:create_header()'>[Refresh]</a> <a href='javascript:makescript()'>[Make Script]</a></p><p>");
+  $('#locations').html("<p><a href='javascript:validate()'>[Validate]</a> <a href='javascript:save_chunked_conv()'>[Save Conversations]</a> <a href='javascript:create_header()'>[Refresh]</a> <a href='javascript:makescript()'>[Make Script]</a></p><p>");
   
   $.each(places, function(idx,val) {
     $('#locations').html($('#locations').html() + "<a href='javascript:select_place(\"" + idx + "\")'>" + idx + "</a> | ");
@@ -551,6 +551,23 @@ function saveconv() {
   printerwin.document.close();
   
   var deser = JSON.parse(serialized);
+}
+
+function save_chunked_conv() {
+  let printerwin = window.open('','printarray');
+  printerwin.document.writeln("var serialconv = {");
+
+  $.each(conversations, function(idx,val) {
+    let serialized = JSON.stringify(val);
+
+    serialized = serialized.replace(/\\/g, "\\\\");
+    serialized = serialized.replace(/\'/g, "\\'");
+
+    printerwin.document.writeln(idx + ": '" + serialized + "',");
+  });
+
+  printerwin.document.writeln("};");
+  printerwin.document.close();
 }
 
 function validate() {
