@@ -2333,6 +2333,11 @@ tileFactory.prototype.makeScrollFireballTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeScrollReturnTile = function() {
+  var newTile = new ScrollReturnTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeScrollIceballTile = function() {
   var newTile = new ScrollIceballTile();
   return newTile;
