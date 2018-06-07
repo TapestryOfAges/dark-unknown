@@ -1625,7 +1625,8 @@ GameMap.prototype.loadMap = function (name) {
       		if (featurekey === "locked") { newfeature.lockMe(loadfeatures[fi]["locked"]); continue; }
       		if (featurekey === "searchyield") { 
       		  var tmpyield = loadfeatures[fi][featurekey].split(",");
-      		  newfeature["searchYield"] = tmpyield;
+            newfeature["searchYield"] = tmpyield;
+            newfeature.lootonce = 1;
       		  continue;
       		}
       		newfeature[featurekey] = loadfeatures[fi][featurekey];
