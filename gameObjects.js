@@ -819,12 +819,6 @@ function OpenContainer() {
       DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")-this.getKarmaPenalty);
     }
     
-    if (this.getLootedID()) {
-      if (DU.gameflags.getFlag("lid_" + this.getLootedID())) {
-        this.setLootgroup("prev_looted");
-      }
-    }
-
     if ((typeof this.getLocked === "function") && !fire) {
       if (this.getLocked() == 1) {
         retval["fin"] = 1;
@@ -846,6 +840,29 @@ function OpenContainer() {
       }
     }
     
+    let searchables = this.getSearchYield();
+    if (searchables.length) {
+      if (!this.getLootedID() || (!DU.gameflags.getFlag("lid_" + this.getLootedID()))) {
+        // no looted ID, or looted ID not met
+        for (var i=0; i < searchables.length; i++) {
+          let goldtest = /(\d+)Gold/;
+          if (goldtest.test(searchables[i])) {
+            let amt = goldtest.exec(searchables[i]);
+            this.setGold(parseInt(amt[1]) + this.getGold());
+            searchables[i] = "Gold";
+          }
+          this.container.push(searchables[i]);
+        }
+      }
+    } else {
+      if (this.getLootedID()) {
+        if (DU.gameflags.getFlag("lid_" + this.getLootedID())) {
+          this.setLootgroup("prev_looted");
+          // only do this if contents come from lootgroup rather than searchyield
+        }
+      }  
+    }
+
     if (this.container.length) { // there's something inside
       if (this.getLootedID()) {
         DU.gameflags.setFlag("lid_" + this.getLootedID(), 1);
@@ -3438,7 +3455,7 @@ FeatureObject.prototype.setGold = function(newgold) {
 }
 
 FeatureObject.prototype.getGold = function() {
-	return this.gold;
+	return parseInt(this.gold);
 }
 
 FeatureObject.prototype.addGold = function(diffgold) {
@@ -10290,6 +10307,19 @@ function ScrollFireballTile() {
   this.flammable = 50;
 }
 ScrollFireballTile.prototype = new ScrollItemObject();
+
+function ScrollReturnTile() {
+  this.name = "ScrollReturn";
+  this.desc = "scroll of Return";
+  this.prefix = "a";
+  this.graphic = "items.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-32";
+  this.spelllevel = SPELL_RETURN_LEVEL;
+  this.spellnum = SPELL_RETURN_ID;
+  this.flammable = 50;
+}
+ScrollReturnTile.prototype = new ScrollItemObject();
 
 function ScrollIceballTile() {
   this.name = "ScrollIceball";
