@@ -1166,6 +1166,12 @@ function PerformSearch(who) {
       retval["fin"] = 1;
       if (stuff.length) {
         for (var i=0; i < stuff.length; i++) {
+          let goldtest = /\d+Gold/;
+          if (goldtest.test(stuff[i])) {
+            let amt = goldtest.exec(stuff[i]);
+            searched.setGold(amt[1]);
+            stuff[i] = "Gold";
+          }
           var newthing = localFactory.createTile(stuff[i]);
           if (stuff[i] === "Gold") {
             newthing.setQuantity(searched.getGold());
