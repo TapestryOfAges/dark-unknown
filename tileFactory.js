@@ -1098,6 +1098,11 @@ tileFactory.prototype.makeSignpostRight2Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCarpenterSignTile = function() {
+  var newTile = new CarpenterSignTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeInnSignTile = function() {
   var newTile = new InnSignTile();
   return newTile;

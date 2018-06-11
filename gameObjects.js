@@ -5190,6 +5190,19 @@ function SignpostRight2Tile() {
 }
 SignpostRight2Tile.prototype = new FeatureObject();
 
+function CarpenterSignTile() {
+  this.name = "CarpenterSign";
+  this.graphic = "features.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-192";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "carpenter";
+  this.peerview = "#541909";
+}
+CarpenterSignTile.prototype = new FeatureObject();
+
 function InnSignTile() {
   this.name = "InnSign";
   this.graphic = "features.png";
