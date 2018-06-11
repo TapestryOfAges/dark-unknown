@@ -763,4 +763,8 @@ ConvTestFlags["warren_close"] = function(speaker,keyword) {
   return 0;
 }
 
+ConvTestFlags["in_stable"] = function(speaker,keyword) {
+  if ((speaker.getx() >= 62) && (speaker.getx() <= 72) && (speaker.gety() >= 42) && (speaker.gety() <= 51)) { return 1; }
 
+  return 0;
+}
