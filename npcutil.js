@@ -158,7 +158,8 @@ function Attack(atk, def) {
   DebugWrite("combat", "Chance to hit: " + tohit + "<br />");
 //  var preanim = PreAnimationEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset)
   var dmg = 0;
-  if (Math.random() <= tohit) {
+  let storymode = DU.gameflags.getFlag("storymode");
+  if ((Math.random() <= tohit) || (storymode && (atk === PC))) {
     // Hit!
     
     dmg = weapon.rollDamage(atk);
@@ -174,7 +175,7 @@ function Attack(atk, def) {
     DUPlaySound(snd);
 
     if (dmg < 1) { dmg = 1; }  // min dmg 1 on a hit
-
+    if (storymode && (atk === PC)) { dmg = 500; }
     var firearmor = def.getSpellEffectsByName("FireArmor");
     if (firearmor) {
       if (IsAdjacent(atk,def)) {

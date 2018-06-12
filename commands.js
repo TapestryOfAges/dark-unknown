@@ -2510,6 +2510,18 @@ function DrawOptions() {
   }
   optdiv += "</td></tr>";
 
+  optdiv += "<tr><td>DIFFICULTY:</td><td></td><td";
+  if (targetCursor.page === 8) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.getFlag("storymode")) {
+    optdiv += "STORY";
+  } else {
+    optdiv += "NORMAL";
+  }
+  optdiv += "</td></tr>";
+
   optdiv += "</table></div></div>";
   
   DrawTopbarFrame("<p>Options</p>");
@@ -2688,7 +2700,7 @@ function performOptions(code) {
     else if ((code === 40) || (code === 191)) { // scroll down
       targetCursor.page++;
       if (targetCursor.cmd === "o") {
-        if (targetCursor.page === 8) { targetCursor.page = 7; }
+        if (targetCursor.page === 9) { targetCursor.page = 8; }
       } else if (targetCursor.cmd === "debug") {
         if (targetCursor.page === 13) { targetCursor.page = 12; }
       }
@@ -2905,6 +2917,12 @@ function ToggleOption(opt) {
       DU.gameflags.setFlag("sticky_target", 0);
     } else {
       DU.gameflags.setFlag("sticky_target", 1);
+    }
+  } else if (opt === 8) {
+    if (DU.gameflags.getFlag("storymode")) {
+      DU.gameflags.setFlag("storymode", 0);
+    } else {
+      DU.gameflags.setFlag("storymode", 1);
     }
   }
 }

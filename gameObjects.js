@@ -14011,8 +14011,11 @@ PCObject.prototype.dealDamage = function(dmg, src, type) {
   }
   
   if (this.getHP() <= 0) { // killed!
-    this.processDeath(1);
-    return -1;
+    if (DU.gameflags.getFlag("storymode")) { this.setHP(1); }
+    else {
+      this.processDeath(1);
+      return -1;
+    }
   }
   else { return dmg; }
 }
