@@ -517,7 +517,7 @@ function RunIntro(idx) {
     $('#introcontainer').append(secondpage);
     $('#intro2').fadeIn(1000);
   } else if (idx === 2) {
-    var thirdpage = "<div id='intro3' style='color:white;display:none'><p class='charcreate'>Which is not to say that you did not excel, when you began your studies years behind your older brother. Guard Captain Nyrani has been teaching you to fight. Your tutor in wizardry says that you show promise, and someday will earn your own spellbook. And you have surprised your parents with your skill on the harpsichord. Of limited use in statecraft, perhaps, but still satisfying.</p></div>";
+    var thirdpage = "<div id='intro3' style='color:white;display:none'><p class='charcreate'>Which is not to say that you did not excel, when you began your studies years behind your older brother. Guard Captain Nyrani has been teaching you to fight with a variety of weapons. Your tutor in wizardry says that you show promise, and someday will earn your own spellbook. And you have surprised your parents with your skill on the harpsichord. Of limited use in statecraft, perhaps, but still satisfying.</p></div>";
     $('#introcontainer').append(thirdpage);
     $('#intro3').fadeIn(1000);
   } else if (idx === 3) {
