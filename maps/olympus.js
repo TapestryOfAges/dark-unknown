@@ -1031,9 +1031,9 @@ mappages["olympus2"].features[279] = {name : 'TorchWest', x : 9, y : 26};
 
 
 mappages["olympus2"].npcs = [];
-mappages["olympus2"].npcs[0] = {name : 'TownGuardNPC', x : 17, y : 22, NPCName: 'Colin', PeaceAI: 'scheduled', Schedule: 'colin', Conversation: 'castleguard2', ConversationFlag: 'colin', Gender: 'male', Bark: '0', NPCBand: '0'};
-mappages["olympus2"].npcs[1] = {name : 'TownGuardNPC', x : 14, y : 55, NPCName: 'Yvette', PeaceAI: 'scheduled', Schedule: 'yvette', Conversation: 'castleguard2', ConversationFlag: 'yvette', Gender: 'female', Bark: '0', NPCBand: '0'};
-mappages["olympus2"].npcs[2] = {name : 'TownGuardNPC', x : 13, y : 20, NPCName: 'Brandan', PeaceAI: 'scheduled', Schedule: 'brandan', Conversation: 'castleguard2', ConversationFlag: 'brandan', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["olympus2"].npcs[0] = {name : 'TownGuardNPC', x : 17, y : 22, NPCName: 'Reed', PeaceAI: 'scheduled', Schedule: 'reed', Conversation: 'reed', ConversationFlag: 'reed', Gender: 'male', Bark: '0', NPCBand: '0'};
+mappages["olympus2"].npcs[1] = {name : 'TownGuardNPC', x : 14, y : 55, NPCName: 'Yvette', PeaceAI: 'scheduled', Schedule: 'yvette', Conversation: 'yvette', ConversationFlag: 'yvette', Gender: 'female', Bark: '0', NPCBand: '0'};
+mappages["olympus2"].npcs[2] = {name : 'TownGuardNPC', x : 13, y : 20, NPCName: 'Brandan', PeaceAI: 'scheduled', Schedule: 'brandan', Conversation: 'brandan', ConversationFlag: 'brandan', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["olympus2"].npcs[3] = {name : 'KingNPC', x : 27, y : 15, NPCName: 'King Daragen', Desc: 'King Daragen of Olympus', PeaceAI: 'scheduled', Schedule: 'daragen', Conversation: 'king', ConversationFlag: 'king', Gender: 'male'};
 mappages["olympus2"].npcs[4] = {name : 'QueenNPC', x : 27, y : 16, NPCName: 'Shelaria', Desc: 'your mother, Queen Shelaria', PeaceAI: 'scheduled', Schedule: 'shelaria', Conversation: 'shelaria', ConversationFlag: 'shelaria', Gender: 'female'};
 mappages["olympus2"].npcs[5] = {name : 'FighterVillagerNPC', x : 60, y : 27, NPCName: 'Liz', PeaceAI: 'scheduled', Schedule: 'liz', Conversation: 'liz', ConversationFlag: 'liz', Gender: 'female', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif'};
@@ -1375,13 +1375,13 @@ mappages["olympus2"].onload = function(mapref) {
 
     // Changes made due to schedules
 
-    let jharden, colin, yvette, brandan, lena, barbara, aler, brian, liam, poe, benedig, andrew, armaelle, gwen, vivian;
+    let jharden, reed, yvette, brandan, lena, barbara, aler, brian, liam, poe, benedig, andrew, armaelle, gwen, vivian;
 
     let npcs = mapref.npcs.getAll();
 
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Jharden") { jharden = npcs[i]; }
-      if (npcs[i].getNPCName() === "Colin") { colin = npcs[i]; }
+      if (npcs[i].getNPCName() === "Reed") { reed = npcs[i]; }
       if (npcs[i].getNPCName() === "Yvette") { yvette = npcs[i]; }
       if (npcs[i].getNPCName() === "Brandan") { brandan = npcs[i]; }
       if (npcs[i].getNPCName() === "Lena") { lena = npcs[i]; }
@@ -1401,10 +1401,10 @@ mappages["olympus2"].onload = function(mapref) {
       mapref.getTile(69,20).getTopFeature().use(jharden);
     }
 
-    if (colin.getCurrentScheduleIndex() === 19) {
-      colin.realgraphic = "310.2.gif";
-    } else if ((colin.getCurrentScheduleIndex() ===0) || (colin.getCurrentScheduleIndex() === 18)) {
-      colin.graphic = "310.2.gif";
+    if (reed.getCurrentScheduleIndex() === 19) {
+      reed.realgraphic = "310.2.gif";
+    } else if ((reed.getCurrentScheduleIndex() ===0) || (reed.getCurrentScheduleIndex() === 18)) {
+      reed.graphic = "310.2.gif";
     }
 
     if (yvette.getCurrentScheduleIndex() === 19) {
