@@ -292,6 +292,23 @@ mappages["clearlake"].features[220] = {name : 'Brazier', x : 39, y : 40};
 mappages["clearlake"].features[221] = {name : 'TorchEast', x : 27, y : 19};
 mappages["clearlake"].features[222] = {name : 'TorchEast', x : 27, y : 12};
 mappages["clearlake"].features[223] = {name : 'Brazier', x : 4, y : 51};
+mappages["clearlake"].features[224] = {name : 'RightChair', x : 20, y : 34};
+mappages["clearlake"].features[225] = {name : 'BookshelfLeft', x : 6, y : 36};
+mappages["clearlake"].features[226] = {name : 'BookshelfRight', x : 7, y : 36};
+mappages["clearlake"].features[227] = {name : 'GrandfatherClock', x : 3, y : 36};
+mappages["clearlake"].features[228] = {name : 'LeftTable', x : 4, y : 39};
+mappages["clearlake"].features[229] = {name : 'MiddleTable', x : 5, y : 39};
+mappages["clearlake"].features[230] = {name : 'RightTable', x : 6, y : 39};
+mappages["clearlake"].features[231] = {name : 'BottomChair', x : 5, y : 40};
+mappages["clearlake"].features[232] = {name : 'Mirror', x : 7, y : 30};
+mappages["clearlake"].features[233] = {name : 'Dresser', x : 6, y : 30};
+mappages["clearlake"].features[234] = {name : 'Vanity', x : 3, y : 30};
+mappages["clearlake"].features[235] = {name : 'BedHead', x : 6, y : 33};
+mappages["clearlake"].features[236] = {name : 'BedFoot', x : 7, y : 33};
+mappages["clearlake"].features[237] = {name : 'Brazier', x : 3, y : 40};
+mappages["clearlake"].features[238] = {name : 'Brazier', x : 7, y : 34};
+mappages["clearlake"].features[239] = {name : 'SmallTable', x : 3, y : 33};
+mappages["clearlake"].features[240] = {name : 'TopChair', x : 3, y : 32};
 
 
 mappages["clearlake"].npcs = [];
