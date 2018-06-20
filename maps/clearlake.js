@@ -311,7 +311,7 @@ mappages["clearlake"].features[239] = {name : 'SmallTable', x : 3, y : 33};
 mappages["clearlake"].features[240] = {name : 'TopChair', x : 3, y : 32};
 mappages["clearlake"].features[241] = {name : 'BedHead', x : 4, y : 57};
 mappages["clearlake"].features[242] = {name : 'BedFoot', x : 5, y : 57};
-
+mappages["clearlake"].features[240] = {name : 'TopChair', x : 5, y : 52};
 
 mappages["clearlake"].npcs = [];
 mappages["clearlake"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 23, y : 32, NPCName: 'Flora', Conversation: 'flora', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif'};
