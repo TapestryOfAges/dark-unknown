@@ -83,12 +83,14 @@
 
       function start_schedule() {
 
-        curr_place = prompt("Which location?", curr_place); 
+        let new_curr_place = prompt("Which location?", curr_place); 
 
-        if (curr_place) {
+        if (new_curr_place) {
         
-          curr_person = prompt("Whose schedule?"); 
-          if (curr_person) {
+          let new_curr_person = prompt("Whose schedule?"); 
+          if (new_curr_person) {
+            curr_place = new_curr_place;
+            curr_person = new_curr_person;
   
             $("#mainbody").html("<center>" + curr_person + "</center>");
             $("#mainbody").append("<table id='schedtable' border='1' cellpadding='1' cellspacing='1'><tr><th></th><th>Start Condition</th><th>Activity</th><th>Parameters</th></tr></table>");
