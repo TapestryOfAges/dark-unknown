@@ -47,7 +47,7 @@ function new_conv() {
   while (convname === "") {
     convname = prompt("Name of conversation:");
     $.each(conversations, function(idx, val) {
-      if (convname === idx) { convname = ""; }
+      if (convname === idx) { alert("Name already in use."); convname = ""; }
     });
   }
   conversations[convname] = {};
