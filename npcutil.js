@@ -670,7 +670,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
   return moved;
 }
 
-function IsNonliving(who) {
+function IsNonLiving(who) {
   if (who.specials.undead || who.specials.construct) { return 1;}
   return 0;
 }

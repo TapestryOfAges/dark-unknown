@@ -2914,7 +2914,7 @@ SwampTile.prototype.idle = function(person) {
 }
 
 SwampTile.prototype.isHostileTo = function(who) {
-  if (IsNonliving(who)) {
+  if (IsNonLiving(who)) {
     return 0;
   }
   return 1;
@@ -2947,7 +2947,7 @@ ShadowSwampTile.prototype.idle = function(person) {
 }
 
 ShadowSwampTile.prototype.isHostileTo = function(who) {
-  if (IsNonliving(who)) {
+  if (IsNonLiving(who)) {
     return 0;
   }
   return 1;
@@ -2964,7 +2964,7 @@ function InASwamp(who) {
     return "";
   }
 
-  if (IsNonliving(who)) {
+  if (IsNonLiving(who)) {
     // entity is not biological and cannot be diseased
     return "";
   }
@@ -4826,12 +4826,12 @@ SleepFieldTile.prototype.idle = function(person) {
 
 SleepFieldTile.prototype.isHostileTo = function(who) {
   if (who.getResist("magic") >= 100) { return 0; }
-  if (IsNonliving(who) || who.specials.mindless) { return 0; }
+  if (IsNonLiving(who) || who.specials.mindless) { return 0; }
   return 1;
 }
 
 function InASleepField(who) {
-  if (IsNonliving(who) || who.specials.mindless)  { return ""; }
+  if (IsNonLiving(who) || who.specials.mindless)  { return ""; }
   var resist = who.getResist("magic");
   resist = 1-(resist/100);
   var chance = .5 * resist;
@@ -4975,12 +4975,12 @@ PoisonFieldTile.prototype.idle = function(person) {
 }
 
 PoisonFieldTile.prototype.isHostileTo = function(who) {
-  if (IsNonliving(who)) { return 0; }
+  if (IsNonLiving(who)) { return 0; }
   return 1;
 }
 
 function InAPoisonField(who){
-  if (IsNonliving(who)) {
+  if (IsNonLiving(who)) {
     return "";
   }
   var poisonchance = .75;
