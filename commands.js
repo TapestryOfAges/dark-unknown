@@ -5,11 +5,11 @@ function PerformCommand(code, ctrl) {
 	var retval = {};
 	retval["fin"] = 0;
 	var confusion = PC.getSpellEffectsByName("Confused");
-	if (confusion && (Math.random() > (confusion.getPower/100))) {
+	if (confusion && (Dice.roll("1d100") > (confusion.getPower()))) {
 	  // PC is confused and loses their action because of it
 	  retval["txt"] = "You are confused!";
 	  retval["fin"] = 1;
-	  if (Math.random() < .5) { 
+	  if (Dice.roll("1d2") === 1) { 
 	    // confused and randomly wandering
 	    var dir = Dice.roll("1d4");
 	    if (dir === 1) { PC.moveMe(0,-1,0); }
@@ -18,10 +18,22 @@ function PerformCommand(code, ctrl) {
 	    if (dir === 4) { PC.moveMe(-1,0,0); }
 	  }
 	  return retval;
-	}
+  }
 	// player has control, continue as normal
 	if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
-		// move north
+    // move north
+    let drunk = PC.getSpellEffectsByName("Drunk");
+    if (drunk && (Dice.roll("1d10") <= drunk.getPower())) {
+      retval["txt"] = "You stumble drunkenly!";
+	    var dir = Dice.roll("1d6");
+	    if (dir === 1) { PC.moveMe(0,-1,0); }
+	    if (dir === 2) { PC.moveMe(1,0,0); }
+	    if (dir === 3) { PC.moveMe(0,1,0); }
+      if (dir === 4) { PC.moveMe(-1,0,0); }  
+      retval["fin"] = 1;
+      return retval;
+    }
+  
 		var success = PC.moveMe(0,-1,0);
 		var txt = "Move North";
 		txt += success["msg"];
@@ -38,7 +50,19 @@ function PerformCommand(code, ctrl) {
 		retval["initdelay"] = success["initdelay"];
 	}
 	else if ((code === 37) || (code === 186)) {  // LEFT ARROW or ;
-		// move west
+    // move west
+    let drunk = PC.getSpellEffectsByName("Drunk");
+    if (drunk && (Dice.roll("1d10") <= drunk.getPower())) {
+      retval["txt"] = "You stumble drunkenly!";
+	    var dir = Dice.roll("1d6");
+	    if (dir === 1) { PC.moveMe(0,-1,0); }
+	    if (dir === 2) { PC.moveMe(1,0,0); }
+	    if (dir === 3) { PC.moveMe(0,1,0); }
+      if (dir === 4) { PC.moveMe(-1,0,0); }  
+      retval["fin"] = 1;
+      return retval;
+    }
+
 		var success = PC.moveMe(-1,0,0);
 		var txt = "Move West";
 		txt += success["msg"];
@@ -56,7 +80,19 @@ function PerformCommand(code, ctrl) {
 	}
 	else if ((code === 39) || (code === 222)) { // RIGHT ARROW or '
 		// move east
-		var success = PC.moveMe(1,0,0);
+    let drunk = PC.getSpellEffectsByName("Drunk");
+    if (drunk && (Dice.roll("1d10") <= drunk.getPower())) {
+      retval["txt"] = "You stumble drunkenly!";
+	    var dir = Dice.roll("1d6");
+	    if (dir === 1) { PC.moveMe(0,-1,0); }
+	    if (dir === 2) { PC.moveMe(1,0,0); }
+	    if (dir === 3) { PC.moveMe(0,1,0); }
+      if (dir === 4) { PC.moveMe(-1,0,0); }  
+      retval["fin"] = 1;
+      return retval;
+    }
+
+    var success = PC.moveMe(1,0,0);
 		var txt = "Move East";
 		txt += success["msg"];
 		retval["txt"] = txt;
@@ -73,7 +109,19 @@ function PerformCommand(code, ctrl) {
 	}
 	else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
 		// move south
-		var success = PC.moveMe(0,1,0);
+    let drunk = PC.getSpellEffectsByName("Drunk");
+    if (drunk && (Dice.roll("1d10") <= drunk.getPower())) {
+      retval["txt"] = "You stumble drunkenly!";
+	    var dir = Dice.roll("1d6");
+	    if (dir === 1) { PC.moveMe(0,-1,0); }
+	    if (dir === 2) { PC.moveMe(1,0,0); }
+	    if (dir === 3) { PC.moveMe(0,1,0); }
+      if (dir === 4) { PC.moveMe(-1,0,0); }  
+      retval["fin"] = 1;
+      return retval;
+    }
+
+    var success = PC.moveMe(0,1,0);
 		var txt = "Move South";
 		txt += success["msg"];
 		retval["txt"] = txt;
@@ -2268,7 +2316,7 @@ function DrawStats(page) {
     } else {
       for (var i=0; i < alleffects.length; i++) {
         if (alleffects[i].display) {
-          statsdiv += "<tr><td colspan='3'>" + alleffects[i].display + ": " + alleffects[i].zstatdesc + "</td></tr>";
+          statsdiv += "<tr><td colspan='3'>" + alleffects[i].display + ": " + alleffects[i].getZstatdesc() + "</td></tr>";
         }
       }
     } 
