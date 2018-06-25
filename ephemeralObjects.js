@@ -14,12 +14,21 @@ function EphemeralObject() {
   this.active = 0;  // set to 1 if it is being allowed to take effect, see above
   this.instances = 1;  // how many of this spell have stacked their durations
   this.display = "";
+  this.zstatdesc = "";
   this.attachedTo;
   this.desc;
   this.level = 0;
   this.dispellable = 0;
 }
 EphemeralObject.prototype = new ProtoObject();
+
+EphemeralObject.prototype.getZstatdesc = function() {
+  return this.zstatdesc;
+}
+
+EphemeralObject.prototype.setZstatdesc = function(what) {
+  this.zstatdesc = what;
+}
 
 EphemeralObject.prototype.setLevel = function(what) {
   this.level = what;
@@ -572,6 +581,46 @@ DistractTile.prototype.endEffect = function(silent) {
   }
   DrawCharFrame();
   return -1;
+}
+
+function DrunkTile() {
+  this.addType("debuff");
+  this.name = "Drunk";
+  this.display = "<span style='color:#brown'>D</span>";
+  this.zstatdesc = "You are tipsy.";
+  this.desc = "drunk";
+}
+DrunkTile.prototype = new DamageOverTimeObject();
+
+DrunkTile.prototype.getZstatdesc = function() {
+  if (this.getPower() <= 2) { return "You are tipsy."; }
+  if (this.getPower() <= 4) { return "You are inebriated."; }
+  return "You are drunk.";
+}
+
+DrunkTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if (IsNonLiving(who)) {
+    this.endEffect();
+  }
+  var power = this.getPower();
+  who.setModDex(who.getModDex() - power);
+  who.setModInt(who.getModInt() - power);
+  
+  return 1;
+}
+// WORKING - note to self- add chance of confusion for player, add "hic" bark and chance of stumble to scheduled NPCs
+
+DrunkTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  let power = this.getPower();
+  who.setModDex(who.getModDex() + power);
+  who.setModInt(who.getModInt() + power);
+  who.deleteSpellEffect(this);
+  DrawCharFrame();
+  if ((who === PC) && !silent) {
+    maintext.addText("You sober up.");
+  }
 }
 
 function EtherealVisionTile() {

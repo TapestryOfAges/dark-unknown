@@ -3593,6 +3593,11 @@ tileFactory.prototype.makeDistractTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDrunkTile = function() {
+  var newTile = new DrunkTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeEtherealVisionTile = function() {
   var newTile = new EtherealVisionTile();
   return newTile;
