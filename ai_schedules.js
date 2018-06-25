@@ -52,10 +52,8 @@ ais.scheduled = function(who) {
 
   nowactivity = schedule.scheduleArray[who.getCurrentScheduleIndex()];
 
-  if (nowactivity.params.bark) {
     DebugWrite("schedules", "Checking bark... ");
     CheckNPCBark(who,nowactivity);
-  }
 
   if (nowactivity.params.setFlag) {
     var allparams = nowactivity.params.setFlag.split(",");
@@ -78,33 +76,41 @@ ais.scheduled = function(who) {
 
 function CheckNPCBark(who,nowactivity) {
   if (who.getHomeMap() === PC.getHomeMap()) { 
-    let chanceroll = Dice.roll("1d100");
-    if (chanceroll < parseInt(nowactivity.params.barkfreq)) { 
-      let barkrad = nowactivity.params.barkrad;
-      if (!barkrad) { barkrad = 3; }
-      if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= barkrad) {
-        // bark!
-        DebugWrite("schedules", "Townfolk barking.");
-        var barkarr = nowactivity.params.bark.split("^^");
-        var idx = Dice.roll("1d" + barkarr.length + "-1");
-        var mybark = barkarr[idx];
-        if (mybark) {
-          if ((mybark.indexOf("%THEDESC%") !== -1) || (mybark.indexOf("%DESC%") !== -1)) {
-            var pref = who.getPrefix();
-            if (mybark.indexOf("%THEDESC%") !== -1) {
-              if ((pref === "a") || (pref === "an")) { pref = "the"; }
-            }
-            var desc = who.getDesc();
-            if (who.getDesc() !== who.getNPCName()) {
-              desc = pref + " " + desc;
-            }
-            mybark = mybark.replace(/%THEDESC%/g, desc);
-            mybark = mybark.replace(/%DESC%/g, desc);
-          }
-          mybark = mybark.charAt(0).toUpperCase() + mybark.slice(1);
-          maintext.addText(mybark);
+    let mybark = "";
+    if (who.getSpellEffectsByName("Drunk") && (Dice.roll("1d100") <= 9)) {
+      if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= 3) {
+        mybark = '%THEDESC% says, "hic!"';
+      }
+    }
+    if (nowactivity.params.bark) {
+      let chanceroll = Dice.roll("1d100");
+      if (chanceroll < parseInt(nowactivity.params.barkfreq)) { 
+        let barkrad = nowactivity.params.barkrad;
+        if (!barkrad) { barkrad = 3; }
+        if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= barkrad) {
+          // bark!
+          DebugWrite("schedules", "Townfolk barking.");
+          var barkarr = nowactivity.params.bark.split("^^");
+          var idx = Dice.roll("1d" + barkarr.length + "-1");
+          mybark = barkarr[idx];
         }
       }
+    }
+    if (mybark) {
+      if ((mybark.indexOf("%THEDESC%") !== -1) || (mybark.indexOf("%DESC%") !== -1)) {
+        var pref = who.getPrefix();
+        if (mybark.indexOf("%THEDESC%") !== -1) {
+          if ((pref === "a") || (pref === "an")) { pref = "the"; }
+        }
+        var desc = who.getDesc();
+        if (who.getDesc() !== who.getNPCName()) {
+          desc = pref + " " + desc;
+        }
+        mybark = mybark.replace(/%THEDESC%/g, desc);
+        mybark = mybark.replace(/%DESC%/g, desc);
+      }
+      mybark = mybark.charAt(0).toUpperCase() + mybark.slice(1);
+      maintext.addText(mybark);
     }
   }
 }
@@ -115,6 +121,16 @@ function CheckNPCBark(who,nowactivity) {
 ais.RouteTo = function(who, params) {
   DebugWrite("schedules", "In scheduled ai: RouteTo.");
 
+  let drunk = who.getSpellEffectsByName("Drunk");
+  if (drunk && (Dice.roll("1d15") <= drunk.getPower())) {
+    var dir = Dice.roll("1d6");
+    if (dir === 1) { who.moveMe(0,-1,0); }
+    if (dir === 2) { who.moveMe(1,0,0); }
+    if (dir === 3) { who.moveMe(0,1,0); }
+    if (dir === 4) { who.moveMe(-1,0,0); }  
+    console.log(who.getNPCName() + " stumbling.");
+    return {fin:1,canmove:0};
+  }
   if (params.closeDoors && (who.flags.closedoor) && (who.flags.closedoor.steps === 3)) {
     var fea = who.getHomeMap().getTile(who.flags.closedoor.x,who.flags.closedoor.y).getTopFeature();
     if (fea.closedgraphic) {
@@ -496,7 +512,6 @@ ais.CheckTreasuryLock = function(who,params) {
   return {fin:1};
 }
 
-// CHECK THIS
 ais.PassOlympusGuardDoor = function(who,params) {
   DebugWrite("schedules", "In PassOlympusGuardDoor going " + params.dir + ".<br />");
   let door = who.getHomeMap().getTile(47,57).getTopFeature();
@@ -542,4 +557,19 @@ ais.PassOlympusGuardDoor = function(who,params) {
     return {fin:1};  
   }
   alert("Error in PassOlympusGuardDoor - called by " + who.getNPCName());
+}
+
+ais.GetDrunk = function(who, params) {
+  let roll = Dice.roll("1d100");
+  console.log(roll);
+  if ( roll <= parseInt(params.chance)) {
+    console.log(who.getNPCName() + " has gotten drunk.");
+    let strwidth = parseInt(params.max - params.min - 1);
+    let strength = Dice.roll("1d"+strwidth) + (params.min-1);
+    let drunk = localFactory.createTile("Drunk");
+    drunk.setPower(strength);
+    who.addSpellEffect(drunk);
+    drunk.setExpiresTime(parseInt(params.duration)*SCALE_TIME + DUTime.getGameClock());
+  }
+  return {fin:1};
 }
