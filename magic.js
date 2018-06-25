@@ -1082,7 +1082,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
     if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) < radius) && (val !== caster)) {
       if (tgtmap.getLOS(val.getx(),val.gety(),tgt.x,tgt.y,1) < LOS_THRESHOLD) {
         anyonepoisoned = 1;
-        if (val.getSpellEffectsByName("Poison") || CheckResist(caster,val,infused,0) || IsNonliving(val)) {
+        if (val.getSpellEffectsByName("Poison") || CheckResist(caster,val,infused,0) || IsNonLiving(val)) {
           // poison resisted
           ShowEffect(val, 700, "X.gif");
           var desc = val.getDesc() + " resists!";
