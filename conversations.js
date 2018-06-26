@@ -730,7 +730,9 @@ OnConvTriggers["kyvek_fetch"] = function(speaker,keyword) {
   speaker.setCurrentAI("scheduled");
 }
 
-function ConvTestFlags() {};
+OnConvTriggers["taran_serene"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("garden_wait");
+}
 
 OnConvTriggers["where_king"] = function(speaker,keyword) {
   if (CheckBetweenTime("6:15","7:30")) {
@@ -746,6 +748,8 @@ OnConvTriggers["where_king"] = function(speaker,keyword) {
   }
   DU.gameflags.deleteFlag("where_king");
 }
+
+function ConvTestFlags() {};
 
 ConvTestFlags["warren_close"] = function(speaker,keyword) {
   var warren;
@@ -765,6 +769,12 @@ ConvTestFlags["warren_close"] = function(speaker,keyword) {
 
 ConvTestFlags["in_stable"] = function(speaker,keyword) {
   if ((speaker.getx() >= 62) && (speaker.getx() <= 72) && (speaker.gety() >= 42) && (speaker.gety() <= 51)) { return 1; }
+
+  return 0;
+}
+
+ConvTestFlags["in_garden"] = function(speaker,keyword) {
+  if ((speaker.getx() >= 10) && (speaker.getx() <= 21) && (speaker.gety() >= 6) && (speaker.gety() <= 15)) { return 1; }
 
   return 0;
 }
