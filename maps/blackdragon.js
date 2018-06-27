@@ -234,8 +234,10 @@ mappages["blackdragon"].editorLabels = '{}';
 
 mappages["blackdragon"].onload = function(mapref) {
   // check for act 1 to be over, if so, gate is open
-  if (DU.gameflags.getFlag("act2")) {
-    Open_BDC_Gate(this);
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (DU.gameflags.getFlag("act2")) {
+      Open_BDC_Gate(this);
+    }
   }
 }
 
@@ -534,3 +536,17 @@ mappages["blackdragon4"].returninfused = '0';
 mappages["blackdragon4"].linkedMaps = [""];
 mappages["blackdragon4"].editorLabels = '{}';
 
+mappages["blackdragon4"].onload = function(mapref) {
+  // check for act 1 to be over, if not, forcefields
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (!DU.gameflags.getFlag("act2")) {
+      let field1, field2, field3;
+      field1 = localFactory.createTile("EnergyField");
+      field2 = localFactory.createTile("EnergyField");
+      field3 = localFactory.createTile("EnergyField");
+      mapref.placeThing(26,20,field1);
+      mapref.placeThing(25,21,field2);
+      mapref.placeThing(26,21,field3);
+    }
+  }
+}
