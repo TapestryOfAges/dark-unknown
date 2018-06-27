@@ -429,6 +429,9 @@ GameStateData.prototype.loadGame = function(idx) {
   PC.getHomeMap().moveThing(PC.getx(),PC.gety(),PC);
   
   maxserial = topserial;
+  if (DU.gameflags.getFlag("act2")) {
+    DUMusic["Dark Towne"] = "Towne";
+  }
   if (DU.gameflags.getFlag("music")) {  
     var song = PC.getHomeMap().getMusic();
     nowplaying = DUPlayMusic(song);
