@@ -7190,6 +7190,46 @@ SandstoneWallTile.prototype.pushMe = function(who) {
   return this.use(who);
 }
 
+function BlackDragonLadderWallTile() {
+  this.name = "BlackDragonLadderWall";
+  this.graphic = "terrain_tiles.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+BlackDragonLadderWallTile.prototype = new FeatureObject();
+
+BlackDragonLadderWallTile.prototype.pushMe = function(who) {
+  return this.use(who);
+}
+
+BlackDragonLadderWallTile.prototype.use = function(who) {
+  let retval = {fin: 1}
+  if (this.rotated) {
+    let tile = this.getHomeMap().getTile(this.getx()+1,this.gety());
+    let fealist = tile.getFeatures();
+    for (let i=0;i<fealist.length;i++) {
+      if (fealist[i].getName() === "LadderUp") {
+        this.getHomeMap().deleteThing(fealist[i]);
+        retval["txt"] = "The wall rotates again, and the ladder is again hidden.";
+        this.rotated = 0;
+        return retval;
+      }
+    }
+  } else {
+    let ladder = localFactory.createTile("LadderUp");
+    ladder.setEnterMap("blackdragon4", this.getx()+1, this.gety());
+    this.getHomeMap().placeThing(this.getx()+1,this.gety(),ladder);
+    retval["txt"] = "The wall rotates in place, revealing a ladder attached to the wall!";
+    this.rotated = 1;
+    return retval;
+  }
+}
+
 function WallOfWavesTile() {
   this.name = "WallOfWaves";
   this.graphic = "runes.gif";

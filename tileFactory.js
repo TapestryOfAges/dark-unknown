@@ -1638,6 +1638,11 @@ tileFactory.prototype.makeSandstoneWallTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBlackDragonLadderWallTile = function() {
+  var newTile = new BlackDragonLadderWallTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWallOfWavesTile = function() {
   var newTile = new WallOfWavesTile();
   return newTile;
