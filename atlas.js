@@ -678,6 +678,7 @@ function GameMap() {
 // these three will be maintained concurrently with collections on individual tiles/acres
 
   this.desc = "";
+  this.longdesc = "";
   this.music = "";
   this.exitTo = {};
   this.exitTo.mapname = "darkunknown";
@@ -737,6 +738,15 @@ GameMap.prototype.setDesc = function(desc) {
 
 GameMap.prototype.getDesc = function() {
   return this.desc;
+}
+
+GameMap.prototype.setLongDesc = function(desc) {
+  this.longdesc = desc;
+  return this.longdesc;
+}
+
+GameMap.prototype.getLongDesc = function() {
+  return this.longdesc;
 }
 
 GameMap.prototype.setOpacity = function(newo) {
@@ -1491,6 +1501,7 @@ GameMap.prototype.saveMap = function (name) {
  
  name = 'mappages["' + oldname + '"]';
  printerwin.document.write("<br />\n" + name + ".desc = \"" + this.getDesc() + "\";<br />\n");
+ printerwin.document.write(name + ".longdesc = '" + this.getLongDesc() + "';<br />\n");
  printerwin.document.write(name + ".music = '" + this.getMusic() + "';<br />\n");
  printerwin.document.write(name + ".savename = '" + this.getSaveName() + "';<br />\n");
  printerwin.document.write(name + ".exitmap = '" + this.getExitToMap() + "';<br />\n");
@@ -1554,6 +1565,7 @@ GameMap.prototype.loadMap = function (name) {
   
   // load map details
   this.setDesc(mappages.readPage(name, "desc"));
+  this.setLongDesc(mappages.readPage(name, "longdesc"));
   this.setMusic(mappages.readPage(name, "music"));
   this.setSaveName(mappages.readPage(name, "savename"));
   this.setExitToMap(mappages.readPage(name, "exitmap"));
