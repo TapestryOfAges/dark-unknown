@@ -1265,17 +1265,11 @@ mappages["olympus_limbo"].returnmap = '';
 mappages["olympus_limbo"].returnx = 'NaN';
 mappages["olympus_limbo"].returny = 'NaN';
 mappages["olympus_limbo"].returninfused = '0';
-mappages["olympus_limbo"].linkedMaps = ["olympus0","olympus1","olympus0"];
+mappages["olympus_limbo"].linkedMaps = ["olympus0","olympus1","olympus2"];
 mappages["olympus_limbo"].editorLabels = '{}';
 
 mappages["olympus1"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    if (DU.gameflags.getFlag("kingspeech")) {
-      var guard = mapref.getTile(48,40).getTopNPC();
-      guard.setBark();
-      guard = mapref.getTile(50,40).getTopNPC();
-      guard.setBark();
-    }
 
     // Changes made due to schedules
 
