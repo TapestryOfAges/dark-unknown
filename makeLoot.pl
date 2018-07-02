@@ -51,9 +51,12 @@ foreach my $key (keys %loots) {
   }
   my $idx = 0;
   foreach my $thing (keys %{$loots{$key}}) {
+    my $thingname = $thing;
+    $thingname =~ s/^\s+//;
+    $thingname =~ s/\s+$//;
     if (($thing eq "Gold") or ($thing eq "Trap")) { next; }
     print $outfile "  loots['$key'].loot[$idx] = {};\n";
-    print $outfile "  loots['$key'].loot[$idx].objname = '$thing';\n";
+    print $outfile "  loots['$key'].loot[$idx].objname = '$thingname';\n";
     print $outfile "  loots['$key'].loot[$idx].quantity = '$loots{$key}{$thing}{'val'}';\n";
     $loots{$key}{$thing}{'perc'} =~ s/%//;
     print $outfile "  loots['$key'].loot[$idx].chance = $loots{$key}{$thing}{'perc'};\n";
