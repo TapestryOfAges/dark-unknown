@@ -727,7 +727,7 @@ OnConvTriggers["franklin_offered"] = function(speaker, keyword) {
 }
 
 OnConvTriggers["kyvek_fetch"] = function(speaker,keyword) {
-  speaker.setCurrentAI("scheduled");
+  speaker.setCurrentAI("Trevor");
 }
 
 OnConvTriggers["taran_serene"] = function(speaker,keyword) {
@@ -755,9 +755,9 @@ ConvTestFlags["warren_close"] = function(speaker,keyword) {
   var warren;
   var garen;
   var npcs = speaker.getHomeMap().npcs.getAll();
-  for (let i=0;i<=npcs.length;i++) {
-    if (npcs[i].getNPCName() === "warren") { warren = npcs[i]; }
-    if (npcs[i].getNPCName() === "garen") { garen = npcs[i]; }
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getNPCName() === "Warren") { warren = npcs[i]; }
+    if (npcs[i].getNPCName() === "Garen") { garen = npcs[i]; }
   }
   if (warren && garen) {
     if (GetDistance(warren.getx(),warren.gety(),garen.getx(),garen.gety(),"square") <= 5) {
