@@ -8424,7 +8424,7 @@ function AmbroseShieldTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "shield";
   this.prefix = "the";
-  this.longdesc = "This shield was commissioned by Nyrani and made by Erin of Hildendain. It should be brought to Nyrani.";
+  this.longdesc = "This was commissioned by Nyrani and made by Erin of Hildendain. It should be brought to Nyrani.";
   this.addType("Quest");
 }
 AmbroseShieldTile.prototype = new ItemObject();
@@ -9514,8 +9514,8 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
 function SupplyBoxTile() {
   this.name = "SupplyBox";
   this.graphic = "furniture.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-96";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "0";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
