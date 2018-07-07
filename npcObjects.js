@@ -903,7 +903,7 @@ function HeadlessNPCTile() {
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Orcs';
+  this.lootTable = 'Headlesses';
   this.prefix = 'a';
   this.desc = "headless";
   this.meleeChance = 100;
