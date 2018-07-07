@@ -13244,10 +13244,10 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
   
   if (this.hasFrame) {
     if ((this.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(this.getx(),this.gety()))) {
-      MoveTurnFrame(who);
+      MoveTurnFrame(this);
     } else {
       HideTurnFrame();
-      delete who.hasFrame;
+      delete this.hasFrame;
     }
   }
 	return retval;
