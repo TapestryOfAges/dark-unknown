@@ -1043,7 +1043,7 @@ mappages["olympus2"].npcs[8] = {name : 'MageVillagerNPC', x : 69, y : 18, NPCNam
 mappages["olympus2"].npcs[9] = {name : 'FighterVillagerNPC', x : 9, y : 18, NPCName: 'Nyrani', Desc: 'guard captain', Level: 5, str: 24, dex: 18, int: 12, PeaceAI: 'scheduled', PCThreatAI: 'melee', Schedule: 'nyrani', Conversation: 'nyrani', Gender: 'female', OverrideGraphic: '308.gif'};
 mappages["olympus2"].npcs[10] = {name : 'JesterNPC', x : 29, y : 30, NPCName: 'Kaye', Alignment: 'good', PeaceAI: 'scheduled', Schedule: 'kaye', Conversation: 'kaye', ConversationFlag: 'kaye', Gender: 'male', Leash: 4, BarkFreq: 5, Bark: 'jester', BarkRad: 6};
 mappages["olympus2"].npcs[11] = {name : 'PaladinVillagerNPC', x : 60, y : 31, NPCName: 'Erica', PeaceAI: 'scheduled', Schedule: 'erica', Conversation: 'erica', ConversationFlag: 'erica', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '307.gif'};
-mappages["olympus2"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 34, y : 30, NPCName: 'Trevor', Desc: 'treasurer', PeaceAI: 'scheduled', Schedule: 'trevor', Conversation: 'trevor', ConversationFlag: 'trevor', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["olympus2"].npcs[12] = {name : 'TownGuardNPC', x : 18, y : 26, NPCName: 'Vivian', PeaceAI: 'scheduled', Schedule: 'vivian', Conversation: 'castleguard2', ConversationFlag: 'vivian', Gender: 'female', Bark: '0', NPCBand: '0'};
 mappages["olympus2"].npcs[13] = {name : 'TownsfolkVillagerNPC', x : 29, y : 34, NPCName: 'Manny', Desc: 'servant', PeaceAI: 'scheduled', Schedule: 'manny', Conversation: 'manny', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["olympus2"].npcs[14] = {name : 'TownGuardNPC', x : 14, y : 53, NPCName: 'Lena', PeaceAI: 'scheduled', Schedule: 'lena', Conversation: 'castleguard2', ConversationFlag: 'lena', Gender: 'female', Bark: '0', NPCBand: '0'};
 mappages["olympus2"].npcs[15] = {name : 'TownGuardNPC', x : 14, y : 51, NPCName: 'Barbara', PeaceAI: 'scheduled', Schedule: 'barbara', Conversation: 'castleguard2', ConversationFlag: 'barbara', Gender: 'female', Bark: '0', NPCBand: '0'};
@@ -1055,7 +1055,6 @@ mappages["olympus2"].npcs[20] = {name : 'TownGuardNPC', x : 9, y : 50, NPCName: 
 mappages["olympus2"].npcs[21] = {name : 'TownGuardNPC', x : 17, y : 18, NPCName: 'Andrew', PeaceAI: 'scheduled', Schedule: 'andrew', Conversation: 'castleguard2', ConversationFlag: 'andrew', Gender: 'male', Bark: '0', NPCBand: '0'};
 mappages["olympus2"].npcs[22] = {name : 'TownGuardNPC', x : 17, y : 20, NPCName: 'Armaelle', PeaceAI: 'scheduled', Schedule: 'armaelle', Conversation: 'castleguard2', ConversationFlag: 'armaelle', Gender: 'female', Bark: '0', NPCBand: '0'};
 mappages["olympus2"].npcs[23] = {name : 'TownGuardNPC', x : 40, y : 38, NPCName: 'Gwen', PeaceAI: 'scheduled', Schedule: 'gwen', Conversation: 'castleguard2', ConversationFlag: 'gwen', Gender: 'female', Bark: '0', NPCBand: '0'};
-mappages["olympus2"].npcs[24] = {name : 'TownGuardNPC', x : 18, y : 26, NPCName: 'Vivian', PeaceAI: 'scheduled', Schedule: 'vivian', Conversation: 'castleguard2', ConversationFlag: 'vivian', Gender: 'female', Bark: '0', NPCBand: '0'};
 
 mappages["olympus2"].desc = "Castle dea Olympus";
 mappages["olympus2"].music = 'Olympus';
@@ -1201,6 +1200,7 @@ mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 19, y : 14, NPCName: 
 mappages["olympus0"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 24, y : 8, NPCName: 'Jeremiah', Conversation: 'jeremiah', ConversationFlag: 'jeremiah', PeaceAI: 'scheduled', Schedule: 'jeremiah', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif'};
 mappages["olympus0"].npcs[3] = {name : 'TinkerVillagerNPC', x : 24, y : 18, NPCName: 'Aara', Conversation: 'aara', ConversationFlag: 'aara', PeaceAI: 'scheduled', Schedule: 'aara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif'};
 mappages["olympus0"].npcs[4] = {name : 'ShepherdVillagerNPC', x : 24, y : 13, NPCName: 'Rose', Conversation: 'rose', ConversationFlag: 'rose', PeaceAI: 'scheduled', Schedule: 'rose', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif'};
+mappages["olympus0"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 8, y : 16, NPCName: 'Trevor', Desc: 'treasurer', PeaceAI: 'scheduled', Schedule: 'trevor', Conversation: 'trevor', ConversationFlag: 'trevor', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.2.gif'};
 
 mappages["olympus0"].desc = "Castle Basement";
 mappages["olympus0"].music = 'Olympus';
@@ -1433,7 +1433,7 @@ mappages["olympus2"].onload = function(mapref) {
       liam.realgraphic = "310.2.gif";
     }
 
-    if ((poe.getCurrentScheduleIndex() >= 8) || (poe.getCurrentScheduleIndex() <= 10)) {
+    if ((poe.getCurrentScheduleIndex() >= 8) && (poe.getCurrentScheduleIndex() <= 10)) {
       poe.realgraphic = "310.gif";
     }
 
@@ -1449,7 +1449,7 @@ mappages["olympus2"].onload = function(mapref) {
       armaelle.realgraphic = "310.gif";
     }
 
-    if ((gwen.getCurrentScheduleIndex() >= 18) || (gwen.getCurrentScheduleIndex() <= 20)) {
+    if ((gwen.getCurrentScheduleIndex() >= 18) && (gwen.getCurrentScheduleIndex() <= 20)) {
       gwen.realgraphic = "310.gif";
     }
 
@@ -1473,19 +1473,25 @@ mappages["olympus0"].onload = function(mapref) {
     }
 
     let npcs = mapref.npcs.getAll();
-    let mariadoc, kristell;
+    let mariadoc, kristell, trevor;
 
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Mariadoc") { mariadoc = npcs[i]; }
       if (npcs[i].getNPCName() === "Kristell") { kristell = npcs[i]; }
+      if (npcs[i].getNPCName() === "Trevor") { trevor = npcs[i]; }
     }
 
-    if ((mariadoc.getCurrentScheduleIndex() >= 12) || (mariadoc.getCurrentScheduleIndex() <= 14)) {
+    if ((mariadoc.getCurrentScheduleIndex() >= 12) && (mariadoc.getCurrentScheduleIndex() <= 14)) {
       mariadoc.realgraphic = "310.gif";
     }
 
-    if ((kristell.getCurrentScheduleIndex() >= 14) || (kristell.getCurrentScheduleIndex() <= 16)) {
+    if ((kristell.getCurrentScheduleIndex() >= 14) && (kristell.getCurrentScheduleIndex() <= 16)) {
       kristell.realgraphic = "310.2.gif";
+    }
+
+    if ((trevor.getCurrentScheduleIndex() <= 5) || (trevor.getCurrentScheduleIndex() >= 10)) {
+      let door = mapref.getTile(9,20).getTopFeature();
+      door.lockMe();
     }
 
   }
