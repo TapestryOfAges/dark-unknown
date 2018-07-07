@@ -1014,6 +1014,12 @@ function PerformEnter(cmd) {
 			retval["txt"] = "You cannot climb that.";
 		} else {
       retval["fin"] = 1;
+
+      let prevstate = gamestate.getMode();
+      gamestate.setMode("saving");
+      gamestate.saveGame(0);
+      gamestate.setMode(prevstate);
+    
 			var newmap = new GameMap();
 			if (maps.getMap(destination)) {
 				newmap = maps.getMap(destination);
@@ -1039,7 +1045,7 @@ function PerformEnter(cmd) {
           }
         }
       }			  
-      var tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
+      let tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
       AdjustStartingLocations(newmap);
 			retval["txt"] = "Entering " + newmap.getDesc() + ".";
 			if (descend != "") {

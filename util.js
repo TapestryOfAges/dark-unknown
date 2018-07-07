@@ -321,13 +321,6 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
     }
   }
 
-  if (who === PC) {
-	  var prevstate = gamestate.getMode();
-    gamestate.setMode("saving");
-    gamestate.saveGame(0);
-    gamestate.setMode(prevstate);
-	}
-
   if (typeof frommap.Exit === "function") {
     frommap.Exit(who,tomap,oldx,oldy,destx,desty);
   }
