@@ -12385,7 +12385,12 @@ NPCObject.prototype.processDeath = function(droploot){
   if (targetCursor.lastTarget === this) { delete targetCursor.lastTarget; }
   if (this.checkType("PC")) {
     // just in case you died on your turn:
-    gamestate.setMode("null");
+    if (gamestate.getTurn() === PC) {
+      gamestate.setMode("null");
+    }
+    PC.dead = 1;
+    PC.deaduntil = GetGameClockByClockTime("9:00");
+
     maintext.delayedAddText("You have died!");
     var newmap = new GameMap();
     if (maps.getMap("landsbeyond")) {
@@ -12396,7 +12401,6 @@ NPCObject.prototype.processDeath = function(droploot){
     }
     maintext.setInputLine("&gt;");
     maintext.drawTextFrame(); 
-    var tile = MoveBetweenMaps(this,this.getHomeMap(),newmap, 7, 7);
     var spellobjs = this.getSpellEffects();
     if (spellobjs.length) {
       for (var i = 0; i < spellobjs.length; i++ ) {
@@ -12405,11 +12409,15 @@ NPCObject.prototype.processDeath = function(droploot){
         }
       }
     }
-    $("#mainview").fadeOut(2600, function() {
+    MoveBetweenMaps(this,this.getHomeMap(),newmap, 7, 7, 1);
+    $("#displayframe").fadeOut(2600, function() {
       maintext.addText("You find yourself floating bodiless in the void.");
       DrawMainFrame("draw", newmap, 7,7);
-      $("#mainview").css('display','none');
-      $("#mainview").fadeIn(2000, "swing", function() {
+//      $("#mainview").css('display','none');
+      if (gamestate.getTurn() === PC) {
+        PC.endTurn();
+      }
+      $("#displayframe").fadeIn(2000, "swing", function() {
         DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
         maintext.addText("There is nought to do but meditate upon your life, and the triumphs and errors it contained.");
         setTimeout(function() {
@@ -12421,29 +12429,15 @@ NPCObject.prototype.processDeath = function(droploot){
               setTimeout(function() {
                 maintext.addText("All is light...");
                 setTimeout(function() {
+                  delete PC.dead;
                   // play sound effect
-                  var returnmap = new GameMap();
-                  if (maps.getMap("olympus1")) {
-                    returnmap = maps.getMap("olympus1");
-                    // though again, this shouldn't be in memory
-                  } else {
-                    returnmap = maps.addMap("olympus1");
-                  }
-                  AdjustStartingLocations(returnmap);
-                  tile = MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,49,22);
-                  DrawMainFrame("draw",returnmap,49,22);
-                  PC.setHP(PC.getMaxHP());
-                  PC.setMana(PC.getMaxMana());
-                  DrawCharFrame();
-                  gamestate.setMode("player");
-                  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-                  gamestate.setTurn(PC);
-                }, 2000);
-              }, 2000);
-            }, 2000);
-          }, 2000);
-        }, 2000);
-      }, 2000);
+
+                }, 1700);
+              }, 1700);
+            }, 1700);
+          }, 1700);
+        }, 1700);
+      }, 1700);
     });
     return;
   } else {
@@ -13378,15 +13372,16 @@ NPCObject.prototype.myTurn = function() {
 }
 
 NPCObject.prototype.endTurn = function(init) {
+  if (!init) { init = 0; }
   if (this.hasFrame && IsObjectVisibleOnScreen(this)) {
     // remove turn frame
     HideTurnFrame(this);
   }
 
-  if (whoseturn !== this) {
+  if (gamestate.getTurn() !== this) {
     console.log(this);
     alert("Somehow trying to end a turn when it isn't their turn, aborting.");
-  } else if (this.getHP() <= 0) {
+  } else if ((this.getHP() <= 0) && (this !== PC)) {
     DebugWrite("ai", "Ending turn while dead, not going back on the stack!");
     setTimeout(function() { startScheduler(); }, 5 );
   } else {
@@ -13866,8 +13861,10 @@ PCObject.prototype.myTurn = function() {
   if (debugmaps.open) { ShowDebugMaps(); }
 
   var clockface = GetClockTime(this.getLastTurnTime());
-  if ((clockface[3] !== GetClockTime()[3]) && !this.getWaiting()) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
-  SetSky();
+  if ((clockface[3] !== GetClockTime()[3]) && !this.getWaiting() && !this.dead) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
+  if (!this.dead) {
+    SetSky();
+  }
 
   if (debugflags.first) { delete debugflags.first; } 
   else { DebugWrite("all", "</div>"); }
@@ -13877,10 +13874,32 @@ PCObject.prototype.myTurn = function() {
     // this half of myTurn has already run before the player saved
     RunEffects(this);
   
-    if (this.getHP() <= 0) {
-      DebugWrite("all", "PC is dead.<br />");
-      DoPCDeath();
-      return 0;
+    if (PC.getHP() <= 0) {
+      if (DUTime.getGameClock() <= PC.deaduntil) {
+        gamestate.setTurn(PC);
+        PC.endTurn(0);
+        return 0;
+      } 
+      if (PC.dead) {
+        setTimeout(function(){ PC.myTurn(); }, 100);
+        return 0;
+      }
+      delete PC.deaduntil;
+      var returnmap = new GameMap();
+      if (maps.getMap("olympus1")) {
+        returnmap = maps.getMap("olympus1");
+        // though again, this shouldn't be in memory
+      } else {
+        returnmap = maps.addMap("olympus1");
+      }
+      AdjustStartingLocations(returnmap);
+      MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,49,22);
+      DrawMainFrame("draw",returnmap,49,22);
+      PC.setHP(PC.getMaxHP());
+      PC.setMana(PC.getMaxMana());
+      DrawCharFrame();
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+      SetSky();
     }
   }
     
