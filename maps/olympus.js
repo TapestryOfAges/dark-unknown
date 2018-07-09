@@ -1291,6 +1291,12 @@ mappages["olympus1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Davin") { davin = npcs[i]; }
     }
 
+    let o2 = maps.getMap("olympus2");
+    let o2npcs = o2.npcs.getAll();
+    for (let i=0;i<o2npcs.length;i++) {
+      if (o2npcs[i].getNPCName() === "Manny") { manny = npcs[i]; }
+    }
+
     if ((tyler.getCurrentScheduleIndex() >= 4) && (tyler.getCurrentScheduleIndex() <= 16)) {
       // Tyler/Sonya/Yoshi house is unlocked during the day.
       let door = mapref.getTile(20,25).getTopFeature();
