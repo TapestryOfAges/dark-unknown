@@ -304,7 +304,6 @@ function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
 }
 
 function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
-  var retval = {};
   var oldx = who.getx();
   var oldy = who.gety();
   
@@ -356,7 +355,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
     
   if (PC.getHomeMap() === frommap) {
     DrawMainFrame("one",frommap,oldx,oldy);
-  } else if (PC.getHomeMap() === tomap) {
+  } else if ((who !== PC) && (PC.getHomeMap() === tomap)) {
     DrawMainFrame("one",tomap,destx,desty);
   }
   
@@ -1640,13 +1639,15 @@ function GetGameClockByClockTime(targetTime) {
   var currhour = parseInt(tmp[0]);
   var currmin = parseInt(tmp[1]);
 
-  if (min < currmin) { min = min+60; currhour--; }
+  if (min < currmin) { min = min+60; currhour++; }
   var diffmin = min-currmin;
   
   if (hour < currhour) { hour = hour+24; }
 
   diffmin = diffmin + (hour-currhour)*60;
-  return (DUTime.getGameClock() + diffmin*.2);
+  let difftime = diffmin*.2;
+  let newtime = DUTime.getGameClock() + difftime;
+  return (newtime);
 }
 
 function GetDisplayDate(usethistime) {
@@ -1770,8 +1771,13 @@ function ModTime(time1,addTime) {
   return finhour + ":" + finmin;
 }
 
-function GetUsableClockTime() {
-  var clocktime = GetClockTime();
+function GetUsableClockTime(time) {
+  let clocktime;
+  if (!time) {
+    clocktime = GetClockTime();
+  } else {
+    clocktime = GetClockTime(time);
+  }
   var min = clocktime[4];
   if (min < 10) { min = "0" + min; }
   clocktime = clocktime[3] + ":" + min;
