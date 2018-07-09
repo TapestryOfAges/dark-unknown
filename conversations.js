@@ -705,14 +705,18 @@ OnConvTriggers["sirius_book1"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["talked_shelaria"] = function(speaker,keyword) {
-  StopMusic(nowplaying);
-  nowplaying = DUPlayMusic("Lament");
+  if (DU.gameflags.getFlag("music")) {
+    StopMusic(nowplaying);
+    nowplaying = DUPlayMusic("Lament");
+  }
 }
 
 OnConvTriggers["reset_music"] = function(speaker,keyword) {
-  var song = speaker.getHomeMap().getMusic();
-  StopMusic(nowplaying);
-  nowplaying = DUPlayMusic(song);
+  if (DU.gameflags.getFlag("music")) {
+    var song = speaker.getHomeMap().getMusic();
+    StopMusic(nowplaying);
+    nowplaying = DUPlayMusic(song);
+  }
 }
 
 OnConvTriggers["franklin_offered"] = function(speaker, keyword) {
