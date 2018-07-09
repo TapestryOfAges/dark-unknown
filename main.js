@@ -78,7 +78,7 @@ function DrawMainFrame(how, themap, centerx, centery) {
   if (how === "draw") {
     displayspecs = getDisplayCenter(themap,centerx,centery);
     
-    var mapbg = '';
+//    var mapbg = '';
     if (themap.getBackground()) {
       //mapbg = 'background-image:url(\'graphics/' + themap.getBackground() + '\'); background-repeat:no-repeat;';
       var opacity = themap.getOpacity();
