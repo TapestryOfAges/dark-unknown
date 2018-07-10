@@ -102,3 +102,4 @@ knowsblackpotion
 knowsdeepbluepotion
 knowsorangepotion
 knowsbrownpotion
+rebuild_poverty
