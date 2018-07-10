@@ -1391,14 +1391,12 @@ function FindCombatPath(who,approach,path) {
   // if path > 3ish, try to walk along it, if short, check if destination tile is occupied, 
   // if so, search adjacent to approach to find an empty tile and pathfind to it.
   if ((path.length > 3) || (!finaldest.getTopNPC() && !firststep.getTopNPC()))  {
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Path long enough or short but start and end positions are empty- walking.</span><br />"); }
     DebugWrite("ai", "Path long enough or short but start and end positions are empty- walking.<br />");
     moved = StepOrSidestep(who,path[0],path[path.length-1]);
   } else {
     // path currently goes through some NPCs. Need to make a better path.
     // first step- create a local pathgrid that takes NPCs into account.
     // to get here the path distance can be no more than 4. Tweak this after playtest.
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Path is short but blocked- looking for a better path.</span><br />"); }
     DebugWrite("ai", "Path is short but blocked- looking for a better path.<br />");
 
     var leftx = who.getx();
@@ -1425,7 +1423,6 @@ function FindCombatPath(who,approach,path) {
     if (rightx >= whomap.getWidth()) { rightx = whomap.getWidth()-1; }
     if (bottomy >= whomap.getHeight()) { bottomy = whomap.getHeight()-1; }
           
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Searching for a path inside bounding box- left: " + leftx + ", right: " + rightx + ", top: " + topy + ", bottom: " + bottomy + ".</span><br />"); }
     DebugWrite("ai", "Searching for a path inside bounding box- left: " + leftx + ", right: " + rightx + ", top: " + topy + ", bottom: " + bottomy + ".<br />");
     // creates a box with the two entities in the corners, and then 
     // stretches it to be large enough to find paths in
@@ -1445,49 +1442,49 @@ function FindCombatPath(who,approach,path) {
     // from here, find 5 paths, to center and each corner
     // each path requires its own clone with that location marked walkable- for corners, note if destination is occupied but still get path
     var whichdir = GetOctant(approach.getx()-who.getx(), approach.gety()-who.gety());
-          
+    DebugWrite("ai", "Attacker is in octant " + whichdir + ".<br />");      
     var endpoints = [];  
     switch(whichdir) {                                         // dir from target entity
-      case 0:   // AI is heading north
-        endpoints[0] = [approach.getx(), Math.min(approach.gety()+1, whomap.getHeight())];   // south
-        endpoints[1] = [Math.min(approach.getx()+1, whomap.getWidth()), Math.min(approach.gety()+1, whomap.getHeight())]; // southeast
-        endpoints[2] = [Math.max(approach.getx()-1, 0), Math.min(approach.gety()+1, whomap.getHeight())]; // southwest
-        break;
-      case 1:   // AI is heading northeast
-        endpoints[0] = [approach.getx(), Math.min(approach.gety()+1, whomap.getHeight())];   // south
-        endpoints[1] = [Math.max(approach.getx()-1, 0), approach.gety()];   // west
-        endpoints[2] = [Math.max(approach.getx()-1, 0), Math.min(approach.gety()+1, whomap.getHeight())]; // southwest
-        break;
-      case 2:   // AI is heading east
-        endpoints[0] = [Math.max(approach.getx()-1, 0), Math.max(approach.gety()-1,0)]; // northwest
-        endpoints[1] = [Math.max(approach.getx()-1, 0), approach.gety()];   // west
-        endpoints[2] = [Math.max(approach.getx()-1, 0), Math.min(approach.gety()+1, whomap.getHeight())]; // southwest
-        break;
-      case 3:   // AI is heading southeast
-        endpoints[0] = [Math.max(approach.getx()-1, 0), Math.max(approach.gety()-1,0)]; // northwest
-        endpoints[1] = [Math.max(approach.getx()-1, 0), approach.gety()];   // west
-        endpoints[2] = [approach.getx(), Math.max(approach.gety()-1,0)];   // north
-        break;
-      case 4:   // AI is heading south
+      case 0:   // AI is heading south
         endpoints[0] = [Math.max(approach.getx()-1, 0), Math.max(approach.gety()-1,0)]; // northwest
         endpoints[1] = [Math.min(approach.getx()+1, whomap.getWidth()), Math.max(approach.gety()-1,0)]; // northeast
         endpoints[2] = [approach.getx(), Math.max(approach.gety()-1,0)];   // north
         break;
-      case 5:   // AI is heading southwest
+      case 1:   // AI is heading southwest
         endpoints[0] = [Math.min(approach.getx()+1, whomap.getWidth()), approach.gety()];   // east
         endpoints[1] = [Math.min(approach.getx()+1, whomap.getWidth()), Math.max(approach.gety()-1,0)]; // northeast
         endpoints[2] = [approach.getx(), Math.max(approach.gety()-1,0)];   // north
         break;
-      case 6:   // AI is heading west
+      case 2:   // AI is heading west
         endpoints[0] = [Math.min(approach.getx()+1, whomap.getWidth()), approach.gety()];   // east
         endpoints[1] = [Math.min(approach.getx()+1, whomap.getWidth()), Math.min(approach.gety()+1, whomap.getHeight())]; // southeast
         endpoints[2] = [Math.min(approach.getx()+1, whomap.getWidth()), Math.max(approach.gety()-1,0)]; // northeast
         break;
-      case 7:   // AI is heading northwest
+      case 3:   // AI is heading northwest
         endpoints[0] = [approach.getx()+1, approach.gety()];   // east
         endpoints[1] = [approach.getx()+1, Math.max(approach.gety()-1,0)]; // southeast
         endpoints[2] = [approach.getx(), Math.max(approach.gety()-1,0)]; // south
         break;        
+      case 4:   // AI is heading north
+        endpoints[0] = [approach.getx(), Math.min(approach.gety()+1, whomap.getHeight())];   // south
+        endpoints[1] = [Math.min(approach.getx()+1, whomap.getWidth()), Math.min(approach.gety()+1, whomap.getHeight())]; // southeast
+        endpoints[2] = [Math.max(approach.getx()-1, 0), Math.min(approach.gety()+1, whomap.getHeight())]; // southwest
+        break;
+      case 5:   // AI is heading northeast
+        endpoints[0] = [approach.getx(), Math.min(approach.gety()+1, whomap.getHeight())];   // south
+        endpoints[1] = [Math.max(approach.getx()-1, 0), approach.gety()];   // west
+        endpoints[2] = [Math.max(approach.getx()-1, 0), Math.min(approach.gety()+1, whomap.getHeight())]; // southwest
+        break;
+      case 6:   // AI is heading east
+        endpoints[0] = [Math.max(approach.getx()-1, 0), Math.max(approach.gety()-1,0)]; // northwest
+        endpoints[1] = [Math.max(approach.getx()-1, 0), approach.gety()];   // west
+        endpoints[2] = [Math.max(approach.getx()-1, 0), Math.min(approach.gety()+1, whomap.getHeight())]; // southwest
+        break;
+      case 7:   // AI is heading southeast
+        endpoints[0] = [Math.max(approach.getx()-1, 0), Math.max(approach.gety()-1,0)]; // northwest
+        endpoints[1] = [Math.max(approach.getx()-1, 0), approach.gety()];   // west
+        endpoints[2] = [approach.getx(), Math.max(approach.gety()-1,0)];   // north
+        break;
       default:
         alert("Switch in FindCombatPath broken.");
     }
