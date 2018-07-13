@@ -1743,6 +1743,20 @@ function BlankBlackTile() {
 }
 BlankBlackTile.prototype = new TerrainObject();
 
+function ChasmTile() {
+  this.name = "Chasm";
+//  this.graphic = "055.gif";
+  this.graphic = "terrain_tiles.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-128";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "chasm";
+  this.peerview = "black";
+}
+ChasmTile.prototype = new TerrainObject();
+
 function DarknessTile() {
   this.name = "Darkness";
 //  this.graphic = "055.gif";
@@ -6944,6 +6958,93 @@ GrottoLeverOffTile.prototype.use = function(who) {
   
   DrawMainFrame("draw", tomap, PC.getx(), PC.gety());
   return retval;
+}
+
+function GrottoBridgeLever1Tile() {
+  this.name = "GrottoBridgeLever1";
+  this.graphic = "switch-off.gif";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "switch";
+
+  this.setting = 0;
+}
+GrottoBridgeLever1Tile.prototype = new FeatureObject();
+
+GrottoBridgeLever1Tile.prototype.use = function(who) {
+  let mymap = this.getHomeMap();
+  GrottoBridgePuzzle(mymap,102,31);
+  GrottoBridgePuzzle(mymap,102,32);
+  if (this.getGraphic() === "switch-off.gif") { this.setGraphic("switch-on.gif");}
+  else { this.setGraphic("switch-off.gif");}
+}
+
+function GrottoBridgeLever2Tile() {
+  this.name = "GrottoBridgeLever2";
+  this.graphic = "switch-off.gif";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "switch";
+
+  this.setting = 0;
+}
+GrottoBridgeLever2Tile.prototype = new FeatureObject();
+
+GrottoBridgeLever2Tile.prototype.use = function(who) {
+  let mymap = this.getHomeMap();
+  GrottoBridgePuzzle(mymap,102,33);
+  GrottoBridgePuzzle(mymap,102,32);
+  if (this.getGraphic() === "switch-off.gif") { this.setGraphic("switch-on.gif");}
+  else { this.setGraphic("switch-off.gif");}
+}
+
+function GrottoBridgeLever3Tile() {
+  this.name = "GrottoBridgeLever3";
+  this.graphic = "switch-off.gif";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "switch";
+
+  this.setting = 0;
+}
+GrottoBridgeLever3Tile.prototype = new FeatureObject();
+
+GrottoBridgeLever3Tile.prototype.use = function(who) {
+  let mymap = this.getHomeMap();
+  GrottoBridgePuzzle(mymap,102,34);
+  GrottoBridgePuzzle(mymap,102,32);
+  if (this.getGraphic() === "switch-off.gif") { this.setGraphic("switch-on.gif");}
+  else { this.setGraphic("switch-off.gif");}
+}
+
+function GrottoBridgePuzzle(mymap,locx,locy) {
+  let bridge;
+  let fea = mymap.getTile(locx,locy).getFeatures();
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName() === "BridgeNS") { bridge1 = fea[i];}
+  }
+  if (bridge1) {
+    for (let i=0;i<fea.length;i++) {
+      if (fea[i].getName() === "BridgeNS") { mymap.deleteThing(fea[i]);}
+      else {
+        // falls in!
+        maintext.delayedAddText("The " + fea[i].getDesc() + " falls into the chasm!");
+        mymap.deleteThing(fea[1]);
+      }
+    }
+    if ((PC.getx() === locx) && (PC.gety() === locy)) {
+      maintext.delayedAddText("The bridge disappears from beneath your feet! You fall.");
+      let undermap = maps.getMap("undergrotto");
+      MoveBetweenMaps(PC,mymap,undermap,25,7);
+      DrawMainFrame("draw",undermap,PC.getx(),PC.gety());
+    } else {
+      DrawMainFrame("one",mymap,locx,locy);
+    }
+  } else {
+    bridge1 = localFactory.createTile("BridgeNS");
+    mymap.placeThing(locx,locy,bridge1);
+    DrawMainFrame("one",mymap,locx,locy);
+  }
 }
 
 function MetalTwisterLeverTile() {

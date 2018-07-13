@@ -138,6 +138,11 @@ tileFactory.prototype.makeBlankBlackTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeChasmTile = function() {
+  var newTile = new ChasmTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDarknessTile = function() {
   var newTile = new DarknessTile();
   return newTile;
@@ -1605,6 +1610,21 @@ tileFactory.prototype.makeBDCLeverTile = function() {
 
 tileFactory.prototype.makeGrottoLeverOffTile = function() {
   var newTile = new GrottoLeverOffTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGrottoBridgeLever1Tile = function() {
+  var newTile = new GrottoBridgeLever1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGrottoBridgeLever2Tile = function() {
+  var newTile = new GrottoBridgeLever2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGrottoBridgeLever3Tile = function() {
+  var newTile = new GrottoBridgeLever3Tile();
   return newTile;
 }
 
