@@ -274,6 +274,8 @@ function Atlas() {
     "BlueCarpetW" : 'b8',
     'b0' : "BlueCarpetC",
     "BlueCarpetC" : 'b0',
+    'ch' : "Chasm",
+    "Chasm" : 'ch',
   }
 
 }
