@@ -521,13 +521,15 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
   }
   
 	var featurepassability = MOVE_FLY + MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	var features = this.getFeatures();
+  var features = this.getFeatures();
+  let bridge = 0;
 	if (features[0]) {
 	  for (var i=0; i< features.length; i++) {
 	    if ((features[i].getName() !== "SecretDoor") && doors && (((features[i].hasOwnProperty("opengraphic")) && (!features[i].locked)) || (features[i].pushable))) {
 	      // skip doors and things that can be pushed for this check
 	    } else {
-		    featurepassability = featurepassability & features[i].getPassable();
+        featurepassability = featurepassability & features[i].getPassable();
+        if (features[i].bridge) { bridge = 1; }
 		  }
 		}  
 		if (!nonpcs) {
@@ -540,8 +542,8 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	  	  featurepassability = 0;
       }
     }
-		if (totalpassability & MOVE_SWIM) {
-//	  	if (featurepassability & mover.getMovetype()) {
+//		if (totalpassability & MOVE_SWIM) {
+    if (bridge) {
 	  	if (featurepassability & movetype) {
 	  		retval["canmove"] = 1;
   			retval["msg"] = "";
