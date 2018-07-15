@@ -1750,7 +1750,7 @@ function ChasmTile() {
   this.spritexoffset = "-64";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
+  this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chasm";
   this.peerview = "black";
@@ -5547,6 +5547,7 @@ function WBridgeNSTile() {
   this.desc = "bridge";
   this.peerview = "#602000";
   this.walkSound = "stone";
+  this.bridge = 1;
 }
 WBridgeNSTile.prototype = new FeatureObject();
 
@@ -5559,6 +5560,7 @@ function EBridgeNSTile() {
   this.desc = "bridge";
   this.peerview = "#602000";
   this.walkSound = "stone";
+  this.bridge = 1;
 }
 EBridgeNSTile.prototype = new FeatureObject();
 
@@ -5571,6 +5573,7 @@ function BridgeNSTile() {
   this.desc = "bridge";
   this.peerview = "#602000";
   this.walkSound = "stone";
+  this.bridge = 1;
 }
 BridgeNSTile.prototype = new FeatureObject();
 
@@ -5583,6 +5586,7 @@ function NBridgeEWTile() {
   this.desc = "bridge";
   this.peerview = "#602000";
   this.walkSound = "stone";
+  this.bridge = 1;
 }
 NBridgeEWTile.prototype = new FeatureObject();
 
@@ -5595,6 +5599,7 @@ function SBridgeEWTile() {
   this.desc = "bridge";
   this.peerview = "#602000";
   this.walkSound = "stone";
+  this.bridge = 1;
 }
 SBridgeEWTile.prototype = new FeatureObject();
 
@@ -5607,6 +5612,7 @@ function BridgeEWTile() {
   this.desc = "bridge";
   this.peerview = "#602000";
   this.walkSound = "stone";
+  this.bridge = 1;
 }
 BridgeEWTile.prototype = new FeatureObject();
 
@@ -6977,6 +6983,7 @@ GrottoBridgeLever1Tile.prototype.use = function(who) {
   GrottoBridgePuzzle(mymap,102,32);
   if (this.getGraphic() === "switch-off.gif") { this.setGraphic("switch-on.gif");}
   else { this.setGraphic("switch-off.gif");}
+  return { fin: 1, txt: "Lever thrown."};
 }
 
 function GrottoBridgeLever2Tile() {
@@ -6996,6 +7003,7 @@ GrottoBridgeLever2Tile.prototype.use = function(who) {
   GrottoBridgePuzzle(mymap,102,32);
   if (this.getGraphic() === "switch-off.gif") { this.setGraphic("switch-on.gif");}
   else { this.setGraphic("switch-off.gif");}
+  return { fin: 1, txt: "Lever thrown."};
 }
 
 function GrottoBridgeLever3Tile() {
@@ -7015,15 +7023,16 @@ GrottoBridgeLever3Tile.prototype.use = function(who) {
   GrottoBridgePuzzle(mymap,102,32);
   if (this.getGraphic() === "switch-off.gif") { this.setGraphic("switch-on.gif");}
   else { this.setGraphic("switch-off.gif");}
+  return { fin: 1, txt: "Lever thrown."};
 }
 
 function GrottoBridgePuzzle(mymap,locx,locy) {
   let bridge;
   let fea = mymap.getTile(locx,locy).getFeatures();
   for (let i=0;i<fea.length;i++) {
-    if (fea[i].getName() === "BridgeNS") { bridge1 = fea[i];}
+    if (fea[i].getName() === "BridgeNS") { bridge = fea[i];}
   }
-  if (bridge1) {
+  if (bridge) {
     for (let i=0;i<fea.length;i++) {
       if (fea[i].getName() === "BridgeNS") { mymap.deleteThing(fea[i]);}
       else {
@@ -7041,8 +7050,8 @@ function GrottoBridgePuzzle(mymap,locx,locy) {
       DrawMainFrame("one",mymap,locx,locy);
     }
   } else {
-    bridge1 = localFactory.createTile("BridgeNS");
-    mymap.placeThing(locx,locy,bridge1);
+    bridge = localFactory.createTile("BridgeNS");
+    mymap.placeThing(locx,locy,bridge);
     DrawMainFrame("one",mymap,locx,locy);
   }
 }
