@@ -12674,7 +12674,13 @@ NPCObject.prototype.getGenderedTerms = function() {
 }
 
 NPCObject.prototype.getMeleeHitSound = function() {
-  return this.meleeHitSound;
+  if (this.meleeHitSound) {
+    return this.meleeHitSound;
+  } else {
+    if (this.getEquipment("weapon")) {
+      return (this.getEquipment("weapon").getHitSound());
+    }
+  }
 }
 
 NPCObject.prototype.setMeleeHitSound = function(newsnd) {
@@ -12683,7 +12689,13 @@ NPCObject.prototype.setMeleeHitSound = function(newsnd) {
 }
 
 NPCObject.prototype.getMissileHitSound = function() {
-  return this.missileHitSound;
+  if (this.missileHitSound){
+    return this.missileHitSound;
+  } else {
+    if (this.getEquipment("missile")) {
+      return (this.getEquipment("missile").getHitSound());
+    }
+  }
 }
 
 NPCObject.prototype.setMissileHitSound = function(newsnd) {
@@ -12692,7 +12704,13 @@ NPCObject.prototype.setMissileHitSound = function(newsnd) {
 }
 
 NPCObject.prototype.getMeleeMissSound = function() {
-  return this.meleeMissSound;
+  if (this.meleeMissSound) {
+    return this.meleeMissSound;
+  } else {
+    if (this.getEquipment("weapon")) {
+      return (this.getEquipment("weapon").getMissSound());
+    }
+  }
 }
 
 NPCObject.prototype.setMeleeMissSound = function(newsnd) {
@@ -12701,7 +12719,13 @@ NPCObject.prototype.setMeleeMissSound = function(newsnd) {
 }
 
 NPCObject.prototype.getMissileMissSound = function() {
-  return this.missileMissSound;
+  if (this.missileMissSound) { 
+    return this.missileMissSound;
+  } else {
+    if (this.getEquipment("missile")) {
+      return (this.getEquipment("missile").getMissSound());
+    }
+  }
 }
 
 NPCObject.prototype.setMissileMissSound = function(newsnd) {
