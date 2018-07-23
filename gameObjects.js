@@ -6949,6 +6949,7 @@ GrottoLeverOffTile.prototype.use = function(who) {
   this.overlay = "switch-on.gif";
   var frommap = this.getHomeMap();
   var tomap = maps.getMap("grotto2");
+  DUPlaySound("sfx_large_lever");
   
   var feas = frommap.features.getAll();
   $.each(feas, function(idx,val) {
@@ -6983,6 +6984,7 @@ GrottoBridgeLever1Tile.prototype.use = function(who) {
   GrottoBridgePuzzle(mymap,102,32);
   if (this.getGraphic() === "switch-off.gif") { this.setGraphic("switch-on.gif");}
   else { this.setGraphic("switch-off.gif");}
+  DUPlaySound("sfx_small_lever");
   return { fin: 1, txt: "Lever thrown."};
 }
 
@@ -7003,6 +7005,7 @@ GrottoBridgeLever2Tile.prototype.use = function(who) {
   GrottoBridgePuzzle(mymap,102,32);
   if (this.getGraphic() === "switch-off.gif") { this.setGraphic("switch-on.gif");}
   else { this.setGraphic("switch-off.gif");}
+  DUPlaySound("sfx_small_lever");
   return { fin: 1, txt: "Lever thrown."};
 }
 
@@ -7023,6 +7026,7 @@ GrottoBridgeLever3Tile.prototype.use = function(who) {
   GrottoBridgePuzzle(mymap,102,32);
   if (this.getGraphic() === "switch-off.gif") { this.setGraphic("switch-on.gif");}
   else { this.setGraphic("switch-off.gif");}
+  DUPlaySound("sfx_small_lever");
   return { fin: 1, txt: "Lever thrown."};
 }
 
@@ -7069,6 +7073,7 @@ MetalTwisterLeverTile.prototype.use = function(user) {
     var level3 = maps.getMap("metaltwister3");
     var level2 = maps.getMap("metaltwister2");
     var retval = {};
+    DUPlaySound("sfx_small_lever");
     if (!level2) {  // somehow level 2 is not in memory. Load it.
       var otherlevel = new GameMap();
       otherlevel = maps.addMap("metaltwister2");
@@ -7123,6 +7128,7 @@ PitDespairLeverTile.prototype = new FeatureObject();
 PitDespairLeverTile.prototype.use = function(user) {
   var retval = {};
   if (this.attached) {
+    DUPlaySound("sfx_small_lever");
     var thismap = user.getHomeMap();
     var doortile = thismap.getTile(this.attached.x, this.attached.y);
     var ftrs = doortile.getFeatures();
@@ -7291,6 +7297,7 @@ SandstoneWallTile.prototype.use = function(who) {
   }
   themap.moveThing(this.getx()+diffx, this.gety()+diffy, this);
   retval["txt"] = "The wall segment slides across the floor.";
+  DUPlaySound("sfx_stone_drag");
   
   CheckLasers(themap);
   return retval;
@@ -7760,6 +7767,7 @@ MarkOfKingsTile.prototype.use = function(user) {
       if (((user.getx() === 27) && (user.gety() === 28)) || ((user.getx() === 26) && (user.gety() === 29)) || ((user.getx() === 28) && (user.gety() === 29)) || ((user.getx() >= 25) && (user.getx() <= 28) && (user.gety() === 30)) || ((user.getx() >=25) && (user.getx() <= 27) && (user.gety() === 31))) {
         // open entrance to grotto
         Earthquake();
+        DUPlaySound("sfx_earthquake");
         var cave = localFactory.createTile("Cave");
         cave.setEnterMap("grotto", 22, 53);
         themap.placeThing(27,30,cave);
@@ -8128,6 +8136,7 @@ function PerformToshinAltar(code) {
   var themap = altar.getHomeMap();
   var energyfield = localFactory.createTile("EnergyField");
   var firefield = localFactory.createTile("FireField");
+  DUPlaySound("sfx_click");
 
   if (code === 65) {
     var fieldtile1 = themap.getTile(22,13);
@@ -8289,6 +8298,7 @@ ToshinMoatLeverOffTile.prototype.use = function(who) {
   var lever1 = lever1tile.getTopFeature();
   var lever2tile = themap.getTile(24,14);
   var lever2 = lever2tile.getTopFeature();
+  DUPlaySound("sfx_small_lever");
   
   if (this.getOverlay() === "moatLever-off.gif") {
     door.unlockMe();
@@ -9204,6 +9214,7 @@ GoldTile.prototype.setQuantity = function(quant) {
 GoldTile.prototype.onGet = function(who) {
   who.addGold(parseInt(this.getQuantity())); 
   who.inventory.deleteFrom(this);
+  DUPlaySound("sfx_coin");
 
   // this should delete the item entirely
 }
@@ -11676,8 +11687,8 @@ function WeaponObject() {
 	this.reduceArmor = 0;
 	this.damage = "1d1+0";
 	this.strdamage = 0;
-	this.hitSound = "sfx_melee_hit";
-	this.missSound = "sfx_melee_miss";
+	this.hitSound = "";
+	this.attackSound = "";
   
   this.usedesc = "Ready the weapon.";
 	this.addType("Weapon");
@@ -11763,13 +11774,13 @@ WeaponObject.prototype.getAveDamage = function(wielder) {
   return damage;
 }
 
-WeaponObject.prototype.getMissSound = function() {
-	return this.missSound;
+WeaponObject.prototype.getAttackSound = function() {
+	return this.attackSound;
 }
 
-WeaponObject.prototype.setMissSound = function(newsnd) {
-	this.missSound = newsnd;
-	return this.missSound;
+WeaponObject.prototype.setAttackSound = function(newsnd) {
+	this.attackSound = newsnd;
+	return this.attackSound;
 }
 
 WeaponObject.prototype.getHitSound = function() {
@@ -11928,8 +11939,7 @@ function NaturalWeaponTile() {
 	this.spriteyoffset = "-32";
 	this.desc = "natural weapon";
 	this.prefix = "a";
-	this.hitSound = "sfx_animal_hit";
-	this.missSound = "sfx_melee_miss";
+	this.attackSound = "sfx_animal_attack";
 }
 NaturalWeaponTile.prototype = new WeaponObject();
 
@@ -11941,8 +11951,8 @@ function MissileWeaponObject() {
 	this.ammoyoffset = "0";
 	this.directionalammo = 0;
 	this.ammoReturn = 0;	
-  this.hitSound = "sfx_missile_hit";
-  this.missSound = "sfx_missile_miss";
+//  this.hitSound = "sfx_missile_hit";
+//  this.attackSound = "sfx_missile_atk";
 	
 	this.addType("Missile");
 }
@@ -12001,6 +12011,7 @@ function SlingTile() {
 	this.prefix = "a";
 	this.ammoxoffset = "-32";
   this.ammoyoffset = "-128";
+  this.attackSound = "sfx_sling";
   this.longdesc = "A sling, made of simple leather. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 SlingTile.prototype = new MissileWeaponObject();
@@ -12018,6 +12029,7 @@ function BowTile() {
   this.ammoxoffset = "0";
   this.ammoyoffset = "0";
   this.directionalammo = 1;
+  this.attackSound = "sfx_bow";
   this.longdesc = "A bow. It requires a Dexterity of 16 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 BowTile.prototype = new MissileWeaponObject();
@@ -12035,6 +12047,7 @@ function CrossbowTile() {
   this.ammoxoffset = "0";
   this.ammoyoffset = "-32";
   this.directionalammo = 1;
+  this.attackSound = "sfx_bow";
   this.longdesc = "A crossbow. It requires a Dexterity of 19 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 CrossbowTile.prototype = new MissileWeaponObject();
@@ -12050,8 +12063,7 @@ function WandTile() {
 	this.prefix = "a";
   this.ammoxoffset = "-64";
   this.ammoyoffset = "-128";
-  this.hitSound = "sfx_wand_zap";
-  this.missSound = "sfx_wand_zap";
+  this.attackSound = "sfx_wand";
   this.longdesc = "A wand that channels thunder. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 WandTile.prototype = new MissileWeaponObject();
@@ -12069,8 +12081,7 @@ function MagicAxeTile() {
   this.ammoxoffset = "0";
   this.ammoyoffset = "-128";
   this.ammoReturn = 1;
-  this.hitSound = "sfx_magic_axe_hit";
-  this.missSound = "sfx_magic_axe_miss";
+  this.attackSound = "sfx_magic_axe";
   this.longdesc = "A magic throwing axe. It requires a Dexterity of 22 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 MagicAxeTile.prototype = new MissileWeaponObject();
@@ -12159,9 +12170,9 @@ function NPCObject() {
 	this.armorAbsorb = -1;
 	this.armorResist = -1;
 	this.meleeHitSound = "";
-	this.meleeMissSound = "";
+	this.meleeAttackSound = "";
 	this.missileHitSound = "";
-	this.missileMissSound = "";
+	this.missileAttackSound = "";
 	this.initmult = 1;
 	this.movetype = MOVE_WALK;
 	this.meleeChance = 100;
@@ -12678,9 +12689,12 @@ NPCObject.prototype.getMeleeHitSound = function() {
     return this.meleeHitSound;
   } else {
     if (this.getEquipment("weapon")) {
-      return (this.getEquipment("weapon").getHitSound());
+      if (this.getEquipment("weapon").getHitSound()) {
+        return (this.getEquipment("weapon").getHitSound());
+      }
     }
   }
+  return "sfx_default_hit";
 }
 
 NPCObject.prototype.setMeleeHitSound = function(newsnd) {
@@ -12693,9 +12707,12 @@ NPCObject.prototype.getMissileHitSound = function() {
     return this.missileHitSound;
   } else {
     if (this.getEquipment("missile")) {
-      return (this.getEquipment("missile").getHitSound());
+      if (this.getEquipment("missile").getHitSound()) {
+        return (this.getEquipment("missile").getHitSound());
+      }
     }
   }
+  return "sfx_default_hit";
 }
 
 NPCObject.prototype.setMissileHitSound = function(newsnd) {
@@ -12703,34 +12720,34 @@ NPCObject.prototype.setMissileHitSound = function(newsnd) {
   return this.missleHitSound;
 }
 
-NPCObject.prototype.getMeleeMissSound = function() {
-  if (this.meleeMissSound) {
-    return this.meleeMissSound;
+NPCObject.prototype.getMeleeAttackSound = function() {
+  if (this.meleeAttackSound) {
+    return this.meleeAttackSound;
   } else {
     if (this.getEquipment("weapon")) {
-      return (this.getEquipment("weapon").getMissSound());
+      return (this.getEquipment("weapon").getAttackSound());
     }
   }
 }
 
-NPCObject.prototype.setMeleeMissSound = function(newsnd) {
-  this.meleeMissSound = newsnd;
-  return this.meleeMissSound;
+NPCObject.prototype.setMeleeAttackSound = function(newsnd) {
+  this.meleeAttackSound = newsnd;
+  return this.meleeAttackSound;
 }
 
-NPCObject.prototype.getMissileMissSound = function() {
-  if (this.missileMissSound) { 
-    return this.missileMissSound;
+NPCObject.prototype.getMissileAttackSound = function() {
+  if (this.missileAttackSound) { 
+    return this.missileAttackSound;
   } else {
     if (this.getEquipment("missile")) {
-      return (this.getEquipment("missile").getMissSound());
+      return (this.getEquipment("missile").getAttackSound());
     }
   }
 }
 
-NPCObject.prototype.setMissileMissSound = function(newsnd) {
-  this.missleMissSound = newsnd;
-  return this.missleMissSound;
+NPCObject.prototype.setMissileAttackSound = function(newsnd) {
+  this.missleAttackSound = newsnd;
+  return this.missleAttackSound;
 }
 
 NPCObject.prototype.getOnHit = function() {
@@ -13925,9 +13942,9 @@ function PCObject() {
 	this.meleeAttackAs = "Fists";
 	this.missileAttackAs = "none";
 	this.meleeHitSound = "";
-	this.meleeMissSound = "";
+	this.meleeAttackSound = "";
 	this.missileHitSound = "";
-	this.missileMissSound = "";	
+	this.missileAttackSound = "";	
   this.equipment = {};
   this.equipment.armor = "";
   this.equipment.weapon = "";
