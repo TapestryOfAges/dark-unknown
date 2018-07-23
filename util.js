@@ -94,6 +94,9 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     var hitanimhtml = '<div id="hitdiv" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:40; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
 
     $("#combateffects").html(hitanimhtml);
+    if (sounds["end"]) {
+      DUPlaySound(sounds["end"]);
+    }
     setTimeout(function() {
       $("#combateffects").html("");
       if ((type !== "missile") || (!ammoreturn)) {
