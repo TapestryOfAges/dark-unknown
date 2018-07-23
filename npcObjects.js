@@ -30,7 +30,7 @@ function DruidVillagerNPCTile() {
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
   this.initOverride = 10;
 }
 DruidVillagerNPCTile.prototype = new NPCObject();
@@ -96,7 +96,7 @@ function MageVillagerNPCTile() {
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
   this.initOverride = 10;
 }
 MageVillagerNPCTile.prototype = new NPCObject();
@@ -359,7 +359,7 @@ function ChildVillagerNPCTile() {
   this.resists = {};
   this.special = 'coward, open_door';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
   this.initOverride = 10;
 }
 ChildVillagerNPCTile.prototype = new NPCObject();
@@ -394,7 +394,7 @@ function BeggarVillagerNPCTile() {
   this.resists = {};
   this.special = 'coward, open_door';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
   this.initOverride = 10;
 }
 BeggarVillagerNPCTile.prototype = new NPCObject();
@@ -429,7 +429,7 @@ function JesterNPCTile() {
   this.resists = {};
   this.special = 'coward, open_door';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
   this.initOverride = 10;
 }
 JesterNPCTile.prototype = new NPCObject();
@@ -588,7 +588,7 @@ function ChickenNPCTile() {
   this.meleeChance = 100;
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 ChickenNPCTile.prototype = new NPCObject();
 
@@ -620,7 +620,7 @@ function HorseNPCTile() {
   this.meleeChance = 100;
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 HorseNPCTile.prototype = new NPCObject();
 
@@ -651,7 +651,7 @@ function BullNPCTile() {
   this.meleeChance = 100;
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 BullNPCTile.prototype = new NPCObject();
 
@@ -805,7 +805,7 @@ function GiantBatNPCTile() {
   this.meleeChance = 100;
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 GiantBatNPCTile.prototype = new NPCObject();
 
@@ -841,7 +841,7 @@ function GiantInsectsNPCTile() {
   this.resists = {};
   this.special = 'mindless';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 GiantInsectsNPCTile.prototype = new NPCObject();
 
@@ -877,7 +877,7 @@ function GiantRatNPCTile() {
   this.meleeChance = 100;
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 GiantRatNPCTile.prototype = new NPCObject();
 
@@ -1007,7 +1007,7 @@ function SlimeNPCTile() {
   this.resists = { fire:20 };
   this.special = 'mindless';
   this.meleeHitSound = 'sfx_slime_hit';
-  this.meleeMissSound = 'sfx_slime_miss';
+  this.meleeAttackSound = 'sfx_slime_miss';
 }
 SlimeNPCTile.prototype = new NPCObject();
 
@@ -1040,7 +1040,7 @@ function ApprenticeNPCTile() {
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 ApprenticeNPCTile.prototype = new NPCObject();
 
@@ -1264,7 +1264,7 @@ function SkeletonNPCTile() {
   this.resists = { ice:33 };
   this.special = 'undead';
   this.meleeHitSound = 'sfx_skeleton_hit';
-  this.meleeMissSound = 'sfx_skeleton_miss';
+  this.meleeAttackSound = 'sfx_skeleton_miss';
 }
 SkeletonNPCTile.prototype = new NPCObject();
 
@@ -1421,7 +1421,7 @@ function FireLizardNPCTile() {
   this.resists = { fire:66 };
   this.special = 'firebreath';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 FireLizardNPCTile.prototype = new NPCObject();
 
@@ -1457,7 +1457,7 @@ function FlukeNPCTile() {
   this.resists = { ice:33 };
   this.special = 'whirlpool, invisible';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 FlukeNPCTile.prototype = new NPCObject();
 
@@ -1491,7 +1491,7 @@ function GhostNPCTile() {
   this.resists = { ice:50 };
   this.special = 'undead';
   this.meleeHitSound = 'sfx_ghost_hit';
-  this.meleeMissSound = 'sfx_ghost_miss';
+  this.meleeAttackSound = 'sfx_ghost_miss';
 }
 GhostNPCTile.prototype = new NPCObject();
 
@@ -1527,7 +1527,7 @@ function GiantSpiderNPCTile() {
   this.meleeChance = 100;
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 GiantSpiderNPCTile.prototype = new NPCObject();
 
@@ -1561,7 +1561,7 @@ function GremlinNPCTile() {
   this.resists = {};
   this.special = 'stealfood,breedsexplosively';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 GremlinNPCTile.prototype = new NPCObject();
 
@@ -1625,7 +1625,7 @@ function MimicNPCTile() {
   this.resists = {};
   this.special = 'hides:008.gif, aggroname:a mimic, spitter';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 MimicNPCTile.prototype = new NPCObject();
 
@@ -1692,7 +1692,7 @@ function GiantSnakeNPCTile() {
   this.resists = {};
   this.special = 'spitter';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 GiantSnakeNPCTile.prototype = new NPCObject();
 
@@ -1728,7 +1728,7 @@ function SeahorseNPCTile() {
   this.resists = {};
   this.special = 'lbolt';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 SeahorseNPCTile.prototype = new NPCObject();
 
@@ -1825,7 +1825,7 @@ function TwisterNPCTile() {
   this.resists = {};
   this.special = 'mindless';
   this.meleeHitSound = 'sfx_air_hit';
-  this.meleeMissSound = 'sfx_air_miss';
+  this.meleeAttackSound = 'sfx_air_miss';
 }
 TwisterNPCTile.prototype = new NPCObject();
 
@@ -1857,7 +1857,7 @@ function AirElementalNPCTile() {
   this.resists = {};
   this.special = 'lbolt, mindless';
   this.meleeHitSound = 'sfx_air_hit';
-  this.meleeMissSound = 'sfx_air_miss';
+  this.meleeAttackSound = 'sfx_air_miss';
 }
 AirElementalNPCTile.prototype = new NPCObject();
 
@@ -1956,7 +1956,7 @@ function DrakeNPCTile() {
   this.resists = { fire:50 };
   this.special = 'firebreath';
   this.meleeHitSound = 'sfx_roar_hit';
-  this.meleeMissSound = 'sfx_roar_miss';
+  this.meleeAttackSound = 'sfx_roar_miss';
 }
 DrakeNPCTile.prototype = new NPCObject();
 
@@ -1992,7 +1992,7 @@ function EarthElementalNPCTile() {
   this.resists = {};
   this.special = 'mindless';
   this.meleeHitSound = 'sfx_boulder_hit';
-  this.meleeMissSound = 'sfx_boulder_miss';
+  this.meleeAttackSound = 'sfx_boulder_miss';
 }
 EarthElementalNPCTile.prototype = new NPCObject();
 
@@ -2025,7 +2025,7 @@ function FireElementalNPCTile() {
   this.resists = { fire:100, ice:-50 };
   this.special = 'flamearmor, mindless,light:1';
   this.meleeHitSound = 'sfx_fire_hit';
-  this.meleeMissSound = 'sfx_fire_miss';
+  this.meleeAttackSound = 'sfx_fire_miss';
 }
 FireElementalNPCTile.prototype = new NPCObject();
 
@@ -2061,7 +2061,7 @@ function LurkerNPCTile() {
   this.resists = {};
   this.special = 'invisible';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 LurkerNPCTile.prototype = new NPCObject();
 
@@ -2163,7 +2163,7 @@ function SeaSerpentNPCTile() {
   this.resists = {};
   this.special = 'firebreath';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 SeaSerpentNPCTile.prototype = new NPCObject();
 
@@ -2200,7 +2200,7 @@ function TremendousSpiderNPCTile() {
   this.resists = {};
   this.special = 'spitter';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 TremendousSpiderNPCTile.prototype = new NPCObject();
 
@@ -2234,7 +2234,7 @@ function WaterElementalNPCTile() {
   this.resists = { ice:50, fire:-25 };
   this.special = 'mindless';
   this.meleeHitSound = 'sfx_water_hit';
-  this.meleeMissSound = 'sfx_water_miss';
+  this.meleeAttackSound = 'sfx_water_miss';
 }
 WaterElementalNPCTile.prototype = new NPCObject();
 
@@ -2301,7 +2301,7 @@ function CorpserNPCTile() {
   this.resists = {};
   this.special = 'invisible, reach';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 CorpserNPCTile.prototype = new NPCObject();
 
@@ -2366,7 +2366,7 @@ function FloorNPCTile() {
   this.meleeChance = 100;
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 FloorNPCTile.prototype = new NPCObject();
 
@@ -2400,7 +2400,7 @@ function GazerNPCTile() {
   this.resists = {};
   this.special = 'sleep, ondeathInsects, ruthless';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 GazerNPCTile.prototype = new NPCObject();
 
@@ -2435,7 +2435,7 @@ function HydraNPCTile() {
   this.resists = {};
   this.special = 'firebreath, multiattack';
   this.meleeHitSound = 'sfx_roar_hit';
-  this.meleeMissSound = 'sfx_roar_miss';
+  this.meleeAttackSound = 'sfx_roar_miss';
 }
 HydraNPCTile.prototype = new NPCObject();
 
@@ -2468,7 +2468,7 @@ function MagmaSpawnNPCTile() {
   this.resists = {};
   this.special = 'magmaspit, magmaheal';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 MagmaSpawnNPCTile.prototype = new NPCObject();
 
@@ -2502,7 +2502,7 @@ function PhantomNPCTile() {
   this.resists = {};
   this.special = 'undead';
   this.meleeHitSound = 'sfx_ghost_hit';
-  this.meleeMissSound = 'sfx_ghost_miss';
+  this.meleeAttackSound = 'sfx_ghost_miss';
 }
 PhantomNPCTile.prototype = new NPCObject();
 
@@ -2571,7 +2571,7 @@ function WillotheWispNPCTile() {
   this.resists = {};
   this.special = 'teleport, energy bolt';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 WillotheWispNPCTile.prototype = new NPCObject();
 
@@ -2606,7 +2606,7 @@ function DelverNPCTile() {
   this.meleeChance = 100;
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 DelverNPCTile.prototype = new NPCObject();
 
@@ -2673,7 +2673,7 @@ function BlackDragonNPCTile() {
   this.resists = {};
   this.special = 'firebreath, ruthless';
   this.meleeHitSound = 'sfx_roar_hit';
-  this.meleeMissSound = 'sfx_roar_miss';
+  this.meleeAttackSound = 'sfx_roar_miss';
 }
 BlackDragonNPCTile.prototype = new NPCObject();
 
@@ -2708,7 +2708,7 @@ function DevourerNPCTile() {
   this.resists = { fire:50, ice:50 };
   this.special = 'firebreath, icebreath, multiattack';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 DevourerNPCTile.prototype = new NPCObject();
 
@@ -2742,7 +2742,7 @@ function DragonNPCTile() {
   this.resists = { fire:50 };
   this.special = 'firebreath';
   this.meleeHitSound = 'sfx_roar_hit';
-  this.meleeMissSound = 'sfx_roar_miss';
+  this.meleeAttackSound = 'sfx_roar_miss';
 }
 DragonNPCTile.prototype = new NPCObject();
 
@@ -2846,7 +2846,7 @@ function KrakenNPCTile() {
   this.resists = {};
   this.special = 'lbolt';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 KrakenNPCTile.prototype = new NPCObject();
 
@@ -2883,7 +2883,7 @@ function ReaperNPCTile() {
   this.resists = {};
   this.special = 'ruthless';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 ReaperNPCTile.prototype = new NPCObject();
 
@@ -2918,7 +2918,7 @@ function SpecterNPCTile() {
   this.resists = {};
   this.special = 'phase';
   this.meleeHitSound = 'sfx_ghost_hit';
-  this.meleeMissSound = 'sfx_ghost_miss';
+  this.meleeAttackSound = 'sfx_ghost_miss';
 }
 SpecterNPCTile.prototype = new NPCObject();
 
@@ -2989,7 +2989,7 @@ function EarthenTyrantNPCTile() {
   this.resists = {};
   this.special = 'summonearthelemental';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 EarthenTyrantNPCTile.prototype = new NPCObject();
 
@@ -3058,7 +3058,7 @@ function EyesofSpiteNPCTile() {
   this.resists = {};
   this.special = 'sleep, ondeathInsects';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 EyesofSpiteNPCTile.prototype = new NPCObject();
 
@@ -3095,7 +3095,7 @@ function ReaperLordNPCTile() {
   this.resists = {};
   this.special = 'ruthless';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 ReaperLordNPCTile.prototype = new NPCObject();
 
@@ -3128,7 +3128,7 @@ function ElderDragonNPCTile() {
   this.resists = { fire:50 };
   this.special = 'firebreath';
   this.meleeHitSound = 'sfx_roar_hit';
-  this.meleeMissSound = 'sfx_roar_miss';
+  this.meleeAttackSound = 'sfx_roar_miss';
 }
 ElderDragonNPCTile.prototype = new NPCObject();
 
@@ -3226,7 +3226,7 @@ function AbyssalKrakenNPCTile() {
   this.resists = {};
   this.special = 'lbolt';
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 AbyssalKrakenNPCTile.prototype = new NPCObject();
 
@@ -3318,7 +3318,7 @@ function ToshinSentinelNPCTile() {
   this.desc = "floating sentinel";
   this.resists = {};
   this.meleeHitSound = 'sfx_animal_hit';
-  this.meleeMissSound = 'sfx_animal_miss';
+  this.meleeAttackSound = 'sfx_animal_miss';
 }
 ToshinSentinelNPCTile.prototype = new NPCObject();
 
