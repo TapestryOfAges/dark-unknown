@@ -854,6 +854,7 @@ function DoAction(code, ctrl) {
             maintext.addText(sold + ": sold.");
             PC.removeFromInventory(ininv);  // already handles only subtracting 1 if there are multiples
             PC.addGold(Math.ceil(merinv.stock[idx].price/10));
+            DUPlaySound("sfx_coin");
             DrawCharFrame();
           }
         } 
@@ -869,6 +870,7 @@ function DoAction(code, ctrl) {
         maintext.addText(" ");
         maintext.addText("You have learned the spell " + merinv.stock[idx].desc + ".");
         PC.addGold(-(merinv.stock[idx].price));
+        DUPlaySound("sfx_coin");
         PC.addSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid);
         gamestate.setMode("buy");
         maintext.setInputLine("Buy what: ");
@@ -879,6 +881,7 @@ function DoAction(code, ctrl) {
         var newitem = localFactory.createTile(merinv.stock[idx].item);
         if (merinv.stock[idx].quantity != 99) { merinv.stock[idx].quantity = merinv.stock[idx].quantity -1; }
         PC.addGold(-(merinv.stock[idx].price));
+        DUPlaySound("sfx_coin");
         PC.addToInventory(newitem,1);
         maintext.addText(" ");
         maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + ": Purchased. Anything else?");
@@ -907,6 +910,7 @@ function DoAction(code, ctrl) {
         var newitem = localFactory.createTile(merinv.stock[idx].item);
         if (merinv.stock[idx].quantity != 99) { merinv.stock[idx].quantity = merinv.stock[idx].quantity - buyqty; }
         PC.addGold(-(merinv.stock[idx].price * buyqty));
+        DUPlaySound("sfx_coin");
         PC.addToInventory(newitem,buyqty);
         maintext.addText(" ");
         maintext.addText(newitem.getDesc().charAt(0).toUpperCase() + newitem.getDesc().slice(1) + " x" + buyqty + ": Purchased. Anything else?");
