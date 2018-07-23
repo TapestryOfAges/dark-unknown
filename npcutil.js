@@ -132,6 +132,7 @@ function Attack(atk, def) {
     retval["txt"] = "Attack " + def.getDesc();
     if (def.getAttitude() === "friendly") {
       // Make it and its friends hostile. 
+      // shouldn't this be done with an event/observer?
       TurnMapHostile(def.getHomeMap());
     }
   } else {
@@ -141,38 +142,47 @@ function Attack(atk, def) {
   if (def !== PC) {
     def.setAggro(1);
   }
-//  if (debug && debugflags.combat) { dbs.writeln("Attacking: weapon is " + weapon.getName() + "<br />"); }
   DebugWrite("combat", "Attacking: weapon is " + weapon.getName() + "<br />");
   var tohit = atk.getHitChance(type) / 100;
   tohit -= loeresult/2; // harder to hit if foe has cover
-//  if (debug && debugflags.combat) { dbs.writeln("Attacking: reducing to-hit chance by " + loeresult/2 + " due to cover<br />"); }
+
   DebugWrite("combat", "Attacking: reducing to-hit chance by " + loeresult/2 + " due to cover<br />");
   var defense = def.getDefense() / 100;
 
-//  if (debug && debugflags.combat) { dbs.writeln("Atk: " + tohit + "; enemy defense: " + defense + "<br />"); }
   DebugWrite("combat", "Atk: " + tohit + "; enemy defense: " + defense + "<br />");
   tohit = tohit - defense;
   if (tohit < .05) { tohit = .05; }
   
-//  if (debug && debugflags.combat) { dbs.writeln("Chance to hit: " + tohit + "<br />"); }
   DebugWrite("combat", "Chance to hit: " + tohit + "<br />");
 //  var preanim = PreAnimationEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset)
   var dmg = 0;
   let storymode = DU.gameflags.getFlag("storymode");
+  var snd;
+  if (type === "melee") {
+    snd = atk.getMeleeAttackSound();
+  } else {
+    snd = atk.getMissileAttackSound();
+  }
+  if (!snd) {
+    weapon.getAttackSound();
+  }
+  if (snd) {
+    DUPlaySound(snd);
+  }
+  snd = "";
+
   if ((Math.random() <= tohit) || (storymode && (atk === PC))) {
     // Hit!
     
     dmg = weapon.rollDamage(atk);
-    var snd;
     if (type === "melee") {
       snd = atk.getMeleeHitSound();
     } else {
       snd = atk.getMissileHitSound();
     }
     if (!snd) {
-      weapon.getHitSound();
+      snd = weapon.getHitSound();
     }
-    DUPlaySound(snd);
 
     if (dmg < 1) { dmg = 1; }  // min dmg 1 on a hit
     if (storymode && (atk === PC)) { dmg = 500; }
@@ -198,16 +208,6 @@ function Attack(atk, def) {
   else { // Miss!
     // animation and sound here, too
     retval["txt"] = retval["txt"] + " - missed!";
-    var snd;
-    if (type === "melee") {
-      snd = atk.getMeleeMissSound();
-    } else {
-      snd = atk.getMissileMissSound();
-    }
-    if (!snd) {
-      weapon.getMissSound();
-    }
-    DUPlaySound(snd);
     
   }
   
@@ -215,12 +215,6 @@ function Attack(atk, def) {
   var fromcoords = getCoords(atk.getHomeMap(),atk.getx(), atk.gety());
   var tocoords = getCoords(def.getHomeMap(),def.getx(), def.gety());
 
-//  fromcoords.x += 192;
-//  fromcoords.y += 192;
-//  tocoords.x += 192;
-//  tocoords.y += 192;  
-
-  // get graphic, xoffset, yoffset for graphic
   var ammographic = {};
   var duration = 50;
   var ammoreturn = 0;
@@ -243,7 +237,7 @@ function Attack(atk, def) {
   hitgraphic.yoffset = 0;
   hitgraphic.overlay = "spacer.gif";
   
-  var sounds = {};
+  var sounds = {start: "", end: snd};
 
   AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,sounds, {type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:1,retval:retval});
   
