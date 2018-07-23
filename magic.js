@@ -381,6 +381,7 @@ function PerformAudachtaScribe(caster,infused,free,tgt) {
     caster.addSpell(tgt.spelllevel, tgt.spellnum);
     resp["txt"] = "You learn the spell " + tgt.spellname + "!";
     caster.removeFromInventory(tgt);
+    DUPlaySound("sfx_ding");
   }
 
   resp["input"] = "&gt;";
