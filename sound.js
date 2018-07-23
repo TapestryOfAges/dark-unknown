@@ -51,6 +51,20 @@ DUSound["sfx_bubbling_lava"] = "sfx/sfx_bubbling_lava.mp3"; // RPG Sound Effects
 DUSound["sfx_fire_crackle"] = "sfx/sfx_fire_crackle.mp3"; // Dungeon SFX Pack v1/Misc/Torch 2 (loop).mp3
 DUSound["sfx_waterfall"] = "sfx/sfx_waterfall.mp3"; // Soniss 2015/Sound Ex Machine - Water Flow/Small waterfall (closer perspective) 02.wav
 DUSound["sfx_waterfall_fall"] = "sfx/sfx_waterfall_fall.mp3"; // Soniss 2015/Soundopolis - Water 01/Splash_Dive_Fienup_002.wav
+//DUSound["sfx_default_hit"] = "sfx/sfx_hit.wav"; // randomly generated from https://jfxr.frozenfractal.com/
+DUSound["sfx_default_hit"] = "sfx/sfx_Impact4.mp3"; // Medieval Fantasy 2 SFX Pack/Weapons/Impact4
+DUSound["sfx_sling"] = "sfx/sfx_sling.mp3"; // Medieval Fantasy 2 SFX Pack/Weapons/Stick1
+DUSound["sfx_bow"] = "sfx/sfx_bow.mp3"; // Medieval Fantasy 2 SFX Pack/Weapons/BowShot2
+DUSound["sfx_magic_axe"] = "sfx/Electric 1.mp3"; // Magic Spells SFX Bundle 1/Stereo/Electric/Electric 1
+DUSound["sfx_wand"] = "sfx/Generic Spell (summon) 3.ogg"; // Magic Spells SFX Bundle 1/Stereo/Generic/Generic Spell (Summon) 3
+DUSound["sfx_coin"] = "sfx/Coin 2.mp3"; // Medieval Fantasy Pack/Coins and Inventory/Coin 2
+DUSound["sfx_click"] = "sfx/Button04.mp3"; // Medieval Fantasy 2 SFX Pack/Misc/Button04
+DUSound["sfx_small_lever"] = "sfx/Lever 2.mp3"; // Dungeon SFX Pack/Misc/Lever 2
+DUSound["sfx_large_lever"] = "sfx/Lever 1.mp3"; // Dungeon SFX Pack/Misc/Lever 1
+
+// Magic spell sounds
+DUSound["sfx_ding"] = "sfx/sfx_ding.wav"; // Magic Sounds/Chord/MS chord_triple_shigh Book of Spells.wav
+DUSouns["sfx_earthquake"] = "sfx/CaveCollapse.ogg"; // Dungeon SFX Pack/Misc/Cave Collapse
 
 var musicpath = "music/";
 var DUMusic = {};
