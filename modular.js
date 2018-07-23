@@ -47,6 +47,7 @@ OnHitFuncs["steal gold"] = function(atk,def,dmg) {
       maintext.delayedAddText("The " + atk.getDesc() + " steals some gold!");
       DrawCharFrame();
       atk.stolengold = loss;
+      DUPlaySound("sfx_coin");
     }
   }
 }
