@@ -117,13 +117,13 @@ foreach my $line (<$npcdoc>) {
     print $out "  this.meleeHitSound = '$fields[30]';\n";
   }
   if ($fields[31]) {
-    print $out "  this.meleeMissSound = '$fields[31]';\n";
+    print $out "  this.meleeAttackSound = '$fields[31]';\n";
   }
   if ($fields[32]) {
     print $out "  this.missileHitSound = '$fields[32]';\n";
   }
   if ($fields[33]) {
-    print $out "  this.missileMissSound = '$fields[33]';\n";
+    print $out "  this.missileAttackSound = '$fields[33]';\n";
   }
   if ($fields[34]) {
     print $out "  this.xpval = $fields[34];\n";
