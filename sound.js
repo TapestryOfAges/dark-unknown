@@ -61,10 +61,16 @@ DUSound["sfx_coin"] = "sfx/Coin 2.mp3"; // Medieval Fantasy Pack/Coins and Inven
 DUSound["sfx_click"] = "sfx/Button04.mp3"; // Medieval Fantasy 2 SFX Pack/Misc/Button04
 DUSound["sfx_small_lever"] = "sfx/Lever 2.mp3"; // Dungeon SFX Pack/Misc/Lever 2
 DUSound["sfx_large_lever"] = "sfx/Lever 1.mp3"; // Dungeon SFX Pack/Misc/Lever 1
+DUSound["sfx_small_zap"] = "sfx/Spell - Electric Shock 2.mp3"; // Medieval Fantasy SFX Pack/Spells/Electric Shock 2
+DUSound["sfx_paper"] = "sfx/Book Page 1.mp3"; // MFSFP/Inventory/Book Page 1
+
 
 // Magic spell sounds
 DUSound["sfx_ding"] = "sfx/sfx_ding.wav"; // Magic Sounds/Chord/MS chord_triple_shigh Book of Spells.wav
-DUSouns["sfx_earthquake"] = "sfx/CaveCollapse.ogg"; // Dungeon SFX Pack/Misc/Cave Collapse
+DUSound["sfx_earthquake"] = "sfx/CaveCollapse.ogg"; // Dungeon SFX Pack/Misc/Cave Collapse
+DUSound["sfx_whoosh"] = "sfx/air.mp3"; // Medieval Fantasy SFX Pack/Spells/Air 1
+DUSound["sfx_heal"] = "sfx/Spell - Heal 2.mp3"; // MFSFP/Spells/Heal 2
+DUSound["sfx_buff"] = "sfx/Event 17.mp3"; // MFSFP/Stingers/Event 17
 
 var musicpath = "music/";
 var DUMusic = {};
