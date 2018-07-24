@@ -724,7 +724,8 @@ function PerformCast(infuse) {
   $('#spellbookdiv').jqm({onShow:myOpen,modal:true}); 
   $('#spellbookdiv').jqmShow();
   WritePages();
-  
+  DUPlaySound("sfx_paper");
+
   retval["fin"] = 2;
   retval["input"] = "&gt; Cast - "
   return retval;
