@@ -4218,6 +4218,12 @@ function EnergyFieldTile() {
 }
 EnergyFieldTile.prototype = new FeatureObject();
 
+EnergyFieldTile.prototype.bumpinto = function(who) {
+  if (who === PC) {
+    DUPlaySound("sfx_small_zap");
+  }
+}
+
 function TorchWestTile() {
 	this.name = "TorchWest";
 	this.graphic = "torch_l.gif";
@@ -7248,6 +7254,7 @@ function InALaser(who) {
   var themap = who.getHomeMap();
   themap.moveThing(46,28,who);
   ResetRoyalPuzzle(themap);
+  DUPlaySound("sfx_small_zap");
   return "ZAP! The room resets.";
 }
 
@@ -7680,7 +7687,7 @@ PlatformOfWindsTile.prototype.walkon = function(who) {
     setTimeout( function() { whoosh(who, windlist, this.spawnat, this.spawnwhat); }, 100);
   
     delete this.spawnwhat;  
-    // play a wind SOUND
+    DUPlaySound("sfx_whoosh");
     return "WHOOSH!";
   }
 }

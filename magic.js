@@ -408,10 +408,13 @@ magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, 
   }
   resp["fin"] = 1;
   var effects = caster.getSpellEffects();
+  let sparkle = 0;
   if (effects) {
     for (var i=0; i<effects.length; i++) {
       if (effects[i].getName() === "Poison") {
         ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+        DUPlaySound("heal");
+        sparkle = 1;
         if (caster === PC) {
           maintext.delayedAddText("You are cured of poison!");
         }
@@ -422,7 +425,10 @@ magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, 
         if (caster === PC) {
           maintext.delayedAddText("You are cured of disease!");
         }
-        ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+        if (!sparkle) {
+          ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
+          DUPlaySound("heal");
+        }
       }
     }
   }
