@@ -6355,6 +6355,27 @@ WalkOnChangeExitTile.prototype.walkon = function(walker) {
   themap.setExitToY(this.setyto);
 }
 
+function SpinnerTile() {
+  this.name = "Spinner";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+SpinnerTile.prototype = new FeatureObject();
+
+SpinnerTile.prototype.walkon = function(walker) {
+  let diso = localFactory.createTile("Disoriented");
+  walker.addSpellEffect(diso);
+}
+
+SpinnerTile.prototype.walkoff = function(walker) {
+  let diso = walker.getSpellEffectsByName("Disoriented");
+  diso.endEffect();
+}
+
 function WalkOnAbyssTile() {
   this.name = "WalkOnAbyss";
 	this.graphic = "walkon.gif";
@@ -8368,6 +8389,50 @@ OrbToggleTile.prototype.use = function(who) {
   
     var retval = {};
     retval["txt"] = "Done!";
+    return retval;
+}
+
+// Mt Drash
+function DrashOrbToggleTile() {
+  this.name = "DrashOrbToggle";
+  this.graphic = "orbs.gif";
+  this.spritexoffset = '0';
+  this.spriteyoffset = '0';
+  this.prefix = "an";
+  this.desc = "orb";
+}
+DrashOrbToggleTile.prototype = new FeatureObject();
+
+DrashOrbToggleTile.prototype.use = function(who) {
+  var retval = {};
+  retval["txt"] = "Done!";
+
+  this.spritexoffset = this.spritexoffset - 32;
+    if (this.spritexoffset < -128) { this.spritexoffset = 0; }
+
+    var sp = maps.getMap("mtdrash8");
+    var orb1tile = sp.getTile(7,9);
+    var orb1 = orb1tile.getTopFeature();
+    var orb2tile = sp.getTile(8,8);
+    var orb2 = orb2tile.getTopFeature();
+    var orb3tile = sp.getTile(9,9);
+    var orb3 = orb3tile.getTopFeature();
+//    alert(orb1.spritexoffset + " , " + orb2.spritexoffset + " , " + orb3.spritexoffset);
+    if ((orb1.spritexoffset == '-128') && (orb2.spritexoffset == '-128') && (orb3.spritexoffset == '-32')) {
+      let pile = sp.getTile(14,12).getFeatures();
+      let spinner;
+      for (let i=0;i<pile.length;i++) {
+        if (pile[i].getName() === "Spinner") {
+          spinner = pile[i];
+          break;
+        }
+      }
+      if (spinner) {
+        retval["txt"] = "Done!<br />You hear a distant SNAP sound.";
+        sp.deleteThing(spinner);        
+      }
+    } 
+  
     return retval;
 }
 
