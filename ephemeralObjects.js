@@ -546,6 +546,41 @@ DiseaseTile.prototype.endEffect = function(silent) {
   DrawCharFrame();
 }
 
+function DisorientedTile() {
+  this.addType("debuff");
+  this.name = "Disoriented";
+  this.display = "<span style='color:cyan'>D</span>";
+  this.zstatdesc = "You are disoriented.";
+  this.desc = "Disoriented";
+  this.level = 1;
+}
+DisorientedTile.prototype = new EphemeralObject();
+
+DisorientedTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You are disoriented as the floor spins beneath you!");
+  }
+  return 1;
+}
+
+DisorientedTile.prototype.happen = function() {
+  var resp = 0;
+  var dir = Dice.roll("1d3");
+  if (dir === 1) { PC.moveMe(-1,0,0); }
+  if (dir === 2) { PC.moveMe(1,0,0); }
+  if (dir === 3) { PC.moveMe(0,1,0); }
+
+  return resp;
+}
+
+DisorientedTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  DrawCharFrame();
+  return -1;
+}
+
 function DistractTile() {
   this.addType("debuff");
   this.name = "Distract";
