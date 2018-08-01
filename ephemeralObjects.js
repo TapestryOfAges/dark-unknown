@@ -644,7 +644,23 @@ DrunkTile.prototype.applyEffect = function(silent) {
   
   return 1;
 }
-// WORKING - note to self- add chance of confusion for player, add "hic" bark and chance of stumble to scheduled NPCs
+
+DrunkTile.prototype.happen = function() {
+  let who = this.getAttachedTo();
+  let retval = {};
+  if (Dice.roll("1d10") <= this.getPower()) {
+    retval["txt"] = "You stumble drunkenly!";
+    var dir = Dice.roll("1d6");
+    if (dir === 1) { who.moveMe(0,-1,0); }
+    if (dir === 2) { who.moveMe(1,0,0); }
+    if (dir === 3) { who.moveMe(0,1,0); }
+    if (dir === 4) { who.moveMe(-1,0,0); }  
+    retval["fin"] = 1;
+    return retval;
+  }
+  retval["fin"] = 0;
+  return retval;
+}
 
 DrunkTile.prototype.endEffect = function(silent) {
   var who = this.getAttachedTo();
@@ -932,35 +948,6 @@ IronFleshTile.prototype.endEffect = function(silent) {
   return -1;
 }
 
-function PoisonTile() {
-  this.addType("debuff");
-  this.name = "Poison";
-  this.damagePerTick = 2;  // will deal very slow damage in combat maps
-  this.damagetype = "poison";
-  this.display = "<span style='color:#58FA58'>P</span>";
-  this.zstatdesc = "Poison courses through your veins.";
-  this.desc = "poison";
-  this.level = 2;
-}
-PoisonTile.prototype = new DamageOverTimeObject();
-
-PoisonTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
-  if (IsNonLiving(who)) {
-    this.endEffect();
-  }
-  return 1;
-}
-
-PoisonTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
-  who.deleteSpellEffect(this);
-  DrawCharFrame();
-  if ((who === PC) && !silent) {
-    maintext.addText("The poison wears off.");
-  }
-}
-
 function LevitateTile() {
   this.addType("buff");
   this.name = "Levitate";
@@ -1194,6 +1181,35 @@ ParalyzeTile.prototype.endEffect = function(silent) {
     maintext.addText("You can move again!");
   }
   DrawCharFrame();
+}
+
+function PoisonTile() {
+  this.addType("debuff");
+  this.name = "Poison";
+  this.damagePerTick = 2;  // will deal very slow damage in combat maps
+  this.damagetype = "poison";
+  this.display = "<span style='color:#58FA58'>P</span>";
+  this.zstatdesc = "Poison courses through your veins.";
+  this.desc = "poison";
+  this.level = 2;
+}
+PoisonTile.prototype = new DamageOverTimeObject();
+
+PoisonTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  if (IsNonLiving(who)) {
+    this.endEffect();
+  }
+  return 1;
+}
+
+PoisonTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  DrawCharFrame();
+  if ((who === PC) && !silent) {
+    maintext.addText("The poison wears off.");
+  }
 }
 
 function ProtectionTile() {
@@ -1519,6 +1535,41 @@ TimeStopTile.prototype.endEffect = function(silent) {
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("Time flows once more.");
+  }
+  DrawCharFrame();
+}
+
+function TorchLightTile() {
+  this.addType("buff");
+  this.name = "TorchLight";
+  this.display = "<span style='color:red'>T</span>";
+  this.power = 1.5;
+  this.zstatdesc = "You are carrying a lit torch.";
+  this.desc = "Torch light";
+}
+TorchLightTile.prototype = new EphemeralObject();
+
+TorchLightTile.prototype.applyEffect = function(silent) {
+  var who = this.getAttachedTo();
+  var power = this.getPower();
+  if (who) {
+    who.setLight(who.getLight() + power);
+  }
+  return 1;
+}
+
+TorchLightTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+TorchLightTile.prototype.endEffect = function(silent) {
+  var who = this.getAttachedTo();
+  who.setLight(who.getLight() - this.getPower());
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("Your torch goes out.");
   }
   DrawCharFrame();
 }

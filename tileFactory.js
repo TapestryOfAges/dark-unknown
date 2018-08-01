@@ -1458,6 +1458,11 @@ tileFactory.prototype.makeWalkOnChangeExitTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSpinnerTile = function() {
+  var newTile = new SpinnerTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnAbyssTile = function() {
   var newTile = new WalkOnAbyssTile();
   return newTile;
@@ -1840,6 +1845,11 @@ tileFactory.prototype.makeToshinMoatLeverOffTile = function() {
 
 tileFactory.prototype.makeOrbToggleTile = function() {
   var newTile = new OrbToggleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDrashOrbToggleTile = function() {
+  var newTile = new DrashOrbToggleTile();
   return newTile;
 }
 
@@ -3610,6 +3620,11 @@ tileFactory.prototype.makeCurseTile = function() {
 
 tileFactory.prototype.makeDiseaseTile = function() {
   var newTile = new DiseaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDisorientedTile = function() {
+  var newTile = new DisorientedTile();
   return newTile;
 }
 

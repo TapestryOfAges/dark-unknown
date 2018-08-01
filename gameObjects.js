@@ -9660,6 +9660,43 @@ function ConsumableItemObject() {
 }
 ConsumableItemObject.prototype = new ItemObject();
 
+function TorchTile() {
+  this.name = "Torch";
+  this.graphic = "items.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-256";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "torch";
+  this.prefix = "a";
+  this.longdesc = "An unlit torch.";
+}
+TorchTile.prototype = new ConsumableItemObject();
+
+TorchTile.prototype.use = function(who) {
+  let retval = {};
+  if (who.getSpellEffectsByname("TorchLight")) {
+    if (who === PC) {
+      retval["txt"] = "You already have a lit torch!";
+    }
+    retval["preserve"] = 1;
+    retval["fin"] = 1;
+    return retval;
+  }
+  let tl = tileFactory.createTile("TorchLight");
+  let endtime = 50 + DU.DUTime.getGameClock();
+  tl.setExpiresTime(endtime);
+  
+  DUPlaySound("sfx_spell_light"); 
+  caster.addSpellEffect(tl);
+  
+  DrawCharFrame();
+  retval["txt"] = "You light a torch.";
+  retval["fin"] = 1;
+
+  return retval;
+}
+
 function KyvekBoxTile() {
   this.name = "KyvekBox";
   this.graphic = "008.gif";
