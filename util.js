@@ -1832,3 +1832,36 @@ function EndWaiting(who, inn) {
 
   return 1;
 }
+
+function RotateMap90(mapref) {
+  let terrainArray = [];
+  for (let i=0;i<mapref.getHeight();i++) {
+    for (let j=0;j<mapref.getWidth();j++) {
+      let ii=i-13;
+      let jj=j-13;
+      let desti = 0-jj;
+      let destj = ii;
+      desti+=13;
+      destj+=13;
+      terrainArray[desti][destj] = mapref.getAcre(i,j).getTerrain();
+      let feas = mapref.getAcre(j,i).getAllFeatures();
+      for (let k=0;k<feas.length;k++) {
+        mapref.moveThing(destj,desti,feas[k]);
+      }
+      let npcs = mapref.getAcre(j,i).getAllNPCs();
+      for (let k=0;k<npcs.length;k++) {
+        mapref.moveThing(destj,desti,npcs[k]);
+      }
+    }
+  }
+  if (PC.getHomeMap() === mapref) {
+    let PCx = PC.getx();
+    let PCy = PC.gety();
+    PCx-=13;
+    PCy-=13;
+    mapref.moveThing(-PCy,PCx,PC);
+
+    DrawMainFrame("draw",mapref,PC.getx().PC.gety());
+  }
+  // TESTING HERE
+}
