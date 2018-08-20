@@ -6376,6 +6376,71 @@ SpinnerTile.prototype.walkoff = function(walker) {
   diso.endEffect();
 }
 
+function WalkOnMessageTile() {
+	this.name = "WalkOnMessage";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+  this.invisible = 1;
+  this.message = "";
+}
+WalkOnMessageTile.prototype = new FeatureObject();
+
+WalkOnMessageTile.prototype.walkon = function(walker) {
+  if ((walker === PC) && (this.message) && (PC.getLight() >= 1)) {
+    maintext.addText("There is writing on the wall. It reads:");
+    maintext.addText(this.message);
+  }
+}
+
+function WalkOnWindTile() {
+	this.name = "WalkOnWind";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWindTile.prototype = new FeatureObject();
+
+WalkOnWindTile.prototype.walkon = function(walker) {
+  if (walker === PC) {
+    maintext.addText("A strange wind blows!");
+    let torch = walker.getSpellEffectsByName("TorchLight");
+    if (torch) {
+      torch.endEffect();
+    }
+  }
+}
+
+function WalkOnDarknessTile() {
+	this.name = "WalkOnDarkness";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnDarknessTile.prototype = new FeatureObject();
+
+WalkOnDarknessTile.prototype.walkon = function(walker) {
+  if (walker === PC) {
+    maintext.addText("You are smothered in darkness!");
+    let torch = walker.getSpellEffectsByName("TorchLight");
+    if (torch) {
+      torch.endEffect();
+    }
+    let light = walker.getSpellEffectsByName("Light");
+    if (light) {
+      light.endEffect();
+    }
+  }
+}
+
 function WalkOnAbyssTile() {
   this.name = "WalkOnAbyss";
 	this.graphic = "walkon.gif";

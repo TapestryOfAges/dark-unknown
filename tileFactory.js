@@ -1463,6 +1463,21 @@ tileFactory.prototype.makeSpinnerTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnMessageTile = function() {
+  var newTile = new WalkOnMessageTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnWindTile = function() {
+  var newTile = new WalkOnWindTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnDarknessTile = function() {
+  var newTile = new WalkOnDarknessTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnAbyssTile = function() {
   var newTile = new WalkOnAbyssTile();
   return newTile;
@@ -2195,6 +2210,11 @@ tileFactory.prototype.makeNatassaResearch2Tile = function() {
 
 tileFactory.prototype.makeAdelusLetterTile = function() {
   var newTile = new AdelusLetterTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTorchTile = function() {
+  var newTile = new TorchTile();
   return newTile;
 }
 
@@ -3673,11 +3693,6 @@ tileFactory.prototype.makeIronFleshTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makePoisonTile = function() {
-  var newTile = new PoisonTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeLevitateTile = function() {
   var newTile = new LevitateTile();
   return newTile;
@@ -3700,6 +3715,11 @@ tileFactory.prototype.makeNegateMagicTile = function() {
 
 tileFactory.prototype.makeParalyzeTile = function() {
   var newTile = new ParalyzeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePoisonTile = function() {
+  var newTile = new PoisonTile();
   return newTile;
 }
 
@@ -3735,6 +3755,11 @@ tileFactory.prototype.makeTelepathyTile = function() {
 
 tileFactory.prototype.makeTimeStopTile = function() {
   var newTile = new TimeStopTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTorchLightTile = function() {
+  var newTile = new TorchLightTile();
   return newTile;
 }
 

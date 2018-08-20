@@ -101,7 +101,9 @@ mappages["mtdrash2"].features[0] = {name : 'LadderUp', x : 14, y : 14, entermap 
 mappages["mtdrash2"].features[1] = {name : 'LadderDown', x : 14, y : 18, entermap : 'mtdrash3', enterx : 9, entery : 13};
 mappages["mtdrash2"].features[2] = {name : 'LadderUp', x : 20, y : 20, entermap : 'mtdrash1', enterx : 20, entery : 20};
 mappages["mtdrash2"].features[3] = {name : 'LadderDown', x : 18, y : 6, entermap : 'mtdrash3', enterx : 18, entery : 6};
-mappages["mtdrash2"].features[4] = {name : 'WalkOn', x : 10, y : 13};
+mappages["mtdrash2"].features[4] = {name : 'WalkOnWind', x : 10, y : 13};
+mappages["mtdrash2"].features[5] = {name : 'WalkOnWind', x : 12, y : 10};
+mappages["mtdrash2"].features[6] = {name : 'WalkOnWind', x : 11, y : 20};
 
 mappages["mtdrash2"].npcs = [];
 
@@ -132,8 +134,8 @@ mappages["mtdrash2"].returninfused = '0';
 mappages["mtdrash2"].linkedMaps = ["mtdrash1","mtdrash3","mtdrash4","mtdrash5","mtdrash6"];
 mappages["mtdrash2"].editorLabels = '{}';
 
-mappages["mtdrash8"].onload = function(mapref) {
-  let breeze = mapref.getTile(10,13).getTopFeature();
+mappages["mtdrash2"].onload = function(mapref) {
+  
   
 }
 
@@ -517,7 +519,8 @@ mappages["mtdrash8"].features[2] = {name : 'Spinner', x : 14, y : 12};
 mappages["mtdrash8"].features[3] = {name : 'DrashOrbToggle', x : 7, y : 9};
 mappages["mtdrash8"].features[4] = {name : 'DrashOrbToggle', x : 8, y : 8};
 mappages["mtdrash8"].features[5] = {name : 'DrashOrbToggle', x : 9, y : 9};
-
+mappages["mtdrash8"].features[6] = {name : 'WalkOnMessage', x : 14, y : 20};
+mappages["mtdrash8"].features[7] = {name : 'WalkOnMessage', x : 16, y : 10};
 
 mappages["mtdrash8"].npcs = [];
 
@@ -549,7 +552,10 @@ mappages["mtdrash8"].linkedMaps = [""];
 mappages["mtdrash8"].editorLabels = '{}';
 
 mappages["mtdrash8"].onload = function(mapref) {
-
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    let walk1 = mapref.getTile(14,20).getTopFeature();
+    walk1.message = "";
+  }
 }
 
 mappages["mtdrash-proto"] = {};
