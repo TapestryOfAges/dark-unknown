@@ -411,7 +411,13 @@ function DoAction(code, ctrl) {
             maintext.drawTextFrame();
           }
         }
-        if (resp["fin"] < 2) {
+        else if (response["fin"] === -1) {
+          gamestate.setMode("useprompt");
+          maintext.addText(response["txt"]);
+          maintext.setInputLine(response["input"]);
+          maintext.drawTextFrame();
+        }    
+        else if (resp["fin"] < 2) {
           maintext.addText(resp["txt"]);
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame();
@@ -566,7 +572,9 @@ function DoAction(code, ctrl) {
             
   }
   else if (gamestate.getMode() === "useprompt") {
-    var used = targetCursor.itemlist[targetCursor.scrolllocation];
+    let used;
+    if (targetCursor.useditem) { used = targetCursor.useditem; delete targetCursor.useditem; }
+    else { used = targetCursor.itemlist[targetCursor.scrolllocation]; }
     var response = used.usePrompt(code);
 
     maintext.addText(response["txt"]);
