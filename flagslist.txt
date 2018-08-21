@@ -103,3 +103,4 @@ knowsdeepbluepotion
 knowsorangepotion
 knowsbrownpotion
 rebuild_poverty
+pool_drunk - you have drunk from the brilliant pool
