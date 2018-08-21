@@ -1833,16 +1833,16 @@ function EndWaiting(who, inn) {
   return 1;
 }
 
-function RotateMap90(mapref) {
+function RotateMap90(mapref,centerx,centery) {
   let terrainArray = [];
   for (let i=0;i<mapref.getHeight();i++) {
     for (let j=0;j<mapref.getWidth();j++) {
-      let ii=i-13;
-      let jj=j-13;
+      let ii=i-centery;
+      let jj=j-centerx;
       let desti = 0-jj;
       let destj = ii;
-      desti+=13;
-      destj+=13;
+      desti+=centery;
+      destj+=centerx;
       terrainArray[desti][destj] = mapref.getAcre(i,j).getTerrain();
       let feas = mapref.getAcre(j,i).getAllFeatures();
       for (let k=0;k<feas.length;k++) {
