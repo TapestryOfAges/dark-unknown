@@ -6285,6 +6285,59 @@ function DescendWaterfall(who, waterfall) {
   }
 }
 
+function BrilliantPoolTile() {
+  this.name = "BrilliantPool";
+  this.graphic = "pool.gif";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "the";
+  this.desc = "Brilliant Pool";
+}
+BrilliantPoolTile.prototype = new FeatureObject();
+
+BrilliantPoolTile.prototype.use = function(who) {
+  var retval = {};
+  
+  if (who === PC) {
+    targetCursor.useditem = this;
+    retval["override"] = -1;
+    retval["fin"] = -1;
+    retval["txt"] = "Drink from the pool?";
+    retval["input"] = "(Y/N): ";
+    return retval;
+  }
+  retval["fin"] = 1;
+  return retval;
+}
+
+BrilliantPoolTile.prototype.usePrompt = function(code) {
+  var retval = {};
+  retval["fin"] = 1;
+  if (DU.gameflags.getFlag("pool_drunk")) {
+    retval["txt"] = "Having previously drunk of the pool, you are now too smart to dare try that again.";
+    retval["fin"] = 3;
+    return retval;
+  }
+  if (code === 89) {
+    retval["txt"] = "You drink from the pool.";
+    retval["override"] = 1;        
+    retval["fin"] = 3;
+    targetCursor.booktext = ["You feel tremendous power rush into you!","You view the world from above, seeing the secrets and the minds of each and every living thing.","This bright elixir peerless you have drunk...","YOU KNOW ALL THINGS!","...It is too much for your mortal mind...","Suddenly you are aware of just one thing-", "your mind is burning.","You have died."];
+    targetCursor.useditem = this;
+    targetCursor.bookfinish = 1;
+  } else {
+    retval["txt"] = "You choose not to drink.";
+  }
+  return retval;
+}
+
+BrilliantPoolTile.prototype.bookFinish = function() {
+  PC.setOrbInt(PC.getOrbInt() + 1);
+  DU.gameflags.setFlag("pool_drunk");
+  PC.dealDamage(PC.getMaxHP + 100);
+  return;
+}
+
 function SecretDoorTile() {
 	this.name = "SecretDoor";
 	this.graphic = "056.gif";   // note: 024 is U4's secret door
@@ -9603,6 +9656,9 @@ function PerformRead() {
     retval["fin"] = 0;
     return retval;
   } else {
+    if (targetCursor.bookfinish) {
+      targetCursor.useditem.bookFinish();
+    } 
     retval["fin"] = 1;
     return retval;
   }

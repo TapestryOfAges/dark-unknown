@@ -1433,6 +1433,11 @@ tileFactory.prototype.makeWaterfallFlowTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBrilliantPoolTile = function() {
+  var newTile = new BrilliantPoolTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSecretDoorTile = function() {
   var newTile = new SecretDoorTile();
   return newTile;

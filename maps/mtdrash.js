@@ -8,9 +8,9 @@ mappages["mtdrash1"].terrain = [];
  mappages["mtdrash1"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash1"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash1"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
- mappages["mtdrash1"].terrain[6] = 'BK BK BK BK BK !# df df df hf hf !# hf hf hf hf hf !# hf hf hf !# BK BK BK BK BK';
- mappages["mtdrash1"].terrain[7] = 'BK BK BK BK BK !# df df df !# hf !# hf !# !# !# hf !# hf hf hf !# BK BK BK BK BK';
- mappages["mtdrash1"].terrain[8] = 'BK BK BK BK BK !# df df df !# hf !# hf !# hf !# hf !# hf hf hf !# BK BK BK BK BK';
+ mappages["mtdrash1"].terrain[6] = 'BK BK BK BK BK !# df df df hf hf !# hf hf hf hf hf !# bd bd bd !# BK BK BK BK BK';
+ mappages["mtdrash1"].terrain[7] = 'BK BK BK BK BK !# df df df !# hf !# hf !# !# !# hf !# bd bd bd !# BK BK BK BK BK';
+ mappages["mtdrash1"].terrain[8] = 'BK BK BK BK BK !# df df df !# hf !# hf !# hf !# hf !# bd bd bd !# BK BK BK BK BK';
  mappages["mtdrash1"].terrain[9] = 'BK BK BK BK BK !# !# !# !# !# hf !# hf !# hf !# hf !# hf !# !# !# BK BK BK BK BK';
 mappages["mtdrash1"].terrain[10] = 'BK BK BK BK BK !# hf hf hf hf hf !# hf !# hf !# hf !# hf hf hf !# BK BK BK BK BK';
 mappages["mtdrash1"].terrain[11] = 'BK BK BK BK BK !# hf !# !# !# !# !# hf !# hf !# hf !# hf hf hf !# BK BK BK BK BK';
@@ -35,6 +35,7 @@ mappages["mtdrash1"].features[0] = {name : 'LadderUp', x : 12, y : 18, entermap 
 mappages["mtdrash1"].features[1] = {name : 'LadderDown', x : 14, y : 14, entermap : 'mtdrash2', enterx : 14, entery : 14};
 mappages["mtdrash1"].features[2] = {name : 'LadderDown', x : 20, y : 20, entermap : 'mtdrash2', enterx : 20, entery : 20};
 mappages["mtdrash1"].features[3] = {name : 'LadderUp', x : 18, y : 13, entermap : 'darkunknown', enterx : 133, entery : 79};
+mappages["mtdrash1"].features[4] = {name : 'BrilliantPool', x : 19, y : 7};
 
 
 mappages["mtdrash1"].npcs = [];
@@ -63,7 +64,7 @@ mappages["mtdrash1"].returnmap = 'darkunknown';
 mappages["mtdrash1"].returnx = '133';
 mappages["mtdrash1"].returny = '79';
 mappages["mtdrash1"].returninfused = '0';
-mappages["mtdrash1"].linkedMaps = ["mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6"];
+mappages["mtdrash1"].linkedMaps = ["mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash8"];
 mappages["mtdrash1"].editorLabels = '{}';
 
 mappages["mtdrash2"] = {};
@@ -131,7 +132,7 @@ mappages["mtdrash2"].returnmap = 'darkunknown';
 mappages["mtdrash2"].returnx = '133';
 mappages["mtdrash2"].returny = '79';
 mappages["mtdrash2"].returninfused = '0';
-mappages["mtdrash2"].linkedMaps = ["mtdrash1","mtdrash3","mtdrash4","mtdrash5","mtdrash6"];
+mappages["mtdrash2"].linkedMaps = ["mtdrash1","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash8"];
 mappages["mtdrash2"].editorLabels = '{}';
 
 mappages["mtdrash2"].onload = function(mapref) {
@@ -203,7 +204,7 @@ mappages["mtdrash3"].returnmap = 'darkunknown';
 mappages["mtdrash3"].returnx = '133';
 mappages["mtdrash3"].returny = '79';
 mappages["mtdrash3"].returninfused = '0';
-mappages["mtdrash3"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash4","mtdrash5","mtdrash6"];
+mappages["mtdrash3"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash8"];
 mappages["mtdrash3"].editorLabels = '{}';
 
 mappages["mtdrash4"] = {};
@@ -272,7 +273,7 @@ mappages["mtdrash4"].returnmap = 'darkunknown';
 mappages["mtdrash4"].returnx = '133';
 mappages["mtdrash4"].returny = '79';
 mappages["mtdrash4"].returninfused = '0';
-mappages["mtdrash4"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash5","mtdrash6"];
+mappages["mtdrash4"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash5","mtdrash6","mtdrash7","mtdrash8"];
 mappages["mtdrash4"].editorLabels = '{}';
 
 mappages["mtdrash5"] = {};
@@ -340,7 +341,7 @@ mappages["mtdrash5"].returnmap = 'darkunknown';
 mappages["mtdrash5"].returnx = '133';
 mappages["mtdrash5"].returny = '79';
 mappages["mtdrash5"].returninfused = '0';
-mappages["mtdrash5"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash6"];
+mappages["mtdrash5"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash6","mtdrash7","mtdrash8"];
 mappages["mtdrash5"].editorLabels = '{}';
 
 mappages["mtdrash6"] = {};
@@ -413,7 +414,7 @@ mappages["mtdrash6"].returnmap = 'darkunknown';
 mappages["mtdrash6"].returnx = '133';
 mappages["mtdrash6"].returny = '79';
 mappages["mtdrash6"].returninfused = '0';
-mappages["mtdrash6"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5"];
+mappages["mtdrash6"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash7","mtdrash8"];
 mappages["mtdrash6"].editorLabels = '{}';
 
 mappages["mtdrash7"] = {};
@@ -479,7 +480,7 @@ mappages["mtdrash7"].returnmap = 'darkunknown';
 mappages["mtdrash7"].returnx = '133';
 mappages["mtdrash7"].returny = '79';
 mappages["mtdrash7"].returninfused = '0';
-mappages["mtdrash7"].linkedMaps = [""];
+mappages["mtdrash7"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash8"];
 mappages["mtdrash7"].editorLabels = '{}';
 
 mappages["mtdrash8"] = {};
@@ -548,7 +549,7 @@ mappages["mtdrash8"].returnmap = 'darkunknown';
 mappages["mtdrash8"].returnx = '133';
 mappages["mtdrash8"].returny = '79';
 mappages["mtdrash8"].returninfused = '0';
-mappages["mtdrash8"].linkedMaps = [""];
+mappages["mtdrash8"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7"];
 mappages["mtdrash8"].editorLabels = '{}';
 
 mappages["mtdrash8"].onload = function(mapref) {
