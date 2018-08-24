@@ -9001,8 +9001,8 @@ StoneOfConflagrationsTile.prototype = new ItemObject();
 function TreasuryTokenTile() {
   this.name = "TreasuryToken";
   this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-96";  // never seen
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-160";  
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "treasury token";
@@ -10355,7 +10355,7 @@ function DeepBluePotionTile() {
   this.prefix = "a";
   this.graphic = "items.png";
   this.spritexoffset = "-288";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-192";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10412,26 +10412,26 @@ OrangePotionTile.prototype.use = function(who) {
 }
 
 // iron flesh potion
-function BrownPotionTile() {
-  this.name = "BrownPotion";
-  this.desc = "brown potion";
+function TanPotionTile() {
+  this.name = "TanPotion";
+  this.desc = "tan potion";
   this.prefix = "a";
   this.graphic = "items.png";
   this.spritexoffset = "-288";
-  this.spriteyoffset = "-192";
+  this.spriteyoffset = "-224";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
-BrownPotionTile.prototype = new PotionItemObject();
+TanPotionTile.prototype = new PotionItemObject();
 
-BrownPotionTile.prototype.getLongDesc = function() {
-  if (DU.gameflags.getFlag("knowsbrownpotion")) {
+TanPotionTile.prototype.getLongDesc = function() {
+  if (DU.gameflags.getFlag("knowstanpotion")) {
     return "An iron flesh potion.";
   }
-  return "A brown potion.";
+  return "A tan potion.";
 }
 
-BrownPotionTile.prototype.use = function(who) {
+TanPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
   var retval = {fin:1};
   retval = magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(PC, 0, 2);
