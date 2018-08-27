@@ -9862,6 +9862,60 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
   return retval;
 }
 
+function InfiniteScrollTile() {
+  this.name = "InfiniteScroll";
+  this.graphic = "008.gif";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Infinite Scroll";
+  this.prefix = "an";
+  this.addType("Quest");
+  this.openAsUse = 1;
+  this.longdesc = "A piece of parchment so blank it is like a hole in your mind.";
+  this.usedesc = "Use the Scroll.";
+}
+InfiniteScrollTile.prototype = new ConsumableItemObject();
+
+InfiniteScrollTile.prototype.use = function(who) {
+  var retval = {};
+  
+  if (who === PC) {
+    let fea = PC.getHomeMap().features.getAll();
+    for (let i=0;i<fea.length;i++) {
+      if (fea[i].getName === "BrilliantPool") {
+        if (IsAdjacent(who,fea[i])) {
+          retval["override"] = -1;
+          retval["fin"] = 4;
+          retval["preserve"] = 1;
+          retval["txt"] = "You kneel down in front of the Pool and feel its ethereal potency reach out towards you. What level spell will you inscribe?";
+          retval["input"] = "(1-8): ";
+          gamestate.setMode("singlenumber");
+          return retval;
+        }
+      }
+    }
+  }
+  retval["txt"] = "There is no way to use that here.";
+  retval["preserve"] = 1;
+  retval["fin"] = 1;
+  return retval;
+}
+
+InfiniteScrollTile.prototype.usePrompt = function(code) {
+  var retval = {};
+  retval["fin"] = 1;
+  if (code === 89) {
+    retval["txt"] = "You break the seal and empty the coin into your own pouches. You gain 600 gold.";
+    DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")-1);
+    PC.addGold(600);
+    PC.removeFromInventory(this);
+    DrawCharFrame();
+  } else {
+    retval["txt"] = "You put the box away, unopened.";
+  }
+  return retval;
+}
+
 function SupplyBoxTile() {
   this.name = "SupplyBox";
   this.graphic = "furniture.gif";

@@ -567,7 +567,6 @@ function DoAction(code, ctrl) {
       maintext.addText(response["txt"]);
       // gamestate set by spell
       maintext.drawTextFrame();
-    }
 
             
   }
