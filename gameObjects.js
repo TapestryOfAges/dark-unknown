@@ -9890,6 +9890,8 @@ InfiniteScrollTile.prototype.use = function(who) {
           retval["txt"] = "You kneel down in front of the Pool and feel its ethereal potency reach out towards you. What level spell will you inscribe?";
           retval["input"] = "(1-8): ";
           gamestate.setMode("singlenumber");
+          targetCursor.itemname = "InfiniteScroll";
+          targetCursor.itemSource = this;
           return retval;
         }
       }
@@ -9901,18 +9903,10 @@ InfiniteScrollTile.prototype.use = function(who) {
   return retval;
 }
 
-InfiniteScrollTile.prototype.usePrompt = function(code) {
+InfiniteScrollTile.prototype.firstResponse = function(code) {
   var retval = {};
   retval["fin"] = 1;
-  if (code === 89) {
-    retval["txt"] = "You break the seal and empty the coin into your own pouches. You gain 600 gold.";
-    DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")-1);
-    PC.addGold(600);
-    PC.removeFromInventory(this);
-    DrawCharFrame();
-  } else {
-    retval["txt"] = "You put the box away, unopened.";
-  }
+
   return retval;
 }
 

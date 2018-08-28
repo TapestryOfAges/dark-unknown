@@ -688,6 +688,21 @@ function DoAction(code, ctrl) {
     else { // ignore
     	
     }
+  } else if (gamestate.getMode() === "singlenumber") {
+    if ((code >= 48) && (code <= 57)) {
+      if (targetCursor.itemname === "InfiniteScroll") {
+        if ((code >= 49) && (code <=56)) {
+          retval = itemSource.firstResponse(code);
+        }
+      }
+    } else if (code === 27) {
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      gamestate.setMode("player");
+      gamestate.setTurn(PC);
+      delete targetCursor.itemname;
+      delete targetCursor.itemSource;
+    }
   } else if (gamestate.getMode() === "choosesave") {
     if (code === 27) { // esc
       $("#uiinterface").html("");
