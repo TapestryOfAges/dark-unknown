@@ -567,8 +567,7 @@ function DoAction(code, ctrl) {
       maintext.addText(response["txt"]);
       // gamestate set by spell
       maintext.drawTextFrame();
-
-            
+    }       
   }
   else if (gamestate.getMode() === "useprompt") {
     let used;
@@ -691,8 +690,13 @@ function DoAction(code, ctrl) {
   } else if (gamestate.getMode() === "singlenumber") {
     if ((code >= 48) && (code <= 57)) {
       if (targetCursor.itemname === "InfiniteScroll") {
-        if ((code >= 49) && (code <=56)) {
-          retval = itemSource.firstResponse(code);
+        if ((code >= 49) && (code <=56)) {  // 1-8
+          let scroll = targetCursor.itemSource;
+          if (scroll.circle) {
+            retval = scroll.secondResponse(code);
+          } else {
+            retval = scroll.firstResponse(code);
+          }
         }
       }
     } else if (code === 27) {
@@ -702,6 +706,7 @@ function DoAction(code, ctrl) {
       gamestate.setTurn(PC);
       delete targetCursor.itemname;
       delete targetCursor.itemSource;
+      delete targetCursor.itemSource.circle;
     }
   } else if (gamestate.getMode() === "choosesave") {
     if (code === 27) { // esc

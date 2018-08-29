@@ -9880,6 +9880,7 @@ InfiniteScrollTile.prototype.use = function(who) {
   var retval = {};
   
   if (who === PC) {
+    delete this.circle;
     let fea = PC.getHomeMap().features.getAll();
     for (let i=0;i<fea.length;i++) {
       if (fea[i].getName === "BrilliantPool") {
@@ -9908,6 +9909,10 @@ InfiniteScrollTile.prototype.firstResponse = function(code) {
   retval["fin"] = 1;
 
   return retval;
+}
+
+InfiniteScrollTile.prototype.secondResponse = function(code) {
+
 }
 
 function SupplyBoxTile() {
