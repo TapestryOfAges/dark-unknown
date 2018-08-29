@@ -9905,14 +9905,32 @@ InfiniteScrollTile.prototype.use = function(who) {
 }
 
 InfiniteScrollTile.prototype.firstResponse = function(code) {
-  var retval = {};
-  retval["fin"] = 1;
-
+  let level = ParseInt(code)-48;
+  this.circle = level;
+  let retval = {};
+  retval["fin"] = -1;
+  retval["txt"] = "Choose a spell:";
+  for (let i=1;i<=8;i++) {
+    let sid = i;
+    if ((i===6) || (i===8)) { sid++; }
+    if (sid > 8) { continue; }
+    retval["txt"] += "<br />" + i + ") " + magic[level][GetSpellID(sid)].getName();
+  }
   return retval;
 }
 
 InfiniteScrollTile.prototype.secondResponse = function(code) {
-
+  let sid = ParseInt(code)-48;
+  if ((this.circle === 6) || (this.circle === 8)) { sid++;} 
+  let scroll = localFactory.createTile("ScrollWildcard");
+  scroll.setDesc("scroll of " + magic[this.circle][GetSpellID(sid)].getName());
+  scroll.spelllevel = this.circle;
+  scroll.spellnum = GetSpellID(sid);
+  let retval = {};
+  retval["fin"] = 1;
+  retval["txt"] = "You feel power swirl around you as text appears on the scroll!";
+  retval["input"] = "&gt;"
+  return retval;
 }
 
 function SupplyBoxTile() {
@@ -10545,6 +10563,18 @@ ScrollItemObject.prototype.flamed = function() {
   
   return 1; 
 }
+
+function ScrollWildcardTile() {
+  this.name = "ScrollWildcard";
+  this.desc = "scroll of ???";
+  this.prefix = "a";
+  this.graphic = "items.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-256";
+  this.spelllevel = 0;
+  this.spellnum = 0;
+}
+ScrollWildCardTile.prototype = new ScrollItemObject();
 
 function ScrollAudachtaScribeTile() {
   this.name = "ScrollAudachtaScribe";
