@@ -1,11 +1,31 @@
 // Finished but untested
 
+// clearListeners goes through list of listeners and prunes ones whose maps are out of memory
+// clearListener actually deletes the listener
+
+// addListener wants a DUEar object 
+
+// when anything sends an event it sends it to the one DUListener object instantiated in main.js
+
 "use strict";
 
 function DUListener() {
   this.listeners = new Collection();
 }
 DUListener.prototype = new Object();
+
+DUListener.createListener = function(name, listenname, flags, linkedmap) {
+  let tmplistener = new DUEar;
+  DUEar.name = name;
+  DUEar.listenforname = listenname;
+  DUEar.flagsreq = flags;
+  if (typeof linkedmap !== "string") {
+    linkedmap = linkedmap.getName();
+  }
+  DUEar.linkedtomap = linkedmap;
+
+  this.addListener(tmplistener);
+}
 
 DUListener.prototype.addListener = function(newlistener) {
   this.listeners.addTop(newlistener);
@@ -89,4 +109,4 @@ DUEvent.prototype = new Object();
 
 
 var EventFunctions = new Object();
-// all listener funccalls must be attacked to this object globally, for purposes of managing save/load
+// all listener funccalls must be attached to this object globally, for purposes of managing save/load
