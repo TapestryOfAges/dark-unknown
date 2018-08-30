@@ -10574,7 +10574,7 @@ function ScrollWildcardTile() {
   this.spelllevel = 0;
   this.spellnum = 0;
 }
-ScrollWildCardTile.prototype = new ScrollItemObject();
+ScrollWildcardTile.prototype = new ScrollItemObject();
 
 function ScrollAudachtaScribeTile() {
   this.name = "ScrollAudachtaScribe";
