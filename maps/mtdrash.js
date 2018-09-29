@@ -36,7 +36,15 @@ mappages["mtdrash1"].features[1] = {name : 'LadderDown', x : 14, y : 14, enterma
 mappages["mtdrash1"].features[2] = {name : 'LadderDown', x : 20, y : 20, entermap : 'mtdrash2', enterx : 20, entery : 20};
 mappages["mtdrash1"].features[3] = {name : 'LadderUp', x : 18, y : 13, entermap : 'darkunknown', enterx : 133, entery : 79};
 mappages["mtdrash1"].features[4] = {name : 'BrilliantPool', x : 19, y : 7};
-
+mappages["mtdrash1"].features[5] = {name : 'WalkOnMessage', x : 12, y : 15};
+mappages["mtdrash1"].features[6] = {name : 'WalkOnMessage', x : 12, y : 14};
+mappages["mtdrash1"].features[7] = {name : 'WalkOnMessage', x : 11, y : 14};
+mappages["mtdrash1"].features[8] = {name : 'WalkOnMessage', x : 10, y : 14};
+mappages["mtdrash1"].features[9] = {name : 'WalkOnMessage', x : 8, y : 16};
+mappages["mtdrash1"].features[10] = {name : 'WalkOnMessage', x : 14, y : 8};
+mappages["mtdrash1"].features[11] = {name : 'WalkOnMessage', x : 9, y : 10};
+mappages["mtdrash1"].features[12] = {name : 'WalkOnWind', x : 16, y : 12};
+mappages["mtdrash1"].features[13] = {name : 'WalkOnWind', x : 10, y : 7};
 
 mappages["mtdrash1"].npcs = [];
 
@@ -66,6 +74,30 @@ mappages["mtdrash1"].returny = '79';
 mappages["mtdrash1"].returninfused = '0';
 mappages["mtdrash1"].linkedMaps = ["mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash8"];
 mappages["mtdrash1"].editorLabels = '{}';
+
+mappages["mtdrash1"].onload = function(mapref) {
+  let walkon = mapref.getTile(12,15).getTopFeature();
+  walkon.message = `You see writing on the walls, that reads:<br />"Here, you shall see words"`;
+
+  walkon = mapref.getTile(12,14).getTopFeature();
+  walkon.message = `You see writing on the walls, that reads:<br />"of past, present and future."`;
+
+  walkon = mapref.getTile(11,14).getTopFeature();
+  walkon.message = `You see writing on the walls, that reads:<br />"Heed them or forever"`;
+
+  walkon = mapref.getTile(10,14).getTopFeature();
+  walkon.message = `You see writing on the walls, that reads:<br />"shall you travel in circles!"`;
+
+  walkon = mapref.getTile(8,16).getTopFeature();
+  walkon.message = `You see black writing on the walls, that reads:<br />"Three orbs, three colors, and voices"`;
+
+  walkon = mapref.getTile(14,8).getTopFeature();
+  walkon.message = `You see blue writing on the walls, that reads:<br />"In the silence of this vale of green,"`;
+
+  walkon = mapref.getTile(9,10).getTopFeature();
+  walkon.message = `You see silver writing on the walls, that reads:<br />"In the silence of this vale of green,"`;
+
+}
 
 mappages["mtdrash2"] = {};
 mappages["mtdrash2"].terrain = [];
@@ -105,6 +137,11 @@ mappages["mtdrash2"].features[3] = {name : 'LadderDown', x : 18, y : 6, entermap
 mappages["mtdrash2"].features[4] = {name : 'WalkOnWind', x : 10, y : 13};
 mappages["mtdrash2"].features[5] = {name : 'WalkOnWind', x : 12, y : 10};
 mappages["mtdrash2"].features[6] = {name : 'WalkOnWind', x : 11, y : 20};
+mappages["mtdrash2"].features[7] = {name : 'WalkOnMessage', x : 14, y : 16};
+mappages["mtdrash2"].features[8] = {name : 'WalkOnMessage', x : 8, y : 12};
+mappages["mtdrash2"].features[9] = {name : 'WalkOnMessage', x : 14, y : 10};
+mappages["mtdrash2"].features[10] = {name : 'WalkOnMessage', x : 7, y : 16};
+mappages["mtdrash2"].features[11] = {name : 'WalkOnWind', x : 10, y : 9};
 
 mappages["mtdrash2"].npcs = [];
 
@@ -136,8 +173,19 @@ mappages["mtdrash2"].linkedMaps = ["mtdrash1","mtdrash3","mtdrash4","mtdrash5","
 mappages["mtdrash2"].editorLabels = '{}';
 
 mappages["mtdrash2"].onload = function(mapref) {
+
+  let walkon = mapref.getTile(14,16).getTopFeature();
+  walkon.message = `You see black writing on the walls, that reads:<br />"three: reflect well upon the words of"`;
   
-  
+  walkon = mapref.getTile(8,12).getTopFeature();
+  walkon.message = `You see blue writing on the walls, that reads:<br />"blue sky’s clouds part to show this scene:"`;
+
+  walkon = mapref.getTile(14,10).getTopFeature();
+  walkon.message = `You see silver writing on the walls, that reads:<br />"seek- amongst the fields of"`;
+
+  walkon = mapref.getTile(7,16).getTopFeature();
+  walkon.message = `You see red writing on the walls, that reads:<br />"Topped the mantle, purple velvet"`;
+
 }
 
 
@@ -176,7 +224,10 @@ mappages["mtdrash3"].features[0] = {name : 'LadderUp', x : 14, y : 18, entermap 
 mappages["mtdrash3"].features[1] = {name : 'LadderDown', x : 6, y : 10, entermap : 'mtdrash4', enterx : 6, entery : 10};
 mappages["mtdrash3"].features[2] = {name : 'LadderUp', x : 18, y : 6, entermap : 'mtdrash2', enterx : 18, entery : 6};
 mappages["mtdrash3"].features[3] = {name : 'LadderDown', x : 12, y : 8, entermap : 'mtdrash4', enterx : 12, entery : 8};
-
+mappages["mtdrash3"].features[4] = {name : 'WalkOnMessage', x : 11, y : 20};
+mappages["mtdrash3"].features[5] = {name : 'WalkOnMessage', x : 6, y : 12};
+mappages["mtdrash3"].features[6] = {name : 'WalkOnMessage', x : 20, y : 16};
+mappages["mtdrash3"].features[7] = {name : 'WalkOnMessage', x : 13, y : 10};
 
 mappages["mtdrash3"].npcs = [];
 
@@ -206,6 +257,22 @@ mappages["mtdrash3"].returny = '79';
 mappages["mtdrash3"].returninfused = '0';
 mappages["mtdrash3"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash8"];
 mappages["mtdrash3"].editorLabels = '{}';
+
+mappages["mtdrash3"].onload = function(mapref) {
+
+  let walkon = mapref.getTile(11,20).getTopFeature();
+  walkon.message = `You see black writing on the walls, that reads:<br />"the merchant, to words in argent you"`;
+  
+  walkon = mapref.getTile(20,16).getTopFeature();
+  walkon.message = `You see blue writing on the walls, that reads:<br />"there are glyphs unknown with purple glow"`;
+
+  walkon = mapref.getTile(6,12).getTopFeature();
+  walkon.message = `You see silver writing on the walls, that reads:<br />"green, far from mountains"`;
+
+  walkon = mapref.getTile(13,10).getTopFeature();
+  walkon.message = `You see red writing on the walls, that reads:<br />"The rich fire reflected in the mirror"`;
+
+}
 
 mappages["mtdrash4"] = {};
 mappages["mtdrash4"].terrain = [];
@@ -242,10 +309,10 @@ mappages["mtdrash4"].features[0] = {name : 'LadderUp', x : 6, y : 10, entermap :
 mappages["mtdrash4"].features[1] = {name : 'LadderDown', x : 18, y : 18, entermap : 'mtdrash5', enterx : 13, entery : 13};
 mappages["mtdrash4"].features[2] = {name : 'LadderUp', x : 12, y : 8, entermap : 'mtdrash3', enterx : 12, entery : 8};
 mappages["mtdrash4"].features[3] = {name : 'LadderDown', x : 14, y : 8, entermap : 'mtdrash5', enterx : 14, entery : 8};
-mappages["mtdrash4"].features[4] = {name : 'WalkOn', x : 8, y : 18};
-mappages["mtdrash4"].features[5] = {name : 'WalkOn', x : 10, y : 14};
-mappages["mtdrash4"].features[6] = {name : 'WalkOn', x : 6, y : 7};
-
+mappages["mtdrash4"].features[4] = {name : 'WalkOnMessage', x : 6, y : 9};
+mappages["mtdrash4"].features[5] = {name : 'WalkOnMessage', x : 8, y : 16};
+mappages["mtdrash4"].features[6] = {name : 'WalkOnMessage', x : 10, y : 14};
+mappages["mtdrash4"].features[7] = {name : 'WalkOnMessage', x : 6, y : 7};
 
 mappages["mtdrash4"].npcs = [];
 
@@ -275,6 +342,22 @@ mappages["mtdrash4"].returny = '79';
 mappages["mtdrash4"].returninfused = '0';
 mappages["mtdrash4"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash5","mtdrash6","mtdrash7","mtdrash8"];
 mappages["mtdrash4"].editorLabels = '{}';
+
+mappages["mtdrash4"].onload = function(mapref) {
+
+  let walkon = mapref.getTile(6,9).getTopFeature();
+  walkon.message = `You see black writing on the walls, that reads:<br />"must listen well, and the poet you"`;
+  
+  walkon = mapref.getTile(8,16).getTopFeature();
+  walkon.message = `You see blue writing on the walls, that reads:<br />"sear vision to white with fate’s undertow"`;
+
+  walkon = mapref.getTile(6,7).getTopFeature();
+  walkon.message = `You see silver writing on the walls, that reads:<br />"topped with white, is a place"`;
+
+  walkon = mapref.getTile(10,14).getTopFeature();
+  walkon.message = `You see red writing on the walls, that reads:<br />"Flanked with emeralds that shine-"`;
+
+}
 
 mappages["mtdrash5"] = {};
 mappages["mtdrash5"].terrain = [];
@@ -311,9 +394,12 @@ mappages["mtdrash5"].features[0] = {name : 'LadderUp', x : 18, y : 18, entermap 
 mappages["mtdrash5"].features[1] = {name : 'LadderDown', x : 20, y : 20, entermap : 'mtdrash6', enterx : 20, entery : 20};
 mappages["mtdrash5"].features[2] = {name : 'LadderDown', x : 6, y : 6, entermap : 'mtdrash6', enterx : 6, entery : 6};
 mappages["mtdrash5"].features[3] = {name : 'LadderUp', x : 14, y : 8, entermap : 'mtdrash4', enterx : 14, entery : 8};
-mappages["mtdrash5"].features[4] = {name : 'WalkOn', x : 6, y : 14};
-mappages["mtdrash5"].features[5] = {name : 'WalkOn', x : 6, y : 8};
-
+mappages["mtdrash5"].features[4] = {name : 'TeleporterPlatform', x : 6, y : 14};
+mappages["mtdrash5"].features[5] = {name : 'TeleporterPlatform', x : 6, y : 8};
+mappages["mtdrash5"].features[6] = {name : 'WalkOnMessage', x : 17, y : 16};
+mappages["mtdrash5"].features[7] = {name : 'WalkOnMessage', x : 11, y : 12};
+mappages["mtdrash5"].features[8] = {name : 'WalkOnMessage', x : 9, y : 6};
+mappages["mtdrash5"].features[9] = {name : 'WalkOnMessage', x : 14, y : 18};
 
 mappages["mtdrash5"].npcs = [];
 
@@ -343,6 +429,31 @@ mappages["mtdrash5"].returny = '79';
 mappages["mtdrash5"].returninfused = '0';
 mappages["mtdrash5"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash6","mtdrash7","mtdrash8"];
 mappages["mtdrash5"].editorLabels = '{}';
+
+mappages["mtdrash5"].onload = function(mapref) {
+
+  let walkon = mapref.getTile(6,14).getTopFeature();
+  walkon.invisible = 1;
+  walkon.setDestination({map:mapref, x: 6, y: 8});
+
+  mapref.getTile(6,8).getTopFeature();
+  walkon.invisible = 1;
+  walkon.setDestination({map:mapref, x: 6, y: 14});
+
+  walkon = mapref.getTile(17,16).getTopFeature();
+  walkon.message = `You see black writing on the walls, that reads:<br />"must read well. Order them as"`;
+
+  walkon = mapref.getTile(11,12).getTopFeature();
+  walkon.message = `You see blue writing on the walls, that reads:<br />"a truly great wordsmith crafts meaning from absence"`;
+
+  walkon = mapref.getTile(9,6).getTopFeature();
+  walkon.message = `You see silver writing on the walls, that reads:<br />"where lorists say 'Here is the"`;
+
+  walkon = mapref.getTile(14,18).getTopFeature();
+  walkon.message = `You see red writing on the walls, that reads:<br />"For sale, at a reasonable price!"`;
+
+}
+
 
 mappages["mtdrash6"] = {};
 mappages["mtdrash6"].terrain = [];
@@ -378,13 +489,13 @@ mappages["mtdrash6"].features = [];
 mappages["mtdrash6"].features[0] = {name : 'LadderUp', x : 20, y : 20, entermap : 'mtdrash5', enterx : 20, entery : 20};
 mappages["mtdrash6"].features[1] = {name : 'LadderUp', x : 6, y : 6, entermap : 'mtdrash5', enterx : 6, entery : 6};
 mappages["mtdrash6"].features[2] = {name : 'LadderDown', x : 20, y : 6, entermap : 'mtdrash7', enterx : 20, entery : 6};
-mappages["mtdrash6"].features[3] = {name : 'WalkOn', x : 20, y : 9};
-mappages["mtdrash6"].features[4] = {name : 'WalkOn', x : 18, y : 20};
+mappages["mtdrash6"].features[3] = {name : 'TeleporterPlatform', x : 20, y : 9};
+mappages["mtdrash6"].features[4] = {name : 'TeleporterPlatform', x : 18, y : 20};
 mappages["mtdrash6"].features[5] = {name : 'WalkOn', x : 13, y : 13};
-mappages["mtdrash6"].features[6] = {name : 'WalkOn', x : 16, y : 18};
-mappages["mtdrash6"].features[7] = {name : 'WalkOn', x : 18, y : 8};
-mappages["mtdrash6"].features[8] = {name : 'WalkOn', x : 10, y : 10};
-mappages["mtdrash6"].features[9] = {name : 'WalkOn', x : 11, y : 18};
+mappages["mtdrash6"].features[6] = {name : 'WalkOnDarkness', x : 16, y : 18};
+mappages["mtdrash6"].features[7] = {name : 'WalkOnDarkness', x : 18, y : 8};
+mappages["mtdrash6"].features[8] = {name : 'WalkOnDarkness', x : 10, y : 10};
+mappages["mtdrash6"].features[9] = {name : 'WalkOnDarkness', x : 11, y : 18};
 mappages["mtdrash6"].features[10] = {name : 'LadderDown', x : 14, y : 20, entermap : 'mydrash7', enterx : 14, entery : 20};
 
 
@@ -416,6 +527,29 @@ mappages["mtdrash6"].returny = '79';
 mappages["mtdrash6"].returninfused = '0';
 mappages["mtdrash6"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash7","mtdrash8"];
 mappages["mtdrash6"].editorLabels = '{}';
+
+mappages["mtdrash6"].onload = function(mapref) {
+
+  let walkon = mapref.getTile(20,9).getTopFeature();
+  walkon.invisible = 1;
+  walkon.setDestination({map:mapref, x: 18, y: 20});
+
+  mapref.getTile(18,20).getTopFeature();
+  walkon.invisible = 1;
+  walkon.setDestination({map:mapref, x: 20, y: 9});
+
+  // 13,13 is the dungeon spinner, implement here
+
+  walkon = mapref.getTile(9,20).getTopFeature();
+  walkon.message = `You see black writing on the walls, that reads:<br />"sapphire, poet, argent- all else fails."`;
+
+  walkon = mapref.getTile(16,20).getTopFeature();
+  walkon.message = `You see blue writing on the walls, that reads:<br />"From what I do not say, a challenge to grab sense!"`;
+
+  walkon = mapref.getTile(9,6).getTopFeature();
+  walkon.message = `You see silver writing on the walls, that reads:<br />"Eye of the dragon.'"`;
+
+}
 
 mappages["mtdrash7"] = {};
 mappages["mtdrash7"].terrain = [];
