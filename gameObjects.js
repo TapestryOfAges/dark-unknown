@@ -6443,7 +6443,6 @@ WalkOnMessageTile.prototype = new FeatureObject();
 
 WalkOnMessageTile.prototype.walkon = function(walker) {
   if ((walker === PC) && (this.message) && (PC.getLight() >= 1)) {
-    maintext.addText("There is writing on the wall. It reads:");
     maintext.addText(this.message);
   }
 }
