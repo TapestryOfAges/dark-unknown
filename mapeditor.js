@@ -257,7 +257,7 @@ function changeselection(tilename) {
 
 function clickmap(xval,yval) {
 //	if (lockout == 1) {return;}
-  console.log(xval + "x" + yval);
+//  console.log(xval + "x" + yval);
   changes = 1;
   var x=0;
   var y=0;
