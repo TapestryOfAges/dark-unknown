@@ -95,7 +95,7 @@ mappages["mtdrash1"].onload = function(mapref) {
   walkon.message = `You see blue writing on the walls, that reads:<br />"In the silence of this vale of green,"`;
 
   walkon = mapref.getTile(9,10).getTopFeature();
-  walkon.message = `You see silver writing on the walls, that reads:<br />"In the silence of this vale of green,"`;
+  walkon.message = `You see silver writing on the walls, that reads:<br />"To the map thou must"`;
 
 }
 
@@ -491,12 +491,15 @@ mappages["mtdrash6"].features[1] = {name : 'LadderUp', x : 6, y : 6, entermap : 
 mappages["mtdrash6"].features[2] = {name : 'LadderDown', x : 20, y : 6, entermap : 'mtdrash7', enterx : 20, entery : 6};
 mappages["mtdrash6"].features[3] = {name : 'TeleporterPlatform', x : 20, y : 9};
 mappages["mtdrash6"].features[4] = {name : 'TeleporterPlatform', x : 18, y : 20};
-mappages["mtdrash6"].features[5] = {name : 'WalkOn', x : 13, y : 13};
+mappages["mtdrash6"].features[5] = {name : 'WalkOnRotate', x : 13, y : 13};
 mappages["mtdrash6"].features[6] = {name : 'WalkOnDarkness', x : 16, y : 18};
 mappages["mtdrash6"].features[7] = {name : 'WalkOnDarkness', x : 18, y : 8};
 mappages["mtdrash6"].features[8] = {name : 'WalkOnDarkness', x : 10, y : 10};
 mappages["mtdrash6"].features[9] = {name : 'WalkOnDarkness', x : 11, y : 18};
 mappages["mtdrash6"].features[10] = {name : 'LadderDown', x : 14, y : 20, entermap : 'mydrash7', enterx : 14, entery : 20};
+mappages["mtdrash6"].features[11] = {name : 'WalkOnMessage', x : 9, y : 20};
+mappages["mtdrash6"].features[12] = {name : 'WalkOnMessage', x : 16, y : 20};
+mappages["mtdrash6"].features[13] = {name : 'WalkOnMessage', x : 9, y : 6};
 
 
 mappages["mtdrash6"].npcs = [];
@@ -538,8 +541,6 @@ mappages["mtdrash6"].onload = function(mapref) {
   walkon.invisible = 1;
   walkon.setDestination({map:mapref, x: 20, y: 9});
 
-  // 13,13 is the dungeon spinner, implement here
-
   walkon = mapref.getTile(9,20).getTopFeature();
   walkon.message = `You see black writing on the walls, that reads:<br />"sapphire, poet, argent- all else fails."`;
 
@@ -559,21 +560,21 @@ mappages["mtdrash7"].terrain = [];
  mappages["mtdrash7"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash7"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["mtdrash7"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
- mappages["mtdrash7"].terrain[6] = 'BK BK BK BK BK !# hf !# hf hf df df df hf hf !# hf hf hf hf hf !# BK BK BK BK BK';
- mappages["mtdrash7"].terrain[7] = 'BK BK BK BK BK !# hf !# hf !# df df df !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
- mappages["mtdrash7"].terrain[8] = 'BK BK BK BK BK !# hf hf hf !# df df df !# hf hf hf hf hf hf hf !# BK BK BK BK BK';
- mappages["mtdrash7"].terrain[9] = 'BK BK BK BK BK !# !# !# !# !# !# !# hf !# hf !# !# !# !# !# hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[10] = 'BK BK BK BK BK !# hf hf hf !# hf !# hf hf hf !# hf hf hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[11] = 'BK BK BK BK BK !# hf !# hf !# hf !# !# !# !# !# hf !# hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[12] = 'BK BK BK BK BK !# hf !# hf !# hf hf hf hf hf hf hf !# hf hf hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[13] = 'BK BK BK BK BK !# !# !# hf !# !# !# hf !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[14] = 'BK BK BK BK BK !# hf hf hf hf hf !# hf hf hf !# hf hf hf hf hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[15] = 'BK BK BK BK BK !# hf !# !# !# hf !# !# !# hf !# hf !# !# !# hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[16] = 'BK BK BK BK BK !# df df df !# hf hf hf hf hf !# hf hf hf !# hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[17] = 'BK BK BK BK BK !# df df df !# hf !# !# !# !# !# hf !# !# !# hf !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[18] = 'BK BK BK BK BK !# df df df !# hf !# hf hf hf hf hf !# df df df !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[19] = 'BK BK BK BK BK !# df df df !# !# !# hf !# !# !# !# !# df df df !# BK BK BK BK BK';
-mappages["mtdrash7"].terrain[20] = 'BK BK BK BK BK !# df df df hf hf hf hf !# hf hf hf hf df df df !# BK BK BK BK BK';
+ mappages["mtdrash7"].terrain[6] = 'BK BK BK BK BK !# hf hf hf hf !# df df df df !# hf hf hf hf hf !# BK BK BK BK BK';
+ mappages["mtdrash7"].terrain[7] = 'BK BK BK BK BK !# !# !# !# hf !# df df df df !# !# !# !# !# !# !# BK BK BK BK BK';
+ mappages["mtdrash7"].terrain[8] = 'BK BK BK BK BK !# !# hf hf hf !# hf !# !# !# !# hf hf hf hf hf !# BK BK BK BK BK';
+ mappages["mtdrash7"].terrain[9] = 'BK BK BK BK BK !# !# hf !# !# !# hf !# hf hf hf hf !# hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[10] = 'BK BK BK BK BK !# hf hf hf hf hf hf !# hf !# !# !# !# hf !# !# !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[11] = 'BK BK BK BK BK !# !# !# !# hf !# hf !# hf !# hf hf hf hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[12] = 'BK BK BK BK BK !# hf hf !# hf !# !# !# hf !# !# !# !# !# !# hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[13] = 'BK BK BK BK BK !# !# hf !# hf hf hf hf hf hf hf hf hf !# hf hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[14] = 'BK BK BK BK BK !# !# hf !# !# !# !# !# hf !# !# !# hf !# hf !# !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[15] = 'BK BK BK BK BK !# hf hf hf hf hf hf !# hf !# df !# hf !# hf hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[16] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# hf !# df df df !# !# hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[17] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf hf !# df df df df !# hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[18] = 'BK BK BK BK BK !# hf !# !# hf !# !# !# !# !# df df df df !# hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[19] = 'BK BK BK BK BK !# hf !# df df df df df !# !# !# !# !# !# !# hf !# BK BK BK BK BK';
+mappages["mtdrash7"].terrain[20] = 'BK BK BK BK BK !# hf !# df df df df df !# hf hf hf hf hf hf hf !# BK BK BK BK BK';
 mappages["mtdrash7"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
 mappages["mtdrash7"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["mtdrash7"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -586,6 +587,7 @@ mappages["mtdrash7"].features[0] = {name : 'LadderUp', x : 20, y : 6, entermap :
 mappages["mtdrash7"].features[1] = {name : 'LadderUp', x : 14, y : 20, entermap : 'mtdrash6', enterx : 14, entery : 20};
 mappages["mtdrash7"].features[2] = {name : 'LadderDown', x : 6, y : 6, entermap : 'mtdrash8', enterx : 6, entery : 6};
 mappages["mtdrash7"].features[3] = {name : 'LadderDown', x : 16, y : 6, entermap : 'mtdrash8', enterx : 16, entery : 6};
+mappages["mtdrash7"].features[4] = {name : 'WalkOnRotate', x : 13, y : 13};
 
 
 mappages["mtdrash7"].npcs = [];
@@ -616,6 +618,191 @@ mappages["mtdrash7"].returny = '79';
 mappages["mtdrash7"].returninfused = '0';
 mappages["mtdrash7"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash8"];
 mappages["mtdrash7"].editorLabels = '{}';
+
+mappages["mtdrash7a"] = {};
+mappages["mtdrash7a"].terrain = [];
+ mappages["mtdrash7a"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7a"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7a"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7a"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7a"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7a"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
+ mappages["mtdrash7a"].terrain[6] = 'BK BK BK BK BK !# hf hf hf hf hf hf !# !# hf !# hf !# !# !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7a"].terrain[7] = 'BK BK BK BK BK !# !# !# !# hf !# hf hf hf hf !# hf hf hf !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7a"].terrain[8] = 'BK BK BK BK BK !# df df !# hf !# hf !# !# !# !# hf !# hf !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7a"].terrain[9] = 'BK BK BK BK BK !# df df hf hf !# hf !# hf hf hf hf !# hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[10] = 'BK BK BK BK BK !# df df !# hf !# hf !# hf !# !# hf !# !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[11] = 'BK BK BK BK BK !# df df !# hf !# hf !# hf !# hf hf hf hf df df !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[12] = 'BK BK BK BK BK !# df df !# hf !# !# !# hf !# !# !# !# !# df df !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[13] = 'BK BK BK BK BK !# !# !# !# hf hf hf hf hf hf hf hf hf !# df df !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[14] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# hf !# !# !# hf !# df df !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[15] = 'BK BK BK BK BK !# hf !# df df df df !# hf !# hf !# hf !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[16] = 'BK BK BK BK BK !# hf !# df df df !# !# hf !# hf !# hf hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[17] = 'BK BK BK BK BK !# hf !# df df df hf hf hf !# hf !# !# hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[18] = 'BK BK BK BK BK !# hf !# df df !# !# !# !# !# hf hf hf hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[19] = 'BK BK BK BK BK !# hf !# !# !# !# hf hf hf !# hf !# !# hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[20] = 'BK BK BK BK BK !# hf hf hf hf hf hf !# hf hf hf !# hf hf !# hf !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["mtdrash7a"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["mtdrash7a"].features = [];
+
+mappages["mtdrash7a"].npcs = [];
+
+mappages["mtdrash7a"].desc = "Mt Drash (L7)";
+mappages["mtdrash7a"].longdesc = '';
+mappages["mtdrash7a"].music = 'Dungeon';
+mappages["mtdrash7a"].savename = 'Mt Drash';
+mappages["mtdrash7a"].exitmap = 'darkunknown';
+mappages["mtdrash7a"].exitx = '133';
+mappages["mtdrash7a"].exity = '79';
+mappages["mtdrash7a"].wraps = 'None';
+mappages["mtdrash7a"].enterx = '7';
+mappages["mtdrash7a"].entery = '13';
+mappages["mtdrash7a"].seeBelow = '';
+mappages["mtdrash7a"].lightLevel = 'dark';
+mappages["mtdrash7a"].alwaysRemember = '0';
+mappages["mtdrash7a"].scale = '1';
+mappages["mtdrash7a"].underground = '1';
+mappages["mtdrash7a"].undergroundDesc = 'Level 7';
+mappages["mtdrash7a"].enterscript = '';
+mappages["mtdrash7a"].entertestscript = '';
+mappages["mtdrash7a"].exitscript = '';
+mappages["mtdrash7a"].exittestscript = '';
+mappages["mtdrash7a"].returnmap = 'darkunknown';
+mappages["mtdrash7a"].returnx = '133';
+mappages["mtdrash7a"].returny = '79';
+mappages["mtdrash7a"].returninfused = '0';
+mappages["mtdrash7a"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash8"];
+mappages["mtdrash7a"].editorLabels = '{}';
+
+mappages["mtdrash7b"] = {};
+mappages["mtdrash7b"].terrain = [];
+ mappages["mtdrash7b"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[6] = 'BK BK BK BK BK !# hf hf hf hf hf hf hf !# df df df df df !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[7] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# !# df df df df df !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[8] = 'BK BK BK BK BK !# hf !# df df df df !# !# !# !# !# hf !# !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7b"].terrain[9] = 'BK BK BK BK BK !# hf !# df df df df !# hf hf hf hf hf hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[10] = 'BK BK BK BK BK !# hf !# !# df df df !# hf !# !# !# !# !# !# hf !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[11] = 'BK BK BK BK BK !# hf hf !# hf !# df !# hf !# hf hf hf hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[12] = 'BK BK BK BK BK !# !# hf !# hf !# !# !# hf !# !# !# !# !# hf !# !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[13] = 'BK BK BK BK BK !# hf hf !# hf hf hf hf hf hf hf hf hf !# hf !# !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[14] = 'BK BK BK BK BK !# hf !# !# !# !# !# !# hf !# !# !# hf !# hf hf !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[15] = 'BK BK BK BK BK !# hf hf hf hf hf hf !# hf !# hf !# hf !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[16] = 'BK BK BK BK BK !# !# !# hf !# !# !# !# hf !# hf hf hf hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[17] = 'BK BK BK BK BK !# hf !# hf !# hf hf hf hf !# hf !# !# !# hf !# !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[18] = 'BK BK BK BK BK !# hf hf hf hf hf !# !# !# !# hf !# hf hf hf !# !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[19] = 'BK BK BK BK BK !# !# !# !# !# !# !# df df df df !# hf !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[20] = 'BK BK BK BK BK !# hf hf hf hf hf !# df df df df !# hf hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["mtdrash7b"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["mtdrash7b"].features = [];
+
+
+mappages["mtdrash7b"].npcs = [];
+
+mappages["mtdrash7b"].desc = "Mt Drash (L7)";
+mappages["mtdrash7b"].longdesc = '';
+mappages["mtdrash7b"].music = 'Dungeon';
+mappages["mtdrash7b"].savename = 'Mt Drash';
+mappages["mtdrash7b"].exitmap = 'darkunknown';
+mappages["mtdrash7b"].exitx = '133';
+mappages["mtdrash7b"].exity = '79';
+mappages["mtdrash7b"].wraps = 'None';
+mappages["mtdrash7b"].enterx = '7';
+mappages["mtdrash7b"].entery = '13';
+mappages["mtdrash7b"].seeBelow = '';
+mappages["mtdrash7b"].lightLevel = 'dark';
+mappages["mtdrash7b"].alwaysRemember = '0';
+mappages["mtdrash7b"].scale = '1';
+mappages["mtdrash7b"].underground = '1';
+mappages["mtdrash7b"].undergroundDesc = 'Level 7';
+mappages["mtdrash7b"].enterscript = '';
+mappages["mtdrash7b"].entertestscript = '';
+mappages["mtdrash7b"].exitscript = '';
+mappages["mtdrash7b"].exittestscript = '';
+mappages["mtdrash7b"].returnmap = 'darkunknown';
+mappages["mtdrash7b"].returnx = '133';
+mappages["mtdrash7b"].returny = '79';
+mappages["mtdrash7b"].returninfused = '0';
+mappages["mtdrash7b"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash8"];
+mappages["mtdrash7b"].editorLabels = '{}';
+
+mappages["mtdrash7c"] = {};
+mappages["mtdrash7c"].terrain = [];
+ mappages["mtdrash7c"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7c"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7c"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7c"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7c"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["mtdrash7c"].terrain[5] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
+ mappages["mtdrash7c"].terrain[6] = 'BK BK BK BK BK !# hf !# hf hf !# hf hf hf !# hf hf hf hf hf hf !# BK BK BK BK BK';
+ mappages["mtdrash7c"].terrain[7] = 'BK BK BK BK BK !# hf !# hf !# !# hf !# hf hf hf !# !# !# !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7c"].terrain[8] = 'BK BK BK BK BK !# hf !# hf hf hf hf !# !# !# !# !# df df !# hf !# BK BK BK BK BK';
+ mappages["mtdrash7c"].terrain[9] = 'BK BK BK BK BK !# hf !# hf !# !# hf !# hf hf hf df df df !# hf !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[10] = 'BK BK BK BK BK !# hf !# hf hf !# hf !# hf !# !# df df df !# hf !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[11] = 'BK BK BK BK BK !# !# !# !# hf !# hf !# hf !# df df df df !# hf !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[12] = 'BK BK BK BK BK !# df df !# hf !# !# !# hf !# !# !# !# !# !# hf !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[13] = 'BK BK BK BK BK !# df df !# hf hf hf hf hf hf hf hf hf !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[14] = 'BK BK BK BK BK !# df df !# !# !# !# !# hf !# !# !# hf !# df df !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[15] = 'BK BK BK BK BK !# df df hf hf hf hf !# hf !# hf !# hf !# df df !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[16] = 'BK BK BK BK BK !# !# !# !# !# hf !# !# hf !# hf !# hf !# df df !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[17] = 'BK BK BK BK BK !# hf hf hf !# hf hf hf hf !# hf !# hf hf df df !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[18] = 'BK BK BK BK BK !# hf !# hf !# hf !# !# !# !# hf !# hf !# df df !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[19] = 'BK BK BK BK BK !# hf !# hf hf hf !# hf hf hf hf !# hf !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[20] = 'BK BK BK BK BK !# hf !# !# !# hf !# hf !# !# hf hf hf hf hf hf !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[21] = 'BK BK BK BK BK !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# !# BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["mtdrash7c"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["mtdrash7c"].features = [];
+
+
+mappages["mtdrash7c"].npcs = [];
+
+mappages["mtdrash7c"].desc = "Mt Drash (L7)";
+mappages["mtdrash7c"].longdesc = '';
+mappages["mtdrash7c"].music = 'Dungeon';
+mappages["mtdrash7c"].savename = 'Mt Drash';
+mappages["mtdrash7c"].exitmap = 'darkunknown';
+mappages["mtdrash7c"].exitx = '133';
+mappages["mtdrash7c"].exity = '79';
+mappages["mtdrash7c"].wraps = 'None';
+mappages["mtdrash7c"].enterx = '7';
+mappages["mtdrash7c"].entery = '13';
+mappages["mtdrash7c"].seeBelow = '';
+mappages["mtdrash7c"].lightLevel = 'dark';
+mappages["mtdrash7c"].alwaysRemember = '0';
+mappages["mtdrash7c"].scale = '1';
+mappages["mtdrash7c"].underground = '1';
+mappages["mtdrash7c"].undergroundDesc = 'Level 7';
+mappages["mtdrash7c"].enterscript = '';
+mappages["mtdrash7c"].entertestscript = '';
+mappages["mtdrash7c"].exitscript = '';
+mappages["mtdrash7c"].exittestscript = '';
+mappages["mtdrash7c"].returnmap = 'darkunknown';
+mappages["mtdrash7c"].returnx = '133';
+mappages["mtdrash7c"].returny = '79';
+mappages["mtdrash7c"].returninfused = '0';
+mappages["mtdrash7c"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash8"];
+mappages["mtdrash7c"].editorLabels = '{}';
 
 mappages["mtdrash8"] = {};
 mappages["mtdrash8"].terrain = [];
