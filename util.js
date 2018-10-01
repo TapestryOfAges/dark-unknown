@@ -1835,33 +1835,62 @@ function EndWaiting(who, inn) {
 
 function RotateMap90(mapref,centerx,centery) {
   let terrainArray = [];
-  for (let i=0;i<mapref.getHeight();i++) {
-    for (let j=0;j<mapref.getWidth();j++) {
-      let ii=i-centery;
-      let jj=j-centerx;
-      let desti = 0-jj;
-      let destj = ii;
-      desti+=centery;
-      destj+=centerx;
-      terrainArray[desti][destj] = mapref.getAcre(i,j).getTerrain();
-      let feas = mapref.getAcre(j,i).getAllFeatures();
+  let featurearray = [];
+  for (let y=0;y<mapref.getHeight();y++) {
+    terrainArray[y] = [];
+  }
+  for (let y=0;y<mapref.getHeight();y++) {
+    for (let x=0;x<mapref.getWidth();x++) {
+      let yy=y-centery;
+      let xx=x-centerx;
+      let desty = xx;
+      let destx = 0-yy;
+      desty+=centery;
+      destx+=centerx;
+      terrainArray[desty][destx] = mapref.getTile(x,y).getTerrain();
+      let feas = mapref.getTile(x,y).features.getAll();
       for (let k=0;k<feas.length;k++) {
-        mapref.moveThing(destj,desti,feas[k]);
+        let farr = {};
+        farr.feature = feas[k];
+        farr.destx = destx;
+        farr.desty = desty;
+        featurearray[featurearray.length] = farr;
       }
-      let npcs = mapref.getAcre(j,i).getAllNPCs();
+      let npcs = mapref.getTile(x,y).npcs.getAll();
       for (let k=0;k<npcs.length;k++) {
-        mapref.moveThing(destj,desti,npcs[k]);
+        featurearray[featurearray.length] = {};
+        featurearray[featurearray.length].feature = npcs[k];
+        featurearray[featurearray.length].destx = destx;
+        featurearray[featurearray.length].desty = desty;
       }
     }
   }
+  for (let i=0;i<mapref.getHeight();i++) {
+    for (let j=0;j<mapref.getWidth();j++) {
+      mapref.getTile(j,i).terrain = terrainArray[i][j];
+    }
+  }
+
+  for (let i=0;i<featurearray.length;i++) {
+    mapref.moveThing(featurearray[i].destx,featurearray[i].desty,featurearray[i].feature);
+  }
+
   if (PC.getHomeMap() === mapref) {
     let PCx = PC.getx();
     let PCy = PC.gety();
     PCx-=13;
     PCy-=13;
     mapref.moveThing(-PCy,PCx,PC);
-
-    DrawMainFrame("draw",mapref,PC.getx().PC.gety());
   }
   // TESTING HERE
+}
+
+function Get90DegCoords(centerx,centery,oldx,oldy) {
+  let yy=oldy-centery;
+  let xx=oldx-centerx;
+  let desty = xx;
+  let destx = 0-yy;
+  desty+=centery;
+  destx+=centerx;
+  return {x:destx, y:desty}
 }
