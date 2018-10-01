@@ -6447,6 +6447,38 @@ WalkOnMessageTile.prototype.walkon = function(walker) {
   }
 }
 
+function WalkOnRotateTile() {
+	this.name = "WalkOnRotate";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnRotateTile.prototype = new FeatureObject();
+
+WalkOnRotateTile.prototype.walkon = function(walker) {
+  let turns = Dice.roll("1d3");
+  let currmap = this.getHomeMap();
+  let mapidx = 0;
+  if (currmap.getName() === "mtdrash7a") { mapidx = 1; }
+  if (currmap.getName() === "mtdrash7b") { mapidx = 2; }
+  if (currmap.getName() === "mtdrash7c") { mapidx = 3; }
+  mapidx += turns;
+  mapidx = mapidx % 4;
+  let destmap = "mtdrash7";
+  if (mapidx === 1) { destmap = "mtdrash7a"; }
+  if (mapidx === 2) { destmap = "mtdrash7b"; }
+  if (mapidx === 3) { destmap = "mtdrash7c"; }
+  destmap = maps.getMap(destmap);
+  let dest = { destx: PC.getx(), desty: PC.gety() };
+  for (let i=1;i<=turns;i++) {
+    dest = Get90DegCoords(13,13,dest.destx,dest.desty);
+  }
+  // WORKING HERE
+}
+
 function WalkOnWindTile() {
 	this.name = "WalkOnWind";
 	this.graphic = "walkon.gif";

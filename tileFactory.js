@@ -1473,6 +1473,11 @@ tileFactory.prototype.makeWalkOnMessageTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnRotateTile = function() {
+  var newTile = new WalkOnRotateTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnWindTile = function() {
   var newTile = new WalkOnWindTile();
   return newTile;
@@ -2228,6 +2233,11 @@ tileFactory.prototype.makeKyvekBoxTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeInfiniteScrollTile = function() {
+  var newTile = new InfiniteScrollTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSupplyBoxTile = function() {
   var newTile = new SupplyBoxTile();
   return newTile;
@@ -2303,8 +2313,13 @@ tileFactory.prototype.makeOrangePotionTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeBrownPotionTile = function() {
-  var newTile = new BrownPotionTile();
+tileFactory.prototype.makeTanPotionTile = function() {
+  var newTile = new TanPotionTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeScrollWildcardTile = function() {
+  var newTile = new ScrollWildcardTile();
   return newTile;
 }
 
