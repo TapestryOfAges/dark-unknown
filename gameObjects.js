@@ -6476,6 +6476,7 @@ WalkOnRotateTile.prototype.walkon = function(walker) {
   for (let i=1;i<=turns;i++) {
     dest = Get90DegCoords(13,13,dest.destx,dest.desty);
   }
+  
   // WORKING HERE
 }
 
