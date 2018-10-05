@@ -6444,6 +6444,11 @@ WalkOnMessageTile.prototype = new FeatureObject();
 WalkOnMessageTile.prototype.walkon = function(walker) {
   if ((walker === PC) && (this.message) && (PC.getLight() >= 1)) {
     maintext.addText(this.message);
+    return;
+  }
+  if ((walker === PC) && (this.message)) {
+    maintext.addText("There is writing on the walls here, but your light is too dim to read it.");
+    return;
   }
 }
 
@@ -6459,7 +6464,11 @@ function WalkOnRotateTile() {
 WalkOnRotateTile.prototype = new FeatureObject();
 
 WalkOnRotateTile.prototype.walkon = function(walker) {
+  if (walker !== PC) { return; }
+
   let turns = Dice.roll("1d3");
+  DebugWrite("gameobj", "PC stepped on central spinner: rotating " + turns + "x90 degrees.<br />");
+
   let currmap = this.getHomeMap();
   let mapidx = 0;
   if (currmap.getName() === "mtdrash7a") { mapidx = 1; }
@@ -6471,13 +6480,32 @@ WalkOnRotateTile.prototype.walkon = function(walker) {
   if (mapidx === 1) { destmap = "mtdrash7a"; }
   if (mapidx === 2) { destmap = "mtdrash7b"; }
   if (mapidx === 3) { destmap = "mtdrash7c"; }
+  DebugWrite("gameobj", "Moving from " + currmap.getName() + " to " + destmap + ".<br />");
   destmap = maps.getMap(destmap);
   let dest = { destx: PC.getx(), desty: PC.gety() };
   for (let i=1;i<=turns;i++) {
     dest = Get90DegCoords(13,13,dest.destx,dest.desty);
   }
-  
-  // WORKING HERE
+  MoveBetweenMaps(PC,currmap,destmap,dest.destx,dest.desty);
+
+  let feas = currmap.features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    dest = { destx: feas[i].getx(), desty: feas[i].gety() }
+    for (let j=1;j<=turns;j++) {
+      dest = Get90DegCoords(13,13,dest.destx,dest.desty);
+    }
+    MoveBetweenMaps(feas[i],currmap,destmap,dest.destx,dest.desty);
+  }
+
+  feas = currmap.npcs.getAll();
+  for (let i=0;i<feas.length;i++) {
+    dest = { destx: feas[i].getx(), desty: feas[i].gety() }
+    for (let j=1;j<=turns;j++) {
+      dest = Get90DegCoords(13,13,dest.destx,dest.desty);
+    }
+    MoveBetweenMaps(feas[i],currmap,destmap,dest.destx,dest.desty);
+  }
+
 }
 
 function WalkOnWindTile() {
