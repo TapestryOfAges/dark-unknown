@@ -72,7 +72,7 @@ mappages["mtdrash1"].returnmap = 'darkunknown';
 mappages["mtdrash1"].returnx = '133';
 mappages["mtdrash1"].returny = '79';
 mappages["mtdrash1"].returninfused = '0';
-mappages["mtdrash1"].linkedMaps = ["mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash8"];
+mappages["mtdrash1"].linkedMaps = ["mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash7a","mtdrash7b","mtdrash7c","mtdrash8"];
 mappages["mtdrash1"].editorLabels = '{}';
 
 mappages["mtdrash1"].onload = function(mapref) {
@@ -92,7 +92,7 @@ mappages["mtdrash1"].onload = function(mapref) {
   walkon.message = `You see black writing on the walls, that reads:<br />"Three orbs, three colors, and voices"`;
 
   walkon = mapref.getTile(14,8).getTopFeature();
-  walkon.message = `You see blue writing on the walls, that reads:<br />"In the silence of this vale of green,"`;
+  walkon.message = `You see red writing on the walls, that reads:<br />"In the silence of this vale of green,"`;
 
   walkon = mapref.getTile(9,10).getTopFeature();
   walkon.message = `You see silver writing on the walls, that reads:<br />"To the map thou must"`;
@@ -169,7 +169,7 @@ mappages["mtdrash2"].returnmap = 'darkunknown';
 mappages["mtdrash2"].returnx = '133';
 mappages["mtdrash2"].returny = '79';
 mappages["mtdrash2"].returninfused = '0';
-mappages["mtdrash2"].linkedMaps = ["mtdrash1","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash8"];
+mappages["mtdrash2"].linkedMaps = ["mtdrash1","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash7a","mtdrash7b","mtdrash7c","mtdrash8"];
 mappages["mtdrash2"].editorLabels = '{}';
 
 mappages["mtdrash2"].onload = function(mapref) {
@@ -178,13 +178,13 @@ mappages["mtdrash2"].onload = function(mapref) {
   walkon.message = `You see black writing on the walls, that reads:<br />"three: reflect well upon the words of"`;
   
   walkon = mapref.getTile(8,12).getTopFeature();
-  walkon.message = `You see blue writing on the walls, that reads:<br />"blue sky’s clouds part to show this scene:"`;
+  walkon.message = `You see red writing on the walls, that reads:<br />"blue sky’s clouds part to show this scene:"`;
 
   walkon = mapref.getTile(14,10).getTopFeature();
   walkon.message = `You see silver writing on the walls, that reads:<br />"seek- amongst the fields of"`;
 
   walkon = mapref.getTile(7,16).getTopFeature();
-  walkon.message = `You see red writing on the walls, that reads:<br />"Topped the mantle, purple velvet"`;
+  walkon.message = `You see blue writing on the walls, that reads:<br />"Topped the mantle, purple velvet"`;
 
 }
 
@@ -255,7 +255,7 @@ mappages["mtdrash3"].returnmap = 'darkunknown';
 mappages["mtdrash3"].returnx = '133';
 mappages["mtdrash3"].returny = '79';
 mappages["mtdrash3"].returninfused = '0';
-mappages["mtdrash3"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash8"];
+mappages["mtdrash3"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash7a","mtdrash7b","mtdrash7c","mtdrash8"];
 mappages["mtdrash3"].editorLabels = '{}';
 
 mappages["mtdrash3"].onload = function(mapref) {
@@ -264,13 +264,13 @@ mappages["mtdrash3"].onload = function(mapref) {
   walkon.message = `You see black writing on the walls, that reads:<br />"the merchant, to words in argent you"`;
   
   walkon = mapref.getTile(20,16).getTopFeature();
-  walkon.message = `You see blue writing on the walls, that reads:<br />"there are glyphs unknown with purple glow"`;
+  walkon.message = `You see red writing on the walls, that reads:<br />"there are glyphs unknown with purple glow"`;
 
   walkon = mapref.getTile(6,12).getTopFeature();
   walkon.message = `You see silver writing on the walls, that reads:<br />"green, far from mountains"`;
 
   walkon = mapref.getTile(13,10).getTopFeature();
-  walkon.message = `You see red writing on the walls, that reads:<br />"The rich fire reflected in the mirror"`;
+  walkon.message = `You see blue writing on the walls, that reads:<br />"The rich fire reflected in the mirror"`;
 
 }
 
@@ -340,7 +340,7 @@ mappages["mtdrash4"].returnmap = 'darkunknown';
 mappages["mtdrash4"].returnx = '133';
 mappages["mtdrash4"].returny = '79';
 mappages["mtdrash4"].returninfused = '0';
-mappages["mtdrash4"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash5","mtdrash6","mtdrash7","mtdrash8"];
+mappages["mtdrash4"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash5","mtdrash6","mtdrash7","mtdrash7a","mtdrash7b","mtdrash7c","mtdrash8"];
 mappages["mtdrash4"].editorLabels = '{}';
 
 mappages["mtdrash4"].onload = function(mapref) {
@@ -349,13 +349,13 @@ mappages["mtdrash4"].onload = function(mapref) {
   walkon.message = `You see black writing on the walls, that reads:<br />"must listen well, and the poet you"`;
   
   walkon = mapref.getTile(8,16).getTopFeature();
-  walkon.message = `You see blue writing on the walls, that reads:<br />"sear vision to white with fate’s undertow"`;
+  walkon.message = `You see red writing on the walls, that reads:<br />"sear vision to white with fate’s undertow"`;
 
   walkon = mapref.getTile(6,7).getTopFeature();
   walkon.message = `You see silver writing on the walls, that reads:<br />"topped with white, is a place"`;
 
   walkon = mapref.getTile(10,14).getTopFeature();
-  walkon.message = `You see red writing on the walls, that reads:<br />"Flanked with emeralds that shine-"`;
+  walkon.message = `You see blue writing on the walls, that reads:<br />"Flanked with emeralds that shine-"`;
 
 }
 
@@ -427,7 +427,7 @@ mappages["mtdrash5"].returnmap = 'darkunknown';
 mappages["mtdrash5"].returnx = '133';
 mappages["mtdrash5"].returny = '79';
 mappages["mtdrash5"].returninfused = '0';
-mappages["mtdrash5"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash6","mtdrash7","mtdrash8"];
+mappages["mtdrash5"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash6","mtdrash7","mtdrash7a","mtdrash7b","mtdrash7c","mtdrash8"];
 mappages["mtdrash5"].editorLabels = '{}';
 
 mappages["mtdrash5"].onload = function(mapref) {
@@ -444,13 +444,13 @@ mappages["mtdrash5"].onload = function(mapref) {
   walkon.message = `You see black writing on the walls, that reads:<br />"must read well. Order them as"`;
 
   walkon = mapref.getTile(11,12).getTopFeature();
-  walkon.message = `You see blue writing on the walls, that reads:<br />"a truly great wordsmith crafts meaning from absence"`;
+  walkon.message = `You see red writing on the walls, that reads:<br />"a truly great wordsmith crafts meaning from absence"`;
 
   walkon = mapref.getTile(9,6).getTopFeature();
   walkon.message = `You see silver writing on the walls, that reads:<br />"where lorists say 'Here is the"`;
 
   walkon = mapref.getTile(14,18).getTopFeature();
-  walkon.message = `You see red writing on the walls, that reads:<br />"For sale, at a reasonable price!"`;
+  walkon.message = `You see blue writing on the walls, that reads:<br />"For sale, at a reasonable price!"`;
 
 }
 
@@ -528,7 +528,7 @@ mappages["mtdrash6"].returnmap = 'darkunknown';
 mappages["mtdrash6"].returnx = '133';
 mappages["mtdrash6"].returny = '79';
 mappages["mtdrash6"].returninfused = '0';
-mappages["mtdrash6"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash7","mtdrash8"];
+mappages["mtdrash6"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash7","mtdrash7a","mtdrash7b","mtdrash7c","mtdrash8"];
 mappages["mtdrash6"].editorLabels = '{}';
 
 mappages["mtdrash6"].onload = function(mapref) {
@@ -545,7 +545,7 @@ mappages["mtdrash6"].onload = function(mapref) {
   walkon.message = `You see black writing on the walls, that reads:<br />"sapphire, poet, argent- all else fails."`;
 
   walkon = mapref.getTile(16,20).getTopFeature();
-  walkon.message = `You see blue writing on the walls, that reads:<br />"From what I do not say, a challenge to grab sense!"`;
+  walkon.message = `You see red writing on the walls, that reads:<br />"From what I do not say, a challenge to grab sense!"`;
 
   walkon = mapref.getTile(9,6).getTopFeature();
   walkon.message = `You see silver writing on the walls, that reads:<br />"Eye of the dragon.'"`;
@@ -610,14 +610,18 @@ mappages["mtdrash7"].underground = '1';
 mappages["mtdrash7"].undergroundDesc = 'Level 7';
 mappages["mtdrash7"].enterscript = '';
 mappages["mtdrash7"].entertestscript = '';
-mappages["mtdrash7"].exitscript = '';
+mappages["mtdrash7"].exitscript = 'exit7';
 mappages["mtdrash7"].exittestscript = '';
 mappages["mtdrash7"].returnmap = 'darkunknown';
 mappages["mtdrash7"].returnx = '133';
 mappages["mtdrash7"].returny = '79';
 mappages["mtdrash7"].returninfused = '0';
-mappages["mtdrash7"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash8"];
+mappages["mtdrash7"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7a","mtdrash7b","mtdrash7c","mtdrash8"];
 mappages["mtdrash7"].editorLabels = '{}';
+
+mappages["mtdrash7"].exit7 = function() {
+  maps_mt_drash_exit7(this);
+}
 
 mappages["mtdrash7a"] = {};
 mappages["mtdrash7a"].terrain = [];
@@ -671,14 +675,18 @@ mappages["mtdrash7a"].underground = '1';
 mappages["mtdrash7a"].undergroundDesc = 'Level 7';
 mappages["mtdrash7a"].enterscript = '';
 mappages["mtdrash7a"].entertestscript = '';
-mappages["mtdrash7a"].exitscript = '';
+mappages["mtdrash7a"].exitscript = 'exit7';
 mappages["mtdrash7a"].exittestscript = '';
 mappages["mtdrash7a"].returnmap = 'darkunknown';
 mappages["mtdrash7a"].returnx = '133';
 mappages["mtdrash7a"].returny = '79';
 mappages["mtdrash7a"].returninfused = '0';
-mappages["mtdrash7a"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash8"];
+mappages["mtdrash7a"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash7b","mtdrash7c","mtdrash8"];
 mappages["mtdrash7a"].editorLabels = '{}';
+
+mappages["mtdrash7a"].exit7 = function() {
+  maps_mt_drash_exit7(this);
+}
 
 mappages["mtdrash7b"] = {};
 mappages["mtdrash7b"].terrain = [];
@@ -733,14 +741,18 @@ mappages["mtdrash7b"].underground = '1';
 mappages["mtdrash7b"].undergroundDesc = 'Level 7';
 mappages["mtdrash7b"].enterscript = '';
 mappages["mtdrash7b"].entertestscript = '';
-mappages["mtdrash7b"].exitscript = '';
+mappages["mtdrash7b"].exitscript = 'exit7';
 mappages["mtdrash7b"].exittestscript = '';
 mappages["mtdrash7b"].returnmap = 'darkunknown';
 mappages["mtdrash7b"].returnx = '133';
 mappages["mtdrash7b"].returny = '79';
 mappages["mtdrash7b"].returninfused = '0';
-mappages["mtdrash7b"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash8"];
+mappages["mtdrash7b"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash7a","mtdrash7c","mtdrash8"];
 mappages["mtdrash7b"].editorLabels = '{}';
+
+mappages["mtdrash7b"].exit7 = function() {
+  maps_mt_drash_exit7(this);
+}
 
 mappages["mtdrash7c"] = {};
 mappages["mtdrash7c"].terrain = [];
@@ -795,14 +807,18 @@ mappages["mtdrash7c"].underground = '1';
 mappages["mtdrash7c"].undergroundDesc = 'Level 7';
 mappages["mtdrash7c"].enterscript = '';
 mappages["mtdrash7c"].entertestscript = '';
-mappages["mtdrash7c"].exitscript = '';
+mappages["mtdrash7c"].exitscript = 'exit7';
 mappages["mtdrash7c"].exittestscript = '';
 mappages["mtdrash7c"].returnmap = 'darkunknown';
 mappages["mtdrash7c"].returnx = '133';
 mappages["mtdrash7c"].returny = '79';
 mappages["mtdrash7c"].returninfused = '0';
-mappages["mtdrash7c"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash8"];
+mappages["mtdrash7c"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash7a","mtdrash7b","mtdrash8"];
 mappages["mtdrash7c"].editorLabels = '{}';
+
+mappages["mtdrash7c"].exit7 = function() {
+  maps_mt_drash_exit7(this);
+}
 
 mappages["mtdrash8"] = {};
 mappages["mtdrash8"].terrain = [];
@@ -870,13 +886,46 @@ mappages["mtdrash8"].returnmap = 'darkunknown';
 mappages["mtdrash8"].returnx = '133';
 mappages["mtdrash8"].returny = '79';
 mappages["mtdrash8"].returninfused = '0';
-mappages["mtdrash8"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7"];
+mappages["mtdrash8"].linkedMaps = ["mtdrash1","mtdrash2","mtdrash3","mtdrash4","mtdrash5","mtdrash6","mtdrash7","mtdrash7a","mtdrash7b","mtdrash7c"];
 mappages["mtdrash8"].editorLabels = '{}';
 
 mappages["mtdrash8"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let walk1 = mapref.getTile(14,20).getTopFeature();
     walk1.message = "";
+  }
+}
+
+function maps_mt_drash_exit7(mapref) {
+  mapref.Exit = function(ewho,etomap,efromx,efromy,etox,etoy) {
+    if (ewho !== PC) { return; }
+    let toname = etomap.getName();
+    if (((toname !== "mtdrash7") && (toname !== "mtdrash7a") && (toname !== "mtdrash7b") && (toname !== "mtdrash7c")) && (this.getName() !== "mtdrash7")) {
+      // not leaving mtdrash7 (in which case, nothing would need to be done), not going to any mtdrash7* (in which case, don't reset)
+      let destmap = maps.getMap("mtdrash7");
+      let turns = 1;
+      if (toname === "mtdrashb") { turns = 2; }
+      else if (toname === "mtdrasha") { turns = 3; }
+      let feas = this.features.getAll();
+      for (let i=0;i<feas.length;i++) {
+        let dest = {destx: feas[i].getx(), desty: feas[i].gety()};
+        for (let j=1;j<=turns;j++) {
+          dest = Get90DegCoords(13,13,dest.destx,dest.desty);
+        }
+        MoveBetweenMaps(feas[i],this,destmap,dest.destx,dest.desty);
+      }
+      
+      let npcs = this.npcs.getAll();
+      for (let i=0;i<npcs.length;i++) {
+        let dest = {destx: npcs[i].getx(), desty: npcs[i].gety()};
+        for (let j=1;j<=turns;j++) {
+          dest = Get90DegCoords(13,13,dest.destx,dest.desty);
+        }
+        MoveBetweenMaps(npcs[i],this,destmap,dest.destx,dest.desty);
+      }
+      
+    } 
+    return 1;
   }
 }
 
