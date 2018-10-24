@@ -1,50 +1,6 @@
 
 "use strict";
 
-// barks deprecated
-var barks = {};
-barks['jester'] = ['%THEDESC% sings, "Ho eye he hum!"'];
-barks['sam'] = ['%THEDESC% shouts, "Look at me!"'];
-barks['startguard'] = ['%THEDESC% says, "Your father wishes to speak with you!"'];
-
-barks.getBark = function(idx) {
-  if (barks[idx]) {
-    var choice = Math.floor(Math.random()*barks[idx].length);
-    return barks[idx][choice];
-  }
-}
-
-barks.checkBark = function(who) {
- if ((who.getBark()) && (who.getHomeMap() === PC.getHomeMap())) {
-    if (Dice.roll("1d100")  < who.getBarkFreq()) {
-      if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= who.getBarkRad()) {
-        // bark!
-//        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Townfolk barking.</span><br />"); }
-        DebugWrite("ai", "Townfolk barking.");
-        var mybark = this.getBark(who.getBark());
-        if (mybark) {
-          if ((mybark.indexOf("%THEDESC%") !== -1) || (mybark.indexOf("%DESC%") !== -1)) {
-            var pref = who.getPrefix();
-            if (mybark.indexOf("%THEDESC%") !== -1) {
-              if ((pref === "a") || (pref === "an")) { pref = "the"; }
-            }
-            var desc = who.getDesc();
-            if (who.getDesc() !== who.getNPCName()) {
-              desc = pref + " " + desc;
-            }
-            mybark = mybark.replace(/%THEDESC%/g, desc);
-            mybark = mybark.replace(/%DESC%/g, desc);
-          }
-          mybark = mybark.charAt(0).toUpperCase() + mybark.slice(1);
-          maintext.addText(mybark);
-        }
-      }
-    }
-  }  
-}
-// object to make it easier to construct which function to call without
-// using eval.
-
 var ais = {};
 
 ais.seekPC = function(who,radius) {
@@ -313,9 +269,8 @@ function TryMelee(who) {
   return atked;
 }
 
+// deprecated in favor of schedules.
 ais.townsfolk = function(who) {
-  // first, check for bark
-  barks.checkBark(who);
   var retval = {};
   retval["fin"] = 1;
   
