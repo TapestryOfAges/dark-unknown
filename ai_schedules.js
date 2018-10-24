@@ -9,14 +9,14 @@ ais.scheduled = function(who) {
   delete who.flags.sleep;
   // will be re-set in WaitHere if still asleep
 
-  var nextidx = who.getCurrentScheduleIndex() + 1;
-  var schedule = DU.schedules[who.getSchedule()];
+  let nextidx = who.getCurrentScheduleIndex() + 1;
+  let schedule = DU.schedules[who.getSchedule()];
   if (nextidx >= schedule.scheduleArray.length) { nextidx = 0; }
 
-  var currtime = GetUsableClockTime();
+  let currtime = GetUsableClockTime();
 
-  var nowactivity = schedule.scheduleArray[who.getCurrentScheduleIndex()];
-  var nextactivity = schedule.scheduleArray[nextidx];
+  let nowactivity = schedule.scheduleArray[who.getCurrentScheduleIndex()];
+  let nextactivity = schedule.scheduleArray[nextidx];
   if (nextactivity.params.startCondition === "Time") {
     let prevtime;
     let previdx = who.getCurrentScheduleIndex() - 1;
@@ -42,7 +42,6 @@ ais.scheduled = function(who) {
       }
     }
     if (who.flags.activityComplete) {
-//      console.log(who.getNPCName() + ": Next activity due to activity complete at " + currtime + ". Moving to index " + nextidx + ".");
       DebugWrite("schedules", who.getNPCName() + ": Next activity due to activity complete at " + currtime + ".");
       who.incrementCurrentScheduleIndex();
       delete who.flags.activityComplete;
@@ -52,15 +51,15 @@ ais.scheduled = function(who) {
 
   nowactivity = schedule.scheduleArray[who.getCurrentScheduleIndex()];
 
-    DebugWrite("schedules", "Checking bark... ");
-    CheckNPCBark(who,nowactivity);
+  DebugWrite("schedules", "Checking bark... ");
+  CheckNPCBark(who,nowactivity);
 
   if (nowactivity.params.setFlag) {
-    var allparams = nowactivity.params.setFlag.split(",");
-    for (var i=0;i<allparams.length;i++) {
+    let allparams = nowactivity.params.setFlag.split(",");
+    for (let i=0;i<allparams.length;i++) {
       allparams[i].replace(/ /g,"");
       if (allparams[i].indexOf("unset_") !== -1) {
-        var tmpflag = allparams[i].replace(/unset_/, "");
+        let tmpflag = allparams[i].replace(/unset_/, "");
         if (who.flags[tmpflag]) {
           delete who.flags[tmpflag];
         }
@@ -90,19 +89,19 @@ function CheckNPCBark(who,nowactivity) {
         if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= barkrad) {
           // bark!
           DebugWrite("schedules", "Townfolk barking.");
-          var barkarr = nowactivity.params.bark.split("^^");
-          var idx = Dice.roll("1d" + barkarr.length + "-1");
+          let barkarr = nowactivity.params.bark.split("^^");
+          let idx = Dice.roll("1d" + barkarr.length + "-1");
           mybark = barkarr[idx];
         }
       }
     }
     if (mybark) {
       if ((mybark.indexOf("%THEDESC%") !== -1) || (mybark.indexOf("%DESC%") !== -1)) {
-        var pref = who.getPrefix();
+        let pref = who.getPrefix();
         if (mybark.indexOf("%THEDESC%") !== -1) {
           if ((pref === "a") || (pref === "an")) { pref = "the"; }
         }
-        var desc = who.getDesc();
+        let desc = who.getDesc();
         if (who.getDesc() !== who.getNPCName()) {
           desc = pref + " " + desc;
         }
@@ -123,7 +122,7 @@ ais.RouteTo = function(who, params) {
 
   let drunk = who.getSpellEffectsByName("Drunk");
   if (drunk && (Dice.roll("1d15") <= drunk.getPower())) {
-    var dir = Dice.roll("1d6");
+    let dir = Dice.roll("1d6");
     if (dir === 1) { who.moveMe(0,-1,0); }
     if (dir === 2) { who.moveMe(1,0,0); }
     if (dir === 3) { who.moveMe(0,1,0); }
@@ -132,7 +131,7 @@ ais.RouteTo = function(who, params) {
     return {fin:1,canmove:0};
   }
   if (params.closeDoors && (who.flags.closedoor) && (who.flags.closedoor.steps === 3)) {
-    var fea = who.getHomeMap().getTile(who.flags.closedoor.x,who.flags.closedoor.y).getTopFeature();
+    let fea = who.getHomeMap().getTile(who.flags.closedoor.x,who.flags.closedoor.y).getTopFeature();
     if (fea.closedgraphic) {
       if (fea.open) {  // door hasn't been closed already
         MakeUseHappen(who,fea,"map");
@@ -141,9 +140,7 @@ ais.RouteTo = function(who, params) {
         } 
         delete who.flags.closedoor;
         DebugWrite("schedules", "Turn spent closing a door.");
-        var retval = {};
-        retval["fin"] = 1;
-        return retval; 
+        return {fin:1}; 
       } else {
         delete who.flags.closedoor; // someone else closed the door
       }
@@ -152,9 +149,9 @@ ais.RouteTo = function(who, params) {
 
   let moved = {};
   if ((who.getx() !== parseInt(params.destination.x)) || (who.gety() !== parseInt(params.destination.y))) {
-    var movetype = who.getMovetype();    
+    let movetype = who.getMovetype();    
     if ((movetype === MOVE_WALK) && (who.specials["open_door"])) { movetype = MOVE_WALK_DOOR; }
-    var gridbackup = who.getHomeMap().getPathGrid(movetype).clone();
+    let gridbackup = who.getHomeMap().getPathGrid(movetype).clone();
     
     let npcs = who.getHomeMap().npcs.getAll();
     DebugWrite("schedules","Making NPCs block paths: ");
@@ -176,7 +173,7 @@ ais.RouteTo = function(who, params) {
     gridbackup.setWalkableAt(params.destination.x,params.destination.y,true);
     gridbackup.setWalkableAt(who.getx(),who.gety(),true);
 
-    var path = finder.findPath(who.getx(),who.gety(),params.destination.x,params.destination.y,gridbackup);
+    let path = finder.findPath(who.getx(),who.gety(),params.destination.x,params.destination.y,gridbackup);
 
     path.shift();
 
@@ -211,17 +208,16 @@ ais.RouteTo = function(who, params) {
 }
 
 ais.WaitHere = function(who,params) {
-  var retval = {};
-  retval["fin"] = 1;
-  var whomap = who.getHomeMap();
+  let retval = {fin:1};
+  let whomap = who.getHomeMap();
   DebugWrite("schedules", "In WaitHere.");
   if (params.sleep) { who.flags.sleep = 1; DebugWrite("schedules", "ZZzzzz.<br />"); }
   else {
     if (params.hasOwnProperty("responsibleFor")) {
       if (!who.flags.hasOwnProperty("closingResponsibleDoor")) {
         DebugWrite("schedules","Has door responsibilities.<br />");
-        for (var i=0;i<params.responsibleFor.length;i++) {
-          var fea = who.getHomeMap().getTile(parseInt(params.responsibleFor[i].x),parseInt(params.responsibleFor[i].y)).getTopFeature();
+        for (let i=0;i<params.responsibleFor.length;i++) {
+          let fea = who.getHomeMap().getTile(parseInt(params.responsibleFor[i].x),parseInt(params.responsibleFor[i].y)).getTopFeature();
           DebugWrite("schedules","Responsible for door at " + parseInt(params.responsibleFor[i].x) + "," + parseInt(params.responsibleFor[i].y + ".<br />"));
           if (fea.open) {
             if (Dice.roll("1d8") === 1) { 
@@ -232,8 +228,8 @@ ais.WaitHere = function(who,params) {
         }
       }
       if (who.flags.hasOwnProperty("closingResponsibleDoor")) {
-        var door = who.flags.closingResponsibleDoor;
-        var fea = who.getHomeMap().getTile(parseInt(params.responsibleFor[door].x),parseInt(params.responsibleFor[door].y)).getTopFeature();
+        let door = who.flags.closingResponsibleDoor;
+        let fea = who.getHomeMap().getTile(parseInt(params.responsibleFor[door].x),parseInt(params.responsibleFor[door].y)).getTopFeature();
         if (fea.open) {
           DebugWrite("ai", "Working on closing the door at " + fea.getx() + "," + fea.gety() +" as previously decided upon.");
           if (IsAdjacent(who,fea,1)) {
@@ -261,7 +257,7 @@ ais.WaitHere = function(who,params) {
                 }
               }
           
-              var path = whomap.getPath(who.getx(),who.gety(),leashCenter.x,leashCenter.y,MOVE_WALK_DOOR);        
+              let path = whomap.getPath(who.getx(),who.gety(),leashCenter.x,leashCenter.y,MOVE_WALK_DOOR);        
               if (path) {
                 path.shift();
                 StepOrSidestep(who,path[0], [leashCenter.x,leashCenter.y]);
@@ -271,7 +267,7 @@ ais.WaitHere = function(who,params) {
                 // skipping turn in confusion
               }        
             } else {
-              var path = whomap.getPath(who.getx(), who.gety(), parseInt(params.responsibleFor[door].x), parseInt(params.responsibleFor[door].y),MOVE_WALK_DOOR);
+              let path = whomap.getPath(who.getx(), who.gety(), parseInt(params.responsibleFor[door].x), parseInt(params.responsibleFor[door].y),MOVE_WALK_DOOR);
               path.shift();
               if (path.length === 0) {
                 // There is no path to the door, giving up on closing it... this time
@@ -306,7 +302,7 @@ ais.WaitHere = function(who,params) {
     }
     if (!params.leashLength) { params.leashLength = 0; }
     if (GetDistance(who.getx(),who.gety(),leashCenter.x,leashCenter.y) > params.leashLength) {
-      var path = whomap.getPath(who.getx(),who.gety(),leashCenter.x,leashCenter.y,MOVE_WALK_DOOR);        
+      let path = whomap.getPath(who.getx(),who.gety(),leashCenter.x,leashCenter.y,MOVE_WALK_DOOR);        
       if (path) {
         path.shift();
         StepOrSidestep(who,path[0], [leashCenter.x,leashCenter.y]);
@@ -319,7 +315,7 @@ ais.WaitHere = function(who,params) {
       // I am permitted to wander
       if ((Dice.roll("1d2") === 2) || who.pushed) {
         who.aiWandering = 1;
-        var moveval = ais.Randomwalk(who,25,25,25,25);
+        let moveval = ais.Randomwalk(who,25,25,25,25);
         delete who.aiWandering;
         DebugWrite("schedules", "Wander wander wander.");
       } else {
@@ -332,23 +328,21 @@ ais.WaitHere = function(who,params) {
 }
 
 ais.LeaveMap = function(who,params) {
-  var whox = who.getx();
-  var whoy = who.gety();
+  let whox = who.getx();
+  let whoy = who.gety();
   let themap = who.getHomeMap();
   who.getHomeMap().deleteThing(who);
   DrawMainFrame("one",themap,whox,whoy); 
   DebugWrite('schedules', "I have left the map.");
   DUTime.removeEntityFrom(who);  
 
-  var retval = {};
-  retval["fin"] = 1;
-  return retval;
+  return {fin:1};
 }
 
 ais.ChangeMap = function(who,params) {
-  var destmap = maps.getMap(params.destination.mapName);
+  let destmap = maps.getMap(params.destination.mapName);
   if (!destmap) { alert("Failure to find map " + params.destination.mapName); }
-  var desttile = MoveBetweenMaps(who,who.getHomeMap(),destmap,params.destination.x,params.destination.y);
+  let desttile = MoveBetweenMaps(who,who.getHomeMap(),destmap,params.destination.x,params.destination.y);
   if (desttile) {
     who.flags.activityComplete = 1;
     DebugWrite("schedules", "Changed maps. Going to (" + params.destination.x + "," + params.destination.y + "), wound up at (" + who.getx() + "," + who.gety() + ").<br />");
@@ -356,13 +350,11 @@ ais.ChangeMap = function(who,params) {
     DebugWrite("schedules", "Failed to change maps. Will try again next turn.");
   }
 
-  var retval = {};
-  retval["fin"] = 1;
-  return retval;
+  return {fin:1};
 }
 
 ais.CallAI = function(who,params) {
-  var retval = ais[params.AIName](who,JSON.parse(params.params));
+  let retval = ais[params.AIName](who,JSON.parse(params.params));
   if (retval["fin"] === 1) {
     who.flags.activityComplete = 1;
   }
@@ -370,7 +362,7 @@ ais.CallAI = function(who,params) {
 }
 
 ais.PlaceItem = function(who,params) {
-  var item = localFactory.createTile(params.name);
+  let item = localFactory.createTile(params.name);
   if (item) {
     who.getHomeMap().placeThing(params.x, params.y, item);
     if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(params.x,params.y))) {
@@ -385,14 +377,14 @@ ais.PlaceItem = function(who,params) {
 ais.DeleteItem = function(who,params) {
   DebugWrite("schedules", "In DeleteItem... ");
   if (params.param === "last") {
-    var item = who.linkedItem;
+    let item = who.linkedItem;
     if (!item) {
       DebugWrite("schedules", "Trying to delete last item, cannot find. Marking complete...");
       who.flags.activityComplete = 1;
     }
-    var itemx = item.getx();
-    var itemy = item.gety();
-    var itemmap = item.getHomeMap();
+    let itemx = item.getx();
+    let itemy = item.gety();
+    let itemmap = item.getHomeMap();
 
     DebugWrite("schedules", "Deleting " + item.getName() + " from " + itemx + "," + itemy + " on map " + itemmap.getName() + " ...");
 
@@ -408,15 +400,14 @@ ais.DeleteItem = function(who,params) {
 // x,y of door
 // lock = unlock/lock
 ais.LockDoor = function(who,params){
-  var tile = who.getHomeMap().getTile(params.x,params.y);
-  var door = tile.getTopFeature();
+  let tile = who.getHomeMap().getTile(params.x,params.y);
+  let door = tile.getTopFeature();
   if (door.hasOwnProperty("locked")) {
     if (door.locked && (params.lock === "unlock")) {
       door.unlockMe();
     } else if (!door.locked && (params.lock === "lock")) {
       if (door.open) {
         MakeUseHappen(who,door,"map");
-//        door.use(who);
       }
       door.lockMe();
     }
@@ -442,13 +433,13 @@ ais.PlayHarpsichord = function(who,params) {
 
 ais.PrintThing = function(who,params) {
   if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= params.rad) {
-    var mybark = params.print;
+    let mybark = params.print;
     if ((mybark.indexOf("%THEDESC%") !== -1) || (mybark.indexOf("%DESC%") !== -1)) {
-      var pref = who.getPrefix();
+      let pref = who.getPrefix();
       if (mybark.indexOf("%THEDESC%") !== -1) {
         if ((pref === "a") || (pref === "an")) { pref = "the"; }
       }
-      var desc = who.getDesc();
+      let desc = who.getDesc();
       if (who.getDesc() !== who.getNPCName()) {
         desc = pref + " " + desc;
       }
@@ -462,11 +453,10 @@ ais.PrintThing = function(who,params) {
 }
 
 ais.UseThing = function(who,params) {
-  var tile = who.getHomeMap().getTile(params.x,params.y);
-  var thing = tile.getTopFeature();
+  let tile = who.getHomeMap().getTile(params.x,params.y);
+  let thing = tile.getTopFeature();
   if (thing && (typeof thing.use === "function")) {
     MakeUseHappen(who,thing,"map");
-//    thing.use(who);
   } else {
     console.log(who.getNPCName() + " tried to use a thing at " + params.x + "," + params.y + " but it wasn't there to use.");
   }
@@ -474,20 +464,19 @@ ais.UseThing = function(who,params) {
 }
 
 ais.CloseDoor = function(who,params) {
-  var tile = who.getHomeMap().getTile(params.x,params.y);
-  var thing = tile.getTopFeature();
+  let tile = who.getHomeMap().getTile(params.x,params.y);
+  let thing = tile.getTopFeature();
   if (typeof thing.use === "function") {
     if (thing.open) {
       MakeUseHappen(who,thing,"map");
-//      thing.use(who);
     }
   }
   return {fin:1};
 }
 
 ais.LightLight = function(who,params) {
-  var tile = who.getHomeMap().getTile(params.x,params.y);
-  var thing = tile.getTopFeature();
+  let tile = who.getHomeMap().getTile(params.x,params.y);
+  let thing = tile.getTopFeature();
   if (typeof thing.getLight === "function") {
     if (thing.getLight() && (params.light === 0)) {
       MakeUseHappen(who,thing,"map");
