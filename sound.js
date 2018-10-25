@@ -68,7 +68,7 @@ DUSound["sfx_paper"] = "sfx/Book Page 1.mp3"; // MFSFP/Inventory/Book Page 1
 // Magic spell sounds
 DUSound["sfx_ding"] = "sfx/sfx_ding.wav"; // Magic Sounds/Chord/MS chord_triple_shigh Book of Spells.wav
 DUSound["sfx_earthquake"] = "sfx/CaveCollapse.ogg"; // Dungeon SFX Pack/Misc/Cave Collapse
-DUSound["sfx_whoosh"] = "sfx/air.mp3"; // Medieval Fantasy SFX Pack/Spells/Air 1
+DUSound["sfx_whoosh"] = "sfx/sfx_air.mp3"; // Medieval Fantasy SFX Pack/Spells/Air 1
 DUSound["sfx_heal"] = "sfx/Spell - Heal 2.mp3"; // MFSFP/Spells/Heal 2
 DUSound["sfx_buff"] = "sfx/Event 17.mp3"; // MFSFP/Stingers/Event 17
 
