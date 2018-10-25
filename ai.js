@@ -1,19 +1,17 @@
 
 "use strict";
 
-var ais = {};
+let ais = {};
 
 ais.seekPC = function(who,radius) {
-  var retval = {};
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Seeking PC...</span><br />"); }
+  let retval = {};
   DebugWrite("ai", "Seeking PC...<br />");
-  var whomap = who.getHomeMap();
+  let whomap = who.getHomeMap();
   if (whomap === PC.getHomeMap()) {
     if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= radius) {
       // if can see
-      var losresult = whomap.getLOS(who.getx(), who.gety(), PC.getx(), PC.gety());
+      let losresult = whomap.getLOS(who.getx(), who.gety(), PC.getx(), PC.gety());
       if (losresult < LOS_THRESHOLD) {
-//        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Nearby and can see the PC! Aggroing.</span><br />"); }
         DebugWrite("ai", "SeekPC: Nearby and can see the PC! Aggroing.<br />");
         // Go aggro, turn team aggro if part of a band
         if (who.getNPCBand()) {
@@ -21,32 +19,28 @@ ais.seekPC = function(who,radius) {
         } else {
           who.setAggro(1);
         }
-        retval["fin"] = 1;
-        return retval;
+        return {fin:1};
       }
     }
     if ((who.getx() !== who.startx) || (who.gety() !== who.starty)) {
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Can't see PC, heading home.</span><br />"); }
       DebugWrite(ai, "Seek PC: Can't see PC, heading home.<br />");
       // isn't at home, doesn't see PC, heads home
-      var path = whomap.getPath(who.getx(),who.gety(),who.startx,who.starty,who.getMovetype());
+      let path = whomap.getPath(who.getx(),who.gety(),who.startx,who.starty,who.getMovetype());
       path.shift();
-      var moved = StepOrSidestep(who,path[0],[who.startx, who.starty]);
+      let moved = StepOrSidestep(who,path[0],[who.startx, who.starty]);
       if (!moved) {
-        var moveval = ais.Randomwalk(who,25,25,25,25);
+        let moveval = ais.Randomwalk(who,25,25,25,25);
       }
     }
   }
-  retval["fin"] = 1;
-  return retval;
+  return {fin:1};
 }
 
 ais.combat = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
-  var whomap = who.getHomeMap();
-  var whox = who.getx();
-  var whoy = who.gety();
+  let retval = {fin:1};
+  let whomap = who.getHomeMap();
+  let whox = who.getx();
+  let whoy = who.gety();
   
   DebugWrite("ai", "<span style='font-weight:bold'>In Combat AI...</span><br />");
  
@@ -64,15 +58,14 @@ ais.combat = function(who) {
   // check to see if we should cease to aggro
   // need no one in your Band be within "forgetAt" radius
   if (who.getForgetAt() && GetDistance(whox,whoy,PC.getx(),PC.gety()) > who.getForgetAt()) {
-    var npcs = whomap.npcs.getAll();
-    var anysee = 0;
-    $.each(npcs, function(idx,val) {
-      
-      if (!anysee && (who.getNPCBand() === val.getNPCBand()) && (GetDistance(val.getx(),val.gety(),PC.getx(),PC.gety()) < val.getForgetAt())) {
+    let npcs = whomap.npcs.getAll();
+    let anysee = 0;
+    for (let i=0;i<npcs.length;i++) {
+      if (!anysee && (who.getNPCBand() === npcs[i].getNPCBand()) && (GetDistance(npcs[i].getx(),npcs[i].gety(),PC.getx(),PC.gety()) < npcs[i].getForgetAt())) {
         anysee = 1;
       }
-      if (!val.getForgetAt()) { anysee = 1; }
-    });
+      if (!npcs[i].getForgetAt()) { anysee = 1; }
+    }
     if (!anysee) {
       DebugWrite("ai", "Distant, and no one in the band can see- dropping aggro.<br />");
       who.setAggro(0);
@@ -88,7 +81,7 @@ ais.combat = function(who) {
     who.specials.canbebrave = 1; // things that start out as cowards can't decide to stop being cowards
   }
   
-  var nearest = FindNearestNPC(who, "enemy");
+  let nearest = FindNearestNPC(who, "enemy");
   if (who.specials.coward || ((Dice.roll("1d100") < who.withdraw) && IsAdjacent(who,nearest))) {
     if (who.specials.coward) {
       // run away! run away!
@@ -96,12 +89,12 @@ ais.combat = function(who) {
     } else {
       DebugWrite("ai", "Backing away.<br />");
     }
-    var diffx = whox - nearest.getx();
-    var diffy = whoy - nearest.gety();
+    let diffx = whox - nearest.getx();
+    let diffy = whoy - nearest.gety();
     
-    var rundest = [];
-    var pathdest = [];
-    var coin = Dice.roll("1d2");
+    let rundest = [];
+    let pathdest = [];
+    let coin = Dice.roll("1d2");
     if ((Math.abs(diffx) > Math.abs(diffy)) || ((coin === 1) && (Math.abs(diffx) === Math.abs(diffy)))) {
       if (diffx > 0) {
         pathdest = [whox+1,whoy];
@@ -119,7 +112,7 @@ ais.combat = function(who) {
         rundest = [whox,0];
       }
     }
-    var desttile = whomap.getTile(pathdest[0],pathdest[1]);
+    let desttile = whomap.getTile(pathdest[0],pathdest[1]);
     if (desttile === "OoB") {
       if (whomap.ExitTest(who)) {
         whomap.deleteThing(who);
@@ -130,7 +123,7 @@ ais.combat = function(who) {
         return retval;
       }
     } else {
-      var trymove = StepOrSidestep(who,pathdest,rundest);
+      let trymove = StepOrSidestep(who,pathdest,rundest);
     }
     
     if (who.specials.canbebrave && (Dice.roll("1d5") === 1)) {
@@ -146,53 +139,49 @@ ais.combat = function(who) {
   // whoo boy, here we are: still aggro, still on right map. Go!
 
   // decide if meleeing/approaching
-  var chance = who.meleeChance;
-//  if (!chance) { chance = 1; }
+  let chance = who.meleeChance;
   DebugWrite("ai", "Chance of melee: " + chance + ".<br />");
   if (Dice.roll("1d100") <= chance) {
     // yes
     //now find targets
     // top priority: adjacent foes
     DebugWrite("ai", "Chosen to melee/approach!<br />");
-    var melee = TryMelee(who);
+    let melee = TryMelee(who);
     if (melee) { 
       retval["wait"] = 1;
       return retval; 
     }
     // didn't melee anything, time to try to find something to approach
-    var approach = FindNearestNPC(who, "enemy");
+    let approach = FindNearestNPC(who, "enemy");
     if (!approach) {
       alert("How do I (" + who.getName() + " (" + who.getx() + "," + who.gety() + ")) not have a nearest enemy while still aggro?");
       return retval;
     }
     DebugWrite("ai", "Nearest enemy is: " + approach.getName() + " " + approach.getSerial() + " .<br />");
-    var others = FindNearby("npcs",approach.getHomeMap(),1,"square",approach.getx(),approach.gety());
-    var count = 0;
-    $.each(others, function(idx,val) {
-      if (val.getAttitude() === who.getAttitude()) { count++; }
-    });
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>It is already fighting " + count + " of my friends.</span><br />"); }
+    let others = FindNearby("npcs",approach.getHomeMap(),1,"square",approach.getx(),approach.gety());
+    let count = 0;
+    for (let i=0;i<others.length;i++){
+      if (others[i].getAttitude() === who.getAttitude()) { count++; }
+    }
+
     DebugWrite("ai", "It is already fighting " + count + " of my friends.<br />");
-    var oldapproach;
+    let oldapproach;
     if (count >= 3) {
       // there's enough people beating on the closest, head towards someone else if there is one
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>That's plenty- looking for another target.</span><br />"); }
       DebugWrite("ai", "That's plenty- looking for another target.<br />");
       newapproach = FindNearestNPC(who,"enemy",[approach]);
       if (newapproach) { 
-//        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Found another target: " + newapproach.getName() + " " + newapproach.getSerial() + " .</span><br />"); }
         DebugWrite("ai", "Found another target: " + newapproach.getName() + " " + newapproach.getSerial() + " .<br />");
         oldapproach = approach;
         approach = newapproach; 
       } else {
-//        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>No other target found- sticking with current target.</span><br />"); }
         DebugWrite("ai", "No other target found- sticking with current target.<br />");
       }
     }
     if (approach) {
-      var movetype = who.getMovetype();
+      let movetype = who.getMovetype();
       if (who.specials.open_door) { movetype = MOVE_WALK_DOOR; }  // note, currently this is a problem if it can fly and open doors
-      var path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),movetype);
+      let path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),movetype);
       if (!path.length) {
         if (oldapproach) {
           approach = oldapproach;
@@ -200,29 +189,29 @@ ais.combat = function(who) {
         }
       }
       if (path.length) { 
-        var moved = FindCombatPath(who,approach,path);
+        let moved = FindCombatPath(who,approach,path);
       } else {
         // no path found to target
-        var moved = ais.Randomwalk(who,25,25,25,25);
+        // WORK HERE- improve this behavior, should not randomwalk away from PC
+        let moved = ais.Randomwalk(who,25,25,25,25);
       }
     }
   } else {
     // Not meleeing, not what?
     DebugWrite("ai", "In special/missile<br />");
-    var nonmeleeoptions = [];
+    let nonmeleeoptions = [];
     if (who.getMissile()) { nonmeleeoptions.push("ai_missile"); }
     if (who.spellsknown) { nonmeleeoptions.push("ai_cast"); }
     if (who.specials.sing) { nonmeleeoptions.push("ai_sing"); }
     // there will be more!
     
-    var performed_action = 0;
-    var num_attempts = 0;
+    let performed_action = 0;
+    let num_attempts = 0;
     while (!performed_action && (num_attempts < 10)) {
       performed_action = ais[nonmeleeoptions[Dice.roll("1d" + nonmeleeoptions.length + "-1")]](who);
       num_attempts++;
     }
     if (num_attempts === 10) {
-//      alert("10 tries, " + who.getName() + " (" + who.getSerial() + ") failed to choose a special action.");
       DebugWrite("ai", "10 tries, " + who.getName() + " (" + who.getSerial() + ") failed to choose a special action.");
       return retval;
     }
@@ -239,39 +228,38 @@ ais.combat = function(who) {
 
 function TryMelee(who) {
   DebugWrite("ai", "In TryMelee.<br />");
-  var radius = 1;
+  let radius = 1;
   if (who.specials.reach) { radius = 2; }
-  var nearby = FindNearby("npcs",who.getHomeMap(),radius,"box",who.getx(),who.gety());
-  var atked = 0;
+  let nearby = FindNearby("npcs",who.getHomeMap(),radius,"box",who.getx(),who.gety());
+  let atked = 0;
   DebugWrite("ai", "Seeking entities in melee range. There are " + nearby.length + ".<br />");
   if (nearby.length > 0) {
     ShuffleArray(nearby);
-    $.each(nearby, function(idx,val) {
+    for (let i=0;i<nearby.length;i++) {
       if (!atked) {
-        if (val.getAttitude() !== who.getAttitude()) {
-          var doatk = 1;
+        if (nearby[i].getAttitude() !== who.getAttitude()) {
+          let doatk = 1;
           if (radius > 1) { 
             // check LOE first
-            if (whomap.getLOS(who.getx(), who.gety(), val.getx(), val.gety(), "loe") >= LOS_THRESHOLD) { doatk = 0; }
+            if (whomap.getLOS(who.getx(), who.gety(), nearby[i].getx(), nearby[i].gety(), "loe") >= LOS_THRESHOLD) { doatk = 0; }
           }
-          // attack val and call it a day!
+          // attack them and call it a day!
           if (doatk) {
-//            if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>ATTACK!</span><br />"); }
             DebugWrite("ai", "ATTACK!<br />");
-            var result = Attack(who,val);
+            let result = Attack(who,nearby[i]);
             maintext.addText(result["txt"]);
             atked = 1;
           }
         }
       }
-    });
+    }
   }
   return atked;
 }
 
 // deprecated in favor of schedules.
 ais.townsfolk = function(who) {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   
   if (!(who.startx && who.starty)) {
@@ -285,26 +273,10 @@ ais.townsfolk = function(who) {
                                                   // automatically wanders if was pushed
     DebugWrite("ai", "Moving... ");
     if (who.getLeash() && (who.getLeash() < GetDistance(who.getx(), who.gety(), who.startx, who.starty))) {
-      var path = themap.getPath(who.getx(),who.gety(),who.startx, who.starty, MOVE_WALK_DOOR);
+      let path = themap.getPath(who.getx(),who.gety(),who.startx, who.starty, MOVE_WALK_DOOR);
       path.shift();  // first entry in the path is where it already stands
       if (path[0]){
-/*        var acre = themap.getTile(path[0][0],path[0][1]);
-        var possdoor = acre.getTopFeature();
-        if (possdoor && (possdoor.closedgraphic)) { 
-          // there is a door in the way
-          if (!possdoor.open && !((typeof possdoor.getLocked === "function") && (possdoor.getLocked()))) {
-            // door is not locked
-//            if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
-            DebugWrite("ai", "opening a door.<br />");
-            possdoor.use(who);
-            DrawMainFrame("one",who.getHomeMap().getName(),possdoor.getx(),possdoor.gety());
-            return retval;
-          }
-        } 
-*/
-//        if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Moving to " + path[0][0] + "," + path[0][1] + ".</span><br />"); }
         DebugWrite("ai", "Moving to " + path[0][0] + "," + path[0][1] + ".<br />");
-//        who.moveMe(path[0][0]-who.getx(), path[0][1]-who.gety());
         StepOrSidestep(who, path[0], [who.startx, who.starty]);
         return retval;
       } else {
@@ -312,26 +284,9 @@ ais.townsfolk = function(who) {
       }
     } else if (who.getLeash()) {
       // able to wander (leash = 0 means stationary)
-      var moveval = ais.Randomwalk(who,25,25,25,25);
+      let moveval = ais.Randomwalk(who,25,25,25,25);
       if ((moveval["canmove"] === 0) && (retval["nomove"] !== 1)) {
-        // it picked a direction to move but failed to move
- /*       var acre = themap.getTile(who.getx()+moveval['diffx'], who.gety()+moveval['diffy']);
-        if (acre !== "OoB") {
-          var possdoor = acre.getTopFeature();
-          if (possdoor && (possdoor.closedgraphic)) { 
-            // there is a door in the way
-            if (!((typeof possdoor.getLocked === "function") && (possdoor.getLocked()))) {
-              // door is not locked
-//              if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>opening a door.</span><br />"); }
-              DebugWrite("ai", "opening a door.<br />");
-              possdoor.use(who);
-              DrawMainFrame("draw",PC.getHomeMap().getName(),PC.getx(),PC.gety());
-              return retval;
-            }
-          }
-        }
- */  // this part obviated by putting door opening into randomwalk
-        
+        // it picked a direction to move but failed to move        
       }
     }
   }
@@ -340,72 +295,72 @@ ais.townsfolk = function(who) {
 }
 
 ais.Trevor = function(who) {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   if (DU.gameflags.getFlag("kyvek_fetch")) {
     if (!who.steps) {
-      var walk = who.moveMe(1,0);
+      let walk = who.moveMe(1,0);
       if (walk["canmove"]) {
         who.steps = 1;
       }
     } else if (who.steps === 1) {
-      var walk = who.moveMe(0,-1);
+      let walk = who.moveMe(0,-1);
       if (walk["canmove"]) {
         who.steps = 1.5;
       }      
     } else if (who.steps === 1.5) {
-      var doortile = who.getHomeMap().getTile(9,14);
-      var door = doortile.getTopFeature();
+      let doortile = who.getHomeMap().getTile(9,14);
+      let door = doortile.getTopFeature();
       door.unlockMe();
       DrawMainFrame("one",who.getHomeMap(),9,14);
       who.steps = 2;
     } else if (who.steps === 2) { 
-      var doortile = who.getHomeMap().getTile(9,14);
-      var door = doortile.getTopFeature();
+      let doortile = who.getHomeMap().getTile(9,14);
+      let door = doortile.getTopFeature();
       door.use(who);
       DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
       who.steps = 3;
     } else if ((who.steps >= 3) && (who.steps <= 5)) {
-      var walk = who.moveMe(0,-1);
+      let walk = who.moveMe(0,-1);
       if (walk["canmove"]) {
         who.steps++;
       }
     } else if (who.steps === 6) {
-      var walk = who.moveMe(1,0);
+      let walk = who.moveMe(1,0);
       if (walk["canmove"]) {
         who.steps++;
       }
     } else if (who.steps === 7) {
       who.steps++;
     } else if (who.steps === 8) {
-      var walk = who.moveMe(-1,0);
+      let walk = who.moveMe(-1,0);
       if (walk["canmove"]) {
         who.steps++;
       }
     } else if ((who.steps >= 9) && (who.steps <= 11)) {
-      var walk = who.moveMe(0,1);
+      let walk = who.moveMe(0,1);
       if (walk["canmove"]) {
         who.steps++;
       }
     } else if (who.steps === 12) {
-      var doortile = who.getHomeMap().getTile(9,14);
-      var door = doortile.getTopFeature();
+      let doortile = who.getHomeMap().getTile(9,14);
+      let door = doortile.getTopFeature();
       door.use(who);
       DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
       who.steps++;
     } else if (who.steps === 13) {
-      var doortile = who.getHomeMap().getTile(9,14);
-      var door = doortile.getTopFeature();
+      let doortile = who.getHomeMap().getTile(9,14);
+      let door = doortile.getTopFeature();
       door.lockMe(2);
       DrawMainFrame("one",who.getHomeMap(),9,14);
       who.steps = 13.5;
     } else if (who.steps === 13.5) {
-      var walk = who.moveMe(0,1);
+      let walk = who.moveMe(0,1);
       if (walk["canmove"]) {
         who.steps = 14;
       }      
     } else if (who.steps === 14) {
-      var walk = who.moveMe(-1,0);
+      let walk = who.moveMe(-1,0);
       if (walk["canmove"]) {
         who.steps++;
       }
@@ -413,7 +368,7 @@ ais.Trevor = function(who) {
       if (who.getHomeMap() === PC.getHomeMap()) {
         if ((PC.getx() >= 8) && (PC.getx() <= 10) && (PC.gety() >= 15) && (PC.gety() <= 19)) {
           maintext.addText("Trevor hands you a wooden box, sealed with wax. \"Give this to Kyvek and all debts will be paid.\" He makes a mark in his ledger.");
-          var box = localFactory.createTile("KyvekBox");
+          let box = localFactory.createTile("KyvekBox");
           PC.addToInventory(box,1);
           DU.gameflags.deleteFlag("kyvek_fetch");
           DU.gameflags.setFlag("given_box",1);
@@ -427,9 +382,8 @@ ais.Trevor = function(who) {
 }
 
 ais.GarrickAttack = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
-  var themap = who.getHomeMap();
+  let retval = {fin:1};
+  let themap = who.getHomeMap();
   if (who.getHP() <= 1000) { // Garrick gets 1030 hp when he attacks, so he can always surrender
     maintext.addText('Garrick falls to his knees and cries, "You win!"');
     retval["wait"] = 1;
@@ -443,11 +397,11 @@ ais.GarrickAttack = function(who) {
     who.setHP(10);
     who.setAttitude("friendly");
     who.setAggro(0);
-    var aoife;
-    var npcs = PC.getHomeMap().npcs.getAll();
-    $.each(npcs, function(idx,val) {
-      if (val.getNPCName() === "Aoife") { aoife = val; }
-    });
+    let aoife;
+    let npcs = PC.getHomeMap().npcs.getAll();
+    for (let i=0;i<npcs.length;i++){
+      if (npcs[i].getNPCName() === "Aoife") { aoife = npcs[i]; }
+    }
     aoife.setCurrentAI("AoifeEscort");
     aoife.setMaxHP(30);
     aoife.setHP(30);
@@ -458,8 +412,8 @@ ais.GarrickAttack = function(who) {
     if (IsAdjacent(who,PC)) {
       retval = Attack(who,PC);
     } else {
-      var path = themap.getPath(who.getx(), who.gety(), PC.getx(), PC.gety(), MOVE_WALK_DOOR);
-      var moved = FindCombatPath(who,PC,path);
+      let path = themap.getPath(who.getx(), who.gety(), PC.getx(), PC.gety(), MOVE_WALK_DOOR);
+      let moved = FindCombatPath(who,PC,path);
     }
   }
   return retval;
@@ -467,14 +421,14 @@ ais.GarrickAttack = function(who) {
 
 function GarrickScene(stage) {
   gamestate.setMode("null");
-  var aoife;
-  var garrick
-  var npcs = PC.getHomeMap().npcs.getAll();
-  $.each(npcs, function(idx,val) {
-    if (val.getNPCName() === "Aoife") { aoife = val; }
-    if (val.getNPCName() === "Garrick") { garrick = val; }
-  });
-  var retval = {};
+  let aoife;
+  let garrick
+  let npcs = PC.getHomeMap().npcs.getAll();
+  for (let i=0;i<npcs.length;i++){
+    if (npcs[i].getNPCName() === "Aoife") { aoife = npcs[i]; }
+    if (npcs[i].getNPCName() === "Garrick") { garrick = npcs[i]; }
+  }
+  let retval = {};
   if (aoife) {
     if (stage === 0) {
       maintext.addText('Aoife points at Garrick. "All right, you. Will you come quietly, now? You know where you\'re going, after a stunt like that."');
@@ -499,25 +453,20 @@ function GarrickScene(stage) {
 }
 
 ais.AoifeAttack = function(who) {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
-  var aoifemap = who.getHomeMap();
-  var npcs = aoifemap.npcs.getAll();
-  var garrick;
-  $.each(npcs, function(idx, val) {
-    if (val.getNPCName() === "Garrick") { garrick = val; }
-  });
+  let aoifemap = who.getHomeMap();
+  let npcs = aoifemap.npcs.getAll();
+  let garrick;
+  for (let i=0;i<npcs.length;i++){
+    if (npcs[i].getNPCName() === "Garrick") { garrick = npcs[i]; }
+  }
   if (garrick) {
     if(IsAdjacent(who,garrick)) {
       retval = Attack(who,garrick);
     } else {
-      var path = aoifemap.getPath(who.getx(), who.gety(), garrick.getx(), garrick.gety(), MOVE_WALK_DOOR);
-//      path.shift();
-//      var fullx = garrick.getx() - who.getx();
-//      var fully = garrick.gety() - who.gety();
-//      var moved = StepOrSidestep(who,path[0],[fullx,fully]);
-      var moved = FindCombatPath(who,garrick,path);
-      
+      let path = aoifemap.getPath(who.getx(), who.gety(), garrick.getx(), garrick.gety(), MOVE_WALK_DOOR);
+      let moved = FindCombatPath(who,garrick,path);
     }
   } else {
     alert("Where'd Garrick go?");
@@ -527,28 +476,28 @@ ais.AoifeAttack = function(who) {
 
 ais.AoifeEscort = function(who) {
   if (!who.dest) { who.dest = 1; }
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
-  var themap = who.getHomeMap();
-  var gx = who.getx();
-  var gy = who.gety();
+  let themap = who.getHomeMap();
+  let gx = who.getx();
+  let gy = who.gety();
     
-  var path;
-  var pathfound;
+  let path;
+  let pathfound;
   while (!pathfound) {
     if (who.dest === 1) {
       path = themap.getPath(gx, gy, 24, 23, MOVE_WALK_DOOR);
     } else if (who.dest === 2) {
-      var doortile = themap.getTile(gx-1,gy);
-      var door = doortile.getTopFeature();
+      let doortile = themap.getTile(gx-1,gy);
+      let door = doortile.getTopFeature();
       door.unlockMe();
       who.dest++;
       return retval;
     } else if (who.dest === 3) {
       path = themap.getPath(gx, gy, 14, 23, MOVE_WALK_DOOR);
     } else if (who.dest === 4) {
-      var doortile = themap.getTile(gx,gy+1);
-      var door = doortile.getTopFeature();
+      let doortile = themap.getTile(gx,gy+1);
+      let door = doortile.getTopFeature();
       door.unlockMe();
       who.dest++;
       return retval;
@@ -571,8 +520,8 @@ ais.AoifeEscort = function(who) {
       who.dest++;
       return retval;
     } else if (who.dest === 8) {
-      var doortile = themap.getTile(14,24);
-      var door = doortile.getTopFeature();
+      let doortile = themap.getTile(14,24);
+      let door = doortile.getTopFeature();
       door.use(who);
       DrawMainFrame("one",who.getHomeMap(),6,53);
       door.lockMe(1);
@@ -586,21 +535,20 @@ ais.AoifeEscort = function(who) {
   
   // step on the path
   // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
-  var moved = StepOrSidestep(who, path[0], [14,23]);
+  let moved = StepOrSidestep(who, path[0], [14,23]);
   
   return retval;
 }
 
 ais.GarrickEscort = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
-  var themap = who.getHomeMap();
-  var allnpcs = themap.npcs.getAll();
-  var aoife;
+  let retval = {fin:1};
+  let themap = who.getHomeMap();
+  let npcs = themap.npcs.getAll();
+  let aoife;
 
-  $.each(allnpcs, function(idx,val) {
-    if (val.getNPCName() === "Aoife") { aoife = val;}
-  });
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getNPCName() === "Aoife") { aoife = npcs[i];}
+  }
 
   let destx = aoife.getx();
   let desty = aoife.gety();
@@ -615,7 +563,7 @@ ais.GarrickEscort = function(who) {
     destx = 14;
     desty = 26;
   }
-  var path = themap.getPath(who.getx(), who.gety(), destx, desty, MOVE_WALK_DOOR);
+  let path = themap.getPath(who.getx(), who.gety(), destx, desty, MOVE_WALK_DOOR);
   path.shift();
   path.pop();
   if (path[0]) {
@@ -630,24 +578,24 @@ ais.GarrickEscort = function(who) {
 
 ais.AshardenBook = function(who) {
   if (!who.dest) { who.dest = 1; }
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
-  var themap = who.getHomeMap();
-  var gx = who.getx();
-  var gy = who.gety();
+  let themap = who.getHomeMap();
+  let gx = who.getx();
+  let gy = who.gety();
     
-  var path;
-  var pathfound;
+  let path;
+  let pathfound;
   while (!pathfound) {
     if (who.dest === 1) {
       path = themap.getPath(gx, gy, 29, 18, MOVE_WALK);
     } else if (who.dest === 2) {
-      var tile = themap.getTile(30,18);
-      var fea = tile.getFeatures();
-      var field;
-      $.each(fea, function(idx,val) {
-        if (val.getName() === "SleepField") { field = val; }
-      });
+      let tile = themap.getTile(30,18);
+      let fea = tile.getFeatures();
+      let field;
+      for (let i=0;i<fea.length;i++) {
+        if (fea[i].getName() === "SleepField") { field = fea[i]; }
+      }
       if (field) {
         themap.deleteThing(field);
         maintext.addText("Asharden gestures and the magic field disappears.");
@@ -672,7 +620,6 @@ ais.AshardenBook = function(who) {
         maintext.addText("Asharden hands you a spellbook!");
         DU.gameflags.setFlag("spellbook",1);
         DU.gameflags.setFlag("spellbook2",1);
-//        who.setConversation("asharden");
         DU.deleteFlag("ash_get_book");
         PC.addSpell(SPELL_AUDACHTA_SCRIBE_LEVEL, SPELL_AUDACHTA_SCRIBE_ID);
         who.setCurrentAI(who.prevai);
@@ -689,8 +636,8 @@ ais.AshardenBook = function(who) {
   
   // step on the path
   // check for mob, if mob, try to move in the perpendicular direction that gets you closer to your current dest
-  var desttile = themap.getTile(path[0][0],path[0][1]);
-  var npcs = desttile.getNPCs();
+  let desttile = themap.getTile(path[0][0],path[0][1]);
+  let npcs = desttile.getNPCs();
   if (npcs.length) {
     if (Dice.roll("1d4") === 1) {
       if ((PC.getHomeMap() === who.getHomeMap()) && (GetSquareDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= 5)) {
@@ -698,15 +645,14 @@ ais.AshardenBook = function(who) {
       }
     }
   }
-  var moved = StepOrSidestep(who, path[0], [32,18]);
+  let moved = StepOrSidestep(who, path[0], [32,18]);
   
   return retval;
 }
 
 ais.CourierPath = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
-  var whomap = who.getHomeMap();
+  let retval = {fin:1};
+  let whomap = who.getHomeMap();
   if (!who.direction) { who.direction = "n"; }
   if (who.getx() === 0) {
     if (!who.count) { who.count = 0; }
@@ -717,10 +663,10 @@ ais.CourierPath = function(who) {
     }
     
     if (who.direction === "n") {
-      var tile = whomap.getTile(48,90);
-      var npcs = tile.getNPCs();
+      let tile = whomap.getTile(48,90);
+      let npcs = tile.getNPCs();
       if (!npcs.length) {
-        var pcs = tile.getPCs();
+        let pcs = tile.getPCs();
         if (!pcs.length) {
           whomap.moveThing(48,90,who);
           who.direction = "s";
@@ -728,10 +674,10 @@ ais.CourierPath = function(who) {
         } else { DebugWrite("ai","Didn't come out of BDC- PC in the way."); }
       } else { DebugWrite("ai","Didn't come out of BDC- NPC in the way."); }
     } else {
-      var tile = whomap.getTile(63,119);
-      var npcs = tile.getNPCs();
+      let tile = whomap.getTile(63,119);
+      let npcs = tile.getNPCs();
       if (!npcs.length) {
-        var pcs = tile.getPCs();
+        let pcs = tile.getPCs();
         if (!pcs.length) {
           whomap.moveThing(63,119,who);
           who.direction = "n";
@@ -749,10 +695,10 @@ ais.CourierPath = function(who) {
     DebugWrite("ai", "Entering BDC, by which I mean teleporting to the corner.");
     DrawMainFrame("one",whomap,49,90);
   } else {
-    var dest = [];
+    let dest = [];
     if (who.direction === "n") { dest[0]=49; dest[1]=90; }
     else { dest[0]=64;dest[1]=119; }
-    var path = whomap.getPath(who.getx(),who.gety(),dest[0],dest[1],who.getMovetype());
+    let path = whomap.getPath(who.getx(),who.gety(),dest[0],dest[1],who.getMovetype());
     path.shift();
     if (path.length) {
       retval = StepOrSidestep(who, [path[0][0],path[0][1]], [dest[0],dest[1]], "nopush");
@@ -762,8 +708,8 @@ ais.CourierPath = function(who) {
 }
 
 ais.Sentinel = function(who) {
-  var destinations = [];
-  var jumps = [];
+  let destinations = [];
+  let jumps = [];
   destinations[0] = ["w","w","n","n","w","w","w","w","w","e","e","e","e","e","e","e","e","e","s","s","s","s","n","n","n","n","w","w","w","w","s","s","e","e"];
   jumps[0] = { 2:32, 6:12, 10:8, 18:26, 23:20, 30:4};
   destinations[1] = ["w","n","w","w","s","s","s","w","w","n","n","n","n","s","s","s","s","e","e","n","n","n","e","e","s","e","s","s","s","s","w","w","w","w","e","e","e","e","s","s","w","w","w","w","s","s","e","e","e","e","w","w","w","w","n","n","e","e","e","e","n","n","w","w","w","w","e","e","e","e","n","n","n","n"];
@@ -773,16 +719,15 @@ ais.Sentinel = function(who) {
   destinations[3] = ["w","w","w","w","w","s","n","e","e","e","e","e","n","n","e","e","s","s","e","e","e","e","e","e","w","w","w","w","w","w","n","n","w","w","s","s"];
   jumps[3] = { 2:10, 8:4, 20:28, 26:22};
   
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>SENTINEL " + who.patrol + " AI beginning. Standing at " + who.getx() + "," + who.gety() + ". Path takes it " + destinations[who.patrol][who.step] + ". </span><br />"); }
   DebugWrite("ai", "SENTINEL " + who.patrol + " AI beginning. Standing at " + who.getx() + "," + who.gety() + ". Path takes it " + destinations[who.patrol][who.step] + ". <br />");
   // sequence: first, see if player is in front of, if so spend action teleporting player back to center
   //                  (also do this to the player's summoned NPCs if they have one)
   // then, see if path is blocked, if so, if there is a jump, jump to next step without moving
   // if neither of those things happened, take the next step
   
-  var mymap = who.getHomeMap();
-  var diffx=0;
-  var diffy=0;
+  let mymap = who.getHomeMap();
+  let diffx=0;
+  let diffy=0;
   if (destinations[who.patrol][who.step] === "n") {
     diffy = -1;
   } else if (destinations[who.patrol][who.step] === "s") {
@@ -795,11 +740,10 @@ ais.Sentinel = function(who) {
     alert("Sentinels have an invalid step, " + who.patrol + " / " + who.step);
   }
 
-  var retval = {};
-  var desttile = mymap.getTile(who.getx()+diffx,who.gety()+diffy);
-  var moveval = desttile.canMoveHere(who.getMovetype());
+  let retval = {};
+  let desttile = mymap.getTile(who.getx()+diffx,who.gety()+diffy);
+  let moveval = desttile.canMoveHere(who.getMovetype());
   if ((PC.getHomeMap() === mymap) && (PC.getx() === who.getx()+diffx) && (PC.gety() === who.gety()+diffy)) {
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>SENTINEL " + who.patrol + ": PC in the way. Removing.</span><br />"); }
     DebugWrite("ai", "SENTINEL " + who.patrol + ": PC in the way. Removing.<br />");
     mymap.moveThing(16,13,PC);
     maintext.addText("The sentinel teleports you away.");
@@ -807,9 +751,8 @@ ais.Sentinel = function(who) {
     who.waits = 0;
   } else if (moveval["canmove"] !== 1) {
     // path is blocked
-    var blocker = desttile.getTopNPC();
+    let blocker = desttile.getTopNPC();
     if (blocker) {
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Path is blocked by " + blocker.getName() + ".</span><br />"); }
       DebugWrite("ai", "Path is blocked by " + blocker.getName() + ".<br />");
       if (blocker.getName() !== who.getName()) {
         if (blocker.summoned) {
@@ -825,8 +768,8 @@ ais.Sentinel = function(who) {
           
           // has it been standing here for too long?
           if (who.waits > 3) {
-            var starttile = mymap.getTile(who.startx,who.starty);
-            var whosehere = starttile.getTopNPC();
+            let starttile = mymap.getTile(who.startx,who.starty);
+            let whosethere = starttile.getTopNPC();
             if (!whosethere) {
               mymap.moveThing(who.startx, who.starty, who);
             } // otherwise, can't go back home because someone is there
@@ -839,20 +782,17 @@ ais.Sentinel = function(who) {
         retval["fin"] = 1;
         // has it been standing here for too long?
         if (who.waits > 3) {
-//          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Been standing in place too long, going home.</span><br />"); }
           DebugWrite("ai", "Been standing in place too long, going home.<br />");
-          var starttile = mymap.getTile(who.startx,who.starty);
-          var whosthere = starttile.getTopNPC();
+          let starttile = mymap.getTile(who.startx,who.starty);
+          let whosthere = starttile.getTopNPC();
           if (!whosthere) {
             mymap.moveThing(who.startx, who.starty, who);
           } // otherwise, can't go back home because someone is there
         }    
       }
     } else {
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>SENTINEL " + who.patrol + ": Path blocked- skip from " + who.step + " to "); }
       DebugWrite("ai", "SENTINEL " + who.patrol + ": Path blocked- skip from " + who.step + " to ");
       who.step = jumps[who.patrol][who.step];
-//      if (debug && debugflags.ai) { dbs.writeln(who.step + ".</span><br />"); }
       DebugWrite("ai", who.step + ".<br />");
       who.waits = 0;
       retval["fin"] = 1;
@@ -873,32 +813,31 @@ ais.Sentinel = function(who) {
 }
 
 ais.Animal = function(who,radius) {
-  var retval = ais.OutdoorHostile(who, radius, "none");
+  let retval = ais.OutdoorHostile(who, radius, "none");
   return retval;  
 }
 
 ais.Bandit = function(who,radius) {
-  var retval = ais.OutdoorHostile(who, radius, "road");
+  let retval = ais.OutdoorHostile(who, radius, "road");
   return retval;
 }
 
 ais.Monster = function(who,radius) {
-  var poiname = "wild";
+  let poiname = "wild";
   if (who.altPoI) { poiname = who.altPoI; }
-  var retval = ais.OutdoorHostile(who, radius, poiname);
+  let retval = ais.OutdoorHostile(who, radius, poiname);
   return retval;
 }
 
 ais.OutdoorHostile = function(who, radius, pname) {
   if (!radius) { radius = 0; }
   
-  var retval = {fin: 1};
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>AI " + who.getName() + " " + who.getSerial() + " is going. Radius: " + radius + ".</span><br />"); }
+  let retval = {fin: 1};
   DebugWrite("ai", "AI " + who.getName() + " " + who.getSerial() + " is going. Radius: " + radius + ".<br />");
   // First, see if the PC is adjacent and if so, smite.
-  var locx = PC.getx();
-  var locy = PC.gety();
-  var pcmap = PC.getHomeMap();
+  let locx = PC.getx();
+  let locy = PC.gety();
+  let pcmap = PC.getHomeMap();
   if (who.getHomeMap() !== pcmap) {
     if ((pcmap.getName().match(/combat/)) && (pcmap.getExitToMap() === who.getHomeMap().getName())) {
       // if PC is on a combat map, use map's exit coords to determine location
@@ -938,7 +877,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
   // If there is a radius attached, hunt for the PC next
   if (radius) {
     DebugWrite("ai", "AI hunts within " + radius + ", hunting for PC.<br />");
-    var hunt = ais.HuntPC(who,radius);
+    let hunt = ais.HuntPC(who,radius);
 
     if (hunt) { 
       DebugWrite("ai", "Hunt was successful, trying to follow the path.<br />");
@@ -950,7 +889,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
   if (pname !== "none") {
     // we have neither attacked, moved, nor hunted- now we look for a PoI to go towards
     DebugWrite("ai", "AI " + who.getName() + " has neither attacked, moved, nor hunted- now look for a PoI.<br />");
-    var movepoi = ais.ProcessPoI(who, pname);
+    let movepoi = ais.ProcessPoI(who, pname);
     if (movepoi) {
       retval = ais.SurfaceFollowPath(who,40,1); 
       return retval;
@@ -968,12 +907,12 @@ ais.OutdoorHostile = function(who, radius, pname) {
 // sub-functions
 
 ais.HuntPC = function(who, radius) {
-  var themap =  who.getHomeMap();
+  let themap =  who.getHomeMap();
 	// Is the PC within range to be hunted?
-	var locx = PC.getx();
-	var locy = PC.gety();
+	let locx = PC.getx();
+	let locy = PC.gety();
 	if (PC.getHomeMap() !== themap) {
-	  var pcmap = PC.getHomeMap();
+	  let pcmap = PC.getHomeMap();
 	  if ((pcmap.getName().match(/combat/) && (pcmap.getExitToMap() === themap.getName()))) {
 	    locx = pcmap.getExitToX();
 	    locy = pcmap.getExitToY();
@@ -993,11 +932,9 @@ ais.HuntPC = function(who, radius) {
 	// if the PC is within a smaller radius (currently radius/3), hunt no matter what.
 	// otherwise, check if we can see the PC, with a more forgiving threshold than used
 	// in the game display
-	if (GetDistance(who.getx(), who.gety(), locx, locy) > (radius/3)) {   
-    
-    var losresult = themap.getLOS(who.getx(), who.gety(), locx, locy);
+	if (GetDistance(who.getx(), who.gety(), locx, locy) > (radius/3)) {       
+    let losresult = themap.getLOS(who.getx(), who.gety(), locx, locy);
     if (losresult > 2) { 
-//      if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>PC is within radius but not in sight, no hunt.</span><br />"); }
       DebugWrite("ai", "PC is within radius but not in sight, no hunt.<br />");
       return 0; 
     }  // can't see the PC and they aren't really close, no hunt
@@ -1005,26 +942,22 @@ ais.HuntPC = function(who, radius) {
 	
 	// HUNT!
 	// find path to the PC
-//	if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>Hunting!</span><br />"); }
 	DebugWrite("ai", "HUNTING!<br />");
-	var destination = { x: locx, y: locy };
-	
-	//destination = CheckTownProximity(destination, who.getHomeMap());  // destination moved away if the target is too near a town.
+	let destination = { x: locx, y: locy };
 		
-	var path = themap.getPath(who.getx(), who.gety(), destination.x, destination.y, who.getMovetype());
+	let path = themap.getPath(who.getx(), who.gety(), destination.x, destination.y, who.getMovetype());
 	if (path.length) {
    	path.shift();  // because the first step is where it is already standing.
     DebugWrite("ai", "<span style='font-weight:bold'>From: " + who.getx() + ", " + who.gety() + " to " + destination.x + ", " + destination.y+ "<br />First step is: " + path[0][0] + ", " + path[0][1] + "<br />Next step is: " + path[1][0] + ", " + path[1][1] + "</span><br />");
     who.setCurrentPath(path);
 
-    var dur = Dice.roll("1d3-2") + Math.floor(path.length / 3);
+    let dur = Dice.roll("1d3-2") + Math.floor(path.length / 3);
     if (dur < 1) { dur = 1; }
     who.setDestination(destination, dur);
     who.setDestinationType("PC");
     
     return 1;
   } else { 
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>No available path, hunt abandoned.</span><br />"); }
     DebugWrite("ai", "No available path, hunt abandoned.<br />");
     return 0;
   }
@@ -1033,18 +966,18 @@ ais.HuntPC = function(who, radius) {
 
 ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
   DebugWrite("ai", "<span style='font-weight:bold'>AI " + who.getName() + " in SurfaceFollowPath.</span><br />");
-  var retval = { fin: 0 };
-  var spawnedby = who.getSpawnedBy();
-  var leashpresent = 0;
+  let retval = { fin: 0 };
+  let spawnedby = who.getSpawnedBy();
+  let leashpresent = 0;
   if (spawnedby && (spawnedby.getSpawnLeash() || spawnedby.getSpawnSoftLeash())) { leashpresent = 1; }
   
   if ((who.getCurrentPath().length > 0) && (who.getTurnsToRecalcDest() > 0)) {
-    var coords = who.getNextStep();
+    let coords = who.getNextStep();
     DebugWrite("ai", "Check path distance? My location: " + who.getx() + ", " + who.gety() + ", next step is: " + coords[0] + ", " + coords[1] + ".<br />");
     if (GetDistance(who.getx(), who.gety(), coords[0], coords[1]) === 1) {  // the next step is only a step away
-      var diffx = coords[0] - who.getx();
-      var diffy = coords[1] - who.gety();
-      var civilized = 0;
+      let diffx = coords[0] - who.getx();
+      let diffy = coords[1] - who.gety();
+      let civilized = 0;
       // check to see if move would bring close to a settlement
       if (who.getHomeMap().getScale() === 0) {  // only care about it if on an outdoor map
         DebugWrite("ai", "Checking for civilization proximity.");
@@ -1057,11 +990,11 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       }  
 
       DebugWrite("ai", "AI " + who.getName() + " moving from " + who.getx() + ", " + who.gety() + " to " + coords[0] + ", " + coords[1] + " :");
-      var turnscheck = who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
+      let turnscheck = who.setTurnsToRecalcDest(who.getTurnsToRecalcDest() - 1);
       DebugWrite("ai", "There are now " + turnscheck + " turns left on the existing path.<br />");
-      var leashed = 0;
+      let leashed = 0;
       if (leashpresent) {
-        var spawndist = GetDistance(coords[0], coords[1], spawnedby.getx(), spawnedby.gety());  // distance from spawner to target location
+        let spawndist = GetDistance(coords[0], coords[1], spawnedby.getx(), spawnedby.gety());  // distance from spawner to target location
         if ((spawndist > spawnedby.getSpawnLeash()) && (who.getDestinationType() !== "spawn")) { // Presumably got here by chasing the PC, but trying to move beyond leash
           retval["canmove"] = 0;
           DebugWrite("ai", "AI " + who.getName() + " restricted from moving: hard leash at " + spawnedby.getx() + "," + spawnedby.gety() + ".<br />");
@@ -1079,7 +1012,7 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
         retval["fin"] = 1;
         DebugWrite("ai", "successfully. New location: " + who.getx() + ", " + who.gety() + "<br />");
         if (debug && debugflags.ai) {
-          var tile = who.getHomeMap().getTile(who.getx(), who.gety());
+          let tile = who.getHomeMap().getTile(who.getx(), who.gety());
           if (!tile.canMoveHere(MOVE_WALK)) {
             DebugWrite("ai", "<span style='font-weight:bold; text-decoration:underline'>AI moved onto a tile that cannot be walked on: " + tile.getTerrain().getName() + ".</span><br />");
           }
@@ -1091,11 +1024,11 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       DebugWrite("ai", "unsuccessfully.<br />");
 
       if (leashed) {
-        var path = who.getHomeMap().getPath(who.getx(), who.gety(), spawnedby.getx(), spawnedby.gety(), who.getMovetype());
+        let path = who.getHomeMap().getPath(who.getx(), who.gety(), spawnedby.getx(), spawnedby.gety(), who.getMovetype());
         if (path.length) {
           path.shift();
           if (path.length) {
-            var dur = Math.floor(path.length / 3) + Dice.roll("1d5-3");
+            let dur = Math.floor(path.length / 3) + Dice.roll("1d5-3");
             if (dur > path.length) { dur = path.length; }
             if (dur < 0) { dur = 0; }
             who.setCurrentPath(path);
@@ -1110,16 +1043,15 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
       
       // if there is another AI in the way, randomwalk
       if (!random_tries) { random_tries = 1; }
-      for (var i = 0; i<random_tries; i++) {
+      for (let i = 0; i<random_tries; i++) {
         if (!random_nomove) { random_nomove = 0; }
-        var split_move = (100-random_nomove)/3;
+        let split_move = (100-random_nomove)/3;
         if (diffx === 1) { retval = ais.Randomwalk(who,split_move,0,split_move,split_move); }
         else if (diffx === -1) { retval = ais.Randomwalk(who,split_move,split_move,split_move,0); }
         else if (diffy === 1) { retval = ais.Randomwalk(who,0,split_move,split_move,split_move); }
         else if (diffy === -1) { retval =  ais.Randomwalk(who,split_move,split_move,0,split_move); }
         else { alert("How did I get here? ais.FollowPath."); }
         if (!retval["nomove"]) { 
-//          if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>Successful randomwalk.</span><br />"); }
           DebugWrite("ai", "Successful randomwalk to (" + who.getx() + "," + who.gety() + ").<br />");
           return retval; 
         }  // moved
@@ -1139,9 +1071,9 @@ ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
 
 ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_west) {
   // default values, 25 25 25 25. If it doesn't sum to 100, the remainder is chance_none.
-  var retval = {};
-  var diffx = 0;
-  var diffy = 0;
+  let retval = {};
+  let diffx = 0;
+  let diffy = 0;
   
   if (chance_north + chance_west + chance_east + chance_south  > 100) {
     chance_north = 25;
@@ -1150,7 +1082,7 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
     chance_west = 25;
   }
   
-  var roll = Dice.roll("1d100");
+  let roll = Dice.roll("1d100");
   if (roll <= chance_north) { diffy = -1; }
   else if (roll - chance_north < chance_east) { diffx = 1; }
   else if (roll - chance_north - chance_east < chance_south) { diffy = 1; }
@@ -1163,7 +1095,7 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
     retval["diffy"] = diffy;
     return retval;
   }
-  var desttile = who.getHomeMap().getTile(who.getx()+diffx, who.gety()+diffy);
+  let desttile = who.getHomeMap().getTile(who.getx()+diffx, who.gety()+diffy);
   if (desttile === "OoB") {
     retval["nomove"] = 1;
     retval["canmove"] = 0;
@@ -1191,19 +1123,20 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
 
 
 ais.ProcessPoI = function(who,poiname) {
-  var themap = who.getHomeMap();
+  let themap = who.getHomeMap();
   if (!who.getPoI().x) {
     DebugWrite("ai", who.getName() + ", which follows " + poiname + " on map " + themap.getName() + ", has no PoI yet. Searching...<br />");
-    var poi = FindClosestPoI(who.getx(), who.gety(), themap, poiname);
+    let poi = FindClosestPoI(who.getx(), who.gety(), themap, poiname);
     DebugWrite("ai", "Closest PoI: " + poi.x + ", " + poi.y + "<br />");
     who.setPoI(poi);
     // random scatter the actual destination to near the PoI
     
-    var path = [];
-    var pathcount = 0;
+    let path = [];
+    let pathcount = 0;
+    let xval, yval;
     while ((path.length === 0) && (pathcount < 10)) {
-      var xval = Dice.roll("1d9-5") + poi.x;
-      var yval = Dice.roll("1d9-5") + poi.y;
+      xval = Dice.roll("1d9-5") + poi.x;
+      yval = Dice.roll("1d9-5") + poi.y;
     
       if (xval < 0) { xval = 0; }
       if (xval > themap.getWidth()-1) { xval = themap.getWidth()-1; }
@@ -1219,7 +1152,7 @@ ais.ProcessPoI = function(who,poiname) {
       DebugWrite("ai", "Couldn't find a path to anything near the PoI, gave up. Will randomwalk.")
       return 0; 
     }
-    var dur = 2*Math.floor(path.length / 3) + Dice.roll("1d5-3");
+    let dur = 2*Math.floor(path.length / 3) + Dice.roll("1d5-3");
     if (dur > path.length) { dur = path.length; }
     if (dur < 0) { dur = 0; }
     who.setCurrentPath(path);
@@ -1228,19 +1161,20 @@ ais.ProcessPoI = function(who,poiname) {
     DebugWrite("ai", "Set path to: " + xval + ", " + yval + "<br />");
     return 1;
   } else {
-    var coords = who.getCurrentPath()[0];
+    let coords = who.getCurrentPath()[0];
     if ((who.getTurnsToRecalcDest() <= 0) || !coords) {
       DebugWrite("ai", "Path expired, find a new PoI!<br />");
-      var connections = who.getPoI().connections;
-      var connind = Dice.roll("1d" + connections.length + "-1");
-      var poi = who.getPoI().connections[connind];
+      let connections = who.getPoI().connections;
+      let connind = Dice.roll("1d" + connections.length + "-1");
+      let poi = who.getPoI().connections[connind];
       who.setPoI(poi);
       DebugWrite("ai", "New PoI coords: " + poi.x + ", " + poi.y + "<br />");
-      var path = [];
-      var pathcount = 0;
+      let path = [];
+      let pathcount = 0;
+      let xval, yval;
       while ((path.length === 0) && (pathcount < 10)) {
-        var xval = Dice.roll("1d9-5") + poi.x;
-        var yval = Dice.roll("1d9-5") + poi.y;
+        xval = Dice.roll("1d9-5") + poi.x;
+        yval = Dice.roll("1d9-5") + poi.y;
     
         path = themap.getPath(who.getx(), who.gety(), xval, yval, who.getMovetype());
         path.shift();
@@ -1250,7 +1184,7 @@ ais.ProcessPoI = function(who,poiname) {
         DebugWrite("ai", "Couldn't find a path to anything near the PoI, gave up. Will randomwalk.")
         return 0; 
       }
-      var dur = 2*(path.length/3) + Dice.roll("1d3-1");
+      let dur = 2*(path.length/3) + Dice.roll("1d3-1");
       if (dur < 0) { dur = 0; }
       if (dur > path.length) { dur = path.length; }
       who.setCurrentPath(path);
@@ -1261,8 +1195,8 @@ ais.ProcessPoI = function(who,poiname) {
     } else if (GetDistance(who.getx(), who.gety(), coords[0], coords[1]) !== 1) {
       // next step is not adjacent but destination is still valid: find a new path!
       DebugWrite("ai", "Path not expired, but path invalid. Recalculate.<br />");
-      var coords = who.getDestination();
-      var path = themap.getPath(who.getx(), who.gety(), coords.x, coords.y, who.getMovetype());
+      let coords = who.getDestination();
+      let path = themap.getPath(who.getx(), who.gety(), coords.x, coords.y, who.getMovetype());
       path.shift();
       who.setCurrentPath(path);
       return 3;
@@ -1273,27 +1207,27 @@ ais.ProcessPoI = function(who,poiname) {
 }
 
 function NPCAttackPCMap(npc) {
-  var combatmapname = GetCombatMap(npc, PC);
-  var newmap = new GameMap();
+  let combatmapname = GetCombatMap(npc, PC);
+  let newmap = new GameMap();
   newmap = maps.addMap(combatmapname);
 
   PC.getHomeMap().deleteThing(npc);
-  var spawner=npc.getSpawnedBy();
+  let spawner=npc.getSpawnedBy();
   if (spawner) {
     spawner.deleteSpawned(npc);
   }
 
-  var desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
+  let desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
     
-  var monsters = PlaceMonsters(newmap,npc,0);
+  let monsters = PlaceMonsters(newmap,npc,0);
   DUTime.removeEntityFrom(npc);
   DUTime.removeEntityFrom(PC);
-  var NPCevent = new GameEvent(PC);
+  let NPCevent = new GameEvent(PC);
   DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
       
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   
-  var npcname = npc.getDesc();
+  let npcname = npc.getDesc();
   npcname = npcname.charAt(0).toUpperCase() + npcname.slice(1);
   if (npc.attackword) {
     maintext.addText(npcname + " " + npc.attackword + "!");
@@ -1305,10 +1239,10 @@ function NPCAttackPCMap(npc) {
 }
 
 function CheckTownProximity(coords, map) {
-  var mapfeatures = map.features.getAll();  // weirdly, this assumes that all maps this will be run on have features. Probably a safe assumption.
+  let mapfeatures = map.features.getAll();  // weirdly, this assumes that all maps this will be run on have features. Probably a safe assumption.
   if (!mapfeatures[0]) { return 0; }  // just in case one doesn't!
 
-  for (var i = 0; i < mapfeatures.length; i++) {
+  for (let i = 0; i < mapfeatures.length; i++) {
     if (mapfeatures[i].civilized) {
       if (GetDistance(coords.x, coords.y, mapfeatures[i].getx(), mapfeatures[i].gety()) < 4) {  // your little walk will take you too close to civilization
         DebugWrite("ai", "Destination too close to " + mapfeatures[i].getDesc() + ".<br />");
@@ -1324,11 +1258,11 @@ function FindClosestPoI(xval, yval, themap, poiname) {
     alert("Unknown poi network! (" + poiname + ")"); 
   }
   
-  var closeind = 0;
-  var closest = GetDistance(xval,yval,themap.network[poiname][0].x, themap.network[poiname][0].y);
+  let closeind = 0;
+  let closest = GetDistance(xval,yval,themap.network[poiname][0].x, themap.network[poiname][0].y);
   
-  for (var i=1; i<themap.network[poiname].length; i++) { 
-    var ind = GetDistance(xval,yval,themap.network[poiname][i].x, themap.network[poiname][i].y);
+  for (let i=1; i<themap.network[poiname].length; i++) { 
+    let ind = GetDistance(xval,yval,themap.network[poiname][i].x, themap.network[poiname][i].y);
     if (ind < closest) { closeind = i; }
   }
   return themap.network[poiname][closeind];
@@ -1336,12 +1270,12 @@ function FindClosestPoI(xval, yval, themap, poiname) {
 
 // who, approach, path
 function FindCombatPath(who,approach,path) {
-  var whomap = who.getHomeMap();
-  var moved;
+  let whomap = who.getHomeMap();
+  let moved;
   path.shift();
   path.pop();
-  var finaldest = whomap.getTile(path[path.length-1][0],path[path.length-1][1]);
-  var firststep = whomap.getTile(path[0][0],path[0][1]);
+  let finaldest = whomap.getTile(path[path.length-1][0],path[path.length-1][1]);
+  let firststep = whomap.getTile(path[0][0],path[0][1]);
 
   // if path > 3ish, try to walk along it, if short, check if destination tile is occupied, 
   // if so, search adjacent to approach to find an empty tile and pathfind to it.
@@ -1354,14 +1288,14 @@ function FindCombatPath(who,approach,path) {
     // to get here the path distance can be no more than 4. Tweak this after playtest.
     DebugWrite("ai", "Path is short but blocked- looking for a better path.<br />");
 
-    var leftx = who.getx();
-    var rightx = approach.getx();
+    let leftx = who.getx();
+    let rightx = approach.getx();
     if (rightx < leftx) { 
       leftx = rightx; 
       rightx = who.getx();
     }
-    var topy = who.gety();
-    var bottomy = approach.gety();
+    let topy = who.gety();
+    let bottomy = approach.gety();
     if (topy > bottomy) {
       topy = bottomy;
       bottomy = who.gety();
@@ -1382,10 +1316,10 @@ function FindCombatPath(who,approach,path) {
     // creates a box with the two entities in the corners, and then 
     // stretches it to be large enough to find paths in
 
-    var temppathgrid = whomap.getPathGrid(who.getMovetype()).clone();
-    for (var i = leftx; i <= rightx; i++ ) {
-      for (var j = topy; j <= bottomy; j++ ) {
-        var thisspot = whomap.getTile(i,j);
+    let temppathgrid = whomap.getPathGrid(who.getMovetype()).clone();
+    for (let i = leftx; i <= rightx; i++ ) {
+      for (let j = topy; j <= bottomy; j++ ) {
+        let thisspot = whomap.getTile(i,j);
         if (thisspot.getTopNPC()) {
           temppathgrid.setWalkableAt(i,j,false);
         }
@@ -1396,9 +1330,9 @@ function FindCombatPath(who,approach,path) {
        
     // from here, find 5 paths, to center and each corner
     // each path requires its own clone with that location marked walkable- for corners, note if destination is occupied but still get path
-    var whichdir = GetOctant(approach.getx()-who.getx(), approach.gety()-who.gety());
+    let whichdir = GetOctant(approach.getx()-who.getx(), approach.gety()-who.gety());
     DebugWrite("ai", "Attacker is in octant " + whichdir + ".<br />");      
-    var endpoints = [];  
+    let endpoints = [];  
     switch(whichdir) {                                         // dir from target entity
       case 0:   // AI is heading south
         endpoints[0] = [Math.max(approach.getx()-1, 0), Math.max(approach.gety()-1,0)]; // northwest
@@ -1448,40 +1382,40 @@ function FindCombatPath(who,approach,path) {
 //    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Searching for a path to these locations: (" +  endpoints[0][0] + "," + endpoints[0][1] + "),(" + endpoints[1][0] + "," + endpoints[1][1] + "),(" + endpoints[2][0] + "," + endpoints[2][1] + ").</span><br />"); }    
     DebugWrite("ai", "Searching for a path to these locations: (" +  endpoints[0][0] + "," + endpoints[0][1] + "),(" + endpoints[1][0] + "," + endpoints[1][1] + "),(" + endpoints[2][0] + "," + endpoints[2][1] + ").<br />");
 
-    var available = [];
-    var anyavailable = 0;
-    $.each(endpoints, function(idx,val) {
-      var desttile = whomap.getTile(val[0],val[1]);
-      if (desttile.getTopNPC()) { available[idx] = 0; }
-      else { available[idx] = 1; anyavailable = 1;}
-    });
+    let available = [];
+    let anyavailable = 0;
+    for (let i=0;i<endpoints.length;i++) {
+      let desttile = whomap.getTile(endpoints[i][0],endpoints[i][1]);
+      if (desttile.getTopNPC()) { available[i] = 0; }
+      else { available[i] = 1; anyavailable = 1;}
+    }
     
-    var availdests = [];
+    let availdests = [];
     if (anyavailable) {
       // remove from endpoints destinations that are occupied.
       // skip this step if they all are- in that case pretend none are and just get closer
-      $.each(endpoints, function(idx,val) {
-        if (available[idx]) {
-          availdests.push(val);
+      for (let i=0;i<endpoints.length;i++) {
+        if (available[i]) {
+          availdests.push(endpoints[i]);
         }
-      });
+      }
     } else {
       availdests = endpoints;
     }
     
-    var availpaths = [];
-    $.each(availdests, function(idx,val){ 
-      var evenmoretempgrid = temppathgrid.clone();
-      evenmoretempgrid.setWalkableAt(availdests[idx][0], availdests[idx][1]);
-      var tmp = finder.findPath(who.getx(),who.gety(),availdests[idx][0],availdests[idx][1],evenmoretempgrid);
+    let availpaths = [];
+    for (let i=0;i<availdests.length;i++) {
+      let evenmoretempgrid = temppathgrid.clone();
+      evenmoretempgrid.setWalkableAt(availdests[i][0], availdests[i][1]);
+      let tmp = finder.findPath(who.getx(),who.gety(),availdests[i][0],availdests[i][1],evenmoretempgrid);
       if (tmp) {
-        availpaths[idx] = tmp;
+        availpaths[i] = tmp;
       }
-    });
+    }
     
     // next up- find the shortest of the available paths
-    var shortest;
-    for (var i = 0; i<availpaths.length; i++) {
+    let shortest;
+    for (let i = 0; i<availpaths.length; i++) {
       if (!availpaths[i]) { next; }
       if (i === 0) {
         shortest = availpaths[i];
@@ -1508,26 +1442,26 @@ function FindCombatPath(who,approach,path) {
 ais.Courier = function(who) {
   //stay a few steps away from the PC, check to see if both guards are cowards/dead and surrender if so.
   DebugWrite("ai", "Starting Courier AI.<br />");
-  var couriermap = who.getHomeMap();
-  var npcs = couriermap.npcs.getAll();
-  var whox = who.getx();
-  var whoy = who.gety();
-  var stillfighting = 0;
-  $.each(npcs, function(idx,val) {
-    if (val.getName() === "CourierGuardNPC") {
-      if (!val.specials.coward) { stillfighting = 1; }
+  let couriermap = who.getHomeMap();
+  let npcs = couriermap.npcs.getAll();
+  let whox = who.getx();
+  let whoy = who.gety();
+  let stillfighting = 0;
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName() === "CourierGuardNPC") {
+      if (!npcs[i].specials.coward) { stillfighting = 1; }
     }
-  });
+  }
   
   if (stillfighting) {
     DebugWrite("ai", "Guards are still fighting!<br />");
-    var runfrom = FindNearestNPC(who, "enemy");
+    let runfrom = FindNearestNPC(who, "enemy");
     if (runfrom) {  // should be no way there can not be, but...
-      var diffx = whox - runfrom.getx();
-      var diffy = whoy - runfrom.gety();
-      var rundest = [];
-      var pathdest = [];
-      var coin = Dice.roll("1d2");
+      let diffx = whox - runfrom.getx();
+      let diffy = whoy - runfrom.gety();
+      let rundest = [];
+      let pathdest = [];
+      let coin = Dice.roll("1d2");
       if ((Math.abs(diffx) > Math.abs(diffy)) || ((coin === 1) && (Math.abs(diffx) === Math.abs(diffy)))) {
         if (diffx > 0) {
           pathdest = [whox+1,whoy];
@@ -1574,16 +1508,16 @@ ais.Courier = function(who) {
         }
       }
       if (couriermap.getTile(pathdest[0],pathdest[1]) !== "OoB") {
-        var trymove = StepOrSidestep(who,pathdest,rundest);    
+        let trymove = StepOrSidestep(who,pathdest,rundest);    
       }
     }
   } else { 
     DebugWrite("ai", "Guards have fled!<br />");
-    var currx = who.getx();
-    var curry = who.gety();
+    let currx = who.getx();
+    let curry = who.gety();
     
-    var mindist = currx;
-    var dest = [0,curry];
+    let mindist = currx;
+    let dest = [0,curry];
     if (curry < currx) {
       mindist = curry;
       dest = [currx,0];
@@ -1597,9 +1531,9 @@ ais.Courier = function(who) {
       dest = [0,couriermap.getHeight()-1];
     }
     
-    var runaway = 0;
+    let runaway = 0;
     if (mindist > 0) {
-      var path = couriermap.getPath(currx,curry,dest[0],dest[1],MOVE_WALK);
+      let path = couriermap.getPath(currx,curry,dest[0],dest[1],MOVE_WALK);
       path.shift();
       StepOrSidestep(who,[path[0][0],path[0][1]],[currx,0]);
     } else {
@@ -1608,7 +1542,7 @@ ais.Courier = function(who) {
       
     if (!who.surrendered) {
       maintext.addText("The courier surrenders and drops the letter pouch!");
-      var chest = localFactory.createTile("Chest");
+      let chest = localFactory.createTile("Chest");
       chest.addToContainer("CourierPouch",1);
       chest.addToContainer("Gold",30);
       couriermap.placeThing(currx,curry,chest);
@@ -1622,9 +1556,7 @@ ais.Courier = function(who) {
     }
     
   }
-  var retval = {};
-  retval["fin"] = 1;
-  return retval;
+  return {fin:1};
 }
 
 ais.ai_sing = function(who) {
@@ -1632,17 +1564,17 @@ ais.ai_sing = function(who) {
 }
 
 ais.ai_missile = function(who) {
-  var melee = TryMelee(who);
+  let melee = TryMelee(who);
   if (melee) { 
     DebugWrite("ai", "In missile, but something was adjacent so meleeing. THIS SHOULDN'T HAPPEN!!<br />");
     return "melee"; 
   }
   
   // find a target
-  var shoot_at = FindMissileTarget(who,10);
+  let shoot_at = FindMissileTarget(who,10);
   if (shoot_at) {
     DebugWrite("ai", "Firing a missile attack!<br />");
-    var result = Attack(who,shoot_at);
+    let result = Attack(who,shoot_at);
     maintext.addText(result["txt"]);
   
     return "missile";
@@ -1658,18 +1590,17 @@ ais.ai_cast = function(who) {
 
 function FindMissileTarget(who,radius) {
   DebugWrite("ai", "In FindMissileTarget.<br />");
-  var thismap = who.getHomeMap();
-  var nearby = FindNearby("npcs",thismap,radius,"circle",who.getx(),who.gety());
-  var listtargets = [];
-  var listtargetname = [];
-  var weakest;
-  var closest;
-  for (var i=0;i<nearby.length;i++) {
+  let thismap = who.getHomeMap();
+  let nearby = FindNearby("npcs",thismap,radius,"circle",who.getx(),who.gety());
+  let listtargets = [];
+  let listtargetname = [];
+  let weakest;
+  let closest;
+  for (let i=0;i<nearby.length;i++) {
     if (nearby[i].getAttitude() === who.getAttitude()) { continue; }
     if (!weakest) { weakest=nearby[i]; }
     else { 
       if ((weakest.getHP()/weakest.getMaxHP()) > (nearby[i].getHP()/nearby[i].getMaxHP())) { 
- //       alert("replaced weakest with " + nearby[i].getName());
         weakest = nearby[i];
       }
     }
@@ -1684,12 +1615,11 @@ function FindMissileTarget(who,radius) {
     listtargets.push(nearby[i]);
     listtargetname.push(nearby[i].getName());
   }
-//alert(weakest.getName());
   if (weakest) { 
     listtargets.push(weakest); 
     listtargetname.push(weakest.getName());
     if (who.specials.ruthless) {
-      for (var i=0; i<=8; i++) {
+      for (let i=0; i<=8; i++) {
         // make choosing weakest more likely
         listtargets.push(weakest);
         listtargetname.push(weakest.getName());
@@ -1697,9 +1627,8 @@ function FindMissileTarget(who,radius) {
     }
   }
   if (closest) { listtargets.push(closest); listtargetname.push(closest.getName()); }
-//  alert(JSON.stringify(listtargetname));
   if (listtargets[0]) {
-    var idx = Dice.roll("1d"+listtargets.length+"-1");
+    let idx = Dice.roll("1d"+listtargets.length+"-1");
     return (listtargets[idx]);
   } else {
     return 0;

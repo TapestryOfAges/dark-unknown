@@ -310,7 +310,7 @@ Acre.prototype.addLocalSound = function(snd, sndsrc) {
 Acre.prototype.removeLocalSound = function(sndsrc) {
   delete this.localSound[sndsrc.getSerial()];
   if (this.topSound === sndsrc.getSerial()) {
-    var newsnd = "";
+    let newsnd = "";
     $.each(this.localSound, function(idx,val) {
       newsnd = idx;
     });
@@ -330,18 +330,17 @@ Acre.prototype.addLocalLight = function(lightsource, lightlevel, map) {
   // lightlevel is always an object, might not have ne,nw,etc, always has center
   this.localLight[lightsource.getSerial()] = lightlevel;
 	map.lightsList[lightsource.getSerial()] = lightsource;
-//	if (debug && debugflags.light) { dbs.writeln("LIGHT " + lightsource.getSerial() + ": Added to this acre."); }
 	DebugWrite("light", "LIGHT " + lightsource.getSerial() + ": Added to this acre.<br />");
 }
 
 Acre.prototype.getLocalLight = function(dir) {
-  var lightlevel = 0 ;
+  let lightlevel = 0 ;
   if (dir) {
-    for (var i in this.localLight) {
+    for (let i in this.localLight) {
       lightlevel += this.localLight[i][dir];
     }
   } else {
-	  for (var i in this.localLight) {
+	  for (let i in this.localLight) {
 		  lightlevel += this.localLight[i]["center"];
     }
   }
@@ -353,12 +352,12 @@ Acre.prototype.removeLocalLight = function(source) {
 }
 
 Acre.prototype.getBlocksLOS = function(dist) {
-	var maxLOS = 0;
+	let maxLOS = 0;
 	maxLOS = this.terrain.getBlocksLOS(dist);
-	var allFeatures = this.features.getAll();
+	let allFeatures = this.features.getAll();
 	if (allFeatures[0]) {
-		for (var i = 0; i < allFeatures.length; i++ ) {
-			var featureLOS = allFeatures[0].getBlocksLOS(dist);
+		for (let i = 0; i < allFeatures.length; i++ ) {
+			let featureLOS = allFeatures[0].getBlocksLOS(dist);
 			if (featureLOS > maxLOS) {
 				maxLOS = featureLOS;
 			}
@@ -368,12 +367,12 @@ Acre.prototype.getBlocksLOS = function(dist) {
 }
 
 Acre.prototype.getBlocksLOE = function(dist) {
-	var maxLOS = 0;
+	let maxLOS = 0;
 	maxLOS = this.terrain.getBlocksLOE(dist);
-	var allFeatures = this.features.getAll();
+	let allFeatures = this.features.getAll();
 	if (allFeatures[0]) {
-		for (var i = 0; i < allFeatures.length; i++ ) {
-			var featureLOS = allFeatures[0].getBlocksLOE(dist);
+		for (let i = 0; i < allFeatures.length; i++ ) {
+			let featureLOS = allFeatures[0].getBlocksLOE(dist);
 			if (featureLOS > maxLOS) {
 				maxLOS = featureLOS;
 			}
@@ -395,8 +394,8 @@ Acre.prototype.getFeatureByName = function(featurename) {
 }
 
 Acre.prototype.getTopVisibleFeature = function() {
-	var features = this.features.getAll();
-	var ind = features.length;
+	let features = this.features.getAll();
+	let ind = features.length;
 	if (ind === 0) { return; }
 	while (ind > 0) {
 		if (features[ind-1].invisible) {
@@ -418,8 +417,8 @@ Acre.prototype.getTopNPC = function() {
 }
 
 Acre.prototype.getTopVisibleNPC = function() {
-	var npcs = this.npcs.getAll();
-	var ind = npcs.length;
+	let npcs = this.npcs.getAll();
+	let ind = npcs.length;
 	if (ind === 0) { return; }
 	while (ind > 0) {
 		if (npcs[ind-1].invisible) {
@@ -445,7 +444,7 @@ Acre.prototype.getTerrain = function() {
 }
 
 Acre.prototype.getTop = function(nopc, sortnpctotop) {
-  var toptile;
+  let toptile;
   if (!sortnpctotop) {
   	if (this.getTopPC() && !nopc) {
     	toptile = this.getTopPC();
@@ -468,16 +467,16 @@ Acre.prototype.getTop = function(nopc, sortnpctotop) {
 }
 
 Acre.prototype.getBumpIntoResult = function(mover) {
-	var terrain = this.getTerrain();
-	var retval = terrain.bumpinto(mover);
+	let terrain = this.getTerrain();
+	let retval = terrain.bumpinto(mover);
 
 	if (retval["msg"] != "") { retval["msg"] = " - " + retval["msg"]; }	
 	if (retval["canmove"] === 0) { return retval; }
 	
-	var features = this.getFeatures();
+	let features = this.getFeatures();
 	if (features[0]) {
-		for (var i=0; i<features.length; i++) {
-			var retval2 = features[i].bumpinto(mover);
+		for (let i=0; i<features.length; i++) {
+			let retval2 = features[i].bumpinto(mover);
 			if (retval2["msg"] != "") {
 				if (retval["msg"] == "") { retval["msg"] = " - " + retval2["msg"]; }
 				else { retval["msg"] += "\n" + retval2["msg"]; }
@@ -496,11 +495,11 @@ Acre.prototype.getInitDelay = function(mob) {
 	if (mob.getMovetype() & MOVE_FLY) {
 		return 1;
 	}
-	var terrain = this.getTerrain();
-	var features = this.getFeatures();
-	var initdelay = terrain.getInitDelay();
+	let terrain = this.getTerrain();
+	let features = this.getFeatures();
+	let initdelay = terrain.getInitDelay();
 	if (features[0]) {
-		for (var i = 0; i < features.length; i++) {
+		for (let i = 0; i < features.length; i++) {
 			initdelay = initdelay * features[i].getInitDelay();
 		}
 	}
@@ -510,21 +509,21 @@ Acre.prototype.getInitDelay = function(mob) {
 
 // if nonpcs is true, this will return false if there is an NPC blocking movement. If it's false/missing, this ignores NPCs.
 Acre.prototype.canMoveHere = function(movetype, nonpcs) {
-	var terrain = this.getTerrain();
-	var totalpassability = terrain.getPassable();
-	var retval = {};
+	let terrain = this.getTerrain();
+	let totalpassability = terrain.getPassable();
+	let retval = {};
 	
-  var doors = 0;
+  let doors = 0;
   if (movetype & MOVE_WALK_DOOR) { 
     movetype -= MOVE_WALK; 
     doors = 1;
   }
   
-	var featurepassability = MOVE_FLY + MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  var features = this.getFeatures();
+	let featurepassability = MOVE_FLY + MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  let features = this.getFeatures();
   let bridge = 0;
 	if (features[0]) {
-	  for (var i=0; i< features.length; i++) {
+	  for (let i=0; i< features.length; i++) {
 	    if ((features[i].getName() !== "SecretDoor") && doors && (((features[i].hasOwnProperty("opengraphic")) && (!features[i].locked)) || (features[i].pushable))) {
 	      // skip doors and things that can be pushed for this check
 	    } else {
@@ -533,16 +532,15 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 		  }
 		}  
 		if (!nonpcs) {
-		  var npcs = this.getNPCs();
+		  let npcs = this.getNPCs();
 	    if (npcs[0]) {
 	  	  featurepassability = 0;
       }
-      var pcs = this.getPCs();
+      let pcs = this.getPCs();
       if (pcs[0]) {
 	  	  featurepassability = 0;
       }
     }
-//		if (totalpassability & MOVE_SWIM) {
     if (bridge) {
 	  	if (featurepassability & movetype) {
 	  		retval["canmove"] = 1;
@@ -552,11 +550,11 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	  }
 	}
 	if (!nonpcs) {
-	  var npcs = this.getNPCs();
+	  let npcs = this.getNPCs();
     if (npcs[0]) {
       featurepassability = 0;
     }
-    var pcs = this.getPCs();
+    let pcs = this.getPCs();
     if (pcs[0]) {
 	   featurepassability = 0;
     }    
@@ -574,28 +572,28 @@ Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 }
 
 Acre.prototype.getPathWeight = function(civ) {
-  var pathweight = this.getTerrain().getPathWeight(civ);
-  var fea = this.getFeatures();
-  $.each(fea, function(idx,val) {
-    pathweight *= val.getPathWeight(civ);
-  });
+  let pathweight = this.getTerrain().getPathWeight(civ);
+  let fea = this.getFeatures();
+  for (let i=0;i<fea.length;i++) {
+    pathweight *= fea[i].getPathWeight(civ);
+  }
   return pathweight;
 };
 
 Acre.prototype.executeWalkons = function(walker) {
-	var terrain = this.getTerrain();
-	var response = "";
+	let terrain = this.getTerrain();
+	let response = "";
 	if (typeof terrain.walkon === "function") {
-    var resp = terrain.walkon(walker);
+    let resp = terrain.walkon(walker);
     if (resp) {
       response += resp;
     }
 	}
-	var features = this.getFeatures();
+	let features = this.getFeatures();
 	if (features) {
-		for (var i = 0; i < features.length; i++) {
+		for (let i = 0; i < features.length; i++) {
 			if (typeof features[i].walkon === "function") {
-				var resp = features[i].walkon(walker);
+				let resp = features[i].walkon(walker);
 				if (resp) {
 				  if (response) { response += "<br />"; }
 				  response += resp;
@@ -607,19 +605,19 @@ Acre.prototype.executeWalkons = function(walker) {
 }
 
 Acre.prototype.executeWalkoffs = function(walker) {
-	var terrain = this.getTerrain();
-	var response = "";
+	let terrain = this.getTerrain();
+	let response = "";
 	if (typeof terrain.walkoff === "function") {
-    var resp = terrain.walkoff(walker);
+    let resp = terrain.walkoff(walker);
     if (resp) {
       response += resp;
     }
 	}
-	var features = this.getFeatures();
+	let features = this.getFeatures();
 	if (features) {
-		for (var i = 0; i < features.length; i++) {
+		for (let i = 0; i < features.length; i++) {
 			if (typeof features[i].walkoff === "function") {
-				var resp = features[i].walkoff(walker);
+				let resp = features[i].walkoff(walker);
 				if (resp) {
 				  if (response) { response += "<br />"; }
 				  response += resp;
@@ -631,17 +629,17 @@ Acre.prototype.executeWalkoffs = function(walker) {
 }
 
 Acre.prototype.executeIdles = function(walker) {
-	var terrain = this.getTerrain();
-	var response = "";
+	let terrain = this.getTerrain();
+	let response = "";
 	if (typeof terrain.idle === "function") {
-		var resp = terrain.idle(walker);
+		let resp = terrain.idle(walker);
 		if (resp) { response += resp; }
 	}
-	var features = this.getFeatures();
+	let features = this.getFeatures();
 	if (features) {
-		for (var i = 0; i < features.length; i++) {
+		for (let i = 0; i < features.length; i++) {
 			if (typeof features[i].idle === "function") {
-				var resp = features[i].idle(walker);
+				let resp = features[i].idle(walker);
 				if (resp) {
 				  if (response) { response += "<br />"; }
 				  resp += response;
@@ -655,9 +653,9 @@ Acre.prototype.executeIdles = function(walker) {
 Acre.prototype.isHostileTo = function(who) {
   if (this.getTerrain().isHostileTo(who)) { return 1; }
 
-  var fea = this.getFeatures();
+  let fea = this.getFeatures();
   if (fea) {
-    for (var i = 0; i < fea.length; i++) {
+    for (let i = 0; i < fea.length; i++) {
       if (fea[i].isHostileTo(who)) { return 1; }
     }
   }
@@ -721,7 +719,7 @@ function GameMap() {
 GameMap.prototype = new Object();
 
 GameMap.prototype.getNPCsAndPCs = function() {
-  var alltargets = this.npcs.getAll();
+  let alltargets = this.npcs.getAll();
   alltargets.push(PC);
   return alltargets;
 }
@@ -803,7 +801,6 @@ GameMap.prototype.getSaveName = function() {
 
 GameMap.prototype.setScale = function(newscale) {
   if (newscale) { this.scale = parseInt(newscale); }
-//  this.scale = newscale;
   return this.scale;
 }
 
@@ -822,7 +819,6 @@ GameMap.prototype.getMusic = function() {
 
 GameMap.prototype.setEnterX = function(x) {
   if (x) { this.enterx = parseInt(x); }
-//  this.enterx = x;
   return this.enterx;
 }
 
@@ -832,7 +828,6 @@ GameMap.prototype.getEnterX = function() {
 
 GameMap.prototype.setEnterY = function(y) {
   if (y) { this.entery = parseInt(y); }
-//  this.entery = y;
   return this.entery;
 }
 
@@ -851,7 +846,6 @@ GameMap.prototype.getExitToMap = function() {
 
 GameMap.prototype.setExitToX = function(x) {
   if (x) { this.exitTo.x = parseInt(x); }
-//  this.exitTo.x = x;
   return this.exitTo.x;
 }
 
@@ -861,7 +855,6 @@ GameMap.prototype.getExitToX = function() {
 
 GameMap.prototype.setExitToY = function(y) {
   if (y) { this.exitTo.y = parseInt(y); }
-//  this.exitTo.y = y;
   return this.exitTo.y;
 }
 
@@ -942,7 +935,6 @@ GameMap.prototype.getAlwaysRemember = function() {
 
 GameMap.prototype.setAlwaysRemember = function(ar) {
   if (ar) { this.alwaysRemember = parseInt(ar); }
-//	this.alwaysRemember = ar;
 }
 
 GameMap.prototype.getSeeBelow = function() {
@@ -964,7 +956,7 @@ GameMap.prototype.setLightLevel = function(lightlevel) {
 GameMap.prototype.getAmbientLight = function() {
   if (this.getLightLevel() === "bright") { return 1; }
   if (this.getLightLevel() === "cycle") {
-    var sunlight = 0;
+    let sunlight = 0;
     if (CheckTimeBetween("6:00","17:59")) {
       sunlight = 1;
     } else if (CheckTimeBetween("18:00","18:59") || CheckTimeBetween("5:00","5:59")) {
@@ -1019,13 +1011,13 @@ GameMap.prototype.createPathGrid = function() {
   this.pathGrid[MOVE_FLY] = new PF.Grid(this.getWidth(), this.getHeight());
   this.pathGrid[MOVE_ETHEREAL] = new PF.Grid(this.getWidth(), this.getHeight());
   this.pathGrid[MOVE_WALK_DOOR] = new PF.Grid(this.getWidth(), this.getHeight());
-  for (var i=0; i<this.getWidth(); i++) {
-    for (var j=0; j<this.getHeight(); j++) {
-      var thisspot = this.getTile(i,j);
-      for (var k=1; k<=MOVE_WALK_DOOR; k=k*2) {
-        var response = thisspot.canMoveHere(k, 1);
+  for (let i=0; i<this.getWidth(); i++) {
+    for (let j=0; j<this.getHeight(); j++) {
+      let thisspot = this.getTile(i,j);
+      for (let k=1; k<=MOVE_WALK_DOOR; k=k*2) {
+        let response = thisspot.canMoveHere(k, 1);
         if (!response["canmove"]) { this.setWalkableAt(i,j,false,k); }
-        var pathweight;
+        let pathweight;
         if (k===MOVE_WALK_DOOR) { pathweight = thisspot.getPathWeight("civilized"); }
         else { pathweight = thisspot.getPathWeight(); }
         if (!pathweight) { pathweight = 1; }
@@ -1038,7 +1030,7 @@ GameMap.prototype.createPathGrid = function() {
 GameMap.prototype.getPath = function(fromx,fromy,tox,toy,movetype) {
   if (!movetype) { alert("getPath called with no movetype"); }
   
-  var gridbackup = this.getPathGrid(movetype).clone();
+  let gridbackup = this.getPathGrid(movetype).clone();
   // destination tile must always be walkable.
   gridbackup.setWalkableAt(tox,toy,true);
   
@@ -1046,7 +1038,7 @@ GameMap.prototype.getPath = function(fromx,fromy,tox,toy,movetype) {
   gridbackup.setWalkableAt(fromx,fromy,true);
   
   // get path
-  var foundpath = finder.findPath(fromx,fromy,tox,toy,gridbackup);
+  let foundpath = finder.findPath(fromx,fromy,tox,toy,gridbackup);
   
   return foundpath;
 }
@@ -1064,7 +1056,7 @@ GameMap.prototype.setWeightAt = function(x,y,cost,movetype) {
 GameMap.prototype.setTerrain = function(x,y,terrain) {
   // hopefully usually called by click on the map
 //  var tile = localFactory.createTile(terrain.name);
-  var tile = eidos.getForm(terrain.getName());
+  let tile = eidos.getForm(terrain.getName());
   if (tile) {
     this.data[y][x] = new Acre();
     this.data[y][x].terrain = tile;
@@ -1083,18 +1075,15 @@ GameMap.prototype.getHeight = function() {
 }
 
 GameMap.prototype.resizeMap = function(newx,newy,anchor){
-  var oldx = this.getWidth();
-  var oldy = this.getHeight();
-//  if (debug && debugflags.map) {
-//    dbs.writeln(oldx + " " + oldy + " to " + newx + " " + newy + ", anchor is " + anchor + "<br><br>");
-//  }
+  let oldx = this.getWidth();
+  let oldy = this.getHeight();
   DebugWrite("map", oldx + " " + oldy + " to " + newx + " " + newy + ", anchor is " + anchor + "<br><br>");
-  var tile = new Acre();
+  let tile = new Acre();
   tile.terrain = localFactory.createTile(selectionval.name);
 
   if ((newx) && (newx != oldx)) {
-    for (var i = 1; i <= Math.abs(newx-oldx); i++) {
-      for (var j=0;j<this.data.length;j++) {
+    for (let i = 1; i <= Math.abs(newx-oldx); i++) {
+      for (let j=0;j<this.data.length;j++) {
         if ((anchor === 0) || (anchor === 3) || (anchor === 6)) {
           if (newx > oldx) {  
             this.data[j].push(tile);  
@@ -1129,10 +1118,10 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
     }
   }
   if ((newy) && (newy != oldy)) { 
-    for (var i = 1; i <= Math.abs(newy-oldy); i++) {
+    for (let i = 1; i <= Math.abs(newy-oldy); i++) {
       if (newy > oldy) {
-        var placeholder = [];
-        for (var j=0; j<this.data[0].length;j++) { placeholder.push(tile); }
+        let placeholder = [];
+        for (let j=0; j<this.data[0].length;j++) { placeholder.push(tile); }
         if ((anchor === 0) || (anchor === 1) || (anchor === 2)) {
           this.data.push(placeholder);
         }
@@ -1166,9 +1155,6 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
       }
     }
   }
-//  if (debug && debugflags.map) {
-//    dbs.writeln("Done: " + this.data.length + " " + this.data[0].length + "<br><br>");
-//  }
   DebugWrite("map", "Done: " + this.data.length + " " + this.data[0].length + "<br><br>");
   this.setFeaturesCoord();
   this.setNPCsCoord();
@@ -1176,10 +1162,10 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
 }
 
 GameMap.prototype.setFeaturesCoord = function() {
-  for (var i = 0; i<=this.data.length-1; i++) {
-  	for (var j = 0; j<=this.data[0].length-1; j++){
-  		var featuresarray = this.data[i][j].features.getAll();
-  		for (var ind = 0; ind<=featuresarray.length-1; ind++) {
+  for (let i = 0; i<=this.data.length-1; i++) {
+  	for (let j = 0; j<=this.data[0].length-1; j++){
+  		let featuresarray = this.data[i][j].features.getAll();
+  		for (let ind = 0; ind<=featuresarray.length-1; ind++) {
   			featuresarray[ind].x = j;
   			featuresarray[ind].y = i;
   		}
@@ -1188,10 +1174,10 @@ GameMap.prototype.setFeaturesCoord = function() {
 }
 
 GameMap.prototype.setNPCsCoord = function() {
-  for (var i = 0; i<=this.data.length-1; i++) {
-  	for (var j = 0; j<=this.data[0].length-1; j++){
-  		var npcsarray = this.data[i][j].npcs.getAll();
-  		for (var ind = 0; ind<=npcsarray.length-1; ind++) {
+  for (let i = 0; i<=this.data.length-1; i++) {
+  	for (let j = 0; j<=this.data[0].length-1; j++){
+  		let npcsarray = this.data[i][j].npcs.getAll();
+  		for (let ind = 0; ind<=npcsarray.length-1; ind++) {
   			npcsarray[ind].x = j;
   			npcsarray[ind].y = i;
   		}
@@ -1208,17 +1194,11 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
       this.Enter(newthing,"",0,0,x,y);
     }
 
-    var type = newthing.getTypeForMap() + "s";
+    let type = newthing.getTypeForMap() + "s";
     if (!this.data[type]) { this.data[type] = new Collection(); }
   	newthing.setx(x);
   	newthing.sety(y);
     this[type].addTop(newthing);
-
-    // TEMP DEBUG 
-//    let tmpname = "";
-//    if (newthing.checkType("NPC")) { tmpname = newthing.getNPCName() }
-//console.log(this.getName() + " " + newthing.getName() + " (" + x + "," + y +")" + " - " + tmpname);
-    // END TEMP DEBUG
 
     if (!this.data[y][x][type]) {
       this.data[y][x][type] = new Collection();
@@ -1241,9 +1221,9 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
 
 	  //update pathfinding
 	  if ((type !== "npcs") && (type !== "pcs")) {
-      var tile = this.getTile(x,y);
-      for (var itr=1; itr<=32; itr=itr*2) {
-        var response = tile.canMoveHere(itr, 1);
+      let tile = this.getTile(x,y);
+      for (let itr=1; itr<=32; itr=itr*2) {
+        let response = tile.canMoveHere(itr, 1);
 	      if (response["canmove"]) { this.setWalkableAt(x,y,true,itr); }
         else { this.setWalkableAt(x,y,false,itr); }
         if (itr < 32) {
@@ -1258,16 +1238,15 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
 }
 
 GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump and passable and before walkon
-//	var type = thing.type + "s";
-  var oldx = thing.getx();
-  var oldy = thing.gety();
+  let oldx = thing.getx();
+  let oldy = thing.gety();
  	if ((typeof thing.getLight === "function") && (thing.getLight() !== 0)) {
     this.removeMapLight(thing.getSerial(),thing.getLight(),thing.getx(),thing.gety());
   }
   if (this.ambientNoise) {
     this.removeNoiseSource(thing,thing.getAmbientRadius());
   }
-  var type = thing.getTypeForMap() + "s";
+  let type = thing.getTypeForMap() + "s";
 	this.data[thing.gety()][thing.getx()][type].deleteFrom(thing);
 	if (!this.data[y][x][type]) { this.data[y][x][type] = new Collection(); }
   this.data[y][x][type].addTop(thing);
@@ -1281,10 +1260,10 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
   }
   // update pathfinding
   if (type !== "npcs") {
-    var oldtile = this.getTile(oldx,oldy);
-    var tile = this.getTile(x,y);
-  	for (var i=1; i<=32; i=i*2) {
-	    var response = oldtile.canMoveHere(i, 1);
+    let oldtile = this.getTile(oldx,oldy);
+    let tile = this.getTile(x,y);
+  	for (let i=1; i<=32; i=i*2) {
+	    let response = oldtile.canMoveHere(i, 1);
       if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
       else { this.setWalkableAt(oldx,oldy,false,i); }
       response = tile.canMoveHere(i, 1);
@@ -1296,15 +1275,12 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
 }
 
 GameMap.prototype.deleteThing = function(thing) {
-  var thingmap = thing.getHomeMap();
-//  alert(thingmap.getName());
-//  alert(thing.getName());
+  let thingmap = thing.getHomeMap();
   if (thingmap !== this) { alert("tried to delete " + thing.getName() + " which is not on this map."); return 0; }
   if (thing === targetCursor.lastTarget) { delete targetCursor.lastTarget; }
-//	var type = thing.type + "s";
-  var oldx = thing.getx()
-  var oldy = thing.gety();
-  var type = thing.getTypeForMap() + "s";
+  let oldx = thing.getx()
+  let oldy = thing.gety();
+  let type = thing.getTypeForMap() + "s";
   if ((typeof thing.getLight === "function") && (Math.abs(thing.getLight()) > 0)) {
     this.removeMapLight(thing.getSerial(),thing.getLight(),thing.getx(),thing.gety());
   }
@@ -1316,253 +1292,243 @@ GameMap.prototype.deleteThing = function(thing) {
 	
 	//update pathfinding
 	if ((type !== "npcs") && (type !== "pcs")) {
-    var tile = this.getTile(oldx,oldy);
-	  for (var i=1; i<=32; i=i*2) {
-	    var response = tile.canMoveHere(i, 1);
+    let tile = this.getTile(oldx,oldy);
+	  for (let i=1; i<=32; i=i*2) {
+	    let response = tile.canMoveHere(i, 1);
   	  if (response["canmove"]) { this.setWalkableAt(oldx,oldy,true,i); }
 	    else { this.setWalkableAt(oldx,oldy,false,i); }
 	  }
 	}
-	
 }
 
 
 GameMap.prototype.saveMap = function (name) {
- if (name === '') {
-   name = prompt("Map Name", this.name);
- }
- if (name === null) {return;}
- var printerwin = window.open('','printarray');
- printerwin.document.writeln('mappages["' + name + '"] = {};<br />');
- var oldname=name;
- name = 'mappages["' + name + '"].terrain';
- printerwin.document.writeln(name + " = [];<br />");
- var maxindex = this.data.length-1;
- for (var i=0;i<=maxindex;i++) {
- 	 var saveind = i;
-// 	 while (saveind.toString().length < maxindex.toString().length) {
-// 	 	 saveind = "0" + saveind;
-// 	 }
-   var n = maxindex.toString().length - saveind.toString().length;
-   if (n > 0) {
-   	for (var m = 1; m<=n; m++) {
-   		printerwin.document.write("&nbsp;");
-   	}
-   }
-   printerwin.document.write(name + "[" + saveind + "] = '");
-   for (var j=0;j<=this.data[0].length-1;j++) {
-     var savethis = this.data[i][j].terrain.serialize();
-     if (j != 0) {
-       printerwin.document.write(" ");
-     }
-     printerwin.document.write(""+savethis);
-   }
-   printerwin.document.write("';<br />");
- }
- // ADD FEATURES/NPCs
- name = 'mappages["' + oldname + '"].features';
- printerwin.document.write("<br />" + name + " = [];<br />");
- var mapfeatures = this.features.getAll();
- for (var i=0;i<=mapfeatures.length-1;i++) {
-   printerwin.document.write(name + "[" + i + "] = {name : '" + mapfeatures[i].getName() + "',");
-   printerwin.document.write(" x : " + mapfeatures[i].getx() + ", y : " + mapfeatures[i].gety());
-   // overrides
-   var baseobj = localFactory.createTile(mapfeatures[i].getName());
- //  for (var props in baseobj) {
- //  	 if (baseobj[props] != this.features.container[i][props]) {
- //  	 	 printerwin.document.write(", " + props + " : " + this.features.container[i][props]);
- //  	 }
- //  }
-   if (baseobj.getDesc() !== mapfeatures[i].getDesc()) {
-   	 var thedesc = mapfeatures[i].getDesc();
-     var replacequote = new RegExp('"', "g");
-     thedesc = thedesc.replace(replacequote,'\\"');
-     printerwin.document.write(", desc : \"" + thedesc + "\"");
-   }
-   if (baseobj.getPrefix() !== mapfeatures[i].getPrefix()) {
-   	 var theprefix = mapfeatures[i].getPrefix();
-     printerwin.document.write(", prefix : \"" + theprefix + "\"");
-   }
-   if ((baseobj.getLocked != null) && (baseobj.getLocked() !== mapfeatures[i].getLocked())) {
-   	 printerwin.document.write(", locked : " + mapfeatures[i].getLocked());
-   }
-   if (mapfeatures[i].keyname) {
-     printerwin.document.write(", keyname : \"" + mapfeatures[i].keyname + "\"");
-   }
-   if (baseobj.getEnterMap != null) {
-   	 var mapdest = mapfeatures[i].getEnterMap();
-   	 printerwin.document.write(", entermap : '" + mapdest.entermap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
-   }
-   if (baseobj.isContainer) {
-     if (mapfeatures[i].getLootgroup()) {
-       printerwin.document.write(", lootgroup : '" + mapfeatures[i].getLootgroup() + "'");
-     }
-     if (mapfeatures[i].getKarmaPenalty()) {
-       printerwin.document.write(", karmaPenalty : '" + mapfeatures[i].getKarmaPenalty() + "'");
-     }
-   }
-   if (baseobj.getWalkOnScript() !== mapfeatures[i].getWalkOnScript()) {
-   	printerwin.document.write(", walkonscript : '" + mapfeatures[i].getWalkOnScript() + "'");
-   }
-   if (baseobj.getUseScript() !== mapfeatures[i].getUseScript()) {
-   	printerwin.document.write(", usescript : '" + mapfeatures[i].getUseScript() + "'");
-   } 
-   if (baseobj.getLootedID() !== mapfeatures[i].getLootedID()) {  
-     printerwin.document.write(", lootedid : '" + mapfeatures[i].getLootedID() + "'");
-   }
-   if (mapfeatures[i].getSearchYield().length) {
-    var printyield = "";
-    var itsyield = mapfeatures[i].getSearchYield();
-    if (itsyield.length) {
-      printyield = itsyield[0];
-      if (itsyield.length > 1) {
-        for (var j=1;j<itsyield.length;j++) {
-          printyield += "," + itsyield[j];
-        }
+  if (name === '') {
+    name = prompt("Map Name", this.name);
+  }
+  if (name === null) {return;}
+  let printerwin = window.open('','printarray');
+  printerwin.document.writeln('mappages["' + name + '"] = {};<br />');
+  let oldname=name;
+  name = 'mappages["' + name + '"].terrain';
+  printerwin.document.writeln(name + " = [];<br />");
+  let maxindex = this.data.length-1;
+  for (let i=0;i<=maxindex;i++) {
+ 	  let saveind = i;
+    let n = maxindex.toString().length - saveind.toString().length;
+    if (n > 0) {
+    	for (let m = 1; m<=n; m++) {
+    		printerwin.document.write("&nbsp;");
+    	}
+    }
+    printerwin.document.write(name + "[" + saveind + "] = '");
+    for (let j=0;j<=this.data[0].length-1;j++) {
+      let savethis = this.data[i][j].terrain.serialize();
+      if (j != 0) {
+        printerwin.document.write(" ");
+      }
+      printerwin.document.write(""+savethis);
+    }
+    printerwin.document.write("';<br />");
+  }
+  // ADD FEATURES/NPCs
+  name = 'mappages["' + oldname + '"].features';
+  printerwin.document.write("<br />" + name + " = [];<br />");
+  let mapfeatures = this.features.getAll();
+  for (let i=0;i<=mapfeatures.length-1;i++) {
+    printerwin.document.write(name + "[" + i + "] = {name : '" + mapfeatures[i].getName() + "',");
+    printerwin.document.write(" x : " + mapfeatures[i].getx() + ", y : " + mapfeatures[i].gety());
+    // overrides
+    let baseobj = localFactory.createTile(mapfeatures[i].getName());
+    if (baseobj.getDesc() !== mapfeatures[i].getDesc()) {
+    	let thedesc = mapfeatures[i].getDesc();
+      let replacequote = new RegExp('"', "g");
+      thedesc = thedesc.replace(replacequote,'\\"');
+      printerwin.document.write(", desc : \"" + thedesc + "\"");
+    }
+    if (baseobj.getPrefix() !== mapfeatures[i].getPrefix()) {
+   	  let theprefix = mapfeatures[i].getPrefix();
+      printerwin.document.write(", prefix : \"" + theprefix + "\"");
+    }
+    if ((baseobj.getLocked != null) && (baseobj.getLocked() !== mapfeatures[i].getLocked())) {
+   	  printerwin.document.write(", locked : " + mapfeatures[i].getLocked());
+    }
+    if (mapfeatures[i].keyname) {
+      printerwin.document.write(", keyname : \"" + mapfeatures[i].keyname + "\"");
+    }
+    if (baseobj.getEnterMap != null) {
+      let mapdest = mapfeatures[i].getEnterMap();
+      printerwin.document.write(", entermap : '" + mapdest.entermap + "', enterx : " + mapdest.enterx + ", entery : " + mapdest.entery);
+    }
+    if (baseobj.isContainer) {
+      if (mapfeatures[i].getLootgroup()) {
+        printerwin.document.write(", lootgroup : '" + mapfeatures[i].getLootgroup() + "'");
+      }
+      if (mapfeatures[i].getKarmaPenalty()) {
+        printerwin.document.write(", karmaPenalty : '" + mapfeatures[i].getKarmaPenalty() + "'");
       }
     }
-   	printerwin.document.write(", searchyield : '" + printyield + "'");
-   }   
-   printerwin.document.write("};<br />\n");
- }
- 
- name = 'mappages["' + oldname + '"].npcs';
- printerwin.document.write("<br />\n");
- printerwin.document.write("<br />\n" + name + " = [];<br />\n");
- var mapnpcs = this.npcs.getAll();
- for (var i=0;i<=mapnpcs.length-1;i++) {
- 	printerwin.document.write(name + "[" + i + "] = {name : '" + mapnpcs[i].getName() + "'");
- 	printerwin.document.write(", x : " + mapnpcs[i].getx() + ", y : " + mapnpcs[i].gety());
- 	var basenpc = localFactory.createTile(mapnpcs[i].getName());
- 	if (basenpc.getNPCName() !== mapnpcs[i].getNPCName()) {
- 		printerwin.document.write(", NPCName: '" + mapnpcs[i].getNPCName() + "'");
- 	}
- 	if (basenpc.getDesc() !== mapnpcs[i].getDesc()) {
- 		printerwin.document.write(", Desc: '" + mapnpcs[i].getDesc() + "'");
- 	}
- 	if (basenpc.getPrefix() !== mapnpcs[i].getPrefix()) {
- 		printerwin.document.write(", Prefix: '" + mapnpcs[i].getPrefix() + "'");
- 	}
- 	if (basenpc.getLevel() !== mapnpcs[i].getLevel()) {
- 		printerwin.document.write(", Level: " + mapnpcs[i].getLevel());
- 	}
- 	if (basenpc.getAlignment() !== mapnpcs[i].getAlignment()) {
- 		printerwin.document.write(", Alignment: '" + mapnpcs[i].getAlignment() + "'");
- 	}
- 	if (basenpc.getStr() !== mapnpcs[i].getStr()) {
- 		printerwin.document.write(", str: " + mapnpcs[i].getStr());
- 	}
- 	if (basenpc.getDex() !== mapnpcs[i].getDex()) {
- 		printerwin.document.write(", dex: " + mapnpcs[i].getDex());
- 	}
- 	if (basenpc.getInt() !== mapnpcs[i].getInt()) {
- 		printerwin.document.write(", int: " + mapnpcs[i].getInt());
- 	}
- 	if (basenpc.getAttitude() !== mapnpcs[i].getAttitude()) {
- 		printerwin.document.write(", Attitude: '" + mapnpcs[i].getAttitude() + "'");
- 	}
- 	if (basenpc.getPeaceAI() !== mapnpcs[i].getPeaceAI()) {
- 		printerwin.document.write(", PeaceAI: '" + mapnpcs[i].getPeaceAI() + "'");
- 	}
-  if (basenpc.getPCThreatAI() !== mapnpcs[i].getPCThreatAI()) {
- 		printerwin.document.write(", PCThreatAI: '" + mapnpcs[i].getPCThreatAI() + "'");
+    if (baseobj.getWalkOnScript() !== mapfeatures[i].getWalkOnScript()) {
+    	printerwin.document.write(", walkonscript : '" + mapfeatures[i].getWalkOnScript() + "'");
+    }
+    if (baseobj.getUseScript() !== mapfeatures[i].getUseScript()) {
+   	  printerwin.document.write(", usescript : '" + mapfeatures[i].getUseScript() + "'");
+    } 
+    if (baseobj.getLootedID() !== mapfeatures[i].getLootedID()) {  
+      printerwin.document.write(", lootedid : '" + mapfeatures[i].getLootedID() + "'");
+    }
+    if (mapfeatures[i].getSearchYield().length) {
+      let printyield = "";
+      let itsyield = mapfeatures[i].getSearchYield();
+      if (itsyield.length) {
+        printyield = itsyield[0];
+        if (itsyield.length > 1) {
+          for (let j=1;j<itsyield.length;j++) {
+            printyield += "," + itsyield[j];
+          }
+        }
+      }
+    	printerwin.document.write(", searchyield : '" + printyield + "'");
+    }   
+    printerwin.document.write("};<br />\n");
   }
-  if (basenpc.getSchedule() !== mapnpcs[i].getSchedule()) {
- 		printerwin.document.write(", Schedule: '" + mapnpcs[i].getSchedule() + "'");
- 	} 	
- 	if (basenpc.getConversation() !== mapnpcs[i].getConversation()) {
- 		printerwin.document.write(", Conversation: '" + mapnpcs[i].getConversation() + "'");
- 	} 	
- 	if (basenpc.getConversationFlag() !== mapnpcs[i].getConversationFlag()) {
- 		printerwin.document.write(", ConversationFlag: '" + mapnpcs[i].getConversationFlag() + "'");
- 	} 	
- 	if (basenpc.getGender() !== mapnpcs[i].getGender()) {
- 		printerwin.document.write(", Gender: '" + mapnpcs[i].getGender() + "'");
- 	} 	
- 	if (basenpc.getMerch() !== mapnpcs[i].getMerch()) {
- 		printerwin.document.write(", Merch: '" + mapnpcs[i].getMerch() + "'");
- 	} 	
- 	if (basenpc.getLeash() !== mapnpcs[i].getLeash()) {
- 		printerwin.document.write(", Leash: " + mapnpcs[i].getLeash() + "");
- 	} 	
- 	if (basenpc.getBarkFreq() !== mapnpcs[i].getBarkFreq()) {
- 		printerwin.document.write(", BarkFreq: " + mapnpcs[i].getBarkFreq() + "");
- 	} 	
- 	if (basenpc.getBark() !== mapnpcs[i].getBark()) {
- 		printerwin.document.write(", Bark: '" + mapnpcs[i].getBark() + "'");
- 	} 	
- 	if (basenpc.getBarkRad() !== mapnpcs[i].getBarkRad()) {
- 		printerwin.document.write(", BarkRad: " + mapnpcs[i].getBarkRad() + "");
- 	} 	
- 	if (basenpc.getNPCBand() !== mapnpcs[i].getNPCBand()) {
- 		printerwin.document.write(", NPCBand: '" + mapnpcs[i].getNPCBand() + "'");
- 	} 	
- 	if (mapnpcs[i].overrideGraphic) {
- 	  printerwin.document.write(", OverrideGraphic: '" + mapnpcs[i].overrideGraphic + "'");
- 	}
- 	printerwin.document.write("};<br />\n");
-}
  
- name = 'mappages["' + oldname + '"]';
- printerwin.document.write("<br />\n" + name + ".desc = \"" + this.getDesc() + "\";<br />\n");
- printerwin.document.write(name + ".longdesc = '" + this.getLongDesc() + "';<br />\n");
- printerwin.document.write(name + ".music = '" + this.getMusic() + "';<br />\n");
- printerwin.document.write(name + ".savename = '" + this.getSaveName() + "';<br />\n");
- printerwin.document.write(name + ".exitmap = '" + this.getExitToMap() + "';<br />\n");
- printerwin.document.write(name + ".exitx = '" + this.getExitToX() + "';<br />\n");
- printerwin.document.write(name + ".exity = '" + this.getExitToY() + "';<br />\n");
- printerwin.document.write(name + ".wraps = '" + this.getWrap() + "';<br />\n");
- printerwin.document.write(name + ".enterx = '" + this.getEnterX() + "';<br />\n");
- printerwin.document.write(name + ".entery = '" + this.getEnterY() + "';<br />\n");
- printerwin.document.write(name + ".seeBelow = '" + this.getSeeBelow() + "';<br />\n");
- printerwin.document.write(name + ".lightLevel = '" + this.getLightLevel() + "';<br />\n");
- printerwin.document.write(name + ".alwaysRemember = '" + this.getAlwaysRemember() + "';<br />\n");
- printerwin.document.write(name + ".scale = '" + this.getScale() + "';<br />\n");
- printerwin.document.write(name + ".underground = '" + this.getUnderground() + "';<br />\n");
- printerwin.document.write(name + ".undergroundDesc = '" + this.getUndergroundDesc() + "';<br />\n");
- printerwin.document.write(name + ".enterscript = '" + this.getEnterScript() + "';<br />\n");
- printerwin.document.write(name + ".entertestscript = '" + this.getEnterTestScript() + "';<br />\n");
- printerwin.document.write(name + ".exitscript = '" + this.getExitScript() + "';<br />\n");
- printerwin.document.write(name + ".exittestscript = '" + this.getExitTestScript() + "';<br />\n");
- printerwin.document.write(name + ".returnmap = '" + this.getReturnMap() + "';<br />\n");
- printerwin.document.write(name + ".returnx = '" + this.getReturnx() + "';<br />\n");
- printerwin.document.write(name + ".returny = '" + this.getReturny() + "';<br />\n");
- printerwin.document.write(name + ".returninfused = '" + this.getReturnInfused() + "';<br />\n");
- var linkedMapList;
- var linkedMapArray = this.getLinkedMaps();
- if (linkedMapArray.length > 0) {
- 	 for (var i=0;i<linkedMapArray.length;i++) {
- 	 	if (i === 0) {
- 	 		linkedMapList = '"' + linkedMapArray[i] + '"';
- 	 	} else {
- 	 		linkedMapList = linkedMapList + ',"' + linkedMapArray[i] + '"';
- 	 	}
- 	}
- 	printerwin.document.write(name + ".linkedMaps = [" + linkedMapList + "];<br />\n");
- }
- else {
-   printerwin.document.write(name + ".linkedMaps = [];<br />\n");
- }
- printerwin.document.write(name + ".editorLabels = '" + JSON.stringify(this.allLabels).replace("'","\\'") + "';<br /><br />\n");
- printerwin.document.close();
+  name = 'mappages["' + oldname + '"].npcs';
+  printerwin.document.write("<br />\n");
+  printerwin.document.write("<br />\n" + name + " = [];<br />\n");
+  let mapnpcs = this.npcs.getAll();
+  for (let i=0;i<=mapnpcs.length-1;i++) {
+  	printerwin.document.write(name + "[" + i + "] = {name : '" + mapnpcs[i].getName() + "'");
+  	printerwin.document.write(", x : " + mapnpcs[i].getx() + ", y : " + mapnpcs[i].gety());
+ 	  let basenpc = localFactory.createTile(mapnpcs[i].getName());
+ 	  if (basenpc.getNPCName() !== mapnpcs[i].getNPCName()) {
+ 		  printerwin.document.write(", NPCName: '" + mapnpcs[i].getNPCName() + "'");
+ 	  }
+ 	  if (basenpc.getDesc() !== mapnpcs[i].getDesc()) {
+ 		  printerwin.document.write(", Desc: '" + mapnpcs[i].getDesc() + "'");
+ 	  }
+   	if (basenpc.getPrefix() !== mapnpcs[i].getPrefix()) {
+ 	  	printerwin.document.write(", Prefix: '" + mapnpcs[i].getPrefix() + "'");
+  	}
+  	if (basenpc.getLevel() !== mapnpcs[i].getLevel()) {
+ 	  	printerwin.document.write(", Level: " + mapnpcs[i].getLevel());
+  	}
+  	if (basenpc.getAlignment() !== mapnpcs[i].getAlignment()) {
+ 	  	printerwin.document.write(", Alignment: '" + mapnpcs[i].getAlignment() + "'");
+ 	  }
+ 	  if (basenpc.getStr() !== mapnpcs[i].getStr()) {
+ 		  printerwin.document.write(", str: " + mapnpcs[i].getStr());
+ 	  }
+  	if (basenpc.getDex() !== mapnpcs[i].getDex()) {
+  		printerwin.document.write(", dex: " + mapnpcs[i].getDex());
+ 	  }
+  	if (basenpc.getInt() !== mapnpcs[i].getInt()) {
+  		printerwin.document.write(", int: " + mapnpcs[i].getInt());
+ 	  }
+  	if (basenpc.getAttitude() !== mapnpcs[i].getAttitude()) {
+  		printerwin.document.write(", Attitude: '" + mapnpcs[i].getAttitude() + "'");
+  	}
+ 	  if (basenpc.getPeaceAI() !== mapnpcs[i].getPeaceAI()) {
+ 		  printerwin.document.write(", PeaceAI: '" + mapnpcs[i].getPeaceAI() + "'");
+ 	  }
+    if (basenpc.getPCThreatAI() !== mapnpcs[i].getPCThreatAI()) {
+ 		  printerwin.document.write(", PCThreatAI: '" + mapnpcs[i].getPCThreatAI() + "'");
+    }
+    if (basenpc.getSchedule() !== mapnpcs[i].getSchedule()) {
+ 		  printerwin.document.write(", Schedule: '" + mapnpcs[i].getSchedule() + "'");
+   	} 	
+ 	  if (basenpc.getConversation() !== mapnpcs[i].getConversation()) {
+ 		  printerwin.document.write(", Conversation: '" + mapnpcs[i].getConversation() + "'");
+ 	  } 	
+ 	  if (basenpc.getConversationFlag() !== mapnpcs[i].getConversationFlag()) {
+ 		  printerwin.document.write(", ConversationFlag: '" + mapnpcs[i].getConversationFlag() + "'");
+   	} 	
+ 	  if (basenpc.getGender() !== mapnpcs[i].getGender()) {
+ 		  printerwin.document.write(", Gender: '" + mapnpcs[i].getGender() + "'");
+ 	  } 	
+ 	  if (basenpc.getMerch() !== mapnpcs[i].getMerch()) {
+ 		  printerwin.document.write(", Merch: '" + mapnpcs[i].getMerch() + "'");
+ 	  } 	
+ 	  if (basenpc.getLeash() !== mapnpcs[i].getLeash()) {
+ 		  printerwin.document.write(", Leash: " + mapnpcs[i].getLeash() + "");
+ 	  } 	
+  	if (basenpc.getBarkFreq() !== mapnpcs[i].getBarkFreq()) {
+  		printerwin.document.write(", BarkFreq: " + mapnpcs[i].getBarkFreq() + "");
+ 	  } 	
+ 	  if (basenpc.getBark() !== mapnpcs[i].getBark()) {
+ 		  printerwin.document.write(", Bark: '" + mapnpcs[i].getBark() + "'");
+  	} 	
+  	if (basenpc.getBarkRad() !== mapnpcs[i].getBarkRad()) {
+ 	  	printerwin.document.write(", BarkRad: " + mapnpcs[i].getBarkRad() + "");
+ 	  } 	
+  	if (basenpc.getNPCBand() !== mapnpcs[i].getNPCBand()) {
+  		printerwin.document.write(", NPCBand: '" + mapnpcs[i].getNPCBand() + "'");
+ 	  } 	
+  	if (mapnpcs[i].overrideGraphic) {
+  	  printerwin.document.write(", OverrideGraphic: '" + mapnpcs[i].overrideGraphic + "'");
+ 	  }
+ 	  printerwin.document.write("};<br />\n");
+  }
+ 
+  name = 'mappages["' + oldname + '"]';
+  printerwin.document.write("<br />\n" + name + ".desc = \"" + this.getDesc() + "\";<br />\n");
+  printerwin.document.write(name + ".longdesc = '" + this.getLongDesc() + "';<br />\n");
+  printerwin.document.write(name + ".music = '" + this.getMusic() + "';<br />\n");
+  printerwin.document.write(name + ".savename = '" + this.getSaveName() + "';<br />\n");
+  printerwin.document.write(name + ".exitmap = '" + this.getExitToMap() + "';<br />\n");
+  printerwin.document.write(name + ".exitx = '" + this.getExitToX() + "';<br />\n");
+  printerwin.document.write(name + ".exity = '" + this.getExitToY() + "';<br />\n");
+  printerwin.document.write(name + ".wraps = '" + this.getWrap() + "';<br />\n");
+  printerwin.document.write(name + ".enterx = '" + this.getEnterX() + "';<br />\n");
+  printerwin.document.write(name + ".entery = '" + this.getEnterY() + "';<br />\n");
+  printerwin.document.write(name + ".seeBelow = '" + this.getSeeBelow() + "';<br />\n");
+  printerwin.document.write(name + ".lightLevel = '" + this.getLightLevel() + "';<br />\n");
+  printerwin.document.write(name + ".alwaysRemember = '" + this.getAlwaysRemember() + "';<br />\n");
+  printerwin.document.write(name + ".scale = '" + this.getScale() + "';<br />\n");
+  printerwin.document.write(name + ".underground = '" + this.getUnderground() + "';<br />\n");
+  printerwin.document.write(name + ".undergroundDesc = '" + this.getUndergroundDesc() + "';<br />\n");
+  printerwin.document.write(name + ".enterscript = '" + this.getEnterScript() + "';<br />\n");
+  printerwin.document.write(name + ".entertestscript = '" + this.getEnterTestScript() + "';<br />\n");
+  printerwin.document.write(name + ".exitscript = '" + this.getExitScript() + "';<br />\n");
+  printerwin.document.write(name + ".exittestscript = '" + this.getExitTestScript() + "';<br />\n");
+  printerwin.document.write(name + ".returnmap = '" + this.getReturnMap() + "';<br />\n");
+  printerwin.document.write(name + ".returnx = '" + this.getReturnx() + "';<br />\n");
+  printerwin.document.write(name + ".returny = '" + this.getReturny() + "';<br />\n");
+  printerwin.document.write(name + ".returninfused = '" + this.getReturnInfused() + "';<br />\n");
+  let linkedMapList;
+  let linkedMapArray = this.getLinkedMaps();
+  if (linkedMapArray.length > 0) {
+ 	  for (let i=0;i<linkedMapArray.length;i++) {
+  	 	if (i === 0) {
+  	 		linkedMapList = '"' + linkedMapArray[i] + '"';
+ 	  	} else {
+ 	  		linkedMapList = linkedMapList + ',"' + linkedMapArray[i] + '"';
+ 	 	  }
+  	}
+  	printerwin.document.write(name + ".linkedMaps = [" + linkedMapList + "];<br />\n");
+  } else {
+    printerwin.document.write(name + ".linkedMaps = [];<br />\n");
+  }
+  printerwin.document.write(name + ".editorLabels = '" + JSON.stringify(this.allLabels).replace("'","\\'") + "';<br /><br />\n");
+  printerwin.document.close();
 }
 
 GameMap.prototype.loadMap = function (name) {
   this.data = [];
   this.features.deleteAll();
   this.npcs.deleteAll();
-  var loadfrom = mappages.readPage(name, "terrain");
-  var localatlas = new Atlas();
-  for (var i=0;i<=loadfrom.length-1;i++) {
+  let loadfrom = mappages.readPage(name, "terrain");
+  let localatlas = new Atlas();
+  for (let i=0;i<=loadfrom.length-1;i++) {
     DebugWrite("map", "<br>Starting line: " +i+ ", length " + loadfrom[i].length + " <br>");
-    var tileserials = [];
+    let tileserials = [];
     tileserials = loadfrom[i].split(" ");
     this.data[i] = [];
-    for (var j=0;j<=tileserials.length-1;j++) {
+    for (let j=0;j<=tileserials.length-1;j++) {
       DebugWrite("map", " " + tileserials[j]);
-      var loadedtile = localatlas.key[tileserials[j]];
+      let loadedtile = localatlas.key[tileserials[j]];
 
-      var newterrain = eidos.getForm(loadedtile);
+      let newterrain = eidos.getForm(loadedtile);
       this.setTerrain(j,i,newterrain);
     }
   }
@@ -1626,37 +1592,25 @@ GameMap.prototype.loadMap = function (name) {
   this.setName(name);
   this.createPathGrid();
 
-  var litfeatures = [];
+  let litfeatures = [];
 
   if (gamestate.getMode() !== "loadgame") {
-    var loadfeatures = mappages.readPage(name, "features");
-//  this.features = new Collection;
+    let loadfeatures = mappages.readPage(name, "features");
     if (loadfeatures) {
-      for (var fi=0;fi<=loadfeatures.length-1;fi++) {
-        var newfeature = localFactory.createTile(loadfeatures[fi].name);
+      for (let fi=0;fi<=loadfeatures.length-1;fi++) {
+        let newfeature = localFactory.createTile(loadfeatures[fi].name);
         DebugWrite("map", "<br />Loading features: " +newfeature.getName()+ "...<br />");
-//    	newfeature.setHomeMap(this);
-    	  for (var featurekey in loadfeatures[fi]) {
+    	  for (let featurekey in loadfeatures[fi]) {
     		  if (featurekey === "name") { continue; }
       		if (featurekey === "locked") { newfeature.lockMe(loadfeatures[fi]["locked"]); continue; }
       		if (featurekey === "searchyield") { 
-      		  var tmpyield = loadfeatures[fi][featurekey].split(",");
+      		  let tmpyield = loadfeatures[fi][featurekey].split(",");
             newfeature["searchYield"] = tmpyield;
             newfeature.lootonce = 1;
       		  continue;
       		}
       		newfeature[featurekey] = loadfeatures[fi][featurekey];
       	}
-//    	  if (newfeature.getWalkOnScript()) {
-//          alert("Does this ever happen?");
-//      		var walkonscript = newfeature.getWalkOnScript();
-//      		mappages[name][walkonscript](newfeature);
-//      	}
-//      	if (newfeature.getUseScript()) {
-//      		var usescript = newfeature.getUseScript();
-//      		mappages[name][usescript](newfeature);
-//   	  }
-// Pretty sure these are long since deprecated
       	if (newfeature.getLootedID()) {
       	  if (DU.gameflags.getFlag("lid_" + newfeature.getLootedID())) {
       	    if (newfeature.lootonce) { newfeature.setLootgroup(""); }
@@ -1667,7 +1621,7 @@ GameMap.prototype.loadMap = function (name) {
       	  AddLoot(newfeature);
       	}
         if (typeof newfeature.getLight === "function") {
-          var tmpobj = {};
+          let tmpobj = {};
           tmpobj.feature = newfeature;
           tmpobj.x = loadfeatures[fi].x;
           tmpobj.y = loadfeatures[fi].y;
@@ -1678,16 +1632,15 @@ GameMap.prototype.loadMap = function (name) {
       }
     }
 
-    for (var i=0; i<litfeatures.length;i++) {
+    for (let i=0; i<litfeatures.length;i++) {
       this.placeThing(litfeatures[i].x,litfeatures[i].y,litfeatures[i].feature);
     }
 
-    var loadnpcs = mappages.readPage(name, "npcs");
+    let loadnpcs = mappages.readPage(name, "npcs");
     if (loadnpcs)  {
-  	  for (var npci=0;npci<=loadnpcs.length-1;npci++) {
-        var newnpc = localFactory.createTile(loadnpcs[npci].name);
-//  		newnpc.setHomeMap(this);
-    		for (var npckey in loadnpcs[npci]) {
+  	  for (let npci=0;npci<=loadnpcs.length-1;npci++) {
+        let newnpc = localFactory.createTile(loadnpcs[npci].name);
+    		for (let npckey in loadnpcs[npci]) {
   	  		if (npckey === "NPCName") { newnpc.setNPCName(loadnpcs[npci].NPCName); }
   		  	if (npckey === "Desc") { newnpc.setDesc(loadnpcs[npci].Desc); }
   			  if (npckey === "Prefix") { newnpc.setPrefix(loadnpcs[npci].Prefix); }
@@ -1714,7 +1667,7 @@ GameMap.prototype.loadMap = function (name) {
   			  if (npckey === "OverrideGraphic") { newnpc.overrideGraphic = loadnpcs[npci].OverrideGraphic; }
         }
         if ((newnpc.getPeaceAI() === "scheduled") && (!DU.gameflags.getFlag("editor"))) {
-          var loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1, this);
+          let loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1, this);
           newnpc._mapName = loc.mapName;
           newnpc._x = loc.x;
           newnpc._y = loc.y;
@@ -1743,9 +1696,9 @@ GameMap.prototype.loadMap = function (name) {
 
 GameMap.prototype.setNoiseSource = function(noisesource, noise, radius) {
   this.soundList[noisesource.getSerial()] = noisesource;
-  for (var i=noisesource.getx()-Math.ceil(radius);i<=noisesource.getx()+Math.ceil(radius);i++) {
-    for (var j=noisesource.gety()-Math.ceil(radius);j<=noisesource.gety()+Math.ceil(radius);j++) {
-      var tile = this.getTile(i,j);
+  for (let i=noisesource.getx()-Math.ceil(radius);i<=noisesource.getx()+Math.ceil(radius);i++) {
+    for (let j=noisesource.gety()-Math.ceil(radius);j<=noisesource.gety()+Math.ceil(radius);j++) {
+      let tile = this.getTile(i,j);
       if (tile !== "OoB") {
         if (GetDistance(noisesource.getx(),noisesource.gety(),i,j) <= radius) {
           tile.addLocalSound(noise,noisesource,this);
@@ -1756,10 +1709,10 @@ GameMap.prototype.setNoiseSource = function(noisesource, noise, radius) {
 }
 
 GameMap.prototype.removeNoiseSource = function(noisesource, radius) {
-  var serial = noisesource.getSerial();
-  for (var i=noisesource.getx()-radius;i<=noisesource.getx()+radius;i++) {
-    for (var j=noisesource.gety()-radius;j<=noisesource.gety()+radius;j++) {
-      var tile = this.getTile(i,j);
+  let serial = noisesource.getSerial();
+  for (let i=noisesource.getx()-radius;i<=noisesource.getx()+radius;i++) {
+    for (let j=noisesource.gety()-radius;j<=noisesource.gety()+radius;j++) {
+      let tile = this.getTile(i,j);
       if (tile !== "OoB") {
         if (GetDistance(noisesource.getx(),noisesource.gety(),i,j) <= radius) {
           tile.removeLocalSound(noisesource);
@@ -1771,23 +1724,24 @@ GameMap.prototype.removeNoiseSource = function(noisesource, radius) {
 
 GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
   if (this.getLightLevel() === "bright") { return; }
-  var serial = lightsource.getSerial();
+  let serial = lightsource.getSerial();
 
   DebugWrite("light", "LIGHT: " + lightsource.getHomeMap().getName() + ", " + serial + ", " + light + ", " + x + ", " + y + "<br />");
-	for (var i = (x-(Math.ceil(Math.abs(light))+1)); i<=(x+(Math.ceil(Math.abs(light))+1)); i++) {
-		for (var j = (y-(Math.ceil(Math.abs(light))+1)); j<=(y+(Math.ceil(Math.abs(light))+1)); j++) {
+	for (let i = (x-(Math.ceil(Math.abs(light))+1)); i<=(x+(Math.ceil(Math.abs(light))+1)); i++) {
+		for (let j = (y-(Math.ceil(Math.abs(light))+1)); j<=(y+(Math.ceil(Math.abs(light))+1)); j++) {
 			if (this.getTile(i,j) === "OoB") { continue; }
-			var block = this.getTile(i,j).getBlocksLOS();
+      let block = this.getTile(i,j).getBlocksLOS();
+      let LOSval;
+      let totlight = {};
       DebugWrite("light", "<br />LIGHT " + serial + " (" + x + "," + y + "): Checking shine on x:"+i+",y:"+j+", which blocks " + block + ".<br />");
 			if (block > LOS_THRESHOLD) {   
-        var LOSval = this.getLOS(x,y,i,j,0,1,1);
+        LOSval = this.getLOS(x,y,i,j,0,1,1);
         if (LOSval.ne > LOS_THRESHOLD) { LOSval.ne = LOS_THRESHOLD; }
         if (LOSval.nw > LOS_THRESHOLD) { LOSval.nw = LOS_THRESHOLD; }
         if (LOSval.se > LOS_THRESHOLD) { LOSval.se = LOS_THRESHOLD; }
         if (LOSval.sw > LOS_THRESHOLD) { LOSval.sw = LOS_THRESHOLD; }
         if (LOSval.center > LOS_THRESHOLD) { LOSval.center = LOS_THRESHOLD; }
-        var dist = GetDistance(x,y,i,j);
-        var totlight = {};
+        let dist = GetDistance(x,y,i,j);
         DebugWrite("light", "LOSVAL ne: " + LOSval.ne + ", nw: " + LOSval.nw + ", se: " + LOSval.se + ", sw: " + LOSval.sw + ".<br />");
         totlight.ne = LightAmount(light,dist) * ( 1- (LOSval.ne / LOS_THRESHOLD) );
         if ((light >= 0) && (totlight.ne < 0)) { totlight.ne = 0; }
@@ -1803,7 +1757,7 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
           this.getTile(i,j).addLocalLight(lightsource,totlight,this);
         }
 			} else {
-        var LOSval = this.getLOS(x,y,i,j,0,0,1);
+        LOSval = this.getLOS(x,y,i,j,0,0,1);
         DebugWrite("light", "LIGHT " + serial + ": LOSval: " + JSON.stringify(LOSval) + ".<br />");
         if (typeof LOSval === "number") { if (LOSval > LOS_THRESHOLD) { LOSval = LOS_THRESHOLD; } }
         else { alert("SetMapLight actually got an object in the number section."); console.log(LOSval); }
@@ -1812,10 +1766,8 @@ GameMap.prototype.setMapLight = function(lightsource,light,x,y) {
         if (LOSval.se > LOS_THRESHOLD) { LOSval.se = LOS_THRESHOLD; }
         if (LOSval.sw > LOS_THRESHOLD) { LOSval.sw = LOS_THRESHOLD; }
         if (LOSval.center > LOS_THRESHOLD) { LOSval.center = LOS_THRESHOLD; }
-        var dist = GetDistance(x,y,i,j);
-        var totlight = {};
+        let dist = GetDistance(x,y,i,j);
         totlight.center = LightAmount(light,dist) * ( 1- (LOSval / LOS_THRESHOLD) );
-//        if ((light >= 0) && (totlight.center < 0)) { totlight.center = 0; }
         if ((lightsource.checkType("PC")) && (block > LOS_THRESHOLD)) {
           totlight.ne = totlight.center;
           totlight.se = totlight.center;
@@ -1850,8 +1802,8 @@ function LightAmount(light,dist) {
 }
 
 GameMap.prototype.removeMapLight = function(serial,light,x,y) {
-	for (var i = (x-(Math.ceil(Math.abs(light))+1)); i<=(x+(Math.ceil(Math.abs(light))+1)); i++) {
-		for (var j = (y-(Math.ceil(Math.abs(light))+1)); j<=(y+(Math.ceil(Math.abs(light))+1)); j++) {
+	for (let i = (x-(Math.ceil(Math.abs(light))+1)); i<=(x+(Math.ceil(Math.abs(light))+1)); i++) {
+		for (let j = (y-(Math.ceil(Math.abs(light))+1)); j<=(y+(Math.ceil(Math.abs(light))+1)); j++) {
 			if (this.getTile(i,j) !== "OoB") { 
 			  this.getTile(i,j).removeLocalLight(serial);
 			}
@@ -1859,21 +1811,16 @@ GameMap.prototype.removeMapLight = function(serial,light,x,y) {
 	}
 }
 
-//GameMap.prototype.getLOE = function(x1,y1,x2,y2,losgrid) {
-//  return genLOS(x1,y1,x2,y2,losgrid,"center","center",this, 1, 0);
-//}
-
 GameMap.prototype.getLOS = function(x1,y1,x2,y2, useloe, checklight, checkforlight) {
-//  if (debug) { dbs.writeln("<span style='color:grey;font-style:italic'>&nbsp;Getting LOS between " + x1 + ", " + y1 + " and " + x2 +", " + y2 + ".<br /></span>");  }
   // checklight = 0, check is for LOS only or light on an object that does not block LOS or the light source is the PC
   // checklight = 1, check is for light on an object that does block LOS
   
   // checkforlight is a universal "is this check on the behalf of light", since the previous variable is insufficient for
   // that and adding this was easier than refactoring
   
-	var trueLOS = 100;
-	var totalLOS = 0;
-	var quartersLOS = {};
+	let trueLOS = 100;
+	let totalLOS = 0;
+	let quartersLOS = {};
 
  	quartersLOS.nw = 100;
   quartersLOS.ne = 100;
@@ -1882,7 +1829,6 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2, useloe, checklight, checkforlig
   quartersLOS.center = 100;
 
   if (( (x2-x1) === 0) && ( (y2-y1) === 0)) {
-//    if (debug && (debugflags.map || debugflags.light)) { dbs.writeln("<span style='color:grey;font-style:italic'>&nbsp;Own tile, returning 0.<br /></span>");  }
     DebugWrite("light", "&nbsp;Own tile, returning 0.<br />");
     if (checklight) {
       quartersLOS.nw = 0;
@@ -2503,20 +2449,20 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2, useloe, checklight, checkforlig
 }
 
 function genLOS(x1,y1,x2,y2,startsection,endsection,losmap, useloe, allin) {
-	  var LOSes = losgrid.getLOS(x1,y1,x2,y2,startsection,endsection);
-	  var totalLOS = 0;
+	  let LOSes = losgrid.getLOS(x1,y1,x2,y2,startsection,endsection);
+	  let totalLOS = 0;
 	  if (LOSes[0]) {
 	  	for (var i = 0; i < LOSes.length; i++ ){
-	  		var passx = parseInt(x1) + parseInt(LOSes[i].x);
-	  		var passy = parseInt(y1) + parseInt(LOSes[i].y);
-	  		var location = losmap.getTile(passx,passy);
-	  		var dist = Math.sqrt(Math.pow((passx - x1), 2) + Math.pow((passy - y1),2));
+	  		let passx = parseInt(x1) + parseInt(LOSes[i].x);
+	  		let passy = parseInt(y1) + parseInt(LOSes[i].y);
+	  		let location = losmap.getTile(passx,passy);
+	  		let dist = Math.sqrt(Math.pow((passx - x1), 2) + Math.pow((passy - y1),2));
 	  		if (useloe) {
-	  		  var block = location.getBlocksLOE(dist);
+	  		  let block = location.getBlocksLOE(dist);
 	  		  if (allin && (block >= 1) && ((LOSes[i].coeff * block) > .05) ) { return 1; }
 	  		  totalLOS += LOSes[i].coeff * block;
 	  		} else {
-	  		  var block = location.getBlocksLOS(dist);
+	  		  let block = location.getBlocksLOS(dist);
 	  		  if (allin && (block >= 1) && ((LOSes[i].coeff * block) > .05) ) { return 1; }
 	  		  totalLOS += LOSes[i].coeff * block;
 	  		}
@@ -2524,14 +2470,6 @@ function genLOS(x1,y1,x2,y2,startsection,endsection,losmap, useloe, allin) {
 	  	}
 	  } 
 	  return totalLOS;	
-}
-
-GameMap.prototype.setLights = function() {
-	for (var i = 0; i < this.data.length; i++) {
-		for (var j = 0; j < this.data[i].length; j++) {
-			
-		}
-	}
 }
 
 function Pages() {
@@ -2568,9 +2506,6 @@ Platonic.prototype.getForm = function (name) {
     return this.data[name];
   }
   else {
-//    if (debug && debugflags.map) {
-//      dbs.writeln("((Adding " + name + " to the platonic forms.))<br />");
-//    }
     DebugWrite("map", "((Adding " + name + " to the platonic forms.))<br />");
 
     this.data[name] = localFactory.createTile(name);
@@ -2584,26 +2519,22 @@ function MapMemory() {
 }
 
 MapMemory.prototype.addMap = function(mapname) {
-	var newmap = new GameMap();
+	let newmap = new GameMap();
 	newmap.loadMap(mapname);	
 	this.addMapByRef(newmap);
-
-//  if(typeof mappages[mapname]["onload"] === "function") {
-//    mappages[mapname]["onload"](newmap);
-//  }
 	
 	return newmap;
 }
 
 MapMemory.prototype.addMapByRef = function(mapref) {
-	var mapname = mapref.getName();
+	let mapname = mapref.getName();
 	this.data[mapname] = mapref;
 	
 	// also load linked maps
 	if (gamestate.getMode() !== "loadgame") {  // but only if not loading- on load they are in the saved game
   	if (mapref.linkedMaps[0] && mapref.linkedMaps[0] !== "") {
-	    for (var i = 0; i < mapref.linkedMaps.length; i++) {
-	      var anothermap = new GameMap();
+	    for (let i = 0; i < mapref.linkedMaps.length; i++) {
+	      let anothermap = new GameMap();
 	      anothermap.loadMap(mapref.linkedMaps[i]);
   	    this.data[mapref.linkedMaps[i]] = anothermap;
       }
@@ -2628,9 +2559,9 @@ MapMemory.prototype.addMapByRef = function(mapref) {
 }
 
 MapMemory.prototype.deleteMap = function(mapname) {
-  var negated = DU.gameflags.getFlag("negate");
+  let negated = DU.gameflags.getFlag("negate");
 	if (this.data[mapname].linkedMaps[0] && this.data[mapname].linkedMaps[0] !== "") {
-		for (var i = 0; i < this.data[mapname].linkedMaps.length; i++) {
+		for (let i = 0; i < this.data[mapname].linkedMaps.length; i++) {
 			delete this.data[this.data[mapname].linkedMaps[i]];
 			// also stop tracking that magic is negated on this map
 			delete negated[this.data[mapname].linkedMaps[i]];   
@@ -2641,10 +2572,10 @@ MapMemory.prototype.deleteMap = function(mapname) {
 	delete negated[mapname];
 	DU.gameflags.setFlag("negate", negated);
 	if (debug && debugflags.map) {
-	  DebugWrite("map", "Remaining maps: ");
-	  $.each(this.data, function(idx,val) {
+    DebugWrite("map", "Remaining maps: ");
+    for (let idx in this.data) {
 	    DebugWrite("map", idx + ", ");
-	  });
+	  }
 	  DebugWrite("map", ".</span><br />");
 	}
 	

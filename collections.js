@@ -9,8 +9,8 @@ function Collection() {
 
 Collection.prototype.getAt = function(x,y) {
 
-  var stuffat = [];
-  for (var i = 0; i < this.container.length; i++) {
+  let stuffat = [];
+  for (let i = 0; i < this.container.length; i++) {
     if ((this.container[i].x === x) && (this.container[i].y === y)) {
       stuffat.push(this.container[i]);
     }
@@ -23,10 +23,10 @@ Collection.prototype.getAll = function() {
 }
 
 Collection.prototype.getAllSorted = function() {
-  var tmparray = [];
+  let tmparray = [];
   tmparray = this.container.slice(0);
   tmparray.sort(function(a,b) {
-    var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+    let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
     if (nameA < nameB) 
       return -1
     if (nameA > nameB)
@@ -37,7 +37,7 @@ Collection.prototype.getAllSorted = function() {
 }
 
 Collection.prototype.getTopAt = function(x,y) {
-	var allat = this.getAt(x,y);
+	let allat = this.getAt(x,y);
 	return allat[allat.length-1];
 }
 
@@ -46,7 +46,7 @@ Collection.prototype.getTop = function() {
 }
 
 Collection.prototype.getByName = function(neededName) {
-	for (var i = 0; i < this.container.length; i++) {
+	for (let i = 0; i < this.container.length; i++) {
 		if (this.container[i].getName() === neededName) {
 			return this.container[i];
 		}
@@ -63,7 +63,7 @@ Collection.prototype.addBottom = function(addthis) {
 }
 
 Collection.prototype.deleteFrom = function(deletethis) {
-	for (var i = 0; i < this.container.length; i++) {
+	for (let i = 0; i < this.container.length; i++) {
 		if (this.container[i] === deletethis) {
 			this.container.splice(i,1);
 		}
@@ -71,6 +71,6 @@ Collection.prototype.deleteFrom = function(deletethis) {
 }
 
 Collection.prototype.deleteAll = function() {
-	this.container = new Array;
+	this.container = [];
 }
 
