@@ -216,8 +216,8 @@ mappages["darkunknown"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     Placespawns(mapref);
   // give specs to teleporters
-    var shrinetile = mapref.getTile(13,82);
-    var shrine = shrinetile.getTopFeature();
+    let shrinetile = mapref.getTile(13,82);
+    let shrine = shrinetile.getTopFeature();
     if (shrine) {
       shrine.gotomap = "island";
       shrine.gotox = 14;
@@ -241,8 +241,8 @@ function Placespawns(mapref) {
   
   // Forest SW of Onyx  
   // Zone: SW
-  var onyxspawn = localFactory.createTile("Spawner");
-  var onyxgroup = ["HoodGroupTiny","HoodGroupTiny","HoodGroupTiny","HoodGroupSmall"];
+  let onyxspawn = localFactory.createTile("Spawner");
+  let onyxgroup = ["HoodGroupTiny","HoodGroupTiny","HoodGroupTiny","HoodGroupSmall"];
 
   onyxspawn.setSpawngroup(onyxgroup);
   onyxspawn.setMaxSpawns(3);
@@ -266,7 +266,7 @@ function Placespawns(mapref) {
   onyxspawn.evolve[4][0] = "spawngroup";
   onyxspawn.evolve[4][1] = ["HoodGroupLarge","RogueGroupSmall","RogueGroupLarge","ThiefGroupSmall","ThiefGroupLarge"];
   
-  var freq = 90 + Dice.roll("1d20");
+  let freq = 90 + Dice.roll("1d20");
   onyxspawn.setSpawnFreq(freq);
   
   mapref.placeThing(57,122,onyxspawn);
@@ -274,8 +274,8 @@ function Placespawns(mapref) {
       
   // center of NW island
   // Zone: REMOTE      
-  var spawn = localFactory.createTile("Spawner");
-  var group = ["DrakesSmallGroup"];
+  let spawn = localFactory.createTile("Spawner");
+  let group = ["DrakesSmallGroup"];
 
   spawn.setSpawngroup(group);
   spawn.setSpawnRadius(5);
@@ -872,29 +872,28 @@ function CreateNetwork(mapref) {
   mapref.network["mordor"][2].connections = [mapref.network["mordor"][0], mapref.network["mordor"][1], mapref.network["mordor"][3]];
   mapref.network["mordor"][3].connections = [mapref.network["mordor"][0], mapref.network["mordor"][1], mapref.network["mordor"][2]];
   
-//  if (debug) { TestNetwork(mapref, "wild"); }
 }
 
 function CreateBeaches(mapref) {
   if (!DU.gameflags.getFlag("editor")) {
-    for (var i=0;i<mapref.data.length;i++){ 
-      for (var j=0;j<mapref.data[0].length;j++) {
+    for (let i=0;i<mapref.data.length;i++){ 
+      for (let j=0;j<mapref.data[0].length;j++) {
         if (mapref.getName() === "darkunknown") {
           if ((j>=100) && (j<=110) && (i>=30) && (i<=36)) { continue; }
           if ((j>=72) && (j<=89) && (i>=33) && (i<=40)) { continue; }
           if ((j>=94) && (j<=96) && (i>=88) && (i<=91)) { continue; }
           if ((j>=94) && (j<=120) && (i>=98) && (i<=124)) { continue; }
         }
-        var tile = mapref.getTile(j,i);
+        let tile = mapref.getTile(j,i);
         if ((tile.getTerrain().getName() === "Water") || (tile.getTerrain().getName() === "Shallows")) {
-          var isCoast = 0;
-          for (var k=-1;k<=1;k++) {
-            for (var l=-1;l<=1;l++) {
-              var checkx = j+k;
-              var checky = i+l;
-              var checktile = mapref.getTile(checkx,checky);
+          let isCoast = 0;
+          for (let k=-1;k<=1;k++) {
+            for (let l=-1;l<=1;l++) {
+              let checkx = j+k;
+              let checky = i+l;
+              let checktile = mapref.getTile(checkx,checky);
               if (checktile !== "OoB") {
-                var checkforcoast = checktile.getTerrain();
+                let checkforcoast = checktile.getTerrain();
                 if ((checkforcoast.getName() !== "Ocean") && (checkforcoast.getName() !== "Water") && (checkforcoast.getName() !== "Shallows")) {
                   if (!isCoast) {
                     isCoast=1;

@@ -80,8 +80,8 @@ mappages["headlesscave"].linkedMaps = [""];
 mappages["headlesscave"].onload = function(mapref) {
   if (DU.gameflags.getFlag("cave_cleared")) {
     if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-      var allnpcs = mapref.npcs.getAll();
-      for (var i=0;i<allnpcs.length;i++) {
+      let allnpcs = mapref.npcs.getAll();
+      for (let i=0;i<allnpcs.length;i++) {
         if (allnpcs[i].getName() === "HeadlessNPC") {
           mapref.deleteThing(allnpcs[i]);
           DU.DUTime.removeEntityFrom(allnpcs[i]);
@@ -93,9 +93,9 @@ mappages["headlesscave"].onload = function(mapref) {
 
 mappages["headlesscave"].hc_check_clear = function(mapref) {
   mapref.Exit = function(who,tomap,fromx,fromy,tox,toy) {
-    var allnpcs = mapref.npcs.getAll();
-    var anyheadlesses = 0;
-    for (var i=0; i<allnpcs.length;i++) {
+    let allnpcs = mapref.npcs.getAll();
+    let anyheadlesses = 0;
+    for (let i=0; i<allnpcs.length;i++) {
       if (allnpcs[i].getName() === "HeadlessNPC") {
         anyheadlesses = 1;
       }

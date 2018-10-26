@@ -86,7 +86,7 @@ mappages["shadow1"].linkedMaps = ["shadow2","shadow3"];
 mappages["shadow1"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
     if (DU.gameflags["rescued_sam"]) {
-      var sam = mapref.getTile(18,21).getTopNPC();
+      let sam = mapref.getTile(18,21).getTopNPC();
       mapref.deleteThing(sam);
       DUTime.removeEntityFrom(sam);
     }
@@ -211,7 +211,7 @@ mappages["shadow2"].linkedMaps = ["shadow1","shadow3"];
 mappages["shadow2"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
     if ((DU.gameflags.getFlag("returned_cloak")) || (PC.checkInventory("SiriCloak"))) {
-      var cloak = mapref.getTile(40,49).getTopFeature();
+      let cloak = mapref.getTile(40,49).getTopFeature();
       mapref.deleteThing(cloak);
     }
   }

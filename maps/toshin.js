@@ -339,10 +339,10 @@ mappages["toshin3"].linkedMaps = ["toshin1","toshin2","toshin4"];
 
 mappages["toshin3"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
-    var tile = mapref.getTile(24,7);
-    var tp = tile.getTopFeature();
+    let tile = mapref.getTile(24,7);
+    let tp = tile.getTopFeature();
     if (tp.getName() === "TeleporterPlatform") {
-      var destobj = {};
+      let destobj = {};
       destobj.map = mapref.getName();
       destobj.x = 15;
       destobj.y = 13;
@@ -377,7 +377,7 @@ mappages["toshin3"].onload = function(mapref) {
     }
     
     tile = mapref.getTile(16,9);
-    var sentinel = tile.getTopNPC();
+    let sentinel = tile.getTopNPC();
     sentinel.patrol = 0;
     sentinel.step = 0;
     tile = mapref.getTile(23,9);

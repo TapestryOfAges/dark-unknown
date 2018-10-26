@@ -187,10 +187,10 @@ mappages["worldsending1"].onload = function(mapref) {
 }
 
 function WE_PlaceWalkon(mapref, walkonx, walkony) {
-  var walkontile = localFactory.createTile("WalkOn");
+  let walkontile = localFactory.createTile("WalkOn");
   mapref.placeThing(walkonx, walkony, walkontile);
-  var desty = 0;
-  var destx = [31,35,39];
+  let desty = 0;
+  let destx = [31,35,39];
   if ((walkony === 34) || (walkony === 50)) { desty = 50; }
   if ((walkony === 56) || (walkony === 40)) { desty = 40; }
   walkontile.destx = destx;
@@ -213,7 +213,7 @@ function WE_PlaceWalkon(mapref, walkonx, walkony) {
     }
     
     // set last traveled to check patterns
-    var trackteleports = this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn");
+    let trackteleports = this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn");
     trackteleports.secondlastteleport = trackteleports.lastteleport;
     trackteleports.lastteleport = this.getx() + "," + this.gety();
     if (who === PC) { DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety()); }
@@ -221,7 +221,7 @@ function WE_PlaceWalkon(mapref, walkonx, walkony) {
 }
 
 function CloseWEDoors(mapref) {
-  var doorslist = [];
+  let doorslist = [];
   doorslist[0] = mapref.getTile(31,33).getTopFeature();
   doorslist[1] = mapref.getTile(35,33).getTopFeature();
   doorslist[2] = mapref.getTile(39,33).getTopFeature();
@@ -239,7 +239,7 @@ function CloseWEDoors(mapref) {
   doorslist[14] = mapref.getTile(39,57).getTopFeature();
   doorslist[15] = mapref.getTile(43,57).getTopFeature();
   
-  for (var i =0; i<=15; i++) {
+  for (let i =0; i<=15; i++) {
     if (doorslist[i].open) {
       doorslist[i].use(PC, "silent");
     }
@@ -367,16 +367,16 @@ mappages["spire2"].editorLabels = '{}';
 mappages["spire2"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     if (PC.checkInventory("NatassaResearch") && PC.checkInventory("NatassaResearch2")) { 
-      var tile = mapref.getTile(25,13);
-      var shelf = tile.getTopFeature();
+      let tile = mapref.getTile(25,13);
+      let shelf = tile.getTopFeature();
       shelf.searchyield = '';
     } else if (PC.checkInventory("NatassaResearch")) {
-      var tile = mapref.getTile(25,13);
-      var shelf = tile.getTopFeature();
+      let tile = mapref.getTile(25,13);
+      let shelf = tile.getTopFeature();
       shelf.searchyield = 'NatassaResearch2';
     } else if (PC.checkInventory("NatassaResearch2")) {
-      var tile = mapref.getTile(25,13);
-      var shelf = tile.getTopFeature();
+      let tile = mapref.getTile(25,13);
+      let shelf = tile.getTopFeature();
       shelf.searchyield = 'NatassaResearch';
     } 
   }

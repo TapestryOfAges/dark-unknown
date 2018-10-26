@@ -145,8 +145,8 @@ mappages["island"].onload = function(mapref) {
   
   if (gamestate.getMode() !== "loadgame") {
     // give specs to teleporters
-    var shrinetile = mapref.getTile(14,76);
-    var shrine = shrinetile.getTopFeature();
+    let shrinetile = mapref.getTile(14,76);
+    let shrine = shrinetile.getTopFeature();
     shrine.gotomap = "darkunknown";
     shrine.gotox = 13;
     shrine.gotoy = 82;
@@ -309,8 +309,8 @@ mappages["island_cave"].linkedMaps = [""];
 
 mappages["island_cave"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
-    var walkonloc = mapref.getTile(42,0);
-    var walkontile = walkonloc.getTopFeature();
+    let walkonloc = mapref.getTile(42,0);
+    let walkontile = walkonloc.getTopFeature();
     walkontile.setxto = 30;
     walkontile.setyto = 40;
   
@@ -339,18 +339,16 @@ mappages["island_cave"].onload = function(mapref) {
 
 mappages["island_cave"].exit_north = function(feature) {
 	feature.walkon = function(walker) {
-		var themap=walker.getHomeMap();
+		let themap=walker.getHomeMap();
 		themap.setExitToX(30);
 		themap.setExitToY(40);
-//		alert("Changed exit to north.");
 	}
 }
 
 mappages["island_cave"].exit_south = function(feature) {
 	feature.walkon = function(walker) {
-		var themap=walker.getHomeMap();
+		let themap=walker.getHomeMap();
 		themap.setExitToX(33);
 		themap.setExitToY(47);
-//		alert("Changed exit to south.");
 	}	
 }

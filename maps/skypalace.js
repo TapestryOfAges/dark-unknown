@@ -178,8 +178,8 @@ mappages["skypalace"].onload = function(mapref){
   
   if (gamestate.getMode() !== "loadgame") {
     // find platforms
-    var plattile = mapref.getTile(36,54);
-    var plat = plattile.getTopFeature();
+    let plattile = mapref.getTile(36,54);
+    let plat = plattile.getTopFeature();
     plat.windlist = [35,54, 34,54, 33,54, 32,54, 31,54];
   
     plattile = mapref.getTile(15,56);
@@ -253,9 +253,6 @@ mappages["skypalace"].onload = function(mapref){
 mappages["skypalace"].entersky = function(mapref) {
   mapref.Enter = function(enterer, enterfrom, fromx, fromy, tox, toy){
     if (enterer === PC) {
-      //$("#worldlayer").html("<img src='graphics/high_world.gif' width='416' height='416' />");
-//      $("#worldlayer").css("background-image", "url('graphics/high_world.gif')");
-
       setTimeout(function() {wind_blow();}, 100);
     }
   }
@@ -266,32 +263,30 @@ mappages["skypalace"].useorb = function(feature) {
     this.spritexoffset = this.spritexoffset - 32;
     if (this.spritexoffset < -128) { this.spritexoffset = 0; }
 
-    var sp = maps.getMap("skypalace");
-    var orb1tile = sp.getTile(33,27);
-    var orb1 = orb1tile.getTopFeature();
-    var orb2tile = sp.getTile(29,32);
-    var orb2 = orb2tile.getTopFeature();
-    var orb3tile = sp.getTile(37,32);
-    var orb3 = orb3tile.getTopFeature();
+    let sp = maps.getMap("skypalace");
+    let orb1tile = sp.getTile(33,27);
+    let orb1 = orb1tile.getTopFeature();
+    let orb2tile = sp.getTile(29,32);
+    let orb2 = orb2tile.getTopFeature();
+    let orb3tile = sp.getTile(37,32);
+    let orb3 = orb3tile.getTopFeature();
     if ((orb1.spritexoffset == '-32') && (orb2.spritexoffset == '-96') && (orb3.spritexoffset == '-64')) {
-      var moongate = localFactory.createTile("Moongate");
+      let moongate = localFactory.createTile("Moongate");
       moongate.destmap = "skypalace2";
       moongate.destx = 11;
       moongate.desty = 12;
       sp.placeThing(33,31,moongate);
       animateImage(0,-128,moongate,0,"right",300,0,1);
     } else {
-      var mgtile = sp.getTile(33,31);
-      var moongate = mgtile.getTopFeature();
+      let mgtile = sp.getTile(33,31);
+      let moongate = mgtile.getTopFeature();
       if (moongate) {
         animateImage(-128,0,moongate,0,"left",300,1,0);
         delete moongate.destmap;
       }
     }
   
-    var retval = {};
-    retval["txt"] = "Done!";
-    return retval;
+    return {txt: "Done!"};
   }
 }
 

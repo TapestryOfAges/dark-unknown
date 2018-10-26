@@ -169,8 +169,8 @@ mappages["pitdespair1"].onload = function(mapref) {
     
   if (gamestate.getMode() !== "loadgame") {
 
-    var ports = [];
-    var doortile = mapref.getTile(11,24);
+    let ports = [];
+    let doortile = mapref.getTile(11,24);
     ports[0] = doortile.getTopFeature();
     doortile = mapref.getTile(15,24);
     ports[1] = doortile.getTopFeature();
@@ -183,20 +183,20 @@ mappages["pitdespair1"].onload = function(mapref) {
     doortile = mapref.getTile(25,20);
     ports[5] = doortile.getTopFeature();
 
-    $.each(ports, function(idx,val) {
-      val.setGraphicArray(["055.gif", "wall-arch.gif", 0, 0]);
+    for (let i=0;i<ports.length;i++) {
+      ports[i].setGraphicArray(["055.gif", "wall-arch.gif", 0, 0]);
 			
-			val.closedLOS = val.getBlocksLOSArray();
-			var seethru = [];
+			ports[i].closedLOS = ports[i].getBlocksLOSArray();
+			let seethru = [];
 			seethru[0] = 0;
-			val.setBlocksLOSArray(seethru);
+			ports[i].setBlocksLOSArray(seethru);
 			
-			val.addPassable(MOVE_WALK);
-      val.open = 1;
-    });
+			ports[i].addPassable(MOVE_WALK);
+      ports[i].open = 1;
+    }
     
     doortile = mapref.getTile(18,11);
-    var lever = doortile.getTopFeature();
+    let lever = doortile.getTopFeature();
     lever.attached = { x: 11, y:9 };
     doortile = mapref.getTile(18,12);
     lever = doortile.getTopFeature();
@@ -393,85 +393,71 @@ mappages["pitdespair2"].linkedMaps = ["pitdespair1","pitdespair3","pitdespair4"]
 
 function CheckLasers(themap) {
   // Always with the lasers!
-/*
-  var beams = [];
-  for (var i=46; i<=51; i++) {
-    beams.push({name:"RoyalPuzzleLaserEW", x:i, y:34});
-  }
-  beams.push({name:"RoyalPuzzleLaserEW", x:53, y:34});
-  beams.push({name:"RoyalPuzzleLaserEW", x:54, y:34});
-  beams.push({name:"RoyalPuzzleLaserCross", x:52, y:34});
-  
-  for (var i=28; i<=33; i++) {
-    beams.push({name:"RoyalPuzzleLaserNS", x:52, y:i});
-  }
-  beams.push({name:"RoyalPuzzleLaserNS", x:52, y:35});
-*/
 
   // EW laser
-  var ewline = {};
-  var fromleft = 1;
-  for (var i=46; i<=54; i++) {
+  let ewline = {};
+  let fromleft = 1;
+  for (let i=46; i<=54; i++) {
     ewline[i]=0;
-    var tile = themap.getTile(i,34);
-    var fea = tile.getFeatures();
-    $.each(fea, function(idx,val) {
-      if (val.getName().indexOf("Laser") > -1) {
-        themap.deleteThing(val);
+    let tile = themap.getTile(i,34);
+    let fea = tile.getFeatures();
+    for (let j=0;j<fea.length;j++) {
+      if (fea[j].getName().indexOf("Laser") > -1) {
+        themap.deleteThing(fea[j]);
       }
-      if (val.getName() === "SandstoneWall") {
+      if (fea[j].getName() === "SandstoneWall") {
         fromleft = 0;
       }
-    });
+    }
     if (fromleft) { ewline[i]=1; }
   }
-  var fromright = 1;
-  for (var i=54; i>=46; i--) {
-    var tile = themap.getTile(i,34);
-    var fea = tile.getFeatures();
-    $.each(fea, function(idx,val) {
-      if (val.getName().indexOf("Laser") > -1) {
-        themap.deleteThing(val);
+  let fromright = 1;
+  for (let i=54; i>=46; i--) {
+    let tile = themap.getTile(i,34);
+    let fea = tile.getFeatures();
+    for (let j=0;j<fea.length;j++) {
+      if (fea[j].getName().indexOf("Laser") > -1) {
+        themap.deleteThing(fea[j]);
       }
-      if (val.getName() === "SandstoneWall") {
+      if (fea[j].getName() === "SandstoneWall") {
         fromright = 0;
       }
-    });
+    }
     if (fromright) { ewline[i]=1; }    
   }
   
   // NS laser
-  var nsline = {};
-  var fromtop = 1;
-  for (var i=28; i<=35; i++) {
+  let nsline = {};
+  let fromtop = 1;
+  for (let i=28; i<=35; i++) {
     nsline[i]=0;
-    var tile = themap.getTile(52,i);
-    var fea = tile.getFeatures();
-    $.each(fea, function(idx,val) {
-      if (val.getName().indexOf("Laser") > -1) {
-        themap.deleteThing(val);
+    let tile = themap.getTile(52,i);
+    let fea = tile.getFeatures();
+    for (let j=0;j<fea.length;j++) {
+      if (fea[j].getName().indexOf("Laser") > -1) {
+        themap.deleteThing(fea[j]);
       }
-      if (val.getName() === "SandstoneWall") {
+      if (fea[j].getName() === "SandstoneWall") {
         fromtop = 0;
       }
-    });
+    }
     if (fromtop) { nsline[i]=1; }
   }
-  var frombottom = 1;
-  for (var i=35; i>=28; i--) {
-    var tile = themap.getTile(52,i);
-    var fea = tile.getFeatures();
-    $.each(fea, function(idx,val) {
-      if (val.getName() === "SandstoneWall") {
+  let frombottom = 1;
+  for (let i=35; i>=28; i--) {
+    let tile = themap.getTile(52,i);
+    let fea = tile.getFeatures();
+    for (let j=0;j<fea.length;j++) {
+      if (fea[j].getName() === "SandstoneWall") {
         frombottom = 0;
       }
-    });
+    }
     if (frombottom) { nsline[i]=1; }    
   }
   
-  for (var i=46; i<=54; i++) {
+  for (let i=46; i<=54; i++) {
     if (ewline[i]) {
-      var newlaser;
+      let newlaser;
       if ((i === 52) && (nsline[34])) {
         newlaser = localFactory.createTile("RoyalPuzzleLaserCross");
       } else {
@@ -481,10 +467,10 @@ function CheckLasers(themap) {
     }
   }
   
-  for (var i=28; i<=35; i++) {
+  for (let i=28; i<=35; i++) {
     if (nsline[i]) {
       if (i!==34) { 
-        var newlaser = localFactory.createTile("RoyalPuzzleLaserNS");
+        let newlaser = localFactory.createTile("RoyalPuzzleLaserNS");
         themap.placeThing(52,i,newlaser);
       }
     }

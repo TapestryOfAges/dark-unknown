@@ -164,8 +164,8 @@ mappages["volcano"].linkedMaps = [];
 mappages["volcano"].onload = function(mapref) {
   
   if (gamestate.getMode() !== "loadgame") {
-    var shrinetile = mapref.getTile(11,34);
-    var shrine = shrinetile.getTopFeature();
+    let shrinetile = mapref.getTile(11,34);
+    let shrine = shrinetile.getTopFeature();
     shrine.gotomap = "island";
     shrine.gotox = 60;
     shrine.gotoy = 63;

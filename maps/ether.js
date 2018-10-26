@@ -332,8 +332,8 @@ mappages["ether"].onload = function(mapref) {
   
   if (gamestate.getMode() !== "loadgame") {
     // center island  (0)
-    var tile = mapref.getTile(47,53);
-    var gate = tile.getTopFeature();
+    let tile = mapref.getTile(47,53);
+    let gate = tile.getTopFeature();
     gate.destx = 41;
     gate.desty = 40;
     

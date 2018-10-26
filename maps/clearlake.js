@@ -352,7 +352,7 @@ mappages["clearlake"].editorLabels = '{"div_tile5x52":"Colin and Maggie","div_ti
 mappages["clearlake"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
     if (DU.gameflags["rescued_sam"]) {
-      var julian;
+      let julian;
       for (let i=0;i<npcs.length;i++) {
         if (npcs[i].getNPCName() === "Julian") { julian = npcs[i]; } 
       }

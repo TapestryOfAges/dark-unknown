@@ -289,11 +289,11 @@ mappages["twistoffate3"].editorLabels = '{}';
 
 mappages["twistoffate3"].throwswitch = function(feature) {
   feature.use = function(user) {
-    var level3 = maps.getMap("twistoffate3");
-    var level2 = maps.getMap("twistoffate2");
-    var retval = new Object;
+    let level3 = maps.getMap("twistoffate3");
+    let level2 = maps.getMap("twistoffate2");
+    let retval = {};
     if (!level2) {  // somehow level 2 is not in memory. Load it.
-      var otherlevel = new GameMap();
+      let otherlevel = new GameMap();
       otherlevel = maps.addMap("twistoffate2");
       level2 = otherlevel;
     }
@@ -301,10 +301,10 @@ mappages["twistoffate3"].throwswitch = function(feature) {
       this.setOverlay("switch-on.gif");
       retval["txt"] = "Click!";
       
-      var checkboth = 1;
-      var floor3features = level3.features.getAll();
-      var ports = new Array;
-      for (i=0; i<floor3features.length; i++) {
+      let checkboth = 1;
+      let floor3features = level3.features.getAll();
+      let ports = new Array;
+      for (let i=0; i<floor3features.length; i++) {
         if (floor3features[i].getName() == "LeverOff") {
           if (floor3features[i].getOverlay() == "switch-off.gif") {
             checkboth = 0;
@@ -315,12 +315,12 @@ mappages["twistoffate3"].throwswitch = function(feature) {
         }
       }
       if (checkboth) {  // if both switches are thrown, open the dungeon's doors
-        for (i=0; i<ports.length; i++) {
+        for (let i=0; i<ports.length; i++) {
           ports[i].unlockMe();
           ports[i].use(user);
         }
-        var floor2features = level2.features.getAll();
-        for (i=0; i<floor2features.length; i++) {
+        let floor2features = level2.features.getAll();
+        for (let i=0; i<floor2features.length; i++) {
           if (floor2features[i].getName() == "StonePortcullis") {
             floor2features[i].unlockMe();
             floor2features[i].use(user);

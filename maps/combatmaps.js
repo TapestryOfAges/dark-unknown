@@ -843,15 +843,15 @@ function maps_check_escape(mapref) {
     // check for player death
     if (who.getHP() <= 0) { return 1; }
     
-    var enemytype = "hostile";
-    var numenemies = 0;
+    let enemytype = "hostile";
+    let numenemies = 0;
     if (who.getAttitude() === "hostile") { enemytype = "friendly"; numenemies = 1; }  // The PC!
-    var npcs = this.npcs.getAll();
-    for (var i=0;i<npcs.length;i++) {
+    let npcs = this.npcs.getAll();
+    for (let i=0;i<npcs.length;i++) {
       // counting number of non-coward enemies on the combat map to determine chance to successfully flee
       if ((npcs[i].getAttitude() === enemytype) && !npcs[i].specials.coward) { numenemies++; }
     }
-    var chance = 100;
+    let chance = 100;
     if (numenemies) {
       chance = 100 - (20 + 7*numenemies);
       if (chance < 10) { chance = 10; }
@@ -874,11 +874,9 @@ function maps_check_escape(mapref) {
     if (who === PC) {
       // possibly check for bribery if I decide to go that route
       if ((PC.getHP() > (PC.getMaxHP() * (1/5))) || (PC.getLevel() === 1)) {
-//        if (debug) { dbs.writeln("<span style='color:red'>PC has more than 1/5 its hp, gains coward point for fleeing.<br /></span>"); }
         DebugWrite("combat","PC has more than 1/5 its hp, gains coward point for fleeing.<br />");
         DU.gameflags["coward"]++;
       } else {
-//        if (debug) { dbs.writeln("<span style='color:red'>PC has less than 1/5 its hp, able to flee freely.<br /></span>"); }
         DebugWrite("combat","PC has less than 1/5 its hp, able to flee freely.<br />");
       }
       

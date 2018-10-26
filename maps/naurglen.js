@@ -512,14 +512,14 @@ mappages["naurglen"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"
 mappages["naurglen"].onload = function(mapref) {
   
   if (DU.gameflags["rescued_sam"]) {
-    var npcs = mapref.npcs.getAll();
-    for (var i=0;i<npcs.length;i++) {
+    let npcs = mapref.npcs.getAll();
+    for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Kylee"){
         npcs[i].setSchedule("kylee2");
         break;
       }
     }
-    var sam = localFactory.createTile("ChildVillagerNPC");
+    let sam = localFactory.createTile("ChildVillagerNPC");
     sam.setNPCName("Samantha");
     sam.setConversation("samantha2");
     sam.setGender("female");
@@ -529,7 +529,7 @@ mappages["naurglen"].onload = function(mapref) {
     sam.setSchedule("samantha2");
     sam.setPeaceAI("scheduled");
     sam.setLeash(3);
-    var loc = DU.schedules["samantha2"].getNPCLocationByTime(GetClockTime(), 1);
+    let loc = DU.schedules["samantha2"].getNPCLocationByTime(GetClockTime(), 1);
     mapref.placeThing(loc.x,loc.y,sam);
   }
 }

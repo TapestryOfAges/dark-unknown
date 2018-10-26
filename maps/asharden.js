@@ -93,11 +93,10 @@ mappages["asharden1"].linkedMaps = ["asharden2","asharden3"];
 mappages["asharden1"].onload = function(mapref) {
 
   if (gamestate.getMode() !== "loadgame") {
-    var doorloc = mapref.getTile(25,21);
-    var door = doorloc.getTopFeature();
+    let doorloc = mapref.getTile(25,21);
+    let door = doorloc.getTopFeature();
     if (DU.gameflags.getFlag("ash_password")) {  
     // gave password previously, unlock the door
-      //door.unlockMe();
       mapref.deleteThing(door);
       var newdoor = localFactory.createTile("Door");
       mapref.placeThing(25,21,newdoor);
@@ -107,7 +106,7 @@ mappages["asharden1"].onload = function(mapref) {
       DU.gameflags.setFlag("ash_has_book",1);
     }
     
-    var place_ivan = 0;
+    let place_ivan = 0;
     if ((DU.gameflags.getFlag("ivan_lastvisitchecktime") && ((DUTime.getGameClock() - DU.gameflags.getFlag("ivan_lastvisitchecktime")) > 20)) || (!DU.gameflags.getFlag("ivan_lastvisitchecktime"))) {
       // decide if placing Ivan
       if (Dice.roll("1d4") === 1) {
@@ -128,7 +127,7 @@ mappages["asharden1"].onload = function(mapref) {
       // place walkon at 25,20 to start dialog
       // WORKING HERE
     } else {
-      var ivan = mapref.getTile(22,19).getTopNPC();
+      let ivan = mapref.getTile(22,19).getTopNPC();
       mapref.deleteThing(ivan);
       DUTime.removeEntityFrom(ivan);
     }

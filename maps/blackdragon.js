@@ -252,10 +252,10 @@ function Open_BDC_Gate(mapref) {
   // working here
   if (mapref.getName() === "blackdragon") {
     mapref.getTile(11,39).getTopFeature().setGraphicArray(["moatLever-on.gif","moatLever-on.gif",0,0]);
-    var gate = mapref.getTile(12,38).getTopFeature();
+    let gate = mapref.getTile(12,38).getTopFeature();
     gate.unlockMe();
     gate.use();
-    var planks = localFactory.createTile("PlanksNS");
+    let planks = localFactory.createTile("PlanksNS");
     mapref.setTerrain(11,41,planks);
     mapref.setTerrain(12,41,planks);
     mapref.setTerrain(13,41,planks);

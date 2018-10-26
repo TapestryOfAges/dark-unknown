@@ -380,10 +380,10 @@ mappages["swainhil3"].linkedMaps = ["swainhil","swainhil2"];
 
 mappages["swainhil3"].nogalaxy = function(feature) {
   feature.walkon = function(walker) {
-    var mymap = walker.getHomeMap();
+    let mymap = walker.getHomeMap();
     mymap.setBackground("");
     
-    var normalsong = mymap.getMusic();
+    let normalsong = mymap.getMusic();
     if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== normalsong)) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(normalsong);
@@ -395,11 +395,11 @@ mappages["swainhil3"].nogalaxy = function(feature) {
 
 mappages["swainhil3"].galaxy1 = function(feature) {
   feature.walkon = function(walker) {
-    var mymap = walker.getHomeMap();
+    let mymap = walker.getHomeMap();
     mymap.setBackground("ether.gif");
     mymap.setOpacity(.2);
     
-    var song = "Sirius";
+    let song = "Sirius";
     if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(song);
@@ -411,11 +411,11 @@ mappages["swainhil3"].galaxy1 = function(feature) {
 
 mappages["swainhil3"].galaxy2 = function(feature) {
   feature.walkon = function(walker) {
-    var mymap = walker.getHomeMap();
+    let mymap = walker.getHomeMap();
     mymap.setBackground("ether.gif");
     mymap.setOpacity(.5);
     
-    var song = "Sirius";
+    let song = "Sirius";
     if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(song);
@@ -427,11 +427,11 @@ mappages["swainhil3"].galaxy2 = function(feature) {
 
 mappages["swainhil3"].galaxy3 = function(feature) {
   feature.walkon = function(walker) {
-    var mymap = walker.getHomeMap();
+    let mymap = walker.getHomeMap();
     mymap.setBackground("ether.gif");
     mymap.setOpacity(.8);
     
-    var song = "Sirius";
+    let song = "Sirius";
     if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
       StopMusic(nowplaying);
       nowplaying = DUPlayMusic(song);
