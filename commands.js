@@ -2,20 +2,19 @@
 "use strict";
 
 function PerformCommand(code, ctrl) {
-	var retval = {};
-	retval["fin"] = 0;
-	var confusion = PC.getSpellEffectsByName("Confused");
+	let retval = { fin: 0 };
+	let confusion = PC.getSpellEffectsByName("Confused");
 	if (confusion && (Dice.roll("1d100") > (confusion.getPower()))) {
 	  // PC is confused and loses their action because of it
 	  retval["txt"] = "You are confused!";
 	  retval["fin"] = 1;
 	  if (Dice.roll("1d2") === 1) { 
 	    // confused and randomly wandering
-	    var dir = Dice.roll("1d4");
+	    let dir = Dice.roll("1d4");
 	    if (dir === 1) { PC.moveMe(0,-1,0); }
-	    if (dir === 2) { PC.moveMe(1,0,0); }
-	    if (dir === 3) { PC.moveMe(0,1,0); }
-	    if (dir === 4) { PC.moveMe(-1,0,0); }
+	    else if (dir === 2) { PC.moveMe(1,0,0); }
+	    else if (dir === 3) { PC.moveMe(0,1,0); }
+	    else if (dir === 4) { PC.moveMe(-1,0,0); }
 	  }
 	  return retval;
   }
@@ -34,8 +33,8 @@ function PerformCommand(code, ctrl) {
       if (tmp["fin"] === 1) { return tmp; }
     }
   
-		var success = PC.moveMe(0,-1,0);
-		var txt = "Move North";
+		let success = PC.moveMe(0,-1,0);
+		let txt = "Move North";
 		txt += success["msg"];
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
@@ -63,8 +62,8 @@ function PerformCommand(code, ctrl) {
       if (tmp["fin"] === 1) { return tmp; }
     }
 
-		var success = PC.moveMe(-1,0,0);
-		var txt = "Move West";
+		let success = PC.moveMe(-1,0,0);
+		let txt = "Move West";
 		txt += success["msg"];
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
@@ -92,8 +91,8 @@ function PerformCommand(code, ctrl) {
       if (tmp["fin"] === 1) { return tmp; }
     }
 
-    var success = PC.moveMe(1,0,0);
-		var txt = "Move East";
+    let success = PC.moveMe(1,0,0);
+		let txt = "Move East";
 		txt += success["msg"];
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
@@ -121,8 +120,8 @@ function PerformCommand(code, ctrl) {
       if (tmp["fin"] === 1) { return tmp; }
     }
 
-    var success = PC.moveMe(0,1,0);
-		var txt = "Move South";
+    let success = PC.moveMe(0,1,0);
+		let txt = "Move South";
 		txt += success["msg"];
 		retval["txt"] = txt;
 		retval["input"] = "&gt;";
@@ -143,7 +142,7 @@ function PerformCommand(code, ctrl) {
 		  retval["fin"] = 0;
 		  retval["input"] = "&gt;";
 		} else {
-      var mapscale = PC.getHomeMap().getScale();
+      let mapscale = PC.getHomeMap().getScale();
   		if (!mapscale) { // on a world map, attack is adjacent only
         gamestate.setMode("choosedir");
         retval["txt"] = "";
@@ -154,7 +153,7 @@ function PerformCommand(code, ctrl) {
         targetCursor.y = PC.gety();		  
   		} else {  // on a 1:1 scale map, choose target
 	  	  gamestate.setMode("target");
-        var setcoords = 0;
+        let setcoords = 0;
         if (DU.gameflags.getFlag("sticky_target") && targetCursor.lastTarget) {
           if (targetCursor.lastTarget.getHomeMap() === PC.getHomeMap()) {
             if (IsVisibleOnScreen(targetCursor.lastTarget.getx(),targetCursor.lastTarget.gety())) {
@@ -171,10 +170,10 @@ function PerformCommand(code, ctrl) {
         targetCursor.command = "a";
         targetCursor.targetlimit = (viewsizex -1)/2;
         targetCursor.targetCenterlimit = 0;
-        var displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
-        var xcoord = targetCursor.x - displaystats.leftedge;
-        var ycoord = targetCursor.y - displaystats.topedge;
-        var tileid = "#mainview_" + xcoord + "x" + ycoord;
+        let displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
+        let xcoord = targetCursor.x - displaystats.leftedge;
+        let ycoord = targetCursor.y - displaystats.topedge;
+        let tileid = "#mainview_" + xcoord + "x" + ycoord;
         targetCursor.tileid = tileid;
         targetCursor.basetile = $(tileid).html();
         $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
