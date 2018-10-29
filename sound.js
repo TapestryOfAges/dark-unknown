@@ -1,8 +1,8 @@
 "use strict";
 
-var soundpath = "sfx/";
+let soundpath = "sfx/";
 
-var DUSound = {};
+let DUSound = {};
 DUSound["sfx_walk_right"] = "sfx/sfx1.ogg";
 DUSound["sfx_walk_left"] = "sfx/sfx1.ogg";
 DUSound["sfx_walk_water_right"] = "sfx/sfx1_1.ogg";
@@ -72,8 +72,8 @@ DUSound["sfx_whoosh"] = "sfx/sfx_air.mp3"; // Medieval Fantasy SFX Pack/Spells/A
 DUSound["sfx_heal"] = "sfx/Spell - Heal 2.mp3"; // MFSFP/Spells/Heal 2
 DUSound["sfx_buff"] = "sfx/Event 17.mp3"; // MFSFP/Stingers/Event 17
 
-var musicpath = "music/";
-var DUMusic = {};
+let musicpath = "music/";
+let DUMusic = {};
 DUMusic["Theme"] = "Hero Victorious";
 DUMusic["Dark Unknown"] = "The Dark Unknown";
 DUMusic["Towne"] = "Towne";
@@ -104,10 +104,10 @@ DUMusic["Alone"] = "You Are Not Alone";
 DUMusic["Light"] = "A Light in the Darkness";
 DUMusic["Waltz"] = "Morganna's Waltz";
 
-var musicloaded = {};
-var musicsloaded = 0;
-var soundsloaded = 0;
-var numsounds = Object.keys(DUSound).length;
+let musicloaded = {};
+let musicsloaded = 0;
+let soundsloaded = 0;
+let numsounds = Object.keys(DUSound).length;
 
 function audio_init() {
   createjs.Sound.initializeDefaultPlugins();
@@ -115,10 +115,10 @@ function audio_init() {
   createjs.Sound.addEventListener("fileload", handleFileLoad);
 //  createjs.Sound.registerSounds(DUSound, soundpath);
   
-  $.each(DUMusic, function(idx, val) {
-    var fullpath = musicpath + "" + val + ".mp3";
+  for (let idx in DUMusic) {
+    let fullpath = musicpath + "" + DUMusic[idx] + ".mp3";
     createjs.Sound.registerSound(fullpath, idx);
-  });
+  }
 }
 
 function audio_init_2() {
