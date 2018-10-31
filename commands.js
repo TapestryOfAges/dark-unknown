@@ -173,10 +173,10 @@ function PerformCommand(code, ctrl) {
         let displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
         let xcoord = targetCursor.x - displaystats.leftedge;
         let ycoord = targetCursor.y - displaystats.topedge;
-        let tileid = "#mainview_" + xcoord + "x" + ycoord;
+        let tileid = "mainview_" + xcoord + "x" + ycoord;
         targetCursor.tileid = tileid;
-        targetCursor.basetile = $(tileid).html();
-        $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+        targetCursor.basetile = document.getElementById(tileid).innerHTML;
+        document.getElementById(tileid).innerHTML = targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />';
         retval["txt"] = "";
   		  retval["input"] = "&gt; Attack: ";
 	  	  retval["fin"] = 2;
@@ -250,13 +250,13 @@ function PerformCommand(code, ctrl) {
       targetCursor.command = "l";
       targetCursor.targetlimit = (viewsizex -1)/2;
       targetCursor.targetCenterlimit = 0;
-      var displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
-      var xcoord = targetCursor.x - displaystats.leftedge;
-      var ycoord = targetCursor.y - displaystats.topedge;
-      var tileid = "#mainview_" + xcoord + "x" + ycoord;
+      let displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
+      let xcoord = targetCursor.x - displaystats.leftedge;
+      let ycoord = targetCursor.y - displaystats.topedge;
+      let tileid = "mainview_" + xcoord + "x" + ycoord;
       targetCursor.tileid = tileid;
-      targetCursor.basetile = $(tileid).html();
-      $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+      targetCursor.basetile = document.getElementById(tileid).innerHTML;
+      document.getElementById(tileid).innerHTML = targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />';
       retval["txt"] = "";
       retval["input"] = "&gt; Look: ";
       retval["fin"] = 2;
@@ -271,7 +271,7 @@ function PerformCommand(code, ctrl) {
       retval["txt"] = "Music off.";
     } else {
       DU.gameflags.setFlag("music", 1);
-      var song = PC.getHomeMap().getMusic();
+      let song = PC.getHomeMap().getMusic();
       nowplaying = DUPlayMusic(song);
       retval["txt"] = "Music on.";
     }		
@@ -363,8 +363,8 @@ function PerformCommand(code, ctrl) {
     if (ctrl) { // output conversation log
       retval["input"] = "&gt;";
       retval["fin"] = 2;
-	    var serialized = JSON.stringify(convlog);  
-	    var savescreen = window.open('','savescreen');
+	    let serialized = JSON.stringify(convlog);  
+	    let savescreen = window.open('','savescreen');
   	  savescreen.document.write(serialized);
     } else {
   		gamestate.setMode("choosedir");
@@ -390,14 +390,14 @@ function PerformCommand(code, ctrl) {
     targetCursor.targetlimit = (viewsizex -1)/2;
     targetCursor.targetCenterlimit = 3;
 
-    var edges = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
-    var leftedge = targetCursor.x - edges.leftedge;
-    var topedge = targetCursor.y - edges.topedge;
+    let edges = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
+    let leftedge = targetCursor.x - edges.leftedge;
+    let topedge = targetCursor.y - edges.topedge;
 
-    var tileid = "#mainview_" + leftedge + "x" + topedge;
+    let tileid = "mainview_" + leftedge + "x" + topedge;
     targetCursor.tileid = tileid;
-    targetCursor.basetile = $(tileid).html();
-    $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+    targetCursor.basetile = document.getElementById(tileid).innerHTML;
+    document.getElementById(tileid).innerHTML = targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />';
     retval["txt"] = "";
     retval["input"] = "&gt; Talk: ";
     retval["fin"] = 2;
@@ -418,7 +418,7 @@ function PerformCommand(code, ctrl) {
 		  DU.gameflags.setFlag("sound", 0); 
       retval["txt"] = "Sound effects off.";
       
-      if (!$.isEmptyObject(ambient)) { 
+      if (Object.keys(ambient).length) { // if ambient is not an empty object
         DecAmbientVol(ambient);
         ambient = {}; 
       }
@@ -434,7 +434,7 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 87) { // w
     // wait, was wear/wield
-    var poisoned = PC.getSpellEffectsByName("Poison");
+    let poisoned = PC.getSpellEffectsByName("Poison");
     if (poisoned) {
       retval["txt"] = "You are poisoned- waiting might be a bad idea.";
       retval["input"] = "&gt;";
@@ -485,19 +485,20 @@ function PerformCommand(code, ctrl) {
 }
 
 function PerformEscape() {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 0;
-  var pcmap = PC.getHomeMap();
+  let pcmap = PC.getHomeMap();
   if (pcmap.getDesc() === "Combat") {
-    var enemies = 0;
-    var npcs = pcmap.npcs.getAll();
-    $.each(npcs, function(idx,val) {
+    let enemies = 0;
+    let npcs = pcmap.npcs.getAll();
+    for (let idx in npcs) {
+      val = npcs[idx];
       if (val.getAttitude() === "hostile") { enemies = 1; }
-    });
+    }
     if (enemies === 1) {
       return retval;
     } else {
-      var newmap = new GameMap();
+      let newmap = new GameMap();
 			if (maps.getMap(pcmap.getExitToMap())) {
 			  DebugWrite("map", "destination map already exists.<br />");
 				newmap = maps.getMap(pcmap.getExitToMap());
@@ -505,7 +506,7 @@ function PerformEscape() {
 			  DebugWrite("map", "destination map needs to be loaded.<br />");
 			  newmap = maps.addMap(pcmap.getExitToMap());
 	  	}
-  		var tile = MoveBetweenMaps(PC,pcmap,newmap,pcmap.getExitToX(),pcmap.getExitToY());
+  		let tile = MoveBetweenMaps(PC,pcmap,newmap,pcmap.getExitToX(),pcmap.getExitToY());
  			if (tile) {
  			  DebugWrite("map", "Exited from MoveBetweenMaps. New map is " + newmap.getName() + ".<br />");
         retval["canmove"] = 0;
@@ -526,8 +527,7 @@ function PerformEscape() {
 }
 
 function PerformChooseDir(code) {
-	var retval = new Object;
-	retval["fin"] = -1;
+	let retval = {fin:-1};
 	if ((code === 38) || (code === 219)) {  // UP ARROW or [
 		gamestate.setMode("null");
 		targetCursor.y -= 1;
@@ -560,12 +560,12 @@ function PerformChooseDir(code) {
 	}
 	return retval;
 }
+
 function PerformTarget(code)  {
-	var retval = {};
-	retval["fin"] = -1;
+	let retval = {fin:-1};
 	if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
 		gamestate.setMode("null");
-		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+		let edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		if ((edges.centery - targetCursor.y) < targetCursor.targetlimit) {
 		  if ((!targetCursor.targetCenterlimit) || ((PC.y - targetCursor.y) < targetCursor.targetCenterlimit)) {
 			  targetCursor.y -= 1;
@@ -575,7 +575,7 @@ function PerformTarget(code)  {
 	}
 	else if ((code === 37) || (code === 186)) {  // LEFT ARROW or ;
 		gamestate.setMode("null");
-		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+		let edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		if ((edges.centerx - targetCursor.x) < targetCursor.targetlimit) {
 		  if ((!targetCursor.targetCenterlimit) || ((PC.x - targetCursor.x) < targetCursor.targetCenterlimit)) {
 			  targetCursor.x -= 1;
@@ -585,7 +585,7 @@ function PerformTarget(code)  {
 	}
 	else if ((code === 39) || (code === 222)) { // RIGHT ARROW or '
 		gamestate.setMode("null");
-		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+		let edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		if ((targetCursor.x - edges.centerx) < targetCursor.targetlimit) {
 		  if ((!targetCursor.targetCenterlimit) || ((targetCursor.x - PC.x) < targetCursor.targetCenterlimit)) {
 			  targetCursor.x += 1;
@@ -595,7 +595,7 @@ function PerformTarget(code)  {
 	}
 	else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
 		gamestate.setMode("null");
-		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+		let edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		if ((targetCursor.y - edges.centery) < targetCursor.targetlimit) {
 		  if ((!targetCursor.targetCenterlimit) || ((targetCursor.y - PC.y) < targetCursor.targetCenterlimit)) {
 			  targetCursor.y += 1;
@@ -620,12 +620,12 @@ function PerformTarget(code)  {
 }
 
 function PerformAttack(who) {
-  var tileid = targetCursor.tileid;
-	$(tileid).html(targetCursor.basetile);   
+  let tileid = targetCursor.tileid;
+  document.getElementById(tileid).innerHTML = targetCursor.basetile;
 
-  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-  var atkwho = localacre.npcs.getTop();
-  var retval = {};
+  let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  let atkwho = localacre.npcs.getTop();
+  let retval = {};
   if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety())){ // No self-mutilation!
     retval["txt"] = "";
     retval["fin"] = 0;  
@@ -633,7 +633,7 @@ function PerformAttack(who) {
     return retval;
   }  
   if (!atkwho) {  // nothing there
-    var fea = localacre.features.getTop();
+    let fea = localacre.features.getTop();
     if (fea && IsAdjacent(who,fea)) {
       if (fea.breakable) {
         retval = fea.break(who);
@@ -652,22 +652,22 @@ function PerformAttack(who) {
 }
 
 function PerformAttackMap(who) {
-  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-  var atkwho = localacre.npcs.getTop();
-  var retval = {};
+  let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  let atkwho = localacre.npcs.getTop();
+  let retval = {};
   if (atkwho) { // there's something there!
-    var combatmapname = GetCombatMap(who,atkwho);
-    var newmap = new GameMap();
+    let combatmapname = GetCombatMap(who,atkwho);
+    let newmap = new GameMap();
     newmap = maps.addMap(combatmapname);
 
     PC.getHomeMap().deleteThing(atkwho);
-    var spawner=atkwho.getSpawnedBy();
+    let spawner=atkwho.getSpawnedBy();
     if (spawner) {
       spawner.deleteSpawned(atkwho);
     }
 
-    var monsters = PlaceMonsters(newmap,atkwho,1);
-    var desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
+    let monsters = PlaceMonsters(newmap,atkwho,1);
+    let desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
     
     DUTime.removeEntityFrom(atkwho);
     
@@ -689,12 +689,12 @@ function PerformCast(infuse) {
   gamestate.setMode("spellbook");
   delete targetCursor.castFrom;
   PC.setInfusion(infuse);
-  var hasSpellbook = 0;
-  var retval = {};
-  for (var lvl = 1; lvl <= 8; lvl++) {
+  let hasSpellbook = 0;
+  let retval = {};
+  for (let lvl = 1; lvl <= 8; lvl++) {
     if (hasSpellbook) { break; }
-    for (var i=1; i <= 8; i++) {
-      var spellnum = GetSpellID(i);
+    for (let i=1; i <= 8; i++) {
+      let spellnum = GetSpellID(i);
       if (PC.knowsSpell(lvl, spellnum)) { 
         hasSpellbook = 1; 
         break;
@@ -710,7 +710,7 @@ function PerformCast(infuse) {
     return retval;
   }
   
-  var castermap = PC.getHomeMap();
+  let castermap = PC.getHomeMap();
   if (DU.gameflags.getFlag("negate")[castermap.getName()]) {
     retval["txt"] = "Cast - Magic has been negated, you cannot cast spells here.";
     retval["fin"] = 2;
