@@ -555,7 +555,7 @@ function saveconv() {
 
 function save_chunked_conv() {
   let printerwin = window.open('','printarray');
-  printerwin.document.writeln("var serialconv = {");
+  printerwin.document.writeln("let serialconv = {");
 
   $.each(conversations, function(idx,val) {
     let serialized = JSON.stringify(val);
