@@ -185,3 +185,24 @@ div.demo { color:white;
 
 div.demo a { color:lightblue; }
 
+@keyframes fadeout {
+	from { opacity: 1 }
+	to { opacity: 0; display: none; visibility: hidden}
+}
+
+@keyframes fadein {
+	from {opacity: 0; display: block; visibility: visible }
+	to { opacity: 1}
+}
+
+.runfadeout {
+	animation-name: fadeout;
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
+}
+
+.runfadein {
+	animation-name: fadein;
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
+}
