@@ -381,16 +381,17 @@ ais.DeleteItem = function(who,params) {
     if (!item) {
       DebugWrite("schedules", "Trying to delete last item, cannot find. Marking complete...");
       who.flags.activityComplete = 1;
+    } else {
+      let itemx = item.getx();
+      let itemy = item.gety();
+      let itemmap = item.getHomeMap();
+
+      DebugWrite("schedules", "Deleting " + item.getName() + " from " + itemx + "," + itemy + " on map " + itemmap.getName() + " ...");
+
+      itemmap.deleteThing(item);
+
+      if ((itemmap === PC.getHomeMap()) && (IsVisibleOnScreen(itemx,itemy))) { DrawMainFrame("one",itemmap,itemx,itemy); }
     }
-    let itemx = item.getx();
-    let itemy = item.gety();
-    let itemmap = item.getHomeMap();
-
-    DebugWrite("schedules", "Deleting " + item.getName() + " from " + itemx + "," + itemy + " on map " + itemmap.getName() + " ...");
-
-    itemmap.deleteThing(item);
-
-    if ((itemmap === PC.getHomeMap()) && (IsVisibleOnScreen(itemx,itemy))) { DrawMainFrame("one",itemmap,itemx,itemy); }
   }
   DebugWrite("schedules", "<br />");
   return {fin:1};
