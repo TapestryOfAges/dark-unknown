@@ -13904,6 +13904,7 @@ NPCObject.prototype.endTurn = function(init) {
 
   if (gamestate.getTurn() !== this) {
     console.log(this);
+    console.log(gamestate.getTurn());
     alert("Somehow trying to end a turn when it isn't their turn, aborting.");
   } else if ((this.getHP() <= 0) && (this !== PC)) {
     DebugWrite("ai", "Ending turn while dead, not going back on the stack!");
@@ -14449,9 +14450,9 @@ PCObject.prototype.myTurn = function() {
 
   SetDebugToBottom();
   
+  gamestate.setTurn(PC);
   if (awake) {
 	  gamestate.setMode("player");
-	  gamestate.setTurn(PC);
 	  return 0;
 	} else {
 	  if (sleep) {
