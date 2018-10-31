@@ -16,15 +16,15 @@ Conversation.prototype = new Object();
 Conversation.prototype.respond = function(speaker, keyword, skipahead) { 
     
   if (!skipahead) { skipahead = targetCursor.skipahead; }
-  var flags_met;
-  var necessary_item;
-  var keep_talking = 0;
+  let flags_met;
+  let necessary_item;
+  let keep_talking = 0;
   if (!keyword) { keyword = "bye"; }
     
   keyword = keyword.toLowerCase();
 
-  var checkkeyword = 1;
-  var addtolog = { hasResponse: 1, flagsmet: "", itemsowned: ""};
+  let checkkeyword = 1;
+  let addtolog = { hasResponse: 1, flagsmet: "", itemsowned: ""};
 
   while (checkkeyword)  {
     flags_met = 1;
@@ -33,11 +33,11 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       addtolog.hasResponse = 0;
     }
   
-    var flags = this[keyword].flags;
+    let flags = this[keyword].flags;
     if (flags.hasOwnProperty("flags_met")) {
       if (flags.flags_met.indexOf("self_") !== -1) {
-        var tmpflag = flags.flags_met.replace(/self_/, "");
-        if (!speaker[flags.flags_met]) { flags_met = 0; }
+        let tmpflag = flags.flags_met.replace(/self_/, "");
+        if (!speaker.flags[tmpflag]) { flags_met = 0; }
       }      
       else if (!DU.gameflags.getFlag(flags.flags_met)) { flags_met = 0; }  
       else { addtolog.flagsmet += " " + flags.flags_met; }
@@ -63,13 +63,13 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
       } else { flags_met = 0; }
     }
     if (flags.hasOwnProperty("between_times")) {
-      var times = split("-",flags.between_times);
+      let times = split("-",flags.between_times);
       if (!CheckTimeBetween(times[0],times[1])) { flags_met = 0; }
       else { addtolog.flagsmet += " " + flags.between_times; }
     }
 
     if (this[keyword].responses[flags_met].indexOf("->") != -1) {
-      var holder = this[keyword].responses[flags_met];
+      let holder = this[keyword].responses[flags_met];
       holder = holder.replace(/\-\>/, "");
       keyword = holder;
     } else {
@@ -93,15 +93,15 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   targetCursor.keyword = "";
   targetCursor.skipahead = 0;
   // handle triggers
-  var triggers = this[keyword].triggers[flags_met];
+  let triggers = this[keyword].triggers[flags_met];
   
   if (triggers.hasOwnProperty("give_item")) {
-    var newitem = localFactory.createTile(triggers.give_item);
+    let newitem = localFactory.createTile(triggers.give_item);
     PC.addToInventory(newitem,1);
     maintext.addText("<span class='sysconv'>You have obtained: " + newitem.getFullDesc() + ".</span>");
   }
   if (triggers.hasOwnProperty("take_item")) {
-    var takeme = PC.checkInventory(triggers.take_item);
+    let takeme = PC.checkInventory(triggers.take_item);
     if (takeme) {
       PC.removeFromInventory(takeme);
       maintext.addText("<span class='sysconv'>You no longer have one: " + takeme.getDesc() + ".</span>");
@@ -112,7 +112,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     if (triggers.give_gold > 0) {
       maintext.addText("<span class='sysconv'>You have obtained: " + triggers.give_gold + " gold.</span>");
     } else {
-      var amt = Math.abs(triggers.give_gold);
+      let amt = Math.abs(triggers.give_gold);
       maintext.addText("<span class='sysconv'>You have lost: " + amt + " gold.</span>");
     }
     DrawCharFrame();
@@ -129,16 +129,28 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   if (triggers.hasOwnProperty("set_flag")) {
     if (triggers.set_flag.indexOf("unset_") !== -1) {
-      var tmpflag = triggers.set_flag.replace(/unset_/, "");
-      if (DU.gameflags.getFlag(tmpflag)) {
-        DU.gameflags.deleteFlag(tmpflag);
+      let tmpflag = triggers.set_flag.replace(/unset_/, "");
+      if (tmpflag.indexOf("self_") !== -1) {
+        tmpflag = tmpflag.replace(/self_/, "");
+        if (speaker.flags[tmpflag]) {
+          delete speaker.flags[tmpflag];
+        }
+      } else {
+        if (DU.gameflags.getFlag(tmpflag)) {
+          DU.gameflags.deleteFlag(tmpflag);
+        }
       }
     } else {
-      DU.gameflags.setFlag(triggers.set_flag, 1);
+      if (triggers.set_flag.indexOf("self_") !== -1) {
+        let tmpflag = triggers.set_flag.replace(/self_/, "");
+        speaker.flags[tmpflag] = 1;
+      } else {
+        DU.gameflags.setFlag(triggers.set_flag, 1);
+      }
     
       // special cases
       if (typeof OnConvTriggers[triggers.set_flag] === "function") {
-        var modkeep = OnConvTriggers[triggers.set_flag](speaker,keyword);
+        let modkeep = OnConvTriggers[triggers.set_flag](speaker,keyword);
         if (modkeep) { keep_talking = modkeep; }
       }
 
@@ -154,7 +166,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   if (triggers.hasOwnProperty("start_shop")) {
     if (HasStock(speaker.getMerch())) {
-      var sell = DisplayWares(speaker);
+      let sell = DisplayWares(speaker);
     
       if (sell) {
         targetCursor.alreadyBought = {};
@@ -168,21 +180,21 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   }
   if (triggers.hasOwnProperty("start_sell")) {
 
-    var selllist = [];
+    let selllist = [];
     selllist = GetSellBack(PC,speaker);
     
     if (selllist.length) {
       maintext.addText(" ");
       maintext.addText("This merchant will buy:");
-      for (var i=0; i<selllist.length; i++) {
+      for (let i=0; i<selllist.length; i++) {
         maintext.addText(selllist[i]);
       }
     } else {
-      var convo = targetCursor.talkingto.getConversation();
+      let convo = targetCursor.talkingto.getConversation();
       maintext.addText(" ");
-      var genderterms = targetCursor.talkingto.getGenderedTerms();
+      let genderterms = targetCursor.talkingto.getGenderedTerms();
       maintext.addText("You have nothing " + genderterms.pronoun + " would like to buy.");
-      var retval = PerformTalk(targetCursor.talkingto, convo, "bye");
+      let retval = PerformTalk(targetCursor.talkingto, convo, "bye");
       maintext.addText(retval["txt"]);
       maintext.setInputLine("&gt; ");
       maintext.drawTextFrame();
@@ -204,10 +216,10 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
 }
 
 Conversation.prototype.say = function(speaker, saywhat, skipahead) {
-  var gterms = PC.getGenderedTerms();
-  var pcname = PC.getPCName();
-  var npcterms = speaker.getGenderedTerms();
-  var npcname = speaker.getNPCName();
+  let gterms = PC.getGenderedTerms();
+  let pcname = PC.getPCName();
+  let npcterms = speaker.getGenderedTerms();
+  let npcname = speaker.getNPCName();
   
   saywhat = saywhat.replace(/=(\w+)=/g, "<span style='color:cyan'>$1</span>");
   saywhat = saywhat.replace(/%FORMAL%/g, gterms.formal);
@@ -246,8 +258,8 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
     }
   }
   
-  var speech = saywhat.split("%%");
-  var skipped = "";
+  let speech = saywhat.split("%%");
+  let skipped = "";
   while (skipahead) {
     speech.shift();
     skipahead--;
@@ -287,7 +299,7 @@ function InnRoom(xc,yc,doors) {
     nowplaying.song.stop();
     nowplaying = DUPlayMusic("Lullaby");
   }
-  var innmap = PC.getHomeMap();
+  let innmap = PC.getHomeMap();
   maintext.setInputLine("&gt;");
   maintext.drawTextFrame();
   
@@ -447,7 +459,9 @@ OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
     maintext.addText("You don't have enough gold!");
   } else {
     PC.addGold(-5);
-    maintext.addText("He leads you to your room.");
+    let pronoun = "He";
+    if (speaker.getNPCName() === "Sand") { pronoun = "She"; }
+    maintext.addText(pronoun + " leads you to your room.");
     setTimeout(function() { InnRoom(93,38,[91,38,88,29]); }, 50);
   }
   return -1;
