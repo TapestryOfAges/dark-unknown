@@ -719,9 +719,10 @@ function PerformCast(infuse) {
     
     return retval;
   }
-  var myOpen=function(hash){ hash.w.css('opacity',0.95).show(); };
-  $('#spellbookdiv').jqm({onShow:myOpen,modal:true}); 
-  $('#spellbookdiv').jqmShow();
+//  var myOpen=function(hash){ hash.w.css('opacity',0.95).show(); };
+//  $('#spellbookdiv').jqm({onShow:myOpen,modal:true}); 
+//  $('#spellbookdiv').jqmShow();
+  document.getElementById('spellbookdiv').style.display = "block";
   WritePages();
   DUPlaySound("sfx_paper");
 
@@ -732,10 +733,10 @@ function PerformCast(infuse) {
 }
 
 function PerformSpellbook(code) {
-  var retval = {};
+  let retval = {};
   if ((code === 38) || (code === 219)) { // up
-    var lvl = PC.getLastSpellLevel();
-    var spell = PC.getLastSpell();
+    let lvl = PC.getLastSpellLevel();
+    let spell = PC.getLastSpell();
     spell--;
     while (spell > 0) {
       if (PC.knowsSpell(lvl,GetSpellID(spell))) {
@@ -752,8 +753,8 @@ function PerformSpellbook(code) {
   }
 
   if ((code === 40) || (code === 191)) { // down
-    var lvl = PC.getLastSpellLevel();
-    var spell = PC.getLastSpell();
+    let lvl = PC.getLastSpellLevel();
+    let spell = PC.getLastSpell();
     spell++;
     while (spell < 9) {
       if (PC.knowsSpell(lvl,GetSpellID(spell))) {
@@ -770,9 +771,9 @@ function PerformSpellbook(code) {
   }
   
   if ((code === 37) || (code === 186) || (code === 39) || (code === 222)) { // left or right
-    var lvl = PC.getLastSpellLevel();
-    var spell = PC.getLastSpell();
-    var newlvl = lvl;
+    let lvl = PC.getLastSpellLevel();
+    let spell = PC.getLastSpell();
+    let newlvl = lvl;
     if ((code === 37) || (code === 186)) { // left
       if (lvl > 1) { newlvl = lvl - 1; }
     }
@@ -780,16 +781,16 @@ function PerformSpellbook(code) {
       if (lvl < 8) { newlvl = lvl + 1; }
     }
     // figure out how many spells down we are
-    var spellsdown = 0;
+    let spellsdown = 0;
     if (!spell) {
       spell = 1;
     }
-    for (var i=1; i<=spell; i++) {
+    for (let i=1; i<=spell; i++) {
       if (PC.knowsSpell(lvl, GetSpellID(i))) { spellsdown++; }
     }
-    var spindex = 0;
-    var numspells = 0;
-    for (var i=1; i<=8; i++) {
+    let spindex = 0;
+    let numspells = 0;
+    for (let i=1; i<=8; i++) {
       if (PC.knowsSpell(newlvl,GetSpellID(i))) {
         numspells++;
         if (numspells === spellsdown) {
@@ -806,26 +807,26 @@ function PerformSpellbook(code) {
   }
   if ((code === 32) || (code === 13)) { // SPACE or ENTER
     // cast a spell
-    var lvl = PC.getLastSpellLevel();
+    let lvl = PC.getLastSpellLevel();
     if ((lvl > 5) && (PC.getInfusion())) {
-      var retval = {};
+      let retval = {};
       retval["fin"] = 2;
       retval["input"] = "&gt;";
       maintext.addText("Cannot infuse spells of level 6 or higher.");
       return retval;
     }
-    var spellnum = PC.getLastSpell();
-    $('#spellbookdiv').jqmHide();
-    var spelltxt = "Cast: " + magic[lvl][GetSpellID(spellnum)].getName();
+    let spellnum = PC.getLastSpell();
+    document.getElementById('spellbookdiv').style.display = "none";
+    let spelltxt = "Cast: " + magic[lvl][GetSpellID(spellnum)].getName();
     if (PC.getInfusion()) {
       spelltxt += " (Infused)";
     }
-    var manacost = magic[lvl][GetSpellID(spellnum)].getManaCost(PC.getInfusion());
+    let manacost = magic[lvl][GetSpellID(spellnum)].getManaCost(PC.getInfusion());
     if (lvl > PC.getLevel()) {
       spelltxt += "...";
       maintext.addText(spelltxt);
       maintext.addText("That spell's power is beyond you.");
-      var retval = {};
+      let retval = {};
       retval["fin"] = 2;
       retval["input"] = "&gt;";
       return retval;
@@ -834,7 +835,7 @@ function PerformSpellbook(code) {
       spelltxt += "...";
       maintext.addText(spelltxt);
       maintext.addText("Your intelligence is insufficient to cast that spell.");
-      var retval = {};
+      let retval = {};
       retval["fin"] = 2;
       retval["input"] = "&gt;";
       return retval;      
@@ -842,7 +843,7 @@ function PerformSpellbook(code) {
     if (PC.getMana() >= manacost) {
       spelltxt += "!";
       maintext.addText(spelltxt);
-      var retval = magic[lvl][GetSpellID(spellnum)].executeSpell(PC, PC.getInfusion(), 0);
+      let retval = magic[lvl][GetSpellID(spellnum)].executeSpell(PC, PC.getInfusion(), 0);
       DrawCharFrame();
       return retval;
     }
@@ -850,7 +851,7 @@ function PerformSpellbook(code) {
       spelltxt += "...";
       maintext.addText(spelltxt);
       maintext.addText("Not enough mana.");
-      var retval = {};
+      let retval = {};
       retval["fin"] = 2;
       retval["input"] = "&gt;";
       return retval;
@@ -862,18 +863,18 @@ function PerformSpellbook(code) {
 }
 
 function PerformLook() {
-	var txt = "";
-  var seethis = "";
-  var map = PC.getHomeMap();
-  var boundaries = getDisplayCenter(map,PC.getx(),PC.gety());
-  var xcoord = targetCursor.x - boundaries.leftedge;
-  var ycoord = targetCursor.y - boundaries.topedge;
-  var onscreen = $('#mainview_' + xcoord + 'x' + ycoord).html();
-  var losval = 0;
+	let txt = "";
+  let seethis = "";
+  let map = PC.getHomeMap();
+  let boundaries = getDisplayCenter(map,PC.getx(),PC.gety());
+  let xcoord = targetCursor.x - boundaries.leftedge;
+  let ycoord = targetCursor.y - boundaries.topedge;
+  let onscreen = $('#mainview_' + xcoord + 'x' + ycoord).html();
+  let losval = 0;
   if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
   else {
-    var tile = map.getTile(targetCursor.x,targetCursor.y);
-    var light = tile.getLocalLight();
+    let tile = map.getTile(targetCursor.x,targetCursor.y);
+    let light = tile.getLocalLight();
     light += map.getAmbientLight();
     if (light < SHADOW_THRESHOLD) {
       losval = 1;
@@ -881,37 +882,37 @@ function PerformLook() {
   }
 
   if (losval >= LOS_THRESHOLD) { 
-  	var retval = {};
+  	let retval = {};
   	retval["txt"] = "You cannot see that.";
   	retval["fin"] = 2;
   	retval["input"] = "&gt;";
- 	  var tileid = targetCursor.tileid;
-	  $(tileid).html(targetCursor.basetile); 
+    let tileid = targetCursor.tileid;
+    document.getElementById(tileid).innerHTML = targetCursor.basetile;
 
   	return retval;
   }
-  var tile = map.getTile(targetCursor.x,targetCursor.y);
+  let tile = map.getTile(targetCursor.x,targetCursor.y);
   if ((targetCursor.x === PC.getx())	&& (targetCursor.y === PC.gety())) {
   	txt = "You are standing on ";
   } else {
   	txt = "You see ";
   }
-  var top = tile.getTop();
+  let top = tile.getTop();
   while (top.getName() === "SeeBelow") {
     tile = FindBelow(targetCursor.x,targetCursor.y,map);
     top = tile.getTop();
   }
-  var npcs = tile.getNPCs();
+  let npcs = tile.getNPCs();
   if (npcs.length > 0) {
-  	for (var i=(npcs.length-1) ; i >= 0; i-- ) {
+  	for (let i=(npcs.length-1) ; i >= 0; i-- ) {
   		if (seethis == "") { seethis = npcs[i].getFullDesc(); }
   		else { seethis += ", " + npcs[i].getFullDesc(); }
   	}
   }
-  var features = tile.getFeatures();
-  var len = features.length;
+  let features = tile.getFeatures();
+  let len = features.length;
   if (len > 0) {
-  	for (var i=(len-1); i >= 0; i-- ) {
+  	for (let i=(len-1); i >= 0; i-- ) {
   	  if (features[i].invisible) {
   	    len--;
   	  } else {
@@ -929,16 +930,16 @@ function PerformLook() {
   	}
   }
   if (seethis == "") {
-  	var terrain = tile.getTerrain();
+  	let terrain = tile.getTerrain();
   	seethis = terrain.getPrefix() + " " + terrain.getDesc();
   }
   if (seethis == "") { alert("How are we here? command."); }
   
   txt += seethis + ".";
-  var tileid = targetCursor.tileid;
-  $(tileid).html(targetCursor.basetile); 
+  let tileid = targetCursor.tileid;
+  document.getElementById(tileid).innerHTML(targetCursor.basetile); 
   
-  var retval = {};
+  let retval = {};
   retval["txt"] = txt;
   retval["fin"] = 2;
   retval["input"] = "&gt;";
@@ -947,130 +948,131 @@ function PerformLook() {
 }
 
 function PerformEnter(cmd) {
-  var oldmap = PC.getHomeMap();
-		var here = oldmap.getTile(PC.getx(),PC.gety());
-		var features = here.getFeatures();
-		var destination;
-		var destx;
-		var desty;
-		var klimb = "";
-		var descend = "";
-		var retval = {};
-		if (features.length > 0) {
-			for (var i = 0; i < features.length; i++) {
-				if ((typeof features[i].getEnterMap === "function") && (features[i].getEnterMap())) {
-					var mapdata = features[i].getEnterMap();
-					destination = mapdata["entermap"];
-					destx = mapdata["enterx"];
-					desty = mapdata["entery"];
-					if (typeof features[i].getKlimb === "function") {
-						klimb = features[i].getKlimb();
-					}
-					if (typeof features[i].getDescend === "function") {
-						descend = features[i].getDescend();
-					}
+  let oldmap = PC.getHomeMap();
+	let here = oldmap.getTile(PC.getx(),PC.gety());
+	let features = here.getFeatures();
+	let destination;
+	let destx;
+	let desty;
+	let klimb = "";
+	let descend = "";
+	let retval = {};
+	if (features.length > 0) {
+		for (let i=0; i < features.length; i++) {
+			if ((typeof features[i].getEnterMap === "function") && (features[i].getEnterMap())) {
+				let mapdata = features[i].getEnterMap();
+				destination = mapdata["entermap"];
+				destx = mapdata["enterx"];
+				desty = mapdata["entery"];
+				if (typeof features[i].getKlimb === "function") {
+          klimb = features[i].getKlimb();
+        }
+				if (typeof features[i].getDescend === "function") {
+					descend = features[i].getDescend();
 				}
 			}
 		}
-		if (!destination && !PC.getHomeMap().getScale()) {  // check for mobile scenes- only on world scale maps
-		  for (let xx=PC.getx()-1;xx<=PC.getx()+1;xx++) {
-		    for (let yy=PC.gety()-1;yy<=PC.gety()+1;yy++) {
-		      if ((xx > -1) && (yy > -1)) {
-		        let topthing = PC.getHomeMap().getTile(xx,yy).getTop();
-		        if (topthing.enterable) {
-    					var mapdata = topthing.getEnterMap();
-		    			destination = mapdata["entermap"];
-				    	destx = mapdata["enterx"];
-					    desty = mapdata["entery"];
-		        }
+	}
+	if (!destination && !PC.getHomeMap().getScale()) {  // check for mobile scenes- only on world scale maps
+	  for (let xx=PC.getx()-1;xx<=PC.getx()+1;xx++) {
+	    for (let yy=PC.gety()-1;yy<=PC.gety()+1;yy++) {
+	      if ((xx > -1) && (yy > -1)) {
+	        let topthing = PC.getHomeMap().getTile(xx,yy).getTop();
+	        if (topthing.enterable) {
+   					let mapdata = topthing.getEnterMap();
+		    		destination = mapdata["entermap"];
+				  	destx = mapdata["enterx"];
+				    desty = mapdata["entery"];
 		      }
 		    }
-		  }
-		}
-		if (!destination) {
-			retval["fin"] = 2;
-			if (cmd === "e") {
-				retval["txt"] = "You cannot enter that.";
-			} else if ((cmd === "k") || (cmd === "d")) {
-				retval["txt"] = "You cannot climb that."; 
-			} else {
-				alert("How did you get here (in PerformEnter)");
-			}
-				
-			retval["input"] = "&gt;";
-		} else if (destination === "null") {
-			retval["fin"] = 2;
-			retval["txt"] = "Destination map does not exist.";
-			retval["input"] = "&gt;";
-		} else if (!mappages[destination]) {
-			retval["fin"] = 2;
-			retval["txt"] = "Destination map does not exist.";
-			retval["input"] = "&gt;";
-		} else if ((cmd === "d") && (descend == "")) {
-			retval["fin"] = 2;
-			retval["txt"] = "You cannot descend that.";
-		} else if ((cmd === "k") && (descend == "") && (klimb == "")) {
-			retval["fin"] = 2;
-			retval["txt"] = "You cannot climb that.";
+	    }
+    }
+	}
+	if (!destination) {
+		retval["fin"] = 2;
+		if (cmd === "e") {
+			retval["txt"] = "You cannot enter that.";
+		} else if ((cmd === "k") || (cmd === "d")) {
+			retval["txt"] = "You cannot climb that."; 
 		} else {
-      retval["fin"] = 1;
-
-      let prevstate = gamestate.getMode();
-      gamestate.setMode("saving");
-      gamestate.saveGame(0);
-      gamestate.setMode(prevstate);
-    
-			var newmap = new GameMap();
-			if (maps.getMap(destination)) {
-				newmap = maps.getMap(destination);
-			} else {
-				newmap = maps.addMap(destination);
-			}
-			// check for someone in the way at destination
-			if ($.inArray(newmap.getName(), oldmap.linkedMaps) != -1) {
-			  var desttile = newmap.getTile(destx,desty);
-			  if (desttile.getTopNPC()) { // there's someone in the way and it's a linked map
-			    retval["fin"] = 2;
-			    retval["txt"] = "There is something in the way!";
-			    retval["input"] = "&gt;";
-			    return retval;
-			  }
-			} else {
-			  var desttile = newmap.getTile(destx,desty);
-			  if (desttile.getTopNPC()) { // there's someone in the way and it's not a linked map
-          var npcs = desttile.getNPCs();
-          while (npcs.length) {
-            PushOff(desttile.getTopNPC());
-            npcs = desttile.getNPCs();
-          }
-        }
-      }			  
-      let tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
-      AdjustStartingLocations(newmap);
-			retval["txt"] = "Entering " + newmap.getDesc() + ".";
-			if (descend != "") {
-				retval["txt"] = descend;
-			} else if (klimb != "") {
-				retval["txt"] = klimb;
-			}
-			DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
-			DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-			
+			alert("How did you get here (in PerformEnter)");
 		}
-		return retval;
+				
+		retval["input"] = "&gt;";
+	} else if (destination === "null") {
+		retval["fin"] = 2;
+		retval["txt"] = "Destination map does not exist.";
+		retval["input"] = "&gt;";
+	} else if (!mappages[destination]) {
+		retval["fin"] = 2;
+		retval["txt"] = "Destination map does not exist.";
+		retval["input"] = "&gt;";
+	} else if ((cmd === "d") && (descend == "")) {
+		retval["fin"] = 2;
+		retval["txt"] = "You cannot descend that.";
+	} else if ((cmd === "k") && (descend == "") && (klimb == "")) {
+		retval["fin"] = 2;
+		retval["txt"] = "You cannot climb that.";
+	} else {
+    retval["fin"] = 1;
+
+    let prevstate = gamestate.getMode();
+    gamestate.setMode("saving");
+    gamestate.saveGame(0);
+    gamestate.setMode(prevstate);
+    
+		let newmap = new GameMap();
+		if (maps.getMap(destination)) {
+			newmap = maps.getMap(destination);
+		} else {
+			newmap = maps.addMap(destination);
+		}
+    // check for someone in the way at destination
+    
+		if (oldmap.linkedMaps.includes(newmap.getName())) {
+		  let desttile = newmap.getTile(destx,desty);
+		  if (desttile.getTopNPC()) { // there's someone in the way and it's a linked map
+		    retval["fin"] = 2;
+		    retval["txt"] = "There is something in the way!";
+		    retval["input"] = "&gt;";
+		    return retval;
+		  }
+		} else {
+		  let desttile = newmap.getTile(destx,desty);
+		  if (desttile.getTopNPC()) { // there's someone in the way and it's not a linked map
+        let npcs = desttile.getNPCs();
+        while (npcs.length) {
+          PushOff(desttile.getTopNPC());
+          npcs = desttile.getNPCs();
+        }
+      }
+    }			  
+    let tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
+    AdjustStartingLocations(newmap);
+		retval["txt"] = "Entering " + newmap.getDesc() + ".";
+		if (descend != "") {
+			retval["txt"] = descend;
+		} else if (klimb != "") {
+			retval["txt"] = klimb;
+		}
+		DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+		DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+			
+	}
+	return retval;
 }
 
 function PerformGet(who) {
-  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-  var getitem = localacre.features.getTop();
-  var retval = {};
+  let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  let getitem = localacre.features.getTop();
+  let retval = {};
   if (!getitem) {
     retval["txt"] = "There is nothing there.";
     retval["fin"] = 0;
     return retval;    
   } 
   else if (getitem.checkType("Item")) {
-    var itemmap = getitem.getHomeMap();
+    let itemmap = getitem.getHomeMap();
     who.addToInventory(getitem);
     if (typeof getitem.onGet === "function") {
       getitem.onGet(who);
@@ -1095,17 +1097,16 @@ function PerformEquip(code) {
   if (code === 27) { // ESC
     retval["fin"] = 0;
     delete targetCursor.itemlist;
-    $('#uiinterface').html("");
-    $("#uiinterface").css("background-color", "");
-
+    document.getElementById('uiinterface').innerHTML = "";
+    document.getElementById('uiinterface').style.backgroundColor = "";
   }
 	else if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
-	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
-	    targetCursor.scrolllocation--;
-	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
-	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
-	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
-	    retval["fin"] = 2;
+    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+    targetCursor.scrolllocation--;
+    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
+    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
+    retval["fin"] = 2;
 	}
   else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
       $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
