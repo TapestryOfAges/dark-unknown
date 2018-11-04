@@ -691,7 +691,7 @@ function PerformCast(infuse) {
   PC.setInfusion(infuse);
   let hasSpellbook = 0;
   let retval = {};
-  for (let lvl = 1; lvl <= 8; lvl++) {
+  for (let lvl=1; lvl <= 8; lvl++) {
     if (hasSpellbook) { break; }
     for (let i=1; i <= 8; i++) {
       let spellnum = GetSpellID(i);
