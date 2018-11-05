@@ -563,3 +563,7 @@ ais.GetDrunk = function(who, params) {
   }
   return {fin:1};
 }
+
+ais.TeleportTo = function(who, params) {
+  who.getHomeMap().moveThing(params.x, params.y, who);
+}
