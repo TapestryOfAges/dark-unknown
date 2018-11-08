@@ -621,28 +621,28 @@ OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
     PC.addSpell(SPELL_RETURN_LEVEL,SPELL_RETURN_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 4) && (!PC.knowsSpell(SPELL_FIREBALL_LEVEL,SPELL_FIREBALL_ID))) {
+  if ((PC.getLevel() >= 4) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_FIREBALL_LEVEL,SPELL_FIREBALL_ID))) {
     maintext.addText("Jharden teaches you Fireball!");
     PC.addSpell(SPELL_FIREBALL_LEVEL,SPELL_FIREBALL_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 5) && (!PC.knowsSpell(SPELL_BLESSING_LEVEL,SPELL_BLESSING_ID))) {
+  if ((PC.getLevel() >= 5) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_BLESSING_LEVEL,SPELL_BLESSING_ID))) {
     maintext.addText("Jharden teaches you Blessing!");
     PC.addSpell(SPELL_BLESSING_LEVEL,SPELL_BLESSING_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 6) && (!PC.knowsSpell(SPELL_PEER_LEVEL,SPELL_PEER_ID))) {
+  if ((PC.getLevel() >= 6) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_PEER_LEVEL,SPELL_PEER_ID))) {
     maintext.addText("Jharden teaches you Peer!");
     PC.addSpell(SPELL_PEER_LEVEL,SPELL_PEER_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 7) && (!PC.knowsSpell(SPELL_MASS_CURSE_LEVEL,SPELL_MASS_CURSE_ID))) {
+  if ((PC.getLevel() >= 7) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_MASS_CURSE_LEVEL,SPELL_MASS_CURSE_ID))) {
     maintext.addText('"This is a spell I have only just mastered myself!"');
     maintest.addText("Jharden teaches you Mass Curse!");
     PC.addSpell(SPELL_MASS_CURSE_LEVEL,SPELL_MASS_CURSE_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 8) && (!PC.knowsSpell(SPELL_STORM_LEVEL,SPELL_STORM_ID))) {
+  if ((PC.getLevel() >= 8) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_STORM_LEVEL,SPELL_STORM_ID))) {
     maintext.addText('"This is a spell I have only just mastered myself!"');
     maintext.addText("Jharden teaches you Storm!");
     PC.addSpell(SPELL_STORM_LEVEL,SPELL_STORM_ID);
