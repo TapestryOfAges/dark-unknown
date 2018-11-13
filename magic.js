@@ -473,7 +473,8 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
       var allfeatures = thetile.getFeatures();
       $.each(allfeatures, function(idx, val) {
         if (val.trapped) {
-          var chance = ((power*mult + 10) - (val.trapchallenge)) /20;
+          var chance = ((power*mult + 25) - (val.trapchallenge)) /20;
+          DebugWrite("magic", "Chance to disarm trap with trap level=" + val.trapchallenge + ", chance to disarm is " + chance + "%.");
           if (chance < .05) { chance = .05; }
           var roll = Dice.roll("1d100")/100;
           if (roll <= chance) { 
@@ -485,6 +486,9 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
             maintext.addText("Trap resists."); 
             ShowEffect(val, 500, "X.gif");
           }
+        } else if (val.name === "CrystalTrapSpace") {
+          var chance = power*mult + 15;
+          // WORKING HERE
         }
       });
     }
