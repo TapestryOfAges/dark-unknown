@@ -473,10 +473,10 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
       var allfeatures = thetile.getFeatures();
       $.each(allfeatures, function(idx, val) {
         if (val.trapped) {
-          var chance = ((power*mult + 25) - (val.trapchallenge)) /20;
+          var chance = (100 - (val.trapchallenge*2+10) + (power*mult));
           DebugWrite("magic", "Chance to disarm trap with trap level=" + val.trapchallenge + ", chance to disarm is " + chance + "%.");
-          if (chance < .05) { chance = .05; }
-          var roll = Dice.roll("1d100")/100;
+          if (chance < 5) { chance = 5; }
+          var roll = Dice.roll("1d100");
           if (roll <= chance) { 
             val.disarmTrap(); 
             maintext.addText("Trap disarmed!"); 
@@ -487,8 +487,15 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
             ShowEffect(val, 500, "X.gif");
           }
         } else if (val.name === "CrystalTrapSpace") {
-          var chance = power*mult + 15;
-          // WORKING HERE
+          var chance = (50 + (power*mult));
+          DebugWrite("magic", "Chance to disarm crystal trap is " + chance + "%.");
+          if (chance < 5) { chance = 5; }
+          var roll = Dice.roll("1d100");
+          if (roll <= chance) { 
+            val.disarmTrap(); 
+            maintext.addText("Trap disarmed!"); 
+            ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
+          }
         }
       });
     }
