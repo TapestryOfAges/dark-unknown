@@ -387,7 +387,6 @@ function PerformAudachtaScribe(caster,infused,free,tgt) {
   resp["input"] = "&gt;";
   return resp;
 
-  
 }
 
 // Cure
