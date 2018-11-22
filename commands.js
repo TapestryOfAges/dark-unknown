@@ -1092,7 +1092,8 @@ function PerformGet(who) {
   }
 }
 
-function PerformEquip(code) {
+function PerformEquip(code) {   //  Deprecated
+  alert("In deprecated PerformEquip- maybe not so deprecated?");
   var retval = {};
   if (code === 27) { // ESC
     retval["fin"] = 0;
@@ -1146,18 +1147,16 @@ function PerformEquip(code) {
 }
 
 function PerformPush(who) {
-  var retval = {};
-  retval["fin"] = 3;
-  retval["input"] = "&gt;";
-  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-  var blocker = localacre.getTopNPC();
+  let retval = {fin:3, input:"&gt;"};
+  let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  let blocker = localacre.getTopNPC();
   if (!blocker) { blocker = localacre.getTopPC(); }
   if (blocker) {
     blocker.pushed = 1;
     retval["txt"] = "Push: There is something in the way.";
     return retval;
   }
-  var pushit = localacre.features.getTop();
+  let pushit = localacre.features.getTop();
   if (!pushit) { 
     retval["txt"] = "Push: Nothing there.";
     return retval; 
@@ -1165,19 +1164,14 @@ function PerformPush(who) {
   if (pushit.pushable) {
     return pushit.pushMe(who);
   }
-  var retval = {};
-  retval["fin"] = 1;
-  retval["input"] = "&gt;";
-  retval["txt"] = "That won't budge!";
   
-  return retval;
+  return {fin:1, input:"&gt;", txt: "That won't budge!"};
 }
 
 function PerformSearch(who) {
-  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-  var searched = localacre.features.getTop();
-  var retval = {};
-  retval["fin"] = 1;
+  let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  let searched = localacre.features.getTop();
+  let retval = {fin:1};
   if (!searched) {
 		retval["txt"] = "Search: There is nothing there.";
 		retval["fin"] = 0;
@@ -1186,7 +1180,7 @@ function PerformSearch(who) {
 	if (searched.isContainer) {  // add doors to the list
 	  // search for traps and such rather than searching for items
 	  if (searched.trapped && (who.getInt() >= searched.trapchallenge-5)) {
-	    var descriptor = "complex ";
+	    let descriptor = "complex ";
 	    if (who.getDex() >= searched.trapchallenge+6) { // 80% chance to disarm
 	      descriptor = "simple ";
 	    } else if (who.getDex() <= searched.trapchallenge-6) { // 20% chance or worse
@@ -1194,7 +1188,6 @@ function PerformSearch(who) {
 	    }
 	    retval["txt"] = "Search: You find a " + descriptor + "trap!";
 	    searched.setDesc(searched.getDesc() + " [Trap (" + descriptor + ")]");
-//	    searched.trapchallenge = Math.floor(searched.trapchallenge / 2);
       searched.trapchallenge = searched.trapchallenge - 5;
 	    // finding a trap reduces the challenge of removing it
 	  } else {
@@ -1204,7 +1197,7 @@ function PerformSearch(who) {
 	  return retval;
 	}
   else if ((searched.getSearchYield().length)) {
-    var stuff = searched.getSearchYield();
+    let stuff = searched.getSearchYield();
     if (searched.getLootedID() && DU.gameflags.getFlag("lid_" + searched.getLootedID())) {
       retval["txt"] = "Search: You find nothing there.";
       stuff = 0;
@@ -1220,14 +1213,14 @@ function PerformSearch(who) {
       retval["txt"] = "Search: You find ";
       retval["fin"] = 1;
       if (stuff.length) {
-        for (var i=0; i < stuff.length; i++) {
+        for (let i=0; i<stuff.length; i++) {
           let goldtest = /\d+Gold/;
           if (goldtest.test(stuff[i])) {
             let amt = goldtest.exec(stuff[i]);
             searched.setGold(amt[1]);
             stuff[i] = "Gold";
           }
-          var newthing = localFactory.createTile(stuff[i]);
+          let newthing = localFactory.createTile(stuff[i]);
           if (stuff[i] === "Gold") {
             newthing.setQuantity(searched.getGold());
           }
@@ -1241,7 +1234,7 @@ function PerformSearch(who) {
           retval["txt"] += " " + newthing.getDesc();
         }
       }
-      var blanksearch = [];
+      let blanksearch = [];
       searched.setSearchYield(blanksearch);
       retval["txt"] += ".";
     }
@@ -1263,7 +1256,6 @@ function PerformSearch(who) {
       searched.setGraphicArray(searched.getSearchedGraphic());
       DrawMainFrame("one",who.getHomeMap(),targetCursor.x,targetCursor.y);
     }
-
   }
   if (searched.searchid) {
     DU.gameflags.setFlag(searched.searchedid, 1);
@@ -1276,15 +1268,15 @@ function PerformSearch(who) {
 }
 
 function PerformTalkTarget() {
-  var tileid = targetCursor.tileid;
-  $(tileid).html(targetCursor.basetile); 
-  var map = PC.getHomeMap();
-  var onscreen = $('#tile' + targetCursor.x + 'x' + targetCursor.y).html();
-  var losval = 0;
+  let tileid = targetCursor.tileid;
+  document.getElementById(tileid).innerHTML = targetCursor.basetile;
+  let map = PC.getHomeMap();
+  let onscreen = document.getElementById('tile' + targetCursor.x + 'x' + targetCursor.y).innerHTML;
+  let losval = 0;
   if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
   else {
-    var tile = map.getTile(targetCursor.x,targetCursor.y);
-    var light = tile.getLocalLight();
+    let tile = map.getTile(targetCursor.x,targetCursor.y);
+    let light = tile.getLocalLight();
     light += map.getAmbientLight();
     if (light < SHADOW_THRESHOLD) {
       losval = 1;
@@ -1292,34 +1284,33 @@ function PerformTalkTarget() {
   }
 
   if (losval >= LOS_THRESHOLD) { 
-  	var retval = {};
+  	let retval = {};
   	retval["txt"] = "You cannot see that.";
   	retval["fin"] = 2;
   	retval["input"] = "&gt;";
- 	  var tileid = targetCursor.tileid;
-	  $(tileid).html(targetCursor.basetile); 
+ 	  let tileid = targetCursor.tileid;
+	  document.getElementById(tileid).innerhtml = targetCursor.basetile; 
 
   	return retval;
   }
-  var tile = map.getTile(targetCursor.x,targetCursor.y);
+  let tile = map.getTile(targetCursor.x,targetCursor.y);
   if ((targetCursor.x === PC.getx())	&& (targetCursor.y === PC.gety())) {
-    var retval = {};
+    let retval = {};
     retval["txt"] = "This is no time to be talking to yourself.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
 
     return retval;
   } 
-  var top = tile.getTop();
+  let top = tile.getTop();
   while (top.getName() === "SeeBelow") {
     tile = FindBelow(targetCursor.x,targetCursor.y,map);
     top = tile.getTop();
   }
   
   
-  var retval = {};
+  let retval = {};
   if (!top.checkType("NPC")) {
-  
     retval["txt"] = "There is no one there to talk to.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
@@ -1327,7 +1318,7 @@ function PerformTalkTarget() {
     return retval;
   }
   if (top.getAttitude() !== "friendly") {
-    var pronoun = top.getGenderedTerms().pronoun;
+    let pronoun = top.getGenderedTerms().pronoun;
     pronoun = pronoun.charAt(0).toUpperCase() + pronoun.slice(1);
     retval["txt"] = pronoun + " does not want to talk to you.";
     retval["fin"] = 2;
@@ -1336,7 +1327,7 @@ function PerformTalkTarget() {
     return retval;    
   }
   if (top.flags.hasOwnProperty("sleep")) {
-    var pronoun = top.getGenderedTerms().pronoun;
+    let pronoun = top.getGenderedTerms().pronoun;
     pronoun = pronoun.charAt(0).toUpperCase() + pronoun.slice(1);
     retval["txt"] = pronoun + " is asleep.";
     retval["fin"] = 2;
@@ -1350,7 +1341,7 @@ function PerformTalkTarget() {
     }
   }
 
-  var convo = top.getConversation();
+  let convo = top.getConversation();
   if (!convo || !conversations[convo]) {
     retval["txt"] = "No one there wishes to speak with you.";
     retval["fin"] = 2;
@@ -1375,9 +1366,9 @@ function PerformTalkTarget() {
       PC.setLevel(PC.getLevel()+1);
       PC.setMaxHP(PC.getLevel()*30);
       PC.setHP(PC.getMaxHP());
-      var effects = PC.getSpellEffects();
+      let effects = PC.getSpellEffects();
       if (effects) {
-        for (var i=0; i<effects.length; i++) {
+        for (let i=0; i<effects.length; i++) {
           if (effects[i].getName() === "Poison") {
             effects[i].endEffect();
           }
@@ -1387,10 +1378,10 @@ function PerformTalkTarget() {
         }
       }
       if (PC.getLevel() === 2) { 
-        var basement = maps.getMap("olympus0");
-        var allnpcs = basement.npcs.getAll();
-        var rose;
-        for (var i=0; i< allnpcs.length; i++) {
+        let basement = maps.getMap("olympus0");
+        let allnpcs = basement.npcs.getAll();
+        let rose;
+        for (let i=0; i<allnpcs.length; i++) {
           if (allnpcs[i].getNPCName() === "Rose") {
             rose = allnpcs[i];
           }
@@ -1435,19 +1426,17 @@ function PerformTalkTarget() {
 }
 
 function PerformTalk(talkto, convo, topic) {
-  var forlog = {NPC: talkto.getNPCName(), conversation: convo, keyword: topic, timestamp: DUTime.getGameClock()};
+  let forlog = {NPC: talkto.getNPCName(), conversation: convo, keyword: topic, timestamp: DUTime.getGameClock()};
   convlog.push(forlog);
   
-  var retval = {};
-  var conval = conversations[convo].respond(talkto, topic);
+  let retval = {};
+  let conval = conversations[convo].respond(talkto, topic);
   
   if (conval) {
     retval["txt"] = "";
     retval["fin"] = 3;
   } else {
     // person spoke and ended conversation
-//    var gender = talkto.getGenderedTerms().pronoun;
-//    gender = gender.charAt(0).toUpperCase() + gender.slice(1);
     retval["txt"] = "";
     retval["fin"] = 1;
     retval["input"] = "&gt;";
@@ -1486,19 +1475,19 @@ function PerformTalk(talkto, convo, topic) {
 }
 
 function PerformUse(who) {
-  var retval = {};
-  var usemap = who.getHomeMap();
-	var localacre = usemap.getTile(targetCursor.x,targetCursor.y);
-	var someone = localacre.getTopNPC();
+  let retval = {};
+  let usemap = who.getHomeMap();
+	let localacre = usemap.getTile(targetCursor.x,targetCursor.y);
+	let someone = localacre.getTopNPC();
 	if (!someone) { someone = localacre.getTopPC(); }
 	if (someone) {
-    var commandname = "Use";
+    let commandname = "Use";
     if (targetCursor.command === "o") { commandname = "Open"; }
     retval["txt"] = commandname + ": There is something in the way.";
     retval["fin"] = 0;
     return retval;
   }
-	var used = localacre.features.getTop();
+	let used = localacre.features.getTop();
 	if (!used) {
 		retval["txt"] = "There is nothing to use there.";
     if (targetCursor.command === "o") {
