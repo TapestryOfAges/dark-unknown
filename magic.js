@@ -1,7 +1,7 @@
 "use strict";
 
-var magic = {};
-var bookmark = {};
+let magic = {};
+let bookmark = {};
 
 function SpellObject(name, incant, level, targets) {
   this.name = name;
@@ -43,10 +43,10 @@ SpellObject.prototype.getReduceResist = function() {
 SpellObject.prototype.myTurn = function() {
   this.executeSpell();
   
-	var spellEvent = new GameEvent(this);
+	let spellEvent = new GameEvent(this);
   DUTime.addAtTimeInterval(SpellEvent,this.nextActionTime(1));
   
-  var nextEntity = DUTime.executeNextEvent().getEntity();
+  let nextEntity = DUTime.executeNextEvent().getEntity();
   nextEntity.myTurn(); 
 }
 
@@ -58,12 +58,7 @@ SpellObject.prototype.executeSpell = function(caster, infused, free, tgt) {
   //        free === 2 will suppress spell ephemeralObject apply text.
   // tgt - target of the spell when it is cast by an NPC. 
 
-  var retval = {};
-  retval["fin"] = 1;
-  retval["txt"] = "";
-  retval["input"] = "&gt;";
-  
-  return retval;
+  return {fin:1, txt:"", input:"&gt;"};
 }
 
 SpellObject.prototype.expireSpell = function() {
@@ -71,9 +66,9 @@ SpellObject.prototype.expireSpell = function() {
 }
 
 SpellObject.prototype.getManaCost = function(infuse) {
-  var multiplier = 1;
+  let multiplier = 1;
   if (infuse) { multiplier = 2; }
-  var cost = this.getLevel() * multiplier;
+  let cost = this.getLevel() * multiplier;
   return cost; 
 }
 
@@ -82,7 +77,7 @@ function CheckResist (caster, tgt, infused, diffmod) {
   // caster and target level each modify by 5% either way
   // 15% harder to resist if infused
   // caster having super-high Int (>20) makes spell 10% harder to resist
-  var chance = BASE_RESIST_CHANCE + tgt.getResist("magic") + tgt.getLevel()*5 - caster.getLevel()*5 - infused*15;
+  let chance = BASE_RESIST_CHANCE + tgt.getResist("magic") + tgt.getLevel()*5 - caster.getLevel()*5 - infused*15;
   if (caster.getInt() > 20) { chance -= 10; }
   if (diffmod) { chance += diffmod; }
   
@@ -90,7 +85,7 @@ function CheckResist (caster, tgt, infused, diffmod) {
   
   if (tgt.getSpellEffectsByName("Curse")) { chance = chance/2; }
   
-  var resist = Dice.roll("1d100-1");
+  let resist = Dice.roll("1d100-1");
   
   if (resist <= chance) {
     if (resist === 0) { resist = chance; }
@@ -100,150 +95,150 @@ function CheckResist (caster, tgt, infused, diffmod) {
 }
 
 function GetSpellID(num) {
-  var spellid = (Math.pow(2,(num-1)));
+  let spellid = (Math.pow(2,(num-1)));
   return spellid;
 }
 
-for (var i=1;i<=8;i++) {
+for (let i=1;i<=8;i++) {
   magic[i] = {};
 }
 
 // Create Spell Consts
-var SPELL_AUDACHTA_SCRIBE_LEVEL = 1;
-var SPELL_AUDACHTA_SCRIBE_ID = GetSpellID(1);
-var SPELL_CURE_LEVEL = 1;
-var SPELL_CURE_ID = GetSpellID(2);
-var SPELL_DISARM_TRAP_LEVEL = 1;
-var SPELL_DISARM_TRAP_ID = GetSpellID(3);
-var SPELL_DISTRACT_LEVEL = 1;
-var SPELL_DISTRACT_ID = GetSpellID(4);
-var SPELL_FLAME_BLADE_LEVEL = 1;
-var SPELL_FLAME_BLADE_ID = GetSpellID(5);
-var SPELL_LIGHT_LEVEL = 1;
-var SPELL_LIGHT_ID = GetSpellID(6);
-var SPELL_MEND_LEVEL = 1;
-var SPELL_MEND_ID = GetSpellID(7);
-var SPELL_VULNERABILITY_LEVEL = 1;
-var SPELL_VULNERABILITY_ID = GetSpellID(8);
+const SPELL_AUDACHTA_SCRIBE_LEVEL = 1;
+const SPELL_AUDACHTA_SCRIBE_ID = GetSpellID(1);
+const SPELL_CURE_LEVEL = 1;
+const SPELL_CURE_ID = GetSpellID(2);
+const SPELL_DISARM_TRAP_LEVEL = 1;
+const SPELL_DISARM_TRAP_ID = GetSpellID(3);
+const SPELL_DISTRACT_LEVEL = 1;
+const SPELL_DISTRACT_ID = GetSpellID(4);
+const SPELL_FLAME_BLADE_LEVEL = 1;
+const SPELL_FLAME_BLADE_ID = GetSpellID(5);
+const SPELL_LIGHT_LEVEL = 1;
+const SPELL_LIGHT_ID = GetSpellID(6);
+const SPELL_MEND_LEVEL = 1;
+const SPELL_MEND_ID = GetSpellID(7);
+const SPELL_VULNERABILITY_LEVEL = 1;
+const SPELL_VULNERABILITY_ID = GetSpellID(8);
 
-var SPELL_ILLUSION_LEVEL = 2;
-var SPELL_ILLUSION_ID = GetSpellID(1);
-var SPELL_IRON_FLESH_LEVEL = 2;
-var SPELL_IRON_FLESH_ID = GetSpellID(2);
-var SPELL_LESSER_HEAL_LEVEL = 2;
-var SPELL_LESSER_HEAL_ID = GetSpellID(3);
-var SPELL_MAGIC_BOLT_LEVEL = 2;
-var SPELL_MAGIC_BOLT_ID = GetSpellID(4);
-var SPELL_POISON_CLOUD_LEVEL = 2;
-var SPELL_POISON_CLOUD_ID = GetSpellID(5);
-var SPELL_PROTECTION_LEVEL = 2;
-var SPELL_PROTECTION_ID = GetSpellID(6);
-var SPELL_UNLOCK_LEVEL = 2;
-var SPELL_UNLOCK_ID = GetSpellID(7);
-var SPELL_WIND_CHANGE_LEVEL = 2;
-var SPELL_WIND_CHANGE_ID = GetSpellID(8);
+const SPELL_ILLUSION_LEVEL = 2;
+const SPELL_ILLUSION_ID = GetSpellID(1);
+const SPELL_IRON_FLESH_LEVEL = 2;
+const SPELL_IRON_FLESH_ID = GetSpellID(2);
+const SPELL_LESSER_HEAL_LEVEL = 2;
+const SPELL_LESSER_HEAL_ID = GetSpellID(3);
+const SPELL_MAGIC_BOLT_LEVEL = 2;
+const SPELL_MAGIC_BOLT_ID = GetSpellID(4);
+const SPELL_POISON_CLOUD_LEVEL = 2;
+const SPELL_POISON_CLOUD_ID = GetSpellID(5);
+const SPELL_PROTECTION_LEVEL = 2;
+const SPELL_PROTECTION_ID = GetSpellID(6);
+const SPELL_UNLOCK_LEVEL = 2;
+const SPELL_UNLOCK_ID = GetSpellID(7);
+const SPELL_WIND_CHANGE_LEVEL = 2;
+const SPELL_WIND_CHANGE_ID = GetSpellID(8);
 
-var SPELL_DISPEL_LEVEL = 3;
-var SPELL_DISPEL_ID = GetSpellID(1);
-var SPELL_DISRUPT_UNDEAD_LEVEL = 3;
-var SPELL_DISRUPT_UNDEAD_ID = GetSpellID(2);
-var SPELL_FIRE_ARMOR_LEVEL = 3;
-var SPELL_FIRE_ARMOR_ID = GetSpellID(3);
-var SPELL_FIREBALL_LEVEL = 3;
-var SPELL_FIREBALL_ID = GetSpellID(4);
-var SPELL_OPEN_GATE_LEVEL = 3;
-var SPELL_OPEN_GATE_ID = GetSpellID(5);
-var SPELL_RETURN_LEVEL = 3;
-var SPELL_RETURN_ID = GetSpellID(6);
-var SPELL_TELEKINESIS_LEVEL = 3;
-var SPELL_TELEKINESIS_ID = GetSpellID(7);
-var SPELL_WALL_OF_FLAME_LEVEL = 3;
-var SPELL_WALL_OF_FLAME_ID = GetSpellID(8);
+const SPELL_DISPEL_LEVEL = 3;
+const SPELL_DISPEL_ID = GetSpellID(1);
+const SPELL_DISRUPT_UNDEAD_LEVEL = 3;
+const SPELL_DISRUPT_UNDEAD_ID = GetSpellID(2);
+const SPELL_FIRE_ARMOR_LEVEL = 3;
+const SPELL_FIRE_ARMOR_ID = GetSpellID(3);
+const SPELL_FIREBALL_LEVEL = 3;
+const SPELL_FIREBALL_ID = GetSpellID(4);
+const SPELL_OPEN_GATE_LEVEL = 3;
+const SPELL_OPEN_GATE_ID = GetSpellID(5);
+const SPELL_RETURN_LEVEL = 3;
+const SPELL_RETURN_ID = GetSpellID(6);
+const SPELL_TELEKINESIS_LEVEL = 3;
+const SPELL_TELEKINESIS_ID = GetSpellID(7);
+const SPELL_WALL_OF_FLAME_LEVEL = 3;
+const SPELL_WALL_OF_FLAME_ID = GetSpellID(8);
 
-var SPELL_BLESSING_LEVEL = 4;
-var SPELL_BLESSING_ID = GetSpellID(1);
-var SPELL_BLINK_LEVEL = 4;
-var SPELL_BLINK_ID = GetSpellID(2);
-var SPELL_HEAL_LEVEL = 4;
-var SPELL_HEAL_ID = GetSpellID(3);
-var SPELL_ICEBALL_LEVEL = 4;
-var SPELL_ICEBALL_ID = GetSpellID(4);
-var SPELL_LIFE_DRAIN_LEVEL = 4;
-var SPELL_LIFE_DRAIN_ID = GetSpellID(5);
-var SPELL_SMITE_LEVEL = 4;
-var SPELL_SMITE_ID = GetSpellID(6);
-var SPELL_TELEPATHY_LEVEL = 4;
-var SPELL_TELEPATHY_ID = GetSpellID(7);
-var SPELL_WATER_WALK_LEVEL = 4;
-var SPELL_WATER_WALK_ID = GetSpellID(8);
+const SPELL_BLESSING_LEVEL = 4;
+const SPELL_BLESSING_ID = GetSpellID(1);
+const SPELL_BLINK_LEVEL = 4;
+const SPELL_BLINK_ID = GetSpellID(2);
+const SPELL_HEAL_LEVEL = 4;
+const SPELL_HEAL_ID = GetSpellID(3);
+const SPELL_ICEBALL_LEVEL = 4;
+const SPELL_ICEBALL_ID = GetSpellID(4);
+const SPELL_LIFE_DRAIN_LEVEL = 4;
+const SPELL_LIFE_DRAIN_ID = GetSpellID(5);
+const SPELL_SMITE_LEVEL = 4;
+const SPELL_SMITE_ID = GetSpellID(6);
+const SPELL_TELEPATHY_LEVEL = 4;
+const SPELL_TELEPATHY_ID = GetSpellID(7);
+const SPELL_WATER_WALK_LEVEL = 4;
+const SPELL_WATER_WALK_ID = GetSpellID(8);
 
-var SPELL_CRYSTAL_TRAP_LEVEL = 5;
-var SPELL_CRYSTAL_TRAP_ID = GetSpellID(1);
-var SPELL_ETHEREAL_VISION_LEVEL = 5;
-var SPELL_ETHEREAL_VISION_ID = GetSpellID(2);
-var SPELL_MIRROR_WARD_LEVEL = 5;
-var SPELL_MIRROR_WARD_ID = GetSpellID(3);
-var SPELL_PARALYZE_LEVEL = 5;
-var SPELL_PARALYZE_ID = GetSpellID(4);
-var SPELL_PEER_LEVEL = 5;
-var SPELL_PEER_ID = GetSpellID(5);
-var SPELL_SHOCKWAVE_LEVEL = 5;
-var SPELL_SHOCKWAVE_ID = GetSpellID(6);
-var SPELL_SUMMON_ALLY_LEVEL = 5;
-var SPELL_SUMMON_ALLY_ID = GetSpellID(7);
-var SPELL_SWORDSTRIKE_LEVEL = 5;
-var SPELL_SWORDSTRIKE_ID = GetSpellID(8);
+const SPELL_CRYSTAL_TRAP_LEVEL = 5;
+const SPELL_CRYSTAL_TRAP_ID = GetSpellID(1);
+const SPELL_ETHEREAL_VISION_LEVEL = 5;
+const SPELL_ETHEREAL_VISION_ID = GetSpellID(2);
+const SPELL_MIRROR_WARD_LEVEL = 5;
+const SPELL_MIRROR_WARD_ID = GetSpellID(3);
+const SPELL_PARALYZE_LEVEL = 5;
+const SPELL_PARALYZE_ID = GetSpellID(4);
+const SPELL_PEER_LEVEL = 5;
+const SPELL_PEER_ID = GetSpellID(5);
+const SPELL_SHOCKWAVE_LEVEL = 5;
+const SPELL_SHOCKWAVE_ID = GetSpellID(6);
+const SPELL_SUMMON_ALLY_LEVEL = 5;
+const SPELL_SUMMON_ALLY_ID = GetSpellID(7);
+const SPELL_SWORDSTRIKE_LEVEL = 5;
+const SPELL_SWORDSTRIKE_ID = GetSpellID(8);
 
-var SPELL_EMPOWER_LEVEL = 6;
-var SPELL_EMPOWER_ID = GetSpellID(1);
-var SPELL_EXPLOSION_LEVEL = 6;
-var SPELL_EXPLOSION_ID = GetSpellID(2);
-var SPELL_JINX_LEVEL = 6;
-var SPELL_JINX_ID = GetSpellID(3);
-var SPELL_MASS_CURSE_LEVEL = 6;
-var SPELL_MASS_CURSE_ID = GetSpellID(4);
-var SPELL_NEGATE_MAGIC_LEVEL = 6;
-var SPELL_NEGATE_MAGIC_ID = GetSpellID(5);
-var SPELL_STORM_LEVEL = 6;
-var SPELL_STORM_ID = GetSpellID(6);
-var SPELL_TREMOR_LEVEL = 6;
-var SPELL_TREMOR_ID = GetSpellID(7);
-var SPELL_WEATHER_CONTROL_LEVEL = 6;
-var SPELL_WEATHER_CONTROL_ID = GetSpellID(8);
+const SPELL_EMPOWER_LEVEL = 6;
+const SPELL_EMPOWER_ID = GetSpellID(1);
+const SPELL_EXPLOSION_LEVEL = 6;
+const SPELL_EXPLOSION_ID = GetSpellID(2);
+const SPELL_JINX_LEVEL = 6;
+const SPELL_JINX_ID = GetSpellID(3);
+const SPELL_MASS_CURSE_LEVEL = 6;
+const SPELL_MASS_CURSE_ID = GetSpellID(4);
+const SPELL_NEGATE_MAGIC_LEVEL = 6;
+const SPELL_NEGATE_MAGIC_ID = GetSpellID(5);
+const SPELL_STORM_LEVEL = 6;
+const SPELL_STORM_ID = GetSpellID(6);
+const SPELL_TREMOR_LEVEL = 6;
+const SPELL_TREMOR_ID = GetSpellID(7);
+const SPELL_WEATHER_CONTROL_LEVEL = 6;
+const SPELL_WEATHER_CONTROL_ID = GetSpellID(8);
 
-var SPELL_CHARM_LEVEL = 7;
-var SPELL_CHARM_ID = GetSpellID(1);
-var SPELL_ETHEREAL_TRAVEL_LEVEL = 7;
-var SPELL_ETHEREAL_TRAVEL_ID = GetSpellID(2);
-var SPELL_FEAR_LEVEL = 7;
-var SPELL_FEAR_ID = GetSpellID(3);
-var SPELL_FIRE_AND_ICE_LEVEL = 7;
-var SPELL_FIRE_AND_ICE_ID = GetSpellID(4);
-var SPELL_INVULNERABILITY_LEVEL = 7;
-var SPELL_INVULNERABILITY_ID = GetSpellID(5);
-var SPELL_METEOR_SWARM_LEVEL = 7;
-var SPELL_METEOR_SWARM_ID = GetSpellID(6);
-var SPELL_MIND_BLAST_LEVEL = 7;
-var SPELL_MIND_BLAST_ID = GetSpellID(7);
-var SPELL_PERMANENCE_LEVEL = 7;
-var SPELL_PERMANENCE_ID = GetSpellID(8);
+const SPELL_CHARM_LEVEL = 7;
+const SPELL_CHARM_ID = GetSpellID(1);
+const SPELL_ETHEREAL_TRAVEL_LEVEL = 7;
+const SPELL_ETHEREAL_TRAVEL_ID = GetSpellID(2);
+const SPELL_FEAR_LEVEL = 7;
+const SPELL_FEAR_ID = GetSpellID(3);
+const SPELL_FIRE_AND_ICE_LEVEL = 7;
+const SPELL_FIRE_AND_ICE_ID = GetSpellID(4);
+const SPELL_INVULNERABILITY_LEVEL = 7;
+const SPELL_INVULNERABILITY_ID = GetSpellID(5);
+const SPELL_METEOR_SWARM_LEVEL = 7;
+const SPELL_METEOR_SWARM_ID = GetSpellID(6);
+const SPELL_MIND_BLAST_LEVEL = 7;
+const SPELL_MIND_BLAST_ID = GetSpellID(7);
+const SPELL_PERMANENCE_LEVEL = 7;
+const SPELL_PERMANENCE_ID = GetSpellID(8);
 
-var SPELL_ARMAGEDDON_LEVEL = 8;
-var SPELL_ARMAGEDDON_ID = GetSpellID(1);
-var SPELL_ARROW_OF_GLASS_LEVEL = 8;
-var SPELL_ARROW_OF_GLASS_ID = GetSpellID(2);
-var SPELL_BUILD_GATE_LEVEL = 8;
-var SPELL_BUILD_GATE_ID = GetSpellID(3);
-var SPELL_CONFLAGRATION_LEVEL = 8;
-var SPELL_CONFLAGRATION_ID = GetSpellID(4);
-var SPELL_CONJURE_DAEMON_LEVEL = 8;
-var SPELL_CONJURE_DAEMON_ID = GetSpellID(5);
-var SPELL_QUICKNESS_LEVEL = 8;
-var SPELL_QUICKNESS_ID = GetSpellID(6);
-var SPELL_REINCARNATE_LEVEL = 8;
-var SPELL_REINCARNATE_ID = GetSpellID(7);
-var SPELL_TIME_STOP_LEVEL = 8;
-var SPELL_TIME_STOP_ID = GetSpellID(8);
+const SPELL_ARMAGEDDON_LEVEL = 8;
+const SPELL_ARMAGEDDON_ID = GetSpellID(1);
+const SPELL_ARROW_OF_GLASS_LEVEL = 8;
+const SPELL_ARROW_OF_GLASS_ID = GetSpellID(2);
+const SPELL_BUILD_GATE_LEVEL = 8;
+const SPELL_BUILD_GATE_ID = GetSpellID(3);
+const SPELL_CONFLAGRATION_LEVEL = 8;
+const SPELL_CONFLAGRATION_ID = GetSpellID(4);
+const SPELL_CONJURE_DAEMON_LEVEL = 8;
+const SPELL_CONJURE_DAEMON_ID = GetSpellID(5);
+const SPELL_QUICKNESS_LEVEL = 8;
+const SPELL_QUICKNESS_ID = GetSpellID(6);
+const SPELL_REINCARNATE_LEVEL = 8;
+const SPELL_REINCARNATE_ID = GetSpellID(7);
+const SPELL_TIME_STOP_LEVEL = 8;
+const SPELL_TIME_STOP_ID = GetSpellID(8);
 
 magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID] = new SpellObject("Audachta Scribe", "An Zu", 1, 1);      // heal?
 magic[SPELL_CURE_LEVEL][SPELL_CURE_ID] = new SpellObject("Cure Ailment", "An Nox", 1, 0);      // heal
