@@ -264,6 +264,9 @@ function DoAction(code, ctrl) {
     } else {
       if (((code >= 65) && (code <= 90)) || (code === 32) || (code === 13)) {  // letter, space, or enter
         if (targetCursor.command === "c") {
+          $('#uiinterface').html(" ");
+          $("#uiinterface").css("background-color", "");
+    
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame();
           DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
