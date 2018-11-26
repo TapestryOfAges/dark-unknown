@@ -311,9 +311,9 @@ Acre.prototype.removeLocalSound = function(sndsrc) {
   delete this.localSound[sndsrc.getSerial()];
   if (this.topSound === sndsrc.getSerial()) {
     let newsnd = "";
-    $.each(this.localSound, function(idx,val) {
-      newsnd = idx;
-    });
+    for (let i=0;i<this.localSound.length;i++) {
+      newsnd = i;
+    }
     this.topSound = newsnd;
   }
   DebugWrite("sound", "Removed " + snd + " sound from this acre.<br />");
