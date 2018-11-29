@@ -9218,22 +9218,52 @@ function PerfectRubyTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "perfect ruby gemstone";
   this.longdesc = "A perfect ruby gemstone. Flawless.";
-	this.prefix = "a";
+  this.prefix = "a";
+  this.valuable = 1;
 }
 PerfectRubyTile.prototype = new ItemObject();
 
+function UncutLargeRubyTile() {
+	this.name = "UncutLargeRuby";
+	this.graphic = "items.png";
+  this.spriteyoffset = "-96";
+  this.spritexoffset = "-128";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "rough, fist-sized ruby gemstone";
+  this.longdesc = "A beautiful uncut, large ruby gemstone.";
+  this.prefix = "a";
+  this.valuable = 1;
+}
+UncutLargeRubyTile.prototype = new ItemObject();
+
 function RubyTile() {
 	this.name = "Ruby";
+	this.graphic = "items.png";
+  this.spriteyoffset = "-256";
+  this.spritexoffset = "-256";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "ruby";
+  this.longdesc = "A small ruby gemstone.";
+  this.prefix = "a";
+  this.valuable = 1;
+}
+RubyTile.prototype = new ItemObject();
+
+function UncutRubyTile() {
+	this.name = "UncutRuby";
 	this.graphic = "items.png";
   this.spriteyoffset = "-192";
   this.spritexoffset = "-32";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "ruby";
-  this.longdesc = "A small ruby gemstone.";
-	this.prefix = "a";
+  this.desc = "uncut ruby";
+  this.longdesc = "A small uncut ruby gemstone.";
+  this.prefix = "an";
+  this.valuable = 1;
 }
-RubyTile.prototype = new ItemObject();
+UncutRubyTile.prototype = new ItemObject();
 
 function SmallSapphireTile() {
 	this.name = "SmallSapphire";
@@ -9245,21 +9275,23 @@ function SmallSapphireTile() {
 	this.desc = "sapphire";
   this.prefix = "a";
   this.longdesc = "A small sapphire gemstone.";
+  this.valuable = 1;
 }
 SmallSapphireTile.prototype = new ItemObject();
 
-function SapphireTile() {
-	this.name = "Sapphire";
+function UncutSapphireTile() {
+	this.name = "UncutSapphire";
 	this.graphic = "items.png";
   this.spriteyoffset = "-192";
   this.spritexoffset = "-96";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.desc = "sapphire";
+	this.desc = "smooth, uncut sapphire";
   this.prefix = "a";
-  this.longdesc = "A moderately sized sapphire gemstone.";
+  this.longdesc = "A smooth, uncut sapphire gemstone.";
+  this.valuable = 1;
 }
-SapphireTile.prototype = new ItemObject();
+UncutSapphireTile.prototype = new ItemObject();
 
 function GemsTile() {
 	this.name = "Gems";
@@ -9268,11 +9300,26 @@ function GemsTile() {
   this.spritexoffset = "-128";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "gemstones";
+  this.desc = "handful of small gemstones";
   this.prefix = "a";
-  this.longdesc = "A small pile of tiny gemstones.";
+  this.longdesc = "A handful of small gemstones.";
+  this.valuable = 1;
 }
 GemsTile.prototype = new ItemObject();
+
+function UncutGemsTile() {
+	this.name = "UncutGems";
+	this.graphic = "items.png";
+  this.spriteyoffset = "-192";
+  this.spritexoffset = "-128";
+	this.blocklos = 0;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "handful of small, uncut gemstones";
+  this.prefix = "a";
+  this.longdesc = "A handful of small uncut gemstones.";
+  this.valuable = 1;
+}
+UncutGemsTile.prototype = new ItemObject();
 
 function RubyGemoftheSunTile() {
 	this.name = "RubyGemoftheSun";
