@@ -880,7 +880,11 @@ function DoAction(code, ctrl) {
             sold = sold.charAt(0).toUpperCase() + sold.slice(1)
             maintext.addText(sold + ": sold.");
             PC.removeFromInventory(ininv);  // already handles only subtracting 1 if there are multiples
-            PC.addGold(Math.ceil(merinv.stock[idx].price/10));
+            if (ininv.valuable) {
+              PC.addGold(Math.ceil(merinv.stock[idx].price * .95));
+            } else {
+              PC.addGold(Math.ceil(merinv.stock[idx].price/10));
+            }
             DUPlaySound("sfx_coin");
             DrawCharFrame();
           }

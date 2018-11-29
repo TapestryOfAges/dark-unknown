@@ -179,7 +179,12 @@ function GetSellBack(seller, merchant) {
         var displayname = ininv.desc;
         displayname = displayname + " (" + qty + ")";
         var addme = String.fromCharCode(code+idx) + ") " + displayname;
-        var price = Math.ceil(val.price/10) + " gp";
+        var price;
+        if (ininv.valuable) {
+          price = Math.ceil(val.price*.95) + " gp";
+        } else {
+          price = Math.ceil(val.price/10) + " gp";
+        }
         var addedtext = addme + "<span style='float:right'>" + price + "</span>";
         selllist.push(addedtext);
       }
