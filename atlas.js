@@ -443,8 +443,16 @@ Acre.prototype.getTerrain = function() {
 	return this.terrain;
 }
 
-Acre.prototype.getTop = function(nopc, sortnpctotop) {
+Acre.prototype.getTop = function(nopc, sortnpctotop, fordisplay) {
   let toptile;
+  if (fordisplay) {
+    let fea = this.getFeatures();
+    for (let i=0;i<fea.length;i++) {
+      if (fea[i].alwaystop) {
+        return fea[i];
+      }
+    }
+  }
   if (!sortnpctotop) {
   	if (this.getTopPC() && !nopc) {
     	toptile = this.getTopPC();

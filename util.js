@@ -189,7 +189,7 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     }
   }
   
-  displaytile = localacre.getTop(0,1);  // sorts NPCs to top
+  displaytile = localacre.getTop(0,1,1);  // sorts NPCs to top, but "alwaystop" features above them
   while (displaytile.getName() === "SeeBelow") {
     var retval = FindBelow(x,y,mapname);
     localacre = retval.tile;
