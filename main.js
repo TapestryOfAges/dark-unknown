@@ -78,9 +78,7 @@ function DrawMainFrame(how, themap, centerx, centery) {
   if (how === "draw") {
     displayspecs = getDisplayCenter(themap,centerx,centery);
     
-//    var mapbg = '';
     if (themap.getBackground()) {
-      //mapbg = 'background-image:url(\'graphics/' + themap.getBackground() + '\'); background-repeat:no-repeat;';
       var opacity = themap.getOpacity();
       $("#worldlayer").html("<div id='cloudlayer' style='background-image:url(\"graphics/" + themap.getBackground() + "\");opacity:" + opacity + ";position:relative;z-index:10;background-position: " + wind.xoff + "px " + wind.yoff + "px;'><img src='graphics/spacer.gif' width='416' height='416' /></div>");
     } else {
