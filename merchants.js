@@ -129,56 +129,30 @@ function DisplayWares(who) {
         if ((qty > 0) && (qty <= 99)) {
           displayname = displayname + " (qty: " + qty + ")";
         }
-//        var spaces = 23 - displayname.length;
         var addme = String.fromCharCode(code+idx) + ") " + displayname;
-//        for (var i=0; i<spaces; i++) {
-//          addme = addme + "-";
-//        }
         var price = val.price + " gp";
-//        spaces = 8-price.length;
-//        if (spaces < 8) {
-//          for (var i = 0; i<spaces; i++) {
-//            price = "=" + price;
-//          }
-//        }
         var addedtext = addme + "<span style='float:right'>" + price + "</span>";
-//        addme = addme + price;
         maintext.addText(addedtext);
       }
     });
     
     return 1;
   } else if (stocks.type === "spells") {
-//    var anyspells = [];
     var yesspells = 0;
     $.each(stocks.stock, function(idx, val) {
-//      if (!PC.knowsSpell(val.lvl, val.sid)) { 
         if (!yesspells) {
           conversations[who.getConversation()].say(who, conversations[who.getConversation()]["_startbuy"].responses[1]);
         }
-//        anyspells.push(idx);
         yesspells = 1;
         var displayname = val.desc + " (lvl: " + val.lvl + ")";
-//        var spaces = 23 - displayname.length;
         var addme = String.fromCharCode(code+idx) + ") " + displayname;
-//        for (var i=0; i<spaces; i++) {
-//          addme = addme + "&nbsp;";
-//        }
         var price = val.price + " gp";
-//        spaces = 8-price.length;
-//        if (spaces < 8) {
-//          for (var i = 0; i<spaces; i++) {
-//            price = "&nbsp;" + price;
-//          }
-//        }
-//        addme = addme + price;
         var addedtext = addme + "<span style='float:right'>" + price + "</span>";
         if (PC.knowsSpell(val.lvl, val.sid)) {
           addedtext = "<span style='color:aaa'>" + addedtext + "</span>";
         }
         maintext.addText(addedtext);
         
-//      }
     });
     if (!yesspells) {
       conversations[who.getConversation()].say(who, conversations[who.getConversation()]["_knowsall"].responses[1]);
@@ -204,19 +178,13 @@ function GetSellBack(seller, merchant) {
       if (qty) {
         var displayname = ininv.desc;
         displayname = displayname + " (" + qty + ")";
-//        var spaces = 23 - displayname.length;
         var addme = String.fromCharCode(code+idx) + ") " + displayname;
-//        for (var i=0; i<spaces; i++) {
-//          addme = addme + "&nbsp;";
-//        }
-        var price = Math.ceil(val.price/10) + " gp";
-//        spaces = 8-price.length;
-//        if (spaces < 8) {
-//          for (var i = 0; i<spaces; i++) {
-//            price = "&nbsp;" + price;
-//          }
-//        }
-//        addme = addme + price;
+        var price;
+        if (ininv.valuable) {
+          price = Math.ceil(val.price*.95) + " gp";
+        } else {
+          price = Math.ceil(val.price/10) + " gp";
+        }
         var addedtext = addme + "<span style='float:right'>" + price + "</span>";
         selllist.push(addedtext);
       }

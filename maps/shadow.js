@@ -81,7 +81,7 @@ mappages["shadow1"].returnmap = 'darkunknown';
 mappages["shadow1"].returnx = '96';
 mappages["shadow1"].returny = '31';
 mappages["shadow1"].returninfused = '0';
-mappages["shadow1"].linkedMaps = ["shadow2","shadow3"];
+mappages["shadow1"].linkedMaps = ["shadow2"];
 
 mappages["shadow1"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
@@ -98,8 +98,8 @@ mappages["shadow2"] = {};
 mappages["shadow2"].terrain = [];
  mappages["shadow2"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["shadow2"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["shadow2"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw BK BK BK BK BK BK BK';
- mappages["shadow2"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cw cw BK BK BK BK BK BK BK';
+ mappages["shadow2"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw BK BK BK BK BK BK BK BK';
+ mappages["shadow2"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cw cw BK BK BK BK BK BK BK';
  mappages["shadow2"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK BK BK BK BK';
  mappages["shadow2"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw cw BK BK BK BK BK BK';
  mappages["shadow2"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cw BK BK BK BK BK BK';
@@ -112,7 +112,7 @@ mappages["shadow2"].terrain[12] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf 
 mappages["shadow2"].terrain[13] = 'BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK';
 mappages["shadow2"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["shadow2"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["shadow2"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cw cw cw cw cw cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["shadow2"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cw cw cw cw cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["shadow2"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK cw cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["shadow2"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["shadow2"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cw cw cf cf cf cw cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -133,7 +133,7 @@ mappages["shadow2"].terrain[33] = 'BK BK BK BK BK BK cw cw cf cf cf cf cf cf cw 
 mappages["shadow2"].terrain[34] = 'BK BK BK BK BK BK BK cw cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["shadow2"].terrain[35] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw BK BK BK BK BK BK BK cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["shadow2"].terrain[36] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK cw cw cf cf cf cw BK BK BK cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK';
-mappages["shadow2"].terrain[37] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw cw BK BK BK BK BK cw cw cw cf cf cf cf cw cw BK cw cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
+mappages["shadow2"].terrain[37] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw cw BK BK BK BK BK BK cw cw cf cf cf cf cw cw BK cw cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
 mappages["shadow2"].terrain[38] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cw cw BK BK BK BK BK cw cw cf cf cf cf cf cf cw cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
 mappages["shadow2"].terrain[39] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw cf cf cf cf cw BK BK BK BK BK BK BK';
 mappages["shadow2"].terrain[40] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cw cw cf cf cf cf cf cw BK BK BK BK BK BK BK';
@@ -161,7 +161,7 @@ mappages["shadow2"].features = [];
 mappages["shadow2"].features[0] = {name : 'LadderUp', x : 7, y : 30, entermap : 'shadow1', enterx : 7, entery : 30};
 mappages["shadow2"].features[1] = {name : 'LadderDown', x : 43, y : 30, entermap : 'shadow3', enterx : 43, entery : 30};
 mappages["shadow2"].features[2] = {name : 'SiriCloak', x : 40, y : 49};
-mappages["shadow2"].features[2] = {name : 'SkeletonDecoration', x : 39, y : 49};
+mappages["shadow2"].features[3] = {name : 'SkeletonDecoration', x : 39, y : 49};
 
 
 mappages["shadow2"].npcs = [];
@@ -206,13 +206,15 @@ mappages["shadow2"].returnmap = 'darkunknown';
 mappages["shadow2"].returnx = '96';
 mappages["shadow2"].returny = '31';
 mappages["shadow2"].returninfused = '0';
-mappages["shadow2"].linkedMaps = ["shadow1","shadow3"];
+mappages["shadow2"].linkedMaps = ["shadow1"];
 
 mappages["shadow2"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
     if ((DU.gameflags.getFlag("returned_cloak")) || (PC.checkInventory("SiriCloak"))) {
       let cloak = mapref.getTile(40,49).getTopFeature();
-      mapref.deleteThing(cloak);
+      if (cloak) {
+        mapref.deleteThing(cloak);
+      }
     }
   }
 }

@@ -104,3 +104,4 @@ knowsorangepotion
 knowsbrownpotion
 rebuild_poverty
 pool_drunk - you have drunk from the brilliant pool
+joined_guild - you've fulfilled Carol's request and gotten admittance to the Guild
