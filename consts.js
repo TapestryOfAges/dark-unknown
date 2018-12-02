@@ -2,7 +2,6 @@
 "use strict";
 
 const LOS_THRESHOLD = .98;
-//var LOE_THRESHOLD = .7;
 const SHADOW_THRESHOLD = .3;
 
 const MOVE_FLY = 1;
