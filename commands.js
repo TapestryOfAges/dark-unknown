@@ -465,6 +465,7 @@ function PerformCommand(code, ctrl) {
     retval["fin"] = 2;	
     targetCursor.command = "z";			
     targetCursor.page = 1;
+    targetCursor.scrolllocation = 0;
     
     DrawStats(targetCursor.page);
 	}
@@ -1992,8 +1993,8 @@ function PerformYell() {
 		  return retval;
 		} else if (inputText.txt === "BEAMAGE") {
 		  PC.setKnowsInfusion(1);
-		  for (var i=1; i<=8; i++) {
-		    for (var j=1; j<=8; j++) {
+		  for (let i=1; i<=8; i++) {
+		    for (let j=1; j<=8; j++) {
 		      PC.addSpell(i,GetSpellID(j));
 		    }
 		  }
@@ -2128,6 +2129,7 @@ function performZstats(code) {
 
   if ((code === 27) || (code === 90)) { // ESC or Z again
     retval["fin"] = 0;
+    targetCursor.scrolllocation = 0;
   }
   else if ((code === 37) || (code === 186)) {  // previous page
     if (targetCursor.page === 2) { 
@@ -2145,6 +2147,7 @@ function performZstats(code) {
         }
       }  // set to the last page when I know what that will be
       DrawStats(targetCursor.page);
+      targetCursor.scrolllocation = 0;
     }
     retval["fin"] = 1;
   }
@@ -2162,6 +2165,7 @@ function performZstats(code) {
         targetCursor.page = 1;
       }
       DrawStats(targetCursor.page);
+      targetCursor.scrolllocation = 0;
     }
     retval["fin"] = 1;
   }
@@ -2173,7 +2177,7 @@ function performZstats(code) {
     if (typeof exitInv === "object") {
       // (U)se return
     } else if (exitInv) {
-      targetCursor.scrollapi.scrollByY(-50,1);
+      ScrollStats(-20);  
     }
     retval["fin"] = 1;
   }
@@ -2185,7 +2189,7 @@ function performZstats(code) {
       // (U)se return
       return exitInv;
     } else if (exitInv) {
-      targetCursor.scrollapi.scrollByY(50,1);
+      ScrollStats(20);    
     }
     retval["fin"] = 1;
   }
@@ -2196,7 +2200,7 @@ function performZstats(code) {
     if (typeof exitInv === "object") {
       // (U)se return
     } else if (exitInv) {
-      targetCursor.scrollapi.scrollByY(350,1);
+      ScrollStats(250);    
     }
     retval["fin"] = 1;
   }       
@@ -2207,7 +2211,7 @@ function performZstats(code) {
     if (typeof exitInv === "object") {
       // (U)se return
     } else if (exitInv) {
-      targetCursor.scrollapi.scrollByY(-350,1);
+      ScrollStats(-250);
     }
     retval["fin"] = 1;
   }       
@@ -2215,6 +2219,15 @@ function performZstats(code) {
 
   if (targetCursor.page === 2) { DisplayInventory(restrict); }
   return retval;
+}
+
+function ScrollStats(amt) {
+  let divheight = document.getElementById('zstat').clientHeight;
+  let currtop = document.getElementById('zstat').scrollTop;
+  currtop += amt;
+  if (currtop > (divheight - 410)) { currtop = divheight - 410; }
+  if (currtop < 0) { currtop = 0; }
+  document.getElementById('zstat').scrollTop = currtop;
 }
 
 function DrawStats(page) {
@@ -2232,8 +2245,9 @@ function DrawStats(page) {
     if (PC.getInt() > PC.getBaseInt()) { spanint = '<span style="color:cyan">'; }
     if (PC.getInt() < PC.getBaseInt()) { spanint = '<span style="color:orange">'; }
     
-    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+    statsdiv = "<div class='outerstats'><div id='zstat' class='zstats'>";
     statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'><tr>";
+
     statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
     statsdiv += "<tr><td style='width:50%'>HP: " + PC.getDisplayHP() + "/" + PC.getMaxHP() + "</td><td></td>";
     statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
@@ -2305,7 +2319,7 @@ function DrawStats(page) {
     if (!alleffects[0]) {
       statsdiv += "<tr><td colspan='3'>You have no effects or afflictions upon you.</td></tr>";
     } else {
-      for (var i=0; i < alleffects.length; i++) {
+      for (let i=0; i < alleffects.length; i++) {
         if (alleffects[i].display) {
           statsdiv += "<tr><td colspan='3'>" + alleffects[i].display + ": " + alleffects[i].getZstatdesc() + "</td></tr>";
         }
@@ -2314,17 +2328,7 @@ function DrawStats(page) {
 
     statsdiv += "</table></div></div>";
     DrawTopbarFrame("<p>Character</p>");
-  
-    $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-    $("#worldlayer").css("background-image", "");
-    $("#worldlayer").css("background-color", "black");
-    $('#uiinterface').html(statsdiv);
-    $("#uiinterface").css("background-color", "black");
-  
-  	var scrollelem = $('.zstats').jScrollPane();
-    var scrollapi = scrollelem.data('jsp');
-    targetCursor.scrollapi = scrollapi;
-
+    
   } else if (page === 2) {
     DisplayInventory();
     DrawTopbarFrame("<p>Inventory</p>");
@@ -2333,12 +2337,12 @@ function DrawStats(page) {
     statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
     statsdiv += "<tr><td>&nbsp;</td></tr>";
    
-    var hasSpellbook = 0;
+    let hasSpellbook = 0;
    
-    for (var lvl = 1; lvl <= 8; lvl++ ){
-      var hasLevel = 0;
-      for (var i=1; i<=8; i++) {
-        var spellnum = GetSpellID(i);
+    for (let lvl = 1; lvl <= 8; lvl++ ){
+      let hasLevel = 0;
+      for (let i=1; i<=8; i++) {
+        let spellnum = GetSpellID(i);
         if (PC.knowsSpell(lvl, spellnum)) {
           if (!hasLevel) {
             if (lvl !== 1) { statsdiv += "<tr><td>&nbsp;</td></tr>"; }
@@ -2373,23 +2377,13 @@ function DrawStats(page) {
   
     statsdiv += "</table></div></div>";  
 
-    $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-    $("#worldlayer").css("background-image", "");
-    $("#worldlayer").css("background-color", "black");
-    $('#uiinterface').html(statsdiv);
-    $("#uiinterface").css("background-color", "black");
-  
-  	var scrollelem = $('.zstats').jScrollPane();
-    var scrollapi = scrollelem.data('jsp');
-    targetCursor.scrollapi = scrollapi;
-
     DrawTopbarFrame("<p>Spellbook</p>");
   } else if (page === 4) {
     statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
     statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
     statsdiv += "<tr><td>&nbsp;</td></tr>";
    
-    var hasrunes = 0;
+    let hasrunes = 0;
     if (PC.runes.kings) { 
      statsdiv += "<tr><td>Rune of Kings</td></tr>";
      hasrunes = 1;
@@ -2416,42 +2410,28 @@ function DrawStats(page) {
     statsdiv += "</table></div></div>";  
     DrawTopbarFrame("<p>Runes</p>");
 
-    $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-    $("#worldlayer").css("background-image", "");
-    $("#worldlayer").css("background-color", "black");
-    $('#uiinterface').html(statsdiv);
-    $("#uiinterface").css("background-color", "black");
-  
-  	var scrollelem = $('.zstats').jScrollPane();
-    var scrollapi = scrollelem.data('jsp');
-    targetCursor.scrollapi = scrollapi;
-
   }
  
-  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-  $("#worldlayer").css("background-image", "");
-  $("#worldlayer").css("background-color", "black");
-  $('#uiinterface').html(statsdiv);
-  $("#uiinterface").css("background-color", "black");
-  
-	var scrollelem = $('.zstats').jScrollPane();
-  var scrollapi = scrollelem.data('jsp');
-  targetCursor.scrollapi = scrollapi;
+  document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
+  document.getElementById('worldlayer').style.backgroundImage = "";
+  document.getElementById('worldlayer').style.backgroundColor = "black";
+  document.getElementById('uiinterface').innerHTML = statsdiv;
+  document.getElementById('uiinterface').style.backgroundColor = "black";
 
 }
 
 function StatsCategory(stuff, label) {
   stuff.sort(function(a,b) {
-    var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+    let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
     if (nameA < nameB) 
       return -1
     if (nameA > nameB)
       return 1
     return 0 
   }); 
-  var newtext = "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>" + label +"</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
-  for (var i = 0; i < stuff.length; i++ ) {
-    var itemdesc = stuff[i].getDesc();
+  let newtext = "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>" + label +"</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+  for (let i=0; i<stuff.length; i++ ) {
+    let itemdesc = stuff[i].getDesc();
     itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
     newtext += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + stuff[i].getQuantity() + ")</td></tr>";
   }
@@ -2460,7 +2440,7 @@ function StatsCategory(stuff, label) {
 }
 
 function DrawOptions() {
-  var optdiv = "<div><div id='opt' class='zstats'>";
+  let optdiv = "<div><div id='opt' class='zstats'>";
   optdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
   optdiv += "<tr><td style='text-decoration:underline'>OPTIONS</td><td></td><td></td></tr>";
@@ -2472,7 +2452,7 @@ function DrawOptions() {
   }
   optdiv += ">";
   if (DU.gameflags.getFlag("music")) {
-    var modmusic = DU.gameflags.getFlag('music')*10;
+    let modmusic = DU.gameflags.getFlag('music')*10;
     optdiv += modmusic;
   } else {
     optdiv += "0";
@@ -2495,7 +2475,7 @@ function DrawOptions() {
   }
   optdiv += ">";
   if (DU.gameflags.getFlag("sound")) {
-    var modsound = DU.gameflags.getFlag("sound")*10;
+    let modsound = DU.gameflags.getFlag("sound")*10;
     optdiv += modsound;
   } else {
     optdiv += "0";
@@ -2564,16 +2544,16 @@ function DrawOptions() {
   optdiv += "</table></div></div>";
   
   DrawTopbarFrame("<p>Options</p>");
-  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-  $("#worldlayer").css("background-image", "");
-  $("#worldlayer").css("background-color", "black");
-  $('#uiinterface').html(optdiv);
-  $("#uiinterface").css("background-color", "black");
-
+  
+  document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
+  document.getElementById('worldlayer').style.backgroundImage = "";
+  document.getElementById('worldlayer').style.backgroundColor = "black";
+  document.getElementById('uiinterface').innerHTML = optdiv;
+  document.getElementById('uiinterface').style.backgroundColor = "black";
 }
 
 function DrawDebugOptions() {
-  var optdiv = "<div><div id='opt' class='zstats'>";
+  let optdiv = "<div><div id='opt' class='zstats'>";
   optdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
   optdiv += "<tr><td>DEBUG OPTIONS</td><td></td><td></td></tr>";
@@ -2714,111 +2694,110 @@ function DrawDebugOptions() {
   optdiv += "</table></div></div>";
   
   DrawTopbarFrame("<p>Debug Options</p>");
-  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-  $("#worldlayer").css("background-image", "");
-  $("#worldlayer").css("background-color", "black");
-  $('#uiinterface').html(optdiv);
-  $("#uiinterface").css("background-color", "black");
-  
+  document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
+  document.getElementById('worldlayer').style.backgroundImage = "";
+  document.getElementById('worldlayer').style.backgroundColor = "black";
+  document.getElementById('uiinterface').innerHTML = optdiv;
+  document.getElementById('uiinterface').style.backgroundColor = "black";  
 }
 
 
 function performOptions(code) {
-  var retval = {};
-    if ((code === 27) || (code === 79)) { // ESC or O again
-      retval["fin"] = 0;
-      delete targetCursor.cmd;
-      $('#uiinterface').html("");
-      $("#uiinterface").css("background-color", "");
+  let retval = {};
+  if ((code === 27) || (code === 79)) { // ESC or O again
+    retval["fin"] = 0;
+    delete targetCursor.cmd;
+    document.getElementById('uiinterface').innerHTML = "";
+    document.getElementById('uiinterface').style.backgroundColor = "black";
+  }
+  else if ((code === 38) || (code === 219)) { // scroll up
+    targetCursor.page--;
+    if (targetCursor.page === 0) { targetCursor.page = 1; } 
+    retval["fin"] = 1;
+  }
+  else if ((code === 40) || (code === 191)) { // scroll down
+    targetCursor.page++;
+    if (targetCursor.cmd === "o") {
+      if (targetCursor.page === 9) { targetCursor.page = 8; }
+    } else if (targetCursor.cmd === "debug") {
+      if (targetCursor.page === 13) { targetCursor.page = 12; }
     }
-    else if ((code === 38) || (code === 219)) { // scroll up
-      targetCursor.page--;
-      if (targetCursor.page === 0) { targetCursor.page = 1; } 
-      retval["fin"] = 1;
-    }
-    else if ((code === 40) || (code === 191)) { // scroll down
-      targetCursor.page++;
-      if (targetCursor.cmd === "o") {
-        if (targetCursor.page === 9) { targetCursor.page = 8; }
-      } else if (targetCursor.cmd === "debug") {
-        if (targetCursor.page === 13) { targetCursor.page = 12; }
-      }
-      retval["fin"] = 1;
-    }
-    else if ((code === 37) || (code === 186)) {  // left, for volumes
-      if (targetCursor.cmd === "o") {
-        if (targetCursor.page === 1) {
-          if (DU.gameflags.getFlag("music")) {
-            DU.gameflags.setFlag("music", Math.round(Math.max(0,DU.gameflags.getFlag("music")-.1)));
-            if (nowplaying.song) {
-              nowplaying.song.volume = DU.gameflags.getFlag("music");
-            }
+    retval["fin"] = 1;
+  }
+  else if ((code === 37) || (code === 186)) {  // left, for volumes
+    if (targetCursor.cmd === "o") {
+      if (targetCursor.page === 1) {
+        if (DU.gameflags.getFlag("music")) {
+          DU.gameflags.setFlag("music", Math.round(Math.max(0,DU.gameflags.getFlag("music")-.1)));
+          if (nowplaying.song) {
+            nowplaying.song.volume = DU.gameflags.getFlag("music");
           }
-        } else if (targetCursor.page === 3) {
-          if (DU.gameflags.getFlag("sound")) {
-            DU.gameflags.setFlag("sound", Math.round(Math.max(0,DU.gameflags.getFlag("sound")-.1)));
-          }
+        }
+      } else if (targetCursor.page === 3) {
+        if (DU.gameflags.getFlag("sound")) {
+          DU.gameflags.setFlag("sound", Math.round(Math.max(0,DU.gameflags.getFlag("sound")-.1)));
         }
       }
     }
-    else if ((code === 39) || (code === 222)) {  // right, for volumes
-      if (targetCursor.cmd === "o") {
-        if (targetCursor.page === 1) {
-          if (DU.gameflags.getFlag("music")) {
-            DU.gameflags.setFlag("music", Math.round(Math.min(1,DU.gameflags.getFlag("music")+.1)));
-            if (nowplaying.song) {
-              nowplaying.song.volume = DU.gameflags.getFlag("music");
-            } else {
-              var song = PC.getHomeMap().getMusic();
-              nowplaying = DUPlayMusic(song);
-            }
+  }
+  else if ((code === 39) || (code === 222)) {  // right, for volumes
+    if (targetCursor.cmd === "o") {
+      if (targetCursor.page === 1) {
+        if (DU.gameflags.getFlag("music")) {
+          DU.gameflags.setFlag("music", Math.round(Math.min(1,DU.gameflags.getFlag("music")+.1)));
+          if (nowplaying.song) {
+            nowplaying.song.volume = DU.gameflags.getFlag("music");
+          } else {
+            let song = PC.getHomeMap().getMusic();
+            nowplaying = DUPlayMusic(song);
           }
-        } else if (targetCursor.page === 3) {
-          if (DU.getFlag("sound")) {
-            DU.setFlag("sound", Math.round(Math.min(1,DU.getFlag("sound")+.1)));
-          }
+        }
+      } else if (targetCursor.page === 3) {
+        if (DU.getFlag("sound")) {
+          DU.setFlag("sound", Math.round(Math.min(1,DU.getFlag("sound")+.1)));
         }
       }
     }
-    else if ((code === 32) || (code === 13)) {  // space or enter
-      if (targetCursor.cmd === "o") {
-        if (targetCursor.page === 1) {
-          if (DU.gameflags.getFlag("music")) {
-            DU.gameflags.setFlag("music",0);
-            if (nowplaying.song) {
-              nowplaying.song.volume = 0;
-            }
-          } else {
-            DU.gameflags.setFlag("music",1);
-            if (nowplaying.song) {
-              nowplaying.song.volume = 1;
-            } else {
-              var song = PC.getHomeMap().getMusic();
-              nowplaying = DUPlayMusic(song);
-            }
-          }
-        } else if (targetCursor.page === 3) {
-          if (DU.gameflags.getFlag("sound")) {
-            DU.gameflags.setFlag("sound",0);
-          } else {
-            DU.gameflags.setFlag("sound",1);
+  }
+  else if ((code === 32) || (code === 13)) {  // space or enter
+    if (targetCursor.cmd === "o") {
+      if (targetCursor.page === 1) {
+        if (DU.gameflags.getFlag("music")) {
+          DU.gameflags.setFlag("music",0);
+          if (nowplaying.song) {
+            nowplaying.song.volume = 0;
           }
         } else {
-          ToggleOption(targetCursor.page);
+          DU.gameflags.setFlag("music",1);
+          if (nowplaying.song) {
+            nowplaying.song.volume = 1;
+          } else {
+            let song = PC.getHomeMap().getMusic();
+            nowplaying = DUPlayMusic(song);
+          }
         }
-      } else if (targetCursor.cmd === "debug") {
-        ToggleDebugOption(targetCursor.page);
+      } else if (targetCursor.page === 3) {
+        if (DU.gameflags.getFlag("sound")) {
+          DU.gameflags.setFlag("sound",0);
+        } else {
+          DU.gameflags.setFlag("sound",1);
+        }
+      } else {
+        ToggleOption(targetCursor.page);
       }
-      retval["fin"] = 1;
-    }       
-    else { retval["fin"] = 1; }
-    
-    if (targetCursor.cmd === "o") {  
-      DrawOptions();
     } else if (targetCursor.cmd === "debug") {
-      DrawDebugOptions();
+      ToggleDebugOption(targetCursor.page);
     }
-    return retval;
+    retval["fin"] = 1;
+  }       
+  else { retval["fin"] = 1; }
+    
+  if (targetCursor.cmd === "o") {  
+    DrawOptions();
+  } else if (targetCursor.cmd === "debug") {
+    DrawDebugOptions();
+  }
+  return retval;
 }
 
 function ToggleDebugOption(opt) {
@@ -2905,7 +2884,7 @@ function ToggleOption(opt) {
       StopMusic(nowplaying);
     } else {
       DU.gameflags.setFlag("music", 1);
-      var song = PC.getHomeMap().getMusic();
+      let song = PC.getHomeMap().getMusic();
       nowplaying = DUPlayMusic(song);
     }
   } else if (opt === 2) {
@@ -2918,7 +2897,7 @@ function ToggleOption(opt) {
       DU.gameflags.setFlag("loopmusic", 1); 
       if (DU.gameflags.getFlag("music")) {
         if (nowplaying.song.playState === "playFinished") {
-          var song = PC.getHomeMap().getMusic();
+          let song = PC.getHomeMap().getMusic();
           nowplaying = DUPlayMusic(song);  
         } else {
           nowplaying.song.loop = -1;
@@ -2940,10 +2919,8 @@ function ToggleOption(opt) {
   } else if (opt === 5) {
     if (DU.gameflags.getFlag("move_opens_doors")) {
       DU.gameflags.setFlag("move_opens_doors", 0);
-//      TabletUI(-1);
     } else {
       DU.gameflags.setFlag("move_opens_doors", 1);
-//      TabletUI(1);
     }
   } else if (opt === 6) {
     if (DU.gameflags.getFlag("move_attacks")) {
@@ -2967,9 +2944,9 @@ function ToggleOption(opt) {
 }
 
 function ShowSaveGames(toptext) {
-  var table = "<div class='zstats'><table cellpadding='2' cellspacing='0' border='0' style='background-color:black'>";
-  var saveIndex = JSON.parse(localStorage.saveIndex);
-  for (var i=-1;i<=9;i++) {
+  let table = "<div class='zstats'><table cellpadding='2' cellspacing='0' border='0' style='background-color:black'>";
+  let saveIndex = JSON.parse(localStorage.saveIndex);
+  for (let i=-1;i<=9;i++) {
     if ((i === 0) || (i === 9)) { table += "<tr style='height:36; background-image:url(\"graphics/frame/saveui-lock.gif\"); width:416px'>"; }
     else { table += "<tr style='height:36; background-image:url(\"graphics/frame/saveui.gif\"); width:416px'>"; }
     if (i === -1) {
@@ -2977,14 +2954,14 @@ function ShowSaveGames(toptext) {
       table += "<td style='color:white;text-align:center;v-align:center;width:35'><img src='graphics/spacer.gif' width='32' /></td>";
       table += "<td style='color:white;v-align:center;padding-left:5px;width:100%'>" + toptext + "</td>";      
     } else if (saveIndex[i].charname) {
-      var tmpdate = saveIndex[i].datestamp;
-      var thisdate = new Date();
+      let tmpdate = saveIndex[i].datestamp;
+      let thisdate = new Date();
       thisdate.setTime(tmpdate);
-      var thistime = thisdate.toLocaleTimeString();
-      var parts = thistime.split(/ /);
-      var timepart = parts[0].split(":");
+      let thistime = thisdate.toLocaleTimeString();
+      let parts = thistime.split(/ /);
+      let timepart = parts[0].split(":");
       thistime = timepart[0] + ":" + timepart[1] + " " + parts[1];
-      var thisloc = saveIndex[i].loc.slice(0,13);
+      let thisloc = saveIndex[i].loc.slice(0,13);
       table += "<td style='color:white;text-align:center;v-align:center;width:35'>" + i + "</td>";
       table += "<td style='color:white;text-align:center;v-align:center;width:35'><img src='graphics/" + saveIndex[i].graphic + "' /></td>";
       table += "<td style='color:white;v-align:center;padding-left:5px;width:100%;font-size:smaller'>" + saveIndex[i].charname + " (" + thisloc + ") " + thisdate.toLocaleDateString() + " " + thistime + "</td>";
@@ -2996,7 +2973,7 @@ function ShowSaveGames(toptext) {
     table += "</tr>";
   }
   table += "</table></div>";
-  $("#uiinterface").html(table);
+  document.getElementById('uiinterface').innerHTML = table;
 }
 
 function DisplayInventory(restrictTo) {
@@ -3005,47 +2982,47 @@ function DisplayInventory(restrictTo) {
   if (!targetCursor.invskiprow) { targetCursor.invskiprow = 0; }
   if (!targetCursor.invlength) { targetCursor.invlength = 0; }
   
-  var inventorylist = MakeInventoryList(restrictTo);
+  let inventorylist = MakeInventoryList(restrictTo);
 
   targetCursor.invlength = inventorylist.length;
-  $("#uiinterface").html("");
-  $("#uiinterface").css("background-color","black");
-  for (var j=0;j<5;j++) {
-    for (var i=0;i<8;i++) {
-      var leftedge = 30+45*i;
-      var topedge = 20+45*j;
-      $("#uiinterface").append("<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>");
+  document.getElementById('uiinterface').innerHTML = "";
+  document.getElementById('uiinterface').style.backgroundColor = "black";
+  for (let j=0;j<5;j++) {
+    for (let i=0;i<8;i++) {
+      let leftedge = 30+45*i;
+      let topedge = 20+45*j;
+      document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>";
     }
   }
 
-  $("#uiinterface").append("<div id='inv_desc_window' style='position:absolute; left: 35px; top: 260px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 125px'></div>");
-  $("#inv_desc_window").html("<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 16px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:52px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>");
-  var invselect = targetCursor.invskiprow*8;
-  var writetox = 0;
-  var writetoy = 0;
+  document.getElementById('uiinterface').innerHTML += "<div id='inv_desc_window' style='position:absolute; left: 35px; top: 260px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 125px'></div>";
+  document.getElementById('inv_desc_window').innerHTML = "<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 16px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:52px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>";
+  let invselect = targetCursor.invskiprow*8;
+  let writetox = 0;
+  let writetoy = 0;
 
-  for (var i=invselect;i<inventorylist.length;i++) {
+  for (let i=invselect;i<inventorylist.length;i++) {
     writetoy = Math.floor(i/8);
     writetox = i%8;
     
-    var showgraphic = inventorylist[i].getGraphicArray();
-    var bordercolor = "#ccc";
-    $("#inv_"+writetox+"x"+writetoy).css("background-image", "url('graphics/" + showgraphic[0] + "')");
-    $("#inv_"+writetox+"x"+writetoy).css("background-repeat", "no-repeat");
-    $("#inv_"+writetox+"x"+writetoy).css("background-position", showgraphic[2] + "px " + showgraphic[3] + "px");
+    let showgraphic = inventorylist[i].getGraphicArray();
+    let bordercolor = "#ccc";
+    document.getElementById('inv_'+writetox+"x"+writetoy).style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
+    document.getElementById('inv_'+writetox+"x"+writetoy).style.backgroundRepeat = "no-repeat";
+    document.getElementById('inv_'+writetox+"x"+writetoy).style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
 
     if (inventorylist[i].getQuantity() && (inventorylist[i].getQuantity() > 1)) {
-      $("#inv_"+writetox+"x"+writetoy).css("vertical-align", "bottom");
-      $("#inv_"+writetox+"x"+writetoy).css("text-align", "right");
-      $("#inv_"+writetox+"x"+writetoy).css("font-size", 12);
-      $("#inv_"+writetox+"x"+writetoy).css("color", "white");
-      $("#inv_"+writetox+"x"+writetoy).css("font-family","Commodore64");
-      $("#inv_"+writetox+"x"+writetoy).css("line-height","24px");
-      $("#inv_"+writetox+"x"+writetoy).html("<p>" + inventorylist[i].getQuantity() + "</p>");
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.verticalAlign = "bottom";
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.textAlign = "right";
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.fontSize = 12;
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.color = "white";
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.fontFamily = "Commodore64";
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.lineHeight = "24px";
+      document.getElementById('inv_'+writetox+"x"+writetoy).innerHTML = "<p>" + inventorylist[i].getQuantity() + "</p>";
     }
 
     if (PC.isEquipped(inventorylist[i])) {
-      $("#inv_"+writetox+"x"+writetoy).css("border-color", "#000099");
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.borderColor = "#000099";
     }
   }
 
@@ -3055,31 +3032,30 @@ function DisplayInventory(restrictTo) {
 
   if (invselect < inventorylist.length) {
     if (PC.isEquipped(inventorylist[invselect])) { 
-      $("#inv_"+writetox+"x"+writetoy).css("border-color", "#66ccff");
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.borderColor = "#66ccff";
     } else {
-      $("#inv_"+writetox+"x"+writetoy).css("border-color", "#ffffff");
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.borderColor = "#ffffff";
     }
   
-    var showgraphic = inventorylist[invselect].getGraphicArray();
-    $("#inv_image").css("background-image", "url('graphics/" + showgraphic[0] + "')");
-    $("#inv_image").css("background-repeat", "no-repeat");
-    $("#inv_image").css("background-position", showgraphic[2] + "px " + showgraphic[3] + "px");
-    var descname = inventorylist[invselect].getDesc();
+    let showgraphic = inventorylist[invselect].getGraphicArray();
+    document.getElementById('inv_image').style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
+    document.getElementById('inv_image').style.backgroundRepeat = "no-repeat";
+    document.getElementById('inv_image').style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
+    let descname = inventorylist[invselect].getDesc();
     descname = descname.charAt(0).toUpperCase() + descname.slice(1);
-    $("#inv_name").html(descname);  
+    document.getElementById('inv_name').innerHTML = descname;
     if (inventorylist[invselect].getQuantity() > 1) {
-      $("#inv_name").append(" (" + inventorylist[invselect].getQuantity() + ")"); 
+      document.getElementById('inv_name').innerHTML += " (" + inventorylist[invselect].getQuantity() + ")"; 
     }
-    $("#inv_desc").html(inventorylist[invselect].getLongDesc());
-    $("#inv_use").html("Use: " + inventorylist[invselect].getUseDesc());
+    document.getElementById('inv_desc').innerHTML = inventorylist[invselect].getLongDesc();
+    document.getElementById('inv_use').innerHTML = "Use: " + inventorylist[invselect].getUseDesc();
   } else {
-    $("#inv_"+writetox+"x"+writetoy).css("border-color", "#ffffff");
+    document.getElementById("#inv_"+writetox+"x"+writetoy).style.borderColor = "#ffffff";
   }
 
-  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-  $("#worldlayer").css("background-image", "");
-  $("#worldlayer").css("background-color", "black");
-
+  document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
+  document.getElementById('worldlayer').style.backgroundImage = "";
+  document.getElementById('worldlayer').style.backgroundColor = "black";
 }
 
 function PerformInventoryScreen(code, restrict) {
@@ -3106,9 +3082,9 @@ function PerformInventoryScreen(code, restrict) {
     }
   } else if ((code === 13) || (code === 32)) {
     // use selected item
-    var invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
-    var inventorylist = MakeInventoryList(restrict);
-    var retval = {};
+    let invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
+    let inventorylist = MakeInventoryList(restrict);
+    let retval = {};
     if (targetCursor.command === "c") {
       // here for Scribe or Mend
       // WORKING HERE
@@ -3128,23 +3104,22 @@ function PerformInventoryScreen(code, restrict) {
     if (targetCursor.command === "o") {
       if (!CheckOpenAsUse(inventorylist[invselect])) {
         maintext.delayedAddText("You cannot open that.");
-        var retval = {};
-        retval["fin"] = 0;
+        let retval = {fin:0};
         delete targetCursor.itemlist;
         return retval;
       }
     }    
     targetCursor.command = 'u';
-    var retval = MakeUseHappen(PC, inventorylist[invselect], "inventory");
+    let retval = MakeUseHappen(PC, inventorylist[invselect], "inventory");
     retval["usefin"] = retval["fin"];
     retval["fin"] = 2;
     return retval;
   } else if (code === 34) { 
     if (targetCursor.invy !== 4) { targetCursor.invy = 4; }
     else {
-      var invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
-      var inventorylist = MakeInventoryList(restrict);
-      var i=0;
+      let invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
+      let inventorylist = MakeInventoryList(restrict);
+      let i=0;
       while(((invselect+8*i) < inventorylist.length) && (i<4)) {
         i++;
       }
@@ -3153,9 +3128,9 @@ function PerformInventoryScreen(code, restrict) {
   } else if (code === 33) {
     if (targetCursor.invy !== 0) { targetCursor.invy = 0; }
     else {
-      var invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
-      var inventorylist = MakeInventoryList(restrict);
-      var i=0;
+      let invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
+      let inventorylist = MakeInventoryList(restrict);
+      let i=0;
       while(((invselect-8*i) >= 0) && (i<4)) {
         i++;
       }
@@ -3168,7 +3143,7 @@ function PerformInventoryScreen(code, restrict) {
 }
 
 function MakeInventoryList(restrictTo) {
-  var inventorylist = {};
+  let inventorylist = {};
   inventorylist.armor = [];
   inventorylist.weapon = [];
   inventorylist.missile = [];
@@ -3182,9 +3157,9 @@ function MakeInventoryList(restrictTo) {
   inventorylist.other = [];
   inventorylist.broken = [];
   inventorylist.total = [];
-  var PCinv = PC.getInventory();
+  let PCinv = PC.getInventory();
 
-  for (var i=0; i<PCinv.length; i++) {
+  for (let i=0; i<PCinv.length; i++) {
     if (restrictTo === "equip") {
       if (PCinv[i].checkType("armor")) { inventorylist.armor.push(PCinv[i]); }
       else if (PCinv[i].checkType("missile")) { inventorylist.missile.push(PCinv[i]); }
@@ -3219,7 +3194,7 @@ function MakeInventoryList(restrictTo) {
   if (inventorylist.missile.length) { inventorylist.missile.sort(function(a,b) { return (b.getAveDamage(PC) - a.getAveDamage(PC)); }); }
   if (inventorylist.potion.length) {
     inventorylist.potion.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
@@ -3229,7 +3204,7 @@ function MakeInventoryList(restrictTo) {
   }
   if (inventorylist.key.length) {
     inventorylist.key.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
@@ -3239,7 +3214,7 @@ function MakeInventoryList(restrictTo) {
   }
   if (inventorylist.reagent.length) {
     inventorylist.reagent.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
@@ -3249,7 +3224,7 @@ function MakeInventoryList(restrictTo) {
   }
   if (inventorylist.quest.length) {
     inventorylist.quest.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
@@ -3259,7 +3234,7 @@ function MakeInventoryList(restrictTo) {
   }
   if (inventorylist.usable.length) {
     inventorylist.usable.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
@@ -3269,7 +3244,7 @@ function MakeInventoryList(restrictTo) {
   }  
   if (inventorylist.other.length) {
     inventorylist.other.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
@@ -3279,7 +3254,7 @@ function MakeInventoryList(restrictTo) {
   }
   if (inventorylist.scroll.length) {
     inventorylist.scroll.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (a.spelllevel < b.spelllevel) { return -1; }
       if (b.spelllevel < a.spelllevel) { return 1; }
       else {
@@ -3293,7 +3268,7 @@ function MakeInventoryList(restrictTo) {
   }  
   if (inventorylist.audachta.length) {
     inventorylist.audachta.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (a.spelllevel < b.spelllevel) { return -1; }
       if (b.spelllevel < a.spelllevel) { return 1; }
       else {
@@ -3307,7 +3282,7 @@ function MakeInventoryList(restrictTo) {
   }  
   if (inventorylist.broken.length) {
     inventorylist.broken.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
