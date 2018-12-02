@@ -1,12 +1,12 @@
 "use strict";
 
 function CreateDisplayTables() {
-  var terraintable = "<table id='mainterrainview' style='position:fixed; top:38px; left:19px; z-index:21' border='0' cellspacing='0' cellpadding='0'>";
-  var maintable = "<table id='mainview' style='position:fixed; top:38px; left:19px; z-index:22' border='0' cellspacing='0' cellpadding='0'>";
-  for (var j = 0; j< viewsizey; j++) {
+  let terraintable = "<table id='mainterrainview' style='position:fixed; top:38px; left:19px; z-index:21' border='0' cellspacing='0' cellpadding='0'>";
+  let maintable = "<table id='mainview' style='position:fixed; top:38px; left:19px; z-index:22' border='0' cellspacing='0' cellpadding='0'>";
+  for (let j=0; j<viewsizey; j++) {
     terraintable += "<tr>";
     maintable += "<tr>";
-    for (var i = 0; i< viewsizex; i++) {
+    for (let i=0; i<viewsizex; i++) {
       terraintable += "<td id='terrain_"+i+"x"+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
       maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
     }
@@ -16,23 +16,23 @@ function CreateDisplayTables() {
   terraintable += "</table>";
   maintable += "</table>";
 
-  $("#displayframe").html(terraintable + "\n" + maintable);
+  document.getElementById('displayframe').innerHTML = terraintable + "\n" + maintable;
   return;
 }
 
 function getDisplayCenter(themap,fromx,fromy) {
-	var edge = {};
-	var leftedge = fromx - (viewsizex - 1)/2;
+	let edge = {};
+	let leftedge = fromx - (viewsizex - 1)/2;
   if (leftedge < 0) { leftedge = 0; }
-  var rightedge = leftedge + viewsizex - 1;
+  let rightedge = leftedge + viewsizex - 1;
   if (rightedge >= themap.getWidth()) {
   	rightedge = themap.getWidth() -1;  // Note, this will explode somewhat if the map is smaller than 13x13
   	leftedge = rightedge - viewsizex + 1;
   	if (leftedge < 0) { leftedge = 0; }
   }
-  var topedge = fromy - (viewsizey - 1)/2;
+  let topedge = fromy - (viewsizey - 1)/2;
   if (topedge < 0) { topedge = 0; }
-  var bottomedge = topedge + viewsizey - 1;
+  let bottomedge = topedge + viewsizey - 1;
   if (bottomedge >= themap.getHeight()) {
   	bottomedge = themap.getHeight() -1;
   	topedge = bottomedge - viewsizey + 1;

@@ -1,11 +1,11 @@
 
 "use strict";
 
-var debug = 0;
-var debugscreen;
-var dbs;
-var watchon;  // must be set in console
-var debugflags = {};
+let debug = 0;
+let debugscreen;
+let dbs;
+let watchon;  // must be set in console
+let debugflags = {};
   debugflags.all = 1;
   debugflags.map = 0;
   debugflags.sound = 0;
@@ -22,10 +22,10 @@ var debugflags = {};
   debugflags.first = 1;
 // var deeptest = 0;
 
-var debugmaps = {};
+let debugmaps = {};
 debugmaps.open = 0;
 
-var debugstyle = {};
+let debugstyle = {};
 debugstyle.header = "font-weight:bold";
 debugstyle.map = "color:grey";
 debugstyle.sound = "color:orange";
@@ -41,22 +41,16 @@ debugstyle.gameobj = "color:black";
 debugstyle.schedules = "color:purple";
 debugstyle.all = "color:black";
 
-// if (debug) {  ActivateDebug(1); }
-
 function ActivateDebug(startup) { 
-//  if (!dbs) {
-//    debugscreen = window.open('','debugscreen');
-//    dbs = debugscreen.document;
-//  }
   
-  var wide = $(window).width() - 800;
+  let wide = window.innerWidth - 800;
   if (!wide) { wide = 300; }
-  var tall = $(document).height() - 30;
-  $("body").append("<div style='position:absolute;left:790px;top:0px;width:" + wide + "px;height:" + tall + "px;overflow-y:scroll;z-index:5000;background-color:white;color:black;font-size:smaller' id='debugdiv'></div>");
-  var buttonleft = 800+wide/2;
-  var buttontop = tall+10;
-  $("body").append("<div style='position:absolute;left:" + buttonleft + ";top:" + buttontop + ";z-index:5000;background-color:white' onClick='ClearDebug()'>Clear Debug</div>");
-  $("#debugdiv").html("<div style='text-align:center'>DEBUG PANE");
+  let tall = window.innerHeight - 30;
+  document.body.innerHTML += "<div style='position:absolute;left:790px;top:0px;width:" + wide + "px;height:" + tall + "px;overflow-y:scroll;z-index:5000;background-color:white;color:black;font-size:smaller' id='debugdiv'></div>";
+  let buttonleft = 800+wide/2;
+  let buttontop = tall+10;
+  document.body.innerHTML += "<div style='position:absolute;left:" + buttonleft + ";top:" + buttontop + ";z-index:5000;background-color:white' onClick='ClearDebug()'>Clear Debug</div>";
+  document.getElementById('debugdiv').innerHTML = "<div style='text-align:center'>DEBUG PANE";
 
   if (!startup) {  
     targetCursor.page = 1;
@@ -71,14 +65,15 @@ function SetDebugWatch(watchname) {
   watchon = "";
   if (!watchname) { return; }
   let stuff = maps.getAllMaps();
-  $.each(stuff, function(idx,val) {
+  for (let i in stuff) {
+    let val = stuff[i];
     let npclist = val.npcs.getAll();
     for (let j=0;j<npclist.length;j++) {
       if (npclist[j].getNPCName() === watchname) {
         watchon = npclist[j];
       }
     }
-  });
+  };
   if (!watchon) { return ("Failed to find " + watchname); }
   return; 
 }
@@ -89,7 +84,7 @@ function DebugWait(mins) {
 
 function DebugWrite(category, html) {
   if (debug && (debugflags[category] || ((whoseturn === watchon) && (category === "schedules")))) {
-    $("#debugdiv").append("<span style='" + debugstyle[category] + "'>" + html + "</span>");
+    document.getElementById('debugdiv').innerHTML += "<span style='" + debugstyle[category] + "'>" + html + "</span>";
     return 1;
   } 
   return 0;
@@ -97,24 +92,24 @@ function DebugWrite(category, html) {
 
 function SetDebugToBottom() {
   if (debug) {
-    $('#debugdiv').scrollTop($('#debugdiv')[0].scrollHeight);
+    document.getElementById('debugdiv').scrollTop = document.getElementById('debugdiv').clientHeight;
   }
 }
 
 function ClearDebug() {
   if (debug) {
-    $("#debugdiv").html("");
+    document.getElementById('debugdiv').innerHTML = "";
   }
 }
 
 function TestNetwork(mapref, network) {
-  var web = mapref.network[network];
-  for (var i=0; i<web.length; i++) {
-    var conn = web[i].connections;
-    var loopback = 0;
-    for (var j=0; j<conn.length; j++) {
-      var innerconn = conn[j].connections;
-      for (var k=0; k<innerconn.length; k++) {
+  let web = mapref.network[network];
+  for (let i=0; i<web.length; i++) {
+    let conn = web[i].connections;
+    let loopback = 0;
+    for (let j=0; j<conn.length; j++) {
+      let innerconn = conn[j].connections;
+      for (let k=0; k<innerconn.length; k++) {
         if (innerconn[k] === web[i]) { loopback = 1; }
       }
     }
@@ -125,13 +120,12 @@ function TestNetwork(mapref, network) {
 
 function OpenDebugMaps() {
   debugmaps.open = 1;
-  var PCMap = PC.getHomeMap();
+  let PCMap = PC.getHomeMap();
   debugmaps[PCMap.getName()] = window.open("",PCMap.getName());
   
   if (PCMap.getLinkedMaps().length > 0) {
     for (let i=0;i<PCMap.getLinkedMaps().length;i++) {
       debugmaps[PCMap.getLinkedMaps()[i]] = window.open("",PCMap.getLinkedMaps()[i]);
-//      debugmaps[PCMap.getLinkedMaps()[i]].document.write("<html><head></head><body><div style='position:fixed;left:0px;top:0px' id='terrain_" + PCMap.getLinkedMaps()[i] + "'>What is this?</div><div style='position:fixed;left:0px;top:0px' id='main_" + PCMap.getLinkedMaps()[i] + "'></div></body></html>");
     }
   }
   
@@ -142,12 +136,12 @@ function OpenDebugMaps() {
 function CloseDebugMaps() {
   delete debugmaps.open;
   let PCMap = PC.getHomeMap();
-  debugmaps[PC.getHomeMap().getName()].close();
-  delete debugmaps[PC.getHomeMap().getName()];
-  for (let i=0;i<PC.getHomeMap().getLinkedMaps().length;i++) {
-    if (PC.getHomeMap().getLinkedMaps()[i] !== "") {
-      debugmaps[PC.getHomeMap().getLinkedMaps()[i]].close();
-      delete debugmaps[PC.getHomeMap().getLinkedMaps()[i]];
+  debugmaps[PCMap.getName()].close();
+  delete debugmaps[PCMap.getName()];
+  for (let i=0;i<PCMap.getLinkedMaps().length;i++) {
+    if (PCMap.getLinkedMaps()[i] !== "") {
+      debugmaps[PCMap.getLinkedMaps()[i]].close();
+      delete debugmaps[PCMap.getLinkedMaps()[i]];
     }
   }  
 }
@@ -155,10 +149,10 @@ function CloseDebugMaps() {
 function SeedDebugMaps(j) {
   let PCMap = PC.getHomeMap();
   let ourmaps = [];
-  ourmaps[0] = PC.getHomeMap().getName();
-  for (let i=0;i<PC.getHomeMap().getLinkedMaps().length;i++) {
-    if (PC.getHomeMap().getLinkedMaps()[i] !== "") {
-      ourmaps[i+1] = PC.getHomeMap().getLinkedMaps()[i];
+  ourmaps[0] = PCMap.getName();
+  for (let i=0;i<PCMap.getLinkedMaps().length;i++) {
+    if (PCMap.getLinkedMaps()[i] !== "") {
+      ourmaps[i+1] = PCMap.getLinkedMaps()[i];
     }
   }
   
@@ -207,10 +201,10 @@ function ShowDebugMaps(first) {
     mainview += "</table>";
 
     if (first) {
-      var docterr = debugmaps[mapname].document.getElementById("terrain_" + mapname);
+      let docterr = debugmaps[mapname].document.getElementById("terrain_" + mapname);
       docterr.innerHTML = terrain;
     }
-    var docmain = debugmaps[mapname].document.getElementById("main_" + mapname);
+    let docmain = debugmaps[mapname].document.getElementById("main_" + mapname);
     docmain.innerHTML = mainview;
     
   }
@@ -218,22 +212,22 @@ function ShowDebugMaps(first) {
 
 function DebugGetDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
 
-  var displayCell = {};
-  var localacre = mapname.getTile(x,y);
+  let displayCell = {};
+  let localacre = mapname.getTile(x,y);
   
-  var displaytile;
+  let displaytile;
   // decide whether to draw a tile, draw it shaded, or make it darkness
-  var losresult = 0;
+  let losresult = 0;
 
-  var blocks = localacre.getBlocksLOS();
+  let blocks = localacre.getBlocksLOS();
   
-  var lighthere = 1;
+  let lighthere = 1;
   
   displaytile = localacre.getTop(0,1);  // sorts NPCs to top
-  var isnpc = 0;
+  let isnpc = 0;
   if (displaytile.checkType("NPC")) { isnpc = 1; }
-  var graphics = displaytile.getGraphicArray();
-  var showGraphic = graphics[0];
+  let graphics = displaytile.getGraphicArray();
+  let showGraphic = graphics[0];
   if (typeof displaytile.setBySurround === "function") {
    	graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
     displayCell.showGraphic = graphics[0];
@@ -265,7 +259,7 @@ function DebugGetDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
       }      
     }
     if (typeof displaytile.setByBelow === "function") {
-      var setbelow = displaytile.setByBelow(x,y,mapname);
+      let setbelow = displaytile.setByBelow(x,y,mapname);
       displayCell.showGraphic = setbelow[0];
       displayCell.graphics2 = setbelow[2];
       displayCell.graphics3 = setbelow[3];
@@ -281,13 +275,13 @@ function DebugGetDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
 
 function DebugGetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
   
-  var localacre = mapref.getTile(xcoord, ycoord);
-  var displaytile = localacre.getTerrain();
+  let localacre = mapref.getTile(xcoord, ycoord);
+  let displaytile = localacre.getTerrain();
 
-  var graphics = displaytile.getGraphicArray();
-  var showGraphic = graphics[0];
+  let graphics = displaytile.getGraphicArray();
+  let showGraphic = graphics[0];
 
-  var displayCell = {};
+  let displayCell = {};
   displayCell.desc = displaytile.getDesc();
   if (typeof displaytile.setBySurround === "function") {
    	graphics = displaytile.setBySurround(xcoord,ycoord,mapref,graphics,0,centerx,centery);

@@ -2129,7 +2129,6 @@ function performZstats(code) {
 
   if ((code === 27) || (code === 90)) { // ESC or Z again
     retval["fin"] = 0;
-    targetCursor.scrolllocation = 0;
   }
   else if ((code === 37) || (code === 186)) {  // previous page
     if (targetCursor.page === 2) { 
@@ -2147,7 +2146,6 @@ function performZstats(code) {
         }
       }  // set to the last page when I know what that will be
       DrawStats(targetCursor.page);
-      targetCursor.scrolllocation = 0;
     }
     retval["fin"] = 1;
   }
@@ -2165,7 +2163,6 @@ function performZstats(code) {
         targetCursor.page = 1;
       }
       DrawStats(targetCursor.page);
-      targetCursor.scrolllocation = 0;
     }
     retval["fin"] = 1;
   }
