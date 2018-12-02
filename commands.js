@@ -1968,7 +1968,7 @@ function PerformWait(code) {
   if (duration === 1) { retval["txt"] = "Waiting for 1 hour."; }
   duration = duration * 12;
   PC.setWaiting(DUTime.getGameClock() + duration);
-  $("#displayframe").fadeOut(1500, function() {});
+  FadeOut();
   if (anyhostiles === -1) {
     PC.moveAfterWaiting = {x : PC.getx(), y: PC.gety()};
     PC.getHomeMap().moveThing(0,0,PC);
@@ -1980,13 +1980,14 @@ function PerformWait(code) {
 }
 
 function PerformYell() {
-	var retval = {};
+	let retval = {};
 	if (inputText.txt == "") {
 		retval["txt"] = "Yell: Nothing!";
 		retval["fin"] = 2;
 		return retval;
 	}
 	else {
+    // Cheat/Debug Console 
 		if (inputText.txt === "ETHERBUNNY") {
 			PC.addMovetype(MOVE_ETHEREAL);
 		} else if (inputText.txt === "DEBUG") {
@@ -2002,9 +2003,7 @@ function PerformYell() {
 		  PC.setKnowsInfusion(1);
 		  for (var i=1; i<=8; i++) {
 		    for (var j=1; j<=8; j++) {
-	//	      if (i != 4) {
-		        PC.addSpell(i,GetSpellID(j));
-	//	      }
+		      PC.addSpell(i,GetSpellID(j));
 		    }
 		  }
 		} else if (inputText.txt === "ONEUP") {
@@ -2024,11 +2023,10 @@ function PerformYell() {
 		} else if (inputText.txt === "RUNTEST") {
 		  RunTest();
 		} else if (inputText.txt === "TESTPAIN") {
-		  var hurtnpcs = PC.getHomeMap().npcs;
-		  hurtnpcs = hurtnpcs.getAll();
-		  $.each(hurtnpcs, function(idx,val) {
-		    val.setHP(2);
-		  });
+      let hurtnpcs = PC.getHomeMap().npcs.getAll();
+      for (let i=0;i<hurtnpcs.length;i++) {
+		    hurtnpcs[i].setHP(2);
+		  }
 		} else if (inputText.txt === "TESTRING") {
 		  TestRing();
 		} else if (inputText.txt === "SOUNDCHK") {
@@ -2038,7 +2036,7 @@ function PerformYell() {
         DisplayTestMap();
       }
     } else if (inputText.txt === "TESTTOWER") {
-      var newmap = new GameMap();
+      let newmap = new GameMap();
       if (maps.getMap("toshin3")) {
 				newmap = maps.getMap("toshin3");
 			} else {
@@ -2047,7 +2045,7 @@ function PerformYell() {
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,16,13);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTBARD") {
-      var newmap = new GameMap();
+      let newmap = new GameMap();
       if (maps.getMap("swainhil")) {
 				newmap = maps.getMap("swainhil");
 			} else {
@@ -2056,11 +2054,11 @@ function PerformYell() {
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,48,19);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "GOGROTTO") {
-		    var homemap = PC.getHomeMap();
+		    let homemap = PC.getHomeMap();
 		    homemap.moveThing(30,45,PC);
 		    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTGROTTO") {
-      var newmap = new GameMap();
+      let newmap = new GameMap();
       if (maps.getMap("grotto")) {
 				newmap = maps.getMap("grotto");
 			} else {
@@ -2069,7 +2067,7 @@ function PerformYell() {
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,22,53);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTETHER") {
-      var newmap = new GameMap();
+      let newmap = new GameMap();
       if (maps.getMap("ether")) {
 				newmap = maps.getMap("ether");
 			} else {
@@ -2078,7 +2076,7 @@ function PerformYell() {
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,46,64);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTPALACE") {
-      var newmap = new GameMap();
+      let newmap = new GameMap();
       if (maps.getMap("skypalace")) {
 				newmap = maps.getMap("skypalace");
 			} else {
@@ -2087,7 +2085,7 @@ function PerformYell() {
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,47,49);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTROYAL") {
-      var newmap = new GameMap();
+      let newmap = new GameMap();
       if (maps.getMap("pitdespair2")) {
 				newmap = maps.getMap("pitdespair2");
 			} else {
@@ -2095,34 +2093,30 @@ function PerformYell() {
 			}
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap,46,28);		  
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
-    } else if (inputText.txt === "BAKEDBEANS") {
-      var itemname = prompt("Create what item?");
-      var newthing = localFactory.createTile(itemname);
-      PC.addToInventory(newthing,1);
     } else if (inputText.txt === "TESTANIM") {
-      var newmap = new GameMap();
+      let newmap = new GameMap();
       if (maps.getMap("greenacres")) {
         newmap = maps.getMap("greenacres");
       } else {
         newmap = maps.addMap("greenacres");
       }
       MoveBetweenMaps(PC,PC.getHomeMap(),newmap, 20,20);
-      var tmpdude = localFactory.createTile("PaladinVillagerNPC");
+      let tmpdude = localFactory.createTile("PaladinVillagerNPC");
       newmap.placeThing(20,25,tmpdude);
-      var tmpdude2 = localFactory.createTile("PaladinVillagerNPC");
+      let tmpdude2 = localFactory.createTile("PaladinVillagerNPC");
       newmap.placeThing(20,30,tmpdude2);
       DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
     } else if (inputText.txt === "TESTANIMA") {
-      var tmpmap = maps.getMap("greenacres");
-      var castermob = tmpmap.getTile(20,25).getTopNPC();
-      var tgtmob = tmpmap.getTile(20,30).getTopNPC();
+      let tmpmap = maps.getMap("greenacres");
+      let castermob = tmpmap.getTile(20,25).getTopNPC();
+      let tgtmob = tmpmap.getTile(20,30).getTopNPC();
       PerformMagicBolt(castermob,0,0,tgtmob);
 // REAL YELLS START HERE
 		} else if (inputText.txt === "KARIS") {
 		  if (PC.getHomeMap().getName() === "asharden1") {
 		    // FIX HERE- add sound effect for teleport
 		    maintext.delayedAddText("In a blink, you are elsewhere.");
-		    var homemap = PC.getHomeMap();
+		    let homemap = PC.getHomeMap();
 		    homemap.moveThing(25,23,PC);
 		    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
 		  }
@@ -2136,9 +2130,9 @@ function PerformYell() {
 }
 
 function performZstats(code) {
-  var retval = {};
-  var exitInv = 1;
-  var restrict = 0;
+  let retval = {};
+  let exitInv = 1;
+  let restrict = 0;
   if (targetCursor.restrictTo) { restrict = targetCursor.restrictTo; }
 
   if ((code === 27) || (code === 90)) { // ESC or Z again
@@ -2234,16 +2228,16 @@ function performZstats(code) {
 
 function DrawStats(page) {
 
-  var statsdiv = "&nbsp;";
+  let statsdiv = "&nbsp;";
    
   if (page === 1) {
-    var spanstr = "<span>";
+    let spanstr = "<span>";
     if (PC.getStr() > PC.getBaseStr()) { spanstr = '<span style="color:cyan">'; }
     if (PC.getStr() < PC.getBaseStr()) { spanstr = '<span style="color:orange">'; }
-    var spandex = "<span>";
+    let spandex = "<span>";
     if (PC.getDex() > PC.getBaseDex()) { spandex = '<span style="color:cyan">'; }
     if (PC.getDex() < PC.getBaseDex()) { spandex = '<span style="color:orange">'; }
-    var spanint = "<span>";
+    let spanint = "<span>";
     if (PC.getInt() > PC.getBaseInt()) { spanint = '<span style="color:cyan">'; }
     if (PC.getInt() < PC.getBaseInt()) { spanint = '<span style="color:orange">'; }
     
@@ -2268,14 +2262,14 @@ function DrawStats(page) {
     statsdiv += "<tr><td>Gold: " + PC.getGold() + "</td><td></td><td></td></tr>";
     statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
     if (PC.getEquipment("weapon")) { 
-      var wpndesc = PC.getEquipment("weapon").getDesc();
+      let wpndesc = PC.getEquipment("weapon").getDesc();
       wpndesc = wpndesc.charAt(0).toUpperCase() + wpndesc.slice(1);
       statsdiv += "<tr><td>Weapon: " + wpndesc + "</td><td></td>";
     } else {
       statsdiv += "<tr><td>Weapon: None</td><td></td>";
     }
     if (PC.getEquipment("armor")) {
-      var armordesc = PC.getEquipment("armor").getDesc();
+      let armordesc = PC.getEquipment("armor").getDesc();
       armordesc = armordesc.charAt(0).toUpperCase() + armordesc.slice(1);
       statsdiv += "<td>Armor: " + armordesc + "</td></tr>";
     } else {
@@ -2298,7 +2292,7 @@ function DrawStats(page) {
       statsdiv += "<td></td></tr>";
     }
     if (PC.getEquipment("missile")) {    
-      var missdesc = PC.getEquipment("missile").getDesc();
+      let missdesc = PC.getEquipment("missile").getDesc();
       missdesc = missdesc.charAt(0).toUpperCase() + missdesc.slice(1);
       statsdiv += "<tr><td>Missile: " + missdesc + "</td><td></td>";
     } else {
@@ -2316,7 +2310,7 @@ function DrawStats(page) {
     }
     statsdiv += "<td></td></tr><tr><td colspan='3'>&nbsp;</td></tr>";
     statsdiv += "<tr><td colspan='3' style='text-decoration:underline'>Spells and effects</td></tr>";
-    var alleffects = PC.getSpellEffects();
+    let alleffects = PC.getSpellEffects();
     if (!alleffects[0]) {
       statsdiv += "<tr><td colspan='3'>You have no effects or afflictions upon you.</td></tr>";
     } else {
