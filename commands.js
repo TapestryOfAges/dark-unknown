@@ -1523,8 +1523,7 @@ function PerformUseFromInventory() {
   }
 
   gamestate.setMode("zstats");
-  var retval = {};
-	retval["txt"] = "";
+  let retval = {txt:""};
   if (targetCursor.command === "u") {
     retval["input"] = "&gt; Use: ";
   } else if (targetCursor.command === "o") {
@@ -1703,8 +1702,9 @@ function _OldPerformUseFromInventory() {
 		
 }
 
-function PerformUseFromInventoryState(code) {
-  var retval = {};
+function PerformUseFromInventoryState(code) {  // deprecated I think
+  alert("PerformUseFromInventoryState not so deprecated?");
+  let retval = {};
   if (targetCursor.itemlist.length === 0) {
     code = 27;
   }
@@ -1713,10 +1713,10 @@ function PerformUseFromInventoryState(code) {
     delete targetCursor.itemlist;
   }
 	else if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
-	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+      document.getElementById('inv'+targetCursor.scrolllocation).classList.toggle('highlight');
 	    targetCursor.scrolllocation--;
 	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
-	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+      document.getElementById('inv'+targetCursor.scrolllocation).classList.toggle('highlight');
 	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
 	    retval["fin"] = -2;
 	}
@@ -1755,21 +1755,20 @@ function PerformUseFromInventoryState(code) {
 }
 
 function MakeUseHappen(who,used,where) {
-  var retval = used.use(who);
+  let retval = used.use(who);
   if (retval["override"] === 1) {
     delete retval["override"];
   } else {
     if (retval["override"] !== -1) {
       retval["fin"] = 1;
     }
-    var usedname = used.getDesc();
+    let usedname = used.getDesc();
     usedname = usedname.replace(/^a /, "");
-    var commandname = "Use";
+    let commandname = "Use";
     if (targetCursor.command === "o") {
       commandname = "Open";
     }
     retval["txt"] = commandname + " " + usedname + ": " + retval["txt"];
-    var drawtype = "one";
     if (used.checkType("Consumable") && !retval["preserve"]) {
       if (where === "map") {
       // being used from the ground
@@ -1780,19 +1779,19 @@ function MakeUseHappen(who,used,where) {
 		  }
 		}
     if (where === "map") {
-      var usemap = who.getHomeMap();
-      var localacre = usemap.getTile(used.getx(),used.gety());
+      let usemap = who.getHomeMap();
+      let localacre = usemap.getTile(used.getx(),used.gety());
 
       if (retval["redrawtype"]) {
         delete retval["redrawtype"];
   	  	// if more of the map needs to be redrawn, need to recheck light sources
 		  
-	  	  $.each(localacre.localLight, function(index, value) {
+        for (let index in localacre.localLight) {
 		      // each object that is casting light on the door might be casting light through the door.
   		    var lightsource = usemap.lightsList[index];
   	      usemap.removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
     		  usemap.setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
-	      });
+	      }
         if (used.getHomeMap() === PC.getHomeMap()) {
           DrawMainFrame("draw",used.getHomeMap(),PC.getx(),PC.gety());
         }
@@ -1805,6 +1804,7 @@ function MakeUseHappen(who,used,where) {
 }
 
 function ChooseRune() {
+  // deprecated
   targetCursor.command = "r";
 
   var itemarray = [];
@@ -1864,6 +1864,7 @@ function ChooseRune() {
 }
 
 function PerformRuneChoice(code) {
+  // deprecated
   var retval = {};
   var numselected = 0;
   var runecombo;
@@ -1940,7 +1941,7 @@ function PerformRuneChoice(code) {
 }
 
 function PerformWait(code) {
-  var retval = {fin:2};
+  let retval = {fin:2};
   if ((code === 27) || (code === 48)) { 
     return retval;
   }
@@ -1953,7 +1954,7 @@ function PerformWait(code) {
   }
 
   gamestate.setMode("null");
-  var duration = parseInt(code) - 48;
+  let duration = parseInt(code) - 48;
   retval["txt"] = "Waiting for " + duration + " hours.";
   if (duration === 1) { retval["txt"] = "Waiting for 1 hour."; }
   duration = duration * 12;
