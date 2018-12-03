@@ -3,10 +3,10 @@
 function CreateDisplayTables() {
   let terraintable = "<table id='mainterrainview' style='position:fixed; top:38px; left:19px; z-index:21' border='0' cellspacing='0' cellpadding='0'>";
   let maintable = "<table id='mainview' style='position:fixed; top:38px; left:19px; z-index:22' border='0' cellspacing='0' cellpadding='0'>";
-  for (let j=0; j<viewsizey; j++) {
+  for (let j=0; j<VIEWSIZEY; j++) {
     terraintable += "<tr>";
     maintable += "<tr>";
-    for (let i=0; i<viewsizex; i++) {
+    for (let i=0; i<VIEWSIZEX; i++) {
       terraintable += "<td id='terrain_"+i+"x"+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
       maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
     }
@@ -22,20 +22,20 @@ function CreateDisplayTables() {
 
 function getDisplayCenter(themap,fromx,fromy) {
 	let edge = {};
-	let leftedge = fromx - (viewsizex - 1)/2;
+	let leftedge = fromx - (VIEWSIZEX - 1)/2;
   if (leftedge < 0) { leftedge = 0; }
-  let rightedge = leftedge + viewsizex - 1;
+  let rightedge = leftedge + VIEWSIZEX - 1;
   if (rightedge >= themap.getWidth()) {
   	rightedge = themap.getWidth() -1;  // Note, this will explode somewhat if the map is smaller than 13x13
-  	leftedge = rightedge - viewsizex + 1;
+  	leftedge = rightedge - VIEWSIZEX + 1;
   	if (leftedge < 0) { leftedge = 0; }
   }
-  let topedge = fromy - (viewsizey - 1)/2;
+  let topedge = fromy - (VIEWSIZEY - 1)/2;
   if (topedge < 0) { topedge = 0; }
-  let bottomedge = topedge + viewsizey - 1;
+  let bottomedge = topedge + VIEWSIZEY - 1;
   if (bottomedge >= themap.getHeight()) {
   	bottomedge = themap.getHeight() -1;
-  	topedge = bottomedge - viewsizey + 1;
+  	topedge = bottomedge - VIEWSIZEY + 1;
   	if (topedge < 0) {topedge = 0;}
   }
 	edge.leftedge = leftedge;
@@ -60,49 +60,59 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   // param.dmg - damage dealt by whatever generates this effect
   // param.endturn - 1 if this ends atk's turn
   // param.retval - retval from calling function
-  var type = param.type;
-  var duration = param.duration;
-  var ammoreturn = param.ammoreturn;
-  var dmg = param.dmg;
-  var dmgtype = param.dmgtype;
-  var endturn = param.endturn;
-  var retval = param.retval;
-  var callback = param.callback;
-  var ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
-  var returnhtml;
-  
-  var tablehtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
-  
-  $("#combateffects").html(tablehtml);
+  let type = param.type;
+  let duration = param.duration;
+  let ammoreturn = param.ammoreturn;
+  let dmg = param.dmg;
+  let dmgtype = param.dmgtype;
+  let endturn = param.endturn;
+  let retval = param.retval;
+  let callback = param.callback;
+  let ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
+  let returnhtml;
+  let eventcount = 0;
+
+  let animid = "anim_" + Dice.Roll("1d100000");
+  let tablehtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'s, top '+duration+'s; transition-timing-function: linear"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+
+  document.getElementById('combateffects').innerHTML += tablehtml;
     
-  $("#animtable").animate({ left: ammocoords.tox , top: ammocoords.toy } , duration, 'linear', function() {
+  let animdiv = document.getElementById(animid);
+  Object.assign(animdiv.style, {left:ammocoords.tox, top: ammocoords.toy }); 
+  animdiv.addEventListener("transitionend", function(event) { 
+    if (!eventcount) { eventcount++; return; }
   
-    $("#combateffects").html("");
-    var hitanimhtml = '<div id="hitdiv" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:40; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
+    animdiv.parentNode.removeChild(animdiv);
+    let hitanimhtml = '<div id="'+animid+'" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:40; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
   
-    $("#combateffects").html(hitanimhtml);
+    document.getElementById('combateffects').innerHTML = hitanimhtml;
     if (sounds["end"]) {
       DUPlaySound(sounds["end"]);
     }
     setTimeout(function() {
-      $("#combateffects").html("");
+      animdiv = document.getElementById(animid);
+      animdiv.parentNode.removeChild(animdiv);
       if ((type !== "missile") || (!ammoreturn)) {
         duration = 50;
         ammographic.graphic = "spacer.gif";
         ammographic.xoffset = 0;
         ammographic.yoffset = 0;
       }
-      returnhtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
-      $("#combateffects").html(returnhtml);
-      $("#animtable").animate({ left: ammocoords.fromx , top: ammocoords.fromy } , duration, 'linear', function() {
+      returnhtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'s, top '+duration+'s; transition-timing-function: linear"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
+      document.getElementById('combateffects').innerHTML += returnhtml;
+      animdiv = document.getElementById(returnhtml);
+      eventcount = 0;
+      Object.assign(animdiv.style, {left:ammocoords.fromx, top: ammocoords.fromy }); 
+      animdiv.addEventListener("transitionend", function(event) {
+        if (!eventcount) { eventcount++; return; }
         if (dmg != 0) {
-          var prehp = def.getHP();
-          var stillalive = def.dealDamage(dmg, atk, dmgtype);    
+          let prehp = def.getHP();
+          let stillalive = def.dealDamage(dmg, atk, dmgtype);    
           if (stillalive > -1) {
             if (Math.floor(prehp) === Math.floor(def.getHP())) {
               retval["txt"] += ": Scratched!"; 
             } else {
-              var damagedesc = GetDamageDescriptor(def); 
+              let damagedesc = GetDamageDescriptor(def); 
               retval["txt"] += ": " + damagedesc + "!"; 
             }
           }
@@ -122,14 +132,14 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
         if ((!doagain) && (endturn)) {
           atk.endTurn(retval["initdelay"]);
         } else if (doagain) {
-          var doit = doagain.shift();
+          let doit = doagain.shift();
           AnimateEffect(doit.atk, doit.def, doit.fromcoords, doit.tocoords, doit.ammocoords, doit.destgraphic, doit.type, doit.duration, doit.ammoreturn, doit.dmg, endturn, doit.retval, doagain);
         }
   
-      });
+      }, false);
   
     }, 400);
-  });
+  }, false);
 }
   
 function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
