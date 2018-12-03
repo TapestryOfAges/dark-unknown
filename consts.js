@@ -4,6 +4,9 @@
 const LOS_THRESHOLD = .98;
 const SHADOW_THRESHOLD = .3;
 
+const VIEWSIZEX = 13;
+const VIEWSIZEY = 13;
+
 const MOVE_FLY = 1;
 const MOVE_SWIM = 2;
 const MOVE_ETHEREAL = 4;
