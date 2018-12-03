@@ -168,7 +168,7 @@ function PerformCommand(code, ctrl) {
 	  	    targetCursor.y = PC.gety();
 	  	  }
         targetCursor.command = "a";
-        targetCursor.targetlimit = (viewsizex -1)/2;
+        targetCursor.targetlimit = (VIEWSIZEX -1)/2;
         targetCursor.targetCenterlimit = 0;
         let displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
         let xcoord = targetCursor.x - displaystats.leftedge;
@@ -248,7 +248,7 @@ function PerformCommand(code, ctrl) {
       targetCursor.x = PC.getx();
       targetCursor.y = PC.gety();
       targetCursor.command = "l";
-      targetCursor.targetlimit = (viewsizex -1)/2;
+      targetCursor.targetlimit = (VIEWSIZEX -1)/2;
       targetCursor.targetCenterlimit = 0;
       let displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
       let xcoord = targetCursor.x - displaystats.leftedge;
@@ -387,7 +387,7 @@ function PerformCommand(code, ctrl) {
     targetCursor.x = PC.getx();
     targetCursor.y = PC.gety();
     targetCursor.command = "t";
-    targetCursor.targetlimit = (viewsizex -1)/2;
+    targetCursor.targetlimit = (VIEWSIZEX -1)/2;
     targetCursor.targetCenterlimit = 3;
 
     let edges = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
