@@ -656,7 +656,7 @@ magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].executeSpell = function(caster, infused, 
     return retval;
   }
   
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Mend',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 1});
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Mend',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 1});
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;  // was 0
@@ -704,7 +704,7 @@ magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].executeSpell = function
     return resp;
   }
 
-  CreateTargetCursor({sticky: 1, command:'c',spellName:'Vulnerability',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});  
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Vulnerability',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});  
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4; // was 0
@@ -797,7 +797,7 @@ magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID].executeSpell = function(caster, i
   }
   
   // check for existing illusion if I want to limit to just 1, but for now I don't
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Illusion',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 3});    
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Illusion',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 3});    
   resp["txt"] = "";
   resp["input"] = "&gt; Choose where to conjure- ";
   resp["fin"] = 4;
@@ -942,7 +942,7 @@ magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].executeSpell = function(caste
     return resp;
   }
 
-  CreateTargetCursor({sticky: 1, command:'c',spellName:'Magic Bolt',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});    
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Magic Bolt',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});    
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -1035,7 +1035,7 @@ magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].executeSpell = function(c
     return resp;
   }
     
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Poison Cloud',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});    
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Poison Cloud',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});    
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -1386,7 +1386,7 @@ magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].executeSpell = function(caster, i
     return resp;
   }
 
-  CreateTargetCursor({sticky: 1, command:'c',spellName:'Fireball',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Fireball',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -1469,7 +1469,7 @@ magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell = function(caster, inf
   }
   let resp = {};
   
-  CreateTargetCursor({sticky: 1, command:'c',spellName:'Iceball',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Iceball',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -1558,7 +1558,7 @@ magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID].executeSpell = function(cas
   }
   let resp = {};
 
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Telekinesis',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "usable"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});        
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Telekinesis',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "usable"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});        
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4; // was 0
@@ -1712,7 +1712,7 @@ magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].executeSpell = function
     return resp;
   }
 
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Wall of Flame',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});        
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Wall of Flame',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});        
   resp["txt"] = "";
   resp["input"] = "&gt; Choose where to conjure- ";
   resp["fin"] = 4;
@@ -2130,7 +2130,7 @@ magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].executeSpell = function(caste
   }
   let resp = {};
 
-  CreateTargetCursor({sticky: 1, command:'c',spellName:'Life Drain',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});        
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Life Drain',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});        
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -2413,7 +2413,7 @@ magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].executeSpell = function(caster, i
   }
   let resp = {};
   
-  CreateTargetCursor({sticky: 1, command:'c',spellName:'Paralyze',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Paralyze',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4; // was 0
@@ -2498,8 +2498,8 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   let castermap = caster.getHomeMap();
-  let eachwayx = Math.floor(viewsizex/2)*4+1;
-  let eachwayy = Math.floor(viewsizey/2)*4+1;
+  let eachwayx = Math.floor(VIEWSIZEX/2)*4+1;
+  let eachwayy = Math.floor(VIEWSIZEY/2)*4+1;
   let leftx = caster.getx()-eachwayx;
   let rightx = caster.getx()+eachwayx;
   let topy = caster.gety()-eachwayy;
@@ -2708,7 +2708,7 @@ magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID].executeSpell = function(cas
   
   // check for existing illusion if I want to limit to just 1, but for now I don't
 
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Summon Ally',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 3});        
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Summon Ally',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 3});        
   resp["txt"] = "";
   resp["input"] = "&gt; Choose where to conjure- ";
   resp["fin"] = 4;
@@ -2791,7 +2791,7 @@ magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID].executeSpell = function(cas
   }
   let resp = {};
   
-  CreateTargetCursor({sticky: 1, command:'c',spellName:'Swordstrike',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Swordstrike',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -2886,7 +2886,7 @@ magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].executeSpell = function(caster,
   }
   let resp = {};
   
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Explosion',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Explosion',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -3177,7 +3177,7 @@ magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].executeSpell = function(caster, infused
   }
   let resp = {};
   
-  CreateTargetCursor({sticky: 1, command:'c',spellName:'Charm',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Charm',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;  // was 0
@@ -3488,7 +3488,7 @@ magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID].executeSpell = functi
   }
   let resp = {};
   
-  CreateTargetCursor({sticky: 1, command:'c',spellName:'Arrow of Glass',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 0});      
+  CreateTargetCursor({sticky: 1, command:'c',spellName:'Arrow of Glass',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});      
   resp["txt"] = "";
   resp["input"] = "&gt; Choose target- ";
   resp["fin"] = 4;
@@ -3627,7 +3627,7 @@ magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID].executeSpell = functi
   }
   
   // check for existing summon if I want to limit to just 1, but for now I don't
-  CreateTargetCursor({sticky: 0, command:'c',spellName:'Conjure Daemon',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: 3});        
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Conjure Daemon',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "open"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 3});        
   resp["txt"] = "";
   resp["input"] = "&gt; Choose where to conjure- ";
   resp["fin"] = 4;
@@ -4048,7 +4048,7 @@ function PerformSpellcast() {
     if (topfeature.pushable) {
       document.getElementById(targetCursor.tileid).innerHTML = targetCursor.basetile;
 
-      CreateTargetCursor({sticky: 0, command:'c',spellName:'Telekinesis',spelldetails:{ caster: targetCursor.spelldetails.caster, infused: targetCursor.spelldetails.infused, free: targetCursor.spelldetails.free, targettype: "open"}, targetlimit: (viewsizex -1)/2, targetCenterlimit: targetCursor.targetCenterlimit});
+      CreateTargetCursor({sticky: 0, command:'c',spellName:'Telekinesis',spelldetails:{ caster: targetCursor.spelldetails.caster, infused: targetCursor.spelldetails.infused, free: targetCursor.spelldetails.free, targettype: "open"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: targetCursor.targetCenterlimit});
       targetCursor.tgt = topfeature;
       resp["txt"] = "";
       resp["input"] = "&gt; Choose where to move it- ";
