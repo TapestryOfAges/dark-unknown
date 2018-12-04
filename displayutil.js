@@ -67,23 +67,24 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   let dmgtype = param.dmgtype;
   let endturn = param.endturn;
   let retval = param.retval;
-  let callback = param.callback;
   let ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
   let returnhtml;
   let eventcount = 0;
+  let eventcount2 = 0;
 
-  let animid = "anim_" + Dice.Roll("1d100000");
-  let tablehtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'s, top '+duration+'s; transition-timing-function: linear"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
-
+  let animid = "anim_" + Dice.roll("1d100000");  // so more than one can be going at a time
+  
+  let tablehtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'ms linear 0s, top '+duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+  
   document.getElementById('combateffects').innerHTML += tablehtml;
     
   let animdiv = document.getElementById(animid);
-  Object.assign(animdiv.style, {left:ammocoords.tox, top: ammocoords.toy }); 
+
   animdiv.addEventListener("transitionend", function(event) { 
     if (!eventcount) { eventcount++; return; }
   
     animdiv.parentNode.removeChild(animdiv);
-    let hitanimhtml = '<div id="'+animid+'" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:40; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
+    let hitanimhtml = '<div id="'+animid+'" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
   
     document.getElementById('combateffects').innerHTML = hitanimhtml;
     if (sounds["end"]) {
@@ -98,13 +99,13 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
         ammographic.xoffset = 0;
         ammographic.yoffset = 0;
       }
-      returnhtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'s, top '+duration+'s; transition-timing-function: linear"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
+      returnhtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'ms linear 0s, top '+duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
+      
       document.getElementById('combateffects').innerHTML += returnhtml;
-      animdiv = document.getElementById(returnhtml);
-      eventcount = 0;
-      Object.assign(animdiv.style, {left:ammocoords.fromx, top: ammocoords.fromy }); 
+      animdiv = document.getElementById(animid);
+      
       animdiv.addEventListener("transitionend", function(event) {
-        if (!eventcount) { eventcount++; return; }
+        if (!eventcount2) { eventcount2++; return; }
         if (dmg != 0) {
           let prehp = def.getHP();
           let stillalive = def.dealDamage(dmg, atk, dmgtype);    
@@ -137,9 +138,15 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
         }
   
       }, false);
-  
+      setTimeout(function() { Object.assign(animdiv.style, {left:ammocoords.fromx+"px", top: ammocoords.fromy+"px"}); }, 1); // see below- kludge
+
     }, 400);
   }, false);
+
+  setTimeout(function() { Object.assign(animdiv.style, {left: ammocoords.tox+"px", top: ammocoords.toy+"px" }); }, 1); // THIS IS A TOTAL KLUDGE
+  // For some reason, the transition would not run if the 50ms pause was not there. It would skip to the end, and not
+  // fire the transitionend event. This should not be necessary.
+
 }
   
 function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
