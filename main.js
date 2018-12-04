@@ -603,8 +603,8 @@ function DoAction(code, ctrl) {
       delete targetCursor.invskiprow;
       delete targetCursor.invlength;
       delete targetCursor.restrictTo;
-      $('#uiinterface').html(" ");
-      $("#uiinterface").css("background-color", "");
+      document.getElementById('uiinterface').innerHTML = "";
+      document.getElementById('uiinterface').style.backgroundColor = "";
 
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
@@ -621,8 +621,8 @@ function DoAction(code, ctrl) {
       delete targetCursor.invskiprow;
       delete targetCursor.invlength;
       delete targetCursor.restrictTo;
-      $('#uiinterface').html(" ");
-      $("#uiinterface").css("background-color", "");
+      document.getElementById('uiinterface').innerHTML = "";
+      document.getElementById('uiinterface').style.backgroundColor = "";
 
       if (response["usefin"] === 0) {
         maintext.setInputLine("&gt;");
@@ -664,7 +664,7 @@ function DoAction(code, ctrl) {
     }
   }
   else if (gamestate.getMode() === "options") {
-    var response = performOptions(code);
+    let response = performOptions(code);
     if (response["fin"] === 0) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
@@ -679,7 +679,7 @@ function DoAction(code, ctrl) {
   else if (gamestate.getMode() === "singleletter") {
     if (((code >= 65) && (code <= 90)) || (code === 32)) {  // letter
       if (inputText.thing = "toshin") {
-        var retval = PerformToshinAltar(code);
+        let retval = PerformToshinAltar(code);
         if (retval["fin"] === 2) {
           gamestate.setMode("player");
           gamestate.setTurn(PC);
@@ -723,15 +723,15 @@ function DoAction(code, ctrl) {
     }
   } else if (gamestate.getMode() === "choosesave") {
     if (code === 27) { // esc
-      $("#uiinterface").html("");
+      document.getElementById('uiinterface').innerHTML = "";
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     } else if (targetCursor.command === "l") {
       if ((code >= 48) && (code <= 57)) {
-        var saveIndex = JSON.parse(localStorage.saveIndex);
-        var idx = code-48;
+        let saveIndex = JSON.parse(localStorage.saveIndex);
+        let idx = code-48;
         if (saveIndex[idx].charname) { 
           if (nowplaying.song) { StopMusic(); }
           gamestate.loadGame(idx); 
@@ -742,19 +742,19 @@ function DoAction(code, ctrl) {
           maintext.addText("Game loaded.");
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame(); 
-          $("#uiinterface").html("");
+          document.getElementById('uiinterface').innerHTML = "";
         }
       }
     } else if (targetCursor.command === "q") {
       if ((code >= 49) && (code <= 56)) {
-        var saveIndex = JSON.parse(localStorage.saveIndex);
-        var idx = code-48;
+        let saveIndex = JSON.parse(localStorage.saveIndex);
+        let idx = code-48;
         gamestate.setMode("saving");
         gamestate.saveGame(idx); 
 		    maintext.addText("Quit &amp; Save: Saving game...");
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame(); 
-        $("#uiinterface").html("");
+        document.getElementById('uiinterface').innerHTML = "";
         gamestate.setMode("player");
         gamestate.setTurn(PC);
       }
@@ -767,7 +767,7 @@ function DoAction(code, ctrl) {
       gamestate.setMode("player");
       gamestate.setTurn(PC);
     }    else {
-      var response = PerformSpellbook(code);
+      let response = PerformSpellbook(code);
       if (response["fin"] === 1) {
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();
@@ -795,10 +795,10 @@ function DoAction(code, ctrl) {
   }
   else if (gamestate.getMode() === "buy") {
     if ((code === 27) || (code ===13)) {    // ESC or enter
-      var convo = targetCursor.talkingto.getConversation();
+      let convo = targetCursor.talkingto.getConversation();
       maintext.addText(" ");
       maintext.addText("You buy: Nothing.");
-      var retval = PerformTalk(targetCursor.talkingto, convo, "bye");
+      let retval = PerformTalk(targetCursor.talkingto, convo, "bye");
       maintext.addText(retval["txt"]);
       maintext.setInputLine(retval["input"]);
       maintext.drawTextFrame();
@@ -811,8 +811,8 @@ function DoAction(code, ctrl) {
       PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "buy");
     } else if ((code >= 65) && (code <= 90)) {
       // check to see if that letter is in the merchant's inventory
-      var merinv = DU.merchants[targetCursor.talkingto.getMerch()];
-      var idx = code-65;
+      let merinv = DU.merchants[targetCursor.talkingto.getMerch()];
+      let idx = code-65;
       if (merinv.stock[idx] && ((merinv.stock[idx].quantity) || (merinv.type === "spells"))) {  
         // that letter goes to something, and it is either spells or has a quantity
         if ((merinv.type === "spells") && (!PC.knowsSpell(SPELL_LIGHT_LEVEL,SPELL_LIGHT_ID))) {  
@@ -863,10 +863,10 @@ function DoAction(code, ctrl) {
   }
   else if (gamestate.getMode() === "sell") {
     if ((code === 27) || (code ===13)) {    // ESC or enter
-      var convo = targetCursor.talkingto.getConversation();
+      let convo = targetCursor.talkingto.getConversation();
       maintext.addText(" ");
       maintext.addText("You sell: Nothing.");
-      var retval = PerformTalk(targetCursor.talkingto, convo, "bye");
+      let retval = PerformTalk(targetCursor.talkingto, convo, "bye");
       maintext.addText(retval["txt"]);
       maintext.setInputLine(retval["input"]);
       maintext.drawTextFrame();
@@ -879,17 +879,17 @@ function DoAction(code, ctrl) {
       maintext.addText(" ");
       PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "sell");
     } else if ((code >= 65) && (code <= 90)) {
-      var merinv = DU.merchants[targetCursor.talkingto.getMerch()];
-      var idx = code-65;
+      let merinv = DU.merchants[targetCursor.talkingto.getMerch()];
+      let idx = code-65;
       if (merinv.stock[idx]) {
-        var ininv = PC.checkInventory(merinv.stock[idx].item);
+        let ininv = PC.checkInventory(merinv.stock[idx].item);
         if (ininv) {
-          var qty = ininv.getQuantity();
+          let qty = ininv.getQuantity();
           if ((ininv === PC.getArmor()) || (ininv === PC.getWeapon()) || (ininv === PC.getMissile())) {
             qty = qty-1;
           }
           if (qty) { // sell it!
-            var sold = ininv.desc;
+            let sold = ininv.desc;
             sold = sold.charAt(0).toUpperCase() + sold.slice(1)
             maintext.addText(sold + ": sold.");
             PC.removeFromInventory(ininv);  // already handles only subtracting 1 if there are multiples
@@ -906,8 +906,8 @@ function DoAction(code, ctrl) {
     }
   }
   else if (gamestate.getMode() === "buy-choose") {
-    var merinv = DU.merchants[targetCursor.talkingto.getMerch()];
-    var idx = targetCursor.buychoice;
+    let merinv = DU.merchants[targetCursor.talkingto.getMerch()];
+    let idx = targetCursor.buychoice;
     if (!merinv.stock[idx].sellqty && (code === 89)) { // buy one at a time, choosing to buy (pressing Y)
       if (merinv.type === "spells") {
         PC.addSpell(merinv.stock[idx].lvl, merinv.stock[idx].sid);
@@ -921,8 +921,8 @@ function DoAction(code, ctrl) {
         maintext.drawTextFrame();
         DrawCharFrame();
       } else {
-        var idx = targetCursor.buychoice;
-        var newitem = localFactory.createTile(merinv.stock[idx].item);
+        let idx = targetCursor.buychoice;
+        let newitem = localFactory.createTile(merinv.stock[idx].item);
         if (merinv.stock[idx].quantity != 99) { merinv.stock[idx].quantity = merinv.stock[idx].quantity -1; }
         PC.addGold(-(merinv.stock[idx].price));
         DUPlaySound("sfx_coin");
@@ -936,8 +936,8 @@ function DoAction(code, ctrl) {
         gamestate.setMode("buy");
       }
     } else if (merinv.stock[idx].sellqty && (code === 13)) {  // buy in a batch, have hit Enter
-      var idx = targetCursor.buychoice;
-      var buyqty = parseInt(targetCursor.buyqty);
+      let idx = targetCursor.buychoice;
+      let buyqty = parseInt(targetCursor.buyqty);
       delete targetCursor.buyqty; 
       if (isNaN(buyqty)) { buyqty = 0; }
       if (buyqty <= 0) { 
@@ -950,8 +950,8 @@ function DoAction(code, ctrl) {
         targetCursor.buyqty = buyqty;
       } else if ((merinv.stock[idx].price * parseInt(buyqty)) <= PC.getGold()) {
         maintext.addText(merinv.stock[idx].sale);
-        var idx = targetCursor.buychoice;
-        var newitem = localFactory.createTile(merinv.stock[idx].item);
+        let idx = targetCursor.buychoice;
+        let newitem = localFactory.createTile(merinv.stock[idx].item);
         if (merinv.stock[idx].quantity != 99) { merinv.stock[idx].quantity = merinv.stock[idx].quantity - buyqty; }
         PC.addGold(-(merinv.stock[idx].price * buyqty));
         DUPlaySound("sfx_coin");
@@ -964,7 +964,7 @@ function DoAction(code, ctrl) {
           DrawCharFrame();
           gamestate.setMode("buy");        
         } else {
-          var retval = PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "_soldout");
+          let retval = PerformTalk(targetCursor.talkingto, targetCursor.talkingto.getConversation(), "_soldout");
           maintext.addText(retval["txt"]);
           maintext.setInputLine(retval["input"]);
           maintext.drawTextFrame();
@@ -979,7 +979,7 @@ function DoAction(code, ctrl) {
       }
     } else if ((code >= 48) && (code <= 57) && (merinv.stock[idx].sellqty)) {
       // picking a number
-      var typednum = code-48;
+      let typednum = code-48;
       if (!targetCursor.buyqty) {
         if (typednum) {  // there's no buyqty yet, so you can't add 0 to it.
           targetCursor.buyqty = code-48;

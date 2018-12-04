@@ -107,7 +107,7 @@ EphemeralObject.prototype.getActive = function() {
 }
 
 EphemeralObject.prototype.onTurn = function() {
-  var resp = 0;
+  let resp = 0;
   if ((this.getExpiresTime() > 0) && (DUTime.getGameClock() > this.getExpiresTime())) {
     resp = this.endEffect();
     return resp;
@@ -144,23 +144,20 @@ DamageOverTimeObject.prototype.getDamagePerTick = function() {
 }
 
 DamageOverTimeObject.prototype.onTurn = function() {
-  var prev = this.getLastTime();
+  let prev = this.getLastTime();
   if (!prev) { prev = this.getCreateTime(); }
   
-  var now = DUTime.getGameClock();
+  let now = DUTime.getGameClock();
   if ((this.getExpiresTime() > 0) && (now > this.getExpiresTime())) {
     now = this.getExpiresTime();
   }
-  var dur = now - prev;
-  var dmg = dur * this.getDamagePerTick();
-  var who = this.getAttachedTo();
+  let dur = now - prev;
+  let dmg = dur * this.getDamagePerTick();
+  let who = this.getAttachedTo();
   
-//  alert(dmg);
-//  var oldhp = who.getDisplayHP();
-  var damagetype = "";
+  let damagetype = "";
   if (this.damagetype) { damagetype = this.damagetype; }
   who.dealDamage(dmg, this, damagetype);
-//  var newhp = who.getDisplayHP();
   
   if ((this.getExpiresTime()) && (now >= this.getExpiresTime())) {
     this.endEffect();
@@ -181,8 +178,8 @@ function BlessingTile() {
 BlessingTile.prototype = new EphemeralObject();
 
 BlessingTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   who.setModStr(who.getModStr() + power);
   who.setModDex(who.getModDex() + power);
   who.setModInt(who.getModInt() + power);
@@ -196,7 +193,7 @@ BlessingTile.prototype.applyEffect = function(silent) {
 }
 
 BlessingTile.prototype.doEffect = function() {
-  var resp = 0;
+  let resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     resp = this.endEffect();
   }
@@ -204,8 +201,8 @@ BlessingTile.prototype.doEffect = function() {
 }
 
 BlessingTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   who.deleteSpellEffect(this);
   who.setModStr(who.getModStr() - power);
   who.setModDex(who.getModDex() - power);
@@ -229,8 +226,8 @@ function BlessingStrTile() {
 BlessingStrTile.prototype = new EphemeralObject();
 
 BlessingStrTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   who.setModStr(who.getModStr() + power);
 
   if (who) {
@@ -242,7 +239,7 @@ BlessingStrTile.prototype.applyEffect = function(silent) {
 }
 
 BlessingStrTile.prototype.doEffect = function() {
-  var resp = 0;
+  let resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     resp = this.endEffect();
   }
@@ -250,8 +247,8 @@ BlessingStrTile.prototype.doEffect = function() {
 }
 
 BlessingStrTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   who.deleteSpellEffect(this);
   who.setModStr(who.getModStr() - power);
 
@@ -273,8 +270,8 @@ function BlessingDexTile() {
 BlessingDexTile.prototype = new EphemeralObject();
 
 BlessingDexTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   who.setModDex(who.getModDex() + power);
 
   if (who) {
@@ -286,7 +283,7 @@ BlessingDexTile.prototype.applyEffect = function(silent) {
 }
 
 BlessingDexTile.prototype.doEffect = function() {
-  var resp = 0;
+  let resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     resp = this.endEffect();
   }
@@ -294,8 +291,8 @@ BlessingDexTile.prototype.doEffect = function() {
 }
 
 BlessingDexTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   who.deleteSpellEffect(this);
   who.setModDex(who.getModDex() - power);
 
@@ -317,8 +314,8 @@ function BlessingIntTile() {
 BlessingIntTile.prototype = new EphemeralObject();
 
 BlessingIntTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   who.setModInt(who.getModInt() + power);
 
   if (who) {
@@ -330,7 +327,7 @@ BlessingIntTile.prototype.applyEffect = function(silent) {
 }
 
 BlessingIntTile.prototype.doEffect = function() {
-  var resp = 0;
+  let resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     resp = this.endEffect();
   }
@@ -338,8 +335,8 @@ BlessingIntTile.prototype.doEffect = function() {
 }
 
 BlessingIntTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   who.deleteSpellEffect(this);
   who.setModInt(who.getModInt() - power);
 
@@ -362,7 +359,7 @@ function CharmTile() {
 CharmTile.prototype = new EphemeralObject();
 
 CharmTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   this.oldattitude = who.getAttitude();
   who.setAttitude("friendly");
   if ((who === PC) && !silent) {

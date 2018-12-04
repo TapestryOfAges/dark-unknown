@@ -144,39 +144,39 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   
 function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
   
-  var displayCell = {};
-  var localacre = mapname.getTile(x,y);
+  let displayCell = {};
+  let localacre = mapname.getTile(x,y);
    
-  var displaytile;
+  let displaytile;
   // decide whether to draw a tile, draw it shaded, or make it darkness
-  var losresult = mapname.getLOS(centerx, centery, x, y);
+  let losresult = mapname.getLOS(centerx, centery, x, y);
   
-  var blocks = localacre.getBlocksLOS();
+  let blocks = localacre.getBlocksLOS();
     
-  var lighthere = 0;
-  var sunlight = mapname.getAmbientLight();
+  let lighthere = 0;
+  let sunlight = mapname.getAmbientLight();
   if (sunlight === 1) {
     lighthere = 1;
   } else {
     if ((blocks >= LOS_THRESHOLD) && ((centerx != x) || (centery != y) )) {
-      var dirnum = GetViewDirection(centerx,centery,x,y);
+      let dirnum = GetViewDirection(centerx,centery,x,y);
       if ((dirnum === 6) || (dirnum === 7) || (dirnum === 0)) {
-        var selight = localacre.getLocalLight("se") + sunlight;
+        let selight = localacre.getLocalLight("se") + sunlight;
         if (selight > lighthere) {
           lighthere = selight;
         }
       } if ((dirnum >= 0) && (dirnum <= 2)) {
-        var swlight = localacre.getLocalLight("sw") + sunlight;
+        let swlight = localacre.getLocalLight("sw") + sunlight;
         if (swlight > lighthere) {
           lighthere = swlight;
         }
       } if ((dirnum >= 2) && (dirnum <= 4)) {
-        var nwlight = localacre.getLocalLight("nw") + sunlight;
+        let nwlight = localacre.getLocalLight("nw") + sunlight;
         if (nwlight > lighthere) {
           lighthere = nwlight;
         }
       } if ((dirnum >= 4) && (dirnum <= 6)) {
-        var nelight = localacre.getLocalLight("ne") + sunlight;
+        let nelight = localacre.getLocalLight("ne") + sunlight;
         if (nelight > lighthere) {
           lighthere = nelight;
         }
@@ -188,15 +188,15 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     
   displaytile = localacre.getTop(0,1,1);  // sorts NPCs to top, but "alwaystop" features above them
   while (displaytile.getName() === "SeeBelow") {
-    var retval = FindBelow(x,y,mapname);
+    let retval = FindBelow(x,y,mapname);
     localacre = retval.tile;
     mapname = retval.map;
     displaytile = localacre.getTop();
   }
-  var isnpc = 0;
+  let isnpc = 0;
   if (displaytile.checkType("NPC") && !displaytile.specials.mindless) { isnpc = 1; }
-  var graphics = displaytile.getGraphicArray();
-  var showGraphic = graphics[0];
+  let graphics = displaytile.getGraphicArray();
+  let showGraphic = graphics[0];
   if ((typeof displaytile.setBySurround === "function") && ((losresult < LOS_THRESHOLD) || ev)) {
     graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
     displayCell.showGraphic = graphics[0];
@@ -228,7 +228,7 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
       }      
     }
     if (typeof displaytile.setByBelow === "function") {
-      var setbelow = displaytile.setByBelow(x,y,mapname);
+      let setbelow = displaytile.setByBelow(x,y,mapname);
       displayCell.showGraphic = setbelow[0];
       displayCell.graphics2 = setbelow[2];
       displayCell.graphics3 = setbelow[3];
@@ -256,30 +256,30 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
 function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
     
   if (losresult >= LOS_THRESHOLD) {
-    var displaytile = eidos.getForm('BlankBlack');
-    var graphics = displaytile.getGraphicArray();
-    var showGraphic = graphics[0];
-    var displayCell = {};
+    let displaytile = eidos.getForm('BlankBlack');
+    let graphics = displaytile.getGraphicArray();
+    let showGraphic = graphics[0];
+    let displayCell = {};
     displayCell.showGraphic = showGraphic;
     displayCell.graphics2 = graphics[2];
     displayCell.graphics3 = graphics[3];
     displayCell.graphics1 = graphics[1];
     return displayCell;
   }
-  var localacre = mapref.getTile(xcoord, ycoord);
-  var displaytile = localacre.getTerrain();
+  let localacre = mapref.getTile(xcoord, ycoord);
+  let displaytile = localacre.getTerrain();
   
   while (displaytile.getName() === "SeeBelow") {
-    var retval = FindBelow(xcoord,ycoord,mapref);
+    let retval = FindBelow(xcoord,ycoord,mapref);
     localacre = retval.tile;
     mapref = retval.map;
     displaytile = localacre.getTerrain();
   }
   
-  var graphics = displaytile.getGraphicArray();
-  var showGraphic = graphics[0];
+  let graphics = displaytile.getGraphicArray();
+  let showGraphic = graphics[0];
   
-  var displayCell = {};
+  let displayCell = {};
   displayCell.desc = displaytile.getDesc();
   if (typeof displaytile.setBySurround === "function") {
     graphics = displaytile.setBySurround(xcoord,ycoord,mapref,graphics,0,centerx,centery);
@@ -303,9 +303,9 @@ function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
 }
 
 function DamageFlash() {
-  $('#hpcell').css("background-color", "white");
-  $('#hpcell').css("color", "black");
-  setTimeout(function() { $('#hpcell').css("background-color", "black"); $('#hpcell').css("color", "white"); }, 250);
+  document.getElementById('hpcell').style.backgroundColor = "white";
+  document.getElementById('hpcell').style.color = "black";
+  setTimeout(function() { document.getElementById('hpcell').style.backgroundColor = "black"; document.getElementById('hpcell').style.color = "white"; }, 250);
 }
 
 function animateImage(startx, endx, obj, repeat, dir, waitdur, destroywhendone, settostart) {
@@ -319,7 +319,7 @@ function animateImage(startx, endx, obj, repeat, dir, waitdur, destroywhendone, 
 
 function continueAnimation(startx, endx, obj,repeat, dir, waitdur, destroywhendone) {
   if (obj.getHomeMap() === PC.getHomeMap()) {
-    var diff = 32;
+    let diff = 32;
     if (dir === "right") {
       diff = -32;
     }
@@ -341,9 +341,9 @@ function continueAnimation(startx, endx, obj,repeat, dir, waitdur, destroywhendo
 
 function destroyAnimation(thing) {
   delete timeouts[thing.getSerial()];
-  var thingmap = thing.getHomeMap();
-  var thingx = thing.getx();
-  var thingy = thing.gety();
+  let thingmap = thing.getHomeMap();
+  let thingx = thing.getx();
+  let thingy = thing.gety();
   thingmap.deleteThing(thing);
   if (thingmap === PC.getHomeMap()) {
     DrawMainFrame("one", thingmap, thingx, thingy);
@@ -352,21 +352,21 @@ function destroyAnimation(thing) {
 
 function Earthquake() {
   // possibly add sound
-  $("#displayframe").css("left", 18);
+  document.getElementById('displayframe').style.left = 18;
   setTimeout(function() {
-    $("#displayframe").css("left", 20);
+    document.getElementById('displayframe').style.left = 20;
     setTimeout(function() {
-      $("#displayframe").css("left", 22);
+      document.getElementById('displayframe').style.left = 22;
       setTimeout(function() {
-        $("#displayframe").css("left", 20);
+        document.getElementById('displayframe').style.left = 20;
         setTimeout(function() {
-          $("#displayframe").css("left", 18);
+          document.getElementById('displayframe').style.left = 18;
           setTimeout(function() {
-            $("#displayframe").css("left", 20);
+            document.getElementById('displayframe').style.left = 20;
             setTimeout(function() {
-              $("#displayframe").css("left", 22);
+              document.getElementById('displayframe').style.left = 22;
               setTimeout(function() {
-                $("#displayframe").css("left", 20);
+                document.getElementById('displayframe').style.left = 20;
               }, 250);
             },250);
           },250);
