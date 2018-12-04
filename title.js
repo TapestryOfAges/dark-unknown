@@ -1,6 +1,6 @@
 "use strict";
 
-var Dice = new DiceObject();
+let Dice = new DiceObject();
 
 function preload(arrayOfImages) {
     $(arrayOfImages).each(function(){
@@ -67,10 +67,10 @@ DU.DUTime = new Timeline(0);
 var DUTime = DU.DUTime; // alias
 DU.maps = new MapMemory();
 var maps = DU.maps; // alias
-var debug = 0;
+debug = 0;
 var PC = new PCObject();
 PC.assignSerial();
-var musicloaded = {};
+ musicloaded = {};
 var musictries = 0;
 DU.merchants = {};
 DU.merchants = SetMerchants();

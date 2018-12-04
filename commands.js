@@ -3085,7 +3085,7 @@ function PerformInventoryScreen(code, restrict) {
     if (targetCursor.command === "c") {
       // here for Scribe or Mend
       // WORKING HERE
-      var tgt = inventorylist[invselect];
+      let tgt = inventorylist[invselect];
       if (tgt) {
         if (targetCursor.spellName === "Mend") {
           retval = PerformMend(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
@@ -3101,13 +3101,13 @@ function PerformInventoryScreen(code, restrict) {
     if (targetCursor.command === "o") {
       if (!CheckOpenAsUse(inventorylist[invselect])) {
         maintext.delayedAddText("You cannot open that.");
-        let retval = {fin:0};
+        retval = {fin:0};
         delete targetCursor.itemlist;
         return retval;
       }
     }    
     targetCursor.command = 'u';
-    let retval = MakeUseHappen(PC, inventorylist[invselect], "inventory");
+    retval = MakeUseHappen(PC, inventorylist[invselect], "inventory");
     retval["usefin"] = retval["fin"];
     retval["fin"] = 2;
     return retval;
