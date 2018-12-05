@@ -1,11 +1,11 @@
 
-var OnHitFuncs = {};
+let OnHitFuncs = {};
 
 OnHitFuncs["disease"] = function(atk,def,dmg) {
   if (Dice.roll("1d100") < 15) {  // diseased!
     if (def.getSpellEffectsByName("Disease")) { return 0; }
-    var duration = Dice.roll("2d10+10");
-    var disease = localFactory.createTile("Disease");
+    let duration = Dice.roll("2d10+10");
+    let disease = localFactory.createTile("Disease");
     disease.setExpiresTime(duration + DUTime.getGameClock());
     def.addSpellEffect(disease);
    
@@ -20,8 +20,8 @@ OnHitFuncs["disease"] = function(atk,def,dmg) {
 
 OnHitFuncs["venom"] = function(atk,def,dmg) {
   if (Dice.roll("1d100") < 15) {  // diseased!
-    var poison = localFactory.createTile("Poison");
-    var duration = Dice.roll("2d10+10") * SCALE_TIME;
+    let poison = localFactory.createTile("Poison");
+    let duration = Dice.roll("2d10+10") * SCALE_TIME;
     poison.setExpiresTime(duration + DUTime.getGameClock());
     def.addSpellEffect(poison);
    
@@ -35,11 +35,11 @@ OnHitFuncs["venom"] = function(atk,def,dmg) {
 }
 
 OnHitFuncs["steal gold"] = function(atk,def,dmg) {
-  var chance = 25 - def.getDex();  // start with a 15% chance against the PC
+  let chance = 25 - def.getDex();  // start with a 15% chance against the PC
   if (Dice.roll("1d100") < chance) {
     if (def.checkType("PC")) {
-      var die = atk.getLevel() * 2;
-      var loss = Dice.roll(die + "d6");
+      let die = atk.getLevel() * 2;
+      let loss = Dice.roll(die + "d6");
       if (loss > def.getGold()) { loss = def.getGold(); } 
       loss = 0-loss;
       def.addGold(loss);

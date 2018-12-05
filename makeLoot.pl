@@ -41,7 +41,7 @@ close $fh;
 open (my $outfile, ">", "lootset.js") or die "can't open outfile lootset\n";
 
 print $outfile '"use strict";';
-print $outfile "\n\nfunction SetLoots() {\n  var loots = {};\n\n";
+print $outfile "\n\nfunction SetLoots() {\n  let loots = {};\n\n";
 foreach my $key (keys %loots) {
   print $outfile "  loots['$key'] = new LootTable();\n";
   if ($loots{$key}{'Gold'}{'val'}) {
@@ -70,7 +70,7 @@ foreach my $key (keys %loots) {
 
 print $outfile "  return loots;\n}\n\n";
 
-print $outfile "function SetLootGroups() {\n  var DULootGroup = new LootGroups();\n\n";
+print $outfile "function SetLootGroups() {\n  let DULootGroup = new LootGroups();\n\n";
 foreach my $key (keys %groups) {
   print $outfile "  DULootGroup.setTreasureType('$key',\n  [\n";
   foreach my $thing (keys %{$groups{$key}}) {

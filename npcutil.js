@@ -16,10 +16,10 @@ function Anchor() {
 }
 Anchor.prototype = new Object();
 
-var NPCSpecialFuncs = {};
+let NPCSpecialFuncs = {};
 
 NPCSpecialFuncs["quick"] = function(who, how) {
-  var qobj = localFactory.createTile("Quickness");
+  let qobj = localFactory.createTile("Quickness");
   qobj.setExpiresTime(-1);
   who.addSpellEffect(qobj);  
 }
@@ -35,7 +35,7 @@ NPCSpecialFuncs["light"] = function(who,how) {
 }
 
 NPCSpecialFuncs["flamearmor"] = function(who,how) {
-  var qobj = localFactory.createTile("FireArmor");
+  let qobj = localFactory.createTile("FireArmor");
   if (how !== 1) {
     qobj.setPower(how);
   } else {
@@ -50,13 +50,13 @@ NPCSpecialFuncs["invisible"] = function(who,how) {
 }
 
 NPCSpecialFuncs["hides"] = function(who,how) {
-  var oldgraph = who.getGraphic();
+  let oldgraph = who.getGraphic();
   who.setGraphic(how);
   return oldgraph;
 }
 
 NPCSpecialFuncs["courierSurrender"] = function(who,how) {
-  var eobj = localFactory.createTile("CourierSurrender");
+  let eobj = localFactory.createTile("CourierSurrender");
   who.addSpellEffect(eobj);
 }
 

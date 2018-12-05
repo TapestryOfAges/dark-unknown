@@ -13777,7 +13777,7 @@ NPCObject.prototype.addToInventory = function(item, thinAir, qty) {
       qty = 1; 
     }
   }
-  var alreadyIn = this.checkInventory(item.getName());
+  let alreadyIn = this.checkInventory(item.getName());
   if (alreadyIn) {
     alreadyIn.setQuantity(alreadyIn.getQuantity()+qty);
   }
@@ -13812,7 +13812,7 @@ NPCObject.prototype.removeFromInventory = function(item, map, x, y) {
 }
 
 NPCObject.prototype.getInventory = function() {
-  var inv = this.inventory.getAll();
+  let inv = this.inventory.getAll();
   return inv;
 }
 
@@ -13919,34 +13919,32 @@ NPCObject.prototype.setMissile = function(newmissile) {
 
 NPCObject.prototype.getHitChance = function(atkwith) {
   if (!atkwith) { atkwith = "melee"; }
-  var tohit = BASE_HIT_CHANCE;
+  let tohit = BASE_HIT_CHANCE;
   tohit += this.getLevel() * HIT_PER_LEVEL ;
   if (atkwith === "melee") {
     tohit += this.getStr() - 10;
-    var weapon = this.getEquipment("weapon");
+    let weapon = this.getEquipment("weapon");
     if (weapon) {
       tohit += weapon.getToHitBonus();
     }
   } else {
     tohit += this.getDex() - 10;
-    var weapon = this.getEquipment("missile");
+    let weapon = this.getEquipment("missile");
     if (weapon) {
       tohit += weapon.getToHitBonus();
     }
   }
-  var armor = this.getEquipment("armor");
+  let armor = this.getEquipment("armor");
   if (armor) {
     tohit += armor.getToHitBonus();
   }
   
-  var distracted = this.getSpellEffectsByName("Distract");
+  let distracted = this.getSpellEffectsByName("Distract");
   if (distracted) {
-    var stillon = distracted.doEffect();
+    let stillon = distracted.doEffect();
     if (stillon != -1) {
-//      if (debug && debugflags.combat) { dbs.writeln("<span style='color:green'>DISTRACTED: old tohit: " + tohit + ", "); }
       DebugWrite("combat", "DISTRACTED: old tohit: " + tohit + ", ");
       tohit = tohit - distracted.getPower();
-//      if (debug && debugflags.combat) { dbs.writeln("new tohit: " + tohit + ".<br /></span>"); }
       DebugWrite("combat", "new tohit: " + tohit + ".<br />");
     }
   }
@@ -13954,9 +13952,9 @@ NPCObject.prototype.getHitChance = function(atkwith) {
 }
 
 NPCObject.prototype.getDefense = function() {
-  var def = this.getLevel() * DEF_PER_LEVEL;
+  let def = this.getLevel() * DEF_PER_LEVEL;
   def = def + (this.getDex()-10)*DEF_PER_DEX;
-  var armor = this.getEquipment("armor");
+  let armor = this.getEquipment("armor");
   if (armor) {
     if (this.getStr() < armor.getStrReq()) {
       def += (armor.getDefense())/3;
@@ -13964,27 +13962,23 @@ NPCObject.prototype.getDefense = function() {
       def += armor.getDefense();
     }
   }
-  var vuln = this.getSpellEffectsByName("Vulnerability");
+  let vuln = this.getSpellEffectsByName("Vulnerability");
   if (vuln) {
-//    if (debug && debugflags.combat) { dbs.writeln("vulnerable: old AC " + def + ", </span>"); }
     DebugWrite("ai", "VULNERABLE: Old AC " + def + ", ");
     def = def - vuln.getPower();
-//    if (debug && debugflags.combat) { dbs.writeln("new AC: " + def + ".<br /></span>"); }
     DebugWrite("ai", "new AC: " + def + ".<br />");
   }
-  var prot = this.getSpellEffectsByName("Protection");
+  let prot = this.getSpellEffectsByName("Protection");
   if (prot) {
-//    if (debug && debugflags.combat) { dbs.writeln("protected: old AC " + def + ", </span>"); }
     DebugWrite("combat", "PROTECTED: old AC " + def + ", ");
     def = def + prot.getPower();
-//    if (debug && debugflags.combat) { dbs.writeln("new AC: " + def + ".<br /></span>"); }
     DebugWrite("combat", "new AC: " + def + ".<br />");
   } 
   return def;
 }
 
 NPCObject.prototype.getAbsorb = function() {
-  var armor = this.getEquipment("armor");
+  let armor = this.getEquipment("armor");
   if (armor) {
     return armor.getAbsorb();
   }
@@ -13992,13 +13986,13 @@ NPCObject.prototype.getAbsorb = function() {
 
 NPCObject.prototype.getResist = function(resisttype) {
   if (resisttype === "physical") {
-    var armor = this.getEquipment("armor");
+    let armor = this.getEquipment("armor");
     if (armor) {
       return (armor.getAbsorb());
     }
   }
   if (resisttype === "magic") {
-    var armor = this.getEquipment("armor");
+    let armor = this.getEquipment("armor");
     if (armor) {
       return (armor.getResist());
     }
@@ -14021,7 +14015,7 @@ NPCObject.prototype.setLastLocation = function (newloc) {
 }
 
 NPCObject.prototype.getDestination = function() {
-  var dest = {};
+  let dest = {};
   dest.x = this.currentDestination.x;
   dest.y = this.currentDestination.y;
   return dest;
@@ -14039,7 +14033,6 @@ NPCObject.prototype.getDestinationType = function() {
 NPCObject.prototype.setDestinationType = function(dtype) {
   this.destType = dtype;
 }
-
 
 NPCObject.prototype.getTurnsToRecalcDest = function() {
   return this.turnsToRecalcDest; 
@@ -14059,14 +14052,6 @@ NPCObject.prototype.setPoI = function(poi) {
   this.currentPoI = poi;
 }
 
-//NPCObject.prototype.getTurnsToRecalcPoI = function() {
-//  return this.turnsToRecalcPoI;
-//}
-
-//NPCObject.prototype.setTurnsToRecalcPoI = function(timeuntil) {
-//  this.turnsToRecalcPoI = timeuntil;
-//}
-
 NPCObject.prototype.setCurrentPath = function(newpath) {
   this.currentPath = newpath;
 }
@@ -14077,7 +14062,7 @@ NPCObject.prototype.getCurrentPath = function() {
 
 NPCObject.prototype.getNextStep = function() {
   if (this.currentPath.length > 0) {
-    var nextstep = this.currentPath.shift();
+    let nextstep = this.currentPath.shift();
     return nextstep;
   }
   return [];
@@ -14095,12 +14080,12 @@ function NPCList(npcs,num) {
 }
 
 NPCGroupObject.prototype.populate = function() {
-  var population = [];
-  for (var i=0; i< this.group.length; i++) {
-    var num = Dice.roll(this.group[i].count);
-    for (var j=1; j<=num; j++) {
+  let population = [];
+  for (let i=0; i<this.group.length; i++) {
+    let num = Dice.roll(this.group[i].count);
+    for (let j=1; j<=num; j++) {
       if (population.length < 8) {
-        var monster = localFactory.createTile(this.group[i].npc);
+        let monster = localFactory.createTile(this.group[i].npc);
         population[population.length] = monster;
       }
     }
@@ -14179,8 +14164,6 @@ function PCObject() {
 	this.nextMana = MANA_REGEN;
 	this.nextHP = HP_REGEN;
 
-//	var myweapon = localFactory.createTile("Dagger");
-//	myweapon.equipMe(this);
 }
 PCObject.prototype = new NPCObject();
 
@@ -14195,7 +14178,7 @@ PCObject.prototype.myTurn = function() {
 
   if (debugmaps.open) { ShowDebugMaps(); }
 
-  var clockface = GetClockTime(this.getLastTurnTime());
+  let clockface = GetClockTime(this.getLastTurnTime());
   if ((clockface[3] !== GetClockTime()[3]) && !this.getWaiting() && !this.dead) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
   if (!this.dead) {
     SetSky();
@@ -14220,7 +14203,7 @@ PCObject.prototype.myTurn = function() {
         return 0;
       }
       delete PC.deaduntil;
-      var returnmap = new GameMap();
+      let returnmap = new GameMap();
       if (maps.getMap("olympus1")) {
         returnmap = maps.getMap("olympus1");
         // though again, this shouldn't be in memory
@@ -14239,11 +14222,11 @@ PCObject.prototype.myTurn = function() {
   }
     
   Regen(this);
-  var awake = 1;
-  var sleep = this.getSpellEffectsByName("Sleep");
-  var paralyzed = this.getSpellEffectsByName("Paralyze");
-  var frozen = this.getSpellEffectsByName("Frozen");
-  var waiting = this.getWaiting();
+  let awake = 1;
+  let sleep = this.getSpellEffectsByName("Sleep");
+  let paralyzed = this.getSpellEffectsByName("Paralyze");
+  let frozen = this.getSpellEffectsByName("Frozen");
+  let waiting = this.getWaiting();
   if (waiting && (waiting < DUTime.getGameClock())) { 
     waiting = 0;
     EndWaiting(this,this.atinn);
@@ -14369,7 +14352,7 @@ PCObject.prototype.setInfusion = function(infuse) {
 }
 
 PCObject.prototype.getMaxMana = function() {
-  var maxmana = this.getBaseInt() + this.getOrbInt();
+  let maxmana = this.getBaseInt() + this.getOrbInt();
   if (DU.gameflags.getFlag("pc_abyss")) {
     maxmana = maxmana * 2;
   }
@@ -14379,25 +14362,25 @@ PCObject.prototype.getMaxMana = function() {
 // returns the amount of damage dealt, -1 if the damage killed the target
 PCObject.prototype.dealDamage = function(dmg, src, type) {
   
-  var isasleep = this.getSpellEffectsByName("Sleep");
+  let isasleep = this.getSpellEffectsByName("Sleep");
   if (isasleep) {
     isasleep.endEffect();
   }
   
-  var isfrozen = this.getSpellEffectsByName("Frozen");
+  let isfrozen = this.getSpellEffectsByName("Frozen");
   if (isfrozen) {
     isfrozen.endEffect();
   }
 
-  var isinvuln = this.getSpellEffectsByName("Invulnerable");
+  let isinvuln = this.getSpellEffectsByName("Invulnerable");
   if (isinvuln) {
     dmg = 0;
   }
 
   dmg = CheckAbsorb(dmg,this,src,type);
-  var oldhp = this.getDisplayHP();
+  let oldhp = this.getDisplayHP();
   this.modHP(dmg*-1);
-  var newhp = this.getDisplayHP();
+  let newhp = this.getDisplayHP();
   
   if (oldhp !== newhp) {
     DrawCharFrame();

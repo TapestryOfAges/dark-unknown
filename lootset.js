@@ -1,7 +1,7 @@
 "use strict";
 
 function SetLoots() {
-  var loots = {};
+  let loots = {};
 
   loots['Small Animal'] = new LootTable();
   loots['Small Animal'].goldDice = '1d3';
@@ -258,7 +258,7 @@ function SetLoots() {
 }
 
 function SetLootGroups() {
-  var DULootGroup = new LootGroups();
+  let DULootGroup = new LootGroups();
 
   DULootGroup.setTreasureType('Lesser Armor',
   [
