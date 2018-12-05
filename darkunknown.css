@@ -206,3 +206,9 @@ div.demo a { color:lightblue; }
 	animation-duration: 1.5s;
 	animation-fill-mode: forwards;
 }
+
+.rundeathfadein {
+	animation-name: fadein;
+	animation-duration: 2.3s;
+	animation-fill-mode: forwards;
+}

@@ -383,20 +383,28 @@ function Earthquake() {
   },250);
 }
 
-function FadeOut() {
+function FadeOut(death) {
   // stop playing spell animations
   spellcount = {};
   
   // Ironically, to do a fade OUT I am performing a jquery fadeIn(), to fade in a blanket of darkness
   // to put over the viewscreen.
-  var darkness = "<div id='darkness' style='position:absolute;left:0;top:0;width:416px;height:418px;background-color:black;display:none'><img src='graphics/spacer.gif' width='416' height='418'></div>";
+  let darkness = "<div id='darkness' style='position:absolute;left:0;top:0;width:416px;height:418px;background-color:black;display:none'><img src='graphics/spacer.gif' width='416' height='418'></div>";
   document.getElementById('spelleffects').innerHTML = darkness;
-  document.getElementById('darkness').classList.toggle("runfadein");
+  if (death) {
+    document.getElementById('darkness').classList.toggle("rundeathfadein");
+  } else {
+    document.getElementById('darkness').classList.toggle("runfadein");
+  }
 }
 
-function FadeIn() {
+function FadeIn(death) {
 
-  document.getElementById('darkness').classList.toggle("runfadein");
+  if (death) {
+    document.getElementById('darkness').classList.toggle("rundeathfadein");
+  } else {
+    document.getElementById('darkness').classList.toggle("runfadein");
+  }
   document.getElementById('darkness').classList.toggle("runfadeout");
   setTimeout(function() { document.getElementById('spelleffects').innerHTML = ""; }, 1500);
   
