@@ -375,7 +375,7 @@ CharmTile.prototype.doEffect = function() {
 }
 
 CharmTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.setAttitude(this.oldattitude);
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
@@ -396,7 +396,7 @@ function ConfusedTile() {
 ConfusedTile.prototype = new EphemeralObject();
 
 ConfusedTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You have become confused!");
   }
@@ -410,7 +410,7 @@ ConfusedTile.prototype.doEffect = function() {
 }
 
 ConfusedTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("Your head is clear of its confusion!");
@@ -429,7 +429,7 @@ function CrystalTrapTile() {
 CrystalTrapTile.prototype = new EphemeralObject();
 
 CrystalTrapTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
     maintext.delayedAddText("Magic erupts around you and you are encased in crystal!");
   }
@@ -443,10 +443,10 @@ CrystalTrapTile.prototype.onTurn = function() {
     DebugWrite("magic", "CrystalPrison drops.");
     this.endEffect();
   }
-  var who = this.getAttachedTo();
-  var chance = 30 + who.getStr() - this.getPower();
+  let who = this.getAttachedTo();
+  let chance = 30 + who.getStr() - this.getPower();
   if (chance < 5) { chance = 5; }
-  var rollresult = Dice.roll("1d100");
+  let rollresult = Dice.roll("1d100");
   DebugWrite("magic", who.getName() + " tries to break free of crystal prison with chance " + chance + ". Rolls: " + rollresult + ".<br />");
   if (rollresult <= chance) { 
     if (who === PC) {
@@ -462,7 +462,7 @@ CrystalTrapTile.prototype.onTurn = function() {
 }
 
 CrystalTrapTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   who.setOverlay(who.oldoverlay);
   if ((who === PC) && !silent) {
@@ -483,8 +483,8 @@ function CurseTile() {
 CurseTile.prototype = new EphemeralObject();
 
 CurseTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   who.setModInt(who.getModInt() - power);
   who.setModStr(who.getModInt() - power);
   who.setModDex(who.getModInt() - power);
@@ -498,7 +498,7 @@ CurseTile.prototype.applyEffect = function(silent) {
 }
 
 CurseTile.prototype.doEffect = function() {
-  var resp = 0;
+  let resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     resp = this.endEffect();
   }
@@ -506,8 +506,8 @@ CurseTile.prototype.doEffect = function() {
 }
 
 CurseTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   who.deleteSpellEffect(this);
   who.setModInt(who.getModInt() + power);
   who.setModStr(who.getModInt() + power);
@@ -530,7 +530,7 @@ function DiseaseTile() {
 DiseaseTile.prototype = new DamageOverTimeObject();
 
 DiseaseTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (IsNonLiving(who)) {
     this.endEffect();
   }
@@ -538,7 +538,7 @@ DiseaseTile.prototype.applyEffect = function(silent) {
 }
 
 DiseaseTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   DrawCharFrame();
 }
@@ -554,7 +554,7 @@ function DisorientedTile() {
 DisorientedTile.prototype = new EphemeralObject();
 
 DisorientedTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You are disoriented as the floor spins beneath you!");
   }
@@ -562,8 +562,8 @@ DisorientedTile.prototype.applyEffect = function(silent) {
 }
 
 DisorientedTile.prototype.happen = function() {
-  var resp = 0;
-  var dir = Dice.roll("1d3");
+  let resp = 0;
+  let dir = Dice.roll("1d3");
   if (dir === 1) { PC.moveMe(-1,0,0); }
   if (dir === 2) { PC.moveMe(1,0,0); }
   if (dir === 3) { PC.moveMe(0,1,0); }
@@ -572,7 +572,7 @@ DisorientedTile.prototype.happen = function() {
 }
 
 DisorientedTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   DrawCharFrame();
   return -1;
@@ -590,7 +590,7 @@ function DistractTile() {
 DistractTile.prototype = new EphemeralObject();
 
 DistractTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You have become distracted.");
   }
@@ -598,7 +598,7 @@ DistractTile.prototype.applyEffect = function(silent) {
 }
 
 DistractTile.prototype.doEffect = function() {
-  var resp = 0;
+  let resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     resp = this.endEffect();
   }
@@ -606,7 +606,7 @@ DistractTile.prototype.doEffect = function() {
 }
 
 DistractTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("You are no longer distracted!");
@@ -618,7 +618,7 @@ DistractTile.prototype.endEffect = function(silent) {
 function DrunkTile() {
   this.addType("debuff");
   this.name = "Drunk";
-  this.display = "<span style='color:#brown'>D</span>";
+  this.display = "<span style='color:brown'>D</span>";
   this.zstatdesc = "You are tipsy.";
   this.desc = "drunk";
 }
@@ -631,11 +631,11 @@ DrunkTile.prototype.getZstatdesc = function() {
 }
 
 DrunkTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (IsNonLiving(who)) {
     this.endEffect();
   }
-  var power = this.getPower();
+  let power = this.getPower();
   who.setModDex(who.getModDex() - power);
   who.setModInt(who.getModInt() - power);
   
@@ -647,7 +647,7 @@ DrunkTile.prototype.happen = function() {
   let retval = {};
   if (Dice.roll("1d10") <= this.getPower()) {
     retval["txt"] = "You stumble drunkenly!";
-    var dir = Dice.roll("1d6");
+    let dir = Dice.roll("1d6");
     if (dir === 1) { who.moveMe(0,-1,0); }
     if (dir === 2) { who.moveMe(1,0,0); }
     if (dir === 3) { who.moveMe(0,1,0); }
@@ -660,7 +660,7 @@ DrunkTile.prototype.happen = function() {
 }
 
 DrunkTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   let power = this.getPower();
   who.setModDex(who.getModDex() + power);
   who.setModInt(who.getModInt() + power);
@@ -682,7 +682,7 @@ function EtherealVisionTile() {
 EtherealVisionTile.prototype = new EphemeralObject();
 
 EtherealVisionTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (who) {
     if ((who === PC) && !silent) {
       maintext.addText("Your mind expands.");
@@ -692,7 +692,7 @@ EtherealVisionTile.prototype.applyEffect = function(silent) {
 }
 
 EtherealVisionTile.prototype.doEffect = function() {
-  var resp = 0;
+  let resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     resp = this.endEffect();
   }
@@ -700,7 +700,7 @@ EtherealVisionTile.prototype.doEffect = function() {
 }
 
 EtherealVisionTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("Your mind contracts.");
@@ -721,7 +721,7 @@ function FearTile() {
 FearTile.prototype = new EphemeralObject();
 
 FearTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (who !== PC) {
     who.specials.coward = 1;
   }
@@ -738,7 +738,7 @@ FearTile.prototype.doEffect = function() {
 }
 
 FearTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   delete who.specials.coward;
   if ((who === PC) && !silent) {
@@ -758,7 +758,7 @@ function FireArmorTile() {
 FireArmorTile.prototype = new EphemeralObject();
 
 FireArmorTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (who) {
     if ((who === PC) && !silent) {
       maintext.addText("You are surrounded with flames.");
@@ -768,7 +768,7 @@ FireArmorTile.prototype.applyEffect = function(silent) {
 }
 
 FireArmorTile.prototype.doEffect = function() {
-  var resp = 0;
+  let resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     resp = this.endEffect();
   }
@@ -776,7 +776,7 @@ FireArmorTile.prototype.doEffect = function() {
 }
 
 FireArmorTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("The flames that surround you fade away.");
@@ -786,7 +786,7 @@ FireArmorTile.prototype.endEffect = function(silent) {
 }
 
 FireArmorTile.prototype.flashback = function(attacker) {
-  var dmg = RollDamage(this.getPower());
+  let dmg = RollDamage(this.getPower());
   if (attacker === PC) {
     maintext.addText("Flames burn you!");
   }
@@ -805,7 +805,7 @@ function FlameBladeTile() {
 FlameBladeTile.prototype = new EphemeralObject();
 
 FlameBladeTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (who) {
     who.setLight(who.getLight() + .5);
     if ((who === PC) && !silent) {
@@ -817,7 +817,7 @@ FlameBladeTile.prototype.applyEffect = function(silent) {
 
 FlameBladeTile.prototype.doEffect = function() {
   this.uses--;
-  var resp = 0;
+  let resp = 0;
   if (this.uses) {
     if (DUTime.getGameClock() > this.getExpiresTime()) {
       resp = this.endEffect();
@@ -830,7 +830,7 @@ FlameBladeTile.prototype.doEffect = function() {
 }
 
 FlameBladeTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.setLight(who.getLight() - .5);
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
@@ -852,7 +852,7 @@ function FrozenTile() {
 FrozenTile.prototype = new EphemeralObject();
 
 FrozenTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You are frozen!");
   }
@@ -866,7 +866,7 @@ FrozenTile.prototype.doEffect = function() {
 }
 
 FrozenTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("You are no longer frozen.");
@@ -885,7 +885,7 @@ function InvulnerableTile() {
 InvulnerableTile.prototype = new EphemeralObject();
 
 InvulnerableTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You are invulnerable to damage!");
   }
@@ -899,7 +899,7 @@ InvulnerableTile.prototype.doEffect = function() {
 }
 
 InvulnerableTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("You are once more vulnerable to damage.");
@@ -918,7 +918,7 @@ function IronFleshTile() {
 IronFleshTile.prototype = new EphemeralObject();
 
 IronFleshTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (who) {
     if ((who === PC) && !silent) {
       maintext.addText("Your skin becomes hard as iron.");
@@ -928,7 +928,7 @@ IronFleshTile.prototype.applyEffect = function(silent) {
 }
 
 IronFleshTile.prototype.doEffect = function() {
-  var resp = 0;
+  let resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     resp = this.endEffect();
   }
@@ -936,7 +936,7 @@ IronFleshTile.prototype.doEffect = function() {
 }
 
 IronFleshTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("Your skin returns to normal.");
@@ -956,7 +956,7 @@ function LevitateTile() {
 LevitateTile.prototype = new EphemeralObject();
 
 LevitateTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (who) {
     who.addMovetype(MOVE_LEVITATE);
     if ((who === PC) && !silent) {
@@ -973,7 +973,7 @@ LevitateTile.prototype.doEffect = function() {
 }
 
 LevitateTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.removeMovetype(MOVE_LEVITATE);
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
@@ -994,12 +994,12 @@ function LightTile() {
 LightTile.prototype = new EphemeralObject();
 
 LightTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   if (who) {
     who.setLight(who.getLight() + power);
     if ((who === PC) && !silent) {
-      var lightdesc = "a sphere of light";
+      let lightdesc = "a sphere of light";
       if (power > 2) { 
         lightdesc = "a bright sphere of light"; 
         this.zstatdesc = "You are followed by a brightly glowing sphere of light.";
@@ -1018,7 +1018,7 @@ LightTile.prototype.doEffect = function() {
 }
 
 LightTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.setLight(who.getLight() - this.getPower());
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
@@ -1038,7 +1038,7 @@ function MirrorWardTile() {
 MirrorWardTile.prototype = new EphemeralObject();
 
 MirrorWardTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (who) {
     if ((who === PC) && !silent) {
       maintext.addText("Ethereal mirrors surround and protect you.");
@@ -1054,7 +1054,7 @@ MirrorWardTile.prototype.doEffect = function() {
 }
 
 MirrorWardTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("The mirror ward fades.");
@@ -1063,16 +1063,16 @@ MirrorWardTile.prototype.endEffect = function(silent) {
 }
 
 MirrorWardTile.prototype.findNewTarget = function(caster) {
-  var curtarget = this.getAttachedTo();
+  let curtarget = this.getAttachedTo();
   
-  var localnpcs = curtarget.getHomeMap().npcs.getAll();
-  var newtgt = [];
-  var displayspecs = getDisplayCenter(curtarget.getHomeMap(),caster.getx(),caster.gety());
-  var pcdisplay = getDisplayCenter(curtarget.getHomeMap(),PC.getx(),PC.gety()); // just in case
+  let localnpcs = curtarget.getHomeMap().npcs.getAll();
+  let newtgt = [];
+  let displayspecs = getDisplayCenter(curtarget.getHomeMap(),caster.getx(),caster.gety());
+  let pcdisplay = getDisplayCenter(curtarget.getHomeMap(),PC.getx(),PC.gety()); // just in case
   
-//  if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>MIRROR WARD is reflecting the spell...<br /></span>"); }
   DebugWrite("magic", "MIRROR WARD is reflecting the spell...<br />");
-  $.each(localnpcs, function(idx, val) {
+  for (let i=0;i<localnpcs.length;i++){ 
+    let val=localnpcs[i];
     if (val !== curtarget) {
       if (GetDistance(val.getx(), val.gety(), tgt.getx(), tgt.gety()) < 8.5) {
         // check for on screen from caster
@@ -1084,11 +1084,11 @@ MirrorWardTile.prototype.findNewTarget = function(caster) {
         }
       }
     }
-  });
+  };
   
-  var reflectto = curtarget;
+  let reflectto = curtarget;
   if (newtgt.length) {
-    var roll = Math.floor(Math.random()*(newtgt.length-1));
+    let roll = Math.floor(Math.random()*(newtgt.length-1));
     reflectto = newtgt[roll];
     
     if (curtarget === PC) {
@@ -1103,7 +1103,6 @@ MirrorWardTile.prototype.findNewTarget = function(caster) {
   this.endEffect(1); // end silently
   
   return reflectto;
-  
 }
 
 function NegateMagicTile() {
@@ -1119,7 +1118,7 @@ function NegateMagicTile() {
 NegateMagicTile.prototype = new EphemeralObject();
 
 NegateMagicTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.invisible = 1;
   return 1;
 }
@@ -1131,9 +1130,9 @@ NegateMagicTile.prototype.doEffect = function() {
 }
 
 NegateMagicTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var negmap = who.getHomeMap();
-  var negated = DU.gameflags.getFlag("negate");
+  let who = this.getAttachedTo();
+  let negmap = who.getHomeMap();
+  let negated = DU.gameflags.getFlag("negate");
   delete negated[negmap.getName()];
   DU.gameflags.setFlag("negate", negated);
   negmap.deleteThing(who);
@@ -1158,7 +1157,7 @@ function ParalyzeTile() {
 ParalyzeTile.prototype = new EphemeralObject();
 
 ParalyzeTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You are paralyzed!");
   }
@@ -1172,7 +1171,7 @@ ParalyzeTile.prototype.doEffect = function() {
 }
 
 ParalyzeTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("You can move again!");
@@ -1193,7 +1192,7 @@ function PoisonTile() {
 PoisonTile.prototype = new DamageOverTimeObject();
 
 PoisonTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (IsNonLiving(who)) {
     this.endEffect();
   }
@@ -1201,7 +1200,7 @@ PoisonTile.prototype.applyEffect = function(silent) {
 }
 
 PoisonTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   DrawCharFrame();
   if ((who === PC) && !silent) {
@@ -1220,7 +1219,7 @@ function ProtectionTile() {
 ProtectionTile.prototype = new EphemeralObject();
 
 ProtectionTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (who) {
     if ((who === PC) && !silent) {
       maintext.addText("You are protected by magic.");
@@ -1230,7 +1229,7 @@ ProtectionTile.prototype.applyEffect = function(silent) {
 }
 
 ProtectionTile.prototype.doEffect = function() {
-  var resp = 0;
+  let resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     resp = this.endEffect();
   }
@@ -1238,7 +1237,7 @@ ProtectionTile.prototype.doEffect = function() {
 }
 
 ProtectionTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("Your protective shield wears off.");
@@ -1260,8 +1259,8 @@ QuicknessTile.prototype = new EphemeralObject();
 
 
 QuicknessTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   
   who.initmult *= power;
   if ((who === PC) && !silent) {
@@ -1277,7 +1276,7 @@ QuicknessTile.prototype.doEffect = function() {
 }
 
 QuicknessTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.initmult *= (1/this.getPower());
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
@@ -1298,7 +1297,7 @@ function SleepTile() {
 SleepTile.prototype = new EphemeralObject();
 
 SleepTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You fall asleep.");
   }
@@ -1312,7 +1311,7 @@ SleepTile.prototype.doEffect = function() {
 }
 
 SleepTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("You wake up!");
@@ -1334,8 +1333,8 @@ SlowTile.prototype = new EphemeralObject();
 
 
 SlowTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   
   who.initmult *= power;
   if ((who === PC) && !silent) {
@@ -1351,7 +1350,7 @@ SlowTile.prototype.doEffect = function() {
 }
 
 SlowTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.initmult *= (1/this.getPower())
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
@@ -1373,42 +1372,41 @@ StormTile.prototype = new EphemeralObject();
 
 
 StormTile.prototype.applyEffect = function(silent) {
-//  var who = this.getAttachedTo();
-//  var power = this.getPower();
   this.lastbolt = DU.getGameClock();
   return 1;
 }
 
 StormTile.prototype.doEffect = function() {
-  var who = this.getAttachedTo();
-  var bolts = Math.floor((DU.getGameClock() - this.lastbolt)/SCALE_TIME)*2;
+  let who = this.getAttachedTo();
+  let bolts = Math.floor((DU.getGameClock() - this.lastbolt)/SCALE_TIME)*2;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     this.endEffect();
     bolts++;
   }
   if (bolts) {
     DebugWrite("magic", "Storm fires!");
-    var castermap = who.getHomeMap();
-    var npcs = castermap.npcs.getAll();
-    var targetlist = [];
-    $.each(npcs, function (idx, val) {
+    let castermap = who.getHomeMap();
+    let npcs = castermap.npcs.getAll();
+    let targetlist = [];
+    for (let i=0;i<npcs.length;i++) {
+      let val=npcs[i];
       if (caster.getAttitude() !== val.getAttitude()) {
         if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
           targetlist.push(val);
         }
       }
-    });
+    };
     if (targetlist.length) {
-      var display = getDisplayCenter(castermap, who.getx(), who.gety());
-      var cloud = new GameObject();
+      let display = getDisplayCenter(castermap, who.getx(), who.gety());
+      let cloud = new GameObject();
       cloud.x = display.centerx;
       cloud.y = display.topy;
       // animate bolt from top-center to target 
-      for (var i = 0; i<bolts; i++) {
+      for (let i=0; i<bolts; i++) {
         if (targetlist.length) {
-          var chosenidx = Math.floor(Math.random()*targetlength.length);
+          let chosenidx = Math.floor(Math.random()*targetlength.length);
         
-          var boltgraphic = {};
+          let boltgraphic = {};
           boltgraphic.graphic = "fireicelightning.gif";
           boltgraphic.yoffset = -64;
           boltgraphic.xoffset = 0;
@@ -1416,19 +1414,19 @@ StormTile.prototype.doEffect = function() {
         
           boltgraphic = GetEffectGraphic(cloud,targetlist[chosenidx],boltgraphic);
         
-          var dmg = RollDamage(DMG_MEDIUM);
+          let dmg = RollDamage(DMG_MEDIUM);
           if (CheckResist(who,targetlist[chosenidx],infused,0)) {
             dmg = Math.floor(dmg/2)+1;
           }
 
-          var desc = targetlist[chosenidx].getDesc();
+          let desc = targetlist[chosenidx].getDesc();
           desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-          var descval = {txt: desc};
-          var sounds = {};
-          var fromcoords = getCoords(castermap,display.centerx, display.topy);
-          var tocoords = getCoords(castermap,targetlist[chosenidx].getx(), targetlist[chosenidx].gety());
-          var duration = (Math.pow( Math.pow(targetlist[chosenidx].getx() - display.centerx, 2) + Math.pow (targetlist[chosenidx].gety() - display.topy, 2)  , .5)) * 50;
-          var destgraphic = {graphic:"702.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+          let descval = {txt: desc};
+          let sounds = {};
+          let fromcoords = getCoords(castermap,display.centerx, display.topy);
+          let tocoords = getCoords(castermap,targetlist[chosenidx].getx(), targetlist[chosenidx].gety());
+          let duration = (Math.pow( Math.pow(targetlist[chosenidx].getx() - display.centerx, 2) + Math.pow (targetlist[chosenidx].gety() - display.topy, 2)  , .5)) * 50;
+          let destgraphic = {graphic:"702.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
           AnimateEffect(cloud, targetlist[chosenidx], fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:0, retval:descval, dmgtype:"lightning"});
           
           targetlist.splice(chosenidx,1);
@@ -1444,7 +1442,7 @@ StormTile.prototype.eachTurn = function() {
 }
 
 StormTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("The storm has ceased.");
@@ -1463,7 +1461,7 @@ function TelepathyTile() {
 TelepathyTile.prototype = new EphemeralObject();
 
 TelepathyTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (who) {
     if ((who === PC) && !silent) {
       maintext.addText("Your mind expands.");
@@ -1473,7 +1471,7 @@ TelepathyTile.prototype.applyEffect = function(silent) {
 }
 
 TelepathyTile.prototype.doEffect = function() {
-  var resp = 0;
+  let resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     resp = this.endEffect();
   }
@@ -1481,7 +1479,7 @@ TelepathyTile.prototype.doEffect = function() {
 }
 
 TelepathyTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("Your mind contracts.");
@@ -1501,7 +1499,7 @@ function TimeStopTile() {
 TimeStopTile.prototype = new EphemeralObject();
 
 TimeStopTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You have caused time itself to stop!");
   }
@@ -1512,7 +1510,7 @@ TimeStopTile.prototype.doEffect = function() {
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     this.endEffect();
   }
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (who.getHomeMap().getScale()) {
     who.modMana(-5);
   } else {
@@ -1528,7 +1526,7 @@ TimeStopTile.prototype.eachTurn = function() {
 }
 
 TimeStopTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("Time flows once more.");
@@ -1547,8 +1545,8 @@ function TorchLightTile() {
 TorchLightTile.prototype = new EphemeralObject();
 
 TorchLightTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
-  var power = this.getPower();
+  let who = this.getAttachedTo();
+  let power = this.getPower();
   if (who) {
     who.setLight(who.getLight() + power);
   }
@@ -1562,7 +1560,7 @@ TorchLightTile.prototype.doEffect = function() {
 }
 
 TorchLightTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.setLight(who.getLight() - this.getPower());
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
@@ -1583,7 +1581,7 @@ function VulnerabilityTile() {
 VulnerabilityTile.prototype = new EphemeralObject();
 
 VulnerabilityTile.prototype.applyEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You feel vulnerable.");
   }
@@ -1597,7 +1595,7 @@ VulnerabilityTile.prototype.doEffect = function() {
 }
 
 VulnerabilityTile.prototype.endEffect = function(silent) {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
   if ((who === PC) && !silent) {
     maintext.addText("You no longer feel vulnerable.");
@@ -1625,7 +1623,7 @@ CourierFleeTile.prototype.applyEffect = function(silent) {
 }
 
 CourierFleeTile.prototype.doEffect = function() {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   if (who.getHP() < who.getMaxHP()-50) {
     who.setHP(15);
     if (!who.specials.coward) {
@@ -1658,7 +1656,7 @@ CourierSurrenderTile.prototype.applyEffect = function(silent) {
 }
 
 CourierSurrenderTile.prototype.doEffect = function() {
-  var who = this.getAttachedTo();
+  let who = this.getAttachedTo();
   who.setCurrentAI("Courier");
   who.setAggro(0);
   DebugWrite("ai","Set courier's AI to 'courier'.");

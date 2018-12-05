@@ -32,11 +32,11 @@ DUListener.prototype.addListener = function(newlistener) {
 }
 
 DUListener.prototype.clearListeners = function() {
-  var allears = this.listeners.getAll();
+  let allears = this.listeners.getAll();
   if (allears.length) {
-    for (var i = 0; i<allears.length; i++) {
+    for (let i=0; i<allears.length; i++) {
       if (allears[i].linkedtomap) {
-        var mapexists = maps.getMap(allears[i].linkedtomap);
+        let mapexists = maps.getMap(allears[i].linkedtomap);
         if (mapexists === undefined) {
           this.clearListener(allears[i].name);
         }
@@ -46,7 +46,7 @@ DUListener.prototype.clearListeners = function() {
 }
 
 DUListener.prototype.clearListener = function(listname) {
-  var findlistener = this.listeners.getByName(listname);
+  let findlistener = this.listeners.getByName(listname);
   if (findlistener) {
     DebugWrite("events", "Deleting listener " + findlistener.getName() + ".<br />");
     this.listeners.deleteFrom(findlistener);
@@ -56,29 +56,31 @@ DUListener.prototype.clearListener = function(listname) {
 DUListener.prototype.sendEvent = function(ev) {
   this.clearListeners();
   
-  var allears = this.listeners.getAll();
+  let allears = this.listeners.getAll();
   if (allears.length === 0) { 
     DebugWrite("events", "Event sent, no listeners.<br />");
     return;
   }
-  for (var i=0; i<allears.length; i++) {
+  for (let i=0; i<allears.length; i++) {
     if (allears[i].linkedtomap === ev.source.getHomeMap().getName()) {
       if (allears[i].listenforname === ev.name) {
-        var flagsmatch = 1;
-        $.each(allears[i].flagsreq, function(idx2, val2) {
+        let flagsmatch = 1;
+        for (let idx2 in allears[i].flagsreq) {
+          let val2 = allears[i].flagsreq[idx];
           if (ev.flags[idx2] && (ev.flags[idx2] === val2)) {
             DebugWrite("events", "Flag " + idx2 + " matched - values " + val2 + ".<br />");
           } else {
             flagsmatch = 0;
           }
-        });
-        $.each(ev.flags, function(idx2, val2) {
+        };
+        for (let idx2 in ev.flags) {
+          let val2 = ev.flags[idx2];
           if (allears[i].flagsreq[idx2] && (allears[i].flagsreq[idx2] === val2)) {
             DebugWrite("events", "Flag " + idx2 + " matched - values " + val2 + ".<br />");
           } else {
             flagsmatch = 0;
           }          
-        });
+        };
         if (flagsmatch) {
           EventFunctions[allears[i].name](ev);
         }
@@ -108,5 +110,5 @@ function DUEvent(nm, srcs, flags) {
 DUEvent.prototype = new Object();
 
 
-var EventFunctions = new Object();
+let EventFunctions = new Object();
 // all listener funccalls must be attached to this object globally, for purposes of managing save/load

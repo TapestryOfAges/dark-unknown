@@ -36,7 +36,7 @@ ProtoObject.prototype.addType = function(type) {
 
 ProtoObject.prototype.checkType = function(type) {
   type = type.toLowerCase();
-  var patt = new RegExp("X"+type+"X");
+  let patt = new RegExp("X"+type+"X");
   if (patt.test(this.type)) {
     return 1;
   } else { return 0; }
@@ -44,7 +44,7 @@ ProtoObject.prototype.checkType = function(type) {
 
 ProtoObject.prototype.getTypeForMap = function() {
   // run check for npc, pc, and feature
-  var patt = new RegExp("XfeatureX");
+  let patt = new RegExp("XfeatureX");
   if (patt.test(this.type)) {
     return ("feature");
   }
@@ -70,27 +70,28 @@ ProtoObject.prototype.setName = function(newname) {  // USE SPARINGLY
 
 ProtoObject.prototype.copy = function(type) {
   if (type === "clean") {
-    var tilename = this.name;
+    let tilename = this.name;
     return localFactory.createTile(tilename);
   }
   
-  var savename = this.getName();
+  let savename = this.getName();
   DebugWrite("saveload", "<br /><span style='font-weight:bold'><br />Copying " + savename + ", serial " + this.getSerial() + ":</span><br />");
-  var base_version = eidos.getForm(this.getName());
-  var copydata = {};
-  var copies = [];
+  let base_version = eidos.getForm(this.getName());
+  let copydata = {};
+  let copies = [];
   copies[0] = copydata;
   copydata.traceback = [];    // traceback holds the places this was found. On a map or in the timeline are the main options.
-//  var copyserial = this.getSerial();
+
   copydata.name = this.getName(); 
   if (!DU.gameflags.getFlag("editor")) {
-    var ontime = DUTime.findEntityTime(this);
+    let ontime = DUTime.findEntityTime(this);
     if (ontime !== -1) {
       copydata.timestamp = ontime;
       copydata.traceback.push("timeline");
     }
   }
-  $.each(this, function(idx, val) {
+  for (let idx in this) {
+    let val = this[idx];
     DebugWrite("save " + idx + ":");
     if ((typeof val === "function") && (typeof base_version[idx] === "function")) { 
       DebugWrite("saveload", idx + " is a <span style='color:darkblue'>function, moving on</span>...  ");
@@ -107,16 +108,16 @@ ProtoObject.prototype.copy = function(type) {
       } else {
         DebugWrite("saveload", idx + " <span style='color:firebrick'>the same, moving on</span>...  ");
       }
-    } else if ($.isArray(val)) {
-      if ($.isArray(base_version[idx]) && arrayCompare(val, base_version[idx])) {
+    } else if (Array.isArray(val)) {
+      if (Array.isArray(base_version[idx]) && arrayCompare(val, base_version[idx])) {
         DebugWrite("saveload", idx + " an array and <span style='color:firebrick'>the same, moving on</span>...  ");
       } else {
         copydata[idx] = val;
         if (debug && debugflags.saveload) { 
           DebugWrite("saveload", idx + " an array and <span style='color:lime'>different, copying</span>... <br /> [");
           DebugWrite("saveload", "] vs [");
-          if ($.isArray(base_version[idx])) {
-            for (var i = 0; i < base_version[idx].length; i++) { 
+          if (Array.isArray(base_version[idx])) {
+            for (let i=0; i<base_version[idx].length; i++) { 
               DebugWrite("saveload", base_version[idx][i] + ", ");
             }
           } else {
@@ -143,11 +144,11 @@ ProtoObject.prototype.copy = function(type) {
       DebugWrite("saveload", idx + " <span style='color:maroon'>deliberately not saved</span>... ");
     } else if (idx === "spawned") { 
       // for things with collections
-      var spawnlist = val.getAll();
-      var spawnserials = [];
-      $.each(spawnlist, function(spaidx,spaval) {
-        spawnserials.push(spaval.getSerial());
-      });
+      let spawnlist = val.getAll();
+      let spawnserials = [];
+      for (let i=0;i<spawnlist.length;i++) {
+        spawnserials.push(spawnlist[i].getSerial());
+      };
       copydata[idx] = spawnserials;
       DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " <span style='color:lime'>saved as serials, serial# " + copydata[idx] + "</span>...</span>");
     } else if ((idx === "equippedTo") || (idx === "attachedTo") || (idx === "spawnedBy") || (idx === "linkedItem")) {
@@ -159,77 +160,71 @@ ProtoObject.prototype.copy = function(type) {
       }
     } else if (idx === "equipment") {
       copydata[idx] = {};
-      $.each(val, function(eqidx, eqval) {
+      for (let eqidx in val) {
+        let eqval = val[eqidx];
         if (eqval) {
           DebugWrite("saveload", idx + ": " + eqidx + " being <span style='color:lightseagreen'>copied in a subthread</span>...<br /><nbsp /><nbsp />");
-          var equipcopy = eqval.copy();
+          let equipcopy = eqval.copy();
           copydata[idx][eqidx] = equipcopy[0].serial;
           copies.push(equipcopy[0]);   // using index rather than each here because equipment can't chain farther
           DebugWrite("saveload", "Copy made, " + eqidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
         }
-      });
+      };
     } else if (idx === "inventory") {
-      var inv = val.getAll();
+      let inv = val.getAll();
       copydata[idx] = [];
-      $.each(inv, function(invidx, invval) {
+      for (let invidx=0;invidx<inv.length;invidx++) {
+        let invval = inv[invidx];
         DebugWrite("saveload", idx + ": " + invidx + " being <span style='color:lightseagreen'>copied in a subthread</span>... <br /><nbsp /><nbsp />");
-        var invcopy = invval.copy();
+        let invcopy = invval.copy();
         copydata[idx][invidx] = invcopy[0].serial;
         copies.push(invcopy[0]);   // using index rather than each here as well for the same reason
         DebugWrite("saveload", "Copy made, " + invidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
-      });
+      };
     } else if (idx === "spellEffects") {
-      var spells = val.getAll();
+      let spells = val.getAll();
       if (spells[0]) {
         copydata[idx] = [];
-        $.each(spells, function(spellidx, spellval) {
+        for (let spellidx=0;spellidx<spells.length;spellidx++) {
+          let spellval = spells[spellidx];
           DebugWrite("saveload", idx + ": " + spellidx + " being <span style='color:lightseagreen'>copied in a subthread</span>... <br /><nbsp /><nbsp />");
-          var spellcopy = spellval.copy();
+          let spellcopy = spellval.copy();
           copydata[idx].push(spellcopy[0].serial);
           copies.push(spellcopy[0]);  // probably should make this each as future proofing
           DebugWrite("saveload", "Copy made, " + spellidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
-        });
+        };
       }
     } else if (idx === "spellsknown") {
       if (objectCompare(val, base_version[idx])) {
-//        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
         DebugWrite("saveload", idx + " an object and the same, moving on...  ");
       } else {
         copydata[idx] = val;
-//        dbs.writeln("<span style='color:purple'>" + idx + " different, saved.</span>");
         DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " different, saved.</span>");
       }
     } else if (idx === "runes") {
       if (objectCompare(val, base_version[idx])) {
-//        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
         DebugWrite("saveload", idx + " an object and the same, moving on...  ");
       } else {
         copydata[idx] = val;
-//        dbs.writeln("<span style='color:purple'>" + idx + " different, saved.</span>");
         DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " different, saved.</span>");
       }
     } else if (idx === "runeCooldown") {
       if (objectCompare(val, base_version[idx])) {
-//        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
         DebugWrite("saveload", idx + " an object and the same, moving on...  ");
       } else {
         copydata[idx] = val;
-//        dbs.writeln("<span style='color:purple'>" + idx + " different, saved.</span>");
         DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " different, saved.</span>");
       }      
     } else {
-//      if (debug && debugflags.saveload) { dbs.writeln("<br /><span style='color:red'>" + idx + " is type " + typeof val + "</span>,  "); }
       DebugWrite("saveload", "<br /><span style='color:red;font-weight:bold'>" + idx + " is type " + typeof val + "</span>,  ");
       alert(savename + " SAVE NEEDS " + idx + "!");
     }
     // ADD HERE WHEN THERE ARE MORE
     
-  });
+  };
   
-//  if (debug && debugflags.saveload) { dbs.writeln("<br /><span style='font-weight:bold'>Copying " + copies.length + " objects.</span><br />  "); }
   DebugWrite("saveload", "<br /><span style='font-weight:bold'>Copying " + copies.length + " objects.</span><br />  ");
   return copies;
-  
 }
 
 function GameObject() {
@@ -285,20 +280,19 @@ GameObject.prototype.getDesc = function() {
 }
 
 GameObject.prototype.getFullDesc = function() {
-  var full = "";
+  let full = "";
   if (this.getPrefix()) {
     full = this.getPrefix() + " ";
   }
   
   full = full + this.getDesc();
   if (this.conversation) {
-    var knowsflag = "knows_" + this.conversation;
+    let knowsflag = "knows_" + this.conversation;
     if (DU.gameflags.getFlag(knowsflag)) {
       full = this.npcname;
     }
   } 
   return full;
-  
 }
 
 GameObject.prototype.setPrefix = function(newpref) {
@@ -318,7 +312,7 @@ GameObject.prototype.moveTo = function(x,y) {
 }
 
 GameObject.prototype.bumpinto = function(who) {
-	var retval = {};
+	let retval = {};
 	retval["fin"] = 1;
 	retval["canmove"] = 1;
 	retval["msg"] = "";
@@ -337,16 +331,14 @@ GameObject.prototype.setGraphicArray = function(newgraphics) {
 }
 
 GameObject.prototype.getGraphic = function() {
-	var returnGraphic = this.graphic;
-
+	let returnGraphic = this.graphic;
   if (returnGraphic) { return(returnGraphic); }
 }
 
 GameObject.prototype.getGraphicArray = function() {
-	var returnGraphic = this.graphic;
-//	if (this.overrideGraphic) { returnGraphic = this.overrideGraphic; }    // this is redundant, and also was killing beds
-  var returnOverlay = this.overlay;
-  var returnVars = [];
+	let returnGraphic = this.graphic;
+  let returnOverlay = this.overlay;
+  let returnVars = [];
   returnVars[0] = returnGraphic;
   if (returnOverlay) {
     returnVars[1] = returnOverlay;
@@ -370,7 +362,7 @@ GameObject.prototype.setOverlay = function(newgraphic) {
 }
 
 GameObject.prototype.getOverlay = function() {
-	var returnOverlay = this.overlay;
+	let returnOverlay = this.overlay;
 
   if (returnOverlay) { return(returnOverlay); }
 }
@@ -386,7 +378,7 @@ GameObject.prototype.getBlocksLOS = function(distance) {
 }
 
 GameObject.prototype.getBlocksLOSArray = function() {
-	var LOSref = [];
+	let LOSref = [];
 	LOSref[0] = this.blocklos;
 	if (this.losatdistance){
 		LOSref[1] = this.losatdistance['distance'];
@@ -427,7 +419,7 @@ GameObject.prototype.getBlocksLOE = function(distance) {
 
 GameObject.prototype.getBlocksLOEArray = function() {
   if (this.blockloe) { 
-    var tmp = [];
+    let tmp = [];
     tmp[0] = this.blockloe;
     if (this.loeatdistance) {
       tmp[1] = this.loeatdistance['distance'];
@@ -473,22 +465,22 @@ function Pushable() {
   this.pushable = 1;
   
   this.pushMe = function(who) {
-    var retval = {};
+    let retval = {};
     retval["fin"] = 0;
     retval["input"] = "&gt;";
     if (IsAdjacent(this,who,"nodiag")) {
       retval["fin"] = 1;
-      var diffx = this.getx() - who.getx();
-      var diffy = this.gety() - who.gety();
-      var objmap = who.getHomeMap();
-      var pushto = objmap.getTile(this.getx()+diffx,this.gety()+diffy);
+      let diffx = this.getx() - who.getx();
+      let diffy = this.gety() - who.gety();
+      let objmap = who.getHomeMap();
+      let pushto = objmap.getTile(this.getx()+diffx,this.gety()+diffy);
       if (pushto === "OoB") { return this.pullMe(); }
-      var canmove = pushto.canMoveHere(MOVE_WALK);
+      let canmove = pushto.canMoveHere(MOVE_WALK);
       if (canmove["canmove"]) {
         objmap.moveThing(this.getx()+diffx,this.gety()+diffy,this);
         retval["txt"] = "Push: " + this.getDesc() + ".";
         if ("facing" in this) {
-          var graphic = this.getOverlay();
+          let graphic = this.getOverlay();
           graphic = graphic.replace(/\d\.gif/,"");
           if (diffx > 0) { graphic = graphic + "1.gif"; }
           else if (diffx < 0) { graphic = graphic + "3.gif"; }
@@ -515,18 +507,16 @@ function Pushable() {
     return retval;
   }
   this.pullMe = function(who) {
-    var retval = {};
-    retval["fin"] = 1;
-    retval["input"] = "&gt;";
-    var objmap = this.getHomeMap();
-    var diffx = this.getx()-who.getx();
-    var diffy = this.gety()-who.gety();
+    let retval = {fin:1,input:"&gt;"};
+    let objmap = this.getHomeMap();
+    let diffx = this.getx()-who.getx();
+    let diffy = this.gety()-who.gety();
     objmap.moveThing(who.getx(),who.gety(),this);
-    var moveval = who.moveMe(diffx,diffy);
+    let moveval = who.moveMe(diffx,diffy);
     retval["txt"] = "Pull: " + this.getDesc() + ".";
     retval["canmove"] = moveval["canmove"];
     if ("facing" in this) {
-      var graphic = this.getOverlay();
+      let graphic = this.getOverlay();
       graphic = graphic.replace(/\d\.gif/,"");
       if (diffx > 0) { graphic = graphic + "1.gif"; }
       else if (diffx < 0) { graphic = graphic + "3.gif"; }
@@ -568,7 +558,7 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 		this.setOverlay(this.lockedgraphics[lock]);
 		this.setDesc(this.lockeddescs[lock]);
 		this.setPrefix(this.lockedprefixes[lock]);
-		var homemap = this.getHomeMap();
+		let homemap = this.getHomeMap();
 		if (homemap) {
 		  homemap.setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK_DOOR);
     }
@@ -578,7 +568,7 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	}
 	this.unlockMe = function() { 
 	  this.lockMe(0);
-	  var homemap = this.getHomeMap();
+	  let homemap = this.getHomeMap();
 	  if (homemap) {
 	    this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK_DOOR);
     }
@@ -589,23 +579,21 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	
 	this.setTrap = function(trap, challenge) { 
 	  this.trapped = trap; 
-	  var diff = Math.floor(Math.random()*5)+1 - 3;
+	  let diff = Math.floor(Math.random()*5)+1 - 3;
 	  this.trapchallenge = challenge + diff; 
 	}
 	this.tryTrap = function(who) { 
 	  // if your Dex === the challenge rating for the trap, you have a 50/50 chance of opening it. Once your dex is twice the
 	  // challenge you will always succeed. NOTE: Changed that to challenge+10.
-	  var resp = 0;
-//	  var chance = who.getDex() / (this.trapchallenge * 2);
-    var chance = (who.getDex() - this.trapchallenge + 10) /20;
+	  let resp = 0;
+    let chance = (who.getDex() - this.trapchallenge + 10) /20;
     if (chance < .05) { chance = .05; }
-	  var roll = Math.random();
+	  let roll = Math.random();
 	  if (roll < chance) { this.disarmTrap(); resp = 1; maintext.addText("You disarm a trap!"); }
 	  else { resp = PerformTrap(who, this.trapped, this.trapchallenge, this); }
 	  return resp;
 	} 
 	this.disarmTrap = function() { this.trapped = ""; }
-	
 }
 
 // Abstract class Enterable
@@ -623,7 +611,7 @@ function Enterable(entermap, enterx, entery) {
   	this.entery = y;
   }
   this.getEnterMap = function() {
-  	var mapdata = { entermap : this.entermap , enterx : this.enterx, entery : this.entery };
+  	let mapdata = { entermap : this.entermap , enterx : this.enterx, entery : this.entery };
   	return mapdata;
   }
   this.getKlimb = function() {
@@ -638,7 +626,7 @@ function Enterable(entermap, enterx, entery) {
 function LightEmitting(lightlevel) {
 	this.light = lightlevel;
 	this.ignite = function() {
-		this.setLight(lightlevel);
+	this.setLight(lightlevel);
 	}
 	this.extinguish = function() {
     this.setLight(0);
@@ -650,11 +638,11 @@ function LightEmitting(lightlevel) {
 	  if (light !== 0) {
 	    this.getHomeMap().setMapLight(this,light,this.getx(),this.gety());
 	  }
-    
+   
     if (this.getHomeMap() === PC.getHomeMap()) {
       DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     }
-		this.light = light;
+	  this.light = light;
 	}
 	this.getLight = function() {
 	  if (parseFloat(this.light) === "NaN") { alert(this.getName() + " has lightlevel that is NaN."); }
@@ -676,14 +664,14 @@ function Breakable(brokengraphicarray, startsbroken) {
     if (!this.fixeddesc) {
       this.fixeddesc = this.getDesc();
     }
-    var olddesc = this.getDesc();
+    let olddesc = this.getDesc();
     this.setDesc(this.brokendesc);
     //play sound effect
     DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
     if (this.karmamod && (who === PC)) { 
       DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")+this.karmamod);
     }
-    var retval = {};
+    let retval = {};
     retval["fin"] = 1;
     retval["txt"] =  "You break the " + olddesc + "!";
     retval["input"] = "&gt;";
@@ -691,13 +679,13 @@ function Breakable(brokengraphicarray, startsbroken) {
   }
   this.repair = function() {
     this.broken = 0;
-    var tmpcopy = localFactory.createTile(this.getName());
+    let tmpcopy = localFactory.createTile(this.getName());
     this.setGraphicArray(tmpcopy.getGraphicArray());
     if (this.getName() === "Mirror") {
-      var who;
+      let who;
       if ((PC.getx() === this.getx()) && (PC.gety() === (this.gety()+1))) { who = PC; }
       else {
-        var south = this.getHomeMap().getTile(this.getx(),this.gety()+1);
+        let south = this.getHomeMap().getTile(this.getx(),this.gety()+1);
         who = south.getTopNPC();
       }
       if (who) {
@@ -707,7 +695,6 @@ function Breakable(brokengraphicarray, startsbroken) {
     this.setDesc(this.fixeddesc);
     DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());  // will try to draw 0,0 if in inventory, which is ok
   }
-  
 }
 
 // Abstract class 
@@ -720,7 +707,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 	// NOTE: These should be arrays in the standard graphics[0-3] style.
 	
 	this.use = function(who, silentdoors) {
-		var retval = {};
+		let retval = {};
     retval["fin"] = 0;
     
     let mymap = this.getHomeMap();
@@ -794,7 +781,6 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 		}
 		return retval;
 	}
-	
 }
 
 // Abstract class - open a container
@@ -813,7 +799,7 @@ function OpenContainer() {
   }
   
   this.use = function(who, fire) {
-    var retval = {}; 
+    let retval = {}; 
     
     if (this.getKarmaPenalty() && (who === PC)) {
       DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")-this.getKarmaPenalty);
@@ -833,7 +819,7 @@ function OpenContainer() {
     }
 
     if (this.trapped && !fire) {
-      var trapresult = this.tryTrap(who);
+      let trapresult = this.tryTrap(who);
       if (this.getHomeMap() !== who.getHomeMap()) { // trap killed them
         retval["override"] = 1;
         return retval;
@@ -844,7 +830,7 @@ function OpenContainer() {
     if (searchables.length) {
       if (!this.getLootedID() || (!DU.gameflags.getFlag("lid_" + this.getLootedID()))) {
         // no looted ID, or looted ID not met
-        for (var i=0; i < searchables.length; i++) {
+        for (let i=0; i < searchables.length; i++) {
           let goldtest = /(\d+)Gold/;
           if (goldtest.test(searchables[i])) {
             let amt = goldtest.exec(searchables[i]);
@@ -870,9 +856,9 @@ function OpenContainer() {
       
       retval["fin"] = 1;
       retval["txt"] = "It contains: ";
-      var firstitem = 1;
-      for (var i=0; i<this.container.length; i++) {
-        var newitem = localFactory.createTile(this.container[i]);
+      let firstitem = 1;
+      for (let i=0; i<this.container.length; i++) {
+        let newitem = localFactory.createTile(this.container[i]);
         if (this.container[i] === "Gold") {
           newitem.setQuantity(this.gold);
         }
@@ -916,13 +902,11 @@ function OpenContainer() {
       this.container[this.container.length] = addthis;
       this.setGold(amt);
     } else {
-      for (var i = 1; i <= amt; i++) {
+      for (let i=1; i<=amt; i++) {
         this.container[this.container.length] = addthis;
       }
-    }
-      
+    }      
   }
-  
 }
 
 // Abstract class Tiling
@@ -930,7 +914,7 @@ function Tiling(tileval) {
 	this.doTile = function(tilingx,tilingy,tilegraphic) {
 		tilingx = (tilingx % tileval); 
 		tilingy = (tilingy % tileval);
-		var foo = tilegraphic.split('.');
+		let foo = tilegraphic.split('.');
 	  return({graphic: foo[0] + "-" + tilingy + tilingx + "." + foo[1]});
 	}
 }
@@ -940,7 +924,7 @@ function TilingSpritesheet(tileval) {
   this.doTile = function(tilingx,tilingy,tilegraphic) {
 		tilingx = (tilingx % tileval)*32; 
     tilingy = (tilingy % tileval)*32;
-    var tileme = {};
+    let tileme = {};
     tileme.spritexoffset = parseInt(this.spritexoffset) - tilingx;
     tileme.spriteyoffset = parseInt(this.spriteyoffset) - tilingy;
     return tileme;
@@ -963,7 +947,7 @@ function MobileEnterable(destmap, destx, desty) {
   this.entery = desty;
 
   this.getEnterMap = function() {
-  	var mapdata = { entermap : this.destmap , enterx : this.destx, entery : this.desty };
+  	let mapdata = { entermap : this.destmap , enterx : this.destx, entery : this.desty };
   	return mapdata;
   }
 }
@@ -971,25 +955,24 @@ function MobileEnterable(destmap, destx, desty) {
 // General func 
 function SetByBelow() {
 	this.setByBelow = function(x,y,themap) {
-		var localacre = themap.getTile(x,y);
-		var graphic = localacre.terrain.getGraphicArray();
+		let localacre = themap.getTile(x,y);
+		let graphic = localacre.terrain.getGraphicArray();
 		return graphic;
-//		return (graphic[0]);
 	};
 }
 
 // General func
 function SetBySurround() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
-		var cardinal_dash = "";
-		var north = 0;
-		var south = 0;
-		var east = 0;
-		var west = 0;
-		var vis = 0;
-		var tilename = this.getName();
+		let cardinal_dash = "";
+		let north = 0;
+		let south = 0;
+		let east = 0;
+		let west = 0;
+		let vis = 0;
+		let tilename = this.getName();
 
-  	var addtoname_cardinal = "";
+  	let addtoname_cardinal = "";
 	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y+1) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "n"; north = 1; vis = 1;}
 	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack"))) { north = 1; }
   	if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y-1) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "s"; south = 1; vis = 1;}
@@ -999,8 +982,8 @@ function SetBySurround() {
   	if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "w"; west = 1; vis = 1;}
   	if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack"))) { west = 1; }
 		
-	  var diagonal_dash = "";
-	  var addtoname_diagonal = "";
+	  let diagonal_dash = "";
+	  let addtoname_diagonal = "";
 	 	if ((themap.getTile(x+1,y-1) !== "OoB") && (themap.getTile(x+1,y-1).terrain.getName() !== tilename) && (themap.getTile(x+1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y-1) < LOS_THRESHOLD) ))
 	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "a"; vis = 1; }
   	if ((themap.getTile(x+1,y+1) !== "OoB") && (themap.getTile(x+1,y+1).terrain.getName() !== tilename) && (themap.getTile(x+1,y+1).terrain.getName() !== "BlankBlack") && (north === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y+1) < LOS_THRESHOLD) )) 
@@ -1010,14 +993,14 @@ function SetBySurround() {
 	 	if ((themap.getTile(x-1,y-1) !== "OoB") && (themap.getTile(x-1,y-1).terrain.getName() !== tilename) && (themap.getTile(x-1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y-1) < LOS_THRESHOLD) )) 
 	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "d"; vis = 1; }
 	
-	  var foo = graphics[0].split('.');
+    let foo = graphics[0].split('.');
 	  graphics[0] = foo[0] + cardinal_dash + addtoname_cardinal + diagonal_dash + addtoname_diagonal + '.' + foo[1];
 	  if (vis === 0) { 
-	  	var black = eidos.getForm('BlankBlack');
-	  	var blkgraphics = black.getGraphicArray();
+	  	let black = eidos.getForm('BlankBlack');
+	  	let blkgraphics = black.getGraphicArray();
 	  	graphics[0] = blkgraphics[0];
 	  }
-	  var tmparray = new Array;
+	  let tmparray = [];
 	  tmparray[0] = .5;
 	  if (graphics[0].indexOf("-nsew") !== -1) { this.setBlocksLOSArray(tmparray); }
 	  return (graphics);
@@ -1028,15 +1011,15 @@ function SetBySurround() {
 function SetBySurroundCoast() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
-			var displaytile = eidos.getForm('BlankBlack');
-			var displaygraphic = displaytile.getGraphicArray();
+			let displaytile = eidos.getForm('BlankBlack');
+			let displaygraphic = displaytile.getGraphicArray();
 			return displaygraphic;
 		}
-    var ocean;
-    var water;
-    var shallow;
-    var localacre = themap.getTile(x,y-1);
-    var tile; 
+    let ocean;
+    let water;
+    let shallow;
+    let localacre = themap.getTile(x,y-1);
+    let tile; 
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
     	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
@@ -1064,11 +1047,11 @@ function SetBySurroundCoast() {
     	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
     	if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
     }
-    var chosentile;
+    let chosentile;
     if (shallow) { chosentile = shallow; }
     else if (water) { chosentile = water; }
     else if (ocean) { chosentile = ocean; }
-    // kludge fix for clear lagoon
+    // kludge fix for clear lake
     else if (themap.getName() === "clearlake") { 
       shallow = eidos.getForm("Shallows");
       chosentile = shallow;
@@ -1080,7 +1063,7 @@ function SetBySurroundCoast() {
       return graphics; 
     }
     
-    var chosengraphics = chosentile.getGraphicArray();
+    let chosengraphics = chosentile.getGraphicArray();
     graphics[0] = chosengraphics[0];
     graphics[2] = chosengraphics[2];
     graphics[3] = chosengraphics[3];
@@ -1092,30 +1075,30 @@ function SetBySurroundCoast() {
 function SetBySurroundRoad() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
-			var displaytile = eidos.getForm('BlankBlack');
-			var displaygraphic = displaytile.getGraphicArray();
+			let displaytile = eidos.getForm('BlankBlack');
+			let displaygraphic = displaytile.getGraphicArray();
 			return displaygraphic;
 		}
 
-    var suffix = "";
-	  var localacre = themap.getTile(x+1,y);
+    let suffix = "";
+	  let localacre = themap.getTile(x+1,y);
 	  if (localacre !== "OoB") {
-	  	var tile = localacre.terrain;
+	  	let tile = localacre.terrain;
 	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "e"; }
 	  }	
 	  localacre = themap.getTile(x-1,y);
 	  if (localacre !== "OoB") {
-	  	var tile = localacre.terrain;
+	  	let tile = localacre.terrain;
 	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "w"; }
 	  }	
 	  localacre = themap.getTile(x,y-1);
 	  if (localacre !== "OoB") {
-	  	var tile = localacre.terrain;
+	  	let tile = localacre.terrain;
 	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "n"; }
 	  }	
 	  localacre = themap.getTile(x,y+1);
 	  if (localacre !== "OoB") {
-	  	var tile = localacre.terrain;
+	  	let tile = localacre.terrain;
 	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "s"; }
 	  }	
 	  if ((suffix === "ewns") || (suffix === "")) { suffix = "x"; }
@@ -1130,38 +1113,38 @@ function SetBySurroundRoad() {
 function SetBySurroundRiver() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
-			var displaytile = eidos.getForm('BlankBlack');
-			var displaygraphic = displaytile.getGraphicArray();
+			let displaytile = eidos.getForm('BlankBlack');
+			let displaygraphic = displaytile.getGraphicArray();
 			return displaygraphic;
 		}
 
-		var north;
-		var south;
-		var east;
-		var west;
-		var northacre = themap.getTile(x,y-1);
-		var northtile = northacre.terrain;
+		let north;
+		let south;
+		let east;
+		let west;
+		let northacre = themap.getTile(x,y-1);
+		let northtile = northacre.terrain;
 		if (northacre !== "OoB") {
 			if (IsWet(northtile)) {
 				north = 1;
 			}
 		} else { north = 1; }
-		var southacre = themap.getTile(x,y+1);
-		var southtile = southacre.terrain;
+		let southacre = themap.getTile(x,y+1);
+		let southtile = southacre.terrain;
 		if (southacre !== "OoB") {
 			if (IsWet(southtile)) {
 				south = 1;
 			}
 		} else { south = 1; }
-		var eastacre = themap.getTile(x+1,y);
-		var easttile = eastacre.terrain;
+		let eastacre = themap.getTile(x+1,y);
+		let easttile = eastacre.terrain;
 		if (eastacre !== "OoB") {
 			if (IsWet(easttile)) {
 				east = 1;
 			}
 		} else { east = 1; }
-		var westacre = themap.getTile(x-1,y);
-		var westtile = westacre.terrain;
+		let westacre = themap.getTile(x-1,y);
+		let westtile = westacre.terrain;
 		if (westacre !== "OoB") {
 			if (IsWet(westtile)) {
 				west = 1;
@@ -1260,10 +1243,6 @@ InanimateObject.prototype.setPeerview = function(newview) {
 	this.peerview = newview;
 }
 
-//InanimateObject.prototype.walkon = function() {
-//  return("");
-//}
-
 InanimateObject.prototype.leave = function() {
   return("");
 }
@@ -1307,20 +1286,14 @@ function TerrainObject() {
 TerrainObject.prototype = new InanimateObject();
 
 TerrainObject.prototype.serialize = function() {
-  var name = this.name;
-  var myatlas = new Atlas();
-  var code = myatlas.keylookup(name);
+  let name = this.name;
+  let myatlas = new Atlas();
+  let code = myatlas.keylookup(name);
   if (code) { return(code); }
   return(0);
 }
 
 TerrainObject.prototype.getCombatMap = function() {
-//  var mapname = this.combatmap;
-//  if (this.combatmapoptions > 1) {
-//    var randomnumber=Math.floor(Math.random()*this.combatmapoptions)+1;
-//    mapname = mapname + randomnumber;
-//  }
-//  return mapname;
   return this.combatmap;
 }
 
@@ -1376,12 +1349,12 @@ function WaterTile() {
 WaterTile.prototype = new TerrainObject();
 
 WaterTile.prototype.walkon = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
 WaterTile.prototype.idle = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
@@ -1400,12 +1373,12 @@ function ShallowsTile() {
 ShallowsTile.prototype = new TerrainObject();
 
 ShallowsTile.prototype.walkon = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
 ShallowsTile.prototype.idle = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
@@ -1438,12 +1411,12 @@ function ShadowWaterTile() {
 ShadowWaterTile.prototype = new TerrainObject();
 
 ShadowWaterTile.prototype.walkon = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
 ShadowWaterTile.prototype.idle = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
@@ -1462,12 +1435,12 @@ function ShadowShallowsTile() {
 ShadowShallowsTile.prototype = new TerrainObject();
 
 ShadowShallowsTile.prototype.walkon = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
 ShadowShallowsTile.prototype.idle = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
@@ -1484,20 +1457,20 @@ function InWater(who) {
     // entity is flying and can't drown
     return "";
   }
-  var localmap = who.getHomeMap();
-  var tile = localmap.getTile(who.getx(),who.gety());
-  var feats = tile.getFeatures();
+  let localmap = who.getHomeMap();
+  let tile = localmap.getTile(who.getx(),who.gety());
+  let feats = tile.getFeatures();
   if (feats) {
-    for (var i=0;i<feats.length;i++) {
+    for (let i=0;i<feats.length;i++) {
       if (MOVE_WALK & feats[i].getPassable()) {
         return "";
       }
     }
   }
 
-  var dur = DUTime.getGameClock() - who.getLastTurnTime();
-  var response = "You have trouble keeping your head above the rough waters!";
-  var dmg = dur * 3;
+  let dur = DUTime.getGameClock() - who.getLastTurnTime();
+  let response = "You have trouble keeping your head above the rough waters!";
+  let dmg = dur * 3;
   who.dealDamage(dmg);
   
   return response;
@@ -1561,7 +1534,6 @@ FlameMountainTile.prototype = new TerrainObject();
 
 function StoneWallTile() {
   this.name = "StoneWall";
-//  this.graphic = "011.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "0";
@@ -1575,7 +1547,6 @@ StoneWallTile.prototype = new TerrainObject();
 
 function StoneTile() {
   this.name = "Stone";
-//  this.graphic = "013.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "0";
@@ -1589,7 +1560,6 @@ StoneTile.prototype = new TerrainObject();
 
 function DirtStoneTile() {
   this.name = "DirtStone";
-//  this.graphic = "dirt-rock.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "0";
@@ -1603,7 +1573,6 @@ DirtStoneTile.prototype = new TerrainObject();
 
 function MastTile() {
   this.name = "Mast";
-//  this.graphic = "014.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "0";
@@ -1618,7 +1587,6 @@ MastTile.prototype = new TerrainObject();
 
 function RiggingTile() {
   this.name = "Rigging";
-//  this.graphic = "015.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "0";
@@ -1631,7 +1599,6 @@ RiggingTile.prototype = new TerrainObject();
 
 function PillarTile() {
   this.name = "Pillar";
-//  this.graphic = "016.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -1672,7 +1639,6 @@ FancyFloorTile.prototype = new TerrainObject();
 
 function HorizontalCounterTile() {
   this.name = "HorizontalCounter";
-//  this.graphic = "051.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "0";
@@ -1687,7 +1653,6 @@ HorizontalCounterTile.prototype = new TerrainObject();
 
 function RightCounterTile() {
   this.name = "RightCounter";
-//  this.graphic = "052.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "0";
@@ -1702,7 +1667,6 @@ RightCounterTile.prototype = new TerrainObject();
 
 function LeftCounterTile() {
   this.name = "LeftCounter";
-//  this.graphic = "053.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "0";
@@ -1717,7 +1681,6 @@ LeftCounterTile.prototype = new TerrainObject();
 
 function CounterBoxTile() {
   this.name = "CounterBox";
-//  this.graphic = "054.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-128";
@@ -1732,7 +1695,6 @@ CounterBoxTile.prototype = new TerrainObject();
 
 function BlankBlackTile() {
   this.name = "BlankBlack";
-//  this.graphic = "055.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-128";
@@ -1745,7 +1707,6 @@ BlankBlackTile.prototype = new TerrainObject();
 
 function ChasmTile() {
   this.name = "Chasm";
-//  this.graphic = "055.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-128";
@@ -1759,7 +1720,6 @@ ChasmTile.prototype = new TerrainObject();
 
 function DarknessTile() {
   this.name = "Darkness";
-//  this.graphic = "055.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-128";
@@ -1772,7 +1732,6 @@ DarknessTile.prototype = new TerrainObject();
 
 function WallTile() {
   this.name = "Wall";
-//  this.graphic = "056.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-128";
@@ -1786,7 +1745,6 @@ WallTile.prototype = new TerrainObject();
 
 function RuinsWallTallLeftMidRightTile() {
   this.name = "RuinsWallTallLeftMidRight";
-//  this.graphic = "056.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-256";
@@ -1800,7 +1758,6 @@ RuinsWallTallLeftMidRightTile.prototype = new TerrainObject();
 
 function RuinsWallMidLeftMidRightTile() {
   this.name = "RuinsWallMidLeftMidRight";
-//  this.graphic = "056.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-256";
@@ -1814,7 +1771,6 @@ RuinsWallMidLeftMidRightTile.prototype = new TerrainObject();
 
 function RuinsWallMidLeftTallRightTile() {
   this.name = "RuinsWallMidLeftTallRight";
-//  this.graphic = "056.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-256";
@@ -1828,7 +1784,6 @@ RuinsWallMidLeftTallRightTile.prototype = new TerrainObject();
 
 function RuinsWallTile() {
   this.name = "RuinsWall";
-//  this.graphic = "056.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-256";
@@ -1842,7 +1797,6 @@ RuinsWallTile.prototype = new TerrainObject();
 
 function IllusionaryRuinsWallTile() {
   this.name = "IllusionaryRuinsWall";
-//  this.graphic = "056.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-256";
@@ -1856,7 +1810,6 @@ IllusionaryRuinsWallTile.prototype = new TerrainObject();
 
 function RuinsWallMidLeftBottomRightTile() {
   this.name = "RuinsWallMidLeftBottomRight";
-//  this.graphic = "056.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-256";
@@ -1870,7 +1823,6 @@ RuinsWallMidLeftBottomRightTile.prototype = new TerrainObject();
 
 function RuinsWallBottomLeftMidRightTile() {
   this.name = "RuinsWallBottomLeftMidRight";
-//  this.graphic = "056.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-256";
@@ -1884,7 +1836,6 @@ RuinsWallBottomLeftMidRightTile.prototype = new TerrainObject();
 
 function ArrowSlitTile() {
 	this.name = "ArrowSlit";
-//	this.graphic = "arrowslit.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-128";
@@ -1901,7 +1852,6 @@ ArrowSlitTile.prototype = new TerrainObject();
 
 function WindowTile() {
 	this.name = "Window";
-//	this.graphic = "window.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-128";
@@ -1916,7 +1866,6 @@ WindowTile.prototype = new TerrainObject();
 
 function WallNETile() {
   this.name = "WallNE";
-//  this.graphic = "057.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-128";
@@ -1930,7 +1879,6 @@ WallNETile.prototype = new TerrainObject();
 
 function WallNWTile() {
   this.name = "WallNW";
-//  this.graphic = "058.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-128";
@@ -1944,7 +1892,6 @@ WallNWTile.prototype = new TerrainObject();
 
 function WallSWTile() {
   this.name = "WallSW";
-//  this.graphic = "059.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-128";
@@ -1958,7 +1905,6 @@ WallSWTile.prototype = new TerrainObject();
 
 function WallSETile() {
   this.name = "WallSE";
-//  this.graphic = "060.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-128";
@@ -1972,7 +1918,6 @@ WallSETile.prototype = new TerrainObject();
 
 function VerticalCounterTile() {
   this.name = "VerticalCounter";
-//  this.graphic = "061.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-160";
@@ -1987,7 +1932,6 @@ VerticalCounterTile.prototype = new TerrainObject();
 
 function BottomCounterTile() {
   this.name = "BottomCounter";
-//  this.graphic = "062.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-192";
@@ -2002,7 +1946,6 @@ BottomCounterTile.prototype = new TerrainObject();
 
 function TopCounterTile() {
   this.name = "TopCounter";
-//  this.graphic = "063.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-128";
@@ -2017,7 +1960,6 @@ TopCounterTile.prototype = new TerrainObject();
 
 function PlanksNSTile() {
   this.name = "PlanksNS";
-//  this.graphic = "069.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-160";
@@ -2031,7 +1973,6 @@ PlanksNSTile.prototype = new TerrainObject();
 
 function ShadowPlanksNSTile() {
   this.name = "ShadowPlanksNS";
-//  this.graphic = "069.gif";
   this.graphic = "terrain_ether.gif";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-160";
@@ -2045,7 +1986,6 @@ ShadowPlanksNSTile.prototype = new TerrainObject();
 
 function SouthCoastTile() {
   this.name = "SouthCoast";
-//  this.graphic = "073.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-160";
@@ -2074,7 +2014,6 @@ SouthCoastSandTile.prototype = new TerrainObject();
 
 function NorthCoastTile() {
   this.name = "NorthCoast";
-//  this.graphic = "074.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-160";
@@ -2089,7 +2028,6 @@ NorthCoastTile.prototype = new TerrainObject();
 
 function NorthCoastSandTile() {
   this.name = "NorthCoastSand";
-//  this.graphic = "074.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-288";
@@ -2104,7 +2042,6 @@ NorthCoastSandTile.prototype = new TerrainObject();
 
 function EastCoastTile() {
   this.name = "EastCoast";
-//  this.graphic = "075.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-160";
@@ -2133,7 +2070,6 @@ EastCoastSandTile.prototype = new TerrainObject();
 
 function WestCoastTile() {
   this.name = "WestCoast";
-//  this.graphic = "076.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-160";
@@ -2298,7 +2234,6 @@ SoutheastCoastSandTile.prototype = new TerrainObject();
 
 function ShadowSouthCoastTile() {
   this.name = "ShadowSouthCoast";
-//  this.graphic = "073.gif";
   this.graphic = "terrain_ether.gif";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-160";
@@ -2313,7 +2248,6 @@ ShadowSouthCoastTile.prototype = new TerrainObject();
 
 function ShadowNorthCoastTile() {
   this.name = "ShadowNorthCoast";
-//  this.graphic = "074.gif";
   this.graphic = "terrain_ether.gif";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-160";
@@ -2328,7 +2262,6 @@ ShadowNorthCoastTile.prototype = new TerrainObject();
 
 function ShadowEastCoastTile() {
   this.name = "ShadowEastCoast";
-//  this.graphic = "075.gif";
   this.graphic = "terrain_ether.gif";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-160";
@@ -2343,7 +2276,6 @@ ShadowEastCoastTile.prototype = new TerrainObject();
 
 function ShadowWestCoastTile() {
   this.name = "ShadowWestCoast";
-//  this.graphic = "076.gif";
   this.graphic = "terrain_ether.gif";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-160";
@@ -2445,7 +2377,6 @@ RiverTile.prototype = new TerrainObject();
 
 function CobblestoneTile() {
   this.name = "Cobblestone";
-//  this.graphic = "103.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-160";
@@ -2473,7 +2404,6 @@ CobblestoneRoadTile.prototype = new TerrainObject();
 
 function BlueTilesTile() {
   this.name = "BlueTiles";
-//  this.graphic = "056.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-256";
@@ -2488,7 +2418,6 @@ BlueTilesTile.prototype = new TerrainObject();
 
 function PlanksEWTile() {
   this.name = "PlanksEW";
-//  this.graphic = "104.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-160";
@@ -2502,7 +2431,6 @@ PlanksEWTile.prototype = new TerrainObject();
 
 function GrassTile() {
   this.name = "Grass";
-//  this.graphic = "121.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-160";
@@ -2517,7 +2445,6 @@ GrassTile.prototype = new TerrainObject();
 
 function ShadowGrassTile() {
   this.name = "ShadowGrass";
-//  this.graphic = "121.gif";
   this.graphic = "terrain_ether.gif";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-160";
@@ -2532,7 +2459,6 @@ ShadowGrassTile.prototype = new TerrainObject();
 
 function DirtTile() {
   this.name = "Dirt";
-//  this.graphic = "dirt-ground.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-160";
@@ -2547,7 +2473,6 @@ DirtTile.prototype = new TerrainObject();
 
 function ShadowDirtTile() {
   this.name = "ShadowDirt";
-//  this.graphic = "dirt-ground.gif";
   this.graphic = "terrain_ether.gif";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-160";
@@ -2625,7 +2550,6 @@ BrushTile.prototype = new TerrainObject();
 
 function ShadowBrushTile() {
   this.name = "ShadowBrush";
-//  this.graphic = "122.gif";
   this.graphic = "terrain_ether.gif";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-192";
@@ -2658,7 +2582,6 @@ UnderbrushTile.prototype = new TerrainObject();
 
 function BrushNCoastTile() {
   this.name = "BrushNCoast";
-//  this.graphic = "brushNcoast.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-192";
@@ -2675,7 +2598,6 @@ BrushNCoastTile.prototype = new TerrainObject();
 
 function BrushECoastTile() {
   this.name = "BrushECoast";
-//  this.graphic = "brushEcoast.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-192";
@@ -2692,7 +2614,6 @@ BrushECoastTile.prototype = new TerrainObject();
 
 function BrushSCoastTile() {
   this.name = "BrushSCoast";
-//  this.graphic = "brushScoast.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-192";
@@ -2709,7 +2630,6 @@ BrushSCoastTile.prototype = new TerrainObject();
 
 function BrushWCoastTile() {
   this.name = "BrushWCoast";
-//  this.graphic = "brushWcoast.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-192";
@@ -2726,13 +2646,11 @@ BrushWCoastTile.prototype = new TerrainObject();
 
 function ForestTile() {
   this.name = "Forest";
-//  this.graphic = "123.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-192";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
-//  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
@@ -2745,7 +2663,6 @@ ForestTile.prototype = new TerrainObject();
 
 function GroveTile() {
 	this.name = "Grove";
-//  this.graphic = "123.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-192";
@@ -2762,7 +2679,6 @@ GroveTile.prototype = new TerrainObject();
 
 function ShadowGroveTile() {
 	this.name = "ShadowGrove";
-//  this.graphic = "123.gif";
   this.graphic = "terrain_ether.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-192";
@@ -2779,13 +2695,11 @@ ShadowGroveTile.prototype = new TerrainObject();
 	
 function ForestNCoastTile() {
 	this.name = "ForestNCoast";
-//	this.graphic = "forestNcoast.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-192";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
-//  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
@@ -2798,13 +2712,11 @@ ForestNCoastTile.prototype = new TerrainObject();
 
 function ForestECoastTile() {
 	this.name = "ForestECoast";
-//	this.graphic = "forestEcoast.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-192";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
-//  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
@@ -2817,13 +2729,11 @@ ForestECoastTile.prototype = new TerrainObject();
 
 function ForestSCoastTile() {
 	this.name = "ForestSCoast";
-//	this.graphic = "forestScoast.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-192";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
-//  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
@@ -2836,13 +2746,11 @@ ForestSCoastTile.prototype = new TerrainObject();
 
 function ForestWCoastTile() {
 	this.name = "ForestWCoast";
-//	this.graphic = "forestWcoast.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-224";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
-//  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
@@ -2855,15 +2763,11 @@ ForestWCoastTile.prototype = new TerrainObject();
 
 function HillsTile() {
   this.name = "Hills";
-//  this.graphic = "124.gif";
-//  this.graphic = "hill.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-224";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-//  this.blocklos = .3;
-//  this.losatdistance = { distance : 5 , blocklos : .5 };
   this.desc = "hills";
   this.initdelay = 1.5;
   this.pathweight = 1.5;
@@ -2875,7 +2779,6 @@ HillsTile.prototype = new TerrainObject();
 
 function PurpleCobblestoneTile() {
   this.name = "PurpleCobblestone";
-//  this.graphic = "125.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-224";
@@ -2889,7 +2792,6 @@ PurpleCobblestoneTile.prototype = new TerrainObject();
 
 function ShadowPurpleCobblestoneTile() {
   this.name = "ShadowPurpleCobblestone";
-//  this.graphic = "125.gif";
   this.graphic = "terrain_ether.gif";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-224";
@@ -2903,7 +2805,6 @@ ShadowPurpleCobblestoneTile.prototype = new TerrainObject();
 
 function SwampTile() {
   this.name = "Swamp";
-//  this.graphic = "141.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-224";
@@ -2919,11 +2820,11 @@ function SwampTile() {
 SwampTile.prototype = new TerrainObject();
 
 SwampTile.prototype.walkon = function(person) {
-  var resp = InASwamp(person);
+  let resp = InASwamp(person);
   return resp;
 }
 SwampTile.prototype.idle = function(person) {
-  var resp = InASwamp(person);
+  let resp = InASwamp(person);
   return resp;
 }
 
@@ -2936,7 +2837,6 @@ SwampTile.prototype.isHostileTo = function(who) {
 
 function ShadowSwampTile() {
   this.name = "ShadowSwamp";
-//  this.graphic = "141.gif";
   this.graphic = "terrain_ether.gif";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-224";
@@ -2952,11 +2852,11 @@ function ShadowSwampTile() {
 ShadowSwampTile.prototype = new TerrainObject();
 
 ShadowSwampTile.prototype.walkon = function(person) {
-  var resp = InASwamp(person);
+  let resp = InASwamp(person);
   return resp;
 }
 ShadowSwampTile.prototype.idle = function(person) {
-  var resp = InASwamp(person);
+  let resp = InASwamp(person);
   return resp;
 }
 
@@ -2984,22 +2884,20 @@ function InASwamp(who) {
   }
 
   // percent chance of infection- 10% per step, prorated by speed
-  var chance = 10 * (DUTime.getGameClock() - who.getLastTurnTime());  
+  let chance = 10 * (DUTime.getGameClock() - who.getLastTurnTime());  
   if (Dice.roll("1d100") < chance) {  // diseased!
     if (who.getSpellEffectsByName("Disease")) { return 0; }
-    var disease = localFactory.createTile("Disease");
+    let disease = localFactory.createTile("Disease");
     who.addSpellEffect(disease);
     
     DrawCharFrame();
-    var response = "You have become diseased!";
-    return response;
+    return "You have become diseased!";
   }
   return "";
 }
 
 function ShinglesTile() {
   this.name = "Shingles";
-//  this.graphic = "shingles.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-224";
@@ -3013,7 +2911,6 @@ ShinglesTile.prototype = new TerrainObject();
 
 function ShinglesTopTile() {
   this.name = "ShinglesTop";
-//  this.graphic = "shingles-top.gif";
   this.graphic = "terrain_tiles.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-224";
@@ -3445,7 +3342,6 @@ SeeBelowTile.prototype = new TerrainObject();
 function WorldBelowTile() {
   this.name = "WorldBelow";
   this.graphic = "spacer.gif";
-//  this.graphic = "world-below.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "the";
@@ -3488,7 +3384,7 @@ FeatureObject.prototype.setSearchYield = function(searchable) {
   // searchable must be an array, even if an empty one
   if (!searchable) {
     delete this.searchYield;
-  } else if ($.isArray(searchable)) {
+  } else if (Array.isArray(searchable)) {
     this.searchYield = searchable;
   }
 }
@@ -3567,7 +3463,7 @@ function CastleGrassTile() {
 CastleGrassTile.prototype = new FeatureObject();
 
 CastleGrassTile.prototype.bumpinto = function(who) {
-	var retval = {};
+	let retval = {};
 	retval["canmove"] = 1;
 	retval["msg"] = "";
 	
@@ -3991,7 +3887,7 @@ function CastleTile() {
 CastleTile.prototype = new FeatureObject();
 
 CastleTile.prototype.bumpinto = function(who) {
-	var retval = {};
+	let retval = {};
 	retval["canmove"] = 1;
 	retval["msg"] = "";
 	
@@ -4203,12 +4099,10 @@ BloodTile.prototype = new FeatureObject();
 
 function EnergyFieldTile() {
 	this.name = "EnergyField";
-//	this.graphic = "flowing_animations.gif";
   this.graphic = "fields.gif";
 	this.passable = 0; // impassable - wonky outdoors, but necessary indoors
 	this.blocklos = 0;
 	this.blockloe = 1;
-//	this.light = 1;
   this.prefix = "an"; 
 	this.desc = "energy field";
   this.spritexoffset = "-32";
@@ -4285,15 +4179,15 @@ TorchEastOutTile.prototype.use = function(who) {
 }
 
 function UseTorch(who,torch) {
-  var retval = {};
-  var torchmap = torch.getHomeMap();
-  var torchx = torch.getx();
-  var torchy = torch.gety();
+  let retval = {};
+  let torchmap = torch.getHomeMap();
+  let torchx = torch.getx();
+  let torchy = torch.gety();
 
-  var torchname = torch.getName();
+  let torchname = torch.getName();
   torchmap.deleteThing(torch);
 
-  var newtorch;
+  let newtorch;
   if (torchname === "TorchEast") {
     newtorch = localFactory.createTile("TorchEastOut");
     retval["txt"] = "Extinguished!";
@@ -4344,18 +4238,18 @@ CampfireTile.prototype = new FeatureObject();
 
 CampfireTile.prototype.activate = function() {
   if (!gamestate.getMode("loadgame")) {
-    var NPCevent = new GameEvent(this);
+    let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   }
   return;
 }
 
 CampfireTile.prototype.walkon = function(person) {
-  var resp = OnFire(person, this);
+  let resp = OnFire(person, this);
   return resp;
 }
 CampfireTile.prototype.idle = function(person) {
-  var resp = OnFire(person, this);
+  let resp = OnFire(person, this);
   return resp;
 }
 
@@ -4365,26 +4259,26 @@ CampfireTile.prototype.isHostileTo = function(who) {
 }
 
 CampfireTile.prototype.myTurn = function() {
-  var mytile = this.getHomeMap().getTile(this.getx(),this.gety());
-  var feas = mytile.getFeatures();
-  $.each(feas, function(idx,val) {
-    if (val.flammable) {
-      if (Dice.roll("1d100") <= val.flammable) {
-        val.flamed();
+  let mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+  let feas = mytile.getFeatures();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].flammable) {
+      if (Dice.roll("1d100") <= feas[i].flammable) {
+        feas[i].flamed();
       }
     }
-  });
+  };
 
-  var NPCevent = new GameEvent(this);
+  let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   
   return 1;  
 }
 
 function OnFire(who, what) {
-  var dmg = Dice.roll(what.firedamage);
+  let dmg = Dice.roll(what.firedamage);
   dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
-  var response = "The " + what.getDesc() + " burns you!";
+  let response = "The " + what.getDesc() + " burns you!";
   who.dealDamage(dmg, what, "fire");
   
   return response;
@@ -4404,13 +4298,12 @@ function BrazierTile() {
 BrazierTile.prototype = new FeatureObject();
 
 BrazierTile.prototype.use = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if (!this.alwayslit) {
-    var map = this.getHomeMap();
-    var unlit = localFactory.createTile("UnlitBrazier");
-    var x = this.getx();
-    var y = this.gety();
+    let map = this.getHomeMap();
+    let unlit = localFactory.createTile("UnlitBrazier");
+    let x = this.getx();
+    let y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,unlit);
     if (map === PC.getHomeMap()) {
@@ -4440,13 +4333,12 @@ function UnlitBrazierTile() {
 UnlitBrazierTile.prototype = new FeatureObject();
 
 UnlitBrazierTile.prototype.use = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if (!this.alwaysout) {
-    var map = this.getHomeMap();
-    var lit = localFactory.createTile("Brazier");
-    var x = this.getx();
-    var y = this.gety();
+    let map = this.getHomeMap();
+    let lit = localFactory.createTile("Brazier");
+    let x = this.getx();
+    let y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,lit);
     if (map === PC.getHomeMap()) {
@@ -4474,13 +4366,12 @@ function WEBrazierTile() {
 WEBrazierTile.prototype = new FeatureObject();
 
 WEBrazierTile.prototype.use = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if (!this.alwayslit) {
-    var map = this.getHomeMap();
-    var unlit = localFactory.createTile("UnlitWEBrazier");
-    var x = this.getx();
-    var y = this.gety();
+    let map = this.getHomeMap();
+    let unlit = localFactory.createTile("UnlitWEBrazier");
+    let x = this.getx();
+    let y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,unlit);
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
@@ -4507,13 +4398,13 @@ function UnlitWEBrazierTile() {
 UnlitWEBrazierTile.prototype = new FeatureObject();
 
 UnlitWEBrazierTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {fin:1};
   retval["fin"] = 1;
   if (!this.alwaysout) {
-    var map = this.getHomeMap();
-    var lit = localFactory.createTile("WEBrazier");
-    var x = this.getx();
-    var y = this.gety();
+    let map = this.getHomeMap();
+    let lit = localFactory.createTile("WEBrazier");
+    let x = this.getx();
+    let y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,lit);
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
@@ -4528,14 +4419,14 @@ UnlitWEBrazierTile.prototype.use = function(who) {
 }
 
 function CheckWEEntrance(themap) {
-  var ne_brazier = themap.getTile(11,43).getTopFeature();
-  var nw_brazier = themap.getTile(7,43).getTopFeature();
-  var se_brazier = themap.getTile(11,47).getTopFeature();
-  var sw_brazier = themap.getTile(7,47).getTopFeature();
+  let ne_brazier = themap.getTile(11,43).getTopFeature();
+  let nw_brazier = themap.getTile(7,43).getTopFeature();
+  let se_brazier = themap.getTile(11,47).getTopFeature();
+  let sw_brazier = themap.getTile(7,47).getTopFeature();
   
-  var barrier = themap.getTile(12,45).getTopFeature();
+  let barrier = themap.getTile(12,45).getTopFeature();
   
-  var set_barrier = 1;
+  let set_barrier = 1;
   
   if ((ne_brazier.getName() === "UnlitWEBrazier") && (nw_brazier.getName() === "WEBrazier") && (se_brazier.getName() === "UnlitWEBrazier") && (sw_brazier.getName() === "WEBrazier")) {
     set_barrier = 0;
@@ -4557,7 +4448,6 @@ function IllusionaryEnergyFieldTile() {
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 2;
 	this.blockloe = 2;
-//	this.light = 1;
   this.prefix = "a"; 
 	this.desc = "wall";
   this.spritexoffset = "-32";
@@ -4590,24 +4480,15 @@ CrystalTrapSpaceTile.prototype.walkon = function(who) {
   }
 
   if (who.getSerial() !== this.owner) {
-    var trap = localFactory.createTile("CrystalTrap");
+    let trap = localFactory.createTile("CrystalTrap");
     trap.duration = this.duration;
     trap.power = this.power;
     trap.setExpiresTime(this.duration + DUTime.getGameClock());
     DebugWrite("magic", "Crystal Prison sprung. Expires at " + trap.getExpiresTime() + ".<br />");
     who.addSpellEffect(trap);
 
-    var trapmap = this.getHomeMap();
+    let trapmap = this.getHomeMap();
     trapmap.deleteThing(this);
-//    var feas = trapmap.features.getAll();
-//    var owner = this.owner;
-//    $.each(feas, function(idx,val) {
-//      if (val.getName() === "CrystalTrapSpace") {
-//        if (val.owner === owner) {
-//          trapmap.deleteThing(val);
-//        }
-//      }
-//    });
   
     return ("You are engulfed in crystal!");
   } else {
@@ -4618,9 +4499,9 @@ CrystalTrapSpaceTile.prototype.walkon = function(who) {
 
 CrystalTrapSpaceTile.prototype.activate = function() {
   if (gamestate.getMode() !== "loadgame") {
-    var NPCevent = new GameEvent(this);
+    let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,this.duration);
-    var expiresat = this.duration + DUTime.getGameClock();
+    let expiresat = this.duration + DUTime.getGameClock();
     DebugWrite("magic", "Crystal Prison trap created. Expires at " + expiresat + ".<br />");    
   }
 
@@ -4649,7 +4530,7 @@ CrystalTrapSpaceTile.prototype.myTurn = function() {
   }
 
   // in the case of this thing, this part should never trigger.  
-  var NPCevent = new GameEvent(this);
+  let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   
   return 1;
@@ -4685,7 +4566,7 @@ FireplaceTile.prototype = new FeatureObject();
 
 FireplaceTile.prototype.activate = function() {
   if (gamestate.getMode() !== "loadgame") {
-    var NPCevent = new GameEvent(this);
+    let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
     DebugWrite("gameobj", "Adding fireplace to the timeline.");
   }
@@ -4693,11 +4574,11 @@ FireplaceTile.prototype.activate = function() {
 }
 
 FireplaceTile.prototype.walkon = function(person) {
-  var resp = OnFire(person, this);
+  let resp = OnFire(person, this);
   return resp;
 }
 FireplaceTile.prototype.idle = function(person) {
-  var resp = OnFire(person, this);
+  let resp = OnFire(person, this);
   return resp;
 }
 
@@ -4707,17 +4588,17 @@ FireplaceTile.prototype.isHostileTo = function(who) {
 }
 
 FireplaceTile.prototype.myTurn = function() {
-  var mytile = this.getHomeMap().getTile(this.getx(),this.gety());
-  var feas = mytile.getFeatures();
-  $.each(feas, function(idx,val) {
-    if (val.flammable) {
-      if (Dice.roll("1d100") <= val.flammable) {
-        val.flamed();
+  let mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+  let feas = mytile.getFeatures();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].flammable) {
+      if (Dice.roll("1d100") <= feas[i].flammable) {
+        feas[i].flamed();
       }
     }
-  });
+  };
 
-  var NPCevent = new GameEvent(this);
+  let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   
   return 1;  
@@ -4790,7 +4671,7 @@ TalkingDoorTile.prototype.getConversation = function() {
 }
 
 TalkingDoorTile.prototype.getGenderedTerms = function() {
-  var gt = {};
+  let gt = {};
   gt.pronoun = "it";
   gt.possessive = "its";
   gt.objective = "it";
@@ -4807,7 +4688,7 @@ TalkingDoorTile.prototype.getNPCName = function() {
 TalkingDoorTile.prototype.activate = function(timeoverride) {
 //  this.use_old = this.use;
   this.use = function(who) {
-    var retval;
+    let retval;
     maintext.addText("Use " + this.getDesc() + ":");
     retval = PerformTalk(this,"ash_door","_start");
     retval["override"] = 1;
@@ -4823,7 +4704,6 @@ function SleepFieldTile() {
 	this.graphic = "fields.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
-//	this.light = 1;
   this.prefix = "a";
 	this.desc = "sleep field";
 	this.initdelay = 1.5;
@@ -4836,11 +4716,11 @@ function SleepFieldTile() {
 SleepFieldTile.prototype = new FeatureObject();
 
 SleepFieldTile.prototype.walkon = function(person) {
-  var resp = InASleepField(person);
+  let resp = InASleepField(person);
   return resp;
 }
 SleepFieldTile.prototype.idle = function(person) {
-  var resp = InASleepField(person);
+  let resp = InASleepField(person);
   return resp;
 }
 
@@ -4852,14 +4732,14 @@ SleepFieldTile.prototype.isHostileTo = function(who) {
 
 function InASleepField(who) {
   if (IsNonLiving(who) || who.specials.mindless)  { return ""; }
-  var resist = who.getResist("magic");
+  let resist = who.getResist("magic");
   resist = 1-(resist/100);
-  var chance = .5 * resist;
+  let chance = .5 * resist;
   if (Math.random()*1 < chance) {
     if (who.getSpellEffectsByName("Sleep")) { return 0; }
-    var fieldeffect = localFactory.createTile("Sleep");
+    let fieldeffect = localFactory.createTile("Sleep");
     
-    var duration = (Dice.roll("2d3") - who.getInt()/20) * SCALE_TIME;
+    let duration = (Dice.roll("2d3") - who.getInt()/20) * SCALE_TIME;
     fieldeffect.setExpiresTime(duration + DUTime.getGameClock());
     who.addSpellEffect(fieldeffect);
     
@@ -4874,7 +4754,6 @@ function FireFieldTile() {
 	this.graphic = "fields.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
-//	this.light = 3;
   this.prefix = "a";
 	this.desc = "fire field";
 	this.spritexoffset = "-64";
@@ -4890,11 +4769,11 @@ function FireFieldTile() {
 FireFieldTile.prototype = new FeatureObject();
 
 FireFieldTile.prototype.walkon = function(person) {
-  var resp = InAFireField(person);
+  let resp = InAFireField(person);
   return resp;
 }
 FireFieldTile.prototype.idle = function(person) {
-  var resp = InAFireField(person);
+  let resp = InAFireField(person);
   return resp;
 }
 
@@ -4906,7 +4785,7 @@ FireFieldTile.prototype.isHostileTo = function(who) {
 
 FireFieldTile.prototype.activate = function() {
   if (!gamestate.getMode("loadgame")) {
-    var NPCevent = new GameEvent(this);
+    let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   }
 
@@ -4916,9 +4795,6 @@ FireFieldTile.prototype.activate = function() {
 FireFieldTile.prototype.myTurn = function() {
   DebugWrite("all", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + ", serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
   if (!maps.getMap(this.getHomeMap().getName())) {
-    // removing from timeline, its map is gone
-//    var nextEntity = DUTime.executeNextEvent().getEntity();
-//    nextEntity.myTurn();
 
     if (!DebugWrite("gameobj", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />")) {
       DebugWrite("magic", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />");
@@ -4928,8 +4804,7 @@ FireFieldTile.prototype.myTurn = function() {
   }
  
   if (this.expiresTime && (this.expiresTime > DUTime.getGameClock())) {
-//    if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green;font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />"); }
-        if (!DebugWrite("magic", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />")) {
+    if (!DebugWrite("magic", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />")) {
       DebugWrite("gameobj", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />");
     }
     this.getHomeMap().deleteThing(this);
@@ -4937,29 +4812,27 @@ FireFieldTile.prototype.myTurn = function() {
     return 1;
   }
   
-  var mytile = this.getHomeMap().getTile(this.getx(),this.gety());
-  var feas = mytile.getFeatures();
-  $.each(feas, function(idx,val) {
-    if (val.flammable) {
-      if (Dice.roll("1d100") <= val.flammable) {
-        val.flamed();
+  let mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+  let feas = mytile.getFeatures();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].flammable) {
+      if (Dice.roll("1d100") <= feas[i].flammable) {
+        feas[i].flamed();
       }
     }
-  });
+  };
 
-  var NPCevent = new GameEvent(this);
+  let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   
-//  var nextEntity = DUTime.executeNextEvent().getEntity();
-  //setTimeout(function(){ nextEntity.myTurn(); }, 1);
-//  nextEntity.myTurn();
   return 1;
 }
+
 function InAFireField(who) {
-  var dmg = Dice.roll("2d6+3");
+  let dmg = Dice.roll("2d6+3");
   dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
-  var response = "The fire field burns you!";
-  var resist = who.getResist("magic");
+  let response = "The fire field burns you!";
+  let resist = who.getResist("magic");
   resist = 1-(resist/100);
   dmg = dmg*resist;
   who.dealDamage(dmg, this, "fire");
@@ -4973,7 +4846,6 @@ function PoisonFieldTile() {
 	this.graphic = "fields.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
-//	this.light = 1;
   this.prefix = "a";
 	this.desc = "poison field";
 	this.initdelay = 1.5;
@@ -4986,11 +4858,11 @@ function PoisonFieldTile() {
 PoisonFieldTile.prototype = new FeatureObject();
 
 PoisonFieldTile.prototype.walkon = function(person) {
-  var resp = InAPoisonField(person);
+  let resp = InAPoisonField(person);
   return resp;
 }
 PoisonFieldTile.prototype.idle = function(person) {
-  var resp = InAPoisonField(person);
+  let resp = InAPoisonField(person);
   return resp;
 }
 
@@ -5003,19 +4875,19 @@ function InAPoisonField(who){
   if (IsNonLiving(who)) {
     return "";
   }
-  var poisonchance = .75;
+  let poisonchance = .75;
   poisonchance = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * poisonchance;
   poisonchance = poisonchance * (1-who.getResist()/100);  
   if (Math.random()*1 < poisonchance) {  
     if (who.getSpellEffectsByName("Poison")) { return 0; }
-    var poison = localFactory.createTile("Poison");
+    let poison = localFactory.createTile("Poison");
     
-    var duration = (20+Dice.roll("2d10") + who.getInt() - 15) * SCALE_TIME;
+    let duration = (20+Dice.roll("2d10") + who.getInt() - 15) * SCALE_TIME;
     poison.setExpiresTime(duration + DUTime.getGameClock());
     who.addSpellEffect(poison);
     
     DrawCharFrame();
-    var response = "You are poisoned!";
+    let response = "You are poisoned!";
     return response;
   }
 
@@ -5700,14 +5572,14 @@ BottomChairTile.prototype.use = function(who) {
 }
 
 function TurnFacing(what) {
-  var graphic = what.getOverlay();
-  var num = /\d/.exec(graphic);
+  let graphic = what.getOverlay();
+  let num = /\d/.exec(graphic);
   num = parseInt(num)+1;
   if (num > 3) { num = 0; }
   graphic = graphic.replace(/\d/,num);
   what.setOverlay(graphic);
   
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   retval["input"] = "&gt;";
   retval["txt"] = "Turned.";
@@ -5801,9 +5673,9 @@ function HarpsichordTile() {
 HarpsichordTile.prototype = new FeatureObject();
 
 HarpsichordTile.prototype.use = function(who) {
-  var retval = { fin: 1 };
+  let retval = { fin: 1 };
   if (who === PC) {
-    var distanceToMe = GetDistance(who.getx(),who.gety(),this.getx(),this.gety(),"square");
+    let distanceToMe = GetDistance(who.getx(),who.gety(),this.getx(),this.gety(),"square");
     if (distanceToMe > 1) { 
       retval["txt"] = "The harpsichord makes a few discordant sounds, and then is silent.";
     } else if ((this.gety() - who.gety()) !== 1) { 
@@ -5857,7 +5729,7 @@ BedHeadTile.prototype.walkoff = function(who) {
 }
 
 BedHeadTile.prototype.bumpinto = function(who) {
-	var retval = {};
+	let retval = {};
 	retval["fin"] = 1;
 	retval["canmove"] = 1;
   retval["msg"] = "";
@@ -6079,7 +5951,7 @@ GrandfatherClockTile.prototype = new FeatureObject();
 
 // override
 GrandfatherClockTile.prototype.getFullDesc = function() {
-  var full = "";
+  let full = "";
   if (this.getPrefix()) {
     full = this.getPrefix() + " ";
   }
@@ -6087,7 +5959,7 @@ GrandfatherClockTile.prototype.getFullDesc = function() {
   full = full + this.getDesc();
 
   full = full + " that reads ";
-  var gfclocktime = GetDisplayTime();
+  let gfclocktime = GetDisplayTime();
   full = full + gfclocktime;
 
   return full;
@@ -6122,21 +5994,20 @@ BarrelTile.prototype.flamed = function() {
 
 function ContainerOnFire(what) {
   maintext.addText("The " + what.getDesc() + " is consumed by flame!");
-  var burnup = what.use(what,1); // ignore locked and trapped
+  let burnup = what.use(what,1); // ignore locked and trapped
   if (burnup["txt"] === "Empty.") {
     maintext.addText("It was empty.");
   } else {
     maintext.addText(burnup["txt"]);
   }
-  var thisx = what.getx();
-  var thisy = what.gety();
+  let thisx = what.getx();
+  let thisy = what.gety();
   
-  var itsmap = what.getHomeMap();
+  let itsmap = what.getHomeMap();
   itsmap.deleteThing(what);
   DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
-  
 }
 
 function KitchenBarrelTile() {
@@ -6145,7 +6016,7 @@ function KitchenBarrelTile() {
 KitchenBarrelTile.prototype = new BarrelTile();
 
 KitchenBarrelTile.prototype.use = function(who) {
-  var retval = { fin: 1, txt: "It is full of salt and spices."};
+  let retval = { fin: 1, txt: "It is full of salt and spices."};
   return retval;
 }
 
@@ -6155,7 +6026,7 @@ function KitchenBarrel2Tile() {
 KitchenBarrel2Tile.prototype = new BarrelTile();
 
 KitchenBarrel2Tile.prototype.use = function(who) {
-  var retval = { fin: 1, txt: "It is full of salted meat."};
+  let retval = { fin: 1, txt: "It is full of salted meat."};
   return retval;
 }
 
@@ -6165,7 +6036,7 @@ function KitchenBarrel3Tile() {
 KitchenBarrel3Tile.prototype = new BarrelTile();
 
 KitchenBarrel3Tile.prototype.use = function(who) {
-  var retval = { fin: 1, txt: "It is full of delicious cheeses."};
+  let retval = { fin: 1, txt: "It is full of delicious cheeses."};
   return retval;
 }
 
@@ -6187,9 +6058,9 @@ MirrorTile.prototype = new FeatureObject();
 
 MirrorTile.prototype.activate = function() {
   if (!DU.gameflags.getFlag("editor")) {
-    var reflection = localFactory.createTile("Reflection");
+    let reflection = localFactory.createTile("Reflection");
     reflection.mirror = this;
-    var homemap = this.getHomeMap();
+    let homemap = this.getHomeMap();
     homemap.placeThing(this.getx(),this.gety()+1,reflection);
   }
   return 1;
@@ -6237,9 +6108,9 @@ WaterfallTile.prototype = new FeatureObject();
 
 WaterfallTile.prototype.activate = function() {
   if (!DU.gameflags.getFlag("editor")) {
-    var flow = localFactory.createTile("WaterfallFlow");
+    let flow = localFactory.createTile("WaterfallFlow");
     flow.waterfall = this;
-    var homemap = this.getHomeMap();
+    let homemap = this.getHomeMap();
     homemap.placeThing(this.getx(),this.gety()-1,flow);
   }
   return 1;
@@ -6261,14 +6132,14 @@ WaterfallFlowTile.prototype.walkon = function(who) {
   // Go falling down
   gamestate.setMode("null");
   if (who.getMovetype() & MOVE_FLY) { return; }
-  var waterfall = this.waterfall;
+  let waterfall = this.waterfall;
   setTimeout(function() {
     DescendWaterfall(who, waterfall);
   }, 300);
 }
 
 function DescendWaterfall(who, waterfall) {
-  var thismap = who.getHomeMap();
+  let thismap = who.getHomeMap();
   thismap.moveThing(who.getx(),who.gety()+1,who);
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());  
   if (who.gety() === waterfall.gety()) {
@@ -6296,7 +6167,7 @@ function BrilliantPoolTile() {
 BrilliantPoolTile.prototype = new FeatureObject();
 
 BrilliantPoolTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   
   if (who === PC) {
     targetCursor.useditem = this;
@@ -6311,7 +6182,7 @@ BrilliantPoolTile.prototype.use = function(who) {
 }
 
 BrilliantPoolTile.prototype.usePrompt = function(code) {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   if (DU.gameflags.getFlag("pool_drunk")) {
     retval["txt"] = "Having previously drunk of the pool, you are now too smart to dare try that again.";
@@ -6403,7 +6274,7 @@ function WalkOnChangeExitTile() {
 WalkOnChangeExitTile.prototype = new FeatureObject();
 
 WalkOnChangeExitTile.prototype.walkon = function(walker) {
-  var themap=walker.getHomeMap();
+  let themap=walker.getHomeMap();
   themap.setExitToX(this.setxto);
   themap.setExitToY(this.setyto);
 }
@@ -6570,7 +6441,7 @@ function WalkOnAbyssTile() {
 WalkOnAbyssTile.prototype = new FeatureObject();
 
 WalkOnAbyssTile.prototype.walkon = function(walker) {
-  var themap=walker.getHomeMap();
+  let themap=walker.getHomeMap();
   newmap = maps.getMap(this.destmap);
   if (!this.destx) {
     this.destx = walker.getx();
@@ -6696,8 +6567,8 @@ SpawnerTile.prototype.setSpawngroup = function(newgroup) {
 }
 
 SpawnerTile.prototype.pickSpawn = function() {
-  var spindex = Math.floor(Math.random() * this.getSpawngroup().length);
-  var spawns= this.getSpawngroup();
+  let spindex = Math.floor(Math.random() * this.getSpawngroup().length);
+  let spawns= this.getSpawngroup();
   return spawns[spindex];
 }
 
@@ -6775,12 +6646,9 @@ SpawnerTile.prototype.getSpawned = function() {
 
 SpawnerTile.prototype.activate = function() {
   if (gamestate.getMode() !== "loadgame") {
-//    if (debug && debugflags.gameobj) {
-//      dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getName() + " activating at " + DUTime.getGameClock() + ".</span><br />");
-//    }
     DebugWrite("gameobj", "<span style='font-weight:bold'>Spawner " + this.getName() + " activating at " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
 
-    var NPCevent = new GameEvent(this);
+    let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,1);
   }
 }
@@ -6793,48 +6661,45 @@ SpawnerTile.prototype.myTurn = function() {
     return 1;
   }
   if (PC.getLevel() > this.level) {  
-    for (var i = this.level+1; i<=PC.getLevel(); i++) {
+    for (let i=this.level+1; i<=PC.getLevel(); i++) {
       if (this.evolve[i]) {
         this.level = i;
         DebugWrite("gameobj", "Spawner at " + this.x + ", " + this.y + " has evolved.<br />");
         while (this.evolve[i][0]) {
-          var idx = this.evolve[i].shift();
-          var val = this.evolve[i].shift();
+          let idx = this.evolve[i].shift();
+          let val = this.evolve[i].shift();
           this.idx = val;
         }
       }
     }
   }
   
-  var timetonext = (this.getSpawnFreq() + (Math.random()*((this.getSpawnFreq()/2)+1)));
+  let timetonext = (this.getSpawnFreq() + (Math.random()*((this.getSpawnFreq()/2)+1)));
   if ((this.spawned.getAll().length < this.getMaxSpawns()) && ((this.getHomeMap() != PC.getHomeMap()) || (GetDistance(PC.getx(), PC.gety(), this.getx(), this.gety()) > 10))) {
       // let's do some spawning
-      var spawntype = this.pickSpawn();
-      var newspawn = localFactory.createTile(spawntype);
-      var diffx = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
-      var diffy = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
-      var mymap = this.getHomeMap();
+      let spawntype = this.pickSpawn();
+      let newspawn = localFactory.createTile(spawntype);
+      let diffx = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
+      let diffy = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
+      let mymap = this.getHomeMap();
       if (this.altPoI) {
         newspawn.altPoI = this.altPoI;
-//        if (debug && debugflags.gameobj) { dbs.writeln("About to spawn, adding an altPoI.<br />"); }
         DebugWrite("gameobj","About to spawn, adding an altPoI.<br />");
       }
       
-      var tile = mymap.getTile(this.getx() + diffx, this.gety() + diffy);
-      var resp = tile.canMoveHere(newspawn.getMovetype());
+      let tile = mymap.getTile(this.getx() + diffx, this.gety() + diffy);
+      let resp = tile.canMoveHere(newspawn.getMovetype());
       if (resp["canmove"]) {
         mymap.placeThing(this.getx() + diffx, this.gety() + diffy, newspawn);
         this.addSpawned(newspawn);
         newspawn.setSpawnedBy(this);
-//        if (debug && debugflags.gameobj) { dbs.writeln("<span style='color:#00cc00'>Spawner #" + this.getSerial() + " at " + this.x + ", " + this.y + " has spawned a " + newspawn.getName() + " #" + newspawn.getSerial() + "</span><br />"); }
         DebugWrite("gameobj", "Spawner #" + this.getSerial() + " at " + this.x + ", " + this.y + " has spawned a " + newspawn.getName() + " #" + newspawn.getSerial() + "<br />");
       } else {
         timetonext = 5;
-      }
-      
+      }      
   }
  
-  var NPCevent = new GameEvent(this);
+  let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,timetonext);
   
   return 1;
@@ -6992,7 +6857,6 @@ WeaponCounterSwordTile.prototype = new FeatureObject();
 
 function ArmorCounterLeatherTile() {
   this.name = "ArmorCounterLeather";
-//  this.graphic = "051.gif";
   this.graphic = "features.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-64";
@@ -7007,7 +6871,6 @@ ArmorCounterLeatherTile.prototype = new FeatureObject();
 
 function ArmorCounterChainTile() {
   this.name = "ArmorCounterChain";
-//  this.graphic = "051.gif";
   this.graphic = "features.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-64";
@@ -7022,7 +6885,6 @@ ArmorCounterChainTile.prototype = new FeatureObject();
 
 function ArmorCounterPlateTile() {
   this.name = "ArmorCounterPlate";
-//  this.graphic = "051.gif";
   this.graphic = "features.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-64";
@@ -7037,7 +6899,6 @@ ArmorCounterPlateTile.prototype = new FeatureObject();
 
 function ArmorRackLeatherTile() {
   this.name = "ArmorRackLeather";
-//  this.graphic = "051.gif";
   this.graphic = "features.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-96";
@@ -7052,7 +6913,6 @@ ArmorRackLeatherTile.prototype = new FeatureObject();
 
 function ArmorRackChainTile() {
   this.name = "ArmorRackChain";
-//  this.graphic = "051.gif";
   this.graphic = "features.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-96";
@@ -7067,7 +6927,6 @@ ArmorRackChainTile.prototype = new FeatureObject();
 
 function ArmorRackPlateTile() {
   this.name = "ArmorRackPlate";
-//  this.graphic = "051.gif";
   this.graphic = "features.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-96";
@@ -7149,23 +7008,23 @@ function GrottoLeverOffTile() {
 GrottoLeverOffTile.prototype = new FeatureObject();
 
 GrottoLeverOffTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval["txt"] = "There is a deafening sound of rushing water! The water levels recede.";
   this.overlay = "switch-on.gif";
-  var frommap = this.getHomeMap();
-  var tomap = maps.getMap("grotto2");
+  let frommap = this.getHomeMap();
+  let tomap = maps.getMap("grotto2");
   DUPlaySound("sfx_large_lever");
   
-  var feas = frommap.features.getAll();
-  $.each(feas, function(idx,val) {
-    if (val.getName() !== "EnergyField") {
-      MoveBetweenMaps(val,frommap,tomap,val.getx(),val.gety());
+  let feas = frommap.features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getName() !== "EnergyField") {
+      MoveBetweenMaps(feas[i],frommap,tomap,feas[i].getx(),feas[i].gety());
     }
-  });
-  var npcs = frommap.npcs.getAll();
-  $.each(npcs, function(idx,val) {
-    MoveBetweenMaps(val,frommap,tomap,val.getx(),val.gety());
-  });
+  };
+  let npcs = frommap.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    MoveBetweenMaps(npcs[i],frommap,tomap,npcs[i].getx(),npcs[i].gety());
+  };
   MoveBetweenMaps(PC,frommap,tomap,PC.getx(),PC.gety());
   
   DrawMainFrame("draw", tomap, PC.getx(), PC.gety());
@@ -7275,50 +7134,50 @@ function MetalTwisterLeverTile() {
 MetalTwisterLeverTile.prototype = new FeatureObject();
   
 MetalTwisterLeverTile.prototype.use = function(user) {
-    var level3 = maps.getMap("metaltwister3");
-    var level2 = maps.getMap("metaltwister2");
-    var retval = {};
-    DUPlaySound("sfx_small_lever");
-    if (!level2) {  // somehow level 2 is not in memory. Load it.
-      var otherlevel = new GameMap();
-      otherlevel = maps.addMap("metaltwister2");
-      level2 = otherlevel;
-    }
-    if (this.getOverlay() == "switch-off.gif") {  // This switch hasn't been thrown
-      this.setOverlay("switch-on.gif");
-      retval["txt"] = "Click!";
-      
-      var checkboth = 1;
-      var floor3features = level3.features.getAll();
-      var ports = [];
-      for (i=0; i<floor3features.length; i++) {
-        if (floor3features[i].getName() == "LeverOff") {
-          if (floor3features[i].getOverlay() == "switch-off.gif") {
-            checkboth = 0;
-          }
-        }
-        if (floor3features[i].getName() == "StonePortcullis") {
-          ports[ports.length] = floor3features[i];
+  let level3 = maps.getMap("metaltwister3");
+  let level2 = maps.getMap("metaltwister2");
+  let retval = {};
+  DUPlaySound("sfx_small_lever");
+  if (!level2) {  // somehow level 2 is not in memory. Load it.
+    let otherlevel = new GameMap();
+    otherlevel = maps.addMap("metaltwister2");
+    level2 = otherlevel;
+  }
+  if (this.getOverlay() == "switch-off.gif") {  // This switch hasn't been thrown
+    this.setOverlay("switch-on.gif");
+    retval["txt"] = "Click!";
+    
+    let checkboth = 1;
+    let floor3features = level3.features.getAll();
+    let ports = [];
+    for (let i=0; i<floor3features.length; i++) {
+      if (floor3features[i].getName() == "LeverOff") {
+        if (floor3features[i].getOverlay() == "switch-off.gif") {
+          checkboth = 0;
         }
       }
-      if (checkboth) {  // if both switches are thrown, open the dungeon's doors
-        for (i=0; i<ports.length; i++) {
-          ports[i].unlockMe();
-          ports[i].use(user);
-        }
-        var floor2features = level2.features.getAll();
-        for (i=0; i<floor2features.length; i++) {
-          if (floor2features[i].getName() == "StonePortcullis") {
-            floor2features[i].unlockMe();
-            floor2features[i].use(user);
-          }
+      if (floor3features[i].getName() == "StonePortcullis") {
+        ports[ports.length] = floor3features[i];
+      }
+    }
+    if (checkboth) {  // if both switches are thrown, open the dungeon's doors
+      for (let i=0; i<ports.length; i++) {
+        ports[i].unlockMe();
+        ports[i].use(user);
+      }
+      let floor2features = level2.features.getAll();
+      for (let i=0; i<floor2features.length; i++) {
+        if (floor2features[i].getName() == "StonePortcullis") {
+          floor2features[i].unlockMe();
+          floor2features[i].use(user);
         }
       }
     }
-    else {  // for sanity's sake, you can't unthrow a switch
-      retval["txt"] = "The switch is stuck."; 
-    }
-    return retval;  
+  }
+  else {  // for sanity's sake, you can't unthrow a switch
+    retval["txt"] = "The switch is stuck."; 
+  }
+  return retval;  
 }
 
 function PitDespairLeverTile() {
@@ -7331,22 +7190,22 @@ function PitDespairLeverTile() {
 PitDespairLeverTile.prototype = new FeatureObject();
 
 PitDespairLeverTile.prototype.use = function(user) {
-  var retval = {};
+  let retval = {};
   if (this.attached) {
     DUPlaySound("sfx_small_lever");
-    var thismap = user.getHomeMap();
-    var doortile = thismap.getTile(this.attached.x, this.attached.y);
-    var ftrs = doortile.getFeatures();
-    var door;
-    $.each(ftrs, function(idx, val) {
-      if (val.getName() === "WallPortcullis") { door = val; }
-    });
+    let thismap = user.getHomeMap();
+    let doortile = thismap.getTile(this.attached.x, this.attached.y);
+    let ftrs = doortile.getFeatures();
+    let door;
+    for (let i=0;i<ftrs.length;i++) {
+      if (ftrs[i].getName() === "WallPortcullis") { door = ftrs[i]; }
+    };
     if (this.graphic === "switch-off.gif") {
       door.locked = 0;
       door.setGraphicArray(["055.gif", "wall-arch.gif", 0, 0]);
 			
 			door.closedLOS = door.getBlocksLOSArray();
-			var seethru = [];
+			let seethru = [];
 			seethru[0] = 0;
 			door.setBlocksLOSArray(seethru);
 			
@@ -7356,9 +7215,9 @@ PitDespairLeverTile.prototype.use = function(user) {
 			this.graphic = "switch-on.gif";
 			this.overlay = "switch-on.gif";
     } else {
-      var mobs = doortile.getNPCs();
-      var diffx = 0;
-      var diffy = 0;
+      let mobs = doortile.getNPCs();
+      let diffx = 0;
+      let diffy = 0;
       if (this.gety() === 36) {
         diffy = -1;
       } else if ((this.getx() === 11) || (this.getx() === 25)) {
@@ -7366,10 +7225,10 @@ PitDespairLeverTile.prototype.use = function(user) {
       } else {
         diffx = -1;
       }
-      $.each(mobs, function(idx,val) {
-        thismap.moveThing(val.getx() + diffx , val.gety() + diffy, val);
-        val.dealDamage(1000, door);
-      });
+      for (let i=0;i<mobs.length;i++) {
+        thismap.moveThing(mobs[i].getx() + diffx , mobs[i].gety() + diffy, mobs[i]);
+        mobs[i].dealDamage(1000, door);
+      };
       door.locked = 1;
       door.setGraphicArray(["wall-portcullis.gif", "wall-portcullis.gif", 0, 0]);
       
@@ -7407,7 +7266,7 @@ function RoyalPuzzleLaserEWTile() {
 RoyalPuzzleLaserEWTile.prototype = new FeatureObject();
 
 RoyalPuzzleLaserEWTile.prototype.walkon = function(who) {
-  var resp = InALaser(who);
+  let resp = InALaser(who);
   return resp;
 }
 
@@ -7426,7 +7285,7 @@ function RoyalPuzzleLaserNSTile() {
 RoyalPuzzleLaserNSTile.prototype = new FeatureObject();
 
 RoyalPuzzleLaserNSTile.prototype.walkon = function(who) {
-  var resp = InALaser(who);
+  let resp = InALaser(who);
   return resp;
 }
 
@@ -7445,12 +7304,12 @@ function RoyalPuzzleLaserCrossTile() {
 RoyalPuzzleLaserCrossTile.prototype = new FeatureObject();
 
 RoyalPuzzleLaserCrossTile.prototype.walkon = function(who) {
-  var resp = InALaser(who);
+  let resp = InALaser(who);
   return resp;
 }
 
 function InALaser(who) {
-  var themap = who.getHomeMap();
+  let themap = who.getHomeMap();
   themap.moveThing(46,28,who);
   ResetRoyalPuzzle(themap);
   DUPlaySound("sfx_small_zap");
@@ -7458,15 +7317,15 @@ function InALaser(who) {
 }
 
 function ResetRoyalPuzzle(where) {  
-  var walls = [{x:48,y:29}, {x:49, y:35}, {x:48, y:31}, {x:46, y:29}, {x:47, y:28}, {x: 49, y:28}];
+  let walls = [{x:48,y:29}, {x:49, y:35}, {x:48, y:31}, {x:46, y:29}, {x:47, y:28}, {x: 49, y:28}];
   
-  var allfeatures = where.features.getAll();
-  $.each(allfeatures, function(idx,val) {
-    if (val.getName() === "SandstoneWall") {
-      var gowhere = walls.shift();
-      where.moveThing(gowhere.x, gowhere.y, val);
+  let allfeatures = where.features.getAll();
+  for (let i=0;i<allfeatures.length;i++) {
+    if (allfeatures[i].getName() === "SandstoneWall") {
+      let gowhere = walls.shift();
+      where.moveThing(gowhere.x, gowhere.y, allfeatures[i]);
     }
-  });
+  }
   
   CheckLasers(where);
 }
@@ -7487,16 +7346,16 @@ function SandstoneWallTile() {
 SandstoneWallTile.prototype = new FeatureObject();
 
 SandstoneWallTile.prototype.use = function(who) {
-  var themap = who.getHomeMap();
-  var diffx = this.getx() - who.getx();
-  var diffy = this.gety() - who.gety();
-  var retval = {};
+  let themap = who.getHomeMap();
+  let diffx = this.getx() - who.getx();
+  let diffy = this.gety() - who.gety();
+  let retval = {};
   if ((Math.abs(diffx) > 1) || (Math.abs(diffy) > 1)) {
     retval["txt"] = "The wall shakes in place but does not move.";
     return retval;
   }
-  var desttile = themap.getTile(this.getx()+diffx, this.gety()+diffy);
-  var ontile = desttile.canMoveHere(MOVE_WALK,0);
+  let desttile = themap.getTile(this.getx()+diffx, this.gety()+diffy);
+  let ontile = desttile.canMoveHere(MOVE_WALK,0);
   if (!ontile) {
     retval["txt"] = "Something is in the way.";
     return retval;
@@ -7531,7 +7390,7 @@ BlackDragonLadderWallTile.prototype.pushMe = function(who) {
 }
 
 BlackDragonLadderWallTile.prototype.use = function(who) {
-  let retval = {fin: 1}
+  let retval = {fin: 1};
   if (this.rotated) {
     let tile = this.getHomeMap().getTile(this.getx()+1,this.gety());
     let fealist = tile.getFeatures();
@@ -7566,8 +7425,7 @@ function WallOfWavesTile() {
 WallOfWavesTile.prototype = new FeatureObject();
 
 WallOfWavesTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7577,8 +7435,7 @@ WallOfWavesTile.prototype.use = function(user) {
 }
 
 WallOfWavesTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "waves", this);
   return retval;
 }
@@ -7596,8 +7453,7 @@ function RuneOfWavesTile() {
 RuneOfWavesTile.prototype = new FeatureObject();
 
 RuneOfWavesTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7607,8 +7463,7 @@ RuneOfWavesTile.prototype.use = function(user) {
 }
 
 RuneOfWavesTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "waves", this);
   return retval;
 }
@@ -7627,8 +7482,7 @@ function WallOfWindsTile() {
 WallOfWindsTile.prototype = new FeatureObject();
 
 WallOfWindsTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7638,8 +7492,7 @@ WallOfWindsTile.prototype.use = function(user) {
 }
 
 WallOfWindsTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "winds", this);
   return retval;
 }
@@ -7657,8 +7510,7 @@ function RuneOfWindsTile() {
 RuneOfWindsTile.prototype = new FeatureObject();
 
 RuneOfWindsTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7668,8 +7520,7 @@ RuneOfWindsTile.prototype.use = function(user) {
 }
 
 RuneOfWindsTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "winds", this);
   return retval;
 }
@@ -7688,8 +7539,7 @@ function WallOfKingsTile() {
 WallOfKingsTile.prototype = new FeatureObject();
 
 WallOfKingsTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7699,8 +7549,7 @@ WallOfKingsTile.prototype.use = function(user) {
 }
 
 WallOfKingsTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "kings", this);
   return retval;
 }
@@ -7718,8 +7567,7 @@ function RuneOfKingsTile() {
 RuneOfKingsTile.prototype = new FeatureObject();
 
 RuneOfKingsTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7729,8 +7577,7 @@ RuneOfKingsTile.prototype.use = function(user) {
 }
 
 RuneOfKingsTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "kings", this);
   return retval;
 }
@@ -7748,8 +7595,7 @@ function WallOfFlamesTile() {
 WallOfFlamesTile.prototype = new FeatureObject();
 
 WallOfFlamesTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7759,8 +7605,7 @@ WallOfFlamesTile.prototype.use = function(user) {
 }
 
 WallOfFlamesTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "flames", this);
   return retval;
 }
@@ -7778,8 +7623,7 @@ function RuneOfFlamesTile() {
 RuneOfFlamesTile.prototype = new FeatureObject();
 
 RuneOfFlamesTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7789,8 +7633,7 @@ RuneOfFlamesTile.prototype.use = function(user) {
 }
 
 RuneOfFlamesTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "flames", this);
   return retval;
 }
@@ -7809,8 +7652,7 @@ function WallOfVoidTile() {
 WallOfVoidTile.prototype = new FeatureObject();
 
 WallOfVoidTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7820,8 +7662,7 @@ WallOfVoidTile.prototype.use = function(user) {
 }
 
 WallOfVoidTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "void", this);
   return retval;
 }
@@ -7839,8 +7680,7 @@ function RuneOfVoidTile() {
 RuneOfVoidTile.prototype = new FeatureObject();
 
 RuneOfVoidTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7850,8 +7690,7 @@ RuneOfVoidTile.prototype.use = function(user) {
 }
 
 RuneOfVoidTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "void", this);
   return retval;
 }
@@ -7882,7 +7721,7 @@ PlatformOfWindsTile.prototype.walkon = function(who) {
   if (this.getHomeMap().getName() === "skypalace") {  // WHOOSH
     gamestate.setMode("null");
 
-    var windlist = this.windlist;
+    let windlist = this.windlist;
     setTimeout( function() { whoosh(who, windlist, this.spawnat, this.spawnwhat); }, 100);
   
     delete this.spawnwhat;  
@@ -7893,10 +7732,10 @@ PlatformOfWindsTile.prototype.walkon = function(who) {
 
 function whoosh(whozat, windlist, spawnwhere, spawnthing) {
 
-  var tox = windlist[0];
-  var toy = windlist[1];
+  let tox = windlist[0];
+  let toy = windlist[1];
   
-  var windmap = whozat.getHomeMap();
+  let windmap = whozat.getHomeMap();
   windmap.moveThing(tox,toy,whozat);
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());  
   
@@ -7904,7 +7743,7 @@ function whoosh(whozat, windlist, spawnwhere, spawnthing) {
     setTimeout( function() { whoosh(whozat, windlist.slice(2), spawnwhere, spawnthing); }, 100);
   } else {
     if (spawnthing) {
-      var spawnedmonster = localFactory.createTile(spawnthing);
+      let spawnedmonster = localFactory.createTile(spawnthing);
       windmap.placeThing(spawnwhere[0], spawnwhere[1], spawnedmonster);
       // add an "appears" visual effect? WORKING
     }
@@ -7959,7 +7798,7 @@ function MarkOfKingsTile() {
 MarkOfKingsTile.prototype = new FeatureObject();
   
 MarkOfKingsTile.prototype.use = function(user) {
-  var retval = {};
+  let retval = {};
   if (user.getRuneCooldown("kings") > DUTime.getGameClock()) {
     retval["fin"] = 1;
     retval["txt"] = "You are too tired to invoke this rune!"
@@ -7967,21 +7806,21 @@ MarkOfKingsTile.prototype.use = function(user) {
   }
   // check if on surface, if so check location
   // if underground/in town, heal
-  var themap = user.getHomeMap();
+  let themap = user.getHomeMap();
   if (!themap.getScale()) {
     if (themap.getName() === "darkunknown") {
       if (((user.getx() === 27) && (user.gety() === 28)) || ((user.getx() === 26) && (user.gety() === 29)) || ((user.getx() === 28) && (user.gety() === 29)) || ((user.getx() >= 25) && (user.getx() <= 28) && (user.gety() === 30)) || ((user.getx() >=25) && (user.getx() <= 27) && (user.gety() === 31))) {
         // open entrance to grotto
         Earthquake();
         DUPlaySound("sfx_earthquake");
-        var cave = localFactory.createTile("Cave");
+        let cave = localFactory.createTile("Cave");
         cave.setEnterMap("grotto", 22, 53);
         themap.placeThing(27,30,cave);
         retval["txt"] = "A cave entrance is revealed!";
         return retval;
       } else if ((user.getx() === 100) && (user.gety() === 57)) {
-        var tile = themap.getTile(112,67);
-        var oldgate = tile.getTopFeature();
+        let tile = themap.getTile(112,67);
+        let oldgate = tile.getTopFeature();
         if (oldgate && (oldgate.getName() === "Moongate")) {
           themap.deleteThing(oldgate);
         }
@@ -7990,7 +7829,7 @@ MarkOfKingsTile.prototype.use = function(user) {
         DrawMainFrame("draw", themap, user.getx(), user.gety());
         // teleport to entrance to air
         setTimeout(function() {
-          var moongate = localFactory.createTile("Moongate");
+          let moongate = localFactory.createTile("Moongate");
           moongate.destmap = "skypalace";
           moongate.destx = 47;
           moongate.desty = 49;
@@ -8003,10 +7842,10 @@ MarkOfKingsTile.prototype.use = function(user) {
       }
     } else if ((themap.getName() === "volcano") && (GetDistance(user.getx(), user.gety(), 27,21) < 5)) {
       Earthquake();
-      var cave = localFactory.createTile("Cave");
+      let cave = localFactory.createTile("Cave");
       cave.setEnterMap("lavatubes", 0, 0);   // make tubes!
-      var nillavatile = themap.getTile(27,21);
-      var nillava = nillavatile.getTopFeature();
+      let nillavatile = themap.getTile(27,21);
+      let nillava = nillavatile.getTopFeature();
       if (nillava && (nillave.getName() === "Lava")) {
         themap.deleteThing(nillava);
       }
@@ -8236,8 +8075,8 @@ function TeleporterPlatformTile() {
 TeleporterPlatformTile.prototype = new FeatureObject();
 
 TeleporterPlatformTile.prototype.setDestination = function(destobj) {
-  this.destination = {};
   if (destobj.map && destobj.x && destobj.y) {
+    this.destination = {};
     this.destination = destobj;
   }
 }
@@ -8248,13 +8087,13 @@ TeleporterPlatformTile.prototype.getDestination = function() {
 
 TeleporterPlatformTile.prototype.walkon = function(who) {
   if (this.getDestination()) {
-    var themap = who.getHomeMap();
-    var dest = this.getDestination();
+    let themap = who.getHomeMap();
+    let dest = this.getDestination();
     if (themap.getName() === dest.map) {
       themap.moveThing(dest.x, dest.y, who);
     } else {
       DU.maps.addMap(dest.map);
-      var destmap = DU.maps.getMap(dest.map);
+      let destmap = DU.maps.getMap(dest.map);
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
@@ -8289,13 +8128,13 @@ PitTeleporterPlatformTile.prototype.walkon = function(who) {
     maintext.addText("You hear a voice in your head: 'Thou'rt not yet ready for this trial.' Nothing happens.");
   }
   else if (this.getDestination()) {
-    var themap = who.getHomeMap();
-    var dest = this.getDestination();
+    let themap = who.getHomeMap();
+    let dest = this.getDestination();
     if (themap.getName() === dest.map) {
       themap.moveThing(dest.x, dest.y, who);
     } else {
       DU.maps.addMap(dest.map);
-      var destmap = DU.maps.getMap(dest.map);
+      let destmap = DU.maps.getMap(dest.map);
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
@@ -8322,7 +8161,7 @@ ToshinPanelTile.prototype = new FeatureObject();
 
 ToshinPanelTile.prototype.use = function(who) {
   gamestate.setMode("singleletter");
-  var retval = {};
+  let retval = {};
   retval["fin"] = 2;
   retval["txt"] = "Use: panel covered with buttons- Press which button?"
   retval["input"] = "Choose (A-E) - ";
@@ -8334,31 +8173,31 @@ ToshinPanelTile.prototype.use = function(who) {
 }
 
 function PerformToshinAltar(code) {
-  var letter = String.fromCharCode(code);    	
-  var retval = {};
+  let letter = String.fromCharCode(code);    	
+  let retval = {};
   retval["fin"] = 1;
   retval["txt"] = "Pressed " + letter + ".";
-  var altar = inputText.thingref;
-  var themap = altar.getHomeMap();
-  var energyfield = localFactory.createTile("EnergyField");
-  var firefield = localFactory.createTile("FireField");
+  let altar = inputText.thingref;
+  let themap = altar.getHomeMap();
+  let energyfield = localFactory.createTile("EnergyField");
+  let firefield = localFactory.createTile("FireField");
   DUPlaySound("sfx_click");
 
   if (code === 65) {
-    var fieldtile1 = themap.getTile(22,13);
-    var fields = fieldtile1.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    let fieldtile1 = themap.getTile(22,13);
+    let fields = fieldtile1.getFeatures();
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
-    var fieldtile2 = themap.getTile(20,17);
+    };
+    let fieldtile2 = themap.getTile(20,17);
     fields = fieldtile2.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
+    };
     if (altar.val[65]) {
       themap.placeThing(22,13,firefield);
       themap.placeThing(20,17,energyfield);
@@ -8369,20 +8208,20 @@ function PerformToshinAltar(code) {
       altar.val[65] = 1;
     }
   } else if (code === 66) {
-    var fieldtile1 = themap.getTile(11,7);
-    var fields = fieldtile1.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    let fieldtile1 = themap.getTile(11,7);
+    let fields = fieldtile1.getFeatures();
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
-    var fieldtile2 = themap.getTile(18,8);
+    };
+    let fieldtile2 = themap.getTile(18,8);
     fields = fieldtile2.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
+    };
     if (altar.val[66]) {
       themap.placeThing(18,8,energyfield);
       themap.placeThing(11,7,firefield);
@@ -8393,55 +8232,55 @@ function PerformToshinAltar(code) {
       altar.val[66] = 1;
     }
   } else if (code === 67) {
-    var fieldtile1 = themap.getTile(12,17);
-    var fields = fieldtile1.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    let fieldtile1 = themap.getTile(12,17);
+    let fields = fieldtile1.getFeatures();
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
-    var fieldtile2 = themap.getTile(12,19);
+    };
+    let fieldtile2 = themap.getTile(12,19);
     fields = fieldtile2.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
-    var fieldtile3 = themap.getTile(13,18);
+    };
+    let fieldtile3 = themap.getTile(13,18);
     fields = fieldtile3.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
+    };
     if (altar.val[67]) {
       themap.placeThing(13,18,energyfield);
       themap.placeThing(12,17,firefield);
-      var firefield2 = localFactory.createTile("FireField");
+      let firefield2 = localFactory.createTile("FireField");
       themap.placeThing(12,19,firefield2);
       altar.val[67] = 0;
     } else {
       themap.placeThing(13,18,firefield);
       themap.placeThing(12,17,energyfield);      
-      var energyfield2 = localFactory.createTile("EnergyField");
+      let energyfield2 = localFactory.createTile("EnergyField");
       themap.placeThing(12,19,energyfield2);
       altar.val[67] = 1;
     }
   } else if (code === 68) {
-    var fieldtile1 = themap.getTile(11,11);
-    var fields = fieldtile1.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    let fieldtile1 = themap.getTile(11,11);
+    let fields = fieldtile1.getFeatures();
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
-    var fieldtile2 = themap.getTile(14,8);
+    };
+    let fieldtile2 = themap.getTile(14,8);
     fields = fieldtile2.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
+    };
     if (altar.val[68]) {
       themap.placeThing(14,8,energyfield);
       themap.placeThing(11,11,firefield);
@@ -8452,20 +8291,20 @@ function PerformToshinAltar(code) {
       altar.val[68] = 1;
     }
   } else if (code === 69) {
-    var fieldtile1 = themap.getTile(9,10);
-    var fields = fieldtile1.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    let fieldtile1 = themap.getTile(9,10);
+    let fields = fieldtile1.getFeatures();
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
-    var fieldtile2 = themap.getTile(12,15);
+    };
+    let fieldtile2 = themap.getTile(12,15);
     fields = fieldtile2.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
+    };
     if (altar.val[69]) {
       themap.placeThing(9,10,energyfield);
       themap.placeThing(12,15,firefield);
@@ -8493,17 +8332,17 @@ function ToshinMoatLeverOffTile() {
 ToshinMoatLeverOffTile.prototype = new FeatureObject();
 
 ToshinMoatLeverOffTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   retval["txt"] = "Click!";
-  var themap = this.getHomeMap();
-  var tile = themap.getTile(25,13);
-  var door = tile.getTopFeature();
+  let themap = this.getHomeMap();
+  let tile = themap.getTile(25,13);
+  let door = tile.getTopFeature();
   
-  var lever1tile = themap.getTile(6,12);
-  var lever1 = lever1tile.getTopFeature();
-  var lever2tile = themap.getTile(24,14);
-  var lever2 = lever2tile.getTopFeature();
+  let lever1tile = themap.getTile(6,12);
+  let lever1 = lever1tile.getTopFeature();
+  let lever2tile = themap.getTile(24,14);
+  let lever2 = lever2tile.getTopFeature();
   DUPlaySound("sfx_small_lever");
   
   if (this.getOverlay() === "moatLever-off.gif") {
@@ -8541,31 +8380,30 @@ OrbToggleTile.prototype.use = function(who) {
     this.spritexoffset = this.spritexoffset - 32;
     if (this.spritexoffset < -128) { this.spritexoffset = 0; }
 
-    var sp = maps.getMap("skypalace");
-    var orb1tile = sp.getTile(33,27);
-    var orb1 = orb1tile.getTopFeature();
-    var orb2tile = sp.getTile(29,32);
-    var orb2 = orb2tile.getTopFeature();
-    var orb3tile = sp.getTile(37,32);
-    var orb3 = orb3tile.getTopFeature();
-//    alert(orb1.spritexoffset + " , " + orb2.spritexoffset + " , " + orb3.spritexoffset);
+    let sp = maps.getMap("skypalace");
+    let orb1tile = sp.getTile(33,27);
+    let orb1 = orb1tile.getTopFeature();
+    let orb2tile = sp.getTile(29,32);
+    let orb2 = orb2tile.getTopFeature();
+    let orb3tile = sp.getTile(37,32);
+    let orb3 = orb3tile.getTopFeature();
     if ((orb1.spritexoffset == '-32') && (orb2.spritexoffset == '-96') && (orb3.spritexoffset == '-64')) {
-      var moongate = localFactory.createTile("Moongate");
+      let moongate = localFactory.createTile("Moongate");
       moongate.destmap = "skypalace2";
       moongate.destx = 11;
       moongate.desty = 12;
       sp.placeThing(33,31,moongate);
       animateImage(0,-128,moongate,0,"right",300,0,1);
     } else {
-      var mgtile = sp.getTile(33,31);
-      var moongate = mgtile.getTopFeature();
+      let mgtile = sp.getTile(33,31);
+      let moongate = mgtile.getTopFeature();
       if (moongate) {
         animateImage(-128,0,moongate,0,"left",300,1,0);
         delete moongate.destmap;
       }
     }
   
-    var retval = {};
+    let retval = {};
     retval["txt"] = "Done!";
     return retval;
 }
@@ -8582,20 +8420,19 @@ function DrashOrbToggleTile() {
 DrashOrbToggleTile.prototype = new FeatureObject();
 
 DrashOrbToggleTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval["txt"] = "Done!";
 
   this.spritexoffset = this.spritexoffset - 32;
     if (this.spritexoffset < -128) { this.spritexoffset = 0; }
 
-    var sp = maps.getMap("mtdrash8");
-    var orb1tile = sp.getTile(7,9);
-    var orb1 = orb1tile.getTopFeature();
-    var orb2tile = sp.getTile(8,8);
-    var orb2 = orb2tile.getTopFeature();
-    var orb3tile = sp.getTile(9,9);
-    var orb3 = orb3tile.getTopFeature();
-//    alert(orb1.spritexoffset + " , " + orb2.spritexoffset + " , " + orb3.spritexoffset);
+    let sp = maps.getMap("mtdrash8");
+    let orb1tile = sp.getTile(7,9);
+    let orb1 = orb1tile.getTopFeature();
+    let orb2tile = sp.getTile(8,8);
+    let orb2 = orb2tile.getTopFeature();
+    let orb3tile = sp.getTile(9,9);
+    let orb3 = orb3tile.getTopFeature();
     if ((orb1.spritexoffset == '-128') && (orb2.spritexoffset == '-128') && (orb3.spritexoffset == '-32')) {
       let pile = sp.getTile(14,12).getFeatures();
       let spinner;
@@ -8611,7 +8448,7 @@ DrashOrbToggleTile.prototype.use = function(who) {
       }
     } 
   
-    return retval;
+  return retval;
 }
 
 function OrbStrengthTile() {
@@ -8666,13 +8503,13 @@ function EtherGateTile() {
 EtherGateTile.prototype = new FeatureObject();
 
 EtherGateTile.prototype.walkon = function(who) {
-  var homemap = who.getHomeMap();
-  var desttile = homemap.getTile(this.destx,this.desty);
-  var npcs = desttile.getNPCs();
+  let homemap = who.getHomeMap();
+  let desttile = homemap.getTile(this.destx,this.desty);
+  let npcs = desttile.getNPCs();
   if (npcs) {
-    $.each(npcs, function(idx,val) {
-      homemap.moveThing(this.destx-1,this.desty,val);
-    });
+    for (let i=0;i<npcs.length;i++) {
+      homemap.moveThing(this.destx-1,this.desty,npcs[i]);
+    };
   }
   homemap.moveThing(this.destx,this.desty,who);
   DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
@@ -8691,7 +8528,7 @@ MoongateTile.prototype = new FeatureObject();
 
 MoongateTile.prototype.walkon = function(who) {
   if (this.destmap && this.destx && this.desty) {
-    var newmap = new GameMap();
+    let newmap = new GameMap();
     if (maps.getMap(this.destmap)) {
       newmap = maps.getMap(this.destmap);
     } else {
@@ -8716,11 +8553,10 @@ function PetrifiedReaperTile() {
 PetrifiedReaperTile.prototype = new FeatureObject();
 
 PetrifiedReaperTile.prototype.use = function(who) {
-  var retval  ={};
-  retval["fin"] = 1;
+  let retval  ={fin:1};
 
   if (IsAdjacent(who,this)) {
-    var loot = localFactory.createTile("ReaperBark");
+    let loot = localFactory.createTile("ReaperBark");
     PC.addToInventory(loot,1);
     retval["txt"] = "You take some petrified reaper bark.";
   } else {
@@ -8741,19 +8577,18 @@ function AltarWithSwordTile() {
 AltarWithSwordTile.prototype = new FeatureObject();
 
 AltarWithSwordTile.prototype.use = function(who) {
-  var wherex = this.getx();
-  var wherey = this.gety();
-  var mymap = this.getHomeMap();
+  let wherex = this.getx();
+  let wherey = this.gety();
+  let mymap = this.getHomeMap();
   mymap.deleteThing(this);
-  var emptyaltar = localFactory.createTile("Altar");
+  let emptyaltar = localFactory.createTile("Altar");
   mymap.placeThing(wherex,wherey,emptyaltar);
-  var magicsword = localFactory.createTile("MagicSword");
+  let magicsword = localFactory.createTile("MagicSword");
   mymap.placeThing(wherex,wherey,magicsword);
   DrawMainFrame("one", mymap, wherex, whereY);
   
   return;
 }
-
 
 
 // Items
@@ -8858,7 +8693,7 @@ function CourierPouchTile() {
 CourierPouchTile.prototype = new ItemObject();
 
 CourierPouchTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   retval["input"] = "&gt;";
   retval["txt"] = "You open the pouch and scan through the documents. They appear to be written in some kind of code- hopefully the Loyalists know how to read it.";
@@ -8881,7 +8716,7 @@ function CourierLetterTile() {
 CourierLetterTile.prototype = new ItemObject();
 
 CourierLetterTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   retval["input"] = "&gt;";
   retval["txt"] = "The letter appears to be in a simple code. Hopefully Prince Lance knows how to read it.";
@@ -8946,25 +8781,25 @@ function AmuletOfReflectionsTile() {
 AmuletOfReflectionsTile.prototype = new ItemObject();
 
 AmuletOfReflectionsTile.prototype.use = function(who) {
-  var themap = who.getHomeMap();
-  var retval = {};
+  let themap = who.getHomeMap();
+  let retval = {};
   if (themap.getName() === "olympus2") {
-    var standbefore = themap.getTile(who.getx(), who.gety());
-    var ismirror = standbefore.getTopFeature();
+    let standbefore = themap.getTile(who.getx(), who.gety());
+    let ismirror = standbefore.getTopFeature();
     if (ismirror.getName() === "mirror") {
       // you are in the right map standing at the right place. GO.
       // remove buffs/debuffs - doesn't cure poison, I guess you can die of
       // poison while your mind is elsewhere? Don't do it, people.
-      var effects = who.getSpellEffects();
-      $.each(effects, function(effidx, effval) {
-        if ((effval.getLevel() > 0) && (effval.getExpiresTime() > -1)) {
-          effval.endEffect();
+      let effects = who.getSpellEffects();
+      for (let i=0;i<effects.length;i++) {
+        if ((effects[i].getLevel() > 0) && (effects[i].getExpiresTime() > -1)) {
+          effects[i].endEffect();
         }
-      });
+      };
       gamestate.setMode("null");
       FadeOut(2000);
       setTimeout(function() {
-        var newmap = new GameMap();
+        let newmap = new GameMap();
         if (maps.getMap("abyss0")) {
           newmap = maps.getMap("abyss0");
         } else {
@@ -9446,7 +9281,7 @@ function AppleTile() {
 AppleTile.prototype = new ItemObject();
 
 AppleTile.prototype.use = function(who) { 
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   if (who === PC) {
     retval["txt"] = "You crunch into the apple. It's delicious!";
@@ -9483,7 +9318,7 @@ function GoldTile() {
 GoldTile.prototype = new ItemObject();
 
 GoldTile.prototype.setQuantity = function(quant) {
-  var newquant = parseInt(quant);
+  let newquant = parseInt(quant);
   if (newquant === quant) {
     this.quantity = quant;
     if (quant === 1) { this.setDesc("1 gold coin"); }
@@ -9523,7 +9358,7 @@ KeyItemObject.prototype = new ItemObject();
 
 KeyItemObject.prototype.use = function(who) {
   gamestate.setMode("choosedir");
-  var retval={};
+  let retval={};
   retval["override"] = 1;
   retval["fin"] = 4;
   retval["input"] = "&gt; Choose direction-";
@@ -9536,10 +9371,10 @@ KeyItemObject.prototype.use = function(who) {
 }
 
 function KeyUse(who,what,tgt) {
-  var retval= {};
+  let retval= {};
   if (!tgt) {
-    var locktile = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-    var tgt = locktile.getTopFeature();
+    let locktile = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+    let tgt = locktile.getTopFeature();
   }
   if (!tgt) {
     retval["fin"] = 0;
@@ -9737,13 +9572,13 @@ function BookItemObject() {
 BookItemObject.prototype = new ItemObject();
 
 BookItemObject.prototype.use = function(who) {
-  var bookcontents = this.contents.split("%%");
-  var retval = {};
+  let bookcontents = this.contents.split("%%");
+  let retval = {};
   if (bookcontents) {
     retval["txt"] = "Use: " + this.getDesc() + "<br /> Reading...<br />" + bookcontents.shift();
     if (bookcontents.length > 0) {
       retval["override"] = 1;
-	  	var usedname = this.getDesc();
+	  	let usedname = this.getDesc();
 		  usedname = usedname.replace(/^a /, "");
       
       retval["fin"] = 3;
@@ -9940,7 +9775,7 @@ function KyvekBoxTile() {
 KyvekBoxTile.prototype = new ConsumableItemObject();
 
 KyvekBoxTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {fin:1};
   
   if (who === PC) {
     retval["override"] = -1;
@@ -9950,13 +9785,11 @@ KyvekBoxTile.prototype.use = function(who) {
     retval["input"] = "(Y/N): ";
     return retval;
   }
-  retval["fin"] = 1;
   return retval;
 }
 
 KyvekBoxTile.prototype.usePrompt = function(code) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if (code === 89) {
     retval["txt"] = "You break the seal and empty the coin into your own pouches. You gain 600 gold.";
     DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")-1);
@@ -9984,7 +9817,7 @@ function InfiniteScrollTile() {
 InfiniteScrollTile.prototype = new ConsumableItemObject();
 
 InfiniteScrollTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   
   if (who === PC) {
     delete this.circle;
@@ -10057,7 +9890,7 @@ function SupplyBoxTile() {
 SupplyBoxTile.prototype = new ConsumableItemObject();
 
 SupplyBoxTile.prototype.use = function(who) {
-  var retval = { fin: 1 };
+  let retval = { fin: 1 };
   who.addToInventory(localFactory.createTile("WhitePotion"),1,2);
   who.addToInventory(localFactory.createTile("RedPotion"),1);
   who.addToInventory(localFactory.createTile("YellowPotion"),1,2);
@@ -10077,10 +9910,10 @@ PotionItemObject.prototype = new ConsumableItemObject();
 
 PotionItemObject.prototype.flamed = function() {
   maintext.addText("The " + this.getDesc() + " boils away!");
-  var thisx = this.getx();
-  var thisy = this.gety();
+  let thisx = this.getx();
+  let thisy = this.gety();
   
-  var itsmap = this.getHomeMap();
+  let itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
   DrawMainFrame("one",itsmap,thisx,thisy);
   
@@ -10109,26 +9942,26 @@ GreenPotionTile.prototype.getLongDesc = function() {
 
 GreenPotionTile.prototype.flamed = function() {
   maintext.addText("The " + this.getDesc() + " boils away!");
-  var thisx = this.getx();
-  var thisy = this.gety();
-  var itsmap = this.getHomeMap();
+  let thisx = this.getx();
+  let thisy = this.gety();
+  let itsmap = this.getHomeMap();
     
-  for (var i=thisx-1;i<=thisx+1;i++) {
-    for (var j=thisy-1;j<=thisy+1;j++) {
-      var tile = itsmap.getTile(i,j);
+  for (let i=thisx-1;i<=thisx+1;i++) {
+    for (let j=thisy-1;j<=thisy+1;j++) {
+      let tile = itsmap.getTile(i,j);
       if (tile !== "OoB") {
-        var npcs = tile.getNPCs();
-        $.each(npcs, function(idx,val) {
-          if (Dice.roll("1d100") < (55-val.getLevel()*5)) {
+        let npcs = tile.getNPCs();
+        for (let i=0;i<npcs.length;i++) {
+          if (Dice.roll("1d100") < (55-npcs[i].getLevel()*5)) {
             // poisoned by fumes
-            maintext.addText(val.getFullDesc() + " is poisoned by the fumes!");
-            var poison = localFactory.createTile("Poison");
-            var duration = Dice.roll("2d8") * SCALE_TIME;
+            maintext.addText(npcs[i].getFullDesc() + " is poisoned by the fumes!");
+            let poison = localFactory.createTile("Poison");
+            let duration = Dice.roll("2d8") * SCALE_TIME;
             poison.setExpiresTime(duration + DUTime.getGameClock());
-            val.addSpellEffect(poison);
-            ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_GREEN);
+            npcs[i].addSpellEffect(poison);
+            ShowEffect(npcs[i], 1000, "spellsparkles-anim.gif", 0, COLOR_GREEN);
           }
-        });
+        }
       }
     }
   }
@@ -10141,10 +9974,9 @@ GreenPotionTile.prototype.flamed = function() {
 
 GreenPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {}
-  retval["fin"] = 1;
-  var poison = localFactory.createTile("Poison");
-  var duration = Dice.roll("2d8") * SCALE_TIME;
+  let retval = {fin:1}
+  let poison = localFactory.createTile("Poison");
+  let duration = Dice.roll("2d8") * SCALE_TIME;
   poison.setExpiresTime(duration + DUTime.getGameClock());
   who.addSpellEffect(poison);
   if (who === PC) {
@@ -10176,7 +10008,7 @@ DarkGreenPotionTile.prototype.getLongDesc = function() {
 
 DarkGreenPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />You begin to move more quickly!";
   DrawCharFrame();
@@ -10205,15 +10037,14 @@ SilverPotionTile.prototype.getLongDesc = function() {
 
 SilverPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var resp = {};
+  let resp = {};
   resp["fin"] = 1;
 
-  var levobj = localFactory.createTile("BlessingStr");
+  let levobj = localFactory.createTile("BlessingStr");
   
-  var dur = Dice.roll("2d10+15");
-  var power = Dice.roll("1d4+1");
-  var endtime = dur + DU.DUTime.getGameClock();
-//  if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green'>Potion of Strength: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  let dur = Dice.roll("2d10+15");
+  let power = Dice.roll("1d4+1");
+  let endtime = dur + DU.DUTime.getGameClock();
   if (!DebugWrite("gameobj", "Potion of Strength: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />")) {
     DebugWrite("magic", "Potion of Strength: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
   }
@@ -10249,15 +10080,13 @@ PinkPotionTile.prototype.getLongDesc = function() {
 
 PinkPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var resp = {};
-  resp["fin"] = 1;
+  let resp = {fin:1};
 
-  var levobj = localFactory.createTile("BlessingDex");
+  let levobj = localFactory.createTile("BlessingDex");
   
-  var dur = Dice.roll("2d10+15");
-  var power = Dice.roll("1d4+1");
-  var endtime = dur + DU.DUTime.getGameClock();
-//  if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green'>Potion of Dexterity: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  let dur = Dice.roll("2d10+15");
+  let power = Dice.roll("1d4+1");
+  let endtime = dur + DU.DUTime.getGameClock();
   if (!DebugWrite("gameobj", "Potion of Dexterity: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />")) {
     DebugWrite("magic", "Potion of Dexterity: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
   }
@@ -10293,16 +10122,14 @@ GreyPotionTile.prototype.getLongDesc = function() {
 }
 
 GreyPotionTile.prototype.use = function(who) {
-  var resp = {};
+  let resp = {fin:1};
   DUPlaySound("sfx_potion");
-  resp["fin"] = 1;
 
-  var levobj = localFactory.createTile("BlessingInt");
+  let levobj = localFactory.createTile("BlessingInt");
   
-  var dur = Dice.roll("2d10+15");
-  var power = Dice.roll("1d4+1");
-  var endtime = dur + DU.DUTime.getGameClock();
-//  if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green'>Potion of Intelligence: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  let dur = Dice.roll("2d10+15");
+  let power = Dice.roll("1d4+1");
+  let endtime = dur + DU.DUTime.getGameClock();
   if (!DebugWrite("gameobj", "Potion of Intelligence: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />")) {
     DebugWrite("magic", "Potion of Intelligence: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
   }
@@ -10340,8 +10167,7 @@ BrownPotionTile.prototype.getLongDesc = function() {
 BrownPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
   who.setMana(who.getMaxMana());
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if (who === PC) {
     retval["txt"] = "Gulp!<br />You feel refreshed!";
     DrawCharFrame();
@@ -10371,10 +10197,10 @@ RedPotionTile.prototype.getLongDesc = function() {
 
 RedPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var poisoned;
+  let poisoned;
   if (who.getSpellEffectsByName("Poison")) { poisoned = 1; }
   if (who.getSpellEffectsByName("Disease")) { poisoned = 1; }
-  var resp = magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell(who,1,2);
+  let resp = magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell(who,1,2);
   resp["txt"] = "Gulp!";
   if (!poisoned) { maintext.delayedAddText("Nothing happens."); } 
   DrawCharFrame();
@@ -10403,7 +10229,7 @@ WhitePotionTile.prototype.getLongDesc = function() {
 
 WhitePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = { fin:1};
+  let retval = { fin:1};
   retval = magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />You begin to glow.";
   DrawCharFrame();
@@ -10432,7 +10258,7 @@ YellowPotionTile.prototype.getLongDesc = function() {
 
 YellowPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(PC, 0, 2);
   if (who.checkType("PC")) { DrawCharFrame(); }
   retval["txt"] = "Gulp!<br />You are healed!";
@@ -10461,7 +10287,7 @@ PurplePotionTile.prototype.getLongDesc = function() {
 
 PurplePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_PROTECT_LEVEL][SPELL_PROTECT_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />You feel an aura of protection around you.";
   DrawCharFrame();
@@ -10490,7 +10316,7 @@ BlackPotionTile.prototype.getLongDesc = function() {
 
 BlackPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />You feel blessed!";
   DrawCharFrame();
@@ -10519,7 +10345,7 @@ BluePotionTile.prototype.getLongDesc = function() {
 
 BluePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />You are healed!"
   DrawCharFrame();
@@ -10548,7 +10374,7 @@ DeepBluePotionTile.prototype.getLongDesc = function() {
 
 DeepBluePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />Your vision becomes strange!"
   DrawCharFrame();
@@ -10577,10 +10403,10 @@ OrangePotionTile.prototype.getLongDesc = function() {
 
 OrangePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var mana = Dice.roll("2d6+1");
+  let mana = Dice.roll("2d6+1");
   who.setMana(who.getMana() + mana);
   if (who.getMana() > who.getMaxMana()) { who.setMana(who.getMaxMana()); }
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   if (who === PC) {
     retval["txt"] = "Gulp!<br />You feel refreshed!";
@@ -10611,7 +10437,7 @@ TanPotionTile.prototype.getLongDesc = function() {
 
 TanPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />Your skin is as hard as iron!"
   DrawCharFrame();
@@ -10631,12 +10457,12 @@ function ScrollItemObject() {
 ScrollItemObject.prototype = new ConsumableItemObject();
 
 ScrollItemObject.prototype.getLongDesc = function() {
-  var spellname = magic[this.spelllevel][this.spellnum].getName();
+  let spellname = magic[this.spelllevel][this.spellnum].getName();
   return "A scroll of " + spellname + ".";
 }
 
 ScrollItemObject.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval = magic[this.spelllevel][this.spellnum].executeSpell(PC, 0, 1);
   if (retval["fin"] === 4) { 
     retval["override"] = 1; 
@@ -10661,10 +10487,10 @@ ScrollItemObject.prototype.spellcast = function(who) {
 
 ScrollItemObject.prototype.flamed = function() {
   maintext.addText("The " + this.getDesc() + " burns away!");
-  var thisx = this.getx();
-  var thisy = this.gety();
+  let thisx = this.getx();
+  let thisy = this.gety();
   
-  var itsmap = this.getHomeMap();
+  let itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
   DrawMainFrame("one",itsmap,thisx,thisy);
   
@@ -11253,7 +11079,7 @@ function AudachtaNemesosObject() {
 AudachtaNemesosObject.prototype = new ConsumableItemObject();
 
 AudachtaNemesosObject.prototype.getLongDesc = function() {
-  var spellname = magic[spelllevel][spellnum].getName();
+  let spellname = magic[spelllevel][spellnum].getName();
   return "Audachta Nemesos: " + spellname + ". A book that teaches the spell " + spellname + " when the spell Audachta Scribe is cast upon the book.";
 }
 
@@ -11273,10 +11099,10 @@ AudachtaNemesosObject.prototype.getLongDesc = function() {
 
 AudachtaNemesosObject.prototype.flamed = function() {
   maintext.addText("The " + this.getDesc() + " is ruined in the fire!");
-  var thisx = this.getx();
-  var thisy = this.gety();
+  let thisx = this.getx();
+  let thisy = this.gety();
   
-  var itsmap = this.getHomeMap();
+  let itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
   DrawMainFrame("one",itsmap,thisx,thisy);
   
@@ -11870,7 +11696,7 @@ equipableItemObject.prototype.equipMe = function(who) {
     if (who.getStr() < this.getStrReq()) {
       return 0;
     }
-    var currentarmor = who.getArmor();
+    let currentarmor = who.getArmor();
     if (currentarmor && (currentarmor !== this)) {
       currentarmor.unEquipMe();
     }
@@ -11882,7 +11708,7 @@ equipableItemObject.prototype.equipMe = function(who) {
     if (who.getDex() < this.getDexReq()){
       return 0;
     }
-    var currentmissile = who.getMissile();
+    let currentmissile = who.getMissile();
     if (currentmissile && (currentmissile !== this)) {
       currentmissile.unEquipMe();
     }
@@ -11891,7 +11717,7 @@ equipableItemObject.prototype.equipMe = function(who) {
   }
 
   else if (this.checkType("Weapon")) {
-    var currentweapon = who.getWeapon();
+    let currentweapon = who.getWeapon();
     if (currentweapon && (currentweapon !== this)) {
       currentweapon.unEquipMe();
     }
@@ -11902,7 +11728,7 @@ equipableItemObject.prototype.equipMe = function(who) {
 }
 
 equipableItemObject.prototype.unEquipMe = function() {
-  var who = this.getEquippedTo();
+  let who = this.getEquippedTo();
   if (!who) { return 0; }
   if (!who.checkType("npc")) { return 0; }  
   
@@ -11932,8 +11758,8 @@ equipableItemObject.prototype.unEquipMe = function() {
 }
 
 equipableItemObject.prototype.use = function(who) {
-  var success = this.equipMe(PC);
-  var retval = {};
+  let success = this.equipMe(PC);
+  let retval = {};
   retval["fin"] = 1;
   retval["txt"] = "";
   if (this.checkType("Armor")) { 
@@ -12152,21 +11978,21 @@ WeaponObject.prototype.setStrDamage = function(newdam) {
 }
 
 WeaponObject.prototype.parseDamage = function() {
-  var dmgobj = Dice.parse(this.getDamage());
+  let dmgobj = Dice.parse(this.getDamage());
   
   return dmgobj;
 }
 
 WeaponObject.prototype.rollDamage = function(wielder) {
-  var damage = Dice.roll(this.getDamage());
+  let damage = Dice.roll(this.getDamage());
   if (wielder && this.getStrDamage()) {
-    var str = wielder.getStr();
-    var strmod = parseFloat(this.getStrDamage());
-    var strdam = (str-10)*strmod;
+    let str = wielder.getStr();
+    let strmod = parseFloat(this.getStrDamage());
+    let strdam = (str-10)*strmod;
     damage += parseInt(strdam);
   }
   
-  var fb = wielder.getSpellEffectsByName("FlameBlade");
+  let fb = wielder.getSpellEffectsByName("FlameBlade");
   if (!this.checkType("Missile")) {
     if (wielder && fb) {
       if (debug && (debugflags.magic || debugflags.combat)) { dbs.writeln("<span style='color:green'>Flame blade adds " + fb.damage + " damage.<br /></span>"); }
@@ -12181,14 +12007,11 @@ WeaponObject.prototype.rollDamage = function(wielder) {
 }
 
 WeaponObject.prototype.getAveDamage = function(wielder) {
-//  var dmgobj = this.parseDamage();
-//  var damage = dmgobj.plus;
-//  damage += (dmgobj.quantity * (dmgobj.dice + 1)/2);
-  var damage = Dice.rollave(this.getDamage());
+  let damage = Dice.rollave(this.getDamage());
   if (wielder && this.getStrDamage()) {
-    var str = wielder.getStr();
-    var strmod = parseFloat(this.getStrDamage());
-    var strdam = (str-10)*strmod;
+    let str = wielder.getStr();
+    let strmod = parseFloat(this.getStrDamage());
+    let strdam = (str-10)*strmod;
     damage += parseInt(strdam);
   }
   return damage;
@@ -12371,8 +12194,6 @@ function MissileWeaponObject() {
 	this.ammoyoffset = "0";
 	this.directionalammo = 0;
 	this.ammoReturn = 0;	
-//  this.hitSound = "sfx_missile_hit";
-//  this.attackSound = "sfx_missile_atk";
 	
 	this.addType("Missile");
 }
@@ -12406,13 +12227,12 @@ MissileWeaponObject.prototype.setRange = function(newrange) {
 }
 
 MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
-  var params = {};
+  let params = {};
   params.graphic = this.ammographic;
   params.yoffset = this.ammoyoffset;
   params.xoffset = this.ammoxoffset;
   params.directionalammo = this.directionalammo;
   return GetEffectGraphic(atk,def,params);
-  
 }  
 
 MissileWeaponObject.prototype.getAmmoReturn = function() {
@@ -12543,16 +12363,6 @@ function AnimateObject() {
 AnimateObject.prototype = new GameObject();
 
 
-// Replaced for the nonce with PickOne.
-//AnimateObject.prototype.pickGraphic = new function() {
-//	if (this.altGraphics) {
- // 	var options = this.altGraphics.length;
-//	  if (options > 0) {
-//		  var randomnumber=Math.floor(Math.random()*options) + 1;
-//		  this.setGraphic(altGraphics[randomnumber]);
-//	  }
-//	}
-//}
 
 function NPCObject() {
 	this.str = 10;
@@ -12569,7 +12379,6 @@ function NPCObject() {
 	this.mana = 10;
 	this.maxmana = 10;
 	this.level = 1;
-//	this.type = "npc";
 	this.npcname = "myname";
 	this.desc = "an NPC";
 	this.alignment = "good";	
@@ -12624,38 +12433,11 @@ function NPCObject() {
 	LightEmitting.call(this, 0);
 	
 	this.addType("npc");
-//	AddNPCProperties.call(this);
 }
 NPCObject.prototype = new AnimateObject();
 
-function AddNPCProperties() {
-  this.equipment = {};
-  this.equipment.armor = "";
-  this.equipment.weapon = "";
-  this.equipment.missile = "";
-
-	this.inventory = new Collection();
-	
-	this.spellbook = [];
-	this.spellEffects = new Collection();
-	
-	this.lastLocation = {};
-	this.lastLocation.map = "";
-	this.lastLocation.x = 0;
-	this.lastLocation.y = 0;
-		
-	//brain
-	this.currentPoI = {};
-  this.currentDestination = {};
-  this.turnsToRecalcPoI = 0;
-  this.turnsToRecalcDest = 0;
-  this.currentPath = [];
-  this.destType;
-
-}
-
 NPCObject.prototype.getDesc = function() {
-  var knowsflag = "knows_" + this.conversationflag;
+  let knowsflag = "knows_" + this.conversationflag;
   if (DU.gameflags.getFlag(knowsflag)) {
     return this.npcname;
   } 
@@ -12677,7 +12459,7 @@ NPCObject.prototype.setMana = function(newMana) {
 }
 
 NPCObject.prototype.getMana = function() {
-  var mana = parseInt(this.mana);
+  let mana = parseInt(this.mana);
 	return mana;
 }
 
@@ -12794,7 +12576,6 @@ NPCObject.prototype.getLastTurnTime = function() {
 }
 
 NPCObject.prototype.setLastTurnTime = function(newtime) {
-//  newtime = parseInt(newtime);
   if (!isNaN(newtime)) {
     this.lastTurnTime = newtime;
   }
@@ -12820,8 +12601,8 @@ NPCObject.prototype.setCurrentScheduleIndex = function(sched) {
 }
 
 NPCObject.prototype.incrementCurrentScheduleIndex = function() {
-  var schedule = DU.schedules[this.getSchedule()];
-  var nextidx = this.currentScheduleIndex+1;
+  let schedule = DU.schedules[this.getSchedule()];
+  let nextidx = this.currentScheduleIndex+1;
   if (nextidx >= schedule.scheduleArray.length) { nextidx = 0; }
   this.currentScheduleIndex = nextidx;
   return this.currentScheduleIndex;
@@ -12865,7 +12646,7 @@ NPCObject.prototype.getHP = function() {
 }
 
 NPCObject.prototype.getDisplayHP = function() {
-  var displayhp = Math.ceil(this.hp);
+  let displayhp = Math.ceil(this.hp);
   if (displayhp < 0) { displayhp = 0; }
   return displayhp;
 }
@@ -12879,7 +12660,6 @@ NPCObject.prototype.getMaxHP = function() {
 }
 
 NPCObject.prototype.modHP = function(hpdiff) {
-//	hpdiff = parseInt(hpdiff);
 	this.hp += hpdiff;
 	return this.hp;
 }
@@ -12893,15 +12673,15 @@ NPCObject.prototype.healMe = function(amt, src) {
 }
 
 NPCObject.prototype.dealDamage = function(dmg, src, type) {
-  var isasleep = this.getSpellEffectsByName("Sleep");
+  let isasleep = this.getSpellEffectsByName("Sleep");
   if (isasleep) {
     isasleep.endEffect();
   }
-  var isfrozen = this.getSpellEffectsByName("Frozen");
+  let isfrozen = this.getSpellEffectsByName("Frozen");
   if (isfrozen) {
     isfrozen.endEffect();
   }
-  var isinvuln = this.getSpellEffectsByName("Invulnerable");
+  let isinvuln = this.getSpellEffectsByName("Invulnerable");
   if (isinvuln) {
     dmg = 0;
   }
@@ -12911,7 +12691,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
   if (this.getHP() <= 0) { // killed!
     this.processDeath(1);
     if (src === PC) {
-      var XP = this.getXPVal();
+      let XP = this.getXPVal();
       XP = XP * (1 + DU.gameflags.getFlag("karma")/100);
       PC.addxp(XP);
     }
@@ -12921,8 +12701,8 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
 }
 
 NPCObject.prototype.processDeath = function(droploot){
-  var thisx = this.getx();
-  var thisy = this.gety();
+  let thisx = this.getx();
+  let thisy = this.gety();
   if (targetCursor.lastTarget === this) { delete targetCursor.lastTarget; }
   if (this.checkType("PC")) {
     // just in case you died on your turn:
@@ -12933,7 +12713,7 @@ NPCObject.prototype.processDeath = function(droploot){
     PC.deaduntil = GetGameClockByClockTime("9:00");
 
     maintext.delayedAddText("You have died!");
-    var newmap = new GameMap();
+    let newmap = new GameMap();
     if (maps.getMap("landsbeyond")) {
       newmap = maps.getMap("landsbeyond");
       // though I'm confused about why this is already in memory!
@@ -12942,23 +12722,24 @@ NPCObject.prototype.processDeath = function(droploot){
     }
     maintext.setInputLine("&gt;");
     maintext.drawTextFrame(); 
-    var spellobjs = this.getSpellEffects();
+    let spellobjs = this.getSpellEffects();
     if (spellobjs.length) {
-      for (var i = 0; i < spellobjs.length; i++ ) {
+      for (let i=0; i<spellobjs.length; i++ ) {
         if (spellobjs[i].getExpiresTime() !== -1) {
           spellobjs[i].endEffect();
         }
       }
     }
     MoveBetweenMaps(this,this.getHomeMap(),newmap, 7, 7, 1);
-    $("#displayframe").fadeOut(2600, function() {
+    FadeOut(1);
+    setTimeout(function() {
       maintext.addText("You find yourself floating bodiless in the void.");
       DrawMainFrame("draw", newmap, 7,7);
-//      $("#mainview").css('display','none');
       if (gamestate.getTurn() === PC) {
         PC.endTurn();
       }
-      $("#displayframe").fadeIn(2000, "swing", function() {
+      FadeIn();
+      setTimeout(function() {
         DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
         maintext.addText("There is nought to do but meditate upon your life, and the triumphs and errors it contained.");
         setTimeout(function() {
@@ -12978,13 +12759,13 @@ NPCObject.prototype.processDeath = function(droploot){
             }, 1700);
           }, 1700);
         }, 1700);
-      }, 1700);
-    });
+      }, 1500);
+    }, 2300);
     return;
   } else {
-    var corpse = {};
-    var chest;
-    var map = this.getHomeMap();
+    let corpse = {};
+    let chest;
+    let map = this.getHomeMap();
     if ((this.getLeavesCorpse()) && (this.getLeavesCorpse() !== "none")) {
       corpse = localFactory.createTile(this.getLeavesCorpse());
       corpse.setSearchDelete(1);
@@ -12993,14 +12774,14 @@ NPCObject.prototype.processDeath = function(droploot){
       chest = localFactory.createTile("Chest");
     }
     if ((droploot) && (this.lootTable !== "none")) {
-      var loottables = this.lootTable.split(",");
-      for (var i=0;i<loottables.length;i++) {
-        var loot = {};
+      let loottables = this.lootTable.split(",");
+      for (let i=0;i<loottables.length;i++) {
+        let loot = {};
         if (DULoot[loottables[i]]) {
           loot = DULoot[loottables[i]].getLoot(); 
           if (loot.lootlist.length) {
             if (chest) {
-              for (var i=0; i<loot.lootlist.length;i++){
+              for (let i=0; i<loot.lootlist.length;i++){
                 chest.addToContainer(loot.lootlist[i], 1);
               }
             } else {
@@ -13008,7 +12789,7 @@ NPCObject.prototype.processDeath = function(droploot){
             }
           }
           if (loot.gold) {
-            var totgold = loot.gold;
+            let totgold = loot.gold;
             if (this.stolengold) { totgold += this.stolengold; }
 
             if (chest) {
@@ -13023,10 +12804,10 @@ NPCObject.prototype.processDeath = function(droploot){
       }
     }
     if ((chest) && (chest.container.length)) {
-      var trapname = GetStrongestTrap(loottables);
+      let trapname = GetStrongestTrap(loottables);
       if (trapname) {
         DebugWrite("gameobj", "Chest created, might be trapped with: " + trapname + ".<br />");
-        var trap = DUTraps[trapname].getTrap();
+        let trap = DUTraps[trapname].getTrap();
         if (trap.trap) {
           chest.setTrap(trap.trap, trap.level);
         }
@@ -13035,20 +12816,18 @@ NPCObject.prototype.processDeath = function(droploot){
     }
     map.deleteThing(this);
     if (map.getName() === "shadow1") {
-      var npcs = map.npcs.getAll();
-      var safe = 1;
-      $.each(npcs, function(idx, val) {
-        if (val.getNPCBand()) {
+      let npcs = map.npcs.getAll();
+      let safe = 1;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getNPCBand()) {
           safe = 0;
         }
-      });
+      };
       if (safe === 1) { DU.gameflags.setFlag("shadow_safe", 1); } 
     }
     DrawMainFrame("one",map,thisx,thisy);
     DUTime.removeEntityFrom(this);
-//    delete universe.this.getSerial();
-//    delete map.lightsList[this.getSerial()];    // handled in map.deleteThing now
-    var spawner=this.getSpawnedBy();
+    let spawner=this.getSpawnedBy();
     if (spawner) {
       spawner.deleteSpawned(this);
     }
@@ -13067,7 +12846,7 @@ NPCObject.prototype.getGender = function() {
 }
 
 NPCObject.prototype.getGenderedTerms = function() {
-  var gt = {};
+  let gt = {};
   if (this.gender === "male") {
     gt.pronoun = "he";
     gt.possessive = "his";
@@ -13190,7 +12969,7 @@ NPCObject.prototype.setBaseStr = function(newstr) {
 }
 
 NPCObject.prototype.getStr = function() {
-  var str = this.getBaseStr() + this.getModStr() + this.getOrbStr();
+  let str = this.getBaseStr() + this.getModStr() + this.getOrbStr();
   str = Math.max(str,3);
 	return str;
 }
@@ -13234,7 +13013,7 @@ NPCObject.prototype.setOrbDex = function(newdex) {
 }
 
 NPCObject.prototype.getDex = function() {
-  var dex = this.getBaseDex() + this.getModDex() + this.getOrbDex();
+  let dex = this.getBaseDex() + this.getModDex() + this.getOrbDex();
   dex = Math.max(dex,3);
 	return dex;
 }
@@ -13279,7 +13058,7 @@ NPCObject.prototype.setOrbInt = function(newint) {
 }
 
 NPCObject.prototype.getInt = function() {
-  var theint = this.getBaseInt() + this.getModInt() + this.getOrbInt();
+  let theint = this.getBaseInt() + this.getModInt() + this.getOrbInt();
   theint = Math.max(theint, 3);
 	return theint;
 }
@@ -13400,22 +13179,20 @@ NPCObject.prototype.setArmorAs = function(armor) {
 NPCObject.prototype.nextActionTime = function(initdelay) {
 
   if (this.getSpellEffectsByName("TimeStop")) { return 0; }
-  var themap = this.getHomeMap();
-  var scale = themap.getScale();
+  let themap = this.getHomeMap();
+  let scale = themap.getScale();
   if (this.smallscalemove) { 
     scale = 1;
     delete this.smallscalemove;
   }
 
-  var effectiveDex = 10;
+  let effectiveDex = 10;
   if (scale) {
     effectiveDex = this.getDex();
   }
   if (this.getInitOverride() && (this.getAttitude() === "friendly")) { effectiveDex = this.getInitOverride(); }
 
-//  var isQuick = 1;  // replace with a check for the presence of the Quickness spell.  // actually, quickness spell should just modify initmult
-//  var init = ((-1/60) * effectiveDex + (7/6)) * this.initmult * (isQuick);
-  var init = ((-1/60) * effectiveDex + (7/6)) * this.initmult;
+  let init = ((-1/60) * effectiveDex + (7/6)) * this.initmult;
   
   if ((initdelay) && (initdelay != 0)) {
   	init = init * initdelay;
@@ -13467,35 +13244,30 @@ NPCObject.prototype.getSpellEffectsByName = function(checkname) {
 }
 
 NPCObject.prototype.addSpellEffect = function(spellobj, silent) {
-  var otherEffects = this.getSpellEffects();
-  var addme = 1;
+  let otherEffects = this.getSpellEffects();
+  let addme = 1;
   if (!silent) { silent = 0; }
   if (otherEffects.length) {
-    for (var i=0; i < otherEffects.length; i++) {
+    for (let i=0; i < otherEffects.length; i++) {
       if (otherEffects[i].getName() === spellobj.getName()) {
         silent = 1;
-        var totin = spellobj.getInstances() + otherEffects[i].getInstances();
-//        if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: That spell is already on the target.<br /></span>"); }
+        let totin = spellobj.getInstances() + otherEffects[i].getInstances();
         DebugWrite("magic", "That spell is already on the target.<br />");
         if (otherEffects[i].getPower() > spellobj.getPower()) {  // keep old one, extend it
-          var adddur = (1/(totin - 1))*(spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.DUTime.getGameClock());
-//          if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Old one is stronger, extending by " + adddur + ".<br /></span>"); }
+          let adddur = (1/(totin - 1))*(spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.DUTime.getGameClock());
           DebugWrite("magic", "Old one is stronger, extending by " + adddur + ".<br />");
           otherEffects[i].setExpiresTime(otherEffects[i].getExpiresTime() + adddur);
           otherEffects[i].setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
           otherEffects[i].mergeSpells("old");
           addme = 0; 
-//          maintext.addText("The existing spell is revitalized!");
           return 0;
         } else {
-          var adddur = (1/(totin - 1))*(otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.DUTime.getGameClock());
+          let adddur = (1/(totin - 1))*(otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.DUTime.getGameClock());
           spellobj.setExpiresTime(spellobj.getExpiresTime() + adddur);
-//          if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: New one is stronger. Replacing old and extending new by " + adddur + ".<br /></span>"); }
           DebugWrite("magic", "New one is stronger. Replacing old and extending new by " + adddur + ".<br />");
           otherEffects[i].endEffect(1);
           spellobj.setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
           spellobj.mergeSpells("new");
-//          maintext.addText("The existing spell has become stronger!");
         }
         break;
       }
@@ -13504,18 +13276,16 @@ NPCObject.prototype.addSpellEffect = function(spellobj, silent) {
   this.spellEffects.addBottom(spellobj);
   spellobj.setAttachedTo(this);
   spellobj.setCreateTime(DUTime.getGameClock());
-  var makeactive = spellobj.applyEffect(silent);
+  let makeactive = spellobj.applyEffect(silent);
   if (makeactive) {
     spellobj.setActive(1);
   }
   
   return 1;
-//  SetActiveEffects(this);
 }
 
 NPCObject.prototype.deleteSpellEffect = function(spellobj) {
   this.spellEffects.deleteFrom(spellobj);
-//  SetActiveEffects(this);
 }
 
 NPCObject.prototype.getSpawnedBy = function() {
@@ -13550,8 +13320,6 @@ NPCObject.prototype.activate = function(timeoverride) {
 	
   	this.resists = {};   // fire, ice
 
-//    this.target = {};
-    
 	  this.lastLocation = {};
     this.lastLocation.map = "";
 	  this.lastLocation.x = 0;
@@ -13595,9 +13363,9 @@ NPCObject.prototype.activate = function(timeoverride) {
       this.setCurrentAI(this.getPeaceAI());
     }
   
-    var weapon;
-    var missileweapon;
-    var armor;
+    let weapon;
+    let missileweapon;
+    let armor;
     
     if ((this.getMeleeAttackAs()) && (this.getMeleeAttackAs() !== "none")) {
       weapon = localFactory.createTile(this.getMeleeAttackAs());
@@ -13649,22 +13417,22 @@ NPCObject.prototype.activate = function(timeoverride) {
     } 
     
     this.specials = {};
-    var tmpspc = {};
+    let tmpspc = {};
     if (this.special) {
-      var tmp = this.special.replace(" ","");
+      let tmp = this.special.replace(" ","");
       tmp = tmp.split(",");
-      for (var i=0; i<tmp.length;i++){
+      for (let i=0; i<tmp.length;i++){
         if (tmp[i].indexOf(":") > -1) {
-          var bluh = tmp[i].split(":");
+          let bluh = tmp[i].split(":");
           tmpspc[bluh[0]] = bluh[1];
           if (typeof NPCSpecialFuncs[bluh[0]] === "function") {
-            var ret = NPCSpecialFuncs[bluh[0]](this, bluh[1]);
+            let ret = NPCSpecialFuncs[bluh[0]](this, bluh[1]);
             if (ret) { tmpspc[bluh[0]] = ret; }
           }
         } else {
           tmpspc[tmp[i]] = 1;
           if (typeof NPCSpecialFuncs[tmp[i]] === "function") {
-            var ret = NPCSpecialFuncs[tmp[i]](this);
+            let ret = NPCSpecialFuncs[tmp[i]](this);
             if (ret) { tmpspc[tmp[i]] = ret; }
           }
         }
@@ -13672,7 +13440,7 @@ NPCObject.prototype.activate = function(timeoverride) {
       this.specials = tmpspc;
     }
                   
-    var timing = this.nextActionTime(0);
+    let timing = this.nextActionTime(0);
     timing = timing/2;
     if (timeoverride) {
       timing = timeoverride;
@@ -13687,7 +13455,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.nextMana = DUTime.getGameClock() + MANA_REGEN;
     this.nextHP = DUTime.getGameClock() + HP_REGEN;
     
-    var NPCEvent = new GameEvent(this);
+    let NPCEvent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCEvent,timing);  
     
     if (this.getSchedule()) {
@@ -13699,14 +13467,14 @@ NPCObject.prototype.activate = function(timeoverride) {
 
 
 NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
-	var map = this.getHomeMap();
-	var oldmapname = map.getDesc();
-	var startx = this.getx();
-	var starty = this.gety();
-	var passx = startx + parseInt(diffx);
-	var passy = starty + parseInt(diffy);
-	var tile = map.getTile(passx,passy);
-	var retval = { fin:1 };
+	let map = this.getHomeMap();
+	let oldmapname = map.getDesc();
+	let startx = this.getx();
+	let starty = this.gety();
+	let passx = startx + parseInt(diffx);
+	let passy = starty + parseInt(diffy);
+	let tile = map.getTile(passx,passy);
+	let retval = { fin:1 };
 	if (tile === "OoB") { 
 	  if (noexit) {
 	    // NPC won't step out of the map
@@ -13718,7 +13486,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	  }
 		if (map.getExitToMap()) {
 		  DebugWrite("map", this.getDesc() + " exiting the map: ");
-			var newmap = new GameMap();
+			let newmap = new GameMap();
 			if (maps.getMap(map.getExitToMap())) {
 			  DebugWrite("map", "destination map already exists.<br />");
 				newmap = maps.getMap(map.getExitToMap());
@@ -13748,7 +13516,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		retval = tile.getBumpIntoResult(this);
 		if (retval["canmove"] === 0) { return retval; }
     DebugWrite("ai", this.getName() + " trying to move, checking canMoveHere for " + passx + "," + passy +".</span><br />");
-		var moveval = tile.canMoveHere(this.getMovetype());
+		let moveval = tile.canMoveHere(this.getMovetype());
 		retval["canmove"] = moveval["canmove"];
 	
 		if (retval["msg"] === "") {
@@ -13763,15 +13531,15 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	}
 	
 	if (retval["canmove"] === 1) {
-	  var exittile = map.getTile(this.getx(),this.gety());
-	  var walkofftile = exittile.executeWalkoffs(this);
+	  let exittile = map.getTile(this.getx(),this.gety());
+	  let walkofftile = exittile.executeWalkoffs(this);
 	  if (walkofftile) {
 	    if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
 	    retval["msg"] += walkoffval;
 	  }
 		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
 		if (this === PC) {
-		  var sfx = "sfx_walk_";
+		  let sfx = "sfx_walk_";
 		  if (map.getUnderground()) { sfx = sfx + "ug_"; }
 		  if (tile.getTopFeature() && tile.getTopFeature().getWalkSound()) {
 		    sfx = sfx + tile.getTopFeature().getWalkSound();
@@ -13785,8 +13553,8 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
       ProcessAmbientNoise(tile);
 		}
 
-    var distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
-		var walkonval = tile.executeWalkons(this);
+    let distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
+		let walkonval = tile.executeWalkons(this);
 		if (walkonval) {
 		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
 		  retval["msg"] += walkonval;
@@ -13854,15 +13622,15 @@ NPCObject.prototype.myTurn = function() {
 	RunEffects(this);
 	
 	Regen(this);
-  var awake = 1;
+  let awake = 1;
   if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze") || this.getSpellEffectsByName("Frozen") || this.getSpellEffectsByName("CrystalTrap")) { awake = 0; }
-  var confused = this.getSpellEffectsByName("Confused");
+  let confused = this.getSpellEffectsByName("Confused");
   if (confused && (Math.random() < (confused.getPower()/100))) {
     // confused and Confused
     awake = 0;
     if (Math.random() < .5) { 
 	    // confused and randomly wandering
-	    var dir = Dice.roll("1d4");
+	    let dir = Dice.roll("1d4");
 	    if (dir === 1) { this.moveMe(0,-1,0); }
 	    if (dir === 2) { this.moveMe(1,0,0); }
 	    if (dir === 3) { this.moveMe(0,1,0); }
@@ -13871,12 +13639,12 @@ NPCObject.prototype.myTurn = function() {
 
   }
 
-  var response = {};  
+  let response = {};  
   // will be = return value of AI call
   
   // actual AI!
   if (awake) {	
-    var ainame=this.getCurrentAI().split("-");
+    let ainame=this.getCurrentAI().split("-");
     if (this.getAggro() && ((this.getAttitude() === "friendly") || (this.getAttitude() === "hostile") || (this.getAttitude() === "neutral"))) {
       ainame[0] = "combat";
     }
@@ -13894,12 +13662,12 @@ NPCObject.prototype.myTurn = function() {
     return 0;
   }	
   // check for NPC idling
-  var oldloc = this.getLastLocation();
+  let oldloc = this.getLastLocation();
   if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // npc did not move
-    var tile = this.getHomeMap().getTile(this.getx(),this.gety());
-    var idleval = tile.executeIdles(this);
+    let tile = this.getHomeMap().getTile(this.getx(),this.gety());
+    let idleval = tile.executeIdles(this);
   } else {
-    var newloc = {};
+    let newloc = {};
     newloc.map = this.getHomeMap().getName();
     newloc.x = this.getx();
     newloc.y = this.gety();
@@ -13909,7 +13677,7 @@ NPCObject.prototype.myTurn = function() {
 	this.setLastTurnTime(DUTime.getGameClock());
 
   if (!maps.getMap(this.getHomeMap().getName())) {
-    // map removed during its turn (probably because it killed the player
+    // map removed during its turn (probably because it killed the player)
     // therefore it deserves valhalla
 
     DebugWrite("gameobj", "<span style='font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone. Not re-adding to timeline.</span><br />");
@@ -13924,7 +13692,7 @@ NPCObject.prototype.myTurn = function() {
 	
 	gamestate.setMode("null");
   if (!response.removed && (this.getHP() > 0)) {
-	  var NPCevent = new GameEvent(this);
+	  let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,this.nextActionTime(response["initdelay"]));
   }
   
@@ -13935,9 +13703,6 @@ NPCObject.prototype.myTurn = function() {
     HideTurnFrame(this);
   }
 
-//  var nextEntity = DUTime.executeNextEvent().getEntity();
-//  nextEntity.myTurn();
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>*" + this.getName() + ", serial " + this.getSerial() + " is ending its turn at " + this.getx() + "," + this.gety() + ".*</span><br />"); }	
   DebugWrite("ai", "Ending its turn at (" + this.getx() + "," + this.gety() + ").");
   return 1;
 }
@@ -13962,13 +13727,13 @@ NPCObject.prototype.endTurn = function(init) {
     DebugWrite("ai", "Ending its turn at (" + this.getx() + "," + this.gety() + ").");
   
     // did this entity idle?
-    var oldloc = this.getLastLocation();
-    var idleval;
-    if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // player did not move
-      var tile = this.getHomeMap().getTile(this.getx(),this.gety());
+    let oldloc = this.getLastLocation();
+    let idleval;
+    if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // did not move
+      let tile = this.getHomeMap().getTile(this.getx(),this.gety());
       idleval = tile.executeIdles(this);
     } else {
-      var newloc = {};
+      let newloc = {};
       newloc.map = this.getHomeMap().getName();
       newloc.x = this.getx();
       newloc.y = this.gety();
@@ -13985,12 +13750,10 @@ NPCObject.prototype.endTurn = function(init) {
       DebugWrite("gameobj", "<span style='font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone. Not re-adding to timeline.</span><br />");
   
     } else {
-      var myevent = new GameEvent(this);
+      let myevent = new GameEvent(this);
       DUTime.addAtTimeInterval(myevent,this.nextActionTime(init));
     }
 
-//  var nextEntity = DUTime.executeNextEvent().getEntity();
-//  nextEntity.myTurn();
     setTimeout(function() { startScheduler(); }, 5 );
   }
 }
