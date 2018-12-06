@@ -92,13 +92,12 @@ ProtoObject.prototype.copy = function(type) {
   }
   for (let idx in this) {
     let val = this[idx];
-    DebugWrite("save " + idx + ":");
+    DebugWrite("saveload", "save " + idx + ": ");
     if ((typeof val === "function") && (typeof base_version[idx] === "function")) { 
       DebugWrite("saveload", idx + " is a <span style='color:darkblue'>function, moving on</span>...  ");
-      return;
+//      return;
       // both have a function. Assuming they're the same, not worth caring
-    }
-    if (typeof val === "function") {  // real one has a function base one does not
+    } else if (typeof val === "function") {  // real one has a function base one does not
       alert("Function on " + copydata.name + ": " + idx);
     }
     if (typeof val !== "object") { 
@@ -148,7 +147,7 @@ ProtoObject.prototype.copy = function(type) {
       let spawnserials = [];
       for (let i=0;i<spawnlist.length;i++) {
         spawnserials.push(spawnlist[i].getSerial());
-      };
+      }
       copydata[idx] = spawnserials;
       DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " <span style='color:lime'>saved as serials, serial# " + copydata[idx] + "</span>...</span>");
     } else if ((idx === "equippedTo") || (idx === "attachedTo") || (idx === "spawnedBy") || (idx === "linkedItem")) {
@@ -169,7 +168,7 @@ ProtoObject.prototype.copy = function(type) {
           copies.push(equipcopy[0]);   // using index rather than each here because equipment can't chain farther
           DebugWrite("saveload", "Copy made, " + eqidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
         }
-      };
+      }
     } else if (idx === "inventory") {
       let inv = val.getAll();
       copydata[idx] = [];
@@ -180,7 +179,7 @@ ProtoObject.prototype.copy = function(type) {
         copydata[idx][invidx] = invcopy[0].serial;
         copies.push(invcopy[0]);   // using index rather than each here as well for the same reason
         DebugWrite("saveload", "Copy made, " + invidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
-      };
+      }
     } else if (idx === "spellEffects") {
       let spells = val.getAll();
       if (spells[0]) {
@@ -192,7 +191,7 @@ ProtoObject.prototype.copy = function(type) {
           copydata[idx].push(spellcopy[0].serial);
           copies.push(spellcopy[0]);  // probably should make this each as future proofing
           DebugWrite("saveload", "Copy made, " + spellidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
-        };
+        }
       }
     } else if (idx === "spellsknown") {
       if (objectCompare(val, base_version[idx])) {

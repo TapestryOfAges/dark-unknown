@@ -41,7 +41,7 @@ Tick.prototype.getEvent = function() {
 }
 
 Tick.prototype.executeEvent = function() {
-	var firstevent = this.event;
+	let firstevent = this.event;
 	firstevent.timestamp = this.getTimestamp();
 	return firstevent;
 }
@@ -71,16 +71,15 @@ Timeline.prototype.setGameClock = function(newtime) {
 
 Timeline.prototype.addAtTimeInterval = function(event, timeinterval) {
   timeinterval = parseFloat(timeinterval);
-  var timestamp = this.getGameClock() + timeinterval;
+  let timestamp = this.getGameClock() + timeinterval;
   this.addAtTime(event,timestamp);
-
 }
 
 Timeline.prototype.addAtTime = function(event, timestamp) {
 	if (this.tickstream) {
-		var pointer = this.tickstream;
+		let pointer = this.tickstream;
 		if (timestamp < pointer.getTimestamp()) {
-		  var firsttick = new Tick(event,timestamp);
+		  let firsttick = new Tick(event,timestamp);
 		  firsttick.nexttick = pointer;
 		  this.tickstream = firsttick;
 		} else {
@@ -89,29 +88,16 @@ Timeline.prototype.addAtTime = function(event, timestamp) {
 		  		pointer = pointer.nexttick;
 			  }
   		}
-	  	var afterinsert = pointer.nexttick;
+	  	let afterinsert = pointer.nexttick;
 		  pointer.nexttick = new Tick(event,timestamp);
-//		pointer.nexttick.setTimestamp(timestamp);
-//		pointer.nexttick.setEvent(event);
 		  pointer.nexttick.nexttick = afterinsert;
 		}
 	}
 	else {
 		this.tickstream = new Tick(event,timestamp);
-//		this.tickstream.setTimestamp(timestamp);
-//		this.tickstream.setEvent(event);
-//		alert("adding first tick.");
-//		alert(this.tickstream.getTimestamp());
-//		alert(event.entity.name);
 	}
-//  if (debug && debugflags.time) {
-//    dbs.writeln("<span style='color:brown;font-weight:bold'>Tick added to timeline: " + event.getEntity().getName() + " added at " + timestamp + ".</span><br />");
-    DebugWrite("time", "Tick added to timeline: " + event.getEntity().getName() + " added at " + timestamp + ".<br />");
-    
-//    dbs.writeln(this.createDebugTimeline());
+    DebugWrite("time", "Tick added to timeline: " + event.getEntity().getName() + " added at " + timestamp + ".<br />");    
     DebugWrite("time", this.createDebugTimeline());
-//  }
-
 }
 
 Timeline.prototype.getNextEvent = function() {
@@ -123,20 +109,18 @@ Timeline.prototype.executeNextEvent = function() {
     DoPCDeath();
   }
 
-  var nextevent = this.tickstream.executeEvent();
+  let nextevent = this.tickstream.executeEvent();
   this.setGameClock(nextevent.timestamp);
-  var foo = this.tickstream.getNextTick();
+  let foo = this.tickstream.getNextTick();
   if (foo) { this.tickstream = foo; }
   else {this.tickstream = ""; }
-//  	this.tickstream = this.tickstream.getNextTick();
   
-//  alert(nextevent.getEntity().name);
   return nextevent;
 }
 
 Timeline.prototype.removeEntityFrom = function(entity) {
-	var checktick = this.tickstream;
-	var prevtick = this.tickstream;
+	let checktick = this.tickstream;
+	let prevtick = this.tickstream;
 	while ((checktick.getEvent().getEntity() !== entity) && (checktick.getNextTick())) {
 		prevtick = checktick;
 		checktick = checktick.getNextTick();
@@ -154,8 +138,8 @@ Timeline.prototype.removeEntityFrom = function(entity) {
 }
 
 Timeline.prototype.findEntityTime = function(entity) {
-	var checktick = this.tickstream;
-	var prevtick = this.tickstream;
+	let checktick = this.tickstream;
+	let prevtick = this.tickstream;
 	while ((checktick.getEvent().getEntity() !== entity) && (checktick.getNextTick())) {
 		prevtick = checktick;
 		checktick = checktick.getNextTick();
@@ -167,10 +151,10 @@ Timeline.prototype.findEntityTime = function(entity) {
 }
 
 Timeline.prototype.createDebugTimeline = function() {
-  var tltable = "<table border='1'><tr><td>Time<br />Name<br />Serial</td>";
-  var pointer = this.tickstream;
+  let tltable = "<table border='1'><tr><td>Time<br />Name<br />Serial</td>";
+  let pointer = this.tickstream;
   while (pointer) {
-    var timestamp = pointer.getTimestamp();
+    let timestamp = pointer.getTimestamp();
     if (!timestamp) { timestamp = 0; }
 		tltable = tltable + "<td>" + timestamp.toFixed(5) + "<br />" + pointer.getEvent().getEntity().getName();
 		if (typeof pointer.getEvent().getEntity().getNPCName === "function") { tltable = tltable + " (" + pointer.getEvent().getEntity().getNPCName() + ")"; }
@@ -184,13 +168,13 @@ Timeline.prototype.createDebugTimeline = function() {
 
 Timeline.prototype.cleanTimeline = function() {
   // after removing one or more maps from mapmemory, find and remove any entities that live on those maps
-  var checktick = this.tickstream;
-  var prevtick = this.tickstream;  
-  var first = 0;
+  let checktick = this.tickstream;
+  let prevtick = this.tickstream;  
+  let first = 0;
   while (checktick.getNextTick()) {
     first = 0;
-    var entity = checktick.getEvent().getEntity();
-    var mapname = entity.getHomeMap().getName();
+    let entity = checktick.getEvent().getEntity();
+    let mapname = entity.getHomeMap().getName();
     if (!maps.getMap(mapname)) {  // lives on a map that has been removed
       if (prevtick === checktick) { // first thing in the timeline
         this.tickstream = checktick.getNextTick();
@@ -200,7 +184,6 @@ Timeline.prototype.cleanTimeline = function() {
       } else {
         prevtick.setNextTick(checktick.getNextTick());
       }
-//      if (debug && debugflags.time) { dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />"); }
       DebugWrite("time", "Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".<br />");
     } else {
       prevtick = checktick;
@@ -209,11 +192,10 @@ Timeline.prototype.cleanTimeline = function() {
       checktick = checktick.getNextTick();
     }
   }
-  var entity = checktick.getEvent().getEntity();
-  var mapname = entity.getHomeMap().getName();
+  let entity = checktick.getEvent().getEntity();
+  let mapname = entity.getHomeMap().getName();
   if (!maps.getMap(mapname)) {
     // remove the last tick on the timeline
-//    if (debug && debugflags.time) { dbs.writeln("<span style='color:brown;font-weight:bold'>Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".</span><br />"); }
     DebugWrite("time", "Entity removed from timeline (on unloaded map): " + entity.getName() + " with serial " + entity.getSerial() + ".<br />");
     prevtick.setNextTick("");
   }
@@ -221,10 +203,10 @@ Timeline.prototype.cleanTimeline = function() {
 
 
 function startScheduler() {
-  var cont = 1;
+  let cont = 1;
   while (cont) {
-    var nextEvent = DUTime.executeNextEvent();
-    var nextEntity = nextEvent.getEntity();
+    let nextEvent = DUTime.executeNextEvent();
+    let nextEntity = nextEvent.getEntity();
     whoseturn = nextEntity;
     cont = nextEntity.myTurn();  
   }

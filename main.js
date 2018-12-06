@@ -181,7 +181,7 @@ function DrawTopbarFrame(txt) {
     if (debug) {  ActivateDebug(1); }
     audio_init();  
 	  CreateUI();
-  };
+  }
 
   if (
     document.readyState === "complete" ||

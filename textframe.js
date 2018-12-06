@@ -1,7 +1,7 @@
 "use strict";
 
 function TextFrame(fname) {
-	this.framename = "#" + fname;
+	this.framename = fname;
 	this.inputLine = "";
 	this.delayedappend = "";
 }
@@ -15,15 +15,15 @@ TextFrame.prototype.setInputLine = function(txt) {
 }
 
 TextFrame.prototype.getTextFrame = function() {
-	return ($(this.framename).html());
+	return (document.getElementById(this.framename).innerHTML);
 }
 
 TextFrame.prototype.addText = function(newtext) {
 	if (newtext) {
-  	$(this.framename).append("<br />" + newtext);
+  	document.getElementById(this.framename).innerHTML += "<br />" + newtext;
   }
   if (this.delayedappend) {
-    $(this.framename).append("<br />" + this.delayedappend);
+    document.getElementById(this.framename).innerHTML += "<br />" + this.delayedappend;
     this.clearDelay();
   }
 }
@@ -45,14 +45,14 @@ TextFrame.prototype.clearDelay = function() {
 }
 
 TextFrame.prototype.addTextByLine = function(newtext) {
-	var words = newtext.split(" ");
-	var lines = [];
-	var line = "";
+	let words = newtext.split(" ");
+	let lines = [];
+	let line = "";
 	while (words[0]) {
 		if (line === "" ){ line = words.shift(); }
 		else { 
-			var tmpword = words.shift();
-			var tmpline = line + " " + tmpword;
+			let tmpword = words.shift();
+			let tmpline = line + " " + tmpword;
 			if (tmpline.length > this.width) {
 				lines.push(line);
 				line = tmpword;
@@ -70,7 +70,7 @@ TextFrame.prototype.addTextByLine = function(newtext) {
 }
 
 TextFrame.prototype.appendToLine = function(newtext) {
-  $(this.framename).append(newtext);	
+  document.getElementById(this.framename).innerHTML += newtext;	
 }
 
 TextFrame.prototype.drawTextFrame = function() {
@@ -79,5 +79,5 @@ TextFrame.prototype.drawTextFrame = function() {
 }
 
 TextFrame.prototype.drawInputLine = function() {
-	$('#inputtext').html(this.getInputLine());
+	document.getElementById('inputtext').innerHTML = this.getInputLine();
 }

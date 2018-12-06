@@ -1,5 +1,5 @@
 
-var spawngroups = {};
+let spawngroups = {};
 
 function SpawnGroup() {
   

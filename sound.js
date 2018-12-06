@@ -123,9 +123,9 @@ function audio_init() {
 
 function audio_init_2() {
   createjs.Sound.addEventListener("fileload", handleFileLoadSfx);
-  $.each(DUSound, function(idx, val) {
-    createjs.Sound.registerSound(val, idx);
-  });
+  for (let idx in DUSound) {    
+    createjs.Sound.registerSound(DUSound[idx], idx);
+  }
 }
 
 function audio_init_title() {
@@ -134,35 +134,35 @@ function audio_init_title() {
 //  createjs.Sound.addEventListener("fileload", handleFileLoadTitle);
 //  createjs.Sound.registerSounds(DUSound, soundpath);
   
-  var fullpath = musicpath + "The Dark Unknown.mp3";
+  let fullpath = musicpath + "The Dark Unknown.mp3";
   createjs.Sound.registerSound(fullpath, "Dark Unknown");
   fullpath = musicpath + "The Journey Begins.mp3";
   createjs.Sound.registerSound(fullpath, "Charcreate");
 }
 
 function populate_audio(soundlist, preload, loop, soundtype) {
-  var preloadtext = "";
+  let preloadtext = "";
   if (preload) {
     preloadtext = "preload= 'metadata'";
   }
-  var looptext = "";
+  let looptext = "";
   if (loop) {
     looptext = "loop = 'loop'";
   }
   if (soundtype === "music") {
-    $.each(soundlist, function(index, value) {
-      var oggvalue = value.replace("mp3", "ogg");
-      $("#audiocontainer").html($("#audiocontainer").html() + "<audio id='" + index + "' " + preloadtext + " " + looptext + "><source src='" + value + "' type='audio/mpeg' /><source src='" + oggvalue + "' type='audio/ogg' /></audio>");
-    });
+    for (let index in soundlist) {
+      let oggvalue = soundlist[index].replace("mp3", "ogg");
+      document.getElementById('audiocontainer').innerHTML += "<audio id='" + index + "' " + preloadtext + " " + looptext + "><source src='" + soundlist[index] + "' type='audio/mpeg' /><source src='" + oggvalue + "' type='audio/ogg' /></audio>";
+    }
   } else {
-    $.each(soundlist, function(index, value) {
-      $("#audiocontainer").html($("#audiocontainer").html() + "<audio id='" + index + "' " + preloadtext + " " + looptext + "><source src='" + value + "' type='audio/wav' /></audio>");
-    });    
+    for (let index in soundlist) {
+      document.getElementById('audiocontainer').innerHTML += "<audio id='" + index + "' " + preloadtext + " " + looptext + "><source src='" + soundlist[index] + "' type='audio/wav' /></audio>";
+    }
   }
 }
 
 function create_audio() {
-  var tmparray = {};
+  let tmparray = {};
   tmparray.music = new Audio();
   tmparray.sfx = new Audio();
   tmparray.bkgrnd = new Audio();
@@ -172,21 +172,21 @@ function create_audio() {
 
 // checks to see if the player has turned off sound
 function DUPlaySound(sound) {
-  var playing = {};
+  let playing = {};
   if (DU.gameflags.getFlag("sound")) { playing.song = createjs.Sound.play(sound); playing.name = sound; playing.song.volume = DU.gameflags.getFlag("sound");}
   return playing;
 }
 
 function DUPlayMusic(sound) {
-  var playing = {};
-  var loopval = 0;
+  let playing = {};
+  let loopval = 0;
   if (DU.gameflags.getFlag("loopmusic")) { loopval = -1; }
   if (DU.gameflags.getFlag("music")) { playing.song = createjs.Sound.play(sound, {loop:loopval}); playing.name = sound; playing.volume = DU.gameflags.getFlag("music");}
   return playing;
 }
 
 function DUPlayAmbient(sound) {
-  var playing = {};
+  let playing = {};
   if (DU.gameflags.getFlag("ambientsound") && DU.gameflags.getFlag("sound")) { playing.song = createjs.Sound.play(sound, {loop:-1}); playing.name = sound; playing.song.volume = DU.gameflags.getFlag("sound");}
   playing.song.volume = 0;
   setTimeout(function() { IncAmbientVol(playing); }, 500);
@@ -213,7 +213,7 @@ function DecAmbientVol(playing) {
 
 
 function PlaySound(sound) {
-  var playing = {};
+  let playing = {};
   playing.song = createjs.Sound.play(sound);
   playing.name = sound;
   return playing;
@@ -225,10 +225,6 @@ function StopMusic(playing) {
   nowplaying = {};
 }
 
-//function play_audio(atype, music) {
-//  audioplayers[atype].src = document.getElementById(music).src;
-//  audioplayers[atype].load();
-//  audioplayers[atype].play();
 function play_audio(music) {
   document.getElementById(music).pause();
   document.getElementById(music).currentTime = 0;

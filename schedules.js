@@ -32,14 +32,14 @@ NPCSchedule.prototype.getNPCLocationByTime = function(time, setIndex, setFlag, l
     time = GetClockTime();
   }
   if (typeof time === "string") {
-    var timepieces = time.split(":");
+    let timepieces = time.split(":");
     time = parseInt(timepieces[0])*60+parseInt(timepieces[1]);
   } else {
     time = parseInt(time[3])*60+parseInt(time[4]);
   }
-  var location;
-  var lastlocation = {};
-  var lastindex = 0;
+  let location;
+  let lastlocation = {};
+  let lastindex = 0;
   if (loadedFrom) {
     lastlocation.mapName = loadedFrom.getName();
   }
@@ -83,14 +83,14 @@ NPCSchedule.prototype.getNPCLocationByTime = function(time, setIndex, setFlag, l
 
   if (setIndex) { this.currentIndex = lastindex; }
   if (setFlag) {
-    var allflags = {};
+    let allflags = {};
     for (let ii=0;j<this.scheduleArray.length;j++) {
       if (this.scheduleArray[ii].params.setFlag) {
-        var allparams = this.scheduleArray[ii].params.setFlag.split(",");
-        for (var k=0;k<allparams.length;k++) {
+        let allparams = this.scheduleArray[ii].params.setFlag.split(",");
+        for (let k=0;k<allparams.length;k++) {
           allparams[k].replace(/ /g,"");
           if (allparams[k].indexOf("unset_") !== -1) {
-            var tmpflag = allparams[k].replace(/unset_/, "");
+            let tmpflag = allparams[k].replace(/unset_/, "");
             if (allflags[tmpflag]) {
               delete allflags[tmpflag];
             }
@@ -101,14 +101,14 @@ NPCSchedule.prototype.getNPCLocationByTime = function(time, setIndex, setFlag, l
       }
     }
 
-    var j=0;
+    let j=0;
     while (j<this.scheduleArray.length) {
       if (this.scheduleArray[j].params.setFlag) {
-        var allparams = this.scheduleArray[j].params.setFlag.split(",");
-        for (var k=0;k<allparams.length;k++) {
+        let allparams = this.scheduleArray[j].params.setFlag.split(",");
+        for (let k=0;k<allparams.length;k++) {
           allparams[k].replace(/ /g,"");
           if (allparams[k].indexOf("unset_") !== -1) {
-            var tmpflag = allparams[k].replace(/unset_/, "");
+            let tmpflag = allparams[k].replace(/unset_/, "");
             if (allflags[tmpflag]) {
               delete allflags[tmpflag];
             }
@@ -337,16 +337,14 @@ function set_schedules() {
   };
                          
 
-//  var tmpschedules = JSON.parse(sched);
-
   DU.schedules = {};
-//  $.each(tmpschedules, function(idx,val) {
-  $.each(sched, function(idx,sval) {
+
+  for (let idx in sched) {
+    let sval = sched[idx];
     let val = JSON.parse(sval);
     DU.schedules[idx] = new NPCSchedule();
     DU.schedules[idx]["scheduleArray"] = val.scheduleArray;
     DU.schedules[idx]["currentIndex"] = val.currentIndex;
     DU.schedules[idx]["baseLocation"] = val.baseLocation;
-  });
-
+  }
 }

@@ -3,9 +3,9 @@
 let Dice = new DiceObject();
 
 function preload(arrayOfImages) {
-    $(arrayOfImages).each(function(){
-        $('<img/>')[0].src = this;
-    });
+  for (let i=0;i<arrayOfImages.length;i++) {
+    (new Image()).src = arrayOfImages[i];
+  }
 }
 
 preload([
@@ -26,122 +26,130 @@ preload([
   "graphics/title/and.gif",
 ]);
 
-var optnames = [];
+let optnames = [];
 optnames[0] = "graphics/title/intro";
 optnames[1] = "graphics/title/create";
 optnames[2] = "graphics/title/journey";
 optnames[3] = "graphics/title/credits";
 optnames[4] = "graphics/title/import";
 
-var avatars = [];
+let avatars = [];
 avatars[0] = ["300.2.gif", "300.gif", "301.gif", "shepherd-offcolor.gif", "302.gif", "druid-offcolor.gif"];
 avatars[1] = ["303.2.gif", "303.gif", "304.2.gif", "304.gif", "305.gif", "ranger-offcolor.gif"];
 avatars[2] = ["306.gif", "307.2.gif", "307.gif", "308.gif", "311.gif", "tinker-offcolor.gif"];
 avatars[3] = ["bard-offcolor.gif", "fighter-offcolor.gif", "paladin-offcolor.gif", "mage-offcolor.gif", "", ""];
 
-var avatarselect = {};
+let avatarselect = {};
 avatarselect.x = 0;
 avatarselect.y = 0;
 
-var maxserial = 0;
-var mappages = new Pages();
-var localFactory = new tileFactory();
-var eidos = new Platonic();
+let maxserial = 0;
+let mappages = new Pages();
+let localFactory = new tileFactory();
+let eidos = new Platonic();
 
-var gamestate = new GameStateData();
 gamestate.setMode("null");
-var DU = {};
+let DU = {};
 DU.gameflags = new Gameflags();
 DU.gameflags.setFlag("music", 1);
 DU.gameflags.setFlag("loopmusic", 1);
 DU.gameflags.setFlag("sound", 1);
 DU.gameflags.setFlag("ambientsound", 1);
 
-var nowplaying;
-var optselect = 0;
-var charname = "";
-var gender = "";
-var graphic = "";
-var dusong;
+let nowplaying;
+let optselect = 0;
+let charname = "";
+let gender = "";
+let graphic = "";
+let dusong;
 DU.DUTime = new Timeline(0);
-var DUTime = DU.DUTime; // alias
+let DUTime = DU.DUTime; // alias
 DU.maps = new MapMemory();
-var maps = DU.maps; // alias
+let maps = DU.maps; // alias
 debug = 0;
-var PC = new PCObject();
+let PC = new PCObject();
 PC.assignSerial();
- musicloaded = {};
-var musictries = 0;
+musicloaded = {};
+let musictries = 0;
 DU.merchants = {};
 DU.merchants = SetMerchants();
 DU.randomseed = Math.floor(Math.random()*100)+1;
-var introidx = 0;
-var losgrid = new LOSMatrix(30);
+let introidx = 0;
+let losgrid = new LOSMatrix(30);
 
-var firsttime = 1;
-var themap;
+let firsttime = 1;
+let themap;
 themap = new GameMap();
-var Listener = new DUListener();
+let Listener = new DUListener();
 
-var latestidx;
-var testvar;
+let latestidx;
+let testvar;
 
-var lastanim = "";
-var whoseturn; 
+let lastanim = "";
+let whoseturn; 
 
-$(document).ready(function() {
-  audio_init_title();  
+{
+  let callback = function() {
+    audio_init_title();  
 
-  if (firsttime) {
-    $(document).keydown(function(e) {
-      var code = (e.keyCode ? e.keyCode : e.which);
-      if (gamestate.getMode() !== "import") {
-        e.preventDefault();
-      }
+    if (firsttime) {
+      document.addEventListener("keydown", function(e) {
+        let code = (e.keyCode ? e.keyCode : e.which);
+        if (gamestate.getMode() !== "import") {
+          e.preventDefault();
+        }
     
-      if (gamestate.getMode() !== "null") {
-        DoAction(code, e);
-      } else {
-        $(lastanim).stop(true,false);
-        finishedFinalPage();
-      }
+        if (gamestate.getMode() !== "null") {
+          DoAction(code, e);
+        } else {
+//          $(lastanim).stop(true,false);
+          finishedFinalPage();
+        }
         
-    });
-    firsttime = 0;
-  }
+      });
+      firsttime = 0;
+    }
 
-  latestidx = gamestate.getLatestSaveIndex();
-  if (latestidx === -1) {
-    gamestate.initializeSaveGames();
-  }
+    latestidx = gamestate.getLatestSaveIndex();
+    if (latestidx === -1) {
+      gamestate.initializeSaveGames();
+    }
   
-  var browserheight = $(window).height();
-  var browserwidth = $(window).width();
+    let browserheight = window.innerHeight;
+    let browserwidth = window.innerWidth;
   
-  var fleft = Math.floor(browserwidth/2 - 400);
-  if (fleft < 0) { fleft = 0; }
-  var ftop = Math.floor(browserheight/2 - 300);
-  if (ftop < 0) { ftop = 0; }
-  var signl = fleft+324;
-  var signt = ftop+121;
-  var firstpage = "<div id='allofem'><div id='ToA' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;width:800;height:209;display:none'><img src='graphics/title/ToA_banner_blank.gif' /></div><div id=\"over\" style=\"position:absolute;left:"+fleft+"px;top:"+ftop+"px;width:2px;height:209px;z-index:5;display:none;background-image:url('graphics/title/ToA_banner_ToA-only.gif');background-position: 0px 0px\"></div>";
-  firstpage += "<div id='sign' style='position:absolute;z-index:10;left:" + signl + "px;display:none;top:" + signt + "px;width:162;height:52;background-image:url(\"graphics/title/games_signature.gif\");background-position: 0px 0px;color:white'></div>";
-  var animateto = fleft+800;
-  fleft = fleft+370;
-  ftop = ftop+230;
-  firstpage += "<div id='and' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;display:none'><img src='graphics/title/and.gif' /></div>";
-  fleft = browserwidth/2 - 111;
-  ftop = ftop+50;
-  firstpage += "<div id='gf' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;display:none'><img src='graphics/title/gf.gif' /></div>";
-  fleft = browserwidth/2 - 59;
-  ftop = ftop+70;
-  firstpage += "<div id='present' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;display:none'><img src='graphics/title/present.gif' /></div></div>";
+    let fleft = Math.floor(browserwidth/2 - 400);
+    if (fleft < 0) { fleft = 0; }
+    let ftop = Math.floor(browserheight/2 - 300);
+    if (ftop < 0) { ftop = 0; }
+    let signl = fleft+324;
+    let signt = ftop+121;
+    let firstpage = "<div id='allofem'><div id='ToA' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;width:800;height:209;display:none'><img src='graphics/title/ToA_banner_blank.gif' /></div><div id=\"over\" style=\"position:absolute;left:"+fleft+"px;top:"+ftop+"px;width:2px;height:209px;z-index:5;display:none;background-image:url('graphics/title/ToA_banner_ToA-only.gif');background-position: 0px 0px\"></div>";
+    firstpage += "<div id='sign' style='position:absolute;z-index:10;left:" + signl + "px;display:none;top:" + signt + "px;width:162;height:52;background-image:url(\"graphics/title/games_signature.gif\");background-position: 0px 0px;color:white'></div>";
+    let animateto = fleft+800;
+    fleft = fleft+370;
+    ftop = ftop+230;
+    firstpage += "<div id='and' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;display:none'><img src='graphics/title/and.gif' /></div>";
+    fleft = browserwidth/2 - 111;
+    ftop = ftop+50;
+    firstpage += "<div id='gf' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;display:none'><img src='graphics/title/gf.gif' /></div>";
+    fleft = browserwidth/2 - 59;
+    ftop = ftop+70;
+    firstpage += "<div id='present' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;display:none'><img src='graphics/title/present.gif' /></div></div>";
 
-  $("#maindiv").html(firstpage);
-  setTimeout(function() {
-    start_animations();      
-  }, 100);
-});
+    document.getElementById('maindiv').innerHTML = firstpage;
+    setTimeout(function() {
+      start_animations();      
+    }, 100);
+  }
+  if (
+    document.readyState === "complete" ||
+    (document.readyState !== "loading" && !document.documentElement.doScroll)) {
+    callback();
+  } else {
+    document.addEventListener("DOMContentLoaded", callback);
+  }
+}
 
 function start_animations() {
   if ((musicloaded["Dark Unknown"] && musicloaded["Charcreate"]) || (musictries >= 10)) {
