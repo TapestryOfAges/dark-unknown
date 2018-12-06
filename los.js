@@ -67,10 +67,12 @@ function GetLineArray(x1,y1,x2,y2,cornerx1,cornery1,cornerx2,cornery2) {
   y2 = y2+.5;
   let xints = [];
   let yints = [];
+  let a=0;
+  let b=0;
 
   if (x1 != x2) {
-    let a = ((y1+cornery1)-(y2+cornery2))/((x1+cornerx1)-(x2+cornerx2));
-    let b = (y1+cornery1) - a*(x1+cornerx1);
+    a = ((y1+cornery1)-(y2+cornery2))/((x1+cornerx1)-(x2+cornerx2));
+    b = (y1+cornery1) - a*(x1+cornerx1);
 
     if (x2 < x1) { let x0 = x2; x2 = x1; x1 = x0; }
     if (y2 < y1) { let y0 = y2; y2 = y1; y1 = y0; }
