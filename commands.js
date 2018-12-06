@@ -870,7 +870,7 @@ function PerformLook() {
   let boundaries = getDisplayCenter(map,PC.getx(),PC.gety());
   let xcoord = targetCursor.x - boundaries.leftedge;
   let ycoord = targetCursor.y - boundaries.topedge;
-  let onscreen = $('#mainview_' + xcoord + 'x' + ycoord).html();
+  let onscreen = document.getElementById('mainview_' + xcoord + 'x' + ycoord).innerHTML;
   let losval = 0;
   if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
   else {
