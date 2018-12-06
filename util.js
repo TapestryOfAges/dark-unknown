@@ -750,71 +750,6 @@ function DoPCDeath() {
   DebugWrite("all","IN DoPCDeath().<br />");
 }
 
-// these two functions found on stackexchange
-// http://stackoverflow.com/questions/1773069/using-jquery-to-compare-two-arrays-of-javascript-objects
-
-function arrayCompare(arrayA, arrayB) {
-  var a = jQuery.extend(true, [], arrayA);
-  var b = jQuery.extend(true, [], arrayB);
-  a.sort(); 
-  b.sort();
-  for (var i = 0, l = a.length; i < l; i++) {
-    if (a[i] !== b[i]) { 
-      return false;
-    }
-  }
-  return true;
-}
-
-function objectCompare(objA, objB) {
-
-  var i,a_type,b_type;
-
-  // Compare if they are references to each other 
-  if (objA === objB) { return true;}
-
-  if (Object.keys(objA).length !== Object.keys(objB).length) { return false;}
-  for (i in objA) {
-    if (objA.hasOwnProperty(i)) {
-      if (typeof objB[i] === 'undefined') {
-        return false;
-      }
-      else {
-        a_type = Object.prototype.toString.apply(objA[i]);
-        b_type = Object.prototype.toString.apply(objB[i]);
-
-        if (a_type !== b_type) {
-          return false; 
-        }
-      }
-    }
-    if (objectCompare(objA[i],objB[i]) === false){
-      return false;
-    }
-  }
-  return true;
-}
-
-// more stackoverflow: http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array#
-function ShuffleArray(arr) {
-  var currentIndex = arr.length, temporaryValue, randomIndex ;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = arr[currentIndex];
-    arr[currentIndex] = arr[randomIndex];
-    arr[randomIndex] = temporaryValue;
-  }
-
-  return arr;
-}
-
 function GetOctant(diffx, diffy) {
   // diffx and diffy created via dest.x-start.x and dest.y-start.y
   
@@ -1508,3 +1443,170 @@ function Get90DegCoords(centerx,centery,oldx,oldy) {
   destx+=centerx;
   return {x:destx, y:desty}
 }
+
+
+//EXTERNALLY SOURCED
+
+// these two functions found on stackexchange
+// http://stackoverflow.com/questions/1773069/using-jquery-to-compare-two-arrays-of-javascript-objects
+
+function arrayCompare(arrayA, arrayB) {
+  var a = jQuery.extend(true, [], arrayA);
+  var b = jQuery.extend(true, [], arrayB);
+  a.sort(); 
+  b.sort();
+  for (var i = 0, l = a.length; i < l; i++) {
+    if (a[i] !== b[i]) { 
+      return false;
+    }
+  }
+  return true;
+}
+
+function objectCompare(objA, objB) {
+
+  var i,a_type,b_type;
+
+  // Compare if they are references to each other 
+  if (objA === objB) { return true;}
+
+  if (Object.keys(objA).length !== Object.keys(objB).length) { return false;}
+  for (i in objA) {
+    if (objA.hasOwnProperty(i)) {
+      if (typeof objB[i] === 'undefined') {
+        return false;
+      }
+      else {
+        a_type = Object.prototype.toString.apply(objA[i]);
+        b_type = Object.prototype.toString.apply(objB[i]);
+
+        if (a_type !== b_type) {
+          return false; 
+        }
+      }
+    }
+    if (objectCompare(objA[i],objB[i]) === false){
+      return false;
+    }
+  }
+  return true;
+}
+
+// more stackoverflow: http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array#
+function ShuffleArray(arr) {
+  var currentIndex = arr.length, temporaryValue, randomIndex ;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = arr[currentIndex];
+    arr[currentIndex] = arr[randomIndex];
+    arr[randomIndex] = temporaryValue;
+  }
+
+  return arr;
+}
+
+// Functions taken from jquery
+
+
+function ExtendObject() {
+  var options, name, src, copy, copyIsArray, clone, target = arguments[0] || {},
+      i = 1,
+      length = arguments.length,
+      deep = false;
+
+  // Handle a deep copy situation
+  if (typeof target === "boolean") {
+      deep = target;
+
+      // Skip the boolean and the target
+      target = arguments[i] || {};
+      i++;
+  }
+
+  // Handle case when target is a string or something (possible in deep copy)
+  if (typeof target !== "object" && (typeof target !== "function")) {
+      target = {};
+  }
+
+  // Extend jQuery itself if only one argument is passed
+  if (i === length) {
+      target = this;
+      i--;
+  }
+
+  for (; i < length; i++) {
+
+      // Only deal with non-null/undefined values
+      if ((options = arguments[i]) != null) {
+
+          // Extend the base object
+          for (name in options) {
+              src = target[name];
+              copy = options[name];
+
+              // Prevent never-ending loop
+              if (target === copy) {
+                  continue;
+              }
+
+              // Recurse if we're merging plain objects or arrays
+              if (deep && copy && (jQuery.isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
+
+                  if (copyIsArray) {
+                      copyIsArray = false;
+                      clone = src && Array.isArray(src) ? src : [];
+
+                  } else {
+                      clone = src && jQuery.isPlainObject(src) ? src : {};
+                  }
+
+                  // Never move original objects, clone them
+                  target[name] = ExtendObject(deep, clone, copy);
+
+                  // Don't bring in undefined values
+              } else if (copy !== undefined) {
+                  target[name] = copy;
+              }
+          }
+      }
+  }
+
+  // Return the modified object
+  return target;
+}
+
+
+function IsPlainObject(obj) {
+  var proto, Ctor;
+  var getProto = Object.getPrototypeOf;
+  var class2type = {};
+  var toString = class2type.toString;
+  var hasOwn = class2type.hasOwnProperty;
+  var fnToString = hasOwn.toString;
+  var ObjectFunctionString = fnToString.call( Object );
+
+  // Detect obvious negatives
+  // Use toString instead of jQuery.type to catch host objects
+  if (!obj || toString.call(obj) !== "[object Object]") {
+      return false;
+  }
+
+  proto = getProto(obj);
+
+  // Objects with no prototype (e.g., `Object.create( null )`) are plain
+  if (!proto) {
+      return true;
+  }
+
+  // Objects with prototype are plain iff they were constructed by a global Object function
+  Ctor = hasOwn.call(proto, "constructor") && proto.constructor;
+  return typeof Ctor === "function" && fnToString.call(Ctor) === ObjectFunctionString;
+}
+
