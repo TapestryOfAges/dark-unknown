@@ -14,7 +14,7 @@ function Gameflags() {
 }
 Gameflags.prototype = new Object();
 
-var gamestate = new GameStateData();
+let gamestate = new GameStateData();
 
 function GameStateData() {
 	this.mode = "null";
@@ -24,38 +24,34 @@ function GameStateData() {
 
 GameStateData.prototype.loadTmp = function() {
   gamestate.setMode("null");
-	// Temporarily, this will return demo values
-//  PC.setx(47);
-//  PC.sety(49);
   PC.setx(13);
   PC.sety(19);
 
 	PC.setPCName("Goldenflame");
-	var themap;
+	let themap;
 	if (maps.getMap("darkunknown")) {
 	  themap = maps.getMap("darkunknown");
 	} else {
 	  themap = new GameMap();
     themap = maps.addMap("darkunknown");
 	}
-  var anothermap = new GameMap();
+  let anothermap = new GameMap();
   anothermap = maps.addMap("pitdespair1");
 	PC.setHomeMap(anothermap);
-//  PC.setHomeMap(themap);
-  var rats = localFactory.createTile("GiantBatNPC");
+  let rats = localFactory.createTile("GiantBatNPC");
   anothermap.placeThing(12,20,rats);
-  var rats2 = localFactory.createTile("GiantBatNPC");
+  let rats2 = localFactory.createTile("GiantBatNPC");
   anothermap.placeThing(14,20,rats2);
-  var rats3 = localFactory.createTile("GiantInsectsNPC");
+  let rats3 = localFactory.createTile("GiantInsectsNPC");
   anothermap.placeThing(12,18,rats3);
-  var rats4 = localFactory.createTile("GiantInsectsNPC");
+  let rats4 = localFactory.createTile("GiantInsectsNPC");
   anothermap.placeThing(14,18,rats4);
 
-  var dagger = localFactory.createTile("Dagger");
+  let dagger = localFactory.createTile("Dagger");
   PC.addToInventory(dagger, 1);
   PC.addGold(1000);
   PC.setEquipment("weapon",dagger);
-  var armor = localFactory.createTile("ClothArmor");
+  let armor = localFactory.createTile("ClothArmor");
   PC.addToInventory(armor, 1);
   PC.setEquipment("armor",armor);
   dagger = localFactory.createTile("Longsword");
@@ -81,20 +77,16 @@ GameStateData.prototype.loadTmp = function() {
   
 	maps.addMapByRef(themap);
 	if (themap.getLinkedMaps().length > 0) {
-		for (var i = 0; i < themap.getLinkedMaps().length; i++) {
+		for (let i = 0; i < themap.getLinkedMaps().length; i++) {
 			if (themap.getLinkedMaps()[i] != "") {
-				var anothermap = new GameMap();
+				let anothermap = new GameMap();
 				anothermap = maps.addMap(themap.getLinkedMaps()[i]);
 			}
 		}
 	}
-//	DUTime.setGameClock(0);
   PC.getHomeMap().placeThing(PC.getx(),PC.gety(),PC);
-	var PCEvent = new GameEvent(PC);
+	let PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,.0001);
-//  var nextEvent = DUTime.executeNextEvent();
-//  var nextEntity = nextEvent.getEntity();
-//  nextEntity.myTurn();
   startScheduler();
 }
 
