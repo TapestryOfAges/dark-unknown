@@ -1050,7 +1050,8 @@ function PerformEnter(cmd) {
     }			  
     let tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
     AdjustStartingLocations(newmap);
-		retval["txt"] = "Entering " + newmap.getDesc() + ".";
+    retval["txt"] = "Entering " + newmap.getDesc() + ".";
+    retval["input"] = "&gt;";
 		if (descend != "") {
 			retval["txt"] = descend;
 		} else if (klimb != "") {
