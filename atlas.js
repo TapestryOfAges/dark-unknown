@@ -76,6 +76,8 @@ function Atlas() {
     "ArrowSlit" : '#+',
     '#O' : "Window",
     "Window" : '#O',
+    'sO' : "ShadowWindow",
+    "ShadowWindow" : 'sO',
     '+`' : "WallNE", 
     "WallNE" : '+`',
     '/+' : "WallNW", 
