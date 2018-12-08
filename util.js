@@ -1433,7 +1433,6 @@ function Get90DegCoords(centerx,centery,oldx,oldy) {
   return {x:destx, y:desty}
 }
 
-
 //EXTERNALLY SOURCED
 
 // these two functions found on stackexchange
