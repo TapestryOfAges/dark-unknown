@@ -71,8 +71,9 @@ function DrawCharFrame() {
 function DrawMainFrame(how, themap, centerx, centery) {
   // how options are "draw" and "one"
   if (PC.getWaiting()) { return; }  // Don't draw the screen if PC is using (W)ait- should avoid a draw during the fade in/out.
-  let opac = 1;
-  	
+  let tp = 0; // telepathy
+  let ev = 0; // ethereal vision
+  
   if (how === "draw") {
     displayspecs = getDisplayCenter(themap,centerx,centery);
     
@@ -88,8 +89,6 @@ function DrawMainFrame(how, themap, centerx, centery) {
       document.getElementById('worldlayer').style.backgroundImage = "";
     }
 
-    let tp = 0; // telepathy
-    let ev = 0; // ethereal vision
     if (PC.getSpellEffectsByName("Telepathy")) { tp = 1; }
     if (PC.getSpellEffectsByName("EtherealVision")) { ev = 1; }
     for (let i=displayspecs.topedge;i<=displayspecs.bottomedge;i++) {
