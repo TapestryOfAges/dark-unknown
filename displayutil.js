@@ -409,3 +409,7 @@ function FadeIn(death) {
   setTimeout(function() { document.getElementById('spelleffects').innerHTML = ""; }, 1500);
   
 }
+
+function GetSpritesheetLocation(x,y) {
+  return parseInt(x) * -1 / 32 + (parseInt(y) * -1 / 32) * 10;
+}
