@@ -84,7 +84,7 @@ NPCSchedule.prototype.getNPCLocationByTime = function(time, setIndex, setFlag, l
   if (setIndex) { this.currentIndex = lastindex; }
   if (setFlag) {
     let allflags = {};
-    for (let ii=0;j<this.scheduleArray.length;j++) {
+    for (let ii=0;ii<this.scheduleArray.length;ii++) {
       if (this.scheduleArray[ii].params.setFlag) {
         let allparams = this.scheduleArray[ii].params.setFlag.split(",");
         for (let k=0;k<allparams.length;k++) {
