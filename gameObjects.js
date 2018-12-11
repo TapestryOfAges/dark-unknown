@@ -2111,6 +2111,7 @@ WestCoastSandTile.prototype = new TerrainObject();
 
 function NortheastCoastTile() {
   this.name = "NortheastCoast";
+  // For Phaser: 0,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2128,6 +2129,7 @@ NortheastCoastTile.prototype = new TerrainObject();
 
 function NortheastCoastSandTile() {
   this.name = "NortheastCoastSand";
+  // For Phaser: 32,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2145,6 +2147,7 @@ NortheastCoastSandTile.prototype = new TerrainObject();
 
 function SouthwestCoastTile() {
   this.name = "SouthwestCoast";
+  // For Phaser: 64,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2162,6 +2165,7 @@ SouthwestCoastTile.prototype = new TerrainObject();
 
 function SouthwestCoastSandTile() {
   this.name = "SouthwestCoastSand";
+  // For Phaser: 96,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2179,6 +2183,7 @@ SouthwestCoastSandTile.prototype = new TerrainObject();
 
 function NorthwestCoastTile() {
   this.name = "NorthwestCoast";
+  // For Phaser: 128,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2196,6 +2201,7 @@ NorthwestCoastTile.prototype = new TerrainObject();
 
 function NorthwestCoastSandTile() {
   this.name = "NorthwestCoastSand";
+  // For Phaser: 160,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2213,6 +2219,7 @@ NorthwestCoastSandTile.prototype = new TerrainObject();
 
 function SoutheastCoastTile() {
   this.name = "SoutheastCoast";
+  // For Phaser: 192,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2230,6 +2237,7 @@ SoutheastCoastTile.prototype = new TerrainObject();
 
 function SoutheastCoastSandTile() {
   this.name = "SoutheastCoastSand";
+  // For Phaser: 224,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -4560,7 +4568,9 @@ IllusionaryEnergyFieldTile.prototype = new FeatureObject();
 
 function CrystalTrapSpaceTile() {
 	this.name = "CrystalTrapSpace";
-  this.graphic = "crystal-trap.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-640";
 	this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a"; 
 	this.desc = "Crystal Trap spell";
@@ -5687,7 +5697,9 @@ SmallTableTile.prototype = new FeatureObject();
 
 function LeftTableTile() {
   this.name = "LeftTable";
-  this.graphic = "table_left.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -5698,7 +5710,9 @@ LeftTableTile.prototype = new FeatureObject();
 
 function MiddleTableTile() {
   this.name = "MiddleTable";
-  this.graphic = "table_middle.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -5709,7 +5723,9 @@ MiddleTableTile.prototype = new FeatureObject();
 
 function RightTableTile() {
   this.name = "RightTable";
-  this.graphic = "table_right.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -5720,7 +5736,9 @@ RightTableTile.prototype = new FeatureObject();
 
 function FoodSouthTile() {
   this.name = "FoodSouth";
-  this.graphic = "table_middle_food_s.png";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5730,7 +5748,9 @@ FoodSouthTile.prototype = new FeatureObject();
 
 function FoodNorthTile() {
   this.name = "FoodNorth";
-  this.graphic = "table_middle_food_n.png";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5740,7 +5760,9 @@ FoodNorthTile.prototype = new FeatureObject();
 
 function FoodSouthNorthTile() {
   this.name = "FoodSouthNorth";
-  this.graphic = "table_middle_food_ns.png";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -6317,7 +6339,9 @@ SecretDoorTile.prototype = new FeatureObject();
 
 function WellTile() {
 	this.name = "Well";
-	this.graphic = "well.gif";   
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-640";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
@@ -7045,7 +7069,9 @@ ShieldDisplayTile.prototype = new FeatureObject();
 
 function SkeletonDecorationTile() {
   this.name = "SkeletonDecoration";
-  this.graphic = "skeleton-deco.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-672";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -8650,7 +8676,9 @@ MoongateTile.prototype.walkon = function(who) {
 
 function PetrifiedReaperTile() {
   this.name = "PetrifiedReaper";
-  this.graphic = "petrifiedreaper.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "petrified reaper";
@@ -8673,7 +8701,9 @@ PetrifiedReaperTile.prototype.use = function(who) {
 
 function AltarWithSwordTile() {
   this.name = "AltarWithSword";
-  this.graphic = "swordinstone.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "sword driven into the stone of an altar";
@@ -12447,7 +12477,9 @@ NaturalMissileWeaponTile.prototype = new MissileWeaponObject();
 function BoulderWeaponTile() {
   this.name = "BoulderWeapon";
   this.damage = "2d12+3";
-  this.graphic = "boulder.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-672";
   this.desc = "boulder";
   this.prefix = "a";
   this.ammoxoffset = "0";
