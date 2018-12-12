@@ -88,6 +88,9 @@ let testvar;
 let lastanim = "";
 let whoseturn; 
 
+let browserheight = window.innerHeight;
+let browserwidth = window.innerWidth;
+
 {
   let callback = function() {
     audio_init_title();  
@@ -102,7 +105,6 @@ let whoseturn;
         if (gamestate.getMode() !== "null") {
           DoAction(code, e);
         } else {
-//          $(lastanim).stop(true,false);
           finishedFinalPage();
         }
         
@@ -114,28 +116,24 @@ let whoseturn;
     if (latestidx === -1) {
       gamestate.initializeSaveGames();
     }
-  
-    let browserheight = window.innerHeight;
-    let browserwidth = window.innerWidth;
-  
+    
     let fleft = Math.floor(browserwidth/2 - 400);
     if (fleft < 0) { fleft = 0; }
     let ftop = Math.floor(browserheight/2 - 300);
     if (ftop < 0) { ftop = 0; }
     let signl = fleft+324;
     let signt = ftop+121;
-    let firstpage = "<div id='allofem'><div id='ToA' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;width:800;height:209;display:none'><img src='graphics/title/ToA_banner_blank.gif' /></div><div id=\"over\" style=\"position:absolute;left:"+fleft+"px;top:"+ftop+"px;width:2px;height:209px;z-index:5;display:none;background-image:url('graphics/title/ToA_banner_ToA-only.gif');background-position: 0px 0px\"></div>";
+    let firstpage = "<div id='allofem'><div id='ToA' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;width:800;height:209;display:block;opacity:0'><img src='graphics/title/ToA_banner_blank.gif' /></div><div id=\"over\" style=\"position:absolute;left:"+fleft+"px;top:"+ftop+"px;width:2px;height:209px;z-index:5;display:none;background-image:url('graphics/title/ToA_banner_ToA-only.gif');background-position: 0px 0px\"></div>";
     firstpage += "<div id='sign' style='position:absolute;z-index:10;left:" + signl + "px;display:none;top:" + signt + "px;width:162;height:52;background-image:url(\"graphics/title/games_signature.gif\");background-position: 0px 0px;color:white'></div>";
-    let animateto = fleft+800;
     fleft = fleft+370;
     ftop = ftop+230;
-    firstpage += "<div id='and' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;display:none'><img src='graphics/title/and.gif' /></div>";
+    firstpage += "<div id='and' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;opacity:0'><img src='graphics/title/and.gif' /></div>";
     fleft = browserwidth/2 - 111;
     ftop = ftop+50;
-    firstpage += "<div id='gf' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;display:none'><img src='graphics/title/gf.gif' /></div>";
+    firstpage += "<div id='gf' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;opacity:0'><img src='graphics/title/gf.gif' /></div>";
     fleft = browserwidth/2 - 59;
     ftop = ftop+70;
-    firstpage += "<div id='present' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;display:none'><img src='graphics/title/present.gif' /></div></div>";
+    firstpage += "<div id='present' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;opacity:0'><img src='graphics/title/present.gif' /></div></div>";
 
     document.getElementById('maindiv').innerHTML = firstpage;
     setTimeout(function() {
@@ -154,14 +152,16 @@ let whoseturn;
 function start_animations() {
   if ((musicloaded["Dark Unknown"] && musicloaded["Charcreate"]) || (musictries >= 10)) {
     dusong = DUPlayMusic("Dark Unknown");
-    $("#ToA").fadeIn(1700, function() {
-      $("#over").css("display", "inline");
-      lastanim = "#over";
-      $("#over").animate({ width: "800px" }, 3700, function() {
-        $("#sign").css("display", "inline");
+    document.getElementById('ToA').classList.add('titlefadein');
+    setTimeout(function() {
+      document.getElementById('over').style.display = "inline";
+      lastanim = "over";
+      document.getElementById('over').classList.add("widenanimate");
+      setTimeout(function() {
+        document.getElementById('sign').style.display = "inline";
         Signature(-52);
-      });
-    });
+      }, 2500);
+    }, 1200);
   } else {
     musictries++;
     setTimeout(function() {
@@ -172,59 +172,61 @@ function start_animations() {
 
 function Signature(val) {
   if (val === -4212) { FirstPage(); return; }
-  lastanim = "#sign";
-  $("#sign").css("background-position", "0px " + val + "px");
+  lastanim = "sign";
+  document.getElementById('sign').style.backgroundPosition = "0px " + val + "px";
   setTimeout(function() { Signature(val-52);}, 25);
 }
 
 function FirstPage() {
-  $("#ToA").html("<img src='graphics/title/ToA_banner-b.gif' />");
-  $("#sign").css("display","none");
-  $("#over").css("display","none");
-  lastanim = "#and";
-  $("#and").fadeIn(1200, function() {
-    lastanim = "#gf";
-    $("#gf").fadeIn(700, function() {
-      lastanim = "#present";
-      $("#present").fadeIn(1400, function() {
+  document.getElementById('ToA').innerHTML = "<img src='graphics/title/ToA_banner-b.gif' />";
+  document.getElementById('sign').style.display = "none";
+  document.getElementById('over').style.display = "none";
+  lastanim = "and";
+  document.getElementById('and').classList.add('andfadein');
+  setTimeout(function() {
+    lastanim = "gf";
+    document.getElementById('gf').classList.add('gffadein');
+    setTimeout(function() {
+      lastanim = "present";
+      document.getElementById('present').classList.add('presentfadein');
+      setTimeout(function() {
         setTimeout(function() {
-          $("#present").fadeOut(1000);
-          $("#gf").fadeOut(1000);
-          $("#and").fadeOut(1000);
-          $("#sign").fadeOut(1000);
-          $("#over").fadeOut(1000);
-          $("#ToA").fadeOut(1000, function() {
+          document.getElementById('present').classList.add('titlefadeout');
+          document.getElementById('gf').classList.add('titlefadeout');
+          document.getElementById('and').classList.add('titlefadeout');
+          document.getElementById('sign').classList.add('titlefadeout');
+          document.getElementById('over').classList.add('titlefadeout');
+          document.getElementById('ToA').classList.add('titlefadeout');
+          setTimeout(function() {
             SecondPage();
-          });
-        }, 1300);
-      });
-    });
-  });
+          },1000);
+        }, 1000);
+      }, 1400);
+    },700);
+  }, 1200);
 }
 
 
 function SecondPage() {
   
-  var browserheight = $(window).height();
-  var browserwidth = $(window).width();
-
-  var sleft = browserwidth/2 - 200;
-  var sptop = browserheight/2 - 300;
+  let sleft = browserwidth/2 - 200;
+  let sptop = browserheight/2 - 300;
   if (sptop < 0 ) { sptop = 0; }
-  var opttop = sptop + 250;
+  let opttop = sptop + 250;
   if (opttop === 250) { opttop = 200; }
-  var optleft = browserwidth/2 - 215;
+  let optleft = browserwidth/2 - 215;
   optselect = 0;
-  var spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;display:none'><img src='graphics/title/du_logo.png' /></div><div id='options'></div>";
-  $("#maindiv").html(spage);
-  lastanim = "#DU";
-  $("#DU").fadeIn(1000, function() {
+  let spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;opacity:0'><img src='graphics/title/du_logo.png' /></div><div id='options'></div>";
+  document.getElementById('maindiv').innerHTML = spage;
+  lastanim = "DU";
+  document.getElementById('DU').classList.add('presentfadein');
+  setTimeout(function() {
     
     spage = "<div id='intro' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt0' src='graphics/title/intro-g.gif' onClick='makeChoice(\'intro\')' /></div>";
     opttop += 60;
     spage += "<div id='create' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;display:none'><img id='opt1' src='graphics/title/create.gif' onClick='makeChoice(\'create\')' /></div>";
     opttop += 60;
-    var journey = "journey.gif";
+    let journey = "journey.gif";
     if (latestidx === -1) {
       journey = "journey-d.gif";
       optnames[2] = "graphics/title/journey-d";
@@ -242,19 +244,16 @@ function SecondPage() {
     $("#journey").fadeIn(1000);
     $("#import").fadeIn(1000);
     $("#credits").fadeIn(1000, function() { pagelive(); });
-  });
+  },1000);
 }
 
 function finishedFinalPage() {
-  var browserheight = $(window).height();
-  var browserwidth = $(window).width();
-
-  var sleft = browserwidth/2 - 200;
-  var sptop = browserheight/2 - 300;
+  let sleft = browserwidth/2 - 200;
+  let sptop = browserheight/2 - 300;
   if (sptop < 0 ) { sptop = 0; }
-  var opttop = sptop + 250;
+  let opttop = sptop + 250;
   if (opttop === 250) { opttop = 200; }
-  var optleft = browserwidth/2 - 215;
+  let optleft = browserwidth/2 - 215;
   optselect = 0;
   var spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;'><img src='graphics/title/du_logo.png' /></div><div id='options'></div>";
   $("#maindiv").html(spage);
