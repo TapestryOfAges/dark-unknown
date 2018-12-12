@@ -1236,7 +1236,7 @@ function SetSky() {
       document.getElementById("sky"+i).style.backgroundImage = "";
       document.getElementById("sky"+i).style.backgroundPosition = "0px 0px";
     }
-    if (sunposition < 13) { $("#sky"+sunposition).css("background-image", "url('graphics/sun.gif')"); }
+    if (sunposition < 13) { document.getElementById("sky"+sunposition).style.backgroundImage = "url('graphics/sun.gif')"; }
     let moon1position = sunposition-moon1location;
     if (moon1position <= 0) { moon1position += 24; }
     let moon2position = sunposition-moon2location;
@@ -1545,14 +1545,14 @@ function ExtendObject() {
               }
 
               // Recurse if we're merging plain objects or arrays
-              if (deep && copy && (jQuery.isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
+              if (deep && copy && (IsPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
 
                   if (copyIsArray) {
                       copyIsArray = false;
                       clone = src && Array.isArray(src) ? src : [];
 
                   } else {
-                      clone = src && jQuery.isPlainObject(src) ? src : {};
+                      clone = src && IsPlainObject(src) ? src : {};
                   }
 
                   // Never move original objects, clone them
