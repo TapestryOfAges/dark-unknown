@@ -11,7 +11,7 @@ let localFactory = new tileFactory();
 let eidos = new Platonic();
 //var universe = new Object;
 
-let DU = {};  // attach all saveable global objects to me
+let DU = {};
 DU.version = "0.6";
 
 DU.PC = new PCObject();
@@ -159,36 +159,17 @@ function DrawTopbarFrame(txt) {
   document.getElementById('topbarframe').innerHTML = txt;
 }
 
-{
-  let callback = function() {
+function StartGame() {
+  CreateDisplayTables();
 
-    let browserheight = window.innerHeight;
-    let browserwidth = window.innerWidth;
+  set_conversations();
+  set_schedules();
+  DU.merchants = {};
+  DU.merchants = SetMerchants();
 
-    let blackwidth = browserwidth - 776;
-    let blackheight = browserheight - 456;
- 
-    document.body.innerHTML += '<div style="position:absolute;left:776px;top:0px;z-index:99; width:' + blackwidth + 'px; height:' + browserheight + 'px; background-color:black;"><img src="graphics/spacer.gif" width="' + blackwidth + '" height = "' + browserheight + '" /></div>';
-    document.body.innerHTML += '<div style="position:absolute;left:0px;top:456px;z-index:99; width:' + browserwidth + 'px; height:' + blackheight + 'px; background-color:black;"><img src="graphics/spacer.gif" width="' + browserwidth + '" height = "' + blackheight + '" /></div>';
-    CreateDisplayTables();
-
-    set_conversations();
-    set_schedules();
-    DU.merchants = {};
-    DU.merchants = SetMerchants();
-  
-    if (debug) {  ActivateDebug(1); }
-    audio_init();  
-	  CreateUI();
-  }
-
-  if (
-    document.readyState === "complete" ||
-    (document.readyState !== "loading" && !document.documentElement.doScroll)) {
-    callback();
-  } else {
-    document.addEventListener("DOMContentLoaded", callback);
-  }
+  if (debug) {  ActivateDebug(1); }
+  audio_init();  
+  CreateUI();
 }
 
 function SoundLoaded() {
