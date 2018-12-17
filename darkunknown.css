@@ -63,7 +63,7 @@
 	  src: local("Spells"), url( 'fonts/UnZialish.ttf' ) format("truetype");
 	}  
 
-body { background-color: black; }
+body { background-color: black; margin: 0px}
 	
 div.topbar { text-align:center; 
 	           color:white;
@@ -73,7 +73,7 @@ div.topbar { text-align:center;
 	           line-height:24px;
 }
 	           
-div.topbar p { margin-top:-4px }
+div.topbar p { margin-top:-4px ; margin-bottom: 0px}
 
 
 div.charstats table { color:white;

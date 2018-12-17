@@ -1,7 +1,5 @@
 "use strict";
 
-let Dice = new DiceObject();
-
 function preload(arrayOfImages) {
   for (let i=0;i<arrayOfImages.length;i++) {
     (new Image()).src = arrayOfImages[i];
@@ -43,72 +41,53 @@ let avatarselect = {};
 avatarselect.x = 0;
 avatarselect.y = 0;
 
-let maxserial = 0;
-let mappages = new Pages();
-let localFactory = new tileFactory();
-let eidos = new Platonic();
-
 gamestate.setMode("null");
-let DU = {};
-DU.gameflags = new Gameflags();
-DU.gameflags.setFlag("music", 1);
-DU.gameflags.setFlag("loopmusic", 1);
-DU.gameflags.setFlag("sound", 1);
-DU.gameflags.setFlag("ambientsound", 1);
 
-let nowplaying;
 let optselect = 0;
 let charname = "";
 let gender = "";
 let graphic = "";
 let dusong;
-DU.DUTime = new Timeline(0);
-let DUTime = DU.DUTime; // alias
-DU.maps = new MapMemory();
-let maps = DU.maps; // alias
-debug = 0;
-let PC = new PCObject();
-PC.assignSerial();
 musicloaded = {};
 let musictries = 0;
-DU.merchants = {};
-DU.merchants = SetMerchants();
-DU.randomseed = Math.floor(Math.random()*100)+1;
 let introidx = 0;
-let losgrid = new LOSMatrix(30);
 
 let firsttime = 1;
 let themap;
 themap = new GameMap();
-let Listener = new DUListener();
 
 let latestidx;
 let testvar;
 
 let lastanim = "";
-let whoseturn; 
 
 let browserheight = window.innerHeight;
 let browserwidth = window.innerWidth;
 
+DU.gameflags.setFlag("music", 1);
+DU.gameflags.setFlag("loopmusic", 1);
+DU.gameflags.setFlag("sound", 1);
+DU.gameflags.setFlag("ambientsound", 1);
+
+let el = function(e) {
+  let code = (e.keyCode ? e.keyCode : e.which);
+  if (gamestate.getMode() !== "import") {
+    e.preventDefault();
+  }
+
+  if (gamestate.getMode() !== "null") {
+    DoActionTitle(code, e);
+  } else {
+    finishedFinalPage();
+  }
+}
+
 {
   let callback = function() {
-    audio_init_title();  
+    audio_init();  
 
     if (firsttime) {
-      document.addEventListener("keydown", function(e) {
-        let code = (e.keyCode ? e.keyCode : e.which);
-        if (gamestate.getMode() !== "import") {
-          e.preventDefault();
-        }
-    
-        if (gamestate.getMode() !== "null") {
-          DoAction(code, e);
-        } else {
-          finishedFinalPage();
-        }
-        
-      });
+      document.addEventListener("keydown", el);
       firsttime = 0;
     }
 
@@ -117,28 +96,6 @@ let browserwidth = window.innerWidth;
       gamestate.initializeSaveGames();
     }
     
-    let fleft = Math.floor(browserwidth/2 - 400);
-    if (fleft < 0) { fleft = 0; }
-    let ftop = Math.floor(browserheight/2 - 300);
-    if (ftop < 0) { ftop = 0; }
-    let signl = fleft+324;
-    let signt = ftop+121;
-    let firstpage = "<div id='allofem'><div id='ToA' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;width:800;height:209;display:block;opacity:0'><img src='graphics/title/ToA_banner_blank.gif' /></div><div id=\"over\" style=\"position:absolute;left:"+fleft+"px;top:"+ftop+"px;width:2px;height:209px;z-index:5;display:none;background-image:url('graphics/title/ToA_banner_ToA-only.gif');background-position: 0px 0px\"></div>";
-    firstpage += "<div id='sign' style='position:absolute;z-index:10;left:" + signl + "px;display:none;top:" + signt + "px;width:162;height:52;background-image:url(\"graphics/title/games_signature.gif\");background-position: 0px 0px;color:white'></div>";
-    fleft = fleft+370;
-    ftop = ftop+230;
-    firstpage += "<div id='and' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;opacity:0'><img src='graphics/title/and.gif' /></div>";
-    fleft = browserwidth/2 - 111;
-    ftop = ftop+50;
-    firstpage += "<div id='gf' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;opacity:0'><img src='graphics/title/gf.gif' /></div>";
-    fleft = browserwidth/2 - 59;
-    ftop = ftop+70;
-    firstpage += "<div id='present' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;opacity:0'><img src='graphics/title/present.gif' /></div></div>";
-
-    document.getElementById('maindiv').innerHTML = firstpage;
-    setTimeout(function() {
-      start_animations();      
-    }, 100);
   }
   if (
     document.readyState === "complete" ||
@@ -149,19 +106,50 @@ let browserwidth = window.innerWidth;
   }
 }
 
+function page_zero() {
+  let fleft = Math.floor(browserwidth/2 - 400);
+  if (fleft < 0) { fleft = 0; }
+  let ftop = Math.floor(browserheight/2 - 300);
+  if (ftop < 0) { ftop = 0; }
+  let signl = fleft+324;
+  let signt = ftop+121;
+  let firstpage = "<div id='allofem'><div id='ToA' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;width:800;height:209;display:block;opacity:0'><img src='graphics/title/ToA_banner_blank.gif' /></div><div id=\"over\" style=\"position:absolute;left:"+fleft+"px;top:"+ftop+"px;width:2px;height:209px;z-index:5;display:none;background-image:url('graphics/title/ToA_banner_ToA-only.gif');background-position: 0px 0px\"></div>";
+  firstpage += "<div id='sign' style='position:absolute;z-index:10;left:" + signl + "px;display:none;top:" + signt + "px;width:162;height:52;background-image:url(\"graphics/title/games_signature.gif\");background-position: 0px 0px;color:white'></div>";
+  fleft = fleft+370;
+  ftop = ftop+230;
+  firstpage += "<div id='and' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;opacity:0'><img src='graphics/title/and.gif' /></div>";
+  fleft = browserwidth/2 - 111;
+  ftop = ftop+50;
+  firstpage += "<div id='gf' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;opacity:0'><img src='graphics/title/gf.gif' /></div>";
+  fleft = browserwidth/2 - 59;
+  ftop = ftop+70;
+  firstpage += "<div id='present' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;opacity:0'><img src='graphics/title/present.gif' /></div></div>";
+
+  document.getElementById('maindiv').innerHTML = firstpage;
+  setTimeout(function() {
+    start_animations();      
+  }, 100);
+}
+
 function start_animations() {
   if ((musicloaded["Dark Unknown"] && musicloaded["Charcreate"]) || (musictries >= 10)) {
     dusong = DUPlayMusic("Dark Unknown");
-    document.getElementById('ToA').classList.add('titlefadein');
-    setTimeout(function() {
-      document.getElementById('over').style.display = "inline";
-      lastanim = "over";
-      document.getElementById('over').classList.add("widenanimate");
+    if (gamestate.getMode() === "null") {
+      document.getElementById('ToA').classList.add('titlefadein');
       setTimeout(function() {
-        document.getElementById('sign').style.display = "inline";
-        Signature(-52);
-      }, 2500);
-    }, 1200);
+        if (gamestate.getMode() === "null") {
+          document.getElementById('over').style.display = "inline";
+          lastanim = "over";
+          document.getElementById('over').classList.add("widenanimate");
+          setTimeout(function() {
+            if (gamestate.getMode() === "null") {
+              document.getElementById('sign').style.display = "inline";
+              Signature(-52);
+            }
+          }, 2500);
+        }
+      }, 1200);
+    }
   } else {
     musictries++;
     setTimeout(function() {
@@ -173,8 +161,10 @@ function start_animations() {
 function Signature(val) {
   if (val === -4212) { FirstPage(); return; }
   lastanim = "sign";
-  document.getElementById('sign').style.backgroundPosition = "0px " + val + "px";
-  setTimeout(function() { Signature(val-52);}, 25);
+  if (gamestate.getMode() === "null") {
+    document.getElementById('sign').style.backgroundPosition = "0px " + val + "px";
+    setTimeout(function() { Signature(val-52);}, 25);
+  }
 }
 
 function FirstPage() {
@@ -283,7 +273,7 @@ function pagelive() {
 }
 
 
-function DoAction(code, e) {
+function DoActionTitle(code, e) {
   if (gamestate.getMode() === "intro") {
     RunIntro(introidx);
     introidx++;
@@ -329,14 +319,12 @@ function DoAction(code, e) {
         CharCreate();
       }
       else if (optselect === 2) {
-        window.open("game.html", "_self");
+//        window.open("game.html", "_self");
+        CreateGameSpace();
+        StartGame();
       }
       else if (optselect === 3) {
         alert("credits");
-      }
-      else if (optselect === 4) {
-        // import save
-        ImportSave();
       }
     }
   }
@@ -443,6 +431,10 @@ function ChooseGraphic() {
 }
 
 function SaveChar() {
+  DU.merchants = {};
+  DU.merchants = SetMerchants();
+  DU.randomseed = Math.floor(Math.random()*100)+1;
+  
   PC.setPCName(charname);
   PC.setGraphic(graphic);
   PC.setGender(gender);
@@ -555,3 +547,32 @@ function RunIntro(idx) {
   return;
 }
 
+function CreateGameSpace() {
+  optnames = [];
+  avatars = [];
+  avatarselect = {};
+
+  document.removeEventListener("keydown", el);
+
+  document.getElementById('gamebody').innerHTML = `<div id="worldlayer" style="position:absolute;left:20px;top:20px;width:416px;height:416px;z-index:10"><img src="graphics/spacer.gif" width='416' height='416' /></div>
+	
+  <div id="gamecontainer" style="position:abolute;left:0px;top:0px;z-index:-10; background-color:black;">
+    <div style="position:absolute;left:0px;top:0px;z-index:99;width:776px"><img src="graphics/frame/frame.gif" /></div>
+    <div style="position:absolute;left:128px;top:1px;width:16px;height:16px;" id="sky12"></div><div style="position:absolute;left:144px;top:1px;width:16px;height:16px;" id="sky11"></div><div style="position:absolute;left:160px;top:1px;width:16px;height:16px;" id="sky10"></div><div style="position:absolute;left:176px;top:1px;width:16px;height:16px;" id="sky9"></div><div style="position:absolute;left:192px;top:1px;width:16px;height:16px;" id="sky8"></div><div style="position:absolute;left:208px;top:1px;width:16px;height:16px;" id="sky7"></div><div style="position:absolute;left:224px;top:1px;width:16px;height:16px;" id="sky6"></div><div style="position:absolute;left:240px;top:1px;width:16px;height:16px;" id="sky5"></div><div style="position:absolute;left:256px;top:1px;width:16px;height:16px;" id="sky4"></div><div style="position:absolute;left:272px;top:1px;width:16px;height:16px;" id="sky3"></div><div style="position:absolute;left:288px;top:1px;width:16px;height:16px;" id="sky2"></div><div style="position:absolute;left:306px;top:1px;width:16px;height:16px;" id="sky1"></div>
+    <div style="position:absolute;left:128px;top:1px;width:196px;height:16px;z-index:100;text-align:center;" id="oversky"></div>
+    <div style="position:absolute;left:100px;top:437px;width:256px;z-index:100;background-color:black" class="topbar" id="topbarframe">Loading...</div>
+    <div style="position:absolute;left:20px;top:20px;width:416px;height:416px;z-index:20;" class="mainframe" id="displayframe">&nbsp;</div>
+    <div style="position:absolute;left:456px;top:20px;width:300px;height:40px;background-color:black;z-index:99;" id="charstats" class="charstats" onClick="DoAction(90)">&nbsp;</div>
+    <div style="position:absolute;left:456px;top:80px;width:300px;height:356px;background-color:black;z-index:99;" id="textframe" class="textframe">
+      <div id="maintextframe" class="maintextframe"><div id="innertextframe" class="innertextframe">&nbsp;</div></div>
+      <div id="inputtext" class="inputtext">&nbsp;</div>
+    </div>
+    
+  </div>
+          <div class="spellbook" id="spellbookdiv" style="position:absolute; left:150px; top:50px; z-index:100;"><div id="spellbookinnerdiv"> <p>Spellbook test.</p></div></div>
+          <div id="combateffects" style="position:absolute; left: 20px; top: 20px; z-index: 60; width:416px; height:416px;"></div>
+          <div id="spelleffects" style="position:absolute; left: 20px; top: 20px; z-index: 65; width:416px; height:416px;"></div>
+          <div id="audiocontainer" style="display:none"></div>
+          <div id="uiinterface" style="position:absolute; left: 19px; top: 20px; z-index: 70; width:416px; height:416px;"></div>
+          <img id="turnframe" src="graphics/frame/turn-frame-friendly.gif" style="position:absolute; left: 0px; top: 0px; z-index:65; display:none; width:36px; height:36px" /> `;
+}

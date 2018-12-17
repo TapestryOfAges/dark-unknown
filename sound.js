@@ -128,17 +128,6 @@ function audio_init_2() {
   }
 }
 
-function audio_init_title() {
-  createjs.Sound.initializeDefaultPlugins();
-  createjs.Sound.alternateExtensions = ["ogg"];
-//  createjs.Sound.addEventListener("fileload", handleFileLoadTitle);
-//  createjs.Sound.registerSounds(DUSound, soundpath);
-  
-  let fullpath = musicpath + "The Dark Unknown.mp3";
-  createjs.Sound.registerSound(fullpath, "Dark Unknown");
-  fullpath = musicpath + "The Journey Begins.mp3";
-  createjs.Sound.registerSound(fullpath, "Charcreate");
-}
 
 function populate_audio(soundlist, preload, loop, soundtype) {
   let preloadtext = "";
@@ -251,7 +240,7 @@ function handleFileLoad(event) {
   musicloaded[event.id] = 1;
   musicsloaded++;
   if (musicsloaded === 20) {
-    audio_init_2();
+    page_zero();
   }
 }
 

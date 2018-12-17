@@ -554,7 +554,7 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
     if (lock == undefined) { lock = 1; }
 		this.setLocked(lock);
 		if (lock > 2) { lock = 2; }
-		this.setOverlay(this.lockedgraphics[lock]);
+		this.setGraphicArray(this.lockedgraphics[lock]);
 		this.setDesc(this.lockeddescs[lock]);
 		this.setPrefix(this.lockedprefixes[lock]);
 		let homemap = this.getHomeMap();
@@ -1083,28 +1083,65 @@ function SetBySurroundRoad() {
 	  let localacre = themap.getTile(x+1,y);
 	  if (localacre !== "OoB") {
 	  	let tile = localacre.terrain;
-	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "e"; }
+	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "e";}
 	  }	
 	  localacre = themap.getTile(x-1,y);
 	  if (localacre !== "OoB") {
 	  	let tile = localacre.terrain;
-	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "w"; }
+	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "w";}
 	  }	
 	  localacre = themap.getTile(x,y-1);
 	  if (localacre !== "OoB") {
 	  	let tile = localacre.terrain;
-	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "n"; }
+	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "n";}
 	  }	
 	  localacre = themap.getTile(x,y+1);
 	  if (localacre !== "OoB") {
 	  	let tile = localacre.terrain;
-	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "s"; }
+	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "s";}
 	  }	
 	  if ((suffix === "ewns") || (suffix === "")) { suffix = "x"; }
 	  if ((suffix === "e") || (suffix === "w")) { suffix = "ew"; }
-	  if ((suffix === "n") || (suffix === "s")) { suffix = "ns"; }
-	  graphics[0] = "road-" + suffix + ".gif";
-		return graphics;
+    if ((suffix === "n") || (suffix === "s")) { suffix = "ns"; }
+    
+    graphics[0] = "master_spritesheet.png";
+    switch (suffix) {
+      case "en": 
+      graphics[2] = "-32"; graphics[3] = "-736";
+      return graphics;
+      case "ens":
+      graphics[2] = "-64"; graphics[3] = "-736";
+      return graphics;
+      case "es":
+      graphics[2] = "-96"; graphics[3] = "-736";
+      return graphics;
+      case "ew":
+      graphics[2] = "-128"; graphics[3] = "-736";
+      return graphics;
+      case "ewn":
+      graphics[2] = "-160"; graphics[3] = "-736";
+      return graphics;
+      case "ews":
+      graphics[2] = "-192"; graphics[3] = "-736";
+      return graphics;
+      case "ns":
+      graphics[2] = "-224"; graphics[3] = "-736";
+      return graphics;
+      case "wn":
+      graphics[2] = "-256"; graphics[3] = "-736";
+      return graphics;
+      case "wns":
+      graphics[2] = "-288"; graphics[3] = "-736";
+      return graphics;
+      case "ws":
+      graphics[2] = "0"; graphics[3] = "-768";
+      return graphics;
+      case "x":
+      graphics[2] = "-32"; graphics[3] = "-768";
+      return graphics;
+    }
+//	  graphics[0] = "road-" + suffix + ".gif";
+//		return graphics;
 	}
 }
 
@@ -2576,7 +2613,9 @@ FarmTile.prototype = new TerrainObject();
 
 function RoadTile() {
   this.name = "Road";
-  this.graphic = "road-ew.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3622,7 +3661,9 @@ function InLava(who) {
 
 function FenceNWTile() {
   this.name = "FenceNW";
-  this.graphic = "fence-nw.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3632,7 +3673,9 @@ FenceNWTile.prototype = new FeatureObject();
 
 function FenceNETile() {
   this.name = "FenceNE";
-  this.graphic = "fence-ne.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3642,7 +3685,9 @@ FenceNETile.prototype = new FeatureObject();
 
 function FenceEWTile() {
   this.name = "FenceEW";
-  this.graphic = "fence-ew.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3652,7 +3697,9 @@ FenceEWTile.prototype = new FeatureObject();
 
 function FenceSETile() {
   this.name = "FenceSE";
-  this.graphic = "fence-se.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3662,7 +3709,9 @@ FenceSETile.prototype = new FeatureObject();
 
 function FenceSWTile() {
   this.name = "FenceSW";
-  this.graphic = "fence-sw.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3672,7 +3721,9 @@ FenceSWTile.prototype = new FeatureObject();
 
 function FenceNSTile() {
   this.name = "FenceNS";
-  this.graphic = "fence-ns.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3682,7 +3733,9 @@ FenceNSTile.prototype = new FeatureObject();
 
 function FenceEWSTile() {
   this.name = "FenceEWS";
-  this.graphic = "fence-ews.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3692,7 +3745,9 @@ FenceEWSTile.prototype = new FeatureObject();
 
 function FenceEWGateTile() {
 	this.name = "FenceEWGate";
-	this.graphic = "fence-ew-gate-closed.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-800";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
@@ -3700,7 +3755,7 @@ function FenceEWGateTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, [this.graphic, this.overlay, 0, 0], ["fence-ew-gate-open.gif", this.overlay, 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["master_spritesheet.png", "", "0", "-800"], ["master_spritesheet.png", "", "-32", "-800"], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
   // WORKING- NEED TO REPLACE SOUNDS
 }
 FenceEWGateTile.prototype = new FeatureObject();
@@ -4010,7 +4065,9 @@ CastleTile.prototype.bumpinto = function(who) {
 
 function LeftCastleTile() {
   this.name = "LeftCastle";
-  this.graphic = "005.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-704";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle Dea Olympus";
@@ -4021,7 +4078,9 @@ LeftCastleTile.prototype = new FeatureObject();
 
 function RightCastleTile() {
   this.name = "RightCastle";
-  this.graphic = "006.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-704";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle Dea Olympus";
@@ -4032,7 +4091,9 @@ RightCastleTile.prototype = new FeatureObject();
 
 function DoorwayTile() {
   this.name = "Doorway";
-  this.graphic = "archway.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-704";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "an";
@@ -4096,9 +4157,11 @@ function RuinsTile() {
 RuinsTile.prototype = new FeatureObject();
 
 function ChestTile() {
-  Lockable.call(this, "008.gif", "008.gif", "008.gif", 	"a",  "chest", "a", "locked chest", "a", "magically locked chest");
+  Lockable.call(this, ["master_spritesheet.png","","-64","-704"], ["master_spritesheet.png","","-64","-704"], ["master_spritesheet.png","","-64","-704"], 	"a",  "chest", "a", "locked chest", "a", "magically locked chest");
 	this.name = "Chest";
-	this.graphic = "008.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-704";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK + MOVE_LEVITATE;
 	this.blocklos = 0;
 	this.prefix = "a";
@@ -4119,10 +4182,12 @@ ChestTile.prototype.flamed = function() {
 }
 
 function DoorWindowTile() {
-  Lockable.call(this, "009.gif", "010.gif", "067.gif", "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["master_spritesheet.png","",'-96','-704'], ["master_spritesheet.png","",'-128','-704'], ["master_spritesheet.png","",'-160','-704'], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "DoorWindow";
-	this.graphic = "009.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-704";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.losupclose = {distance: 1 , blocklos: 0};
@@ -4132,7 +4197,7 @@ function DoorWindowTile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, [this.graphic, "", 0, 0], ["archway.gif", "", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["master_spritesheet.png","",'-96','-704'], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorWindowTile.prototype = new FeatureObject();
 
@@ -4141,7 +4206,7 @@ DoorWindowTile.prototype.bumpinto = function(who) {
 }
 
 function StonePortcullisTile() {
-  Lockable.call(this, "stone-portcullis.gif", "stone-portcullis.gif", "stone-portcullis.gif", "a", "portcullis", "a", "portcullis", "a", "portcullis");
+  Lockable.call(this, ["stone-portcullis.gif","",'0','0'], ["stone-portcullis.gif","",'0','0'], ["stone-portcullis.gif","",'0','0'], "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
 	this.name = "StonePortcullis";
 	this.graphic = "stone-portcullis.gif";
@@ -4162,7 +4227,7 @@ StonePortcullisTile.prototype.bumpinto = function(who) {
 }
 
 function WallPortcullisTile() {
-  Lockable.call(this, "wall-portcullis.gif", "wall-portcullis.gif", "wall-portcullis.gif", "a", "portcullis", "a", "portcullis", "a", "portcullis");
+  Lockable.call(this, ["wall-portcullis.gif","",'0','0'], ["wall-portcullis.gif","",'0','0'], ["wall-portcullis.gif","",'0','0'], "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
 	this.name = "WallPortcullis";
 	this.graphic = "wall-portcullis.gif";
@@ -4322,7 +4387,9 @@ function UseTorch(who,torch) {
 
 function WoodpileTile() {
 	this.name = "Woodpile";
-	this.graphic = "woodpile.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-768";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
   this.prefix = "a";
@@ -4730,7 +4797,9 @@ DustyFireplaceTile.prototype = new FeatureObject();
 
 function AltarTile() {
 	this.name = "Altar";
-	this.graphic = "023.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-736";
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
 	this.prefix = "an";
@@ -4752,7 +4821,7 @@ function ThroneTile() {
 ThroneTile.prototype = new FeatureObject();
 
 function DoorTile() {
-  Lockable.call(this, "064.gif", "065.gif", "066.gif", "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["master_spritesheet.png","",'-224','-704'], ["master_spritesheet.png","",'-256','-704'], ["master_spritesheet.png","",'-288','-704'], "a", "door", "a", "locked door", "a", "magically locked door");
   	
 	this.name = "Door";
 	this.graphic = "064.gif";
@@ -4763,7 +4832,7 @@ function DoorTile() {
   
   this.pathweight = 2; 
 
-	Openable.call(this, [this.graphic, "", 0, 0], ["archway.gif", "", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+	Openable.call(this, [this.graphic, "", 0, 0], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorTile.prototype = new FeatureObject();
 
@@ -6333,7 +6402,7 @@ function SecretDoorTile() {
   
   this.pathweight = 2; 
 	
-  Openable.call(this, [this.graphic, "", 0, 0], ["archway.gif", "", 0, 0], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
+  Openable.call(this, [this.graphic, "", 0, 0], ["master_spritesheet.png","",'-160','-704'], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
 }
 SecretDoorTile.prototype = new FeatureObject();
 
