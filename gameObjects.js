@@ -3934,7 +3934,9 @@ WaterRockTile.prototype = new FeatureObject();
 
 function DungeonTile() {
   this.name = "Dungeon";
-  this.graphic = "151.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3946,7 +3948,9 @@ DungeonTile.prototype = new FeatureObject();
 
 function CaveTile() {
   this.name = "Cave";
-  this.graphic = "cave.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-832";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4103,7 +4107,9 @@ DoorwayTile.prototype = new FeatureObject();
 
 function StoneDoorwayTile() {
   this.name = "StoneDoorway";
-  this.graphic = "stone-arch.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-832";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "an";
@@ -4113,7 +4119,9 @@ StoneDoorwayTile.prototype = new FeatureObject();
 
 function WallDoorwayTile() {
   this.name = "WallDoorway";
-  this.graphic = "wall-arch.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-832";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "an";
@@ -4123,7 +4131,9 @@ WallDoorwayTile.prototype = new FeatureObject();
 
 function ShrineTile() {
   this.name = "Shrine";
-  this.graphic = "156.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-832";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4134,7 +4144,9 @@ ShrineTile.prototype = new FeatureObject();
 
 function BrokenShrineTile() {
   this.name = "BrokenShrine";
-  this.graphic = "brokengate.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-832";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4145,7 +4157,9 @@ BrokenShrineTile.prototype = new FeatureObject();
 
 function RuinsTile() {
   this.name = "Ruins";
-  this.graphic = "157.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-832";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4206,10 +4220,12 @@ DoorWindowTile.prototype.bumpinto = function(who) {
 }
 
 function StonePortcullisTile() {
-  Lockable.call(this, ["stone-portcullis.gif","",'0','0'], ["stone-portcullis.gif","",'0','0'], ["stone-portcullis.gif","",'0','0'], "a", "portcullis", "a", "portcullis", "a", "portcullis");
+  Lockable.call(this, ["master_spritesheet.png", "", "-224", "-832"], ["master_spritesheet.png", "", "-224", "-832"], ["master_spritesheet.png", "", "-224", "-832"], "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
 	this.name = "StonePortcullis";
-	this.graphic = "stone-portcullis.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-832";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
@@ -4218,7 +4234,7 @@ function StonePortcullisTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, [this.graphic, "", 0, 0], ["stone-arch.gif", "", 0, 0], 0, "", "", "sfx_locked_door");  // ADD WHEN SOUNDS ADDED
+  Openable.call(this, ["master_spritesheet.png", "", "-224", "-832"], ["master_spritesheet.png", "", "-192", "-832"], 0, "", "", "sfx_locked_door");  // ADD WHEN SOUNDS ADDED
 }
 StonePortcullisTile.prototype = new FeatureObject();
 
@@ -4227,10 +4243,12 @@ StonePortcullisTile.prototype.bumpinto = function(who) {
 }
 
 function WallPortcullisTile() {
-  Lockable.call(this, ["wall-portcullis.gif","",'0','0'], ["wall-portcullis.gif","",'0','0'], ["wall-portcullis.gif","",'0','0'], "a", "portcullis", "a", "portcullis", "a", "portcullis");
+  Lockable.call(this, ["master_spritesheet.png", "", "-288", "-832"], ["master_spritesheet.png", "", "-288", "-832"], ["master_spritesheet.png", "", "-288", "-832"], "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
 	this.name = "WallPortcullis";
-	this.graphic = "wall-portcullis.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-832";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
@@ -4239,7 +4257,7 @@ function WallPortcullisTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, [this.graphic, "", 0, 0], ["wall-arch.gif", "", 0, 0], 0, "", "", "sfx_locked_door");  // HERE TOO
+  Openable.call(this, ["master_spritesheet.png", "", "-288", "-832"], ["master_spritesheet.png", "", "-256", "-832"], 0, "", "", "sfx_locked_door");  // HERE TOO
 }
 WallPortcullisTile.prototype = new FeatureObject();
 
@@ -4249,7 +4267,9 @@ WallPortcullisTile.prototype.bumpinto = function(who) {
 
 function CorpseTile() {
 	this.name = "Corpse";
-	this.graphic = "012.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-800";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.prefix = "a";
@@ -4262,7 +4282,9 @@ CorpseTile.prototype = new FeatureObject();
 
 function BloodTile() {
 	this.name = "Blood";
-	this.graphic = "blood.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-832";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.prefix = "";
@@ -4824,7 +4846,9 @@ function DoorTile() {
   Lockable.call(this, ["master_spritesheet.png","",'-224','-704'], ["master_spritesheet.png","",'-256','-704'], ["master_spritesheet.png","",'-288','-704'], "a", "door", "a", "locked door", "a", "magically locked door");
   	
 	this.name = "Door";
-	this.graphic = "064.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-704";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.prefix = "a";
@@ -5559,7 +5583,9 @@ AnvilTile.prototype = new FeatureObject();
 
 function WBridgeNSTile() {
   this.name = "WBridgeNS";
-  this.graphic = "070.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5572,7 +5598,9 @@ WBridgeNSTile.prototype = new FeatureObject();
 
 function EBridgeNSTile() {
   this.name = "EBridgeNS";
-  this.graphic = "071.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5585,7 +5613,9 @@ EBridgeNSTile.prototype = new FeatureObject();
 
 function BridgeNSTile() {
   this.name = "BridgeNS";
-  this.graphic = "072.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5598,7 +5628,9 @@ BridgeNSTile.prototype = new FeatureObject();
 
 function NBridgeEWTile() {
   this.name = "NBridgeEW";
-  this.graphic = "101.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5611,7 +5643,9 @@ NBridgeEWTile.prototype = new FeatureObject();
 
 function SBridgeEWTile() {
   this.name = "SBridgeEW";
-  this.graphic = "102.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5624,7 +5658,9 @@ SBridgeEWTile.prototype = new FeatureObject();
 
 function BridgeEWTile() {
   this.name = "BridgeEW";
-  this.graphic = "126.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -6390,7 +6426,9 @@ BrilliantPoolTile.prototype.bookFinish = function() {
 
 function SecretDoorTile() {
 	this.name = "SecretDoor";
-	this.graphic = "056.gif";   // note: 024 is U4's secret door
+  this.graphic = "master_spritesheet.png";   // note: 024 is U4's secret door
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-128";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 2; 
 	this.prefix = "a";
@@ -6402,7 +6440,7 @@ function SecretDoorTile() {
   
   this.pathweight = 2; 
 	
-  Openable.call(this, [this.graphic, "", 0, 0], ["master_spritesheet.png","",'-160','-704'], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
+  Openable.call(this, [this.graphic, "", "-96", "-128"], ["master_spritesheet.png","",'-160','-704'], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
 }
 SecretDoorTile.prototype = new FeatureObject();
 
@@ -7404,7 +7442,7 @@ PitDespairLeverTile.prototype.use = function(user) {
     };
     if (this.spritexoffset === "-224") {
       door.locked = 0;
-      door.setGraphicArray(["055.gif", "wall-arch.gif", 0, 0]);
+      door.setGraphicArray(["master_spritesheet.png", "", "-256", "-832"]);
 			
 			door.closedLOS = door.getBlocksLOSArray();
 			let seethru = [];
@@ -8179,7 +8217,9 @@ FountainTile.prototype = new FeatureObject();
 
 function BrokenFountainTile() {
   this.name = "BrokenFountain";
-  this.graphic = "brokenfountain.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-832";
   this.prefix = "a";
   this.desc = "broken fountain";
   this.peerview = "#a0a0a0";
