@@ -1006,6 +1006,61 @@ function SetBySurround() {
   }
 }
 
+function SetBySurroundCave() {
+	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
+		const ADD_Y = 864;
+    const A_CORNER = 1;
+    const B_CORNER = 2;
+    const C_CORNER = 4;
+    const D_CORNER = 8;
+    const E_WALL = 16;
+    const N_WALL = 32;
+    const S_WALL = 64;
+    const W_WALL = 128;
+
+    let tilename = this.getName();
+		let vis = 0;
+		let north = 0;
+		let south = 0;
+		let east = 0;
+		let west = 0;
+
+  	let spritecount = 0;
+	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y+1) < LOS_THRESHOLD) )) { spritecount += N_WALL; north = 1; vis = 1;}
+	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack"))) { north = 1; }
+  	if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y-1) < LOS_THRESHOLD) )) { spritecount += S_WALL; south = 1; vis = 1;}
+  	if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack"))) { south = 1; }
+	  if ((themap.getTile(x-1,y) !== "OoB") && ((themap.getTile(x-1,y).terrain.getName() !== tilename) && (themap.getTile(x-1,y).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y) < LOS_THRESHOLD) )) { spritecount += E_WALL; east = 1; vis = 1;}
+	  if ((themap.getTile(x-1,y) !== "OoB") && ((themap.getTile(x-1,y).terrain.getName() !== tilename) && (themap.getTile(x-1,y).terrain.getName() !== "BlankBlack"))) { east = 1; }
+  	if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y) < LOS_THRESHOLD) )) { spritecount += W_WALL; west = 1; vis = 1;}
+  	if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack"))) { west = 1; }
+		
+	 	if ((themap.getTile(x+1,y-1) !== "OoB") && (themap.getTile(x+1,y-1).terrain.getName() !== tilename) && (themap.getTile(x+1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y-1) < LOS_THRESHOLD) ))
+	 	  { spritecount += A_CORNER; vis = 1; }
+  	if ((themap.getTile(x+1,y+1) !== "OoB") && (themap.getTile(x+1,y+1).terrain.getName() !== tilename) && (themap.getTile(x+1,y+1).terrain.getName() !== "BlankBlack") && (north === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y+1) < LOS_THRESHOLD) )) 
+  	  { spritecount += B_CORNER; vis = 1; }
+	  if ((themap.getTile(x-1,y+1) !== "OoB") && (themap.getTile(x-1,y+1).terrain.getName() !== tilename) && (themap.getTile(x-1,y+1).terrain.getName() !== "BlankBlack") && (north === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y+1) < LOS_THRESHOLD) ))
+	    { spritecount += C_CORNER; vis = 1;}
+	 	if ((themap.getTile(x-1,y-1) !== "OoB") && (themap.getTile(x-1,y-1).terrain.getName() !== tilename) && (themap.getTile(x-1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y-1) < LOS_THRESHOLD) )) 
+	 	  { spritecount += D_CORNER; vis = 1; }
+	
+	  if (vis === 0) { 
+	  	let black = eidos.getForm('BlankBlack');
+	  	let blkgraphics = black.getGraphicArray();
+	  	graphics = blkgraphics;
+	  } else {
+      let yoff = parseInt(spritecount*64/320);
+      let xoff = (spritecount*64)%320;
+      graphics[2] = xoff;
+      graphics[3] = yoff+ADD_Y;
+    }
+	  let tmparray = [];
+	  tmparray[0] = .5;
+	  if (spritecount & (E_WALL+N_WALL+S_WALL+W_WALL)) { this.setBlocksLOSArray(tmparray); }
+	  return (graphics);
+  }
+}
+
 // General func
 function SetBySurroundCoast() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
@@ -3766,9 +3821,9 @@ FenceEWGateTile.prototype.bumpinto = function(who) {
 
 function StatueBaseTile() {
   this.name = "StatueBase";
-  this.graphic = "statue.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-896";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3778,7 +3833,9 @@ StatueBaseTile.prototype = new FeatureObject();
 
 function StatueTopTile() {
   this.name = "StatueTop";
-  this.graphic = "statue.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-864";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5910,7 +5967,9 @@ HarpsichordTile.prototype.use = function(who) {
 
 function BedHeadTile() {
   this.name = "BedHead";
-  this.graphic = "bed_head.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1120";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5922,19 +5981,20 @@ function BedHeadTile() {
 BedHeadTile.prototype = new FeatureObject();
 
 BedHeadTile.prototype.walkon = function(who) {
-  let sleepgraphic = "bed_head-sleep1.gif";
-  if (who.getGraphic().indexOf(".2.") > -1) { 
-    sleepgraphic = "bed_head-sleep2.gif";
-  }
-  who.realgraphic = who.getGraphic();
-  who.setGraphic(sleepgraphic);
+  let garr = ["master_spritesheet.png","","-64","-1120"];
+//  if (who.getGraphic().indexOf(".2.") > -1) { 
+  if (parseInt(who.skintone) === 2) {
+    garr[2] = "-96";
+  } else if (parseInt(who.skintone) !== 1) { console.log("Missing skintone on " + who); }
+  who.realgraphic = who.getGraphicArray();
+  who.setGraphicArray(garr);
   DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " to sleeping.<br />");
   return;
 }
 
 BedHeadTile.prototype.walkoff = function(who) {
   if (who.realgraphic) {
-    who.setGraphic(who.realgraphic);
+    who.setGraphicArray(who.realgraphic);
     delete who.realgraphic;
     DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sleeping.<br />");
   } else {
@@ -5957,7 +6017,9 @@ BedHeadTile.prototype.bumpinto = function(who) {
 
 function BedFootTile() {
   this.name = "BedFoot";
-  this.graphic = "bed_foot.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1120";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -8306,7 +8368,9 @@ WhiteCrystalTile.prototype = new FeatureObject();
 
 function TeleporterPlatformTile() {
   this.name = "TeleporterPlatform";
-  this.graphic = "teleporter.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-896";
   this.prefix = "a";
   this.desc = "platform";
   this.destination;
@@ -12675,7 +12739,7 @@ function NPCObject() {
   this.xpval = 0;
   this.flags = {};
   this.initOverride = 0;
-  
+  this.skintone = 0;  
 	LightEmitting.call(this, 0);
 	
 	this.addType("npc");

@@ -1477,6 +1477,9 @@ GameMap.prototype.saveMap = function (name) {
   	if (mapnpcs[i].overrideGraphic) {
   	  printerwin.document.write(", OverrideGraphic: '" + mapnpcs[i].overrideGraphic + "'");
  	  }
+    if (mapnpcs[i].skintone) {
+  	  printerwin.document.write(", skintone: '" + mapnpcs[i].skintone + "'");
+ 	  }
  	  printerwin.document.write("};<br />\n");
   }
  
@@ -1674,7 +1677,8 @@ GameMap.prototype.loadMap = function (name) {
   			  if (npckey === "Bark") { newnpc.setBark(loadnpcs[npci].Bark); }
   			  if (npckey === "BarkRad") { newnpc.setBarkRad(loadnpcs[npci].BarkRad); }
   			  if (npckey === "NPCBand") { newnpc.setNPCBand(loadnpcs[npci].NPCBand); }
-  			  if (npckey === "OverrideGraphic") { newnpc.overrideGraphic = loadnpcs[npci].OverrideGraphic; }
+          if (npckey === "OverrideGraphic") { newnpc.overrideGraphic = loadnpcs[npci].OverrideGraphic; }
+          if (npckey === "skintone") { newnpc.skintone = loadnpcs[npci].skintone; }
         }
         if ((newnpc.getPeaceAI() === "scheduled") && (!DU.gameflags.getFlag("editor"))) {
           let loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1, this);

@@ -233,7 +233,7 @@ mappages["beldskae"].features[185] = {name : 'Fireplace', x : 42, y : 20};
 
 
 mappages["beldskae"].npcs = [];
-mappages["beldskae"].npcs[0] = {name : 'FighterVillagerNPC', x : 43, y : 25, NPCName: 'Ariel', Conversation: 'ariel', Gender: 'female', Merch: 'ariel', NPCBand: '0'};
+mappages["beldskae"].npcs[0] = {name : 'FighterVillagerNPC', x : 43, y : 25, NPCName: 'Ariel', Conversation: 'ariel', Gender: 'female', Merch: 'ariel', NPCBand: '0', skintone: '1'};
 
 mappages["beldskae"].desc = "The Towne of Beldskae";
 mappages["beldskae"].longdesc = '';
