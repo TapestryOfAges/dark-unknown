@@ -1,0 +1,29 @@
+{
+  "name": "dark-unknown",
+  "version": "0.6.1",
+  "description": "A retro CRPG",
+  "main": "e-main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TapestryOfAges/dark-unknown.git"
+  },
+  "keywords": [
+    "CRPG",
+    "tile-based"
+  ],
+  "author": "Adam Burr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TapestryOfAges/dark-unknown/issues"
+  },
+  "homepage": "http://tapestryofages.com",
+  "devDependencies": {
+    "electron": "^3.0.12"
+  }
+}
