@@ -924,8 +924,9 @@ function TilingSpritesheet(tileval) {
 		tilingx = (tilingx % tileval)*32; 
     tilingy = (tilingy % tileval)*32;
     let tileme = {};
-    tileme.spritexoffset = parseInt(this.spritexoffset) - tilingx;
-    tileme.spriteyoffset = parseInt(this.spriteyoffset) - tilingy;
+    if (!tilegraphic) {tilegraphic = this.getGraphicArray(); }
+    tileme.spritexoffset = parseInt(tilegraphic.graphics2) - tilingx;
+    tileme.spriteyoffset = parseInt(tilegraphic.graphics3) - tilingy;
     return tileme;
   }
 }
@@ -1008,7 +1009,7 @@ function SetBySurround() {
 
 function SetBySurroundCave() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
-		const ADD_Y = 864;
+    const ADD_Y = 864;
     const A_CORNER = 1;
     const B_CORNER = 2;
     const C_CORNER = 4;
@@ -1049,10 +1050,10 @@ function SetBySurroundCave() {
 	  	let blkgraphics = black.getGraphicArray();
 	  	graphics = blkgraphics;
 	  } else {
-      let yoff = parseInt(spritecount*64/320);
-      let xoff = (spritecount*64)%320;
+      let yoff = parseInt(-1*spritecount*64/320)*64;
+      let xoff = ((-1*spritecount*64)%320);
       graphics[2] = xoff;
-      graphics[3] = yoff+ADD_Y;
+      graphics[3] = yoff-ADD_Y;
     }
 	  let tmparray = [];
 	  tmparray[0] = .5;
@@ -3143,15 +3144,17 @@ CaveFloorTile.prototype = new TerrainObject();
 
 function CaveWallTile() {
 	this.name = "CaveWall";
-	this.graphic = "cavewall.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-3936";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1;
 	this.prefix = "a";
 	this.desc = "cave wall";
 	this.peerview = "black";
 	
-	Tiling.call(this, 2);
-	SetBySurround.call(this);
+	TilingSpritesheet.call(this, 2);
+	SetBySurroundCave.call(this);
 }
 CaveWallTile.prototype = new TerrainObject();
 
@@ -4047,7 +4050,9 @@ KeepTile.prototype = new FeatureObject();
 
 function GrassTowerTile() {
   this.name = "GrassTower";
-  this.graphic = "tower-grass.gif";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-160";
+  this.spriteyoffset = "-1440";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4060,7 +4065,9 @@ GrassTowerTile.prototype = new FeatureObject();
 
 function HillTowerTile() {
   this.name = "HillTower";
-  this.graphic = "tower-hill.gif";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-160";
+  this.spriteyoffset = "-1472";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -6153,7 +6160,9 @@ CaskTile.prototype = new FeatureObject();
 
 function TreeTile() {
   this.name = "Tree";
-  this.graphic = "trees.gif";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "0";
+  this.spriteyoffset = "-1472";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -6163,9 +6172,9 @@ TreeTile.prototype = new FeatureObject();
 
 function EvergreenTile() {
   this.name = "Evergreen";
-  this.graphic = "trees.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "0";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-32";
+  this.spriteyoffset = "-1472";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "an";
@@ -6175,9 +6184,9 @@ EvergreenTile.prototype = new FeatureObject();
 
 function DeadTreeTile() {
   this.name = "DeadTree";
-  this.graphic = "trees.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-64";
+  this.spriteyoffset = "-1472";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -6194,9 +6203,9 @@ DeadTreeTile.prototype = new FeatureObject();
 
 function CactusTile() {
   this.name = "Cactus";
-  this.graphic = "trees.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "0";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-96";
+  this.spriteyoffset = "-1472";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -6206,9 +6215,9 @@ CactusTile.prototype = new FeatureObject();
 
 function AppleTreeTile() {
   this.name = "AppleTree";
-  this.graphic = "trees.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "0";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-128";
+  this.spriteyoffset = "-1472";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "an";
@@ -6359,6 +6368,9 @@ ReflectionTile.prototype.walkon = function(who) {
   // add reflection to attached mirror
   if (!this.mirror.getBroken()) {
     this.mirror.setGraphicArray([who.getGraphic(), "mirror-reflection.gif", "0", "7"]);
+    //	this.graphic = "master_spritesheet.png";    // spritesheet version of reflection. Can't work yet because of need to be overlay
+    // this.spritexoffset = "-288"; 
+    // this.spriteyoffset = "-1344";
   }
 }
 
@@ -7714,9 +7726,9 @@ BlackDragonLadderWallTile.prototype.use = function(who) {
 
 function WallOfWavesTile() {
   this.name = "WallOfWaves";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1536";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Waves";
@@ -7742,9 +7754,9 @@ WallOfWavesTile.prototype.bumpInto = function(who) {
 
 function RuneOfWavesTile() {
   this.name = "RuneOfWaves";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Waves";
@@ -7771,9 +7783,9 @@ RuneOfWavesTile.prototype.bumpInto = function(who) {
 
 function WallOfWindsTile() {
   this.name = "WallOfWinds";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1536";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Winds";
@@ -7799,9 +7811,9 @@ WallOfWindsTile.prototype.bumpInto = function(who) {
 
 function RuneOfWindsTile() {
   this.name = "RuneOfWinds";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Winds";
@@ -7828,9 +7840,9 @@ RuneOfWindsTile.prototype.bumpInto = function(who) {
 
 function WallOfKingsTile() {
   this.name = "WallOfKings";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1536";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Kings";
@@ -7856,9 +7868,9 @@ WallOfKingsTile.prototype.bumpInto = function(who) {
 
 function RuneOfKingsTile() {
   this.name = "RuneOfKings";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Kings";
@@ -7884,9 +7896,9 @@ RuneOfKingsTile.prototype.bumpInto = function(who) {
 
 function WallOfFlamesTile() {
   this.name = "WallOfFlames";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1536";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Flames";
@@ -7912,9 +7924,9 @@ WallOfFlamesTile.prototype.bumpInto = function(who) {
 
 function RuneOfFlamesTile() {
   this.name = "RuneOfFlames";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Flames";
@@ -7941,9 +7953,9 @@ RuneOfFlamesTile.prototype.bumpInto = function(who) {
 
 function WallOfVoidTile() {
   this.name = "WallOfVoid";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1536";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Void";
@@ -7969,9 +7981,9 @@ WallOfVoidTile.prototype.bumpInto = function(who) {
 
 function RuneOfVoidTile() {
   this.name = "RuneOfVoid";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Void";
@@ -7997,9 +8009,9 @@ RuneOfVoidTile.prototype.bumpInto = function(who) {
 
 function PlatformOfWavesTile() {
   this.name = "PlatformOfWaves";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1600";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -8008,9 +8020,9 @@ PlatformOfWavesTile.prototype = new FeatureObject();
 
 function PlatformOfWindsTile() {
   this.name = "PlatformOfWinds";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1600";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -8055,9 +8067,9 @@ function whoosh(whozat, windlist, spawnwhere, spawnthing) {
 
 function PlatformOfKingsTile() {
   this.name = "PlatformOfKings";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1600";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -8066,9 +8078,9 @@ PlatformOfKingsTile.prototype = new FeatureObject();
 
 function PlatformOfFlamesTile() {
   this.name = "PlatformOfFlames";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1600";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -8077,9 +8089,9 @@ PlatformOfFlamesTile.prototype = new FeatureObject();
 
 function PlatformOfVoidTile() {
   this.name = "PlatformOfVoid";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1600";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -8088,9 +8100,9 @@ PlatformOfVoidTile.prototype = new FeatureObject();
 
 function MarkOfKingsTile() {
   this.name = "MarkOfKings";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "Rune of Kings";
@@ -8167,9 +8179,9 @@ MarkOfKingsTile.prototype.use = function(user) {
 
 function MarkOfWavesTile() {
   this.name = "MarkOfWaves";
-  this.graphic = "runes.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "Rune of Waves";
@@ -8183,9 +8195,9 @@ MarkOfWavesTile.prototype.use = function(user) {
   
 function MarkOfWindsTile() {
   this.name = "MarkOfWinds";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "Rune of Winds";
@@ -8198,9 +8210,9 @@ MarkOfWindsTile.prototype.use = function(user) {
 
 function MarkOfFlamesTile() {
   this.name = "MarkOfFlames";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "Rune of Flames";
@@ -8214,9 +8226,9 @@ MarkOfFlamesTile.prototype.use = function(user) {
 
 function FlameEternalTile() {
   this.name = "FlameEternal";
-  this.graphic = "eternal_flame0.gif"; // remove 0 for active fire
-  this.spritexoffset = "0";  // -32 is active fire
-  this.spriteyoffset = "0";
+  this.graphic = "master_spreadsheet.png"; // for now, eternal_flame.gif for active fire
+  this.spritexoffset = "-128";  // -32 is active fire
+  this.spriteyoffset = "-1120";  // -0 for active fire
   this.prefix = "the";
   this.desc = "Flame Eternal";
   this.passable = MOVE_ETHEREAL;
@@ -8930,9 +8942,9 @@ ItemObject.prototype.getUseDesc = function() {
 
 function AmbroseShieldTile() {
   this.name = "AmbroseShield";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-32";
-  this.spritexoffset = "-256";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-256";
+  this.spritexoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "shield";
@@ -8944,9 +8956,9 @@ AmbroseShieldTile.prototype = new ItemObject();
 
 function RobertMapTile() {
   this.name = "RobertMap";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-96";
-  this.spritexoffset = "-0";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-288";
+  this.spritexoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "map";
@@ -8958,9 +8970,9 @@ RobertMapTile.prototype = new ItemObject();
 
 function SmallRockTile() {
   this.name = "SmallRock";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "small rock";
@@ -8972,9 +8984,9 @@ SmallRockTile.prototype = new ItemObject();
 
 function SiriCloakTile() {
   this.name = "SiriCloak";
-  this.graphic = "items.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "blue cloak";
@@ -8987,9 +8999,9 @@ SiriCloakTile.prototype = new ItemObject();
 
 function CourierPouchTile() {
   this.name = "CourierPouch";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-160";
-  this.spritexoffset = "-224";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "pouch full of papers";
@@ -9010,9 +9022,9 @@ CourierPouchTile.prototype.use = function(who) {
 
 function CourierLetterTile() {
   this.name = "CourierLetter";
-  this.graphic = "items.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-288";
+  this.spritexoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Rebel letter";
@@ -9033,9 +9045,9 @@ CourierLetterTile.prototype.use = function(who) {
 
 function TrustedPlansTile() {
   this.name = "TrustedPlans";
-  this.graphic = "items.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-288";
+  this.spritexoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "plans for a Trusted pin";
@@ -9047,9 +9059,9 @@ TrustedPlansTile.prototype = new ItemObject();
 
 function TrustedPinTile() {
   this.name = "TrustedPin";
-  this.graphic = "items.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Trusted pin";
@@ -9061,9 +9073,9 @@ TrustedPinTile.prototype = new ItemObject();
 
 function ReaperBarkTile() {
   this.name = "ReaperBark";
-  this.graphic = "items.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "piece of petrified reaper bark";
@@ -9075,9 +9087,9 @@ ReaperBarkTile.prototype = new ItemObject();
 
 function AmuletOfReflectionsTile() {
   this.name = "AmuletOfReflections";
-  this.graphic = "items.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Amulet of Reflections";
@@ -9133,9 +9145,9 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
 
 function DragonBoneTile() {
   this.name = "DragonBone";
-  this.graphic = "items.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "dragon fingerbone";
@@ -9147,9 +9159,9 @@ DragonBoneTile.prototype = new ItemObject();
 
 function StoneOfSparksTile() {
   this.name = "StoneOfSparks";
-  this.graphic = "items.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Sparks";
@@ -9161,9 +9173,9 @@ StoneOfSparksTile.prototype = new ItemObject();
 
 function StoneOfEmbersTile() {
   this.name = "StoneOfEmbers";
-  this.graphic = "items.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Embers";
@@ -9175,9 +9187,9 @@ StoneOfEmbersTile.prototype = new ItemObject();
 
 function StoneOfTheBlazeTile() {
   this.name = "StoneOfTheBlaze";
-  this.graphic = "items.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of the Blaze";
@@ -9189,9 +9201,9 @@ StoneOfTheBlazeTile.prototype = new ItemObject();
 
 function StoneOfConflagrationsTile() {
   this.name = "StoneOfConflagrations";
-  this.graphic = "items.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Conflagrations";
@@ -9203,9 +9215,9 @@ StoneOfConflagrationsTile.prototype = new ItemObject();
 
 function TreasuryTokenTile() {
   this.name = "TreasuryToken";
-  this.graphic = "items.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-160";  
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "treasury token";
@@ -9217,9 +9229,9 @@ TreasuryTokenTile.prototype = new ItemObject();
 
 function SpiderSilkTile() {
   this.name = "SpiderSilk";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.prefix = "a";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9231,9 +9243,9 @@ SpiderSilkTile.prototype = new ItemObject();
 
 function BlackPearlTile() {
   this.name = "BlackPearl";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.prefix = "a";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9245,9 +9257,9 @@ BlackPearlTile.prototype = new ItemObject();
 
 function ExecutionersHoodTile() {
   this.name = "ExecutionersHood";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
@@ -9259,9 +9271,9 @@ ExecutionersHoodTile.prototype = new ItemObject();
 
 function QuestExecutionersHoodTile() {
   this.name = "QuestExecutionersHood";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
@@ -9273,9 +9285,9 @@ QuestExecutionersHoodTile.prototype = new ItemObject();
 
 function NightshadeTile() {
   this.name = "Nightshade";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "some";
@@ -9287,9 +9299,9 @@ NightshadeTile.prototype = new ItemObject();
 
 function SulfurousAshTile() {
   this.name = "SulfurousAsh";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -9301,9 +9313,9 @@ SulfurousAshTile.prototype = new ItemObject();
 
 function MandrakeRootTile() {
   this.name = "MandrakeRoot";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-64";
-  this.spritexoffset = "-256";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-256";
+  this.spritexoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "mandrake root";
@@ -9314,9 +9326,9 @@ MandrakeRootTile.prototype = new ItemObject();
 
 function LightningWoodTile() {
   this.name = "LightningWood";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-64";
-  this.spritexoffset = "-288";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-288";
+  this.spritexoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "twig of lightning wood";
@@ -9328,9 +9340,9 @@ LightningWoodTile.prototype = new ItemObject();
 
 function MistletoeTile() {
   this.name = "Mistletoe";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-96";
-  this.spritexoffset = "-256";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-224";
+  this.spritexoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "mistletoe";
@@ -9341,9 +9353,9 @@ MistletoeTile.prototype = new ItemObject();
 
 function BloodMossTile() {
   this.name = "BloodMoss";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-96";
-  this.spritexoffset = "-288";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-32";
+  this.spritexoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "blood moss";
@@ -9352,11 +9364,24 @@ function BloodMossTile() {
 }
 BloodMossTile.prototype = new ItemObject();
 
+function BottledEtherTile() {
+  this.name = "BottledEther";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1152";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "bottled ether";
+  this.longdesc = "Bottled Ether. It glows fantastically.";
+  this.addType("Reagent");
+}
+BottledEtherTile.prototype = new ItemObject();
+
 function PerfectRubyTile() {
 	this.name = "PerfectRuby";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "0";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1376";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "perfect ruby gemstone";
@@ -9368,9 +9393,9 @@ PerfectRubyTile.prototype = new ItemObject();
 
 function UncutLargeRubyTile() {
 	this.name = "UncutLargeRuby";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-96";
-  this.spritexoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1248";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "rough, fist-sized ruby gemstone";
@@ -9382,9 +9407,9 @@ UncutLargeRubyTile.prototype = new ItemObject();
 
 function RubyTile() {
 	this.name = "Ruby";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-256";
-  this.spritexoffset = "-256";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1376";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "ruby";
@@ -9396,9 +9421,9 @@ RubyTile.prototype = new ItemObject();
 
 function UncutRubyTile() {
 	this.name = "UncutRuby";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "-32";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1376";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "uncut ruby";
@@ -9410,9 +9435,9 @@ UncutRubyTile.prototype = new ItemObject();
 
 function SmallSapphireTile() {
 	this.name = "SmallSapphire";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "-64";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1376";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "sapphire";
@@ -9424,9 +9449,9 @@ SmallSapphireTile.prototype = new ItemObject();
 
 function UncutSapphireTile() {
 	this.name = "UncutSapphire";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "-96";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1376";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "smooth, uncut sapphire";
@@ -9438,9 +9463,9 @@ UncutSapphireTile.prototype = new ItemObject();
 
 function GemsTile() {
 	this.name = "Gems";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "-128";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1344";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "handful of small gemstones";
@@ -9452,9 +9477,9 @@ GemsTile.prototype = new ItemObject();
 
 function UncutGemsTile() {
 	this.name = "UncutGems";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "-128";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1344";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "handful of small, uncut gemstones";
@@ -9466,9 +9491,9 @@ UncutGemsTile.prototype = new ItemObject();
 
 function RubyGemoftheSunTile() {
 	this.name = "RubyGemoftheSun";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-160";
-  this.spritexoffset = "-288";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1376";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "ruby gem";
@@ -9498,9 +9523,9 @@ DecorativeArmorTile.prototype = new ItemObject();
 
 function FluteTile() {
   this.name = "Flute";
-	this.graphic = "items.png";
-	this.spritexoffset = "0";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-128";
+  this.spriteyoffset = "-1408";
 	this.desc = "flute";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9511,9 +9536,9 @@ FluteTile.prototype = new ItemObject();
 
 function DrumTile() {
   this.name = "Drum";
-	this.graphic = "items.png";
-	this.spritexoffset = "-32";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-160";
+  this.spriteyoffset = "-1408";
 	this.desc = "drum";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9524,9 +9549,9 @@ DrumTile.prototype = new ItemObject();
 
 function HarpTile() {
   this.name = "Harp";
-	this.graphic = "items.png";
-	this.spritexoffset = "-64";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-192";
+  this.spriteyoffset = "-1408";
 	this.desc = "harp";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9537,9 +9562,9 @@ HarpTile.prototype = new ItemObject();
 
 function LuteTile() {
   this.name = "Lute";
-	this.graphic = "items.png";
-	this.spritexoffset = "-96";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-224";
+  this.spriteyoffset = "-1408";
 	this.desc = "lute";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9550,9 +9575,9 @@ LuteTile.prototype = new ItemObject();
 
 function HornTile() {
   this.name = "Horn";
-	this.graphic = "items.png";
-	this.spritexoffset = "-160";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-256";
+  this.spriteyoffset = "-1408";
 	this.desc = "horn";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9563,9 +9588,9 @@ HornTile.prototype = new ItemObject();
 
 function MortarTile() {
   this.name = "Mortar";
-	this.graphic = "items.png";
-	this.spritexoffset = "-224";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "0";
+  this.spriteyoffset = "-1440";
 	this.desc = "mortar and pestle";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9576,9 +9601,9 @@ MortarTile.prototype = new ItemObject();
 
 function AppleTile() {
   this.name = "Apple";
-	this.graphic = "items.png";
-	this.spritexoffset = "-256";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-288";
+  this.spriteyoffset = "-1408";
 	this.desc = "apple";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9600,9 +9625,9 @@ AppleTile.prototype.use = function(who) {
 
 function CrystalMortarTile() {
   this.name = "CrystalMortar";
-	this.graphic = "items.png";
-	this.spritexoffset = "-128";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-32";
+  this.spriteyoffset = "-1440";
 	this.desc = "crystal mortar";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9613,9 +9638,9 @@ CrystalMortarTile.prototype = new ItemObject();
 
 function GoldTile() {
   this.name = "Gold";
-  this.graphic = "items.png";  
-  this.spritexoffset = "0";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";  
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1120";
   this.desc = "1 gold coin";
   this.quantity = 1;
   this.blocklos = 0;
@@ -9635,18 +9660,18 @@ GoldTile.prototype.setQuantity = function(quant) {
     return 0;
   }
   if ((this.quantity > 0) && (this.quantity < 4)) {
-    this.graphic = "items.png";  
-    this.spritexoffset = "0";
-    this.spriteyoffset = "0";
+    this.graphic = "master_spritesheet.png";  
+    this.spritexoffset = "-192";
+    this.spriteyoffset = "-1120";
   }
   else if ((this.quantity > 3) && (this.quantity < 16)) {
-    this.graphic = "items.png";  
-    this.spritexoffset = "-32";
-    this.spriteyoffset = "0";
+    this.graphic = "master_spritesheet.png";  
+    this.spritexoffset = "-224";
+    this.spriteyoffset = "-1120";
   } else if (this.quantity > 15) {
-    this.graphic = "items.png";  
-    this.spritexoffset = "-64";
-    this.spriteyoffset = "0";
+    this.graphic = "master_spritesheet.png";  
+    this.spritexoffset = "-256";
+    this.spriteyoffset = "-1120";
   }
   return this.quantity;
 }
@@ -9720,9 +9745,9 @@ function KeyUse(who,what,tgt) {
 
 function HomeKeyTile() {
   this.name = "HomeKey";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-256";
-  this.spritexoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "your housekey";
@@ -9733,9 +9758,9 @@ HomeKeyTile.prototype = new KeyItemObject();
 
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-64";
-  this.spritexoffset = "-224";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Pit of Despair dungeon key";
@@ -9747,9 +9772,9 @@ PitOfDespairKeyTile.prototype = new KeyItemObject();
 
 function KeyOfSpiritsTile() {
   this.name = "KeyOfSpirits";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-64";
-  this.spritexoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Spirits";
@@ -9761,9 +9786,9 @@ KeyOfSpiritsTile.prototype = new KeyItemObject();
 
 function RoyalKeyTile() {
   this.name = "RoyalKey";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Royal Key";
@@ -9775,9 +9800,9 @@ RoyalKeyTile.prototype = new KeyItemObject();
 
 function BlackDragonKeyTile() {
   this.name = "BlackDragonKey";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Black Dragon Key";
@@ -9789,9 +9814,9 @@ BlackDragonKeyTile.prototype = new KeyItemObject();
 
 function KeyOfAshesTile() {
   this.name = "KeyOfAshes";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Ashes";
@@ -9803,9 +9828,9 @@ KeyOfAshesTile.prototype = new KeyItemObject();
 
 function KeyOfIceTile() {
   this.name = "KeyOfIce";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Ice";
@@ -9817,9 +9842,9 @@ KeyOfIceTile.prototype = new KeyItemObject();
 
 function KeyOfBoneTile() {
   this.name = "KeyOfBone";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Bone";
@@ -9831,9 +9856,9 @@ KeyOfBoneTile.prototype = new KeyItemObject();
 
 function KeyOfDustTile() {
   this.name = "KeyOfDust";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Dust";
@@ -9845,9 +9870,9 @@ KeyOfDustTile.prototype = new KeyItemObject();
 
 function KeyOfSunTile() {
   this.name = "KeyOfSun";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of the Sun";
@@ -9859,7 +9884,7 @@ KeyOfSunTile.prototype = new KeyItemObject();
 
 function KeyOfShadowTile() {
   this.name = "KeyOfShadow";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spriteyoffset = "-128";
   this.spritexoffset = "-256";
   this.blocklos = 0;
@@ -9916,9 +9941,9 @@ function PerformRead() {
 
 function BookOfLoreTile() {
   this.name = "BookOfLore";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
-  this.spriteyoffset = "-128";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Book of Lore";
@@ -9930,9 +9955,9 @@ BookOfLoreTile.prototype = new BookItemObject();
 
 function TomeOfSightTile() {
   this.name = "TomeOfSight";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Tome of Sight";
@@ -9944,9 +9969,9 @@ TomeOfSightTile.prototype = new BookItemObject();
 
 function MapsAndLegendsTile() {
   this.name = "MapsAndLegends";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1216";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Maps and Legends";
@@ -9958,9 +9983,9 @@ MapsAndLegendsTile.prototype = new BookItemObject();
 
 function ATreatiseOnDragonsTile() {
   this.name = "ATreatiseOnDragons";
-  this.graphic = "items.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1216";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "A Treatise On Dragons";
@@ -9972,9 +9997,9 @@ ATreatiseOnDragonsTile.prototype = new BookItemObject();
 
 function NatassaJournalTile() {
   this.name = "NatassaJournal";
-  this.graphic = "items.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1216";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -9986,9 +10011,9 @@ NatassaJournalTile.prototype = new BookItemObject();
 
 function NatassaResearchTile() {
   this.name = "NatassaResearch";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1216";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -10000,9 +10025,9 @@ NatassaResearchTile.prototype = new BookItemObject();
 
 function NatassaResearch2Tile() {
   this.name = "NatassaResearch2";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1216";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -10014,9 +10039,9 @@ NatassaResearch2Tile.prototype = new BookItemObject();
 
 function AdelusLetterTile() {
   this.name = "AdelusLetter";
-  this.graphic = "items.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-288";
+  this.spritexoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "letter";
@@ -10033,9 +10058,9 @@ ConsumableItemObject.prototype = new ItemObject();
 
 function TorchTile() {
   this.name = "Torch";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-256";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "torch";
@@ -10070,7 +10095,9 @@ TorchTile.prototype.use = function(who) {
 
 function KyvekBoxTile() {
   this.name = "KyvekBox";
-  this.graphic = "008.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-704";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "box";
@@ -10112,7 +10139,9 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
 
 function InfiniteScrollTile() {
   this.name = "InfiniteScroll";
-  this.graphic = "008.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Infinite Scroll";
@@ -10160,8 +10189,9 @@ InfiniteScrollTile.prototype.firstResponse = function(code) {
   retval["txt"] = "Choose a spell:";
   for (let i=1;i<=8;i++) {
     let sid = i;
-    if ((i===6) || (i===8)) { sid++; }
-    if (sid > 8) { continue; }
+    if ((level===SPELL_WEATHER_CONTROL_LEVEL) && (i===SPELL_WEATHER_CONTROL_ID)) { continue; }  
+    if ((level===SPELL_ARMAGEDDON_LEVEL) && (i===SPELL_ARMAGEDDON_ID)) { continue; }
+    if ((level===SPELL_BUILD_GATE_LEVEL) && (i===SPELL_BUILD_GATE_ID)) { continue; }
     retval["txt"] += "<br />" + i + ") " + magic[level][GetSpellID(sid)].getName();
   }
   return retval;
@@ -10169,11 +10199,12 @@ InfiniteScrollTile.prototype.firstResponse = function(code) {
 
 InfiniteScrollTile.prototype.secondResponse = function(code) {
   let sid = ParseInt(code)-48;
-  if ((this.circle === 6) || (this.circle === 8)) { sid++;} 
   let scroll = localFactory.createTile("ScrollWildcard");
   scroll.setDesc("scroll of " + magic[this.circle][GetSpellID(sid)].getName());
   scroll.spelllevel = this.circle;
   scroll.spellnum = GetSpellID(sid);
+  PC.addToInventory(scroll);
+
   let retval = {};
   retval["fin"] = 1;
   retval["txt"] = "You feel power swirl around you as text appears on the scroll!";
@@ -10183,9 +10214,9 @@ InfiniteScrollTile.prototype.secondResponse = function(code) {
 
 function SupplyBoxTile() {
   this.name = "SupplyBox";
-  this.graphic = "furniture.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-384";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -10234,9 +10265,9 @@ function GreenPotionTile() {
   this.desc = "green potion";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1152";
   this.usedesc = "Drink the potion, or throw the potion.";
 }
 GreenPotionTile.prototype = new PotionItemObject();
@@ -10281,6 +10312,7 @@ GreenPotionTile.prototype.flamed = function() {
 }
 
 GreenPotionTile.prototype.use = function(who) {
+  // FIXME: add throw option
   DUPlaySound("sfx_potion");
   let retval = {fin:1}
   let poison = localFactory.createTile("Poison");
@@ -10299,9 +10331,9 @@ function DarkGreenPotionTile() {
   this.name = "DarkGreenPotion";
   this.desc = "dark green potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10328,9 +10360,9 @@ function SilverPotionTile() {
   this.name = "SilverPotion";
   this.desc = "silver potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10371,9 +10403,9 @@ function PinkPotionTile() {
   this.name = "PinkPotion";
   this.desc = "pink potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10414,9 +10446,9 @@ function GreyPotionTile() {
   this.name = "GreyPotion";
   this.desc = "grey potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10457,9 +10489,9 @@ function BrownPotionTile() {
   this.name = "BrownPotion";
   this.desc = "brown potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10488,9 +10520,9 @@ function RedPotionTile() {
   this.name = "RedPotion";
   this.desc = "red potion";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10520,9 +10552,9 @@ function WhitePotionTile() {
   this.name = "WhitePotion";
   this.desc = "white potion";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10549,9 +10581,9 @@ function YellowPotionTile() {
   this.name = "YellowPotion";
   this.desc = "yellow potion";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10578,9 +10610,9 @@ function PurplePotionTile() {
   this.name = "PurplePotion";
   this.desc = "purple potion";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10607,9 +10639,9 @@ function BlackPotionTile() {
   this.name = "BlackPotion";
   this.desc = "black potion";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10636,9 +10668,9 @@ function BluePotionTile() {
   this.name = "BluePotion";
   this.desc = "blue potion";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10665,9 +10697,9 @@ function DeepBluePotionTile() {
   this.name = "DeepBluePotion";
   this.desc = "deep blue potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10694,9 +10726,9 @@ function OrangePotionTile() {
   this.name = "OrangePotion";
   this.desc = "orange potion";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10728,9 +10760,9 @@ function TanPotionTile() {
   this.name = "TanPotion";
   this.desc = "tan potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-224";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10756,6 +10788,9 @@ TanPotionTile.prototype.use = function(who) {
 
 function ScrollItemObject() {
   this.addType("Scroll"); 
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-224";
+  this.spritexoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.spelllevel = 1;
   this.spellnum = 1;
@@ -10809,9 +10844,9 @@ function ScrollWildcardTile() {
   this.name = "ScrollWildcard";
   this.desc = "scroll of ???";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "-256";
+  this.spriteyoffset = "-1344";
   this.spelllevel = 0;
   this.spellnum = 0;
 }
@@ -10821,9 +10856,6 @@ function ScrollAudachtaScribeTile() {
   this.name = "ScrollAudachtaScribe";
   this.desc = "scroll of Audachta Scribe";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_AUDACHTA_SCRIBE_LEVEL;
   this.spellnum = SPELL_AUDACHTA_SCRIBE_ID;
 }
@@ -10833,9 +10865,6 @@ function ScrollCureTile() {
   this.name = "ScrollCure";
   this.desc = "scroll of Cure";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_CURE_LEVEL;
   this.spellnum = SPELL_CURE_ID;
 }
@@ -10845,9 +10874,6 @@ function ScrollDisarmTrapTile() {
   this.name = "ScrollDisarmTrap";
   this.desc = "scroll of Disarm Trap";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_DISARM_TRAP_LEVEL;
   this.spellnum = SPELL_DISARM_TRAP_ID;
 }
@@ -10857,9 +10883,6 @@ function ScrollDistractTile() {
   this.name = "ScrollDistract";
   this.desc = "scroll of Distract";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_DISTRACT_LEVEL;
   this.spellnum = SPELL_DISTRACT_ID;
 }
@@ -10869,9 +10892,6 @@ function ScrollFlameBladeTile() {
   this.name = "ScrollFlameBlade";
   this.desc = "scroll of Flame Blade";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_FLAME_BLADE_LEVEL;
   this.spellnum = SPELL_FLAME_BLADE_ID;
   this.flammable = 50;
@@ -10882,9 +10902,6 @@ function ScrollLightTile() {
   this.name = "ScrollLight";
   this.desc = "scroll of Light";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_LIGHT_LEVEL;
   this.spellnum = SPELL_LIGHT_ID;
 }
@@ -10894,9 +10911,6 @@ function ScrollVulnerabilityTile() {
   this.name = "ScrollVulnerability";
   this.desc = "scroll of Vulnerability";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_VULNERABILITY_LEVEL;
   this.spellnum = SPELL_VULNERABILITY_ID;
 }
@@ -10906,9 +10920,6 @@ function ScrollIllusionTile() {
   this.name = "ScrollIllusion";
   this.desc = "scroll of Illusion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_ILLUSION_LEVEL;
   this.spellnum = SPELL_ILLUSION_ID;
 }
@@ -10918,9 +10929,6 @@ function ScrollIronFleshTile() {
   this.name = "ScrollIronFlesh";
   this.desc = "scroll of Iron Flesh";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_IRON_FLESH_LEVEL;
   this.spellnum = SPELL_IRON_FLESH_ID;
 }
@@ -10930,9 +10938,6 @@ function ScrollLesserHealTile() {
   this.name = "ScrollLesserHeal";
   this.desc = "scroll of Lesser Heal";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_LESSER_HEAL_LEVEL;
   this.spellnum = SPELL_LESSER_HEAL_ID;
 }
@@ -10942,9 +10947,6 @@ function ScrollMagicBoltTile() {
   this.name = "ScrollMagicBolt";
   this.desc = "scroll of Magic Bolt";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_MAGIC_BOLT_LEVEL;
   this.spellnum = SPELL_MAGIC_BOLT_ID;
 }
@@ -10954,9 +10956,6 @@ function ScrollPoisonCloudTile() {
   this.name = "ScrollPoisonCloud";
   this.desc = "scroll of Poison Cloud";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_POISON_CLOUD_LEVEL;
   this.spellnum = SPELL_POISON_CLOUD_ID;
 }
@@ -10966,9 +10965,6 @@ function ScrollProtectionTile() {
   this.name = "ScrollProtection";
   this.desc = "scroll of Protection";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_PROTECTION_LEVEL;
   this.spellnum = SPELL_PROTECTION_ID;
 }
@@ -10978,9 +10974,6 @@ function ScrollUnlockTile() {
   this.name = "ScrollUnlock";
   this.desc = "scroll of Unlock";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_UNLOCK_LEVEL;
   this.spellnum = SPELL_UNLOCK_ID;
 }
@@ -10990,9 +10983,6 @@ function ScrollDispelTile() {
   this.name = "ScrollDispel";
   this.desc = "scroll of Dispel";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_DISPEL_LEVEL;
   this.spellnum = SPELL_DISPEL_ID;
 }
@@ -11002,9 +10992,6 @@ function ScrollDisruptUndeadTile() {
   this.name = "ScrollDisruptUndead";
   this.desc = "scroll of Disrupt Undead";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_DISRUPT_UNDEAD_LEVEL;
   this.spellnum = SPELL_DISRUPT_UNDEAD_ID;
 }
@@ -11014,9 +11001,6 @@ function ScrollFireArmorTile() {
   this.name = "ScrollFireArmor";
   this.desc = "scroll of Fire Armor";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_FIRE_ARMOR_LEVEL;
   this.spellnum = SPELL_FIRE_ARMOR_ID;
   this.flammable = 30;
@@ -11027,9 +11011,6 @@ function ScrollFireballTile() {
   this.name = "ScrollFireball";
   this.desc = "scroll of Fireball";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_FIREBALL_LEVEL;
   this.spellnum = SPELL_FIREBALL_ID;
   this.flammable = 50;
@@ -11040,9 +11021,6 @@ function ScrollReturnTile() {
   this.name = "ScrollReturn";
   this.desc = "scroll of Return";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_RETURN_LEVEL;
   this.spellnum = SPELL_RETURN_ID;
   this.flammable = 50;
@@ -11053,9 +11031,6 @@ function ScrollIceballTile() {
   this.name = "ScrollIceball";
   this.desc = "scroll of Iceball";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_ICEBALL_LEVEL;
   this.spellnum = SPELL_ICEBALL_ID;
 }
@@ -11065,9 +11040,6 @@ function ScrollTelekinesisTile() {
   this.name = "ScrollTelekinesis";
   this.desc = "scroll of Telekinesis";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_TELEKINESIS_LEVEL;
   this.spellnum = SPELL_TELEKINESIS_ID;
 }
@@ -11077,9 +11049,6 @@ function ScrollTelepathyTile() {
   this.name = "ScrollTelepathy";
   this.desc = "scroll of Telepathy";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_TELEPATHY_LEVEL;
   this.spellnum = SPELL_TELEPATHY_ID;
 }
@@ -11089,9 +11058,6 @@ function ScrollWallOfFlameTile() {
   this.name = "ScrollWallOfFlame";
   this.desc = "scroll of Wall of Flame";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_WALL_OF_FLAME_LEVEL;
   this.spellnum = SPELL_WALL_OF_FLAME_ID;
   this.flammable = 20;
@@ -11102,9 +11068,6 @@ function ScrollBlessingTile() {
   this.name = "ScrollBlessing";
   this.desc = "scroll of Blessing";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_BLESSING_LEVEL;
   this.spellnum = SPELL_BLESSING_ID;
 }
@@ -11114,9 +11077,6 @@ function ScrollBlinkTile() {
   this.name = "ScrollBlink";
   this.desc = "scroll of Blink";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_BLINK_LEVEL;
   this.spellnum = SPELL_BLINK_ID;
 }
@@ -11126,9 +11086,6 @@ function ScrollEtherealVisionTile() {
   this.name = "ScrollEtherealVision";
   this.desc = "scroll of Ethereal Vision";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_ETHEREAL_VISION_LEVEL;
   this.spellnum = SPELL_ETHEREAL_VISION_ID;
 }
@@ -11138,9 +11095,6 @@ function ScrollHealTile() {
   this.name = "ScrollHeal";
   this.desc = "scroll of Heal";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_HEAL_LEVEL;
   this.spellnum = SPELL_HEAL_ID;
 }
@@ -11150,9 +11104,6 @@ function ScrollLifeDrainTile() {
   this.name = "ScrollLifeDrain";
   this.desc = "scroll of Life Drain";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_LIFE_DRAIN_LEVEL;
   this.spellnum = SPELL_LIFE_DRAIN_ID;
 }
@@ -11162,9 +11113,6 @@ function ScrollSmiteTile() {
   this.name = "ScrollSmite";
   this.desc = "scroll of Smite";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_SMITE_LEVEL;
   this.spellnum = SPELL_SMITE_ID;
 }
@@ -11174,9 +11122,6 @@ function ScrollCrystalTrapTile() {
   this.name = "ScrollCrystalTrap";
   this.desc = "scroll of Crystal Trap";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_CRYSTAL_TRAP_LEVEL;
   this.spellnum = SPELL_CRYSTAL_TRAP_ID;
 }
@@ -11186,9 +11131,6 @@ function ScrollMirrorWardTile() {
   this.name = "ScrollMirrorWard";
   this.desc = "scroll of Mirror Ward";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_MIRROR_WARD_LEVEL;
   this.spellnum = SPELL_MIRROR_WARD_ID;
 }
@@ -11198,9 +11140,6 @@ function ScrollParalyzeTile() {
   this.name = "ScrollParalyze";
   this.desc = "scroll of Paralyze";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_PARALYZE_LEVEL;
   this.spellnum = SPELL_PARALYZE_ID;
 }
@@ -11210,9 +11149,6 @@ function ScrollPeerTile() {
   this.name = "ScrollPeer";
   this.desc = "scroll of Peer";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_PEER_LEVEL;
   this.spellnum = SPELL_PEER_ID;
 }
@@ -11222,9 +11158,6 @@ function ScrollShockwaveTile() {
   this.name = "ScrollShockwave";
   this.desc = "scroll of Shockwave";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_SHOCKWAVE_LEVEL;
   this.spellnum = SPELL_SHOCKWAVE_ID;
 }
@@ -11234,9 +11167,6 @@ function ScrollSummonAllyTile() {
   this.name = "ScrollSummonAlly";
   this.desc = "scroll of Summon Ally";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_SUMMON_ALLY_LEVEL;
   this.spellnum = SPELL_SUMMON_ALLY_ID;
 }
@@ -11246,9 +11176,6 @@ function ScrollSwordstrikeTile() {
   this.name = "ScrollSwordstrike";
   this.desc = "scroll of Swordstrike";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_SWORDSTRIKE_LEVEL;
   this.spellnum = SPELL_SWORDSTRIKE_ID;
 }
@@ -11258,9 +11185,6 @@ function ScrollExplosionTile() {
   this.name = "ScrollExplosion";
   this.desc = "scroll of Explosion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_EXPLOSION_LEVEL;
   this.spellnum = SPELL_EXPLOSION_ID;
 }
@@ -11270,9 +11194,6 @@ function ScrollStormTile() {
   this.name = "ScrollStorm";
   this.desc = "scroll of Storm";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_STORM_LEVEL;
   this.spellnum = SPELL_STORM_ID;
 }
@@ -11282,9 +11203,6 @@ function ScrollTremorTile() {
   this.name = "ScrollTremor";
   this.desc = "scroll of Tremor";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_TREMOR_LEVEL;
   this.spellnum = SPELL_TREMOR_ID;
 }
@@ -11294,9 +11212,6 @@ function ScrollFearTile() {
   this.name = "ScrollFear";
   this.desc = "scroll of Fear";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_FEAR_LEVEL;
   this.spellnum = SPELL_FEAR_ID;
 }
@@ -11306,9 +11221,6 @@ function ScrollFireAndIceTile() {
   this.name = "ScrollFireAndIce";
   this.desc = "scroll of Fire and Ice";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_FIRE_AND_ICE_LEVEL;
   this.spellnum = SPELL_FIRE_AND_ICE_ID;
 }
@@ -11318,9 +11230,6 @@ function ScrollMeteorSwarmTile() {
   this.name = "ScrollMeteorSwarm";
   this.desc = "scroll of Meteor Swarm";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_METEOR_SWARM_LEVEL;
   this.spellnum = SPELL_METEOR_SWARM_ID;
 }
@@ -11330,9 +11239,6 @@ function ScrollMindBlastTile() {
   this.name = "ScrollMindBlast";
   this.desc = "scroll of Mind Blast";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_MIND_BLAST_LEVEL;
   this.spellnum = SPELL_MIND_BLAST_ID;
 }
@@ -11342,9 +11248,6 @@ function ScrollConflagrationTile() {
   this.name = "ScrollConflagration";
   this.desc = "scroll of Conflagration";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_CONFLAGRATION_LEVEL;
   this.spellnum = SPELL_CONFLAGRATION_ID;
   this.flammable = 30;
@@ -11355,9 +11258,6 @@ function ScrollConjureDaemonTile() {
   this.name = "ScrollConjureDaemon";
   this.desc = "scroll of Conjure Daemon";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_SUMMON_DAEMON_LEVEL;
   this.spellnum = SPELL_SUMMON_DAEMON_ID;
 }
@@ -11367,9 +11267,6 @@ function ScrollTimeStopTile() {
   this.name = "ScrollTimeStop";
   this.desc = "scroll of Time Stop";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_TIME_STOP_LEVEL;
   this.spellnum = SPELL_TIME_STOP_ID;
 }
@@ -11391,20 +11288,6 @@ AudachtaNemesosObject.prototype.getLongDesc = function() {
   return "Audachta Nemesos: " + spellname + ". A book that teaches the spell " + spellname + " when the spell Audachta Scribe is cast upon the book.";
 }
 
-//AudachtaNemesosObject.prototype.use = function(who) {
-//  var retval = {};
-//  retval["fin"] = 1;
-//  if (who.knowsSpell(this.spelllevel, this.spellnum)) {
-//    retval["txt"] = "You already know that spell!";
-//    retval["preserve"] = 1;
-//  } else {
-//    who.addSpell(this.spelllevel, this.spellnum);
-//    retval["txt"] = "You learn the spell " + this.spellname + "!";
-//  }
-//  retval["input"] = "&gt;";
-//  return retval;    
-//}
-
 AudachtaNemesosObject.prototype.flamed = function() {
   maintext.addText("The " + this.getDesc() + " is ruined in the fire!");
   let thisx = this.getx();
@@ -11421,9 +11304,9 @@ function AudachtaNemesosDisarmTrapTile() {
   this.name = "AudachtaNemesosDisarmTrap";
   this.desc = "Audachta Nemesos: Disarm Trap";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_DISARM_TRAP_LEVEL;
   this.spellnum = SPELL_DISARM_TRAP_ID;
   this.spellname = "Disarm Trap";
@@ -11434,9 +11317,9 @@ function AudachtaNemesosDistractTile() {
   this.name = "AudachtaNemesosDistract";
   this.desc = "Audachta Nemesos: Distract";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_DISTRACT_LEVEL;
   this.spellnum = SPELL_DISTRACT_ID;
   this.spellname = "Distract";
@@ -11447,9 +11330,9 @@ function AudachtaNemesosFlameBladeTile() {
   this.name = "AudachtaNemesosFlameBlade";
   this.desc = "Audachta Nemesos: Flame Blade";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_FLAME_BLADE_LEVEL;
   this.spellnum = SPELL_FLAME_BLADE_ID;
   this.spellname = "Flame Blade";
@@ -11460,9 +11343,9 @@ function AudachtaNemesosVulnerabilityTile() {
   this.name = "AudachtaNemesosVulnerability";
   this.desc = "Audachta Nemesos: Vulnerability";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_VULNERABILITY_LEVEL;
   this.spellnum = SPELL_VULNERABILITY_ID;
   this.spellname = "Vulnerability";
@@ -11473,9 +11356,9 @@ function AudachtaNemesosLesserHealTile() {
   this.name = "AudachtaNemesosLesserHeal";
   this.desc = "Audachta Nemesos: Lesser Heal";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_LESSER_HEAL_LEVEL;
   this.spellnum = SPELL_LESSER_HEAL_ID;
   this.spellname = "Lesser Heal";
@@ -11486,9 +11369,9 @@ function AudachtaNemesosPoisonCloudTile() {
   this.name = "AudachtaNemesosPoisonCloud";
   this.desc = "Audachta Nemesos: Poison Cloud";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_POISON_CLOUD_LEVEL;
   this.spellnum = SPELL_POISON_CLOUD_ID;
   this.spellname = "Poison Cloud";
@@ -11499,9 +11382,9 @@ function AudachtaNemesosProtectionTile() {
   this.name = "AudachtaNemesosProtection";
   this.desc = "Audachta Nemesos: Protection";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_PROTECTION_LEVEL;
   this.spellnum = SPELL_PROTECTION_ID;
   this.spellname = "Protection";
@@ -11512,9 +11395,9 @@ function AudachtaNemesosWindChangeTile() {
   this.name = "AudachtaNemesosWindChange";
   this.desc = "Audachta Nemesos: Wind Change";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_WIND_CHANGE_LEVEL;
   this.spellnum = SPELL_WIND_CHANGE_ID;
   this.spellname = "Wind Change";
@@ -11525,9 +11408,9 @@ function AudachtaNemesosFireArmorTile() {
   this.name = "AudachtaNemesosFireArmor";
   this.desc = "Audachta Nemesos: Fire Armor";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_FIRE_ARMOR_LEVEL;
   this.spellnum = SPELL_FIRE_ARMOR_ID;
   this.spellname = "Fire Armor";
@@ -11538,9 +11421,9 @@ function AudachtaNemesosIceballTile() {
   this.name = "AudachtaNemesosIceball";
   this.desc = "Audachta Nemesos: Iceball";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_ICEBALL_LEVEL;
   this.spellnum = SPELL_ICEBALL_ID;
   this.spellname = "Iceball";
@@ -11551,9 +11434,9 @@ function AudachtaNemesosTelekinesisTile() {
   this.name = "AudachtaNemesosTelekinesis";
   this.desc = "Audachta Nemesos: Telekinesis";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_TELEKINESIS_LEVEL;
   this.spellnum = SPELL_TELEKINESIS_ID;
   this.spellname = "Telekinesis";
@@ -11564,9 +11447,9 @@ function AudachtaNemesosTelepathyTile() {
   this.name = "AudachtaNemesosTelepathy";
   this.desc = "Audachta Nemesos: Telepathy";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_TELEPATHY_LEVEL;
   this.spellnum = SPELL_TELEPATHY_ID;
   this.spellname = "Telepathy";
@@ -11577,9 +11460,9 @@ function AudachtaNemesosWallOfFlameTile() {
   this.name = "AudachtaNemesosWallOfFlame";
   this.desc = "Audachta Nemesos: Wall of Flame";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_WALL_OF_FLAME_LEVEL;
   this.spellnum = SPELL_WALL_OF_FLAME_ID;
   this.spellname = "Wall of Flame";
@@ -11590,9 +11473,9 @@ function AudachtaNemesosBlessingTile() {
   this.name = "AudachtaNemesosBlessing";
   this.desc = "Audachta Nemesos: Blessing";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_BLESSING_LEVEL;
   this.spellnum = SPELL_BLESSING_ID;
   this.spellname = "Blessing";
@@ -11603,9 +11486,9 @@ function AudachtaNemesosHealTile() {
   this.name = "AudachtaNemesosHeal";
   this.desc = "Audachta Nemesos: Heal";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_HEAL_LEVEL;
   this.spellnum = SPELL_HEAL_ID;
   this.spellname = "Heal";
@@ -11616,9 +11499,9 @@ function AudachtaNemesosLifeDrainTile() {
   this.name = "AudachtaNemesosLifeDrain";
   this.desc = "Audachta Nemesos: Life Drain";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_LIFE_DRAIN_LEVEL;
   this.spellnum = SPELL_LIFE_DRAIN_ID;
   this.spellname = "Life Drain";
@@ -11629,9 +11512,9 @@ function AudachtaNemesosSmiteTile() {
   this.name = "AudachtaNemesosSmite";
   this.desc = "Audachta Nemesos: Smite";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_SMITE_LEVEL;
   this.spellnum = SPELL_SMITE_ID;
   this.spellname = "Smite";
@@ -11642,9 +11525,9 @@ function AudachtaNemesosOpenGateTile() {
   this.name = "AudachtaNemesosOpenGate";
   this.desc = "Audachta Nemesos: Open Gate";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_OPEN_GATE_LEVEL;
   this.spellnum = SPELL_OPEN_GATE_ID;
   this.spellname = "Open Gate";
@@ -11655,9 +11538,9 @@ function AudachtaNemesosCrystalTrapTile() {
   this.name = "AudachtaNemesosCrystalTrap";
   this.desc = "Audachta Nemesos: Crystal Trap";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_CRYSTAL_TRAP_LEVEL;
   this.spellnum = SPELL_CRYSTAL_TRAP_ID;
   this.spellname = "Crystal Trap";
@@ -11668,9 +11551,9 @@ function AudachtaNemesosMirrorWardTile() {
   this.name = "AudachtaNemesosMirrorWard";
   this.desc = "Audachta Nemesos: Mirror Ward";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_MIRROR_WARD_LEVEL;
   this.spellnum = SPELL_MIRROR_WARD_ID;
   this.spellname = "Mirror Ward";
@@ -11681,9 +11564,9 @@ function AudachtaNemesosParalyzeTile() {
   this.name = "AudachtaNemesosParalyze";
   this.desc = "Audachta Nemesos: Paralyze";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_PARALYZE_LEVEL;
   this.spellnum = SPELL_PARALYZE_ID;
   this.spellname = "Paralyze";
@@ -11694,9 +11577,9 @@ function AudachtaNemesosReturnTile() {
   this.name = "AudachtaNemesosReturn";
   this.desc = "Audachta Nemesos: Return";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_RETURN_LEVEL;
   this.spellnum = SPELL_RETURN_ID;
   this.spellname = "Return";
@@ -11707,9 +11590,9 @@ function AudachtaNemesosShockwaveTile() {
   this.name = "AudachtaNemesosShockwave";
   this.desc = "Audachta Nemesos: Shockwave";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_SHOCKWAVE_LEVEL;
   this.spellnum = SPELL_SHOCKWAVE_ID;
   this.spellname = "Shockwave";
@@ -11720,9 +11603,9 @@ function AudachtaNemesosSummonAllyTile() {
   this.name = "AudachtaNemesosSummonAlly";
   this.desc = "Audachta Nemesos: Summon Ally";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_SUMMON_ALLY_LEVEL;
   this.spellnum = SPELL_SUMMON_ALLY_ID;
   this.spellname = "Summon Ally";
@@ -11733,9 +11616,9 @@ function AudachtaNemesosSwordstrikeTile() {
   this.name = "AudachtaNemesosSwordstrike";
   this.desc = "Audachta Nemesos: Swordstrike";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_SWORDSTRIKE_LEVEL;
   this.spellnum = SPELL_SWORDSTRIKE_ID;
   this.spellname = "Swordstrike";
@@ -11746,9 +11629,9 @@ function AudachtaNemesosEmpowerTile() {
   this.name = "AudachtaNemesosEmpower";
   this.desc = "Audachta Nemesos: Empower";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_EMPOWER_LEVEL;
   this.spellnum = SPELL_EMPOWER_ID;
   this.spellname = "Empower";
@@ -11759,9 +11642,9 @@ function AudachtaNemesosExplosionTile() {
   this.name = "AudachtaNemesosExplosion";
   this.desc = "Audachta Nemesos: Explosion";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-190";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_EXPLOSION_LEVEL;
   this.spellnum = SPELL_EXPLOSION_ID;
   this.spellname = "Explosion";
@@ -11772,9 +11655,9 @@ function AudachtaNemesosJinxTile() {
   this.name = "AudachtaNemesosJinx";
   this.desc = "Audachta Nemesos: Jinx";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_JINX_LEVEL;
   this.spellnum = SPELL_JINX_ID;
   this.spellname = "Jinx";
@@ -11785,9 +11668,9 @@ function AudachtaNemesosNegateMagicTile() {
   this.name = "AudachtaNemesosNegateMagic";
   this.desc = "Audachta Nemesos: Negate Magic";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_NEGATE_MAGIC_LEVEL;
   this.spellnum = SPELL_NEGATE_MAGIC_ID;
   this.spellname = "Negate Magic";
@@ -11798,9 +11681,9 @@ function AudachtaNemesosTremorTile() {
   this.name = "AudachtaNemesosTremor";
   this.desc = "Audachta Nemesos: Tremor";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_TREMOR_LEVEL;
   this.spellnum = SPELL_TREMOR_ID;
   this.spellname = "Tremor";
@@ -11811,9 +11694,9 @@ function AudachtaNemesosWeatherControlTile() {
   this.name = "AudachtaNemesosWeatherControl";
   this.desc = "Audachta Nemesos: Weather Control";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_WEATHER_CONTROL_LEVEL;
   this.spellnum = SPELL_WEATHER_CONTROL_ID;
   this.spellname = "Weather Control";
@@ -11824,9 +11707,9 @@ function AudachtaNemesosCharmTile() {
   this.name = "AudachtaNemesosCharm";
   this.desc = "Audachta Nemesos: Charm";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_CHARM_LEVEL;
   this.spellnum = SPELL_CHARM_ID;
   this.spellname = "Charm";
@@ -11837,9 +11720,9 @@ function AudachtaNemesosFearTile() {
   this.name = "AudachtaNemesosFear";
   this.desc = "Audachta Nemesos: Fear";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_FEAR_LEVEL;
   this.spellnum = SPELL_FEAR_ID;
   this.spellname = "Fear";
@@ -11850,9 +11733,9 @@ function AudachtaNemesosFireAndIceTile() {
   this.name = "AudachtaNemesosFireAndIce";
   this.desc = "Audachta Nemesos: Fire and Ice";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_FIRE_AND_ICE_LEVEL;
   this.spellnum = SPELL_FIRE_AND_ICE_ID;
   this.spellname = "Fire and Ice";
@@ -11863,9 +11746,9 @@ function AudachtaNemesosMeteorSwarmTile() {
   this.name = "AudachtaNemesosMeteorSwarm";
   this.desc = "Audachta Nemesos: Meteor Swarm";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_METEOR_SWARM_LEVEL;
   this.spellnum = SPELL_METEOR_SWARM_ID;
   this.spellname = "Meteor Swarm";
@@ -11876,9 +11759,9 @@ function AudachtaNemesosMindBlastTile() {
   this.name = "AudachtaNemesosMindBlast";
   this.desc = "Audachta Nemesos: Mind Blast";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_MIND_BLAST_LEVEL;
   this.spellnum = SPELL_MIND_BLAST_ID;
   this.spellname = "Mind Blast";
@@ -11889,9 +11772,9 @@ function AudachtaNemesosArrowOfGlassTile() {
   this.name = "AudachtaNemesosArrowOfGlass";
   this.desc = "Audachta Nemesos: Arrow of Glass";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_ARROW_OF_GLASS_LEVEL;
   this.spellnum = SPELL_ARROW_OF_GLASS_ID;
   this.spellname = "Arrow of Glass";
@@ -11902,9 +11785,9 @@ function AudachtaNemesosBuildGateTile() {
   this.name = "AudachtaNemesosBuildGate";
   this.desc = "Audachta Nemesos: Build Gate";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_BUILD_GATE_LEVEL;
   this.spellnum = SPELL_BUILD_GATE_ID;
   this.spellname = "Build Gate";
@@ -11915,9 +11798,9 @@ function AudachtaNemesosConflagrationTile() {
   this.name = "AudachtaNemesosConflagration";
   this.desc = "Audachta Nemesos: Conflagration";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_CONFLAGRATION_LEVEL;
   this.spellnum = SPELL_CONFLAGRATION_ID;
   this.spellname = "Conflagration";
@@ -11928,9 +11811,9 @@ function AudachtaNemesosConjureDaemonTile() {
   this.name = "AudachtaNemesosConjureDaemon";
   this.desc = "Audachta Nemesos: Conjure Daemon";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_CONJURE_DAEMON_LEVEL;
   this.spellnum = SPELL_CONJURE_DAEMON_ID;
   this.spellname = "Conjure Daemon";
@@ -11941,9 +11824,9 @@ function AudachtaNemesosQuicknessTile() {
   this.name = "AudachtaNemesosQuickness";
   this.desc = "Audachta Nemesos: Quickness";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_QUICKNESS_LEVEL;
   this.spellnum = SPELL_QUICKNESS_ID;
   this.spellname = "Quickness";
@@ -11954,9 +11837,9 @@ function AudachtaNemesosReincarnateTile() {
   this.name = "AudachtaNemesosReincarnate";
   this.desc = "Audachta Nemesos: Reincarnate";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_REINCARNATE_LEVEL;
   this.spellnum = SPELL_REINCARNATE_ID;
   this.spellname = "Reincarnate";
@@ -11967,9 +11850,9 @@ function AudachtaNemesosTimeStopTile() {
   this.name = "AudachtaNemesosTimeStop";
   this.desc = "Audachta Nemesos: Time Stop";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_TIME_STOP_LEVEL;
   this.spellnum = SPELL_TIME_STOP_ID;
   this.spellname = "Time Stop";
