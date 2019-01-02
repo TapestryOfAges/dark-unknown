@@ -2357,7 +2357,7 @@ magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].executeSpell = function(c
 
   caster.getHomeMap().placeThing(caster.getx(), caster.gety(), trap);
 
-  let resp = {fin:1, input: "&gt;", txt: "A crystal trap is buried under your feet."};
+  resp = {fin:1, input: "&gt;", txt: "A crystal trap is buried under your feet."};
 
   return resp;
 
@@ -3483,7 +3483,7 @@ magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID].getLongDesc = functio
 magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Arrow of Glass.<br />");
   if (caster !== PC) {
-    var resp = PerformArrowOfGlass(caster, infused, free, tgt);
+    let resp = PerformArrowOfGlass(caster, infused, free, tgt);
     return resp;
   }
   let resp = {};

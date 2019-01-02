@@ -234,43 +234,41 @@ function PlaceMonsters(battlemap,group,whoseturn) {
   }
     
   let monstercoords = [];
+  let coin;
   switch (monsters.length) {
       case 1:
         monstercoords[0] = {x:6, y:3};
         break;
       case 2:
-        let coin = Math.floor(Math.random() * 2) +1;
-        if (coin == 1) {
+        if (Dice.roll("1d2") === 1) {
           monstercoords[0] = {x:5, y:3};
           monstercoords[1] = {x:7, y:3};
         }
-        else if (coin == 2) {
+        else {
           monstercoords[0] = {x:6, y:2};
           monstercoords[1] = {x:6, y:4};
         }
         break;
       case 3:
-        let coin = Math.floor(Math.random() * 2) +1;
-        if (coin == 1) {
+        if (Dice.roll("1d2") === 1) {
           monstercoords[0] = {x:6, y:3};
           monstercoords[1] = {x:4, y:1};
           monstercoords[2] = {x:8, y:1};
         }
-        else if (coin == 2) {
+        else {
           monstercoords[0] = {x:6, y:1};
           monstercoords[1] = {x:4, y:3};
           monstercoords[2] = {x:8, y:3};
         }
         break;
       case 4:
-        let coin = Math.floor(Math.random() * 2) +1;
-        if (coin === 1) {
+        if (Dice.roll("1d2") === 1) {
           monstercoords[0] = {x:4, y:1};
           monstercoords[1] = {x:5, y:3};
           monstercoords[2] = {x:7, y:3};
           monstercoords[3] = {x:8, y:1};
         }
-        else if (coin === 2) {
+        else {
           monstercoords[0] = {x:6, y:1};
           monstercoords[1] = {x:6, y:3};
           monstercoords[2] = {x:8, y:2};
@@ -278,7 +276,7 @@ function PlaceMonsters(battlemap,group,whoseturn) {
         }
         break;
       case 5:
-        let coin = Math.floor(Math.random() * 4) +1;
+        coin = Dice.roll("1d4");
         if (coin === 1) {
           monstercoords[0] = {x:6, y:4};
           monstercoords[1] = {x:8, y:3};
@@ -309,7 +307,7 @@ function PlaceMonsters(battlemap,group,whoseturn) {
         }
         break;
       case 6:
-        let coin = Math.floor(Math.random() * 5) +1;
+        coin = Dice.roll("1d5");
         if (coin === 1) {
           monstercoords[0] = {x:6, y:3};
           monstercoords[1] = {x:5, y:2};
@@ -348,7 +346,7 @@ function PlaceMonsters(battlemap,group,whoseturn) {
         }
         break;
       case 7:
-        let coin = Math.floor(Math.random() * 3) +1;
+        coin = Dice.roll("1d3");
         if (coin === 1) {
           monstercoords[0] = {x:6, y:4};
           monstercoords[1] = {x:5, y:3};
@@ -388,7 +386,7 @@ function PlaceMonsters(battlemap,group,whoseturn) {
       
   }
 
-  for (let i =0; i < monsters.length; i++) {
+  for (let i=0; i < monsters.length; i++) {
     let timetoplace = 0;
     if (!whoseturn) { // combat began on NPC turn
       timetoplace = .001;
