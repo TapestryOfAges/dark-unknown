@@ -211,9 +211,9 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     displayCell.graphics3 = graphics[3];
     displayCell.graphics1 = graphics[1];
     if (typeof displaytile.doTile === "function") {
-      showGraphic = displaytile.doTile(x,y,graphics[0]);
-      if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
-      if (showGraphic.spritexoffset) { 
+      showGraphic = displaytile.doTile(x,y,displayCell);
+      if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
+      if ("spritexoffset" in showGraphic) { 
         displayCell.graphics2 = showGraphic.spritexoffset;
         displayCell.graphics3 = showGraphic.spriteyoffset;
       }
@@ -227,9 +227,9 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     displayCell.graphics3 = graphics[3];
     displayCell.graphics1 = graphics[1];
     if (typeof displaytile.doTile === "function") {
-      showGraphic = displaytile.doTile(x,y,showGraphic);
-      if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
-      if (showGraphic.hasOwnProperty("spritexoffset")) { 
+      showGraphic = displaytile.doTile(x,y,displayCell);
+      if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
+      if ("spritexoffset" in showGraphic) { 
         displayCell.graphics2 = showGraphic.spritexoffset;
         displayCell.graphics3 = showGraphic.spriteyoffset;
       }      
@@ -298,9 +298,9 @@ function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
   displayCell.graphics3 = graphics[3];
   displayCell.graphics1 = graphics[1];
   if (typeof displaytile.doTile === "function") {
-    showGraphic = displaytile.doTile(xcoord,ycoord,showGraphic);
-    if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
-    if (showGraphic.hasOwnProperty("spritexoffset")) { 
+    showGraphic = displaytile.doTile(xcoord,ycoord,displayCell);
+    if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
+    if ("spritexoffset" in showGraphic) { 
       displayCell.graphics2 = showGraphic.spritexoffset;
       displayCell.graphics3 = showGraphic.spriteyoffset;
     }        
