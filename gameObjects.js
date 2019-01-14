@@ -4920,7 +4920,7 @@ function DoorTile() {
   
   this.pathweight = 2; 
 
-	Openable.call(this, [this.graphic, "", 0, 0], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+	Openable.call(this, ["master_spritesheet.png", "", "-224", "-704"], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorTile.prototype = new FeatureObject();
 
@@ -5590,7 +5590,7 @@ TrainingDummyTile.prototype = new FeatureObject();
 
 function ArcheryTargetTile() {
   this.name = "ArcheryTarget";
-  this.graphic = "master_spreadsheet.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
@@ -5607,7 +5607,7 @@ ArcheryTargetTile.prototype = new FeatureObject();
 
 function PottedPlantTile() {
   this.name = "PottedPlant";
-  this.graphic = "master_spreadsheet.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
@@ -5746,6 +5746,7 @@ function LeftChairTile() {
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 1;
+  this.nowander = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -5768,6 +5769,7 @@ function RightChairTile() {
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 3;
+  this.nowander = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -5789,6 +5791,7 @@ function TopChairTile() {
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 2;
+  this.nowander = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -5810,6 +5813,7 @@ function BottomChairTile() {
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 0;
+  this.nowander = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -5981,6 +5985,7 @@ function BedHeadTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bed";
+  this.nowander = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5;
@@ -6031,6 +6036,7 @@ function BedFootTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bed";
+  this.nowander = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5;
@@ -7194,7 +7200,7 @@ ArmorCounterPlateTile.prototype = new FeatureObject();
 
 function ArmorRackLeatherTile() {
   this.name = "ArmorRackLeather";
-  this.graphic = "master_spreadsheet.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
@@ -7208,7 +7214,7 @@ ArmorRackLeatherTile.prototype = new FeatureObject();
 
 function ArmorRackChainTile() {
   this.name = "ArmorRackChain";
-  this.graphic = "master_spreadsheet.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
@@ -7222,7 +7228,7 @@ ArmorRackChainTile.prototype = new FeatureObject();
 
 function ArmorRackPlateTile() {
   this.name = "ArmorRackPlate";
-  this.graphic = "master_spreadsheet.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
@@ -8226,7 +8232,7 @@ MarkOfFlamesTile.prototype.use = function(user) {
 
 function FlameEternalTile() {
   this.name = "FlameEternal";
-  this.graphic = "master_spreadsheet.png"; // for now, eternal_flame.gif for active fire
+  this.graphic = "master_spritesheet.png"; // for now, eternal_flame.gif for active fire
   this.spritexoffset = "-128";  // -32 is active fire
   this.spriteyoffset = "-1120";  // -0 for active fire
   this.prefix = "the";

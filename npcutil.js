@@ -487,7 +487,7 @@ function StepOrDoor(who, where, nopush) {
       DebugWrite("ai", "didn't move in StepOrDoor.<br />");
       if (!nopush && fea && who.specials["open_door"]) {
         // If you can open a door, you can move a barrel.
-        if (!tile.getTopNPC()) {      
+        if (!tile.getTopNPC() && !tile.getTopPC()) {      
           let allfea = tile.getFeatures();
           let pushyou;
           for (let i=0;i<allfea.length;i++) {
@@ -561,7 +561,9 @@ function StepOrSidestep(who, path, finaldest, nopush) {
             // Will only come up if path is truly blocked
             moved["canmove"] = 1;
             if (topentity === PC) {
-              maintext.delayedAddText(who.getFullDesc() + " steps past you.");
+              let text = who.getFullDesc() + " steps past you.";
+              text = text.charAt(0).toUpperCase() + text.slice(1);
+              maintext.addText(text);
               moved["intoPC"] = 1; // dunno if I'll want this, but might as well
             } else {
               if (debug) {

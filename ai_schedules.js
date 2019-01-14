@@ -178,7 +178,7 @@ ais.RouteTo = function(who, params) {
     path.shift();
 
     if (path[0]) {
-      moved = StepOrSidestep(who,path[0],[params.destination.x, params.destination.y]);
+      moved = StepOrSidestep(who,path[0],[parseInt(params.destination.x), parseInt(params.destination.y)]);
       if (moved["opendoor"]) {
         who.flags.closedoor = {};
         who.flags.closedoor.steps = 1;
@@ -287,8 +287,8 @@ ais.WaitHere = function(who,params) {
       }
     }
 
-    var leashCenter;
-    var ii = who.getCurrentScheduleIndex();
+    let leashCenter;
+    let ii = who.getCurrentScheduleIndex();
     ii--;
     while (!leashCenter) {
       if (DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination) {

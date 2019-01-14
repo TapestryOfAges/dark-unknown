@@ -665,8 +665,21 @@ Acre.prototype.isHostileTo = function(who) {
 
   let fea = this.getFeatures();
   if (fea) {
-    for (let i = 0; i < fea.length; i++) {
+    for (let i=0; i < fea.length; i++) {
       if (fea[i].isHostileTo(who)) { return 1; }
+    }
+  }
+
+  return 0;
+}
+
+Acre.prototype.noWander = function() {
+  if (this.getTerrain().nowander) { return 1; }
+
+  let fea = this.getFeatures();
+  if (fea) {
+    for (let i=0; i < fea.length; i++) {
+      if (fea[i].nowander) { return 1; }
     }
   }
 

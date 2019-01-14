@@ -389,7 +389,7 @@ function FadeOut(death) {
   
   // Ironically, to do a fade OUT I am performing a jquery fadeIn(), to fade in a blanket of darkness
   // to put over the viewscreen.
-  let darkness = "<div id='darkness' style='position:absolute;left:0;top:0;width:416px;height:418px;background-color:black;display:none'><img src='graphics/spacer.gif' width='416' height='418'></div>";
+  let darkness = "<div id='darkness' style='position:absolute;left:0;top:0;width:416px;height:418px;background-color:black;opacity:0'><img src='graphics/spacer.gif' width='416' height='418'></div>";
   document.getElementById('spelleffects').innerHTML = darkness;
   if (death) {
     document.getElementById('darkness').classList.toggle("rundeathfadein");

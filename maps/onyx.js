@@ -96,7 +96,7 @@ mappages["onyx"].features[50] = {name : 'RightTable', x : 15, y : 19};
 mappages["onyx"].features[51] = {name : 'BottomChair', x : 14, y : 20};
 mappages["onyx"].features[52] = {name : 'GrandfatherClock', x : 12, y : 21};
 mappages["onyx"].features[53] = {name : 'StairUp2', x : 15, y : 21, entermap : 'onyx2', enterx : 15, entery : 21};
-mappages["onyx"].features[54] = {name : 'StairUp', x : 19, y : 29, entermap : 'onyx2', enterx : 19, entery : 19};
+mappages["onyx"].features[54] = {name : 'StairUp', x : 19, y : 29, entermap : 'onyx2', enterx : 19, entery : 29};
 mappages["onyx"].features[55] = {name : 'StairUp', x : 7, y : 29, entermap : 'onyx2', enterx : 7, entery : 29};
 mappages["onyx"].features[56] = {name : 'LeftTable', x : 19, y : 32};
 mappages["onyx"].features[57] = {name : 'MiddleTable', x : 20, y : 32};
@@ -240,16 +240,17 @@ mappages["onyx"].features[194] = {name : 'SmallBox', x : 26, y : 26};
 mappages["onyx"].features[195] = {name : 'TorchEast', x : 29, y : 26};
 mappages["onyx"].features[196] = {name : 'TorchWest', x : 25, y : 26};
 mappages["onyx"].features[197] = {name : 'SmallBox', x : 28, y : 26};
-
+mappages["onyx"].features[198] = {name : 'TorchEast', x : 12, y : 6};
+mappages["onyx"].features[199] = {name : 'Brazier', x : 25, y : 16};
 
 mappages["onyx"].npcs = [];
-mappages["onyx"].npcs[0] = {name : 'FighterVillagerNPC', x : 26, y : 20, NPCName: 'Aithne', Conversation: 'aithne', Gender: 'male', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif', skintone: '2'};
-mappages["onyx"].npcs[1] = {name : 'TownGuardNPC', x : 25, y : 30, NPCName: 'Helena', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["onyx"].npcs[2] = {name : 'TownGuardNPC', x : 25, y : 32, NPCName: 'Gunta', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '2'};
-mappages["onyx"].npcs[3] = {name : 'TownGuardNPC', x : 5, y : 14, NPCName: 'Wash', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '1'};
-mappages["onyx"].npcs[4] = {name : 'TownGuardNPC', x : 5, y : 16, NPCName: 'Ali', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '2'};
-mappages["onyx"].npcs[5] = {name : 'TownGuardNPC', x : 28, y : 32, NPCName: 'Patty', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '2'};
-mappages["onyx"].npcs[6] = {name : 'TownGuardNPC', x : 18, y : 15, NPCName: 'Calvin', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["onyx"].npcs[0] = {name : 'FighterVillagerNPC', x : 26, y : 20, NPCName: 'Aithne', Conversation: 'aithne', Gender: 'male', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif', skintone: '2', PeaceAI: 'scheduled', Schedule: 'aithne'};
+mappages["onyx"].npcs[1] = {name : 'TownGuardNPC', x : 25, y : 30, NPCName: 'Helena', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'helena'};
+mappages["onyx"].npcs[2] = {name : 'TownGuardNPC', x : 25, y : 32, NPCName: 'Gunta', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'gunta'};
+mappages["onyx"].npcs[3] = {name : 'TownGuardNPC', x : 5, y : 14, NPCName: 'Wash', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'wash'};
+mappages["onyx"].npcs[4] = {name : 'TownGuardNPC', x : 5, y : 16, NPCName: 'Ali', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'ali'};
+mappages["onyx"].npcs[5] = {name : 'TownGuardNPC', x : 28, y : 32, NPCName: 'Patty', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'patty'};
+mappages["onyx"].npcs[6] = {name : 'TownGuardNPC', x : 18, y : 15, NPCName: 'Calvin', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'calvin'};
 
 mappages["onyx"].desc = "The Towne of Onyx";
 mappages["onyx"].longdesc = '';
@@ -383,8 +384,8 @@ mappages["onyx2"].features[59] = {name : 'GrandfatherClock', x : 19, y : 32};
 
 
 mappages["onyx2"].npcs = [];
-mappages["onyx2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 11, NPCName: 'William', Conversation: 'william', Gender: 'male', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif', skintone: '1'};
-mappages["onyx2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 8, y : 5, NPCName: 'Rowan', Desc: 'innkeeper', Conversation: 'rowan', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
+mappages["onyx2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 11, NPCName: 'William', Conversation: 'william', Gender: 'male', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif', skintone: '1', PeaceAI: 'scheduled', Schedule: 'william'};
+mappages["onyx2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 8, y : 5, NPCName: 'Rowan', Desc: 'innkeeper', Conversation: 'rowan', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2', PeaceAI: 'scheduled', Schedule: 'rowan'};
 mappages["onyx2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 15, y : 11, NPCName: 'Carol', Conversation: 'carol', Gender: 'female', NPCBand: '0', skintone: '1'};
 mappages["onyx2"].npcs[3] = {name : 'RangerVillagerNPC', x : 22, y : 33, NPCName: 'Dawne', Conversation: 'dawne', Gender: 'female', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif', skintone: '1'};
 mappages["onyx2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 10, y : 30, NPCName: 'Gretchen', Conversation: 'gretchen', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
@@ -399,7 +400,7 @@ mappages["onyx2"].exity = '119';
 mappages["onyx2"].wraps = '';
 mappages["onyx2"].enterx = '1';
 mappages["onyx2"].entery = '15';
-mappages["onyx2"].seeBelow = '';
+mappages["onyx2"].seeBelow = 'onyx';
 mappages["onyx2"].lightLevel = 'cycle';
 mappages["onyx2"].alwaysRemember = '0';
 mappages["onyx2"].scale = '1';
@@ -468,7 +469,7 @@ mappages["onyx3"].features[6] = {name : 'Brazier', x : 14, y : 19};
 
 
 mappages["onyx3"].npcs = [];
-mappages["onyx3"].npcs[0] = {name : 'MageVillagerNPC', x : 13, y : 20, NPCName: 'Xavier', Conversation: 'xavier', Gender: 'male', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
+mappages["onyx3"].npcs[0] = {name : 'MageVillagerNPC', x : 13, y : 20, NPCName: 'Xavier', Conversation: 'xavier', Gender: 'male', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: '1', PeaceAI: 'scheduled', Schedule: 'xavier',};
 
 mappages["onyx3"].desc = "The Towne of Onyx";
 mappages["onyx3"].music = 'Dark Towne';
@@ -479,7 +480,7 @@ mappages["onyx3"].exity = '119';
 mappages["onyx3"].wraps = '';
 mappages["onyx3"].enterx = '1';
 mappages["onyx3"].entery = '15';
-mappages["onyx3"].seeBelow = '';
+mappages["onyx3"].seeBelow = 'onyx2';
 mappages["onyx3"].lightLevel = 'cycle';
 mappages["onyx3"].alwaysRemember = '0';
 mappages["onyx3"].scale = '1';

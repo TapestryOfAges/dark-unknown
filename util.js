@@ -950,7 +950,7 @@ function FindNearestNPC(from, align, except) {
   let distance = 10000;
   for (let i=0;i<found.length;i++) {
     let val = found[i];
-    if ((val !== from) && ($.inArray(val,except) === -1)) {
+    if ((val !== from) && (!except.includes(val))) {
       if (!align || ((align === "enemy") && (from.getAttitude() !== val.getAttitude())) || ((align === "ally") && (from.getAttitude() === val.getAttitude()))) {
         let movetype = from.getMovetype();
         if (from.specials.open_door) { movetype = MOVE_WALK_DOOR; }

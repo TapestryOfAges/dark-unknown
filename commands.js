@@ -938,7 +938,7 @@ function PerformLook() {
   
   txt += seethis + ".";
   let tileid = targetCursor.tileid;
-  document.getElementById(tileid).innerHTML(targetCursor.basetile); 
+  document.getElementById(tileid).innerHTML = targetCursor.basetile; 
   
   let retval = {};
   retval["txt"] = txt;
@@ -2706,8 +2706,8 @@ function performOptions(code) {
     retval["fin"] = 0;
     delete targetCursor.cmd;
     document.getElementById('uiinterface').innerHTML = "";
-    document.getElementById('uiinterface').style.backgroundColor = "black";
-  }
+    document.getElementById('uiinterface').style.backgroundColor = "";
+}
   else if ((code === 38) || (code === 219)) { // scroll up
     targetCursor.page--;
     if (targetCursor.page === 0) { targetCursor.page = 1; } 

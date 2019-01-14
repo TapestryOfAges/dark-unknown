@@ -175,27 +175,29 @@ function FirstPage() {
   document.getElementById('and').classList.add('andfadein');
   setTimeout(function() {
     lastanim = "gf";
-    document.getElementById('gf').classList.add('gffadein');
-    setTimeout(function() {
-      lastanim = "present";
-      document.getElementById('present').classList.add('presentfadein');
+    if (document.getElementById('gf')) {
+      document.getElementById('gf').classList.add('gffadein');
       setTimeout(function() {
+        lastanim = "present";
+        document.getElementById('present').classList.add('presentfadein');
         setTimeout(function() {
-          let pres = document.getElementById('present');
-          if (pres) {
-            pres.classList.add('titlefadeout');
-            document.getElementById('gf').classList.add('titlefadeout');
-            document.getElementById('and').classList.add('titlefadeout');
-            document.getElementById('sign').classList.add('titlefadeout');
-            document.getElementById('over').classList.add('titlefadeout');
-            document.getElementById('ToA').classList.add('titlefadeout');
-            setTimeout(function() {
-              SecondPage();
-            },1000);
-          }
-        }, 1000);
-      }, 1400);
-    },700);
+          setTimeout(function() {
+            let pres = document.getElementById('present');
+            if (pres) {
+              pres.classList.add('titlefadeout');
+              document.getElementById('gf').classList.add('titlefadeout');
+              document.getElementById('and').classList.add('titlefadeout');
+              document.getElementById('sign').classList.add('titlefadeout');
+              document.getElementById('over').classList.add('titlefadeout');
+              document.getElementById('ToA').classList.add('titlefadeout');
+              setTimeout(function() {
+                SecondPage();
+              },1000);
+            }
+          }, 1000);
+        }, 1400);
+      },700);
+    }
   }, 1200);
 }
 
