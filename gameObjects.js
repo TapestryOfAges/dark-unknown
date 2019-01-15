@@ -4821,7 +4821,8 @@ function FireplaceTile() {
 	this.desc = "fireplace";
 	this.peerview = "white";
 	this.pathweight = 5;
-	this.firedamage = "3d4";
+  this.firedamage = "3d4";
+//  this.nowander = 1;
 	
 	LightEmitting.call(this, 2);
 	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
@@ -5178,6 +5179,7 @@ function LadderDownTile() {
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
+  this.nowander = 1;
 }
 LadderDownTile.prototype = new FeatureObject();
 
@@ -5197,6 +5199,7 @@ function LadderUpTile() {
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
+  this.nowander = 1;
 }
 LadderUpTile.prototype = new FeatureObject();
 
@@ -5212,6 +5215,7 @@ function StairDownTile() {
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
+  this.nowander = 1;
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -5230,6 +5234,7 @@ function StairUpTile() {
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
+  this.nowander = 1;
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -5248,6 +5253,7 @@ function StairDown2Tile() {
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
+  this.nowander = 1;
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -5266,6 +5272,7 @@ function StairUp2Tile() {
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
+  this.nowander = 1;
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -6520,7 +6527,7 @@ function SecretDoorTile() {
   
   this.pathweight = 2; 
 	
-  Openable.call(this, [this.graphic, "", "-96", "-128"], ["master_spritesheet.png","",'-160','-704'], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
+  Openable.call(this, [this.graphic, "", "-96", "-128"], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
 }
 SecretDoorTile.prototype = new FeatureObject();
 
