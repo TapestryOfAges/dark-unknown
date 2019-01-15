@@ -1105,7 +1105,7 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
   }
   
   if (desttile.isHostileTo(who)) {
-    DebugWrite("ai", who.getName() + " refused to randomwalk onto a hostile tile at " + diffx + "," + diffy + ".");
+    DebugWrite("ai", who.getName() + " refused to randomwalk onto a hostile tile at " + (who.getx()+diffx) + "," + (who.gety()+diffy) + ".");
     retval["nomove"] = 1;
     retval["canmove"] = 0;
     retval["diffx"] = diffx;
@@ -1114,7 +1114,7 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
   }
 
   if (desttile.noWander()) {
-    DebugWrite("ai", who.getName() + " refused to randomwalk onto a nowander tile at " + diffx + "," + diffy + ".");
+    DebugWrite("ai", who.getName() + " refused to randomwalk onto a nowander tile at " + (who.getx()+diffx) + "," + (who.gety()+diffy) + ".");
     retval["nomove"] = 1;
     retval["canmove"] = 0;
     retval["diffx"] = diffx;
