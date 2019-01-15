@@ -65,7 +65,7 @@ mappages["onyx"].features[19] = {name : 'BedFoot', x : 15, y : 11};
 mappages["onyx"].features[20] = {name : 'Dresser', x : 16, y : 7};
 mappages["onyx"].features[21] = {name : 'Dresser', x : 16, y : 9};
 mappages["onyx"].features[22] = {name : 'SecretDoor', x : 17, y : 5};
-mappages["onyx"].features[23] = {name : 'InnSign', x : 8, y : 13, desc : "sign: Wilding Inn"};
+mappages["onyx"].features[23] = {name : 'InnSign', x : 8, y : 13, desc : "sign: Wilding Inn", prefix : "a"};
 mappages["onyx"].features[24] = {name : 'SignpostLeft', x : 7, y : 13};
 mappages["onyx"].features[25] = {name : 'Door', x : 21, y : 4};
 mappages["onyx"].features[26] = {name : 'DoorWindow', x : 22, y : 10};
@@ -219,38 +219,42 @@ mappages["onyx"].features[173] = {name : 'GrandfatherClock', x : 25, y : 13};
 mappages["onyx"].features[174] = {name : 'SmallTable', x : 25, y : 15};
 mappages["onyx"].features[175] = {name : 'RightChair', x : 26, y : 15};
 mappages["onyx"].features[176] = {name : 'SmallBox', x : 29, y : 14};
-mappages["onyx"].features[177] = {name : 'Brazier', x : 6, y : 5};
-mappages["onyx"].features[178] = {name : 'Brazier', x : 12, y : 11};
-mappages["onyx"].features[179] = {name : 'Brazier', x : 12, y : 19};
-mappages["onyx"].features[180] = {name : 'Fireplace', x : 7, y : 33};
-mappages["onyx"].features[181] = {name : 'Fireplace', x : 23, y : 33};
-mappages["onyx"].features[182] = {name : 'BedHead', x : 25, y : 32};
-mappages["onyx"].features[183] = {name : 'BedHead', x : 25, y : 30};
-mappages["onyx"].features[184] = {name : 'BedHead', x : 25, y : 28};
-mappages["onyx"].features[185] = {name : 'BedHead', x : 28, y : 28};
-mappages["onyx"].features[186] = {name : 'BedHead', x : 28, y : 30};
-mappages["onyx"].features[187] = {name : 'BedHead', x : 28, y : 32};
-mappages["onyx"].features[188] = {name : 'BedFoot', x : 26, y : 28};
-mappages["onyx"].features[189] = {name : 'BedFoot', x : 26, y : 30};
-mappages["onyx"].features[190] = {name : 'BedFoot', x : 26, y : 32};
-mappages["onyx"].features[191] = {name : 'BedFoot', x : 29, y : 32};
-mappages["onyx"].features[192] = {name : 'BedFoot', x : 29, y : 30};
-mappages["onyx"].features[193] = {name : 'BedFoot', x : 29, y : 28};
-mappages["onyx"].features[194] = {name : 'SmallBox', x : 26, y : 26};
-mappages["onyx"].features[195] = {name : 'TorchEast', x : 29, y : 26};
-mappages["onyx"].features[196] = {name : 'TorchWest', x : 25, y : 26};
-mappages["onyx"].features[197] = {name : 'SmallBox', x : 28, y : 26};
+mappages["onyx"].features[177] = {name : 'BedHead', x : 25, y : 32};
+mappages["onyx"].features[178] = {name : 'BedHead', x : 25, y : 30};
+mappages["onyx"].features[179] = {name : 'BedHead', x : 25, y : 28};
+mappages["onyx"].features[180] = {name : 'BedHead', x : 28, y : 28};
+mappages["onyx"].features[181] = {name : 'BedHead', x : 28, y : 30};
+mappages["onyx"].features[182] = {name : 'BedHead', x : 28, y : 32};
+mappages["onyx"].features[183] = {name : 'BedFoot', x : 26, y : 28};
+mappages["onyx"].features[184] = {name : 'BedFoot', x : 26, y : 30};
+mappages["onyx"].features[185] = {name : 'BedFoot', x : 26, y : 32};
+mappages["onyx"].features[186] = {name : 'BedFoot', x : 29, y : 32};
+mappages["onyx"].features[187] = {name : 'BedFoot', x : 29, y : 30};
+mappages["onyx"].features[188] = {name : 'BedFoot', x : 29, y : 28};
+mappages["onyx"].features[189] = {name : 'SmallBox', x : 26, y : 26};
+mappages["onyx"].features[190] = {name : 'SmallBox', x : 28, y : 26};
+mappages["onyx"].features[191] = {name : 'Brazier', x : 6, y : 5};
+mappages["onyx"].features[192] = {name : 'Brazier', x : 12, y : 11};
+mappages["onyx"].features[193] = {name : 'Brazier', x : 12, y : 19};
+mappages["onyx"].features[194] = {name : 'Fireplace', x : 7, y : 33};
+mappages["onyx"].features[195] = {name : 'Fireplace', x : 23, y : 33};
+mappages["onyx"].features[196] = {name : 'TorchEast', x : 29, y : 26};
+mappages["onyx"].features[197] = {name : 'TorchWest', x : 25, y : 26};
 mappages["onyx"].features[198] = {name : 'TorchEast', x : 12, y : 6};
 mappages["onyx"].features[199] = {name : 'Brazier', x : 25, y : 16};
+mappages["onyx"].features[200] = {name : 'Brazier', x : 6, y : 11};
+mappages["onyx"].features[201] = {name : 'Brazier', x : 23, y : 11};
+mappages["onyx"].features[202] = {name : 'Brazier', x : 26, y : 6};
+
 
 mappages["onyx"].npcs = [];
-mappages["onyx"].npcs[0] = {name : 'FighterVillagerNPC', x : 26, y : 20, NPCName: 'Aithne', Conversation: 'aithne', Gender: 'male', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif', skintone: '2', PeaceAI: 'scheduled', Schedule: 'aithne'};
-mappages["onyx"].npcs[1] = {name : 'TownGuardNPC', x : 25, y : 30, NPCName: 'Helena', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'helena'};
-mappages["onyx"].npcs[2] = {name : 'TownGuardNPC', x : 25, y : 32, NPCName: 'Gunta', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'gunta'};
-mappages["onyx"].npcs[3] = {name : 'TownGuardNPC', x : 5, y : 14, NPCName: 'Wash', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'wash'};
-mappages["onyx"].npcs[4] = {name : 'TownGuardNPC', x : 5, y : 16, NPCName: 'Ali', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'ali'};
-mappages["onyx"].npcs[5] = {name : 'TownGuardNPC', x : 28, y : 32, NPCName: 'Patty', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'patty'};
-mappages["onyx"].npcs[6] = {name : 'TownGuardNPC', x : 18, y : 15, NPCName: 'Calvin', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'calvin'};
+mappages["onyx"].npcs[0] = {name : 'FighterVillagerNPC', x : 26, y : 20, NPCName: 'Aithne', PeaceAI: 'scheduled', Schedule: 'aithne', Conversation: 'aithne', Gender: 'male', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif', skintone: '2'};
+mappages["onyx"].npcs[1] = {name : 'TownGuardNPC', x : 25, y : 30, NPCName: 'Helena', PeaceAI: 'scheduled', Schedule: 'helena', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["onyx"].npcs[2] = {name : 'TownGuardNPC', x : 25, y : 32, NPCName: 'Gunta', PeaceAI: 'scheduled', Schedule: 'gunta', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '2'};
+mappages["onyx"].npcs[3] = {name : 'TownGuardNPC', x : 5, y : 14, NPCName: 'Wash', PeaceAI: 'scheduled', Schedule: 'wash', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '1'};
+mappages["onyx"].npcs[4] = {name : 'TownGuardNPC', x : 5, y : 16, NPCName: 'Ali', PeaceAI: 'scheduled', Schedule: 'ali', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '2'};
+mappages["onyx"].npcs[5] = {name : 'TownGuardNPC', x : 28, y : 32, NPCName: 'Patty', PeaceAI: 'scheduled', Schedule: 'patty', Conversation: 'onyx_guard', Gender: 'female', NPCBand: '0', skintone: '2'};
+mappages["onyx"].npcs[6] = {name : 'TownGuardNPC', x : 18, y : 15, NPCName: 'Calvin', PeaceAI: 'scheduled', Schedule: 'calvin', Conversation: 'onyx_guard', Gender: 'male', NPCBand: '0', skintone: '1'};
 
 mappages["onyx"].desc = "The Towne of Onyx";
 mappages["onyx"].longdesc = '';
@@ -276,8 +280,9 @@ mappages["onyx"].returnmap = 'darkunknown';
 mappages["onyx"].returnx = '64';
 mappages["onyx"].returny = '119';
 mappages["onyx"].returninfused = '0';
-mappages["onyx"].linkedMaps = ["onyx2","onyx3","onyxtunnel"];
+mappages["onyx"].linkedMaps = ["onyx2","onyx3","onyxtunnel","onyxlimbo"];
 mappages["onyx"].editorLabels = '{}';
+
 
 mappages["onyx2"] = {};
 mappages["onyx2"].terrain = [];
@@ -381,15 +386,16 @@ mappages["onyx2"].features[56] = {name : 'BedHead', x : 22, y : 33};
 mappages["onyx2"].features[57] = {name : 'BedFoot', x : 23, y : 33};
 mappages["onyx2"].features[58] = {name : 'Dresser', x : 19, y : 33};
 mappages["onyx2"].features[59] = {name : 'GrandfatherClock', x : 19, y : 32};
-
+mappages["onyx2"].features[60] = {name : 'TorchEast', x : 23, y : 30};
+mappages["onyx2"].features[61] = {name : 'TorchEast', x : 23, y : 32};
 
 mappages["onyx2"].npcs = [];
 mappages["onyx2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 11, NPCName: 'William', Conversation: 'william', Gender: 'male', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif', skintone: '1', PeaceAI: 'scheduled', Schedule: 'william'};
 mappages["onyx2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 8, y : 5, NPCName: 'Rowan', Desc: 'innkeeper', Conversation: 'rowan', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2', PeaceAI: 'scheduled', Schedule: 'rowan'};
-mappages["onyx2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 15, y : 11, NPCName: 'Carol', Conversation: 'carol', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["onyx2"].npcs[3] = {name : 'RangerVillagerNPC', x : 22, y : 33, NPCName: 'Dawne', Conversation: 'dawne', Gender: 'female', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif', skintone: '1'};
-mappages["onyx2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 10, y : 30, NPCName: 'Gretchen', Conversation: 'gretchen', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
-mappages["onyx2"].npcs[5] = {name : 'TinkerVillagerNPC', x : 10, y : 33, NPCName: 'Heather', Conversation: 'heather', Gender: 'female', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: '2'};
+mappages["onyx2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 15, y : 11, NPCName: 'Carol', Conversation: 'carol', Gender: 'female', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'carol'};
+mappages["onyx2"].npcs[3] = {name : 'RangerVillagerNPC', x : 22, y : 33, NPCName: 'Dawne', Conversation: 'dawne', Gender: 'female', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif', skintone: '1', PeaceAI: 'scheduled', Schedule: 'dawne'};
+mappages["onyx2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 10, y : 30, NPCName: 'Gretchen', Conversation: 'gretchen', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1', PeaceAI: 'scheduled', Schedule: 'gretchen'};
+mappages["onyx2"].npcs[5] = {name : 'TinkerVillagerNPC', x : 10, y : 33, NPCName: 'Heather', Conversation: 'heather', Gender: 'female', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: '2', PeaceAI: 'scheduled', Schedule: 'heather'};
 
 mappages["onyx2"].desc = "The Towne of Onyx";
 mappages["onyx2"].music = 'Dark Towne';
@@ -414,7 +420,7 @@ mappages["onyx2"].returnmap = 'darkunknown';
 mappages["onyx2"].returnx = '64';
 mappages["onyx2"].returny = '119';
 mappages["onyx2"].returninfused = '0';
-mappages["onyx2"].linkedMaps = ["onyx","onyx3","onyxtunnel"];
+mappages["onyx2"].linkedMaps = ["onyx","onyx3","onyxtunnel","onyxlimbo"];
 mappages["onyx2"].editorLabels = '{}';
 
 mappages["onyx3"] = {};
@@ -494,7 +500,7 @@ mappages["onyx3"].returnmap = 'darkunknown';
 mappages["onyx3"].returnx = '64';
 mappages["onyx3"].returny = '119';
 mappages["onyx3"].returninfused = '0';
-mappages["onyx3"].linkedMaps = ["onyx","onyx2","onyxtunnel"];
+mappages["onyx3"].linkedMaps = ["onyx","onyx2","onyxtunnel","onyxlimbo"];
 mappages["onyx3"].editorLabels = '{}';
 
 
@@ -595,7 +601,7 @@ mappages["onyxtunnel"].returnmap = 'darkunknown';
 mappages["onyxtunnel"].returnx = '64';
 mappages["onyxtunnel"].returny = '120';
 mappages["onyxtunnel"].returninfused = '0';
-mappages["onyxtunnel"].linkedMaps = ["onyx","onyx2","onyx3"];
+mappages["onyxtunnel"].linkedMaps = ["onyx","onyx2","onyx3","onyxlimbo"];
 mappages["onyxtunnel"].editorLabels = '{}';
 
 mappages["onyxtunnel"].close_tree = function(mapref) {
@@ -606,3 +612,44 @@ mappages["onyxtunnel"].close_tree = function(mapref) {
     }
   }
 }
+
+mappages["onyxlimbo"] = {};
+mappages["onyxlimbo"].terrain = [];
+mappages["onyxlimbo"].terrain[0] = '.. .. .. .. ..';
+mappages["onyxlimbo"].terrain[1] = '.. .. .. .. ..';
+mappages["onyxlimbo"].terrain[2] = '.. .. .. .. ..';
+mappages["onyxlimbo"].terrain[3] = '.. .. .. .. ..';
+mappages["onyxlimbo"].terrain[4] = '.. .. .. .. ..';
+
+mappages["onyxlimbo"].features = [];
+
+
+mappages["onyxlimbo"].npcs = [];
+
+mappages["onyxlimbo"].desc = "";
+mappages["onyxlimbo"].longdesc = '';
+mappages["onyxlimbo"].music = 'Dark Towne';
+mappages["onyxlimbo"].savename = '';
+mappages["onyxlimbo"].exitmap = '';
+mappages["onyxlimbo"].exitx = '65';
+mappages["onyxlimbo"].exity = '70';
+mappages["onyxlimbo"].wraps = '';
+mappages["onyxlimbo"].enterx = '65';
+mappages["onyxlimbo"].entery = '70';
+mappages["onyxlimbo"].seeBelow = '';
+mappages["onyxlimbo"].lightLevel = '';
+mappages["onyxlimbo"].alwaysRemember = '0';
+mappages["onyxlimbo"].scale = '1';
+mappages["onyxlimbo"].underground = '0';
+mappages["onyxlimbo"].undergroundDesc = '';
+mappages["onyxlimbo"].enterscript = '';
+mappages["onyxlimbo"].entertestscript = '';
+mappages["onyxlimbo"].exitscript = '';
+mappages["onyxlimbo"].exittestscript = '';
+mappages["onyxlimbo"].returnmap = '';
+mappages["onyxlimbo"].returnx = 'NaN';
+mappages["onyxlimbo"].returny = 'NaN';
+mappages["onyxlimbo"].returninfused = '0';
+mappages["onyxlimbo"].linkedMaps = ["onyx","onyx2","onyx3","onyxtunnel"];
+mappages["onyxlimbo"].editorLabels = '{}';
+
