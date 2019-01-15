@@ -83,7 +83,7 @@ function DebugWait(mins) {
 }
 
 function DebugWrite(category, html) {
-  if (debug && (debugflags[category] || ((whoseturn === watchon) && (category === "schedules")))) {
+  if (debug && (debugflags[category] || ((whoseturn === watchon) && ((category === "schedules")||(category === "ai"))))) {
     document.getElementById('debugdiv').innerHTML += "<span style='" + debugstyle[category] + "'>" + html + "</span>";
     return 1;
   } 
