@@ -620,39 +620,53 @@ function StepOrSidestep(who, path, finaldest, nopush) {
     let fullx = finaldest[0] - who.getx();
     let fully = finaldest[1] - who.gety();
 
+    let RandomwalkPassthrough = function(npc,dx,dy) {
+      let newtile = npc.getHomeMap().getTile(npc.getx()+dx,npc.gety()+dy);
+      let retval = {};
+      if (newtile.isHostileTo(npc) || newtile.noWander()) {
+        retval["nomove"] = 1;
+        retval["canmove"] = 0;
+        retval["diffx"] = diffx;
+        retval["diffy"] = diffy;
+      } else {
+        retval = npc.moveMe(dx,dy,1);
+      }
+      return retval;
+    }
+
     if (diffx !== 0) {
       if (fully > 0) { 
-        moved = who.moveMe(0,1,1);
-        if (!moved["canmove"]) { moved = who.moveMe(0,-1,1); } 
+        moved = RandomwalkPassthrough(who,0,1);
+        if (!moved["canmove"]) { moved = RandomwalkPassthrough(who,0,-1); } 
       }
       else if (fully < 0 ) { 
-        moved = who.moveMe(0,-1,1);
-        if (!moved["canmove"]) { moved = who.moveMe(0,1,1); } 
+        moved = RandomwalkPassthrough(who,0,-1);
+        if (!moved["canmove"]) { moved = RandomwalkPassthrough(who,0,1); } 
       }
       else { 
         let parity = 1;
         if (Dice.roll("1d2") === 1) { 
           parity = -1;
         }
-        moved = who.moveMe(0,parity,1); 
-        if (!moved["canmove"]) { moved = who.moveMe(0,-1*parity,1); }
+        moved = RandomwalkPassthrough(who,0,parity); 
+        if (!moved["canmove"]) { moved = RandomwalkPassthrough(who,0,-1*parity); }
       }
     } else {
       if (fullx > 0) { 
-        moved = who.moveMe(1,0,1); 
-        if (!moved["canmove"]) { moved = who.moveMe(-1,0,1); }
+        moved = RandomwalkPassthrough(who,1,0); 
+        if (!moved["canmove"]) { moved = RandomwalkPassthrough(who,-1,0); }
       }
       else if (fullx < 0) { 
-        moved = who.moveMe(-1,0,1);
-        if (!moved["canmove"]) { moved = who.moveMe(1,0,1); } 
+        moved = RandomwalkPassthrough(who,-1,0);
+        if (!moved["canmove"]) { moved = RandomwalkPassthrough(who,1,0); } 
       }
       else {
         let parity = 1;
         if (Dice.roll("1d2") === 1) {
           parity = -1;
         } 
-        moved = who.moveMe(parity,0,1);
-        if (!moved["canmove"]) { moved = who.moveMe(-1*parity,0,1); }
+        moved = RandomwalkPassthrough(who,parity,0);
+        if (!moved["canmove"]) { moved = RandomwalkPassthrough(who,-1*parity,0); }
       }
     }
   } else { delete who.pushing; }
