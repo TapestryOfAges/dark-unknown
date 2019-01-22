@@ -416,7 +416,7 @@ mappages["swainhil"].npcs[2] = {name : 'BardVillagerNPC', x : 27, y : 19, NPCNam
 mappages["swainhil"].npcs[3] = {name : 'MageVillagerNPC', x : 24, y : 14, NPCName: 'Dale', Conversation: 'dale', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
 mappages["swainhil"].npcs[4] = {name : 'DruidVillagerNPC', x : 53, y : 9, NPCName: 'Severyn', Conversation: 'severyn', ConversationFlag: 'severyn', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '302.gif', skintone: '1'};
 mappages["swainhil"].npcs[5] = {name : 'BardVillagerNPC', x : 41, y : 41, NPCName: 'Simon', Conversation: 'simon', ConversationFlag: 'simon', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: 'bard-offcolor.gif', skintone: '1'};
-mappages["swainhil"].npcs[6] = {name : 'PaladinVillagerNPC', x : 20, y : 10, NPCName: 'Isaac', Conversation: 'isaac', ConversationFlag: 'isaac', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '307.2.gif', skintone: '2'};
+mappages["swainhil"].npcs[6] = {name : 'PaladinVillagerNPC', x : 19, y : 32, NPCName: 'Isaac', Conversation: 'isaac', ConversationFlag: 'isaac', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '307.2.gif', skintone: '2'};
 
 mappages["swainhil"].desc = "The Towne of Swainhil";
 mappages["swainhil"].longdesc = '';
