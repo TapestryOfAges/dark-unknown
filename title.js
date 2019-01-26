@@ -41,7 +41,7 @@ let avatarselect = {};
 avatarselect.x = 0;
 avatarselect.y = 0;
 
-gamestate.setMode("null");
+gamestate.setMode("init");
 
 let optselect = 0;
 let charname = "";
@@ -53,8 +53,7 @@ let musictries = 0;
 let introidx = 0;
 
 let firsttime = 1;
-let themap;
-themap = new GameMap();
+let themap = new GameMap();
 
 let latestidx;
 let testvar;
@@ -74,8 +73,12 @@ let el = function(e) {
   if (gamestate.getMode() !== "import") {
     e.preventDefault();
   }
+  if (gamestate.getMode() === "init") {
+    gamestate.setMode("null");
+    page_zero();
+  }
 
-  if (gamestate.getMode() !== "null") {
+  else if (gamestate.getMode() !== "null") {
     DoActionTitle(code, e);
   } else {
     finishedFinalPage();
@@ -106,14 +109,21 @@ let el = function(e) {
   }
 }
 
+function page_pre_zero() {
+  document.getElementById("load").innerHTML += "<p class='charcreate'>Ready.<br />Press any key...";
+} 
+
+
 function page_zero() {
-  let fleft = Math.floor(browserwidth/2 - 400);
-  if (fleft < 0) { fleft = 0; }
-  let ftop = Math.floor(browserheight/2 - 300);
-  if (ftop < 0) { ftop = 0; }
+//  let fleft = Math.floor(browserwidth/2 - 400);
+//  if (fleft < 0) { fleft = 0; }
+//  let ftop = Math.floor(browserheight/2 - 300);
+//  if (ftop < 0) { ftop = 0; }
+  let fleft = -3;
+  let ftop = 0;
   let signl = fleft+324;
   let signt = ftop+121;
-  let firstpage = "<div id='allofem'><div id='ToA' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;width:800;height:209;display:block;opacity:0'><img src='graphics/title/ToA_banner_blank.gif' /></div><div id=\"over\" style=\"position:absolute;left:"+fleft+"px;top:"+ftop+"px;width:2px;height:209px;z-index:5;display:none;background-image:url('graphics/title/ToA_banner_ToA-only.gif');background-position: 0px 0px\"></div>";
+  let firstpage = "<div id='allofem'><div id='ToA' style='position:absolute;left:" + fleft + "px;top:" + ftop + "px;width:776;height:209;display:block;opacity:0;background-image:url(\"graphics/title/ToA_banner_blank.gif\")'></div><div id=\"over\" style=\"position:absolute;left:"+fleft+"px;top:"+ftop+"px;width:2px;height:209px;z-index:5;display:none;background-image:url('graphics/title/ToA_banner_ToA-only.gif');background-position: 0px 0px\"></div>";
   firstpage += "<div id='sign' style='position:absolute;z-index:10;left:" + signl + "px;display:none;top:" + signt + "px;width:162;height:52;background-image:url(\"graphics/title/games_signature.gif\");background-position: 0px 0px;color:white'></div>";
   fleft = fleft+370;
   ftop = ftop+230;
@@ -148,7 +158,7 @@ function start_animations() {
             }
           }, 2500);
         }
-      }, 1200);
+      }, 2000);
     }
   } else {
     musictries++;
@@ -168,7 +178,7 @@ function Signature(val) {
 }
 
 function FirstPage() {
-  document.getElementById('ToA').innerHTML = "<img src='graphics/title/ToA_banner-b.gif' />";
+  document.getElementById('ToA').style.backgroundImage = "url('graphics/title/ToA_banner-b.gif')";
   document.getElementById('sign').style.display = "none";
   document.getElementById('over').style.display = "none";
   lastanim = "and";
@@ -192,13 +202,13 @@ function FirstPage() {
               document.getElementById('ToA').classList.add('titlefadeout');
               setTimeout(function() {
                 SecondPage();
-              },1000);
+              },1150);
             }
-          }, 1000);
-        }, 1400);
-      },700);
+          }, 1150);
+        }, 1550);
+      },1050);
     }
-  }, 1200);
+  }, 1350);
 }
 
 

@@ -240,7 +240,7 @@ function handleFileLoad(event) {
   musicloaded[event.id] = 1;
   musicsloaded++;
   if (musicsloaded === 20) {
-    page_zero();
+    page_pre_zero();
   }
 }
 
