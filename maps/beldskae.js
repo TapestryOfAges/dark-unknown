@@ -298,10 +298,10 @@ mappages["beldskae"].features[250] = {name : 'Brazier', x : 25, y : 17};
 mappages["beldskae"].features[251] = {name : 'Brazier', x : 25, y : 23};
 mappages["beldskae"].features[252] = {name : 'Brazier', x : 43, y : 16};
 mappages["beldskae"].features[253] = {name : 'Brazier', x : 51, y : 17};
-
+mappages["beldskae"].features[254] = {name : 'BookshelfOne', x : 45, y : 21};
 
 mappages["beldskae"].npcs = [];
-mappages["beldskae"].npcs[0] = {name : 'FighterVillagerNPC', x : 43, y : 25, NPCName: 'Ariel', Conversation: 'ariel', Gender: 'female', Merch: 'ariel', NPCBand: '0', skintone: '1'};
+mappages["beldskae"].npcs[0] = {name : 'FighterVillagerNPC', x : 43, y : 25, NPCName: 'Ariel', Conversation: 'ariel', Gender: 'female', Merch: 'ariel', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'ariel'};
 mappages["beldskae"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 36, y : 27, NPCName: 'Mia', Conversation: 'mia', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
 mappages["beldskae"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 6, y : 14, NPCName: 'Denise', Conversation: 'denise', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
 mappages["beldskae"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 35, y : 9, NPCName: 'Lilith', Desc: 'tavernkeeper', Conversation: 'lilith', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
@@ -313,8 +313,8 @@ mappages["beldskae"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 37, y : 18, N
 mappages["beldskae"].npcs[9] = {name : 'TownsfolkVillagerNPC', x : 37, y : 19, NPCName: 'Steph', Desc: 'gambler', Conversation: 'steph', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
 mappages["beldskae"].npcs[10] = {name : 'TownsfolkVillagerNPC', x : 36, y : 21, NPCName: 'Ernest', Desc: 'gambler', Conversation: 'ernest', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
 mappages["beldskae"].npcs[11] = {name : 'TownsfolkVillagerNPC', x : 34, y : 20, NPCName: 'Kelse', Desc: 'gambler', Conversation: 'kelse', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
-mappages["beldskae"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 53, y : 19, NPCName: 'Graham', Conversation: 'graham', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
-mappages["beldskae"].npcs[13] = {name : 'TinkerVillagerNPC', x : 53, y : 20, NPCName: 'Kathleen', Conversation: 'kathleen', Gender: 'female', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: '2'};
+mappages["beldskae"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 53, y : 19, NPCName: 'Graham', Conversation: 'graham', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1', PeaceAI: 'scheduled', Schedule: 'graham'};
+mappages["beldskae"].npcs[13] = {name : 'TinkerVillagerNPC', x : 53, y : 20, NPCName: 'Kathleen', Conversation: 'kathleen', Gender: 'female', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: '2', PeaceAI: 'scheduled', Schedule: 'kathleen'};
 mappages["beldskae"].npcs[14] = {name : 'AdventurerVillagerNPC', x : 35, y : 18, NPCName: 'Conrad', Conversation: 'conrad', Gender: 'male', NPCBand: '0', skintone: '1'};
 mappages["beldskae"].npcs[15] = {name : 'TownsfolkVillagerNPC', x : 37, y : 16, NPCName: 'Ursula', Conversation: 'ursula', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
 mappages["beldskae"].npcs[16] = {name : 'TownGuardNPC', x : 14, y : 16, NPCName: 'Gabe', Conversation: 'gabe', Gender: 'male', NPCBand: '0', OverrideGraphic: '309.gif', skintone: '1'};
