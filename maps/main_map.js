@@ -147,7 +147,7 @@ mappages["darkunknown"].terrain[141] = 'WW WW WW WW WW WW WW WW WW WW WW WW WW W
 
 mappages["darkunknown"].features = [];
 mappages["darkunknown"].features[0] = {name : 'Shrine', x : 15, y : 16};
-mappages["darkunknown"].features[1] = {name : 'Towne', x : 123, y : 14, desc : "Towne of Beldskae", prefix : "the", entermap : 'beldskar', enterx : 19, entery : 38};
+mappages["darkunknown"].features[1] = {name : 'Towne', x : 123, y : 14, desc : "Towne of Beldskae", prefix : "the", entermap : 'beldskae', enterx : 29, entery : 38};
 mappages["darkunknown"].features[2] = {name : 'Dungeon', x : 96, y : 31, entermap : 'shadow1', enterx : 7, entery : 9};
 mappages["darkunknown"].features[3] = {name : 'Towne', x : 81, y : 23, desc : "Towne of Clear Lake", prefix : "the", entermap : 'clearlake', enterx : 20, entery : 62};
 mappages["darkunknown"].features[4] = {name : 'Towne', x : 41, y : 26, desc : "Towne of Poverty", prefix : "the", entermap : 'poverty', enterx : 14, entery : 33};
