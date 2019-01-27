@@ -110,7 +110,7 @@ let el = function(e) {
 }
 
 function page_pre_zero() {
-  document.getElementById("load").innerHTML += "<p class='charcreate'>Ready.<br />Press any key...";
+  document.getElementById("load").innerHTML += "<p class='charcreate' style='margin-left: 23px'>Ready.<br />Press any key...";
 } 
 
 
