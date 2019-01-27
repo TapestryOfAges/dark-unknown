@@ -710,7 +710,7 @@ function HideTurnFrame(who) {
 
 function FindNPCByName(findname, map) {
   let npcs = map.npcs.getAll();
-  for (let i=0;i<=npcs.length;i++) {
+  for (let i=0;i<npcs.length;i++) {
     if (npcs[i].getNPCName() === findname) { return npcs[i];}
   }
   return 0;
