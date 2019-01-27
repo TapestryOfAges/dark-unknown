@@ -6004,7 +6004,7 @@ BedHeadTile.prototype.walkon = function(who) {
 //  if (who.getGraphic().indexOf(".2.") > -1) { 
   if (parseInt(who.skintone) === 2) {
     garr[2] = "-96";
-  } else if (parseInt(who.skintone) !== 1) { console.log("Missing skintone on " + who); }
+  } else if (parseInt(who.skintone) !== 1) { console.log("Missing skintone on "); console.log(who); }
   who.realgraphic = who.getGraphicArray();
   who.setGraphicArray(garr);
   DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " to sleeping.<br />");
@@ -12635,7 +12635,7 @@ function NPCObject() {
   this.xpval = 0;
   this.flags = {};
   this.initOverride = 0;
-  this.skintone = 0;  
+  this.skintone = 1;  
 	LightEmitting.call(this, 0);
 	
 	this.addType("npc");
