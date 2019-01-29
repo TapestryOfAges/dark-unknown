@@ -435,7 +435,7 @@ ais.PlayHarpsichord = function(who,params) {
 
 ais.PrintThing = function(who,params) {
   if (!params.rad) { params.rad = 5; }
-  if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= params.rad) {
+  if ((GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= params.rad) && (who.getHomeMap() === PC.getHomeMap())) {
     let mybark = params.print;
     if ((mybark.indexOf("%THEDESC%") !== -1) || (mybark.indexOf("%DESC%") !== -1)) {
       let pref = who.getPrefix();
