@@ -84,7 +84,10 @@ function DebugWait(mins) {
 
 function DebugWrite(category, html) {
   if (debug && (debugflags[category] || ((whoseturn === watchon) && ((category === "schedules")||(category === "ai"))))) {
-    document.getElementById('debugdiv').innerHTML += "<span style='" + debugstyle[category] + "'>" + html + "</span>";
+//    document.getElementById('debugdiv').innerHTML += "<span style='" + debugstyle[category] + "'>" + html + "</span>";
+    let tmpchild = document.createElement('p');
+    tmpchild.innerHTML = "<span style='" + debugstyle[category] + "'>" + html + "</span>";
+    document.getElementById('debugdiv').appendChild(tmpchild);
     return 1;
   } 
   return 0;
@@ -92,7 +95,7 @@ function DebugWrite(category, html) {
 
 function SetDebugToBottom() {
   if (debug) {
-    document.getElementById('debugdiv').scrollTop = document.getElementById('debugdiv').clientHeight;
+    document.getElementById('debugdiv').scrollTop = document.getElementById('debugdiv').scrollHeight;
   }
 }
 
