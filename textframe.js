@@ -20,10 +20,16 @@ TextFrame.prototype.getTextFrame = function() {
 
 TextFrame.prototype.addText = function(newtext) {
 	if (newtext) {
-  	document.getElementById(this.framename).innerHTML += "<br />" + newtext;
+		let tmpchild = document.createElement('span');
+		tmpchild.innerHTML = "<br />" + newtext;
+		document.getElementById(this.framename).appendChild(tmpchild);
+//  	document.getElementById(this.framename).innerHTML += "<br />" + newtext;
   }
   if (this.delayedappend) {
-    document.getElementById(this.framename).innerHTML += "<br />" + this.delayedappend;
+		let tmpchild = document.createElement('span');
+		tmpchild.innerHTML = "<br />" + this.delayedappend;
+		document.getElementById(this.framename).appendChild(tmpchild);
+//    document.getElementById(this.framename).innerHTML += "<br />" + this.delayedappend;
     this.clearDelay();
   }
 }
@@ -74,7 +80,6 @@ TextFrame.prototype.appendToLine = function(newtext) {
 }
 
 TextFrame.prototype.drawTextFrame = function() {
-//	$(fname).html(this.getTextFrame());
 	this.drawInputLine();
 }
 
