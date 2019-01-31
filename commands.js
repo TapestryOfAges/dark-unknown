@@ -224,6 +224,7 @@ function PerformCommand(code, ctrl) {
     } else {
       retval["fin"] = 2;
       retval["txt"] = "You have not yet learned the higher mysteries.";
+      retval["input"] = "&gt;";
     }
 	}
 	else if (code === 74) { // j
