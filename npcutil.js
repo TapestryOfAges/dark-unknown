@@ -529,7 +529,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
             let fea = tile.getTopFeature();
             if (fea && (fea.getName() === "BedHead")) {
               // PC is in your bed. Kick them out. Hopefully this never comes up with an NPC. If it does, though, kick them out too
-              npctile = who.getHomeMap().geTile(who.getx(),who.gety());
+              npctile = who.getHomeMap().getTile(who.getx(),who.gety());
               topentity.getHomeMap().moveThing(who.getx(),who.gety(),PC);
               tile.executeWalkoffs(topentity);
               npctile.executeWalkons(topentity);
