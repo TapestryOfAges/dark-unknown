@@ -1,8 +1,8 @@
 "use strict;" 
 
 var maxserial = 0;
-var viewsizex = 13;
-var viewsizey = 13;
+var VIEWSIZEX = 13;
+var VIEWSIZEY = 13;
 
 var mappages = new Pages();
 var localFactory = new tileFactory();

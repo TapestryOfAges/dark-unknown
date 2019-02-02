@@ -1105,14 +1105,23 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
   }
   
   if (desttile.isHostileTo(who)) {
-    DebugWrite("ai", who.getName() + " refused to randomwalk onto a hostile tile at " + diffx + "," + diffy + ".");
+    DebugWrite("ai", who.getName() + " refused to randomwalk onto a hostile tile at " + (who.getx()+diffx) + "," + (who.gety()+diffy) + ".");
     retval["nomove"] = 1;
     retval["canmove"] = 0;
     retval["diffx"] = diffx;
     retval["diffy"] = diffy;
     return retval; 
   }
-  
+
+  if (desttile.noWander()) {
+    DebugWrite("ai", who.getName() + " refused to randomwalk onto a nowander tile at " + (who.getx()+diffx) + "," + (who.gety()+diffy) + ".");
+    retval["nomove"] = 1;
+    retval["canmove"] = 0;
+    retval["diffx"] = diffx;
+    retval["diffy"] = diffy;
+    return retval; 
+  }
+
   retval = StepOrSidestep(who, [who.getx()+diffx,who.gety()+diffy], [who.getx()+diffx,who.gety()+diffy], "nopush");
   retval["nomove"] = 0;  // NOTE- this is 0 even if they didn't move. If it gets to this point,
                          // canmove is the only reliable indicator of whether it moved. Checking

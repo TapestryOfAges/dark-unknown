@@ -1,9 +1,57 @@
+@keyframes fadeout {
+	from { opacity: 1 }
+	to { opacity: 0; display: none; visibility: hidden}
+}
 
-@font-face {  
-	  font-family: "Kells";  
-	  src: local("Kells"), url( 'fonts/KellsFLF.ttf' ) format("truetype");
-	}  
+@keyframes fadein {
+	from {opacity: 0; display: block; visibility: visible }
+	to { opacity: 1}
+}
 
+/* Title screen */
+
+.titlefadein {
+	animation-name: fadein;
+	animation-duration: 1.7s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes widentitle {
+	from {width:2px; }
+	to { width:776px}
+}
+
+.widenanimate {
+	animation-name: widentitle;
+	animation-duration: 3.7s;
+	animation-fill-mode: forwards;
+}
+
+.andfadein {
+	animation-name: fadein;
+	animation-duration: 1.2s;
+	animation-fill-mode: forwards;
+}
+
+.gffadein {
+	animation-name: fadein;
+	animation-duration: 0.7s;
+	animation-fill-mode: forwards;
+}
+
+.presentfadein {
+	animation-name: fadein;
+	animation-duration: 1.0s;
+	animation-fill-mode: forwards;
+}
+
+.titlefadeout {
+	animation-name: fadeout;
+	animation-duration: 1.0s;
+	animation-fill-mode: forwards;
+}
+
+/* Dark Unknown */
 @font-face {  
 	  font-family: "Commodore64";  
 	  src: url( fonts/cbm-6480-webfont.eot ); /* IE */  
@@ -15,7 +63,7 @@
 	  src: local("Spells"), url( 'fonts/UnZialish.ttf' ) format("truetype");
 	}  
 
-body { background-color: black; }
+body { background-color: black; margin: 0px}
 	
 div.topbar { text-align:center; 
 	           color:white;
@@ -25,7 +73,7 @@ div.topbar { text-align:center;
 	           line-height:24px;
 }
 	           
-div.topbar p { margin-top:-4px }
+div.topbar p { margin-top:-4px ; margin-bottom: 0px}
 
 
 div.charstats table { color:white;
@@ -185,16 +233,6 @@ div.demo { color:white;
 
 div.demo a { color:lightblue; }
 
-@keyframes fadeout {
-	from { opacity: 1 }
-	to { opacity: 0; display: none; visibility: hidden}
-}
-
-@keyframes fadein {
-	from {opacity: 0; display: block; visibility: visible }
-	to { opacity: 1}
-}
-
 .runfadeout {
 	animation-name: fadeout;
 	animation-duration: 1.5s;
@@ -204,5 +242,11 @@ div.demo a { color:lightblue; }
 .runfadein {
 	animation-name: fadein;
 	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
+}
+
+.rundeathfadein {
+	animation-name: fadein;
+	animation-duration: 2.3s;
 	animation-fill-mode: forwards;
 }

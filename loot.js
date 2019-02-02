@@ -14,10 +14,10 @@ function LootTable() {
 LootTable.prototype = new Object();
 
 LootTable.prototype.getLoot = function() {
-  var lootobj = {};
+  let lootobj = {};
   lootobj.gold = 0;
   lootobj.lootlist = [];  // array of objnames
-  var hasgold = 0;
+  let hasgold = 0;
   
   if ((this.goldDice) && (Math.random() <= (this.goldChance/100))) {
     lootobj.gold = Dice.roll(this.goldDice);
@@ -25,13 +25,12 @@ LootTable.prototype.getLoot = function() {
   }
   if (this.loot.length) {
     if ((hasgold) || (!this.linked)) {
-      for (var i =0; i<this.loot.length; i++) {
+      for (let i=0; i<this.loot.length; i++) {
         if (Math.random() <= (this.loot[i].chance / 100)) {
-          var lootquant = this.loot[i].quantity;
-          var theloot = this.loot[i].objname;
-          var quant = Dice.roll(this.loot[i].quantity);
-          for (var j=1;j<=quant;j++) {
-//            if (theloot.match("_")) {
+          let lootquant = this.loot[i].quantity;
+          let theloot = this.loot[i].objname;
+          let quant = Dice.roll(this.loot[i].quantity);
+          for (let j=1;j<=quant;j++) {
             if (DULootGroups.treasureTypes[theloot]) {
               lootobj.lootlist[lootobj.lootlist.length] = DULootGroups.rollForTreasure(theloot);
             } else {
@@ -54,15 +53,15 @@ LootGroups.prototype = new Object();
 LootGroups.prototype.setTreasureType = function(ttype, treasure) {
 //  ttype = "group_" + ttype;
   this.treasureTypes[ttype] = [];
-  for (var i = 0; i< treasure.length ; i=i+2) {
-    for (var j = 1; j<=treasure[i+1]; j++) {
+  for (let i = 0; i< treasure.length ; i=i+2) {
+    for (let j = 1; j<=treasure[i+1]; j++) {
       this.treasureTypes[ttype][this.treasureTypes[ttype].length] = treasure[i];
     }
   }
 }
 
 LootGroups.prototype.rollForTreasure = function(ttype) {
-  var roll = Math.floor(Math.random() * this.treasureTypes[ttype].length);  
+  let roll = Math.floor(Math.random() * this.treasureTypes[ttype].length);  
   return this.treasureTypes[ttype][roll];
 }
 
@@ -76,16 +75,14 @@ TrapGroups.prototype = new Object();
 
 TrapGroups.prototype.getTrap = function() {   // returns which trap name and what level
                                               // level is Dex with 50% chance to evade
-  var dice = Math.floor(Math.random()*100)+1;
-//  if (debug && debugflags.gameobj) { dbs.writeln("Getting a trap: rolled " + dice + "<br />"); }
+  let dice = Math.floor(Math.random()*100)+1;
   DebugWrite("gameobj", "Getting a trap: rolled " + dice + "<br />");
-  var i = 0;
-  var resp = {};
+  let i = 0;
+  let resp = {};
   resp.level = this.level;
   while ((dice > 0) && (this.traps[i])){
     if (this.traps[i] > dice) {
       resp.trap = this.trapnames[i];
-//      if (debug && debugflags.gameobj) { dbs.writeln("Trap is: " + resp.trap + " , level: " + resp.level + "<br />"); }
       DebugWrite("gameobj", "Trap is: " + resp.trap + " , level: " + resp.level + "<br />");
       return resp;
     }
@@ -97,7 +94,7 @@ TrapGroups.prototype.getTrap = function() {   // returns which trap name and wha
 }
 
 function SetTraps() {
-  var traps = {};
+  let traps = {};
   
   traps["weak"] = new TrapGroups(20,10,0,0,0,12);  // 70% chance of no trap
   traps["medium"] = new TrapGroups(30,20,10,0,0,17); // 40% chance no trap
@@ -107,8 +104,8 @@ function SetTraps() {
 }
 
 function GetStrongestTrap(loottables) {
-  var trap;
-  for (var i=0;i<loottables.length;i++) {
+  let trap;
+  for (let i=0;i<loottables.length;i++) {
     if (DULoot[loottables[i]].trap) {
       if (DULoot[loottables[i]].trap === "strong") { return "strong"; }
       if (DULoot[loottables[i]].trap === "medium") { trap = "medium"; }

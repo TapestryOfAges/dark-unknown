@@ -2,8 +2,8 @@
 // list of necessary tests: map load?
 
 var maxserial = 0;
-var viewsizex = 13;
-var viewsizey = 13;
+var VIEWSIZEX = 13;
+var VIEWSIZEY = 13;
 
 var wind = {};
 wind.xoff = 0;

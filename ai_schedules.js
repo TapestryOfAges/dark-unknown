@@ -9,6 +9,23 @@ ais.scheduled = function(who) {
   delete who.flags.sleep;
   // will be re-set in WaitHere if still asleep
 
+  if ((who.flags.closedoor) && (who.flags.closedoor.steps === 3)) {
+    let fea = who.getHomeMap().getTile(who.flags.closedoor.x,who.flags.closedoor.y).getTopFeature();
+    if (fea.closedgraphic) {
+      if (fea.open) {  // door hasn't been closed already
+        MakeUseHappen(who,fea,"map");
+        if (GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) {
+          DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+        } 
+        delete who.flags.closedoor;
+        DebugWrite("schedules", "Turn spent closing a door.");
+        return {fin:1}; 
+      } else {
+        delete who.flags.closedoor; // someone else closed the door
+      }
+    }
+  }
+
   let nextidx = who.getCurrentScheduleIndex() + 1;
   let schedule = DU.schedules[who.getSchedule()];
   if (nextidx >= schedule.scheduleArray.length) { nextidx = 0; }
@@ -121,7 +138,7 @@ ais.RouteTo = function(who, params) {
   DebugWrite("schedules", "In scheduled ai: RouteTo.");
 
   let drunk = who.getSpellEffectsByName("Drunk");
-  if (drunk && (Dice.roll("1d15") <= drunk.getPower())) {
+  if (!who.flags.closedoor && drunk && (Dice.roll("1d15") <= drunk.getPower())) {
     let dir = Dice.roll("1d6");
     if (dir === 1) { who.moveMe(0,-1,0); }
     if (dir === 2) { who.moveMe(1,0,0); }
@@ -129,22 +146,6 @@ ais.RouteTo = function(who, params) {
     if (dir === 4) { who.moveMe(-1,0,0); }  
     console.log(who.getNPCName() + " stumbling.");
     return {fin:1,canmove:0};
-  }
-  if (params.closeDoors && (who.flags.closedoor) && (who.flags.closedoor.steps === 3)) {
-    let fea = who.getHomeMap().getTile(who.flags.closedoor.x,who.flags.closedoor.y).getTopFeature();
-    if (fea.closedgraphic) {
-      if (fea.open) {  // door hasn't been closed already
-        MakeUseHappen(who,fea,"map");
-        if (GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) {
-          DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
-        } 
-        delete who.flags.closedoor;
-        DebugWrite("schedules", "Turn spent closing a door.");
-        return {fin:1}; 
-      } else {
-        delete who.flags.closedoor; // someone else closed the door
-      }
-    }
   }
 
   let moved = {};
@@ -178,13 +179,13 @@ ais.RouteTo = function(who, params) {
     path.shift();
 
     if (path[0]) {
-      moved = StepOrSidestep(who,path[0],[params.destination.x, params.destination.y]);
+      moved = StepOrSidestep(who,path[0],[parseInt(params.destination.x), parseInt(params.destination.y)]);
       if (moved["opendoor"]) {
         who.flags.closedoor = {};
         who.flags.closedoor.steps = 1;
         who.flags.closedoor.x = path[0][0];
         who.flags.closedoor.y = path[0][1];
-      } else if (who.flags.closedoor && who.flags.closedoor.steps) { who.flags.closedoor.steps++; }
+      } else if (moved["canmove"] && who.flags.closedoor && who.flags.closedoor.steps) { who.flags.closedoor.steps++; }
       if (!moved["canmove"] && moved["intoPC"]) {
         who.flags.activityComplete = 1;
         DebugWrite("schedules", "PC at destination, giving up and setting activityComplete.<br />");
@@ -195,8 +196,7 @@ ais.RouteTo = function(who, params) {
       console.log(who.getNPCName() + " somehow is already at her destination.");
     } else {
       console.log(who.getNPCName() + " on " + who.getHomeMap().getName() + " at " + who.getx() + "," + who.gety());
-      console.log("Failed to move, in schedule index " + who.getCurrentScheduleIndex());
-      EndWaiting(PC,0);
+      console.log("Failed to move, in schedule index " + who.getCurrentScheduleIndex() + " at " + GetUsableClockTime());
     }
   } else { DebugWrite("schedules", "Already at destination... "); }
 
@@ -287,8 +287,8 @@ ais.WaitHere = function(who,params) {
       }
     }
 
-    var leashCenter;
-    var ii = who.getCurrentScheduleIndex();
+    let leashCenter;
+    let ii = who.getCurrentScheduleIndex();
     ii--;
     while (!leashCenter) {
       if (DU.schedules[who.getSchedule()].scheduleArray[ii].params.destination) {
@@ -433,7 +433,8 @@ ais.PlayHarpsichord = function(who,params) {
 }
 
 ais.PrintThing = function(who,params) {
-  if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= params.rad) {
+  if (!params.rad) { params.rad = 5; }
+  if ((GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= params.rad) && (who.getHomeMap() === PC.getHomeMap())) {
     let mybark = params.print;
     if ((mybark.indexOf("%THEDESC%") !== -1) || (mybark.indexOf("%DESC%") !== -1)) {
       let pref = who.getPrefix();
@@ -566,4 +567,5 @@ ais.GetDrunk = function(who, params) {
 
 ais.TeleportTo = function(who, params) {
   who.getHomeMap().moveThing(params.x, params.y, who);
+  return {fin:1};
 }

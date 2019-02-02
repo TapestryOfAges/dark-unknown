@@ -168,15 +168,15 @@ function PerformCommand(code, ctrl) {
 	  	    targetCursor.y = PC.gety();
 	  	  }
         targetCursor.command = "a";
-        targetCursor.targetlimit = (viewsizex -1)/2;
+        targetCursor.targetlimit = (VIEWSIZEX -1)/2;
         targetCursor.targetCenterlimit = 0;
         let displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
         let xcoord = targetCursor.x - displaystats.leftedge;
         let ycoord = targetCursor.y - displaystats.topedge;
-        let tileid = "#mainview_" + xcoord + "x" + ycoord;
+        let tileid = "mainview_" + xcoord + "x" + ycoord;
         targetCursor.tileid = tileid;
-        targetCursor.basetile = $(tileid).html();
-        $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+        targetCursor.basetile = document.getElementById(tileid).innerHTML;
+        document.getElementById(tileid).innerHTML = targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />';
         retval["txt"] = "";
   		  retval["input"] = "&gt; Attack: ";
 	  	  retval["fin"] = 2;
@@ -224,6 +224,7 @@ function PerformCommand(code, ctrl) {
     } else {
       retval["fin"] = 2;
       retval["txt"] = "You have not yet learned the higher mysteries.";
+      retval["input"] = "&gt;";
     }
 	}
 	else if (code === 74) { // j
@@ -248,15 +249,15 @@ function PerformCommand(code, ctrl) {
       targetCursor.x = PC.getx();
       targetCursor.y = PC.gety();
       targetCursor.command = "l";
-      targetCursor.targetlimit = (viewsizex -1)/2;
+      targetCursor.targetlimit = (VIEWSIZEX -1)/2;
       targetCursor.targetCenterlimit = 0;
-      var displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
-      var xcoord = targetCursor.x - displaystats.leftedge;
-      var ycoord = targetCursor.y - displaystats.topedge;
-      var tileid = "#mainview_" + xcoord + "x" + ycoord;
+      let displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
+      let xcoord = targetCursor.x - displaystats.leftedge;
+      let ycoord = targetCursor.y - displaystats.topedge;
+      let tileid = "mainview_" + xcoord + "x" + ycoord;
       targetCursor.tileid = tileid;
-      targetCursor.basetile = $(tileid).html();
-      $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+      targetCursor.basetile = document.getElementById(tileid).innerHTML;
+      document.getElementById(tileid).innerHTML = targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />';
       retval["txt"] = "";
       retval["input"] = "&gt; Look: ";
       retval["fin"] = 2;
@@ -271,7 +272,7 @@ function PerformCommand(code, ctrl) {
       retval["txt"] = "Music off.";
     } else {
       DU.gameflags.setFlag("music", 1);
-      var song = PC.getHomeMap().getMusic();
+      let song = PC.getHomeMap().getMusic();
       nowplaying = DUPlayMusic(song);
       retval["txt"] = "Music on.";
     }		
@@ -363,8 +364,8 @@ function PerformCommand(code, ctrl) {
     if (ctrl) { // output conversation log
       retval["input"] = "&gt;";
       retval["fin"] = 2;
-	    var serialized = JSON.stringify(convlog);  
-	    var savescreen = window.open('','savescreen');
+	    let serialized = JSON.stringify(convlog);  
+	    let savescreen = window.open('','savescreen');
   	  savescreen.document.write(serialized);
     } else {
   		gamestate.setMode("choosedir");
@@ -387,17 +388,17 @@ function PerformCommand(code, ctrl) {
     targetCursor.x = PC.getx();
     targetCursor.y = PC.gety();
     targetCursor.command = "t";
-    targetCursor.targetlimit = (viewsizex -1)/2;
+    targetCursor.targetlimit = (VIEWSIZEX -1)/2;
     targetCursor.targetCenterlimit = 3;
 
-    var edges = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
-    var leftedge = targetCursor.x - edges.leftedge;
-    var topedge = targetCursor.y - edges.topedge;
+    let edges = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
+    let leftedge = targetCursor.x - edges.leftedge;
+    let topedge = targetCursor.y - edges.topedge;
 
-    var tileid = "#mainview_" + leftedge + "x" + topedge;
+    let tileid = "mainview_" + leftedge + "x" + topedge;
     targetCursor.tileid = tileid;
-    targetCursor.basetile = $(tileid).html();
-    $(tileid).html($(tileid).html() + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');
+    targetCursor.basetile = document.getElementById(tileid).innerHTML;
+    document.getElementById(tileid).innerHTML = targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />';
     retval["txt"] = "";
     retval["input"] = "&gt; Talk: ";
     retval["fin"] = 2;
@@ -418,7 +419,7 @@ function PerformCommand(code, ctrl) {
 		  DU.gameflags.setFlag("sound", 0); 
       retval["txt"] = "Sound effects off.";
       
-      if (!$.isEmptyObject(ambient)) { 
+      if (Object.keys(ambient).length) { // if ambient is not an empty object
         DecAmbientVol(ambient);
         ambient = {}; 
       }
@@ -434,7 +435,7 @@ function PerformCommand(code, ctrl) {
 	}
 	else if (code === 87) { // w
     // wait, was wear/wield
-    var poisoned = PC.getSpellEffectsByName("Poison");
+    let poisoned = PC.getSpellEffectsByName("Poison");
     if (poisoned) {
       retval["txt"] = "You are poisoned- waiting might be a bad idea.";
       retval["input"] = "&gt;";
@@ -465,6 +466,7 @@ function PerformCommand(code, ctrl) {
     retval["fin"] = 2;	
     targetCursor.command = "z";			
     targetCursor.page = 1;
+    targetCursor.scrolllocation = 0;
     
     DrawStats(targetCursor.page);
 	}
@@ -485,19 +487,20 @@ function PerformCommand(code, ctrl) {
 }
 
 function PerformEscape() {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 0;
-  var pcmap = PC.getHomeMap();
+  let pcmap = PC.getHomeMap();
   if (pcmap.getDesc() === "Combat") {
-    var enemies = 0;
-    var npcs = pcmap.npcs.getAll();
-    $.each(npcs, function(idx,val) {
+    let enemies = 0;
+    let npcs = pcmap.npcs.getAll();
+    for (let idx in npcs) {
+      val = npcs[idx];
       if (val.getAttitude() === "hostile") { enemies = 1; }
-    });
+    }
     if (enemies === 1) {
       return retval;
     } else {
-      var newmap = new GameMap();
+      let newmap = new GameMap();
 			if (maps.getMap(pcmap.getExitToMap())) {
 			  DebugWrite("map", "destination map already exists.<br />");
 				newmap = maps.getMap(pcmap.getExitToMap());
@@ -505,7 +508,7 @@ function PerformEscape() {
 			  DebugWrite("map", "destination map needs to be loaded.<br />");
 			  newmap = maps.addMap(pcmap.getExitToMap());
 	  	}
-  		var tile = MoveBetweenMaps(PC,pcmap,newmap,pcmap.getExitToX(),pcmap.getExitToY());
+  		let tile = MoveBetweenMaps(PC,pcmap,newmap,pcmap.getExitToX(),pcmap.getExitToY());
  			if (tile) {
  			  DebugWrite("map", "Exited from MoveBetweenMaps. New map is " + newmap.getName() + ".<br />");
         retval["canmove"] = 0;
@@ -526,8 +529,7 @@ function PerformEscape() {
 }
 
 function PerformChooseDir(code) {
-	var retval = new Object;
-	retval["fin"] = -1;
+	let retval = {fin:-1};
 	if ((code === 38) || (code === 219)) {  // UP ARROW or [
 		gamestate.setMode("null");
 		targetCursor.y -= 1;
@@ -560,12 +562,12 @@ function PerformChooseDir(code) {
 	}
 	return retval;
 }
+
 function PerformTarget(code)  {
-	var retval = {};
-	retval["fin"] = -1;
+	let retval = {fin:-1};
 	if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
 		gamestate.setMode("null");
-		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+		let edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		if ((edges.centery - targetCursor.y) < targetCursor.targetlimit) {
 		  if ((!targetCursor.targetCenterlimit) || ((PC.y - targetCursor.y) < targetCursor.targetCenterlimit)) {
 			  targetCursor.y -= 1;
@@ -575,7 +577,7 @@ function PerformTarget(code)  {
 	}
 	else if ((code === 37) || (code === 186)) {  // LEFT ARROW or ;
 		gamestate.setMode("null");
-		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+		let edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		if ((edges.centerx - targetCursor.x) < targetCursor.targetlimit) {
 		  if ((!targetCursor.targetCenterlimit) || ((PC.x - targetCursor.x) < targetCursor.targetCenterlimit)) {
 			  targetCursor.x -= 1;
@@ -585,7 +587,7 @@ function PerformTarget(code)  {
 	}
 	else if ((code === 39) || (code === 222)) { // RIGHT ARROW or '
 		gamestate.setMode("null");
-		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+		let edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		if ((targetCursor.x - edges.centerx) < targetCursor.targetlimit) {
 		  if ((!targetCursor.targetCenterlimit) || ((targetCursor.x - PC.x) < targetCursor.targetCenterlimit)) {
 			  targetCursor.x += 1;
@@ -595,7 +597,7 @@ function PerformTarget(code)  {
 	}
 	else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
 		gamestate.setMode("null");
-		var edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
+		let edges = getDisplayCenter(PC.getHomeMap(),PC.x,PC.y);
 		if ((targetCursor.y - edges.centery) < targetCursor.targetlimit) {
 		  if ((!targetCursor.targetCenterlimit) || ((targetCursor.y - PC.y) < targetCursor.targetCenterlimit)) {
 			  targetCursor.y += 1;
@@ -620,12 +622,12 @@ function PerformTarget(code)  {
 }
 
 function PerformAttack(who) {
-  var tileid = targetCursor.tileid;
-	$(tileid).html(targetCursor.basetile);   
+  let tileid = targetCursor.tileid;
+  document.getElementById(tileid).innerHTML = targetCursor.basetile;
 
-  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-  var atkwho = localacre.npcs.getTop();
-  var retval = {};
+  let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  let atkwho = localacre.npcs.getTop();
+  let retval = {};
   if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety())){ // No self-mutilation!
     retval["txt"] = "";
     retval["fin"] = 0;  
@@ -633,7 +635,7 @@ function PerformAttack(who) {
     return retval;
   }  
   if (!atkwho) {  // nothing there
-    var fea = localacre.features.getTop();
+    let fea = localacre.features.getTop();
     if (fea && IsAdjacent(who,fea)) {
       if (fea.breakable) {
         retval = fea.break(who);
@@ -652,22 +654,22 @@ function PerformAttack(who) {
 }
 
 function PerformAttackMap(who) {
-  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-  var atkwho = localacre.npcs.getTop();
-  var retval = {};
+  let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  let atkwho = localacre.npcs.getTop();
+  let retval = {};
   if (atkwho) { // there's something there!
-    var combatmapname = GetCombatMap(who,atkwho);
-    var newmap = new GameMap();
+    let combatmapname = GetCombatMap(who,atkwho);
+    let newmap = new GameMap();
     newmap = maps.addMap(combatmapname);
 
     PC.getHomeMap().deleteThing(atkwho);
-    var spawner=atkwho.getSpawnedBy();
+    let spawner=atkwho.getSpawnedBy();
     if (spawner) {
       spawner.deleteSpawned(atkwho);
     }
 
-    var monsters = PlaceMonsters(newmap,atkwho,1);
-    var desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
+    let monsters = PlaceMonsters(newmap,atkwho,1);
+    let desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
     
     DUTime.removeEntityFrom(atkwho);
     
@@ -689,12 +691,12 @@ function PerformCast(infuse) {
   gamestate.setMode("spellbook");
   delete targetCursor.castFrom;
   PC.setInfusion(infuse);
-  var hasSpellbook = 0;
-  var retval = {};
-  for (var lvl = 1; lvl <= 8; lvl++) {
+  let hasSpellbook = 0;
+  let retval = {};
+  for (let lvl=1; lvl <= 8; lvl++) {
     if (hasSpellbook) { break; }
-    for (var i=1; i <= 8; i++) {
-      var spellnum = GetSpellID(i);
+    for (let i=1; i <= 8; i++) {
+      let spellnum = GetSpellID(i);
       if (PC.knowsSpell(lvl, spellnum)) { 
         hasSpellbook = 1; 
         break;
@@ -710,7 +712,7 @@ function PerformCast(infuse) {
     return retval;
   }
   
-  var castermap = PC.getHomeMap();
+  let castermap = PC.getHomeMap();
   if (DU.gameflags.getFlag("negate")[castermap.getName()]) {
     retval["txt"] = "Cast - Magic has been negated, you cannot cast spells here.";
     retval["fin"] = 2;
@@ -719,9 +721,10 @@ function PerformCast(infuse) {
     
     return retval;
   }
-  var myOpen=function(hash){ hash.w.css('opacity',0.95).show(); };
-  $('#spellbookdiv').jqm({onShow:myOpen,modal:true}); 
-  $('#spellbookdiv').jqmShow();
+//  var myOpen=function(hash){ hash.w.css('opacity',0.95).show(); };
+//  $('#spellbookdiv').jqm({onShow:myOpen,modal:true}); 
+//  $('#spellbookdiv').jqmShow();
+  document.getElementById('spellbookdiv').style.display = "block";
   WritePages();
   DUPlaySound("sfx_paper");
 
@@ -732,10 +735,10 @@ function PerformCast(infuse) {
 }
 
 function PerformSpellbook(code) {
-  var retval = {};
+  let retval = {};
   if ((code === 38) || (code === 219)) { // up
-    var lvl = PC.getLastSpellLevel();
-    var spell = PC.getLastSpell();
+    let lvl = PC.getLastSpellLevel();
+    let spell = PC.getLastSpell();
     spell--;
     while (spell > 0) {
       if (PC.knowsSpell(lvl,GetSpellID(spell))) {
@@ -752,8 +755,8 @@ function PerformSpellbook(code) {
   }
 
   if ((code === 40) || (code === 191)) { // down
-    var lvl = PC.getLastSpellLevel();
-    var spell = PC.getLastSpell();
+    let lvl = PC.getLastSpellLevel();
+    let spell = PC.getLastSpell();
     spell++;
     while (spell < 9) {
       if (PC.knowsSpell(lvl,GetSpellID(spell))) {
@@ -770,9 +773,9 @@ function PerformSpellbook(code) {
   }
   
   if ((code === 37) || (code === 186) || (code === 39) || (code === 222)) { // left or right
-    var lvl = PC.getLastSpellLevel();
-    var spell = PC.getLastSpell();
-    var newlvl = lvl;
+    let lvl = PC.getLastSpellLevel();
+    let spell = PC.getLastSpell();
+    let newlvl = lvl;
     if ((code === 37) || (code === 186)) { // left
       if (lvl > 1) { newlvl = lvl - 1; }
     }
@@ -780,16 +783,16 @@ function PerformSpellbook(code) {
       if (lvl < 8) { newlvl = lvl + 1; }
     }
     // figure out how many spells down we are
-    var spellsdown = 0;
+    let spellsdown = 0;
     if (!spell) {
       spell = 1;
     }
-    for (var i=1; i<=spell; i++) {
+    for (let i=1; i<=spell; i++) {
       if (PC.knowsSpell(lvl, GetSpellID(i))) { spellsdown++; }
     }
-    var spindex = 0;
-    var numspells = 0;
-    for (var i=1; i<=8; i++) {
+    let spindex = 0;
+    let numspells = 0;
+    for (let i=1; i<=8; i++) {
       if (PC.knowsSpell(newlvl,GetSpellID(i))) {
         numspells++;
         if (numspells === spellsdown) {
@@ -806,26 +809,26 @@ function PerformSpellbook(code) {
   }
   if ((code === 32) || (code === 13)) { // SPACE or ENTER
     // cast a spell
-    var lvl = PC.getLastSpellLevel();
+    let lvl = PC.getLastSpellLevel();
     if ((lvl > 5) && (PC.getInfusion())) {
-      var retval = {};
+      let retval = {};
       retval["fin"] = 2;
       retval["input"] = "&gt;";
       maintext.addText("Cannot infuse spells of level 6 or higher.");
       return retval;
     }
-    var spellnum = PC.getLastSpell();
-    $('#spellbookdiv').jqmHide();
-    var spelltxt = "Cast: " + magic[lvl][GetSpellID(spellnum)].getName();
+    let spellnum = PC.getLastSpell();
+    document.getElementById('spellbookdiv').style.display = "none";
+    let spelltxt = "Cast: " + magic[lvl][GetSpellID(spellnum)].getName();
     if (PC.getInfusion()) {
       spelltxt += " (Infused)";
     }
-    var manacost = magic[lvl][GetSpellID(spellnum)].getManaCost(PC.getInfusion());
+    let manacost = magic[lvl][GetSpellID(spellnum)].getManaCost(PC.getInfusion());
     if (lvl > PC.getLevel()) {
       spelltxt += "...";
       maintext.addText(spelltxt);
       maintext.addText("That spell's power is beyond you.");
-      var retval = {};
+      let retval = {};
       retval["fin"] = 2;
       retval["input"] = "&gt;";
       return retval;
@@ -834,7 +837,7 @@ function PerformSpellbook(code) {
       spelltxt += "...";
       maintext.addText(spelltxt);
       maintext.addText("Your intelligence is insufficient to cast that spell.");
-      var retval = {};
+      let retval = {};
       retval["fin"] = 2;
       retval["input"] = "&gt;";
       return retval;      
@@ -842,7 +845,7 @@ function PerformSpellbook(code) {
     if (PC.getMana() >= manacost) {
       spelltxt += "!";
       maintext.addText(spelltxt);
-      var retval = magic[lvl][GetSpellID(spellnum)].executeSpell(PC, PC.getInfusion(), 0);
+      let retval = magic[lvl][GetSpellID(spellnum)].executeSpell(PC, PC.getInfusion(), 0);
       DrawCharFrame();
       return retval;
     }
@@ -850,7 +853,7 @@ function PerformSpellbook(code) {
       spelltxt += "...";
       maintext.addText(spelltxt);
       maintext.addText("Not enough mana.");
-      var retval = {};
+      let retval = {};
       retval["fin"] = 2;
       retval["input"] = "&gt;";
       return retval;
@@ -862,18 +865,18 @@ function PerformSpellbook(code) {
 }
 
 function PerformLook() {
-	var txt = "";
-  var seethis = "";
-  var map = PC.getHomeMap();
-  var boundaries = getDisplayCenter(map,PC.getx(),PC.gety());
-  var xcoord = targetCursor.x - boundaries.leftedge;
-  var ycoord = targetCursor.y - boundaries.topedge;
-  var onscreen = $('#mainview_' + xcoord + 'x' + ycoord).html();
-  var losval = 0;
+	let txt = "";
+  let seethis = "";
+  let map = PC.getHomeMap();
+  let boundaries = getDisplayCenter(map,PC.getx(),PC.gety());
+  let xcoord = targetCursor.x - boundaries.leftedge;
+  let ycoord = targetCursor.y - boundaries.topedge;
+  let onscreen = document.getElementById('mainview_' + xcoord + 'x' + ycoord).innerHTML;
+  let losval = 0;
   if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
   else {
-    var tile = map.getTile(targetCursor.x,targetCursor.y);
-    var light = tile.getLocalLight();
+    let tile = map.getTile(targetCursor.x,targetCursor.y);
+    let light = tile.getLocalLight();
     light += map.getAmbientLight();
     if (light < SHADOW_THRESHOLD) {
       losval = 1;
@@ -881,37 +884,37 @@ function PerformLook() {
   }
 
   if (losval >= LOS_THRESHOLD) { 
-  	var retval = {};
+  	let retval = {};
   	retval["txt"] = "You cannot see that.";
   	retval["fin"] = 2;
   	retval["input"] = "&gt;";
- 	  var tileid = targetCursor.tileid;
-	  $(tileid).html(targetCursor.basetile); 
+    let tileid = targetCursor.tileid;
+    document.getElementById(tileid).innerHTML = targetCursor.basetile;
 
   	return retval;
   }
-  var tile = map.getTile(targetCursor.x,targetCursor.y);
+  let tile = map.getTile(targetCursor.x,targetCursor.y);
   if ((targetCursor.x === PC.getx())	&& (targetCursor.y === PC.gety())) {
   	txt = "You are standing on ";
   } else {
   	txt = "You see ";
   }
-  var top = tile.getTop();
+  let top = tile.getTop();
   while (top.getName() === "SeeBelow") {
     tile = FindBelow(targetCursor.x,targetCursor.y,map);
     top = tile.getTop();
   }
-  var npcs = tile.getNPCs();
+  let npcs = tile.getNPCs();
   if (npcs.length > 0) {
-  	for (var i=(npcs.length-1) ; i >= 0; i-- ) {
+  	for (let i=(npcs.length-1) ; i >= 0; i-- ) {
   		if (seethis == "") { seethis = npcs[i].getFullDesc(); }
   		else { seethis += ", " + npcs[i].getFullDesc(); }
   	}
   }
-  var features = tile.getFeatures();
-  var len = features.length;
+  let features = tile.getFeatures();
+  let len = features.length;
   if (len > 0) {
-  	for (var i=(len-1); i >= 0; i-- ) {
+  	for (let i=(len-1); i >= 0; i-- ) {
   	  if (features[i].invisible) {
   	    len--;
   	  } else {
@@ -929,16 +932,16 @@ function PerformLook() {
   	}
   }
   if (seethis == "") {
-  	var terrain = tile.getTerrain();
+  	let terrain = tile.getTerrain();
   	seethis = terrain.getPrefix() + " " + terrain.getDesc();
   }
   if (seethis == "") { alert("How are we here? command."); }
   
   txt += seethis + ".";
-  var tileid = targetCursor.tileid;
-  $(tileid).html(targetCursor.basetile); 
+  let tileid = targetCursor.tileid;
+  document.getElementById(tileid).innerHTML = targetCursor.basetile; 
   
-  var retval = {};
+  let retval = {};
   retval["txt"] = txt;
   retval["fin"] = 2;
   retval["input"] = "&gt;";
@@ -947,130 +950,132 @@ function PerformLook() {
 }
 
 function PerformEnter(cmd) {
-  var oldmap = PC.getHomeMap();
-		var here = oldmap.getTile(PC.getx(),PC.gety());
-		var features = here.getFeatures();
-		var destination;
-		var destx;
-		var desty;
-		var klimb = "";
-		var descend = "";
-		var retval = {};
-		if (features.length > 0) {
-			for (var i = 0; i < features.length; i++) {
-				if ((typeof features[i].getEnterMap === "function") && (features[i].getEnterMap())) {
-					var mapdata = features[i].getEnterMap();
-					destination = mapdata["entermap"];
-					destx = mapdata["enterx"];
-					desty = mapdata["entery"];
-					if (typeof features[i].getKlimb === "function") {
-						klimb = features[i].getKlimb();
-					}
-					if (typeof features[i].getDescend === "function") {
-						descend = features[i].getDescend();
-					}
+  let oldmap = PC.getHomeMap();
+	let here = oldmap.getTile(PC.getx(),PC.gety());
+	let features = here.getFeatures();
+	let destination;
+	let destx;
+	let desty;
+	let klimb = "";
+	let descend = "";
+	let retval = {};
+	if (features.length > 0) {
+		for (let i=0; i < features.length; i++) {
+			if ((typeof features[i].getEnterMap === "function") && (features[i].getEnterMap())) {
+				let mapdata = features[i].getEnterMap();
+				destination = mapdata["entermap"];
+				destx = mapdata["enterx"];
+				desty = mapdata["entery"];
+				if (typeof features[i].getKlimb === "function") {
+          klimb = features[i].getKlimb();
+        }
+				if (typeof features[i].getDescend === "function") {
+					descend = features[i].getDescend();
 				}
 			}
 		}
-		if (!destination && !PC.getHomeMap().getScale()) {  // check for mobile scenes- only on world scale maps
-		  for (let xx=PC.getx()-1;xx<=PC.getx()+1;xx++) {
-		    for (let yy=PC.gety()-1;yy<=PC.gety()+1;yy++) {
-		      if ((xx > -1) && (yy > -1)) {
-		        let topthing = PC.getHomeMap().getTile(xx,yy).getTop();
-		        if (topthing.enterable) {
-    					var mapdata = topthing.getEnterMap();
-		    			destination = mapdata["entermap"];
-				    	destx = mapdata["enterx"];
-					    desty = mapdata["entery"];
-		        }
+	}
+	if (!destination && !PC.getHomeMap().getScale()) {  // check for mobile scenes- only on world scale maps
+	  for (let xx=PC.getx()-1;xx<=PC.getx()+1;xx++) {
+	    for (let yy=PC.gety()-1;yy<=PC.gety()+1;yy++) {
+	      if ((xx > -1) && (yy > -1)) {
+	        let topthing = PC.getHomeMap().getTile(xx,yy).getTop();
+	        if (topthing.enterable) {
+   					let mapdata = topthing.getEnterMap();
+		    		destination = mapdata["entermap"];
+				  	destx = mapdata["enterx"];
+				    desty = mapdata["entery"];
 		      }
 		    }
-		  }
-		}
-		if (!destination) {
-			retval["fin"] = 2;
-			if (cmd === "e") {
-				retval["txt"] = "You cannot enter that.";
-			} else if ((cmd === "k") || (cmd === "d")) {
-				retval["txt"] = "You cannot climb that."; 
-			} else {
-				alert("How did you get here (in PerformEnter)");
-			}
-				
-			retval["input"] = "&gt;";
-		} else if (destination === "null") {
-			retval["fin"] = 2;
-			retval["txt"] = "Destination map does not exist.";
-			retval["input"] = "&gt;";
-		} else if (!mappages[destination]) {
-			retval["fin"] = 2;
-			retval["txt"] = "Destination map does not exist.";
-			retval["input"] = "&gt;";
-		} else if ((cmd === "d") && (descend == "")) {
-			retval["fin"] = 2;
-			retval["txt"] = "You cannot descend that.";
-		} else if ((cmd === "k") && (descend == "") && (klimb == "")) {
-			retval["fin"] = 2;
-			retval["txt"] = "You cannot climb that.";
+	    }
+    }
+	}
+	if (!destination) {
+		retval["fin"] = 2;
+		if (cmd === "e") {
+			retval["txt"] = "You cannot enter that.";
+		} else if ((cmd === "k") || (cmd === "d")) {
+			retval["txt"] = "You cannot climb that."; 
 		} else {
-      retval["fin"] = 1;
-
-      let prevstate = gamestate.getMode();
-      gamestate.setMode("saving");
-      gamestate.saveGame(0);
-      gamestate.setMode(prevstate);
-    
-			var newmap = new GameMap();
-			if (maps.getMap(destination)) {
-				newmap = maps.getMap(destination);
-			} else {
-				newmap = maps.addMap(destination);
-			}
-			// check for someone in the way at destination
-			if ($.inArray(newmap.getName(), oldmap.linkedMaps) != -1) {
-			  var desttile = newmap.getTile(destx,desty);
-			  if (desttile.getTopNPC()) { // there's someone in the way and it's a linked map
-			    retval["fin"] = 2;
-			    retval["txt"] = "There is something in the way!";
-			    retval["input"] = "&gt;";
-			    return retval;
-			  }
-			} else {
-			  var desttile = newmap.getTile(destx,desty);
-			  if (desttile.getTopNPC()) { // there's someone in the way and it's not a linked map
-          var npcs = desttile.getNPCs();
-          while (npcs.length) {
-            PushOff(desttile.getTopNPC());
-            npcs = desttile.getNPCs();
-          }
-        }
-      }			  
-      let tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
-      AdjustStartingLocations(newmap);
-			retval["txt"] = "Entering " + newmap.getDesc() + ".";
-			if (descend != "") {
-				retval["txt"] = descend;
-			} else if (klimb != "") {
-				retval["txt"] = klimb;
-			}
-			DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
-			DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-			
+			alert("How did you get here (in PerformEnter)");
 		}
-		return retval;
+				
+		retval["input"] = "&gt;";
+	} else if (destination === "null") {
+		retval["fin"] = 2;
+		retval["txt"] = "Destination map does not exist.";
+		retval["input"] = "&gt;";
+	} else if (!mappages[destination]) {
+		retval["fin"] = 2;
+		retval["txt"] = "Destination map does not exist.";
+		retval["input"] = "&gt;";
+	} else if ((cmd === "d") && (descend == "")) {
+		retval["fin"] = 2;
+		retval["txt"] = "You cannot descend that.";
+	} else if ((cmd === "k") && (descend == "") && (klimb == "")) {
+		retval["fin"] = 2;
+		retval["txt"] = "You cannot climb that.";
+	} else {
+    retval["fin"] = 1;
+
+    let prevstate = gamestate.getMode();
+    gamestate.setMode("saving");
+    gamestate.saveGame(0);
+    gamestate.setMode(prevstate);
+    
+		let newmap = new GameMap();
+		if (maps.getMap(destination)) {
+			newmap = maps.getMap(destination);
+		} else {
+			newmap = maps.addMap(destination);
+		}
+    // check for someone in the way at destination
+    
+		if (oldmap.linkedMaps.includes(newmap.getName())) {
+		  let desttile = newmap.getTile(destx,desty);
+		  if (desttile.getTopNPC()) { // there's someone in the way and it's a linked map
+		    retval["fin"] = 2;
+		    retval["txt"] = "There is something in the way!";
+		    retval["input"] = "&gt;";
+		    return retval;
+		  }
+		} else {
+		  let desttile = newmap.getTile(destx,desty);
+		  if (desttile.getTopNPC()) { // there's someone in the way and it's not a linked map
+        let npcs = desttile.getNPCs();
+        while (npcs.length) {
+          PushOff(desttile.getTopNPC());
+          npcs = desttile.getNPCs();
+        }
+      }
+    }			  
+    let tile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, destx, desty);
+    AdjustStartingLocations(newmap);
+    retval["txt"] = "Entering " + newmap.getDesc() + ".";
+    retval["input"] = "&gt;";
+		if (descend != "") {
+			retval["txt"] = descend;
+		} else if (klimb != "") {
+			retval["txt"] = klimb;
+		}
+		DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+		DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+			
+	}
+	return retval;
 }
 
 function PerformGet(who) {
-  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-  var getitem = localacre.features.getTop();
-  var retval = {};
+  let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  let getitem = localacre.features.getTop();
+  let retval = {};
   if (!getitem) {
     retval["txt"] = "There is nothing there.";
     retval["fin"] = 0;
     return retval;    
   } 
   else if (getitem.checkType("Item")) {
-    var itemmap = getitem.getHomeMap();
+    let itemmap = getitem.getHomeMap();
     who.addToInventory(getitem);
     if (typeof getitem.onGet === "function") {
       getitem.onGet(who);
@@ -1090,22 +1095,22 @@ function PerformGet(who) {
   }
 }
 
-function PerformEquip(code) {
+function PerformEquip(code) {   //  Deprecated
+  alert("In deprecated PerformEquip- maybe not so deprecated?");
   var retval = {};
   if (code === 27) { // ESC
     retval["fin"] = 0;
     delete targetCursor.itemlist;
-    $('#uiinterface').html("");
-    $("#uiinterface").css("background-color", "");
-
+    document.getElementById('uiinterface').innerHTML = "";
+    document.getElementById('uiinterface').style.backgroundColor = "";
   }
 	else if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
-	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
-	    targetCursor.scrolllocation--;
-	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
-	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
-	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
-	    retval["fin"] = 2;
+    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+    targetCursor.scrolllocation--;
+    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
+    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
+    retval["fin"] = 2;
 	}
   else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
       $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
@@ -1145,18 +1150,16 @@ function PerformEquip(code) {
 }
 
 function PerformPush(who) {
-  var retval = {};
-  retval["fin"] = 3;
-  retval["input"] = "&gt;";
-  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-  var blocker = localacre.getTopNPC();
+  let retval = {fin:3, input:"&gt;"};
+  let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  let blocker = localacre.getTopNPC();
   if (!blocker) { blocker = localacre.getTopPC(); }
   if (blocker) {
     blocker.pushed = 1;
     retval["txt"] = "Push: There is something in the way.";
     return retval;
   }
-  var pushit = localacre.features.getTop();
+  let pushit = localacre.features.getTop();
   if (!pushit) { 
     retval["txt"] = "Push: Nothing there.";
     return retval; 
@@ -1164,19 +1167,14 @@ function PerformPush(who) {
   if (pushit.pushable) {
     return pushit.pushMe(who);
   }
-  var retval = {};
-  retval["fin"] = 1;
-  retval["input"] = "&gt;";
-  retval["txt"] = "That won't budge!";
   
-  return retval;
+  return {fin:1, input:"&gt;", txt: "That won't budge!"};
 }
 
 function PerformSearch(who) {
-  var localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-  var searched = localacre.features.getTop();
-  var retval = {};
-  retval["fin"] = 1;
+  let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+  let searched = localacre.features.getTop();
+  let retval = {fin:1};
   if (!searched) {
 		retval["txt"] = "Search: There is nothing there.";
 		retval["fin"] = 0;
@@ -1185,7 +1183,7 @@ function PerformSearch(who) {
 	if (searched.isContainer) {  // add doors to the list
 	  // search for traps and such rather than searching for items
 	  if (searched.trapped && (who.getInt() >= searched.trapchallenge-5)) {
-	    var descriptor = "complex ";
+	    let descriptor = "complex ";
 	    if (who.getDex() >= searched.trapchallenge+6) { // 80% chance to disarm
 	      descriptor = "simple ";
 	    } else if (who.getDex() <= searched.trapchallenge-6) { // 20% chance or worse
@@ -1193,7 +1191,6 @@ function PerformSearch(who) {
 	    }
 	    retval["txt"] = "Search: You find a " + descriptor + "trap!";
 	    searched.setDesc(searched.getDesc() + " [Trap (" + descriptor + ")]");
-//	    searched.trapchallenge = Math.floor(searched.trapchallenge / 2);
       searched.trapchallenge = searched.trapchallenge - 5;
 	    // finding a trap reduces the challenge of removing it
 	  } else {
@@ -1203,7 +1200,7 @@ function PerformSearch(who) {
 	  return retval;
 	}
   else if ((searched.getSearchYield().length)) {
-    var stuff = searched.getSearchYield();
+    let stuff = searched.getSearchYield();
     if (searched.getLootedID() && DU.gameflags.getFlag("lid_" + searched.getLootedID())) {
       retval["txt"] = "Search: You find nothing there.";
       stuff = 0;
@@ -1219,14 +1216,14 @@ function PerformSearch(who) {
       retval["txt"] = "Search: You find ";
       retval["fin"] = 1;
       if (stuff.length) {
-        for (var i=0; i < stuff.length; i++) {
+        for (let i=0; i<stuff.length; i++) {
           let goldtest = /\d+Gold/;
           if (goldtest.test(stuff[i])) {
             let amt = goldtest.exec(stuff[i]);
             searched.setGold(amt[1]);
             stuff[i] = "Gold";
           }
-          var newthing = localFactory.createTile(stuff[i]);
+          let newthing = localFactory.createTile(stuff[i]);
           if (stuff[i] === "Gold") {
             newthing.setQuantity(searched.getGold());
           }
@@ -1240,7 +1237,7 @@ function PerformSearch(who) {
           retval["txt"] += " " + newthing.getDesc();
         }
       }
-      var blanksearch = [];
+      let blanksearch = [];
       searched.setSearchYield(blanksearch);
       retval["txt"] += ".";
     }
@@ -1262,7 +1259,6 @@ function PerformSearch(who) {
       searched.setGraphicArray(searched.getSearchedGraphic());
       DrawMainFrame("one",who.getHomeMap(),targetCursor.x,targetCursor.y);
     }
-
   }
   if (searched.searchid) {
     DU.gameflags.setFlag(searched.searchedid, 1);
@@ -1275,15 +1271,15 @@ function PerformSearch(who) {
 }
 
 function PerformTalkTarget() {
-  var tileid = targetCursor.tileid;
-  $(tileid).html(targetCursor.basetile); 
-  var map = PC.getHomeMap();
-  var onscreen = $('#tile' + targetCursor.x + 'x' + targetCursor.y).html();
-  var losval = 0;
+  let tileid = targetCursor.tileid;
+  document.getElementById(tileid).innerHTML = targetCursor.basetile;
+  let map = PC.getHomeMap();
+  let onscreen = document.getElementById('tile' + targetCursor.x + 'x' + targetCursor.y).innerHTML;
+  let losval = 0;
   if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
   else {
-    var tile = map.getTile(targetCursor.x,targetCursor.y);
-    var light = tile.getLocalLight();
+    let tile = map.getTile(targetCursor.x,targetCursor.y);
+    let light = tile.getLocalLight();
     light += map.getAmbientLight();
     if (light < SHADOW_THRESHOLD) {
       losval = 1;
@@ -1291,34 +1287,33 @@ function PerformTalkTarget() {
   }
 
   if (losval >= LOS_THRESHOLD) { 
-  	var retval = {};
+  	let retval = {};
   	retval["txt"] = "You cannot see that.";
   	retval["fin"] = 2;
   	retval["input"] = "&gt;";
- 	  var tileid = targetCursor.tileid;
-	  $(tileid).html(targetCursor.basetile); 
+ 	  let tileid = targetCursor.tileid;
+	  document.getElementById(tileid).innerhtml = targetCursor.basetile; 
 
   	return retval;
   }
-  var tile = map.getTile(targetCursor.x,targetCursor.y);
+  let tile = map.getTile(targetCursor.x,targetCursor.y);
   if ((targetCursor.x === PC.getx())	&& (targetCursor.y === PC.gety())) {
-    var retval = {};
+    let retval = {};
     retval["txt"] = "This is no time to be talking to yourself.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
 
     return retval;
   } 
-  var top = tile.getTop();
+  let top = tile.getTop();
   while (top.getName() === "SeeBelow") {
     tile = FindBelow(targetCursor.x,targetCursor.y,map);
     top = tile.getTop();
   }
   
   
-  var retval = {};
+  let retval = {};
   if (!top.checkType("NPC")) {
-  
     retval["txt"] = "There is no one there to talk to.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
@@ -1326,7 +1321,7 @@ function PerformTalkTarget() {
     return retval;
   }
   if (top.getAttitude() !== "friendly") {
-    var pronoun = top.getGenderedTerms().pronoun;
+    let pronoun = top.getGenderedTerms().pronoun;
     pronoun = pronoun.charAt(0).toUpperCase() + pronoun.slice(1);
     retval["txt"] = pronoun + " does not want to talk to you.";
     retval["fin"] = 2;
@@ -1335,7 +1330,7 @@ function PerformTalkTarget() {
     return retval;    
   }
   if (top.flags.hasOwnProperty("sleep")) {
-    var pronoun = top.getGenderedTerms().pronoun;
+    let pronoun = top.getGenderedTerms().pronoun;
     pronoun = pronoun.charAt(0).toUpperCase() + pronoun.slice(1);
     retval["txt"] = pronoun + " is asleep.";
     retval["fin"] = 2;
@@ -1349,7 +1344,7 @@ function PerformTalkTarget() {
     }
   }
 
-  var convo = top.getConversation();
+  let convo = top.getConversation();
   if (!convo || !conversations[convo]) {
     retval["txt"] = "No one there wishes to speak with you.";
     retval["fin"] = 2;
@@ -1374,9 +1369,9 @@ function PerformTalkTarget() {
       PC.setLevel(PC.getLevel()+1);
       PC.setMaxHP(PC.getLevel()*30);
       PC.setHP(PC.getMaxHP());
-      var effects = PC.getSpellEffects();
+      let effects = PC.getSpellEffects();
       if (effects) {
-        for (var i=0; i<effects.length; i++) {
+        for (let i=0; i<effects.length; i++) {
           if (effects[i].getName() === "Poison") {
             effects[i].endEffect();
           }
@@ -1386,10 +1381,10 @@ function PerformTalkTarget() {
         }
       }
       if (PC.getLevel() === 2) { 
-        var basement = maps.getMap("olympus0");
-        var allnpcs = basement.npcs.getAll();
-        var rose;
-        for (var i=0; i< allnpcs.length; i++) {
+        let basement = maps.getMap("olympus0");
+        let allnpcs = basement.npcs.getAll();
+        let rose;
+        for (let i=0; i<allnpcs.length; i++) {
           if (allnpcs[i].getNPCName() === "Rose") {
             rose = allnpcs[i];
           }
@@ -1434,19 +1429,17 @@ function PerformTalkTarget() {
 }
 
 function PerformTalk(talkto, convo, topic) {
-  var forlog = {NPC: talkto.getNPCName(), conversation: convo, keyword: topic, timestamp: DUTime.getGameClock()};
+  let forlog = {NPC: talkto.getNPCName(), conversation: convo, keyword: topic, timestamp: DUTime.getGameClock()};
   convlog.push(forlog);
   
-  var retval = {};
-  var conval = conversations[convo].respond(talkto, topic);
+  let retval = {};
+  let conval = conversations[convo].respond(talkto, topic);
   
   if (conval) {
     retval["txt"] = "";
     retval["fin"] = 3;
   } else {
     // person spoke and ended conversation
-//    var gender = talkto.getGenderedTerms().pronoun;
-//    gender = gender.charAt(0).toUpperCase() + gender.slice(1);
     retval["txt"] = "";
     retval["fin"] = 1;
     retval["input"] = "&gt;";
@@ -1485,19 +1478,19 @@ function PerformTalk(talkto, convo, topic) {
 }
 
 function PerformUse(who) {
-  var retval = {};
-  var usemap = who.getHomeMap();
-	var localacre = usemap.getTile(targetCursor.x,targetCursor.y);
-	var someone = localacre.getTopNPC();
+  let retval = {};
+  let usemap = who.getHomeMap();
+	let localacre = usemap.getTile(targetCursor.x,targetCursor.y);
+	let someone = localacre.getTopNPC();
 	if (!someone) { someone = localacre.getTopPC(); }
 	if (someone) {
-    var commandname = "Use";
+    let commandname = "Use";
     if (targetCursor.command === "o") { commandname = "Open"; }
     retval["txt"] = commandname + ": There is something in the way.";
     retval["fin"] = 0;
     return retval;
   }
-	var used = localacre.features.getTop();
+	let used = localacre.features.getTop();
 	if (!used) {
 		retval["txt"] = "There is nothing to use there.";
     if (targetCursor.command === "o") {
@@ -1533,8 +1526,7 @@ function PerformUseFromInventory() {
   }
 
   gamestate.setMode("zstats");
-  var retval = {};
-	retval["txt"] = "";
+  let retval = {txt:""};
   if (targetCursor.command === "u") {
     retval["input"] = "&gt; Use: ";
   } else if (targetCursor.command === "o") {
@@ -1713,8 +1705,9 @@ function _OldPerformUseFromInventory() {
 		
 }
 
-function PerformUseFromInventoryState(code) {
-  var retval = {};
+function PerformUseFromInventoryState(code) {  // deprecated I think
+  alert("PerformUseFromInventoryState not so deprecated?");
+  let retval = {};
   if (targetCursor.itemlist.length === 0) {
     code = 27;
   }
@@ -1723,10 +1716,10 @@ function PerformUseFromInventoryState(code) {
     delete targetCursor.itemlist;
   }
 	else if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
-	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+      document.getElementById('inv'+targetCursor.scrolllocation).classList.toggle('highlight');
 	    targetCursor.scrolllocation--;
 	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length-1; }
-	    $('#inv' + targetCursor.scrolllocation).toggleClass('highlight');  
+      document.getElementById('inv'+targetCursor.scrolllocation).classList.toggle('highlight');
 	    targetCursor.scrollapi.scrollToElement('#inv' + targetCursor.scrolllocation);
 	    retval["fin"] = -2;
 	}
@@ -1765,21 +1758,20 @@ function PerformUseFromInventoryState(code) {
 }
 
 function MakeUseHappen(who,used,where) {
-  var retval = used.use(who);
+  let retval = used.use(who);
   if (retval["override"] === 1) {
     delete retval["override"];
   } else {
     if (retval["override"] !== -1) {
       retval["fin"] = 1;
     }
-    var usedname = used.getDesc();
+    let usedname = used.getDesc();
     usedname = usedname.replace(/^a /, "");
-    var commandname = "Use";
+    let commandname = "Use";
     if (targetCursor.command === "o") {
       commandname = "Open";
     }
     retval["txt"] = commandname + " " + usedname + ": " + retval["txt"];
-    var drawtype = "one";
     if (used.checkType("Consumable") && !retval["preserve"]) {
       if (where === "map") {
       // being used from the ground
@@ -1790,19 +1782,19 @@ function MakeUseHappen(who,used,where) {
 		  }
 		}
     if (where === "map") {
-      var usemap = who.getHomeMap();
-      var localacre = usemap.getTile(used.getx(),used.gety());
+      let usemap = who.getHomeMap();
+      let localacre = usemap.getTile(used.getx(),used.gety());
 
       if (retval["redrawtype"]) {
         delete retval["redrawtype"];
   	  	// if more of the map needs to be redrawn, need to recheck light sources
 		  
-	  	  $.each(localacre.localLight, function(index, value) {
+        for (let index in localacre.localLight) {
 		      // each object that is casting light on the door might be casting light through the door.
   		    var lightsource = usemap.lightsList[index];
   	      usemap.removeMapLight(index, usemap.lightsList[index].getLight(), usemap.lightsList[index].getx(), usemap.lightsList[index].gety());
     		  usemap.setMapLight(lightsource, lightsource.getLight(), lightsource.getx(), lightsource.gety());
-	      });
+	      }
         if (used.getHomeMap() === PC.getHomeMap()) {
           DrawMainFrame("draw",used.getHomeMap(),PC.getx(),PC.gety());
         }
@@ -1815,6 +1807,7 @@ function MakeUseHappen(who,used,where) {
 }
 
 function ChooseRune() {
+  // deprecated
   targetCursor.command = "r";
 
   var itemarray = [];
@@ -1874,6 +1867,7 @@ function ChooseRune() {
 }
 
 function PerformRuneChoice(code) {
+  // deprecated
   var retval = {};
   var numselected = 0;
   var runecombo;
@@ -1950,7 +1944,7 @@ function PerformRuneChoice(code) {
 }
 
 function PerformWait(code) {
-  var retval = {fin:2};
+  let retval = {fin:2};
   if ((code === 27) || (code === 48)) { 
     return retval;
   }
@@ -1963,7 +1957,7 @@ function PerformWait(code) {
   }
 
   gamestate.setMode("null");
-  var duration = parseInt(code) - 48;
+  let duration = parseInt(code) - 48;
   retval["txt"] = "Waiting for " + duration + " hours.";
   if (duration === 1) { retval["txt"] = "Waiting for 1 hour."; }
   duration = duration * 12;
@@ -2001,8 +1995,8 @@ function PerformYell() {
 		  return retval;
 		} else if (inputText.txt === "BEAMAGE") {
 		  PC.setKnowsInfusion(1);
-		  for (var i=1; i<=8; i++) {
-		    for (var j=1; j<=8; j++) {
+		  for (let i=1; i<=8; i++) {
+		    for (let j=1; j<=8; j++) {
 		      PC.addSpell(i,GetSpellID(j));
 		    }
 		  }
@@ -2182,7 +2176,7 @@ function performZstats(code) {
     if (typeof exitInv === "object") {
       // (U)se return
     } else if (exitInv) {
-      targetCursor.scrollapi.scrollByY(-50,1);
+      ScrollStats(-20);  
     }
     retval["fin"] = 1;
   }
@@ -2194,7 +2188,7 @@ function performZstats(code) {
       // (U)se return
       return exitInv;
     } else if (exitInv) {
-      targetCursor.scrollapi.scrollByY(50,1);
+      ScrollStats(20);    
     }
     retval["fin"] = 1;
   }
@@ -2205,7 +2199,7 @@ function performZstats(code) {
     if (typeof exitInv === "object") {
       // (U)se return
     } else if (exitInv) {
-      targetCursor.scrollapi.scrollByY(350,1);
+      ScrollStats(250);    
     }
     retval["fin"] = 1;
   }       
@@ -2216,7 +2210,7 @@ function performZstats(code) {
     if (typeof exitInv === "object") {
       // (U)se return
     } else if (exitInv) {
-      targetCursor.scrollapi.scrollByY(-350,1);
+      ScrollStats(-250);
     }
     retval["fin"] = 1;
   }       
@@ -2224,6 +2218,15 @@ function performZstats(code) {
 
   if (targetCursor.page === 2) { DisplayInventory(restrict); }
   return retval;
+}
+
+function ScrollStats(amt) {
+  let divheight = document.getElementById('zstat').clientHeight;
+  let currtop = document.getElementById('zstat').scrollTop;
+  currtop += amt;
+  if (currtop > (divheight - 410)) { currtop = divheight - 410; }
+  if (currtop < 0) { currtop = 0; }
+  document.getElementById('zstat').scrollTop = currtop;
 }
 
 function DrawStats(page) {
@@ -2241,8 +2244,9 @@ function DrawStats(page) {
     if (PC.getInt() > PC.getBaseInt()) { spanint = '<span style="color:cyan">'; }
     if (PC.getInt() < PC.getBaseInt()) { spanint = '<span style="color:orange">'; }
     
-    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+    statsdiv = "<div class='outerstats'><div id='zstat' class='zstats'>";
     statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'><tr>";
+
     statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
     statsdiv += "<tr><td style='width:50%'>HP: " + PC.getDisplayHP() + "/" + PC.getMaxHP() + "</td><td></td>";
     statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
@@ -2314,7 +2318,7 @@ function DrawStats(page) {
     if (!alleffects[0]) {
       statsdiv += "<tr><td colspan='3'>You have no effects or afflictions upon you.</td></tr>";
     } else {
-      for (var i=0; i < alleffects.length; i++) {
+      for (let i=0; i < alleffects.length; i++) {
         if (alleffects[i].display) {
           statsdiv += "<tr><td colspan='3'>" + alleffects[i].display + ": " + alleffects[i].getZstatdesc() + "</td></tr>";
         }
@@ -2323,17 +2327,7 @@ function DrawStats(page) {
 
     statsdiv += "</table></div></div>";
     DrawTopbarFrame("<p>Character</p>");
-  
-    $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-    $("#worldlayer").css("background-image", "");
-    $("#worldlayer").css("background-color", "black");
-    $('#uiinterface').html(statsdiv);
-    $("#uiinterface").css("background-color", "black");
-  
-  	var scrollelem = $('.zstats').jScrollPane();
-    var scrollapi = scrollelem.data('jsp');
-    targetCursor.scrollapi = scrollapi;
-
+    
   } else if (page === 2) {
     DisplayInventory();
     DrawTopbarFrame("<p>Inventory</p>");
@@ -2342,12 +2336,12 @@ function DrawStats(page) {
     statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
     statsdiv += "<tr><td>&nbsp;</td></tr>";
    
-    var hasSpellbook = 0;
+    let hasSpellbook = 0;
    
-    for (var lvl = 1; lvl <= 8; lvl++ ){
-      var hasLevel = 0;
-      for (var i=1; i<=8; i++) {
-        var spellnum = GetSpellID(i);
+    for (let lvl = 1; lvl <= 8; lvl++ ){
+      let hasLevel = 0;
+      for (let i=1; i<=8; i++) {
+        let spellnum = GetSpellID(i);
         if (PC.knowsSpell(lvl, spellnum)) {
           if (!hasLevel) {
             if (lvl !== 1) { statsdiv += "<tr><td>&nbsp;</td></tr>"; }
@@ -2382,23 +2376,13 @@ function DrawStats(page) {
   
     statsdiv += "</table></div></div>";  
 
-    $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-    $("#worldlayer").css("background-image", "");
-    $("#worldlayer").css("background-color", "black");
-    $('#uiinterface').html(statsdiv);
-    $("#uiinterface").css("background-color", "black");
-  
-  	var scrollelem = $('.zstats').jScrollPane();
-    var scrollapi = scrollelem.data('jsp');
-    targetCursor.scrollapi = scrollapi;
-
     DrawTopbarFrame("<p>Spellbook</p>");
   } else if (page === 4) {
     statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
     statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
     statsdiv += "<tr><td>&nbsp;</td></tr>";
    
-    var hasrunes = 0;
+    let hasrunes = 0;
     if (PC.runes.kings) { 
      statsdiv += "<tr><td>Rune of Kings</td></tr>";
      hasrunes = 1;
@@ -2425,42 +2409,28 @@ function DrawStats(page) {
     statsdiv += "</table></div></div>";  
     DrawTopbarFrame("<p>Runes</p>");
 
-    $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-    $("#worldlayer").css("background-image", "");
-    $("#worldlayer").css("background-color", "black");
-    $('#uiinterface').html(statsdiv);
-    $("#uiinterface").css("background-color", "black");
-  
-  	var scrollelem = $('.zstats').jScrollPane();
-    var scrollapi = scrollelem.data('jsp');
-    targetCursor.scrollapi = scrollapi;
-
   }
  
-  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-  $("#worldlayer").css("background-image", "");
-  $("#worldlayer").css("background-color", "black");
-  $('#uiinterface').html(statsdiv);
-  $("#uiinterface").css("background-color", "black");
-  
-	var scrollelem = $('.zstats').jScrollPane();
-  var scrollapi = scrollelem.data('jsp');
-  targetCursor.scrollapi = scrollapi;
+  document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
+  document.getElementById('worldlayer').style.backgroundImage = "";
+  document.getElementById('worldlayer').style.backgroundColor = "black";
+  document.getElementById('uiinterface').innerHTML = statsdiv;
+  document.getElementById('uiinterface').style.backgroundColor = "black";
 
 }
 
 function StatsCategory(stuff, label) {
   stuff.sort(function(a,b) {
-    var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+    let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
     if (nameA < nameB) 
       return -1
     if (nameA > nameB)
       return 1
     return 0 
   }); 
-  var newtext = "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>" + label +"</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
-  for (var i = 0; i < stuff.length; i++ ) {
-    var itemdesc = stuff[i].getDesc();
+  let newtext = "<tr class='invheader'><td></td><td><span style='text-decoration:underline'>" + label +"</span></td><td>&nbsp;<span style='text-decoration:underline'>Qty</td></tr>";
+  for (let i=0; i<stuff.length; i++ ) {
+    let itemdesc = stuff[i].getDesc();
     itemdesc = itemdesc.charAt(0).toUpperCase() + itemdesc.slice(1);
     newtext += "<tr><td></td><td>" + itemdesc + "</td><td>&nbsp;(" + stuff[i].getQuantity() + ")</td></tr>";
   }
@@ -2469,7 +2439,7 @@ function StatsCategory(stuff, label) {
 }
 
 function DrawOptions() {
-  var optdiv = "<div><div id='opt' class='zstats'>";
+  let optdiv = "<div><div id='opt' class='zstats'>";
   optdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
   optdiv += "<tr><td style='text-decoration:underline'>OPTIONS</td><td></td><td></td></tr>";
@@ -2481,7 +2451,7 @@ function DrawOptions() {
   }
   optdiv += ">";
   if (DU.gameflags.getFlag("music")) {
-    var modmusic = DU.gameflags.getFlag('music')*10;
+    let modmusic = DU.gameflags.getFlag('music')*10;
     optdiv += modmusic;
   } else {
     optdiv += "0";
@@ -2504,7 +2474,7 @@ function DrawOptions() {
   }
   optdiv += ">";
   if (DU.gameflags.getFlag("sound")) {
-    var modsound = DU.gameflags.getFlag("sound")*10;
+    let modsound = DU.gameflags.getFlag("sound")*10;
     optdiv += modsound;
   } else {
     optdiv += "0";
@@ -2573,16 +2543,16 @@ function DrawOptions() {
   optdiv += "</table></div></div>";
   
   DrawTopbarFrame("<p>Options</p>");
-  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-  $("#worldlayer").css("background-image", "");
-  $("#worldlayer").css("background-color", "black");
-  $('#uiinterface').html(optdiv);
-  $("#uiinterface").css("background-color", "black");
-
+  
+  document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
+  document.getElementById('worldlayer').style.backgroundImage = "";
+  document.getElementById('worldlayer').style.backgroundColor = "black";
+  document.getElementById('uiinterface').innerHTML = optdiv;
+  document.getElementById('uiinterface').style.backgroundColor = "black";
 }
 
 function DrawDebugOptions() {
-  var optdiv = "<div><div id='opt' class='zstats'>";
+  let optdiv = "<div><div id='opt' class='zstats'>";
   optdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
   optdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td><td></td></tr>";
   optdiv += "<tr><td>DEBUG OPTIONS</td><td></td><td></td></tr>";
@@ -2723,111 +2693,110 @@ function DrawDebugOptions() {
   optdiv += "</table></div></div>";
   
   DrawTopbarFrame("<p>Debug Options</p>");
-  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-  $("#worldlayer").css("background-image", "");
-  $("#worldlayer").css("background-color", "black");
-  $('#uiinterface').html(optdiv);
-  $("#uiinterface").css("background-color", "black");
-  
+  document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
+  document.getElementById('worldlayer').style.backgroundImage = "";
+  document.getElementById('worldlayer').style.backgroundColor = "black";
+  document.getElementById('uiinterface').innerHTML = optdiv;
+  document.getElementById('uiinterface').style.backgroundColor = "black";  
 }
 
 
 function performOptions(code) {
-  var retval = {};
-    if ((code === 27) || (code === 79)) { // ESC or O again
-      retval["fin"] = 0;
-      delete targetCursor.cmd;
-      $('#uiinterface').html("");
-      $("#uiinterface").css("background-color", "");
+  let retval = {};
+  if ((code === 27) || (code === 79)) { // ESC or O again
+    retval["fin"] = 0;
+    delete targetCursor.cmd;
+    document.getElementById('uiinterface').innerHTML = "";
+    document.getElementById('uiinterface').style.backgroundColor = "";
+}
+  else if ((code === 38) || (code === 219)) { // scroll up
+    targetCursor.page--;
+    if (targetCursor.page === 0) { targetCursor.page = 1; } 
+    retval["fin"] = 1;
+  }
+  else if ((code === 40) || (code === 191)) { // scroll down
+    targetCursor.page++;
+    if (targetCursor.cmd === "o") {
+      if (targetCursor.page === 9) { targetCursor.page = 8; }
+    } else if (targetCursor.cmd === "debug") {
+      if (targetCursor.page === 13) { targetCursor.page = 12; }
     }
-    else if ((code === 38) || (code === 219)) { // scroll up
-      targetCursor.page--;
-      if (targetCursor.page === 0) { targetCursor.page = 1; } 
-      retval["fin"] = 1;
-    }
-    else if ((code === 40) || (code === 191)) { // scroll down
-      targetCursor.page++;
-      if (targetCursor.cmd === "o") {
-        if (targetCursor.page === 9) { targetCursor.page = 8; }
-      } else if (targetCursor.cmd === "debug") {
-        if (targetCursor.page === 13) { targetCursor.page = 12; }
-      }
-      retval["fin"] = 1;
-    }
-    else if ((code === 37) || (code === 186)) {  // left, for volumes
-      if (targetCursor.cmd === "o") {
-        if (targetCursor.page === 1) {
-          if (DU.gameflags.getFlag("music")) {
-            DU.gameflags.setFlag("music", Math.round(Math.max(0,DU.gameflags.getFlag("music")-.1)));
-            if (nowplaying.song) {
-              nowplaying.song.volume = DU.gameflags.getFlag("music");
-            }
+    retval["fin"] = 1;
+  }
+  else if ((code === 37) || (code === 186)) {  // left, for volumes
+    if (targetCursor.cmd === "o") {
+      if (targetCursor.page === 1) {
+        if (DU.gameflags.getFlag("music")) {
+          DU.gameflags.setFlag("music", Math.round(Math.max(0,DU.gameflags.getFlag("music")-.1)));
+          if (nowplaying.song) {
+            nowplaying.song.volume = DU.gameflags.getFlag("music");
           }
-        } else if (targetCursor.page === 3) {
-          if (DU.gameflags.getFlag("sound")) {
-            DU.gameflags.setFlag("sound", Math.round(Math.max(0,DU.gameflags.getFlag("sound")-.1)));
-          }
+        }
+      } else if (targetCursor.page === 3) {
+        if (DU.gameflags.getFlag("sound")) {
+          DU.gameflags.setFlag("sound", Math.round(Math.max(0,DU.gameflags.getFlag("sound")-.1)));
         }
       }
     }
-    else if ((code === 39) || (code === 222)) {  // right, for volumes
-      if (targetCursor.cmd === "o") {
-        if (targetCursor.page === 1) {
-          if (DU.gameflags.getFlag("music")) {
-            DU.gameflags.setFlag("music", Math.round(Math.min(1,DU.gameflags.getFlag("music")+.1)));
-            if (nowplaying.song) {
-              nowplaying.song.volume = DU.gameflags.getFlag("music");
-            } else {
-              var song = PC.getHomeMap().getMusic();
-              nowplaying = DUPlayMusic(song);
-            }
+  }
+  else if ((code === 39) || (code === 222)) {  // right, for volumes
+    if (targetCursor.cmd === "o") {
+      if (targetCursor.page === 1) {
+        if (DU.gameflags.getFlag("music")) {
+          DU.gameflags.setFlag("music", Math.round(Math.min(1,DU.gameflags.getFlag("music")+.1)));
+          if (nowplaying.song) {
+            nowplaying.song.volume = DU.gameflags.getFlag("music");
+          } else {
+            let song = PC.getHomeMap().getMusic();
+            nowplaying = DUPlayMusic(song);
           }
-        } else if (targetCursor.page === 3) {
-          if (DU.getFlag("sound")) {
-            DU.setFlag("sound", Math.round(Math.min(1,DU.getFlag("sound")+.1)));
-          }
+        }
+      } else if (targetCursor.page === 3) {
+        if (DU.getFlag("sound")) {
+          DU.setFlag("sound", Math.round(Math.min(1,DU.getFlag("sound")+.1)));
         }
       }
     }
-    else if ((code === 32) || (code === 13)) {  // space or enter
-      if (targetCursor.cmd === "o") {
-        if (targetCursor.page === 1) {
-          if (DU.gameflags.getFlag("music")) {
-            DU.gameflags.setFlag("music",0);
-            if (nowplaying.song) {
-              nowplaying.song.volume = 0;
-            }
-          } else {
-            DU.gameflags.setFlag("music",1);
-            if (nowplaying.song) {
-              nowplaying.song.volume = 1;
-            } else {
-              var song = PC.getHomeMap().getMusic();
-              nowplaying = DUPlayMusic(song);
-            }
-          }
-        } else if (targetCursor.page === 3) {
-          if (DU.gameflags.getFlag("sound")) {
-            DU.gameflags.setFlag("sound",0);
-          } else {
-            DU.gameflags.setFlag("sound",1);
+  }
+  else if ((code === 32) || (code === 13)) {  // space or enter
+    if (targetCursor.cmd === "o") {
+      if (targetCursor.page === 1) {
+        if (DU.gameflags.getFlag("music")) {
+          DU.gameflags.setFlag("music",0);
+          if (nowplaying.song) {
+            nowplaying.song.volume = 0;
           }
         } else {
-          ToggleOption(targetCursor.page);
+          DU.gameflags.setFlag("music",1);
+          if (nowplaying.song) {
+            nowplaying.song.volume = 1;
+          } else {
+            let song = PC.getHomeMap().getMusic();
+            nowplaying = DUPlayMusic(song);
+          }
         }
-      } else if (targetCursor.cmd === "debug") {
-        ToggleDebugOption(targetCursor.page);
+      } else if (targetCursor.page === 3) {
+        if (DU.gameflags.getFlag("sound")) {
+          DU.gameflags.setFlag("sound",0);
+        } else {
+          DU.gameflags.setFlag("sound",1);
+        }
+      } else {
+        ToggleOption(targetCursor.page);
       }
-      retval["fin"] = 1;
-    }       
-    else { retval["fin"] = 1; }
-    
-    if (targetCursor.cmd === "o") {  
-      DrawOptions();
     } else if (targetCursor.cmd === "debug") {
-      DrawDebugOptions();
+      ToggleDebugOption(targetCursor.page);
     }
-    return retval;
+    retval["fin"] = 1;
+  }       
+  else { retval["fin"] = 1; }
+    
+  if (targetCursor.cmd === "o") {  
+    DrawOptions();
+  } else if (targetCursor.cmd === "debug") {
+    DrawDebugOptions();
+  }
+  return retval;
 }
 
 function ToggleDebugOption(opt) {
@@ -2914,7 +2883,7 @@ function ToggleOption(opt) {
       StopMusic(nowplaying);
     } else {
       DU.gameflags.setFlag("music", 1);
-      var song = PC.getHomeMap().getMusic();
+      let song = PC.getHomeMap().getMusic();
       nowplaying = DUPlayMusic(song);
     }
   } else if (opt === 2) {
@@ -2927,7 +2896,7 @@ function ToggleOption(opt) {
       DU.gameflags.setFlag("loopmusic", 1); 
       if (DU.gameflags.getFlag("music")) {
         if (nowplaying.song.playState === "playFinished") {
-          var song = PC.getHomeMap().getMusic();
+          let song = PC.getHomeMap().getMusic();
           nowplaying = DUPlayMusic(song);  
         } else {
           nowplaying.song.loop = -1;
@@ -2949,10 +2918,8 @@ function ToggleOption(opt) {
   } else if (opt === 5) {
     if (DU.gameflags.getFlag("move_opens_doors")) {
       DU.gameflags.setFlag("move_opens_doors", 0);
-//      TabletUI(-1);
     } else {
       DU.gameflags.setFlag("move_opens_doors", 1);
-//      TabletUI(1);
     }
   } else if (opt === 6) {
     if (DU.gameflags.getFlag("move_attacks")) {
@@ -2976,9 +2943,9 @@ function ToggleOption(opt) {
 }
 
 function ShowSaveGames(toptext) {
-  var table = "<div class='zstats'><table cellpadding='2' cellspacing='0' border='0' style='background-color:black'>";
-  var saveIndex = JSON.parse(localStorage.saveIndex);
-  for (var i=-1;i<=9;i++) {
+  let table = "<div class='zstats'><table cellpadding='2' cellspacing='0' border='0' style='background-color:black'>";
+  let saveIndex = JSON.parse(localStorage.saveIndex);
+  for (let i=-1;i<=9;i++) {
     if ((i === 0) || (i === 9)) { table += "<tr style='height:36; background-image:url(\"graphics/frame/saveui-lock.gif\"); width:416px'>"; }
     else { table += "<tr style='height:36; background-image:url(\"graphics/frame/saveui.gif\"); width:416px'>"; }
     if (i === -1) {
@@ -2986,14 +2953,14 @@ function ShowSaveGames(toptext) {
       table += "<td style='color:white;text-align:center;v-align:center;width:35'><img src='graphics/spacer.gif' width='32' /></td>";
       table += "<td style='color:white;v-align:center;padding-left:5px;width:100%'>" + toptext + "</td>";      
     } else if (saveIndex[i].charname) {
-      var tmpdate = saveIndex[i].datestamp;
-      var thisdate = new Date();
+      let tmpdate = saveIndex[i].datestamp;
+      let thisdate = new Date();
       thisdate.setTime(tmpdate);
-      var thistime = thisdate.toLocaleTimeString();
-      var parts = thistime.split(/ /);
-      var timepart = parts[0].split(":");
+      let thistime = thisdate.toLocaleTimeString();
+      let parts = thistime.split(/ /);
+      let timepart = parts[0].split(":");
       thistime = timepart[0] + ":" + timepart[1] + " " + parts[1];
-      var thisloc = saveIndex[i].loc.slice(0,13);
+      let thisloc = saveIndex[i].loc.slice(0,13);
       table += "<td style='color:white;text-align:center;v-align:center;width:35'>" + i + "</td>";
       table += "<td style='color:white;text-align:center;v-align:center;width:35'><img src='graphics/" + saveIndex[i].graphic + "' /></td>";
       table += "<td style='color:white;v-align:center;padding-left:5px;width:100%;font-size:smaller'>" + saveIndex[i].charname + " (" + thisloc + ") " + thisdate.toLocaleDateString() + " " + thistime + "</td>";
@@ -3005,7 +2972,7 @@ function ShowSaveGames(toptext) {
     table += "</tr>";
   }
   table += "</table></div>";
-  $("#uiinterface").html(table);
+  document.getElementById('uiinterface').innerHTML = table;
 }
 
 function DisplayInventory(restrictTo) {
@@ -3014,47 +2981,47 @@ function DisplayInventory(restrictTo) {
   if (!targetCursor.invskiprow) { targetCursor.invskiprow = 0; }
   if (!targetCursor.invlength) { targetCursor.invlength = 0; }
   
-  var inventorylist = MakeInventoryList(restrictTo);
+  let inventorylist = MakeInventoryList(restrictTo);
 
   targetCursor.invlength = inventorylist.length;
-  $("#uiinterface").html("");
-  $("#uiinterface").css("background-color","black");
-  for (var j=0;j<5;j++) {
-    for (var i=0;i<8;i++) {
-      var leftedge = 30+45*i;
-      var topedge = 20+45*j;
-      $("#uiinterface").append("<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>");
+  document.getElementById('uiinterface').innerHTML = "";
+  document.getElementById('uiinterface').style.backgroundColor = "black";
+  for (let j=0;j<5;j++) {
+    for (let i=0;i<8;i++) {
+      let leftedge = 30+45*i;
+      let topedge = 20+45*j;
+      document.getElementById('uiinterface').innerHTML += "<div id='inv_"+i+"x"+j+"' style='position:absolute; left: " + leftedge + "; top: " + topedge + "; width:32px; height: 32; border:3px; border-style: solid; border-color:#999;'></div>";
     }
   }
 
-  $("#uiinterface").append("<div id='inv_desc_window' style='position:absolute; left: 35px; top: 260px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 125px'></div>");
-  $("#inv_desc_window").html("<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 16px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:52px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>");
-  var invselect = targetCursor.invskiprow*8;
-  var writetox = 0;
-  var writetoy = 0;
+  document.getElementById('uiinterface').innerHTML += "<div id='inv_desc_window' style='position:absolute; left: 35px; top: 260px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 125px'></div>";
+  document.getElementById('inv_desc_window').innerHTML = "<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 16px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:52px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>";
+  let invselect = targetCursor.invskiprow*8;
+  let writetox = 0;
+  let writetoy = 0;
 
-  for (var i=invselect;i<inventorylist.length;i++) {
+  for (let i=invselect;i<inventorylist.length;i++) {
     writetoy = Math.floor(i/8);
     writetox = i%8;
     
-    var showgraphic = inventorylist[i].getGraphicArray();
-    var bordercolor = "#ccc";
-    $("#inv_"+writetox+"x"+writetoy).css("background-image", "url('graphics/" + showgraphic[0] + "')");
-    $("#inv_"+writetox+"x"+writetoy).css("background-repeat", "no-repeat");
-    $("#inv_"+writetox+"x"+writetoy).css("background-position", showgraphic[2] + "px " + showgraphic[3] + "px");
+    let showgraphic = inventorylist[i].getGraphicArray();
+    let bordercolor = "#ccc";
+    document.getElementById('inv_'+writetox+"x"+writetoy).style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
+    document.getElementById('inv_'+writetox+"x"+writetoy).style.backgroundRepeat = "no-repeat";
+    document.getElementById('inv_'+writetox+"x"+writetoy).style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
 
     if (inventorylist[i].getQuantity() && (inventorylist[i].getQuantity() > 1)) {
-      $("#inv_"+writetox+"x"+writetoy).css("vertical-align", "bottom");
-      $("#inv_"+writetox+"x"+writetoy).css("text-align", "right");
-      $("#inv_"+writetox+"x"+writetoy).css("font-size", 12);
-      $("#inv_"+writetox+"x"+writetoy).css("color", "white");
-      $("#inv_"+writetox+"x"+writetoy).css("font-family","Commodore64");
-      $("#inv_"+writetox+"x"+writetoy).css("line-height","24px");
-      $("#inv_"+writetox+"x"+writetoy).html("<p>" + inventorylist[i].getQuantity() + "</p>");
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.verticalAlign = "bottom";
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.textAlign = "right";
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.fontSize = 12;
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.color = "white";
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.fontFamily = "Commodore64";
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.lineHeight = "24px";
+      document.getElementById('inv_'+writetox+"x"+writetoy).innerHTML = "<p>" + inventorylist[i].getQuantity() + "</p>";
     }
 
     if (PC.isEquipped(inventorylist[i])) {
-      $("#inv_"+writetox+"x"+writetoy).css("border-color", "#000099");
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.borderColor = "#000099";
     }
   }
 
@@ -3064,31 +3031,30 @@ function DisplayInventory(restrictTo) {
 
   if (invselect < inventorylist.length) {
     if (PC.isEquipped(inventorylist[invselect])) { 
-      $("#inv_"+writetox+"x"+writetoy).css("border-color", "#66ccff");
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.borderColor = "#66ccff";
     } else {
-      $("#inv_"+writetox+"x"+writetoy).css("border-color", "#ffffff");
+      document.getElementById('inv_'+writetox+"x"+writetoy).style.borderColor = "#ffffff";
     }
   
-    var showgraphic = inventorylist[invselect].getGraphicArray();
-    $("#inv_image").css("background-image", "url('graphics/" + showgraphic[0] + "')");
-    $("#inv_image").css("background-repeat", "no-repeat");
-    $("#inv_image").css("background-position", showgraphic[2] + "px " + showgraphic[3] + "px");
-    var descname = inventorylist[invselect].getDesc();
+    let showgraphic = inventorylist[invselect].getGraphicArray();
+    document.getElementById('inv_image').style.backgroundImage = "url('graphics/" + showgraphic[0] + "')";
+    document.getElementById('inv_image').style.backgroundRepeat = "no-repeat";
+    document.getElementById('inv_image').style.backgroundPosition = showgraphic[2] + "px " + showgraphic[3] + "px";
+    let descname = inventorylist[invselect].getDesc();
     descname = descname.charAt(0).toUpperCase() + descname.slice(1);
-    $("#inv_name").html(descname);  
+    document.getElementById('inv_name').innerHTML = descname;
     if (inventorylist[invselect].getQuantity() > 1) {
-      $("#inv_name").append(" (" + inventorylist[invselect].getQuantity() + ")"); 
+      document.getElementById('inv_name').innerHTML += " (" + inventorylist[invselect].getQuantity() + ")"; 
     }
-    $("#inv_desc").html(inventorylist[invselect].getLongDesc());
-    $("#inv_use").html("Use: " + inventorylist[invselect].getUseDesc());
+    document.getElementById('inv_desc').innerHTML = inventorylist[invselect].getLongDesc();
+    document.getElementById('inv_use').innerHTML = "Use: " + inventorylist[invselect].getUseDesc();
   } else {
-    $("#inv_"+writetox+"x"+writetoy).css("border-color", "#ffffff");
+    document.getElementById("#inv_"+writetox+"x"+writetoy).style.borderColor = "#ffffff";
   }
 
-  $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-  $("#worldlayer").css("background-image", "");
-  $("#worldlayer").css("background-color", "black");
-
+  document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
+  document.getElementById('worldlayer').style.backgroundImage = "";
+  document.getElementById('worldlayer').style.backgroundColor = "black";
 }
 
 function PerformInventoryScreen(code, restrict) {
@@ -3115,13 +3081,13 @@ function PerformInventoryScreen(code, restrict) {
     }
   } else if ((code === 13) || (code === 32)) {
     // use selected item
-    var invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
-    var inventorylist = MakeInventoryList(restrict);
-    var retval = {};
+    let invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
+    let inventorylist = MakeInventoryList(restrict);
+    let retval = {};
     if (targetCursor.command === "c") {
       // here for Scribe or Mend
       // WORKING HERE
-      var tgt = inventorylist[invselect];
+      let tgt = inventorylist[invselect];
       if (tgt) {
         if (targetCursor.spellName === "Mend") {
           retval = PerformMend(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
@@ -3137,23 +3103,22 @@ function PerformInventoryScreen(code, restrict) {
     if (targetCursor.command === "o") {
       if (!CheckOpenAsUse(inventorylist[invselect])) {
         maintext.delayedAddText("You cannot open that.");
-        var retval = {};
-        retval["fin"] = 0;
+        retval = {fin:0};
         delete targetCursor.itemlist;
         return retval;
       }
     }    
     targetCursor.command = 'u';
-    var retval = MakeUseHappen(PC, inventorylist[invselect], "inventory");
+    retval = MakeUseHappen(PC, inventorylist[invselect], "inventory");
     retval["usefin"] = retval["fin"];
     retval["fin"] = 2;
     return retval;
   } else if (code === 34) { 
     if (targetCursor.invy !== 4) { targetCursor.invy = 4; }
     else {
-      var invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
-      var inventorylist = MakeInventoryList(restrict);
-      var i=0;
+      let invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
+      let inventorylist = MakeInventoryList(restrict);
+      let i=0;
       while(((invselect+8*i) < inventorylist.length) && (i<4)) {
         i++;
       }
@@ -3162,9 +3127,9 @@ function PerformInventoryScreen(code, restrict) {
   } else if (code === 33) {
     if (targetCursor.invy !== 0) { targetCursor.invy = 0; }
     else {
-      var invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
-      var inventorylist = MakeInventoryList(restrict);
-      var i=0;
+      let invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
+      let inventorylist = MakeInventoryList(restrict);
+      let i=0;
       while(((invselect-8*i) >= 0) && (i<4)) {
         i++;
       }
@@ -3177,7 +3142,7 @@ function PerformInventoryScreen(code, restrict) {
 }
 
 function MakeInventoryList(restrictTo) {
-  var inventorylist = {};
+  let inventorylist = {};
   inventorylist.armor = [];
   inventorylist.weapon = [];
   inventorylist.missile = [];
@@ -3191,9 +3156,9 @@ function MakeInventoryList(restrictTo) {
   inventorylist.other = [];
   inventorylist.broken = [];
   inventorylist.total = [];
-  var PCinv = PC.getInventory();
+  let PCinv = PC.getInventory();
 
-  for (var i=0; i<PCinv.length; i++) {
+  for (let i=0; i<PCinv.length; i++) {
     if (restrictTo === "equip") {
       if (PCinv[i].checkType("armor")) { inventorylist.armor.push(PCinv[i]); }
       else if (PCinv[i].checkType("missile")) { inventorylist.missile.push(PCinv[i]); }
@@ -3228,7 +3193,7 @@ function MakeInventoryList(restrictTo) {
   if (inventorylist.missile.length) { inventorylist.missile.sort(function(a,b) { return (b.getAveDamage(PC) - a.getAveDamage(PC)); }); }
   if (inventorylist.potion.length) {
     inventorylist.potion.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
@@ -3238,7 +3203,7 @@ function MakeInventoryList(restrictTo) {
   }
   if (inventorylist.key.length) {
     inventorylist.key.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
@@ -3248,7 +3213,7 @@ function MakeInventoryList(restrictTo) {
   }
   if (inventorylist.reagent.length) {
     inventorylist.reagent.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
@@ -3258,7 +3223,7 @@ function MakeInventoryList(restrictTo) {
   }
   if (inventorylist.quest.length) {
     inventorylist.quest.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
@@ -3268,7 +3233,7 @@ function MakeInventoryList(restrictTo) {
   }
   if (inventorylist.usable.length) {
     inventorylist.usable.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
@@ -3278,7 +3243,7 @@ function MakeInventoryList(restrictTo) {
   }  
   if (inventorylist.other.length) {
     inventorylist.other.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)
@@ -3288,7 +3253,7 @@ function MakeInventoryList(restrictTo) {
   }
   if (inventorylist.scroll.length) {
     inventorylist.scroll.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (a.spelllevel < b.spelllevel) { return -1; }
       if (b.spelllevel < a.spelllevel) { return 1; }
       else {
@@ -3302,7 +3267,7 @@ function MakeInventoryList(restrictTo) {
   }  
   if (inventorylist.audachta.length) {
     inventorylist.audachta.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (a.spelllevel < b.spelllevel) { return -1; }
       if (b.spelllevel < a.spelllevel) { return 1; }
       else {
@@ -3316,7 +3281,7 @@ function MakeInventoryList(restrictTo) {
   }  
   if (inventorylist.broken.length) {
     inventorylist.broken.sort(function(a,b) {
-      var nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
+      let nameA = a.getName().toLowerCase(), nameB = b.getName().toLowerCase();
       if (nameA < nameB) 
         return -1
       if (nameA > nameB)

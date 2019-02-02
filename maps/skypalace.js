@@ -294,8 +294,8 @@ function wind_blow() {
   if (PC.getHomeMap().getName() === "skypalace") {
     wind.xoff -= 1;
     if (wind.xoff <= -1683) { wind.xoff = 0; }
-    if ($("#worldlayer").css("background-image").indexOf("url") > -1) {
-      $("#cloudlayer").css("background-position", wind.xoff + "px " + wind.yoff + "px");
+    if (document.getElementById('worldlayer').style.backgroundImage.indexOf("url") > -1) {
+      document.getElementById('cloudlayer').style.backgroundPosition = wind.xoff + "px " + wind.yoff + "px";
     }
     setTimeout(function() {wind_blow();}, 100);
   }

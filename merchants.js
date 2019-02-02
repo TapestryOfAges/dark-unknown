@@ -1,7 +1,7 @@
 "use strict";
 
 function SetMerchants() {
-  var bill = {};
+  let bill = {};
   // Hildendain
   bill.aaron = {};
   bill.aaron.stock = [ { item: "Dagger", quantity: 10, price: 5, desc: "Dagger", presale: '"Small, but deadly."', sale: '"Thank you. May it serve you well."' },
@@ -117,43 +117,45 @@ function SetMerchants() {
 
 
 function DisplayWares(who) {
-  var stocks = DU.merchants[who.getMerch()];
-  var code = 65; // ascii for A, to associate array index with letter for choice
+  let stocks = DU.merchants[who.getMerch()];
+  let code = 65; // ascii for A, to associate array index with letter for choice
 
   if (stocks.type === "stuff") {
-    $.each(stocks.stock, function(idx, val) {    
-      var qty = val.quantity;
+    for (let idx=0;idx<stocks.stock.length;idx++) {
+      let val = stocks.stock[idx];
+      let qty = val.quantity;
       if (qty) {
-        var displayname = val.item;
+        let displayname = val.item;
         if (val.desc) { displayname = val.desc; }
         if ((qty > 0) && (qty <= 99)) {
           displayname = displayname + " (qty: " + qty + ")";
         }
-        var addme = String.fromCharCode(code+idx) + ") " + displayname;
-        var price = val.price + " gp";
-        var addedtext = addme + "<span style='float:right'>" + price + "</span>";
+        let addme = String.fromCharCode(code+idx) + ") " + displayname;
+        let price = val.price + " gp";
+        let addedtext = addme + "<span style='float:right'>" + price + "</span>";
         maintext.addText(addedtext);
       }
-    });
+    };
     
     return 1;
   } else if (stocks.type === "spells") {
-    var yesspells = 0;
-    $.each(stocks.stock, function(idx, val) {
+    let yesspells = 0;
+    for (let idx=0;idx<stocks.stock.length;idx++) {
+      let val = stocks.stock[idx];
         if (!yesspells) {
           conversations[who.getConversation()].say(who, conversations[who.getConversation()]["_startbuy"].responses[1]);
         }
         yesspells = 1;
-        var displayname = val.desc + " (lvl: " + val.lvl + ")";
-        var addme = String.fromCharCode(code+idx) + ") " + displayname;
-        var price = val.price + " gp";
-        var addedtext = addme + "<span style='float:right'>" + price + "</span>";
+        let displayname = val.desc + " (lvl: " + val.lvl + ")";
+        let addme = String.fromCharCode(code+idx) + ") " + displayname;
+        let price = val.price + " gp";
+        let addedtext = addme + "<span style='float:right'>" + price + "</span>";
         if (PC.knowsSpell(val.lvl, val.sid)) {
           addedtext = "<span style='color:aaa'>" + addedtext + "</span>";
         }
         maintext.addText(addedtext);
         
-    });
+    };
     if (!yesspells) {
       conversations[who.getConversation()].say(who, conversations[who.getConversation()]["_knowsall"].responses[1]);
       return 0;
@@ -164,32 +166,33 @@ function DisplayWares(who) {
 }
 
 function GetSellBack(seller, merchant) {
-  var stocks = DU.merchants[merchant.getMerch()];
-  var code = 65; // ascii for A, to associate array index with letter for choice
-  var selllist = [];
+  let stocks = DU.merchants[merchant.getMerch()];
+  let code = 65; // ascii for A, to associate array index with letter for choice
+  let selllist = [];
 
-  $.each(stocks.stock, function(idx, val) { 
-    var ininv = seller.checkInventory(val.item);
+  for (let idx=0;idx<stocks.stock.length;idx++) {
+    let val=stocks.stock[idx];
+    let ininv = seller.checkInventory(val.item);
     if (ininv) {
-      var qty = ininv.getQuantity();
+      let qty = ininv.getQuantity();
       if ((ininv === seller.getArmor()) || (ininv === seller.getWeapon()) || (ininv === seller.getMissile())) {
         qty = qty-1;
       }
       if (qty) {
-        var displayname = ininv.desc;
+        let displayname = ininv.desc;
         displayname = displayname + " (" + qty + ")";
-        var addme = String.fromCharCode(code+idx) + ") " + displayname;
-        var price;
+        let addme = String.fromCharCode(code+idx) + ") " + displayname;
+        let price;
         if (ininv.valuable) {
           price = Math.ceil(val.price*.95) + " gp";
         } else {
           price = Math.ceil(val.price/10) + " gp";
         }
-        var addedtext = addme + "<span style='float:right'>" + price + "</span>";
+        let addedtext = addme + "<span style='float:right'>" + price + "</span>";
         selllist.push(addedtext);
       }
     }
-  });
+  };
   
   return selllist;
 }
@@ -197,7 +200,7 @@ function GetSellBack(seller, merchant) {
 function HasStock(whose) {
   if (DU.merchants[whose]) {
     if (DU.merchants[whose].type === "spells") { return 1; }
-    for (var i = 0; i < DU.merchants[whose].stock.length; i++) {
+    for (let i=0; i<DU.merchants[whose].stock.length; i++) {
       if (DU.merchants[whose].stock[i].quantity > 0) { return 1; }
     }
   }

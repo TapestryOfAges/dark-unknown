@@ -314,14 +314,14 @@ mappages["clearlake"].features[242] = {name : 'Chest', x : 29, y : 54};
 
 
 mappages["clearlake"].npcs = [];
-mappages["clearlake"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 23, y : 32, NPCName: 'Flora', PeaceAI: 'scheduled', Schedule: 'flora', Conversation: 'flora', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif'};
-mappages["clearlake"].npcs[1] = {name : 'BardVillagerNPC', x : 23, y : 11, NPCName: 'Xylia', PeaceAI: 'scheduled', Schedule: 'xylia', Conversation: 'xylia', Gender: 'female', NPCBand: '0', OverrideGraphic: '311.gif'};
-mappages["clearlake"].npcs[2] = {name : 'ChildVillagerNPC', x : 9, y : 12, NPCName: 'Maggie', PeaceAI: 'scheduled', Schedule: 'maggie', Conversation: 'maggie', Gender: 'female', NPCBand: '0'};
-mappages["clearlake"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 39, y : 15, NPCName: 'Julian', Desc: 'worried man', PeaceAI: 'scheduled', Schedule: 'julian', Conversation: 'julian', ConversationFlag: 'julian', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.2.gif'};
-mappages["clearlake"].npcs[4] = {name : 'RangerVillagerNPC', x : 14, y : 54, NPCName: 'Lisa', PeaceAI: 'scheduled', Schedule: 'lisa', Conversation: 'lisa', Gender: 'female', Merch: 'lisa', NPCBand: '0', OverrideGraphic: '305.gif'};
-mappages["clearlake"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 34, y : 54, NPCName: 'Robert', Desc: 'mapmaker', PeaceAI: 'scheduled', Schedule: 'robert', Conversation: 'robert', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif'};
-mappages["clearlake"].npcs[6] = {name : 'TinkerVillagerNPC', x : 25, y : 54, NPCName: 'Colin', Desc: 'whitesmith', PeaceAI: 'scheduled', Schedule: 'colin', Conversation: 'colin', Gender: 'male', NPCBand: '0', OverrideGraphic: '304.2.gif'};
-mappages["clearlake"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 9, y : 18, NPCName: 'Melissa', Desc: 'grocer', PeaceAI: 'scheduled', Schedule: 'melissa', Conversation: 'melissa', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif'};
+mappages["clearlake"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 23, y : 32, NPCName: 'Flora', PeaceAI: 'scheduled', Schedule: 'flora', Conversation: 'flora', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
+mappages["clearlake"].npcs[1] = {name : 'BardVillagerNPC', x : 23, y : 11, NPCName: 'Xylia', PeaceAI: 'scheduled', Schedule: 'xylia', Conversation: 'xylia', Gender: 'female', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
+mappages["clearlake"].npcs[2] = {name : 'ChildVillagerNPC', x : 9, y : 12, NPCName: 'Maggie', PeaceAI: 'scheduled', Schedule: 'maggie', Conversation: 'maggie', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["clearlake"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 39, y : 15, NPCName: 'Julian', Desc: 'worried man', PeaceAI: 'scheduled', Schedule: 'julian', Conversation: 'julian', ConversationFlag: 'julian', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
+mappages["clearlake"].npcs[4] = {name : 'RangerVillagerNPC', x : 14, y : 54, NPCName: 'Lisa', PeaceAI: 'scheduled', Schedule: 'lisa', Conversation: 'lisa', Gender: 'female', Merch: 'lisa', NPCBand: '0', OverrideGraphic: '305.gif', skintone: '1'};
+mappages["clearlake"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 34, y : 54, NPCName: 'Robert', Desc: 'mapmaker', PeaceAI: 'scheduled', Schedule: 'robert', Conversation: 'robert', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
+mappages["clearlake"].npcs[6] = {name : 'TinkerVillagerNPC', x : 25, y : 54, NPCName: 'Colin', Desc: 'whitesmith', PeaceAI: 'scheduled', Schedule: 'colin', Conversation: 'colin', Gender: 'male', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: '2'};
+mappages["clearlake"].npcs[7] = {name : 'TownsfolkVillagerNPC', x : 9, y : 18, NPCName: 'Melissa', Desc: 'grocer', PeaceAI: 'scheduled', Schedule: 'melissa', Conversation: 'melissa', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
 
 mappages["clearlake"].desc = "Clear Lake";
 mappages["clearlake"].longdesc = '';

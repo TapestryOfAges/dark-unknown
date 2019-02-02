@@ -9,8 +9,7 @@ var selectionval = localFactory.createTile("Ocean");
 var eidos = new Platonic();
 var mappages = new Pages();
 var amap = new GameMap();
-var debug = 0;
-var debugscreen;
+debug = 0;
 var togglehide = 0;
 var targetCursor = {};
 var workInLayers = 0;
@@ -29,7 +28,7 @@ var DUTime = new Timeline(0);
 var PC = new PCObject();
 var DU = {};
 DU.DUTime = DUTime;
-var gamestate = new GameStateData();
+gamestate = new GameStateData();
 var DULoot = SetLoots();            //
 var DULootGroups = SetLootGroups(); //  see loot.js and lootset.js for population
 var DUTraps = SetTraps();           //
@@ -315,7 +314,7 @@ function clickmap(xval,yval) {
       document.npceditpopup.npcname.value = editnpcs.getNPCName();
       document.npceditpopup.npcdesc.value = editnpcs.getDesc();
       document.npceditpopup.npclevel.value = editnpcs.getLevel();
-      document.npceditpopup.npcalign.value = editnpcs.getAlignment();
+      document.npceditpopup.npcskintone.value = editnpcs.skintone;
       document.npceditpopup.npcstr.value = editnpcs.getStr();
       document.npceditpopup.npcattitude.value = editnpcs.getAttitude();
       document.npceditpopup.npcdex.value = editnpcs.getDex();
@@ -546,8 +545,8 @@ function submitEditNPC(change) {
 		if (document.npceditpopup.npclevel.value !== editnpcs.getLevel()) {
 			editnpcs.setLevel(document.npceditpopup.npclevel.value);
 		}
-		if (document.npceditpopup.npcalign.value !== editnpcs.getAlignment()) {
-			editnpcs.setAlignment(document.npceditpopup.npcalign.value);
+		if (document.npceditpopup.npcskintone.value !== editnpcs.skintone) {
+			editnpcs.skintone = document.npceditpopup.npcskintone.value;
 		}
 		if (document.npceditpopup.npcstr.value !== editnpcs.getStr()) {
 			editnpcs.setStr(document.npceditpopup.npcstr.value);
@@ -1181,9 +1180,9 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     displayCell.graphics3 = graphics[3];
     displayCell.graphics1 = graphics[1];
     if (typeof displaytile.doTile === "function") {
-      showGraphic = displaytile.doTile(x,y,showGraphic);
-      if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
-      if (showGraphic.hasOwnProperty("spritexoffset")) { 
+      showGraphic = displaytile.doTile(x,y,displayCell);
+      if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
+      if ("spritexoffset" in showGraphic) { 
         displayCell.graphics2 = showGraphic.spritexoffset;
         displayCell.graphics3 = showGraphic.spriteyoffset;
       }      
@@ -1223,9 +1222,9 @@ function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
   displayCell.graphics3 = graphics[3];
   displayCell.graphics1 = graphics[1];
   if (typeof displaytile.doTile === "function") {
-    showGraphic = displaytile.doTile(xcoord,ycoord,showGraphic);
-    if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
-    if (showGraphic.hasOwnProperty("spritexoffset")) { 
+    showGraphic = displaytile.doTile(xcoord,ycoord,displayCell);
+    if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
+    if ("spritexoffset" in showGraphic) { 
       displayCell.graphics2 = showGraphic.spritexoffset;
       displayCell.graphics3 = showGraphic.spriteyoffset;
     }        

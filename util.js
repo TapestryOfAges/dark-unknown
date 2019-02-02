@@ -5,8 +5,8 @@ function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
     centerfromx = PC.getx();
     centerfromy = PC.gety();
   }
-  var edges = getDisplayCenter(mapref,centerfromx,centerfromy);
-  var coords = {};
+  let edges = getDisplayCenter(mapref,centerfromx,centerfromy);
+  let coords = {};
   coords.x = 192 + (newx - edges.centerx) * 32;
   coords.y = 192 + (newy - edges.centery) * 32 +2;
 
@@ -14,18 +14,18 @@ function getCoords(mapref, newx, newy, centerfromx, centerfromy) {
 }
 
 function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
-  var oldx = who.getx();
-  var oldy = who.gety();
+  let oldx = who.getx();
+  let oldy = who.gety();
   
   if (!overridetests) {  
     // check exit test
     if (typeof frommap.ExitTest === "function") {
-      var exittest = frommap.ExitTest(who,tomap,oldx,oldy,destx,desty);
+      let exittest = frommap.ExitTest(who,tomap,oldx,oldy,destx,desty);
       if (!exittest) { return 0; }
     }
     
     if (typeof tomap.EnterTest === "function") {
-      var entertest = tomap.Enter(who,frommap,oldx,oldy,destx,desty);
+      let entertest = tomap.Enter(who,frommap,oldx,oldy,destx,desty);
       if (!entertest) { return 0; }
     }
   }
@@ -48,7 +48,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
     frommap.deleteThing(who);
     DrawMainFrame("one",frommap,oldx,oldy);
     DUTime.removeEntityFrom(who);
-    var spawner=who.getSpawnedBy();
+    let spawner=who.getSpawnedBy();
     if (spawner) {
       spawner.deleteSpawned(who);
     }
@@ -60,8 +60,8 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	// also delete any NPCs following PC (summoned demons) FIXTHIS
   tomap.placeThing(destx,desty,who,0,"noactivate");
 	who.setHomeMap(tomap);
-	var tile = tomap.getTile(destx,desty);
-  var oldtile = frommap.getTile(oldx,oldy);
+	let tile = tomap.getTile(destx,desty);
+  let oldtile = frommap.getTile(oldx,oldy);
     
   if (PC.getHomeMap() === frommap) {
     DrawMainFrame("one",frommap,oldx,oldy);
@@ -72,12 +72,12 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	// Remove unneeded maps from mapmemory
 	if (who === PC){
 	  spellcount = {};  // see magic.js, this prevents animations from continuing
-  	var keepmap = frommap.getAlwaysRemember();
+  	let keepmap = frommap.getAlwaysRemember();
 	  if (!keepmap) {
 		  // is old map linked to new map?
-		  var linkedmaps = tomap.getLinkedMaps();
+		  let linkedmaps = tomap.getLinkedMaps();
 		  if (linkedmaps.length > 0) {
-		  	for (var i=0; i<linkedmaps.length; i++) {
+		  	for (let i=0; i<linkedmaps.length; i++) {
 			  	if (linkedmaps[i] == frommap.getName()) {
 				  	keepmap = 1;
   				}
@@ -98,7 +98,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	if (who === PC) { ProcessAmbientNoise(tile); }
 	if ((DU.gameflags.getFlag("music")) && (who === PC) && (tomap.getMusic() !== nowplaying.name)) {
 	  StopMusic(nowplaying);
-	  var song = tomap.getMusic();
+	  let song = tomap.getMusic();
 	  nowplaying = DUPlayMusic(song);
 	}
 	
@@ -107,17 +107,16 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 }
 
 function AdjustStartingLocations(amap) {
-  var allnpcs = amap.npcs.getAll();
-  var linked = amap.getLinkedMaps();
+  let allnpcs = amap.npcs.getAll();
+  let linked = amap.getLinkedMaps();
 
   if (linked && (linked.length > 0) && (linked[0] !== "")) {
-    var othermap = new GameMap();
-    for (var j=0;j<linked.length;j++) {
+    let othermap = new GameMap();
+    for (let j=0;j<linked.length;j++) {
       othermap = maps.getMap(linked[j]);
-      var othernpcs = othermap.npcs.getAll();
-      for (var i=0;i<othernpcs.length;i++) {
+      let othernpcs = othermap.npcs.getAll();
+      for (let i=0;i<othernpcs.length;i++) {
         allnpcs.push(othernpcs[i]);
-//        console.log("Pushing " + othernpcs[i].getNPCName());
       }
     }
   }
@@ -125,12 +124,12 @@ function AdjustStartingLocations(amap) {
   for (let i=0;i<allnpcs.length;i++) {
 
     if (allnpcs[i]._mapName && (allnpcs[i].getHomeMap().getName() !== allnpcs[i]._mapName)) {
-      var destmap = maps.getMap(allnpcs[i]._mapName);
-      var oldmap = allnpcs[i].getHomeMap();
+      let destmap = maps.getMap(allnpcs[i]._mapName);
+      let oldmap = allnpcs[i].getHomeMap();
       if (!destmap) { alert("Failure to find map " + allnpcs[i]._mapName + " while moving " + allnpcs[i].getNPCName()); }
       let oldtile = oldmap.getTile(allnpcs[i].gety(),allnpcs[i].gety());
       // no need to execute walkoffs, didn't execute walkons
-      var desttile = MoveBetweenMaps(allnpcs[i],allnpcs[i].getHomeMap(),destmap,allnpcs[i]._x,allnpcs[i]._y);
+      let desttile = MoveBetweenMaps(allnpcs[i],allnpcs[i].getHomeMap(),destmap,allnpcs[i]._x,allnpcs[i]._y);
       desttile.executeWalkons(allnpcs[i]);
       DebugWrite("schedules", "During map population, moved this NPC (" + allnpcs[i].getNPCName() + ") to its correct map by schedule (from " + oldmap.getName() + " to " + destmap.getName() + " at " + allnpcs[i]._x + "," + allnpcs[i]._y + ").<br />");
       delete allnpcs[i]._mapName;
@@ -142,11 +141,11 @@ function AdjustStartingLocations(amap) {
 
 function FindBelow(upx,upy,map) {
 	if (!map.getSeeBelow()) { return 0; }
-	var lowermapname = map.getSeeBelow();
-	var lowermap = maps.getMap(lowermapname);
-	var tile = lowermap.getTile(upx,upy);
+	let lowermapname = map.getSeeBelow();
+	let lowermap = maps.getMap(lowermapname);
+	let tile = lowermap.getTile(upx,upy);
 	if (tile) { 
-	  var retval = {};
+	  let retval = {};
 	  retval.tile = tile;
 	  retval.map = lowermap;
 	  return retval; 
@@ -157,7 +156,7 @@ function FindBelow(upx,upy,map) {
 function DiceObject() {
 	
   this.parse = function(die) {
-    var dieobj = {};
+    let dieobj = {};
     if (parseInt(die) == die) {
       dieobj.plus = parseInt(die);
       dieobj.quantity = 0;
@@ -167,7 +166,7 @@ function DiceObject() {
     if (/\d+d\d+\-\d+/.test(die)) {
       die = die.replace(/\-/,'+-');
     }
-    var tmpobj = [];
+    let tmpobj = [];
     tmpobj = die.split("+");
     if (tmpobj[1]){
       dieobj.plus = parseInt(tmpobj[1]);
@@ -197,10 +196,10 @@ function DiceObject() {
 	}
 	
   this.roll = function(die) {
-    var dieobj = this.parse(die);
-    var roll = dieobj.plus;
+    let dieobj = this.parse(die);
+    let roll = dieobj.plus;
     if (dieobj.quantity > 0) {
-      for (var i = 1; i <= dieobj.quantity; i++) {
+      for (let i = 1; i <= dieobj.quantity; i++) {
         roll += Math.floor(Math.random() * dieobj.dice)+ 1;
       }
     }	 
@@ -209,24 +208,24 @@ function DiceObject() {
   }
   
   this.rollmin = function(die) {
-    var dieobj = this.parse(die);
+    let dieobj = this.parse(die);
     return (dieobj.plus + dieobj.quantity);
   }
   
   this.rollave = function(die) {
-    var dieobj = this.parse(die);
+    let dieobj = this.parse(die);
     return (dieobj.plus + dieobj.quantity * (1+dieobj.dice)/2);  
   }
 
   this.rollmax = function(die) {
-    var dieobj = this.parse(die);
+    let dieobj = this.parse(die);
     return (dieobj.dice*dieobj.quantity + dieobj.plus);
   }
 }
 DiceObject.prototype = new Object();
 
 function PlaceMonsters(battlemap,group,whoseturn) {
-  var monsters = [];
+  let monsters = [];
   if (typeof group.populate === "function") {
     monsters = group.populate();
   } else {
@@ -234,44 +233,42 @@ function PlaceMonsters(battlemap,group,whoseturn) {
     return 0;
   }
     
-  var monstercoords = [];
+  let monstercoords = [];
+  let coin;
   switch (monsters.length) {
       case 1:
         monstercoords[0] = {x:6, y:3};
         break;
       case 2:
-        var coin = Math.floor(Math.random() * 2) +1;
-        if (coin == 1) {
+        if (Dice.roll("1d2") === 1) {
           monstercoords[0] = {x:5, y:3};
           monstercoords[1] = {x:7, y:3};
         }
-        else if (coin == 2) {
+        else {
           monstercoords[0] = {x:6, y:2};
           monstercoords[1] = {x:6, y:4};
         }
         break;
       case 3:
-        var coin = Math.floor(Math.random() * 2) +1;
-        if (coin == 1) {
+        if (Dice.roll("1d2") === 1) {
           monstercoords[0] = {x:6, y:3};
           monstercoords[1] = {x:4, y:1};
           monstercoords[2] = {x:8, y:1};
         }
-        else if (coin == 2) {
+        else {
           monstercoords[0] = {x:6, y:1};
           monstercoords[1] = {x:4, y:3};
           monstercoords[2] = {x:8, y:3};
         }
         break;
       case 4:
-        var coin = Math.floor(Math.random() * 2) +1;
-        if (coin === 1) {
+        if (Dice.roll("1d2") === 1) {
           monstercoords[0] = {x:4, y:1};
           monstercoords[1] = {x:5, y:3};
           monstercoords[2] = {x:7, y:3};
           monstercoords[3] = {x:8, y:1};
         }
-        else if (coin === 2) {
+        else {
           monstercoords[0] = {x:6, y:1};
           monstercoords[1] = {x:6, y:3};
           monstercoords[2] = {x:8, y:2};
@@ -279,7 +276,7 @@ function PlaceMonsters(battlemap,group,whoseturn) {
         }
         break;
       case 5:
-        var coin = Math.floor(Math.random() * 4) +1;
+        coin = Dice.roll("1d4");
         if (coin === 1) {
           monstercoords[0] = {x:6, y:4};
           monstercoords[1] = {x:8, y:3};
@@ -310,7 +307,7 @@ function PlaceMonsters(battlemap,group,whoseturn) {
         }
         break;
       case 6:
-        var coin = Math.floor(Math.random() * 5) +1;
+        coin = Dice.roll("1d5");
         if (coin === 1) {
           monstercoords[0] = {x:6, y:3};
           monstercoords[1] = {x:5, y:2};
@@ -349,7 +346,7 @@ function PlaceMonsters(battlemap,group,whoseturn) {
         }
         break;
       case 7:
-        var coin = Math.floor(Math.random() * 3) +1;
+        coin = Dice.roll("1d3");
         if (coin === 1) {
           monstercoords[0] = {x:6, y:4};
           monstercoords[1] = {x:5, y:3};
@@ -389,9 +386,8 @@ function PlaceMonsters(battlemap,group,whoseturn) {
       
   }
 
-  for (var i =0; i < monsters.length; i++) {
-//    monsters[i].setHomeMap(battlemap);
-    var timetoplace = 0;
+  for (let i=0; i < monsters.length; i++) {
+    let timetoplace = 0;
     if (!whoseturn) { // combat began on NPC turn
       timetoplace = .001;
     }
@@ -402,9 +398,9 @@ function PlaceMonsters(battlemap,group,whoseturn) {
 }
 
 function GetDirection(viewerx, viewery, targx, targy) {
-  var direction;
-  var diffx = targx - viewerx;
-  var diffy = targy - viewery;
+  let direction;
+  let diffx = targx - viewerx;
+  let diffy = targy - viewery;
   if ((diffx === 0) && (diffy < 0)) {
     direction = 0;
   } else if ((diffx === 0) && (diffy > 0)) {
@@ -416,8 +412,8 @@ function GetDirection(viewerx, viewery, targx, targy) {
       direction = 6;
     }
     else { 
-      var horflip = 0;
-      var verflip = 1;
+      let horflip = 0;
+      let verflip = 1;
       if (diffy < 0) { 
         diffy = Math.abs(diffy); 
         verflip = 0;
@@ -458,9 +454,9 @@ function GetDirection(viewerx, viewery, targx, targy) {
 }
 
 function GetViewDirection(viewerx, viewery, targx, targy) {
-  var direction;
-  var diffx = targx - viewerx;
-  var diffy = targy - viewery;
+  let direction;
+  let diffx = targx - viewerx;
+  let diffy = targy - viewery;
   if ((diffx === 0) && (diffy === 0)) {
     direction = -1;
   } else if ((diffx === 0) && (diffy < 0)) {
@@ -485,9 +481,9 @@ function GetViewDirection(viewerx, viewery, targx, targy) {
 }
 
 function WritePages() {   
-  var divid = "#spellbookinnerdiv";
-  var spellhtml = "<table class='spells'>";
-  var showpages = Math.ceil(PC.getLastSpellLevel()/2);
+  let divid = "spellbookinnerdiv";
+  let spellhtml = "<table class='spells'>";
+  let showpages = Math.ceil(PC.getLastSpellLevel()/2);
   if (showpages === 1) {
     spellhtml += "<tr><td class='spelllevel'>First Circle</td><td><img src='graphics/spacer.gif' width='60' height='16' /></td><td class='spelllevel'>Second Circle</td></tr><tr><td class='spellslist'>";
   } else if (showpages === 2) {
@@ -502,36 +498,36 @@ function WritePages() {
   spellhtml += GetSpellList(showpages*2);
   spellhtml += "</td></tr></table>"
   
-  $(divid).html(spellhtml);
+  document.getElementById(divid).innerHTML = spellhtml;
   if (PC.getLastSpell()) {
-    var spellspan = "#level" + PC.getLastSpellLevel() + "spell" + PC.getLastSpell();
-    $(spellspan).addClass("selected");
-    $("#spellbookinnerdiv").append("<div class='spelldescs' id='spelldesc'></div>");
+    let spellspan = "level" + PC.getLastSpellLevel() + "spell" + PC.getLastSpell();
+    document.getElementById(spellspan).classList.toggle("selected");
+    document.getElementById("spellbookinnerdiv").innerHTML += "<div class='spelldescs' id='spelldesc'></div>";
     WriteSpellDesc();
   }
 }
 
 function WriteSpellDesc() {
   if (typeof magic[PC.getLastSpellLevel()][GetSpellID(PC.getLastSpell())].getLongDesc === "function") {
-    $("#spelldesc").html(magic[PC.getLastSpellLevel()][GetSpellID(PC.getLastSpell())].getLongDesc());
+    document.getElementById('spelldesc').innerHTML = magic[PC.getLastSpellLevel()][GetSpellID(PC.getLastSpell())].getLongDesc();
     if (PC.getKnowsInfusion() && (typeof magic[PC.getLastSpellLevel()][GetSpellID(PC.getLastSpell())].getInfusedDesc === "function")) {
-      $("#spelldesc").append("<br /><span style='color:yellow'>INFUSED:</span> " + magic[PC.getLastSpellLevel()][GetSpellID(PC.getLastSpell())].getInfusedDesc());
+      document.getElementById('spelldesc').innerHTML += "<br /><span style='color:yellow'>INFUSED:</span> " + magic[PC.getLastSpellLevel()][GetSpellID(PC.getLastSpell())].getInfusedDesc();
     }
   } else {
-    $("#spelldesc").html(" ");
+    document.getElementById('spelldesc').innerHTML = "";
   }
 }
 
 function HighlightSpell(lvl,spell) {
-  var spellspan = "#level" + PC.getLastSpellLevel() + "spell" + PC.getLastSpell();
-  $(spellspan).removeClass("selected");
-  spellspan = "#level" + lvl + "spell" + spell;
-  $(spellspan).addClass("selected");
+  let spellspan = "level" + PC.getLastSpellLevel() + "spell" + PC.getLastSpell();
+  document.getElementById(spellspan).classList.toggle("selected");
+  spellspan = "level" + lvl + "spell" + spell;
+  document.getElementById(spellspan).classList.toggle("selected");
 }
 
 function GetSpellList(lvl) {
-  var makehtml = "";
-  for (var i=1;i<=8;i++) {
+  let makehtml = "";
+  for (let i=1;i<=8;i++) {
     if (PC.knowsSpell(lvl,GetSpellID(i))) {
       makehtml += "<span id='level" + lvl + "spell" + i + "'>" + magic[lvl][GetSpellID(i)].getName() + "</span>";
       // need to add a mouseclick to the spells for tablet play
@@ -542,41 +538,41 @@ function GetSpellList(lvl) {
 }
 
 function GetCombatMap(atk,def) {
-  var atk_tile = atk.getHomeMap().getTile(atk.getx(),atk.gety());
-  var def_tile = def.getHomeMap().getTile(def.getx(),def.gety());
-  var atk_terrain = atk_tile.terrain.getCombatMap();
+  let atk_tile = atk.getHomeMap().getTile(atk.getx(),atk.gety());
+  let def_tile = def.getHomeMap().getTile(def.getx(),def.gety());
+  let atk_terrain = atk_tile.terrain.getCombatMap();
   if (!atk_terrain) { atk_terrain = "Grass"; }
-  var def_terrain = def_tile.terrain.getCombatMap();
+  let def_terrain = def_tile.terrain.getCombatMap();
   if (!def_terrain) { def_terrain = "Grass"; }
   
-  var rand = Math.floor((Math.random()*2)+1); 
+  let rand = Math.floor((Math.random()*2)+1); 
   
   if ((atk_terrain === "Water") && (def_terrain === "Water")) {
-    var final = "combatWater" + rand;
+    let final = "combatWater" + rand;
     return final;
   } 
   
   if ((atk_terrain === "Water") || (def_terrain === "Water")) {
-    var PC_tile = PC.getHomeMap().getTile(PC.getx(),PC.gety());
-    var PC_terrain = PC_tile.terrain.getCombatMap();
+    let PC_tile = PC.getHomeMap().getTile(PC.getx(),PC.gety());
+    let PC_terrain = PC_tile.terrain.getCombatMap();
     if (PC_terrain === "Water") {  // PC attacking from offshore
-      var final = "combatCoast" + rand;
+      let final = "combatCoast" + rand;
       return final;
     } else {  // PC fighting an offshore foe
-      var final = "combatShore" + rand;
+      let final = "combatShore" + rand;
       return final;
     }
   }
   
-  var final = "combat" + def_terrain + rand;
+  let final = "combat" + def_terrain + rand;
   return final;
   
 }
 
 function ProcessAmbientNoise(newtile) {
   if (newtile.getLocalSound()) {
-    var ambsound = newtile.getLocalSound();
-    if ($.isEmptyObject(ambient)) {
+    let ambsound = newtile.getLocalSound();
+    if (Object.keys(ambient).length === 0) {
       ambient = DUPlayAmbient(ambsound);
     } else if (ambient.name !== ambsound) {
       DecAmbientVol(ambient);
@@ -585,7 +581,7 @@ function ProcessAmbientNoise(newtile) {
       // same thing playing, no need to change
     }
   } else {
-    if (!$.isEmptyObject(ambient)) { 
+    if (Object.keys(ambient).length !== 0) {
       //ambient.song.stop(); 
       DecAmbientVol(ambient);
       ambient = {}; 
@@ -594,10 +590,10 @@ function ProcessAmbientNoise(newtile) {
 }
 
 function SpellInitials(who) {
-  var initials = "";
-  var spells = who.getSpellEffects();
+  let initials = "";
+  let spells = who.getSpellEffects();
   if (spells) {
-    for (var i=0; i<spells.length; i++) {
+    for (let i=0; i<spells.length; i++) {
       if (spells[i].getDisplay()) {
         if (!initials.match(spells[i].getDisplay())) {
           initials += spells[i].getDisplay();
@@ -625,7 +621,7 @@ function CheckMapForHostiles(who) {
 function GetDistance(x1,y1,x2,y2,disttype) {
   if (disttype === "square") { return GetSquareDistance(x1,y1,x2,y2); }
   if (disttype === "manhatten") { return GetManhattenDistance(x1,y1,x2,y2); }
-  var dist = Math.pow(Math.pow(x1-x2,2) + Math.pow(y1-y2,2), 1/2)
+  let dist = Math.pow(Math.pow(x1-x2,2) + Math.pow(y1-y2,2), 1/2)
   return dist;
 }
 
@@ -638,10 +634,10 @@ function GetManhattenDistance(x1,y1,x2,y2) {
 }
 
 function GetDistanceByPath(who1,who2,movetype) {
-  var themap = who1.getHomeMap();
+  let themap = who1.getHomeMap();
   if (themap !== who2.getHomeMap()){ return 0; }
   
-  var path = themap.getPath(who1.getx(), who1.gety(), who2.getx(), who2.gety(),movetype);
+  let path = themap.getPath(who1.getx(), who1.gety(), who2.getx(), who2.gety(),movetype);
   if (path.length) {
     path.shift();
     return path.length;
@@ -653,19 +649,17 @@ function PerformTrap(who, trap, traplvl, trapped) {
   
   if (trap === "dart") {
     if (!IsAdjacent(who,trapped)) {
-//      if (debug && debugflags.gameobj) { dbs.writeln("Dart trap fires, misses everyone (telekinesis)<br />"); }
       DebugWrite("gameobj", "Dart trap fires, misses everyone (telekinesis)<br />");
       maintext.addText("TRAP! A dart flies out and misses everything.");
       return 0;
     }
-    var def = who.getDefense();
-    var tohit = (2*traplvl - def + 10)/100;
+    let def = who.getDefense();
+    let tohit = (2*traplvl - def + 10)/100;
     if (tohit < .05) { tohit = .05; }
-//    if (debug && debugflags.gameobj) { dbs.writeln("Dart trap fires, lvl " + traplvl + ", player defense is " + def + ", change to hit is " + tohit + "<br />"); }
     DebugWrite("gameobj", "Dart trap fires, lvl " + traplvl + ", player defense is " + def + ", chance to hit is " + tohit + "<br />");
     if (Math.random() < tohit) {  // dart hits!
       maintext.addText("TRAP! A dart strikes you. You are poisoned.");
-      var poison = localFactory.createTile("Poison");
+      let poison = localFactory.createTile("Poison");
       who.addSpellEffect(poison);
       DrawCharFrame();
       return 1;
@@ -675,50 +669,46 @@ function PerformTrap(who, trap, traplvl, trapped) {
     } 
   } else if (trap === "acid") {
     if (!IsAdjacent(who,trapped)) {
-//      if (debug && debugflags.gameobj) { dbs.writeln("Acid trap fires, misses everyone (telekinesis)<br />"); }
       DebugWrite("gameobj", "Acid trap fires, misses everyone (telekinesis)<br />");
       maintext.addText("TRAP! Acid spews forth, missing everything.");
       return 0;
     }
-    var aciddmg = Dice.roll("1d6+3");
+    let aciddmg = Dice.roll("1d6+3");
     maintext.addText("TRAP! You are splashed with acid.");
     who.dealDamage(aciddmg, trapped, "acid");
     DrawCharFrame();
     return 1;
   } else if (trap === "gas") {
     if (!IsAdjacent(who,trapped)) {
-//      if (debug && debugflags.gameobj) { dbs.writeln("Gas trap fires, misses everyone (telekinesis)<br />"); }
       DebugWrite("gameobj", "Gas trap fires, misses everyone (telekinesis)<br />");
       maintext.addText("TRAP! Poison gas billows forth, but disperses before it reaches you.");
       return 0;
     }
     maintext.addText("TRAP! You are poisoned.");
-    var poison = localFactory.createTile("Poison");
+    let poison = localFactory.createTile("Poison");
     who.addSpellEffect(poison);
     DrawCharFrame();
     return 1;    
   } else if (trap === "explosion") {
     if (!IsAdjacent(who,trapped)) {
-//      if (debug && debugflags.gameobj) { dbs.writeln("Explosion trap fires, misses everyone (telekinesis)<br />"); }
       DebugWrite("gameobj", "Explosion trap fires, misses everyone (telekinesis)<br />");
       maintext.addText("TRAP! The lock explodes, but you just feel a little heat.");
       return 0;
     }
     maintext.addText("TRAP! There is an explosion!");
-    var firedmg = Dice.roll("3d6+4");
+    let firedmg = Dice.roll("3d6+4");
     who.dealDamage(firedmg,trapped,"fire");
     DrawCharFrame();
     return 1;
   } else if (trap === "drain") {
     if (!IsAdjacent(who,trapped)) {
-//      if (debug && debugflags.gameobj) { dbs.writeln("Drain trap fires, misses everyone (telekinesis)<br />"); }
       DebugWrite("gameobj", "Drain trap fires, misses everyone (telekinesis)<br />");
       maintext.addText("TRAP! You feel a distant pull on your mind, but then it passes.");
       return 0;
     }
 
     maintext.addText("TRAP! You feel a pull on your mind.");
-    var drain = Dice.roll("2d4");
+    let drain = Dice.roll("2d4");
     if (drain > who.getMana()) {
       drain = who.getMana();
     }
@@ -732,7 +722,7 @@ function ApplyRune(who, rune, runeref) {
   maintext.delayedAddText("You touch the glowing sigil.");
   maintext.delayedAddText("It burns you!");
   who.dealDamage((who.getHP()/3), runeref);
-  var runecap = rune.charAt(0).toUpperCase() + rune.slice(1)
+  let runecap = rune.charAt(0).toUpperCase() + rune.slice(1)
   maintext.delayedAddText("You have been marked with the Rune of " + runecap + "!");
   if (who.runes[rune] ===1) { maintext.delayedAddText("No effect!"); }
   else {
@@ -750,71 +740,6 @@ function DoPCDeath() {
   DebugWrite("all","IN DoPCDeath().<br />");
 }
 
-// these two functions found on stackexchange
-// http://stackoverflow.com/questions/1773069/using-jquery-to-compare-two-arrays-of-javascript-objects
-
-function arrayCompare(arrayA, arrayB) {
-  var a = jQuery.extend(true, [], arrayA);
-  var b = jQuery.extend(true, [], arrayB);
-  a.sort(); 
-  b.sort();
-  for (var i = 0, l = a.length; i < l; i++) {
-    if (a[i] !== b[i]) { 
-      return false;
-    }
-  }
-  return true;
-}
-
-function objectCompare(objA, objB) {
-
-  var i,a_type,b_type;
-
-  // Compare if they are references to each other 
-  if (objA === objB) { return true;}
-
-  if (Object.keys(objA).length !== Object.keys(objB).length) { return false;}
-  for (i in objA) {
-    if (objA.hasOwnProperty(i)) {
-      if (typeof objB[i] === 'undefined') {
-        return false;
-      }
-      else {
-        a_type = Object.prototype.toString.apply(objA[i]);
-        b_type = Object.prototype.toString.apply(objB[i]);
-
-        if (a_type !== b_type) {
-          return false; 
-        }
-      }
-    }
-    if (objectCompare(objA[i],objB[i]) === false){
-      return false;
-    }
-  }
-  return true;
-}
-
-// more stackoverflow: http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array#
-function ShuffleArray(arr) {
-  var currentIndex = arr.length, temporaryValue, randomIndex ;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = arr[currentIndex];
-    arr[currentIndex] = arr[randomIndex];
-    arr[randomIndex] = temporaryValue;
-  }
-
-  return arr;
-}
-
 function GetOctant(diffx, diffy) {
   // diffx and diffy created via dest.x-start.x and dest.y-start.y
   
@@ -829,8 +754,8 @@ function GetOctant(diffx, diffy) {
       return 6;
     }
     else { 
-      var horflip = 0;
-      var verflip = 1;
+      let horflip = 0;
+      let verflip = 1;
       if (diffy < 0) { 
         diffy = Math.abs(diffy); 
         verflip = 0;
@@ -839,7 +764,7 @@ function GetOctant(diffx, diffy) {
         diffx = Math.abs(diffx);
         horflip = 1;
       }
-      var slope = diffy/diffx;
+      let slope = diffy/diffx;
       if ((slope > 2.42) && (verflip === 0)) {
         return 0;
       }
@@ -870,11 +795,11 @@ function GetOctant(diffx, diffy) {
 }
 
 function GetEffectGraphic(start, dest, params) {
-  var ammo = {};
+  let ammo = {};
   ammo.graphic = params.graphic;
   ammo.yoffset = params.yoffset;
-  var diffx = dest.getx() - start.getx();
-  var diffy = dest.gety() - start.gety();
+  let diffx = dest.getx() - start.getx();
+  let diffy = dest.gety() - start.gety();
   ammo.fired = GetOctant(diffx,diffy);
   ammo.xoffset = ammo.fired * -32;
   if (!params.directionalammo) {
@@ -885,14 +810,14 @@ function GetEffectGraphic(start, dest, params) {
 
 function AddLoot(towhat) {
 
-  var lootgroup = towhat.getLootgroup();
+  let lootgroup = towhat.getLootgroup();
   if (lootgroup) {
-    var loot = {};
+    let loot = {};
     if (DULoot[lootgroup]) {
       loot = DULoot[lootgroup].getLoot(); 
       if (loot.lootlist.length) {
         if (towhat.isContainer) {
-          for (var i=0; i<loot.lootlist.length;i++){
+          for (let i=0; i<loot.lootlist.length;i++){
             towhat.addToContainer(loot.lootlist[i], 1);
           }
         } else {
@@ -912,18 +837,17 @@ function AddLoot(towhat) {
   }
 
   if (DULoot[lootgroup].trap) {
-    var trapname = DULoot[lootgroup].trap;
+    let trapname = DULoot[lootgroup].trap;
     DebugWrite("gameobj", "Chest created, might be trapped with strength: " + trapname + ".<br />");
-    var trap = DUTraps[trapname].getTrap();
+    let trap = DUTraps[trapname].getTrap();
     if (trap.trap) {
       towhat.setTrap(trap.trap, trap.level);
     }
   }
-
 }
 
 function RollDamage(dam_val,extra) {
-  var dmg = Dice.roll(dam_val);
+  let dmg = Dice.roll(dam_val);
   if (extra) { dmg += Dice.roll(extra); }
   return parseInt(dmg);
 }
@@ -937,29 +861,26 @@ function IsAdjacent(one,two,nodiag) {
 
 function CheckAbsorb(dam,to,from,type) {
   if (!type) { type = "physical"; }
-  var absorb = to.getResist(type);
+  let absorb = to.getResist(type);
 
   if (!absorb) { return dam; }
   
   if (to.checkType("npc") && from && (type === "physical") && (typeof from.getEquipment === "function")) {
-    var weapon = from.getEquipment("weapon");
+    let weapon = from.getEquipment("weapon");
     absorb = absorb - weapon.getReduceArmor();
     if (absorb < 0) { absorb = 0; }
   }
   
   if (absorb !== 0) {
-//    if (debug && debugflags.gameobj) { dbs.writeln("Damage modified: " + dam + " becomes "); }
     DebugWrite("combat", "Damage modified: " + dam + " becomes ");
     dam = dam * (1-(absorb/100));
-//    if (debug && debugflags.gameobj) { dbs.writeln(dam + ".<br />"); }
     DebugWrite("combat", dam + ".<br />");
   }
-//  if (dam < 1) { dam = 1; }
   if (to.checkType("npc")) {
-    var ironflesh = to.getSpellEffectsByName("IronFlesh");
+    let ironflesh = to.getSpellEffectsByName("IronFlesh");
     if (ironflesh) {
       dam = (Math.max(0,dam-5));
-      var power = ironflesh.getPower();
+      let power = ironflesh.getPower();
       power -= 5;
       if (power <= 0) {
         ironflesh.endEffect();
@@ -973,17 +894,15 @@ function CheckAbsorb(dam,to,from,type) {
 
 
 function FindNearby(what,map,radius,shape,tox,toy) {
-//  alert(what + " " + map.getName() + " " + radius + " " + shape + " " + tox + " " + toy);
   var adj = [];
   if (shape === "box") {
-    for (var i = tox-radius; i<=tox+radius; i++) {
-      for (var j = toy-radius; j<=toy+radius; j++) {
-        var tile = map.getTile(i,j);
+    for (let i = tox-radius; i<=tox+radius; i++) {
+      for (let j = toy-radius; j<=toy+radius; j++) {
+        let tile = map.getTile(i,j);
         if (tile !== "OoB") {
-          var list;
+          let list;
           if (what === "npcs") {
             list = tile.getNPCs();
-//            alert(list.length + " npcs found at " + i + "," + j);
             if ((PC.getHomeMap() === map) && (PC.getx() === i) && (PC.gety() === j)) {
               list.push(PC);
             }
@@ -993,24 +912,25 @@ function FindNearby(what,map,radius,shape,tox,toy) {
             alert("Find Adj with improper what: " + what);
             return;
           }
-          $.each(list, function(idx,val) {
-            adj.push(val);
-          });
+          for (let k=0;k<list.length;k++) {
+            adj.push(list[k]);
+          }
         }
       }
     }
   } else if (shape === "circle") {
-    var list;
+    let list;
     if (what === "npcs") { 
       list = map.npcs.getAll();  
       list.push(PC);
     }
     else if (what === "features") { list = map.features.getAll(); }
-    $.each(list, function(idx,val) {
+    for (let i=0;i<list.length;i++) {
+      let val=list[i];
       if (((val.getx() !== tox) || (val.gety !== toy)) && (GetDistance(val.getx(), val.gety(),tox,toy) <= radius)) {
         adj.push(val);
       }
-    });
+    }
   }
   return adj;
 }
@@ -1020,53 +940,54 @@ function FindNearby(what,map,radius,shape,tox,toy) {
 // align is "enemy" or "ally" (or blank for either)
 function FindNearestNPC(from, align, except) {
   if (!except) { except = []; }
-  var found = from.getHomeMap().npcs.getAll();
+  let found = from.getHomeMap().npcs.getAll();
   if (PC.getHomeMap() === from.getHomeMap()) { 
     if (!align || ((align === "enemy") && (from.getAttitude() !== PC.getAttitude())) || ((align === "ally") && (from.getAttitude() === PC.getAttitude()))) {
       found.push(PC); 
     }
   }
-  var nearest;
-  var distance = 10000;
-  $.each(found, function(idx,val) {
-    if ((val !== from) && ($.inArray(val,except) === -1)) {
+  let nearest;
+  let distance = 10000;
+  for (let i=0;i<found.length;i++) {
+    let val = found[i];
+    if ((val !== from) && (!except.includes(val))) {
       if (!align || ((align === "enemy") && (from.getAttitude() !== val.getAttitude())) || ((align === "ally") && (from.getAttitude() === val.getAttitude()))) {
-        var movetype = from.getMovetype();
+        let movetype = from.getMovetype();
         if (from.specials.open_door) { movetype = MOVE_WALK_DOOR; }
-        var dist = GetDistanceByPath(from,val,movetype);
+        let dist = GetDistanceByPath(from,val,movetype);
         if (dist < distance) {
           nearest = val;
           distance = dist;
         }
       }
     }
-  });
+  }
   return nearest;
 }
 
 function DisplayTestMap() {
-  var mapdiv;
-  var themap = PC.getHomeMap();
+  let mapdiv;
+  let themap = PC.getHomeMap();
   mapdiv += "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20;\">";
-  for (var i=0;i<themap.getHeight();i++) {
+  for (let i=0;i<themap.getHeight();i++) {
     mapdiv += "<tr>";
-    for (var j=0;j<themap.getWidth();j++) {
-    	var thiscell = themap.getTile(j,i);
-    	var graphics = thiscell.getTop().getGraphicArray();
+    for (let j=0;j<themap.getWidth();j++) {
+    	let thiscell = themap.getTile(j,i);
+    	let graphics = thiscell.getTop().getGraphicArray();
       mapdiv += '<td class="maptd" id="td-tile'+j+'x'+i+'" style="background-image:url(\'graphics/' + graphics[0] + '\'); background-repeat:no-repeat; background-position: ' + graphics[2] + 'px ' + graphics[3] + 'px; position:relative; z-index:20;"><img id="tile'+j+'x'+i+'" src="graphics/'+graphics[1]+'" border="0" alt="tile'+j+'x'+i+'" width="32" height="32" style="position: relative; z-index:20" title="' + thiscell.desc + '" /></td>';
     }  
     mapdiv += '</tr>';
   }
   mapdiv  += '</table>';
 
-  var debugmap = window.open('','debugmapscreen');
+  let debugmap = window.open('','debugmapscreen');
   debugmap.document.writeln(mapdiv);
   
   debugmap.document.close()
 }
 
 function GetAllWithin(type,rad,map,center) {
-  var everything;
+  let everything;
   if (type === "features") {
     everything = map.getAllFeatures();
   } else if (type === "npcs") {
@@ -1076,20 +997,21 @@ function GetAllWithin(type,rad,map,center) {
     return [];
   }
   
-  var within = [];
-  $.each(everything, function(idx,val) {
+  let within = [];
+  for (let i=0;i<everything.length;i++) {
+    let val=everything[i];
     if (GetDistance(val.getx(), val.gety(),center.x, center.y) < rad) {
       within.push(val);
     }
-  });
+  }
   
   return within;
 }
 
 function IsOnPentagram(who) {
-  var themap = who.getHomeMap();
-  var tile = themap.getTile(who.getx(), who.gety());
-  var terrain = tile.getTerrain();
+  let themap = who.getHomeMap();
+  let tile = themap.getTile(who.getx(), who.gety());
+  let terrain = tile.getTerrain();
   if (terrain.getGraphic() === "pentagram.gif") {
     return 1;
   } 
@@ -1112,18 +1034,18 @@ function IsObjectVisibleOnScreen(what) {
 }
 
 function IsVisibleOnScreen(x,y) {
-  var themap = PC.getHomeMap();
-  var display = getDisplayCenter(themap,PC.getx(),PC.gety());
+  let themap = PC.getHomeMap();
+  let display = getDisplayCenter(themap,PC.getx(),PC.gety());
   if ((display.leftedge > x) || (display.rightedge < x)) { return 0; }
   if ((display.topedge > y) || (display.bottomedge < y)) { return 0; }
-  var targettile = themap.getTile(x, y);
+  let targettile = themap.getTile(x, y);
   x = x-display.leftedge;
   y = y-display.topedge;
-  var onscreen = $('#mainview_' + x + 'x' + y).html();
-  var losval = 0;
+  let onscreen = document.getElementById('mainview_' + x + 'x' + y).innerHTML;
+  let losval = 0;
   if (onscreen.indexOf("You cannot see that") !== -1) { losval = 1; }
   else {
-    var light = targettile.getLocalLight();
+    let light = targettile.getLocalLight();
     light += themap.getAmbientLight();
     if (light < SHADOW_THRESHOLD) {
       losval = 1;
@@ -1149,7 +1071,7 @@ function GetStickyTargetCursorCoords() {
 
 function CreateTargetCursor(params, noredraw) {
   if (!noredraw) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
-  var coords = {};
+  let coords = {};
   if (params.sticky) {
     coords = GetStickyTargetCursorCoords();
   }
@@ -1166,14 +1088,14 @@ function CreateTargetCursor(params, noredraw) {
   targetCursor.targetlimit = params.targetlimit;
   targetCursor.targetCenterlimit = params.targetCenterlimit;
 
-  var edges = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
-  var leftedge = targetCursor.x - edges.leftedge;
-  var topedge = targetCursor.y - edges.topedge;
+  let edges = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
+  let leftedge = targetCursor.x - edges.leftedge;
+  let topedge = targetCursor.y - edges.topedge;
 
-  var tileid = "#mainview_" + leftedge + "x" + topedge;
+  let tileid = "mainview_" + leftedge + "x" + topedge;
   targetCursor.tileid = tileid;
-  targetCursor.basetile = $(tileid).html();
-  $(tileid).html(targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />');  
+  targetCursor.basetile = document.getElementById(tileid).innerHTML;
+  document.getElementById(tileid).innerHTML = targetCursor.basetile + '<img id="targetcursor" src="graphics/target-cursor.gif" style="position:absolute;left:0px;top:0px;z-index:50" />';  
 }
 
 function BeginAct2() {
@@ -1194,7 +1116,7 @@ function CheckOpenAsUse(used) {
 
 function BumpIntoDoor(door,who) {
   if (door.open) { return {msg:"", canmove:1}; }
-  var retval = {};
+  let retval = {};
   retval["msg"] = "Blocked!";
   retval["canmove"] = 0;
 
@@ -1232,11 +1154,11 @@ function GetClockTime(usethistime) {
   usethistime = usethistime*5;   // Without this, a step is 1 min on world map and .2 in town
   usethistime = usethistime + 9*60;  // Game starts at 9am on day 1
   usethistime = usethistime + 4*28*24*60 + 3*24*60; // Game starts on 4/3
-  var minutes = Math.floor(usethistime%60);
-  var hours = Math.floor((usethistime/60)%24);
-  var days = Math.floor(((usethistime/60)/24)%28);
-  var months = Math.floor((((usethistime/60)/24)/28)%12);
-  var years = Math.floor((((usethistime/60)/24)/28)/12);
+  let minutes = Math.floor(usethistime%60);
+  let hours = Math.floor((usethistime/60)%24);
+  let days = Math.floor(((usethistime/60)/24)%28);
+  let months = Math.floor((((usethistime/60)/24)/28)%12);
+  let years = Math.floor((((usethistime/60)/24)/28)/12);
   return ([years,months,days,hours,minutes]);
 }
 
@@ -1245,19 +1167,19 @@ function SetGameTimeByClockTime(targetTime) {
 }
 
 function GetGameClockByClockTime(targetTime) {
-  var tmp = targetTime.split(":");
-  var hour = parseInt(tmp[0]);
-  var min = parseInt(tmp[1]);
+  let tmp = targetTime.split(":");
+  let hour = parseInt(tmp[0]);
+  let min = parseInt(tmp[1]);
 
   if (isNaN(hour) || isNaN(min)) { return; }
 
-  var currtime = GetUsableClockTime();
+  let currtime = GetUsableClockTime();
   tmp = currtime.split(":");
-  var currhour = parseInt(tmp[0]);
-  var currmin = parseInt(tmp[1]);
+  let currhour = parseInt(tmp[0]);
+  let currmin = parseInt(tmp[1]);
 
   if (min < currmin) { min = min+60; currhour++; }
-  var diffmin = min-currmin;
+  let diffmin = min-currmin;
   
   if (hour < currhour) { hour = hour+24; }
 
@@ -1268,15 +1190,15 @@ function GetGameClockByClockTime(targetTime) {
 }
 
 function GetDisplayDate(usethistime) {
-  var calendar = GetClockTime(usethistime);
+  let calendar = GetClockTime(usethistime);
   calendar[0]+=143;
   return (calendar[1] + "-" + calendar[2] + "-" + calendar[0]);
 }
 
 function GetDisplayTime(usethistime) {
-  var calendar = GetClockTime(usethistime);
-  var ampm = "am";
-  var hours = calendar[3];
+  let calendar = GetClockTime(usethistime);
+  let ampm = "am";
+  let hours = calendar[3];
   if (hours === 0) {hours = 12; }
   else if (hours === 12) { ampm = "pm"; }
   else if (hours > 12) { hours = hours - 12; ampm = "pm"; }
@@ -1286,62 +1208,62 @@ function GetDisplayTime(usethistime) {
 
 function SetSky() {
   if (PC.getHomeMap().getUndergroundDesc()) {
-    for (var i = 1; i<=8; i++) {
-      $("#sky"+i).css("background-image","");
-      $("#sky"+i).css("background-position","0px 0px");
+    for (let i = 1; i<=8; i++) {
+      document.getElementById("sky"+i).style.backgroundImage = "";
+      document.getElementById("sky"+i).style.backgroundPosition = "0px 0px";
     }
-    $("#oversky").html(PC.getHomeMap().getUndergroundDesc());
+    document.getElementById("oversky").innerHTML = PC.getHomeMap().getUndergroundDesc();
     return(PC.getHomeMap().getUndergroundDesc());
   } else {
-    var currenttime = DUTime.getGameClock() * 5;
+    let currenttime = DUTime.getGameClock() * 5;
     currenttime += 9*60 + 4*28*24*60 + 3*24*60;
     currenttime = Math.floor((currenttime/60)/24);
-    var moon1phase = currenttime%8;
-    var moon2phase = Math.floor((currenttime%24)/3);
-    var moon1location = 3*moon1phase;
-    var moon2location = 3*moon2phase;
+    let moon1phase = currenttime%8;
+    let moon2phase = Math.floor((currenttime%24)/3);
+    let moon1location = 3*moon1phase;
+    let moon2location = 3*moon2phase;
     if (moon1phase === moon2phase) { 
       if (moon1phase <= 3) { moon2location++; }
       else { moon1location--; }
     }
-    var daytime = GetClockTime();
-    var sunposition = daytime[3]-5;
+    let daytime = GetClockTime();
+    let sunposition = daytime[3]-5;
     if (sunposition < 1) { sunposition += 24; }
-    $("#oversky").html("");
-    for (var i = 1; i<=12; i++) {
-      $("#sky"+i).css("background-image","");
-      $("#sky"+i).css("background-position","0px 0px");
+    document.getElementById("oversky").innerHTML = "";
+    for (let i = 1; i<=12; i++) {
+      document.getElementById("sky"+i).style.backgroundImage = "";
+      document.getElementById("sky"+i).style.backgroundPosition = "0px 0px";
     }
-    if (sunposition < 13) { $("#sky"+sunposition).css("background-image", "url('graphics/sun.gif')"); }
-    var moon1position = sunposition-moon1location;
+    if (sunposition < 13) { document.getElementById("sky"+sunposition).style.backgroundImage = "url('graphics/sun.gif')"; }
+    let moon1position = sunposition-moon1location;
     if (moon1position <= 0) { moon1position += 24; }
-    var moon2position = sunposition-moon2location;
+    let moon2position = sunposition-moon2location;
     if (moon2position <= 0) { moon2position += 24; }
     if (moon1position < 13) { 
-      var phaseoffset = -1*moon1phase*16;
-      $("#sky"+moon1position).css("background-image", "url('graphics/moons.gif')");
-      $("#sky"+moon1position).css("background-position", phaseoffset + "px 16px");
+      let phaseoffset = -1*moon1phase*16;
+      document.getElementById("sky"+moon1position).style.backgroundImage = "url('graphics/moons.gif')";
+      document.getElementById("sky"+moon1position).style.backgroundPosition = phaseoffset + "px 16px";
     }
     if (moon2position < 13) { 
-      var phaseoffset = -1*moon2phase*16;
-      $("#sky"+moon2position).css("background-image", "url('graphics/moons.gif')");
-      $("#sky"+moon2position).css("background-position", phaseoffset + "px 0px");
+      let phaseoffset = -1*moon2phase*16;
+      document.getElementById("sky"+moon2position).style.backgroundImage = "url('graphics/moons.gif')";
+      document.getElementById("sky"+moon2position).style.backgroundPosition = phaseoffset + "px 0px";
     }
     return([moon1phase,moon1position,moon2phase,moon2position]);
   }
 }
 
 function CheckTimeBetween(time1,time2, clocktime) {
-  var time1arr = time1.split(":");
-  var time2arr = time2.split(":");
+  let time1arr = time1.split(":");
+  let time2arr = time2.split(":");
   if (!clocktime) {
     clocktime = GetUsableClockTime();
   }
-  var clockarr = clocktime.split(":");
+  let clockarr = clocktime.split(":");
   
   time1 = parseInt(time1arr[0])*60+parseInt(time1arr[1]);
   time2 = parseInt(time2arr[0])*60+parseInt(time2arr[1]);
-  var clock0 = parseInt(clockarr[0])*60+parseInt(clockarr[1]);
+  let clock0 = parseInt(clockarr[0])*60+parseInt(clockarr[1]);
 
   if (time2 > time1) {
     if ((clock0 >= time1) && (time2 >= clock0)) {
@@ -1357,17 +1279,17 @@ function CheckTimeBetween(time1,time2, clocktime) {
 }
 
 function ModTime(time1,addTime) {
-  var add = 1;
+  let add = 1;
   if (addTime.indexOf("-") !== -1) {
     add = -1;
     addTime = addTime.replace("-","");
   }
 
-  var time = time1.split(":");
-  var difftime = addTime.split(":");
+  let time = time1.split(":");
+  let difftime = addTime.split(":");
   
-  var finmin = parseInt(time[1]) + parseInt(difftime[1])*add;
-  var finhour = parseInt(time[0]) + parseInt(difftime[0])*add;
+  let finmin = parseInt(time[1]) + parseInt(difftime[1])*add;
+  let finhour = parseInt(time[0]) + parseInt(difftime[0])*add;
 
   while (finmin > 59) {
     finmin -= 60;
@@ -1395,7 +1317,7 @@ function GetUsableClockTime(time) {
   } else {
     clocktime = GetClockTime(time);
   }
-  var min = clocktime[4];
+  let min = clocktime[4];
   if (min < 10) { min = "0" + min; }
   clocktime = clocktime[3] + ":" + min;
   return clocktime;
@@ -1403,10 +1325,10 @@ function GetUsableClockTime(time) {
 
 // Is time1 after time2
 function CheckTimeAfterTime(time1,time2) {
-  var time2arr = time2.split(":");
-  var time3hr = parseInt(time2arr[0]) + 12;
+  let time2arr = time2.split(":");
+  let time3hr = parseInt(time2arr[0]) + 12;
   if (time3hr > 23) { time3hr = time3hr - 24; }
-  var time3 = time3hr + ":" + time2arr[1];
+  let time3 = time3hr + ":" + time2arr[1];
   
   if (CheckTimeBetween(time2,time3,time1)) { return 1; }
   else { return 0;}
@@ -1508,3 +1430,169 @@ function Get90DegCoords(centerx,centery,oldx,oldy) {
   destx+=centerx;
   return {x:destx, y:desty}
 }
+
+//EXTERNALLY SOURCED
+
+// these two functions found on stackexchange
+// http://stackoverflow.com/questions/1773069/using-jquery-to-compare-two-arrays-of-javascript-objects
+
+function arrayCompare(arrayA, arrayB) {
+  let a = ExtendObject(true, [], arrayA);
+  let b = ExtendObject(true, [], arrayB);
+  a.sort(); 
+  b.sort();
+  for (let i = 0, l = a.length; i < l; i++) {
+    if (a[i] !== b[i]) { 
+      return false;
+    }
+  }
+  return true;
+}
+
+function objectCompare(objA, objB) {
+
+  let i,a_type,b_type;
+
+  // Compare if they are references to each other 
+  if (objA === objB) { return true;}
+
+  if (Object.keys(objA).length !== Object.keys(objB).length) { return false;}
+  for (let i in objA) {
+    if (objA.hasOwnProperty(i)) {
+      if (typeof objB[i] === 'undefined') {
+        return false;
+      }
+      else {
+        a_type = Object.prototype.toString.apply(objA[i]);
+        b_type = Object.prototype.toString.apply(objB[i]);
+
+        if (a_type !== b_type) {
+          return false; 
+        }
+      }
+    }
+    if (objectCompare(objA[i],objB[i]) === false){
+      return false;
+    }
+  }
+  return true;
+}
+
+// more stackoverflow: http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array#
+function ShuffleArray(arr) {
+  let currentIndex = arr.length, temporaryValue, randomIndex ;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = arr[currentIndex];
+    arr[currentIndex] = arr[randomIndex];
+    arr[randomIndex] = temporaryValue;
+  }
+
+  return arr;
+}
+
+// Functions taken from jquery
+
+
+function ExtendObject() {
+  var options, name, src, copy, copyIsArray, clone, target = arguments[0] || {},
+      i = 1,
+      length = arguments.length,
+      deep = false;
+
+  // Handle a deep copy situation
+  if (typeof target === "boolean") {
+      deep = target;
+
+      // Skip the boolean and the target
+      target = arguments[i] || {};
+      i++;
+  }
+
+  // Handle case when target is a string or something (possible in deep copy)
+  if (typeof target !== "object" && (typeof target !== "function")) {
+      target = {};
+  }
+
+  // Extend jQuery itself if only one argument is passed
+  if (i === length) {
+      target = this;
+      i--;
+  }
+
+  for (; i < length; i++) {
+
+      // Only deal with non-null/undefined values
+      if ((options = arguments[i]) != null) {
+
+          // Extend the base object
+          for (name in options) {
+              src = target[name];
+              copy = options[name];
+
+              // Prevent never-ending loop
+              if (target === copy) {
+                  continue;
+              }
+
+              // Recurse if we're merging plain objects or arrays
+              if (deep && copy && (IsPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
+
+                  if (copyIsArray) {
+                      copyIsArray = false;
+                      clone = src && Array.isArray(src) ? src : [];
+
+                  } else {
+                      clone = src && IsPlainObject(src) ? src : {};
+                  }
+
+                  // Never move original objects, clone them
+                  target[name] = ExtendObject(deep, clone, copy);
+
+                  // Don't bring in undefined values
+              } else if (copy !== undefined) {
+                  target[name] = copy;
+              }
+          }
+      }
+  }
+
+  // Return the modified object
+  return target;
+}
+
+
+function IsPlainObject(obj) {
+  var proto, Ctor;
+  var getProto = Object.getPrototypeOf;
+  var class2type = {};
+  var toString = class2type.toString;
+  var hasOwn = class2type.hasOwnProperty;
+  var fnToString = hasOwn.toString;
+  var ObjectFunctionString = fnToString.call( Object );
+
+  // Detect obvious negatives
+  // Use toString instead of jQuery.type to catch host objects
+  if (!obj || toString.call(obj) !== "[object Object]") {
+      return false;
+  }
+
+  proto = getProto(obj);
+
+  // Objects with no prototype (e.g., `Object.create( null )`) are plain
+  if (!proto) {
+      return true;
+  }
+
+  // Objects with prototype are plain iff they were constructed by a global Object function
+  Ctor = hasOwn.call(proto, "constructor") && proto.constructor;
+  return typeof Ctor === "function" && fnToString.call(Ctor) === ObjectFunctionString;
+}
+

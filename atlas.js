@@ -76,6 +76,8 @@ function Atlas() {
     "ArrowSlit" : '#+',
     '#O' : "Window",
     "Window" : '#O',
+    'sO' : "ShadowWindow",
+    "ShadowWindow" : 'sO',
     '+`' : "WallNE", 
     "WallNE" : '+`',
     '/+' : "WallNW", 
@@ -311,9 +313,9 @@ Acre.prototype.removeLocalSound = function(sndsrc) {
   delete this.localSound[sndsrc.getSerial()];
   if (this.topSound === sndsrc.getSerial()) {
     let newsnd = "";
-    $.each(this.localSound, function(idx,val) {
-      newsnd = idx;
-    });
+    for (let i=0;i<this.localSound.length;i++) {
+      newsnd = i;
+    }
     this.topSound = newsnd;
   }
   DebugWrite("sound", "Removed " + snd + " sound from this acre.<br />");
@@ -663,8 +665,21 @@ Acre.prototype.isHostileTo = function(who) {
 
   let fea = this.getFeatures();
   if (fea) {
-    for (let i = 0; i < fea.length; i++) {
+    for (let i=0; i < fea.length; i++) {
       if (fea[i].isHostileTo(who)) { return 1; }
+    }
+  }
+
+  return 0;
+}
+
+Acre.prototype.noWander = function() {
+  if (this.getTerrain().nowander) { return 1; }
+
+  let fea = this.getFeatures();
+  if (fea) {
+    for (let i=0; i < fea.length; i++) {
+      if (fea[i].nowander) { return 1; }
     }
   }
 
@@ -1492,6 +1507,9 @@ GameMap.prototype.saveMap = function (name) {
   	if (mapnpcs[i].overrideGraphic) {
   	  printerwin.document.write(", OverrideGraphic: '" + mapnpcs[i].overrideGraphic + "'");
  	  }
+    if (mapnpcs[i].skintone) {
+  	  printerwin.document.write(", skintone: '" + mapnpcs[i].skintone + "'");
+ 	  }
  	  printerwin.document.write("};<br />\n");
   }
  
@@ -1689,7 +1707,8 @@ GameMap.prototype.loadMap = function (name) {
   			  if (npckey === "Bark") { newnpc.setBark(loadnpcs[npci].Bark); }
   			  if (npckey === "BarkRad") { newnpc.setBarkRad(loadnpcs[npci].BarkRad); }
   			  if (npckey === "NPCBand") { newnpc.setNPCBand(loadnpcs[npci].NPCBand); }
-  			  if (npckey === "OverrideGraphic") { newnpc.overrideGraphic = loadnpcs[npci].OverrideGraphic; }
+          if (npckey === "OverrideGraphic") { newnpc.overrideGraphic = loadnpcs[npci].OverrideGraphic; }
+          if (npckey === "skintone") { newnpc.skintone = loadnpcs[npci].skintone; }
         }
         if ((newnpc.getPeaceAI() === "scheduled") && (!DU.gameflags.getFlag("editor"))) {
           let loc = DU.schedules[newnpc.getSchedule()].getNPCLocationByTime(GetClockTime(), 1, 1, this);

@@ -36,7 +36,7 @@ ProtoObject.prototype.addType = function(type) {
 
 ProtoObject.prototype.checkType = function(type) {
   type = type.toLowerCase();
-  var patt = new RegExp("X"+type+"X");
+  let patt = new RegExp("X"+type+"X");
   if (patt.test(this.type)) {
     return 1;
   } else { return 0; }
@@ -44,7 +44,7 @@ ProtoObject.prototype.checkType = function(type) {
 
 ProtoObject.prototype.getTypeForMap = function() {
   // run check for npc, pc, and feature
-  var patt = new RegExp("XfeatureX");
+  let patt = new RegExp("XfeatureX");
   if (patt.test(this.type)) {
     return ("feature");
   }
@@ -70,34 +70,34 @@ ProtoObject.prototype.setName = function(newname) {  // USE SPARINGLY
 
 ProtoObject.prototype.copy = function(type) {
   if (type === "clean") {
-    var tilename = this.name;
+    let tilename = this.name;
     return localFactory.createTile(tilename);
   }
   
-  var savename = this.getName();
+  let savename = this.getName();
   DebugWrite("saveload", "<br /><span style='font-weight:bold'><br />Copying " + savename + ", serial " + this.getSerial() + ":</span><br />");
-  var base_version = eidos.getForm(this.getName());
-  var copydata = {};
-  var copies = [];
+  let base_version = eidos.getForm(this.getName());
+  let copydata = {};
+  let copies = [];
   copies[0] = copydata;
   copydata.traceback = [];    // traceback holds the places this was found. On a map or in the timeline are the main options.
-//  var copyserial = this.getSerial();
+
   copydata.name = this.getName(); 
   if (!DU.gameflags.getFlag("editor")) {
-    var ontime = DUTime.findEntityTime(this);
+    let ontime = DUTime.findEntityTime(this);
     if (ontime !== -1) {
       copydata.timestamp = ontime;
       copydata.traceback.push("timeline");
     }
   }
-  $.each(this, function(idx, val) {
-    DebugWrite("save " + idx + ":");
+  for (let idx in this) {
+    let val = this[idx];
+    DebugWrite("saveload", "save " + idx + ": ");
     if ((typeof val === "function") && (typeof base_version[idx] === "function")) { 
       DebugWrite("saveload", idx + " is a <span style='color:darkblue'>function, moving on</span>...  ");
-      return;
+//      return;
       // both have a function. Assuming they're the same, not worth caring
-    }
-    if (typeof val === "function") {  // real one has a function base one does not
+    } else if (typeof val === "function") {  // real one has a function base one does not
       alert("Function on " + copydata.name + ": " + idx);
     }
     if (typeof val !== "object") { 
@@ -107,16 +107,16 @@ ProtoObject.prototype.copy = function(type) {
       } else {
         DebugWrite("saveload", idx + " <span style='color:firebrick'>the same, moving on</span>...  ");
       }
-    } else if ($.isArray(val)) {
-      if ($.isArray(base_version[idx]) && arrayCompare(val, base_version[idx])) {
+    } else if (Array.isArray(val)) {
+      if (Array.isArray(base_version[idx]) && arrayCompare(val, base_version[idx])) {
         DebugWrite("saveload", idx + " an array and <span style='color:firebrick'>the same, moving on</span>...  ");
       } else {
         copydata[idx] = val;
         if (debug && debugflags.saveload) { 
           DebugWrite("saveload", idx + " an array and <span style='color:lime'>different, copying</span>... <br /> [");
           DebugWrite("saveload", "] vs [");
-          if ($.isArray(base_version[idx])) {
-            for (var i = 0; i < base_version[idx].length; i++) { 
+          if (Array.isArray(base_version[idx])) {
+            for (let i=0; i<base_version[idx].length; i++) { 
               DebugWrite("saveload", base_version[idx][i] + ", ");
             }
           } else {
@@ -143,11 +143,11 @@ ProtoObject.prototype.copy = function(type) {
       DebugWrite("saveload", idx + " <span style='color:maroon'>deliberately not saved</span>... ");
     } else if (idx === "spawned") { 
       // for things with collections
-      var spawnlist = val.getAll();
-      var spawnserials = [];
-      $.each(spawnlist, function(spaidx,spaval) {
-        spawnserials.push(spaval.getSerial());
-      });
+      let spawnlist = val.getAll();
+      let spawnserials = [];
+      for (let i=0;i<spawnlist.length;i++) {
+        spawnserials.push(spawnlist[i].getSerial());
+      }
       copydata[idx] = spawnserials;
       DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " <span style='color:lime'>saved as serials, serial# " + copydata[idx] + "</span>...</span>");
     } else if ((idx === "equippedTo") || (idx === "attachedTo") || (idx === "spawnedBy") || (idx === "linkedItem")) {
@@ -159,77 +159,71 @@ ProtoObject.prototype.copy = function(type) {
       }
     } else if (idx === "equipment") {
       copydata[idx] = {};
-      $.each(val, function(eqidx, eqval) {
+      for (let eqidx in val) {
+        let eqval = val[eqidx];
         if (eqval) {
           DebugWrite("saveload", idx + ": " + eqidx + " being <span style='color:lightseagreen'>copied in a subthread</span>...<br /><nbsp /><nbsp />");
-          var equipcopy = eqval.copy();
+          let equipcopy = eqval.copy();
           copydata[idx][eqidx] = equipcopy[0].serial;
           copies.push(equipcopy[0]);   // using index rather than each here because equipment can't chain farther
           DebugWrite("saveload", "Copy made, " + eqidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
         }
-      });
+      }
     } else if (idx === "inventory") {
-      var inv = val.getAll();
+      let inv = val.getAll();
       copydata[idx] = [];
-      $.each(inv, function(invidx, invval) {
+      for (let invidx=0;invidx<inv.length;invidx++) {
+        let invval = inv[invidx];
         DebugWrite("saveload", idx + ": " + invidx + " being <span style='color:lightseagreen'>copied in a subthread</span>... <br /><nbsp /><nbsp />");
-        var invcopy = invval.copy();
+        let invcopy = invval.copy();
         copydata[idx][invidx] = invcopy[0].serial;
         copies.push(invcopy[0]);   // using index rather than each here as well for the same reason
         DebugWrite("saveload", "Copy made, " + invidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
-      });
+      }
     } else if (idx === "spellEffects") {
-      var spells = val.getAll();
+      let spells = val.getAll();
       if (spells[0]) {
         copydata[idx] = [];
-        $.each(spells, function(spellidx, spellval) {
+        for (let spellidx=0;spellidx<spells.length;spellidx++) {
+          let spellval = spells[spellidx];
           DebugWrite("saveload", idx + ": " + spellidx + " being <span style='color:lightseagreen'>copied in a subthread</span>... <br /><nbsp /><nbsp />");
-          var spellcopy = spellval.copy();
+          let spellcopy = spellval.copy();
           copydata[idx].push(spellcopy[0].serial);
           copies.push(spellcopy[0]);  // probably should make this each as future proofing
           DebugWrite("saveload", "Copy made, " + spellidx + " added as <span style='color:lightseagreen'>serial to main object</span>... ");
-        });
+        }
       }
     } else if (idx === "spellsknown") {
       if (objectCompare(val, base_version[idx])) {
-//        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
         DebugWrite("saveload", idx + " an object and the same, moving on...  ");
       } else {
         copydata[idx] = val;
-//        dbs.writeln("<span style='color:purple'>" + idx + " different, saved.</span>");
         DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " different, saved.</span>");
       }
     } else if (idx === "runes") {
       if (objectCompare(val, base_version[idx])) {
-//        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
         DebugWrite("saveload", idx + " an object and the same, moving on...  ");
       } else {
         copydata[idx] = val;
-//        dbs.writeln("<span style='color:purple'>" + idx + " different, saved.</span>");
         DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " different, saved.</span>");
       }
     } else if (idx === "runeCooldown") {
       if (objectCompare(val, base_version[idx])) {
-//        if (debug && debugflags.saveload) { dbs.writeln("<span style='color:grey'>" + idx + " an object and the same, moving on...</span>  "); }
         DebugWrite("saveload", idx + " an object and the same, moving on...  ");
       } else {
         copydata[idx] = val;
-//        dbs.writeln("<span style='color:purple'>" + idx + " different, saved.</span>");
         DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " different, saved.</span>");
       }      
     } else {
-//      if (debug && debugflags.saveload) { dbs.writeln("<br /><span style='color:red'>" + idx + " is type " + typeof val + "</span>,  "); }
       DebugWrite("saveload", "<br /><span style='color:red;font-weight:bold'>" + idx + " is type " + typeof val + "</span>,  ");
       alert(savename + " SAVE NEEDS " + idx + "!");
     }
     // ADD HERE WHEN THERE ARE MORE
     
-  });
+  };
   
-//  if (debug && debugflags.saveload) { dbs.writeln("<br /><span style='font-weight:bold'>Copying " + copies.length + " objects.</span><br />  "); }
   DebugWrite("saveload", "<br /><span style='font-weight:bold'>Copying " + copies.length + " objects.</span><br />  ");
   return copies;
-  
 }
 
 function GameObject() {
@@ -285,20 +279,19 @@ GameObject.prototype.getDesc = function() {
 }
 
 GameObject.prototype.getFullDesc = function() {
-  var full = "";
+  let full = "";
   if (this.getPrefix()) {
     full = this.getPrefix() + " ";
   }
   
   full = full + this.getDesc();
   if (this.conversation) {
-    var knowsflag = "knows_" + this.conversation;
+    let knowsflag = "knows_" + this.conversation;
     if (DU.gameflags.getFlag(knowsflag)) {
       full = this.npcname;
     }
   } 
   return full;
-  
 }
 
 GameObject.prototype.setPrefix = function(newpref) {
@@ -318,7 +311,7 @@ GameObject.prototype.moveTo = function(x,y) {
 }
 
 GameObject.prototype.bumpinto = function(who) {
-	var retval = {};
+	let retval = {};
 	retval["fin"] = 1;
 	retval["canmove"] = 1;
 	retval["msg"] = "";
@@ -337,16 +330,14 @@ GameObject.prototype.setGraphicArray = function(newgraphics) {
 }
 
 GameObject.prototype.getGraphic = function() {
-	var returnGraphic = this.graphic;
-
+	let returnGraphic = this.graphic;
   if (returnGraphic) { return(returnGraphic); }
 }
 
 GameObject.prototype.getGraphicArray = function() {
-	var returnGraphic = this.graphic;
-//	if (this.overrideGraphic) { returnGraphic = this.overrideGraphic; }    // this is redundant, and also was killing beds
-  var returnOverlay = this.overlay;
-  var returnVars = [];
+	let returnGraphic = this.graphic;
+  let returnOverlay = this.overlay;
+  let returnVars = [];
   returnVars[0] = returnGraphic;
   if (returnOverlay) {
     returnVars[1] = returnOverlay;
@@ -370,7 +361,7 @@ GameObject.prototype.setOverlay = function(newgraphic) {
 }
 
 GameObject.prototype.getOverlay = function() {
-	var returnOverlay = this.overlay;
+	let returnOverlay = this.overlay;
 
   if (returnOverlay) { return(returnOverlay); }
 }
@@ -386,7 +377,7 @@ GameObject.prototype.getBlocksLOS = function(distance) {
 }
 
 GameObject.prototype.getBlocksLOSArray = function() {
-	var LOSref = [];
+	let LOSref = [];
 	LOSref[0] = this.blocklos;
 	if (this.losatdistance){
 		LOSref[1] = this.losatdistance['distance'];
@@ -427,7 +418,7 @@ GameObject.prototype.getBlocksLOE = function(distance) {
 
 GameObject.prototype.getBlocksLOEArray = function() {
   if (this.blockloe) { 
-    var tmp = [];
+    let tmp = [];
     tmp[0] = this.blockloe;
     if (this.loeatdistance) {
       tmp[1] = this.loeatdistance['distance'];
@@ -473,22 +464,22 @@ function Pushable() {
   this.pushable = 1;
   
   this.pushMe = function(who) {
-    var retval = {};
+    let retval = {};
     retval["fin"] = 0;
     retval["input"] = "&gt;";
     if (IsAdjacent(this,who,"nodiag")) {
       retval["fin"] = 1;
-      var diffx = this.getx() - who.getx();
-      var diffy = this.gety() - who.gety();
-      var objmap = who.getHomeMap();
-      var pushto = objmap.getTile(this.getx()+diffx,this.gety()+diffy);
+      let diffx = this.getx() - who.getx();
+      let diffy = this.gety() - who.gety();
+      let objmap = who.getHomeMap();
+      let pushto = objmap.getTile(this.getx()+diffx,this.gety()+diffy);
       if (pushto === "OoB") { return this.pullMe(); }
-      var canmove = pushto.canMoveHere(MOVE_WALK);
+      let canmove = pushto.canMoveHere(MOVE_WALK);
       if (canmove["canmove"]) {
         objmap.moveThing(this.getx()+diffx,this.gety()+diffy,this);
         retval["txt"] = "Push: " + this.getDesc() + ".";
         if ("facing" in this) {
-          var graphic = this.getOverlay();
+          let graphic = this.getOverlay();
           graphic = graphic.replace(/\d\.gif/,"");
           if (diffx > 0) { graphic = graphic + "1.gif"; }
           else if (diffx < 0) { graphic = graphic + "3.gif"; }
@@ -515,18 +506,16 @@ function Pushable() {
     return retval;
   }
   this.pullMe = function(who) {
-    var retval = {};
-    retval["fin"] = 1;
-    retval["input"] = "&gt;";
-    var objmap = this.getHomeMap();
-    var diffx = this.getx()-who.getx();
-    var diffy = this.gety()-who.gety();
+    let retval = {fin:1,input:"&gt;"};
+    let objmap = this.getHomeMap();
+    let diffx = this.getx()-who.getx();
+    let diffy = this.gety()-who.gety();
     objmap.moveThing(who.getx(),who.gety(),this);
-    var moveval = who.moveMe(diffx,diffy);
+    let moveval = who.moveMe(diffx,diffy);
     retval["txt"] = "Pull: " + this.getDesc() + ".";
     retval["canmove"] = moveval["canmove"];
     if ("facing" in this) {
-      var graphic = this.getOverlay();
+      let graphic = this.getOverlay();
       graphic = graphic.replace(/\d\.gif/,"");
       if (diffx > 0) { graphic = graphic + "1.gif"; }
       else if (diffx < 0) { graphic = graphic + "3.gif"; }
@@ -565,10 +554,10 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
     if (lock == undefined) { lock = 1; }
 		this.setLocked(lock);
 		if (lock > 2) { lock = 2; }
-		this.setOverlay(this.lockedgraphics[lock]);
+		this.setGraphicArray(this.lockedgraphics[lock]);
 		this.setDesc(this.lockeddescs[lock]);
 		this.setPrefix(this.lockedprefixes[lock]);
-		var homemap = this.getHomeMap();
+		let homemap = this.getHomeMap();
 		if (homemap) {
 		  homemap.setWalkableAt(this.getx(),this.gety(),false,MOVE_WALK_DOOR);
     }
@@ -578,7 +567,7 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	}
 	this.unlockMe = function() { 
 	  this.lockMe(0);
-	  var homemap = this.getHomeMap();
+	  let homemap = this.getHomeMap();
 	  if (homemap) {
 	    this.getHomeMap().setWalkableAt(this.getx(),this.gety(),true,MOVE_WALK_DOOR);
     }
@@ -589,23 +578,21 @@ function Lockable(unlockedgraphic, lockedgraphic, maglockedgraphic, unlockedpref
 	
 	this.setTrap = function(trap, challenge) { 
 	  this.trapped = trap; 
-	  var diff = Math.floor(Math.random()*5)+1 - 3;
+	  let diff = Math.floor(Math.random()*5)+1 - 3;
 	  this.trapchallenge = challenge + diff; 
 	}
 	this.tryTrap = function(who) { 
 	  // if your Dex === the challenge rating for the trap, you have a 50/50 chance of opening it. Once your dex is twice the
 	  // challenge you will always succeed. NOTE: Changed that to challenge+10.
-	  var resp = 0;
-//	  var chance = who.getDex() / (this.trapchallenge * 2);
-    var chance = (who.getDex() - this.trapchallenge + 10) /20;
+	  let resp = 0;
+    let chance = (who.getDex() - this.trapchallenge + 10) /20;
     if (chance < .05) { chance = .05; }
-	  var roll = Math.random();
+	  let roll = Math.random();
 	  if (roll < chance) { this.disarmTrap(); resp = 1; maintext.addText("You disarm a trap!"); }
 	  else { resp = PerformTrap(who, this.trapped, this.trapchallenge, this); }
 	  return resp;
 	} 
 	this.disarmTrap = function() { this.trapped = ""; }
-	
 }
 
 // Abstract class Enterable
@@ -623,7 +610,7 @@ function Enterable(entermap, enterx, entery) {
   	this.entery = y;
   }
   this.getEnterMap = function() {
-  	var mapdata = { entermap : this.entermap , enterx : this.enterx, entery : this.entery };
+  	let mapdata = { entermap : this.entermap , enterx : this.enterx, entery : this.entery };
   	return mapdata;
   }
   this.getKlimb = function() {
@@ -638,7 +625,7 @@ function Enterable(entermap, enterx, entery) {
 function LightEmitting(lightlevel) {
 	this.light = lightlevel;
 	this.ignite = function() {
-		this.setLight(lightlevel);
+	this.setLight(lightlevel);
 	}
 	this.extinguish = function() {
     this.setLight(0);
@@ -650,11 +637,11 @@ function LightEmitting(lightlevel) {
 	  if (light !== 0) {
 	    this.getHomeMap().setMapLight(this,light,this.getx(),this.gety());
 	  }
-    
+   
     if (this.getHomeMap() === PC.getHomeMap()) {
       DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     }
-		this.light = light;
+	  this.light = light;
 	}
 	this.getLight = function() {
 	  if (parseFloat(this.light) === "NaN") { alert(this.getName() + " has lightlevel that is NaN."); }
@@ -676,14 +663,14 @@ function Breakable(brokengraphicarray, startsbroken) {
     if (!this.fixeddesc) {
       this.fixeddesc = this.getDesc();
     }
-    var olddesc = this.getDesc();
+    let olddesc = this.getDesc();
     this.setDesc(this.brokendesc);
     //play sound effect
     DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
     if (this.karmamod && (who === PC)) { 
       DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")+this.karmamod);
     }
-    var retval = {};
+    let retval = {};
     retval["fin"] = 1;
     retval["txt"] =  "You break the " + olddesc + "!";
     retval["input"] = "&gt;";
@@ -691,13 +678,13 @@ function Breakable(brokengraphicarray, startsbroken) {
   }
   this.repair = function() {
     this.broken = 0;
-    var tmpcopy = localFactory.createTile(this.getName());
+    let tmpcopy = localFactory.createTile(this.getName());
     this.setGraphicArray(tmpcopy.getGraphicArray());
     if (this.getName() === "Mirror") {
-      var who;
+      let who;
       if ((PC.getx() === this.getx()) && (PC.gety() === (this.gety()+1))) { who = PC; }
       else {
-        var south = this.getHomeMap().getTile(this.getx(),this.gety()+1);
+        let south = this.getHomeMap().getTile(this.getx(),this.gety()+1);
         who = south.getTopNPC();
       }
       if (who) {
@@ -707,7 +694,6 @@ function Breakable(brokengraphicarray, startsbroken) {
     this.setDesc(this.fixeddesc);
     DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());  // will try to draw 0,0 if in inventory, which is ok
   }
-  
 }
 
 // Abstract class 
@@ -720,7 +706,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 	// NOTE: These should be arrays in the standard graphics[0-3] style.
 	
 	this.use = function(who, silentdoors) {
-		var retval = {};
+		let retval = {};
     retval["fin"] = 0;
     
     let mymap = this.getHomeMap();
@@ -794,7 +780,6 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 		}
 		return retval;
 	}
-	
 }
 
 // Abstract class - open a container
@@ -813,7 +798,7 @@ function OpenContainer() {
   }
   
   this.use = function(who, fire) {
-    var retval = {}; 
+    let retval = {}; 
     
     if (this.getKarmaPenalty() && (who === PC)) {
       DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")-this.getKarmaPenalty);
@@ -833,7 +818,7 @@ function OpenContainer() {
     }
 
     if (this.trapped && !fire) {
-      var trapresult = this.tryTrap(who);
+      let trapresult = this.tryTrap(who);
       if (this.getHomeMap() !== who.getHomeMap()) { // trap killed them
         retval["override"] = 1;
         return retval;
@@ -844,7 +829,7 @@ function OpenContainer() {
     if (searchables.length) {
       if (!this.getLootedID() || (!DU.gameflags.getFlag("lid_" + this.getLootedID()))) {
         // no looted ID, or looted ID not met
-        for (var i=0; i < searchables.length; i++) {
+        for (let i=0; i < searchables.length; i++) {
           let goldtest = /(\d+)Gold/;
           if (goldtest.test(searchables[i])) {
             let amt = goldtest.exec(searchables[i]);
@@ -870,9 +855,9 @@ function OpenContainer() {
       
       retval["fin"] = 1;
       retval["txt"] = "It contains: ";
-      var firstitem = 1;
-      for (var i=0; i<this.container.length; i++) {
-        var newitem = localFactory.createTile(this.container[i]);
+      let firstitem = 1;
+      for (let i=0; i<this.container.length; i++) {
+        let newitem = localFactory.createTile(this.container[i]);
         if (this.container[i] === "Gold") {
           newitem.setQuantity(this.gold);
         }
@@ -916,13 +901,11 @@ function OpenContainer() {
       this.container[this.container.length] = addthis;
       this.setGold(amt);
     } else {
-      for (var i = 1; i <= amt; i++) {
+      for (let i=1; i<=amt; i++) {
         this.container[this.container.length] = addthis;
       }
-    }
-      
+    }      
   }
-  
 }
 
 // Abstract class Tiling
@@ -930,7 +913,7 @@ function Tiling(tileval) {
 	this.doTile = function(tilingx,tilingy,tilegraphic) {
 		tilingx = (tilingx % tileval); 
 		tilingy = (tilingy % tileval);
-		var foo = tilegraphic.split('.');
+		let foo = tilegraphic.split('.');
 	  return({graphic: foo[0] + "-" + tilingy + tilingx + "." + foo[1]});
 	}
 }
@@ -940,9 +923,10 @@ function TilingSpritesheet(tileval) {
   this.doTile = function(tilingx,tilingy,tilegraphic) {
 		tilingx = (tilingx % tileval)*32; 
     tilingy = (tilingy % tileval)*32;
-    var tileme = {};
-    tileme.spritexoffset = parseInt(this.spritexoffset) - tilingx;
-    tileme.spriteyoffset = parseInt(this.spriteyoffset) - tilingy;
+    let tileme = {};
+    if (!tilegraphic) {tilegraphic = this.getGraphicArray(); }
+    tileme.spritexoffset = parseInt(tilegraphic.graphics2) - tilingx;
+    tileme.spriteyoffset = parseInt(tilegraphic.graphics3) - tilingy;
     return tileme;
   }
 }
@@ -963,7 +947,7 @@ function MobileEnterable(destmap, destx, desty) {
   this.entery = desty;
 
   this.getEnterMap = function() {
-  	var mapdata = { entermap : this.destmap , enterx : this.destx, entery : this.desty };
+  	let mapdata = { entermap : this.destmap , enterx : this.destx, entery : this.desty };
   	return mapdata;
   }
 }
@@ -971,25 +955,24 @@ function MobileEnterable(destmap, destx, desty) {
 // General func 
 function SetByBelow() {
 	this.setByBelow = function(x,y,themap) {
-		var localacre = themap.getTile(x,y);
-		var graphic = localacre.terrain.getGraphicArray();
+		let localacre = themap.getTile(x,y);
+		let graphic = localacre.terrain.getGraphicArray();
 		return graphic;
-//		return (graphic[0]);
 	};
 }
 
 // General func
 function SetBySurround() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
-		var cardinal_dash = "";
-		var north = 0;
-		var south = 0;
-		var east = 0;
-		var west = 0;
-		var vis = 0;
-		var tilename = this.getName();
+		let cardinal_dash = "";
+		let north = 0;
+		let south = 0;
+		let east = 0;
+		let west = 0;
+		let vis = 0;
+		let tilename = this.getName();
 
-  	var addtoname_cardinal = "";
+  	let addtoname_cardinal = "";
 	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y+1) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "n"; north = 1; vis = 1;}
 	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack"))) { north = 1; }
   	if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y-1) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "s"; south = 1; vis = 1;}
@@ -999,8 +982,8 @@ function SetBySurround() {
   	if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y) < LOS_THRESHOLD) )) { cardinal_dash = "-"; addtoname_cardinal = addtoname_cardinal + "w"; west = 1; vis = 1;}
   	if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack"))) { west = 1; }
 		
-	  var diagonal_dash = "";
-	  var addtoname_diagonal = "";
+	  let diagonal_dash = "";
+	  let addtoname_diagonal = "";
 	 	if ((themap.getTile(x+1,y-1) !== "OoB") && (themap.getTile(x+1,y-1).terrain.getName() !== tilename) && (themap.getTile(x+1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y-1) < LOS_THRESHOLD) ))
 	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "a"; vis = 1; }
   	if ((themap.getTile(x+1,y+1) !== "OoB") && (themap.getTile(x+1,y+1).terrain.getName() !== tilename) && (themap.getTile(x+1,y+1).terrain.getName() !== "BlankBlack") && (north === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y+1) < LOS_THRESHOLD) )) 
@@ -1010,16 +993,71 @@ function SetBySurround() {
 	 	if ((themap.getTile(x-1,y-1) !== "OoB") && (themap.getTile(x-1,y-1).terrain.getName() !== tilename) && (themap.getTile(x-1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y-1) < LOS_THRESHOLD) )) 
 	 	  { diagonal_dash = "-"; addtoname_diagonal = addtoname_diagonal + "d"; vis = 1; }
 	
-	  var foo = graphics[0].split('.');
+    let foo = graphics[0].split('.');
 	  graphics[0] = foo[0] + cardinal_dash + addtoname_cardinal + diagonal_dash + addtoname_diagonal + '.' + foo[1];
 	  if (vis === 0) { 
-	  	var black = eidos.getForm('BlankBlack');
-	  	var blkgraphics = black.getGraphicArray();
+	  	let black = eidos.getForm('BlankBlack');
+	  	let blkgraphics = black.getGraphicArray();
 	  	graphics[0] = blkgraphics[0];
 	  }
-	  var tmparray = new Array;
+	  let tmparray = [];
 	  tmparray[0] = .5;
 	  if (graphics[0].indexOf("-nsew") !== -1) { this.setBlocksLOSArray(tmparray); }
+	  return (graphics);
+  }
+}
+
+function SetBySurroundCave() {
+	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
+    const ADD_Y = 864;
+    const A_CORNER = 1;
+    const B_CORNER = 2;
+    const C_CORNER = 4;
+    const D_CORNER = 8;
+    const E_WALL = 16;
+    const N_WALL = 32;
+    const S_WALL = 64;
+    const W_WALL = 128;
+
+    let tilename = this.getName();
+		let vis = 0;
+		let north = 0;
+		let south = 0;
+		let east = 0;
+		let west = 0;
+
+  	let spritecount = 0;
+	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y+1) < LOS_THRESHOLD) )) { spritecount += N_WALL; north = 1; vis = 1;}
+	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack"))) { north = 1; }
+  	if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y-1) < LOS_THRESHOLD) )) { spritecount += S_WALL; south = 1; vis = 1;}
+  	if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack"))) { south = 1; }
+	  if ((themap.getTile(x-1,y) !== "OoB") && ((themap.getTile(x-1,y).terrain.getName() !== tilename) && (themap.getTile(x-1,y).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y) < LOS_THRESHOLD) )) { spritecount += E_WALL; east = 1; vis = 1;}
+	  if ((themap.getTile(x-1,y) !== "OoB") && ((themap.getTile(x-1,y).terrain.getName() !== tilename) && (themap.getTile(x-1,y).terrain.getName() !== "BlankBlack"))) { east = 1; }
+  	if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y) < LOS_THRESHOLD) )) { spritecount += W_WALL; west = 1; vis = 1;}
+  	if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack"))) { west = 1; }
+		
+	 	if ((themap.getTile(x+1,y-1) !== "OoB") && (themap.getTile(x+1,y-1).terrain.getName() !== tilename) && (themap.getTile(x+1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y-1) < LOS_THRESHOLD) ))
+	 	  { spritecount += A_CORNER; vis = 1; }
+  	if ((themap.getTile(x+1,y+1) !== "OoB") && (themap.getTile(x+1,y+1).terrain.getName() !== tilename) && (themap.getTile(x+1,y+1).terrain.getName() !== "BlankBlack") && (north === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y+1) < LOS_THRESHOLD) )) 
+  	  { spritecount += B_CORNER; vis = 1; }
+	  if ((themap.getTile(x-1,y+1) !== "OoB") && (themap.getTile(x-1,y+1).terrain.getName() !== tilename) && (themap.getTile(x-1,y+1).terrain.getName() !== "BlankBlack") && (north === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y+1) < LOS_THRESHOLD) ))
+	    { spritecount += C_CORNER; vis = 1;}
+	 	if ((themap.getTile(x-1,y-1) !== "OoB") && (themap.getTile(x-1,y-1).terrain.getName() !== tilename) && (themap.getTile(x-1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y-1) < LOS_THRESHOLD) )) 
+	 	  { spritecount += D_CORNER; vis = 1; }
+	
+	  if (vis === 0) { 
+	  	let black = eidos.getForm('BlankBlack');
+	  	let blkgraphics = black.getGraphicArray();
+	  	graphics = blkgraphics;
+	  } else {
+      let yoff = parseInt(-1*spritecount*64/320)*64;
+      let xoff = ((-1*spritecount*64)%320);
+      graphics[2] = xoff;
+      graphics[3] = yoff-ADD_Y;
+    }
+	  let tmparray = [];
+	  tmparray[0] = .5;
+	  if (spritecount & (E_WALL+N_WALL+S_WALL+W_WALL)) { this.setBlocksLOSArray(tmparray); }
 	  return (graphics);
   }
 }
@@ -1028,15 +1066,15 @@ function SetBySurround() {
 function SetBySurroundCoast() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
-			var displaytile = eidos.getForm('BlankBlack');
-			var displaygraphic = displaytile.getGraphicArray();
+			let displaytile = eidos.getForm('BlankBlack');
+			let displaygraphic = displaytile.getGraphicArray();
 			return displaygraphic;
 		}
-    var ocean;
-    var water;
-    var shallow;
-    var localacre = themap.getTile(x,y-1);
-    var tile; 
+    let ocean;
+    let water;
+    let shallow;
+    let localacre = themap.getTile(x,y-1);
+    let tile; 
     if (localacre !== "OoB") {
     	tile = localacre.terrain;
     	if ((tile.getName() === "Ocean") || (tile.getName() === "ShadowOcean")) { ocean = tile; }
@@ -1064,11 +1102,11 @@ function SetBySurroundCoast() {
     	if ((tile.getName() === "Water") || (tile.getName() === "ShadowWater")) { water = tile; }
     	if ((tile.getName() === "Shallows") || (tile.getName() === "ShadowShallows")) { shallow = tile; }
     }
-    var chosentile;
+    let chosentile;
     if (shallow) { chosentile = shallow; }
     else if (water) { chosentile = water; }
     else if (ocean) { chosentile = ocean; }
-    // kludge fix for clear lagoon
+    // kludge fix for clear lake
     else if (themap.getName() === "clearlake") { 
       shallow = eidos.getForm("Shallows");
       chosentile = shallow;
@@ -1080,7 +1118,7 @@ function SetBySurroundCoast() {
       return graphics; 
     }
     
-    var chosengraphics = chosentile.getGraphicArray();
+    let chosengraphics = chosentile.getGraphicArray();
     graphics[0] = chosengraphics[0];
     graphics[2] = chosengraphics[2];
     graphics[3] = chosengraphics[3];
@@ -1092,37 +1130,74 @@ function SetBySurroundCoast() {
 function SetBySurroundRoad() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
-			var displaytile = eidos.getForm('BlankBlack');
-			var displaygraphic = displaytile.getGraphicArray();
+			let displaytile = eidos.getForm('BlankBlack');
+			let displaygraphic = displaytile.getGraphicArray();
 			return displaygraphic;
 		}
 
-    var suffix = "";
-	  var localacre = themap.getTile(x+1,y);
+    let suffix = "";
+	  let localacre = themap.getTile(x+1,y);
 	  if (localacre !== "OoB") {
-	  	var tile = localacre.terrain;
-	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "e"; }
+	  	let tile = localacre.terrain;
+	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "e";}
 	  }	
 	  localacre = themap.getTile(x-1,y);
 	  if (localacre !== "OoB") {
-	  	var tile = localacre.terrain;
-	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "w"; }
+	  	let tile = localacre.terrain;
+	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "w";}
 	  }	
 	  localacre = themap.getTile(x,y-1);
 	  if (localacre !== "OoB") {
-	  	var tile = localacre.terrain;
-	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "n"; }
+	  	let tile = localacre.terrain;
+	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "n";}
 	  }	
 	  localacre = themap.getTile(x,y+1);
 	  if (localacre !== "OoB") {
-	  	var tile = localacre.terrain;
-	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "s"; }
+	  	let tile = localacre.terrain;
+	  	if (tile.getName().indexOf("Road") !== -1) { suffix = suffix + "s";}
 	  }	
 	  if ((suffix === "ewns") || (suffix === "")) { suffix = "x"; }
 	  if ((suffix === "e") || (suffix === "w")) { suffix = "ew"; }
-	  if ((suffix === "n") || (suffix === "s")) { suffix = "ns"; }
-	  graphics[0] = "road-" + suffix + ".gif";
-		return graphics;
+    if ((suffix === "n") || (suffix === "s")) { suffix = "ns"; }
+    
+    graphics[0] = "master_spritesheet.png";
+    switch (suffix) {
+      case "en": 
+      graphics[2] = "-32"; graphics[3] = "-736";
+      return graphics;
+      case "ens":
+      graphics[2] = "-64"; graphics[3] = "-736";
+      return graphics;
+      case "es":
+      graphics[2] = "-96"; graphics[3] = "-736";
+      return graphics;
+      case "ew":
+      graphics[2] = "-128"; graphics[3] = "-736";
+      return graphics;
+      case "ewn":
+      graphics[2] = "-160"; graphics[3] = "-736";
+      return graphics;
+      case "ews":
+      graphics[2] = "-192"; graphics[3] = "-736";
+      return graphics;
+      case "ns":
+      graphics[2] = "-224"; graphics[3] = "-736";
+      return graphics;
+      case "wn":
+      graphics[2] = "-256"; graphics[3] = "-736";
+      return graphics;
+      case "wns":
+      graphics[2] = "-288"; graphics[3] = "-736";
+      return graphics;
+      case "ws":
+      graphics[2] = "0"; graphics[3] = "-768";
+      return graphics;
+      case "x":
+      graphics[2] = "-32"; graphics[3] = "-768";
+      return graphics;
+    }
+//	  graphics[0] = "road-" + suffix + ".gif";
+//		return graphics;
 	}
 }
 
@@ -1130,38 +1205,38 @@ function SetBySurroundRoad() {
 function SetBySurroundRiver() {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
-			var displaytile = eidos.getForm('BlankBlack');
-			var displaygraphic = displaytile.getGraphicArray();
+			let displaytile = eidos.getForm('BlankBlack');
+			let displaygraphic = displaytile.getGraphicArray();
 			return displaygraphic;
 		}
 
-		var north;
-		var south;
-		var east;
-		var west;
-		var northacre = themap.getTile(x,y-1);
-		var northtile = northacre.terrain;
+		let north;
+		let south;
+		let east;
+		let west;
+		let northacre = themap.getTile(x,y-1);
+		let northtile = northacre.terrain;
 		if (northacre !== "OoB") {
 			if (IsWet(northtile)) {
 				north = 1;
 			}
 		} else { north = 1; }
-		var southacre = themap.getTile(x,y+1);
-		var southtile = southacre.terrain;
+		let southacre = themap.getTile(x,y+1);
+		let southtile = southacre.terrain;
 		if (southacre !== "OoB") {
 			if (IsWet(southtile)) {
 				south = 1;
 			}
 		} else { south = 1; }
-		var eastacre = themap.getTile(x+1,y);
-		var easttile = eastacre.terrain;
+		let eastacre = themap.getTile(x+1,y);
+		let easttile = eastacre.terrain;
 		if (eastacre !== "OoB") {
 			if (IsWet(easttile)) {
 				east = 1;
 			}
 		} else { east = 1; }
-		var westacre = themap.getTile(x-1,y);
-		var westtile = westacre.terrain;
+		let westacre = themap.getTile(x-1,y);
+		let westtile = westacre.terrain;
 		if (westacre !== "OoB") {
 			if (IsWet(westtile)) {
 				west = 1;
@@ -1260,10 +1335,6 @@ InanimateObject.prototype.setPeerview = function(newview) {
 	this.peerview = newview;
 }
 
-//InanimateObject.prototype.walkon = function() {
-//  return("");
-//}
-
 InanimateObject.prototype.leave = function() {
   return("");
 }
@@ -1307,20 +1378,14 @@ function TerrainObject() {
 TerrainObject.prototype = new InanimateObject();
 
 TerrainObject.prototype.serialize = function() {
-  var name = this.name;
-  var myatlas = new Atlas();
-  var code = myatlas.keylookup(name);
+  let name = this.name;
+  let myatlas = new Atlas();
+  let code = myatlas.keylookup(name);
   if (code) { return(code); }
   return(0);
 }
 
 TerrainObject.prototype.getCombatMap = function() {
-//  var mapname = this.combatmap;
-//  if (this.combatmapoptions > 1) {
-//    var randomnumber=Math.floor(Math.random()*this.combatmapoptions)+1;
-//    mapname = mapname + randomnumber;
-//  }
-//  return mapname;
   return this.combatmap;
 }
 
@@ -1337,7 +1402,7 @@ TerrainObject.prototype.setCombatMapOptions = function(mapnum) {
 
 function BlankWhiteTile() {
   this.name = "BlankWhite";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-288";
   this.desc = "";
@@ -1376,12 +1441,12 @@ function WaterTile() {
 WaterTile.prototype = new TerrainObject();
 
 WaterTile.prototype.walkon = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
 WaterTile.prototype.idle = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
@@ -1400,12 +1465,12 @@ function ShallowsTile() {
 ShallowsTile.prototype = new TerrainObject();
 
 ShallowsTile.prototype.walkon = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
 ShallowsTile.prototype.idle = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
@@ -1438,12 +1503,12 @@ function ShadowWaterTile() {
 ShadowWaterTile.prototype = new TerrainObject();
 
 ShadowWaterTile.prototype.walkon = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
 ShadowWaterTile.prototype.idle = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
@@ -1462,12 +1527,12 @@ function ShadowShallowsTile() {
 ShadowShallowsTile.prototype = new TerrainObject();
 
 ShadowShallowsTile.prototype.walkon = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
 ShadowShallowsTile.prototype.idle = function(walker) {
-  var resp = InWater(walker);
+  let resp = InWater(walker);
   return resp;
 }
 
@@ -1484,20 +1549,20 @@ function InWater(who) {
     // entity is flying and can't drown
     return "";
   }
-  var localmap = who.getHomeMap();
-  var tile = localmap.getTile(who.getx(),who.gety());
-  var feats = tile.getFeatures();
+  let localmap = who.getHomeMap();
+  let tile = localmap.getTile(who.getx(),who.gety());
+  let feats = tile.getFeatures();
   if (feats) {
-    for (var i=0;i<feats.length;i++) {
+    for (let i=0;i<feats.length;i++) {
       if (MOVE_WALK & feats[i].getPassable()) {
         return "";
       }
     }
   }
 
-  var dur = DUTime.getGameClock() - who.getLastTurnTime();
-  var response = "You have trouble keeping your head above the rough waters!";
-  var dmg = dur * 3;
+  let dur = DUTime.getGameClock() - who.getLastTurnTime();
+  let response = "You have trouble keeping your head above the rough waters!";
+  let dmg = dur * 3;
   who.dealDamage(dmg);
   
   return response;
@@ -1505,7 +1570,7 @@ function InWater(who) {
 
 function NoBlockMountainTile() {
   this.name = "NoBlockMountain";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "0";
   this.desc = "mountains";
@@ -1519,7 +1584,7 @@ NoBlockMountainTile.prototype = new TerrainObject();
 
 function MountainTile() {
   this.name = "Mountain";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "0";
   this.desc = "mountains";
@@ -1533,7 +1598,7 @@ MountainTile.prototype = new TerrainObject();
 
 function MountainPassTile() {
   this.name = "MountainPass";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "0";
   this.desc = "mountains";
@@ -1547,7 +1612,7 @@ MountainPassTile.prototype = new TerrainObject();
 
 function FlameMountainTile() {
   this.name = "FlameMountain";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-288";
   this.desc = "fiery mountains";
@@ -1561,8 +1626,7 @@ FlameMountainTile.prototype = new TerrainObject();
 
 function StoneWallTile() {
   this.name = "StoneWall";
-//  this.graphic = "011.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "0";
   this.passable = MOVE_ETHEREAL;
@@ -1575,8 +1639,7 @@ StoneWallTile.prototype = new TerrainObject();
 
 function StoneTile() {
   this.name = "Stone";
-//  this.graphic = "013.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1589,8 +1652,7 @@ StoneTile.prototype = new TerrainObject();
 
 function DirtStoneTile() {
   this.name = "DirtStone";
-//  this.graphic = "dirt-rock.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "0";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -1603,8 +1665,7 @@ DirtStoneTile.prototype = new TerrainObject();
 
 function MastTile() {
   this.name = "Mast";
-//  this.graphic = "014.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "0";
   this.passable = MOVE_ETHEREAL;
@@ -1618,8 +1679,7 @@ MastTile.prototype = new TerrainObject();
 
 function RiggingTile() {
   this.name = "Rigging";
-//  this.graphic = "015.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "0";
   this.passable = MOVE_ETHEREAL;
@@ -1631,8 +1691,7 @@ RiggingTile.prototype = new TerrainObject();
 
 function PillarTile() {
   this.name = "Pillar";
-//  this.graphic = "016.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
   this.passable = MOVE_ETHEREAL;
@@ -1645,7 +1704,7 @@ PillarTile.prototype = new TerrainObject();
 
 function PurplePillarTile() {
   this.name = "PurplePillar";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-288";
   this.passable = MOVE_ETHEREAL;
@@ -1658,7 +1717,7 @@ PurplePillarTile.prototype = new TerrainObject();
 
 function FancyFloorTile() {
   this.name = "FancyFloor";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-288";
   this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_LEVITATE;
@@ -1672,8 +1731,7 @@ FancyFloorTile.prototype = new TerrainObject();
 
 function HorizontalCounterTile() {
   this.name = "HorizontalCounter";
-//  this.graphic = "051.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "0";
   this.passable = MOVE_ETHEREAL;
@@ -1687,8 +1745,7 @@ HorizontalCounterTile.prototype = new TerrainObject();
 
 function RightCounterTile() {
   this.name = "RightCounter";
-//  this.graphic = "052.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "0";
   this.passable = MOVE_ETHEREAL;
@@ -1702,8 +1759,7 @@ RightCounterTile.prototype = new TerrainObject();
 
 function LeftCounterTile() {
   this.name = "LeftCounter";
-//  this.graphic = "053.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "0";
   this.passable = MOVE_ETHEREAL;
@@ -1717,8 +1773,7 @@ LeftCounterTile.prototype = new TerrainObject();
 
 function CounterBoxTile() {
   this.name = "CounterBox";
-//  this.graphic = "054.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
@@ -1732,8 +1787,7 @@ CounterBoxTile.prototype = new TerrainObject();
 
 function BlankBlackTile() {
   this.name = "BlankBlack";
-//  this.graphic = "055.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
@@ -1745,8 +1799,7 @@ BlankBlackTile.prototype = new TerrainObject();
 
 function ChasmTile() {
   this.name = "Chasm";
-//  this.graphic = "055.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
@@ -1759,8 +1812,7 @@ ChasmTile.prototype = new TerrainObject();
 
 function DarknessTile() {
   this.name = "Darkness";
-//  this.graphic = "055.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
@@ -1772,8 +1824,7 @@ DarknessTile.prototype = new TerrainObject();
 
 function WallTile() {
   this.name = "Wall";
-//  this.graphic = "056.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
@@ -1786,8 +1837,7 @@ WallTile.prototype = new TerrainObject();
 
 function RuinsWallTallLeftMidRightTile() {
   this.name = "RuinsWallTallLeftMidRight";
-//  this.graphic = "056.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-256";
   this.passable = MOVE_ETHEREAL;
@@ -1800,8 +1850,7 @@ RuinsWallTallLeftMidRightTile.prototype = new TerrainObject();
 
 function RuinsWallMidLeftMidRightTile() {
   this.name = "RuinsWallMidLeftMidRight";
-//  this.graphic = "056.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-256";
   this.passable = MOVE_ETHEREAL;
@@ -1814,8 +1863,7 @@ RuinsWallMidLeftMidRightTile.prototype = new TerrainObject();
 
 function RuinsWallMidLeftTallRightTile() {
   this.name = "RuinsWallMidLeftTallRight";
-//  this.graphic = "056.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-256";
   this.passable = MOVE_ETHEREAL;
@@ -1828,8 +1876,7 @@ RuinsWallMidLeftTallRightTile.prototype = new TerrainObject();
 
 function RuinsWallTile() {
   this.name = "RuinsWall";
-//  this.graphic = "056.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-256";
   this.passable = MOVE_ETHEREAL;
@@ -1842,8 +1889,7 @@ RuinsWallTile.prototype = new TerrainObject();
 
 function IllusionaryRuinsWallTile() {
   this.name = "IllusionaryRuinsWall";
-//  this.graphic = "056.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-256";
   this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_ETHEREAL + MOVE_FLY;
@@ -1856,8 +1902,7 @@ IllusionaryRuinsWallTile.prototype = new TerrainObject();
 
 function RuinsWallMidLeftBottomRightTile() {
   this.name = "RuinsWallMidLeftBottomRight";
-//  this.graphic = "056.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-256";
   this.passable = MOVE_ETHEREAL;
@@ -1870,8 +1915,7 @@ RuinsWallMidLeftBottomRightTile.prototype = new TerrainObject();
 
 function RuinsWallBottomLeftMidRightTile() {
   this.name = "RuinsWallBottomLeftMidRight";
-//  this.graphic = "056.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-256";
   this.passable = MOVE_ETHEREAL;
@@ -1884,8 +1928,7 @@ RuinsWallBottomLeftMidRightTile.prototype = new TerrainObject();
 
 function ArrowSlitTile() {
 	this.name = "ArrowSlit";
-//	this.graphic = "arrowslit.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-128";
 	this.passable = MOVE_ETHEREAL;
@@ -1901,8 +1944,7 @@ ArrowSlitTile.prototype = new TerrainObject();
 
 function WindowTile() {
 	this.name = "Window";
-//	this.graphic = "window.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-128";
 	this.passable = MOVE_ETHEREAL;
@@ -1914,10 +1956,23 @@ function WindowTile() {
 }
 WindowTile.prototype = new TerrainObject();
 
+function ShadowWindowTile() {
+	this.name = "ShadowWindow";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-352";
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 0; 
+	this.blockloe = 1;
+	this.prefix = "a";
+	this.desc = "window";
+  this.peerview = "white";
+}
+ShadowWindowTile.prototype = new TerrainObject();
+
 function WallNETile() {
   this.name = "WallNE";
-//  this.graphic = "057.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
@@ -1930,8 +1985,7 @@ WallNETile.prototype = new TerrainObject();
 
 function WallNWTile() {
   this.name = "WallNW";
-//  this.graphic = "058.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
@@ -1944,8 +1998,7 @@ WallNWTile.prototype = new TerrainObject();
 
 function WallSWTile() {
   this.name = "WallSW";
-//  this.graphic = "059.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
@@ -1958,8 +2011,7 @@ WallSWTile.prototype = new TerrainObject();
 
 function WallSETile() {
   this.name = "WallSE";
-//  this.graphic = "060.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
@@ -1972,8 +2024,7 @@ WallSETile.prototype = new TerrainObject();
 
 function VerticalCounterTile() {
   this.name = "VerticalCounter";
-//  this.graphic = "061.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-160";
   this.passable = MOVE_ETHEREAL;
@@ -1987,8 +2038,7 @@ VerticalCounterTile.prototype = new TerrainObject();
 
 function BottomCounterTile() {
   this.name = "BottomCounter";
-//  this.graphic = "062.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-192";
   this.passable = MOVE_ETHEREAL;
@@ -2002,8 +2052,7 @@ BottomCounterTile.prototype = new TerrainObject();
 
 function TopCounterTile() {
   this.name = "TopCounter";
-//  this.graphic = "063.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
@@ -2017,8 +2066,7 @@ TopCounterTile.prototype = new TerrainObject();
 
 function PlanksNSTile() {
   this.name = "PlanksNS";
-//  this.graphic = "069.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2031,10 +2079,9 @@ PlanksNSTile.prototype = new TerrainObject();
 
 function ShadowPlanksNSTile() {
   this.name = "ShadowPlanksNS";
-//  this.graphic = "069.gif";
-  this.graphic = "terrain_ether.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-352";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
@@ -2045,8 +2092,7 @@ ShadowPlanksNSTile.prototype = new TerrainObject();
 
 function SouthCoastTile() {
   this.name = "SouthCoast";
-//  this.graphic = "073.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2060,7 +2106,7 @@ SouthCoastTile.prototype = new TerrainObject();
 
 function SouthCoastSandTile() {
   this.name = "SouthCoastSand";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-96";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2074,8 +2120,7 @@ SouthCoastSandTile.prototype = new TerrainObject();
 
 function NorthCoastTile() {
   this.name = "NorthCoast";
-//  this.graphic = "074.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2089,8 +2134,7 @@ NorthCoastTile.prototype = new TerrainObject();
 
 function NorthCoastSandTile() {
   this.name = "NorthCoastSand";
-//  this.graphic = "074.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-288";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2104,8 +2148,7 @@ NorthCoastSandTile.prototype = new TerrainObject();
 
 function EastCoastTile() {
   this.name = "EastCoast";
-//  this.graphic = "075.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2119,7 +2162,7 @@ EastCoastTile.prototype = new TerrainObject();
 
 function EastCoastSandTile() {
   this.name = "EastCoastSand";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-96";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2133,8 +2176,7 @@ EastCoastSandTile.prototype = new TerrainObject();
 
 function WestCoastTile() {
   this.name = "WestCoast";
-//  this.graphic = "076.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2148,7 +2190,7 @@ WestCoastTile.prototype = new TerrainObject();
 
 function WestCoastSandTile() {
   this.name = "WestCoastSand";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-96";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2162,6 +2204,7 @@ WestCoastSandTile.prototype = new TerrainObject();
 
 function NortheastCoastTile() {
   this.name = "NortheastCoast";
+  // For Phaser: 0,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2179,6 +2222,7 @@ NortheastCoastTile.prototype = new TerrainObject();
 
 function NortheastCoastSandTile() {
   this.name = "NortheastCoastSand";
+  // For Phaser: 32,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2196,6 +2240,7 @@ NortheastCoastSandTile.prototype = new TerrainObject();
 
 function SouthwestCoastTile() {
   this.name = "SouthwestCoast";
+  // For Phaser: 64,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2213,6 +2258,7 @@ SouthwestCoastTile.prototype = new TerrainObject();
 
 function SouthwestCoastSandTile() {
   this.name = "SouthwestCoastSand";
+  // For Phaser: 96,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2230,6 +2276,7 @@ SouthwestCoastSandTile.prototype = new TerrainObject();
 
 function NorthwestCoastTile() {
   this.name = "NorthwestCoast";
+  // For Phaser: 128,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2247,6 +2294,7 @@ NorthwestCoastTile.prototype = new TerrainObject();
 
 function NorthwestCoastSandTile() {
   this.name = "NorthwestCoastSand";
+  // For Phaser: 160,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2264,6 +2312,7 @@ NorthwestCoastSandTile.prototype = new TerrainObject();
 
 function SoutheastCoastTile() {
   this.name = "SoutheastCoast";
+  // For Phaser: 192,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2281,6 +2330,7 @@ SoutheastCoastTile.prototype = new TerrainObject();
 
 function SoutheastCoastSandTile() {
   this.name = "SoutheastCoastSand";
+  // For Phaser: 224,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
@@ -2298,10 +2348,9 @@ SoutheastCoastSandTile.prototype = new TerrainObject();
 
 function ShadowSouthCoastTile() {
   this.name = "ShadowSouthCoast";
-//  this.graphic = "073.gif";
-  this.graphic = "terrain_ether.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-352";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2313,10 +2362,9 @@ ShadowSouthCoastTile.prototype = new TerrainObject();
 
 function ShadowNorthCoastTile() {
   this.name = "ShadowNorthCoast";
-//  this.graphic = "074.gif";
-  this.graphic = "terrain_ether.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-352";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2328,10 +2376,9 @@ ShadowNorthCoastTile.prototype = new TerrainObject();
 
 function ShadowEastCoastTile() {
   this.name = "ShadowEastCoast";
-//  this.graphic = "075.gif";
-  this.graphic = "terrain_ether.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-352";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2343,10 +2390,9 @@ ShadowEastCoastTile.prototype = new TerrainObject();
 
 function ShadowWestCoastTile() {
   this.name = "ShadowWestCoast";
-//  this.graphic = "076.gif";
-  this.graphic = "terrain_ether.gif";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-352";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2445,8 +2491,7 @@ RiverTile.prototype = new TerrainObject();
 
 function CobblestoneTile() {
   this.name = "Cobblestone";
-//  this.graphic = "103.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2459,7 +2504,7 @@ CobblestoneTile.prototype = new TerrainObject();
 
 function CobblestoneRoadTile() {
   this.name = "CobblestoneRoad";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2471,10 +2516,36 @@ function CobblestoneRoadTile() {
 }
 CobblestoneRoadTile.prototype = new TerrainObject();
 
+function ShadowCobblestoneTile() {
+  this.name = "ShadowCobblestone";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-320";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "cobblestones";
+  this.peerview = "#ee82ee";
+  this.walkSound = "stone";
+}
+ShadowCobblestoneTile.prototype = new TerrainObject();
+
+function ShadowCobblestoneRoadTile() {
+  this.name = "ShadowCobblestoneRoad";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-320";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "cobblestones";
+  this.peerview = "#ee82ee";
+  this.walkSound = "stone";
+  this.civilizedpathweight = .6;
+}
+ShadowCobblestoneRoadTile.prototype = new TerrainObject();
+
 function BlueTilesTile() {
   this.name = "BlueTiles";
-//  this.graphic = "056.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-256";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2488,8 +2559,7 @@ BlueTilesTile.prototype = new TerrainObject();
 
 function PlanksEWTile() {
   this.name = "PlanksEW";
-//  this.graphic = "104.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2500,10 +2570,22 @@ function PlanksEWTile() {
 }
 PlanksEWTile.prototype = new TerrainObject();
 
+function ShadowPlanksEWTile() {
+  this.name = "ShadowPlanksEW";
+  this.graphic = "master_spritesheet";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-352";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "wooden planks";
+  this.peerview = "#1c6000";
+  this.walkSound = "stone";
+}
+ShadowPlanksEWTile.prototype = new TerrainObject();
+
 function GrassTile() {
   this.name = "Grass";
-//  this.graphic = "121.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2517,10 +2599,9 @@ GrassTile.prototype = new TerrainObject();
 
 function ShadowGrassTile() {
   this.name = "ShadowGrass";
-//  this.graphic = "121.gif";
-  this.graphic = "terrain_ether.gif";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-320";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "grass";
@@ -2532,8 +2613,7 @@ ShadowGrassTile.prototype = new TerrainObject();
 
 function DirtTile() {
   this.name = "Dirt";
-//  this.graphic = "dirt-ground.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2547,10 +2627,9 @@ DirtTile.prototype = new TerrainObject();
 
 function ShadowDirtTile() {
   this.name = "ShadowDirt";
-//  this.graphic = "dirt-ground.gif";
-  this.graphic = "terrain_ether.gif";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-320";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "dirt";
@@ -2562,7 +2641,7 @@ ShadowDirtTile.prototype = new TerrainObject();
 
 function FallowFarmTile() {
   this.name = "FallowFarm";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-288";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2576,7 +2655,7 @@ FallowFarmTile.prototype = new TerrainObject();
 
 function FarmTile() {
   this.name = "Farm";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-288";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2590,7 +2669,9 @@ FarmTile.prototype = new TerrainObject();
 
 function RoadTile() {
   this.name = "Road";
-  this.graphic = "road-ew.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -2609,7 +2690,7 @@ RoadTile.prototype = new TerrainObject();
 
 function BrushTile() {
   this.name = "Brush";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-192";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2625,10 +2706,9 @@ BrushTile.prototype = new TerrainObject();
 
 function ShadowBrushTile() {
   this.name = "ShadowBrush";
-//  this.graphic = "122.gif";
-  this.graphic = "terrain_ether.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-320";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "brush";
@@ -2642,7 +2722,7 @@ ShadowBrushTile.prototype = new TerrainObject();
 
 function UnderbrushTile() {
   this.name = "Underbrush";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-288";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2658,8 +2738,7 @@ UnderbrushTile.prototype = new TerrainObject();
 
 function BrushNCoastTile() {
   this.name = "BrushNCoast";
-//  this.graphic = "brushNcoast.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-192";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2673,10 +2752,25 @@ function BrushNCoastTile() {
 }
 BrushNCoastTile.prototype = new TerrainObject();
 
+function ShadowBrushNCoastTile() {
+  this.name = "ShadowBrushNCoast";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-320";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "brush";
+  this.initdelay = 1.1;
+  this.pathweight = 1.1;
+  this.combatmap = "Brush";
+  this.peerview = "#005080";
+  this.walkSound = "grass";
+}
+ShadowBrushNCoastTile.prototype = new TerrainObject();
+
 function BrushECoastTile() {
   this.name = "BrushECoast";
-//  this.graphic = "brushEcoast.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-192";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2690,10 +2784,25 @@ function BrushECoastTile() {
 }
 BrushECoastTile.prototype = new TerrainObject();
 
+function ShadowBrushECoastTile() {
+  this.name = "ShadowBrushECoast";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-320";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "brush";
+  this.initdelay = 1.1;
+  this.pathweight = 1.1;
+  this.combatmap = "Brush";
+  this.peerview = "#005080";
+  this.walkSound = "grass";
+}
+ShadowBrushECoastTile.prototype = new TerrainObject();
+
 function BrushSCoastTile() {
   this.name = "BrushSCoast";
-//  this.graphic = "brushScoast.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-192";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2707,10 +2816,25 @@ function BrushSCoastTile() {
 }
 BrushSCoastTile.prototype = new TerrainObject();
 
+function ShadowBrushSCoastTile() {
+  this.name = "ShadowBrushSCoast";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-320";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "brush";
+  this.initdelay = 1.1;
+  this.pathweight = 1.1;
+  this.combatmap = "Brush";
+  this.peerview = "#005080";
+  this.walkSound = "grass";
+}
+ShadowBrushSCoastTile.prototype = new TerrainObject();
+
 function BrushWCoastTile() {
   this.name = "BrushWCoast";
-//  this.graphic = "brushWcoast.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-192";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2724,15 +2848,29 @@ function BrushWCoastTile() {
 }
 BrushWCoastTile.prototype = new TerrainObject();
 
+function ShadowBrushWCoastTile() {
+  this.name = "ShadowBrushWCoast";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-320";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "brush";
+  this.initdelay = 1.1;
+  this.pathweight = 1.1;
+  this.combatmap = "Brush";
+  this.peerview = "#005080";
+  this.walkSound = "grass";
+}
+ShadowBrushWCoastTile.prototype = new TerrainObject();
+
 function ForestTile() {
   this.name = "Forest";
-//  this.graphic = "123.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-192";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
-//  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
@@ -2745,8 +2883,7 @@ ForestTile.prototype = new TerrainObject();
 
 function GroveTile() {
 	this.name = "Grove";
-//  this.graphic = "123.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-192";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2760,32 +2897,13 @@ function GroveTile() {
 }
 GroveTile.prototype = new TerrainObject();
 
-function ShadowGroveTile() {
-	this.name = "ShadowGrove";
-//  this.graphic = "123.gif";
-  this.graphic = "terrain_ether.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-192";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = .5;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "trees";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.peerview = "#002840";
-  this.walkSound = "forest";
-}
-ShadowGroveTile.prototype = new TerrainObject();
-	
 function ForestNCoastTile() {
 	this.name = "ForestNCoast";
-//	this.graphic = "forestNcoast.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-192";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
-//  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
@@ -2798,13 +2916,11 @@ ForestNCoastTile.prototype = new TerrainObject();
 
 function ForestECoastTile() {
 	this.name = "ForestECoast";
-//	this.graphic = "forestEcoast.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-192";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
-//  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
@@ -2817,13 +2933,11 @@ ForestECoastTile.prototype = new TerrainObject();
 
 function ForestSCoastTile() {
 	this.name = "ForestSCoast";
-//	this.graphic = "forestScoast.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-192";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
-//  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
@@ -2836,13 +2950,11 @@ ForestSCoastTile.prototype = new TerrainObject();
 
 function ForestWCoastTile() {
 	this.name = "ForestWCoast";
-//	this.graphic = "forestWcoast.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-224";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
-//  this.losatdistance = { distance : 5 , blocklos : .8 };
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
@@ -2855,15 +2967,11 @@ ForestWCoastTile.prototype = new TerrainObject();
 
 function HillsTile() {
   this.name = "Hills";
-//  this.graphic = "124.gif";
-//  this.graphic = "hill.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-224";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
-//  this.blocklos = .3;
-//  this.losatdistance = { distance : 5 , blocklos : .5 };
   this.desc = "hills";
   this.initdelay = 1.5;
   this.pathweight = 1.5;
@@ -2875,8 +2983,7 @@ HillsTile.prototype = new TerrainObject();
 
 function PurpleCobblestoneTile() {
   this.name = "PurpleCobblestone";
-//  this.graphic = "125.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-224";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2889,10 +2996,9 @@ PurpleCobblestoneTile.prototype = new TerrainObject();
 
 function ShadowPurpleCobblestoneTile() {
   this.name = "ShadowPurpleCobblestone";
-//  this.graphic = "125.gif";
-  this.graphic = "terrain_ether.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-224";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-0";
+  this.spriteyoffset = "-320";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
@@ -2903,8 +3009,7 @@ ShadowPurpleCobblestoneTile.prototype = new TerrainObject();
 
 function SwampTile() {
   this.name = "Swamp";
-//  this.graphic = "141.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-224";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2919,11 +3024,11 @@ function SwampTile() {
 SwampTile.prototype = new TerrainObject();
 
 SwampTile.prototype.walkon = function(person) {
-  var resp = InASwamp(person);
+  let resp = InASwamp(person);
   return resp;
 }
 SwampTile.prototype.idle = function(person) {
-  var resp = InASwamp(person);
+  let resp = InASwamp(person);
   return resp;
 }
 
@@ -2936,10 +3041,9 @@ SwampTile.prototype.isHostileTo = function(who) {
 
 function ShadowSwampTile() {
   this.name = "ShadowSwamp";
-//  this.graphic = "141.gif";
-  this.graphic = "terrain_ether.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-224";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-320";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "swamp";
@@ -2952,11 +3056,11 @@ function ShadowSwampTile() {
 ShadowSwampTile.prototype = new TerrainObject();
 
 ShadowSwampTile.prototype.walkon = function(person) {
-  var resp = InASwamp(person);
+  let resp = InASwamp(person);
   return resp;
 }
 ShadowSwampTile.prototype.idle = function(person) {
-  var resp = InASwamp(person);
+  let resp = InASwamp(person);
   return resp;
 }
 
@@ -2984,23 +3088,21 @@ function InASwamp(who) {
   }
 
   // percent chance of infection- 10% per step, prorated by speed
-  var chance = 10 * (DUTime.getGameClock() - who.getLastTurnTime());  
+  let chance = 10 * (DUTime.getGameClock() - who.getLastTurnTime());  
   if (Dice.roll("1d100") < chance) {  // diseased!
     if (who.getSpellEffectsByName("Disease")) { return 0; }
-    var disease = localFactory.createTile("Disease");
+    let disease = localFactory.createTile("Disease");
     who.addSpellEffect(disease);
     
     DrawCharFrame();
-    var response = "You have become diseased!";
-    return response;
+    return "You have become diseased!";
   }
   return "";
 }
 
 function ShinglesTile() {
   this.name = "Shingles";
-//  this.graphic = "shingles.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-224";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -3013,8 +3115,7 @@ ShinglesTile.prototype = new TerrainObject();
 
 function ShinglesTopTile() {
   this.name = "ShinglesTop";
-//  this.graphic = "shingles-top.gif";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-224";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -3027,7 +3128,7 @@ ShinglesTopTile.prototype = new TerrainObject();
 
 function CaveFloorTile() {
 	this.name = "CaveFloor";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-32";  
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3043,21 +3144,23 @@ CaveFloorTile.prototype = new TerrainObject();
 
 function CaveWallTile() {
 	this.name = "CaveWall";
-	this.graphic = "cavewall.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-3936";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1;
 	this.prefix = "a";
 	this.desc = "cave wall";
 	this.peerview = "black";
 	
-	Tiling.call(this, 2);
-	SetBySurround.call(this);
+	TilingSpritesheet.call(this, 2);
+	SetBySurroundCave.call(this);
 }
 CaveWallTile.prototype = new TerrainObject();
 
 function HexFloorTile() {
 	this.name = "HexFloor";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-224";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3070,7 +3173,7 @@ HexFloorTile.prototype = new TerrainObject();
 
 function HexTransparentFloorTile() {
 	this.name = "HexTransparentFloor";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-288";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3083,7 +3186,7 @@ HexTransparentFloorTile.prototype = new TerrainObject();
 
 function GoldOutlineFloorTile() {
 	this.name = "GoldOutlineFloor";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-224";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3096,7 +3199,7 @@ GoldOutlineFloorTile.prototype = new TerrainObject();
 
 function DiamondFloorTile() {
 	this.name = "DiamondFloor";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-224";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3109,7 +3212,7 @@ DiamondFloorTile.prototype = new TerrainObject();
 
 function BlueDiamondFloorTile() {
 	this.name = "BlueDiamondFloor";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-224";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3122,7 +3225,7 @@ BlueDiamondFloorTile.prototype = new TerrainObject();
 
 function PurpleDiamondFloorTile() {
 	this.name = "PurpleDiamondFloor";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-256";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3135,7 +3238,7 @@ PurpleDiamondFloorTile.prototype = new TerrainObject();
 
 function RedDiamondFloorTile() {
 	this.name = "RedDiamondFloor";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-256";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3148,7 +3251,7 @@ RedDiamondFloorTile.prototype = new TerrainObject();
 
 function GreenDiamondFloorTile() {
 	this.name = "GreenDiamondFloor";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-288";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3161,7 +3264,7 @@ GreenDiamondFloorTile.prototype = new TerrainObject();
 
 function YellowDiamondFloorTile() {
 	this.name = "YellowDiamondFloor";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-288";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3174,7 +3277,7 @@ YellowDiamondFloorTile.prototype = new TerrainObject();
 
 function BannerTile() {
   this.name = "Banner";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-256";
   this.passable = MOVE_ETHEREAL;
@@ -3201,7 +3304,7 @@ LavaTubeTile.prototype = new TerrainObject();
 
 function RedCarpetNWTile() {
   this.name = "RedCarpetNW";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3214,7 +3317,7 @@ RedCarpetNWTile.prototype = new TerrainObject();
 
 function RedCarpetNTile() {
   this.name = "RedCarpetN";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3227,7 +3330,7 @@ RedCarpetNTile.prototype = new TerrainObject();
 
 function RedCarpetNETile() {
   this.name = "RedCarpetNE";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3240,7 +3343,7 @@ RedCarpetNETile.prototype = new TerrainObject();
 
 function RedCarpetWTile() {
   this.name = "RedCarpetW";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3253,7 +3356,7 @@ RedCarpetWTile.prototype = new TerrainObject();
 
 function RedCarpetCTile() {
   this.name = "RedCarpetC";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3266,7 +3369,7 @@ RedCarpetCTile.prototype = new TerrainObject();
 
 function RedCarpetETile() {
   this.name = "RedCarpetE";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3279,7 +3382,7 @@ RedCarpetETile.prototype = new TerrainObject();
 
 function RedCarpetSWTile() {
   this.name = "RedCarpetSW";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3292,7 +3395,7 @@ RedCarpetSWTile.prototype = new TerrainObject();
 
 function RedCarpetSTile() {
   this.name = "RedCarpetS";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3305,7 +3408,7 @@ RedCarpetSTile.prototype = new TerrainObject();
 
 function RedCarpetSETile() {
   this.name = "RedCarpetSE";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3318,7 +3421,7 @@ RedCarpetSETile.prototype = new TerrainObject();
 
 function BlueCarpetNWTile() {
   this.name = "BlueCarpetNW";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3331,7 +3434,7 @@ BlueCarpetNWTile.prototype = new TerrainObject();
 
 function BlueCarpetNTile() {
   this.name = "BlueCarpetN";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3344,7 +3447,7 @@ BlueCarpetNTile.prototype = new TerrainObject();
 
 function BlueCarpetNETile() {
   this.name = "BlueCarpetNE";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3357,7 +3460,7 @@ BlueCarpetNETile.prototype = new TerrainObject();
 
 function BlueCarpetWTile() {
   this.name = "BlueCarpetW";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3370,7 +3473,7 @@ BlueCarpetWTile.prototype = new TerrainObject();
 
 function BlueCarpetCTile() {
   this.name = "BlueCarpetC";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3383,7 +3486,7 @@ BlueCarpetCTile.prototype = new TerrainObject();
 
 function BlueCarpetETile() {
   this.name = "BlueCarpetE";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3396,7 +3499,7 @@ BlueCarpetETile.prototype = new TerrainObject();
 
 function BlueCarpetSWTile() {
   this.name = "BlueCarpetSW";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3409,7 +3512,7 @@ BlueCarpetSWTile.prototype = new TerrainObject();
 
 function BlueCarpetSTile() {
   this.name = "BlueCarpetS";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3422,7 +3525,7 @@ BlueCarpetSTile.prototype = new TerrainObject();
 
 function BlueCarpetSETile() {
   this.name = "BlueCarpetSE";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3445,7 +3548,6 @@ SeeBelowTile.prototype = new TerrainObject();
 function WorldBelowTile() {
   this.name = "WorldBelow";
   this.graphic = "spacer.gif";
-//  this.graphic = "world-below.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "the";
@@ -3488,7 +3590,7 @@ FeatureObject.prototype.setSearchYield = function(searchable) {
   // searchable must be an array, even if an empty one
   if (!searchable) {
     delete this.searchYield;
-  } else if ($.isArray(searchable)) {
+  } else if (Array.isArray(searchable)) {
     this.searchYield = searchable;
   }
 }
@@ -3554,7 +3656,7 @@ FeatureObject.prototype.setLootedID = function(lid) {
 
 function CastleGrassTile() {
   this.name = "CastleGrass";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3567,7 +3669,7 @@ function CastleGrassTile() {
 CastleGrassTile.prototype = new FeatureObject();
 
 CastleGrassTile.prototype.bumpinto = function(who) {
-	var retval = {};
+	let retval = {};
 	retval["canmove"] = 1;
 	retval["msg"] = "";
 	
@@ -3617,7 +3719,9 @@ function InLava(who) {
 
 function FenceNWTile() {
   this.name = "FenceNW";
-  this.graphic = "fence-nw.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3627,7 +3731,9 @@ FenceNWTile.prototype = new FeatureObject();
 
 function FenceNETile() {
   this.name = "FenceNE";
-  this.graphic = "fence-ne.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3637,7 +3743,9 @@ FenceNETile.prototype = new FeatureObject();
 
 function FenceEWTile() {
   this.name = "FenceEW";
-  this.graphic = "fence-ew.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3647,7 +3755,9 @@ FenceEWTile.prototype = new FeatureObject();
 
 function FenceSETile() {
   this.name = "FenceSE";
-  this.graphic = "fence-se.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3657,7 +3767,9 @@ FenceSETile.prototype = new FeatureObject();
 
 function FenceSWTile() {
   this.name = "FenceSW";
-  this.graphic = "fence-sw.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3667,7 +3779,9 @@ FenceSWTile.prototype = new FeatureObject();
 
 function FenceNSTile() {
   this.name = "FenceNS";
-  this.graphic = "fence-ns.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3677,7 +3791,9 @@ FenceNSTile.prototype = new FeatureObject();
 
 function FenceEWSTile() {
   this.name = "FenceEWS";
-  this.graphic = "fence-ews.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3687,7 +3803,9 @@ FenceEWSTile.prototype = new FeatureObject();
 
 function FenceEWGateTile() {
 	this.name = "FenceEWGate";
-	this.graphic = "fence-ew-gate-closed.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-800";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
@@ -3695,7 +3813,7 @@ function FenceEWGateTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, [this.graphic, this.overlay, 0, 0], ["fence-ew-gate-open.gif", this.overlay, 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["master_spritesheet.png", "", "0", "-800"], ["master_spritesheet.png", "", "-32", "-800"], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
   // WORKING- NEED TO REPLACE SOUNDS
 }
 FenceEWGateTile.prototype = new FeatureObject();
@@ -3706,9 +3824,9 @@ FenceEWGateTile.prototype.bumpinto = function(who) {
 
 function StatueBaseTile() {
   this.name = "StatueBase";
-  this.graphic = "statue.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-896";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3718,7 +3836,9 @@ StatueBaseTile.prototype = new FeatureObject();
 
 function StatueTopTile() {
   this.name = "StatueTop";
-  this.graphic = "statue.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-864";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3729,9 +3849,9 @@ StatueTopTile.prototype = new FeatureObject();
 
 function PaintingCrossTile() {
   this.name = "PaintingCross";
-  this.graphic = "features.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-576";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3741,9 +3861,9 @@ PaintingCrossTile.prototype = new FeatureObject();
 
 function PaintingGreenTile() {
   this.name = "PaintingGreen";
-  this.graphic = "features.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-576";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3753,9 +3873,9 @@ PaintingGreenTile.prototype = new FeatureObject();
 
 function PaintingPurpleTile() {
   this.name = "PaintingPurple";
-  this.graphic = "features.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-576";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3765,9 +3885,9 @@ PaintingPurpleTile.prototype = new FeatureObject();
 
 function PaintingTreeTile() {
   this.name = "PaintingTree";
-  this.graphic = "features.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-576";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3777,9 +3897,9 @@ PaintingTreeTile.prototype = new FeatureObject();
 
 function PedestalTile() {
   this.name = "Pedestal";
-  this.graphic = "features.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-576";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3789,9 +3909,9 @@ PedestalTile.prototype = new FeatureObject();
 
 function WoodSignTile() {
   this.name = "WoodSign";
-  this.graphic = "features.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-576";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3801,9 +3921,9 @@ WoodSignTile.prototype = new FeatureObject();
 
 function WoodSign1Tile() {
   this.name = "WoodSign1";
-  this.graphic = "features.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-608";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3813,9 +3933,9 @@ WoodSign1Tile.prototype = new FeatureObject();
 
 function WoodSign2Tile() {
   this.name = "WoodSign2";
-  this.graphic = "features.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-608";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3825,9 +3945,9 @@ WoodSign2Tile.prototype = new FeatureObject();
 
 function WoodSign3Tile() {
   this.name = "WoodSign3";
-  this.graphic = "features.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-608";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3837,9 +3957,9 @@ WoodSign3Tile.prototype = new FeatureObject();
 
 function WoodSign4Tile() {
   this.name = "WoodSign4";
-  this.graphic = "features.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-608";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3874,7 +3994,9 @@ WaterRockTile.prototype = new FeatureObject();
 
 function DungeonTile() {
   this.name = "Dungeon";
-  this.graphic = "151.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3886,7 +4008,9 @@ DungeonTile.prototype = new FeatureObject();
 
 function CaveTile() {
   this.name = "Cave";
-  this.graphic = "cave.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-832";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3926,7 +4050,9 @@ KeepTile.prototype = new FeatureObject();
 
 function GrassTowerTile() {
   this.name = "GrassTower";
-  this.graphic = "tower-grass.gif";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-160";
+  this.spriteyoffset = "-1440";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3939,7 +4065,9 @@ GrassTowerTile.prototype = new FeatureObject();
 
 function HillTowerTile() {
   this.name = "HillTower";
-  this.graphic = "tower-hill.gif";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-160";
+  this.spriteyoffset = "-1472";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -3991,7 +4119,7 @@ function CastleTile() {
 CastleTile.prototype = new FeatureObject();
 
 CastleTile.prototype.bumpinto = function(who) {
-	var retval = {};
+	let retval = {};
 	retval["canmove"] = 1;
 	retval["msg"] = "";
 	
@@ -4005,7 +4133,9 @@ CastleTile.prototype.bumpinto = function(who) {
 
 function LeftCastleTile() {
   this.name = "LeftCastle";
-  this.graphic = "005.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-704";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle Dea Olympus";
@@ -4016,7 +4146,9 @@ LeftCastleTile.prototype = new FeatureObject();
 
 function RightCastleTile() {
   this.name = "RightCastle";
-  this.graphic = "006.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-704";
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.desc = "Castle Dea Olympus";
@@ -4027,7 +4159,9 @@ RightCastleTile.prototype = new FeatureObject();
 
 function DoorwayTile() {
   this.name = "Doorway";
-  this.graphic = "archway.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-704";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "an";
@@ -4037,7 +4171,9 @@ DoorwayTile.prototype = new FeatureObject();
 
 function StoneDoorwayTile() {
   this.name = "StoneDoorway";
-  this.graphic = "stone-arch.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-832";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "an";
@@ -4047,7 +4183,9 @@ StoneDoorwayTile.prototype = new FeatureObject();
 
 function WallDoorwayTile() {
   this.name = "WallDoorway";
-  this.graphic = "wall-arch.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-832";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "an";
@@ -4057,7 +4195,9 @@ WallDoorwayTile.prototype = new FeatureObject();
 
 function ShrineTile() {
   this.name = "Shrine";
-  this.graphic = "156.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-832";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4068,7 +4208,9 @@ ShrineTile.prototype = new FeatureObject();
 
 function BrokenShrineTile() {
   this.name = "BrokenShrine";
-  this.graphic = "brokengate.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-832";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4079,7 +4221,9 @@ BrokenShrineTile.prototype = new FeatureObject();
 
 function RuinsTile() {
   this.name = "Ruins";
-  this.graphic = "157.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-832";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4091,9 +4235,11 @@ function RuinsTile() {
 RuinsTile.prototype = new FeatureObject();
 
 function ChestTile() {
-  Lockable.call(this, "008.gif", "008.gif", "008.gif", 	"a",  "chest", "a", "locked chest", "a", "magically locked chest");
+  Lockable.call(this, ["master_spritesheet.png","","-64","-704"], ["master_spritesheet.png","","-64","-704"], ["master_spritesheet.png","","-64","-704"], 	"a",  "chest", "a", "locked chest", "a", "magically locked chest");
 	this.name = "Chest";
-	this.graphic = "008.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-704";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK + MOVE_LEVITATE;
 	this.blocklos = 0;
 	this.prefix = "a";
@@ -4114,10 +4260,12 @@ ChestTile.prototype.flamed = function() {
 }
 
 function DoorWindowTile() {
-  Lockable.call(this, "009.gif", "010.gif", "067.gif", "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["master_spritesheet.png","",'-96','-704'], ["master_spritesheet.png","",'-128','-704'], ["master_spritesheet.png","",'-160','-704'], "a", "door", "a", "locked door", "a", "magically locked door");
 	
 	this.name = "DoorWindow";
-	this.graphic = "009.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-704";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.losupclose = {distance: 1 , blocklos: 0};
@@ -4127,7 +4275,7 @@ function DoorWindowTile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, [this.graphic, "", 0, 0], ["archway.gif", "", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["master_spritesheet.png","",'-96','-704'], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorWindowTile.prototype = new FeatureObject();
 
@@ -4136,10 +4284,12 @@ DoorWindowTile.prototype.bumpinto = function(who) {
 }
 
 function StonePortcullisTile() {
-  Lockable.call(this, "stone-portcullis.gif", "stone-portcullis.gif", "stone-portcullis.gif", "a", "portcullis", "a", "portcullis", "a", "portcullis");
+  Lockable.call(this, ["master_spritesheet.png", "", "-224", "-832"], ["master_spritesheet.png", "", "-224", "-832"], ["master_spritesheet.png", "", "-224", "-832"], "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
 	this.name = "StonePortcullis";
-	this.graphic = "stone-portcullis.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-832";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
@@ -4148,7 +4298,7 @@ function StonePortcullisTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, [this.graphic, "", 0, 0], ["stone-arch.gif", "", 0, 0], 0, "", "", "sfx_locked_door");  // ADD WHEN SOUNDS ADDED
+  Openable.call(this, ["master_spritesheet.png", "", "-224", "-832"], ["master_spritesheet.png", "", "-192", "-832"], 0, "", "", "sfx_locked_door");  // ADD WHEN SOUNDS ADDED
 }
 StonePortcullisTile.prototype = new FeatureObject();
 
@@ -4157,10 +4307,12 @@ StonePortcullisTile.prototype.bumpinto = function(who) {
 }
 
 function WallPortcullisTile() {
-  Lockable.call(this, "wall-portcullis.gif", "wall-portcullis.gif", "wall-portcullis.gif", "a", "portcullis", "a", "portcullis", "a", "portcullis");
+  Lockable.call(this, ["master_spritesheet.png", "", "-288", "-832"], ["master_spritesheet.png", "", "-288", "-832"], ["master_spritesheet.png", "", "-288", "-832"], "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
 	this.name = "WallPortcullis";
-	this.graphic = "wall-portcullis.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-832";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
@@ -4169,7 +4321,7 @@ function WallPortcullisTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, [this.graphic, "", 0, 0], ["wall-arch.gif", "", 0, 0], 0, "", "", "sfx_locked_door");  // HERE TOO
+  Openable.call(this, ["master_spritesheet.png", "", "-288", "-832"], ["master_spritesheet.png", "", "-256", "-832"], 0, "", "", "sfx_locked_door");  // HERE TOO
 }
 WallPortcullisTile.prototype = new FeatureObject();
 
@@ -4179,7 +4331,9 @@ WallPortcullisTile.prototype.bumpinto = function(who) {
 
 function CorpseTile() {
 	this.name = "Corpse";
-	this.graphic = "012.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-800";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.prefix = "a";
@@ -4192,7 +4346,9 @@ CorpseTile.prototype = new FeatureObject();
 
 function BloodTile() {
 	this.name = "Blood";
-	this.graphic = "blood.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-832";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.prefix = "";
@@ -4203,12 +4359,10 @@ BloodTile.prototype = new FeatureObject();
 
 function EnergyFieldTile() {
 	this.name = "EnergyField";
-//	this.graphic = "flowing_animations.gif";
   this.graphic = "fields.gif";
 	this.passable = 0; // impassable - wonky outdoors, but necessary indoors
 	this.blocklos = 0;
 	this.blockloe = 1;
-//	this.light = 1;
   this.prefix = "an"; 
 	this.desc = "energy field";
   this.spritexoffset = "-32";
@@ -4285,15 +4439,15 @@ TorchEastOutTile.prototype.use = function(who) {
 }
 
 function UseTorch(who,torch) {
-  var retval = {};
-  var torchmap = torch.getHomeMap();
-  var torchx = torch.getx();
-  var torchy = torch.gety();
+  let retval = {};
+  let torchmap = torch.getHomeMap();
+  let torchx = torch.getx();
+  let torchy = torch.gety();
 
-  var torchname = torch.getName();
+  let torchname = torch.getName();
   torchmap.deleteThing(torch);
 
-  var newtorch;
+  let newtorch;
   if (torchname === "TorchEast") {
     newtorch = localFactory.createTile("TorchEastOut");
     retval["txt"] = "Extinguished!";
@@ -4319,7 +4473,9 @@ function UseTorch(who,torch) {
 
 function WoodpileTile() {
 	this.name = "Woodpile";
-	this.graphic = "woodpile.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-768";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
   this.prefix = "a";
@@ -4344,18 +4500,18 @@ CampfireTile.prototype = new FeatureObject();
 
 CampfireTile.prototype.activate = function() {
   if (!gamestate.getMode("loadgame")) {
-    var NPCevent = new GameEvent(this);
+    let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   }
   return;
 }
 
 CampfireTile.prototype.walkon = function(person) {
-  var resp = OnFire(person, this);
+  let resp = OnFire(person, this);
   return resp;
 }
 CampfireTile.prototype.idle = function(person) {
-  var resp = OnFire(person, this);
+  let resp = OnFire(person, this);
   return resp;
 }
 
@@ -4365,26 +4521,26 @@ CampfireTile.prototype.isHostileTo = function(who) {
 }
 
 CampfireTile.prototype.myTurn = function() {
-  var mytile = this.getHomeMap().getTile(this.getx(),this.gety());
-  var feas = mytile.getFeatures();
-  $.each(feas, function(idx,val) {
-    if (val.flammable) {
-      if (Dice.roll("1d100") <= val.flammable) {
-        val.flamed();
+  let mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+  let feas = mytile.getFeatures();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].flammable) {
+      if (Dice.roll("1d100") <= feas[i].flammable) {
+        feas[i].flamed();
       }
     }
-  });
+  };
 
-  var NPCevent = new GameEvent(this);
+  let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   
   return 1;  
 }
 
 function OnFire(who, what) {
-  var dmg = Dice.roll(what.firedamage);
+  let dmg = Dice.roll(what.firedamage);
   dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
-  var response = "The " + what.getDesc() + " burns you!";
+  let response = "The " + what.getDesc() + " burns you!";
   who.dealDamage(dmg, what, "fire");
   
   return response;
@@ -4404,13 +4560,12 @@ function BrazierTile() {
 BrazierTile.prototype = new FeatureObject();
 
 BrazierTile.prototype.use = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if (!this.alwayslit) {
-    var map = this.getHomeMap();
-    var unlit = localFactory.createTile("UnlitBrazier");
-    var x = this.getx();
-    var y = this.gety();
+    let map = this.getHomeMap();
+    let unlit = localFactory.createTile("UnlitBrazier");
+    let x = this.getx();
+    let y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,unlit);
     if (map === PC.getHomeMap()) {
@@ -4427,9 +4582,9 @@ BrazierTile.prototype.use = function(who) {
 
 function UnlitBrazierTile() {
 	this.name = "UnlitBrazier";
-	this.graphic = "features.png";
-	this.spritexoffset = "-128";
-	this.spriteyoffset = "-64";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-288";
+	this.spriteyoffset = "-448";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "an";
@@ -4440,13 +4595,12 @@ function UnlitBrazierTile() {
 UnlitBrazierTile.prototype = new FeatureObject();
 
 UnlitBrazierTile.prototype.use = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if (!this.alwaysout) {
-    var map = this.getHomeMap();
-    var lit = localFactory.createTile("Brazier");
-    var x = this.getx();
-    var y = this.gety();
+    let map = this.getHomeMap();
+    let lit = localFactory.createTile("Brazier");
+    let x = this.getx();
+    let y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,lit);
     if (map === PC.getHomeMap()) {
@@ -4474,13 +4628,12 @@ function WEBrazierTile() {
 WEBrazierTile.prototype = new FeatureObject();
 
 WEBrazierTile.prototype.use = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if (!this.alwayslit) {
-    var map = this.getHomeMap();
-    var unlit = localFactory.createTile("UnlitWEBrazier");
-    var x = this.getx();
-    var y = this.gety();
+    let map = this.getHomeMap();
+    let unlit = localFactory.createTile("UnlitWEBrazier");
+    let x = this.getx();
+    let y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,unlit);
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
@@ -4496,9 +4649,9 @@ WEBrazierTile.prototype.use = function(who) {
 
 function UnlitWEBrazierTile() {
 	this.name = "UnlitWEBrazier";
-	this.graphic = "features.png";
-	this.spritexoffset = "-128";
-	this.spriteyoffset = "-64";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-288";
+	this.spriteyoffset = "-448";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0;
   this.prefix = "an";
@@ -4507,13 +4660,13 @@ function UnlitWEBrazierTile() {
 UnlitWEBrazierTile.prototype = new FeatureObject();
 
 UnlitWEBrazierTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {fin:1};
   retval["fin"] = 1;
   if (!this.alwaysout) {
-    var map = this.getHomeMap();
-    var lit = localFactory.createTile("WEBrazier");
-    var x = this.getx();
-    var y = this.gety();
+    let map = this.getHomeMap();
+    let lit = localFactory.createTile("WEBrazier");
+    let x = this.getx();
+    let y = this.gety();
     map.deleteThing(this);
     map.placeThing(x,y,lit);
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
@@ -4528,14 +4681,14 @@ UnlitWEBrazierTile.prototype.use = function(who) {
 }
 
 function CheckWEEntrance(themap) {
-  var ne_brazier = themap.getTile(11,43).getTopFeature();
-  var nw_brazier = themap.getTile(7,43).getTopFeature();
-  var se_brazier = themap.getTile(11,47).getTopFeature();
-  var sw_brazier = themap.getTile(7,47).getTopFeature();
+  let ne_brazier = themap.getTile(11,43).getTopFeature();
+  let nw_brazier = themap.getTile(7,43).getTopFeature();
+  let se_brazier = themap.getTile(11,47).getTopFeature();
+  let sw_brazier = themap.getTile(7,47).getTopFeature();
   
-  var barrier = themap.getTile(12,45).getTopFeature();
+  let barrier = themap.getTile(12,45).getTopFeature();
   
-  var set_barrier = 1;
+  let set_barrier = 1;
   
   if ((ne_brazier.getName() === "UnlitWEBrazier") && (nw_brazier.getName() === "WEBrazier") && (se_brazier.getName() === "UnlitWEBrazier") && (sw_brazier.getName() === "WEBrazier")) {
     set_barrier = 0;
@@ -4557,7 +4710,6 @@ function IllusionaryEnergyFieldTile() {
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 2;
 	this.blockloe = 2;
-//	this.light = 1;
   this.prefix = "a"; 
 	this.desc = "wall";
   this.spritexoffset = "-32";
@@ -4569,7 +4721,9 @@ IllusionaryEnergyFieldTile.prototype = new FeatureObject();
 
 function CrystalTrapSpaceTile() {
 	this.name = "CrystalTrapSpace";
-  this.graphic = "crystal-trap.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-640";
 	this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_FLY + MOVE_ETHEREAL;
   this.prefix = "a"; 
 	this.desc = "Crystal Trap spell";
@@ -4590,24 +4744,15 @@ CrystalTrapSpaceTile.prototype.walkon = function(who) {
   }
 
   if (who.getSerial() !== this.owner) {
-    var trap = localFactory.createTile("CrystalTrap");
+    let trap = localFactory.createTile("CrystalTrap");
     trap.duration = this.duration;
     trap.power = this.power;
     trap.setExpiresTime(this.duration + DUTime.getGameClock());
     DebugWrite("magic", "Crystal Prison sprung. Expires at " + trap.getExpiresTime() + ".<br />");
     who.addSpellEffect(trap);
 
-    var trapmap = this.getHomeMap();
+    let trapmap = this.getHomeMap();
     trapmap.deleteThing(this);
-//    var feas = trapmap.features.getAll();
-//    var owner = this.owner;
-//    $.each(feas, function(idx,val) {
-//      if (val.getName() === "CrystalTrapSpace") {
-//        if (val.owner === owner) {
-//          trapmap.deleteThing(val);
-//        }
-//      }
-//    });
   
     return ("You are engulfed in crystal!");
   } else {
@@ -4618,9 +4763,9 @@ CrystalTrapSpaceTile.prototype.walkon = function(who) {
 
 CrystalTrapSpaceTile.prototype.activate = function() {
   if (gamestate.getMode() !== "loadgame") {
-    var NPCevent = new GameEvent(this);
+    let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,this.duration);
-    var expiresat = this.duration + DUTime.getGameClock();
+    let expiresat = this.duration + DUTime.getGameClock();
     DebugWrite("magic", "Crystal Prison trap created. Expires at " + expiresat + ".<br />");    
   }
 
@@ -4649,7 +4794,7 @@ CrystalTrapSpaceTile.prototype.myTurn = function() {
   }
 
   // in the case of this thing, this part should never trigger.  
-  var NPCevent = new GameEvent(this);
+  let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   
   return 1;
@@ -4676,7 +4821,8 @@ function FireplaceTile() {
 	this.desc = "fireplace";
 	this.peerview = "white";
 	this.pathweight = 5;
-	this.firedamage = "3d4";
+  this.firedamage = "3d4";
+//  this.nowander = 1;
 	
 	LightEmitting.call(this, 2);
 	HasAmbientNoise.call(this,"sfx_fire_crackle",1.5);
@@ -4685,7 +4831,7 @@ FireplaceTile.prototype = new FeatureObject();
 
 FireplaceTile.prototype.activate = function() {
   if (gamestate.getMode() !== "loadgame") {
-    var NPCevent = new GameEvent(this);
+    let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
     DebugWrite("gameobj", "Adding fireplace to the timeline.");
   }
@@ -4693,11 +4839,11 @@ FireplaceTile.prototype.activate = function() {
 }
 
 FireplaceTile.prototype.walkon = function(person) {
-  var resp = OnFire(person, this);
+  let resp = OnFire(person, this);
   return resp;
 }
 FireplaceTile.prototype.idle = function(person) {
-  var resp = OnFire(person, this);
+  let resp = OnFire(person, this);
   return resp;
 }
 
@@ -4707,17 +4853,17 @@ FireplaceTile.prototype.isHostileTo = function(who) {
 }
 
 FireplaceTile.prototype.myTurn = function() {
-  var mytile = this.getHomeMap().getTile(this.getx(),this.gety());
-  var feas = mytile.getFeatures();
-  $.each(feas, function(idx,val) {
-    if (val.flammable) {
-      if (Dice.roll("1d100") <= val.flammable) {
-        val.flamed();
+  let mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+  let feas = mytile.getFeatures();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].flammable) {
+      if (Dice.roll("1d100") <= feas[i].flammable) {
+        feas[i].flamed();
       }
     }
-  });
+  };
 
-  var NPCevent = new GameEvent(this);
+  let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   
   return 1;  
@@ -4725,9 +4871,9 @@ FireplaceTile.prototype.myTurn = function() {
 
 function DustyFireplaceTile() {
 	this.name = "DustyFireplace";
-	this.graphic = "furniture.gif";
+	this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "0";
-	this.spriteyoffset = "0";
+	this.spriteyoffset = "-384";
 	this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 2;
   this.prefix = "a";
@@ -4738,7 +4884,9 @@ DustyFireplaceTile.prototype = new FeatureObject();
 
 function AltarTile() {
 	this.name = "Altar";
-	this.graphic = "023.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-736";
 	this.passable = MOVE_ETHEREAL + MOVE_FLY;
 	this.blocklos = 0;
 	this.prefix = "an";
@@ -4749,9 +4897,9 @@ AltarTile.prototype = new FeatureObject();
 
 function ThroneTile() {
 	this.name = "Throne";
-	this.graphic = "furniture.gif";
-	this.spritexoffset = "-224";
-	this.spriteyoffset = "-64";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-288";
+	this.spriteyoffset = "-352";
 	this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.prefix = "the";
@@ -4760,10 +4908,12 @@ function ThroneTile() {
 ThroneTile.prototype = new FeatureObject();
 
 function DoorTile() {
-  Lockable.call(this, "064.gif", "065.gif", "066.gif", "a", "door", "a", "locked door", "a", "magically locked door");
+  Lockable.call(this, ["master_spritesheet.png","",'-224','-704'], ["master_spritesheet.png","",'-256','-704'], ["master_spritesheet.png","",'-288','-704'], "a", "door", "a", "locked door", "a", "magically locked door");
   	
 	this.name = "Door";
-	this.graphic = "064.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-704";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.prefix = "a";
@@ -4771,7 +4921,7 @@ function DoorTile() {
   
   this.pathweight = 2; 
 
-	Openable.call(this, [this.graphic, "", 0, 0], ["archway.gif", "", 0, 0], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+	Openable.call(this, ["master_spritesheet.png", "", "-224", "-704"], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorTile.prototype = new FeatureObject();
 
@@ -4790,7 +4940,7 @@ TalkingDoorTile.prototype.getConversation = function() {
 }
 
 TalkingDoorTile.prototype.getGenderedTerms = function() {
-  var gt = {};
+  let gt = {};
   gt.pronoun = "it";
   gt.possessive = "its";
   gt.objective = "it";
@@ -4807,7 +4957,7 @@ TalkingDoorTile.prototype.getNPCName = function() {
 TalkingDoorTile.prototype.activate = function(timeoverride) {
 //  this.use_old = this.use;
   this.use = function(who) {
-    var retval;
+    let retval;
     maintext.addText("Use " + this.getDesc() + ":");
     retval = PerformTalk(this,"ash_door","_start");
     retval["override"] = 1;
@@ -4823,7 +4973,6 @@ function SleepFieldTile() {
 	this.graphic = "fields.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
-//	this.light = 1;
   this.prefix = "a";
 	this.desc = "sleep field";
 	this.initdelay = 1.5;
@@ -4836,11 +4985,11 @@ function SleepFieldTile() {
 SleepFieldTile.prototype = new FeatureObject();
 
 SleepFieldTile.prototype.walkon = function(person) {
-  var resp = InASleepField(person);
+  let resp = InASleepField(person);
   return resp;
 }
 SleepFieldTile.prototype.idle = function(person) {
-  var resp = InASleepField(person);
+  let resp = InASleepField(person);
   return resp;
 }
 
@@ -4852,14 +5001,14 @@ SleepFieldTile.prototype.isHostileTo = function(who) {
 
 function InASleepField(who) {
   if (IsNonLiving(who) || who.specials.mindless)  { return ""; }
-  var resist = who.getResist("magic");
+  let resist = who.getResist("magic");
   resist = 1-(resist/100);
-  var chance = .5 * resist;
+  let chance = .5 * resist;
   if (Math.random()*1 < chance) {
     if (who.getSpellEffectsByName("Sleep")) { return 0; }
-    var fieldeffect = localFactory.createTile("Sleep");
+    let fieldeffect = localFactory.createTile("Sleep");
     
-    var duration = (Dice.roll("2d3") - who.getInt()/20) * SCALE_TIME;
+    let duration = (Dice.roll("2d3") - who.getInt()/20) * SCALE_TIME;
     fieldeffect.setExpiresTime(duration + DUTime.getGameClock());
     who.addSpellEffect(fieldeffect);
     
@@ -4874,7 +5023,6 @@ function FireFieldTile() {
 	this.graphic = "fields.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
-//	this.light = 3;
   this.prefix = "a";
 	this.desc = "fire field";
 	this.spritexoffset = "-64";
@@ -4890,11 +5038,11 @@ function FireFieldTile() {
 FireFieldTile.prototype = new FeatureObject();
 
 FireFieldTile.prototype.walkon = function(person) {
-  var resp = InAFireField(person);
+  let resp = InAFireField(person);
   return resp;
 }
 FireFieldTile.prototype.idle = function(person) {
-  var resp = InAFireField(person);
+  let resp = InAFireField(person);
   return resp;
 }
 
@@ -4906,7 +5054,7 @@ FireFieldTile.prototype.isHostileTo = function(who) {
 
 FireFieldTile.prototype.activate = function() {
   if (!gamestate.getMode("loadgame")) {
-    var NPCevent = new GameEvent(this);
+    let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   }
 
@@ -4916,9 +5064,6 @@ FireFieldTile.prototype.activate = function() {
 FireFieldTile.prototype.myTurn = function() {
   DebugWrite("all", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + ", serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
   if (!maps.getMap(this.getHomeMap().getName())) {
-    // removing from timeline, its map is gone
-//    var nextEntity = DUTime.executeNextEvent().getEntity();
-//    nextEntity.myTurn();
 
     if (!DebugWrite("gameobj", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />")) {
       DebugWrite("magic", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " removed from game- map gone.</span><br />");
@@ -4928,8 +5073,7 @@ FireFieldTile.prototype.myTurn = function() {
   }
  
   if (this.expiresTime && (this.expiresTime > DUTime.getGameClock())) {
-//    if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green;font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />"); }
-        if (!DebugWrite("magic", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />")) {
+    if (!DebugWrite("magic", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />")) {
       DebugWrite("gameobj", "<span style='font-weight:bold'>Firefield " + this.getSerial() + " expired, removing itself.</span><br />");
     }
     this.getHomeMap().deleteThing(this);
@@ -4937,29 +5081,27 @@ FireFieldTile.prototype.myTurn = function() {
     return 1;
   }
   
-  var mytile = this.getHomeMap().getTile(this.getx(),this.gety());
-  var feas = mytile.getFeatures();
-  $.each(feas, function(idx,val) {
-    if (val.flammable) {
-      if (Dice.roll("1d100") <= val.flammable) {
-        val.flamed();
+  let mytile = this.getHomeMap().getTile(this.getx(),this.gety());
+  let feas = mytile.getFeatures();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].flammable) {
+      if (Dice.roll("1d100") <= feas[i].flammable) {
+        feas[i].flamed();
       }
     }
-  });
+  };
 
-  var NPCevent = new GameEvent(this);
+  let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   
-//  var nextEntity = DUTime.executeNextEvent().getEntity();
-  //setTimeout(function(){ nextEntity.myTurn(); }, 1);
-//  nextEntity.myTurn();
   return 1;
 }
+
 function InAFireField(who) {
-  var dmg = Dice.roll("2d6+3");
+  let dmg = Dice.roll("2d6+3");
   dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
-  var response = "The fire field burns you!";
-  var resist = who.getResist("magic");
+  let response = "The fire field burns you!";
+  let resist = who.getResist("magic");
   resist = 1-(resist/100);
   dmg = dmg*resist;
   who.dealDamage(dmg, this, "fire");
@@ -4973,7 +5115,6 @@ function PoisonFieldTile() {
 	this.graphic = "fields.gif";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
-//	this.light = 1;
   this.prefix = "a";
 	this.desc = "poison field";
 	this.initdelay = 1.5;
@@ -4986,11 +5127,11 @@ function PoisonFieldTile() {
 PoisonFieldTile.prototype = new FeatureObject();
 
 PoisonFieldTile.prototype.walkon = function(person) {
-  var resp = InAPoisonField(person);
+  let resp = InAPoisonField(person);
   return resp;
 }
 PoisonFieldTile.prototype.idle = function(person) {
-  var resp = InAPoisonField(person);
+  let resp = InAPoisonField(person);
   return resp;
 }
 
@@ -5003,19 +5144,19 @@ function InAPoisonField(who){
   if (IsNonLiving(who)) {
     return "";
   }
-  var poisonchance = .75;
+  let poisonchance = .75;
   poisonchance = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * poisonchance;
   poisonchance = poisonchance * (1-who.getResist()/100);  
   if (Math.random()*1 < poisonchance) {  
     if (who.getSpellEffectsByName("Poison")) { return 0; }
-    var poison = localFactory.createTile("Poison");
+    let poison = localFactory.createTile("Poison");
     
-    var duration = (20+Dice.roll("2d10") + who.getInt() - 15) * SCALE_TIME;
+    let duration = (20+Dice.roll("2d10") + who.getInt() - 15) * SCALE_TIME;
     poison.setExpiresTime(duration + DUTime.getGameClock());
     who.addSpellEffect(poison);
     
     DrawCharFrame();
-    var response = "You are poisoned!";
+    let response = "You are poisoned!";
     return response;
   }
 
@@ -5024,9 +5165,9 @@ function InAPoisonField(who){
 
 function LadderDownTile() {
   this.name = "LadderDown";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-448";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5038,14 +5179,15 @@ function LadderDownTile() {
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
+  this.nowander = 1;
 }
 LadderDownTile.prototype = new FeatureObject();
 
 function LadderUpTile() {
   this.name = "LadderUp";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-448";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5057,14 +5199,15 @@ function LadderUpTile() {
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
+  this.nowander = 1;
 }
 LadderUpTile.prototype = new FeatureObject();
 
 function StairDownTile() {
   this.name = "StairDown";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-448";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
@@ -5072,6 +5215,7 @@ function StairDownTile() {
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
+  this.nowander = 1;
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -5080,9 +5224,9 @@ StairDownTile.prototype = new FeatureObject();
 
 function StairUpTile() {
   this.name = "StairUp";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-448";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
@@ -5090,6 +5234,7 @@ function StairUpTile() {
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
+  this.nowander = 1;
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -5098,9 +5243,9 @@ StairUpTile.prototype = new FeatureObject();
 
 function StairDown2Tile() {
   this.name = "StairDown2";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-448";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs down";
@@ -5108,6 +5253,7 @@ function StairDown2Tile() {
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
+  this.nowander = 1;
 
   Enterable.call(this, "null", 0, 0);
   this.descend = "Climb down!";
@@ -5116,9 +5262,9 @@ StairDown2Tile.prototype = new FeatureObject();
 
 function StairUp2Tile() {
   this.name = "StairUp2";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-448";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "stairs up";
@@ -5126,6 +5272,7 @@ function StairUp2Tile() {
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
+  this.nowander = 1;
 
   Enterable.call(this, "null", 0, 0);
   this.klimb = "Climb up!";
@@ -5134,9 +5281,9 @@ StairUp2Tile.prototype = new FeatureObject();
 
 function SingleSignpostTile() {
   this.name = "SingleSignpost";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-416";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5147,9 +5294,9 @@ SingleSignpostTile.prototype = new FeatureObject();
 
 function SignpostLeftTile() {
   this.name = "SignpostLeft";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-416";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5160,9 +5307,9 @@ SignpostLeftTile.prototype = new FeatureObject();
 
 function SignpostRightTile() {
   this.name = "SignpostRight";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-416";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5171,50 +5318,11 @@ function SignpostRightTile() {
 }
 SignpostRightTile.prototype = new FeatureObject();
 
-function SingleSignpost2Tile() {
-  this.name = "SingleSignpost2";
-  this.graphic = "features.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "signpost";
-  this.peerview = "#541909";
-}
-SingleSignpost2Tile.prototype = new FeatureObject();
-
-function SignpostLeft2Tile() {
-  this.name = "SignpostLeft2";
-  this.graphic = "features.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "signpost";
-  this.peerview = "#541909";
-}
-SignpostLeft2Tile.prototype = new FeatureObject();
-
-function SignpostRight2Tile() {
-  this.name = "SignpostRight2";
-  this.graphic = "features.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-96";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "signpost";
-  this.peerview = "#541909";
-}
-SignpostRight2Tile.prototype = new FeatureObject();
-
 function CarpenterSignTile() {
   this.name = "CarpenterSign";
-  this.graphic = "features.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-512";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5225,9 +5333,9 @@ CarpenterSignTile.prototype = new FeatureObject();
 
 function InnSignTile() {
   this.name = "InnSign";
-  this.graphic = "features.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-512";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "an";
@@ -5238,9 +5346,9 @@ InnSignTile.prototype = new FeatureObject();
 
 function TavernSignTile() {
   this.name = "TavernSign";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-480";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5251,9 +5359,9 @@ TavernSignTile.prototype = new FeatureObject();
 
 function ArmourySignTile() {
   this.name = "ArmourySign";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-480";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "an";
@@ -5264,9 +5372,9 @@ ArmourySignTile.prototype = new FeatureObject();
 
 function GrocerSignTile() {
   this.name = "GrocerSign";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-480";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5277,9 +5385,9 @@ GrocerSignTile.prototype = new FeatureObject();
 
 function GrocerSign2Tile() {
   this.name = "GrocerSign2";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-480";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5290,9 +5398,9 @@ GrocerSign2Tile.prototype = new FeatureObject();
 
 function WeaponSignTile() {
   this.name = "WeaponSign";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-480";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5303,9 +5411,9 @@ WeaponSignTile.prototype = new FeatureObject();
 
 function BowyerSignTile() {
   this.name = "BowyerSign";
-  this.graphic = "features.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-512";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5316,9 +5424,9 @@ BowyerSignTile.prototype = new FeatureObject();
 
 function AlchemistSignTile() {
   this.name = "AlchemistSign";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-480";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "an";
@@ -5329,9 +5437,9 @@ AlchemistSignTile.prototype = new FeatureObject();
 
 function MagicShoppeSignTile() {
   this.name = "MagicShoppeSign";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-480";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5342,9 +5450,9 @@ MagicShoppeSignTile.prototype = new FeatureObject();
 
 function HealerSignTile() {
   this.name = "HealerSign";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-480";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5355,9 +5463,9 @@ HealerSignTile.prototype = new FeatureObject();
 
 function CasinoSignTile() {
   this.name = "CasinoSign";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-260";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-480";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5368,9 +5476,9 @@ CasinoSignTile.prototype = new FeatureObject();
   
 function PaladinSignTile() {
   this.name = "PaladinSign";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-292";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-480";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5381,9 +5489,9 @@ PaladinSignTile.prototype = new FeatureObject();
 
 function HerbalistSignTile() {
   this.name = "HerbalistSign";
-  this.graphic = "features.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-512";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5394,9 +5502,9 @@ HerbalistSignTile.prototype = new FeatureObject();
 
 function CartographerSignTile() {
   this.name = "CartographerSign";
-  this.graphic = "features.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-512";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5407,9 +5515,9 @@ CartographerSignTile.prototype = new FeatureObject();
 
 function WhitesmithSignTile() {
   this.name = "WhitesmithSign";
-  this.graphic = "features.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-512";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5420,9 +5528,9 @@ WhitesmithSignTile.prototype = new FeatureObject();
 
 function CourthouseSignTile() {
   this.name = "CourthouseSign";
-  this.graphic = "features.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-512";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5433,9 +5541,9 @@ CourthouseSignTile.prototype = new FeatureObject();
 
 function BardSignTile() {
   this.name = "BardSign";
-  this.graphic = "features.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-512";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "the";
@@ -5446,9 +5554,9 @@ BardSignTile.prototype = new FeatureObject();
 
 function TombstoneTile() {
   this.name = "Tombstone";
-  this.graphic = "features.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-512";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5459,9 +5567,9 @@ TombstoneTile.prototype = new FeatureObject();
 
 function TombstoneRIPTile() {
   this.name = "TombstoneRIP";
-  this.graphic = "features.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-512";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5472,9 +5580,9 @@ TombstoneRIPTile.prototype = new FeatureObject();
 
 function TrainingDummyTile() {
   this.name = "TrainingDummy";
-  this.graphic = "features.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5489,9 +5597,9 @@ TrainingDummyTile.prototype = new FeatureObject();
 
 function ArcheryTargetTile() {
   this.name = "ArcheryTarget";
-  this.graphic = "features.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "an";
@@ -5506,9 +5614,9 @@ ArcheryTargetTile.prototype = new FeatureObject();
 
 function PottedPlantTile() {
   this.name = "PottedPlant";
-  this.graphic = "features.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5522,9 +5630,9 @@ PottedPlantTile.prototype = new FeatureObject();
 
 function WallPlaqueTile() {
   this.name = "WallPlaque";
-  this.graphic = "features.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-576";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5534,9 +5642,9 @@ WallPlaqueTile.prototype = new FeatureObject();
 
 function AnvilTile() {
   this.name = "Anvil";
-  this.graphic = "features.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "an";
@@ -5546,7 +5654,9 @@ AnvilTile.prototype = new FeatureObject();
 
 function WBridgeNSTile() {
   this.name = "WBridgeNS";
-  this.graphic = "070.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5559,7 +5669,9 @@ WBridgeNSTile.prototype = new FeatureObject();
 
 function EBridgeNSTile() {
   this.name = "EBridgeNS";
-  this.graphic = "071.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5572,7 +5684,9 @@ EBridgeNSTile.prototype = new FeatureObject();
 
 function BridgeNSTile() {
   this.name = "BridgeNS";
-  this.graphic = "072.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5585,7 +5699,9 @@ BridgeNSTile.prototype = new FeatureObject();
 
 function NBridgeEWTile() {
   this.name = "NBridgeEW";
-  this.graphic = "101.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5598,7 +5714,9 @@ NBridgeEWTile.prototype = new FeatureObject();
 
 function SBridgeEWTile() {
   this.name = "SBridgeEW";
-  this.graphic = "102.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5611,7 +5729,9 @@ SBridgeEWTile.prototype = new FeatureObject();
 
 function BridgeEWTile() {
   this.name = "BridgeEW";
-  this.graphic = "126.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-800";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5624,13 +5744,16 @@ BridgeEWTile.prototype = new FeatureObject();
 
 function LeftChairTile() {
   this.name = "LeftChair";
-  this.graphic = "chairs1.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-64";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 1;
+  this.nowander = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -5644,13 +5767,16 @@ LeftChairTile.prototype.use = function(who) {
 
 function RightChairTile() {
   this.name = "RightChair";
-  this.graphic = "chairs3.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-64";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 3;
+  this.nowander = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -5663,13 +5789,16 @@ RightChairTile.prototype.use = function(who) {
 
 function TopChairTile() {
   this.name = "TopChair";
-  this.graphic = "chairs2.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-32";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 2;
+  this.nowander = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -5682,13 +5811,16 @@ TopChairTile.prototype.use = function(who) {
 
 function BottomChairTile() {
   this.name = "BottomChair";
-  this.graphic = "chairs0.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-96";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "chair";
   Pushable.call(this);
   this.facing = 0;
+  this.nowander = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5; // prefer to go around
@@ -5700,14 +5832,30 @@ BottomChairTile.prototype.use = function(who) {
 }
 
 function TurnFacing(what) {
-  var graphic = what.getOverlay();
-  var num = /\d/.exec(graphic);
-  num = parseInt(num)+1;
-  if (num > 3) { num = 0; }
-  graphic = graphic.replace(/\d/,num);
-  what.setOverlay(graphic);
+  switch (what.facing) {
+    case 0:
+      what.facing++;
+      what.spritexoffset = "-256";
+      what.spriteyoffset = "-64";
+      break;
+    case 1:
+      what.facing++;
+      what.spritexoffset = "-288";
+      what.spriteyoffset = "-32";
+      break;
+    case 2:
+      what.facing++;
+      what.spritexoffset = "-288";
+      what.spriteyoffset = "-64";
+      break;
+    case 3:
+      what.facing = 0;
+      what.spritexoffset = "-288";
+      what.spriteyoffset = "-96";
+      break;
+  }
   
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   retval["input"] = "&gt;";
   retval["txt"] = "Turned.";
@@ -5716,7 +5864,9 @@ function TurnFacing(what) {
 
 function SmallTableTile() {
   this.name = "SmallTable";
-  this.graphic = "small_table.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-608";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -5727,7 +5877,9 @@ SmallTableTile.prototype = new FeatureObject();
 
 function LeftTableTile() {
   this.name = "LeftTable";
-  this.graphic = "table_left.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -5738,7 +5890,9 @@ LeftTableTile.prototype = new FeatureObject();
 
 function MiddleTableTile() {
   this.name = "MiddleTable";
-  this.graphic = "table_middle.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -5749,7 +5903,9 @@ MiddleTableTile.prototype = new FeatureObject();
 
 function RightTableTile() {
   this.name = "RightTable";
-  this.graphic = "table_right.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -5760,7 +5916,9 @@ RightTableTile.prototype = new FeatureObject();
 
 function FoodSouthTile() {
   this.name = "FoodSouth";
-  this.graphic = "table_middle_food_s.png";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5770,7 +5928,9 @@ FoodSouthTile.prototype = new FeatureObject();
 
 function FoodNorthTile() {
   this.name = "FoodNorth";
-  this.graphic = "table_middle_food_n.png";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5780,7 +5940,9 @@ FoodNorthTile.prototype = new FeatureObject();
 
 function FoodSouthNorthTile() {
   this.name = "FoodSouthNorth";
-  this.graphic = "table_middle_food_ns.png";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5790,9 +5952,9 @@ FoodSouthNorthTile.prototype = new FeatureObject();
 
 function HarpsichordTile() {
   this.name = "Harpsichord";
-  this.graphic = "furniture.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-384";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5801,9 +5963,9 @@ function HarpsichordTile() {
 HarpsichordTile.prototype = new FeatureObject();
 
 HarpsichordTile.prototype.use = function(who) {
-  var retval = { fin: 1 };
+  let retval = { fin: 1 };
   if (who === PC) {
-    var distanceToMe = GetDistance(who.getx(),who.gety(),this.getx(),this.gety(),"square");
+    let distanceToMe = GetDistance(who.getx(),who.gety(),this.getx(),this.gety(),"square");
     if (distanceToMe > 1) { 
       retval["txt"] = "The harpsichord makes a few discordant sounds, and then is silent.";
     } else if ((this.gety() - who.gety()) !== 1) { 
@@ -5823,11 +5985,14 @@ HarpsichordTile.prototype.use = function(who) {
 
 function BedHeadTile() {
   this.name = "BedHead";
-  this.graphic = "bed_head.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1120";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bed";
+  this.nowander = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5;
@@ -5835,19 +6000,20 @@ function BedHeadTile() {
 BedHeadTile.prototype = new FeatureObject();
 
 BedHeadTile.prototype.walkon = function(who) {
-  let sleepgraphic = "bed_head-sleep1.gif";
-  if (who.getGraphic().indexOf(".2.") > -1) { 
-    sleepgraphic = "bed_head-sleep2.gif";
-  }
-  who.realgraphic = who.getGraphic();
-  who.setGraphic(sleepgraphic);
+  let garr = ["master_spritesheet.png","","-64","-1120"];
+//  if (who.getGraphic().indexOf(".2.") > -1) { 
+  if (parseInt(who.skintone) === 2) {
+    garr[2] = "-96";
+  } else if (parseInt(who.skintone) !== 1) { console.log("Missing skintone on "); console.log(who); }
+  who.realgraphic = who.getGraphicArray();
+  who.setGraphicArray(garr);
   DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " to sleeping.<br />");
   return;
 }
 
 BedHeadTile.prototype.walkoff = function(who) {
   if (who.realgraphic) {
-    who.setGraphic(who.realgraphic);
+    who.setGraphicArray(who.realgraphic);
     delete who.realgraphic;
     DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sleeping.<br />");
   } else {
@@ -5857,7 +6023,7 @@ BedHeadTile.prototype.walkoff = function(who) {
 }
 
 BedHeadTile.prototype.bumpinto = function(who) {
-	var retval = {};
+	let retval = {};
 	retval["fin"] = 1;
 	retval["canmove"] = 1;
   retval["msg"] = "";
@@ -5870,11 +6036,14 @@ BedHeadTile.prototype.bumpinto = function(who) {
 
 function BedFootTile() {
   this.name = "BedFoot";
-  this.graphic = "bed_foot.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1120";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bed";
+  this.nowander = 1;
 
   this.pathweight = 5; 
   this.civilizedpathweight = 5;
@@ -5883,15 +6052,15 @@ BedFootTile.prototype = new FeatureObject();
 
 function BookshelfLeftTile() {
   this.name = "BookshelfLeft";
-  this.graphic = "furniture.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-416";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "", "-96", "-32"];
+  this.searchedgraphic = ["master_spritesheet.png", "", "-96", "-416"];
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
@@ -5900,15 +6069,15 @@ BookshelfLeftTile.prototype = new FeatureObject();
 
 function BookshelfRightTile() {
   this.name = "BookshelfRight";
-  this.graphic = "furniture.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-416";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "", "-128", "-32"];
+  this.searchedgraphic = ["furniture.gif", "", "-128", "-416"];
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
@@ -5917,15 +6086,15 @@ BookshelfRightTile.prototype = new FeatureObject();
 
 function BookshelfOneTile() {
   this.name = "BookshelfOne";
-  this.graphic = "furniture.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-416";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "", "-160", "-32"];
+  this.searchedgraphic = ["master_spritesheet.png", "", "-160", "-416"];
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
@@ -5934,15 +6103,15 @@ BookshelfOneTile.prototype = new FeatureObject();
 
 function SmallBoxTile() {
   this.name = "SmallBox";
-  this.graphic = "furniture.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-384";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "small box";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "", "-96", "0"];
+  this.searchedgraphic = ["master_spritesheet.png", "", "-96", "-384"];
 	this.lootgroup = "";
 	this.lootedid = "";
 	
@@ -5953,9 +6122,9 @@ SmallBoxTile.prototype = new FeatureObject();
 
 function DresserTile() {
   this.name = "Dresser";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-384";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5963,7 +6132,7 @@ function DresserTile() {
 	this.lootgroup = "";
 	this.lootedid = "";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif","","-192","-32"];
+  this.searchedgraphic = ["master_spritesheet.png","","-256","-384"];
 	
 	this.container = [];
 	OpenContainer.call(this);
@@ -5972,9 +6141,9 @@ DresserTile.prototype = new FeatureObject();
 
 function VanityTile() {
   this.name = "Vanity";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-384";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -5982,7 +6151,7 @@ function VanityTile() {
 	this.lootgroup = "";
 	this.lootedid = "";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif","","-224","-32"];
+  this.searchedgraphic = ["master_spritesheet.png","","-288","-384"];
 	
 	this.container = [];
 	OpenContainer.call(this);
@@ -5991,9 +6160,9 @@ VanityTile.prototype = new FeatureObject();
 
 function CaskTile() {
   this.name = "Cask";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-352";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -6004,7 +6173,9 @@ CaskTile.prototype = new FeatureObject();
 
 function TreeTile() {
   this.name = "Tree";
-  this.graphic = "trees.gif";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "0";
+  this.spriteyoffset = "-1472";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -6014,9 +6185,9 @@ TreeTile.prototype = new FeatureObject();
 
 function EvergreenTile() {
   this.name = "Evergreen";
-  this.graphic = "trees.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "0";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-32";
+  this.spriteyoffset = "-1472";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "an";
@@ -6026,9 +6197,9 @@ EvergreenTile.prototype = new FeatureObject();
 
 function DeadTreeTile() {
   this.name = "DeadTree";
-  this.graphic = "trees.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-64";
+  this.spriteyoffset = "-1472";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -6045,9 +6216,9 @@ DeadTreeTile.prototype = new FeatureObject();
 
 function CactusTile() {
   this.name = "Cactus";
-  this.graphic = "trees.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "0";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-96";
+  this.spriteyoffset = "-1472";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -6057,9 +6228,9 @@ CactusTile.prototype = new FeatureObject();
 
 function AppleTreeTile() {
   this.name = "AppleTree";
-  this.graphic = "trees.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "0";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-128";
+  this.spriteyoffset = "-1472";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "an";
@@ -6079,7 +6250,7 @@ GrandfatherClockTile.prototype = new FeatureObject();
 
 // override
 GrandfatherClockTile.prototype.getFullDesc = function() {
-  var full = "";
+  let full = "";
   if (this.getPrefix()) {
     full = this.getPrefix() + " ";
   }
@@ -6087,7 +6258,7 @@ GrandfatherClockTile.prototype.getFullDesc = function() {
   full = full + this.getDesc();
 
   full = full + " that reads ";
-  var gfclocktime = GetDisplayTime();
+  let gfclocktime = GetDisplayTime();
   full = full + gfclocktime;
 
   return full;
@@ -6095,15 +6266,15 @@ GrandfatherClockTile.prototype.getFullDesc = function() {
 
 function BarrelTile() {
   this.name = "Barrel";
-  this.graphic = "furniture.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-384";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "barrel";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "", "-160", "0"];
+  this.searchedgraphic = ["master_spritesheet.png", "", "-160", "-384"];
 	this.lootgroup = "";
 	this.lootedid = "";
   this.flammable = 20; // 20% chance it burns if in a fire
@@ -6122,21 +6293,20 @@ BarrelTile.prototype.flamed = function() {
 
 function ContainerOnFire(what) {
   maintext.addText("The " + what.getDesc() + " is consumed by flame!");
-  var burnup = what.use(what,1); // ignore locked and trapped
+  let burnup = what.use(what,1); // ignore locked and trapped
   if (burnup["txt"] === "Empty.") {
     maintext.addText("It was empty.");
   } else {
     maintext.addText(burnup["txt"]);
   }
-  var thisx = what.getx();
-  var thisy = what.gety();
+  let thisx = what.getx();
+  let thisy = what.gety();
   
-  var itsmap = what.getHomeMap();
+  let itsmap = what.getHomeMap();
   itsmap.deleteThing(what);
   DrawMainFrame("one",itsmap,thisx,thisy);
   
   return 1; 
-  
 }
 
 function KitchenBarrelTile() {
@@ -6145,7 +6315,7 @@ function KitchenBarrelTile() {
 KitchenBarrelTile.prototype = new BarrelTile();
 
 KitchenBarrelTile.prototype.use = function(who) {
-  var retval = { fin: 1, txt: "It is full of salt and spices."};
+  let retval = { fin: 1, txt: "It is full of salt and spices."};
   return retval;
 }
 
@@ -6155,7 +6325,7 @@ function KitchenBarrel2Tile() {
 KitchenBarrel2Tile.prototype = new BarrelTile();
 
 KitchenBarrel2Tile.prototype.use = function(who) {
-  var retval = { fin: 1, txt: "It is full of salted meat."};
+  let retval = { fin: 1, txt: "It is full of salted meat."};
   return retval;
 }
 
@@ -6165,31 +6335,31 @@ function KitchenBarrel3Tile() {
 KitchenBarrel3Tile.prototype = new BarrelTile();
 
 KitchenBarrel3Tile.prototype.use = function(who) {
-  var retval = { fin: 1, txt: "It is full of delicious cheeses."};
+  let retval = { fin: 1, txt: "It is full of delicious cheeses."};
   return retval;
 }
 
 function MirrorTile() {
   this.name = "Mirror";
-  this.graphic = "furniture.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-384";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "mirror";
   this.karmamod = -1;
   
-  Breakable.call(this,["furniture.gif", "", "-224", "0"]);
+  Breakable.call(this,["master_spritesheet.png", "", "-224", "-384"]);
   this.brokendesc = "broken mirror";
 }
 MirrorTile.prototype = new FeatureObject();
 
 MirrorTile.prototype.activate = function() {
   if (!DU.gameflags.getFlag("editor")) {
-    var reflection = localFactory.createTile("Reflection");
+    let reflection = localFactory.createTile("Reflection");
     reflection.mirror = this;
-    var homemap = this.getHomeMap();
+    let homemap = this.getHomeMap();
     homemap.placeThing(this.getx(),this.gety()+1,reflection);
   }
   return 1;
@@ -6211,6 +6381,9 @@ ReflectionTile.prototype.walkon = function(who) {
   // add reflection to attached mirror
   if (!this.mirror.getBroken()) {
     this.mirror.setGraphicArray([who.getGraphic(), "mirror-reflection.gif", "0", "7"]);
+    //	this.graphic = "master_spritesheet.png";    // spritesheet version of reflection. Can't work yet because of need to be overlay
+    // this.spritexoffset = "-288"; 
+    // this.spriteyoffset = "-1344";
   }
 }
 
@@ -6237,9 +6410,9 @@ WaterfallTile.prototype = new FeatureObject();
 
 WaterfallTile.prototype.activate = function() {
   if (!DU.gameflags.getFlag("editor")) {
-    var flow = localFactory.createTile("WaterfallFlow");
+    let flow = localFactory.createTile("WaterfallFlow");
     flow.waterfall = this;
-    var homemap = this.getHomeMap();
+    let homemap = this.getHomeMap();
     homemap.placeThing(this.getx(),this.gety()-1,flow);
   }
   return 1;
@@ -6261,14 +6434,14 @@ WaterfallFlowTile.prototype.walkon = function(who) {
   // Go falling down
   gamestate.setMode("null");
   if (who.getMovetype() & MOVE_FLY) { return; }
-  var waterfall = this.waterfall;
+  let waterfall = this.waterfall;
   setTimeout(function() {
     DescendWaterfall(who, waterfall);
   }, 300);
 }
 
 function DescendWaterfall(who, waterfall) {
-  var thismap = who.getHomeMap();
+  let thismap = who.getHomeMap();
   thismap.moveThing(who.getx(),who.gety()+1,who);
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());  
   if (who.gety() === waterfall.gety()) {
@@ -6296,7 +6469,7 @@ function BrilliantPoolTile() {
 BrilliantPoolTile.prototype = new FeatureObject();
 
 BrilliantPoolTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   
   if (who === PC) {
     targetCursor.useditem = this;
@@ -6311,7 +6484,7 @@ BrilliantPoolTile.prototype.use = function(who) {
 }
 
 BrilliantPoolTile.prototype.usePrompt = function(code) {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   if (DU.gameflags.getFlag("pool_drunk")) {
     retval["txt"] = "Having previously drunk of the pool, you are now too smart to dare try that again.";
@@ -6340,7 +6513,9 @@ BrilliantPoolTile.prototype.bookFinish = function() {
 
 function SecretDoorTile() {
 	this.name = "SecretDoor";
-	this.graphic = "056.gif";   // note: 024 is U4's secret door
+  this.graphic = "master_spritesheet.png";   // note: 024 is U4's secret door
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-128";
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 2; 
 	this.prefix = "a";
@@ -6352,13 +6527,15 @@ function SecretDoorTile() {
   
   this.pathweight = 2; 
 	
-  Openable.call(this, [this.graphic, "", 0, 0], ["archway.gif", "", 0, 0], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
+  Openable.call(this, [this.graphic, "", "-96", "-128"], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
 }
 SecretDoorTile.prototype = new FeatureObject();
 
 function WellTile() {
 	this.name = "Well";
-	this.graphic = "well.gif";   
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-640";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
@@ -6380,7 +6557,9 @@ WhirlpoolTile.prototype = new FeatureObject();
 
 function WalkOnTile() {
 	this.name = "WalkOn";
-	this.graphic = "walkon.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
 	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
 	this.blocklos = 0;
 	this.prefix = "an";
@@ -6403,7 +6582,7 @@ function WalkOnChangeExitTile() {
 WalkOnChangeExitTile.prototype = new FeatureObject();
 
 WalkOnChangeExitTile.prototype.walkon = function(walker) {
-  var themap=walker.getHomeMap();
+  let themap=walker.getHomeMap();
   themap.setExitToX(this.setxto);
   themap.setExitToY(this.setyto);
 }
@@ -6570,7 +6749,7 @@ function WalkOnAbyssTile() {
 WalkOnAbyssTile.prototype = new FeatureObject();
 
 WalkOnAbyssTile.prototype.walkon = function(walker) {
-  var themap=walker.getHomeMap();
+  let themap=walker.getHomeMap();
   newmap = maps.getMap(this.destmap);
   if (!this.destx) {
     this.destx = walker.getx();
@@ -6696,8 +6875,8 @@ SpawnerTile.prototype.setSpawngroup = function(newgroup) {
 }
 
 SpawnerTile.prototype.pickSpawn = function() {
-  var spindex = Math.floor(Math.random() * this.getSpawngroup().length);
-  var spawns= this.getSpawngroup();
+  let spindex = Math.floor(Math.random() * this.getSpawngroup().length);
+  let spawns= this.getSpawngroup();
   return spawns[spindex];
 }
 
@@ -6775,12 +6954,9 @@ SpawnerTile.prototype.getSpawned = function() {
 
 SpawnerTile.prototype.activate = function() {
   if (gamestate.getMode() !== "loadgame") {
-//    if (debug && debugflags.gameobj) {
-//      dbs.writeln("<span style='color:green;font-weight:bold'>Spawner " + this.getName() + " activating at " + DUTime.getGameClock() + ".</span><br />");
-//    }
     DebugWrite("gameobj", "<span style='font-weight:bold'>Spawner " + this.getName() + " activating at " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
 
-    var NPCevent = new GameEvent(this);
+    let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,1);
   }
 }
@@ -6793,48 +6969,45 @@ SpawnerTile.prototype.myTurn = function() {
     return 1;
   }
   if (PC.getLevel() > this.level) {  
-    for (var i = this.level+1; i<=PC.getLevel(); i++) {
+    for (let i=this.level+1; i<=PC.getLevel(); i++) {
       if (this.evolve[i]) {
         this.level = i;
         DebugWrite("gameobj", "Spawner at " + this.x + ", " + this.y + " has evolved.<br />");
         while (this.evolve[i][0]) {
-          var idx = this.evolve[i].shift();
-          var val = this.evolve[i].shift();
+          let idx = this.evolve[i].shift();
+          let val = this.evolve[i].shift();
           this.idx = val;
         }
       }
     }
   }
   
-  var timetonext = (this.getSpawnFreq() + (Math.random()*((this.getSpawnFreq()/2)+1)));
+  let timetonext = (this.getSpawnFreq() + (Math.random()*((this.getSpawnFreq()/2)+1)));
   if ((this.spawned.getAll().length < this.getMaxSpawns()) && ((this.getHomeMap() != PC.getHomeMap()) || (GetDistance(PC.getx(), PC.gety(), this.getx(), this.gety()) > 10))) {
       // let's do some spawning
-      var spawntype = this.pickSpawn();
-      var newspawn = localFactory.createTile(spawntype);
-      var diffx = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
-      var diffy = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
-      var mymap = this.getHomeMap();
+      let spawntype = this.pickSpawn();
+      let newspawn = localFactory.createTile(spawntype);
+      let diffx = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
+      let diffy = Math.floor(Math.random() * this.getSpawnRadius() * 2) - this.getSpawnRadius();
+      let mymap = this.getHomeMap();
       if (this.altPoI) {
         newspawn.altPoI = this.altPoI;
-//        if (debug && debugflags.gameobj) { dbs.writeln("About to spawn, adding an altPoI.<br />"); }
         DebugWrite("gameobj","About to spawn, adding an altPoI.<br />");
       }
       
-      var tile = mymap.getTile(this.getx() + diffx, this.gety() + diffy);
-      var resp = tile.canMoveHere(newspawn.getMovetype());
+      let tile = mymap.getTile(this.getx() + diffx, this.gety() + diffy);
+      let resp = tile.canMoveHere(newspawn.getMovetype());
       if (resp["canmove"]) {
         mymap.placeThing(this.getx() + diffx, this.gety() + diffy, newspawn);
         this.addSpawned(newspawn);
         newspawn.setSpawnedBy(this);
-//        if (debug && debugflags.gameobj) { dbs.writeln("<span style='color:#00cc00'>Spawner #" + this.getSerial() + " at " + this.x + ", " + this.y + " has spawned a " + newspawn.getName() + " #" + newspawn.getSerial() + "</span><br />"); }
         DebugWrite("gameobj", "Spawner #" + this.getSerial() + " at " + this.x + ", " + this.y + " has spawned a " + newspawn.getName() + " #" + newspawn.getSerial() + "<br />");
       } else {
         timetonext = 5;
-      }
-      
+      }      
   }
  
-  var NPCevent = new GameEvent(this);
+  let NPCevent = new GameEvent(this);
   DUTime.addAtTimeInterval(NPCevent,timetonext);
   
   return 1;
@@ -6950,9 +7123,9 @@ PentagramSETile.prototype = new FeatureObject();
 
 function WeaponCounterDaggerTile() {
   this.name = "WeaponCounterDagger";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-96";
+  this.spriteyoffset = "-576";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -6964,9 +7137,9 @@ WeaponCounterDaggerTile.prototype = new FeatureObject();
 
 function WeaponCounterMaceTile() {
   this.name = "WeaponCounterMace";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "-96";
+  this.spriteyoffset = "-576";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -6978,9 +7151,9 @@ WeaponCounterMaceTile.prototype = new FeatureObject();
 
 function WeaponCounterSwordTile() {
   this.name = "WeaponCounterSword";
-  this.graphic = "features.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-96";
+  this.spriteyoffset = "-576";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -6992,10 +7165,9 @@ WeaponCounterSwordTile.prototype = new FeatureObject();
 
 function ArmorCounterLeatherTile() {
   this.name = "ArmorCounterLeather";
-//  this.graphic = "051.gif";
-  this.graphic = "features.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -7007,10 +7179,9 @@ ArmorCounterLeatherTile.prototype = new FeatureObject();
 
 function ArmorCounterChainTile() {
   this.name = "ArmorCounterChain";
-//  this.graphic = "051.gif";
-  this.graphic = "features.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -7022,10 +7193,9 @@ ArmorCounterChainTile.prototype = new FeatureObject();
 
 function ArmorCounterPlateTile() {
   this.name = "ArmorCounterPlate";
-//  this.graphic = "051.gif";
-  this.graphic = "features.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = .3;
@@ -7037,10 +7207,9 @@ ArmorCounterPlateTile.prototype = new FeatureObject();
 
 function ArmorRackLeatherTile() {
   this.name = "ArmorRackLeather";
-//  this.graphic = "051.gif";
-  this.graphic = "features.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = 0;
@@ -7052,10 +7221,9 @@ ArmorRackLeatherTile.prototype = new FeatureObject();
 
 function ArmorRackChainTile() {
   this.name = "ArmorRackChain";
-//  this.graphic = "051.gif";
-  this.graphic = "features.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = 0;
@@ -7067,10 +7235,9 @@ ArmorRackChainTile.prototype = new FeatureObject();
 
 function ArmorRackPlateTile() {
   this.name = "ArmorRackPlate";
-//  this.graphic = "051.gif";
-  this.graphic = "features.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = 0;
@@ -7082,9 +7249,9 @@ ArmorRackPlateTile.prototype = new FeatureObject();
 
 function ShieldDisplayTile() {
   this.name = "ShieldDisplay";
-  this.graphic = "furniture.gif";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-352";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = 0;
@@ -7094,10 +7261,11 @@ function ShieldDisplayTile() {
 }
 ShieldDisplayTile.prototype = new FeatureObject();
 
-
 function SkeletonDecorationTile() {
   this.name = "SkeletonDecoration";
-  this.graphic = "skeleton-deco.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-672";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7107,7 +7275,9 @@ SkeletonDecorationTile.prototype = new FeatureObject();
 
 function MoatLeverOffTile() {
   this.name = "MoatLeverOff";
-  this.graphic = "moatLever-off.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-608";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -7116,7 +7286,9 @@ MoatLeverOffTile.prototype = new FeatureObject();
 
 function LeverOffTile() {
   this.name = "LeverOff";
-  this.graphic = "switch-off.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-608";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -7125,7 +7297,9 @@ LeverOffTile.prototype = new FeatureObject();
 
 function BDCLeverTile() {
   this.name = "BDCLever";
-  this.graphic = "moatLever-off.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-608";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -7141,7 +7315,9 @@ BDCLeverTile.prototype.use = function(who) {
 
 function GrottoLeverOffTile() {
   this.name = "GrottoLeverOff";
-  this.graphic = "switch-off.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-608";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -7149,23 +7325,23 @@ function GrottoLeverOffTile() {
 GrottoLeverOffTile.prototype = new FeatureObject();
 
 GrottoLeverOffTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval["txt"] = "There is a deafening sound of rushing water! The water levels recede.";
-  this.overlay = "switch-on.gif";
-  var frommap = this.getHomeMap();
-  var tomap = maps.getMap("grotto2");
+  this.spritexoffset = "-256";
+  let frommap = this.getHomeMap();
+  let tomap = maps.getMap("grotto2");
   DUPlaySound("sfx_large_lever");
   
-  var feas = frommap.features.getAll();
-  $.each(feas, function(idx,val) {
-    if (val.getName() !== "EnergyField") {
-      MoveBetweenMaps(val,frommap,tomap,val.getx(),val.gety());
+  let feas = frommap.features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getName() !== "EnergyField") {
+      MoveBetweenMaps(feas[i],frommap,tomap,feas[i].getx(),feas[i].gety());
     }
-  });
-  var npcs = frommap.npcs.getAll();
-  $.each(npcs, function(idx,val) {
-    MoveBetweenMaps(val,frommap,tomap,val.getx(),val.gety());
-  });
+  };
+  let npcs = frommap.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    MoveBetweenMaps(npcs[i],frommap,tomap,npcs[i].getx(),npcs[i].gety());
+  };
   MoveBetweenMaps(PC,frommap,tomap,PC.getx(),PC.gety());
   
   DrawMainFrame("draw", tomap, PC.getx(), PC.gety());
@@ -7174,7 +7350,9 @@ GrottoLeverOffTile.prototype.use = function(who) {
 
 function GrottoBridgeLever1Tile() {
   this.name = "GrottoBridgeLever1";
-  this.graphic = "switch-off.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-608";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "switch";
@@ -7187,15 +7365,17 @@ GrottoBridgeLever1Tile.prototype.use = function(who) {
   let mymap = this.getHomeMap();
   GrottoBridgePuzzle(mymap,102,31);
   GrottoBridgePuzzle(mymap,102,32);
-  if (this.getGraphic() === "switch-off.gif") { this.setGraphic("switch-on.gif");}
-  else { this.setGraphic("switch-off.gif");}
+  if (this.spritexoffset === "-224") { this.spritexoffset = "-256";}
+  else { this.spritexoffset = "-192";}
   DUPlaySound("sfx_small_lever");
   return { fin: 1, txt: "Lever thrown."};
 }
 
 function GrottoBridgeLever2Tile() {
   this.name = "GrottoBridgeLever2";
-  this.graphic = "switch-off.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-608";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "switch";
@@ -7208,15 +7388,17 @@ GrottoBridgeLever2Tile.prototype.use = function(who) {
   let mymap = this.getHomeMap();
   GrottoBridgePuzzle(mymap,102,33);
   GrottoBridgePuzzle(mymap,102,32);
-  if (this.getGraphic() === "switch-off.gif") { this.setGraphic("switch-on.gif");}
-  else { this.setGraphic("switch-off.gif");}
+  if (this.spritexoffset === "-224") { this.spritexoffset = "-256";}
+  else { this.spritexoffset = "-192";}
   DUPlaySound("sfx_small_lever");
   return { fin: 1, txt: "Lever thrown."};
 }
 
 function GrottoBridgeLever3Tile() {
   this.name = "GrottoBridgeLever3";
-  this.graphic = "switch-off.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-608";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "switch";
@@ -7229,8 +7411,8 @@ GrottoBridgeLever3Tile.prototype.use = function(who) {
   let mymap = this.getHomeMap();
   GrottoBridgePuzzle(mymap,102,34);
   GrottoBridgePuzzle(mymap,102,32);
-  if (this.getGraphic() === "switch-off.gif") { this.setGraphic("switch-on.gif");}
-  else { this.setGraphic("switch-off.gif");}
+  if (this.spritexoffset === "-224") { this.spritexoffset = "-256";}
+  else { this.spritexoffset = "-192";}
   DUPlaySound("sfx_small_lever");
   return { fin: 1, txt: "Lever thrown."};
 }
@@ -7267,7 +7449,9 @@ function GrottoBridgePuzzle(mymap,locx,locy) {
 
 function MetalTwisterLeverTile() {
   this.name = "MetalTwisterLever";
-  this.graphic = "switch-off.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-608";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -7275,55 +7459,57 @@ function MetalTwisterLeverTile() {
 MetalTwisterLeverTile.prototype = new FeatureObject();
   
 MetalTwisterLeverTile.prototype.use = function(user) {
-    var level3 = maps.getMap("metaltwister3");
-    var level2 = maps.getMap("metaltwister2");
-    var retval = {};
-    DUPlaySound("sfx_small_lever");
-    if (!level2) {  // somehow level 2 is not in memory. Load it.
-      var otherlevel = new GameMap();
-      otherlevel = maps.addMap("metaltwister2");
-      level2 = otherlevel;
-    }
-    if (this.getOverlay() == "switch-off.gif") {  // This switch hasn't been thrown
-      this.setOverlay("switch-on.gif");
-      retval["txt"] = "Click!";
-      
-      var checkboth = 1;
-      var floor3features = level3.features.getAll();
-      var ports = [];
-      for (i=0; i<floor3features.length; i++) {
-        if (floor3features[i].getName() == "LeverOff") {
-          if (floor3features[i].getOverlay() == "switch-off.gif") {
-            checkboth = 0;
-          }
-        }
-        if (floor3features[i].getName() == "StonePortcullis") {
-          ports[ports.length] = floor3features[i];
+  let level3 = maps.getMap("metaltwister3");
+  let level2 = maps.getMap("metaltwister2");
+  let retval = {};
+  DUPlaySound("sfx_small_lever");
+  if (!level2) {  // somehow level 2 is not in memory. Load it.
+    let otherlevel = new GameMap();
+    otherlevel = maps.addMap("metaltwister2");
+    level2 = otherlevel;
+  }
+  if (this.spritexoffset === "-224") {  // This switch hasn't been thrown
+    this.spritexoffset = "-256";
+    retval["txt"] = "Click!";
+    
+    let checkboth = 1;
+    let floor3features = level3.features.getAll();
+    let ports = [];
+    for (let i=0; i<floor3features.length; i++) {
+      if (floor3features[i].getName() == "LeverOff") {
+        if (floor3features[i].spritexoffset === "-224") {
+          checkboth = 0;
         }
       }
-      if (checkboth) {  // if both switches are thrown, open the dungeon's doors
-        for (i=0; i<ports.length; i++) {
-          ports[i].unlockMe();
-          ports[i].use(user);
-        }
-        var floor2features = level2.features.getAll();
-        for (i=0; i<floor2features.length; i++) {
-          if (floor2features[i].getName() == "StonePortcullis") {
-            floor2features[i].unlockMe();
-            floor2features[i].use(user);
-          }
+      if (floor3features[i].getName() == "StonePortcullis") {
+        ports[ports.length] = floor3features[i];
+      }
+    }
+    if (checkboth) {  // if both switches are thrown, open the dungeon's doors
+      for (let i=0; i<ports.length; i++) {
+        ports[i].unlockMe();
+        ports[i].use(user);
+      }
+      let floor2features = level2.features.getAll();
+      for (let i=0; i<floor2features.length; i++) {
+        if (floor2features[i].getName() == "StonePortcullis") {
+          floor2features[i].unlockMe();
+          floor2features[i].use(user);
         }
       }
     }
-    else {  // for sanity's sake, you can't unthrow a switch
-      retval["txt"] = "The switch is stuck."; 
-    }
-    return retval;  
+  }
+  else {  // for sanity's sake, you can't unthrow a switch
+    retval["txt"] = "The switch is stuck."; 
+  }
+  return retval;  
 }
 
 function PitDespairLeverTile() {
   this.name = "PitDespairLever";
-  this.graphic = "switch-off.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-608";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -7331,34 +7517,33 @@ function PitDespairLeverTile() {
 PitDespairLeverTile.prototype = new FeatureObject();
 
 PitDespairLeverTile.prototype.use = function(user) {
-  var retval = {};
+  let retval = {};
   if (this.attached) {
     DUPlaySound("sfx_small_lever");
-    var thismap = user.getHomeMap();
-    var doortile = thismap.getTile(this.attached.x, this.attached.y);
-    var ftrs = doortile.getFeatures();
-    var door;
-    $.each(ftrs, function(idx, val) {
-      if (val.getName() === "WallPortcullis") { door = val; }
-    });
-    if (this.graphic === "switch-off.gif") {
+    let thismap = user.getHomeMap();
+    let doortile = thismap.getTile(this.attached.x, this.attached.y);
+    let ftrs = doortile.getFeatures();
+    let door;
+    for (let i=0;i<ftrs.length;i++) {
+      if (ftrs[i].getName() === "WallPortcullis") { door = ftrs[i]; }
+    };
+    if (this.spritexoffset === "-224") {
       door.locked = 0;
-      door.setGraphicArray(["055.gif", "wall-arch.gif", 0, 0]);
+      door.setGraphicArray(["master_spritesheet.png", "", "-256", "-832"]);
 			
 			door.closedLOS = door.getBlocksLOSArray();
-			var seethru = [];
+			let seethru = [];
 			seethru[0] = 0;
 			door.setBlocksLOSArray(seethru);
 			
 			door.addPassable(MOVE_WALK);
 			door.open = 1;
 			
-			this.graphic = "switch-on.gif";
-			this.overlay = "switch-on.gif";
+			this.spritexoffset = "-256";
     } else {
-      var mobs = doortile.getNPCs();
-      var diffx = 0;
-      var diffy = 0;
+      let mobs = doortile.getNPCs();
+      let diffx = 0;
+      let diffy = 0;
       if (this.gety() === 36) {
         diffy = -1;
       } else if ((this.getx() === 11) || (this.getx() === 25)) {
@@ -7366,10 +7551,10 @@ PitDespairLeverTile.prototype.use = function(user) {
       } else {
         diffx = -1;
       }
-      $.each(mobs, function(idx,val) {
-        thismap.moveThing(val.getx() + diffx , val.gety() + diffy, val);
-        val.dealDamage(1000, door);
-      });
+      for (let i=0;i<mobs.length;i++) {
+        thismap.moveThing(mobs[i].getx() + diffx , mobs[i].gety() + diffy, mobs[i]);
+        mobs[i].dealDamage(1000, door);
+      };
       door.locked = 1;
       door.setGraphicArray(["wall-portcullis.gif", "wall-portcullis.gif", 0, 0]);
       
@@ -7379,8 +7564,7 @@ PitDespairLeverTile.prototype.use = function(user) {
       door.removePassable(MOVE_WALK);
       door.open = 0;
       
-      this.graphic = "switch-off.gif";
-      this.graphic = "switch-on.gif";
+      this.spritexoffset = "-224";
     }
     retval["fin"] = 1;
     retval["txt"] = "Switch thrown.";
@@ -7394,9 +7578,9 @@ PitDespairLeverTile.prototype.use = function(user) {
 
 function RoyalPuzzleLaserEWTile() {
   this.name = "RoyalPuzzleLaserEW";
-  this.graphic = "features.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-448";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -7407,15 +7591,15 @@ function RoyalPuzzleLaserEWTile() {
 RoyalPuzzleLaserEWTile.prototype = new FeatureObject();
 
 RoyalPuzzleLaserEWTile.prototype.walkon = function(who) {
-  var resp = InALaser(who);
+  let resp = InALaser(who);
   return resp;
 }
 
 function RoyalPuzzleLaserNSTile() {
   this.name = "RoyalPuzzleLaserNS";
-  this.graphic = "features.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-448";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -7426,15 +7610,15 @@ function RoyalPuzzleLaserNSTile() {
 RoyalPuzzleLaserNSTile.prototype = new FeatureObject();
 
 RoyalPuzzleLaserNSTile.prototype.walkon = function(who) {
-  var resp = InALaser(who);
+  let resp = InALaser(who);
   return resp;
 }
 
 function RoyalPuzzleLaserCrossTile() {
   this.name = "RoyalPuzzleLaserCross";
-  this.graphic = "features.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-448";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -7445,12 +7629,12 @@ function RoyalPuzzleLaserCrossTile() {
 RoyalPuzzleLaserCrossTile.prototype = new FeatureObject();
 
 RoyalPuzzleLaserCrossTile.prototype.walkon = function(who) {
-  var resp = InALaser(who);
+  let resp = InALaser(who);
   return resp;
 }
 
 function InALaser(who) {
-  var themap = who.getHomeMap();
+  let themap = who.getHomeMap();
   themap.moveThing(46,28,who);
   ResetRoyalPuzzle(themap);
   DUPlaySound("sfx_small_zap");
@@ -7458,24 +7642,24 @@ function InALaser(who) {
 }
 
 function ResetRoyalPuzzle(where) {  
-  var walls = [{x:48,y:29}, {x:49, y:35}, {x:48, y:31}, {x:46, y:29}, {x:47, y:28}, {x: 49, y:28}];
+  let walls = [{x:48,y:29}, {x:49, y:35}, {x:48, y:31}, {x:46, y:29}, {x:47, y:28}, {x: 49, y:28}];
   
-  var allfeatures = where.features.getAll();
-  $.each(allfeatures, function(idx,val) {
-    if (val.getName() === "SandstoneWall") {
-      var gowhere = walls.shift();
-      where.moveThing(gowhere.x, gowhere.y, val);
+  let allfeatures = where.features.getAll();
+  for (let i=0;i<allfeatures.length;i++) {
+    if (allfeatures[i].getName() === "SandstoneWall") {
+      let gowhere = walls.shift();
+      where.moveThing(gowhere.x, gowhere.y, allfeatures[i]);
     }
-  });
+  }
   
   CheckLasers(where);
 }
 
 function SandstoneWallTile() {
   this.name = "SandstoneWall";
-  this.graphic = "features.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-416";
   this.blocklos = 0;
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a"
@@ -7487,16 +7671,16 @@ function SandstoneWallTile() {
 SandstoneWallTile.prototype = new FeatureObject();
 
 SandstoneWallTile.prototype.use = function(who) {
-  var themap = who.getHomeMap();
-  var diffx = this.getx() - who.getx();
-  var diffy = this.gety() - who.gety();
-  var retval = {};
+  let themap = who.getHomeMap();
+  let diffx = this.getx() - who.getx();
+  let diffy = this.gety() - who.gety();
+  let retval = {};
   if ((Math.abs(diffx) > 1) || (Math.abs(diffy) > 1)) {
     retval["txt"] = "The wall shakes in place but does not move.";
     return retval;
   }
-  var desttile = themap.getTile(this.getx()+diffx, this.gety()+diffy);
-  var ontile = desttile.canMoveHere(MOVE_WALK,0);
+  let desttile = themap.getTile(this.getx()+diffx, this.gety()+diffy);
+  let ontile = desttile.canMoveHere(MOVE_WALK,0);
   if (!ontile) {
     retval["txt"] = "Something is in the way.";
     return retval;
@@ -7515,7 +7699,7 @@ SandstoneWallTile.prototype.pushMe = function(who) {
 
 function BlackDragonLadderWallTile() {
   this.name = "BlackDragonLadderWall";
-  this.graphic = "terrain_tiles.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-128";
   this.passable = MOVE_ETHEREAL;
@@ -7531,7 +7715,7 @@ BlackDragonLadderWallTile.prototype.pushMe = function(who) {
 }
 
 BlackDragonLadderWallTile.prototype.use = function(who) {
-  let retval = {fin: 1}
+  let retval = {fin: 1};
   if (this.rotated) {
     let tile = this.getHomeMap().getTile(this.getx()+1,this.gety());
     let fealist = tile.getFeatures();
@@ -7555,9 +7739,9 @@ BlackDragonLadderWallTile.prototype.use = function(who) {
 
 function WallOfWavesTile() {
   this.name = "WallOfWaves";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1536";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Waves";
@@ -7566,8 +7750,7 @@ function WallOfWavesTile() {
 WallOfWavesTile.prototype = new FeatureObject();
 
 WallOfWavesTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7577,17 +7760,16 @@ WallOfWavesTile.prototype.use = function(user) {
 }
 
 WallOfWavesTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "waves", this);
   return retval;
 }
 
 function RuneOfWavesTile() {
   this.name = "RuneOfWaves";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Waves";
@@ -7596,8 +7778,7 @@ function RuneOfWavesTile() {
 RuneOfWavesTile.prototype = new FeatureObject();
 
 RuneOfWavesTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7607,8 +7788,7 @@ RuneOfWavesTile.prototype.use = function(user) {
 }
 
 RuneOfWavesTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "waves", this);
   return retval;
 }
@@ -7616,9 +7796,9 @@ RuneOfWavesTile.prototype.bumpInto = function(who) {
 
 function WallOfWindsTile() {
   this.name = "WallOfWinds";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1536";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Winds";
@@ -7627,8 +7807,7 @@ function WallOfWindsTile() {
 WallOfWindsTile.prototype = new FeatureObject();
 
 WallOfWindsTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7638,17 +7817,16 @@ WallOfWindsTile.prototype.use = function(user) {
 }
 
 WallOfWindsTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "winds", this);
   return retval;
 }
 
 function RuneOfWindsTile() {
   this.name = "RuneOfWinds";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Winds";
@@ -7657,8 +7835,7 @@ function RuneOfWindsTile() {
 RuneOfWindsTile.prototype = new FeatureObject();
 
 RuneOfWindsTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7668,8 +7845,7 @@ RuneOfWindsTile.prototype.use = function(user) {
 }
 
 RuneOfWindsTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "winds", this);
   return retval;
 }
@@ -7677,9 +7853,9 @@ RuneOfWindsTile.prototype.bumpInto = function(who) {
 
 function WallOfKingsTile() {
   this.name = "WallOfKings";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1536";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Kings";
@@ -7688,8 +7864,7 @@ function WallOfKingsTile() {
 WallOfKingsTile.prototype = new FeatureObject();
 
 WallOfKingsTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7699,17 +7874,16 @@ WallOfKingsTile.prototype.use = function(user) {
 }
 
 WallOfKingsTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "kings", this);
   return retval;
 }
 
 function RuneOfKingsTile() {
   this.name = "RuneOfKings";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Kings";
@@ -7718,8 +7892,7 @@ function RuneOfKingsTile() {
 RuneOfKingsTile.prototype = new FeatureObject();
 
 RuneOfKingsTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7729,17 +7902,16 @@ RuneOfKingsTile.prototype.use = function(user) {
 }
 
 RuneOfKingsTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "kings", this);
   return retval;
 }
 
 function WallOfFlamesTile() {
   this.name = "WallOfFlames";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1536";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Flames";
@@ -7748,8 +7920,7 @@ function WallOfFlamesTile() {
 WallOfFlamesTile.prototype = new FeatureObject();
 
 WallOfFlamesTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7759,17 +7930,16 @@ WallOfFlamesTile.prototype.use = function(user) {
 }
 
 WallOfFlamesTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "flames", this);
   return retval;
 }
 
 function RuneOfFlamesTile() {
   this.name = "RuneOfFlames";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Flames";
@@ -7778,8 +7948,7 @@ function RuneOfFlamesTile() {
 RuneOfFlamesTile.prototype = new FeatureObject();
 
 RuneOfFlamesTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7789,8 +7958,7 @@ RuneOfFlamesTile.prototype.use = function(user) {
 }
 
 RuneOfFlamesTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "flames", this);
   return retval;
 }
@@ -7798,9 +7966,9 @@ RuneOfFlamesTile.prototype.bumpInto = function(who) {
 
 function WallOfVoidTile() {
   this.name = "WallOfVoid";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1536";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Void";
@@ -7809,8 +7977,7 @@ function WallOfVoidTile() {
 WallOfVoidTile.prototype = new FeatureObject();
 
 WallOfVoidTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7820,17 +7987,16 @@ WallOfVoidTile.prototype.use = function(user) {
 }
 
 WallOfVoidTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "void", this);
   return retval;
 }
 
 function RuneOfVoidTile() {
   this.name = "RuneOfVoid";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "rune of Void";
@@ -7839,8 +8005,7 @@ function RuneOfVoidTile() {
 RuneOfVoidTile.prototype = new FeatureObject();
 
 RuneOfVoidTile.prototype.use = function(user) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if ((Math.abs(user.getx() - this.getx()) > 1) && (Math.abs(user.gety() - this.gety()) > 1)) { 
     retval["txt"] = "The rune glows for a moment, and then fades.";
     return retval;
@@ -7850,17 +8015,16 @@ RuneOfVoidTile.prototype.use = function(user) {
 }
 
 RuneOfVoidTile.prototype.bumpInto = function(who) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   ApplyRune(user, "void", this);
   return retval;
 }
 
 function PlatformOfWavesTile() {
   this.name = "PlatformOfWaves";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1600";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -7869,9 +8033,9 @@ PlatformOfWavesTile.prototype = new FeatureObject();
 
 function PlatformOfWindsTile() {
   this.name = "PlatformOfWinds";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1600";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -7882,7 +8046,7 @@ PlatformOfWindsTile.prototype.walkon = function(who) {
   if (this.getHomeMap().getName() === "skypalace") {  // WHOOSH
     gamestate.setMode("null");
 
-    var windlist = this.windlist;
+    let windlist = this.windlist;
     setTimeout( function() { whoosh(who, windlist, this.spawnat, this.spawnwhat); }, 100);
   
     delete this.spawnwhat;  
@@ -7893,10 +8057,10 @@ PlatformOfWindsTile.prototype.walkon = function(who) {
 
 function whoosh(whozat, windlist, spawnwhere, spawnthing) {
 
-  var tox = windlist[0];
-  var toy = windlist[1];
+  let tox = windlist[0];
+  let toy = windlist[1];
   
-  var windmap = whozat.getHomeMap();
+  let windmap = whozat.getHomeMap();
   windmap.moveThing(tox,toy,whozat);
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());  
   
@@ -7904,7 +8068,7 @@ function whoosh(whozat, windlist, spawnwhere, spawnthing) {
     setTimeout( function() { whoosh(whozat, windlist.slice(2), spawnwhere, spawnthing); }, 100);
   } else {
     if (spawnthing) {
-      var spawnedmonster = localFactory.createTile(spawnthing);
+      let spawnedmonster = localFactory.createTile(spawnthing);
       windmap.placeThing(spawnwhere[0], spawnwhere[1], spawnedmonster);
       // add an "appears" visual effect? WORKING
     }
@@ -7916,9 +8080,9 @@ function whoosh(whozat, windlist, spawnwhere, spawnthing) {
 
 function PlatformOfKingsTile() {
   this.name = "PlatformOfKings";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1600";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -7927,9 +8091,9 @@ PlatformOfKingsTile.prototype = new FeatureObject();
 
 function PlatformOfFlamesTile() {
   this.name = "PlatformOfFlames";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1600";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -7938,9 +8102,9 @@ PlatformOfFlamesTile.prototype = new FeatureObject();
 
 function PlatformOfVoidTile() {
   this.name = "PlatformOfVoid";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1600";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "platform";
@@ -7949,9 +8113,9 @@ PlatformOfVoidTile.prototype = new FeatureObject();
 
 function MarkOfKingsTile() {
   this.name = "MarkOfKings";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "Rune of Kings";
@@ -7959,7 +8123,7 @@ function MarkOfKingsTile() {
 MarkOfKingsTile.prototype = new FeatureObject();
   
 MarkOfKingsTile.prototype.use = function(user) {
-  var retval = {};
+  let retval = {};
   if (user.getRuneCooldown("kings") > DUTime.getGameClock()) {
     retval["fin"] = 1;
     retval["txt"] = "You are too tired to invoke this rune!"
@@ -7967,21 +8131,21 @@ MarkOfKingsTile.prototype.use = function(user) {
   }
   // check if on surface, if so check location
   // if underground/in town, heal
-  var themap = user.getHomeMap();
+  let themap = user.getHomeMap();
   if (!themap.getScale()) {
     if (themap.getName() === "darkunknown") {
       if (((user.getx() === 27) && (user.gety() === 28)) || ((user.getx() === 26) && (user.gety() === 29)) || ((user.getx() === 28) && (user.gety() === 29)) || ((user.getx() >= 25) && (user.getx() <= 28) && (user.gety() === 30)) || ((user.getx() >=25) && (user.getx() <= 27) && (user.gety() === 31))) {
         // open entrance to grotto
         Earthquake();
         DUPlaySound("sfx_earthquake");
-        var cave = localFactory.createTile("Cave");
+        let cave = localFactory.createTile("Cave");
         cave.setEnterMap("grotto", 22, 53);
         themap.placeThing(27,30,cave);
         retval["txt"] = "A cave entrance is revealed!";
         return retval;
       } else if ((user.getx() === 100) && (user.gety() === 57)) {
-        var tile = themap.getTile(112,67);
-        var oldgate = tile.getTopFeature();
+        let tile = themap.getTile(112,67);
+        let oldgate = tile.getTopFeature();
         if (oldgate && (oldgate.getName() === "Moongate")) {
           themap.deleteThing(oldgate);
         }
@@ -7990,7 +8154,7 @@ MarkOfKingsTile.prototype.use = function(user) {
         DrawMainFrame("draw", themap, user.getx(), user.gety());
         // teleport to entrance to air
         setTimeout(function() {
-          var moongate = localFactory.createTile("Moongate");
+          let moongate = localFactory.createTile("Moongate");
           moongate.destmap = "skypalace";
           moongate.destx = 47;
           moongate.desty = 49;
@@ -8003,10 +8167,10 @@ MarkOfKingsTile.prototype.use = function(user) {
       }
     } else if ((themap.getName() === "volcano") && (GetDistance(user.getx(), user.gety(), 27,21) < 5)) {
       Earthquake();
-      var cave = localFactory.createTile("Cave");
+      let cave = localFactory.createTile("Cave");
       cave.setEnterMap("lavatubes", 0, 0);   // make tubes!
-      var nillavatile = themap.getTile(27,21);
-      var nillava = nillavatile.getTopFeature();
+      let nillavatile = themap.getTile(27,21);
+      let nillava = nillavatile.getTopFeature();
       if (nillava && (nillave.getName() === "Lava")) {
         themap.deleteThing(nillava);
       }
@@ -8028,9 +8192,9 @@ MarkOfKingsTile.prototype.use = function(user) {
 
 function MarkOfWavesTile() {
   this.name = "MarkOfWaves";
-  this.graphic = "runes.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "Rune of Waves";
@@ -8044,9 +8208,9 @@ MarkOfWavesTile.prototype.use = function(user) {
   
 function MarkOfWindsTile() {
   this.name = "MarkOfWinds";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "Rune of Winds";
@@ -8059,9 +8223,9 @@ MarkOfWindsTile.prototype.use = function(user) {
 
 function MarkOfFlamesTile() {
   this.name = "MarkOfFlames";
-  this.graphic = "runes.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1568";
   this.blocklos = 2;
   this.prefix = "the";
   this.desc = "Rune of Flames";
@@ -8075,9 +8239,9 @@ MarkOfFlamesTile.prototype.use = function(user) {
 
 function FlameEternalTile() {
   this.name = "FlameEternal";
-  this.graphic = "eternal_flame0.gif"; // remove 0 for active fire
-  this.spritexoffset = "0";  // -32 is active fire
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png"; // for now, eternal_flame.gif for active fire
+  this.spritexoffset = "-128";  // -32 is active fire
+  this.spriteyoffset = "-1120";  // -0 for active fire
   this.prefix = "the";
   this.desc = "Flame Eternal";
   this.passable = MOVE_ETHEREAL;
@@ -8140,7 +8304,9 @@ FountainTile.prototype = new FeatureObject();
 
 function BrokenFountainTile() {
   this.name = "BrokenFountain";
-  this.graphic = "brokenfountain.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-832";
   this.prefix = "a";
   this.desc = "broken fountain";
   this.peerview = "#a0a0a0";
@@ -8227,7 +8393,9 @@ WhiteCrystalTile.prototype = new FeatureObject();
 
 function TeleporterPlatformTile() {
   this.name = "TeleporterPlatform";
-  this.graphic = "teleporter.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-896";
   this.prefix = "a";
   this.desc = "platform";
   this.destination;
@@ -8236,8 +8404,8 @@ function TeleporterPlatformTile() {
 TeleporterPlatformTile.prototype = new FeatureObject();
 
 TeleporterPlatformTile.prototype.setDestination = function(destobj) {
-  this.destination = {};
   if (destobj.map && destobj.x && destobj.y) {
+    this.destination = {};
     this.destination = destobj;
   }
 }
@@ -8248,13 +8416,13 @@ TeleporterPlatformTile.prototype.getDestination = function() {
 
 TeleporterPlatformTile.prototype.walkon = function(who) {
   if (this.getDestination()) {
-    var themap = who.getHomeMap();
-    var dest = this.getDestination();
+    let themap = who.getHomeMap();
+    let dest = this.getDestination();
     if (themap.getName() === dest.map) {
       themap.moveThing(dest.x, dest.y, who);
     } else {
       DU.maps.addMap(dest.map);
-      var destmap = DU.maps.getMap(dest.map);
+      let destmap = DU.maps.getMap(dest.map);
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
@@ -8289,13 +8457,13 @@ PitTeleporterPlatformTile.prototype.walkon = function(who) {
     maintext.addText("You hear a voice in your head: 'Thou'rt not yet ready for this trial.' Nothing happens.");
   }
   else if (this.getDestination()) {
-    var themap = who.getHomeMap();
-    var dest = this.getDestination();
+    let themap = who.getHomeMap();
+    let dest = this.getDestination();
     if (themap.getName() === dest.map) {
       themap.moveThing(dest.x, dest.y, who);
     } else {
       DU.maps.addMap(dest.map);
-      var destmap = DU.maps.getMap(dest.map);
+      let destmap = DU.maps.getMap(dest.map);
       MoveBetweenMaps(who,themap,destmap,dest.x,dest.y);
     }
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
@@ -8322,7 +8490,7 @@ ToshinPanelTile.prototype = new FeatureObject();
 
 ToshinPanelTile.prototype.use = function(who) {
   gamestate.setMode("singleletter");
-  var retval = {};
+  let retval = {};
   retval["fin"] = 2;
   retval["txt"] = "Use: panel covered with buttons- Press which button?"
   retval["input"] = "Choose (A-E) - ";
@@ -8334,31 +8502,31 @@ ToshinPanelTile.prototype.use = function(who) {
 }
 
 function PerformToshinAltar(code) {
-  var letter = String.fromCharCode(code);    	
-  var retval = {};
+  let letter = String.fromCharCode(code);    	
+  let retval = {};
   retval["fin"] = 1;
   retval["txt"] = "Pressed " + letter + ".";
-  var altar = inputText.thingref;
-  var themap = altar.getHomeMap();
-  var energyfield = localFactory.createTile("EnergyField");
-  var firefield = localFactory.createTile("FireField");
+  let altar = inputText.thingref;
+  let themap = altar.getHomeMap();
+  let energyfield = localFactory.createTile("EnergyField");
+  let firefield = localFactory.createTile("FireField");
   DUPlaySound("sfx_click");
 
   if (code === 65) {
-    var fieldtile1 = themap.getTile(22,13);
-    var fields = fieldtile1.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    let fieldtile1 = themap.getTile(22,13);
+    let fields = fieldtile1.getFeatures();
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
-    var fieldtile2 = themap.getTile(20,17);
+    };
+    let fieldtile2 = themap.getTile(20,17);
     fields = fieldtile2.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
+    };
     if (altar.val[65]) {
       themap.placeThing(22,13,firefield);
       themap.placeThing(20,17,energyfield);
@@ -8369,20 +8537,20 @@ function PerformToshinAltar(code) {
       altar.val[65] = 1;
     }
   } else if (code === 66) {
-    var fieldtile1 = themap.getTile(11,7);
-    var fields = fieldtile1.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    let fieldtile1 = themap.getTile(11,7);
+    let fields = fieldtile1.getFeatures();
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
-    var fieldtile2 = themap.getTile(18,8);
+    };
+    let fieldtile2 = themap.getTile(18,8);
     fields = fieldtile2.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
+    };
     if (altar.val[66]) {
       themap.placeThing(18,8,energyfield);
       themap.placeThing(11,7,firefield);
@@ -8393,55 +8561,55 @@ function PerformToshinAltar(code) {
       altar.val[66] = 1;
     }
   } else if (code === 67) {
-    var fieldtile1 = themap.getTile(12,17);
-    var fields = fieldtile1.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    let fieldtile1 = themap.getTile(12,17);
+    let fields = fieldtile1.getFeatures();
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
-    var fieldtile2 = themap.getTile(12,19);
+    };
+    let fieldtile2 = themap.getTile(12,19);
     fields = fieldtile2.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
-    var fieldtile3 = themap.getTile(13,18);
+    };
+    let fieldtile3 = themap.getTile(13,18);
     fields = fieldtile3.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
+    };
     if (altar.val[67]) {
       themap.placeThing(13,18,energyfield);
       themap.placeThing(12,17,firefield);
-      var firefield2 = localFactory.createTile("FireField");
+      let firefield2 = localFactory.createTile("FireField");
       themap.placeThing(12,19,firefield2);
       altar.val[67] = 0;
     } else {
       themap.placeThing(13,18,firefield);
       themap.placeThing(12,17,energyfield);      
-      var energyfield2 = localFactory.createTile("EnergyField");
+      let energyfield2 = localFactory.createTile("EnergyField");
       themap.placeThing(12,19,energyfield2);
       altar.val[67] = 1;
     }
   } else if (code === 68) {
-    var fieldtile1 = themap.getTile(11,11);
-    var fields = fieldtile1.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    let fieldtile1 = themap.getTile(11,11);
+    let fields = fieldtile1.getFeatures();
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
-    var fieldtile2 = themap.getTile(14,8);
+    };
+    let fieldtile2 = themap.getTile(14,8);
     fields = fieldtile2.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
+    };
     if (altar.val[68]) {
       themap.placeThing(14,8,energyfield);
       themap.placeThing(11,11,firefield);
@@ -8452,20 +8620,20 @@ function PerformToshinAltar(code) {
       altar.val[68] = 1;
     }
   } else if (code === 69) {
-    var fieldtile1 = themap.getTile(9,10);
-    var fields = fieldtile1.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    let fieldtile1 = themap.getTile(9,10);
+    let fields = fieldtile1.getFeatures();
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
-    var fieldtile2 = themap.getTile(12,15);
+    };
+    let fieldtile2 = themap.getTile(12,15);
     fields = fieldtile2.getFeatures();
-    $.each(fields, function(idx,val) {
-      if (val.getName().indexOf("Field") > -1) {
-        themap.deleteThing(val);
+    for (let i=0;i<fields.length;i++) {
+      if (fields[i].getName().indexOf("Field") > -1) {
+        themap.deleteThing(fields[i]);
       }
-    });
+    };
     if (altar.val[69]) {
       themap.placeThing(9,10,energyfield);
       themap.placeThing(12,15,firefield);
@@ -8493,17 +8661,17 @@ function ToshinMoatLeverOffTile() {
 ToshinMoatLeverOffTile.prototype = new FeatureObject();
 
 ToshinMoatLeverOffTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   retval["txt"] = "Click!";
-  var themap = this.getHomeMap();
-  var tile = themap.getTile(25,13);
-  var door = tile.getTopFeature();
+  let themap = this.getHomeMap();
+  let tile = themap.getTile(25,13);
+  let door = tile.getTopFeature();
   
-  var lever1tile = themap.getTile(6,12);
-  var lever1 = lever1tile.getTopFeature();
-  var lever2tile = themap.getTile(24,14);
-  var lever2 = lever2tile.getTopFeature();
+  let lever1tile = themap.getTile(6,12);
+  let lever1 = lever1tile.getTopFeature();
+  let lever2tile = themap.getTile(24,14);
+  let lever2 = lever2tile.getTopFeature();
   DUPlaySound("sfx_small_lever");
   
   if (this.getOverlay() === "moatLever-off.gif") {
@@ -8541,31 +8709,30 @@ OrbToggleTile.prototype.use = function(who) {
     this.spritexoffset = this.spritexoffset - 32;
     if (this.spritexoffset < -128) { this.spritexoffset = 0; }
 
-    var sp = maps.getMap("skypalace");
-    var orb1tile = sp.getTile(33,27);
-    var orb1 = orb1tile.getTopFeature();
-    var orb2tile = sp.getTile(29,32);
-    var orb2 = orb2tile.getTopFeature();
-    var orb3tile = sp.getTile(37,32);
-    var orb3 = orb3tile.getTopFeature();
-//    alert(orb1.spritexoffset + " , " + orb2.spritexoffset + " , " + orb3.spritexoffset);
+    let sp = maps.getMap("skypalace");
+    let orb1tile = sp.getTile(33,27);
+    let orb1 = orb1tile.getTopFeature();
+    let orb2tile = sp.getTile(29,32);
+    let orb2 = orb2tile.getTopFeature();
+    let orb3tile = sp.getTile(37,32);
+    let orb3 = orb3tile.getTopFeature();
     if ((orb1.spritexoffset == '-32') && (orb2.spritexoffset == '-96') && (orb3.spritexoffset == '-64')) {
-      var moongate = localFactory.createTile("Moongate");
+      let moongate = localFactory.createTile("Moongate");
       moongate.destmap = "skypalace2";
       moongate.destx = 11;
       moongate.desty = 12;
       sp.placeThing(33,31,moongate);
       animateImage(0,-128,moongate,0,"right",300,0,1);
     } else {
-      var mgtile = sp.getTile(33,31);
-      var moongate = mgtile.getTopFeature();
+      let mgtile = sp.getTile(33,31);
+      let moongate = mgtile.getTopFeature();
       if (moongate) {
         animateImage(-128,0,moongate,0,"left",300,1,0);
         delete moongate.destmap;
       }
     }
   
-    var retval = {};
+    let retval = {};
     retval["txt"] = "Done!";
     return retval;
 }
@@ -8582,20 +8749,19 @@ function DrashOrbToggleTile() {
 DrashOrbToggleTile.prototype = new FeatureObject();
 
 DrashOrbToggleTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval["txt"] = "Done!";
 
   this.spritexoffset = this.spritexoffset - 32;
     if (this.spritexoffset < -128) { this.spritexoffset = 0; }
 
-    var sp = maps.getMap("mtdrash8");
-    var orb1tile = sp.getTile(7,9);
-    var orb1 = orb1tile.getTopFeature();
-    var orb2tile = sp.getTile(8,8);
-    var orb2 = orb2tile.getTopFeature();
-    var orb3tile = sp.getTile(9,9);
-    var orb3 = orb3tile.getTopFeature();
-//    alert(orb1.spritexoffset + " , " + orb2.spritexoffset + " , " + orb3.spritexoffset);
+    let sp = maps.getMap("mtdrash8");
+    let orb1tile = sp.getTile(7,9);
+    let orb1 = orb1tile.getTopFeature();
+    let orb2tile = sp.getTile(8,8);
+    let orb2 = orb2tile.getTopFeature();
+    let orb3tile = sp.getTile(9,9);
+    let orb3 = orb3tile.getTopFeature();
     if ((orb1.spritexoffset == '-128') && (orb2.spritexoffset == '-128') && (orb3.spritexoffset == '-32')) {
       let pile = sp.getTile(14,12).getFeatures();
       let spinner;
@@ -8611,7 +8777,7 @@ DrashOrbToggleTile.prototype.use = function(who) {
       }
     } 
   
-    return retval;
+  return retval;
 }
 
 function OrbStrengthTile() {
@@ -8666,13 +8832,13 @@ function EtherGateTile() {
 EtherGateTile.prototype = new FeatureObject();
 
 EtherGateTile.prototype.walkon = function(who) {
-  var homemap = who.getHomeMap();
-  var desttile = homemap.getTile(this.destx,this.desty);
-  var npcs = desttile.getNPCs();
+  let homemap = who.getHomeMap();
+  let desttile = homemap.getTile(this.destx,this.desty);
+  let npcs = desttile.getNPCs();
   if (npcs) {
-    $.each(npcs, function(idx,val) {
-      homemap.moveThing(this.destx-1,this.desty,val);
-    });
+    for (let i=0;i<npcs.length;i++) {
+      homemap.moveThing(this.destx-1,this.desty,npcs[i]);
+    };
   }
   homemap.moveThing(this.destx,this.desty,who);
   DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
@@ -8691,7 +8857,7 @@ MoongateTile.prototype = new FeatureObject();
 
 MoongateTile.prototype.walkon = function(who) {
   if (this.destmap && this.destx && this.desty) {
-    var newmap = new GameMap();
+    let newmap = new GameMap();
     if (maps.getMap(this.destmap)) {
       newmap = maps.getMap(this.destmap);
     } else {
@@ -8708,7 +8874,9 @@ MoongateTile.prototype.walkon = function(who) {
 
 function PetrifiedReaperTile() {
   this.name = "PetrifiedReaper";
-  this.graphic = "petrifiedreaper.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "petrified reaper";
@@ -8716,11 +8884,10 @@ function PetrifiedReaperTile() {
 PetrifiedReaperTile.prototype = new FeatureObject();
 
 PetrifiedReaperTile.prototype.use = function(who) {
-  var retval  ={};
-  retval["fin"] = 1;
+  let retval  ={fin:1};
 
   if (IsAdjacent(who,this)) {
-    var loot = localFactory.createTile("ReaperBark");
+    let loot = localFactory.createTile("ReaperBark");
     PC.addToInventory(loot,1);
     retval["txt"] = "You take some petrified reaper bark.";
   } else {
@@ -8732,7 +8899,9 @@ PetrifiedReaperTile.prototype.use = function(who) {
 
 function AltarWithSwordTile() {
   this.name = "AltarWithSword";
-  this.graphic = "swordinstone.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-640";
   this.passable = MOVE_ETHEREAL;
   this.prefix = "a";
   this.desc = "sword driven into the stone of an altar";
@@ -8741,19 +8910,18 @@ function AltarWithSwordTile() {
 AltarWithSwordTile.prototype = new FeatureObject();
 
 AltarWithSwordTile.prototype.use = function(who) {
-  var wherex = this.getx();
-  var wherey = this.gety();
-  var mymap = this.getHomeMap();
+  let wherex = this.getx();
+  let wherey = this.gety();
+  let mymap = this.getHomeMap();
   mymap.deleteThing(this);
-  var emptyaltar = localFactory.createTile("Altar");
+  let emptyaltar = localFactory.createTile("Altar");
   mymap.placeThing(wherex,wherey,emptyaltar);
-  var magicsword = localFactory.createTile("MagicSword");
+  let magicsword = localFactory.createTile("MagicSword");
   mymap.placeThing(wherex,wherey,magicsword);
   DrawMainFrame("one", mymap, wherex, whereY);
   
   return;
 }
-
 
 
 // Items
@@ -8787,9 +8955,9 @@ ItemObject.prototype.getUseDesc = function() {
 
 function AmbroseShieldTile() {
   this.name = "AmbroseShield";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-32";
-  this.spritexoffset = "-256";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-256";
+  this.spritexoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "shield";
@@ -8801,9 +8969,9 @@ AmbroseShieldTile.prototype = new ItemObject();
 
 function RobertMapTile() {
   this.name = "RobertMap";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-96";
-  this.spritexoffset = "-0";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-288";
+  this.spritexoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "map";
@@ -8815,9 +8983,9 @@ RobertMapTile.prototype = new ItemObject();
 
 function SmallRockTile() {
   this.name = "SmallRock";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "small rock";
@@ -8829,9 +8997,9 @@ SmallRockTile.prototype = new ItemObject();
 
 function SiriCloakTile() {
   this.name = "SiriCloak";
-  this.graphic = "items.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "blue cloak";
@@ -8844,9 +9012,9 @@ SiriCloakTile.prototype = new ItemObject();
 
 function CourierPouchTile() {
   this.name = "CourierPouch";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-160";
-  this.spritexoffset = "-224";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "pouch full of papers";
@@ -8858,7 +9026,7 @@ function CourierPouchTile() {
 CourierPouchTile.prototype = new ItemObject();
 
 CourierPouchTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   retval["input"] = "&gt;";
   retval["txt"] = "You open the pouch and scan through the documents. They appear to be written in some kind of code- hopefully the Loyalists know how to read it.";
@@ -8867,9 +9035,9 @@ CourierPouchTile.prototype.use = function(who) {
 
 function CourierLetterTile() {
   this.name = "CourierLetter";
-  this.graphic = "items.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-288";
+  this.spritexoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Rebel letter";
@@ -8881,7 +9049,7 @@ function CourierLetterTile() {
 CourierLetterTile.prototype = new ItemObject();
 
 CourierLetterTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   retval["input"] = "&gt;";
   retval["txt"] = "The letter appears to be in a simple code. Hopefully Prince Lance knows how to read it.";
@@ -8890,9 +9058,9 @@ CourierLetterTile.prototype.use = function(who) {
 
 function TrustedPlansTile() {
   this.name = "TrustedPlans";
-  this.graphic = "items.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-288";
+  this.spritexoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "plans for a Trusted pin";
@@ -8904,9 +9072,9 @@ TrustedPlansTile.prototype = new ItemObject();
 
 function TrustedPinTile() {
   this.name = "TrustedPin";
-  this.graphic = "items.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Trusted pin";
@@ -8918,9 +9086,9 @@ TrustedPinTile.prototype = new ItemObject();
 
 function ReaperBarkTile() {
   this.name = "ReaperBark";
-  this.graphic = "items.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "piece of petrified reaper bark";
@@ -8932,9 +9100,9 @@ ReaperBarkTile.prototype = new ItemObject();
 
 function AmuletOfReflectionsTile() {
   this.name = "AmuletOfReflections";
-  this.graphic = "items.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Amulet of Reflections";
@@ -8946,25 +9114,25 @@ function AmuletOfReflectionsTile() {
 AmuletOfReflectionsTile.prototype = new ItemObject();
 
 AmuletOfReflectionsTile.prototype.use = function(who) {
-  var themap = who.getHomeMap();
-  var retval = {};
+  let themap = who.getHomeMap();
+  let retval = {};
   if (themap.getName() === "olympus2") {
-    var standbefore = themap.getTile(who.getx(), who.gety());
-    var ismirror = standbefore.getTopFeature();
+    let standbefore = themap.getTile(who.getx(), who.gety());
+    let ismirror = standbefore.getTopFeature();
     if (ismirror.getName() === "mirror") {
       // you are in the right map standing at the right place. GO.
       // remove buffs/debuffs - doesn't cure poison, I guess you can die of
       // poison while your mind is elsewhere? Don't do it, people.
-      var effects = who.getSpellEffects();
-      $.each(effects, function(effidx, effval) {
-        if ((effval.getLevel() > 0) && (effval.getExpiresTime() > -1)) {
-          effval.endEffect();
+      let effects = who.getSpellEffects();
+      for (let i=0;i<effects.length;i++) {
+        if ((effects[i].getLevel() > 0) && (effects[i].getExpiresTime() > -1)) {
+          effects[i].endEffect();
         }
-      });
+      };
       gamestate.setMode("null");
       FadeOut(2000);
       setTimeout(function() {
-        var newmap = new GameMap();
+        let newmap = new GameMap();
         if (maps.getMap("abyss0")) {
           newmap = maps.getMap("abyss0");
         } else {
@@ -8990,9 +9158,9 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
 
 function DragonBoneTile() {
   this.name = "DragonBone";
-  this.graphic = "items.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "dragon fingerbone";
@@ -9004,9 +9172,9 @@ DragonBoneTile.prototype = new ItemObject();
 
 function StoneOfSparksTile() {
   this.name = "StoneOfSparks";
-  this.graphic = "items.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Sparks";
@@ -9018,9 +9186,9 @@ StoneOfSparksTile.prototype = new ItemObject();
 
 function StoneOfEmbersTile() {
   this.name = "StoneOfEmbers";
-  this.graphic = "items.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Embers";
@@ -9032,9 +9200,9 @@ StoneOfEmbersTile.prototype = new ItemObject();
 
 function StoneOfTheBlazeTile() {
   this.name = "StoneOfTheBlaze";
-  this.graphic = "items.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of the Blaze";
@@ -9046,9 +9214,9 @@ StoneOfTheBlazeTile.prototype = new ItemObject();
 
 function StoneOfConflagrationsTile() {
   this.name = "StoneOfConflagrations";
-  this.graphic = "items.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Conflagrations";
@@ -9060,9 +9228,9 @@ StoneOfConflagrationsTile.prototype = new ItemObject();
 
 function TreasuryTokenTile() {
   this.name = "TreasuryToken";
-  this.graphic = "items.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-160";  
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "treasury token";
@@ -9074,9 +9242,9 @@ TreasuryTokenTile.prototype = new ItemObject();
 
 function SpiderSilkTile() {
   this.name = "SpiderSilk";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.prefix = "a";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9088,9 +9256,9 @@ SpiderSilkTile.prototype = new ItemObject();
 
 function BlackPearlTile() {
   this.name = "BlackPearl";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.prefix = "a";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9102,9 +9270,9 @@ BlackPearlTile.prototype = new ItemObject();
 
 function ExecutionersHoodTile() {
   this.name = "ExecutionersHood";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
@@ -9116,9 +9284,9 @@ ExecutionersHoodTile.prototype = new ItemObject();
 
 function QuestExecutionersHoodTile() {
   this.name = "QuestExecutionersHood";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
@@ -9130,9 +9298,9 @@ QuestExecutionersHoodTile.prototype = new ItemObject();
 
 function NightshadeTile() {
   this.name = "Nightshade";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "some";
@@ -9144,9 +9312,9 @@ NightshadeTile.prototype = new ItemObject();
 
 function SulfurousAshTile() {
   this.name = "SulfurousAsh";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-64";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -9158,9 +9326,9 @@ SulfurousAshTile.prototype = new ItemObject();
 
 function MandrakeRootTile() {
   this.name = "MandrakeRoot";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-64";
-  this.spritexoffset = "-256";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-256";
+  this.spritexoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "mandrake root";
@@ -9171,9 +9339,9 @@ MandrakeRootTile.prototype = new ItemObject();
 
 function LightningWoodTile() {
   this.name = "LightningWood";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-64";
-  this.spritexoffset = "-288";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-288";
+  this.spritexoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "twig of lightning wood";
@@ -9185,9 +9353,9 @@ LightningWoodTile.prototype = new ItemObject();
 
 function MistletoeTile() {
   this.name = "Mistletoe";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-96";
-  this.spritexoffset = "-256";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-224";
+  this.spritexoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "mistletoe";
@@ -9198,9 +9366,9 @@ MistletoeTile.prototype = new ItemObject();
 
 function BloodMossTile() {
   this.name = "BloodMoss";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-96";
-  this.spritexoffset = "-288";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-32";
+  this.spritexoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "blood moss";
@@ -9209,11 +9377,24 @@ function BloodMossTile() {
 }
 BloodMossTile.prototype = new ItemObject();
 
+function BottledEtherTile() {
+  this.name = "BottledEther";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1152";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "bottled ether";
+  this.longdesc = "Bottled Ether. It glows fantastically.";
+  this.addType("Reagent");
+}
+BottledEtherTile.prototype = new ItemObject();
+
 function PerfectRubyTile() {
 	this.name = "PerfectRuby";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "0";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1376";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "perfect ruby gemstone";
@@ -9225,9 +9406,9 @@ PerfectRubyTile.prototype = new ItemObject();
 
 function UncutLargeRubyTile() {
 	this.name = "UncutLargeRuby";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-96";
-  this.spritexoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1248";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "rough, fist-sized ruby gemstone";
@@ -9239,9 +9420,9 @@ UncutLargeRubyTile.prototype = new ItemObject();
 
 function RubyTile() {
 	this.name = "Ruby";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-256";
-  this.spritexoffset = "-256";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1376";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "ruby";
@@ -9253,9 +9434,9 @@ RubyTile.prototype = new ItemObject();
 
 function UncutRubyTile() {
 	this.name = "UncutRuby";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "-32";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1376";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "uncut ruby";
@@ -9267,9 +9448,9 @@ UncutRubyTile.prototype = new ItemObject();
 
 function SmallSapphireTile() {
 	this.name = "SmallSapphire";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "-64";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1376";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "sapphire";
@@ -9281,9 +9462,9 @@ SmallSapphireTile.prototype = new ItemObject();
 
 function UncutSapphireTile() {
 	this.name = "UncutSapphire";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "-96";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1376";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "smooth, uncut sapphire";
@@ -9295,9 +9476,9 @@ UncutSapphireTile.prototype = new ItemObject();
 
 function GemsTile() {
 	this.name = "Gems";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "-128";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1344";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "handful of small gemstones";
@@ -9309,9 +9490,9 @@ GemsTile.prototype = new ItemObject();
 
 function UncutGemsTile() {
 	this.name = "UncutGems";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "-128";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1344";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "handful of small, uncut gemstones";
@@ -9323,9 +9504,9 @@ UncutGemsTile.prototype = new ItemObject();
 
 function RubyGemoftheSunTile() {
 	this.name = "RubyGemoftheSun";
-	this.graphic = "items.png";
-  this.spriteyoffset = "-160";
-  this.spritexoffset = "-288";
+	this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1376";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "ruby gem";
@@ -9355,9 +9536,9 @@ DecorativeArmorTile.prototype = new ItemObject();
 
 function FluteTile() {
   this.name = "Flute";
-	this.graphic = "items.png";
-	this.spritexoffset = "0";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-128";
+  this.spriteyoffset = "-1408";
 	this.desc = "flute";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9368,9 +9549,9 @@ FluteTile.prototype = new ItemObject();
 
 function DrumTile() {
   this.name = "Drum";
-	this.graphic = "items.png";
-	this.spritexoffset = "-32";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-160";
+  this.spriteyoffset = "-1408";
 	this.desc = "drum";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9381,9 +9562,9 @@ DrumTile.prototype = new ItemObject();
 
 function HarpTile() {
   this.name = "Harp";
-	this.graphic = "items.png";
-	this.spritexoffset = "-64";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-192";
+  this.spriteyoffset = "-1408";
 	this.desc = "harp";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9394,9 +9575,9 @@ HarpTile.prototype = new ItemObject();
 
 function LuteTile() {
   this.name = "Lute";
-	this.graphic = "items.png";
-	this.spritexoffset = "-96";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-224";
+  this.spriteyoffset = "-1408";
 	this.desc = "lute";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9407,9 +9588,9 @@ LuteTile.prototype = new ItemObject();
 
 function HornTile() {
   this.name = "Horn";
-	this.graphic = "items.png";
-	this.spritexoffset = "-160";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-256";
+  this.spriteyoffset = "-1408";
 	this.desc = "horn";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9420,9 +9601,9 @@ HornTile.prototype = new ItemObject();
 
 function MortarTile() {
   this.name = "Mortar";
-	this.graphic = "items.png";
-	this.spritexoffset = "-224";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "0";
+  this.spriteyoffset = "-1440";
 	this.desc = "mortar and pestle";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9433,9 +9614,9 @@ MortarTile.prototype = new ItemObject();
 
 function AppleTile() {
   this.name = "Apple";
-	this.graphic = "items.png";
-	this.spritexoffset = "-256";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-288";
+  this.spriteyoffset = "-1408";
 	this.desc = "apple";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9446,7 +9627,7 @@ function AppleTile() {
 AppleTile.prototype = new ItemObject();
 
 AppleTile.prototype.use = function(who) { 
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   if (who === PC) {
     retval["txt"] = "You crunch into the apple. It's delicious!";
@@ -9457,9 +9638,9 @@ AppleTile.prototype.use = function(who) {
 
 function CrystalMortarTile() {
   this.name = "CrystalMortar";
-	this.graphic = "items.png";
-	this.spritexoffset = "-128";
-  this.spriteyoffset = "-224";
+	this.graphic = "master_spritesheet.png";
+	this.spritexoffset = "-32";
+  this.spriteyoffset = "-1440";
 	this.desc = "crystal mortar";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9470,9 +9651,9 @@ CrystalMortarTile.prototype = new ItemObject();
 
 function GoldTile() {
   this.name = "Gold";
-  this.graphic = "items.png";  
-  this.spritexoffset = "0";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";  
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1120";
   this.desc = "1 gold coin";
   this.quantity = 1;
   this.blocklos = 0;
@@ -9483,7 +9664,7 @@ function GoldTile() {
 GoldTile.prototype = new ItemObject();
 
 GoldTile.prototype.setQuantity = function(quant) {
-  var newquant = parseInt(quant);
+  let newquant = parseInt(quant);
   if (newquant === quant) {
     this.quantity = quant;
     if (quant === 1) { this.setDesc("1 gold coin"); }
@@ -9492,18 +9673,18 @@ GoldTile.prototype.setQuantity = function(quant) {
     return 0;
   }
   if ((this.quantity > 0) && (this.quantity < 4)) {
-    this.graphic = "items.png";  
-    this.spritexoffset = "0";
-    this.spriteyoffset = "0";
+    this.graphic = "master_spritesheet.png";  
+    this.spritexoffset = "-192";
+    this.spriteyoffset = "-1120";
   }
   else if ((this.quantity > 3) && (this.quantity < 16)) {
-    this.graphic = "items.png";  
-    this.spritexoffset = "-32";
-    this.spriteyoffset = "0";
+    this.graphic = "master_spritesheet.png";  
+    this.spritexoffset = "-224";
+    this.spriteyoffset = "-1120";
   } else if (this.quantity > 15) {
-    this.graphic = "items.png";  
-    this.spritexoffset = "-64";
-    this.spriteyoffset = "0";
+    this.graphic = "master_spritesheet.png";  
+    this.spritexoffset = "-256";
+    this.spriteyoffset = "-1120";
   }
   return this.quantity;
 }
@@ -9523,7 +9704,7 @@ KeyItemObject.prototype = new ItemObject();
 
 KeyItemObject.prototype.use = function(who) {
   gamestate.setMode("choosedir");
-  var retval={};
+  let retval={};
   retval["override"] = 1;
   retval["fin"] = 4;
   retval["input"] = "&gt; Choose direction-";
@@ -9536,10 +9717,10 @@ KeyItemObject.prototype.use = function(who) {
 }
 
 function KeyUse(who,what,tgt) {
-  var retval= {};
+  let retval= {};
   if (!tgt) {
-    var locktile = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-    var tgt = locktile.getTopFeature();
+    let locktile = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
+    let tgt = locktile.getTopFeature();
   }
   if (!tgt) {
     retval["fin"] = 0;
@@ -9577,9 +9758,9 @@ function KeyUse(who,what,tgt) {
 
 function HomeKeyTile() {
   this.name = "HomeKey";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-256";
-  this.spritexoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "your housekey";
@@ -9590,9 +9771,9 @@ HomeKeyTile.prototype = new KeyItemObject();
 
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-64";
-  this.spritexoffset = "-224";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Pit of Despair dungeon key";
@@ -9604,9 +9785,9 @@ PitOfDespairKeyTile.prototype = new KeyItemObject();
 
 function KeyOfSpiritsTile() {
   this.name = "KeyOfSpirits";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-64";
-  this.spritexoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Spirits";
@@ -9618,9 +9799,9 @@ KeyOfSpiritsTile.prototype = new KeyItemObject();
 
 function RoyalKeyTile() {
   this.name = "RoyalKey";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1280";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Royal Key";
@@ -9632,9 +9813,9 @@ RoyalKeyTile.prototype = new KeyItemObject();
 
 function BlackDragonKeyTile() {
   this.name = "BlackDragonKey";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-32";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Black Dragon Key";
@@ -9646,9 +9827,9 @@ BlackDragonKeyTile.prototype = new KeyItemObject();
 
 function KeyOfAshesTile() {
   this.name = "KeyOfAshes";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-64";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Ashes";
@@ -9660,9 +9841,9 @@ KeyOfAshesTile.prototype = new KeyItemObject();
 
 function KeyOfIceTile() {
   this.name = "KeyOfIce";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Ice";
@@ -9674,9 +9855,9 @@ KeyOfIceTile.prototype = new KeyItemObject();
 
 function KeyOfBoneTile() {
   this.name = "KeyOfBone";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-128";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Bone";
@@ -9688,9 +9869,9 @@ KeyOfBoneTile.prototype = new KeyItemObject();
 
 function KeyOfDustTile() {
   this.name = "KeyOfDust";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-160";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Dust";
@@ -9702,9 +9883,9 @@ KeyOfDustTile.prototype = new KeyItemObject();
 
 function KeyOfSunTile() {
   this.name = "KeyOfSun";
-  this.graphic = "items.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of the Sun";
@@ -9716,7 +9897,7 @@ KeyOfSunTile.prototype = new KeyItemObject();
 
 function KeyOfShadowTile() {
   this.name = "KeyOfShadow";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spriteyoffset = "-128";
   this.spritexoffset = "-256";
   this.blocklos = 0;
@@ -9737,13 +9918,13 @@ function BookItemObject() {
 BookItemObject.prototype = new ItemObject();
 
 BookItemObject.prototype.use = function(who) {
-  var bookcontents = this.contents.split("%%");
-  var retval = {};
+  let bookcontents = this.contents.split("%%");
+  let retval = {};
   if (bookcontents) {
     retval["txt"] = "Use: " + this.getDesc() + "<br /> Reading...<br />" + bookcontents.shift();
     if (bookcontents.length > 0) {
       retval["override"] = 1;
-	  	var usedname = this.getDesc();
+	  	let usedname = this.getDesc();
 		  usedname = usedname.replace(/^a /, "");
       
       retval["fin"] = 3;
@@ -9773,9 +9954,9 @@ function PerformRead() {
 
 function BookOfLoreTile() {
   this.name = "BookOfLore";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
-  this.spriteyoffset = "-128";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Book of Lore";
@@ -9787,9 +9968,9 @@ BookOfLoreTile.prototype = new BookItemObject();
 
 function TomeOfSightTile() {
   this.name = "TomeOfSight";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Tome of Sight";
@@ -9801,9 +9982,9 @@ TomeOfSightTile.prototype = new BookItemObject();
 
 function MapsAndLegendsTile() {
   this.name = "MapsAndLegends";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1216";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Maps and Legends";
@@ -9815,9 +9996,9 @@ MapsAndLegendsTile.prototype = new BookItemObject();
 
 function ATreatiseOnDragonsTile() {
   this.name = "ATreatiseOnDragons";
-  this.graphic = "items.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1216";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "A Treatise On Dragons";
@@ -9829,9 +10010,9 @@ ATreatiseOnDragonsTile.prototype = new BookItemObject();
 
 function NatassaJournalTile() {
   this.name = "NatassaJournal";
-  this.graphic = "items.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1216";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -9843,9 +10024,9 @@ NatassaJournalTile.prototype = new BookItemObject();
 
 function NatassaResearchTile() {
   this.name = "NatassaResearch";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1216";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -9857,9 +10038,9 @@ NatassaResearchTile.prototype = new BookItemObject();
 
 function NatassaResearch2Tile() {
   this.name = "NatassaResearch2";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1216";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -9871,9 +10052,9 @@ NatassaResearch2Tile.prototype = new BookItemObject();
 
 function AdelusLetterTile() {
   this.name = "AdelusLetter";
-  this.graphic = "items.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-96";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-288";
+  this.spritexoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "letter";
@@ -9890,9 +10071,9 @@ ConsumableItemObject.prototype = new ItemObject();
 
 function TorchTile() {
   this.name = "Torch";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-256";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "torch";
@@ -9927,7 +10108,9 @@ TorchTile.prototype.use = function(who) {
 
 function KyvekBoxTile() {
   this.name = "KyvekBox";
-  this.graphic = "008.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-704";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "box";
@@ -9940,7 +10123,7 @@ function KyvekBoxTile() {
 KyvekBoxTile.prototype = new ConsumableItemObject();
 
 KyvekBoxTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {fin:1};
   
   if (who === PC) {
     retval["override"] = -1;
@@ -9950,13 +10133,11 @@ KyvekBoxTile.prototype.use = function(who) {
     retval["input"] = "(Y/N): ";
     return retval;
   }
-  retval["fin"] = 1;
   return retval;
 }
 
 KyvekBoxTile.prototype.usePrompt = function(code) {
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if (code === 89) {
     retval["txt"] = "You break the seal and empty the coin into your own pouches. You gain 600 gold.";
     DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")-1);
@@ -9971,7 +10152,9 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
 
 function InfiniteScrollTile() {
   this.name = "InfiniteScroll";
-  this.graphic = "008.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Infinite Scroll";
@@ -9984,7 +10167,7 @@ function InfiniteScrollTile() {
 InfiniteScrollTile.prototype = new ConsumableItemObject();
 
 InfiniteScrollTile.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   
   if (who === PC) {
     delete this.circle;
@@ -10019,8 +10202,9 @@ InfiniteScrollTile.prototype.firstResponse = function(code) {
   retval["txt"] = "Choose a spell:";
   for (let i=1;i<=8;i++) {
     let sid = i;
-    if ((i===6) || (i===8)) { sid++; }
-    if (sid > 8) { continue; }
+    if ((level===SPELL_WEATHER_CONTROL_LEVEL) && (i===SPELL_WEATHER_CONTROL_ID)) { continue; }  
+    if ((level===SPELL_ARMAGEDDON_LEVEL) && (i===SPELL_ARMAGEDDON_ID)) { continue; }
+    if ((level===SPELL_BUILD_GATE_LEVEL) && (i===SPELL_BUILD_GATE_ID)) { continue; }
     retval["txt"] += "<br />" + i + ") " + magic[level][GetSpellID(sid)].getName();
   }
   return retval;
@@ -10028,11 +10212,12 @@ InfiniteScrollTile.prototype.firstResponse = function(code) {
 
 InfiniteScrollTile.prototype.secondResponse = function(code) {
   let sid = ParseInt(code)-48;
-  if ((this.circle === 6) || (this.circle === 8)) { sid++;} 
   let scroll = localFactory.createTile("ScrollWildcard");
   scroll.setDesc("scroll of " + magic[this.circle][GetSpellID(sid)].getName());
   scroll.spelllevel = this.circle;
   scroll.spellnum = GetSpellID(sid);
+  PC.addToInventory(scroll);
+
   let retval = {};
   retval["fin"] = 1;
   retval["txt"] = "You feel power swirl around you as text appears on the scroll!";
@@ -10042,9 +10227,9 @@ InfiniteScrollTile.prototype.secondResponse = function(code) {
 
 function SupplyBoxTile() {
   this.name = "SupplyBox";
-  this.graphic = "furniture.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "0";
+  this.spriteyoffset = "-384";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -10057,7 +10242,7 @@ function SupplyBoxTile() {
 SupplyBoxTile.prototype = new ConsumableItemObject();
 
 SupplyBoxTile.prototype.use = function(who) {
-  var retval = { fin: 1 };
+  let retval = { fin: 1 };
   who.addToInventory(localFactory.createTile("WhitePotion"),1,2);
   who.addToInventory(localFactory.createTile("RedPotion"),1);
   who.addToInventory(localFactory.createTile("YellowPotion"),1,2);
@@ -10077,10 +10262,10 @@ PotionItemObject.prototype = new ConsumableItemObject();
 
 PotionItemObject.prototype.flamed = function() {
   maintext.addText("The " + this.getDesc() + " boils away!");
-  var thisx = this.getx();
-  var thisy = this.gety();
+  let thisx = this.getx();
+  let thisy = this.gety();
   
-  var itsmap = this.getHomeMap();
+  let itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
   DrawMainFrame("one",itsmap,thisx,thisy);
   
@@ -10093,9 +10278,9 @@ function GreenPotionTile() {
   this.desc = "green potion";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1152";
   this.usedesc = "Drink the potion, or throw the potion.";
 }
 GreenPotionTile.prototype = new PotionItemObject();
@@ -10109,26 +10294,26 @@ GreenPotionTile.prototype.getLongDesc = function() {
 
 GreenPotionTile.prototype.flamed = function() {
   maintext.addText("The " + this.getDesc() + " boils away!");
-  var thisx = this.getx();
-  var thisy = this.gety();
-  var itsmap = this.getHomeMap();
+  let thisx = this.getx();
+  let thisy = this.gety();
+  let itsmap = this.getHomeMap();
     
-  for (var i=thisx-1;i<=thisx+1;i++) {
-    for (var j=thisy-1;j<=thisy+1;j++) {
-      var tile = itsmap.getTile(i,j);
+  for (let i=thisx-1;i<=thisx+1;i++) {
+    for (let j=thisy-1;j<=thisy+1;j++) {
+      let tile = itsmap.getTile(i,j);
       if (tile !== "OoB") {
-        var npcs = tile.getNPCs();
-        $.each(npcs, function(idx,val) {
-          if (Dice.roll("1d100") < (55-val.getLevel()*5)) {
+        let npcs = tile.getNPCs();
+        for (let i=0;i<npcs.length;i++) {
+          if (Dice.roll("1d100") < (55-npcs[i].getLevel()*5)) {
             // poisoned by fumes
-            maintext.addText(val.getFullDesc() + " is poisoned by the fumes!");
-            var poison = localFactory.createTile("Poison");
-            var duration = Dice.roll("2d8") * SCALE_TIME;
+            maintext.addText(npcs[i].getFullDesc() + " is poisoned by the fumes!");
+            let poison = localFactory.createTile("Poison");
+            let duration = Dice.roll("2d8") * SCALE_TIME;
             poison.setExpiresTime(duration + DUTime.getGameClock());
-            val.addSpellEffect(poison);
-            ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_GREEN);
+            npcs[i].addSpellEffect(poison);
+            ShowEffect(npcs[i], 1000, "spellsparkles-anim.gif", 0, COLOR_GREEN);
           }
-        });
+        }
       }
     }
   }
@@ -10140,11 +10325,11 @@ GreenPotionTile.prototype.flamed = function() {
 }
 
 GreenPotionTile.prototype.use = function(who) {
+  // FIXME: add throw option
   DUPlaySound("sfx_potion");
-  var retval = {}
-  retval["fin"] = 1;
-  var poison = localFactory.createTile("Poison");
-  var duration = Dice.roll("2d8") * SCALE_TIME;
+  let retval = {fin:1}
+  let poison = localFactory.createTile("Poison");
+  let duration = Dice.roll("2d8") * SCALE_TIME;
   poison.setExpiresTime(duration + DUTime.getGameClock());
   who.addSpellEffect(poison);
   if (who === PC) {
@@ -10159,9 +10344,9 @@ function DarkGreenPotionTile() {
   this.name = "DarkGreenPotion";
   this.desc = "dark green potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10176,7 +10361,7 @@ DarkGreenPotionTile.prototype.getLongDesc = function() {
 
 DarkGreenPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />You begin to move more quickly!";
   DrawCharFrame();
@@ -10188,9 +10373,9 @@ function SilverPotionTile() {
   this.name = "SilverPotion";
   this.desc = "silver potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10205,15 +10390,14 @@ SilverPotionTile.prototype.getLongDesc = function() {
 
 SilverPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var resp = {};
+  let resp = {};
   resp["fin"] = 1;
 
-  var levobj = localFactory.createTile("BlessingStr");
+  let levobj = localFactory.createTile("BlessingStr");
   
-  var dur = Dice.roll("2d10+15");
-  var power = Dice.roll("1d4+1");
-  var endtime = dur + DU.DUTime.getGameClock();
-//  if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green'>Potion of Strength: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  let dur = Dice.roll("2d10+15");
+  let power = Dice.roll("1d4+1");
+  let endtime = dur + DU.DUTime.getGameClock();
   if (!DebugWrite("gameobj", "Potion of Strength: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />")) {
     DebugWrite("magic", "Potion of Strength: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
   }
@@ -10232,9 +10416,9 @@ function PinkPotionTile() {
   this.name = "PinkPotion";
   this.desc = "pink potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10249,15 +10433,13 @@ PinkPotionTile.prototype.getLongDesc = function() {
 
 PinkPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var resp = {};
-  resp["fin"] = 1;
+  let resp = {fin:1};
 
-  var levobj = localFactory.createTile("BlessingDex");
+  let levobj = localFactory.createTile("BlessingDex");
   
-  var dur = Dice.roll("2d10+15");
-  var power = Dice.roll("1d4+1");
-  var endtime = dur + DU.DUTime.getGameClock();
-//  if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green'>Potion of Dexterity: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  let dur = Dice.roll("2d10+15");
+  let power = Dice.roll("1d4+1");
+  let endtime = dur + DU.DUTime.getGameClock();
   if (!DebugWrite("gameobj", "Potion of Dexterity: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />")) {
     DebugWrite("magic", "Potion of Dexterity: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
   }
@@ -10277,9 +10459,9 @@ function GreyPotionTile() {
   this.name = "GreyPotion";
   this.desc = "grey potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10293,16 +10475,14 @@ GreyPotionTile.prototype.getLongDesc = function() {
 }
 
 GreyPotionTile.prototype.use = function(who) {
-  var resp = {};
+  let resp = {fin:1};
   DUPlaySound("sfx_potion");
-  resp["fin"] = 1;
 
-  var levobj = localFactory.createTile("BlessingInt");
+  let levobj = localFactory.createTile("BlessingInt");
   
-  var dur = Dice.roll("2d10+15");
-  var power = Dice.roll("1d4+1");
-  var endtime = dur + DU.DUTime.getGameClock();
-//  if (debug && (debugflags.gameobj || debugflags.magic)) { dbs.writeln("<span style='color:green'>Potion of Intelligence: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br /></span>"); }
+  let dur = Dice.roll("2d10+15");
+  let power = Dice.roll("1d4+1");
+  let endtime = dur + DU.DUTime.getGameClock();
   if (!DebugWrite("gameobj", "Potion of Intelligence: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />")) {
     DebugWrite("magic", "Potion of Intelligence: Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
   }
@@ -10322,9 +10502,9 @@ function BrownPotionTile() {
   this.name = "BrownPotion";
   this.desc = "brown potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "0";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10340,8 +10520,7 @@ BrownPotionTile.prototype.getLongDesc = function() {
 BrownPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
   who.setMana(who.getMaxMana());
-  var retval = {};
-  retval["fin"] = 1;
+  let retval = {fin:1};
   if (who === PC) {
     retval["txt"] = "Gulp!<br />You feel refreshed!";
     DrawCharFrame();
@@ -10354,9 +10533,9 @@ function RedPotionTile() {
   this.name = "RedPotion";
   this.desc = "red potion";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10371,10 +10550,10 @@ RedPotionTile.prototype.getLongDesc = function() {
 
 RedPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var poisoned;
+  let poisoned;
   if (who.getSpellEffectsByName("Poison")) { poisoned = 1; }
   if (who.getSpellEffectsByName("Disease")) { poisoned = 1; }
-  var resp = magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell(who,1,2);
+  let resp = magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell(who,1,2);
   resp["txt"] = "Gulp!";
   if (!poisoned) { maintext.delayedAddText("Nothing happens."); } 
   DrawCharFrame();
@@ -10386,9 +10565,9 @@ function WhitePotionTile() {
   this.name = "WhitePotion";
   this.desc = "white potion";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10403,7 +10582,7 @@ WhitePotionTile.prototype.getLongDesc = function() {
 
 WhitePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = { fin:1};
+  let retval = { fin:1};
   retval = magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />You begin to glow.";
   DrawCharFrame();
@@ -10415,9 +10594,9 @@ function YellowPotionTile() {
   this.name = "YellowPotion";
   this.desc = "yellow potion";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10432,7 +10611,7 @@ YellowPotionTile.prototype.getLongDesc = function() {
 
 YellowPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(PC, 0, 2);
   if (who.checkType("PC")) { DrawCharFrame(); }
   retval["txt"] = "Gulp!<br />You are healed!";
@@ -10444,9 +10623,9 @@ function PurplePotionTile() {
   this.name = "PurplePotion";
   this.desc = "purple potion";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10461,7 +10640,7 @@ PurplePotionTile.prototype.getLongDesc = function() {
 
 PurplePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_PROTECT_LEVEL][SPELL_PROTECT_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />You feel an aura of protection around you.";
   DrawCharFrame();
@@ -10473,9 +10652,9 @@ function BlackPotionTile() {
   this.name = "BlackPotion";
   this.desc = "black potion";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10490,7 +10669,7 @@ BlackPotionTile.prototype.getLongDesc = function() {
 
 BlackPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />You feel blessed!";
   DrawCharFrame();
@@ -10502,9 +10681,9 @@ function BluePotionTile() {
   this.name = "BluePotion";
   this.desc = "blue potion";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10519,7 +10698,7 @@ BluePotionTile.prototype.getLongDesc = function() {
 
 BluePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />You are healed!"
   DrawCharFrame();
@@ -10531,9 +10710,9 @@ function DeepBluePotionTile() {
   this.name = "DeepBluePotion";
   this.desc = "deep blue potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-192";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10548,7 +10727,7 @@ DeepBluePotionTile.prototype.getLongDesc = function() {
 
 DeepBluePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />Your vision becomes strange!"
   DrawCharFrame();
@@ -10560,9 +10739,9 @@ function OrangePotionTile() {
   this.name = "OrangePotion";
   this.desc = "orange potion";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-32";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10577,10 +10756,10 @@ OrangePotionTile.prototype.getLongDesc = function() {
 
 OrangePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var mana = Dice.roll("2d6+1");
+  let mana = Dice.roll("2d6+1");
   who.setMana(who.getMana() + mana);
   if (who.getMana() > who.getMaxMana()) { who.setMana(who.getMaxMana()); }
-  var retval = {};
+  let retval = {};
   retval["fin"] = 1;
   if (who === PC) {
     retval["txt"] = "Gulp!<br />You feel refreshed!";
@@ -10594,9 +10773,9 @@ function TanPotionTile() {
   this.name = "TanPotion";
   this.desc = "tan potion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-224";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -10611,7 +10790,7 @@ TanPotionTile.prototype.getLongDesc = function() {
 
 TanPotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  var retval = {fin:1};
+  let retval = {fin:1};
   retval = magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />Your skin is as hard as iron!"
   DrawCharFrame();
@@ -10622,6 +10801,9 @@ TanPotionTile.prototype.use = function(who) {
 
 function ScrollItemObject() {
   this.addType("Scroll"); 
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-224";
+  this.spritexoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.spelllevel = 1;
   this.spellnum = 1;
@@ -10631,12 +10813,12 @@ function ScrollItemObject() {
 ScrollItemObject.prototype = new ConsumableItemObject();
 
 ScrollItemObject.prototype.getLongDesc = function() {
-  var spellname = magic[this.spelllevel][this.spellnum].getName();
+  let spellname = magic[this.spelllevel][this.spellnum].getName();
   return "A scroll of " + spellname + ".";
 }
 
 ScrollItemObject.prototype.use = function(who) {
-  var retval = {};
+  let retval = {};
   retval = magic[this.spelllevel][this.spellnum].executeSpell(PC, 0, 1);
   if (retval["fin"] === 4) { 
     retval["override"] = 1; 
@@ -10661,10 +10843,10 @@ ScrollItemObject.prototype.spellcast = function(who) {
 
 ScrollItemObject.prototype.flamed = function() {
   maintext.addText("The " + this.getDesc() + " burns away!");
-  var thisx = this.getx();
-  var thisy = this.gety();
+  let thisx = this.getx();
+  let thisy = this.gety();
   
-  var itsmap = this.getHomeMap();
+  let itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
   DrawMainFrame("one",itsmap,thisx,thisy);
   
@@ -10675,9 +10857,9 @@ function ScrollWildcardTile() {
   this.name = "ScrollWildcard";
   this.desc = "scroll of ???";
   this.prefix = "a";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "-256";
+  this.spriteyoffset = "-1344";
   this.spelllevel = 0;
   this.spellnum = 0;
 }
@@ -10687,9 +10869,6 @@ function ScrollAudachtaScribeTile() {
   this.name = "ScrollAudachtaScribe";
   this.desc = "scroll of Audachta Scribe";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_AUDACHTA_SCRIBE_LEVEL;
   this.spellnum = SPELL_AUDACHTA_SCRIBE_ID;
 }
@@ -10699,9 +10878,6 @@ function ScrollCureTile() {
   this.name = "ScrollCure";
   this.desc = "scroll of Cure";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_CURE_LEVEL;
   this.spellnum = SPELL_CURE_ID;
 }
@@ -10711,9 +10887,6 @@ function ScrollDisarmTrapTile() {
   this.name = "ScrollDisarmTrap";
   this.desc = "scroll of Disarm Trap";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_DISARM_TRAP_LEVEL;
   this.spellnum = SPELL_DISARM_TRAP_ID;
 }
@@ -10723,9 +10896,6 @@ function ScrollDistractTile() {
   this.name = "ScrollDistract";
   this.desc = "scroll of Distract";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_DISTRACT_LEVEL;
   this.spellnum = SPELL_DISTRACT_ID;
 }
@@ -10735,9 +10905,6 @@ function ScrollFlameBladeTile() {
   this.name = "ScrollFlameBlade";
   this.desc = "scroll of Flame Blade";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_FLAME_BLADE_LEVEL;
   this.spellnum = SPELL_FLAME_BLADE_ID;
   this.flammable = 50;
@@ -10748,9 +10915,6 @@ function ScrollLightTile() {
   this.name = "ScrollLight";
   this.desc = "scroll of Light";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_LIGHT_LEVEL;
   this.spellnum = SPELL_LIGHT_ID;
 }
@@ -10760,9 +10924,6 @@ function ScrollVulnerabilityTile() {
   this.name = "ScrollVulnerability";
   this.desc = "scroll of Vulnerability";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_VULNERABILITY_LEVEL;
   this.spellnum = SPELL_VULNERABILITY_ID;
 }
@@ -10772,9 +10933,6 @@ function ScrollIllusionTile() {
   this.name = "ScrollIllusion";
   this.desc = "scroll of Illusion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_ILLUSION_LEVEL;
   this.spellnum = SPELL_ILLUSION_ID;
 }
@@ -10784,9 +10942,6 @@ function ScrollIronFleshTile() {
   this.name = "ScrollIronFlesh";
   this.desc = "scroll of Iron Flesh";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_IRON_FLESH_LEVEL;
   this.spellnum = SPELL_IRON_FLESH_ID;
 }
@@ -10796,9 +10951,6 @@ function ScrollLesserHealTile() {
   this.name = "ScrollLesserHeal";
   this.desc = "scroll of Lesser Heal";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_LESSER_HEAL_LEVEL;
   this.spellnum = SPELL_LESSER_HEAL_ID;
 }
@@ -10808,9 +10960,6 @@ function ScrollMagicBoltTile() {
   this.name = "ScrollMagicBolt";
   this.desc = "scroll of Magic Bolt";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_MAGIC_BOLT_LEVEL;
   this.spellnum = SPELL_MAGIC_BOLT_ID;
 }
@@ -10820,9 +10969,6 @@ function ScrollPoisonCloudTile() {
   this.name = "ScrollPoisonCloud";
   this.desc = "scroll of Poison Cloud";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_POISON_CLOUD_LEVEL;
   this.spellnum = SPELL_POISON_CLOUD_ID;
 }
@@ -10832,9 +10978,6 @@ function ScrollProtectionTile() {
   this.name = "ScrollProtection";
   this.desc = "scroll of Protection";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_PROTECTION_LEVEL;
   this.spellnum = SPELL_PROTECTION_ID;
 }
@@ -10844,9 +10987,6 @@ function ScrollUnlockTile() {
   this.name = "ScrollUnlock";
   this.desc = "scroll of Unlock";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_UNLOCK_LEVEL;
   this.spellnum = SPELL_UNLOCK_ID;
 }
@@ -10856,9 +10996,6 @@ function ScrollDispelTile() {
   this.name = "ScrollDispel";
   this.desc = "scroll of Dispel";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_DISPEL_LEVEL;
   this.spellnum = SPELL_DISPEL_ID;
 }
@@ -10868,9 +11005,6 @@ function ScrollDisruptUndeadTile() {
   this.name = "ScrollDisruptUndead";
   this.desc = "scroll of Disrupt Undead";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_DISRUPT_UNDEAD_LEVEL;
   this.spellnum = SPELL_DISRUPT_UNDEAD_ID;
 }
@@ -10880,9 +11014,6 @@ function ScrollFireArmorTile() {
   this.name = "ScrollFireArmor";
   this.desc = "scroll of Fire Armor";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_FIRE_ARMOR_LEVEL;
   this.spellnum = SPELL_FIRE_ARMOR_ID;
   this.flammable = 30;
@@ -10893,9 +11024,6 @@ function ScrollFireballTile() {
   this.name = "ScrollFireball";
   this.desc = "scroll of Fireball";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_FIREBALL_LEVEL;
   this.spellnum = SPELL_FIREBALL_ID;
   this.flammable = 50;
@@ -10906,9 +11034,6 @@ function ScrollReturnTile() {
   this.name = "ScrollReturn";
   this.desc = "scroll of Return";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_RETURN_LEVEL;
   this.spellnum = SPELL_RETURN_ID;
   this.flammable = 50;
@@ -10919,9 +11044,6 @@ function ScrollIceballTile() {
   this.name = "ScrollIceball";
   this.desc = "scroll of Iceball";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_ICEBALL_LEVEL;
   this.spellnum = SPELL_ICEBALL_ID;
 }
@@ -10931,9 +11053,6 @@ function ScrollTelekinesisTile() {
   this.name = "ScrollTelekinesis";
   this.desc = "scroll of Telekinesis";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_TELEKINESIS_LEVEL;
   this.spellnum = SPELL_TELEKINESIS_ID;
 }
@@ -10943,9 +11062,6 @@ function ScrollTelepathyTile() {
   this.name = "ScrollTelepathy";
   this.desc = "scroll of Telepathy";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_TELEPATHY_LEVEL;
   this.spellnum = SPELL_TELEPATHY_ID;
 }
@@ -10955,9 +11071,6 @@ function ScrollWallOfFlameTile() {
   this.name = "ScrollWallOfFlame";
   this.desc = "scroll of Wall of Flame";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_WALL_OF_FLAME_LEVEL;
   this.spellnum = SPELL_WALL_OF_FLAME_ID;
   this.flammable = 20;
@@ -10968,9 +11081,6 @@ function ScrollBlessingTile() {
   this.name = "ScrollBlessing";
   this.desc = "scroll of Blessing";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_BLESSING_LEVEL;
   this.spellnum = SPELL_BLESSING_ID;
 }
@@ -10980,9 +11090,6 @@ function ScrollBlinkTile() {
   this.name = "ScrollBlink";
   this.desc = "scroll of Blink";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_BLINK_LEVEL;
   this.spellnum = SPELL_BLINK_ID;
 }
@@ -10992,9 +11099,6 @@ function ScrollEtherealVisionTile() {
   this.name = "ScrollEtherealVision";
   this.desc = "scroll of Ethereal Vision";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_ETHEREAL_VISION_LEVEL;
   this.spellnum = SPELL_ETHEREAL_VISION_ID;
 }
@@ -11004,9 +11108,6 @@ function ScrollHealTile() {
   this.name = "ScrollHeal";
   this.desc = "scroll of Heal";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_HEAL_LEVEL;
   this.spellnum = SPELL_HEAL_ID;
 }
@@ -11016,9 +11117,6 @@ function ScrollLifeDrainTile() {
   this.name = "ScrollLifeDrain";
   this.desc = "scroll of Life Drain";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_LIFE_DRAIN_LEVEL;
   this.spellnum = SPELL_LIFE_DRAIN_ID;
 }
@@ -11028,9 +11126,6 @@ function ScrollSmiteTile() {
   this.name = "ScrollSmite";
   this.desc = "scroll of Smite";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_SMITE_LEVEL;
   this.spellnum = SPELL_SMITE_ID;
 }
@@ -11040,9 +11135,6 @@ function ScrollCrystalTrapTile() {
   this.name = "ScrollCrystalTrap";
   this.desc = "scroll of Crystal Trap";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_CRYSTAL_TRAP_LEVEL;
   this.spellnum = SPELL_CRYSTAL_TRAP_ID;
 }
@@ -11052,9 +11144,6 @@ function ScrollMirrorWardTile() {
   this.name = "ScrollMirrorWard";
   this.desc = "scroll of Mirror Ward";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_MIRROR_WARD_LEVEL;
   this.spellnum = SPELL_MIRROR_WARD_ID;
 }
@@ -11064,9 +11153,6 @@ function ScrollParalyzeTile() {
   this.name = "ScrollParalyze";
   this.desc = "scroll of Paralyze";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_PARALYZE_LEVEL;
   this.spellnum = SPELL_PARALYZE_ID;
 }
@@ -11076,9 +11162,6 @@ function ScrollPeerTile() {
   this.name = "ScrollPeer";
   this.desc = "scroll of Peer";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_PEER_LEVEL;
   this.spellnum = SPELL_PEER_ID;
 }
@@ -11088,9 +11171,6 @@ function ScrollShockwaveTile() {
   this.name = "ScrollShockwave";
   this.desc = "scroll of Shockwave";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_SHOCKWAVE_LEVEL;
   this.spellnum = SPELL_SHOCKWAVE_ID;
 }
@@ -11100,9 +11180,6 @@ function ScrollSummonAllyTile() {
   this.name = "ScrollSummonAlly";
   this.desc = "scroll of Summon Ally";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_SUMMON_ALLY_LEVEL;
   this.spellnum = SPELL_SUMMON_ALLY_ID;
 }
@@ -11112,9 +11189,6 @@ function ScrollSwordstrikeTile() {
   this.name = "ScrollSwordstrike";
   this.desc = "scroll of Swordstrike";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_SWORDSTRIKE_LEVEL;
   this.spellnum = SPELL_SWORDSTRIKE_ID;
 }
@@ -11124,9 +11198,6 @@ function ScrollExplosionTile() {
   this.name = "ScrollExplosion";
   this.desc = "scroll of Explosion";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_EXPLOSION_LEVEL;
   this.spellnum = SPELL_EXPLOSION_ID;
 }
@@ -11136,9 +11207,6 @@ function ScrollStormTile() {
   this.name = "ScrollStorm";
   this.desc = "scroll of Storm";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_STORM_LEVEL;
   this.spellnum = SPELL_STORM_ID;
 }
@@ -11148,9 +11216,6 @@ function ScrollTremorTile() {
   this.name = "ScrollTremor";
   this.desc = "scroll of Tremor";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_TREMOR_LEVEL;
   this.spellnum = SPELL_TREMOR_ID;
 }
@@ -11160,9 +11225,6 @@ function ScrollFearTile() {
   this.name = "ScrollFear";
   this.desc = "scroll of Fear";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_FEAR_LEVEL;
   this.spellnum = SPELL_FEAR_ID;
 }
@@ -11172,9 +11234,6 @@ function ScrollFireAndIceTile() {
   this.name = "ScrollFireAndIce";
   this.desc = "scroll of Fire and Ice";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_FIRE_AND_ICE_LEVEL;
   this.spellnum = SPELL_FIRE_AND_ICE_ID;
 }
@@ -11184,9 +11243,6 @@ function ScrollMeteorSwarmTile() {
   this.name = "ScrollMeteorSwarm";
   this.desc = "scroll of Meteor Swarm";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_METEOR_SWARM_LEVEL;
   this.spellnum = SPELL_METEOR_SWARM_ID;
 }
@@ -11196,9 +11252,6 @@ function ScrollMindBlastTile() {
   this.name = "ScrollMindBlast";
   this.desc = "scroll of Mind Blast";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_MIND_BLAST_LEVEL;
   this.spellnum = SPELL_MIND_BLAST_ID;
 }
@@ -11208,9 +11261,6 @@ function ScrollConflagrationTile() {
   this.name = "ScrollConflagration";
   this.desc = "scroll of Conflagration";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_CONFLAGRATION_LEVEL;
   this.spellnum = SPELL_CONFLAGRATION_ID;
   this.flammable = 30;
@@ -11221,9 +11271,6 @@ function ScrollConjureDaemonTile() {
   this.name = "ScrollConjureDaemon";
   this.desc = "scroll of Conjure Daemon";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_SUMMON_DAEMON_LEVEL;
   this.spellnum = SPELL_SUMMON_DAEMON_ID;
 }
@@ -11233,9 +11280,6 @@ function ScrollTimeStopTile() {
   this.name = "ScrollTimeStop";
   this.desc = "scroll of Time Stop";
   this.prefix = "a";
-  this.graphic = "items.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-32";
   this.spelllevel = SPELL_TIME_STOP_LEVEL;
   this.spellnum = SPELL_TIME_STOP_ID;
 }
@@ -11253,30 +11297,16 @@ function AudachtaNemesosObject() {
 AudachtaNemesosObject.prototype = new ConsumableItemObject();
 
 AudachtaNemesosObject.prototype.getLongDesc = function() {
-  var spellname = magic[spelllevel][spellnum].getName();
+  let spellname = magic[spelllevel][spellnum].getName();
   return "Audachta Nemesos: " + spellname + ". A book that teaches the spell " + spellname + " when the spell Audachta Scribe is cast upon the book.";
 }
 
-//AudachtaNemesosObject.prototype.use = function(who) {
-//  var retval = {};
-//  retval["fin"] = 1;
-//  if (who.knowsSpell(this.spelllevel, this.spellnum)) {
-//    retval["txt"] = "You already know that spell!";
-//    retval["preserve"] = 1;
-//  } else {
-//    who.addSpell(this.spelllevel, this.spellnum);
-//    retval["txt"] = "You learn the spell " + this.spellname + "!";
-//  }
-//  retval["input"] = "&gt;";
-//  return retval;    
-//}
-
 AudachtaNemesosObject.prototype.flamed = function() {
   maintext.addText("The " + this.getDesc() + " is ruined in the fire!");
-  var thisx = this.getx();
-  var thisy = this.gety();
+  let thisx = this.getx();
+  let thisy = this.gety();
   
-  var itsmap = this.getHomeMap();
+  let itsmap = this.getHomeMap();
   itsmap.deleteThing(this);
   DrawMainFrame("one",itsmap,thisx,thisy);
   
@@ -11287,9 +11317,9 @@ function AudachtaNemesosDisarmTrapTile() {
   this.name = "AudachtaNemesosDisarmTrap";
   this.desc = "Audachta Nemesos: Disarm Trap";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_DISARM_TRAP_LEVEL;
   this.spellnum = SPELL_DISARM_TRAP_ID;
   this.spellname = "Disarm Trap";
@@ -11300,9 +11330,9 @@ function AudachtaNemesosDistractTile() {
   this.name = "AudachtaNemesosDistract";
   this.desc = "Audachta Nemesos: Distract";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_DISTRACT_LEVEL;
   this.spellnum = SPELL_DISTRACT_ID;
   this.spellname = "Distract";
@@ -11313,9 +11343,9 @@ function AudachtaNemesosFlameBladeTile() {
   this.name = "AudachtaNemesosFlameBlade";
   this.desc = "Audachta Nemesos: Flame Blade";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_FLAME_BLADE_LEVEL;
   this.spellnum = SPELL_FLAME_BLADE_ID;
   this.spellname = "Flame Blade";
@@ -11326,9 +11356,9 @@ function AudachtaNemesosVulnerabilityTile() {
   this.name = "AudachtaNemesosVulnerability";
   this.desc = "Audachta Nemesos: Vulnerability";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_VULNERABILITY_LEVEL;
   this.spellnum = SPELL_VULNERABILITY_ID;
   this.spellname = "Vulnerability";
@@ -11339,9 +11369,9 @@ function AudachtaNemesosLesserHealTile() {
   this.name = "AudachtaNemesosLesserHeal";
   this.desc = "Audachta Nemesos: Lesser Heal";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_LESSER_HEAL_LEVEL;
   this.spellnum = SPELL_LESSER_HEAL_ID;
   this.spellname = "Lesser Heal";
@@ -11352,9 +11382,9 @@ function AudachtaNemesosPoisonCloudTile() {
   this.name = "AudachtaNemesosPoisonCloud";
   this.desc = "Audachta Nemesos: Poison Cloud";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_POISON_CLOUD_LEVEL;
   this.spellnum = SPELL_POISON_CLOUD_ID;
   this.spellname = "Poison Cloud";
@@ -11365,9 +11395,9 @@ function AudachtaNemesosProtectionTile() {
   this.name = "AudachtaNemesosProtection";
   this.desc = "Audachta Nemesos: Protection";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_PROTECTION_LEVEL;
   this.spellnum = SPELL_PROTECTION_ID;
   this.spellname = "Protection";
@@ -11378,9 +11408,9 @@ function AudachtaNemesosWindChangeTile() {
   this.name = "AudachtaNemesosWindChange";
   this.desc = "Audachta Nemesos: Wind Change";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_WIND_CHANGE_LEVEL;
   this.spellnum = SPELL_WIND_CHANGE_ID;
   this.spellname = "Wind Change";
@@ -11391,9 +11421,9 @@ function AudachtaNemesosFireArmorTile() {
   this.name = "AudachtaNemesosFireArmor";
   this.desc = "Audachta Nemesos: Fire Armor";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_FIRE_ARMOR_LEVEL;
   this.spellnum = SPELL_FIRE_ARMOR_ID;
   this.spellname = "Fire Armor";
@@ -11404,9 +11434,9 @@ function AudachtaNemesosIceballTile() {
   this.name = "AudachtaNemesosIceball";
   this.desc = "Audachta Nemesos: Iceball";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_ICEBALL_LEVEL;
   this.spellnum = SPELL_ICEBALL_ID;
   this.spellname = "Iceball";
@@ -11417,9 +11447,9 @@ function AudachtaNemesosTelekinesisTile() {
   this.name = "AudachtaNemesosTelekinesis";
   this.desc = "Audachta Nemesos: Telekinesis";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_TELEKINESIS_LEVEL;
   this.spellnum = SPELL_TELEKINESIS_ID;
   this.spellname = "Telekinesis";
@@ -11430,9 +11460,9 @@ function AudachtaNemesosTelepathyTile() {
   this.name = "AudachtaNemesosTelepathy";
   this.desc = "Audachta Nemesos: Telepathy";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_TELEPATHY_LEVEL;
   this.spellnum = SPELL_TELEPATHY_ID;
   this.spellname = "Telepathy";
@@ -11443,9 +11473,9 @@ function AudachtaNemesosWallOfFlameTile() {
   this.name = "AudachtaNemesosWallOfFlame";
   this.desc = "Audachta Nemesos: Wall of Flame";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_WALL_OF_FLAME_LEVEL;
   this.spellnum = SPELL_WALL_OF_FLAME_ID;
   this.spellname = "Wall of Flame";
@@ -11456,9 +11486,9 @@ function AudachtaNemesosBlessingTile() {
   this.name = "AudachtaNemesosBlessing";
   this.desc = "Audachta Nemesos: Blessing";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_BLESSING_LEVEL;
   this.spellnum = SPELL_BLESSING_ID;
   this.spellname = "Blessing";
@@ -11469,9 +11499,9 @@ function AudachtaNemesosHealTile() {
   this.name = "AudachtaNemesosHeal";
   this.desc = "Audachta Nemesos: Heal";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_HEAL_LEVEL;
   this.spellnum = SPELL_HEAL_ID;
   this.spellname = "Heal";
@@ -11482,9 +11512,9 @@ function AudachtaNemesosLifeDrainTile() {
   this.name = "AudachtaNemesosLifeDrain";
   this.desc = "Audachta Nemesos: Life Drain";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_LIFE_DRAIN_LEVEL;
   this.spellnum = SPELL_LIFE_DRAIN_ID;
   this.spellname = "Life Drain";
@@ -11495,9 +11525,9 @@ function AudachtaNemesosSmiteTile() {
   this.name = "AudachtaNemesosSmite";
   this.desc = "Audachta Nemesos: Smite";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_SMITE_LEVEL;
   this.spellnum = SPELL_SMITE_ID;
   this.spellname = "Smite";
@@ -11508,9 +11538,9 @@ function AudachtaNemesosOpenGateTile() {
   this.name = "AudachtaNemesosOpenGate";
   this.desc = "Audachta Nemesos: Open Gate";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_OPEN_GATE_LEVEL;
   this.spellnum = SPELL_OPEN_GATE_ID;
   this.spellname = "Open Gate";
@@ -11521,9 +11551,9 @@ function AudachtaNemesosCrystalTrapTile() {
   this.name = "AudachtaNemesosCrystalTrap";
   this.desc = "Audachta Nemesos: Crystal Trap";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_CRYSTAL_TRAP_LEVEL;
   this.spellnum = SPELL_CRYSTAL_TRAP_ID;
   this.spellname = "Crystal Trap";
@@ -11534,9 +11564,9 @@ function AudachtaNemesosMirrorWardTile() {
   this.name = "AudachtaNemesosMirrorWard";
   this.desc = "Audachta Nemesos: Mirror Ward";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_MIRROR_WARD_LEVEL;
   this.spellnum = SPELL_MIRROR_WARD_ID;
   this.spellname = "Mirror Ward";
@@ -11547,9 +11577,9 @@ function AudachtaNemesosParalyzeTile() {
   this.name = "AudachtaNemesosParalyze";
   this.desc = "Audachta Nemesos: Paralyze";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_PARALYZE_LEVEL;
   this.spellnum = SPELL_PARALYZE_ID;
   this.spellname = "Paralyze";
@@ -11560,9 +11590,9 @@ function AudachtaNemesosReturnTile() {
   this.name = "AudachtaNemesosReturn";
   this.desc = "Audachta Nemesos: Return";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_RETURN_LEVEL;
   this.spellnum = SPELL_RETURN_ID;
   this.spellname = "Return";
@@ -11573,9 +11603,9 @@ function AudachtaNemesosShockwaveTile() {
   this.name = "AudachtaNemesosShockwave";
   this.desc = "Audachta Nemesos: Shockwave";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_SHOCKWAVE_LEVEL;
   this.spellnum = SPELL_SHOCKWAVE_ID;
   this.spellname = "Shockwave";
@@ -11586,9 +11616,9 @@ function AudachtaNemesosSummonAllyTile() {
   this.name = "AudachtaNemesosSummonAlly";
   this.desc = "Audachta Nemesos: Summon Ally";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_SUMMON_ALLY_LEVEL;
   this.spellnum = SPELL_SUMMON_ALLY_ID;
   this.spellname = "Summon Ally";
@@ -11599,9 +11629,9 @@ function AudachtaNemesosSwordstrikeTile() {
   this.name = "AudachtaNemesosSwordstrike";
   this.desc = "Audachta Nemesos: Swordstrike";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_SWORDSTRIKE_LEVEL;
   this.spellnum = SPELL_SWORDSTRIKE_ID;
   this.spellname = "Swordstrike";
@@ -11612,9 +11642,9 @@ function AudachtaNemesosEmpowerTile() {
   this.name = "AudachtaNemesosEmpower";
   this.desc = "Audachta Nemesos: Empower";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_EMPOWER_LEVEL;
   this.spellnum = SPELL_EMPOWER_ID;
   this.spellname = "Empower";
@@ -11625,9 +11655,9 @@ function AudachtaNemesosExplosionTile() {
   this.name = "AudachtaNemesosExplosion";
   this.desc = "Audachta Nemesos: Explosion";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-190";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_EXPLOSION_LEVEL;
   this.spellnum = SPELL_EXPLOSION_ID;
   this.spellname = "Explosion";
@@ -11638,9 +11668,9 @@ function AudachtaNemesosJinxTile() {
   this.name = "AudachtaNemesosJinx";
   this.desc = "Audachta Nemesos: Jinx";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_JINX_LEVEL;
   this.spellnum = SPELL_JINX_ID;
   this.spellname = "Jinx";
@@ -11651,9 +11681,9 @@ function AudachtaNemesosNegateMagicTile() {
   this.name = "AudachtaNemesosNegateMagic";
   this.desc = "Audachta Nemesos: Negate Magic";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_NEGATE_MAGIC_LEVEL;
   this.spellnum = SPELL_NEGATE_MAGIC_ID;
   this.spellname = "Negate Magic";
@@ -11664,9 +11694,9 @@ function AudachtaNemesosTremorTile() {
   this.name = "AudachtaNemesosTremor";
   this.desc = "Audachta Nemesos: Tremor";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_TREMOR_LEVEL;
   this.spellnum = SPELL_TREMOR_ID;
   this.spellname = "Tremor";
@@ -11677,9 +11707,9 @@ function AudachtaNemesosWeatherControlTile() {
   this.name = "AudachtaNemesosWeatherControl";
   this.desc = "Audachta Nemesos: Weather Control";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_WEATHER_CONTROL_LEVEL;
   this.spellnum = SPELL_WEATHER_CONTROL_ID;
   this.spellname = "Weather Control";
@@ -11690,9 +11720,9 @@ function AudachtaNemesosCharmTile() {
   this.name = "AudachtaNemesosCharm";
   this.desc = "Audachta Nemesos: Charm";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_CHARM_LEVEL;
   this.spellnum = SPELL_CHARM_ID;
   this.spellname = "Charm";
@@ -11703,9 +11733,9 @@ function AudachtaNemesosFearTile() {
   this.name = "AudachtaNemesosFear";
   this.desc = "Audachta Nemesos: Fear";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_FEAR_LEVEL;
   this.spellnum = SPELL_FEAR_ID;
   this.spellname = "Fear";
@@ -11716,9 +11746,9 @@ function AudachtaNemesosFireAndIceTile() {
   this.name = "AudachtaNemesosFireAndIce";
   this.desc = "Audachta Nemesos: Fire and Ice";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_FIRE_AND_ICE_LEVEL;
   this.spellnum = SPELL_FIRE_AND_ICE_ID;
   this.spellname = "Fire and Ice";
@@ -11729,9 +11759,9 @@ function AudachtaNemesosMeteorSwarmTile() {
   this.name = "AudachtaNemesosMeteorSwarm";
   this.desc = "Audachta Nemesos: Meteor Swarm";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_METEOR_SWARM_LEVEL;
   this.spellnum = SPELL_METEOR_SWARM_ID;
   this.spellname = "Meteor Swarm";
@@ -11742,9 +11772,9 @@ function AudachtaNemesosMindBlastTile() {
   this.name = "AudachtaNemesosMindBlast";
   this.desc = "Audachta Nemesos: Mind Blast";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_MIND_BLAST_LEVEL;
   this.spellnum = SPELL_MIND_BLAST_ID;
   this.spellname = "Mind Blast";
@@ -11755,9 +11785,9 @@ function AudachtaNemesosArrowOfGlassTile() {
   this.name = "AudachtaNemesosArrowOfGlass";
   this.desc = "Audachta Nemesos: Arrow of Glass";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_ARROW_OF_GLASS_LEVEL;
   this.spellnum = SPELL_ARROW_OF_GLASS_ID;
   this.spellname = "Arrow of Glass";
@@ -11768,9 +11798,9 @@ function AudachtaNemesosBuildGateTile() {
   this.name = "AudachtaNemesosBuildGate";
   this.desc = "Audachta Nemesos: Build Gate";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_BUILD_GATE_LEVEL;
   this.spellnum = SPELL_BUILD_GATE_ID;
   this.spellname = "Build Gate";
@@ -11781,9 +11811,9 @@ function AudachtaNemesosConflagrationTile() {
   this.name = "AudachtaNemesosConflagration";
   this.desc = "Audachta Nemesos: Conflagration";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_CONFLAGRATION_LEVEL;
   this.spellnum = SPELL_CONFLAGRATION_ID;
   this.spellname = "Conflagration";
@@ -11794,9 +11824,9 @@ function AudachtaNemesosConjureDaemonTile() {
   this.name = "AudachtaNemesosConjureDaemon";
   this.desc = "Audachta Nemesos: Conjure Daemon";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_CONJURE_DAEMON_LEVEL;
   this.spellnum = SPELL_CONJURE_DAEMON_ID;
   this.spellname = "Conjure Daemon";
@@ -11807,9 +11837,9 @@ function AudachtaNemesosQuicknessTile() {
   this.name = "AudachtaNemesosQuickness";
   this.desc = "Audachta Nemesos: Quickness";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_QUICKNESS_LEVEL;
   this.spellnum = SPELL_QUICKNESS_ID;
   this.spellname = "Quickness";
@@ -11820,9 +11850,9 @@ function AudachtaNemesosReincarnateTile() {
   this.name = "AudachtaNemesosReincarnate";
   this.desc = "Audachta Nemesos: Reincarnate";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_REINCARNATE_LEVEL;
   this.spellnum = SPELL_REINCARNATE_ID;
   this.spellname = "Reincarnate";
@@ -11833,9 +11863,9 @@ function AudachtaNemesosTimeStopTile() {
   this.name = "AudachtaNemesosTimeStop";
   this.desc = "Audachta Nemesos: Time Stop";
   this.prefix = "an";
-  this.graphic = "items.png";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
-  this.spriteyoffset = "-160";
+  this.spriteyoffset = "-1216";
   this.spelllevel = SPELL_TIME_STOP_LEVEL;
   this.spellnum = SPELL_TIME_STOP_ID;
   this.spellname = "Time Stop";
@@ -11870,7 +11900,7 @@ equipableItemObject.prototype.equipMe = function(who) {
     if (who.getStr() < this.getStrReq()) {
       return 0;
     }
-    var currentarmor = who.getArmor();
+    let currentarmor = who.getArmor();
     if (currentarmor && (currentarmor !== this)) {
       currentarmor.unEquipMe();
     }
@@ -11882,7 +11912,7 @@ equipableItemObject.prototype.equipMe = function(who) {
     if (who.getDex() < this.getDexReq()){
       return 0;
     }
-    var currentmissile = who.getMissile();
+    let currentmissile = who.getMissile();
     if (currentmissile && (currentmissile !== this)) {
       currentmissile.unEquipMe();
     }
@@ -11891,7 +11921,7 @@ equipableItemObject.prototype.equipMe = function(who) {
   }
 
   else if (this.checkType("Weapon")) {
-    var currentweapon = who.getWeapon();
+    let currentweapon = who.getWeapon();
     if (currentweapon && (currentweapon !== this)) {
       currentweapon.unEquipMe();
     }
@@ -11902,7 +11932,7 @@ equipableItemObject.prototype.equipMe = function(who) {
 }
 
 equipableItemObject.prototype.unEquipMe = function() {
-  var who = this.getEquippedTo();
+  let who = this.getEquippedTo();
   if (!who) { return 0; }
   if (!who.checkType("npc")) { return 0; }  
   
@@ -11932,8 +11962,8 @@ equipableItemObject.prototype.unEquipMe = function() {
 }
 
 equipableItemObject.prototype.use = function(who) {
-  var success = this.equipMe(PC);
-  var retval = {};
+  let success = this.equipMe(PC);
+  let retval = {};
   retval["fin"] = 1;
   retval["txt"] = "";
   if (this.checkType("Armor")) { 
@@ -12152,21 +12182,21 @@ WeaponObject.prototype.setStrDamage = function(newdam) {
 }
 
 WeaponObject.prototype.parseDamage = function() {
-  var dmgobj = Dice.parse(this.getDamage());
+  let dmgobj = Dice.parse(this.getDamage());
   
   return dmgobj;
 }
 
 WeaponObject.prototype.rollDamage = function(wielder) {
-  var damage = Dice.roll(this.getDamage());
+  let damage = Dice.roll(this.getDamage());
   if (wielder && this.getStrDamage()) {
-    var str = wielder.getStr();
-    var strmod = parseFloat(this.getStrDamage());
-    var strdam = (str-10)*strmod;
+    let str = wielder.getStr();
+    let strmod = parseFloat(this.getStrDamage());
+    let strdam = (str-10)*strmod;
     damage += parseInt(strdam);
   }
   
-  var fb = wielder.getSpellEffectsByName("FlameBlade");
+  let fb = wielder.getSpellEffectsByName("FlameBlade");
   if (!this.checkType("Missile")) {
     if (wielder && fb) {
       if (debug && (debugflags.magic || debugflags.combat)) { dbs.writeln("<span style='color:green'>Flame blade adds " + fb.damage + " damage.<br /></span>"); }
@@ -12181,14 +12211,11 @@ WeaponObject.prototype.rollDamage = function(wielder) {
 }
 
 WeaponObject.prototype.getAveDamage = function(wielder) {
-//  var dmgobj = this.parseDamage();
-//  var damage = dmgobj.plus;
-//  damage += (dmgobj.quantity * (dmgobj.dice + 1)/2);
-  var damage = Dice.rollave(this.getDamage());
+  let damage = Dice.rollave(this.getDamage());
   if (wielder && this.getStrDamage()) {
-    var str = wielder.getStr();
-    var strmod = parseFloat(this.getStrDamage());
-    var strdam = (str-10)*strmod;
+    let str = wielder.getStr();
+    let strmod = parseFloat(this.getStrDamage());
+    let strdam = (str-10)*strmod;
     damage += parseInt(strdam);
   }
   return damage;
@@ -12371,8 +12398,6 @@ function MissileWeaponObject() {
 	this.ammoyoffset = "0";
 	this.directionalammo = 0;
 	this.ammoReturn = 0;	
-//  this.hitSound = "sfx_missile_hit";
-//  this.attackSound = "sfx_missile_atk";
 	
 	this.addType("Missile");
 }
@@ -12406,13 +12431,12 @@ MissileWeaponObject.prototype.setRange = function(newrange) {
 }
 
 MissileWeaponObject.prototype.getAmmoGraphic = function(atk,def) {
-  var params = {};
+  let params = {};
   params.graphic = this.ammographic;
   params.yoffset = this.ammoyoffset;
   params.xoffset = this.ammoxoffset;
   params.directionalammo = this.directionalammo;
   return GetEffectGraphic(atk,def,params);
-  
 }  
 
 MissileWeaponObject.prototype.getAmmoReturn = function() {
@@ -12522,7 +12546,9 @@ NaturalMissileWeaponTile.prototype = new MissileWeaponObject();
 function BoulderWeaponTile() {
   this.name = "BoulderWeapon";
   this.damage = "2d12+3";
-  this.graphic = "boulder.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-672";
   this.desc = "boulder";
   this.prefix = "a";
   this.ammoxoffset = "0";
@@ -12543,16 +12569,6 @@ function AnimateObject() {
 AnimateObject.prototype = new GameObject();
 
 
-// Replaced for the nonce with PickOne.
-//AnimateObject.prototype.pickGraphic = new function() {
-//	if (this.altGraphics) {
- // 	var options = this.altGraphics.length;
-//	  if (options > 0) {
-//		  var randomnumber=Math.floor(Math.random()*options) + 1;
-//		  this.setGraphic(altGraphics[randomnumber]);
-//	  }
-//	}
-//}
 
 function NPCObject() {
 	this.str = 10;
@@ -12569,7 +12585,6 @@ function NPCObject() {
 	this.mana = 10;
 	this.maxmana = 10;
 	this.level = 1;
-//	this.type = "npc";
 	this.npcname = "myname";
 	this.desc = "an NPC";
 	this.alignment = "good";	
@@ -12620,42 +12635,15 @@ function NPCObject() {
   this.xpval = 0;
   this.flags = {};
   this.initOverride = 0;
-  
+  this.skintone = 1;  
 	LightEmitting.call(this, 0);
 	
 	this.addType("npc");
-//	AddNPCProperties.call(this);
 }
 NPCObject.prototype = new AnimateObject();
 
-function AddNPCProperties() {
-  this.equipment = {};
-  this.equipment.armor = "";
-  this.equipment.weapon = "";
-  this.equipment.missile = "";
-
-	this.inventory = new Collection();
-	
-	this.spellbook = [];
-	this.spellEffects = new Collection();
-	
-	this.lastLocation = {};
-	this.lastLocation.map = "";
-	this.lastLocation.x = 0;
-	this.lastLocation.y = 0;
-		
-	//brain
-	this.currentPoI = {};
-  this.currentDestination = {};
-  this.turnsToRecalcPoI = 0;
-  this.turnsToRecalcDest = 0;
-  this.currentPath = [];
-  this.destType;
-
-}
-
 NPCObject.prototype.getDesc = function() {
-  var knowsflag = "knows_" + this.conversationflag;
+  let knowsflag = "knows_" + this.conversationflag;
   if (DU.gameflags.getFlag(knowsflag)) {
     return this.npcname;
   } 
@@ -12677,7 +12665,7 @@ NPCObject.prototype.setMana = function(newMana) {
 }
 
 NPCObject.prototype.getMana = function() {
-  var mana = parseInt(this.mana);
+  let mana = parseInt(this.mana);
 	return mana;
 }
 
@@ -12794,7 +12782,6 @@ NPCObject.prototype.getLastTurnTime = function() {
 }
 
 NPCObject.prototype.setLastTurnTime = function(newtime) {
-//  newtime = parseInt(newtime);
   if (!isNaN(newtime)) {
     this.lastTurnTime = newtime;
   }
@@ -12820,8 +12807,8 @@ NPCObject.prototype.setCurrentScheduleIndex = function(sched) {
 }
 
 NPCObject.prototype.incrementCurrentScheduleIndex = function() {
-  var schedule = DU.schedules[this.getSchedule()];
-  var nextidx = this.currentScheduleIndex+1;
+  let schedule = DU.schedules[this.getSchedule()];
+  let nextidx = this.currentScheduleIndex+1;
   if (nextidx >= schedule.scheduleArray.length) { nextidx = 0; }
   this.currentScheduleIndex = nextidx;
   return this.currentScheduleIndex;
@@ -12865,7 +12852,7 @@ NPCObject.prototype.getHP = function() {
 }
 
 NPCObject.prototype.getDisplayHP = function() {
-  var displayhp = Math.ceil(this.hp);
+  let displayhp = Math.ceil(this.hp);
   if (displayhp < 0) { displayhp = 0; }
   return displayhp;
 }
@@ -12879,7 +12866,6 @@ NPCObject.prototype.getMaxHP = function() {
 }
 
 NPCObject.prototype.modHP = function(hpdiff) {
-//	hpdiff = parseInt(hpdiff);
 	this.hp += hpdiff;
 	return this.hp;
 }
@@ -12893,15 +12879,15 @@ NPCObject.prototype.healMe = function(amt, src) {
 }
 
 NPCObject.prototype.dealDamage = function(dmg, src, type) {
-  var isasleep = this.getSpellEffectsByName("Sleep");
+  let isasleep = this.getSpellEffectsByName("Sleep");
   if (isasleep) {
     isasleep.endEffect();
   }
-  var isfrozen = this.getSpellEffectsByName("Frozen");
+  let isfrozen = this.getSpellEffectsByName("Frozen");
   if (isfrozen) {
     isfrozen.endEffect();
   }
-  var isinvuln = this.getSpellEffectsByName("Invulnerable");
+  let isinvuln = this.getSpellEffectsByName("Invulnerable");
   if (isinvuln) {
     dmg = 0;
   }
@@ -12911,7 +12897,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
   if (this.getHP() <= 0) { // killed!
     this.processDeath(1);
     if (src === PC) {
-      var XP = this.getXPVal();
+      let XP = this.getXPVal();
       XP = XP * (1 + DU.gameflags.getFlag("karma")/100);
       PC.addxp(XP);
     }
@@ -12921,8 +12907,8 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
 }
 
 NPCObject.prototype.processDeath = function(droploot){
-  var thisx = this.getx();
-  var thisy = this.gety();
+  let thisx = this.getx();
+  let thisy = this.gety();
   if (targetCursor.lastTarget === this) { delete targetCursor.lastTarget; }
   if (this.checkType("PC")) {
     // just in case you died on your turn:
@@ -12933,7 +12919,7 @@ NPCObject.prototype.processDeath = function(droploot){
     PC.deaduntil = GetGameClockByClockTime("9:00");
 
     maintext.delayedAddText("You have died!");
-    var newmap = new GameMap();
+    let newmap = new GameMap();
     if (maps.getMap("landsbeyond")) {
       newmap = maps.getMap("landsbeyond");
       // though I'm confused about why this is already in memory!
@@ -12942,23 +12928,24 @@ NPCObject.prototype.processDeath = function(droploot){
     }
     maintext.setInputLine("&gt;");
     maintext.drawTextFrame(); 
-    var spellobjs = this.getSpellEffects();
+    let spellobjs = this.getSpellEffects();
     if (spellobjs.length) {
-      for (var i = 0; i < spellobjs.length; i++ ) {
+      for (let i=0; i<spellobjs.length; i++ ) {
         if (spellobjs[i].getExpiresTime() !== -1) {
           spellobjs[i].endEffect();
         }
       }
     }
     MoveBetweenMaps(this,this.getHomeMap(),newmap, 7, 7, 1);
-    $("#displayframe").fadeOut(2600, function() {
+    FadeOut(1);
+    setTimeout(function() {
       maintext.addText("You find yourself floating bodiless in the void.");
       DrawMainFrame("draw", newmap, 7,7);
-//      $("#mainview").css('display','none');
       if (gamestate.getTurn() === PC) {
         PC.endTurn();
       }
-      $("#displayframe").fadeIn(2000, "swing", function() {
+      FadeIn();
+      setTimeout(function() {
         DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
         maintext.addText("There is nought to do but meditate upon your life, and the triumphs and errors it contained.");
         setTimeout(function() {
@@ -12978,13 +12965,13 @@ NPCObject.prototype.processDeath = function(droploot){
             }, 1700);
           }, 1700);
         }, 1700);
-      }, 1700);
-    });
+      }, 1500);
+    }, 2300);
     return;
   } else {
-    var corpse = {};
-    var chest;
-    var map = this.getHomeMap();
+    let corpse = {};
+    let chest;
+    let map = this.getHomeMap();
     if ((this.getLeavesCorpse()) && (this.getLeavesCorpse() !== "none")) {
       corpse = localFactory.createTile(this.getLeavesCorpse());
       corpse.setSearchDelete(1);
@@ -12993,14 +12980,14 @@ NPCObject.prototype.processDeath = function(droploot){
       chest = localFactory.createTile("Chest");
     }
     if ((droploot) && (this.lootTable !== "none")) {
-      var loottables = this.lootTable.split(",");
-      for (var i=0;i<loottables.length;i++) {
-        var loot = {};
+      let loottables = this.lootTable.split(",");
+      for (let i=0;i<loottables.length;i++) {
+        let loot = {};
         if (DULoot[loottables[i]]) {
           loot = DULoot[loottables[i]].getLoot(); 
           if (loot.lootlist.length) {
             if (chest) {
-              for (var i=0; i<loot.lootlist.length;i++){
+              for (let i=0; i<loot.lootlist.length;i++){
                 chest.addToContainer(loot.lootlist[i], 1);
               }
             } else {
@@ -13008,7 +12995,7 @@ NPCObject.prototype.processDeath = function(droploot){
             }
           }
           if (loot.gold) {
-            var totgold = loot.gold;
+            let totgold = loot.gold;
             if (this.stolengold) { totgold += this.stolengold; }
 
             if (chest) {
@@ -13023,10 +13010,10 @@ NPCObject.prototype.processDeath = function(droploot){
       }
     }
     if ((chest) && (chest.container.length)) {
-      var trapname = GetStrongestTrap(loottables);
+      let trapname = GetStrongestTrap(loottables);
       if (trapname) {
         DebugWrite("gameobj", "Chest created, might be trapped with: " + trapname + ".<br />");
-        var trap = DUTraps[trapname].getTrap();
+        let trap = DUTraps[trapname].getTrap();
         if (trap.trap) {
           chest.setTrap(trap.trap, trap.level);
         }
@@ -13035,20 +13022,18 @@ NPCObject.prototype.processDeath = function(droploot){
     }
     map.deleteThing(this);
     if (map.getName() === "shadow1") {
-      var npcs = map.npcs.getAll();
-      var safe = 1;
-      $.each(npcs, function(idx, val) {
-        if (val.getNPCBand()) {
+      let npcs = map.npcs.getAll();
+      let safe = 1;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getNPCBand()) {
           safe = 0;
         }
-      });
+      };
       if (safe === 1) { DU.gameflags.setFlag("shadow_safe", 1); } 
     }
     DrawMainFrame("one",map,thisx,thisy);
     DUTime.removeEntityFrom(this);
-//    delete universe.this.getSerial();
-//    delete map.lightsList[this.getSerial()];    // handled in map.deleteThing now
-    var spawner=this.getSpawnedBy();
+    let spawner=this.getSpawnedBy();
     if (spawner) {
       spawner.deleteSpawned(this);
     }
@@ -13067,7 +13052,7 @@ NPCObject.prototype.getGender = function() {
 }
 
 NPCObject.prototype.getGenderedTerms = function() {
-  var gt = {};
+  let gt = {};
   if (this.gender === "male") {
     gt.pronoun = "he";
     gt.possessive = "his";
@@ -13190,7 +13175,7 @@ NPCObject.prototype.setBaseStr = function(newstr) {
 }
 
 NPCObject.prototype.getStr = function() {
-  var str = this.getBaseStr() + this.getModStr() + this.getOrbStr();
+  let str = this.getBaseStr() + this.getModStr() + this.getOrbStr();
   str = Math.max(str,3);
 	return str;
 }
@@ -13234,7 +13219,7 @@ NPCObject.prototype.setOrbDex = function(newdex) {
 }
 
 NPCObject.prototype.getDex = function() {
-  var dex = this.getBaseDex() + this.getModDex() + this.getOrbDex();
+  let dex = this.getBaseDex() + this.getModDex() + this.getOrbDex();
   dex = Math.max(dex,3);
 	return dex;
 }
@@ -13279,7 +13264,7 @@ NPCObject.prototype.setOrbInt = function(newint) {
 }
 
 NPCObject.prototype.getInt = function() {
-  var theint = this.getBaseInt() + this.getModInt() + this.getOrbInt();
+  let theint = this.getBaseInt() + this.getModInt() + this.getOrbInt();
   theint = Math.max(theint, 3);
 	return theint;
 }
@@ -13400,22 +13385,20 @@ NPCObject.prototype.setArmorAs = function(armor) {
 NPCObject.prototype.nextActionTime = function(initdelay) {
 
   if (this.getSpellEffectsByName("TimeStop")) { return 0; }
-  var themap = this.getHomeMap();
-  var scale = themap.getScale();
+  let themap = this.getHomeMap();
+  let scale = themap.getScale();
   if (this.smallscalemove) { 
     scale = 1;
     delete this.smallscalemove;
   }
 
-  var effectiveDex = 10;
+  let effectiveDex = 10;
   if (scale) {
     effectiveDex = this.getDex();
   }
   if (this.getInitOverride() && (this.getAttitude() === "friendly")) { effectiveDex = this.getInitOverride(); }
 
-//  var isQuick = 1;  // replace with a check for the presence of the Quickness spell.  // actually, quickness spell should just modify initmult
-//  var init = ((-1/60) * effectiveDex + (7/6)) * this.initmult * (isQuick);
-  var init = ((-1/60) * effectiveDex + (7/6)) * this.initmult;
+  let init = ((-1/60) * effectiveDex + (7/6)) * this.initmult;
   
   if ((initdelay) && (initdelay != 0)) {
   	init = init * initdelay;
@@ -13467,35 +13450,30 @@ NPCObject.prototype.getSpellEffectsByName = function(checkname) {
 }
 
 NPCObject.prototype.addSpellEffect = function(spellobj, silent) {
-  var otherEffects = this.getSpellEffects();
-  var addme = 1;
+  let otherEffects = this.getSpellEffects();
+  let addme = 1;
   if (!silent) { silent = 0; }
   if (otherEffects.length) {
-    for (var i=0; i < otherEffects.length; i++) {
+    for (let i=0; i < otherEffects.length; i++) {
       if (otherEffects[i].getName() === spellobj.getName()) {
         silent = 1;
-        var totin = spellobj.getInstances() + otherEffects[i].getInstances();
-//        if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: That spell is already on the target.<br /></span>"); }
+        let totin = spellobj.getInstances() + otherEffects[i].getInstances();
         DebugWrite("magic", "That spell is already on the target.<br />");
         if (otherEffects[i].getPower() > spellobj.getPower()) {  // keep old one, extend it
-          var adddur = (1/(totin - 1))*(spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.DUTime.getGameClock());
-//          if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: Old one is stronger, extending by " + adddur + ".<br /></span>"); }
+          let adddur = (1/(totin - 1))*(spellobj.getPower() / otherEffects[i].getPower()) * (spellobj.getExpiresTime() - DU.DUTime.getGameClock());
           DebugWrite("magic", "Old one is stronger, extending by " + adddur + ".<br />");
           otherEffects[i].setExpiresTime(otherEffects[i].getExpiresTime() + adddur);
           otherEffects[i].setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
           otherEffects[i].mergeSpells("old");
           addme = 0; 
-//          maintext.addText("The existing spell is revitalized!");
           return 0;
         } else {
-          var adddur = (1/(totin - 1))*(otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.DUTime.getGameClock());
+          let adddur = (1/(totin - 1))*(otherEffects[i].getPower() / spellobj.getPower()) * (otherEffects[i].getExpiresTime() - DU.DUTime.getGameClock());
           spellobj.setExpiresTime(spellobj.getExpiresTime() + adddur);
-//          if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Magic: New one is stronger. Replacing old and extending new by " + adddur + ".<br /></span>"); }
           DebugWrite("magic", "New one is stronger. Replacing old and extending new by " + adddur + ".<br />");
           otherEffects[i].endEffect(1);
           spellobj.setInstances(otherEffects[i].getInstances() + spellobj.getInstances());
           spellobj.mergeSpells("new");
-//          maintext.addText("The existing spell has become stronger!");
         }
         break;
       }
@@ -13504,18 +13482,16 @@ NPCObject.prototype.addSpellEffect = function(spellobj, silent) {
   this.spellEffects.addBottom(spellobj);
   spellobj.setAttachedTo(this);
   spellobj.setCreateTime(DUTime.getGameClock());
-  var makeactive = spellobj.applyEffect(silent);
+  let makeactive = spellobj.applyEffect(silent);
   if (makeactive) {
     spellobj.setActive(1);
   }
   
   return 1;
-//  SetActiveEffects(this);
 }
 
 NPCObject.prototype.deleteSpellEffect = function(spellobj) {
   this.spellEffects.deleteFrom(spellobj);
-//  SetActiveEffects(this);
 }
 
 NPCObject.prototype.getSpawnedBy = function() {
@@ -13550,8 +13526,6 @@ NPCObject.prototype.activate = function(timeoverride) {
 	
   	this.resists = {};   // fire, ice
 
-//    this.target = {};
-    
 	  this.lastLocation = {};
     this.lastLocation.map = "";
 	  this.lastLocation.x = 0;
@@ -13595,9 +13569,9 @@ NPCObject.prototype.activate = function(timeoverride) {
       this.setCurrentAI(this.getPeaceAI());
     }
   
-    var weapon;
-    var missileweapon;
-    var armor;
+    let weapon;
+    let missileweapon;
+    let armor;
     
     if ((this.getMeleeAttackAs()) && (this.getMeleeAttackAs() !== "none")) {
       weapon = localFactory.createTile(this.getMeleeAttackAs());
@@ -13649,22 +13623,22 @@ NPCObject.prototype.activate = function(timeoverride) {
     } 
     
     this.specials = {};
-    var tmpspc = {};
+    let tmpspc = {};
     if (this.special) {
-      var tmp = this.special.replace(" ","");
+      let tmp = this.special.replace(" ","");
       tmp = tmp.split(",");
-      for (var i=0; i<tmp.length;i++){
+      for (let i=0; i<tmp.length;i++){
         if (tmp[i].indexOf(":") > -1) {
-          var bluh = tmp[i].split(":");
+          let bluh = tmp[i].split(":");
           tmpspc[bluh[0]] = bluh[1];
           if (typeof NPCSpecialFuncs[bluh[0]] === "function") {
-            var ret = NPCSpecialFuncs[bluh[0]](this, bluh[1]);
+            let ret = NPCSpecialFuncs[bluh[0]](this, bluh[1]);
             if (ret) { tmpspc[bluh[0]] = ret; }
           }
         } else {
           tmpspc[tmp[i]] = 1;
           if (typeof NPCSpecialFuncs[tmp[i]] === "function") {
-            var ret = NPCSpecialFuncs[tmp[i]](this);
+            let ret = NPCSpecialFuncs[tmp[i]](this);
             if (ret) { tmpspc[tmp[i]] = ret; }
           }
         }
@@ -13672,7 +13646,7 @@ NPCObject.prototype.activate = function(timeoverride) {
       this.specials = tmpspc;
     }
                   
-    var timing = this.nextActionTime(0);
+    let timing = this.nextActionTime(0);
     timing = timing/2;
     if (timeoverride) {
       timing = timeoverride;
@@ -13687,7 +13661,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.nextMana = DUTime.getGameClock() + MANA_REGEN;
     this.nextHP = DUTime.getGameClock() + HP_REGEN;
     
-    var NPCEvent = new GameEvent(this);
+    let NPCEvent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCEvent,timing);  
     
     if (this.getSchedule()) {
@@ -13699,14 +13673,14 @@ NPCObject.prototype.activate = function(timeoverride) {
 
 
 NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
-	var map = this.getHomeMap();
-	var oldmapname = map.getDesc();
-	var startx = this.getx();
-	var starty = this.gety();
-	var passx = startx + parseInt(diffx);
-	var passy = starty + parseInt(diffy);
-	var tile = map.getTile(passx,passy);
-	var retval = { fin:1 };
+	let map = this.getHomeMap();
+	let oldmapname = map.getDesc();
+	let startx = this.getx();
+	let starty = this.gety();
+	let passx = startx + parseInt(diffx);
+	let passy = starty + parseInt(diffy);
+	let tile = map.getTile(passx,passy);
+	let retval = { fin:1 };
 	if (tile === "OoB") { 
 	  if (noexit) {
 	    // NPC won't step out of the map
@@ -13718,7 +13692,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	  }
 		if (map.getExitToMap()) {
 		  DebugWrite("map", this.getDesc() + " exiting the map: ");
-			var newmap = new GameMap();
+			let newmap = new GameMap();
 			if (maps.getMap(map.getExitToMap())) {
 			  DebugWrite("map", "destination map already exists.<br />");
 				newmap = maps.getMap(map.getExitToMap());
@@ -13748,7 +13722,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		retval = tile.getBumpIntoResult(this);
 		if (retval["canmove"] === 0) { return retval; }
     DebugWrite("ai", this.getName() + " trying to move, checking canMoveHere for " + passx + "," + passy +".</span><br />");
-		var moveval = tile.canMoveHere(this.getMovetype());
+		let moveval = tile.canMoveHere(this.getMovetype());
 		retval["canmove"] = moveval["canmove"];
 	
 		if (retval["msg"] === "") {
@@ -13763,15 +13737,15 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	}
 	
 	if (retval["canmove"] === 1) {
-	  var exittile = map.getTile(this.getx(),this.gety());
-	  var walkofftile = exittile.executeWalkoffs(this);
+	  let exittile = map.getTile(this.getx(),this.gety());
+	  let walkofftile = exittile.executeWalkoffs(this);
 	  if (walkofftile) {
 	    if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
 	    retval["msg"] += walkoffval;
 	  }
 		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
 		if (this === PC) {
-		  var sfx = "sfx_walk_";
+		  let sfx = "sfx_walk_";
 		  if (map.getUnderground()) { sfx = sfx + "ug_"; }
 		  if (tile.getTopFeature() && tile.getTopFeature().getWalkSound()) {
 		    sfx = sfx + tile.getTopFeature().getWalkSound();
@@ -13785,13 +13759,13 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
       ProcessAmbientNoise(tile);
 		}
 
-    var distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
-		var walkonval = tile.executeWalkons(this);
+    let distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
+		let walkonval = tile.executeWalkons(this);
 		if (walkonval) {
 		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
 		  retval["msg"] += walkonval;
 		}
-    if ((map === PC.getHomeMap()) &&(GetSquareDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.max(viewsizex,viewsizey) )) {
+    if ((map === PC.getHomeMap()) &&(GetSquareDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.max(VIEWSIZEX,VIEWSIZEY) )) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
       // uncommented version checks from current display center, not from PC position.
       if (typeof this.getLight === "function") {
@@ -13854,15 +13828,15 @@ NPCObject.prototype.myTurn = function() {
 	RunEffects(this);
 	
 	Regen(this);
-  var awake = 1;
+  let awake = 1;
   if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze") || this.getSpellEffectsByName("Frozen") || this.getSpellEffectsByName("CrystalTrap")) { awake = 0; }
-  var confused = this.getSpellEffectsByName("Confused");
+  let confused = this.getSpellEffectsByName("Confused");
   if (confused && (Math.random() < (confused.getPower()/100))) {
     // confused and Confused
     awake = 0;
     if (Math.random() < .5) { 
 	    // confused and randomly wandering
-	    var dir = Dice.roll("1d4");
+	    let dir = Dice.roll("1d4");
 	    if (dir === 1) { this.moveMe(0,-1,0); }
 	    if (dir === 2) { this.moveMe(1,0,0); }
 	    if (dir === 3) { this.moveMe(0,1,0); }
@@ -13871,12 +13845,12 @@ NPCObject.prototype.myTurn = function() {
 
   }
 
-  var response = {};  
+  let response = {};  
   // will be = return value of AI call
   
   // actual AI!
   if (awake) {	
-    var ainame=this.getCurrentAI().split("-");
+    let ainame=this.getCurrentAI().split("-");
     if (this.getAggro() && ((this.getAttitude() === "friendly") || (this.getAttitude() === "hostile") || (this.getAttitude() === "neutral"))) {
       ainame[0] = "combat";
     }
@@ -13894,12 +13868,12 @@ NPCObject.prototype.myTurn = function() {
     return 0;
   }	
   // check for NPC idling
-  var oldloc = this.getLastLocation();
+  let oldloc = this.getLastLocation();
   if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // npc did not move
-    var tile = this.getHomeMap().getTile(this.getx(),this.gety());
-    var idleval = tile.executeIdles(this);
+    let tile = this.getHomeMap().getTile(this.getx(),this.gety());
+    let idleval = tile.executeIdles(this);
   } else {
-    var newloc = {};
+    let newloc = {};
     newloc.map = this.getHomeMap().getName();
     newloc.x = this.getx();
     newloc.y = this.gety();
@@ -13909,7 +13883,7 @@ NPCObject.prototype.myTurn = function() {
 	this.setLastTurnTime(DUTime.getGameClock());
 
   if (!maps.getMap(this.getHomeMap().getName())) {
-    // map removed during its turn (probably because it killed the player
+    // map removed during its turn (probably because it killed the player)
     // therefore it deserves valhalla
 
     DebugWrite("gameobj", "<span style='font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone. Not re-adding to timeline.</span><br />");
@@ -13924,7 +13898,7 @@ NPCObject.prototype.myTurn = function() {
 	
 	gamestate.setMode("null");
   if (!response.removed && (this.getHP() > 0)) {
-	  var NPCevent = new GameEvent(this);
+	  let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,this.nextActionTime(response["initdelay"]));
   }
   
@@ -13935,9 +13909,6 @@ NPCObject.prototype.myTurn = function() {
     HideTurnFrame(this);
   }
 
-//  var nextEntity = DUTime.executeNextEvent().getEntity();
-//  nextEntity.myTurn();
-//  if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange; font-weight:bold'>*" + this.getName() + ", serial " + this.getSerial() + " is ending its turn at " + this.getx() + "," + this.gety() + ".*</span><br />"); }	
   DebugWrite("ai", "Ending its turn at (" + this.getx() + "," + this.gety() + ").");
   return 1;
 }
@@ -13962,13 +13933,13 @@ NPCObject.prototype.endTurn = function(init) {
     DebugWrite("ai", "Ending its turn at (" + this.getx() + "," + this.gety() + ").");
   
     // did this entity idle?
-    var oldloc = this.getLastLocation();
-    var idleval;
-    if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // player did not move
-      var tile = this.getHomeMap().getTile(this.getx(),this.gety());
+    let oldloc = this.getLastLocation();
+    let idleval;
+    if ((oldloc.map === this.getHomeMap().getName()) && (oldloc.x === this.getx()) && (oldloc.y === this.gety())) {  // did not move
+      let tile = this.getHomeMap().getTile(this.getx(),this.gety());
       idleval = tile.executeIdles(this);
     } else {
-      var newloc = {};
+      let newloc = {};
       newloc.map = this.getHomeMap().getName();
       newloc.x = this.getx();
       newloc.y = this.gety();
@@ -13985,12 +13956,10 @@ NPCObject.prototype.endTurn = function(init) {
       DebugWrite("gameobj", "<span style='font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " removed from game- map gone. Not re-adding to timeline.</span><br />");
   
     } else {
-      var myevent = new GameEvent(this);
+      let myevent = new GameEvent(this);
       DUTime.addAtTimeInterval(myevent,this.nextActionTime(init));
     }
 
-//  var nextEntity = DUTime.executeNextEvent().getEntity();
-//  nextEntity.myTurn();
     setTimeout(function() { startScheduler(); }, 5 );
   }
 }
@@ -14014,7 +13983,7 @@ NPCObject.prototype.addToInventory = function(item, thinAir, qty) {
       qty = 1; 
     }
   }
-  var alreadyIn = this.checkInventory(item.getName());
+  let alreadyIn = this.checkInventory(item.getName());
   if (alreadyIn) {
     alreadyIn.setQuantity(alreadyIn.getQuantity()+qty);
   }
@@ -14049,7 +14018,7 @@ NPCObject.prototype.removeFromInventory = function(item, map, x, y) {
 }
 
 NPCObject.prototype.getInventory = function() {
-  var inv = this.inventory.getAll();
+  let inv = this.inventory.getAll();
   return inv;
 }
 
@@ -14156,34 +14125,32 @@ NPCObject.prototype.setMissile = function(newmissile) {
 
 NPCObject.prototype.getHitChance = function(atkwith) {
   if (!atkwith) { atkwith = "melee"; }
-  var tohit = BASE_HIT_CHANCE;
+  let tohit = BASE_HIT_CHANCE;
   tohit += this.getLevel() * HIT_PER_LEVEL ;
   if (atkwith === "melee") {
     tohit += this.getStr() - 10;
-    var weapon = this.getEquipment("weapon");
+    let weapon = this.getEquipment("weapon");
     if (weapon) {
       tohit += weapon.getToHitBonus();
     }
   } else {
     tohit += this.getDex() - 10;
-    var weapon = this.getEquipment("missile");
+    let weapon = this.getEquipment("missile");
     if (weapon) {
       tohit += weapon.getToHitBonus();
     }
   }
-  var armor = this.getEquipment("armor");
+  let armor = this.getEquipment("armor");
   if (armor) {
     tohit += armor.getToHitBonus();
   }
   
-  var distracted = this.getSpellEffectsByName("Distract");
+  let distracted = this.getSpellEffectsByName("Distract");
   if (distracted) {
-    var stillon = distracted.doEffect();
+    let stillon = distracted.doEffect();
     if (stillon != -1) {
-//      if (debug && debugflags.combat) { dbs.writeln("<span style='color:green'>DISTRACTED: old tohit: " + tohit + ", "); }
       DebugWrite("combat", "DISTRACTED: old tohit: " + tohit + ", ");
       tohit = tohit - distracted.getPower();
-//      if (debug && debugflags.combat) { dbs.writeln("new tohit: " + tohit + ".<br /></span>"); }
       DebugWrite("combat", "new tohit: " + tohit + ".<br />");
     }
   }
@@ -14191,9 +14158,9 @@ NPCObject.prototype.getHitChance = function(atkwith) {
 }
 
 NPCObject.prototype.getDefense = function() {
-  var def = this.getLevel() * DEF_PER_LEVEL;
+  let def = this.getLevel() * DEF_PER_LEVEL;
   def = def + (this.getDex()-10)*DEF_PER_DEX;
-  var armor = this.getEquipment("armor");
+  let armor = this.getEquipment("armor");
   if (armor) {
     if (this.getStr() < armor.getStrReq()) {
       def += (armor.getDefense())/3;
@@ -14201,27 +14168,23 @@ NPCObject.prototype.getDefense = function() {
       def += armor.getDefense();
     }
   }
-  var vuln = this.getSpellEffectsByName("Vulnerability");
+  let vuln = this.getSpellEffectsByName("Vulnerability");
   if (vuln) {
-//    if (debug && debugflags.combat) { dbs.writeln("vulnerable: old AC " + def + ", </span>"); }
     DebugWrite("ai", "VULNERABLE: Old AC " + def + ", ");
     def = def - vuln.getPower();
-//    if (debug && debugflags.combat) { dbs.writeln("new AC: " + def + ".<br /></span>"); }
     DebugWrite("ai", "new AC: " + def + ".<br />");
   }
-  var prot = this.getSpellEffectsByName("Protection");
+  let prot = this.getSpellEffectsByName("Protection");
   if (prot) {
-//    if (debug && debugflags.combat) { dbs.writeln("protected: old AC " + def + ", </span>"); }
     DebugWrite("combat", "PROTECTED: old AC " + def + ", ");
     def = def + prot.getPower();
-//    if (debug && debugflags.combat) { dbs.writeln("new AC: " + def + ".<br /></span>"); }
     DebugWrite("combat", "new AC: " + def + ".<br />");
   } 
   return def;
 }
 
 NPCObject.prototype.getAbsorb = function() {
-  var armor = this.getEquipment("armor");
+  let armor = this.getEquipment("armor");
   if (armor) {
     return armor.getAbsorb();
   }
@@ -14229,13 +14192,13 @@ NPCObject.prototype.getAbsorb = function() {
 
 NPCObject.prototype.getResist = function(resisttype) {
   if (resisttype === "physical") {
-    var armor = this.getEquipment("armor");
+    let armor = this.getEquipment("armor");
     if (armor) {
       return (armor.getAbsorb());
     }
   }
   if (resisttype === "magic") {
-    var armor = this.getEquipment("armor");
+    let armor = this.getEquipment("armor");
     if (armor) {
       return (armor.getResist());
     }
@@ -14258,7 +14221,7 @@ NPCObject.prototype.setLastLocation = function (newloc) {
 }
 
 NPCObject.prototype.getDestination = function() {
-  var dest = {};
+  let dest = {};
   dest.x = this.currentDestination.x;
   dest.y = this.currentDestination.y;
   return dest;
@@ -14276,7 +14239,6 @@ NPCObject.prototype.getDestinationType = function() {
 NPCObject.prototype.setDestinationType = function(dtype) {
   this.destType = dtype;
 }
-
 
 NPCObject.prototype.getTurnsToRecalcDest = function() {
   return this.turnsToRecalcDest; 
@@ -14296,14 +14258,6 @@ NPCObject.prototype.setPoI = function(poi) {
   this.currentPoI = poi;
 }
 
-//NPCObject.prototype.getTurnsToRecalcPoI = function() {
-//  return this.turnsToRecalcPoI;
-//}
-
-//NPCObject.prototype.setTurnsToRecalcPoI = function(timeuntil) {
-//  this.turnsToRecalcPoI = timeuntil;
-//}
-
 NPCObject.prototype.setCurrentPath = function(newpath) {
   this.currentPath = newpath;
 }
@@ -14314,7 +14268,7 @@ NPCObject.prototype.getCurrentPath = function() {
 
 NPCObject.prototype.getNextStep = function() {
   if (this.currentPath.length > 0) {
-    var nextstep = this.currentPath.shift();
+    let nextstep = this.currentPath.shift();
     return nextstep;
   }
   return [];
@@ -14332,12 +14286,12 @@ function NPCList(npcs,num) {
 }
 
 NPCGroupObject.prototype.populate = function() {
-  var population = [];
-  for (var i=0; i< this.group.length; i++) {
-    var num = Dice.roll(this.group[i].count);
-    for (var j=1; j<=num; j++) {
+  let population = [];
+  for (let i=0; i<this.group.length; i++) {
+    let num = Dice.roll(this.group[i].count);
+    for (let j=1; j<=num; j++) {
       if (population.length < 8) {
-        var monster = localFactory.createTile(this.group[i].npc);
+        let monster = localFactory.createTile(this.group[i].npc);
         population[population.length] = monster;
       }
     }
@@ -14416,8 +14370,6 @@ function PCObject() {
 	this.nextMana = MANA_REGEN;
 	this.nextHP = HP_REGEN;
 
-//	var myweapon = localFactory.createTile("Dagger");
-//	myweapon.equipMe(this);
 }
 PCObject.prototype = new NPCObject();
 
@@ -14432,7 +14384,7 @@ PCObject.prototype.myTurn = function() {
 
   if (debugmaps.open) { ShowDebugMaps(); }
 
-  var clockface = GetClockTime(this.getLastTurnTime());
+  let clockface = GetClockTime(this.getLastTurnTime());
   if ((clockface[3] !== GetClockTime()[3]) && !this.getWaiting() && !this.dead) { DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety()); }
   if (!this.dead) {
     SetSky();
@@ -14457,7 +14409,7 @@ PCObject.prototype.myTurn = function() {
         return 0;
       }
       delete PC.deaduntil;
-      var returnmap = new GameMap();
+      let returnmap = new GameMap();
       if (maps.getMap("olympus1")) {
         returnmap = maps.getMap("olympus1");
         // though again, this shouldn't be in memory
@@ -14476,11 +14428,11 @@ PCObject.prototype.myTurn = function() {
   }
     
   Regen(this);
-  var awake = 1;
-  var sleep = this.getSpellEffectsByName("Sleep");
-  var paralyzed = this.getSpellEffectsByName("Paralyze");
-  var frozen = this.getSpellEffectsByName("Frozen");
-  var waiting = this.getWaiting();
+  let awake = 1;
+  let sleep = this.getSpellEffectsByName("Sleep");
+  let paralyzed = this.getSpellEffectsByName("Paralyze");
+  let frozen = this.getSpellEffectsByName("Frozen");
+  let waiting = this.getWaiting();
   if (waiting && (waiting < DUTime.getGameClock())) { 
     waiting = 0;
     EndWaiting(this,this.atinn);
@@ -14606,7 +14558,7 @@ PCObject.prototype.setInfusion = function(infuse) {
 }
 
 PCObject.prototype.getMaxMana = function() {
-  var maxmana = this.getBaseInt() + this.getOrbInt();
+  let maxmana = this.getBaseInt() + this.getOrbInt();
   if (DU.gameflags.getFlag("pc_abyss")) {
     maxmana = maxmana * 2;
   }
@@ -14616,25 +14568,25 @@ PCObject.prototype.getMaxMana = function() {
 // returns the amount of damage dealt, -1 if the damage killed the target
 PCObject.prototype.dealDamage = function(dmg, src, type) {
   
-  var isasleep = this.getSpellEffectsByName("Sleep");
+  let isasleep = this.getSpellEffectsByName("Sleep");
   if (isasleep) {
     isasleep.endEffect();
   }
   
-  var isfrozen = this.getSpellEffectsByName("Frozen");
+  let isfrozen = this.getSpellEffectsByName("Frozen");
   if (isfrozen) {
     isfrozen.endEffect();
   }
 
-  var isinvuln = this.getSpellEffectsByName("Invulnerable");
+  let isinvuln = this.getSpellEffectsByName("Invulnerable");
   if (isinvuln) {
     dmg = 0;
   }
 
   dmg = CheckAbsorb(dmg,this,src,type);
-  var oldhp = this.getDisplayHP();
+  let oldhp = this.getDisplayHP();
   this.modHP(dmg*-1);
-  var newhp = this.getDisplayHP();
+  let newhp = this.getDisplayHP();
   
   if (oldhp !== newhp) {
     DrawCharFrame();

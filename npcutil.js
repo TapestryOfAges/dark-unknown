@@ -16,10 +16,10 @@ function Anchor() {
 }
 Anchor.prototype = new Object();
 
-var NPCSpecialFuncs = {};
+let NPCSpecialFuncs = {};
 
 NPCSpecialFuncs["quick"] = function(who, how) {
-  var qobj = localFactory.createTile("Quickness");
+  let qobj = localFactory.createTile("Quickness");
   qobj.setExpiresTime(-1);
   who.addSpellEffect(qobj);  
 }
@@ -35,7 +35,7 @@ NPCSpecialFuncs["light"] = function(who,how) {
 }
 
 NPCSpecialFuncs["flamearmor"] = function(who,how) {
-  var qobj = localFactory.createTile("FireArmor");
+  let qobj = localFactory.createTile("FireArmor");
   if (how !== 1) {
     qobj.setPower(how);
   } else {
@@ -50,38 +50,39 @@ NPCSpecialFuncs["invisible"] = function(who,how) {
 }
 
 NPCSpecialFuncs["hides"] = function(who,how) {
-  var oldgraph = who.getGraphic();
+  let oldgraph = who.getGraphic();
   who.setGraphic(how);
   return oldgraph;
 }
 
 NPCSpecialFuncs["courierSurrender"] = function(who,how) {
-  var eobj = localFactory.createTile("CourierSurrender");
+  let eobj = localFactory.createTile("CourierSurrender");
   who.addSpellEffect(eobj);
 }
 
 NPCSpecialFuncs["courierFlee"] = function(who,how) {
-  var eobj = localFactory.createTile("CourierFlee");
+  let eobj = localFactory.createTile("CourierFlee");
   who.addSpellEffect(eobj);
 }
 
 function TurnMapHostile(map) {
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
   DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma") - 10); 
-  var localnpcs = map.npcs.getAll();
-  $.each(localnpcs, function(idx, val) {
+  let localnpcs = map.npcs.getAll();
+  for (let idx=0;idx<localnpcs.length;idx++) {
+    let val = localnpcs[idx];
     if (val.getAttitude() === "friendly") {
       val.setAttitude("hostile");
       val.setAggro(1);
       DebugWrite("combat", val.getName() + " (serial: " + val.getSerial() + ") turns hostile!<br />");
     }
-  });
+  };
 }
 
 function Attack(atk, def) {
-  var retval = {};
-  var type = "melee";
-  var rad = 1;
+  let retval = {};
+  let type = "melee";
+  let rad = 1;
   if (atk.specials.reach) { 
     rad = 2; 
   }
@@ -89,12 +90,12 @@ function Attack(atk, def) {
   if (Math.abs(atk.getx() - def.getx()) > rad) { type = "missile";}
   if (Math.abs(atk.gety() - def.gety()) > rad) { type = "missile";}
 
-  var weapon = atk.getEquipment("weapon");
-  var loeresult = 0;
+  let weapon = atk.getEquipment("weapon");
+  let loeresult = 0;
 
   if (type === "missile") {
     // check to see if attacker can use its missile weapon
-    var dex = atk.getDex();
+    let dex = atk.getDex();
     weapon = atk.getEquipment("missile");
     
     if (!weapon) {
@@ -116,7 +117,7 @@ function Attack(atk, def) {
       return retval;
     }
     
-    var themap = atk.getHomeMap();
+    let themap = atk.getHomeMap();
       
     loeresult = themap.getLOS(atk.getx(), atk.gety(), def.getx(), def.gety(), 1);
     
@@ -143,11 +144,11 @@ function Attack(atk, def) {
     def.setAggro(1);
   }
   DebugWrite("combat", "Attacking: weapon is " + weapon.getName() + "<br />");
-  var tohit = atk.getHitChance(type) / 100;
+  let tohit = atk.getHitChance(type) / 100;
   tohit -= loeresult/2; // harder to hit if foe has cover
 
   DebugWrite("combat", "Attacking: reducing to-hit chance by " + loeresult/2 + " due to cover<br />");
-  var defense = def.getDefense() / 100;
+  let defense = def.getDefense() / 100;
 
   DebugWrite("combat", "Atk: " + tohit + "; enemy defense: " + defense + "<br />");
   tohit = tohit - defense;
@@ -155,9 +156,9 @@ function Attack(atk, def) {
   
   DebugWrite("combat", "Chance to hit: " + tohit + "<br />");
 //  var preanim = PreAnimationEffect(mapref, fromx,fromy,tox,toy,graphic,xoffset,yoffset,destgraphic,destxoffset,destyoffset)
-  var dmg = 0;
+  let dmg = 0;
   let storymode = DU.gameflags.getFlag("storymode");
-  var snd;
+  let snd;
   if (type === "melee") {
     snd = atk.getMeleeAttackSound();
   } else {
@@ -186,7 +187,7 @@ function Attack(atk, def) {
 
     if (dmg < 1) { dmg = 1; }  // min dmg 1 on a hit
     if (storymode && (atk === PC)) { dmg = 500; }
-    var firearmor = def.getSpellEffectsByName("FireArmor");
+    let firearmor = def.getSpellEffectsByName("FireArmor");
     if (firearmor) {
       if (IsAdjacent(atk,def)) {
         firearmor.flashback(atk);
@@ -194,8 +195,8 @@ function Attack(atk, def) {
     }
     
     if (atk.getOnHit()) {
-      var onhits = atk.getOnHit().split(",");
-      for (var i=0;i<=onhits.length;i++) {
+      let onhits = atk.getOnHit().split(",");
+      for (let i=0;i<=onhits.length;i++) {
         if (typeof OnHitFuncs[onhits[i]] === "function") {
           OnHitFuncs[onhits[i]](atk,def,dmg);
         } else {
@@ -212,12 +213,12 @@ function Attack(atk, def) {
   }
   
   // animate attack
-  var fromcoords = getCoords(atk.getHomeMap(),atk.getx(), atk.gety());
-  var tocoords = getCoords(def.getHomeMap(),def.getx(), def.gety());
+  let fromcoords = getCoords(atk.getHomeMap(),atk.getx(), atk.gety());
+  let tocoords = getCoords(def.getHomeMap(),def.getx(), def.gety());
 
-  var ammographic = {};
-  var duration = 50;
-  var ammoreturn = 0;
+  let ammographic = {};
+  let duration = 50;
+  let ammoreturn = 0;
   if (type === "missile") { 
     ammographic = weapon.getAmmoGraphic(atk,def); 
     duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 100;
@@ -230,44 +231,43 @@ function Attack(atk, def) {
     ammographic.fired = -1;
   }
 
-  var hitgraphic = {};
+  let hitgraphic = {};
   hitgraphic.graphic = "702.gif";
   if (dmg === 0) { hitgraphic.graphic = "700.gif"; }
   hitgraphic.xoffset = 0;
   hitgraphic.yoffset = 0;
   hitgraphic.overlay = "spacer.gif";
   
-  var sounds = {start: "", end: snd};
+  let sounds = {start: "", end: snd};
 
   AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,sounds, {type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:1,retval:retval});
   
-  var tmpval = {};
+  let tmpval = {};
   tmpval["fin"] = -1;
   tmpval["wait"] = 1;
   return tmpval;
 }
 
 function prepareSpellDamage(damsrc, damtar, damval, damtype) {
-  var retval = {};
+  let retval = {};
   retval.dmg = Dice.roll(damval);
 
   if (damtype === "magic") {
-    var armor = damtar.getEquipment("armor");
-    var resist = 0;
+    let armor = damtar.getEquipment("armor");
+    let resist = 0;
     if (resist) {
       resist = armor.getResist() - damsrc.getReduceResist();
-      resist /= 100;
       if (resist < 0) { resist = 0; }
     }    
-    if (Math.random() < resist) {
+    if (Dice.roll("1d100") <= resist) {
       retval.msg = "RESIST!";
       retval.dmg = Dice.rollmin(damval);
     }
   }
 
   if (damtype === "physical") {
-    var armor = damtar.getEquipment("armor");
-    var absorb = 0;
+    let armor = damtar.getEquipment("armor");
+    let absorb = 0;
     if (armor) {
       absorb = armor.getAbsorb() - damsrc.getReduceResist();
       absorb /= 100;
@@ -279,14 +279,14 @@ function prepareSpellDamage(damsrc, damtar, damval, damtype) {
   
   if (damtype === "fire") {
     if (damtar.resists.fire) {
-      var fireresist = (damtar.resists.fire - damsrc.getReduceResist)/100;
+      let fireresist = (damtar.resists.fire - damsrc.getReduceResist)/100;
       retval.dmg = retval.dmg * (1-fireresist);
     }
   }
   
   if (damtype === "ice") {
     if (damtar.resists.ice) {
-      var iceresist = (damtar.resists.ice - damsrc.getReduceResist)/100;
+      let iceresist = (damtar.resists.ice - damsrc.getReduceResist)/100;
       retval.dmg = retval.dmg * (1-iceresist);
     }
   }
@@ -295,10 +295,10 @@ function prepareSpellDamage(damsrc, damtar, damval, damtype) {
 
 function GetCoordsWithOffsets(direction, from, to) {
 
-  var fromdisplace = 10;
-  var todisplace = 5;
+  let fromdisplace = 10;
+  let todisplace = 5;
 
-  var coordsobj = {};
+  let coordsobj = {};
   coordsobj.fromx = from.x;
   coordsobj.fromy = from.y;
   coordsobj.tox = to.x;
@@ -325,7 +325,7 @@ function GetCoordsWithOffsets(direction, from, to) {
 }
   
 function GetDamageDescriptor(who) {
-  var ratio = who.getHP() / who.getMaxHP();
+  let ratio = who.getHP() / who.getMaxHP();
   if (ratio > .66) { return ("lightly wounded"); }
   if (ratio > .4) { return ("moderately wounded"); }
   if (ratio > .2) { return ("heavily wounded"); }
@@ -334,20 +334,20 @@ function GetDamageDescriptor(who) {
 
 function CanMissileAttack(who) {
   // looks to see if there are adjacent melee enemies
-  var enemystring = "";
+  let enemystring = "";
   if (who.getAttitude() === "friendly") {
     enemystring = "hostile";
   } else if (who.getAttitude() === "hostile") {
     enemystring = "friendly";
   }
-  var themap = who.getHomeMap();
-  for (var i = -1; i <=1 ; i++) {
-    for (var j = -1; j <= 1; j++) {
-      var tile = themap.getTile(who.getx() + i, who.gety() + j);
+  let themap = who.getHomeMap();
+  for (let i=-1; i<=1 ; i++) {
+    for (let j=-1; j<=1; j++) {
+      let tile = themap.getTile(who.getx() + i, who.gety() + j);
       if (tile != "OoB") { 
-        var npcs = tile.getNPCs();
+        let npcs = tile.getNPCs();
         if (npcs) {
-          for (var k=0; k<npcs.length; k++) {
+          for (let k=0; k<npcs.length; k++) {
             if (npcs[k].getAttitude() === enemystring) { return 0; }
           }
         }
@@ -358,7 +358,7 @@ function CanMissileAttack(who) {
 }
 
 function SetActiveEffects(who) {
-  var effects = who.getSpellEffects();
+  let effects = who.getSpellEffects();
   effects.sort(function(a,b){ if (a.getName() == b.getName()) {
                                 return (b.getPower() - a.getPower());
                               } else {
@@ -366,8 +366,8 @@ function SetActiveEffects(who) {
                                 else return 1;
                               }  } );
                               
-  var currname = "";
-  for (var i = 0; i < effects.length; i++ ) {
+  let currname = "";
+  for (let i=0; i<effects.length; i++ ) {
     if (effects[i].getName() === currname) { effects[i].setActive(0); }
     else {
       effects[i].setActive(1);
@@ -377,32 +377,31 @@ function SetActiveEffects(who) {
 }
 
 function RunEffects(who) {
-  var effects = who.getSpellEffects();
+  let effects = who.getSpellEffects();
   if (effects) {
-    for (var i=0; i<effects.length; i++) {
+    for (let i=0; i<effects.length; i++) {
       if (effects[i].getActive()) {
         effects[i].onTurn();
       } 
     } 
   }
-  
 }
 
 function PickOne(fromarray) {
-  var roll = Math.floor(Math.random() * fromarray.length);
+  let roll = Math.floor(Math.random() * fromarray.length);
   return fromarray[roll];
 }
 
 function PushOff(what) {
-  var dir = 4;
-  var themap = what.getHomeMap();
-  var locx = what.getx();
-  var locy = what.gety();
-  var tries = 0;
+  let dir = 4;
+  let themap = what.getHomeMap();
+  let locx = what.getx();
+  let locy = what.gety();
+  let tries = 0;
   while (tries < 8) {
-    var tile = themap.getTile(locx,locy);
-    var destx = locx;
-    var desty = locy;
+    let tile = themap.getTile(locx,locy);
+    let destx = locx;
+    let desty = locy;
     if ((dir === 7) || (dir <= 1)) { desty -= 1; }
     if ((dir >= 3) && (dir <= 5)) { desty += 1; }
     if ((dir >= 1) && (dir <= 3)) { destx += 1; }
@@ -411,7 +410,6 @@ function PushOff(what) {
     if (tile.canMove(MOVE_WALK, 1)) {   // can walk but ignore NPCs there- this is a rare 
                                         // circumstance where I will stack NPCs
       themap.moveThing(destx, desty, what);
-//      if (debug && debugflags.ai) { dbs.writeln("Moving NPC off of exit, in direction " + dir + "<br />"); }
       DebugWrite("combat", "Moving NPC off of exit, in direction " + dir + "<br />");
       return 1;
     }
@@ -419,7 +417,6 @@ function PushOff(what) {
     dir += 1;
     if (dir === 8) { dir = 0; }
   }
-//  if (debug && debugflags.ai) { dbs.writeln("Moving NPC off of exit, in emergency backup code.<br />"); }
   DebugWrite("combat", "Moving NPC off of exit, in emergency backup code.<br />");
   themap.moveThing(locx, locy+1, what);
   return 1;
@@ -441,8 +438,7 @@ function Regen(who) {
 
 function EarnedLevel(who) { 
   if (who.getLevel === LVL_MAX) { return 0; }
-  var needed = Math.pow(2, who.getLevel()-1) * 100;
-//  alert(needed);
+  let needed = Math.pow(2, who.getLevel()-1) * 100;
   if (who.getxp() >= needed) {
     return 1;
   }
@@ -450,19 +446,19 @@ function EarnedLevel(who) {
 }
 
 function SetBandAggro(band, map) {
-  var npcs = map.npcs.getAll();
-  $.each(npcs, function(idx, val) {
-    if (val.getNPCBand() === band) {
-      val.setAggro(1);
+  let npcs = map.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getNPCBand() === band) {
+      npcs[i].setAggro(1);
     }
-  });
+  }
 }
 
 function StepOrDoor(who, where, nopush) {
-  var whomap = who.getHomeMap();
-  var tile = whomap.getTile(where[0],where[1]);
+  let whomap = who.getHomeMap();
+  let tile = whomap.getTile(where[0],where[1]);
   if (tile !== "OoB") {
-    var fea = tile.getTopFeature();
+    let fea = tile.getTopFeature();
     if (fea && !(MOVE_WALK & fea.getPassable()) && who.specials["open_door"] && ((who.currentActivity !== "WaitHere") || (who.getCurrentAI() !== "scheduled"))) {
       // if there is a feature, that blocks movement, while I can open doors and am not randomwalking
       if (fea.closedgraphic) {
@@ -472,39 +468,38 @@ function StepOrDoor(who, where, nopush) {
           if (!fea.open) {
             // Door is not open- opening
             DebugWrite("ai", "opening a door in StepOrDoor.<br />");
-//            fea.use(who);
             MakeUseHappen(who,fea,"map");
             if (GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) {
               DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
             } 
-            var moved = {canmove:0, opendoor:2, fin:1, diffx: where[0]-who.getx(), diffy: where[1]-who.gety() };
+            let moved = {canmove:0, opendoor:2, fin:1, diffx: where[0]-who.getx(), diffy: where[1]-who.gety() };
             return moved;  // opened a door, didn't take a step
           }
         }
       } 
     }
-    var diffx = where[0] - who.getx();
-    var diffy = where[1] - who.gety();
-    var moved = who.moveMe(diffx,diffy);
+    let diffx = where[0] - who.getx();
+    let diffy = where[1] - who.gety();
+    let moved = who.moveMe(diffx,diffy);
     if (moved["canmove"]) { 
       DebugWrite("ai", "moved in StepOrDoor.<br />");
     } else {
       DebugWrite("ai", "didn't move in StepOrDoor.<br />");
       if (!nopush && fea && who.specials["open_door"]) {
         // If you can open a door, you can move a barrel.
-        if (!tile.getTopNPC()) {      
-          var allfea = tile.getFeatures();
-          var pushyou;
-          $.each(allfea, function(idx,val) {
-            if (val.pushable) {
-              if (!pushyou) { pushyou = val; }
+        if (!tile.getTopNPC() && !tile.getTopPC()) {      
+          let allfea = tile.getFeatures();
+          let pushyou;
+          for (let i=0;i<allfea.length;i++) {
+            if (allfea[i].pushable) {
+              if (!pushyou) { pushyou = allfea[i]; }
               else {
-                if (!(val.getPassable & who.getMovetype())) {
-                  pushyou = val;
+                if (!(allfea[i].getPassable & who.getMovetype())) {
+                  pushyou = allfea[i];
                 }
               }
             }
-          });
+          }
           if (pushyou) {
             pushyou.pullMe(who);
           }
@@ -519,22 +514,22 @@ function StepOrDoor(who, where, nopush) {
 
 function StepOrSidestep(who, path, finaldest, nopush) {
   DebugWrite("ai", "In StepOrSideStep...");
-  var moved = StepOrDoor(who,path,nopush);
+  let moved = StepOrDoor(who,path,nopush);
   if (!moved["canmove"] && !moved["opendoor"]) {
     DebugWrite("ai", " !canmove and !opendoor, trying here.");
 
     if ((who.getCurrentAI() === "scheduled") && (who.currentActivity === "RouteTo")) {
-      var tile = who.getHomeMap().getTile(path[0],path[1]);
+      let tile = who.getHomeMap().getTile(path[0],path[1]);
       let topentity = tile.getTop();
       if (topentity.checkType("pc") || topentity.checkType("npc")) {
         if (who.pushing === topentity.getSerial()) {
           delete who.pushing;
           if ((path[0] === finaldest[0]) && (path[1] === finaldest[1])) {
             // PC or NPC is on last step of path, no point to pushing through  -- consider if I want to change this for NPC
-            var fea = tile.getTopFeature();
+            let fea = tile.getTopFeature();
             if (fea && (fea.getName() === "BedHead")) {
               // PC is in your bed. Kick them out. Hopefully this never comes up with an NPC. If it does, though, kick them out too
-              npctile = who.getHomeMap().geTile(who.getx(),who.gety());
+              npctile = who.getHomeMap().getTile(who.getx(),who.gety());
               topentity.getHomeMap().moveThing(who.getx(),who.gety(),PC);
               tile.executeWalkoffs(topentity);
               npctile.executeWalkons(topentity);
@@ -566,7 +561,9 @@ function StepOrSidestep(who, path, finaldest, nopush) {
             // Will only come up if path is truly blocked
             moved["canmove"] = 1;
             if (topentity === PC) {
-              maintext.delayedAddText(who.getFullDesc() + " steps past you.");
+              let text = who.getFullDesc() + " steps past you.";
+              text = text.charAt(0).toUpperCase() + text.slice(1);
+              maintext.addText(text);
               moved["intoPC"] = 1; // dunno if I'll want this, but might as well
             } else {
               if (debug) {
@@ -583,7 +580,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
             return moved;
           }
         } else { 
-          var gridbackup = who.getHomeMap().getPathGrid(MOVE_WALK_DOOR).clone();
+          let gridbackup = who.getHomeMap().getPathGrid(MOVE_WALK_DOOR).clone();
           // destination tile must always be walkable.
           gridbackup.setWalkableAt(finaldest[0],finaldest[1],true);
           
@@ -602,7 +599,7 @@ function StepOrSidestep(who, path, finaldest, nopush) {
           }
 
           // get path
-          var foundpath = finder.findPath(who.getx(),who.gety(),finaldest[0],finaldest[1],gridbackup);
+          let foundpath = finder.findPath(who.getx(),who.gety(),finaldest[0],finaldest[1],gridbackup);
 
           let oldpath = who.getHomeMap().getPath(who.getx(),who.gety(),finaldest[0],finaldest[1],MOVE_WALK_DOOR);
           if (!foundpath.length || ((foundpath.length - oldpath.length) > 9)) {
@@ -618,44 +615,58 @@ function StepOrSidestep(who, path, finaldest, nopush) {
       }
     }
     delete who.pushing;
-    var diffx = path[0] - who.getx();
-    var diffy = path[1] - who.gety();
-    var fullx = finaldest[0] - who.getx();
-    var fully = finaldest[1] - who.gety();
+    let diffx = path[0] - who.getx();
+    let diffy = path[1] - who.gety();
+    let fullx = finaldest[0] - who.getx();
+    let fully = finaldest[1] - who.gety();
+
+    let RandomwalkPassthrough = function(npc,dx,dy) {
+      let newtile = npc.getHomeMap().getTile(npc.getx()+dx,npc.gety()+dy);
+      let retval = {};
+      if (newtile.isHostileTo(npc) || newtile.noWander()) {
+        retval["nomove"] = 1;
+        retval["canmove"] = 0;
+        retval["diffx"] = diffx;
+        retval["diffy"] = diffy;
+      } else {
+        retval = npc.moveMe(dx,dy,1);
+      }
+      return retval;
+    }
 
     if (diffx !== 0) {
       if (fully > 0) { 
-        moved = who.moveMe(0,1,1);
-        if (!moved["canmove"]) { moved = who.moveMe(0,-1,1); } 
+        moved = RandomwalkPassthrough(who,0,1);
+        if (!moved["canmove"]) { moved = RandomwalkPassthrough(who,0,-1); } 
       }
       else if (fully < 0 ) { 
-        moved = who.moveMe(0,-1,1);
-        if (!moved["canmove"]) { moved = who.moveMe(0,1,1); } 
+        moved = RandomwalkPassthrough(who,0,-1);
+        if (!moved["canmove"]) { moved = RandomwalkPassthrough(who,0,1); } 
       }
       else { 
-        var parity = 1;
+        let parity = 1;
         if (Dice.roll("1d2") === 1) { 
           parity = -1;
         }
-        moved = who.moveMe(0,parity,1); 
-        if (!moved["canmove"]) { moved = who.moveMe(0,-1*parity,1); }
+        moved = RandomwalkPassthrough(who,0,parity); 
+        if (!moved["canmove"]) { moved = RandomwalkPassthrough(who,0,-1*parity); }
       }
     } else {
       if (fullx > 0) { 
-        moved = who.moveMe(1,0,1); 
-        if (!moved["canmove"]) { moved = who.moveMe(-1,0,1); }
+        moved = RandomwalkPassthrough(who,1,0); 
+        if (!moved["canmove"]) { moved = RandomwalkPassthrough(who,-1,0); }
       }
       else if (fullx < 0) { 
-        moved = who.moveMe(-1,0,1);
-        if (!moved["canmove"]) { moved = who.moveMe(1,0,1); } 
+        moved = RandomwalkPassthrough(who,-1,0);
+        if (!moved["canmove"]) { moved = RandomwalkPassthrough(who,1,0); } 
       }
       else {
-        var parity = 1;
+        let parity = 1;
         if (Dice.roll("1d2") === 1) {
           parity = -1;
         } 
-        moved = who.moveMe(parity,0,1);
-        if (!moved["canmove"]) { moved = who.moveMe(-1*parity,0,1); }
+        moved = RandomwalkPassthrough(who,parity,0);
+        if (!moved["canmove"]) { moved = RandomwalkPassthrough(who,-1*parity,0); }
       }
     }
   } else { delete who.pushing; }
@@ -674,22 +685,23 @@ function ShowTurnFrame(who) {
   if (who.getAttitude() === "hostile") { framegraph = "turn-frame-enemy.gif"; }
 
   let coords = getCoords(who.getHomeMap(),who.getx(),who.gety());
-  $("#turnframe").css("left",coords.x+16);
-  $("#turnframe").css("top",coords.y+16);
-  $("#turnframe").attr("src","graphics/frame/"+framegraph);
-  $("#turnframe").css("display","block");
+  let turnframe = document.getElementById('turnframe');
+  turnframe.style.left = coords.x+16;
+  turnframe.style.top = coords.y+16;
+  turnframe.src = "graphics/frame/"+framegraph;
+  turnframe.style.display = "block";
 
   who.hasFrame = 1;
 }
 
 function MoveTurnFrame(who) {
   let coords = getCoords(who.getHomeMap(),who.getx(),who.gety());
-  $("#turnframe").css("left",coords.x+16);
-  $("#turnframe").css("top",coords.y+16);
+  document.getElementById('turnframe').style.left = coords.x+16;
+  document.getElementById('turnframe').style.top = coords.y+16;
 }
 
 function HideTurnFrame(who) {
-  $("#turnframe").css("display","none");
+  document.getElementById('turnframe').style.display = "none";
 
   if (who) {
     delete who.hasFrame;
@@ -698,7 +710,7 @@ function HideTurnFrame(who) {
 
 function FindNPCByName(findname, map) {
   let npcs = map.npcs.getAll();
-  for (let i=0;i<=npcs.length;i++) {
+  for (let i=0;i<npcs.length;i++) {
     if (npcs[i].getNPCName() === findname) { return npcs[i];}
   }
   return 0;
@@ -714,13 +726,14 @@ function SayNear(sayx,sayy,saymap,saywhat) {
 
 function WhereIs(npcname) {
   let npc;
-  $.each(maps.data, function(idx,val) {
+  for (let idx in maps.data) {
+    let val = maps.data[idx];
     let mapnpcs = val.npcs.getAll();
     for (let i=0;i<mapnpcs.length;i++) {
       if (mapnpcs[i].getNPCName() === npcname) {
         npc = mapnpcs[i];
       }
     }
-  });
+  }
   return npc.getLocation();
 }

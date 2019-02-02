@@ -1,12 +1,12 @@
 "use strict";
 
 function CreateDisplayTables() {
-  var terraintable = "<table id='mainterrainview' style='position:fixed; top:38px; left:19px; z-index:21' border='0' cellspacing='0' cellpadding='0'>";
-  var maintable = "<table id='mainview' style='position:fixed; top:38px; left:19px; z-index:22' border='0' cellspacing='0' cellpadding='0'>";
-  for (var j = 0; j< viewsizey; j++) {
+  let terraintable = "<table id='mainterrainview' style='position:fixed; top:38px; left:19px; z-index:21' border='0' cellspacing='0' cellpadding='0'>";
+  let maintable = "<table id='mainview' style='position:fixed; top:38px; left:19px; z-index:22' border='0' cellspacing='0' cellpadding='0'>";
+  for (let j=0; j<VIEWSIZEY; j++) {
     terraintable += "<tr>";
     maintable += "<tr>";
-    for (var i = 0; i< viewsizex; i++) {
+    for (let i=0; i<VIEWSIZEX; i++) {
       terraintable += "<td id='terrain_"+i+"x"+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
       maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
     }
@@ -16,26 +16,26 @@ function CreateDisplayTables() {
   terraintable += "</table>";
   maintable += "</table>";
 
-  $("#displayframe").html(terraintable + "\n" + maintable);
+  document.getElementById('displayframe').innerHTML = terraintable + "\n" + maintable;
   return;
 }
 
 function getDisplayCenter(themap,fromx,fromy) {
-	var edge = {};
-	var leftedge = fromx - (viewsizex - 1)/2;
+	let edge = {};
+	let leftedge = fromx - (VIEWSIZEX - 1)/2;
   if (leftedge < 0) { leftedge = 0; }
-  var rightedge = leftedge + viewsizex - 1;
+  let rightedge = leftedge + VIEWSIZEX - 1;
   if (rightedge >= themap.getWidth()) {
   	rightedge = themap.getWidth() -1;  // Note, this will explode somewhat if the map is smaller than 13x13
-  	leftedge = rightedge - viewsizex + 1;
+  	leftedge = rightedge - VIEWSIZEX + 1;
   	if (leftedge < 0) { leftedge = 0; }
   }
-  var topedge = fromy - (viewsizey - 1)/2;
+  let topedge = fromy - (VIEWSIZEY - 1)/2;
   if (topedge < 0) { topedge = 0; }
-  var bottomedge = topedge + viewsizey - 1;
+  let bottomedge = topedge + VIEWSIZEY - 1;
   if (bottomedge >= themap.getHeight()) {
   	bottomedge = themap.getHeight() -1;
-  	topedge = bottomedge - viewsizey + 1;
+  	topedge = bottomedge - VIEWSIZEY + 1;
   	if (topedge < 0) {topedge = 0;}
   }
 	edge.leftedge = leftedge;
@@ -60,49 +60,60 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   // param.dmg - damage dealt by whatever generates this effect
   // param.endturn - 1 if this ends atk's turn
   // param.retval - retval from calling function
-  var type = param.type;
-  var duration = param.duration;
-  var ammoreturn = param.ammoreturn;
-  var dmg = param.dmg;
-  var dmgtype = param.dmgtype;
-  var endturn = param.endturn;
-  var retval = param.retval;
-  var callback = param.callback;
-  var ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
-  var returnhtml;
+  let type = param.type;
+  let duration = param.duration;
+  let ammoreturn = param.ammoreturn;
+  let dmg = param.dmg;
+  let dmgtype = param.dmgtype;
+  let endturn = param.endturn;
+  let retval = param.retval;
+  let ammocoords = GetCoordsWithOffsets(ammographic.fired, fromcoords, tocoords);
+  let returnhtml;
+  let eventcount = 0;
+  let eventcount2 = 0;
+
+  let animid = "anim_" + Dice.roll("1d100000");  // so more than one can be going at a time
   
-  var tablehtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
+  let tablehtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'ms linear 0s, top '+duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
   
-  $("#combateffects").html(tablehtml);
+  document.getElementById('combateffects').innerHTML += tablehtml;
     
-  $("#animtable").animate({ left: ammocoords.tox , top: ammocoords.toy } , duration, 'linear', function() {
+  let animdiv = document.getElementById(animid);
+
+  animdiv.addEventListener("transitionend", function(event) { 
+    if (!eventcount) { eventcount++; return; }
   
-    $("#combateffects").html("");
-    var hitanimhtml = '<div id="hitdiv" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; z-index:40; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
+    animdiv.parentNode.removeChild(animdiv);
+    let hitanimhtml = '<div id="'+animid+'" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
   
-    $("#combateffects").html(hitanimhtml);
+    document.getElementById('combateffects').innerHTML = hitanimhtml;
     if (sounds["end"]) {
       DUPlaySound(sounds["end"]);
     }
     setTimeout(function() {
-      $("#combateffects").html("");
+      animdiv = document.getElementById(animid);
+      animdiv.parentNode.removeChild(animdiv);
       if ((type !== "missile") || (!ammoreturn)) {
         duration = 50;
         ammographic.graphic = "spacer.gif";
         ammographic.xoffset = 0;
         ammographic.yoffset = 0;
       }
-      returnhtml = '<div id="animtable" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; z-index:40; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
-      $("#combateffects").html(returnhtml);
-      $("#animtable").animate({ left: ammocoords.fromx , top: ammocoords.fromy } , duration, 'linear', function() {
+      returnhtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'ms linear 0s, top '+duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
+      
+      document.getElementById('combateffects').innerHTML += returnhtml;
+      animdiv = document.getElementById(animid);
+      
+      animdiv.addEventListener("transitionend", function(event) {
+        if (!eventcount2) { eventcount2++; return; }
         if (dmg != 0) {
-          var prehp = def.getHP();
-          var stillalive = def.dealDamage(dmg, atk, dmgtype);    
+          let prehp = def.getHP();
+          let stillalive = def.dealDamage(dmg, atk, dmgtype);    
           if (stillalive > -1) {
             if (Math.floor(prehp) === Math.floor(def.getHP())) {
               retval["txt"] += ": Scratched!"; 
             } else {
-              var damagedesc = GetDamageDescriptor(def); 
+              let damagedesc = GetDamageDescriptor(def); 
               retval["txt"] += ": " + damagedesc + "!"; 
             }
           }
@@ -122,51 +133,57 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
         if ((!doagain) && (endturn)) {
           atk.endTurn(retval["initdelay"]);
         } else if (doagain) {
-          var doit = doagain.shift();
+          let doit = doagain.shift();
           AnimateEffect(doit.atk, doit.def, doit.fromcoords, doit.tocoords, doit.ammocoords, doit.destgraphic, doit.type, doit.duration, doit.ammoreturn, doit.dmg, endturn, doit.retval, doagain);
         }
   
-      });
-  
+      }, false);
+      setTimeout(function() { Object.assign(animdiv.style, {left:ammocoords.fromx+"px", top: ammocoords.fromy+"px"}); }, 1); // see below- kludge
+
     }, 400);
-  });
+  }, false);
+
+  setTimeout(function() { Object.assign(animdiv.style, {left: ammocoords.tox+"px", top: ammocoords.toy+"px" }); }, 1); // THIS IS A TOTAL KLUDGE
+  // For some reason, the transition would not run if the 50ms pause was not there. It would skip to the end, and not
+  // fire the transitionend event. This should not be necessary.
+
 }
   
 function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
   
-  var displayCell = {};
-  var localacre = mapname.getTile(x,y);
+  let displayCell = {};
+  let localacre = mapname.getTile(x,y);
    
-  var displaytile;
+  let displaytile;
   // decide whether to draw a tile, draw it shaded, or make it darkness
-  var losresult = mapname.getLOS(centerx, centery, x, y);
+  let losresult = mapname.getLOS(centerx, centery, x, y);
   
-  var blocks = localacre.getBlocksLOS();
+  let blocks = localacre.getBlocksLOS();
     
-  var lighthere = 0;
-  var sunlight = mapname.getAmbientLight();
+  let lighthere = 0;
+  let sunlight = mapname.getAmbientLight();
   if (sunlight === 1) {
     lighthere = 1;
   } else {
     if ((blocks >= LOS_THRESHOLD) && ((centerx != x) || (centery != y) )) {
-      var dirnum = GetViewDirection(centerx,centery,x,y);
+      let dirnum = GetViewDirection(centerx,centery,x,y);
       if ((dirnum === 6) || (dirnum === 7) || (dirnum === 0)) {
-        var selight = localacre.getLocalLight("se") + sunlight;
+        let selight = localacre.getLocalLight("se") + sunlight;
         if (selight > lighthere) {
           lighthere = selight;
         }
       } if ((dirnum >= 0) && (dirnum <= 2)) {
-        var swlight = localacre.getLocalLight("sw") + sunlight;
+        let swlight = localacre.getLocalLight("sw") + sunlight;
         if (swlight > lighthere) {
           lighthere = swlight;
         }
       } if ((dirnum >= 2) && (dirnum <= 4)) {
-        var nwlight = localacre.getLocalLight("nw") + sunlight;
+        let nwlight = localacre.getLocalLight("nw") + sunlight;
         if (nwlight > lighthere) {
           lighthere = nwlight;
         }
       } if ((dirnum >= 4) && (dirnum <= 6)) {
-        var nelight = localacre.getLocalLight("ne") + sunlight;
+        let nelight = localacre.getLocalLight("ne") + sunlight;
         if (nelight > lighthere) {
           lighthere = nelight;
         }
@@ -178,15 +195,15 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     
   displaytile = localacre.getTop(0,1,1);  // sorts NPCs to top, but "alwaystop" features above them
   while (displaytile.getName() === "SeeBelow") {
-    var retval = FindBelow(x,y,mapname);
+    let retval = FindBelow(x,y,mapname);
     localacre = retval.tile;
     mapname = retval.map;
     displaytile = localacre.getTop();
   }
-  var isnpc = 0;
+  let isnpc = 0;
   if (displaytile.checkType("NPC") && !displaytile.specials.mindless) { isnpc = 1; }
-  var graphics = displaytile.getGraphicArray();
-  var showGraphic = graphics[0];
+  let graphics = displaytile.getGraphicArray();
+  let showGraphic = graphics[0];
   if ((typeof displaytile.setBySurround === "function") && ((losresult < LOS_THRESHOLD) || ev)) {
     graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
     displayCell.showGraphic = graphics[0];
@@ -194,9 +211,9 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     displayCell.graphics3 = graphics[3];
     displayCell.graphics1 = graphics[1];
     if (typeof displaytile.doTile === "function") {
-      showGraphic = displaytile.doTile(x,y,graphics[0]);
-      if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
-      if (showGraphic.spritexoffset) { 
+      showGraphic = displaytile.doTile(x,y,displayCell);
+      if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
+      if ("spritexoffset" in showGraphic) { 
         displayCell.graphics2 = showGraphic.spritexoffset;
         displayCell.graphics3 = showGraphic.spriteyoffset;
       }
@@ -210,15 +227,15 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     displayCell.graphics3 = graphics[3];
     displayCell.graphics1 = graphics[1];
     if (typeof displaytile.doTile === "function") {
-      showGraphic = displaytile.doTile(x,y,showGraphic);
-      if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
-      if (showGraphic.hasOwnProperty("spritexoffset")) { 
+      showGraphic = displaytile.doTile(x,y,displayCell);
+      if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
+      if ("spritexoffset" in showGraphic) { 
         displayCell.graphics2 = showGraphic.spritexoffset;
         displayCell.graphics3 = showGraphic.spriteyoffset;
       }      
     }
     if (typeof displaytile.setByBelow === "function") {
-      var setbelow = displaytile.setByBelow(x,y,mapname);
+      let setbelow = displaytile.setByBelow(x,y,mapname);
       displayCell.showGraphic = setbelow[0];
       displayCell.graphics2 = setbelow[2];
       displayCell.graphics3 = setbelow[3];
@@ -246,30 +263,30 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
 function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
     
   if (losresult >= LOS_THRESHOLD) {
-    var displaytile = eidos.getForm('BlankBlack');
-    var graphics = displaytile.getGraphicArray();
-    var showGraphic = graphics[0];
-    var displayCell = {};
+    let displaytile = eidos.getForm('BlankBlack');
+    let graphics = displaytile.getGraphicArray();
+    let showGraphic = graphics[0];
+    let displayCell = {};
     displayCell.showGraphic = showGraphic;
     displayCell.graphics2 = graphics[2];
     displayCell.graphics3 = graphics[3];
     displayCell.graphics1 = graphics[1];
     return displayCell;
   }
-  var localacre = mapref.getTile(xcoord, ycoord);
-  var displaytile = localacre.getTerrain();
+  let localacre = mapref.getTile(xcoord, ycoord);
+  let displaytile = localacre.getTerrain();
   
   while (displaytile.getName() === "SeeBelow") {
-    var retval = FindBelow(xcoord,ycoord,mapref);
+    let retval = FindBelow(xcoord,ycoord,mapref);
     localacre = retval.tile;
     mapref = retval.map;
     displaytile = localacre.getTerrain();
   }
   
-  var graphics = displaytile.getGraphicArray();
-  var showGraphic = graphics[0];
+  let graphics = displaytile.getGraphicArray();
+  let showGraphic = graphics[0];
   
-  var displayCell = {};
+  let displayCell = {};
   displayCell.desc = displaytile.getDesc();
   if (typeof displaytile.setBySurround === "function") {
     graphics = displaytile.setBySurround(xcoord,ycoord,mapref,graphics,0,centerx,centery);
@@ -281,9 +298,9 @@ function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
   displayCell.graphics3 = graphics[3];
   displayCell.graphics1 = graphics[1];
   if (typeof displaytile.doTile === "function") {
-    showGraphic = displaytile.doTile(xcoord,ycoord,showGraphic);
-    if (showGraphic.graphic) { displayCell.showGraphic = showGraphic.graphic; }
-    if (showGraphic.hasOwnProperty("spritexoffset")) { 
+    showGraphic = displaytile.doTile(xcoord,ycoord,displayCell);
+    if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
+    if ("spritexoffset" in showGraphic) { 
       displayCell.graphics2 = showGraphic.spritexoffset;
       displayCell.graphics3 = showGraphic.spriteyoffset;
     }        
@@ -293,9 +310,9 @@ function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
 }
 
 function DamageFlash() {
-  $('#hpcell').css("background-color", "white");
-  $('#hpcell').css("color", "black");
-  setTimeout(function() { $('#hpcell').css("background-color", "black"); $('#hpcell').css("color", "white"); }, 250);
+  document.getElementById('hpcell').style.backgroundColor = "white";
+  document.getElementById('hpcell').style.color = "black";
+  setTimeout(function() { document.getElementById('hpcell').style.backgroundColor = "black"; document.getElementById('hpcell').style.color = "white"; }, 250);
 }
 
 function animateImage(startx, endx, obj, repeat, dir, waitdur, destroywhendone, settostart) {
@@ -309,7 +326,7 @@ function animateImage(startx, endx, obj, repeat, dir, waitdur, destroywhendone, 
 
 function continueAnimation(startx, endx, obj,repeat, dir, waitdur, destroywhendone) {
   if (obj.getHomeMap() === PC.getHomeMap()) {
-    var diff = 32;
+    let diff = 32;
     if (dir === "right") {
       diff = -32;
     }
@@ -331,9 +348,9 @@ function continueAnimation(startx, endx, obj,repeat, dir, waitdur, destroywhendo
 
 function destroyAnimation(thing) {
   delete timeouts[thing.getSerial()];
-  var thingmap = thing.getHomeMap();
-  var thingx = thing.getx();
-  var thingy = thing.gety();
+  let thingmap = thing.getHomeMap();
+  let thingx = thing.getx();
+  let thingy = thing.gety();
   thingmap.deleteThing(thing);
   if (thingmap === PC.getHomeMap()) {
     DrawMainFrame("one", thingmap, thingx, thingy);
@@ -342,21 +359,21 @@ function destroyAnimation(thing) {
 
 function Earthquake() {
   // possibly add sound
-  $("#displayframe").css("left", 18);
+  document.getElementById('displayframe').style.left = 18;
   setTimeout(function() {
-    $("#displayframe").css("left", 20);
+    document.getElementById('displayframe').style.left = 20;
     setTimeout(function() {
-      $("#displayframe").css("left", 22);
+      document.getElementById('displayframe').style.left = 22;
       setTimeout(function() {
-        $("#displayframe").css("left", 20);
+        document.getElementById('displayframe').style.left = 20;
         setTimeout(function() {
-          $("#displayframe").css("left", 18);
+          document.getElementById('displayframe').style.left = 18;
           setTimeout(function() {
-            $("#displayframe").css("left", 20);
+            document.getElementById('displayframe').style.left = 20;
             setTimeout(function() {
-              $("#displayframe").css("left", 22);
+              document.getElementById('displayframe').style.left = 22;
               setTimeout(function() {
-                $("#displayframe").css("left", 20);
+                document.getElementById('displayframe').style.left = 20;
               }, 250);
             },250);
           },250);
@@ -366,21 +383,33 @@ function Earthquake() {
   },250);
 }
 
-function FadeOut() {
+function FadeOut(death) {
   // stop playing spell animations
   spellcount = {};
   
   // Ironically, to do a fade OUT I am performing a jquery fadeIn(), to fade in a blanket of darkness
   // to put over the viewscreen.
-  var darkness = "<div id='darkness' style='position:absolute;left:0;top:0;width:416px;height:418px;background-color:black;display:none'><img src='graphics/spacer.gif' width='416' height='418'></div>";
+  let darkness = "<div id='darkness' style='position:absolute;left:0;top:0;width:416px;height:418px;background-color:black;opacity:0'><img src='graphics/spacer.gif' width='416' height='418'></div>";
   document.getElementById('spelleffects').innerHTML = darkness;
-  document.getElementById('darkness').classList.toggle("runfadein");
+  if (death) {
+    document.getElementById('darkness').classList.toggle("rundeathfadein");
+  } else {
+    document.getElementById('darkness').classList.toggle("runfadein");
+  }
 }
 
-function FadeIn() {
+function FadeIn(death) {
 
-  document.getElementById('darkness').classList.toggle("runfadein");
+  if (death) {
+    document.getElementById('darkness').classList.toggle("rundeathfadein");
+  } else {
+    document.getElementById('darkness').classList.toggle("runfadein");
+  }
   document.getElementById('darkness').classList.toggle("runfadeout");
   setTimeout(function() { document.getElementById('spelleffects').innerHTML = ""; }, 1500);
   
+}
+
+function GetSpritesheetLocation(x,y) {
+  return parseInt(x) * -1 / 32 + (parseInt(y) * -1 / 32) * 10;
 }

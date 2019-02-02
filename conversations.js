@@ -303,7 +303,8 @@ function InnRoom(xc,yc,doors) {
   maintext.setInputLine("&gt;");
   maintext.drawTextFrame();
   
-  $("#displayview").fadeOut(1500, function() {
+  FadeOut();
+  setTimeout(function() {
     maintext.addText("ZZZZZZ...");
     if (DU.gameflags.getFlag("music")) {
       QueueMusic(PC.getHomeMap().getMusic());
@@ -313,7 +314,7 @@ function InnRoom(xc,yc,doors) {
       if (GetDistance(0,0,doors[0],doors[1]) <= 8) {
         innmap.moveThing(30,30,PC);
       }
-      var inndoor = innmap.getTile(doors[0],doors[1]);
+      let inndoor = innmap.getTile(doors[0],doors[1]);
       inndoor = inndoor.getTopFeature();
       if (inndoor.open) {
         inndoor.use(PC);
@@ -324,17 +325,17 @@ function InnRoom(xc,yc,doors) {
     innmap.moveThing(xc,yc,PC);
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(),PC.gety());
     gamestate.setMode("null");
-    var duration = 8*12;
+    let duration = 8*12;
     PC.setWaiting(DUTime.getGameClock() + duration);
     PC.atinn = 1;
-  });
+  }, 1500);
 
 }
 
 function OnConvTriggers() {};
 
 OnConvTriggers["ash_password"] = function(speaker,keyword) {
-  var door = PC.getHomeMap().getTile(25,21).getTopFeature();
+  let door = PC.getHomeMap().getTile(25,21).getTopFeature();
 
   PC.getHomeMap().deleteThing(door);
   door = localFactory.createTile("Door");
@@ -343,7 +344,7 @@ OnConvTriggers["ash_password"] = function(speaker,keyword) {
   // replicating a door's Use code without a user
   door.setGraphicArray(door.opengraphic);
   door.closedLOS = door.getBlocksLOSArray();
-  var seethru = [];
+  let seethru = [];
   seethru[0] = 0;
   door.setBlocksLOSArray(seethru);
   door.addPassable(MOVE_WALK);
@@ -364,9 +365,9 @@ OnConvTriggers["spellbook"] = function(speaker,keyword) {
 OnConvTriggers["king_heal"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("king_heal");
   PC.healMe(1000);
-  var effects = PC.getSpellEffects();
+  let effects = PC.getSpellEffects();
   if (effects) {
-    for (var i=0; i<effects.length; i++) {
+    for (let i=0; i<effects.length; i++) {
       if (effects[i].getName() === "Poison") {
         effects[i].endEffect();
       }
@@ -383,9 +384,9 @@ OnConvTriggers["king_heal"] = function(speaker,keyword) {
 
 OnConvTriggers["hazel_cure"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("hazel_cure");
-  var effects = PC.getSpellEffects();
+  let effects = PC.getSpellEffects();
   if (effects) {
-    for (var i=0; i<effects.length; i++) {
+    for (let i=0; i<effects.length; i++) {
       if (effects[i].getName() === "Poison") {
         effects[i].endEffect();
       }
@@ -512,12 +513,12 @@ function CheckAllHealth() {
 }
 
 OnConvTriggers["ash_get_book"] = function(speaker,keyword) {
-  var ashmap = PC.getHomeMap(); // he has to be on the PC's map since they just talked to him
-  var npcs = ashmap.npcs.getAll();
-  var ash;
-  $.each(npcs, function(idx,val) {
-    if (val.getNPCName() === "Asharden") { ash = val; }
-  });
+  let ashmap = PC.getHomeMap(); // he has to be on the PC's map since they just talked to him
+  let npcs = ashmap.npcs.getAll();
+  let ash;
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getNPCName() === "Asharden") { ash = npcs[i]; }
+  }
   if (!ash) { alert("Couldn't find Asharden to change his AI."); }
   else {
     ash.prevai = ash.getCurrentAI();
@@ -528,30 +529,28 @@ OnConvTriggers["ash_get_book"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["anna_return"] = function(speaker,keyword) {
-  var annamap = PC.getHomeMap(); // she has to be on the PC's map since they just talked to her
-  var npcs = annamap.npcs.getAll();
-  var anna;
-  $.each(npcs, function(idx,val) {
-    if (val.getNPCName() === "Anna") { anna = val; }
-  });
+  let annamap = PC.getHomeMap(); // she has to be on the PC's map since they just talked to her
+  let npcs = annamap.npcs.getAll();
+  let anna;
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getNPCName() === "Anna") { anna = npcs[i]; }
+  }
   if (!anna) { alert("Couldn't find Anna to change her AI."); }
   else {
-//    anna.setCurrentAI("AnnaLeaves");
-//    DebugWrite("plot", "Anna's AI changes to AnnaLeaves.<br />");
     anna.setSchedule("anna_leaves");
     anna.setCurrentScheduleIndex(0);
   }
 }
 
 OnConvTriggers["garrick_flipout"] = function(speaker,keyword) {
-  var garrickmap = PC.getHomeMap();
-  var npcs = garrickmap.npcs.getAll();
-  var garrick;
-  var aoife;
-  $.each(npcs, function(idx,val) {
-    if (val.getNPCName() === "Garrick") { garrick = val; }
-    if (val.getNPCName() === "Aoife") { aoife = val; }
-  });
+  let garrickmap = PC.getHomeMap();
+  let npcs = garrickmap.npcs.getAll();
+  let garrick;
+  let aoife;
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getNPCName() === "Garrick") { garrick = npcs[i]; }
+    if (npcs[i].getNPCName() === "Aoife") { aoife = npcs[i]; }
+  }
   if (!garrick) { alert("Couldn't find Garrick to change his AI."); }
   else {
     garrick.setCurrentAI("GarrickAttack");
@@ -564,7 +563,7 @@ OnConvTriggers["garrick_flipout"] = function(speaker,keyword) {
   else {
     aoife.setCurrentAI("AoifeAttack");
     DebugWrite("plot", "Aoife's AI changes to AoifeAttack.<br />");
-    var mace = localFactory.createTile("Shortsword");
+    let mace = localFactory.createTile("Shortsword");
     aoife.addToInventory(mace,1);
     aoife.setWeapon(mace);  // no longer actually a mace
     aoife.setAttitude("defensive");
@@ -590,15 +589,15 @@ OnConvTriggers["knows_horses"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["start_courier"] = function(speaker,keyword) {
-  var worldmap = maps.getMap("darkunknown");
-  var npcs = worldmap.npcs.getAll();
-  var courierexists = 0;
-  $.each(npcs, function(idx,val) {
-    if (val.getName() === "CourierGroup") { courierexists = 1; }
-  });
+  let worldmap = maps.getMap("darkunknown");
+  let npcs = worldmap.npcs.getAll();
+  let courierexists = 0;
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName() === "CourierGroup") { courierexists = 1; }
+  }
   
   if (!courierexists) {
-    var courier = localFactory.createTile("CourierGroup");
+    let courier = localFactory.createTile("CourierGroup");
     worldmap.placeThing(45,111,courier);
     courier.setCurrentAI("CourierPath");
     DebugWrite("plot","Courier spawned.<br />");
@@ -610,7 +609,7 @@ OnConvTriggers["start_courier"] = function(speaker,keyword) {
 OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("jharden_teaches");
   DU.gameflags.deleteFlag("jharden_newspell");
-  var taught = 0;
+  let taught = 0;
   if ((PC.getLevel() >= 2) && (!PC.knowsSpell(SPELL_CURE_LEVEL,SPELL_CURE_ID))) {
     maintext.addText("Jharden teaches you Cure!");
     PC.addSpell(SPELL_CURE_LEVEL,SPELL_CURE_ID);
@@ -656,7 +655,7 @@ OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
 OnConvTriggers["ash_teaches"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("ash_teaches");
   DU.gameflags.deleteFlag("ash_newspell");
-  var taught = 0;
+  let taught = 0;
   if ((PC.getLevel() >= 3) && (!PC.knowsSpell(SPELL_DISPEL_LEVEL,SPELL_DISPEL_ID))) {
     maintext.addText("Asharden teaches you Dispel!");
     PC.addSpell(SPELL_DISPEL_LEVEL,SPELL_DISPEL_ID);
@@ -687,16 +686,16 @@ OnConvTriggers["open_bdc_gate"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["place_mal"] = function(speaker,keyword) {
-  var tile = speaker.getHomeMap().getTile(30,34);
-  var shelf = tile.getTopFeature();
+  let tile = speaker.getHomeMap().getTile(30,34);
+  let shelf = tile.getTopFeature();
   if (shelf.getName() !== "MapsAndLegends") {
     shelf.setSearchYield(["MapsAndLegends"]);
   }
 }
 
 OnConvTriggers["place_tod"] = function(speaker,keyword) {
-  var tile = speaker.getHomeMap().getTile(38,32);
-  var shelf = tile.getTopFeature();
+  let tile = speaker.getHomeMap().getTile(38,32);
+  let shelf = tile.getTopFeature();
   if (shelf.getName() !== "ATreatiseOnDragons") {
     shelf.setSearchYield(["ATreatiseOnDragons"]);
   }
@@ -704,15 +703,15 @@ OnConvTriggers["place_tod"] = function(speaker,keyword) {
 
 OnConvTriggers["sirius_book1"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("sirius_book1");
-  var bookshelfLeft = localFactory.createTile("BookshelfLeft");
-  var bookshelfRight = localFactory.createTile("BookshelfRight");
-  var thismap = speaker.getHomeMap();
+  let bookshelfLeft = localFactory.createTile("BookshelfLeft");
+  let bookshelfRight = localFactory.createTile("BookshelfRight");
+  let thismap = speaker.getHomeMap();
   thismap.placeThing(32,41,bookshelfLeft);
   thismap.placeThing(33,41,bookshelfRight);
   if (!PC.checkInventory("AdelusLetter")) {
     bookshelfLeft.setSearchYield(["AdelusLetter"]);
   }
-  var lightsource = localFactory.createTile("TorchWest");
+  let lightsource = localFactory.createTile("TorchWest");
   thismap.placeThing(31,41,lightsource);
   
   DrawMainFrame("draw", thismap, PC.getx(), PC.gety());
@@ -727,7 +726,7 @@ OnConvTriggers["talked_shelaria"] = function(speaker,keyword) {
 
 OnConvTriggers["reset_music"] = function(speaker,keyword) {
   if (DU.gameflags.getFlag("music")) {
-    var song = speaker.getHomeMap().getMusic();
+    let song = speaker.getHomeMap().getMusic();
     StopMusic(nowplaying);
     nowplaying = DUPlayMusic(song);
   }
@@ -770,9 +769,9 @@ OnConvTriggers["where_king"] = function(speaker,keyword) {
 function ConvTestFlags() {};
 
 ConvTestFlags["warren_close"] = function(speaker,keyword) {
-  var warren;
-  var garen;
-  var npcs = speaker.getHomeMap().npcs.getAll();
+  let warren;
+  let garen;
+  let npcs = speaker.getHomeMap().npcs.getAll();
   for (let i=0;i<npcs.length;i++) {
     if (npcs[i].getNPCName() === "Warren") { warren = npcs[i]; }
     if (npcs[i].getNPCName() === "Garen") { garen = npcs[i]; }
