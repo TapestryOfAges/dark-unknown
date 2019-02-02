@@ -196,8 +196,7 @@ ais.RouteTo = function(who, params) {
       console.log(who.getNPCName() + " somehow is already at her destination.");
     } else {
       console.log(who.getNPCName() + " on " + who.getHomeMap().getName() + " at " + who.getx() + "," + who.gety());
-      console.log("Failed to move, in schedule index " + who.getCurrentScheduleIndex());
-      if (PC.getWaiting()) { EndWaiting(PC,0); }
+      console.log("Failed to move, in schedule index " + who.getCurrentScheduleIndex() + " at " + GetUsableClockTime());
     }
   } else { DebugWrite("schedules", "Already at destination... "); }
 

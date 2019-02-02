@@ -318,9 +318,9 @@ mappages["beldskae"].npcs[14] = {name : 'AdventurerVillagerNPC', x : 35, y : 18,
 mappages["beldskae"].npcs[15] = {name : 'TownsfolkVillagerNPC', x : 37, y : 16, NPCName: 'Ursula', Conversation: 'ursula', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2', PeaceAI: 'scheduled', Schedule: 'ursula'};
 mappages["beldskae"].npcs[16] = {name : 'TownGuardNPC', x : 14, y : 16, NPCName: 'Gabe', Conversation: 'gabe', Gender: 'male', NPCBand: '0', OverrideGraphic: '309.gif', skintone: '1', PeaceAI: 'scheduled', Schedule: 'gabe'};
 mappages["beldskae"].npcs[17] = {name : 'TownGuardNPC', x : 37, y : 21, NPCName: 'Kalli', Conversation: 'kalli', Gender: 'female', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'kalli'};
-//mappages["beldskae"].npcs[18] = {name : 'TownGuardNPC', x : 29, y : 10, NPCName: 'Bennett', Conversation: 'bennett', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'bennett'};
-//mappages["beldskae"].npcs[19] = {name : 'TownGuardNPC', x : 29, y : 29, NPCName: 'Pia', Conversation: 'pia', Gender: 'female', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'pia'};
-//mappages["beldskae"].npcs[20] = {name : 'TownGuardNPC', x : 40, y : 24, NPCName: 'Sorcha', Conversation: 'sorcha', Gender: 'female', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'sorcha'};
+mappages["beldskae"].npcs[18] = {name : 'TownGuardNPC', x : 29, y : 10, NPCName: 'Bennett', Conversation: 'bennett', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'bennett'};
+mappages["beldskae"].npcs[19] = {name : 'TownGuardNPC', x : 29, y : 29, NPCName: 'Pia', Conversation: 'pia', Gender: 'female', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'pia'};
+mappages["beldskae"].npcs[20] = {name : 'TownGuardNPC', x : 40, y : 24, NPCName: 'Sorcha', Conversation: 'sorcha', Gender: 'female', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'sorcha'};
 
 mappages["beldskae"].desc = "The Towne of Beldskae";
 mappages["beldskae"].longdesc = '';
@@ -474,9 +474,9 @@ mappages["beldskae2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 39, y : 21, 
 mappages["beldskae2"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 33, y : 17, NPCName: 'Grant', Conversation: 'grant', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1', PeaceAI: 'scheduled', Schedule: 'grant'};
 mappages["beldskae2"].npcs[4] = {name : 'TownGuardNPC', x : 21, y : 17, NPCName: 'Layla', Conversation: 'layla', Gender: 'female', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'layla'};
 mappages["beldskae2"].npcs[5] = {name : 'TownGuardNPC', x : 21, y : 19, NPCName: 'Rocco', Conversation: 'rocco', Gender: 'male', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'rocco'};
-//mappages["beldskae2"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 17, NPCName: 'Doris', Conversation: 'doris', Gender: 'female', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'doris'};
-//mappages["beldskae2"].npcs[7] = {name : 'TownGuardNPC', x : 24, y : 19, NPCName: 'Jordan', Conversation: 'jordan', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'jordan'};
-//mappages["beldskae2"].npcs[8] = {name : 'TownGuardNPC', x : 24, y : 21, NPCName: 'Ferris', Conversation: 'ferris', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'ferris'};
+mappages["beldskae2"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 17, NPCName: 'Doris', Conversation: 'doris', Gender: 'female', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'doris'};
+mappages["beldskae2"].npcs[7] = {name : 'TownGuardNPC', x : 24, y : 19, NPCName: 'Jordan', Conversation: 'jordan', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'jordan'};
+mappages["beldskae2"].npcs[8] = {name : 'TownGuardNPC', x : 24, y : 21, NPCName: 'Ferris', Conversation: 'ferris', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'ferris'};
 
 mappages["beldskae2"].desc = "The Towne of Beldskae";
 mappages["beldskae2"].longdesc = '';
