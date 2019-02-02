@@ -694,7 +694,7 @@ function GameMap() {
   this.exitTo.mapname = "darkunknown";
   this.exitTo.x = 65;
   this.exitTo.y = 70;
-  this.wraps = 0;
+  this.wrap = "None";
   
   this.returnmap = "darkunknown";
   this.returnx = 27;
@@ -918,9 +918,26 @@ GameMap.prototype.setTile = function(x,y,tile) {
 }
 
 GameMap.prototype.getTile = function(x,y) {  // returns an Acre
-	if ((y < 0) || (x < 0)) { return "OoB"; }
-	if (y >= this.data.length) { return "OoB"; }
-	if (x >= this.data[y].length) { return "OoB"; }
+  if ((y<0) || (y >= this.getHeight())) {
+    if ((this.getWrap() === "Vertical") || (this.getWrap() === "Both")) {
+      if (y<0) { y=this.getHeight()+y; }
+      else { y=y-this.getHeight(); }
+    } else {
+      return "OoB";
+    }
+  }
+  if ((x<0) || (x >= this.getWidth())) {
+    if ((this.getWrap() === "Horizontal") || (this.getWrap() === "Both")) {
+      if (x<0) { x=this.getWidth()+x; }
+      else { x=x-this.getWidth(); }
+    } else {
+      return "OoB";
+    }
+  }
+
+//  if ((y < 0) || (x < 0)) { return "OoB"; }
+//	if (y >= this.data.length) { return "OoB"; }
+//	if (x >= this.data[y].length) { return "OoB"; }
   return this.data[y][x];
 }
 
