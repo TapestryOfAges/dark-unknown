@@ -550,6 +550,53 @@ ais.PassOlympusGuardDoor = function(who,params) {
   alert("Error in PassOlympusGuardDoor - called by " + who.getNPCName());
 }
 
+ais.PassPaladinDoor = function(who,params) {
+  DebugWrite("schedules", "In PassPaladinDoor going " + params.dir + ".<br />");
+  let door = who.getHomeMap().getTile(57,48).getTopFeature();
+  if (who.gety() === 47) {
+    DebugWrite("schedules", "North of door, going south. ");
+    if (!door.open) {
+      DebugWrite("schedules", "Unlock and open door. ");
+      door.unlockMe();
+      MakeUseHappen(who,door,"map");
+    }
+    who.moveMe(0,1);
+    DebugWrite("schedules", "Step through. Activity unfinished.<br />");
+    return {fin:0};
+  } else if (who.gety() === 49) {
+    DebugWrite("schedules", "South of door, going north. ");
+    if (!door.open) {
+      DebugWrite("schedules", "Unlock and open door. ");
+      door.unlockMe();
+      MakeUseHappen(who,door,"map");
+    }
+    who.moveMe(0,-1);
+    DebugWrite("schedules", "Step through. Activity unfinished.<br />");
+    return {fin:0};
+  } else if (params.dir === "south") {
+    who.moveMe(0,1);
+    DebugWrite("schedules", "In doorway, heading south. Stepped out. ");
+    if (door.open) {
+      DebugWrite("schedules", "Door was open, closing.");
+      MakeUseHappen(who,door,"map");
+    }
+    door.lockMe(2);
+    DebugWrite("schedules", "Door locked : " + door.getLocked() + ". Activity complete.<br />");
+    return {fin:1};  
+  } else {
+    who.moveMe(0,-1);
+    DebugWrite("schedules", "In doorway, heading north. Stepped out. ");
+    if (door.open) {
+      DebugWrite("schedules", "Door was open, closing.");
+      MakeUseHappen(who,door,"map");
+    }
+    door.lockMe(2);
+    DebugWrite("schedules", "Door locked : " + door.getLocked() + ". Activity complete.<br />");
+    return {fin:1};  
+  }
+  alert("Error in PassPaladinDoor - called by " + who.getNPCName());
+}
+
 ais.GetDrunk = function(who, params) {
   let roll = Dice.roll("1d100");
   console.log(roll);
