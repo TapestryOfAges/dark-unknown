@@ -616,3 +616,22 @@ mappages["beldskae3"].returny = '74';
 mappages["beldskae3"].returninfused = '0';
 mappages["beldskae3"].linkedMaps = ["beldskae","beldskae2"];
 mappages["beldskae3"].editorLabels = '{"div_tile34x14":"Coral","div_tile33x23":"Conrad"}';
+
+mappages["beldskae"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+
+    // Changes made due to schedules
+
+    let kalli;
+
+    let npcs = mapref.npcs.getAll();
+
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getNPCName() === "Kalli") { kalli = npcs[i]; }
+    }
+
+    if ((kalli.getCurrentScheduleIndex() >= 32) && (kalli.getCurrentScheduleIndex() < 1)) {
+      kalli.realgraphic = "paladin-offcolor.gif";
+    }
+  }
+}
