@@ -13719,6 +13719,13 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 			}
 		}
 	}	else {
+    if (map.getWrap() !== "None") {
+      let wrap = map.getWrap();
+      if ((passx < 0) && ((wrap === "Horizontal") || (wrap === "Both"))) { passx = map.getWidth()+passx; }
+      else if ((passx >= map.getWidth()) && ((wrap === "Horizontal") || (wrap === "Both"))) { passx = passx-map.getWidth(); }
+      else if ((passy < 0) && ((wrap === "Vertical") || (wrap === "Both"))) { passy = map.getHeight()+passy; }
+      else if ((passy >= map.getHeight()) && ((wrap === "Vertical") || (wrap === "Both"))) { passy = passy-map.getHeight(); }
+    }
 		retval = tile.getBumpIntoResult(this);
 		if (retval["canmove"] === 0) { return retval; }
     DebugWrite("ai", this.getName() + " trying to move, checking canMoveHere for " + passx + "," + passy +".</span><br />");
