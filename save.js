@@ -163,7 +163,6 @@ GameStateData.prototype.saveGame = function(flag) {
 	}
 
   let serialized = JSON.stringify(savedata);
-	let compressed = LZString.compressToUTF16(serialized);
 	
 	DebugWrite("saveload", "<br /><br /><p>" + serialized + "</p><br />");
 	
