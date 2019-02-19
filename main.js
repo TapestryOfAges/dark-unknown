@@ -153,6 +153,8 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
   tview.style.backgroundImage = "url('graphics/" + terr.showGraphic + "')";
   tview.style.backgroundRepeat = "no-repeat";
   tview.style.backgroundPosition = terr.graphics2 + "px " + terr.graphics3 + "px";
+
+  phaserUI.setTerrainTile(xidx, yidx, thiscell);
 }
 
 function DrawTopbarFrame(txt) {
@@ -169,6 +171,7 @@ function StartGame() {
 
   if (debug) {  ActivateDebug(1); }
   audio_init_2();  
+  phaserUI.init();
 //  CreateUI();
 }
 

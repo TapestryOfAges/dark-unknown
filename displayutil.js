@@ -2,7 +2,8 @@
 
 function CreateDisplayTables() {
   let terraintable = "<table id='mainterrainview' style='position:fixed; top:38px; left:19px; z-index:21' border='0' cellspacing='0' cellpadding='0'>";
-  let maintable = "<table id='mainview' style='position:fixed; top:38px; left:19px; z-index:22' border='0' cellspacing='0' cellpadding='0'>";
+  let maintable = "<table id='mainview' style='position:fixed; top:38px; left:19px; z-index:23' border='0' cellspacing='0' cellpadding='0'>";
+  let pttable = "<div id='phaserterrainview' style='position:fixed; top:38px; left:19px; z-index:22'>";
   for (let j=0; j<VIEWSIZEY; j++) {
     terraintable += "<tr>";
     maintable += "<tr>";
@@ -16,7 +17,7 @@ function CreateDisplayTables() {
   terraintable += "</table>";
   maintable += "</table>";
 
-  document.getElementById('displayframe').innerHTML = terraintable + "\n" + maintable;
+  document.getElementById('displayframe').innerHTML = terraintable + "\n" + maintable + "\n" + pttable;;
   return;
 }
 
