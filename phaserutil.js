@@ -2,14 +2,14 @@
 
 let phaserMainState = {
   preload() {
-    this.game.load.spritesheet('spritesheet', 'graphics/master_spritesheet.png', 32, 32);
+    this.load.spritesheet('spritesheet', 'graphics/master_spritesheet.png', 32, 32);
   },
   create() {
     phaserUI.gameSprites = [];
     for (let xx = 0; xx < 13; xx++){
       phaserUI.gameSprites[xx] = [];
       for (let yy = 0; yy < 13; yy++){
-        phaserUI.gameSprites[xx][yy] = this.game.add.sprite(xx * 32, yy * 32, 'spritesheet', 8);
+        phaserUI.gameSprites[xx][yy] = this.add.sprite(xx * 32, yy * 32, 'spritesheet', 8);
       }
     }
     phaserUI.loaded = true;
@@ -19,7 +19,7 @@ let phaserMainState = {
 
 let phaserUI = {
   init() {
-    this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaserterrainview', phaserMainState);
+    this.game = new Phaser.Game({ width:800, height:600, type: Phaser.AUTO, parent: 'phaserterrainview', scene: phaserMainState});
   },
 
   setMainViewTile(x, y, tile) {
