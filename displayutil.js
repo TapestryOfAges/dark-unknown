@@ -48,6 +48,7 @@ function getDisplayCenter(themap,fromx,fromy) {
 }
 
 function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, sounds, param, doagain) {
+  console.log("Animation begins!");
   // atk - source/attacker
   // def - target/defender, if any
   // fromcoords, tocoords - object with .x and .y
@@ -81,7 +82,9 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   let animdiv = document.getElementById(animid);
 
   animdiv.addEventListener("transitionend", function(event) { 
-    if (!eventcount) { eventcount++; return; }
+    if (eventcount) { console.log("callback called twice"); return; }
+    eventcount = 1;
+    console.log("callback called");
   
     animdiv.parentNode.removeChild(animdiv);
     let hitanimhtml = '<div id="'+animid+'" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
@@ -94,61 +97,67 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
       animdiv = document.getElementById(animid);
       animdiv.parentNode.removeChild(animdiv);
       if ((type !== "missile") || (!ammoreturn)) {
-        duration = 50;
-        ammographic.graphic = "spacer.gif";
-        ammographic.xoffset = 0;
-        ammographic.yoffset = 0;
-      }
-      returnhtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'ms linear 0s, top '+duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
+//        duration = 50;
+//        ammographic.graphic = "spacer.gif";
+//        ammographic.xoffset = 0;
+//        ammographic.yoffset = 0;
+        FinishAnimation();
+      } else {
+        returnhtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.tox + 'px; top: ' + ammocoords.toy + 'px; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'ms linear 0s, top '+duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';      
+       
+        document.getElementById('combateffects').innerHTML += returnhtml;
+        animdiv = document.getElementById(animid);
       
-      document.getElementById('combateffects').innerHTML += returnhtml;
-      animdiv = document.getElementById(animid);
-      
-      animdiv.addEventListener("transitionend", function(event) {
-        if (!eventcount2) { eventcount2++; return; }
-        if (dmg != 0) {
-          let prehp = def.getHP();
-          let stillalive = def.dealDamage(dmg, atk, dmgtype);    
-          if (stillalive > -1) {
-            if (Math.floor(prehp) === Math.floor(def.getHP())) {
-              retval["txt"] += ": Scratched!"; 
-            } else {
-              let damagedesc = GetDamageDescriptor(def); 
-              retval["txt"] += ": " + damagedesc + "!"; 
-            }
-          }
-          else { 
-            if (def.specials.crumbles) { retval["txt"] += ": It crumbles to dust!"; }
-            else {retval["txt"] += ": Killed!"; }
-            
-            if (def.getXPVal() && (atk === PC)) {
-              retval["txt"] += " (XP gained: " + def.getXPVal() + ")";
-            }
-          }
-        } 
-        maintext.addText(retval["txt"]);
-        maintext.setInputLine("&gt;");
-        maintext.drawInputLine();
+        animdiv.addEventListener("transitionend", FinishAnimation, false);
   
-        if ((!doagain) && (endturn)) {
-          atk.endTurn(retval["initdelay"]);
-        } else if (doagain) {
-          let doit = doagain.shift();
-          AnimateEffect(doit.atk, doit.def, doit.fromcoords, doit.tocoords, doit.ammocoords, doit.destgraphic, doit.type, doit.duration, doit.ammoreturn, doit.dmg, endturn, doit.retval, doagain);
-        }
-  
-      }, false);
-      setTimeout(function() { Object.assign(animdiv.style, {left:ammocoords.fromx+"px", top: ammocoords.fromy+"px"}); }, 1); // see below- kludge
+        setTimeout(function() { Object.assign(animdiv.style, {left:ammocoords.fromx+"px", top: ammocoords.fromy+"px"}); }, 1); // see below- kludge
 
+      }
     }, 400);
   }, false);
 
   setTimeout(function() { Object.assign(animdiv.style, {left: ammocoords.tox+"px", top: ammocoords.toy+"px" }); }, 1); // THIS IS A TOTAL KLUDGE
-  // For some reason, the transition would not run if the 50ms pause was not there. It would skip to the end, and not
+  // For some reason, the transition would not run if the 1ms pause was not there. It would skip to the end, and not
   // fire the transitionend event. This should not be necessary.
 
+  function FinishAnimation() {
+    if (eventcount2) { console.log("FinishAnimation called twice."); return; }
+    eventcount2 = 1;
+    console.log("FinishAnimation called.");
+    if (dmg != 0) {
+      let prehp = def.getHP();
+      let stillalive = def.dealDamage(dmg, atk, dmgtype);    
+      if (stillalive > -1) {
+        if (Math.floor(prehp) === Math.floor(def.getHP())) {
+          retval["txt"] += ": Scratched!"; 
+        } else {
+          let damagedesc = GetDamageDescriptor(def); 
+          retval["txt"] += ": " + damagedesc + "!"; 
+        }
+      }
+      else { 
+        if (def.specials.crumbles) { retval["txt"] += ": It crumbles to dust!"; }
+        else {retval["txt"] += ": Killed!"; }
+        
+        if (def.getXPVal() && (atk === PC)) {
+          retval["txt"] += " (XP gained: " + def.getXPVal() + ")";
+        }
+      }
+    } 
+    maintext.addText(retval["txt"]);
+    maintext.setInputLine("&gt;");
+    maintext.drawInputLine();
+
+    if ((!doagain) && (endturn)) {
+      console.log("Ending turn.");
+      atk.endTurn(retval["initdelay"]);
+    } else if (doagain) {
+      let doit = doagain.shift();
+      AnimateEffect(doit.atk, doit.def, doit.fromcoords, doit.tocoords, doit.ammocoords, doit.destgraphic, doit.type, doit.duration, doit.ammoreturn, doit.dmg, endturn, doit.retval, doagain);
+    }
+  }
 }
-  
+
 function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
   
   let displayCell = {};
