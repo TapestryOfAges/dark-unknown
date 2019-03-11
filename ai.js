@@ -1397,7 +1397,8 @@ function FindCombatPath(who,approach,path) {
     let anyavailable = 0;
     for (let i=0;i<endpoints.length;i++) {
       let desttile = whomap.getTile(endpoints[i][0],endpoints[i][1]);
-      if (desttile.getTopNPC()) { available[i] = 0; }
+      if (desttile === "OoB") { available[i] = 0; }
+      else if (desttile.getTopNPC()) { available[i] = 0; }
       else { available[i] = 1; anyavailable = 1;}
     }
     
