@@ -1,10 +1,13 @@
 "use strict";
 
 let phaserMainState = {
-  preload() {
-    this.load.spritesheet('spritesheet', 'graphics/master_spritesheet.png', 32, 32);
+  preload: function() {
+    console.log("preload");
+    this.load.spritesheet('spritesheet', 'graphics/master_spritesheet.png', { framewidth: 32, frameheight: 32});
+    console.log(this);
   },
-  create() {
+  create: function() {
+    console.log("create");
     phaserUI.gameSprites = [];
     for (let xx = 0; xx < 13; xx++){
       phaserUI.gameSprites[xx] = [];
@@ -14,7 +17,7 @@ let phaserMainState = {
     }
     phaserUI.loaded = true;
   },
-  update() {}
+  update: function() {}
 }
 
 let phaserUI = {
@@ -33,7 +36,7 @@ let phaserUI = {
       return;
     }
     console.log('setTerrainTile', x, y, tile);
-    if (tile.showGraphic !== 'terrain_tiles.png'){
+    if (tile.showGraphic !== 'master_spritesheet.png'){
       this.terrainSprites[x][y].loadTexture('spritesheet', 8);
       return;
     }

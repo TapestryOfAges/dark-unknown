@@ -145,7 +145,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   }, false);
 
   setTimeout(function() { Object.assign(animdiv.style, {left: ammocoords.tox+"px", top: ammocoords.toy+"px" }); }, 1); // THIS IS A TOTAL KLUDGE
-  // For some reason, the transition would not run if the 50ms pause was not there. It would skip to the end, and not
+  // For some reason, the transition would not run if the 1ms pause was not there. It would skip to the end, and not
   // fire the transitionend event. This should not be necessary.
 
 }
