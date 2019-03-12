@@ -77,7 +77,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   
   let tablehtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'ms linear 0s, top '+duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
   
-  document.getElementById('combateffects').innerHTML += tablehtml;
+  document.getElementById('combateffects').innerHTML = tablehtml;
     
   let animdiv = document.getElementById(animid);
 
