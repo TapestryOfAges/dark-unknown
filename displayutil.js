@@ -91,6 +91,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
       FinishFirstAnimation();
     }, false);
 
+    animdiv.offsetTop;
     Object.assign(animdiv.style, {left: ammocoords.tox+"px", top: ammocoords.toy+"px" });
 //    setTimeout(function() { Object.assign(animdiv.style, {left: ammocoords.tox+"px", top: ammocoords.toy+"px" }); }, 1); // THIS IS A TOTAL KLUDGE
     // For some reason, the transition would not run if the 1ms pause was not there. It would skip to the end, and not
@@ -125,8 +126,10 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
         animdiv = document.getElementById(animid);
       
         animdiv.addEventListener("transitionend", FinishAnimation, false);
-  
-        setTimeout(function() { Object.assign(animdiv.style, {left:ammocoords.fromx+"px", top: ammocoords.fromy+"px"}); }, 1); // see below- kludge
+
+        animdiv.offsetTop;
+        Object.assign(animdiv.style, {left:ammocoords.fromx+"px", top: ammocoords.fromy+"px"});
+//        setTimeout(function() { Object.assign(animdiv.style, {left:ammocoords.fromx+"px", top: ammocoords.fromy+"px"}); }, 1); // see below- kludge
 
       }
     }, 400);
