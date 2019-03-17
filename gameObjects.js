@@ -9649,6 +9649,19 @@ function CrystalMortarTile() {
 }
 CrystalMortarTile.prototype = new ItemObject();
 
+function JadeNecklaceTile() {
+  this.name = "JadeNecklace";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-224";
+  this.spritexoffset = "-1536";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "jade necklace";
+  this.longdesc = "A pendant bearing a shard of jade, said to bring luck.";
+}
+JadeNecklaceTile.prototype = new ItemObject();
+
 function GoldTile() {
   this.name = "Gold";
   this.graphic = "master_spritesheet.png";  
@@ -9898,8 +9911,8 @@ KeyOfSunTile.prototype = new KeyItemObject();
 function KeyOfShadowTile() {
   this.name = "KeyOfShadow";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-128";
-  this.spritexoffset = "-256";
+  this.spriteyoffset = "-192";
+  this.spritexoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Shadow";
@@ -10251,6 +10264,83 @@ SupplyBoxTile.prototype.use = function(who) {
   
   return retval;
 }
+
+function BluePalmCrystalTile() {
+  this.name = "BluePalmCrystal";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1312";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "blue palm crystal";
+  this.longdesc = "A blue crystal that will restore mental energy when gripped in the palm.";
+  this.usedesc = "Grasp the crystal.";
+}
+BluePalmCrystalTile.prototype = new ConsumableItemObject();
+
+BluePalmCrystalTile.prototype.use = function(who) {
+  let retval = { fin: 1 };
+  retval["txt"] = "You grip the crystal in your palm, and feel refreshed! The crystal crumbles to dust.";
+  let newmana = who.getMana() + 5;
+  if (newmana > who.getMaxMana()) { newmana = who.getMaxMana(); }
+  who.setMana(newmana);
+  if (who === PC) {
+    DrawCharFrame();
+  }
+  return retval;
+}
+
+function GreenPalmCrystalTile() {
+  this.name = "GreenPalmCrystal";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1312";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "green palm crystal";
+  this.longdesc = "A green crystal that will cure poison or disease.";
+  this.usedesc = "Grasp the crystal.";
+}
+GreenPalmCrystalTile.prototype = new ConsumableItemObject();
+
+GreenPalmCrystalTile.prototype.use = function(who) {
+  let retval = magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell(who,1,2);
+  if (!who.getSpellEffectsByName("Poison") && !who.getSpellEffectsByName("Disease")) {
+    retval["txt"] = "You grip the crystal in your palm. You don't feel any different, but the crystal crumbles to dust."; 
+  } else {
+    retval["txt"] = "You grip the crystal in your palm, and feel purified! The crystal crumbles to dust.";
+  }
+  if (who === PC) {
+    DrawCharFrame();
+  }
+  return retval;
+}
+
+function PurplePalmCrystalTile() {
+  this.name = "PurplePalmCrystal";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1312";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "purple palm crystal";
+  this.longdesc = "A purple crystal that will grant a bird's-eye view of your location.";
+  this.usedesc = "Grasp and gaze into the crystal.";
+}
+PurplePalmCrystalTile.prototype = new ConsumableItemObject();
+
+PurplePalmCrystalTile.prototype.use = function(who) {
+  let retval = magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell(PC, 0, 2);
+  retval["txt"] = "You grasp the crystal. Gazing into it, you see yourself from above."  
+  if (who === PC) {
+    DrawCharFrame();
+  }
+  return retval;
+}
+
 
 // potions
 
@@ -10727,8 +10817,7 @@ DeepBluePotionTile.prototype.getLongDesc = function() {
 
 DeepBluePotionTile.prototype.use = function(who) {
   DUPlaySound("sfx_potion");
-  let retval = {fin:1};
-  retval = magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell(PC, 0, 2);
+  let retval = magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />Your vision becomes strange!"
   DrawCharFrame();
   return retval;
@@ -11364,6 +11453,19 @@ function AudachtaNemesosVulnerabilityTile() {
   this.spellname = "Vulnerability";
 }
 AudachtaNemesosVulnerabilityTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosIronFleshTile() {
+  this.name = "AudachtaNemesosIronFlesh";
+  this.desc = "Audachta Nemesos: Iron Flesh";
+  this.prefix = "an";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1216";
+  this.spelllevel = SPELL_LESSER_IRON_FLESH_LEVEL;
+  this.spellnum = SPELL_LESSER_IRON_FLESH_ID;
+  this.spellname = "Iron Flesh";
+}
+AudachtaNemesosIronFleshTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosLesserHealTile() {
   this.name = "AudachtaNemesosLesserHeal";
