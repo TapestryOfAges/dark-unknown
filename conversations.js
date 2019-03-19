@@ -751,6 +751,11 @@ OnConvTriggers["taran_serene"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("garden_wait");
 }
 
+OnConvTriggers["paladin_initiation"] = function(speaker,keyword) {
+  DU.gameflags.setFlag("paladin_initiation_time", DUTime.getGameClock() + 120*.2);
+  speaker.setCurrentAI("Isaac_initiate");
+}
+
 OnConvTriggers["where_king"] = function(speaker,keyword) {
   if (CheckBetweenTime("6:15","7:30")) {
     maintext.addText("The King is at his morning meeting with the chancellor. He will soon make his way to the throne room.");
