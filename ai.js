@@ -591,7 +591,11 @@ ais.Isaac_initiate = function(who) {
   if (who.dest === 2) {
     if ((who.getx() !== 57) || (who.gety() !== 47)) { console.log("Isaac is in the wrong place."); }
     let door = themap.getAcre(57,48).getTopFeature();
-    // working here
+    door.unlockMe();
+    MakeUseHappen(who,door,"map");
+    who.dest++;
+  } else if (who.dest === 3) {
+
   }
 }
 
