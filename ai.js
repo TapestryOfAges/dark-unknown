@@ -595,7 +595,14 @@ ais.Isaac_initiate = function(who) {
     MakeUseHappen(who,door,"map");
     who.dest++;
   } else if (who.dest === 3) {
-
+    StepOrSidestep(who,[57,48],[57,48]);
+    who.dest++;
+  } else if (who.dest === 4) {
+    StepOrSidestep(who,[57,49],[57,49]);
+    let door = themap.getAcre(57,48).getTopFeature();
+    MakeUseHappen(who,door,"map");
+    door.lockMe(2);
+    who.dest++;
   }
 }
 
