@@ -297,11 +297,16 @@ function Acre() {
   this.npcs = new Collection();
   this.pcs = new Collection();
   
-//  AssignSerial.call(this);
   this.localLight = {};
   this.localSound = {};
   this.topSound = "";
+
+  this.x;
+  this.y;
 }
+
+Acre.prototype.getx = function() { return this.x; }
+Acre.prototype.gety = function() { return this.y; }
 
 Acre.prototype.addLocalSound = function(snd, sndsrc) {
   this.localSound[sndsrc.getSerial()] = snd;

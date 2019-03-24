@@ -576,6 +576,36 @@ ais.GarrickEscort = function(who) {
   return retval;
 }
 
+ais.Isaac_initiate = function(who) {
+  let themap = who.getHomeMap();
+  if (!who.dest) { who.dest = 1; }
+  if (who.dest === 1) {
+    let thepath = themap.getPath(who.getx(),who.gety(),57,47,MOVE_WALK_DOOR);
+    path.shift();
+    if (path[0]) {
+      StepOrSidestep(who,path[0],[57,47]);
+    } else {
+      who.dest++;
+    }
+  } 
+  if (who.dest === 2) {
+    if ((who.getx() !== 57) || (who.gety() !== 47)) { console.log("Isaac is in the wrong place."); }
+    let door = themap.getAcre(57,48).getTopFeature();
+    door.unlockMe();
+    MakeUseHappen(who,door,"map");
+    who.dest++;
+  } else if (who.dest === 3) {
+    StepOrSidestep(who,[57,48],[57,48]);
+    who.dest++;
+  } else if (who.dest === 4) {
+    StepOrSidestep(who,[57,49],[57,49]);
+    let door = themap.getAcre(57,48).getTopFeature();
+    MakeUseHappen(who,door,"map");
+    door.lockMe(2);
+    who.dest++;
+  }
+}
+
 ais.AshardenBook = function(who) {
   if (!who.dest) { who.dest = 1; }
   let retval = {};
@@ -1390,14 +1420,14 @@ function FindCombatPath(who,approach,path) {
     }
     // all this min/max bs is to make sure we don't try to leave the map          
     
-//    if (debug && debugflags.ai) { dbs.writeln("<span style='color:orange;'>Searching for a path to these locations: (" +  endpoints[0][0] + "," + endpoints[0][1] + "),(" + endpoints[1][0] + "," + endpoints[1][1] + "),(" + endpoints[2][0] + "," + endpoints[2][1] + ").</span><br />"); }    
     DebugWrite("ai", "Searching for a path to these locations: (" +  endpoints[0][0] + "," + endpoints[0][1] + "),(" + endpoints[1][0] + "," + endpoints[1][1] + "),(" + endpoints[2][0] + "," + endpoints[2][1] + ").<br />");
 
     let available = [];
     let anyavailable = 0;
     for (let i=0;i<endpoints.length;i++) {
       let desttile = whomap.getTile(endpoints[i][0],endpoints[i][1]);
-      if (desttile.getTopNPC()) { available[i] = 0; }
+      if (desttile === "OoB") { available[i] = 0; }
+      else if (desttile.getTopNPC()) { available[i] = 0; }
       else { available[i] = 1; anyavailable = 1;}
     }
     

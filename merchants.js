@@ -71,6 +71,24 @@ function SetMerchants() {
                                 ];
   bill.brooke.type = "stuff";
 
+  // Swainhil
+  bill.severyn = {};
+  bill.severyn.stock = [ { item: "BluePalmCrystal", quantity: 4, price: 50, desc: "Blue Palm Crystal", sale: '"The energies will be harmonious with your own."', sellqty: 1},
+                        { item: "GreenPalmCrystal", quantity: 4, price: 35, desc: "Green Palm Crystal", sale: '"Its aura overcomes any toxin."', sellqty: 1},
+                        { item: "PurplePalmCrystal", quantity: 2, price: 150, desc: "Purple Palm Crystal", sale: '"It will open your third eye!"', sellqty: 1},
+                        { item: "JadeNecklace", quantity: 1, price: 200, desc: "Jade Necklace", sale: '"This will bring you luck."', sellqty: 1},
+                                ];
+  bill.severyn.type = "stuff";
+
+  bill.dale = {};
+  bill.dale.stock = [ { item: "YellowPotion", quantity: 4, price: 50, desc: "Yellow Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "PurplePotion", quantity: 4, price: 80, desc: "Purple Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "ScrollFireArmor", quantity: 2, price: 100, desc: "Scroll of Fire Armor", sale: '"Excellent choice."', sellqty: 1},
+                        { item: "ScrollSmite", quantity: 1, price: 130, desc: "Scroll of Smite", sale: '"Something will be sure to regret meeting you."', sellqty: 1},
+                        { item: "AudachtaNemesosIronFlesh", quantity: 1, price: 250, desc: "Audachta Nemesos: Iron Flesh", sale: '"Ah, an eye for the rare and valuable."', sellqty: 1},
+                                ];
+  bill.dale.type = "stuff";
+
   // MAGIC
 
   // Hildendain

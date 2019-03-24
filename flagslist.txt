@@ -105,3 +105,8 @@ knowsbrownpotion
 rebuild_poverty
 pool_drunk - you have drunk from the brilliant pool
 joined_guild - you've fulfilled Carol's request and gotten admittance to the Guild
+knows_paladins - You know Isaac is a paladin (from Amaeryl)
+warduke_defeated - what it says
+paladin_stage1 - You have turned in the "stop Warduke" quest
+paladin_stage2 - You have been told you passed the virtue test (set by messenger)
+paladin_joined - You have been through the initiation ceremony

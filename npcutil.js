@@ -221,7 +221,7 @@ function Attack(atk, def) {
   let ammoreturn = 0;
   if (type === "missile") { 
     ammographic = weapon.getAmmoGraphic(atk,def); 
-    duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 100;
+    duration = (Math.pow( Math.pow(def.getx() - atk.getx(), 2) + Math.pow (def.gety() - atk.gety(), 2)  , .5)) * 60;
     ammoreturn = weapon.getAmmoReturn();
   }
   else { 

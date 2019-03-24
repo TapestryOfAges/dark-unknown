@@ -526,6 +526,7 @@ mappages["hildendain2"].npcs = [];
 mappages["hildendain2"].npcs[0] = {name : 'PaladinVillagerNPC', x : 34, y : 28, NPCName: 'Sarah', Conversation: 'sarah', PeaceAI: 'scheduled', Schedule: 'sarah', Gender: 'female', NPCBand: '0', OverrideGraphic: 'paladin-offcolor.gif', skintone: '1'};
 mappages["hildendain2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 21, y : 55, NPCName: 'Evan', PeaceAI: 'scheduled', PeaceAI: 'scheduled', Schedule: 'evan', Schedule: 'evan', Conversation: 'evan', Gender: 'male', Merch: 'evan', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
 mappages["hildendain2"].npcs[2] = {name : 'BardVillagerNPC', x : 23, y : 36, NPCName: 'Franklin', Conversation: 'franklin', PeaceAI: 'scheduled', Schedule: 'franklin', Gender: 'male', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
+mappages["hildendain2"].npcs[3] = {name : 'PaladinVillagerNPC', x : 23, y : 35, NPCName: 'Yelena', Schedule: 'yelena', PeaceAI: 'scheduled', Conversation: 'yelena', Gender: 'female', NPCBand: '0', OverrideGraphic: '307.gif', skintone: '1'};
 
 mappages["hildendain2"].desc = "The Towne of Hildendain";
 mappages["hildendain2"].music = 'Towne';
