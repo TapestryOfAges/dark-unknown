@@ -12,7 +12,7 @@ let phaserMainState = {
     for (let xx = 0; xx < 13; xx++){
       phaserUI.gameSprites[xx] = [];
       for (let yy = 0; yy < 13; yy++){
-        phaserUI.gameSprites[xx][yy] = this.add.sprite(xx * 32, yy * 32, 'spritesheet', 8);
+        phaserUI.gameSprites[xx][yy] = [];
       }
     }
     phaserUI.loaded = true;
@@ -35,12 +35,14 @@ let phaserUI = {
     if (!this.loaded) {
       return;
     }
-    console.log('setTerrainTile', x, y, tile);
+    console.log(`setTerrainTile, ${x}, ${y}`);
+    console.log(tile);
     if (tile.showGraphic !== 'master_spritesheet.png'){
-      this.terrainSprites[x][y].loadTexture('spritesheet', 8);
+      this.gameSprites[x][y].loadTexture('spritesheet', 8);
       return;
     }
-    this.terrainSprites[x][y].loadTexture('spritesheet', GetTileIndex(tile.graphics2, tile.graphics3));
+    this.gameSprites[x][y].push(phaserUI.game.add.image(x*32,y*32,'spritesheet',GetTileIndex(tile.graphics2, tile.graphics3)));
+    //loadTexture('spritesheet', GetTileIndex(tile.graphics2, tile.graphics3));
   }
 }
 
