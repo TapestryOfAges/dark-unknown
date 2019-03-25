@@ -41,7 +41,7 @@ let phaserUI = {
       this.gameSprites[x][y].loadTexture('spritesheet', 8);
       return;
     }
-    this.gameSprites[x][y].push(phaserUI.game.add.image(x*32,y*32,'spritesheet',GetTileIndex(tile.graphics2, tile.graphics3)));
+    this.gameSprites[x][y].push(this.game.add.image(x*32,y*32,'spritesheet',GetTileIndex(tile.graphics2, tile.graphics3)));
     //loadTexture('spritesheet', GetTileIndex(tile.graphics2, tile.graphics3));
   }
 }
