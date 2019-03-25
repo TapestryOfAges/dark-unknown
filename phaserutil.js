@@ -43,7 +43,7 @@ let phaserUI = {
 //      this.gameSprites[x][y].push(DUScene.add.image(x*32,y*32,'spritesheet',8));
       return;
     }
-//    this.gameSprites[x][y].push(DUScene.add.image(x*32,y*32,'spritesheet',GetSpritesheetLocation(tile.graphics2, tile.graphics3)).setOrigin(0,0));
+    this.gameSprites[x][y].push(DUScene.add.image(x*32,y*32,'spritesheet',GetSpritesheetLocation(tile.graphics2, tile.graphics3)).setOrigin(0,0));
     //loadTexture('spritesheet', GetTileIndex(tile.graphics2, tile.graphics3));
   }
 }
