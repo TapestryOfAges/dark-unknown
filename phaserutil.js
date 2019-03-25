@@ -1,9 +1,10 @@
 "use strict";
 
+let DUScene;
 let phaserMainState = {
   preload: function() {
     console.log("preload");
-    this.load.spritesheet('spritesheet', 'graphics/master_spritesheet.png', { framewidth: 32, frameheight: 32});
+    this.load.spritesheet('spritesheet', 'graphics/master_spritesheet.png', { frameWidth: 32, frameHeight: 32});
     console.log(this);
   },
   create: function() {
@@ -16,6 +17,7 @@ let phaserMainState = {
       }
     }
     phaserUI.loaded = true;
+    DUScene = this;
   },
   update: function() {}
 }
@@ -38,14 +40,11 @@ let phaserUI = {
     console.log(`setTerrainTile, ${x}, ${y}`);
     console.log(tile);
     if (tile.showGraphic !== 'master_spritesheet.png'){
-      this.gameSprites[x][y].loadTexture('spritesheet', 8);
+//      this.gameSprites[x][y].push(DUScene.add.image(x*32,y*32,'spritesheet',8));
       return;
     }
-    this.gameSprites[x][y].push(this.game.add.image(x*32,y*32,'spritesheet',GetTileIndex(tile.graphics2, tile.graphics3)));
+//    this.gameSprites[x][y].push(DUScene.add.image(x*32,y*32,'spritesheet',GetSpritesheetLocation(tile.graphics2, tile.graphics3)).setOrigin(0,0));
     //loadTexture('spritesheet', GetTileIndex(tile.graphics2, tile.graphics3));
   }
 }
 
-function GetTileIndex(xoffset, yoffset) {
-  parseInt(xoffset) * -1 / 32 + (parseInt(yoffset) * -1 / 32) * 10;
-}
