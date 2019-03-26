@@ -51,7 +51,6 @@ DUSound["sfx_bubbling_lava"] = "sfx/sfx_bubbling_lava.mp3"; // RPG Sound Effects
 DUSound["sfx_fire_crackle"] = "sfx/sfx_fire_crackle.mp3"; // Dungeon SFX Pack v1/Misc/Torch 2 (loop).mp3
 DUSound["sfx_waterfall"] = "sfx/sfx_waterfall.mp3"; // Soniss 2015/Sound Ex Machine - Water Flow/Small waterfall (closer perspective) 02.wav
 DUSound["sfx_waterfall_fall"] = "sfx/sfx_waterfall_fall.mp3"; // Soniss 2015/Soundopolis - Water 01/Splash_Dive_Fienup_002.wav
-//DUSound["sfx_default_hit"] = "sfx/sfx_hit.wav"; // randomly generated from https://jfxr.frozenfractal.com/
 DUSound["sfx_default_hit"] = "sfx/sfx_Impact4.mp3"; // Medieval Fantasy 2 SFX Pack/Weapons/Impact4
 DUSound["sfx_sling"] = "sfx/sfx_sling.mp3"; // Medieval Fantasy 2 SFX Pack/Weapons/Stick1
 DUSound["sfx_bow"] = "sfx/sfx_bow.mp3"; // Medieval Fantasy 2 SFX Pack/Weapons/BowShot2
@@ -111,12 +110,12 @@ let numsounds = Object.keys(DUSound).length;
 
 function audio_init() {
   createjs.Sound.initializeDefaultPlugins();
-  createjs.Sound.alternateExtensions = ["ogg"];
+  createjs.Sound.alternateExtensions = ["mp3"];
   createjs.Sound.addEventListener("fileload", handleFileLoad);
 //  createjs.Sound.registerSounds(DUSound, soundpath);
   
   for (let idx in DUMusic) {
-    let fullpath = musicpath + "" + DUMusic[idx] + ".mp3";
+    let fullpath = musicpath + "" + DUMusic[idx] + ".ogg";
     createjs.Sound.registerSound(fullpath, idx);
   }
 }

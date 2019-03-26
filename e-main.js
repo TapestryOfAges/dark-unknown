@@ -11,7 +11,7 @@ let mainWindow = null;
 app.on('ready', function() {
 
   mainWindow = new BrowserWindow({
-    height: 475,
+    height: 477,
     width: 776,
     useContentSize: true,
     resizable: false,
