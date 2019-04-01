@@ -484,7 +484,7 @@ mappages["swainhil"].features[415] = {name : 'TorchWest', x : 48, y : 37};
 
 mappages["swainhil"].npcs = [];
 mappages["swainhil"].npcs[0] = {name : 'ShepherdVillagerNPC', x : 39, y : 9, NPCName: 'Mandy', Desc: 'healer', PeaceAI: 'scheduled', Schedule: 'mandy', Conversation: 'mandy', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
-mappages["swainhil"].npcs[1] = {name : 'FighterVillagerNPC', x : 16, y : 14, NPCName: 'Deirdre', PeaceAI: 'scheduled', Schedule: 'deirdre', Conversation: 'deirdre', Gender: 'female', NPCBand: '0', OverrideGraphic: '308.gif', skintone: '1'};
+mappages["swainhil"].npcs[1] = {name : 'FighterVillagerNPC', x : 16, y : 14, NPCName: 'Deirdre', PeaceAI: 'scheduled', Schedule: 'deirdre', Conversation: 'deirdre', Gender: 'female', Merch: 'deirdre', NPCBand: '0', OverrideGraphic: '308.gif', skintone: '1'};
 mappages["swainhil"].npcs[2] = {name : 'MageVillagerNPC', x : 24, y : 14, NPCName: 'Dale', PeaceAI: 'scheduled', Schedule: 'dale', Conversation: 'dale', Gender: 'male', Merch: 'dale', Bark: '0', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
 mappages["swainhil"].npcs[3] = {name : 'DruidVillagerNPC', x : 53, y : 9, NPCName: 'Severyn', PeaceAI: 'scheduled', Schedule: 'severyn', Conversation: 'severyn', ConversationFlag: 'severyn', Gender: 'female', Merch: 'severyn', Bark: '0', NPCBand: '0', OverrideGraphic: '302.gif', skintone: '1'};
 mappages["swainhil"].npcs[4] = {name : 'PaladinVillagerNPC', x : 20, y : 9, NPCName: 'Isaac', PeaceAI: 'scheduled', Schedule: 'isaac', Conversation: 'isaac', ConversationFlag: 'isaac', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '307.2.gif', skintone: '2'};
