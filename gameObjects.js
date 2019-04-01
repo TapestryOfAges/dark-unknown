@@ -4907,6 +4907,37 @@ function ThroneTile() {
 }
 ThroneTile.prototype = new FeatureObject();
 
+ThroneTile.prototype.walkon = function(who) {
+  who.realgraphic = who.getGraphicArray();
+  if (who.getGraphic() === "315.gif") {
+    who.setGraphicArray(["throned_king.gif","throned_king.gif",0,0]);
+    return;
+  }
+  if (who.getGraphic() === "315.2.gif") {
+    who.setGraphicArray(["throned_queen.gif","throned_queen.gif",0,0]); 
+    return;
+  }
+  let cc = "";
+  if (parseInt(who.skintone) === 2) {
+    cc = ".1";
+  } else if (parseInt(who.skintone) !== 1) { console.log("Missing skintone on "); console.log(who); }
+  let filename = `throned${cc}.gif`;
+  let garr = [filename,filename,0,0];
+  who.setGraphicArray(garr);
+  return;
+}
+
+ThroneTile.prototype.walkoff = function(who) {
+  if (who.realgraphic) {
+    who.setGraphicArray(who.realgraphic);
+    delete who.realgraphic;
+    DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sleeping.<br />");
+  } else {
+    alert("Entity failed to have a standing graphic. See console.");
+    console.log(who);
+  }
+}
+
 function DoorTile() {
   Lockable.call(this, ["master_spritesheet.png","",'-224','-704'], ["master_spritesheet.png","",'-256','-704'], ["master_spritesheet.png","",'-288','-704'], "a", "door", "a", "locked door", "a", "magically locked door");
   	
@@ -5742,6 +5773,33 @@ function BridgeEWTile() {
 }
 BridgeEWTile.prototype = new FeatureObject();
 
+function SitDown(who,direction) {
+  who.realgraphic = who.getGraphicArray();
+  let cc = "";
+  let rf = "";
+  if (parseInt(who.skintone) === 2) {
+    cc = ".1";
+  } else if (parseInt(who.skintone) !== 1) { console.log("Missing skintone on "); console.log(who); }
+  if (Dice.roll("1d2") === 1) {
+    rf = "_2";
+  }
+  let filename = `seated_${direction}${rf}${cc}.gif`;
+  let garr = [filename,filename,0,0];
+  who.setGraphicArray(garr);
+  return;
+}
+
+function StandUp(who) {
+  if (who.realgraphic) {
+    who.setGraphicArray(who.realgraphic);
+    delete who.realgraphic;
+    DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sleeping.<br />");
+  } else {
+    alert("Entity failed to have a standing graphic. See console.");
+    console.log(who);
+  }
+}
+
 function LeftChairTile() {
   this.name = "LeftChair";
   this.graphic = "master_spritesheet.png";
@@ -5763,6 +5821,15 @@ LeftChairTile.prototype = new FeatureObject();
 
 LeftChairTile.prototype.use = function(who) {
   return TurnFacing(this);
+}
+
+LeftChairTile.prototype.walkon = function(who) {
+  return SitDown(who,"east");
+}
+
+
+LeftChairTile.prototype.walkoff = function(who) {
+  return StandUp(who);
 }
 
 function RightChairTile() {
@@ -5787,6 +5854,15 @@ RightChairTile.prototype.use = function(who) {
   return TurnFacing(this);
 }
 
+RightChairTile.prototype.walkon = function(who) {
+  return SitDown(who,"west");
+}
+
+
+RightChairTile.prototype.walkoff = function(who) {
+  return StandUp(who);
+}
+
 function TopChairTile() {
   this.name = "TopChair";
   this.graphic = "master_spritesheet.png";
@@ -5809,6 +5885,14 @@ TopChairTile.prototype.use = function(who) {
   return TurnFacing(this);
 }
 
+TopChairTile.prototype.walkon = function(who) {
+  return SitDown(who,"south");
+}
+
+TopChairTile.prototype.walkoff = function(who) {
+  return StandUp(who);
+}
+
 function BottomChairTile() {
   this.name = "BottomChair";
   this.graphic = "master_spritesheet.png";
@@ -5829,6 +5913,14 @@ BottomChairTile.prototype = new FeatureObject();
 
 BottomChairTile.prototype.use = function(who) {
   return TurnFacing(this);
+}
+
+BottomChairTile.prototype.walkon = function(who) {
+  return SitDown(who,"north");
+}
+
+BottomChairTile.prototype.walkoff = function(who) {
+  return StandUp(who);
 }
 
 function TurnFacing(what) {
