@@ -653,6 +653,7 @@ mappages["olympus1"].npcs[26] = {name : 'TownGuardNPC', x : 48, y : 40, NPCName:
 mappages["olympus1"].npcs[27] = {name : 'TownGuardNPC', x : 51, y : 25, NPCName: 'Davin', PeaceAI: 'scheduled', Schedule: 'davin', Conversation: 'castleguard2', ConversationFlag: 'davin', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
 
 mappages["olympus1"].desc = "Castle dea Olympus";
+mappages["olympus1"].longdesc = 'Castle dea Olympus is the imposing heart of the kingdom. Within can be found the King and Queen, the royal stables and museum, and one of the largest libraries in the land. It is also where you grew up, which does lessen the mystique some.';
 mappages["olympus1"].music = 'Olympus';
 mappages["olympus1"].savename = 'Castle Olympus';
 mappages["olympus1"].exitmap = 'darkunknown';
