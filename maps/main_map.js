@@ -183,6 +183,76 @@ mappages["darkunknown"].features[33] = {name : 'Waterfall', x : 99, y : 87};
 mappages["darkunknown"].features[34] = {name : 'Cave', x : 48, y : 78, entermap : 'headlesscave', enterx : 29, entery : 15};
 mappages["darkunknown"].features[35] = {name : 'CastleGrass', x : 69, y : 72};
 mappages["darkunknown"].features[36] = {name : 'Village', x : 72, y : 74, desc : "Village of Naurglen West", prefix : "the", entermap : 'naurglen', enterx : 2, entery : 31};
+mappages["darkunknown"].features[37] = {name : 'EnergyField', x : 48, y : 65};
+mappages["darkunknown"].features[38] = {name : 'EnergyField', x : 48, y : 64};
+mappages["darkunknown"].features[39] = {name : 'EnergyField', x : 48, y : 63};
+mappages["darkunknown"].features[40] = {name : 'EnergyField', x : 48, y : 62};
+mappages["darkunknown"].features[41] = {name : 'EnergyField', x : 48, y : 61};
+mappages["darkunknown"].features[42] = {name : 'EnergyField', x : 49, y : 61};
+mappages["darkunknown"].features[43] = {name : 'EnergyField', x : 49, y : 60};
+mappages["darkunknown"].features[44] = {name : 'EnergyField', x : 50, y : 60};
+mappages["darkunknown"].features[45] = {name : 'EnergyField', x : 50, y : 59};
+mappages["darkunknown"].features[46] = {name : 'EnergyField', x : 51, y : 59};
+mappages["darkunknown"].features[47] = {name : 'EnergyField', x : 52, y : 59};
+mappages["darkunknown"].features[48] = {name : 'EnergyField', x : 52, y : 58};
+mappages["darkunknown"].features[49] = {name : 'EnergyField', x : 53, y : 58};
+mappages["darkunknown"].features[50] = {name : 'EnergyField', x : 54, y : 58};
+mappages["darkunknown"].features[51] = {name : 'EnergyField', x : 55, y : 58};
+mappages["darkunknown"].features[52] = {name : 'EnergyField', x : 56, y : 58};
+mappages["darkunknown"].features[53] = {name : 'EnergyField', x : 57, y : 58};
+mappages["darkunknown"].features[54] = {name : 'EnergyField', x : 58, y : 58};
+mappages["darkunknown"].features[55] = {name : 'EnergyField', x : 58, y : 57};
+mappages["darkunknown"].features[56] = {name : 'EnergyField', x : 59, y : 57};
+mappages["darkunknown"].features[57] = {name : 'EnergyField', x : 60, y : 57};
+mappages["darkunknown"].features[58] = {name : 'EnergyField', x : 61, y : 57};
+mappages["darkunknown"].features[59] = {name : 'EnergyField', x : 62, y : 57};
+mappages["darkunknown"].features[60] = {name : 'EnergyField', x : 63, y : 57};
+mappages["darkunknown"].features[61] = {name : 'EnergyField', x : 64, y : 57};
+mappages["darkunknown"].features[62] = {name : 'EnergyField', x : 64, y : 58};
+mappages["darkunknown"].features[63] = {name : 'EnergyField', x : 65, y : 58};
+mappages["darkunknown"].features[64] = {name : 'EnergyField', x : 66, y : 58};
+mappages["darkunknown"].features[65] = {name : 'EnergyField', x : 67, y : 58};
+mappages["darkunknown"].features[66] = {name : 'EnergyField', x : 67, y : 59};
+mappages["darkunknown"].features[67] = {name : 'EnergyField', x : 68, y : 59};
+mappages["darkunknown"].features[68] = {name : 'EnergyField', x : 69, y : 59};
+mappages["darkunknown"].features[69] = {name : 'EnergyField', x : 69, y : 60};
+mappages["darkunknown"].features[70] = {name : 'EnergyField', x : 70, y : 60};
+mappages["darkunknown"].features[71] = {name : 'EnergyField', x : 71, y : 60};
+mappages["darkunknown"].features[72] = {name : 'EnergyField', x : 71, y : 61};
+mappages["darkunknown"].features[73] = {name : 'EnergyField', x : 72, y : 61};
+mappages["darkunknown"].features[74] = {name : 'EnergyField', x : 73, y : 61};
+mappages["darkunknown"].features[75] = {name : 'EnergyField', x : 73, y : 62};
+mappages["darkunknown"].features[76] = {name : 'EnergyField', x : 74, y : 62};
+mappages["darkunknown"].features[77] = {name : 'EnergyField', x : 74, y : 63};
+mappages["darkunknown"].features[78] = {name : 'EnergyField', x : 75, y : 63};
+mappages["darkunknown"].features[79] = {name : 'EnergyField', x : 76, y : 63};
+mappages["darkunknown"].features[80] = {name : 'EnergyField', x : 76, y : 64};
+mappages["darkunknown"].features[81] = {name : 'EnergyField', x : 77, y : 64};
+mappages["darkunknown"].features[82] = {name : 'EnergyField', x : 78, y : 64};
+mappages["darkunknown"].features[83] = {name : 'EnergyField', x : 78, y : 65};
+mappages["darkunknown"].features[84] = {name : 'EnergyField', x : 79, y : 65};
+mappages["darkunknown"].features[85] = {name : 'EnergyField', x : 79, y : 66};
+mappages["darkunknown"].features[86] = {name : 'EnergyField', x : 79, y : 67};
+mappages["darkunknown"].features[87] = {name : 'EnergyField', x : 80, y : 67};
+mappages["darkunknown"].features[88] = {name : 'EnergyField', x : 80, y : 68};
+mappages["darkunknown"].features[89] = {name : 'EnergyField', x : 80, y : 69};
+mappages["darkunknown"].features[90] = {name : 'EnergyField', x : 80, y : 70};
+mappages["darkunknown"].features[91] = {name : 'EnergyField', x : 80, y : 71};
+mappages["darkunknown"].features[92] = {name : 'EnergyField', x : 81, y : 71};
+mappages["darkunknown"].features[93] = {name : 'EnergyField', x : 81, y : 72};
+mappages["darkunknown"].features[94] = {name : 'EnergyField', x : 81, y : 73};
+mappages["darkunknown"].features[95] = {name : 'EnergyField', x : 81, y : 74};
+mappages["darkunknown"].features[96] = {name : 'EnergyField', x : 81, y : 75};
+mappages["darkunknown"].features[97] = {name : 'EnergyField', x : 80, y : 75};
+mappages["darkunknown"].features[98] = {name : 'EnergyField', x : 80, y : 76};
+mappages["darkunknown"].features[99] = {name : 'EnergyField', x : 80, y : 77};
+mappages["darkunknown"].features[100] = {name : 'EnergyField', x : 79, y : 77};
+mappages["darkunknown"].features[101] = {name : 'EnergyField', x : 79, y : 78};
+mappages["darkunknown"].features[102] = {name : 'EnergyField', x : 78, y : 78};
+mappages["darkunknown"].features[103] = {name : 'EnergyField', x : 78, y : 79};
+mappages["darkunknown"].features[104] = {name : 'EnergyField', x : 49, y : 67};
+mappages["darkunknown"].features[105] = {name : 'EnergyField', x : 48, y : 67};
+mappages["darkunknown"].features[106] = {name : 'EnergyField', x : 48, y : 66};
 
 mappages["darkunknown"].npcs = [];
 
@@ -214,7 +284,7 @@ mappages["darkunknown"].onload = function(mapref) {
     
   // Place spawners  
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    Placespawns(mapref);
+    PlaceDemoSpawns(mapref);
   // give specs to teleporters
     let shrinetile = mapref.getTile(13,82);
     let shrine = shrinetile.getTopFeature();
@@ -237,6 +307,38 @@ mappages["darkunknown"].onload = function(mapref) {
   CreateBeaches(mapref);
 }
 
+function PlaceDemoSpawns(mapref) {
+  // 52,77: spawn Headless 
+    var spawner = localFactory.createTile("Spawner");
+    spawner.setSpawngroup(["HeadlessGroupTiny"]);
+    spawner.setMaxSpawns(1);
+    spawner.setSpawnRadius(3);
+    spawner.setSpawnLeash(0);
+    spawner.setSpawnSoftLeash(0);
+    spawner.setSpawnFreq(100);
+  
+    spawner.evolve[2] = [];
+    spawner.evolve[2][0] = "spawngroup";
+    spawner.evolve[2][1] = ["HeadlessGroupTiny","HeadlessGroupTiny","HeadlessGroupSmall"];
+  
+    mapref.placeThing(52,77,spawner);
+  
+  // 68,62: animals
+    var spawner = localFactory.createTile("Spawner");
+    spawner.setSpawngroup(["GiantRatGroupTiny"]);
+    spawner.setMaxSpawns(1);
+    spawner.setSpawnRadius(3);
+    spawner.setSpawnLeash(0);
+    spawner.setSpawnSoftLeash(0);
+    spawner.setSpawnFreq(100);
+  
+    spawner.evolve[2] = [];
+    spawner.evolve[2][0] = "spawngroup";
+    spawner.evolve[2][1] = ["GiantRatGroupTiny","SnakesGroup","GiantRatGroupSmall"];
+  
+    mapref.placeThing(68,62,spawner);
+}
+    
 function Placespawns(mapref) {
   
   // Forest SW of Onyx  
