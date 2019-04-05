@@ -483,6 +483,7 @@ mappages["naurglen"].npcs[11] = {name : 'TinkerVillagerNPC', x : 93, y : 34, NPC
 mappages["naurglen"].npcs[12] = {name : 'TownsfolkVillagerNPC', x : 21, y : 24, NPCName: 'Derek', PeaceAI: 'scheduled', Schedule: 'derek', Conversation: 'derek', ConversationFlag: 'derek', Gender: 'male', Leash: 4, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
 
 mappages["naurglen"].desc = "Naurglen";
+mappages["naurglen"].longdesc = 'A small village that primarily supports the nearby castle, Naurglen is commonly split into its East and West halves. On the East is the town square and anything a visitor might need. The West is primarily farmland.<br />On the far western border is one thing of interest: your house.';
 mappages["naurglen"].music = 'Village';
 mappages["naurglen"].savename = 'Naurglen';
 mappages["naurglen"].exitmap = 'darkunknown';

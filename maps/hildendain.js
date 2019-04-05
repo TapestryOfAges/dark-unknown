@@ -398,6 +398,7 @@ mappages["hildendain"].npcs[11] = {name : 'TownGuardNPC', x : 44, y : 57, NPCNam
 mappages["hildendain"].npcs[12] = {name : 'TownGuardNPC', x : 41, y : 57, NPCName: 'Thomas', PeaceAI: 'scheduled', Schedule: 'thomas', Conversation: 'thomas', Gender: 'male', NPCBand: '0', skintone: '1'};
 
 mappages["hildendain"].desc = "The Towne of Hildendain";
+mappages["hildendain"].longdesc = "Hildendain was once the seat of the kingdom, and is now a center of commerce. Now, down streets past the shops and taverns, the ruins of Castle dea Hilden overlook the town.";
 mappages["hildendain"].music = 'Towne';
 mappages["hildendain"].savename = 'Hildendain';
 mappages["hildendain"].exitmap = 'darkunknown';
