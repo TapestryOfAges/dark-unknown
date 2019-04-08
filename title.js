@@ -515,8 +515,13 @@ function RunIntro(idx) {
     dusong = DUPlayMusic("Charcreate");
     let introleft = (browserwidth)/2 - 300;
     
-    // add float image to each page if/when I have them.
-    let firstpage = "<div style='width:600;position: relative;left:" + introleft + "' id='introcontainer'><div id='intro1' style='color:white'><p class='charcreate'>You were born the second child of the ruling family of Ellusus- King Daragen and Queen Shelaria Olympus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</p></div></div>";
+    let firstpage = `<div style='width:770;position: relative;left:5px;top:15px' id='introcontainer'>
+      <table cellpadding='0' cellspacing='5' border='0'><tr>
+      <td id='splash'><img id='splash1' src='graphics/splash/Castle-Day-NoRider.gif' /></td>
+      <td style='vertical-align:top; padding-top: 4px' id='splashtxt'><div id='intro1' style='color:white;padding-left:5px'><p class='charcreate'>You were born the second child of the ruling family of Ellusus- King Daragen and Queen Shelaria Olympus. Being the younger, your life is full of tutors and lessons, but also opportunity, for the weight of being heir falls upon your brother, Prince Lance.</p></div>
+      <div id='intro2' style='color:white;opacity:0'><p class='charcreate'>And Lance seemed made for the role. All things came easily to him- his studies of magic, of combat, of dance, of diplomacy. Which makes these events all the more surprising.</p></div>
+      </td></tr></table>
+    </div>`;
     document.getElementById('maindiv').classList.add('titlefadeout');
     setTimeout(function() {
       document.getElementById('maindiv').innerHTML = firstpage;
@@ -525,36 +530,70 @@ function RunIntro(idx) {
       gamestate.setMode("intro");
     },1000);
   } else if (idx === 1) {
-    let secondpage = "<div id='intro2' style='color:white;opacity:0'><p class='charcreate'>And Lance seemed made for the role. All things came easily to him- his studies of magic, of combat, of dance, of diplomacy. Which makes these events all the more surprising.</p></div>";
-    document.getElementById('introcontainer').innerHTML += secondpage;
     document.getElementById('intro2').classList.add('presentfadein');
   } else if (idx === 2) {
-    let thirdpage = "<div id='intro3' style='color:white;opacity:0'><p class='charcreate'>Which is not to say that you did not excel, when you began your studies years behind your older brother. Guard Captain Nyrani has been teaching you to fight with a variety of weapons. Your tutor in wizardry says that you show promise, and someday will earn your own spellbook. And you have surprised your parents with your skill on the harpsichord. Of limited use in statecraft, perhaps, but still satisfying.</p></div>";
-    document.getElementById('introcontainer').innerHTML += thirdpage;
-    document.getElementById('intro3').classList.add('presentfadein');
+    document.getElementById('splash1').classList.add('titlefadeout');
+    document.getElementById('splashtxt').classList.add('titlefadeout');
+    setTimeout(function() {
+      document.getElementById('splash').innerHTML = `<img id='splash2' style='opacity:0' src='graphics/splash/Castle-Night.gif' />`;
+      document.getElementById('splash').classList.remove('titlefadeout');
+      document.getElementById('splashtxt').classList.remove('titlefadeout');  
+      document.getElementById('splashtxt').innerHTML = `<div id='intro3' style='color:white;opacity:0'><p class='charcreate'>Which is not to say that you did not excel, when you began your studies years behind your older brother. Guard Captain Nyrani has been teaching you to fight with a variety of weapons. Your tutor in wizardry says that you show promise, and someday will earn your own spellbook. And you have surprised your parents with your skill on the harpsichord. Of limited use in statecraft, perhaps, but still satisfying.</p></div>
+      <div id='intro4' style='color:white;opacity:0'><p class='charcreate'>The land has been at peace since the end of the civil war nearly 40 years ago. Six years ago, your grandfather passed away and your parents ascended the throne of Ellusus. The transition was smooth, and while King Erik was beloved as the one who had ended the war, that goodwill had seemed to pass readily enough to the new monarchs.</p></div>`;
+      document.getElementById('intro3').classList.add('presentfadein');
+      document.getElementById('splash2').classList.add('presentfadein');  
+    },1000);
   } else if (idx === 3) {
-    let nextpage = "<div id='intro4' style='color:white;opacity:0'><p class='charcreate'>The land has been at peace since the end of the civil war nearly 40 years ago. Six years ago, your grandfather passed away and your parents ascended the throne of Ellusus. The transition was smooth, and while King Erik was beloved as the one who had ended the war, that goodwill had seemed to pass readily enough to the new monarchs.</p></div>";
-    document.getElementById('introcontainer').innerHTML += nextpage;
     document.getElementById('intro4').classList.add('presentfadein');
   } else if (idx === 4) {
-    let nextpage = "<div id='intro5' style='color:white;opacity:0'><p class='charcreate'>Lance, then, completed his tutelage a few years ago, and was then charged with getting to know the kingdom, and so he has been away traveling, and you have not seen him in some time. There are rumors of the time he has spent- he has saved an old crone, and won a boon; he has battled a dragon; he has fallen into drunkenness and embarrassed your parents.</p></div>";
-    document.getElementById('introcontainer').innerHTML += nextpage;
-    document.getElementById('intro5').classList.add('presentfadein');
+    document.getElementById('splash2').classList.remove('presentfadein');  
+    document.getElementById('splash2').classList.add('titlefadeout');
+    document.getElementById('splashtxt').classList.add('titlefadeout');
+    setTimeout(function() {
+      document.getElementById('splashtxt').classList.remove('titlefadeout'); 
+      document.getElementById('splash').innerHTML = `<img id='splash3' style='opacity:0' src='graphics/splash/Lance.png' />`;
+      document.getElementById('splashtxt').innerHTML = `<div id='intro5' style='color:white;opacity:0'><p class='charcreate'>Lance, then, completed his tutelage a few years ago and was then charged with getting to know the kingdom, and so he has been away traveling, and you have not seen him in some time. There are rumors of the time he has spent- he has saved an old crone, and won a boon; he has battled a dragon; he has fallen into drunkenness and embarrassed your parents.</p></div>
+      `;
+      document.getElementById('intro5').classList.add('presentfadein');
+      document.getElementById('splash3').classList.add('presentfadein');  
+    },1000);
   } else if (idx === 5) {
-    let nextpage = "<div id='intro6' style='color:white;opacity:0'><p class='charcreate'>You are meanwhile ensconced in a house on the outskirts of the nearby village of Naurglen. It is less necessary for you to be at the center of things, and it is quieter here. You pursue your studies, and visit when the mood strikes you.</p></div>";
-    document.getElementById('introcontainer').innerHTML = nextpage;
-    document.getElementById('intro6').classList.add('presentfadein');
+    document.getElementById('splash3').classList.remove('presentfadein');  
+    document.getElementById('splash3').classList.add('titlefadeout');
+    document.getElementById('splashtxt').classList.add('titlefadeout');
+    setTimeout(function() {
+      document.getElementById('splash').innerHTML = `<img id='splash4' style='opacity:0' src='graphics/splash/Training.png' />`;
+      document.getElementById('splashtxt').classList.remove('titlefadeout');  
+      document.getElementById('splashtxt').innerHTML = `<div id='intro6' style='color:white;opacity:0'><p class='charcreate'>You are meanwhile ensconced in a house on the outskirts of the nearby village of Naurglen. It is less necessary for you to be at the center of things, and it is quieter here. You pursue your studies, and visit when the mood strikes you.</p></div>
+      <div id='intro7' style='color:white;opacity:0'><p class='charcreate'>But a few months ago, Lance moved into an old castle, ruined from the war, and begun rebuilding. And then, to the surprise of everyone, he planted his banner and declared that he was in rebellion- that he, rather than your father, should rule Ellusus.</p></div>`;
+      document.getElementById('intro6').classList.add('presentfadein');
+      document.getElementById('splash4').classList.add('presentfadein');  
+    },1000);
   } else if (idx === 6) {
-    let nextpage = "<div id='intro7' style='color:white;opacity:0'><p class='charcreate'>But a few months ago, Lance moved into an old castle, ruined from the war, and begun rebuilding. And then, to the surprise of everyone, he planted his banner and declared that he was in rebellion- that he, rather than your father, should rule Ellusus.</p></div>";
-    document.getElementById('introcontainer').innerHTML = nextpage;
     document.getElementById('intro7').classList.add('presentfadein');
   } else if (idx === 7) {
-    let nextpage = "<div id='intro8' style='color:white;opacity:0'><p class='charcreate'>Shocked and saddened, your parents have summoned you to the ruling seat, Castle dea Olympus. The time for study is over. The time for leisure is past. You lock your dwelling behind you, and now as you stand outside the gates you prepare to enter and learn what lies in store for you...</p></div>";
-    document.getElementById('introcontainer').innerHTML += nextpage;
-    document.getElementById('intro8').classList.add('presentfadein');
+    document.getElementById('splash4').classList.remove('presentfadein');  
+    document.getElementById('splash4').classList.add('titlefadeout');
+    document.getElementById('splashtxt').classList.add('titlefadeout');
+    setTimeout(function() {
+      document.getElementById('splash').innerHTML = `<img id='splash5' style='opacity:0' src='graphics/splash/Castle-Day-Rider.gif' />`;
+      document.getElementById('splashtxt').classList.remove('titlefadeout');  
+      document.getElementById('splashtxt').innerHTML = `
+      <div id='intro8' style='color:white;opacity:0'><p class='charcreate'>Shocked and saddened, your parents have summoned you to the ruling seat, Castle dea Olympus. The time for study is over. The time for leisure is past. You lock your dwelling behind you, and now as you stand outside the gates you prepare to enter and learn what lies in store for you...</p></div>`;
+      document.getElementById('intro8').classList.add('presentfadein');
+      document.getElementById('splash5').classList.add('presentfadein');  
+    },1000);
   } else if (idx === 8) {
     gamestate.setMode("null");
-    SecondPage();
+    document.getElementById('splash5').classList.remove('presentfadein');  
+    document.getElementById('splash5').classList.add('titlefadeout');
+    document.getElementById('splashtxt').classList.add('titlefadeout');
+    setTimeout(function() {
+      SecondPage();
+      dusong.song.stop();
+      dusong = {};
+      dusong = DUPlayMusic("Dark Unknown");
+    },1000);
   }
   return;
 }

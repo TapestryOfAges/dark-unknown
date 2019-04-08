@@ -16,6 +16,12 @@
 	animation-fill-mode: forwards;
 }
 
+.titlefadeout {
+	animation-name: fadeout;
+	animation-duration: 1.0s;
+	animation-fill-mode: forwards;
+}
+
 @keyframes widentitle {
 	from {width:2px; }
 	to { width:776px}
@@ -41,12 +47,6 @@
 
 .presentfadein {
 	animation-name: fadein;
-	animation-duration: 1.0s;
-	animation-fill-mode: forwards;
-}
-
-.titlefadeout {
-	animation-name: fadeout;
 	animation-duration: 1.0s;
 	animation-fill-mode: forwards;
 }
