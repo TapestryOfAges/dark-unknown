@@ -3839,7 +3839,7 @@ function StatueTopTile() {
   this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-864";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_SWIM + MOVE_LEVITATE;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "statue";
@@ -6593,10 +6593,11 @@ function AlchemyLabTopTile() {
   this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-1632";
-  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_SWIM + MOVE_LEVITATE;
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "alchemy lab";
+  this.alwaystop = 1;
 }
 AlchemyLabTopTile.prototype = new FeatureObject();
 
@@ -6605,10 +6606,11 @@ function AlchemyLabTop2Tile() {
   this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-1632";
-  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_SWIM + MOVE_LEVITATE;
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "alchemy lab";
+  this.alwaystop = 1;
 }
 AlchemyLabTop2Tile.prototype = new FeatureObject();
 
@@ -14120,7 +14122,9 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
       // uncommented version checks from current display center, not from PC position.
       if (typeof this.getLight === "function") {
-			  DrawMainFrame("draw", map, PC.getx(), PC.gety());
+        if (this.getLight() !== 0) {
+          DrawMainFrame("draw", map, PC.getx(), PC.gety());
+        }
 			} else {
 			  // only redraw these two spaces
 			  DrawMainFrame("one", map, startx, starty);
