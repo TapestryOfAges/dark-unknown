@@ -3,20 +3,25 @@
 function CreateDisplayTables() {
   let terraintable = "<table id='mainterrainview' style='position:fixed; top:38px; left:19px; z-index:21' border='0' cellspacing='0' cellpadding='0'>";
   let maintable = "<table id='mainview' style='position:fixed; top:38px; left:19px; z-index:22' border='0' cellspacing='0' cellpadding='0'>";
+  let toptable = "<table id='maintopview' style='position:fixed; top:38px; left:19px; z-index:23' border='0' cellspacing='0' cellpadding='0'>";
   for (let j=0; j<VIEWSIZEY; j++) {
     terraintable += "<tr>";
     maintable += "<tr>";
+    toptable += "<tr>";
     for (let i=0; i<VIEWSIZEX; i++) {
       terraintable += "<td id='terrain_"+i+"x"+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
       maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
+      toptable += "<td id='maintopview_"+i+"x"+j+"' style='position:relative'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
     }
     terraintable += "</tr>";
     maintable += "</tr>";
+    toptable += "</tr>";
   }
   terraintable += "</table>";
   maintable += "</table>";
+  toptable += "</table>";
 
-  document.getElementById('displayframe').innerHTML = terraintable + "\n" + maintable;
+  document.getElementById('displayframe').innerHTML = terraintable + "\n" + maintable + "\n" + toptable;
   return;
 }
 
@@ -217,7 +222,10 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     }
   }
     
-  displaytile = localacre.getTop(0,1,1);  // sorts NPCs to top, but "alwaystop" features above them
+  let toptop = localacre.getTop(0,1,1);  // sorts NPCs to top, but "alwaystop" features above them
+  displaytile = localacre.getTop(0,1);
+  let isontop = 0;
+  if (toptop !== displaytile) { isontop = 1; }
   while (displaytile.getName() === "SeeBelow") {
     let retval = FindBelow(x,y,mapname);
     localacre = retval.tile;
@@ -281,6 +289,15 @@ function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
     displayCell.desc = "You cannot see that";
   }
   if (displaytile.checkType("Terrain") && (displaytile.getName() !== "BlankBlack")) { displayCell.terrain = 1; }
+  if (isontop) {
+    let gra = toptop.getGraphicArray();
+    let topview = {};
+    topview.showGraphic = gra[0];
+    topview.graphics1 = gra[1];
+    topview.graphics2 = gra[2];
+    topview.graphics3 = gra[3];
+    displayCell.topview = topview;
+  }
   return displayCell;
 }
   

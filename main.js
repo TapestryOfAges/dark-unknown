@@ -130,6 +130,7 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
   let yidx = i-displayspecs.topedge;
   let xidx = j-displayspecs.leftedge;
   let mview = document.getElementById('mainview_'+xidx+'x'+yidx);
+  let topview = document.getElementById('maintopview_'+xidx+'x'+yidx);
   if (thiscell.terrain) {
     mview.innerHTML = "<img id='tile"+j+"x"+i+"' src='graphics/spacer.gif' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>";
     mview.style.backgroundImage = "url('graphics/spacer.gif')";
@@ -145,6 +146,24 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
     mview.innerHTML += "<img src='graphics/shadow.gif' style='position:absolute;left:0px;top:0px' />";
   } else if (opac === 0) {
     mview.innerHTML += "<div style='background-image: url(\"graphics/terrain_tiles.png\"); background-position:-64px -128px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
+  }
+
+  if (thiscell.hasOwnProperty("topview")) {
+    topview.innerHTML = "<img id='toptile"+j+"x"+i+"' src='graphics/"+thiscell.topview.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>";
+    topview.style.backgroundImage = "url('graphics/" + thiscell.topview.showGraphic + "')";
+    topview.style.backgroundRepeat = "no-repeat";
+    topview.style.backgroundPosition = thiscell.topview.graphics2 + "px " + thiscell.topview.graphics3 + "px";
+
+    if ((opac > 0) && (opac < 1)) {
+      topview.innerHTML += "<img src='graphics/shadow.gif' style='position:absolute;left:0px;top:0px' />";
+    } else if (opac === 0) {
+      topview.innerHTML += "<div style='background-image: url(\"graphics/terrain_tiles.png\"); background-position:-64px -128px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
+    }  
+  } else {
+    topview.innerHTML = "<img id='tile"+j+"x"+i+"' src='graphics/spacer.gif' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>";
+    topview.style.backgroundImage = "url('graphics/spacer.gif')";
+    topview.style.backgroundRepeat = "no-repeat";
+    topview.style.backgroundPosition = "0px 0px";
   }
 
   let terr = GetDisplayTerrain(themap,j,i,centerx,centery,thiscell.losresult);
