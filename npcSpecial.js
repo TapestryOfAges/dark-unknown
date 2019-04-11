@@ -7,3 +7,6 @@ function MultiTileNPC(othertilearray,othertilelocationsarray) {
   }
 }
 
+function MultiSegment() {
+
+}
