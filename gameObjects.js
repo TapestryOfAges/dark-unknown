@@ -3839,7 +3839,7 @@ function StatueTopTile() {
   this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-864";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_SWIM + MOVE_LEVITATE;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "statue";
@@ -6091,19 +6091,17 @@ function BedHeadTile() {
 }
 BedHeadTile.prototype = new FeatureObject();
 
-BedHeadTile.prototype.walkon = function(who) {
-  let garr = ["master_spritesheet.png","","-64","-1120"];
-//  if (who.getGraphic().indexOf(".2.") > -1) { 
+function BedWalkOn(who,bedarr) {
   if (parseInt(who.skintone) === 2) {
-    garr[2] = "-96";
+    bedarr[2] = "-96";
   } else if (parseInt(who.skintone) !== 1) { console.log("Missing skintone on "); console.log(who); }
   who.realgraphic = who.getGraphicArray();
-  who.setGraphicArray(garr);
+  who.setGraphicArray(bedarr);
   DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " to sleeping.<br />");
   return;
 }
 
-BedHeadTile.prototype.walkoff = function(who) {
+function BedWalkOff(who) {
   if (who.realgraphic) {
     who.setGraphicArray(who.realgraphic);
     delete who.realgraphic;
@@ -6112,10 +6110,11 @@ BedHeadTile.prototype.walkoff = function(who) {
     alert("Entity failed to have a waking graphic. See console.");
     console.log(who);
   }
+  return;
 }
 
-BedHeadTile.prototype.bumpinto = function(who) {
-	let retval = {};
+function BedBumpInto(who) {
+  let retval = {};
 	retval["fin"] = 1;
 	retval["canmove"] = 1;
   retval["msg"] = "";
@@ -6124,6 +6123,19 @@ BedHeadTile.prototype.bumpinto = function(who) {
   if (who.aiWandering) { retval["canmove"] = 0; } 
 
   return(retval);
+}
+
+BedHeadTile.prototype.walkon = function(who) {
+  let garr = ["master_spritesheet.png","","-64","-1120"];
+  return BedWalkOn(who,garr);
+}
+
+BedHeadTile.prototype.walkoff = function(who) {
+  BedWalkOff(who);
+}
+
+BedHeadTile.prototype.bumpinto = function(who) {
+  return BedBumpInto(who);
 }
 
 function BedFootTile() {
@@ -6141,6 +6153,96 @@ function BedFootTile() {
   this.civilizedpathweight = 5;
 }
 BedFootTile.prototype = new FeatureObject();
+
+function DoubleBedTopHeadTile() {
+  this.name = "DoubleBedTopHead";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1632";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bed";
+  this.nowander = 1;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5;
+}
+DoubleBedTopHeadTile.prototype = new FeatureObject();
+
+DoubleBedTopHeadTile.prototype.walkon = function(who) {
+  let garr = ["master_spritesheet.png","","-64","-1632"];
+  return BedWalkOn(who,garr);
+}
+
+DoubleBedTopHeadTile.prototype.walkoff = function(who) {
+  BedWalkOff(who);
+}
+
+DoubleBedTopHeadTile.prototype.bumpinto = function(who) {
+  return BedBumpInto(who);
+}
+
+function DoubleBedBottomHeadTile() {
+  this.name = "DoubleBedBottomHead";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1664";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bed";
+  this.nowander = 1;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5;
+}
+DoubleBedBottomHeadTile.prototype = new FeatureObject();
+
+DoubleBedBottomHeadTile.prototype.walkon = function(who) {
+  let garr = ["master_spritesheet.png","","-64","-1664"];
+  return BedWalkOn(who,garr);
+}
+
+DoubleBedBottomHeadTile.prototype.walkoff = function(who) {
+  BedWalkOff(who);
+}
+
+DoubleBedBottomHeadTile.prototype.bumpinto = function(who) {
+  return BedBumpInto(who);
+}
+
+function DoubleBedTopFootTile() {
+  this.name = "DoubleBedTopFoot";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1632";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bed";
+  this.nowander = 1;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5;
+}
+DoubleBedTopFootTile.prototype = new FeatureObject();
+
+function DoubleBedBottomFootTile() {
+  this.name = "DoubleBedBottomFoot";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1664";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "bed";
+  this.nowander = 1;
+
+  this.pathweight = 5; 
+  this.civilizedpathweight = 5;
+}
+DoubleBedBottomFootTile.prototype = new FeatureObject();
 
 function BookshelfLeftTile() {
   this.name = "BookshelfLeft";
@@ -6485,6 +6587,56 @@ ReflectionTile.prototype.walkoff = function(who) {
     this.mirror.setGraphicArray(["furniture.gif", "", "-192", "0"]);
   }
 }
+
+function AlchemyLabTopTile() {
+  this.name = "AlchemyLabTop";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1632";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_SWIM + MOVE_LEVITATE;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "alchemy lab";
+  this.alwaystop = 1;
+}
+AlchemyLabTopTile.prototype = new FeatureObject();
+
+function AlchemyLabTop2Tile() {
+  this.name = "AlchemyLabTop2";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1632";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_SWIM + MOVE_LEVITATE;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "alchemy lab";
+  this.alwaystop = 1;
+}
+AlchemyLabTop2Tile.prototype = new FeatureObject();
+
+function AlchemyLabTile() {
+  this.name = "AlchemyLab";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1664";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "alchemy lab";
+}
+AlchemyLabTile.prototype = new FeatureObject();
+
+function AlchemyLab2Tile() {
+  this.name = "AlchemyLab2";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1664";
+  this.passable = MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "alchemy lab";
+}
+AlchemyLab2Tile.prototype = new FeatureObject();
 
 function WaterfallTile() {
   this.name = "Waterfall";
@@ -13970,7 +14122,9 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
       // uncommented version checks from current display center, not from PC position.
       if (typeof this.getLight === "function") {
-			  DrawMainFrame("draw", map, PC.getx(), PC.gety());
+        if (this.getLight() !== 0) {
+          DrawMainFrame("draw", map, PC.getx(), PC.gety());
+        }
 			} else {
 			  // only redraw these two spaces
 			  DrawMainFrame("one", map, startx, starty);

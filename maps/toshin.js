@@ -351,7 +351,7 @@ mappages["toshin3"].onload = function(mapref) {
     tile = mapref.getTile(15,13);
     tp = tile.getTopFeature();
     if (tp.getName() === "TeleporterPlatform") {
-      destobj = {};
+      let destobj = {};
       destobj.map = mapref.getName();
       destobj.x = 24;
       destobj.y = 7;
@@ -360,7 +360,7 @@ mappages["toshin3"].onload = function(mapref) {
     tile = mapref.getTile(8,20);
     tp = tile.getTopFeature();
     if (tp.getName() === "TeleporterPlatform") {
-      destobj = {};
+      let destobj = {};
       destobj.map = mapref.getName();
       destobj.x = 18;
       destobj.y = 21;
@@ -369,7 +369,7 @@ mappages["toshin3"].onload = function(mapref) {
     tile = mapref.getTile(18,21);
     tp = tile.getTopFeature();
     if (tp.getName() === "TeleporterPlatform") {
-      destobj = {};
+      let destobj = {};
       destobj.map = mapref.getName();
       destobj.x = 8;
       destobj.y = 20;
