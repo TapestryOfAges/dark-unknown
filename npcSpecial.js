@@ -8,7 +8,8 @@ function MultiTileNPC(othertilearray,othertilelocationsarray) {
     for (let i=0; i<othertilearray.length; i++) {
       let part = localFactory.createTile(othertilearray[i]);
       this.attachedParts[this.attachedParts.length] = part;
-
+      mymap.placeThing(othertilelocationsarray[i].x, othertilelocationsarray[i].y, part);
+      part.attachedTo = this;
     }
   }
 }
@@ -16,5 +17,7 @@ function MultiTileNPC(othertilearray,othertilelocationsarray) {
 
 function MultiSegment() {
   this.attachedTo = {};
+  this.currentAI = "segment";
+  this.peaceAI = "segment";
 }
 MultiSegment.prototype = new NPCObject();
