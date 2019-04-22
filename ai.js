@@ -257,6 +257,12 @@ function TryMelee(who) {
   return atked;
 }
 
+ais.segment = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  return retval;
+}
+
 // deprecated in favor of schedules.
 ais.townsfolk = function(who) {
   let retval = {};
@@ -1675,3 +1681,4 @@ function FindMissileTarget(who,radius) {
     return 0;
   }
 }
+

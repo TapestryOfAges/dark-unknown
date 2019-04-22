@@ -912,6 +912,41 @@ function CreateBeaches(mapref) {
   }
 }
 
+mappages["ellusus_limbo"] = {};
+mappages["ellusus_limbo"].terrain = [];
+mappages["ellusus_limbo"].terrain[0] = 'WW WW WW WW WW';
+mappages["ellusus_limbo"].terrain[1] = '## ## ## ## WW';
+mappages["ellusus_limbo"].terrain[2] = '## ++ ++ ## WW';
+mappages["ellusus_limbo"].terrain[3] = '## ## ## ## WW';
+mappages["ellusus_limbo"].terrain[4] = 'WW WW WW WW WW';
+
+mappages["ellusus_limbo"].features = [];
+
+mappages["ellusus_limbo"].npcs = [];
+
+mappages["ellusus_limbo"].desc = "Olympus Limbo";
+mappages["ellusus_limbo"].music = 'Charcreate';
+mappages["ellusus_limbo"].savename = "OLimbo";
+mappages["ellusus_limbo"].exitmap = '';
+mappages["ellusus_limbo"].exitx = '65';
+mappages["ellusus_limbo"].exity = '70';
+mappages["ellusus_limbo"].wraps = 'None';
+mappages["ellusus_limbo"].enterx = '2';
+mappages["ellusus_limbo"].entery = '2';
+mappages["ellusus_limbo"].seeBelow = '';
+mappages["ellusus_limbo"].lightLevel = 'bright';
+mappages["ellusus_limbo"].alwaysRemember = '1';
+mappages["ellusus_limbo"].scale = '1';
+mappages["ellusus_limbo"].enterscript = '';
+mappages["ellusus_limbo"].entertestscript = '';
+mappages["ellusus_limbo"].exitscript = '';
+mappages["ellusus_limbo"].exittestscript = '';
+mappages["ellusus_limbo"].returnmap = '';
+mappages["ellusus_limbo"].returnx = '';
+mappages["ellusus_limbo"].returny = '';
+mappages["ellusus_limbo"].returninfused = '0';
+mappages["ellusus_limbo"].linkedMaps = [""];
+ 
 mappages["gnomeland"] = {};
 mappages["gnomeland"].terrain = [];
 mappages["gnomeland"].terrain[0] = 'WW WW WW WW WW';
