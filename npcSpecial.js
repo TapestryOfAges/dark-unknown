@@ -49,6 +49,11 @@ function HorseAndCartNPCTile() {
   this.meleeAttackSound = 'sfx_animal_miss';
   this.initOverride = 10;
 
-  MultiTileNPC.call(this)
+  MultiTileNPC.call(this, ["CartSegment"], [[-1,0]])
 }
 HorseAndCartNPCTile.prototype = new NPCObject();
+
+function CartSegmentTile() {
+  this.name = "CartSegment";
+
+}

@@ -3723,6 +3723,16 @@ tileFactory.prototype.makeCourierGroupTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeHorseAndCartNPCTile = function() {
+  let newTile = new HorseAndCartNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCartSegmentTile = function() {
+  let newTile = new CartSegmentTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBlessingTile = function() {
   let newTile = new BlessingTile();
   return newTile;

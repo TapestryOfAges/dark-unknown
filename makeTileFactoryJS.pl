@@ -33,6 +33,14 @@ foreach my $line (<NPCOBJS>) {
   }
 }
 
+open NPCSOBJS, "npcSpecial.js" or die "can't open npcSpecial\n";
+
+foreach my $line (<NPCSOBJS>) {
+  if ($line =~ /function (.*)Tile\(\)/) {
+    print $output "tileFactory.prototype.make" . $1 . "Tile = function() {\n  let newTile = new ". $1 . "Tile();\n  return newTile;\n}\n\n";
+  }
+}
+
 open EOBJS, "ephemeralObjects.js" or die "can't open ephemeralObjects\n";
 
 foreach my $line (<EOBJS>) {
