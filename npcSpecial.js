@@ -35,8 +35,8 @@ function HorseAndCartNPCTile() {
   this.forgetAt = 0;
   this.withdraw = 75;
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-256";
-  this.spritexoffset = "-1536";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1536";
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'ClothArmor';
@@ -58,7 +58,7 @@ HorseAndCartNPCTile.prototype = new NPCObject();
 function CartSegmentTile() {
   this.name = "CartSegment";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-224";
-  this.spritexoffset = "-1536";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1536";
 
 }
