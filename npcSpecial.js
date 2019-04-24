@@ -23,7 +23,7 @@ function MultiSegment() {
 MultiSegment.prototype = new NPCObject();
 
 function HorseAndCartNPCTile() {
-  this.name = 'HorseAndCart';
+  this.name = 'HorseAndCartNPC';
   this.level = 1;
   this.addhp = 0;
   this.str = 10;
@@ -34,7 +34,9 @@ function HorseAndCartNPCTile() {
   this.peaceAI = 'scheduled';
   this.forgetAt = 0;
   this.withdraw = 75;
-  this.graphic = '302.gif';
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-256";
+  this.spritexoffset = "-1536";
   this.meleeAttackAs = 'Fists';
   this.missileAttackAs = 'none';
   this.armorAs = 'ClothArmor';
@@ -55,5 +57,8 @@ HorseAndCartNPCTile.prototype = new NPCObject();
 
 function CartSegmentTile() {
   this.name = "CartSegment";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-224";
+  this.spritexoffset = "-1536";
 
 }
