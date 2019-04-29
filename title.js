@@ -88,6 +88,7 @@ let el = function(e) {
 {
   let callback = function() {
     audio_init();  
+    set_schedules();
 
     if (firsttime) {
       document.addEventListener("keydown", el);
@@ -452,6 +453,7 @@ function SaveChar() {
   PC.setGender(gender);
   
   themap = maps.addMap("darkunknown");
+  maps.addMap("ellusus_limbo");
 
   PC.setHomeMap(themap);
   PC.setx(69);

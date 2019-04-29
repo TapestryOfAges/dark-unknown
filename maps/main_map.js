@@ -923,7 +923,7 @@ mappages["ellusus_limbo"].terrain[4] = 'WW WW WW WW WW';
 mappages["ellusus_limbo"].features = [];
 
 mappages["ellusus_limbo"].npcs = [];
-mappages["ellusus_limbo"].npcs[0] = {name : 'HorseAndCartNPC', x : 2, y : 2, skintone: '1'};
+mappages["ellusus_limbo"].npcs[0] = {name : 'HorseAndCartNPC', x : 2, y : 2, skintone: '1', Schedule: 'olivia_cart'};
 
 mappages["ellusus_limbo"].desc = "Olympus Limbo";
 mappages["ellusus_limbo"].music = 'Charcreate';
