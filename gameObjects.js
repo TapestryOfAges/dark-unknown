@@ -100,13 +100,21 @@ ProtoObject.prototype.copy = function(type) {
     } else if (typeof val === "function") {  // real one has a function base one does not
       alert("Function on " + copydata.name + ": " + idx);
     }
-    if (typeof val !== "object") { 
+    else if (typeof val !== "object") { 
       if (val != base_version[idx]) {
         copydata[idx] = val;
         DebugWrite("saveload", idx + " <span style='color:lime'>different, copying</span>... ");
       } else {
         DebugWrite("saveload", idx + " <span style='color:firebrick'>the same, moving on</span>...  ");
       }
+    } else if (idx === "attachedParts") {
+      copydata[idx] = [];
+      for (let i=0;i<val.length;i++) {
+        copydata[idx][i] = val[i].getSerial();
+        DebugWrite("saveload", idx + " an array containing serial " + copydata[idx][i] + "...  ");
+      }
+    } else if (idx === "attachedTo") {
+      copydata[idx] = val.getSerial();
     } else if (Array.isArray(val)) {
       if (Array.isArray(base_version[idx]) && arrayCompare(val, base_version[idx])) {
         DebugWrite("saveload", idx + " an array and <span style='color:firebrick'>the same, moving on</span>...  ");
@@ -14001,6 +14009,7 @@ NPCObject.prototype.activate = function(timeoverride) {
 
     DebugWrite("ai", "Curr time: " + DUTime.getGameClock().toFixed(5) + ", NPC will go in " + timing + ".<br />");
 
+    if (typeof this.attachParts === "function") { this.attachParts(); }
     this.startx = this.getx();
     this.starty = this.gety();
     

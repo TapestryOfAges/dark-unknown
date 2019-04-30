@@ -459,6 +459,12 @@ Acre.prototype.getTop = function(nopc, sortnpctotop, fordisplay) {
         return fea[i];
       }
     }
+    let npc = this.getNPCs();
+    for (let i=0;i<npc.length;i++) {
+      if (npc[i].alwaystop) {
+        return npc[i];
+      }
+    }
   }
   if (!sortnpctotop) {
   	if (this.getTopPC() && !nopc) {

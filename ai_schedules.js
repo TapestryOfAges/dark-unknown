@@ -616,3 +616,74 @@ ais.TeleportTo = function(who, params) {
   who.getHomeMap().moveThing(params.x, params.y, who);
   return {fin:1};
 }
+
+ais.SwapPlace = function(who, params) {
+  who.swapPlace(params.align);
+  return {fin:1};
+}
+
+ais.CartMoves = function(who, params) {
+  let moved = {};
+  if ((who.getx() !== parseInt(params.destinationx)) || (who.gety() !== parseInt(params.destinationy))) {
+    let movetype = who.getMovetype();    
+    let gridbackup = who.getHomeMap().getPathGrid(movetype).clone();
+    
+    if (who.getHomeMap() === PC.getHomeMap()) {
+      // make PC a difficult square
+      gridbackup.setWeightAt(PC.getx(),PC.gety(),5);
+    }
+    gridbackup.setWalkableAt(params.destinationx,params.destinationy,true);
+    gridbackup.setWalkableAt(who.getx(),who.gety(),true);
+
+    let path = finder.findPath(who.getx(),who.gety(),params.destinationx,params.destinationy,gridbackup);
+
+    path.shift();
+
+    if (path[0]) {
+      let otherhalf = who.attachedParts[0];
+      if ((otherhalf.getx() === path[0][0]) && (otherhalf.gety() === path[0][1])) {
+        who.swapPlace();
+        return {fin:0};
+      }
+      moved = StepOrSidestep(who,path[0],[parseInt(params.destinationx), parseInt(params.destinationy)]);
+      if (!moved["canmove"] && moved["intoPC"]) {
+        who.flags.activityComplete = 1;
+        DebugWrite("schedules", "PC at destination, giving up and setting activityComplete.<br />");
+      }
+    } else if ((who.getx() === params.destinationx) && (who.gety() === params.destinationy)) {
+      who.flags.activityComplete = 1;
+      DebugWrite("schedules", "I am already at my destination somehow.<br />");
+      console.log(who.getNPCName() + " somehow is already at her destination.");
+    } else {
+      console.log(who.getNPCName() + " on " + who.getHomeMap().getName() + " at " + who.getx() + "," + who.gety());
+      console.log("Failed to move, in schedule index " + who.getCurrentScheduleIndex() + " at " + GetUsableClockTime());
+    }
+  } else { DebugWrite("schedules", "Already at destination... "); }
+
+  if ((who.getx() === parseInt(params.destinationx)) && (who.gety() === parseInt(params.destinationy))) {
+    who.flags.activityComplete = 1;
+
+    DebugWrite("schedules", "Arrived at destination, setting activityComplete.<br />");
+  }
+  return {fin:1};
+
+}
+
+ais.ChangeMapCart = function(who,params) {
+  let destmap = maps.getMap(params.mapName);
+  if (!destmap) { alert("Failure to find map " + params.mapName); }
+  let desttile = MoveBetweenMaps(who,who.getHomeMap(),destmap,params.x,params.y);
+  if (desttile) {
+    who.flags.activityComplete = 1;
+    let cart = who.attachedParts[0];
+    let cartdestx = params.x;
+    if (who.spritexoffset === "-256") { cartdestx -= 1; }
+    else { carddesty += 1; }
+    MoveBetweenMaps(cart,cart.getHomeMap(),destmap,cartdestx,params.y);
+    DebugWrite("schedules", "Changed maps (Cart). Going to (" + params.x + "," + params.y + "), wound up at (" + who.getx() + "," + who.gety() + ").<br />");
+  } else {
+    DebugWrite("schedules", "Failed to change maps. Will try again next turn.");
+  }
+
+  return {fin:1};
+}

@@ -182,7 +182,6 @@ function StartGame() {
   CreateDisplayTables();
 
   set_conversations();
-  set_schedules();
   DU.merchants = {};
   DU.merchants = SetMerchants();
 
