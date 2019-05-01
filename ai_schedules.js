@@ -623,10 +623,12 @@ ais.SwapPlace = function(who, params) {
 }
 
 ais.CartMoves = function(who, params) {
+  console.log("In CartMoves");
+  console.log(params);
   let moved = {};
   if ((who.getx() !== parseInt(params.destinationx)) || (who.gety() !== parseInt(params.destinationy))) {
-    let movetype = who.getMovetype();    
-    let gridbackup = who.getHomeMap().getPathGrid(movetype).clone();
+    console.log("Not there yet.");  
+    let gridbackup = who.getHomeMap().getPathGrid(MOVE_WALK_DOOR).clone();
     
     if (who.getHomeMap() === PC.getHomeMap()) {
       // make PC a difficult square
@@ -638,20 +640,37 @@ ais.CartMoves = function(who, params) {
     let path = finder.findPath(who.getx(),who.gety(),params.destinationx,params.destinationy,gridbackup);
 
     path.shift();
-
+console.log(path);
     if (path[0]) {
       let otherhalf = who.attachedParts[0];
+      let origx = who.getx();
+      let origy = who.gety();
+      let origcartx = otherhalf.getx();
+      let origcarty = otherhalf.gety();    
+      console.log(otherhalf);
       if ((otherhalf.getx() === path[0][0]) && (otherhalf.gety() === path[0][1])) {
+        console.log("Swapping positions with rear");
         who.swapPlace();
+        if (who.getHomeMap() === PC.getHomeMap()) {
+          DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+          DrawMainFrame("one",who.getHomeMap(),origx,origy);
+        }
         return {fin:0};
       }
       moved = StepOrSidestep(who,path[0],[parseInt(params.destinationx), parseInt(params.destinationy)]);
       if (!moved["canmove"] && moved["intoPC"]) {
-        who.flags.activityComplete = 1;
+        return {fin:1};
         DebugWrite("schedules", "PC at destination, giving up and setting activityComplete.<br />");
       }
+      who.getHomeMap().moveThing(who.getx()+who.attachedLocations[0][0],who.gety()+who.attachedLocations[0][1],otherhalf);
+      if (who.getHomeMap() === PC.getHomeMap()) {
+        DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+        DrawMainFrame("one",who.getHomeMap(),origx,origy);
+        DrawMainFrame("one",who.getHomeMap(),otherhalf.getx(),otherhalf.gety());
+        DrawMainFrame("one",who.getHomeMap(),origcartx,origcarty);
+      }
     } else if ((who.getx() === params.destinationx) && (who.gety() === params.destinationy)) {
-      who.flags.activityComplete = 1;
+      return {fin:1}
       DebugWrite("schedules", "I am already at my destination somehow.<br />");
       console.log(who.getNPCName() + " somehow is already at her destination.");
     } else {
@@ -661,15 +680,16 @@ ais.CartMoves = function(who, params) {
   } else { DebugWrite("schedules", "Already at destination... "); }
 
   if ((who.getx() === parseInt(params.destinationx)) && (who.gety() === parseInt(params.destinationy))) {
-    who.flags.activityComplete = 1;
+    return {fin:1}
 
     DebugWrite("schedules", "Arrived at destination, setting activityComplete.<br />");
   }
-  return {fin:1};
+  return {fin:0};
 
 }
 
 ais.ChangeMapCart = function(who,params) {
+  console.log("In ChangeMapCart");
   let destmap = maps.getMap(params.mapName);
   if (!destmap) { alert("Failure to find map " + params.mapName); }
   let desttile = MoveBetweenMaps(who,who.getHomeMap(),destmap,params.x,params.y);

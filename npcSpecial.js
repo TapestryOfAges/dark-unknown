@@ -3,9 +3,11 @@
 // Introducing multi-tile sized NPC/Groups
 function MultiTileNPC(othertilearray,othertilelocationsarray) {
   this.attachedParts = [];
+  this.attachedLocations = [];
   this.attachParts = function() {
     let mymap = this.getHomeMap();
     for (let i=0; i<othertilearray.length; i++) {
+      this.attachedLocations[i] = [othertilelocationsarray[i][0], othertilelocationsarray[i][1]];
       let part = localFactory.createTile(othertilearray[i]);
       this.attachedParts[this.attachedParts.length] = part;
       mymap.placeThing(this.getx() + othertilelocationsarray[i][0], this.gety() + othertilelocationsarray[i][1], part);
@@ -57,7 +59,7 @@ function HorseAndCartNPCTile() {
 HorseAndCartNPCTile.prototype = new NPCObject();
 
 HorseAndCartNPCTile.prototype.swapPlace = function(orient) {
-  if ((orient === "left") || (this.spritexoffset === '-256')) {
+  if ((orient === "left") || ((this.spritexoffset === '-256') && (orient !== "right"))) {
     this.spritexoffset = '-224';
     this.spriteyoffset = '-1568';
     this.attachedParts[0].spritexoffset = '-256';
