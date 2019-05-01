@@ -428,7 +428,7 @@ function FadeOut(death) {
   // stop playing spell animations
   spellcount = {};
   
-  // Ironically, to do a fade OUT I am performing a jquery fadeIn(), to fade in a blanket of darkness
+  // Ironically, to do a fade OUT I was performing a jquery fadeIn(), to fade in a blanket of darkness
   // to put over the viewscreen.
   let darkness = "<div id='darkness' style='position:absolute;left:0;top:0;width:416px;height:418px;background-color:black;opacity:0'><img src='graphics/spacer.gif' width='416' height='418'></div>";
   document.getElementById('spelleffects').innerHTML = darkness;
@@ -441,12 +441,14 @@ function FadeOut(death) {
 
 function FadeIn(death) {
 
-  if (death) {
-    document.getElementById('darkness').classList.toggle("rundeathfadein");
-  } else {
-    document.getElementById('darkness').classList.toggle("runfadein");
-  }
-  document.getElementById('darkness').classList.toggle("runfadeout");
+  if (document.getElementById('darkness')) {
+    if (death) {
+      document.getElementById('darkness').classList.toggle("rundeathfadein");
+    } else {
+      document.getElementById('darkness').classList.toggle("runfadein");
+    }
+    document.getElementById('darkness').classList.toggle("runfadeout");
+  } else { console.log("skipped fadein due to no darkness!"); }
   setTimeout(function() { document.getElementById('spelleffects').innerHTML = ""; }, 1500);
   
 }
