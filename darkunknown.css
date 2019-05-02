@@ -86,14 +86,14 @@ div.charstats table { color:white;
 div.mainframe table {margin-top:-18px; }
 
 div.outerstats { 
-                 margin-top: -18px;
+                 
                   }
 
 div.zstats { width:100%;
              height: 410px;
              overflow:auto;
            }
-           
+		   
 div.zstats table { color:white;
                 font-family:"Commodore64";
    	            font-size:16pt;
