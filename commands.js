@@ -3053,7 +3053,7 @@ function DisplayInventory(restrictTo) {
     document.getElementById('inv_desc').innerHTML = inventorylist[invselect].getLongDesc();
     document.getElementById('inv_use').innerHTML = "Use: " + inventorylist[invselect].getUseDesc();
   } else {
-    document.getElementById("#inv_"+writetox+"x"+writetoy).style.borderColor = "#ffffff";
+    document.getElementById("inv_"+writetox+"x"+writetoy).style.borderColor = "#ffffff";
   }
 
   document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
