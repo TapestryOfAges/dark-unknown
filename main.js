@@ -12,7 +12,7 @@ let eidos = new Platonic();
 //var universe = new Object;
 
 let DU = {};
-DU.version = "0.6";
+DU.version = "0.6.1";
 
 DU.PC = new PCObject();
 let PC = DU.PC;  // alias
