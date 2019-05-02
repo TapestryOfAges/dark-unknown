@@ -623,16 +623,16 @@ mappages["olympus1"].features[550] = {name : 'DoubleBedBottomFoot', x : 12, y : 
 
 mappages["olympus1"].npcs = [];
 mappages["olympus1"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 79, y : 18, NPCName: 'Katrina', Desc: 'librarian', PeaceAI: 'scheduled', Schedule: 'katrina', Conversation: 'katrina', ConversationFlag: 'katrina', Gender: 'female', OverrideGraphic: '310.2.gif', skintone: '2'};
-mappages["olympus1"].npcs[1] = {name : 'TownGuardNPC', x : 68, y : 29, NPCName: 'Pieran', PeaceAI: 'scheduled', Schedule: 'pieran', Conversation: 'castleguard2', ConversationFlag: 'pieran', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus1"].npcs[1] = {name : 'TownGuardNPC', x : 68, y : 29, NPCName: 'Pieran', PeaceAI: 'scheduled', Schedule: 'pieran', Conversation: 'pieran', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
 mappages["olympus1"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 79, y : 36, NPCName: 'Peter', PeaceAI: 'scheduled', Schedule: 'peter', Conversation: 'peter', ConversationFlag: 'peter', Gender: 'male', Leash: 6, Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["olympus1"].npcs[3] = {name : 'TownGuardNPC', x : 43, y : 32, NPCName: 'Lera', PeaceAI: 'scheduled', Schedule: 'lera', Conversation: 'castleguard2', ConversationFlag: 'lera', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["olympus1"].npcs[4] = {name : 'TownGuardNPC', x : 55, y : 32, NPCName: 'Alban', PeaceAI: 'scheduled', Schedule: 'alban', Conversation: 'castleguard2', ConversationFlag: 'alban', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
+mappages["olympus1"].npcs[3] = {name : 'TownGuardNPC', x : 43, y : 32, NPCName: 'Lera', PeaceAI: 'scheduled', Schedule: 'lera', Conversation: 'lera', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
+mappages["olympus1"].npcs[4] = {name : 'TownGuardNPC', x : 55, y : 32, NPCName: 'Alban', PeaceAI: 'scheduled', Schedule: 'alban', Conversation: 'alban', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
 mappages["olympus1"].npcs[5] = {name : 'ChildVillagerNPC', x : 13, y : 21, NPCName: 'Yoshi', PeaceAI: 'scheduled', Schedule: 'yoshi', Conversation: 'yoshi', ConversationFlag: 'yoshi', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', skintone: '1'};
 mappages["olympus1"].npcs[6] = {name : 'TownsfolkVillagerNPC', x : 11, y : 18, NPCName: 'Tyler', Desc: 'chancellor', PeaceAI: 'scheduled', Schedule: 'tyler', Conversation: 'tyler', ConversationFlag: 'tyler', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
 mappages["olympus1"].npcs[7] = {name : 'BardVillagerNPC', x : 11, y : 19, NPCName: 'Sonya', PeaceAI: 'scheduled', Schedule: 'sonya', Conversation: 'sonya', ConversationFlag: 'sonya', Gender: 'female', Leash: 1, OverrideGraphic: 'bard-offcolor.gif', skintone: '1'};
 mappages["olympus1"].npcs[8] = {name : 'TownsfolkVillagerNPC', x : 79, y : 27, NPCName: 'Sean', PeaceAI: 'scheduled', Schedule: 'sean', Conversation: 'sean', ConversationFlag: 'sean', Gender: 'male', Leash: 2, skintone: '1'};
 mappages["olympus1"].npcs[9] = {name : 'ChildVillagerNPC', x : 82, y : 27, NPCName: 'Eli', PeaceAI: 'scheduled', Schedule: 'eli', Conversation: 'eli', ConversationFlag: 'eli', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["olympus1"].npcs[10] = {name : 'TownGuardNPC', x : 47, y : 25, NPCName: 'Martha', PeaceAI: 'scheduled', Schedule: 'martha', Conversation: 'castleguard2', ConversationFlag: 'martha', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus1"].npcs[10] = {name : 'TownGuardNPC', x : 47, y : 25, NPCName: 'Martha', PeaceAI: 'scheduled', Schedule: 'martha', Conversation: 'martha', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '1'};
 mappages["olympus1"].npcs[11] = {name : 'HorseNPC', x : 65, y : 45, Leash: 1, NPCName: 'Feather', Gender: 'male', NPCBand: '0'};
 mappages["olympus1"].npcs[12] = {name : 'HorseNPC', x : 67, y : 46, Leash: 1, NPCName: 'Sunlight', Gender: 'female', NPCBand: '0'};
 mappages["olympus1"].npcs[13] = {name : 'HorseNPC', x : 69, y : 46, Leash: 1, NPCName: 'Emperor', Gender: 'male', NPCBand: '0'};
@@ -646,10 +646,10 @@ mappages["olympus1"].npcs[20] = {name : 'ChickenNPC', x : 40, y : 51, Leash: 3};
 mappages["olympus1"].npcs[21] = {name : 'ChickenNPC', x : 42, y : 49, Leash: 3};
 mappages["olympus1"].npcs[22] = {name : 'ChickenNPC', x : 42, y : 50, Leash: 3};
 mappages["olympus1"].npcs[23] = {name : 'ChickenNPC', x : 44, y : 52, Leash: 3};
-mappages["olympus1"].npcs[24] = {name : 'TownGuardNPC', x : 36, y : 20, NPCName: 'Una', PeaceAI: 'scheduled', Schedule: 'una', Conversation: 'castleguard2', ConversationFlag: 'una', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["olympus1"].npcs[25] = {name : 'TownGuardNPC', x : 50, y : 40, NPCName: 'Martin', PeaceAI: 'scheduled', Schedule: 'martin', Conversation: 'castleguard1', ConversationFlag: 'martin', Gender: 'male', NPCBand: '0', skintone: '2'};
-mappages["olympus1"].npcs[26] = {name : 'TownGuardNPC', x : 48, y : 40, NPCName: 'Donn', PeaceAI: 'scheduled', Schedule: 'donn', Conversation: 'castleguard1', ConversationFlag: 'donn', Gender: 'male', NPCBand: '0', skintone: '2'};
-mappages["olympus1"].npcs[27] = {name : 'TownGuardNPC', x : 51, y : 25, NPCName: 'Davin', PeaceAI: 'scheduled', Schedule: 'davin', Conversation: 'castleguard2', ConversationFlag: 'davin', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus1"].npcs[24] = {name : 'TownGuardNPC', x : 36, y : 20, NPCName: 'Una', PeaceAI: 'scheduled', Schedule: 'una', Conversation: 'una', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus1"].npcs[25] = {name : 'TownGuardNPC', x : 50, y : 40, NPCName: 'Martin', PeaceAI: 'scheduled', Schedule: 'martin', Conversation: 'martin', Gender: 'male', NPCBand: '0', skintone: '2'};
+mappages["olympus1"].npcs[26] = {name : 'TownGuardNPC', x : 48, y : 40, NPCName: 'Donn', PeaceAI: 'scheduled', Schedule: 'donn', Conversation: 'donn', Gender: 'male', NPCBand: '0', skintone: '2'};
+mappages["olympus1"].npcs[27] = {name : 'TownGuardNPC', x : 51, y : 25, NPCName: 'Davin', PeaceAI: 'scheduled', Schedule: 'davin', Conversation: 'davin', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
 
 mappages["olympus1"].desc = "Castle dea Olympus";
 mappages["olympus1"].longdesc = 'Castle dea Olympus is the imposing heart of the kingdom. Within can be found the King and Queen, the royal stables and museum, and one of the largest libraries in the land. It is also where you grew up, which does lessen the mystique some.';
@@ -973,7 +973,7 @@ mappages["olympus2"].features[221] = {name : 'BedFoot', x : 19, y : 26};
 mappages["olympus2"].features[222] = {name : 'Mirror', x : 19, y : 24};
 mappages["olympus2"].features[223] = {name : 'BookshelfOne', x : 18, y : 24};
 mappages["olympus2"].features[224] = {name : 'Door', x : 11, y : 23, desc : "locked door", locked : 1};
-mappages["olympus2"].features[225] = {name : 'Mirror', x : 11, y : 18};
+mappages["olympus2"].features[225] = {name : 'ShieldDisplay', x : 11, y : 18};
 mappages["olympus2"].features[226] = {name : 'BedHead', x : 9, y : 18};
 mappages["olympus2"].features[227] = {name : 'BedFoot', x : 10, y : 18};
 mappages["olympus2"].features[228] = {name : 'SmallBox', x : 10, y : 22, lootedid : 'nyrani_box', searchyield : 'ChainArmor'};
@@ -1042,18 +1042,18 @@ mappages["olympus2"].npcs[8] = {name : 'MageVillagerNPC', x : 69, y : 18, NPCNam
 mappages["olympus2"].npcs[9] = {name : 'FighterVillagerNPC', x : 9, y : 18, NPCName: 'Nyrani', Desc: 'guard captain', Level: 5, str: 24, dex: 18, int: 12, PeaceAI: 'scheduled', PCThreatAI: 'melee', Schedule: 'nyrani', Conversation: 'nyrani', Gender: 'female', OverrideGraphic: '308.gif', skintone: '1'};
 mappages["olympus2"].npcs[10] = {name : 'JesterNPC', x : 29, y : 30, NPCName: 'Kaye', Alignment: 'good', PeaceAI: 'scheduled', Schedule: 'kaye', Conversation: 'kaye', ConversationFlag: 'kaye', Gender: 'male', Leash: 4, BarkFreq: 5, Bark: 'jester', BarkRad: 6, skintone: '1'};
 mappages["olympus2"].npcs[11] = {name : 'PaladinVillagerNPC', x : 60, y : 31, NPCName: 'Erica', PeaceAI: 'scheduled', Schedule: 'erica', Conversation: 'erica', ConversationFlag: 'erica', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '307.gif', skintone: '1'};
-mappages["olympus2"].npcs[12] = {name : 'TownGuardNPC', x : 18, y : 26, NPCName: 'Vivian', PeaceAI: 'scheduled', Schedule: 'vivian', Conversation: 'castleguard2', ConversationFlag: 'vivian', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
+mappages["olympus2"].npcs[12] = {name : 'TownGuardNPC', x : 18, y : 26, NPCName: 'Vivian', PeaceAI: 'scheduled', Schedule: 'vivian', Conversation: 'vivian', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
 mappages["olympus2"].npcs[13] = {name : 'TownsfolkVillagerNPC', x : 29, y : 34, NPCName: 'Manny', Desc: 'servant', PeaceAI: 'scheduled', Schedule: 'manny', Conversation: 'manny', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
-mappages["olympus2"].npcs[14] = {name : 'TownGuardNPC', x : 14, y : 53, NPCName: 'Lena', PeaceAI: 'scheduled', Schedule: 'lena', Conversation: 'castleguard2', ConversationFlag: 'lena', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["olympus2"].npcs[15] = {name : 'TownGuardNPC', x : 14, y : 51, NPCName: 'Barbara', PeaceAI: 'scheduled', Schedule: 'barbara', Conversation: 'castleguard2', ConversationFlag: 'barbara', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["olympus2"].npcs[16] = {name : 'TownGuardNPC', x : 9, y : 52, NPCName: 'Aler', PeaceAI: 'scheduled', Schedule: 'aler', Conversation: 'castleguard2', ConversationFlag: 'aler', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["olympus2"].npcs[17] = {name : 'TownGuardNPC', x : 9, y : 54, NPCName: 'Brian', PeaceAI: 'scheduled', Schedule: 'brian', Conversation: 'castleguard2', ConversationFlag: 'brian', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["olympus2"].npcs[18] = {name : 'TownGuardNPC', x : 13, y : 18, NPCName: 'Liam', PeaceAI: 'scheduled', Schedule: 'liam', Conversation: 'castleguard2', ConversationFlag: 'liam', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["olympus2"].npcs[19] = {name : 'TownGuardNPC', x : 57, y : 24, NPCName: 'Poe', PeaceAI: 'scheduled', Schedule: 'poe', Conversation: 'castleguard1', ConversationFlag: 'poe', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["olympus2"].npcs[20] = {name : 'TownGuardNPC', x : 9, y : 50, NPCName: 'Benedig', PeaceAI: 'scheduled', Schedule: 'benedig', Conversation: 'castleguard2', ConversationFlag: 'benedig', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["olympus2"].npcs[21] = {name : 'TownGuardNPC', x : 17, y : 18, NPCName: 'Andrew', PeaceAI: 'scheduled', Schedule: 'andrew', Conversation: 'castleguard2', ConversationFlag: 'andrew', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["olympus2"].npcs[22] = {name : 'TownGuardNPC', x : 17, y : 20, NPCName: 'Armaelle', PeaceAI: 'scheduled', Schedule: 'armaelle', Conversation: 'castleguard2', ConversationFlag: 'armaelle', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
-mappages["olympus2"].npcs[23] = {name : 'TownGuardNPC', x : 40, y : 38, NPCName: 'Gwen', PeaceAI: 'scheduled', Schedule: 'gwen', Conversation: 'castleguard2', ConversationFlag: 'gwen', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus2"].npcs[14] = {name : 'TownGuardNPC', x : 14, y : 53, NPCName: 'Lena', PeaceAI: 'scheduled', Schedule: 'lena', Conversation: 'lena', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus2"].npcs[15] = {name : 'TownGuardNPC', x : 14, y : 51, NPCName: 'Barbara', PeaceAI: 'scheduled', Schedule: 'barbara', Conversation: 'barbara', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
+mappages["olympus2"].npcs[16] = {name : 'TownGuardNPC', x : 9, y : 52, NPCName: 'Aler', PeaceAI: 'scheduled', Schedule: 'aler', Conversation: 'aler', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus2"].npcs[17] = {name : 'TownGuardNPC', x : 9, y : 54, NPCName: 'Brian', PeaceAI: 'scheduled', Schedule: 'brian', Conversation: 'brian', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus2"].npcs[18] = {name : 'TownGuardNPC', x : 13, y : 18, NPCName: 'Liam', PeaceAI: 'scheduled', Schedule: 'liam', Conversation: 'liam', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
+mappages["olympus2"].npcs[19] = {name : 'TownGuardNPC', x : 57, y : 24, NPCName: 'Poe', PeaceAI: 'scheduled', Schedule: 'poe', Conversation: 'poe', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus2"].npcs[20] = {name : 'TownGuardNPC', x : 9, y : 50, NPCName: 'Benedig', PeaceAI: 'scheduled', Schedule: 'benedig', Conversation: 'benedig', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '2'};
+mappages["olympus2"].npcs[21] = {name : 'TownGuardNPC', x : 17, y : 18, NPCName: 'Andrew', PeaceAI: 'scheduled', Schedule: 'andrew', Conversation: 'andrew', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus2"].npcs[22] = {name : 'TownGuardNPC', x : 17, y : 20, NPCName: 'Armaelle', PeaceAI: 'scheduled', Schedule: 'armaelle', Conversation: 'armaelle', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
+mappages["olympus2"].npcs[23] = {name : 'TownGuardNPC', x : 40, y : 38, NPCName: 'Gwen', PeaceAI: 'scheduled', Schedule: 'gwen', Conversation: 'gwen', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '1'};
 
 mappages["olympus2"].desc = "Castle dea Olympus";
 mappages["olympus2"].music = 'Olympus';
@@ -1194,8 +1194,8 @@ mappages["olympus0"].features[73] = {name : 'RightTable', x : 21, y : 7};
 
 
 mappages["olympus0"].npcs = [];
-mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 16, NPCName: 'Mariadoc', Conversation: 'castleguard0', ConversationFlag: 'mariadoc', PeaceAI: 'scheduled', Schedule: 'mariadoc', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
-mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 19, y : 14, NPCName: 'Kristell', Conversation: 'castleguard0p', ConversationFlag: 'kristell', PeaceAI: 'scheduled', Schedule: 'kristell', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
+mappages["olympus0"].npcs[0] = {name : 'TownGuardNPC', x : 10, y : 16, NPCName: 'Mariadoc', Conversation: 'mariadoc', PeaceAI: 'scheduled', Schedule: 'mariadoc', Gender: 'male', Bark: '0', NPCBand: '0', skintone: '1'};
+mappages["olympus0"].npcs[1] = {name : 'TownGuardNPC', x : 19, y : 14, NPCName: 'Kristell', Conversation: 'kristell', PeaceAI: 'scheduled', Schedule: 'kristell', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
 mappages["olympus0"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 24, y : 8, NPCName: 'Jeremiah', Conversation: 'jeremiah', ConversationFlag: 'jeremiah', PeaceAI: 'scheduled', Schedule: 'jeremiah', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
 mappages["olympus0"].npcs[3] = {name : 'TinkerVillagerNPC', x : 24, y : 18, NPCName: 'Aara', Conversation: 'aara', ConversationFlag: 'aara', PeaceAI: 'scheduled', Schedule: 'aara', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif', skintone: '1'};
 mappages["olympus0"].npcs[4] = {name : 'ShepherdVillagerNPC', x : 24, y : 13, NPCName: 'Rose', Conversation: 'rose', ConversationFlag: 'rose', PeaceAI: 'scheduled', Schedule: 'rose', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '301.gif', skintone: '1'};
@@ -1372,6 +1372,15 @@ mappages["olympus1"].onload = function(mapref) {
 mappages["olympus2"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
 
+    let shield = mapref.getTile(11,18).getTopFeature();
+    if (!DU.getFlag("has_shield")) {
+      // PC hasn't returned shield to Nyrani yet
+      mapref.deleteThing(shield);
+    } else {
+      // PC has returned Nyrani's shield- give it a unique desc rather than the generic one
+      shield.setDesc("Nyrani's shield, now set on display.");
+      shield.setPrefix("");
+    }
     // Changes made due to schedules
 
     let jharden, reed, yvette, brandan, lena, barbara, aler, brian, liam, poe, benedig, andrew, armaelle, gwen, vivian;
