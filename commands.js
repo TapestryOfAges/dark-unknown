@@ -217,14 +217,18 @@ function PerformCommand(code, ctrl) {
 		// hole up and camp, not used
 		
 	}
-	else if (code === 73) { // i
-		// was ignite torch, now infuse?
-		if (PC.getKnowsInfusion()) {
-      retval = PerformCast(1);
+  else if (code === 73) { // i
+    if (ctrl) {
+      ipcRenderer.send('toggle_dev');
     } else {
-      retval["fin"] = 2;
-      retval["txt"] = "You have not yet learned the higher mysteries.";
-      retval["input"] = "&gt;";
+  		// was ignite torch, now infuse?
+	  	if (PC.getKnowsInfusion()) {
+        retval = PerformCast(1);
+      } else {
+        retval["fin"] = 2;
+        retval["txt"] = "You have not yet learned the higher mysteries.";
+        retval["input"] = "&gt;";
+      }
     }
 	}
 	else if (code === 74) { // j
