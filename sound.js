@@ -233,6 +233,7 @@ function play_footstep(onwhat) {
 function handleFileLoad(event) {
   // A sound has been preloaded.
   musicloaded[event.id] = 1;
+//  console.log(event);
   musicsloaded++;
   if (musicsloaded === 20) {
     page_pre_zero();
