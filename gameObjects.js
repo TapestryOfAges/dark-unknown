@@ -6279,7 +6279,7 @@ function BookshelfRightTile() {
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "", "-128", "-416"];
+  this.searchedgraphic = ["master_spritesheet.png", "", "-128", "-416"];
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
