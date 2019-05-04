@@ -787,9 +787,9 @@ OnConvTriggers["where_queen"] = function(speaker,keyword) {
   } else if (CheckBetweenTime("17:31","19:00")) {
     maintext.addText("Your mother has retired upstairs.");
   } else {
-    maintext.addText("The King has retired for the night.");
+    maintext.addText("She's here.");
   }
-  DU.gameflags.deleteFlag("where_king");
+  DU.gameflags.deleteFlag("where_queen");
 }
 
 function ConvTestFlags() {};

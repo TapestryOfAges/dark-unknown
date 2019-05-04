@@ -1373,7 +1373,7 @@ mappages["olympus2"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
 
     let shield = mapref.getTile(11,18).getTopFeature();
-    if (!DU.getFlag("has_shield")) {
+    if (!DU.get.gameflags.Flag("has_shield")) {
       // PC hasn't returned shield to Nyrani yet
       mapref.deleteThing(shield);
     } else {
