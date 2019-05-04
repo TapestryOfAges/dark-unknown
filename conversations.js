@@ -789,7 +789,7 @@ OnConvTriggers["where_queen"] = function(speaker,keyword) {
   } else {
     maintext.addText("She's here.");
   }
-  DU.gameflags.deleteFlag("where_king");
+  DU.gameflags.deleteFlag("where_queen");
 }
 
 function ConvTestFlags() {};
