@@ -757,13 +757,13 @@ OnConvTriggers["paladin_initiation"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["where_king"] = function(speaker,keyword) {
-  if (CheckBetweenTime("6:15","7:30")) {
+  if (CheckTimeBetween("6:15","7:30")) {
     maintext.addText("The King is at his morning meeting with the chancellor. He will soon make his way to the throne room.");
-  } else if (CheckBetweenTime("7:31","12:00")) {
+  } else if (CheckTimeBetween("7:31","12:00")) {
     maintext.addText("Your father can be found in the throne room.");
-  } else if (CheckBetweenTime("12:01","17:00")) {
+  } else if (CheckTimeBetween("12:01","17:00")) {
     maintext.addText("Your father can be found in the great hall.");
-  } else if (CheckBetweenTime("17:01","19:00")) {
+  } else if (CheckTimeBetween("17:01","19:00")) {
     maintext.addText("Your father can be found in the throne room.");
   } else {
     maintext.addText("The King has retired for the night.");
@@ -772,19 +772,19 @@ OnConvTriggers["where_king"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["where_queen"] = function(speaker,keyword) {
-  if (CheckBetweenTime("6:15","7:30")) {
+  if (CheckTimeBetween("6:15","7:30")) {
     maintext.addText("She is here. But perhaps speak with her after our meeting.");
-  } else if (CheckBetweenTime("7:31","11:20")) {
+  } else if (CheckTimeBetween("7:31","11:20")) {
     maintext.addText("Your mother is in her sitting room, behind the museum.");
-  } else if (CheckBetweenTime("11:21","15:30")) {
+  } else if (CheckTimeBetween("11:21","15:30")) {
     maintext.addText("Your mother is in the throne room.");
-  } else if (CheckBetweenTime("15:31","15:45")) {
+  } else if (CheckTimeBetween("15:31","15:45")) {
     maintext.addText("She should be on her way to the great hall.");  
-  } else if (CheckBetweenTime("15:46","17:00")) {
+  } else if (CheckTimeBetween("15:46","17:00")) {
     maintext.addText("She is right here!");
-  } else if (CheckBetweenTime("17:01","17:30")) {
+  } else if (CheckTimeBetween("17:01","17:30")) {
     maintext.addText("Your mother is probably still in the great hall.");
-  } else if (CheckBetweenTime("17:31","19:00")) {
+  } else if (CheckTimeBetween("17:31","19:00")) {
     maintext.addText("Your mother has retired upstairs.");
   } else {
     maintext.addText("She's here.");
