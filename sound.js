@@ -106,7 +106,6 @@ DUMusic["Waltz"] = "Morganna's Waltz";
 let musicloaded = {};
 let musicsloaded = 0;
 let soundsloaded = 0;
-let numsounds = Object.keys(DUSound).length;
 
 function audio_init() {
   createjs.Sound.initializeDefaultPlugins();
@@ -125,37 +124,6 @@ function audio_init_2() {
   for (let idx in DUSound) {    
     createjs.Sound.registerSound(DUSound[idx], idx);
   }
-}
-
-
-function populate_audio(soundlist, preload, loop, soundtype) {
-  let preloadtext = "";
-  if (preload) {
-    preloadtext = "preload= 'metadata'";
-  }
-  let looptext = "";
-  if (loop) {
-    looptext = "loop = 'loop'";
-  }
-  if (soundtype === "music") {
-    for (let index in soundlist) {
-      let oggvalue = soundlist[index].replace("mp3", "ogg");
-      document.getElementById('audiocontainer').innerHTML += "<audio id='" + index + "' " + preloadtext + " " + looptext + "><source src='" + soundlist[index] + "' type='audio/mpeg' /><source src='" + oggvalue + "' type='audio/ogg' /></audio>";
-    }
-  } else {
-    for (let index in soundlist) {
-      document.getElementById('audiocontainer').innerHTML += "<audio id='" + index + "' " + preloadtext + " " + looptext + "><source src='" + soundlist[index] + "' type='audio/wav' /></audio>";
-    }
-  }
-}
-
-function create_audio() {
-  let tmparray = {};
-  tmparray.music = new Audio();
-  tmparray.sfx = new Audio();
-  tmparray.bkgrnd = new Audio();
-  
-  return tmparray;
 }
 
 // checks to see if the player has turned off sound
@@ -200,28 +168,10 @@ function DecAmbientVol(playing) {
 }
 
 
-function PlaySound(sound) {
-  let playing = {};
-  playing.song = createjs.Sound.play(sound);
-  playing.name = sound;
-  return playing;
-}
-
 function StopMusic(playing) {
   if (!playing) { playing = nowplaying; }
   playing.song.stop();
   nowplaying = {};
-}
-
-function play_audio(music) {
-  document.getElementById(music).pause();
-  document.getElementById(music).currentTime = 0;
-  document.getElementById(music).play();
-}
-
-function stop_music() {
-  document.getElementById(nowplaying).pause();
-  document.getElementById(nowplaying).currentTime = 0;
 }
 
 function play_footstep(onwhat) {
@@ -235,7 +185,7 @@ function play_footstep(onwhat) {
 }
 
 function handleFileLoad(event) {
-  // A sound has been preloaded.
+  // A song has been preloaded.
   musicloaded[event.id] = 1;
   musicsloaded++;
   if (musicsloaded === 20) {
@@ -245,6 +195,7 @@ function handleFileLoad(event) {
 
 function handleFileLoadSfx(event) {
   // A sound has been preloaded.
+  let numsounds = Object.keys(DUSound).length;
   soundsloaded++;
   if (soundsloaded === numsounds) {
     SoundLoaded();

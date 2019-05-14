@@ -18,8 +18,6 @@ preload([
   "graphics/title/journey.gif",
   "graphics/title/journey-g.gif",
   "graphics/title/journey-d.gif",
-  "graphics/title/import.gif",
-  "graphics/title/import-g.gif",
   "graphics/title/present.gif",
   "graphics/title/and.gif",
 ]);
@@ -29,7 +27,6 @@ optnames[0] = "graphics/title/intro";
 optnames[1] = "graphics/title/create";
 optnames[2] = "graphics/title/journey";
 optnames[3] = "graphics/title/credits";
-optnames[4] = "graphics/title/import";
 
 let avatars = [];
 avatars[0] = ["300.2.gif", "300.gif", "301.gif", "shepherd-offcolor.gif", "302.gif", "druid-offcolor.gif"];
