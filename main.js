@@ -186,7 +186,7 @@ function StartGame() {
   DU.merchants = SetMerchants();
 
   if (debug) {  ActivateDebug(1); }
-  audio_init_2();  
+  SoundLoaded();  
 //  CreateUI();
 }
 

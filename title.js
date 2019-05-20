@@ -45,7 +45,6 @@ let charname = "";
 let gender = "";
 let graphic = "";
 let dusong;
-musicloaded = {};
 let musictries = 0;
 let introidx = 0;
 
@@ -140,8 +139,12 @@ function page_zero() {
 }
 
 function start_animations() {
-  if ((musicloaded["Dark Unknown"] && musicloaded["Charcreate"]) || (musictries >= 10)) {
-    dusong = DUPlayMusic("Dark Unknown");
+    dusong = {};
+    dusong.name = "Dark Unknown";
+    dusong.song = musicpreload["Dark Unknown"];
+    musicpreload = {};
+    dusong.song.play();
+    dusong.song.loop = true;
     if (gamestate.getMode() === "null") {
       document.getElementById('ToA').classList.add('titlefadein');
       setTimeout(function() {
@@ -158,12 +161,6 @@ function start_animations() {
         }
       }, 2000);
     }
-  } else {
-    musictries++;
-    setTimeout(function() {
-      start_animations();      
-    }, 100);
-  } 
 }
 
 function Signature(val) {
@@ -331,6 +328,8 @@ function DoActionTitle(code, e) {
       else if (optselect === 2) {
 //        window.open("game.html", "_self");
         CreateGameSpace();
+        dusong.song.pause();
+        dusong = {};
         StartGame();
       }
       else if (optselect === 3) {
@@ -509,11 +508,13 @@ function SubmitImport(val) {
 function RunIntro(idx) {
   if (idx === 0) {
     gamestate.setMode("null");
-    dusong.song.stop();
+    dusong.song.pause();
     dusong = {};
-    dusong = DUPlayMusic("Charcreate");
-    let introleft = (browserwidth)/2 - 300;
-    
+    dusong.name = "Charcreate";
+    dusong.song = new Audio(GetMusicPath("Charcreate"));
+    dusong.song.play();
+    dusong.song.loop = true;
+
     let firstpage = `<div style='width:770;position: relative;left:5px;top:15px' id='introcontainer'>
       <table cellpadding='0' cellspacing='5' border='0'><tr>
       <td id='splash'><img id='splash1' src='graphics/splash/Castle-Day-NoRider.gif' /></td>
@@ -589,9 +590,13 @@ function RunIntro(idx) {
     document.getElementById('splashtxt').classList.add('titlefadeout');
     setTimeout(function() {
       SecondPage();
-      dusong.song.stop();
+      dusong.song.pause();
       dusong = {};
-      dusong = DUPlayMusic("Dark Unknown");
+      dusong.name = "Dark Unknown";
+      dusong.song = new Audio(GetMusicPath("Dark Unknown"));
+      dusong.song.play();
+      dusong.song.loop = true;
+  
     },1000);
   }
   return;

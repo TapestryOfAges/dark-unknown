@@ -103,20 +103,29 @@ DUMusic["Alone"] = "You Are Not Alone";
 DUMusic["Light"] = "A Light in the Darkness";
 DUMusic["Waltz"] = "Morganna's Waltz";
 
-let musicloaded = {};
 let musicsloaded = 0;
 let soundsloaded = 0;
+let musicpreload = [];
+
+function GetMusicPath(song) {
+  let fullpath = musicpath + "" + DUMusic[song] + ".ogg";
+  return fullpath;
+} 
+
+function GetSfxPath(sound) {
+  let fullpath = DUSound[sound];
+  return fullpath;
+}
 
 function audio_init() {
-  createjs.Sound.initializeDefaultPlugins();
-  createjs.Sound.alternateExtensions = ["mp3"];
-  createjs.Sound.addEventListener("fileload", handleFileLoad);
-//  createjs.Sound.registerSounds(DUSound, soundpath);
-  
-  for (let idx in DUMusic) {
-    let fullpath = musicpath + "" + DUMusic[idx] + ".ogg";
-    createjs.Sound.registerSound(fullpath, idx);
-  }
+  musicpreload["Dark Unknown"] = new Audio(GetMusicPath("Dark Unknown"));
+  musicpreload["Dark Unknown"].oncanplaythrough = function() { handleFileLoad(); }
+  if (musicpreload["Dark Unknown"].readystate === 4) { handleFileLoad(); }
+}
+
+function handleFileLoad(event) {
+  if (!musicsloaded) { page_pre_zero(); }
+  musicsloaded++;
 }
 
 function audio_init_2() {
@@ -129,23 +138,43 @@ function audio_init_2() {
 // checks to see if the player has turned off sound
 function DUPlaySound(sound) {
   let playing = {};
-  if (DU.gameflags.getFlag("sound")) { playing.song = createjs.Sound.play(sound); playing.name = sound; playing.song.volume = DU.gameflags.getFlag("sound");}
+  if (DU.gameflags.getFlag("sound")) { 
+//    playing.song = createjs.Sound.play(sound); 
+    playing.song = new Audio(GetSfxPath(sound));
+    playing.name = sound; 
+    playing.song.volume = DU.gameflags.getFlag("sound");
+    playing.song.play();
+  }
   return playing;
 }
 
 function DUPlayMusic(sound) {
   let playing = {};
-  let loopval = 0;
-  if (DU.gameflags.getFlag("loopmusic")) { loopval = -1; }
-  if (DU.gameflags.getFlag("music")) { playing.song = createjs.Sound.play(sound, {loop:loopval}); playing.name = sound; playing.volume = DU.gameflags.getFlag("music");}
+  if (DU.gameflags.getFlag("music")) { 
+    StopMusic();
+    let loopval = 0;
+    if (DU.gameflags.getFlag("loopmusic")) { loopval = true; }
+    playing.song = new Audio(GetMusicPath(sound)); 
+    playing.name = sound; 
+    playing.song.loop = loopval;
+    playing.song.volume = DU.gameflags.getFlag("music");
+    playing.song.play();
+  }
   return playing;
 }
 
 function DUPlayAmbient(sound) {
   let playing = {};
-  if (DU.gameflags.getFlag("ambientsound") && DU.gameflags.getFlag("sound")) { playing.song = createjs.Sound.play(sound, {loop:-1}); playing.name = sound; playing.song.volume = DU.gameflags.getFlag("sound");}
-  playing.song.volume = 0;
-  setTimeout(function() { IncAmbientVol(playing); }, 500);
+  if (DU.gameflags.getFlag("ambientsound") && DU.gameflags.getFlag("sound")) { 
+//    playing.song = createjs.Sound.play(sound, {loop:-1}); 
+    playing.song = new Audio(GetSfxPath(sound));
+    playing.song.loop = true;
+    playing.song.play()
+    playing.name = sound; 
+    playing.song.volume = 0;
+    setTimeout(function() { IncAmbientVol(playing); }, 500);
+  }
+
   return playing;
 }
 
@@ -163,14 +192,16 @@ function DecAmbientVol(playing) {
     playing.song.volume -= .125;
     setTimeout(function() { DecAmbientVol(playing); }, 150);
   } else {
-    playing.song.stop();
+    playing.song.pause();
   }
 }
 
 
 function StopMusic(playing) {
   if (!playing) { playing = nowplaying; }
-  playing.song.stop();
+  if (playing.song) {
+    playing.song.pause();
+  }
   nowplaying = {};
 }
 
@@ -181,15 +212,6 @@ function play_footstep(onwhat) {
   } else {
     DUPlaySound(onwhat + "_left");
     laststep = "left";
-  }
-}
-
-function handleFileLoad(event) {
-  // A song has been preloaded.
-  musicloaded[event.id] = 1;
-  musicsloaded++;
-  if (musicsloaded === 20) {
-    page_pre_zero();
   }
 }
 
