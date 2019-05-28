@@ -3847,15 +3847,18 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
   let animhtml;
   if (animurl) {
     let docid = "anim" + onwhat.getSerial();
-    if (document.getElementById(docid).innerHTML === "") {
-      document.getElementById(docid).innerHTML = '<img src="graphics/spacer.gif" width="32" height="32" />';
-      document.getElementById(docid).style.left = where.x;
-      document.getElementById(docid).style.top = where.y;
-      document.getElementById(docid).style.backgroundImage = 'url("graphics/' + graphic + '")';
-      document.getElementById(docid).style.backgroundPosition = 'background-position', xoff + 'px ' + yoff + 'px';
-    } else {
+    let docdiv = document.getElementById(docid);
+    if (!docdiv) {
       animhtml = '<div id="anim' + onwhat.getSerial() + '" style="position: absolute; left: ' + where.x + 'px; top: ' + where.y + 'px; width:32px; height:32px; background-image:url(\'graphics/' + graphic + '\'); background-position: ' + xoff + 'px ' + yoff + 'px"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
       document.getElementById('spelleffects').innerHTML = document.getElementById('spelleffects').innerHTML + animhtml;
+    } else if (docdiv.innerHTML === "") {
+      docdiv.innerHTML = '<img src="graphics/spacer.gif" width="32" height="32" />';
+      docdiv.style.left = where.x;
+      docdiv.style.top = where.y;
+      docdiv.style.backgroundImage = 'url("graphics/' + graphic + '")';
+      docdiv.style.backgroundPosition = 'background-position', xoff + 'px ' + yoff + 'px';
+    } else {
+      console.log(`${onwhat.name} already had a spell effect playing.`);
     }
     
     setTimeout(function() {
@@ -3867,6 +3870,7 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
   }
 }
 
+// Deprecated
 function PlaySparkles(onwhat, color) {
   if (Object.keys(spellcount).length === 0) {
     DebugWrite("magic", "Clearing the spelleffects of empty sparkles.<br />");
