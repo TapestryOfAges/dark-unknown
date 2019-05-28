@@ -11143,8 +11143,8 @@ TanPotionTile.prototype.use = function(who) {
 function ScrollItemObject() {
   this.addType("Scroll"); 
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-224";
-  this.spritexoffset = "-1184";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.spelllevel = 1;
   this.spellnum = 1;
