@@ -563,7 +563,7 @@ function save_chunked_conv() {
     serialized = serialized.replace(/\\/g, "\\\\");
     serialized = serialized.replace(/\'/g, "\\'");
 
-    printerwin.document.writeln(idx + ": '" + serialized + "',");
+    printerwin.document.writeln("<br />" + idx + ": '" + serialized + "',");
   });
 
   printerwin.document.writeln("};");
