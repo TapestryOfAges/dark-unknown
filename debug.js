@@ -41,7 +41,7 @@ debugstyle.gameobj = "color:black";
 debugstyle.schedules = "color:purple";
 debugstyle.all = "color:black";
 
-function ActivateDebug(startup) { 
+function OldActivateDebug(startup) { 
   
   let wide = window.innerWidth - 800;
   if (!wide) { wide = 300; }
@@ -59,6 +59,18 @@ function ActivateDebug(startup) {
     DrawDebugOptions();		
   }
 
+}
+
+function ActivateDebug(startup) { 
+
+  ipcRenderer.send('open_debug');
+
+  if (!startup) {  
+    targetCursor.page = 1;
+    targetCursor.cmd = "debug";
+    
+    DrawDebugOptions();		
+  }
 }
 
 function SetDebugWatch(watchname) {
@@ -84,10 +96,11 @@ function DebugWait(mins) {
 
 function DebugWrite(category, html) {
   if (debug && (debugflags[category] || ((whoseturn === watchon) && ((category === "schedules")||(category === "ai"))))) {
-//    document.getElementById('debugdiv').innerHTML += "<span style='" + debugstyle[category] + "'>" + html + "</span>";
-    let tmpchild = document.createElement('p');
-    tmpchild.innerHTML = "<span style='" + debugstyle[category] + "'>" + html + "</span>";
-    document.getElementById('debugdiv').appendChild(tmpchild);
+//    let tmpchild = document.createElement('p');
+//    tmpchild.innerHTML = "<span style='" + debugstyle[category] + "'>" + html + "</span>";
+    //document.getElementById('debugdiv').appendChild(tmpchild);
+    ipcRenderer.send('sendDebug', {html: html, cat: category});
+
     return 1;
   } 
   return 0;
@@ -95,13 +108,15 @@ function DebugWrite(category, html) {
 
 function SetDebugToBottom() {
   if (debug) {
-    document.getElementById('debugdiv').scrollTop = document.getElementById('debugdiv').scrollHeight;
+    //document.getElementById('debugdiv').scrollTop = document.getElementById('debugdiv').scrollHeight;
+    ipcRenderer.send('debug_button');
   }
 }
 
 function ClearDebug() {
   if (debug) {
-    document.getElementById('debugdiv').innerHTML = "";
+    //document.getElementById('debugdiv').innerHTML = "";
+    ipcRenderer.send('debug_clear');
   }
 }
 

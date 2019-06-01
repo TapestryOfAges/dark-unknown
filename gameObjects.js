@@ -6279,7 +6279,7 @@ function BookshelfRightTile() {
   this.prefix = "a";
   this.desc = "bookshelf";
   this.showsearched = 1;
-  this.searchedgraphic = ["furniture.gif", "", "-128", "-416"];
+  this.searchedgraphic = ["master_spritesheet.png", "", "-128", "-416"];
   this.lootonce = 1;
 	this.lootgroup = "";
 	this.lootedid = "";
@@ -11143,8 +11143,8 @@ TanPotionTile.prototype.use = function(who) {
 function ScrollItemObject() {
   this.addType("Scroll"); 
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-224";
-  this.spritexoffset = "-1184";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.spelllevel = 1;
   this.spellnum = 1;
@@ -14127,19 +14127,19 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
 		  retval["msg"] += walkonval;
 		}
-    if ((map === PC.getHomeMap()) &&(GetSquareDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.max(VIEWSIZEX,VIEWSIZEY) )) {
+//    if ((map === PC.getHomeMap()) && (GetSquareDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.max(VIEWSIZEX,VIEWSIZEY) )) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
       // uncommented version checks from current display center, not from PC position.
-      if (typeof this.getLight === "function") {
-        if (this.getLight() !== 0) {
-          DrawMainFrame("draw", map, PC.getx(), PC.gety());
-        }
+      if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
+        DebugWrite("ai", "A light source, need to redraw the whole screen...<br />");
+        DrawMainFrame("draw", map, PC.getx(), PC.gety());
 			} else {
-			  // only redraw these two spaces
+        // only redraw these two spaces
+        DebugWrite("ai", "Redraw both tiles.<br />");
 			  DrawMainFrame("one", map, startx, starty);
 			  DrawMainFrame("one", map, passx, passy);
 			}
-    }
+//    }
 	}
 	retval["initdelay"] = tile.getInitDelay(this);
 	retval["diffx"] = diffx;
