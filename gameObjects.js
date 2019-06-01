@@ -14127,19 +14127,19 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
 		  retval["msg"] += walkonval;
 		}
-    if ((map === PC.getHomeMap()) &&(GetSquareDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.max(VIEWSIZEX,VIEWSIZEY) )) {
+//    if ((map === PC.getHomeMap()) && (GetSquareDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.max(VIEWSIZEX,VIEWSIZEY) )) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
       // uncommented version checks from current display center, not from PC position.
-      if (typeof this.getLight === "function") {
-        if (this.getLight() !== 0) {
-          DrawMainFrame("draw", map, PC.getx(), PC.gety());
-        }
+      if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
+        DebugWrite("ai", "A light source, need to redraw the whole screen...<br />");
+        DrawMainFrame("draw", map, PC.getx(), PC.gety());
 			} else {
-			  // only redraw these two spaces
+        // only redraw these two spaces
+        DebugWrite("ai", "Redraw both tiles.<br />");
 			  DrawMainFrame("one", map, startx, starty);
 			  DrawMainFrame("one", map, passx, passy);
 			}
-    }
+//    }
 	}
 	retval["initdelay"] = tile.getInitDelay(this);
 	retval["diffx"] = diffx;
