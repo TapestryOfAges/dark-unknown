@@ -8,6 +8,7 @@ const BrowserWindow = electron.BrowserWindow
 const {ipcMain} = require('electron')
 
 let mainWindow = null;
+let debugWindow = null;
 
 app.on('ready', function() {
 
@@ -25,4 +26,27 @@ app.on('ready', function() {
 
 ipcMain.on('toggle_dev', function() {
   mainWindow.webContents.openDevTools();
+});
+
+ipcMain.on('open_debug', function() {
+  debugWindow = new BrowserWindow({
+    height:700,
+    width: 500,
+    useContentSize: true,
+    resizeable: true,
+  });
+
+  debugWindow.loadURL('file://' + __dirname + '/debugwindow.html');
+});
+
+ipcMain.on('sendDebug', function(event, txt) {
+  debugWindow.webContents.send('sendDebug', txt);
+});
+
+ipcMain.on('debug_bottom', function(event) {
+  debugWindow.webContents.send('debug_buttom');
+});
+
+ipcMain.on('debug_clear', function(event) {
+  debugWindow.webContents.send('debug_clear');
 });
