@@ -120,6 +120,32 @@ function DrawMainFrame(how, themap, centerx, centery) {
 }
 
 function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) {
+  let thiscell = GetDisplayStack(themap,centerx,centery,j,i,tp,ev);
+  let yidx = i-displayspecs.topedge;
+  let xidx = j-displayspecs.leftedge;
+  let mview = document.getElementById('mainview_'+xidx+'x'+yidx);
+  mview.innerHTML = "";
+
+  for (let k=0;k<thiscell.length;k++) {
+    let opac = 1;
+    if ((thiscell[k].lighthere >= SHADOW_THRESHOLD) && (thiscell[k].lighthere < 1) && !ev && !(tp && thiscell[k].isnpc)) {
+      opac = 0.3;
+    } else if ((thiscell[k].lighthere < SHADOW_THRESHOLD) && !ev && !(tp && thiscell[k].isnpc)) {
+      opac = 0;
+    }
+    let newdiv = `<div id="tilediv_${j}x${i}" style="position:absolute; top:0px; left:0px; background-image: url('graphics/${thiscell[k].showGraphic}'); background-repeat:no-repeat; background-position: ${thiscell[k].graphics2}px ${thiscell[k].graphics3}">
+    <img id='tile${j}x${i}' src='graphics/${thiscell[k].graphics1}' border='0' alt='tile${j}x${i} los: ${thiscell[k].losresult} light:${thiscell[k].lighthere}' width='32' height='32' title='${thiscell[k].desc}'/></div>`;
+    mview.innerHTML += newdiv;
+    if ((opac > 0) && (opac < 1)) {
+      mview.innerHTML += "<img src='graphics/shadow.gif' style='position:absolute;left:0px;top:0px' />";
+    } else if (opac === 0) {
+      mview.innerHTML += "<div style='background-image: url(\"graphics/terrain_tiles.png\"); background-position:-64px -128px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
+    }  
+  }
+
+}
+
+function OldMainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) {
  	let thiscell = getDisplayCell(themap,centerx,centery,j,i,tp,ev);
  	let opac = 1;
  	if ((thiscell.lighthere >= SHADOW_THRESHOLD) && (thiscell.lighthere < 1) && !ev && !(tp && thiscell.isnpc)) {
@@ -149,7 +175,7 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
   }
 
   if (thiscell.hasOwnProperty("topview")) {
-    topview.innerHTML = "<img id='toptile"+j+"x"+i+"' src='graphics/"+thiscell.topview.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' width='32' height='32' title='" + thiscell.desc + "'/>";
+    topview.innerHTML = "<img id='toptile"+j+"x"+i+"' src='graphics/"+thiscell.topview.graphics1+"' border='0' alt='tile"+j+"x"+i+" los: " + thiscell.losresult + " light:" + thiscell.lighthere + "' style='width:32;height:32;position:absolute;top:0px;left:0px' title='" + thiscell.desc + "'/>";
     topview.style.backgroundImage = "url('graphics/" + thiscell.topview.showGraphic + "')";
     topview.style.backgroundRepeat = "no-repeat";
     topview.style.backgroundPosition = thiscell.topview.graphics2 + "px " + thiscell.topview.graphics3 + "px";

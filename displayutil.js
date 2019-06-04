@@ -10,7 +10,7 @@ function CreateDisplayTables() {
     toptable += "<tr>";
     for (let i=0; i<VIEWSIZEX; i++) {
       terraintable += "<td id='terrain_"+i+"x"+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
-      maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
+      maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative; width:32; height:32'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
       toptable += "<td id='maintopview_"+i+"x"+j+"' style='position:relative'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
     }
     terraintable += "</tr>";
@@ -176,6 +176,164 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
       AnimateEffect(doit.atk, doit.def, doit.fromcoords, doit.tocoords, doit.ammocoords, doit.destgraphic, doit.type, doit.duration, doit.ammoreturn, doit.dmg, endturn, doit.retval, doagain);
     }
   }
+}
+
+function SortDisplayTiles(disparray) {
+  for (let i=disparray.length-1;i>=0;i--) {
+    if (disparray[i].alwaystop) {
+      disparray.push(disparray.slice(i,1));
+    }
+  }
+  return disparray;
+}
+
+function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
+  
+  let baseStack = [];
+  let displayStack = [];
+
+  let localacre = mapname.getTile(x,y);
+   
+  // decide whether to draw a tile, draw it shaded, or make it darkness
+  let losresult = mapname.getLOS(centerx, centery, x, y);
+  
+  let blocks = localacre.getBlocksLOS();
+    
+  let lighthere = 0;
+  let sunlight = mapname.getAmbientLight();
+  if (sunlight === 1) {
+    lighthere = 1;
+  } else {
+    if ((blocks >= LOS_THRESHOLD) && ((centerx != x) || (centery != y) )) {
+      let dirnum = GetViewDirection(centerx,centery,x,y);
+      if ((dirnum === 6) || (dirnum === 7) || (dirnum === 0)) {
+        let selight = localacre.getLocalLight("se") + sunlight;
+        if (selight > lighthere) {
+          lighthere = selight;
+        }
+      } if ((dirnum >= 0) && (dirnum <= 2)) {
+        let swlight = localacre.getLocalLight("sw") + sunlight;
+        if (swlight > lighthere) {
+          lighthere = swlight;
+        }
+      } if ((dirnum >= 2) && (dirnum <= 4)) {
+        let nwlight = localacre.getLocalLight("nw") + sunlight;
+        if (nwlight > lighthere) {
+          lighthere = nwlight;
+        }
+      } if ((dirnum >= 4) && (dirnum <= 6)) {
+        let nelight = localacre.getLocalLight("ne") + sunlight;
+        if (nelight > lighthere) {
+          lighthere = nelight;
+        }
+      }
+    } else {
+      lighthere = localacre.getLocalLight("center") + sunlight;
+    }
+  }
+    
+  baseStack = localacre.getTileStack();
+  while (baseStack[0].getName() === "SeeBelow") {
+    baseStack.shift();
+    let retval = FindBelow(x,y,mapname);
+    let loweracre = retval.tile;
+    let newstack = loweracre.getTileStack();
+    for (let j=newstack.length-1;j>=0;j--) {
+      baseStack.unshift(newstack[j]);
+    }
+  }
+
+  let ontop = [];
+  for (let i=0;i<baseStack.length;i++) {
+    let displayCell = {};
+    let displaytile = baseStack[i];
+    let isnpc = 0;  // specifically, ones with minds who will be seen by telepathy
+    if (displaytile.checkType("NPC") && !displaytile.specials.mindless) { isnpc = 1; }
+    let graphics = displaytile.getGraphicArray();
+    if ((typeof displaytile.setBySurround === "function") && ((losresult < LOS_THRESHOLD) || ev)) {
+      graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
+      displayCell.showGraphic = graphics[0];
+      displayCell.graphics2 = graphics[2];
+      displayCell.graphics3 = graphics[3];
+      displayCell.graphics1 = graphics[1];
+      if (typeof displaytile.doTile === "function") {
+        let showGraphic = displaytile.doTile(x,y,displayCell);
+        if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
+        if ("spritexoffset" in showGraphic) { 
+          displayCell.graphics2 = showGraphic.spritexoffset;
+          displayCell.graphics3 = showGraphic.spriteyoffset;
+        }
+      }
+      displayCell.losresult = losresult;
+      displayCell.lighthere = lighthere;
+      displayCell.desc = displaytile.getDesc();
+      if (displaytile.alwaystop) { ontop.push(displayCell); }
+      else { displayStack.push(displayCell); }
+    } else if ((losresult < LOS_THRESHOLD) || ((tp === 1) && isnpc) || ev) {
+      displayCell.showGraphic = graphics[0];
+      displayCell.graphics2 = graphics[2];
+      displayCell.graphics3 = graphics[3];
+      displayCell.graphics1 = graphics[1];
+      if (typeof displaytile.doTile === "function") {
+        let showGraphic = displaytile.doTile(x,y,displayCell);
+        if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
+        if ("spritexoffset" in showGraphic) { 
+          displayCell.graphics2 = showGraphic.spritexoffset;
+          displayCell.graphics3 = showGraphic.spriteyoffset;
+        }      
+      }
+      if (typeof displaytile.setByBelow === "function") {
+        let setbelow = displaytile.setByBelow(x,y,mapname);
+        displayCell.showGraphic = setbelow[0];
+        displayCell.graphics2 = setbelow[2];
+        displayCell.graphics3 = setbelow[3];
+      }
+      displayCell.losresult = losresult;
+      displayCell.lighthere = lighthere;
+      displayCell.isnpc = isnpc;
+      displayCell.desc = displaytile.getDesc();
+      if (displaytile.alwaystop) { ontop.push(displayCell); }
+      else { displayStack.push(displayCell); }
+    } else {
+      //displaytile = eidos.getForm('BlankBlack');
+      //graphics = displaytile.getGraphicArray();
+      //displayCell.showGraphic = graphics[0];
+      //displayCell.graphics2 = graphics[2];
+      //displayCell.graphics3 = graphics[3];
+      //displayCell.graphics1 = graphics[1];
+      //displayCell.losresult = losresult;
+      //displayCell.lighthere = lighthere;
+      //displayCell.desc = "You cannot see that";
+      // skip adding to displayStack
+    }
+//    if (displaytile.checkType("Terrain") && (displaytile.getName() !== "BlankBlack")) { displayCell.terrain = 1; }
+//    if (isontop) {
+//      let gra = toptop.getGraphicArray();
+//      let topview = {};
+//      topview.showGraphic = gra[0];
+//      topview.graphics1 = gra[1];
+//      topview.graphics2 = gra[2];
+//      topview.graphics3 = gra[3];
+//      displayCell.topview = topview;
+//    }
+  }
+  for (let i=0;i<ontop.length;i++) {
+    displayStack.push(ontop[i]);
+  }
+  if (displayStack.length === 0) {
+    let displaytile = eidos.getForm('BlankBlack');
+    let graphics = displaytile.getGraphicArray();
+    let displayCell = {};
+    displayCell.showGraphic = graphics[0];
+    displayCell.graphics2 = graphics[2];
+    displayCell.graphics3 = graphics[3];
+    displayCell.graphics1 = graphics[1];
+    displayCell.losresult = losresult;
+    displayCell.lighthere = lighthere;
+    displayCell.desc = "You cannot see that";
+    displayStack.push(displayCell);
+  }
+  return displayStack;
 }
 
 function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
