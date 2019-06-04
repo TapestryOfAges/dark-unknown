@@ -1,27 +1,17 @@
 "use strict";
 
 function CreateDisplayTables() {
-  let terraintable = "<table id='mainterrainview' style='position:fixed; top:38px; left:19px; z-index:21' border='0' cellspacing='0' cellpadding='0'>";
   let maintable = "<table id='mainview' style='position:fixed; top:38px; left:19px; z-index:22' border='0' cellspacing='0' cellpadding='0'>";
-  let toptable = "<table id='maintopview' style='position:fixed; top:38px; left:19px; z-index:23' border='0' cellspacing='0' cellpadding='0'>";
   for (let j=0; j<VIEWSIZEY; j++) {
-    terraintable += "<tr>";
     maintable += "<tr>";
-    toptable += "<tr>";
     for (let i=0; i<VIEWSIZEX; i++) {
-      terraintable += "<td id='terrain_"+i+"x"+j+"'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
       maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative; width:32; height:32'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
-      toptable += "<td id='maintopview_"+i+"x"+j+"' style='position:relative'><img src='graphics/spacer.gif' width='32' height='32' /></td>";
     }
-    terraintable += "</tr>";
     maintable += "</tr>";
-    toptable += "</tr>";
   }
-  terraintable += "</table>";
   maintable += "</table>";
-  toptable += "</table>";
 
-  document.getElementById('displayframe').innerHTML = terraintable + "\n" + maintable + "\n" + toptable;
+  document.getElementById('displayframe').innerHTML = maintable;
   return;
 }
 
