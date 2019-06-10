@@ -9492,6 +9492,20 @@ function TreasuryTokenTile() {
 }
 TreasuryTokenTile.prototype = new ItemObject();
 
+function FavorChitTile() {
+  this.name = "FavorChit";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1344";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "favor chit";
+  this.prefix = "a";
+  this.longdesc = "A chit that marks that Denise, mayor of Beldskae, owes you a favor.";
+  this.addType("Quest");
+}
+FavorChitTile.prototype = new ItemObject();
+
 function SpiderSilkTile() {
   this.name = "SpiderSilk";
   this.graphic = "master_spritesheet.png";
@@ -14700,6 +14714,7 @@ function PCObject() {
   this.lastspell = 6;
   this.infuse = 0;
   this.gender = "other";
+  this.casinonet = 0;
 	
 	LightEmitting.call(this, 0.5);
 	this.addType("pc");
