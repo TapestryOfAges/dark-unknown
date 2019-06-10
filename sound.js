@@ -102,6 +102,7 @@ DUMusic["Despair"] = "Depths of Despair";
 DUMusic["Alone"] = "You Are Not Alone";
 DUMusic["Light"] = "A Light in the Darkness";
 DUMusic["Waltz"] = "Morganna's Waltz";
+DUMusic["Abyss"] = "The Great Abyss";
 
 let musicsloaded = 0;
 let soundsloaded = 0;
