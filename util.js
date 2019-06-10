@@ -1431,6 +1431,13 @@ function Get90DegCoords(centerx,centery,oldx,oldy) {
   return {x:destx, y:desty}
 }
 
+function PerformGambling() {
+  inputText.txt = "";
+  maintext.setInputLine("&gt; Bid how much?");
+  maintext.drawInputLine();
+  gamestate.setMode("digits");
+}
+
 //EXTERNALLY SOURCED
 
 // these two functions found on stackexchange
