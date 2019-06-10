@@ -735,15 +735,51 @@ function DoAction(code, ctrl) {
             retval = scroll.firstResponse(code);
           }
         }
+      } else if (inputText.cmd === "t") {
+        let amt = code-48;
+        let convo = targetCursor.talkingto.getConversation();
+        if (amt && (PC.getGold() < amt)) {
+          retval = PerformTalk(targetCursor.talkingto, convo, "_notip");
+        } else {
+          PC.setGold(PC.getGold-amt);
+          
+          maintext.addText(`You tip ${amt} gold.`);
+          retval = PerformTalk(targetCursor.talkingto, convo, "_tip");
+        }
       }
     } else if (code === 27) {
+      if (targetCursor.itemname === "InfiniteScroll") {
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        gamestate.setMode("player");
+        gamestate.setTurn(PC);
+        delete targetCursor.itemname;
+        delete targetCursor.itemSource;
+        delete targetCursor.itemSource.circle;
+      }
+    }
+  } else if (gamestate.getMode() === "digits") {
+    if ((code >= 49) && (code <= 57)) {  // numbers
+      let num = code-48;
+      if (inputText.txt.length <= 4) {
+        inputText.txt += num;
+        maintext.setInputLine(maintext.getInputLine() + num);
+      }
+      maintext.drawInputLine();
+    } else if (code === 8) { // backspace
+      let txt = maintext.getInputLine();
+      if (inputText.txt.length) {
+        inputText.txt = inputText.txt.substr(0,inputText.txt.length-1);
+        txt = txt.substr(0,txt.length-1);
+        maintext.setInputLine(txt);
+        maintext.drawInputLine();
+      }
+    }
+    else if ((code === 27) || (code === 48)) { // ESC
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       gamestate.setMode("player");
       gamestate.setTurn(PC);
-      delete targetCursor.itemname;
-      delete targetCursor.itemSource;
-      delete targetCursor.itemSource.circle;
     }
   } else if (gamestate.getMode() === "choosesave") {
     if (code === 27) { // esc
