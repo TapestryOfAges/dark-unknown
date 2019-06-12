@@ -111,3 +111,6 @@ warduke_defeated - what it says
 paladin_stage1 - You have turned in the "stop Warduke" quest
 paladin_stage2 - You have been told you passed the virtue test (set by messenger)
 paladin_joined - You have been through the initiation ceremony
+ernest_patron - You've obtained Conrad's patronage for Ernest
+asked_conrad_about_ernest - You've asked Conrad to be Ernest's patron
+infinite_scroll - have received one Infinite Scroll from Conrad

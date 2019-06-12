@@ -98,6 +98,7 @@ DUMusic["Sirius"] = "This Bardic Life";
 DUMusic["Death"] = "Death";
 DUMusic["Final"] = "Final Steps";
 DUMusic["Waltz"] = "Morganna's Waltz";
+DUMusic["Abyss"] = "The Great Abyss";
 
 let musicsloaded = 0;
 let soundsloaded = 0;

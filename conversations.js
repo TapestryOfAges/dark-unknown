@@ -294,12 +294,12 @@ function ConvNode(flags, noflag_response, flag_response, triggers) {
 ConvNode.prototype = new Object();
 //Deprecated
 
-function InnRoom(xc,yc,doors) {
+function InnRoom(xc,yc,doors,innmap) {
   if (DU.gameflags.getFlag("music")) {
     nowplaying.song.stop();
     nowplaying = DUPlayMusic("Lullaby");
   }
-  let innmap = PC.getHomeMap();
+  if (!innmap) { innmap = PC.getHomeMap(); }
   maintext.setInputLine("&gt;");
   maintext.drawTextFrame();
   
@@ -322,7 +322,11 @@ function InnRoom(xc,yc,doors) {
       doors.shift();
       doors.shift();
     }
-    innmap.moveThing(xc,yc,PC);
+    if (innmap !== PC.getHomeMap()) { 
+      MoveBetweenMaps(PC,PC.getHomeMap(), innmap, xc, yc);
+    } else {
+      innmap.moveThing(xc,yc,PC);
+    }
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(),PC.gety());
     gamestate.setMode("null");
     let duration = 8*12;
@@ -477,6 +481,24 @@ OnConvTriggers["inn_25"] = function(speaker,keyword) {
   return -1;
 }
 
+OnConvTriggers["inn_beldskae"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("inn_beldskae");
+
+  let upstairs = maps.getMap("beldskae2");
+  PC.addGold(-50);
+  setTimeout(function() { InnRoom(39,13,[32,25], upstairs); }, 50);
+  
+  let roomdoor = upstairs.getTile(38,15).getTopFeature();
+  if (roomdoor.open) {
+    roomdoor.use(PC);
+  }
+  return -1;
+}
+
+OnConvTriggers["gambling"] = function(speaker,keyword) {
+  PerformGambling();
+}
+
 OnConvTriggers["health_kylee"] = function(speaker,keyword) {
   if (!DU.gameflags.getFlag("all_health")){
     CheckAllHealth();
@@ -568,6 +590,12 @@ OnConvTriggers["garrick_flipout"] = function(speaker,keyword) {
     aoife.setWeapon(mace);  // no longer actually a mace
     aoife.setAttitude("defensive");
     // to set her back, just reset to PeaceAI
+  }
+}
+
+OnConvTriggers["chits_exchanged"] = function(speaker,keyword) {
+  if (DU.gameflags.getFlag("exchange_chits")) {
+    DU.gameflags.deleteFlag("exchange_chits");
   }
 }
 
@@ -743,6 +771,12 @@ OnConvTriggers["franklin_offered"] = function(speaker, keyword) {
   }
 }
 
+OnConvTriggers["give_tip"] = function(speaker,keyword) {
+  gamestate.setMode("singlenumber");
+  DU.gameflags.deleteFlag("give_tip");
+  
+}
+
 OnConvTriggers["kyvek_fetch"] = function(speaker,keyword) {
   speaker.setCurrentAI("Trevor");
 }
@@ -820,4 +854,16 @@ ConvTestFlags["in_garden"] = function(speaker,keyword) {
   if ((speaker.getx() >= 10) && (speaker.getx() <= 21) && (speaker.gety() >= 6) && (speaker.gety() <= 15)) { return 1; }
 
   return 0;
+}
+
+ConvTestFlags["need_another_scroll"] = function(speaker,keyword) {
+  if (!gamestate.getFlag("infinite_scroll")) { return 0; }  // you haven't gotten the first scroll yet
+  if (PC.checkInventory("InfiniteScroll")) {  return 0; }  // you have a scroll
+  if (gamestate.getFlag("act2")) { return 0; }  // you've used the scroll
+  let wildcard = PC.checkInventory("ScrollWildcard");  
+  if (wildcard) {
+    if ((wildcard.spelllevel === SPELL_NEGATE_MAGIC_LEVEL) && (wildcard.spellnum = GetSpellId(SPELL_NEGATE_MAGIC_ID))) { return 0; }
+    // You have an infinite scroll aspected to Negate Magic
+  }
+  return 1;
 }

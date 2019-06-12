@@ -450,6 +450,18 @@ Acre.prototype.getTerrain = function() {
 	return this.terrain;
 }
 
+Acre.prototype.getTileStack = function() {
+  let tilestack = this.getFeatures();
+  tilestack.unshift(this.getTerrain());
+  let npcs = this.getNPCs();
+  for (let i=0;i<npcs.length;i++) {
+    tilestack.push(npcs[i]);
+  }
+  if (this.getTopPC()) { tilestack.push(this.getTopPC()); }
+
+  return tilestack;
+}
+
 Acre.prototype.getTop = function(nopc, sortnpctotop, fordisplay) {
   let toptile;
   if (fordisplay) {

@@ -566,7 +566,7 @@ function save_chunked_conv() {
     printerwin.document.writeln("<br />" + idx + ": '" + serialized + "',");
   });
 
-  printerwin.document.writeln("};");
+  printerwin.document.writeln("<br />};<br />");
   printerwin.document.close();
 }
 
