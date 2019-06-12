@@ -771,8 +771,10 @@ OnConvTriggers["franklin_offered"] = function(speaker, keyword) {
   }
 }
 
-OnConvTriggers["tip_kathleen"] = function(speaker,keyword) {
+OnConvTriggers["give_tip"] = function(speaker,keyword) {
   gamestate.setMode("singlenumber");
+  DU.gameflags.deleteFlag("give_tip");
+  
 }
 
 OnConvTriggers["kyvek_fetch"] = function(speaker,keyword) {
