@@ -187,14 +187,9 @@ function FirstPage() {
         document.getElementById('present').classList.add('presentfadein');
         setTimeout(function() {
           setTimeout(function() {
-            let pres = document.getElementById('present');
+            let pres = document.getElementById('allofem');
             if (pres) {
               pres.classList.add('titlefadeout');
-              document.getElementById('gf').classList.add('titlefadeout');
-              document.getElementById('and').classList.add('titlefadeout');
-              document.getElementById('sign').classList.add('titlefadeout');
-              document.getElementById('over').classList.add('titlefadeout');
-              document.getElementById('ToA').classList.add('titlefadeout');
               setTimeout(function() {
                 SecondPage();
               },1150);
