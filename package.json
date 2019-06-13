@@ -1,13 +1,10 @@
 {
   "name": "dark-unknown",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "A retro CRPG",
   "main": "e-main.js",
   "directories": {
     "test": "test"
-  },
-  "scripts": {
-    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -24,6 +21,14 @@
   },
   "homepage": "http://tapestryofages.com",
   "devDependencies": {
-    "electron": "^3.0.12"
+    "electron": "^3.0.12",
+    "electron-packager": "^13.1.1"
+  },
+  "productName": "The Dark Unknown",
+  "scripts": {
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=build/icon.png --prune=true --out=releases",
+    "package-win": "electron-packager . dark-unknown --overwrite --asar --platform=win32 --arch=x64 --icon=build/icon.ico --prune=true --out=releases --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"The Dark Unknown\"",
+    "package-linux": "electron-packager . dark-unknown --overwrite --asar --platform=linux --arch=x64 --icon=build/icon.png --prune=true --out=releases"
   }
 }
