@@ -235,6 +235,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
 
   let ontop = [];
   for (let i=0;i<baseStack.length;i++) {
+    if (baseStack[i].invisible) { continue; }
     let displayCell = {};
     let displaytile = baseStack[i];
     let isnpc = 0;  // specifically, ones with minds who will be seen by telepathy

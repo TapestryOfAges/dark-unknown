@@ -28,7 +28,7 @@
   "scripts": {
     "start": "electron .",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=build/icon.png --prune=true --out=releases",
-    "package-win": "electron-packager . dark-unknown --overwrite --asar --platform=win32 --arch=x64 --icon=build/icon.ico --prune=true --out=releases --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"The Dark Unknown\"",    
+    "package-win": "electron-packager . dark-unknown --overwrite --asar --platform=win32 --arch=x64 --icon=build/icon.ico --prune=true --out=releases --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"The Dark Unknown\"",
     "package-linux": "electron-packager . dark-unknown --overwrite --asar --platform=linux --arch=x64 --icon=build/icon.png --prune=true --out=releases"
   }
 }
