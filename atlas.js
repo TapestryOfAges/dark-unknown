@@ -503,15 +503,15 @@ Acre.prototype.getBumpIntoResult = function(mover) {
 	let terrain = this.getTerrain();
 	let retval = terrain.bumpinto(mover);
 
-	if (retval["msg"] != "") { retval["msg"] = " - " + retval["msg"]; }	
+	if (retval["msg"] !== "") { retval["msg"] = " - " + retval["msg"]; }	
 	if (retval["canmove"] === 0) { return retval; }
 	
 	let features = this.getFeatures();
 	if (features[0]) {
 		for (let i=0; i<features.length; i++) {
 			let retval2 = features[i].bumpinto(mover);
-			if (retval2["msg"] != "") {
-				if (retval["msg"] == "") { retval["msg"] = " - " + retval2["msg"]; }
+			if (retval2["msg"] !== "") {
+				if (retval["msg"] === "") { retval["msg"] = " - " + retval2["msg"]; }
 				else { retval["msg"] += "\n" + retval2["msg"]; }
 			}
 			if (retval2["canmove"] === 0) { 

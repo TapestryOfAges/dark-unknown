@@ -1,5 +1,43 @@
 "use strict";
 
+const fs = require("fs");
+const path = require("path");
+
+const savePath = `${__dirname}/saves`;
+
+{
+  // found on stackoverflow: https://stackoverflow.com/questions/13696148/node-js-create-folder-or-use-existing
+  function createDirectory(directoryPath) {
+    const directory = path.normalize(directoryPath);
+  
+    return new Promise((resolve, reject) => {
+      fs.stat(directory, (error) => {
+        if (error) {
+          if (error.code === 'ENOENT') {
+            fs.mkdir(directory, (error) => {
+              if (error) {
+                reject(error);
+              } else {
+                resolve(directory);
+              }
+            });
+          } else {
+            reject(error);
+          }
+        } else {
+          resolve(directory);
+        }
+      });
+    });
+  }
+    
+  createDirectory(savePath).then((path) => {
+    console.log(`Successfully created directory: '${path}'`);
+  }).catch((error) => {
+    console.log(`Problem creating directory: ${error.message}`)
+  }); 
+}
+
 function Gameflags() {
   this.music = 0;
   this.sound = 1;
