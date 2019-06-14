@@ -4384,6 +4384,7 @@ EnergyFieldTile.prototype.bumpinto = function(who) {
   if (who === PC) {
     DUPlaySound("sfx_small_zap");
   }
+  return {msg: ""};
 }
 
 function TorchWestTile() {
