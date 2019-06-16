@@ -219,7 +219,6 @@ function StartGame() {
 function SoundLoaded() {
   let whichsave = gamestate.getLatestSaveIndex();
   if (whichsave === -1) {
-    gamestate.initializeSaveGames();
     gamestate.loadGame("tmp");
   } else {
     gamestate.loadGame(whichsave);

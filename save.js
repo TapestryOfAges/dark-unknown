@@ -33,6 +33,18 @@ const savePath = `${__dirname}/saves`;
     
   createDirectory(savePath).then((path) => {
     console.log(`Successfully created directory: '${path}'`);
+    let testSaveIdx;
+    try {
+      testSaveIdx = fs.readFileSync(`${savePath}/.saveindex`,'utf8');
+    } catch(err) {
+      if (err.message.indexOf("no such file") !== -1) {
+        gamestate.initializeSaveGames();
+        console.log("Initialized saved games.");    
+      } else {
+        console.log("Unknown error with saved games:");
+        console.log(err.message);
+      }
+    }
   }).catch((error) => {
     console.log(`Problem creating directory: ${error.message}`)
   }); 
@@ -212,22 +224,18 @@ GameStateData.prototype.saveGame = function(flag) {
     } else {
       maintext.addText("<span style='sysconv'>Unable to open new window for save export.</span>");
     }
-/*	} else if (flag === "charsave") {
-	  localStorage.charsave = compressed;
-	} else {
-	  localStorage.savegame = compressed;
-	}
-*/
   }	else {
-//    localStorage["save"+flag] = compressed;
-    localStorage["save"+flag] = serialized;
-    let saveidx = JSON.parse(localStorage.saveIndex);
+    console.log(`${savePath}/save${flag}`);
+    fs.writeFileSync(`${savePath}/save${flag}`, serialized);
+//    localStorage["save"+flag] = serialized;
+    let saveidx = JSON.parse(fs.readFileSync(`${savePath}/.saveindex`,'utf8'));
     if (!saveidx) { saveidx =[]; }
     saveidx[flag].datestamp = Date.now();
     saveidx[flag].charname = PC.getPCName();
     saveidx[flag].loc = PC.getHomeMap().getSaveName();
     saveidx[flag].graphic = PC.getGraphic();
-    localStorage.saveIndex = JSON.stringify(saveidx);
+    fs.writeFileSync(`${savePath}/.saveindex`, JSON.stringify(saveidx));
+//    localStorage.saveIndex = JSON.stringify(saveidx);
     
   }
 }
@@ -237,15 +245,19 @@ GameStateData.prototype.initializeSaveGames = function() {
   for (let i=0;i<=9;i++) {
     saves[i] = {datestamp: 0, charname:"",loc:"",graphic:""};
     let saveslot = "save" + i;
-    localStorage[saveslot] = "";
+    fs.writeFileSync(`${savePath}/${saveslot}`, saves[i]);
+//    localStorage[saveslot] = "";
   }
-  localStorage.saveIndex = JSON.stringify(saves);
+  fs.writeFileSync(`${savePath}/.saveindex`, JSON.stringify(saves));
+//  localStorage.saveIndex = JSON.stringify(saves);
 }
 
 GameStateData.prototype.getLatestSaveIndex = function() {
   let lastIdx = 0;
   let lastDate = 0;
-  let saveIdx = localStorage.saveIndex; 
+  let saveIdx = fs.readFileSync(`${__dirname}/saves/.saveindex`,'utf8');
+  console.log(saveIdx);
+  //localStorage.saveIndex; 
   if (!saveIdx) { return -1; }
   saveIdx = JSON.parse(saveIdx);
   if (!saveIdx) { return -1; }
@@ -277,7 +289,8 @@ GameStateData.prototype.loadGame = function(idx) {
   } else {
 //    compressed = localStorage["save"+idx];
 //    serialized = LZString.decompressFromUTF16(compressed);
-    serialized = localStorage["save"+idx];
+    serialized = fs.readFileSync(`${savePath}/save${idx}`,'utf8');
+    //serialized = localStorage["save"+idx];
   }
 
   DebugWrite("saveload", "<br /><br /><p>" + serialized + "</p><br />");

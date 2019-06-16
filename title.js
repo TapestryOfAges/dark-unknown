@@ -90,11 +90,6 @@ let el = function(e) {
       document.addEventListener("keydown", el);
       firsttime = 0;
     }
-
-    latestidx = gamestate.getLatestSaveIndex();
-    if (latestidx === -1) {
-      gamestate.initializeSaveGames();
-    }
     
   }
   if (
@@ -464,22 +459,14 @@ function SaveChar() {
   
   let PCEvent = new GameEvent(PC);
 	DUTime.addAtTimeInterval(PCEvent,.0001);
-//	startScheduler();
 	
 	gamestate.saveGame(9);
 	latestidx = gamestate.getLatestSaveIndex();
 	
 	testvar = JSON.parse(localStorage.saveIndex);
-	testvar[9].loc = "Char Create";
-	localStorage.saveIndex = JSON.stringify(testvar);
-}
-
-function ImportSave() {
-  gamestate.setMode("import");
-  let myOpen=function(hash){ hash.w.css('opacity',0.88).show(); };
-  $('#importbubble').jqm({onShow:myOpen});
-  $('#importbubble').jqmShow();
-
+  testvar[9].loc = "Char Create";
+  fs.writeFileSync(`${savePath}/.saveindex`, JSON.stringify(testvar));
+//	localStorage.saveIndex = JSON.stringify(testvar);
 }
 
 function SubmitImport(val) {
