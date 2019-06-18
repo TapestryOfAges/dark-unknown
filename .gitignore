@@ -8,3 +8,5 @@ node_modules/*
 objlist.html
 objlist_old.html
 releases/*
+package-lock.json
+saves/*

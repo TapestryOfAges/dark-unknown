@@ -219,7 +219,6 @@ function StartGame() {
 function SoundLoaded() {
   let whichsave = gamestate.getLatestSaveIndex();
   if (whichsave === -1) {
-    gamestate.initializeSaveGames();
     gamestate.loadGame("tmp");
   } else {
     gamestate.loadGame(whichsave);
@@ -790,7 +789,6 @@ function DoAction(code, ctrl) {
       gamestate.setTurn(PC);
     } else if (targetCursor.command === "l") {
       if ((code >= 48) && (code <= 57)) {
-        let saveIndex = JSON.parse(localStorage.saveIndex);
         let idx = code-48;
         if (saveIndex[idx].charname) { 
           if (nowplaying.song) { StopMusic(); }
@@ -807,7 +805,6 @@ function DoAction(code, ctrl) {
       }
     } else if (targetCursor.command === "q") {
       if ((code >= 49) && (code <= 56)) {
-        let saveIndex = JSON.parse(localStorage.saveIndex);
         let idx = code-48;
         gamestate.setMode("saving");
         gamestate.saveGame(idx); 
