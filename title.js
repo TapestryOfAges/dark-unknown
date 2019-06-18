@@ -51,7 +51,6 @@ let introidx = 0;
 let firsttime = 1;
 let themap = new GameMap();
 
-let latestidx;
 let testvar;
 
 let lastanim = "";
@@ -217,7 +216,7 @@ function SecondPage() {
     spage += "<div id='create' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;opacity:0'><img id='opt1' src='graphics/title/create.gif' onClick='makeChoice(\'create\')' /></div>";
     opttop += 60;
     let journey = "journey.gif";
-    if (latestidx === -1) {
+    if (gamestate.getLatestSaveIndex() === -1) {
       journey = "journey-d.gif";
       optnames[2] = "graphics/title/journey-d";
     } else {
@@ -250,7 +249,7 @@ function finishedFinalPage() {
   spage += "<div id='create' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt1' src='graphics/title/create.gif' onClick='makeChoice(\'create\')' /></div>";
   opttop += 60;
   let journey = "journey.gif";
-  if (latestidx === -1) {
+  if (gamestate.getLatestSaveIndex() === -1) {
     journey = "journey-d.gif";
     optnames[2] = "graphics/title/journey-d";
   } else {
@@ -282,7 +281,7 @@ function DoActionTitle(code, e) {
         document.getElementById(img).src = optnames[optselect] + ".gif";
         optselect--;
         img = "opt" + optselect;
-        if ((optselect !== 2) || (latestidx !== -1)) {
+        if ((optselect !== 2) || (gamestate.getLatestSaveIndex() !== -1)) {
           document.getElementById(img).src = optnames[optselect] + "-g.gif";
         } else {
           optselect--;
@@ -297,7 +296,7 @@ function DoActionTitle(code, e) {
         document.getElementById(img).src = optnames[optselect] + ".gif";
         optselect++;
         img = "opt" + optselect;
-        if ((optselect !== 2) || (latestidx !== -1)) {
+        if ((optselect !== 2) || (gamestate.getLatestSaveIndex() !== -1)) {
           document.getElementById(img).src = optnames[optselect] + "-g.gif";
         } else {
           optselect++;
@@ -461,30 +460,9 @@ function SaveChar() {
 	DUTime.addAtTimeInterval(PCEvent,.0001);
 	
 	gamestate.saveGame(9);
-	latestidx = gamestate.getLatestSaveIndex();
 	
-	testvar = JSON.parse(localStorage.saveIndex);
-  testvar[9].loc = "Char Create";
-  fs.writeFileSync(`${savePath}/.saveindex`, JSON.stringify(testvar));
+  saveIndex[9].loc = "Char Create";
 //	localStorage.saveIndex = JSON.stringify(testvar);
-}
-
-function SubmitImport(val) {
-  if (val) {
-    let serialized = document.forms[0].importjson.value;
-    try {
-      let savedata = JSON.parse(serialized); 
-      localStorage.manualsave = serialized;
-    }
-    catch(err) {
-      alert("Save is invalid.");
-    }
-    finally {
-      gamestate.setMode("null");  
-      latestidx = "manual";
-      SecondPage();
-    }
-  }
 }
 
 function RunIntro(idx) {

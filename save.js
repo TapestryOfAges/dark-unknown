@@ -5,6 +5,8 @@ const path = require("path");
 
 const savePath = `${__dirname}/saves`;
 
+let saveIndex = [];
+
 {
   // found on stackoverflow: https://stackoverflow.com/questions/13696148/node-js-create-folder-or-use-existing
   function createDirectory(directoryPath) {
@@ -33,9 +35,8 @@ const savePath = `${__dirname}/saves`;
     
   createDirectory(savePath).then((path) => {
     console.log(`Successfully created directory: '${path}'`);
-    let testSaveIdx;
     try {
-      testSaveIdx = fs.readFileSync(`${savePath}/.saveindex`,'utf8');
+      fs.readFileSync(`${savePath}/save3`,'utf8');
     } catch(err) {
       if (err.message.indexOf("no such file") !== -1) {
         gamestate.initializeSaveGames();
@@ -43,6 +44,19 @@ const savePath = `${__dirname}/saves`;
       } else {
         console.log("Unknown error with saved games:");
         console.log(err.message);
+      }
+    }
+    // populate saveIndex
+    for (let i=0;i<=9;i++) {
+      saveIndex[i] = {datestamp: 0, charname:"",loc:"",graphic:""};
+      let file = fs.readFileSync(`${savePath}/save${i}`,'utf8');
+      if (file) {
+        file = JSON.parse(file);
+        let stats = fs.statSync(`${savePath}/save${i}`);
+        saveIndex[i]["datestamp"] = stats.mtimeMs;
+        saveIndex[i]["charname"] = file.charname;
+        saveIndex[i]["loc"] = file.loc;
+        saveIndex[i]["graphic"] = file.graphic;
       }
     }
   }).catch((error) => {
@@ -212,6 +226,10 @@ GameStateData.prototype.saveGame = function(flag) {
     savedata.objs[copval.serial] = copval;
 	}
 
+  savedata.datestamp = Date.now();
+  savedata.charname = PC.getPCName();
+  savedata.loc = PC.getHomeMap().getSaveName();
+  savedata.graphic = PC.getGraphic();
   let serialized = JSON.stringify(savedata);
 	
 	DebugWrite("saveload", "<br /><br /><p>" + serialized + "</p><br />");
@@ -228,13 +246,10 @@ GameStateData.prototype.saveGame = function(flag) {
     console.log(`${savePath}/save${flag}`);
     fs.writeFileSync(`${savePath}/save${flag}`, serialized);
 //    localStorage["save"+flag] = serialized;
-    let saveidx = JSON.parse(fs.readFileSync(`${savePath}/.saveindex`,'utf8'));
-    if (!saveidx) { saveidx =[]; }
-    saveidx[flag].datestamp = Date.now();
-    saveidx[flag].charname = PC.getPCName();
-    saveidx[flag].loc = PC.getHomeMap().getSaveName();
-    saveidx[flag].graphic = PC.getGraphic();
-    fs.writeFileSync(`${savePath}/.saveindex`, JSON.stringify(saveidx));
+    saveIndex[flag].datestamp = Date.now();
+    saveIndex[flag].charname = PC.getPCName();
+    saveIndex[flag].loc = PC.getHomeMap().getSaveName();
+    saveIndex[flag].graphic = PC.getGraphic();
 //    localStorage.saveIndex = JSON.stringify(saveidx);
     
   }
@@ -245,29 +260,24 @@ GameStateData.prototype.initializeSaveGames = function() {
   for (let i=0;i<=9;i++) {
     saves[i] = {datestamp: 0, charname:"",loc:"",graphic:""};
     let saveslot = "save" + i;
-    fs.writeFileSync(`${savePath}/${saveslot}`, saves[i]);
+    fs.writeFileSync(`${savePath}/${saveslot}`, "");
 //    localStorage[saveslot] = "";
   }
-  fs.writeFileSync(`${savePath}/.saveindex`, JSON.stringify(saves));
+  saveIndex = saves;
 //  localStorage.saveIndex = JSON.stringify(saves);
 }
 
 GameStateData.prototype.getLatestSaveIndex = function() {
   let lastIdx = 0;
   let lastDate = 0;
-  let saveIdx = fs.readFileSync(`${__dirname}/saves/.saveindex`,'utf8');
-  console.log(saveIdx);
   //localStorage.saveIndex; 
-  if (!saveIdx) { return -1; }
-  saveIdx = JSON.parse(saveIdx);
-  if (!saveIdx) { return -1; }
   for (let i=1;i<=9;i++) {
-    if (saveIdx[i].datestamp > lastDate) {
+    if (saveIndex[i].datestamp > lastDate) {
       lastIdx = i;
-      lastDate = saveIdx[i].datestamp;
+      lastDate = saveIndex[i].datestamp;
     }
   }
-  if (!saveIdx[lastIdx].charname) { lastIdx = -1; }
+  if (!saveIndex[lastIdx].charname) { lastIdx = -1; }
   return lastIdx;
 }
 

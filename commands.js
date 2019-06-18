@@ -2952,7 +2952,6 @@ function ToggleOption(opt) {
 
 function ShowSaveGames(toptext) {
   let table = "<div class='zstats'><table cellpadding='2' cellspacing='0' border='0' style='background-color:black'>";
-  let saveIndex = JSON.parse(localStorage.saveIndex);
   for (let i=-1;i<=9;i++) {
     if ((i === 0) || (i === 9)) { table += "<tr style='height:36; background-image:url(\"graphics/frame/saveui-lock.gif\"); width:416px'>"; }
     else { table += "<tr style='height:36; background-image:url(\"graphics/frame/saveui.gif\"); width:416px'>"; }
