@@ -243,7 +243,6 @@ GameStateData.prototype.saveGame = function(flag) {
       maintext.addText("<span style='sysconv'>Unable to open new window for save export.</span>");
     }
   }	else {
-    console.log(`${savePath}/save${flag}`);
     fs.writeFileSync(`${savePath}/save${flag}`, serialized);
 //    localStorage["save"+flag] = serialized;
     saveIndex[flag].datestamp = Date.now();
