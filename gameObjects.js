@@ -4101,7 +4101,9 @@ LighthouseTile.prototype = new FeatureObject();
 
 function VillageTile() {
   this.name = "Village";
-  this.graphic = "154.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";  
+  this.spriteyoffset = "-1120";  
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
