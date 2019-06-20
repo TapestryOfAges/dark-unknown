@@ -3,7 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const savePath = `${__dirname}/saves`;
+const savePath = `${__dirname}/../../saves`;
 
 let saveIndex = [];
 
