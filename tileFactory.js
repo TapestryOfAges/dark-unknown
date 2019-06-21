@@ -2058,6 +2058,11 @@ tileFactory.prototype.makeTreasuryTokenTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFavorChitTile = function() {
+  let newTile = new FavorChitTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpiderSilkTile = function() {
   let newTile = new SpiderSilkTile();
   return newTile;
@@ -2215,6 +2220,11 @@ tileFactory.prototype.makeGoldTile = function() {
 
 tileFactory.prototype.makeHomeKeyTile = function() {
   let newTile = new HomeKeyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeToshinKeyTile = function() {
+  let newTile = new ToshinKeyTile();
   return newTile;
 }
 

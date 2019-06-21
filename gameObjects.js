@@ -7831,6 +7831,52 @@ PitDespairLeverTile.prototype.use = function(user) {
   return retval;
 }
 
+function ToshinLeverOffTile() {
+  this.name = "ToshinLeverOff";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-608";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "lever";
+}
+ToshinLeverOffTile.prototype = new FeatureObject();
+
+ToshinLeverOffTile.prototype.use = function(who) {
+  let otherlever;
+  if (this.getx() === 17) { 
+    let levers = this.getHomeMap().getTile(6,13).getFeatures(); 
+    for (let i=0;i<levers.length;i++) {
+      if (levers[i].getName() === "ToshinLeverOff") { otherlever = levers[i]; break; }
+    }
+  } else {
+    let levers = this.getHomeMap().getTile(17,21).getFeatures(); 
+    for (let i=0;i<levers.length;i++) {
+      if (levers[i].getName() === "ToshinLeverOff") { otherlever = levers[i]; break; }
+    }
+  }
+  let doors = this.getHomeMap().getTile(25,13).getFeatures();
+  let door;
+  for (let i=0;i<doors.length;i++) {
+    if (doors[i].getName().indexOf("Door") !== -1) {
+      door = doors[i];
+    }
+  }
+  if (this.spritexoffset === "-160") {
+    this.spritexoffset = "-192";
+    otherlever.spritexoffset = "-192";
+    door.unlockMe();
+  } else {
+    this.spritexoffset = "-160";
+    otherlever.spritexoffset = "-160";
+    door.lockMe(2);
+  }
+  let retval = {};
+  retval["fin"] = 1;
+  retval["txt"] = "Switch thrown.";
+  return retval;
+}
+
 function RoyalPuzzleLaserEWTile() {
   this.name = "RoyalPuzzleLaserEW";
   this.graphic = "master_spritesheet.png";
@@ -10050,6 +10096,19 @@ function HomeKeyTile() {
   this.usedesc = "Unlocks your front door.";
 }
 HomeKeyTile.prototype = new KeyItemObject();
+
+function ToshinKeyTile() {
+  this.name = "ToshinKey";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1280";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "key to Toshin's Tower";
+  this.longdesc = "A key found in a fireplace in Toshin's Tower.";
+  this.usedesc = "Unlocks doors in Toshin's Tower.";
+}
+ToshinKeyTile.prototype = new KeyItemObject();
 
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
