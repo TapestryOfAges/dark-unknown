@@ -6058,7 +6058,7 @@ function HarpsichordTile() {
   this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-384";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "harpsichord";
