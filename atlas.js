@@ -1878,6 +1878,21 @@ GameMap.prototype.removeMapLight = function(serial,light,x,y) {
 	}
 }
 
+GameMap.prototype.verifyMap = function() {
+  let valid = 1;
+  for (let j=0;j<this.getHeight();j++) {
+    for (let i=0;i<this.getWidth();i++) {
+      let feahash = {};
+      let fea = this.getTile(i,j).getFeatures();
+      for (let k=0;k<fea.length;k++) {
+        if (feahash.hasOwnProperty(fea[k].getName())) { valid = 0; console.log(`Multiple ${fea[k].getName()} at location ${i}x${j}.`); }
+      } 
+    }
+  }
+  if (valid) { console.log("Map valid."); } 
+  else { console.log("Problems found."); }
+}
+
 GameMap.prototype.getLOS = function(x1,y1,x2,y2, useloe, checklight, checkforlight) {
   // checklight = 0, check is for LOS only or light on an object that does not block LOS or the light source is the PC
   // checklight = 1, check is for light on an object that does block LOS
