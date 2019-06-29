@@ -1453,15 +1453,17 @@ function FindCombatPath(who,approach,path) {
     let availpaths = [];
     for (let i=0;i<availdests.length;i++) {
       let evenmoretempgrid = temppathgrid.clone();
-      evenmoretempgrid.setWalkableAt(availdests[i][0], availdests[i][1]);
-      let tmp = finder.findPath(who.getx(),who.gety(),availdests[i][0],availdests[i][1],evenmoretempgrid);
-      if (tmp) {
-        availpaths[i] = tmp;
+      if (whomap.getTile(availdests[i][0], availdests[i][1]) !== "OoB") {
+        evenmoretempgrid.setWalkableAt(availdests[i][0], availdests[i][1], true);
+        let tmp = finder.findPath(who.getx(),who.gety(),availdests[i][0],availdests[i][1],evenmoretempgrid);
+        if (tmp) {
+          availpaths[i] = tmp;
+        }
       }
     }
     
     // next up- find the shortest of the available paths
-    let shortest;
+    let shortest = [];
     for (let i = 0; i<availpaths.length; i++) {
       if (!availpaths[i]) { next; }
       if (i === 0) {
