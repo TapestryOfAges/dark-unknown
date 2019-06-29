@@ -133,11 +133,13 @@ function MainViewDrawTile(themap, centerx, centery, j, i, tp, ev, displayspecs) 
     } else if ((thiscell[k].lighthere < SHADOW_THRESHOLD) && !ev && !(tp && thiscell[k].isnpc)) {
       opac = 0;
     }
-    let newdiv = `<div id="tilediv_${j}x${i}" style="position:absolute; top:0px; left:0px; background-image: url('graphics/${thiscell[k].showGraphic}'); background-repeat:no-repeat; background-position: ${thiscell[k].graphics2}px ${thiscell[k].graphics3}">
+    let id="";
+    if (k===0) { id = `id="tilediv_${j}x${i}"`; }
+    let newdiv = `<div ${id} style="position:absolute; top:0px; left:0px; background-image: url('graphics/${thiscell[k].showGraphic}'); background-repeat:no-repeat; background-position: ${thiscell[k].graphics2}px ${thiscell[k].graphics3}px">
     <img id='tile${j}x${i}' src='graphics/${thiscell[k].graphics1}' border='0' alt='tile${j}x${i} los: ${thiscell[k].losresult} light:${thiscell[k].lighthere}' width='32' height='32' title='${thiscell[k].desc}'/></div>`;
     mview.innerHTML += newdiv;
     if ((opac > 0) && (opac < 1)) {
-      mview.innerHTML += "<img src='graphics/shadow.gif' style='position:absolute;left:0px;top:0px' />";
+      mview.innerHTML += "<div style='background-image: url(\"graphics/shadow.gif\"); position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
     } else if (opac === 0) {
       mview.innerHTML += "<div style='background-image: url(\"graphics/master_spritesheet.png\"); background-position:-64px -128px; position:absolute;left:0px;top:0px;width:32px;height:32px' /></div>";
     }  
@@ -240,6 +242,13 @@ function SoundLoaded() {
       DoAction(code, e.ctrlKey);
     }
   }, false);
+
+  document.addEventListener("keyup", function(e) { 
+    if (e.keyCode === 27) {
+      e.preventDefault();
+      DoAction(e.keyCode, e.ctrlKey);
+    }
+  } );
 }
 
 function DoAction(code, ctrl) {
