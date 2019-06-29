@@ -334,7 +334,7 @@ GameObject.prototype.setGraphicArray = function(newgraphics) {
 	this.graphic = newgraphics[0];
 	this.overlay = newgraphics[1];
 	this.spritexoffset = newgraphics[2];
-	this.spriteyoffset = newgraphics[3];
+  this.spriteyoffset = newgraphics[3];
 }
 
 GameObject.prototype.getGraphic = function() {
@@ -355,11 +355,14 @@ GameObject.prototype.getGraphicArray = function() {
   }
   if (this.spritexoffset) {
     returnVars[2] = this.spritexoffset;
-    returnVars[3] = this.spriteyoffset;
   }
   else {
-  	returnVars[2] = 0;
-  	returnVars[3] = 0;
+  	returnVars[2] = "0";
+  }
+  if (this.spriteyoffset) {
+    returnVars[3] = this.spriteyoffset;
+  } else {
+  	returnVars[3] = "0";
   }
   return(returnVars); 
 }
@@ -1036,13 +1039,13 @@ function SetBySurroundCave() {
 
   	let spritecount = 0;
 	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y+1) < LOS_THRESHOLD) )) { spritecount += N_WALL; north = 1; vis = 1;}
-	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack"))) { north = 1; }
+	  else if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack"))) { north = 1; }
   	if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y-1) < LOS_THRESHOLD) )) { spritecount += S_WALL; south = 1; vis = 1;}
-  	if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack"))) { south = 1; }
+  	else if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack"))) { south = 1; }
 	  if ((themap.getTile(x-1,y) !== "OoB") && ((themap.getTile(x-1,y).terrain.getName() !== tilename) && (themap.getTile(x-1,y).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y) < LOS_THRESHOLD) )) { spritecount += E_WALL; east = 1; vis = 1;}
-	  if ((themap.getTile(x-1,y) !== "OoB") && ((themap.getTile(x-1,y).terrain.getName() !== tilename) && (themap.getTile(x-1,y).terrain.getName() !== "BlankBlack"))) { east = 1; }
+	  else if ((themap.getTile(x-1,y) !== "OoB") && ((themap.getTile(x-1,y).terrain.getName() !== tilename) && (themap.getTile(x-1,y).terrain.getName() !== "BlankBlack"))) { east = 1; }
   	if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y) < LOS_THRESHOLD) )) { spritecount += W_WALL; west = 1; vis = 1;}
-  	if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack"))) { west = 1; }
+  	else if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack"))) { west = 1; }
 		
 	 	if ((themap.getTile(x+1,y-1) !== "OoB") && (themap.getTile(x+1,y-1).terrain.getName() !== tilename) && (themap.getTile(x+1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y-1) < LOS_THRESHOLD) ))
 	 	  { spritecount += A_CORNER; vis = 1; }
@@ -1052,7 +1055,7 @@ function SetBySurroundCave() {
 	    { spritecount += C_CORNER; vis = 1;}
 	 	if ((themap.getTile(x-1,y-1) !== "OoB") && (themap.getTile(x-1,y-1).terrain.getName() !== tilename) && (themap.getTile(x-1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y-1) < LOS_THRESHOLD) )) 
 	 	  { spritecount += D_CORNER; vis = 1; }
-	
+  
 	  if (vis === 0) { 
 	  	let black = eidos.getForm('BlankBlack');
 	  	let blkgraphics = black.getGraphicArray();
@@ -1065,7 +1068,10 @@ function SetBySurroundCave() {
     }
 	  let tmparray = [];
 	  tmparray[0] = .5;
-	  if (spritecount & (E_WALL+N_WALL+S_WALL+W_WALL)) { this.setBlocksLOSArray(tmparray); }
+//	  if (spritecount & (E_WALL+N_WALL+S_WALL+W_WALL)) { // I think this is meant to apply only to all-4-wall walls?
+    if (spritecount === E_WALL+N_WALL+S_WALL+W_WALL) { // was I being too clever by half? The old version I think makes all walls half transparent...
+      this.setBlocksLOSArray(tmparray); 
+    }
 	  return (graphics);
   }
 }
@@ -6102,17 +6108,26 @@ function BedHeadTile() {
 }
 BedHeadTile.prototype = new FeatureObject();
 
-function BedWalkOn(who,bedarr) {
-  if (parseInt(who.skintone) === 2) {
+function BedWalkOn(bedwho,bedarr) {
+//  console.log(`Bed walk on: ${bedwho.npcname}`);
+//  console.log(bedwho);
+//  console.log(bedarr);
+//  console.log(bedwho.getGraphicArray());
+  if (parseInt(bedwho.skintone) === 2) {
     bedarr[2] = "-96";
-  } else if (parseInt(who.skintone) !== 1) { console.log("Missing skintone on "); console.log(who); }
-  who.realgraphic = who.getGraphicArray();
-  who.setGraphicArray(bedarr);
-  DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " to sleeping.<br />");
+  } else if (parseInt(bedwho.skintone) !== 1) { console.log("Missing skintone on "); console.log(bedwho); }
+  bedwho.realgraphic = bedwho.getGraphicArray();
+  bedwho.setGraphicArray(bedarr);
+  DebugWrite("gameobj", "Changed the graphic of " + bedwho.getNPCName() + " to sleeping.<br />");
+//  console.log(bedwho);
+//  console.log(bedwho.realgraphic);
+//  console.log(bedwho);
   return;
 }
 
 function BedWalkOff(who) {
+//  console.log("Bed walk off.");
+//  console.log(who);
   if (who.realgraphic) {
     who.setGraphicArray(who.realgraphic);
     delete who.realgraphic;
@@ -6121,6 +6136,7 @@ function BedWalkOff(who) {
     alert("Entity failed to have a waking graphic. See console.");
     console.log(who);
   }
+//  console.log(who);
   return;
 }
 
@@ -13438,17 +13454,17 @@ NPCObject.prototype.processDeath = function(droploot){
         }
         else {alert (this.getName() + " has a loottable that is not defined."); }
       }
-    }
-    if ((chest) && (chest.container.length)) {
-      let trapname = GetStrongestTrap(loottables);
-      if (trapname) {
-        DebugWrite("gameobj", "Chest created, might be trapped with: " + trapname + ".<br />");
-        let trap = DUTraps[trapname].getTrap();
-        if (trap.trap) {
-          chest.setTrap(trap.trap, trap.level);
+      if ((chest) && (chest.container.length)) {
+        let trapname = GetStrongestTrap(loottables);
+        if (trapname) {
+          DebugWrite("gameobj", "Chest created, might be trapped with: " + trapname + ".<br />");
+          let trap = DUTraps[trapname].getTrap();
+          if (trap.trap) {
+            chest.setTrap(trap.trap, trap.level);
+          }
         }
-      }
-      map.placeThing(thisx,thisy, chest);
+        map.placeThing(thisx,thisy, chest);
+      }  
     }
     map.deleteThing(this);
     if (map.getName() === "shadow1") {
@@ -13979,6 +13995,9 @@ NPCObject.prototype.activate = function(timeoverride) {
     if (this.overrideGraphic) {
       if (this.realgraphic) {
         this.realgraphic = this.overrideGraphic; 
+        alert("Why is this happening?");
+        console.log("Why is this happening? Actual use of realgraphic in activation:");
+        console.log(this);
       } else {
         this.graphic = this.overrideGraphic;
       }
