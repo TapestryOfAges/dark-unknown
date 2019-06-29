@@ -623,11 +623,13 @@ ais.SwapPlace = function(who, params) {
 }
 
 ais.CartMoves = function(who, params) {
-  console.log("In CartMoves");
-  console.log(params);
+//  console.log("In CartMoves");
+//  console.log(params);
+  DebugWrite("schedules", "Cart trying to move...<br />");
+  let otherhalf = who.attachedParts[0];
   let moved = {};
   if ((who.getx() !== parseInt(params.destinationx)) || (who.gety() !== parseInt(params.destinationy))) {
-    console.log("Not there yet.");  
+//    console.log("Not there yet.");  
     let gridbackup = who.getHomeMap().getPathGrid(MOVE_WALK_DOOR).clone();
     
     if (who.getHomeMap() === PC.getHomeMap()) {
@@ -636,20 +638,20 @@ ais.CartMoves = function(who, params) {
     }
     gridbackup.setWalkableAt(params.destinationx,params.destinationy,true);
     gridbackup.setWalkableAt(who.getx(),who.gety(),true);
+    gridbackup.setWalkableAt(otherhalf.getx(),otherhalf.gety(),true);  // allow cart to turn around
 
     let path = finder.findPath(who.getx(),who.gety(),params.destinationx,params.destinationy,gridbackup);
 
     path.shift();
-console.log(path);
+//console.log(path);
     if (path[0]) {
-      let otherhalf = who.attachedParts[0];
       let origx = who.getx();
       let origy = who.gety();
       let origcartx = otherhalf.getx();
       let origcarty = otherhalf.gety();    
-      console.log(otherhalf);
+//      console.log(otherhalf);
       if ((otherhalf.getx() === path[0][0]) && (otherhalf.gety() === path[0][1])) {
-        console.log("Swapping positions with rear");
+//        console.log("Swapping positions with rear");
         who.swapPlace();
         if (who.getHomeMap() === PC.getHomeMap()) {
           DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
@@ -672,10 +674,10 @@ console.log(path);
     } else if ((who.getx() === params.destinationx) && (who.gety() === params.destinationy)) {
       return {fin:1}
       DebugWrite("schedules", "I am already at my destination somehow.<br />");
-      console.log(who.getNPCName() + " somehow is already at her destination.");
+//      console.log(who.getNPCName() + " somehow is already at her destination.");
     } else {
-      console.log(who.getNPCName() + " on " + who.getHomeMap().getName() + " at " + who.getx() + "," + who.gety());
-      console.log("Failed to move, in schedule index " + who.getCurrentScheduleIndex() + " at " + GetUsableClockTime());
+//      console.log(who.getNPCName() + " on " + who.getHomeMap().getName() + " at " + who.getx() + "," + who.gety());
+//      console.log("Failed to move, in schedule index " + who.getCurrentScheduleIndex() + " at " + GetUsableClockTime());
     }
   } else { DebugWrite("schedules", "Already at destination... "); }
 
@@ -689,7 +691,7 @@ console.log(path);
 }
 
 ais.ChangeMapCart = function(who,params) {
-  console.log("In ChangeMapCart");
+//  console.log("In ChangeMapCart");
   let destmap = maps.getMap(params.mapName);
   if (!destmap) { alert("Failure to find map " + params.mapName); }
   let desttile = MoveBetweenMaps(who,who.getHomeMap(),destmap,params.x,params.y);
@@ -698,12 +700,13 @@ ais.ChangeMapCart = function(who,params) {
     let cart = who.attachedParts[0];
     let cartdestx = params.x;
     if (who.spritexoffset === "-256") { cartdestx -= 1; }
-    else { carddesty += 1; }
+    else { cartdestx += 1; }
     MoveBetweenMaps(cart,cart.getHomeMap(),destmap,cartdestx,params.y);
     DebugWrite("schedules", "Changed maps (Cart). Going to (" + params.x + "," + params.y + "), wound up at (" + who.getx() + "," + who.gety() + ").<br />");
   } else {
     DebugWrite("schedules", "Failed to change maps. Will try again next turn.");
   }
+//  console.log(who);
 
   return {fin:1};
 }
