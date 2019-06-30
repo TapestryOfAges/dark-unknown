@@ -1037,7 +1037,8 @@ function SetBySurroundCave() {
 		let east = 0;
 		let west = 0;
 
-  	let spritecount = 0;
+    let spritecount = 0;
+    let cornerobj = {};
 	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y+1) < LOS_THRESHOLD) )) { spritecount += N_WALL; north = 1; vis = 1;}
 	  else if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack"))) { north = 1; }
   	if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y-1) < LOS_THRESHOLD) )) { spritecount += S_WALL; south = 1; vis = 1;}
@@ -1048,14 +1049,14 @@ function SetBySurroundCave() {
   	else if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack"))) { west = 1; }
 		
 	 	if ((themap.getTile(x+1,y-1) !== "OoB") && (themap.getTile(x+1,y-1).terrain.getName() !== tilename) && (themap.getTile(x+1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y-1) < LOS_THRESHOLD) ))
-	 	  { spritecount += A_CORNER; vis = 1; }
+	 	  { spritecount += A_CORNER; vis = 1; cornerobj.corner = 1; cornerobj.north = 1; cornerobj.east = 1;}
   	if ((themap.getTile(x+1,y+1) !== "OoB") && (themap.getTile(x+1,y+1).terrain.getName() !== tilename) && (themap.getTile(x+1,y+1).terrain.getName() !== "BlankBlack") && (north === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y+1) < LOS_THRESHOLD) )) 
-  	  { spritecount += B_CORNER; vis = 1; }
+  	  { spritecount += B_CORNER; vis = 1; cornerobj.corner = 1; cornerobj.south = 1; cornerobj.east = 1;}
 	  if ((themap.getTile(x-1,y+1) !== "OoB") && (themap.getTile(x-1,y+1).terrain.getName() !== tilename) && (themap.getTile(x-1,y+1).terrain.getName() !== "BlankBlack") && (north === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y+1) < LOS_THRESHOLD) ))
-	    { spritecount += C_CORNER; vis = 1;}
+	    { spritecount += C_CORNER; vis = 1; cornerobj.corner = 1; cornerobj.south = 1; cornerobj.west = 1;}
 	 	if ((themap.getTile(x-1,y-1) !== "OoB") && (themap.getTile(x-1,y-1).terrain.getName() !== tilename) && (themap.getTile(x-1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y-1) < LOS_THRESHOLD) )) 
-	 	  { spritecount += D_CORNER; vis = 1; }
-  
+	 	  { spritecount += D_CORNER; vis = 1; cornerobj.corner = 1; cornerobj.north = 1; cornerobj.west = 1;}
+
 	  if (vis === 0) { 
 	  	let black = eidos.getForm('BlankBlack');
 	  	let blkgraphics = black.getGraphicArray();
@@ -1066,12 +1067,7 @@ function SetBySurroundCave() {
       graphics[2] = xoff;
       graphics[3] = yoff-ADD_Y;
     }
-	  let tmparray = [];
-	  tmparray[0] = .5;
-//	  if (spritecount & (E_WALL+N_WALL+S_WALL+W_WALL)) { // I think this is meant to apply only to all-4-wall walls?
-    if (spritecount === E_WALL+N_WALL+S_WALL+W_WALL) { // was I being too clever by half? The old version I think makes all walls half transparent...
-      this.setBlocksLOSArray(tmparray); 
-    }
+    graphics[4] = cornerobj;
 	  return (graphics);
   }
 }
@@ -3171,6 +3167,21 @@ function CaveWallTile() {
 	SetBySurroundCave.call(this);
 }
 CaveWallTile.prototype = new TerrainObject();
+
+function CaveColumnTile() {
+	this.name = "CaveColumn";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-3936";
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = .5;
+	this.prefix = "a";
+	this.desc = "cave wall";
+	this.peerview = "black";
+	
+	TilingSpritesheet.call(this, 2);
+}
+CaveColumnTile.prototype = new TerrainObject();
 
 function HexFloorTile() {
 	this.name = "HexFloor";
@@ -10761,6 +10772,7 @@ GreenPotionTile.prototype.flamed = function() {
 GreenPotionTile.prototype.use = function(who) {
   // FIXME: add throw option
   DUPlaySound("sfx_potion");
+  DU.gameflags.setFlag("knowsgreenpotion",1)
   let retval = {fin:1}
   let poison = localFactory.createTile("Poison");
   let duration = Dice.roll("2d8") * SCALE_TIME;
@@ -10794,6 +10806,7 @@ DarkGreenPotionTile.prototype.getLongDesc = function() {
 }  
 
 DarkGreenPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsdarkgreenpotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell(PC, 0, 2);
@@ -10823,6 +10836,7 @@ SilverPotionTile.prototype.getLongDesc = function() {
 }
 
 SilverPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowssilverpotion",1)
   DUPlaySound("sfx_potion");
   let resp = {};
   resp["fin"] = 1;
@@ -10866,6 +10880,7 @@ PinkPotionTile.prototype.getLongDesc = function() {
 }
 
 PinkPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowspinkpotion",1)
   DUPlaySound("sfx_potion");
   let resp = {fin:1};
 
@@ -10909,6 +10924,7 @@ GreyPotionTile.prototype.getLongDesc = function() {
 }
 
 GreyPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsgreypotion",1)
   let resp = {fin:1};
   DUPlaySound("sfx_potion");
 
@@ -10952,6 +10968,7 @@ BrownPotionTile.prototype.getLongDesc = function() {
 }
 
 BrownPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsbrownpotion",1)
   DUPlaySound("sfx_potion");
   who.setMana(who.getMaxMana());
   let retval = {fin:1};
@@ -10983,6 +11000,7 @@ RedPotionTile.prototype.getLongDesc = function() {
 }
 
 RedPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsredpotion",1)
   DUPlaySound("sfx_potion");
   let poisoned;
   if (who.getSpellEffectsByName("Poison")) { poisoned = 1; }
@@ -11015,6 +11033,7 @@ WhitePotionTile.prototype.getLongDesc = function() {
 }
 
 WhitePotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowswhitepotion",1)
   DUPlaySound("sfx_potion");
   let retval = { fin:1};
   retval = magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell(PC, 0, 2);
@@ -11044,6 +11063,7 @@ YellowPotionTile.prototype.getLongDesc = function() {
 }
 
 YellowPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsyellowpotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(PC, 0, 2);
@@ -11073,6 +11093,7 @@ PurplePotionTile.prototype.getLongDesc = function() {
 }
 
 PurplePotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowspurplepotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_PROTECT_LEVEL][SPELL_PROTECT_ID].executeSpell(PC, 0, 2);
@@ -11102,6 +11123,7 @@ BlackPotionTile.prototype.getLongDesc = function() {
 }
 
 BlackPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsblackpotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(PC, 0, 2);
@@ -11131,6 +11153,7 @@ BluePotionTile.prototype.getLongDesc = function() {
 }
 
 BluePotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsbluepotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell(PC, 0, 2);
@@ -11160,6 +11183,7 @@ DeepBluePotionTile.prototype.getLongDesc = function() {
 }
 
 DeepBluePotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsdeepbluepotion",1)
   DUPlaySound("sfx_potion");
   let retval = magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />Your vision becomes strange!"
@@ -11188,6 +11212,7 @@ OrangePotionTile.prototype.getLongDesc = function() {
 }
 
 OrangePotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsorangepotion",1)
   DUPlaySound("sfx_potion");
   let mana = Dice.roll("2d6+1");
   who.setMana(who.getMana() + mana);
@@ -11222,6 +11247,7 @@ TanPotionTile.prototype.getLongDesc = function() {
 }
 
 TanPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowstanpotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(PC, 0, 2);

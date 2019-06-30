@@ -218,6 +218,8 @@ function Atlas() {
     "CaveFloor" : 'cf',
     'cw' : "CaveWall",
     "CaveWall" : 'cw',
+    'cc' : "CaveColumn",
+    "CaveColumn" : 'cc',
     'hf' : "HexFloor",
     "HexFloor" : 'hf',
     'ht' : "HexTransparentFloor",

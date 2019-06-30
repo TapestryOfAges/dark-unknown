@@ -195,28 +195,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
     lighthere = 1;
   } else {
     if ((blocks >= LOS_THRESHOLD) && ((centerx != x) || (centery != y) )) {
-      let dirnum = GetViewDirection(centerx,centery,x,y);
-      if ((dirnum === 6) || (dirnum === 7) || (dirnum === 0)) {
-        let selight = localacre.getLocalLight("se") + sunlight;
-        if (selight > lighthere) {
-          lighthere = selight;
-        }
-      } if ((dirnum >= 0) && (dirnum <= 2)) {
-        let swlight = localacre.getLocalLight("sw") + sunlight;
-        if (swlight > lighthere) {
-          lighthere = swlight;
-        }
-      } if ((dirnum >= 2) && (dirnum <= 4)) {
-        let nwlight = localacre.getLocalLight("nw") + sunlight;
-        if (nwlight > lighthere) {
-          lighthere = nwlight;
-        }
-      } if ((dirnum >= 4) && (dirnum <= 6)) {
-        let nelight = localacre.getLocalLight("ne") + sunlight;
-        if (nelight > lighthere) {
-          lighthere = nelight;
-        }
-      }
+      lighthere = GetDisplayDirectionalLight(centerx,centery,x,y,mapname,sunlight);
     } else {
       lighthere = localacre.getLocalLight("center") + sunlight;
     }
@@ -241,7 +220,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
     let isnpc = 0;  // specifically, ones with minds who will be seen by telepathy
     if (displaytile.checkType("NPC") && !displaytile.specials.mindless) { isnpc = 1; }
     let graphics = displaytile.getGraphicArray();
-    if ((typeof displaytile.setBySurround === "function") && ((losresult < LOS_THRESHOLD) || ev)) {
+    if ((typeof displaytile.setBySurround === "function") && ((losresult < LOS_THRESHOLD) || ev || (displaytile.getName() === "CaveWall"))) {
       graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
       displayCell.showGraphic = graphics[0];
       displayCell.graphics2 = graphics[2];
@@ -258,8 +237,40 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
       displayCell.losresult = losresult;
       displayCell.lighthere = lighthere;
       displayCell.desc = displaytile.getDesc();
+      if (graphics[4].corner && (displayCell.losresult >= LOS_THRESHOLD)) { 
+        let seecorners = 1;
+        if (graphics[4].east) {
+          if ( mapname.getLOS(centerx, centery, x+1, y) >= LOS_THRESHOLD) { seecorners = 0; }
+          else {
+            let eastlight = GetDisplayDirectionalLight(centerx,centery,x+1,y,mapname,sunlight);
+            if (eastlight > displayCell.lighthere) { displayCell.lighthere = eastlight; }
+          }
+        }
+        if (graphics[4].west) {
+          if ( mapname.getLOS(centerx, centery, x-1, y) >= LOS_THRESHOLD) { seecorners = 0; }
+          else {
+            let westlight = GetDisplayDirectionalLight(centerx,centery,x-1,y,mapname,sunlight);
+            if (westlight > displayCell.lighthere) { displayCell.lighthere = westlight; }
+          }
+        }
+        if (graphics[4].north) {
+          if ( mapname.getLOS(centerx, centery, x, y-1) >= LOS_THRESHOLD) { seecorners = 0; }
+          else {
+            let northlight = GetDisplayDirectionalLight(centerx,centery,x,y-1,mapname,sunlight);
+            if (northlight > displayCell.lighthere) { displayCell.lighthere = northlight; }
+          }
+        }
+        if (graphics[4].south) {
+          if ( mapname.getLOS(centerx, centery, x, y+1) >= LOS_THRESHOLD) { seecorners = 0; }
+          else {
+            let southlight = GetDisplayDirectionalLight(centerx,centery,x,y+1,mapname,sunlight);
+            if (southlight > displayCell.lighthere) { displayCell.lighthere = southlight; }
+          }
+        }
+        if (seecorners) { displayCell.losresult = 0; } 
+      } 
       if (displaytile.alwaystop) { ontop.push(displayCell); }
-      else { displayStack.push(displayCell); }
+      else if (displayCell.losresult < LOS_THRESHOLD) { displayStack.push(displayCell); }
     } else if ((losresult < LOS_THRESHOLD) || ((tp === 1) && isnpc) || ev) {
       displayCell.showGraphic = graphics[0];
       displayCell.graphics2 = graphics[2];
@@ -325,6 +336,34 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
     displayStack.push(displayCell);
   }
   return displayStack;
+}
+
+function GetDisplayDirectionalLight(centerx,centery,x,y,lightmap,sunlight) {
+  let dirnum = GetViewDirection(centerx,centery,x,y);
+  let lighthere=0;
+  let localacre = lightmap.getTile(x,y);
+  if ((dirnum === 6) || (dirnum === 7) || (dirnum === 0)) {
+    let selight = localacre.getLocalLight("se") + sunlight;
+    if (selight > lighthere) {
+      lighthere = selight;
+    }
+  } if ((dirnum >= 0) && (dirnum <= 2)) {
+    let swlight = localacre.getLocalLight("sw") + sunlight;
+    if (swlight > lighthere) {
+      lighthere = swlight;
+    }
+  } if ((dirnum >= 2) && (dirnum <= 4)) {
+    let nwlight = localacre.getLocalLight("nw") + sunlight;
+    if (nwlight > lighthere) {
+      lighthere = nwlight;
+    }
+  } if ((dirnum >= 4) && (dirnum <= 6)) {
+    let nelight = localacre.getLocalLight("ne") + sunlight;
+    if (nelight > lighthere) {
+      lighthere = nelight;
+    }
+  }
+  return lighthere;
 }
 
 function getDisplayCell(mapname, centerx, centery, x, y, tp, ev) {
