@@ -218,6 +218,8 @@ function Atlas() {
     "CaveFloor" : 'cf',
     'cw' : "CaveWall",
     "CaveWall" : 'cw',
+    'cc' : "CaveColumn",
+    "CaveColumn" : 'cc',
     'hf' : "HexFloor",
     "HexFloor" : 'hf',
     'ht' : "HexTransparentFloor",
@@ -1540,7 +1542,7 @@ GameMap.prototype.saveMap = function (name) {
   printerwin.document.write("<br />\n" + name + ".desc = \"" + this.getDesc() + "\";<br />\n");
   printerwin.document.write(name + ".longdesc = '" + this.getLongDesc() + "';<br />\n");
   printerwin.document.write(name + ".music = '" + this.getMusic() + "';<br />\n");
-  printerwin.document.write(name + ".savename = '" + this.getSaveName() + "';<br />\n");
+  printerwin.document.write(name + ".savename = `" + this.getSaveName() + "`;<br />\n");
   printerwin.document.write(name + ".exitmap = '" + this.getExitToMap() + "';<br />\n");
   printerwin.document.write(name + ".exitx = '" + this.getExitToX() + "';<br />\n");
   printerwin.document.write(name + ".exity = '" + this.getExitToY() + "';<br />\n");
@@ -1876,6 +1878,21 @@ GameMap.prototype.removeMapLight = function(serial,light,x,y) {
 			}
 		}
 	}
+}
+
+GameMap.prototype.verifyMap = function() {
+  let valid = 1;
+  for (let j=0;j<this.getHeight();j++) {
+    for (let i=0;i<this.getWidth();i++) {
+      let feahash = {};
+      let fea = this.getTile(i,j).getFeatures();
+      for (let k=0;k<fea.length;k++) {
+        if (feahash.hasOwnProperty(fea[k].getName())) { valid = 0; console.log(`Multiple ${fea[k].getName()} at location ${i}x${j}.`); }
+      } 
+    }
+  }
+  if (valid) { console.log("Map valid."); } 
+  else { console.log("Problems found."); }
 }
 
 GameMap.prototype.getLOS = function(x1,y1,x2,y2, useloe, checklight, checkforlight) {
@@ -2516,12 +2533,12 @@ GameMap.prototype.getLOS = function(x1,y1,x2,y2, useloe, checklight, checkforlig
 }
 
 function genLOS(x1,y1,x2,y2,startsection,endsection,losmap, useloe, allin) {
-	  let LOSes = losgrid.getLOS(x1,y1,x2,y2,startsection,endsection);
+    let LOSes = losgrid.getLOS(x1,y1,x2,y2,startsection,endsection);
 	  let totalLOS = 0;
 	  if (LOSes[0]) {
-	  	for (var i = 0; i < LOSes.length; i++ ){
+	  	for (let i = 0; i < LOSes.length; i++ ){
 	  		let passx = parseInt(x1) + parseInt(LOSes[i].x);
-	  		let passy = parseInt(y1) + parseInt(LOSes[i].y);
+        let passy = parseInt(y1) + parseInt(LOSes[i].y);
 	  		let location = losmap.getTile(passx,passy);
 	  		let dist = Math.sqrt(Math.pow((passx - x1), 2) + Math.pow((passy - y1),2));
 	  		if (useloe) {
@@ -2529,9 +2546,9 @@ function genLOS(x1,y1,x2,y2,startsection,endsection,losmap, useloe, allin) {
 	  		  if (allin && (block >= 1) && ((LOSes[i].coeff * block) > .05) ) { return 1; }
 	  		  totalLOS += LOSes[i].coeff * block;
 	  		} else {
-	  		  let block = location.getBlocksLOS(dist);
+          let block = location.getBlocksLOS(dist);
 	  		  if (allin && (block >= 1) && ((LOSes[i].coeff * block) > .05) ) { return 1; }
-	  		  totalLOS += LOSes[i].coeff * block;
+          totalLOS += LOSes[i].coeff * block;
 	  		}
 	  		if (totalLOS > LOS_THRESHOLD) { return totalLOS; }
 	  	}

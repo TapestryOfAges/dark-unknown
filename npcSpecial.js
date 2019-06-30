@@ -63,17 +63,21 @@ HorseAndCartNPCTile.prototype.swapPlace = function(orient) {
     this.spritexoffset = '-224';
     this.spriteyoffset = '-1568';
     this.attachedParts[0].spritexoffset = '-256';
-    this.attachedParts[0].spriteyoffset = '-1536';
-    this.attachedParts[0].setx(this.getx());
+    this.attachedParts[0].spriteyoffset = '-1568';
+    this.attachedParts[0].setx(this.getx()+1);
     this.setx(this.getx()-1);
+    this.attachedLocations[0][0] = 1;
   } else {
     this.spritexoffset = '-256';
     this.spriteyoffset = '-1536';
     this.attachedParts[0].spritexoffset = '-224';
-    this.attachedParts[0].spriteyoffset = '-1568';
-    this.attachedParts[0].setx(this.getx());
+    this.attachedParts[0].spriteyoffset = '-1536';
+    this.attachedParts[0].setx(this.getx()-1);
+    this.attachedLocations[0][0] = -1;
     this.setx(this.getx()+1);
   }
+//  console.log("Swap performed:");
+//  console.log(this);
 }
 
 function CartSegmentTile() {

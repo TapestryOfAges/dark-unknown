@@ -129,7 +129,7 @@ mappages["naurglen"].features[74] = {name : 'LeftChair', x : 70, y : 24};
 mappages["naurglen"].features[75] = {name : 'LeftChair', x : 66, y : 24};
 mappages["naurglen"].features[76] = {name : 'RightChair', x : 73, y : 21};
 mappages["naurglen"].features[77] = {name : 'LeftChair', x : 71, y : 21};
-mappages["naurglen"].features[78] = {name : 'TopChair', x : 72, y : 23};
+mappages["naurglen"].features[78] = {name : 'Brazier', x : 56, y : 39};
 mappages["naurglen"].features[79] = {name : 'TavernSign', x : 79, y : 23, desc : "sign: The Red Hen Tavern"};
 mappages["naurglen"].features[80] = {name : 'SingleSignpost', x : 79, y : 24};
 mappages["naurglen"].features[81] = {name : 'Door', x : 78, y : 14};
@@ -464,7 +464,6 @@ mappages["naurglen"].features[409] = {name : 'UnlitBrazier', x : 5, y : 24};
 mappages["naurglen"].features[410] = {name : 'TorchEast', x : 77, y : 24};
 mappages["naurglen"].features[411] = {name : 'Brazier', x : 74, y : 25};
 mappages["naurglen"].features[412] = {name : 'Brazier', x : 30, y : 38};
-mappages["naurglen"].features[413] = {name : 'Brazier', x : 56, y : 39};
 
 
 mappages["naurglen"].npcs = [];

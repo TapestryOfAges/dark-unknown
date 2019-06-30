@@ -152,7 +152,7 @@ mappages["darkunknown"].features[2] = {name : 'Dungeon', x : 96, y : 31, enterma
 mappages["darkunknown"].features[3] = {name : 'Towne', x : 81, y : 23, desc : "Towne of Clear Lake", prefix : "the", entermap : 'clearlake', enterx : 20, entery : 62};
 mappages["darkunknown"].features[4] = {name : 'Towne', x : 41, y : 26, desc : "Towne of Poverty", prefix : "the", entermap : 'poverty', enterx : 14, entery : 33};
 mappages["darkunknown"].features[5] = {name : 'Dungeon', x : 39, y : 48, entermap : 'kaltonmine1', enterx : 15, entery : 5};
-mappages["darkunknown"].features[6] = {name : 'Towne', x : 52, y : 63, desc : "Towne of Hildendain", prefix : "the", entermap : 'hildendain', enterx : 25, entery : 58};
+mappages["darkunknown"].features[6] = {name : 'Towne', x : 52, y : 63, desc : "Towne of Hildendain", prefix : "the", entermap : 'hildendain', enterx : 26, entery : 62};
 mappages["darkunknown"].features[7] = {name : 'Dungeon', x : 27, y : 44, entermap : 'worldsending1', enterx : 9, entery : 45};
 mappages["darkunknown"].features[8] = {name : 'Village', x : 73, y : 74, desc : "Village of Naurglen East", prefix : "the", entermap : 'naurglen', enterx : 83, entery : 45};
 mappages["darkunknown"].features[9] = {name : 'LeftCastle', x : 68, y : 73};
@@ -1018,7 +1018,7 @@ mappages["ellusus_limbo"] = {};
 mappages["ellusus_limbo"].terrain = [];
 mappages["ellusus_limbo"].terrain[0] = 'WW WW WW WW WW';
 mappages["ellusus_limbo"].terrain[1] = '## ## ## ## WW';
-mappages["ellusus_limbo"].terrain[2] = '## ++ ++ ## WW';
+mappages["ellusus_limbo"].terrain[2] = '++ ++ ++ ++ WW';
 mappages["ellusus_limbo"].terrain[3] = '## ## ## ## WW';
 mappages["ellusus_limbo"].terrain[4] = 'WW WW WW WW WW';
 

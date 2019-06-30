@@ -334,7 +334,7 @@ GameObject.prototype.setGraphicArray = function(newgraphics) {
 	this.graphic = newgraphics[0];
 	this.overlay = newgraphics[1];
 	this.spritexoffset = newgraphics[2];
-	this.spriteyoffset = newgraphics[3];
+  this.spriteyoffset = newgraphics[3];
 }
 
 GameObject.prototype.getGraphic = function() {
@@ -355,11 +355,14 @@ GameObject.prototype.getGraphicArray = function() {
   }
   if (this.spritexoffset) {
     returnVars[2] = this.spritexoffset;
-    returnVars[3] = this.spriteyoffset;
   }
   else {
-  	returnVars[2] = 0;
-  	returnVars[3] = 0;
+  	returnVars[2] = "0";
+  }
+  if (this.spriteyoffset) {
+    returnVars[3] = this.spriteyoffset;
+  } else {
+  	returnVars[3] = "0";
   }
   return(returnVars); 
 }
@@ -1034,25 +1037,26 @@ function SetBySurroundCave() {
 		let east = 0;
 		let west = 0;
 
-  	let spritecount = 0;
+    let spritecount = 0;
+    let cornerobj = {};
 	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y+1) < LOS_THRESHOLD) )) { spritecount += N_WALL; north = 1; vis = 1;}
-	  if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack"))) { north = 1; }
+	  else if ((themap.getTile(x,y+1) !== "OoB") && ((themap.getTile(x,y+1).terrain.getName() !== tilename) && (themap.getTile(x,y+1).terrain.getName() !== "BlankBlack"))) { north = 1; }
   	if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x,y-1) < LOS_THRESHOLD) )) { spritecount += S_WALL; south = 1; vis = 1;}
-  	if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack"))) { south = 1; }
+  	else if ((themap.getTile(x,y-1) !== "OoB") && ((themap.getTile(x,y-1).terrain.getName() !== tilename) && (themap.getTile(x,y-1).terrain.getName() !== "BlankBlack"))) { south = 1; }
 	  if ((themap.getTile(x-1,y) !== "OoB") && ((themap.getTile(x-1,y).terrain.getName() !== tilename) && (themap.getTile(x-1,y).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y) < LOS_THRESHOLD) )) { spritecount += E_WALL; east = 1; vis = 1;}
-	  if ((themap.getTile(x-1,y) !== "OoB") && ((themap.getTile(x-1,y).terrain.getName() !== tilename) && (themap.getTile(x-1,y).terrain.getName() !== "BlankBlack"))) { east = 1; }
+	  else if ((themap.getTile(x-1,y) !== "OoB") && ((themap.getTile(x-1,y).terrain.getName() !== tilename) && (themap.getTile(x-1,y).terrain.getName() !== "BlankBlack"))) { east = 1; }
   	if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack")) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y) < LOS_THRESHOLD) )) { spritecount += W_WALL; west = 1; vis = 1;}
-  	if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack"))) { west = 1; }
+  	else if ((themap.getTile(x+1,y) !== "OoB") && ((themap.getTile(x+1,y).terrain.getName() !== tilename) && (themap.getTile(x+1,y).terrain.getName() !== "BlankBlack"))) { west = 1; }
 		
 	 	if ((themap.getTile(x+1,y-1) !== "OoB") && (themap.getTile(x+1,y-1).terrain.getName() !== tilename) && (themap.getTile(x+1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y-1) < LOS_THRESHOLD) ))
-	 	  { spritecount += A_CORNER; vis = 1; }
+	 	  { spritecount += A_CORNER; vis = 1; cornerobj.corner = 1; cornerobj.north = 1; cornerobj.east = 1;}
   	if ((themap.getTile(x+1,y+1) !== "OoB") && (themap.getTile(x+1,y+1).terrain.getName() !== tilename) && (themap.getTile(x+1,y+1).terrain.getName() !== "BlankBlack") && (north === 0) && (west === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x+1,y+1) < LOS_THRESHOLD) )) 
-  	  { spritecount += B_CORNER; vis = 1; }
+  	  { spritecount += B_CORNER; vis = 1; cornerobj.corner = 1; cornerobj.south = 1; cornerobj.east = 1;}
 	  if ((themap.getTile(x-1,y+1) !== "OoB") && (themap.getTile(x-1,y+1).terrain.getName() !== tilename) && (themap.getTile(x-1,y+1).terrain.getName() !== "BlankBlack") && (north === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y+1) < LOS_THRESHOLD) ))
-	    { spritecount += C_CORNER; vis = 1;}
+	    { spritecount += C_CORNER; vis = 1; cornerobj.corner = 1; cornerobj.south = 1; cornerobj.west = 1;}
 	 	if ((themap.getTile(x-1,y-1) !== "OoB") && (themap.getTile(x-1,y-1).terrain.getName() !== tilename) && (themap.getTile(x-1,y-1).terrain.getName() !== "BlankBlack") && (south === 0) && (east === 0) && ((checklos === 0) || (themap.getLOS(fromx,fromy,x-1,y-1) < LOS_THRESHOLD) )) 
-	 	  { spritecount += D_CORNER; vis = 1; }
-	
+	 	  { spritecount += D_CORNER; vis = 1; cornerobj.corner = 1; cornerobj.north = 1; cornerobj.west = 1;}
+
 	  if (vis === 0) { 
 	  	let black = eidos.getForm('BlankBlack');
 	  	let blkgraphics = black.getGraphicArray();
@@ -1063,9 +1067,7 @@ function SetBySurroundCave() {
       graphics[2] = xoff;
       graphics[3] = yoff-ADD_Y;
     }
-	  let tmparray = [];
-	  tmparray[0] = .5;
-	  if (spritecount & (E_WALL+N_WALL+S_WALL+W_WALL)) { this.setBlocksLOSArray(tmparray); }
+    graphics[4] = cornerobj;
 	  return (graphics);
   }
 }
@@ -3165,6 +3167,21 @@ function CaveWallTile() {
 	SetBySurroundCave.call(this);
 }
 CaveWallTile.prototype = new TerrainObject();
+
+function CaveColumnTile() {
+	this.name = "CaveColumn";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-3936";
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = .5;
+	this.prefix = "a";
+	this.desc = "cave wall";
+	this.peerview = "black";
+	
+	TilingSpritesheet.call(this, 2);
+}
+CaveColumnTile.prototype = new TerrainObject();
 
 function HexFloorTile() {
 	this.name = "HexFloor";
@@ -6058,7 +6075,7 @@ function HarpsichordTile() {
   this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-384";
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "harpsichord";
@@ -6102,17 +6119,26 @@ function BedHeadTile() {
 }
 BedHeadTile.prototype = new FeatureObject();
 
-function BedWalkOn(who,bedarr) {
-  if (parseInt(who.skintone) === 2) {
+function BedWalkOn(bedwho,bedarr) {
+//  console.log(`Bed walk on: ${bedwho.npcname}`);
+//  console.log(bedwho);
+//  console.log(bedarr);
+//  console.log(bedwho.getGraphicArray());
+  if (parseInt(bedwho.skintone) === 2) {
     bedarr[2] = "-96";
-  } else if (parseInt(who.skintone) !== 1) { console.log("Missing skintone on "); console.log(who); }
-  who.realgraphic = who.getGraphicArray();
-  who.setGraphicArray(bedarr);
-  DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " to sleeping.<br />");
+  } else if (parseInt(bedwho.skintone) !== 1) { console.log("Missing skintone on "); console.log(bedwho); }
+  bedwho.realgraphic = bedwho.getGraphicArray();
+  bedwho.setGraphicArray(bedarr);
+  DebugWrite("gameobj", "Changed the graphic of " + bedwho.getNPCName() + " to sleeping.<br />");
+//  console.log(bedwho);
+//  console.log(bedwho.realgraphic);
+//  console.log(bedwho);
   return;
 }
 
 function BedWalkOff(who) {
+//  console.log("Bed walk off.");
+//  console.log(who);
   if (who.realgraphic) {
     who.setGraphicArray(who.realgraphic);
     delete who.realgraphic;
@@ -6121,6 +6147,7 @@ function BedWalkOff(who) {
     alert("Entity failed to have a waking graphic. See console.");
     console.log(who);
   }
+//  console.log(who);
   return;
 }
 
@@ -7828,6 +7855,52 @@ PitDespairLeverTile.prototype.use = function(user) {
     retval["fin"] = 0;
   }
   
+  return retval;
+}
+
+function ToshinLeverOffTile() {
+  this.name = "ToshinLeverOff";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-608";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "lever";
+}
+ToshinLeverOffTile.prototype = new FeatureObject();
+
+ToshinLeverOffTile.prototype.use = function(who) {
+  let otherlever;
+  if (this.getx() === 17) { 
+    let levers = this.getHomeMap().getTile(6,13).getFeatures(); 
+    for (let i=0;i<levers.length;i++) {
+      if (levers[i].getName() === "ToshinLeverOff") { otherlever = levers[i]; break; }
+    }
+  } else {
+    let levers = this.getHomeMap().getTile(17,21).getFeatures(); 
+    for (let i=0;i<levers.length;i++) {
+      if (levers[i].getName() === "ToshinLeverOff") { otherlever = levers[i]; break; }
+    }
+  }
+  let doors = this.getHomeMap().getTile(25,13).getFeatures();
+  let door;
+  for (let i=0;i<doors.length;i++) {
+    if (doors[i].getName().indexOf("Door") !== -1) {
+      door = doors[i];
+    }
+  }
+  if (this.spritexoffset === "-160") {
+    this.spritexoffset = "-192";
+    otherlever.spritexoffset = "-192";
+    door.unlockMe();
+  } else {
+    this.spritexoffset = "-160";
+    otherlever.spritexoffset = "-160";
+    door.lockMe(2);
+  }
+  let retval = {};
+  retval["fin"] = 1;
+  retval["txt"] = "Switch thrown.";
   return retval;
 }
 
@@ -10051,6 +10124,19 @@ function HomeKeyTile() {
 }
 HomeKeyTile.prototype = new KeyItemObject();
 
+function ToshinKeyTile() {
+  this.name = "ToshinKey";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1280";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "key to Toshin's Tower";
+  this.longdesc = "A key found in a fireplace in Toshin's Tower.";
+  this.usedesc = "Unlocks doors in Toshin's Tower.";
+}
+ToshinKeyTile.prototype = new KeyItemObject();
+
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
   this.graphic = "master_spritesheet.png";
@@ -10686,6 +10772,7 @@ GreenPotionTile.prototype.flamed = function() {
 GreenPotionTile.prototype.use = function(who) {
   // FIXME: add throw option
   DUPlaySound("sfx_potion");
+  DU.gameflags.setFlag("knowsgreenpotion",1)
   let retval = {fin:1}
   let poison = localFactory.createTile("Poison");
   let duration = Dice.roll("2d8") * SCALE_TIME;
@@ -10719,6 +10806,7 @@ DarkGreenPotionTile.prototype.getLongDesc = function() {
 }  
 
 DarkGreenPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsdarkgreenpotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell(PC, 0, 2);
@@ -10748,6 +10836,7 @@ SilverPotionTile.prototype.getLongDesc = function() {
 }
 
 SilverPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowssilverpotion",1)
   DUPlaySound("sfx_potion");
   let resp = {};
   resp["fin"] = 1;
@@ -10791,6 +10880,7 @@ PinkPotionTile.prototype.getLongDesc = function() {
 }
 
 PinkPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowspinkpotion",1)
   DUPlaySound("sfx_potion");
   let resp = {fin:1};
 
@@ -10834,6 +10924,7 @@ GreyPotionTile.prototype.getLongDesc = function() {
 }
 
 GreyPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsgreypotion",1)
   let resp = {fin:1};
   DUPlaySound("sfx_potion");
 
@@ -10877,6 +10968,7 @@ BrownPotionTile.prototype.getLongDesc = function() {
 }
 
 BrownPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsbrownpotion",1)
   DUPlaySound("sfx_potion");
   who.setMana(who.getMaxMana());
   let retval = {fin:1};
@@ -10908,6 +11000,7 @@ RedPotionTile.prototype.getLongDesc = function() {
 }
 
 RedPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsredpotion",1)
   DUPlaySound("sfx_potion");
   let poisoned;
   if (who.getSpellEffectsByName("Poison")) { poisoned = 1; }
@@ -10940,6 +11033,7 @@ WhitePotionTile.prototype.getLongDesc = function() {
 }
 
 WhitePotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowswhitepotion",1)
   DUPlaySound("sfx_potion");
   let retval = { fin:1};
   retval = magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell(PC, 0, 2);
@@ -10969,6 +11063,7 @@ YellowPotionTile.prototype.getLongDesc = function() {
 }
 
 YellowPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsyellowpotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(PC, 0, 2);
@@ -10998,6 +11093,7 @@ PurplePotionTile.prototype.getLongDesc = function() {
 }
 
 PurplePotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowspurplepotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_PROTECT_LEVEL][SPELL_PROTECT_ID].executeSpell(PC, 0, 2);
@@ -11027,6 +11123,7 @@ BlackPotionTile.prototype.getLongDesc = function() {
 }
 
 BlackPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsblackpotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(PC, 0, 2);
@@ -11056,6 +11153,7 @@ BluePotionTile.prototype.getLongDesc = function() {
 }
 
 BluePotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsbluepotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell(PC, 0, 2);
@@ -11085,6 +11183,7 @@ DeepBluePotionTile.prototype.getLongDesc = function() {
 }
 
 DeepBluePotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsdeepbluepotion",1)
   DUPlaySound("sfx_potion");
   let retval = magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "Gulp!<br />Your vision becomes strange!"
@@ -11113,6 +11212,7 @@ OrangePotionTile.prototype.getLongDesc = function() {
 }
 
 OrangePotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowsorangepotion",1)
   DUPlaySound("sfx_potion");
   let mana = Dice.roll("2d6+1");
   who.setMana(who.getMana() + mana);
@@ -11147,6 +11247,7 @@ TanPotionTile.prototype.getLongDesc = function() {
 }
 
 TanPotionTile.prototype.use = function(who) {
+  DU.gameflags.setFlag("knowstanpotion",1)
   DUPlaySound("sfx_potion");
   let retval = {fin:1};
   retval = magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(PC, 0, 2);
@@ -13379,17 +13480,17 @@ NPCObject.prototype.processDeath = function(droploot){
         }
         else {alert (this.getName() + " has a loottable that is not defined."); }
       }
-    }
-    if ((chest) && (chest.container.length)) {
-      let trapname = GetStrongestTrap(loottables);
-      if (trapname) {
-        DebugWrite("gameobj", "Chest created, might be trapped with: " + trapname + ".<br />");
-        let trap = DUTraps[trapname].getTrap();
-        if (trap.trap) {
-          chest.setTrap(trap.trap, trap.level);
+      if ((chest) && (chest.container.length)) {
+        let trapname = GetStrongestTrap(loottables);
+        if (trapname) {
+          DebugWrite("gameobj", "Chest created, might be trapped with: " + trapname + ".<br />");
+          let trap = DUTraps[trapname].getTrap();
+          if (trap.trap) {
+            chest.setTrap(trap.trap, trap.level);
+          }
         }
-      }
-      map.placeThing(thisx,thisy, chest);
+        map.placeThing(thisx,thisy, chest);
+      }  
     }
     map.deleteThing(this);
     if (map.getName() === "shadow1") {
@@ -13920,6 +14021,9 @@ NPCObject.prototype.activate = function(timeoverride) {
     if (this.overrideGraphic) {
       if (this.realgraphic) {
         this.realgraphic = this.overrideGraphic; 
+        alert("Why is this happening?");
+        console.log("Why is this happening? Actual use of realgraphic in activation:");
+        console.log(this);
       } else {
         this.graphic = this.overrideGraphic;
       }

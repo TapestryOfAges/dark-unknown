@@ -218,19 +218,15 @@ function PerformCommand(code, ctrl) {
 		
 	}
   else if (code === 73) { // i
-    if (ctrl) {
-      ipcRenderer.send('toggle_dev');
+		// was ignite torch, now infuse?
+   	if (PC.getKnowsInfusion()) {
+      retval = PerformCast(1);
     } else {
-  		// was ignite torch, now infuse?
-	  	if (PC.getKnowsInfusion()) {
-        retval = PerformCast(1);
-      } else {
-        retval["fin"] = 2;
-        retval["txt"] = "You have not yet learned the higher mysteries.";
-        retval["input"] = "&gt;";
-      }
+      retval["fin"] = 2;
+      retval["txt"] = "You have not yet learned the higher mysteries.";
+      retval["input"] = "&gt;";
     }
-	}
+  }
 	else if (code === 74) { // j
 		// jimmy lock ?
 		
@@ -1063,7 +1059,7 @@ function PerformEnter(cmd) {
 			retval["txt"] = klimb;
     }
     if ((newmap.getLongDesc()) && (!DU.gameflags.getFlag(newmap.getName() + "_visited"))) {
-      retval["txt"] += "<br />" + newmap.getLongDesc();
+      retval["txt"] += "<br /><span class='sysconv'>" + newmap.getLongDesc() + "</span>";
       DU.gameflags.setFlag(newmap.getName() + "_visited", 1);
     }
 		DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
