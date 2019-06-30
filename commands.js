@@ -218,19 +218,15 @@ function PerformCommand(code, ctrl) {
 		
 	}
   else if (code === 73) { // i
-    if (ctrl) {
-      ipcRenderer.send('toggle_dev');
+		// was ignite torch, now infuse?
+   	if (PC.getKnowsInfusion()) {
+      retval = PerformCast(1);
     } else {
-  		// was ignite torch, now infuse?
-	  	if (PC.getKnowsInfusion()) {
-        retval = PerformCast(1);
-      } else {
-        retval["fin"] = 2;
-        retval["txt"] = "You have not yet learned the higher mysteries.";
-        retval["input"] = "&gt;";
-      }
+      retval["fin"] = 2;
+      retval["txt"] = "You have not yet learned the higher mysteries.";
+      retval["input"] = "&gt;";
     }
-	}
+  }
 	else if (code === 74) { // j
 		// jimmy lock ?
 		
