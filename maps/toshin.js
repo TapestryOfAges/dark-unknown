@@ -138,6 +138,7 @@ mappages["toshin1"].features[98] = {name : 'UnlitBrazier', x : 20, y : 16};
 mappages["toshin1"].features[99] = {name : 'UnlitBrazier', x : 24, y : 21};
 mappages["toshin1"].features[100] = {name : 'Fireplace', x : 9, y : 14};
 mappages["toshin1"].features[101] = {name : 'ToshinKey', x : 8, y : 14};
+mappages["toshin1"].features[102] = {name : 'WalkOn', x : 11, y : 12};
 
 
 mappages["toshin1"].npcs = [];
@@ -169,6 +170,14 @@ mappages["toshin1"].returninfused = '0';
 mappages["toshin1"].linkedMaps = ["toshin2","toshin3","toshin4"];
 mappages["toshin1"].editorLabels = '{}';
 
+mappages["toshin1"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    let walkon = mapref.getTile(11,12).getTopFeature();
+    walkon.walkon = function(who) {
+
+    }
+  }
+}
 
 mappages["toshin2"] = {};
 mappages["toshin2"].terrain = [];

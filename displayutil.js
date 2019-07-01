@@ -237,38 +237,40 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
       displayCell.losresult = losresult;
       displayCell.lighthere = lighthere;
       displayCell.desc = displaytile.getDesc();
-      if (graphics[4].corner && (displayCell.losresult >= LOS_THRESHOLD)) { 
-        let seecorners = 1;
-        if (graphics[4].east) {
-          if ( mapname.getLOS(centerx, centery, x+1, y) >= LOS_THRESHOLD) { seecorners = 0; }
-          else {
-            let eastlight = GetDisplayDirectionalLight(centerx,centery,x+1,y,mapname,sunlight);
-            if (eastlight > displayCell.lighthere) { displayCell.lighthere = eastlight; }
+      if (graphics.length > 4) {
+        if (graphics[4].corner && (displayCell.losresult >= LOS_THRESHOLD)) { 
+          let seecorners = 1;
+          if (graphics[4].east) {
+            if ( mapname.getLOS(centerx, centery, x+1, y) >= LOS_THRESHOLD) { seecorners = 0; }
+            else {
+              let eastlight = GetDisplayDirectionalLight(centerx,centery,x+1,y,mapname,sunlight);
+              if (eastlight > displayCell.lighthere) { displayCell.lighthere = eastlight; }
+            }
           }
-        }
-        if (graphics[4].west) {
-          if ( mapname.getLOS(centerx, centery, x-1, y) >= LOS_THRESHOLD) { seecorners = 0; }
-          else {
-            let westlight = GetDisplayDirectionalLight(centerx,centery,x-1,y,mapname,sunlight);
-            if (westlight > displayCell.lighthere) { displayCell.lighthere = westlight; }
+          if (graphics[4].west) {
+            if ( mapname.getLOS(centerx, centery, x-1, y) >= LOS_THRESHOLD) { seecorners = 0; }
+            else {
+              let westlight = GetDisplayDirectionalLight(centerx,centery,x-1,y,mapname,sunlight);
+              if (westlight > displayCell.lighthere) { displayCell.lighthere = westlight; }
+            }
           }
-        }
-        if (graphics[4].north) {
-          if ( mapname.getLOS(centerx, centery, x, y-1) >= LOS_THRESHOLD) { seecorners = 0; }
-          else {
-            let northlight = GetDisplayDirectionalLight(centerx,centery,x,y-1,mapname,sunlight);
-            if (northlight > displayCell.lighthere) { displayCell.lighthere = northlight; }
+          if (graphics[4].north) {
+            if ( mapname.getLOS(centerx, centery, x, y-1) >= LOS_THRESHOLD) { seecorners = 0; }
+            else {
+              let northlight = GetDisplayDirectionalLight(centerx,centery,x,y-1,mapname,sunlight);
+              if (northlight > displayCell.lighthere) { displayCell.lighthere = northlight; }
+            }
           }
-        }
-        if (graphics[4].south) {
-          if ( mapname.getLOS(centerx, centery, x, y+1) >= LOS_THRESHOLD) { seecorners = 0; }
-          else {
-            let southlight = GetDisplayDirectionalLight(centerx,centery,x,y+1,mapname,sunlight);
-            if (southlight > displayCell.lighthere) { displayCell.lighthere = southlight; }
+          if (graphics[4].south) {
+            if ( mapname.getLOS(centerx, centery, x, y+1) >= LOS_THRESHOLD) { seecorners = 0; }
+            else {
+              let southlight = GetDisplayDirectionalLight(centerx,centery,x,y+1,mapname,sunlight);
+              if (southlight > displayCell.lighthere) { displayCell.lighthere = southlight; }
+            }
           }
-        }
-        if (seecorners) { displayCell.losresult = 0; } 
-      } 
+          if (seecorners) { displayCell.losresult = 0; } 
+        } 
+      }
       if (displaytile.alwaystop) { ontop.push(displayCell); }
       else if (displayCell.losresult < LOS_THRESHOLD) { displayStack.push(displayCell); }
     } else if ((losresult < LOS_THRESHOLD) || ((tp === 1) && isnpc) || ev) {
