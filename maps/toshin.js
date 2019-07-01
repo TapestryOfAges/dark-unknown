@@ -142,6 +142,8 @@ mappages["toshin1"].features[102] = {name : 'WalkOn', x : 11, y : 12};
 
 
 mappages["toshin1"].npcs = [];
+mappages["toshin1"].npcs[0] = {name : 'MageVillagerNPC', x : 14, y : 10, NPCName: 'Arlan', Schedule: 'arlan', Conversation: 'arlan', Gender: 'male', NPCBand: '1', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
+mappages["toshin1"].npcs[1] = {name : 'RangerVillagerNPC', x : 12, y : 9, NPCName: 'Elora', Schedule: 'elora', Conversation: 'elora', Gender: 'female', NPCBand: '0', OverrideGraphic: '305.gif', skintone: '1'};
 
 mappages["toshin1"].desc = "Toshin's Tower";
 mappages["toshin1"].longdesc = '';
@@ -174,7 +176,7 @@ mappages["toshin1"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let walkon = mapref.getTile(11,12).getTopFeature();
     walkon.walkon = function(who) {
-
+      
     }
   }
 }
