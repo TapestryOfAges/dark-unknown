@@ -490,7 +490,7 @@ ais.LightLight = function(who,params) {
 }
 
 ais.ChangeGraphic = function(who,params) {
-  who.setGraphic(params.graphic);
+  who.setGraphicArray(params.graphic,"","0","0");
   DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
   return {fin:1};
 }
@@ -709,4 +709,9 @@ ais.ChangeMapCart = function(who,params) {
 //  console.log(who);
 
   return {fin:1};
+}
+
+ais.ToshinSleep = function(who,params) {
+  who.setGraphicArray("master_spritesheet.png","","-64","-800");
+  who.sleep = 1;
 }
