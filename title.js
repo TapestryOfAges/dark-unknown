@@ -266,7 +266,7 @@ function finishedFinalPage() {
 
 function pagelive() {
   gamestate.setMode("on");
-  ipcRenderer.send('toggle_dev');
+//  ipcRenderer.send('toggle_dev');
 }
 
 
@@ -278,7 +278,7 @@ function DoActionTitle(code, e) {
   if (gamestate.getMode() === "on") {
     if (code === 73) {
       if (e.ctrlKey) {
-        ipcRenderer.send('toggle_dev');
+//        ipcRenderer.send('toggle_dev');
       }
     }
     if ((code === 38) || (code === 219)) {    // up arrow or [
