@@ -856,6 +856,20 @@ ConvTestFlags["in_garden"] = function(speaker,keyword) {
   return 0;
 }
 
+ConvTestFlags["is_arlan_asleep"] = function(speaker,keyword) {
+  let arlan = FindNPCByName("Arlan",speaker.getHomeMap());
+  if (arlan.sleep === 1) { return 1; }
+
+  return 0;
+}
+
+ConvTestFlags["is_elora_asleep"] = function(speaker,keyword) {
+  let arlan = FindNPCByName("Elora",speaker.getHomeMap());
+  if (arlan.sleep === 1) { return 1; }
+
+  return 0;
+}
+
 ConvTestFlags["need_another_scroll"] = function(speaker,keyword) {
   if (!gamestate.getFlag("infinite_scroll")) { return 0; }  // you haven't gotten the first scroll yet
   if (PC.checkInventory("InfiniteScroll")) {  return 0; }  // you have a scroll

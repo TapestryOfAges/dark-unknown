@@ -8803,7 +8803,9 @@ PitTeleporterPlatformTile.prototype.walkon = function(who) {
 // Toshin
 function ToshinPanelTile() {
   this.name = "ToshinPanel";
-  this.graphic = "023.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-736";
   this.prefix = "a";
   this.desc = "panel covered with buttons";
   this.val = {};
