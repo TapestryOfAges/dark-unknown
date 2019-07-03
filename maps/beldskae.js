@@ -320,6 +320,7 @@ mappages["beldskae"].npcs[17] = {name : 'TownGuardNPC', x : 37, y : 21, NPCName:
 mappages["beldskae"].npcs[18] = {name : 'TownGuardNPC', x : 29, y : 10, NPCName: 'Bennett', Conversation: 'bennett', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'bennett'};
 mappages["beldskae"].npcs[19] = {name : 'TownGuardNPC', x : 29, y : 29, NPCName: 'Pia', Conversation: 'pia', Gender: 'female', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'pia'};
 mappages["beldskae"].npcs[20] = {name : 'TownGuardNPC', x : 40, y : 24, NPCName: 'Sorcha', Conversation: 'sorcha', Gender: 'female', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'sorcha'};
+mappages["beldskae"].npcs[21] = {name : 'TownGuardNPC', x : 21, y : 19, NPCName: 'Rocco', Conversation: 'rocco', Gender: 'male', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'rocco'};
 
 mappages["beldskae"].desc = "The Towne of Beldskae";
 mappages["beldskae"].longdesc = '';
@@ -472,10 +473,9 @@ mappages["beldskae2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 33, y : 25, 
 mappages["beldskae2"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 39, y : 21, NPCName: 'Rich', Conversation: 'rich', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1', PeaceAI: 'scheduled', Schedule: 'rich'};
 mappages["beldskae2"].npcs[3] = {name : 'TownsfolkVillagerNPC', x : 33, y : 17, NPCName: 'Grant', Conversation: 'grant', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1', PeaceAI: 'scheduled', Schedule: 'grant'};
 mappages["beldskae2"].npcs[4] = {name : 'TownGuardNPC', x : 21, y : 17, NPCName: 'Layla', Conversation: 'layla', Gender: 'female', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'layla'};
-mappages["beldskae2"].npcs[5] = {name : 'TownGuardNPC', x : 21, y : 19, NPCName: 'Rocco', Conversation: 'rocco', Gender: 'male', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'rocco'};
-mappages["beldskae2"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 17, NPCName: 'Doris', Conversation: 'doris', Gender: 'female', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'doris'};
-mappages["beldskae2"].npcs[7] = {name : 'TownGuardNPC', x : 24, y : 19, NPCName: 'Jordan', Conversation: 'jordan', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'jordan'};
-mappages["beldskae2"].npcs[8] = {name : 'TownGuardNPC', x : 24, y : 21, NPCName: 'Ferris', Conversation: 'ferris', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'ferris'};
+mappages["beldskae2"].npcs[5] = {name : 'TownGuardNPC', x : 24, y : 17, NPCName: 'Doris', Conversation: 'doris', Gender: 'female', NPCBand: '0', skintone: '1', PeaceAI: 'scheduled', Schedule: 'doris'};
+mappages["beldskae2"].npcs[6] = {name : 'TownGuardNPC', x : 24, y : 19, NPCName: 'Jordan', Conversation: 'jordan', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'jordan'};
+mappages["beldskae2"].npcs[7] = {name : 'TownGuardNPC', x : 24, y : 21, NPCName: 'Ferris', Conversation: 'ferris', Gender: 'male', NPCBand: '0', skintone: '2', PeaceAI: 'scheduled', Schedule: 'ferris'};
 
 mappages["beldskae2"].desc = "The Towne of Beldskae";
 mappages["beldskae2"].longdesc = '';
