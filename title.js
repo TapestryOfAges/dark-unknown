@@ -34,6 +34,12 @@ avatars[1] = ["303.2.gif", "303.gif", "304.2.gif", "304.gif", "305.gif", "ranger
 avatars[2] = ["306.gif", "307.2.gif", "307.gif", "308.gif", "311.gif", "tinker-offcolor.gif"];
 avatars[3] = ["bard-offcolor.gif", "fighter-offcolor.gif", "paladin-offcolor.gif", "mage-offcolor.gif", "", ""];
 
+let avskin = [];
+avskin[0] = [2,1,1,1,1,1];
+avskin[1] = [2,1,2,1,1,1];
+avskin[2] = [1,2,1,2,1,1];
+avskin[3] = [1,1,1,1];
+
 let avatarselect = {};
 avatarselect.x = 0;
 avatarselect.y = 0;
@@ -437,6 +443,7 @@ function SaveChar() {
   PC.setPCName(charname);
   PC.setGraphic(graphic);
   PC.setGender(gender);
+  PC.skintone = avskin[avatarselect.y][avatarselect.x];
   
   themap = maps.addMap("darkunknown");
   maps.addMap("ellusus_limbo");
