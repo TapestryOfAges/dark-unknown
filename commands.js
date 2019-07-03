@@ -1440,8 +1440,11 @@ function PerformTalk(talkto, convo, topic) {
   let conval = conversations[convo].respond(talkto, topic);
   
   if (conval) {
-    retval["txt"] = "";
-    retval["fin"] = 3;
+    if (conval !== -1) {
+      retval["txt"] = "";
+      retval["fin"] = 3;
+      retval["input"] = "You say: ";
+    }
   } else {
     // person spoke and ended conversation
     retval["txt"] = "";
@@ -1462,6 +1465,7 @@ function PerformTalk(talkto, convo, topic) {
     gamestate.setMode("sell");
   } else if (conval === -1) {
     gamestate.setMode("null");
+    retval["fin"] = "inn"; // you got a room at an inn
   } else {
     if (inputText.subcmd === "yn") {
       retval["input"] = "You answer (y/n):";
