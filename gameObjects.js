@@ -6622,7 +6622,7 @@ ReflectionTile.prototype.walkon = function(who) {
 ReflectionTile.prototype.walkoff = function(who) {
   // remove reflection from attached mirror
   if (!this.mirror.getBroken()) {
-    this.mirror.setGraphicArray(["furniture.gif", "", "-192", "0"]);
+    this.mirror.setGraphicArray(["master_spritesheet.png", "", "-192", "-384"]);
   }
 }
 
@@ -14866,7 +14866,6 @@ PCObject.prototype.activate = function() {
 }
 
 PCObject.prototype.myTurn = function() {
-
   if (ShouldShowFrames()) { PC.showFrames = 1; }
   else {delete PC.showFrames}
 
