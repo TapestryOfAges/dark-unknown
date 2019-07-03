@@ -210,7 +210,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     keep_talking = 4;
   }
 
-  if (keep_talking === 0) { HideTurnFrame(); }  
+  if ((keep_talking === 0) || (keep_talking === -1)) { HideTurnFrame(); }  
   return keep_talking;
   
 }
@@ -296,13 +296,13 @@ ConvNode.prototype = new Object();
 
 function InnRoom(xc,yc,doors,innmap) {
   if (DU.gameflags.getFlag("music")) {
-    nowplaying.song.stop();
+    StopMusic();
     nowplaying = DUPlayMusic("Lullaby");
   }
-  if (!innmap) { innmap = PC.getHomeMap(); }
+  if (!innmap) { console.log("Replace innmap with PC's map.");  innmap = PC.getHomeMap(); }
   maintext.setInputLine("&gt;");
   maintext.drawTextFrame();
-  
+
   FadeOut();
   setTimeout(function() {
     maintext.addText("ZZZZZZ...");
@@ -310,14 +310,10 @@ function InnRoom(xc,yc,doors,innmap) {
       QueueMusic(PC.getHomeMap().getMusic());
     }
     while(doors[0]) {
-      innmap.moveThing(0,0,PC);
-      if (GetDistance(0,0,doors[0],doors[1]) <= 8) {
-        innmap.moveThing(30,30,PC);
-      }
       let inndoor = innmap.getTile(doors[0],doors[1]);
       inndoor = inndoor.getTopFeature();
       if (inndoor.open) {
-        inndoor.use(PC);
+        inndoor.use(PC,1);
       }
       doors.shift();
       doors.shift();
@@ -327,11 +323,12 @@ function InnRoom(xc,yc,doors,innmap) {
     } else {
       innmap.moveThing(xc,yc,PC);
     }
+    let feapile = innmap.getTile(xc,yc).features.getAll();
+    for (let i=0;i<feapile.length;i++) {
+      if (feapile[i].getName() === "BedHead") { feapile[i].walkon(PC); break; }
+    }
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(),PC.gety());
-    gamestate.setMode("null");
-    let duration = 8*12;
-    PC.setWaiting(DUTime.getGameClock() + duration);
-    PC.atinn = 1;
+//    gamestate.setMode("null");
   }, 1500);
 
 }
@@ -462,6 +459,7 @@ OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("inn_20");
   if (PC.getGold() < 5) {
     maintext.addText("You don't have enough gold!");
+    return 1;
   } else {
     PC.addGold(-5);
     let pronoun = "He";
@@ -475,8 +473,9 @@ OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
 OnConvTriggers["inn_25"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("inn_25");
 
+  let upstairs = maps.getMap("hildendain2");
   PC.addGold(-10);
-  setTimeout(function() { InnRoom(43,56,[28,50,34,51,38,50,41,49,44,52]); }, 50);
+  setTimeout(function() { InnRoom(23,40,[27,42], upstairs); }, 50);
   
   return -1;
 }
@@ -486,11 +485,11 @@ OnConvTriggers["inn_beldskae"] = function(speaker,keyword) {
 
   let upstairs = maps.getMap("beldskae2");
   PC.addGold(-50);
-  setTimeout(function() { InnRoom(39,13,[32,25], upstairs); }, 50);
-  
-  let roomdoor = upstairs.getTile(38,15).getTopFeature();
+  setTimeout(function() { InnRoom(39,13,[38,15], upstairs); }, 50);
+
+  let roomdoor = PC.getHomeMap().getTile(32,25).getTopFeature();
   if (roomdoor.open) {
-    roomdoor.use(PC);
+    roomdoor.use(PC,1);
   }
   return -1;
 }

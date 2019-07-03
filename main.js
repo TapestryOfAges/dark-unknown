@@ -395,6 +395,12 @@ function DoAction(code, ctrl) {
         if (retval["fin"] === 1) {
           PC.endTurn(retval["initdelay"]);
         }
+        if (retval["fin"] === "inn") {
+          let duration = 8*12;
+          PC.setWaiting(DUTime.getGameClock() + duration);
+          PC.atinn = 1;      
+          PC.endTurn(retval["initdelay"]);
+        }
       } 
       else { alert("need to add hook here! (main 260)"); }
     }
