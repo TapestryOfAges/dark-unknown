@@ -527,17 +527,18 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
     let val=npcs[i];
     if (val.getAttitude() !== caster.getAttitude()) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
+        let desc = "";
         if (!CheckResist(caster,val,infused,0)) {
           let distract = localFactory.createTile("Distract");
           ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
-          let desc = val.getDesc() + " is distracted!";
+          desc = val.getDesc() + " is distracted!";
           // Not necessary for PC - ephemeral object's start desc is sufficient
           let duration = power * SCALE_TIME;
           distract.setExpiresTime(duration + DUTime.getGameClock());
           distract.setPower(power);
           val.addSpellEffect(distract, Math.max(0,free-1) );
         } else {
-          let desc = val.getDesc() + " resists!";
+          desc = val.getDesc() + " resists!";
           if (val === PC) {
             desc = "You resist.";
             // no X over the PC
