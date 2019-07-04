@@ -494,7 +494,7 @@ function PerformEscape() {
     let enemies = 0;
     let npcs = pcmap.npcs.getAll();
     for (let idx in npcs) {
-      val = npcs[idx];
+      let val = npcs[idx];
       if (val.getAttitude() === "hostile") { enemies = 1; }
     }
     if (enemies === 1) {
