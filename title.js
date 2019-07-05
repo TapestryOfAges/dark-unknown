@@ -71,7 +71,7 @@ DU.gameflags.setFlag("ambientsound", 1);
 
 let el = function(e) {
   let code = (e.keyCode ? e.keyCode : e.which);
-  if (ctrl && (code === 73)) { ipcRenderer.send('toggle_dev'); return; }  // ctrl-i opens dev console no matter the mode
+  if (e.ctrlKey && (code === 73)) { ipcRenderer.send('toggle_dev'); return; }  // ctrl-i opens dev console no matter the mode
   if (gamestate.getMode() !== "import") {
     e.preventDefault();
   }
