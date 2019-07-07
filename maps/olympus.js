@@ -1271,7 +1271,7 @@ mappages["olympus1"].onload = function(mapref) {
 
     // Changes made due to schedules
 
-    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin;
+    let tyler, sean, katrina, manny;
 
     let npcs = mapref.npcs.getAll();
 
@@ -1280,13 +1280,6 @@ mappages["olympus1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Sean") { sean = npcs[i]; }
       if (npcs[i].getNPCName() === "Katrina") { katrina = npcs[i]; }
       if (npcs[i].getNPCName() === "Manny") { manny = npcs[i]; }
-      if (npcs[i].getNPCName() === "Pieran") { pieran = npcs[i]; }
-      if (npcs[i].getNPCName() === "Alban") { alban = npcs[i]; }
-      if (npcs[i].getNPCName() === "Martha") { martha = npcs[i]; }
-      if (npcs[i].getNPCName() === "Una") { una = npcs[i]; }
-      if (npcs[i].getNPCName() === "Martin") { martin = npcs[i]; }
-      if (npcs[i].getNPCName() === "Donn") { donn = npcs[i]; }
-      if (npcs[i].getNPCName() === "Davin") { davin = npcs[i]; }
     }
 
     let o2 = maps.getMap("olympus2");
@@ -1314,34 +1307,6 @@ mappages["olympus1"].onload = function(mapref) {
       mapref.getTile(27,40).getTopFeature().use(katrina);
       mapref.getTile(38,40).getTopFeature().use(katrina);
     }
-
-//    if ((pieran.getCurrentScheduleIndex() >= 8) && (pieran.getCurrentScheduleIndex() < 11)) {
-//      pieran.realgraphic = ["310.gif","","0","0"];
-//    }
-
-//    if ((alban.getCurrentScheduleIndex() >= 8) && (alban.getCurrentScheduleIndex() < 11)) {
-//      alban.realgraphic = ["310.2.gif","","0","0"];
-//    }
-
-//    if ((martha.getCurrentScheduleIndex() >= 9) && (martha.getCurrentScheduleIndex() <= 11)) {
-//      martha.realgraphic = ["310.gif","","0","0"];
-//    }
-
-//    if ((una.getCurrentScheduleIndex() >= 9) && (una.getCurrentScheduleIndex() <= 11)) {
-//      una.realgraphic = ["310.2.gif","","0","0"];
-//    }
-
-//    if ((martin.getCurrentScheduleIndex() >= 8) && (martin.getCurrentScheduleIndex() <= 10)) {
-//      martin.realgraphic = ["310.2.gif","","0","0"];
-//    }
-
-//    if ((donn.getCurrentScheduleIndex() >= 8) && (donn.getCurrentScheduleIndex() <= 10)) {
-//      donn.realgraphic = ["310.gif","","0","0"];
-//    }
-
-//    if ((davin.getCurrentScheduleIndex() >= 8) && (davin.getCurrentScheduleIndex() < 11)) {
-//      davin.realgraphic = ["310.gif","","0","0"];
-//    }
 
     if (manny) {
       if ((manny.getCurrentScheduleIndex() >= 22) && (manny.getCurrentScheduleIndex() <= 55)) {
@@ -1404,9 +1369,9 @@ mappages["olympus2"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Vivian") { vivian = npcs[i]; }
     }
 
-//    if ((jharden.getCurrentScheduleIndex() >= 12) || (manny.getCurrentScheduleIndex() <= 0)) {
-//      mapref.getTile(69,20).getTopFeature().use(jharden);
-//    }
+    if ((jharden.getCurrentScheduleIndex() >= 12) || (manny.getCurrentScheduleIndex() <= 0)) {
+      mapref.getTile(69,20).getTopFeature().use(jharden);
+    }
 
     if (reed.getCurrentScheduleIndex() === 19) {
 //      reed.realgraphic = ["310.2.gif","","0","0"];
