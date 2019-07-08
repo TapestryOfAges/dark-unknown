@@ -1271,7 +1271,7 @@ mappages["olympus1"].onload = function(mapref) {
 
     // Changes made due to schedules
 
-    let tyler, sean, katrina, manny;
+    let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin;
 
     let npcs = mapref.npcs.getAll();
 
@@ -1280,6 +1280,13 @@ mappages["olympus1"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Sean") { sean = npcs[i]; }
       if (npcs[i].getNPCName() === "Katrina") { katrina = npcs[i]; }
       if (npcs[i].getNPCName() === "Manny") { manny = npcs[i]; }
+      if (npcs[i].getNPCName() === "Pieran") { pieran = npcs[i]; }
+      if (npcs[i].getNPCName() === "Alban") { alban = npcs[i]; }
+      if (npcs[i].getNPCName() === "Martha") { martha = npcs[i]; }
+      if (npcs[i].getNPCName() === "Una") { una = npcs[i]; }
+      if (npcs[i].getNPCName() === "Martin") { martin = npcs[i]; }
+      if (npcs[i].getNPCName() === "Donn") { donn = npcs[i]; }
+      if (npcs[i].getNPCName() === "Davin") { davin = npcs[i]; }
     }
 
     let o2 = maps.getMap("olympus2");
@@ -1330,6 +1337,34 @@ mappages["olympus1"].onload = function(mapref) {
       }    
     }
 
+    if (pieran.getCurrentScheduleIndex() === 9) {
+      pieran.realgraphic = ["310.gif","","0","0"];
+    }
+
+    if (alban.getCurrentScheduleIndex() === 9) {
+      alban.realgraphic = ["310.2.gif","","0","0"];
+    }
+
+    if (martha.getCurrentScheduleIndex() === 10) {
+      martha.realgraphic = ["310.gif","","0","0"];
+    }
+
+    if (una.getCurrentScheduleIndex() === 11) {
+      una.realgraphic = ["310.2.gif","","0","0"];
+    }
+   
+    if (martin.getCurrentScheduleIndex() === 9) {
+      martin.realgraphic = ["310.2.gif","","0","0"];
+    }
+
+    if (donn.getCurrentScheduleIndex() === 9) {
+      donn.realgraphic = ["310.gif","","0","0"];
+    }
+
+    if (davin.getCurrentScheduleIndex() === 9) {
+      davin.realgraphic = ["310.gif","","0","0"];
+    }
+      
   }
 }
 
@@ -1374,66 +1409,60 @@ mappages["olympus2"].onload = function(mapref) {
     }
 
     if (reed.getCurrentScheduleIndex() === 19) {
-//      reed.realgraphic = ["310.2.gif","","0","0"];
-    } else if ((reed.getCurrentScheduleIndex() ===0) || (reed.getCurrentScheduleIndex() === 18)) {
-      reed.graphic = "310.2.gif";
-    }
+      reed.realgraphic = ["310.2.gif","","0","0"];
+    } 
 
     if (yvette.getCurrentScheduleIndex() === 19) {
-//      yvette.realgraphic = ["310.gif","","0","0"];
-    } else if ((yvette.getCurrentScheduleIndex() ===0) || (yvette.getCurrentScheduleIndex() === 18)) {
-      yvette.graphic = "310.gif";
+      yvette.realgraphic = ["310.gif","","0","0"];
     }
 
     if (brandan.getCurrentScheduleIndex() === 17) {
-//      brandan.realgraphic = ["310.gif","","0","0"];
-    } else if ((brandan.getCurrentScheduleIndex() ===0) || (brandan.getCurrentScheduleIndex() === 16)) {
-      brandan.graphic = "310.gif";
+      brandan.realgraphic = ["310.gif","","0","0"];
     }
 
-//    if ((lena.getCurrentScheduleIndex() >= 19) || (lena.getCurrentScheduleIndex() === 0)) {
-//      lena.realgraphic = ["310.2.gif","","0","0"];
-//    }
+    if (lena.getCurrentScheduleIndex() === 21) {
+      lena.realgraphic = ["310.2.gif","","0","0"];
+    }
 
-//    if ((barbara.getCurrentScheduleIndex() >= 18) || (barbara.getCurrentScheduleIndex() === 0)) {
-//      barbara.realgraphic = ["310.gif","","0","0"];
-//    }
+    if (barbara.getCurrentScheduleIndex() === 19) {
+      barbara.realgraphic = ["310.gif","","0","0"];
+    }
 
-//    if ((aler.getCurrentScheduleIndex() >= 18) || (aler.getCurrentScheduleIndex() === 0)) {
-//      aler.realgraphic = ["310.2.gif","","0","0"];
-//    }
+    if (aler.getCurrentScheduleIndex() === 19) {
+      aler.realgraphic = ["310.2.gif","","0","0"];
+    }
 
-//    if ((brian.getCurrentScheduleIndex() >= 18) || (brian.getCurrentScheduleIndex() === 0)) {
-//      brian.realgraphic = ["310.gif","","0","0"];
-//    }
+    if (brian.getCurrentScheduleIndex() === 19) {
+      brian.realgraphic = ["310.gif","","0","0"];
+    }
 
-//    if ((liam.getCurrentScheduleIndex() >= 18) || (liam.getCurrentScheduleIndex() === 0)) {
-//      liam.realgraphic = ["310.2.gif","","0","0"];
-//    }
+    if (liam.getCurrentScheduleIndex() === 20) {
+      liam.realgraphic = ["310.2.gif","","0","0"];
+    }
 
-//    if ((poe.getCurrentScheduleIndex() >= 8) && (poe.getCurrentScheduleIndex() <= 10)) {
-//      poe.realgraphic = ["310.gif","","0","0"];
-//    }
+    if (poe.getCurrentScheduleIndex() === 9) {
+      poe.realgraphic = ["310.gif","","0","0"];
+    }
 
-//    if ((benedig.getCurrentScheduleIndex() >= 15) || (benedig.getCurrentScheduleIndex() === 0)) {
-//      benedig.realgraphic = ["310.gif","","0","0"];
-//    }
+    if (benedig.getCurrentScheduleIndex() === 16) {
+      benedig.realgraphic = ["310.gif","","0","0"];
+    }
 
-//    if ((andrew.getCurrentScheduleIndex() >= 22) || (andrew.getCurrentScheduleIndex() === 0)) {
-//      andrew.realgraphic = ["310.2.gif","","0","0"];
-//    }
+    if (andrew.getCurrentScheduleIndex() === 23) {
+      andrew.realgraphic = ["310.2.gif","","0","0"];
+    }
 
-//    if ((armaelle.getCurrentScheduleIndex() >= 18) || (armaelle.getCurrentScheduleIndex() === 0)) {
-//      armaelle.realgraphic = ["310.gif","","0","0"];
-//    }
+    if (armaelle.getCurrentScheduleIndex() === 55) {
+      armaelle.realgraphic = ["310.gif","","0","0"];
+    }
 
-//    if ((gwen.getCurrentScheduleIndex() >= 18) && (gwen.getCurrentScheduleIndex() <= 20)) {
-//      gwen.realgraphic = ["310.gif","","0","0"];
-//    }
+    if (gwen.getCurrentScheduleIndex() === 19) {
+      gwen.realgraphic = ["310.gif","","0","0"];
+    }
 
-//    if ((vivian.getCurrentScheduleIndex() >= 29) || (vivian.getCurrentScheduleIndex() === 0)) {
-//      vivian.realgraphic = ["310.gif","","0","0"];
-//    }
+    if (vivian.getCurrentScheduleIndex() === 31) {
+      vivian.realgraphic = ["310.gif","","0","0"];
+    }
   }
 }
 
@@ -1454,18 +1483,18 @@ mappages["olympus0"].onload = function(mapref) {
     let mariadoc, kristell, trevor;
 
     for (let i=0;i<npcs.length;i++) {
-//      if (npcs[i].getNPCName() === "Mariadoc") { mariadoc = npcs[i]; }
-//      if (npcs[i].getNPCName() === "Kristell") { kristell = npcs[i]; }
+      if (npcs[i].getNPCName() === "Mariadoc") { mariadoc = npcs[i]; }
+      if (npcs[i].getNPCName() === "Kristell") { kristell = npcs[i]; }
       if (npcs[i].getNPCName() === "Trevor") { trevor = npcs[i]; }
     }
 
-//    if ((mariadoc.getCurrentScheduleIndex() >= 12) && (mariadoc.getCurrentScheduleIndex() <= 14)) {
-//      mariadoc.realgraphic = ["310.gif","","0","0"];
-//    }
+    if (mariadoc.getCurrentScheduleIndex() === 13) {
+      mariadoc.realgraphic = ["310.gif","","0","0"];
+    }
 
-//    if ((kristell.getCurrentScheduleIndex() >= 14) && (kristell.getCurrentScheduleIndex() <= 16)) {
-//      kristell.realgraphic = ["310.2.gif","","0","0"];
-//    }
+    if (kristell.getCurrentScheduleIndex() === 15) {
+      kristell.realgraphic = ["310.2.gif","","0","0"];
+    }
 
     if ((trevor.getCurrentScheduleIndex() <= 5) || (trevor.getCurrentScheduleIndex() >= 10)) {
       let door = mapref.getTile(9,20).getTopFeature();
