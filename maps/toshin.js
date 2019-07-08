@@ -163,7 +163,7 @@ mappages["toshin1"].underground = '0';
 mappages["toshin1"].undergroundDesc = '';
 mappages["toshin1"].enterscript = '';
 mappages["toshin1"].entertestscript = '';
-mappages["toshin1"].exitscript = '';
+mappages["toshin1"].exitscript = 'toshin_exit';
 mappages["toshin1"].exittestscript = '';
 mappages["toshin1"].returnmap = 'darkunknown';
 mappages["toshin1"].returnx = '69';
@@ -171,6 +171,16 @@ mappages["toshin1"].returny = '74';
 mappages["toshin1"].returninfused = '0';
 mappages["toshin1"].linkedMaps = ["toshin2","toshin3","toshin4"];
 mappages["toshin1"].editorLabels = '{}';
+
+mappages["toshin1"].toshin_exit = function(mapref) {
+  mapref.Exit = function(who,tomap,oldx,oldy,destx,desty) {
+    if ((tomap.getName() === "darkunknown") || (tomap.getName() === "landsbeyond")) {
+      let key=PC.checkInventory("ToshinKey");
+      PC.removeFromInventory(key);
+    }
+  }
+  return 1;
+}
 
 mappages["toshin1"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
