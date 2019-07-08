@@ -5821,7 +5821,7 @@ function StandUp(who) {
   if (who.realgraphic) {
     who.setGraphicArray(who.realgraphic);
     delete who.realgraphic;
-    DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sleeping.<br />");
+    DebugWrite("gameobj", "Changed the graphic of " + who.getNPCName() + " from sitting.<br />");
   } else {
     alert("Entity failed to have a standing graphic. See console.");
     console.log(who);
