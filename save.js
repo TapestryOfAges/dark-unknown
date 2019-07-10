@@ -229,7 +229,7 @@ GameStateData.prototype.saveGame = function(flag) {
   savedata.datestamp = Date.now();
   savedata.charname = PC.getPCName();
   savedata.loc = PC.getHomeMap().getSaveName();
-  savedata.graphic = PC.getGraphic();
+  savedata.graphic = PC.getGraphicArray();
   let serialized = JSON.stringify(savedata);
 	
 	DebugWrite("saveload", "<br /><br /><p>" + serialized + "</p><br />");
@@ -248,7 +248,7 @@ GameStateData.prototype.saveGame = function(flag) {
     saveIndex[flag].datestamp = Date.now();
     saveIndex[flag].charname = PC.getPCName();
     saveIndex[flag].loc = PC.getHomeMap().getSaveName();
-    saveIndex[flag].graphic = PC.getGraphic();
+    saveIndex[flag].graphic = PC.getGraphicArray();
 //    localStorage.saveIndex = JSON.stringify(saveidx);
     
   }
