@@ -324,21 +324,12 @@ function PerformCommand(code, ctrl) {
 		targetCursor.y = PC.gety();
 	}
 	else if (code === 81) { // q
-    if (ctrl) { 
-      gamestate.saveGame("external"); 
-      retval["txt"] = "";
-      retval["input"] = "&gt;";
-      retval["fin"] = 0;
-      gamestate.setMode("player");
-    }
-    else {
-      gamestate.setMode("choosesave");
-      ShowSaveGames("Select a slot to save in:");
-      retval["txt"] = "";
-      retval["input"] = "&gt;";
-      retval["fin"] = 2;
-      targetCursor.command = "q";
-    }
+    gamestate.setMode("choosesave");
+    ShowSaveGames("Select a slot to save in:");
+    retval["txt"] = "";
+    retval["input"] = "&gt;";
+    retval["fin"] = 2;
+    targetCursor.command = "q";
 	}
 	else if (code === 82) { // r
     // Ready (contains functionality that used to be Wear/Weild)
@@ -2969,7 +2960,7 @@ function ShowSaveGames(toptext) {
       thistime = timepart[0] + ":" + timepart[1] + " " + parts[1];
       let thisloc = saveIndex[i].loc.slice(0,13);
       table += "<td style='color:white;text-align:center;v-align:center;width:35'>" + i + "</td>";
-      table += "<td style='color:white;text-align:center;v-align:center;width:35'><img src='graphics/" + saveIndex[i].graphic + "' /></td>";
+      table += `<td style='color:white;text-align:center;v-align:center;width:35;'><div style='background-image:url("graphics/${saveIndex[i].graphic[0]}");background-position: ${saveIndex[i].graphic[2]} ${saveIndex[i].graphic[3]};width:32px;height:32px;'><img src='graphics/${saveIndex[i].graphic[1]}' /></div></td>`;
       table += "<td style='color:white;v-align:center;padding-left:5px;width:100%;font-size:smaller'>" + saveIndex[i].charname + " (" + thisloc + ") " + thisdate.toLocaleDateString() + " " + thistime + "</td>";
     } else {
       table += "<td style='color:white;text-align:center;v-align:center;width:35'>" + i + "</td>";

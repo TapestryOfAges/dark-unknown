@@ -615,6 +615,10 @@ OnConvTriggers["knows_horses"] = function(speaker,keyword) {
   DU.gameflags.setFlag("knows_graceful",1);
 }
 
+OnConvTriggers["knows_arlan"] = function(speaker,keyword) {
+  DU.gameflags.setFlag("knows_elora",1);
+}
+
 OnConvTriggers["start_courier"] = function(speaker,keyword) {
   let worldmap = maps.getMap("darkunknown");
   let npcs = worldmap.npcs.getAll();

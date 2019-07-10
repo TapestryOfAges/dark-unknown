@@ -490,7 +490,11 @@ ais.LightLight = function(who,params) {
 }
 
 ais.ChangeGraphic = function(who,params) {
-  who.setGraphicArray(params.graphic,"","0","0");
+  let xoff = "0";
+  let yoff = "0";
+  if (params.xoff) { xoff = params.xoff; }
+  if (params.yoff) { yoff = params.yoff; }
+  who.setGraphicArray([params.graphic,"",xoff,yoff]);
   DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
   return {fin:1};
 }
