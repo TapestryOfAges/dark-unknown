@@ -726,37 +726,31 @@ function PerformCast(infuse) {
 }
 
 function PerformSpellbook(code) {
-  let retval = {};
+  let retval = {fin:0};
   if ((code === 38) || (code === 219)) { // up
     let lvl = PC.getLastSpellLevel();
     let spell = PC.getLastSpell();
-    spell--;
-    while (spell > 0) {
-      if (PC.knowsSpell(lvl,GetSpellID(spell))) {
-        HighlightSpell(lvl,spell);
-        PC.setLastSpell(spell);
-        WriteSpellDesc();
-        spell = 0;
-      } else { 
-        spell--;
+    for (let i=spell-1;i>=0;i--) {
+      if (PC.knowsSpell(lvl,GetSpellID(i))) {
+        HighlightSpell(lvl,i);
+        PC.setLastSpell(i);
+        WriteSpellDesc();   
+        return retval;
       }
     }
-    retval["fin"] = 0;
+
     return retval;
   }
 
   if ((code === 40) || (code === 191)) { // down
     let lvl = PC.getLastSpellLevel();
     let spell = PC.getLastSpell();
-    spell++;
-    while (spell < 9) {
-      if (PC.knowsSpell(lvl,GetSpellID(spell))) {
-        HighlightSpell(lvl,spell);
-        PC.setLastSpell(spell);
-        WriteSpellDesc();
-        spell = 9;
-      } else { 
-        spell++;
+    for (let i=spell+1;i<=8;i++) {
+      if (PC.knowsSpell(lvl,GetSpellID(i))) {
+        HighlightSpell(lvl,i);
+        PC.setLastSpell(i);
+        WriteSpellDesc();   
+        return retval;
       }
     }
     retval["fin"] = 0;
