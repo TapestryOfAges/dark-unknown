@@ -490,13 +490,12 @@ function Pushable() {
         objmap.moveThing(this.getx()+diffx,this.gety()+diffy,this);
         retval["txt"] = "Push: " + this.getDesc() + ".";
         if ("facing" in this) {
-          let graphic = this.getOverlay();
-          graphic = graphic.replace(/\d\.gif/,"");
-          if (diffx > 0) { graphic = graphic + "1.gif"; }
-          else if (diffx < 0) { graphic = graphic + "3.gif"; }
-          else if (diffy > 0) { graphic = graphic + "2.gif"; }
-          else if (diffy < 0) { graphic = graphic + "0.gif"; }
-          this.setOverlay(graphic);
+          let graphic;
+          if (diffx > 0) { this.facing = 1; graphic = this.getGraphicFromFacing(1); }
+          else if (diffx < 0) { this.facing = 3; graphic = this.getGraphicFromFacing(3); }
+          else if (diffy > 0) { this.facing = 2; graphic = this.getGraphicFromFacing(2); }
+          else if (diffy < 0) { this.facing = 0; graphic = this.getGraphicFromFacing(0); }
+          this.setGraphicArray(graphic);
         }
         if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
           if (PC.getHomeMap() === objmap) {
@@ -521,19 +520,24 @@ function Pushable() {
     let objmap = this.getHomeMap();
     let diffx = this.getx()-who.getx();
     let diffy = this.gety()-who.gety();
-    objmap.moveThing(who.getx(),who.gety(),this);
+    let movetox = who.getx();
+    let movetoy = who.gety();
+    if (movetox && movetoy && this.getx() && this.gety()) {
+      objmap.moveThing(0,0,this);
+    } else { objmap.moveThing(3,3,this); }
     let moveval = who.moveMe(diffx,diffy);
+    objmap.moveThing(movetox,movetoy,this);
     retval["txt"] = "Pull: " + this.getDesc() + ".";
     retval["canmove"] = moveval["canmove"];
     if ("facing" in this) {
-      let graphic = this.getOverlay();
-      graphic = graphic.replace(/\d\.gif/,"");
-      if (diffx > 0) { graphic = graphic + "1.gif"; }
-      else if (diffx < 0) { graphic = graphic + "3.gif"; }
-      else if (diffy > 0) { graphic = graphic + "2.gif"; }
-      else if (diffy < 0) { graphic = graphic + "0.gif"; }
-      this.setOverlay(graphic);
+      let graphic;
+      if (diffx > 0) { this.facing = 1; graphic = this.getGraphicFromFacing(1); }
+      else if (diffx < 0) { this.facing = 3; graphic = this.getGraphicFromFacing(3); }
+      else if (diffy > 0) { this.facing = 2; graphic = this.getGraphicFromFacing(2); }
+      else if (diffy < 0) { this.facing = 0; graphic = this.getGraphicFromFacing(0); }
+      this.setGraphicArray(graphic);
     }
+    if (objmap === PC.getHomeMap()) { DrawMainFrame("one",objmap,movetox,movetoy); }
 
     if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
       if (PC.getHomeMap() === objmap) {
@@ -5801,7 +5805,8 @@ function BridgeEWTile() {
 }
 BridgeEWTile.prototype = new FeatureObject();
 
-function SitDown(who,direction) {
+function SitDown(who,what) {
+  let direction;
   who.realgraphic = who.getGraphicArray();
   let cc = "";
   let rf = "";
@@ -5810,6 +5815,20 @@ function SitDown(who,direction) {
   } else if (parseInt(who.skintone) !== 1) { console.log("Missing skintone on "); console.log(who); }
   if (Dice.roll("1d2") === 1) {
     rf = "_2";
+  }
+  switch (what.facing) {
+    case 0:
+      direction = "north";
+      break;
+    case 1:
+      direction = "east";
+      break;
+    case 2:
+      direction = "south";
+      break;
+    case 3: 
+      direction = "west";
+      break;
   }
   let filename = `seated_${direction}${rf}${cc}.gif`;
   let garr = [filename,filename,0,0];
@@ -5826,6 +5845,33 @@ function StandUp(who) {
     alert("Entity failed to have a standing graphic. See console.");
     console.log(who);
   }
+}
+
+function GetChairGraphicFromFacing(thing, facing) {
+  let gr = thing.getGraphicArray();
+  switch (facing) {
+    case 0:
+      gr[2] = "-288";
+      gr[3] = "-96";
+      break;
+    case 1:
+      gr[2] = "-256";
+      gr[3] = "-64";
+      break;
+    case 2:
+      gr[2] = "-288";
+      gr[3] = "-32";
+      break;
+    case 3:
+      gr[2] = "-288";
+      gr[3] = "-64";
+      break;
+    default:
+      console.log(thing);
+      console.log("Facing problem.");
+      break;
+  }
+  return gr;
 }
 
 function LeftChairTile() {
@@ -5852,12 +5898,16 @@ LeftChairTile.prototype.use = function(who) {
 }
 
 LeftChairTile.prototype.walkon = function(who) {
-  return SitDown(who,"east");
+  return SitDown(who,this);
 }
 
 
 LeftChairTile.prototype.walkoff = function(who) {
   return StandUp(who);
+}
+
+LeftChairTile.prototype.getGraphicFromFacing = function(face) {
+  return GetChairGraphicFromFacing(this, face)
 }
 
 function RightChairTile() {
@@ -5883,12 +5933,15 @@ RightChairTile.prototype.use = function(who) {
 }
 
 RightChairTile.prototype.walkon = function(who) {
-  return SitDown(who,"west");
+  return SitDown(who,this);
 }
-
 
 RightChairTile.prototype.walkoff = function(who) {
   return StandUp(who);
+}
+
+RightChairTile.prototype.getGraphicFromFacing = function(face) {
+  return GetChairGraphicFromFacing(this, face)
 }
 
 function TopChairTile() {
@@ -5914,11 +5967,15 @@ TopChairTile.prototype.use = function(who) {
 }
 
 TopChairTile.prototype.walkon = function(who) {
-  return SitDown(who,"south");
+  return SitDown(who,this);
 }
 
 TopChairTile.prototype.walkoff = function(who) {
   return StandUp(who);
+}
+ 
+TopChairTile.prototype.getGraphicFromFacing = function(face) {
+  return GetChairGraphicFromFacing(this, face)
 }
 
 function BottomChairTile() {
@@ -5944,11 +6001,15 @@ BottomChairTile.prototype.use = function(who) {
 }
 
 BottomChairTile.prototype.walkon = function(who) {
-  return SitDown(who,"north");
+  return SitDown(who,this);
 }
 
 BottomChairTile.prototype.walkoff = function(who) {
   return StandUp(who);
+}
+ 
+BottomChairTile.prototype.getGraphicFromFacing = function(face) {
+  return GetChairGraphicFromFacing(this, face)
 }
 
 function TurnFacing(what) {
