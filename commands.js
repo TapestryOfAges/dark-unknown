@@ -760,14 +760,16 @@ function PerformSpellbook(code) {
   if ((code === 37) || (code === 186) || (code === 39) || (code === 222)) { // left or right
     let lvl = PC.getLastSpellLevel();
     let spell = PC.getLastSpell();
+    let lvldiff = 0;
     let newlvl = lvl;
     if ((code === 37) || (code === 186)) { // left
-      if (lvl > 1) { newlvl = lvl - 1; }
+      lvldiff = -1;
     }
     if ((code === 39) || (code === 222)) { // right
-      if (lvl < 8) { newlvl = lvl + 1; }
+      lvldiff = 1;
     }
     // figure out how many spells down we are
+    let spindex = 0;
     let spellsdown = 0;
     if (!spell) {
       spell = 1;
@@ -775,20 +777,27 @@ function PerformSpellbook(code) {
     for (let i=1; i<=spell; i++) {
       if (PC.knowsSpell(lvl, GetSpellID(i))) { spellsdown++; }
     }
-    let spindex = 0;
-    let numspells = 0;
-    for (let i=1; i<=8; i++) {
-      if (PC.knowsSpell(newlvl,GetSpellID(i))) {
-        numspells++;
-        if (numspells === spellsdown) {
-          spindex = i;
+
+    let lastknown = 0;
+    while (!spindex && (newlvl+lvldiff >= 1) && (newlvl+lvldiff <= 8)) {
+      newlvl += lvldiff;
+      let numspells = 0;
+      for (let i=1; i<=8; i++) {
+        if (PC.knowsSpell(newlvl,GetSpellID(i))) {
+          lastknown = i;
+          numspells++;
+          if (numspells === spellsdown) {
+            spindex = i;
+          }
         }
       }
+      if (!spindex) { spindex = lastknown; }
     }
-    PC.setLastSpellLevel(newlvl);
-    PC.setLastSpell(spindex);
-    WritePages();
-
+    if (spindex) {
+      PC.setLastSpellLevel(newlvl);
+      PC.setLastSpell(spindex);
+      WritePages();
+    }
     retval["fin"] = 0;
     return retval;    
   }
