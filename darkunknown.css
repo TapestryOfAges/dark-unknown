@@ -169,7 +169,9 @@ div.spellbook { display: none;
                font-family:"Spells";
                font-size:10pt;
                line-height:16px; }
-  	           
+							 
+td.spellslist { vertical-align: top; }
+
 table.spells { padding-top: 8;
                padding-left: 24; }
 
