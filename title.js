@@ -534,7 +534,7 @@ function RunIntro(idx) {
       document.getElementById('splash').innerHTML = `<img id='splash4' style='opacity:0' src='graphics/splash/Training.png' />`;
       document.getElementById('splashtxt').classList.remove('titlefadeout');  
       document.getElementById('splashtxt').innerHTML = `<div id='intro6' style='color:white;opacity:0'><p class='charcreate'>You are meanwhile ensconced in a house on the outskirts of the nearby village of Naurglen. It is less necessary for you to be at the center of things, and it is quieter here. You pursue your studies, and visit when the mood strikes you.</p></div>
-      <div id='intro7' style='color:white;opacity:0'><p class='charcreate'>But a few months ago, Lance moved into an old castle, ruined from the war, and begun rebuilding. And then, to the surprise of everyone, he planted his banner and declared that he was in rebellion- that he, rather than your father, should rule Ellusus.</p></div>`;
+      <div id='intro7' style='color:white;opacity:0'><p class='charcreate'>But a few months ago, Lance moved into an old castle, ruined from the war, and began rebuilding. And then, to the surprise of everyone, he planted his banner and declared that he was in rebellion- that he, rather than your father, should rule Ellusus.</p></div>`;
       document.getElementById('intro6').classList.add('presentfadein');
       document.getElementById('splash4').classList.add('presentfadein');  
     },1000);
