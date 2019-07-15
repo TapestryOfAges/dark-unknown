@@ -554,6 +554,74 @@ ais.PassOlympusGuardDoor = function(who,params) {
   alert("Error in PassOlympusGuardDoor - called by " + who.getNPCName());
 }
 
+ais.PassBDCGuardDoor = function(who,params) {
+  let door = who.getHomeMap().getTile(11,28).getTopFeature();
+  if (who.getx() === 10) {
+    if (!door.open) {
+      door.unlockMe();
+      MakeUseHappen(who,door,"map");
+    }
+    who.moveMe(1,0);
+    return {fin:0};
+  } else if (who.getx() === 12) {
+    if (!door.open) {
+      door.unlockMe();
+      MakeUseHappen(who,door,"map");
+    }
+    who.moveMe(-1,0);
+    return {fin:0};
+  } else if (params.dir === "east") {
+    who.moveMe(1,0);
+    if (door.open) {
+      MakeUseHappen(who,door,"map");
+    }
+    door.lockMe();
+    return {fin:1};  
+  } else {
+    who.moveMe(-1,0);
+    if (door.open) {
+      MakeUseHappen(who,door,"map");
+    }
+    door.lockMe();
+    return {fin:1};  
+  }
+  alert("Error in PassBDCGuardDoor - called by " + who.getNPCName());
+}
+
+ais.PassBDCPortDoor = function(who,params) {
+  let door = who.getHomeMap().getTile(12,38).getTopFeature();
+  if (who.gety() === 37) {
+    if (!door.open) {
+      door.unlockMe();
+      MakeUseHappen(who,door,"map");
+    }
+    who.moveMe(0,1);
+    return {fin:0};
+  } else if (who.gety() === 39) {
+    if (!door.open) {
+      door.unlockMe();
+      MakeUseHappen(who,door,"map");
+    }
+    who.moveMe(0,-1);
+    return {fin:0};
+  } else if (params.dir === "north") {
+    who.moveMe(0,-1);
+    if (door.open) {
+      MakeUseHappen(who,door,"map");
+    }
+    door.lockMe();
+    return {fin:1};  
+  } else {
+    who.moveMe(0,1);
+    if (door.open) {
+      MakeUseHappen(who,door,"map");
+    }
+    door.lockMe();
+    return {fin:1};  
+  }
+  alert("Error in PassBDCPortDoor - called by " + who.getNPCName());
+}
+
 ais.PassPaladinDoor = function(who,params) {
   DebugWrite("schedules", "In PassPaladinDoor going " + params.dir + ".<br />");
   let door = who.getHomeMap().getTile(57,48).getTopFeature();
