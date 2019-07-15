@@ -895,7 +895,8 @@ function PerformLook() {
   }
   let top = tile.getTop();
   while (top.getName() === "SeeBelow") {
-    tile = FindBelow(targetCursor.x,targetCursor.y,map);
+    let result = FindBelow(targetCursor.x,targetCursor.y,map);
+    tile = result.tile;
     top = tile.getTop();
   }
   let npcs = tile.getNPCs();
@@ -1305,7 +1306,8 @@ function PerformTalkTarget() {
   } 
   let top = tile.getTop();
   while (top.getName() === "SeeBelow") {
-    tile = FindBelow(targetCursor.x,targetCursor.y,map);
+    let result = FindBelow(targetCursor.x,targetCursor.y,map);
+    tile = result.tile;
     top = tile.getTop();
   }
   
