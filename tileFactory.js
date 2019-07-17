@@ -573,6 +573,11 @@ tileFactory.prototype.makeCaveWallTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCaveColumnTile = function() {
+  let newTile = new CaveColumnTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeHexFloorTile = function() {
   let newTile = new HexFloorTile();
   return newTile;
@@ -1333,6 +1338,16 @@ tileFactory.prototype.makeFoodSouthNorthTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFoodSouthEdgeTile = function() {
+  let newTile = new FoodSouthEdgeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFoodNorthEdgeTile = function() {
+  let newTile = new FoodNorthEdgeTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeHarpsichordTile = function() {
   let newTile = new HarpsichordTile();
   return newTile;
@@ -1725,6 +1740,11 @@ tileFactory.prototype.makeMetalTwisterLeverTile = function() {
 
 tileFactory.prototype.makePitDespairLeverTile = function() {
   let newTile = new PitDespairLeverTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeToshinLeverOffTile = function() {
+  let newTile = new ToshinLeverOffTile();
   return newTile;
 }
 
@@ -2275,6 +2295,11 @@ tileFactory.prototype.makeKeyOfSunTile = function() {
 
 tileFactory.prototype.makeKeyOfShadowTile = function() {
   let newTile = new KeyOfShadowTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSheafOfNotesTile = function() {
+  let newTile = new SheafOfNotesTile();
   return newTile;
 }
 

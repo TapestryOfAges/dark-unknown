@@ -6131,6 +6131,30 @@ function FoodSouthNorthTile() {
 }
 FoodSouthNorthTile.prototype = new FeatureObject();
 
+function FoodSouthEdgeTile() {
+  this.name = "FoodSouthEdge";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1600";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "table with food";
+}
+FoodSouthEdgeTile.prototype = new FeatureObject();
+
+function FoodNorthEdgeTile() {
+  this.name = "FoodNorthEdge";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1600";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "table with food";
+}
+FoodNorthEdgeTile.prototype = new FeatureObject();
+
 function HarpsichordTile() {
   this.name = "Harpsichord";
   this.graphic = "master_spritesheet.png";
