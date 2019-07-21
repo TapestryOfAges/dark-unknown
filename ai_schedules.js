@@ -392,6 +392,14 @@ ais.DeleteItem = function(who,params) {
 
       if ((itemmap === PC.getHomeMap()) && (IsVisibleOnScreen(itemx,itemy))) { DrawMainFrame("one",itemmap,itemx,itemy); }
     }
+  } else {
+    let feas = who.getHomeMap().getTile(params.x,params.y).getFeatures();
+    for (let i=0;i<feas.length;i++) {
+      if (feas[i].getName() === params.name) {
+        who.getHomeMap().deleteThing(feas[i]); 
+        return {fin:1};
+      }
+    }
   }
   DebugWrite("schedules", "<br />");
   return {fin:1};
@@ -417,12 +425,225 @@ ais.LockDoor = function(who,params){
 }
 
 
-ais.PlaceFood = function(who,which) {
-  // Sean 1 is table 67,23 to 70,23
-  // Sean 2 is table 66,27 to 70,27
+ais.PlaceFood = function(who,params) {
+  // Sean 2 is table 67,23 to 70,23
+  // Sean 4 is table 66,27 to 70,27
   // Manny 1 is table 61,23 to 64,23
-  // Manny 2 is table 61,27 to 65,27
+  // Manny 3 is table 61,27 to 65,27
 
+  let isVisible = 0
+  if (params.table === 1) {
+    let item = localFactory.createTile("FoodSouthEdge");
+    who.getHomeMap().placeThing(61, 23, item);
+    if (IsVisibleOnScreen(61,23)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodNorth");
+    who.getHomeMap().placeThing(62, 23, item);
+    if (IsVisibleOnScreen(62,23)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodSouth");
+    who.getHomeMap().placeThing(63, 23, item);
+    if (IsVisibleOnScreen(63,23)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodNorthEdge");
+    who.getHomeMap().placeThing(64, 23, item);
+    if (IsVisibleOnScreen(64,23)) {
+      isVisible = 1;
+    }      
+  }
+
+  if (params.table === 2) {
+    let item = localFactory.createTile("FoodSouthEdge");
+    who.getHomeMap().placeThing(67, 23, item);
+    if (IsVisibleOnScreen(67,23)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodNorth");
+    who.getHomeMap().placeThing(68, 23, item);
+    if (IsVisibleOnScreen(68,23)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodSouth");
+    who.getHomeMap().placeThing(69, 23, item);
+    if (IsVisibleOnScreen(69,23)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodNorthEdge");
+    who.getHomeMap().placeThing(70, 23, item);
+    if (IsVisibleOnScreen(70,23)) {
+      isVisible = 1;
+    }      
+  }
+
+  if (params.table === 3) {
+    let item = localFactory.createTile("FoodNorth");
+    who.getHomeMap().placeThing(62, 27, item);
+    if (IsVisibleOnScreen(62,27)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodSouth");
+    who.getHomeMap().placeThing(63, 27, item);
+    if (IsVisibleOnScreen(63,27)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodNorth");
+    who.getHomeMap().placeThing(64, 27, item);
+    if (IsVisibleOnScreen(64,27)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodSouth");
+    who.getHomeMap().placeThing(65, 27, item);
+    if (IsVisibleOnScreen(65,27)) {
+      isVisible = 1;
+    }      
+  }
+
+  if (params.table === 4) {
+    let item = localFactory.createTile("FoodNorth");
+    who.getHomeMap().placeThing(66, 27, item);
+    if (IsVisibleOnScreen(66,27)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodSouth");
+    who.getHomeMap().placeThing(67, 27, item);
+    if (IsVisibleOnScreen(67,27)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodNorth");
+    who.getHomeMap().placeThing(68, 27, item);
+    if (IsVisibleOnScreen(68,27)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodSouth");
+    who.getHomeMap().placeThing(69, 27, item);
+    if (IsVisibleOnScreen(69,27)) {
+      isVisible = 1;
+    }      
+    item = localFactory.createTile("FoodNorthEdge");
+    who.getHomeMap().placeThing(70, 27, item);
+    if (IsVisibleOnScreen(70,27)) {
+      isVisible = 1;
+    }      
+
+  }
+ 
+  if (isVisible) {
+    if (who.getHomeMap() === PC.getHomeMap()) {
+      DrawMainFrame("draw",who.getHomeMap(),PC.getx(),PC.gety());
+    }
+  }
+  return {fin:1};
+}
+
+
+ais.CleanTable = function(who,params) {
+  // 2 is table 67,23 to 70,23
+  // 4 is table 66,27 to 70,27
+  // 1 is table 61,23 to 64,23
+  // 3 is table 61,27 to 65,27
+  
+  let themap = who.getHomeMap();
+
+  function CFood(fname,fx,fy) {
+    let feas = themap.getTile(fx,fy).getFeatures();
+    for (let i=0;i<feas.length;i++) {
+      if (feas[i].getName() === fname) {
+        themap.deleteThing(feas[i]);
+        return;
+      }
+    }
+  }
+
+  let isVisible = 0
+  if (params.table === 1) {
+    CFood("FoodSouthEdge",61,23);
+    if (IsVisibleOnScreen(61,23)) {
+      isVisible = 1;
+    }      
+    CFood("FoodNorth",62,23);
+    if (IsVisibleOnScreen(62,23)) {
+      isVisible = 1;
+    }      
+    Cfood("FoodSouth",63,23);
+    if (IsVisibleOnScreen(63,23)) {
+      isVisible = 1;
+    }      
+    CFood("FoodNorthEdge",64,23);
+    if (IsVisibleOnScreen(64,23)) {
+      isVisible = 1;
+    }      
+  }
+
+  if (params.table === 2) {
+    CFood("FoodSouthEdge",67,23);
+    if (IsVisibleOnScreen(67,23)) {
+      isVisible = 1;
+    }      
+    CFood("FoodNorth",68,23);
+    if (IsVisibleOnScreen(68,23)) {
+      isVisible = 1;
+    }      
+    CFood("FoodSouth",69,23);
+    if (IsVisibleOnScreen(69,23)) {
+      isVisible = 1;
+    }      
+    CFood("FoodNorthEdge",70,23);
+    if (IsVisibleOnScreen(70,23)) {
+      isVisible = 1;
+    }      
+  }
+
+  if (params.table === 3) {
+    CFood("FoodNorth",62,27);
+    if (IsVisibleOnScreen(62,27)) {
+      isVisible = 1;
+    }      
+    CFood("FoodSouth",63,27);
+    if (IsVisibleOnScreen(63,27)) {
+      isVisible = 1;
+    }      
+    CFood("FoodNorth",64,27);
+    if (IsVisibleOnScreen(64,27)) {
+      isVisible = 1;
+    }      
+    CFood("FoodSouth",65,27);
+    if (IsVisibleOnScreen(65,27)) {
+      isVisible = 1;
+    }      
+  }
+
+  if (params.table === 4) {
+    CFood("FoodNorth",66,27);
+    if (IsVisibleOnScreen(66,27)) {
+      isVisible = 1;
+    }      
+    CFood("FoodSouth",67,27);
+    if (IsVisibleOnScreen(67,27)) {
+      isVisible = 1;
+    }      
+    CFood("FoodNorth",68,27);
+    if (IsVisibleOnScreen(68,27)) {
+      isVisible = 1;
+    }      
+    CFood("FoodSouth",69,27);
+    if (IsVisibleOnScreen(69,27)) {
+      isVisible = 1;
+    }      
+    CFood("FoodNorthEdge",70,27);
+    if (IsVisibleOnScreen(70,27)) {
+      isVisible = 1;
+    }      
+
+  }
+ 
+  if (isVisible) {
+    if (who.getHomeMap() === PC.getHomeMap()) {
+      DrawMainFrame("draw",who.getHomeMap(),PC.getx(),PC.gety());
+    }
+  }
   return {fin:1};
 }
 
