@@ -1054,7 +1054,9 @@ function PerformEnter(cmd) {
 			retval["txt"] = klimb;
     }
     if ((newmap.getLongDesc()) && (!DU.gameflags.getFlag(newmap.getName() + "_visited"))) {
-      retval["txt"] += "<br /><span class='sysconv'>" + newmap.getLongDesc() + "</span>";
+      let longdesc = newmap.getLongDesc();
+      longdesc = longdesc.replace("%%","<br />");
+      retval["txt"] += "<br /><span class='sysconv'>" + longdesc + "</span>";
       DU.gameflags.setFlag(newmap.getName() + "_visited", 1);
     }
 		DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
