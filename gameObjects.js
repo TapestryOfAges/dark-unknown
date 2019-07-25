@@ -10519,6 +10519,20 @@ function NatassaResearch2Tile() {
 }
 NatassaResearch2Tile.prototype = new BookItemObject();
 
+function ToshinJournalTile() {
+  this.name = "ToshinJournal";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1248";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "journal";
+  this.prefix = "a";
+  this.contents = "You search through the journal for something useful.%%<span class='conv'>It is somewhere... I can taste it. It is close. The bones of Ellusus sing with it, the unblinking eye of a star.%%But there is something I need before I can use the Pool safely, even once I find it. Old scrolls call it an Infinite Scroll. I do not know how to make one... yet. But some are said to still exist. I will inquire of the black market.%%There is a guild of thieves in Onyx, but they also have knowledge of such things.<span>";
+  this.longdesc = "The Journals of Natassa.";
+}
+ToshinJournalTile.prototype = new BookItemObject();
+
 function AdelusLetterTile() {
   this.name = "AdelusLetter";
   this.graphic = "master_spritesheet.png";
