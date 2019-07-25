@@ -105,21 +105,24 @@ mappages["island"].features[7] = {name : 'LeftCastle', x : 41, y : 65};
 mappages["island"].features[8] = {name : 'Castle', x : 42, y : 65, entermap : 'null', enterx : 0, entery : 0};
 mappages["island"].features[9] = {name : 'RightCastle', x : 43, y : 65};
 mappages["island"].features[10] = {name : 'BrokenShrine', x : 60, y : 63};
-mappages["island"].features[11] = {name : 'Lava', x : 20, y : 42};
-mappages["island"].features[12] = {name : 'Lava', x : 20, y : 43};
-mappages["island"].features[13] = {name : 'Lava', x : 20, y : 44};
-mappages["island"].features[14] = {name : 'Lava', x : 19, y : 43};
-mappages["island"].features[15] = {name : 'Lava', x : 21, y : 43};
-mappages["island"].features[16] = {name : 'Village', x : 54, y : 74, entermap : 'null', enterx : 0, entery : 0};
-mappages["island"].features[17] = {name : 'Waterfall', x : 54, y : 52};
-mappages["island"].features[18] = {name : 'Waterfall', x : 53, y : 23};
+mappages["island"].features[11] = {name : 'Village', x : 54, y : 74, entermap : 'null', enterx : 0, entery : 0};
+mappages["island"].features[12] = {name : 'Waterfall', x : 54, y : 52};
+mappages["island"].features[13] = {name : 'Waterfall', x : 53, y : 23};
+mappages["island"].features[14] = {name : 'Lava', x : 20, y : 42};
+mappages["island"].features[15] = {name : 'Lava', x : 20, y : 43};
+mappages["island"].features[16] = {name : 'Lava', x : 20, y : 44};
+mappages["island"].features[17] = {name : 'Lava', x : 19, y : 43};
+mappages["island"].features[18] = {name : 'Lava', x : 21, y : 43};
+mappages["island"].features[19] = {name : 'Cave', x : 54, y : 48, entermap : 'null', enterx : 0, entery : 0};
+mappages["island"].features[20] = {name : 'Cave', x : 30, y : 77, entermap : 'abandoned_mine', enterx : 0, entery : 0};
 
 
 mappages["island"].npcs = [];
 
 mappages["island"].desc = "Land of Lost Hope";
+mappages["island"].longdesc = '';
 mappages["island"].music = 'Island';
-mappages["island"].savename = "Lost Hope";
+mappages["island"].savename = `Lost Hope`;
 mappages["island"].exitmap = '';
 mappages["island"].exitx = '65';
 mappages["island"].exity = '70';
@@ -131,6 +134,7 @@ mappages["island"].lightLevel = 'cycle';
 mappages["island"].alwaysRemember = '1';
 mappages["island"].scale = '0';
 mappages["island"].underground = '0';
+mappages["island"].undergroundDesc = '';
 mappages["island"].enterscript = '';
 mappages["island"].entertestscript = '';
 mappages["island"].exitscript = '';
@@ -140,6 +144,7 @@ mappages["island"].returnx = '69';
 mappages["island"].returny = '74';
 mappages["island"].returninfused = '1';
 mappages["island"].linkedMaps = [""];
+mappages["island"].editorLabels = '{}';
 
 mappages["island"].onload = function(mapref) {
   
