@@ -1849,45 +1849,6 @@ function WallTile() {
 }
 WallTile.prototype = new TerrainObject();
 
-function RuinsWallTallLeftMidRightTile() {
-  this.name = "RuinsWallTallLeftMidRight";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-256";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
-  this.prefix = "a";
-  this.desc = "wall";
-  this.peerview = "white";
-}
-RuinsWallTallLeftMidRightTile.prototype = new TerrainObject();
-
-function RuinsWallMidLeftMidRightTile() {
-  this.name = "RuinsWallMidLeftMidRight";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-256";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
-  this.prefix = "a";
-  this.desc = "wall";
-  this.peerview = "white";
-}
-RuinsWallMidLeftMidRightTile.prototype = new TerrainObject();
-
-function RuinsWallMidLeftTallRightTile() {
-  this.name = "RuinsWallMidLeftTallRight";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-256";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
-  this.prefix = "a";
-  this.desc = "wall";
-  this.peerview = "white";
-}
-RuinsWallMidLeftTallRightTile.prototype = new TerrainObject();
-
 function RuinsWallTile() {
   this.name = "RuinsWall";
   this.graphic = "master_spritesheet.png";
@@ -1913,32 +1874,6 @@ function IllusionaryRuinsWallTile() {
   this.peerview = "#600060";
 }
 IllusionaryRuinsWallTile.prototype = new TerrainObject();
-
-function RuinsWallMidLeftBottomRightTile() {
-  this.name = "RuinsWallMidLeftBottomRight";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-256";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
-  this.prefix = "a";
-  this.desc = "wall";
-  this.peerview = "white";
-}
-RuinsWallMidLeftBottomRightTile.prototype = new TerrainObject();
-
-function RuinsWallBottomLeftMidRightTile() {
-  this.name = "RuinsWallBottomLeftMidRight";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-256";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 2;
-  this.prefix = "a";
-  this.desc = "wall";
-  this.peerview = "white";
-}
-RuinsWallBottomLeftMidRightTile.prototype = new TerrainObject();
 
 function ArrowSlitTile() {
 	this.name = "ArrowSlit";
@@ -6897,6 +6832,71 @@ function SecretDoorTile() {
   Openable.call(this, [this.graphic, "", "-96", "-128"], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
 }
 SecretDoorTile.prototype = new FeatureObject();
+
+function RuinsWallTallLeftMidRightTile() {
+  this.name = "RuinsWallTallLeftMidRight";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+RuinsWallTallLeftMidRightTile.prototype = new FeatureObject();
+
+function RuinsWallMidLeftMidRightTile() {
+  this.name = "RuinsWallMidLeftMidRight";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+RuinsWallMidLeftMidRightTile.prototype = new FeatureObject();
+
+function RuinsWallMidLeftTallRightTile() {
+  this.name = "RuinsWallMidLeftTallRight";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+RuinsWallMidLeftTallRightTile.prototype = new FeatureObject();
+
+function RuinsWallMidLeftBottomRightTile() {
+  this.name = "RuinsWallMidLeftBottomRight";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+RuinsWallMidLeftBottomRightTile.prototype = new FeatureObject();
+
+function RuinsWallBottomLeftMidRightTile() {
+  this.name = "RuinsWallBottomLeftMidRight";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-256";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+RuinsWallBottomLeftMidRightTile.prototype = new FeatureObject();
 
 function WellTile() {
 	this.name = "Well";
