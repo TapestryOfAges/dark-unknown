@@ -567,7 +567,7 @@ ais.CleanTable = function(who,params) {
     if (IsVisibleOnScreen(62,23)) {
       isVisible = 1;
     }      
-    Cfood("FoodSouth",63,23);
+    CFood("FoodSouth",63,23);
     if (IsVisibleOnScreen(63,23)) {
       isVisible = 1;
     }      
