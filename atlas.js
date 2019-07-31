@@ -1123,7 +1123,9 @@ GameMap.prototype.setTerrain = function(x,y,terrain) {
 //  var tile = localFactory.createTile(terrain.name);
   let tile = eidos.getForm(terrain.getName());
   if (tile) {
-    this.data[y][x] = new Acre();
+    if (!this.data[y][x]) {
+      this.data[y][x] = new Acre();
+    }
     this.data[y][x].terrain = tile;
     return this.data[y][x].terrain;
   }
