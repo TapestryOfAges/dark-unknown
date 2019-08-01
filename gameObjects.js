@@ -4123,6 +4123,19 @@ function RightCastleTile() {
 }
 RightCastleTile.prototype = new FeatureObject();
 
+function PileOfRocksTile() {
+  this.name = "PileOfRocks";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-672";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pile of rocks";
+  this.peerview = "#606060";
+}
+PileOfRocksTile.prototype = new FeatureObject();
+
 function DoorwayTile() {
   this.name = "Doorway";
   this.graphic = "master_spritesheet.png";
@@ -9584,6 +9597,20 @@ function DragonBoneTile() {
   this.addType("Quest");
 }
 DragonBoneTile.prototype = new ItemObject();
+
+function VoidstoneSculptureTile() {
+  this.name = "VoidstoneSculpture";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1568";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "sculpture made of voidstone";
+  this.longdesc = "A simple sculpture of a dog, made of voidstone. It... isn't very good.";
+  this.addType("Quest");
+}
+VoidstoneSculptureTile.prototype = new ItemObject();
 
 function StoneOfSparksTile() {
   this.name = "StoneOfSparks";

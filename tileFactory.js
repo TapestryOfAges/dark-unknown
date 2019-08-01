@@ -153,21 +153,6 @@ tileFactory.prototype.makeWallTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeRuinsWallTallLeftMidRightTile = function() {
-  let newTile = new RuinsWallTallLeftMidRightTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeRuinsWallMidLeftMidRightTile = function() {
-  let newTile = new RuinsWallMidLeftMidRightTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeRuinsWallMidLeftTallRightTile = function() {
-  let newTile = new RuinsWallMidLeftTallRightTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeRuinsWallTile = function() {
   let newTile = new RuinsWallTile();
   return newTile;
@@ -175,16 +160,6 @@ tileFactory.prototype.makeRuinsWallTile = function() {
 
 tileFactory.prototype.makeIllusionaryRuinsWallTile = function() {
   let newTile = new IllusionaryRuinsWallTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeRuinsWallMidLeftBottomRightTile = function() {
-  let newTile = new RuinsWallMidLeftBottomRightTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeRuinsWallBottomLeftMidRightTile = function() {
-  let newTile = new RuinsWallBottomLeftMidRightTile();
   return newTile;
 }
 
@@ -908,6 +883,11 @@ tileFactory.prototype.makeRightCastleTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePileOfRocksTile = function() {
+  let newTile = new PileOfRocksTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDoorwayTile = function() {
   let newTile = new DoorwayTile();
   return newTile;
@@ -1518,6 +1498,31 @@ tileFactory.prototype.makeSecretDoorTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRuinsWallTallLeftMidRightTile = function() {
+  let newTile = new RuinsWallTallLeftMidRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallMidLeftMidRightTile = function() {
+  let newTile = new RuinsWallMidLeftMidRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallMidLeftTallRightTile = function() {
+  let newTile = new RuinsWallMidLeftTallRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallMidLeftBottomRightTile = function() {
+  let newTile = new RuinsWallMidLeftBottomRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallBottomLeftMidRightTile = function() {
+  let newTile = new RuinsWallBottomLeftMidRightTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWellTile = function() {
   let newTile = new WellTile();
   return newTile;
@@ -2053,6 +2058,11 @@ tileFactory.prototype.makeDragonBoneTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeVoidstoneSculptureTile = function() {
+  let newTile = new VoidstoneSculptureTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeStoneOfSparksTile = function() {
   let newTile = new StoneOfSparksTile();
   return newTile;
@@ -2335,6 +2345,11 @@ tileFactory.prototype.makeNatassaResearchTile = function() {
 
 tileFactory.prototype.makeNatassaResearch2Tile = function() {
   let newTile = new NatassaResearch2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeToshinJournalTile = function() {
+  let newTile = new ToshinJournalTile();
   return newTile;
 }
 
