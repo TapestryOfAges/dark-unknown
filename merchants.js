@@ -25,6 +25,13 @@ function SetMerchants() {
                   ];
   bill.gretchen.type = "stuff";
   
+  bill.coral = {};
+  bill.coral.stock = [ { item: "AudachtaNemesosUnlock", quantity: 1, price: 500, desc: "Audachta Nemesos: Unlock", sale: 'She winks. "So easy, it\'s almost cheating."' },
+                       { item: "ScrollPeer", quantity: 5, price: 150, desc: "Scroll of Peer", sale: '"Good for finding a back way somewhere."' },
+                       { item: "DarkGreenPotion", quantity: 1, price: 150, desc: "Potion of Haste", sale: '"Sometimes you need to get out in a hurry."' },
+                ];
+  bill.coral.type =  "stuff";
+
   // Beldskae
   bill.ariel = {};
   bill.ariel.stock = [ { item: "Dagger", quantity: 10, price: 7, desc: "Dagger", sale: '"May your blade be sharp."' },
@@ -129,7 +136,7 @@ function SetMerchants() {
                   { item: "CrystalTrapSpell", desc: "Crystal Trap", lvl: SPELL_CRYSTAL_TRAP_LEVEL, sid: SPELL_CRYSTAL_TRAP_ID, price: 1100, sale: '"Hides a trap that, when stepped upon, traps the treader in crystal for a time."'},
                 ];
   bill.william.type = "spells"; 
-  
+               
   return bill;
 }
 
