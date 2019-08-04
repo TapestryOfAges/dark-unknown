@@ -10555,7 +10555,7 @@ function ToshinJournalTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
   this.prefix = "a";
-  this.contents = "You search through the journal for something useful.%%<span class='conv'>It is somewhere... I can taste it. It is close. The bones of Ellusus sing with it, the unblinking eye of a star.%%But there is something I need before I can use the Pool safely, even once I find it. Old scrolls call it an Infinite Scroll. I do not know how to make one... yet. But some are said to still exist. I will inquire of the black market.%%There is a guild of thieves in Onyx, but they also have knowledge of such things.<span>";
+  this.contents = "You search through the journal for something useful.%%<span class='conv'>It is somewhere... I can taste it. It is close. The bones of Ellusus sing with it, the unblinking eye of a star.%%But there is something I need before I can use the Pool safely, even once I find it. Old scrolls call it an Infinite Scroll. I do not know how to make one... yet. But some are said to still exist. I will inquire of the black market.%%There is a guild of thieves in Onyx, and they often have knowledge of such things.<span>";
   this.longdesc = "The Journals of Toshin.";
 }
 ToshinJournalTile.prototype = new BookItemObject();
@@ -12018,6 +12018,19 @@ function AudachtaNemesosProtectionTile() {
 }
 AudachtaNemesosProtectionTile.prototype = new AudachtaNemesosObject();
 
+function AudachtaNemesosUnlockTile() {
+  this.name = "AudachtaNemesosUnlock";
+  this.desc = "Audachta Nemesos: Unlock";
+  this.prefix = "an";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1216";
+  this.spelllevel = SPELL_UNLOCK_LEVEL;
+  this.spellnum = SPELL_UNLOCK_ID;
+  this.spellname = "Unlock";
+}
+AudachtaNemesosUnlockTile.prototype = new AudachtaNemesosObject();
+
 function AudachtaNemesosWindChangeTile() {
   this.name = "AudachtaNemesosWindChange";
   this.desc = "Audachta Nemesos: Wind Change";
@@ -12368,6 +12381,19 @@ function AudachtaNemesosFireAndIceTile() {
   this.spellname = "Fire and Ice";
 }
 AudachtaNemesosFireAndIceTile.prototype = new AudachtaNemesosObject();
+
+function AudachtaNemesosInvulnerabilityTile() {
+  this.name = "AudachtaNemesosInvulnerability";
+  this.desc = "Audachta Nemesos: Invulnerability";
+  this.prefix = "an";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1216";
+  this.spelllevel = SPELL_INVULNERABILITY_LEVEL;
+  this.spellnum = SPELL_INVULNERABILITY_ID;
+  this.spellname = "Invulnerability";
+}
+AudachtaNemesosInvulnerabilityTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosMeteorSwarmTile() {
   this.name = "AudachtaNemesosMeteorSwarm";
