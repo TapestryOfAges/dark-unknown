@@ -2743,6 +2743,11 @@ tileFactory.prototype.makeAudachtaNemesosProtectionTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAudachtaNemesosUnlockTile = function() {
+  let newTile = new AudachtaNemesosUnlockTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAudachtaNemesosWindChangeTile = function() {
   let newTile = new AudachtaNemesosWindChangeTile();
   return newTile;
@@ -2875,6 +2880,11 @@ tileFactory.prototype.makeAudachtaNemesosFearTile = function() {
 
 tileFactory.prototype.makeAudachtaNemesosFireAndIceTile = function() {
   let newTile = new AudachtaNemesosFireAndIceTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAudachtaNemesosInvulnerabilityTile = function() {
+  let newTile = new AudachtaNemesosInvulnerabilityTile();
   return newTile;
 }
 
