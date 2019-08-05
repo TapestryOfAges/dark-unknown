@@ -127,7 +127,7 @@ mappages["poverty"].onload = function(mapref) {
       }
       if (brooke) {
         brooke.setSchedule("brooke2");
-        let loc = DU.schedules["brooke2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref);
+        let loc = DU.schedules["brooke2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref, brooke);
         mapref.moveThing(loc.x,loc.y,brooke);
         brooke.startx = loc.x;
         brooke.starty = loc.y

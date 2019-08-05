@@ -528,7 +528,7 @@ mappages["naurglen"].onload = function(mapref) {
     sam.setSchedule("samantha2");
     sam.setPeaceAI("scheduled");
     sam.setLeash(3);
-    let loc = DU.schedules["samantha2"].getNPCLocationByTime(GetClockTime(), 1);
+    let loc = DU.schedules["samantha2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref, sam);
     mapref.placeThing(loc.x,loc.y,sam);
   }
 }

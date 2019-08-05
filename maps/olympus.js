@@ -1295,19 +1295,19 @@ mappages["olympus1"].onload = function(mapref) {
       if (o2npcs[i].getNPCName() === "Manny") { manny = npcs[i]; }
     }
 
-    if ((tyler.getCurrentScheduleIndex() >= 4) && (tyler.getCurrentScheduleIndex() <= 16)) {
+    if ((tyler.getCurrentScheduleIndex() >= 6) && (tyler.getCurrentScheduleIndex() <= 18)) {
       // Tyler/Sonya/Yoshi house is unlocked during the day.
       let door = mapref.getTile(20,25).getTopFeature();
       door.unlockMe();
     }
 
-    if ((sean.getCurrentScheduleIndex() >= 2) && (sean.getCurrentScheduleIndex() <= 20)) {
+    if ((sean.getCurrentScheduleIndex() >= 2) && (sean.getCurrentScheduleIndex() <= 24)) {
       // Sean/Eli house unlocked during the day
       let door = mapref.getTile(78,30).getTopFeature();
       door.unlockMe();
     }
 
-    if ((katrina.getCurrentScheduleIndex() >= 14) && (katrina.getCurrentScheduleIndex() <= 18)) {
+    if ((katrina.getCurrentScheduleIndex() >= 16) && (katrina.getCurrentScheduleIndex() <= 20)) {
       // braziers are off during the day
       mapref.getTile(27,30).getTopFeature().use(katrina);
       mapref.getTile(38,30).getTopFeature().use(katrina);
@@ -1316,16 +1316,7 @@ mappages["olympus1"].onload = function(mapref) {
     }
 
     if (manny) {
-      if ((manny.getCurrentScheduleIndex() >= 22) && (manny.getCurrentScheduleIndex() <= 55)) {
-        mapref.getTile(26,18).getTopFeature().use(manny);
-      }
-      if ((manny.getCurrentScheduleIndex() >= 25) && (manny.getCurrentScheduleIndex() <= 52)) {
-        mapref.getTile(72,32).getTopFeature().use(manny);
-      }
-      if ((manny.getCurrentScheduleIndex() >= 27) && (manny.getCurrentScheduleIndex() <= 50)) {
-        mapref.getTile(72,25).getTopFeature().use(manny);
-      }
-      if ((manny.getCurrentScheduleIndex() >= 77) || (manny.getCurrentScheduleIndex() <= 19)) {
+      if ((manny.getCurrentScheduleIndex() >= 95) || (manny.getCurrentScheduleIndex() <= 2)) {
         mapref.getTile(40,18).getTopFeature().use(manny);
         mapref.getTile(40,23).getTopFeature().use(manny);
         mapref.getTile(45,18).getTopFeature().use(manny);
@@ -1337,11 +1328,11 @@ mappages["olympus1"].onload = function(mapref) {
       }    
     }
 
-    if (pieran.getCurrentScheduleIndex() === 9) {
+    if (pieran.getCurrentScheduleIndex() === 11) {
       pieran.realgraphic = ["310.gif","","0","0"];
     }
 
-    if (alban.getCurrentScheduleIndex() === 9) {
+    if (alban.getCurrentScheduleIndex() === 11) {
       alban.realgraphic = ["310.2.gif","","0","0"];
     }
 
@@ -1349,15 +1340,15 @@ mappages["olympus1"].onload = function(mapref) {
       martha.realgraphic = ["310.gif","","0","0"];
     }
 
-    if (una.getCurrentScheduleIndex() === 11) {
+    if (una.getCurrentScheduleIndex() === 13) {
       una.realgraphic = ["310.2.gif","","0","0"];
     }
    
-    if (martin.getCurrentScheduleIndex() === 9) {
+    if (martin.getCurrentScheduleIndex() === 11) {
       martin.realgraphic = ["310.2.gif","","0","0"];
     }
 
-    if (donn.getCurrentScheduleIndex() === 9) {
+    if (donn.getCurrentScheduleIndex() === 11) {
       donn.realgraphic = ["310.gif","","0","0"];
     }
 
@@ -1404,19 +1395,19 @@ mappages["olympus2"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Vivian") { vivian = npcs[i]; }
     }
 
-    if ((jharden.getCurrentScheduleIndex() >= 12) || (manny.getCurrentScheduleIndex() <= 0)) {
+    if ((jharden.getCurrentScheduleIndex() >= 14) || (manny.getCurrentScheduleIndex() <= 0)) {
       mapref.getTile(69,20).getTopFeature().use(jharden);
     }
 
-    if (reed.getCurrentScheduleIndex() === 19) {
+    if (reed.getCurrentScheduleIndex() === 21) {
       reed.realgraphic = ["310.2.gif","","0","0"];
     } 
 
-    if (yvette.getCurrentScheduleIndex() === 19) {
+    if (yvette.getCurrentScheduleIndex() === 21) {
       yvette.realgraphic = ["310.gif","","0","0"];
     }
 
-    if (brandan.getCurrentScheduleIndex() === 17) {
+    if (brandan.getCurrentScheduleIndex() === 19) {
       brandan.realgraphic = ["310.gif","","0","0"];
     }
 
@@ -1424,15 +1415,15 @@ mappages["olympus2"].onload = function(mapref) {
       lena.realgraphic = ["310.2.gif","","0","0"];
     }
 
-    if (barbara.getCurrentScheduleIndex() === 19) {
+    if (barbara.getCurrentScheduleIndex() === 21) {
       barbara.realgraphic = ["310.gif","","0","0"];
     }
 
-    if (aler.getCurrentScheduleIndex() === 19) {
+    if (aler.getCurrentScheduleIndex() === 21) {
       aler.realgraphic = ["310.2.gif","","0","0"];
     }
 
-    if (brian.getCurrentScheduleIndex() === 19) {
+    if (brian.getCurrentScheduleIndex() === 21) {
       brian.realgraphic = ["310.gif","","0","0"];
     }
 
@@ -1448,15 +1439,15 @@ mappages["olympus2"].onload = function(mapref) {
       benedig.realgraphic = ["310.gif","","0","0"];
     }
 
-    if (andrew.getCurrentScheduleIndex() === 23) {
+    if (andrew.getCurrentScheduleIndex() === 25) {
       andrew.realgraphic = ["310.2.gif","","0","0"];
     }
 
-    if (armaelle.getCurrentScheduleIndex() === 55) {
+    if (armaelle.getCurrentScheduleIndex() === 57) {
       armaelle.realgraphic = ["310.gif","","0","0"];
     }
 
-    if (gwen.getCurrentScheduleIndex() === 19) {
+    if (gwen.getCurrentScheduleIndex() === 21) {
       gwen.realgraphic = ["310.gif","","0","0"];
     }
 
@@ -1488,7 +1479,7 @@ mappages["olympus0"].onload = function(mapref) {
       if (npcs[i].getNPCName() === "Trevor") { trevor = npcs[i]; }
     }
 
-    if (mariadoc.getCurrentScheduleIndex() === 13) {
+    if (mariadoc.getCurrentScheduleIndex() === 15) {
       mariadoc.realgraphic = ["310.gif","","0","0"];
     }
 

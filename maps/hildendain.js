@@ -568,35 +568,28 @@ mappages["hildendain2"].editorLabels = '{}';
 mappages["hildendain"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let npcs = mapref.npcs.getAll();
-    let anna, aaron, alexis, rhi, kiba;
+    let anna, aaron, alexis, kiba;
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Anna") { anna = npcs[i]; }
       if (npcs[i].getNPCName() === "Aaron") { aaron = npcs[i]; }
       if (npcs[i].getNPCName() === "Alexis") { alexis = npcs[i]; }
-      if (npcs[i].getNPCName() === "Rhiannon") { rhi = npcs[i]; }
       if (npcs[i].getNPCName() === "Kiba") { kiba = npcs[i]; }
     }
 
     if (aaron) {
-      if ((aaron.getCurrentScheduleIndex() >= 4) && (aaron.getCurrentScheduleIndex() <= 7)) {
+      if ((aaron.getCurrentScheduleIndex() >= 6) && (aaron.getCurrentScheduleIndex() <= 12)) {
         aaron.getHomeMap().getTile(14,41).getTopFeature().unlockMe(aaron);
       }
     }
 
     if (alexis) {
-      if ((alexis.getCurrentScheduleIndex() >= 4) && (alexis.getCurrentScheduleIndex() <= 12)) {
+      if ((alexis.getCurrentScheduleIndex() >= 4) && (alexis.getCurrentScheduleIndex() <= 14)) {
         alexis.getHomeMap().getTile(38,35).getTopFeature().unlockMe(alexis);
       }
     }
 
-    if (rhi) {
-      if ((rhi.getCurrentScheduleIndex() === 4) || (rhi.getCurrentScheduleIndex() === 10)) {
-        alexis.getHomeMap().getTile(31,20).getTopFeature().unlockMe(alexis);
-      }
-    }
-
     if (kiba) {
-      if ((kiba.getCurrentScheduleIndex() >= 4) && (kiba.getCurrentScheduleIndex() <= 10)) {
+      if ((kiba.getCurrentScheduleIndex() >= 4) && (kiba.getCurrentScheduleIndex() <= 12)) {
         kiba.getHomeMap().getTile(46,35).getTopFeature().unlockMe(kiba);
       }
     }
@@ -629,7 +622,7 @@ mappages["hildendain"].onload = function(mapref) {
       } 
       if (aoife) {
         aoife.setSchedule("aoife2");
-        let loc = DU.schedules["aoife2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref);
+        let loc = DU.schedules["aoife2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref, aoife);
         mapref.moveThing(loc.x,loc.y,aoife);
         aoife.startx = loc.x;
         aoife.starty = loc.y
