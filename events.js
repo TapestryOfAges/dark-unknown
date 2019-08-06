@@ -14,15 +14,16 @@ function DUListener() {
 }
 DUListener.prototype = new Object();
 
-DUListener.createListener = function(name, listenname, flags, linkedmap) {
+DUListener.prototype.createListener = function(name, listenname, flags, linkedmap) {
+  this.clearListeners();
   let tmplistener = new DUEar;
-  DUEar.name = name;
-  DUEar.listenforname = listenname;
-  DUEar.flagsreq = flags;
+  tmplistener.name = name;
+  tmplistener.listenforname = listenname;
+  tmplistener.flagsreq = flags;
   if (typeof linkedmap !== "string") {
     linkedmap = linkedmap.getName();
   }
-  DUEar.linkedtomap = linkedmap;
+  tmplistener.linkedtomap = linkedmap;
 
   this.addListener(tmplistener);
 }
@@ -114,5 +115,32 @@ let EventFunctions = new Object();
 // all listener funccalls must be attached to this object globally, for purposes of managing save/load
 
 EventFunctions["BDragon"] = function(ev) {
-  console.log("BDragon event triggered.");
+  let bdmap = ev.source.getHomeMap();
+  if (bdmap.getName() === "blackdragon") {
+    let npcs = bdmap.npcs.getAll();
+    let prince, dragon, justice;
+    let guards = [];
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getNPCName() === "Prince Lance") { prince = npcs[i]; }
+      if (npcs[i].getName() === "TownGuardNPC") { guards[guards.length] = npcs[i]; }
+      if (npcs[i].getNPCName() === "Justice") { justice = npcs[i]; }
+      if (npcs[i].getNPCName() === "Black Dragon") { dragon = npcs[i]; }
+    }
+    if (IsVisibleOnScreen(prince)) {
+      maintext.delayedAddText("There is a heartbeat where nothing moves and the air stills, and then Lance's eyes roll back in his head and he collapses unconscious.");
+      maintext.delayedAddText('The dragon looks at him, and then at you. "How disappointing."');
+      maintext.delayedAddText('And then it roars and lunges at you!');
+
+      prince.realgraphic = prince.getGraphicArray();
+      prince.setGraphicArray("master_spritesheet.png","","-64","-800");
+   
+      Close_BDC_Gate(bdmap);
+
+      dragon.setAttitude("hostile");
+      dragon.setCurrentAI("seekPC-30");
+      dragon.setAggro(1);
+      
+
+    }
+  }
 }

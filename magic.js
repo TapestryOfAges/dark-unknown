@@ -3124,6 +3124,8 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
   }
   
   DrawCharFrame();
+  let ev = new DUEvent("Negate Magic",caster,[]);
+  Listener.sendEvent(ev);
   return resp;
 }
 

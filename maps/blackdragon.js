@@ -146,7 +146,7 @@ mappages["blackdragon"].features[93] = {name : 'LeftTable', x : 29, y : 18};
 mappages["blackdragon"].features[94] = {name : 'LeftTable', x : 25, y : 21};
 mappages["blackdragon"].features[95] = {name : 'MiddleTable', x : 26, y : 21};
 mappages["blackdragon"].features[96] = {name : 'RightTable', x : 27, y : 21};
-mappages["blackdragon"].features[97] = {name : 'MoatLeverOff', x : 9, y : 27};
+mappages["blackdragon"].features[97] = {name : 'BDCLever', x : 9, y : 27};
 mappages["blackdragon"].features[98] = {name : 'BookshelfLeft', x : 25, y : 24};
 mappages["blackdragon"].features[99] = {name : 'BookshelfRight', x : 26, y : 24};
 mappages["blackdragon"].features[100] = {name : 'BookshelfRight', x : 28, y : 24};
@@ -264,7 +264,7 @@ mappages["blackdragon"].returnmap = 'darkunknown';
 mappages["blackdragon"].returnx = '69';
 mappages["blackdragon"].returny = '74';
 mappages["blackdragon"].returninfused = '0';
-mappages["blackdragon"].linkedMaps = [""];
+mappages["blackdragon"].linkedMaps = ["blackdragon2","blackdragon3","blackdragon4"];
 mappages["blackdragon"].editorLabels = '{"div_tile13x23":"Taran","div_tile20x18":"Nadya","div_tile13x19":"Brad"}';
 
 mappages["blackdragon"].onload = function(mapref) {
@@ -301,6 +301,15 @@ function Open_BDC_Gate(mapref) {
   }
 }
 
+function Close_BDC_Gate(mapref) {
+  let planks = localFactory.createTile("Shallows");
+  mapref.setTerrain(11,41,planks);
+  mapref.setTerrain(12,41,planks);
+  mapref.setTerrain(13,41,planks);
+  mapref.setTerrain(11,42,planks);
+  mapref.setTerrain(12,42,planks);
+  mapref.setTerrain(13,42,planks);
+}
 
 mappages["blackdragon2"] = {};
 mappages["blackdragon2"].terrain = [];
@@ -387,13 +396,13 @@ mappages["blackdragon2"].underground = '0';
 mappages["blackdragon2"].undergroundDesc = '';
 mappages["blackdragon2"].enterscript = '';
 mappages["blackdragon2"].entertestscript = '';
-mappages["blackdragon2"].exitscript = 'maps_exit';
+mappages["blackdragon2"].exitscript = '';
 mappages["blackdragon2"].exittestscript = '';
 mappages["blackdragon2"].returnmap = 'darkunknown';
 mappages["blackdragon2"].returnx = '69';
 mappages["blackdragon2"].returny = '74';
 mappages["blackdragon2"].returninfused = '0';
-mappages["blackdragon2"].linkedMaps = [""];
+mappages["blackdragon2"].linkedMaps = ["blackdragon","blackdragon3","blackdragon4"];
 mappages["blackdragon2"].editorLabels = '{}';
 
 mappages["blackdragon3"] = {};
@@ -476,13 +485,13 @@ mappages["blackdragon3"].underground = '0';
 mappages["blackdragon3"].undergroundDesc = '';
 mappages["blackdragon3"].enterscript = '';
 mappages["blackdragon3"].entertestscript = '';
-mappages["blackdragon3"].exitscript = 'maps_exit';
+mappages["blackdragon3"].exitscript = '';
 mappages["blackdragon3"].exittestscript = '';
 mappages["blackdragon3"].returnmap = 'darkunknown';
 mappages["blackdragon3"].returnx = '69';
 mappages["blackdragon3"].returny = '74';
 mappages["blackdragon3"].returninfused = '0';
-mappages["blackdragon3"].linkedMaps = [""];
+mappages["blackdragon3"].linkedMaps = ["blackdragon2","blackdragon","blackdragon4"];
 mappages["blackdragon3"].editorLabels = '{}';
 
 
@@ -563,13 +572,13 @@ mappages["blackdragon4"].underground = '0';
 mappages["blackdragon4"].undergroundDesc = '';
 mappages["blackdragon4"].enterscript = '';
 mappages["blackdragon4"].entertestscript = '';
-mappages["blackdragon4"].exitscript = 'maps_exit';
+mappages["blackdragon4"].exitscript = '';
 mappages["blackdragon4"].exittestscript = '';
 mappages["blackdragon4"].returnmap = 'darkunknown';
 mappages["blackdragon4"].returnx = '69';
 mappages["blackdragon4"].returny = '74';
 mappages["blackdragon4"].returninfused = '0';
-mappages["blackdragon4"].linkedMaps = [""];
+mappages["blackdragon4"].linkedMaps = ["blackdragon2","blackdragon3","blackdragon"];
 mappages["blackdragon4"].editorLabels = '{}';
 
 mappages["blackdragon4"].onload = function(mapref) {
