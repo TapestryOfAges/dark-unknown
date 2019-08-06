@@ -65,10 +65,10 @@ DUListener.prototype.sendEvent = function(ev) {
     if (allears[i].linkedtomap === ev.source.getHomeMap().getName()) {
       if (allears[i].listenforname === ev.name) {
         let flagsmatch = 1;
-        for (let idx2 in allears[i].flagsreq) {
-          let val2 = allears[i].flagsreq[idx];
-          if (ev.flags[idx2] && (ev.flags[idx2] === val2)) {
-            DebugWrite("events", "Flag " + idx2 + " matched - values " + val2 + ".<br />");
+        for (let idx in allears[i].flagsreq) {
+          let val = allears[i].flagsreq[idx];
+          if (ev.flags[idx] && (ev.flags[idx] === val)) {
+            DebugWrite("events", "Flag " + idx + " matched - values " + val + ".<br />");
           } else {
             flagsmatch = 0;
           }
@@ -112,3 +112,7 @@ DUEvent.prototype = new Object();
 
 let EventFunctions = new Object();
 // all listener funccalls must be attached to this object globally, for purposes of managing save/load
+
+EventFunctions["BDragon"] = function(ev) {
+  console.log("BDragon event triggered.");
+}

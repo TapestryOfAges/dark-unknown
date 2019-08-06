@@ -583,6 +583,8 @@ mappages["blackdragon4"].onload = function(mapref) {
       mapref.placeThing(26,20,field1);
       mapref.placeThing(25,21,field2);
       mapref.placeThing(26,21,field3);
+
+      Listener.createListener("BDragon", "Negate Magic", [], "blackdragon");
     }
   }
 }
