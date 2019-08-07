@@ -140,6 +140,7 @@ EventFunctions["BDragon"] = function(ev) {
       dragon.setCurrentAI("seekPC-30");
       dragon.setAggro(1);
       
+      bdmap.cityfight = 1;
 
     }
   }

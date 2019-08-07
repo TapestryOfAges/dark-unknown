@@ -6,15 +6,20 @@
 // Flags to set (setFlag)
 ais.scheduled = function(who) {
   DebugWrite("ai", "In SCHEDULED. ");
+  let mymap = who.getHomeMap();
+  if (!who.flags.sleep && mymap.cityfight) {
+    let closest = FindNearestNPC(who, "enemy");
+    
+  }
   delete who.flags.sleep;
   // will be re-set in WaitHere if still asleep
 
   if ((who.flags.closedoor) && (who.flags.closedoor.steps === 3)) {
-    let fea = who.getHomeMap().getTile(who.flags.closedoor.x,who.flags.closedoor.y).getTopFeature();
+    let fea = mymap.getTile(who.flags.closedoor.x,who.flags.closedoor.y).getTopFeature();
     if (fea.closedgraphic) {
       if (fea.open) {  // door hasn't been closed already
         MakeUseHappen(who,fea,"map");
-        if (GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5) {
+        if ((mymap === PC.getHomeMap()) && (GetDistance(fea.getx(),fea.gety(),PC.getx(),PC.gety(),"square") <= 5)) {
           DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
         } 
         delete who.flags.closedoor;

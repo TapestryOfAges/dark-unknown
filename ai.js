@@ -45,14 +45,16 @@ ais.combat = function(who) {
   DebugWrite("ai", "<span style='font-weight:bold'>In Combat AI...</span><br />");
  
   if (whomap !== PC.getHomeMap()) {
+    if (!FindNearestNPC(who,"enemy")) {
     // what happens if the PC is on another map?
     DebugWrite("ai", "On a different map, waiting...<br />");
-    who.wait++;
-    if (who.wait > 30) {
-      DebugWrite("ai", "Waited long enough, dropping aggro.<br />");
-      who.setAggro(0);
-    }
-    return retval;  
+      who.wait++;
+      if (who.wait > 30) {
+        DebugWrite("ai", "Waited long enough, dropping aggro.<br />");
+        who.setAggro(0);
+      }
+      return retval; 
+    } 
   }
   
   // check to see if we should cease to aggro
