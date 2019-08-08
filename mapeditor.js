@@ -1232,3 +1232,16 @@ function GetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult) {
 
   return displayCell;
 }
+
+function Verify() {
+  for (let i=0;i<amap.getHeight();i++) {
+    for (let j=0;j<amap.getWidth();j++) {
+      let fea = amap.getTile(j,i).getFeatures();
+      let all = {};
+      for (let k=0;k<fea.length;k++) {
+        if (all[fea[k].getName()]) { console.log(`${j}x${i}: ${fea[k].getName()}`) }
+        all[fea[k].getName()] = 1;
+      }
+    }
+  }
+}
