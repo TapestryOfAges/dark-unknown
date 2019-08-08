@@ -1361,7 +1361,7 @@ function EndWaiting(who, inn) {
   }
   who.setWaiting(0);
   if (who === PC) {   // I mean, it only can be, but why not check?
-    gamestate.setMode("player");
+    setTimeout(function() { gamestate.setMode("player"); }, 1500); 
     DrawCharFrame();
     DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
