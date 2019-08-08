@@ -9081,7 +9081,9 @@ function PerformToshinAltar(code) {
 
 function ToshinMoatLeverOffTile() {
   this.name = "ToshinMoatLeverOff";
-  this.graphic = "moatLever-off.gif";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-608";
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "lever";
@@ -9096,28 +9098,22 @@ ToshinMoatLeverOffTile.prototype.use = function(who) {
   let tile = themap.getTile(25,13);
   let door = tile.getTopFeature();
   
-  let lever1tile = themap.getTile(6,12);
+  let lever1tile = themap.getTile(6,13);
   let lever1 = lever1tile.getTopFeature();
-  let lever2tile = themap.getTile(24,14);
+  let lever2tile = themap.getTile(17,21);
   let lever2 = lever2tile.getTopFeature();
   DUPlaySound("sfx_small_lever");
   
-  if (this.getOverlay() === "moatLever-off.gif") {
+  if (this.spritexoffset === "-160") {
     door.unlockMe();
-    lever1.setGraphic("moatLever-on.gif");
-    lever1.setOverlay("moatLever-on.gif");
-    lever2.setGraphic("moatLever-on.gif");
-    lever2.setOverlay("moatLever-on.gif");
+    lever1.spritexoffset = "-192";
+    lever2.spritexoffset = "-192";
   } else {
     door.lockMe(2);
-    lever1.setGraphic("moatLever-off.gif");
-    lever1.setOverlay("moatLever-off.gif");
-    lever2.setGraphic("moatLever-off.gif");
-    lever2.setOverlay("moatLever-off.gif");    
+    lever1.spritexoffset = "-160";
+    lever2.spritexoffset = "-160";
   }
-  DrawMainFrame("one",themap,lever1.getx(), lever1.gety());
-  DrawMainFrame("one",themap,lever2.getx(), lever2.gety());
-  DrawMainFrame("one",themap,door.getx(), door.gety());
+  DrawMainFrame("draw",themap,PC.getx(), PC.gety());
   
   return retval;
 }
