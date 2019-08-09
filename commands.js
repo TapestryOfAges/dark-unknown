@@ -427,15 +427,26 @@ function PerformCommand(code, ctrl) {
 	else if (code === 87) { // w
     // wait, was wear/wield
     let poisoned = PC.getSpellEffectsByName("Poison");
+    let waithere = 1;
     if (poisoned) {
       retval["txt"] = "You are poisoned- waiting might be a bad idea.";
       retval["input"] = "&gt;";
       retval["fin"] = 2;
+      waithere = 0;
     }
-    gamestate.setMode("anykey");
-    targetCursor.command = 'w';
-    retval['input'] = "Wait - how many hours (1-9)? ";
-    retval["fin"] = 2;
+    let tile = PC.getHomeMap().getTile(PC.getx(),PC.gety());
+    if ((tile.getTerrain().getName() === "Ocean") || (tile.getTerrain().getName() === "Water") || (tile.getTerrain().getName() === "Shallows") || tile.isHostileTo(PC)) {
+      retval["txt"] = "This is not the best place to wait around.";
+      retval["input"] = "&gt;";
+      retval["fin"] = 2;
+      waithere = 0;
+    }
+    if (waithere) {
+      gamestate.setMode("anykey");
+      targetCursor.command = 'w';
+      retval['input'] = "Wait - how many hours (1-9)? ";
+      retval["fin"] = 2;
+    }
 	}
 	else if (code === 88) { // x
 		// eXit - not used
@@ -1967,10 +1978,10 @@ function PerformWait(code) {
   retval["txt"] = "Waiting for " + duration + " hours.";
   if (duration === 1) { retval["txt"] = "Waiting for 1 hour."; }
   duration = duration * 12;
-  PC.setWaiting(DUTime.getGameClock() + duration);
   FadeOut();
   if (anyhostiles === -1) {
     PC.moveAfterWaiting = {x : PC.getx(), y: PC.gety()};
+    PC.setWaiting(DUTime.getGameClock() + duration);
     PC.getHomeMap().moveThing(0,0,PC);
   }
 
