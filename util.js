@@ -544,7 +544,11 @@ function GetCombatMap(atk,def) {
   if (!atk_terrain) { atk_terrain = "Grass"; }
   let def_terrain = def_tile.terrain.getCombatMap();
   if (!def_terrain) { def_terrain = "Grass"; }
-  
+  if (def.getHomeMap().getTile(def.getx(),def.gety()).getTopFeature()) { 
+    if (def.getHomeMap().getTile(def.getx(),def.gety()).getTopFeature().bridge) {
+      def_terrain = "Bridge";
+    }
+  }
   let rand = Math.floor((Math.random()*2)+1); 
   
   if ((atk_terrain === "Water") && (def_terrain === "Water")) {
@@ -610,8 +614,9 @@ function CheckMapForHostiles(who) {
   let arehostiles = -1;
   for (let i=0;i<npcs.length;i++) {
     if (npcs[i].getAttitude() === "hostile") { 
-      let tmprad =  GetManhattenDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety());  
-      if (tmprad < arehostiles) { arehostiles = tmprad; }
+      let tmprad =  GetSquareDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety());  
+      if (arehostiles === -1) { arehostiles = tmprad; }
+      else if (tmprad < arehostiles) { arehostiles = tmprad; }
     }
   }
 
