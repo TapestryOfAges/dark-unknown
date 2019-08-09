@@ -4,7 +4,6 @@
 let ais = {};
 
 ais.seekPC = function(who,radius) {
-  let retval = {};
   DebugWrite("ai", "Seeking PC...<br />");
   let whomap = who.getHomeMap();
   if (whomap === PC.getHomeMap()) {
