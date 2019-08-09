@@ -820,6 +820,166 @@ mappages["combatCoast2"].check_escape = function(mapref) {
   maps_check_escape(mapref);
 }
 
+mappages["combatBridge1"] = {};
+mappages["combatBridge1"].terrain = [];
+ mappages["combatBridge1"].terrain[0] = '__ __ .. .. .. .. .. .. .. .. .. __ __';
+ mappages["combatBridge1"].terrain[1] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge1"].terrain[2] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge1"].terrain[3] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge1"].terrain[4] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge1"].terrain[5] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge1"].terrain[6] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge1"].terrain[7] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge1"].terrain[8] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge1"].terrain[9] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+mappages["combatBridge1"].terrain[10] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+mappages["combatBridge1"].terrain[11] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+mappages["combatBridge1"].terrain[12] = '-- -- .. .. .. .. .. .. .. .. .. -- --';
+
+mappages["combatBridge1"].features = [];
+mappages["combatBridge1"].features[0] = {name : 'WBridgeNS', x : 2, y : 1};
+mappages["combatBridge1"].features[1] = {name : 'WBridgeNS', x : 2, y : 2};
+mappages["combatBridge1"].features[2] = {name : 'WBridgeNS', x : 2, y : 3};
+mappages["combatBridge1"].features[3] = {name : 'WBridgeNS', x : 2, y : 4};
+mappages["combatBridge1"].features[4] = {name : 'WBridgeNS', x : 2, y : 5};
+mappages["combatBridge1"].features[5] = {name : 'WBridgeNS', x : 2, y : 6};
+mappages["combatBridge1"].features[6] = {name : 'WBridgeNS', x : 2, y : 7};
+mappages["combatBridge1"].features[7] = {name : 'WBridgeNS', x : 2, y : 8};
+mappages["combatBridge1"].features[8] = {name : 'WBridgeNS', x : 2, y : 9};
+mappages["combatBridge1"].features[9] = {name : 'WBridgeNS', x : 2, y : 10};
+mappages["combatBridge1"].features[10] = {name : 'WBridgeNS', x : 2, y : 11};
+mappages["combatBridge1"].features[11] = {name : 'EBridgeNS', x : 10, y : 1};
+mappages["combatBridge1"].features[12] = {name : 'EBridgeNS', x : 10, y : 2};
+mappages["combatBridge1"].features[13] = {name : 'EBridgeNS', x : 10, y : 3};
+mappages["combatBridge1"].features[14] = {name : 'EBridgeNS', x : 10, y : 4};
+mappages["combatBridge1"].features[15] = {name : 'EBridgeNS', x : 10, y : 5};
+mappages["combatBridge1"].features[16] = {name : 'EBridgeNS', x : 10, y : 6};
+mappages["combatBridge1"].features[17] = {name : 'EBridgeNS', x : 10, y : 7};
+mappages["combatBridge1"].features[18] = {name : 'EBridgeNS', x : 10, y : 8};
+mappages["combatBridge1"].features[19] = {name : 'EBridgeNS', x : 10, y : 9};
+mappages["combatBridge1"].features[20] = {name : 'EBridgeNS', x : 10, y : 10};
+mappages["combatBridge1"].features[21] = {name : 'EBridgeNS', x : 10, y : 11};
+
+
+mappages["combatBridge1"].npcs = [];
+
+mappages["combatBridge1"].desc = "Combat";
+mappages["combatBridge1"].longdesc = '';
+mappages["combatBridge1"].music = 'Combat';
+mappages["combatBridge1"].savename = `Combat`;
+mappages["combatBridge1"].exitmap = '';
+mappages["combatBridge1"].exitx = '65';
+mappages["combatBridge1"].exity = '70';
+mappages["combatBridge1"].wraps = 'None';
+mappages["combatBridge1"].enterx = '6';
+mappages["combatBridge1"].entery = '9';
+mappages["combatBridge1"].seeBelow = '';
+mappages["combatBridge1"].lightLevel = 'bright';
+mappages["combatBridge1"].alwaysRemember = '0';
+mappages["combatBridge1"].scale = '1';
+mappages["combatBridge1"].underground = '0';
+mappages["combatBridge1"].undergroundDesc = '';
+mappages["combatBridge1"].enterscript = 'set_exits';
+mappages["combatBridge1"].entertestscript = '';
+mappages["combatBridge1"].exitscript = '';
+mappages["combatBridge1"].exittestscript = 'check_escape';
+mappages["combatBridge1"].returnmap = '';
+mappages["combatBridge1"].returnx = 'NaN';
+mappages["combatBridge1"].returny = 'NaN';
+mappages["combatBridge1"].returninfused = '0';
+mappages["combatBridge1"].linkedMaps = [""];
+mappages["combatBridge1"].editorLabels = '{}';
+
+// manually added
+
+mappages["combatBridge1"].set_exits = function(mapref) {
+  maps_set_exits(mapref);
+}
+
+mappages["combatBridge1"].check_escape = function(mapref) {
+  maps_check_escape(mapref);
+}
+
+ 
+mappages["combatBridge2"] = {};
+mappages["combatBridge2"].terrain = [];
+ mappages["combatBridge2"].terrain[0] = '__ __ .. .. .. .. .. .. .. .. .. __ __';
+ mappages["combatBridge2"].terrain[1] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge2"].terrain[2] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge2"].terrain[3] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge2"].terrain[4] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge2"].terrain[5] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge2"].terrain[6] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge2"].terrain[7] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge2"].terrain[8] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+ mappages["combatBridge2"].terrain[9] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+mappages["combatBridge2"].terrain[10] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+mappages["combatBridge2"].terrain[11] = 'uu uu uu !! !! !! !! !! !! !! uu uu uu';
+mappages["combatBridge2"].terrain[12] = '-- -- .. .. .. .. .. .. .. .. .. -- --';
+
+mappages["combatBridge2"].features = [];
+mappages["combatBridge2"].features[0] = {name : 'WBridgeNS', x : 2, y : 1};
+mappages["combatBridge2"].features[1] = {name : 'WBridgeNS', x : 2, y : 2};
+mappages["combatBridge2"].features[2] = {name : 'WBridgeNS', x : 2, y : 3};
+mappages["combatBridge2"].features[3] = {name : 'WBridgeNS', x : 2, y : 4};
+mappages["combatBridge2"].features[4] = {name : 'WBridgeNS', x : 2, y : 5};
+mappages["combatBridge2"].features[5] = {name : 'WBridgeNS', x : 2, y : 6};
+mappages["combatBridge2"].features[6] = {name : 'WBridgeNS', x : 2, y : 7};
+mappages["combatBridge2"].features[7] = {name : 'WBridgeNS', x : 2, y : 8};
+mappages["combatBridge2"].features[8] = {name : 'WBridgeNS', x : 2, y : 9};
+mappages["combatBridge2"].features[9] = {name : 'WBridgeNS', x : 2, y : 10};
+mappages["combatBridge2"].features[10] = {name : 'WBridgeNS', x : 2, y : 11};
+mappages["combatBridge2"].features[11] = {name : 'EBridgeNS', x : 10, y : 1};
+mappages["combatBridge2"].features[12] = {name : 'EBridgeNS', x : 10, y : 2};
+mappages["combatBridge2"].features[13] = {name : 'EBridgeNS', x : 10, y : 3};
+mappages["combatBridge2"].features[14] = {name : 'EBridgeNS', x : 10, y : 4};
+mappages["combatBridge2"].features[15] = {name : 'EBridgeNS', x : 10, y : 5};
+mappages["combatBridge2"].features[16] = {name : 'EBridgeNS', x : 10, y : 6};
+mappages["combatBridge2"].features[17] = {name : 'EBridgeNS', x : 10, y : 7};
+mappages["combatBridge2"].features[18] = {name : 'EBridgeNS', x : 10, y : 8};
+mappages["combatBridge2"].features[19] = {name : 'EBridgeNS', x : 10, y : 9};
+mappages["combatBridge2"].features[20] = {name : 'EBridgeNS', x : 10, y : 10};
+mappages["combatBridge2"].features[21] = {name : 'EBridgeNS', x : 10, y : 11};
+
+
+mappages["combatBridge2"].npcs = [];
+
+mappages["combatBridge2"].desc = "Combat";
+mappages["combatBridge2"].longdesc = '';
+mappages["combatBridge2"].music = 'Combat';
+mappages["combatBridge2"].savename = `Combat`;
+mappages["combatBridge2"].exitmap = '';
+mappages["combatBridge2"].exitx = '65';
+mappages["combatBridge2"].exity = '70';
+mappages["combatBridge2"].wraps = 'None';
+mappages["combatBridge2"].enterx = '6';
+mappages["combatBridge2"].entery = '9';
+mappages["combatBridge2"].seeBelow = '';
+mappages["combatBridge2"].lightLevel = 'bright';
+mappages["combatBridge2"].alwaysRemember = '0';
+mappages["combatBridge2"].scale = '1';
+mappages["combatBridge2"].underground = '0';
+mappages["combatBridge2"].undergroundDesc = '';
+mappages["combatBridge2"].enterscript = 'set_exits';
+mappages["combatBridge2"].entertestscript = '';
+mappages["combatBridge2"].exitscript = '';
+mappages["combatBridge2"].exittestscript = 'check_escape';
+mappages["combatBridge2"].returnmap = '';
+mappages["combatBridge2"].returnx = 'NaN';
+mappages["combatBridge2"].returny = 'NaN';
+mappages["combatBridge2"].returninfused = '0';
+mappages["combatBridge2"].linkedMaps = [""];
+mappages["combatBridge2"].editorLabels = '{}';
+
+// manually added
+
+mappages["combatBridge2"].set_exits = function(mapref) {
+  maps_set_exits(mapref);
+}
+
+mappages["combatBridge2"].check_escape = function(mapref) {
+  maps_check_escape(mapref);
+}
 
 // for all combat maps
 
