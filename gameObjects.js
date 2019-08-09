@@ -1551,15 +1551,21 @@ ShadowShallowsTile.prototype.idle = function(walker) {
 }
 
 function InWater(who) {
-  if (MOVE_LEVITATE & who.getMovetype()) {
+  if (who.getWaiting()) { 
+    // entity is waiting and probably had been moved to a water tile 
+    // because it was 0x0
+    return "";
+  }
+  let whomov = who.getMovetype();
+  if (MOVE_LEVITATE & whomov) {
     // entity is levitating and so won't drown
     return "";
   }  
-  if (MOVE_ETHEREAL & who.getMovetype()) {
+  if (MOVE_ETHEREAL & whomov) {
     // entity is ethereal and can't drown
     return "";
   }
-  if (MOVE_FLY & who.getMovetype()) {
+  if (MOVE_FLY & whomov) {
     // entity is flying and can't drown
     return "";
   }
@@ -14923,9 +14929,18 @@ NPCObject.prototype.getNextStep = function() {
   return [];
 }
 
+NPCObject.prototype.setWaiting = function(newwait) {
+  this.waiting = newwait;
+}
+
+NPCObject.prototype.getWaiting = function() {
+  return this.waiting;
+}
+
 function NPCGroupObject() {
   this.group = [];
   this.attackword = "attack";
+  this.attitude = "hostile";
 }
 NPCGroupObject.prototype = new NPCObject();
 
@@ -15027,6 +15042,20 @@ PCObject.prototype.activate = function() {
   return 1;
 }
 
+PCObject.prototype.getx = function(evenwait) {
+  if (!evenwait && this.getWaiting()) {
+    return this.moveAfterWaiting.x
+  } 
+	return parseInt(this.x,10);
+}
+
+PCObject.prototype.gety = function(evenwait) {
+  if (!evenwait && this.getWaiting()) {
+    return this.moveAfterWaiting.y
+  } 
+  return parseInt(this.y,10);
+}
+
 PCObject.prototype.myTurn = function() {
   if (ShouldShowFrames()) { PC.showFrames = 1; }
   else {delete PC.showFrames}
@@ -15088,9 +15117,9 @@ PCObject.prototype.myTurn = function() {
   } else if (waiting && (PC.getx() !== 0) && (PC.gety() !== 0)) {  // waiting somewhere that can have hostiles
     let closemonsters = CheckMapForHostiles(PC);
     if ((closemonsters >= 0) && (closemonsters <= 4)) {
+      maintext.addText("You become alert due to nearby enemies.");
       waiting = 0;
       EndWaiting(this,0);
-      maintext.addText("You become alert due to nearby enemies.");
       // consider checking LOS so you aren't alerted by stuff behind walls?
     }
   }
@@ -15112,14 +15141,6 @@ PCObject.prototype.myTurn = function() {
   	}
 	  this.endTurn(0);
 	}
-}
-
-PCObject.prototype.setWaiting = function(newwait) {
-  this.waiting = newwait;
-}
-
-PCObject.prototype.getWaiting = function() {
-  return this.waiting;
 }
 
 PCObject.prototype.getPCName = function() {
