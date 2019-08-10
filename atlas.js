@@ -542,6 +542,14 @@ Acre.prototype.getInitDelay = function(mob) {
 	return 1;
 }
 
+Acre.prototype.isBridge = function() {
+  let fea = this.getFeatures();
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].bridge) { return 1; }
+  }
+  return 0;
+}
+
 // if nonpcs is true, this will return false if there is an NPC blocking movement. If it's false/missing, this ignores NPCs.
 Acre.prototype.canMoveHere = function(movetype, nonpcs) {
 	let terrain = this.getTerrain();

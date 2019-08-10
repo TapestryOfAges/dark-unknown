@@ -545,7 +545,7 @@ function GetCombatMap(atk,def) {
   let def_terrain = def_tile.terrain.getCombatMap();
   if (!def_terrain) { def_terrain = "Grass"; }
   if (def.getHomeMap().getTile(def.getx(),def.gety()).getTopFeature()) { 
-    if (def.getHomeMap().getTile(def.getx(),def.gety()).getTopFeature().bridge) {
+    if (def.getHomeMap().getTile(def.getx(),def.gety()).isBridge()) {
       def_terrain = "Bridge";
     }
   }

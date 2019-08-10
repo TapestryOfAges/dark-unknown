@@ -435,7 +435,7 @@ function PerformCommand(code, ctrl) {
       waithere = 0;
     }
     let tile = PC.getHomeMap().getTile(PC.getx(),PC.gety());
-    if ((tile.getTerrain().getName() === "Ocean") || (tile.getTerrain().getName() === "Water") || (tile.getTerrain().getName() === "Shallows") || tile.isHostileTo(PC)) {
+    if ((tile.getTerrain().getName() === "Ocean") || ((tile.getTerrain().getName() === "Water") && !tile.isBridge()) || ((tile.getTerrain().getName() === "Shallows") && !tile.isBridge()) || tile.isHostileTo(PC)) {
       retval["txt"] = "This is not the best place to wait around.";
       retval["input"] = "&gt;";
       retval["fin"] = 2;
