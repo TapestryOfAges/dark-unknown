@@ -2313,6 +2313,11 @@ tileFactory.prototype.makeSheafOfNotesTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeFallOfTargrionTile = function() {
+  let newTile = new FallOfTargrionTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBookOfLoreTile = function() {
   let newTile = new BookOfLoreTile();
   return newTile;
@@ -3355,6 +3360,11 @@ tileFactory.prototype.makeEarthElementalNPCTile = function() {
 
 tileFactory.prototype.makeFireElementalNPCTile = function() {
   let newTile = new FireElementalNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFireSnakeNPCTile = function() {
+  let newTile = new FireSnakeNPCTile();
   return newTile;
 }
 
