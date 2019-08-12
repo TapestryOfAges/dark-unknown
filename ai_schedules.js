@@ -9,7 +9,10 @@ ais.scheduled = function(who) {
   let mymap = who.getHomeMap();
   if (!who.flags.sleep && mymap.cityfight) {
     let closest = FindNearestNPC(who, "enemy");
-    
+    if (closest && (closest < 10)) {  
+      let fightai = who.getPCThreatAI();
+      return ais[fightai](who);
+    }
   }
   delete who.flags.sleep;
   // will be re-set in WaitHere if still asleep
