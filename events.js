@@ -129,10 +129,15 @@ EventFunctions["BDragon"] = function(ev) {
     if (IsVisibleOnScreen(prince)) {
       maintext.delayedAddText("There is a heartbeat where nothing moves and the air stills, and then Lance's eyes roll back in his head and he collapses unconscious.");
       maintext.delayedAddText('The dragon looks at him, and then at you. "How disappointing."');
-      maintext.delayedAddText('And then it roars and lunges at you!');
+      maintext.delayedAddText('Then, it roars and lunges at you!');
 
       prince.realgraphic = prince.getGraphicArray();
       prince.setGraphicArray("master_spritesheet.png","","-64","-800");
+
+      let fieldeffect = localFactory.createTile("Sleep");
+    
+      fieldeffect.setExpiresTime(-1);
+      prince.addSpellEffect(fieldeffect);
    
       Close_BDC_Gate(bdmap);
 
