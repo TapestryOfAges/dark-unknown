@@ -280,7 +280,7 @@ function TownsfolkVillagerNPCTile() {
   this.forgetAt = 0;
   this.withdraw = 0;
   this.graphic = '310.gif';
-  this.altgraphic = ['310.2.gif',];
+  this.altgraphic = ['310.2.gif','civ_blue.2.gif','civ_blue.gif','civ_green.2.gif','civ_green.gif','civ_red.2.gif','civ_red.gif',];
   this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'ClothArmor';
@@ -2028,6 +2028,38 @@ function FireElementalNPCTile() {
   this.meleeAttackSound = 'sfx_fire_miss';
 }
 FireElementalNPCTile.prototype = new NPCObject();
+
+
+// Animal
+
+function FireSnakeNPCTile() {
+  this.name = 'FireSnakeNPC';
+  this.level = 4;
+  this.addhp = 0;
+  this.str = 10;
+  this.dex = 10;
+  this.int = 3;
+  this.alignment = 'Neutral';
+  this.attitude = 'hostile';
+  this.peaceAI = 'wander-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.graphic = 'firesnake.gif';
+  this.meleeAttackAs = 'Mace';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_WALK;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'a';
+  this.desc = "fire serpent";
+  this.meleeChance = 75;
+  this.resists = { fire:100 };
+  this.special = 'firebreath';
+  this.meleeHitSound = 'sfx_animal_hit';
+  this.meleeAttackSound = 'sfx_animal_miss';
+}
+FireSnakeNPCTile.prototype = new NPCObject();
 
 
 // Monster
