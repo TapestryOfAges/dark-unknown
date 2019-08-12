@@ -43,10 +43,11 @@ ais.combat = function(who) {
   
   DebugWrite("ai", "<span style='font-weight:bold'>In Combat AI...</span><br />");
  
+  let nearest = FindNearestNPC(who, "enemy");
   if (whomap !== PC.getHomeMap()) {
-    if (!FindNearestNPC(who,"enemy")) {
+    if (!nearest) {
     // what happens if the PC is on another map?
-    DebugWrite("ai", "On a different map, waiting...<br />");
+      DebugWrite("ai", "On a different map, waiting...<br />");
       who.wait++;
       if (who.wait > 30) {
         DebugWrite("ai", "Waited long enough, dropping aggro.<br />");
@@ -58,17 +59,17 @@ ais.combat = function(who) {
   
   // check to see if we should cease to aggro
   // need no one in your Band be within "forgetAt" radius
-  if (who.getForgetAt() && GetDistance(whox,whoy,PC.getx(),PC.gety()) > who.getForgetAt()) {
+  if (who.getForgetAt() && (nearest > who.getForgetAt())) {
     let npcs = whomap.npcs.getAll();
     let anysee = 0;
     for (let i=0;i<npcs.length;i++) {
-      if (!anysee && (who.getNPCBand() === npcs[i].getNPCBand()) && (GetDistance(npcs[i].getx(),npcs[i].gety(),PC.getx(),PC.gety()) < npcs[i].getForgetAt())) {
+      if (!anysee && (who.getNPCBand() === npcs[i].getNPCBand()) && (FindNearestEnemy(npcs[i],"enemy") < npcs[i].getForgetAt())) {
         anysee = 1;
       }
       if (!npcs[i].getForgetAt()) { anysee = 1; }
     }
     if (!anysee) {
-      DebugWrite("ai", "Distant, and no one in the band can see- dropping aggro.<br />");
+      DebugWrite("ai", "Distant, and no one in the band can see enemies- dropping aggro.<br />");
       who.setAggro(0);
       return retval;
     }
@@ -82,7 +83,6 @@ ais.combat = function(who) {
     who.specials.canbebrave = 1; // things that start out as cowards can't decide to stop being cowards
   }
   
-  let nearest = FindNearestNPC(who, "enemy");
   if (who.specials.coward || ((Dice.roll("1d100") < who.withdraw) && IsAdjacent(who,nearest))) {
     if (who.specials.coward) {
       // run away! run away!
@@ -153,13 +153,13 @@ ais.combat = function(who) {
       return retval; 
     }
     // didn't melee anything, time to try to find something to approach
-    let approach = FindNearestNPC(who, "enemy");
-    if (!approach) {
+
+    if (!nearest) {
       alert("How do I (" + who.getName() + " (" + who.getx() + "," + who.gety() + ")) not have a nearest enemy while still aggro?");
       return retval;
     }
-    DebugWrite("ai", "Nearest enemy is: " + approach.getName() + " " + approach.getSerial() + " .<br />");
-    let others = FindNearby("npcs",approach.getHomeMap(),1,"square",approach.getx(),approach.gety());
+    DebugWrite("ai", "Nearest enemy is: " + nearest.getName() + " " + nearest.getSerial() + " .<br />");
+    let others = FindNearby("npcs",nearest.getHomeMap(),1,"square",nearest.getx(),nearest.gety());
     let count = 0;
     for (let i=0;i<others.length;i++){
       if (others[i].getAttitude() === who.getAttitude()) { count++; }
@@ -170,27 +170,27 @@ ais.combat = function(who) {
     if (count >= 3) {
       // there's enough people beating on the closest, head towards someone else if there is one
       DebugWrite("ai", "That's plenty- looking for another target.<br />");
-      newapproach = FindNearestNPC(who,"enemy",[approach]);
+      newapproach = FindNearestNPC(who,"enemy",[nearest]);
       if (newapproach) { 
         DebugWrite("ai", "Found another target: " + newapproach.getName() + " " + newapproach.getSerial() + " .<br />");
-        oldapproach = approach;
-        approach = newapproach; 
+        oldapproach = nearest;
+        nearest = newapproach; 
       } else {
         DebugWrite("ai", "No other target found- sticking with current target.<br />");
       }
     }
-    if (approach) {
+    if (nearest) {
       let movetype = who.getMovetype();
       if (who.specials.open_door) { movetype = MOVE_WALK_DOOR; }  // note, currently this is a problem if it can fly and open doors
-      let path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),movetype);
+      let path = whomap.getPath(who.getx(), who.gety(), nearest.getx(), nearest.gety(),movetype);
       if (!path.length) {
         if (oldapproach) {
-          approach = oldapproach;
-          path = whomap.getPath(who.getx(), who.gety(), approach.getx(), approach.gety(),movetype);
+          nearest = oldapproach;
+          path = whomap.getPath(who.getx(), who.gety(), nearest.getx(), nearest.gety(),movetype);
         }
       }
       if (path.length) { 
-        let moved = FindCombatPath(who,approach,path);
+        let moved = FindCombatPath(who,nearest,path);
       } else {
         // no path found to target
         // WORK HERE- improve this behavior, should not randomwalk away from PC
@@ -205,6 +205,7 @@ ais.combat = function(who) {
     if (who.spellsknown) { nonmeleeoptions.push("ai_cast"); }
     if (who.specials.sing) { nonmeleeoptions.push("ai_sing"); }
     // there will be more!
+    // eventually make this choice smarter
     
     let performed_action = 0;
     let num_attempts = 0;
