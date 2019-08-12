@@ -10450,6 +10450,20 @@ function SheafOfNotesTile() {
 }
 SheafOfNotesTile.prototype = new BookItemObject();
 
+function FallOfTargrionTile() {
+  this.name = "FallOfTargrion";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1216";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Fall of Targrion";
+  this.prefix = "The";
+  this.contents = `You open to a random page:%%<span class='conv'>Targrion blazed, and fields became deserts and mountains cracked. "You challenge the supremacy of the sun? Do you not see that my fire is unchallenged, my light gives life?"</span>%%<span class='conv'>But Luhgon shook his fire-crested head. "The sun will gaze down in its majesty for all eternity, and I do not dispute the truth of your words. I only dispute your right to say them. Your mantle I will take, and the greatest light of the sky shall be mine to raise and draw down."</span>%%<span class='conv'>And Targrion was uncertain, for the coming of this upstart was foretold; but so, too, was their battle. "It may be destined that I fall," roared Targrion, "but I shall strive to stand athwart of this destiny. Come, and burn!"</span>`;
+  this.longdesc = "The Fall of Targrion. A story of old myth. Sought by Olivia.";
+}
+FallOfTargrionTile.prototype = new BookItemObject();
+
 function BookOfLoreTile() {
   this.name = "BookOfLore";
   this.graphic = "master_spritesheet.png";
@@ -13232,7 +13246,7 @@ function NPCObject() {
 	this.alignment = "good";	
 	this.attitude = "friendly";
 	this.peaceAI = "townsfolk";
-	this.PCThreatAI = "runaway";
+	this.PCThreatAI = "combat";
 	this.forgetAt = 0;
 	this.graphic = "301.gif";
   this.gender = "neuter";
@@ -13557,10 +13571,6 @@ NPCObject.prototype.processDeath = function(droploot){
     if (gamestate.getTurn() === PC) {
       gamestate.setMode("null");
     }
-    PC.dead = 1;
-    PC.deaduntil = GetGameClockByClockTime("9:00");
-
-    maintext.delayedAddText("You have died!");
     let newmap = new GameMap();
     if (maps.getMap("landsbeyond")) {
       newmap = maps.getMap("landsbeyond");
@@ -13568,8 +13578,6 @@ NPCObject.prototype.processDeath = function(droploot){
     } else {
       newmap = maps.addMap("landsbeyond");
     }
-    maintext.setInputLine("&gt;");
-    maintext.drawTextFrame(); 
     let spellobjs = this.getSpellEffects();
     if (spellobjs.length) {
       for (let i=0; i<spellobjs.length; i++ ) {
@@ -13580,6 +13588,49 @@ NPCObject.prototype.processDeath = function(droploot){
     }
     MoveBetweenMaps(this,this.getHomeMap(),newmap, 7, 7, 1);
     FadeOut(1);
+
+    if (this.getHomeMap().cityfight) {
+      if (this.getHomeMap().getName().includes("blackdragon")) {
+        PC.dead = 1;
+        PC.deaduntil = GetGameClockByClockTime(ModTime(GetUsableClockTime(),"1:00"));
+        PC.bdc = 1;
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame(); 
+        setTimeout(function() {
+          maintext.addText("You cease to feel as consciousness flees from you.");
+          setTimeout(function() {
+            maintext.addText("When you come to, you are on the floor, and the battle has ended.");
+            setTimeout(function() {
+              if (maps.getMap("blackdragon")) {
+                returnmap = maps.getMap("blackdragon");
+                // though again, this shouldn't be in memory
+              } else {
+                returnmap = maps.addMap("blackdragon");
+              }
+              AdjustStartingLocations(returnmap);
+              let taran = FindNPCByName("Taran",returnmap);
+              returnmap.moveThing(36,15,taran);
+              MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,37,15);
+              DrawMainFrame("draw",returnmap,37,15);
+              setTimeout(function() {
+                maintext.addText(`Taran kneels beside you. "${PC.getPCName()}, I'm glad you're ok. The dragon was struck down, and its body just... disappeared. But your brother hasn't woken up. Gather your strength, and get up when you feel ready."`);
+                setTimeout(function() {
+                  maintext.addText("You close your eyes for a moment, and an unknown amount of time passes before you are again able to stand.");
+                  delete PC.dead;
+                }, 1700);
+              },1700);
+            },1700);
+          }, 1700);
+        },1500);        
+      }
+      return;
+    }
+    PC.dead = 1;
+    PC.deaduntil = GetGameClockByClockTime("9:00");
+
+    maintext.delayedAddText("You have died!");
+    maintext.setInputLine("&gt;");
+    maintext.drawTextFrame(); 
     setTimeout(function() {
       maintext.addText("You find yourself floating bodiless in the void.");
       DrawMainFrame("draw", newmap, 7,7);
@@ -14156,6 +14207,10 @@ NPCObject.prototype.setTarget = function(newtarg) {
 
 NPCObject.prototype.activate = function(timeoverride) {
   if (gamestate.getMode() !== "loadgame") {  
+    if (this.getPeaceAI() === "RunAway") { 
+      this.specials.coward = 1;
+      this.setPeaceAI("combat");
+    }
     this.equipment = {};
     this.equipment.armor = "";
     this.equipment.weapon = "";
@@ -15088,17 +15143,23 @@ PCObject.prototype.myTurn = function() {
       }
       delete PC.deaduntil;
       let returnmap = new GameMap();
-      if (maps.getMap("olympus1")) {
-        returnmap = maps.getMap("olympus1");
-        // though again, this shouldn't be in memory
+      if (PC.bdc) {
+
+        PC.setHP(1);
+        PC.setMana(PC.getMaxMana());
       } else {
-        returnmap = maps.addMap("olympus1");
+        if (maps.getMap("olympus1")) {
+          returnmap = maps.getMap("olympus1");
+          // though again, this shouldn't be in memory
+        } else {
+          returnmap = maps.addMap("olympus1");
+        }
+        AdjustStartingLocations(returnmap);
+        MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,49,22);
+        DrawMainFrame("draw",returnmap,49,22);
+        PC.setHP(PC.getMaxHP());
+        PC.setMana(PC.getMaxMana());
       }
-      AdjustStartingLocations(returnmap);
-      MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,49,22);
-      DrawMainFrame("draw",returnmap,49,22);
-      PC.setHP(PC.getMaxHP());
-      PC.setMana(PC.getMaxMana());
       DrawCharFrame();
       DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
       SetSky();
