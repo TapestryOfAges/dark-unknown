@@ -380,11 +380,11 @@ mappages["onyx2"].features[60] = {name : 'TorchEast', x : 23, y : 32};
 
 
 mappages["onyx2"].npcs = [];
-mappages["onyx2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 11, NPCName: 'William', PeaceAI: 'scheduled', Schedule: 'william', Conversation: 'william', Gender: 'male', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif', skintone: '1'};
-mappages["onyx2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 8, y : 5, NPCName: 'Rowan', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'rowan', Conversation: 'rowan', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
+mappages["onyx2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 11, NPCName: 'William', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'william', Conversation: 'william', Gender: 'male', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif', skintone: '1'};
+mappages["onyx2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 8, y : 5, NPCName: 'Rowan', Desc: 'innkeeper', PeaceAI: 'scheduled', Schedule: 'rowan', Conversation: 'rowan', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: '2'};
 mappages["onyx2"].npcs[2] = {name : 'AdventurerVillagerNPC', x : 15, y : 11, NPCName: 'Carol', PeaceAI: 'scheduled', Schedule: 'carol', Conversation: 'carol', Gender: 'female', NPCBand: '0', skintone: '1'};
 mappages["onyx2"].npcs[3] = {name : 'RangerVillagerNPC', x : 22, y : 33, NPCName: 'Dawne', PeaceAI: 'scheduled', Schedule: 'dawne', Conversation: 'dawne', Gender: 'female', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif', skintone: '1'};
-mappages["onyx2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 10, y : 30, NPCName: 'Gretchen', PeaceAI: 'scheduled', Schedule: 'gretchen', Conversation: 'gretchen', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
+mappages["onyx2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 10, y : 30, NPCName: 'Gretchen', PeaceAI: 'scheduled', Schedule: 'gretchen', Conversation: 'gretchen', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: '1'};
 mappages["onyx2"].npcs[5] = {name : 'TinkerVillagerNPC', x : 10, y : 33, NPCName: 'Heather', PeaceAI: 'scheduled', Schedule: 'heather', Conversation: 'heather', Gender: 'female', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: '2'};
 
 mappages["onyx2"].desc = "The Towne of Onyx";

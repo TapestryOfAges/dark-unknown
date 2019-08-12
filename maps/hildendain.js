@@ -373,13 +373,13 @@ mappages["hildendain"].features[301] = {name : 'TorchWest', x : 23, y : 42};
 
 
 mappages["hildendain"].npcs = [];
-mappages["hildendain"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 13, y : 33, NPCName: 'Aaron', PeaceAI: 'scheduled', Schedule: 'aaron', Conversation: 'aaron', Gender: 'male', Merch: 'aaron', NPCBand: '0', skintone: '1'};
+mappages["hildendain"].npcs[0] = {name : 'TownsfolkVillagerNPC', x : 13, y : 33, NPCName: 'Aaron', PeaceAI: 'scheduled', Schedule: 'aaron', Conversation: 'aaron', Gender: 'male', Merch: 'aaron', NPCBand: '0', OverrideGraphic: 'civ_blue.gif', skintone: '1'};
 mappages["hildendain"].npcs[1] = {name : 'AdventurerVillagerNPC', x : 9, y : 33, NPCName: 'Erin', PeaceAI: 'scheduled', Schedule: 'erin', Conversation: 'erin', Gender: 'female', Merch: 'erin', NPCBand: '0', skintone: '1'};
 mappages["hildendain"].npcs[2] = {name : 'TownsfolkVillagerNPC', x : 34, y : 50, NPCName: 'Anna', PeaceAI: 'scheduled', Schedule: 'anna', Conversation: 'anna', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
 mappages["hildendain"].npcs[3] = {name : 'MageVillagerNPC', x : 43, y : 45, NPCName: 'Alexis', PeaceAI: 'scheduled', Schedule: 'alexis', Conversation: 'alexis', Gender: 'female', Merch: 'alexis', NPCBand: '0', OverrideGraphic: '303.gif', skintone: '1'};
 mappages["hildendain"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 26, y : 42, NPCName: 'Rhiannon', PeaceAI: 'scheduled', Schedule: 'rhiannon', Conversation: 'rhiannon', Gender: 'female', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
 mappages["hildendain"].npcs[5] = {name : 'FighterVillagerNPC', x : 5, y : 28, NPCName: 'David', PeaceAI: 'scheduled', Schedule: 'dave', Conversation: 'dave', Gender: 'male', NPCBand: '0', OverrideGraphic: '308.gif', skintone: '1'};
-mappages["hildendain"].npcs[6] = {name : 'TinkerVillagerNPC', x : 31, y : 45, NPCName: 'Kiba', PeaceAI: 'scheduled', Schedule: 'kiba', Conversation: 'kiba', Gender: 'female', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif', skintone: '1'};
+mappages["hildendain"].npcs[6] = {name : 'TinkerVillagerNPC', x : 31, y : 45, NPCName: 'Kiba', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'kiba', Conversation: 'kiba', Gender: 'female', NPCBand: '0', OverrideGraphic: 'tinker-offcolor.gif', skintone: '1'};
 mappages["hildendain"].npcs[7] = {name : 'RangerVillagerNPC', x : 32, y : 53, NPCName: 'Garrick', PeaceAI: 'scheduled', Schedule: 'garrick', Conversation: 'garrick', Gender: 'male', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif', skintone: '1'};
 mappages["hildendain"].npcs[8] = {name : 'TownGuardNPC', x : 30, y : 54, NPCName: 'Aoife', PeaceAI: 'scheduled', Schedule: 'aoife', Conversation: 'aoife', Gender: 'female', NPCBand: '0', skintone: '1'};
 mappages["hildendain"].npcs[9] = {name : 'TownGuardNPC', x : 44, y : 53, NPCName: 'Meredith', PeaceAI: 'scheduled', Schedule: 'meredith', Conversation: 'meredith', Gender: 'female', NPCBand: '0', skintone: '2'};
@@ -513,15 +513,17 @@ mappages["hildendain2"].features[27] = {name : 'DoubleBedTopFoot', x : 22, y : 5
 mappages["hildendain2"].features[28] = {name : 'DoubleBedBottomHead', x : 21, y : 57};
 mappages["hildendain2"].features[29] = {name : 'DoubleBedBottomFoot', x : 22, y : 57};
 
+
 mappages["hildendain2"].npcs = [];
-mappages["hildendain2"].npcs[0] = {name : 'PaladinVillagerNPC', x : 34, y : 28, NPCName: 'Sarah', Conversation: 'sarah', PeaceAI: 'scheduled', Schedule: 'sarah', Gender: 'female', NPCBand: '0', OverrideGraphic: 'paladin-offcolor.gif', skintone: '1'};
-mappages["hildendain2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 21, y : 55, NPCName: 'Evan', PeaceAI: 'scheduled', Schedule: 'evan', Schedule: 'evan', Conversation: 'evan', Gender: 'male', Merch: 'evan', NPCBand: '0', OverrideGraphic: '310.2.gif', skintone: '2'};
-mappages["hildendain2"].npcs[2] = {name : 'BardVillagerNPC', x : 23, y : 36, NPCName: 'Franklin', Conversation: 'franklin', PeaceAI: 'scheduled', Schedule: 'franklin', Gender: 'male', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
-mappages["hildendain2"].npcs[3] = {name : 'PaladinVillagerNPC', x : 23, y : 35, NPCName: 'Yelena', Schedule: 'yelena', PeaceAI: 'scheduled', Conversation: 'yelena', Gender: 'female', NPCBand: '0', OverrideGraphic: '307.gif', skintone: '1'};
+mappages["hildendain2"].npcs[0] = {name : 'PaladinVillagerNPC', x : 34, y : 28, NPCName: 'Sarah', PeaceAI: 'scheduled', Schedule: 'sarah', Conversation: 'sarah', Gender: 'female', NPCBand: '0', OverrideGraphic: 'paladin-offcolor.gif', skintone: '1'};
+mappages["hildendain2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 21, y : 55, NPCName: 'Evan', PeaceAI: 'scheduled', Schedule: 'evan', Conversation: 'evan', Gender: 'male', Merch: 'evan', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '2'};
+mappages["hildendain2"].npcs[2] = {name : 'BardVillagerNPC', x : 23, y : 36, NPCName: 'Franklin', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'franklin', Conversation: 'franklin', Gender: 'male', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
+mappages["hildendain2"].npcs[3] = {name : 'PaladinVillagerNPC', x : 23, y : 35, NPCName: 'Yelena', PeaceAI: 'scheduled', Schedule: 'yelena', Conversation: 'yelena', Gender: 'female', NPCBand: '0', OverrideGraphic: '307.gif', skintone: '1'};
 
 mappages["hildendain2"].desc = "The Towne of Hildendain";
+mappages["hildendain2"].longdesc = '';
 mappages["hildendain2"].music = 'Towne';
-mappages["hildendain2"].savename = 'Hildendain';
+mappages["hildendain2"].savename = `Hildendain`;
 mappages["hildendain2"].exitmap = 'darkunknown';
 mappages["hildendain2"].exitx = '52';
 mappages["hildendain2"].exity = '63';

@@ -234,7 +234,7 @@ mappages["blackdragon"].npcs[12] = {name : 'TownGuardNPC', x : 34, y : 20, NPCNa
 mappages["blackdragon"].npcs[13] = {name : 'TownGuardNPC', x : 33, y : 16, NPCName: 'Sissott', PeaceAI: 'scheduled', Schedule: 'sissott', Conversation: 'sissott', Gender: 'female', Bark: '0', NPCBand: '0', skintone: '2'};
 mappages["blackdragon"].npcs[14] = {name : 'TownGuardNPC', x : 24, y : 36, NPCName: 'Yuan', PeaceAI: 'scheduled', Schedule: 'yuan', Conversation: 'yuan', Gender: 'male', NPCBand: '0', skintone: '2'};
 mappages["blackdragon"].npcs[15] = {name : 'TownGuardNPC', x : 20, y : 36, NPCName: 'Joney', PeaceAI: 'scheduled', Schedule: 'joney', Conversation: 'joney', Gender: 'female', NPCBand: '0', skintone: '1'};
-mappages["blackdragon"].npcs[16] = {name : 'TownsfolkVillagerNPC', x : 16, y : 9, NPCName: 'Taran', Conversation: 'taran', ConversationFlag: 'taran', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
+mappages["blackdragon"].npcs[16] = {name : 'TownsfolkVillagerNPC', x : 16, y : 9, NPCName: 'Taran', Conversation: 'taran', ConversationFlag: 'taran', Gender: 'male', Bark: '0', NPCBand: '0', OverrideGraphic: 'civ_red.gif', skintone: '1'};
 mappages["blackdragon"].npcs[17] = {name : 'TownsfolkVillagerNPC', x : 36, y : 27, NPCName: 'Brad', Conversation: 'brad', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
 mappages["blackdragon"].npcs[18] = {name : 'FighterVillagerNPC', x : 33, y : 33, NPCName: 'Nadya', Conversation: 'nadya', Gender: 'female', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif', skintone: '2'};
 
@@ -453,7 +453,7 @@ mappages["blackdragon3"].terrain[44] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb s
 
 mappages["blackdragon3"].features = [];
 mappages["blackdragon3"].features[0] = {name : 'StairDown2', x : 25, y : 21, entermap : 'blackdragon2', enterx : 25, entery : 21};
-mappages["blackdragon3"].features[1] = {name : 'GrandfatherClock', x : 25, y : 20};
+mappages["blackdragon3"].features[1] = {name : 'BlackDragonLadderWall', x : 24, y : 20};
 mappages["blackdragon3"].features[2] = {name : 'BedHead', x : 25, y : 24};
 mappages["blackdragon3"].features[3] = {name : 'BedFoot', x : 26, y : 24};
 mappages["blackdragon3"].features[4] = {name : 'Mirror', x : 28, y : 20};
@@ -461,14 +461,15 @@ mappages["blackdragon3"].features[5] = {name : 'Dresser', x : 28, y : 24};
 mappages["blackdragon3"].features[6] = {name : 'LeftTable', x : 25, y : 22};
 mappages["blackdragon3"].features[7] = {name : 'RightTable', x : 26, y : 22};
 mappages["blackdragon3"].features[8] = {name : 'RightChair', x : 27, y : 22};
-mappages["blackdragon3"].features[1] = {name : 'BlackDragonLadderWall', x : 24, y : 20};
+
 
 mappages["blackdragon3"].npcs = [];
-mappages["blackdragon3"].npcs[0] = {name : 'MageVillagerNPC', x : 26, y : 20, NPCName: 'Justice', Conversation: 'justice', ConversationFlag: 'justice', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '303.gif', skintone: '1'};
+mappages["blackdragon3"].npcs[0] = {name : 'MageVillagerNPC', x : 26, y : 20, NPCName: 'Justice', PCThreatAI: 'RunAway', Conversation: 'justice', ConversationFlag: 'justice', Gender: 'female', Bark: '0', NPCBand: '0', OverrideGraphic: '303.gif', skintone: '1'};
 
 mappages["blackdragon3"].desc = "Black Dragon Castle";
+mappages["blackdragon3"].longdesc = '';
 mappages["blackdragon3"].music = 'Dark Towne';
-mappages["blackdragon3"].savename = 'B Drag Castle';
+mappages["blackdragon3"].savename = `B Drag Castle`;
 mappages["blackdragon3"].exitmap = 'darkunknown';
 mappages["blackdragon3"].exitx = '49';
 mappages["blackdragon3"].exity = '90';
