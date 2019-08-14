@@ -13616,7 +13616,11 @@ NPCObject.prototype.processDeath = function(droploot){
                 maintext.addText(`Taran kneels beside you. "${PC.getPCName()}, I'm glad you're ok. The dragon was struck down, and its body just... disappeared. But your brother hasn't woken up. Gather your strength, and get up when you feel ready."`);
                 setTimeout(function() {
                   maintext.addText("You close your eyes for a moment, and an unknown amount of time passes before you are again able to stand.");
-                  delete PC.dead;
+                  setTimeout(function() {
+                    maintext.addText("<span class='sysconv'>You have gained: 100 XP.</span>");
+                    PC.addxp(100);
+                    delete PC.dead;
+                  }, 1700);
                 }, 1700);
               },1700);
             },1700);
