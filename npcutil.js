@@ -67,7 +67,7 @@ NPCSpecialFuncs["courierFlee"] = function(who,how) {
 
 function TurnMapHostile(map) {
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
-  DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma") - 10); 
+  PC.diffKarma(-10); 
   let localnpcs = map.npcs.getAll();
   for (let idx=0;idx<localnpcs.length;idx++) {
     let val = localnpcs[idx];
