@@ -6387,7 +6387,8 @@ function SmallBoxTile() {
 	this.lootedid = "";
 	
 	this.container = [];
-	OpenContainer.call(this);
+  OpenContainer.call(this);
+  Lockable.call(this, ["master_spritesheet.png","","-64","-384"], ["master_spritesheet.png","","-64","-384"], ["master_spritesheet.png","","-64","-384"], 	"a",  "small box", "a", "locked small box", "a", "magically locked small box");
 }
 SmallBoxTile.prototype = new FeatureObject();
 
