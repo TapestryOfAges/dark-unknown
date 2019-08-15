@@ -683,7 +683,7 @@ function Breakable(brokengraphicarray, startsbroken) {
     //play sound effect
     DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
     if (this.karmamod && (who === PC)) { 
-      DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")+this.karmamod);
+      PC.diffKarma(this.karmamod);
     }
     let retval = {};
     retval["fin"] = 1;
@@ -816,7 +816,7 @@ function OpenContainer() {
     let retval = {}; 
     
     if (this.getKarmaPenalty() && (who === PC)) {
-      DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")-this.getKarmaPenalty);
+      PC.diffKarma(1-this.getKarmaPenalty);
     }
     
     if ((typeof this.getLocked === "function") && !fire) {
@@ -10667,7 +10667,7 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
   let retval = {fin:1};
   if (code === 89) {
     retval["txt"] = "You break the seal and empty the coin into your own pouches. You gain 600 gold.";
-    DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")-1);
+    PC.diffKarma(-1);
     PC.addGold(600);
     PC.removeFromInventory(this);
     DrawCharFrame();
@@ -13555,7 +13555,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
     this.processDeath(1);
     if (src === PC) {
       let XP = this.getXPVal();
-      XP = XP * (1 + DU.gameflags.getFlag("karma")/100);
+      XP = XP * (1 + PC.getKarma()/100);
       PC.addxp(XP);
     }
     return -1;
@@ -15061,7 +15061,9 @@ function PCObject() {
   this.infuse = 0;
   this.gender = "other";
   this.casinonet = 0;
-	
+  this.karma = 0;
+  this.negkarma = 0;
+  
 	LightEmitting.call(this, 0.5);
 	this.addType("pc");
 	
@@ -15232,6 +15234,16 @@ PCObject.prototype.addxp = function(diffxp) {
   this.xp += diffxp;
   this.xp = Math.min(this.xp,XP_MAX);
   return this.xp;
+}
+
+PCObject.prototype.getKarma = function() {
+  return this.karma;
+}
+
+PCObject.prototype.diffKarma = function(diffkarma) {
+  diffkarma = parseInt(diffkarma);
+  this.karma += diffkarma;
+  if (diffkarma < 0) { this.negkarma++; }
 }
 
 PCObject.prototype.gettp = function() {

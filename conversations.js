@@ -118,7 +118,7 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     DrawCharFrame();
   }
   if (triggers.hasOwnProperty("give_karma")) {
-    DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma") + parseInt(triggers.give_karma));
+    PC.diffKarma(parseInt(triggers.give_karma));
   }
   if (triggers.hasOwnProperty("give_xp")) {
     PC.addxp(parseInt(triggers.give_xp));
@@ -767,7 +767,7 @@ OnConvTriggers["franklin_offered"] = function(speaker, keyword) {
   // grant karma only once
   if (!DU.gameflags.getFlag("franklin_karma")) {
     if (!DU.gameflags.getFlag("franklin_yn")) {  // flag is set if you are lying about being able to afford it 
-      DU.gameflags.setFlag("karma", DU.gameflags.getFlag("karma")+1);
+      PC.diffkarma(1);
       DU.gameflags.deleteFlag("franklin_yn");
     }
     DU.gameflags.setFlag("franklin_karma",1);
