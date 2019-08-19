@@ -53,7 +53,19 @@ function SetMerchants() {
                        { item: "MagicAxe", quantity: 0, price: 7500, desc: "Magic Axe" },
                   ];
   bill.lisa.type = "stuff";
-    
+
+  bill.colin = {};
+  bill.colin.stock = [ { item: "Gems", quantity: 1, price: 500, sale: '"Thank you, come back any time."' }, 
+                       { item: "BluePalmCrystal", quantity: 2, price: 150, sale: '"Thank you, come back any time."' },
+                       { item: "PurplePalmCrystal", quantity: 1, price: 300, sale: '"Thank you, come back any time."' },
+                       { item: "Ruby", quantity: 0, price: 400, sale: '"Thank you, come back any time."' },
+                       { item: "UncutRuby", quantity: 0, price: 250, sale: '"Thank you, come back any time."' },
+                       { item: "SmallSapphire", quantity: 0, price: 50, sale: '"Thank you, come back any time."' },
+                       { item: "UncutSapphire", quantity: 0, price: 100, sale: '"Thank you, come back any time."' },
+                       { item: "UncutGems", quantity: 0, price: 350, sale: '"Thank you, come back any time."' },
+                  ];
+  bill.colin.type = "stuff";
+
   // Hildendain
   bill.erin = {};
   bill.erin.stock = [ { item: "ClothArmor", quantity: 10, price: 10, desc: "Cloth Armor", sale: '"May it serve you well."' },
@@ -80,9 +92,9 @@ function SetMerchants() {
 
   // Swainhil
   bill.severyn = {};
-  bill.severyn.stock = [ { item: "BluePalmCrystal", quantity: 4, price: 50, desc: "Blue Palm Crystal", sale: '"The energies will be harmonious with your own."', sellqty: 1},
+  bill.severyn.stock = [ { item: "BluePalmCrystal", quantity: 4, price: 100, desc: "Blue Palm Crystal", sale: '"The energies will be harmonious with your own."', sellqty: 1},
                         { item: "GreenPalmCrystal", quantity: 4, price: 35, desc: "Green Palm Crystal", sale: '"Its aura overcomes any toxin."', sellqty: 1},
-                        { item: "PurplePalmCrystal", quantity: 2, price: 150, desc: "Purple Palm Crystal", sale: '"It will open your third eye!"', sellqty: 1},
+                        { item: "PurplePalmCrystal", quantity: 2, price: 200, desc: "Purple Palm Crystal", sale: '"It will open your third eye!"', sellqty: 1},
                         { item: "JadeNecklace", quantity: 1, price: 200, desc: "Jade Necklace", sale: '"This will bring you luck."', sellqty: 1},
                                 ];
   bill.severyn.type = "stuff";
