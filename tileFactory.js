@@ -923,6 +923,11 @@ tileFactory.prototype.makeChestTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeColinChestTile = function() {
+  let newTile = new ColinChestTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDoorWindowTile = function() {
   let newTile = new DoorWindowTile();
   return newTile;

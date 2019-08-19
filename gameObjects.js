@@ -814,6 +814,13 @@ function OpenContainer() {
   
   this.use = function(who, fire) {
     let retval = {}; 
+
+    if (this.usecheck) {
+      let uchk = this.usecheck(who);
+      if (uchk.stop) {
+        return uchk.retval;
+      }
+    }
     
     if (this.getKarmaPenalty() && (who === PC)) {
       PC.diffKarma(1-this.getKarmaPenalty);
@@ -4242,6 +4249,49 @@ ChestTile.prototype = new FeatureObject();
 
 ChestTile.prototype.flamed = function() {
   ContainerOnFire(what);
+}
+
+function ColinChestTile() {
+  Lockable.call(this, ["master_spritesheet.png","","-64","-704"], ["master_spritesheet.png","","-64","-704"], ["master_spritesheet.png","","-64","-704"], 	"a",  "chest", "a", "locked chest", "a", "magically locked chest");
+	this.name = "ColinChest";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-704";
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_WALK + MOVE_LEVITATE;
+	this.blocklos = 0;
+	this.prefix = "a";
+	this.desc = "chest";
+	
+	this.lootgroup = "";
+	this.lootedid = "";
+	
+	this.container = [];
+	OpenContainer.call(this);
+	Pushable.call(this);
+	this.flammable = 20;
+}
+ColinChestTile.prototype = new FeatureObject();
+
+ColinChestTile.prototype.flamed = function() {
+  ContainerOnFire(what);
+}
+
+ColinChestTile.prototype.usecheck = function(who) {
+  let colin = FindNPCByName("Colin",who.getHomeMap());
+  if (colin) {
+    if ((colin.getx() >= 24) && (colin.getx() <= 29) && (colin.gety() >= 51) && (colin.gety() <= 54)) {
+      let ret = {}
+      ret.retval = {};
+      ret.retval["fin"] = 1;
+      ret.retval["txt"] = 'Colin says, "Hey, stay away from that!" You pull your hand away from the chest.';
+      ret.retval["input"] = "&gt;";
+      ret.stop = 1;
+      return ret;
+    }
+  }
+  let ret = {};
+  ret.stop = 0;
+  return ret;
 }
 
 function DoorWindowTile() {
