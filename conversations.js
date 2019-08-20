@@ -608,6 +608,22 @@ OnConvTriggers["franklin_karma"] = function(speaker,keyword) {
   DU.gameflags.setFlag("franklin_offered",1);
 }
 
+OnConvTriggers["clear_gem_flags"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("clear_gem_flags");
+  if (DU.gameflags.getFlag("cut_ruby")) {
+    DU.gameflags.deleteFlag("cut_ruby");
+  }
+  if (DU.gameflags.getFlag("cut_small_ruby")) {
+    DU.gameflags.deleteFlag("cut_small_ruby");
+  }
+  if (DU.gameflags.getFlag("cut_sapphire")) {
+    DU.gameflags.deleteFlag("cut_sapphire");
+  }
+  if (DU.gameflags.getFlag("cut_gems")) {
+    DU.gameflags.deleteFlag("cut_gems");
+  }
+}
+
 OnConvTriggers["knows_horses"] = function(speaker,keyword) {
   DU.gameflags.setFlag("knows_feather",1);
   DU.gameflags.setFlag("knows_sunlight",1);
