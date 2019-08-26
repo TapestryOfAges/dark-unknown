@@ -343,15 +343,16 @@ mappages["skypalace2"].features[9] = {name : 'Moongate', x : 11, y : 12};
 mappages["skypalace2"].features[10] = {name : 'Mirror', x : 14, y : 13};
 mappages["skypalace2"].features[11] = {name : 'Mirror', x : 8, y : 13};
 mappages["skypalace2"].features[12] = {name : 'BookshelfLeft', x : 10, y : 15};
-mappages["skypalace2"].features[13] = {name : 'BookshelfRight', x : 11, y : 15};
+mappages["skypalace2"].features[13] = {name : 'BookshelfRight', x : 11, y : 15, lootedid : 'palace_books1', searchyield : 'AudachtaNemesosWeatherControl'};
 mappages["skypalace2"].features[14] = {name : 'BookshelfOne', x : 12, y : 15};
 
 
 mappages["skypalace2"].npcs = [];
 
 mappages["skypalace2"].desc = "Palace of the Skies";
+mappages["skypalace2"].longdesc = '';
 mappages["skypalace2"].music = 'Cave';
-mappages["skypalace2"].savename = "Palace Skies";
+mappages["skypalace2"].savename = `Palace Skies`;
 mappages["skypalace2"].exitmap = '';
 mappages["skypalace2"].exitx = '65';
 mappages["skypalace2"].exity = '70';
@@ -362,6 +363,8 @@ mappages["skypalace2"].seeBelow = '';
 mappages["skypalace2"].lightLevel = 'cycle';
 mappages["skypalace2"].alwaysRemember = '0';
 mappages["skypalace2"].scale = '1';
+mappages["skypalace2"].underground = '0';
+mappages["skypalace2"].undergroundDesc = '';
 mappages["skypalace2"].enterscript = 'entersky';
 mappages["skypalace2"].entertestscript = '';
 mappages["skypalace2"].exitscript = '';
@@ -371,6 +374,7 @@ mappages["skypalace2"].returnx = '65';
 mappages["skypalace2"].returny = '70';
 mappages["skypalace2"].returninfused = '1';
 mappages["skypalace2"].linkedMaps = ["skypalace"];
+mappages["skypalace2"].editorLabels = '{}';
 
 
 mappages["skypalace2"].entersky = function(mapref) {
