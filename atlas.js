@@ -1153,14 +1153,16 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
   let oldx = this.getWidth();
   let oldy = this.getHeight();
   DebugWrite("map", oldx + " " + oldy + " to " + newx + " " + newy + ", anchor is " + anchor + "<br><br>");
-  let tile = new Acre();
-  tile.terrain = localFactory.createTile(selectionval.name);
+//  let tile = new Acre();
+//  tile.terrain = localFactory.createTile(selectionval.name);
 
   if ((newx) && (newx != oldx)) {
     for (let i = 1; i <= Math.abs(newx-oldx); i++) {
       for (let j=0;j<this.data.length;j++) {
         if ((anchor === 0) || (anchor === 3) || (anchor === 6)) {
           if (newx > oldx) {  
+            let tile = new Acre();
+            tile.terrain = localFactory.createTile(selectionval.name);
             this.data[j].push(tile);  
           }
           else if (oldx > newx ) { 
@@ -1169,6 +1171,8 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
         }
         else if ((anchor === 2) || (anchor === 5) || (anchor === 8)) {
           if (newx > oldx) { 
+            let tile = new Acre();
+            tile.terrain = localFactory.createTile(selectionval.name);
             this.data[j].unshift(tile); 
           }
           else if (oldx > newx) { 
@@ -1177,9 +1181,13 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
         }
         else if ((anchor === 1) || (anchor === 4) || (anchor === 7)) {
           if ((newx > oldx) && (i%2 === 1)) { 
+            let tile = new Acre();
+            tile.terrain = localFactory.createTile(selectionval.name);
             this.data[j].push(tile); 
           }
           else if ((newx > oldx) && (i%2 === 0)) { 
+            let tile = new Acre();
+            tile.terrain = localFactory.createTile(selectionval.name);
             this.data[j].unshift(tile); 
           }
           else if ((oldx > newx) && (i%2 === 1)) { 
@@ -1196,7 +1204,11 @@ GameMap.prototype.resizeMap = function(newx,newy,anchor){
     for (let i = 1; i <= Math.abs(newy-oldy); i++) {
       if (newy > oldy) {
         let placeholder = [];
-        for (let j=0; j<this.data[0].length;j++) { placeholder.push(tile); }
+        for (let j=0; j<this.data[0].length;j++) { 
+          let tile = new Acre();
+          tile.terrain = localFactory.createTile(selectionval.name);
+          placeholder.push(tile); 
+        }
         if ((anchor === 0) || (anchor === 1) || (anchor === 2)) {
           this.data.push(placeholder);
         }
