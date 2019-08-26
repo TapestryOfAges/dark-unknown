@@ -109,7 +109,7 @@ mappages["island"].features[11] = {name : 'Village', x : 54, y : 74, entermap : 
 mappages["island"].features[12] = {name : 'Waterfall', x : 54, y : 52};
 mappages["island"].features[13] = {name : 'Waterfall', x : 53, y : 23};
 mappages["island"].features[14] = {name : 'Cave', x : 54, y : 48, entermap : 'null', enterx : 0, entery : 0};
-mappages["island"].features[15] = {name : 'Cave', x : 30, y : 77, entermap : 'abandoned_mine', enterx : 0, entery : 0};
+mappages["island"].features[15] = {name : 'Cave', x : 30, y : 77, entermap : 'abandoned_mine', enterx : 14, entery : 29};
 mappages["island"].features[16] = {name : 'Lava', x : 20, y : 42};
 mappages["island"].features[17] = {name : 'Lava', x : 20, y : 43};
 mappages["island"].features[18] = {name : 'Lava', x : 20, y : 44};
@@ -168,9 +168,123 @@ mappages["island"].onload = function(mapref) {
     shrine.gotomap = "volcano";
     shrine.gotox = 11;
     shrine.gotoy = 34;
+
+    // Spawners
+
+    // NW of castle
+    let spawner = localFactory.createTile("Spawner");
+    let spgroup = ["SkeletonGroup"];
+
+    spawner.setSpawngroup(spgroup);
+    spawner.setMaxSpawns(1);
+    spawner.setSpawnRadius(3);
+    spawner.setSpawnLeash(10);
+    spawner.setSpawnSoftLeash(10);
+
+    spawner.evolve[5] = [];
+    spawner.evolve[5][0] = "spawngroup";
+    spawner.evolve[5][1] = ["SkeletonGroup","SkeletonGroup","UndeadGroup"];
+    spawner.evolve[5][3] = "maxSpawns";
+    spawner.evolve[5][4] = 2;
+  
+    let freq = 90 + Dice.roll("1d20");
+    spawner.setSpawnFreq(freq);
+  
+    mapref.placeThing(20,53,spawner);
+
+    // SE of castle
+    spawner = localFactory.createTile("Spawner");
+    let spgroup = ["SkeletonGroup"];
+
+    spawner.setSpawngroup(spgroup);
+    spawner.setMaxSpawns(1);
+    spawner.setSpawnRadius(3);
+    spawner.setSpawnLeash(10);
+    spawner.setSpawnSoftLeash(10);
+
+    spawner.evolve[5] = [];
+    spawner.evolve[5][0] = "spawngroup";
+    spawner.evolve[5][1] = ["SkeletonGroup","SkeletonGroup","UndeadGroup"];
+    spawner.evolve[5][3] = "maxSpawns";
+    spawner.evolve[5][4] = 2;
+  
+    let freq = 90 + Dice.roll("1d20");
+    spawner.setSpawnFreq(freq);
+  
+    mapref.placeThing(31,72,spawner);
+
+    // NE of castle
+    spawner = localFactory.createTile("Spawner");
+    let spgroup = ["SkeletonGroup"];
+
+    spawner.setSpawngroup(spgroup);
+    spawner.setMaxSpawns(1);
+    spawner.setSpawnRadius(3);
+    spawner.setSpawnLeash(10);
+    spawner.setSpawnSoftLeash(10);
+
+    spawner.evolve[5] = [];
+    spawner.evolve[5][0] = "spawngroup";
+    spawner.evolve[5][1] = ["SkeletonGroup","SkeletonGroup","UndeadGroup"];
+    spawner.evolve[5][3] = "maxSpawns";
+    spawner.evolve[5][4] = 2;
+  
+    let freq = 90 + Dice.roll("1d20");
+    spawner.setSpawnFreq(freq);
+  
+    mapref.placeThing(48,54,spawner);
+
+    // North of the mountains
+
+    // NW
+
+    spawner = localFactory.createTile("Spawner");
+    let spgroup = ["OrcPartyLowGroup","TrollGroup"];
+
+    spawner.setSpawngroup(spgroup);
+    spawner.setMaxSpawns(1);
+    spawner.setSpawnRadius(3);
+    spawner.setSpawnLeash(10);
+    spawner.setSpawnSoftLeash(10);
+
+    spawner.evolve[6] = [];
+    spawner.evolve[6][0] = "spawngroup";
+    spawner.evolve[6][1] = ["OrcPartyLowGroup","TrollGroup","OrcPartyHighGroup"];
+    spawner.evolve[6][3] = "maxSpawns";
+    spawner.evolve[6][4] = 2;
+  
+    let freq = 90 + Dice.roll("1d20");
+    spawner.setSpawnFreq(freq);
+  
+    mapref.placeThing(19,15,spawner);
+    
+    let spawner = localFactory.createTile("Spawner");
+    let spgroup = ["MidHeadlessGroup"];
+
+    spawner.setSpawngroup(spgroup);
+    spawner.setMaxSpawns(1);
+    spawner.setSpawnRadius(3);
+    spawner.setSpawnLeash(10);
+    spawner.setSpawnSoftLeash(10);
+
+    spawner.evolve[5] = [];
+    spawner.evolve[5][0] = "spawngroup";
+    spawner.evolve[5][1] = ["MidHeadlessGroup","HighHeadlessGroup"];
+    spawner.evolve[5][3] = "maxSpawns";
+    spawner.evolve[5][4] = 2;
+
+    spawner.evolve[6] = [];
+    spawner.evolve[6][0] = "spawngroup";
+    spawner.evolve[6][1] = ["MidHeadlessGroup","HighHeadlessGroup","GiantsGroup"];
+  
+    let freq = 90 + Dice.roll("1d20");
+    spawner.setSpawnFreq(freq);
+  
+    mapref.placeThing(47,17,spawner);
   }
   
   CreateBeaches(mapref);
+
 }
 
 mappages["island_cave"] = {};
@@ -358,3 +472,105 @@ mappages["island_cave"].exit_south = function(feature) {
 		themap.setExitToY(47);
 	}	
 }
+
+mappages["abandoned_mine"] = {};
+mappages["abandoned_mine"].terrain = [];
+ mappages["abandoned_mine"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["abandoned_mine"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["abandoned_mine"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["abandoned_mine"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["abandoned_mine"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["abandoned_mine"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["abandoned_mine"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["abandoned_mine"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["abandoned_mine"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["abandoned_mine"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[11] = 'BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[12] = 'BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[13] = 'BK BK BK BK BK cw cw cf cf cf cf cf cw cw cw cw cf cf cf cf cw cw cw cw cw BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[14] = 'BK BK BK BK BK cw cf cf cf cf cw cw cw BK cw cw cf cf cf cf cf cw cf cf cw cw cw cw BK BK BK BK';
+mappages["abandoned_mine"].terrain[15] = 'BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK';
+mappages["abandoned_mine"].terrain[16] = 'BK BK BK BK cw cw cf cf cf cw BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK';
+mappages["abandoned_mine"].terrain[17] = 'BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK cw cf cf cf cf cf cw cw cf cw cf cf cw BK BK BK BK';
+mappages["abandoned_mine"].terrain[18] = 'BK BK BK BK cw cw cf cf cw cw BK BK BK cw cw cw cf cf cf cw cw cw cw cw cw cf cf cw BK BK BK BK';
+mappages["abandoned_mine"].terrain[19] = 'BK BK BK BK BK cw cf cf cw BK BK BK BK cw cf cf cf cf cf cw BK BK BK BK cw cw cw cw BK BK BK BK';
+mappages["abandoned_mine"].terrain[20] = 'BK BK BK BK BK cw cw cw cw BK BK BK BK cw cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[23] = 'BK BK BK BK BK BK BK BK BK cw cw cw cw cw cf cf cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[24] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[25] = 'BK BK BK BK BK BK BK BK BK cw cf -= -= -= -= -= -= -= -= cf cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[26] = 'BK BK BK BK BK BK BK BK BK cw cf -= -= -= -= -= -= -= -= cf cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[27] = 'BK BK BK BK BK BK BK BK BK cw cf -= -= -= -= -= -= -= -= cf cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[28] = 'BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[29] = 'BK BK BK BK BK BK BK BK BK cw cw cw cw cw cf cf cw cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["abandoned_mine"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cw BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["abandoned_mine"].features = [];
+mappages["abandoned_mine"].features[0] = {name : 'LeftTable', x : 11, y : 25};
+mappages["abandoned_mine"].features[1] = {name : 'MiddleTable', x : 12, y : 25};
+mappages["abandoned_mine"].features[2] = {name : 'RightTable', x : 13, y : 25};
+mappages["abandoned_mine"].features[3] = {name : 'LeftChair', x : 10, y : 26};
+mappages["abandoned_mine"].features[4] = {name : 'PileOfRocks', x : 18, y : 28};
+mappages["abandoned_mine"].features[5] = {name : 'PileOfRocks', x : 19, y : 26};
+mappages["abandoned_mine"].features[6] = {name : 'PileOfRocks', x : 16, y : 27};
+mappages["abandoned_mine"].features[7] = {name : 'PileOfRocks', x : 11, y : 24};
+mappages["abandoned_mine"].features[8] = {name : 'Barrel', x : 19, y : 27};
+mappages["abandoned_mine"].features[9] = {name : 'Barrel', x : 19, y : 28};
+mappages["abandoned_mine"].features[10] = {name : 'Barrel', x : 18, y : 24};
+mappages["abandoned_mine"].features[11] = {name : 'PileOfRocks', x : 23, y : 17};
+mappages["abandoned_mine"].features[12] = {name : 'PileOfRocks', x : 25, y : 17};
+mappages["abandoned_mine"].features[13] = {name : 'PileOfRocks', x : 25, y : 16};
+mappages["abandoned_mine"].features[14] = {name : 'PileOfRocks', x : 16, y : 14};
+mappages["abandoned_mine"].features[15] = {name : 'PileOfRocks', x : 11, y : 11};
+mappages["abandoned_mine"].features[16] = {name : 'PileOfRocks', x : 8, y : 13};
+mappages["abandoned_mine"].features[17] = {name : 'PileOfRocks', x : 7, y : 13};
+mappages["abandoned_mine"].features[18] = {name : 'PileOfRocks', x : 6, y : 16};
+mappages["abandoned_mine"].features[19] = {name : 'PileOfRocks', x : 6, y : 19};
+mappages["abandoned_mine"].features[20] = {name : 'PileOfRocks', x : 13, y : 6};
+mappages["abandoned_mine"].features[21] = {name : 'PileOfRocks', x : 12, y : 7};
+mappages["abandoned_mine"].features[22] = {name : 'PileOfRocks', x : 15, y : 8};
+mappages["abandoned_mine"].features[23] = {name : 'Voidstone', x : 12, y : 6};
+mappages["abandoned_mine"].features[24] = {name : 'Voidstone', x : 5, y : 17};
+mappages["abandoned_mine"].features[25] = {name : 'Voidstone', x : 25, y : 18};
+
+
+mappages["abandoned_mine"].npcs = [];
+mappages["abandoned_mine"].npcs[0] = {name : 'SkeletonNPC', x : 21, y : 15, skintone: '1'};
+mappages["abandoned_mine"].npcs[1] = {name : 'SkeletonNPC', x : 23, y : 16, skintone: '1'};
+mappages["abandoned_mine"].npcs[2] = {name : 'SkeletonNPC', x : 9, y : 14, skintone: '1'};
+mappages["abandoned_mine"].npcs[3] = {name : 'SkeletonNPC', x : 7, y : 14, skintone: '1'};
+mappages["abandoned_mine"].npcs[4] = {name : 'SkeletonNPC', x : 7, y : 17, skintone: '1'};
+mappages["abandoned_mine"].npcs[5] = {name : 'SkeletonNPC', x : 14, y : 5, skintone: '1'};
+mappages["abandoned_mine"].npcs[6] = {name : 'SkeletonNPC', x : 12, y : 4, skintone: '1'};
+mappages["abandoned_mine"].npcs[7] = {name : 'PhantomNPC', x : 11, y : 6, skintone: '1'};
+mappages["abandoned_mine"].npcs[8] = {name : 'PhantomNPC', x : 7, y : 19, skintone: '1'};
+
+mappages["abandoned_mine"].desc = "Abandoned Mine";
+mappages["abandoned_mine"].longdesc = '';
+mappages["abandoned_mine"].music = 'Cave';
+mappages["abandoned_mine"].savename = `Mine`;
+mappages["abandoned_mine"].exitmap = 'island';
+mappages["abandoned_mine"].exitx = '30';
+mappages["abandoned_mine"].exity = '77';
+mappages["abandoned_mine"].wraps = '';
+mappages["abandoned_mine"].enterx = '14';
+mappages["abandoned_mine"].entery = '29';
+mappages["abandoned_mine"].seeBelow = '';
+mappages["abandoned_mine"].lightLevel = 'dark';
+mappages["abandoned_mine"].alwaysRemember = '0';
+mappages["abandoned_mine"].scale = '1';
+mappages["abandoned_mine"].underground = '1';
+mappages["abandoned_mine"].undergroundDesc = 'Abandoned Mine';
+mappages["abandoned_mine"].enterscript = '';
+mappages["abandoned_mine"].entertestscript = '';
+mappages["abandoned_mine"].exitscript = '';
+mappages["abandoned_mine"].exittestscript = '';
+mappages["abandoned_mine"].returnmap = 'island';
+mappages["abandoned_mine"].returnx = '30';
+mappages["abandoned_mine"].returny = '77';
+mappages["abandoned_mine"].returninfused = '0';
+mappages["abandoned_mine"].linkedMaps = [""];
+mappages["abandoned_mine"].editorLabels = '{}';
