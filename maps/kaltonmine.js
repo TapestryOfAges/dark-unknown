@@ -53,13 +53,30 @@ mappages["kaltonmine1"].features[3] = {name : 'PetrifiedReaper', x : 37, y : 18}
 mappages["kaltonmine1"].features[4] = {name : 'PetrifiedReaper', x : 35, y : 17};
 mappages["kaltonmine1"].features[5] = {name : 'PetrifiedReaper', x : 37, y : 15};
 mappages["kaltonmine1"].features[6] = {name : 'PetrifiedReaper', x : 35, y : 13};
+mappages["kaltonmine1"].features[7] = {name : 'PileOfRocks', x : 10, y : 32};
+mappages["kaltonmine1"].features[8] = {name : 'PileOfRocks', x : 11, y : 35};
+mappages["kaltonmine1"].features[9] = {name : 'PileOfRocks', x : 17, y : 37};
+mappages["kaltonmine1"].features[10] = {name : 'PileOfRocks', x : 18, y : 37};
+mappages["kaltonmine1"].features[11] = {name : 'PileOfRocks', x : 27, y : 31};
+mappages["kaltonmine1"].features[12] = {name : 'PileOfRocks', x : 24, y : 23};
+mappages["kaltonmine1"].features[13] = {name : 'PileOfRocks', x : 18, y : 22};
 
 
 mappages["kaltonmine1"].npcs = [];
+mappages["kaltonmine1"].npcs[0] = {name : 'GiantRatNPC', x : 8, y : 17, skintone: '1'};
+mappages["kaltonmine1"].npcs[1] = {name : 'GiantRatNPC', x : 9, y : 20, skintone: '1'};
+mappages["kaltonmine1"].npcs[2] = {name : 'GiantRatNPC', x : 16, y : 18, skintone: '1'};
+mappages["kaltonmine1"].npcs[3] = {name : 'GiantRatNPC', x : 24, y : 26, skintone: '1'};
+mappages["kaltonmine1"].npcs[4] = {name : 'SlimeNPC', x : 15, y : 32, skintone: '1'};
+mappages["kaltonmine1"].npcs[5] = {name : 'SlimeNPC', x : 17, y : 31, skintone: '1'};
+mappages["kaltonmine1"].npcs[6] = {name : 'SlimeNPC', x : 18, y : 32, skintone: '1'};
+mappages["kaltonmine1"].npcs[7] = {name : 'SlimeNPC', x : 21, y : 34, skintone: '1'};
+mappages["kaltonmine1"].npcs[8] = {name : 'SlimeNPC', x : 17, y : 35, skintone: '1'};
 
 mappages["kaltonmine1"].desc = "Kalton Mine (L1)";
+mappages["kaltonmine1"].longdesc = '';
 mappages["kaltonmine1"].music = 'Dungeon';
-mappages["kaltonmine1"].savename = "Kalton Mine";
+mappages["kaltonmine1"].savename = `Kalton Mine`;
 mappages["kaltonmine1"].exitmap = 'darkunknown';
 mappages["kaltonmine1"].exitx = '39';
 mappages["kaltonmine1"].exity = '48';
@@ -81,5 +98,5 @@ mappages["kaltonmine1"].returnx = '39';
 mappages["kaltonmine1"].returny = '48';
 mappages["kaltonmine1"].returninfused = '0';
 mappages["kaltonmine1"].linkedMaps = [""];
-
+mappages["kaltonmine1"].editorLabels = '{}';
 
