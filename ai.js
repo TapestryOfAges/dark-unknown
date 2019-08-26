@@ -382,7 +382,15 @@ ais.Trevor = function(who) {
           DU.gameflags.setFlag("given_box",1);
           maintext.addText("<span class='sysconv'>You have obtained: " + box.getFullDesc() + ".</span>");
           who.setCurrentAI("scheduled");
+        } else {
+          DU.gameflags.deleteFlag("kyvek_fetch");
+          DU.gameflags.setFlag("kyvek_fetch_incomplete",1);
+          who.setCurrentAI("scheduled");
         }
+      } else {
+        DU.gameflags.deleteFlag("kyvek_fetch");
+        DU.gameflags.setFlag("kyvek_fetch_incomplete",1);
+        who.setCurrentAI("scheduled");
       }
     }
   }
