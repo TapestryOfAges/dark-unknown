@@ -516,7 +516,7 @@ function PerformEscape() {
         retval["canmove"] = 0;
 	    	DrawMainFrame("draw", newmap, PC.getx(), PC.gety());
   		  DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
- 				maintext.addText(".<br />Exiting " + pcmap.getName() + ".");
+ 				maintext.addText("<br />Exiting combat.");
  			} else {
 			  DebugWrite("map", "Failed to exit due to exittest.");
   	    retval["canmove"] = 0;
