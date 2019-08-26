@@ -2098,6 +2098,11 @@ tileFactory.prototype.makeFavorChitTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeVoidstoneTile = function() {
+  let newTile = new VoidstoneTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpiderSilkTile = function() {
   let newTile = new SpiderSilkTile();
   return newTile;
