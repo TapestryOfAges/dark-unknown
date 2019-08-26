@@ -9437,8 +9437,8 @@ ItemObject.prototype.getUseDesc = function() {
 function AmbroseShieldTile() {
   this.name = "AmbroseShield";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-256";
-  this.spritexoffset = "-1184";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "shield";
@@ -9451,8 +9451,8 @@ AmbroseShieldTile.prototype = new ItemObject();
 function RobertMapTile() {
   this.name = "RobertMap";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-288";
-  this.spritexoffset = "-1184";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "map";
@@ -9517,8 +9517,8 @@ CourierPouchTile.prototype.use = function(who) {
 function CourierLetterTile() {
   this.name = "CourierLetter";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-288";
-  this.spritexoffset = "-1184";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Rebel letter";
@@ -9540,8 +9540,8 @@ CourierLetterTile.prototype.use = function(who) {
 function TrustedPlansTile() {
   this.name = "TrustedPlans";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-288";
-  this.spritexoffset = "-1184";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "plans for a Trusted pin";
@@ -9724,7 +9724,7 @@ StoneOfConflagrationsTile.prototype = new ItemObject();
 function TreasuryTokenTile() {
   this.name = "TreasuryToken";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
+  this.spritexoffset = "-192";
   this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9738,7 +9738,7 @@ TreasuryTokenTile.prototype = new ItemObject();
 function FavorChitTile() {
   this.name = "FavorChit";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
+  this.spritexoffset = "-192";
   this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9748,6 +9748,20 @@ function FavorChitTile() {
   this.addType("Quest");
 }
 FavorChitTile.prototype = new ItemObject();
+
+function VoidstoneTile() {
+  this.name = "Voidstone";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1440";
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "chunk of voidstone";
+  this.longdesc = "Voidstone. A rare material with unusual properties.";
+  this.addType("Reagent");
+}
+VoidstoneTile.prototype = new ItemObject();
 
 function SpiderSilkTile() {
   this.name = "SpiderSilk";
