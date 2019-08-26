@@ -160,7 +160,8 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
     if ((triggers.end_convo !== 1) && (triggers.end_convo !== "1")) {
       this.say(speaker, triggers.end_convo);
     }
-    if (keep_talking != -1) {
+    maintext.addText(" ");
+    if (keep_talking !== -1) {
       keep_talking = 0;
     }
   }
@@ -802,6 +803,10 @@ OnConvTriggers["kyvek_fetch"] = function(speaker,keyword) {
 
 OnConvTriggers["taran_serene"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("garden_wait");
+}
+
+OnConvTriggers["given_box"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("kyvek_fetch_incomplete");
 }
 
 OnConvTriggers["paladin_initiation"] = function(speaker,keyword) {
