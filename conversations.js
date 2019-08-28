@@ -296,6 +296,7 @@ ConvNode.prototype = new Object();
 //Deprecated
 
 function InnRoom(xc,yc,doors,innmap) {
+  targetCursor.inndest = {x: xc, y: yc};
   if (DU.gameflags.getFlag("music")) {
     StopMusic();
     nowplaying = DUPlayMusic("Lullaby");
