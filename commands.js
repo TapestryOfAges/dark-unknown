@@ -1422,7 +1422,7 @@ function PerformTalkTarget() {
       if ((PC.getLevel() > 2) && (PC.getLevel() < 6)) {
         DU.gameflags.setFlag("ash_newspell",1);
       }
-      maintext.addText(PC.getPCName() + " is now level " + PC.getLevel() + "!");
+      maintext.addText("<span class='sysconv'>" + PC.getPCName() + " is now level " + PC.getLevel() + "!</span>");
       DU.gameflags.setFlag("lvl"+PC.getLevel(),1);
       if (PC.getLevel() === 2) {
         maintext.addText("<span class='conv'>\"Oh, and another thing! We have captured a rebel instigator and are holding her in our <span style='color:cyan'>prison</span>. I charge you with seeing what information you can get from her!\"</span>");

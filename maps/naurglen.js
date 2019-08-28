@@ -462,6 +462,7 @@ mappages["naurglen"].features[407] = {name : 'Fireplace', x : 14, y : 40};
 mappages["naurglen"].features[408] = {name : 'UnlitBrazier', x : 5, y : 24};
 mappages["naurglen"].features[409] = {name : 'TorchEast', x : 77, y : 24};
 mappages["naurglen"].features[410] = {name : 'Brazier', x : 74, y : 25};
+mappages["naurglen"].features[411] = {name : 'TorchEast', x : 94, y : 26};
 
 
 mappages["naurglen"].npcs = [];

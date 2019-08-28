@@ -188,12 +188,25 @@ ais.RouteTo = function(who, params) {
 
     if (path[0]) {
       moved = StepOrSidestep(who,path[0],[parseInt(params.destination.x), parseInt(params.destination.y)]);
-      if (moved["opendoor"]) {
-        who.flags.closedoor = {};
-        who.flags.closedoor.steps = 1;
-        who.flags.closedoor.x = path[0][0];
-        who.flags.closedoor.y = path[0][1];
-      } else if (moved["canmove"] && who.flags.closedoor && who.flags.closedoor.steps) { who.flags.closedoor.steps++; }
+      if (params.closeDoors) {
+        if (moved["opendoor"]) {
+          who.flags.closedoor = {};
+          who.flags.closedoor.steps = 1;
+          who.flags.closedoor.x = path[0][0];
+          who.flags.closedoor.y = path[0][1];
+        } else if (moved["canmove"] && who.flags.closedoor && who.flags.closedoor.steps) { who.flags.closedoor.steps++; }
+        else if (moved["canmove"]) {
+          let fea = who.getHomeMap().getTile(who.getx(),who.gety()).getTopFeature();
+          if (fea) {
+            if ((fea.getName() === "DoorWindow") || (fea.getName() === "Door")) { 
+              who.flags.closedoor = {};
+              who.flags.closedoor.steps = 2;
+              who.flags.closedoor.x = who.getx();
+              who.flags.closedoor.y = who.gety();
+            }
+          }
+        }
+      }
       if (!moved["canmove"] && moved["intoPC"]) {
         who.flags.activityComplete = 1;
         DebugWrite("schedules", "PC at destination, giving up and setting activityComplete.<br />");
