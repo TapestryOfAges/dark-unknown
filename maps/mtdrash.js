@@ -165,13 +165,41 @@ mappages["mtdrash2"].features[8] = {name : 'WalkOnMessage', x : 8, y : 12};
 mappages["mtdrash2"].features[9] = {name : 'WalkOnMessage', x : 14, y : 10};
 mappages["mtdrash2"].features[10] = {name : 'WalkOnMessage', x : 7, y : 16};
 mappages["mtdrash2"].features[11] = {name : 'WalkOnWind', x : 10, y : 9};
+mappages["mtdrash2"].features[12] = {name : 'Chest', x : 16, y : 6, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_2'};
+mappages["mtdrash2"].features[13] = {name : 'Chest', x : 16, y : 7, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_3'};
+mappages["mtdrash2"].features[14] = {name : 'Chest', x : 6, y : 6, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_4'};
+mappages["mtdrash2"].features[15] = {name : 'Chest', x : 10, y : 6, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_5'};
+mappages["mtdrash2"].features[16] = {name : 'Chest', x : 6, y : 18};
+mappages["mtdrash2"].features[17] = {name : 'Chest', x : 6, y : 18, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_6'};
+mappages["mtdrash2"].features[18] = {name : 'Chest', x : 6, y : 19, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_7'};
+mappages["mtdrash2"].features[19] = {name : 'Chest', x : 18, y : 17, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_1'};
+
 
 mappages["mtdrash2"].npcs = [];
+mappages["mtdrash2"].npcs[0] = {name : 'DrakeNPC', x : 18, y : 9, skintone: '1'};
+mappages["mtdrash2"].npcs[1] = {name : 'DrakeNPC', x : 20, y : 7, skintone: '1'};
+mappages["mtdrash2"].npcs[2] = {name : 'GazerNPC', x : 18, y : 16, skintone: '1'};
+mappages["mtdrash2"].npcs[3] = {name : 'OrcNPC', x : 13, y : 6, skintone: '1'};
+mappages["mtdrash2"].npcs[4] = {name : 'OrcNPC', x : 15, y : 6, skintone: '1'};
+mappages["mtdrash2"].npcs[5] = {name : 'OrcNPC', x : 14, y : 8, skintone: '1'};
+mappages["mtdrash2"].npcs[6] = {name : 'OrcShamanNPC', x : 16, y : 8, skintone: '1'};
+mappages["mtdrash2"].npcs[7] = {name : 'CyclopsNPC', x : 12, y : 16, skintone: '1'};
+mappages["mtdrash2"].npcs[8] = {name : 'OrcNPC', x : 7, y : 7, skintone: '1'};
+mappages["mtdrash2"].npcs[9] = {name : 'OrcNPC', x : 8, y : 6, skintone: '1'};
+mappages["mtdrash2"].npcs[10] = {name : 'OrcNPC', x : 10, y : 7, skintone: '1'};
+mappages["mtdrash2"].npcs[11] = {name : 'OrcNPC', x : 9, y : 18, skintone: '1'};
+mappages["mtdrash2"].npcs[12] = {name : 'OrcNPC', x : 10, y : 20, skintone: '1'};
+mappages["mtdrash2"].npcs[13] = {name : 'OrcNPC', x : 8, y : 20, skintone: '1'};
+mappages["mtdrash2"].npcs[14] = {name : 'OrcShamanNPC', x : 6, y : 8, skintone: '1'};
+mappages["mtdrash2"].npcs[15] = {name : 'CyclopsNPC', x : 8, y : 19, skintone: '1'};
+mappages["mtdrash2"].npcs[16] = {name : 'EttinNPC', x : 6, y : 20, skintone: '1'};
+mappages["mtdrash2"].npcs[17] = {name : 'GiantInsectsNPC', x : 6, y : 11, skintone: '1'};
+mappages["mtdrash2"].npcs[18] = {name : 'GiantInsectsNPC', x : 6, y : 15, skintone: '1'};
 
 mappages["mtdrash2"].desc = "Mt Drash (L2)";
 mappages["mtdrash2"].longdesc = '';
 mappages["mtdrash2"].music = 'Dungeon';
-mappages["mtdrash2"].savename = 'Mt Drash';
+mappages["mtdrash2"].savename = `Mt Drash`;
 mappages["mtdrash2"].exitmap = 'darkunknown';
 mappages["mtdrash2"].exitx = '133';
 mappages["mtdrash2"].exity = '79';
@@ -251,6 +279,7 @@ mappages["mtdrash3"].features[4] = {name : 'WalkOnMessage', x : 11, y : 20};
 mappages["mtdrash3"].features[5] = {name : 'WalkOnMessage', x : 6, y : 12};
 mappages["mtdrash3"].features[6] = {name : 'WalkOnMessage', x : 20, y : 16};
 mappages["mtdrash3"].features[7] = {name : 'WalkOnMessage', x : 13, y : 10};
+mappages["mtdrash3"].features[8] = {name : 'FireField', x : 15, y : 6};
 
 mappages["mtdrash3"].npcs = [];
 
