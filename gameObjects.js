@@ -9263,43 +9263,87 @@ DrashOrbToggleTile.prototype.use = function(who) {
 
 function OrbStrengthTile() {
   this.name = "OrbStrength";
-  this.graphic = "orbs.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = '-128';
-  this.spriteyoffset = '0';
+  this.spriteyoffset = '-1824';
   this.prefix = "an";
   this.desc = "orb";
 }
 OrbStrengthTile.prototype = new FeatureObject();
 
+OrbStrengthTile.prototype.use = function(who) {
+  who.setOrbStr(who.getOrbStr()+1);
+  let retval = {fin:1};
+  if (who === PC) {
+    retval["txt"] = "You feel stronger! The orb crumbles to dust.";
+  }
+  this.getHomeMap().deleteThing(this);
+  retval["input"] = "&gt;";
+  return retval;
+}
+
 function OrbDexterityTile() {
   this.name = "OrbDexterity";
-  this.graphic = "orbs.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = '-64';
-  this.spriteyoffset = '0';
+  this.spriteyoffset = '-1824';
   this.prefix = "an";
   this.desc = "orb";
 }
 OrbDexterityTile.prototype = new FeatureObject();
 
+OrbDexterityTile.prototype.use = function(who) {
+  who.setOrbDex(who.getOrbDex()+1);
+  let retval = {fin:1};
+  if (who === PC) {
+    retval["txt"] = "You feel more agile! The orb crumbles to dust.";
+  }
+  this.getHomeMap().deleteThing(this);
+  retval["input"] = "&gt;";
+  return retval;
+}
+
 function OrbIntelligenceTile() {
   this.name = "OrbIntelligence";
-  this.graphic = "orbs.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = '-32';
-  this.spriteyoffset = '0';
+  this.spriteyoffset = '-1824';
   this.prefix = "an";
   this.desc = "orb";
 }
 OrbIntelligenceTile.prototype = new FeatureObject();
 
+OrbIntelligenceTile.prototype.use = function(who) {
+  who.setOrbInt(who.getOrbInt()+1);
+  let retval = {fin:1};
+  if (who === PC) {
+    retval["txt"] = "You feel smarter! The orb crumbles to dust.";
+  }
+  this.getHomeMap().deleteThing(this);
+  retval["input"] = "&gt;";
+  return retval;
+}
+
 function OrbExperienceTile() {
   this.name = "OrbExperience";
-  this.graphic = "orbs.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = '-96';
-  this.spriteyoffset = '0';
+  this.spriteyoffset = '-1824';
   this.prefix = "an";
   this.desc = "orb";
 }
 OrbExperienceTile.prototype = new FeatureObject();
+
+OrbExperienceTile.prototype.use = function(who) {
+  who.addxp(100);
+  let retval = {fin:1};
+  if (who === PC) {
+    retval["txt"] = "You feel more experienced! The orb crumbles to dust.";
+  }
+  this.getHomeMap().deleteThing(this);
+  retval["input"] = "&gt;";
+  return retval;
+}
 
 function EtherGateTile() {
   this.name = "EtherGate";
