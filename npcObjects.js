@@ -1879,7 +1879,7 @@ function CyclopsNPCTile() {
   this.graphic = '345.gif';
   this.altgraphic = ['379.gif',];
   this.meleeAttackAs = 'Axe';
-  this.missileAttackAs = 'Boulder';
+  this.missileAttackAs = 'BoulderWeapon';
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Blood';
@@ -2831,7 +2831,7 @@ function GiantNPCTile() {
   this.graphic = '345.gif';
   this.altgraphic = ['379.gif',];
   this.meleeAttackAs = 'Longsword';
-  this.missileAttackAs = 'Boulder';
+  this.missileAttackAs = 'BoulderWeapon';
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Blood';
@@ -3214,7 +3214,7 @@ function TitanNPCTile() {
   this.graphic = '345.gif';
   this.altgraphic = ['379.gif',];
   this.meleeAttackAs = 'Halberd';
-  this.missileAttackAs = 'Boulder';
+  this.missileAttackAs = 'BoulderWeapon';
   this.armorAs = 'PlateArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
