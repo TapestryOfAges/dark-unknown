@@ -665,9 +665,14 @@ function LightEmitting(lightlevel) {
 }
 
 // Abstract class
-function Breakable(brokengraphicarray, startsbroken) {
+function Breakable(brokengraphicarray, startsbroken, breaksound) {
   if (!startsbroken) { startsbroken = 0; }
 
+  if (startsbroken) { 
+    this.activate = function() {
+      this.break();
+    }
+  }
   this.breakable = 1;
   
   this.getBroken = function() { return this.broken; }
@@ -681,6 +686,11 @@ function Breakable(brokengraphicarray, startsbroken) {
     let olddesc = this.getDesc();
     this.setDesc(this.brokendesc);
     //play sound effect
+    if (breaksound && who) {
+      if (GetDistance(who.getx(),who.gety(),this.getx(),this.gety()) <= 5) {
+        DUPlaySound(breaksound);
+      }
+    }
     DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
     if (this.karmamod && (who === PC)) { 
       PC.diffKarma(this.karmamod);
@@ -798,7 +808,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
 }
 
 // Abstract class - open a container
-function OpenContainer() {
+function OpenContainer(opensound, lockedsound) {
   
   this.isContainer = 1;
   this.karmaPenalty = 0;
@@ -830,11 +840,13 @@ function OpenContainer() {
       if (this.getLocked() == 1) {
         retval["fin"] = 1;
         retval["txt"] = "Locked.";
+        if ((who === PC) && lockedsound) { DUPlaySound(lockedsound); }
         return retval;
       }
       else if (this.getLocked() === 2){
         retval["fin"] = 1;
         retval["txt"] = "Magically locked.";
+        if ((who === PC) && lockedsound) { DUPlaySound(lockedsound); }
         return retval;
       }
     }
@@ -914,6 +926,7 @@ function OpenContainer() {
     } else {
       this.getHomeMap().deleteThing(this);
     }
+    if (who === PC) { DUPlaySound(opensound); }
     return retval;
   }
   
@@ -3669,6 +3682,7 @@ function LavaTile() {
   this.spritexoffset = "-224";
   this.spriteyoffset = "0";
   
+  HasAmbientNoise.call(this,"sfx_bubbling_lava",1.5);
   LightEmitting.call(this, 1);
   this.peerview = "#fc2000";
 }
@@ -3676,12 +3690,12 @@ LavaTile.prototype = new FeatureObject();
 
 LavaTile.prototype.walkon = function(person) {
   // return messages, perform action
-  var resp = InLava(person);
+  var resp = InLava(person,this);
   return resp;
 }
 
 LavaTile.prototype.idle = function(person) {
-  var resp = InLava(person);
+  var resp = InLava(person,this);
   return resp;
 }
 
@@ -3690,8 +3704,13 @@ LavaTile.prototype.isHostileTo = function(who) {
   return 1;
 }
 
-function InLava(who) {
-  // WORK HERE
+function InLava(who, lava) {
+  if ((who.getMovetype() & MOVE_LEVITATE) || (who.getMovetype() & MOVE_FLY)) {
+    who.dealDamage(Dice.roll("2d4+2"), lava, "fire");
+  } else {
+    who.dealDamage(Dice.roll("2d10+10"), lava, "fire");
+  }
+  return "";
 }
 
 function FenceNWTile() {
@@ -3790,8 +3809,7 @@ function FenceEWGateTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, ["master_spritesheet.png", "", "0", "-800"], ["master_spritesheet.png", "", "-32", "-800"], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
-  // WORKING- NEED TO REPLACE SOUNDS
+  Openable.call(this, ["master_spritesheet.png", "", "0", "-800"], ["master_spritesheet.png", "", "-32", "-800"], 0, "sfx_fence_open", "sfx_fence_close", "sfx_locked_door");
 }
 FenceEWGateTile.prototype = new FeatureObject();
 
@@ -4241,7 +4259,7 @@ function ChestTile() {
 	this.lootedid = "";
 	
 	this.container = [];
-	OpenContainer.call(this);
+	OpenContainer.call(this,"sfx_chest_open","sfx_locked_door");
 	Pushable.call(this);
 	this.flammable = 20;
 }
@@ -4266,7 +4284,7 @@ function ColinChestTile() {
 	this.lootedid = "";
 	
 	this.container = [];
-	OpenContainer.call(this);
+	OpenContainer.call(this,"sfx_chest_open","sfx_locked_door");
 	Pushable.call(this);
 	this.flammable = 20;
 }
@@ -4333,7 +4351,7 @@ function StonePortcullisTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, ["master_spritesheet.png", "", "-224", "-832"], ["master_spritesheet.png", "", "-192", "-832"], 0, "", "", "sfx_locked_door");  // ADD WHEN SOUNDS ADDED
+  Openable.call(this, ["master_spritesheet.png", "", "-224", "-832"], ["master_spritesheet.png", "", "-192", "-832"], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
 }
 StonePortcullisTile.prototype = new FeatureObject();
 
@@ -4356,7 +4374,7 @@ function WallPortcullisTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, ["master_spritesheet.png", "", "-288", "-832"], ["master_spritesheet.png", "", "-256", "-832"], 0, "", "", "sfx_locked_door");  // HERE TOO
+  Openable.call(this, ["master_spritesheet.png", "", "-288", "-832"], ["master_spritesheet.png", "", "-256", "-832"], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
 }
 WallPortcullisTile.prototype = new FeatureObject();
 
@@ -4786,6 +4804,8 @@ CrystalTrapSpaceTile.prototype.walkon = function(who) {
     trap.setExpiresTime(this.duration + DUTime.getGameClock());
     DebugWrite("magic", "Crystal Prison sprung. Expires at " + trap.getExpiresTime() + ".<br />");
     who.addSpellEffect(trap);
+    ShowEffect(who,1000,"crystals.gif",0,0);
+    if (GetDistance(PC.getx(),PC.gety(),who.getx(),who.gety())) { DUPlaySound("sfx_crystal_trap"); }
 
     let trapmap = this.getHomeMap();
     trapmap.deleteThing(this);
@@ -5173,7 +5193,7 @@ function InAFireField(who) {
   dmg = dmg*resist;
   who.dealDamage(dmg, this, "fire");
   DebugWrite("gameobj", "Firefield deals " + dmg + " damage to " + who.getName() + ".");
-  
+  if (who === PC) { DUPlaySound("sfx_fire_hit"); }
   return response;
 }
 
@@ -6437,7 +6457,7 @@ function SmallBoxTile() {
 	this.lootedid = "";
 	
 	this.container = [];
-  OpenContainer.call(this);
+  OpenContainer.call(this,"sfx_chest_open","sfx_locked_door");
   Lockable.call(this, ["master_spritesheet.png","","-64","-384"], ["master_spritesheet.png","","-64","-384"], ["master_spritesheet.png","","-64","-384"], 	"a",  "small box", "a", "locked small box", "a", "magically locked small box");
 }
 SmallBoxTile.prototype = new FeatureObject();
@@ -6457,7 +6477,7 @@ function DresserTile() {
   this.searchedgraphic = ["master_spritesheet.png","","-256","-384"];
 	
 	this.container = [];
-	OpenContainer.call(this);
+	OpenContainer.call(this,"","");
 }
 DresserTile.prototype = new FeatureObject();
 
@@ -6476,7 +6496,7 @@ function VanityTile() {
   this.searchedgraphic = ["master_spritesheet.png","","-288","-384"];
 	
 	this.container = [];
-	OpenContainer.call(this);
+	OpenContainer.call(this,"","");
 }
 VanityTile.prototype = new FeatureObject();
 
@@ -6532,7 +6552,7 @@ function DeadTreeTile() {
   this.searchedgraphic = ["trees.gif","","-64","0"];
 	
 	this.container = [];
-	OpenContainer.call(this);
+	OpenContainer.call(this,"","");
 }
 DeadTreeTile.prototype = new FeatureObject();
 
@@ -6604,7 +6624,7 @@ function BarrelTile() {
   this.civilizedpathweight = 10; // paths should never go through this unless there is no choice
 	
 	this.container = [];
-	OpenContainer.call(this);
+	OpenContainer.call(this,"","");
 	Pushable.call(this);
 }
 BarrelTile.prototype = new FeatureObject();
@@ -6672,7 +6692,7 @@ function MirrorTile() {
   this.desc = "mirror";
   this.karmamod = -1;
   
-  Breakable.call(this,["master_spritesheet.png", "", "-224", "-384"]);
+  Breakable.call(this,["master_spritesheet.png", "", "-224", "-384"],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 }
 MirrorTile.prototype = new FeatureObject();
@@ -9272,13 +9292,19 @@ function OrbStrengthTile() {
 OrbStrengthTile.prototype = new FeatureObject();
 
 OrbStrengthTile.prototype.use = function(who) {
-  who.setOrbStr(who.getOrbStr()+1);
   let retval = {fin:1};
+  retval["input"] = "&gt;";
+  if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_StrOrb")) {
+    retval["txt"] = "The orb shutters, and then crumbles to dust.";
+    this.getHomeMap().deleteThing(this);
+    return retval;
+  }
+  who.setOrbStr(who.getOrbStr()+1);
   if (who === PC) {
     retval["txt"] = "You feel stronger! The orb crumbles to dust.";
   }
   this.getHomeMap().deleteThing(this);
-  retval["input"] = "&gt;";
+  DU.gameflags.setFlag(this.getHomeMap().getName() + "_StrOrb",1);
   return retval;
 }
 
@@ -9293,13 +9319,20 @@ function OrbDexterityTile() {
 OrbDexterityTile.prototype = new FeatureObject();
 
 OrbDexterityTile.prototype.use = function(who) {
-  who.setOrbDex(who.getOrbDex()+1);
   let retval = {fin:1};
+  retval["input"] = "&gt;";
+  if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_DexOrb")) {
+    retval["txt"] = "The orb shutters, and then crumbles to dust.";
+    this.getHomeMap().deleteThing(this);
+    return retval;
+  }
+  who.setOrbDex(who.getOrbDex()+1);
+  DU.gameflags.setFlag(this.getHomeMap().getName() + "_DexOrb",1);
   if (who === PC) {
     retval["txt"] = "You feel more agile! The orb crumbles to dust.";
   }
   this.getHomeMap().deleteThing(this);
-  retval["input"] = "&gt;";
+
   return retval;
 }
 
@@ -9314,13 +9347,19 @@ function OrbIntelligenceTile() {
 OrbIntelligenceTile.prototype = new FeatureObject();
 
 OrbIntelligenceTile.prototype.use = function(who) {
-  who.setOrbInt(who.getOrbInt()+1);
   let retval = {fin:1};
+  retval["input"] = "&gt;";
+  if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_IntOrb")) {
+    retval["txt"] = "The orb shutters, and then crumbles to dust.";
+    this.getHomeMap().deleteThing(this);
+    return retval;
+  }
+  who.setOrbInt(who.getOrbInt()+1);
+  DU.gameflags.setFlag(this.getHomeMap().getName() + "_IntOrb",1);
   if (who === PC) {
     retval["txt"] = "You feel smarter! The orb crumbles to dust.";
   }
   this.getHomeMap().deleteThing(this);
-  retval["input"] = "&gt;";
   return retval;
 }
 
@@ -9335,13 +9374,19 @@ function OrbExperienceTile() {
 OrbExperienceTile.prototype = new FeatureObject();
 
 OrbExperienceTile.prototype.use = function(who) {
-  who.addxp(100);
   let retval = {fin:1};
+  retval["input"] = "&gt;";
+  if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_ExpOrb")) {
+    retval["txt"] = "The orb shutters, and then crumbles to dust.";
+    this.getHomeMap().deleteThing(this);
+    return retval;
+  }
+  who.addxp(100);
   if (who === PC) {
+    DU.gameflags.setFlag(this.getHomeMap().getName() + "_ExpOrb",1);
     retval["txt"] = "You feel more experienced! The orb crumbles to dust.";
   }
   this.getHomeMap().deleteThing(this);
-  retval["input"] = "&gt;";
   return retval;
 }
 
@@ -13127,7 +13172,7 @@ function UnenchantedSwordTile() {
   
   this.brokendesc = "unenchanted, broken sword";
   this.repairNeedsInfusion = 1;
-  Breakable.call(this,["magic-sword.gif", "", "0", "0"]);
+  Breakable.call(this,["magic-sword.gif", "", "0", "0"],1);
 }
 UnenchantedSwordTile.prototype = new WeaponObject();
 
@@ -13136,10 +13181,6 @@ UnenchantedSwordTile.prototype.getLongDesc = function() {
     return "A broken sword. Once it was enchanted.";
   }
   return this.longdesc + "In your hands, it deals " + this.getAveDamage(PC) + " damage on average.";
-}
-
-UnenchantedSwordTile.prototype.activate = function() {
-  this.break();
 }
 
 function NaturalWeaponTile() {
