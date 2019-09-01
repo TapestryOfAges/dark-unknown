@@ -655,7 +655,10 @@ function PerformTrap(who, trap, traplvl, trapped) {
   if (trap === "dart") {
     if (!IsAdjacent(who,trapped)) {
       DebugWrite("gameobj", "Dart trap fires, misses everyone (telekinesis)<br />");
-      maintext.addText("TRAP! A dart flies out and misses everything.");
+      if (GetDistance(who.getx(),who.gety(),trapped.getx(),trapped.gety()) <= 5) {
+        maintext.addText("TRAP! A dart flies out and misses everything.");
+        DUPlaySound("sfx_sling");
+      }
       return 0;
     }
     let def = who.getDefense();
@@ -663,61 +666,99 @@ function PerformTrap(who, trap, traplvl, trapped) {
     if (tohit < .05) { tohit = .05; }
     DebugWrite("gameobj", "Dart trap fires, lvl " + traplvl + ", player defense is " + def + ", chance to hit is " + tohit + "<br />");
     if (Math.random() < tohit) {  // dart hits!
-      maintext.addText("TRAP! A dart strikes you. You are poisoned.");
+      if (who === PC) {
+        maintext.addText("TRAP! A dart strikes you. You are poisoned.");
+      }
       let poison = localFactory.createTile("Poison");
       who.addSpellEffect(poison);
+      if (GetDistance(who.getx(),who.gety(),trapped.getx(),trapped.gety()) <= 5) {
+        DUPlaySound("sfx_default_hit");
+      }
       DrawCharFrame();
       return 1;
     } else {  // dart misses
-      maintext.addText("TRAP! You barely avoid a poisoned dart.");
+      if (who === PC) {
+        maintext.addText("TRAP! You barely avoid a poisoned dart.");
+      }
+      if (GetDistance(who.getx(),who.gety(),trapped.getx(),trapped.gety()) <= 5) {
+        DUPlaySound("sfx_sling");
+      }
       return 0;
     } 
   } else if (trap === "acid") {
+    if (GetDistance(who.getx(),who.gety(),trapped.getx(),trapped.gety()) <= 5) {
+      DUPlaySound("sfx_acid");
+    }
     if (!IsAdjacent(who,trapped)) {
       DebugWrite("gameobj", "Acid trap fires, misses everyone (telekinesis)<br />");
-      maintext.addText("TRAP! Acid spews forth, missing everything.");
+      if (GetDistance(who.getx(),who.gety(),trapped.getx(),trapped.gety()) <= 5) {
+        maintext.addText("TRAP! Acid spews forth, missing everything.");
+      }
       return 0;
     }
     let aciddmg = Dice.roll("1d6+3");
-    maintext.addText("TRAP! You are splashed with acid.");
     who.dealDamage(aciddmg, trapped, "acid");
-    DrawCharFrame();
+    if (who === PC) {
+      maintext.addText("TRAP! You are splashed with acid.");
+      DrawCharFrame();
+    }
     return 1;
   } else if (trap === "gas") {
+    if (GetDistance(who.getx(),who.gety(),trapped.getx(),trapped.gety()) <= 5) {
+      DUPlaySound("sfx_spell_fail");
+    }
     if (!IsAdjacent(who,trapped)) {
       DebugWrite("gameobj", "Gas trap fires, misses everyone (telekinesis)<br />");
-      maintext.addText("TRAP! Poison gas billows forth, but disperses before it reaches you.");
+      if (GetDistance(who.getx(),who.gety(),trapped.getx(),trapped.gety()) <= 5) {
+        maintext.addText("TRAP! Poison gas billows forth, but disperses before it reaches you.");
+      }
       return 0;
     }
-    maintext.addText("TRAP! You are poisoned.");
+    if (who === PC) {
+      maintext.addText("TRAP! You are poisoned.");
+    }
     let poison = localFactory.createTile("Poison");
     who.addSpellEffect(poison);
     DrawCharFrame();
     return 1;    
   } else if (trap === "explosion") {
+    if (GetDistance(who.getx(),who.gety(),trapped.getx(),trapped.gety()) <= 5) {
+      DUPlaySound("sfx_explosion");
+    }
     if (!IsAdjacent(who,trapped)) {
       DebugWrite("gameobj", "Explosion trap fires, misses everyone (telekinesis)<br />");
-      maintext.addText("TRAP! The lock explodes, but you just feel a little heat.");
+      if (GetDistance(who.getx(),who.gety(),trapped.getx(),trapped.gety()) <= 5) {
+        maintext.addText("TRAP! The lock explodes, but you just feel a little heat.");
+      }
       return 0;
     }
-    maintext.addText("TRAP! There is an explosion!");
+    if (PC === who) {
+      maintext.addText("TRAP! There is an explosion!");
+    }
     let firedmg = Dice.roll("3d6+4");
     who.dealDamage(firedmg,trapped,"fire");
     DrawCharFrame();
     return 1;
   } else if (trap === "drain") {
+    if (GetDistance(who.getx(),who.gety(),trapped.getx(),trapped.gety()) <= 5) {
+      DUPlaySound("sfx_mind");
+    }
     if (!IsAdjacent(who,trapped)) {
       DebugWrite("gameobj", "Drain trap fires, misses everyone (telekinesis)<br />");
-      maintext.addText("TRAP! You feel a distant pull on your mind, but then it passes.");
+      if (GetDistance(who.getx(),who.gety(),trapped.getx(),trapped.gety()) <= 5) {
+        maintext.addText("TRAP! You feel a distant pull on your mind, but then it passes.");
+      }
       return 0;
     }
-
-    maintext.addText("TRAP! You feel a pull on your mind.");
+    if (who === PC) {
+      maintext.addText("TRAP! You feel a pull on your mind.");
+    }
     let drain = Dice.roll("2d4");
     if (drain > who.getMana()) {
       drain = who.getMana();
     }
     who.modMana(-1*drain);
+    DrawCharFrame();
     return 1;
   }
   alert("Bad trap type");
