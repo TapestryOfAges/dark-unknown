@@ -3823,6 +3823,7 @@ function TravelByMoongate(who, color, belowgraphic, destbelow, destmap, destx, d
 let spellcount = {};
 
 function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
+  // duration in ms
   if (Object.keys(spellcount).length === 0) {
     DebugWrite("magic", "Clearing the spelleffects of empty divs.<br />");
     document.getElementById("spelleffects").innerHTML="";
