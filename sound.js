@@ -62,7 +62,19 @@ DUSound["sfx_small_lever"] = "sfx/Lever 2.mp3"; // Dungeon SFX Pack/Misc/Lever 2
 DUSound["sfx_large_lever"] = "sfx/Lever 1.mp3"; // Dungeon SFX Pack/Misc/Lever 1
 DUSound["sfx_small_zap"] = "sfx/Spell - Electric Shock 2.mp3"; // Medieval Fantasy SFX Pack/Spells/Electric Shock 2
 DUSound["sfx_paper"] = "sfx/Book Page 1.mp3"; // MFSFP/Inventory/Book Page 1
-
+DUSound["sfx_acid"] = "sfx/sfx_Water5.mp3"; // Magic Spells SFX Bundle Stereo/Water
+DUSound["sfx_spell_fail"] = "sfx/sfx_Spell Fail 3.mp3"; // Magic Spells SFX Bundle Stereo Misc/Spell Fail 3
+DUSound["sfx_explosion"] = "sfx/sfx_Explosion 1.wav"; // RPG SFX Bundle v1 /Explosion 1
+DUSound["sfx_mind"] = "sfx/sfx_Fear 7.mp3"; // MS SFX B Stereo/Fear/Fear 7
+DUSound["sfx_break_glass"] = "sfx/sfx_breakglass.wav"; // Soniss 2015 Soundopolis/Glass Smash Full/Glass_Break_ChampagneBottle_D50_Fienup_003
+DUSound["sfx_chest_open"] = "sfx/sfx_ChestOpen2.mp3"; // MF2SFXP Misc/ChestOpen2.mp3
+DUSound["sfx_fence_open"] = "sfx/sfx_fence_open.wav";
+DUSound["sfx_fence_close"] = "sfx/sfx_fence_close.wav"; // both clipped from Soniss 2017 7o9 Russel Gorsky - Squeaks and Creaks Two/136 Wood Door 03 Creaks 01 D100 XY
+DUSound["sfx_portcullis_open"] = "sfx/Portcullis Sliding Door SFX 2 (Opening).mp3";
+DUSound["sfx_portcullis_close"] = "sfx/Portcullis Sliding Door SFX 2 (Closing).mp3"; // licenced from Audio Jungle from imperatorim
+DUSound["sfx_crystal_trap"] = "sfx/Nature (trap).mp3"; // MS SFX B Stereo/Nature/Nature (trap)
+DUSound["sfx_fire_hit"] = "sfx/Fire 4.mp3"; // NS SFX B Stereo/Fire/Fire 4
+DUSound["sfx_fire_miss"] = "sfx/Spell - Fireball 1.mp3"; // MFSFXP Spell-Fireball 1
 
 // Magic spell sounds
 DUSound["sfx_ding"] = "sfx/sfx_ding.wav"; // Magic Sounds/Chord/MS chord_triple_shigh Book of Spells.wav
