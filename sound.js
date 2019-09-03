@@ -75,13 +75,19 @@ DUSound["sfx_portcullis_close"] = "sfx/Portcullis Sliding Door SFX 2 (Closing).m
 DUSound["sfx_crystal_trap"] = "sfx/Nature (trap).mp3"; // MS SFX B Stereo/Nature/Nature (trap)
 DUSound["sfx_fire_hit"] = "sfx/Fire 4.mp3"; // NS SFX B Stereo/Fire/Fire 4
 DUSound["sfx_fire_miss"] = "sfx/Spell - Fireball 1.mp3"; // MFSFXP Spell-Fireball 1
+DUSound["sfx_bong"] = "sfx/sfx_bong.wav";
+DUSound["sfx_teleport_pad"] = "sfx/sfx_teleport_pad.wav"; // Soniss 2015/Alexander Kopeikin - Transitions HD/transition t04 soft 016
+DUSound["sfx_portal_ambient"] = "sfx/sfx_portal_ambient.wav"; // Soniss 2015/SoundMorph - Doom Drones/amb_doomdrones_digital_spaces.wav
 
 // Magic spell sounds
+DUSound["sfx_spellcast"] = "sfx/Enchantment 2.wav"; // RPGSEB Enchantment 2
 DUSound["sfx_ding"] = "sfx/sfx_ding.wav"; // Magic Sounds/Chord/MS chord_triple_shigh Book of Spells.wav
 DUSound["sfx_earthquake"] = "sfx/CaveCollapse.ogg"; // Dungeon SFX Pack/Misc/Cave Collapse
 DUSound["sfx_whoosh"] = "sfx/sfx_air.mp3"; // Medieval Fantasy SFX Pack/Spells/Air 1
 DUSound["sfx_heal"] = "sfx/Spell - Heal 2.mp3"; // MFSFP/Spells/Heal 2
 DUSound["sfx_buff"] = "sfx/Event 17.mp3"; // MFSFP/Stingers/Event 17
+DUSound["sfx_dangerous_buff"] = "sfx/Heal 8.mp3"; // MS SFX B/Stereo/Heal/Heal 8
+DUSound["sfx_teleport"] = "sfx/sfx_teleport.mp3"; // MS SFX B/Stereo/Generic/Generic Spell (end) 2
 
 let musicpath = "music/";
 let DUMusic = {};
