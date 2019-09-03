@@ -114,7 +114,10 @@ function SetMerchants() {
                         { item: "RedPotion", quantity: 0, price: 75, desc: "Red Potion", sale: '"Would you like anything else?"', sellqty: 1},
                         { item: "WhitePotion", quantity: 0, price: 30, desc: "White Potion", sale: '"Would you like anything else?"', sellqty: 1},
                         { item: "BlackPotion", quantity: 0, price: 120, desc: "Black Potion", sale: '"Would you like anything else?"', sellqty: 1},
-                        { item: "BluePotion", quantity: 0, price: 120, desc: "Blue Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "BluePotion", quantity: 0, price: 100, desc: "Blue Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "DeepBluePotion", quantity: 0, price: 150, desc: "Deep Blue Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "TanPotion", quantity: 0, price: 50, desc: "Tan Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "OrangePotion", quantity: 0, price: 80, desc: "Orange Potion", sale: '"Would you like anything else?"', sellqty: 1},
                                 ];
   bill.dale.type = "stuff";
 
