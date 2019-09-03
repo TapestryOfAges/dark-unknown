@@ -105,6 +105,16 @@ function SetMerchants() {
                         { item: "ScrollFireArmor", quantity: 2, price: 100, desc: "Scroll of Fire Armor", sale: '"Excellent choice."', sellqty: 1},
                         { item: "ScrollSmite", quantity: 1, price: 130, desc: "Scroll of Smite", sale: '"Something will be sure to regret meeting you."', sellqty: 1},
                         { item: "AudachtaNemesosIronFlesh", quantity: 1, price: 250, desc: "Audachta Nemesos: Iron Flesh", sale: '"Ah, an eye for the rare and valuable."', sellqty: 1},
+                        { item: "GreenPotion", quantity: 0, price: 10, desc: "Green Potion", sale: '"Useful for dealing with rats, I suppose."', sellqty: 1},
+                        { item: "DarkGreenPotion", quantity: 0, price: 150, desc: "Dark Green Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "SilverPotion", quantity: 0, price: 80, desc: "Silver Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "PinkPotion", quantity: 0, price: 80, desc: "Pink Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "GreyPotion", quantity: 0, price: 80, desc: "Grey Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "BrownPotion", quantity: 0, price: 120, desc: "Brown Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "RedPotion", quantity: 0, price: 75, desc: "Red Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "WhitePotion", quantity: 0, price: 30, desc: "White Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "BlackPotion", quantity: 0, price: 120, desc: "Black Potion", sale: '"Would you like anything else?"', sellqty: 1},
+                        { item: "BluePotion", quantity: 0, price: 120, desc: "Blue Potion", sale: '"Would you like anything else?"', sellqty: 1},
                                 ];
   bill.dale.type = "stuff";
 

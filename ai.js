@@ -793,6 +793,7 @@ ais.Sentinel = function(who) {
     DebugWrite("ai", "SENTINEL " + who.patrol + ": PC in the way. Removing.<br />");
     mymap.moveThing(16,13,PC);
     maintext.addText("The sentinel teleports you away.");
+    DUPlaySound("sfx_teleport_pad");
     retval["fin"] = 1;
     who.waits = 0;
   } else if (moveval["canmove"] !== 1) {

@@ -4553,7 +4553,7 @@ function CampfireTile() {
 CampfireTile.prototype = new FeatureObject();
 
 CampfireTile.prototype.activate = function() {
-  if (!gamestate.getMode("loadgame")) {
+  if (gamestate.getMode() !== "loadgame") {
     let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   }
@@ -5140,7 +5140,7 @@ FireFieldTile.prototype.isHostileTo = function(who) {
 }
 
 FireFieldTile.prototype.activate = function() {
-  if (!gamestate.getMode("loadgame")) {
+  if (gamestate.getMode() !== "loadgame") {
     let NPCevent = new GameEvent(this);
     DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
   }
@@ -6207,6 +6207,7 @@ HarpsichordTile.prototype.use = function(who) {
         DU.gameflags.setFlag("bard_simon_played", 1);
         DebugWrite("plot", "Simon has heard you play music.<br />");
       }
+      // Consider adding a sound effect if I find a good one
     }
   }
   return retval;
@@ -6604,6 +6605,42 @@ GrandfatherClockTile.prototype.getFullDesc = function() {
   full = full + gfclocktime;
 
   return full;
+}
+
+GrandfatherClockTile.prototype.activate = function() {
+  if (gamestate.getMode() !== "loadgame") {
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+    let time = GetClockTime();
+    this.currentHour = time[3];
+    console.log(this);
+  }
+}
+
+GrandfatherClockTile.prototype.myTurn = function() {
+  let time = GetClockTime();
+  let hour = time[3];
+  console.log(`Clock turn! Last hour ${this.currentHour}, current hour ${hour}`);
+  if (hour !== this.currentHour) {
+    console.log("Should bong...");
+    this.currentHour = hour;
+    if (!PC.getWaiting() && (PC.getHomeMap() === this.getHomeMap()) && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety() < 5))) {
+      if (hour > 12) { hour -= 12; }
+      if (hour === 0) { hour = 12; }
+      TollChime(hour);
+    }
+  }
+  let NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
+
+  return 1;
+}
+
+function TollChime(hoursleft) {
+  if (hoursleft) {
+    DUPlaySound("sfx_bong");
+    setTimeout(function() { TollChime(hoursleft-1); }, 1500);
+  }
 }
 
 function BarrelTile() {
@@ -8073,6 +8110,7 @@ ToshinLeverOffTile.prototype.use = function(who) {
     otherlever.spritexoffset = "-160";
     door.lockMe(2);
   }
+  DUPlaySound("sfx_small_lever");
   let retval = {};
   retval["fin"] = 1;
   retval["txt"] = "Switch thrown.";
@@ -8219,6 +8257,7 @@ BlackDragonLadderWallTile.prototype.pushMe = function(who) {
 
 BlackDragonLadderWallTile.prototype.use = function(who) {
   let retval = {fin: 1};
+  DUPlaySound("sfx_stone_drag");
   if (this.rotated) {
     let tile = this.getHomeMap().getTile(this.getx()+1,this.gety());
     let fealist = tile.getFeatures();
@@ -8971,7 +9010,7 @@ PitTeleporterPlatformTile.prototype.walkon = function(who) {
     }
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
-    // NEEDS SFX/SOUND
+    if (who === PC) { DUPlaySound("sfx_teleport_pad"); }
   }
 }
 
@@ -9296,6 +9335,7 @@ OrbStrengthTile.prototype.use = function(who) {
   retval["input"] = "&gt;";
   if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_StrOrb")) {
     retval["txt"] = "The orb shutters, and then crumbles to dust.";
+    DUPlaySound("sfx_ding");
     this.getHomeMap().deleteThing(this);
     return retval;
   }
@@ -9324,6 +9364,7 @@ OrbDexterityTile.prototype.use = function(who) {
   if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_DexOrb")) {
     retval["txt"] = "The orb shutters, and then crumbles to dust.";
     this.getHomeMap().deleteThing(this);
+    DUPlaySound("sfx_ding");
     return retval;
   }
   who.setOrbDex(who.getOrbDex()+1);
@@ -9352,6 +9393,7 @@ OrbIntelligenceTile.prototype.use = function(who) {
   if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_IntOrb")) {
     retval["txt"] = "The orb shutters, and then crumbles to dust.";
     this.getHomeMap().deleteThing(this);
+    DUPlaySound("sfx_ding");
     return retval;
   }
   who.setOrbInt(who.getOrbInt()+1);
@@ -9379,6 +9421,7 @@ OrbExperienceTile.prototype.use = function(who) {
   if (DU.gameflags.getFlag(this.getHomeMap().getName() + "_ExpOrb")) {
     retval["txt"] = "The orb shutters, and then crumbles to dust.";
     this.getHomeMap().deleteThing(this);
+    DUPlaySound("sfx_ding");
     return retval;
   }
   who.addxp(100);
@@ -9398,6 +9441,8 @@ function EtherGateTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "gate";
+
+  HasAmbientNoise.call(this,"sfx_portal_ambient",1.5);
 }
 EtherGateTile.prototype = new FeatureObject();
 
@@ -9422,6 +9467,8 @@ function MoongateTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "gate";
+
+  HasAmbientNoise.call(this,"sfx_portal_ambient",1.5);
 }
 MoongateTile.prototype = new FeatureObject();
 
@@ -9717,7 +9764,7 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
       }, 2000);
       retval["txt"] = "The room fades to black around you as your mind accepts the challenge of the Stygian Abyss.";
       retval["fin"] = -2;
-      // play SOUND generic spellcast
+      DUPlaySound("sfx_spellcast");
       return retval;
     } 
   }
@@ -10239,6 +10286,7 @@ function AppleTile() {
 AppleTile.prototype = new ItemObject();
 
 AppleTile.prototype.use = function(who) { 
+  // working here- needs option to offer it to horses
   let retval = {};
   retval["fin"] = 1;
   if (who === PC) {
@@ -10556,6 +10604,7 @@ function BookItemObject() {
 BookItemObject.prototype = new ItemObject();
 
 BookItemObject.prototype.use = function(who) {
+  DUPlaySound("sfx_paper");
   let bookcontents = this.contents.split("%%");
   let retval = {};
   if (bookcontents) {
@@ -11008,6 +11057,10 @@ PurplePalmCrystalTile.prototype.use = function(who) {
   return retval;
 }
 
+function IdPotion(potion) {
+  let pottype = potion.getName().toLowerCase();
+  DU.gameflags.setFlag("knows" + pottype, 1);
+}
 
 // potions
 
@@ -11042,6 +11095,13 @@ function GreenPotionTile() {
 }
 GreenPotionTile.prototype = new PotionItemObject();
 
+GreenPotionTile.prototype.getUseDesc = function() {
+  if (DU.gameflags.getFlag("knowsgreenpotion")) {
+    return this.usedesc;
+  }
+  return "Drink it.";
+}
+
 GreenPotionTile.prototype.getLongDesc = function() {
   if (DU.gameflags.getFlag("knowsgreenpotion")) {
     return "A poison potion.";
@@ -11069,6 +11129,7 @@ GreenPotionTile.prototype.flamed = function() {
             poison.setExpiresTime(duration + DUTime.getGameClock());
             npcs[i].addSpellEffect(poison);
             ShowEffect(npcs[i], 1000, "spellsparkles-anim.gif", 0, COLOR_GREEN);
+            DU.gameflags.setFlag("knowsgreenpotion",1);
           }
         }
       }

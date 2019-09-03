@@ -965,6 +965,7 @@ function DoAction(code, ctrl) {
           }
           if (qty) { // sell it!
             let sold = ininv.desc;
+            if (ininv.checkType("Potion")) { IdPotion(ininv); }
             sold = sold.charAt(0).toUpperCase() + sold.slice(1)
             maintext.addText(sold + ": sold.");
             PC.removeFromInventory(ininv);  // already handles only subtracting 1 if there are multiples
