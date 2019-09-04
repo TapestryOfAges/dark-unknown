@@ -283,12 +283,33 @@ function DoAction(code, ctrl) {
         gamestate.setMode("anykey");
       }
     } else if (targetCursor.command === "u") {
-      let retval = PerformRead();
-      maintext.addText(retval["txt"]);
-      if (retval["fin"] === 1) {
-        maintext.setInputLine("&gt;");
-        maintext.drawTextFrame();
-        PC.endTurn(retval["initdelay"]);
+      if (targetCursor.usewhat === "greenpotion") {
+        if (code === 65) {
+          delete targetCursor.usewhat;
+          delete targetCursor.command;
+          let retval = targetCursor.uselink.drink(PC);
+          delete targetCursor.uselink;
+          maintext.addText(retval["txt"]);
+          maintext.setInputLine("&gt;");
+          maintext.drawTextFrame();
+          PC.endTurn(retval["initdelay"]);
+          // WORKING HERE - delete potion
+        } else if (code === 66) {
+
+        } else if (code === 27) {
+          delete targetCursor.usewhat;
+          delete targetCursor.command;
+          delete targetCursor.uselink;
+          gamestate.setMode("PC");
+        }
+      } else {
+        let retval = PerformRead();
+        maintext.addText(retval["txt"]);
+        if (retval["fin"] === 1) {
+          maintext.setInputLine("&gt;");
+          maintext.drawTextFrame();
+          PC.endTurn(retval["initdelay"]);
+        }
       }
     } else if (targetCursor.command === "w") {
       if ((code === 27) || ((code <= 57) && (code >= 48))) {

@@ -11143,7 +11143,17 @@ GreenPotionTile.prototype.flamed = function() {
 }
 
 GreenPotionTile.prototype.use = function(who) {
-  // FIXME: add throw option
+  let retval = {fin:0}
+  retval["txt"] = "Would you like to:<br />(A) Drink the potion<br />(B) Throw the potion";
+  retval["input"] = "&gt;";
+  targetCursor.command = "u";
+  targetCursor.usewhat = "greenpotion";
+  targetCursor.uselink = this;
+  gamestate.setMode("anykey");
+  return retval;
+}
+
+GreenPotionTile.prototype.drink = function(who) {
   DUPlaySound("sfx_potion");
   DU.gameflags.setFlag("knowsgreenpotion",1)
   let retval = {fin:1}
