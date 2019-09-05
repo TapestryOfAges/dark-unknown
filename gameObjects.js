@@ -11143,17 +11143,22 @@ GreenPotionTile.prototype.flamed = function() {
 }
 
 GreenPotionTile.prototype.use = function(who) {
-  let retval = {fin:0}
-  retval["txt"] = "Would you like to:<br />(A) Drink the potion<br />(B) Throw the potion";
-  retval["input"] = "&gt;";
-  targetCursor.command = "u";
-  targetCursor.usewhat = "greenpotion";
-  targetCursor.uselink = this;
-  gamestate.setMode("anykey");
-  return retval;
+  if (DU.gameflags.getFlag("knowsgreenpotion")) {
+    let retval = {fin:0}
+    retval["txt"] = "Would you like to:<br />(A) Drink the potion<br />(B) Throw the potion";
+    retval["input"] = "&gt;";
+    targetCursor.command = "u";
+    targetCursor.usewhat = "greenpotion";
+    targetCursor.uselink = this;
+    retval["preserve"] = 1;
+    gamestate.setMode("anykey");
+    return retval; 
+  } else { 
+    return this.drink(who);
+  }
 }
 
-GreenPotionTile.prototype.drink = function(who) {
+GreenPotionTile.prototype.drink = function(who, del) {
   DUPlaySound("sfx_potion");
   DU.gameflags.setFlag("knowsgreenpotion",1)
   let retval = {fin:1}
@@ -11165,6 +11170,31 @@ GreenPotionTile.prototype.drink = function(who) {
     retval["txt"] = "Gulp!<br />You are poisoned!";
     DrawCharFrame();
   }
+  if (del) {
+    if (this.getHomeMap()) {
+      // cast from floor 
+      this.getHomeMap().deleteThing(this);
+      DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
+    } else {
+      PC.removeFromInventory(this);
+    }
+  }
+  return retval;
+}
+
+GreenPotionTile.prototype.throw = function(who,tgt) {
+  DUPlaySound("sfx_break_glass");
+  let retval = {fin:1}
+  let poison = localFactory.createTile("Poison");
+  let duration = Dice.roll("2d8") * SCALE_TIME;
+  poison.setExpiresTime(duration + DUTime.getGameClock());
+  tgt.addSpellEffect(poison);
+  if ((who === PC) && (tgt.getAttitude() === "friendly")) {
+    TurnMapHostile(caster.getHomeMap());
+  }
+  retval["txt"] = "The potion poisons the " + tgt.getDesc() + "!";
+  retval["input"] = "&gt;"
+  delete targetCursor.uselink;
   return retval;
 }
 

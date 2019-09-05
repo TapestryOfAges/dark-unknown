@@ -3969,7 +3969,11 @@ function PerformSpellcast() {
 
   if (themap.getLOS(PC.getx(), PC.gety(), targetCursor.x, targetCursor.y, 1) >= LOS_THRESHOLD) { 
     retval["fin"] = 0;
-    retval["txt"] = "Your spell cannot reach there!";
+    if (targetCursor.command === "u") {
+      retval["txt"] = "You cannot reach there!";
+    } else {
+      retval["txt"] = "Your spell cannot reach there!";
+    }
    	retval["input"] = "&gt;";
     let tileid = targetCursor.tileid;
     document.getElementById(tileid).innerHTML = targetCursor.basetile; 
@@ -4017,6 +4021,8 @@ function PerformSpellcast() {
         resp = PerformAwaken(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
       } else if (targetCursor.spellName === "Crystal Barrier") {
         resp = PerformCrystalBarrier(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+      } else if (targetCursor.spellName === "Green Potion") {
+        resp = targetCursor.uselink.throw(PC,tgt);
       }
       delete targetCursor.spellName;
       

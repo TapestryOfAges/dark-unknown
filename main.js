@@ -287,15 +287,16 @@ function DoAction(code, ctrl) {
         if (code === 65) {
           delete targetCursor.usewhat;
           delete targetCursor.command;
-          let retval = targetCursor.uselink.drink(PC);
+          let retval = targetCursor.uselink.drink(PC,1);
           delete targetCursor.uselink;
           maintext.addText(retval["txt"]);
           maintext.setInputLine("&gt;");
           maintext.drawTextFrame();
           PC.endTurn(retval["initdelay"]);
-          // WORKING HERE - delete potion
         } else if (code === 66) {
-
+          gamestate.setMode("target");
+          maintext.setInputLine("&gt; Choose target- ");
+          CreateTargetCursor({sticky: 1, command:'u',spellName:'Green Potion',spelldetails:{ caster: PC, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});    
         } else if (code === 27) {
           delete targetCursor.usewhat;
           delete targetCursor.command;
@@ -555,6 +556,13 @@ function DoAction(code, ctrl) {
           if (targetCursor.castFrom) {
             targetCursor.castFrom.spellcast(PC);
           }
+        }
+      } else if (targetCursor.command === "u") {
+        if (targetCursor.spellName === "Green Potion") {
+          newresponse = PerformSpellcast();
+          maintext.addText(newresponse["txt"]);
+          maintext.setInputLine(newresponse["input"]);
+          maintext.drawTextFrame();        
         }
       }
       if ((newresponse["fin"] === 0) || (newresponse["fin"] === 2)) {
