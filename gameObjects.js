@@ -6613,16 +6613,13 @@ GrandfatherClockTile.prototype.activate = function() {
     DUTime.addAtTimeInterval(NPCevent,SCALE_TIME);
     let time = GetClockTime();
     this.currentHour = time[3];
-    console.log(this);
   }
 }
 
 GrandfatherClockTile.prototype.myTurn = function() {
   let time = GetClockTime();
   let hour = time[3];
-  console.log(`Clock turn! Last hour ${this.currentHour}, current hour ${hour}`);
   if (hour !== this.currentHour) {
-    console.log("Should bong...");
     this.currentHour = hour;
     if (!PC.getWaiting() && (PC.getHomeMap() === this.getHomeMap()) && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety() < 5))) {
       if (hour > 12) { hour -= 12; }
