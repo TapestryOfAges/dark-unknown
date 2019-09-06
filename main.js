@@ -442,6 +442,15 @@ function DoAction(code, ctrl) {
     if (response["fin"] === 1) { // direction chosen
       if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "u")||(targetCursor.command === "o")) ) {
         let resp = PerformUseFromInventory();
+        if (resp["fin"] === 2) { 
+          // cannot use from inventory here
+          maintext.addText(resp["txt"]);
+          maintext.inputText("&gt;");
+          gamestate.setMode("player");
+          maintext.drawTextFrame();
+        } else {
+          maintext.inputText(rest["input"]);
+        }
       }
       else if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c") || (targetCursor.command === "p") || (targetCursor.command === "uk"))) {
         maintext.setInputLine("&gt;");

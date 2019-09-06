@@ -1549,7 +1549,7 @@ function PerformUseFromInventory() {
   } else if (targetCursor.command === "o") {
     retval["input"] = "&gt; Open: "; 
   }
-  retval["fin"] = 2;
+  retval["fin"] = 0;
 
   targetCursor.restrictTo = "usable";
   targetCursor.page = 2;
