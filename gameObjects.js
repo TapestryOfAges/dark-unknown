@@ -11141,14 +11141,14 @@ GreenPotionTile.prototype.flamed = function() {
 
 GreenPotionTile.prototype.use = function(who) {
   if (DU.gameflags.getFlag("knowsgreenpotion")) {
-    let retval = {fin:0}
+    let retval = {fin:-1}
+    retval["override"] = -1;
     retval["txt"] = "Would you like to:<br />(A) Drink the potion<br />(B) Throw the potion";
-    retval["input"] = "&gt;";
+    retval["input"] = "&gt; Choose one:";
     targetCursor.command = "u";
     targetCursor.usewhat = "greenpotion";
     targetCursor.uselink = this;
     retval["preserve"] = 1;
-    gamestate.setMode("anykey");
     return retval; 
   } else { 
     return this.drink(who);

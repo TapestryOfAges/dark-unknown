@@ -283,34 +283,12 @@ function DoAction(code, ctrl) {
         gamestate.setMode("anykey");
       }
     } else if (targetCursor.command === "u") {
-      if (targetCursor.usewhat === "greenpotion") {
-        if (code === 65) {
-          delete targetCursor.usewhat;
-          delete targetCursor.command;
-          let retval = targetCursor.uselink.drink(PC,1);
-          delete targetCursor.uselink;
-          maintext.addText(retval["txt"]);
-          maintext.setInputLine("&gt;");
-          maintext.drawTextFrame();
-          PC.endTurn(retval["initdelay"]);
-        } else if (code === 66) {
-          gamestate.setMode("target");
-          maintext.setInputLine("&gt; Choose target- ");
-          CreateTargetCursor({sticky: 1, command:'u',spellName:'Green Potion',spelldetails:{ caster: PC, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});    
-        } else if (code === 27) {
-          delete targetCursor.usewhat;
-          delete targetCursor.command;
-          delete targetCursor.uselink;
-          gamestate.setMode("PC");
-        }
-      } else {
-        let retval = PerformRead();
-        maintext.addText(retval["txt"]);
-        if (retval["fin"] === 1) {
-          maintext.setInputLine("&gt;");
-          maintext.drawTextFrame();
-          PC.endTurn(retval["initdelay"]);
-        }
+      let retval = PerformRead();
+      maintext.addText(retval["txt"]);
+      if (retval["fin"] === 1) {
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        PC.endTurn(retval["initdelay"]);
       }
     } else if (targetCursor.command === "w") {
       if ((code === 27) || ((code <= 57) && (code >= 48))) {
@@ -445,11 +423,11 @@ function DoAction(code, ctrl) {
         if (resp["fin"] === 2) { 
           // cannot use from inventory here
           maintext.addText(resp["txt"]);
-          maintext.inputText("&gt;");
+          maintext.setInputLine("&gt;");
           gamestate.setMode("player");
           maintext.drawTextFrame();
         } else {
-          maintext.inputText(rest["input"]);
+          maintext.setInputLine(resp["input"]);
         }
       }
       else if ((targetCursor.x === PC.getx()) && (targetCursor.y === PC.gety()) && ((targetCursor.command === "a") || (targetCursor.command === "s") || (targetCursor.command === "c") || (targetCursor.command === "p") || (targetCursor.command === "uk"))) {
@@ -662,6 +640,28 @@ function DoAction(code, ctrl) {
     }       
   }
   else if (gamestate.getMode() === "useprompt") {
+    if (targetCursor.usewhat === "greenpotion") {
+      if (code === 65) {
+        delete targetCursor.usewhat;
+        delete targetCursor.command;
+        let retval = targetCursor.uselink.drink(PC,1);
+        delete targetCursor.uselink;
+        maintext.addText(retval["txt"]);
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();
+        PC.endTurn(retval["initdelay"]);
+      } else if (code === 66) {
+        gamestate.setMode("target");
+        maintext.setInputLine("&gt; Choose target- ");
+        CreateTargetCursor({sticky: 1, command:'u',spellName:'Green Potion',spelldetails:{ caster: PC, targettype: "npc"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 0});    
+      } else if (code === 27) {
+        delete targetCursor.usewhat;
+        delete targetCursor.command;
+        delete targetCursor.uselink;
+        gamestate.setMode("PC");
+      }
+      return;
+    } 
     let used;
     if (targetCursor.useditem) { used = targetCursor.useditem; delete targetCursor.useditem; }
     else { used = targetCursor.itemlist[targetCursor.scrolllocation]; }
