@@ -1555,7 +1555,7 @@ function PerformUseFromInventory() {
   targetCursor.page = 2;
   
   DisplayInventory("usable");
-
+  return retval;
 }
 
 function _OldPerformUseFromInventory() {
