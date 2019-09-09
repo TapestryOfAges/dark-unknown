@@ -1397,6 +1397,7 @@ StormTile.prototype.doEffect = function() {
       }
     };
     if (targetlist.length) {
+      PlayCastSound(caster,"sfx_thunder");
       let display = getDisplayCenter(castermap, who.getx(), who.gety());
       let cloud = new GameObject();
       cloud.x = display.centerx;

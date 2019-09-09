@@ -373,7 +373,7 @@ function PerformAudachtaScribe(caster,infused,free,tgt) {
     caster.addSpell(tgt.spelllevel, tgt.spellnum);
     resp["txt"] = "You learn the spell " + tgt.spellname + "!";
     caster.removeFromInventory(tgt);
-    DUPlaySound("sfx_ding");
+    PlayCastSound(caster,"sfx_ding");
   }
 
   resp["input"] = "&gt;";
@@ -391,6 +391,7 @@ magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].getInfusedDesc = function () {
 magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Cure.<br />");
   let resp = {fin:1};
+  let heal = 0;
   if (!free) {
     let mana = this.getManaCost(infused);
     caster.modMana(-1*mana);
@@ -402,7 +403,7 @@ magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, 
     for (let i=0; i<effects.length; i++) {
       if (effects[i].getName() === "Poison") {
         ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
-        DUPlaySound("heal");
+        heal = 1;
         sparkle = 1;
         if (caster === PC) {
           maintext.delayedAddText("You are cured of poison!");
@@ -416,7 +417,7 @@ magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, 
         }
         if (!sparkle) {
           ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
-          DUPlaySound("heal");
+          heal = 1;
         }
       }
     }
@@ -425,7 +426,11 @@ magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, 
     let die = caster.getLevel() + "d4+2";
     let heal = Dice.roll(die);
     caster.healMe(heal, caster);
+    heal = 1;
   }
+  if (heal) { PlayCastSound(caster,"sfx_heal"); }
+  else { PlayCastSound(caster); }
+
   return resp;
 }
 
@@ -450,6 +455,7 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
   if (free) {
     power = 15;
   }
+  let playsound=0;
   if (infused) { mult = 2; }
   for (let i=-1; i<=1; i++) {
     for (let j=-1; j<=1; j++) {
@@ -469,6 +475,7 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
           if (roll <= chance) { 
             val.disarmTrap(); 
             maintext.addText("Trap disarmed!"); 
+            playsound = 1;
             ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
           }
           else { 
@@ -483,12 +490,16 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
           if (roll <= chance) { 
             val.disarmTrap(); 
             maintext.addText("Trap disarmed!"); 
+            playsound = 1;
             ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
           }
         }
       }
     }
   }
+  if (playsound) { PlayCastSound(caster,"sfx_unlock"); }
+  else { PlayCastSound(caster); }
+
   return resp;
 }
 
@@ -523,6 +534,7 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
   if (infused) { power = power*1.5; }
   let castermap = caster.getHomeMap();
   let npcs = castermap.getNPCsAndPCs();
+  let distracted = 0;
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     if (val.getAttitude() !== caster.getAttitude()) {
@@ -537,6 +549,7 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
           distract.setExpiresTime(duration + DUTime.getGameClock());
           distract.setPower(power);
           val.addSpellEffect(distract, Math.max(0,free-1) );
+          distracted = 1;
         } else {
           desc = val.getDesc() + " resists!";
           if (val === PC) {
@@ -551,6 +564,8 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
       }
     }
   }
+  if (distracted) { PlayCastSound(caster,"sfx_debuff"); }
+  else { PlayCastSound(caster); }
 
   return resp;
 }
@@ -595,6 +610,7 @@ magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell = function(cas
   let endtime = duration + DUTime.getGameClock();
   DebugWrite("magic", "End time is " + endtime + ".<br />");
   flameblade.setExpiresTime(endtime);
+  PlayCastSound(caster,"sfx_fire_hit");
   caster.addSpellEffect(flameblade, Math.max(0,free-1) );
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
   
@@ -627,7 +643,7 @@ magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell = function(caster, infused
   liobj.setExpiresTime(endtime);
   if (infused) { liobj.setPower(4); }   // defaults to 2
   
-  DUPlaySound("sfx_spell_light"); 
+  PlayCastSound(caster,"sfx_spell_light"); 
   caster.addSpellEffect(liobj, Math.max(0,free-1) );
   
   DrawCharFrame();
@@ -683,6 +699,7 @@ function PerformMend(caster,infused,free,tgt) {
     tgt.repair();
     let desc = "The " + tgt.getDesc() + " glows briefly, and is mended!";
     desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+    PlayCastSound(caster,"sfx_ding");
     resp["txt"] = desc;    
   }
   resp["input"] = "&gt;";
@@ -755,6 +772,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
     if (infused) { power = 15; }
     vulobj.setPower(power);
     tgt.addSpellEffect(vulobj, Math.max(0,free-1) );
+    PlayCastSound(caster,"sfx_debuff");
   }
   else {
     desc = tgt.getDesc() + " resists!";
@@ -764,6 +782,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
     } else {
       ShowEffect(tgt, 700, "X.gif");
     }
+    PlayCastSound(caster);
   }
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
 
@@ -837,6 +856,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
   DrawMainFrame("one",caster.getHomeMap(),illusion.getx(),illusion.gety());
   
+  PlayCastSound(caster, "sfx_summon");  
   resp["txt"] = "You conjure an illusion to aid you in battle.";
   resp["input"] = "&gt;";
   return resp;
@@ -874,6 +894,7 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
   
   caster.addSpellEffect(liobj, Math.max(0, free-1) );
   
+  PlayCastSound(caster, "sfx_buff");
   DrawCharFrame();
   return resp;
 }
@@ -913,6 +934,7 @@ magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell = function(cas
   
   ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_YELLOW);
   tgt.healMe(healamt, caster);
+  PlayCastSound(caster, "sfx_heal");
   if (free !== 2) {
     resp["txt"] = "You feel better!";
   }
@@ -1001,12 +1023,12 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   boltgraphic = GetEffectGraphic(caster,tgt,boltgraphic);
   let descval = {txt: desc};
 
-  let sounds = {};
+  let sounds = {end: "sfx_default_hit"};
   let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
   let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
   let destgraphic = {graphic:"702.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
-  
+  PlayCastSound(caster,"sfx_magic_bolt");
   AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"force"},0);
   resp["fin"] = -1;
   return resp;
@@ -1113,6 +1135,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
   if (!anyonepoisoned) {
     maintext.addText("No one was poisoned by the cloud.");
   }
+  PlayCastSound(caster,"sfx_gas");
   resp["input"] = "&gt;";
   return resp;
 }
@@ -1150,6 +1173,7 @@ magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caste
   prot.setExpiresTime(endtime);
   prot.setPower(power);
   caster.addSpellEffect(prot, Math.max(0, free-1) );
+  PlayCastSound(caster,"sfx_buff");
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   
   return resp;
@@ -1164,7 +1188,8 @@ magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID].executeSpell = function(caster, infus
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
-  
+   
+  let unlocked = 0;
   let castermap = caster.getHomeMap();
   let features = castermap.features.getAll();
   for (let i=0;i<features.length;i++) {
@@ -1174,6 +1199,7 @@ magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID].executeSpell = function(caster, infus
         let lock = val.getLocked();
         if ((lock === 1) || ((lock === 2) && (infused))) {
           val.unlockMe();
+          unlocked = 1;
           DrawMainFrame("one", castermap, val.getx(), val.gety());
           let desc = "The " + val.getDesc() + " is unlocked.";
           ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
@@ -1184,6 +1210,8 @@ magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID].executeSpell = function(caster, infus
     }
   }
 
+  if (unlocked) { PlayCastSound(caster,"sfx_unlock"); }
+  else { PlayCastSound(caster); }
   return resp;
 }
 
@@ -1238,6 +1266,7 @@ function PerformWindChange(caster,infused,free,tgt) {
   let desc = "wind";
   if (infused) {desc = "gale";}
   maintext.addText("The breeze shifts as you summon a " + desc + " from the " + dir + "!");
+  PlayCastSound(caster,"sfx_whoosh");
 
   // add here for elemental plane of air 
   return resp;
@@ -1262,6 +1291,7 @@ magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell = function(caster, infus
   
   let casterspells = caster.getSpellEffects();
   let dispellables = [];
+  let dispelled = 0;
   for (let i=0;i<casterspells.length;i++) {
     if (casterspells[i].dispellable) { dispellables.push(casterspells[i]); }
   }
@@ -1274,12 +1304,16 @@ magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell = function(caster, infus
     if (Dice.roll("1d100") <= chance) {
       maintext.addText("You dispel " + dispellables[idx].getDesc() + "!");
       dispellables[idx].endEffect();
+      dispelled = 1;
     } else {
       maintext.AddText("You attempt to dispel " + dispellables[idx].getDesc() + ", but it fails.");
     }
   } else {
     maintext.addText("There are no effects upon you that can be dispelled.");
   }
+  if (dispelled) { PlayCastSound(caster,"sfx_buff"); }
+  else { PlayCastSound(caster); }
+
   return resp;
 }
   
@@ -1323,7 +1357,10 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
     }
   }
   if (!hitany) {
+    PlayCastSound(caster);
     maintext.addText("No undead within range.");
+  } else {
+    PlayCastSound(caster,"sfx_dangerous_buff");
   }
 
   return resp;
@@ -1360,7 +1397,7 @@ magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].executeSpell = function(caster, 
   prot.setPower(power);
   caster.addSpellEffect(prot, Math.max(0, free-1) );
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
-  
+  PlayCastSound(caster,"sfx_flame_armor");
   return resp;
 }
 
@@ -1448,6 +1485,7 @@ function PerformFireball(caster, infused, free, tgt) {
   let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
   let destgraphic = {graphic:"702.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+  PlayCastSound(caster,"sfx_fireball");
   AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire"});
 
   resp["fin"] = -1;
@@ -1537,6 +1575,7 @@ function PerformIceball(caster, infused, free, tgt) {
   let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
   let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
   let destgraphic = {graphic:"702.2.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+  PlayCastSound(caster,"sfx_iceball");
   AnimateEffect(caster, tgt, fromcoords, tocoords, boltgraphic, destgraphic, sounds, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice"});
   
   resp["fin"] = -1;
@@ -1617,6 +1656,7 @@ function PerformTelekinesis(caster, infused, free, tgt) {
       DrawMainFrame("one",usemap,tgt.getx(),tgt.gety());
     }
   }
+  PlayCastSound(caster);
   return retval;
 }
 
@@ -1631,6 +1671,7 @@ function PerformTelekinesisMove(caster, infused, free, tgt) {  // NOTE- tgt need
   }
 
   let usemap = tgt.getHomeMap();
+  PlayCastSound(caster);
   if (tgt.heavy && !infused) {
     retval["txt"] = "That object is too heavy.";
     retval["override"] = 1;
@@ -1686,7 +1727,8 @@ magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster,
   DebugWrite("magic", "End time is " + endtime + ".<br />");
   prot.setExpiresTime(endtime);
   caster.addSpellEffect(prot, Math.max(0, free-1) );
-  
+  PlayCastSound(caster,"sfx_buff");
+
   return resp;
 }
 
@@ -1723,7 +1765,7 @@ magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].executeSpell = function
 
 function PerformWallOfFlame(caster, infused, free, tgt) {
   let resp = {fin:1, input: "&gt;"};
-  let desc = "";
+  PlayCastSound(caster,"sfx_flame_armor");
 
   let castermap = caster.getHomeMap();
   if (castermap.getLOS(caster.getx(), caster.gety(), tgt.x, tgt.y, 1) >= LOS_THRESHOLD) { 
@@ -1962,6 +2004,7 @@ magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell = function(caster, i
   
   caster.addSpellEffect(levobj, Math.max(0,free-1) );
 
+  PlayCastSound(caster,"sfx_buff");
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
     
   DrawCharFrame();
@@ -2016,6 +2059,7 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
   if (!success) { 
     maintext.addText("The spell fizzles.");
   }
+  PlayCastSound(caster);
   // be sure to test this in a location with no valid destinations
   return resp;  
 }
@@ -2075,6 +2119,7 @@ magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell = func
 
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
     
+  PlayCastSound(caster,"sfx_buff");
   DrawCharFrame();
   return resp;  
 }
@@ -2111,7 +2156,7 @@ magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell = function(caster, infused, 
   if (free !== 2) {
     resp["txt"] = "You feel better!";
   }
-  
+  PlayCastSound(caster,"sfx_heal");
   return resp;
 }
 
@@ -2215,8 +2260,10 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
   
   if (!foes[0]) {
     resp["txt"] = "No enemies nearby.";
+    PlayCastSound(caster);
     return resp;
   }
+  PlayCastSound(caster,"sfx_default_hit");
   for (let i=0; i<=2; i++) {
     if (foes[i]) {
       let dmg = RollDamage(DMG_MEDIUM);
@@ -2226,7 +2273,8 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
       }
       foes[i].dealDamage(dmg,caster,"force");
       DebugWrite("magic", "Dealing " + dmg + " damage to target " + foes[i].getName() + " " + foes[i].getSerial() + ".<br />");
-      ShowEffect(foes[i], 700, "702.gif", 0, 0);
+      
+      setTimeout(function() { ShowEffect(foes[i], 700, "702.gif", 0, 0); }, 1000);
     }
   }
   return resp;  
@@ -2259,6 +2307,7 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
           caster.modMana(-1*mana);
           DebugWrite("magic", "Spent " + mana + " mana.<br />");
         }    
+        PlayCastSound(caster,"sfx_teleport");
         TravelByMoongate(caster,"blue",belowgraphic,belowgraphic, destmap, shrine.gotox, shrine.gotoy);
       } else {
         maintext.addText("The gateway seems incomplete. The spell will not work until there is another gate linked to this one.");
@@ -2268,6 +2317,7 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
       if (infused) {
         DU.maps.addMap(shrine.gotomap);
         let destmap = DU.maps.getMap(shrine.gotomap);
+        PlayCastSound(caster,"sfx_teleport");
         TravelByMoongate(caster,"blue",belowgraphic,belowgraphic, destmap, shrine.gotox, shrine.gotoy);
         if (!free) {
           free = 0;
@@ -2284,6 +2334,7 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
           caster.modMana(-1*mana);
           DebugWrite("magic", "Spent " + mana + " mana.<br />");
         }      
+        PlayCastSound(caster);
       }
     }
   } else {
@@ -2324,6 +2375,7 @@ magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].executeSpell = function(caste
   levobj.setPower(dur);
   levobj.setExpiresTime(endtime);
   
+  PlayCastSound(caster,"sfx_buff");
   caster.addSpellEffect(levobj, Math.max(0, free-1) );
     
   DrawCharFrame();
@@ -2357,6 +2409,7 @@ magic[SPELL_CRYSTAL_TRAP_LEVEL][SPELL_CRYSTAL_TRAP_ID].executeSpell = function(c
   if (infused) { trap.power = trap.power + 4; }
 
   caster.getHomeMap().placeThing(caster.getx(), caster.gety(), trap);
+  PlayCastSound(caster,"sfx_ding");
 
   resp = {fin:1, input: "&gt;", txt: "A crystal trap is buried under your feet."};
 
@@ -2393,7 +2446,7 @@ magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID].executeSpell = function(cas
   mwobj.setExpiresTime(endtime);
   
   caster.addSpellEffect(mwobj, Math.max(0, free-1) );
-
+  PlayCastSound(caster,"sfx_buff");
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   return resp;
 }
@@ -2464,6 +2517,7 @@ function PerformParalyze(caster, infused, free, tgt) {
     if (infused) { power = 6; }
     vulobj.setPower(power);
     tgt.addSpellEffect(vulobj, Math.max(0, free-1) );
+    PlayCastSound(caster,"sfx_debuff");
   }
   else {
     desc = tgt.getDesc() + " resists!";
@@ -2473,6 +2527,7 @@ function PerformParalyze(caster, infused, free, tgt) {
     } else {
       ShowEffect(val, 700, "X.gif");
     }
+    PlayCastSound(caster);
   }
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
 
@@ -2498,6 +2553,7 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
+  PlayCastSound(caster);
   let castermap = caster.getHomeMap();
   let eachwayx = Math.floor(VIEWSIZEX/2)*4+1;
   let eachwayy = Math.floor(VIEWSIZEY/2)*4+1;
@@ -2607,7 +2663,7 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infus
       returndest.y = castermap.getReturny();
     }
   }
-  //WORK HERE  - done I think? aside from sound
+  
   if (returndest.map) {
     let destmap = DU.maps.getMap(returndest.map);
     let localacre = castermap.getTile(caster.getx(), caster.gety());
@@ -2630,12 +2686,13 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infus
     
     let destacre = destmap.getTile(returndest.x, returndest.y);
     let desttile = destacre.getTop();
-    
+    PlayCastSound(caster,"sfx_teleport");  
     TravelByMoongate(caster,"blue",graphics,desttile.getGraphicArray(), destmap, returndest.x, returndest.y);
     resp["fin"] = 3;
   } else {
     maintext.addText("The spell sputters as the distances are too great.");
     resp["fin"] = 1;
+    PlayCastSound(caster);
   }
   
   return resp;
@@ -2658,6 +2715,7 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
+  PlayCastSound(caster,"sfx_thunder");
   let spellmap = caster.getHomeMap();
   for (let xdiff=-1; xdiff<=1; xdiff++) {
     for (let ydiff=-1;ydiff<=1; ydiff++) {
@@ -2733,6 +2791,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
+  PlayCastSound(caster,"sfx_summon");
   let ally;
   let eletype;
   switch (Dice.roll("1d4")) {
@@ -2841,6 +2900,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
   }
   DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
   ShowEffect(tgt, 700, "702.gif", 0, 0);
+  PlayCastSound(caster,"sfx_default_hit");
   tgt.dealDamage(dmg,caster,"physical");
   
   for (let diffx = -1; diffx <=1; diffx++) {
@@ -2929,7 +2989,7 @@ function PerformExplosion(caster, infused, free, tgt) {
   DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
   ShowEffect(tgt, 700, "702.gif", 0, 0);
   tgt.dealDamage(dmg,caster,"fire");
-  
+  PlayCastSound(caster,"sfx_explosion");
   for (let diffx = -1; diffx <=1; diffx++) {
     for (let diffy = -1; diffy <=1; diffy++) {
       if ((diffx === 0) && (diffy === 0)) { next; }
@@ -2976,6 +3036,7 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   let castermap = caster.getHomeMap();
   let npcs = castermap.getNPCsAndPCs();
+  let someonejinxed = 0;
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
@@ -3002,12 +3063,16 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
           if (val === PC) {
             desc = "You have become confused.";
           }
+          someonejinxed = 1;
         }
         desc = desc.charAt(0).toUpperCase() + desc.slice(1);
         maintext.addText(desc);
       }
     }
   }
+
+  if (someonejinxed) { PlayCastSound(caster,"sfx_debuff"); }
+  else { PlayCastSound(caster); }
 
   return resp;
 }
@@ -3033,6 +3098,7 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   let castermap = caster.getHomeMap();
   let npcs = castermap.getNPCsAndPCs();
+  let cursed = 0;
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
@@ -3065,7 +3131,11 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
         maintext.addText(desc);
       }
     }
+    cursed = 1;
   }
+
+  if (cursed) { PlayCastSound(caster,"sfx_debuff"); }
+  else { PlayCastSound(caster); }
 
   return resp;
 }
@@ -3085,7 +3155,8 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
-  
+  PlayCastSound(caster,"sfx_dangerous_buff");
+
   let castermap = caster.getHomeMap();
   let duration = caster.getInt() + DU.DUTime.getGameClock();
   let negated = DU.gameflags.getFlag("negate");
@@ -3158,6 +3229,7 @@ magic[SPELL_STORM_LEVEL][SPELL_STORM_ID].executeSpell = function(caster, infused
   liobj.setExpiresTime(endtime);
   
   caster.addSpellEffect(liobj);
+  PlayCastSound(caster,"sfx_long_thunder");
   
   DrawCharFrame();
   return resp;
@@ -3227,6 +3299,7 @@ function PerformCharm(caster, infused, free, tgt) {
     charmobj.setExpiresTime(dur + DUTime.getGameClock());
     charmobj.setPower(1);
     tgt.addSpellEffect(charmobj);
+    PlayCastSound(caster,"sfx_debuff");
   }
   else {
     desc = tgt.getDesc() + " resists!";
@@ -3236,6 +3309,7 @@ function PerformCharm(caster, infused, free, tgt) {
     } else {
       ShowEffect(val, 700, "X.gif");
     }
+    PlayCastSound(caster);
   }
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
 
@@ -3267,6 +3341,7 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
   let castermap = caster.getHomeMap();
   let npcs = castermap.getNPCsAndPCs();
+  let afeared = 0;
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
@@ -3291,7 +3366,7 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
             desc = val.getDesc() + " is afraid!";
             ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
           }
-
+          afeared = 1;
         }
  
         if (desc) {       
@@ -3301,6 +3376,9 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
       }
     }
   }
+
+  if (afeared) { PlayCastSound(caster,"sfx_debuff"); } 
+  else {PlayCastSound(caster); }
 
   return resp;
 }
@@ -3319,6 +3397,7 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
+  PlayCastSound(caster,"sfx_fire_ice");
   PlayRing(caster,"firering.png", {}, 1, "icering.png", function(center) {
     let centerx = center.getx();
     let centery = center.gety();
@@ -3395,7 +3474,8 @@ magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID].executeSpell = func
   prot.setPower(power);
   caster.addSpellEffect(prot, Math.max(0, free-1) );
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
-  
+  PlayCastSound(caster,"sfx_buff");
+
   return resp;
 }
 
@@ -3424,6 +3504,8 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
   let npcs = castermap.getNPCsAndPCs();
   let display = getDisplayCenter(PC.getHomeMap(), PC.getx(), PC.gety());
   let npccount = 0;
+  PlayCastSound(caster,"sfx_explosion");
+
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     if (caster.getAttitude() !== val.getAttitude()) {
@@ -3541,7 +3623,8 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
 
   DebugWrite("magic", "Dealing " + dmg + " damage.<br />");
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
-  
+
+  PlayCastSound(caster,"sfx_break_glass");
   let boltgraphic = {};
   boltgraphic.graphic = "magic-bolt.gif";  // CHANGE ONCE ARROW OF GLASS GRAPHIC MADE
   boltgraphic.yoffset = 0;
@@ -3581,6 +3664,7 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
+  PlayCastSound(caster,"sfx_fireball");
   let radius = 4;
   if (!free & caster.getInt() > 25) { radius = 5; }
   if (infused) { radius = radius * 1.5; }  // level 6+ spells can't be infused, but let's cover the case anyway
@@ -3656,6 +3740,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
   }
 
   let ally = localFactory.createTile("Daemon");
+  PlayCastSound(caster,"sfx_summon");
   let duration = caster.getInt() * SCALE_TIME;
   if (free) { duration = Dice.roll("1d6+12"); }
   if (infused) {  // once again, can't be infused, but hey, if you somehow do you get a HELLA daemon
@@ -3704,6 +3789,7 @@ magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell = function(caster,
   liobj.setExpiresTime(endtime);
   
   caster.addSpellEffect(liobj, Math.max(0, free-1) );
+  PlayCastSound(caster,"sfx_buff");
 
   ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   DrawCharFrame();
@@ -3737,6 +3823,7 @@ magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].executeSpell = function(caster,
   if (infused) { liobj.setPower(4); }   // defaults to 2
   
 //  DUPlaySound("sfx_spell_light"); 
+  PlayCastSound(caster,"sfx_dangerous_buff");
   caster.addSpellEffect(liobj);
   
   DrawCharFrame();
@@ -4296,4 +4383,13 @@ function TestRing() {
   testspot.x -= 32;
   let animhtml = '<div id="animringtest" style="position: absolute; left: ' + testspot.x + 'px; top: ' + testspot.y + 'px; background-image:url(\'graphics/red-carpet.gif\');background-repeat:no-repeat; background-position: 0px 0px;"><img src="graphics/spacer.gif" width="96" height="96" /></div>';  
   document.getElementById('spelleffects').innerHTML = document.getElementById('spelleffects').innerHTML + animhtml;
+}
+
+function PlayCastSound(caster,sfxname) {
+  if ((caster.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(caster.getx(),caster.gety()))) {
+    DUPlaySound("sfx_spellcast");
+    if (sfxname) {
+      setTimeout(function() { DUPlaySound(sfxname); }, 1300); 
+    }
+  }
 }

@@ -73,8 +73,6 @@ DUSound["sfx_fence_close"] = "sfx/sfx_fence_close.wav"; // both clipped from Son
 DUSound["sfx_portcullis_open"] = "sfx/Portcullis Sliding Door SFX 2 (Opening).mp3";
 DUSound["sfx_portcullis_close"] = "sfx/Portcullis Sliding Door SFX 2 (Closing).mp3"; // licenced from Audio Jungle from imperatorim
 DUSound["sfx_crystal_trap"] = "sfx/Nature (trap).mp3"; // MS SFX B Stereo/Nature/Nature (trap)
-DUSound["sfx_fire_hit"] = "sfx/Fire 4.mp3"; // NS SFX B Stereo/Fire/Fire 4
-DUSound["sfx_fire_miss"] = "sfx/Spell - Fireball 1.mp3"; // MFSFXP Spell-Fireball 1
 DUSound["sfx_bong"] = "sfx/sfx_bong.wav";
 DUSound["sfx_teleport_pad"] = "sfx/sfx_teleport_pad.wav"; // Soniss 2015/Alexander Kopeikin - Transitions HD/transition t04 soft 016
 DUSound["sfx_portal_ambient"] = "sfx/sfx_portal_ambient.wav"; // Soniss 2015/SoundMorph - Doom Drones/amb_doomdrones_digital_spaces.wav
@@ -88,6 +86,22 @@ DUSound["sfx_heal"] = "sfx/Spell - Heal 2.mp3"; // MFSFP/Spells/Heal 2
 DUSound["sfx_buff"] = "sfx/Event 17.mp3"; // MFSFP/Stingers/Event 17
 DUSound["sfx_dangerous_buff"] = "sfx/Heal 8.mp3"; // MS SFX B/Stereo/Heal/Heal 8
 DUSound["sfx_teleport"] = "sfx/sfx_teleport.mp3"; // MS SFX B/Stereo/Generic/Generic Spell (end) 2
+DUSound["sfx_debuff"] = "sfx/Fear 7.mp3";  // MS SFX B/Stereo/Fear/Fear 7
+DUSound["sfx_summon"] = "sfx/Magic Sound 105.wav"; // RPG SFX B/Magic Sound 105.wav
+DUSound["sfx_magic_bolt"] = "sfx/Generic Spell Dissipate 1.wav"; // Magic Spells SFXB Stereo/Generic/Generic Spell Dissipate 1
+DUSound["sfx_gas"] = "sfx/Wind 6.mp3"; // Magic Spells SFX Bundle Stereo/Wind/Wind 6
+DUSound["sfx_flame_armor"] = "sfx/Fire Spell 2.wav"; // RPG SFX B Fire Spell 2.wav
+DUSound["sfx_fireball"] = "sfx/Fire 3.mp3"; // Magic Spells SFX B Stereo/Fire/Fire 3.mp3
+DUSound["sfx_iceball"] = "sfx/Ice 7.mp3"; // Magic Spells SFX B Stereo/Ice/Ice 7.mp3
+DUSound["sfx_thunder"] = "sfx/Spell - Thunder 1.mp3"; // MF SFX P Spells/Spell - Thunder 1.mp3
+DUSound["sfx_long_thunder"] = "sfx/Thunder 7.mp3"; // Magic Spells SFX B Stereo/Thunder/Thunder 7
+DUSounc["sfx_fire_ice"] = "sfx/Fire (elemental).mp3"; // Magic Spells SFX B Stereo/Fire/Fire (elemental)
+
+// Monster sounds
+DUSound["sfx_fire_hit"] = "sfx/Fire 4.mp3"; // NS SFX B Stereo/Fire/Fire 4
+DUSound["sfx_fire_miss"] = "sfx/Spell - Fireball 1.mp3"; // MFSFXP Spell-Fireball 1
+DUSound["sfx_air_hit"] = "sfx/Spell - Air 2.mp3"; // MFSFXP Spells/Spell - Air 2.mp3
+DUSound["sfx_air_miss"] = "sfx/Wind 8 (fast).wav"; // Magic Spells SFX B Stereo/Wind/Wind 8 (fast).wav
 
 let musicpath = "music/";
 let DUMusic = {};
