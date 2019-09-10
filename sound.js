@@ -102,6 +102,11 @@ DUSound["sfx_fire_hit"] = "sfx/Fire 4.mp3"; // NS SFX B Stereo/Fire/Fire 4
 DUSound["sfx_fire_miss"] = "sfx/Spell - Fireball 1.mp3"; // MFSFXP Spell-Fireball 1
 DUSound["sfx_air_hit"] = "sfx/Spell - Air 2.mp3"; // MFSFXP Spells/Spell - Air 2.mp3
 DUSound["sfx_air_miss"] = "sfx/Wind 8 (fast).wav"; // Magic Spells SFX B Stereo/Wind/Wind 8 (fast).wav
+DUSound["sfx_snake_hit"] = "sfx/Snake 2.wav"; // MFSFXB Beasts and Animals/Snake 2
+DUSound["sfx_snake_miss"] = "sfx/Snake 2a.wav"; // same as above, different slice
+DUSound["sfx_animal_hit"] = "sfx/Beast 5.mp3"; // MFSFXB Beasts and Animals/Beast 5
+DUSound["sfx_animal_miss"] = "sfx/Beast 4.mp3"; // MFSFXB Beasts and Animals/Beast 4
+
 
 let musicpath = "music/";
 let DUMusic = {};
