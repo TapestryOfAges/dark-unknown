@@ -76,6 +76,11 @@ DUSound["sfx_crystal_trap"] = "sfx/Nature (trap).mp3"; // MS SFX B Stereo/Nature
 DUSound["sfx_bong"] = "sfx/sfx_bong.wav";
 DUSound["sfx_teleport_pad"] = "sfx/sfx_teleport_pad.wav"; // Soniss 2015/Alexander Kopeikin - Transitions HD/transition t04 soft 016
 DUSound["sfx_portal_ambient"] = "sfx/sfx_portal_ambient.wav"; // Soniss 2015/SoundMorph - Doom Drones/amb_doomdrones_digital_spaces.wav
+DUSound["sfx_flute"] = "sfx/sfx_flute.wav"; // MFSFXP Misc/Button 4
+DUSound["sfx_lute"] = "sfx/sfx_lute.wav"; // MFSFXP Misc/Button 3
+DUSound["sfx_harp"] = "sfx/sfx_harp.wav"; // MFSFXP Stings/Event 9
+DUSound["sfx_horn"] = "sfx/sfx_horn.wav"; // MFSFXP Stings/Event 5
+DUSound["sfx_drum"] = "sfx/sfx_drum.wav"; // MFSFXP Stings/Event 1
 
 // Magic spell sounds
 DUSound["sfx_spellcast"] = "sfx/Enchantment 2.wav"; // RPGSEB Enchantment 2
@@ -106,7 +111,14 @@ DUSound["sfx_snake_hit"] = "sfx/Snake 2.wav"; // MFSFXB Beasts and Animals/Snake
 DUSound["sfx_snake_miss"] = "sfx/Snake 2a.wav"; // same as above, different slice
 DUSound["sfx_animal_hit"] = "sfx/Beast 5.mp3"; // MFSFXB Beasts and Animals/Beast 5
 DUSound["sfx_animal_miss"] = "sfx/Beast 4.mp3"; // MFSFXB Beasts and Animals/Beast 4
-
+DUSound["sfx_ghost_hit"] = "sfx/ghost_atk.wav"; // DSFXP - Spirit 3
+DUSound["sfx_ghost_miss"] = "sfx/ghost_miss.wav"; // Soniss 2015/Mechanical Wave - Hits Whoosh/Fast Action Swish
+DUSound["sfx_roar_hit"] = "sfx/Beast 8.mp3"; // MFSFXP Beasts and Animals/Beast 8
+DUSound["sfx_roar_miss"] = "sfx/roar_miss.wav"; // MFSFXP Beasts and Animals/Roar (Beast) 2
+DUSound["sfx_slime_hit"] = "sfx/slime.wav"; // Soniss 2015/Mattia Cellotto- The Borax Experiment/Borax,Impact,Slime,Gore,Various22.wav
+DUSound["sfx_slime_miss"] = "sfx/slime_miss.wav"; // Soniss 2015/Mattia Cellotto- The Borax Experiment/Gore,Slime,Creature,Meat,Blood,Short,Movement,Various45.wav
+DUSound["sfx_water_hit"] = "sfx/Water 2.mp3"; // Magic Spells SFX B Stereo/Water/Water 2 
+DUSound["sfx_water_miss"] = "sfx/Water 8.mp3"; // Magic Spells SFX B Stereo/Water/Water 8
 
 let musicpath = "music/";
 let DUMusic = {};
