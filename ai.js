@@ -63,7 +63,7 @@ ais.combat = function(who) {
     let npcs = whomap.npcs.getAll();
     let anysee = 0;
     for (let i=0;i<npcs.length;i++) {
-      if (!anysee && (who.getNPCBand() === npcs[i].getNPCBand()) && (FindNearestEnemy(npcs[i],"enemy") < npcs[i].getForgetAt())) {
+      if (!anysee && (who.getNPCBand() === npcs[i].getNPCBand()) && (FindNearestNPC(npcs[i],"enemy") < npcs[i].getForgetAt())) {
         anysee = 1;
       }
       if (!npcs[i].getForgetAt()) { anysee = 1; }
@@ -142,7 +142,35 @@ ais.combat = function(who) {
   // decide if meleeing/approaching
   let chance = who.meleeChance;
   DebugWrite("ai", "Chance of melee: " + chance + ".<br />");
-  if (Dice.roll("1d100") <= chance) {
+  let roll = Dice.roll("1d100");
+  if (roll > chance) {
+    // Not meleeing, now what?
+    DebugWrite("ai", "In special/missile<br />");
+    let nonmeleeoptions = [];
+    if (who.getMissile()) { nonmeleeoptions.push("ai_missile"); }
+    if (who.spellsknown) { nonmeleeoptions.push("ai_cast"); }
+    if (who.specials.sing) { nonmeleeoptions.push("ai_sing"); }
+    // there will be more!
+    // eventually make this choice smarter
+    
+    let performed_action = 0;
+    let num_attempts = 0;
+    while (!performed_action && (num_attempts < 10)) {
+      performed_action = ais[nonmeleeoptions[Dice.roll("1d" + nonmeleeoptions.length + "-1")]](who);
+      num_attempts++;
+    }
+    if (!performed_action && (num_attempts === 10)) {
+      DebugWrite("ai", "10 tries, " + who.getName() + " (" + who.getSerial() + ") failed to choose a special action.");
+      roll = 0;  // pretend we rolled intent to melee, because we failed to find anything else to do
+    }
+    
+    if ((performed_action === "melee") || (performed_action === "missile") || (performed_action === "special")) {
+      retval["wait"] = 1;
+      return retval;
+    }
+
+  }
+  if (roll <= chance) {
     // yes
     //now find targets
     // top priority: adjacent foes
@@ -193,37 +221,20 @@ ais.combat = function(who) {
         let moved = FindCombatPath(who,nearest,path);
       } else {
         // no path found to target
-        // WORK HERE- improve this behavior, should not randomwalk away from PC
-        let moved = ais.Randomwalk(who,25,25,25,25);
+        // Might need more work here but there is now code to prevent walking entirely away from the PC when randomwalking
+        let north = 25;
+        let south = 25;
+        let east = 25;
+        let west = 25;
+        const BALKDIST = .4;
+        if (GetDistance(who.getx(),who.gety()-1,PC.getx(),PC.gety()) - GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) > BALKDIST) { north = 0; DebugWrite("ai","Will not walk north- moves away from PC."); }
+        if (GetDistance(who.getx(),who.gety()+1,PC.getx(),PC.gety()) - GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) > BALKDIST) { south = 0; DebugWrite("ai","Will not walk south- moves away from PC.");}
+        if (GetDistance(who.getx()+1,who.gety(),PC.getx(),PC.gety()) - GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) > BALKDIST) { east = 0; DebugWrite("ai","Will not walk east- moves away from PC.");}
+        if (GetDistance(who.getx()-1,who.gety(),PC.getx(),PC.gety()) - GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) > BALKDIST) { west = 0; DebugWrite("ai","Will not walk west- moves away from PC.");}
+        let moved = ais.Randomwalk(who,north,east,south,west);
       }
     }
-  } else {
-    // Not meleeing, not what?
-    DebugWrite("ai", "In special/missile<br />");
-    let nonmeleeoptions = [];
-    if (who.getMissile()) { nonmeleeoptions.push("ai_missile"); }
-    if (who.spellsknown) { nonmeleeoptions.push("ai_cast"); }
-    if (who.specials.sing) { nonmeleeoptions.push("ai_sing"); }
-    // there will be more!
-    // eventually make this choice smarter
-    
-    let performed_action = 0;
-    let num_attempts = 0;
-    while (!performed_action && (num_attempts < 10)) {
-      performed_action = ais[nonmeleeoptions[Dice.roll("1d" + nonmeleeoptions.length + "-1")]](who);
-      num_attempts++;
-    }
-    if (num_attempts === 10) {
-      DebugWrite("ai", "10 tries, " + who.getName() + " (" + who.getSerial() + ") failed to choose a special action.");
-      return retval;
-    }
-    
-    if ((performed_action === "melee") || (performed_action === "missile") || (performed_action === "special")) {
-      retval["wait"] = 1;
-      return retval;
-    }
-  }
-
+  }  
   return retval;
   
 }
@@ -1620,7 +1631,32 @@ ais.Courier = function(who) {
 }
 
 ais.ai_sing = function(who) {
+  let pref = who.getPrefix();
+  if ((pref === "a") || (pref === "an")) { pref = "the"; }
+  let desc = who.getDesc();
+  if (who.getDesc() !== who.getNPCName()) {
+    desc = pref + " " + desc;
+  }
+  let mybark = `${desc} strums and sings a song.`;
+  mybark = mybark.charAt(0).toUpperCase() + mybark.slice(1);
+
+  let options;
+  if (who.getHP()/who.getMaxHP() < .5) { options[0] = "heal"; }
   
+  // have at least 2 friends within 5 tiles?
+  let npcs = who.getHomeMap().npcs.getAll();
+  let count = 0;
+  for (let i=0;i<npcs.length;i++) {
+    if ((npcs[i].getAttitude() === who.getAttitude()) && (npcs[i] !== who) && (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 6)) { count++; }
+  }
+  if (count >= 2) { options.push("morale"); }
+
+  let foe = FindNearestNPC(who,"enemy");
+  if (foe && (GetDistance(who.getx(),who.gety(),foe.getx(),foe.gety()) < 5)) { options.push("demoralize"); } 
+
+  if (options.length) {
+
+  }
 }
 
 ais.ai_missile = function(who) {
