@@ -1646,8 +1646,12 @@ ais.ai_sing = function(who) {
   // have at least 2 friends within 5 tiles?
   let npcs = who.getHomeMap().npcs.getAll();
   let count = 0;
+  let moralelist = [];
   for (let i=0;i<npcs.length;i++) {
-    if ((npcs[i].getAttitude() === who.getAttitude()) && (npcs[i] !== who) && (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 6)) { count++; }
+    if ((npcs[i].getAttitude() === who.getAttitude()) && (npcs[i] !== who) && (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 6)) { 
+      count++; 
+      moralelist.push(npcs[i]);
+    }
   }
   if (count >= 2) { options.push("morale"); }
 
@@ -1655,7 +1659,13 @@ ais.ai_sing = function(who) {
   if (foe && (GetDistance(who.getx(),who.gety(),foe.getx(),foe.gety()) < 5)) { options.push("demoralize"); } 
 
   if (options.length) {
+    let dieroll = Dice.roll("1d"+options.length+"-1");
+    if (options[dieroll] === "heal") {
+      let healcast = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(who,0,0,who);
+      mybark += `<br />${desc} looks healthier.`;
+    } elsif (options[dieroll] === "morale") {
 
+    }
   }
 }
 
