@@ -1631,6 +1631,7 @@ ais.Courier = function(who) {
 }
 
 ais.ai_sing = function(who) {
+  DebugWrite("ai",who.getName() + " is trying to sing.");
   let pref = who.getPrefix();
   if ((pref === "a") || (pref === "an")) { pref = "the"; }
   let desc = who.getDesc();
@@ -1640,7 +1641,7 @@ ais.ai_sing = function(who) {
   let mybark = `${desc} strums and sings a song.`;
   mybark = mybark.charAt(0).toUpperCase() + mybark.slice(1);
 
-  let options;
+  let options = [];
   if (who.getHP()/who.getMaxHP() < .5) { options[0] = "heal"; }
   
   // have at least 2 friends within 5 tiles?
@@ -1658,6 +1659,7 @@ ais.ai_sing = function(who) {
   let foe = FindNearestNPC(who,"enemy");
   if (foe && (GetDistance(who.getx(),who.gety(),foe.getx(),foe.gety()) < 5)) { options.push("demoralize"); } 
 
+  console.log(options);
   if (options.length) {
     let dieroll = Dice.roll("1d"+options.length+"-1");
     if (options[dieroll] === "heal") {
@@ -1678,7 +1680,7 @@ ais.ai_sing = function(who) {
   
         moralelist[i].addSpellEffect(levobj, 1 );
       }
-      if (IsVisibleOnScreen(who)) {
+      if (IsVisibleOnScreen(who.getx(),who.gety())) {
         mybark += `${desc}'s allies are cheered!`;
         maintext.addText(mybark);
         DUPlaySound("sfx_lute");
