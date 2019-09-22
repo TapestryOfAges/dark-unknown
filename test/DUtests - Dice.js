@@ -1,12 +1,9 @@
 
 // list of necessary tests: map load?
 
-var maxserial = 0;
-var VIEWSIZEX = 13;
-var VIEWSIZEY = 13;
-var DAYNIGHT = DAY;
+let maxserial = 0;
 
-var wind = {};
+let wind = {};
 wind.xoff = 0;
 wind.yoff = 2;
 

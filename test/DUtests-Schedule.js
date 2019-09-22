@@ -1,9 +1,6 @@
 "use strict";
 
 var maxserial = 0;
-var VIEWSIZEX = 13;
-var VIEWSIZEY = 13;
-var DAYNIGHT = "DAY";
 
 var wind = {};
 wind.xoff = 0;
@@ -69,12 +66,14 @@ QUnit.test( "Test randomwalk", function( assert ) {
   var tmpschedules = JSON.parse(sched);
   
   DU.schedules = {};
-  $.each(tmpschedules, function(idx,val) {
+
+  for (let idx in tmpschedules) {
+    let val = tmpschedules[idx];
     DU.schedules[idx] = new NPCSchedule();
     DU.schedules[idx]["scheduleArray"] = val.scheduleArray;
     DU.schedules[idx]["currentIndex"] = val.currentIndex;
     DU.schedules[idx]["baseLocation"] = val.baseLocation;
-  });
+  };
 
   var mage = localFactory.createTile("MageVillagerNPC");
   testmap.placeThing(8,10,mage);

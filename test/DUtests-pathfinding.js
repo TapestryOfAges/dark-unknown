@@ -1,8 +1,6 @@
 "use strict;" 
 
 var maxserial = 0;
-var VIEWSIZEX = 13;
-var VIEWSIZEY = 13;
 
 var mappages = new Pages();
 var localFactory = new tileFactory();
@@ -31,6 +29,10 @@ var targetCursor = {};
     targetCursor.skipahead = 0;
 var inputText = {};
 
+function DrawMainFrame() {
+
+}
+
 set_schedules();
 
 QUnit.test( "Test Pathfinder", function( assert ) {
@@ -48,15 +50,15 @@ QUnit.test( "Test Pathfinder", function( assert ) {
   var path = finder.findPath(1, 7, 10, 2, gridBackup);
 
   for (let i=0;i<path.length;i++) {
-    $("#output").append("[");
+    document.getElementById("output").innerHTML += "[";
 
     for (let j=0;j<path[i].length;j++) {
-      $("#output").append(path[i][j]);
-      if (!j) { $("#output").append(","); }
+      document.getElementById("output").innerHTML += path[i][j];
+      if (!j) { document.getElementById("output").innerHTML += ","; }
     }
-    $("#output").append("],");
+    document.getElementById("output").innerHTML += "],";
   }
-  $("#output").append("<br />");
+  document.getElementById("output").innerHTML += "<br />";
 
   grid.setWeightAt(1,4,3);
   var gridBackup = grid.clone();
@@ -66,18 +68,18 @@ QUnit.test( "Test Pathfinder", function( assert ) {
   var path = finder.findPath(1, 7, 10, 2, gridBackup);
 
   for (let i=0;i<path.length;i++) {
-    $("#output").append("[");
+    document.getElementById("output").innerHTML += "[";
 
     for (let j=0;j<path[i].length;j++) {
-      $("#output").append(path[i][j]);
-      if (!j) { $("#output").append(","); }
+      document.getElementById("output").innerHTML += path[i][j];
+      if (!j) { document.getElementById("output").innerHTML += ","; }
     }
-    $("#output").append("],");
+    document.getElementById("output").innerHTML += "],";
   }
 
   var maps = new MapMemory();
-  maps.addMap("olympus1");
-  var testmap = maps.getMap("olympus1");
+  maps.addMap("olympus1_test");
+  var testmap = maps.getMap("olympus1_test");
 
   gridBackup = testmap.getPathGrid(MOVE_WALK_DOOR).clone();
   let path1 = finder.findPath(66,35,63,31,gridBackup);

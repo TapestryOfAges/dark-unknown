@@ -1,9 +1,6 @@
 "use strict;" 
 
 var maxserial = 0;
-var VIEWSIZEX = 13;
-var VIEWSIZEY = 13;
-var DAYNIGHT = "DAY";
 
 var wind = {};
 wind.xoff = 0;
