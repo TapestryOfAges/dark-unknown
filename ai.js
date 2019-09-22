@@ -1661,7 +1661,7 @@ ais.ai_sing = function(who) {
   if (options.length) {
     let dieroll = Dice.roll("1d"+options.length+"-1");
     if (options[dieroll] === "heal") {
-      let healcast = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(who,0,0,who);
+      let healcast = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(who,0,1,who);
       mybark += `<br />${desc} looks healthier.`;
       if (IsVisibleOnScreen(who)) {
         maintext.addText(mybark);
@@ -1685,7 +1685,10 @@ ais.ai_sing = function(who) {
       }
       return "special";
     } else if (options[dieroll] === "demoralize") {
-
+      maintext.addText(mybark);
+      let discast = magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell(who,0,1);
+      DUPlaySound("sfx_lute");
+      return "special";
     }
   }
 }
