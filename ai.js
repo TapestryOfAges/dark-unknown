@@ -1663,7 +1663,28 @@ ais.ai_sing = function(who) {
     if (options[dieroll] === "heal") {
       let healcast = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(who,0,0,who);
       mybark += `<br />${desc} looks healthier.`;
-    } elsif (options[dieroll] === "morale") {
+      if (IsVisibleOnScreen(who)) {
+        maintext.addText(mybark);
+      }
+      return "special";
+    } else if (options[dieroll] === "morale") {
+      for (let i=0;i<moralelist.length;i++) {
+        let dur = SCALE_TIME * 2;
+        let power = 1;
+        let endtime = dur + DU.DUTime.getGameClock();
+        let levobj = localFactory.createTile("Blessing");
+        levobj.setPower(power);
+        levobj.setExpiresTime(endtime);
+  
+        moralelist[i].addSpellEffect(levobj, 1 );
+      }
+      if (IsVisibleOnScreen(who)) {
+        mybark += `${desc}'s allies are cheered!`;
+        maintext.addText(mybark);
+        DUPlaySound("sfx_lute");
+      }
+      return "special";
+    } else if (options[dieroll] === "demoralize") {
 
     }
   }
