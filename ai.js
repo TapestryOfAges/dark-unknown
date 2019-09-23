@@ -1664,7 +1664,9 @@ ais.ai_sing = function(who) {
     let dieroll = Dice.roll("1d"+options.length+"-1");
     if (options[dieroll] === "heal") {
       let healcast = magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(who,0,1,who);
-      mybark += `<br />${desc} looks healthier.`;
+      let tmpbark = `${desc} looks healthier.`;
+      tmpbark = tmpbark.charAt(0).toUpperCase() + tmpbark.slice(1);
+      mybark += `<br />${tmpbark}`;
       if (IsVisibleOnScreen(who)) {
         maintext.addText(mybark);
       }
