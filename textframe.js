@@ -24,13 +24,15 @@ TextFrame.prototype.addText = function(newtext) {
 		tmpchild.innerHTML = "<br />" + newtext;
 		document.getElementById(this.framename).appendChild(tmpchild);
 //  	document.getElementById(this.framename).innerHTML += "<br />" + newtext;
+    this.countnode();
   }
   if (this.delayedappend) {
 		let tmpchild = document.createElement('span');
 		tmpchild.innerHTML = "<br />" + this.delayedappend;
 		document.getElementById(this.framename).appendChild(tmpchild);
 //    document.getElementById(this.framename).innerHTML += "<br />" + this.delayedappend;
-    this.clearDelay();
+		this.clearDelay();
+		this.countnode();
   }
 }
 
@@ -50,7 +52,14 @@ TextFrame.prototype.clearDelay = function() {
   this.delayedappend = "";
 }
 
-TextFrame.prototype.addTextByLine = function(newtext) {
+TextFrame.prototype.countnode = function() {
+	let txtar = document.getElementById(this.framename);
+  if (txtar.childNodes.length > 17) {
+    txtar.removeChild(txtar.childNodes[0]);
+	}
+}
+
+TextFrame.prototype.addTextByLine = function(newtext) {  // deprecated
 	let words = newtext.split(" ");
 	let lines = [];
 	let line = "";
