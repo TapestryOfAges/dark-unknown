@@ -543,7 +543,9 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
         if (!CheckResist(caster,val,infused,0)) {
           let distract = localFactory.createTile("Distract");
           ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
-          desc = val.getDesc() + " is distracted!";
+          if (val !== PC) {
+            desc = val.getDesc() + " is distracted!";
+          }
           // Not necessary for PC - ephemeral object's start desc is sufficient
           let duration = power * SCALE_TIME;
           distract.setExpiresTime(duration + DUTime.getGameClock());
