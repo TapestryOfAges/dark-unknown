@@ -49,6 +49,7 @@ function DrawMainFrame() { }
 function DrawCharFrame() {}
 function ShowEffect(onwhat, duration, graphic, xoff, yoff) {}
 function IsVisibleOnScreen() { return 1; }
+function DUPlaySound() {}
   
 QUnit.test( "Test minstrel song", function( assert ) {
   var maps = new MapMemory();
@@ -58,7 +59,7 @@ QUnit.test( "Test minstrel song", function( assert ) {
   var minstrel = localFactory.createTile("MinstrelNPC");
   testmap.placeThing(4,4,minstrel);
   
-  minstrel.setHP(5);
+  minstrel.setHP(1);
 
   let friend  = localFactory.createTile("HoodNPC");
   testmap.placeThing(3,3,friend);
@@ -69,11 +70,31 @@ QUnit.test( "Test minstrel song", function( assert ) {
 
   let diecount = 0;
   Dice.roll = function() { if (!diecount) { diecount++; return 0; } 
-                          else { return 10; } }
+                          else { return 3; } }
   
   let result = ais.ai_sing(minstrel);
   assert.deepEqual(result,"special","Minstrel sing AI returned 'special'");
+  assert.deepEqual(minstrel.getHP(),4,"Healed!");
 
-  maps.deleteMap("unittest2");
+  Dice.roll = function() { return 0; }
+
+  minstrel.setHP(minstrel.getMaxHP());
+  result = ais.ai_sing(minstrel);
+  let morale = friend.getSpellEffectsByName("Blessing");
+  assert.deepEqual(morale.getName(),"Blessing","Friend is blessed.");
+  assert.deepEqual(DUTime.getGameClock(),0,"Time is 0?");
+  assert.deepEqual(morale.getExpiresTime(),2*SCALE_TIME,"Expires at 2 ticks");
+
+  let morale2 = PC.getSpellEffectsByName("Blessing");
+  assert.deepEqual(morale2,undefined,"No blessing on PC");
+
+  diecount = 0;
+  Dice.roll = function()  { if (!diecount) { diecount++; return 1; } 
+  else { return 90; } }
+  result = ais.ai_sing(minstrel);
+  let distract = PC.getSpellEffectsByName("Distract");
+  assert.deepEqual(distract.getName(),"Distract","PC is distracted!");
+
+  maps.deleteMap("combatGrass1");
 });
 
