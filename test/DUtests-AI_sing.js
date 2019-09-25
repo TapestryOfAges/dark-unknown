@@ -98,3 +98,27 @@ QUnit.test( "Test minstrel song", function( assert ) {
   maps.deleteMap("combatGrass1");
 });
 
+QUnit.test( "Test gremlin breed", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("combatGrass1");
+  var testmap = maps.getMap("combatGrass1");
+ 
+  var minstrel = localFactory.createTile("GremlinNPC");
+  testmap.placeThing(4,4,minstrel);
+  
+  testmap.placeThing(5,5,PC);
+
+  ais.ai_breed(minstrel);
+  let npcs = testmap.npcs.getAll();
+  assert.deepEqual(npcs.length,1,"There is still only one Gremlin.");
+
+  Dice.roll = function() { return 0; }
+  minstrel.fed = 1;
+  ais.ai_breed(minstrel);
+  npcs = testmap.npcs.getAll();
+  assert.deepEqual(npcs.length,2,"The gremlin has bred.");
+  assert.deepEqual(minstrel.fed,undefined,"The gremlin is no longer fed.");
+
+  maps.deleteMap("combatGrass1");
+});
+
