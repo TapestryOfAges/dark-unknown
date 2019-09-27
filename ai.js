@@ -1741,6 +1741,47 @@ ais.ai_breed = function(who) {
   return "special";
 }
 
+ais.ai_sleep = function(who) {
+  console.log("In ai_sleep");
+  let themap = who.getHomeMap();
+  let npcs = themap.npcs.getAll();
+  let sleeptargets = [];
+  if ((GetDistance(PC.getx(),PC.gety(),who.getx(),who.gety()) <5) && (PC.getHomeMap() === themap)) {
+    sleeptargets.push(PC);
+  }
+  for (let i=0;i<npcs.length;i++) {
+    if ((npcs[i].getAttitude() !== who.getAttitude()) && (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5)) { sleeptargets.push(npcs[i]); }
+  }
+  if (sleeptargets.length) {
+    let result = Dice.roll(`1d${sleeptargets.length}-1`);
+    let desc = "the " + sleeptargets[result].getDesc();
+    if (sleeptargets[result] === PC) { 
+      maintext.addText("The " + who.getDesc() + " looks intently at you!");
+    } else {
+      maintext.addText("The " + who.getDesc() + " looks intently at " + desc + "!");
+    }
+    if (CheckResist(who,sleeptargets[result],0,0)) {
+      if (sleeptargets[result] === PC) { maintext.addText("You feel drowsy, but shake it off."); }
+      else { maintext.addText("The " + desc + " feels drowsy, but shakes it off."); }
+    } else {
+      if (sleeptargets[result] === PC) { maintext.addText("You fall asleep!"); }
+      else { maintext.addText("The " + desc + " falls asleep!"); }
+
+      if (sleeptargets[result].getSpellEffectsByName("Sleep")) { return; }
+      let fieldeffect = localFactory.createTile("Sleep");
+      
+      let duration = Math.max((Dice.roll("2d3") - sleeptargets[result].getInt()/20), 1) * SCALE_TIME;
+      fieldeffect.setExpiresTime(duration + DUTime.getGameClock());
+      sleeptargets[result].addSpellEffect(fieldeffect);
+      ShowEffect(sleeptargets[result], 1000, "spellsparkles-anim.gif", 0, COLOR_PURPLE);
+      
+      DrawCharFrame();
+
+    }
+  }
+  return "special";
+}
+
 ais.ai_missile = function(who) {
   let melee = TryMelee(who);
   if (melee) { 

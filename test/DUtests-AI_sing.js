@@ -122,3 +122,24 @@ QUnit.test( "Test gremlin breed", function( assert ) {
   maps.deleteMap("combatGrass1");
 });
 
+QUnit.test( "Test gaze sleep", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("combatGrass1");
+  var testmap = maps.getMap("combatGrass1");
+ 
+  var gazer = localFactory.createTile("GazerNPC");
+  testmap.placeThing(4,4,gazer);
+  
+  testmap.placeThing(5,5,PC);
+
+  let friend = localFactory.createTile("IllusionNPC");
+
+  testmap.placeThing(6,1,friend);
+
+  let retval = ais.ai_sleep(gazer);
+
+  assert.deepEqual(retval,"special","gazer acted.");
+
+  maps.deleteMap("combatGrass1");
+});
+
