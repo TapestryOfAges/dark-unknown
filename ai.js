@@ -154,18 +154,18 @@ ais.combat = function(who) {
     if (who.specials.icebreath) { nonmeleeoptions.push("ai_icebreath"); }  // needs work
     if (who.specials.whirlpool) { nonmeleeoptions.push("ai_whirlpool"); }  // needs work- what was this going to be?
     if (who.specials.breedsexplosively) { nonmeleeoptions.push("ai_breed"); }
-    if (who.specials.animalhandler) { nonmeleeoptions.push("ai_handle"); }  // needs work- what was this going to be?
+    if (who.specials.animalhandler) { nonmeleeoptions.push("ai_handle"); }  
     if (who.specials.spitter) { nonmeleeoptions.push("ai_spit"); }  // needs work
     if (who.specials.lbolt) { nonmeleeoptions.push("ai_lbolt"); }  // needs work
     if (who.specials.magmaheal) { nonmeleeoptions.push("ai_magmaheal"); }  // needs work
     if (who.specials.magmaspit) { nonmeleeoptions.push("ai_magmaspit"); }  // needs work
     if (who.specials.teleport) { nonmeleeoptions.push("ai_teleport"); }  // needs work
-    if (who.specials["energy bolt"]) { nonmeleeoptions.push("ai_energybold"); }  // needs work
-    if (who.specials.phase) { nonmeleeoptions.push("ai_phase"); }  // needs work
+    if (who.specials["energy bolt"]) { nonmeleeoptions.push("ai_energybolt"); }  // needs work
+    if (who.specials.phase) { nonmeleeoptions.push("ai_phase"); }  
     if (who.specials.multiattack) { nonmeleeoptions.push("ai_multiattack"); }  // needs work- what was this going to be?
-    if (who.specials.summonearthelemental) { nonmeleeoptions.push("ai_summonearthelemental"); }  // needs work
-    if (who.specials.necromancer) { nonmeleeoptions.push("ai_necromancer"); }  // needs work- was this just 'summons undead'?
-    if (who.specials.sleep) { nonmeleeoptions.push("ai_sleep"); }  // needs work
+    if (who.specials.summonearthelemental) { nonmeleeoptions.push("ai_summonearthelemental"); }  
+    if (who.specials.necromancer) { nonmeleeoptions.push("ai_necromancer"); }  
+    if (who.specials.sleep) { nonmeleeoptions.push("ai_sleep"); }  
 
     // there will be more!
     // eventually make this choice smarter
@@ -275,6 +275,7 @@ function TryMelee(who) {
           }
           // attack them and call it a day!
           if (doatk) {
+            if (who.getSpellEffectsByName("Phased")) { who.getSpellEffectsByName("Phased").endEffect(); } 
             DebugWrite("ai", "ATTACK!<br />");
             let result = Attack(who,nearby[i]);
             maintext.addText(result["txt"]);
@@ -1676,7 +1677,6 @@ ais.ai_sing = function(who) {
   let foe = FindNearestNPC(who,"enemy");
   if (foe && (GetDistance(who.getx(),who.gety(),foe.getx(),foe.gety()) < 5)) { options.push("demoralize"); } 
 
-  console.log(options);
   if (options.length) {
     let dieroll = Dice.roll("1d"+options.length+"-1");
     if (options[dieroll] === "heal") {
@@ -1717,26 +1717,11 @@ ais.ai_sing = function(who) {
 ais.ai_breed = function(who) {
   if (!who.fed) { return; }
   maintext.addText("The well-fed gremlin vibrates violently in place! Something happens!");
-  let coordopts = [];
-  let themap = who.getHomeMap();
-  for (let i=-1;i<=1;i++) {
-    for (let j=-1;j<=1;j++) {
-      let gx = who.getx()+i;
-      let gy = who.gety()+j;
-      let acre = themap.getTile(gx,gy);
-      if (acre === "OoB") { continue; }
-      if (!acre.getTopFeature() && !acre.getTopNPC()) {
-        if ((PC.getx() !== gx) || (PC.gety() !== gy)) {
-          coordopts.push([gx,gy]);
-        }
-      }
-    }
-  }
-  if (coordopts.length) {
+  let coordopts = FindEmptyAdjacent(who, 1);
+  if (coordopts[0]) {
     let newgrem = localFactory.createTile("GremlinNPC");
-    let dieroll = Dice.roll(`1d${coordopts.length}-1`);
     delete who.fed;
-    themap.placeThing(coordopts[dieroll][0],coordopts[dieroll][1],newgrem);
+    who.getHomeMap().placeThing(coordopts[0],coordopts[1],newgrem);
   }
   return "special";
 }
@@ -1779,6 +1764,59 @@ ais.ai_sleep = function(who) {
 
     }
   }
+  return "special";
+}
+
+ais.ai_handle = function(who) {
+  if (!who.summoned) {
+    let coord = FindEmptyAdjacent(who,1);
+    if (coord[0]) {
+      who.meleeChance = 80;
+      maintext.addText("The " + who.getDesc() + " summons an animal!");
+      let animal = localFactory.createTile("PythonNPC");
+      who.summoned = animal;
+      animal.summonedby = who;
+      who.getHomeMap().placeThing(coord[0],coord[1],animal);
+    } else {return;}
+  }
+}
+
+ais.ai_summonearthelemental = function(who) {
+  if (!who.eversummoned) {
+    let coord = FindEmptyAdjacent(who,1);
+    if (coord[0]) {
+      maintext.addText("The " + who.getDesc() + " summons an earth elemental!");
+      let elem = localFactory.createTile("EarthElementalNPC");
+      delete who.specials.summonearthelemental;
+      who.eversummoned = 1;
+      who.summoned = elem;
+      elem.summonedby = who;
+      who.getHomeMap().placeThing(coord[0],coord[1],elem);
+    } else {return;}
+  }
+}
+
+ais.ai_necromancer = function(who) {
+  let coord = FindEmptyAdjacent(who,1);
+  if (coord[0]) {
+    maintext.addText("The " + who.getDesc() + " summons a skeleton!");
+    let skel = localFactory.createTile("SkeletonNPC");
+    who.getHomeMap().placeThing(coord[0],coord[1],skel);
+  } else {return;}
+}
+
+ais.ai_whirlpool = function(who) {
+  // if three flukes surround, one can suicide to generate damaging whirlpool
+  // does it have any additional effect? Distract?
+}
+
+ais.ai_phase = function(who) {
+  if (who.getSpellEffectsByName("Phased")) { return; }
+  let duration = Dice.roll("1d3") * SCALE_TIME;
+  let phase = localFactory.createTile("Phased");
+  phase.setExpiresTime(DUTime.getGameClock() + duration);
+  who.addSpellEffect(phase);
+
   return "special";
 }
 
