@@ -7046,6 +7046,41 @@ function WhirlpoolTile() {
 }
 WhirlpoolTile.prototype = new FeatureObject();
 
+function WhirlpoolFlukeTile() {
+	this.name = "WhirlpoolFluke";
+	this.graphic = "325.gif";
+  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "whirlpool";
+  
+}
+WhirlpoolFlukeTile.prototype = new FeatureObject();
+
+WhirlpoolFlukeTile.prototype.walkon = function(walker) {
+  let diz = localFactory.createTile("Dizzy");
+  diz.setExpiresTime(-1);
+  walker.addSpellEffect(diz);
+}
+
+WhirlpoolFlukeTile.prototype.walkoff = function(walker) {
+  let diz = walker.getSpellEffectsByName("Dizzy");
+  walker.deleteSpellEffect(diz);
+}
+
+WhirlpoolFlukeTile.prototype.walkofftest = function(walker) {
+  let chance = Dice.roll("1d30");
+  let retval = []
+  if (chance < walker.getStr()) {
+    retval["txt"] = "You struggle to escape the pull of the whirlpool. You succeed!";
+    retval["success"] = 1; 
+  } else {
+    retval["txt"] = "You struggle to escape the pull of the whirlpool. You fail.";
+    retval["success"] = 0;
+  }
+  return retval;
+}
+
 function WalkOnTile() {
 	this.name = "WalkOn";
   this.graphic = "master_spritesheet.png";
@@ -10810,7 +10845,7 @@ TorchTile.prototype = new ConsumableItemObject();
 
 TorchTile.prototype.use = function(who) {
   let retval = {};
-  if (who.getSpellEffectsByname("TorchLight")) {
+  if (who.getSpellEffectsByName("TorchLight")) {
     if (who === PC) {
       retval["txt"] = "You already have a lit torch!";
     }
@@ -13966,6 +14001,14 @@ NPCObject.prototype.processDeath = function(droploot){
       }  
     }
     map.deleteThing(this);
+    if (this.summonedby) {
+      delete this.summonedby.summoned;
+      delete this.summonedby;
+    }
+    if (this.summoned) {
+      delete this.summoned.summonedby;
+      delete this.summoned;
+    }
     if (map.getName() === "shadow1") {
       let npcs = map.npcs.getAll();
       let safe = 1;
@@ -14697,52 +14740,60 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	}
 	
 	if (retval["canmove"] === 1) {
-	  let exittile = map.getTile(this.getx(),this.gety());
-	  let walkofftile = exittile.executeWalkoffs(this);
-	  if (walkofftile) {
-	    if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
-	    retval["msg"] += walkoffval;
-	  }
-		map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
-		if (this === PC) {
-		  let sfx = "sfx_walk_";
-		  if (map.getUnderground()) { sfx = sfx + "ug_"; }
-		  if (tile.getTopFeature() && tile.getTopFeature().getWalkSound()) {
-		    sfx = sfx + tile.getTopFeature().getWalkSound();
-		  } else if (tile.getTerrain().getWalkSound()) {
-		    sfx = sfx + tile.getTerrain().getWalkSound();
-		  } else {
-		    sfx = sfx + "grass";
-		  }
-		  play_footstep(sfx);
+    let exittile = map.getTile(this.getx(),this.gety());
+    let walkofftest = { success: 1 };
+    if (exittile.walkofftest) {
+      walkofftest = exittile.walkofftest(this);
+      if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
+      retval["msg"] += walkofftest["txt"];
+    }
+    if (walkofftest.success) {
+  	  let walkofftile = exittile.executeWalkoffs(this);
+	    if (walkofftile) {
+	      if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
+	      retval["msg"] += walkoffval;
+  	  }
+	  	map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
+		  if (this === PC) {
+		    let sfx = "sfx_walk_";
+  		  if (map.getUnderground()) { sfx = sfx + "ug_"; }
+	  	  if (tile.getTopFeature() && tile.getTopFeature().getWalkSound()) {
+		      sfx = sfx + tile.getTopFeature().getWalkSound();
+		    } else if (tile.getTerrain().getWalkSound()) {
+		      sfx = sfx + tile.getTerrain().getWalkSound();
+  		  } else {
+	  	    sfx = sfx + "grass";
+		    }
+		    play_footstep(sfx);
 		  
-      ProcessAmbientNoise(tile);
-		}
+        ProcessAmbientNoise(tile);
+		  }
 
-    let distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
-		let walkonval = tile.executeWalkons(this);
-		if (walkonval) {
-		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
-		  retval["msg"] += walkonval;
-		}
+      let distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
+	  	let walkonval = tile.executeWalkons(this);
+		  if (walkonval) {
+  		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
+	  	  retval["msg"] += walkonval;
+		  }
 //    if ((map === PC.getHomeMap()) && (GetSquareDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.max(VIEWSIZEX,VIEWSIZEY) )) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
       // uncommented version checks from current display center, not from PC position.
-      if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
-        DebugWrite("ai", "A light source, need to redraw the whole screen...<br />");
-        DrawMainFrame("draw", map, PC.getx(), PC.gety());
-			} else {
-        // only redraw these two spaces
-        DebugWrite("ai", "Redraw both tiles.<br />");
-			  DrawMainFrame("one", map, startx, starty);
-			  DrawMainFrame("one", map, passx, passy);
-			}
+        if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
+          DebugWrite("ai", "A light source, need to redraw the whole screen...<br />");
+          DrawMainFrame("draw", map, PC.getx(), PC.gety());
+  			} else {
+          // only redraw these two spaces
+          DebugWrite("ai", "Redraw both tiles.<br />");
+			    DrawMainFrame("one", map, startx, starty);
+			    DrawMainFrame("one", map, passx, passy);
+	  		}
 //    }
-	}
-	retval["initdelay"] = tile.getInitDelay(this);
-	retval["diffx"] = diffx;
-  retval["diffy"] = diffy;
-  
+	  }
+	  retval["initdelay"] = tile.getInitDelay(this);
+	  retval["diffx"] = diffx;
+    retval["diffy"] = diffy;
+  }
+
   if (this.hasFrame) {
     if ((this.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(this.getx(),this.gety()))) {
       MoveTurnFrame(this);
@@ -15108,6 +15159,7 @@ NPCObject.prototype.getHitChance = function(atkwith) {
   }
   
   let distracted = this.getSpellEffectsByName("Distract");
+  if (!distracted) { distracted = this.getSpellEffectsByName("Dizzy"); }
   if (distracted) {
     let stillon = distracted.doEffect();
     if (stillon != -1) {
