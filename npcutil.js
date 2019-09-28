@@ -737,3 +737,31 @@ function WhereIs(npcname) {
   }
   return npc.getLocation();
 }
+
+function FindEmptyAdjacent(who, randompick) {
+  let coordopts = [];
+  let themap = who.getHomeMap();
+  for (let i=-1;i<=1;i++) {
+    for (let j=-1;j<=1;j++) {
+      let gx = who.getx()+i;
+      let gy = who.gety()+j;
+      let acre = themap.getTile(gx,gy);
+      if (acre === "OoB") { continue; }
+      if (!acre.getTopFeature() && !acre.getTopNPC()) {
+        if ((PC.getx() !== gx) || (PC.gety() !== gy)) {
+          coordopts.push([gx,gy]);
+        }
+      }
+    }
+  }
+  if (randompick) {
+    if (coordopts.length) {
+      let dieroll = Dice.roll(`1d${coordopts.length}-1`);
+      return coordopts[dieroll];
+    } else {
+      return [];
+    }  
+  } else {
+    return coordopts;
+  }
+}
