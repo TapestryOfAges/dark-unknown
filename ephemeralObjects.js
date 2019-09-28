@@ -615,6 +615,42 @@ DistractTile.prototype.endEffect = function(silent) {
   return -1;
 }
 
+function DizzyTile() {
+  this.addType("debuff");
+  this.name = "Dizzy";
+  this.display = "<span style='color:purple'>D</span>";
+  this.zstatdesc = "You are dizzy.";
+  this.desc = "Dizzy";
+  this.level = 1;
+}
+DizzyTile.prototype = new EphemeralObject();
+
+DizzyTile.prototype.applyEffect = function(silent) {
+  let who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("The whirlpool makes you dizzy!");
+  }
+  return 1;
+}
+
+DizzyTile.prototype.doEffect = function() {
+  let resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+DizzyTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You are no longer dizzy.");
+  }
+  DrawCharFrame();
+  return -1;
+}
+
 function DrunkTile() {
   this.addType("debuff");
   this.name = "Drunk";
@@ -1177,6 +1213,48 @@ ParalyzeTile.prototype.endEffect = function(silent) {
     maintext.addText("You can move again!");
   }
   DrawCharFrame();
+}
+
+function PhasedTile() {
+  this.addType("buff");
+  this.name = "Phased";
+  this.display = "<span style='color:white'>P</span>";
+  this.zstatdesc = "You have phased out.";
+  this.desc = "Phased";
+  this.level = 6;
+}
+PhasedTile.prototype = new EphemeralObject();
+
+PhasedTile.prototype.applyEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.invisible = 1;
+  
+  if (who) {
+    if ((who === PC) && !silent) {
+      maintext.addText("You phase out.");
+    }
+  }
+  return 1;
+}
+
+PhasedTile.prototype.doEffect = function() {
+  let resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  }
+  return resp;
+}
+
+PhasedTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  delete who.invisible;
+  who.deleteSpellEffect(this);
+
+  if ((who === PC) && !silent) {
+    maintext.addText("You phase in.");
+  }
+  DrawCharFrame();
+  return -1;
 }
 
 function PoisonTile() {
