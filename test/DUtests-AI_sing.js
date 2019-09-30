@@ -143,3 +143,46 @@ QUnit.test( "Test gaze sleep", function( assert ) {
   maps.deleteMap("combatGrass1");
 });
 
+QUnit.test( "Test fluke whirlpool", function( assert ) {
+  var maps = new MapMemory();
+  maps.addMap("combatCoast1");
+  var testmap = maps.getMap("combatCoast1");
+ 
+  var fluke = localFactory.createTile("FlukeNPC");
+  testmap.placeThing(6,10,fluke);
+  
+  testmap.placeThing(7,10,PC);
+
+  let fluke2 = localFactory.createTile("FlukeNPC");
+  testmap.placeThing(7,11,fluke2);
+
+  let retval = ais.ai_whirlpool(fluke);
+
+  assert.deepEqual(retval,undefined,"Fluke didn't act, presumably because it needs 3.");
+
+  let fluke3 = localFactory.createTile("FlukeNPC");
+  testmap.placeThing(8,9,fluke3);
+
+  retval = ais.ai_whirlpool(fluke);
+
+  assert.deepEqual(retval,"special","Fluke acted.");
+  let para = 0;
+  if (fluke2.getSpellEffectsByName("Paralyze")) { para = 1; }
+  assert.deepEqual(para,1,"Fluke2 is paralyzed with effort.");
+  para = 0;
+  if (fluke3.getSpellEffectsByName("Paralyze")) { para = 1; }
+  assert.deepEqual(para,1,"Fluke3 is paralyzed with effort.");
+  para = 0;
+  if (fluke.getSpellEffectsByName("Paralyze")) { para = 1; }
+  assert.deepEqual(para,0,"Fluke is not paralyzed with effort- it did it on its turn.");
+  
+  let tile = testmap.getTile(7,10);
+  let wp = tile.getTopFeature();
+  assert.deepEqual(wp.getName(),"WhirlpoolFluke","There is a whirlpool under the PC.");
+
+  para = 0;
+  if (PC.getSpellEffectsByName("Dizzy")) { para = 1; }
+  assert.deepEqual(para,1,"PC is dizzy.");
+
+  maps.deleteMap("combatCoast1");
+});

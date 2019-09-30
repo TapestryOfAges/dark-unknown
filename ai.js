@@ -152,7 +152,7 @@ ais.combat = function(who) {
     if (who.specials.sing) { nonmeleeoptions.push("ai_sing"); }
     if (who.specials.firebreath) { nonmeleeoptions.push("ai_firebreath"); }  // needs work
     if (who.specials.icebreath) { nonmeleeoptions.push("ai_icebreath"); }  // needs work
-    if (who.specials.whirlpool) { nonmeleeoptions.push("ai_whirlpool"); }  // needs work- what was this going to be?
+    if (who.specials.whirlpool) { nonmeleeoptions.push("ai_whirlpool"); }  
     if (who.specials.breedsexplosively) { nonmeleeoptions.push("ai_breed"); }
     if (who.specials.animalhandler) { nonmeleeoptions.push("ai_handle"); }  
     if (who.specials.spitter) { nonmeleeoptions.push("ai_spit"); }  // needs work
@@ -1807,7 +1807,64 @@ ais.ai_necromancer = function(who) {
 
 ais.ai_whirlpool = function(who) {
   // if three flukes surround, one can suicide to generate damaging whirlpool
-  // does it have any additional effect? Distract?
+  let foe = FindNearestNPC(who,"enemy");
+  let themap = who.getHomeMap();
+  if (IsAdjacent(who,foe)) {
+    let terrain = themap.getTile(who.getx(),who.gety()).getTerrain().getName();
+    let countflukes = 0;
+    let flukelist = [];
+    if ((terrain === "Water") || (terrain === "Shallows") || (terrain === "Ocean") || (terrain === "ShadowWater") || (terrain === "ShadowShallows") || (terrain === "ShadowOcean")) {
+      for (let i=-1;i<=1;i++) {
+        for (let j=-1;j<=1;j++) {
+          let fluke = themap.getTile(foe.getx()+i,foe.gety()+j);
+          if (fluke !== "OoB") { 
+            fluke = fluke.getTopNPC();
+            if (fluke) { 
+              if (fluke.getName() === "FlukeNPC") { 
+                countflukes++; 
+                flukelist.push(fluke);
+              }
+            }
+          }
+        }
+      }
+    }
+    if (countflukes >= 3) {
+      DebugWrite("ai","Flukes surround their foe- create whirlpool!");
+      let whirlpool = localFactory.createTile("WhirlpoolFluke");
+      themap.placeThing(foe.getx(),foe.gety(),whirlpool);
+      let diz = localFactory.createTile("Dizzy");
+      diz.setExpiresTime(-1);
+      foe.addSpellEffect(diz);
+      for (let i=0;i<countflukes;i++) {
+        if (flukelist[i] !== who) {
+          let para = localFactory.createTile("Paralyze");
+          para.setExpiresTime(DUTime.getGameClock()+SCALE_TIME);
+          flukelist[i].addSpellEffect(para);
+        }
+      }
+      if (GetDistance(PC.getx(),PC.gety(),foe.getx(),foe.gety()) <= 5) { maintext.addText("The flukes work in unison to churn the waters. A whirlpool forms!"); }
+      return "special";  
+    } else { console.log("Fewer than 3 flukes, no whirlpool."); }
+  } else { return; }
+}
+
+ais.ai_magmaheal = function(who) {
+  if (who.getHP() === who.getMaxHP()) { return; }
+  let themap = who.getHomeMap(); 
+  let lava = 0;
+  let fea = themap.getTile(who.getx(),who.gety()).getFeatures();
+  for (let i=0;i<fea.length;i++) {
+    if (fea[i].getName() === "Lava") { lava = 1; }
+  }
+  if (lava) {
+    if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) < 5) { 
+      maintext.addText("The " + who.getDesc() + " absorbs lava through its scales. It looks healthier!");
+    }
+    who.setHP(Math.min(who.getHP()+50,who.getMaxHP()));
+    ShowEffect(who, 1000, "spellsparkles-anim.gif", 0, COLOR_RED);
+  } 
+  return;
 }
 
 ais.ai_phase = function(who) {

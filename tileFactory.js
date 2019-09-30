@@ -1538,6 +1538,11 @@ tileFactory.prototype.makeWhirlpoolTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWhirlpoolFlukeTile = function() {
+  let newTile = new WhirlpoolFlukeTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnTile = function() {
   let newTile = new WalkOnTile();
   return newTile;
@@ -3868,6 +3873,11 @@ tileFactory.prototype.makeDistractTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDizzyTile = function() {
+  let newTile = new DizzyTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDrunkTile = function() {
   let newTile = new DrunkTile();
   return newTile;
@@ -3930,6 +3940,11 @@ tileFactory.prototype.makeNegateMagicTile = function() {
 
 tileFactory.prototype.makeParalyzeTile = function() {
   let newTile = new ParalyzeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePhasedTile = function() {
+  let newTile = new PhasedTile();
   return newTile;
 }
 
