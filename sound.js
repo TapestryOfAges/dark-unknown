@@ -119,6 +119,7 @@ DUSound["sfx_slime_hit"] = "sfx/slime.wav"; // Soniss 2015/Mattia Cellotto- The 
 DUSound["sfx_slime_miss"] = "sfx/slime_miss.wav"; // Soniss 2015/Mattia Cellotto- The Borax Experiment/Gore,Slime,Creature,Meat,Blood,Short,Movement,Various45.wav
 DUSound["sfx_water_hit"] = "sfx/Water 2.mp3"; // Magic Spells SFX B Stereo/Water/Water 2 
 DUSound["sfx_water_miss"] = "sfx/Water 8.mp3"; // Magic Spells SFX B Stereo/Water/Water 8
+DUSound["sfx_fire_breath"] = "sfx/MM1_Spell18.wav"; // RPG SFX B MM1_Spell18
 
 let musicpath = "music/";
 let DUMusic = {};
