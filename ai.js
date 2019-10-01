@@ -1849,6 +1849,21 @@ ais.ai_whirlpool = function(who) {
   } else { return; }
 }
 
+ais.ai_firebreath = function(who) {
+  let params = {};
+  params.graphic = "fireicelightning.gif";
+  params.xoffset = 0;
+  params.yoffset = 0;
+  params.directionalammo = 1;
+  params.sound = "sfx_fire_breath";
+  params.dmgtype = "fire";
+  if (who.getLevel() <= 3) { params.dmg = "2d8+8"; }
+  else if (who.getLevel() <= 5) { params.dmg = "4d8+14"; }
+  else { params.dmg = "4d8+26"; }
+
+  return ais.ai_breathweapon(who,params);
+}
+
 ais.ai_magmaheal = function(who) {
   if (who.getHP() === who.getMaxHP()) { return; }
   let themap = who.getHomeMap(); 
