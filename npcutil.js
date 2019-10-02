@@ -232,11 +232,15 @@ function Attack(atk, def) {
   }
 
   let hitgraphic = {};
-  hitgraphic.graphic = "702.gif";
-  if (dmg === 0) { hitgraphic.graphic = "700.gif"; }
-  hitgraphic.xoffset = 0;
-  hitgraphic.yoffset = 0;
+  hitgraphic.graphic = "master_spritesheet.png";
+  hitgraphic.xoffset = -128;
+  hitgraphic.yoffset = -1856;
   hitgraphic.overlay = "spacer.gif";
+  if (dmg === 0) { 
+    hitgraphic.graphic = "master_spritesheet.png"; 
+    hitgraphic.xoffset = -32;
+    hitgraphic.yoffset = -1856;
+  }
   
   let sounds = {start: "", end: snd};
 
