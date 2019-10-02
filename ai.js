@@ -1849,40 +1849,123 @@ ais.ai_whirlpool = function(who) {
   } else { return; }
 }
 
-ais.ai_firebreath = function(who) {
-  let params = {};
-  params.graphic = "fireicelightning.gif";
-  params.xoffset = 0;
-  params.yoffset = 0;
-  params.directionalammo = 1;
-  params.sound = "sfx_fire_breath";
-  params.dmgtype = "fire";
-  if (who.getLevel() <= 3) { params.dmg = "2d8+8"; }
-  else if (who.getLevel() <= 5) { params.dmg = "4d8+14"; }
-  else { params.dmg = "4d8+26"; }
-  params.hitgraphic = "master_spritesheet.png";
-  params.hitx = -128;
-  params.hity = -1856;
+function GetBreathTarget(who) {
+  let npcs = who.getHomeMap().npcs.getAll();
+  let foes = [];
+  for (let i=0;i<npc.length;i++) {
+    if (npcs[i].getAttitude() !== who.getAttitude()) { 
+      if (GetDistance(npcs[i].getx(),npcs[i].gety(),who.getx(),who.gety()) <= 5) {  
+        foes.push(npcs[i]); 
+      }
+    }
+  }
+  if (foes.length) {
+    return foes[Dice.roll("1d"+foes.length+"-1")]; 
+  }
+  return;
+}
 
-  return ais.ai_breathweapon(who,params);
+ais.ai_firebreath = function(who) {
+  let tgt = GetBreathTarget(who);
+  if (!tgt) { return; }
+
+  let bolt = {};
+  bolt.graphic = "fireicelightning.gif";
+  bolt.xoffset = 0;
+  bolt.yoffset = 0;
+  bolt.directionalammo = 1;
+  bolt = GetEffectGraphic(who,tgt,boltgraphic);
+  let dmg;
+  if (who.getLevel() <= 3) { dmg = Dice.roll("2d8+8"); }
+  else if (who.getLevel() <= 5) { dmg = Dice.roll("4d8+14"); }
+  else { dmg = Dice.roll("4d8+26"); }
+  let atkhit = 1;
+  if (Dice.roll("1d45") < PC.getDex()) { atkhit = 0; }
+  let destgraphic = {};
+  if (atkhit) {
+    if (tgt === PC) {
+      maintext.addText("The " + who.getDesc() + " breathes fire. You are bathed in flames!");
+    } else {
+      let tgtdesc = tgt.getFullDesc();
+      tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
+      maintext.addText("The " + who.getDesc() + " breathes fire. " + tgtdesc + " is bathed in flames!");
+    }
+    destgraphic = {graphic:"master_spritesheet.png", xoffset:-128, yoffset:-1856, overlay:"spacer.gif"};
+  } else {
+    if (tgt === PC) {
+      maintext.addText("The " + who.getDesc() + " breathes fire. You dodge some of the blast!");
+    } else {
+      let tgtdesc = tgt.getFullDesc();
+      tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
+      maintext.addText("The " + who.getDesc() + " breathes fire. " + tgtdesc + " avoids some of the blast!");
+    }
+
+    destgraphic = {graphic:"spacer.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+    dmg = dmg/2;
+  }
+  if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
+    DUPlaySound("sfx_fire_breath");
+  }
+  let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+  let desc = tgt.getDesc();
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+  let descval = { txt: desc };
+  AnimateEffect(who, tgt, fromcoords, tocoords, boltgraphic, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire"},0);
+
+  return "special_wait";
 }
 
 ais.ai_icebreath = function(who) {
-  let params = {};
-  params.graphic = "fireicelightning.gif";
-  params.xoffset = 0;
-  params.yoffset = -32;
-  params.directionalammo = 1;
-  params.sound = "sfx_iceball";
-  params.dmgtype = "ice";
-  if (who.getLevel() <= 3) { params.dmg = "2d8+8"; }
-  else if (who.getLevel() <= 5) { params.dmg = "4d8+14"; }
-  else { params.dmg = "4d8+26"; }
-  params.hitgraphic = "master_spritesheet.png";
-  params.hitx = -96;
-  params.hity = -1856;
+  let tgt = GetBreathTarget(who);
+  if (!tgt) { return; }
 
-  return ais.ai_breathweapon(who,params);
+  let bolt = {};
+  bolt.graphic = "fireicelightning.gif";
+  bolt.xoffset = 0;
+  bolt.yoffset = -32;
+  bolt.directionalammo = 1;
+  bolt = GetEffectGraphic(who,tgt,boltgraphic);
+  let dmg;
+  if (who.getLevel() <= 3) { dmg = Dice.roll("2d8+8"); }
+  else if (who.getLevel() <= 5) { dmg = Dice.roll("4d8+14"); }
+  else { dmg = Dice.roll("4d8+26"); }
+  let atkhit = 1;
+  if (Dice.roll("1d45") < PC.getDex()) { atkhit = 0; }
+  let destgraphic = {};
+  if (atkhit) {
+    if (tgt === PC) {
+      maintext.addText("The " + who.getDesc() + " breathes ice. You are skewered by shards!");
+    } else {
+      let tgtdesc = tgt.getFullDesc();
+      tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
+      maintext.addText("The " + who.getDesc() + " breathes ice. " + tgtdesc + " is skewered by shards!");
+    }
+    destgraphic = {graphic:"master_spritesheet.png", xoffset:-96, yoffset:-1856, overlay:"spacer.gif"};
+  } else {
+    if (tgt === PC) {
+      maintext.addText("The " + who.getDesc() + " breathes ice. You dodge some of the shards!");
+    } else {
+      let tgtdesc = tgt.getFullDesc();
+      tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
+      maintext.addText("The " + who.getDesc() + " breathes ice. " + tgtdesc + " avoids some of the blast!");
+    }
+    destgraphic = {graphic:"spacer.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+    dmg = dmg/2;
+  }
+  if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
+    DUPlaySound("sfx_iceball");
+  }
+  let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+  let desc = tgt.getDesc();
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+  let descval = { txt: desc };
+  AnimateEffect(who, tgt, fromcoords, tocoords, boltgraphic, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice"},0);
+
+  return "special_wait";
 }
 
 ais.ai_lbolt = function(who) {
