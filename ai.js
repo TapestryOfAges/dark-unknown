@@ -1860,8 +1860,65 @@ ais.ai_firebreath = function(who) {
   if (who.getLevel() <= 3) { params.dmg = "2d8+8"; }
   else if (who.getLevel() <= 5) { params.dmg = "4d8+14"; }
   else { params.dmg = "4d8+26"; }
+  params.hitgraphic = "master_spritesheet.png";
+  params.hitx = -128;
+  params.hity = -1856;
 
   return ais.ai_breathweapon(who,params);
+}
+
+ais.ai_icebreath = function(who) {
+  let params = {};
+  params.graphic = "fireicelightning.gif";
+  params.xoffset = 0;
+  params.yoffset = -32;
+  params.directionalammo = 1;
+  params.sound = "sfx_iceball";
+  params.dmgtype = "ice";
+  if (who.getLevel() <= 3) { params.dmg = "2d8+8"; }
+  else if (who.getLevel() <= 5) { params.dmg = "4d8+14"; }
+  else { params.dmg = "4d8+26"; }
+  params.hitgraphic = "master_spritesheet.png";
+  params.hitx = -96;
+  params.hity = -1856;
+
+  return ais.ai_breathweapon(who,params);
+}
+
+ais.ai_lbolt = function(who) {
+  let params = {};
+  params.graphic = "fireicelightning.gif";
+  params.xoffset = 0;
+  params.yoffset = -64;
+  params.directionalammo = 1;
+  params.sound = "sfx_small_zap";
+  params.dmgtype = "lightning";
+  if (who.getLevel() <= 3) { params.dmg = "2d8+8"; }
+  else if (who.getLevel() <= 5) { params.dmg = "4d8+14"; }
+  else { params.dmg = "4d8+26"; }
+  params.hitgraphic = "master_spritesheet.png";
+  params.hitx = -128;
+  params.hity = -1856;
+
+  return ais.ai_breathweapon(who,params);
+}
+
+ais.ai_spit = function(who) {
+  let params = {};
+  params.graphic = "master_spritesheet";
+  params.xoffset = -64;
+  params.yoffset = -1856;
+  params.directionalammo = 0;
+  params.sound = "sfx_acid";
+  params.dmgtype = "poison";
+  params.dmg = DMG_LIGHT; 
+  params.hitgraphic = "master_spritesheet.png";
+  params.hitx = -160;
+  params.hity = -1856;
+
+  let retval =  ais.ai_breathweapon(who,params);
+
+  return retval;
 }
 
 ais.ai_magmaheal = function(who) {
