@@ -1918,6 +1918,8 @@ ais.ai_spit = function(who) {
 
   let retval =  ais.ai_breathweapon(who,params);
 
+  let poison = localFactory.createTile("Poison");
+
   return retval;
 }
 
