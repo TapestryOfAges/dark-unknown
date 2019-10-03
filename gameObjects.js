@@ -10825,6 +10825,20 @@ function AdelusLetterTile() {
 }
 AdelusLetterTile.prototype = new BookItemObject();
 
+function LanceRuneNotesTile() {
+  this.name = "LanceRuneNotes";
+  this.graphic = "master_spritesheet.png";
+  this.spriteyoffset = "-256";
+  this.spritexoffset = "-1248";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "journal";
+  this.prefix = "a";
+  this.contents = "<span class='conv'>Some time ago, Mother and Father shared a family Secret: the Rune of Kings. Deep under the site of another dynasty, it allows our bloodline to connect with... well, the heart of the Kingdom. The world. The earth.</span>%%<span class='conv'>Unknown to most, there are MORE. I directed Justice to help research them, and we discovered full elemental correspondences. The Rune of Kings is also the Rune of Earth- a bond to the land. It is also the key to unlock the other Runes.</span>%%<span class='conv'>Justice discovered the location of the Rune of Waves. There is an small island, naught but hills, north of the Crown Mountains and west of Poverty. The Rune of Kings is required to reveal the cave, she thinks, but I have not found a way to the island yet to try.</span>%%<span class='conv'>The Rune of Winds is, unsurprisingly perhaps, connected to Xorrico. The Rune of Flames appears to be near the Land of Lost Hope- it will be some time before I can try and discover it.</span>%%<span class='conv'>Strangely, there are hints and echoes of a fifth Rune, but I know not what it could be...</span>";
+  this.longdesc = "A journal containing Lance's research on Runes.";
+}
+LanceRuneNotesTile.prototype = new BookItemObject();
+
 function ConsumableItemObject() {
   this.addType("Consumable");
 }
