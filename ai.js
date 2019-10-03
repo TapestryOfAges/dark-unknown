@@ -1970,41 +1970,216 @@ ais.ai_icebreath = function(who) {
 }
 
 ais.ai_lbolt = function(who) {
-  let params = {};
-  params.graphic = "fireicelightning.gif";
-  params.xoffset = 0;
-  params.yoffset = -64;
-  params.directionalammo = 1;
-  params.sound = "sfx_small_zap";
-  params.dmgtype = "lightning";
-  if (who.getLevel() <= 3) { params.dmg = "2d8+8"; }
-  else if (who.getLevel() <= 5) { params.dmg = "4d8+14"; }
-  else { params.dmg = "4d8+26"; }
-  params.hitgraphic = "master_spritesheet.png";
-  params.hitx = -128;
-  params.hity = -1856;
+  let tgt = GetBreathTarget(who);
+  if (!tgt) { return; }
 
-  return ais.ai_breathweapon(who,params);
+  let bolt = {};
+  bolt.graphic = "fireicelightning.gif";
+  bolt.xoffset = 0;
+  bolt.yoffset = -64;
+  bolt.directionalammo = 1;
+  bolt = GetEffectGraphic(who,tgt,bolt);
+  let dmg;
+  if (who.getLevel() <= 3) { dmg = Dice.roll("2d8+8"); }
+  else if (who.getLevel() <= 5) { dmg = Dice.roll("4d8+14"); }
+  else { dmg = Dice.roll("4d8+26"); }
+  let atkhit = 1;
+  if (Dice.roll("1d45") < PC.getDex()) { atkhit = 0; }
+  let destgraphic = {};
+  if (atkhit) {
+    if (tgt === PC) {
+      maintext.addText("The " + who.getDesc() + " calls forth a lightning bolt. You are struck!");
+    } else {
+      let tgtdesc = tgt.getFullDesc();
+      tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
+      maintext.addText("The " + who.getDesc() + " calls forth a lightning bolt. " + tgtdesc + " is struck!");
+    }
+    destgraphic = {graphic:"master_spritesheet.png", xoffset:-128, yoffset:-1856, overlay:"spacer.gif"};
+  } else {
+    if (tgt === PC) {
+      maintext.addText("The " + who.getDesc() + " calls forth a lightning bolt. You are grazed by the power!");
+    } else {
+      let tgtdesc = tgt.getFullDesc();
+      tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
+      maintext.addText("The " + who.getDesc() + " calls forth a lightning bolt. " + tgtdesc + " is grazed by the power!");
+    }
+
+    destgraphic = {graphic:"spacer.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+    dmg = dmg/2;
+  }
+  if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
+    DUPlaySound("sfx_small_zap");
+  }
+  let fromcoords = getCoords(who.getHomeMap(),who.getx(), who.gety());
+  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let duration = (Math.pow( Math.pow(tgt.getx() - who.getx(), 2) + Math.pow (tgt.gety() - who.gety(), 2)  , .5)) * 100;
+  let desc = tgt.getDesc();
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+  let descval = { txt: desc };
+  AnimateEffect(who, tgt, fromcoords, tocoords, bolt, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"lightning"},0);
+
+  return "special_wait";
+}
+
+ais.ai_energybolt = function(who) {
+  let tgt = GetBreathTarget(who);
+  if (!tgt) { return; }
+
+  let bolt = {};
+  bolt.graphic = "magic-bolt.gif";
+  bolt.xoffset = 0;
+  bolt.yoffset = 0;
+  bolt.directionalammo = 1;
+  bolt = GetEffectGraphic(who,tgt,bolt);
+  let dmg;
+  if (who.getLevel() <= 3) { dmg = Dice.roll("2d8+8"); }
+  else if (who.getLevel() <= 5) { dmg = Dice.roll("4d8+14"); }
+  else { dmg = Dice.roll("4d8+26"); }
+  let atkhit = 1;
+  if (CheckResist(who,tgt,1)) { atkhit = 0; }
+  let destgraphic = {};
+  if (atkhit) {
+    if (tgt === PC) {
+      maintext.addText("The " + who.getDesc() + " launches a bolt of energy. You are struck!");
+    } else {
+      let tgtdesc = tgt.getFullDesc();
+      tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
+      maintext.addText("The " + who.getDesc() + " launches a bolt of energy. " + tgtdesc + " is struck!");
+    }
+    destgraphic = {graphic:"master_spritesheet.png", xoffset:-128, yoffset:-1856, overlay:"spacer.gif"};
+  } else {
+    if (tgt === PC) {
+      maintext.addText("The " + who.getDesc() + " launches a bolt of energy. You resist!");
+    } else {
+      let tgtdesc = tgt.getFullDesc();
+      tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
+      maintext.addText("The " + who.getDesc() + " launches a bolt of energy. " + tgtdesc + " resists!");
+    }
+
+    destgraphic = {graphic:"spacer.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+    dmg = dmg/2;
+  }
+  if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
+    DUPlaySound("sfx_magic_bolt");
+  }
+  let fromcoords = getCoords(who.getHomeMap(),who.getx(), who.gety());
+  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let duration = (Math.pow( Math.pow(tgt.getx() - who.getx(), 2) + Math.pow (tgt.gety() - who.gety(), 2)  , .5)) * 100;
+  let desc = tgt.getDesc();
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+  let descval = { txt: desc };
+  AnimateEffect(who, tgt, fromcoords, tocoords, bolt, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"lightning"},0);
+
+  return "special_wait";
 }
 
 ais.ai_spit = function(who) {
-  let params = {};
-  params.graphic = "master_spritesheet";
-  params.xoffset = -64;
-  params.yoffset = -1856;
-  params.directionalammo = 0;
-  params.sound = "sfx_acid";
-  params.dmgtype = "poison";
-  params.dmg = DMG_LIGHT; 
-  params.hitgraphic = "master_spritesheet.png";
-  params.hitx = -160;
-  params.hity = -1856;
+  let tgt = GetBreathTarget(who);
+  if (!tgt) { return; }
 
-  let retval =  ais.ai_breathweapon(who,params);
+  let bolt = {};
+  bolt.graphic = "master_spritesheet.png";
+  bolt.xoffset = -64;
+  bolt.yoffset = -1856;
+  bolt.directionalammo = 0;
+  bolt = GetEffectGraphic(who,tgt,bolt);
+  let dmg = Dice.roll(DMG_LIGHT);
+  let atkhit = 1;
+  if (Dice.roll("1d45") < PC.getDex()) { atkhit = 0; }
+  let destgraphic = {};
+  if (atkhit) {
+    if (tgt === PC) {
+      maintext.addText("The " + who.getDesc() + " spits venom at you!");
+    } else {
+      let tgtdesc = tgt.getFullDesc();
+      tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
+      maintext.addText("The " + who.getDesc() + " spits venom! " + tgtdesc + " is struck!");
+    }
+    destgraphic = {graphic:"master_spritesheet.png", xoffset:-160, yoffset:-1856, overlay:"spacer.gif"};
+    let poison = localFactory.createTile("Poison");
+    let duration = Dice.roll("1d11+9") * SCALE_TIME;
+    poison.setExpiresTime(DUTime.getGameClock() + duration);
+    tgt.addSpellEffect(poison);
+    DrawCharFrame();
+  } else {
+    if (tgt === PC) {
+      maintext.addText("The " + who.getDesc() + " spits venom at you. You dodge it!");
+    } else {
+      let tgtdesc = tgt.getFullDesc();
+      tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
+      maintext.addText("The " + who.getDesc() + " spits venom. " + tgtdesc + " dodges!");
+    }
 
-  let poison = localFactory.createTile("Poison");
+    destgraphic = {graphic:"spacer.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+    dmg = 0;
+  }
+  if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
+    DUPlaySound("sfx_acid");
+  }
+  let fromcoords = getCoords(who.getHomeMap(),who.getx(), who.gety());
+  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let duration = (Math.pow( Math.pow(tgt.getx() - who.getx(), 2) + Math.pow (tgt.gety() - who.gety(), 2)  , .5)) * 100;
+  let desc = tgt.getDesc();
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+  let descval = { txt: desc };
+  AnimateEffect(who, tgt, fromcoords, tocoords, bolt, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"poison"},0);
 
-  return retval;
+  return "special_wait";
+
+}
+
+ais.ai_magmaspit = function(who) {
+  let tgt = GetBreathTarget(who);
+  if (!tgt) { return; }
+
+  let bolt = {};
+  bolt.graphic = "flowing_animations.gif";
+  bolt.xoffset = -224;
+  bolt.yoffset = 0;
+  bolt.directionalammo = 0;
+  bolt = GetEffectGraphic(who,tgt,bolt);
+  let dmg = Dice.roll(DMG_HEAVY);
+  let atkhit = 1;
+  if (Dice.roll("1d45") < PC.getDex()) { atkhit = 0; }
+  let destgraphic = {};
+  if (atkhit) {
+    if (tgt === PC) {
+      maintext.addText("The " + who.getDesc() + " spits lava at you!");
+    } else {
+      let tgtdesc = tgt.getFullDesc();
+      tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
+      maintext.addText("The " + who.getDesc() + " spits lava! " + tgtdesc + " is struck!");
+    }
+    destgraphic = {graphic:"master_spritesheet.png", xoffset:-128, yoffset:-1856, overlay:"spacer.gif"};
+    DrawCharFrame();
+  } else {
+    if (tgt === PC) {
+      maintext.addText("The " + who.getDesc() + " spits lava at you. You avoid some of the spray!");
+    } else {
+      let tgtdesc = tgt.getFullDesc();
+      tgtdesc = tgtdesc.charAt(0).toUpperCase() + tgtdesc.slice(1);
+      maintext.addText("The " + who.getDesc() + " spits lava. " + tgtdesc + " avoids some of the spray!");
+    }
+
+    destgraphic = {graphic:"spacer.gif", xoffset:0, yoffset:0, overlay:"spacer.gif"};
+    dmg = dmg/2;
+  }
+  if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
+    DUPlaySound("sfx_acid");
+  }
+  let fromcoords = getCoords(who.getHomeMap(),who.getx(), who.gety());
+  let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
+  let duration = (Math.pow( Math.pow(tgt.getx() - who.getx(), 2) + Math.pow (tgt.gety() - who.gety(), 2)  , .5)) * 100;
+  let desc = tgt.getDesc();
+  desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+  let descval = { txt: desc };
+  let lava = localFactory.createTile("Lava");
+  who.getHomeMap().placeThing(tgt.getx(),tgt.gety(),lava);
+  AnimateEffect(who, tgt, fromcoords, tocoords, bolt, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"poison"},0);
+  setTimeout(function() { DrawMainFrame("one",who.getHomeMap(),tgt.getx(),tgt.gety()); }, duration);
+
+  return "special_wait";
+
 }
 
 ais.ai_magmaheal = function(who) {
