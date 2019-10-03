@@ -60,3 +60,9 @@ OnHitFuncs["stealfood"] = function(atk,def,dmg) {
     }
   }
 }
+
+OnHitFuncs["knockback"] = function(atk,def,dmg) {
+  // working here
+}
+
+// need: entangle, knockback, paralyze, manaclash, slow, stun
