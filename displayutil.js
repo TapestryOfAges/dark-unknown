@@ -103,7 +103,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     if (animdiv) {
       animdiv.parentNode.removeChild(animdiv);
     }
-    let hitanimhtml = '<div id="'+animid+'" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px 0px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
+    let hitanimhtml = '<div id="'+animid+'" style="position: absolute; left: ' + tocoords.x + 'px; top: ' + tocoords.y + 'px; background-image:url(\'graphics/' + destgraphic.graphic + '\');background-repeat:no-repeat; background-position: '+destgraphic.xoffset+'px '+destgraphic.yoffset+'px;"><img src="graphics/' + destgraphic.overlay + '" width="32" height="32" /></div>';
   
     document.getElementById('combateffects').innerHTML += hitanimhtml;
     if (sounds["end"]) {
