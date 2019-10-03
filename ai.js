@@ -1851,8 +1851,9 @@ ais.ai_whirlpool = function(who) {
 
 function GetBreathTarget(who) {
   let npcs = who.getHomeMap().npcs.getAll();
+  if (PC.getHomeMap() === who.getHomeMap()) { npcs.push(PC); }
   let foes = [];
-  for (let i=0;i<npc.length;i++) {
+  for (let i=0;i<npcs.length;i++) {
     if (npcs[i].getAttitude() !== who.getAttitude()) { 
       if (GetDistance(npcs[i].getx(),npcs[i].gety(),who.getx(),who.gety()) <= 5) {  
         foes.push(npcs[i]); 
@@ -1874,7 +1875,7 @@ ais.ai_firebreath = function(who) {
   bolt.xoffset = 0;
   bolt.yoffset = 0;
   bolt.directionalammo = 1;
-  bolt = GetEffectGraphic(who,tgt,boltgraphic);
+  bolt = GetEffectGraphic(who,tgt,bolt);
   let dmg;
   if (who.getLevel() <= 3) { dmg = Dice.roll("2d8+8"); }
   else if (who.getLevel() <= 5) { dmg = Dice.roll("4d8+14"); }
@@ -1906,13 +1907,13 @@ ais.ai_firebreath = function(who) {
   if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
     DUPlaySound("sfx_fire_breath");
   }
-  let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  let fromcoords = getCoords(who.getHomeMap(),who.getx(), who.gety());
   let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
-  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+  let duration = (Math.pow( Math.pow(tgt.getx() - who.getx(), 2) + Math.pow (tgt.gety() - who.gety(), 2)  , .5)) * 100;
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   let descval = { txt: desc };
-  AnimateEffect(who, tgt, fromcoords, tocoords, boltgraphic, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire"},0);
+  AnimateEffect(who, tgt, fromcoords, tocoords, bolt, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"fire"},0);
 
   return "special_wait";
 }
@@ -1926,7 +1927,7 @@ ais.ai_icebreath = function(who) {
   bolt.xoffset = 0;
   bolt.yoffset = -32;
   bolt.directionalammo = 1;
-  bolt = GetEffectGraphic(who,tgt,boltgraphic);
+  bolt = GetEffectGraphic(who,tgt,bolt);
   let dmg;
   if (who.getLevel() <= 3) { dmg = Dice.roll("2d8+8"); }
   else if (who.getLevel() <= 5) { dmg = Dice.roll("4d8+14"); }
@@ -1957,13 +1958,13 @@ ais.ai_icebreath = function(who) {
   if ((who.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(who.getx(),who.gety()))) {
     DUPlaySound("sfx_iceball");
   }
-  let fromcoords = getCoords(caster.getHomeMap(),caster.getx(), caster.gety());
+  let fromcoords = getCoords(who.getHomeMap(),who.getx(), who.gety());
   let tocoords = getCoords(tgt.getHomeMap(),tgt.getx(), tgt.gety());
-  let duration = (Math.pow( Math.pow(tgt.getx() - caster.getx(), 2) + Math.pow (tgt.gety() - caster.gety(), 2)  , .5)) * 100;
+  let duration = (Math.pow( Math.pow(tgt.getx() - who.getx(), 2) + Math.pow (tgt.gety() - who.gety(), 2)  , .5)) * 100;
   let desc = tgt.getDesc();
   desc = desc.charAt(0).toUpperCase() + desc.slice(1);
   let descval = { txt: desc };
-  AnimateEffect(who, tgt, fromcoords, tocoords, boltgraphic, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice"},0);
+  AnimateEffect(who, tgt, fromcoords, tocoords, bolt, destgraphic, {}, {type:"missile", duration:duration, ammoreturn:0, dmg:dmg, endturn:1, retval:descval, dmgtype:"ice"},0);
 
   return "special_wait";
 }

@@ -2378,6 +2378,11 @@ tileFactory.prototype.makeAdelusLetterTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeLanceRuneNotesTile = function() {
+  let newTile = new LanceRuneNotesTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTorchTile = function() {
   let newTile = new TorchTile();
   return newTile;
