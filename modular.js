@@ -63,6 +63,16 @@ OnHitFuncs["stealfood"] = function(atk,def,dmg) {
 
 OnHitFuncs["knockback"] = function(atk,def,dmg) {
   // working here
+  let chance = def.getStr() * 2.5;
+  if (Dice.roll("1d100") > chance) {
+    let oct = GetOctant(def.getx()-atk.getx(),def.gety()-atk.gety());
+    if (oct === 0) {
+      let desttile = def.getHomeMap().getTile(def.getx(),def.gety()+1);
+      if ((desttile === "OoB") || (!desttile.canMoveHere(def.getMoveType(), 1))) {
+
+      }
+    }
+  }
 }
 
 // need: entangle, knockback, paralyze, manaclash, slow, stun
