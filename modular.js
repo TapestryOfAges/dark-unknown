@@ -65,12 +65,15 @@ OnHitFuncs["knockback"] = function(atk,def,dmg) {
   // working here
   let chance = def.getStr() * 2.5;
   if (Dice.roll("1d100") > chance) {
+    let options = [];
+    let flip = Dice.roll("1d2-1");
     let oct = GetOctant(def.getx()-atk.getx(),def.gety()-atk.gety());
     if (oct === 0) {
-      let desttile = def.getHomeMap().getTile(def.getx(),def.gety()+1);
-      if ((desttile === "OoB") || (!desttile.canMoveHere(def.getMoveType(), 1))) {
-
-      }
+      if (flip) { options = [[def.getx(),def.gety()-1],[def.getx()-1,def.gety()-1],[def.getx()+1,def.gety()-1]] }
+      else { options = [[def.getx(),def.gety()-1],[def.getx()+1,def.gety()-1],[def.getx()-1,def.gety()-1]] }
+    } else if (oct === 1) {
+      if (flip) { options = [[def.getx()+1,def.gety()-1],[def.getx(),def.gety()-1],[def.getx()+1,def.gety()]] }
+      else { options = [[def.getx()+1,def.gety()-1],[def.getx()+1,def.gety()],[def.getx(),def.gety()-1]] }
     }
   }
 }
