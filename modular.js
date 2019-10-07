@@ -1,3 +1,4 @@
+"use strict";
 
 let OnHitFuncs = {};
 
@@ -93,6 +94,24 @@ OnHitFuncs["knockback"] = function(atk,def,dmg) {
       if (flip) { options = [[def.getx()-1,def.gety()-1],[def.getx(),def.gety()-1],[def.getx()-1,def.gety()]] }
       else { options = [[def.getx()-1,def.gety()-1],[def.getx()-1,def.gety()],[def.getx(),def.gety()-1]] }
     }
+
+    while (options[0]) {
+      let tile = def.getHomeMap().getTile(options[0][0],options[0][1]);
+      if (tile !== "OoB") {
+        if (!tile.getTopFeature() && !tile.getTopNPC() && !tile.getTopPC()) {
+          def.moveMe(options[0][0] - def.getx(),options[0][1] - def.gety());
+          if (def === PC) { maintext.addText("The powerful blow knocks you backwards!"); }
+          else {
+            if ((def.getHomeMap() === PC.getHomeMap()) && (GetDistance(def.getx(),def.gety(),PC.getx(),PC.gety()) <= 5)) {
+              maintext.addText("The powerful blow knocks " + def.getFullDesc() + " back!");
+            }
+          }
+          return;
+        }
+      }
+      options.unshift();
+    }
+  
   }
 }
 
