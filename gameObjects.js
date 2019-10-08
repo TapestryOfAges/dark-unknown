@@ -14688,7 +14688,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
     if (this === PC) {
       retval["msg"] = "You are entangled by tentacles!";
     }
-    reval["canmove"] = 0;
+    retval["canmove"] = 0;
     retval["diffx"] = diffx;
     retval["diffy"] = diffy;
     return retval;

@@ -710,7 +710,7 @@ DrunkTile.prototype.endEffect = function(silent) {
 function EntangleTile() {
   this.addType("debuff");
   this.name = "Entangle";
-  this.display = "<span style='color:purple'>D</span>";
+  this.display = "<span style='color:darkgreen'>E</span>";
   this.zstatdesc = "You are entangled.";
   this.desc = "Entangle";
   this.level = 4;

@@ -63,7 +63,6 @@ OnHitFuncs["stealfood"] = function(atk,def,dmg) {
 }
 
 OnHitFuncs["knockback"] = function(atk,def,dmg) {
-  // working here
   let chance = def.getStr() * 2.5;
   if (Dice.roll("1d100") > chance) {
     let options = [];
@@ -115,4 +114,12 @@ OnHitFuncs["knockback"] = function(atk,def,dmg) {
   }
 }
 
-// need: entangle, paralyze, manaclash, slow, stun
+OnHitFuncs["entangle"] = function(atk,def,dmg) {
+  let chance = ((def.getDex() - 15) * 1.5) + 50;
+  if (Dice.roll("1d100") > chance) {
+    let ent = localFactory.createTile("Entangle");
+    ent.source = atk.getSerial();
+    def.addSpellEffect(ent);
+  }
+}
+// need: paralyze, manaclash, slow, stun

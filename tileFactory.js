@@ -3158,6 +3158,11 @@ tileFactory.prototype.makePrinceNPCTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGhostVillagerNPCTile = function() {
+  let newTile = new GhostVillagerNPCTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeChickenNPCTile = function() {
   let newTile = new ChickenNPCTile();
   return newTile;
@@ -3885,6 +3890,11 @@ tileFactory.prototype.makeDizzyTile = function() {
 
 tileFactory.prototype.makeDrunkTile = function() {
   let newTile = new DrunkTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEntangleTile = function() {
+  let newTile = new EntangleTile();
   return newTile;
 }
 
