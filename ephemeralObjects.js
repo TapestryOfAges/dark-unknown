@@ -707,6 +707,74 @@ DrunkTile.prototype.endEffect = function(silent) {
   }
 }
 
+function EntangleTile() {
+  this.addType("debuff");
+  this.name = "Entangle";
+  this.display = "<span style='color:purple'>D</span>";
+  this.zstatdesc = "You are entangled.";
+  this.desc = "Entangle";
+  this.level = 4;
+}
+EntangleTile.prototype = new EphemeralObject();
+
+EntangleTile.prototype.applyEffect = function(silent) {
+  let who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("Tentacles from the ground grip your legs!");
+  }
+  return 1;
+}
+
+EntangleTile.prototype.doEffect = function() {
+  let resp = 0;
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    resp = this.endEffect();
+  } else {
+    let who = this.getAttachedTo();
+    let source;
+    let themap = who.getHomeMap();
+    for (let i=-1;i<=1;i++) {
+      for (let j=-1;j<=1;j++) {
+        // is it still around to be gripping you?
+        let tile = themap.getTile(who.getx()+i,who.gety()+j);
+        if (tile !== "OoB") {
+          let npcs = tile.getNPCs();
+          for (let k=0;k<npcs.length;k++) {
+            if (npcs[k].getSerial() === this.tentacleSerial) { source = npcs[k]; }
+          }
+        }
+      }
+    }
+    if (!source) { resp = this.endEffect(); }
+    else {
+      // STR check to escape
+      let chance = 30 + who.getStr() - source.getStr();
+      let roll = Dice.roll("1d100");
+      if (roll <= chance) {
+        if (who === PC) { maintext.addText("You struggle and break free!"); }
+        else { 
+          let txt = who.getFullDesc() + " struggles and breaks free!";
+          txt = txt.charAt(0).toUpperCase() + txt.slice(1);
+          maintext.addText(txt);
+        }
+        resp = this.endEffect();
+      }
+    }
+  }
+
+  return resp;
+}
+
+EntangleTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You are no longer entangled in tentacles.");
+  }
+  DrawCharFrame();
+  return -1;
+}
+
 function EtherealVisionTile() {
   this.addType("buff");
   this.name = "Telepathy";

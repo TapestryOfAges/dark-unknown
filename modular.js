@@ -115,4 +115,4 @@ OnHitFuncs["knockback"] = function(atk,def,dmg) {
   }
 }
 
-// need: entangle, knockback, paralyze, manaclash, slow, stun
+// need: entangle, paralyze, manaclash, slow, stun

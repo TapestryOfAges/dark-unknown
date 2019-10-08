@@ -14683,6 +14683,16 @@ NPCObject.prototype.activate = function(timeoverride) {
 
 
 NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
+  let retval = { fin:1 };
+  if (this.getSpellEffectsByName("Entangle")) {
+    if (this === PC) {
+      retval["msg"] = "You are entangled by tentacles!";
+    }
+    reval["canmove"] = 0;
+    retval["diffx"] = diffx;
+    retval["diffy"] = diffy;
+    return retval;
+  }
 	let map = this.getHomeMap();
 	let oldmapname = map.getDesc();
 	let startx = this.getx();
@@ -14690,7 +14700,6 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	let passx = startx + parseInt(diffx);
 	let passy = starty + parseInt(diffy);
 	let tile = map.getTile(passx,passy);
-	let retval = { fin:1 };
 	if (tile === "OoB") { 
 	  if (noexit) {
 	    // NPC won't step out of the map
