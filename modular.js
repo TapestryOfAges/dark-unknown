@@ -162,4 +162,12 @@ OnHitFuncs["slow"] = function(atk,def,dmg) {
   }
 }
 
+OnHitFuncs["manaclash"] = function(atk,def,dmg) {
+  let roll = Dice.roll("1d7");
+  if (roll === 1) {
+    def.setMana(Math.max(0,def.getMana()-Dice.roll("1d5")));
+    maintext.delayedAddText("Your mana is drained!");
+  }
+}
+
 // need: paralyze, manaclash, slow, stun
