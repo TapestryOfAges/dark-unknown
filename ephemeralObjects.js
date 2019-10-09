@@ -1597,6 +1597,40 @@ StormTile.prototype.endEffect = function(silent) {
   DrawCharFrame();  
 }
 
+function StunnedTile() {
+  this.addType("debuff");
+  this.name = "Stunned";
+  this.display = "<span style='color:red'>S</span>";
+  this.zstatdesc = "You are stunned.";
+  this.desc = "stunned";
+  this.level = 5;
+  this.dispellable = 0;
+}
+StunnedTile.prototype = new EphemeralObject();
+
+StunnedTile.prototype.applyEffect = function(silent) {
+  let who = this.getAttachedTo();
+  if ((who === PC) && !silent) {
+    maintext.delayedAddText("You are stunned!");
+  }
+  return 1;
+}
+
+StunnedTile.prototype.doEffect = function() {
+  if (DUTime.getGameClock() > this.getExpiresTime()) {
+    this.endEffect();
+  }
+}
+
+StunnedTile.prototype.endEffect = function(silent) {
+  let who = this.getAttachedTo();
+  who.deleteSpellEffect(this);
+  if ((who === PC) && !silent) {
+    maintext.addText("You are no longer stunned.");
+  }
+  DrawCharFrame();
+}
+
 function TelepathyTile() {
   this.addType("buff");
   this.name = "Telepathy";

@@ -119,7 +119,47 @@ OnHitFuncs["entangle"] = function(atk,def,dmg) {
   if (Dice.roll("1d100") > chance) {
     let ent = localFactory.createTile("Entangle");
     ent.source = atk.getSerial();
+    ent.setExpiresTime(-1);
     def.addSpellEffect(ent);
   }
 }
+
+OnHitFuncs["paralyze"] = function(atk,def,dmg) {
+  let chance = 40 - def.getStr();
+  let roll = Dice.roll("1d100");
+  if (roll <= chance) {
+    let para = localFactory.createTile("Paralyze");
+    let dur = Dice.roll("1d6");
+    if (dur <= 3) { dur = 1; }
+    else if (dir < 6) { dur = 2; }
+    else {dur = 3; }
+    para.setExpiresTime(DUTime.getGameClock() + (dur*SCALE_TIME))
+    def.addSpellEffect(para);
+  }
+}
+
+OnHitFuncs["stun"] = function(atk,def,dmg) {
+  let chance = 40 - def.getStr();
+  let roll = Dice.roll("1d100");
+  if (roll <= chance) {
+    let para = localFactory.createTile("Stunned");
+    let dur = Dice.roll("1d6");
+    if (dur <= 3) { dur = 1; }
+    else if (dir < 6) { dur = 2; }
+    else {dur = 3; }
+    para.setExpiresTime(DUTime.getGameClock() + (dur*SCALE_TIME))
+    def.addSpellEffect(para);
+  }
+}
+
+OnHitFuncs["slow"] = function(atk,def,dmg) {
+  let roll = Dice.roll("1d100");
+  if (roll <= 1-) {
+    let para = localFactory.createTile("Slow");
+    let dur = Dice.roll("1d6");
+    para.setExpiresTime(DUTime.getGameClock() + (dur*SCALE_TIME))
+    def.addSpellEffect(para);
+  }
+}
+
 // need: paralyze, manaclash, slow, stun

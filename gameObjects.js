@@ -14865,7 +14865,7 @@ NPCObject.prototype.myTurn = function() {
 	
 	Regen(this);
   let awake = 1;
-  if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze") || this.getSpellEffectsByName("Frozen") || this.getSpellEffectsByName("CrystalTrap")) { awake = 0; }
+  if (this.getSpellEffectsByName("Sleep") || this.getSpellEffectsByName("Paralyze") || this.getSpellEffectsByName("Frozen") || this.getSpellEffectsByName("CrystalTrap") || this.getSpellEffectsByName("Stunned")) { awake = 0; }
   let confused = this.getSpellEffectsByName("Confused");
   if (confused && (Math.random() < (confused.getPower()/100))) {
     // confused and Confused
