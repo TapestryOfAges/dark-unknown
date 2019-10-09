@@ -154,7 +154,7 @@ OnHitFuncs["stun"] = function(atk,def,dmg) {
 
 OnHitFuncs["slow"] = function(atk,def,dmg) {
   let roll = Dice.roll("1d100");
-  if (roll <= 1-) {
+  if (roll <= 10) {
     let para = localFactory.createTile("Slow");
     let dur = Dice.roll("1d6");
     para.setExpiresTime(DUTime.getGameClock() + (dur*SCALE_TIME))
