@@ -150,17 +150,17 @@ ais.combat = function(who) {
     if (who.getMissile()) { nonmeleeoptions.push("ai_missile"); }   
     if (who.spellsknown) { nonmeleeoptions.push("ai_cast"); }  // needs work
     if (who.specials.sing) { nonmeleeoptions.push("ai_sing"); }
-    if (who.specials.firebreath) { nonmeleeoptions.push("ai_firebreath"); }  // needs work
-    if (who.specials.icebreath) { nonmeleeoptions.push("ai_icebreath"); }  // needs work
+    if (who.specials.firebreath) { nonmeleeoptions.push("ai_firebreath"); }  
+    if (who.specials.icebreath) { nonmeleeoptions.push("ai_icebreath"); }  
     if (who.specials.whirlpool) { nonmeleeoptions.push("ai_whirlpool"); }  
     if (who.specials.breedsexplosively) { nonmeleeoptions.push("ai_breed"); }
     if (who.specials.animalhandler) { nonmeleeoptions.push("ai_handle"); }  
-    if (who.specials.spitter) { nonmeleeoptions.push("ai_spit"); }  // needs work
-    if (who.specials.lbolt) { nonmeleeoptions.push("ai_lbolt"); }  // needs work
-    if (who.specials.magmaheal) { nonmeleeoptions.push("ai_magmaheal"); }  // needs work
-    if (who.specials.magmaspit) { nonmeleeoptions.push("ai_magmaspit"); }  // needs work
+    if (who.specials.spitter) { nonmeleeoptions.push("ai_spit"); }  
+    if (who.specials.lbolt) { nonmeleeoptions.push("ai_lbolt"); }  
+    if (who.specials.magmaheal) { nonmeleeoptions.push("ai_magmaheal"); }  
+    if (who.specials.magmaspit) { nonmeleeoptions.push("ai_magmaspit"); }  
     if (who.specials.teleport) { nonmeleeoptions.push("ai_teleport"); }  // needs work
-    if (who.specials["energy bolt"]) { nonmeleeoptions.push("ai_energybolt"); }  // needs work
+    if (who.specials["energy bolt"]) { nonmeleeoptions.push("ai_energybolt"); }  
     if (who.specials.phase) { nonmeleeoptions.push("ai_phase"); }  
     if (who.specials.multiattack) { nonmeleeoptions.push("ai_multiattack"); }  // needs work- what was this going to be?
     if (who.specials.summonearthelemental) { nonmeleeoptions.push("ai_summonearthelemental"); }  
@@ -1646,6 +1646,12 @@ ais.Courier = function(who) {
     
   }
   return {fin:1};
+}
+
+ais.teleport = function(who) {
+  if (Dice.roll("1d6") === 1) {
+    let tgt = FindNearestNPC(who,"enemy");
+  }
 }
 
 ais.ai_sing = function(who) {
