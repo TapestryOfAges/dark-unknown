@@ -1648,9 +1648,39 @@ ais.Courier = function(who) {
   return {fin:1};
 }
 
-ais.teleport = function(who) {
+ais.ai_cast = function(who) {
+  let themap = who.getHomeMap();
+
+}
+
+ais.ai_teleport = function(who) {
   if (Dice.roll("1d6") === 1) {
     let tgt = FindNearestNPC(who,"enemy");
+    let opts = [];
+    let themap = who.getHomeMap();
+    for (let i=-4;i<=4;i++) {
+      for (let j=-4;j<=4;j++) {
+        let tile = themap.getTile(tgt.getx()+i,tgt.gety()+j);
+        if (tile !== "OoB") {
+          if (!tile.getTopFeature() && !tile.getTopNPC() && !tile.getTopPC()) {
+            opts.push([tgt.getx()+i,tgt.gety()+j]);
+          }
+        }
+      }
+    }
+    if (opts.length) {
+      let tries = 0;
+      while (tries < 10) {
+        let op = Dice.roll("1d"+opts.length+"-1");
+        let path = themap.getPath(tgt.getx(),tgt.gety(),opts[op][0],opts[op][1],who.getMovetype());
+        if (path) {
+          themap.moveThing(opts[op][0],opts[op][1],who);
+          ShowEffect(val, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+          return;
+        }
+        tries++;
+      }
+    }
   }
 }
 
