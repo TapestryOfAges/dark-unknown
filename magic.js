@@ -872,7 +872,7 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].getInfusedDesc = function() {
   return "Until it has absorbed 25 points of damage.";
 }
 
-magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caster, infused, free) {
+magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Iron Flesh.<br />");
   let resp = {fin:1};
   if (!free) {
@@ -881,7 +881,9 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
-  
+  if (!tgt || (caster === PC)) {
+    tgt = caster;
+  }
   let liobj = localFactory.createTile("IronFlesh");
   
   let dur = caster.getInt() * .15;
@@ -894,9 +896,10 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
   if (infused) { power = 25;}   
   liobj.setPower(power);
   
-  caster.addSpellEffect(liobj, Math.max(0, free-1) );
+  tgt.addSpellEffect(liobj, Math.max(0, free-1) );
   
   PlayCastSound(caster, "sfx_buff");
+  ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_ORANGE);
   DrawCharFrame();
   return resp;
 }
@@ -1150,7 +1153,7 @@ magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].getLongDesc = function() {
   return "Decreases your chance of being hit by " + Math.floor(((PC.getInt()*2/3)+1)*1.5) + "% instead.";
 }
 
-magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caster, infused, free) {
+magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Protection.<br />");
   let resp = {fin:1};
   if (!free) {
@@ -1159,6 +1162,8 @@ magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caste
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
+  if (!tgt || (caster === PC)) { tgt = caster; }
+
   let prot = localFactory.createTile("Protection");
   let duration = caster.getInt() * 3 * SCALE_TIME;
   let power = Math.floor(caster.getInt()*2/3)+1;
@@ -1174,9 +1179,9 @@ magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caste
   DebugWrite("magic", "End time is " + endtime + ".<br />");
   prot.setExpiresTime(endtime);
   prot.setPower(power);
-  caster.addSpellEffect(prot, Math.max(0, free-1) );
+  tgt.addSpellEffect(prot, Math.max(0, free-1) );
   PlayCastSound(caster,"sfx_buff");
-  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+  ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
   
   return resp;
 }
@@ -1980,7 +1985,7 @@ magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].getInfusedDesc = function() {
   return "Extends the duration.";
 }
 
-magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell = function(caster, infused, free) {
+magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell = function(caster, infused, free, tgt) {
   DebugWrite("magic", "Casting Blessing.<br />");
   let resp = {fin:1};
   if (!free) {
@@ -1989,6 +1994,7 @@ magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell = function(caster, i
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
+  if (!tgt || (caster === PC)) { tgt = caster; }
 
   let levobj = localFactory.createTile("Blessing");
   
@@ -2004,10 +2010,10 @@ magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell = function(caster, i
   levobj.setPower(power);
   levobj.setExpiresTime(endtime);
   
-  caster.addSpellEffect(levobj, Math.max(0,free-1) );
+  tgt.addSpellEffect(levobj, Math.max(0,free-1) );
 
   PlayCastSound(caster,"sfx_buff");
-  ShowEffect(caster, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
+  ShowEffect(tgt, 1000, "spellsparkles-anim.gif", 0, COLOR_BLUE);
     
   DrawCharFrame();
   return resp;  
@@ -2149,7 +2155,7 @@ magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell = function(caster, infused, 
   DebugWrite("magic", "Healing " + healamt + " hp.<br />");
   if (infused) { healamt = healamt * 1.5; }
   
-  if (caster === PC) {
+  if (!tgt || (caster === PC)) {
     tgt = caster;
   }
   
