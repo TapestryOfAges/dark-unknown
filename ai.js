@@ -1649,8 +1649,187 @@ ais.Courier = function(who) {
 }
 
 ais.ai_cast = function(who) {
-  let themap = who.getHomeMap();
+  if (who.getMana() <= 1) { DebugWrite("ai", "In ai_cast, but has no mana."); return; }
+  DebugWrite("ai", "In ai_cast... choosing how to act.");
 
+  let themap = who.getHomeMap();
+  let enemies = [];
+  let allies = [];
+  let weakenemies = [];
+  let strongenemies = [];
+  let damagedallies = [];
+  let strongallies = [];
+  let enemylevel = 0;
+  let alliedlevel = who.getLevel()/2 * ((who.getHP()/who.getMaxHP())+1);
+  let npcs = themap.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    if (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5.5) {
+      if (npcs[i].getAttitude() !== who.getAttitude()) {
+        enemies.push(npcs[i]);
+        let el = npcs[i].getLevel()/2 * ((npcs[i].getHP()/npcs[i].getMaxHP())+1);
+        enemylevel += el;
+        if (el >= who.getLevel()/2) { strongenemies.push(npcs[i]); }
+        else { weakenemies.push(npcs[i]); }
+      } else {
+        allies.push(npcs[i]);
+        let al = npcs[i].getLevel()/2 * ((npcs[i].getHP()/npcs[i].getMaxHP())+1);
+        alliedlevel += al;
+        if (al >= who.getLevel()/2) { strongallies.push(npcs[i]); }
+        if (npcs[i].getHP()/npcs[i].getMaxHP() < .5) { damagedallies.push(npcs[i]); }
+      }
+    }
+  }
+  DebugWrite("ai", "Current tally: enemy power " + enemylevel + ", ally power " + alliedlevel);
+  let choices = [];
+  if (who.spellsknown.heal) {
+    if (damagedallies.length && (who.getMana() >= 2) && (who.getLevel() >= 2)) { 
+      DebugWrite("ai", "There are damaged allies- adding HEAL to list.");
+      choices.push("heal"); 
+    }
+    if ((who.getHP()/who.getMaxHP() < .5) && (who.getMana() >= 2) && (who.getLevel() >= 2)) { 
+      DebugWrite("ai", "I'm at half health, adding HEALSELF to list.");  
+      choices.push("healself"); 
+    }
+    if (who.getSpellEffectsByName("Poison")) { 
+      DebugWrite("ai", "I am poisoned, adding CURE to list.");  
+      choices.push("cure"); 
+    }
+    if ((who.getLevel() >= 3) && (who.getMana() >= 3)) {
+      let ses = who.getSpellEffects();
+      let needdispel = 0;
+      for (let i=0;i<ses.length;i++) { 
+        if (ses[i].checkType("Debuff")) { needdispel = 1; }
+      }
+      if (needdispel) { 
+        DebugWrite("ai", "I have debuffs, adding DISPEL to list."); 
+        choices.push("dispel"); 
+      }
+    }
+  }
+  if (who.spellsknown.buff && (who.getMana() >= 2) && (who.getLevel() >= 2)) {
+    if (strongallies.length) { 
+      DebugWrite("ai", "I have allies that are strong enough to be worth buffing. Adding BUFFOTHER to list.");  
+      choices.push("buffother"); 
+    }
+    DebugWrite("ai", "Adding BUFFSELF to the list. Always worth considering buffing myself.");
+    choices.push("buffself");
+  }
+  if (who.spellsknown.control) {
+    if (strongenemies.length) { 
+      DebugWrite("ai", "There are strong enemies. Adding CONTROLENEMIES to the list.");
+      choices.push("controlenemies"); 
+    }
+    if (((enemylevel > .5*alliedlevel) || !who.summoned) && (who.getMana() >= 2) && (who.getLevel() >= 2)) { 
+      DebugWrite("Either enemy level is over half of allied level, or I just haven't summoned anything yet; adding SUMMON to the list."); 
+      choices.push("summon"); 
+    }
+  }
+  if (who.spellsknown.attack && (who.getMana() >= 2) && (who.getLevel() >= 2)) {
+    DebugWrite("ai","Adding ATTACK to the list.");
+    choices.push("attack");
+  }
+  
+  if (choices.length) {
+    let dr = Dice.roll("1d"+choices.length+"-1");
+    if (choices[dr] === "heal") {
+      DebugWrite("ai", "I have chosen to HEAL.");
+      dr = Dice.roll("1d"+damagedallies.length+"-1");
+      if ((who.getLevel() >= 4) && (who.getMana() >= 4) && (damagedallies[dr].getMaxHP() - damagedallies[dr].getHP() > 20)) {
+        magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell(who,0,0,damagedallies[dr]);
+      }
+      else if (who.getMana() >= 2) {
+        magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(who,0,0,damagedallies[dr]);
+      }
+    } else if (choices[dr] === "healself") {
+      DebugWrite("ai", "I have chosen to HEAL MYSELF.");
+      if ((who.getLevel() >= 4) && (who.getMana() >= 4) && (who.getMaxHP() - who.getHP() > 20)) {
+        magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell(who,0,0,who);
+      } else if (who.getMana() >= 2) {
+        magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(who,0,0,who);
+      }
+    } else if (choices[dr] === "cure") {
+      magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell(who,0,0);
+    } else if (choices[dr] === "dispel") {
+      magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell(who,0,0);
+    } else if (choices[dr] === "buffother") {
+      dr = Dice.roll("1d"+strongallies.length+"-1");
+      let tgt = strongallies[dr];
+      let spelloptions = [];
+      if (!tgt.getSpellEffectsByName("IronFlesh")) {
+        spelloptions.push("IronFlesh");
+      }
+      if (!tgt.getSpellEffectsByName("Protection")) {
+        spelloptions.push("Protection");
+      }
+      if (!tgt.getSpellEffectsByName("Blessing") && (who.getMana() >= 4) && (who.getLevel() >= 4)) {
+        spelloptions.push("Blessing");
+      }
+      dr = Dice.roll("1d"+spelloptions.length+"-1");
+      if (spelloptions[dr] === "IronFlesh") {
+        magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(who,0,0,tgt);
+      } else if (spelloptions[dr] === "Protection") {
+        magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell(who,0,0,tgt);
+      } else if (spelloptions[dr] === "Blessing") {
+        magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(who,0,0,tgt);
+      }
+    } else if (choices[dr] === "buffself") {
+      let spelloptions = [];
+      if (!who.getSpellEffectsByName("IronFlesh")) {
+        spelloptions.push("IronFlesh");
+      }
+      if (!who.getSpellEffectsByName("Protection")) {
+        spelloptions.push("Protection");
+      }
+      if (!who.getSpellEffectsByName("Blessing") && (who.getMana() >= 4) && (who.getLevel() >= 4)) {
+        spelloptions.push("Blessing");
+      }
+      if (!who.getSpellEffectsByName("FireArmor") && (who.getMana() >= 3) && (who.getLevel() >= 3)) {
+        spelloptions.push("FireArmor");
+      }
+      if (!who.getSpellEffectsByName("MirrorWard") && (who.getMana() >= 5) && (who.getLevel() >= 5)) {
+        spelloptions.push("MirrorWard");
+      }
+      if (!who.getSpellEffectsByName("Invulnerability") && (who.getMana() >= 7) && (who.getLevel() >= 7)) {
+        spelloptions.push("Invulnerability");
+      }
+      if (!who.getSpellEffectsByName("Quickness") && (who.getMana() >= 8) && (who.getLevel() >= 8)) {
+        spelloptions.push("Quickness");
+      }
+      dr = Dice.roll("1d"+spelloptions.length+"-1");
+      if (spelloptions[dr] === "IronFlesh") {
+        magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(who,0,0,who);
+      } else if (spelloptions[dr] === "Protection") {
+        magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell(who,0,0,who);
+      } else if (spelloptions[dr] === "Blessing") {
+        magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(who,0,0,who);
+      } else if (spelloptions[dr] === "FireArmor") {
+        magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].executeSpell(who,0,0);
+      } else if (spelloptions[dr] === "MirrorWard") {
+        magic[SPELL_MIRROR_WARD_ID][SPELL_MIRROR_WARD_ID].executeSpell(who,0,0);
+      } else if (spelloptions[dr] === "Invulnerability") {
+        magic[SPELL_INVULNERABILITY_ID][SPELL_INVULNERABILITY_ID].executeSpell(who,0,0);
+      } else if (spelloptions[dr] === "Quickness") {
+        magic[SPELL_QUICKNESS_ID][SPELL_QUICKNESS_ID].executeSpell(who,0,0);
+      }
+    } else if (choices[dr] === "summon") {
+      let spelloptions = [];
+      if ((who.getMana() >= 2) && (who.getLevel() >= 2)) {
+        spelloptions.push("Illusion");
+      }
+      if ((who.getMana() >= 5) && (who.getLevel() >= 5)) {
+        spelloptions.push("SummonAlly");
+      }
+      if ((who.getMana() >= 8) && (who.getLevel() >= 8)) {
+        spelloptions.push("SummonDaemon");
+      }
+      dr = Dice.roll("1d"+spelloptions.length+"-1");
+      // WORKING HERE
+    } else if (choices[dr] === "controlenemies") {
+
+    } else if (choices[dr] === "attack") {
+
+    }
+  }
 }
 
 ais.ai_teleport = function(who) {
