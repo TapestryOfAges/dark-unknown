@@ -1823,9 +1823,94 @@ ais.ai_cast = function(who) {
         spelloptions.push("SummonDaemon");
       }
       dr = Dice.roll("1d"+spelloptions.length+"-1");
-      // WORKING HERE
+      let putnear = FindNearestNPC(who,"enemy");
+      let placementoptions = [];
+      let badoptions = [];
+      let okoptions = [];
+      for (let i=who.getx()-3;i<=who.getx()+3;i++) {
+        for (let j=who.gety()-3;j<=who.gety()+3;j++) {
+          let tl = themap.getTile(i,j);
+          if (tl !== "OoB") {
+            if (!tl.getTopFeature() && !tl.getTopNPC() && !tl.getTopPC()) {
+              let foedist = GetDistance(i,j,putnear.getx(),putnear.gety());
+              let mydist = GetDistance(who.getx(),who.gety(),putnear.getx(),putnear.gety());
+              if (foedist < mydist) { placementoptions.push([i,j]); }
+              else if (foedist === mydist) { okoptions.push([i,j]); }
+              else { badoptions.push([i,j]); }
+            }
+          }
+        }
+      }
+      let opts = [];
+      if (placementoptions.length) { opts = placementoptions; }
+      else if (okoptions.length) { opts = okoptions; }
+      else if (badoptions.length) { opts = badoptions; }
+      let tgt = {};
+      if (opts.length) {
+        let optdr = Dice.roll("1d"+opts.length+"-1");
+        tgt.x = opts[optdr][0];
+        tgt.y = opts[optdr][1];
+        if (spelloptions[dr] === "Illusion") {
+          magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID].executeSpell(who,0,0,tgt);
+        } else if (spelloptions[dr] === "SummonAlly") {
+          magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID].executeSpell(who,0,0,tgt);
+        } else if (spelloptions[dr] === "SummonDaemon") {
+          magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID].executeSpell(who,0,0,tgt);
+        }
+      }
     } else if (choices[dr] === "controlenemies") {
-
+      let spelloptions = [];
+      spelloptions.push("Distract");
+      spelloptions.push("Vulnerability");
+      if ((who.getLevel() >= 5) && (who.getMana() >= 5)) {
+        spelloptions.push("CrystalPrison");
+      }
+      if ((who.getLevel() >= 6) && (who.getMana() >= 6)) {
+        spelloptions.push("Jinx");
+        spelloptions.push("MassCurse");
+      }
+      if ((who.getLevel() >= 7) && (who.getMana() >= 7)) {
+        if (enemies.length > 1) {
+          spelloptions.push("Charm");
+          spelloptions.push("Fear");
+        }
+      }
+      if ((who.getLevel() >= 8) && (who.getMana() >= 8)) {
+        if (!who.getSpellEffectsByName("TimeStop")) {
+          spelloptions.push("TimeStop");
+        }
+      }      
+      let dr = Dice.roll("1d"+spelloptions.length+"-1");
+      if (spelloptions[dr] === "Distract") {
+        magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell(who,0,0);
+      } else if (spelloptions[dr] === "Vulnerability") {
+        if (strongenemies.length) {
+          let enrol = Dice.roll("1d"+strongenemies.length+"-1");
+          magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].executeSpell(who,0,0,strongenemies[enrol]);
+        } else {
+          let enrol = Dice.roll("1d"+enemies.length+"-1");
+          magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].executeSpell(who,0,0,enemies[enrol]);
+        }
+      } else if (spelloptions[dr] === "CrystalPrison") {
+        let putnear = FindNearestNPC(who,"enemy");
+        let placementoptions = [];
+        for (let i=who.getx()-3;i<=who.getx()+3;i++) {
+          for (let j=who.gety()-3;j<=who.gety()+3;j++) {
+            let tl = themap.getTile(i,j);
+            if (tl !== "OoB") {
+              if (!tl.getTopFeature() && !tl.getTopNPC() && !tl.getTopPC()) {
+                let foedist = GetDistance(i,j,putnear.getx(),putnear.gety());
+                let mydist = GetDistance(who.getx(),who.gety(),putnear.getx(),putnear.gety());
+                if ((foedist < mydist) && (GetDistance(who.getx(),who.gety(),i,j) < mydist)) { placementoptions.push([i,j]); }
+              }
+            }
+          }
+        }
+        if (placementoptions.length) {
+  // WORKING HERE
+  // NEED TO RETURN BASED ON WHETHER TO WAIT- GO BACK AND FILL IN
+        }
+      }
     } else if (choices[dr] === "attack") {
 
     }
