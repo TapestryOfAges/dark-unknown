@@ -2262,7 +2262,9 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
     caster.modMana(-1*mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
-
+ 
+  let radius = 3;
+  if (infused) { radius = 4; }
   let foes = GetAllWithin("npcs",radius,caster.getHomeMap(),{x: caster.getx(), y: caster.gety()});
   foes = ShuffleArray(foes);
   

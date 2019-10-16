@@ -1863,9 +1863,10 @@ ais.ai_cast = function(who) {
       let spelloptions = [];
       spelloptions.push("Distract");
       spelloptions.push("Vulnerability");
-//      if ((who.getLevel() >= 5) && (who.getMana() >= 5)) {
+      if ((who.getLevel() >= 5) && (who.getMana() >= 5)) {
 //        spelloptions.push("CrystalPrison");
-//      }
+        spelloptions.push("Paralyze");
+      }
       if ((who.getLevel() >= 6) && (who.getMana() >= 6)) {
         spelloptions.push("Jinx");
         spelloptions.push("MassCurse");
@@ -1911,6 +1912,16 @@ ais.ai_cast = function(who) {
   // Turned off here
           // if crystal prison is uncommented above, finish here
         }
+      } else if (spelloptions[dr] === "Paralyze") {
+        let tgt;
+        if (strongenemies.length) {
+          let dr2 = Dice.roll("1d"+strongenemies.length+"-1");
+          tgt = strongenemies[dr2];
+        } else {
+          let dr2 = Dice.roll("1d"+enemies.length+"-1");
+          tgt = enemies[dr2];
+        }
+        magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].executeSpell(who,0,0,tgt);
       } else if (spelloptions[dr] === "MassCurse") {
         magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell(who,0,0);
       } else if (spelloptions[dr] === "Charm") {
@@ -1918,11 +1929,42 @@ ais.ai_cast = function(who) {
         for (let i=0;i<enemies.length;i_++) {
           if (!enemies[i].checkType("PC")) { enemiesnopc.push(enemies[i]); }
         }
-        let dr = Dice.roll("1d"+enemiesnopc.length+"-1");
-        magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].executeSpell(who,0,0,enemiesnopc[dr]);
+        let dr2 = Dice.roll("1d"+enemiesnopc.length+"-1");
+        magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].executeSpell(who,0,0,enemiesnopc[dr2]);
+      } else if (spelloptions[dr] === "Fear") {
+        magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell(who,0,0);
+      } else if (spelloptions[dr] === "TimeStop") {
+        magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].executeSpell(who,0,0);
       }
     } else if (choices[dr] === "attack") {
-
+      let spelloptions = [];
+      if ((who.getLevel() < 5) || (who.getMana() < 5)) {
+        spelloptions.push("MagicBolt");
+      }
+      let pretarget = {};
+      if (enemies.length > 1) {
+        let numadj = [];
+        for (let i=0;i<enemies.length;i++) {
+          numadj[i] = 0;
+          for (let j=0;j<enemies.length;j++) {
+            if (i !== j) {
+              if (IsAdjacent(enemies[i],enemies[j])) {
+                numadj[i]++;
+              }
+            }
+          }
+        }
+        let maxadj = 0;
+        for (let i=0;i<enemies.length;i++) {
+          if (numadj[i] > maxadj) {
+            maxadj = numadj[i];
+            pretarget.poisoncloud = enemies[i];
+          }
+        }
+        if (pretarget) {
+          spelloptions.push("PoisonCloud");
+        }
+      }
     }
   }
 }
