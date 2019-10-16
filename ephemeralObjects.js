@@ -361,7 +361,8 @@ CharmTile.prototype = new EphemeralObject();
 CharmTile.prototype.applyEffect = function(silent) {
   let who = this.getAttachedTo();
   this.oldattitude = who.getAttitude();
-  who.setAttitude("friendly");
+  who.setAttitude(this.caster.getAttitude());
+  delete this.caster;
   if ((who === PC) && !silent) {
     maintext.delayedAddText("You have been charmed!");
   }

@@ -1662,6 +1662,7 @@ ais.ai_cast = function(who) {
   let enemylevel = 0;
   let alliedlevel = who.getLevel()/2 * ((who.getHP()/who.getMaxHP())+1);
   let npcs = themap.npcs.getAll();
+  npcs.push(PC);
   for (let i=0;i<npcs.length;i++) {
     if (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5.5) {
       if (npcs[i].getAttitude() !== who.getAttitude()) {
@@ -1862,9 +1863,9 @@ ais.ai_cast = function(who) {
       let spelloptions = [];
       spelloptions.push("Distract");
       spelloptions.push("Vulnerability");
-      if ((who.getLevel() >= 5) && (who.getMana() >= 5)) {
-        spelloptions.push("CrystalPrison");
-      }
+//      if ((who.getLevel() >= 5) && (who.getMana() >= 5)) {
+//        spelloptions.push("CrystalPrison");
+//      }
       if ((who.getLevel() >= 6) && (who.getMana() >= 6)) {
         spelloptions.push("Jinx");
         spelloptions.push("MassCurse");
@@ -1907,9 +1908,18 @@ ais.ai_cast = function(who) {
           }
         }
         if (placementoptions.length) {
-  // WORKING HERE
-  // NEED TO RETURN BASED ON WHETHER TO WAIT- GO BACK AND FILL IN
+  // Turned off here
+          // if crystal prison is uncommented above, finish here
         }
+      } else if (spelloptions[dr] === "MassCurse") {
+        magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell(who,0,0);
+      } else if (spelloptions[dr] === "Charm") {
+        let enemiesnopc = [];
+        for (let i=0;i<enemies.length;i_++) {
+          if (!enemies[i].checkType("PC")) { enemiesnopc.push(enemies[i]); }
+        }
+        let dr = Dice.roll("1d"+enemiesnopc.length+"-1");
+        magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].executeSpell(who,0,0,enemiesnopc[dr]);
       }
     } else if (choices[dr] === "attack") {
 

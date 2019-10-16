@@ -3306,6 +3306,7 @@ function PerformCharm(caster, infused, free, tgt) {
     }
     charmobj.setExpiresTime(dur + DUTime.getGameClock());
     charmobj.setPower(1);
+    charmobj.caster = caster;
     tgt.addSpellEffect(charmobj);
     PlayCastSound(caster,"sfx_debuff");
   }
