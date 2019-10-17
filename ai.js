@@ -1941,29 +1941,75 @@ ais.ai_cast = function(who) {
       if ((who.getLevel() < 5) || (who.getMana() < 5)) {
         spelloptions.push("MagicBolt");
       }
+      if ((who.getLevel() >= 3) && (who.getMana() >= 3)) {
+        spelloptions.push("Fireball");
+      }
+      if ((who.getLevel() >= 4) && (who.getMana() >= 4)) {
+        spelloptions.push("Iceball");
+        spelloptions.push("LifeDrain");
+      }
+      
       let pretarget = {};
       if (enemies.length > 1) {
         let numadj = [];
+        let numwi2 = [];
+        let numwi3 = 0;
+        let numwi4 = 0;
+        let numadjtome = 0;
         for (let i=0;i<enemies.length;i++) {
           numadj[i] = 0;
+          numwi2[i] = 0;
+          if (IsAdjacent(enemies[i],who)) {
+            numadjtome++;
+          }
+          if (GetDistance(who.getx(),who.gety(),enemies[i].getx(),enemies[i].gety()) <= 3) {
+            numwi3++;
+          }
+          if (GetDistance(who.getx(),who.gety(),enemies[i].getx(),enemies[i].gety()) <= 4) {
+            numwi4++;
+          }
           for (let j=0;j<enemies.length;j++) {
             if (i !== j) {
               if (IsAdjacent(enemies[i],enemies[j])) {
                 numadj[i]++;
               }
+              if (GetDistance(enemies[i].getx(),enemies[i].gety(),enemies[j].getx(),enemies[j].gety()) <= 2) {
+                numwi2[i]++;
+              }
             }
           }
         }
         let maxadj = 0;
+        let maxnear2 = 0;
         for (let i=0;i<enemies.length;i++) {
           if (numadj[i] > maxadj) {
             maxadj = numadj[i];
             pretarget.poisoncloud = enemies[i];
           }
+          if (numwi2[i] > maxnear2) {
+            maxnear1 = numwi2[i];
+            pretarget.explosion = enemies[i];
+          }
         }
-        if (pretarget) {
+        if (pretarget.poisoncloud) {
           spelloptions.push("PoisonCloud");
         }
+        if (pretarget.explosion) {
+          spelloptions.push("Explosion");
+        }
+        if ((numadjtome > 1) && (who.getLevel() >= 7) && (who.getMana() >= 7)) { 
+          spelloptions.push("FireIce");
+        }
+        if ((numwi3 > 1) && (who.getLevel() >= 4) && (who.getMana() >= 4)) {
+          spelloptions.push("Smite");
+        } 
+        if ((numwi4 > 1) && (who.getLevel() >= 7) && (who.getMana() >= 7)) {
+          spelloptions.push("MeteorSwarm");
+        }
+        if ((numwi4 > 1) && (who.getLevel() >= 8) && (who.getMana() >= 8)) {
+          spelloptions.push("Conflagration");
+        }
+        
       }
     }
   }
