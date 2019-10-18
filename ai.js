@@ -1707,7 +1707,7 @@ ais.ai_cast = function(who) {
       }
     }
   }
-  if (who.spellsknown.buff && (who.getMana() >= 2) && (who.getLevel() >= 2)) {
+  if (who.spellsknown.lowbuff && (who.getMana() >= 2) && (who.getLevel() >= 2)) {
     if (strongallies.length) { 
       DebugWrite("ai", "I have allies that are strong enough to be worth buffing. Adding BUFFOTHER to list.");  
       choices.push("buffother"); 
@@ -1715,11 +1715,23 @@ ais.ai_cast = function(who) {
     DebugWrite("ai", "Adding BUFFSELF to the list. Always worth considering buffing myself.");
     choices.push("buffself");
   }
-  if (who.spellsknown.control) {
+  if (who.spellsknown.highbuff && (who.getLevel() >= 7) && (who.getMana() >= 7) && (!who.getSpellEffectsByName("Invulnerability") || !who.getSpellEffectsByName("Quickness"))) {
+    DebugWrite("ai", "Adding HIGHBUFFSELF to the list.");
+    choices.push("highbuffself");
+  }
+  if (who.spellsknown.lowcontrol) {
     if (strongenemies.length) { 
-      DebugWrite("ai", "There are strong enemies. Adding CONTROLENEMIES to the list.");
-      choices.push("controlenemies"); 
+      DebugWrite("ai", "There are strong enemies. Adding LOWCONTROLENEMIES to the list.");
+      choices.push("lowcontrolenemies"); 
     }
+  }
+  if (who.spellsknown.highcontrol && (who.getLevel() >= 6) && (who.getMana() >= 6)) {
+    if (strongenemies.length) {
+      DebugWrite("ai", "There are strong enemies. Adding HIGHCONTROLENEMIES to the list.");
+      choices.push("highcontrolenemies");
+    }
+  }
+  if (who.spellsknown.summon) {
     if (((enemylevel > .5*alliedlevel) || !who.summoned) && (who.getMana() >= 2) && (who.getLevel() >= 2)) { 
       DebugWrite("Either enemy level is over half of allied level, or I just haven't summoned anything yet; adding SUMMON to the list."); 
       choices.push("summon"); 
@@ -1790,12 +1802,6 @@ ais.ai_cast = function(who) {
       if (!who.getSpellEffectsByName("MirrorWard") && (who.getMana() >= 5) && (who.getLevel() >= 5)) {
         spelloptions.push("MirrorWard");
       }
-      if (!who.getSpellEffectsByName("Invulnerability") && (who.getMana() >= 7) && (who.getLevel() >= 7)) {
-        spelloptions.push("Invulnerability");
-      }
-      if (!who.getSpellEffectsByName("Quickness") && (who.getMana() >= 8) && (who.getLevel() >= 8)) {
-        spelloptions.push("Quickness");
-      }
       dr = Dice.roll("1d"+spelloptions.length+"-1");
       if (spelloptions[dr] === "IronFlesh") {
         magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(who,0,0,who);
@@ -1807,7 +1813,16 @@ ais.ai_cast = function(who) {
         magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].executeSpell(who,0,0);
       } else if (spelloptions[dr] === "MirrorWard") {
         magic[SPELL_MIRROR_WARD_ID][SPELL_MIRROR_WARD_ID].executeSpell(who,0,0);
-      } else if (spelloptions[dr] === "Invulnerability") {
+      }
+    } else if (choices[dr] === "highbuffself") {
+      if (!who.getSpellEffectsByName("Invulnerability") && (who.getMana() >= 7) && (who.getLevel() >= 7)) {
+        spelloptions.push("Invulnerability");
+      }
+      if (!who.getSpellEffectsByName("Quickness") && (who.getMana() >= 8) && (who.getLevel() >= 8)) {
+        spelloptions.push("Quickness");
+      }
+      dr = Dice.roll("1d"+spelloptions.length+"-1");
+      if (spelloptions[dr] === "Invulnerability") {
         magic[SPELL_INVULNERABILITY_ID][SPELL_INVULNERABILITY_ID].executeSpell(who,0,0);
       } else if (spelloptions[dr] === "Quickness") {
         magic[SPELL_QUICKNESS_ID][SPELL_QUICKNESS_ID].executeSpell(who,0,0);
