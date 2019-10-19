@@ -26,7 +26,7 @@ function DruidVillagerNPCTile() {
   this.prefix = 'a';
   this.desc = "druid";
   this.meleeChance = 30;
-  this.spellsknown = { heal: 1, control: 1, };
+  this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -94,7 +94,7 @@ function MageVillagerNPCTile() {
   this.lootTable = 'Townsman';
   this.prefix = 'a';
   this.desc = "mage";
-  this.spellsknown = { control: 1, attack: 1, };
+  this.spellsknown = { lowcontrol: 1, summon: 1, attack: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -129,7 +129,7 @@ function TinkerVillagerNPCTile() {
   this.prefix = 'a';
   this.desc = "tinker";
   this.meleeChance = 30;
-  this.spellsknown = { control: 1, attack: 1, };
+  this.spellsknown = { lowcontrol: 1, attack: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -164,7 +164,7 @@ function RangerVillagerNPCTile() {
   this.prefix = 'a';
   this.desc = "ranger";
   this.meleeChance = 50;
-  this.spellsknown = { heal: 1, control: 1, buff: 1, };
+  this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -198,7 +198,7 @@ function AdventurerVillagerNPCTile() {
   this.prefix = 'an';
   this.desc = "adventurer";
   this.meleeChance = 50;
-  this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -336,7 +336,7 @@ function BardVillagerNPCTile() {
   this.prefix = 'a';
   this.desc = "bard";
   this.meleeChance = 40;
-  this.spellsknown = { control: 1, buff: 1, };
+  this.spellsknown = { lowcontrol: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -507,7 +507,7 @@ function KingNPCTile() {
   this.lootTable = 'Townsman';
   this.desc = "your father the King";
   this.meleeChance = 70;
-  this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -540,7 +540,7 @@ function QueenNPCTile() {
   this.lootTable = 'Townsman';
   this.desc = "your mother the Queen";
   this.meleeChance = 70;
-  this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -573,7 +573,7 @@ function PrinceNPCTile() {
   this.lootTable = 'Town Guard';
   this.desc = "your brother the prince";
   this.meleeChance = 70;
-  this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -737,7 +737,7 @@ function CorruptPrinceNPCTile() {
   this.lootTable = 'Town Guard';
   this.desc = "your brother the prince";
   this.meleeChance = 70;
-  this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -1108,7 +1108,7 @@ function ApprenticeNPCTile() {
   this.lootTable = 'Minor Adventurer';
   this.prefix = 'an';
   this.desc = "apprentice";
-  this.spellsknown = { control: 1, attack: 1, };
+  this.spellsknown = { lowcontrol: 1, summon: 1, attack: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -1442,7 +1442,7 @@ function BardNPCTile() {
   this.prefix = 'a';
   this.desc = "bard";
   this.meleeChance = 40;
-  this.spellsknown = { control: 1, buff: 1, };
+  this.spellsknown = { lowcontrol: 1, summon: 1, buff: 1, };
   this.resists = {};
   this.special = 'sing, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -1476,7 +1476,7 @@ function DruidNPCTile() {
   this.prefix = 'a';
   this.desc = "druid";
   this.meleeChance = 30;
-  this.spellsknown = { heal: 1, control: 1, buff: 1, };
+  this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -1545,7 +1545,7 @@ function FlukeNPCTile() {
   this.prefix = 'a';
   this.desc = "fluke";
   this.meleeChance = 40;
-  this.spellsknown = { control: 1, };
+  this.spellsknown = { lowcontrol: 1, };
   this.resists = { ice:33 };
   this.special = 'whirlpool, invisible';
   this.meleeHitSound = 'sfx_animal_hit';
@@ -2125,7 +2125,7 @@ function FireElementalNPCTile() {
   this.prefix = 'a';
   this.desc = "fire elemental";
   this.meleeChance = 60;
-  this.spellsknown = { attack: 1, };
+  this.spellsknown = { attack: 1, banned: 'Ice', };
   this.resists = { fire:100, ice:-50 };
   this.special = 'flamearmor, mindless,light:1';
   this.meleeHitSound = 'sfx_fire_hit';
@@ -2403,7 +2403,7 @@ function WizardNPCTile() {
   this.prefix = 'a';
   this.desc = "wizard";
   this.meleeChance = 10;
-  this.spellsknown = { control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { lowcontrol: 1, summon: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -2675,7 +2675,7 @@ function RangerNPCTile() {
   this.prefix = 'a';
   this.desc = "ranger";
   this.meleeChance = 25;
-  this.spellsknown = { heal: 1, control: 1, };
+  this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -2713,7 +2713,7 @@ function WillotheWispNPCTile() {
   this.desc = "will-o-the-wisp";
   this.onHit = 'mana clash';
   this.meleeChance = 35;
-  this.spellsknown = { control: 1, attack: 1, };
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = {};
   this.special = 'teleport, energy bolt';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -2784,7 +2784,7 @@ function ArchmageNPCTile() {
   this.lootTable = 'Archmage';
   this.prefix = 'an';
   this.desc = "archmage";
-  this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -2817,7 +2817,7 @@ function BlackDragonNPCTile() {
   this.prefix = 'a';
   this.desc = "black dragon";
   this.meleeChance = 70;
-  this.spellsknown = { control: 1, attack: 1, };
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = {};
   this.special = 'firebreath, ruthless';
   this.meleeHitSound = 'sfx_roar_hit';
@@ -2852,7 +2852,7 @@ function DevourerNPCTile() {
   this.desc = "devourer";
   this.onHit = 'venom';
   this.meleeChance = 70;
-  this.spellsknown = { control: 1, buff: 1, };
+  this.spellsknown = { lowcontrol: 1, buff: 1, };
   this.resists = { fire:50, ice:50 };
   this.special = 'firebreath, icebreath, multiattack';
   this.meleeHitSound = 'sfx_animal_hit';
@@ -2886,7 +2886,7 @@ function DragonNPCTile() {
   this.prefix = 'a';
   this.desc = "dragon";
   this.meleeChance = 70;
-  this.spellsknown = { control: 1, attack: 1, };
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = { fire:50 };
   this.special = 'firebreath';
   this.meleeHitSound = 'sfx_roar_hit';
@@ -2923,7 +2923,7 @@ function EttinSorcererNPCTile() {
   this.prefix = 'an';
   this.desc = "ettin sorcerer";
   this.meleeChance = 40;
-  this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, attack: 1, buff: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -3031,7 +3031,7 @@ function ReaperNPCTile() {
   this.prefix = 'a';
   this.desc = "reaper";
   this.meleeChance = 50;
-  this.spellsknown = { control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, buff: 1, highbuff: 1, };
   this.resists = {};
   this.special = 'ruthless';
   this.meleeHitSound = 'sfx_animal_hit';
@@ -3066,7 +3066,7 @@ function SpecterNPCTile() {
   this.desc = "specter";
   this.onDamaged = 'incorporeal';
   this.meleeChance = 66;
-  this.spellsknown = { control: 1, attack: 1, };
+  this.spellsknown = { lowcontrol: 1, summon: 1, attack: 1, };
   this.resists = {};
   this.special = 'phase';
   this.meleeHitSound = 'sfx_ghost_hit';
@@ -3103,7 +3103,7 @@ function DaemonNPCTile() {
   this.prefix = 'a';
   this.desc = "daemon";
   this.meleeChance = 75;
-  this.spellsknown = { control: 1, attack: 1, };
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = {};
   this.special = 'open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -3175,7 +3175,7 @@ function LicheNPCTile() {
   this.lootTable = 'Liche';
   this.prefix = 'a';
   this.desc = "liche";
-  this.spellsknown = { control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, buff: 1, highbuff: 1, };
   this.resists = { ice:66 };
   this.special = 'necromancer, undead, open_door';
   this.meleeHitSound = 'sfx_melee_hit';
@@ -3210,7 +3210,7 @@ function EyesofSpiteNPCTile() {
   this.desc = "eyes of spite";
   this.onHit = 'paralyze';
   this.meleeChance = 15;
-  this.spellsknown = { heal: 1, control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { heal: 1, lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, buff: 1, highbuff: 1, };
   this.resists = {};
   this.special = 'sleep, ondeathInsects';
   this.meleeHitSound = 'sfx_animal_hit';
@@ -3247,7 +3247,7 @@ function ReaperLordNPCTile() {
   this.prefix = 'a';
   this.desc = "reaper lord";
   this.meleeChance = 50;
-  this.spellsknown = { control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, buff: 1, highbuff: 1, };
   this.resists = {};
   this.special = 'ruthless';
   this.meleeHitSound = 'sfx_animal_hit';
@@ -3280,7 +3280,7 @@ function ElderDragonNPCTile() {
   this.prefix = 'an';
   this.desc = "elder dragon";
   this.meleeChance = 65;
-  this.spellsknown = { control: 1, attack: 1, buff: 1, };
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, buff: 1, highbuff: 1, };
   this.resists = { fire:50 };
   this.special = 'firebreath';
   this.meleeHitSound = 'sfx_roar_hit';
@@ -3314,7 +3314,7 @@ function BalronNPCTile() {
   this.prefix = 'a';
   this.desc = "balron";
   this.meleeChance = 75;
-  this.spellsknown = { control: 1, attack: 1, };
+  this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = { fire:100 };
   this.special = 'phase, open_door';
   this.meleeHitSound = 'sfx_melee_hit';

@@ -97,42 +97,44 @@ foreach my $line (<$npcdoc>) {
   if ($fields[23]) {
     print $out "  this.meleeChance = $fields[23];\n";
   }
-  if ($fields[24] or $fields[25] or $fields[26] or $fields[27] or $fields[28] or $fields[29] or $fields[30]) {
+  if ($fields[24] or $fields[25] or $fields[26] or $fields[27] or $fields[28] or $fields[29] or $fields[31] or $fields[32]) {
     print $out "  this.spellsknown = { ";
     print $out "heal: 1, " if $fields[24];
     print $out "lowcontrol: 1, " if $fields[25];
     print $out "highcontrol: 1, " if $fields[26];
     print $out "summon: 1, " if $fields[27];
     print $out "attack: 1, " if $fields[28];
-    print $out "buff: 1, " if $fields[29];
-    print $out "highbuff: 1, " if $fields[30];
+    print $out "highattack: 1, " if $fields[29];
+    print $out "banned: '$fields[30]', " if $fields[30];
+    print $out "buff: 1, " if $fields[31];
+    print $out "highbuff: 1, " if $fields[32];
     print $out "};\n";
   }
-  if ($fields[28]) {
-    print $out "  this.resists = { $fields[31] };\n";
+  if ($fields[33]) {
+    print $out "  this.resists = { $fields[33] };\n";
   } else {
     print $out "  this.resists = {};\n";
   }
-  if ($fields[29]) {
-    print $out "  this.special = '$fields[32]';\n";
-  }
-  if ($fields[30]) {
-    print $out "  this.meleeHitSound = '$fields[33]';\n";
-  }
-  if ($fields[31]) {
-    print $out "  this.meleeAttackSound = '$fields[34]';\n";
-  }
-  if ($fields[32]) {
-    print $out "  this.missileHitSound = '$fields[35]';\n";
-  }
-  if ($fields[33]) {
-    print $out "  this.missileAttackSound = '$fields[36]';\n";
-  }
   if ($fields[34]) {
-    print $out "  this.xpval = $fields[37];\n";
+    print $out "  this.special = '$fields[34]';\n";
   }
   if ($fields[35]) {
-    print $out "  this.initOverride = $fields[38];\n";
+    print $out "  this.meleeHitSound = '$fields[35]';\n";
+  }
+  if ($fields[36]) {
+    print $out "  this.meleeAttackSound = '$fields[36]';\n";
+  }
+  if ($fields[37]) {
+    print $out "  this.missileHitSound = '$fields[37]';\n";
+  }
+  if ($fields[38]) {
+    print $out "  this.missileAttackSound = '$fields[38]';\n";
+  }
+  if ($fields[39]) {
+    print $out "  this.xpval = $fields[39];\n";
+  }
+  if ($fields[40]) {
+    print $out "  this.initOverride = $fields[40];\n";
   }
   print $out "}\n";
   print $out "$fields[0]" . "NPCTile.prototype = new NPCObject();\n\n";

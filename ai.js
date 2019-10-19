@@ -1741,6 +1741,10 @@ ais.ai_cast = function(who) {
     DebugWrite("ai","Adding ATTACK to the list.");
     choices.push("attack");
   }
+  if (who.spellsknown.highattack && (who.getMana() > 5) && (who.getLevel() > 5)) {
+    DebugWrite("ai","Adding HIGHATTACK to the list.");
+    choices.push("highattack");
+  }
   
   if (choices.length) {
     let dr = Dice.roll("1d"+choices.length+"-1");
@@ -1951,19 +1955,25 @@ ais.ai_cast = function(who) {
       } else if (spelloptions[dr] === "TimeStop") {
         magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].executeSpell(who,0,0);
       }
-    } else if (choices[dr] === "attack") {
+    } else if ((choices[dr] === "attack") || (choices[dr] === "highattack")) {
       let spelloptions = [];
-      if ((who.getLevel() < 5) || (who.getMana() < 5)) {
-        spelloptions.push("MagicBolt");
+      let cho = choices[dr];
+
+      if (cho === "attack") {
+        if ((!who.spellsknown.highattack) || (who.getMana() < 5)) {
+          spelloptions.push("MagicBolt");
+        }
+        if ((who.getLevel() >= 3) && (who.getMana() >= 3)) {
+          spelloptions.push("Fireball");
+        }
+        if ((who.getLevel() >= 4) && (who.getMana() >= 4)) {
+          if (!who.spellsknown.banned || !who.spellsknown.banned.includes("Ice")) {
+            spelloptions.push("Iceball");
+          }
+          spelloptions.push("LifeDrain");
+        }
       }
-      if ((who.getLevel() >= 3) && (who.getMana() >= 3)) {
-        spelloptions.push("Fireball");
-      }
-      if ((who.getLevel() >= 4) && (who.getMana() >= 4)) {
-        spelloptions.push("Iceball");
-        spelloptions.push("LifeDrain");
-      }
-      
+
       let pretarget = {};
       if (enemies.length > 1) {
         let numadj = [];
@@ -2006,28 +2016,72 @@ ais.ai_cast = function(who) {
             pretarget.explosion = enemies[i];
           }
         }
-        if (pretarget.poisoncloud) {
+        if (pretarget.poisoncloud && (cho === "attack")) {
           spelloptions.push("PoisonCloud");
         }
-        if (pretarget.explosion) {
+        if (pretarget.explosion && (cho === "highattack")) {
           spelloptions.push("Explosion");
         }
-        if ((numadjtome > 1) && (who.getLevel() >= 7) && (who.getMana() >= 7)) { 
-          spelloptions.push("FireIce");
+        if ((numadjtome > 1) && (who.getLevel() >= 7) && (who.getMana() >= 7) && (cho === "highattack")) { 
+          if (!who.spellsknown.banned || !who.spellsknown.banned.includes("Ice")) {
+            spelloptions.push("FireIce");
+          }
         }
-        if ((numwi3 > 1) && (who.getLevel() >= 4) && (who.getMana() >= 4)) {
+        if ((numwi3 > 1) && (who.getLevel() >= 4) && (who.getMana() >= 4) && (cho === "attack")) {
           spelloptions.push("Smite");
         } 
-        if ((numwi4 > 1) && (who.getLevel() >= 7) && (who.getMana() >= 7)) {
+        if ((numwi4 > 1) && (who.getLevel() >= 7) && (who.getMana() >= 7) && (cho === "highattack")) {
           spelloptions.push("MeteorSwarm");
         }
-        if ((numwi4 > 1) && (who.getLevel() >= 8) && (who.getMana() >= 8)) {
+        if ((numwi4 > 1) && (who.getLevel() >= 8) && (who.getMana() >= 8) && (cho === "highattack")) {
           spelloptions.push("Conflagration");
         }
         
       }
+
+      let sroll = Dice.roll("1d"+spelloptions.length+"-1");
+      if (spelloptions[sroll] === "MagicBolt") {
+        let er = Dice.roll("1d"+enemies.length+"-1");
+        magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].executeSpell(who,0,0,enemies[er]);
+        return "special_wait";
+      }
+      if (spelloptions[sroll] === "Fireball") {
+        let er = Dice.roll("1d"+enemies.length+"-1");
+        magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].executeSpell(who,0,0,enemies[er]);
+        return "special_wait";
+      }
+      if (spelloptions[sroll] === "Iceball") {
+        let er = Dice.roll("1d"+enemies.length+"-1");
+        magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell(who,0,0,enemies[er]);
+        return "special_wait";
+      }
+      if (spelloptions[sroll] === "LifeDrain") {
+        let er = Dice.roll("1d"+enemies.length+"-1");
+        magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].executeSpell(who,0,0,enemies[er]);
+      }
+      if (spelloptions[sroll] === "PoisonCloud") {
+        magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].executeSpell(who,0,0,{x:pretarget.poisoncloud.getx(),y:pretarget.poisoncloud.gety()});
+      }
+      if (spelloptions[sroll] === "Explosion") {
+        magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].executeSpell(who,0,0,pretarget.explosion);
+      }
+      if (spelloptions[sroll] === "FireIce") {
+        magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell(who,0,0);
+      }
+      if (spelloptions[sroll] === "Smite") {
+        magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell(who,0,0);
+      }
+      if (spelloptions[sroll] === "MeteorSwarm") {
+        magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell(who,0,0);
+        return "special_wait";
+      }
+      if (spelloptions[sroll] === "Conflagration") {
+        magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell(who,0,0);
+      }
+
     }
   }
+  return "special";
 }
 
 ais.ai_teleport = function(who) {
@@ -2641,10 +2695,6 @@ ais.ai_missile = function(who) {
   }
   
   return 0;
-  
-}
-
-ais.ai_cast = function(who) {
   
 }
 
