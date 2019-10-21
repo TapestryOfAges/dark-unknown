@@ -170,4 +170,65 @@ OnHitFuncs["manaclash"] = function(atk,def,dmg) {
   }
 }
 
-// need: paralyze, manaclash, slow, stun
+
+let OnDamagedFuncs = {};
+
+OnDamagedFuncs["die"] = function(atk,who,dmg,weapon) {
+  DebugWrite("combat", "OnDamaged - illusion dies.");
+  // Illusions die in one hit.
+  // Consider adding a different description to the death?
+  return 10000;
+}
+
+OnDamagedFuncs["incorporeal"] = function(atk,who,dmg,weapon) {
+  DebugWrite("combat", "OnDamaged - incorporeal");
+  let chance = 40;
+  if ((weapon.getName() === "MagicAxe") || (weapon.getName() === "Wand") || (weapon.getName() === "MagicSword") || (weapon.getName() === "LightningSword") || (weapon.getName() === "FlamingSword") || (weapon.getName() === "SwordOfDefense") || (weapon.getName() === "VenomSword")) {
+    chance = 20;
+  }
+  if (Dice.roll("1d100") <= chance) {
+    maintext.delayedAddText("The creature's incorporeality prevents it from taking damage!");
+    return 0;
+  }
+  return dmg;
+}
+
+OnDamagedFuncs["shock"] = function(atk,who,dmg,weapon) {
+  DebugWrite("combat", "OnDamaged - shock");
+  if (!weapon.checkType("MissileWeapon")) {
+    let shock = Dice.roll(DMG_LIGHT);
+    atk.dealDamage(shock,who,"lightning");
+    if (atk === PC) { maintext.delayedAddText("You are struck by electricity when you hit the " + who.getDesc() + "!"); }
+    else { maintext.delayedAddText("The " + atk.getDesc() + " is struck by electricity when it hits the " + who.getDesc() + "!"); }
+  }
+  return dmg;
+}
+
+OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
+  DebugWrite("combat", "OnDamaged - split");
+  let hp = who.getHP() - dmg;
+  if (hp > 0) {
+    if (Dice.roll() <= 25) {   // chance of slime split
+      let whomap = who.getHomeMap();
+      let tileopts = [];
+      for (let i=-1;i<=1;i++) {
+        for (let j=-1;j<=1;j++) {
+          let tile = whomap.getTile(who.getx()+1,who.gety()+1);
+          if (tile !== "OoB") {
+            if (!tile.getTopFeature() && !tile.getTopNPC() && !tile.getTopPC()) {
+              tileopts.push({x:who.getx()+i,y:who.gety()+j});
+            }
+          }
+        }
+      }
+      if (tileopts.length) {
+        let tr = Dice.roll("1d"+tileopts.length+"-1");
+        let slime = localFactory.createTile("SlimeNPC");
+        slime.setMaxHP(hp);
+        slime.setHP(hp);
+        whomap.placeThing(tileopts[tr].x,tileopts[tr].y,slime);
+      }
+    }
+  } 
+  return dmg; 
+}
