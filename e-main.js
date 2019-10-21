@@ -22,6 +22,9 @@ app.on('ready', function() {
 
   mainWindow.loadURL('file://' + __dirname + '/darkunknown.html');
 
+  mainWindow.on("close", function() {
+    app.quit();
+  });
 })
 
 ipcMain.on('toggle_dev', function() {

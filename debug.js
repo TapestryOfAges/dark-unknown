@@ -99,7 +99,9 @@ function DebugWrite(category, html) {
 //    let tmpchild = document.createElement('p');
 //    tmpchild.innerHTML = "<span style='" + debugstyle[category] + "'>" + html + "</span>";
     //document.getElementById('debugdiv').appendChild(tmpchild);
-    ipcRenderer.send('sendDebug', {html: html, cat: category});
+    let serialid = whoseturn.getSerial() + "-" + DUTime.getGameClock();
+    ipcRenderer.send('sendDebug', {html: html, cat: category, sid: serialid});
+    SetDebugToBottom();
 
     return 1;
   } 
@@ -320,4 +322,20 @@ function DebugGetDisplayTerrain(mapref, xcoord, ycoord,centerx,centery,losresult
   }
 
   return displayCell;
+}
+
+function TestSpellAI() {
+  let newmap = new GameMap();
+  newmap = maps.addMap("combatGrass1");
+  let desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
+
+  let mon1 = localFactory.createTile("OrcNPC");
+  newmap.placeThing(4,1,mon1);
+  let mon2 = localFactory.createTile("OrcNPC");
+  newmap.placeThing(5,1,mon2);
+
+  let scroll= localFactory.createTile("ScrollIllusion");
+  newmap.placeThing(PC.getx()+1,PC.gety(),scroll);
+
+  DrawMainFrame("draw",newmap,PC.getx(),PC.gety());
 }
