@@ -65,6 +65,12 @@ NPCSpecialFuncs["courierFlee"] = function(who,how) {
   who.addSpellEffect(eobj);
 }
 
+function AreEnemies(one,two) {
+  if ((one.getAttitude() === "friendly") && (two.getAttitude() === "hostile")) { return 1; }
+  if ((one.getAttitude() === "hostile") && (two.getAttitude() === "friendly")) { return 1; }
+  return 0;
+}
+
 function TurnMapHostile(map) {
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
   PC.diffKarma(-10); 
@@ -205,6 +211,9 @@ function Attack(atk, def) {
       }
     }
     // handle onDamaged stuff here
+    if (def.onDamaged) {
+      dmg = OnDamagedFuncs[def.onDamaged](atk,def,dmg,weapon);
+    }
   }
   else { // Miss!
     // animation and sound here, too
