@@ -855,6 +855,8 @@ function PerformIllusion(caster, infused, free, tgt) {
   if (free) { duration = Dice.roll("1d6+12"); }
   duration = duration*2*SCALE_TIME;
   illusion.expiresTime = DUTime.getGameClock() + duration;  // illusion AI needs to check expiresTime and go poof if it is reached
+  illusion.spawnedBy = caster; 
+  illusion.summoned = 1;
   caster.getHomeMap().placeThing(tgt.x,tgt.y,illusion);
   DrawMainFrame("one",caster.getHomeMap(),illusion.getx(),illusion.gety());
   
@@ -2829,7 +2831,8 @@ function PerformSummonAlly(caster, infused, free, tgt) {
     ally.setLevel(ally.getLevel()+1);
     duration = duration* 1.5; 
   }
-  
+  ally.spawnedBy = caster;
+  ally.summoned = 1;
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
   if (eletype !== "FireElemental") {
@@ -3763,7 +3766,8 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
     ally.setLevel(ally.getLevel()+1);
     duration = duration* 1.5; 
   }
-  
+  ally.spawnedBy = caster;
+  ally.summoned = 1;
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
   DrawMainFrame("one",caster.getHomeMap(),ally.getx(),ally.gety());
