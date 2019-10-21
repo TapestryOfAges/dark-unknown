@@ -13330,6 +13330,8 @@ UnenchantedSwordTile.prototype.getLongDesc = function() {
   return this.longdesc + "In your hands, it deals " + this.getAveDamage(PC) + " damage on average.";
 }
 
+// LightningSword, FlamingSword, SwordOfDefense, VenomSword ?
+
 function NaturalWeaponTile() {
 	this.name = "NaturalWeapon";
 	this.damage = "1d5+0";
@@ -13966,14 +13968,14 @@ NPCObject.prototype.processDeath = function(droploot){
     let corpse = {};
     let chest;
     let map = this.getHomeMap();
-    if ((this.getLeavesCorpse()) && (this.getLeavesCorpse() !== "none")) {
+    if (!this.summoned && (this.getLeavesCorpse()) && (this.getLeavesCorpse() !== "none")) {
       corpse = localFactory.createTile(this.getLeavesCorpse());
       corpse.setSearchDelete(1);
       map.placeThing(thisx,thisy, corpse);
     } else {
       chest = localFactory.createTile("Chest");
     }
-    if ((droploot) && (this.lootTable !== "none")) {
+    if (!this.summoned && droploot && (this.lootTable !== "none")) {
       let loottables = this.lootTable.split(",");
       for (let i=0;i<loottables.length;i++) {
         let loot = {};
@@ -14036,7 +14038,7 @@ NPCObject.prototype.processDeath = function(droploot){
     DrawMainFrame("one",map,thisx,thisy);
     DUTime.removeEntityFrom(this);
     let spawner=this.getSpawnedBy();
-    if (spawner) {
+    if (spawner && (spawner.getName() === "Spawner")) {  // summons also use SpawnedBy
       spawner.deleteSpawned(this);
     }
   }
@@ -14634,7 +14636,7 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.specials = {};
     let tmpspc = {};
     if (this.special) {
-      let tmp = this.special.replace(" ","");
+      let tmp = this.special.replace(/ /g,"");
       tmp = tmp.split(",");
       for (let i=0; i<tmp.length;i++){
         if (tmp[i].indexOf(":") > -1) {
@@ -14841,7 +14843,7 @@ NPCObject.prototype.myTurn = function() {
     return 1;
   }
 
-  if (this.expiresTime && (this.expiresTime > DUTime.getGameClock())) {
+  if (this.expiresTime && (this.expiresTime <= DUTime.getGameClock())) {
     DebugWrite("gameobj", "<span style='font-weight:bold'>Creature " + this.getName() + " : " + this.getSerial() + " expired, removing itself.</span><br />");
     this.getHomeMap().deleteThing(this);
     
