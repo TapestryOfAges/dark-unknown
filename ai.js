@@ -4,23 +4,48 @@
 let ais = {};
 
 ais.seekPC = function(who,radius) {
-  DebugWrite("ai", "Seeking PC...<br />");
+  // name is legacy- really it's "seek an opponent"
+  DebugWrite("ai", "Seeking PC (or just someone to punch)...<br />");
+  if (radius === 0) { return {fin:1 } }
+  let foe;
   let whomap = who.getHomeMap();
-  if (whomap === PC.getHomeMap()) {
-    if (GetDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) <= radius) {
-      // if can see
-      let losresult = whomap.getLOS(who.getx(), who.gety(), PC.getx(), PC.gety());
-      if (losresult < LOS_THRESHOLD) {
-        DebugWrite("ai", "SeekPC: Nearby and can see the PC! Aggroing.<br />");
-        // Go aggro, turn team aggro if part of a band
-        if (who.getNPCBand()) {
-          SetBandAggro(who.getNPCBand(), who.getHomeMap());
-        } else {
-          who.setAggro(1);
+  let npcs = whomap.npcs.getAll();
+  npcs.unshift(PC);
+  for (let i=0;i<npcs.length;i++) {
+    foe = npcs[i];
+    if (AreEnemies(who,foe)) {
+      if (whomap === foe.getHomeMap()) {
+        if (GetDistance(who.getx(),who.gety(),foe.getx(),foe.gety()) <= radius) {
+          // if can see
+          let losresult = whomap.getLOS(who.getx(), who.gety(), foe.getx(), foe.gety());
+          if (losresult < LOS_THRESHOLD) {
+            DebugWrite("ai", "SeekPC: Nearby and can see the an enemy (" + foe.getName() + ")! Aggroing.<br />");
+            // Go aggro, turn team aggro if part of a band
+            if (who.getNPCBand()) {
+              SetBandAggro(who.getNPCBand(), who.getHomeMap());
+            } else {
+              who.setAggro(1);
+            }
+            return {fin:1};
+          }
         }
-        return {fin:1};
+      }    
+    }
+  }
+  if (who.specials.wander) {
+    let moveval = ais.Randomwalk(who,25,25,25,25);
+  } else if (who.summoned) {
+    if (whomap === who.getSpawnedBy().getHomeMap()) {
+      if (!IsAdjacent(who,who.getSpawnedBy())) {
+        let path = whomap.getPath(who.getx(),who.gety(),who.startx,who.starty,who.getMovetype());
+        path.shift();
+        let moved = StepOrSidestep(who,path[0],[who.startx, who.starty]);
+        if (!moved) {
+          let moveval = ais.Randomwalk(who,25,25,25,25);
+        }
       }
     }
+  } else if (!who.specials.stationary && (whomap === PC.getHomeMap())) {
     if ((who.getx() !== who.startx) || (who.gety() !== who.starty)) {
       DebugWrite(ai, "Seek PC: Can't see PC, heading home.<br />");
       // isn't at home, doesn't see PC, heads home
@@ -160,7 +185,7 @@ ais.combat = function(who) {
     if (who.specials.magmaheal) { nonmeleeoptions.push("ai_magmaheal"); }  
     if (who.specials.magmaspit) { nonmeleeoptions.push("ai_magmaspit"); }  
     if (who.specials.teleport) { nonmeleeoptions.push("ai_teleport"); }  // needs work
-    if (who.specials["energy bolt"]) { nonmeleeoptions.push("ai_energybolt"); }  
+    if (who.specials.energybolt) { nonmeleeoptions.push("ai_energybolt"); }  
     if (who.specials.phase) { nonmeleeoptions.push("ai_phase"); }  
     if (who.specials.multiattack) { nonmeleeoptions.push("ai_multiattack"); }  // needs work- what was this going to be?
     if (who.specials.summonearthelemental) { nonmeleeoptions.push("ai_summonearthelemental"); }  
