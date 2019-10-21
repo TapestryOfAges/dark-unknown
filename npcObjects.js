@@ -1364,7 +1364,7 @@ function AnimatedArmorNPCTile() {
   this.int = 2;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander-10';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = '338.gif';
@@ -1378,7 +1378,7 @@ function AnimatedArmorNPCTile() {
   this.desc = "animated armor";
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'construct';
+  this.special = 'construct, wander';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
 }
@@ -1702,7 +1702,7 @@ function MimicNPCTile() {
   this.int = 2;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'stationary-3';
+  this.peaceAI = 'seekPC-3';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = '368.gif';
@@ -1717,7 +1717,7 @@ function MimicNPCTile() {
   this.desc = "chest";
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'hides:008.gif, aggroname:a mimic, spitter';
+  this.special = 'hides:008.gif, aggroname:a mimic, spitter, stationary';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
@@ -1909,7 +1909,7 @@ function TwisterNPCTile() {
   this.int = 6;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander-10';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 8;
   this.withdraw = 0;
   this.graphic = '324.gif';
@@ -1923,7 +1923,7 @@ function TwisterNPCTile() {
   this.desc = "twister";
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'mindless';
+  this.special = 'mindless, wander';
   this.meleeHitSound = 'sfx_air_hit';
   this.meleeAttackSound = 'sfx_air_miss';
 }
@@ -1941,7 +1941,7 @@ function AirElementalNPCTile() {
   this.int = 6;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander-10';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = 'air_elemental.gif';
@@ -1955,7 +1955,7 @@ function AirElementalNPCTile() {
   this.desc = "air elemental";
   this.meleeChance = 70;
   this.resists = {};
-  this.special = 'lbolt, mindless';
+  this.special = 'lbolt, mindless, wander';
   this.meleeHitSound = 'sfx_air_hit';
   this.meleeAttackSound = 'sfx_air_miss';
 }
@@ -2039,7 +2039,7 @@ function DrakeNPCTile() {
   this.int = 10;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander-10';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = '353.gif';
@@ -2058,7 +2058,7 @@ function DrakeNPCTile() {
   this.meleeChance = 85;
   this.spellsknown = { attack: 1, };
   this.resists = { fire:50 };
-  this.special = 'firebreath';
+  this.special = 'firebreath, wander';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
 }
@@ -2076,7 +2076,7 @@ function EarthElementalNPCTile() {
   this.int = 6;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander-10';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = 'earth_elemental.gif';
@@ -2094,7 +2094,7 @@ function EarthElementalNPCTile() {
   this.initmult = 1.2;
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'mindless';
+  this.special = 'mindless, wander';
   this.meleeHitSound = 'sfx_boulder_hit';
   this.meleeAttackSound = 'sfx_boulder_miss';
 }
@@ -2112,7 +2112,7 @@ function FireElementalNPCTile() {
   this.int = 6;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander-10';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = 'fire_elemental.gif';
@@ -2127,7 +2127,7 @@ function FireElementalNPCTile() {
   this.meleeChance = 60;
   this.spellsknown = { attack: 1, banned: 'Ice', };
   this.resists = { fire:100, ice:-50 };
-  this.special = 'flamearmor, mindless,light:1';
+  this.special = 'flamearmor, mindless,wander,light:1';
   this.meleeHitSound = 'sfx_fire_hit';
   this.meleeAttackSound = 'sfx_fire_miss';
 }
@@ -2145,7 +2145,7 @@ function FireSnakeNPCTile() {
   this.int = 3;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander-10';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = 'firesnake.gif';
@@ -2159,7 +2159,7 @@ function FireSnakeNPCTile() {
   this.desc = "fire serpent";
   this.meleeChance = 75;
   this.resists = { fire:100 };
-  this.special = 'firebreath';
+  this.special = 'firebreath,wander';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
 }
@@ -2177,7 +2177,7 @@ function LurkerNPCTile() {
   this.int = 7;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander-10';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = 'lurker.gif';
@@ -2195,7 +2195,7 @@ function LurkerNPCTile() {
   this.onHit = 'entangle';
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'invisible';
+  this.special = 'invisible,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
@@ -2283,7 +2283,7 @@ function SeaSerpentNPCTile() {
   this.int = 8;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander-10';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = '321.gif';
@@ -2301,7 +2301,7 @@ function SeaSerpentNPCTile() {
   this.desc = "sea serpent";
   this.meleeChance = 80;
   this.resists = {};
-  this.special = 'firebreath';
+  this.special = 'firebreath,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
@@ -2356,7 +2356,7 @@ function WaterElementalNPCTile() {
   this.int = 10;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander-10';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = '326.gif';
@@ -2372,7 +2372,7 @@ function WaterElementalNPCTile() {
   this.onHit = 'slow';
   this.meleeChance = 75;
   this.resists = { ice:50, fire:-25 };
-  this.special = 'mindless';
+  this.special = 'mindless,wander';
   this.meleeHitSound = 'sfx_water_hit';
   this.meleeAttackSound = 'sfx_water_miss';
 }
@@ -2423,7 +2423,7 @@ function CorpserNPCTile() {
   this.int = 7;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander-15';
+  this.peaceAI = 'seekPC-15';
   this.forgetAt = 15;
   this.withdraw = 0;
   this.graphic = 'corpser.gif';
@@ -2441,7 +2441,7 @@ function CorpserNPCTile() {
   this.onHit = 'entangle';
   this.meleeChance = 50;
   this.resists = {};
-  this.special = 'invisible, reach';
+  this.special = 'invisible, reach,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
@@ -2695,7 +2695,7 @@ function WillotheWispNPCTile() {
   this.int = 16;
   this.alignment = 'Neutral';
   this.attitude = 'hostile';
-  this.peaceAI = 'wander-10';
+  this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = '346.gif';
@@ -2715,7 +2715,7 @@ function WillotheWispNPCTile() {
   this.meleeChance = 35;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = {};
-  this.special = 'teleport, energy bolt';
+  this.special = 'teleport, energy bolt,wander';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
 }
@@ -2804,7 +2804,7 @@ function BlackDragonNPCTile() {
   this.int = 24;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'stationary';
+  this.peaceAI = 'seekPC-0';
   this.forgetAt = 0;
   this.withdraw = 0;
   this.graphic = 'blackdragon.gif';
@@ -2819,7 +2819,7 @@ function BlackDragonNPCTile() {
   this.meleeChance = 70;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = {};
-  this.special = 'firebreath, ruthless';
+  this.special = 'firebreath, ruthless,stationary';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
 }
@@ -3014,7 +3014,7 @@ function ReaperNPCTile() {
   this.int = 20;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'stationary-9';
+  this.peaceAI = 'seekPC-9';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = '335.gif';
@@ -3033,7 +3033,7 @@ function ReaperNPCTile() {
   this.meleeChance = 50;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, buff: 1, highbuff: 1, };
   this.resists = {};
-  this.special = 'ruthless';
+  this.special = 'ruthless,stationary';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
@@ -3230,7 +3230,7 @@ function ReaperLordNPCTile() {
   this.int = 22;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
-  this.peaceAI = 'stationary-9';
+  this.peaceAI = 'seekPC-9';
   this.forgetAt = 10;
   this.withdraw = 0;
   this.graphic = '335.gif';
@@ -3249,7 +3249,7 @@ function ReaperLordNPCTile() {
   this.meleeChance = 50;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, buff: 1, highbuff: 1, };
   this.resists = {};
-  this.special = 'ruthless';
+  this.special = 'ruthless,stationary';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
@@ -3402,7 +3402,7 @@ function IllusionNPCTile() {
   this.int = 15;
   this.alignment = 'Good';
   this.attitude = 'friendly';
-  this.peaceAI = 'followPC';
+  this.peaceAI = 'followSummoner';
   this.forgetAt = 0;
   this.withdraw = 0;
   this.graphic = '338.gif';
@@ -3435,7 +3435,7 @@ function InfusedIllusionNPCTile() {
   this.int = 18;
   this.alignment = 'Good';
   this.attitude = 'friendly';
-  this.peaceAI = 'followPC';
+  this.peaceAI = 'followSummoner';
   this.forgetAt = 0;
   this.withdraw = 0;
   this.graphic = '338.gif';
@@ -3559,7 +3559,7 @@ function CrystalBarrierNPCTile() {
   this.int = 3;
   this.alignment = 'Neutral';
   this.attitude = 'friendly';
-  this.peaceAI = 'stationary';
+  this.peaceAI = 'seekPC-0';
   this.forgetAt = 0;
   this.withdraw = 0;
   this.graphic = 'crystals.gif';
@@ -3575,7 +3575,7 @@ function CrystalBarrierNPCTile() {
   this.prefix = 'a';
   this.desc = "crystal barrier";
   this.resists = {};
-  this.special = 'crumbles';
+  this.special = 'crumbles,stationary';
 }
 CrystalBarrierNPCTile.prototype = new NPCObject();
 
