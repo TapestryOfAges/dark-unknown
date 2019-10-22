@@ -53,3 +53,7 @@ ipcMain.on('debug_bottom', function(event) {
 ipcMain.on('debug_clear', function(event) {
   debugWindow.webContents.send('debug_clear');
 });
+
+ipcMain.on('debug_new_turn', function(event, serialid) {
+  debugWindow.webContents.send('debug_new_turn', serialid);
+});

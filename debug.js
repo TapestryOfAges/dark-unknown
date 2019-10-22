@@ -19,7 +19,8 @@ let debugflags = {};
   debugflags.events = 0;
   debugflags.gameobj = 0;
   debugflags.schedules = 0;
-  debugflags.first = 1;
+  debugflags.new = 1;
+//  debugflags.first = 1;
 // var deeptest = 0;
 
 let debugmaps = {};
@@ -40,6 +41,7 @@ debugstyle.events = "color:magenta";
 debugstyle.gameobj = "color:black";
 debugstyle.schedules = "color:purple";
 debugstyle.all = "color:black";
+debugstyle.new = "color:black";
 
 function OldActivateDebug(startup) { 
   
@@ -119,6 +121,13 @@ function ClearDebug() {
   if (debug) {
     //document.getElementById('debugdiv').innerHTML = "";
     ipcRenderer.send('debug_clear');
+  }
+}
+
+function DebugNewTurn() {
+  if (debug) {
+    let serialid = whoseturn.getSerial() + "-" + DUTime.getGameClock();
+    ipcRenderer.send('debug_new_turn', serialid);
   }
 }
 

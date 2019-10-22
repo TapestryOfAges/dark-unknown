@@ -14832,9 +14832,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 
 NPCObject.prototype.myTurn = function() {
   raceWarning = 0;
-  if (debugflags.first) { delete debugflags.first; } 
-  else { DebugWrite("all", "</div>"); }
-  DebugWrite("all", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
+  DebugWrite("new", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
   if (!maps.getMap(this.getHomeMap().getName())) {
     // removing from timeline, its map is gone
 
@@ -15454,9 +15452,7 @@ PCObject.prototype.myTurn = function() {
     SetSky();
   }
 
-  if (debugflags.first) { delete debugflags.first; } 
-  else { DebugWrite("all", "</div>"); }
-  DebugWrite("all", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'><span style='color:purple'>=== PC TURN ===</span>   Timestamp: " + DU.DUTime.getGameClock().toFixed(5) + "; Clock: " + GetUsableClockTime() + "; x: " + PC.getx() + ", y: " + PC.gety() + "<br />");
+  DebugWrite("new", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'><span style='color:purple'>=== PC TURN ===</span>   Timestamp: " + DU.DUTime.getGameClock().toFixed(5) + "; Clock: " + GetUsableClockTime() + "; x: " + PC.getx() + ", y: " + PC.gety() + "<br />");
 
   if (gamestate !== "loadgame") {
     // this half of myTurn has already run before the player saved
