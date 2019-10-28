@@ -109,7 +109,10 @@ let el = function(e) {
 
 function page_pre_zero() {
 //  ipcRenderer.send('toggle_dev');
-  document.getElementById("load").innerHTML += "<p class='charcreate' style='margin-left: 23px'>Ready.<br />Press any key...";
+  let loaddoc = document.getElementById("load");
+  if (loaddoc) {
+    loaddoc.innerHTML += "<p class='charcreate' style='margin-left: 23px'>Ready.<br />Press any key...";
+  }
 } 
 
 
