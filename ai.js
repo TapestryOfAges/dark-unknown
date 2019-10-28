@@ -1677,6 +1677,11 @@ ais.ai_cast = function(who) {
   if (who.getMana() <= 1) { DebugWrite("ai", "In ai_cast, but has no mana."); return; }
   DebugWrite("ai", "In ai_cast... choosing how to act.");
 
+  if (DU.gameflags.getFlag("negate")[castermap.getName()]) {
+    DebugWrite("ai", "In ai_cast... but magic is negated.");
+    return;
+  }
+
   let themap = who.getHomeMap();
   let enemies = [];
   let allies = [];
