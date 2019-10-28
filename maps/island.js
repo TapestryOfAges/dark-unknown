@@ -194,7 +194,7 @@ mappages["island"].onload = function(mapref) {
 
     // SE of castle
     spawner = localFactory.createTile("Spawner");
-    let spgroup = ["SkeletonGroup"];
+    spgroup = ["SkeletonGroup"];
 
     spawner.setSpawngroup(spgroup);
     spawner.setMaxSpawns(1);
@@ -208,14 +208,14 @@ mappages["island"].onload = function(mapref) {
     spawner.evolve[5][3] = "maxSpawns";
     spawner.evolve[5][4] = 2;
   
-    let freq = 90 + Dice.roll("1d20");
+    freq = 90 + Dice.roll("1d20");
     spawner.setSpawnFreq(freq);
   
     mapref.placeThing(31,72,spawner);
 
     // NE of castle
     spawner = localFactory.createTile("Spawner");
-    let spgroup = ["SkeletonGroup"];
+    spgroup = ["SkeletonGroup"];
 
     spawner.setSpawngroup(spgroup);
     spawner.setMaxSpawns(1);
@@ -229,7 +229,7 @@ mappages["island"].onload = function(mapref) {
     spawner.evolve[5][3] = "maxSpawns";
     spawner.evolve[5][4] = 2;
   
-    let freq = 90 + Dice.roll("1d20");
+    freq = 90 + Dice.roll("1d20");
     spawner.setSpawnFreq(freq);
   
     mapref.placeThing(48,54,spawner);
@@ -239,7 +239,7 @@ mappages["island"].onload = function(mapref) {
     // NW
 
     spawner = localFactory.createTile("Spawner");
-    let spgroup = ["OrcPartyLowGroup","TrollGroup"];
+    spgroup = ["OrcPartyLowGroup","TrollGroup"];
 
     spawner.setSpawngroup(spgroup);
     spawner.setMaxSpawns(1);
@@ -253,13 +253,13 @@ mappages["island"].onload = function(mapref) {
     spawner.evolve[6][3] = "maxSpawns";
     spawner.evolve[6][4] = 2;
   
-    let freq = 90 + Dice.roll("1d20");
+    freq = 90 + Dice.roll("1d20");
     spawner.setSpawnFreq(freq);
   
     mapref.placeThing(19,15,spawner);
     
-    let spawner = localFactory.createTile("Spawner");
-    let spgroup = ["MidHeadlessGroup"];
+    spawner = localFactory.createTile("Spawner");
+    spgroup = ["MidHeadlessGroup"];
 
     spawner.setSpawngroup(spgroup);
     spawner.setMaxSpawns(1);
@@ -277,7 +277,7 @@ mappages["island"].onload = function(mapref) {
     spawner.evolve[6][0] = "spawngroup";
     spawner.evolve[6][1] = ["MidHeadlessGroup","HighHeadlessGroup","GiantsGroup"];
   
-    let freq = 90 + Dice.roll("1d20");
+    freq = 90 + Dice.roll("1d20");
     spawner.setSpawnFreq(freq);
   
     mapref.placeThing(47,17,spawner);
