@@ -1463,6 +1463,16 @@ tileFactory.prototype.makeReflectionTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCursedMirrorTile = function() {
+  let newTile = new CursedMirrorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCursedReflectionTile = function() {
+  let newTile = new CursedReflectionTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAlchemyLabTopTile = function() {
   let newTile = new AlchemyLabTopTile();
   return newTile;
@@ -1550,6 +1560,41 @@ tileFactory.prototype.makeWalkOnTile = function() {
 
 tileFactory.prototype.makeWalkOnChangeExitTile = function() {
   let newTile = new WalkOnChangeExitTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnHC1Tile = function() {
+  let newTile = new WalkOnHC1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnHC2Tile = function() {
+  let newTile = new WalkOnHC2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnHC2ClockTile = function() {
+  let newTile = new WalkOnHC2ClockTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnHC3TreeTile = function() {
+  let newTile = new WalkOnHC3TreeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnHC5Tile = function() {
+  let newTile = new WalkOnHC5Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnHC6Tile = function() {
+  let newTile = new WalkOnHC6Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnHC7Tile = function() {
+  let newTile = new WalkOnHC7Tile();
   return newTile;
 }
 
@@ -2380,6 +2425,11 @@ tileFactory.prototype.makeAdelusLetterTile = function() {
 
 tileFactory.prototype.makeLanceRuneNotesTile = function() {
   let newTile = new LanceRuneNotesTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStoneOfCursesTile = function() {
+  let newTile = new StoneOfCursesTile();
   return newTile;
 }
 
@@ -3990,6 +4040,11 @@ tileFactory.prototype.makeSlowTile = function() {
 
 tileFactory.prototype.makeStormTile = function() {
   let newTile = new StormTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStunnedTile = function() {
+  let newTile = new StunnedTile();
   return newTile;
 }
 
