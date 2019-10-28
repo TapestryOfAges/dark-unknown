@@ -695,6 +695,9 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
     if (this.karmamod && (who === PC)) { 
       PC.diffKarma(this.karmamod);
     }
+    if (typeof this.onBreak === "function") {
+      this.onBreak(who);
+    }
     let retval = {};
     retval["fin"] = 1;
     retval["txt"] =  "You break the " + olddesc + "!";
@@ -1571,23 +1574,24 @@ ShadowShallowsTile.prototype.idle = function(walker) {
 }
 
 function InWater(who) {
+  let response = {msg:""};
   if (who.getWaiting()) { 
     // entity is waiting and probably had been moved to a water tile 
     // because it was 0x0
-    return "";
+    return response;
   }
   let whomov = who.getMovetype();
   if (MOVE_LEVITATE & whomov) {
     // entity is levitating and so won't drown
-    return "";
+    return response;
   }  
   if (MOVE_ETHEREAL & whomov) {
     // entity is ethereal and can't drown
-    return "";
+    return response;
   }
   if (MOVE_FLY & whomov) {
     // entity is flying and can't drown
-    return "";
+    return response;
   }
   let localmap = who.getHomeMap();
   let tile = localmap.getTile(who.getx(),who.gety());
@@ -1595,13 +1599,13 @@ function InWater(who) {
   if (feats) {
     for (let i=0;i<feats.length;i++) {
       if (MOVE_WALK & feats[i].getPassable()) {
-        return "";
+        return response;
       }
     }
   }
 
   let dur = DUTime.getGameClock() - who.getLastTurnTime();
-  let response = "You have trouble keeping your head above the rough waters!";
+  response.msg = "You have trouble keeping your head above the rough waters!";
   let dmg = dur * 3;
   who.dealDamage(dmg);
   
@@ -3047,19 +3051,20 @@ ShadowSwampTile.prototype.isHostileTo = function(who) {
 }
 
 function InASwamp(who) {
+  let response = {msg:""};
   if ((MOVE_LEVITATE & who.getMovetype()) || (MOVE_FLY & who.getMovetype())) {
     // entity is flying/levitating and cannot be diseased
-    return "";
+    return response;
   }
   
   if (who.group) {
     // entity is an NPC group, immune to disease
-    return "";
+    return response;
   }
 
   if (IsNonLiving(who)) {
     // entity is not biological and cannot be diseased
-    return "";
+    return response;
   }
 
   // percent chance of infection- 10% per step, prorated by speed
@@ -3070,9 +3075,9 @@ function InASwamp(who) {
     who.addSpellEffect(disease);
     
     DrawCharFrame();
-    return "You have become diseased!";
+    response.msg = "You have become diseased!";
   }
-  return "";
+  return response;
 }
 
 function ShinglesTile() {
@@ -3710,7 +3715,7 @@ function InLava(who, lava) {
   } else {
     who.dealDamage(Dice.roll("2d10+10"), lava, "fire");
   }
-  return "";
+  return {msg:""};
 }
 
 function FenceNWTile() {
@@ -4594,7 +4599,7 @@ CampfireTile.prototype.myTurn = function() {
 function OnFire(who, what) {
   let dmg = Dice.roll(what.firedamage);
   dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
-  let response = "The " + what.getDesc() + " burns you!";
+  let response = {msg: "The " + what.getDesc() + " burns you!"};
   who.dealDamage(dmg, what, "fire");
   
   return response;
@@ -4787,14 +4792,15 @@ function CrystalTrapSpaceTile() {
 CrystalTrapSpaceTile.prototype = new FeatureObject();
 
 CrystalTrapSpaceTile.prototype.walkon = function(who) {
+  let response = {msg:""};
   if ((who.getMovetype() & MOVE_FLY) || (who.getMovetype() & MOVE_LEVITATE) || (who.getMovetype() & MOVE_ETHEREAL)) {
     DebugWrite("magic", who.getName() + " flies/floats/flits over the crystal trap.<br />");
-    return;
+    return response;
   }
 
   if (who.getSpellEffectsByName("CrystalTrap")) { 
     DebugWrite("magic", "Crystal prison does not go off- victim already in one.<br />");
-    return;
+    return response;
   }
 
   if (who.getSerial() !== this.owner) {
@@ -4810,10 +4816,11 @@ CrystalTrapSpaceTile.prototype.walkon = function(who) {
     let trapmap = this.getHomeMap();
     trapmap.deleteThing(this);
   
-    return ("You are engulfed in crystal!");
+    response.msg = "You are engulfed in crystal!";
+    return response;
   } else {
     DebugWrite("magic", "Owner has passed over a crystal prison.");
-    return;
+    return response;
   }
 }
 
@@ -4964,14 +4971,15 @@ function ThroneTile() {
 ThroneTile.prototype = new FeatureObject();
 
 ThroneTile.prototype.walkon = function(who) {
+  let response = {msg:""};
   who.realgraphic = who.getGraphicArray();
   if (who.getGraphic() === "315.gif") {
     who.setGraphicArray(["throned_king.gif","throned_king.gif",0,0]);
-    return;
+    return response;
   }
   if (who.getGraphic() === "315.2.gif") {
     who.setGraphicArray(["throned_queen.gif","throned_queen.gif",0,0]); 
-    return;
+    return response;
   }
   let cc = "";
   if (parseInt(who.skintone) === 2) {
@@ -4980,7 +4988,7 @@ ThroneTile.prototype.walkon = function(who) {
   let filename = `throned${cc}.gif`;
   let garr = [filename,filename,0,0];
   who.setGraphicArray(garr);
-  return;
+  return response;
 }
 
 ThroneTile.prototype.walkoff = function(who) {
@@ -4992,6 +5000,7 @@ ThroneTile.prototype.walkoff = function(who) {
     alert("Entity failed to have a standing graphic. See console.");
     console.log(who);
   }
+  return {msg:""};
 }
 
 function DoorTile() {
@@ -5102,7 +5111,7 @@ function InASleepField(who) {
     DrawCharFrame();
 
   }
-  return "";
+  return {msg:""};
 }
 
 function FireFieldTile() {
@@ -5187,7 +5196,7 @@ FireFieldTile.prototype.myTurn = function() {
 function InAFireField(who) {
   let dmg = Dice.roll("2d6+3");
   dmg = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * dmg;
-  let response = "The fire field burns you!";
+  let response = {msg:"The fire field burns you!"};
   let resist = who.getResist("magic");
   resist = 1-(resist/100);
   dmg = dmg*resist;
@@ -5228,8 +5237,9 @@ PoisonFieldTile.prototype.isHostileTo = function(who) {
 }
 
 function InAPoisonField(who){
+  let response = {msg:""};
   if (IsNonLiving(who)) {
-    return "";
+    return response;
   }
   let poisonchance = .75;
   poisonchance = (1/SCALE_TIME)*(DUTime.getGameClock() - who.getLastTurnTime()) * poisonchance;
@@ -5243,11 +5253,10 @@ function InAPoisonField(who){
     who.addSpellEffect(poison);
     
     DrawCharFrame();
-    let response = "You are poisoned!";
-    return response;
+    response.msg = "You are poisoned!";
   }
 
-  return "";
+  return response;
 }
 
 function LadderDownTile() {
@@ -5857,7 +5866,7 @@ function SitDown(who,what) {
   let filename = `seated_${direction}${rf}${cc}.gif`;
   let garr = [filename,filename,0,0];
   who.setGraphicArray(garr);
-  return;
+  return {msg:""};
 }
 
 function StandUp(who) {
@@ -5869,6 +5878,7 @@ function StandUp(who) {
     alert("Entity failed to have a standing graphic. See console.");
     console.log(who);
   }
+  return {msg:""};
 }
 
 function GetChairGraphicFromFacing(thing, facing) {
@@ -6243,7 +6253,7 @@ function BedWalkOn(bedwho,bedarr) {
 //  console.log(bedwho);
 //  console.log(bedwho.realgraphic);
 //  console.log(bedwho);
-  return;
+  return {msg:""};
 }
 
 function BedWalkOff(who) {
@@ -6258,7 +6268,7 @@ function BedWalkOff(who) {
     console.log(who);
   }
 //  console.log(who);
-  return;
+  return {msg:""};
 }
 
 function BedBumpInto(who) {
@@ -6761,6 +6771,7 @@ ReflectionTile.prototype.walkon = function(who) {
     // this.spritexoffset = "-288"; 
     // this.spriteyoffset = "-1344";
   }
+  return {msg:""};
 }
 
 ReflectionTile.prototype.walkoff = function(who) {
@@ -6768,6 +6779,80 @@ ReflectionTile.prototype.walkoff = function(who) {
   if (!this.mirror.getBroken()) {
     this.mirror.setGraphicArray(["master_spritesheet.png", "", "-192", "-384"]);
   }
+  return {msg:""};
+}
+
+function CursedMirrorTile() {
+  this.name = "CursedMirror";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-384";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "mirror";
+  this.karmamod = -1;
+  
+  Breakable.call(this,["master_spritesheet.png", "", "-224", "-384"],0,"sfx_break_glass");
+  this.brokendesc = "broken mirror";
+}
+CursedMirrorTile.prototype = new FeatureObject();
+
+CursedMirrorTile.prototype.activate = function() {
+  if (!DU.gameflags.getFlag("editor")) {
+    let reflection = localFactory.createTile("CursedReflection");
+    reflection.mirror = this;
+    let homemap = this.getHomeMap();
+    homemap.placeThing(this.getx(),this.gety()+2,reflection);
+  }
+  return 1;
+}
+
+function CursedReflectionTile() {
+  this.name = "CursedReflection";
+  this.graphic = "walkon.gif";
+  this.invisible = 1;
+  this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_ETHEREAL + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "reflection walkon";
+  this.nosave = 1;
+}
+CursedReflectionTile.prototype = new FeatureObject();
+
+CursedReflectionTile.prototype.walkon = function(who) {
+  // add reflection to attached mirror
+  if (!this.mirror.getBroken()) {
+    this.mirror.setGraphicArray(["351.gif", "mirror-reflection.gif", "0", "7"]);
+    // Actually use Imp graphic rather than Daemon
+
+    let field = this.getHomeMap().getTile(10,10).getTopFeature();
+    this.getHomeMap().deleteThing(field);
+    let tree = localFactory.createTile("DeadTree");
+    this.getHomeMap().placeThing(10,10,tree);
+
+    let retval;
+    retval = PerformTalk(this,"cursed_mirror","_start");
+    retval["override"] = 1;
+    maintext.setInputLine("&gt; You say: ");
+    maintext.drawTextFrame();
+    return retval;
+
+    //	this.graphic = "master_spritesheet.png";    // spritesheet version of reflection. Can't work yet because of need to be overlay
+    // this.spritexoffset = "-288"; 
+    // this.spriteyoffset = "-1344";
+  }
+}
+
+CursedReflectionTile.prototype.onBreak = function(who) {
+  // generate Imp and place on broken mirror
+
+  Earthquake();
+
+  let negated = DU.gameflags.getFlag("negate");
+  delete negated[this.getHomeMap().getName()];
+  DU.gameflags.setFlag("negate", negated);
+  maintext.delayedAddText("You feel the flow of ether surround you once more!");
 }
 
 function AlchemyLabTopTile() {
@@ -6864,6 +6949,7 @@ WaterfallFlowTile.prototype.walkon = function(who) {
   setTimeout(function() {
     DescendWaterfall(who, waterfall);
   }, 300);
+  return {msg:""};
 }
 
 function DescendWaterfall(who, waterfall) {
@@ -7061,11 +7147,13 @@ WhirlpoolFlukeTile.prototype.walkon = function(walker) {
   let diz = localFactory.createTile("Dizzy");
   diz.setExpiresTime(-1);
   walker.addSpellEffect(diz);
+  return {msg:""};
 }
 
 WhirlpoolFlukeTile.prototype.walkoff = function(walker) {
   let diz = walker.getSpellEffectsByName("Dizzy");
   walker.deleteSpellEffect(diz);
+  return {msg:""};
 }
 
 WhirlpoolFlukeTile.prototype.walkofftest = function(walker) {
@@ -7111,6 +7199,209 @@ WalkOnChangeExitTile.prototype.walkon = function(walker) {
   let themap=walker.getHomeMap();
   themap.setExitToX(this.setxto);
   themap.setExitToY(this.setyto);
+  return {msg:""};
+}
+
+function WalkOnHC1Tile() {
+  this.name = "WalkOnHC1";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.destmap = "hotelcalifornia";
+}
+WalkOnHC1Tile.prototype = new FeatureObject();
+
+WalkOnHC1Tile.prototype.walkon = function(walker) {
+  let themap=walker.getHomeMap();
+  let newmap = maps.getMap(this.destmap);
+  if (!this.destx) {
+    this.destx = walker.getx();
+    this.desty = walker.gety();
+  }
+  MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+  let retval = {overridedraw: 1};
+  if (this.say) {
+    retval.msg = this.say;
+  }
+  return retval;
+}
+
+function WalkOnHC2Tile() {
+  this.name = "WalkOnHC2";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.destmap = "hotelcalifornia3";
+}
+WalkOnHC2Tile.prototype = new FeatureObject();
+
+WalkOnHC2Tile.prototype.walkon = function(walker) {
+  let themap=walker.getHomeMap();
+  let newmap = maps.getMap(this.destmap);
+  if (!this.destx) {
+    this.destx = walker.getx();
+    this.desty = walker.gety();
+  }
+  MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+  let retval = {overridedraw: 1};
+  if (this.say) {
+    retval.msg = this.say;
+  }
+  return retval;
+}
+
+function WalkOnHC2ClockTile() {
+  this.name = "WalkOnHC2Clock";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnHC2ClockTile.prototype = new FeatureObject();
+
+WalkOnHC2ClockTile.prototype.walkon = function(walker) {
+  let themap=walker.getHomeMap();
+  for (let i=0;i<this.place.length;i++) {
+    let clock = localFactory.createTile("GrandfatherClock");
+    themap.placeThing(this.place[i].x,this.place[i].y,clock);
+//    DrawMainFrame("one", PC.getHomeMap(), place[i].x, place[i].y);
+  }
+  return {msg:""};
+}
+
+function WalkOnHC3TreeTile() {
+  this.name = "WalkOnHC3Tree";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnHC3TreeTile.prototype = new FeatureObject();
+
+WalkOnHC3TreeTile.prototype.walkon = function(walker) {
+  let themap=walker.getHomeMap();
+  for (let i=0;i<this.place.length;i++) {
+    let clock = localFactory.createTile("DeadTree");
+    themap.placeThing(this.place[i].x,this.place[i].y,clock);
+//    DrawMainFrame("one", PC.getHomeMap(), place[i].x, place[i].y);
+  }
+  return {msg:""};
+}
+
+function WalkOnHC5Tile() {
+  this.name = "WalkOnHC5";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.destmap = "hotelcalifornia6";
+  this.destx = 10;
+  this.desty = 12;
+}
+WalkOnHC5Tile.prototype = new FeatureObject();
+
+WalkOnHC5Tile.prototype.walkon = function(walker) {
+  let themap=walker.getHomeMap();
+  let newmap = maps.getMap(this.destmap);
+  if (!this.destx) {
+    this.destx = walker.getx();
+    this.desty = walker.gety();
+  }
+  MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
+  let door = themap.getTile(10,3).getTopFeature();
+  if (door.open) { door.use(who,1); }
+  door = themap.getTile(10,6).getTopFeature();
+  if (door.open) { door.use(who,1); }
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+  let retval = {overridedraw: 1};
+  if (this.say) {
+    retval.msg = this.say;
+  }
+  return retval;
+}
+
+function WalkOnHC6Tile() {
+  this.name = "WalkOnHC6";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.destmap = "hotelcalifornia5";
+  this.destx = 10;
+  this.desty = 5;
+}
+WalkOnHC6Tile.prototype = new FeatureObject();
+
+WalkOnHC6Tile.prototype.walkon = function(walker) {
+  let themap=walker.getHomeMap();
+  let newmap = maps.getMap(this.destmap);
+  if (!this.destx) {
+    this.destx = walker.getx();
+    this.desty = walker.gety();
+  }
+  MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+  let door = themap.getTile(10,14).getTopFeature();
+  if (door.open) { door.use(who,1); }
+  door = themap.getTile(10,6).getTopFeature();
+  if (door.open) { door.use(who,11); }
+  let retval = {overridedraw: 1};
+  if (this.say) {
+    retval.msg = this.say;
+  }
+  return retval;
+}
+
+function WalkOnHC7Tile() {
+  this.name = "WalkOnHC7";
+	this.graphic = "walkon.gif";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+  this.destmap = "hotelcalifornia8";
+  this.destx = 7;
+  this.desty = 16;
+  this.say = "The inn fades from view and is gone.";
+}
+WalkOnHC7Tile.prototype = new FeatureObject();
+
+WalkOnHC7Tile.prototype.walkon = function(walker) {
+  let themap=walker.getHomeMap();
+  let newmap = maps.getMap(this.destmap);
+  if (!this.destx) {
+    this.destx = walker.getx();
+    this.desty = walker.gety();
+  }
+  MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+  DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+  let retval = {overridedraw: 1};
+  if (this.say) {
+    retval.msg = this.say;
+  }
+  return retval;
 }
 
 function SpinnerTile() {
@@ -7127,11 +7418,13 @@ SpinnerTile.prototype = new FeatureObject();
 SpinnerTile.prototype.walkon = function(walker) {
   let diso = localFactory.createTile("Disoriented");
   walker.addSpellEffect(diso);
+  return {msg:""};
 }
 
 SpinnerTile.prototype.walkoff = function(walker) {
   let diso = walker.getSpellEffectsByName("Disoriented");
   diso.endEffect();
+  return {msg:""};
 }
 
 function WalkOnMessageTile() {
@@ -7147,14 +7440,14 @@ function WalkOnMessageTile() {
 WalkOnMessageTile.prototype = new FeatureObject();
 
 WalkOnMessageTile.prototype.walkon = function(walker) {
+  let response = {msg:""};
   if ((walker === PC) && (this.message) && (PC.getLight() >= 1)) {
-    maintext.addText(this.message);
-    return;
+    response.msg = this.message;
   }
   if ((walker === PC) && (this.message)) {
-    maintext.addText("There is writing on the walls here, but your light is too dim to read it.");
-    return;
+    response.msg = "There is writing on the walls here, but your light is too dim to read it.";
   }
+  return response;
 }
 
 function WalkOnRotateTile() {
@@ -7210,7 +7503,8 @@ WalkOnRotateTile.prototype.walkon = function(walker) {
     }
     MoveBetweenMaps(feas[i],currmap,destmap,dest.destx,dest.desty);
   }
-
+  DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+  return {overridedraw: 1,msg:""};
 }
 
 function WalkOnWindTile() {
@@ -7225,13 +7519,15 @@ function WalkOnWindTile() {
 WalkOnWindTile.prototype = new FeatureObject();
 
 WalkOnWindTile.prototype.walkon = function(walker) {
+  let response = {msg:""};
   if (walker === PC) {
-    maintext.addText("A strange wind blows!");
     let torch = walker.getSpellEffectsByName("TorchLight");
     if (torch) {
       torch.endEffect();
     }
+    response.msg = "A strange wind blows!";
   }
+  return response;
 }
 
 function WalkOnDarknessTile() {
@@ -7246,8 +7542,8 @@ function WalkOnDarknessTile() {
 WalkOnDarknessTile.prototype = new FeatureObject();
 
 WalkOnDarknessTile.prototype.walkon = function(walker) {
+  let response = {msg:""};
   if (walker === PC) {
-    maintext.addText("You are smothered in darkness!");
     let torch = walker.getSpellEffectsByName("TorchLight");
     if (torch) {
       torch.endEffect();
@@ -7256,7 +7552,9 @@ WalkOnDarknessTile.prototype.walkon = function(walker) {
     if (light) {
       light.endEffect();
     }
+    response.msg = "You are smothered in darkness!";
   }
+  return response;
 }
 
 function WalkOnAbyssTile() {
@@ -7284,9 +7582,11 @@ WalkOnAbyssTile.prototype.walkon = function(walker) {
   MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
+  let retval = {overridedraw: 1,msg:""};
   if (this.say) {
-    maintext.addText(this.say);
+    retval.msg = this.say;
   }
+  return retval;
 }
 
 function WalkOnAbyss0Tile() {
@@ -8211,7 +8511,9 @@ function InALaser(who) {
   themap.moveThing(46,28,who);
   ResetRoyalPuzzle(themap);
   DUPlaySound("sfx_small_zap");
-  return "ZAP! The room resets.";
+  DrawMainFrame("draw",themap,PC.getx(),PC.gety());
+  let response = {overridedraw:1,msg:"ZAP! The room resets."};
+  return response;
 }
 
 function ResetRoyalPuzzle(where) {  
@@ -8625,7 +8927,8 @@ PlatformOfWindsTile.prototype.walkon = function(who) {
   
     delete this.spawnwhat;  
     DUPlaySound("sfx_whoosh");
-    return "WHOOSH!";
+    let response = {msg: "WHOOSH!" };
+    return response;
   }
 }
 
@@ -8989,6 +9292,7 @@ TeleporterPlatformTile.prototype.getDestination = function() {
 }
 
 TeleporterPlatformTile.prototype.walkon = function(who) {
+  let response = {msg:""};
   if (this.getDestination()) {
     let themap = who.getHomeMap();
     let dest = this.getDestination();
@@ -9001,8 +9305,9 @@ TeleporterPlatformTile.prototype.walkon = function(who) {
     }
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
-    // NEEDS SFX/SOUND
+    if (who === PC) { DUPlaySound("sfx_teleport"); response.overridedraw = 1; }
   }
+  return response;
 }
 
 function PitTeleporterPlatformTile() {
@@ -9027,8 +9332,9 @@ PitTeleporterPlatformTile.prototype.getDestination = function() {
 }
 
 PitTeleporterPlatformTile.prototype.walkon = function(who) {
+  let response = {msg:""};
   if ((who.getLevel() < 4) && (who === PC)) {
-    maintext.addText("You hear a voice in your head: 'Thou'rt not yet ready for this trial.' Nothing happens.");
+    response.msg = "You hear a voice in your head: 'Thou'rt not yet ready for this trial.' Nothing happens.";
   }
   else if (this.getDestination()) {
     let themap = who.getHomeMap();
@@ -9042,8 +9348,9 @@ PitTeleporterPlatformTile.prototype.walkon = function(who) {
     }
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     ShowEffect(who, 500, "spellsparkles-anim.gif", 0, -64);
-    if (who === PC) { DUPlaySound("sfx_teleport_pad"); }
+    if (who === PC) { DUPlaySound("sfx_teleport_pad"); response.overridedraw = 1; }
   }
+  return response;
 }
 
 // Toshin
@@ -9469,7 +9776,7 @@ function EtherGateTile() {
   this.name = "EtherGate";
   this.graphic = "moongates.gif";
   this.spritexoffset = '-128';
-  this.spriteyoffset = '0';
+  this.spriteyoffset = '-32';
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "gate";
@@ -9479,6 +9786,7 @@ function EtherGateTile() {
 EtherGateTile.prototype = new FeatureObject();
 
 EtherGateTile.prototype.walkon = function(who) {
+  let response = {msg:""};
   let homemap = who.getHomeMap();
   let desttile = homemap.getTile(this.destx,this.desty);
   let npcs = desttile.getNPCs();
@@ -9488,7 +9796,11 @@ EtherGateTile.prototype.walkon = function(who) {
     };
   }
   homemap.moveThing(this.destx,this.desty,who);
-  DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
+  if (who === PC) {
+    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
+    return response.overridedraw = 1; 
+  }
+  return response;
 }
 
 function MoongateTile() {
@@ -9505,6 +9817,7 @@ function MoongateTile() {
 MoongateTile.prototype = new FeatureObject();
 
 MoongateTile.prototype.walkon = function(who) {
+  let response = {msg:""};
   if (this.destmap && this.destx && this.desty) {
     let newmap = new GameMap();
     if (maps.getMap(this.destmap)) {
@@ -9512,13 +9825,13 @@ MoongateTile.prototype.walkon = function(who) {
     } else {
       newmap = maps.addMap(this.destmap);
     }
-    MoveBetweenMaps(PC,PC.getHomeMap(),newmap, this.destx, this.desty);
+    MoveBetweenMaps(who,who.getHomeMap(),newmap, this.destx, this.desty);
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
-
+    if (who === PC) { return {overridedraw: 1}; }
   } 
   // needs SOUND
-  return "";
+  return response;
 }
 
 function PetrifiedReaperTile() {
@@ -9836,7 +10149,7 @@ VoidstoneSculptureTile.prototype = new ItemObject();
 function StoneOfSparksTile() {
   this.name = "StoneOfSparks";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
+  this.spritexoffset = "-96";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -9878,7 +10191,7 @@ StoneOfTheBlazeTile.prototype = new ItemObject();
 function StoneOfConflagrationsTile() {
   this.name = "StoneOfConflagrations";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
+  this.spritexoffset = "0";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -10844,6 +11157,39 @@ function ConsumableItemObject() {
 }
 ConsumableItemObject.prototype = new ItemObject();
 
+function StoneOfCursesTile() {
+  this.name = "StoneOfCurses";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-96";
+  this.spriteyoffset = "-1248";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Stone of Curses";
+  this.prefix = "the";
+  this.longdesc = "The Stone of Curses. It glows with a vile light.";
+  this.usedesc = "Shatter the stone.";
+  this.addType("Quest");
+}
+StoneOfCursesTile.prototype = new ConsumableItemObject();
+
+StoneOfCursesTile.prototype.use = function(who) {
+  let retval = { fin:1 };
+
+  let ladder = localFactory.createTile("LadderDown");
+  ladder.entermap = "hotelcalifornia7";
+  ladder.enterx = 10;
+  ladder.entery = 5;
+  if (this.getHomeMap().getName() === "hotelcalifornia6") {
+    this.getHomeMap().placeThing(10,9,ladder);
+    retval["txt"] = "The curse is broken! The inn shakes around you.";
+    Earthquake();
+  } else {
+    retval["txt"] = "The stone fades in your hand.";
+  }
+
+  return retval;
+}
+
 function TorchTile() {
   this.name = "Torch";
   this.graphic = "master_spritesheet.png";
@@ -11095,6 +11441,14 @@ function PurplePalmCrystalTile() {
 PurplePalmCrystalTile.prototype = new ConsumableItemObject();
 
 PurplePalmCrystalTile.prototype.use = function(who) {
+  if (DU.gameflags.getFlag("negate")[castermap.getName()]) {
+    retval["txt"] = "Something is preventing this from functioning.";
+    retval["fin"] = 2;
+    retval["input"] = "&gt;";
+    gamestate.setMode("player");
+    
+    return retval;
+  }
   let retval = magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell(PC, 0, 2);
   retval["txt"] = "You grasp the crystal. Gazing into it, you see yourself from above."  
   if (who === PC) {
@@ -11736,6 +12090,14 @@ ScrollItemObject.prototype.getLongDesc = function() {
 }
 
 ScrollItemObject.prototype.use = function(who) {
+  if (DU.gameflags.getFlag("negate")[castermap.getName()]) {
+    retval["txt"] = "Magic has been negated, you cannot cast spells here.";
+    retval["fin"] = 2;
+    retval["input"] = "&gt;";
+    gamestate.setMode("player");
+    
+    return retval;
+  }
   let retval = {};
   retval = magic[this.spelllevel][this.spellnum].executeSpell(PC, 0, 1);
   if (retval["fin"] === 4) { 
@@ -14773,10 +15135,10 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
       retval["msg"] += walkofftest["txt"];
     }
     if (walkofftest.success) {
-  	  let walkofftile = exittile.executeWalkoffs(this);
-	    if (walkofftile) {
+      let walkofftile = exittile.executeWalkoffs(this);
+	    if (walkofftile.msg) {
 	      if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
-	      retval["msg"] += walkoffval;
+	      retval["msg"] += walkoffval.msg;
   	  }
 	  	map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
 		  if (this === PC) {
@@ -14795,14 +15157,20 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		  }
 
       let distfrom = getDisplayCenter(map, PC.getx(), PC.gety());
-	  	let walkonval = tile.executeWalkons(this);
-		  if (walkonval) {
+      let walkonval = tile.executeWalkons(this);
+      let overridedraw = 0;
+      if (walkonval.overridedraw) { overridedraw = 1; }
+		  if (walkonval.msg) {
   		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
-	  	  retval["msg"] += walkonval;
-		  }
+        retval["msg"] += walkonval.msg;
+      }
+      if (walkonval.override) {
+        retval = walkonval;
+      }
 //    if ((map === PC.getHomeMap()) && (GetSquareDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.max(VIEWSIZEX,VIEWSIZEY) )) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
       // uncommented version checks from current display center, not from PC position.
+      if (!overridedraw) {
         if ((typeof this.getLight === "function") && (this.getLight() !== 0)) {
           DebugWrite("ai", "A light source, need to redraw the whole screen...<br />");
           DrawMainFrame("draw", map, PC.getx(), PC.gety());
@@ -14811,7 +15179,8 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
           DebugWrite("ai", "Redraw both tiles.<br />");
 			    DrawMainFrame("one", map, startx, starty);
 			    DrawMainFrame("one", map, passx, passy);
-	  		}
+        }
+      }
 //    }
 	  }
 	  retval["initdelay"] = tile.getInitDelay(this);

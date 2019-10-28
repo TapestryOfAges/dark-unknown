@@ -625,11 +625,11 @@ Acre.prototype.getPathWeight = function(civ) {
 
 Acre.prototype.executeWalkons = function(walker) {
 	let terrain = this.getTerrain();
-	let response = "";
+	let response = {msg:""};
 	if (typeof terrain.walkon === "function") {
     let resp = terrain.walkon(walker);
     if (resp) {
-      response += resp;
+      response = resp;
     }
 	}
 	let features = this.getFeatures();
@@ -637,9 +637,14 @@ Acre.prototype.executeWalkons = function(walker) {
 		for (let i = 0; i < features.length; i++) {
 			if (typeof features[i].walkon === "function") {
 				let resp = features[i].walkon(walker);
-				if (resp) {
-				  if (response) { response += "<br />"; }
-				  response += resp;
+				if (resp.msg) {
+          if (response.msg) {
+            response.msg += "<br />"; 
+          }
+				  response.msg += resp.msg;
+        }
+        if (resp.overridedraw) {
+          response.overridedraw = 1;
         }
 			}
 		}
@@ -649,11 +654,11 @@ Acre.prototype.executeWalkons = function(walker) {
 
 Acre.prototype.executeWalkoffs = function(walker) {
 	let terrain = this.getTerrain();
-	let response = "";
+	let response = {msg:""};
 	if (typeof terrain.walkoff === "function") {
     let resp = terrain.walkoff(walker);
     if (resp) {
-      response += resp;
+      response = resp;
     }
 	}
 	let features = this.getFeatures();
@@ -661,9 +666,12 @@ Acre.prototype.executeWalkoffs = function(walker) {
 		for (let i = 0; i < features.length; i++) {
 			if (typeof features[i].walkoff === "function") {
 				let resp = features[i].walkoff(walker);
-				if (resp) {
-				  if (response) { response += "<br />"; }
-				  response += resp;
+				if (resp.msg) {
+          if (response.msg) { response.msg += "<br />"; }
+          response.msg += resp.msg;
+        }
+        if (resp.overridedraw) {
+          response.overridedraw = 1;
 				}
 			}
 		}
