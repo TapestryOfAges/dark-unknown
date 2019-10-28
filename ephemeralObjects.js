@@ -1236,7 +1236,7 @@ NegateMagicTile.prototype.doEffect = function() {
 
 NegateMagicTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
-  let negmap = who.getHomeMap();
+  let negmap = this.negatedmap;
   let negated = DU.gameflags.getFlag("negate");
   delete negated[negmap.getName()];
   DU.gameflags.setFlag("negate", negated);
