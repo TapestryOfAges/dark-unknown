@@ -219,7 +219,9 @@ GameStateData.prototype.saveGame = function(flag) {
   let copies = PC.copy();
   for (let copidx in copies) {
     let copval = copies[copidx];
-    if (copval.name === "PC") {
+    if ((copval.name === "PC") && (!copval.traceback.includes("timeline"))) {
+      // second check because PC is not on the timeline if saving during their turn, 
+      // but is if the character is being created
       copval.timestamp = savedata.time;
       copval.traceback.push("timeline");
     }
