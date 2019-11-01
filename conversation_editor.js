@@ -38,7 +38,7 @@ function select_place(pname) {
       if (!frst) { frst = idx; }
     }
   });
-  txt = txt + "</select></form> <a href='javascript:new_conv()'>New Conversation</a> <a href='javascript:del_conv()'>Delete Conversation</a></p>";
+  txt = txt + "</select></form> <a href='javascript:new_conv()'>New Conversation</a> <a href='javascript:del_conv()'>Delete Conversation</a> <a href='javascript:duplicate_conv()'>Duplicate Conversation</a></p>";
   $('#convs').html(txt);
 }
 
@@ -69,6 +69,25 @@ function del_conv() {
     }
   } else {
     alert("No selected conversation.");
+  }
+}
+
+function duplicate_conv() {
+  let thisconv = document.convform.pickconv.value;
+  if (thisconv) {
+    var convname = "";
+    while (convname === "") {
+      convname = prompt("Name of conversation copy:");
+      $.each(conversations, function(idx, val) {
+        if (convname === idx) { alert("Name already in use."); convname = ""; }
+      });
+    }
+    let jsc = JSON.stringify(conversations[thisconv]);
+    conversations[convname] = JSON.parse(jsc);
+  
+    select_place(curr_place)
+    $("#pickconv").val(convname);
+      
   }
 }
 
