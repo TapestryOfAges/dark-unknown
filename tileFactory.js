@@ -868,6 +868,11 @@ tileFactory.prototype.makeVillageTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeHotelPheranTile = function() {
+  let newTile = new HotelPheranTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCastleTile = function() {
   let newTile = new CastleTile();
   return newTile;
@@ -2828,6 +2833,11 @@ tileFactory.prototype.makeAudachtaNemesosWindChangeTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAudachtaNemesosDisruptUndeadTile = function() {
+  let newTile = new AudachtaNemesosDisruptUndeadTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAudachtaNemesosFireArmorTile = function() {
   let newTile = new AudachtaNemesosFireArmorTile();
   return newTile;
@@ -3290,6 +3300,11 @@ tileFactory.prototype.makeApprenticeNPCTile = function() {
 
 tileFactory.prototype.makeFighterNPCTile = function() {
   let newTile = new FighterNPCTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeImpNPCTile = function() {
+  let newTile = new ImpNPCTile();
   return newTile;
 }
 
