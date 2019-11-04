@@ -115,3 +115,5 @@ paladin_joined - You have been through the initiation ceremony
 ernest_patron - You've obtained Conrad's patronage for Ernest
 asked_conrad_about_ernest - You've asked Conrad to be Ernest's patron
 infinite_scroll - have received one Infinite Scroll from Conrad
+started_pheran - entered Hotel Pheran
+solved_pheran - finished Hotel Pheran/California. ** (endgame)
