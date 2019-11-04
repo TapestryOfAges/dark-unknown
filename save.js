@@ -3,14 +3,14 @@
 const fs = require("fs");
 const path = require("path");
 
-const savePath = `${__dirname}/../../saves`;
+const savePath = path.join(`${__dirname}`,'..','..','saves');
 
 let saveIndex = [];
 
 {
   // found on stackoverflow: https://stackoverflow.com/questions/13696148/node-js-create-folder-or-use-existing
-  function createDirectory(directoryPath) {
-    const directory = path.normalize(directoryPath);
+  function createDirectory(directory) {
+//    const directory = path.normalize(directoryPath);
   
     return new Promise((resolve, reject) => {
       fs.stat(directory, (error) => {
