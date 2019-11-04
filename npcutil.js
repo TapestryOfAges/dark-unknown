@@ -65,6 +65,16 @@ NPCSpecialFuncs["courierFlee"] = function(who,how) {
   who.addSpellEffect(eobj);
 }
 
+NPCSpecialFuncs["ondeathinsects"] = function(who,how) {
+  who.onDeath = function() {
+    let quant = Dice.roll("1d4");
+    for (let i=1;i<=quant;i++) {
+      let bug = localFactory.createTile("GiantInsectsNPC");
+      this.getHomeMap().placeThing(this.getx(),this,gety(),bug);
+    }
+  }
+}
+
 function AreEnemies(one,two) {
   if ((one.getAttitude() === "friendly") && (two.getAttitude() === "hostile")) { return 1; }
   if ((one.getAttitude() === "hostile") && (two.getAttitude() === "friendly")) { return 1; }
