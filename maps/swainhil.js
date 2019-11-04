@@ -501,7 +501,7 @@ mappages["swainhil"].alwaysRemember = '0';
 mappages["swainhil"].scale = '1';
 mappages["swainhil"].underground = '0';
 mappages["swainhil"].undergroundDesc = '';
-mappages["swainhil"].enterscript = '';
+mappages["swainhil"].enterscript = 'add_pheran';
 mappages["swainhil"].entertestscript = '';
 mappages["swainhil"].exitscript = '';
 mappages["swainhil"].exittestscript = '';
@@ -511,6 +511,15 @@ mappages["swainhil"].returny = '74';
 mappages["swainhil"].returninfused = '0';
 mappages["swainhil"].linkedMaps = ["swainhil2","swainhil3"];
 mappages["swainhil"].editorLabels = '{"div_tile52x8":"Severyn","div_tile25x15":"Dale","div_tile38x8":"Mandy","div_tile18x8":"Isaac","div_tile26x8":"Ian and Carey","div_tile45x8":"Elaine"}';
+
+mappages["swainhil"].add_pheran = function(mapref) {
+  if (!DU.gameflags.getFlag("added_pheran")) {
+    let worldmap = maps.getMap("darkunknown");
+    let hc = localFactory.createTile("HotelPheran");
+    worldmap.placeThing(115,84,hc);
+    DU.gameflags.setFlag("added_pheran",1);
+  }
+}
 
 mappages["swainhil2"] = {};
 mappages["swainhil2"].terrain = [];
