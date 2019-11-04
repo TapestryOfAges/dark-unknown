@@ -1150,6 +1150,38 @@ function FighterNPCTile() {
 FighterNPCTile.prototype = new NPCObject();
 
 
+// Monster
+
+function ImpNPCTile() {
+  this.name = 'ImpNPC';
+  this.level = 2;
+  this.addhp = 0;
+  this.str = 12;
+  this.dex = 12;
+  this.int = 12;
+  this.alignment = 'Evil';
+  this.attitude = 'hostile';
+  this.peaceAI = 'seekPC-10';
+  this.forgetAt = 10;
+  this.withdraw = 0;
+  this.graphic = '351.gif';
+  this.meleeAttackAs = 'Shortsword';
+  this.missileAttackAs = 'none';
+  this.armorAs = 'LeatherArmor';
+  this.movetype = MOVE_FLY;
+  this.leavesCorpse = 'none';
+  this.lootTable = 'none';
+  this.prefix = 'an';
+  this.desc = "imp";
+  this.meleeChance = 60;
+  this.spellsknown = { attack: 1, };
+  this.resists = { fire:35 };
+  this.meleeHitSound = 'sfx_melee_hit';
+  this.meleeAttackSound = 'sfx_melee_miss';
+}
+ImpNPCTile.prototype = new NPCObject();
+
+
 // Animal
 
 function PythonNPCTile() {
