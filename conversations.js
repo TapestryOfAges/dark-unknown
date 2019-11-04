@@ -815,6 +815,28 @@ OnConvTriggers["paladin_initiation"] = function(speaker,keyword) {
   speaker.setCurrentAI("Isaac_initiate");
 }
 
+OnConvTriggers["chera_disappear"] = function(speaker,keyword) {
+  let chera = FindNPCByName("Chera", speaker.getHomeMap());
+  speaker.getHomeMap().deleteThing(chera);
+  DU.gameflags.deleteFlag("chera_disappear");
+}
+
+OnConvTriggers["don_disappear"] = function(speaker,keyword) {
+  let don = FindNPCByName("Don", speaker.getHomeMap());
+  speaker.getHomeMap().deleteThing(don);
+  DU.gameflags.deleteFlag("don_disappear");
+}
+
+OnConvTriggers["solved_pheran"] = function(speaker,keyword) {
+  let themap = speaker.getHomeMap();
+  let chera = FindNPCByName("Chera", themap);
+  themap.deleteThing(chera);
+  let olin = FindNPCByName("Olin", themap);
+  themap.deleteThing(olin);
+  let hylga = FindNPCByName("Hylga", themap);
+  themap.deleteThing(hylga);
+}
+
 OnConvTriggers["where_king"] = function(speaker,keyword) {
   if (CheckTimeBetween("6:15","7:30")) {
     maintext.addText('"The King is at his morning meeting with the chancellor. He will soon make his way to the throne room."');
