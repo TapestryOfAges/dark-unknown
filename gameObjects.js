@@ -4107,6 +4107,54 @@ function VillageTile() {
 }
 VillageTile.prototype = new FeatureObject();
 
+function HotelPheranTile() {
+  this.name = "HotelPheran";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1632";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "inn";
+  this.peerview = "#00c000";
+  this.civilized = 1;
+
+  Enterable.call(this, "hotelcalifornia", 7, 18);
+}
+HotelPheranTile.prototype = new FeatureObject();
+
+HotelPheranTile.prototype.activate = function() {
+  let NPCevent = new GameEvent(this);
+  DUTime.addAtTimeInterval(NPCevent,1);
+}
+
+HotelPheranTile.prototype.myTurn = function() {
+  if (DU.gameflags.getFlag("started_pheran")) {
+    this.getHomeMap().deleteThing(this);
+  } else if (!this.onscreen) {
+    if ((this.getHomeMap() === PC.getHomeMap()) && (GetDistance(this.getx(),this.gety(),PC.getx(),PC.gety(),"square") <= 6)){
+      this.onscreen = 1;
+    } else {
+      if (this.onscreen) {
+        if ((this.getHomeMap() !== PC.getHomeMap()) || (GetDistance(this.getx(),this.gety(),PC.getx(),PC.gety(),"square") > 6)) {
+          this.onscreen = 0;
+          let choice = Dice.roll("1d7");
+          if (choice === 1) { this.getHomeMap().moveThing(115,84,this); }
+          else if (choice === 2) { this.getHomeMap().moveThing(114,43,this); }
+          else if (choice === 3) { this.getHomeMap().moveThing(96,38,this); }
+          else if (choice === 4) { this.getHomeMap().moveThing(49,17,this); }
+          else if (choice === 5) { this.getHomeMap().moveThing(60,41,this); }
+          else if (choice === 6) { this.getHomeMap().moveThing(42,84,this); }
+          else if (choice === 7) { this.getHomeMap().moveThing(45,114,this); }
+        }
+      }
+    }
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,1);  
+  }
+  return 1;
+}
+
 function CastleTile() {
   this.name = "Castle";
   this.graphic = "155.gif";
@@ -6848,7 +6896,11 @@ CursedReflectionTile.prototype.onBreak = function(who) {
   // generate Imp and place on broken mirror
 
   Earthquake();
-
+  let imp = localFactory.createTile("ImpNPC");
+  imp.lootTable = "cursed";
+  this.getHomeMap().placeThing(this.getx(),this.gety(),imp);
+  let energy = localFactory.createTile("EnergyField");
+  this.getHomeMap().placeThing(10,10,energy);
   let negated = DU.gameflags.getFlag("negate");
   delete negated[this.getHomeMap().getName()];
   DU.gameflags.setFlag("negate", negated);
@@ -7225,6 +7277,7 @@ WalkOnHC1Tile.prototype.walkon = function(walker) {
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   let retval = {overridedraw: 1};
+  DU.gameflags.addFlag("started_pheran",1);
   if (this.say) {
     retval.msg = this.say;
   }
@@ -7257,6 +7310,7 @@ WalkOnHC2Tile.prototype.walkon = function(walker) {
   if (this.say) {
     retval.msg = this.say;
   }
+  DU.gameflags.setFlag("started_pheran",1);
   return retval;
 }
 
@@ -12723,6 +12777,19 @@ function AudachtaNemesosWindChangeTile() {
 }
 AudachtaNemesosWindChangeTile.prototype = new AudachtaNemesosObject();
 
+function AudachtaNemesosDisruptUndeadTile() {
+  this.name = "AudachtaNemesosDisruptUndead";
+  this.desc = "Audachta Nemesos: Disrupt Undead";
+  this.prefix = "an";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1216";
+  this.spelllevel = SPELL_DISRUPT_UNDEAD_LEVEL;
+  this.spellnum = SPELL_DISRUPT_UNDEAD_ID;
+  this.spellname = "Disrupt Undead";
+}
+AudachtaNemesosDisruptUndeadTile.prototype = new AudachtaNemesosObject();
+
 function AudachtaNemesosFireArmorTile() {
   this.name = "AudachtaNemesosFireArmor";
   this.desc = "Audachta Nemesos: Fire Armor";
@@ -14224,6 +14291,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
 }
 
 NPCObject.prototype.processDeath = function(droploot){
+  if (typeof this.onDeath === "function") { this.onDeath(); }
   let thisx = this.getx();
   let thisy = this.gety();
   if (targetCursor.lastTarget === this) { delete targetCursor.lastTarget; }
