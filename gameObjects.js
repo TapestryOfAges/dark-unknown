@@ -6839,7 +6839,6 @@ function CursedMirrorTile() {
   this.blocklos = 0;
   this.prefix = "a";
   this.desc = "mirror";
-  this.karmamod = -1;
   
   Breakable.call(this,["master_spritesheet.png", "", "-224", "-384"],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
@@ -6856,6 +6855,22 @@ CursedMirrorTile.prototype.activate = function() {
   return 1;
 }
 
+CursedMirrorTile.prototype.onBreak = function(who) {
+  // generate Imp and place on broken mirror
+
+  Earthquake();
+  let imp = localFactory.createTile("ImpNPC");
+  imp.lootTable = "cursed";
+  this.getHomeMap().placeThing(this.getx(),this.gety(),imp);
+  let energy = localFactory.createTile("EnergyField");
+  this.getHomeMap().placeThing(10,10,energy);
+  DrawMainFrame("one",this.getHomeMap(),10,10);
+  let negated = DU.gameflags.getFlag("negate");
+  delete negated[this.getHomeMap().getName()];
+  DU.gameflags.setFlag("negate", negated);
+  maintext.delayedAddText("You feel the flow of ether surround you once more!");
+}
+
 function CursedReflectionTile() {
   this.name = "CursedReflection";
   this.graphic = "walkon.gif";
@@ -6865,8 +6880,28 @@ function CursedReflectionTile() {
   this.prefix = "a";
   this.desc = "reflection walkon";
   this.nosave = 1;
+  this.conversation = "cursed_mirror";
 }
 CursedReflectionTile.prototype = new FeatureObject();
+
+CursedReflectionTile.prototype.getConversation = function() {
+  return this.conversation;
+}
+
+CursedReflectionTile.prototype.getGenderedTerms = function() {
+  let gt = {};
+  gt.pronoun = "it";
+  gt.possessive = "its";
+  gt.objective = "it";
+  gt.titled = "Lord";
+  gt.sibling = "sibling";
+  gt.kiddie = "child";    
+  return gt;  
+}
+
+CursedReflectionTile.prototype.getNPCName = function() {
+	return "The cursed mirror";
+}
 
 CursedReflectionTile.prototype.walkon = function(who) {
   // add reflection to attached mirror
@@ -6879,32 +6914,21 @@ CursedReflectionTile.prototype.walkon = function(who) {
     let tree = localFactory.createTile("DeadTree");
     this.getHomeMap().placeThing(10,10,tree);
 
-    let retval;
-    retval = PerformTalk(this,"cursed_mirror","_start");
-    retval["override"] = 1;
-    maintext.setInputLine("&gt; You say: ");
-    maintext.drawTextFrame();
-    return retval;
+    let retval = {};
+    retval.msg = "";
+    if (!DU.gameflags.getFlag("mirror_talks")) {
+      DU.gameflags.setFlag("mirror_talks",1);
+      retval = PerformTalk(this,"cursed_mirror","_start");
+      retval["override"] = -3;
+      maintext.drawTextFrame();
+      return retval;
+    } 
 
     //	this.graphic = "master_spritesheet.png";    // spritesheet version of reflection. Can't work yet because of need to be overlay
     // this.spritexoffset = "-288"; 
     // this.spriteyoffset = "-1344";
   }
-}
-
-CursedReflectionTile.prototype.onBreak = function(who) {
-  // generate Imp and place on broken mirror
-
-  Earthquake();
-  let imp = localFactory.createTile("ImpNPC");
-  imp.lootTable = "cursed";
-  this.getHomeMap().placeThing(this.getx(),this.gety(),imp);
-  let energy = localFactory.createTile("EnergyField");
-  this.getHomeMap().placeThing(10,10,energy);
-  let negated = DU.gameflags.getFlag("negate");
-  delete negated[this.getHomeMap().getName()];
-  DU.gameflags.setFlag("negate", negated);
-  maintext.delayedAddText("You feel the flow of ether surround you once more!");
+  return {msg:""};
 }
 
 function AlchemyLabTopTile() {
@@ -7277,7 +7301,7 @@ WalkOnHC1Tile.prototype.walkon = function(walker) {
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   let retval = {overridedraw: 1};
-  DU.gameflags.addFlag("started_pheran",1);
+  DU.gameflags.setFlag("started_pheran",1);
   if (this.say) {
     retval.msg = this.say;
   }
@@ -7378,10 +7402,11 @@ WalkOnHC5Tile.prototype.walkon = function(walker) {
     this.desty = walker.gety();
   }
   MoveBetweenMaps(walker,themap,newmap,this.destx,this.desty);
+
   let door = themap.getTile(10,3).getTopFeature();
-  if (door.open) { door.use(who,1); }
+  if (door.open) { door.use(walker,1); }
   door = themap.getTile(10,6).getTopFeature();
-  if (door.open) { door.use(who,1); }
+  if (door.open) { door.use(walker,1); }
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   let retval = {overridedraw: 1};
@@ -7416,9 +7441,9 @@ WalkOnHC6Tile.prototype.walkon = function(walker) {
   DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");
   let door = themap.getTile(10,14).getTopFeature();
-  if (door.open) { door.use(who,1); }
+  if (door.open) { door.use(walker,1); }
   door = themap.getTile(10,6).getTopFeature();
-  if (door.open) { door.use(who,11); }
+  if (door.open) { door.use(walker,11); }
   let retval = {overridedraw: 1};
   if (this.say) {
     retval.msg = this.say;
@@ -15208,7 +15233,8 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 	      if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
 	      retval["msg"] += walkoffval.msg;
   	  }
-	  	map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
+      map.moveThing(this.getx()+diffx,this.gety()+diffy,this);
+      retval["fin"] = 1;
 		  if (this === PC) {
 		    let sfx = "sfx_walk_";
   		  if (map.getUnderground()) { sfx = sfx + "ug_"; }
@@ -15229,11 +15255,14 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
       let overridedraw = 0;
       if (walkonval.overridedraw) { overridedraw = 1; }
 		  if (walkonval.msg) {
-  		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
-        retval["msg"] += walkonval.msg;
+  		  if (retval["txt"] !== "") { retval["msg"] += "<br />"; }
+        retval["txt"] += walkonval.msg;
       }
       if (walkonval.override) {
-        retval = walkonval;
+        retval.fin = walkonval.override;
+        if (walkonval.override === -3) {
+          retval["txt"] = "";
+        }
       }
 //    if ((map === PC.getHomeMap()) && (GetSquareDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.max(VIEWSIZEX,VIEWSIZEY) )) {
       // basically, was this move on screen? The +1 is to catch things that might have just walked off-screen
