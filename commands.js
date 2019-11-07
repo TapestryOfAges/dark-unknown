@@ -33,7 +33,7 @@ function PerformCommand(code, ctrl) {
       if (tmp["fin"] === 1) { return tmp; }
     }
   
-		let success = PC.moveMe(0,-1,0);
+    let success = PC.moveMe(0,-1,0);
 		let txt = "Move North";
 		txt += success["msg"];
 		retval["txt"] = txt;
@@ -45,6 +45,10 @@ function PerformCommand(code, ctrl) {
     }
     if (success["msg"].match("WHOOSH")) {
       retval["fin"] = 2;
+    }
+    if (success["fin"] === -3) {
+      retval["fin"] = -3; 
+      retval["txt"] = "";
     }
 		retval["initdelay"] = success["initdelay"];
 	}
@@ -75,6 +79,10 @@ function PerformCommand(code, ctrl) {
     if (success["msg"].match("WHOOSH")) {
       retval["fin"] = 2;
     }
+    if (success["fin"] === -3) {
+      retval["fin"] = -3; 
+      retval["txt"] = "";
+    }
 		retval["initdelay"] = success["initdelay"];
 	}
 	else if ((code === 39) || (code === 222)) { // RIGHT ARROW or '
@@ -104,6 +112,10 @@ function PerformCommand(code, ctrl) {
     if (success["msg"].match("WHOOSH")) {
       retval["fin"] = 2;
     }
+    if (success["fin"] === -3) {
+      retval["fin"] = -3; 
+      retval["txt"] = "";
+    }
 		retval["initdelay"] = success["initdelay"];
 	}
 	else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
@@ -132,6 +144,10 @@ function PerformCommand(code, ctrl) {
     }
     if (success["msg"].match("WHOOSH")) {
       retval["fin"] = 2;
+    }
+    if (success["fin"] === -3) {
+      retval["fin"] = -3; 
+      retval["txt"] = "";
     }
 		retval["initdelay"] = success["initdelay"];
 	}
