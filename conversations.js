@@ -817,8 +817,11 @@ OnConvTriggers["paladin_initiation"] = function(speaker,keyword) {
 
 OnConvTriggers["chera_disappear"] = function(speaker,keyword) {
   let chera = FindNPCByName("Chera", speaker.getHomeMap());
+  let cherax = chera.getx();
+  let cheray = chera.gety();
   speaker.getHomeMap().deleteThing(chera);
   DU.gameflags.deleteFlag("chera_disappear");
+  DrawMainFrame("one",speaker.getHomeMap(),cherax,cheray);
 }
 
 OnConvTriggers["don_disappear"] = function(speaker,keyword) {
