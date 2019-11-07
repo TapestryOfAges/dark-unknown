@@ -590,21 +590,21 @@ function destroyAnimation(thing) {
 
 function Earthquake() {
   // possibly add sound
-  document.getElementById('displayframe').style.left = 18;
+  document.getElementById('mainview').style.left = 17;
   setTimeout(function() {
-    document.getElementById('displayframe').style.left = 20;
+    document.getElementById('mainview').style.left = 19;
     setTimeout(function() {
-      document.getElementById('displayframe').style.left = 22;
+      document.getElementById('mainview').style.left = 21;
       setTimeout(function() {
-        document.getElementById('displayframe').style.left = 20;
+        document.getElementById('mainview').style.left = 19;
         setTimeout(function() {
-          document.getElementById('displayframe').style.left = 18;
+          document.getElementById('mainview').style.left = 17;
           setTimeout(function() {
-            document.getElementById('displayframe').style.left = 20;
+            document.getElementById('mainview').style.left = 19;
             setTimeout(function() {
-              document.getElementById('displayframe').style.left = 22;
+              document.getElementById('mainview').style.left = 21;
               setTimeout(function() {
-                document.getElementById('displayframe').style.left = 20;
+                document.getElementById('mainview').style.left = 19;
               }, 250);
             },250);
           },250);
