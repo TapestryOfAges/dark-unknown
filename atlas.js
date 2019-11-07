@@ -646,6 +646,9 @@ Acre.prototype.executeWalkons = function(walker) {
         if (resp.overridedraw) {
           response.overridedraw = 1;
         }
+        if (resp.override) {
+          response.override = resp.override;
+        }
 			}
 		}
 	}

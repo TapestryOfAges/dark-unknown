@@ -267,6 +267,11 @@ function DoAction(code, ctrl) {
       maintext.drawTextFrame();
       if (response["fin"] === 1) {
         PC.endTurn(response["initdelay"]);
+      } else if (response["fin"] === -3) {
+        // command interrupted and turned into conversation
+        gamestate.setMode("talk");
+        maintext.setInputLine("&gt; You say: ");
+        maintext.drawTextFrame();
       } else if (response["fin"] === 3) {
         gamestate.setMode("waiting");
       } 
