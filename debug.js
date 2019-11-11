@@ -3,7 +3,6 @@
 
 let debug = 0;
 let debugscreen;
-let dbs;
 let watchon;  // must be set in console
 let debugflags = {};
   debugflags.all = 1;
@@ -342,9 +341,9 @@ function TestSpellAI() {
   newmap.placeThing(4,1,mon1);
   let mon2 = localFactory.createTile("OrcNPC");
   newmap.placeThing(5,1,mon2);
-
-  let scroll= localFactory.createTile("ScrollIllusion");
-  newmap.placeThing(PC.getx()+1,PC.gety(),scroll);
+  let mon3 = localFactory.createTile("HandlerNPC");
+  newmap.placeThing(4,0,mon3);
+  
 
   DrawMainFrame("draw",newmap,PC.getx(),PC.gety());
 }

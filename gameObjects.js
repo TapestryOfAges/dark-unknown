@@ -3106,6 +3106,18 @@ function ShinglesTopTile() {
 }
 ShinglesTopTile.prototype = new TerrainObject();
 
+function RevealedCaveTile() {
+  this.name = "RevealedCave";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-832";
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "cave entrance";
+}
+RevealedCaveTile.prototype = new TerrainObject();
+
 function CaveFloorTile() {
 	this.name = "CaveFloor";
   this.graphic = "master_spritesheet.png";
@@ -6862,6 +6874,7 @@ CursedMirrorTile.prototype.onBreak = function(who) {
   let imp = localFactory.createTile("ImpNPC");
   imp.lootTable = "cursed";
   this.getHomeMap().placeThing(this.getx(),this.gety(),imp);
+  DrawMainFrame("one",this.getHomeMap(),this.getx(),this.gety());
   let energy = localFactory.createTile("EnergyField");
   this.getHomeMap().placeThing(10,10,energy);
   DrawMainFrame("one",this.getHomeMap(),10,10);
@@ -9937,6 +9950,60 @@ PetrifiedReaperTile.prototype.use = function(who) {
 
   return retval;
 }  
+
+function OracleObject() {
+  this.name = "OracleObject";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-640";
+  this.passable = MOVE_ETHEREAL;
+  this.prefix = "the";
+  this.desc = "Oracle";
+  this.peerview = "white";
+}
+OracleObject.prototype = new FeatureObject();
+
+function OracleLowerLeftTile() {
+  this.name = "OracleLowerLeft";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1600";
+}
+OracleLowerLeftTile.prototype = new OracleObject();
+
+function OracleLowerRightTile() {
+  this.name = "OracleLowerRight";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1600";
+}
+OracleLowerRightTile.prototype = new OracleObject();
+
+function OracleMidLeftTile() {
+  this.name = "OracleMidLeft";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1568";
+}
+OracleMidLeftTile.prototype = new OracleObject();
+
+function OracleMidRightTile() {
+  this.name = "OracleMidRight";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1568";
+}
+OracleMidRightTile.prototype = new OracleObject();
+
+function OracleTopLeftTile() {
+  this.name = "OracleTopLeft";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1536";
+}
+OracleTopLeftTile.prototype = new OracleObject();
+
+function OracleTopRightTile() {
+  this.name = "OracleTopRight";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1536";
+}
+OracleTopRightTile.prototype = new OracleObject();
 
 function AltarWithSwordTile() {
   this.name = "AltarWithSword";
@@ -13610,7 +13677,6 @@ WeaponObject.prototype.rollDamage = function(wielder) {
   let fb = wielder.getSpellEffectsByName("FlameBlade");
   if (!this.checkType("Missile")) {
     if (wielder && fb) {
-      if (debug && (debugflags.magic || debugflags.combat)) { dbs.writeln("<span style='color:green'>Flame blade adds " + fb.damage + " damage.<br /></span>"); }
       if (!DebugWrite("magic", "Flame blade adds " + fb.damage + "damage.<br />")) {
         DebugWrite("combat", "Flame blade adds " + fb.damage + "damage.<br />");
       }
@@ -14520,6 +14586,7 @@ NPCObject.prototype.getGenderedTerms = function() {
     gt.formal = "Prince";
     gt.sibling = "brother";
     gt.kiddie = "son";
+    gt.reflexive = "himself";
   } else if (this.gender === "female") {
     gt.pronoun = "she";
     gt.possessive = "hers";
@@ -14528,6 +14595,7 @@ NPCObject.prototype.getGenderedTerms = function() {
     gt.formal = "Princess";
     gt.sibling = "sister";
     gt.kiddie = "daughter";
+    gt.reflexive = "herself";
   } else if (this.gender === "other") {
     gt.pronoun = "they";
     gt.possessive = "theirs";
@@ -14536,6 +14604,7 @@ NPCObject.prototype.getGenderedTerms = function() {
     gt.formal = "Heir";
     gt.sibling = "sibling";
     gt.kiddie = "child";    
+    gt.reflexive = "themself";
   } else {
     gt.pronoun = "it";
     gt.possessive = "its";
@@ -14544,6 +14613,7 @@ NPCObject.prototype.getGenderedTerms = function() {
     gt.formal = "Heir";
     gt.sibling = "sibling";
     gt.kiddie = "child";    
+    gt.reflexive = "itself";
   }
   return gt;
 }

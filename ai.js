@@ -1677,12 +1677,13 @@ ais.ai_cast = function(who) {
   if (who.getMana() <= 1) { DebugWrite("ai", "In ai_cast, but has no mana."); return; }
   DebugWrite("ai", "In ai_cast... choosing how to act.");
 
-  if (DU.gameflags.getFlag("negate")[castermap.getName()]) {
+  let themap = who.getHomeMap();
+
+  if (DU.gameflags.getFlag("negate")[themap.getName()]) {
     DebugWrite("ai", "In ai_cast... but magic is negated.");
     return;
   }
 
-  let themap = who.getHomeMap();
   let enemies = [];
   let allies = [];
   let weakenemies = [];
@@ -1737,7 +1738,7 @@ ais.ai_cast = function(who) {
       }
     }
   }
-  if (who.spellsknown.lowbuff && (who.getMana() >= 2) && (who.getLevel() >= 2)) {
+  if (who.spellsknown.buff && (who.getMana() >= 2) && (who.getLevel() >= 2)) {
     if (strongallies.length) { 
       DebugWrite("ai", "I have allies that are strong enough to be worth buffing. Adding BUFFOTHER to list.");  
       choices.push("buffother"); 
@@ -1775,28 +1776,34 @@ ais.ai_cast = function(who) {
     DebugWrite("ai","Adding HIGHATTACK to the list.");
     choices.push("highattack");
   }
-  
+  console.log(choices);
   if (choices.length) {
     let dr = Dice.roll("1d"+choices.length+"-1");
     if (choices[dr] === "heal") {
       DebugWrite("ai", "I have chosen to HEAL.");
       dr = Dice.roll("1d"+damagedallies.length+"-1");
       if ((who.getLevel() >= 4) && (who.getMana() >= 4) && (damagedallies[dr].getMaxHP() - damagedallies[dr].getHP() > 20)) {
+        AnnounceSpellcast("Heal",who,damagedallies[dr]);
         magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell(who,0,0,damagedallies[dr]);
       }
       else if (who.getMana() >= 2) {
+        AnnounceSpellcast("Lesser Heal",who,damagedallies[dr]);
         magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(who,0,0,damagedallies[dr]);
       }
     } else if (choices[dr] === "healself") {
       DebugWrite("ai", "I have chosen to HEAL MYSELF.");
       if ((who.getLevel() >= 4) && (who.getMana() >= 4) && (who.getMaxHP() - who.getHP() > 20)) {
+        AnnounceSpellcast("Heal",who);
         magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell(who,0,0,who);
       } else if (who.getMana() >= 2) {
+        AnnounceSpellcast("Lesser Heal",who);
         magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell(who,0,0,who);
       }
     } else if (choices[dr] === "cure") {
+      AnnounceSpellcast("Cure",who);
       magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell(who,0,0);
     } else if (choices[dr] === "dispel") {
+      AnnounceSpellcast("Dispel",who);
       magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell(who,0,0);
     } else if (choices[dr] === "buffother") {
       dr = Dice.roll("1d"+strongallies.length+"-1");
@@ -1813,10 +1820,13 @@ ais.ai_cast = function(who) {
       }
       dr = Dice.roll("1d"+spelloptions.length+"-1");
       if (spelloptions[dr] === "IronFlesh") {
+        AnnounceSpellcast("Iron Flesh",who,tgt);
         magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(who,0,0,tgt);
       } else if (spelloptions[dr] === "Protection") {
+        AnnounceSpellcast("Protection",who,tgt);
         magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell(who,0,0,tgt);
       } else if (spelloptions[dr] === "Blessing") {
+        AnnounceSpellcast("Blessing",who,tgt);
         magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(who,0,0,tgt);
       }
     } else if (choices[dr] === "buffself") {
@@ -1838,14 +1848,19 @@ ais.ai_cast = function(who) {
       }
       dr = Dice.roll("1d"+spelloptions.length+"-1");
       if (spelloptions[dr] === "IronFlesh") {
+        AnnounceSpellcast("Iron Flesh",who);
         magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell(who,0,0,who);
       } else if (spelloptions[dr] === "Protection") {
+        AnnounceSpellcast("Protection",who);
         magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell(who,0,0,who);
       } else if (spelloptions[dr] === "Blessing") {
+        AnnounceSpellcast("Blessing",who);
         magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell(who,0,0,who);
       } else if (spelloptions[dr] === "FireArmor") {
+        AnnounceSpellcast("Fire Armor",who);
         magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].executeSpell(who,0,0);
       } else if (spelloptions[dr] === "MirrorWard") {
+        AnnounceSpellcast("Mirror Ward",who);
         magic[SPELL_MIRROR_WARD_ID][SPELL_MIRROR_WARD_ID].executeSpell(who,0,0);
       }
     } else if (choices[dr] === "highbuffself") {
@@ -1857,8 +1872,10 @@ ais.ai_cast = function(who) {
       }
       dr = Dice.roll("1d"+spelloptions.length+"-1");
       if (spelloptions[dr] === "Invulnerability") {
+        AnnounceSpellcast("Invulnerability",who);
         magic[SPELL_INVULNERABILITY_ID][SPELL_INVULNERABILITY_ID].executeSpell(who,0,0);
       } else if (spelloptions[dr] === "Quickness") {
+        AnnounceSpellcast("Quickness",who);
         magic[SPELL_QUICKNESS_ID][SPELL_QUICKNESS_ID].executeSpell(who,0,0);
       }
     } else if (choices[dr] === "summon") {
@@ -1901,10 +1918,13 @@ ais.ai_cast = function(who) {
         tgt.x = opts[optdr][0];
         tgt.y = opts[optdr][1];
         if (spelloptions[dr] === "Illusion") {
+          AnnounceSpellcast("Illusion",who);
           magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID].executeSpell(who,0,0,tgt);
         } else if (spelloptions[dr] === "SummonAlly") {
+          AnnounceSpellcast("Summon Ally",who);
           magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID].executeSpell(who,0,0,tgt);
         } else if (spelloptions[dr] === "SummonDaemon") {
+          AnnounceSpellcast("Summon Daemon",who);
           magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID].executeSpell(who,0,0,tgt);
         }
       }
@@ -1933,13 +1953,16 @@ ais.ai_cast = function(who) {
       }      
       let dr = Dice.roll("1d"+spelloptions.length+"-1");
       if (spelloptions[dr] === "Distract") {
+        AnnounceSpellcast("Distract",who);
         magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell(who,0,0);
       } else if (spelloptions[dr] === "Vulnerability") {
         if (strongenemies.length) {
           let enrol = Dice.roll("1d"+strongenemies.length+"-1");
+          AnnounceSpellcast("Vulnerability",who,strongenemies[enrol]);
           magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].executeSpell(who,0,0,strongenemies[enrol]);
         } else {
           let enrol = Dice.roll("1d"+enemies.length+"-1");
+          AnnounceSpellcast("Vulnerability",who,enemies[enrol]);
           magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].executeSpell(who,0,0,enemies[enrol]);
         }
       } else if (spelloptions[dr] === "CrystalPrison") {
@@ -1970,8 +1993,10 @@ ais.ai_cast = function(who) {
           let dr2 = Dice.roll("1d"+enemies.length+"-1");
           tgt = enemies[dr2];
         }
+        AnnounceSpellcast("Paralyze",who,tgt);
         magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].executeSpell(who,0,0,tgt);
       } else if (spelloptions[dr] === "MassCurse") {
+        AnnounceSpellcast("Mass Curse",who);
         magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell(who,0,0);
       } else if (spelloptions[dr] === "Charm") {
         let enemiesnopc = [];
@@ -1979,10 +2004,13 @@ ais.ai_cast = function(who) {
           if (!enemies[i].checkType("PC")) { enemiesnopc.push(enemies[i]); }
         }
         let dr2 = Dice.roll("1d"+enemiesnopc.length+"-1");
+        AnnounceSpellcast("Charm",who,tgt);
         magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].executeSpell(who,0,0,enemiesnopc[dr2]);
       } else if (spelloptions[dr] === "Fear") {
+        AnnounceSpellcast("Fear",who);
         magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell(who,0,0);
       } else if (spelloptions[dr] === "TimeStop") {
+        AnnounceSpellcast("Time Stop",who);
         magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].executeSpell(who,0,0);
       }
     } else if ((choices[dr] === "attack") || (choices[dr] === "highattack")) {
@@ -2072,40 +2100,50 @@ ais.ai_cast = function(who) {
       let sroll = Dice.roll("1d"+spelloptions.length+"-1");
       if (spelloptions[sroll] === "MagicBolt") {
         let er = Dice.roll("1d"+enemies.length+"-1");
+        AnnounceSpellcast("Magic Bolt",who,enemies[er]);
         magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].executeSpell(who,0,0,enemies[er]);
         return "special_wait";
       }
       if (spelloptions[sroll] === "Fireball") {
         let er = Dice.roll("1d"+enemies.length+"-1");
+        AnnounceSpellcast("Fireball",who,enemies[er]);
         magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].executeSpell(who,0,0,enemies[er]);
         return "special_wait";
       }
       if (spelloptions[sroll] === "Iceball") {
         let er = Dice.roll("1d"+enemies.length+"-1");
+        AnnounceSpellcast("Iceball",who,enemies[er]);
         magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].executeSpell(who,0,0,enemies[er]);
         return "special_wait";
       }
       if (spelloptions[sroll] === "LifeDrain") {
         let er = Dice.roll("1d"+enemies.length+"-1");
+        AnnounceSpellcast("Life Drain",who,enemies[er]);
         magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].executeSpell(who,0,0,enemies[er]);
       }
       if (spelloptions[sroll] === "PoisonCloud") {
+        AnnounceSpellcast("Poison Cloud",who);
         magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].executeSpell(who,0,0,{x:pretarget.poisoncloud.getx(),y:pretarget.poisoncloud.gety()});
       }
       if (spelloptions[sroll] === "Explosion") {
+        AnnounceSpellcast("Explosion",who);
         magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].executeSpell(who,0,0,pretarget.explosion);
       }
       if (spelloptions[sroll] === "FireIce") {
+        AnnounceSpellcast("Fire and Ice",who);
         magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell(who,0,0);
       }
       if (spelloptions[sroll] === "Smite") {
+        AnnounceSpellcast("Smite",who);
         magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell(who,0,0);
       }
       if (spelloptions[sroll] === "MeteorSwarm") {
+        AnnounceSpellcast("Meteor Swarm",who);
         magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell(who,0,0);
         return "special_wait";
       }
       if (spelloptions[sroll] === "Conflagration") {
+        AnnounceSpellcast("Conflagration",who);
         magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell(who,0,0);
       }
 
@@ -2143,6 +2181,22 @@ ais.ai_teleport = function(who) {
       }
     }
   }
+}
+
+function AnnounceSpellcast(spellname,caster,target) {
+  let txt;
+  if (target) {
+    if (target === caster) {
+      txt = `${caster.getFullDesc()} casts ${spellname} on ${caster.getGenderedTerms().reflexive}.`;
+    } else {
+      txt = `${caster.getFullDesc()} casts ${spellname} on ${target.getFullDesc()}.`;
+    }
+  } else {
+    txt = `${caster.getFullDesc()} casts ${spellname}.`;
+  }
+  txt = txt.charAt(0).toUpperCase() + txt.slice(1);
+  maintext.addText(txt);
+  return txt;
 }
 
 ais.ai_sing = function(who) {
@@ -2274,7 +2328,7 @@ ais.ai_handle = function(who) {
       who.summoned = animal;
       animal.summonedby = who;
       who.getHomeMap().placeThing(coord[0],coord[1],animal);
-    } else {return;}
+    } else {return "special";}
   }
 }
 

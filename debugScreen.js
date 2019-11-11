@@ -33,6 +33,7 @@ ipcRenderer.on('sendDebug', function(event, txt) {
   } else {
     console.log(txt.html);
   }
+  document.getElementById('debugdiv').scrollTop = document.getElementById('debugdiv').scrollHeight;
 });
 
 ipcRenderer.on('debug_bottom', function(event) {

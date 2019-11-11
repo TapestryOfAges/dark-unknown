@@ -3947,7 +3947,6 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
   if ((onwhat.getx() >= displayspecs.leftedge) && (onwhat.getx() <= displayspecs.rightedge) && (onwhat.gety() >= displayspecs.topedge) && (onwhat.gety() <= displayspecs.bottomedge)) {
     where = getCoords(onwhat.getHomeMap(),onwhat.getx(), onwhat.gety());
     animurl = "graphics/" + graphic ;
-    if (debug && debugflags.magic) { dbs.writeln("<span style='color:green'>Putting a " + animurl + " on " + onwhat.getName() + ".<br /></span>"); }
     DebugWrite("magic", "Putting a " + animurl + " on " + onwhat.getName() + ".<br />");
   }
   let animhtml;
