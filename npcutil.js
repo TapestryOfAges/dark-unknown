@@ -65,13 +65,19 @@ NPCSpecialFuncs["courierFlee"] = function(who,how) {
   who.addSpellEffect(eobj);
 }
 
-NPCSpecialFuncs["ondeathinsects"] = function(who,how) {
+NPCSpecialFuncs["ondeathInsects"] = function(who,how) {
   who.onDeath = function() {
     let quant = Dice.roll("1d4");
     for (let i=1;i<=quant;i++) {
       let bug = localFactory.createTile("GiantInsectsNPC");
       this.getHomeMap().placeThing(this.getx(),this,gety(),bug);
     }
+  }
+}
+
+NPCSpecialFuncs["ondeathEndact"] = function(who,how) {
+  who.onDeath = function() {
+    
   }
 }
 
