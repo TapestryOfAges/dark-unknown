@@ -105,6 +105,7 @@ function Attack(atk, def) {
   let retval = {};
   let type = "melee";
   let rad = 1;
+  let endturn = 1;
   if (atk.specials.reach) { 
     rad = 2; 
   }
@@ -269,7 +270,7 @@ function Attack(atk, def) {
   
   let sounds = {start: "", end: snd};
 
-  AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,sounds, {type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:1,retval:retval});
+  AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,sounds, {type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:endturn,retval:retval});
   
   let tmpval = {};
   tmpval["fin"] = -1;

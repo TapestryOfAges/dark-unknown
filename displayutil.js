@@ -69,19 +69,19 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   let eventcount2 = 0;
   let animid = "anim_" + Dice.roll("1d100000");  // so more than one can be going at a time
 
-  console.log("From: " + fromcoords.x + "," + fromcoords.y);
-  console.log("To: " + tocoords.x + "," + tocoords.y);
-  console.log(type);
+//  console.log("From: " + fromcoords.x + "," + fromcoords.y);
+//  console.log("To: " + tocoords.x + "," + tocoords.y);
+//  console.log(type);
 
   if (type === "melee") { FinishFirstAnimation(1); }
   else {
     let tablehtml = '<div id="'+animid+'" style="position: absolute; left: ' + ammocoords.fromx + 'px; top: ' + ammocoords.fromy + 'px; background-image:url(\'graphics/' + ammographic.graphic + '\');background-repeat:no-repeat; background-position: ' + ammographic.xoffset + 'px ' + ammographic.yoffset + 'px; transition: left '+duration+'ms linear 0s, top '+duration+'ms linear 0s;"><img src="graphics/spacer.gif" width="32" height="32" /></div>';
   
     document.getElementById('combateffects').innerHTML += tablehtml;
-    console.log("Setting up animation:");
-    console.log(tablehtml);
+//    console.log("Setting up animation:");
+//    console.log(tablehtml);
     let animdiv = document.getElementById(animid);
-    console.log(animdiv);
+//    console.log(animdiv);
     animdiv.addEventListener("transitionend", function(event) { 
       FinishFirstAnimation();
     }, false);
@@ -98,7 +98,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     if (skipped) { console.log("Animation skipped."); }
     if (eventcount) { console.log("callback called twice"); return; }
     eventcount = 1;
-    console.log("callback called");
+//    console.log("callback called");
     let animdiv = document.getElementById(animid);
     if (animdiv) {
       animdiv.parentNode.removeChild(animdiv);
@@ -133,7 +133,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   function FinishAnimation() {
     if (eventcount2) { console.log("FinishAnimation called twice."); return; }
     eventcount2 = 1;
-    console.log("FinishAnimation called.");
+//    console.log("FinishAnimation called.");
     if (dmg != 0) {
       let prehp = def.getHP();
       let stillalive = def.dealDamage(dmg, atk, dmgtype);    
