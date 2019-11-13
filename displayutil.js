@@ -145,7 +145,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
           retval["txt"] += ": " + damagedesc + "!"; 
         }
       }
-      else { 
+      else {  
         if (def.specials.crumbles) { retval["txt"] += ": It crumbles to dust!"; }
         else {retval["txt"] += ": Killed!"; }
         
