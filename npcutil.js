@@ -210,12 +210,6 @@ function Attack(atk, def) {
 
     if (dmg < 1) { dmg = 1; }  // min dmg 1 on a hit
     if (storymode && (atk === PC)) { dmg = 500; }
-    let firearmor = def.getSpellEffectsByName("FireArmor");
-    if (firearmor) {
-      if (IsAdjacent(atk,def)) {
-        firearmor.flashback(atk);
-      }
-    }
     
     if (atk.getOnHit()) {
       let onhits = atk.getOnHit().split(",");

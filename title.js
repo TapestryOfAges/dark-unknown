@@ -68,6 +68,7 @@ DU.gameflags.setFlag("music", 1);
 DU.gameflags.setFlag("loopmusic", 1);
 DU.gameflags.setFlag("sound", 1);
 DU.gameflags.setFlag("ambientsound", 1);
+DU.gameflags.setFlag("zoom", 1);
 
 let el = function(e) {
   let code = (e.keyCode ? e.keyCode : e.which);

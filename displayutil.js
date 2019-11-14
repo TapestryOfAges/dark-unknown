@@ -153,6 +153,13 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
           retval["txt"] += " (XP gained: " + def.getXPVal() + ")";
         }
       }
+      let firearmor = def.getSpellEffectsByName("FireArmor");
+      if (firearmor) {
+        if (IsAdjacent(atk,def)) {
+          firearmor.flashback(atk);
+        }
+      }
+      if ((atk === PC) && atk.dead) { endturn = 0; }
     } 
     maintext.addText(retval["txt"]);
     maintext.setInputLine("&gt;");

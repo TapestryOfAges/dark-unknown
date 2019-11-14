@@ -2573,6 +2573,15 @@ function DrawOptions() {
   }
   optdiv += "</td></tr>";
 
+  optdiv += "<tr><td>ZOOM:</td><td></td><td";
+  if (targetCursor.page === 9) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  let zlev = DU.gameflags.getFlag("zoom") * 100 ;
+  optdiv += zlev + "%";
+  optdiv += "</td></tr>";
+
   optdiv += "</table></div></div>";
   
   DrawTopbarFrame("<p>Options</p>");
@@ -2750,7 +2759,7 @@ function performOptions(code) {
   else if ((code === 40) || (code === 191)) { // scroll down
     targetCursor.page++;
     if (targetCursor.cmd === "o") {
-      if (targetCursor.page === 9) { targetCursor.page = 8; }
+      if (targetCursor.page === 10) { targetCursor.page = 9; }
     } else if (targetCursor.cmd === "debug") {
       if (targetCursor.page === 13) { targetCursor.page = 12; }
     }
