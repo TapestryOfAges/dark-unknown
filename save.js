@@ -451,7 +451,8 @@ GameStateData.prototype.loadGame = function(idx) {
           DebugWrite("saveload", "&nbsp;&nbsp;Setting home map to " + val.homeMap + "...<br />");
           loadmaps[val.homeMap].placeThing(val.x, val.y, val);
         }
-        if (ibval == "timeline") {
+        if (ibval === "timeline") {
+          if (!val.timestamp && (val === PC)) { val.timestamp = savedata.time; }
           let newEvent = new GameEvent(val);
           DUTime.addAtTime(newEvent, val.timestamp);
           delete val.timestamp;
