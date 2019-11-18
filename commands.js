@@ -3,7 +3,18 @@
 
 function PerformCommand(code, ctrl) {
 	let retval = { fin: 0 };
-	let confusion = PC.getSpellEffectsByName("Confused");
+  let confusion = PC.getSpellEffectsByName("Confused");
+  if (code === 191) {  // / or ?
+    ShowHelp();
+    gamestate.setMode("showhelp");
+    retval["txt"] = "";
+    retval["input"] = "&gt;";
+    retval["fin"] = 2;	
+    targetCursor.command = "/";			
+    targetCursor.page = 1;
+    targetCursor.scrolllocation = 0;
+    return retval;
+  }
 	if (confusion && (Dice.roll("1d100") > (confusion.getPower()))) {
 	  // PC is confused and loses their action because of it
 	  retval["txt"] = "You are confused!";
@@ -19,7 +30,7 @@ function PerformCommand(code, ctrl) {
 	  return retval;
   }
 	// player has control, continue as normal
-	if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
+	if (code === 38) {   // UP ARROW  
     // move north
     let diso = PC.getSpellEffectsByName("Disoriented");
     if (diso) {
@@ -52,7 +63,7 @@ function PerformCommand(code, ctrl) {
     }
 		retval["initdelay"] = success["initdelay"];
 	}
-	else if ((code === 37) || (code === 186)) {  // LEFT ARROW or ;
+	else if (code === 37) {  // LEFT ARROW 
     // move west
     let diso = PC.getSpellEffectsByName("Disoriented");
     if (diso) {
@@ -85,7 +96,7 @@ function PerformCommand(code, ctrl) {
     }
 		retval["initdelay"] = success["initdelay"];
 	}
-	else if ((code === 39) || (code === 222)) { // RIGHT ARROW or '
+	else if (code === 39) { // RIGHT ARROW 
 		// move east
     let diso = PC.getSpellEffectsByName("Disoriented");
     if (diso) {
@@ -118,7 +129,7 @@ function PerformCommand(code, ctrl) {
     }
 		retval["initdelay"] = success["initdelay"];
 	}
-	else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
+	else if (code === 40) { // DOWN ARROW 
 		// move south
     let diso = PC.getSpellEffectsByName("Disoriented");
     if (diso) {
@@ -854,7 +865,7 @@ function PerformSpellbook(code) {
       retval["input"] = "&gt;";
       return retval;
     }      
-    if (lvl > PC.getInt()*3) {
+    if (lvl*3 > PC.getInt()) {
       spelltxt += "...";
       maintext.addText(spelltxt);
       maintext.addText("Your intelligence is insufficient to cast that spell.");
@@ -1382,7 +1393,7 @@ function PerformTalkTarget() {
     return retval;
   }
 
-  maintext.addText("Talk to: " + top.getDesc());
+  maintext.addText("Talk to: " + top.getFullDesc());
 
   if (IsVisibleOnScreen(top.getx(),top.gety())) {
     ShowTurnFrame(top);
@@ -2578,8 +2589,9 @@ function DrawOptions() {
     optdiv += " class='highlight'";
   }
   optdiv += ">";
-  let zlev = DU.gameflags.getFlag("zoom") * 100 ;
-  optdiv += zlev + "%";
+  let zlev = DU.gameflags.getFlag("zoom");
+  if (!DU.gameflags.getFlag("zoom")) { DU.gameflags.setFlag("zoom",1); zlev = 1; }
+  optdiv += zlev + "x";
   optdiv += "</td></tr>";
 
   optdiv += "</table></div></div>";
@@ -2765,18 +2777,28 @@ function performOptions(code) {
     }
     retval["fin"] = 1;
   }
-  else if ((code === 37) || (code === 186)) {  // left, for volumes
+  else if ((code === 37) || (code === 186)) {  // left, for volumes or zoom
     if (targetCursor.cmd === "o") {
-      if (targetCursor.page === 1) {
+      if (targetCursor.page === 1) {  // volume
         if (DU.gameflags.getFlag("music")) {
           DU.gameflags.setFlag("music", Math.round(Math.max(0,DU.gameflags.getFlag("music")-.1)));
           if (nowplaying.song) {
             nowplaying.song.volume = DU.gameflags.getFlag("music");
           }
         }
-      } else if (targetCursor.page === 3) {
+      } else if (targetCursor.page === 3) {  // volume
         if (DU.gameflags.getFlag("sound")) {
           DU.gameflags.setFlag("sound", Math.round(Math.max(0,DU.gameflags.getFlag("sound")-.1)));
+        }
+      } else if (targetCursor.page === 9) { // zoom
+        if (DU.gameflags.getFlag("zoom") === 1.5) {
+          DU.gameflags.setFlag("zoom",1);
+          webFrame.setZoomFactor(1);
+          ipcRenderer.send('resize', 1);
+        } else if (DU.gameflags.getFlag("zoom") === 2) {
+          DU.gameflags.setFlag("zoom",1.5);
+          webFrame.setZoomFactor(1.5);
+          ipcRenderer.send('resize', 1.5);
         }
       }
     }
@@ -2796,6 +2818,16 @@ function performOptions(code) {
       } else if (targetCursor.page === 3) {
         if (DU.getFlag("sound")) {
           DU.setFlag("sound", Math.round(Math.min(1,DU.getFlag("sound")+.1)));
+        }
+      } else if (targetCursor.page === 9) { // zoom
+        if (DU.gameflags.getFlag("zoom") === 1) {
+          DU.gameflags.setFlag("zoom",1.5);
+          webFrame.setZoomFactor(1.5);
+          ipcRenderer.send('resize', 1.5);
+        } else if (DU.gameflags.getFlag("zoom") === 1.5) {
+          DU.gameflags.setFlag("zoom",2);
+          webFrame.setZoomFactor(2);
+          ipcRenderer.send('resize', 2);
         }
       }
     }
@@ -3345,4 +3377,45 @@ function MakeInventoryList(restrictTo) {
   if (inventorylist.broken.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.broken); }
   
   return inventorylist.total;
+}
+
+function ShowHelp() {
+  let statsdiv = "<div><div id='showhelp' class='zstats'>";
+  statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
+  statsdiv += "<tr><td colspan='3' style='text-align:center'>GAME COMMANDS</td></tr>";
+  statsdiv += "<tr><td colspan='3'>&nbsp;</td></tr>";
+  statsdiv += "<tr><td>ARROW KEYS - Move</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>P - Push</td></tr>";
+  statsdiv += "<tr><td>A - Attack</td><td></td><td>Q - Save</td></tr>";
+  let hasspellbook = "";
+  if (DU.gameflags.getFlag("spellbook")) {
+    hasspellbook = "style='color:gray";
+  }
+  statsdiv += `<tr><td ${hasspellbook}>C - Cast</td><td></td><td>R - Ready Equipment</td></tr>`;
+  statsdiv += "<tr><td>D - Descend</td><td></td><td>S - Search</td></tr>";
+  statsdiv += "<tr><td>E - Enter</td><td></td><td>T - Talk</td></tr>";
+  let canfocus = "";
+  if (!DU.gameflags.getFlag("rune_kings")) {
+    canfocus = "style='color:gray'";
+  }
+  statsdiv += `<tr><td ${canfocus}>F - Focus</td><td></td><td>U - Use</td></tr>`;
+  statsdiv += "<tr><td>G - Get</td><td></td><td>V - Toggle Volume</td></tr>";
+  let caninfuse = "";
+  if (!PC.getInfusion()) { 
+    caninfuse = "style='color:gray'";
+  }
+  statsdiv += `<tr><td ${caninfuse}>I - Infuse</td><td></td><td>W - Wait</td></tr>`;
+  statsdiv += "<tr><td>K - Climb</td><td></td><td>Y - Yell</td></tr>";
+  statsdiv += "<tr><td>L - Look</td><td></td><td>Z - Stats</td></tr>";
+  statsdiv += "<tr><td>CTRL-L - Load Game</td><td></td><td>SPACE - Pass Turn</tr>";
+  statsdiv += "<tr><td>M - Toggle Music</td><td></td><td></td></tr>";
+  statsdiv += "<tr><td>O - Open</td><td></td><td></td></tr>";
+  statsdiv += "<tr><td>CTRL-O - Options</td><td></td><td></td></tr>";
+
+  statsdiv += "</table></div></div>";
+
+  document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
+  document.getElementById('worldlayer').style.backgroundImage = "";
+  document.getElementById('worldlayer').style.backgroundColor = "black";
+  document.getElementById('uiinterface').innerHTML = statsdiv;
+  document.getElementById('uiinterface').style.backgroundColor = "black";
 }
