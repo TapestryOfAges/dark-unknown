@@ -42,6 +42,7 @@ mappages["shadow1"].terrain[35] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK 
 mappages["shadow1"].features = [];
 mappages["shadow1"].features[0] = {name : 'LadderUp', x : 7, y : 9, entermap : 'darkunknown', enterx : 96, entery : 31};
 mappages["shadow1"].features[1] = {name : 'LadderDown', x : 7, y : 30, entermap : 'shadow2', enterx : 7, entery : 30};
+mappages["shadow1"].features[2] = {name : 'OrbStrength', x : 29, y : 30};
 
 
 mappages["shadow1"].npcs = [];
