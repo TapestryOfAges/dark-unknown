@@ -77,6 +77,7 @@ Timeline.prototype.addAtTimeInterval = function(event, timeinterval) {
 
 Timeline.prototype.addAtTime = function(event, timestamp) {
 	if (this.tickstream) {
+		if (this.findEntityTime(event.getEntity()) !== -1) { alert(`Adding same entity (${event.getEntity().getName()}) twice, at ${timestamp}.`); }
 		let pointer = this.tickstream;
 		if (timestamp < pointer.getTimestamp()) {
 		  let firsttick = new Tick(event,timestamp);
@@ -96,8 +97,8 @@ Timeline.prototype.addAtTime = function(event, timestamp) {
 	else {
 		this.tickstream = new Tick(event,timestamp);
 	}
-    DebugWrite("time", "Tick added to timeline: " + event.getEntity().getName() + " added at " + timestamp + ".<br />");    
-    DebugWrite("time", this.createDebugTimeline());
+  DebugWrite("time", "Tick added to timeline: " + event.getEntity().getName() + " added at " + timestamp + ".<br />");    
+  DebugWrite("time", this.createDebugTimeline());
 }
 
 Timeline.prototype.getNextEvent = function() {
