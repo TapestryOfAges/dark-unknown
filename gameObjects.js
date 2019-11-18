@@ -6349,7 +6349,7 @@ BedHeadTile.prototype.walkon = function(who) {
 }
 
 BedHeadTile.prototype.walkoff = function(who) {
-  BedWalkOff(who);
+  return BedWalkOff(who);
 }
 
 BedHeadTile.prototype.bumpinto = function(who) {
@@ -6394,7 +6394,7 @@ DoubleBedTopHeadTile.prototype.walkon = function(who) {
 }
 
 DoubleBedTopHeadTile.prototype.walkoff = function(who) {
-  BedWalkOff(who);
+  return BedWalkOff(who);
 }
 
 DoubleBedTopHeadTile.prototype.bumpinto = function(who) {
@@ -6423,7 +6423,7 @@ DoubleBedBottomHeadTile.prototype.walkon = function(who) {
 }
 
 DoubleBedBottomHeadTile.prototype.walkoff = function(who) {
-  BedWalkOff(who);
+  return BedWalkOff(who);
 }
 
 DoubleBedBottomHeadTile.prototype.bumpinto = function(who) {
@@ -6691,7 +6691,7 @@ GrandfatherClockTile.prototype.myTurn = function() {
   let hour = time[3];
   if (hour !== this.currentHour) {
     this.currentHour = hour;
-    if (!PC.getWaiting() && (PC.getHomeMap() === this.getHomeMap()) && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety() < 5))) {
+    if (!PC.getWaiting() && (PC.getHomeMap() === this.getHomeMap()) && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 5)) {
       if (hour > 12) { hour -= 12; }
       if (hour === 0) { hour = 12; }
       TollChime(hour);
@@ -13566,13 +13566,13 @@ function ChainArmorTile() {
 	this.defense = 20;
 	this.absorb = 33;
 	this.resist = 10;
-	this.strReq = 16;
+	this.strReq = 14;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "chain mail armor";
-  this.longdesc = "A suit of chain mail. Requires a 16 Strength to wear.";
+  this.longdesc = "A suit of chain mail. Requires a 14 Strength to wear.";
   this.usedesc = "Equip the armor.";
 }
 ChainArmorTile.prototype = new ArmorObject();
@@ -13582,13 +13582,13 @@ function PlateArmorTile() {
 	this.defense = 35;
 	this.absorb = 50;
 	this.resist = 15;
-	this.strReq = 20;
+	this.strReq = 18;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "plate armor";
-  this.longdesc = "A suit of plate armor. Requires a 20 Strength to wear.";
+  this.longdesc = "A suit of plate armor. Requires a 18 Strength to wear.";
   this.usedesc = "Equip the armor.";
 }
 PlateArmorTile.prototype = new ArmorObject();
@@ -13597,13 +13597,14 @@ function ExoticArmorTile() {
 	this.name = "ExoticArmor";
 	this.defense = 40;
 	this.absorb = 60;
-	this.resist = 40;
+  this.resist = 40;
+  this.strReq = 16;
 	this.graphic = "armorweapons.gif";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "exotic armor";
-  this.longdesc = "A suit of exotic armor, magically crafted by you.";
+  this.longdesc = "A suit of exotic armor, magically crafted by you. Requires a 16 Strength to wear.";
   this.usedesc = "Equip the armor.";
 }
 ExoticArmorTile.prototype = new ArmorObject();
@@ -13942,14 +13943,14 @@ function BowTile() {
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-64";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.dexReq = 16;
+	this.dexReq = 14;
 	this.desc = "bow";
 	this.prefix = "a";
   this.ammoxoffset = "0";
   this.ammoyoffset = "0";
   this.directionalammo = 1;
   this.attackSound = "sfx_bow";
-  this.longdesc = "A bow. It requires a Dexterity of 16 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A bow. It requires a Dexterity of 14 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 BowTile.prototype = new MissileWeaponObject();
 
@@ -13960,14 +13961,14 @@ function CrossbowTile() {
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-64";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-	this.dexReq = 19;
+	this.dexReq = 17;
 	this.desc = "crossbow";
 	this.prefix = "a";
   this.ammoxoffset = "0";
   this.ammoyoffset = "-32";
   this.directionalammo = 1;
   this.attackSound = "sfx_bow";
-  this.longdesc = "A crossbow. It requires a Dexterity of 19 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A crossbow. It requires a Dexterity of 17 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 CrossbowTile.prototype = new MissileWeaponObject();
 
@@ -13994,14 +13995,14 @@ function MagicAxeTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-64";
-	this.dexReq = 22;
+	this.dexReq = 18;
 	this.desc = "magic axe";
 	this.prefix = "a";
   this.ammoxoffset = "0";
   this.ammoyoffset = "-128";
   this.ammoReturn = 1;
   this.attackSound = "sfx_magic_axe";
-  this.longdesc = "A magic throwing axe. It requires a Dexterity of 22 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A magic throwing axe. It requires a Dexterity of 18 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
 }
 MagicAxeTile.prototype = new MissileWeaponObject();
 
@@ -14387,6 +14388,7 @@ NPCObject.prototype.processDeath = function(droploot){
   let thisy = this.gety();
   if (targetCursor.lastTarget === this) { delete targetCursor.lastTarget; }
   if (this.checkType("PC")) {
+    DebugWrite("all", "PC HAS DIED");
     // just in case you died on your turn:
     if (gamestate.getTurn() === PC) {
       gamestate.setMode("null");
@@ -15995,6 +15997,7 @@ PCObject.prototype.myTurn = function() {
     RunEffects(this);
   
     if (PC.getHP() <= 0) {
+      alert("PC Turn Start");
       if (DUTime.getGameClock() <= PC.deaduntil) {
         gamestate.setTurn(PC);
         PC.endTurn(0);
