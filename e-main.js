@@ -27,6 +27,18 @@ app.on('ready', function() {
   });
 })
 
+ipcMain.on('resize', function(event, zoom) {
+  if (zoom === 1) {
+    mainWindow.setMinimumSize(776,469);
+    mainWindow.setSize(776,469);
+  } else if (zoom === 1.5) {
+    mainWindow.setMinimumSize(1164,704);
+    mainWindow.setSize(1164,704);
+  } else if (zoom === 2) {
+    mainWindow.setSize(1552,938);
+  }
+});
+
 ipcMain.on('toggle_dev', function() {
   mainWindow.webContents.openDevTools();
 });
