@@ -679,6 +679,22 @@ function DoAction(code, ctrl) {
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     PC.endTurn(response["initdelay"]);
   }
+  else if (gamestate.getMode() === "showhelp") {
+    delete targetCursor.invx;
+    delete targetCursor.invy;
+    delete targetCursor.invskiprow;
+    delete targetCursor.invlength;
+    delete targetCursor.restrictTo;
+    document.getElementById('uiinterface').innerHTML = "";
+    document.getElementById('uiinterface').style.backgroundColor = "";
+
+    maintext.setInputLine("&gt;");
+    maintext.drawTextFrame();
+    DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+    gamestate.setMode("player");
+    gamestate.setTurn(PC);
+  }
   else if (gamestate.getMode() === "zstats") {
     let response = performZstats(code);
     if (response["fin"] === 0) {
