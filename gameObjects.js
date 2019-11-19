@@ -7033,7 +7033,7 @@ WaterfallFlowTile.prototype = new FeatureObject();
 WaterfallFlowTile.prototype.walkon = function(who) {
   // Go falling down
   gamestate.setMode("null");
-  if (who.getMovetype() & MOVE_FLY) { return; }
+  if (who.getMovetype() & MOVE_FLY) { return {msg:""}; }
   let waterfall = this.waterfall;
   setTimeout(function() {
     DescendWaterfall(who, waterfall);
@@ -14460,9 +14460,9 @@ NPCObject.prototype.processDeath = function(droploot){
     setTimeout(function() {
       maintext.addText("You find yourself floating bodiless in the void.");
       DrawMainFrame("draw", newmap, 7,7);
-      if (gamestate.getTurn() === PC) {
-        PC.endTurn();
-      }
+//      if (gamestate.getTurn() === PC) {
+//        PC.endTurn();
+//      }
       FadeIn();
       setTimeout(function() {
         DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
@@ -15997,7 +15997,6 @@ PCObject.prototype.myTurn = function() {
     RunEffects(this);
   
     if (PC.getHP() <= 0) {
-      alert("PC Turn Start");
       if (DUTime.getGameClock() <= PC.deaduntil) {
         gamestate.setTurn(PC);
         PC.endTurn(0);
