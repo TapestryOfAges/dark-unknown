@@ -304,7 +304,7 @@ function Placespawns(mapref) {
   
   spawn.evolve[2] = [];
   spawn.evolve[2][0] = "spawngroup";
-  spawn.evolve[2][1] = ["GiantRatGroupSmall", "SnakesGroup"];
+  spawn.evolve[2][1] = ["GiantRatGroupSmall", "GiantRatGroupSmall", "SnakesGroup"];
   spawn.evolve[3] = [];
   spawn.evolve[3][0] = "spawngroup";
   spawn.evolve[3][1] = ["GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupSmall", "GiantRatGroupLarge", "MidSnakesGroup", "HeadlessGroupLarge", "LowbiePartyGroup"];
@@ -345,7 +345,7 @@ function Placespawns(mapref) {
   // Shadow
   // Zone: N
   spawn = localFactory.createTile("Spawner");
-  group = ["GiantRatGroupTiny","SnakesGroupSmall"];
+  group = ["GiantRatGroupTiny","GiantRatGroupTiny","SnakesGroupSmall"];
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
@@ -374,7 +374,7 @@ function Placespawns(mapref) {
   // SW of Wealth/Beldskae
   // Zone: NE
   spawn = localFactory.createTile("Spawner");
-  group = ["GiantRatGroupTiny","SnakesGroupSmall"];
+  group = ["GiantRatGroupTiny","GiantRatGroupTiny","SnakesGroupSmall"];
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
@@ -404,7 +404,7 @@ function Placespawns(mapref) {
   // South of big lake
   // Zone: CENTER
   spawn = localFactory.createTile("Spawner");
-  group = ["GiantRatGroupTiny","SnakesGroupSmall"];
+  group = ["GiantRatGroupTiny","GiantRatGroupTiny","SnakesGroupSmall"];
   
   spawn.setSpawngroup(group);
   spawn.setMaxSpawns(2);
