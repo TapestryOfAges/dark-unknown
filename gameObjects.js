@@ -299,6 +299,13 @@ GameObject.prototype.getFullDesc = function() {
       full = this.npcname;
     }
   } 
+  if (this.getNPCName() && (this.getNPCName() !== "myname")) {
+    let nname = this.getNPCName().toLowerCase();
+    let knowsflag = "knows_" + nname;
+    if (DU.gameflags.getFlag(knowsflag)) {
+      full = this.npcname;
+    }
+  }
   return full;
 }
 
@@ -15520,7 +15527,7 @@ NPCObject.prototype.endTurn = function(init) {
       this.setLastLocation(newloc);
     }
   
-    if (idleval && (this === PC)) { maintext.addText(idleval); }
+    if (idleval && (this === PC)) { maintext.addText(idleval.msg); }
     this.setLastTurnTime(DUTime.getGameClock());
   
     if (!maps.getMap(this.getHomeMap().getName())) {
