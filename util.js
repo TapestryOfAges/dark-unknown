@@ -556,7 +556,7 @@ function GetCombatMap(atk,def) {
     return final;
   } 
   
-  if ((atk_terrain === "Water") || (def_terrain === "Water")) {
+  if (((atk_terrain === "Water") && (!atk.getHomeMap().getTile(atk.getx(),atk.gety()).isBridge())) || (def_terrain === "Water")) {
     let PC_tile = PC.getHomeMap().getTile(PC.getx(),PC.gety());
     let PC_terrain = PC_tile.terrain.getCombatMap();
     if (PC_terrain === "Water") {  // PC attacking from offshore
