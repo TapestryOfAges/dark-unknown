@@ -895,12 +895,12 @@ function DoAction(code, ctrl) {
     }
   } else if (gamestate.getMode() === "spellbook") {
     if (code === 27) { // esc
-      document.getElementById('spellbookdiv').style = "none";
+      document.getElementById('spellbookdiv').style.display = "none";
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       gamestate.setMode("player");
       gamestate.setTurn(PC);
-    }    else {
+    } else {
       let response = PerformSpellbook(code);
       if (response["fin"] === 1) {
         maintext.setInputLine("&gt;");
