@@ -684,7 +684,7 @@ Acre.prototype.executeWalkoffs = function(walker) {
 
 Acre.prototype.executeIdles = function(walker) {
 	let terrain = this.getTerrain();
-	let response = "";
+	let response = {msg:""};
 	if (typeof terrain.idle === "function") {
 		let resp = terrain.idle(walker);
 		if (resp) { response += resp; }
@@ -694,9 +694,9 @@ Acre.prototype.executeIdles = function(walker) {
 		for (let i = 0; i < features.length; i++) {
 			if (typeof features[i].idle === "function") {
 				let resp = features[i].idle(walker);
-				if (resp) {
-				  if (response) { response += "<br />"; }
-				  resp += response;
+				if (resp.msg) {
+				  if (response.msg) { response.msg += "<br />"; }
+				  resp.msg += response.msg;
 				}
 			}
 		}
