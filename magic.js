@@ -4403,7 +4403,7 @@ function PlayCastSound(caster,sfxname) {
   if ((caster.getHomeMap() === PC.getHomeMap()) && (IsVisibleOnScreen(caster.getx(),caster.gety()))) {
     DUPlaySound("sfx_spellcast");
     if (sfxname) {
-      setTimeout(function() { DUPlaySound(sfxname); }, 1300); 
+      setTimeout(function() { DUPlaySound(sfxname); }, 300); 
     }
   }
 }
