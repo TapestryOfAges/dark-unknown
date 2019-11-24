@@ -38,27 +38,27 @@ mappages["asharden1"].terrain[32] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^
 mappages["asharden1"].terrain[33] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn ., ., ., ., ., nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
 
 mappages["asharden1"].features = [];
-mappages["asharden1"].features[0] = {name : 'EnergyField', x : 26, y : 20};
-mappages["asharden1"].features[1] = {name : 'EnergyField', x : 24, y : 20};
-mappages["asharden1"].features[2] = {name : 'SleepField', x : 30, y : 18};
-mappages["asharden1"].features[3] = {name : 'PoisonField', x : 20, y : 18};
-mappages["asharden1"].features[4] = {name : 'FireField', x : 29, y : 15};
-mappages["asharden1"].features[5] = {name : 'FireField', x : 21, y : 15};
-mappages["asharden1"].features[6] = {name : 'TalkingDoor', x : 25, y : 21, desc : "door"};
-mappages["asharden1"].features[7] = {name : 'LadderUp', x : 29, y : 20, entermap : 'asharden2', enterx : 29, entery : 20};
-mappages["asharden1"].features[8] = {name : 'BottomChair', x : 17, y : 19};
-mappages["asharden1"].features[9] = {name : 'Well', x : 17, y : 14};
-mappages["asharden1"].features[10] = {name : 'Fountain', x : 25, y : 15};
-mappages["asharden1"].features[11] = {name : 'BookshelfLeft', x : 31, y : 17, lootedid : 'ash_book1', searchyield : 'ScrollVulnerability,ScrollProtection'};
-mappages["asharden1"].features[12] = {name : 'BookshelfRight', x : 32, y : 17, lootedid : 'ash_book2', searchyield : 'AudachtaNemesosIronFlesh,ScrollCure'};
-mappages["asharden1"].features[13] = {name : 'BookshelfLeft', x : 33, y : 17};
-mappages["asharden1"].features[14] = {name : 'BookshelfRight', x : 34, y : 17, lootedid : 'ash_book3', searchyield : 'ScrollDisarmTrap,ScrollCure'};
-mappages["asharden1"].features[15] = {name : 'Mirror', x : 23, y : 15};
-mappages["asharden1"].features[16] = {name : 'Altar', x : 27, y : 15};
-mappages["asharden1"].features[17] = {name : 'RightChair', x : 34, y : 19};
-mappages["asharden1"].features[18] = {name : 'LeftTable', x : 16, y : 18};
-mappages["asharden1"].features[19] = {name : 'MiddleTable', x : 17, y : 18};
-mappages["asharden1"].features[20] = {name : 'RightTable', x : 18, y : 18};
+mappages["asharden1"].features[0] = {name : 'TalkingDoor', x : 25, y : 21};
+mappages["asharden1"].features[1] = {name : 'LadderUp', x : 29, y : 20, entermap : 'asharden2', enterx : 29, entery : 20};
+mappages["asharden1"].features[2] = {name : 'BottomChair', x : 17, y : 19};
+mappages["asharden1"].features[3] = {name : 'Well', x : 17, y : 14};
+mappages["asharden1"].features[4] = {name : 'Fountain', x : 25, y : 15};
+mappages["asharden1"].features[5] = {name : 'BookshelfLeft', x : 31, y : 17, lootedid : 'ash_book1', searchyield : 'ScrollVulnerability,ScrollProtection'};
+mappages["asharden1"].features[6] = {name : 'BookshelfRight', x : 32, y : 17, lootedid : 'ash_book2', searchyield : 'AudachtaNemesosIronFlesh,ScrollCure'};
+mappages["asharden1"].features[7] = {name : 'BookshelfLeft', x : 33, y : 17};
+mappages["asharden1"].features[8] = {name : 'BookshelfRight', x : 34, y : 17, lootedid : 'ash_book3', searchyield : 'ScrollDisarmTrap,ScrollCure'};
+mappages["asharden1"].features[9] = {name : 'Mirror', x : 23, y : 15};
+mappages["asharden1"].features[10] = {name : 'Altar', x : 27, y : 15};
+mappages["asharden1"].features[11] = {name : 'RightChair', x : 34, y : 19};
+mappages["asharden1"].features[12] = {name : 'LeftTable', x : 16, y : 18};
+mappages["asharden1"].features[13] = {name : 'MiddleTable', x : 17, y : 18};
+mappages["asharden1"].features[14] = {name : 'RightTable', x : 18, y : 18};
+mappages["asharden1"].features[15] = {name : 'EnergyField', x : 26, y : 20};
+mappages["asharden1"].features[16] = {name : 'EnergyField', x : 24, y : 20};
+mappages["asharden1"].features[17] = {name : 'SleepField', x : 30, y : 18};
+mappages["asharden1"].features[18] = {name : 'PoisonField', x : 20, y : 18};
+mappages["asharden1"].features[19] = {name : 'FireField', x : 29, y : 15};
+mappages["asharden1"].features[20] = {name : 'FireField', x : 21, y : 15};
 mappages["asharden1"].features[21] = {name : 'Brazier', x : 14, y : 18};
 
 
@@ -67,8 +67,9 @@ mappages["asharden1"].npcs[0] = {name : 'MageVillagerNPC', x : 25, y : 17, NPCNa
 mappages["asharden1"].npcs[1] = {name : 'MageVillagerNPC', x : 22, y : 19, NPCName: 'Ivan', Conversation: 'ivan_ash', ConversationFlag: 'ivan', Gender: 'male', Leash: 3, Bark: '0', NPCBand: '0', OverrideGraphic: '303.gif', skintone: '1'};
 
 mappages["asharden1"].desc = "Asharden's Tower";
+mappages["asharden1"].longdesc = 'From the base of the hill, you see a tower. The path spirals to the base of the tower, which looms ominously.';
 mappages["asharden1"].music = 'Magic';
-mappages["asharden1"].savename = 'Ash Tower 1';
+mappages["asharden1"].savename = `Ash Tower 1`;
 mappages["asharden1"].exitmap = 'darkunknown';
 mappages["asharden1"].exitx = '56';
 mappages["asharden1"].exity = '37';
@@ -80,6 +81,7 @@ mappages["asharden1"].lightLevel = 'cycle';
 mappages["asharden1"].alwaysRemember = '0';
 mappages["asharden1"].scale = '1';
 mappages["asharden1"].underground = '0';
+mappages["asharden1"].undergroundDesc = '';
 mappages["asharden1"].enterscript = '';
 mappages["asharden1"].entertestscript = '';
 mappages["asharden1"].exitscript = '';
@@ -89,10 +91,11 @@ mappages["asharden1"].returnx = '69';
 mappages["asharden1"].returny = '74';
 mappages["asharden1"].returninfused = '0';
 mappages["asharden1"].linkedMaps = ["asharden2","asharden3"];
+mappages["asharden1"].editorLabels = '{}';
 
 mappages["asharden1"].onload = function(mapref) {
 
-  if (gamestate.getMode() !== "loadgame") {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let doorloc = mapref.getTile(25,21);
     let door = doorloc.getTopFeature();
     if (DU.gameflags.getFlag("ash_password")) {  
