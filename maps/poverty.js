@@ -72,7 +72,7 @@ mappages["poverty"].features[29] = {name : 'Campfire', x : 20, y : 14};
 
 
 mappages["poverty"].npcs = [];
-mappages["poverty"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 25, NPCName: 'Jessica', Desc: 'herbalist', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'jessica', Conversation: 'jessica', Gender: 'female', Leash: 2, NPCBand: '0', OverrideGraphic: '302.gif', skintone: '1'};
+mappages["poverty"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 25, NPCName: 'Jennifer', Desc: 'herbalist', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'jennifer', Conversation: 'jennifer', Gender: 'female', Leash: 2, NPCBand: '0', OverrideGraphic: '302.gif', skintone: '1'};
 mappages["poverty"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 24, y : 27, NPCName: 'Brooke', Desc: 'apprentice', PeaceAI: 'scheduled', Schedule: 'brooke', Conversation: 'brooke', Gender: 'female', Leash: 2, NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '2'};
 mappages["poverty"].npcs[2] = {name : 'MageVillagerNPC', x : 17, y : 8, NPCName: 'Ivan', PeaceAI: 'scheduled', Schedule: 'ivan', Conversation: 'ivan', Gender: 'male', NPCBand: '0', OverrideGraphic: '303.gif', skintone: '1'};
 mappages["poverty"].npcs[3] = {name : 'RangerVillagerNPC', x : 19, y : 8, NPCName: 'Steadman', Desc: 'hunter', PeaceAI: 'scheduled', Schedule: 'steadman', Conversation: 'steadman', Gender: 'male', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif', skintone: '1'};
