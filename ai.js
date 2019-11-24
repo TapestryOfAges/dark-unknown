@@ -720,7 +720,7 @@ ais.AshardenBook = function(who) {
         maintext.addText("Asharden hands you a spellbook!");
         DU.gameflags.setFlag("spellbook",1);
         DU.gameflags.setFlag("spellbook2",1);
-        DU.deleteFlag("ash_get_book");
+        DU.gameflags.deleteFlag("ash_get_book");
         PC.addSpell(SPELL_AUDACHTA_SCRIBE_LEVEL, SPELL_AUDACHTA_SCRIBE_ID);
         who.setCurrentAI(who.prevai);
         delete who.prevai;
