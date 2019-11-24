@@ -10202,7 +10202,7 @@ TrustedPinTile.prototype = new ItemObject();
 function ReaperBarkTile() {
   this.name = "ReaperBark";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
+  this.spritexoffset = "-224";
   this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -10245,7 +10245,7 @@ AmuletOfReflectionsTile.prototype.use = function(who) {
         }
       };
       gamestate.setMode("null");
-      FadeOut(2000);
+      FadeOut();
       setTimeout(function() {
         let newmap = new GameMap();
         if (maps.getMap("abyss0")) {
@@ -16044,9 +16044,11 @@ PCObject.prototype.myTurn = function() {
   let paralyzed = this.getSpellEffectsByName("Paralyze");
   let frozen = this.getSpellEffectsByName("Frozen");
   let waiting = this.getWaiting();
+  let endingwait = 0;
   if (waiting && (waiting < DUTime.getGameClock())) { 
     waiting = 0;
     EndWaiting(this,this.atinn);
+    endingwait = 1;
   } else if (waiting && (PC.getx() !== 0) && (PC.gety() !== 0)) {  // waiting somewhere that can have hostiles
     let closemonsters = CheckMapForHostiles(PC);
     if ((closemonsters >= 0) && (closemonsters <= 4)) {
@@ -16062,7 +16064,11 @@ PCObject.prototype.myTurn = function() {
   
   gamestate.setTurn(PC);
   if (awake) {
-	  gamestate.setMode("player");
+    if (!endingwait) {
+      gamestate.setMode("player");
+      // Because EndWaiting will set to player in a second, and this can override
+      // "waiting for input" states.
+    }
 	  return 0;
 	} else {
 	  if (sleep) {
