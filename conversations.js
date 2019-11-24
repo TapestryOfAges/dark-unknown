@@ -664,7 +664,7 @@ OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
     PC.addSpell(SPELL_CURE_LEVEL,SPELL_CURE_ID);
     taught = 1;
   }
-  if ((PC.getLevel() >= 3) && (!PC.knowsSpell(SPELL_RETURN_LEVEL,SPELL_RETURN_ID))) {
+  if ((PC.getLevel() >= 3) && (DU.gameflags.getFlag("spellbook2")) && (!PC.knowsSpell(SPELL_RETURN_LEVEL,SPELL_RETURN_ID))) {
     maintext.addText("Jharden teaches you Return!");
     PC.addSpell(SPELL_RETURN_LEVEL,SPELL_RETURN_ID);
     taught = 1;
@@ -930,4 +930,27 @@ ConvTestFlags["need_another_scroll"] = function(speaker,keyword) {
     // You have an infinite scroll aspected to Negate Magic
   }
   return 1;
+}
+
+ConvTestFlags["is_jennifer_nearby"] = function(speaker,keyword) {
+  let poverty = speaker.getHomeMap();
+  let jennifer = FindNPCByName("Jennifer",poverty);
+  let brooke = FindNPCByName("Brooke",poverty);
+  let jinroom = 0;
+  let binroom = 0;
+  if ((jennifer.getx() === 25) && ((jennifer.gety() === 26) || (jennifer.gety() === 28))) { 
+    return 0; // jennifer is in bed 
+  }
+  if ((brooke.getx() === 25) && ((brooke.gety() === 26) || (brooke.gety() === 28))) { 
+    return 0; // brooke is in bed 
+  }
+  if ((jennifer.getx() >= 20) && (jennifer.getx() <= 26) && (jennifer.gety() >= 24) && (jennifer.gety() <= 28)) {
+    jinroom = 1;
+  }
+  if ((brooke.getx() >= 20) && (brooke.getx() <= 26) && (brooke.gety() >= 24) && (brooke.gety() <= 28)) {
+    binroom = 1;
+  }
+  if (jinroom && binroom) { return 1; }
+  if (!jinroom && !binroom && (GetDistance(jennifer.getx(),jennifer.gety(),brooke.getx(),brooke.gety() <= 3))) { return 1; }
+  return 0;
 }
