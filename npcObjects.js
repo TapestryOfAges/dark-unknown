@@ -1198,7 +1198,7 @@ function PythonNPCTile() {
   this.withdraw = 0;
   this.graphic = '342.gif';
   this.altgraphic = ['376.gif',];
-  this.meleeAttackAs = 'Shortsword';
+  this.meleeAttackAs = 'Dagger';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
   this.armorDefense = 10;
@@ -1266,7 +1266,7 @@ function OrcNPCTile() {
   this.withdraw = 0;
   this.graphic = '339.gif';
   this.altgraphic = ['373.gif',];
-  this.meleeAttackAs = 'Mace';
+  this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
   this.armorDefense = 10;
@@ -2074,8 +2074,7 @@ function DrakeNPCTile() {
   this.peaceAI = 'seekPC-10';
   this.forgetAt = 10;
   this.withdraw = 0;
-  this.graphic = '353.gif';
-  this.altgraphic = ['387.gif',];
+  this.graphic = 'drake.gif';
   this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
   this.armorAs = 'none';
@@ -2851,7 +2850,7 @@ function BlackDragonNPCTile() {
   this.meleeChance = 70;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = {};
-  this.special = 'firebreath, ruthless,stationary';
+  this.special = 'firebreath, ruthless,stationary, ondeadEndact';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
 }
