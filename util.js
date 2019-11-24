@@ -1255,7 +1255,7 @@ function GetDisplayTime(usethistime) {
 
 function SetSky() {
   if (PC.getHomeMap().getUndergroundDesc()) {
-    for (let i = 1; i<=8; i++) {
+    for (let i = 1; i<=12; i++) {
       document.getElementById("sky"+i).style.backgroundImage = "";
       document.getElementById("sky"+i).style.backgroundPosition = "0px 0px";
     }
