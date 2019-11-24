@@ -13,6 +13,9 @@ let debugWindow = null;
 app.on('ready', function() {
 
   mainWindow = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true
+    },
     height: 469,
     width: 776,
     useContentSize: true,
