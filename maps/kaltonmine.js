@@ -74,7 +74,7 @@ mappages["kaltonmine1"].npcs[7] = {name : 'SlimeNPC', x : 21, y : 34, skintone: 
 mappages["kaltonmine1"].npcs[8] = {name : 'SlimeNPC', x : 17, y : 35, skintone: '1'};
 
 mappages["kaltonmine1"].desc = "Kalton Mine (L1)";
-mappages["kaltonmine1"].longdesc = '';
+mappages["kaltonmine1"].longdesc = 'A long time ago, this was a productive mine- primarily for gemstones, you think. But when monsters took it over, the miners fled.';
 mappages["kaltonmine1"].music = 'Dungeon';
 mappages["kaltonmine1"].savename = `Kalton Mine`;
 mappages["kaltonmine1"].exitmap = 'darkunknown';
@@ -84,7 +84,7 @@ mappages["kaltonmine1"].wraps = 'None';
 mappages["kaltonmine1"].enterx = '15';
 mappages["kaltonmine1"].entery = '5';
 mappages["kaltonmine1"].seeBelow = '';
-mappages["kaltonmine1"].lightLevel = 'bright';
+mappages["kaltonmine1"].lightLevel = 'dark';
 mappages["kaltonmine1"].alwaysRemember = '0';
 mappages["kaltonmine1"].scale = '1';
 mappages["kaltonmine1"].underground = '1';
@@ -99,4 +99,3 @@ mappages["kaltonmine1"].returny = '48';
 mappages["kaltonmine1"].returninfused = '0';
 mappages["kaltonmine1"].linkedMaps = [""];
 mappages["kaltonmine1"].editorLabels = '{}';
-
