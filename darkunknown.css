@@ -75,6 +75,13 @@ div.topbar { text-align:center;
 	           
 div.topbar p { margin-top:-4px ; margin-bottom: 0px}
 
+div.oversky {
+	color:white;
+	font-family:"Commodore64";
+	font-size:16pt;
+	margin-top:-4px;
+	line-height:20px;
+}
 
 div.charstats table { color:white;
                 font-family:"Commodore64";
