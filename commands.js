@@ -2152,10 +2152,18 @@ function PerformYell() {
 // REAL YELLS START HERE
 		} else if (inputText.txt === "KARIS") {
 		  if (PC.getHomeMap().getName() === "asharden1") {
-		    // FIX HERE- add sound effect for teleport
+		    DUPlaySound("sfx_teleport");
 		    maintext.delayedAddText("In a blink, you are elsewhere.");
 		    let homemap = PC.getHomeMap();
 		    homemap.moveThing(25,23,PC);
+		    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
+		  }
+		} else if (inputText.txt === "SIKAR") {
+		  if (PC.getHomeMap().getName() === "asharden1") {
+		    DUPlaySound("sfx_teleport");
+		    maintext.delayedAddText("In a blink, you are elsewhere.");
+		    let homemap = PC.getHomeMap();
+		    homemap.moveThing(32,32,PC);
 		    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
 		  }
     } else if (inputText.txt === "XYZZY") {
