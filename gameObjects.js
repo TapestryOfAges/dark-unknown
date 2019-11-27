@@ -6701,7 +6701,7 @@ GrandfatherClockTile.prototype.myTurn = function() {
     if (!PC.getWaiting() && (PC.getHomeMap() === this.getHomeMap()) && (GetDistance(PC.getx(),PC.gety(),this.getx(),this.gety()) < 5)) {
       if (hour > 12) { hour -= 12; }
       if (hour === 0) { hour = 12; }
-      TollChime(hour);
+      TollChime(hour, this);
     }
   }
   let NPCevent = new GameEvent(this);
@@ -6710,10 +6710,16 @@ GrandfatherClockTile.prototype.myTurn = function() {
   return 1;
 }
 
-function TollChime(hoursleft) {
+function TollChime(hoursleft, clock) {
   if (hoursleft) {
-    DUPlaySound("sfx_bong");
-    setTimeout(function() { TollChime(hoursleft-1); }, 1500);
+    if (clock.getHomeMap() !== PC.getHomeMap()) { return; }
+    let dist = GetDistance(clock.getx(),clock.gety(),PC.getx(),PC.gety())-4;
+    let sndmult = 1;
+    if (dist > 0) {
+      sndmult = Math.max(0, 1 - dist/6);
+    }
+    DUPlaySound("sfx_bong", sndmult);
+    setTimeout(function() { TollChime(hoursleft-1, clock); }, 1500);
   }
 }
 
@@ -14567,6 +14573,7 @@ NPCObject.prototype.processDeath = function(droploot){
     }
     DrawMainFrame("one",map,thisx,thisy);
     DUTime.removeEntityFrom(this);
+    CheckPostDeathMusic(map);
     let spawner=this.getSpawnedBy();
     if (spawner && (spawner.getName() === "Spawner")) {  // summons also use SpawnedBy
       spawner.deleteSpawned(this);

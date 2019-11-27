@@ -300,7 +300,7 @@ function PerformCommand(code, ctrl) {
     } else {
       DU.gameflags.setFlag("music", 1);
       let song = PC.getHomeMap().getMusic();
-      nowplaying = DUPlayMusic(song);
+      DUPlayMusic(song);
       retval["txt"] = "Music on.";
     }		
     retval["input"] = "&gt;";
@@ -2820,7 +2820,7 @@ function performOptions(code) {
             nowplaying.song.volume = DU.gameflags.getFlag("music");
           } else {
             let song = PC.getHomeMap().getMusic();
-            nowplaying = DUPlayMusic(song);
+            DUPlayMusic(song);
           }
         }
       } else if (targetCursor.page === 3) {
@@ -2854,7 +2854,7 @@ function performOptions(code) {
             nowplaying.song.volume = 1;
           } else {
             let song = PC.getHomeMap().getMusic();
-            nowplaying = DUPlayMusic(song);
+            DUPlayMusic(song);
           }
         }
       } else if (targetCursor.page === 3) {
@@ -2966,7 +2966,7 @@ function ToggleOption(opt) {
     } else {
       DU.gameflags.setFlag("music", 1);
       let song = PC.getHomeMap().getMusic();
-      nowplaying = DUPlayMusic(song);
+      DUPlayMusic(song);
     }
   } else if (opt === 2) {
    	if (DU.gameflags.getFlag("loopmusic")) { 
@@ -2979,7 +2979,7 @@ function ToggleOption(opt) {
       if (DU.gameflags.getFlag("music")) {
         if (nowplaying.song.playState === "playFinished") {
           let song = PC.getHomeMap().getMusic();
-          nowplaying = DUPlayMusic(song);  
+          DUPlayMusic(song);  
         } else {
           nowplaying.song.loop = -1;
         }

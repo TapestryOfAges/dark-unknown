@@ -187,32 +187,56 @@ function audio_init_2() {
 }
 
 // checks to see if the player has turned off sound
-function DUPlaySound(sound) {
+function DUPlaySound(sound, soundmult) {
+  if (!soundmult) { soundmult = 1; } 
   let playing = {};
   if (DU.gameflags.getFlag("sound")) { 
 //    playing.song = createjs.Sound.play(sound); 
     playing.song = new Audio(GetSfxPath(sound));
     playing.name = sound; 
-    playing.song.volume = DU.gameflags.getFlag("sound");
+    playing.song.volume = DU.gameflags.getFlag("sound") * soundmult;
     playing.song.play();
   }
   return playing;
 }
 
-function DUPlayMusic(sound) {
-  let playing = {};
+function DUPlayMusic(sound, params) {
   if (DU.gameflags.getFlag("music")) { 
-    StopMusic();
-    let loopval = 0;
-    if (DU.gameflags.getFlag("loopmusic")) { loopval = true; }
-    playing.song = new Audio(GetMusicPath(sound)); 
-    playing.name = sound; 
-    playing.song.loop = loopval;
-    playing.song.volume = DU.gameflags.getFlag("music");
-    playing.song.play();
+    if (nowplaying.name === sound) { return nowplaying; }
+    if (!params.fade) {
+      StopMusic();
+      StartSong(sound,params);
+    } else {
+      FadeMusic(sound,params);
+    }
   }
-  return playing;
+  return;  
 }
+
+function StartSong(sound, params) {
+  let loopval = 0;
+  if (DU.gameflags.getFlag("loopmusic")) { loopval = true; }
+  let playing = {};
+  playing.song = new Audio(GetMusicPath(sound)); 
+  playing.name = sound; 
+  playing.song.loop = loopval;
+  playing.song.volume = DU.gameflags.getFlag("music");
+  playing.song.play();
+  nowplaying = playing;
+  if (params.queue) { QueueMusic(params.queue); }
+}
+
+function FadeMusic(sound,params) {
+  let playing = nowplaying;
+  if (playing.song.volume > 0) {
+    playing.song.volume -= .125;
+    setTimeout(function() { FadeMusic(sound,params); }, 150);
+  } else {
+    playing.song.pause();
+    StartSong(sound,params);
+  }
+}
+
 
 function DUPlayAmbient(sound) {
   let playing = {};
@@ -277,7 +301,7 @@ function handleFileLoadSfx(event) {
 
 function QueueMusic(songname) {
   nowplaying.song.loop = 0;
-  nowplaying.song.addEventListener("complete", function(event) {
-    nowplaying = DUPlayMusic(songname);
+  nowplaying.song.addEventListener("ended", function(event) {
+    DUPlayMusic(songname);
   });
 }

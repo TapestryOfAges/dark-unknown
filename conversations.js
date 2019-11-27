@@ -299,7 +299,7 @@ function InnRoom(xc,yc,doors,innmap) {
   targetCursor.inndest = {x: xc, y: yc};
   if (DU.gameflags.getFlag("music")) {
     StopMusic();
-    nowplaying = DUPlayMusic("Lullaby");
+    DUPlayMusic("Lullaby", {fade:1});
   }
   if (!innmap) { console.log("Replace innmap with PC's map.");  innmap = PC.getHomeMap(); }
   maintext.setInputLine("&gt;");
@@ -768,16 +768,16 @@ OnConvTriggers["sirius_book1"] = function(speaker,keyword) {
 
 OnConvTriggers["talked_shelaria"] = function(speaker,keyword) {
   if (DU.gameflags.getFlag("music")) {
-    StopMusic(nowplaying);
-    nowplaying = DUPlayMusic("Lament");
+//    StopMusic(nowplaying);
+    DUPlayMusic("Lament", {fade:1});
   }
 }
 
 OnConvTriggers["reset_music"] = function(speaker,keyword) {
   if (DU.gameflags.getFlag("music")) {
     let song = speaker.getHomeMap().getMusic();
-    StopMusic(nowplaying);
-    nowplaying = DUPlayMusic(song);
+//    StopMusic(nowplaying);
+    DUPlayMusic(song, {fade:1});
   }
 }
 

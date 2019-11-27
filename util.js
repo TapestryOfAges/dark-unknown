@@ -97,9 +97,9 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 
 	if (who === PC) { ProcessAmbientNoise(tile); }
 	if ((DU.gameflags.getFlag("music")) && (who === PC) && (tomap.getMusic() !== nowplaying.name)) {
-	  StopMusic(nowplaying);
+//	  StopMusic(nowplaying);
 	  let song = tomap.getMusic();
-	  nowplaying = DUPlayMusic(song);
+	  DUPlayMusic(song);
 	}
 	
 	return tile;
@@ -1251,6 +1251,23 @@ function GetDisplayTime(usethistime) {
   else if (hours > 12) { hours = hours - 12; ampm = "pm"; }
   if (calendar[4] < 10) { calendar[4] = "0" + calendar[4]; }
   return (hours + ":" + calendar[4] + " " + ampm);
+}
+
+function CheckPostDeathMusic(map) {
+  if (map === PC.getHomeMap())  { 
+    if (map.getName().includes("combat")) {
+      let npcs = map.npcs.getAll();
+      let hostiles = 0;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getAttitude() === "hostile") { hostiles = 1; }
+      }
+      if (!hostiles) {
+        DUPlayMusic("Fanfare",{fade:1, queue:map.getMusic()});
+      }
+    } else {
+
+    }
+  }
 }
 
 function SetSky() {

@@ -506,7 +506,7 @@ GameStateData.prototype.loadGame = function(idx) {
   }
   if (DU.gameflags.getFlag("music")) {  
     let song = PC.getHomeMap().getMusic();
-    nowplaying = DUPlayMusic(song);
+    DUPlayMusic(song);
   }
   ProcessAmbientNoise(PC.getHomeMap().getTile(PC.getx(),PC.gety()));
   startScheduler();

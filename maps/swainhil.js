@@ -881,8 +881,8 @@ mappages["swainhil3"].nogalaxy = function(feature) {
     
       let normalsong = mymap.getMusic();
       if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== normalsong)) {
-        StopMusic(nowplaying);
-        nowplaying = DUPlayMusic(normalsong);
+//        StopMusic(nowplaying);
+        DUPlayMusic(normalsong);
       }
       DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
       return;
@@ -899,8 +899,8 @@ mappages["swainhil3"].galaxy1 = function(feature) {
     
        let song = "Sirius";
        if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
-        StopMusic(nowplaying);
-        nowplaying = DUPlayMusic(song);
+//        StopMusic(nowplaying);
+        DUPlayMusic(song);
       }
       DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
       return;
@@ -917,8 +917,8 @@ mappages["swainhil3"].galaxy2 = function(feature) {
     
       let song = "Sirius";
       if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
-        StopMusic(nowplaying);
-        nowplaying = DUPlayMusic(song);
+//        StopMusic(nowplaying);
+       DUPlayMusic(song);
       }
       DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
       return;
@@ -935,8 +935,8 @@ mappages["swainhil3"].galaxy3 = function(feature) {
     
       let song = "Sirius";
       if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
-        StopMusic(nowplaying);
-        nowplaying = DUPlayMusic(song);
+//        StopMusic(nowplaying);
+        DUPlayMusic(song);
       }
       DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
       return;
