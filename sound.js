@@ -117,6 +117,7 @@ DUSound["sfx_roar_hit"] = "sfx/Beast 8.mp3"; // MFSFXP Beasts and Animals/Beast 
 DUSound["sfx_roar_miss"] = "sfx/roar_miss.wav"; // MFSFXP Beasts and Animals/Roar (Beast) 2
 DUSound["sfx_slime_hit"] = "sfx/slime.wav"; // Soniss 2015/Mattia Cellotto- The Borax Experiment/Borax,Impact,Slime,Gore,Various22.wav
 DUSound["sfx_slime_miss"] = "sfx/slime_miss.wav"; // Soniss 2015/Mattia Cellotto- The Borax Experiment/Gore,Slime,Creature,Meat,Blood,Short,Movement,Various45.wav
+DUSound["sfx_slime_split"] = "sfx/slime_split.wav"; // Soniss 2015/Mattia Cellotto- The Borax Experiment/Borax,Impact,Slime,Gore,Various05.wav
 DUSound["sfx_water_hit"] = "sfx/Water 2.mp3"; // Magic Spells SFX B Stereo/Water/Water 2 
 DUSound["sfx_water_miss"] = "sfx/Water 8.mp3"; // Magic Spells SFX B Stereo/Water/Water 8
 DUSound["sfx_fire_breath"] = "sfx/MM1_Spell18.wav"; // RPG SFX B MM1_Spell18
@@ -201,6 +202,7 @@ function DUPlaySound(sound, soundmult) {
 }
 
 function DUPlayMusic(sound, params) {
+  if (!params) { params = {}; }
   if (DU.gameflags.getFlag("music")) { 
     if (nowplaying.name === sound) { return nowplaying; }
     if (!params.fade) {
