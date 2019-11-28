@@ -299,7 +299,7 @@ GameObject.prototype.getFullDesc = function() {
       full = this.npcname;
     }
   } 
-  if (this.getNPCName() && (this.getNPCName() !== "myname")) {
+  if ((typeof this.getNPCName === "function") && (this.getNPCName() !== "myname")) {
     let nname = this.getNPCName().toLowerCase();
     let knowsflag = "knows_" + nname;
     if (DU.gameflags.getFlag(knowsflag)) {
@@ -12811,8 +12811,8 @@ function AudachtaNemesosIronFleshTile() {
   this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-1216";
-  this.spelllevel = SPELL_LESSER_IRON_FLESH_LEVEL;
-  this.spellnum = SPELL_LESSER_IRON_FLESH_ID;
+  this.spelllevel = SPELL_IRON_FLESH_LEVEL;
+  this.spellnum = SPELL_IRON_FLESH_ID;
   this.spellname = "Iron Flesh";
 }
 AudachtaNemesosIronFleshTile.prototype = new AudachtaNemesosObject();
