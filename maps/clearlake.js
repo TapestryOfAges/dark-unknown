@@ -31,8 +31,8 @@ mappages["clearlake"].terrain[25] = 'ww ww ww ww ww ww ww ww ww ww ww /. -- -- -
 mappages["clearlake"].terrain[26] = 'ww ww ww ww ww ww /. -- .` ww ww |. .. __ __ ./ ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww `. __ ./ ww ww ww ww ww ww ww ww ww';
 mappages["clearlake"].terrain[27] = 'ww ww /. -- -- -- .. .. .. .` ww `. ./ ww ww ww ww ww /. -- -- -- .` ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww /. -- -- -- .` ww ww ww';
 mappages["clearlake"].terrain[28] = 'ww /. .. .. .. .. .. .. .. .. .` ww ww ww ww /. -- -- .. .. .. .. .. -- -- .` ww ww ww ww ww ww ww ww /. !! !! -- -- -- .. .. .. .. .. .` ww ww';
-mappages["clearlake"].terrain[29] = 'ww |. ## ## ## #O ## ## ## .. .| ww /. !! !! .. .. .. .. .. .. .. .. .. .. .. -- .` ww ww ww ww ww ww |. !! !! .. ## ## #O ## ## ## .. .| ww ww';
-mappages["clearlake"].terrain[30] = 'ww |. ## ++ ++ ++ ++ ++ ## .. .| ww |. !! !! .. .. .. .. .. .. .. .. .. .. .. .. .| ww ww ww ww ww ww |. !! !! .. ## ++ ++ ++ ++ ## .. .| ww ww';
+mappages["clearlake"].terrain[29] = 'ww |. ## ## ## #O ## ## ## .. .| ww /. !! !! !! !! !! !! !! !! !! !! !! !! !! !! !! ww ww ww ww ww ww !! !! !! .. ## ## #O ## ## ## .. .| ww ww';
+mappages["clearlake"].terrain[30] = 'ww |. ## ++ ++ ++ ++ ++ ## .. .| ww |. !! !! !! !! !! !! !! !! !! !! !! !! !! !! !! ww ww ww ww ww ww !! !! !! .. ## ++ ++ ++ ++ ## .. .| ww ww';
 mappages["clearlake"].terrain[31] = 'ww |. ## ++ ++ ++ ++ ++ ## .. ./ ww |. !! !! .. .. ## ## ## ## ## ## ## ## ## ## .. .` ww ww ww ww /. .. !! !! .. ++ ++ ++ ++ ++ ## .. .| ww ww';
 mappages["clearlake"].terrain[32] = 'ww |. #O ++ ++ ++ ++ ++ #O .| ww ww |. !! !! .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ## .. .| ww ww ww /. .. .. !! !! .. ## ++ ++ ++ ++ ## .. ./ ww ww';
 mappages["clearlake"].terrain[33] = 'ww |. ## ++ ++ ++ ++ ++ ## .| ww ww |. !! !! .. .. ## ++ ++ ++ ## ++ ++ ++ ++ ## .. .| ww ww ww |. .. .. !! !! .. #O ++ ++ ++ ++ #O .. ww ww ww';
@@ -217,8 +217,8 @@ mappages["clearlake"].features[145] = {name : 'BedFoot', x : 32, y : 60};
 mappages["clearlake"].features[146] = {name : 'BedFoot', x : 35, y : 60};
 mappages["clearlake"].features[147] = {name : 'BedHead', x : 34, y : 60};
 mappages["clearlake"].features[148] = {name : 'BedHead', x : 31, y : 60};
-mappages["clearlake"].features[149] = {name : 'SmallBox', x : 33, y : 58, locked : 0, lootgroup : 'smallguard', karmaPenalty : '1', lootedid : 'lake_guard_1'};
-mappages["clearlake"].features[150] = {name : 'SmallBox', x : 33, y : 60, locked : 0, lootgroup : 'smallguard', karmaPenalty : '1', lootedid : 'lake_guard_2'};
+mappages["clearlake"].features[149] = {name : 'SmallBox', x : 33, y : 58, lootgroup : 'smallguard', karmaPenalty : '1', lootedid : 'lake_guard_1'};
+mappages["clearlake"].features[150] = {name : 'SmallBox', x : 33, y : 60, lootgroup : 'smallguard', karmaPenalty : '1', lootedid : 'lake_guard_2'};
 mappages["clearlake"].features[151] = {name : 'BookshelfLeft', x : 41, y : 30};
 mappages["clearlake"].features[152] = {name : 'BookshelfRight', x : 42, y : 30};
 mappages["clearlake"].features[153] = {name : 'BookshelfRight', x : 42, y : 36};
@@ -282,7 +282,7 @@ mappages["clearlake"].features[210] = {name : 'BottomChair', x : 27, y : 59};
 mappages["clearlake"].features[211] = {name : 'Door', x : 38, y : 42, desc : "locked door", locked : 1};
 mappages["clearlake"].features[212] = {name : 'StairUp2', x : 40, y : 42, entermap : 'clearlake2', enterx : 40, entery : 42};
 mappages["clearlake"].features[213] = {name : 'Doorway', x : 27, y : 54};
-mappages["clearlake"].features[214] = {name : 'ColinChest', x : 29, y : 54, locked : 0, lootgroup : 'colin_chest', lootedid : 'colin_chest'};
+mappages["clearlake"].features[214] = {name : 'ColinChest', x : 29, y : 54, lootgroup : 'colin_chest', lootedid : 'colin_chest'};
 mappages["clearlake"].features[215] = {name : 'Fireplace', x : 20, y : 12};
 mappages["clearlake"].features[216] = {name : 'Fireplace', x : 20, y : 17};
 mappages["clearlake"].features[217] = {name : 'Fireplace', x : 20, y : 22};
@@ -310,6 +310,28 @@ mappages["clearlake"].features[238] = {name : 'Brazier', x : 3, y : 40};
 mappages["clearlake"].features[239] = {name : 'Brazier', x : 7, y : 34};
 mappages["clearlake"].features[240] = {name : 'TorchEast', x : 29, y : 58};
 mappages["clearlake"].features[241] = {name : 'TorchEast', x : 29, y : 60};
+mappages["clearlake"].features[242] = {name : 'NBridgeEW', x : 28, y : 29};
+mappages["clearlake"].features[243] = {name : 'NBridgeEW', x : 29, y : 29};
+mappages["clearlake"].features[244] = {name : 'NBridgeEW', x : 29, y : 29};
+mappages["clearlake"].features[245] = {name : 'NBridgeEW', x : 30, y : 29};
+mappages["clearlake"].features[246] = {name : 'NBridgeEW', x : 30, y : 29};
+mappages["clearlake"].features[247] = {name : 'NBridgeEW', x : 31, y : 29};
+mappages["clearlake"].features[248] = {name : 'NBridgeEW', x : 31, y : 29};
+mappages["clearlake"].features[249] = {name : 'NBridgeEW', x : 32, y : 29};
+mappages["clearlake"].features[250] = {name : 'NBridgeEW', x : 32, y : 29};
+mappages["clearlake"].features[251] = {name : 'NBridgeEW', x : 33, y : 29};
+mappages["clearlake"].features[252] = {name : 'NBridgeEW', x : 33, y : 29};
+mappages["clearlake"].features[253] = {name : 'SBridgeEW', x : 28, y : 30};
+mappages["clearlake"].features[254] = {name : 'SBridgeEW', x : 29, y : 30};
+mappages["clearlake"].features[255] = {name : 'SBridgeEW', x : 29, y : 30};
+mappages["clearlake"].features[256] = {name : 'SBridgeEW', x : 30, y : 30};
+mappages["clearlake"].features[257] = {name : 'SBridgeEW', x : 30, y : 30};
+mappages["clearlake"].features[258] = {name : 'SBridgeEW', x : 31, y : 30};
+mappages["clearlake"].features[259] = {name : 'SBridgeEW', x : 31, y : 30};
+mappages["clearlake"].features[260] = {name : 'SBridgeEW', x : 32, y : 30};
+mappages["clearlake"].features[261] = {name : 'SBridgeEW', x : 32, y : 30};
+mappages["clearlake"].features[262] = {name : 'SBridgeEW', x : 33, y : 30};
+mappages["clearlake"].features[263] = {name : 'SBridgeEW', x : 33, y : 30};
 
 
 mappages["clearlake"].npcs = [];
@@ -361,6 +383,7 @@ mappages["clearlake"].onload = function(mapref) {
   if (gamestate.getMode() !== "loadgame") {
     if (DU.gameflags["rescued_sam"]) {
       let julian;
+      let npcs = mapref.npcs.getAll();
       for (let i=0;i<npcs.length;i++) {
         if (npcs[i].getNPCName() === "Julian") { julian = npcs[i]; } 
       }
