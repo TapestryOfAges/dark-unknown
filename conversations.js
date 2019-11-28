@@ -773,6 +773,10 @@ OnConvTriggers["talked_shelaria"] = function(speaker,keyword) {
   }
 }
 
+OnConvTriggers["rescued_sam"] = function(speaker,keyword) {
+  speaker.setCurrentAI("Sam_escape");
+}
+
 OnConvTriggers["reset_music"] = function(speaker,keyword) {
   if (DU.gameflags.getFlag("music")) {
     let song = speaker.getHomeMap().getMusic();
