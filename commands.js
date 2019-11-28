@@ -2158,7 +2158,7 @@ function PerformYell() {
 		    homemap.moveThing(25,23,PC);
 		    DrawMainFrame("draw", homemap, PC.getx(), PC.gety());
 		  }
-		} else if (inputText.txt === "SIKAR") {
+		} else if (inputText.txt === "SIRAK") {
 		  if (PC.getHomeMap().getName() === "asharden1") {
 		    DUPlaySound("sfx_teleport");
 		    maintext.delayedAddText("In a blink, you are elsewhere.");
