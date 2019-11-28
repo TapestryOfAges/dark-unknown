@@ -208,7 +208,7 @@ OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
   DebugWrite("combat", "OnDamaged - split");
   let hp = who.getHP() - dmg;
   if (hp > 0) {
-    if (Dice.roll() <= 25) {   // chance of slime split
+    if (Dice.roll("1d100") <= 25) {   // chance of slime split
       let whomap = who.getHomeMap();
       let tileopts = [];
       for (let i=-1;i<=1;i++) {
@@ -222,6 +222,10 @@ OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
         }
       }
       if (tileopts.length) {
+        if (IsObjectVisibleOnScreen(who)) {
+          maintext.delayedAddText("The slime splits!");
+          DUPlaySound("sfx_slime_split");
+        }
         let tr = Dice.roll("1d"+tileopts.length+"-1");
         let slime = localFactory.createTile("SlimeNPC");
         slime.setMaxHP(hp);
