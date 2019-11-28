@@ -155,15 +155,17 @@ function start_animations() {
       document.getElementById('ToA').classList.add('titlefadein');
       setTimeout(function() {
         if (gamestate.getMode() === "null") {
-          document.getElementById('over').style.display = "inline";
-          lastanim = "over";
-          document.getElementById('over').classList.add("widenanimate");
-          setTimeout(function() {
-            if (gamestate.getMode() === "null") {
-              document.getElementById('sign').style.display = "inline";
-              Signature(-52);
-            }
-          }, 2500);
+          if (document.getElementById('over')) {
+            document.getElementById('over').style.display = "inline";
+            lastanim = "over";
+            document.getElementById('over').classList.add("widenanimate");
+            setTimeout(function() {
+              if (gamestate.getMode() === "null") {
+                document.getElementById('sign').style.display = "inline";
+                Signature(-52);
+              }
+            }, 2500);
+          }
         }
       }, 2000);
     }
