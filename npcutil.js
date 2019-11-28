@@ -221,10 +221,6 @@ function Attack(atk, def) {
         }
       }
     }
-    // handle onDamaged stuff here
-    if (def.onDamaged) {
-      dmg = OnDamagedFuncs[def.onDamaged](atk,def,dmg,weapon);
-    }
   }
   else { // Miss!
     // animation and sound here, too
@@ -264,7 +260,7 @@ function Attack(atk, def) {
   
   let sounds = {start: "", end: snd};
 
-  AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,sounds, {type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:endturn,retval:retval});
+  AnimateEffect(atk,def,fromcoords,tocoords,ammographic,hitgraphic,sounds, {type:type, duration:duration,ammoreturn:ammoreturn,dmg:dmg,endturn:endturn,retval:retval,weapon:weapon});
   
   let tmpval = {};
   tmpval["fin"] = -1;
