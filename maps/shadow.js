@@ -54,10 +54,8 @@ mappages["shadow1"].npcs[4] = {name : 'GiantRatNPC', x : 26, y : 13, NPCBand: '1
 mappages["shadow1"].npcs[5] = {name : 'SlimeNPC', x : 27, y : 26, NPCBand: '3'};
 mappages["shadow1"].npcs[6] = {name : 'SlimeNPC', x : 28, y : 27, NPCBand: '3'};
 mappages["shadow1"].npcs[7] = {name : 'SlimeNPC', x : 26, y : 29, NPCBand: '3'};
-mappages["shadow1"].npcs[8] = {name : 'GiantRatNPC', x : 23, y : 8, NPCBand: '1'};
-mappages["shadow1"].npcs[9] = {name : 'GiantRatNPC', x : 22, y : 12, NPCBand: '1'};
-mappages["shadow1"].npcs[10] = {name : 'ChildVillagerNPC', x : 18, y : 21, NPCName: 'Samantha', Conversation: 'samantha', ConversationFlag: 'samantha', Gender: 'female'};
-mappages["shadow1"].npcs[11] = {name : 'HeadlessNPC', x : 9, y : 26};
+mappages["shadow1"].npcs[8] = {name : 'ChildVillagerNPC', x : 18, y : 21, NPCName: 'Samantha', Attitude: 'neutral', Conversation: 'samantha', ConversationFlag: 'samantha', Gender: 'female', NPCBand: '0', skintone: '1'};
+mappages["shadow1"].npcs[9] = {name : 'HeadlessNPC', x : 9, y : 26};
 
 mappages["shadow1"].desc = "Dungeon Shadow (L1)";
 mappages["shadow1"].music = 'Dungeon';
