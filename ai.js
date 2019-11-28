@@ -194,21 +194,23 @@ ais.combat = function(who) {
 
     // there will be more!
     // eventually make this choice smarter
+    if (nonmeleeoptions.length === 0) { roll = 0; } 
+    else {
+      let performed_action = 0;
+      let num_attempts = 0;
+      while (!performed_action && (num_attempts < 10)) {
+        performed_action = ais[nonmeleeoptions[Dice.roll("1d" + nonmeleeoptions.length + "-1")]](who);
+        num_attempts++;
+      }
+      if (!performed_action && (num_attempts === 10)) {
+        DebugWrite("ai", "10 tries, " + who.getName() + " (" + who.getSerial() + ") failed to choose a special action.");
+        roll = 0;  // pretend we rolled intent to melee, because we failed to find anything else to do
+      }
     
-    let performed_action = 0;
-    let num_attempts = 0;
-    while (!performed_action && (num_attempts < 10)) {
-      performed_action = ais[nonmeleeoptions[Dice.roll("1d" + nonmeleeoptions.length + "-1")]](who);
-      num_attempts++;
-    }
-    if (!performed_action && (num_attempts === 10)) {
-      DebugWrite("ai", "10 tries, " + who.getName() + " (" + who.getSerial() + ") failed to choose a special action.");
-      roll = 0;  // pretend we rolled intent to melee, because we failed to find anything else to do
-    }
-    
-    if ((performed_action === "melee") || (performed_action === "missile") || (performed_action === "special_wait")) {
-      retval["wait"] = 1;
-      return retval;
+      if ((performed_action === "melee") || (performed_action === "missile") || (performed_action === "special_wait")) {
+        retval["wait"] = 1;
+        return retval;
+      }
     }
 
   }
@@ -353,6 +355,23 @@ ais.townsfolk = function(who) {
     }
   }
   // townsfolk don't do anything else
+  return retval;
+}
+
+ais.Sam_escape = function(who) {
+  let retval = { fin:1 };
+  let themap = who.getHomeMap();
+  if ((who.getx() === 7) && (who.gety() === 9)) {
+    themap.deleteThing(who);
+    DUTime.removeEntityFrom(who);
+    DrawMainFrame("one",themap,7,9);
+    return retval;
+  }
+  let path = themap.getPath(who.getx(), who.gety(), 7, 9, MOVE_WALK_DOOR);
+  path.shift();
+  if (path[0]) {
+    StepOrSidestep(who,path[0],7,9);
+  }
   return retval;
 }
 
