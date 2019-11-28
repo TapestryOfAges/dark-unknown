@@ -48,6 +48,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
     frommap.deleteThing(who);
     DrawMainFrame("one",frommap,oldx,oldy);
     DUTime.removeEntityFrom(who);
+    CheckPostDeathMusic(frommap);
     let spawner=who.getSpawnedBy();
     if (spawner) {
       spawner.deleteSpawned(who);
@@ -1262,7 +1263,9 @@ function CheckPostDeathMusic(map) {
         if (npcs[i].getAttitude() === "hostile") { hostiles = 1; }
       }
       if (!hostiles) {
-        DUPlayMusic("Fanfare",{fade:1, queue:map.getMusic()});
+        let dest = map.getExitToMap();
+        dest = maps.getMap(dest);
+        DUPlayMusic("Fanfare",{fade:1, queue:dest.getMusic()});
       }
     } else {
 
