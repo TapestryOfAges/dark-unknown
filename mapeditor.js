@@ -1245,3 +1245,16 @@ function Verify() {
     }
   }
 }
+
+function CleanDuplicates() {
+  for (let i=0;i<amap.getHeight();i++) {
+    for (let j=0;j<amap.getWidth();j++) {
+      let fea = amap.getTile(j,i).getFeatures();
+      let all = {};
+      for (let k=0;k<fea.length;k++) {
+        if (all[fea[k].getName()]) { amap.deleteThing(fea[k]); }
+        all[fea[k].getName()] = 1;
+      }
+    }
+  }
+}
