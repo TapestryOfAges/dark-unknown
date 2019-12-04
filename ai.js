@@ -615,6 +615,7 @@ ais.AoifeEscort = function(who) {
       DrawMainFrame("one",who.getHomeMap(),6,53);
       door.lockMe(1);
       who.setCurrentAI(who.getPeaceAI());
+      DU.gameflags.setFlag("garrick_jailed",1);
       return retval;      
     }
     path.shift();

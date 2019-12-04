@@ -50,6 +50,7 @@ kiba_question - Kiba has asked who garrick is engaged to
 kiba_rumor - she's responded about garrick marrying anna
 garrick_better - he's said something awful about Anna.
 garrick_attack - garrick has attacked you
+garrick_jailed - he's in jail
 anna_damien_response - Damien has thanked you for Anna's return.
 anna_brooke_response - Brooke has thanked you for Anna's return.
 pc_abyss - the PC has crossed the Great Abyss
