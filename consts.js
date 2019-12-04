@@ -36,8 +36,8 @@ const DMG_HEAVY = "5d4+30";
 const DMG_TREMENDOUS = "5d8+55";
 const DMG_AUTOKILL = "255";
 
-const MANA_REGEN = 4;
-const HP_REGEN = 20;
+const MANA_REGEN = 10;
+const HP_REGEN = 25;
 
 // For sparkles
 const COLOR_YELLOW = 0;
