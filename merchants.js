@@ -46,23 +46,23 @@ function SetMerchants() {
 
   // Clear Lake
   bill.lisa = {};
-  bill.lisa.stock = [ { item: "Sling", quantity: 99, price: 25, sale: '"Thank you, come again."' }, 
-                       { item: "Bow", quantity: 15, price: 500, sale: '"Thank you, come again."' },
-                       { item: "Crossbow", quantity: 10, price: 3000, sale: '"Thank you, come again."' },
-                       { item: "Wand", quantity: 0, price: 5000 },
-                       { item: "MagicAxe", quantity: 0, price: 7500, desc: "Magic Axe" },
+  bill.lisa.stock = [ { item: "Sling", quantity: 99, price: 25, desc: "Sling", sale: '"Thank you, come again."' }, 
+                       { item: "Bow", quantity: 15, price: 500, desc: "Bow", sale: '"Thank you, come again."' },
+                       { item: "Crossbow", quantity: 10, price: 3000, desc: "Crossbow", sale: '"Thank you, come again."' },
+                       { item: "Wand", quantity: 0, price: 5000, desc: "Wand", sale: '"Thank you, come again."' },
+                       { item: "MagicAxe", quantity: 0, price: 7500, desc: "Magic Axe", sale: '"Thank you, come again."' },
                   ];
   bill.lisa.type = "stuff";
 
   bill.colin = {};
-  bill.colin.stock = [ { item: "Gems", quantity: 1, price: 500, sale: '"Thank you, come back any time."' }, 
-                       { item: "BluePalmCrystal", quantity: 2, price: 150, sale: '"Thank you, come back any time."' },
-                       { item: "PurplePalmCrystal", quantity: 1, price: 300, sale: '"Thank you, come back any time."' },
-                       { item: "Ruby", quantity: 0, price: 400, sale: '"Thank you, come back any time."' },
-                       { item: "UncutRuby", quantity: 0, price: 250, sale: '"Thank you, come back any time."' },
-                       { item: "SmallSapphire", quantity: 0, price: 50, sale: '"Thank you, come back any time."' },
-                       { item: "UncutSapphire", quantity: 0, price: 100, sale: '"Thank you, come back any time."' },
-                       { item: "UncutGems", quantity: 0, price: 350, sale: '"Thank you, come back any time."' },
+  bill.colin.stock = [ { item: "Gems", quantity: 1, price: 500, desc: "Gems", sale: '"Thank you, come back any time."' }, 
+                       { item: "BluePalmCrystal", quantity: 2, price: 150, desc: "Blue Crystal", sale: '"Thank you, come back any time."' },
+                       { item: "PurplePalmCrystal", quantity: 1, price: 300, desc: "Purple Crystal", sale: '"Thank you, come back any time."' },
+                       { item: "Ruby", quantity: 0, price: 400, desc: "Ruby", sale: '"Thank you, come back any time."' },
+                       { item: "UncutRuby", quantity: 0, price: 250, desc: "Uncut ruby", sale: '"Thank you, come back any time."' },
+                       { item: "SmallSapphire", quantity: 0, price: 50, desc: "Small sapphire", sale: '"Thank you, come back any time."' },
+                       { item: "UncutSapphire", quantity: 0, price: 100, desc: "Uncut sapphire", sale: '"Thank you, come back any time."' },
+                       { item: "UncutGems", quantity: 0, price: 350, desc: "Uncut gems", sale: '"Thank you, come back any time."' },
                   ];
   bill.colin.type = "stuff";
 
