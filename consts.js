@@ -21,7 +21,7 @@ const BASE_HIT_CHANCE = 70;
 const HIT_PER_LEVEL = 4;
 const DEF_PER_LEVEL = 0;
 const DEF_PER_DEX = 1;
-const XP_MULTIPLIER = 2;
+const XP_MULTIPLIER = 1.5;
 
 const RUNE_KINGS  = 1;
 const RUNE_WAVES  = 2;
