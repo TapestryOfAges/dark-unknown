@@ -530,6 +530,8 @@ mappages["naurglen"].onload = function(mapref) {
     sam.setLeash(3);
     let loc = DU.schedules["samantha2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref, sam);
     mapref.placeThing(loc.x,loc.y,sam);
+    let samtile = mapref.getTile(loc.x,loc.y);
+    samtile.executeWalkons(sam);
   }
 }
 

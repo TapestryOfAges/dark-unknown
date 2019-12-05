@@ -607,6 +607,8 @@ mappages["hildendain"].onload = function(mapref) {
         aoife.setSchedule("aoife2");
         let loc = DU.schedules["aoife2"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref, aoife);
         mapref.moveThing(loc.x,loc.y,aoife);
+        let aoifetile = mapref.getTile(loc.x,loc.y);
+        aoifetile.executeWalkons(aoife);
         aoife.startx = loc.x;
         aoife.starty = loc.y
       }

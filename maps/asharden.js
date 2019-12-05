@@ -130,7 +130,7 @@ mappages["asharden1"].onload = function(mapref) {
       // place walkon at 25,20 to start dialog
       // WORKING HERE
     } else {
-      let ivan = mapref.getTile(22,19).getTopNPC();
+      let ivan = FindNPCByName("Ivan",mapref);
       mapref.deleteThing(ivan);
       DUTime.removeEntityFrom(ivan);
     }
