@@ -15384,6 +15384,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 
 NPCObject.prototype.myTurn = function() {
   raceWarning = 0;
+  if (this.fled) { return 0; }
   DebugWrite("new", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
   if (!maps.getMap(this.getHomeMap().getName())) {
     // removing from timeline, its map is gone

@@ -53,7 +53,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
     if (spawner) {
       spawner.deleteSpawned(who);
     }
-
+    who.fled = 1;
   }
   
 	// remove entity from current map
@@ -1308,13 +1308,17 @@ function SetSky() {
     if (moon2position <= 0) { moon2position += 24; }
     if (moon1position < 13) { 
       let phaseoffset = -1*moon1phase*16;
-      document.getElementById("sky"+moon1position).style.backgroundImage = "url('graphics/moons.gif')";
-      document.getElementById("sky"+moon1position).style.backgroundPosition = phaseoffset + "px 16px";
+      if (phaseoffset) {
+        document.getElementById("sky"+moon1position).style.backgroundImage = "url('graphics/moons.gif')";
+        document.getElementById("sky"+moon1position).style.backgroundPosition = phaseoffset + "px 16px";
+      }
     }
     if (moon2position < 13) { 
       let phaseoffset = -1*moon2phase*16;
-      document.getElementById("sky"+moon2position).style.backgroundImage = "url('graphics/moons.gif')";
-      document.getElementById("sky"+moon2position).style.backgroundPosition = phaseoffset + "px 0px";
+      if (phaseoffset) {
+        document.getElementById("sky"+moon2position).style.backgroundImage = "url('graphics/moons.gif')";
+        document.getElementById("sky"+moon2position).style.backgroundPosition = phaseoffset + "px 0px";
+      }
     }
     return([moon1phase,moon1position,moon2phase,moon2position]);
   }
