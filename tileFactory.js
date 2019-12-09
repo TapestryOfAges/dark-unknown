@@ -538,6 +538,11 @@ tileFactory.prototype.makeShinglesTopTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRevealedCaveTile = function() {
+  let newTile = new RevealedCaveTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCaveFloorTile = function() {
   let newTile = new CaveFloorTile();
   return newTile;
@@ -1055,6 +1060,11 @@ tileFactory.prototype.makeDoorTile = function() {
 
 tileFactory.prototype.makeTalkingDoorTile = function() {
   let newTile = new TalkingDoorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDoorStoneWallTile = function() {
+  let newTile = new DoorStoneWallTile();
   return newTile;
 }
 
@@ -2055,6 +2065,36 @@ tileFactory.prototype.makeMoongateTile = function() {
 
 tileFactory.prototype.makePetrifiedReaperTile = function() {
   let newTile = new PetrifiedReaperTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOracleLowerLeftTile = function() {
+  let newTile = new OracleLowerLeftTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOracleLowerRightTile = function() {
+  let newTile = new OracleLowerRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOracleMidLeftTile = function() {
+  let newTile = new OracleMidLeftTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOracleMidRightTile = function() {
+  let newTile = new OracleMidRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOracleTopLeftTile = function() {
+  let newTile = new OracleTopLeftTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOracleTopRightTile = function() {
+  let newTile = new OracleTopRightTile();
   return newTile;
 }
 
