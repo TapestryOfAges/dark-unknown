@@ -5131,6 +5131,28 @@ TalkingDoorTile.prototype.activate = function(timeoverride) {
   return 1;
 }
 
+function DoorStoneWallTile() {
+	this.name = "DoorStoneWall";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1664";
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["master_spritesheet.png","",'-192','-1664'], ["master_spritesheet.png","",'-224','-1664'], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+DoorStoneWallTile.prototype = new FeatureObject();
+
+DoorStoneWallTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
 function SleepFieldTile() {
 	this.name = "SleepField";
 	this.graphic = "fields.gif";
