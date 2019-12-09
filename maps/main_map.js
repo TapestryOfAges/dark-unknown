@@ -1029,3 +1029,64 @@ mappages["landsbeyond"].returnx = '';
 mappages["landsbeyond"].returny = '';
 mappages["landsbeyond"].returninfused = '0';
 mappages["landsbeyond"].linkedMaps = [""];
+
+mappages["oliviaCart"] = {};
+mappages["oliviaCart"].terrain = [];
+ mappages["oliviaCart"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["oliviaCart"].terrain[1] = '.. .. .. .. .. u, .. .. .. .. .. u, ..';
+ mappages["oliviaCart"].terrain[2] = '.. .. .. .. .. .. .. u, .. .. .. .. ..';
+ mappages["oliviaCart"].terrain[3] = '.. .. u, .. .. .. .. .. .. .. .. u, ..';
+ mappages["oliviaCart"].terrain[4] = '.. .. .. .. -= -= -= -= .. .. .. .. ..';
+ mappages["oliviaCart"].terrain[5] = '.. .. .. .. -= -= -= -= .. .. .. .. ..';
+ mappages["oliviaCart"].terrain[6] = '.. .. .. .. -= -= -= -= .. .. .. .. ..';
+ mappages["oliviaCart"].terrain[7] = '.. .. .. u, .. .. .. .. .. .. .. .. ..';
+ mappages["oliviaCart"].terrain[8] = '.. .. .. .. .. .. .. .. .. u, .. .. ..';
+ mappages["oliviaCart"].terrain[9] = '.. .. .. .. .. .. .. u, .. .. .. .. ..';
+mappages["oliviaCart"].terrain[10] = '.. u, .. .. .. .. .. .. .. .. .. u, ..';
+mappages["oliviaCart"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["oliviaCart"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+
+mappages["oliviaCart"].features = [];
+mappages["oliviaCart"].features[0] = {name : 'Tree', x : 9, y : 2};
+mappages["oliviaCart"].features[1] = {name : 'Tree', x : 2, y : 1};
+mappages["oliviaCart"].features[2] = {name : 'Tree', x : 4, y : 11};
+mappages["oliviaCart"].features[3] = {name : 'LeftChair', x : 6, y : 5};
+
+
+mappages["oliviaCart"].npcs = [];
+mappages["oliviaCart"].npcs[0] = {name : 'BardVillagerNPC', x : 6, y : 5, NPCName: 'Olivia', Conversation: 'olivia_cart', Gender: 'female', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
+mappages["oliviaCart"].npcs[1] = {name : 'HorseNPC', x : 8, y : 4, skintone: '1'};
+mappages["oliviaCart"].npcs[2] = {name : 'HorseNPC', x : 8, y : 6, skintone: '1'};
+
+mappages["oliviaCart"].desc = "Olivia's Cart";
+mappages["oliviaCart"].longdesc = '';
+mappages["oliviaCart"].music = 'Village';
+mappages["oliviaCart"].savename = `Olivia's Cart`;
+mappages["oliviaCart"].exitmap = 'darkunknown';
+mappages["oliviaCart"].exitx = '65';
+mappages["oliviaCart"].exity = '70';
+mappages["oliviaCart"].wraps = 'None';
+mappages["oliviaCart"].enterx = '7';
+mappages["oliviaCart"].entery = '14';
+mappages["oliviaCart"].seeBelow = '';
+mappages["oliviaCart"].lightLevel = 'cycle';
+mappages["oliviaCart"].alwaysRemember = '0';
+mappages["oliviaCart"].scale = '1';
+mappages["oliviaCart"].underground = '0';
+mappages["oliviaCart"].undergroundDesc = '';
+mappages["oliviaCart"].enterscript = 'set_exits';
+mappages["oliviaCart"].entertestscript = '';
+mappages["oliviaCart"].exitscript = '';
+mappages["oliviaCart"].exittestscript = '';
+mappages["oliviaCart"].returnmap = 'darkunknown';
+mappages["oliviaCart"].returnx = '69';
+mappages["oliviaCart"].returny = '74';
+mappages["oliviaCart"].returninfused = '0';
+mappages["oliviaCart"].linkedMaps = [""];
+mappages["oliviaCart"].editorLabels = '{}';
+
+mappages["oliviaCart"].set_exits = function(mapref) {
+  maps_set_exits(mapref);
+  // See combatmaps.js for maps_set_exits
+}
+
