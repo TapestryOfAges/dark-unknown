@@ -154,7 +154,7 @@ function SetMerchants() {
   bill.william.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap", lvl: SPELL_DISARM_TRAP_LEVEL, sid: SPELL_DISARM_TRAP_ID, price: 100, sale: '"Disarms any immediately nearby trap. A necessity for the cautious adventurer."'},
                   { item: "VulnerabilitySpell", desc: "Vulnerability", lvl: SPELL_VULNERABILITY_LEVEL, sid: SPELL_VULNERABILITY_ID, price: 100, sale: '"Renders a foe nearly incapable of defending itself."'},
                   { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: SPELL_MAGIC_BOLT_LEVEL, sid: SPELL_MAGIC_BOLT_ID, price: 200, sale: '"A magic arrow flies to strike a target."'},
-                  { item: "DisruptUndeadSpell", desc: "Disrupt Undead", lvl: SPELL_DISRUPT_UNDEAD_LEVEL, sid: SPELL_DISRUPT_UNDEAD_ID, price: 400, sale: '"Undead rely on magic to keep together, and this disrupts that magic."'},
+                  { item: "HealSpell", desc: "Heal", lvl: SPELL_HEAL_LEVEL, sid: SPELL_HEAL_ID, price: 400, sale: '"Restores your vitality. Useful if you want to do a lot of fighting."'},
                   { item: "TelekinesisSpell", desc: "Telekinesis", lvl: SPELL_TELEKINESIS_LEVEL, sid: SPELL_TELEKINESIS_ID, price: 400, sale: '"Pick up or manipulate a distant object."'},
                   { item: "LifeDrainSpell", desc: "Life Drain", lvl: SPELL_LIFE_DRAIN_LEVEL, sid: SPELL_LIFE_DRAIN_ID, price: 750, sale: '"Harms an enemy, and transfers some of its vitality to you!"'},
                   { item: "SmiteSpell", desc: "Smite", lvl: SPELL_SMITE_LEVEL, sid: SPELL_SMITE_ID, price: 750, sale: '"Randomly chooses three nearby enemies and strikes them a mighty blow."'},
