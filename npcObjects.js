@@ -795,7 +795,10 @@ function CourierNPCTile() {
   this.graphic = '310.2.gif';
   this.meleeAttackAs = 'Shortsword';
   this.missileAttackAs = 'Sling';
-  this.armorAs = 'LeatherArmor';
+  this.armorAs = 'none';
+  this.armorDefense = 1000;
+  this.armorAbsorb = 1000;
+  this.armorResist = 1000;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
   this.lootTable = 'Courier';
@@ -824,7 +827,7 @@ function CourierGuardNPCTile() {
   this.forgetAt = 0;
   this.withdraw = 0;
   this.graphic = '309.gif';
-  this.meleeAttackAs = 'Axe';
+  this.meleeAttackAs = 'Mace';
   this.missileAttackAs = 'none';
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
@@ -1053,7 +1056,7 @@ MinstrelNPCTile.prototype = new NPCObject();
 function SlimeNPCTile() {
   this.name = 'SlimeNPC';
   this.level = 1;
-  this.addhp = 0;
+  this.addhp = 5;
   this.str = 7;
   this.dex = 7;
   this.int = 1;
@@ -1256,7 +1259,7 @@ function OrcNPCTile() {
   this.name = 'OrcNPC';
   this.level = 2;
   this.addhp = 0;
-  this.str = 12;
+  this.str = 14;
   this.dex = 10;
   this.int = 6;
   this.alignment = 'Evil';
