@@ -1807,7 +1807,7 @@ CourierFleeTile.prototype.applyEffect = function(silent) {
 
 CourierFleeTile.prototype.doEffect = function() {
   let who = this.getAttachedTo();
-  if (who.getHP() < who.getMaxHP()-50) {
+  if (who.getHP() < who.getMaxHP()-30) {
     who.setHP(15);
     if (!who.specials.coward) {
       maintext.addText("The courier guard panics!");
@@ -1843,6 +1843,7 @@ CourierSurrenderTile.prototype.doEffect = function() {
   who.setCurrentAI("Courier");
   who.setAggro(0);
   DebugWrite("ai","Set courier's AI to 'courier'.");
+  if (who.getHP() < who.getMaxHP()) { who.setHP(who.getMaxHP()-1); }
 }
 
 CourierSurrenderTile.prototype.eachTurn = function() {
