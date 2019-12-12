@@ -143,6 +143,7 @@ ais.combat = function(who) {
       if (whomap.ExitTest(who)) {
         whomap.deleteThing(who);
         DUTime.removeEntityFrom(who);
+        who.fled = 1;
         if (PC.getHomeMap() === whomap) {
           DrawMainFrame("draw", whomap, PC.getx(), PC.gety());
         }
@@ -1656,11 +1657,11 @@ ais.Courier = function(who) {
       mindist = curry;
       dest = [currx,0];
     }
-    if (couriermap.getWidth()-1-currx < middist) {
+    if (couriermap.getWidth()-1-currx < mindist) {
       mindist = couriermap.getWidth()-1-currx;
       dest = [couriermap.getWidth()-1,0];
     }
-    if (couriermap.getHeight()-1-curry < middist) {
+    if (couriermap.getHeight()-1-curry < mindist) {
       mindist = couriermap.getHeight()-1-curry;
       dest = [0,couriermap.getHeight()-1];
     }
@@ -1687,6 +1688,7 @@ ais.Courier = function(who) {
     if (runaway) {
       couriermap.deleteThing(who);
       DUTime.removeEntityFrom(who);
+      who.fled = 1;
       DrawMainFrame("one",who.getHomeMap(),currx,curry);
     }
     

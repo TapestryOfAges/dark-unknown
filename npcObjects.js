@@ -4219,6 +4219,7 @@ function CourierGroupTile() {
   this.group[1] = new NPCList('CourierGuardNPC', '1d1+1');
   this.movetype = MOVE_WALK;
   this.attackword = 'attacks';
+  this.special = 'remain';
 }
 CourierGroupTile.prototype = new NPCGroupObject();
 

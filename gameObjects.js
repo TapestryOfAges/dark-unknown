@@ -10168,6 +10168,17 @@ function CourierPouchTile() {
 }
 CourierPouchTile.prototype = new ItemObject();
 
+CourierPouchTile.prototype.onGet = function(who) {
+  let themap = maps.getMap("darkunknown");
+  let feas = themap.features.getAll();
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getName() === "CourierGroup") {
+      themap.deleteThing(feas[i]);
+      DUTime.removeEntityFrom(feas[i]);
+    }
+  }
+}
+
 CourierPouchTile.prototype.use = function(who) {
   let retval = {};
   retval["fin"] = 1;
