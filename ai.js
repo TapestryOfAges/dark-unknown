@@ -1686,6 +1686,7 @@ ais.Courier = function(who) {
     
     if (runaway) {
       couriermap.deleteThing(who);
+      DUTime.removeEntityFrom(who);
       DrawMainFrame("one",who.getHomeMap(),currx,curry);
     }
     

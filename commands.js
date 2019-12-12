@@ -691,16 +691,18 @@ function PerformAttackMap(who) {
     let newmap = new GameMap();
     newmap = maps.addMap(combatmapname);
 
-    PC.getHomeMap().deleteThing(atkwho);
-    let spawner=atkwho.getSpawnedBy();
-    if (spawner) {
-      spawner.deleteSpawned(atkwho);
+    if ((!atkwho.special) || (!atkwho.special.includes("remain"))) {
+      PC.getHomeMap().deleteThing(atkwho);
+      let spawner=atkwho.getSpawnedBy();
+      if (spawner) {
+        spawner.deleteSpawned(atkwho);
+      }
+
+      DUTime.removeEntityFrom(atkwho);
     }
 
     let monsters = PlaceMonsters(newmap,atkwho,1);
     let desttile = MoveBetweenMaps(PC,PC.getHomeMap(),newmap, newmap.getEnterX(), newmap.getEnterY());
-    
-    DUTime.removeEntityFrom(atkwho);
     
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
     retval["txt"] = "Attack: " + atkwho.getDesc() + ".";
