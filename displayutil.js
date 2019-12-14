@@ -43,7 +43,7 @@ function getDisplayCenter(themap,fromx,fromy) {
 }
 
 function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic, sounds, param, doagain) {
-  console.log("Animation begins!");
+  //console.log("Animation begins!");
   // atk - source/attacker
   // def - target/defender, if any
   // fromcoords, tocoords - object with .x and .y
