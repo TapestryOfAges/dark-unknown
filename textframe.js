@@ -11,6 +11,7 @@ TextFrame.prototype.getInputLine = function() {
 }
 
 TextFrame.prototype.setInputLine = function(txt) {
+	if (!txt) { txt = "&gt;"; }
 	this.inputLine = txt;
 }
 
