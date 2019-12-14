@@ -1336,8 +1336,8 @@ GameMap.prototype.placeThing = function(x,y,newthing,timeoverride,noactivate) {
 }
 
 GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump and passable and before walkon
-  let oldx = thing.getx();
-  let oldy = thing.gety();
+  let oldx = thing.getx(1);
+  let oldy = thing.gety(1);
  	if ((typeof thing.getLight === "function") && (thing.getLight() !== 0)) {
     this.removeMapLight(thing.getSerial(),thing.getLight(),thing.getx(),thing.gety());
   }
@@ -1345,7 +1345,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
     this.removeNoiseSource(thing,thing.getAmbientRadius());
   }
   let type = thing.getTypeForMap() + "s";
-	this.data[thing.gety()][thing.getx()][type].deleteFrom(thing);
+	this.data[thing.gety(1)][thing.getx(1)][type].deleteFrom(thing);
 	if (!this.data[y][x][type]) { this.data[y][x][type] = new Collection(); }
   this.data[y][x][type].addTop(thing);
   thing.setx(x);
@@ -1357,7 +1357,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
     this.setNoiseSource(thing, thing.getAmbientNoise(), thing.getAmbientRadius());
   }
   // update pathfinding
-  if (type !== "npcs") {
+  if ((type !== "npcs") && (type !== "pcs")) {
     let oldtile = this.getTile(oldx,oldy);
     let tile = this.getTile(x,y);
   	for (let i=1; i<=32; i=i*2) {
@@ -1376,8 +1376,8 @@ GameMap.prototype.deleteThing = function(thing) {
   let thingmap = thing.getHomeMap();
   if (thingmap !== this) { alert("tried to delete " + thing.getName() + " which is not on this map."); return 0; }
   if (thing === targetCursor.lastTarget) { delete targetCursor.lastTarget; }
-  let oldx = thing.getx()
-  let oldy = thing.gety();
+  let oldx = thing.getx(1)
+  let oldy = thing.gety(1);
   let type = thing.getTypeForMap() + "s";
   if ((typeof thing.getLight === "function") && (Math.abs(thing.getLight()) > 0)) {
     this.removeMapLight(thing.getSerial(),thing.getLight(),thing.getx(),thing.gety());
@@ -1386,7 +1386,7 @@ GameMap.prototype.deleteThing = function(thing) {
     this.removeNoiseSource(thing, thing.getAmbientRadius());
   }
 	this[type].deleteFrom(thing);
-	this.data[thing.gety()][thing.getx()][type].deleteFrom(thing);
+	this.data[thing.gety(1)][thing.getx(1)][type].deleteFrom(thing);
 	
 	//update pathfinding
 	if ((type !== "npcs") && (type !== "pcs")) {
