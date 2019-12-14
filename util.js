@@ -1421,7 +1421,10 @@ function DiffTime(time1,time2) {
 function EndWaiting(who, inn) {
   FadeIn();
   if (who.moveAfterWaiting) {
-    who.getHomeMap().moveThing(who.moveAfterWaiting.x,who.moveAfterWaiting.y,who);
+    if ((who.getx() !== who.moveAfterWaiting.x) || (who.gety() !== who.moveAfterWaiting.y)) {
+      // usually this means Inn
+      who.getHomeMap().moveThing(who.moveAfterWaiting.x,who.moveAfterWaiting.y,who);
+    }
     delete who.moveAfterWaiting;
   }
   if (inn) {
