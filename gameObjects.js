@@ -10170,11 +10170,11 @@ CourierPouchTile.prototype = new ItemObject();
 
 CourierPouchTile.prototype.onGet = function(who) {
   let themap = maps.getMap("darkunknown");
-  let feas = themap.features.getAll();
-  for (let i=0;i<feas.length;i++) {
-    if (feas[i].getName() === "CourierGroup") {
-      themap.deleteThing(feas[i]);
-      DUTime.removeEntityFrom(feas[i]);
+  let npcs = themap.npcs.getAll();
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName() === "CourierGroup") {
+      themap.deleteThing(npcs[i]);
+      DUTime.removeEntityFrom(npcs[i]);
     }
   }
 }
@@ -15417,7 +15417,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 
 NPCObject.prototype.myTurn = function() {
   raceWarning = 0;
-  if (this.fled) { return 0; }
+  if (this.fled) { return 1; }
   DebugWrite("new", "<div style='border-style:inset; border-color:#999999'><span style='" + debugstyle.header + "'>" + this.getName() + " (" + this.getNPCName() + "), serial " + this.getSerial() + " is starting its turn at " + this.getx() + "," + this.gety() + ", timestamp " + DUTime.getGameClock().toFixed(5) + ".</span><br />");
   if (!maps.getMap(this.getHomeMap().getName())) {
     // removing from timeline, its map is gone
