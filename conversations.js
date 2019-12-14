@@ -296,7 +296,6 @@ ConvNode.prototype = new Object();
 //Deprecated
 
 function InnRoom(xc,yc,doors,innmap) {
-  targetCursor.inndest = {x: xc, y: yc};
   if (DU.gameflags.getFlag("music")) {
     StopMusic();
     DUPlayMusic("Lullaby", {fade:1});
@@ -320,6 +319,8 @@ function InnRoom(xc,yc,doors,innmap) {
       doors.shift();
       doors.shift();
     }
+    let pcacre = PC.getHomeMap().getTile(PC.getx(1),PC.gety(1));
+    pcacre.executeWalkoffs(PC);
     if (innmap !== PC.getHomeMap()) { 
       MoveBetweenMaps(PC,PC.getHomeMap(), innmap, xc, yc);
     } else {
@@ -330,7 +331,7 @@ function InnRoom(xc,yc,doors,innmap) {
       if (feapile[i].getName() === "BedHead") { feapile[i].walkon(PC); break; }
     }
     DrawMainFrame("draw", PC.getHomeMap(), PC.getx(),PC.gety());
-//    gamestate.setMode("null");
+    PC.endTurn();
   }, 1500);
 
 }
@@ -467,7 +468,25 @@ OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
     let pronoun = "He";
     if (speaker.getNPCName() === "Sand") { pronoun = "She"; }
     maintext.addText(pronoun + " leads you to your room.");
-    setTimeout(function() { InnRoom(93,38,[91,38,88,29]); }, 50);
+    targetCursor.inndest = {x: 93, y: 38};
+//    setTimeout(function() { InnRoom(93,38,[91,38,88,29]); }, 50);
+    InnRoom(93,38,[91,38,88,29]);
+  }
+  return -1;
+}
+
+OnConvTriggers["inn_onyx_y"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("inn_onyx_y");
+  DU.gameflags.deleteFlag("inn_onyx");
+  if (PC.getGold() < 8) {
+    maintext.addText("You don't have enough gold!");
+    return 1;
+  } else {
+    PC.addGold(-8);
+    maintext.addText("He leads you to your room.");
+    targetCursor.inndest = {x: 14, y: 11};
+//    setTimeout(function() { InnRoom(14,11,[13,9,10,12]); }, 50);
+    InnRoom(14,11,[13,9,10,12]);
   }
   return -1;
 }
@@ -476,8 +495,14 @@ OnConvTriggers["inn_25"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("inn_25");
 
   let upstairs = maps.getMap("hildendain2");
+  if (PC.getGold() < 10) {
+    maintext.addText("You don't have enough gold!");
+    return 1;
+  } 
   PC.addGold(-10);
-  setTimeout(function() { InnRoom(23,40,[27,42], upstairs); }, 50);
+  targetCursor.inndest = {x: 23, y: 40};
+//  setTimeout(function() { InnRoom(23,40,[27,42], upstairs); }, 50);
+  InnRoom(23,40,[27,42], upstairs);
   
   return -1;
 }
@@ -487,7 +512,9 @@ OnConvTriggers["inn_beldskae"] = function(speaker,keyword) {
 
   let upstairs = maps.getMap("beldskae2");
   PC.addGold(-50);
-  setTimeout(function() { InnRoom(39,13,[38,15], upstairs); }, 50);
+  targetCursor.inndest = {x: 39, y: 13};
+//  setTimeout(function() { InnRoom(39,13,[38,15], upstairs); }, 50);
+  InnRoom(39,13,[38,15], upstairs);
 
   let roomdoor = PC.getHomeMap().getTile(32,25).getTopFeature();
   if (roomdoor.open) {

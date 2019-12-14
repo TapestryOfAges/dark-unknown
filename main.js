@@ -406,10 +406,9 @@ function DoAction(code, ctrl) {
           PC.moveAfterWaiting = {x : targetCursor.inndest.x, y: targetCursor.inndest.y};
           delete targetCursor.inndest;
           PC.atinn = 1;      
-          PC.endTurn(retval["initdelay"]);
         }
       } 
-      else { alert("need to add hook here! (main 260)"); }
+      else { alert("need to add hook here! (main 412)"); }
     }
     else if (code === 27) { // ESC
       maintext.setInputLine("&gt;");
