@@ -60,6 +60,7 @@ mappages["kaltonmine1"].features[10] = {name : 'PileOfRocks', x : 18, y : 37};
 mappages["kaltonmine1"].features[11] = {name : 'PileOfRocks', x : 27, y : 31};
 mappages["kaltonmine1"].features[12] = {name : 'PileOfRocks', x : 24, y : 23};
 mappages["kaltonmine1"].features[13] = {name : 'PileOfRocks', x : 18, y : 22};
+mappages["kaltonmine1"].features[14] = {name : 'LadderDown', x : 14, y : 33, entermap : 'kaltonmine2', enterx : 14, entery : 33};
 
 
 mappages["kaltonmine1"].npcs = [];
