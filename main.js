@@ -403,8 +403,8 @@ function DoAction(code, ctrl) {
         if (retval["fin"] === "inn") {
           let duration = 8*12;
           PC.setWaiting(DUTime.getGameClock() + duration);
-          PC.moveAfterWaiting = {x : targetCursor.inndest.x, y: targetCursor.inndest.y};
-          delete targetCursor.inndest;
+//          PC.moveAfterWaiting = {x : targetCursor.inndest.x, y: targetCursor.inndest.y};
+//          delete targetCursor.inndest;
           PC.atinn = 1;      
         }
       } 
