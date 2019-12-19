@@ -2002,16 +2002,17 @@ function PerformWait(code) {
     return retval;
   }
 
-  gamestate.setMode("null");
-  let duration = parseInt(code) - 48;
-  retval["txt"] = "Waiting for " + duration + " hours.";
-  if (duration === 1) { retval["txt"] = "Waiting for 1 hour."; }
-  duration = duration * 12;
-  FadeOut();
   if (anyhostiles === -1) {
-    PC.moveAfterWaiting = {x : PC.getx(), y: PC.gety()};
+    gamestate.setMode("null");
+    let duration = parseInt(code) - 48;
+    retval["txt"] = "Waiting for " + duration + " hours.";
+    if (duration === 1) { retval["txt"] = "Waiting for 1 hour."; }
+    duration = duration * 12;
+    FadeOut();
+
+//    PC.moveAfterWaiting = {x : PC.getx(), y: PC.gety()};
     PC.setWaiting(DUTime.getGameClock() + duration);
-    PC.getHomeMap().moveThing(0,0,PC);
+//    PC.getHomeMap().moveThing(0,0,PC);
   }
 
   retval["fin"] = 1;
