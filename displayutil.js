@@ -215,9 +215,11 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
   }
     
   baseStack = localacre.getTileStack();
+  let maplevel = mapname;
   while (baseStack[0].getName() === "SeeBelow") {
     baseStack.shift();
-    let retval = FindBelow(x,y,mapname);
+    let retval = FindBelow(x,y,maplevel);
+    maplevel = maps.getMap(maplevel.getSeeBelow());
     let loweracre = retval.tile;
     let newstack = loweracre.getTileStack();
     for (let j=newstack.length-1;j>=0;j--) {
