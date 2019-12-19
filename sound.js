@@ -191,7 +191,7 @@ function audio_init_2() {
 function DUPlaySound(sound, soundmult) {
   if (!soundmult) { soundmult = 1; } 
   let playing = {};
-  if (DU.gameflags.getFlag("sound")) { 
+  if (DU.gameflags.getFlag("sound") && !DU.gameflags.getFlag("mute")) { 
 //    playing.song = createjs.Sound.play(sound); 
     playing.song = new Audio(GetSfxPath(sound));
     playing.name = sound; 
