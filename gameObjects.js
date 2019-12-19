@@ -10227,7 +10227,7 @@ TrustedPlansTile.prototype = new ItemObject();
 function TrustedPinTile() {
   this.name = "TrustedPin";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
+  this.spritexoffset = "-192";
   this.spriteyoffset = "-1344";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -15899,6 +15899,11 @@ NPCObject.prototype.getNextStep = function() {
 
 NPCObject.prototype.setWaiting = function(newwait) {
   this.waiting = newwait;
+  if (newwait) {
+    DU.gameflags.setFlag("mute",1);
+  } else {
+    DU.gameflags.deleteFlag("mute");
+  }
 }
 
 NPCObject.prototype.getWaiting = function() {
@@ -16013,16 +16018,16 @@ PCObject.prototype.activate = function() {
 }
 
 PCObject.prototype.getx = function(evenwait) {
-  if (!evenwait && this.getWaiting()) {
-    return this.moveAfterWaiting.x
-  } 
+//  if (!evenwait && this.getWaiting()) {
+//    return this.moveAfterWaiting.x
+//  } 
 	return parseInt(this.x,10);
 }
 
 PCObject.prototype.gety = function(evenwait) {
-  if (!evenwait && this.getWaiting()) {
-    return this.moveAfterWaiting.y
-  } 
+//  if (!evenwait && this.getWaiting()) {
+//    return this.moveAfterWaiting.y
+//  } 
   return parseInt(this.y,10);
 }
 
