@@ -468,7 +468,7 @@ OnConvTriggers["inn_20_y"] = function(speaker,keyword) {
     let pronoun = "He";
     if (speaker.getNPCName() === "Sand") { pronoun = "She"; }
     maintext.addText(pronoun + " leads you to your room.");
-    targetCursor.inndest = {x: 93, y: 38};
+//    targetCursor.inndest = {x: 93, y: 38};
 //    setTimeout(function() { InnRoom(93,38,[91,38,88,29]); }, 50);
     InnRoom(93,38,[91,38,88,29]);
   }
@@ -484,7 +484,7 @@ OnConvTriggers["inn_onyx_y"] = function(speaker,keyword) {
   } else {
     PC.addGold(-8);
     maintext.addText("He leads you to your room.");
-    targetCursor.inndest = {x: 14, y: 11};
+//    targetCursor.inndest = {x: 14, y: 11};
 //    setTimeout(function() { InnRoom(14,11,[13,9,10,12]); }, 50);
     InnRoom(14,11,[13,9,10,12]);
   }
@@ -500,7 +500,7 @@ OnConvTriggers["inn_25"] = function(speaker,keyword) {
     return 1;
   } 
   PC.addGold(-10);
-  targetCursor.inndest = {x: 23, y: 40};
+//  targetCursor.inndest = {x: 23, y: 40};
 //  setTimeout(function() { InnRoom(23,40,[27,42], upstairs); }, 50);
   InnRoom(23,40,[27,42], upstairs);
   
@@ -512,7 +512,7 @@ OnConvTriggers["inn_beldskae"] = function(speaker,keyword) {
 
   let upstairs = maps.getMap("beldskae2");
   PC.addGold(-50);
-  targetCursor.inndest = {x: 39, y: 13};
+//  targetCursor.inndest = {x: 39, y: 13};
 //  setTimeout(function() { InnRoom(39,13,[38,15], upstairs); }, 50);
   InnRoom(39,13,[38,15], upstairs);
 
