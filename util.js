@@ -1420,16 +1420,16 @@ function DiffTime(time1,time2) {
 
 function EndWaiting(who, inn) {
   FadeIn();
-  if (who.moveAfterWaiting) {
-    if ((who.getx() !== who.moveAfterWaiting.x) || (who.gety() !== who.moveAfterWaiting.y)) {
+//  if (who.moveAfterWaiting) {
+//    if ((who.getx(1) !== who.moveAfterWaiting.x) || (who.gety(1) !== who.moveAfterWaiting.y)) {
       // usually this means Inn
-      who.getHomeMap().moveThing(who.moveAfterWaiting.x,who.moveAfterWaiting.y,who);
-    }
-    delete who.moveAfterWaiting;
-  }
+//      who.getHomeMap().moveThing(who.moveAfterWaiting.x,who.moveAfterWaiting.y,who);
+//    }
+//    delete who.moveAfterWaiting;
+//  }
   if (inn) {
     maintext.addText("You awake refreshed!");
-    PC.healMe(Dice.roll("20d5+20"));
+    PC.setHP(PC.getMaxHP());
     PC.setMana(PC.getMaxMana());
     delete who.atinn;
   }
