@@ -907,6 +907,20 @@ OnConvTriggers["where_queen"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("where_queen");
 }
 
+OnConvTriggers["BDC_open_gate"] = function(speaker,keyword) {
+  let feas = speaker.getHomeMap().getTile(12,38).getFeatures();
+  let gate;
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getName() === "WallPortcullis") {
+      gate = feas[i];
+    }
+  }
+  gate.unlockMe();
+  gate.use(speaker);
+  DU.gameflags.deleteFlag("BDC_open_gate");
+  DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
+}
+
 function ConvTestFlags() {};
 
 ConvTestFlags["warren_close"] = function(speaker,keyword) {
@@ -983,5 +997,19 @@ ConvTestFlags["is_jennifer_nearby"] = function(speaker,keyword) {
   }
   if (jinroom && binroom) { return 1; }
   if (!jinroom && !binroom && (GetDistance(jennifer.getx(),jennifer.gety(),brooke.getx(),brooke.gety() <= 3))) { return 1; }
+  return 0;
+}
+
+ConvTestFlags["BDC_gate_open"] = function(speaker,keyword) {
+  let feas = speaker.getHomeMap().getTile(12,38).getFeatures();
+  let gate;
+  for (let i=0;i<feas.length;i++) {
+    if (feas[i].getName() === "WallPortcullis") {
+      gate = feas[i];
+    }
+  }
+  if (!gate.open) {
+    return 1;
+  }
   return 0;
 }
