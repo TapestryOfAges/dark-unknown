@@ -96,8 +96,8 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
   }
 
   function FinishFirstAnimation(skipped) {
-    if (skipped) { console.log("Animation skipped."); }
-    if (eventcount) { console.log("callback called twice"); return; }
+//    if (skipped) { console.log("Animation skipped."); }
+//    if (eventcount) { console.log("callback called twice"); return; }
     eventcount = 1;
 //    console.log("callback called");
     let animdiv = document.getElementById(animid);
@@ -172,7 +172,7 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     maintext.drawInputLine();
 
     if ((!doagain) && (endturn)) {
-      console.log("Ending turn.");
+//      console.log("Ending turn.");
       atk.endTurn(retval["initdelay"]);
     } else if (doagain) {
       let doit = doagain.shift();
