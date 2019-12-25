@@ -751,7 +751,7 @@ function Openable(closedgraphic, opengraphic, startsopen, opensound, closesound,
         this.unlockMe();
       }
     }
-		if (this.open == 1) {
+		if (this.open === 1) {
 			this.setGraphicArray(closedgraphic);
 			
 			this.setBlocksLOSArray(this.closedLOS);
