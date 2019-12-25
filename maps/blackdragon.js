@@ -271,6 +271,8 @@ mappages["blackdragon"].onload = function(mapref) {
     if (DU.gameflags.getFlag("act2")) {
       Open_BDC_Gate(this);
     }
+  } else if ((gamestate.getMode() === "loadgame") && (!DU.gameflags.getFlag("editor")) && (DU.gameflags.getFlag("bdc_gate_open"))) {
+    LowerDrawbridge(mapref);
   }
 }
 
@@ -278,6 +280,16 @@ mappages["blackdragon"].maps_exit = function() {
   this.Exit = function(who,tomap,fromx,fromy,tox,toy) {
     DU.gameflags.deleteFlag("bdc_gate_open");
   }
+}
+
+function LowerDrawbridge(mapref) {
+  let planks = localFactory.createTile("PlanksNS");
+  mapref.setTerrain(11,41,planks);
+  mapref.setTerrain(12,41,planks);
+  mapref.setTerrain(13,41,planks);
+  mapref.setTerrain(11,42,planks);
+  mapref.setTerrain(12,42,planks);
+  mapref.setTerrain(13,42,planks);
 }
 
 function Open_BDC_Gate(mapref) {
@@ -288,13 +300,7 @@ function Open_BDC_Gate(mapref) {
     let gate = mapref.getTile(12,38).getTopFeature();
     gate.unlockMe();
     gate.use();
-    let planks = localFactory.createTile("PlanksNS");
-    mapref.setTerrain(11,41,planks);
-    mapref.setTerrain(12,41,planks);
-    mapref.setTerrain(13,41,planks);
-    mapref.setTerrain(11,42,planks);
-    mapref.setTerrain(12,42,planks);
-    mapref.setTerrain(13,42,planks);
+    LowerDrawbridge(mapref);
     DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
   }
 }
