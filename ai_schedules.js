@@ -996,9 +996,9 @@ ais.CartMoves = function(who, params) {
   } else { DebugWrite("schedules", "Already at destination... "); }
 
   if ((who.getx() === parseInt(params.destinationx)) && (who.gety() === parseInt(params.destinationy))) {
+    DebugWrite("schedules", "Arrived at destination, setting activityComplete.<br />");
     return {fin:1}
 
-    DebugWrite("schedules", "Arrived at destination, setting activityComplete.<br />");
   }
   return {fin:0};
 
@@ -1019,6 +1019,7 @@ ais.ChangeMapCart = function(who,params) {
     DebugWrite("schedules", "Changed maps (Cart). Going to (" + params.x + "," + params.y + "), wound up at (" + who.getx() + "," + who.gety() + ").<br />");
   } else {
     DebugWrite("schedules", "Failed to change maps. Will try again next turn.");
+    return {fin:0};
   }
 //  console.log(who);
 
