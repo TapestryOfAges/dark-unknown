@@ -52,6 +52,9 @@ ipcMain.on('open_debug', function() {
     width: 500,
     useContentSize: true,
     resizeable: true,
+    webPreferences: {
+      nodeIntegration: true
+    },
   });
 
   debugWindow.loadURL('file://' + __dirname + '/debugwindow.html');
