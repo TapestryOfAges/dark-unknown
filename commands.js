@@ -2002,7 +2002,7 @@ function PerformWait(code) {
     return retval;
   }
 
-  if (anyhostiles === -1) {
+//  if (anyhostiles === -1) {
     gamestate.setMode("null");
     let duration = parseInt(code) - 48;
     retval["txt"] = "Waiting for " + duration + " hours.";
@@ -2013,7 +2013,7 @@ function PerformWait(code) {
 //    PC.moveAfterWaiting = {x : PC.getx(), y: PC.gety()};
     PC.setWaiting(DUTime.getGameClock() + duration);
 //    PC.getHomeMap().moveThing(0,0,PC);
-  }
+//  }
 
   retval["fin"] = 1;
   retval["input"] = "&gt;";
