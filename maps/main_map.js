@@ -925,9 +925,9 @@ mappages["ellusus_limbo"].features = [];
 mappages["ellusus_limbo"].npcs = [];
 mappages["ellusus_limbo"].npcs[0] = {name : 'HorseAndCartNPC', x : 2, y : 2, skintone: '1', Schedule: 'olivia_cart'};
 
-mappages["ellusus_limbo"].desc = "Olympus Limbo";
+mappages["ellusus_limbo"].desc = "Ellusus Limbo";
 mappages["ellusus_limbo"].music = 'Charcreate';
-mappages["ellusus_limbo"].savename = "OLimbo";
+mappages["ellusus_limbo"].savename = "ELimbo";
 mappages["ellusus_limbo"].exitmap = '';
 mappages["ellusus_limbo"].exitx = '65';
 mappages["ellusus_limbo"].exity = '70';
