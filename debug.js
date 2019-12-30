@@ -101,7 +101,11 @@ function DebugWrite(category, html) {
 //    tmpchild.innerHTML = "<span style='" + debugstyle[category] + "'>" + html + "</span>";
     //document.getElementById('debugdiv').appendChild(tmpchild);
     let serialid = whoseturn.getSerial() + "-" + DUTime.getGameClock();
-    ipcRenderer.send('sendDebug', {html: html, cat: category, sid: serialid});
+    let watched = 0;
+    if (whoseturn === watchon) { watched = 1; }
+    let samemap = 0;
+    if (whoseturn.getHomeMap() === PC.getHomeMap()) { samemap = 1; }
+    ipcRenderer.send('sendDebug', {html: html, cat: category, sid: serialid, watched: watched, samemap: samemap});
     SetDebugToBottom();
 
     return 1;

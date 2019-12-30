@@ -1,5 +1,7 @@
 "use strict";
 
+const {ipcRenderer} = require('electron')
+
 let debugstyle = {};
 debugstyle.header = "font-weight:bold";
 debugstyle.map = "color:grey";
@@ -17,16 +19,17 @@ debugstyle.schedules = "color:purple";
 debugstyle.all = "color:black";
 debugstyle.new = "color:black";
 
-const {ipcRenderer} = require('electron');
-
 ipcRenderer.on('sendDebug', function(event, txt) {
   if (txt.cat === "new") {
     let newtmp = document.createElement('div');
     newtmp.innerHTML = "<span id='DB"+txt.sid+"'></span>";
     document.getElementById('debugdiv').appendChild(newtmp);
   }
+  let addstyle = "";
+  if (!txt.samemap) { addstyle = ", bgcolor: LightPink"; }
+  if (txt.watched) { addstyle = ", bgcolor: DeepSkyBlue"; }
   let tmpchild = document.createElement('p');
-  tmpchild.innerHTML = "<span style='" + debugstyle[txt.cat] + "'>" + txt.html + "</span>";
+  tmpchild.innerHTML = "<span style='" + debugstyle[txt.cat] + addstyle + "'>" + txt.html + "</span>";
   let dbdiv = document.getElementById('DB'+txt.sid);
   if (dbdiv) {
     dbdiv.appendChild(tmpchild);
