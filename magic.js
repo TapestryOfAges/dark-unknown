@@ -2308,7 +2308,6 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
   let loc = caster.getHomeMap().getTile(caster.getx(), caster.gety());
   let shrine = loc.getTopFeature();
   if ((shrine) && (shrine.gotomap)) {
-    let belowgraphic = shrine.getGraphicArray();
     if (shrine.getName() === "Shrine") {
       if (shrine.hasOwnProperty("gotomap")) {
         DU.maps.addMap(shrine.gotomap);
@@ -2320,7 +2319,7 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
           DebugWrite("magic", "Spent " + mana + " mana.<br />");
         }    
         PlayCastSound(caster,"sfx_teleport");
-        TravelByMoongate(caster,"blue",belowgraphic,belowgraphic, destmap, shrine.gotox, shrine.gotoy);
+        TravelByMoongate(caster,"blue", destmap, shrine.gotox, shrine.gotoy);
       } else {
         maintext.addText("The gateway seems incomplete. The spell will not work until there is another gate linked to this one.");
         resp["fin"] = 1;
@@ -2330,7 +2329,7 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
         DU.maps.addMap(shrine.gotomap);
         let destmap = DU.maps.getMap(shrine.gotomap);
         PlayCastSound(caster,"sfx_teleport");
-        TravelByMoongate(caster,"blue",belowgraphic,belowgraphic, destmap, shrine.gotox, shrine.gotoy);
+        TravelByMoongate(caster,"blue", destmap, shrine.gotox, shrine.gotoy);
         if (!free) {
           free = 0;
           let mana = this.getManaCost(infused);
@@ -2678,28 +2677,8 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infus
   
   if (returndest.map) {
     let destmap = DU.maps.getMap(returndest.map);
-    let localacre = castermap.getTile(caster.getx(), caster.gety());
-    let displaytile = localacre.getTop(1);
-    while (displaytile.getName() === "SeeBelow") {
-      let retval = FindBelow(x,y,mapname);
-      localacre = retval.tile;
-      mapname = retval.map;
-      displaytile = localacre.getTop();
-    }  
-    let graphics = displaytile.getGraphicArray();
-    let showGraphic = graphics[0];
-    if (typeof displaytile.setBySurround === "function") {
-     	graphics = displaytile.setBySurround(x,y,mapname,graphics,1,centerx,centery,losresult);
-      showGraphic = graphics[0];
-      if (typeof displaytile.doTile === "function") {
-        graphics[0] = displaytile.doTile(x,y,showGraphic);
-      }
-    }
-    
-    let destacre = destmap.getTile(returndest.x, returndest.y);
-    let desttile = destacre.getTop();
     PlayCastSound(caster,"sfx_teleport");  
-    TravelByMoongate(caster,"blue",graphics,desttile.getGraphicArray(), destmap, returndest.x, returndest.y);
+    TravelByMoongate(caster,"blue", destmap, returndest.x, returndest.y);
     resp["fin"] = 3;
   } else {
     maintext.addText("The spell sputters as the distances are too great.");
@@ -3845,7 +3824,7 @@ magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].executeSpell = function(caster,
   return resp;
 }
 
-function TravelByMoongate(who, color, belowgraphic, destbelow, destmap, destx, desty) {
+function TravelByMoongate(who, color, destmap, destx, desty) {
   let tol = 300;
   let graphicarray = [];
   graphicarray[0] = "moongates.gif";
@@ -3875,11 +3854,10 @@ function TravelByMoongate(who, color, belowgraphic, destbelow, destmap, destx, d
           who.setGraphicArray(graphicarray);
           DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
           setTimeout(function() {
-            who.setGraphicArray(belowgraphic);
+            who.setGraphicArray(["spacer.gif","spacer.gif",0,0]);
             DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
             setTimeout(function() {
               MoveBetweenMaps(who,who.getHomeMap(), destmap, destx, desty);
-              who.setGraphicArray(destbelow);
               DrawMainFrame("draw", who.getHomeMap(), who.getx(), who.gety());
               setTimeout(function() {
                 who.setGraphicArray(graphicarray);
@@ -3904,8 +3882,7 @@ function TravelByMoongate(who, color, belowgraphic, destbelow, destmap, destx, d
                           who.setGraphicArray(oldgraphic);
                           DrawMainFrame("one", who.getHomeMap(), who.getx(), who.gety());
                           DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");  
-                          who.endTurn();  // currently only PC has endturn
-                                          // if an NPC spell can use this function, add an endturn to NPCs
+                          who.endTurn();  
                         }, tol);
                       }, tol);
                     }, tol);
