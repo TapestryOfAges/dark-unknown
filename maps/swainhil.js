@@ -513,11 +513,13 @@ mappages["swainhil"].linkedMaps = ["swainhil2","swainhil3"];
 mappages["swainhil"].editorLabels = '{"div_tile52x8":"Severyn","div_tile25x15":"Dale","div_tile38x8":"Mandy","div_tile18x8":"Isaac","div_tile26x8":"Ian and Carey","div_tile45x8":"Elaine"}';
 
 mappages["swainhil"].add_pheran = function(mapref) {
-  if (!DU.gameflags.getFlag("added_pheran")) {
-    let worldmap = maps.getMap("darkunknown");
-    let hc = localFactory.createTile("HotelPheran");
-    worldmap.placeThing(115,84,hc);
-    DU.gameflags.setFlag("added_pheran",1);
+  mapref.Enter = function() {
+    if (!DU.gameflags.getFlag("added_pheran")) {
+      let worldmap = maps.getMap("darkunknown");
+      let hc = localFactory.createTile("HotelPheran");
+      worldmap.placeThing(115,84,hc);
+      DU.gameflags.setFlag("added_pheran",1);
+    }
   }
 }
 
