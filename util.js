@@ -64,10 +64,12 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
 	let tile = tomap.getTile(destx,desty);
   let oldtile = frommap.getTile(oldx,oldy);
     
-  if (PC.getHomeMap() === frommap) {
-    DrawMainFrame("one",frommap,oldx,oldy);
-  } else if ((who !== PC) && (PC.getHomeMap() === tomap)) {
-    DrawMainFrame("one",tomap,destx,desty);
+  if (who !== PC) {
+    if (PC.getHomeMap() === frommap) {
+      DrawMainFrame("one",frommap,oldx,oldy);
+    } else if ((who !== PC) && (PC.getHomeMap() === tomap)) {
+      DrawMainFrame("one",tomap,destx,desty);
+    }
   }
   
 	// Remove unneeded maps from mapmemory
