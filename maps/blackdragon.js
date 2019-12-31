@@ -276,8 +276,8 @@ mappages["blackdragon"].onload = function(mapref) {
   }
 }
 
-mappages["blackdragon"].maps_exit = function() {
-  this.Exit = function(who,tomap,fromx,fromy,tox,toy) {
+mappages["blackdragon"].maps_exit = function(mapref) {
+  mapref.Exit = function(who,tomap,fromx,fromy,tox,toy) {
     DU.gameflags.deleteFlag("bdc_gate_open");
   }
 }
