@@ -43,7 +43,7 @@ function MoveBetweenMaps(who,frommap,tomap,destx,desty,overridetests) {
   // determine time scale for this move
   if ((frommap.getScale()) || tomap.getScale()) { who.smallscalemove = 1; }
 
-  if ((who !== PC) && (!tomap.getScale())) {
+  if ((who !== PC) && (!tomap.getScale()) && (who.getCurrentAI() !== "scheduled") && (who.getCurrentAI() !== "segment")) {
     // a non-PC is fleeing to a world map. Delete instead.
     frommap.deleteThing(who);
     DrawMainFrame("one",frommap,oldx,oldy);
