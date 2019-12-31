@@ -4143,8 +4143,10 @@ function HotelPheranTile() {
 HotelPheranTile.prototype = new FeatureObject();
 
 HotelPheranTile.prototype.activate = function() {
-  let NPCevent = new GameEvent(this);
-  DUTime.addAtTimeInterval(NPCevent,1);
+  if (gamestate.getMode() !== "loadgame") {
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,1);
+  }
 }
 
 HotelPheranTile.prototype.myTurn = function() {
@@ -11241,7 +11243,7 @@ function MapsAndLegendsTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Maps and Legends";
   this.prefix = "";
-  this.contents = "You flip through the pages and find a chapter on magical phenomenon.%%Searching, you find the section you seek:%%<span class='conv'>\"The Brilliant Pool\"</span>%%<span class='conv'>Once, this mythical place was considered the source of all magic.</span>%%<span class='conv'>Now, it is known that magic's power is drawn from the ethereal plane, and it is not known whether the Brilliant Pool ever truly existed, or still exists.</span>%%<span class='conv'>Another story has it that it is a star, misplaced on our plane, its power too great for any mortal to harness directly.</span>%%You close the book.";
+  this.contents = "You flip through the pages and find a chapter on magical phenomenon.%%Searching, you find the section you seek:%%<span class='conv'>\"The Brilliant Pool\"</span>%%<span class='conv'>Once, this mythical place was considered the source of all magic.</span>%%<span class='conv'>Now, it is known that magic's power is drawn from the ethereal plane, and it is not known whether the Brilliant Pool ever truly existed, or still exists.</span>%%<span class='conv'>Another story has it that it is a star, misplaced on our plane, its power too great for any mortal to harness directly.</span>%%Seeing nothing more of use, you close the book.";
   this.longdesc = "The book <i>Maps and Legends</i>. Within are described many rumored and legendary phenomenon.";
 }
 MapsAndLegendsTile.prototype = new BookItemObject();
