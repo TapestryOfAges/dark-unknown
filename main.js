@@ -1084,7 +1084,6 @@ function DoAction(code, ctrl) {
         targetCursor.buyqty = buyqty;
       } else if ((merinv.stock[idx].price * parseInt(buyqty)) <= PC.getGold()) {
         maintext.addText(merinv.stock[idx].sale);
-        let idx = targetCursor.buychoice;
         let newitem = localFactory.createTile(merinv.stock[idx].item);
         if (merinv.stock[idx].quantity != 99) { merinv.stock[idx].quantity = merinv.stock[idx].quantity - buyqty; }
         PC.addGold(-(merinv.stock[idx].price * buyqty));
