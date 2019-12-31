@@ -1459,7 +1459,7 @@ function PerformTalkTarget() {
       DrawCharFrame();
       retval = PerformTalk(top, convo, "_level");
     } else {
-      maintext.addText('<span class="conv">"Hail, ' + PC.getPCName() + '! You have made great progress, but you cannot advance without the =Rune=!."</span>');
+      maintext.addText('<span class="conv">"Hail, ' + PC.getPCName() + '! You have made great progress, but you cannot advance without the <span style=\'color:cyan\'>Rune</span>!"</span>');
       retval = PerformTalk(top, convo, "_level");
     }
   } else {
