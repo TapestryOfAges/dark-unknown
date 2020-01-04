@@ -99,6 +99,7 @@ ProtoObject.prototype.copy = function(type) {
       // both have a function. Assuming they're the same, not worth caring
     } else if (typeof val === "function") {  // real one has a function base one does not
       alert("Function on " + copydata.name + ": " + idx);
+      console.log(this);
     }
     else if (typeof val !== "object") { 
       if (val != base_version[idx]) {
@@ -7533,6 +7534,117 @@ WalkOnHC7Tile.prototype.walkon = function(walker) {
   return retval;
 }
 
+function WalkOnNoGalaxyTile() {
+	this.name = "WalkOnNoGalaxy";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnNoGalaxyTile.prototype = new FeatureObject();
+
+WalkOnNoGalaxyTile.prototype.walkon = function(walker) {
+  if (walker === PC) {
+    let mymap = walker.getHomeMap();
+    mymap.setBackground("");
+  
+    let normalsong = mymap.getMusic();
+    if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== normalsong)) {
+      DUPlayMusic(normalsong, {fade:1});
+    }
+    DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
+    return {msg:""};
+  }
+}
+
+function WalkOnGalaxy1Tile() {
+	this.name = "WalkOnGalaxy1";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnGalaxy1Tile.prototype = new FeatureObject();
+
+WalkOnGalaxy1Tile.prototype.walkon = function(walker) {
+  if (walker === PC) {
+    let mymap = walker.getHomeMap();
+    mymap.setBackground("ether.gif");
+    mymap.setOpacity(.2);
+  
+     let song = "Sirius";
+     if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
+      DUPlayMusic(song, {fade:1});
+    }
+    DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
+    return {msg:""};
+  }
+}
+
+function WalkOnGalaxy2Tile() {
+	this.name = "WalkOnGalaxy2";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnGalaxy2Tile.prototype = new FeatureObject();
+
+WalkOnGalaxy2Tile.prototype.walkon = function(walker) {
+  if (walker === PC) {
+    let mymap = walker.getHomeMap();
+    mymap.setBackground("ether.gif");
+    mymap.setOpacity(.5);
+  
+    let song = "Sirius";
+    if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
+     DUPlayMusic(song, {fade:1});
+    }
+    DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
+    return {msg:""};
+  }
+}
+
+function WalkOnGalaxy3Tile() {
+	this.name = "WalkOnGalaxy3";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnGalaxy3Tile.prototype = new FeatureObject();
+
+WalkOnGalaxy3Tile.prototype.walkon = function(walker) {
+  if (walker === PC) {
+    let mymap = walker.getHomeMap();
+    mymap.setBackground("ether.gif");
+    mymap.setOpacity(.8);
+  
+    let song = "Sirius";
+    if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
+      DUPlayMusic(song, {fade:1});
+    }
+    DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
+    return {msg:""};
+  }
+}
+
 function SpinnerTile() {
   this.name = "Spinner";
 	this.graphic = "walkon.gif";
@@ -11321,8 +11433,8 @@ ToshinJournalTile.prototype = new BookItemObject();
 function AdelusLetterTile() {
   this.name = "AdelusLetter";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-288";
-  this.spritexoffset = "-1184";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1184";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "letter";
@@ -11335,8 +11447,8 @@ AdelusLetterTile.prototype = new BookItemObject();
 function LanceRuneNotesTile() {
   this.name = "LanceRuneNotes";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-256";
-  this.spritexoffset = "-1248";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -12771,7 +12883,7 @@ function AudachtaNemesosObject() {
 AudachtaNemesosObject.prototype = new ConsumableItemObject();
 
 AudachtaNemesosObject.prototype.getLongDesc = function() {
-  let spellname = magic[spelllevel][spellnum].getName();
+  let spellname = magic[this.spelllevel][this.spellnum].getName();
   return "Audachta Nemesos: " + spellname + ". A book that teaches the spell " + spellname + " when the spell Audachta Scribe is cast upon the book.";
 }
 
