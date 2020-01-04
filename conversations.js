@@ -682,6 +682,17 @@ OnConvTriggers["start_courier"] = function(speaker,keyword) {
   }
 }
 
+OnConvTriggers["teach_illusion"] = function(speaker,keyword) {
+  if (DU.gameflags.getFlag("spellbook") && (PC.getLevel() >= 2) && (!PC.knowsSpell(SPELL_ILLUSION_LEVEL,SPELL_ILLUSION_ID))) {
+    maintext.addText("Sirius teaches you Illusion!");
+    PC.addSpell(SPELL_ILLUSION_LEVEL,SPELL_ILLUSION_ID);
+  } else if (!DU.gameflags.getFlag("spellbook")) {
+    maintext.addText('"Alas, you will need a spellbook, to properly learn."');
+  } else if (PC.getLevel() === 1) {
+    maintext.addText('"Alas, you may not yet be strong enough. Return when you have grown stronger!"');
+  }
+}
+
 OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("jharden_teaches");
   DU.gameflags.deleteFlag("jharden_newspell");
