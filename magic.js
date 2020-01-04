@@ -351,8 +351,7 @@ magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID].executeSpell = func
 
   resp["txt"] = "";
   resp["input"] = "&gt; Cast Audachta Scribe on: ";
-  resp["fin"] = 3;	
-  gamestate.setMode("zstats");
+  resp["fin"] = 4;	
   return resp;
 }
 
