@@ -3131,7 +3131,12 @@ function DisplayInventory(restrictTo) {
       document.getElementById('inv_name').innerHTML += " (" + inventorylist[invselect].getQuantity() + ")"; 
     }
     document.getElementById('inv_desc').innerHTML = inventorylist[invselect].getLongDesc();
-    document.getElementById('inv_use').innerHTML = "Use: " + inventorylist[invselect].getUseDesc();
+    let usedesc = inventorylist[invselect].getUseDesc();
+    if (usedesc) {
+      document.getElementById('inv_use').innerHTML = "Use: " + usedesc;
+    } else {
+      document.getElementById('inv_use').innerHTML = "";
+    }
   } else {
     document.getElementById("inv_"+writetox+"x"+writetoy).style.borderColor = "#ffffff";
   }
