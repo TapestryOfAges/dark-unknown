@@ -519,6 +519,8 @@ mappages["swainhil"].add_pheran = function(mapref) {
       let hc = localFactory.createTile("HotelPheran");
       worldmap.placeThing(115,84,hc);
       DU.gameflags.setFlag("added_pheran",1);
+
+      Listener.createListener("SimonHarp", "Harpsichord Plays", [], "swainhil");
     }
   }
 }
@@ -784,34 +786,34 @@ mappages["swainhil3"].terrain[59] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb s
 mappages["swainhil3"].features = [];
 mappages["swainhil3"].features[0] = {name : 'StairDown2', x : 43, y : 49, entermap : 'swainhil2', enterx : 43, entery : 49};
 mappages["swainhil3"].features[1] = {name : 'Door', x : 40, y : 45};
-mappages["swainhil3"].features[2] = {name : 'WalkOn', x : 41, y : 45, walkonscript : 'nogalaxy'};
-mappages["swainhil3"].features[3] = {name : 'WalkOn', x : 37, y : 41, walkonscript : 'galaxy2'};
-mappages["swainhil3"].features[4] = {name : 'WalkOn', x : 37, y : 42, walkonscript : 'galaxy2'};
-mappages["swainhil3"].features[5] = {name : 'WalkOn', x : 37, y : 43, walkonscript : 'galaxy2'};
-mappages["swainhil3"].features[6] = {name : 'WalkOn', x : 37, y : 44, walkonscript : 'galaxy2'};
-mappages["swainhil3"].features[7] = {name : 'WalkOn', x : 37, y : 45, walkonscript : 'galaxy2'};
-mappages["swainhil3"].features[8] = {name : 'WalkOn', x : 37, y : 46, walkonscript : 'galaxy2'};
-mappages["swainhil3"].features[9] = {name : 'WalkOn', x : 37, y : 47, walkonscript : 'galaxy2'};
-mappages["swainhil3"].features[10] = {name : 'WalkOn', x : 37, y : 48, walkonscript : 'galaxy2'};
-mappages["swainhil3"].features[11] = {name : 'WalkOn', x : 37, y : 49, walkonscript : 'galaxy2'};
-mappages["swainhil3"].features[12] = {name : 'WalkOn', x : 38, y : 41, walkonscript : 'galaxy1'};
-mappages["swainhil3"].features[13] = {name : 'WalkOn', x : 38, y : 42, walkonscript : 'galaxy1'};
-mappages["swainhil3"].features[14] = {name : 'WalkOn', x : 38, y : 43, walkonscript : 'galaxy1'};
-mappages["swainhil3"].features[15] = {name : 'WalkOn', x : 38, y : 44, walkonscript : 'galaxy1'};
-mappages["swainhil3"].features[16] = {name : 'WalkOn', x : 38, y : 45, walkonscript : 'galaxy1'};
-mappages["swainhil3"].features[17] = {name : 'WalkOn', x : 38, y : 46, walkonscript : 'galaxy1'};
-mappages["swainhil3"].features[18] = {name : 'WalkOn', x : 38, y : 47, walkonscript : 'galaxy1'};
-mappages["swainhil3"].features[19] = {name : 'WalkOn', x : 38, y : 48, walkonscript : 'galaxy1'};
-mappages["swainhil3"].features[20] = {name : 'WalkOn', x : 38, y : 49, walkonscript : 'galaxy1'};
-mappages["swainhil3"].features[21] = {name : 'WalkOn', x : 36, y : 41, walkonscript : 'galaxy3'};
-mappages["swainhil3"].features[22] = {name : 'WalkOn', x : 36, y : 42, walkonscript : 'galaxy3'};
-mappages["swainhil3"].features[23] = {name : 'WalkOn', x : 36, y : 43, walkonscript : 'galaxy3'};
-mappages["swainhil3"].features[24] = {name : 'WalkOn', x : 36, y : 44, walkonscript : 'galaxy3'};
-mappages["swainhil3"].features[25] = {name : 'WalkOn', x : 36, y : 45, walkonscript : 'galaxy3'};
-mappages["swainhil3"].features[26] = {name : 'WalkOn', x : 36, y : 46, walkonscript : 'galaxy3'};
-mappages["swainhil3"].features[27] = {name : 'WalkOn', x : 36, y : 47, walkonscript : 'galaxy3'};
-mappages["swainhil3"].features[28] = {name : 'WalkOn', x : 36, y : 48, walkonscript : 'galaxy3'};
-mappages["swainhil3"].features[29] = {name : 'WalkOn', x : 36, y : 49, walkonscript : 'galaxy3'};
+mappages["swainhil3"].features[2] = {name : 'WalkOnNoGalaxy', x : 41, y : 45};
+mappages["swainhil3"].features[3] = {name : 'WalkOnGalaxy2', x : 37, y : 41};
+mappages["swainhil3"].features[4] = {name : 'WalkOnGalaxy2', x : 37, y : 42};
+mappages["swainhil3"].features[5] = {name : 'WalkOnGalaxy2', x : 37, y : 43};
+mappages["swainhil3"].features[6] = {name : 'WalkOnGalaxy2', x : 37, y : 44};
+mappages["swainhil3"].features[7] = {name : 'WalkOnGalaxy2', x : 37, y : 45};
+mappages["swainhil3"].features[8] = {name : 'WalkOnGalaxy2', x : 37, y : 46};
+mappages["swainhil3"].features[9] = {name : 'WalkOnGalaxy2', x : 37, y : 47};
+mappages["swainhil3"].features[10] = {name : 'WalkOnGalaxy2', x : 37, y : 48};
+mappages["swainhil3"].features[11] = {name : 'WalkOnGalaxy2', x : 37, y : 49};
+mappages["swainhil3"].features[12] = {name : 'WalkOnGalaxy1', x : 38, y : 41};
+mappages["swainhil3"].features[13] = {name : 'WalkOnGalaxy1', x : 38, y : 42};
+mappages["swainhil3"].features[14] = {name : 'WalkOnGalaxy1', x : 38, y : 43};
+mappages["swainhil3"].features[15] = {name : 'WalkOnGalaxy1', x : 38, y : 44};
+mappages["swainhil3"].features[16] = {name : 'WalkOnGalaxy1', x : 38, y : 45};
+mappages["swainhil3"].features[17] = {name : 'WalkOnGalaxy1', x : 38, y : 46};
+mappages["swainhil3"].features[18] = {name : 'WalkOnGalaxy1', x : 38, y : 47};
+mappages["swainhil3"].features[19] = {name : 'WalkOnGalaxy1', x : 38, y : 48};
+mappages["swainhil3"].features[20] = {name : 'WalkOnGalaxy1', x : 38, y : 49};
+mappages["swainhil3"].features[21] = {name : 'WalkOnGalaxy3', x : 36, y : 41};
+mappages["swainhil3"].features[22] = {name : 'WalkOnGalaxy3', x : 36, y : 42};
+mappages["swainhil3"].features[23] = {name : 'WalkOnGalaxy3', x : 36, y : 43};
+mappages["swainhil3"].features[24] = {name : 'WalkOnGalaxy3', x : 36, y : 44};
+mappages["swainhil3"].features[25] = {name : 'WalkOnGalaxy3', x : 36, y : 45};
+mappages["swainhil3"].features[26] = {name : 'WalkOnGalaxy3', x : 36, y : 46};
+mappages["swainhil3"].features[27] = {name : 'WalkOnGalaxy3', x : 36, y : 47};
+mappages["swainhil3"].features[28] = {name : 'WalkOnGalaxy3', x : 36, y : 48};
+mappages["swainhil3"].features[29] = {name : 'WalkOnGalaxy3', x : 36, y : 49};
 mappages["swainhil3"].features[30] = {name : 'Door', x : 42, y : 44, desc : "locked door", locked : 1};
 mappages["swainhil3"].features[31] = {name : 'BedHead', x : 41, y : 41};
 mappages["swainhil3"].features[32] = {name : 'BedFoot', x : 42, y : 41};
@@ -874,74 +876,3 @@ mappages["swainhil3"].returninfused = '0';
 mappages["swainhil3"].linkedMaps = ["swainhil","swainhil2"];
 mappages["swainhil3"].editorLabels = '{}';
 
-
-mappages["swainhil3"].nogalaxy = function(feature) {
-  feature.walkon = function(walker) {
-    if (walker === PC) {
-      let mymap = walker.getHomeMap();
-      mymap.setBackground("");
-    
-      let normalsong = mymap.getMusic();
-      if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== normalsong)) {
-//        StopMusic(nowplaying);
-        DUPlayMusic(normalsong);
-      }
-      DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
-      return;
-    }
-  }
-}
-
-mappages["swainhil3"].galaxy1 = function(feature) {
-  feature.walkon = function(walker) {
-    if (walker === PC) {
-      let mymap = walker.getHomeMap();
-      mymap.setBackground("ether.gif");
-      mymap.setOpacity(.2);
-    
-       let song = "Sirius";
-       if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
-//        StopMusic(nowplaying);
-        DUPlayMusic(song);
-      }
-      DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
-      return;
-    }
-  }
-}
-
-mappages["swainhil3"].galaxy2 = function(feature) {
-  feature.walkon = function(walker) {
-    if (walker === PC) {
-      let mymap = walker.getHomeMap();
-      mymap.setBackground("ether.gif");
-      mymap.setOpacity(.5);
-    
-      let song = "Sirius";
-      if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
-//        StopMusic(nowplaying);
-       DUPlayMusic(song);
-      }
-      DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
-      return;
-    }
-  }
-}
-
-mappages["swainhil3"].galaxy3 = function(feature) {
-  feature.walkon = function(walker) {
-    if (walker === PC) {
-      let mymap = walker.getHomeMap();
-      mymap.setBackground("ether.gif");
-      mymap.setOpacity(.8);
-    
-      let song = "Sirius";
-      if (DU.gameflags.getFlag("music") && nowplaying.name && (nowplaying.name !== song)) {
-//        StopMusic(nowplaying);
-        DUPlayMusic(song);
-      }
-      DrawMainFrame("draw",mymap,walker.getx(),walker.gety());
-      return;
-    }
-  }
-}
