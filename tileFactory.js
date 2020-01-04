@@ -1613,6 +1613,26 @@ tileFactory.prototype.makeWalkOnHC7Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnNoGalaxyTile = function() {
+  let newTile = new WalkOnNoGalaxyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnGalaxy1Tile = function() {
+  let newTile = new WalkOnGalaxy1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnGalaxy2Tile = function() {
+  let newTile = new WalkOnGalaxy2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWalkOnGalaxy3Tile = function() {
+  let newTile = new WalkOnGalaxy3Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpinnerTile = function() {
   let newTile = new SpinnerTile();
   return newTile;
