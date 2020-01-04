@@ -150,3 +150,22 @@ EventFunctions["BDragon"] = function(ev) {
     }
   }
 }
+
+EventFunctions["SimonHarp"] = function(ev) {
+  let shmap = ev.source.getHomeMap();
+  if (shmap.getName() === "swainhil") {
+    let npcs = shmap.npcs.getAll();
+    let simon;
+    let guards = [];
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getNPCName() === "Simon") { simon = npcs[i]; }
+    }
+    if (IsVisibleOnScreen(simon)) {
+      if (DU.gameflags.getFlag("bard_simon_ask") && !DU.gameflags.getFlag("bard_simon_played")) {
+        DU.gameflags.setFlag("bard_simon_played", 1);
+        maintext.delayedAddText('Simon smiles wildly. "Well done! Well played, indeed. Surely, you will be a fine addition to the bards."');
+      }
+    }
+  }
+}
+
