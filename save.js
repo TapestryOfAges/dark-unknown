@@ -318,6 +318,7 @@ GameStateData.prototype.loadGame = function(idx) {
   DUTime.setGameClock(savedata.time);
   DU.gameflags = new Gameflags();
   ExtendObject(true,DU.gameflags,savedata.gameflags);
+  Listener = new DUListener();
   
   nowplaying = {};  
   ambient = {};  
