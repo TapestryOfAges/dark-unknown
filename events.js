@@ -126,7 +126,7 @@ EventFunctions["BDragon"] = function(ev) {
       if (npcs[i].getNPCName() === "Justice") { justice = npcs[i]; }
       if (npcs[i].getNPCName() === "Black Dragon") { dragon = npcs[i]; }
     }
-    if (IsVisibleOnScreen(prince)) {
+    if (IsObjectVisibleOnScreen(prince)) {
       maintext.delayedAddText("There is a heartbeat where nothing moves and the air stills, and then Lance's eyes roll back in his head and he collapses unconscious.");
       maintext.delayedAddText('The dragon looks at him, and then at you. "How disappointing."');
       maintext.delayedAddText('Then, it roars and lunges at you!');
@@ -160,7 +160,7 @@ EventFunctions["SimonHarp"] = function(ev) {
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Simon") { simon = npcs[i]; }
     }
-    if (IsVisibleOnScreen(simon)) {
+    if (simon && IsObjectVisibleOnScreen(simon)) {
       if (DU.gameflags.getFlag("bard_simon_ask") && !DU.gameflags.getFlag("bard_simon_played")) {
         DU.gameflags.setFlag("bard_simon_played", 1);
         maintext.delayedAddText('Simon smiles wildly. "Well done! Well played, indeed. Surely, you will be a fine addition to the bards."');

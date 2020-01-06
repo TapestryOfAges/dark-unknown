@@ -2258,7 +2258,7 @@ ais.ai_sing = function(who) {
       let tmpbark = `${desc} looks healthier.`;
       tmpbark = tmpbark.charAt(0).toUpperCase() + tmpbark.slice(1);
       mybark += `<br />${tmpbark}`;
-      if (IsVisibleOnScreen(who)) {
+      if (IsObjectVisibleOnScreen(who)) {
         maintext.addText(mybark);
       }
       return "special";
