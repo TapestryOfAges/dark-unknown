@@ -168,92 +168,44 @@ mappages["pitdespair1"].editorLabels = '{}';
 mappages["pitdespair1"].onload = function(mapref) {
     
   if (gamestate.getMode() !== "loadgame") {
-
-    let ports = [];
-    let doortile = mapref.getTile(11,24);
-    ports[0] = doortile.getTopFeature();
-    doortile = mapref.getTile(15,24);
-    ports[1] = doortile.getTopFeature();
-    doortile = mapref.getTile(15,28);
-    ports[2] = doortile.getTopFeature();
-    doortile = mapref.getTile(21,36);
-    ports[3] = doortile.getTopFeature();
-    doortile = mapref.getTile(29,29);
-    ports[4] = doortile.getTopFeature();
-    doortile = mapref.getTile(25,20);
-    ports[5] = doortile.getTopFeature();
-
-    for (let i=0;i<ports.length;i++) {
-      ports[i].setGraphicArray(["055.gif", "wall-arch.gif", 0, 0]);
-			
-			ports[i].closedLOS = ports[i].getBlocksLOSArray();
-			let seethru = [];
-			seethru[0] = 0;
-			ports[i].setBlocksLOSArray(seethru);
-			
-			ports[i].addPassable(MOVE_WALK);
-      ports[i].open = 1;
-    }
     
-    doortile = mapref.getTile(18,11);
-    let lever = doortile.getTopFeature();
+    let lever = mapref.getTile(18,11).getTopFeature();
     lever.attached = { x: 11, y:9 };
-    doortile = mapref.getTile(18,12);
-    lever = doortile.getTopFeature();
+    lever = mapref.getTile(18,12).getTopFeature();
     lever.attached = { x: 11, y:14 };
-    doortile = mapref.getTile(18,13);
-    lever = doortile.getTopFeature();
+    lever = mapref.getTile(18,13).getTopFeature();
     lever.attached = { x: 11, y:24 };
-    lever.graphic = "switch-on.gif";
-    lever.overlay = "switch-on.gif";
-    doortile = mapref.getTile(18,14);
-    lever = doortile.getTopFeature();
+    lever.use();
+    lever = mapref.getTile(18,14).getTopFeature();
     lever.attached = { x: 15, y:24 };
-    doortile = mapref.getTile(18,15);
-    lever = doortile.getTopFeature();
+    lever.use();
+    lever = mapref.getTile(18,15).getTopFeature();
     lever.attached = { x: 11, y:31 };
-    lever.graphic = "switch-on.gif";
-    lever.overlay = "switch-on.gif";
-    doortile = mapref.getTile(18,16);
-    lever = doortile.getTopFeature();
+    lever = mapref.getTile(18,16).getTopFeature();
     lever.attached = { x: 15, y:28 };
-    lever.graphic = "switch-on.gif";
-    lever.overlay = "switch-on.gif";
-    doortile = mapref.getTile(18,17);
-    lever = doortile.getTopFeature();
+    lever.use();
+    lever = mapref.getTile(18,17).getTopFeature();
     lever.attached = { x: 21, y:36 };
-    doortile = mapref.getTile(20,17);
-    lever = doortile.getTopFeature();
+    lever.use();
+    lever = mapref.getTile(20,17).getTopFeature();
     lever.attached = { x: 27, y:36 };
-    lever.graphic = "switch-on.gif";
-    lever.overlay = "switch-on.gif";
-    doortile = mapref.getTile(22,17);
-    lever = doortile.getTopFeature();
+    lever = mapref.getTile(22,17).getTopFeature();
     lever.attached = { x: 25, y:29 };
-    doortile = mapref.getTile(22,16);
-    lever = doortile.getTopFeature();
+    lever = mapref.getTile(22,16).getTopFeature();
     lever.attached = { x: 29, y:29 };
-    doortile = mapref.getTile(22,15);
-    lever = doortile.getTopFeature();
+    lever.use();
+    lever = mapref.getTile(22,15).getTopFeature();
     lever.attached = { x: 25, y:24 };
-    lever.graphic = "switch-on.gif";
-    lever.overlay = "switch-on.gif";
-    doortile = mapref.getTile(22,14);
-    lever = doortile.getTopFeature();
+    lever = mapref.getTile(22,14).getTopFeature();
     lever.attached = { x: 29, y:24 };
-    doortile = mapref.getTile(22,13);
-    lever = doortile.getTopFeature();
+    lever = mapref.getTile(22,13).getTopFeature();
     lever.attached = { x: 25, y:20 };
-    doortile = mapref.getTile(22,12);
-    lever = doortile.getTopFeature();
+    lever.use();
+    lever = mapref.getTile(22,12).getTopFeature();
     lever.attached = { x: 29, y:20 };
-    lever.graphic = "switch-on.gif";
-    lever.overlay = "switch-on.gif";
-    doortile = mapref.getTile(22,11);
-    lever = doortile.getTopFeature();
+    lever = mapref.getTile(22,11).getTopFeature();
     lever.attached = { x: 29, y:14 };
-    doortile = mapref.getTile(22,10);
-    lever = doortile.getTopFeature();
+    lever = mapref.getTile(22,10).getTopFeature();
     lever.attached = { x: 29, y:9 };
     
   }
@@ -359,7 +311,7 @@ mappages["pitdespair2"].features[28] = {name : 'Well', x : 21, y : 21};
 mappages["pitdespair2"].features[29] = {name : 'StoneDoorway', x : 20, y : 34};
 mappages["pitdespair2"].features[30] = {name : 'StonePortcullis', x : 37, y : 19, locked : 1};
 mappages["pitdespair2"].features[31] = {name : 'StonePortcullis', x : 38, y : 43, locked : 1};
-mappages["pitdespair2"].features[32] = {name : 'Door', x : 24, y : 46, desc : "locked door", locked : 1};
+mappages["pitdespair2"].features[32] = {name : 'Door', x : 24, y : 46, desc : "locked door", locked : 1, keyname : "PitOfDespairKey"};
 mappages["pitdespair2"].features[33] = {name : 'PitTeleporterPlatform', x : 10, y : 43};
 
 
@@ -390,6 +342,15 @@ mappages["pitdespair2"].returny = '76';
 mappages["pitdespair2"].returninfused = '0';
 mappages["pitdespair2"].linkedMaps = ["pitdespair1","pitdespair3","pitdespair4"];
 
+mappages["pitdespair1"].onload = function(mapref) {
+    
+  if (gamestate.getMode() !== "loadgame") {
+    mapref.getHomeMap().getTile(46,28).getTopFeature().setDestination({map:"pitdespair2", x:10, y:43});
+    mapref.getHomeMap().getTile(10,43).getTopFeature().setDestination({map:"pitdespair2", x:46, y:28});
+    mapref.getHomeMap().getTile(48,42).getTopFeature().setDestination({map:"pitdespair2", x:53, y:35});
+    mapref.getHomeMap().getTile(53,35).getTopFeature().setDestination({map:"pitdespair2", x:48, y:42});
+  }
+}
 
 function CheckLasers(themap) {
   // Always with the lasers!
@@ -495,22 +456,22 @@ mappages["pitdespair3"].terrain[11] = 'BK BK BK BK BK BK cw cf cf cf cf cf cf cf
 mappages["pitdespair3"].terrain[12] = 'BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK';
 mappages["pitdespair3"].terrain[13] = 'BK BK BK BK BK BK BK cw cf cf cf cf cw cw cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
 mappages["pitdespair3"].terrain[14] = 'BK BK BK BK BK BK BK cw cw cw cw cw cw BK BK cw cw cw cw cw cf cf cf cf cw cw BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cw BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cw BK BK BK BK BK BK';
 mappages["pitdespair3"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cf cf cf cf cw BK BK BK BK BK BK';
 mappages["pitdespair3"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK';
 mappages["pitdespair3"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cf cf cf cw cw cw cw cw BK BK BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[20] = 'BK BK BK BK BK BK BK BK cw cw cw cw cf cf cf cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[21] = 'BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[22] = 'BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[23] = 'BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[24] = 'BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[25] = 'BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[26] = 'BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[27] = 'BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[28] = 'BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[29] = 'BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK';
-mappages["pitdespair3"].terrain[30] = 'BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cw cw cw cw cw BK BK BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK';
+mappages["pitdespair3"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK';
 mappages["pitdespair3"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK';
 mappages["pitdespair3"].terrain[32] = 'BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cw cw cw cw cf cf cf cw cw BK BK BK BK BK BK BK';
 mappages["pitdespair3"].terrain[33] = 'BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw cw BK BK cw cw cf cf cw BK BK BK BK BK BK BK BK';
@@ -547,40 +508,50 @@ mappages["pitdespair3"].terrain[63] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 
 mappages["pitdespair3"].features = [];
 mappages["pitdespair3"].features[0] = {name : 'Door', x : 6, y : 45, desc : "magically locked door", locked : 2};
-mappages["pitdespair3"].features[1] = {name : 'Lava', x : 18, y : 53};
-mappages["pitdespair3"].features[2] = {name : 'Lava', x : 18, y : 54};
-mappages["pitdespair3"].features[3] = {name : 'Lava', x : 18, y : 55};
-mappages["pitdespair3"].features[4] = {name : 'Lava', x : 18, y : 56};
-mappages["pitdespair3"].features[5] = {name : 'Lava', x : 17, y : 56};
-mappages["pitdespair3"].features[6] = {name : 'Lava', x : 17, y : 55};
-mappages["pitdespair3"].features[7] = {name : 'Lava', x : 17, y : 54};
-mappages["pitdespair3"].features[8] = {name : 'Lava', x : 16, y : 54};
-mappages["pitdespair3"].features[9] = {name : 'Lava', x : 16, y : 55};
-mappages["pitdespair3"].features[10] = {name : 'Lava', x : 15, y : 55};
-mappages["pitdespair3"].features[11] = {name : 'Lava', x : 18, y : 54};
-mappages["pitdespair3"].features[12] = {name : 'Lava', x : 19, y : 54};
-mappages["pitdespair3"].features[13] = {name : 'Lava', x : 19, y : 55};
-mappages["pitdespair3"].features[14] = {name : 'Lava', x : 19, y : 53};
-mappages["pitdespair3"].features[15] = {name : 'Lava', x : 20, y : 53};
-mappages["pitdespair3"].features[16] = {name : 'Lava', x : 20, y : 54};
-mappages["pitdespair3"].features[17] = {name : 'Lava', x : 18, y : 57};
-mappages["pitdespair3"].features[18] = {name : 'Lava', x : 19, y : 56};
-mappages["pitdespair3"].features[19] = {name : 'Lava', x : 19, y : 55};
-mappages["pitdespair3"].features[20] = {name : 'Lava', x : 20, y : 55};
-mappages["pitdespair3"].features[21] = {name : 'Lava', x : 19, y : 52};
-mappages["pitdespair3"].features[22] = {name : 'Lava', x : 18, y : 52};
-mappages["pitdespair3"].features[23] = {name : 'Lava', x : 18, y : 51};
-mappages["pitdespair3"].features[24] = {name : 'Lava', x : 17, y : 53};
-mappages["pitdespair3"].features[25] = {name : 'SulfurousAsh', x : 19, y : 53};
-mappages["pitdespair3"].features[26] = {name : 'LadderUp', x : 9, y : 8, entermap : 'pitdespair2', enterx : 50, entery : 44};
-mappages["pitdespair3"].features[27] = {name : 'LadderDown', x : 6, y : 47, entermap : 'pitdespair4', enterx : 15, entery : 20};
+mappages["pitdespair3"].features[1] = {name : 'SulfurousAsh', x : 19, y : 53};
+mappages["pitdespair3"].features[2] = {name : 'LadderDown', x : 6, y : 47, entermap : 'pitdespair4', enterx : 15, entery : 20};
+mappages["pitdespair3"].features[3] = {name : 'Lava', x : 18, y : 53};
+mappages["pitdespair3"].features[4] = {name : 'Lava', x : 18, y : 54};
+mappages["pitdespair3"].features[5] = {name : 'Lava', x : 18, y : 55};
+mappages["pitdespair3"].features[6] = {name : 'Lava', x : 18, y : 56};
+mappages["pitdespair3"].features[7] = {name : 'Lava', x : 17, y : 56};
+mappages["pitdespair3"].features[8] = {name : 'Lava', x : 17, y : 55};
+mappages["pitdespair3"].features[9] = {name : 'Lava', x : 17, y : 54};
+mappages["pitdespair3"].features[10] = {name : 'Lava', x : 16, y : 54};
+mappages["pitdespair3"].features[11] = {name : 'Lava', x : 16, y : 55};
+mappages["pitdespair3"].features[12] = {name : 'Lava', x : 15, y : 55};
+mappages["pitdespair3"].features[13] = {name : 'Lava', x : 18, y : 54};
+mappages["pitdespair3"].features[14] = {name : 'Lava', x : 19, y : 54};
+mappages["pitdespair3"].features[15] = {name : 'Lava', x : 19, y : 55};
+mappages["pitdespair3"].features[16] = {name : 'Lava', x : 19, y : 53};
+mappages["pitdespair3"].features[17] = {name : 'Lava', x : 20, y : 53};
+mappages["pitdespair3"].features[18] = {name : 'Lava', x : 20, y : 54};
+mappages["pitdespair3"].features[19] = {name : 'Lava', x : 18, y : 57};
+mappages["pitdespair3"].features[20] = {name : 'Lava', x : 19, y : 56};
+mappages["pitdespair3"].features[21] = {name : 'Lava', x : 19, y : 55};
+mappages["pitdespair3"].features[22] = {name : 'Lava', x : 20, y : 55};
+mappages["pitdespair3"].features[23] = {name : 'Lava', x : 19, y : 52};
+mappages["pitdespair3"].features[24] = {name : 'Lava', x : 18, y : 52};
+mappages["pitdespair3"].features[25] = {name : 'Lava', x : 18, y : 51};
+mappages["pitdespair3"].features[26] = {name : 'Lava', x : 17, y : 53};
+mappages["pitdespair3"].features[27] = {name : 'Chest', x : 14, y : 57, locked : 0, lootgroup : 'Level3', lootedid : 'pitdespair3'};
+mappages["pitdespair3"].features[28] = {name : 'Chest', x : 13, y : 56, locked : 0, lootedid : 'innerpitofdespair', searchyield : 'InnerPitOfDespairKey'};
+mappages["pitdespair3"].features[29] = {name : 'LadderUp', x : 9, y : 8, entermap : 'pitdespair2', enterx : 50, entery : 44};
 
 
 mappages["pitdespair3"].npcs = [];
+mappages["pitdespair3"].npcs[0] = {name : 'CorpserNPC', x : 14, y : 21, skintone: '1'};
+mappages["pitdespair3"].npcs[1] = {name : 'CorpserNPC', x : 17, y : 20, skintone: '1'};
+mappages["pitdespair3"].npcs[2] = {name : 'CorpserNPC', x : 12, y : 29, skintone: '1'};
+mappages["pitdespair3"].npcs[3] = {name : 'CorpserNPC', x : 14, y : 32, skintone: '1'};
+mappages["pitdespair3"].npcs[4] = {name : 'CorpserNPC', x : 21, y : 34, skintone: '1'};
+mappages["pitdespair3"].npcs[5] = {name : 'CorpserNPC', x : 22, y : 31, skintone: '1'};
+mappages["pitdespair3"].npcs[6] = {name : 'DelverNPC', x : 19, y : 49, skintone: '1'};
 
 mappages["pitdespair3"].desc = "Pit of Despair (L3)";
+mappages["pitdespair3"].longdesc = '';
 mappages["pitdespair3"].music = 'Dungeon';
-mappages["pitdespair3"].savename = "Pit of Despair";
+mappages["pitdespair3"].savename = `Pit of Despair`;
 mappages["pitdespair3"].exitmap = '';
 mappages["pitdespair3"].exitx = '65';
 mappages["pitdespair3"].exity = '70';
@@ -602,6 +573,7 @@ mappages["pitdespair3"].returnx = '117';
 mappages["pitdespair3"].returny = '76';
 mappages["pitdespair3"].returninfused = '0';
 mappages["pitdespair3"].linkedMaps = ["pitdespair1","pitdespair2","pitdespair4"];
+mappages["pitdespair3"].editorLabels = '{}';
 
 mappages["pitdespair4"] = {};
 mappages["pitdespair4"].terrain = [];
