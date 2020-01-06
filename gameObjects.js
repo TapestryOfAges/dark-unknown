@@ -222,7 +222,9 @@ ProtoObject.prototype.copy = function(type) {
       } else {
         copydata[idx] = val;
         DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " different, saved.</span>");
-      }      
+      }   
+    } else if (idx === "attached") {  // on some levers
+      copydata[idx] = val;   
     } else {
       DebugWrite("saveload", "<br /><span style='color:red;font-weight:bold'>" + idx + " is type " + typeof val + "</span>,  ");
       alert(savename + " SAVE NEEDS " + idx + "!");
@@ -4139,7 +4141,7 @@ function HotelPheranTile() {
   this.peerview = "#00c000";
   this.civilized = 1;
 
-  Enterable.call(this, "hotelcalifornia", 7, 18);
+  Enterable.call(this, "hotelcalifornia0", 7, 18);
 }
 HotelPheranTile.prototype = new FeatureObject();
 
@@ -6305,10 +6307,8 @@ HarpsichordTile.prototype.use = function(who) {
       return retval;
     } else {  
       retval["txt"] = "Drawing upon your years of training from your tutors, you give a passable performance.";
-      if (DU.gameflags.getFlag("bard_simon_ask") && (this.getHomeMap().getName() === "swainhil1")) {
-        DU.gameflags.setFlag("bard_simon_played", 1);
-        DebugWrite("plot", "Simon has heard you play music.<br />");
-      }
+      let ev = new DUEvent("Harpsichord Plays",who,[]);
+      Listener.sendEvent(ev);
       // Consider adding a sound effect if I find a good one
     }
   }
@@ -6652,11 +6652,8 @@ function DeadTreeTile() {
 	this.lootgroup = "";
 	this.lootedid = "";
   this.showsearched = 0;
-  this.searchedgraphic = ["trees.gif","","-64","0"];
-	
-	this.container = [];
-	OpenContainer.call(this,"","");
-}
+  this.searchedgraphic = ["master_spritesheet.png","","-64","-1472"];
+	}
 DeadTreeTile.prototype = new FeatureObject();
 
 function CactusTile() {
@@ -8586,8 +8583,10 @@ PitDespairLeverTile.prototype = new FeatureObject();
 PitDespairLeverTile.prototype.use = function(user) {
   let retval = {};
   if (this.attached) {
-    DUPlaySound("sfx_small_lever");
-    let thismap = user.getHomeMap();
+    if (PC.getHomeMap() === this.getHomeMap()) {
+      DUPlaySound("sfx_small_lever");
+    }
+    let thismap = this.getHomeMap();
     let doortile = thismap.getTile(this.attached.x, this.attached.y);
     let ftrs = doortile.getFeatures();
     let door;
@@ -8623,7 +8622,7 @@ PitDespairLeverTile.prototype.use = function(user) {
         mobs[i].dealDamage(1000, door);
       };
       door.locked = 1;
-      door.setGraphicArray(["wall-portcullis.gif", "wall-portcullis.gif", 0, 0]);
+      door.setGraphicArray(["master_spritesheet.png", "", "-224", "-832"]);
       
       door.setBlocksLOSArray(door.closedLOS);
       door.closedLOS = [];
@@ -10650,8 +10649,8 @@ MandrakeRootTile.prototype = new ItemObject();
 function LightningWoodTile() {
   this.name = "LightningWood";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-288";
-  this.spritexoffset = "-1504";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "twig of lightning wood";
@@ -11120,6 +11119,20 @@ function PitOfDespairKeyTile() {
 }
 PitOfDespairKeyTile.prototype = new KeyItemObject();
 
+function InnerPitOfDespairKeyTile() {
+  this.name = "InnerPitOfDespairKey";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1280";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "buzzing key";
+  this.prefix = "a";
+  this.longdesc = "The key to many doors in the Pit of Despair.";
+  this.usedesc = "Presumably opens a matching door.";
+}
+InnerPitOfDespairKeyTile.prototype = new KeyItemObject();
+
 function KeyOfSpiritsTile() {
   this.name = "KeyOfSpirits";
   this.graphic = "master_spritesheet.png";
@@ -11485,8 +11498,8 @@ StoneOfCursesTile.prototype.use = function(who) {
   ladder.entermap = "hotelcalifornia7";
   ladder.enterx = 10;
   ladder.entery = 5;
-  if (this.getHomeMap().getName() === "hotelcalifornia6") {
-    this.getHomeMap().placeThing(10,9,ladder);
+  if (PC.getHomeMap().getName() === "hotelcalifornia6") {
+    PC.getHomeMap().placeThing(10,9,ladder);
     retval["txt"] = "The curse is broken! The inn shakes around you.";
     Earthquake();
   } else {
