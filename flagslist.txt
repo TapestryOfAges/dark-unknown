@@ -83,7 +83,7 @@ bard_master - you're a full member of the guild
 bard_book_quest - you've found the book Olivia is looking for
 bard_simon_ask - Simon has asked for a performance
 bard_simon_played - you've played for Simon
-bard_simon_acknowledge - Simon congratulates your performance 
+bard_simon_confirmed - Alison has responded to you playing for Simon
 cave_cleared - you've cleared out the cave west of the castle
 cave_cleared_paid - Nyrani has paid you for clearing the cave
 nyrani_supplied - Nyrani has given you some supplies to hit the cave with
@@ -120,3 +120,4 @@ infinite_scroll - have received one Infinite Scroll from Conrad
 added_pheran - player has entered Swainhil, adding Hotel Pheran to the map
 started_pheran - entered Hotel Pheran
 solved_pheran - finished Hotel Pheran/California. ** (endgame)
+olivia_asked - olivia has asked you to find Fall of Targrion
