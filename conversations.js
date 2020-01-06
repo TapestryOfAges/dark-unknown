@@ -244,7 +244,7 @@ Conversation.prototype.say = function(speaker, saywhat, skipahead) {
   if (diffspeak) {
     diffspeak = diffspeak.replace(/\@/, "");
     if (diffspeak === "me") {
-      if (IsVisibleOnScreen(speaker)) {
+      if (IsObjectVisibleOnScreen(speaker)) {
         ShowTurnFrame(speaker);
       } else {
         HideTurnFrame();
@@ -868,8 +868,11 @@ OnConvTriggers["chera_disappear"] = function(speaker,keyword) {
 
 OnConvTriggers["don_disappear"] = function(speaker,keyword) {
   let don = FindNPCByName("Don", speaker.getHomeMap());
+  let donx = don.getx();
+  let dony = don.gety();
   speaker.getHomeMap().deleteThing(don);
   DU.gameflags.deleteFlag("don_disappear");
+  DrawMainFrame("one",speaker.getHomeMap(),donx,dony);
 }
 
 OnConvTriggers["solved_pheran"] = function(speaker,keyword) {
@@ -880,6 +883,7 @@ OnConvTriggers["solved_pheran"] = function(speaker,keyword) {
   themap.deleteThing(olin);
   let hylga = FindNPCByName("Hylga", themap);
   themap.deleteThing(hylga);
+  DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
 }
 
 OnConvTriggers["where_king"] = function(speaker,keyword) {
