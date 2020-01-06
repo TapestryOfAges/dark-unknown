@@ -247,7 +247,7 @@ mappages["hotelcalifornia2"].npcs[0] = {name : 'GhostNPC', x : 11, y : 7, NPCNam
 
 mappages["hotelcalifornia2"].desc = "Mysterious Building";
 mappages["hotelcalifornia2"].longdesc = '';
-mappages["hotelcalifornia2"].music = 'Village';
+mappages["hotelcalifornia2"].music = 'Tension';
 mappages["hotelcalifornia2"].savename = `Mystery`;
 mappages["hotelcalifornia2"].exitmap = 'darkunknown';
 mappages["hotelcalifornia2"].exitx = '65';
@@ -349,7 +349,7 @@ mappages["hotelcalifornia3"].npcs[3] = {name : 'GhostNPC', x : 7, y : 11, NPCNam
 
 mappages["hotelcalifornia3"].desc = "Mysterious Building";
 mappages["hotelcalifornia3"].longdesc = '';
-mappages["hotelcalifornia3"].music = 'Village';
+mappages["hotelcalifornia3"].music = 'Tension';
 mappages["hotelcalifornia3"].savename = `Mystery`;
 mappages["hotelcalifornia3"].exitmap = 'darkunknown';
 mappages["hotelcalifornia3"].exitx = '65';
@@ -478,7 +478,7 @@ mappages["hotelcalifornia4"].npcs[6] = {name : 'GhostNPC', x : 4, y : 8, NPCName
 
 mappages["hotelcalifornia4"].desc = "Mysterious Building";
 mappages["hotelcalifornia4"].longdesc = '';
-mappages["hotelcalifornia4"].music = 'Village';
+mappages["hotelcalifornia4"].music = 'Tension';
 mappages["hotelcalifornia4"].savename = `Mystery`;
 mappages["hotelcalifornia4"].exitmap = 'darkunknown';
 mappages["hotelcalifornia4"].exitx = '65';
@@ -570,7 +570,7 @@ mappages["hotelcalifornia5"].npcs[0] = {name : 'GhostNPC', x : 8, y : 8, NPCName
 
 mappages["hotelcalifornia5"].desc = "Mysterious Building";
 mappages["hotelcalifornia5"].longdesc = '';
-mappages["hotelcalifornia5"].music = 'Village';
+mappages["hotelcalifornia5"].music = 'Tension';
 mappages["hotelcalifornia5"].savename = `Mystery`;
 mappages["hotelcalifornia5"].exitmap = 'darkunknown';
 mappages["hotelcalifornia5"].exitx = '65';
@@ -663,7 +663,7 @@ mappages["hotelcalifornia6"].npcs = [];
 
 mappages["hotelcalifornia6"].desc = "Mysterious Building";
 mappages["hotelcalifornia6"].longdesc = '';
-mappages["hotelcalifornia6"].music = 'Village';
+mappages["hotelcalifornia6"].music = 'Tension';
 mappages["hotelcalifornia6"].savename = `Mystery`;
 mappages["hotelcalifornia6"].exitmap = 'darkunknown';
 mappages["hotelcalifornia6"].exitx = '65';
@@ -755,6 +755,18 @@ mappages["hotelcalifornia7"].features[29] = {name : 'FireField', x : 6, y : 7};
 mappages["hotelcalifornia7"].features[30] = {name : 'FireField', x : 6, y : 6};
 mappages["hotelcalifornia7"].features[31] = {name : 'FireField', x : 7, y : 6};
 mappages["hotelcalifornia7"].features[32] = {name : 'FireField', x : 5, y : 6};
+mappages["hotelcalifornia7"].features[33] = {name : 'FireField', x : 4, y : 12};
+mappages["hotelcalifornia7"].features[34] = {name : 'FireField', x : 4, y : 13};
+mappages["hotelcalifornia7"].features[35] = {name : 'FireField', x : 4, y : 13};
+mappages["hotelcalifornia7"].features[36] = {name : 'FireField', x : 4, y : 14};
+mappages["hotelcalifornia7"].features[37] = {name : 'FireField', x : 4, y : 14};
+mappages["hotelcalifornia7"].features[38] = {name : 'FireField', x : 5, y : 13};
+mappages["hotelcalifornia7"].features[39] = {name : 'FireField', x : 15, y : 12};
+mappages["hotelcalifornia7"].features[40] = {name : 'FireField', x : 15, y : 13};
+mappages["hotelcalifornia7"].features[41] = {name : 'FireField', x : 15, y : 13};
+mappages["hotelcalifornia7"].features[42] = {name : 'FireField', x : 15, y : 14};
+mappages["hotelcalifornia7"].features[43] = {name : 'FireField', x : 15, y : 14};
+mappages["hotelcalifornia7"].features[44] = {name : 'FireField', x : 14, y : 13};
 
 
 mappages["hotelcalifornia7"].npcs = [];
