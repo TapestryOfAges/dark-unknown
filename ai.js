@@ -2662,6 +2662,13 @@ ais.ai_spit = function(who) {
   let atkhit = 1;
   if (Dice.roll("1d45") < PC.getDex()) { atkhit = 0; }
   let destgraphic = {};
+  if (who.specials.hides) {
+    who.setGraphic(who.specials.hides);  
+    delete who.specials.hides;
+    if (who.getHomeMap() === PC.getHomeMap()) {
+      DrawMainFrame("one",who.getHomeMap(),who.getx(),who.gety());
+    }
+  }
   if (atkhit) {
     if (tgt === PC) {
       maintext.addText("The " + who.getDesc() + " spits venom at you!");
