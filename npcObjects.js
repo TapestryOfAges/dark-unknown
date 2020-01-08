@@ -818,8 +818,8 @@ function CourierGuardNPCTile() {
   this.name = 'CourierGuardNPC';
   this.level = 3;
   this.addhp = 200;
-  this.str = 14;
-  this.dex = 14;
+  this.str = 10;
+  this.dex = 10;
   this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
@@ -1582,7 +1582,7 @@ function FlukeNPCTile() {
   this.meleeChance = 40;
   this.spellsknown = { lowcontrol: 1, };
   this.resists = { ice:33 };
-  this.special = 'whirlpool, invisible';
+  this.special = 'whirlpool, hides:spacer.gif';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
@@ -2229,7 +2229,7 @@ function LurkerNPCTile() {
   this.onHit = 'entangle';
   this.meleeChance = 100;
   this.resists = {};
-  this.special = 'invisible,wander';
+  this.special = 'hides:spacer.gif,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
@@ -2475,7 +2475,7 @@ function CorpserNPCTile() {
   this.onHit = 'entangle';
   this.meleeChance = 50;
   this.resists = {};
-  this.special = 'invisible, reach,wander';
+  this.special = 'hides:spacer.gif, reach,wander';
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
