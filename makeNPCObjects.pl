@@ -49,7 +49,7 @@ foreach my $line (<$npcdoc>) {
   if ($fields[13] =~ /\;/) {
     print $out "  this.meleeAttackAs = 'none';\n";
     my @wpnvals = split(';', $fields[13]);
-    print $out "  this.meleeDamage = $wpnvals[0]\n";
+    print $out "  this.meleeDamage = '$wpnvals[0]'\n";
     print $out "  this.meleeStrDamage = $wpnvals[1]\n";
   } else {
     print $out "  this.meleeAttackAs = '$fields[13]';\n";
@@ -57,7 +57,7 @@ foreach my $line (<$npcdoc>) {
   if ($fields[14] =~ /\;/) {
     print $out "  this.missileAttackAs = 'none';\n";
     my @wpnvals = split(';', $fields[13]);
-    print $out "  this.missileDamage = $wpnvals[0]\n";
+    print $out "  this.missileDamage = '$wpnvals[0]'\n";
     print $out "  this.missileStrDamage = $wpnvals[1]\n";
     print $out "  this.missileRange = $wpnvals[2]\n";
   } else{
