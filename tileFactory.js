@@ -2388,6 +2388,11 @@ tileFactory.prototype.makePitOfDespairKeyTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeInnerPitOfDespairKeyTile = function() {
+  let newTile = new InnerPitOfDespairKeyTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeKeyOfSpiritsTile = function() {
   let newTile = new KeyOfSpiritsTile();
   return newTile;
