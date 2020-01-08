@@ -288,7 +288,8 @@ function TryMelee(who) {
   DebugWrite("ai", "In TryMelee.<br />");
   let radius = 1;
   if (who.specials.reach) { radius = 2; }
-  let nearby = FindNearby("npcs",who.getHomeMap(),radius,"box",who.getx(),who.gety());
+  let whomap = who.getHomeMap();
+  let nearby = FindNearby("npcs",whomap,radius,"box",who.getx(),who.gety());
   let atked = 0;
   DebugWrite("ai", "Seeking entities in melee range. There are " + nearby.length + ".<br />");
   if (nearby.length > 0) {
