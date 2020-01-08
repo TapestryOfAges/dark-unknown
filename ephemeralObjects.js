@@ -192,14 +192,6 @@ BlessingTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-BlessingTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
-}
-
 BlessingTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   let power = this.getPower();
@@ -238,14 +230,6 @@ BlessingStrTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-BlessingStrTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
-}
-
 BlessingStrTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   let power = this.getPower();
@@ -280,14 +264,6 @@ BlessingDexTile.prototype.applyEffect = function(silent) {
     }
   }
   return 1;
-}
-
-BlessingDexTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
 }
 
 BlessingDexTile.prototype.endEffect = function(silent) {
@@ -326,14 +302,6 @@ BlessingIntTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-BlessingIntTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
-}
-
 BlessingIntTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   let power = this.getPower();
@@ -369,12 +337,6 @@ CharmTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-CharmTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
-}
-
 CharmTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.setAttitude(this.oldattitude);
@@ -402,12 +364,6 @@ ConfusedTile.prototype.applyEffect = function(silent) {
     maintext.delayedAddText("You have become confused!");
   }
   return 1;
-}
-
-ConfusedTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
 }
 
 ConfusedTile.prototype.endEffect = function(silent) {
@@ -498,14 +454,6 @@ CurseTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-CurseTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
-}
-
 CurseTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   let power = this.getPower();
@@ -562,7 +510,7 @@ DisorientedTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-DisorientedTile.prototype.happen = function() {
+DisorientedTile.prototype.doEffect = function() {
   let resp = 0;
   let dir = Dice.roll("1d3");
   if (dir === 1) { PC.moveMe(-1,0,0); }
@@ -598,14 +546,6 @@ DistractTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-DistractTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
-}
-
 DistractTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
@@ -632,14 +572,6 @@ DizzyTile.prototype.applyEffect = function(silent) {
     maintext.delayedAddText("The whirlpool makes you dizzy!");
   }
   return 1;
-}
-
-DizzyTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
 }
 
 DizzyTile.prototype.endEffect = function(silent) {
@@ -679,7 +611,7 @@ DrunkTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-DrunkTile.prototype.happen = function() {
+DrunkTile.prototype.doEffect = function() {
   let who = this.getAttachedTo();
   let retval = {};
   if (Dice.roll("1d10") <= this.getPower()) {
@@ -726,7 +658,7 @@ EntangleTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-EntangleTile.prototype.doEffect = function() {
+EntangleTile.prototype.onTurn = function() {
   let resp = 0;
   if (DUTime.getGameClock() > this.getExpiresTime()) {
     resp = this.endEffect();
@@ -796,14 +728,6 @@ EtherealVisionTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-EtherealVisionTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
-}
-
 EtherealVisionTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
@@ -836,12 +760,6 @@ FearTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-FearTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
-}
-
 FearTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
@@ -870,14 +788,6 @@ FireArmorTile.prototype.applyEffect = function(silent) {
     }
   }
   return 1;
-}
-
-FireArmorTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
 }
 
 FireArmorTile.prototype.endEffect = function(silent) {
@@ -965,12 +875,6 @@ FrozenTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-FrozenTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
-}
-
 FrozenTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
@@ -996,12 +900,6 @@ InvulnerableTile.prototype.applyEffect = function(silent) {
     maintext.delayedAddText("You are invulnerable to damage!");
   }
   return 1;
-}
-
-InvulnerableTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
 }
 
 InvulnerableTile.prototype.endEffect = function(silent) {
@@ -1033,14 +931,6 @@ IronFleshTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-IronFleshTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
-}
-
 IronFleshTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
@@ -1070,12 +960,6 @@ LevitateTile.prototype.applyEffect = function(silent) {
     }
   }
   return 1;
-}
-
-LevitateTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
 }
 
 LevitateTile.prototype.endEffect = function(silent) {
@@ -1117,12 +1001,6 @@ LightTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-LightTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
-}
-
 LightTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.setLight(who.getLight() - this.getPower());
@@ -1151,12 +1029,6 @@ MirrorWardTile.prototype.applyEffect = function(silent) {
     }
   }
   return 1;
-}
-
-MirrorWardTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
 }
 
 MirrorWardTile.prototype.endEffect = function(silent) {
@@ -1229,12 +1101,6 @@ NegateMagicTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-NegateMagicTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
-}
-
 NegateMagicTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   let negmap = this.negatedmap;
@@ -1270,12 +1136,6 @@ ParalyzeTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-ParalyzeTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
-}
-
 ParalyzeTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
@@ -1305,14 +1165,6 @@ PhasedTile.prototype.applyEffect = function(silent) {
     }
   }
   return 1;
-}
-
-PhasedTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
 }
 
 PhasedTile.prototype.endEffect = function(silent) {
@@ -1376,14 +1228,6 @@ ProtectionTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-ProtectionTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
-}
-
 ProtectionTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
@@ -1417,12 +1261,6 @@ QuicknessTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-QuicknessTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
-}
-
 QuicknessTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.initmult *= (1/this.getPower());
@@ -1450,12 +1288,6 @@ SleepTile.prototype.applyEffect = function(silent) {
     maintext.delayedAddText("You fall asleep.");
   }
   return 1;
-}
-
-SleepTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
 }
 
 SleepTile.prototype.endEffect = function(silent) {
@@ -1489,12 +1321,6 @@ SlowTile.prototype.applyEffect = function(silent) {
     maintext.addText("You are moving more slowly.");
   }
   return 1;
-}
-
-SlowTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
 }
 
 SlowTile.prototype.endEffect = function(silent) {
@@ -1618,12 +1444,6 @@ StunnedTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-StunnedTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
-}
-
 StunnedTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.deleteSpellEffect(this);
@@ -1651,14 +1471,6 @@ TelepathyTile.prototype.applyEffect = function(silent) {
     }
   }
   return 1;
-}
-
-TelepathyTile.prototype.doEffect = function() {
-  let resp = 0;
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    resp = this.endEffect();
-  }
-  return resp;
 }
 
 TelepathyTile.prototype.endEffect = function(silent) {
@@ -1689,10 +1501,7 @@ TimeStopTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-TimeStopTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
+TimeStopTile.prototype.eachTurn = function() {
   let who = this.getAttachedTo();
   if (who.getHomeMap().getScale()) {
     who.modMana(-5);
@@ -1702,10 +1511,6 @@ TimeStopTile.prototype.doEffect = function() {
   if (who.getMana() <= 0) {
     this.endEffect();
   }
-}
-
-TimeStopTile.prototype.eachTurn = function() {
-  return this.doEffect();
 }
 
 TimeStopTile.prototype.endEffect = function(silent) {
@@ -1736,12 +1541,6 @@ TorchLightTile.prototype.applyEffect = function(silent) {
   return 1;
 }
 
-TorchLightTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
-}
-
 TorchLightTile.prototype.endEffect = function(silent) {
   let who = this.getAttachedTo();
   who.setLight(who.getLight() - this.getPower());
@@ -1769,12 +1568,6 @@ VulnerabilityTile.prototype.applyEffect = function(silent) {
     maintext.delayedAddText("You feel vulnerable.");
   }
   return 1;
-}
-
-VulnerabilityTile.prototype.doEffect = function() {
-  if (DUTime.getGameClock() > this.getExpiresTime()) {
-    this.endEffect();
-  }
 }
 
 VulnerabilityTile.prototype.endEffect = function(silent) {
@@ -1819,6 +1612,7 @@ CourierFleeTile.prototype.doEffect = function() {
 CourierFleeTile.prototype.eachTurn = function() {
   return this.doEffect();
 }
+
 CourierFleeTile.prototype.endEffect = function(silent) {
   return 1;
 }

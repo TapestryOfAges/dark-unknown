@@ -34,13 +34,13 @@ function PerformCommand(code, ctrl) {
     // move north
     let diso = PC.getSpellEffectsByName("Disoriented");
     if (diso) {
-      diso.happen();
+      diso.doEffect();
       retval["fin"] = 1;
       return retval;
     }
     let drunk = PC.getSpellEffectsByName("Drunk");
     if (drunk) {
-      let tmp = drunk.happen();
+      let tmp = drunk.doEffect();
       if (tmp["fin"] === 1) { return tmp; }
     }
   
@@ -67,13 +67,13 @@ function PerformCommand(code, ctrl) {
     // move west
     let diso = PC.getSpellEffectsByName("Disoriented");
     if (diso) {
-      diso.happen();
+      diso.doEffect();
       retval["fin"] = 1;
       return retval;
     }
     let drunk = PC.getSpellEffectsByName("Drunk");
     if (drunk) {
-      let tmp = drunk.happen();
+      let tmp = drunk.doEffect();
       if (tmp["fin"] === 1) { return tmp; }
     }
 
@@ -100,13 +100,13 @@ function PerformCommand(code, ctrl) {
 		// move east
     let diso = PC.getSpellEffectsByName("Disoriented");
     if (diso) {
-      diso.happen();
+      diso.doEffect();
       retval["fin"] = 1;
       return retval;
     }
     let drunk = PC.getSpellEffectsByName("Drunk");
     if (drunk) {
-      let tmp = drunk.happen();
+      let tmp = drunk.doEffect();
       if (tmp["fin"] === 1) { return tmp; }
     }
 
@@ -133,13 +133,13 @@ function PerformCommand(code, ctrl) {
 		// move south
     let diso = PC.getSpellEffectsByName("Disoriented");
     if (diso) {
-      diso.happen();
+      diso.doEffect();
       retval["fin"] = 1;
       return retval;
     }
     let drunk = PC.getSpellEffectsByName("Drunk");
     if (drunk) {
-      let tmp = drunk.happen();
+      let tmp = drunk.doEffect();
       if (tmp["fin"] === 1) { return tmp; }
     }
 
