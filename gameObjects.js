@@ -225,6 +225,8 @@ ProtoObject.prototype.copy = function(type) {
       }   
     } else if (idx === "attached") {  // on some levers
       copydata[idx] = val;   
+    } else if (idx === "destination") {  // on teleporters
+      copydata[idx] = val;   
     } else {
       DebugWrite("saveload", "<br /><span style='color:red;font-weight:bold'>" + idx + " is type " + typeof val + "</span>,  ");
       alert(savename + " SAVE NEEDS " + idx + "!");
@@ -8780,6 +8782,8 @@ function SandstoneWallTile() {
   this.prefix = "a"
   this.desc = "sandstone wall";
   this.peerview = "#b0b0b0";
+
+  this.pushable = 1;
   
   LightEmitting.call(this, 3);
 }
@@ -8809,7 +8813,9 @@ SandstoneWallTile.prototype.use = function(who) {
 }
 
 SandstoneWallTile.prototype.pushMe = function(who) {
-  return this.use(who);
+  let retval = this.use(who);
+  retval["fin"] = 1;
+  return retval;
 }
 
 function BlackDragonLadderWallTile() {
@@ -15389,7 +15395,7 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
   let retval = { fin:1 };
   if (this.getSpellEffectsByName("Entangle")) {
     if (this === PC) {
-      retval["msg"] = "You are entangled by tentacles!";
+      retval["msg"] = ": You are entangled by tentacles!";
     }
     retval["canmove"] = 0;
     retval["diffx"] = diffx;
