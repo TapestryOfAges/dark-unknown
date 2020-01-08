@@ -313,7 +313,8 @@ mappages["pitdespair2"].features[30] = {name : 'StonePortcullis', x : 37, y : 19
 mappages["pitdespair2"].features[31] = {name : 'StonePortcullis', x : 38, y : 43, locked : 1};
 mappages["pitdespair2"].features[32] = {name : 'Door', x : 24, y : 46, desc : "locked door", locked : 1, keyname : "PitOfDespairKey"};
 mappages["pitdespair2"].features[33] = {name : 'PitTeleporterPlatform', x : 10, y : 43};
-
+mappages["pitdespair2"].features[34] = {name : 'WallPlaque', x : 47, y : 27, desc : "wall with a plaque which reads: \"Some walls are sandstone, and can be moved.\""};
+mappages["pitdespair2"].features[35] = {name : 'WallPlaque', x : 45, y : 29, desc : "wall with a plaque which reads: \"If you touch the beam, the puzzle will reset. But solid stone will block them.\""};
 
 mappages["pitdespair2"].npcs = [];
 
@@ -342,13 +343,13 @@ mappages["pitdespair2"].returny = '76';
 mappages["pitdespair2"].returninfused = '0';
 mappages["pitdespair2"].linkedMaps = ["pitdespair1","pitdespair3","pitdespair4"];
 
-mappages["pitdespair1"].onload = function(mapref) {
+mappages["pitdespair2"].onload = function(mapref) {
     
   if (gamestate.getMode() !== "loadgame") {
-    mapref.getHomeMap().getTile(46,28).getTopFeature().setDestination({map:"pitdespair2", x:10, y:43});
-    mapref.getHomeMap().getTile(10,43).getTopFeature().setDestination({map:"pitdespair2", x:46, y:28});
-    mapref.getHomeMap().getTile(48,42).getTopFeature().setDestination({map:"pitdespair2", x:53, y:35});
-    mapref.getHomeMap().getTile(53,35).getTopFeature().setDestination({map:"pitdespair2", x:48, y:42});
+    mapref.getTile(46,28).getTopFeature().setDestination({map:"pitdespair2", x:10, y:43});
+    mapref.getTile(10,43).getTopFeature().setDestination({map:"pitdespair2", x:46, y:28});
+    mapref.getTile(48,42).getTopFeature().setDestination({map:"pitdespair2", x:53, y:35});
+    mapref.getTile(53,35).getTopFeature().setDestination({map:"pitdespair2", x:48, y:42});
   }
 }
 
@@ -540,11 +541,11 @@ mappages["pitdespair3"].features[29] = {name : 'LadderUp', x : 9, y : 8, enterma
 
 
 mappages["pitdespair3"].npcs = [];
-mappages["pitdespair3"].npcs[0] = {name : 'CorpserNPC', x : 14, y : 21, skintone: '1'};
-mappages["pitdespair3"].npcs[1] = {name : 'CorpserNPC', x : 17, y : 20, skintone: '1'};
-mappages["pitdespair3"].npcs[2] = {name : 'CorpserNPC', x : 12, y : 29, skintone: '1'};
-mappages["pitdespair3"].npcs[3] = {name : 'CorpserNPC', x : 14, y : 32, skintone: '1'};
-mappages["pitdespair3"].npcs[4] = {name : 'CorpserNPC', x : 21, y : 34, skintone: '1'};
+mappages["pitdespair3"].npcs[0] = {name : 'LurkerNPC', x : 14, y : 21, skintone: '1'};
+mappages["pitdespair3"].npcs[1] = {name : 'LurkerNPC', x : 17, y : 20, skintone: '1'};
+mappages["pitdespair3"].npcs[2] = {name : 'LurkerNPC', x : 12, y : 29, skintone: '1'};
+mappages["pitdespair3"].npcs[3] = {name : 'LurkerNPC', x : 14, y : 32, skintone: '1'};
+mappages["pitdespair3"].npcs[4] = {name : 'LurkerNPC', x : 21, y : 34, skintone: '1'};
 mappages["pitdespair3"].npcs[5] = {name : 'CorpserNPC', x : 22, y : 31, skintone: '1'};
 mappages["pitdespair3"].npcs[6] = {name : 'DelverNPC', x : 19, y : 49, skintone: '1'};
 
