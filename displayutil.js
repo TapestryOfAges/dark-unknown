@@ -112,7 +112,9 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     }
     setTimeout(function() {
       animdiv = document.getElementById(animid);
-      animdiv.parentNode.removeChild(animdiv);
+      if (animdiv && (animdiv.parentNode)) {
+        animdiv.parentNode.removeChild(animdiv);
+      }
       if ((type !== "missile") || (!ammoreturn)) {
         FinishAnimation();
       } else {
