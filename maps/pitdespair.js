@@ -285,7 +285,7 @@ mappages["pitdespair2"].features[2] = {name : 'RoyalPuzzleLaserEW', x : 48, y : 
 mappages["pitdespair2"].features[3] = {name : 'RoyalPuzzleLaserEW', x : 49, y : 34};
 mappages["pitdespair2"].features[4] = {name : 'RoyalPuzzleLaserEW', x : 50, y : 34};
 mappages["pitdespair2"].features[5] = {name : 'RoyalPuzzleLaserEW', x : 51, y : 34};
-mappages["pitdespair2"].features[6] = {name : 'RoyalPuzzleLaserCross', x : 52, y : 34};
+mappages["pitdespair2"].features[6] = {name : 'RoyalPuzzleLaserEW', x : 52, y : 34};
 mappages["pitdespair2"].features[7] = {name : 'RoyalPuzzleLaserEW', x : 53, y : 34};
 mappages["pitdespair2"].features[8] = {name : 'RoyalPuzzleLaserNS', x : 52, y : 35};
 mappages["pitdespair2"].features[9] = {name : 'SandstoneWall', x : 48, y : 29};
@@ -315,6 +315,7 @@ mappages["pitdespair2"].features[32] = {name : 'Door', x : 24, y : 46, desc : "l
 mappages["pitdespair2"].features[33] = {name : 'PitTeleporterPlatform', x : 10, y : 43};
 mappages["pitdespair2"].features[34] = {name : 'WallPlaque', x : 47, y : 27, desc : "wall with a plaque which reads: \"Some walls are sandstone, and can be moved.\""};
 mappages["pitdespair2"].features[35] = {name : 'WallPlaque', x : 45, y : 29, desc : "wall with a plaque which reads: \"If you touch the beam, the puzzle will reset. But solid stone will block them.\""};
+mappages["pitdespair2"].features[36] = {name : 'RoyalPuzzleLaserNS', x : 52, y : 34};
 
 mappages["pitdespair2"].npcs = [];
 
@@ -357,30 +358,23 @@ function CheckLasers(themap) {
   // Always with the lasers!
 
   // EW laser
-  let ewline = {};
+  let ewline = [];
   let fromleft = 1;
   for (let i=46; i<=54; i++) {
-    ewline[i]=0;
     let tile = themap.getTile(i,34);
     let fea = tile.getFeatures();
     for (let j=0;j<fea.length;j++) {
-      if (fea[j].getName().indexOf("Laser") > -1) {
-        themap.deleteThing(fea[j]);
-      }
       if (fea[j].getName() === "SandstoneWall") {
         fromleft = 0;
       }
     }
-    if (fromleft) { ewline[i]=1; }
+    ewline[i]=fromleft;
   }
   let fromright = 1;
   for (let i=54; i>=46; i--) {
     let tile = themap.getTile(i,34);
     let fea = tile.getFeatures();
     for (let j=0;j<fea.length;j++) {
-      if (fea[j].getName().indexOf("Laser") > -1) {
-        themap.deleteThing(fea[j]);
-      }
       if (fea[j].getName() === "SandstoneWall") {
         fromright = 0;
       }
@@ -396,14 +390,11 @@ function CheckLasers(themap) {
     let tile = themap.getTile(52,i);
     let fea = tile.getFeatures();
     for (let j=0;j<fea.length;j++) {
-      if (fea[j].getName().indexOf("Laser") > -1) {
-        themap.deleteThing(fea[j]);
-      }
       if (fea[j].getName() === "SandstoneWall") {
         fromtop = 0;
       }
     }
-    if (fromtop) { nsline[i]=1; }
+    nsline[i]=fromtop;
   }
   let frombottom = 1;
   for (let i=35; i>=28; i--) {
@@ -418,23 +409,34 @@ function CheckLasers(themap) {
   }
   
   for (let i=46; i<=54; i++) {
-    if (ewline[i]) {
+    let thelaser;
+    let tile = themap.getTile(i,34);
+    let fea = tile.getFeatures();
+    for (let j=0;j<fea.length;j++) {
+      if (fea[j].getName() === "RoyalPuzzleLaserEW") { thelaser = fea[j]; }
+    }
+    if (ewline[i] && !thelaser) {
       let newlaser;
-      if ((i === 52) && (nsline[34])) {
-        newlaser = localFactory.createTile("RoyalPuzzleLaserCross");
-      } else {
-        newlaser = localFactory.createTile("RoyalPuzzleLaserEW");
-      }
+      newlaser = localFactory.createTile("RoyalPuzzleLaserEW");
       themap.placeThing(i,34,newlaser);
+    } else if (!ewline[i] && thelaser) {
+      themap.deleteThing(thelaser);
     }
   }
   
   for (let i=28; i<=35; i++) {
-    if (nsline[i]) {
-      if (i!==34) { 
-        let newlaser = localFactory.createTile("RoyalPuzzleLaserNS");
-        themap.placeThing(52,i,newlaser);
-      }
+    let thelaser;
+    let tile = themap.getTile(52,i);
+    let fea = tile.getFeatures();
+    for (let j=0;j<fea.length;j++) {
+      if (fea[j].getName() === "RoyalPuzzleLaserNS") { thelaser = fea[j]; }
+    }
+    if (nsline[i] && !thelaser) {
+      let newlaser;
+      newlaser = localFactory.createTile("RoyalPuzzleLaserNS");
+      themap.placeThing(52,i,newlaser);
+    } else if (!nsline[i] && thelaser) {
+      themap.deleteThing(thelaser);
     }
   }
   DrawMainFrame("draw",themap,PC.getx(),PC.gety());
@@ -508,7 +510,7 @@ mappages["pitdespair3"].terrain[62] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 mappages["pitdespair3"].terrain[63] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["pitdespair3"].features = [];
-mappages["pitdespair3"].features[0] = {name : 'Door', x : 6, y : 45, desc : "magically locked door", locked : 2};
+mappages["pitdespair3"].features[0] = {name : 'Door', x : 6, y : 45, desc : "magically locked door", locked : 2, keyname : "InnerPitOfDespairKey"};
 mappages["pitdespair3"].features[1] = {name : 'SulfurousAsh', x : 19, y : 53};
 mappages["pitdespair3"].features[2] = {name : 'LadderDown', x : 6, y : 47, entermap : 'pitdespair4', enterx : 15, entery : 20};
 mappages["pitdespair3"].features[3] = {name : 'Lava', x : 18, y : 53};
@@ -546,8 +548,7 @@ mappages["pitdespair3"].npcs[1] = {name : 'LurkerNPC', x : 17, y : 20, skintone:
 mappages["pitdespair3"].npcs[2] = {name : 'LurkerNPC', x : 12, y : 29, skintone: '1'};
 mappages["pitdespair3"].npcs[3] = {name : 'LurkerNPC', x : 14, y : 32, skintone: '1'};
 mappages["pitdespair3"].npcs[4] = {name : 'LurkerNPC', x : 21, y : 34, skintone: '1'};
-mappages["pitdespair3"].npcs[5] = {name : 'CorpserNPC', x : 22, y : 31, skintone: '1'};
-mappages["pitdespair3"].npcs[6] = {name : 'DelverNPC', x : 19, y : 49, skintone: '1'};
+mappages["pitdespair3"].npcs[5] = {name : 'FireSnakeNPC', x : 19, y : 49, skintone: '1'};
 
 mappages["pitdespair3"].desc = "Pit of Despair (L3)";
 mappages["pitdespair3"].longdesc = '';
@@ -584,8 +585,8 @@ mappages["pitdespair4"].terrain = [];
  mappages["pitdespair4"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["pitdespair4"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["pitdespair4"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["pitdespair4"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
- mappages["pitdespair4"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK ## ## ## ## ## ## ## ## ## BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["pitdespair4"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK ## ## ## BK ## ## ## BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["pitdespair4"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK ## ## +* ## ## ## +* ## ## BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["pitdespair4"].terrain[8] = 'BK BK BK BK BK BK BK BK BK BK BK ## +* +* +* +* +* +* +* ## BK BK BK BK BK BK BK BK BK BK BK BK';
  mappages["pitdespair4"].terrain[9] = 'BK BK BK BK BK BK BK BK BK BK BK ## +* +* +* +* +* +* +* ## BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["pitdespair4"].terrain[10] = 'BK BK BK BK BK BK BK BK BK BK BK ## +* +* xo +* xo +* +* ## BK BK BK BK BK BK BK BK BK BK BK BK';
