@@ -152,6 +152,15 @@ function Attack(atk, def) {
     }
   } 
   
+  // probably should make an onAttack but for now this can do
+  if (atk.specials.hides) {
+    atk.setGraphic(atk.specials.hides);  
+    delete atk.specials.hides;
+    if (atk.getHomeMap() === PC.getHomeMap()) {
+      DrawMainFrame("one",atk.getHomeMap(),atk.getx(),atk.gety());
+    }
+  }
+
   if (atk.checkType("pc")) {
     retval["txt"] = "Attack " + def.getDesc();
     if (def.getAttitude() === "friendly") {
