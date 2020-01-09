@@ -139,12 +139,8 @@ ProtoObject.prototype.copy = function(type) {
       copydata.traceback.push("homeMap");
       DebugWrite("saveload", idx + " copied... ");
     } else if ((idx === "resists") || (idx === "specials")) {
-      if ((typeof base_version[idx] === "object") && objectCompare(val, base_version[idx])) {
-        DebugWrite("saveload", idx + " an object and the <span style='color:firebrick'>same, moving on</span>...  ");
-      } else {
-        copydata[idx] = val;
-        DebugWrite("saveload", idx + " an object and <span style='color:lime'>different, copying</span>... ");
-      }
+      copydata[idx] = val;
+      DebugWrite("saveload", idx + " an object and <span style='color:lime'> copied</span>... ");
     } else if ((idx === "currentDestination") || (idx === "lastLocation") || (idx === "flags")) {
       copydata[idx] = val;
       DebugWrite("saveload", idx + " <span style='color:lime'> copying regardless</span>... ");
@@ -203,26 +199,14 @@ ProtoObject.prototype.copy = function(type) {
         }
       }
     } else if (idx === "spellsknown") {
-      if (objectCompare(val, base_version[idx])) {
-        DebugWrite("saveload", idx + " an object and the same, moving on...  ");
-      } else {
-        copydata[idx] = val;
-        DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " different, saved.</span>");
-      }
+      copydata[idx] = val;
+      DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " saved.</span>");
     } else if (idx === "runes") {
-      if (objectCompare(val, base_version[idx])) {
-        DebugWrite("saveload", idx + " an object and the same, moving on...  ");
-      } else {
-        copydata[idx] = val;
-        DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " different, saved.</span>");
-      }
+      copydata[idx] = val;
+      DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " saved.</span>");
     } else if (idx === "runeCooldown") {
-      if (objectCompare(val, base_version[idx])) {
-        DebugWrite("saveload", idx + " an object and the same, moving on...  ");
-      } else {
-        copydata[idx] = val;
-        DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " different, saved.</span>");
-      }   
+      copydata[idx] = val;
+      DebugWrite("saveload", "<span style='font-weight:bold'>" + idx + " different, saved.</span>");
     } else if (idx === "attached") {  // on some levers
       copydata[idx] = val;   
     } else if (idx === "destination") {  // on teleporters
