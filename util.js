@@ -1516,7 +1516,7 @@ function PerformGambling() {
 
 //EXTERNALLY SOURCED
 
-// these two functions found on stackexchange
+// this function found on stackexchange
 // http://stackoverflow.com/questions/1773069/using-jquery-to-compare-two-arrays-of-javascript-objects
 
 function arrayCompare(arrayA, arrayB) {
@@ -1526,35 +1526,6 @@ function arrayCompare(arrayA, arrayB) {
   b.sort();
   for (let i = 0, l = a.length; i < l; i++) {
     if (a[i] !== b[i]) { 
-      return false;
-    }
-  }
-  return true;
-}
-
-function objectCompare(objA, objB) {
-
-  let i,a_type,b_type;
-
-  // Compare if they are references to each other 
-  if (objA === objB) { return true;}
-
-  if (Object.keys(objA).length !== Object.keys(objB).length) { return false;}
-  for (let i in objA) {
-    if (objA.hasOwnProperty(i)) {
-      if (typeof objB[i] === 'undefined') {
-        return false;
-      }
-      else {
-        a_type = Object.prototype.toString.apply(objA[i]);
-        b_type = Object.prototype.toString.apply(objB[i]);
-
-        if (a_type !== b_type) {
-          return false; 
-        }
-      }
-    }
-    if (objectCompare(objA[i],objB[i]) === false){
       return false;
     }
   }
