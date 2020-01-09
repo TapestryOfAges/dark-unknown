@@ -23,12 +23,6 @@ const DEF_PER_LEVEL = 0;
 const DEF_PER_DEX = 1;
 const XP_MULTIPLIER = 1.5;
 
-const RUNE_KINGS  = 1;
-const RUNE_WAVES  = 2;
-const RUNE_WINDS  = 4;
-const RUNE_FLAMES = 8;
-const RUNE_VOID   = 16;
-
 const DMG_NEGLIGABLE = "2d4";
 const DMG_LIGHT = "3d4+3";
 const DMG_MEDIUM = "4d4+16";
