@@ -2434,34 +2434,39 @@ function DrawStats(page) {
     DrawTopbarFrame("<p>Spellbook</p>");
   } else if (page === 4) {
     statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
+    statsdiv += "<table cellpadding='0' cellspacing='10' border='0' style='background-color:black'>";
     statsdiv += "<tr><td>&nbsp;</td></tr>";
    
     let hasrunes = 0;
+    statsdiv += "<tr><td width='110'>";
     if (PC.runes.kings) { 
-     statsdiv += "<tr><td>Rune of Kings</td></tr>";
+     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");'></div><p style='text-align:center'>The Rune<br />of Kings</p>";
      hasrunes = 1;
     }
+    statsdiv += "</td><td>";
     if (PC.runes.waves) { 
-     statsdiv += "<tr><td>Rune of Waves</td></tr>";
+     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-32px'></div><p style='text-align:center'>The Rune<br />of Waves</p>";
      hasrunes = 1;
     }
-    if (PC.runes.winds) { 
-     statsdiv += "<tr><td>Rune of Winds</td></tr>";
-     hasrunes = 1;
-    }
-    if (PC.runes.flames) { 
-     statsdiv += "<tr><td>Rune of Flames</td></tr>";
-     hasrunes = 1;
-    }
+    statsdiv += "</td><td rowspan='2' style='vertical-align:center'>";
     if (PC.runes.void) { 
-     statsdiv += "<tr><td>Rune of Void</td></tr>";
+      statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-128px'></div><p style='text-align:center'>The Rune<br />of Void</p>";
+      hasrunes = 1;
+    }
+    statsdiv += "</td></tr><tr><td>";
+    if (PC.runes.winds) { 
+     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-64px'></div><p style='text-align:center'>The Rune<br />of Winds</p>";
      hasrunes = 1;
     }
-    if (!hasrunes) {
-      statsdiv += "<tr><td>You have discovered no runes.</td></tr>";
+    statsdiv += "</td><td>";
+    if (PC.runes.flames) { 
+     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-96px'></div><p style='text-align:center'>The Rune<br />of Flames</p>";
+     hasrunes = 1;
     }
-    statsdiv += "</table></div></div>";  
+    statsdiv += "</td></tr></table>";
+    if (!hasrunes) {
+      statsdiv += "<p>You have discovered no runes.</p>";
+    }
     DrawTopbarFrame("<p>Runes</p>");
 
   }
