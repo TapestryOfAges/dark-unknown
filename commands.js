@@ -2435,7 +2435,6 @@ function DrawStats(page) {
   } else if (page === 4) {
     statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
     statsdiv += "<table cellpadding='0' cellspacing='10' border='0' style='background-color:black'>";
-    statsdiv += "<tr><td>&nbsp;</td></tr>";
    
     let hasrunes = 0;
     statsdiv += "<tr><td width='110'>";
@@ -2445,22 +2444,22 @@ function DrawStats(page) {
     }
     statsdiv += "</td><td>";
     if (PC.runes.waves) { 
-     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-32px'></div><p style='text-align:center'>The Rune<br />of Waves</p>";
+     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-110px 0px'></div><p style='text-align:center'>The Rune<br />of Waves</p>";
      hasrunes = 1;
     }
     statsdiv += "</td><td rowspan='2' style='vertical-align:center'>";
     if (PC.runes.void) { 
-      statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-128px'></div><p style='text-align:center'>The Rune<br />of Void</p>";
+      statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-440px 0px'></div><p style='text-align:center'>The Rune<br />of Void</p>";
       hasrunes = 1;
     }
     statsdiv += "</td></tr><tr><td>";
     if (PC.runes.winds) { 
-     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-64px'></div><p style='text-align:center'>The Rune<br />of Winds</p>";
+     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-220px 0px'></div><p style='text-align:center'>The Rune<br />of Winds</p>";
      hasrunes = 1;
     }
     statsdiv += "</td><td>";
     if (PC.runes.flames) { 
-     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-96px'></div><p style='text-align:center'>The Rune<br />of Flames</p>";
+     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-330px 0px'></div><p style='text-align:center'>The Rune<br />of Flames</p>";
      hasrunes = 1;
     }
     statsdiv += "</td></tr></table>";
