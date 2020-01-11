@@ -173,3 +173,75 @@ mappages["volcano"].onload = function(mapref) {
   
   CreateBeaches(mapref);
 }
+
+mappages["lavatubes"] = {};
+mappages["lavatubes"].terrain = [];
+ mappages["lavatubes"].terrain[0] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+ mappages["lavatubes"].terrain[1] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+ mappages["lavatubes"].terrain[2] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+ mappages["lavatubes"].terrain[3] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+ mappages["lavatubes"].terrain[4] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+ mappages["lavatubes"].terrain[5] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+ mappages["lavatubes"].terrain[6] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+ mappages["lavatubes"].terrain[7] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+ mappages["lavatubes"].terrain[8] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ lt F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+ mappages["lavatubes"].terrain[9] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[10] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[11] = 'F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[12] = 'F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[13] = 'F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt lt F^ lt lt lt lt F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[14] = 'F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt lt F^ F^ F^ lt lt lt lt lt F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[15] = 'F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt F^ F^ lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[16] = 'F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt F^ F^ lt lt lt lt lt lt lt lt F^ F^ lt F^ F^ F^ F^ F^ F^ lt lt lt lt F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[17] = 'F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt F^ lt lt lt lt lt lt lt lt F^ F^ lt lt lt F^ F^ F^ F^ F^ lt lt lt lt F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[18] = 'F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt lt lt lt lt F^ F^ lt lt lt lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[19] = 'F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt lt lt lt lt F^ F^ lt lt lt lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[20] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[21] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[22] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt lt lt F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt lt F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[23] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ lt lt lt lt F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[24] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[25] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[26] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[27] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[28] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+mappages["lavatubes"].terrain[29] = 'F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^ F^';
+
+mappages["lavatubes"].features = [];
+mappages["lavatubes"].features[0] = {name : 'LadderUp', x : 27, y : 18, entermap : 'volcano', enterx : 27, entery : 21};
+mappages["lavatubes"].features[1] = {name : 'LadderDown', x : 21, y : 8, entermap : 'deeplava', enterx : 21, entery : 8};
+
+
+mappages["lavatubes"].npcs = [];
+mappages["lavatubes"].npcs[0] = {name : 'FireLizardNPC', x : 35, y : 14, skintone: '1'};
+mappages["lavatubes"].npcs[1] = {name : 'FireLizardNPC', x : 31, y : 11, skintone: '1'};
+mappages["lavatubes"].npcs[2] = {name : 'FireSnakeNPC', x : 20, y : 15, skintone: '1'};
+mappages["lavatubes"].npcs[3] = {name : 'FireSnakeNPC', x : 11, y : 19, skintone: '1'};
+mappages["lavatubes"].npcs[4] = {name : 'FireElementalNPC', x : 14, y : 8, skintone: '1'};
+
+mappages["lavatubes"].desc = "Lava Tubes";
+mappages["lavatubes"].longdesc = 'As you descend into the lava tubes, the heat is intense. Surely this volcano is extinct...';
+mappages["lavatubes"].music = 'Cave';
+mappages["lavatubes"].savename = `lavatubes`;
+mappages["lavatubes"].exitmap = 'volcano';
+mappages["lavatubes"].exitx = '27';
+mappages["lavatubes"].exity = '21';
+mappages["lavatubes"].wraps = '';
+mappages["lavatubes"].enterx = '27';
+mappages["lavatubes"].entery = '18';
+mappages["lavatubes"].seeBelow = '';
+mappages["lavatubes"].lightLevel = 'dark';
+mappages["lavatubes"].alwaysRemember = '0';
+mappages["lavatubes"].scale = '1';
+mappages["lavatubes"].underground = '1';
+mappages["lavatubes"].undergroundDesc = 'Lava Tubes';
+mappages["lavatubes"].enterscript = '';
+mappages["lavatubes"].entertestscript = '';
+mappages["lavatubes"].exitscript = '';
+mappages["lavatubes"].exittestscript = '';
+mappages["lavatubes"].returnmap = 'volcano';
+mappages["lavatubes"].returnx = '27';
+mappages["lavatubes"].returny = '21';
+mappages["lavatubes"].returninfused = '0';
+mappages["lavatubes"].linkedMaps = [""];
+mappages["lavatubes"].editorLabels = '{}';
