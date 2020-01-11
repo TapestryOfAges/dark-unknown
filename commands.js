@@ -228,7 +228,25 @@ function PerformCommand(code, ctrl) {
 	}
   else if (code === 70) { // f
     // focus (since it isn't Fire)
-		retval["txt"] = "Focus not hooked up yet.";
+    if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames) {  // game requires kings first, but let's not assume
+      let runepage = CreateRunesPage(1);
+      DrawTopbarFrame("<p>Runes</p>");
+
+      document.getElementById('worldlayer').innerHTML = "<img src='graphics/spacer.gif' width='416' height='416' />";
+      document.getElementById('worldlayer').style.backgroundImage = "";
+      document.getElementById('worldlayer').style.backgroundColor = "black";
+      document.getElementById('uiinterface').innerHTML = runepage;
+      document.getElementById('uiinterface').style.backgroundColor = "black";
+      targetCursor.runeChoice = 1;
+
+      retval["fin"] = 2;
+      retval["txt"] = "Focus on which rune?";
+      retval["input"] = "&gt; Focus:";
+      gamestate.setMode("focus");
+    } else {
+      retval["txt"] = "You have no runes on which to focus.";
+    }
+
 	}
 	else if (code === 71) { // g
 		// get 
@@ -1106,6 +1124,108 @@ function PerformEnter(cmd) {
 	return retval;
 }
 
+function PerformFocus(code) {
+  let retval = {};
+  if (code === 27) { // ESC
+    delete targetCursor.runeChoice;
+    retval["fin"] = 0;
+    retval["input"] = "&gt;";
+    retval["txt"] = "None.";
+    return retval;
+  }
+  if ((code === 32) || (code === 13)) {
+    return PerformRuneChoice();
+  }
+  if ((code ===39) && (targetCursor.runeChoice === 1) && (PC.runes.waves)) {
+    targetCursor.runeChoice = 2;
+  } else if ((code === 39) && (targetCursor.runeChoice === 3) && (PC.runes.flames)) {
+    targetCursor.runeChoice = 4; 
+  } else if ((code === 39) && (targetCursor.runeChoice === 1) && (PC.runes.flames) && (!PC.runes.waves) && (!PC.runes.winds)) {
+    targetCursor.runeChoice = 4;
+  } else if ((code === 37) && (targetCursor.runeChoice === 2) && (PC.runes.kings)) {
+    targetCursor.runeChoice = 1;
+  } else if ((code === 37) && (targetCursor.runeChoice === 4) && (PC.runes.winds)) {
+    targetCursor.runeChoice = 3;
+  } else if ((code === 37) && (targetCursor.runeChoice === 4) && (PC.runes.kings) && (!PC.runes.waves) && (!PC.runes.winds)) {
+    targetCursor.runeChoice = 1;
+  } else if ((code === 38) && (targetCursor.runeChoice === 3) && (PC.runes.kings)) {
+    targetCursor.runeChoice = 1;
+  } else if ((code === 38) && (targetCursor.runeChoice === 4) && (PC.runes.waves)) {
+    targetCursor.runeChoice = 2;
+  } else if ((code === 38) && (targetCursor.runeChoice === 4) && (PC.runes.kings) && (!PC.runes.waves) && (!PC.runes.winds)) {
+    targetCursor.runeChoice = 1;
+  } else if ((code === 40) && (targetCursor.runeChoice === 1) && (PC.runes.winds)) {
+    targetCursor.runeChoice = 3;
+  } else if ((code === 40) && (targetCursor.runeChoice === 2) && (PC.runes.flames)) {
+    targetCursor.runeChoice = 4;
+  } else if ((code === 40) && (targetCursor.runeChoice === 1) && (PC.runes.flames) && (!PC.runes.winds) && (!PC.runes.waves)) {
+    targetCursor.runeChoice = 4;
+  }
+  let runepage = CreateRunesPage(targetCursor.runeChoice);
+  document.getElementById('uiinterface').innerHTML = runepage;
+  retval["fin"] = 2;
+  return retval;
+}
+
+function PerformRuneChoice() {
+  let retval = {fin: 1};
+  if (targetCursor.runeChoice === 1) { 
+    // The Rune of Kings
+    // Always heals you some. In certain locations, may also reveal things.
+    // If near the Prince and he is in a coma, heals and wakes him
+    let themap = PC.getHomeMap();
+    if (themap.getName() === "darkunknown") {
+      if (((PC.getx() === 27) && (PC.gety() === 28)) || ((PC.getx() === 26) && (PC.gety() === 29)) || ((PC.getx() === 28) && (PC.gety() === 29)) || ((PC.getx() >= 25) && (PC.getx() <= 28) && (PC.gety() === 30)) || ((PC.getx() >=25) && (PC.getx() <= 27) && (PC.gety() === 31))) {
+        // open entrance to grotto
+        Earthquake();
+        DUPlaySound("sfx_earthquake");
+        let cave = localFactory.createTile("Cave");
+        cave.setEnterMap("grotto", 22, 53);
+        themap.placeThing(27,30,cave);
+        retval["txt"] = "A cave entrance is revealed!";
+        return retval;
+      } else if ((PC.getx() === 100) && (PC.gety() === 57)) {
+        Earthquake();
+        DUPlaySound("sfx_earthquake");
+        let tile = themap.getTile(112,67);
+        let oldgate = tile.getTopFeature();
+        if (oldgate && (oldgate.getName() === "Moongate")) {
+          themap.deleteThing(oldgate);
+        }
+        
+        PC.getHomeMap().moveThing(111,67,user);
+        DrawMainFrame("draw", themap, user.getx(), user.gety());
+        // teleport to entrance to air
+        setTimeout(function() {
+          let moongate = localFactory.createTile("Moongate");
+          moongate.destmap = "skypalace";
+          moongate.destx = 47;
+          moongate.desty = 49;
+          themap.placeThing(112,67,moongate);
+          animateImage(0,-128,moongate,0,"right",300,0,1);
+        }, 500);
+
+      } else {
+        // no effect
+      }
+    } else if ((themap.getName() === "volcano") && (GetDistance(PC.getx(), PC.gety(), 27,21) < 5)) {
+      Earthquake();
+      let cave = localFactory.createTile("Cave");
+      cave.setEnterMap("lavatubes", 27, 18);   // make tubes!
+      let nillavatile = themap.getTile(27,21);
+      let nillava = nillavatile.getTopFeature();
+      if (nillava && (nillave.getName() === "Lava")) {
+        themap.deleteThing(nillava);
+      }
+      
+      themap.placeThing(27,21,cave);
+      retval["txt"] = "A tunnel into the caldera is exposed!";
+      return retval;
+        
+    }
+  }
+}
+
 function PerformGet(who) {
   let localacre = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
   let getitem = localacre.features.getTop();
@@ -1852,143 +1972,6 @@ function MakeUseHappen(who,used,where) {
   return retval;
 }
 
-function ChooseRune() {
-  // deprecated
-  targetCursor.command = "r";
-
-  var itemarray = [];
-  var statsdiv = "&nbsp;";
-  statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-  statsdiv += "<table cellpadding='0' cellspacing='0' border='0'>";
-  statsdiv += "<tr><td>&nbsp;&nbsp;</td><td>&nbsp;</td></tr>";
-  var numrunes = 0;
-  if (PC.runes.kings) {
-    statsdiv += "<tr><td id='star" + numrunes + "'></td><td id='rune" + numrunes + "'>The Rune of Kings</td></tr>";
-    itemarray[numrunes] = RUNE_KINGS;
-    numrunes++;
-  }
-  if (PC.runes.waves) {
-    statsdiv += "<tr><td id='star" + numrunes + "'></td><td id='rune" + numrunes + "'>The Rune of Waves</td></tr>";
-    itemarray[numrunes] = RUNE_WAVES;
-    numrunes++;
-  }
-  if (PC.runes.winds) {
-    statsdiv += "<tr><td id='star" + numrunes + "'></td><td id='rune" + numrunes + "'>The Rune of Winds</td></tr>";
-    itemarray[numrunes] = RUNE_WINDS;
-    numrunes++;
-  }
-  if (PC.runes.flames) {
-    statsdiv += "<tr><td id='star" + numrunes + "'></td><td id='rune" + numrunes + "'>The Rune of Flames</td></tr>";
-    itemarray[numrunes] = RUNE_FLAMES;
-    numrunes++;
-  }
-  if (PC.runes.void) {
-    statsdiv += "<tr><td id='star" + numrunes + "'></td><td id='rune" + numrunes + "'>The Rune of Void</td></tr>";
-    itemarray[numrunes] = RUNE_VOID;
-    numrunes++;
-  }
-  statsdiv += "</table><table width='100%' cellpadding='0' cellspacing='0' border='0'>";
-//  statsdiv += "<tr><td id='rune1'>&nbsp;</td><td id='rune2'>&nbsp;</td></tr>";
-//  statsdiv += "<tr><td colspan='2' id='runevoid' style='align:center'>&nbsp;</td></tr>"
-  statsdiv += "<tr><td><br /><br /></td></tr>";
-  statsdiv += "<tr><td id='rune" + numrunes + "' style='text-align:center'>&nbsp;</td></tr>";
-  statsdiv += "</table></div></div>";
-
-   DrawTopbarFrame("<p>Runes</p>");
-   $("#worldlayer").html("<img src='graphics/spacer.gif' width='416' height='416' />");
-   $("#worldlayer").css("background-image", "");
-   $("#worldlayer").css("background-color", "black");
-   
-   $('#displayframe').html(statsdiv);
-   
-	var scrollelem = $('.zstats').jScrollPane();
-  var scrollapi = scrollelem.data('jsp');
-  targetCursor.scrollapi = scrollapi;
-  targetCursor.scrolllocation = 0;
-  targetCursor.itemlist = [];
-  targetCursor.itemlist = itemarray;
-  targetCursor.runeselect = {};
-  
-  $('#rune0').toggleClass('highlight');
-}
-
-function PerformRuneChoice(code) {
-  // deprecated
-  var retval = {};
-  var numselected = 0;
-  var runecombo;
-  var runecombodesc = "";
-  $.each(targetCursor.runeselect, function(idx, val) {
-    if (val === 1) { numselected++; }
-  });
-  if (code === 27) { // ESC
-    retval["fin"] = 0;
-    delete targetCursor.itemlist;
-    delete targetCursor.runeselect;
-  }
-	else if ((code === 38) || (code === 219)) {   // UP ARROW  or  [
-	    $('#rune' + targetCursor.scrolllocation).toggleClass('highlight');  
-	    targetCursor.scrolllocation--;
-	    if (targetCursor.scrolllocation < 0) { targetCursor.scrolllocation = targetCursor.itemlist.length; }
-	    if ((targetCursor.scrolllocation === targetCursor.itemlist.length) && (!numselected)) {
-	      targetCursor.scrolllocation--;
-	    }
-	    $('#rune' + targetCursor.scrolllocation).toggleClass('highlight');  
-	    retval["fin"] = 1;
-	}
-  else if ((code === 40) || (code === 191)) { // DOWN ARROW or /
-      $('#rune' + targetCursor.scrolllocation).toggleClass('highlight');  
-	    targetCursor.scrolllocation++;
-	    if ((targetCursor.scrolllocation === targetCursor.itemlist.length) && (!numselected)) {
-	      targetCursor.scrolllocation++;
-	    }
-	    if (targetCursor.scrolllocation > targetCursor.itemlist.length) { targetCursor.scrolllocation = 0; }
-	    $('#rune' + targetCursor.scrolllocation).toggleClass('highlight');  
-	    retval["fin"] = 1;
-  }
-	else if ((code === 32) || (code === 13)) { // SPACE or ENTER
-    // toggle selected rune
-    if (targetCursor.scrolllocation === targetCursor.itemlist.length) {
-      runecombo = 0;
-      $.each(targetCursor.runeselect, function(idx,val) {
-        if (val) { runecombo += targetCursor.itemlist[idx]; }
-      });
-      retval = RunePower(runecombo);
-      retval["fin"] = 2;
-    } else {
-      retval["fin"] = 1;
-      if (targetCursor.runeselect[targetCursor.scrolllocation]) {
-        $('#star'+targetCursor.scrolllocation).html("");
-        targetCursor.runeselect[targetCursor.scrolllocation] = 0;
-        numselected--;
-      } else {
-        if ((numselected > 3) || ((numselected === 3) && (!targetCursor.runeselect[targetCursor.itemlist.length-1]))) {
-          DUPlaySound("sfx_walk_blocked"); 
-        } else {
-          $('#star'+targetCursor.scrolllocation).html("*");
-          targetCursor.runeselect[targetCursor.scrolllocation] = 1;
-          numselected++;
-        }
-      }
-      if (numselected) {
-        runecombo = 0;
-        $.each(targetCursor.runeselect, function(idx,val) {
-          if (val) { runecombo += targetCursor.itemlist[idx]; }
-        });
-        alert(runecombo);
-        $('#rune'+targetCursor.itemlist.length).html(runedefs[runecombo].pre);
-      } else {
-        $('#rune'+targetCursor.itemlist.length).html("");
-      }
-    }
-  }
-  return retval;
-
-//  targetCursor.scrolllocation = 0;
-//  targetCursor.itemlist = itemarray;
- 
-}
-
 function PerformWait(code) {
   let retval = {fin:2};
   if ((code === 27) || (code === 48)) { 
@@ -2433,38 +2416,13 @@ function DrawStats(page) {
 
     DrawTopbarFrame("<p>Spellbook</p>");
   } else if (page === 4) {
-    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
-    statsdiv += "<table cellpadding='0' cellspacing='10' border='0' style='background-color:black'>";
-   
     let hasrunes = 0;
-    statsdiv += "<tr><td width='110'>";
-    if (PC.runes.kings) { 
-     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");'></div><p style='text-align:center'>The Rune<br />of Kings</p>";
-     hasrunes = 1;
-    }
-    statsdiv += "</td><td>";
-    if (PC.runes.waves) { 
-     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-110px 0px'></div><p style='text-align:center'>The Rune<br />of Waves</p>";
-     hasrunes = 1;
-    }
-    statsdiv += "</td><td rowspan='2' style='vertical-align:center'>";
-    if (PC.runes.void) { 
-      statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-440px 0px'></div><p style='text-align:center'>The Rune<br />of Void</p>";
-      hasrunes = 1;
-    }
-    statsdiv += "</td></tr><tr><td>";
-    if (PC.runes.winds) { 
-     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-220px 0px'></div><p style='text-align:center'>The Rune<br />of Winds</p>";
-     hasrunes = 1;
-    }
-    statsdiv += "</td><td>";
-    if (PC.runes.flames) { 
-     statsdiv += "<div style='width:110;height:110;background-image:url(\"graphics/runes.png\");background-position:-330px 0px'></div><p style='text-align:center'>The Rune<br />of Flames</p>";
-     hasrunes = 1;
-    }
-    statsdiv += "</td></tr></table>";
+    if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) { hasrunes = 1; }
+
     if (!hasrunes) {
       statsdiv += "<p>You have discovered no runes.</p>";
+    } else {
+      statsdiv = CreateRunesPage();
     }
     DrawTopbarFrame("<p>Runes</p>");
 
@@ -2476,6 +2434,61 @@ function DrawStats(page) {
   document.getElementById('uiinterface').innerHTML = statsdiv;
   document.getElementById('uiinterface').style.backgroundColor = "black";
 
+}
+
+function CreateRunesPage(selected) {
+  let statsdiv;
+  let hasvoid = 0;
+  if (PC.runes.void && selected) { hasvoid = -110; }
+  statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+  statsdiv += "<table cellpadding='0' cellspacing='10' border='0' style='background-color:black'>";
+ 
+  statsdiv += "<tr><td width='110'>";
+  if (PC.runes.kings) { 
+    let sel = "";
+    if (selected === 1) { 
+      sel = "; color: yellow"; 
+    }
+    let opac = "";
+    if (PC.getRuneCooldown("kings") > DUTime.getGameClock()) {
+      opac = "; opacity: .5";
+    }
+   statsdiv += `<div style='width:110;height:110;background-image:url("graphics/runes.png");background-position:0px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Kings</p>`;
+  }
+  statsdiv += "</td><td>";
+  if (PC.runes.waves) { 
+    let sel = "";
+    if (selected === 2) { sel = "; color: yellow"; }
+    let opac = "";
+    if (PC.getRuneCooldown("waves") > DUTime.getGameClock()) {
+      opac = "; opacity: .5";
+    }
+   statsdiv += `<div style='width:110;height:110;background-image:url("graphics/runes.png");background-position:-110px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Waves</p>`;
+  }
+  statsdiv += "</td><td rowspan='2' style='vertical-align:center'>";
+  statsdiv += "</td></tr><tr><td>";
+  if (PC.runes.winds) { 
+    let sel = "";
+    if (selected === 3) { sel = "; color: yellow"; }
+    let opac = "";
+    if (PC.getRuneCooldown("winds") > DUTime.getGameClock()) {
+      opac = "; opacity: .5";
+    }
+    statsdiv += `<div style='width:110;height:110;background-image:url("graphics/runes.png");background-position:-220px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Winds</p>`;
+  }
+  statsdiv += "</td><td>";
+  if (PC.runes.flames) { 
+    let sel = "";
+    if (selected === 4) { sel = "; color: yellow"; }
+    let opac = "";
+    if (PC.getRuneCooldown("flames") > DUTime.getGameClock()) {
+      opac = "; opacity: .5";
+    }
+   statsdiv += `<div style='width:110;height:110;background-image:url("graphics/runes.png");background-position:-330px ${hasvoid}px${opac}'></div><p style='text-align:center${sel}'>The Rune<br />of Flames</p>`;
+  }
+  statsdiv += "</td></tr></table>";
+
+  return statsdiv;
 }
 
 function StatsCategory(stuff, label) {

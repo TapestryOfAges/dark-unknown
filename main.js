@@ -419,6 +419,22 @@ function DoAction(code, ctrl) {
     else { // ignore
     	
     }
+  } else if (gamestate.getMode() === "focus") {
+    let response = PerformFocus(code);
+    if (response["fin"] === 0) { // ESC
+      maintext.addText(response["txt"]);
+      gamestate.setMode("player");
+      maintext.setInputLine(response["input"]);
+      maintext.drawTextFrame();
+      document.getElementById('uiinterface').innerHTML = "";
+      document.getElementById('uiinterface').style.backgroundColor = "";
+
+      return;
+    } else if (response["fin"] === 2) { // moved
+      // don't really have to do anything here
+    } else if (response["fin"] === 1) { // used a Rune
+
+    }
   } else if (gamestate.getMode() === "choosedir") {
     let response = PerformChooseDir(code);
     if (response["fin"] === 1) { // direction chosen
