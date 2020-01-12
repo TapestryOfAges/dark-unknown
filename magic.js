@@ -907,7 +907,7 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
 
 // Lesser Heal
 magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].getLongDesc = function() {
-  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d6" + PC.getLevel()) + "-" + Dice.rollmax(PC.getLevel() + "d6" + PC.getLevel()) + "HP.";
+  return "Heals you for " + Dice.rollmin(PC.getLevel() + "d6+" + PC.getLevel()) + "-" + Dice.rollmax(PC.getLevel() + "d6+" + PC.getLevel()) + "HP.";
 }
 magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].getInfusedDesc = function() {
   return "Heals for 1.5x as much.";
@@ -1375,14 +1375,14 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
 }
 
 // Fire Armor
-magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].getLongDesc = function() {
+magic[SPELL_FIRE_ARMOR_LEVEL][SPELL_FIRE_ARMOR_ID].getLongDesc = function() {
   return "Any adjacent foe who strikes you takes " + Dice.rollmin(DMG_NEGLIGABLE) + "-" + Dice.rollmax(DMG_NEGLIGABLE) + " fire damage.";
 }
-magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].getInfusedDesc = function() {
+magic[SPELL_FIRE_ARMOR_LEVEL][SPELL_FIRE_ARMOR_ID].getInfusedDesc = function() {
   return "Damage increased to " + Dice.rollmin(DMG_LIGHT) + "-" + Dice.rollmax(DMG_LIGHT) + " and duration doubled.";
 }
 
-magic[SPELL_FIRE_ARMOR_ID][SPELL_FIRE_ARMOR_ID].executeSpell = function(caster, infused, free) {
+magic[SPELL_FIRE_ARMOR_LEVEL][SPELL_FIRE_ARMOR_ID].executeSpell = function(caster, infused, free) {
   DebugWrite("magic", "Casting Fire Armor.<br />");
   let resp = {fin:1};
   if (!free) {
@@ -1796,7 +1796,7 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
   // make the first firefield
   let field1 = localFactory.createTile("FireField");
   castermap.placeThing(tgt.x, tgt.y, field1)
-  field1.expires = expires;
+  field1.expiresTime = expires;
   
   // determine which direction it was, for whether the wall is diagonal, horizontal, or vertical.
   let dir = GetEffectGraphic(caster,field1,{}).fired;
