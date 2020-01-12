@@ -270,6 +270,14 @@ mappages["blackdragon"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     if (DU.gameflags.getFlag("act2")) {
       Open_BDC_Gate(this);
+    } else {
+      let npcs = mapref.npcs.getAll();
+      let dragon;
+      for (let i=0;i<npcs.length;i++) {
+        if (npcs[i].getName() === "BlackDragonNPC") { dragon = npcs[i]; }
+      }
+      dragon.setMaxHP(3000);
+      dragon.setHP(3000);
     }
   } else if ((gamestate.getMode() === "loadgame") && (!DU.gameflags.getFlag("editor")) && (DU.gameflags.getFlag("bdc_gate_open"))) {
     LowerDrawbridge(mapref);
