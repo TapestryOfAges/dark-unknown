@@ -329,7 +329,7 @@ Acre.prototype.removeLocalSound = function(sndsrc) {
     }
     this.topSound = newsnd;
   }
-  DebugWrite("sound", "Removed " + snd + " sound from this acre.<br />");
+  DebugWrite("sound", "Removed " + sndsrc + " sound from this acre.<br />");
 }
 
 Acre.prototype.getLocalSound = function() {
@@ -1816,8 +1816,8 @@ GameMap.prototype.setNoiseSource = function(noisesource, noise, radius) {
 
 GameMap.prototype.removeNoiseSource = function(noisesource, radius) {
   let serial = noisesource.getSerial();
-  for (let i=noisesource.getx()-radius;i<=noisesource.getx()+radius;i++) {
-    for (let j=noisesource.gety()-radius;j<=noisesource.gety()+radius;j++) {
+  for (let i=noisesource.getx()-Math.ceil(radius);i<=noisesource.getx()+Math.ceil(radius);i++) {
+    for (let j=noisesource.gety()-Math.ceil(radius);j<=noisesource.gety()+Math.ceil(radius);j++) {
       let tile = this.getTile(i,j);
       if (tile !== "OoB") {
         if (GetDistance(noisesource.getx(),noisesource.gety(),i,j) <= radius) {
