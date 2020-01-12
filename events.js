@@ -130,6 +130,7 @@ EventFunctions["BDragon"] = function(ev) {
       maintext.delayedAddText("There is a heartbeat where nothing moves and the air stills, and then Lance's eyes roll back in his head and he collapses unconscious.");
       maintext.delayedAddText('The dragon looks at him, and then at you. "How disappointing."');
       maintext.delayedAddText('Then, it roars and lunges at you!');
+      DU.gameflags.setFlag("endAct1");
 
       prince.realgraphic = prince.getGraphicArray();
       prince.setGraphicArray("master_spritesheet.png","","-64","-800");
@@ -144,6 +145,8 @@ EventFunctions["BDragon"] = function(ev) {
       dragon.setAttitude("hostile");
       dragon.setCurrentAI("seekPC-30");
       dragon.setAggro(1);
+      dragon.setHP(50);
+      dragon.setMaxHP(50);
       
       bdmap.cityfight = 1;
 
