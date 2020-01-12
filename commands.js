@@ -1174,19 +1174,18 @@ function PerformRuneChoice() {
     // Always heals you some. In certain locations, may also reveal things.
     // If near the Prince and he is in a coma, heals and wakes him
     let themap = PC.getHomeMap();
+    Earthquake();
+    DUPlaySound("sfx_earthquake");
+
     if (themap.getName() === "darkunknown") {
       if (((PC.getx() === 27) && (PC.gety() === 28)) || ((PC.getx() === 26) && (PC.gety() === 29)) || ((PC.getx() === 28) && (PC.gety() === 29)) || ((PC.getx() >= 25) && (PC.getx() <= 28) && (PC.gety() === 30)) || ((PC.getx() >=25) && (PC.getx() <= 27) && (PC.gety() === 31))) {
         // open entrance to grotto
-        Earthquake();
-        DUPlaySound("sfx_earthquake");
         let cave = localFactory.createTile("Cave");
         cave.setEnterMap("grotto", 22, 53);
         themap.placeThing(27,30,cave);
         retval["txt"] = "A cave entrance is revealed!";
         return retval;
       } else if ((PC.getx() === 100) && (PC.gety() === 57)) {
-        Earthquake();
-        DUPlaySound("sfx_earthquake");
         let tile = themap.getTile(112,67);
         let oldgate = tile.getTopFeature();
         if (oldgate && (oldgate.getName() === "Moongate")) {
@@ -1209,7 +1208,6 @@ function PerformRuneChoice() {
         // no effect
       }
     } else if ((themap.getName() === "volcano") && (GetDistance(PC.getx(), PC.gety(), 27,21) < 5)) {
-      Earthquake();
       let cave = localFactory.createTile("Cave");
       cave.setEnterMap("lavatubes", 27, 18);   // make tubes!
       let nillavatile = themap.getTile(27,21);
@@ -1222,8 +1220,25 @@ function PerformRuneChoice() {
       retval["txt"] = "A tunnel into the caldera is exposed!";
       return retval;
         
+    } else if ((themap.getName() === "blackdragon") && DU.gameflags.getFlag("act2") && !DU.gameflags.getFlag("prince_awake")) {
+      let lance = FindNPCByName("Prince Lance",PC.getHomeMap());
+      // WORKING HERE - wake prince plot
+      // needs to add flag "Prince Awake" and wake prince up; if he is awake and it's act 2 he can switch to a new schedule once the 
+      // player re-enters the keep, but in the meantime this will wake but he'll stay in the bed.  
     }
+    if (PC.getHP() < PC.getMaxHP()) {
+      PC.healMe(PC.getMaxHP()*.2, PC);
+      if (retval["txt"]) { retval["txt"] += "<br />"; }
+      retval["txt"] += "You reach for the earth... and it reaches back. You feel better!<br />It will be some time before you can do that again.";
+      PC.setRuneCooldown("kings",144);  // 12 hours
+    } else {
+      if (retval["txt"]) { retval["txt"] += "<br />"; }
+      retval["txt"] += "You feel the warm touch of the earth below your feet, but do not currently need its help with healing.";
+    }
+
   }
+
+  return retval;
 }
 
 function PerformGet(who) {
