@@ -14604,6 +14604,8 @@ NPCObject.prototype.processDeath = function(droploot){
                   setTimeout(function() {
                     maintext.addText("<span class='sysconv'>You have gained: 100 XP.</span>");
                     PC.addxp(100);
+                    DU.gameflags.setFlag("act2");
+                    PC.setHP(15);
                     delete PC.dead;
                   }, 1700);
                 }, 1700);
