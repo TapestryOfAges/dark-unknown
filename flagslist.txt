@@ -65,6 +65,7 @@ rune_kings - has Rune
 rune_kings_1 - have gotten Rune, King hasn't remarked upon it yet, goes away once he does
 x_theory - you have asked Xavier about his theory.
 trusted_courier - you've delivered the message to the Prince
+endAct1 - Negate was cast and freed the prince
 act2 - black dragon has been killed
 prince_awake - prince has woken up and recovered
 returned_cloak - did quest for warren/garren  ** (endgame support)
