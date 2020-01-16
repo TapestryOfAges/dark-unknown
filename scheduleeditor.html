@@ -62,6 +62,7 @@
       function select_sched() {
         curr_person = $("#picksched").val();
         display_schedule();
+        editing = -1;
 
         $("#options").html("<form name='optform'>Activity: <select name='activities' id='activities' onChange='select_activity()'><option value=''></option><option value='RouteTo'>Route To</option><option value='WaitHere'>Wait Here</option><option value='ChangeMap'>Change Map</option><option value='LeaveMap'>Leave Map</option><option value='CallAI'>Call AI</option></select>");
         $("#options").append("</form><br /><div id='activityparams'></div>");
