@@ -1573,6 +1573,11 @@ tileFactory.prototype.makeWalkOnTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWorldsEndingWalkOnTile = function() {
+  let newTile = new WorldsEndingWalkOnTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnChangeExitTile = function() {
   let newTile = new WalkOnChangeExitTile();
   return newTile;
@@ -2490,6 +2495,11 @@ tileFactory.prototype.makeToshinJournalTile = function() {
 
 tileFactory.prototype.makeAdelusLetterTile = function() {
   let newTile = new AdelusLetterTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSpireScrapTile = function() {
+  let newTile = new SpireScrapTile();
   return newTile;
 }
 

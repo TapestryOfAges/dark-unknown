@@ -7292,6 +7292,45 @@ function WalkOnTile() {
 }
 WalkOnTile.prototype = new FeatureObject();
 
+function WorldsEndingWalkOnTile() {
+	this.name = "WorldsEndingWalkOn";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WorldsEndingWalkOnTile.prototype = new FeatureObject();
+
+WorldsEndingWalkOnTile.prototype.walkon = function(walker) {
+  let mapref = walker.getHomeMap();
+  CloseWEDoors(mapref);
+  if ((this.getx() === 35) && (this.gety() === 34) && ((this.getHomeMap().getTile(35,34).getFeatureByName("WorldsEndingWalkOn").secondlastteleport === "39,56") && (this.getHomeMap().getTile(35,34).getFeatureByName("WorldsEndingWalkOn").lastteleport === "31,56"))) {
+    // SE, SW, N
+    mapref.moveThing(43,34,walker);        
+  } else if ((this.getx() === 31) && (this.gety() === 56) && ((this.getHomeMap().getTile(35,34).getFeatureByName("WorldsEndingWalkOn").lastteleport === "39,34") && (this.getHomeMap().getTile(35,34).getFeatureByName("WorldsEndingWalkOn").secondlastteleport === "35,34"))) { 
+    // NE, N, SW
+    mapref.moveThing(43,56,walker);        
+  } else {
+    if (typeof this.destx === "number") { 
+      mapref.moveThing(this.destx,this.desty,walker);
+    } else {
+      mapref.moveThing(this.destx[Dice.roll("1d3-1")],this.desty,walker);
+    }
+  }
+  
+  // set last traveled to check patterns
+  let trackteleports = this.getHomeMap().getTile(35,34).getFeatureByName("WorldsEndingWalkOn");
+  trackteleports.secondlastteleport = trackteleports.lastteleport;
+  trackteleports.lastteleport = this.getx() + "," + this.gety();
+  if (walker === PC) { DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety()); }
+
+  return {msg:""};
+}
+
 function WalkOnChangeExitTile() {
   this.name = "WalkOnChangeExit";
 	this.graphic = "walkon.gif";
@@ -11446,6 +11485,20 @@ function AdelusLetterTile() {
   this.longdesc = "A letter from Natassa to Adelus the bard.";
 }
 AdelusLetterTile.prototype = new BookItemObject();
+
+function SpireScrapTile() {
+  this.name = "SpireScrap";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1184";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "scrap of paper";
+  this.prefix = "a";
+  this.contents = "<span class='conv'>Spire: far right, near right, mid left.</span>%%<span class='conv'>Underworld: far left, mid left, near right.</span>";
+  this.longdesc = "A scrap of paper found in Natassa's Spire.";
+}
+SpireScrapTile.prototype = new BookItemObject();
 
 function LanceRuneNotesTile() {
   this.name = "LanceRuneNotes";
