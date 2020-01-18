@@ -20,15 +20,15 @@ mappages["worldsending1"].terrain[14] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK 
 mappages["worldsending1"].terrain[15] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[16] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[17] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ## ## ## ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ## p* ## ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[18] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ## ++ ## ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ## ## ## ## ## ## ## ## ++ ++ ++ ## ## ## ## ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ p* ++ ++ ++ p* ++ ++ ++ ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ## ++ ++ ++ ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ## ++ ++ ++ ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ## ## ## ## ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ## ## ## ## ## ## ## ## #O BK #O ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## ## ## ## ## ## ## ## ## #O ++ #O ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -43,15 +43,15 @@ mappages["worldsending1"].terrain[37] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK 
 mappages["worldsending1"].terrain[38] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## p* p* p* ## p* p* p* ## p* p* p* ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[39] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## p* p* p* ## p* p* p* ## p* p* p* ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[40] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw ## p* p* p* ## p* p* p* ## p* p* p* ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[41] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw ## ## p* ## ## ## p* ## ## ## p* ## ## ## p* ## ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[42] = 'BK BK BK BK BK BK !# !# !# !# !# !# !# BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf ## p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[43] = 'BK BK BK BK BK BK !# p* p* p* p* p* !# BK BK cw cw cw cw BK BK BK BK cw cw cf cw cf p* ## p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[41] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw ## p* p* p* ## p* p* p* ## p* p* p* ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[42] = 'BK BK BK BK BK BK !# !# !# !# !# !# !# BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cf ## p* p* p* ## p* p* p* ## p* p* p* ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[43] = 'BK BK BK BK BK BK !# p* p* p* p* p* !# BK BK cw cw cw cw BK BK BK BK cw cw cf cw cf p* ## ## p* ## ## ## p* ## ## ## p* ## ## ## p* ## ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[44] = 'BK BK BK BK BK BK !# p* p* p* p* p* !# cw cw cw cf cf cw cw cw cw cw cw cf p* cf cf p* ## p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[45] = 'BK BK BK BK BK BK !# p* p* p* p* p* i# cf cf cf cf cf cf cf cf cf cf cf cf cf cf p* cf p* p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[46] = 'BK BK BK BK BK BK !# p* p* p* p* p* !# cw cw cw cf cf cf cf cf cf cf cf p* cf cf cf cf ## p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[47] = 'BK BK BK BK BK BK !# p* p* p* p* p* !# BK BK cw cw cf cf cf cf cw cw cf cf cf p* p* p* ## p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[48] = 'BK BK BK BK BK BK !# !# !# !# !# !# !# BK BK BK cw cw cw cw cw cw cw cw cw cf cf cf p* ## p* p* p* p* p* p* p* p* p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
-mappages["worldsending1"].terrain[49] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw ## ## p* ## ## ## p* ## ## ## p* ## ## ## p* ## ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[47] = 'BK BK BK BK BK BK !# p* p* p* p* p* !# BK BK cw cw cf cf cf cf cw cw cf cf cf p* p* p* ## ## p* ## ## ## p* ## ## ## p* ## ## ## p* ## ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[48] = 'BK BK BK BK BK BK !# !# !# !# !# !# !# BK BK BK cw cw cw cw cw cw cw cw cw cf cf cf p* ## p* p* p* ## p* p* p* ## p* p* p* ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["worldsending1"].terrain[49] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw ## p* p* p* ## p* p* p* ## p* p* p* ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[50] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw ## p* p* p* ## p* p* p* ## p* p* p* ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[51] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## p* p* p* ## p* p* p* ## p* p* p* ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 mappages["worldsending1"].terrain[52] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK ## p* p* p* ## p* p* p* ## p* p* p* ## p* p* p* ## BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
@@ -113,37 +113,37 @@ mappages["worldsending1"].features[5] = {name : 'UnlitWEBrazier', x : 11, y : 43
 mappages["worldsending1"].features[6] = {name : 'Door', x : 39, y : 33};
 mappages["worldsending1"].features[7] = {name : 'Door', x : 35, y : 33};
 mappages["worldsending1"].features[8] = {name : 'Door', x : 31, y : 33};
-mappages["worldsending1"].features[9] = {name : 'Door', x : 31, y : 41};
-mappages["worldsending1"].features[10] = {name : 'Door', x : 35, y : 41};
-mappages["worldsending1"].features[11] = {name : 'Door', x : 39, y : 41};
-mappages["worldsending1"].features[12] = {name : 'Door', x : 39, y : 49};
-mappages["worldsending1"].features[13] = {name : 'Door', x : 35, y : 49};
-mappages["worldsending1"].features[14] = {name : 'Door', x : 31, y : 49};
-mappages["worldsending1"].features[15] = {name : 'Door', x : 31, y : 57};
-mappages["worldsending1"].features[16] = {name : 'Door', x : 35, y : 57};
-mappages["worldsending1"].features[17] = {name : 'Door', x : 39, y : 57};
-mappages["worldsending1"].features[18] = {name : 'Door', x : 43, y : 33};
-mappages["worldsending1"].features[19] = {name : 'Door', x : 43, y : 41};
-mappages["worldsending1"].features[20] = {name : 'Door', x : 43, y : 49};
-mappages["worldsending1"].features[21] = {name : 'Door', x : 43, y : 57};
-mappages["worldsending1"].features[22] = {name : 'Door', x : 101, y : 99};
-mappages["worldsending1"].features[23] = {name : 'IllusionaryEnergyField', x : 12, y : 45};
-mappages["worldsending1"].features[24] = {name : 'Door', x : 43, y : 26};
-mappages["worldsending1"].features[25] = {name : 'Door', x : 45, y : 20};
-mappages["worldsending1"].features[26] = {name : 'Door', x : 41, y : 20};
-mappages["worldsending1"].features[27] = {name : 'DustyFireplace', x : 43, y : 18};
-mappages["worldsending1"].features[28] = {name : 'BookshelfLeft', x : 34, y : 20};
-mappages["worldsending1"].features[29] = {name : 'BookshelfRight', x : 35, y : 20};
-mappages["worldsending1"].features[30] = {name : 'LeftTable', x : 35, y : 22};
-mappages["worldsending1"].features[31] = {name : 'MiddleTable', x : 36, y : 22};
-mappages["worldsending1"].features[32] = {name : 'MiddleTable', x : 37, y : 22};
-mappages["worldsending1"].features[33] = {name : 'RightTable', x : 38, y : 22};
-mappages["worldsending1"].features[34] = {name : 'SmallTable', x : 40, y : 25};
-mappages["worldsending1"].features[35] = {name : 'TopChair', x : 40, y : 24};
-mappages["worldsending1"].features[36] = {name : 'LeftChair', x : 39, y : 25};
-mappages["worldsending1"].features[37] = {name : 'BottomChair', x : 36, y : 23};
-mappages["worldsending1"].features[38] = {name : 'StairUp2', x : 48, y : 22, entermap : 'spire2', enterx : 15, entery : 14};
-mappages["worldsending1"].features[39] = {name : 'UnlitBrazier', x : 34, y : 22};
+mappages["worldsending1"].features[9] = {name : 'Door', x : 31, y : 57};
+mappages["worldsending1"].features[10] = {name : 'Door', x : 35, y : 57};
+mappages["worldsending1"].features[11] = {name : 'Door', x : 39, y : 57};
+mappages["worldsending1"].features[12] = {name : 'Door', x : 43, y : 33};
+mappages["worldsending1"].features[13] = {name : 'Door', x : 43, y : 57};
+mappages["worldsending1"].features[14] = {name : 'Door', x : 101, y : 99};
+mappages["worldsending1"].features[15] = {name : 'IllusionaryEnergyField', x : 12, y : 45};
+mappages["worldsending1"].features[16] = {name : 'Door', x : 43, y : 26};
+mappages["worldsending1"].features[17] = {name : 'Door', x : 45, y : 20};
+mappages["worldsending1"].features[18] = {name : 'Door', x : 41, y : 20};
+mappages["worldsending1"].features[19] = {name : 'DustyFireplace', x : 43, y : 18};
+mappages["worldsending1"].features[20] = {name : 'BookshelfLeft', x : 34, y : 20, lootedid : 'spirescrap', searchyield : 'SpireScrap'};
+mappages["worldsending1"].features[21] = {name : 'BookshelfRight', x : 35, y : 20};
+mappages["worldsending1"].features[22] = {name : 'LeftTable', x : 35, y : 22};
+mappages["worldsending1"].features[23] = {name : 'MiddleTable', x : 36, y : 22};
+mappages["worldsending1"].features[24] = {name : 'MiddleTable', x : 37, y : 22};
+mappages["worldsending1"].features[25] = {name : 'RightTable', x : 38, y : 22};
+mappages["worldsending1"].features[26] = {name : 'SmallTable', x : 40, y : 25};
+mappages["worldsending1"].features[27] = {name : 'TopChair', x : 40, y : 24};
+mappages["worldsending1"].features[28] = {name : 'LeftChair', x : 39, y : 25};
+mappages["worldsending1"].features[29] = {name : 'BottomChair', x : 36, y : 23};
+mappages["worldsending1"].features[30] = {name : 'StairUp2', x : 48, y : 22, entermap : 'spire2', enterx : 18, entery : 18};
+mappages["worldsending1"].features[31] = {name : 'UnlitBrazier', x : 34, y : 22};
+mappages["worldsending1"].features[32] = {name : 'Door', x : 43, y : 43};
+mappages["worldsending1"].features[33] = {name : 'Door', x : 43, y : 47};
+mappages["worldsending1"].features[34] = {name : 'Door', x : 39, y : 47};
+mappages["worldsending1"].features[35] = {name : 'Door', x : 39, y : 43};
+mappages["worldsending1"].features[36] = {name : 'Door', x : 35, y : 43};
+mappages["worldsending1"].features[37] = {name : 'Door', x : 35, y : 47};
+mappages["worldsending1"].features[38] = {name : 'Door', x : 31, y : 47};
+mappages["worldsending1"].features[39] = {name : 'Door', x : 31, y : 43};
 
 
 mappages["worldsending1"].npcs = [];
@@ -183,43 +183,21 @@ mappages["worldsending1"].onload = function(mapref) {
     WE_PlaceWalkon(mapref,31,56);
     WE_PlaceWalkon(mapref,35,56);
     WE_PlaceWalkon(mapref,39,56);
-    WE_PlaceWalkon(mapref,43,50);
-    WE_PlaceWalkon(mapref,43,40);
+    WE_PlaceWalkon(mapref,43,48);
+    WE_PlaceWalkon(mapref,43,42);
   }
 }
 
 function WE_PlaceWalkon(mapref, walkonx, walkony) {
-  let walkontile = localFactory.createTile("WalkOn");
+  let walkontile = localFactory.createTile("WorldsEndingWalkOn");
   mapref.placeThing(walkonx, walkony, walkontile);
   let desty = 0;
   let destx = [31,35,39];
-  if ((walkony === 34) || (walkony === 50)) { desty = 50; }
-  if ((walkony === 56) || (walkony === 40)) { desty = 40; }
+  if ((walkony === 34) || (walkony === 48)) { desty = 48; }
+  if ((walkony === 56) || (walkony === 42)) { desty = 42; }
   walkontile.destx = destx;
   walkontile.desty = desty;
   
-  walkontile.walkon = function(who) {
-    CloseWEDoors(mapref);
-    if ((this.getx() === 35) && (this.gety() === 34) && ((this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn").lastteleport === "39,56") && (this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn").secondlastteleport === "31,56"))) {
-      // SE, SW, N
-      mapref.moveThing(43,34,who);        
-    } else if ((this.getx() === 31) && (this.gety() === 56) && ((this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn").lastteleport === "39,34") && (this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn").secondlastteleport === "35,34"))) { 
-      // NE, N, SW
-      mapref.moveThing(43,56,who);        
-    } else {
-      if (typeof this.destx === "number") { 
-        mapref.moveThing(this.destx,this.desty,who);
-      } else {
-        mapref.moveThing(this.destx[Dice.roll("1d3-1")],this.desty,who);
-      }
-    }
-    
-    // set last traveled to check patterns
-    let trackteleports = this.getHomeMap().getTile(35,34).getFeatureByName("WalkOn");
-    trackteleports.secondlastteleport = trackteleports.lastteleport;
-    trackteleports.lastteleport = this.getx() + "," + this.gety();
-    if (who === PC) { DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety()); }
-  }
 }
 
 function CloseWEDoors(mapref) {
@@ -228,20 +206,20 @@ function CloseWEDoors(mapref) {
   doorslist[1] = mapref.getTile(35,33).getTopFeature();
   doorslist[2] = mapref.getTile(39,33).getTopFeature();
   doorslist[3] = mapref.getTile(43,33).getTopFeature();
-  doorslist[4] = mapref.getTile(31,41).getTopFeature();
-  doorslist[5] = mapref.getTile(35,41).getTopFeature();
-  doorslist[6] = mapref.getTile(39,41).getTopFeature();
-  doorslist[7] = mapref.getTile(43,41).getTopFeature();
-  doorslist[8] = mapref.getTile(31,49).getTopFeature();
-  doorslist[9] = mapref.getTile(35,49).getTopFeature();
-  doorslist[10] = mapref.getTile(39,49).getTopFeature();
-  doorslist[11] = mapref.getTile(43,49).getTopFeature();
+  doorslist[4] = mapref.getTile(31,43).getTopFeature();
+  doorslist[5] = mapref.getTile(35,43).getTopFeature();
+  doorslist[6] = mapref.getTile(39,43).getTopFeature();
+  doorslist[7] = mapref.getTile(43,43).getTopFeature();
+  doorslist[8] = mapref.getTile(31,47).getTopFeature();
+  doorslist[9] = mapref.getTile(35,47).getTopFeature();
+  doorslist[10] = mapref.getTile(39,47).getTopFeature();
+  doorslist[11] = mapref.getTile(43,47).getTopFeature();
   doorslist[12] = mapref.getTile(31,57).getTopFeature();
   doorslist[13] = mapref.getTile(35,57).getTopFeature();
   doorslist[14] = mapref.getTile(39,57).getTopFeature();
   doorslist[15] = mapref.getTile(43,57).getTopFeature();
   
-  for (let i =0; i<=15; i++) {
+  for (let i=0; i<=15; i++) {
     if (doorslist[i].open) {
       doorslist[i].use(PC, "silent");
     }
@@ -294,17 +272,17 @@ mappages["spire2"].features[8] = {name : 'BedHead', x : 12, y : 9};
 mappages["spire2"].features[9] = {name : 'BedFoot', x : 13, y : 9};
 mappages["spire2"].features[10] = {name : 'Mirror', x : 19, y : 7};
 mappages["spire2"].features[11] = {name : 'SmallBox', x : 22, y : 7};
-mappages["spire2"].features[12] = {name : 'SmallBox', x : 22, y : 7};
-mappages["spire2"].features[13] = {name : 'SmallBox', x : 22, y : 8};
+mappages["spire2"].features[12] = {name : 'SmallBox', x : 22, y : 7, locked : 0, lootgroup : 'potslow', lootedid : 'spire6'};
+mappages["spire2"].features[13] = {name : 'SmallBox', x : 22, y : 8, locked : 0, lootgroup : 'potslow', lootedid : 'spire5'};
 mappages["spire2"].features[14] = {name : 'LeftTable', x : 10, y : 15};
 mappages["spire2"].features[15] = {name : 'Harpsichord', x : 21, y : 11};
 mappages["spire2"].features[16] = {name : 'RightTable', x : 13, y : 15};
 mappages["spire2"].features[17] = {name : 'Mirror', x : 8, y : 13};
 mappages["spire2"].features[18] = {name : 'DustyFireplace', x : 7, y : 15};
 mappages["spire2"].features[19] = {name : 'Barrel', x : 14, y : 18};
-mappages["spire2"].features[20] = {name : 'Chest', x : 13, y : 18};
-mappages["spire2"].features[21] = {name : 'Chest', x : 12, y : 18};
-mappages["spire2"].features[22] = {name : 'Chest', x : 11, y : 18};
+mappages["spire2"].features[20] = {name : 'Chest', x : 13, y : 18, locked : 0, lootgroup : 'spireloot', lootedid : 'spire3'};
+mappages["spire2"].features[21] = {name : 'Chest', x : 12, y : 18, locked : 0, lootgroup : 'spireloot', lootedid : 'spire2'};
+mappages["spire2"].features[22] = {name : 'Chest', x : 11, y : 18, locked : 0, lootgroup : 'spireloot', lootedid : 'spire1'};
 mappages["spire2"].features[23] = {name : 'BookshelfLeft', x : 10, y : 13, lootedid : 'windchange', searchyield : 'AudachtaNemesosWindChange'};
 mappages["spire2"].features[24] = {name : 'BookshelfLeft', x : 12, y : 13, lootedid : 'spireshelf3', searchyield : 'ScrollPeer'};
 mappages["spire2"].features[25] = {name : 'BookshelfRight', x : 13, y : 13, lootedid : 'opengate', searchyield : 'AudachtaNemesosOpenGate'};
@@ -320,24 +298,24 @@ mappages["spire2"].features[34] = {name : 'PentagramSE', x : 27, y : 18};
 mappages["spire2"].features[35] = {name : 'PentagramS', x : 26, y : 18};
 mappages["spire2"].features[36] = {name : 'PentagramSW', x : 25, y : 18};
 mappages["spire2"].features[37] = {name : 'DustyFireplace', x : 28, y : 14};
-mappages["spire2"].features[38] = {name : 'SmallBox', x : 27, y : 13};
+mappages["spire2"].features[38] = {name : 'SmallBox', x : 27, y : 13, locked : 0, lootgroup : 'potslow', lootedid : 'spire7'};
 mappages["spire2"].features[39] = {name : 'BookshelfRight', x : 26, y : 13, lootedid : 'spireshelf4', searchyield : 'ScrollHeal'};
 mappages["spire2"].features[40] = {name : 'BookshelfLeft', x : 25, y : 13, lootedid : 'natassaresearch', searchyield : 'NatassaResearch,NatassaResearch2'};
 mappages["spire2"].features[41] = {name : 'Vanity', x : 12, y : 7};
 mappages["spire2"].features[42] = {name : 'BookshelfOne', x : 13, y : 7, lootedid : 'spireshelf1', searchyield : 'NatassaJournal'};
-mappages["spire2"].features[43] = {name : 'Chest', x : 20, y : 15};
+mappages["spire2"].features[43] = {name : 'Chest', x : 20, y : 15, locked : 0, lootgroup : 'spireloot', lootedid : 'spire4'};
 mappages["spire2"].features[44] = {name : 'Mirror', x : 22, y : 13};
 mappages["spire2"].features[45] = {name : 'RightChair', x : 22, y : 10};
-mappages["spire2"].features[46] = {name : 'UnlitBrazier', x : 12, y : 11};
-mappages["spire2"].features[47] = {name : 'UnlitBrazier', x : 22, y : 11};
-mappages["spire2"].features[48] = {name : 'UnlitBrazier', x : 8, y : 18};
-mappages["spire2"].features[49] = {name : 'UnlitBrazier', x : 24, y : 15};
-mappages["spire2"].features[50] = {name : 'EnergyField', x : 24, y : 18};
-mappages["spire2"].features[51] = {name : 'EnergyField', x : 27, y : 15};
-mappages["spire2"].features[52] = {name : 'AlchemyLab', x : 11, y : 15};
-mappages["spire2"].features[53] = {name : 'AlchemyLab2', x : 12, y : 15};
-mappages["spire2"].features[54] = {name : 'AlchemyLabTop', x : 11, y : 14};
-mappages["spire2"].features[55] = {name : 'AlchemyLabTop2', x : 12, y : 14};
+mappages["spire2"].features[46] = {name : 'AlchemyLab', x : 11, y : 15};
+mappages["spire2"].features[47] = {name : 'AlchemyLab2', x : 12, y : 15};
+mappages["spire2"].features[48] = {name : 'AlchemyLabTop', x : 11, y : 14};
+mappages["spire2"].features[49] = {name : 'AlchemyLabTop2', x : 12, y : 14};
+mappages["spire2"].features[50] = {name : 'UnlitBrazier', x : 12, y : 11};
+mappages["spire2"].features[51] = {name : 'UnlitBrazier', x : 22, y : 11};
+mappages["spire2"].features[52] = {name : 'UnlitBrazier', x : 8, y : 18};
+mappages["spire2"].features[53] = {name : 'UnlitBrazier', x : 24, y : 15};
+mappages["spire2"].features[54] = {name : 'EnergyField', x : 24, y : 18};
+mappages["spire2"].features[55] = {name : 'EnergyField', x : 27, y : 15};
 
 
 mappages["spire2"].npcs = [];
@@ -345,7 +323,7 @@ mappages["spire2"].npcs = [];
 mappages["spire2"].desc = "The Spire";
 mappages["spire2"].longdesc = '';
 mappages["spire2"].music = 'Magic';
-mappages["spire2"].savename = 'The Spire';
+mappages["spire2"].savename = `The Spire`;
 mappages["spire2"].exitmap = '';
 mappages["spire2"].exitx = '65';
 mappages["spire2"].exity = '70';
