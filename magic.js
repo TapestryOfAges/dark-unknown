@@ -867,10 +867,12 @@ function PerformIllusion(caster, infused, free, tgt) {
 
 // Iron Flesh
 magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].getLongDesc = function() {
-  return "Absorbs 5 points from hits on you until it has absorbed 10.";
+  let absorb = PC.getInt() * 5;
+  return `Absorbs 5 points from hits on you until it has absorbed ${absorb}.`;
 }
 magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].getInfusedDesc = function() {
-  return "Until it has absorbed 25 points of damage.";
+  let absorb = PC.getInt() * 10;
+  return `Until it has absorbed ${absorb} points of damage.`;
 }
 
 magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caster, infused, free, tgt) {
@@ -893,8 +895,8 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
   let endtime = dur + DU.DUTime.getGameClock();
   DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
   liobj.setExpiresTime(endtime);
-  let power = 10;
-  if (infused) { power = 25;}   
+  let power = PC.getInt()*5;
+  if (infused) { power = PC.getInt()*10;}   
   liobj.setPower(power);
   
   tgt.addSpellEffect(liobj, Math.max(0, free-1) );
@@ -2056,9 +2058,9 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
   ShuffleArray(possdest);
   while (!success && possdest[0]) {
     let tile = castermap.getTile(possdest[0].x,possdest[0].y);
-    if (tile.canMoveHere(castermovetype, 1)) {
+    if (tile.canMoveHere(castermove, 1).canmove) {
       let path = castermap.getPath(casterx,castery,possdest[0].x,possdest[0].y,MOVE_WALK);
-      if (path) {
+      if (path.length) {
         success = PerformBlink(caster,possdest[0].x,possdest[0].y);
       }
     }
@@ -2077,18 +2079,20 @@ function PerformBlink(caster,destx, desty) {
   let retval = {};
   let map = caster.getHomeMap();
   let exittile = map.getTile(caster.getx(),caster.gety());
-  let walkofftile = exittile.executeWalkoffs(caster);
-  if (walkofftile) {
-    retval["msg"] += walkoffval;
+  let walkoffval = exittile.executeWalkoffs(caster);
+  if (walkoffval.msg) {
+    retval["msg"] += walkoffval.msg;
   }
   map.moveThing(destx,desty,caster);
 
+  let tile = map.getTile(destx,desty);
   let walkonval = tile.executeWalkons(this);
-  if (walkonval) {
+  console.log(walkonval);
+  if (walkonval.msg) {
     if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
-    retval["msg"] += walkonval;
+    retval["msg"] += walkonval.msg;
   }
-  DrawMainFrame("draw", PC.getHomemap(), PC.getx(), PC.gety());
+  DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
   maintext.addText(retval["msg"]);
   if ((caster.getx() === destx) && (caster.gety() === desty)) {
     return 1;
@@ -2811,6 +2815,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   }
   ally.spawnedBy = caster;
   ally.summoned = 1;
+  ally.setAttitude("friendly");
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
   if (eletype !== "FireElemental") {
