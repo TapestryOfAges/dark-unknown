@@ -105,7 +105,7 @@ mappages["island"].features[7] = {name : 'LeftCastle', x : 41, y : 65};
 mappages["island"].features[8] = {name : 'Castle', x : 42, y : 65, entermap : 'null', enterx : 0, entery : 0};
 mappages["island"].features[9] = {name : 'RightCastle', x : 43, y : 65};
 mappages["island"].features[10] = {name : 'BrokenShrine', x : 60, y : 63};
-mappages["island"].features[11] = {name : 'Village', x : 54, y : 74, entermap : 'null', enterx : 0, entery : 0};
+mappages["island"].features[11] = {name : 'Village', x : 54, y : 74, entermap : 'lifeshope', enterx : 1, entery : 21};
 mappages["island"].features[12] = {name : 'Waterfall', x : 54, y : 52};
 mappages["island"].features[13] = {name : 'Waterfall', x : 53, y : 23};
 mappages["island"].features[14] = {name : 'Cave', x : 54, y : 48, entermap : 'null', enterx : 0, entery : 0};
@@ -115,13 +115,13 @@ mappages["island"].features[17] = {name : 'Lava', x : 20, y : 43};
 mappages["island"].features[18] = {name : 'Lava', x : 20, y : 44};
 mappages["island"].features[19] = {name : 'Lava', x : 19, y : 43};
 mappages["island"].features[20] = {name : 'Lava', x : 21, y : 43};
-mappages["island"].features[21] = {name : 'Ruins', x : 31, y : 78, desc : "ruins of a village", prefix : "the", entermap : 'urskar', enterx : 1, entery : 15};
+mappages["island"].features[21] = {name : 'Ruins', x : 31, y : 78, desc : "ruins of a village", prefix : "the", entermap : 'miningvillage', enterx : 1, entery : 15};
 
 
 mappages["island"].npcs = [];
 
 mappages["island"].desc = "Land of Lost Hope";
-mappages["island"].longdesc = '';
+mappages["island"].longdesc = 'The Land of Lost Hope. For a time, it was being settled as the first outposts of the Kingdom outside of its home continent, it all came crashing down when Tharock destroyed the growing duchy and the Gates.%%You may be the first person to come here in nearly 40 years.';
 mappages["island"].music = 'Island';
 mappages["island"].savename = `Lost Hope`;
 mappages["island"].exitmap = '';
