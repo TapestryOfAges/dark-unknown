@@ -404,7 +404,7 @@ mappages["spire3"].terrain[31] = '_^ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^ _^ _
 mappages["spire3"].features = [];
 mappages["spire3"].features[0] = {name : 'Door', x : 16, y : 13};
 mappages["spire3"].features[1] = {name : 'Door', x : 12, y : 13};
-mappages["spire3"].features[2] = {name : 'StairDown', x : 13, y : 12, entermap : 'spire2', enterx : 13, entery : 12};
+mappages["spire3"].features[2] = {name : 'StairDown', x : 13, y : 12, entermap : 'spire2', enterx : 16, entery : 16};
 
 
 mappages["spire3"].npcs = [];
