@@ -197,7 +197,7 @@ function PerformCommand(code, ctrl) {
         targetCursor.command = "a";
         targetCursor.targetlimit = (VIEWSIZEX -1)/2;
         targetCursor.targetCenterlimit = 0;
-        let displaystats = getDisplayCenter(PC.getHomeMap(),targetCursor.x,targetCursor.y);
+        let displaystats = getDisplayCenter(PC.getHomeMap(),PC.getx(),PC.gety());
         let xcoord = targetCursor.x - displaystats.leftedge;
         let ycoord = targetCursor.y - displaystats.topedge;
         let tileid = "mainview_" + xcoord + "x" + ycoord;
@@ -3112,12 +3112,15 @@ function DisplayInventory(restrictTo) {
 
   document.getElementById('uiinterface').innerHTML += "<div id='inv_desc_window' style='position:absolute; left: 35px; top: 260px; border: 3px; border-style: solid; border-color:#ccc; width:340px; height: 125px'></div>";
   document.getElementById('inv_desc_window').innerHTML = "<table cellpadding='4' cellspacing='4' border='0' style='margin-top:5px'><tr><td rowspan='2' style='text-align:center; width: 100px'><div id='inv_image' style='position:absolute; top: 16px; left: 34px; width: 32px; height:32px'></div><p id='inv_name' class='charcreate' style='position:absolute; top:52px; width:100px; text-align:center'></p></td><td><p class='charcreate' id='inv_desc' style='top:20px'></p></td></tr><td><p class='charcreate' id='inv_use' style='color:yellow'></p></td></tr></table>";
-  let invselect = targetCursor.invskiprow*8;
+  let invskip = targetCursor.invskiprow*8;
   let writetox = 0;
   let writetoy = 0;
 
-  for (let i=invselect;i<inventorylist.length;i++) {
-    writetoy = Math.floor(i/8);
+  let displaylength = inventorylist.length;
+  displaylength = Math.min(displaylength, 8*5+invskip);
+
+  for (let i=invskip;i<displaylength;i++) {
+    writetoy = Math.floor((i-invskip)/8);
     writetox = i%8;
     
     let showgraphic = inventorylist[i].getGraphicArray();
@@ -3141,8 +3144,8 @@ function DisplayInventory(restrictTo) {
     }
   }
 
-  invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
-  writetoy = Math.floor(invselect/8);
+  let invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
+  writetoy = Math.floor((invselect-invskip)/8);
   writetox = invselect%8;
 
   if (invselect < inventorylist.length) {
