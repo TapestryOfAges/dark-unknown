@@ -2246,7 +2246,7 @@ function DrakeNPCTile() {
   this.armorResist = 25;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Drake';
+  this.lootTable = 'Level5';
   this.prefix = 'a';
   this.desc = "drake";
   this.meleeChance = 85;
