@@ -321,7 +321,7 @@ mappages["beldskae"].npcs[20] = {name : 'TownGuardNPC', x : 40, y : 24, NPCName:
 mappages["beldskae"].npcs[21] = {name : 'TownGuardNPC', x : 21, y : 19, NPCName: 'Rocco', PeaceAI: 'scheduled', Schedule: 'rocco', Conversation: 'rocco', Gender: 'male', NPCBand: '0', skintone: '1'};
 
 mappages["beldskae"].desc = "The Towne of Beldskae";
-mappages["beldskae"].longdesc = '';
+mappages["beldskae"].longdesc = 'They say what happens in Beldskae is not spoken of outside its walls. Famous for its wealth and gambling hall, Beldskae beckons you invitingly. It is a city of light and noise, which never sleeps.';
 mappages["beldskae"].music = 'Towne';
 mappages["beldskae"].savename = `Beldskae`;
 mappages["beldskae"].exitmap = 'darkunknown';

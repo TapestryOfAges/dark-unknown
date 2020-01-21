@@ -239,7 +239,7 @@ mappages["blackdragon"].npcs[17] = {name : 'TownsfolkVillagerNPC', x : 36, y : 2
 mappages["blackdragon"].npcs[18] = {name : 'FighterVillagerNPC', x : 33, y : 33, NPCName: 'Nadya', Conversation: 'nadya', Gender: 'female', NPCBand: '0', OverrideGraphic: 'fighter-offcolor.gif', skintone: '2'};
 
 mappages["blackdragon"].desc = "Black Dragon Castle";
-mappages["blackdragon"].longdesc = '';
+mappages["blackdragon"].longdesc = 'Not long ago, this site was a ruin from wars past. But recently, Prince Lance rebuilt it with shocking speed, and now it is the center of his rebellion. The drawbridge is firmly closed across a deep moat.';
 mappages["blackdragon"].music = 'Dark Towne';
 mappages["blackdragon"].savename = `B Drag Castle`;
 mappages["blackdragon"].exitmap = 'darkunknown';

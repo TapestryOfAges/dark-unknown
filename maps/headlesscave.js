@@ -53,8 +53,9 @@ mappages["headlesscave"].npcs[7] = {name : 'HeadlessNPC', x : 8, y : 5};
 mappages["headlesscave"].npcs[8] = {name : 'HeadlessNPC', x : 9, y : 7};
 
 mappages["headlesscave"].desc = "A Small Cave";
+mappages["headlesscave"].longdesc = 'Immediately upon entering this cave, the smell of guano assaults your senses, and you can hear the flapping of the wings of large bats. Deeper into the cave, other heavier sounds can occasionally be heard.';
 mappages["headlesscave"].music = 'Cave';
-mappages["headlesscave"].savename = "A Small Cave";
+mappages["headlesscave"].savename = `A Small Cave`;
 mappages["headlesscave"].exitmap = 'darkunknown';
 mappages["headlesscave"].exitx = '48';
 mappages["headlesscave"].exity = '78';
@@ -76,6 +77,7 @@ mappages["headlesscave"].returnx = '48';
 mappages["headlesscave"].returny = '78';
 mappages["headlesscave"].returninfused = '0';
 mappages["headlesscave"].linkedMaps = [""];
+mappages["headlesscave"].editorLabels = '{}';
 
 mappages["headlesscave"].onload = function(mapref) {
   if (DU.gameflags.getFlag("cave_cleared")) {

@@ -353,7 +353,7 @@ mappages["clearlake"].npcs[14] = {name : 'TownGuardNPC', x : 37, y : 28, NPCName
 mappages["clearlake"].npcs[15] = {name : 'TownGuardNPC', x : 36, y : 48, NPCName: 'Butiro', PeaceAI: 'scheduled', Schedule: 'butiro', Conversation: 'butiro', Gender: 'male', NPCBand: '0', skintone: '2'};
 
 mappages["clearlake"].desc = "Clear Lake";
-mappages["clearlake"].longdesc = '';
+mappages["clearlake"].longdesc = 'The noise and scents of the sea fill the air as you enter the coastal town of Clear Lake. It is built on the shore and several islands, connected by sturdy bridges.';
 mappages["clearlake"].music = 'Towne';
 mappages["clearlake"].savename = `Clear Lake`;
 mappages["clearlake"].exitmap = 'darkunknown';
