@@ -243,12 +243,12 @@ function SoundLoaded() {
     }
   }, false);
 
-  document.addEventListener("keyup", function(e) { 
-    if (e.keyCode === 27) {
-      e.preventDefault();
-      DoAction(e.keyCode, e.ctrlKey);
-    }
-  } );
+//  document.addEventListener("keyup", function(e) { 
+//    if (e.keyCode === 27) {
+//      e.preventDefault();
+//      DoAction(e.keyCode, e.ctrlKey);
+//    }
+//  } );
 }
 
 function DoAction(code, ctrl) {
@@ -516,7 +516,6 @@ function DoAction(code, ctrl) {
       maintext.setInputLine("&gt;");
       maintext.drawTextFrame();
       gamestate.setMode("player");
-      return;
     }
   }
   else if (gamestate.getMode() === "target") {
