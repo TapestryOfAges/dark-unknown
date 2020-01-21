@@ -4141,26 +4141,26 @@ HotelPheranTile.prototype.activate = function() {
 HotelPheranTile.prototype.myTurn = function() {
   if (DU.gameflags.getFlag("started_pheran")) {
     this.getHomeMap().deleteThing(this);
-  } else if (!this.onscreen) {
+  } else {
     if ((this.getHomeMap() === PC.getHomeMap()) && (GetDistance(this.getx(),this.gety(),PC.getx(),PC.gety(),"square") <= 6)){
       this.onscreen = 1;
+      // marks that the player has seen the hotel. Now it can start moving
     } else {
       if (this.onscreen) {
-        if ((this.getHomeMap() !== PC.getHomeMap()) || (GetDistance(this.getx(),this.gety(),PC.getx(),PC.gety(),"square") > 6)) {
-          this.onscreen = 0;
-          let choice = Dice.roll("1d7");
-          if (choice === 1) { this.getHomeMap().moveThing(115,84,this); }
-          else if (choice === 2) { this.getHomeMap().moveThing(114,43,this); }
-          else if (choice === 3) { this.getHomeMap().moveThing(96,38,this); }
-          else if (choice === 4) { this.getHomeMap().moveThing(49,17,this); }
-          else if (choice === 5) { this.getHomeMap().moveThing(60,41,this); }
-          else if (choice === 6) { this.getHomeMap().moveThing(42,84,this); }
-          else if (choice === 7) { this.getHomeMap().moveThing(45,114,this); }
-        }
+        let choice = Dice.roll("1d7");
+        if (choice === 1) { this.getHomeMap().moveThing(115,84,this); }
+        else if (choice === 2) { this.getHomeMap().moveThing(114,43,this); }
+        else if (choice === 3) { this.getHomeMap().moveThing(96,38,this); }
+        else if (choice === 4) { this.getHomeMap().moveThing(49,17,this); }
+        else if (choice === 5) { this.getHomeMap().moveThing(60,41,this); }
+        else if (choice === 6) { this.getHomeMap().moveThing(42,84,this); }
+        else if (choice === 7) { this.getHomeMap().moveThing(45,114,this); }
+        console.log("Hotel Pheran moved!");
+        console.log(`New coords: ${this.getx()},${this.gety()}.`);
       }
     }
     let NPCevent = new GameEvent(this);
-    DUTime.addAtTimeInterval(NPCevent,1);  
+    DUTime.addAtTimeInterval(NPCevent,20);  
   }
   return 1;
 }
