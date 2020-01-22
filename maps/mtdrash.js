@@ -72,7 +72,7 @@ mappages["mtdrash1"].npcs[13] = {name : 'OrcNPC', x : 8, y : 19, skintone: '1'};
 mappages["mtdrash1"].npcs[14] = {name : 'OrcNPC', x : 6, y : 19, skintone: '1'};
 
 mappages["mtdrash1"].desc = "Mt Drash";
-mappages["mtdrash1"].longdesc = '';
+mappages["mtdrash1"].longdesc = 'The entrance to this dungeon is a small archway, and once inside the tight corridors create a feeling of claustrophobia. Unsettling sounds can be heard from deeper within.';
 mappages["mtdrash1"].music = 'Dungeon';
 mappages["mtdrash1"].savename = `Mt Drash`;
 mappages["mtdrash1"].exitmap = 'darkunknown';
