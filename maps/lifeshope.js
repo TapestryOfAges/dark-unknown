@@ -949,7 +949,7 @@ mappages["lifeshope"].features[898] = {name : 'Evergreen', x : 18, y : 15};
 
 mappages["lifeshope"].npcs = [];
 mappages["lifeshope"].npcs[0] = {name : 'RangerVillagerNPC', x : 24, y : 8, NPCName: 'Tenderfoot', Schedule: 'tenderfoot', Conversation: 'tenderfoot', Gender: 'male', NPCBand: '0', OverrideGraphic: 'ranger-offcolor.gif', skintone: '1'};
-mappages["lifeshope"].npcs[1] = {name : 'TinkerVillagerNPC', x : 32, y : 8, NPCName: 'Senna', Schedule: 'senna', Conversation: 'senna', Gender: 'female', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: '2'};
+mappages["lifeshope"].npcs[1] = {name : 'TinkerVillagerNPC', x : 32, y : 8, NPCName: 'Palmera', Schedule: 'palmera', Conversation: 'palmera', Gender: 'female', NPCBand: '0', OverrideGraphic: '304.2.gif', skintone: '2'};
 mappages["lifeshope"].npcs[2] = {name : 'DruidVillagerNPC', x : 12, y : 9, NPCName: 'Charles', Schedule: 'charles', Conversation: 'charles', Gender: 'male', NPCBand: '0', OverrideGraphic: '302.gif', skintone: '1'};
 mappages["lifeshope"].npcs[3] = {name : 'AdventurerVillagerNPC', x : 33, y : 32, NPCName: 'Zahaina', Schedule: 'zahaina', Conversation: 'zahaina', Gender: 'female', NPCBand: '0', skintone: '1'};
 mappages["lifeshope"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 22, y : 33, NPCName: 'Boris', Schedule: 'boris', Conversation: 'boris', Gender: 'male', NPCBand: '0', OverrideGraphic: 'civ_blue.2.gif', skintone: '1'};
