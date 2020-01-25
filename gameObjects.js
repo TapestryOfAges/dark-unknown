@@ -7292,6 +7292,30 @@ function WalkOnTile() {
 }
 WalkOnTile.prototype = new FeatureObject();
 
+function ToshinWalkOnTile() {
+	this.name = "ToshinWalkOn";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+ToshinWalkOnTile.prototype = new FeatureObject();
+
+ToshinWalkOnTile.prototype.walkon = function(walker) {
+  if ((walker === PC) && (!DU.gameflags.getFlag("knows_arlan"))) {
+    let themap = this.getHomeMap();
+    let arlan = FindNPCByName("Arlan",themap);
+    ShowTurnFrame(arlan);
+    let retval = PerformTalk(top, convo, "_start");
+    console.log(retval);
+  }
+  return {msg:""}
+}
+
 function WorldsEndingWalkOnTile() {
 	this.name = "WorldsEndingWalkOn";
   this.graphic = "master_spritesheet.png";
@@ -11157,7 +11181,7 @@ function InnerPitOfDespairKeyTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "buzzing key";
   this.prefix = "a";
-  this.longdesc = "The key to many doors in the Pit of Despair.";
+  this.longdesc = "A key found in the Pit of Despair.";
   this.usedesc = "Presumably opens a matching door.";
 }
 InnerPitOfDespairKeyTile.prototype = new KeyItemObject();

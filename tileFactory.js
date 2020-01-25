@@ -1573,6 +1573,11 @@ tileFactory.prototype.makeWalkOnTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeToshinWalkOnTile = function() {
+  let newTile = new ToshinWalkOnTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWorldsEndingWalkOnTile = function() {
   let newTile = new WorldsEndingWalkOnTile();
   return newTile;

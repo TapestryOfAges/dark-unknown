@@ -57,7 +57,7 @@ mappages["toshin1"].features[17] = {name : 'BookshelfLeft', x : 14, y : 9};
 mappages["toshin1"].features[18] = {name : 'BookshelfLeft', x : 11, y : 10};
 mappages["toshin1"].features[19] = {name : 'BookshelfRight', x : 12, y : 10};
 mappages["toshin1"].features[20] = {name : 'LeftChair', x : 11, y : 8};
-mappages["toshin1"].features[21] = {name : 'ToshinMoatLeverOff', x : 24, y : 14};
+mappages["toshin1"].features[21] = {name : 'DeadTree', x : 6, y : 12, lootedid : 'toshintree', searchyield : 'ScrollShockwave'};
 mappages["toshin1"].features[22] = {name : 'Fountain', x : 18, y : 13};
 mappages["toshin1"].features[23] = {name : 'Evergreen', x : 26, y : 7};
 mappages["toshin1"].features[24] = {name : 'Evergreen', x : 26, y : 8};
@@ -117,7 +117,7 @@ mappages["toshin1"].features[77] = {name : 'Barrel', x : 24, y : 7};
 mappages["toshin1"].features[78] = {name : 'Barrel', x : 24, y : 8};
 mappages["toshin1"].features[79] = {name : 'Barrel', x : 24, y : 9};
 mappages["toshin1"].features[80] = {name : 'ToshinKey', x : 8, y : 14};
-mappages["toshin1"].features[81] = {name : 'WalkOn', x : 11, y : 12};
+mappages["toshin1"].features[81] = {name : 'ToshinWalkOn', x : 11, y : 12};
 mappages["toshin1"].features[82] = {name : 'Fireplace', x : 18, y : 6};
 mappages["toshin1"].features[83] = {name : 'UnlitBrazier', x : 13, y : 16};
 mappages["toshin1"].features[84] = {name : 'UnlitBrazier', x : 9, y : 16};
@@ -125,20 +125,20 @@ mappages["toshin1"].features[85] = {name : 'UnlitBrazier', x : 8, y : 21};
 mappages["toshin1"].features[86] = {name : 'UnlitBrazier', x : 20, y : 16};
 mappages["toshin1"].features[87] = {name : 'UnlitBrazier', x : 24, y : 21};
 mappages["toshin1"].features[88] = {name : 'Fireplace', x : 9, y : 14};
-mappages["toshin1"].features[89] = {name : 'DeadTree', x : 6, y : 12, lootedid : 'toshintree', searchyield : 'ScrollShockwave'};
-
+mappages["toshin1"].features[89] = {name : 'Brazier', x : 13, y : 12};
+mappages["toshin1"].features[90] = {name : 'Brazier', x : 9, y : 12};
 
 mappages["toshin1"].npcs = [];
-mappages["toshin1"].npcs[0] = {name : 'MageVillagerNPC', x : 14, y : 10, NPCName: 'Arlan', Schedule: 'arlan', Conversation: 'arlan', Gender: 'male', NPCBand: '1', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
-mappages["toshin1"].npcs[1] = {name : 'RangerVillagerNPC', x : 12, y : 9, NPCName: 'Elora', Schedule: 'elora', Conversation: 'elora', Gender: 'female', NPCBand: '0', OverrideGraphic: '305.gif', skintone: '1'};
+mappages["toshin1"].npcs[0] = {name : 'MageVillagerNPC', x : 14, y : 10, NPCName: 'Arlan', PeaceAI: 'scheduled', Schedule: 'arlan', Conversation: 'arlan', Gender: 'male', NPCBand: '1', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
+mappages["toshin1"].npcs[1] = {name : 'RangerVillagerNPC', x : 12, y : 9, NPCName: 'Elora', PeaceAI: 'scheduled', Schedule: 'elora', Conversation: 'elora', Gender: 'female', NPCBand: '0', OverrideGraphic: '305.gif', skintone: '1'};
 
 mappages["toshin1"].desc = "Toshin's Tower";
 mappages["toshin1"].longdesc = 'Before you, rising perhaps 50 feet in the air, is a square stone tower. Outwardly utilitarian, it once housed one of the greatest wizards in recent memory. She disappeared decades ago, but her tower still stands.';
 mappages["toshin1"].music = 'Magic';
 mappages["toshin1"].savename = `Toshin's Tower`;
 mappages["toshin1"].exitmap = 'darkunknown';
-mappages["toshin1"].exitx = '65';
-mappages["toshin1"].exity = '70';
+mappages["toshin1"].exitx = '102';
+mappages["toshin1"].exity = '126';
 mappages["toshin1"].wraps = 'None';
 mappages["toshin1"].enterx = '31';
 mappages["toshin1"].entery = '16';
@@ -153,8 +153,8 @@ mappages["toshin1"].entertestscript = '';
 mappages["toshin1"].exitscript = 'toshin_exit';
 mappages["toshin1"].exittestscript = '';
 mappages["toshin1"].returnmap = 'darkunknown';
-mappages["toshin1"].returnx = '69';
-mappages["toshin1"].returny = '74';
+mappages["toshin1"].returnx = '102';
+mappages["toshin1"].returny = '126';
 mappages["toshin1"].returninfused = '0';
 mappages["toshin1"].linkedMaps = ["toshin2","toshin3","toshin4"];
 mappages["toshin1"].editorLabels = '{}';
@@ -171,9 +171,17 @@ mappages["toshin1"].toshin_exit = function(mapref) {
 
 mappages["toshin1"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
-    let walkon = mapref.getTile(11,12).getTopFeature();
-    walkon.walkon = function(who) {
-      
+    let npcs = mapref.npcs.getAll();
+    let arlan, elora;
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getNPCName() === "Arlan") { arlan = npcs[i]; }
+      if (npcs[i].getNPCName() === "Elora") { elora = npcs[i]; } 
+    }
+    if ((arlan.getCurrentScheduleIndex() >= 14) && (arlan.getCurrentScheduleIndex() <= 15)) {
+      arlan.setGraphicArray(["master_spritesheet.png","","-64","-800"]);
+    }
+    if ((elora.getCurrentScheduleIndex() >= 3) && (elora.getCurrentScheduleIndex() <= 4)) {
+      elora.setGraphicArray(["master_spritesheet.png","","-64","-800"]);
     }
   }
 }

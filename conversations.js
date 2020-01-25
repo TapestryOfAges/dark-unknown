@@ -968,22 +968,28 @@ ConvTestFlags["in_garden"] = function(speaker,keyword) {
 
 ConvTestFlags["is_arlan_asleep"] = function(speaker,keyword) {
   let arlan = FindNPCByName("Arlan",speaker.getHomeMap());
-  if (arlan.sleep === 1) { return 1; }
+  if (arlan.flags.sleep === 1) { 
+    arlan.flags.awakened = 1;
+    return 1; 
+  }
 
   return 0;
 }
 
 ConvTestFlags["is_elora_asleep"] = function(speaker,keyword) {
-  let arlan = FindNPCByName("Elora",speaker.getHomeMap());
-  if (arlan.sleep === 1) { return 1; }
+  let elora = FindNPCByName("Elora",speaker.getHomeMap());
+  if (elora.flags.sleep === 1) { 
+    elora.flags.awakened = 1;
+    return 1; 
+  }
 
   return 0;
 }
 
 ConvTestFlags["need_another_scroll"] = function(speaker,keyword) {
-  if (!gamestate.getFlag("infinite_scroll")) { return 0; }  // you haven't gotten the first scroll yet
+  if (!DU.gameflags.getFlag("infinite_scroll")) { return 0; }  // you haven't gotten the first scroll yet
   if (PC.checkInventory("InfiniteScroll")) {  return 0; }  // you have a scroll
-  if (gamestate.getFlag("act2")) { return 0; }  // you've used the scroll
+  if (DU.gameflags.getFlag("act2")) { return 0; }  // you've used the scroll
   let wildcard = PC.checkInventory("ScrollWildcard");  
   if (wildcard) {
     if ((wildcard.spelllevel === SPELL_NEGATE_MAGIC_LEVEL) && (wildcard.spellnum = GetSpellId(SPELL_NEGATE_MAGIC_ID))) { return 0; }

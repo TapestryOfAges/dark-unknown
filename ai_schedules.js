@@ -1026,7 +1026,15 @@ ais.ChangeMapCart = function(who,params) {
   return {fin:1};
 }
 
+ais.ToshinGoSleep = function(who,params) {
+  who.setGraphicArray(["master_spritesheet.png","","-64","-800"]);
+  who.flags.sleep = 1;
+
+  return {fin:1};
+}
+
 ais.ToshinSleep = function(who,params) {
-  who.setGraphicArray("master_spritesheet.png","","-64","-800");
-  who.sleep = 1;
+  if (!who.flags.awakened) { who.flags.sleep = 1; }
+
+  return {fin:0};
 }
