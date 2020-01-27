@@ -7309,9 +7309,7 @@ ToshinWalkOnTile.prototype.walkon = function(walker) {
   if ((walker === PC) && (!DU.gameflags.getFlag("knows_arlan"))) {
     let themap = this.getHomeMap();
     let arlan = FindNPCByName("Arlan",themap);
-    ShowTurnFrame(arlan);
-    let retval = PerformTalk(top, convo, "_start");
-    console.log(retval);
+    PC.forcedTalk = arlan;
   }
   return {msg:""}
 }
@@ -16308,6 +16306,18 @@ PCObject.prototype.myTurn = function() {
   if (awake) {
     if (!endingwait) {
       gamestate.setMode("player");
+
+      if (this.forcedTalk) {
+        ShowTurnFrame(this.forcedTalk);
+        let convo = this.forcedTalk.getConversation();
+        let newresponse = PerformTalk(this.forcedTalk, convo, "_start");
+        maintext.addText(newresponse["txt"]);
+        maintext.setInputLine(newresponse["input"]);
+        maintext.drawTextFrame();
+
+        delete this.forcedTalk;
+      }
+    
       // Because EndWaiting will set to player in a second, and this can override
       // "waiting for input" states.
     }
@@ -16321,7 +16331,8 @@ PCObject.prototype.myTurn = function() {
   	  maintext.addText("You are frozen!");
   	}
 	  this.endTurn(0);
-	}
+  }
+  
 }
 
 PCObject.prototype.getPCName = function() {
