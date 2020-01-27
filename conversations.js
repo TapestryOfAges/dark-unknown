@@ -970,6 +970,8 @@ ConvTestFlags["is_arlan_asleep"] = function(speaker,keyword) {
   let arlan = FindNPCByName("Arlan",speaker.getHomeMap());
   if (arlan.flags.sleep === 1) { 
     arlan.flags.awakened = 1;
+    arlan.setGraphicArray(["347.gif","","0","0"]);
+    DrawMainFrame("one",PC.getHomeMap(),arlan.getx(),arlan.gety());
     return 1; 
   }
 
@@ -980,6 +982,8 @@ ConvTestFlags["is_elora_asleep"] = function(speaker,keyword) {
   let elora = FindNPCByName("Elora",speaker.getHomeMap());
   if (elora.flags.sleep === 1) { 
     elora.flags.awakened = 1;
+    elora.setGraphicArray(["305.gif","","0","0"]);
+    DrawMainFrame("one",PC.getHomeMap(),elora.getx(),elora.gety());
     return 1; 
   }
 
