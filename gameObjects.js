@@ -211,6 +211,8 @@ ProtoObject.prototype.copy = function(type) {
       copydata[idx] = val;   
     } else if (idx === "destination") {  // on teleporters
       copydata[idx] = val;   
+    } else if (idx === "val") {  // on ToshinPanel at the least
+      copydata[idx] = val;
     } else {
       DebugWrite("saveload", "<br /><span style='color:red;font-weight:bold'>" + idx + " is type " + typeof val + "</span>,  ");
       alert(savename + " SAVE NEEDS " + idx + "!");
