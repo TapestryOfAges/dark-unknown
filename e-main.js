@@ -16,7 +16,7 @@ app.on('ready', function() {
     webPreferences: {
       nodeIntegration: true
     },
-    height: 469,
+    height: 480,  // 469
     width: 776,
     useContentSize: true,
     resizable: false,
