@@ -10319,6 +10319,51 @@ function SiriCloakTile() {
 }
 SiriCloakTile.prototype = new ItemObject();
 
+function CrownTile() {
+  this.name = "Crown";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1248";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "crown";
+  this.longdesc = "Not one of the crowns your parents wear, but one of the crown jewels nonetheless.";
+  this.prefix = "a";
+
+  this.addType("Quest");  
+}
+CrownTile.prototype = new ItemObject();
+
+function CrownJewelTile() {
+  this.name = "CrownJewel";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1248";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "royal necklace";
+  this.longdesc = "This necklace, with heavy gold and a large set stone, is one of the crown jewels.";
+  this.prefix = "a";
+
+  this.addType("Quest");  
+}
+CrownJewelTile.prototype = new ItemObject();
+
+function SceptreTile() {
+  this.name = "Sceptre";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1248";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "sceptre";
+  this.longdesc = "This sceptre, with a blue stone at the tip, is one of the crown jewels.";
+  this.prefix = "a";
+
+  this.addType("Quest");  
+}
+SceptreTile.prototype = new ItemObject();
+
 function CourierPouchTile() {
   this.name = "CourierPouch";
   this.graphic = "master_spritesheet.png";
@@ -10417,6 +10462,25 @@ function ReaperBarkTile() {
   this.addType("Quest");
 }
 ReaperBarkTile.prototype = new ItemObject();
+
+function RingOfFireResistTile() {
+  this.name = "RingOfFireResist";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1632";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Ring of Fire Resistance";
+  this.prefix = "a";
+  this.longdesc = "A ring that confers some resistance to fire.";
+}
+RingOfFireResistTile.prototype = new ItemObject();
+
+RingOfFireResistTile.prototype.onGet = function(who) {
+  if (!who.resists.hasOwnProperty("fire")) { who.resists.fire = 33; }
+  else { who.resists.fire += 33; }
+  return "You place the ring on your finger, and a chill feeling sweeps through you. You are more resistant to fire.";
+}
 
 function AmuletOfReflectionsTile() {
   this.name = "AmuletOfReflections";
@@ -11491,7 +11555,7 @@ function ToshinJournalTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
   this.prefix = "a";
-  this.contents = "You search through the journal for something useful.%%<span class='conv'>It is somewhere... I can taste it. It is close. The bones of Ellusus sing with it, the unblinking eye of a star.%%But there is something I need before I can use the Pool safely, even once I find it. Old scrolls call it an Infinite Scroll. I do not know how to make one... yet. But some are said to still exist. I will inquire of the black market.%%There is a guild of thieves in Onyx, and they often have knowledge of such things.<span>";
+  this.contents = "You search through the journal for something useful.%%<span class='conv'>It is somewhere... I can taste it. It is close. The bones of Ellusus sing with it, the unblinking eye of a star.%%But there is something I need before I can use the Pool safely, even once I find it. Old scrolls call it an Infinite Scroll. I do not know how to make one... yet. But some are said to still exist. I will inquire of the black market.%%There is a guild of thieves in Onyx, and they often have knowledge of such things, but almost certainly they will tell me that there is only one place to find things of such value: Beldskae.<span>";
   this.longdesc = "The Journals of Toshin.";
 }
 ToshinJournalTile.prototype = new BookItemObject();
