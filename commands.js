@@ -1253,10 +1253,14 @@ function PerformGet(who) {
   else if (getitem.checkType("Item")) {
     let itemmap = getitem.getHomeMap();
     who.addToInventory(getitem);
+    let ongettxt = "";
     if (typeof getitem.onGet === "function") {
-      getitem.onGet(who);
+      ongettxt = getitem.onGet(who);
     }
     retval["txt"] = "Taken: " + getitem.getPrefix() + " " + getitem.getDesc() + ".";
+    if (ongettxt) {
+      retval["txt"] = retval["txt"] + "<br />" + ongettxt;
+    }
     retval["fin"] = 1;
     if (itemmap === PC.getHomeMap()) {
       DrawMainFrame("one",itemmap,targetCursor.x,targetCursor.y);
@@ -2274,7 +2278,7 @@ function performZstats(code) {
 }
 
 function ScrollStats(amt) {
-  let divheight = document.getElementById('zstat').clientHeight;
+  let divheight = document.getElementById('zstat').scrollHeight;
   let currtop = document.getElementById('zstat').scrollTop;
   currtop += amt;
   if (currtop > (divheight - 410)) { currtop = divheight - 410; }
