@@ -2153,6 +2153,21 @@ tileFactory.prototype.makeSiriCloakTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeCrownTile = function() {
+  let newTile = new CrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrownJewelTile = function() {
+  let newTile = new CrownJewelTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSceptreTile = function() {
+  let newTile = new SceptreTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeCourierPouchTile = function() {
   let newTile = new CourierPouchTile();
   return newTile;
@@ -2175,6 +2190,11 @@ tileFactory.prototype.makeTrustedPinTile = function() {
 
 tileFactory.prototype.makeReaperBarkTile = function() {
   let newTile = new ReaperBarkTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRingOfFireResistTile = function() {
+  let newTile = new RingOfFireResistTile();
   return newTile;
 }
 
