@@ -533,6 +533,7 @@ mappages["naurglen"].onload = function(mapref) {
     let samtile = mapref.getTile(loc.x,loc.y);
     samtile.executeWalkons(sam);
   }
+  if (DU.gameflags.getFlag("derek_pony")) { DU.gameflags.setFlag("derek_pony2", 1); }
 }
 
 mappages["naurglen2"] = {};
