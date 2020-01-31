@@ -830,6 +830,7 @@ ais.CourierPath = function(who) {
 }
 
 ais.Sentinel = function(who) {
+  who.setHP(who.getMaxHP());
   let destinations = [];
   let jumps = [];
   destinations[0] = ["w","w","n","n","w","w","w","w","w","e","e","e","e","e","e","e","e","e","s","s","s","s","n","n","n","n","w","w","w","w","s","s","e","e"];
@@ -841,7 +842,8 @@ ais.Sentinel = function(who) {
   destinations[3] = ["w","w","w","w","w","s","n","e","e","e","e","e","n","n","e","e","s","s","e","e","e","e","e","e","w","w","w","w","w","w","n","n","w","w","s","s"];
   jumps[3] = { 2:10, 8:4, 20:28, 26:22};
   
-  DebugWrite("ai", "SENTINEL " + who.patrol + " AI beginning. Standing at " + who.getx() + "," + who.gety() + ". Path takes it " + destinations[who.patrol][who.step] + ". <br />");
+  DebugWrite("ai", "SENTINEL " + who.patrol + " AI beginning. Standing at " + who.getx() + "," + who.gety() + " (step " + who.step + "). Path takes it " + destinations[who.patrol][who.step] + ". <br />");
+//  console.log("SENTINEL " + who.patrol + " AI beginning. Standing at " + who.getx() + "," + who.gety() + " (step " + who.step + "). Path takes it " + destinations[who.patrol][who.step]);
   // sequence: first, see if player is in front of, if so spend action teleporting player back to center
   //                  (also do this to the player's summoned NPCs if they have one)
   // then, see if path is blocked, if so, if there is a jump, jump to next step without moving
@@ -871,6 +873,7 @@ ais.Sentinel = function(who) {
     maintext.addText("The sentinel teleports you away.");
     DUPlaySound("sfx_teleport_pad");
     retval["fin"] = 1;
+    DrawMainFrame("draw", mymap, PC.getx(), PC.gety());
     who.waits = 0;
   } else if (moveval["canmove"] !== 1) {
     // path is blocked
@@ -912,11 +915,15 @@ ais.Sentinel = function(who) {
             mymap.moveThing(who.startx, who.starty, who);
           } // otherwise, can't go back home because someone is there
         }    
+        who.step = 0;
       }
     } else {
-      DebugWrite("ai", "SENTINEL " + who.patrol + ": Path blocked- skip from " + who.step + " to ");
-      who.step = jumps[who.patrol][who.step];
-      DebugWrite("ai", who.step + ".<br />");
+      if (jumps[who.patrol][who.step]) {
+        DebugWrite("ai", "SENTINEL " + who.patrol + ": Path blocked- skip from " + who.step + " to ");
+        who.step = jumps[who.patrol][who.step];
+        DebugWrite("ai", who.step + ".<br />");
+      }
+      DebugWrite("ai", "SENTINEL " + who.patrol + ": No defined jump, path blocked.") ;
       who.waits = 0;
       retval["fin"] = 1;
     }

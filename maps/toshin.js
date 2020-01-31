@@ -530,18 +530,22 @@ mappages["toshin3"].onload = function(mapref) {
     let sentinel = tile.getTopNPC();
     sentinel.patrol = 0;
     sentinel.step = 0;
+    sentinel.setMaxHP(10000);
     tile = mapref.getTile(23,9);
     sentinel = tile.getTopNPC();
     sentinel.patrol = 1;
     sentinel.step = 0;
+    sentinel.setMaxHP(10000);
     tile = mapref.getTile(9,12);
     sentinel = tile.getTopNPC();
     sentinel.patrol = 2;
     sentinel.step = 0;
+    sentinel.setMaxHP(10000);
     tile = mapref.getTile(15,17);
     sentinel = tile.getTopNPC();
     sentinel.patrol = 3;
     sentinel.step = 0;
+    sentinel.setMaxHP(10000);
   }
 }
 
