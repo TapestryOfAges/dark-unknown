@@ -832,17 +832,12 @@ ais.CourierPath = function(who) {
 ais.Sentinel = function(who) {
   who.setHP(who.getMaxHP());
   let destinations = [];
-  let jumps = [];
-  destinations[0] = ["w","w","n","n","w","w","w","w","w","e","e","e","e","e","e","e","e","e","s","s","s","s","n","n","n","n","w","w","w","w","s","s","e","e"];
-  jumps[0] = { 2:32, 6:12, 10:8, 18:26, 23:20, 30:4};
-  destinations[1] = ["w","n","w","w","s","s","s","w","w","n","n","n","n","s","s","s","s","e","e","n","n","n","e","e","s","e","s","s","s","s","w","w","w","w","e","e","e","e","s","s","w","w","w","w","s","s","e","e","e","e","w","w","w","w","n","n","e","e","e","e","n","n","w","w","w","w","e","e","e","e","n","n","n","n"];
-  jumps[1] = { 11:15,13:13,30:38,36:32,46:54,52:48,62:70,68:64};
-  destinations[2] = ["n","n","n","n","n","e","e","e","w","w","w","s","s","s","s","s","s","s","s","e","e","e","e","n","n","w","w","n","n","n","n","s","s","s","s","e","e","s","s","w","w","w","w","n","n","n"];
-  jumps[2] = { 1:15,6:10,8:8,13:3,21:41,28:34,32:30,39:23};
-  destinations[3] = ["w","w","w","w","w","s","n","e","e","e","e","e","n","n","e","e","s","s","e","e","e","e","e","e","w","w","w","w","w","w","n","n","w","w","s","s"];
-  jumps[3] = { 2:10, 8:4, 20:28, 26:22};
+  destinations[0] = ["w","w","n","n","w","w","e","e","e","e","e","e","s","s","s","s"];
+  destinations[1] = ["s","s","s","s","e","e","n","n","n","e","e","s","s","s","s","s","w","w","w","e","e","e","s","s","w","w","w","s","s","e","e","e"];
+  destinations[2] = ["w","w","s","s","s","s","s","s","s","s","e","e","e","n","n","w","n","n","n","n"];
+  destinations[3] = ["n","e","e","e","e","e","n","n","e","e","s","s","e","e","e","e","e"];
   
-  DebugWrite("ai", "SENTINEL " + who.patrol + " AI beginning. Standing at " + who.getx() + "," + who.gety() + " (step " + who.step + "). Path takes it " + destinations[who.patrol][who.step] + ". <br />");
+  DebugWrite("ai", "SENTINEL " + who.patrol + " AI beginning. Standing at " + who.getx() + "," + who.gety() + " (step " + who.step + "). Path takes it " + destinations[who.patrol][who.step] + " * " + who.direction + ". <br />");
 //  console.log("SENTINEL " + who.patrol + " AI beginning. Standing at " + who.getx() + "," + who.gety() + " (step " + who.step + "). Path takes it " + destinations[who.patrol][who.step]);
   // sequence: first, see if player is in front of, if so spend action teleporting player back to center
   //                  (also do this to the player's summoned NPCs if they have one)
@@ -853,13 +848,13 @@ ais.Sentinel = function(who) {
   let diffx=0;
   let diffy=0;
   if (destinations[who.patrol][who.step] === "n") {
-    diffy = -1;
+    diffy = -1*who.direction;
   } else if (destinations[who.patrol][who.step] === "s") {
-    diffy = 1;
+    diffy = 1*who.direction;
   } else if (destinations[who.patrol][who.step] === "e") {
-    diffx = 1;
+    diffx = 1*who.direction;
   } else if (destinations[who.patrol][who.step] === "w") {
-    diffx = -1;
+    diffx = -1*who.direction;
   } else {
     alert("Sentinels have an invalid step, " + who.patrol + " / " + who.step);
   }
@@ -918,24 +913,24 @@ ais.Sentinel = function(who) {
         who.step = 0;
       }
     } else {
-      if (jumps[who.patrol][who.step]) {
-        DebugWrite("ai", "SENTINEL " + who.patrol + ": Path blocked- skip from " + who.step + " to ");
-        who.step = jumps[who.patrol][who.step];
-        DebugWrite("ai", who.step + ".<br />");
-      }
-      DebugWrite("ai", "SENTINEL " + who.patrol + ": No defined jump, path blocked.") ;
+      DebugWrite("ai", "SENTINEL " + who.patrol + ": Path blocked- turn around.");
+      who.direction = who.direction * -1;
+      who.step += who.direction;
       who.waits = 0;
       retval["fin"] = 1;
     }
   } else {
     who.moveMe(diffx,diffy);
-    who.step++;
+    who.step += who.direction;
+    DebugWrite("ai", "SENTINEL step is now: " + who.step);    
     if (destinations[who.patrol].length <= who.step) { 
-      who.step = 0;
-      // back at the start
-      if ((who.getx() !== who.startx) || (who.gety() !== who.starty)) {
-        alert("Sentinel failed to return home.");
-      }
+      who.direction = who.direction * -1;
+      who.step--;
+      DebugWrite("ai", "Fell off the front- turning around. Step is now: " + who.step + ", direction is now: " + who.direction);    
+    } else if (who.step < 0) {
+      who.direction = who.direction * -1;
+      who.step++;
+      DebugWrite("ai", "Fell off the end- turning around. Step is now: " + who.step + ", direction is now: " + who.direction);    
     }
     retval["fin"] = 1;
   }

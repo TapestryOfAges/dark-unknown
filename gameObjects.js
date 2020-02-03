@@ -9681,7 +9681,11 @@ function PerformToshinAltar(code) {
   let letter = String.fromCharCode(code);    	
   let retval = {};
   retval["fin"] = 1;
-  retval["txt"] = "Pressed " + letter + ".";
+  if ((code => 65) && (code <= 69)) {
+    retval["txt"] = "Pressed " + letter + ".";
+  } else {
+    retval["txt"] = "You look, and cannot find a " + letter + " button. Try A-E.";
+  }
   let altar = inputText.thingref;
   let themap = altar.getHomeMap();
   let energyfield = localFactory.createTile("EnergyField");
@@ -9689,7 +9693,7 @@ function PerformToshinAltar(code) {
   DUPlaySound("sfx_click");
 
   if (code === 65) {
-    let fieldtile1 = themap.getTile(22,13);
+    let fieldtile1 = themap.getTile(21,13);
     let fields = fieldtile1.getFeatures();
     for (let i=0;i<fields.length;i++) {
       if (fields[i].getName().indexOf("Field") > -1) {
@@ -9704,11 +9708,11 @@ function PerformToshinAltar(code) {
       }
     };
     if (altar.val[65]) {
-      themap.placeThing(22,13,firefield);
+      themap.placeThing(21,13,firefield);
       themap.placeThing(20,17,energyfield);
       altar.val[65] = 0;
     } else {
-      themap.placeThing(22,13,energyfield);
+      themap.placeThing(21,13,energyfield);
       themap.placeThing(20,17,firefield);      
       altar.val[65] = 1;
     }
@@ -9772,7 +9776,7 @@ function PerformToshinAltar(code) {
       altar.val[67] = 1;
     }
   } else if (code === 68) {
-    let fieldtile1 = themap.getTile(11,11);
+    let fieldtile1 = themap.getTile(12,11);
     let fields = fieldtile1.getFeatures();
     for (let i=0;i<fields.length;i++) {
       if (fields[i].getName().indexOf("Field") > -1) {
@@ -9788,15 +9792,15 @@ function PerformToshinAltar(code) {
     };
     if (altar.val[68]) {
       themap.placeThing(14,8,energyfield);
-      themap.placeThing(11,11,firefield);
+      themap.placeThing(12,11,firefield);
       altar.val[68] = 0;
     } else {
       themap.placeThing(14,8,firefield);
-      themap.placeThing(11,11,energyfield);      
+      themap.placeThing(12,11,energyfield);      
       altar.val[68] = 1;
     }
   } else if (code === 69) {
-    let fieldtile1 = themap.getTile(9,10);
+    let fieldtile1 = themap.getTile(10,10);
     let fields = fieldtile1.getFeatures();
     for (let i=0;i<fields.length;i++) {
       if (fields[i].getName().indexOf("Field") > -1) {
@@ -9811,11 +9815,11 @@ function PerformToshinAltar(code) {
       }
     };
     if (altar.val[69]) {
-      themap.placeThing(9,10,energyfield);
+      themap.placeThing(10,10,energyfield);
       themap.placeThing(12,15,firefield);
       altar.val[69] = 0;
     } else {
-      themap.placeThing(9,10,firefield);
+      themap.placeThing(10,10,firefield);
       themap.placeThing(12,15,energyfield);      
       altar.val[69] = 1;
     }
