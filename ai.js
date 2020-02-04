@@ -838,6 +838,7 @@ ais.Sentinel = function(who) {
   destinations[3] = ["n","e","e","e","e","e","n","n","e","e","s","s","e","e","e","e","e"];
   
   DebugWrite("ai", "SENTINEL " + who.patrol + " AI beginning. Standing at " + who.getx() + "," + who.gety() + " (step " + who.step + "). Path takes it " + destinations[who.patrol][who.step] + " * " + who.direction + ". <br />");
+  DebugWrite("sent", "SENTINEL " + who.patrol + " AI beginning. Standing at " + who.getx() + "," + who.gety() + " (step " + who.step + "). Path takes it " + destinations[who.patrol][who.step] + " * " + who.direction + ". <br />");
 //  console.log("SENTINEL " + who.patrol + " AI beginning. Standing at " + who.getx() + "," + who.gety() + " (step " + who.step + "). Path takes it " + destinations[who.patrol][who.step]);
   // sequence: first, see if player is in front of, if so spend action teleporting player back to center
   //                  (also do this to the player's summoned NPCs if they have one)
@@ -864,6 +865,7 @@ ais.Sentinel = function(who) {
   let moveval = desttile.canMoveHere(who.getMovetype());
   if ((PC.getHomeMap() === mymap) && (PC.getx() === who.getx()+diffx) && (PC.gety() === who.gety()+diffy)) {
     DebugWrite("ai", "SENTINEL " + who.patrol + ": PC in the way. Removing.<br />");
+    DebugWrite("sent", "SENTINEL " + who.patrol + ": PC in the way. Removing.<br />");
     mymap.moveThing(16,13,PC);
     maintext.addText("The sentinel teleports you away.");
     DUPlaySound("sfx_teleport_pad");
@@ -875,6 +877,7 @@ ais.Sentinel = function(who) {
     let blocker = desttile.getTopNPC();
     if (blocker) {
       DebugWrite("ai", "Path is blocked by " + blocker.getName() + ".<br />");
+      DebugWrite("sent", "Path is blocked by " + blocker.getName() + ".<br />");
       if (blocker.getName() !== who.getName()) {
         if (blocker.summoned) {
           maintext.addText("The sentinel unsummons your ally!");
@@ -886,6 +889,9 @@ ais.Sentinel = function(who) {
           // This shouldn't be possible, but if it happens, it'll wait
           who.waits++;
           retval["fin"] = 1;
+          DebugWrite("ai", "Ran into something not sentinel and not PC/summon. ??");
+          DebugWrite("sent", "Ran into something not sentinel and not PC/summon. ??");
+          console.log(blocker);
           
           // has it been standing here for too long?
           if (who.waits > 3) {
@@ -893,6 +899,10 @@ ais.Sentinel = function(who) {
             let whosethere = starttile.getTopNPC();
             if (!whosethere) {
               mymap.moveThing(who.startx, who.starty, who);
+              DebugWrite("ai", "Standing around too long- went home.");
+              DebugWrite("sent", "Standing around too long- went home.");
+              who.step = who.startstep;
+              who.direction = who.startdirection;
             } // otherwise, can't go back home because someone is there
             retval["fin"] = 1;
           }
@@ -904,16 +914,20 @@ ais.Sentinel = function(who) {
         // has it been standing here for too long?
         if (who.waits > 3) {
           DebugWrite("ai", "Been standing in place too long, going home.<br />");
+          DebugWrite("sent", "Been standing in place too long, going home.<br />");
           let starttile = mymap.getTile(who.startx,who.starty);
           let whosthere = starttile.getTopNPC();
           if (!whosthere) {
             mymap.moveThing(who.startx, who.starty, who);
+            who.step = who.startstep;
+            who.direction = who.startdirection;
+            who.waits = 0;
           } // otherwise, can't go back home because someone is there
         }    
-        who.step = 0;
       }
     } else {
       DebugWrite("ai", "SENTINEL " + who.patrol + ": Path blocked- turn around.");
+      DebugWrite("sent", "SENTINEL " + who.patrol + ": Path blocked- turn around.");
       who.direction = who.direction * -1;
       who.step += who.direction;
       who.waits = 0;
@@ -922,15 +936,18 @@ ais.Sentinel = function(who) {
   } else {
     who.moveMe(diffx,diffy);
     who.step += who.direction;
-    DebugWrite("ai", "SENTINEL step is now: " + who.step);    
+    DebugWrite("ai", "SENTINEL step is now: " + who.step + ", sentinel is at " + who.getx() + "," + who.gety());    
+    DebugWrite("sent", "SENTINEL step is now: " + who.step + ", sentinel is at " + who.getx() + "," + who.gety());    
     if (destinations[who.patrol].length <= who.step) { 
       who.direction = who.direction * -1;
       who.step--;
       DebugWrite("ai", "Fell off the front- turning around. Step is now: " + who.step + ", direction is now: " + who.direction);    
+      DebugWrite("sent", "Fell off the front- turning around. Step is now: " + who.step + ", direction is now: " + who.direction);    
     } else if (who.step < 0) {
       who.direction = who.direction * -1;
       who.step++;
       DebugWrite("ai", "Fell off the end- turning around. Step is now: " + who.step + ", direction is now: " + who.direction);    
+      DebugWrite("sent", "Fell off the end- turning around. Step is now: " + who.step + ", direction is now: " + who.direction);    
     }
     retval["fin"] = 1;
   }
