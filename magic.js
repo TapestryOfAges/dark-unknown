@@ -2086,8 +2086,8 @@ function PerformBlink(caster,destx, desty) {
   map.moveThing(destx,desty,caster);
 
   let tile = map.getTile(destx,desty);
-  let walkonval = tile.executeWalkons(this);
-  console.log(walkonval);
+  let walkonval = tile.executeWalkons(caster);
+//  console.log(walkonval);
   if (walkonval.msg) {
     if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
     retval["msg"] += walkonval.msg;
