@@ -15630,7 +15630,8 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
 		    }
 		    play_footstep(sfx);
 		  
-        ProcessAmbientNoise(tile);
+//        ProcessAmbientNoise(tile); 
+//        moved to atlas moveThing, so it runs after teleports
 		  }
 
       let distfrom = getDisplayCenter(map, PC.getx(), PC.gety());

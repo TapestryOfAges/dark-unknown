@@ -1374,6 +1374,7 @@ GameMap.prototype.moveThing = function(x,y,thing) { // this is called after bump
     }
   }
 
+  if (thing === PC) { ProcessAmbientNoise(this.getTile(x,y)); }
 }
 
 GameMap.prototype.deleteThing = function(thing) {
