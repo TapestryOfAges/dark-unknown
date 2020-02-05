@@ -1169,6 +1169,10 @@ function PerformFocus(code) {
 
 function PerformRuneChoice() {
   let retval = {fin: 1};
+
+  document.getElementById('uiinterface').innerHTML = "";
+  document.getElementById('uiinterface').style.backgroundColor = "";
+
   if (targetCursor.runeChoice === 1) { 
     // The Rune of Kings
     // Always heals you some. In certain locations, may also reveal things.
@@ -1237,7 +1241,7 @@ function PerformRuneChoice() {
     }
 
   }
-
+  delete targetCursor.runeChoice;
   return retval;
 }
 

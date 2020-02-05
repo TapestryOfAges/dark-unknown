@@ -433,7 +433,11 @@ function DoAction(code, ctrl) {
     } else if (response["fin"] === 2) { // moved
       // don't really have to do anything here
     } else if (response["fin"] === 1) { // used a Rune
+      maintext.addText(response["txt"]);
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
 
+      PC.endTurn();
     }
   } else if (gamestate.getMode() === "choosedir") {
     let response = PerformChooseDir(code);
