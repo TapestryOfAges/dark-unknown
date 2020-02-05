@@ -1168,7 +1168,7 @@ function PerformFocus(code) {
 }
 
 function PerformRuneChoice() {
-  let retval = {fin: 1};
+  let retval = {fin: 1, txt: ""};
 
   document.getElementById('uiinterface').innerHTML = "";
   document.getElementById('uiinterface').style.backgroundColor = "";
