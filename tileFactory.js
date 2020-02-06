@@ -608,6 +608,16 @@ tileFactory.prototype.makeBannerTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makePaladinBannerTile = function() {
+  let newTile = new PaladinBannerTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHildendainBannerTile = function() {
+  let newTile = new HildendainBannerTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeLavaTubeTile = function() {
   let newTile = new LavaTubeTile();
   return newTile;
@@ -2165,6 +2175,11 @@ tileFactory.prototype.makeCrownJewelTile = function() {
 
 tileFactory.prototype.makeSceptreTile = function() {
   let newTile = new SceptreTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeChaliceTile = function() {
+  let newTile = new ChaliceTile();
   return newTile;
 }
 

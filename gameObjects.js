@@ -3288,10 +3288,36 @@ function BannerTile() {
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.prefix = "the";
-  this.desc = "banner of Olympus";
+  this.desc = "banner of House Olympus";
   this.peerview = "white";
 }
 BannerTile.prototype = new TerrainObject();
+
+function PaladinBannerTile() {
+  this.name = "PaladinBanner";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-448";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "banner of the Paladins";
+  this.peerview = "white";
+}
+PaladinBannerTile.prototype = new TerrainObject();
+
+function HildendainBannerTile() {
+  this.name = "HildendainBanner";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1696";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "the";
+  this.desc = "banner of House Hildendain";
+  this.peerview = "white";
+}
+HildendainBannerTile.prototype = new TerrainObject();
 
 function LavaTubeTile() {
 	this.name = "LavaTube";
@@ -5642,7 +5668,7 @@ HealerSignTile.prototype = new FeatureObject();
 function CasinoSignTile() {
   this.name = "CasinoSign";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-260";
+  this.spritexoffset = "-256";
   this.spriteyoffset = "-480";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
@@ -5655,7 +5681,7 @@ CasinoSignTile.prototype = new FeatureObject();
 function PaladinSignTile() {
   this.name = "PaladinSign";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-292";
+  this.spritexoffset = "-288";
   this.spriteyoffset = "-480";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
@@ -10367,6 +10393,21 @@ function SceptreTile() {
   this.addType("Quest");  
 }
 SceptreTile.prototype = new ItemObject();
+
+function ChaliceTile() {
+  this.name = "Chalice";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1696";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "chalice";
+  this.longdesc = "The Chalice of the Paladins. Isaac seeks its return, in Swainhil.";
+  this.prefix = "a";
+
+  this.addType("Quest");  
+}
+ChaliceTile.prototype = new ItemObject();
 
 function CourierPouchTile() {
   this.name = "CourierPouch";
