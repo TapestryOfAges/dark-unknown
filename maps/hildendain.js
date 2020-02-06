@@ -413,7 +413,7 @@ mappages["hildendain"].features[341] = {name : 'UnlitBrazier', x : 27, y : 9};
 mappages["hildendain"].features[342] = {name : 'UnlitBrazier', x : 25, y : 9};
 mappages["hildendain"].features[343] = {name : 'UnlitBrazier', x : 28, y : 5};
 mappages["hildendain"].features[344] = {name : 'UnlitBrazier', x : 24, y : 5};
-mappages["hildendain"].features[345] = {name : 'LadderDown', x : 4, y : 2, entermap : 'null', enterx : 0, entery : 0};
+mappages["hildendain"].features[345] = {name : 'LadderDown', x : 4, y : 2, entermap : 'hildendain0', enterx : 4, entery : 2};
 mappages["hildendain"].features[346] = {name : 'PileOfRocks', x : 10, y : 3};
 mappages["hildendain"].features[347] = {name : 'PileOfRocks', x : 15, y : 2};
 mappages["hildendain"].features[348] = {name : 'PileOfRocks', x : 17, y : 4};
@@ -778,8 +778,8 @@ mappages["hildendain0"].terrain[62] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK
 mappages["hildendain0"].terrain[63] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
 
 mappages["hildendain0"].features = [];
-mappages["hildendain0"].features[0] = {name : 'LadderUp', x : 4, y : 2, entermap : 'null', enterx : 0, entery : 0};
-mappages["hildendain0"].features[1] = {name : 'LadderUp', x : 40, y : 49, entermap : 'null', enterx : 0, entery : 0};
+mappages["hildendain0"].features[0] = {name : 'LadderUp', x : 4, y : 2, entermap : 'hildendain', enterx : 4, entery : 2};
+mappages["hildendain0"].features[1] = {name : 'LadderUp', x : 40, y : 49, entermap : 'hildendain', enterx : 40, entery : 49};
 
 
 mappages["hildendain0"].npcs = [];
