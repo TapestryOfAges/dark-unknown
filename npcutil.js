@@ -75,9 +75,16 @@ NPCSpecialFuncs["ondeathInsects"] = function(who,how) {
   }
 }
 
+NPCSpecialFuncs["ondeathWarduke"] = function(who,how) {
+  who.onDeath = function() {
+    DU.gameflags.setFlag("warduke_defeated");
+    PC.diffKarma(2);
+  }
+}
+
 NPCSpecialFuncs["ondeathEndact"] = function(who,how) {
   who.onDeath = function() {
-    
+    // WORKING HERE
   }
 }
 
