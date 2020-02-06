@@ -2468,13 +2468,13 @@ function PaladinNPCTile() {
   this.armorResist = 15;
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'High Adventurer';
+  this.lootTable = 'Warduke';
   this.prefix = 'a';
   this.desc = "paladin";
   this.meleeChance = 66;
   this.spellsknown = { heal: 1, attack: 1, buff: 1, };
   this.resists = {};
-  this.special = 'open_door';
+  this.special = 'open_door,ondeathWarduke';
   this.meleeHitSound = 'sfx_melee_hit';
   this.meleeAttackSound = 'sfx_melee_miss';
 }
@@ -2986,7 +2986,7 @@ function DelverNPCTile() {
   this.armorResist = 100;
   this.movetype = MOVE_ETHEREAL;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Delver';
+  this.lootTable = 'Level5';
   this.prefix = 'a';
   this.desc = "delver";
   this.meleeChance = 100;
@@ -3063,7 +3063,7 @@ function BlackDragonNPCTile() {
   this.meleeChance = 70;
   this.spellsknown = { lowcontrol: 1, highcontrol: 1, summon: 1, attack: 1, highattack: 1, };
   this.resists = {};
-  this.special = 'firebreath, ruthless,stationary, ondeadEndact';
+  this.special = 'firebreath, ruthless,stationary, ondeathEndact';
   this.meleeHitSound = 'sfx_roar_hit';
   this.meleeAttackSound = 'sfx_roar_miss';
 }
@@ -3762,7 +3762,7 @@ function ToshinSentinelNPCTile() {
   this.lootTable = 'none';
   this.prefix = 'a';
   this.desc = "floating sentinel";
-  this.resists = {};
+  this.resists = { fire:100 };
   this.meleeHitSound = 'sfx_animal_hit';
   this.meleeAttackSound = 'sfx_animal_miss';
 }
