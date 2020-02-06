@@ -26,6 +26,13 @@ Conversation.prototype.respond = function(speaker, keyword, skipahead) {
   let checkkeyword = 1;
   let addtolog = { hasResponse: 1, flagsmet: "", itemsowned: ""};
 
+  let re = /^[a-z]/;
+  if (re.test(keyword)) { 
+//    console.log("CONV: truncating keyword " + keyword);
+    keyword = keyword.slice(0,6);
+//    console.log("New keyword: " + keyword);
+  }
+
   while (checkkeyword)  {
     flags_met = 1;
     if (!this.hasOwnProperty(keyword)) {
