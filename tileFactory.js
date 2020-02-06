@@ -1653,6 +1653,11 @@ tileFactory.prototype.makeWalkOnGalaxy3Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWardukeWalkOnTile = function() {
+  let newTile = new WardukeWalkOnTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpinnerTile = function() {
   let newTile = new SpinnerTile();
   return newTile;
