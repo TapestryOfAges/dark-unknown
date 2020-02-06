@@ -7717,6 +7717,39 @@ WalkOnGalaxy3Tile.prototype.walkon = function(walker) {
   }
 }
 
+function WardukeWalkOnTile() {
+	this.name = "WardukeWalkOn";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WardukeWalkOnTile.prototype = new FeatureObject();
+
+WardukeWalkOnTile.prototype.walkon = function(walker) {
+  if (walker === PC) {
+    let themap = this.getHomeMap();
+    let warduke = FindNPCByName("Warduke", themap);
+    PC.forcedTalk(warduke);
+    let field = themap.getTile(30,6).getTopFeature();
+    themap.deleteThing(field);
+    field = themap.getTile(31,6).getTopFeature();
+    themap.deleteThing(field);
+    field = themap.getTile(31,7).getTopFeature();
+    themap.deleteThing(field);
+    field = themap.getTile(31,8).getTopFeature();
+    themap.deleteThing(field);
+    field = themap.getTile(30,8).getTopFeature();
+    themap.deleteThing(field);
+    field = themap.getTile(30,7).getTopFeature();  // walkon tile
+    themap.deleteThing(field);
+  }
+}
+
 function SpinnerTile() {
   this.name = "Spinner";
 	this.graphic = "walkon.gif";
