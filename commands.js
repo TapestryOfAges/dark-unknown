@@ -1187,6 +1187,7 @@ function PerformRuneChoice() {
         let cave = localFactory.createTile("Cave");
         cave.setEnterMap("grotto", 22, 53);
         themap.placeThing(27,30,cave);
+        DrawMainFrame("one",PC.getHomeMap(),27,30);
         retval["txt"] = "A cave entrance is revealed!";
         return retval;
       } else if ((PC.getx() === 100) && (PC.gety() === 57)) {
@@ -1221,6 +1222,7 @@ function PerformRuneChoice() {
       }
       
       themap.placeThing(27,21,cave);
+      DrawMainFrame("one",PC.getHomeMap(),27,21);
       retval["txt"] = "A tunnel into the caldera is exposed!";
       return retval;
         
@@ -2306,7 +2308,7 @@ function DrawStats(page) {
     if (PC.getInt() < PC.getBaseInt()) { spanint = '<span style="color:orange">'; }
     
     statsdiv = "<div class='outerstats'><div id='zstat' class='zstats'>";
-    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'><tr>";
+    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black; margin-top: 3px'><tr>";
 
     statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
     statsdiv += "<tr><td style='width:50%'>HP: " + PC.getDisplayHP() + "/" + PC.getMaxHP() + "</td><td></td>";
