@@ -11238,7 +11238,7 @@ function KeyUse(who,what,tgt) {
   let retval= {};
   if (!tgt) {
     let locktile = who.getHomeMap().getTile(targetCursor.x,targetCursor.y);
-    let tgt = locktile.getTopFeature();
+    tgt = locktile.getTopFeature();
   }
   if (!tgt) {
     retval["fin"] = 0;
