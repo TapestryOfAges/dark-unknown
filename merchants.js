@@ -140,8 +140,8 @@ function SetMerchants() {
   bill.megan = {};
   bill.megan.stock = [ { item: "DistractSpell", desc: "Distract", lvl: SPELL_DISTRACT_LEVEL, sid: SPELL_DISTRACT_ID, price: 150, sale: '"A useful trick for staying alive."'},
                   { item: "FireArmorSpell", desc: "Fire Armor", lvl: SPELL_FIRE_ARMOR_LEVEL, sid: SPELL_FIRE_ARMOR_ID, price: 600, sale: '"For when you want someone to really regret trying to hit you."'},
-                  { item: "IceballSpell", desc: "Iceball", lvl: SPELL_ICEBALL_LEVEL, sid: SPELL_ICEBALL_ID, price: 600, sale: '"Hail has nothing on this."'},
                   { item: "HealSpell", desc: "Heal", lvl: SPELL_HEAL_LEVEL, sid: SPELL_HEAL_ID, price: 1000, sale: '"Can close surprisingly deep wounds without a trace."'},
+                  { item: "IceballSpell", desc: "Iceball", lvl: SPELL_ICEBALL_LEVEL, sid: SPELL_ICEBALL_ID, price: 1000, sale: '"Hail has nothing on this."'},
                   { item: "TelepathySpell", desc: "Telepathy", lvl: SPELL_TELEPATHY_LEVEL, sid: SPELL_TELEPATHY_ID, price: 1000, sale: '"Not for reading minds, but for sensing their surface thoughts."'},
                   { item: "ParalyzeSpell", desc: "Paralyze", lvl: SPELL_PARALYZE_LEVEL, sid: SPELL_PARALYZE_ID, price: 1300, sale: '"Freeze someone right in place!"'},
                   { item: "ShockwaveSpell", desc: "Shockwave", lvl: SPELL_SHOCKWAVE_LEVEL, sid: SPELL_SHOCKWAVE_ID, price: 1300, sale: '"Strike everyone around you, and push them away."'},
