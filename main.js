@@ -832,14 +832,17 @@ function DoAction(code, ctrl) {
       } else if (inputText.cmd === "t") {
         let amt = code-48;
         let convo = targetCursor.talkingto.getConversation();
-        if (amt && (PC.getGold() < amt)) {
+        let retval;
+        if (!amt || (PC.getGold() < amt)) {
           retval = PerformTalk(targetCursor.talkingto, convo, "_notip");
         } else {
-          PC.setGold(PC.getGold-amt);
-          
+          PC.setGold(PC.getGold-amt);          
           maintext.addText(`You tip ${amt} gold.`);
           retval = PerformTalk(targetCursor.talkingto, convo, "_tip");
         }
+        maintext.setInputLine(retval["input"]);
+        maintext.drawTextFrame();  
+        gamestate.setMode("talk");
       }
     } else if (code === 27) {
       if (targetCursor.itemname === "InfiniteScroll") {

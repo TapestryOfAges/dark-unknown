@@ -1655,7 +1655,12 @@ function PerformTalk(talkto, convo, topic) {
     } else {
       retval["input"] = "You say: ";
     }
-    gamestate.setMode("talk");
+    if (targetCursor.overrideMode) {
+      delete targetCursor.overrideMode;
+      if (gamestate.getMode() === "singlenumber") { retval["input"] = "Tip how much?"; }
+    } else {
+      gamestate.setMode("talk");
+    }
   }
   
   targetCursor.talkingto = talkto;
