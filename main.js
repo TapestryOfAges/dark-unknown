@@ -819,7 +819,7 @@ function DoAction(code, ctrl) {
     	
     }
   } else if (gamestate.getMode() === "singlenumber") {
-    if ((code >= 48) && (code <= 57)) {
+    if (((code >= 48) && (code <= 57)) || (code === 27)) {
       if (targetCursor.itemname === "InfiniteScroll") {
         if ((code >= 49) && (code <=56)) {  // 1-8
           let scroll = targetCursor.itemSource;
@@ -831,14 +831,17 @@ function DoAction(code, ctrl) {
         }
       } else if (inputText.cmd === "t") {
         let amt = code-48;
+        if (code === 27) { amt = 0; }
         let convo = targetCursor.talkingto.getConversation();
         let retval;
         if (!amt || (PC.getGold() < amt)) {
           retval = PerformTalk(targetCursor.talkingto, convo, "_notip");
         } else {
-          PC.setGold(PC.getGold-amt);          
-          maintext.addText(`You tip ${amt} gold.`);
-          retval = PerformTalk(targetCursor.talkingto, convo, "_tip");
+          PC.setGold(PC.getGold()-amt);          
+          if (amt > 0) {
+            maintext.addText(`You tip ${amt} gold.`);
+          }
+          retval = PerformTalk(targetCursor.talkingto, convo, "_tip"+amt);
         }
         maintext.setInputLine(retval["input"]);
         maintext.drawTextFrame();  
