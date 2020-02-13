@@ -6,6 +6,8 @@ var places = {};
 var curr_place = "";
 var curr_person = "";
 
+var last_keyword = "";
+
 var last_unknown_idx = 0;
 
 $(document).ready(function() {
@@ -155,6 +157,7 @@ function show_response(convname, keyword) {
   var tmptxt = "";
   var keytype = "";
   var flag = "";
+
   $.each(conversations[convname][keyword].flags, function(idx,val) {
     keytype = idx;
     flag = val;
@@ -209,6 +212,8 @@ function edit_response(convname, keyword) {
   $('#responsebubble').jqm({onShow:myOpen});
   $('#responsebubble').jqmShow();
 
+  last_keyword = keyword;
+  
   document.responseeditpopup.responsekeyword.value = keyword;
   document.responseeditpopup.response1.value = "";
   document.responseeditpopup.end_convo1.checked = false;
