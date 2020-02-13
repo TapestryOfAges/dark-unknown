@@ -379,6 +379,15 @@ function submitEditResponse(val) {
     }
     if (!conversations[convname][keyword]){
       conversations[convname][keyword] = {};
+    } else if (keyword !== last_keyword) {
+      if (!confirm("Overwrite previous version of " + keyword + "?")) {
+        return;
+      }
+    }
+    if (keyword !== last_keyword) {
+      if (!confirm("Leave " + last_keyword + "?")) {
+        delete conversations[convname][last_keyword]; 
+      }
     }
     conversations[convname][keyword].flags = {};
     if (document.responseeditpopup.flags2.value) { 
