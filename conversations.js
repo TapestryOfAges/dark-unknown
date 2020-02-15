@@ -500,6 +500,7 @@ OnConvTriggers["inn_onyx_y"] = function(speaker,keyword) {
 
 OnConvTriggers["inn_25"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("inn_25");
+  delete speaker.flags["room"];
 
   let upstairs = maps.getMap("hildendain2");
   if (PC.getGold() < 10) {
