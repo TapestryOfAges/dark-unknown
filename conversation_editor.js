@@ -384,7 +384,7 @@ function submitEditResponse(val) {
         return;
       }
     }
-    if (keyword !== last_keyword) {
+    if ((keyword !== last_keyword) && (last_keyword)) {
       if (!confirm("Leave " + last_keyword + "?")) {
         delete conversations[convname][last_keyword]; 
       }
