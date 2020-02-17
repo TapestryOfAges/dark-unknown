@@ -125,40 +125,40 @@ function SetMerchants() {
 
   // Hildendain
   bill.alexis = {};
-  bill.alexis.stock = [ { item: "DistractSpell", desc: "Distract", lvl: SPELL_DISTRACT_LEVEL, sid: SPELL_DISTRACT_ID, price: 100, sale: '"A simple glamour, but a useful one."'},
-                  { item: "FlameBladeSpell", desc: "Flame Blade", lvl:SPELL_FLAME_BLADE_LEVEL, sid: SPELL_FLAME_BLADE_ID, price: 100, sale: '"Comes in your choice of red or blue!"'},
-                  { item: "MendSpell", desc: "Mend", lvl: SPELL_MEND_LEVEL, sid: SPELL_MEND_ID, price: 100, sale: '"Excellent at keeping your boots in good repair."'},
-                  { item: "LesserHealSpell", desc: "Lesser Heal", lvl: SPELL_LESSER_HEAL_LEVEL, sid: SPELL_LESSER_HEAL_ID, price: 200, sale: '"Guaranteed to make you feel better."'},
-                  { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: SPELL_MAGIC_BOLT_LEVEL, sid: SPELL_MAGIC_BOLT_ID, price: 200, sale: '"The easiest of the spells that do damage directly."'},
-                  { item: "ProtectionSpell", desc: "Protection", lvl: SPELL_PROTECTION_LEVEL, sid: SPELL_PROTECTION_ID, price: 200, sale: '"Because it\'s often better to just prevent the damage in the first place."'},
-                  { item: "FireArmorSpell", desc: "Fire Armor", lvl: SPELL_FIRE_ARMOR_LEVEL, sid: SPELL_FIRE_ARMOR_ID, price: 400, sale: '"Alas, it only comes in red."'},
-                  { item: "WallofFlameSpell", desc: "Wall of Flame", lvl: SPELL_WALL_OF_FLAME_LEVEL, sid: SPELL_WALL_OF_FLAME_ID, price: 400, sale: '"This? Also just red."'},
+  bill.alexis.stock = [ { item: "DistractSpell", desc: "Distract", lvl: SPELL_DISTRACT_LEVEL, sid: SPELL_DISTRACT_ID, price: 100, presale: '"A simple glamour, but a useful one."'},
+                  { item: "FlameBladeSpell", desc: "Flame Blade", lvl:SPELL_FLAME_BLADE_LEVEL, sid: SPELL_FLAME_BLADE_ID, price: 100, presale: '"Comes in your choice of red or blue!"'},
+                  { item: "MendSpell", desc: "Mend", lvl: SPELL_MEND_LEVEL, sid: SPELL_MEND_ID, price: 100, presale: '"Excellent at keeping your boots in good repair."'},
+                  { item: "LesserHealSpell", desc: "Lesser Heal", lvl: SPELL_LESSER_HEAL_LEVEL, sid: SPELL_LESSER_HEAL_ID, price: 200, presale: '"Guaranteed to make you feel better."'},
+                  { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: SPELL_MAGIC_BOLT_LEVEL, sid: SPELL_MAGIC_BOLT_ID, price: 200, presale: '"The easiest of the spells that do damage directly."'},
+                  { item: "ProtectionSpell", desc: "Protection", lvl: SPELL_PROTECTION_LEVEL, sid: SPELL_PROTECTION_ID, price: 200, presale: '"Because it\'s often better to just prevent the damage in the first place."'},
+                  { item: "FireArmorSpell", desc: "Fire Armor", lvl: SPELL_FIRE_ARMOR_LEVEL, sid: SPELL_FIRE_ARMOR_ID, price: 400, presale: '"Alas, it only comes in red."'},
+                  { item: "WallofFlameSpell", desc: "Wall of Flame", lvl: SPELL_WALL_OF_FLAME_LEVEL, sid: SPELL_WALL_OF_FLAME_ID, price: 400, presale: '"This? Also just red."'},
                 ];
   bill.alexis.type = "spells"; 
   
   // Beldskae
   bill.megan = {};
-  bill.megan.stock = [ { item: "DistractSpell", desc: "Distract", lvl: SPELL_DISTRACT_LEVEL, sid: SPELL_DISTRACT_ID, price: 150, sale: '"A useful trick for staying alive."'},
-                  { item: "FireArmorSpell", desc: "Fire Armor", lvl: SPELL_FIRE_ARMOR_LEVEL, sid: SPELL_FIRE_ARMOR_ID, price: 600, sale: '"For when you want someone to really regret trying to hit you."'},
-                  { item: "HealSpell", desc: "Heal", lvl: SPELL_HEAL_LEVEL, sid: SPELL_HEAL_ID, price: 1000, sale: '"Can close surprisingly deep wounds without a trace."'},
-                  { item: "IceballSpell", desc: "Iceball", lvl: SPELL_ICEBALL_LEVEL, sid: SPELL_ICEBALL_ID, price: 1000, sale: '"Hail has nothing on this."'},
-                  { item: "TelepathySpell", desc: "Telepathy", lvl: SPELL_TELEPATHY_LEVEL, sid: SPELL_TELEPATHY_ID, price: 1000, sale: '"Not for reading minds, but for sensing their surface thoughts."'},
-                  { item: "ParalyzeSpell", desc: "Paralyze", lvl: SPELL_PARALYZE_LEVEL, sid: SPELL_PARALYZE_ID, price: 1300, sale: '"Freeze someone right in place!"'},
-                  { item: "ShockwaveSpell", desc: "Shockwave", lvl: SPELL_SHOCKWAVE_LEVEL, sid: SPELL_SHOCKWAVE_ID, price: 1300, sale: '"Strike everyone around you, and push them away."'},
-                  { item: "SwordstrikeSpell", desc: "Swordstrike", lvl: SPELL_SWORDSTRIKE_LEVEL, sid: SPELL_SWORDSTRIKE_ID, price: 1300, sale: '"Conjures a magical sword that flies to strike an enemy and anything near it."'},
+  bill.megan.stock = [ { item: "DistractSpell", desc: "Distract", lvl: SPELL_DISTRACT_LEVEL, sid: SPELL_DISTRACT_ID, price: 150, presale: '"A useful trick for staying alive."'},
+                  { item: "FireArmorSpell", desc: "Fire Armor", lvl: SPELL_FIRE_ARMOR_LEVEL, sid: SPELL_FIRE_ARMOR_ID, price: 600, presale: '"For when you want someone to really regret trying to hit you."'},
+                  { item: "HealSpell", desc: "Heal", lvl: SPELL_HEAL_LEVEL, sid: SPELL_HEAL_ID, price: 1000, presale: '"Can close surprisingly deep wounds without a trace."'},
+                  { item: "IceballSpell", desc: "Iceball", lvl: SPELL_ICEBALL_LEVEL, sid: SPELL_ICEBALL_ID, price: 1000, presale: '"Hail has nothing on this."'},
+                  { item: "TelepathySpell", desc: "Telepathy", lvl: SPELL_TELEPATHY_LEVEL, sid: SPELL_TELEPATHY_ID, price: 1000, presale: '"Not for reading minds, but for sensing their surface thoughts."'},
+                  { item: "ParalyzeSpell", desc: "Paralyze", lvl: SPELL_PARALYZE_LEVEL, sid: SPELL_PARALYZE_ID, price: 1300, presale: '"Freeze someone right in place!"'},
+                  { item: "ShockwaveSpell", desc: "Shockwave", lvl: SPELL_SHOCKWAVE_LEVEL, sid: SPELL_SHOCKWAVE_ID, price: 1300, presale: '"Strike everyone around you, and push them away."'},
+                  { item: "SwordstrikeSpell", desc: "Swordstrike", lvl: SPELL_SWORDSTRIKE_LEVEL, sid: SPELL_SWORDSTRIKE_ID, price: 1300, presale: '"Conjures a magical sword that flies to strike an enemy and anything near it."'},
                 ];
   bill.megan.type = "spells"; 
 
   // Onyx
   bill.william = {};
-  bill.william.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap", lvl: SPELL_DISARM_TRAP_LEVEL, sid: SPELL_DISARM_TRAP_ID, price: 100, sale: '"Disarms any immediately nearby trap. A necessity for the cautious adventurer."'},
-                  { item: "VulnerabilitySpell", desc: "Vulnerability", lvl: SPELL_VULNERABILITY_LEVEL, sid: SPELL_VULNERABILITY_ID, price: 100, sale: '"Renders a foe nearly incapable of defending itself."'},
-                  { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: SPELL_MAGIC_BOLT_LEVEL, sid: SPELL_MAGIC_BOLT_ID, price: 200, sale: '"A magic arrow flies to strike a target."'},
-                  { item: "HealSpell", desc: "Heal", lvl: SPELL_HEAL_LEVEL, sid: SPELL_HEAL_ID, price: 400, sale: '"Restores your vitality. Useful if you want to do a lot of fighting."'},
-                  { item: "TelekinesisSpell", desc: "Telekinesis", lvl: SPELL_TELEKINESIS_LEVEL, sid: SPELL_TELEKINESIS_ID, price: 400, sale: '"Pick up or manipulate a distant object."'},
-                  { item: "LifeDrainSpell", desc: "Life Drain", lvl: SPELL_LIFE_DRAIN_LEVEL, sid: SPELL_LIFE_DRAIN_ID, price: 750, sale: '"Harms an enemy, and transfers some of its vitality to you!"'},
-                  { item: "SmiteSpell", desc: "Smite", lvl: SPELL_SMITE_LEVEL, sid: SPELL_SMITE_ID, price: 750, sale: '"Randomly chooses three nearby enemies and strikes them a mighty blow."'},
-                  { item: "CrystalTrapSpell", desc: "Crystal Trap", lvl: SPELL_CRYSTAL_TRAP_LEVEL, sid: SPELL_CRYSTAL_TRAP_ID, price: 1100, sale: '"Hides a trap that, when stepped upon, traps the treader in crystal for a time."'},
+  bill.william.stock = [ { item: "DisarmTrapSpell", desc: "Disarm Trap", lvl: SPELL_DISARM_TRAP_LEVEL, sid: SPELL_DISARM_TRAP_ID, price: 100, presale: '"Disarms any immediately nearby trap. A necessity for the cautious adventurer."'},
+                  { item: "VulnerabilitySpell", desc: "Vulnerability", lvl: SPELL_VULNERABILITY_LEVEL, sid: SPELL_VULNERABILITY_ID, price: 100, presale: '"Renders a foe nearly incapable of defending itself."'},
+                  { item: "MagicBoltSpell", desc: "Magic Bolt", lvl: SPELL_MAGIC_BOLT_LEVEL, sid: SPELL_MAGIC_BOLT_ID, price: 200, presale: '"A magic arrow flies to strike a target."'},
+                  { item: "HealSpell", desc: "Heal", lvl: SPELL_HEAL_LEVEL, sid: SPELL_HEAL_ID, price: 400, presale: '"Restores your vitality. Useful if you want to do a lot of fighting."'},
+                  { item: "TelekinesisSpell", desc: "Telekinesis", lvl: SPELL_TELEKINESIS_LEVEL, sid: SPELL_TELEKINESIS_ID, price: 400, presale: '"Pick up or manipulate a distant object."'},
+                  { item: "LifeDrainSpell", desc: "Life Drain", lvl: SPELL_LIFE_DRAIN_LEVEL, sid: SPELL_LIFE_DRAIN_ID, price: 750, presale: '"Harms an enemy, and transfers some of its vitality to you!"'},
+                  { item: "SmiteSpell", desc: "Smite", lvl: SPELL_SMITE_LEVEL, sid: SPELL_SMITE_ID, price: 750, presale: '"Randomly chooses three nearby enemies and strikes them a mighty blow."'},
+                  { item: "CrystalTrapSpell", desc: "Crystal Trap", lvl: SPELL_CRYSTAL_TRAP_LEVEL, sid: SPELL_CRYSTAL_TRAP_ID, price: 1100, presale: '"Hides a trap that, when stepped upon, traps the treader in crystal for a time."'},
                 ];
   bill.william.type = "spells"; 
                
