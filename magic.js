@@ -1728,7 +1728,7 @@ magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster,
   }
   resp["fin"] = 1;
   let prot = localFactory.createTile("Telepathy");
-  duration = caster.getInt() * 2 * SCALE_TIME;
+  let duration = caster.getInt() * 2 * SCALE_TIME;
   if (free) { duration = Dice.roll("1d6 + 12") * 2 * SCALE_TIME; }
   if (infused) { 
     duration = duration * 2; 
