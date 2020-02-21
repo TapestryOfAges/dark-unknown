@@ -121,6 +121,7 @@ paladin_stage2 - You have been told you passed the virtue test (set by messenger
 paladin_joined - You have been through the initiation ceremony
 ernest_patron - You've obtained Conrad's patronage for Ernest
 asked_conrad_about_ernest - You've asked Conrad to be Ernest's patron
+seek_scroll - you've mentioned the scroll to Conrad
 infinite_scroll - have received one Infinite Scroll from Conrad
 added_pheran - player has entered Swainhil, adding Hotel Pheran to the map
 started_pheran - entered Hotel Pheran
