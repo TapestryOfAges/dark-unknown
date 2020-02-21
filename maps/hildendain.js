@@ -611,12 +611,13 @@ mappages["hildendain2"].editorLabels = '{}';
 mappages["hildendain"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
     let npcs = mapref.npcs.getAll();
-    let anna, aaron, alexis, kiba;
+    let anna, aaron, alexis, kiba, franklin;
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Anna") { anna = npcs[i]; }
       if (npcs[i].getNPCName() === "Aaron") { aaron = npcs[i]; }
       if (npcs[i].getNPCName() === "Alexis") { alexis = npcs[i]; }
       if (npcs[i].getNPCName() === "Kiba") { kiba = npcs[i]; }
+      if (npcs[i].getNPCName() === "Franklin") { franklin = npcs[i]; }
     }
 
     if (aaron) {
@@ -634,6 +635,13 @@ mappages["hildendain"].onload = function(mapref) {
     if (kiba) {
       if ((kiba.getCurrentScheduleIndex() >= 4) && (kiba.getCurrentScheduleIndex() <= 12)) {
         kiba.getHomeMap().getTile(46,35).getTopFeature().unlockMe(kiba);
+      }
+    }
+
+    if (DU.gameflags.getFlag("act2") && DU.gameflags.getFlag("franklin_debt_paid")) {  // you've paid his debt, and it's act 2
+      if (franklin) {
+        mapref.deleteThing(franklin);
+        DUTime.removeEntityFrom(franklin);
       }
     }
 
