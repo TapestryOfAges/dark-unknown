@@ -2872,7 +2872,7 @@ function PhantomNPCTile() {
   this.lootTable = 'Level5';
   this.prefix = 'a';
   this.desc = "phantom";
-  this.meleeChance = 75;
+  this.meleeChance = 80;
   this.spellsknown = { attack: 1, };
   this.resists = {};
   this.special = 'undead';
