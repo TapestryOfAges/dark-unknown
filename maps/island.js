@@ -79,7 +79,7 @@ mappages["island"].terrain[73] = 'WW WW WW WW WW WW WW ww ww nn nn nn nn ^^ ^^ ^
 mappages["island"].terrain[74] = 'WW WW WW WW WW WW WW WW ww nn nn nn ^^ ^^ ^^ ^^ ^^ nn nn nn .. .. nn nn nn ^^ ^^ nn nn nn ^^ nn nn nn nn nn nn .. .. .. .. .. .. .. .. ,, ,, ;; .. .. .. ;; ;; ;; .. RR ;; ;; RR ;; ;; ww ww WW WW WW WW WW WW WW';
 mappages["island"].terrain[75] = 'WW WW WW WW WW WW WW WW ww ww nn nn ^^ ^^ ^^ nn nn nn nn __ __ .. .. nn nn ^^ ^^ ^^ nn ^^ ^^ nn ^^ ^^ ^^ ^^ nn nn .. .. .. .. .. .. ,, .. ,, ,, .. ;; ;; ;; ;; ,, ,, RR RR ,, RR ,, .| ww ww WW WW WW WW WW WW WW';
 mappages["island"].terrain[76] = 'WW WW WW WW WW WW WW WW ww ww nn nn nn ^^ nn nn nn nn ww ww ww `. .. nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ RR ^^ nn nn nn .. .. .. ,, .. .. ;; .. .. u, ;; ,, ,, u, ;; u, ;; RR RR RR ;; ,, .` ww WW WW WW WW WW WW WW';
-mappages["island"].terrain[77] = 'WW WW WW WW WW WW WW WW WW ww nn nn nn nn nn nn nn ww ww ww ww ww |. .. nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ RR ^^ nn nn .. .. .. .. .. ,, u, ;; ;; ;; .. ,, .. ,, .. ;; RR ;; ;; RR ,, ;; u, ;| ww ww WW WW WW WW WW WW';
+mappages["island"].terrain[77] = 'WW WW WW WW WW WW WW WW WW ww nn nn nn nn nn nn nn ww ww ww ww ww |. .. nn nn nn ^^ ^^ ^^ nn ^^ ^^ ^^ RR ^^ nn nn .. .. .. .. .. ,, u, ;; ;; ;; .. ,, .. ,, .. ;; RR ;; ;; RR ,, ;; u, ;| ww ww WW WW WW WW WW WW';
 mappages["island"].terrain[78] = 'WW WW WW WW WW WW WW WW WW ww ww nn nn nn nn nn nn ww ww WW ww ww |. .. .. nn nn nn nn ^^ nn nn nn nn RR RR nn .. .. .. .. u, ,, .. ;; ;; ;; ;; u, .. ;| `. _; .. RR RR RR RR RR ;; ;; .| ww WW WW WW WW WW WW WW';
 mappages["island"].terrain[79] = 'WW WW WW WW WW WW WW WW WW WW ww nn nn nn nn ww ww ww WW WW WW ww `. .. .. .. nn nn nn nn nn nn nn .. nn RR RR .. .. .. .. .. ,, ;; ;; ;; ;; ,, ;; .. ./ ww ww |, ,, .. ;; ;; RR RR RR ,| ww WW WW WW WW WW WW WW';
 mappages["island"].terrain[80] = 'WW WW WW WW WW WW WW WW ww ww ww ww ww ww ww ww WW WW WW WW WW ww ww `. .. .. .. .. nn .. ./ ww ww `. .. RR .. .. .. __ __ .. .. ,, ;; u, ;; ,, .. ./ ww ww ww |, u, ;; ;; u, ;; ,, RR ./ ww WW WW WW WW WW WW WW';
@@ -149,7 +149,8 @@ mappages["island"].editorLabels = '{}';
 
 mappages["island"].onload = function(mapref) {
   
-  if (gamestate.getMode() !== "loadgame") {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+
     // give specs to teleporters
     let shrinetile = mapref.getTile(14,76);
     let shrine = shrinetile.getTopFeature();
