@@ -2854,7 +2854,7 @@ function PhantomNPCTile() {
   this.addhp = 0;
   this.str = 14;
   this.dex = 14;
-  this.int = 14;
+  this.int = 10;
   this.alignment = 'Evil';
   this.attitude = 'hostile';
   this.peaceAI = 'seekPC-15';
@@ -2869,7 +2869,7 @@ function PhantomNPCTile() {
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_ETHEREAL;
   this.leavesCorpse = 'none';
-  this.lootTable = 'Phantom';
+  this.lootTable = 'Level5';
   this.prefix = 'a';
   this.desc = "phantom";
   this.meleeChance = 75;
