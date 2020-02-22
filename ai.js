@@ -1037,7 +1037,7 @@ ais.OutdoorHostile = function(who, radius, pname) {
       return retval;
     }
   } 
-  // animal, only randomwalk
+  // animal (or on non-Elussus map), only randomwalk
   retval = this.Randomwalk(who,25,25,25,25);
   if (retval["nomove"] === 1) {
     retval = this.Randomwalk(who,25,25,25,25);
@@ -1277,6 +1277,7 @@ ais.Randomwalk = function(who, chance_north, chance_east, chance_south, chance_w
 
 ais.ProcessPoI = function(who,poiname) {
   let themap = who.getHomeMap();
+  if (!themap.network[poiname]) { return; }
   if (!who.getPoI().x) {
     DebugWrite("ai", who.getName() + ", which follows " + poiname + " on map " + themap.getName() + ", has no PoI yet. Searching...<br />");
     let poi = FindClosestPoI(who.getx(), who.gety(), themap, poiname);
@@ -1806,16 +1807,16 @@ ais.ai_cast = function(who) {
     }
   }
   if (who.spellsknown.summon) {
-    if (((enemylevel > .5*alliedlevel) || !who.summoned) && (who.getMana() >= 2) && (who.getLevel() >= 2)) { 
+    if (((enemylevel > .5*alliedlevel) || !who.summoned) && (who.getMana() >= 2) && (who.getLevel() >= 2)  && (enemies.length > 0)) { 
       DebugWrite("Either enemy level is over half of allied level, or I just haven't summoned anything yet; adding SUMMON to the list."); 
       choices.push("summon"); 
     }
   }
-  if (who.spellsknown.attack && (who.getMana() >= 2) && (who.getLevel() >= 2)) {
+  if (who.spellsknown.attack && (who.getMana() >= 2) && (who.getLevel() >= 2) && (enemies.length > 0)) {
     DebugWrite("ai","Adding ATTACK to the list.");
     choices.push("attack");
   }
-  if (who.spellsknown.highattack && (who.getMana() > 5) && (who.getLevel() > 5)) {
+  if (who.spellsknown.highattack && (who.getMana() > 5) && (who.getLevel() > 5) && (enemies.length > 0)) {
     DebugWrite("ai","Adding HIGHATTACK to the list.");
     choices.push("highattack");
   }
