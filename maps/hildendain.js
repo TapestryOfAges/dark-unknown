@@ -658,18 +658,18 @@ mappages["hildendain"].onload = function(mapref) {
       }
     }
   
-    if (DU.gameflags.garrick_flipout) {
+    if (DU.gameflags.getFlag("garrick_flipout")) {
       let npcs = mapref.npcs.getAll();
       let garrick, aoife;
       for (let i=0;i<npcs.length;i++) {
-        if (npcs[i].getNPCName() === "Garrick") { anna = npcs[i]; }
+        if (npcs[i].getNPCName() === "Garrick") { garrick = npcs[i]; }
         if (npcs[i].getNPCName() === "Aoife") { aoife = npcs[i]; }
       }
       if (garrick) {
-        mapref.moveThing(14,26,garrick);
-        garrick.startx = 14;
-        garrick.starty = 26;
         garrick.setSchedule("garrickImprisoned");
+        let loc = DU.schedules["garrickImprisoned"].getNPCLocationByTime(GetClockTime(), 1, 1, mapref);
+        garrick.setCurrentScheduleIndex(DU.schedules[garrick.getSchedule()].currentIndex);
+        mapref.moveThing(loc.x, loc.y, garrick);
       } 
       if (aoife) {
         aoife.setSchedule("aoife2");
