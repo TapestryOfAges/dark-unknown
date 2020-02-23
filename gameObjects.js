@@ -7789,8 +7789,7 @@ WalkOnMessageTile.prototype.walkon = function(walker) {
   let response = {msg:""};
   if ((walker === PC) && (this.message) && (PC.getLight() >= 1)) {
     response.msg = this.message;
-  }
-  if ((walker === PC) && (this.message)) {
+  } else if ((walker === PC) && (this.message)) {
     response.msg = "There is writing on the walls here, but your light is too dim to read it.";
   }
   return response;
@@ -8148,7 +8147,7 @@ SpawnerTile.prototype.myTurn = function() {
         while (this.evolve[i][0]) {
           let idx = this.evolve[i].shift();
           let val = this.evolve[i].shift();
-          this.idx = val;
+          this[idx] = val;
         }
       }
     }
@@ -11904,8 +11903,8 @@ SupplyBoxTile.prototype.use = function(who) {
 function BluePalmCrystalTile() {
   this.name = "BluePalmCrystal";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1312";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1696";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -11930,8 +11929,8 @@ BluePalmCrystalTile.prototype.use = function(who) {
 function GreenPalmCrystalTile() {
   this.name = "GreenPalmCrystal";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1312";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1696";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -11957,8 +11956,8 @@ GreenPalmCrystalTile.prototype.use = function(who) {
 function PurplePalmCrystalTile() {
   this.name = "PurplePalmCrystal";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1312";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1696";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -12618,7 +12617,7 @@ ScrollItemObject.prototype.getLongDesc = function() {
 }
 
 ScrollItemObject.prototype.use = function(who) {
-  if (DU.gameflags.getFlag("negate")[castermap.getName()]) {
+  if (DU.gameflags.getFlag("negate")[who.getHomeMap().getName()]) {
     retval["txt"] = "Magic has been negated, you cannot cast spells here.";
     retval["fin"] = 2;
     retval["input"] = "&gt;";
@@ -14099,6 +14098,12 @@ WeaponObject.prototype.setHitSound = function(newsnd) {
 	return this.hitSound;
 }
 
+WeaponObject.prototype.getLongDesc = function() {
+  let longdesc = this.longdesc;
+  let avedmg = this.getAveDamage(PC);
+  return longdesc.replace("%ave%", avedmg);
+}
+
 function FistsTile() {
 	this.name = "Fists";
 	this.damage = "1d2+0";
@@ -14121,7 +14126,7 @@ function DaggerTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "dagger";
   this.prefix = "a";
-  this.longdesc = "A dagger. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A dagger. In your hands, it does %ave% damage on average.";
 }
 DaggerTile.prototype = new WeaponObject();
 
@@ -14135,7 +14140,7 @@ function ShortswordTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "shortsword";
   this.prefix = "a";
-  this.longdesc = "A shortsword. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A shortsword. In your hands, it does %ave% damage on average.";
 }
 ShortswordTile.prototype = new WeaponObject();
 
@@ -14149,7 +14154,7 @@ function MaceTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "mace";
   this.prefix = "a";
-  this.longdesc = "A mace. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A mace. In your hands, it does %ave% damage on average.";
 }
 MaceTile.prototype = new WeaponObject();
 
@@ -14163,7 +14168,7 @@ function AxeTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "axe";
   this.prefix = "an";
-  this.longdesc = "An axe. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "An axe. In your hands, it does %ave% damage on average.";
 }
 AxeTile.prototype = new WeaponObject();
 
@@ -14177,7 +14182,7 @@ function LongswordTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "longsword";
   this.prefix = "a";
-  this.longdesc = "A longsword. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A longsword. In your hands, it does %ave% damage on average.";
 }
 LongswordTile.prototype = new WeaponObject();
 
@@ -14191,7 +14196,7 @@ function HalberdTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "halberd";
   this.prefix = "a";
-  this.longdesc = "A halberd. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A halberd. In your hands, it does %ave% damage on average.";
 }
 HalberdTile.prototype = new WeaponObject();
 
@@ -14205,7 +14210,7 @@ function MagicSwordTile() {
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "magic sword";
   this.prefix = "a";
-  this.longdesc = "A magic sword. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A magic sword. In your hands, it does %ave% damage on average.";
 }
 MagicSwordTile.prototype = new WeaponObject();
 
@@ -14230,7 +14235,7 @@ UnenchantedSwordTile.prototype.getLongDesc = function() {
   if (this.broken) {
     return "A broken sword. Once it was enchanted.";
   }
-  return this.longdesc + "In your hands, it deals " + this.getAveDamage(PC) + " damage on average.";
+  return this.longdesc + "In your hands, it deals %ave% damage on average.";
 }
 
 // LightningSword, FlamingSword, SwordOfDefense, VenomSword ?
@@ -14314,7 +14319,7 @@ function SlingTile() {
 	this.ammoxoffset = "-32";
   this.ammoyoffset = "-128";
   this.attackSound = "sfx_sling";
-  this.longdesc = "A sling, made of simple leather. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A sling, made of simple leather. In your hands, it does %ave% damage on average.";
 }
 SlingTile.prototype = new MissileWeaponObject();
 
@@ -14332,7 +14337,7 @@ function BowTile() {
   this.ammoyoffset = "0";
   this.directionalammo = 1;
   this.attackSound = "sfx_bow";
-  this.longdesc = "A bow. It requires a Dexterity of 14 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A bow. It requires a Dexterity of 14 to use. In your hands, it does %ave% damage on average.";
 }
 BowTile.prototype = new MissileWeaponObject();
 
@@ -14350,7 +14355,7 @@ function CrossbowTile() {
   this.ammoyoffset = "-32";
   this.directionalammo = 1;
   this.attackSound = "sfx_bow";
-  this.longdesc = "A crossbow. It requires a Dexterity of 17 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A crossbow. It requires a Dexterity of 17 to use. In your hands, it does %ave% damage on average.";
 }
 CrossbowTile.prototype = new MissileWeaponObject();
 
@@ -14366,7 +14371,7 @@ function WandTile() {
   this.ammoxoffset = "-64";
   this.ammoyoffset = "-128";
   this.attackSound = "sfx_wand";
-  this.longdesc = "A wand that channels thunder. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A wand that channels thunder. In your hands, it does %ave% damage on average.";
 }
 WandTile.prototype = new MissileWeaponObject();
 
@@ -14384,7 +14389,7 @@ function MagicAxeTile() {
   this.ammoyoffset = "-128";
   this.ammoReturn = 1;
   this.attackSound = "sfx_magic_axe";
-  this.longdesc = "A magic throwing axe. It requires a Dexterity of 18 to use. In your hands, it does " + this.getAveDamage(PC) + " damage on average.";
+  this.longdesc = "A magic throwing axe. It requires a Dexterity of 18 to use. In your hands, it does %ave% damage on average.";
 }
 MagicAxeTile.prototype = new MissileWeaponObject();
 
@@ -15713,13 +15718,13 @@ NPCObject.prototype.moveMe = function(diffx,diffy,noexit) {
       let overridedraw = 0;
       if (walkonval.overridedraw) { overridedraw = 1; }
 		  if (walkonval.msg) {
-  		  if (retval["txt"] !== "") { retval["msg"] += "<br />"; }
-        retval["txt"] += walkonval.msg;
+  		  if (retval["msg"] !== "") { retval["msg"] += "<br />"; }
+        retval["msg"] += walkonval.msg;
       }
       if (walkonval.override) {
         retval.fin = walkonval.override;
         if (walkonval.override === -3) {
-          retval["txt"] = "";
+          retval["msg"] = "";
         }
       }
 //    if ((map === PC.getHomeMap()) && (GetSquareDistance(this.getx(), this.gety(), distfrom.centerx, distfrom.centery) < 1+Math.max(VIEWSIZEX,VIEWSIZEY) )) {
