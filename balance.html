@@ -13,6 +13,8 @@
         document.parameters.defperlevel.value = DEF_PER_LEVEL;
       });
       
+      let Dice = new DiceObject();
+
       var armors = [];
       armors[0] = {name:"None", Defense: 0, Resist: 0, Absorb: 0};
       armors[1] = {name:"Cloth", Defense: 5, Resist: 0, Absorb: 10};
@@ -68,22 +70,36 @@
         html += "</table>";
         $("#tohitchart").html(html);
         
-        html = "<p>== DAMAGE ==</p><table cellpadding='1' cellspacing='0' border='1'>";
-        html += "<tr><th>Weapon</th><th>(Lvl)</th><th>(Str)</th><th>None</th><th>Cloth</th><th>Leather</th><th>Chain</th><th>Plate</th><th>Exotic</th></tr>";
+        html = "<p>== DAMAGE ==</p>";
+        html += "Monster level: <select onchange='dynamicdamage()' id='lvl'><option value='scaling'>Scaling</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option></select> ";
+        html += "PC STR: <select onchange='dynamicdamage()' id='pcstr'><option value='scaling'>Scaling</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option><option value='13'>13</option><option value='14'>14</option><option value='15'>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option><option value='20'>20</option><option value='21'>21</option><option value='22'>22</option><option value='23'>23</option><option value='24'>24</option><option value='25'>25</option></select><br />";
+        html += "<div id='dmgdiv'></div>";
+        $("#damagechart").html(html);
+        dynamicdamage();
+      }
+
+      function dynamicdamage() {
+        let html = "<table cellpadding='1' cellspacing='0' border='1'>";
+        html += "<tr><th>Weapon</th><th>(Lvl)</th><th>(Str)</th><th>None</th><th>Kill</th><th>Cloth</th><th>Kill</th><th>Leather</th><th>Kill</th><th>Chain</th><th>Kill</th><th>Plate</th><th>Kill</th><th>Exotic</th><th>Kill</th></tr>";
         for (var i = 0; i<=11; i++) {
-          html += "<tr><td>" + wpns[i].name + "</td><td>" + wpns[i].lvl + "</td><td>" + expectedstr[wpns[i].lvl] + "</td>";
-          var dmg = RollAve(wpns[i].Dmg) + wpns[i].str*expectedstr[wpns[i].lvl];
+          let lvl = document.getElementById('lvl').value;
+          if (lvl === "scaling") { lvl = wpns[i].lvl; }
+          let str = document.getElementById('pcstr').value;
+          if (str === "scaling") { str = expectedstr[wpns[i].lvl]; }
+          html += "<tr><td>" + wpns[i].name + "</td><td>" + lvl + "</td><td>" + str + "</td>";
+          var dmg = Dice.rollave(wpns[i].Dmg) + wpns[i].str*(str-10);
           for (var j = 0; j<=5; j++ ){
             admg = dmg * (1-armors[j].Absorb/100);
             html += "<td>" + parseInt(admg) + "</td>";
+            let maxhp = lvl*10;
+            let hits = Math.ceil(maxhp/admg);
+            html += "<td>" + hits + "</td>";
           }
           html += "</tr>";
         }
         html += "</table>"
-        $("#damagechart").html(html);
+        $("#dmgdiv").html(html);
         
-        html = "<p>== DAMAGE ==</p><table cellpadding='1' cellspacing='0' border='1'>";
-        html += "<tr><th>Spell Dam</th><th>None</th><th>Cloth</th><th>Leather</th><th>Chain</th><th>Plate</th><th>Exotic</th></tr>";
       }
     </script>
   </head>
