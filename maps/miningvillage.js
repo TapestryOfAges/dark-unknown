@@ -65,7 +65,7 @@ mappages["miningvillage"].features[25] = {name : 'BedHead', x : 13, y : 5};
 mappages["miningvillage"].features[26] = {name : 'BedFoot', x : 14, y : 5};
 mappages["miningvillage"].features[27] = {name : 'LeftTable', x : 15, y : 9};
 mappages["miningvillage"].features[28] = {name : 'RightTable', x : 16, y : 9};
-mappages["miningvillage"].features[29] = {name : 'SmallBox', x : 17, y : 6};
+mappages["miningvillage"].features[29] = {name : 'SmallBox', x : 17, y : 6, locked : 0, lootgroup : 'Townsfolk', lootedid : 'abanvil3'};
 mappages["miningvillage"].features[30] = {name : 'TopChair', x : 16, y : 8};
 mappages["miningvillage"].features[31] = {name : 'BottomChair', x : 13, y : 10};
 mappages["miningvillage"].features[32] = {name : 'Evergreen', x : 19, y : 7};
@@ -100,10 +100,10 @@ mappages["miningvillage"].features[60] = {name : 'BedFoot', x : 26, y : 23};
 mappages["miningvillage"].features[61] = {name : 'BedFoot', x : 16, y : 22};
 mappages["miningvillage"].features[62] = {name : 'BedFoot', x : 6, y : 22};
 mappages["miningvillage"].features[63] = {name : 'VoidstoneSculpture', x : 8, y : 23};
-mappages["miningvillage"].features[64] = {name : 'Chest', x : 8, y : 24};
-mappages["miningvillage"].features[65] = {name : 'Chest', x : 9, y : 23};
-mappages["miningvillage"].features[66] = {name : 'Chest', x : 8, y : 7};
-mappages["miningvillage"].features[67] = {name : 'Chest', x : 4, y : 7};
+mappages["miningvillage"].features[64] = {name : 'Chest', x : 8, y : 24, locked : 0, lootgroup : 'Level1', lootedid : 'abanvil5'};
+mappages["miningvillage"].features[65] = {name : 'Chest', x : 9, y : 23, locked : 0, lootgroup : 'Townsfolk', lootedid : 'abanvil4'};
+mappages["miningvillage"].features[66] = {name : 'Chest', x : 8, y : 7, locked : 0, lootgroup : 'potslow', lootedid : 'abanvil2'};
+mappages["miningvillage"].features[67] = {name : 'Chest', x : 4, y : 7, locked : 0, lootgroup : 'potslow', lootedid : 'abanvil1'};
 mappages["miningvillage"].features[68] = {name : 'TopChair', x : 6, y : 19};
 mappages["miningvillage"].features[69] = {name : 'BookshelfOne', x : 5, y : 19};
 mappages["miningvillage"].features[70] = {name : 'SmallTable', x : 26, y : 21};
@@ -117,7 +117,6 @@ mappages["miningvillage"].features[77] = {name : 'UnlitBrazier', x : 18, y : 19}
 mappages["miningvillage"].features[78] = {name : 'UnlitBrazier', x : 28, y : 20};
 mappages["miningvillage"].features[79] = {name : 'UnlitBrazier', x : 13, y : 8};
 mappages["miningvillage"].features[80] = {name : 'UnlitBrazier', x : 26, y : 6};
-
 
 mappages["miningvillage"].npcs = [];
 
