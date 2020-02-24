@@ -114,7 +114,10 @@ mappages["mtdrash1"].onload = function(mapref) {
   walkon = mapref.getTile(8,16).getTopFeature();
   walkon.message = `You see black writing on the walls, that reads: "Three orbs, three colors, and voices"`;
 
-  walkon = mapref.getTile(14,8).getTopFeature();
+  let stuff = mapref.getTile(14,8).getFeatures();
+  for (let i=0;i<stuff.length;i++) {
+    if (stuff[i].getName() === "WalkOnMessage") { walkon = stuff[i]; }
+  }
   walkon.message = `You see red writing on the walls, that reads: "In the silence of this vale of green,"`;
 
   walkon = mapref.getTile(9,10).getTopFeature();
