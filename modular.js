@@ -236,3 +236,22 @@ OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
   } 
   return dmg; 
 }
+
+let OnDeathFuncs = {};
+
+OnDeathFunc["insects"] = function() {
+  let quant = Dice.roll("1d4");
+  for (let i=1;i<=quant;i++) {
+    let bug = localFactory.createTile("GiantInsectsNPC");
+    this.getHomeMap().placeThing(this.getx(),this,gety(),bug);
+  }
+}
+
+OnDeathFuncs["Warduke"] = function() {
+  DU.gameflags.setFlag("warduke_defeated");
+  PC.diffKarma(2);
+}
+
+OnDeathFunc["endact"] = function() {
+  // WORKING HERE
+}

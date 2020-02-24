@@ -66,26 +66,15 @@ NPCSpecialFuncs["courierFlee"] = function(who,how) {
 }
 
 NPCSpecialFuncs["ondeathInsects"] = function(who,how) {
-  who.onDeath = function() {
-    let quant = Dice.roll("1d4");
-    for (let i=1;i<=quant;i++) {
-      let bug = localFactory.createTile("GiantInsectsNPC");
-      this.getHomeMap().placeThing(this.getx(),this,gety(),bug);
-    }
-  }
+  who.onDeath = "insects";
 }
 
 NPCSpecialFuncs["ondeathWarduke"] = function(who,how) {
-  who.onDeath = function() {
-    DU.gameflags.setFlag("warduke_defeated");
-    PC.diffKarma(2);
-  }
+  who.onDeath = "Warduke";
 }
 
 NPCSpecialFuncs["ondeathEndact"] = function(who,how) {
-  who.onDeath = function() {
-    // WORKING HERE
-  }
+  who.onDeath = "endact";
 }
 
 function AreEnemies(one,two) {

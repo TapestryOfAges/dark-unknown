@@ -7807,7 +7807,7 @@ function WalkOnRotateTile() {
 WalkOnRotateTile.prototype = new FeatureObject();
 
 WalkOnRotateTile.prototype.walkon = function(walker) {
-  if (walker !== PC) { return; }
+  if (walker !== PC) { return {msg:""}; }
 
   let turns = Dice.roll("1d3");
   DebugWrite("gameobj", "PC stepped on central spinner: rotating " + turns + "x90 degrees.<br />");
@@ -14770,7 +14770,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
 }
 
 NPCObject.prototype.processDeath = function(droploot){
-  if (typeof this.onDeath === "function") { this.onDeath(); }
+  if (this.onDeath) { OnDeathFunc[this.onDeath](); }
   let thisx = this.getx();
   let thisy = this.gety();
   if (targetCursor.lastTarget === this) { delete targetCursor.lastTarget; }
