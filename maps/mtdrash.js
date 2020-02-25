@@ -100,28 +100,28 @@ mappages["mtdrash1"].editorLabels = '{}';
 
 mappages["mtdrash1"].onload = function(mapref) {
   let walkon = mapref.getTile(12,15).getTopFeature();
-  walkon.message = `You see writing on the walls, that reads: "Here, you shall see words"`;
+  walkon.message = `As you pass, writing appears upon the wall that reads: "Here, you shall see words"`;
 
   walkon = mapref.getTile(12,14).getTopFeature();
-  walkon.message = `You see writing on the walls, that reads: "of past, present and future."`;
+  walkon.message = `As you pass, writing appears upon the wall that reads: "of past, present and future."`;
 
   walkon = mapref.getTile(11,14).getTopFeature();
-  walkon.message = `You see writing on the walls, that reads: "Heed them or forever"`;
+  walkon.message = `As you pass, writing appears upon the wall that reads: "Heed them or forever"`;
 
   walkon = mapref.getTile(10,14).getTopFeature();
-  walkon.message = `You see writing on the walls, that reads: "shall you travel in circles!"`;
+  walkon.message = `As you pass, writing appears upon the wall that reads: "shall you travel in circles!"`;
 
   walkon = mapref.getTile(8,16).getTopFeature();
-  walkon.message = `You see black writing on the walls, that reads: "Three orbs, three colors, and voices"`;
+  walkon.message = `As you pass, writing appears upon the wall. In black letters, it reads: "Three orbs, three colors, and voices"`;
 
   let stuff = mapref.getTile(14,8).getFeatures();
   for (let i=0;i<stuff.length;i++) {
     if (stuff[i].getName() === "WalkOnMessage") { walkon = stuff[i]; }
   }
-  walkon.message = `You see red writing on the walls, that reads: "In the silence of this vale of green,"`;
+  walkon.message = `As you pass, writing appears upon the wall. In red letters, it reads: "In the silence of this vale of green,"`;
 
   walkon = mapref.getTile(9,10).getTopFeature();
-  walkon.message = `You see silver writing on the walls, that reads: "To the map thou must"`;
+  walkon.message = `As you pass, writing appears upon the wall. In silver letters, it reads: "To the map thou must"`;
 
 }
 
@@ -229,16 +229,16 @@ mappages["mtdrash2"].editorLabels = '{}';
 mappages["mtdrash2"].onload = function(mapref) {
 
   let walkon = mapref.getTile(14,16).getTopFeature();
-  walkon.message = `You see black writing on the walls, that reads: "three: reflect well upon the words of"`;
+  walkon.message = `As you pass, writing appears upon the wall. In black letters, it reads: "three: reflect well upon the words of"`;
   
   walkon = mapref.getTile(8,12).getTopFeature();
-  walkon.message = `You see red writing on the walls, that reads: "blue sky’s clouds part to show this scene:"`;
+  walkon.message = `As you pass, writing appears upon the wall. In red letters, it reads: "blue sky’s clouds part to show this scene:"`;
 
   walkon = mapref.getTile(14,10).getTopFeature();
-  walkon.message = `You see silver writing on the walls, that reads: "seek- amongst the fields of"`;
+  walkon.message = `As you pass, writing appears upon the wall. In silver letters, it reads: "seek- amongst the fields of"`;
 
   walkon = mapref.getTile(7,16).getTopFeature();
-  walkon.message = `You see blue writing on the walls, that reads: "Topped the mantle, purple velvet"`;
+  walkon.message = `As you pass, writing appears upon the wall. In blue letters, it reads: "Topped the mantle, purple velvet"`;
 
 }
 
@@ -328,16 +328,16 @@ mappages["mtdrash3"].editorLabels = '{}';
 mappages["mtdrash3"].onload = function(mapref) {
 
   let walkon = mapref.getTile(11,20).getTopFeature();
-  walkon.message = `You see black writing on the walls, that reads: "the merchant, to words in argent you"`;
+  walkon.message = `As you pass, writing appears upon the wall. In black letters, it reads: "the merchant, to words in argent you"`;
   
   walkon = mapref.getTile(20,16).getTopFeature();
-  walkon.message = `You see red writing on the walls, that reads: "there are glyphs unknown with purple glow"`;
+  walkon.message = `As you pass, writing appears upon the wall. In red letters, it reads: "there are glyphs unknown with purple glow"`;
 
   walkon = mapref.getTile(6,12).getTopFeature();
-  walkon.message = `You see silver writing on the walls, that reads: "green, far from mountains"`;
+  walkon.message = `As you pass, writing appears upon the wall. In silver letters, it reads: "green, far from mountains"`;
 
   walkon = mapref.getTile(13,10).getTopFeature();
-  walkon.message = `You see blue writing on the walls, that reads: "The rich fire reflected in the mirror"`;
+  walkon.message = `As you pass, writing appears upon the wall. In blue letters, it reads: "The rich fire reflected in the mirror"`;
 
 }
 
@@ -425,16 +425,16 @@ mappages["mtdrash4"].editorLabels = '{}';
 mappages["mtdrash4"].onload = function(mapref) {
 
   let walkon = mapref.getTile(6,9).getTopFeature();
-  walkon.message = `You see black writing on the walls, that reads: "must listen well, and the poet you"`;
+  walkon.message = `As you pass, writing appears upon the wall. In black letters, it reads: "must listen well, and the poet you"`;
   
   walkon = mapref.getTile(8,16).getTopFeature();
-  walkon.message = `You see red writing on the walls, that reads: "sear vision to white with fate’s undertow"`;
+  walkon.message = `As you pass, writing appears upon the wall. In red letters, it reads: "sear vision to white with fate’s undertow"`;
 
   walkon = mapref.getTile(6,7).getTopFeature();
-  walkon.message = `You see silver writing on the walls, that reads: "topped with white, is a place"`;
+  walkon.message = `As you pass, writing appears upon the wall. In silver letters, it reads: "topped with white, is a place"`;
 
   walkon = mapref.getTile(10,14).getTopFeature();
-  walkon.message = `You see blue writing on the walls, that reads: "Flanked with emeralds that shine-"`;
+  walkon.message = `As you pass, writing appears upon the wall. In blue letters, it reads: "Flanked with emeralds that shine-"`;
 
 }
 
@@ -527,23 +527,23 @@ mappages["mtdrash5"].onload = function(mapref) {
 
   let walkon = mapref.getTile(6,14).getTopFeature();
   walkon.invisible = 1;
-  walkon.setDestination({map:mapref, x: 6, y: 8});
+  walkon.setDestination({map:mapref.getName(), x: 6, y: 8});
 
   walkon = mapref.getTile(6,8).getTopFeature();
   walkon.invisible = 1;
-  walkon.setDestination({map:mapref, x: 6, y: 14});
+  walkon.setDestination({map:mapref.getName(), x: 6, y: 14});
 
   walkon = mapref.getTile(17,16).getTopFeature();
-  walkon.message = `You see black writing on the walls, that reads: "must read well. Order them as"`;
+  walkon.message = `As you pass, writing appears upon the wall. In black letters, it reads: "must read well. Order them as"`;
 
   walkon = mapref.getTile(11,12).getTopFeature();
-  walkon.message = `You see red writing on the walls, that reads: "a truly great wordsmith crafts meaning from absence"`;
+  walkon.message = `As you pass, writing appears upon the wall. In red letters, it reads: "a truly great wordsmith crafts meaning from absence"`;
 
   walkon = mapref.getTile(9,6).getTopFeature();
-  walkon.message = `You see silver writing on the walls, that reads: "where lorists say 'Here is the"`;
+  walkon.message = `As you pass, writing appears upon the wall. In silver letters, it reads: "where lorists say 'Here is the"`;
 
   walkon = mapref.getTile(14,18).getTopFeature();
-  walkon.message = `You see blue writing on the walls, that reads: "For sale, at a reasonable price!"`;
+  walkon.message = `As you pass, writing appears upon the wall. In blue letters, it reads: "For sale, at a reasonable price!"`;
 
 }
 
@@ -637,13 +637,13 @@ mappages["mtdrash6"].onload = function(mapref) {
   walkon.setDestination({map:mapref, x: 20, y: 9});
 
   walkon = mapref.getTile(9,20).getTopFeature();
-  walkon.message = `You see black writing on the walls, that reads: "sapphire, poet, argent- all else fails."`;
+  walkon.message = `As you pass, writing appears upon the wall. In black letters, it reads: "sapphire, poet, argent- all else fails."`;
 
   walkon = mapref.getTile(16,20).getTopFeature();
-  walkon.message = `You see red writing on the walls, that reads: "From what I do not say, a challenge to grab sense!"`;
+  walkon.message = `As you pass, writing appears upon the wall. In red letters, it reads: "From what I do not say, a challenge to grab sense!"`;
 
   walkon = mapref.getTile(9,6).getTopFeature();
-  walkon.message = `You see silver writing on the walls, that reads: "Eye of the dragon.'"`;
+  walkon.message = `As you pass, writing appears upon the wall. In silver letters, it reads: "Eye of the dragon.'"`;
 
 }
 
