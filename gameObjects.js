@@ -12631,6 +12631,11 @@ ScrollItemObject.prototype.use = function(who) {
     retval["override"] = 1; 
     targetCursor.castFrom = this;
   }
+  if (gamestate.getMode() === "anykey") {
+    // Peer, at the least
+    retval["override"] = 1;
+    retval["fin"] = 4;
+  }
   else {
     if (!retval["txt"]) { retval["txt"] = "Spell cast!"; }
     DrawCharFrame();
@@ -14770,7 +14775,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
 }
 
 NPCObject.prototype.processDeath = function(droploot){
-  if (this.onDeath) { OnDeathFunc[this.onDeath](); }
+  if (this.onDeath) { OnDeathFuncs[this.onDeath](); }
   let thisx = this.getx();
   let thisy = this.gety();
   if (targetCursor.lastTarget === this) { delete targetCursor.lastTarget; }
