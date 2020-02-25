@@ -739,8 +739,10 @@ function DoAction(code, ctrl) {
       delete targetCursor.invskiprow;
       delete targetCursor.invlength;
       delete targetCursor.restrictTo;
-      document.getElementById('uiinterface').innerHTML = "";
-      document.getElementById('uiinterface').style.backgroundColor = "";
+      if (!targetCursor.hasOwnProperty("spellName") || ( targetCursor.spellName !== "Peer")) {
+        document.getElementById('uiinterface').innerHTML = "";
+        document.getElementById('uiinterface').style.backgroundColor = "";
+      }
 
       if (response["usefin"] === 0) {
         maintext.setInputLine("&gt;");
