@@ -138,12 +138,12 @@ function AnimateEffect(atk, def, fromcoords, tocoords, ammographic, destgraphic,
     eventcount2 = 1;
 //    console.log("FinishAnimation called.");
     if (dmg != 0) {
-      let prehp = def.getHP();
-      let stillalive = def.dealDamage(dmg, atk, dmgtype);    
+      let prehp = def.getHP(); 
       // handle onDamaged stuff here
       if (def.onDamaged) {
         dmg = OnDamagedFuncs[def.onDamaged](atk,def,dmg,weapon);
       }
+      let stillalive = def.dealDamage(dmg, atk, dmgtype);   
 
       if (stillalive > -1) {
         if (Math.floor(prehp) === Math.floor(def.getHP())) {
