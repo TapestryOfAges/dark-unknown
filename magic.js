@@ -2584,7 +2584,13 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
         peerhtml += "<td style='background-color:cyan; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>";
       } else {
         let tile = castermap.getTile(i,j);
-        if (tile === "OoB") { peerhtml += "<td style='background-color:black; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; }
+        if (tile === "OoB") { 
+          if (caster.getHomeMap().getScale()) {
+            peerhtml += "<td style='background-color:black; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; 
+          } else {
+            peerhtml += "<td style='background-color:#0000e0; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>"; 
+          }
+        }
         else {
           let npc = tile.getTopVisibleNPC();
           if (npc && !npc.specials.nopeer) { 
