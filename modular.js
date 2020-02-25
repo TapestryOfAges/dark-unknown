@@ -239,7 +239,7 @@ OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
 
 let OnDeathFuncs = {};
 
-OnDeathFunc["insects"] = function() {
+OnDeathFuncs["insects"] = function() {
   let quant = Dice.roll("1d4");
   for (let i=1;i<=quant;i++) {
     let bug = localFactory.createTile("GiantInsectsNPC");
@@ -252,6 +252,6 @@ OnDeathFuncs["Warduke"] = function() {
   PC.diffKarma(2);
 }
 
-OnDeathFunc["endact"] = function() {
+OnDeathFuncs["endact"] = function() {
   // WORKING HERE
 }
