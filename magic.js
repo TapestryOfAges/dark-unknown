@@ -2575,7 +2575,7 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
   let rightx = caster.getx()+eachwayx;
   let topy = caster.gety()-eachwayy;
   let bottomy = caster.gety()+eachwayy;
-  let peerhtml = "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20; top:20px\">";
+  let peerhtml = "<table id='mainview' cellpadding='0' cellspacing='0' border='0' style=\"position:relative; z-index:20; top:5px\">";
   for (let j=topy;j<=bottomy;j++) {
     peerhtml += "<tr><td style='background-color:black; width:8px; height:8px'><img src='graphics/spacer.gif' width='8' height='8' /></td>";
     for (let i=leftx;i<=rightx;i++) {
@@ -2616,8 +2616,10 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
   peerhtml += "</tr></table>";
 //  alert(peerhtml);
   document.getElementById('uiinterface').innerHTML = peerhtml;
+  document.getElementById('uiinterface').style.backgroundColor = "black";  
   gamestate.setMode("anykey");
   targetCursor.command = "c";
+  targetCursor.spellName = "Peer";
   if (free !== 2) {
     resp["txt"] = "You receive a bird's eye view.";
   }
