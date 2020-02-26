@@ -213,9 +213,9 @@ OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
       let tileopts = [];
       for (let i=-1;i<=1;i++) {
         for (let j=-1;j<=1;j++) {
-          let tile = whomap.getTile(who.getx()+1,who.gety()+1);
+          let tile = whomap.getTile(who.getx()+i,who.gety()+j);
           if (tile !== "OoB") {
-            if (!tile.getTopFeature() && !tile.getTopNPC() && !tile.getTopPC()) {
+            if (!tile.getTopFeature() && !tile.getTopNPC() && !tile.getTopPC() && tile.canMoveHere(MOVE_WALK)) {
               tileopts.push({x:who.getx()+i,y:who.gety()+j});
             }
           }
@@ -231,6 +231,7 @@ OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
         slime.setMaxHP(hp);
         slime.setHP(hp);
         whomap.placeThing(tileopts[tr].x,tileopts[tr].y,slime);
+        DrawMainFrame("one", who.getHomeMap(), tileopts[tr].x, tileopts[tr].y);
       }
     }
   } 
