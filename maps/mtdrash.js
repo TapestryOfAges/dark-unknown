@@ -630,11 +630,11 @@ mappages["mtdrash6"].onload = function(mapref) {
 
   let walkon = mapref.getTile(20,9).getTopFeature();
   walkon.invisible = 1;
-  walkon.setDestination({map:mapref, x: 18, y: 20});
+  walkon.setDestination({map:mapref.getName(), x: 18, y: 20});
 
   walkon = mapref.getTile(18,20).getTopFeature();
   walkon.invisible = 1;
-  walkon.setDestination({map:mapref, x: 20, y: 9});
+  walkon.setDestination({map:mapref.getName(), x: 20, y: 9});
 
   walkon = mapref.getTile(9,20).getTopFeature();
   walkon.message = `As you pass, writing appears upon the wall. In black letters, it reads: "sapphire, poet, argent- all else fails."`;
