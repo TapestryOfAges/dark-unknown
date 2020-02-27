@@ -1394,7 +1394,7 @@ magic[SPELL_FIRE_ARMOR_LEVEL][SPELL_FIRE_ARMOR_ID].executeSpell = function(caste
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   let prot = localFactory.createTile("FireArmor");
-  duration = caster.getInt() * 3 * SCALE_TIME;
+  let duration = caster.getInt() * 3 * SCALE_TIME;
   if (free) { duration = Dice.roll("1d6 + 12") * 3 * SCALE_TIME; }
   let power = DMG_NEGLIGABLE;
   if (infused) { 

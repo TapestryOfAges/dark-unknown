@@ -1752,17 +1752,21 @@ ais.ai_cast = function(who) {
   for (let i=0;i<npcs.length;i++) {
     if (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5.5) {
       if (npcs[i].getAttitude() !== who.getAttitude()) {
-        enemies.push(npcs[i]);
-        let el = npcs[i].getLevel()/2 * ((npcs[i].getHP()/npcs[i].getMaxHP())+1);
-        enemylevel += el;
-        if (el >= who.getLevel()/2) { strongenemies.push(npcs[i]); }
-        else { weakenemies.push(npcs[i]); }
+        if (themap.getLOS(who.getx(), who.gety(), npcs[i].getx(), npcs[i].gety()) < LOS_THRESHOLD) {
+          enemies.push(npcs[i]);
+          let el = npcs[i].getLevel()/2 * ((npcs[i].getHP()/npcs[i].getMaxHP())+1);
+          enemylevel += el;
+          if (el >= who.getLevel()/2) { strongenemies.push(npcs[i]); }
+          else { weakenemies.push(npcs[i]); }
+        }
       } else {
-        allies.push(npcs[i]);
-        let al = npcs[i].getLevel()/2 * ((npcs[i].getHP()/npcs[i].getMaxHP())+1);
-        alliedlevel += al;
-        if (al >= who.getLevel()/2) { strongallies.push(npcs[i]); }
-        if (npcs[i].getHP()/npcs[i].getMaxHP() < .5) { damagedallies.push(npcs[i]); }
+        if (themap.getLOS(who.getx(), who.gety(), npcs[i].getx(), npcs[i].gety()) < LOS_THRESHOLD) {
+          allies.push(npcs[i]);
+          let al = npcs[i].getLevel()/2 * ((npcs[i].getHP()/npcs[i].getMaxHP())+1);
+          alliedlevel += al;
+          if (al >= who.getLevel()/2) { strongallies.push(npcs[i]); }
+          if (npcs[i].getHP()/npcs[i].getMaxHP() < .5) { damagedallies.push(npcs[i]); }
+        }
       }
     }
   }
