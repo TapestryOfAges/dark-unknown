@@ -931,11 +931,13 @@ function CheckAbsorb(dam,to,from,type) {
     if (ironflesh) {
       dam = (Math.max(0,dam-5));
       let power = ironflesh.getPower();
+//      console.log("Iron Flesh absorbs 5 damage! It had: " + power + " points left to absorb.");
       power -= 5;
       if (power <= 0) {
         ironflesh.endEffect();
       } else {
         ironflesh.setPower(power);
+//        console.log("It now has: " + ironflesh.getPower() + " points left.");
       }
     }
   }
