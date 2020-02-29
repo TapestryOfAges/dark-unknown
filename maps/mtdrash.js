@@ -173,10 +173,9 @@ mappages["mtdrash2"].features[12] = {name : 'Chest', x : 16, y : 6, locked : 0, 
 mappages["mtdrash2"].features[13] = {name : 'Chest', x : 16, y : 7, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_3'};
 mappages["mtdrash2"].features[14] = {name : 'Chest', x : 6, y : 6, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_4'};
 mappages["mtdrash2"].features[15] = {name : 'Chest', x : 10, y : 6, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_5'};
-mappages["mtdrash2"].features[16] = {name : 'Chest', x : 6, y : 18};
-mappages["mtdrash2"].features[17] = {name : 'Chest', x : 6, y : 18, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_6'};
-mappages["mtdrash2"].features[18] = {name : 'Chest', x : 6, y : 19, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_7'};
-mappages["mtdrash2"].features[19] = {name : 'Chest', x : 18, y : 17, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_1'};
+mappages["mtdrash2"].features[16] = {name : 'Chest', x : 6, y : 18, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_6'};
+mappages["mtdrash2"].features[17] = {name : 'Chest', x : 6, y : 19, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_7'};
+mappages["mtdrash2"].features[18] = {name : 'Chest', x : 18, y : 17, locked : 0, lootgroup : 'Level4', lootedid : 'drash2_1'};
 
 
 mappages["mtdrash2"].npcs = [];
@@ -234,7 +233,7 @@ mappages["mtdrash2"].onload = function(mapref) {
     walkon.message = `As you pass, writing appears upon the wall. In black letters, it reads: "three: reflect well upon the words of"`;
   
     walkon = mapref.getTile(8,12).getTopFeature();
-    walkon.message = `As you pass, writing appears upon the wall. In red letters, it reads: "blue sky’s clouds part to show this scene:"`;
+    walkon.message = `As you pass, writing appears upon the wall. In red letters, it reads: "blue sky's clouds part to show this scene:"`;
 
     walkon = mapref.getTile(14,10).getTopFeature();
     walkon.message = `As you pass, writing appears upon the wall. In silver letters, it reads: "seek- amongst the fields of"`;
@@ -430,7 +429,7 @@ mappages["mtdrash4"].onload = function(mapref) {
     walkon.message = `As you pass, writing appears upon the wall. In black letters, it reads: "must listen well, and the poet you"`;
   
     walkon = mapref.getTile(8,16).getTopFeature();
-    walkon.message = `As you pass, writing appears upon the wall. In red letters, it reads: "sear vision to white with fate’s undertow"`;
+    walkon.message = `As you pass, writing appears upon the wall. In red letters, it reads: "sear vision to white with fate's undertow"`;
 
     walkon = mapref.getTile(6,7).getTopFeature();
     walkon.message = `As you pass, writing appears upon the wall. In silver letters, it reads: "topped with white, is a place"`;
