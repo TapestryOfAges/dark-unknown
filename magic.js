@@ -889,8 +889,8 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
   }
   let liobj = localFactory.createTile("IronFlesh");
   
-  let dur = caster.getInt() * .15;
-  if (free) { dur = 3; }
+  let dur = caster.getInt() * .5;
+  if (free) { dur = 10; }
   if (infused) {dur = dur * 2; }
   let endtime = dur + DU.DUTime.getGameClock();
   DebugWrite("magic", "Spell duration " + dur + ". Spell ends at: " + endtime + ".<br />");
@@ -3957,8 +3957,11 @@ function ShowEffect(onwhat, duration, graphic, xoff, yoff) {
     
     setTimeout(function() {
       DebugWrite("magic", "Removing a " + animurl + " from " + onwhat.getName() + ".<br />");
-      document.getElementById(docid).innerHTML = "";
-      document.getElementById(docid).style.backgroundImage = "";
+      let acton = document.getElementById(docid);
+      if (acton) {
+        acton.innerHTML = "";
+        acton.style.backgroundImage = "";
+      }
       delete spellcount["anim" + onwhat.getSerial()];
     },duration);
   }
