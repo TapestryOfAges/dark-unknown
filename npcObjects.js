@@ -2429,7 +2429,7 @@ function OrcCaptainNPCTile() {
   this.armorAs = 'ChainArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'none';
-  this.lootTable = 'HighOrcs';
+  this.lootTable = 'High Orcs';
   this.prefix = 'an';
   this.desc = "orc captain";
   this.meleeChance = 66;
