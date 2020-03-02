@@ -188,7 +188,7 @@ ais.combat = function(who) {
     if (who.specials.teleport) { nonmeleeoptions.push("ai_teleport"); }  // needs work
     if (who.specials.energybolt) { nonmeleeoptions.push("ai_energybolt"); }  
     if (who.specials.phase) { nonmeleeoptions.push("ai_phase"); }  
-    if (who.specials.multiattack) { nonmeleeoptions.push("ai_multiattack"); }  // needs work- what was this going to be?
+//    if (who.specials.multiattack) { nonmeleeoptions.push("ai_multiattack"); }  // needs work- what was this going to be?
     if (who.specials.summonearthelemental) { nonmeleeoptions.push("ai_summonearthelemental"); }  
     if (who.specials.necromancer) { nonmeleeoptions.push("ai_necromancer"); }  
     if (who.specials.sleep) { nonmeleeoptions.push("ai_sleep"); }  
