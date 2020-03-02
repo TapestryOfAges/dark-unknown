@@ -1713,6 +1713,11 @@ tileFactory.prototype.makeWalkOnAbyss4Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeNightshadeSpawnerTile = function() {
+  let newTile = new NightshadeSpawnerTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSpawnerTile = function() {
   let newTile = new SpawnerTile();
   return newTile;
@@ -2210,6 +2215,11 @@ tileFactory.prototype.makeTrustedPinTile = function() {
 
 tileFactory.prototype.makeReaperBarkTile = function() {
   let newTile = new ReaperBarkTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBlackDragonScaleTile = function() {
+  let newTile = new BlackDragonScaleTile();
   return newTile;
 }
 
