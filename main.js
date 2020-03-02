@@ -100,8 +100,11 @@ function DrawMainFrame(how, themap, centerx, centery) {
       let val=spellcount[idx];
       if ((val.getx() >= displayspecs.leftedge) && (val.getx() <= displayspecs.rightedge) && (val.gety() >= displayspecs.topedge) && (val.gety() <= displayspecs.bottomedge)) {
         let where = getCoords(val.getHomeMap(),val.getx(), val.gety());
-        document.getElementById(idx).style.left = where.x;
-        document.getElementById(idx).style.top = where.y;
+        let sparkles = document.getElementById(idx);
+        if (sparkles) {
+          sparkles.style.left = where.x;
+          sparkles.style.top = where.y;
+        }
       }
     };
   } else if (how === "one") {
@@ -112,8 +115,11 @@ function DrawMainFrame(how, themap, centerx, centery) {
       let val=spellcount[idx];
       if ((val.getx() >= displayspecs.leftedge) && (val.getx() <= displayspecs.rightedge) && (val.gety() >= displayspecs.topedge) && (val.gety() <= displayspecs.bottomedge)) {
         let where = getCoords(val.getHomeMap(),val.getx(), val.gety());
-        document.getElementById(idx).style.left = where.x;
-        document.getElementById(idx).style.top = where.y;
+        let sparkles = document.getElementById(idx);
+        if (sparkles) {
+          sparkles.style.left = where.x;
+          sparkles.style.top = where.y;
+        }
       }
     };
   }  
@@ -498,10 +504,10 @@ function DoAction(code, ctrl) {
             maintext.drawTextFrame();
           }
         }
-        else if (response["fin"] === -1) {
+        else if (resp["fin"] === -1) {
           gamestate.setMode("useprompt");
-          maintext.addText(response["txt"]);
-          maintext.setInputLine(response["input"]);
+          maintext.addText(resp["txt"]);
+          maintext.setInputLine(resp["input"]);
           maintext.drawTextFrame();
         }    
         else if (resp["fin"] < 2) {
@@ -690,12 +696,20 @@ function DoAction(code, ctrl) {
     else { used = targetCursor.itemlist[targetCursor.scrolllocation]; }
     let response = used.usePrompt(code);
 
-    maintext.addText(response["txt"]);
-    maintext.setInputLine("&gt;");
-    maintext.drawTextFrame();
-    DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
-    DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
-    PC.endTurn(response["initdelay"]);
+    if (response["fin"] === 3) {
+      // drinking from the brilliant pool
+      maintext.setInputLine("[MORE]");
+      maintext.addText(response["txt"]);
+      gamestate.setMode("anykey");
+      maintext.drawTextFrame();
+    } else {
+      maintext.addText(response["txt"]);
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame();
+      DrawTopbarFrame("<p>" + PC.getHomeMap().getDesc() + "</p>");   	
+      DrawMainFrame("draw", PC.getHomeMap(), PC.getx(), PC.gety());
+      PC.endTurn(response["initdelay"]);
+    }
   }
   else if (gamestate.getMode() === "showhelp") {
     delete targetCursor.invx;
@@ -823,13 +837,26 @@ function DoAction(code, ctrl) {
   } else if (gamestate.getMode() === "singlenumber") {
     if (((code >= 48) && (code <= 57)) || (code === 27)) {
       if (targetCursor.itemname === "InfiniteScroll") {
+        let retval;
         if ((code >= 49) && (code <=56)) {  // 1-8
           let scroll = targetCursor.itemSource;
           if (scroll.circle) {
             retval = scroll.secondResponse(code);
+            maintext.addText(retval["txt"]);
+            maintext.setInputLine("&gt;");
+            maintext.drawTextFrame();
+            PC.endTurn();
           } else {
             retval = scroll.firstResponse(code);
+            maintext.addText(retval["txt"]);
+            maintext.drawTextFrame();
           }
+        } else if (code === 27) {  // ESC
+          maintext.setInputLine("&gt;");
+          maintext.addText("Cancelled.");
+          maintext.drawTextFrame();
+          gamestate.setMode("player");
+          gamestate.setTurn(PC);
         }
       } else if (inputText.cmd === "t") {
         let amt = code-48;
