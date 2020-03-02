@@ -1506,7 +1506,7 @@ function Get90DegCoords(centerx,centery,oldx,oldy) {
   let destx = 0-yy;
   desty+=centery;
   destx+=centerx;
-  return {x:destx, y:desty}
+  return {destx:destx, desty:desty}
 }
 
 function PerformGambling() {
