@@ -108,7 +108,7 @@ OnHitFuncs["knockback"] = function(atk,def,dmg) {
           return;
         }
       }
-      options.unshift();
+      options.shift();
     }
   
   }
@@ -240,11 +240,11 @@ OnDamagedFuncs["split"] = function(atk,who,dmg,weapon) {
 
 let OnDeathFuncs = {};
 
-OnDeathFuncs["insects"] = function() {
+OnDeathFuncs["insects"] = function(who) {
   let quant = Dice.roll("1d4");
   for (let i=1;i<=quant;i++) {
     let bug = localFactory.createTile("GiantInsectsNPC");
-    this.getHomeMap().placeThing(this.getx(),this,gety(),bug);
+    who.getHomeMap().placeThing(who.getx(),who.gety(),bug);
   }
 }
 
