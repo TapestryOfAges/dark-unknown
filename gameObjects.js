@@ -7145,7 +7145,7 @@ BrilliantPoolTile.prototype.usePrompt = function(code) {
     retval["txt"] = "You drink from the pool.";
     retval["override"] = 1;        
     retval["fin"] = 3;
-    targetCursor.booktext = ["You feel tremendous power rush into you!","You view the world from above, seeing the secrets and the minds of each and every living thing.","This bright elixir peerless you have drunk...","YOU KNOW ALL THINGS!","...It is too much for your mortal mind...","Suddenly you are aware of just one thing-", "your mind is burning.","You have died."];
+    targetCursor.booktext = ["You feel tremendous power rush into you!","You view the world from above, seeing the secrets and the minds of each and every living thing.","This bright elixir peerless you have drunk...","YOU KNOW ALL THINGS!","...It is too much for your mortal mind...","Suddenly you are aware of just one thing-", "your mind is burning."];
     targetCursor.useditem = this;
     targetCursor.bookfinish = 1;
   } else {
@@ -7157,7 +7157,7 @@ BrilliantPoolTile.prototype.usePrompt = function(code) {
 BrilliantPoolTile.prototype.bookFinish = function() {
   PC.setOrbInt(PC.getOrbInt() + 1);
   DU.gameflags.setFlag("pool_drunk");
-  PC.dealDamage(PC.getMaxHP + 100);
+  PC.dealDamage(PC.getMaxHP() + 100);
   return;
 }
 
@@ -7849,7 +7849,7 @@ WalkOnRotateTile.prototype.walkon = function(walker) {
     MoveBetweenMaps(feas[i],currmap,destmap,dest.destx,dest.desty);
   }
   DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
-  return {overridedraw: 1,msg:""};
+  return {overridedraw: 1,msg:"A rumbling sound fills the dungeon. At the edge of awareness something shifts and rearranges..."};
 }
 
 function WalkOnWindTile() {
@@ -8007,6 +8007,42 @@ function WalkOnAbyss4Tile() {
 }
 WalkOnAbyss4Tile.prototype = new WalkOnAbyssTile();
 
+function NightshadeSpawnerTile() {
+  this.name = "NightshadeSpawner";
+  this.graphic = "target-cursor.gif";
+  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+  this.blockslos = 0;
+  this.prefix = "an";
+  this.desc = "invisible spawner";
+  this.invisible = 1;
+  
+  this.stocked = 1;
+}
+NightshadeSpawnerTile.prototype = new FeatureObject();
+
+NightshadeSpawnerTile.prototype.activate = function() {
+  if (gamestate.getMode() !== "loadgame") {
+    DebugWrite("gameobj", "Activating Nightshade spawner.");
+
+    this.addToSearchYield("Nightshade");
+    let nexttick = GetGameClockByClockTime("0:00");
+
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,nexttick);
+  }
+}
+
+NightshadeSpawnerTile.prototype.myTurn = function() {
+  if (!this.searchYield.length) {
+    DebugWrite("gameobj", "Nightshade spawner regrowing Nightshade.");
+    this.addToSearchYield("Nightshade");
+    let nexttick = GetGameClockByClockTime("0:00");
+    let NPCevent = new GameEvent(this);
+    DUTime.addAtTimeInterval(NPCevent,nexttick);
+  }
+
+  return 1;
+}
 
 function SpawnerTile() {
   this.name = "Spawner";
@@ -10540,6 +10576,20 @@ function ReaperBarkTile() {
 }
 ReaperBarkTile.prototype = new ItemObject();
 
+function BlackDragonScaleTile() {
+  this.name = "BlackDragonScale";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1696";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "black dragon scale";
+  this.prefix = "a";
+  this.longdesc = "A scale from the black dragon that had ensorcelled Lance.";
+  this.addType("Quest");
+}
+BlackDragonScaleTile.prototype = new ItemObject();
+
 function RingOfFireResistTile() {
   this.name = "RingOfFireResist";
   this.graphic = "master_spritesheet.png";
@@ -10556,6 +10606,24 @@ RingOfFireResistTile.prototype = new ItemObject();
 RingOfFireResistTile.prototype.onGet = function(who) {
   if (!who.resists.hasOwnProperty("fire")) { who.resists.fire = 33; }
   else { who.resists.fire += 33; }
+  return "You place the ring on your finger, and a chill feeling sweeps through you. You are more resistant to fire.";
+}
+
+function RingOfEtherealFocusTile() {
+  this.name = "RingOfEtherealFocus";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1728";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Ring of Ethereal Focus";
+  this.prefix = "a";
+  this.longdesc = "A ring that provides mana as enemies are slain.";
+}
+RingOfEtherealFocusTile.prototype = new ItemObject();
+
+RingOfEtherealFocusTile.prototype.onGet = function(who) {
+  
   return "You place the ring on your finger, and a chill feeling sweeps through you. You are more resistant to fire.";
 }
 
@@ -11740,12 +11808,12 @@ TorchTile.prototype.use = function(who) {
     retval["fin"] = 1;
     return retval;
   }
-  let tl = tileFactory.createTile("TorchLight");
+  let tl = localFactory.createTile("TorchLight");
   let endtime = 50 + DU.DUTime.getGameClock();
   tl.setExpiresTime(endtime);
   
   DUPlaySound("sfx_spell_light"); 
-  caster.addSpellEffect(tl);
+  who.addSpellEffect(tl);
   
   DrawCharFrame();
   retval["txt"] = "You light a torch.";
@@ -11779,6 +11847,7 @@ KyvekBoxTile.prototype.use = function(who) {
     retval["preserve"] = 1;
     retval["txt"] = "This will break the seal and you will be unable to return the money to Kyvek. Are you sure?";
     retval["input"] = "(Y/N): ";
+    targetCursor.useditem = this;
     return retval;
   }
   return retval;
@@ -11821,7 +11890,7 @@ InfiniteScrollTile.prototype.use = function(who) {
     delete this.circle;
     let fea = PC.getHomeMap().features.getAll();
     for (let i=0;i<fea.length;i++) {
-      if (fea[i].getName === "BrilliantPool") {
+      if (fea[i].getName() === "BrilliantPool") {
         if (IsAdjacent(who,fea[i])) {
           retval["override"] = -1;
           retval["fin"] = 4;
@@ -11843,7 +11912,7 @@ InfiniteScrollTile.prototype.use = function(who) {
 }
 
 InfiniteScrollTile.prototype.firstResponse = function(code) {
-  let level = ParseInt(code)-48;
+  let level = parseInt(code)-48;
   this.circle = level;
   let retval = {};
   retval["fin"] = -1;
@@ -11859,12 +11928,13 @@ InfiniteScrollTile.prototype.firstResponse = function(code) {
 }
 
 InfiniteScrollTile.prototype.secondResponse = function(code) {
-  let sid = ParseInt(code)-48;
+  let sid = parseInt(code)-48;
   let scroll = localFactory.createTile("ScrollWildcard");
   scroll.setDesc("scroll of " + magic[this.circle][GetSpellID(sid)].getName());
   scroll.spelllevel = this.circle;
   scroll.spellnum = GetSpellID(sid);
-  PC.addToInventory(scroll);
+  PC.addToInventory(scroll,1);
+  PC.removeFromInventory(this);
 
   let retval = {};
   retval["fin"] = 1;
@@ -14775,7 +14845,7 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
 }
 
 NPCObject.prototype.processDeath = function(droploot){
-  if (this.onDeath) { OnDeathFuncs[this.onDeath](); }
+  if (this.onDeath) { OnDeathFuncs[this.onDeath](this); }
   let thisx = this.getx();
   let thisy = this.gety();
   if (targetCursor.lastTarget === this) { delete targetCursor.lastTarget; }
