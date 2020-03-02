@@ -216,11 +216,14 @@ function Attack(atk, def) {
     if (dmg < 1) { dmg = 1; }  // min dmg 1 on a hit
     if (storymode && (atk === PC)) { dmg = 500; }
     
+    DebugWrite("combat", "Hit! Dealing " + dmg + " damage.<br />");
     if (atk.getOnHit()) {
       let onhits = atk.getOnHit().split(",");
       for (let i=0;i<=onhits.length;i++) {
         if (typeof OnHitFuncs[onhits[i]] === "function") {
+          DebugWrite("combat", "Undertaking onhit: " + onhits[i] + "<br />");
           OnHitFuncs[onhits[i]](atk,def,dmg);
+          DebugWrite("combat", "Finished.<br />");
         } else {
           DebugWrite("combat", "**Attacker has an On Hit (" + onhits[i] + ") that does not have a function!**<br />");
         }
