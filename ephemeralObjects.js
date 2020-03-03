@@ -160,10 +160,11 @@ DamageOverTimeObject.prototype.onTurn = function() {
   who.dealDamage(dmg, this, damagetype);
   
   if ((this.getExpiresTime()) && (now >= this.getExpiresTime())) {
-    this.endEffect();
+    return this.endEffect();
   } else {
     this.setLastTime(DUTime.getGameClock());    
   }
+  return this.eachTurn();
 }
 
 // Called "Tiles" for consistency, not because it'll ever get placed
@@ -1549,6 +1550,24 @@ TorchLightTile.prototype.endEffect = function(silent) {
     maintext.addText("Your torch goes out.");
   }
   DrawCharFrame();
+}
+
+function UnconsciousEndActTile() {
+  this.addType("debuff");
+  this.name = "UnconsciousEndAct";
+  this.display = "<span style='color:#e600e5'>U</span>";
+  this.zstatdesc = "You are unconscious.";
+  this.desc = "unconscious";
+  this.level = 1;
+}
+UnconsciousEndActTile.prototype = new EphemeralObject();
+
+UnconsciousEndActTile.prototype.applyEffect = function(silent) {
+
+}
+
+UnconsciousEndActTile.prototype.endEffect = function(silent) {
+
 }
 
 function VulnerabilityTile() {

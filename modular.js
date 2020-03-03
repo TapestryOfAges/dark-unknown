@@ -255,4 +255,52 @@ OnDeathFuncs["Warduke"] = function() {
 
 OnDeathFuncs["endact"] = function() {
   // WORKING HERE
+  let endact = localFactory.createTile("UnconsciousEndAct");
+  endact.setExpiresTime(-1);
+  endact.setPower(1);
+  PC.addSpellEffect(endact);
+}
+
+function PerformActEnd() {
+  let endact = PC.getSpellEffectsByName("UnconsciousEndAct");
+  if (endact.getPower() === 1) {
+    let newmap = new GameMap();
+    if (maps.getMap("landsbeyond")) {
+      newmap = maps.getMap("landsbeyond");
+      // though I'm confused about why this is already in memory!
+    } else {
+      newmap = maps.addMap("landsbeyond");
+    }
+    let spellobjs = PC.getSpellEffects();
+    if (spellobjs.length) {
+      for (let i=0; i<spellobjs.length; i++ ) {
+        if (spellobjs[i].getExpiresTime() !== -1) {
+          spellobjs[i].endEffect();
+        }
+      }      
+    }
+    MoveBetweenMaps(PC,PC.getHomeMap(),newmap, 7, 7, 1);
+    FadeOut(1);
+    maintext.addText("The great dragon's body strikes the ground with a crash, and a thundering wave of psychic energy overwhelms your mind. The room fades around you!");
+    gamestate.setMode("anykey");
+    endact.setPower(2);
+  } else if (endact.getPower() === 2) {
+    maintext.addText("You feel a dark sensation batter against your mind, like the beating of mighty wings, but your mental fortitude is too great- with a feeling of dismay, it falls away.");
+    endact.setPower(3);
+  } else if (endact.getPower() === 3) {
+    maintext.addText(`You force yourself back to your senses, and with a groan open your eyes once more.`);
+    endact.setPower(4);
+  } else if (endact.getPower() === 4) {
+    maintext.addText(`You find that Taran kneels beside you. "${PC.getPCName()}, I'm glad you're ok. The dragon was struck down, and its body just... disappeared. But your brother hasn't woken up. Gather your strength, and get up when you feel ready."`);
+    endact.setPower(5);
+  } else if (endact.getPower() === 5) {
+    maintext.addText("You close your eyes for a moment, and an unknown amount of time passes before you are again able to stand.");
+    endact.setPower(6);
+  } else if (endact.getPower() === 6) {
+    maintext.addText("<span class='sysconv'>You have gained: 100 XP.</span>");
+    PC.addxp(100);
+    DU.gameflags.setFlag("act2");
+    PC.endTurn(0);
+  }
+
 }

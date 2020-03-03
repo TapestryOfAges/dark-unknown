@@ -16542,6 +16542,12 @@ PCObject.prototype.myTurn = function() {
 
         delete this.forcedTalk;
       }
+      if (!DU.gameflags.getFlag("act2")) {
+        let endact = this.getSpellEffectByName("UnconsciousEndAct");
+        if (endact) {
+          PerformActEnd();
+        }
+      }
     
       // Because EndWaiting will set to player in a second, and this can override
       // "waiting for input" states.
