@@ -850,6 +850,9 @@ function PerformIllusion(caster, infused, free, tgt) {
     illusion = localFactory.createTile("IllusionNPC");
   }
   
+  if ((caster === PC) || (caster.getAttitude() === "friendly")) {
+    illusion.setAttitude("friendly");
+  }
   let duration = caster.getInt();
   if (free) { duration = Dice.roll("1d6+12"); }
   duration = duration*2*SCALE_TIME;
@@ -2823,7 +2826,9 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   }
   ally.spawnedBy = caster;
   ally.summoned = 1;
-  ally.setAttitude("friendly");
+  if ((caster === PC) || (caster.getAttitude() === "friendly")) {
+    ally.setAttitude("friendly");
+  }
   ally.expiresTime = DUTime.getGameClock() + duration;  // AI needs to check expiresTime and go poof if it is reached
   caster.getHomeMap().placeThing(tgt.x,tgt.y,ally);
   if (eletype !== "FireElemental") {
@@ -3174,7 +3179,6 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
     gnomemap = maps.addMap("gnomeland");
 	}
   gnomemap.placeThing(2,2,gnome);
-  gnome.activate(0);
   let negtile = localFactory.createTile("NegateMagic");
   negtile.negatedmap = castermap.getName();
   gnome.addSpellEffect(negtile, Math.max(0, free-1) );  
@@ -3747,6 +3751,9 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
   let ally = localFactory.createTile("Daemon");
   PlayCastSound(caster,"sfx_summon");
   let duration = caster.getInt() * SCALE_TIME;
+  if ((caster === PC) || (caster.getAttitude() === "friendly")) {
+    ally.setAttitude("friendly");
+  }
   if (free) { duration = Dice.roll("1d6+12"); }
   if (infused) {  // once again, can't be infused, but hey, if you somehow do you get a HELLA daemon
     // note, this means Daemon is from California. Use at your own risk.
