@@ -283,12 +283,26 @@ function PerformActEnd() {
     FadeOut(1);
     maintext.addText("The great dragon's body strikes the ground with a crash, and a thundering wave of psychic energy overwhelms your mind. The room fades around you!");
     gamestate.setMode("anykey");
+    DU.gameflags.setFlag("intermission",1);
     endact.setPower(2);
   } else if (endact.getPower() === 2) {
     maintext.addText("You feel a dark sensation batter against your mind, like the beating of mighty wings, but your mental fortitude is too great- with a feeling of dismay, it falls away.");
     endact.setPower(3);
   } else if (endact.getPower() === 3) {
     maintext.addText(`You force yourself back to your senses, and with a groan open your eyes once more.`);
+    if (maps.getMap("blackdragon")) {
+      returnmap = maps.getMap("blackdragon");
+      // though again, this shouldn't be in memory
+    } else {
+      returnmap = maps.addMap("blackdragon");
+    }
+    AdjustStartingLocations(returnmap);
+    let taran = FindNPCByName("Taran",returnmap);
+    returnmap.moveThing(36,15,taran);
+    MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,37,15);
+    DrawMainFrame("draw",returnmap,37,15);
+    FadeIn();
+
     endact.setPower(4);
   } else if (endact.getPower() === 4) {
     maintext.addText(`You find that Taran kneels beside you. "${PC.getPCName()}, I'm glad you're ok. The dragon was struck down, and its body just... disappeared. But your brother hasn't woken up. Gather your strength, and get up when you feel ready."`);
@@ -299,7 +313,9 @@ function PerformActEnd() {
   } else if (endact.getPower() === 6) {
     maintext.addText("<span class='sysconv'>You have gained: 100 XP.</span>");
     PC.addxp(100);
-    DU.gameflags.setFlag("act2");
+    DU.gameflags.setFlag("act2",1);
+    DU.gameflags.deleteFlag("intermission");
+
     PC.endTurn(0);
   }
 

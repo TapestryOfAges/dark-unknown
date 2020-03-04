@@ -14878,6 +14878,7 @@ NPCObject.prototype.processDeath = function(droploot){
         PC.dead = 1;
         PC.deaduntil = GetGameClockByClockTime(ModTime(GetUsableClockTime(),"1:00"));
         PC.bdc = 1;
+        DU.gameflags.setFlag("intermission",1);
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame(); 
         setTimeout(function() {
@@ -14896,6 +14897,7 @@ NPCObject.prototype.processDeath = function(droploot){
               returnmap.moveThing(36,15,taran);
               MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,37,15);
               DrawMainFrame("draw",returnmap,37,15);
+              FadeIn();
               setTimeout(function() {
                 maintext.addText(`Taran kneels beside you. "${PC.getPCName()}, I'm glad you're ok. The dragon was struck down, and its body just... disappeared. But your brother hasn't woken up. Gather your strength, and get up when you feel ready."`);
                 setTimeout(function() {
@@ -14903,7 +14905,8 @@ NPCObject.prototype.processDeath = function(droploot){
                   setTimeout(function() {
                     maintext.addText("<span class='sysconv'>You have gained: 100 XP.</span>");
                     PC.addxp(100);
-                    DU.gameflags.setFlag("act2");
+                    DU.gameflags.setFlag("act2",1);
+                    DU.gameflags.deleteFlag("intermission");
                     PC.setHP(15);
                     delete PC.dead;
                   }, 1700);
@@ -16543,7 +16546,7 @@ PCObject.prototype.myTurn = function() {
         delete this.forcedTalk;
       }
       if (!DU.gameflags.getFlag("act2")) {
-        let endact = this.getSpellEffectByName("UnconsciousEndAct");
+        let endact = this.getSpellEffectsByName("UnconsciousEndAct");
         if (endact) {
           PerformActEnd();
         }

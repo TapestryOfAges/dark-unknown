@@ -133,7 +133,8 @@ EventFunctions["BDragon"] = function(ev) {
       DU.gameflags.setFlag("endAct1");
 
       prince.realgraphic = prince.getGraphicArray();
-      prince.setGraphicArray("master_spritesheet.png","","-64","-800");
+      prince.setGraphicArray(["master_spritesheet.png","","-64","-800"]);
+      prince.setAttitude("neutral"); // so dragon doesn't attack him
 
       let fieldeffect = localFactory.createTile("Sleep");
     
@@ -148,6 +149,13 @@ EventFunctions["BDragon"] = function(ev) {
       dragon.setHP(50);
       dragon.setMaxHP(50);
       
+      let bdnpcs = prince.getHomeMap().npcs.getAll();
+      for (let i=0;i<bdnpcs.length;i++) {
+        if (bdnpcs[i].getName() === "TownGuardNPC") {
+          bdnpcs[i].setAggro(1); // make the guards help against the dragon
+        }
+      }
+
       bdmap.cityfight = 1;
 
     }
