@@ -10590,101 +10590,6 @@ function BlackDragonScaleTile() {
 }
 BlackDragonScaleTile.prototype = new ItemObject();
 
-function RingOfFireResistTile() {
-  this.name = "RingOfFireResist";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1632";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Ring of Fire Resistance";
-  this.prefix = "a";
-  this.longdesc = "A ring that confers some resistance to fire.";
-}
-RingOfFireResistTile.prototype = new ItemObject();
-
-RingOfFireResistTile.prototype.onGet = function(who) {
-  if (!who.resists.hasOwnProperty("fire")) { who.resists.fire = 33; }
-  else { who.resists.fire += 33; }
-  return "You place the ring on your finger, and a chill feeling sweeps through you. You are more resistant to fire.";
-}
-
-function RingOfEtherealFocusTile() {
-  this.name = "RingOfEtherealFocus";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1728";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Ring of Ethereal Focus";
-  this.prefix = "a";
-  this.longdesc = "A ring that provides mana as enemies are slain.";
-}
-RingOfEtherealFocusTile.prototype = new ItemObject();
-
-RingOfEtherealFocusTile.prototype.onGet = function(who) {
-  
-  return "You place the ring on your finger, and a chill feeling sweeps through you. You are more resistant to fire.";
-}
-
-function AmuletOfReflectionsTile() {
-  this.name = "AmuletOfReflections";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1280";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Amulet of Reflections";
-  this.prefix = "an";
-  this.longdesc = "A gold amulet, inscribed with magical runes.";
-  this.usedesc = "Attempt the ritual of the Abyss.";
-  this.addType("Quest");
-}
-AmuletOfReflectionsTile.prototype = new ItemObject();
-
-AmuletOfReflectionsTile.prototype.use = function(who) {
-  let themap = who.getHomeMap();
-  let retval = {};
-  if (themap.getName() === "olympus2") {
-    let standbefore = themap.getTile(who.getx(), who.gety());
-    let ismirror = standbefore.getTopFeature();
-    if (ismirror.getName() === "mirror") {
-      // you are in the right map standing at the right place. GO.
-      // remove buffs/debuffs - doesn't cure poison, I guess you can die of
-      // poison while your mind is elsewhere? Don't do it, people.
-      let effects = who.getSpellEffects();
-      for (let i=0;i<effects.length;i++) {
-        if ((effects[i].getLevel() > 0) && (effects[i].getExpiresTime() > -1)) {
-          effects[i].endEffect();
-        }
-      };
-      gamestate.setMode("null");
-      FadeOut();
-      setTimeout(function() {
-        let newmap = new GameMap();
-        if (maps.getMap("abyss0")) {
-          newmap = maps.getMap("abyss0");
-        } else {
-          newmap = maps.addMap("abyss0");
-        }
-        MoveBetweenMaps(who,themap,newmap,8,8);
-        FadeIn(2000);
-        setTimeout(function() {
-          gamestate.setMode("player");
-          maintext.addText('You hear a voice in your mind: "In the beginning of the journey of knowledge, the mind is a blank. The landscape, featureless and empty."');
-        },2000);
-      }, 2000);
-      retval["txt"] = "The room fades to black around you as your mind accepts the challenge of the Stygian Abyss.";
-      retval["fin"] = -2;
-      DUPlaySound("sfx_spellcast");
-      return retval;
-    } 
-  }
-  retval["txt"] = "Nothing happens here.";
-  retval["fin"] = 1;
-  return retval;
-}
-
 function DragonBoneTile() {
   this.name = "DragonBone";
   this.graphic = "master_spritesheet.png";
@@ -13808,18 +13713,18 @@ AudachtaNemesosTimeStopTile.prototype = new AudachtaNemesosObject();
 
 // Prototype for armor and weapons
 
-function equipableItemObject() {
+function EquipableItemObject() {
   this.addType("equipable");	
   this.equippedTo;
   this.toHitBonus = 0;
 }
-equipableItemObject.prototype = new ItemObject();
+EquipableItemObject.prototype = new ItemObject();
 
-equipableItemObject.prototype.getEquippedTo = function() {
+EquipableItemObject.prototype.getEquippedTo = function() {
   return this.equippedTo;
 }
 
-equipableItemObject.prototype.setEquippedTo = function(newwho) {
+EquipableItemObject.prototype.setEquippedTo = function(newwho) {
   if (newwho) {
     this.equippedTo = newwho;
     return 1;
@@ -13827,7 +13732,7 @@ equipableItemObject.prototype.setEquippedTo = function(newwho) {
   return 0;
 }
 
-equipableItemObject.prototype.equipMe = function(who) {
+EquipableItemObject.prototype.equipMe = function(who) {
   if (!who.checkType("npc")) { return 0; }
   
   if (this.checkType("Armor")) {
@@ -13839,6 +13744,7 @@ equipableItemObject.prototype.equipMe = function(who) {
       currentarmor.unEquipMe();
     }
     this.setEquippedTo(who);
+    if (typeof this.onEquip === "function") { this.onEquip(who); }
     who.setArmor(this);
   }
   
@@ -13851,6 +13757,7 @@ equipableItemObject.prototype.equipMe = function(who) {
       currentmissile.unEquipMe();
     }
     this.setEquippedTo(who);
+    if (typeof this.onEquip === "function") { this.onEquip(who); }
     who.setMissile(this);
   }
 
@@ -13860,12 +13767,24 @@ equipableItemObject.prototype.equipMe = function(who) {
       currentweapon.unEquipMe();
     }
     this.setEquippedTo(who);
+    if (typeof this.onEquip === "function") { this.onEquip(who); }
     who.setWeapon(this);
   }
+
+  else if (this.checkType("Amulet")) {
+    let currentamulet = who.getEquipment("amulet");
+    if (currentamulet && (currentamulet !== this)){
+      currentamulet.unEquipMe();
+    }
+    this.setEquippedTo(who);
+    if (typeof this.onEquip === "function") { this.onEquip(who); }
+    who.setEquipment("amulet",this);
+  }
+  // WORKING HERE
   return 1;
 }
 
-equipableItemObject.prototype.unEquipMe = function() {
+EquipableItemObject.prototype.unEquipMe = function() {
   let who = this.getEquippedTo();
   if (!who) { return 0; }
   if (!who.checkType("npc")) { return 0; }  
@@ -13873,6 +13792,7 @@ equipableItemObject.prototype.unEquipMe = function() {
   if (this.checkType("Armor")) {
     if (who.getArmor() === this) {
       who.setArmor("");
+      if (typeof this.onUnequip === "function") { this.onUnequip(who); }
     } else { 
       return 0;
     }
@@ -13880,6 +13800,7 @@ equipableItemObject.prototype.unEquipMe = function() {
   else if (this.checkType("Weapon")) {
     if (who.getWeapon() === this) {
       who.setWeapon("");
+      if (typeof this.onUnequip === "function") { this.onUnequip(who); }
     } else {
       return 0;
     }
@@ -13887,6 +13808,7 @@ equipableItemObject.prototype.unEquipMe = function() {
   else if (this.checkType("Missile")) {
     if (who.getMissile() === this) {
       who.setMissile("");
+      if (typeof this.onUnequip === "function") { this.onUnequip(who); }
     } else {
       return 0;
     }    
@@ -13895,7 +13817,7 @@ equipableItemObject.prototype.unEquipMe = function() {
   return 1;
 }
 
-equipableItemObject.prototype.use = function(who) {
+EquipableItemObject.prototype.use = function(who) {
   let success = this.equipMe(PC);
   let retval = {};
   retval["fin"] = 1;
@@ -13912,11 +13834,11 @@ equipableItemObject.prototype.use = function(who) {
   return retval;
 }
 
-equipableItemObject.prototype.getToHitBonus = function() {
+EquipableItemObject.prototype.getToHitBonus = function() {
   return this.toHitBonus;
 }
 
-equipableItemObject.prototype.setToHitBonus = function(newbonus) {
+EquipableItemObject.prototype.setToHitBonus = function(newbonus) {
   if (newbonus) {
     newbonus = parseInt(newbonus, 10);
     if (isNaN(newbonus)) {
@@ -13927,6 +13849,114 @@ equipableItemObject.prototype.setToHitBonus = function(newbonus) {
   return this.toHitBonus;
 }
 
+// TRINKETS
+
+function RingOfFireResistTile() {
+  this.name = "RingOfFireResist";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1632";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Ring of Fire Resistance";
+  this.prefix = "a";
+  this.longdesc = "A ring that confers some resistance to fire.";
+  this.addType("Ring");
+}
+RingOfFireResistTile.prototype = new EquipableItemObject();
+
+RingOfFireResistTile.prototype.onGet = function(who) {
+
+}
+
+RingOfFireResistTile.prototype.onEquip = function(who) {
+  if (!who.resists.hasOwnProperty("fire")) { who.resists.fire = 33; }
+  else { who.resists.fire += 33; }
+  maintext.delayedAddText("You place the ring on your finger, and a chill feeling sweeps through you. You are more resistant to fire.");
+}
+
+RingOfFireResistTile.prototype.onUnequip = function(who) {
+  who.resists.fire -= 33; 
+  maintext.delayedAddText("You remove the ring from your finger. You are less resistant to fire.");
+}
+
+function RingOfEtherealFocusTile() {
+  this.name = "RingOfEtherealFocus";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "0";
+  this.spriteyoffset = "-1728";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Ring of Ethereal Focus";
+  this.prefix = "a";
+  this.longdesc = "A ring that provides mana as enemies are slain.";
+  this.addType("Ring");
+}
+RingOfEtherealFocusTile.prototype = new EquipableItemObject();
+
+RingOfEtherealFocusTile.prototype.onEquip = function(who) {
+  
+  maintext.delayedAddText("You place the ring on your finger, and you can feel a strange power flowing through it.");
+}
+
+function AmuletOfReflectionsTile() {
+  this.name = "AmuletOfReflections";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1280";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Amulet of Reflections";
+  this.prefix = "an";
+  this.longdesc = "A gold amulet, inscribed with magical runes.";
+  this.usedesc = "Attempt the ritual of the Abyss.";
+  this.addType("Quest");
+  this.addType("Amulet");
+}
+AmuletOfReflectionsTile.prototype = new EquipableItemObject();
+
+AmuletOfReflectionsTile.prototype.use = function(who) {
+  let themap = who.getHomeMap();
+  let retval = {};
+  if (themap.getName() === "olympus2") {
+    let standbefore = themap.getTile(who.getx(), who.gety());
+    let ismirror = standbefore.getTopFeature();
+    if (ismirror.getName() === "mirror") {
+      // you are in the right map standing at the right place. GO.
+      // remove buffs/debuffs - doesn't cure poison, I guess you can die of
+      // poison while your mind is elsewhere? Don't do it, people.
+      let effects = who.getSpellEffects();
+      for (let i=0;i<effects.length;i++) {
+        if ((effects[i].getLevel() > 0) && (effects[i].getExpiresTime() > -1)) {
+          effects[i].endEffect();
+        }
+      };
+      gamestate.setMode("null");
+      FadeOut();
+      setTimeout(function() {
+        let newmap = new GameMap();
+        if (maps.getMap("abyss0")) {
+          newmap = maps.getMap("abyss0");
+        } else {
+          newmap = maps.addMap("abyss0");
+        }
+        MoveBetweenMaps(who,themap,newmap,8,8);
+        FadeIn(2000);
+        setTimeout(function() {
+          gamestate.setMode("player");
+          maintext.addText('You hear a voice in your mind: "In the beginning of the journey of knowledge, the mind is a blank. The landscape, featureless and empty."');
+        },2000);
+      }, 2000);
+      retval["txt"] = "The room fades to black around you as your mind accepts the challenge of the Stygian Abyss.";
+      retval["fin"] = -2;
+      DUPlaySound("sfx_spellcast");
+      return retval;
+    } 
+  }
+  retval["txt"] = "Nothing happens here.";
+  retval["fin"] = 1;
+  return retval;
+}
 
 
 // ARMOR
@@ -13939,7 +13969,7 @@ function ArmorObject() {
 	
 	this.addType("Armor");
 }
-ArmorObject.prototype = new equipableItemObject();
+ArmorObject.prototype = new EquipableItemObject();
 
 ArmorObject.prototype.setDefense = function(newdef) {
 	this.defense = newdef;
@@ -14078,7 +14108,7 @@ function WeaponObject() {
   this.usedesc = "Ready the weapon.";
 	this.addType("Weapon");
 }
-WeaponObject.prototype = new equipableItemObject();
+WeaponObject.prototype = new EquipableItemObject();
 
 WeaponObject.prototype.getHit = function() {
 	return this.hit;
@@ -15521,6 +15551,10 @@ NPCObject.prototype.activate = function(timeoverride) {
     this.equipment.armor = "";
     this.equipment.weapon = "";
     this.equipment.missile = "";
+    this.equipment.ring1 = "";
+    this.equipment.ring2 = "";
+    this.equipment.circlet = "";
+    this.equipment.amulet = "";
 
 	  this.inventory = new Collection();
 	
@@ -16053,6 +16087,18 @@ NPCObject.prototype.removeFromInventory = function(item, map, x, y) {
     if (item === this.getArmor()) {
       this.setEquipment("Armor","");
     }    
+    if (item === this.getEquipment("ring1")) {
+      this.setEquipment("ring1","");
+    }
+    if (item === this.getEquipment("ring2")) {
+      this.setEquipment("ring2","");
+    }
+    if (item === this.getEquipment("circlet")) {
+      this.setEquipment("circlet","");
+    }
+    if (item === this.getEquipment("amulet")) {
+      this.setEquipment("amulet","");
+    }
     this.inventory.deleteFrom(item);
   }
   if (map) { // if map,x,y are filled in, will place the item back on
@@ -16080,6 +16126,26 @@ NPCObject.prototype.getEquipment = function(which) {
   }
   else if (which === "missile") {
     return (this.getMissile());
+  }
+  else if (which === "ring1") {
+    if (this.equipment.ring1) {
+      return this.equipment.ring1;
+    } else { return ""; }
+  }
+  else if (which === "ring2") {
+    if (this.equipment.ring2) {
+      return this.equipment.ring2;
+    } else { return ""; }
+  }
+  else if (which === "circlet") {
+    if (this.equipment.circlet) {
+      return this.equipment.circlet;
+    } else { return ""; }
+  }
+  else if (which === "amulet") {
+    if (this.equipment.amulet) {
+      return this.equipment.amulet;
+    } else { return ""; }
   }
   
   else { return ""; }
