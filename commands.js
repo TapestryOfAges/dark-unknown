@@ -3125,6 +3125,7 @@ function DisplayInventory(restrictTo) {
   if (!targetCursor.invlength) { targetCursor.invlength = 0; }
   
   let inventorylist = MakeInventoryList(restrictTo);
+  inventorylist = SortInventoryList(inventorylist);
 
   targetCursor.invlength = inventorylist.length;
   document.getElementById('uiinterface').innerHTML = "";
@@ -3455,6 +3456,66 @@ function MakeInventoryList(restrictTo) {
   if (inventorylist.broken.length) { Array.prototype.push.apply(inventorylist.total, inventorylist.broken); }
   
   return inventorylist.total;
+}
+
+function SortInventoryList(invlist) {
+  let newinvlist = [];
+  let equipped = [];
+  let trinket = [];
+  let armor = [];
+  let melee = [];
+  let missile = [];
+  let potion = [];
+  let scroll = [];
+  let audachta = [];
+  let keyslist = [];
+  let reagent = [];
+  let quest = [];
+  let other = [];
+
+  for (let i=0;i<invlist.length;i++) {
+    if ((typeof invlist[i].isEquipped === "function") && (PC.isEquipped(invlist[i]))) {
+      equipped.push(invlist[i]);
+    } else if (invlist[i].checkType("armor")) { 
+      armor.push(invlist[i]);
+    } else if (invlist[i].checkType("missile")) {
+      missile.push(invlist[i]);
+    } else if (invlist[i].checkType("weapon")) {
+      melee.push(invlist[i]);
+    } else if (invlist[i].checkType("ring") || invlist[i].checkType("amulet") || invlist[i].checkType("circlet")) {
+      trinket.push(invlist[i]);
+    } else if (invlist[i].checkType("potion")) {
+      potion.push(invlist[i]);
+    } else if (invlist[i].checkType("scroll")) {
+      scroll.push(invlist[i]);
+    } else if (invlist[i].checkType("audachta")) {
+      audachta.push(invlist[i]);
+    } else if (invlist[i].checkType("key")) {
+      keyslist.push(invlist[i]);
+    } else if (invlist[i].checkType("reagent")) {
+      reagent.push(invlist[i]);
+    } else if (invlist[i].checkType("quest")) {
+      quest.push(invlist[i]);
+    } else {
+      other.push(invlist[i]);
+    }
+  }
+  // there is probably a more efficient way to do this, but I am without internet and
+  // can't look up the proper syntax
+  for (let itm in equipped) { newinvlist.push(equipped[itm]); }
+  for (let itm in armor) { newinvlist.push(armor[itm]); }
+  for (let itm in missile) { newinvlist.push(missile[itm]); }
+  for (let itm in melee) { newinvlist.push(melee[itm]); }
+  for (let itm in trinket) { newinvlist.push(trinket[itm]); }
+  for (let itm in potion) { newinvlist.push(potion[itm]); }
+  for (let itm in scroll) { newinvlist.push(scroll[itm]); }
+  for (let itm in audachta) { newinvlist.push(audachta[itm]); }
+  for (let itm in keyslist) { newinvlist.push(keyslist[itm]); }
+  for (let itm in reagent) { newinvlist.push(reagent[itm]); }
+  for (let itm in quest) { newinvlist.push(quest[itm]); }
+  for (let itm in other) { newinvlist.push(other[itm]); }
+
+  return newinvlist;
 }
 
 function ShowHelp() {

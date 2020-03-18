@@ -13780,7 +13780,35 @@ EquipableItemObject.prototype.equipMe = function(who) {
     if (typeof this.onEquip === "function") { this.onEquip(who); }
     who.setEquipment("amulet",this);
   }
-  // WORKING HERE
+
+  else if (this.checkType("Circlet")) {
+    let currentcirclet = who.getEquipment("circlet");
+    if (currentcirclet && (currentcirclet !== this)){
+      currentcirclet.unEquipMe();
+    }
+    this.setEquippedTo(who);
+    if (typeof this.onEquip === "function") { this.onEquip(who); }
+    who.setEquipment("circlet",this);
+  }
+
+  else if (this.checkType("Ring")) {
+    let currentring1 = who.getEquipment("ring1");
+    let currentring2 = who.getEquipment("ring2"); 
+    // let's be honest, it would be better to set this up as an array or something,
+    // and ideally if you tried to wear a ring while you already had 2 on, it would
+    // ask you which to take off. But I plan to only have 2 rings in DU, so I'm 
+    // gonna save time now, and refactor this for the next version later.
+
+    if ((currentring1 !== this) && (currentring2 !== this) && currentring1 && currentring2) {
+      currentring1.unEquipMe(); // this should move ring2 to ring1
+    }
+    this.setEquippedTo(who);
+    if (typeof this.onEquip === "function") { this.onEquip(who); }
+    if (who.getEquipment("ring1")) { 
+      who.setEquipment("ring2", this);
+    } else { who.setEquipment("ring1", this); }
+  }
+  
   return 1;
 }
 
@@ -13808,6 +13836,34 @@ EquipableItemObject.prototype.unEquipMe = function() {
   else if (this.checkType("Missile")) {
     if (who.getMissile() === this) {
       who.setMissile("");
+      if (typeof this.onUnequip === "function") { this.onUnequip(who); }
+    } else {
+      return 0;
+    }    
+  }
+  else if (this.checkType("Circlet")) {
+    if (who.getEquipment("circlet") === this) {
+      who.setEquipment("circlet","");
+      if (typeof this.onUnequip === "function") { this.onUnequip(who); }
+    } else {
+      return 0;
+    }    
+  }
+  else if (this.checkType("Amulet")) {
+    if (who.getEquipment("amulet") === this) {
+      who.setEquipment("amulet","");
+      if (typeof this.onUnequip === "function") { this.onUnequip(who); }
+    } else {
+      return 0;
+    }    
+  }
+  else if (this.checkType("Ring")) {
+    if (who.getEquipment("ring2") === this) {
+      who.setEquipment("ring2","");
+      if (typeof this.onUnequip === "function") { this.onUnequip(who); }
+    } else if (who.getEquipment("ring1") === this) {
+      who.setEquipment("ring1", who.getEquipment("ring2"));
+      who.setEquipment("ring2", "");
       if (typeof this.onUnequip === "function") { this.onUnequip(who); }
     } else {
       return 0;
@@ -13866,7 +13922,7 @@ function RingOfFireResistTile() {
 RingOfFireResistTile.prototype = new EquipableItemObject();
 
 RingOfFireResistTile.prototype.onGet = function(who) {
-
+  this.equipMe(who);
 }
 
 RingOfFireResistTile.prototype.onEquip = function(who) {
@@ -13889,14 +13945,21 @@ function RingOfEtherealFocusTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Ring of Ethereal Focus";
   this.prefix = "a";
-  this.longdesc = "A ring that provides mana as enemies are slain.";
+  this.longdesc = "A ring that provides mana as enemies are slain with magic.";
   this.addType("Ring");
 }
 RingOfEtherealFocusTile.prototype = new EquipableItemObject();
 
-RingOfEtherealFocusTile.prototype.onEquip = function(who) {
-  
+RingOfEtherealFocusTile.prototype.onGet = function(who) {
+  this.equipMe(who);
+}
+
+RingOfEtherealFocusTile.prototype.onEquip = function(who) {  
   maintext.delayedAddText("You place the ring on your finger, and you can feel a strange power flowing through it.");
+}
+
+RingOfEtherealFocusTile.prototype.onUnequip = function(who) {
+  maintext.delayedAddText("You remove the ring of ethereal focus. You feel briefly lightheaded as your connection to its power ceases.");
 }
 
 function AmuletOfReflectionsTile() {
@@ -14604,6 +14667,7 @@ function NPCObject() {
   this.flags = {};
   this.initOverride = 0;
   this.skintone = 1;  
+  this.hitbyspell = 0;  // did the PC hit me with spells? Used for Ring of Ethereal Focus.
 	LightEmitting.call(this, 0);
 	
 	this.addType("npc");
@@ -14844,6 +14908,13 @@ NPCObject.prototype.healMe = function(amt, src) {
     this.setHP(this.getMaxHP());
   }
   return this.getHP();
+}
+
+NPCObject.prototype.setHitbyspell = function(caster,lvl) {
+  if ((caster === PC) && (this !== PC)) {
+    if (!this.hitbyspell) { this.hitbyspell = 0; }
+    this.hitbyspell += lvl;
+  }
 }
 
 NPCObject.prototype.dealDamage = function(dmg, src, type) {
@@ -16162,20 +16233,30 @@ NPCObject.prototype.setEquipment = function(which,what) {
   else if (which === "missile") {
     return this.setMissile(what);
   }
-  
+  else if ((which === "amulet") || (which === "circlet") || (which === "ring1") || (which === "ring2")) {
+    if (what) {
+      let type = which;
+      if ((type === "ring1") || (type === "ring2")) { type = "ring"; }
+      if (what.checkType(type)) {
+        this.equipment[which] = what;
+        return 1;
+      }
+      return 0;
+    } else {
+      this.equipment[which] = "";
+      return 1;
+    }
+  }  
   else { return 0; }
 }
 
 NPCObject.prototype.isEquipped = function(checkItem) {
-  if (checkItem === this.getEquipment("armor")) {
-    return 1;
+  if (typeof checkItem.getEquippedTo === "function") {
+    if (checkItem.getEquippedTo() === this) {
+      return 1; 
+    }
   }
-  if (checkItem === this.getEquipment("missile")) {
-    return 1;
-  }
-  if (checkItem === this.getEquipment("weapon")) {
-    return 1;
-  }
+
   return 0;
 }
 
