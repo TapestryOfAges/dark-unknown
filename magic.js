@@ -537,7 +537,7 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     if (val.getAttitude() !== caster.getAttitude()) {
-      val.setHitbyspell(caster,SPELL_DISTRACT_LEVEL);
+      val.setHitBySpell(caster,SPELL_DISTRACT_LEVEL);
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         let desc = "";
         if (!CheckResist(caster,val,infused,0)) {
@@ -757,7 +757,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
     
   tgt = newtgt;
   
-  tgt.setHitbyspell(caster,SPELL_VULNERABILITY_LEVEL);
+  tgt.setHitBySpell(caster,SPELL_VULNERABILITY_LEVEL);
   if (!CheckResist(caster,tgt,infused,0)) {
     let vulobj = localFactory.createTile("Vulnerability");
     
@@ -1014,7 +1014,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
-  tgt.setHitbyspell(caster,SPELL_MAGIC_BOLT_LEVEL);
+  tgt.setHitBySpell(caster,SPELL_MAGIC_BOLT_LEVEL);
   let power = caster.getInt();
   if (free) { power = Dice.roll("1d5+12"); }
   let dmg = RollDamage(DMG_NEGLIGABLE, Math.floor(power/5)+1);
@@ -1111,7 +1111,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
     if ((GetDistance(val.getx(),val.gety(),tgt.x,tgt.y) < radius) && (val !== caster)) {
       if (tgtmap.getLOS(val.getx(),val.gety(),tgt.x,tgt.y,1) < LOS_THRESHOLD) {
         anyonepoisoned = 1;
-        if (!IsNonLiving(val)) { val.setHitbyspell(caster,SPELL_POISON_CLOUD_LEVEL); }
+        if (!IsNonLiving(val)) { val.setHitBySpell(caster,SPELL_POISON_CLOUD_LEVEL); }
         if (val.getSpellEffectsByName("Poison") || CheckResist(caster,val,infused,0) || IsNonLiving(val)) {
           // poison resisted
           ShowEffect(val, 700, "X.gif");
@@ -1358,7 +1358,7 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
     let val=npcs[i];
     if (val.special.indexOf("undead") > -1) {
       if (GetDistance(val.getx(),val.gety(), caster.getx(), caster.gety()) < 7) {
-        val.setHitbyspell(caster,SPELL_DISRUPT_UNDEAD_LEVEL);
+        val.setHitBySpell(caster,SPELL_DISRUPT_UNDEAD_LEVEL);
         let dmg = RollDamage(DMG_MEDIUM);
         if (infused) {
           dmg *= 1.5;
@@ -1475,7 +1475,7 @@ function PerformFireball(caster, infused, free, tgt) {
   }
     
   tgt = newtgt;
-  tgt.setHitbyspell(caster,SPELL_FIREBALL_LEVEL);
+  tgt.setHitBySpell(caster,SPELL_FIREBALL_LEVEL);
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
@@ -1559,7 +1559,7 @@ function PerformIceball(caster, infused, free, tgt) {
   }
     
   tgt = newtgt;
-  tgt.setHitbyspell(caster,SPELL_ICEBALL_LEVEL);
+  tgt.setHitBySpell(caster,SPELL_ICEBALL_LEVEL);
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
@@ -2231,7 +2231,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
   }
     
   tgt = newtgt;
-  tgt.setHitbyspell(caster,SPELL_LIFE_DRAIN_LEVEL);
+  tgt.setHitBySpell(caster,SPELL_LIFE_DRAIN_LEVEL);
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
@@ -2292,7 +2292,7 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
   PlayCastSound(caster,"sfx_default_hit");
   for (let i=0; i<=2; i++) {
     if (foes[i]) {
-      foes[i].setHitbyspell(caster,SPELL_SMITE_LEVEL);
+      foes[i].setHitBySpell(caster,SPELL_SMITE_LEVEL);
       let dmg = RollDamage(DMG_MEDIUM);
       if (infused) { dmg = dmg * 1.5; }
       if (CheckResist(caster,foes[i],infused,0)) {
@@ -2525,7 +2525,7 @@ function PerformParalyze(caster, infused, free, tgt) {
   }
     
   tgt = newtgt;
-  tgt.setHitbyspell(caster,SPELL_PARALYZE_LEVEL);
+  tgt.setHitBySpell(caster,SPELL_PARALYZE_LEVEL);
   if (!CheckResist(caster,tgt,infused,0)) {
     let vulobj = localFactory.createTile("Paralyze");
   
@@ -2737,7 +2737,7 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
       let tile = spellmap.getTile(caster.getx()+xdiff, caster.gety()+ydiff);
       let badguy = tile.getTopNPC();
       if (badguy) {
-        badguy.setHitbyspell(caster,SPELL_SHOCKWAVE_LEVEL);
+        badguy.setHitBySpell(caster,SPELL_SHOCKWAVE_LEVEL);
         let dmg = Dice.roll(DMG_MEDIUM);
         if (infused) { dmg = dmg * 1.5; }
         let resist = 0;
@@ -2937,7 +2937,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
       if (badguy) {
         if (CheckResist(caster,badguy,infused,0)) { dmg = dmg/2+1; }
         badguy.dealDamage(dmg,caster,"physical");
-        badguy.setHitbyspell(caster,SPELL_SWORDSTRIKE_LEVEL);
+        badguy.setHitBySpell(caster,SPELL_SWORDSTRIKE_LEVEL);
         ShowEffect(badguy, 700, "master_spritesheet.png", -128, -1856);
         if (!hostile && (caster === PC) && (tgt.getAttitude() === "friendly")) {
           TurnMapHostile(castmap);
@@ -3023,7 +3023,7 @@ function PerformExplosion(caster, infused, free, tgt) {
       let tile = castmap.getTile(tgt.getx()+diffx,tgt.gety()+diffy);
       let badguy = tile.getTopNPC();
       if (badguy) {
-        badguy.setHitbyspell(caster,SPELL_EXPLOSION_LEVEL);
+        badguy.setHitBySpell(caster,SPELL_EXPLOSION_LEVEL);
         if (CheckResist(caster,badguy,infused,0)) { dmg = dmg/2+1; }
         badguy.dealDamage(dmg,caster,"fire");
         ShowEffect(badguy, 700, "master_spritesheet.png", -128, -1856);
@@ -3063,7 +3063,7 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
     let desc;
     if (caster.getAttitude() !== val.getAttitude()) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
-        val.setHitbyspell(caster,SPELL_JINX_LEVEL);
+        val.setHitBySpell(caster,SPELL_JINX_LEVEL);
 
         let resist = CheckResist(caster,val,infused,0);
         let power = 66-resist;
@@ -3128,7 +3128,7 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
     let desc;
     if (caster.getAttitude() !== val.getAttitude()) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
-        val.setHitbyspell(caster,SPELL_MASS_CURSE_LEVEL);
+        val.setHitBySpell(caster,SPELL_MASS_CURSE_LEVEL);
         let resist = CheckResist(caster,val,infused,0);
         let curse = localFactory.createTile("Curse");
         let power = 2 + Math.floor(caster.getInt()/5);
@@ -3307,7 +3307,7 @@ function PerformCharm(caster, infused, free, tgt) {
   }
     
   tgt = newtgt;
-  tgt.setHitbyspell(caster,SPELL_CHARM_LEVEL);
+  tgt.setHitBySpell(caster,SPELL_CHARM_LEVEL);
 
   if (!CheckResist(caster,tgt,infused,0)) {
     let charmobj = localFactory.createTile("Charm");
@@ -3373,7 +3373,7 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
     let desc;
     if (caster.getAttitude() !== val.getAttitude()) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
-        val.setHitbyspell(caster,SPELL_FEAR_LEVEL);
+        val.setHitBySpell(caster,SPELL_FEAR_LEVEL);
         if (CheckResist(caster,val,infused,0)) {
           if (val === PC) {
             desc = "You resist.";
@@ -3440,7 +3440,7 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
               dmg = Math.floor(dmg/2);
             }
             tgt.dealDamage(dmg,center,"fire");
-            tgt.setHitbyspell(caster,SPELL_FIRE_AND_ICE_LEVEL);
+            tgt.setHitBySpell(caster,SPELL_FIRE_AND_ICE_LEVEL);
           }
         }
       }
@@ -3550,7 +3550,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
         npccount--;
         let final = 0;
         if (!npccount) { final = 1; }
-        val.setHitbyspell(caster,SPELL_METEOR_SWARM_LEVEL);
+        val.setHitBySpell(caster,SPELL_METEOR_SWARM_LEVEL);
         let dmg = Dice.roll(DMG_MEDIUM, DMG_LIGHT);
         if (CheckResist(caster,val,infused,0)) {
           dmg = dmg/2;
@@ -3635,7 +3635,7 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
   }
     
   tgt = newtgt;
-  tgt.setHitbyspell(caster,SPELL_ARROW_OF_GLASS_LEVEL);
+  tgt.setHitBySpell(caster,SPELL_ARROW_OF_GLASS_LEVEL);
   if ((caster === PC) && (tgt.getAttitude() === "friendly")) {
     TurnMapHostile(caster.getHomeMap());
   }
@@ -3712,7 +3712,7 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
           dmg = dmg/2+1;
         } 
         // In theory, it is impossible for targets to be offscreen.
-        val.setHitbyspell(caster,SPELL_CONFLAGRATION_LEVEL);
+        val.setHitBySpell(caster,SPELL_CONFLAGRATION_LEVEL);
         let desc = val.getDesc();
         desc = desc.charAt(0).toUpperCase() + desc.slice(1);
         ShowEffect(val, 1000, "master_spritesheet.png", -128, -1856);
