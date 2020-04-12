@@ -175,6 +175,7 @@ printcat("InanimateObject");
 printcat("TerrainObject");
 printcat("FeatureObject");
 printcat("ItemObject");
+printcat("KeyItemObject");
 printcat("EquippableItemObject");
 printcat("ArmorObject");
 printcat("WeaponObject");
