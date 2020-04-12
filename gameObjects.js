@@ -7395,9 +7395,11 @@ function WalkOnChangeExitTile() {
 WalkOnChangeExitTile.prototype = new FeatureObject();
 
 WalkOnChangeExitTile.prototype.walkon = function(walker) {
-  let themap=walker.getHomeMap();
-  themap.setExitToX(this.setxto);
-  themap.setExitToY(this.setyto);
+  if (walker === PC) {
+    let themap=walker.getHomeMap();
+    themap.setExitToX(this.setxto);
+    themap.setExitToY(this.setyto);
+  }
   return {msg:""};
 }
 
@@ -10421,7 +10423,7 @@ function CrownTile() {
   this.name = "Crown";
   this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
-  this.spriteyoffset = "-1248";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "crown";
@@ -10436,7 +10438,7 @@ function CrownJewelTile() {
   this.name = "CrownJewel";
   this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
-  this.spriteyoffset = "-1248";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "royal necklace";
@@ -10451,7 +10453,7 @@ function SceptreTile() {
   this.name = "Sceptre";
   this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
-  this.spriteyoffset = "-1248";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "sceptre";
@@ -10803,8 +10805,8 @@ SulfurousAshTile.prototype = new ItemObject();
 function MandrakeRootTile() {
   this.name = "MandrakeRoot";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-256";
-  this.spritexoffset = "-1504";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "mandrake root";
@@ -10830,8 +10832,8 @@ LightningWoodTile.prototype = new ItemObject();
 function MistletoeTile() {
   this.name = "Mistletoe";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-224";
-  this.spritexoffset = "-1504";
+  this.spritexoffset = "-224";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "mistletoe";
@@ -10843,8 +10845,8 @@ MistletoeTile.prototype = new ItemObject();
 function BloodMossTile() {
   this.name = "BloodMoss";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-32";
-  this.spritexoffset = "-1504";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1504";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "blood moss";
@@ -11415,8 +11417,8 @@ KeyOfSunTile.prototype = new KeyItemObject();
 function KeyOfShadowTile() {
   this.name = "KeyOfShadow";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-192";
-  this.spritexoffset = "-1312";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "-1312";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Shadow";
@@ -13962,6 +13964,24 @@ RingOfEtherealFocusTile.prototype.onUnequip = function(who) {
   maintext.delayedAddText("You remove the ring of ethereal focus. You feel briefly lightheaded as your connection to its power ceases.");
 }
 
+RingOfEtherealFocusTile.prototype.killed = function(who) {
+  let hps = who.getHitBySpell();
+  let restoredmana = 0;
+  if (hps) {
+    let chance = parseInt((hps/4) * 100);
+    while (chance >= 100) { restoredmana++; chance -= 100; }
+    if (chance > 0) { 
+      if (Dice.roll("1d100") <= chance) { restoredmana++; }
+    }
+    if (restoredmana) {
+      maintext.delayedAddText("The Ring of Ethereal Focus restores " + restoredmana + " mana to you!");
+      let wearer = this.getEquippedTo();
+      wearer.modMana(restoredmana);
+      if (wearer.getMana() > wearer.getMaxMana()) { wearer.setMana(wearer.getMaxMana()); }
+    }
+  }
+}
+
 function AmuletOfReflectionsTile() {
   this.name = "AmuletOfReflections";
   this.graphic = "master_spritesheet.png";
@@ -14910,11 +14930,15 @@ NPCObject.prototype.healMe = function(amt, src) {
   return this.getHP();
 }
 
-NPCObject.prototype.setHitbyspell = function(caster,lvl) {
+NPCObject.prototype.setHitBySpell = function(caster,lvl) {
   if ((caster === PC) && (this !== PC)) {
     if (!this.hitbyspell) { this.hitbyspell = 0; }
     this.hitbyspell += lvl;
   }
+}
+
+NPCObject.prototype.getHitBySpell = function() {
+  return this.hitbyspell;
 }
 
 NPCObject.prototype.dealDamage = function(dmg, src, type) {
@@ -14939,6 +14963,11 @@ NPCObject.prototype.dealDamage = function(dmg, src, type) {
       let XP = this.getXPVal();
       XP = XP * (1 + PC.getKarma()/100);
       PC.addxp(XP);
+
+      let rof = PC.checkInventory("RingOfEtherealFocus");
+      if (rof) {
+        rof.killed(this);
+      }
     }
     return -1;
   }
