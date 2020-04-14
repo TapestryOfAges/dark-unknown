@@ -127,3 +127,5 @@ added_pheran - player has entered Swainhil, adding Hotel Pheran to the map
 started_pheran - entered Hotel Pheran
 solved_pheran - finished Hotel Pheran/California. ** (endgame)
 olivia_asked - olivia has asked you to find Fall of Targrion
+lyn_empower - Lyn has taught the Empower spell
+satisfied_ladonna - Ladonna has invited you to be a full member of Consolation
