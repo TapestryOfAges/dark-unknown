@@ -215,8 +215,8 @@ mappages["consolation2"].features[45] = {name : 'Brazier', x : 13, y : 9};
 mappages["consolation2"].features[46] = {name : 'BottomChair', x : 22, y : 17};
 
 mappages["consolation2"].npcs = [];
-mappages["consolation2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 14, NPCName: 'Darthan Haj', Conversation: 'darthan', Gender: 'male', NPCBand: '0', OverrideGraphic: '302.gif', skintone: '1'};
-mappages["consolation2"].npcs[1] = {name : 'MageVillagerNPC', x : 15, y : 6, NPCName: 'Connor', Conversation: 'connor', Gender: 'male', NPCBand: '0', OverrideGraphic: '303.2.gif', skintone: '2'};
+mappages["consolation2"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 14, NPCName: 'Darthan Haj', PeaceAI: "scheduled", Schedule: "darthan", Conversation: 'darthan', Gender: 'male', NPCBand: '0', OverrideGraphic: '302.gif', skintone: '1'};
+mappages["consolation2"].npcs[1] = {name : 'MageVillagerNPC', x : 15, y : 6, NPCName: 'Connor', PeaceAI: "scheduled", Schedule: "connor", Conversation: 'connor', Gender: 'male', NPCBand: '0', OverrideGraphic: '303.2.gif', skintone: '2'};
 mappages["consolation2"].npcs[2] = {name : 'MageVillagerNPC', x : 9, y : 12, NPCName: 'Lynn', PeaceAI: "scheduled", Schedule: "lynn", Conversation: 'lynn', Gender: 'female', NPCBand: '0', OverrideGraphic: '303.gif', skintone: '1'};
 
 mappages["consolation2"].desc = "Tower of Consolation";
