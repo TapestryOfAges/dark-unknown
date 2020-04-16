@@ -129,3 +129,5 @@ solved_pheran - finished Hotel Pheran/California. ** (endgame)
 olivia_asked - olivia has asked you to find Fall of Targrion
 lyn_empower - Lyn has taught the Empower spell
 satisfied_ladonna - Ladonna has invited you to be a full member of Consolation
+enter_consolation - have been let into Consolation
+consolation_test - the test at Consolation bridge has begun

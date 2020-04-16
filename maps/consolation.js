@@ -2,7 +2,7 @@
 
 mappages["consolation"] = {};
 mappages["consolation"].terrain = [];
- mappages["consolation"].terrain[0] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
+ mappages["consolation"].terrain[0] = 'nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["consolation"].terrain[1] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["consolation"].terrain[2] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
  mappages["consolation"].terrain[3] = '^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ nn nn nn nn nn nn nn nn nn nn nn nn ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^ ^^';
@@ -40,10 +40,10 @@ mappages["consolation"].features[0] = {name : 'WallPortcullis', x : 16, y : 23, 
 mappages["consolation"].features[1] = {name : 'WallPortcullis', x : 17, y : 23, locked : 1};
 mappages["consolation"].features[2] = {name : 'Fountain', x : 19, y : 25};
 mappages["consolation"].features[3] = {name : 'Fountain', x : 14, y : 25};
-mappages["consolation"].features[4] = {name : 'WalkOn', x : 16, y : 27};
-mappages["consolation"].features[5] = {name : 'WalkOn', x : 17, y : 27};
-mappages["consolation"].features[6] = {name : 'WalkOn', x : 15, y : 27};
-mappages["consolation"].features[7] = {name : 'WalkOn', x : 18, y : 27};
+mappages["consolation"].features[4] = {name : 'WalkOnConsolation', x : 16, y : 27};
+mappages["consolation"].features[5] = {name : 'WalkOnConsolation', x : 17, y : 27};
+mappages["consolation"].features[6] = {name : 'WalkOnConsolation', x : 15, y : 27};
+mappages["consolation"].features[7] = {name : 'WalkOnConsolation', x : 18, y : 27};
 mappages["consolation"].features[8] = {name : 'Doorway', x : 17, y : 19};
 mappages["consolation"].features[9] = {name : 'Doorway', x : 16, y : 19};
 mappages["consolation"].features[10] = {name : 'Doorway', x : 16, y : 19};
@@ -101,6 +101,7 @@ mappages["consolation"].features[61] = {name : 'RightTable', x : 24, y : 15};
 
 
 mappages["consolation"].npcs = [];
+mappages["consolation3"].npcs[0] = {name : 'MageVillagerNPC', x : 0, y : 0, NPCName: 'Ashlin', Conversation: 'ashlin_sentinel', Gender: 'female', NPCBand: '0', OverrideGraphic: '303.2.gif', skintone: '2'};
 
 mappages["consolation"].desc = "Tower of Consolation";
 mappages["consolation"].longdesc = '';
@@ -335,7 +336,7 @@ mappages["consolation3"].npcs = [];
 mappages["consolation3"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 12, NPCName: 'Ashbourne', Conversation: 'ashbourne', Gender: 'male', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif', skintone: '1'};
 mappages["consolation3"].npcs[1] = {name : 'MageVillagerNPC', x : 9, y : 12, NPCName: 'Eshkaz', Conversation: 'eshkaz', Gender: 'male', NPCBand: '0', OverrideGraphic: '303.gif', skintone: '1'};
 mappages["consolation3"].npcs[2] = {name : 'MageVillagerNPC', x : 14, y : 18, NPCName: 'Ladonna', Conversation: 'ladonna', Gender: 'female', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
-mappages["consolation3"].npcs[3] = {name : 'MageVillagerNPC', x : 15, y : 6, NPCName: 'Lynn', Conversation: 'lynn', Gender: 'female', NPCBand: '0', OverrideGraphic: '303.2.gif', skintone: '2'};
+mappages["consolation3"].npcs[3] = {name : 'MageVillagerNPC', x : 15, y : 6, NPCName: 'Ashlin', Conversation: 'ashlin', Gender: 'female', NPCBand: '0', OverrideGraphic: '303.2.gif', skintone: '2'};
 
 mappages["consolation3"].desc = "Tower of Consolation";
 mappages["consolation3"].longdesc = '';

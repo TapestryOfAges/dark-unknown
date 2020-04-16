@@ -1583,6 +1583,11 @@ tileFactory.prototype.makeWalkOnTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnConsolationTile = function() {
+  let newTile = new WalkOnConsolationTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeToshinWalkOnTile = function() {
   let newTile = new ToshinWalkOnTile();
   return newTile;
@@ -2220,16 +2225,6 @@ tileFactory.prototype.makeReaperBarkTile = function() {
 
 tileFactory.prototype.makeBlackDragonScaleTile = function() {
   let newTile = new BlackDragonScaleTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeRingOfFireResistTile = function() {
-  let newTile = new RingOfFireResistTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeAmuletOfReflectionsTile = function() {
-  let newTile = new AmuletOfReflectionsTile();
   return newTile;
 }
 
@@ -3145,6 +3140,21 @@ tileFactory.prototype.makeAudachtaNemesosReincarnateTile = function() {
 
 tileFactory.prototype.makeAudachtaNemesosTimeStopTile = function() {
   let newTile = new AudachtaNemesosTimeStopTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRingOfFireResistTile = function() {
+  let newTile = new RingOfFireResistTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRingOfEtherealFocusTile = function() {
+  let newTile = new RingOfEtherealFocusTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeAmuletOfReflectionsTile = function() {
+  let newTile = new AmuletOfReflectionsTile();
   return newTile;
 }
 
@@ -4205,6 +4215,11 @@ tileFactory.prototype.makeTimeStopTile = function() {
 
 tileFactory.prototype.makeTorchLightTile = function() {
   let newTile = new TorchLightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeUnconsciousEndActTile = function() {
+  let newTile = new UnconsciousEndActTile();
   return newTile;
 }
 

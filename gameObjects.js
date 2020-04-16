@@ -7320,6 +7320,38 @@ function WalkOnTile() {
 }
 WalkOnTile.prototype = new FeatureObject();
 
+function WalkOnConsolationTile() {
+	this.name = "WalkOnConsolation";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnConsolationTile.prototype = new FeatureObject();
+
+WalkOnConsolationTile.prototype.walkon = function(walker) {
+  if (DU.gameflags.getFlag("enter_consolation")) {
+    let themap = this.getHomeMap();
+    let field = themap.getTile(16,25).getTopFeature();
+    themap.deleteThing(field);
+    field = themap.getTile(17,25).getTopFeature();
+    themap.deleteThing(field);
+    return {msg:"The forcefield disappears as you approach."};
+  } else if (walker === PC) {
+    let npc = this.getHomeMap().getTile(0,0).getTopNPC();
+    if (npc) {
+      PC.forcedTalk = npc;
+    }
+    return {msg:""};
+  } else { 
+    return {msg:""};
+  }
+}
+
 function ToshinWalkOnTile() {
 	this.name = "ToshinWalkOn";
   this.graphic = "master_spritesheet.png";
@@ -16712,6 +16744,18 @@ PCObject.prototype.myTurn = function() {
       gamestate.setMode("player");
 
       if (this.forcedTalk) {
+        if (this.forcedTalk.getNPCName() === "Ashlin") {
+          let moongate = localFactory.createTile("Moongate");
+          moongate.destmap = "skypalace";
+          moongate.destx = 47;
+          moongate.desty = 49;
+          themap.placeThing(112,67,moongate);
+          animateImage(0,-128,moongate,0,"right",300,0,1);
+          gamestate.setMode("null");
+          setTimeout(function() {
+// summon Ashlin, destroy moongate under her, start dialog
+          }, 1200);
+        }
         ShowTurnFrame(this.forcedTalk);
         let convo = this.forcedTalk.getConversation();
         let newresponse = PerformTalk(this.forcedTalk, convo, "_start");
