@@ -11546,6 +11546,20 @@ function BookOfLoreTile() {
 }
 BookOfLoreTile.prototype = new BookItemObject();
 
+function EshkazBookTile() {
+  this.name = "EshkazBook";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1248";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "Eshkaz's Planar Primer";
+  this.prefix = "the";
+  this.contents = "You open to the book:%%The words within dance under your sight, and you cannot make sense of their meaning.";
+  this.longdesc = "Eshkaz's Planar Primer. Contains his research into planar travel, to be brought to Asharden.";
+}
+EshkazBookTile.prototype = new BookItemObject();
+
 function TomeOfSightTile() {
   this.name = "TomeOfSight";
   this.graphic = "master_spritesheet.png";
