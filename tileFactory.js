@@ -2508,6 +2508,11 @@ tileFactory.prototype.makeBookOfLoreTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEshkazBookTile = function() {
+  let newTile = new EshkazBookTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTomeOfSightTile = function() {
   let newTile = new TomeOfSightTile();
   return newTile;
