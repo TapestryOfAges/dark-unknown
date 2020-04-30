@@ -701,6 +701,19 @@ OnConvTriggers["teach_illusion"] = function(speaker,keyword) {
   }
 }
 
+OnConvTriggers["learned_ww"] = function(speaker,keyword) {
+  if (DU.gameflags.getFlag("spellbook") && (PC.getLevel() >= 2) && (!PC.knowsSpell(SPELL_WATER_WALK_LEVEL,SPELL_WATER_WALK_ID))) {
+    maintext.addText("Ashbourne teaches you Water Walk!");
+    PC.addSpell(SPELL_WATER_WALK_LEVEL,SPELL_WATER_WALK_ID);
+  } else if (!DU.gameflags.getFlag("spellbook")) {
+    maintext.addText('"Alas, you will need a spellbook, to properly learn. Though that makes me wonder however you got here..."');
+    DU.gameflags.deleteFlag("learned_ww");
+  } else if (PC.getLevel() === 1) {
+    maintext.addText('"Alas, you may not yet be strong enough. Return when you have grown stronger!"');
+    DU.gameflags.deleteFlag("learned_ww");
+  }
+}
+
 OnConvTriggers["jharden_teaches"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("jharden_teaches");
   DU.gameflags.deleteFlag("jharden_newspell");

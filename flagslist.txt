@@ -132,3 +132,4 @@ satisfied_ladonna - Ladonna has invited you to be a full member of Consolation
 enter_consolation - have been let into Consolation
 consolation_test - the test at Consolation bridge has begun
 eshkazbook - he has given you the planar primer
+learned_ww - you've learned Water Walk
