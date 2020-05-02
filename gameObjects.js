@@ -718,6 +718,9 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
       }
     }
     this.setDesc(this.fixeddesc);
+    if (typeof this.onMend === "function") {
+      this.onMend(who);
+    }
     DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());  // will try to draw 0,0 if in inventory, which is ok
   }
 }
@@ -10707,6 +10710,26 @@ function StoneOfConflagrationsTile() {
   this.addType("Quest");
 }
 StoneOfConflagrationsTile.prototype = new ItemObject();
+
+function BrokenArrowTile() {
+  this.name = "BrokenArrow";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-160";
+  this.spriteyoffset = "-1728";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "green-fletched arrow";
+  this.prefix = "a";
+  this.longdesc = "A broken arrow with green fletching. Return to Ladonna when Mended.";
+  this.addType("Quest");
+  Breakable.call(this,["master_spritesheet.png", "", "-128", "-1728"],0,"");
+  this.brokendesc = "broken green-fletched arrow";
+}
+BrokenArrowTile.prototype = new ItemObject();
+
+BrokenArrowTile.prototype.onRepair = function(who) {
+  this.longdesc = "An arrow with green fletching. Now that you've Mended it, return it to Ladonna.";
+}
 
 function TreasuryTokenTile() {
   this.name = "TreasuryToken";

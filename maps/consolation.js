@@ -333,7 +333,7 @@ mappages["consolation3"].features[46] = {name : 'SmallBox', x : 16, y : 19};
 
 
 mappages["consolation3"].npcs = [];
-mappages["consolation3"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 12, NPCName: 'Ashbourne', PeaceAI: "scheduled", Schedule: "ashbourne", Conversation: 'ashbourne', Gender: 'male', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif', skintone: '1'};
+mappages["consolation3"].npcs[0] = {name : 'DruidVillagerNPC', x : 23, y : 12, NPCName: 'Ashbourne', PeaceAI: "scheduled", Schedule: "ashbourne", Merch: 'ashbourne', Conversation: 'ashbourne', Gender: 'male', NPCBand: '0', OverrideGraphic: 'druid-offcolor.1.gif', skintone: '1'};
 mappages["consolation3"].npcs[1] = {name : 'MageVillagerNPC', x : 9, y : 12, NPCName: 'Eshkaz', PeaceAI: "scheduled", Schedule: "eshkaz", Conversation: 'eshkaz', Gender: 'male', NPCBand: '0', OverrideGraphic: '303.gif', skintone: '1'};
 mappages["consolation3"].npcs[2] = {name : 'MageVillagerNPC', x : 14, y : 18, NPCName: 'Ladonna', PeaceAI: "scheduled", Schedule: "ladonna", Conversation: 'ladonna', Gender: 'female', NPCBand: '0', OverrideGraphic: 'mage-offcolor.gif', skintone: '1'};
 mappages["consolation3"].npcs[3] = {name : 'MageVillagerNPC', x : 15, y : 6, NPCName: 'Ashlin', PeaceAI: "scheduled", Schedule: "ashlin", Conversation: 'ashlin', Gender: 'female', NPCBand: '0', OverrideGraphic: '303.2.gif', skintone: '2'};

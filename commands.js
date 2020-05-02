@@ -264,7 +264,7 @@ function PerformCommand(code, ctrl) {
 	}
   else if (code === 73) { // i
 		// was ignite torch, now infuse?
-   	if (PC.getKnowsInfusion()) {
+   	if (PC.getKnowsInfusion() || ((PC.getHomeMap().getName() === "consolation") && (PC.getx() >= 16) && (PC.getx() <= 17) && (PC.gety() >= 14) && (PC.gety() <= 15))) {
       retval = PerformCast(1);
     } else {
       retval["fin"] = 2;

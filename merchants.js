@@ -161,7 +161,19 @@ function SetMerchants() {
                   { item: "CrystalTrapSpell", desc: "Crystal Trap", lvl: SPELL_CRYSTAL_TRAP_LEVEL, sid: SPELL_CRYSTAL_TRAP_ID, price: 1100, presale: '"Hides a trap that, when stepped upon, traps the treader in crystal for a time."'},
                 ];
   bill.william.type = "spells"; 
-               
+
+  // Consolation
+  bill.ashbourne = {};
+  bill.ashbourne.stock = [ { item: "MendSpell", desc: "Mend", lvl: SPELL_MEND_LEVEL, sid: SPELL_MEND_ID, price: 100, presale: '"A simple spell, for repairing tears and cracks."'},
+                  { item: "ProtectionSpell", desc: "Protection", lvl: SPELL_PROTECTION_LEVEL, sid: SPELL_PROTECTION_ID, price: 200, presale: '"A useful trick, when you are beset."'},                  
+                  { item: "TelekinesisSpell", desc: "Telekinesis", lvl: SPELL_TELEKINESIS_LEVEL, sid: SPELL_TELEKINESIS_ID, price: 400, presale: '"Pick up or manipulate something nearby, if it is light enough."'},
+                  { item: "HealSpell", desc: "Heal", lvl: SPELL_HEAL_LEVEL, sid: SPELL_HEAL_ID, price: 800, presale: '"A favorite of Darthan, our resident expert in healing magics."'},
+                  { item: "WaterWalkSpell", desc: "Water Walk", lvl: SPELL_WATER_WALK_LEVEL, sid: SPELL_WATER_WALK_ID, price: 800, presale: '"The ability to walk on water is quite useful when one lives on an island."'},
+                  { item: "EtherealVisionSpell", desc: "Ethereal Vision", lvl: SPELL_ETHEREAL_VISION_LEVEL, sid: SPELL_ETHEREAL_VISION_ID, price: 2000, presale: '"See by means of the ether, rather than the light of our world. I learned this from Ashlin, here in the tower."'},
+                  { item: "EmpowerSpell", desc: "Empower", lvl: SPELL_EMPOWER_LEVEL, sid: SPELL_EMPOWER_ID, price: 4000, presale: '"A powerful spell, created by artificers like Lynn, who is an expert in its use."'},
+                ];
+  bill.ashbourne.type = "spells"; 
+  
   return bill;
 }
 
