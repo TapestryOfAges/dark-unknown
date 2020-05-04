@@ -957,6 +957,19 @@ OnConvTriggers["BDC_open_gate"] = function(speaker,keyword) {
   DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
 }
 
+OnConvTriggers["infusion_learned"] = function(speaker,keyword) {
+  speaker.knowsInfusion = 1;
+  maintext.addText("<span class='sysconv'>You have learned Infusion.</span>");
+}
+
+OnConvTriggers["give_arrow"] = function(speaker,keyword) {
+  DU.gameflags.deleteFlag("give_arrow");
+  let arrow = localFactory.createTile("BrokenArrow");
+  arrow.break();
+  speaker.addToInventory(arrow,1);
+  maintext.addText("<span class='sysconv'>Ladonna hands you a broken arrow.</span>");
+}
+
 function ConvTestFlags() {};
 
 ConvTestFlags["warren_close"] = function(speaker,keyword) {
@@ -1056,6 +1069,14 @@ ConvTestFlags["BDC_gate_open"] = function(speaker,keyword) {
   }
   if (!gate.open) {
     return 1;
+  }
+  return 0;
+}
+
+ConvTestFlags["fixed_arrow"] = function(speaker,keyword) {
+  let arrow = speaker.checkInventory("BrokenArrow");
+  if (arrow) {
+    if (!arrow.broken) { return 1; }
   }
   return 0;
 }

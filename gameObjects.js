@@ -689,7 +689,9 @@ function Breakable(brokengraphicarray, startsbroken, breaksound) {
         DUPlaySound(breaksound);
       }
     }
-    DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
+    if (who) {
+      DrawMainFrame("one", this.getHomeMap(), this.getx(), this.gety());
+    }
     if (this.karmamod && (who === PC)) { 
       PC.diffKarma(this.karmamod);
     }
@@ -10724,6 +10726,7 @@ function BrokenArrowTile() {
   this.addType("Quest");
   Breakable.call(this,["master_spritesheet.png", "", "-128", "-1728"],0,"");
   this.brokendesc = "broken green-fletched arrow";
+  this.repairNeedsInfusion = 1;
 }
 BrokenArrowTile.prototype = new ItemObject();
 
