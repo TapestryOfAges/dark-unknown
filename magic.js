@@ -366,7 +366,7 @@ function PerformAudachtaScribe(caster,infused,free,tgt) {
   } else {
     if (!free) {
       let mana = magic[SPELL_AUDACHTA_SCRIBE_LEVEL][SPELL_AUDACHTA_SCRIBE_ID].getManaCost(0);
-      caster.modMana(-1*mana);
+      CastSpellMana(caster,mana);
       DebugWrite("magic", "Spent " + mana + " mana.<br />");
     }  
     caster.addSpell(tgt.spelllevel, tgt.spellnum);
@@ -393,7 +393,7 @@ magic[SPELL_CURE_LEVEL][SPELL_CURE_ID].executeSpell = function(caster, infused, 
   let heal = 0;
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   let effects = caster.getSpellEffects();
@@ -446,7 +446,7 @@ magic[SPELL_DISARM_TRAP_LEVEL][SPELL_DISARM_TRAP_ID].executeSpell = function(cas
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   let mult = 1;
@@ -520,7 +520,7 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   resp["fin"] = 1;
@@ -593,7 +593,7 @@ magic[SPELL_FLAME_BLADE_LEVEL][SPELL_FLAME_BLADE_ID].executeSpell = function(cas
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   let flameblade = localFactory.createTile("FlameBlade");
@@ -633,7 +633,7 @@ magic[SPELL_LIGHT_LEVEL][SPELL_LIGHT_ID].executeSpell = function(caster, infused
   if (!free) {
     free = 0;
     var mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   let liobj = localFactory.createTile("Light");
@@ -689,7 +689,7 @@ function PerformMend(caster,infused,free,tgt) {
   
   if (!free) {
     let mana = magic[SPELL_MEND_LEVEL][SPELL_MEND_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -745,7 +745,7 @@ function PerformVulnerability(caster, infused, free, tgt) {
   if (!free) {
     free = 0;
     let mana = magic[SPELL_VULNERABILITY_LEVEL][SPELL_VULNERABILITY_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -841,7 +841,7 @@ function PerformIllusion(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_ILLUSION_LEVEL][SPELL_ILLUSION_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -886,7 +886,7 @@ magic[SPELL_IRON_FLESH_LEVEL][SPELL_IRON_FLESH_ID].executeSpell = function(caste
   if (!free) {
     free = 0;
     var mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   if (!tgt || (caster === PC)) {
@@ -926,7 +926,7 @@ magic[SPELL_LESSER_HEAL_LEVEL][SPELL_LESSER_HEAL_ID].executeSpell = function(cas
   if (!free) {
     free = 0;
     var mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -1000,7 +1000,7 @@ function PerformMagicBolt(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_MAGIC_BOLT_LEVEL][SPELL_MAGIC_BOLT_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -1093,7 +1093,7 @@ function PerformPoisonCloud(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_POISON_CLOUD_LEVEL][SPELL_POISON_CLOUD_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -1169,7 +1169,7 @@ magic[SPELL_PROTECTION_LEVEL][SPELL_PROTECTION_ID].executeSpell = function(caste
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   if (!tgt || (caster === PC)) { tgt = caster; }
@@ -1202,7 +1202,7 @@ magic[SPELL_UNLOCK_LEVEL][SPELL_UNLOCK_ID].executeSpell = function(caster, infus
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
    
@@ -1267,7 +1267,7 @@ function PerformWindChange(caster,infused,free,tgt) {
   let resp = {fin:1};  
   if (!free) {
     let mana = magic[SPELL_WIND_CHANGE_LEVEL][SPELL_WIND_CHANGE_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -1302,7 +1302,7 @@ magic[SPELL_DISPEL_LEVEL][SPELL_DISPEL_ID].executeSpell = function(caster, infus
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -1347,7 +1347,7 @@ magic[SPELL_DISRUPT_UNDEAD_LEVEL][SPELL_DISRUPT_UNDEAD_ID].executeSpell = functi
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -1398,7 +1398,7 @@ magic[SPELL_FIRE_ARMOR_LEVEL][SPELL_FIRE_ARMOR_ID].executeSpell = function(caste
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   let prot = localFactory.createTile("FireArmor");
@@ -1464,7 +1464,7 @@ function PerformFireball(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_FIREBALL_LEVEL][SPELL_FIREBALL_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -1548,7 +1548,7 @@ function PerformIceball(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_ICEBALL_LEVEL][SPELL_ICEBALL_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -1632,7 +1632,7 @@ function PerformTelekinesis(caster, infused, free, tgt) {
   let retval = {};
   if (!free) {
     let mana = magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -1686,7 +1686,7 @@ function PerformTelekinesisMove(caster, infused, free, tgt) {  // NOTE- tgt need
   let retval = {fin:1, input: "&gt;"};
   if (!free) {
     let mana = magic[SPELL_TELEKINESIS_LEVEL][SPELL_TELEKINESIS_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -1733,7 +1733,7 @@ magic[SPELL_TELEPATHY_LEVEL][SPELL_TELEPATHY_ID].executeSpell = function(caster,
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   resp["fin"] = 1;
@@ -1797,7 +1797,7 @@ function PerformWallOfFlame(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_WALL_OF_FLAME_LEVEL][SPELL_WALL_OF_FLAME_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -2004,7 +2004,7 @@ magic[SPELL_BLESSING_LEVEL][SPELL_BLESSING_ID].executeSpell = function(caster, i
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   if (!tgt || (caster === PC)) { tgt = caster; }
@@ -2046,7 +2046,7 @@ magic[SPELL_BLINK_LEVEL][SPELL_BLINK_ID].executeSpell = function(caster, infused
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -2125,7 +2125,7 @@ magic[SPELL_ETHEREAL_VISION_LEVEL][SPELL_ETHEREAL_VISION_ID].executeSpell = func
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -2160,7 +2160,7 @@ magic[SPELL_HEAL_LEVEL][SPELL_HEAL_ID].executeSpell = function(caster, infused, 
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -2220,7 +2220,7 @@ function PerformLifeDrain(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_LIFE_DRAIN_LEVEL][SPELL_LIFE_DRAIN_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -2275,7 +2275,7 @@ magic[SPELL_SMITE_LEVEL][SPELL_SMITE_ID].executeSpell = function(caster, infused
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
  
@@ -2330,7 +2330,7 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
         if (!free) {
           free = 0;
           let mana = this.getManaCost(infused);
-          caster.modMana(-1*mana);
+          CastSpellMana(caster,mana);
           DebugWrite("magic", "Spent " + mana + " mana.<br />");
         }    
         PlayCastSound(caster,"sfx_teleport");
@@ -2348,7 +2348,7 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
         if (!free) {
           free = 0;
           let mana = this.getManaCost(infused);
-          caster.modMana(-1*mana);
+          CastSpellMana(caster,mana);
           DebugWrite("magic", "Spent " + mana + " mana.<br />");
         }      
       } else {
@@ -2357,7 +2357,7 @@ magic[SPELL_OPEN_GATE_LEVEL][SPELL_OPEN_GATE_ID].executeSpell = function(caster,
         if (!free) {
           free = 0;
           let mana = this.getManaCost(infused);
-          caster.modMana(-1*mana);
+          CastSpellMana(caster,mana);
           DebugWrite("magic", "Spent " + mana + " mana.<br />");
         }      
         PlayCastSound(caster);
@@ -2386,7 +2386,7 @@ magic[SPELL_WATER_WALK_LEVEL][SPELL_WATER_WALK_ID].executeSpell = function(caste
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -2457,7 +2457,7 @@ magic[SPELL_MIRROR_WARD_LEVEL][SPELL_MIRROR_WARD_ID].executeSpell = function(cas
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -2514,7 +2514,7 @@ function PerformParalyze(caster, infused, free, tgt) {
   if (!free) {
     free = 0;
     let mana = magic[SPELL_PARALYZE_LEVEL][SPELL_PARALYZE_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -2576,7 +2576,7 @@ magic[SPELL_PEER_LEVEL][SPELL_PEER_ID].executeSpell = function(caster, infused, 
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   PlayCastSound(caster);
@@ -2676,7 +2676,7 @@ magic[SPELL_RETURN_LEVEL][SPELL_RETURN_ID].executeSpell = function(caster, infus
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -2725,7 +2725,7 @@ magic[SPELL_SHOCKWAVE_LEVEL][SPELL_SHOCKWAVE_ID].executeSpell = function(caster,
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -2802,7 +2802,7 @@ function PerformSummonAlly(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_SUMMON_ALLY_LEVEL][SPELL_SUMMON_ALLY_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -2892,7 +2892,7 @@ function PerformSwordstrike(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_SWORDSTRIKE_LEVEL][SPELL_SWORDSTRIKE_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -2988,7 +2988,7 @@ function PerformExplosion(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -3048,7 +3048,7 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -3113,7 +3113,7 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -3177,7 +3177,7 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   PlayCastSound(caster,"sfx_dangerous_buff");
@@ -3234,7 +3234,7 @@ magic[SPELL_STORM_LEVEL][SPELL_STORM_ID].executeSpell = function(caster, infused
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -3296,7 +3296,7 @@ function PerformCharm(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_CHARM_LEVEL][SPELL_CHARM_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -3358,7 +3358,7 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -3420,7 +3420,7 @@ magic[SPELL_FIRE_AND_ICE_LEVEL][SPELL_FIRE_AND_ICE_ID].executeSpell = function(c
   let resp = {fin:-1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -3483,7 +3483,7 @@ magic[SPELL_INVULNERABILITY_LEVEL][SPELL_INVULNERABILITY_ID].executeSpell = func
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -3521,7 +3521,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
   let resp = {fin:-1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -3624,7 +3624,7 @@ function PerformArrowOfGlass(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_ARROW_OF_GLASS_LEVEL][SPELL_ARROW_OF_GLASS_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -3690,7 +3690,7 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -3766,7 +3766,7 @@ function PerformConjureDaemon(caster, infused, free, tgt) {
   
   if (!free) {
     let mana = magic[SPELL_CONJURE_DAEMON_LEVEL][SPELL_CONJURE_DAEMON_ID].getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
 
@@ -3808,7 +3808,7 @@ magic[SPELL_QUICKNESS_LEVEL][SPELL_QUICKNESS_ID].executeSpell = function(caster,
   if (!free) {
     free = 0;
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -3843,7 +3843,7 @@ magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].executeSpell = function(caster,
   let resp = {fin:1};
   if (!free) {
     let mana = this.getManaCost(infused);
-    caster.modMana(-1*mana);
+    CastSpellMana(caster,mana);
     DebugWrite("magic", "Spent " + mana + " mana.<br />");
   }
   
@@ -3863,6 +3863,12 @@ magic[SPELL_TIME_STOP_LEVEL][SPELL_TIME_STOP_ID].executeSpell = function(caster,
   
   DrawCharFrame();
   return resp;
+}
+
+function CastSpellMana(mage, mana) {
+  mage.modMana(-1*mana);
+  let ev = new DUEvent("Spellcast",mage,[]);
+  Listener.sendEvent(ev);
 }
 
 function TravelByMoongate(who, color, destmap, destx, desty) {

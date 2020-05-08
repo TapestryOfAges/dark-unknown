@@ -970,6 +970,10 @@ OnConvTriggers["give_arrow"] = function(speaker,keyword) {
   maintext.addText("<span class='sysconv'>Ladonna hands you a broken arrow.</span>");
 }
 
+OnConvTriggers["consolation_test"] = function(speaker,keyword) {
+  Listener.createListener("OpenCons", "Spellcast", [], "consolation");
+}
+
 function ConvTestFlags() {};
 
 ConvTestFlags["warren_close"] = function(speaker,keyword) {

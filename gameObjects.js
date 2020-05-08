@@ -16785,23 +16785,34 @@ PCObject.prototype.myTurn = function() {
 
       if (this.forcedTalk) {
         if (this.forcedTalk.getNPCName() === "Ashlin") {
-          let moongate = localFactory.createTile("Moongate");
-          moongate.destmap = "skypalace";
-          moongate.destx = 47;
-          moongate.desty = 49;
-          themap.placeThing(112,67,moongate);
-          animateImage(0,-128,moongate,0,"right",300,0,1);
-          gamestate.setMode("null");
-          setTimeout(function() {
-// summon Ashlin, destroy moongate under her, start dialog
-          }, 1200);
+          let ashlin = this.forcedtalk;
+          if (ashlin) {
+            let moongate = localFactory.createTile("Moongate");
+            moongate.destmap = "skypalace";
+            moongate.destx = 47;
+            moongate.desty = 49;
+            themap.placeThing(112,67,moongate);
+            animateImage(0,-128,moongate,0,"right",300,0,1);
+            gamestate.setMode("null");
+            setTimeout(function() {
+              moongate.getHomeMap().moveThing(112,67,ashlin);
+              moongate.getHomeMap().deleteThing(moongate);
+              ShowTurnFrame(ashlin);
+              let convo = ashlin.getConversation();
+              let newresponse = PerformTalk(ashlin, convo, "_start");
+              maintext.addText(newresponse["txt"]);
+              maintext.setInputLine(newresponse["input"]);
+              maintext.drawTextFrame();    
+            }, 1200);
+          }
+        } else {
+          ShowTurnFrame(this.forcedTalk);
+          let convo = this.forcedTalk.getConversation();
+          let newresponse = PerformTalk(this.forcedTalk, convo, "_start");
+          maintext.addText(newresponse["txt"]);
+          maintext.setInputLine(newresponse["input"]);
+          maintext.drawTextFrame();
         }
-        ShowTurnFrame(this.forcedTalk);
-        let convo = this.forcedTalk.getConversation();
-        let newresponse = PerformTalk(this.forcedTalk, convo, "_start");
-        maintext.addText(newresponse["txt"]);
-        maintext.setInputLine(newresponse["input"]);
-        maintext.drawTextFrame();
 
         delete this.forcedTalk;
       }

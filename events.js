@@ -157,7 +157,7 @@ EventFunctions["BDragon"] = function(ev) {
       }
 
       bdmap.cityfight = 1;
-
+      Listener.clearListener("BDragon");
     }
   }
 }
@@ -178,5 +178,6 @@ EventFunctions["SimonHarp"] = function(ev) {
       }
     }
   }
+  Listener.clearListener("SimonHarp");
 }
 
