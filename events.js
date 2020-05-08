@@ -181,3 +181,13 @@ EventFunctions["SimonHarp"] = function(ev) {
   Listener.clearListener("SimonHarp");
 }
 
+
+EventListener["OpenCons"] = function(ev) {
+  DU.gameflags.setFlag("enter_consolation",1);
+  DU.gameflags.deleteFlag("consolation_test");
+  Listener.clearListener("OpenCons");
+  let ashlin = PC.getHomeMap().getTile(14,24).getTopNPC();
+  if (ashlin) {
+    PC.forcedTalk = ashlin;
+  } else { "No Ashlin?"; }
+}

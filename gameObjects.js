@@ -16788,14 +16788,14 @@ PCObject.prototype.myTurn = function() {
           let ashlin = this.forcedtalk;
           if (ashlin) {
             let moongate = localFactory.createTile("Moongate");
-            moongate.destmap = "skypalace";
-            moongate.destx = 47;
-            moongate.desty = 49;
-            themap.placeThing(112,67,moongate);
+            moongate.destmap = "consolation";
+            moongate.destx = 14;
+            moongate.desty = 24;
+            themap.placeThing(14,24,moongate);
             animateImage(0,-128,moongate,0,"right",300,0,1);
             gamestate.setMode("null");
             setTimeout(function() {
-              moongate.getHomeMap().moveThing(112,67,ashlin);
+              moongate.getHomeMap().moveThing(14,24,ashlin);
               moongate.getHomeMap().deleteThing(moongate);
               ShowTurnFrame(ashlin);
               let convo = ashlin.getConversation();
