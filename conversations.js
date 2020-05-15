@@ -958,7 +958,7 @@ OnConvTriggers["BDC_open_gate"] = function(speaker,keyword) {
 }
 
 OnConvTriggers["infusion_learned"] = function(speaker,keyword) {
-  speaker.knowsInfusion = 1;
+  PC.knowsInfusion = 1;
   maintext.addText("<span class='sysconv'>You have learned Infusion.</span>");
 }
 
@@ -966,12 +966,29 @@ OnConvTriggers["give_arrow"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("give_arrow");
   let arrow = localFactory.createTile("BrokenArrow");
   arrow.break();
-  speaker.addToInventory(arrow,1);
+  PC.addToInventory(arrow,1);
   maintext.addText("<span class='sysconv'>Ladonna hands you a broken arrow.</span>");
 }
 
 OnConvTriggers["consolation_test"] = function(speaker,keyword) {
   Listener.createListener("OpenCons", "Spellcast", [], "consolation");
+}
+
+OnConvTriggers["enter_consolation"] = function(speaker,keyword) {
+  let themap = speaker.getHomeMap();
+  themap.moveThing(0,0,speaker);
+  let moongate = localFactory.createTile("Moongate");
+  moongate.destmap = "consolation";
+  moongate.destx = 14;
+  moongate.desty = 24;
+  themap.placeThing(14,24,moongate);
+  animateImage(-128,0,moongate,0,"left",300,1,1);
+  let field = themap.getTile(16,25).getTopFeature();
+  themap.deleteThing(field);
+  field = themap.getTile(17,25).getTopFeature();
+  themap.deleteThing(field);
+  DrawMainFrame("one",themap,16,25);
+  DrawMainFrame("one",themap,17,25);
 }
 
 function ConvTestFlags() {};
@@ -1078,7 +1095,7 @@ ConvTestFlags["BDC_gate_open"] = function(speaker,keyword) {
 }
 
 ConvTestFlags["fixed_arrow"] = function(speaker,keyword) {
-  let arrow = speaker.checkInventory("BrokenArrow");
+  let arrow = PC.checkInventory("BrokenArrow");
   if (arrow) {
     if (!arrow.broken) { return 1; }
   }
