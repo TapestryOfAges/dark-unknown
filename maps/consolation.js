@@ -53,7 +53,7 @@ mappages["consolation"].features[13] = {name : 'Door', x : 17, y : 10};
 mappages["consolation"].features[14] = {name : 'Door', x : 12, y : 14};
 mappages["consolation"].features[15] = {name : 'LeftChair', x : 14, y : 11};
 mappages["consolation"].features[16] = {name : 'BookshelfLeft', x : 9, y : 12};
-mappages["consolation"].features[17] = {name : 'BookshelfRight', x : 10, y : 12};
+mappages["consolation"].features[17] = {name : 'BookshelfRight', x : 10, y : 12, lootedid : 'eshkaz_book1', searchyield : 'ScrollSummonAlly'};
 mappages["consolation"].features[18] = {name : 'BookshelfRight', x : 16, y : 6};
 mappages["consolation"].features[19] = {name : 'BookshelfRight', x : 18, y : 6};
 mappages["consolation"].features[20] = {name : 'BookshelfRight', x : 24, y : 12};
@@ -101,7 +101,7 @@ mappages["consolation"].features[61] = {name : 'RightTable', x : 24, y : 15};
 
 
 mappages["consolation"].npcs = [];
-mappages["consolation"].npcs[0] = {name : 'MageVillagerNPC', x : 0, y : 0, NPCName: 'Ashlin', Conversation: 'ashlin_sentinel', Gender: 'female', NPCBand: '0', OverrideGraphic: '303.2.gif', skintone: '2'};
+mappages["consolation"].npcs[0] = {name : 'MageVillagerNPC', x : 0, y : 0, NPCName: 'Ashlin', PeaceAI: "doNothing", Conversation: 'ashlin_sentinel', Gender: 'female', NPCBand: '0', OverrideGraphic: '303.2.gif', skintone: '2'};
 
 mappages["consolation"].desc = "Tower of Consolation";
 mappages["consolation"].longdesc = '';
@@ -130,6 +130,16 @@ mappages["consolation"].returninfused = '0';
 mappages["consolation"].linkedMaps = ["consolation2","consolation3"];
 mappages["consolation"].editorLabels = '{}';
 
+mappages["consolation"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (gamestate.getMode() !== "editor")) {
+    let portcullis = mapref.getTile(16,23).getTopFeature();
+    portcullis.locked = 0;
+    portcullis.use(PC,1);
+    portcullis = mapref.getTile(17,23).getTopFeature();
+    portcullis.locked = 0;
+    portcullis.use(PC,1);
+  }
+}
 
 mappages["consolation2"] = {};
 mappages["consolation2"].terrain = [];
