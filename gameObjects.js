@@ -7345,6 +7345,8 @@ WalkOnConsolationTile.prototype.walkon = function(walker) {
     themap.deleteThing(field);
     field = themap.getTile(17,25).getTopFeature();
     themap.deleteThing(field);
+    DrawMainFrame("one",themap,16,25);
+    DrawMainFrame("one",themap,17,25);
     return {msg:"The forcefield disappears as you approach."};
   } else if (walker === PC) {
     let npc = this.getHomeMap().getTile(0,0).getTopNPC();
@@ -16785,8 +16787,9 @@ PCObject.prototype.myTurn = function() {
 
       if (this.forcedTalk) {
         if (this.forcedTalk.getNPCName() === "Ashlin") {
-          let ashlin = this.forcedtalk;
-          if (ashlin) {
+          let ashlin = this.forcedTalk;
+          if (ashlin && !DU.gameflags.getFlag("enter_consolation")) {
+            let themap = this.getHomeMap();
             let moongate = localFactory.createTile("Moongate");
             moongate.destmap = "consolation";
             moongate.destx = 14;
@@ -16804,6 +16807,12 @@ PCObject.prototype.myTurn = function() {
               maintext.setInputLine(newresponse["input"]);
               maintext.drawTextFrame();    
             }, 1200);
+          } else if (ashlin) {
+            let convo = ashlin.getConversation();
+            let newresponse = PerformTalk(ashlin, convo, "_entry");
+            maintext.addText(newresponse["txt"]);
+            maintext.setInputLine(newresponse["input"]);
+            maintext.drawTextFrame();    
           }
         } else {
           ShowTurnFrame(this.forcedTalk);
