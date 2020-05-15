@@ -2258,6 +2258,11 @@ tileFactory.prototype.makeStoneOfConflagrationsTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBrokenArrowTile = function() {
+  let newTile = new BrokenArrowTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeTreasuryTokenTile = function() {
   let newTile = new TreasuryTokenTile();
   return newTile;
