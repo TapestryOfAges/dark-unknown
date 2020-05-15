@@ -3,6 +3,10 @@
 
 let ais = {};
 
+ais.doNothing = function(who) {
+  return { fin:1 };
+}
+
 ais.seekPC = function(who,radius) {
   // name is legacy- really it's "seek an opponent"
   DebugWrite("ai", "Seeking PC (or just someone to punch)...<br />");
