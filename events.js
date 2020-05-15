@@ -182,7 +182,7 @@ EventFunctions["SimonHarp"] = function(ev) {
 }
 
 
-EventListener["OpenCons"] = function(ev) {
+EventFunctions["OpenCons"] = function(ev) {
   DU.gameflags.setFlag("enter_consolation",1);
   DU.gameflags.deleteFlag("consolation_test");
   Listener.clearListener("OpenCons");
