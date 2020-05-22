@@ -3168,6 +3168,61 @@ function CaveColumnTile() {
 }
 CaveColumnTile.prototype = new TerrainObject();
 
+function WSFloorTile() {
+	this.name = "WSFloor";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1760";  
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "a";
+	this.desc = "rough stone";
+	this.peerview = "#6c6c6c";
+	this.walkSound = "stone";
+	
+	TilingSpritesheet.call(this, 2);
+}
+WSFloorTile.prototype = new TerrainObject();
+
+function WSWallTile() {
+  this.name = "WSWall";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1728";  
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "large stone wall";
+  this.peerview = "#ffffff";
+}
+WSWallTile.prototype = new TerrainObject();
+
+function WSWallVineTile() {
+  this.name = "WSWallVine";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1728";  
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "large stone wall";
+  this.peerview = "#ffffff";
+}
+WSWallVineTile.prototype = new TerrainObject();
+
+function WSWallMoldTile() {
+  this.name = "WSWallMold";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-32";
+  this.spriteyoffset = "-1728";  
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "large stone wall";
+  this.peerview = "#ffffff";
+}
+WSWallMoldTile.prototype = new TerrainObject();
+
 function HexFloorTile() {
 	this.name = "HexFloor";
   this.graphic = "master_spritesheet.png";
@@ -4696,6 +4751,19 @@ function OnFire(who, what) {
   return response;
 }
 
+function CampfireExtinguishedTile() {
+	this.name = "CampfireExtinguished";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-128";
+  this.spriteyoffset = "-1760";  
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+  this.prefix = "a";
+	this.desc = "burned out campfire";
+	this.pathweight = 5;
+	
+}
+CampfireExtinguishedTile.prototype = new FeatureObject();
 
 function BrazierTile() {
 	this.name = "Brazier";
@@ -7342,12 +7410,15 @@ WalkOnConsolationTile.prototype.walkon = function(walker) {
   if (DU.gameflags.getFlag("enter_consolation")) {
     let themap = this.getHomeMap();
     let field = themap.getTile(16,25).getTopFeature();
-    themap.deleteThing(field);
-    field = themap.getTile(17,25).getTopFeature();
-    themap.deleteThing(field);
-    DrawMainFrame("one",themap,16,25);
-    DrawMainFrame("one",themap,17,25);
-    return {msg:"The forcefield disappears as you approach."};
+    if (field) {
+      themap.deleteThing(field);
+      field = themap.getTile(17,25).getTopFeature();
+      themap.deleteThing(field);
+      DrawMainFrame("one",themap,16,25);
+      DrawMainFrame("one",themap,17,25);
+      return {msg:"The forcefield disappears as you approach."};  
+    }
+    return {msg:""};
   } else if (walker === PC) {
     let npc = this.getHomeMap().getTile(0,0).getTopNPC();
     if (npc) {
@@ -11681,10 +11752,24 @@ function ToshinJournalTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
   this.prefix = "a";
-  this.contents = "You search through the journal for something useful.%%<span class='conv'>It is somewhere... I can taste it. It is close. The bones of Ellusus sing with it, the unblinking eye of a star.%%But there is something I need before I can use the Pool safely, even once I find it. Old scrolls call it an Infinite Scroll. I do not know how to make one... yet. But some are said to still exist. I will inquire of the black market.%%There is a guild of thieves in Onyx, and they often have knowledge of such things, but almost certainly they will tell me that there is only one place to find things of such value: Beldskae.<span>";
+  this.contents = "You search through the journal for something useful.%%<span class='conv'>It is somewhere... I can taste it. It is close. The bones of Ellusus sing with it, the unblinking eye of a star.</span>%%<span class='conv'>But there is something I need before I can use the Pool safely, even once I find it. Old scrolls call it an Infinite Scroll. I do not know how to make one... yet. But some are said to still exist. I will inquire of the black market.</span>%%<span class='conv'>There is a guild of thieves in Onyx, and they often have knowledge of such things, but almost certainly they will tell me that there is only one place to find things of such value: Beldskae.</span>";
   this.longdesc = "The Journals of Toshin.";
 }
 ToshinJournalTile.prototype = new BookItemObject();
+
+function ArcheoJournalTile() {
+  this.name = "ArcheoJournal";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-256";
+  this.spriteyoffset = "-1216";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "journal";
+  this.prefix = "a";
+  this.contents = "You open the journal.%%<span class='conv'>Crossed to the small island at a time when the sea serpent was asleep. We investigated the strange crevasse leading deep into the earth, and returned with a ladder to allow us to explore below.</span>%%<span class='conv'>Below, what we found was astonishing. Buildings- a small outpost, it seemed- that look to be thousands of years old. They may predate the existence of humans! What could have built such a thing?</span>%%<span class='conv'>We need to bring more people and more gear back to look into this further. We are getting ready to cross the water. I think the serpent is asleep again.</span>";
+  this.longdesc = "A small journal found in a cave.";
+}
+ArcheoJournalTile.prototype = new BookItemObject();
 
 function AdelusLetterTile() {
   this.name = "AdelusLetter";
