@@ -293,6 +293,46 @@ function DoAction(code, ctrl) {
       } else {
         gamestate.setMode("anykey");
       }
+    } else if (targetCursor.command === "endact") {
+      if (targetCursor.endact === 1) {
+        maintext.delayedAddText('The dragon looks at him, and then at you. "How disappointing."');
+        targetCursor.endact = 2;
+      } else if (targetCursor.endact === 2) {
+        maintext.delayedAddText('Then, it roars and lunges at you!');      
+
+        prince.realgraphic = prince.getGraphicArray();
+        prince.setGraphicArray(["master_spritesheet.png","","-64","-800"]);
+        prince.setAttitude("neutral"); // so dragon doesn't attack him
+
+        let fieldeffect = localFactory.createTile("Sleep");
+    
+        fieldeffect.setExpiresTime(-1);
+        prince.addSpellEffect(fieldeffect);
+   
+        Close_BDC_Gate(bdmap);
+
+        dragon.setAttitude("hostile");
+        dragon.setCurrentAI("seekPC-30");
+        dragon.setAggro(1);
+        dragon.setHP(50);
+        dragon.setMaxHP(50);
+      
+        let bdnpcs = prince.getHomeMap().npcs.getAll();
+        for (let i=0;i<bdnpcs.length;i++) {
+          if (bdnpcs[i].getName() === "TownGuardNPC") {
+            bdnpcs[i].setAggro(1); // make the guards help against the dragon
+          }
+        }
+
+        bdmap.cityfight = 1;
+        Listener.clearListener("BDragon");
+        targetCursor.endact = 3;
+      } else if (targetCursor.endact === 3) {
+        gamestate.setMode("player");
+        document.getElementById('uiinterface').innerHTML = ``;
+        document.getElementById('uiinterface').style.backgroundColor = "";    
+        PC.endTurn();
+      }
     } else if (targetCursor.command === "u") {
       let retval = PerformRead();
       maintext.addText(retval["txt"]);
