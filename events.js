@@ -128,36 +128,13 @@ EventFunctions["BDragon"] = function(ev) {
     }
     if (IsObjectVisibleOnScreen(prince)) {
       maintext.delayedAddText("There is a heartbeat where nothing moves and the air stills, and then Lance's eyes roll back in his head and he collapses unconscious.");
-      maintext.delayedAddText('The dragon looks at him, and then at you. "How disappointing."');
-      maintext.delayedAddText('Then, it roars and lunges at you!');
+      gamestate.setMode("anykey");
+      targetCursor.command = "endact";
+      targetCursor.endact = 0;
       DU.gameflags.setFlag("endAct1");
-
-      prince.realgraphic = prince.getGraphicArray();
-      prince.setGraphicArray(["master_spritesheet.png","","-64","-800"]);
-      prince.setAttitude("neutral"); // so dragon doesn't attack him
-
-      let fieldeffect = localFactory.createTile("Sleep");
+      document.getElementById('uiinterface').innerHTML = `<img src="splash/CoverArt.png" />`;
+      document.getElementById('uiinterface').style.backgroundColor = "black";  
     
-      fieldeffect.setExpiresTime(-1);
-      prince.addSpellEffect(fieldeffect);
-   
-      Close_BDC_Gate(bdmap);
-
-      dragon.setAttitude("hostile");
-      dragon.setCurrentAI("seekPC-30");
-      dragon.setAggro(1);
-      dragon.setHP(50);
-      dragon.setMaxHP(50);
-      
-      let bdnpcs = prince.getHomeMap().npcs.getAll();
-      for (let i=0;i<bdnpcs.length;i++) {
-        if (bdnpcs[i].getName() === "TownGuardNPC") {
-          bdnpcs[i].setAggro(1); // make the guards help against the dragon
-        }
-      }
-
-      bdmap.cityfight = 1;
-      Listener.clearListener("BDragon");
     }
   }
 }
