@@ -288,6 +288,14 @@ function Atlas() {
     "BlueCarpetC" : 'b0',
     'ch' : "Chasm",
     "Chasm" : 'ch',
+    'WF' : "WSFloor",
+    "WSFloor" : 'WF',
+    'Ww' : "WSWall",
+    "WSWall" : "Ww",
+    'WV' : "WSWallVine",
+    "WSWallVine" : 'WV',
+    'WM' : "WSWallMold",
+    "WSWallMold" : 'WM',
   }
 
 }
