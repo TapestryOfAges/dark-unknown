@@ -3235,6 +3235,7 @@ function PerformInventoryScreen(code, restrict) {
     // use selected item
     let invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
     let inventorylist = MakeInventoryList(restrict);
+    inventorylist = SortInventoryList(inventorylist);
     let retval = {};
     if (targetCursor.command === "c") {
       // here for Scribe or Mend
