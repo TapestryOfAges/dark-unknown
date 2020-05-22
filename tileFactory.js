@@ -558,6 +558,26 @@ tileFactory.prototype.makeCaveColumnTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWSFloorTile = function() {
+  let newTile = new WSFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWSWallTile = function() {
+  let newTile = new WSWallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWSWallVineTile = function() {
+  let newTile = new WSWallVineTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWSWallMoldTile = function() {
+  let newTile = new WSWallMoldTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeHexFloorTile = function() {
   let newTile = new HexFloorTile();
   return newTile;
@@ -1005,6 +1025,11 @@ tileFactory.prototype.makeWoodpileTile = function() {
 
 tileFactory.prototype.makeCampfireTile = function() {
   let newTile = new CampfireTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCampfireExtinguishedTile = function() {
+  let newTile = new CampfireExtinguishedTile();
   return newTile;
 }
 
@@ -2550,6 +2575,11 @@ tileFactory.prototype.makeNatassaResearch2Tile = function() {
 
 tileFactory.prototype.makeToshinJournalTile = function() {
   let newTile = new ToshinJournalTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeArcheoJournalTile = function() {
+  let newTile = new ArcheoJournalTile();
   return newTile;
 }
 
