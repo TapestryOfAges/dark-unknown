@@ -347,17 +347,35 @@ GameStateData.prototype.loadGame = function(idx) {
       for (let ii in inv) {
         let invval = inv[ii];
         var equipment = universe[invval];
+
         if (equipment.checkType("Armor")) {
           DebugWrite("saveload", "adding " + equipment.name + "... ");
-          val.setArmor(equipment);
+          val.setEquipment("armor",equipment);
         }
         if (equipment.checkType("Weapon") && !equipment.checkType("Missile")) {
           DebugWrite("saveload", "adding " + equipment.name + "... ");
-          val.setWeapon(equipment);
+          val.setEquipment("weapon",equipment);
         }
         if (equipment.checkType("Missile")) {
           DebugWrite("saveload", "adding " + equipment.name + "... ");
-          val.setMissile(equipment);
+          val.setEquipment("missile",equipment);
+        }
+        if (equipment.checkType("Amulet")) {
+          DebugWrite("saveload", "adding " + equipment.name + "... ");
+          val.setEquipment("amulet",equipment);
+        }
+        if (equipment.checkType("Circlet")) {
+          DebugWrite("saveload", "adding " + equipment.name + "... ");
+          val.setEquipment("circlet",equipment);
+        }
+        if (equipment.checkType("Ring")) {
+          DebugWrite("saveload", "adding " + equipment.name + "... ");
+          if (hasring) {
+            val.setEquipment("ring2",equipment);
+          } else {
+            val.setEquipment("ring1",equipment);
+            hasring = 1;
+          }
         }
       }
       DebugWrite("saveload", "<br />");

@@ -462,10 +462,12 @@ function SaveChar() {
   let dagger = localFactory.createTile("Dagger");
   PC.addToInventory(dagger, 1);
 
-  PC.setEquipment("weapon",dagger);
+  dagger.equipMe(PC);
+//  PC.setEquipment("weapon",dagger);
   let armor = localFactory.createTile("ClothArmor");
   PC.addToInventory(armor, 1);
-  PC.setEquipment("armor",armor);
+  armor.equipMe(PC);
+//  PC.setEquipment("armor",armor);
   let homekey = localFactory.createTile("HomeKey");
   PC.addToInventory(homekey,1);
 

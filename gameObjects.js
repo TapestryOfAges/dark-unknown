@@ -13890,6 +13890,7 @@ EquipableItemObject.prototype.setEquippedTo = function(newwho) {
     this.equippedTo = newwho;
     return 1;
   }
+  this.equippedTo = "";
   return 0;
 }
 
@@ -13906,7 +13907,7 @@ EquipableItemObject.prototype.equipMe = function(who) {
     }
     this.setEquippedTo(who);
     if (typeof this.onEquip === "function") { this.onEquip(who); }
-    who.setArmor(this);
+    who.setEquipment("armor",this);
   }
   
   else if (this.checkType("Missile")) {
@@ -13919,7 +13920,7 @@ EquipableItemObject.prototype.equipMe = function(who) {
     }
     this.setEquippedTo(who);
     if (typeof this.onEquip === "function") { this.onEquip(who); }
-    who.setMissile(this);
+    who.setEquipment("missile",this);
   }
 
   else if (this.checkType("Weapon")) {
@@ -13929,7 +13930,7 @@ EquipableItemObject.prototype.equipMe = function(who) {
     }
     this.setEquippedTo(who);
     if (typeof this.onEquip === "function") { this.onEquip(who); }
-    who.setWeapon(this);
+    who.setEquipment("weapon",this);
   }
 
   else if (this.checkType("Amulet")) {
@@ -13980,7 +13981,7 @@ EquipableItemObject.prototype.unEquipMe = function() {
   
   if (this.checkType("Armor")) {
     if (who.getArmor() === this) {
-      who.setArmor("");
+      who.setEquipment("armor","");
       if (typeof this.onUnequip === "function") { this.onUnequip(who); }
     } else { 
       return 0;
@@ -13988,7 +13989,7 @@ EquipableItemObject.prototype.unEquipMe = function() {
   }
   else if (this.checkType("Weapon")) {
     if (who.getWeapon() === this) {
-      who.setWeapon("");
+      who.setEquipment("weapon","");
       if (typeof this.onUnequip === "function") { this.onUnequip(who); }
     } else {
       return 0;
@@ -13996,7 +13997,7 @@ EquipableItemObject.prototype.unEquipMe = function() {
   }
   else if (this.checkType("Missile")) {
     if (who.getMissile() === this) {
-      who.setMissile("");
+      who.setEquipment("missile","");
       if (typeof this.onUnequip === "function") { this.onUnequip(who); }
     } else {
       return 0;
@@ -16412,16 +16413,7 @@ NPCObject.prototype.getEquipment = function(which) {
 
 NPCObject.prototype.setEquipment = function(which,what) {
   which = which.toLowerCase();
-  if (which === "armor") {
-    return this.setArmor(what);
-  }
-  else if (which === "weapon") {
-    return this.setWeapon(what);
-  }
-  else if (which === "missile") {
-    return this.setMissile(what);
-  }
-  else if ((which === "amulet") || (which === "circlet") || (which === "ring1") || (which === "ring2")) {
+  if ((which === "armor") || (which === "weapon") || (which === "missile") || (which === "amulet") || (which === "circlet") || (which === "ring1") || (which === "ring2")) {
     if (what) {
       let type = which;
       if ((type === "ring1") || (type === "ring2")) { type = "ring"; }
@@ -16461,45 +16453,6 @@ NPCObject.prototype.getWeapon = function() {
 NPCObject.prototype.getMissile = function() {
   if (this.equipment.missile) { return this.equipment.missile; }
   else { return ""; } 
-}
-
-NPCObject.prototype.setArmor = function(newarmor) {
-  if (newarmor) {
-    if (newarmor.checkType("Armor")) {
-      this.equipment.armor = newarmor;
-      return 1;
-    }
-    return 0;
-  } else { 
-    this.equipment.armor = "";
-    return 1;
-  }
-}
-
-NPCObject.prototype.setWeapon = function(newweapon) {
-  if (newweapon) {
-    if (newweapon.checkType("Weapon")) {
-      this.equipment.weapon = newweapon;
-      return 1;
-    }
-    return 0;
-  } else {
-    this.equipment.weapon = "";
-    return 1;
-  }
-}
-
-NPCObject.prototype.setMissile = function(newmissile) {
-  if (newmissile) {
-    if (newmissile.checkType("Missile")) {
-      this.equipment.missile = newmissile;
-      return 1;
-    }
-    return 0;
-  } else {
-    this.equipment.missile = "";
-    return 1;
-  }
 }
 
 NPCObject.prototype.getHitChance = function(atkwith) {
