@@ -295,11 +295,13 @@ function DoAction(code, ctrl) {
       }
     } else if (targetCursor.command === "endact") {
       if (targetCursor.endact === 1) {
-        maintext.delayedAddText('The dragon looks at him, and then at you. "How disappointing."');
+        maintext.addText('The dragon looks at him, and then at you. "How disappointing."');
         targetCursor.endact = 2;
       } else if (targetCursor.endact === 2) {
-        maintext.delayedAddText('Then, it roars and lunges at you!');      
+        maintext.addText('Then, it roars and lunges at you!');      
 
+        let prince = targetCursor.prince;
+        delete targetCursor.prince;
         prince.realgraphic = prince.getGraphicArray();
         prince.setGraphicArray(["master_spritesheet.png","","-64","-800"]);
         prince.setAttitude("neutral"); // so dragon doesn't attack him
@@ -309,8 +311,10 @@ function DoAction(code, ctrl) {
         fieldeffect.setExpiresTime(-1);
         prince.addSpellEffect(fieldeffect);
    
-        Close_BDC_Gate(bdmap);
+        Close_BDC_Gate(PC.getHomeMap());
 
+        let dragon = targetCursor.dragon;
+        delete targetCursor.dragon;
         dragon.setAttitude("hostile");
         dragon.setCurrentAI("seekPC-30");
         dragon.setAggro(1);
@@ -324,13 +328,16 @@ function DoAction(code, ctrl) {
           }
         }
 
-        bdmap.cityfight = 1;
+        PC.getHomeMap().cityfight = 1;
         Listener.clearListener("BDragon");
         targetCursor.endact = 3;
       } else if (targetCursor.endact === 3) {
         gamestate.setMode("player");
         document.getElementById('uiinterface').innerHTML = ``;
         document.getElementById('uiinterface').style.backgroundColor = "";    
+        document.getElementById('uiinterface').style.backgroundImage = "";    
+        maintext.setInputLine("&gt;");
+        maintext.drawTextFrame();   
         PC.endTurn();
       }
     } else if (targetCursor.command === "u") {
@@ -793,7 +800,7 @@ function DoAction(code, ctrl) {
       delete targetCursor.invskiprow;
       delete targetCursor.invlength;
       delete targetCursor.restrictTo;
-      if (!targetCursor.hasOwnProperty("spellName") || ( targetCursor.spellName !== "Peer")) {
+      if ((targetCursor.command !== "endact") && (!targetCursor.hasOwnProperty("spellName") || ( targetCursor.spellName !== "Peer"))) {
         document.getElementById('uiinterface').innerHTML = "";
         document.getElementById('uiinterface').style.backgroundColor = "";
       }
@@ -828,11 +835,15 @@ function DoAction(code, ctrl) {
         maintext.drawTextFrame();
       } 
       else if (response["usefin"] === 4) {
-        // scroll was used, spell cast is looking for a target
-        maintext.setInputLine(response["input"]);
-        maintext.addText(response["txt"]);
-        // gamestate set by spell
-        maintext.drawTextFrame();
+        if (targetCursor.command === "endact") {
+          // shouldn't have to do anything, I guess
+        } else {
+          // scroll was used, spell cast is looking for a target
+          maintext.setInputLine(response["input"]);
+          maintext.addText(response["txt"]);
+          // gamestate set by spell
+          maintext.drawTextFrame();
+        }
       }
 
     }

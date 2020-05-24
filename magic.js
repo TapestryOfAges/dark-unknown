@@ -3205,7 +3205,7 @@ magic[SPELL_NEGATE_MAGIC_LEVEL][SPELL_NEGATE_MAGIC_ID].executeSpell = function(c
     for (let j=0;j<effects.length;j++) {
       if ((effects[j].getLevel() > 0) && (effects[j].getExpiresTime() > -1)) {
         DebugWrite("magic", "Negate magic has dispelled " + effects[j].getName() + " from " + everyone[i].getName() + "<br />");
-        effval.endEffect();
+        effects[j].endEffect();
       }
     }
   }

@@ -129,12 +129,22 @@ EventFunctions["BDragon"] = function(ev) {
     if (IsObjectVisibleOnScreen(prince)) {
       maintext.delayedAddText("There is a heartbeat where nothing moves and the air stills, and then Lance's eyes roll back in his head and he collapses unconscious.");
       gamestate.setMode("anykey");
+      maintext.setInputLine("&gt;[MORE]");
+      maintext.drawTextFrame(); 
       targetCursor.command = "endact";
-      targetCursor.endact = 0;
+      targetCursor.prince = prince;
+      targetCursor.dragon = dragon;
+      targetCursor.endact = 1;
       DU.gameflags.setFlag("endAct1");
-      document.getElementById('uiinterface').innerHTML = `<img src="splash/CoverArt.png" />`;
-      document.getElementById('uiinterface').style.backgroundColor = "black";  
-    
+      let uii = document.getElementById('uiinterface');
+      if (uii) {
+        uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
+        uii.style.backgroundColor = "";
+        uii.style.backgroundImage = `url('graphics/splash/CoverArt.png')`;  
+//        console.log(uii);
+      } else {
+        console.log("what happened?"); 
+      }
     }
   }
 }

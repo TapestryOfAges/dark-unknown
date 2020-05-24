@@ -283,6 +283,8 @@ function PerformActEnd() {
     FadeOut(1);
     maintext.addText("The great dragon's body strikes the ground with a crash, and a thundering wave of psychic energy overwhelms your mind. The room fades around you!");
     gamestate.setMode("anykey");
+    maintext.setInputLine("&gt;[MORE]");
+    maintext.drawTextFrame(); 
     DU.gameflags.setFlag("intermission",1);
     endact.setPower(2);
   } else if (endact.getPower() === 2) {
@@ -290,6 +292,7 @@ function PerformActEnd() {
     endact.setPower(3);
   } else if (endact.getPower() === 3) {
     maintext.addText(`You force yourself back to your senses, and with a groan open your eyes once more.`);
+    let returnmap;
     if (maps.getMap("blackdragon")) {
       returnmap = maps.getMap("blackdragon");
       // though again, this shouldn't be in memory
