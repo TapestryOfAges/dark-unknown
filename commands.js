@@ -2198,7 +2198,15 @@ function performZstats(code) {
   if (targetCursor.restrictTo) { restrict = targetCursor.restrictTo; }
 
   if ((code === 27) || (code === 90)) { // ESC or Z again
-    retval["fin"] = 0;
+    if ((targetCursor.command === "c") && (targetCursor.spellName === "Empower")) {
+      retval["fin"] = 0;
+      retval["txt"] = "Mix these reagents in the mortar?";
+      retval["input"] = "&gt; (Y/N) ";
+      targetCursor.finalized = 1;
+      return retval;
+    } else {
+      retval["fin"] = 0;
+    }
   }
   else if ((code === 37) || (code === 186)) {  // previous page
     if (targetCursor.page === 2) { 
@@ -3170,6 +3178,11 @@ function DisplayInventory(restrictTo) {
     if (PC.isEquipped(inventorylist[i])) {
       document.getElementById('inv_'+writetox+"x"+writetoy).style.borderColor = "#000099";
     }
+    if ((targetCursor.command === "c") && (targetCursor.spellName === "Empower")) {
+      if (targetCursor.chosenReagents[inventorylist[i].getName()]) {
+        document.getElementById('inv_'+writetox+"x"+writetoy).style.borderColor = "#000099";
+      }
+    }
   }
 
   let invselect = targetCursor.invskiprow*8 + targetCursor.invy*8 + targetCursor.invx;
@@ -3246,6 +3259,17 @@ function PerformInventoryScreen(code, restrict) {
           retval = PerformMend(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
         } else if (targetCursor.spellName === "AudachtaScribe") {
           retval = PerformAudachtaScribe(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+        } else if (targetCursor.spellName === "Empower") {
+          if (targetCursor.restrictTo === "reagents") {
+            // picking regs now, not what to enchant
+            if(targetCursor.chosenReagents[tgt.getName()]) { delete targetCursor.chosenReagents[tgt.getName()]; }
+            else { targetCursor.chosenReagents[tgt.getName()] = 1; }
+            DisplayInventory("reagents");
+            retval["fin"] = 0;
+            return retval;
+          } else {
+            retval = PerformEmpower(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, tgt);
+          }
         }
       } else {
         retval["fin"] = 0;
@@ -3323,6 +3347,8 @@ function MakeInventoryList(restrictTo) {
       else if (typeof PCinv[i].use === "function") { inventorylist.usable.push(PCinv[i]); }
     } else if (restrictTo === "audachta") {
       if (PCinv[i].checkType("audachta")) { inventorylist.audachta.push(PCinv[i]); }
+    } else if (restrictTo === "reagent") {
+      if (PCinv[i].checkType("reagent")) { inventorylist.reagent.push(PCinv[i]); }
     } else if (restrictTo === "broken") {
       if (typeof PCinv[i].getBroken === "function") { 
         if (PCinv[i].getBroken()) {inventorylist.broken.push(PCinv[i]); }
