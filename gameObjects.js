@@ -9104,7 +9104,10 @@ BlackDragonLadderWallTile.prototype.use = function(who) {
     }
   } else {
     let ladder = localFactory.createTile("LadderUp");
-    ladder.setEnterMap("blackdragon4", this.getx()+1, this.gety());
+    let destmap = "blackdragon4";
+    if (this.getHomeMap().getName() === "blackdragon_int3") { destmap = "blackdragon_int4"; }
+    if (this.getHomeMap().getName() === "blackdragon_act2_3") { destmap = "blackdragon_act2_4"; }
+    ladder.setEnterMap(destmap, this.getx()+1, this.gety());
     this.getHomeMap().placeThing(this.getx()+1,this.gety(),ladder);
     retval["txt"] = "The wall rotates in place, revealing a ladder attached to the wall!";
     this.rotated = 1;
@@ -15176,11 +15179,11 @@ NPCObject.prototype.processDeath = function(droploot){
           setTimeout(function() {
             maintext.addText("When you come to, you are on the floor, and the battle has ended.");
             setTimeout(function() {
-              if (maps.getMap("blackdragon")) {
-                returnmap = maps.getMap("blackdragon");
+              if (maps.getMap("blackdragon_int")) {
+                returnmap = maps.getMap("blackdragon_int");
                 // though again, this shouldn't be in memory
               } else {
-                returnmap = maps.addMap("blackdragon");
+                returnmap = maps.addMap("blackdragon_int");
               }
               AdjustStartingLocations(returnmap);
               let taran = FindNPCByName("Taran",returnmap);

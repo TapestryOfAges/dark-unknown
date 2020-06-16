@@ -293,11 +293,11 @@ function PerformActEnd() {
   } else if (endact.getPower() === 3) {
     maintext.addText(`You force yourself back to your senses, and with a groan open your eyes once more.`);
     let returnmap;
-    if (maps.getMap("blackdragon")) {
-      returnmap = maps.getMap("blackdragon");
+    if (maps.getMap("blackdragon_int")) {
+      returnmap = maps.getMap("blackdragon_int");
       // though again, this shouldn't be in memory
     } else {
-      returnmap = maps.addMap("blackdragon");
+      returnmap = maps.addMap("blackdragon_int");
     }
     AdjustStartingLocations(returnmap);
     let taran = FindNPCByName("Taran",returnmap);
