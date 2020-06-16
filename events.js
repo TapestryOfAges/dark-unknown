@@ -140,11 +140,17 @@ EventFunctions["BDragon"] = function(ev) {
       if (uii) {
         uii.innerHTML = `<img src="graphics/spacer.gif" width="416" height="416" />`;
         uii.style.backgroundColor = "";
+        uii.style.opacity = 0;
         uii.style.backgroundImage = `url('graphics/splash/CoverArt.png')`;  
+        uii.classList.add("titlefadein");
+        setTimeout(function() { uii.classList.remove("titlefadein"); uii.style.opacity = 1; }, 1700);
 //        console.log(uii);
       } else {
         console.log("what happened?"); 
       }
+      if (DU.gameflags.getFlag("music")) {
+        DUPlayMusic("Tension", {fade:1});
+      }        
     }
   }
 }
