@@ -325,6 +325,9 @@ function DoAction(code, ctrl) {
         for (let i=0;i<bdnpcs.length;i++) {
           if (bdnpcs[i].getName() === "TownGuardNPC") {
             bdnpcs[i].setAggro(1); // make the guards help against the dragon
+            let wpn = bdnpcs[i].getEquipment("weapon");
+            wpn.setDamage("2d4+1");
+            wpn.setStrDamage(.5);
           }
         }
 
