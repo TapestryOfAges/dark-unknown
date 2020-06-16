@@ -89,7 +89,7 @@ function duplicate_conv() {
   
     select_place(curr_place)
     $("#pickconv").val(convname);
-      
+    select_conv();  
   }
 }
 
