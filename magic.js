@@ -2951,6 +2951,70 @@ function PerformSwordstrike(caster, infused, free, tgt) {
 }
 
 // Empower
+magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID].getLongDesc = function() {
+  return "Create a magic item.";
+}
+
+magic[SPELL_EMPOWER_LEVEL][SPELL_EMPOWER_ID].executeSpell = function(caster, infused, free, tgt) {
+  DebugWrite("magic", "Casting Empower.<br />");
+
+  let resp = {fin:1};
+
+  if (caster !== PC) {
+    resp = PerformEmpower(caster, infused, free, tgt);   // not that AIs will ever cast Empower
+    return resp;
+  }
+
+  if (caster.getHomeMap().getName().indexOf("abyss") > -1) {
+    retval["txt"] = "You cannot do that here.";
+    retval["fin"] = 2;
+    return retval;
+  }
+  
+  CreateTargetCursor({sticky: 0, command:'c',spellName:'Empower',spelldetails:{ caster: caster, infused: infused, free: free, targettype: "feature"}, targetlimit: (VIEWSIZEX -1)/2, targetCenterlimit: 1});
+  resp["txt"] = "";
+  resp["input"] = "&gt; Choose target- ";
+  resp["fin"] = 4;  // was 0
+  gamestate.setMode("target");
+  return resp;
+
+}
+
+function PerformEmpower(caster, infused, free, tgt) {
+  let retval = { fin: 1};
+  if (!tgt.enchantable) {
+    retval.txt = "That object is not able to hold an enchantment.";
+    retval.input = "&gt;";
+    return retval;
+  }
+  let mortar = caster.checkInventory("Mortar");
+  if ((caster.checkInventory("DragonBone")) && (caster.checkInventory("CrystalMortar"))) {
+    mortar = caster.checkInventory("CrystalMortar");
+  }
+  if (!mortar) {
+    retval.txt = "You have no suitable mortar to treat the reagents in.";
+    retval.input ="&gt;";
+    return retval;
+  }
+  let mademenu = MakeInventoryList("reagent");
+  if (!mademenu.length) { 
+    retval.txt = "You have no reagents to mix for this spell.";
+    retval.input = "&gt;";
+    return retval;
+  }
+  gamestate.setMode("zstats");
+  targetCursor.restrictTo = "reagents";
+  targetCursor.page = 2;
+  targetCursor.chosenReagents = {};
+  
+  DisplayInventory("reagents");
+
+  retval["txt"] = "";
+  retval["input"] = "&gt; Include which reagents (press ESC when done): ";
+  retval["fin"] = 3;	
+
+  return retval;
+}
 
 // Explosion
 magic[SPELL_EXPLOSION_LEVEL][SPELL_EXPLOSION_ID].getLongDesc = function() {
@@ -4207,40 +4271,68 @@ function PerformSpellcast() {
     }
     return resp;
   } else if (targetCursor.spelldetails.targettype === "feature") {
-    if ((targetCursor.x === targetCursor.spelldetails.caster.getx()) && (targetCursor.y === targetCursor.spelldetails.caster.gety())) {
-      let mademenu = MakeInventoryList("broken");
-      if (!mademenu.length) {
-        resp["fin"] = 0;
-        resp["txt"] = "You have nothing in need of mending.";
-        resp["input"] = "&gt;";
-        document.getElementById(targetCursor.tileid).innerHTML = targetCursor.basetile;
+    if (targetCursor.spellName === "Mend") {
+      if ((targetCursor.x === targetCursor.spelldetails.caster.getx()) && (targetCursor.y === targetCursor.spelldetails.caster.gety())) {
+        let mademenu = MakeInventoryList("broken");
+        if (!mademenu.length) {
+          resp["fin"] = 0;
+          resp["txt"] = "You have nothing in need of mending.";
+          resp["input"] = "&gt;";
+          document.getElementById(targetCursor.tileid).innerHTML = targetCursor.basetile;
+          delete targetCursor.spellName;
+
+          return resp;
+        }
+        gamestate.setMode("zstats");
+        targetCursor.restrictTo = "broken";
+        targetCursor.page = 2;
+        
+        DisplayInventory("broken");
+  
+        resp["txt"] = "";
+        resp["input"] = "&gt; Cast Mending on: ";
+        resp["fin"] = 3;	
+
+  	  } else {
+	      let thetile = targetCursor.spelldetails.caster.getHomeMap().getTile(targetCursor.x, targetCursor.y);
+	      let fea = thetile.getTopFeature();
+	      if (fea && fea.breakable && fea.getBroken()) {
+	        resp = PerformMend(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, fea);
+  	    } else {
+          resp["fin"] = 0;
+          resp["txt"] = "That is not in need of mending.";
+          resp["input"] = "&gt;";
+        }	 
+        document.getElementById(targetCursor.tileid).innerHTML = targetCursor.basetile;     
         delete targetCursor.spellName;
-
-        return resp;
       }
+    } else if (targetCursor.spellName === "Empower") {
+      if ((targetCursor.x === targetCursor.spelldetails.caster.getx()) && (targetCursor.y === targetCursor.spelldetails.caster.gety())) {
+        gamestate.setMode("zstats");
+        targetCursor.restrictTo = "";
+        targetCursor.page = 2;
+        
+        DisplayInventory();
+  
+        resp["txt"] = "";
+        resp["input"] = "&gt; Empower what: ";
+        resp["fin"] = 3;	
 
-      gamestate.setMode("zstats");
-      targetCursor.restrictTo = "broken";
-      targetCursor.page = 2;
-      
-      DisplayInventory("broken");
+  	  } else {
+	      let thetile = targetCursor.spelldetails.caster.getHomeMap().getTile(targetCursor.x, targetCursor.y);
+	      let fea = thetile.getTopFeature();
+	      if (fea && fea.checkType("item")) {
+	        resp = PerformEmpower(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, fea);
+  	    } else {
+          resp["fin"] = 0;
+          resp["txt"] = "That cannot be empowered.";
+          resp["input"] = "&gt;";
+        }	 
+        document.getElementById(targetCursor.tileid).innerHTML = targetCursor.basetile;     
+        delete targetCursor.spellName;
+      }
+    }
 
-		  resp["txt"] = "";
-  		resp["input"] = "&gt; Cast Mending on: ";
-	  	resp["fin"] = 3;	
-	  } else {
-	    let thetile = targetCursor.spelldetails.caster.getHomeMap().getTile(targetCursor.x, targetCursor.y);
-	    let fea = thetile.getTopFeature();
-	    if (fea && fea.breakable && fea.getBroken()) {
-	      resp = PerformMend(targetCursor.spelldetails.caster, targetCursor.spelldetails.infused, targetCursor.spelldetails.free, fea);
-	    } else {
-        resp["fin"] = 0;
-        resp["txt"] = "That is not in need of mending.";
-        resp["input"] = "&gt;";
-      }	 
-      document.getElementById(targetCursor.tileid).innerHTML = targetCursor.basetile;     
-      delete targetCursor.spellName;
-	  }
 		
 		return resp;
   } else {
