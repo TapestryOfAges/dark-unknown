@@ -40,7 +40,7 @@ function select_place(pname) {
       if (!frst) { frst = idx; }
     }
   });
-  txt = txt + "</select></form> <a href='javascript:new_conv()'>New Conversation</a> <a href='javascript:del_conv()'>Delete Conversation</a> <a href='javascript:duplicate_conv()'>Duplicate Conversation</a></p>";
+  txt = txt + "</select></form> <a href='javascript:new_conv()'>New Conversation</a> <a href='javascript:del_conv()'>Delete Conversation</a> <a href='javascript:duplicate_conv()'>Duplicate Conversation</a> <a href='javascript:duplicate_conv(1)'>(with link)</a></p>";
   $('#convs').html(txt);
 }
 
@@ -74,7 +74,7 @@ function del_conv() {
   }
 }
 
-function duplicate_conv() {
+function duplicate_conv(linkto) {
   let thisconv = document.convform.pickconv.value;
   if (thisconv) {
     var convname = "";
@@ -87,6 +87,9 @@ function duplicate_conv() {
     let jsc = JSON.stringify(conversations[thisconv]);
     conversations[convname] = JSON.parse(jsc);
   
+    if (linkto) {
+      conversations[thisconv]["_linkedto"] = convname;
+    }
     select_place(curr_place)
     $("#pickconv").val(convname);
     select_conv();  
@@ -98,10 +101,10 @@ function select_conv() {
   last_unknown_idx = 0;
   if (!thisconv) { return; }
 
-  var txt = "<div style='margin-10'><form name='speechform'><table cellpadding='2' cellspacing='0' border='1'>";
+  let linkedto = "";
+  if (conversations[thisconv]["_linkedto"]) { linkedto = "(Linked to: " + conversations[thisconv]["_linkedto"] + ")"; }
+  let txt = `<div style='margin-10'><form name='speechform'><p>${thisconv} ${linkedto}</p><table cellpadding='2' cellspacing='0' border='1'>`;
   txt = txt + "<th>#</th><th>KEYWORD</th><th>FLAG</th><th>RESPONSE</th><th>TRIGGERS</th><th></th></tr>";
-//  if (conversations[thisconv]._start) { txt = txt + show_response(thisconv, "_start"); }
-//  if (conversations[thisconv]._confused) { txt = txt + show_response(thisconv, "_confused"); }
 
   if ((conversations[thisconv]["name"] && conversations[thisconv]["name"].editor_idx) || (conversations[thisconv]["_start"] && conversations[thisconv]["_start"].editor_idx)) {
     var conv_array = [];
@@ -147,7 +150,6 @@ function select_conv() {
     });
   }
   
-//  if (conversations[thisconv].bye) { txt = txt + show_response(thisconv, "bye"); }
   txt = txt + "</table></form><p><a href='javascript:edit_response(\""+ thisconv + "\", \"\");'>New Response</a></p></div>";
   $('#mainbody').html(txt);
 }
@@ -355,6 +357,11 @@ function edit_response(convname, keyword) {
   } 
   document.responseeditpopup.theconv.value = convname;
   document.responseeditpopup.location.value = conversations[convname]._location;
+  if (conversations[convname]["_linkedto"]) {
+    document.linkedbutton.style.display = "inline";
+  } else {
+    document.linkedbutton.style.display = "none";
+  }
 }
 
 function submitEditResponse(val) {
