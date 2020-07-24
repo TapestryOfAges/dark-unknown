@@ -108,6 +108,13 @@ div.zstats table { color:white;
                 margin-top:0px;
 }
 
+div.zstats div { color:white;
+	font-family:"Commodore64";
+	 font-size:16pt;
+	 line-height:20px;
+	margin-top:0px;
+}
+
 div.maintextframe { font-family:"Commodore64";
 	                  font-size:16pt;
 	                  color: white; 
@@ -157,7 +164,7 @@ tr.runecooldown td { color: #888888; }
 
 td.selected { color:#3ff }
 
-td.circleheader { font-weight:bold; }
+td.circleheader { font-weight:normal; }
 
 td.spellstat { padding-left: 15px; }
 
