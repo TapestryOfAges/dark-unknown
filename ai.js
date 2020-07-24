@@ -2468,7 +2468,7 @@ function GetBreathTarget(who) {
   if (PC.getHomeMap() === who.getHomeMap()) { npcs.push(PC); }
   let foes = [];
   for (let i=0;i<npcs.length;i++) {
-    if (npcs[i].getAttitude() !== who.getAttitude()) { 
+    if ((npcs[i].getAttitude() !== who.getAttitude()) && (npc[i].getAttitude() !== "neutral")) { 
       if (GetDistance(npcs[i].getx(),npcs[i].gety(),who.getx(),who.gety()) <= 5) {  
         foes.push(npcs[i]); 
       }
