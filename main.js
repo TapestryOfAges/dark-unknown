@@ -341,6 +341,7 @@ function DoAction(code, ctrl) {
         document.getElementById('uiinterface').style.backgroundImage = "";    
         maintext.setInputLine("&gt;");
         maintext.drawTextFrame();   
+        DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
         PC.endTurn();
       }
     } else if (targetCursor.command === "u") {
