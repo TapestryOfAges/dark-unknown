@@ -1160,3 +1160,127 @@ mappages["blackdragon_int4"].returny = '74';
 mappages["blackdragon_int4"].returninfused = '0';
 mappages["blackdragon_int4"].linkedMaps = ["blackdragon_int2","blackdragon_int3","blackdragon_int"];
 mappages["blackdragon_int4"].editorLabels = '{}';
+
+mappages["bdcave"] = {};
+mappages["bdcave"].terrain = [];
+ mappages["bdcave"].terrain[0] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["bdcave"].terrain[1] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["bdcave"].terrain[2] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["bdcave"].terrain[3] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["bdcave"].terrain[4] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK';
+ mappages["bdcave"].terrain[5] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cw cw cw cw cw BK BK BK BK BK BK BK BK BK';
+ mappages["bdcave"].terrain[6] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
+ mappages["bdcave"].terrain[7] = 'BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
+ mappages["bdcave"].terrain[8] = 'BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK';
+ mappages["bdcave"].terrain[9] = 'BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cw cw cw cf cf cf cf cf cf cw cw BK BK BK BK BK';
+mappages["bdcave"].terrain[10] = 'BK BK BK BK BK BK cw cw cw cf cf cf cf cf cw cw cw BK cw cw cw cf cf cf cf cf cw BK BK BK BK BK';
+mappages["bdcave"].terrain[11] = 'BK BK BK BK BK cw cw cf cf cf cf cf cf cf cw BK BK BK BK BK cw cw cf cf cf cf cw BK BK BK BK BK';
+mappages["bdcave"].terrain[12] = 'BK BK BK cw cw cw cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK';
+mappages["bdcave"].terrain[13] = 'cw cw cw cw cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK';
+mappages["bdcave"].terrain[14] = 'cf cf cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK';
+mappages["bdcave"].terrain[15] = 'cf cf cf cf cf cf cf cf cw cw cw BK BK BK BK BK BK BK BK BK cw cw cf cf cf cw cw BK BK BK BK BK';
+mappages["bdcave"].terrain[16] = 'cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cw BK BK BK BK BK BK';
+mappages["bdcave"].terrain[17] = 'cw cw cf cf cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cw cw BK BK BK BK BK BK';
+mappages["bdcave"].terrain[18] = 'BK cw cw cw cw BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cw BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[19] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[20] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[21] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[22] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[23] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[24] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[25] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cf cf cf cf cf cf cf cf cf cw cw BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[26] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cf cf cf cf cf cf cf cf cw BK BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[27] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cf cf cf cf cf cw cw BK BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[28] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK cw cw cw cw cw cw cw BK BK BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[29] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[30] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+mappages["bdcave"].terrain[31] = 'BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK BK';
+
+mappages["bdcave"].features = [];
+mappages["bdcave"].features[0] = {name : 'Gold', x : 15, y : 22};
+mappages["bdcave"].features[1] = {name : 'Gold', x : 15, y : 23};
+mappages["bdcave"].features[2] = {name : 'Gold', x : 15, y : 23};
+mappages["bdcave"].features[3] = {name : 'Gold', x : 15, y : 24};
+mappages["bdcave"].features[4] = {name : 'Gold', x : 15, y : 24};
+mappages["bdcave"].features[5] = {name : 'Gold', x : 15, y : 25};
+mappages["bdcave"].features[6] = {name : 'Gold', x : 15, y : 25};
+mappages["bdcave"].features[7] = {name : 'Gold', x : 15, y : 26};
+mappages["bdcave"].features[8] = {name : 'Gold', x : 15, y : 26};
+mappages["bdcave"].features[9] = {name : 'Gold', x : 16, y : 26};
+mappages["bdcave"].features[10] = {name : 'Gold', x : 16, y : 26};
+mappages["bdcave"].features[11] = {name : 'Gold', x : 17, y : 26};
+mappages["bdcave"].features[12] = {name : 'Gold', x : 17, y : 26};
+mappages["bdcave"].features[13] = {name : 'Gold', x : 17, y : 27};
+mappages["bdcave"].features[14] = {name : 'Gold', x : 17, y : 27};
+mappages["bdcave"].features[15] = {name : 'Gold', x : 18, y : 27};
+mappages["bdcave"].features[16] = {name : 'Gold', x : 18, y : 27};
+mappages["bdcave"].features[17] = {name : 'Gold', x : 18, y : 26};
+mappages["bdcave"].features[18] = {name : 'Gold', x : 18, y : 26};
+mappages["bdcave"].features[19] = {name : 'Gold', x : 18, y : 25};
+mappages["bdcave"].features[20] = {name : 'Gold', x : 17, y : 25};
+mappages["bdcave"].features[21] = {name : 'Gold', x : 17, y : 25};
+mappages["bdcave"].features[22] = {name : 'Gold', x : 17, y : 24};
+mappages["bdcave"].features[23] = {name : 'Gold', x : 17, y : 24};
+mappages["bdcave"].features[24] = {name : 'Gold', x : 16, y : 24};
+mappages["bdcave"].features[25] = {name : 'Gold', x : 16, y : 24};
+mappages["bdcave"].features[26] = {name : 'Gold', x : 16, y : 25};
+mappages["bdcave"].features[27] = {name : 'Gold', x : 16, y : 25};
+mappages["bdcave"].features[28] = {name : 'Gold', x : 14, y : 23};
+mappages["bdcave"].features[29] = {name : 'Gold', x : 14, y : 24};
+mappages["bdcave"].features[30] = {name : 'Gold', x : 14, y : 24};
+mappages["bdcave"].features[31] = {name : 'Gold', x : 14, y : 25};
+mappages["bdcave"].features[32] = {name : 'Gold', x : 14, y : 25};
+mappages["bdcave"].features[33] = {name : 'Chest', x : 15, y : 24, locked : 0, lootgroup : 'Level6', lootedid : 'bdcave2'};
+mappages["bdcave"].features[34] = {name : 'Chest', x : 16, y : 25, locked : 0, lootgroup : 'Level6', lootedid : 'bdcave3'};
+mappages["bdcave"].features[35] = {name : 'Chest', x : 15, y : 23, locked : 0, lootgroup : 'Level6', lootedid : 'bdcave1'};
+mappages["bdcave"].features[36] = {name : 'OrbIntelligence', x : 14, y : 25};
+
+
+mappages["bdcave"].npcs = [];
+mappages["bdcave"].npcs[0] = {name : 'DaemonNPC', x : 23, y : 10, skintone: '1'};
+
+mappages["bdcave"].desc = "Small Cave";
+mappages["bdcave"].longdesc = 'As you step into the cave, you are assailed by a strong psychic assault. Nightmare images flutter against your mind for what must be only moments, and then are gone, and the feeling passes. This is not, it seems, a place where you are welcome.';
+mappages["bdcave"].music = 'Cave';
+mappages["bdcave"].savename = `Small Cave`;
+mappages["bdcave"].exitmap = 'darkunknown';
+mappages["bdcave"].exitx = '47';
+mappages["bdcave"].exity = '74';
+mappages["bdcave"].wraps = '';
+mappages["bdcave"].enterx = '65';
+mappages["bdcave"].entery = '70';
+mappages["bdcave"].seeBelow = '';
+mappages["bdcave"].lightLevel = 'dark';
+mappages["bdcave"].alwaysRemember = '0';
+mappages["bdcave"].scale = '1';
+mappages["bdcave"].underground = '0';
+mappages["bdcave"].undergroundDesc = '';
+mappages["bdcave"].enterscript = '';
+mappages["bdcave"].entertestscript = '';
+mappages["bdcave"].exitscript = '';
+mappages["bdcave"].exittestscript = '';
+mappages["bdcave"].returnmap = 'darkunknown';
+mappages["bdcave"].returnx = '47';
+mappages["bdcave"].returny = '74';
+mappages["bdcave"].returninfused = '0';
+mappages["bdcave"].linkedMaps = [""];
+mappages["bdcave"].editorLabels = '{}';
+
+mappages["bdcave"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    let visited = 0;
+    if (DU.gameflags.getFlag("lid_bdcave1") || DU.gameflags.getFlag("lid_bdcave2") || DU.gameflags.getFlag("lid_bdcave3")) {
+      visited = 1;
+    }
+    let fea = mapref.features.getAll();
+    for (let i=0;i<fea.length;i++) {
+      if (fea[i].getName() === "Gold") {
+        if (visited) {
+          mapref.deleteThing(fea[i]);
+        } else {
+          fea[i].setQuantity(Dice.roll("10d10"));
+        }
+      }
+    }
+  }
+}
