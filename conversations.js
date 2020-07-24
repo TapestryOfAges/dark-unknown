@@ -943,6 +943,15 @@ OnConvTriggers["where_queen"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("where_queen");
 }
 
+OnConvTriggers["tyler_task"] = function(speaker,keyword) {
+  PC.removeFromInventory("BeldskaeReport");
+  PC.removeFromInventory("SwainhilReport");
+  PC.removeFromInventory("ClearLakeReport");
+  maintext.addText("<span class='sysconv'>You no longer have one: report from Clear Lake.</span>");
+  maintext.addText("<span class='sysconv'>You no longer have one: report from Beldskae.</span>");
+  maintext.addText("<span class='sysconv'>You no longer have one: report from Swainhil.</span>");
+}
+
 OnConvTriggers["BDC_open_gate"] = function(speaker,keyword) {
   let feas = speaker.getHomeMap().getTile(12,38).getFeatures();
   let gate;
