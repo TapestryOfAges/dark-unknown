@@ -1590,7 +1590,7 @@ GameMap.prototype.saveMap = function (name) {
  
   name = 'mappages["' + oldname + '"]';
   printerwin.document.write("<br />\n" + name + ".desc = \"" + this.getDesc() + "\";<br />\n");
-  printerwin.document.write(name + ".longdesc = '" + this.getLongDesc() + "';<br />\n");
+  printerwin.document.write(name + ".longdesc = `" + this.getLongDesc() + "`;<br />\n");
   printerwin.document.write(name + ".music = '" + this.getMusic() + "';<br />\n");
   printerwin.document.write(name + ".savename = `" + this.getSaveName() + "`;<br />\n");
   printerwin.document.write(name + ".exitmap = '" + this.getExitToMap() + "';<br />\n");
