@@ -779,6 +779,8 @@ function ApplyRune(who, rune, runeref) {
     if (rune === "kings") { 
       DU.gameflags.setFlag("rune_kings_1",1); 
       DU.gameflags.setFlag("rune_kings",1);
+      DU.gameflags.setFlag("lvl4_rune",1);  // pretend you've heard the spiel that introduces the rune
+                                            // set here in case you get the rune first, so the king doesn't stop to tell you about it
     }
     who.runes[rune] = 1;
   }
