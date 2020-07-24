@@ -2218,9 +2218,9 @@ function performZstats(code) {
     } else if (exitInv) {
       targetCursor.page--;
       if (targetCursor.page === 0) { 
-        targetCursor.page = 3; 
+        targetCursor.page = 4; 
         if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) {
-          targetCursor.page = 4;
+          targetCursor.page = 5;
         }
       }  // set to the last page when I know what that will be
       DrawStats(targetCursor.page);
@@ -2236,8 +2236,8 @@ function performZstats(code) {
       // (U)se return
     } else if (exitInv) {
       targetCursor.page++;
-      if (targetCursor.page === 5) { targetCursor.page = 1; }
-      if ((targetCursor.page === 4) && !(PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void)) {
+      if (targetCursor.page === 6) { targetCursor.page = 1; }
+      if ((targetCursor.page === 5) && !(PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void)) {
         targetCursor.page = 1;
       }
       DrawStats(targetCursor.page);
@@ -2321,13 +2321,13 @@ function DrawStats(page) {
     if (PC.getInt() < PC.getBaseInt()) { spanint = '<span style="color:orange">'; }
     
     statsdiv = "<div class='outerstats'><div id='zstat' class='zstats'>";
-    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black; margin-top: 3px'><tr>";
+    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black; margin-top: 8px'><tr>";
 
-    statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td></tr>";
+    statsdiv += "<td>" + PC.getPCName() + "</td><td width='30'>&nbsp;</td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
     statsdiv += "<tr><td style='width:50%'>HP: " + PC.getDisplayHP() + "/" + PC.getMaxHP() + "</td><td></td>";
     statsdiv += "<td style='width:50%'>MP: " + PC.getMana() + "/" + PC.getMaxMana() + "</td></tr>";
     statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
-    statsdiv += "<tr><td>STR: " + spanstr + "" + PC.getStr() + "</span></td><td></td><td>LEVEL: " + PC.getLevel() + "</td></tr>";
+    statsdiv += "<tr><td>STR: " + spanstr + "" + PC.getStr() + "</span></td><td></td><td>Gold: " + PC.getGold() + "</td></tr>";
     statsdiv += "<tr><td>DEX: " + spandex + "" + PC.getDex() + "</span></td><td></td><td>XP: ";
     if (EarnedLevel(PC)) {
       statsdiv += "<span class='leveled'>";
@@ -2338,8 +2338,6 @@ function DrawStats(page) {
     }
     statsdiv += "</td></tr>";
     statsdiv += "<tr><td>INT: " + spanint + "" + PC.getInt() + "</span></td><td></td><td>Training: " + PC.gettp() + "</td></tr>";
-    statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
-    statsdiv += "<tr><td>Gold: " + PC.getGold() + "</td><td></td><td></td></tr>";
     statsdiv += "<tr><td colspan='3'>&nbsp;<br /></td></tr>";
     if (PC.getEquipment("weapon")) { 
       let wpndesc = PC.getEquipment("weapon").getDesc();
@@ -2389,17 +2387,30 @@ function DrawStats(page) {
       statsdiv += "<tr><td></td><td></td>";
     }
     statsdiv += "<td></td></tr><tr><td colspan='3'>&nbsp;</td></tr>";
-    statsdiv += "<tr><td colspan='3' style='text-decoration:underline'>Spells and effects</td></tr>";
-    let alleffects = PC.getSpellEffects();
-    if (!alleffects[0]) {
-      statsdiv += "<tr><td colspan='3'>You have no effects or afflictions upon you.</td></tr>";
-    } else {
-      for (let i=0; i < alleffects.length; i++) {
-        if (alleffects[i].display) {
-          statsdiv += "<tr><td colspan='3'>" + alleffects[i].display + ": " + alleffects[i].getZstatdesc() + "</td></tr>";
-        }
+    if (PC.getEquipment("circlet") || PC.getEquipment("amulet") || PC.getEquipment("ring1") || PC.getEquipment("ring2")) {
+      statsdiv += "<tr><td colspan='3'>Accessories:</td></tr>";
+      if (PC.getEquipment("circlet")) {
+        let circletdesc = PC.getEquipment("circlet").getDesc();
+        circletdesc = circletdesc.charAt(0).toUpperCase() + circletdesc.slice(1);
+        statsdiv += "<tr><td colspan='3'>" + circletdesc + "</td></tr>";
       }
-    } 
+      if (PC.getEquipment("amulet")) {
+        let circletdesc = PC.getEquipment("amulet").getDesc();
+        circletdesc = circletdesc.charAt(0).toUpperCase() + circletdesc.slice(1);
+        statsdiv += "<tr><td colspan='3'>" + circletdesc + "</td></tr>";
+      }
+      if (PC.getEquipment("ring1")) {
+        let circletdesc = PC.getEquipment("ring1").getDesc();
+        circletdesc = circletdesc.charAt(0).toUpperCase() + circletdesc.slice(1);
+        statsdiv += "<tr><td colspan='3'>" + circletdesc + "</td></tr>";
+      }
+      if (PC.getEquipment("ring2")) {
+        let circletdesc = PC.getEquipment("ring2").getDesc();
+        circletdesc = circletdesc.charAt(0).toUpperCase() + circletdesc.slice(1);
+        statsdiv += "<tr><td colspan='3'>" + circletdesc + "</td></tr>";
+      }
+    }
+    
 
     statsdiv += "</table></div></div>";
     DrawTopbarFrame("<p>Character</p>");
@@ -2454,6 +2465,23 @@ function DrawStats(page) {
 
     DrawTopbarFrame("<p>Spellbook</p>");
   } else if (page === 4) {
+    statsdiv += "<div class='outerstats'><div id='zstat' class='zstats'>";
+    statsdiv += "<table cellpadding='0' cellspacing='0' border='0' style='background-color:black'>";
+    statsdiv += "<tr><td>&nbsp;</td></tr>";
+    
+    let alleffects = PC.getSpellEffects();
+    if (!alleffects[0]) {
+      statsdiv += "<tr><td colspan='3'>You have no effects or afflictions upon you.</td></tr>";
+    } else {
+      for (let i=0; i < alleffects.length; i++) {
+        if (alleffects[i].display) {
+          statsdiv += "<tr><td colspan='3'>" + alleffects[i].display + ": " + alleffects[i].getZstatdesc() + "</td></tr>";
+        }
+      }
+    } 
+    statsdiv += "</table></div></div>";  
+    DrawTopbarFrame("<p>Spells and effects</p>");
+  } else if (page === 5) {
     let hasrunes = 0;
     if (PC.runes.kings || PC.runes.waves || PC.runes.winds || PC.runes.flames || PC.runes.void) { hasrunes = 1; }
 
