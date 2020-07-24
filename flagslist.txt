@@ -36,6 +36,15 @@ hazel_hood - you've brought Hazel an Executioner's Hood and she will now pay you
 derek_pony - You've told Derek about Amos
 derek_pony2 - you've left town since telling Derek about Amos; Amos has helped Derek's pony Faithful
 robert_map - you've given the map to Robert
+tyler_start - Tyler asked you to talk to town leaders
+tyler_code - Tyler has told you the code once
+tyler_task - you've finished the task Tyler set out for you
+clear_lake_report - you've asked for the report
+clear_lake_code - you've said the code word
+beldskae_report - you've asked for the report
+beldskae_code - you've said the code word
+swainhil_report - you've asked for the report
+swainhil_code - you've said the code word
 spellbook - has low level spellbook
 spellbook2 - has full sized spellbook
 ivan_lastvisitchecktime - the time of the most recent check to see if Ivan is in Ash's tower
@@ -63,6 +72,7 @@ ash_quest1 - Asharden has given you the quest to get bark
 ash_get_book - you've given Asharden the bark and he is fetching you a spellbook.
 ash_has_book - Asharden has the book, next time you talk to him he'll give it to you.
 lvl4 - reached level four and has not yet heard the "rune of kings" spiel
+lvl4_rune - reached level four and have heard spiel
 lvl* - reached level *
 rune_kings - has Rune
 rune_kings_1 - have gotten Rune, King hasn't remarked upon it yet, goes away once he does
@@ -135,3 +145,7 @@ eshkazbook - he has given you the planar primer
 learned_ww - you've learned Water Walk
 oracle_tome - you've brought the Tome of Sight to Ashlin
 infusion_learned - you know infusion
+
+jharden_act2 - you've spoken to Jharden in act 2
+nyrani_act2
+shelaria_act2
