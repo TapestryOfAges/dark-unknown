@@ -110,7 +110,7 @@ function select_conv() {
     var conv_array = [];
     var high_idx = 1000;
     $.each(conversations[thisconv], function (idx,val) {
-      if ((idx !== "_location") && (idx !== "respond") && (idx !== "say")) {
+      if ((idx !== "_linkedto") && (idx !== "_location") && (idx !== "respond") && (idx !== "say")) {
         if (conversations[thisconv][idx].editor_idx) {
           while (conv_array[conversations[thisconv][idx].editor_idx]) {
             alert("Conv number collision between " + idx + " and " + conv_array[conversations[thisconv][idx].editor_idx] + ".");
@@ -357,14 +357,15 @@ function edit_response(convname, keyword) {
   } 
   document.responseeditpopup.theconv.value = convname;
   document.responseeditpopup.location.value = conversations[convname]._location;
+  let linkedbutton = document.getElementById("linkedbutton");
   if (conversations[convname]["_linkedto"]) {
-    document.linkedbutton.style.display = "inline";
+    linkedbutton.style.display = "inline";
   } else {
-    document.linkedbutton.style.display = "none";
+    linkedbutton.style.display = "none";
   }
 }
 
-function submitEditResponse(val) {
+function submitEditResponse(val, linked) {
   var convname = document.responseeditpopup.theconv.value;
   var keyword = document.responseeditpopup.responsekeyword.value;
   if (val === -1) { // delete this conversation
@@ -575,6 +576,21 @@ function submitEditResponse(val) {
     conversations[convname][keyword].triggers = [ triggers1, triggers2 ];
     conversations[convname]._location = document.responseeditpopup.location.value; 
     
+    if (linked) {
+      let conv_ser = JSON.stringify(conversations[convname][keyword]);
+      if (conversations[convname]["_linkedto"]) {
+        let goahead=1;
+        let linkedto = conversations[convname]["_linkedto"];
+        if (conversations[linkedto][keyword]) {
+          if (!confirm("This keyword already exists in " + linkedto + "- overwrite?")) {
+            goahead = 0;
+          }
+        }
+        if (goahead) {
+          conversations[linkedto][keyword] = JSON.parse(conv_ser);
+        }
+      }
+    }
     select_conv();
   }
 }
