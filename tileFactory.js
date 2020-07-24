@@ -803,6 +803,26 @@ tileFactory.prototype.makeStatueTopTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeStatue1Tile = function() {
+  let newTile = new Statue1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStatue2Tile = function() {
+  let newTile = new Statue2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStatue3Tile = function() {
+  let newTile = new Statue3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeStatue4Tile = function() {
+  let newTile = new Statue4Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makePaintingCrossTile = function() {
   let newTile = new PaintingCrossTile();
   return newTile;
@@ -1145,6 +1165,26 @@ tileFactory.prototype.makeStairDown2Tile = function() {
 
 tileFactory.prototype.makeStairUp2Tile = function() {
   let newTile = new StairUp2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWoodenStairDownTile = function() {
+  let newTile = new WoodenStairDownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWoodenStairUpTile = function() {
+  let newTile = new WoodenStairUpTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWoodenStairDown2Tile = function() {
+  let newTile = new WoodenStairDown2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWoodenStairUp2Tile = function() {
+  let newTile = new WoodenStairUp2Tile();
   return newTile;
 }
 
@@ -2418,8 +2458,8 @@ tileFactory.prototype.makeDrumTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeHarpTile = function() {
-  let newTile = new HarpTile();
+tileFactory.prototype.makeLyreTile = function() {
+  let newTile = new LyreTile();
   return newTile;
 }
 
@@ -2518,13 +2558,28 @@ tileFactory.prototype.makeKeyOfSunTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeKeyOfShadowTile = function() {
-  let newTile = new KeyOfShadowTile();
+tileFactory.prototype.makeStoneOfShadowTile = function() {
+  let newTile = new StoneOfShadowTile();
   return newTile;
 }
 
 tileFactory.prototype.makeSheafOfNotesTile = function() {
   let newTile = new SheafOfNotesTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeClearLakeReportTile = function() {
+  let newTile = new ClearLakeReportTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBeldskaeReportTile = function() {
+  let newTile = new BeldskaeReportTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSwainhilReportTile = function() {
+  let newTile = new SwainhilReportTile();
   return newTile;
 }
 
