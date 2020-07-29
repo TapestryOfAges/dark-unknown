@@ -2041,6 +2041,9 @@ function PerformYell() {
 		return retval;
 	}
 	else {
+    let ev = new DUEvent("Yelling",PC,[]);
+    Listener.sendEvent(ev);
+  
     // Cheat/Debug Console 
 		if (inputText.txt === "ETHERBUNNY") {
 			PC.addMovetype(MOVE_ETHEREAL);
