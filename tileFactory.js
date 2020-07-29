@@ -1648,6 +1648,11 @@ tileFactory.prototype.makeWalkOnTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWalkOnWingTile = function() {
+  let newTile = new WalkOnWingTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWalkOnConsolationTile = function() {
   let newTile = new WalkOnConsolationTile();
   return newTile;
@@ -2493,6 +2498,11 @@ tileFactory.prototype.makeJadeNecklaceTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGoldLocketTile = function() {
+  let newTile = new GoldLocketTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGoldTile = function() {
   let newTile = new GoldTile();
   return newTile;
@@ -2650,6 +2660,11 @@ tileFactory.prototype.makeSpireScrapTile = function() {
 
 tileFactory.prototype.makeLanceRuneNotesTile = function() {
   let newTile = new LanceRuneNotesTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeXApprenticeJournalTile = function() {
+  let newTile = new XApprenticeJournalTile();
   return newTile;
 }
 
