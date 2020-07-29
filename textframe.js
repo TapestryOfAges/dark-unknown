@@ -24,14 +24,12 @@ TextFrame.prototype.addText = function(newtext) {
 		let tmpchild = document.createElement('span');
 		tmpchild.innerHTML = "<br />" + newtext;
 		document.getElementById(this.framename).appendChild(tmpchild);
-//  	document.getElementById(this.framename).innerHTML += "<br />" + newtext;
     this.countnode();
   }
   if (this.delayedappend) {
 		let tmpchild = document.createElement('span');
 		tmpchild.innerHTML = "<br />" + this.delayedappend;
 		document.getElementById(this.framename).appendChild(tmpchild);
-//    document.getElementById(this.framename).innerHTML += "<br />" + this.delayedappend;
 		this.clearDelay();
 		this.countnode();
   }
