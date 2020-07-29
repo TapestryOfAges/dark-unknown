@@ -996,7 +996,7 @@ function FindNearestNPC(from, align, except) {
   if (!except) { except = []; }
   let found = from.getHomeMap().npcs.getAll();
   if (PC.getHomeMap() === from.getHomeMap()) { 
-    if (!align || ((align === "enemy") && (from.getAttitude() !== PC.getAttitude())) || ((align === "ally") && (from.getAttitude() === PC.getAttitude()))) {
+    if (!align || ((align === "enemy") && (CheckAreEnemies(from,PC))) || ((align === "ally") && (from.getAttitude() === PC.getAttitude()))) {
       found.push(PC); 
     }
   }
@@ -1005,7 +1005,7 @@ function FindNearestNPC(from, align, except) {
   for (let i=0;i<found.length;i++) {
     let val = found[i];
     if ((val !== from) && (!except.includes(val))) {
-      if (!align || ((align === "enemy") && (from.getAttitude() !== val.getAttitude())) || ((align === "ally") && (from.getAttitude() === val.getAttitude()))) {
+      if (!align || ((align === "enemy") && (CheckAreEnemies(from,val))) || ((align === "ally") && (from.getAttitude() === val.getAttitude()))) {
         let movetype = from.getMovetype();
         if (from.specials.open_door) { movetype = MOVE_WALK_DOOR; }
         let dist = GetDistanceByPath(from,val,movetype);
