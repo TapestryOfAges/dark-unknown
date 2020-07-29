@@ -1024,6 +1024,11 @@ ConvTestFlags["in_stable"] = function(speaker,keyword) {
   return 0;
 }
 
+ConvTestFlags["in_prison"] = function(speaker,keyword) {
+  if ((speaker.getx() >= 19) && (speaker.getx() <= 21) && (speaker.gety() >= 7) && (speaker.gety() <= 19)) { return 1; }
+  return 0;
+}
+
 ConvTestFlags["in_garden"] = function(speaker,keyword) {
   if ((speaker.getx() >= 10) && (speaker.getx() <= 21) && (speaker.gety() >= 6) && (speaker.gety() <= 15)) { return 1; }
 
