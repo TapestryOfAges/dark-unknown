@@ -1365,7 +1365,7 @@ StormTile.prototype.doEffect = function() {
     let targetlist = [];
     for (let i=0;i<npcs.length;i++) {
       let val=npcs[i];
-      if (caster.getAttitude() !== val.getAttitude()) {
+      if (CheckAreEnemies(caster,val)) {
         if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
           targetlist.push(val);
         }
