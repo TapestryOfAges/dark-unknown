@@ -2651,7 +2651,7 @@ FarmTile.prototype = new TerrainObject();
 
 function RoadTile() {
   this.name = "Road";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3395,7 +3395,7 @@ LavaTubeTile.prototype = new TerrainObject();
 
 function RedCarpetNWTile() {
   this.name = "RedCarpetNW";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3408,7 +3408,7 @@ RedCarpetNWTile.prototype = new TerrainObject();
 
 function RedCarpetNTile() {
   this.name = "RedCarpetN";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3421,7 +3421,7 @@ RedCarpetNTile.prototype = new TerrainObject();
 
 function RedCarpetNETile() {
   this.name = "RedCarpetNE";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3434,7 +3434,7 @@ RedCarpetNETile.prototype = new TerrainObject();
 
 function RedCarpetWTile() {
   this.name = "RedCarpetW";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3447,7 +3447,7 @@ RedCarpetWTile.prototype = new TerrainObject();
 
 function RedCarpetCTile() {
   this.name = "RedCarpetC";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3460,7 +3460,7 @@ RedCarpetCTile.prototype = new TerrainObject();
 
 function RedCarpetETile() {
   this.name = "RedCarpetE";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3473,7 +3473,7 @@ RedCarpetETile.prototype = new TerrainObject();
 
 function RedCarpetSWTile() {
   this.name = "RedCarpetSW";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3486,7 +3486,7 @@ RedCarpetSWTile.prototype = new TerrainObject();
 
 function RedCarpetSTile() {
   this.name = "RedCarpetS";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3499,7 +3499,7 @@ RedCarpetSTile.prototype = new TerrainObject();
 
 function RedCarpetSETile() {
   this.name = "RedCarpetSE";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3512,7 +3512,7 @@ RedCarpetSETile.prototype = new TerrainObject();
 
 function BlueCarpetNWTile() {
   this.name = "BlueCarpetNW";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3525,7 +3525,7 @@ BlueCarpetNWTile.prototype = new TerrainObject();
 
 function BlueCarpetNTile() {
   this.name = "BlueCarpetN";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3538,7 +3538,7 @@ BlueCarpetNTile.prototype = new TerrainObject();
 
 function BlueCarpetNETile() {
   this.name = "BlueCarpetNE";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3551,7 +3551,7 @@ BlueCarpetNETile.prototype = new TerrainObject();
 
 function BlueCarpetWTile() {
   this.name = "BlueCarpetW";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3564,7 +3564,7 @@ BlueCarpetWTile.prototype = new TerrainObject();
 
 function BlueCarpetCTile() {
   this.name = "BlueCarpetC";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3577,7 +3577,7 @@ BlueCarpetCTile.prototype = new TerrainObject();
 
 function BlueCarpetETile() {
   this.name = "BlueCarpetE";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3590,7 +3590,7 @@ BlueCarpetETile.prototype = new TerrainObject();
 
 function BlueCarpetSWTile() {
   this.name = "BlueCarpetSW";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3603,7 +3603,7 @@ BlueCarpetSWTile.prototype = new TerrainObject();
 
 function BlueCarpetSTile() {
   this.name = "BlueCarpetS";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3616,7 +3616,7 @@ BlueCarpetSTile.prototype = new TerrainObject();
 
 function BlueCarpetSETile() {
   this.name = "BlueCarpetSE";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -7033,7 +7033,7 @@ KitchenBarrel3Tile.prototype.use = function(who) {
 
 function MirrorTile() {
   this.name = "Mirror";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-384";
   this.passable = MOVE_ETHEREAL;
@@ -7042,7 +7042,7 @@ function MirrorTile() {
   this.desc = "mirror";
   this.karmamod = -1;
   
-  Breakable.call(this,["master_spritesheet.png", "", "-224", "-384"],0,"sfx_break_glass");
+  Breakable.call(this,["master_spritesheet_d.gif", "", "-224", "-384"],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 }
 MirrorTile.prototype = new FeatureObject();
@@ -7072,8 +7072,8 @@ ReflectionTile.prototype = new FeatureObject();
 ReflectionTile.prototype.walkon = function(who) {
   // add reflection to attached mirror
   if (!this.mirror.getBroken()) {
-    this.mirror.setGraphicArray([who.getGraphic(), "mirror-reflection.gif", "0", "7"]);
-    //	this.graphic = "master_spritesheet.png";    // spritesheet version of reflection. Can't work yet because of need to be overlay
+    this.mirror.setGraphicArray([who.getGraphic(), "mirror-reflection_d.gif", "0", "7"]);
+    //	this.graphic = "master_spritesheet_d.gif";    // spritesheet version of reflection. Can't work yet because of need to be overlay
     // this.spritexoffset = "-288"; 
     // this.spriteyoffset = "-1344";
   }
@@ -7090,7 +7090,7 @@ ReflectionTile.prototype.walkoff = function(who) {
 
 function CursedMirrorTile() {
   this.name = "CursedMirror";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-384";
   this.passable = MOVE_ETHEREAL;
@@ -7098,7 +7098,7 @@ function CursedMirrorTile() {
   this.prefix = "a";
   this.desc = "mirror";
   
-  Breakable.call(this,["master_spritesheet.png", "", "-224", "-384"],0,"sfx_break_glass");
+  Breakable.call(this,["master_spritesheet_.png", "", "-224", "-384"],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 }
 CursedMirrorTile.prototype = new FeatureObject();
@@ -7165,7 +7165,7 @@ CursedReflectionTile.prototype.getNPCName = function() {
 CursedReflectionTile.prototype.walkon = function(who) {
   // add reflection to attached mirror
   if (!this.mirror.getBroken()) {
-    this.mirror.setGraphicArray(["351.gif", "mirror-reflection.gif", "0", "7"]);
+    this.mirror.setGraphicArray(["351.gif", "mirror-reflection_d.gif", "0", "7"]);
     // Actually use Imp graphic rather than Daemon
 
     let field = this.getHomeMap().getTile(10,10).getTopFeature();
@@ -7445,7 +7445,7 @@ RuinsWallBottomLeftMidRightTile.prototype = new FeatureObject();
 
 function WellTile() {
 	this.name = "Well";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-640";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -7516,6 +7516,36 @@ function WalkOnTile() {
 	this.invisible = 1;
 }
 WalkOnTile.prototype = new FeatureObject();
+
+function WalkOnWingTile() {
+	this.name = "WalkOnWing";
+  this.graphic = "master_spritesheet.png";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-608";
+	this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY + MOVE_WALK;
+	this.blocklos = 0;
+	this.prefix = "an";
+	this.desc = "invisible walkon tile";
+	this.invisible = 1;
+}
+WalkOnWingTile.prototype = new FeatureObject();
+
+WalkOnWingTile.prototype.walkon = function(walker) {
+  if ((walker === PC) && !walker.getHomeMap().blessed) {
+    walker.getHomeMap().blessed = 1;
+    walker.setHP(walker.getMaxHP());
+    walker.setMana(walker.getMaxMana());
+    if (!walker.getSpellEffectsByName("Blessing")) {
+      let blessing = localFactory.createTile("Blessing");
+      blessing.setPower(3);
+      blessing.setExpiresTime(DU.DUTime.getGameClock() + 12*24);
+      PC.addSpellEffect(blessing);
+      DrawCharFrame();
+    }
+    return {msg: "The sound of water rushing over the edge and plummeting below fills you with a sense of great peace and tranquility. You feel refreshed." };
+  }
+  return {msg:""};
+}
 
 function WalkOnConsolationTile() {
 	this.name = "WalkOnConsolation";
@@ -11389,7 +11419,7 @@ CrystalMortarTile.prototype = new ItemObject();
 function JadeNecklaceTile() {
   this.name = "JadeNecklace";
   this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-224";
+  this.spriteyoffset = "-256";
   this.spritexoffset = "-1536";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
@@ -11398,6 +11428,26 @@ function JadeNecklaceTile() {
   this.longdesc = "A pendant bearing a shard of jade, said to bring luck.";
 }
 JadeNecklaceTile.prototype = new ItemObject();
+
+function GoldLocketTile() {
+  this.name = "GoldLocket";
+  this.graphic = "master_spritesheet_d.gif";
+  this.spriteyoffset = "-256";
+  this.spritexoffset = "-1536";
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "gold locket";
+  this.longdesc = "A locket. Inside is a portrait of an unfamiliar woman.";
+}
+GoldLocketTile.prototype = new ItemObject();
+
+GoldLocketTile.prototype.onGet = function(who) {
+  if (DU.gameflags.getFlag("knows_severyn")) {
+    this.longdesc = "A locket. Inside is a portrait of someone you believe is Severyn, from Swainhil.";
+    maintext.delayedAddText("There is a portrait in the locket, and you believe you recognize the subject. It looks like Severyn, from Swainhil...");
+  }
+}
 
 function GoldTile() {
   this.name = "Gold";
@@ -11956,7 +12006,7 @@ AdelusLetterTile.prototype = new BookItemObject();
 
 function SpireScrapTile() {
   this.name = "SpireScrap";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-1184";
   this.blocklos = 0;
@@ -11970,17 +12020,31 @@ SpireScrapTile.prototype = new BookItemObject();
 
 function LanceRuneNotesTile() {
   this.name = "LanceRuneNotes";
-  this.graphic = "master_spritesheet.png";
+  this.graphic = "master_spritesheet_d.gif";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
   this.prefix = "a";
-  this.contents = "<span class='conv'>Some time ago, Mother and Father shared a family Secret: the Rune of Kings. Deep under the site of another dynasty, it allows our bloodline to connect with... well, the heart of the Kingdom. The world. The earth.</span>%%<span class='conv'>Unknown to most, there are MORE. I directed Justice to help research them, and we discovered full elemental correspondences. The Rune of Kings is also the Rune of Earth- a bond to the land. It is also the key to unlock the other Runes.</span>%%<span class='conv'>Justice discovered the location of the Rune of Waves. There is an small island, naught but hills, north of the Crown Mountains and west of Poverty. The Rune of Kings is required to reveal the cave, she thinks, but I have not found a way to the island yet to try.</span>%%<span class='conv'>The Rune of Winds is, unsurprisingly perhaps, connected to Xorrico. The Rune of Flames appears to be near the Land of Lost Hope- it will be some time before I can try and discover it.</span>%%<span class='conv'>Strangely, there are hints and echoes of a fifth Rune, but I know not what it could be...</span>";
+  this.contents = "<span class='conv'>Some time ago, Mother and Father shared a family Secret: the Rune of Kings. Deep under the site of another dynasty, it allows our bloodline to connect with... well, the heart of the Kingdom. The world. The earth.</span>%%<span class='conv'>Unknown to most, there are MORE. I directed Justice to help research them, and we discovered full elemental correspondences. The Rune of Kings is also the Rune of Earth- a bond to the land. It is also the key to unlock the other Runes.</span>%%<span class='conv'>Justice discovered the location of the Rune of Waves. There is an small island, naught but hills, north of the Crown Mountains and west of Poverty. The Rune of Kings is required to reveal the cave, she thinks, but I have not found a way to the island yet to try.</span>%%<span class='conv'>The Rune of Winds is, unsurprisingly perhaps, connected to Xoricco. The Rune of Flames appears to be near the Land of Lost Hope- it will be some time before I can try and discover it.</span>%%<span class='conv'>Strangely, there are hints and echoes of a fifth Rune, but I know not what it could be...</span>";
   this.longdesc = "A journal containing Lance's research on Runes.";
 }
 LanceRuneNotesTile.prototype = new BookItemObject();
+
+function XApprenticeJournalTile() {
+  this.name = "XApprenticeJournal";
+  this.graphic = "master_spritesheet_d.gif";
+  this.spritexoffset = "-288";
+  this.spriteyoffset = "-1248";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "journal";
+  this.prefix = "a";
+  this.contents = "You open the small journal.%%<span class='conv'>Master Xoricco insists that it is valuable to write everything down, that the act of putting pen to page will firm the memory and the ability to learn. So here I am.</span>%%<span class='conv'>We have taken over a small cave next to her chosen site for the Gate. Despite the fact that we are not going to be here long, she has set up defenses to protect us.</span>%%<span class='conv'>The ritual to create this side of the Gate is elaborate and difficult- she says we are not nearly to the point where she can teach any of it to me. But I have observed what I can.</span>%%<span class='conv'>The core it all is a treated piece of voidstone, brought here from the expedition that discovered the far continent. I don't know what it must be treated with, only that it is another rare substance.</span>%%<span class='conv'>She is at the site now, preparing to bury the stone. Then will be another boat trip to the new land, to build the other gate. I am determined to convince her to allow me to accompany her...</span>";
+  this.longdesc = "A small journal found in a cave.";
+}
+XApprenticeJournalTile.prototype = new BookItemObject();
 
 function ConsumableItemObject() {
   this.addType("Consumable");
@@ -12975,7 +13039,7 @@ function ScrollWildcardTile() {
   this.desc = "scroll of ???";
   this.prefix = "a";
   this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-32";
+  this.spritexoffset = "-64";
   this.spriteyoffset = "-1344";
   this.spelllevel = 0;
   this.spellnum = 0;
@@ -15333,52 +15397,53 @@ NPCObject.prototype.processDeath = function(droploot){
         }
       }
     }
+    let wascityfighting = this.getHomeMap().cityfight;
+    if (!this.getHomeMap().getName().includes("blackdragon")) { wascityfighting = 0; }
     MoveBetweenMaps(this,this.getHomeMap(),newmap, 7, 7, 1);
     FadeOut(1);
 
-    if (this.getHomeMap().cityfight) {
-      if (this.getHomeMap().getName().includes("blackdragon")) {
-        PC.dead = 1;
-        PC.deaduntil = GetGameClockByClockTime(ModTime(GetUsableClockTime(),"1:00"));
-        PC.bdc = 1;
-        DU.gameflags.setFlag("intermission",1);
-        maintext.setInputLine("&gt;");
-        maintext.drawTextFrame(); 
+    if (wascityfighting) {
+      PC.dead = 1;
+      PC.deaduntil = GetGameClockByClockTime(ModTime(GetUsableClockTime(),"1:00"));
+      PC.bdc = 1;
+      DU.gameflags.setFlag("intermission",1);
+      maintext.setInputLine("&gt;");
+      maintext.drawTextFrame(); 
+      setTimeout(function() {
+        maintext.addText("You cease to feel as consciousness flees from you.");
         setTimeout(function() {
-          maintext.addText("You cease to feel as consciousness flees from you.");
+          maintext.addText("<br style='textbreak' />When you come to, you are on the floor, and the battle has ended.");
           setTimeout(function() {
-            maintext.addText("When you come to, you are on the floor, and the battle has ended.");
+            if (maps.getMap("blackdragon_int")) {
+              returnmap = maps.getMap("blackdragon_int");
+              // though again, this shouldn't be in memory
+            } else {
+              returnmap = maps.addMap("blackdragon_int");
+            }
+            AdjustStartingLocations(returnmap);
+            let taran = FindNPCByName("Taran",returnmap);
+            returnmap.moveThing(36,15,taran);
+            MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,37,15);
+            DrawMainFrame("draw",returnmap,37,15);
+            FadeIn();
             setTimeout(function() {
-              if (maps.getMap("blackdragon_int")) {
-                returnmap = maps.getMap("blackdragon_int");
-                // though again, this shouldn't be in memory
-              } else {
-                returnmap = maps.addMap("blackdragon_int");
-              }
-              AdjustStartingLocations(returnmap);
-              let taran = FindNPCByName("Taran",returnmap);
-              returnmap.moveThing(36,15,taran);
-              MoveBetweenMaps(PC,PC.getHomeMap(),returnmap,37,15);
-              DrawMainFrame("draw",returnmap,37,15);
-              FadeIn();
+              maintext.addText(`<br style='textbreak' />Taran kneels beside you. "${PC.getPCName()}, I'm glad you're ok. The dragon was struck down, and its body just... disappeared. But your brother hasn't woken up. Gather your strength, and get up when you feel ready."`);
               setTimeout(function() {
-                maintext.addText(`Taran kneels beside you. "${PC.getPCName()}, I'm glad you're ok. The dragon was struck down, and its body just... disappeared. But your brother hasn't woken up. Gather your strength, and get up when you feel ready."`);
+                maintext.addText("<br style='textbreak' />You close your eyes for a moment, and an unknown amount of time passes before you are again able to stand.");
                 setTimeout(function() {
-                  maintext.addText("You close your eyes for a moment, and an unknown amount of time passes before you are again able to stand.");
-                  setTimeout(function() {
-                    maintext.addText("<span class='sysconv'>You have gained: 100 XP.</span>");
-                    PC.addxp(100);
-                    DU.gameflags.setFlag("act2",1);
-                    DU.gameflags.deleteFlag("intermission");
-                    PC.setHP(15);
-                    delete PC.dead;
-                  }, 1700);
+                  maintext.addText("<span class='sysconv'>You have gained: 100 XP.</span>");
+                  maintext.setInputLine("&gt;");
+                  PC.addxp(100);
+                  DU.gameflags.setFlag("act2",1);
+                  DU.gameflags.deleteFlag("intermission");
+                  PC.setHP(15);
+                  delete PC.dead;
                 }, 1700);
-              },1700);
+              }, 1700);
             },1700);
-          }, 1700);
-        },1500);        
-      }
+          },1700);
+        }, 1700);
+      },1500);        
       return;
     }
     PC.dead = 1;
@@ -15396,15 +15461,15 @@ NPCObject.prototype.processDeath = function(droploot){
       FadeIn();
       setTimeout(function() {
         DrawTopbarFrame("<p>" + newmap.getDesc() + "</p>");
-        maintext.addText("There is nought to do but meditate upon your life, and the triumphs and errors it contained.");
+        maintext.addText("<br style='textbreak' />There is nought to do but meditate upon your life, and the triumphs and errors it contained.");
         setTimeout(function() {
-          maintext.addText("Suddenly a voice cries out in the darkness!");
+          maintext.addText("<br style='textbreak' />Suddenly a voice cries out in the darkness!");
           setTimeout(function() {
-            maintext.addText('"The world is not finished with thee, ' + PC.getPCName() + '!"');
+            maintext.addText('<br style="textbreak" />"The world is not finished with thee, ' + PC.getPCName() + '!"');
             setTimeout(function() {
-              maintext.addText('"By the strength of this land I bid thee return!"');
+              maintext.addText('<br style="textbreak" />"By the strength of this land I bid thee return!"');
               setTimeout(function() {
-                maintext.addText("All is light...");
+                maintext.addText("<br style='textbreak' />All is light...");
                 setTimeout(function() {
                   delete PC.dead;
                   // play sound effect
