@@ -122,9 +122,15 @@ EventFunctions["BDragon"] = function(ev) {
     let guards = [];
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Prince Lance") { prince = npcs[i]; }
-      if (npcs[i].getName() === "TownGuardNPC") { guards[guards.length] = npcs[i]; }
-      if (npcs[i].getNPCName() === "Justice") { justice = npcs[i]; }
-      if (npcs[i].getNPCName() === "Black Dragon") { dragon = npcs[i]; }
+      else if (npcs[i].getName() === "TownGuardNPC") { 
+        guards[guards.length] = npcs[i]; 
+        npcs[i].resists["fire"] = 50;  // make the guards somewhat more resistant to dragonfire
+      }
+      else if (npcs[i].getNPCName() === "Justice") { justice = npcs[i]; justice.setAttitude("neutral")}
+      else if (npcs[i].getNPCName() === "Black Dragon") { dragon = npcs[i]; }
+      else {
+        npcs[i].setAttitude("neutral"); // randos shouldn't be killed by the dragon
+      }
     }
     if (IsObjectVisibleOnScreen(prince)) {
       maintext.delayedAddText("There is a heartbeat where nothing moves and the air stills, and then Lance's eyes roll back in his head and he collapses unconscious.");
@@ -182,5 +188,20 @@ EventFunctions["OpenCons"] = function(ev) {
   let ashlin = PC.getHomeMap().getTile(14,24).getTopNPC();
   if (ashlin) {
     PC.forcedTalk = ashlin;
-  } else { "No Ashlin?"; }
+  } else { alert("No Ashlin?"); }
+}
+
+EventFunctions["BanditYell"] = function(ev) {
+  let npcs = PC.getHomeMap().npcs.getAll();
+  let nonspiders = [];
+  for (let i=0;i<npcs.length;i++) {
+    if (npcs[i].getName() !== "GiantSpiderNPC") { nonspiders.push(npcs[i]); }
+  }
+  if (nonspiders.length) {
+    for (let i=0;i<nonspiders.length;i++) {
+      if (nonspiders[i].getAggro()) { return; }
+    }
+    maintext.delayedAddText('You hear a voice from deeper in the cave. "What was that? I think I heard something."');
+  }
+  Listener.clearListener("BanditYell");
 }
