@@ -344,6 +344,8 @@ function DoAction(code, ctrl) {
         DrawMainFrame("draw",PC.getHomeMap(),PC.getx(),PC.gety());
         PC.endTurn();
       }
+    } else if (targetCursor.command === "intermission") {
+      PerformActEnd();
     } else if (targetCursor.command === "u") {
       let retval = PerformRead();
       maintext.addText(retval["txt"]);
@@ -413,6 +415,10 @@ function DoAction(code, ctrl) {
     else if (code === 13) { // enter
       if (inputText.cmd === "y") { 
         let retval = PerformYell(); 
+        maintext.setInputLine("&gt;");
+        maintext.addText(retval["txt"]);
+        maintext.drawTextFrame();
+
         if (retval["fin"] === 2) {
           gamestate.setMode("player");
           gamestate.setTurn(PC);
@@ -423,9 +429,6 @@ function DoAction(code, ctrl) {
         else if (retval["fin"] === 3) {
           gamestate.setMode("options");
         }
-        maintext.setInputLine("&gt;");
-        maintext.addText(retval["txt"]);
-        maintext.drawTextFrame();
 
       } else if ( inputText.cmd === "t") {
         let convo = targetCursor.talkingto.getConversation();
@@ -447,7 +450,7 @@ function DoAction(code, ctrl) {
         } else {
           if (inputText.txt === "") { inputText.txt = "BYE"; }
           maintext.addText(" ");
-          maintext.addText("You say: " + inputText.txt);
+          maintext.addText("<br class='textbreak' />You say: " + inputText.txt);
           retval = PerformTalk(targetCursor.talkingto, convo, inputText.txt);
         }
         maintext.addText(retval["txt"]);
