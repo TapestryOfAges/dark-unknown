@@ -145,6 +145,7 @@ eshkazbook - he has given you the planar primer
 learned_ww - you've learned Water Walk
 oracle_tome - you've brought the Tome of Sight to Ashlin
 infusion_learned - you know infusion
+borogard_killed - you've killed the talking ettin
 
 jharden_act2 - you've spoken to Jharden in act 2
 nyrani_act2
