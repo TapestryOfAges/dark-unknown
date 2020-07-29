@@ -77,12 +77,6 @@ NPCSpecialFuncs["ondeathEndact"] = function(who,how) {
   who.onDeath = "endact";
 }
 
-function AreEnemies(one,two) {
-  if ((one.getAttitude() === "friendly") && (two.getAttitude() === "hostile")) { return 1; }
-  if ((one.getAttitude() === "hostile") && (two.getAttitude() === "friendly")) { return 1; }
-  return 0;
-}
-
 function TurnMapHostile(map) {
   DebugWrite("combat", "Attacked a friendly! Turning hostile...<br />");
   PC.diffKarma(-10); 
@@ -362,12 +356,6 @@ function GetDamageDescriptor(who) {
 
 function CanMissileAttack(who) {
   // looks to see if there are adjacent melee enemies
-  let enemystring = "";
-  if (who.getAttitude() === "friendly") {
-    enemystring = "hostile";
-  } else if (who.getAttitude() === "hostile") {
-    enemystring = "friendly";
-  }
   let themap = who.getHomeMap();
   for (let i=-1; i<=1 ; i++) {
     for (let j=-1; j<=1; j++) {
@@ -376,7 +364,7 @@ function CanMissileAttack(who) {
         let npcs = tile.getNPCs();
         if (npcs) {
           for (let k=0; k<npcs.length; k++) {
-            if (npcs[k].getAttitude() === enemystring) { return 0; }
+            if (CheckAreEnemies(npcs[k],who)) { return 0; }
           }
         }
       }
@@ -792,4 +780,12 @@ function FindEmptyAdjacent(who, randompick) {
   } else {
     return coordopts;
   }
+}
+
+function CheckAreEnemies(who1,who2) {
+  if ((who1.getAttitude() === "friendly") && (who2.getAttitude() === "hostile")) { return 1; }
+  if ((who2.getAttitude() === "friendly") && (who1.getAttitude() === "hostile")) { return 1; }
+  if ((who1.getAttitude() === "ally") && (who2.getAttitude() === "enemy")) { return 1; }
+  if ((who2.getAttitude() === "ally") && (who1.getAttitude() === "enemy")) { return 1; }
+  return 0;
 }
