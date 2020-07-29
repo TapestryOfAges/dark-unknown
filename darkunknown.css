@@ -266,3 +266,8 @@ div.demo a { color:lightblue; }
 	animation-duration: 2.3s;
 	animation-fill-mode: forwards;
 }
+
+.textbreak {
+	font-size:x-small;
+	line-height: 0px;
+}
