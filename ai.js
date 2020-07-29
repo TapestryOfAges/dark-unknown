@@ -17,7 +17,7 @@ ais.seekPC = function(who,radius) {
   npcs.unshift(PC);
   for (let i=0;i<npcs.length;i++) {
     foe = npcs[i];
-    if (AreEnemies(who,foe)) {
+    if (CheckAreEnemies(who,foe)) {
       if (whomap === foe.getHomeMap()) {
         if (GetDistance(who.getx(),who.gety(),foe.getx(),foe.gety()) <= radius) {
           // if can see
@@ -232,7 +232,8 @@ ais.combat = function(who) {
     // didn't melee anything, time to try to find something to approach
 
     if (!nearest) {
-      alert("How do I (" + who.getName() + " (" + who.getx() + "," + who.gety() + ")) not have a nearest enemy while still aggro?");
+      DebugWrite("ai", "How do I (" + who.getName() + " (" + who.getx() + "," + who.gety() + ")) not have a nearest enemy while still aggro?");
+      who.setAggro(0); // no enemies abound
       return retval;
     }
     DebugWrite("ai", "Nearest enemy is: " + nearest.getName() + " " + nearest.getSerial() + " .<br />");
@@ -300,7 +301,7 @@ function TryMelee(who) {
     ShuffleArray(nearby);
     for (let i=0;i<nearby.length;i++) {
       if (!atked) {
-        if (nearby[i].getAttitude() !== who.getAttitude()) {
+        if (CheckAreEnemies(nearby[i],who)) {
           let doatk = 1;
           if (radius > 1) { 
             // check LOE first
@@ -1110,6 +1111,43 @@ ais.HuntPC = function(who, radius) {
 	
 }
 
+ais.Borogard = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  if (IsObjectVisibleOnScreen(who)) {
+    console.log("Visible!");
+    PC.forcedTalk = who;
+    who.currentAI = "seekPC-10";
+    who.peaceAI = "seekPC-10";
+  }
+  return retval;
+}
+
+ais.SwainhilBandit = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  if (who.yelled) {
+    if (GetDistance(who.getx(),who.gety(),12,16) <= 3) {
+      who.currentAI = "seekPC-10";
+      who.peaceAI = "seekPC-10";
+    } else {
+      let path = who.getHomeMap().getPath(who.getx(), who.gety(), 12, 15, who.getMovetype());
+      if (path.length) {
+        path.shift();
+        retval = StepOrSidestep(who, [path[0][0],path[0][1]], [12,15], "nopush");
+      } else {
+        // can't path back, prepare to fight!
+        who.currentAI = "seekPC-10";
+        who.peaceAI = "seekPC-10";  
+      }
+    }
+  } else if (IsObjectVisibleOnScreen(who)) {
+    maintext.addText('A voice calls out, "There\'s someone here! Beware!"');
+    who.yelled = 1;
+  }
+  return retval;
+}
+
 ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
   DebugWrite("ai", "<span style='font-weight:bold'>AI " + who.getName() + " in SurfaceFollowPath.</span><br />");
   let retval = { fin: 0 };
@@ -1755,7 +1793,7 @@ ais.ai_cast = function(who) {
   npcs.push(PC);
   for (let i=0;i<npcs.length;i++) {
     if (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5.5) {
-      if (npcs[i].getAttitude() !== who.getAttitude()) {
+      if (CheckAreEnemies(npcs[i],who)) {
         if (themap.getLOS(who.getx(), who.gety(), npcs[i].getx(), npcs[i].gety()) < LOS_THRESHOLD) {
           enemies.push(npcs[i]);
           let el = npcs[i].getLevel()/2 * ((npcs[i].getHP()/npcs[i].getMaxHP())+1);
@@ -2349,7 +2387,7 @@ ais.ai_sleep = function(who) {
     sleeptargets.push(PC);
   }
   for (let i=0;i<npcs.length;i++) {
-    if ((npcs[i].getAttitude() !== who.getAttitude()) && (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5)) { sleeptargets.push(npcs[i]); }
+    if (CheckAreEnemies(npcs[i],who) && (GetDistance(who.getx(),who.gety(),npcs[i].getx(),npcs[i].gety()) < 5)) { sleeptargets.push(npcs[i]); }
   }
   if (sleeptargets.length) {
     let result = Dice.roll(`1d${sleeptargets.length}-1`);
@@ -2468,7 +2506,7 @@ function GetBreathTarget(who) {
   if (PC.getHomeMap() === who.getHomeMap()) { npcs.push(PC); }
   let foes = [];
   for (let i=0;i<npcs.length;i++) {
-    if ((npcs[i].getAttitude() !== who.getAttitude()) && (npc[i].getAttitude() !== "neutral")) { 
+    if (CheckAreEnemies(npcs[i],who)) { 
       if (GetDistance(npcs[i].getx(),npcs[i].gety(),who.getx(),who.gety()) <= 5) {  
         foes.push(npcs[i]); 
       }
