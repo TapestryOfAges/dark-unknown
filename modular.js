@@ -249,8 +249,12 @@ OnDeathFuncs["insects"] = function(who) {
 }
 
 OnDeathFuncs["Warduke"] = function() {
-  DU.gameflags.setFlag("warduke_defeated");
+  DU.gameflags.setFlag("warduke_defeated",1);
   PC.diffKarma(2);
+}
+
+OnDeathFuncs["Borogard"] = function() {
+  DU.gameflags.setFlag("borogard_killed",1);
 }
 
 OnDeathFuncs["endact"] = function() {
@@ -286,12 +290,13 @@ function PerformActEnd() {
     maintext.setInputLine("&gt;[MORE]");
     maintext.drawTextFrame(); 
     DU.gameflags.setFlag("intermission",1);
+    targetCursor.command = "intermission";
     endact.setPower(2);
   } else if (endact.getPower() === 2) {
-    maintext.addText("You feel a dark sensation batter against your mind, like the beating of mighty wings, but your mental fortitude is too great- with a feeling of dismay, it falls away.");
+    maintext.addText("<br style='textbreak' />You feel a dark sensation batter against your mind, like the beating of mighty wings, but your mental fortitude is too great- with a feeling of dismay, it falls away.");
     endact.setPower(3);
   } else if (endact.getPower() === 3) {
-    maintext.addText(`You force yourself back to your senses, and with a groan open your eyes once more.`);
+    maintext.addText(`<br style='textbreak' />You force yourself back to your senses, and with a groan open your eyes once more.`);
     let returnmap;
     if (maps.getMap("blackdragon_int")) {
       returnmap = maps.getMap("blackdragon_int");
@@ -308,17 +313,19 @@ function PerformActEnd() {
 
     endact.setPower(4);
   } else if (endact.getPower() === 4) {
-    maintext.addText(`You find that Taran kneels beside you. "${PC.getPCName()}, I'm glad you're ok. The dragon was struck down, and its body just... disappeared. But your brother hasn't woken up. Gather your strength, and get up when you feel ready."`);
+    maintext.addText(`<br style='textbreak' />You find that Taran kneels beside you. "${PC.getPCName()}, I'm glad you're ok. The dragon was struck down, and its body just... disappeared. But your brother hasn't woken up. Gather your strength, and get up when you feel ready."`);
     endact.setPower(5);
   } else if (endact.getPower() === 5) {
-    maintext.addText("You close your eyes for a moment, and an unknown amount of time passes before you are again able to stand.");
+    maintext.addText("<br style='textbreak' />You close your eyes for a moment, and an unknown amount of time passes before you are again able to stand.");
     endact.setPower(6);
   } else if (endact.getPower() === 6) {
     maintext.addText("<span class='sysconv'>You have gained: 100 XP.</span>");
     PC.addxp(100);
     DU.gameflags.setFlag("act2",1);
     DU.gameflags.deleteFlag("intermission");
-
+    maintext.setInputLine("&gt;");
+    PC.deleteSpellEffect(endact);
+    DrawCharFrame();
     PC.endTurn(0);
   }
 
