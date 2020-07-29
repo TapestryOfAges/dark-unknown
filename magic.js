@@ -536,7 +536,7 @@ magic[SPELL_DISTRACT_LEVEL][SPELL_DISTRACT_ID].executeSpell = function(caster, i
   let distracted = 0;
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
-    if (val.getAttitude() !== caster.getAttitude()) {
+    if (CheckAreEnemies(val,caster)) {
       val.setHitBySpell(caster,SPELL_DISTRACT_LEVEL);
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         let desc = "";
@@ -3125,7 +3125,7 @@ magic[SPELL_JINX_LEVEL][SPELL_JINX_ID].executeSpell = function(caster, infused, 
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
-    if (caster.getAttitude() !== val.getAttitude()) {
+    if (CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         val.setHitBySpell(caster,SPELL_JINX_LEVEL);
 
@@ -3190,7 +3190,7 @@ magic[SPELL_MASS_CURSE_LEVEL][SPELL_MASS_CURSE_ID].executeSpell = function(caste
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
-    if (caster.getAttitude() !== val.getAttitude()) {
+    if (CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         val.setHitBySpell(caster,SPELL_MASS_CURSE_LEVEL);
         let resist = CheckResist(caster,val,infused,0);
@@ -3435,7 +3435,7 @@ magic[SPELL_FEAR_LEVEL][SPELL_FEAR_ID].executeSpell = function(caster, infused, 
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
-    if (caster.getAttitude() !== val.getAttitude()) {
+    if (CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         val.setHitBySpell(caster,SPELL_FEAR_LEVEL);
         if (CheckResist(caster,val,infused,0)) {
@@ -3600,7 +3600,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
 
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
-    if (caster.getAttitude() !== val.getAttitude()) {
+    if (CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         npccount++;
       }
@@ -3609,7 +3609,7 @@ magic[SPELL_METEOR_SWARM_LEVEL][SPELL_METEOR_SWARM_ID].executeSpell = function(c
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     var desc;
-    if (caster.getAttitude() !== val.getAttitude()) {
+    if (CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         npccount--;
         let final = 0;
@@ -3769,7 +3769,7 @@ magic[SPELL_CONFLAGRATION_LEVEL][SPELL_CONFLAGRATION_ID].executeSpell = function
   for (let i=0;i<npcs.length;i++) {
     let val=npcs[i];
     let desc;
-    if (caster.getAttitude() !== val.getAttitude()) {
+    if (CheckAreEnemies(caster,val)) {
       if ((GetDistance(caster.getx(), caster.gety(), val.getx(), val.gety()) < radius) && (castermap.getLOS(caster.getx(), caster.gety(), val.getx(), val.gety(),1) < LOS_THRESHOLD )) {
         let dmg = Dice.roll(DMG_HEAVY);
         if (CheckResist(caster,val,infused,0)) {
