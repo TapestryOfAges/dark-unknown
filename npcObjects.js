@@ -24,7 +24,7 @@ function DruidVillagerNPCTile() {
   this.armorAs = 'ClothArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'Townsman';
+  this.lootTable = 'Townsfolk';
   this.prefix = 'a';
   this.desc = "druid";
   this.meleeChance = 30;
@@ -61,7 +61,7 @@ function ShepherdVillagerNPCTile() {
   this.armorAs = 'ClothArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'Townsman';
+  this.lootTable = 'Townsfolk';
   this.prefix = 'a';
   this.desc = "shepherd";
   this.meleeChance = 100;
@@ -97,7 +97,7 @@ function MageVillagerNPCTile() {
   this.armorAs = 'ClothArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'Townsman';
+  this.lootTable = 'Townsfolk';
   this.prefix = 'a';
   this.desc = "mage";
   this.spellsknown = { lowcontrol: 1, summon: 1, attack: 1, };
@@ -136,7 +136,7 @@ function TinkerVillagerNPCTile() {
   this.armorAs = 'ClothArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'Townsman';
+  this.lootTable = 'Townsfolk';
   this.prefix = 'a';
   this.desc = "tinker";
   this.meleeChance = 30;
@@ -176,7 +176,7 @@ function RangerVillagerNPCTile() {
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'Townsman';
+  this.lootTable = 'Townsfolk';
   this.prefix = 'a';
   this.desc = "ranger";
   this.meleeChance = 50;
@@ -252,7 +252,7 @@ function PaladinVillagerNPCTile() {
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'Townsman';
+  this.lootTable = 'Townsfolk';
   this.prefix = 'a';
   this.desc = "paladin";
   this.meleeChance = 75;
@@ -292,7 +292,7 @@ function FighterVillagerNPCTile() {
   this.armorAs = 'LeatherArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'Townsman';
+  this.lootTable = 'Townsfolk';
   this.prefix = 'a';
   this.desc = "fighter";
   this.meleeChance = 100;
@@ -328,7 +328,7 @@ function TownsfolkVillagerNPCTile() {
   this.armorAs = 'ClothArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'Townsman';
+  this.lootTable = 'Townsfolk';
   this.prefix = 'a';
   this.desc = "citizen";
   this.meleeChance = 100;
@@ -367,7 +367,7 @@ function BardVillagerNPCTile() {
   this.armorAs = 'ClothArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'Townsman';
+  this.lootTable = 'Townsfolk';
   this.prefix = 'a';
   this.desc = "bard";
   this.meleeChance = 40;
@@ -549,7 +549,7 @@ function KingNPCTile() {
   this.armorAs = 'ExoticArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'Townsman';
+  this.lootTable = 'Townsfolk';
   this.desc = "your father the King";
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, attack: 1, buff: 1, };
@@ -584,7 +584,7 @@ function QueenNPCTile() {
   this.armorAs = 'ExoticArmor';
   this.movetype = MOVE_WALK;
   this.leavesCorpse = 'Corpse';
-  this.lootTable = 'Townsman';
+  this.lootTable = 'Townsfolk';
   this.desc = "your mother the Queen";
   this.meleeChance = 70;
   this.spellsknown = { heal: 1, lowcontrol: 1, summon: 1, attack: 1, buff: 1, };
