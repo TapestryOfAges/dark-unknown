@@ -167,7 +167,12 @@ GameStateData.prototype.saveGame = function(flag) {
 	savedata.maps = [];       // this turns into a list of names of maps, to be re-loaded on load
 	
   savedata.merchants = DU.merchants;
-	savedata.events = {};
+  savedata.events = {};
+  savedata.convlog = [];
+  if (beta) {
+    savedata.convlog = JSON.stringify(convlog);
+  }
+
 	Listener.clearListeners(); // clear out unneeded listeners
   let currlisteners = Listener.listeners.getAll();
   for (let i=0;i<currlisteners.length;i++) {
@@ -314,6 +319,9 @@ GameStateData.prototype.loadGame = function(idx) {
   DU.DUTime = new Timeline(0);
   DUTime = DU.DUTime;
   DU.merchants = savedata.merchants;
+  if (savedata.convlog) {
+    convlog = savedata.convlog;
+  }
 
   DUTime.setGameClock(savedata.time);
   DU.gameflags = new Gameflags();
