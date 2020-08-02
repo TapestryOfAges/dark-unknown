@@ -2074,7 +2074,8 @@ ShadowPlanksNSTile.prototype = new TerrainObject();
 
 function SouthCoastTile() {
   this.name = "SouthCoast";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2102,7 +2103,8 @@ SouthCoastSandTile.prototype = new TerrainObject();
 
 function NorthCoastTile() {
   this.name = "NorthCoast";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2130,7 +2132,8 @@ NorthCoastSandTile.prototype = new TerrainObject();
 
 function EastCoastTile() {
   this.name = "EastCoast";
-  this.graphic = "master_spritesheet_d.gif";
+//  this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2158,7 +2161,8 @@ EastCoastSandTile.prototype = new TerrainObject();
 
 function WestCoastTile() {
   this.name = "WestCoast";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2190,7 +2194,8 @@ function NortheastCoastTile() {
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
-  this.overlay = "necoast_d.gif";
+  //this.overlay = "necoast_d.gif";
+  this.overlay = "necoast.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2226,7 +2231,8 @@ function SouthwestCoastTile() {
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
-  this.overlay = "swcoast_d.gif";
+  //this.overlay = "swcoast_d.gif";
+  this.overlay = "swcoast.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2262,7 +2268,8 @@ function NorthwestCoastTile() {
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
-  this.overlay = "nwcoast_d.gif";
+  //this.overlay = "nwcoast_d.gif";
+  this.overlay = "nwcoast.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2298,7 +2305,8 @@ function SoutheastCoastTile() {
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
-  this.overlay = "secoast_d.gif";
+  //this.overlay = "secoast_d.gif";
+  this.overlay = "secoast.gif";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2567,7 +2575,8 @@ ShadowPlanksEWTile.prototype = new TerrainObject();
 
 function GrassTile() {
   this.name = "Grass";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-160";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -2651,7 +2660,8 @@ FarmTile.prototype = new TerrainObject();
 
 function RoadTile() {
   this.name = "Road";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-768";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -3395,7 +3405,8 @@ LavaTubeTile.prototype = new TerrainObject();
 
 function RedCarpetNWTile() {
   this.name = "RedCarpetNW";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3408,7 +3419,8 @@ RedCarpetNWTile.prototype = new TerrainObject();
 
 function RedCarpetNTile() {
   this.name = "RedCarpetN";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3421,7 +3433,8 @@ RedCarpetNTile.prototype = new TerrainObject();
 
 function RedCarpetNETile() {
   this.name = "RedCarpetNE";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3434,7 +3447,8 @@ RedCarpetNETile.prototype = new TerrainObject();
 
 function RedCarpetWTile() {
   this.name = "RedCarpetW";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3447,7 +3461,8 @@ RedCarpetWTile.prototype = new TerrainObject();
 
 function RedCarpetCTile() {
   this.name = "RedCarpetC";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3460,7 +3475,8 @@ RedCarpetCTile.prototype = new TerrainObject();
 
 function RedCarpetETile() {
   this.name = "RedCarpetE";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3473,7 +3489,8 @@ RedCarpetETile.prototype = new TerrainObject();
 
 function RedCarpetSWTile() {
   this.name = "RedCarpetSW";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3486,7 +3503,8 @@ RedCarpetSWTile.prototype = new TerrainObject();
 
 function RedCarpetSTile() {
   this.name = "RedCarpetS";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3499,7 +3517,8 @@ RedCarpetSTile.prototype = new TerrainObject();
 
 function RedCarpetSETile() {
   this.name = "RedCarpetSE";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3512,7 +3531,8 @@ RedCarpetSETile.prototype = new TerrainObject();
 
 function BlueCarpetNWTile() {
   this.name = "BlueCarpetNW";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3525,7 +3545,8 @@ BlueCarpetNWTile.prototype = new TerrainObject();
 
 function BlueCarpetNTile() {
   this.name = "BlueCarpetN";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3538,7 +3559,8 @@ BlueCarpetNTile.prototype = new TerrainObject();
 
 function BlueCarpetNETile() {
   this.name = "BlueCarpetNE";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-32";
   this.blocklos = 0;
@@ -3551,7 +3573,8 @@ BlueCarpetNETile.prototype = new TerrainObject();
 
 function BlueCarpetWTile() {
   this.name = "BlueCarpetW";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3564,7 +3587,8 @@ BlueCarpetWTile.prototype = new TerrainObject();
 
 function BlueCarpetCTile() {
   this.name = "BlueCarpetC";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3577,7 +3601,8 @@ BlueCarpetCTile.prototype = new TerrainObject();
 
 function BlueCarpetETile() {
   this.name = "BlueCarpetE";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-64";
   this.blocklos = 0;
@@ -3590,7 +3615,8 @@ BlueCarpetETile.prototype = new TerrainObject();
 
 function BlueCarpetSWTile() {
   this.name = "BlueCarpetSW";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3603,7 +3629,8 @@ BlueCarpetSWTile.prototype = new TerrainObject();
 
 function BlueCarpetSTile() {
   this.name = "BlueCarpetS";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -3616,7 +3643,8 @@ BlueCarpetSTile.prototype = new TerrainObject();
 
 function BlueCarpetSETile() {
   this.name = "BlueCarpetSE";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-96";
   this.blocklos = 0;
@@ -4726,7 +4754,8 @@ function UseTorch(who,torch) {
 
 function WoodpileTile() {
 	this.name = "Woodpile";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-768";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5530,7 +5559,8 @@ LadderUpTile.prototype = new FeatureObject();
 
 function StairDownTile() {
   this.name = "StairDown";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-448";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5549,7 +5579,8 @@ StairDownTile.prototype = new FeatureObject();
 
 function StairUpTile() {
   this.name = "StairUp";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-448";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5568,7 +5599,8 @@ StairUpTile.prototype = new FeatureObject();
 
 function StairDown2Tile() {
   this.name = "StairDown2";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-448";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5587,7 +5619,8 @@ StairDown2Tile.prototype = new FeatureObject();
 
 function StairUp2Tile() {
   this.name = "StairUp2";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-448";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5606,7 +5639,8 @@ StairUp2Tile.prototype = new FeatureObject();
 
 function WoodenStairDownTile() {
   this.name = "WoodenStairDown";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-1760";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5625,7 +5659,8 @@ WoodenStairDownTile.prototype = new FeatureObject();
 
 function WoodenStairUpTile() {
   this.name = "WoodenStairUp";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-1760";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5644,7 +5679,8 @@ WoodenStairUpTile.prototype = new FeatureObject();
 
 function WoodenStairDown2Tile() {
   this.name = "WoodenStairDown2";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-1760";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -5663,7 +5699,8 @@ WoodenStairDown2Tile.prototype = new FeatureObject();
 
 function WoodenStairUp2Tile() {
   this.name = "WoodenStairUp2";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1760";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -6015,7 +6052,8 @@ ArcheryTargetTile.prototype = new FeatureObject();
 
 function PottedPlantTile() {
   this.name = "PottedPlant";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-544";
   this.passable = MOVE_ETHEREAL;
@@ -7083,14 +7121,14 @@ ReflectionTile.prototype.walkon = function(who) {
 ReflectionTile.prototype.walkoff = function(who) {
   // remove reflection from attached mirror
   if (!this.mirror.getBroken()) {
-    this.mirror.setGraphicArray(["master_spritesheet.png", "", "-192", "-384"]);
+    this.mirror.setGraphicArray(["master_spritesheet_d.gif", "", "-192", "-384"]);
   }
   return {msg:""};
 }
 
 function CursedMirrorTile() {
   this.name = "CursedMirror";
-  this.graphic = "master_spritesheet_.png";
+  this.graphic = "master_spritesheet_d.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-384";
   this.passable = MOVE_ETHEREAL;
@@ -7098,7 +7136,7 @@ function CursedMirrorTile() {
   this.prefix = "a";
   this.desc = "mirror";
   
-  Breakable.call(this,["master_spritesheet_.png", "", "-224", "-384"],0,"sfx_break_glass");
+  Breakable.call(this,["master_spritesheet_d.gif", "", "-224", "-384"],0,"sfx_break_glass");
   this.brokendesc = "broken mirror";
 }
 CursedMirrorTile.prototype = new FeatureObject();
@@ -7307,7 +7345,7 @@ function DescendWaterfall(who, waterfall) {
 
 function BrilliantPoolTile() {
   this.name = "BrilliantPool";
-  this.graphic = "pool_d.gif";
+  this.graphic = "pool.gif";
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "the";
@@ -7445,7 +7483,8 @@ RuinsWallBottomLeftMidRightTile.prototype = new FeatureObject();
 
 function WellTile() {
 	this.name = "Well";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-640";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -10631,7 +10670,8 @@ ItemObject.prototype.getUseDesc = function() {
 
 function AmbroseShieldTile() {
   this.name = "AmbroseShield";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1184";
   this.blocklos = 0;
@@ -10673,7 +10713,8 @@ SmallRockTile.prototype = new ItemObject();
 
 function SiriCloakTile() {
   this.name = "SiriCloak";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-1344";
   this.blocklos = 0;
@@ -10733,7 +10774,8 @@ SceptreTile.prototype = new ItemObject();
 
 function ChaliceTile() {
   this.name = "Chalice";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-1696";
   this.blocklos = 0;
@@ -10819,7 +10861,8 @@ TrustedPlansTile.prototype = new ItemObject();
 
 function TrustedPinTile() {
   this.name = "TrustedPin";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-1344";
   this.blocklos = 0;
@@ -10847,7 +10890,8 @@ ReaperBarkTile.prototype = new ItemObject();
 
 function BlackDragonScaleTile() {
   this.name = "BlackDragonScale";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-1696";
   this.blocklos = 0;
@@ -10861,7 +10905,8 @@ BlackDragonScaleTile.prototype = new ItemObject();
 
 function DragonBoneTile() {
   this.name = "DragonBone";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-1280";
   this.blocklos = 0;
@@ -10966,7 +11011,8 @@ BrokenArrowTile.prototype.onRepair = function(who) {
 
 function TreasuryTokenTile() {
   this.name = "TreasuryToken";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
@@ -11158,7 +11204,8 @@ BottledEtherTile.prototype = new ItemObject();
 
 function PerfectRubyTile() {
 	this.name = "PerfectRuby";
-	this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-1376";
 	this.blocklos = 0;
@@ -11172,7 +11219,8 @@ PerfectRubyTile.prototype = new ItemObject();
 
 function UncutLargeRubyTile() {
 	this.name = "UncutLargeRuby";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-1248";
 	this.blocklos = 0;
@@ -11186,7 +11234,8 @@ UncutLargeRubyTile.prototype = new ItemObject();
 
 function RubyTile() {
 	this.name = "Ruby";
-	this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-1376";
 	this.blocklos = 0;
@@ -11200,7 +11249,8 @@ RubyTile.prototype = new ItemObject();
 
 function UncutRubyTile() {
 	this.name = "UncutRuby";
-	this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-1376";
 	this.blocklos = 0;
@@ -11214,7 +11264,8 @@ UncutRubyTile.prototype = new ItemObject();
 
 function SmallSapphireTile() {
 	this.name = "SmallSapphire";
-	this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1376";
 	this.blocklos = 0;
@@ -11228,7 +11279,8 @@ SmallSapphireTile.prototype = new ItemObject();
 
 function UncutSapphireTile() {
 	this.name = "UncutSapphire";
-	this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-1376";
 	this.blocklos = 0;
@@ -11242,7 +11294,8 @@ UncutSapphireTile.prototype = new ItemObject();
 
 function GemsTile() {
 	this.name = "Gems";
-	this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1344";
 	this.blocklos = 0;
@@ -11256,7 +11309,8 @@ GemsTile.prototype = new ItemObject();
 
 function UncutGemsTile() {
 	this.name = "UncutGems";
-	this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1344";
 	this.blocklos = 0;
@@ -11367,7 +11421,8 @@ HornTile.prototype = new ItemObject();
 
 function MortarTile() {
   this.name = "Mortar";
-	this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "0";
   this.spriteyoffset = "-1440";
 	this.desc = "mortar and pestle";
@@ -11380,7 +11435,8 @@ MortarTile.prototype = new ItemObject();
 
 function AppleTile() {
   this.name = "Apple";
-	this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-288";
   this.spriteyoffset = "-1408";
 	this.desc = "apple";
@@ -11431,7 +11487,8 @@ JadeNecklaceTile.prototype = new ItemObject();
 
 function GoldLocketTile() {
   this.name = "GoldLocket";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spriteyoffset = "-256";
   this.spritexoffset = "-1536";
   this.passable = MOVE_ETHEREAL;
@@ -11451,7 +11508,8 @@ GoldLocketTile.prototype.onGet = function(who) {
 
 function GoldTile() {
   this.name = "Gold";
-  this.graphic = "master_spritesheet_d.gif";  
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-1120";
   this.desc = "1 gold coin";
@@ -11473,16 +11531,19 @@ GoldTile.prototype.setQuantity = function(quant) {
     return 0;
   }
   if ((this.quantity > 0) && (this.quantity < 4)) {
-    this.graphic = "master_spritesheet_d.gif";  
+    //this.graphic = "master_spritesheet_d.gif";
+    this.graphic = "master_spritesheet.png";
     this.spritexoffset = "-192";
     this.spriteyoffset = "-1120";
   }
   else if ((this.quantity > 3) && (this.quantity < 16)) {
-    this.graphic = "master_spritesheet_d.gif";  
+    //this.graphic = "master_spritesheet_d.gif";
+    this.graphic = "master_spritesheet.png";
     this.spritexoffset = "-224";
     this.spriteyoffset = "-1120";
   } else if (this.quantity > 15) {
-    this.graphic = "master_spritesheet_d.gif";  
+    //this.graphic = "master_spritesheet_d.gif";
+    this.graphic = "master_spritesheet.png";
     this.spritexoffset = "-256";
     this.spriteyoffset = "-1120";
   }
@@ -11558,7 +11619,8 @@ function KeyUse(who,what,tgt) {
 
 function HomeKeyTile() {
   this.name = "HomeKey";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-1280";
   this.blocklos = 0;
@@ -11571,7 +11633,8 @@ HomeKeyTile.prototype = new KeyItemObject();
 
 function ToshinKeyTile() {
   this.name = "ToshinKey";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-1280";
   this.blocklos = 0;
@@ -11584,7 +11647,8 @@ ToshinKeyTile.prototype = new KeyItemObject();
 
 function PitOfDespairKeyTile() {
   this.name = "PitOfDespairKey";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-1280";
   this.blocklos = 0;
@@ -11598,7 +11662,8 @@ PitOfDespairKeyTile.prototype = new KeyItemObject();
 
 function InnerPitOfDespairKeyTile() {
   this.name = "InnerPitOfDespairKey";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-1280";
   this.blocklos = 0;
@@ -11626,7 +11691,8 @@ KeyOfSpiritsTile.prototype = new KeyItemObject();
 
 function RoyalKeyTile() {
   this.name = "RoyalKey";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-1280";
   this.blocklos = 0;
@@ -11640,7 +11706,8 @@ RoyalKeyTile.prototype = new KeyItemObject();
 
 function BlackDragonKeyTile() {
   this.name = "BlackDragonKey";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-1312";
   this.blocklos = 0;
@@ -11654,7 +11721,8 @@ BlackDragonKeyTile.prototype = new KeyItemObject();
 
 function KeyOfAshesTile() {
   this.name = "KeyOfAshes";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-1312";
   this.blocklos = 0;
@@ -11668,7 +11736,8 @@ KeyOfAshesTile.prototype = new KeyItemObject();
 
 function KeyOfIceTile() {
   this.name = "KeyOfIce";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-1312";
   this.blocklos = 0;
@@ -11682,7 +11751,8 @@ KeyOfIceTile.prototype = new KeyItemObject();
 
 function KeyOfBoneTile() {
   this.name = "KeyOfBone";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-1312";
   this.blocklos = 0;
@@ -11696,7 +11766,8 @@ KeyOfBoneTile.prototype = new KeyItemObject();
 
 function KeyOfDustTile() {
   this.name = "KeyOfDust";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-1312";
   this.blocklos = 0;
@@ -11710,7 +11781,8 @@ KeyOfDustTile.prototype = new KeyItemObject();
 
 function KeyOfSunTile() {
   this.name = "KeyOfSun";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-1312";
   this.blocklos = 0;
@@ -11796,7 +11868,8 @@ SheafOfNotesTile.prototype = new BookItemObject();
 
 function XoriccoRecipeTile() {
   this.name = "XoriccoRecipe";
-  this.graphic = "master_spritesheet_d.png";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
@@ -11810,7 +11883,8 @@ XoriccoRecipeTile.prototype = new BookItemObject();
 
 function ClearLakeReportTile() {
   this.name = "ClearLakeReport";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
@@ -11824,7 +11898,8 @@ ClearLakeReportTile.prototype = new BookItemObject();
 
 function BeldskaeReportTile() {
   this.name = "BeldskaeReport";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
@@ -11838,7 +11913,8 @@ BeldskaeReportTile.prototype = new BookItemObject();
 
 function SwainhilReportTile() {
   this.name = "SwainhilReport";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
@@ -11852,7 +11928,8 @@ SwainhilReportTile.prototype = new BookItemObject();
 
 function FallOfTargrionTile() {
   this.name = "FallOfTargrion";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-1216";
   this.blocklos = 0;
@@ -11866,7 +11943,8 @@ FallOfTargrionTile.prototype = new BookItemObject();
 
 function BookOfLoreTile() {
   this.name = "BookOfLore";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
@@ -11880,7 +11958,8 @@ BookOfLoreTile.prototype = new BookItemObject();
 
 function EshkazBookTile() {
   this.name = "EshkazBook";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
@@ -11894,7 +11973,8 @@ EshkazBookTile.prototype = new BookItemObject();
 
 function TomeOfSightTile() {
   this.name = "TomeOfSight";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
@@ -11908,7 +11988,8 @@ TomeOfSightTile.prototype = new BookItemObject();
 
 function MapsAndLegendsTile() {
   this.name = "MapsAndLegends";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1216";
   this.blocklos = 0;
@@ -11922,7 +12003,8 @@ MapsAndLegendsTile.prototype = new BookItemObject();
 
 function ATreatiseOnDragonsTile() {
   this.name = "ATreatiseOnDragons";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-1216";
   this.blocklos = 0;
@@ -11936,7 +12018,8 @@ ATreatiseOnDragonsTile.prototype = new BookItemObject();
 
 function NatassaJournalTile() {
   this.name = "NatassaJournal";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-1216";
   this.blocklos = 0;
@@ -11950,7 +12033,8 @@ NatassaJournalTile.prototype = new BookItemObject();
 
 function NatassaResearchTile() {
   this.name = "NatassaResearch";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1216";
   this.blocklos = 0;
@@ -11964,7 +12048,8 @@ NatassaResearchTile.prototype = new BookItemObject();
 
 function NatassaResearch2Tile() {
   this.name = "NatassaResearch2";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1216";
   this.blocklos = 0;
@@ -11978,7 +12063,8 @@ NatassaResearch2Tile.prototype = new BookItemObject();
 
 function ToshinJournalTile() {
   this.name = "ToshinJournal";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
@@ -11992,7 +12078,8 @@ ToshinJournalTile.prototype = new BookItemObject();
 
 function ArcheoJournalTile() {
   this.name = "ArcheoJournal";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1216";
   this.blocklos = 0;
@@ -12006,7 +12093,8 @@ ArcheoJournalTile.prototype = new BookItemObject();
 
 function AdelusLetterTile() {
   this.name = "AdelusLetter";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
@@ -12020,7 +12108,8 @@ AdelusLetterTile.prototype = new BookItemObject();
 
 function SpireScrapTile() {
   this.name = "SpireScrap";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-1184";
   this.blocklos = 0;
@@ -12034,7 +12123,8 @@ SpireScrapTile.prototype = new BookItemObject();
 
 function LanceRuneNotesTile() {
   this.name = "LanceRuneNotes";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
@@ -12048,7 +12138,8 @@ LanceRuneNotesTile.prototype = new BookItemObject();
 
 function XApprenticeJournalTile() {
   this.name = "XApprenticeJournal";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-288";
   this.spriteyoffset = "-1248";
   this.blocklos = 0;
@@ -12285,7 +12376,8 @@ SupplyBoxTile.prototype.use = function(who) {
 
 function BluePalmCrystalTile() {
   this.name = "BluePalmCrystal";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-1696";
   this.passable = MOVE_ETHEREAL;
@@ -12311,7 +12403,8 @@ BluePalmCrystalTile.prototype.use = function(who) {
 
 function GreenPalmCrystalTile() {
   this.name = "GreenPalmCrystal";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-1696";
   this.passable = MOVE_ETHEREAL;
@@ -12338,7 +12431,8 @@ GreenPalmCrystalTile.prototype.use = function(who) {
 
 function PurplePalmCrystalTile() {
   this.name = "PurplePalmCrystal";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1696";
   this.passable = MOVE_ETHEREAL;
@@ -12398,7 +12492,8 @@ function GreenPotionTile() {
   this.desc = "green potion";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-1152";
   this.usedesc = "Drink the potion, or throw the potion.";
@@ -12513,7 +12608,8 @@ function DarkGreenPotionTile() {
   this.name = "DarkGreenPotion";
   this.desc = "dark green potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12543,7 +12639,8 @@ function SilverPotionTile() {
   this.name = "SilverPotion";
   this.desc = "silver potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12587,7 +12684,8 @@ function PinkPotionTile() {
   this.name = "PinkPotion";
   this.desc = "pink potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12631,7 +12729,8 @@ function GreyPotionTile() {
   this.name = "GreyPotion";
   this.desc = "grey potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12675,7 +12774,8 @@ function BrownPotionTile() {
   this.name = "BrownPotion";
   this.desc = "brown potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12707,7 +12807,8 @@ function RedPotionTile() {
   this.name = "RedPotion";
   this.desc = "red potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "0";
   this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12740,7 +12841,8 @@ function WhitePotionTile() {
   this.name = "WhitePotion";
   this.desc = "white potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12770,7 +12872,8 @@ function YellowPotionTile() {
   this.name = "YellowPotion";
   this.desc = "yellow potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12800,7 +12903,8 @@ function PurplePotionTile() {
   this.name = "PurplePotion";
   this.desc = "purple potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-96";
   this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12830,7 +12934,8 @@ function BlackPotionTile() {
   this.name = "BlackPotion";
   this.desc = "black potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-128";
   this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12860,7 +12965,8 @@ function BluePotionTile() {
   this.name = "BluePotion";
   this.desc = "blue potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-160";
   this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12890,7 +12996,8 @@ function DeepBluePotionTile() {
   this.name = "DeepBluePotion";
   this.desc = "deep blue potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12919,7 +13026,8 @@ function OrangePotionTile() {
   this.name = "OrangePotion";
   this.desc = "orange potion";
   this.prefix = "an";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-192";
   this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12954,7 +13062,8 @@ function TanPotionTile() {
   this.name = "TanPotion";
   this.desc = "tan potion";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1152";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12983,7 +13092,8 @@ TanPotionTile.prototype.use = function(who) {
 
 function ScrollItemObject() {
   this.addType("Scroll"); 
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-1184";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14318,7 +14428,8 @@ EquipableItemObject.prototype.setToHitBonus = function(newbonus) {
 
 function RingOfFireResistTile() {
   this.name = "RingOfFireResist";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-224";
   this.spriteyoffset = "-1632";
   this.blocklos = 0;
@@ -14391,7 +14502,8 @@ RingOfEtherealFocusTile.prototype.killed = function(who) {
 
 function AmuletOfReflectionsTile() {
   this.name = "AmuletOfReflections";
-  this.graphic = "master_spritesheet_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-256";
   this.spriteyoffset = "-1280";
   this.blocklos = 0;
@@ -14512,7 +14624,8 @@ function ClothArmorTile() {
 	this.name = "ClothArmor";
 	this.defense = 5;
 	this.absorb = 10;
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14527,7 +14640,8 @@ function LeatherArmorTile() {
 	this.defense = 10;
 	this.absorb = 20;
 	this.resist = 10;
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14543,7 +14657,8 @@ function ChainArmorTile() {
 	this.absorb = 33;
 	this.resist = 10;
 	this.strReq = 14;
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14559,7 +14674,8 @@ function PlateArmorTile() {
 	this.absorb = 50;
 	this.resist = 15;
 	this.strReq = 18;
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14575,7 +14691,8 @@ function ExoticArmorTile() {
 	this.absorb = 60;
   this.resist = 40;
   this.strReq = 16;
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "0";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14715,7 +14832,8 @@ function DaggerTile() {
 	this.name = "Dagger";
 	this.damage = "1d4+1";
 	this.strdamage = 1/3;
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14729,7 +14847,8 @@ function ShortswordTile() {
 	this.name = "Shortsword";
 	this.damage = "2d4+1";
 	this.strdamage = 1/2;
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14743,7 +14862,8 @@ function MaceTile() {
 	this.name = "Mace";
 	this.damage = "2d4+3";
 	this.strdamage = 1;
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14757,7 +14877,8 @@ function AxeTile() {
 	this.name = "Axe";
 	this.damage = "2d4+8";
 	this.strdamage = 2/3;
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14771,7 +14892,8 @@ function LongswordTile() {
 	this.name = "Longsword";
 	this.damage = "4d4+9";
 	this.strdamage = 2/3;
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14785,7 +14907,8 @@ function HalberdTile() {
 	this.name = "Halberd";
 	this.damage = "5d4+15";
 	this.strdamage = 1;
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-160";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14799,7 +14922,8 @@ function MagicSwordTile() {
 	this.name = "MagicSword";
 	this.damage = "5d10+22";
 	this.strdamage = 1;
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-192";
 	this.spriteyoffset = "-32";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -14813,7 +14937,8 @@ function UnenchantedSwordTile() {
   this.name = "UnenchantedSword";
   this.damage = "4d6+10";  // when broken, 2d4
   this.strdamage = .5;
-  this.graphic = "magic-sword_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
   this.spritexoffset = "-32";
   this.desc = "unenchanted sword";
   this.blocklos = 0;
@@ -14906,13 +15031,14 @@ MissileWeaponObject.prototype.getAmmoReturn = function() {
 function SlingTile() {
 	this.name = "Sling";
 	this.damage = "1d3+0";
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "0";
 	this.spriteyoffset = "-64";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "sling";
   this.prefix = "a";
-  this.ammographic = "ammo_d.gif";
+  this.ammographic = "ammo.gif";
 	this.ammoxoffset = "0";
   this.ammoyoffset = "-64";
   this.attackSound = "sfx_sling";
@@ -14923,14 +15049,15 @@ SlingTile.prototype = new MissileWeaponObject();
 function BowTile() {
 	this.name = "Bow";
 	this.damage = "1d12+1";
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-32";
 	this.spriteyoffset = "-64";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.dexReq = 14;
 	this.desc = "bow";
   this.prefix = "a";
-  this.ammographic = "ammo_d.gif";
+  this.ammographic = "ammo.gif";
   this.ammoxoffset = "0";
   this.ammoyoffset = "0";
   this.directionalammo = 1;
@@ -14942,14 +15069,15 @@ BowTile.prototype = new MissileWeaponObject();
 function CrossbowTile() {
 	this.name = "Crossbow";
 	this.damage = "4d8+-1";
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.spritexoffset = "-64";
 	this.spriteyoffset = "-64";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.dexReq = 17;
 	this.desc = "crossbow";
 	this.prefix = "a";
-  this.ammographic = "ammo_d.gif";
+  this.ammographic = "ammo.gif";
   this.ammoxoffset = "0";
   this.ammoyoffset = "-32";
   this.directionalammo = 1;
@@ -14961,7 +15089,8 @@ CrossbowTile.prototype = new MissileWeaponObject();
 function WandTile() {
 	this.name = "Wand";
 	this.damage = "4d12+0";
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.spritexoffset = "-96";
 	this.spriteyoffset = "-64";
@@ -14977,7 +15106,8 @@ WandTile.prototype = new MissileWeaponObject();
 function MagicAxeTile() {
 	this.name = "MagicAxe";
 	this.damage = "4d12+12";
-	this.graphic = "armorweapons_d.gif";
+  //this.graphic = "master_spritesheet_d.gif";
+  this.graphic = "master_spritesheet.png";
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.spritexoffset = "-128";
 	this.spriteyoffset = "-64";
