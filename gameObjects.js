@@ -11789,8 +11789,22 @@ function SheafOfNotesTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "sheaf of notes";
   this.prefix = "a";
-  this.contents = "You read the notes:%%''Empowerment is a powerful tool, allowing the permanent enchantment of an object such as a sword or suit of armor.%%'The first step in Empowering is choosing a suitable object. It must be able to take on the enchantment- this is rare.%%'Then one must prepare the reagents. Your choice of reagents will dictate the nature of the enchantment that you create.%%'Prepare them with a mortar and pestle, incant the spell, and pour the mixture over the object to be enchanted. If all is as it should be, the object will be enchanted thereafter.%%'I have tested many materials.%%'Spider silk is necessary in almost all castings. It helps bind the magic to the object.%%'Sulphurous ash is used for light and fire.%%'Blood moss permits physical protection.%%'Nightshade adds an air of poison or delusion.%%'Black pearl projects power from the object.%%'Mistletoe will ward away otherworldly evils.%%'Lightning wood, from a tree recently struck, will channel the lightnings.%%'Finally, additional power may be invoked by adding mandrake root.%%'Once together, cast and hope.'";
+  this.contents = "You read the notes:%%'Empowerment is a powerful tool, allowing the permanent enchantment of an object such as a sword or suit of armor.%%'The first step in Empowering is choosing a suitable object. It must be able to take on the enchantment- this is rare.%%'Then one must prepare the reagents. Your choice of reagents will dictate the nature of the enchantment that you create.%%'Prepare them with a mortar and pestle, incant the spell, and pour the mixture over the object to be enchanted. If all is as it should be, the object will be enchanted thereafter.%%'I have tested many materials.%%'Spider silk is necessary in almost all castings. It helps bind the magic to the object.%%'Sulphurous ash is used for light and fire.%%'Blood moss permits physical protection.%%'Nightshade adds an air of poison or delusion.%%'Black pearl projects power from the object.%%'Mistletoe will ward away otherworldly evils.%%'Lightning wood, from a tree recently struck, will channel the lightnings.%%'Finally, additional power may be invoked by adding mandrake root.%%'Once together, cast and hope.'";
   this.longdesc = "A sheaf of notes on Empowerment. Transcribed by Arlan from Toshin's original notebooks.";
+}
+SheafOfNotesTile.prototype = new BookItemObject();
+
+function SheafOfNotesTile() {
+  this.name = "SheafOfNotes";
+  this.graphic = "master_spritesheet_d.png";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "-1248";
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.desc = "recipe";
+  this.prefix = "a";
+  this.contents = "You read the recipe:%%Insert recipe here.";  // WORKING HERE- GET RECIPE FROM EDWARD?
+  this.longdesc = "Evidently, this is Sorceress Xoricco's recipe for chili.";
 }
 SheafOfNotesTile.prototype = new BookItemObject();
 
