@@ -11794,8 +11794,8 @@ function SheafOfNotesTile() {
 }
 SheafOfNotesTile.prototype = new BookItemObject();
 
-function SheafOfNotesTile() {
-  this.name = "SheafOfNotes";
+function XoriccoRecipeTile() {
+  this.name = "XoriccoRecipe";
   this.graphic = "master_spritesheet_d.png";
   this.spritexoffset = "-64";
   this.spriteyoffset = "-1248";
@@ -11806,7 +11806,7 @@ function SheafOfNotesTile() {
   this.contents = "You read the recipe:%%Insert recipe here.";  // WORKING HERE- GET RECIPE FROM EDWARD?
   this.longdesc = "Evidently, this is Sorceress Xoricco's recipe for chili.";
 }
-SheafOfNotesTile.prototype = new BookItemObject();
+XoriccoRecipeTile.prototype = new BookItemObject();
 
 function ClearLakeReportTile() {
   this.name = "ClearLakeReport";

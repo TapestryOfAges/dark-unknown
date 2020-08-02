@@ -2578,6 +2578,11 @@ tileFactory.prototype.makeSheafOfNotesTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeXoriccoRecipeTile = function() {
+  let newTile = new XoriccoRecipeTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeClearLakeReportTile = function() {
   let newTile = new ClearLakeReportTile();
   return newTile;
