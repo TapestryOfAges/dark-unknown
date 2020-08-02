@@ -1,6 +1,7 @@
 "use strict";
 
 let maxserial = 0;
+let beta = 0;  // set to one for additional analytics
 
 let wind = {};
 wind.xoff = 0;
