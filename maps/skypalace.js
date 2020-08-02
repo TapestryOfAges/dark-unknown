@@ -344,13 +344,13 @@ mappages["skypalace2"].features[10] = {name : 'Mirror', x : 14, y : 13};
 mappages["skypalace2"].features[11] = {name : 'Mirror', x : 8, y : 13};
 mappages["skypalace2"].features[12] = {name : 'BookshelfLeft', x : 10, y : 15};
 mappages["skypalace2"].features[13] = {name : 'BookshelfRight', x : 11, y : 15, lootedid : 'palace_books1', searchyield : 'AudachtaNemesosWeatherControl'};
-mappages["skypalace2"].features[14] = {name : 'BookshelfOne', x : 12, y : 15};
+mappages["skypalace2"].features[14] = {name : 'BookshelfOne', x : 12, y : 15, lootedid : 'palace_books2', searchyield : 'XoriccoRecipe'};
 
 
 mappages["skypalace2"].npcs = [];
 
 mappages["skypalace2"].desc = "Palace of the Skies";
-mappages["skypalace2"].longdesc = '';
+mappages["skypalace2"].longdesc = ``;
 mappages["skypalace2"].music = 'Cave';
 mappages["skypalace2"].savename = `Palace Skies`;
 mappages["skypalace2"].exitmap = '';
