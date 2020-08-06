@@ -347,7 +347,7 @@ mappages["beldskae"].returnx = '69';
 mappages["beldskae"].returny = '74';
 mappages["beldskae"].returninfused = '0';
 mappages["beldskae"].linkedMaps = ["beldskae2","beldskae3"];
-mappages["beldskae"].editorLabels = '{"div_tile23x10":"Ariel shop","div_tile43x23":"Ariel","div_tile22x29":"Megan shop and house","div_tile9x22":"Mia","div_tile53x14":"Allan and Steph"}';
+mappages["beldskae"].editorLabels = '{"div_tile23x10":"Ariel shop","div_tile43x23":"Ariel","div_tile22x29":"Megan shop and house","div_tile9x22":"Mia","div_tile53x14":"Allan and Steph","div_tile44x14":"Ace","div_tile22x18":"Barri","div_tile8x18":"Denise"}';
 
 
 mappages["beldskae2"] = {};

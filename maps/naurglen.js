@@ -505,7 +505,7 @@ mappages["naurglen"].returnx = '72';
 mappages["naurglen"].returny = '75';
 mappages["naurglen"].returninfused = '0';
 mappages["naurglen"].linkedMaps = ["naurglen2","naurglen_limbo"];
-mappages["naurglen"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"Grayson","div_tile89x17":"Dora and Ingrid","div_tile92x33":"Kyvek Room","div_tile56x37":"Amaeryl","div_tile26x39":"Kylee and Sam","div_tile45x8":"Warren and Garen","div_tile23x22":"Derek","div_tile9x38":"PC Home","div_tile74x37":"Hazel","div_tile22x6":"Soldier","div_tile7x23":"Soldier"}';
+mappages["naurglen"].editorLabels = '{"div_tile66x16":"Evelyn","div_tile74x14":"Grayson","div_tile89x17":"Dora and Ingrid","div_tile92x33":"Kyvek Room","div_tile56x37":"Amaeryl","div_tile26x39":"Kylee and Sam","div_tile45x8":"Warren and Garen","div_tile23x22":"Derek","div_tile9x38":"PC Home","div_tile74x37":"Hazel","div_tile22x6":"Samuel","div_tile7x23":"Soldier"}';
 
 
 mappages["naurglen"].onload = function(mapref) {
