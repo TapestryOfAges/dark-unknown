@@ -645,6 +645,10 @@ OnConvTriggers["franklin_karma"] = function(speaker,keyword) {
   DU.gameflags.setFlag("franklin_offered",1);
 }
 
+OnConvTriggers["franklin_debt_paid"] = function(speaker,keyword) {
+  DU.gameflags.setFlag("franklin_debt_paid",DUTime.getGameClock());
+}
+
 OnConvTriggers["clear_gem_flags"] = function(speaker,keyword) {
   DU.gameflags.deleteFlag("clear_gem_flags");
   if (DU.gameflags.getFlag("cut_ruby")) {
@@ -853,6 +857,10 @@ OnConvTriggers["franklin_offered"] = function(speaker, keyword) {
     }
     DU.gameflags.setFlag("franklin_karma",1);
   }
+}
+
+OnConvTriggers["paladin_stage1"] = function(speaker,keyword) {
+  DU.gameflags.setFlag("paladin_stage1", DUTime.getGameClock());
 }
 
 OnConvTriggers["give_tip"] = function(speaker,keyword) {
