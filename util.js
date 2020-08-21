@@ -1518,6 +1518,47 @@ function PerformGambling() {
   gamestate.setMode("digits");
 }
 
+function CheckForCourier(mapref, enterx, entery, exitx, exity) {  
+  if (DU.gameflags.getFlag("act2") && DU.gameflags.getFlag("franklin_debt_paid") && !DU.gameflags.getFlag("franklin_gift")) {
+    if ((DUTime.getGameClock() >= DU.gameflags.getFlag("act2")+2016) && (DUTime.getGameClock() >= DU.gameflags.getFlag("franklin_debt_paid")+2016)) {
+      // It is Act 2, Franklin's debt is paid, and it is at least a week after both of those things became true
+      let courier = localFactory.createTile("TownsfolkVillagerNPC");
+      courier.setDesc("courier");
+      courier.setPeaceAI("FranklinCourier");
+      courier.setCurrentAI("FranklinCourier");
+      courier.setDex(30);
+      courier.step = 1;
+      courier.setGender("male");
+      courier.setNPCName("Argan");
+      courier.setConversation("Argan");
+      courier.leavex = exitx;
+      courier.leavey = exity;
+      mapref.placeThing(enterx,entery,courier);
+
+      return;
+    }
+  }
+
+  if (DU.gameflags.getFlag("paladin_stage1") && !DU.gameflags.getFlag("paladin_stage2")) {
+    if ((DUTime.getGameClock() >= DU.gameflags.getFlag("paladin_stage1")+2016) && (PC.getKarma() >= 15) && (PC.negkarma < 2)) {
+      // It's been at least a week since Isaac said the paladins would watch you, you have at least 15 karma, and you've done
+      // at most one thing that has ever had a karma penalty
+      let courier = localFactory.createTile("TownsfolkVillagerNPC");
+      courier.setDesc("courier");
+      courier.setPeaceAI("PaladinCourier");
+      courier.setCurrentAI("PaladinCourier");
+      courier.setDex(30);
+      courier.step = 1;
+      courier.setGender("female");
+      courier.setNPCName("Varynan");
+      courier.setConversation("Varynan");
+      courier.leavex = exitx;
+      courier.leavey = exity;
+      mapref.placeThing(enterx,entery,courier);
+    }
+  }
+}
+
 //EXTERNALLY SOURCED
 
 // this function found on stackexchange
