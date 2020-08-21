@@ -7,6 +7,7 @@ autosave
 move_opens_doors
 move_attacks  - which also covers move_talks
 sticky_target
+skip_theft_warning
 
 DU.randomseed - random number generated on game creation
 karma - tracks PC's karma
@@ -106,6 +107,7 @@ franklin_debt_mayor - you have cleared Franklin's name with the mayor
 franklin_debt_paid - Franklin has acknowledged that you have paid his debt
 franklin_offered - you offered money to Franklin (and could actually afford to)
 franklin_karma - you had your one shot at karma for offering him money
+franklin_gift - Franklin sent you the AN Jinx
 knowsgreenpotion - you know that green potions are poison
 knowsdarkgreenpotion - you know that dark green potions are quickness
 knowssilverpotion - you know that silver potions are strength
@@ -146,6 +148,8 @@ learned_ww - you've learned Water Walk
 oracle_tome - you've brought the Tome of Sight to Ashlin
 infusion_learned - you know infusion
 borogard_killed - you've killed the talking ettin
+rhiannon_recipe - you've found a recipe to help the Gauntlet Tavern
+gauntlet_recipe - you've left Gauntlet since giving the recipe
 
 jharden_act2 - you've spoken to Jharden in act 2
 nyrani_act2
