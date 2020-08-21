@@ -321,7 +321,7 @@ function PerformActEnd() {
   } else if (endact.getPower() === 6) {
     maintext.addText("<span class='sysconv'>You have gained: 100 XP.</span>");
     PC.addxp(100);
-    DU.gameflags.setFlag("act2",1);
+    DU.gameflags.setFlag("act2",DUTime.getGameClock());
     DU.gameflags.deleteFlag("intermission");
     maintext.setInputLine("&gt;");
     PC.deleteSpellEffect(endact);
