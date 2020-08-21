@@ -5,6 +5,7 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
+const isDev = require('electron-is-dev');
 const {ipcMain} = require('electron')
 
 let mainWindow = null;
