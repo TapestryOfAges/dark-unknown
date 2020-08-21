@@ -224,6 +224,18 @@ p.charcreate { color:white;
    	            line-height:20px;
 }
 
+p.menuselect { color:yellow;
+	font-family:"Commodore64";
+	 font-size:16pt;
+	 line-height:10px;
+}
+
+p.menuplain { color:white;
+	font-family:"Commodore64";
+	 font-size:16pt;
+	 line-height:10px;
+}
+
 span.leveled { color: red; }
 span.conv {color: lightyellow; }
 span.sysconv { color: yellow; }
@@ -248,6 +260,20 @@ div.demo { color:white;
 }
 
 div.demo a { color:lightblue; }
+
+div.textoptions {
+	position:absolute; 
+	width: 50%; 
+	height: 120px;
+	left: 194px;
+	top: 330px;
+	opacity:1;
+	text-align:center;
+	border-style: ridge;
+	border-color: #dddddd;
+	border-radius: 5px;
+	z-index: 10;
+}
 
 .runfadeout {
 	animation-name: fadeout;
