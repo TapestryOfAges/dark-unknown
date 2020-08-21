@@ -34,6 +34,6 @@
   "dependencies": {
     "electron-is-dev": "^1.2.0",
     "fs-extra": "^8.0.1",
-    "npm": "^6.14.7"
+    "npm": "^6.14.6"
   }
 }
