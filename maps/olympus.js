@@ -1273,6 +1273,8 @@ mappages["olympus1"].onload = function(mapref) {
 
     // Changes made due to schedules
 
+    CheckForCourier(mapref, 51, 49, 49, 61);
+
     let tyler, sean, katrina, manny, pieran, alban, martha, una, martin, donn, davin;
 
     let npcs = mapref.npcs.getAll();
