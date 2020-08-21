@@ -2691,6 +2691,18 @@ function DrawOptions() {
   optdiv += zlev + "x";
   optdiv += "</td></tr>";
 
+  optdiv += "<tr><td>SKIP THEFT WARNING:</td><td></td><td";
+  if (targetCursor.page === 10) { 
+    optdiv += " class='highlight'";
+  }
+  optdiv += ">";
+  if (DU.gameflags.getFlag("skip_theft_warning")) {
+    optdiv += "YES";
+  } else {
+    optdiv += "NO";
+  }
+  optdiv += "</td></tr>";
+
   optdiv += "</table></div></div>";
   
   DrawTopbarFrame("<p>Options</p>");
@@ -2868,7 +2880,7 @@ function performOptions(code) {
   else if ((code === 40) || (code === 191)) { // scroll down
     targetCursor.page++;
     if (targetCursor.cmd === "o") {
-      if (targetCursor.page === 10) { targetCursor.page = 9; }
+      if (targetCursor.page === 11) { targetCursor.page = 10; }
     } else if (targetCursor.cmd === "debug") {
       if (targetCursor.page === 13) { targetCursor.page = 12; }
     }
