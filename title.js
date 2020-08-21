@@ -118,10 +118,6 @@ function page_pre_zero() {
 
 
 function page_zero() {
-//  let fleft = Math.floor(browserwidth/2 - 400);
-//  if (fleft < 0) { fleft = 0; }
-//  let ftop = Math.floor(browserheight/2 - 300);
-//  if (ftop < 0) { ftop = 0; }
   let fleft = -3;
   let ftop = 0;
   let signl = fleft+324;
@@ -213,32 +209,22 @@ function FirstPage() {
 function SecondPage() {
   
   let sleft = browserwidth/2 - 200;
-  let sptop = browserheight/2 - 300;
-  if (sptop < 0 ) { sptop = 0; }
-  let opttop = sptop + 250;
-  if (opttop === 250) { opttop = 200; }
-  let optleft = browserwidth/2 - 215;
+  let sptop = -5;
   optselect = 0;
-  let spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;opacity:0'><img src='graphics/title/du_logo.png' /></div><div id='options'></div>";
+  let spage = "<div id='attract' style='position:absolute; left:0px; top:0px; z-index:5'></div><div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;opacity:0'><img src='graphics/title/du_logo.png' /></div><div id='options'></div>";
   document.getElementById('maindiv').innerHTML = spage;
   lastanim = "DU";
   document.getElementById('DU').classList.add('presentfadein');
   setTimeout(function() {
-    
-    spage = "<div id='intro' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;opacity:0'><img id='opt0' src='graphics/title/intro-g.gif' onClick='makeChoice(\'intro\')' /></div>";
-    opttop += 60;
-    spage += "<div id='create' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;opacity:0'><img id='opt1' src='graphics/title/create.gif' onClick='makeChoice(\'create\')' /></div>";
-    opttop += 60;
-    let journey = "journey.gif";
+    spage = "<div id='textoptions' class='textoptions'>";
+    spage += "<div id='intro'><p class='menuselect' style='margin-top:5px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
+    spage += "<div id='create'><p class='menuplain' style='margin-top:5px' id='opt1' onClick='makeChoice(\'create\')' />Create Character</p></div>";
+    let journey = "";
     if (gamestate.getLatestSaveIndex() === -1) {
-      journey = "journey-d.gif";
-      optnames[2] = "graphics/title/journey-d";
-    } else {
-      optnames[2] = "graphics/title/journey";
-    }
-    spage += "<div id='journey' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;opacity:0'><img id='opt2' src='graphics/title/" + journey + "' onClick='makeChoice(\'journey\')' /></div>";
-    opttop += 60;
-    spage += "<div id='credits' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;opacity:0'><img id='opt3' src='graphics/title/credits.gif' onClick='makeChoice(\'credits\')' /></div>";
+      journey = " style='color:gray'";
+    } 
+    spage += "<div id='journey'><p class='menuplain' style='margin-top:5px' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Journey Onward</p></div>";
+    spage += "<div id='credits'><p class='menuplain' style='margin-top:5px' id='opt3' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
     document.getElementById('options').innerHTML = spage;
     document.getElementById('intro').classList.add('presentfadein');
     document.getElementById('create').classList.add('presentfadein');
@@ -250,28 +236,21 @@ function SecondPage() {
 
 function finishedFinalPage() {
   let sleft = browserwidth/2 - 200;
-  let sptop = browserheight/2 - 300;
-  if (sptop < 0 ) { sptop = 0; }
-  let opttop = sptop + 250;
-  if (opttop === 250) { opttop = 200; }
-  let optleft = browserwidth/2 - 215;
+  let sptop = -5;
+  console.log(sptop);
   optselect = 0;
-  let spage = "<div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;'><img src='graphics/title/du_logo.png' /></div><div id='options'></div>";
+  let spage = "<div id='attract' style='position:absolute; left:0px; top:0px; z-index:5'></div><div id='DU' style='position:absolute;left:" + sleft + "px;top:" + sptop + "px;z-index:10'><img src='graphics/title/du_logo.png' /></div><div id='options'></div>";
   document.getElementById('maindiv').innerHTML = spage;
-  spage = "<div id='intro' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt0' src='graphics/title/intro-g.gif' onClick='makeChoice(\'intro\')' /></div>";
-  opttop += 60;
-  spage += "<div id='create' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt1' src='graphics/title/create.gif' onClick='makeChoice(\'create\')' /></div>";
-  opttop += 60;
-  let journey = "journey.gif";
+  spage = "<div id='textoptions' class='textoptions'>";
+  spage += "<div id='intro'><p class='menuselect' style='margin-top:5px' id='opt0' onClick='makeChoice(\'intro\')' />View Introduction</p></div>";
+  spage += "<div id='create'><p class='menuplain' style='margin-top:5px' id='opt1' onClick='makeChoice(\'create\')' />Create Character</p></div>";
+  let journey = "";
   if (gamestate.getLatestSaveIndex() === -1) {
-    journey = "journey-d.gif";
-    optnames[2] = "graphics/title/journey-d";
-  } else {
-    optnames[2] = "graphics/title/journey";
-  }
-  spage += "<div id='journey' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt2' src='graphics/title/" + journey + "' onClick='makeChoice(\'journey\')' /></div>";
-  opttop += 60;
-  spage += "<div id='credits' style='position:absolute;left:" + optleft + "px; top:" + opttop + "px;'><img id='opt3' src='graphics/title/credits.gif' onClick='makeChoice(\'credits\')' /></div>";
+    journey = " style='color:gray'";
+  } 
+  spage += "<div id='journey'><p class='menuplain' style='margin-top:5px' id='opt2'" + journey + " onClick='makeChoice(\'journey\')' />Journey Onward</p></div>";
+  spage += "<div id='credits'><p class='menuplain' style='margin-top:5px' id='opt3' onClick='makeChoice(\'credits\')' />Credits</p></div></div>";
+
   document.getElementById('options').innerHTML = spage;
   pagelive();
 
@@ -279,9 +258,13 @@ function finishedFinalPage() {
 
 function pagelive() {
   gamestate.setMode("on");
-  
+  StartAttract();
 }
 
+function StartAttract() {
+  let attractmap = "<table cellpadding='0' cellspacing='0' border='0'>";
+  
+}
 
 function DoActionTitle(code, e) {
   if (gamestate.getMode() === "intro") {
@@ -292,30 +275,36 @@ function DoActionTitle(code, e) {
     if ((code === 38) || (code === 219)) {    // up arrow or [
       if (optselect > 0) {
         let img = "opt" + optselect;
-        document.getElementById(img).src = optnames[optselect] + ".gif";
+        document.getElementById(img).classList.remove("menuselect");
+        document.getElementById(img).classList.add("menuplain");
         optselect--;
         img = "opt" + optselect;
         if ((optselect !== 2) || (gamestate.getLatestSaveIndex() !== -1)) {
-          document.getElementById(img).src = optnames[optselect] + "-g.gif";
+          document.getElementById(img).classList.remove("menuplain");
+          document.getElementById(img).classList.add("menuselect");            
         } else {
           optselect--;
           img = "opt" + optselect;
-          document.getElementById(img).src = optnames[optselect] + "-g.gif";
+          document.getElementById(img).classList.remove("menuplain");
+          document.getElementById(img).classList.add("menuselect");  
         }
       }
     }
     else if ((code === 40) || (code === 191)) {
       if (optselect < 3) {
         let img = "opt" + optselect;
-        document.getElementById(img).src = optnames[optselect] + ".gif";
+        document.getElementById(img).classList.remove("menuselect");
+        document.getElementById(img).classList.add("menuplain");
         optselect++;
         img = "opt" + optselect;
         if ((optselect !== 2) || (gamestate.getLatestSaveIndex() !== -1)) {
-          document.getElementById(img).src = optnames[optselect] + "-g.gif";
+          document.getElementById(img).classList.remove("menuplain");
+          document.getElementById(img).classList.add("menuselect");            
         } else {
           optselect++;
           img = "opt" + optselect;
-          document.getElementById(img).src = optnames[optselect] + "-g.gif";
+          document.getElementById(img).classList.remove("menuplain");
+          document.getElementById(img).classList.add("menuselect");            
         }
       }
     }
