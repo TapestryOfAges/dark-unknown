@@ -1,5 +1,5 @@
 "use strict";
-
+const isDev = require('electron-is-dev');
 let maxserial = 0;
 let beta = 0;  // set to one for additional analytics
 
