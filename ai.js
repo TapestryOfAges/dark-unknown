@@ -1148,6 +1148,64 @@ ais.SwainhilBandit = function(who) {
   return retval;
 }
 
+ais.FranklinCourier = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  if ((who.step === 1) && (GetSquareDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) === 1)) {
+    maintext.addText(`The courier calls to you: "${PC.getPCName()}, my ${PC.titled}! The Bard Franklin bids me say Thank you again, and that I deliver to you this. Good day!"`);
+    maintext.addText("He hands you a book, and runs off to his next delivery.");
+    maintext.addText(`<span class='sysconv'>You have gained one Audachta Nemesos: Jinx.</span>`);
+    PC.addToInventory(localFactory.createTile("AudachtaNemesosJinx"),1);
+    who.step = 2;
+    DU.gameflags.setFlag("franklin_gift",1);
+    return retval;
+  } else if (who.step === 1) {
+    let path = who.getHomeMap().getPath(who.getx(),who.gety(),PC.getx(),PC.gety(),who.getMovetype());
+    path.shift();
+    retval = StepOrSidestep(who, [path[0][0],path[0][1]], [PC.getx(),PC.gety()], "nopush");
+    return retval;
+  } else if (who.step === 2) {
+    if ((who.getx() === who.leavex) && (who.gety() === who.leavey)) {
+      who.getHomeMap().deleteThing(who);
+      DUTime.removeEntityFrom(who);
+      DrawMainFrame("one",PC.getHomeMap(),who.leavex,who.leavey);
+    } else {
+      let path = who.getHomeMap().getPath(who.getx(),who.gety(),who.leavex,who.leavey,who.getMovetype());
+      path.shift();
+      retval = StepOrSidestep(who, [path[0][0],path[0][1]], [who.leavex,who.leavey], "nopush");
+    }
+  }
+  return retval;
+}
+
+ais.PaladinCourier = function(who) {
+  let retval = {};
+  retval["fin"] = 1;
+  if ((who.step === 1) && (GetSquareDistance(who.getx(),who.gety(),PC.getx(),PC.gety()) === 1)) {
+    maintext.addText(`The courier calls to you: "${PC.getPCName()}, my ${PC.titled}! I come to you with a message from Lord Isaac of Swainhil. He bids you come to him in Swainhil. I am to say: you have passed the trails. Congratulations, and farewell!"`);
+    maintext.addText("She turns away, off to make her next delivery.");
+    who.step = 2;
+    DU.gameflags.setFlag("paladin_stage2",1);
+    return retval;
+  } else if (who.step === 1) {
+    let path = who.getHomeMap().getPath(who.getx(),who.gety(),PC.getx(),PC.gety(),who.getMovetype());
+    path.shift();
+    retval = StepOrSidestep(who, [path[0][0],path[0][1]], [PC.getx(),PC.gety()], "nopush");
+    return retval;
+  } else if (who.step === 2) {
+    if ((who.getx() === who.leavex) && (who.gety() === who.leavey)) {
+      who.getHomeMap().deleteThing(who);
+      DUTime.removeEntityFrom(who);
+      DrawMainFrame("one",PC.getHomeMap(),who.leavex,who.leavey);
+    } else {
+      let path = who.getHomeMap().getPath(who.getx(),who.gety(),who.leavex,who.leavey,who.getMovetype());
+      path.shift();
+      retval = StepOrSidestep(who, [path[0][0],path[0][1]], [who.leavex,who.leavey], "nopush");
+    }
+  }
+  return retval;
+}
+
 ais.SurfaceFollowPath = function(who, random_nomove, random_tries) {
   DebugWrite("ai", "<span style='font-weight:bold'>AI " + who.getName() + " in SurfaceFollowPath.</span><br />");
   let retval = { fin: 0 };
