@@ -579,6 +579,8 @@ mappages["hildendain2"].npcs[0] = {name : 'PaladinVillagerNPC', x : 34, y : 28, 
 mappages["hildendain2"].npcs[1] = {name : 'TownsfolkVillagerNPC', x : 21, y : 55, NPCName: 'Evan', PeaceAI: 'scheduled', Schedule: 'evan', Conversation: 'evan', Gender: 'male', Merch: 'evan', NPCBand: '0', OverrideGraphic: 'civ_green.2.gif', skintone: '2'};
 mappages["hildendain2"].npcs[2] = {name : 'BardVillagerNPC', x : 23, y : 36, NPCName: 'Franklin', PeaceAI: 'scheduled', PCThreatAI: 'RunAway', Schedule: 'franklin', Conversation: 'franklin', Gender: 'male', NPCBand: '0', OverrideGraphic: '311.gif', skintone: '1'};
 mappages["hildendain2"].npcs[3] = {name : 'PaladinVillagerNPC', x : 23, y : 35, NPCName: 'Yelena', PeaceAI: 'scheduled', Schedule: 'yelena', Conversation: 'yelena', Gender: 'female', NPCBand: '0', OverrideGraphic: '307.gif', skintone: '1'};
+mappages["hildendain2"].npcs[4] = {name : 'TownsfolkVillagerNPC', x : 23, y : 38, NPCName: 'Leon', Conversation: 'leon', Gender: 'male', NPCBand: '0', OverrideGraphic: '310.gif', skintone: '1'};
+mappages["hildendain2"].npcs[5] = {name : 'TownsfolkVillagerNPC', x : 23, y : 41, NPCName: 'Janet', Conversation: 'janet', Gender: 'female', NPCBand: '0', OverrideGraphic: 'civ_red.2.gif', skintone: '1'};
 
 mappages["hildendain2"].desc = "The Towne of Hildendain";
 mappages["hildendain2"].longdesc = '';
@@ -610,14 +612,15 @@ mappages["hildendain2"].editorLabels = '{}';
 
 mappages["hildendain"].onload = function(mapref) {
   if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    if (DU.gameflags.getFlag("rhiannon_recipe")) { DU.gameflags.setFlag("gauntlet_recipe",1); }
+
     let npcs = mapref.npcs.getAll();
-    let anna, aaron, alexis, kiba, franklin;
+    let anna, aaron, alexis, kiba;
     for (let i=0;i<npcs.length;i++) {
       if (npcs[i].getNPCName() === "Anna") { anna = npcs[i]; }
       if (npcs[i].getNPCName() === "Aaron") { aaron = npcs[i]; }
       if (npcs[i].getNPCName() === "Alexis") { alexis = npcs[i]; }
       if (npcs[i].getNPCName() === "Kiba") { kiba = npcs[i]; }
-      if (npcs[i].getNPCName() === "Franklin") { franklin = npcs[i]; }
     }
 
     if (aaron) {
@@ -635,13 +638,6 @@ mappages["hildendain"].onload = function(mapref) {
     if (kiba) {
       if ((kiba.getCurrentScheduleIndex() >= 4) && (kiba.getCurrentScheduleIndex() <= 12)) {
         kiba.getHomeMap().getTile(46,35).getTopFeature().unlockMe(kiba);
-      }
-    }
-
-    if (DU.gameflags.getFlag("act2") && DU.gameflags.getFlag("franklin_debt_paid")) {  // you've paid his debt, and it's act 2
-      if (franklin) {
-        mapref.deleteThing(franklin);
-        DUTime.removeEntityFrom(franklin);
       }
     }
 
@@ -709,6 +705,43 @@ mappages["hildendain"].onload = function(mapref) {
         }
       }
     }
+  }
+}
+
+mappages["hildendain2"].onload = function(mapref) {
+  if ((gamestate.getMode() !== "loadgame") && (!DU.gameflags.getFlag("editor"))) {
+    let npcs = mapref.npcs.getAll();
+    let franklin, leon, janet;
+    for (let i=0;i<npcs.length;i++) {
+      if (npcs[i].getNPCName() === "Franklin") { franklin = npcs[i]; }
+      if (npcs[i].getNPCName() === "Leon") { leon = npcs[i]; }
+      if (npcs[i].getNPCName() === "Janet") { janet = npcs[i]; }
+    }
+
+    if (DU.gameflags.getFlag("act2") && DU.gameflags.getFlag("franklin_debt_paid")) {  // you've paid his debt, and it's act 2
+      if (franklin) {
+        mapref.deleteThing(franklin);
+        DUTime.removeEntityFrom(franklin);
+      }
+    }
+    if (!DU.gameflags.getFlag("gauntlet_recipe")) {
+      if (leon) {
+        mapref.deleteThing(leon);
+        DUTime.removeEntityFrom(leon);
+      }
+      if (janet) {
+        mapref.deleteThing(janet);
+        DUTime.removeEntityFrom(janet);
+      }
+    } else {
+      if (!DU.gameflags.getFlag("act2") || !DU.gameflags.getFlag("franklin_debt_paid")) {
+        if (leon) {
+          mapref.deleteThing(leon);
+          DUTime.removeEntityFrom(leon);
+        }  
+      }
+    }
+
   }
 }
 
