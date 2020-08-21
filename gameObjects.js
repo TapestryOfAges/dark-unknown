@@ -828,6 +828,16 @@ function OpenContainer(opensound, lockedsound) {
     return this.karmaPenalty;
   }
   
+  this.usePrompt = function(code) {
+    if (code === 89) {
+      PC.diffKarma(1-this.getKarmaPenalty);
+      this.setKarmaPenalty(0);
+      return this.use(PC);
+    } else {
+      retval["txt"] = "You decide not to open it.";
+    }
+  }
+
   this.use = function(who, fire) {
     let retval = {}; 
 
@@ -838,8 +848,19 @@ function OpenContainer(opensound, lockedsound) {
       }
     }
     
-    if (this.getKarmaPenalty() && (who === PC)) {
-      PC.diffKarma(1-this.getKarmaPenalty);
+    if (this.getKarmaPenalty() && (who === PC) && !fire) {
+      if (DU.gameflags.getFlag("skip_theft_warning")) {
+        PC.diffKarma(1-this.getKarmaPenalty);
+      } else {
+        retval["override"] = -1;
+        retval["fin"] = -1;
+        retval["preserve"] = 1;
+        retval["txt"] = "Opening this would be stealing. Are you sure?";
+        retval["input"] = "(Y/N): ";
+        targetCursor.useditem = this;
+        return retval;
+      }
+    
     }
     
     if ((typeof this.getLocked === "function") && !fire) {
@@ -15578,7 +15599,7 @@ NPCObject.prototype.processDeath = function(droploot){
                   maintext.addText("<span class='sysconv'>You have gained: 100 XP.</span>");
                   maintext.setInputLine("&gt;");
                   PC.addxp(100);
-                  DU.gameflags.setFlag("act2",1);
+                  DU.gameflags.setFlag("act2",DUTime.getGameClock());
                   DU.gameflags.deleteFlag("intermission");
                   PC.setHP(15);
                   delete PC.dead;
