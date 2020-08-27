@@ -8,6 +8,11 @@
 	to { opacity: 1}
 }
 
+@keyframes attfadein {
+	from {opacity: 0; }
+	to {opacity: 1 }
+}
+
 /* Title screen */
 
 .titlefadein {
@@ -19,6 +24,12 @@
 .titlefadeout {
 	animation-name: fadeout;
 	animation-duration: 1.0s;
+	animation-fill-mode: forwards;
+}
+
+.attractfadein {
+	animation-name: attfadein;
+	animation-duration: 2.0s;
 	animation-fill-mode: forwards;
 }
 
