@@ -27,7 +27,7 @@ mappages["twistoffate1"].terrain[21] = 'BK BK BK BK BK BK %% hf hf hf hf hf %% B
 mappages["twistoffate1"].terrain[22] = 'BK BK BK BK BK BK %% hf hf hf hf hf %% %% %% hf hf hf hf %% %% hf hf hf %% %% %% hf hf hf hf %% %% hf hf hf %% %% BK BK BK BK BK BK';
 mappages["twistoffate1"].terrain[23] = 'BK BK BK BK BK BK %% hf hf hf hf %% %% %% hf hf hf hf %% %% %% %% hf %% %% BK %% %% hf hf hf %% %% %% hf hf hf %% BK BK BK BK BK BK';
 mappages["twistoffate1"].terrain[24] = 'BK BK BK BK BK BK %% %% hf hf hf %% BK %% hf hf hf hf %% %% %% hf hf hf %% %% %% %% %% hf hf hf %% %% hf hf hf %% BK BK BK BK BK BK';
-mappages["twistoffate1"].terrain[25] = 'BK BK BK BK BK BK BK %% hf hf hf %% %% %% hf hf hf hf %% %% hf hf hf hf ,% %% %% %% %% hf hf hf %% %% hf hf hf %% BK BK BK BK BK BK';
+mappages["twistoffate1"].terrain[25] = 'BK BK BK BK BK BK BK %% hf hf hf %% %% %% hf hf hf hf %% %% hf hf hf hf hf %% %% %% %% hf hf hf %% %% hf hf hf %% BK BK BK BK BK BK';
 mappages["twistoffate1"].terrain[26] = 'BK BK BK BK BK BK BK %% hf hf hf hf %% %% %% hf hf hf %% %% hf hf hf hf hf %% %% %% %% hf hf hf %% %% hf hf hf %% BK BK BK BK BK BK';
 mappages["twistoffate1"].terrain[27] = 'BK BK BK BK BK BK BK %% hf hf hf hf %% %% %% hf hf hf %% %% hf hf hf hf hf %% %% %% %% hf hf hf %% %% hf hf hf %% BK BK BK BK BK BK';
 mappages["twistoffate1"].terrain[28] = 'BK BK BK BK BK BK BK %% %% hf hf hf hf %% %% %% hf hf hf %% %% hf hf hf %% %% %% %% %% hf hf hf %% %% hf hf hf %% BK BK BK BK BK BK';
@@ -57,13 +57,15 @@ mappages["twistoffate1"].features = [];
 mappages["twistoffate1"].features[0] = {name : 'LadderUp', x : 22, y : 26, entermap : 'darkunknown', enterx : 22, entery : 117};
 mappages["twistoffate1"].features[1] = {name : 'LadderDown', x : 15, y : 38, entermap : 'twistoffate2', enterx : 19, entery : 38};
 mappages["twistoffate1"].features[2] = {name : 'LadderDown', x : 26, y : 11, entermap : 'twistoffate2', enterx : 30, entery : 11};
+mappages["twistoffate1"].features[3] = {name : 'PileOfRocks', x : 24, y : 25};
 
 
 mappages["twistoffate1"].npcs = [];
 
 mappages["twistoffate1"].desc = "Twist of Fate (L1)";
+mappages["twistoffate1"].longdesc = ``;
 mappages["twistoffate1"].music = 'Dungeon';
-mappages["twistoffate1"].savename = 'Twist of Fate';
+mappages["twistoffate1"].savename = `Twist of Fate`;
 mappages["twistoffate1"].exitmap = 'darkunknown';
 mappages["twistoffate1"].exitx = '22';
 mappages["twistoffate1"].exity = '117';

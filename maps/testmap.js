@@ -274,11 +274,11 @@ mappages["olympus1_test"].terrain[28] = '.. .` uu uu |. ## ++ ++ ## .. .. .. .. 
 mappages["olympus1_test"].terrain[29] = '.. .| uu uu |. ## ++ ++ ## .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ++ ## ## ## ## ## ## ## ## ## ## ## ## ## ## ++ ++ ## .. .. +* +* +* .. .. .. +* +* +* .. .. ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ., .. .. ## ++ ++ ++ ++ ++ #O .. .. ## ++ ++ ## .. .| uu uu uu |. .. .. ..';
 mappages["olympus1_test"].terrain[30] = '.. .| uu uu |. ## ++ ++ ## .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## .. +* .. +* .. +* .. +* .. +* .. +* .. ## ++ ++ ## ## ## ## ++ ## ## ## ## ## ## ## ## ## .. .. .. ., ., ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ## .. .| uu uu uu |. .. .. ..';
 mappages["olympus1_test"].terrain[31] = '.. .| uu uu |. ## ++ ++ ## .. .. .. .. .. .. .. .. .. .. .. .. .. .. ., .. ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ .. +* .. .. .. .. +* .. .. .. .. +* .. ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ## .. .. .. .. ## ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ## .. .| uu uu uu |. .. .. ..';
-mappages["olympus1_test"].terrain[32] = '.. .| uu uu |. ## ++ ++ ## .. ,% ., ., ., ., ., ., ., ., ., .. .. ., .. .. ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## .. +* .. +* .. +* .. +* .. +* .. +* .. ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ., .. ## ## ## #O ## ## ## .. .. ## ++ ++ ## .. .| uu uu uu |. .. .. ..';
+mappages["olympus1_test"].terrain[32] = '.. .| uu uu |. ## ++ ++ ## .. ., ., ., ., ., ., ., ., ., ., .. .. ., .. .. ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## .. +* .. +* .. +* .. +* .. +* .. +* .. ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ., .. ## ## ## #O ## ## ## .. .. ## ++ ++ ## .. .| uu uu uu |. .. .. ..';
 mappages["olympus1_test"].terrain[33] = '.. .| uu uu |. ## ++ ++ ## .. ., ., .. .. .. .. .. .. .. .. .. .. ., .. .. ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## .. .. +* +* +* .. .. .. +* +* +* .. .. ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ## .. .. ., .. .. .. .. .. .. .. .. .. .. ## ++ ++ ## .. .| uu uu uu |. .. .. ..';
-mappages["olympus1_test"].terrain[34] = '.. ./ uu uu |. ## ++ ++ ## .. ,% ., ., ., ., ., ., ., ., ., .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## .. .. .. +* .. .. .. .. .. +* .. .. .. ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ., .. .. .. .. .. ## ## ## .. .. .. ## ++ ++ ## .. .| uu uu uu |. .. .. ..';
+mappages["olympus1_test"].terrain[34] = '.. ./ uu uu |. ## ++ ++ ## .. ., ., ., ., ., ., ., ., ., ., .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## .. .. .. +* .. .. .. .. .. +* .. .. .. ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ., .. .. .. .. .. ## ## ## .. .. .. ## ++ ++ ## .. .| uu uu uu |. .. .. ..';
 mappages["olympus1_test"].terrain[35] = '.| uu uu uu |. #+ ++ ++ ## .. ., ., .. .. .. .. .. .. .. .. .. .. .. .. .. .. #O ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ## .. .. .. .. .. .. .. .. .. .. .. .. .. ## ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. ., .. .. ## ## ## ## ++ ## ## .. .. ## ++ ++ ## .. .| uu uu uu |. .. .. ..';
-mappages["olympus1_test"].terrain[36] = '.| uu uu uu |. ## ++ ++ ## .. ,% ., ., ., ., ., ., ., ., ., .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ## ++ ## ## ++ ## ## ## ++ ++ ++ ## ## ## ++ ## ## ++ ## ## ## ## ## ## ## ## ++ ## ## ## ## ## ## .. .. .. ., .. ## ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ## .. .| uu uu /. .. .. .. ..';
+mappages["olympus1_test"].terrain[36] = '.| uu uu uu |. ## ++ ++ ## .. ., ., ., ., ., ., ., ., ., ., .. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ## ++ ## ## ++ ## ## ## ++ ++ ++ ## ## ## ++ ## ## ++ ## ## ## ## ## ## ## ## ++ ## ## ## ## ## ## .. .. .. ., .. ## ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ## .. .| uu uu /. .. .. .. ..';
 mappages["olympus1_test"].terrain[37] = '.| uu uu uu |. ## ++ ++ ## .. .. .. .. .. .. .. .. .. .. .. .. .. .. ., .. .. #O ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ #O .. .. .. ., .. #O ++ ++ ++ ++ ++ ## .. .. ## ++ ++ #+ .. ./ uu uu |. .. .. .. ..';
 mappages["olympus1_test"].terrain[38] = '.| uu uu uu |. ## ++ ++ ## .. .. .. .. .. .. .. .. .. .. ., ., ., ., .. .. ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ## .. .. .. .. ## ++ ++ ++ ++ ++ #O .. .. ## ++ ++ ## .| uu uu uu |. .. .. .. ..';
 mappages["olympus1_test"].terrain[39] = '.| uu uu uu |. ## ++ ++ ## .. .. .. .. .. .. .. .. .. .. .. .. .. ., .. .. ## ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ## .. .. ., ., ++ ++ ++ ++ ++ ++ ## .. .. ## ++ ++ ## .| uu uu uu |. .. .. .. ..';
@@ -858,12 +858,15 @@ mappages["olympus1_test"].features[545] = {name : 'Fireplace', x : 72, y : 32};
 mappages["olympus1_test"].features[546] = {name : 'Brazier', x : 11, y : 25};
 mappages["olympus1_test"].features[547] = {name : 'TorchEast', x : 15, y : 52};
 mappages["olympus1_test"].features[548] = {name : 'Brazier', x : 9, y : 50};
+mappages["olympus1_test"].features[549] = {name : 'PileOfRocks', x : 10, y : 36};
+mappages["olympus1_test"].features[550] = {name : 'PileOfRocks', x : 10, y : 34};
+mappages["olympus1_test"].features[551] = {name : 'PileOfRocks', x : 10, y : 32};
 
 
 mappages["olympus1_test"].npcs = [];
 
 mappages["olympus1_test"].desc = "Castle dea Olympus";
-mappages["olympus1_test"].longdesc = 'Castle dea Olympus is the imposing heart of the kingdom. Within can be found the King and Queen, the royal stables and museum, and one of the largest libraries in the land. It is also where you grew up, which does lessen the mystique some.';
+mappages["olympus1_test"].longdesc = `Castle dea Olympus is the imposing heart of the kingdom. Within can be found the King and Queen, the royal stables and museum, and one of the largest libraries in the land. It is also where you grew up, which does lessen the mystique some.`;
 mappages["olympus1_test"].music = 'Olympus';
 mappages["olympus1_test"].savename = `Castle Olympus`;
 mappages["olympus1_test"].exitmap = 'darkunknown';
@@ -887,4 +890,4 @@ mappages["olympus1_test"].returnx = '69';
 mappages["olympus1_test"].returny = '74';
 mappages["olympus1_test"].returninfused = '0';
 mappages["olympus1_test"].linkedMaps = [];
-mappages["olympus1_test"].editorLabels = '';
+mappages["olympus1_test"].editorLabels = '{}';
