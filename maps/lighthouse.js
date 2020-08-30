@@ -17,19 +17,19 @@ mappages["lighthouse1"].terrain[11] = 'ww ww ww ww ww uu uu uu uu ww ww ww ww ww
 mappages["lighthouse1"].terrain[12] = 'ww ww ww uu uu ww ww ww ww ww ww ww ww ww ww ww uu uu uu ww /b -b !! !! !! !! -b b` ww ww ww ww uu ww ww ww ww ww uu uu ww ww ww ww ww ww';
 mappages["lighthouse1"].terrain[13] = 'ww ww uu uu ww ww ww ww ww ww ww ww uu uu uu uu ww ww /b -b ., ., ., ., ., ., ., ., -b b` ww ww ww ww uu ww uu uu ww ww uu uu ww ww ww ww';
 mappages["lighthouse1"].terrain[14] = 'uu uu ww ww ww ww ww ww uu uu ww uu ww ww /b -b -b -b ., ., ., ., ., ., ., ., ., ., ., ., -b -b b` ww ww ww ww ww uu uu ww uu uu uu ww ww';
-mappages["lighthouse1"].terrain[15] = 'uu ww ww ww ww ww uu uu ww ww ww ww ww /b ., ., ., ., ., ,% ., ., ., ., ., ., ., ., ., ., ., ,% ., -b -b -b -b -b b` ww ww ww ww ww uu ww';
+mappages["lighthouse1"].terrain[15] = 'uu ww ww ww ww ww uu uu ww ww ww ww ww /b ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., -b -b -b -b -b b` ww ww ww ww ww uu ww';
 mappages["lighthouse1"].terrain[16] = 'ww ww ww ww uu uu ww ww ww ww /b -b -b ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., -b -b -b b` ww uu uu';
-mappages["lighthouse1"].terrain[17] = 'ww ww ww uu uu ww ww ww /b -b ., ., ., ., ., ., ,% ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ,% ., ., ., ., ., b` ww ww';
-mappages["lighthouse1"].terrain[18] = 'ww uu uu uu ww ww ww /b ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ,% ., ., ., ., ., ., ., ., b` ww';
+mappages["lighthouse1"].terrain[17] = 'ww ww ww uu uu ww ww ww /b -b ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., b` ww ww';
+mappages["lighthouse1"].terrain[18] = 'ww uu uu uu ww ww ww /b ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., b` ww';
 mappages["lighthouse1"].terrain[19] = 'uu uu ww ww ww /b -b ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., -b';
-mappages["lighthouse1"].terrain[20] = 'uu ww ww /b -b ., ., ., ,% ., ,% ,% ., ., ., ., ., ., ., ., ., ., nn nn nn nn nn nn nn nn nn nn ., ., ., ., ., ., ., ., ., ., ,% ., ., .,';
-mappages["lighthouse1"].terrain[21] = 'ww /b -b ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn nn nn nn nn nn nn nn nn nn nn nn ., ., ., ., ., ., ., ., ., ., ., ,%';
+mappages["lighthouse1"].terrain[20] = 'uu ww ww /b -b ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn nn nn nn nn nn nn nn nn ., ., ., ., ., ., ., ., ., ., ., ., ., .,';
+mappages["lighthouse1"].terrain[21] = 'ww /b -b ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn nn nn nn nn nn nn nn nn nn nn nn ., ., ., ., ., ., ., ., ., ., ., .,';
 mappages["lighthouse1"].terrain[22] = '-b ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn ## ## #O ## ## ## ## #O ## ## nn nn ., ., ., ., ., ., ., ., ., ., .,';
 mappages["lighthouse1"].terrain[23] = '., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn ## ## -= -= -= -= -= -= -= -= ## ## nn nn ., ., ., ., ., ., ., ., ., .,';
 mappages["lighthouse1"].terrain[24] = '., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn ## -= -= -= -= -= -= -= -= -= -= ## nn nn ., ., ., ., ., ., ., ., ., .,';
-mappages["lighthouse1"].terrain[25] = '., ., ., ,% ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn nn ## -= -= -= -= -= -= -= -= -= -= ## nn nn nn ., ., ., ., ., ., ., ., .,';
+mappages["lighthouse1"].terrain[25] = '., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn nn ## -= -= -= -= -= -= -= -= -= -= ## nn nn nn ., ., ., ., ., ., ., ., .,';
 mappages["lighthouse1"].terrain[26] = '., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn nn ## -= -= -= -= -= -= -= -= -= -= ## nn nn nn ., ., ., ., ., ., ., ., .,';
-mappages["lighthouse1"].terrain[27] = '., ,% ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn #O -= -= -= -= -= -= -= -= -= -= #O nn nn nn ., ., ., ., ., ., ., ., .,';
+mappages["lighthouse1"].terrain[27] = '., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn #O -= -= -= -= -= -= -= -= -= -= #O nn nn nn ., ., ., ., ., ., ., ., .,';
 mappages["lighthouse1"].terrain[28] = '., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn ## -= -= -= -= -= -= -= -= -= -= ## nn nn nn ., ., ., ., ., ., ., ., .,';
 mappages["lighthouse1"].terrain[29] = '., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn nn ## -= -= -= -= -= -= -= -= -= -= ## nn nn ., ., ., ., ., ., ., ., ., .,';
 mappages["lighthouse1"].terrain[30] = '., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., nn nn nn ## -= -= -= -= -= -= -= -= -= -= ## nn nn nn ., ., ., ., ., ., ., ., .,';
@@ -47,13 +47,26 @@ mappages["lighthouse1"].terrain[41] = '., ., ., ., ., ., ., ., ., ., ., ., ., .,
 
 mappages["lighthouse1"].features = [];
 mappages["lighthouse1"].features[0] = {name : 'DoorWindow', x : 28, y : 33};
+mappages["lighthouse1"].features[1] = {name : 'PileOfRocks', x : 1, y : 27};
+mappages["lighthouse1"].features[2] = {name : 'PileOfRocks', x : 3, y : 25};
+mappages["lighthouse1"].features[3] = {name : 'PileOfRocks', x : 8, y : 20};
+mappages["lighthouse1"].features[4] = {name : 'PileOfRocks', x : 10, y : 20};
+mappages["lighthouse1"].features[5] = {name : 'PileOfRocks', x : 11, y : 20};
+mappages["lighthouse1"].features[6] = {name : 'PileOfRocks', x : 16, y : 17};
+mappages["lighthouse1"].features[7] = {name : 'PileOfRocks', x : 19, y : 15};
+mappages["lighthouse1"].features[8] = {name : 'PileOfRocks', x : 31, y : 15};
+mappages["lighthouse1"].features[9] = {name : 'PileOfRocks', x : 35, y : 18};
+mappages["lighthouse1"].features[10] = {name : 'PileOfRocks', x : 37, y : 17};
+mappages["lighthouse1"].features[11] = {name : 'PileOfRocks', x : 42, y : 20};
+mappages["lighthouse1"].features[12] = {name : 'PileOfRocks', x : 45, y : 21};
 
 
 mappages["lighthouse1"].npcs = [];
 
 mappages["lighthouse1"].desc = "Lighthouse of Cabran";
+mappages["lighthouse1"].longdesc = ``;
 mappages["lighthouse1"].music = 'Towne';
-mappages["lighthouse1"].savename = "Lighthouse";
+mappages["lighthouse1"].savename = `Lighthouse`;
 mappages["lighthouse1"].exitmap = 'darkunknown';
 mappages["lighthouse1"].exitx = '69';
 mappages["lighthouse1"].exity = '125';
@@ -64,6 +77,8 @@ mappages["lighthouse1"].seeBelow = '';
 mappages["lighthouse1"].lightLevel = 'cycle';
 mappages["lighthouse1"].alwaysRemember = '0';
 mappages["lighthouse1"].scale = '1';
+mappages["lighthouse1"].underground = '0';
+mappages["lighthouse1"].undergroundDesc = '';
 mappages["lighthouse1"].enterscript = '';
 mappages["lighthouse1"].entertestscript = '';
 mappages["lighthouse1"].exitscript = '';
@@ -73,3 +88,4 @@ mappages["lighthouse1"].returnx = '69';
 mappages["lighthouse1"].returny = '74';
 mappages["lighthouse1"].returninfused = '0';
 mappages["lighthouse1"].linkedMaps = [""];
+mappages["lighthouse1"].editorLabels = '{}';

@@ -1,32 +1,38 @@
 "use strict";
 
-mappages["combatGrass1"] = new Object();
-mappages["combatGrass1"].terrain = new Array;
+mappages["combatGrass1"] = {};
+mappages["combatGrass1"].terrain = [];
  mappages["combatGrass1"].terrain[0] = ',, ,, ,, .. .. .. .. .. .. .. .. .. ..';
- mappages["combatGrass1"].terrain[1] = ',, #% .. .. .. .. .. .. .. .. .. .. ,,';
+ mappages["combatGrass1"].terrain[1] = ',, .. .. .. .. .. .. .. .. .. .. .. ,,';
  mappages["combatGrass1"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. ,, ,,';
  mappages["combatGrass1"].terrain[3] = '.. .. .. .. .. .. .. .. .. .. ,, ,, ,,';
  mappages["combatGrass1"].terrain[4] = '.. .. .. .. .. .. .. .. .. .. ,, ,, ,,';
- mappages["combatGrass1"].terrain[5] = ',, #% .. .. .. .. .. .. .. .. #% ,, ,,';
+ mappages["combatGrass1"].terrain[5] = ',, .. .. .. .. .. .. .. .. .. .. ,, ,,';
  mappages["combatGrass1"].terrain[6] = ',, ,, .. .. .. .. .. .. .. .. .. .. ..';
  mappages["combatGrass1"].terrain[7] = ',, ,, ,, .. .. .. .. .. .. .. .. .. ..';
  mappages["combatGrass1"].terrain[8] = ',, ,, .. .. .. .. .. .. .. .. .. .. ..';
- mappages["combatGrass1"].terrain[9] = ',, ,, #% .. .. .. .. .. .. .. .. #% ..';
+ mappages["combatGrass1"].terrain[9] = ',, ,, .. .. .. .. .. .. .. .. .. .. ..';
 mappages["combatGrass1"].terrain[10] = '.. ,, .. .. .. .. .. .. .. .. .. ,, ,,';
 mappages["combatGrass1"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. ,, ,,';
 mappages["combatGrass1"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ,,';
 
-mappages["combatGrass1"].features = new Array;
+mappages["combatGrass1"].features = [];
+mappages["combatGrass1"].features[0] = {name : 'PileOfRocks', x : 11, y : 9};
+mappages["combatGrass1"].features[1] = {name : 'PileOfRocks', x : 10, y : 5};
+mappages["combatGrass1"].features[2] = {name : 'PileOfRocks', x : 1, y : 1};
+mappages["combatGrass1"].features[3] = {name : 'PileOfRocks', x : 1, y : 5};
+mappages["combatGrass1"].features[4] = {name : 'PileOfRocks', x : 2, y : 9};
 
 
-mappages["combatGrass1"].npcs = new Array;
+mappages["combatGrass1"].npcs = [];
 
-mappages["combatGrass1"].desc = 'Combat';
+mappages["combatGrass1"].desc = "Combat";
+mappages["combatGrass1"].longdesc = ``;
 mappages["combatGrass1"].music = 'Combat';
-mappages["combatGrass1"].savename = 'Combat';
+mappages["combatGrass1"].savename = `Combat`;
 mappages["combatGrass1"].exitmap = '';
-mappages["combatGrass1"].exitx = '';
-mappages["combatGrass1"].exity = '';
+mappages["combatGrass1"].exitx = '65';
+mappages["combatGrass1"].exity = '70';
 mappages["combatGrass1"].wraps = 'None';
 mappages["combatGrass1"].enterx = '6';
 mappages["combatGrass1"].entery = '9';
@@ -34,11 +40,18 @@ mappages["combatGrass1"].seeBelow = '';
 mappages["combatGrass1"].lightLevel = 'bright';
 mappages["combatGrass1"].alwaysRemember = '0';
 mappages["combatGrass1"].scale = '1';
+mappages["combatGrass1"].underground = '0';
+mappages["combatGrass1"].undergroundDesc = '';
 mappages["combatGrass1"].enterscript = 'set_exits';
 mappages["combatGrass1"].entertestscript = '';
 mappages["combatGrass1"].exitscript = '';
 mappages["combatGrass1"].exittestscript = 'check_escape';
-mappages["combatGrass1"].linkedMaps = new Array("");
+mappages["combatGrass1"].returnmap = '';
+mappages["combatGrass1"].returnx = 'NaN';
+mappages["combatGrass1"].returny = 'NaN';
+mappages["combatGrass1"].returninfused = '0';
+mappages["combatGrass1"].linkedMaps = [""];
+mappages["combatGrass1"].editorLabels = '{}';
 
 // manually added
 
@@ -51,8 +64,8 @@ mappages["combatGrass1"].check_escape = function(mapref) {
   maps_check_escape(mapref);
 }
 
-mappages["combatGrass2"] = new Object();
-mappages["combatGrass2"].terrain = new Array;
+mappages["combatGrass2"] = {};
+mappages["combatGrass2"].terrain = [];
  mappages["combatGrass2"].terrain[0] = '.. .. .. .. ,, ,, ,, ,, ,, .. .. .. ..';
  mappages["combatGrass2"].terrain[1] = '.. .. .. .. .. .. ,, ,, .. .. .. .. ..';
  mappages["combatGrass2"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
@@ -63,21 +76,23 @@ mappages["combatGrass2"].terrain = new Array;
  mappages["combatGrass2"].terrain[7] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
  mappages["combatGrass2"].terrain[8] = '.. ,, .. .. .. .. .. .. .. .. .. .. ..';
  mappages["combatGrass2"].terrain[9] = '.. ,, ,, .. .. .. .. .. .. .. .. .. ,,';
-mappages["combatGrass2"].terrain[10] = ',, ,, ,, .. .. .. .. .. .. .. .. #% ,,';
+mappages["combatGrass2"].terrain[10] = ',, ,, ,, .. .. .. .. .. .. .. .. .. ,,';
 mappages["combatGrass2"].terrain[11] = ',, .. .. .. .. .. .. .. .. .. ,, ,, ,,';
 mappages["combatGrass2"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. ,, ,, ,,';
 
-mappages["combatGrass2"].features = new Array;
+mappages["combatGrass2"].features = [];
+mappages["combatGrass2"].features[0] = {name : 'PileOfRocks', x : 11, y : 10};
 
 
-mappages["combatGrass2"].npcs = new Array;
+mappages["combatGrass2"].npcs = [];
 
-mappages["combatGrass2"].desc = 'Combat';
+mappages["combatGrass2"].desc = "Combat";
+mappages["combatGrass2"].longdesc = ``;
 mappages["combatGrass2"].music = 'Combat';
-mappages["combatGrass2"].savename = 'Combat';
+mappages["combatGrass2"].savename = `Combat`;
 mappages["combatGrass2"].exitmap = '';
-mappages["combatGrass2"].exitx = '';
-mappages["combatGrass2"].exity = '';
+mappages["combatGrass2"].exitx = '65';
+mappages["combatGrass2"].exity = '70';
 mappages["combatGrass2"].wraps = 'None';
 mappages["combatGrass2"].enterx = '6';
 mappages["combatGrass2"].entery = '9';
@@ -85,11 +100,18 @@ mappages["combatGrass2"].seeBelow = '';
 mappages["combatGrass2"].lightLevel = 'bright';
 mappages["combatGrass2"].alwaysRemember = '0';
 mappages["combatGrass2"].scale = '1';
+mappages["combatGrass2"].underground = '0';
+mappages["combatGrass2"].undergroundDesc = '';
 mappages["combatGrass2"].enterscript = 'set_exits';
 mappages["combatGrass2"].entertestscript = '';
 mappages["combatGrass2"].exitscript = '';
 mappages["combatGrass2"].exittestscript = 'check_escape';
-mappages["combatGrass2"].linkedMaps = new Array("");
+mappages["combatGrass2"].returnmap = '';
+mappages["combatGrass2"].returnx = 'NaN';
+mappages["combatGrass2"].returny = 'NaN';
+mappages["combatGrass2"].returninfused = '0';
+mappages["combatGrass2"].linkedMaps = [""];
+mappages["combatGrass2"].editorLabels = '{}';
 
 // manually added
 
@@ -152,8 +174,8 @@ mappages["combatShore1"].check_escape = function(mapref) {
   maps_check_escape(mapref);
 }
 
-mappages["combatShore2"] = new Object();
-mappages["combatShore2"].terrain = new Array;
+mappages["combatShore2"] = {};
+mappages["combatShore2"].terrain = [];
  mappages["combatShore2"].terrain[0] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
  mappages["combatShore2"].terrain[1] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
  mappages["combatShore2"].terrain[2] = 'uu uu ww ww ww uu uu uu uu uu uu ww ww';
@@ -162,23 +184,27 @@ mappages["combatShore2"].terrain = new Array;
  mappages["combatShore2"].terrain[5] = '.. .. .` uu /. -- -- .. .. .. .` uu /.';
  mappages["combatShore2"].terrain[6] = '.. .. .. -- .. .. .. .. .. .. .. -- ..';
  mappages["combatShore2"].terrain[7] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
- mappages["combatShore2"].terrain[8] = '.. .. .. #% .. .. .. .. .. .. .. .. ..';
+ mappages["combatShore2"].terrain[8] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
  mappages["combatShore2"].terrain[9] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
-mappages["combatShore2"].terrain[10] = '.. .. .. .. .. .. .. .. .. .. .. #% ..';
-mappages["combatShore2"].terrain[11] = '.. #% .. .. .. .. .. .. .. .. .. .. ..';
+mappages["combatShore2"].terrain[10] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
+mappages["combatShore2"].terrain[11] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
 mappages["combatShore2"].terrain[12] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
 
-mappages["combatShore2"].features = new Array;
+mappages["combatShore2"].features = [];
+mappages["combatShore2"].features[0] = {name : 'PileOfRocks', x : 11, y : 10};
+mappages["combatShore2"].features[1] = {name : 'PileOfRocks', x : 3, y : 8};
+mappages["combatShore2"].features[2] = {name : 'PileOfRocks', x : 1, y : 11};
 
 
-mappages["combatShore2"].npcs = new Array;
+mappages["combatShore2"].npcs = [];
 
-mappages["combatShore2"].desc = 'Combat';
+mappages["combatShore2"].desc = "Combat";
+mappages["combatShore2"].longdesc = ``;
 mappages["combatShore2"].music = 'Combat';
-mappages["combatShore2"].savename = 'Combat';
+mappages["combatShore2"].savename = `Combat`;
 mappages["combatShore2"].exitmap = '';
-mappages["combatShore2"].exitx = '';
-mappages["combatShore2"].exity = '';
+mappages["combatShore2"].exitx = '65';
+mappages["combatShore2"].exity = '70';
 mappages["combatShore2"].wraps = '';
 mappages["combatShore2"].enterx = '6';
 mappages["combatShore2"].entery = '9';
@@ -186,11 +212,18 @@ mappages["combatShore2"].seeBelow = '';
 mappages["combatShore2"].lightLevel = 'bright';
 mappages["combatShore2"].alwaysRemember = '0';
 mappages["combatShore2"].scale = '1';
+mappages["combatShore2"].underground = '0';
+mappages["combatShore2"].undergroundDesc = '';
 mappages["combatShore2"].enterscript = 'set_exits';
 mappages["combatShore2"].entertestscript = '';
 mappages["combatShore2"].exitscript = '';
 mappages["combatShore2"].exittestscript = 'check_escape';
-mappages["combatShore2"].linkedMaps = new Array;
+mappages["combatShore2"].returnmap = '';
+mappages["combatShore2"].returnx = 'NaN';
+mappages["combatShore2"].returny = 'NaN';
+mappages["combatShore2"].returninfused = '0';
+mappages["combatShore2"].linkedMaps = [];
+mappages["combatShore2"].editorLabels = '{}';
 
 // manually added
 
@@ -311,25 +344,30 @@ mappages["combatBrush1"] = {};
 mappages["combatBrush1"].terrain = [];
  mappages["combatBrush1"].terrain[0] = ',, ,, u, ,, .. .. .. .. .. .. u, ,, ,,';
  mappages["combatBrush1"].terrain[1] = 'u, ,, ,, .. .. .. .. .. .. .. .. .. ,,';
- mappages["combatBrush1"].terrain[2] = ',, ,, #% .. .. .. .. .. .. .. .. .. ..';
+ mappages["combatBrush1"].terrain[2] = ',, ,, .. .. .. .. .. .. .. .. .. .. ..';
  mappages["combatBrush1"].terrain[3] = ',, .. .. .. .. .. .. .. .. .. .. .. ..';
  mappages["combatBrush1"].terrain[4] = '.. .. .. .. .. ,, ,, ,, ,, .. .. .. ..';
- mappages["combatBrush1"].terrain[5] = '.. .. .. .. .. #% ,, u, ,, ,, #% ,, ..';
+ mappages["combatBrush1"].terrain[5] = '.. .. .. .. .. .. ,, u, ,, ,, .. ,, ..';
  mappages["combatBrush1"].terrain[6] = '.. .. .. .. .. .. .. ,, ,, ,, u, ,, ,,';
- mappages["combatBrush1"].terrain[7] = '.. .. .. .. .. .. .. #% .. ,, ,, ,, ,,';
+ mappages["combatBrush1"].terrain[7] = '.. .. .. .. .. .. .. .. .. ,, ,, ,, ,,';
  mappages["combatBrush1"].terrain[8] = '.. .. .. .. .. .. .. .. .. .. ,, u, ,,';
  mappages["combatBrush1"].terrain[9] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
-mappages["combatBrush1"].terrain[10] = '.. ,, ,, #% .. .. .. .. .. .. .. .. ..';
+mappages["combatBrush1"].terrain[10] = '.. ,, ,, .. .. .. .. .. .. .. .. .. ..';
 mappages["combatBrush1"].terrain[11] = ',, ,, u, ,, .. .. .. .. .. .. .. .. ..';
 mappages["combatBrush1"].terrain[12] = 'u, ,, ,, ,, ,, .. .. .. .. .. .. .. ..';
 
 mappages["combatBrush1"].features = [];
+mappages["combatBrush1"].features[0] = {name : 'PileOfRocks', x : 7, y : 7};
+mappages["combatBrush1"].features[1] = {name : 'PileOfRocks', x : 10, y : 5};
+mappages["combatBrush1"].features[2] = {name : 'PileOfRocks', x : 5, y : 5};
+mappages["combatBrush1"].features[3] = {name : 'PileOfRocks', x : 2, y : 2};
+mappages["combatBrush1"].features[4] = {name : 'PileOfRocks', x : 3, y : 10};
 
 
 mappages["combatBrush1"].npcs = [];
 
 mappages["combatBrush1"].desc = "Combat";
-mappages["combatBrush1"].longdesc = '';
+mappages["combatBrush1"].longdesc = ``;
 mappages["combatBrush1"].music = 'Combat';
 mappages["combatBrush1"].savename = `Combat`;
 mappages["combatBrush1"].exitmap = '';
@@ -861,13 +899,13 @@ mappages["combatCoast1"].check_escape = function(mapref) {
 }
 
 
-mappages["combatCoast2"] = new Object();
-mappages["combatCoast2"].terrain = new Array;
+mappages["combatCoast2"] = {};
+mappages["combatCoast2"].terrain = [];
  mappages["combatCoast2"].terrain[0] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
  mappages["combatCoast2"].terrain[1] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
- mappages["combatCoast2"].terrain[2] = '.. #% .. .. .. .. .. .. .. .. .. .. ..';
+ mappages["combatCoast2"].terrain[2] = '.. .. .. .. .. .. .. .. .. .. .. .. ..';
  mappages["combatCoast2"].terrain[3] = '.. __ __ __ .. .. .. .. .. .. .. .. ..';
- mappages["combatCoast2"].terrain[4] = './ uu uu uu `. .. #% .. .. .. .. #% ..';
+ mappages["combatCoast2"].terrain[4] = './ uu uu uu `. .. .. .. .. .. .. .. ..';
  mappages["combatCoast2"].terrain[5] = 'uu uu uu uu uu `. __ __ __ __ __ __ ./';
  mappages["combatCoast2"].terrain[6] = 'uu uu uu uu uu uu uu uu uu uu uu uu uu';
  mappages["combatCoast2"].terrain[7] = 'uu ww ww ww uu uu uu uu uu uu uu uu ww';
@@ -877,17 +915,21 @@ mappages["combatCoast2"].terrain[10] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
 mappages["combatCoast2"].terrain[11] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
 mappages["combatCoast2"].terrain[12] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww';
 
-mappages["combatCoast2"].features = new Array;
+mappages["combatCoast2"].features = [];
+mappages["combatCoast2"].features[0] = {name : 'PileOfRocks', x : 11, y : 4};
+mappages["combatCoast2"].features[1] = {name : 'PileOfRocks', x : 6, y : 4};
+mappages["combatCoast2"].features[2] = {name : 'PileOfRocks', x : 1, y : 2};
 
 
-mappages["combatCoast2"].npcs = new Array;
+mappages["combatCoast2"].npcs = [];
 
-mappages["combatCoast2"].desc = 'Combat';
+mappages["combatCoast2"].desc = "Combat";
+mappages["combatCoast2"].longdesc = ``;
 mappages["combatCoast2"].music = 'Combat';
-mappages["combatCoast2"].savename = 'Combat';
+mappages["combatCoast2"].savename = `Combat`;
 mappages["combatCoast2"].exitmap = '';
-mappages["combatCoast2"].exitx = '';
-mappages["combatCoast2"].exity = '';
+mappages["combatCoast2"].exitx = '65';
+mappages["combatCoast2"].exity = '70';
 mappages["combatCoast2"].wraps = 'None';
 mappages["combatCoast2"].enterx = '6';
 mappages["combatCoast2"].entery = '9';
@@ -895,11 +937,18 @@ mappages["combatCoast2"].seeBelow = '';
 mappages["combatCoast2"].lightLevel = 'bright';
 mappages["combatCoast2"].alwaysRemember = '0';
 mappages["combatCoast2"].scale = '1';
+mappages["combatCoast2"].underground = '0';
+mappages["combatCoast2"].undergroundDesc = '';
 mappages["combatCoast2"].enterscript = 'set_exits';
 mappages["combatCoast2"].entertestscript = '';
 mappages["combatCoast2"].exitscript = '';
 mappages["combatCoast2"].exittestscript = 'check_escape';
-mappages["combatCoast2"].linkedMaps = new Array("");
+mappages["combatCoast2"].returnmap = '';
+mappages["combatCoast2"].returnx = 'NaN';
+mappages["combatCoast2"].returny = 'NaN';
+mappages["combatCoast2"].returninfused = '0';
+mappages["combatCoast2"].linkedMaps = [""];
+mappages["combatCoast2"].editorLabels = '{}';
 
 // manually added
 
