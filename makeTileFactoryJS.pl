@@ -49,7 +49,7 @@ foreach my $line (<EOBJS>) {
   }
 }
 
-print $output "tileFactory.prototype.makeEraserTile = function() {\n  let newTile = new BlankWhiteTile();\n  newTile.name = 'Eraser';\n  newTile.type = 'feature';\n  return newTile;\n}\n\n";
+print $output "tileFactory.prototype.makeEraserTile = function() {\n  let newTile = new BlankBlackTile();\n  newTile.name = 'Eraser';\n  newTile.type = 'feature';\n  return newTile;\n}\n\n";
 print $output "tileFactory.prototype.makeLockedDoorWindowTile = function() {\n  let newTile = this.createTile('DoorWindow');\n  newTile.lockMe(1);\n  return newTile;\n}\n\n";
 print $output "tileFactory.prototype.makeMagicLockedDoorWindowTile = function() {\n  let newTile = this.createTile('DoorWindow');\n  newTile.lockMe(2);    // Magic Lock\n  return newTile;\n}\n\n";
 print $output "tileFactory.prototype.makeLockedDoorTile = function() {\n  let newTile = this.createTile('Door');\n  newTile.lockMe(1);\n  return newTile;\n}\n\n";

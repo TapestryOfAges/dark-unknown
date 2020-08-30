@@ -18,11 +18,6 @@ tileFactory.prototype.createTile = function(tileName) {
   }
 }
 
-tileFactory.prototype.makeBlankWhiteTile = function() {
-  let newTile = new BlankWhiteTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeOceanTile = function() {
   let newTile = new OceanTile();
   return newTile;
@@ -383,6 +378,11 @@ tileFactory.prototype.makeShadowPlanksEWTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeMeadowTile = function() {
+  let newTile = new MeadowTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeGrassTile = function() {
   let newTile = new GrassTile();
   return newTile;
@@ -398,6 +398,11 @@ tileFactory.prototype.makeDirtTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeDirtScrubTile = function() {
+  let newTile = new DirtScrubTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeShadowDirtTile = function() {
   let newTile = new ShadowDirtTile();
   return newTile;
@@ -410,6 +415,16 @@ tileFactory.prototype.makeFallowFarmTile = function() {
 
 tileFactory.prototype.makeFarmTile = function() {
   let newTile = new FarmTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFallowFarm2Tile = function() {
+  let newTile = new FallowFarm2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFarm2Tile = function() {
+  let newTile = new Farm2Tile();
   return newTile;
 }
 
@@ -430,6 +445,16 @@ tileFactory.prototype.makeShadowBrushTile = function() {
 
 tileFactory.prototype.makeUnderbrushTile = function() {
   let newTile = new UnderbrushTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSandTile = function() {
+  let newTile = new SandTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSandVegetationTile = function() {
+  let newTile = new SandVegetationTile();
   return newTile;
 }
 
@@ -478,8 +503,28 @@ tileFactory.prototype.makeForestTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeGroveTile = function() {
-  let newTile = new GroveTile();
+tileFactory.prototype.makeForest2Tile = function() {
+  let newTile = new Forest2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDeadForestTile = function() {
+  let newTile = new DeadForestTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEvergreenForestTile = function() {
+  let newTile = new EvergreenForestTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrightForestTile = function() {
+  let newTile = new BrightForestTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrightForest2Tile = function() {
+  let newTile = new BrightForest2Tile();
   return newTile;
 }
 
@@ -533,13 +578,23 @@ tileFactory.prototype.makeShinglesTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeShingles2Tile = function() {
+  let newTile = new Shingles2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeShinglesTopTile = function() {
   let newTile = new ShinglesTopTile();
   return newTile;
 }
 
-tileFactory.prototype.makeRevealedCaveTile = function() {
-  let newTile = new RevealedCaveTile();
+tileFactory.prototype.makeIcyFloorTile = function() {
+  let newTile = new IcyFloorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeIcy2FloorTile = function() {
+  let newTile = new Icy2FloorTile();
   return newTile;
 }
 
@@ -878,11 +933,6 @@ tileFactory.prototype.makeCoralTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeWaterRockTile = function() {
-  let newTile = new WaterRockTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeDungeonTile = function() {
   let newTile = new DungeonTile();
   return newTile;
@@ -895,6 +945,16 @@ tileFactory.prototype.makeCaveTile = function() {
 
 tileFactory.prototype.makeTowneTile = function() {
   let newTile = new TowneTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTowne2Tile = function() {
+  let newTile = new Towne2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeTowne3Tile = function() {
+  let newTile = new Towne3Tile();
   return newTile;
 }
 
@@ -940,6 +1000,41 @@ tileFactory.prototype.makeLeftCastleTile = function() {
 
 tileFactory.prototype.makeRightCastleTile = function() {
   let newTile = new RightCastleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFarLeftCastleTile = function() {
+  let newTile = new FarLeftCastleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFarRightCastleTile = function() {
+  let newTile = new FarRightCastleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeUpperFarLeftCastleTile = function() {
+  let newTile = new UpperFarLeftCastleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeUpperFarRightCastleTile = function() {
+  let newTile = new UpperFarRightCastleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeUpperLeftCastleTile = function() {
+  let newTile = new UpperLeftCastleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeUpperRightCastleTile = function() {
+  let newTile = new UpperRightCastleTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeUpperCenterCastleTile = function() {
+  let newTile = new UpperCenterCastleTile();
   return newTile;
 }
 
@@ -1090,6 +1185,11 @@ tileFactory.prototype.makeSpitTile = function() {
 
 tileFactory.prototype.makeFireplaceTile = function() {
   let newTile = new FireplaceTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSmallFireplaceTile = function() {
+  let newTile = new SmallFireplaceTile();
   return newTile;
 }
 
@@ -1343,6 +1443,11 @@ tileFactory.prototype.makeBridgeNSTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeBridgeNSBrokenTile = function() {
+  let newTile = new BridgeNSBrokenTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNBridgeEWTile = function() {
   let newTile = new NBridgeEWTile();
   return newTile;
@@ -1355,6 +1460,11 @@ tileFactory.prototype.makeSBridgeEWTile = function() {
 
 tileFactory.prototype.makeBridgeEWTile = function() {
   let newTile = new BridgeEWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBridgeEWBrokenTile = function() {
+  let newTile = new BridgeEWBrokenTile();
   return newTile;
 }
 
@@ -2080,11 +2190,6 @@ tileFactory.prototype.makeBrightFountainTile = function() {
 
 tileFactory.prototype.makeBlueFountainTile = function() {
   let newTile = new BlueFountainTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeBloodFountainTile = function() {
-  let newTile = new BloodFountainTile();
   return newTile;
 }
 
@@ -4354,7 +4459,7 @@ tileFactory.prototype.makeCourierSurrenderTile = function() {
 }
 
 tileFactory.prototype.makeEraserTile = function() {
-  let newTile = new BlankWhiteTile();
+  let newTile = new BlankBlackTile();
   newTile.name = 'Eraser';
   newTile.type = 'feature';
   return newTile;
