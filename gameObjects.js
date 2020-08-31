@@ -1226,40 +1226,40 @@ function SetBySurroundRoad() {
 	  if ((suffix === "e") || (suffix === "w")) { suffix = "ew"; }
     if ((suffix === "n") || (suffix === "s")) { suffix = "ns"; }
     
-    graphics[0] = "master_spritesheet.png";
+    graphics[0] = "static.png";
     switch (suffix) {
       case "en": 
-      graphics[2] = "-32"; graphics[3] = "-736";
+      graphics[2] = -9*32; graphics[3] = -8*32;
       return graphics;
       case "ens":
-      graphics[2] = "-64"; graphics[3] = "-736";
+      graphics[2] = -9*32; graphics[3] = -9*32;
       return graphics;
       case "es":
-      graphics[2] = "-96"; graphics[3] = "-736";
+      graphics[2] = -6*32; graphics[3] = -8*32;
       return graphics;
       case "ew":
-      graphics[2] = "-128"; graphics[3] = "-736";
+      graphics[2] = -7*32; graphics[3] = -9*32;
       return graphics;
       case "ewn":
-      graphics[2] = "-160"; graphics[3] = "-736";
+      graphics[2] = -6*32; graphics[3] = -9*32;
       return graphics;
       case "ews":
-      graphics[2] = "-192"; graphics[3] = "-736";
+      graphics[2] = -9*32; graphics[3] = -7*32;
       return graphics;
       case "ns":
-      graphics[2] = "-224"; graphics[3] = "-736";
+      graphics[2] = -8*32; graphics[3] = -7*32;
       return graphics;
       case "wn":
-      graphics[2] = "-256"; graphics[3] = "-736";
+      graphics[2] = -8*32; graphics[3] = -8*32;
       return graphics;
       case "wns":
-      graphics[2] = "-288"; graphics[3] = "-736";
+      graphics[2] = -6*32; graphics[3] = -10*32;
       return graphics;
       case "ws":
-      graphics[2] = "0"; graphics[3] = "-768";
+      graphics[2] = -7*32; graphics[3] = -8*32;
       return graphics;
       case "x":
-      graphics[2] = "-32"; graphics[3] = "-768";
+      graphics[2] = -8*32; graphics[3] = -9*32;
       return graphics;
     }
 //	  graphics[0] = "road-" + suffix + ".gif";
@@ -1782,10 +1782,11 @@ function PurplePillarTile() {
 PurplePillarTile.prototype = new TerrainObject();
 
 function FancyFloorTile() {
+  //Graphics Upgraded
   this.name = "FancyFloor";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-288";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -4*32;
   this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_LEVITATE;
   this.blocklos = 0;
   this.prefix = "the";
@@ -1794,6 +1795,36 @@ function FancyFloorTile() {
   this.walkSound = "stone";
 }
 FancyFloorTile.prototype = new TerrainObject();
+
+function FancyFloor2Tile() {
+  //Graphics Upgraded
+  this.name = "FancyFloor2";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -5*32;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_LEVITATE;
+  this.blocklos = 0;
+  this.prefix = "the";
+  this.desc = "floor";
+  this.peerview = "#600060";
+  this.walkSound = "stone";
+}
+FancyFloor2Tile.prototype = new TerrainObject();
+
+function FancyFloor3Tile() {
+  //Graphics Upgraded
+  this.name = "FancyFloor3";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -7*32;
+  this.passable = MOVE_ETHEREAL + MOVE_FLY + MOVE_WALK + MOVE_LEVITATE;
+  this.blocklos = 0;
+  this.prefix = "the";
+  this.desc = "floor";
+  this.peerview = "#600060";
+  this.walkSound = "stone";
+}
+FancyFloor3Tile.prototype = new TerrainObject();
 
 function HorizontalCounterTile() {
   this.name = "HorizontalCounter";
@@ -2079,10 +2110,11 @@ function TopCounterTile() {
 TopCounterTile.prototype = new TerrainObject();
 
 function PlanksNSTile() {
+  //Graphics Upgraded
   this.name = "PlanksNS";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-160";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -7*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
@@ -2090,6 +2122,34 @@ function PlanksNSTile() {
   this.walkSound = "stone";
 }
 PlanksNSTile.prototype = new TerrainObject();
+
+function DarkPlanksNSTile() {
+  //Graphics Upgraded
+  this.name = "DarkPlanksNS";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -7*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "wooden planks";
+  this.peerview = "#602000";
+  this.walkSound = "stone";
+}
+DarkPlanksNSTile.prototype = new TerrainObject();
+
+function RoughPlanksNSTile() {
+  //Graphics Upgraded
+  this.name = "RoughPlanksNS";
+  this.graphic = "static.png";
+  this.spritexoffset = -1*32;
+  this.spriteyoffset = -7*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "wooden planks";
+  this.peerview = "#602000";
+  this.walkSound = "stone";
+}
+RoughPlanksNSTile.prototype = new TerrainObject();
 
 function ShadowPlanksNSTile() {
   this.name = "ShadowPlanksNS";
@@ -2511,11 +2571,68 @@ function RiverTile() {
 }
 RiverTile.prototype = new TerrainObject();
 
+function RedCobblestoneTile() {
+  //Graphics Upgraded
+  this.name = "RedCobblestone";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -6*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "cobblestones";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+RedCobblestoneTile.prototype = new TerrainObject();
+
+function BlueCobblestoneTile() {
+  //Graphics Upgraded
+  this.name = "BlueCobblestone";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -6*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "cobblestones";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+BlueCobblestoneTile.prototype = new TerrainObject();
+
+function BlackCobblestoneTile() {
+  //Graphics Upgraded
+  this.name = "BlackCobblestone";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -6*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "cobblestones";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+BlackCobblestoneTile.prototype = new TerrainObject();
+
+function CrackedBlackCobblestoneTile() {
+  //Graphics Upgraded
+  this.name = "CrackedBlackCobblestone";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -6*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "cobblestones";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+CrackedBlackCobblestoneTile.prototype = new TerrainObject();
+
 function CobblestoneTile() {
+  //Graphics Upgraded
   this.name = "Cobblestone";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-160";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -6*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
@@ -2524,11 +2641,26 @@ function CobblestoneTile() {
 }
 CobblestoneTile.prototype = new TerrainObject();
 
+function BrokenCobblestoneTile() {
+  //Graphics Upgraded
+  this.name = "BrokenCobblestone";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -6*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "cobblestones";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+}
+BrokenCobblestoneTile.prototype = new TerrainObject();
+
 function CobblestoneRoadTile() {
+  //Graphics Upgraded
   this.name = "CobblestoneRoad";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-160";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -5*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "cobblestones";
@@ -2537,6 +2669,21 @@ function CobblestoneRoadTile() {
   this.civilizedpathweight = .6;
 }
 CobblestoneRoadTile.prototype = new TerrainObject();
+
+function PurpleCobblestoneRoadTile() {
+  //Graphics Upgraded
+  this.name = "PurpleCobblestoneRoad";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -5*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "cobblestones";
+  this.peerview = "#800000";
+  this.walkSound = "stone";
+  this.civilizedpathweight = .6;
+}
+PurpleCobblestoneRoadTile.prototype = new TerrainObject();
 
 function ShadowCobblestoneTile() {
   this.name = "ShadowCobblestone";
@@ -2578,12 +2725,12 @@ function BlueTilesTile() {
 }
 BlueTilesTile.prototype = new TerrainObject();
 
-
 function PlanksEWTile() {
+  //Graphics Upgraded
   this.name = "PlanksEW";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-160";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -7*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "wooden planks";
@@ -2591,6 +2738,34 @@ function PlanksEWTile() {
   this.walkSound = "stone";
 }
 PlanksEWTile.prototype = new TerrainObject();
+
+function DarkPlanksEWTile() {
+  //Graphics Upgraded
+  this.name = "DarkPlanksEW";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -7*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "wooden planks";
+  this.peerview = "#602000";
+  this.walkSound = "stone";
+}
+DarkPlanksEWTile.prototype = new TerrainObject();
+
+function RoughPlanksEWTile() {
+  //Graphics Upgraded
+  this.name = "RoughPlanksEW";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -7*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "wooden planks";
+  this.peerview = "#602000";
+  this.walkSound = "stone";
+}
+RoughPlanksEWTile.prototype = new TerrainObject();
 
 function ShadowPlanksEWTile() {
   this.name = "ShadowPlanksEW";
@@ -2754,11 +2929,11 @@ function Farm2Tile() {
 Farm2Tile.prototype = new TerrainObject();
 
 function RoadTile() {
+  //Graphics Upgraded
   this.name = "Road";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-768";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -9*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "a";
@@ -2774,6 +2949,26 @@ function RoadTile() {
   SetBySurroundRoad.call(this);
 }
 RoadTile.prototype = new TerrainObject();
+
+function RoadWNTile() {
+  //Graphics Upgraded
+  this.name = "RoadWN";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -8*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "dirt road";
+  this.combatmap = "Grass";
+  this.peerview = "#7a3a1a";
+  
+  this.initdelay = 0.8;
+  this.pathweight = .8;
+  this.civilizedpathweight = .5;
+  this.walkSound = "grass";
+}
+RoadWNTile.prototype = new TerrainObject();
 
 function BrushTile() {
   //Graphics Upgraded
@@ -3476,18 +3671,33 @@ function WSWallMoldTile() {
 }
 WSWallMoldTile.prototype = new TerrainObject();
 
-function HexFloorTile() {
-	this.name = "HexFloor";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-224";
+function RoughStoneFloorTile() {
+  //Graphics Upgraded
+	this.name = "RoughStoneFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -5*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#675151";
 	this.walkSound = "stone";
 }
-HexFloorTile.prototype = new TerrainObject();
+RoughStoneFloorTile.prototype = new TerrainObject();
+
+function LightRoughStoneFloorTile() {
+  //Graphics Upgraded
+	this.name = "LightRoughStoneFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -5*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.desc = "floor";
+	this.peerview = "#675151";
+	this.walkSound = "stone";
+}
+LightRoughStoneFloorTile.prototype = new TerrainObject();
 
 function HexTransparentFloorTile() {
 	this.name = "HexTransparentFloor";
@@ -3554,44 +3764,61 @@ function PurpleDiamondFloorTile() {
 }
 PurpleDiamondFloorTile.prototype = new TerrainObject();
 
-function RedDiamondFloorTile() {
-	this.name = "RedDiamondFloor";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-256";
+function CyanCobblestoneTile() {
+  //Graphics Upgraded
+	this.name = "CyanCobblestone";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -6*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#ff5c50";
 	this.walkSound = "stone";
 }
-RedDiamondFloorTile.prototype = new TerrainObject();
+CyanCobblestoneTile.prototype = new TerrainObject();
 
-function GreenDiamondFloorTile() {
-	this.name = "GreenDiamondFloor";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-288";
+function GreenCobblestoneTile() {
+  //Graphics Upgraded
+	this.name = "GreenCobblestone";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -6*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 0;
+	this.desc = "floor";
+	this.peerview = "#ff5c50";
+	this.walkSound = "stone";
+}
+GreenCobblestoneTile.prototype = new TerrainObject();
+
+function GreenCheckeredFloorTile() {
+  //Graphics Upgraded
+	this.name = "GreenCheckeredFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -6*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#50ff61";
 	this.walkSound = "stone";
 }
-GreenDiamondFloorTile.prototype = new TerrainObject();
+GreenCheckeredFloorTile.prototype = new TerrainObject();
 
-function YellowDiamondFloorTile() {
-	this.name = "YellowDiamondFloor";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-288";
+function YellowCheckeredFloorTile() {
+  //Graphics Upgraded
+	this.name = "YellowCheckeredFloor";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -6*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
 	this.peerview = "#cf790b";
 	this.walkSound = "stone";
 }
-YellowDiamondFloorTile.prototype = new TerrainObject();
+YellowCheckeredFloorTile.prototype = new TerrainObject();
 
 function BannerTile() {
   this.name = "Banner";
@@ -4084,6 +4311,240 @@ function InLava(who, lava) {
   }
   return {msg:""};
 }
+
+function PurpleCarpetNWTile() {
+  this.name = "PurpleCarpetNW";
+  this.graphic = "static.png";
+	this.spritexoffset = 0;
+	this.spriteyoffset = -8*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+PurpleCarpetNWTile.prototype = new FeatureObject();
+
+function PurpleCarpetNTile() {
+  this.name = "PurpleCarpetN";
+  this.graphic = "static.png";
+	this.spritexoffset = -32;
+	this.spriteyoffset = -8*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+PurpleCarpetNTile.prototype = new FeatureObject();
+
+function PurpleCarpetNETile() {
+  this.name = "PurpleCarpetNE";
+  this.graphic = "static.png";
+	this.spritexoffset = -2*32;
+	this.spriteyoffset = -8*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+PurpleCarpetNETile.prototype = new FeatureObject();
+
+function PurpleCarpetWTile() {
+  this.name = "PurpleCarpetW";
+  this.graphic = "static.png";
+	this.spritexoffset = 0;
+	this.spriteyoffset = -9*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+PurpleCarpetWTile.prototype = new FeatureObject();
+
+function PurpleCarpetCTile() {
+  this.name = "PurpleCarpetC";
+  this.graphic = "static.png";
+	this.spritexoffset = -32;
+	this.spriteyoffset = -9*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+PurpleCarpetCTile.prototype = new FeatureObject();
+
+function PurpleCarpetETile() {
+  this.name = "PurpleCarpetE";
+  this.graphic = "static.png";
+	this.spritexoffset = -2*32;
+	this.spriteyoffset = -9*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+PurpleCarpetETile.prototype = new FeatureObject();
+
+function PurpleCarpetSWTile() {
+  this.name = "PurpleCarpetSW";
+  this.graphic = "static.png";
+	this.spritexoffset = 0;
+	this.spriteyoffset = -10*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+PurpleCarpetSWTile.prototype = new FeatureObject();
+
+function PurpleCarpetSTile() {
+  this.name = "PurpleCarpetS";
+  this.graphic = "static.png";
+	this.spritexoffset = -32;
+	this.spriteyoffset = -10*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+PurpleCarpetSTile.prototype = new FeatureObject();
+
+function PurpleCarpetSETile() {
+  this.name = "PurpleCarpetSE";
+  this.graphic = "static.png";
+	this.spritexoffset = -2*32;
+	this.spriteyoffset = -10*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+PurpleCarpetSETile.prototype = new FeatureObject();
+
+function FringeCarpetNWTile() {
+  this.name = "FringeCarpetNW";
+  this.graphic = "static.png";
+	this.spritexoffset = -3*32;
+	this.spriteyoffset = -8*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+FringeCarpetNWTile.prototype = new FeatureObject();
+
+function FringeCarpetNTile() {
+  this.name = "FringeCarpetN";
+  this.graphic = "static.png";
+	this.spritexoffset = -4*32;
+	this.spriteyoffset = -8*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+FringeCarpetNTile.prototype = new FeatureObject();
+
+function FringeCarpetNETile() {
+  this.name = "FringeCarpetNE";
+  this.graphic = "static.png";
+	this.spritexoffset = -5*32;
+	this.spriteyoffset = -8*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+FringeCarpetNETile.prototype = new FeatureObject();
+
+function FringeCarpetWTile() {
+  this.name = "FringeCarpetW";
+  this.graphic = "static.png";
+	this.spritexoffset = -3*32;
+	this.spriteyoffset = -9*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+FringeCarpetWTile.prototype = new FeatureObject();
+
+function FringeCarpetCTile() {
+  this.name = "FringeCarpetC";
+  this.graphic = "static.png";
+	this.spritexoffset = -4*32;
+	this.spriteyoffset = -9*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+FringeCarpetCTile.prototype = new FeatureObject();
+
+function FringeCarpetETile() {
+  this.name = "FringeCarpetE";
+  this.graphic = "static.png";
+	this.spritexoffset = -5*32;
+	this.spriteyoffset = -9*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+FringeCarpetETile.prototype = new FeatureObject();
+
+function FringeCarpetSWTile() {
+  this.name = "FringeCarpetSW";
+  this.graphic = "static.png";
+	this.spritexoffset = -3*32;
+	this.spriteyoffset = -10*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+FringeCarpetSWTile.prototype = new FeatureObject();
+
+function FringeCarpetSTile() {
+  this.name = "FringeCarpetS";
+  this.graphic = "static.png";
+	this.spritexoffset = -4*32;
+	this.spriteyoffset = -10*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+FringeCarpetSTile.prototype = new FeatureObject();
+
+function FringeCarpetSETile() {
+  this.name = "FringeCarpetSE";
+  this.graphic = "static.png";
+	this.spritexoffset = -5*32;
+	this.spriteyoffset = -10*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "carpet";
+  this.walkSound = "stone";
+}
+FringeCarpetSETile.prototype = new FeatureObject();
 
 function FenceNWTile() {
   this.name = "FenceNW";
