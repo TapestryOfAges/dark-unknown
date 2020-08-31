@@ -290,14 +290,14 @@ mappages["hotelcalifornia3"].terrain = [];
  mappages["hotelcalifornia3"].terrain[3] = '.. .. .. ## -= -= -= -= -= -= -= -= -= -= -= -= ## .. .. ..';
  mappages["hotelcalifornia3"].terrain[4] = '.. .. u, ## ## ## ## ## ## ## ## ## ## ## ## -= ## .. u, ..';
  mappages["hotelcalifornia3"].terrain[5] = '.. .. .. ## -= -= -= -= -= -= -= -= -= -= ## -= ## .. .. ..';
- mappages["hotelcalifornia3"].terrain[6] = '.. .. .. ## -= -= -= -= -= ## r1 r3 -= -= ## -= #O .. .. ..';
- mappages["hotelcalifornia3"].terrain[7] = '.. .. .. ## -= -= -= -= -= ## r8 r4 -= -= ## -= ## .. .. ..';
- mappages["hotelcalifornia3"].terrain[8] = '.. .. .. ## -= -= -= -= -= ## r7 r5 -= -= ## -= ## .. .. ..';
+ mappages["hotelcalifornia3"].terrain[6] = '.. .. .. ## -= -= -= -= -= ## -= -= -= -= ## -= #O .. .. ..';
+ mappages["hotelcalifornia3"].terrain[7] = '.. .. .. ## -= -= -= -= -= ## -= -= -= -= ## -= ## .. .. ..';
+ mappages["hotelcalifornia3"].terrain[8] = '.. .. .. ## -= -= -= -= -= ## -= -= -= -= ## -= ## .. .. ..';
  mappages["hotelcalifornia3"].terrain[9] = '.. .. .. ## -= ## ## ## ## ## -= ## ## ## ## -= ## .. .. ..';
 mappages["hotelcalifornia3"].terrain[10] = '.. .. .. ## -= -= -= -= -= ## -= ## -= -= -= -= ## .. .. u,';
 mappages["hotelcalifornia3"].terrain[11] = '.. .. .. ## -= -= -= -= -= ## -= ## -= -= -= -= #O .. .. ..';
-mappages["hotelcalifornia3"].terrain[12] = '.. u, .. ## -= -= r1 r2 r3 ## -= ## -= -= -= -= ## .. .. ..';
-mappages["hotelcalifornia3"].terrain[13] = '.. .. .. ## -= -= r7 r6 r5 -= -= ## -= -= -= -= ## .. .. ..';
+mappages["hotelcalifornia3"].terrain[12] = '.. u, .. ## -= -= -= -= -= ## -= ## -= -= -= -= ## .. .. ..';
+mappages["hotelcalifornia3"].terrain[13] = '.. .. .. ## -= -= -= -= -= -= -= ## -= -= -= -= ## .. .. ..';
 mappages["hotelcalifornia3"].terrain[14] = '.. .. .. ## ## ## ## ## ## ## ## ## -= -= -= -= ## u, .. ..';
 mappages["hotelcalifornia3"].terrain[15] = '.. .. .. ## ## ## ## -= ## ## ## ## ## #O ## ## ## .. .. ..';
 mappages["hotelcalifornia3"].terrain[16] = '.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..';
@@ -334,11 +334,23 @@ mappages["hotelcalifornia3"].features[24] = {name : 'BookshelfLeft', x : 12, y :
 mappages["hotelcalifornia3"].features[25] = {name : 'BookshelfLeft', x : 7, y : 10};
 mappages["hotelcalifornia3"].features[26] = {name : 'BookshelfRight', x : 13, y : 5};
 mappages["hotelcalifornia3"].features[27] = {name : 'BookshelfRight', x : 8, y : 10};
-mappages["hotelcalifornia3"].features[28] = {name : 'Brazier', x : 13, y : 8};
-mappages["hotelcalifornia3"].features[29] = {name : 'Brazier', x : 4, y : 13};
-mappages["hotelcalifornia3"].features[30] = {name : 'WalkOnHC3Tree', x : 10, y : 8};
-mappages["hotelcalifornia3"].features[31] = {name : 'WalkOnHC3Tree', x : 8, y : 13};
-mappages["hotelcalifornia3"].features[32] = {name : 'WalkOnHC2Clock', x : 4, y : 8};
+mappages["hotelcalifornia3"].features[28] = {name : 'WalkOnHC3Tree', x : 10, y : 8};
+mappages["hotelcalifornia3"].features[29] = {name : 'WalkOnHC3Tree', x : 8, y : 13};
+mappages["hotelcalifornia3"].features[30] = {name : 'WalkOnHC2Clock', x : 4, y : 8};
+mappages["hotelcalifornia3"].features[31] = {name : 'Brazier', x : 13, y : 8};
+mappages["hotelcalifornia3"].features[32] = {name : 'Brazier', x : 4, y : 13};
+mappages["hotelcalifornia3"].features[33] = {name : 'PurpleCarpetNW', x : 10, y : 6};
+mappages["hotelcalifornia3"].features[34] = {name : 'PurpleCarpetNE', x : 11, y : 6};
+mappages["hotelcalifornia3"].features[35] = {name : 'PurpleCarpetW', x : 10, y : 7};
+mappages["hotelcalifornia3"].features[36] = {name : 'PurpleCarpetE', x : 11, y : 7};
+mappages["hotelcalifornia3"].features[37] = {name : 'PurpleCarpetSE', x : 11, y : 8};
+mappages["hotelcalifornia3"].features[38] = {name : 'PurpleCarpetSW', x : 10, y : 8};
+mappages["hotelcalifornia3"].features[39] = {name : 'PurpleCarpetNW', x : 6, y : 12};
+mappages["hotelcalifornia3"].features[40] = {name : 'PurpleCarpetN', x : 7, y : 12};
+mappages["hotelcalifornia3"].features[41] = {name : 'PurpleCarpetNE', x : 8, y : 12};
+mappages["hotelcalifornia3"].features[42] = {name : 'PurpleCarpetSE', x : 8, y : 13};
+mappages["hotelcalifornia3"].features[43] = {name : 'PurpleCarpetS', x : 7, y : 13};
+mappages["hotelcalifornia3"].features[44] = {name : 'PurpleCarpetSW', x : 6, y : 13};
 
 
 mappages["hotelcalifornia3"].npcs = [];
@@ -348,7 +360,7 @@ mappages["hotelcalifornia3"].npcs[2] = {name : 'GhostNPC', x : 5, y : 12, NPCNam
 mappages["hotelcalifornia3"].npcs[3] = {name : 'GhostNPC', x : 7, y : 11, NPCName: 'Olin', Attitude: 'friendly', PeaceAI: 'townsfolk', Conversation: 'olin', Gender: 'male', NPCBand: '0', OverrideGraphic: '364.gif', skintone: '1'};
 
 mappages["hotelcalifornia3"].desc = "Mysterious Building";
-mappages["hotelcalifornia3"].longdesc = '';
+mappages["hotelcalifornia3"].longdesc = ``;
 mappages["hotelcalifornia3"].music = 'Tension';
 mappages["hotelcalifornia3"].savename = `Mystery`;
 mappages["hotelcalifornia3"].exitmap = 'darkunknown';

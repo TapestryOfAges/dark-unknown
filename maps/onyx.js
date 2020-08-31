@@ -286,8 +286,8 @@ mappages["onyx2"].terrain = [];
  mappages["onyx2"].terrain[6] = 'sb sb sb sb sb ## ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ## sb sb sb sb rL rL rL rL rL rL rL rL sb sb sb sb sb sb';
  mappages["onyx2"].terrain[7] = 'sb sb sb sb sb ## ++ ++ ++ ++ ## ++ ++ ## ## ## ++ ## sb sb sb sb ## ## ## ## ## ## ## ## sb sb sb sb sb sb';
  mappages["onyx2"].terrain[8] = 'sb sb sb sb sb #O ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ## sb sb sb sb ## ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb';
- mappages["onyx2"].terrain[9] = 'sb sb sb sb sb ## ++ r1 r3 ++ ## ## ## ## ++ ++ ++ #O sb sb sb sb ## ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb';
-mappages["onyx2"].terrain[10] = 'sb sb sb sb sb ## ++ r7 r5 ++ ## ++ ++ ## ++ ++ ++ ## sb sb sb sb #O ++ ++ ++ ++ ++ ++ #O sb sb sb sb sb sb';
+ mappages["onyx2"].terrain[9] = 'sb sb sb sb sb ## ++ ++ ++ ++ ## ## ## ## ++ ++ ++ #O sb sb sb sb ## ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb';
+mappages["onyx2"].terrain[10] = 'sb sb sb sb sb ## ++ ++ ++ ++ ## ++ ++ ## ++ ++ ++ ## sb sb sb sb #O ++ ++ ++ ++ ++ ++ #O sb sb sb sb sb sb';
 mappages["onyx2"].terrain[11] = 'sb sb sb sb sb ## ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ## sb sb sb sb ## ++ ++ ++ ++ ++ ++ ## sb sb sb sb sb sb';
 mappages["onyx2"].terrain[12] = 'sb sb sb sb sb ## ## #O ## ## ## ## ## ## ## #O ## ## sb sb sb sb ## ## ## ## #O ## ## ## rf sb sb sb sb sb';
 mappages["onyx2"].terrain[13] = 'sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb sb rf rf rf rf rf rf rf sb sb sb sb sb';
@@ -391,6 +391,10 @@ mappages["onyx2"].features[70] = {name : 'Brazier', x : 9, y : 8};
 mappages["onyx2"].features[71] = {name : 'TorchEast', x : 23, y : 30};
 mappages["onyx2"].features[72] = {name : 'TorchEast', x : 23, y : 32};
 mappages["onyx2"].features[73] = {name : 'Fireplace', x : 25, y : 30};
+mappages["onyx2"].features[74] = {name : 'PurpleCarpetNW', x : 7, y : 9};
+mappages["onyx2"].features[75] = {name : 'PurpleCarpetNE', x : 8, y : 9};
+mappages["onyx2"].features[76] = {name : 'PurpleCarpetSW', x : 7, y : 10};
+mappages["onyx2"].features[77] = {name : 'PurpleCarpetSE', x : 8, y : 10};
 
 
 mappages["onyx2"].npcs = [];
