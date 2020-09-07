@@ -234,6 +234,7 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
     if (baseStack[i].invisible) { continue; }
     let displayCell = {};
     let displaytile = baseStack[i];
+    displayCell.layers = displaytile.layers;
     let isnpc = 0;  // specifically, ones with minds who will be seen by telepathy
     if (displaytile.checkType("NPC") && !displaytile.specials.mindless) { isnpc = 1; }
     let graphics = displaytile.getGraphicArray();
@@ -316,27 +317,8 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
       if (displaytile.alwaystop) { ontop.push(displayCell); }
       else { displayStack.push(displayCell); }
     } else {
-      //displaytile = eidos.getForm('BlankBlack');
-      //graphics = displaytile.getGraphicArray();
-      //displayCell.showGraphic = graphics[0];
-      //displayCell.graphics2 = graphics[2];
-      //displayCell.graphics3 = graphics[3];
-      //displayCell.graphics1 = graphics[1];
-      //displayCell.losresult = losresult;
-      //displayCell.lighthere = lighthere;
-      //displayCell.desc = "You cannot see that";
       // skip adding to displayStack
     }
-//    if (displaytile.checkType("Terrain") && (displaytile.getName() !== "BlankBlack")) { displayCell.terrain = 1; }
-//    if (isontop) {
-//      let gra = toptop.getGraphicArray();
-//      let topview = {};
-//      topview.showGraphic = gra[0];
-//      topview.graphics1 = gra[1];
-//      topview.graphics2 = gra[2];
-//      topview.graphics3 = gra[3];
-//      displayCell.topview = topview;
-//    }
   }
   for (let i=0;i<ontop.length;i++) {
     displayStack.push(ontop[i]);
@@ -354,7 +336,28 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
     displayCell.desc = "You cannot see that";
     displayStack.push(displayCell);
   }
-  return displayStack;
+  let returnStack = [];
+  for (let i=0;i<displayStack.length;i++) {
+    returnStack.push(displayStack[i]);
+    if (displayStack[i].layers) {
+      for (let j=0;j<displayStack[i].layers.length;j++) {
+        if (displayStack[i].layers[j]) {
+          let makeCell = {};
+          makeCell.losresult = displayStack[i].losresult;
+          makeCell.lighthere = displayStack[i].lighthere;
+          makeCell.desc = displayStack[i].desc;
+          makeCell.isnpc = displayStack[i].isnpc;
+          makeCell.showGraphic = displayStack[i].layers[j][0];
+          makeCell.graphics1 = displayStack[i].layers[j][1];
+          if (!makeCell.graphics1) { makeCell.graphics1 = "spacer.gif"; }
+          makeCell.graphics2 = displayStack[i].layers[j][2];
+          makeCell.graphics3 = displayStack[i].layers[j][3];
+          returnStack.push(makeCell);
+        }
+      }
+    }
+  }
+  return returnStack;
 }
 
 function GetDisplayDirectionalLight(centerx,centery,x,y,lightmap,sunlight) {
