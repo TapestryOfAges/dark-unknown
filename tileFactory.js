@@ -68,6 +68,291 @@ tileFactory.prototype.makeFlameMountainTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeMountain1Tile = function() {
+  let newTile = new Mountain1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2Tile = function() {
+  let newTile = new Mountain2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1MeadowBaseTile = function() {
+  let newTile = new Mountain1MeadowBaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1GrassBaseTile = function() {
+  let newTile = new Mountain1GrassBaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1SandBaseTile = function() {
+  let newTile = new Mountain1SandBaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1DirtBaseTile = function() {
+  let newTile = new Mountain1DirtBaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1CaveBaseTile = function() {
+  let newTile = new Mountain1CaveBaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2MeadowBaseTile = function() {
+  let newTile = new Mountain2MeadowBaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2GrassBaseTile = function() {
+  let newTile = new Mountain2GrassBaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2SandBaseTile = function() {
+  let newTile = new Mountain2SandBaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2DirtBaseTile = function() {
+  let newTile = new Mountain2DirtBaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2CaveBaseTile = function() {
+  let newTile = new Mountain2CaveBaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1MeadowCrownTile = function() {
+  let newTile = new Mountain1MeadowCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1GrassCrownTile = function() {
+  let newTile = new Mountain1GrassCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1SandCrownTile = function() {
+  let newTile = new Mountain1SandCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1DirtCrownTile = function() {
+  let newTile = new Mountain1DirtCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1CaveCrownTile = function() {
+  let newTile = new Mountain1CaveCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2MeadowCrownTile = function() {
+  let newTile = new Mountain2MeadowCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2GrassCrownTile = function() {
+  let newTile = new Mountain2GrassCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2SandCrownTile = function() {
+  let newTile = new Mountain2SandCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2DirtCrownTile = function() {
+  let newTile = new Mountain2DirtCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2CaveCrownTile = function() {
+  let newTile = new Mountain2CaveCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1MeadowBaseCrownTile = function() {
+  let newTile = new Mountain1MeadowBaseCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1GrassBaseCrownTile = function() {
+  let newTile = new Mountain1GrassBaseCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1SandBaseCrownTile = function() {
+  let newTile = new Mountain1SandBaseCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1DirtBaseCrownTile = function() {
+  let newTile = new Mountain1DirtBaseCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain1CaveBaseCrownTile = function() {
+  let newTile = new Mountain1CaveBaseCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2MeadowBaseCrownTile = function() {
+  let newTile = new Mountain2MeadowBaseCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2GrassBaseCrownTile = function() {
+  let newTile = new Mountain2GrassBaseCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2SandBaseCrownTile = function() {
+  let newTile = new Mountain2SandBaseCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2DirtBaseCrownTile = function() {
+  let newTile = new Mountain2DirtBaseCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountain2CaveBaseCrownTile = function() {
+  let newTile = new Mountain2CaveBaseCrownTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainLeftMeadowTile = function() {
+  let newTile = new MountainLeftMeadowTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainLeftGrassTile = function() {
+  let newTile = new MountainLeftGrassTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainLeftSandTile = function() {
+  let newTile = new MountainLeftSandTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainLeftDirtTile = function() {
+  let newTile = new MountainLeftDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainLeftCaveTile = function() {
+  let newTile = new MountainLeftCaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainRightMeadowTile = function() {
+  let newTile = new MountainRightMeadowTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainRightGrassTile = function() {
+  let newTile = new MountainRightGrassTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainRightSandTile = function() {
+  let newTile = new MountainRightSandTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainRightDirtTile = function() {
+  let newTile = new MountainRightDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainRightCaveTile = function() {
+  let newTile = new MountainRightCaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfMeadow1Tile = function() {
+  let newTile = new MountainHalfMeadow1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfGrass1Tile = function() {
+  let newTile = new MountainHalfGrass1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfSand1Tile = function() {
+  let newTile = new MountainHalfSand1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfDirt1Tile = function() {
+  let newTile = new MountainHalfDirt1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfCave1Tile = function() {
+  let newTile = new MountainHalfCave1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfMeadow2Tile = function() {
+  let newTile = new MountainHalfMeadow2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfGrass2Tile = function() {
+  let newTile = new MountainHalfGrass2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfSand2Tile = function() {
+  let newTile = new MountainHalfSand2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfDirt2Tile = function() {
+  let newTile = new MountainHalfDirt2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfCave2Tile = function() {
+  let newTile = new MountainHalfCave2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfMeadow3Tile = function() {
+  let newTile = new MountainHalfMeadow3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfGrass3Tile = function() {
+  let newTile = new MountainHalfGrass3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfSand3Tile = function() {
+  let newTile = new MountainHalfSand3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfDirt3Tile = function() {
+  let newTile = new MountainHalfDirt3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMountainHalfCave3Tile = function() {
+  let newTile = new MountainHalfCave3Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeStoneWallTile = function() {
   let newTile = new StoneWallTile();
   return newTile;
@@ -153,6 +438,16 @@ tileFactory.prototype.makeDarknessTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeShinyWallTile = function() {
+  let newTile = new ShinyWallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeOffwhiteWallTile = function() {
+  let newTile = new OffwhiteWallTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWallTile = function() {
   let newTile = new WallTile();
   return newTile;
@@ -163,8 +458,33 @@ tileFactory.prototype.makeFireplaceWallTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGreyWallTile = function() {
+  let newTile = new GreyWallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreyFireplaceWallTile = function() {
+  let newTile = new GreyFireplaceWallTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRuinsWallTile = function() {
   let newTile = new RuinsWallTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallArchTile = function() {
+  let newTile = new RuinsWallArchTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallIvyTile = function() {
+  let newTile = new RuinsWallIvyTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallIvy2Tile = function() {
+  let newTile = new RuinsWallIvy2Tile();
   return newTile;
 }
 
@@ -178,8 +498,18 @@ tileFactory.prototype.makeArrowSlitTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGreyArrowSlitTile = function() {
+  let newTile = new GreyArrowSlitTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWindowTile = function() {
   let newTile = new WindowTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreyWindowTile = function() {
+  let newTile = new GreyWindowTile();
   return newTile;
 }
 
@@ -243,6 +573,11 @@ tileFactory.prototype.makeShadowPlanksNSTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSouthCoastMeadowTile = function() {
+  let newTile = new SouthCoastMeadowTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSouthCoastTile = function() {
   let newTile = new SouthCoastTile();
   return newTile;
@@ -250,6 +585,21 @@ tileFactory.prototype.makeSouthCoastTile = function() {
 
 tileFactory.prototype.makeSouthCoastSandTile = function() {
   let newTile = new SouthCoastSandTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSouthCoastDirtTile = function() {
+  let newTile = new SouthCoastDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSouthCoastCaveTile = function() {
+  let newTile = new SouthCoastCaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNorthCoastMeadowTile = function() {
+  let newTile = new NorthCoastMeadowTile();
   return newTile;
 }
 
@@ -263,6 +613,21 @@ tileFactory.prototype.makeNorthCoastSandTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeNorthCoastDirtTile = function() {
+  let newTile = new NorthCoastDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNorthCoastCaveTile = function() {
+  let newTile = new NorthCoastCaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEastCoastMeadowTile = function() {
+  let newTile = new EastCoastMeadowTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeEastCoastTile = function() {
   let newTile = new EastCoastTile();
   return newTile;
@@ -270,6 +635,21 @@ tileFactory.prototype.makeEastCoastTile = function() {
 
 tileFactory.prototype.makeEastCoastSandTile = function() {
   let newTile = new EastCoastSandTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEastCoastDirtTile = function() {
+  let newTile = new EastCoastDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEastCoastCaveTile = function() {
+  let newTile = new EastCoastCaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWestCoastMeadowTile = function() {
+  let newTile = new WestCoastMeadowTile();
   return newTile;
 }
 
@@ -283,6 +663,21 @@ tileFactory.prototype.makeWestCoastSandTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWestCoastDirtTile = function() {
+  let newTile = new WestCoastDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWestCoastCaveTile = function() {
+  let newTile = new WestCoastCaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNortheastCoastMeadowTile = function() {
+  let newTile = new NortheastCoastMeadowTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNortheastCoastTile = function() {
   let newTile = new NortheastCoastTile();
   return newTile;
@@ -290,6 +685,21 @@ tileFactory.prototype.makeNortheastCoastTile = function() {
 
 tileFactory.prototype.makeNortheastCoastSandTile = function() {
   let newTile = new NortheastCoastSandTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNortheastCoastDirtTile = function() {
+  let newTile = new NortheastCoastDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNortheastCoastCaveTile = function() {
+  let newTile = new NortheastCoastCaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSouthwestCoastMeadowTile = function() {
+  let newTile = new SouthwestCoastMeadowTile();
   return newTile;
 }
 
@@ -303,6 +713,21 @@ tileFactory.prototype.makeSouthwestCoastSandTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSouthwestCoastDirtTile = function() {
+  let newTile = new SouthwestCoastDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSouthwestCoastCaveTile = function() {
+  let newTile = new SouthwestCoastCaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNorthwestCoastMeadowTile = function() {
+  let newTile = new NorthwestCoastMeadowTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeNorthwestCoastTile = function() {
   let newTile = new NorthwestCoastTile();
   return newTile;
@@ -313,6 +738,21 @@ tileFactory.prototype.makeNorthwestCoastSandTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeNorthwestCoastDirtTile = function() {
+  let newTile = new NorthwestCoastDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeNorthwestCoastCaveTile = function() {
+  let newTile = new NorthwestCoastCaveTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSoutheastCoastMeadowTile = function() {
+  let newTile = new SoutheastCoastMeadowTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeSoutheastCoastTile = function() {
   let newTile = new SoutheastCoastTile();
   return newTile;
@@ -320,6 +760,16 @@ tileFactory.prototype.makeSoutheastCoastTile = function() {
 
 tileFactory.prototype.makeSoutheastCoastSandTile = function() {
   let newTile = new SoutheastCoastSandTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSoutheastCoastDirtTile = function() {
+  let newTile = new SoutheastCoastDirtTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeSoutheastCoastCaveTile = function() {
+  let newTile = new SoutheastCoastCaveTile();
   return newTile;
 }
 
@@ -578,6 +1028,31 @@ tileFactory.prototype.makeForest2Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeForestEdgeTile = function() {
+  let newTile = new ForestEdgeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeForestEdge2Tile = function() {
+  let newTile = new ForestEdge2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeForestEdge3Tile = function() {
+  let newTile = new ForestEdge3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeForestEdge4Tile = function() {
+  let newTile = new ForestEdge4Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeForestEdge5Tile = function() {
+  let newTile = new ForestEdge5Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDeadForestTile = function() {
   let newTile = new DeadForestTile();
   return newTile;
@@ -588,6 +1063,26 @@ tileFactory.prototype.makeEvergreenForestTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEvergreenForestEdgeTile = function() {
+  let newTile = new EvergreenForestEdgeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEvergreenForestEdge2Tile = function() {
+  let newTile = new EvergreenForestEdge2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEvergreenForestEdge3Tile = function() {
+  let newTile = new EvergreenForestEdge3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEvergreenForestEdge4Tile = function() {
+  let newTile = new EvergreenForestEdge4Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeBrightForestTile = function() {
   let newTile = new BrightForestTile();
   return newTile;
@@ -595,6 +1090,31 @@ tileFactory.prototype.makeBrightForestTile = function() {
 
 tileFactory.prototype.makeBrightForest2Tile = function() {
   let newTile = new BrightForest2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrightForestEdgeTile = function() {
+  let newTile = new BrightForestEdgeTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrightForestEdge2Tile = function() {
+  let newTile = new BrightForestEdge2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrightForestEdge3Tile = function() {
+  let newTile = new BrightForestEdge3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrightForestEdge4Tile = function() {
+  let newTile = new BrightForestEdge4Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrightForestEdge5Tile = function() {
+  let newTile = new BrightForestEdge5Tile();
   return newTile;
 }
 
@@ -618,8 +1138,58 @@ tileFactory.prototype.makeForestWCoastTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEvergreenForestNCoastTile = function() {
+  let newTile = new EvergreenForestNCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEvergreenForestECoastTile = function() {
+  let newTile = new EvergreenForestECoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEvergreenForestSCoastTile = function() {
+  let newTile = new EvergreenForestSCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeEvergreenForestWCoastTile = function() {
+  let newTile = new EvergreenForestWCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrightForestNCoastTile = function() {
+  let newTile = new BrightForestNCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrightForestECoastTile = function() {
+  let newTile = new BrightForestECoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrightForestSCoastTile = function() {
+  let newTile = new BrightForestSCoastTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrightForestWCoastTile = function() {
+  let newTile = new BrightForestWCoastTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeHillsTile = function() {
   let newTile = new HillsTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHills1Tile = function() {
+  let newTile = new Hills1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHills2Tile = function() {
+  let newTile = new Hills2Tile();
   return newTile;
 }
 
@@ -978,6 +1548,66 @@ tileFactory.prototype.makeFringeCarpetSETile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWoodenPillarTile = function() {
+  let newTile = new WoodenPillarTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMarblePillarTile = function() {
+  let newTile = new MarblePillarTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeCrackedMarblePillarTile = function() {
+  let newTile = new CrackedMarblePillarTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeBrokenMarblePillarTile = function() {
+  let newTile = new BrokenMarblePillarTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFenceNSWTile = function() {
+  let newTile = new FenceNSWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFenceWTile = function() {
+  let newTile = new FenceWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFenceWBrokenTile = function() {
+  let newTile = new FenceWBrokenTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFenceEBrokenTile = function() {
+  let newTile = new FenceEBrokenTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFenceETile = function() {
+  let newTile = new FenceETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFencePostTile = function() {
+  let newTile = new FencePostTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFenceBrokenPostTile = function() {
+  let newTile = new FenceBrokenPostTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFenceNSEWTile = function() {
+  let newTile = new FenceNSEWTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeFenceNWTile = function() {
   let newTile = new FenceNWTile();
   return newTile;
@@ -1010,6 +1640,16 @@ tileFactory.prototype.makeFenceNSTile = function() {
 
 tileFactory.prototype.makeFenceEWSTile = function() {
   let newTile = new FenceEWSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFenceEWNTile = function() {
+  let newTile = new FenceEWNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeFenceENSTile = function() {
+  let newTile = new FenceENSTile();
   return newTile;
 }
 
@@ -1105,6 +1745,36 @@ tileFactory.prototype.makeCoralTile = function() {
 
 tileFactory.prototype.makeDungeonTile = function() {
   let newTile = new DungeonTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDungeon2Tile = function() {
+  let newTile = new Dungeon2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDungeon3Tile = function() {
+  let newTile = new Dungeon3Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDungeon4Tile = function() {
+  let newTile = new Dungeon4Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDungeon5Tile = function() {
+  let newTile = new Dungeon5Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDungeon6Tile = function() {
+  let newTile = new Dungeon6Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDungeon7Tile = function() {
+  let newTile = new Dungeon7Tile();
   return newTile;
 }
 
@@ -1218,6 +1888,11 @@ tileFactory.prototype.makeDoorwayTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeGreyDoorwayTile = function() {
+  let newTile = new GreyDoorwayTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeStoneDoorwayTile = function() {
   let newTile = new StoneDoorwayTile();
   return newTile;
@@ -1253,8 +1928,73 @@ tileFactory.prototype.makeColinChestTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeWallDoor1Tile = function() {
+  let newTile = new WallDoor1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWallDoorWindow1Tile = function() {
+  let newTile = new WallDoorWindow1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWallDoorWindow1LitTile = function() {
+  let newTile = new WallDoorWindow1LitTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreyDoor1Tile = function() {
+  let newTile = new GreyDoor1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreyDoorWindow1Tile = function() {
+  let newTile = new GreyDoorWindow1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreyDoorWindow1LitTile = function() {
+  let newTile = new GreyDoorWindow1LitTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoorWindow1Tile = function() {
+  let newTile = new RuinsWallDoorWindow1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoorWindow1LitTile = function() {
+  let newTile = new RuinsWallDoorWindow1LitTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoorWindow2Tile = function() {
+  let newTile = new RuinsWallDoorWindow2Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoorWindow2LitTile = function() {
+  let newTile = new RuinsWallDoorWindow2LitTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDoorWindowTile = function() {
   let newTile = new DoorWindowTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeDoorWindowLitTile = function() {
+  let newTile = new DoorWindowLitTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreyDoorWindowTile = function() {
+  let newTile = new GreyDoorWindowTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreyDoorWindowLitTile = function() {
+  let newTile = new GreyDoorWindowLitTile();
   return newTile;
 }
 
@@ -1263,8 +2003,18 @@ tileFactory.prototype.makeStonePortcullisTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeStonePortcullisAlwaysClosedTile = function() {
+  let newTile = new StonePortcullisAlwaysClosedTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeWallPortcullisTile = function() {
   let newTile = new WallPortcullisTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreyWallPortcullisTile = function() {
+  let newTile = new GreyWallPortcullisTile();
   return newTile;
 }
 
@@ -1368,6 +2118,11 @@ tileFactory.prototype.makeDustyFireplaceTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeSmallDustyFireplaceTile = function() {
+  let newTile = new SmallDustyFireplaceTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeAltarTile = function() {
   let newTile = new AltarTile();
   return newTile;
@@ -1378,6 +2133,16 @@ tileFactory.prototype.makeThroneTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRuinsWallDoor1Tile = function() {
+  let newTile = new RuinsWallDoor1Tile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoor2Tile = function() {
+  let newTile = new RuinsWallDoor2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeDoorTile = function() {
   let newTile = new DoorTile();
   return newTile;
@@ -1385,6 +2150,11 @@ tileFactory.prototype.makeDoorTile = function() {
 
 tileFactory.prototype.makeTalkingDoorTile = function() {
   let newTile = new TalkingDoorTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGreyDoorTile = function() {
+  let newTile = new GreyDoorTile();
   return newTile;
 }
 
@@ -1778,8 +2548,18 @@ tileFactory.prototype.makeTreeTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeAutumnTreeTile = function() {
+  let newTile = new AutumnTreeTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeEvergreenTile = function() {
   let newTile = new EvergreenTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeWillowTreeTile = function() {
+  let newTile = new WillowTreeTile();
   return newTile;
 }
 
@@ -1788,13 +2568,23 @@ tileFactory.prototype.makeDeadTreeTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeCactusTile = function() {
-  let newTile = new CactusTile();
+tileFactory.prototype.makeAppleTreeTile = function() {
+  let newTile = new AppleTreeTile();
   return newTile;
 }
 
-tileFactory.prototype.makeAppleTreeTile = function() {
-  let newTile = new AppleTreeTile();
+tileFactory.prototype.makeOlympusTapestryTile = function() {
+  let newTile = new OlympusTapestryTile();
+  return newTile;
+}
+
+tileFactory.prototype.makePaladinTapestryTile = function() {
+  let newTile = new PaladinTapestryTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeHildendainTapestryTile = function() {
+  let newTile = new HildendainTapestryTile();
   return newTile;
 }
 
@@ -1888,6 +2678,11 @@ tileFactory.prototype.makeRuinsWallTallLeftMidRightTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRuinsWallTallLeftMidRight2Tile = function() {
+  let newTile = new RuinsWallTallLeftMidRight2Tile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRuinsWallMidLeftMidRightTile = function() {
   let newTile = new RuinsWallMidLeftMidRightTile();
   return newTile;
@@ -1900,6 +2695,11 @@ tileFactory.prototype.makeRuinsWallMidLeftTallRightTile = function() {
 
 tileFactory.prototype.makeRuinsWallMidLeftBottomRightTile = function() {
   let newTile = new RuinsWallMidLeftBottomRightTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallBottomLeftBottomRightTile = function() {
+  let newTile = new RuinsWallBottomLeftBottomRightTile();
   return newTile;
 }
 
@@ -2583,21 +3383,6 @@ tileFactory.prototype.makeVoidstoneSculptureTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeStoneOfSparksTile = function() {
-  let newTile = new StoneOfSparksTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeStoneOfEmbersTile = function() {
-  let newTile = new StoneOfEmbersTile();
-  return newTile;
-}
-
-tileFactory.prototype.makeStoneOfTheBlazeTile = function() {
-  let newTile = new StoneOfTheBlazeTile();
-  return newTile;
-}
-
 tileFactory.prototype.makeStoneOfConflagrationsTile = function() {
   let newTile = new StoneOfConflagrationsTile();
   return newTile;
@@ -2650,6 +3435,11 @@ tileFactory.prototype.makeNightshadeTile = function() {
 
 tileFactory.prototype.makeSulfurousAshTile = function() {
   let newTile = new SulfurousAshTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeMassOfHerbsTile = function() {
+  let newTile = new MassOfHerbsTile();
   return newTile;
 }
 
@@ -4668,6 +5458,156 @@ tileFactory.prototype.makeLockedStonePortcullisTile = function() {
 tileFactory.prototype.makeLockedWallPortcullisTile = function() {
   let newTile = this.createTile('WallPortcullis');
   newTile.lockMe(1);
+  return newTile;
+}
+
+tileFactory.prototype.makeLockedGreyWallPortcullisTile = function() {
+  let newTile = this.createTile('GreyWallPortcullis');
+  newTile.lockMe(1);
+  return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoor1LockedTile = function() {
+ let newTile = this.createTile('RuinsWallDoor1');
+  newTile.lockMe(1);
+ return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoorWindow1LockedTile = function() {
+ let newTile = this.createTile('RuinsWallDoorWindow1');
+  newTile.lockMe(1);
+ return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoorWindow1LitLockedTile = function() {
+ let newTile = this.createTile('RuinsWallDoorWindow1Lit');
+  newTile.lockMe(1);
+ return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoor1MagicLockedTile = function() {
+ let newTile = this.createTile('RuinsWallDoor1');
+  newTile.lockMe(2);
+ return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoorWindow1MagicLockedTile = function() {
+ let newTile = this.createTile('RuinsWallDoorWindow1');
+  newTile.lockMe(2);
+ return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoorWindow1LitMagicLockedTile = function() {
+ let newTile = this.createTile('RuinsWallDoorWindow1Lit');
+  newTile.lockMe(2);
+ return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoor2LockedTile = function() {
+ let newTile = this.createTile('RuinsWallDoor2');
+  newTile.lockMe(1);
+ return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoorWindow2LockedTile = function() {
+ let newTile = this.createTile('RuinsWallDoorWindow2');
+  newTile.lockMe(1);
+ return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoorWindow2LitLockedTile = function() {
+ let newTile = this.createTile('RuinsWallDoorWindow2Lit');
+  newTile.lockMe(1);
+ return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoor2MagicLockedTile = function() {
+ let newTile = this.createTile('RuinsWallDoor2');
+  newTile.lockMe(2);
+ return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoorWindow2MagicLockedTile = function() {
+ let newTile = this.createTile('RuinsWallDoorWindow2');
+  newTile.lockMe(2);
+ return newTile;
+}
+
+tileFactory.prototype.makeRuinsWallDoorWindow2LitMagicLockedTile = function() {
+ let newTile = this.createTile('RuinsWallDoorWindow2Lit');
+  newTile.lockMe(2);
+ return newTile;
+}
+
+tileFactory.prototype.makeWallDoor1LockedTile = function() {
+ let newTile = this.createTile('WallDoor1');
+  newTile.lockMe(1);
+ return newTile;
+}
+
+tileFactory.prototype.makeWallDoorWindow1LockedTile = function() {
+ let newTile = this.createTile('WallDoorWindow1');
+  newTile.lockMe(1);
+ return newTile;
+}
+
+tileFactory.prototype.makeWallDoorWindow1LitLockedTile = function() {
+ let newTile = this.createTile('WallDoorWindow1Lit');
+  newTile.lockMe(1);
+ return newTile;
+}
+
+tileFactory.prototype.makeGreyDoor1LockedTile = function() {
+ let newTile = this.createTile('GreyDoor1');
+  newTile.lockMe(1);
+ return newTile;
+}
+
+tileFactory.prototype.makeGreyDoorWindow1LockedTile = function() {
+ let newTile = this.createTile('GreyDoorWindow1');
+  newTile.lockMe(1);
+ return newTile;
+}
+
+tileFactory.prototype.makeGreyDoorWindow1LitLockedTile = function() {
+ let newTile = this.createTile('GreyDoorWindow1Lit');
+  newTile.lockMe(1);
+ return newTile;
+}
+
+tileFactory.prototype.makeLockedGreyDoorWindowTile = function() {
+  let newTile = this.createTile('GreyDoorWindow');
+  newTile.lockMe(1);
+  return newTile;
+}
+
+tileFactory.prototype.makeMagicLockedGreyDoorWindowTile = function() {
+  let newTile = this.createTile('GreyDoorWindow');
+  newTile.lockMe(2);    // Magic Lock
+  return newTile;
+}
+
+tileFactory.prototype.makeLockedGreyDoorTile = function() {
+  let newTile = this.createTile('GreyDoor');
+  newTile.lockMe(1);
+  return newTile;
+}
+
+tileFactory.prototype.makeMagicLockedGreyDoorTile = function() {
+  let newTile = this.createTile('GreyDoor');
+  newTile.lockMe(2);    // Magic Lock
+  return newTile;
+}
+
+tileFactory.prototype.makeLockedGreyDoorWindowLitTile = function() {
+  let newTile = this.createTile('GreyDoorWindowLit');
+  newTile.lockMe(1);
+  return newTile;
+}
+
+tileFactory.prototype.makeMagicLockedGreyDoorWindowLitTile = function() {
+  let newTile = this.createTile('GreyDoorWindowLit');
+  newTile.lockMe(2);    // Magic Lock
   return newTile;
 }
 
