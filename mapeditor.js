@@ -843,13 +843,19 @@ function getManual() {
 
 function writeTileOption(tilename) {
 
-var tempTile = localFactory.createTile(tilename);
-var graphics = tempTile.getGraphicArray();
-var imgsrc = graphics[0];
-var oversrc = graphics[1];
-//document.write("<a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + imgsrc + "'></a>");
-var id = "#tileoption" + tilename;
-document.write("<td id='" + id+ "' style=\"height:32;width:32;background-repeat:no-repeat;background-position: " + graphics[2] + "px " + graphics[3] + "px; background-image:url('graphics/" + imgsrc + "')\"><a href=\"javascript:changeselection('" + tilename + "');\"><img src='graphics/" + oversrc + "' width='32' height='32' border='0'></a></td>");
+  var tempTile = localFactory.createTile(tilename);
+  if (tempTile.checkType("Terrain")) {
+    if (!localatlas.key[tempTile.getName()]) { console.log("No atlas key for " + tempTile.getName()); } 
+  }
+  var graphics = tempTile.getGraphicArray();
+  var imgsrc = graphics[0];
+  var oversrc = "<img src='graphics/" + graphics[1] + "' width='32' height='32' />";
+  var id = "#tileoption" + tilename;
+  
+  if (tempTile.layers) {
+    oversrc = "<div style='height:32;width:32;background-image:url(\"graphics/" + tempTile.layers[0][0] + "\");background-position: " + tempTile.layers[0][2] + "px " + tempTile.layers[0][3] + "px'></div>";
+  } 
+  document.write("<td id='" + id+ "' style=\"height:32;width:32;background-repeat:no-repeat;background-position: " + graphics[2] + "px " + graphics[3] + "px; background-image:url('graphics/" + imgsrc + "')\"><a href=\"javascript:changeselection('" + tilename + "');\">" + oversrc + "</a></td>");
 }
 
 function setVisible(divname) {
