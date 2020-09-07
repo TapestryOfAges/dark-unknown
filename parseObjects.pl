@@ -38,12 +38,22 @@ foreach my $line (@gameobjects) {
 	    $allobjs{$currentobj}{"overlay"}= $1;
 	    print STDERR "$currentobj overlay $1\n";
 	  }
-    if ($line =~ /this\.spritexoffset\s*=\s*[\"\'](.+)[\"\']/) {
+    if ($line =~ /this\.spritexoffset\s*=\s*(\S+)\s*;/) {
 	    $allobjs{$currentobj}{"spritexoffset"}= $1;
+			if ($allobjs{$currentobj}{"spritexoffset"} =~ /\*/) {
+        my @fields = split(/\*/,$allobjs{$currentobj}{"spritexoffset"});
+				my $sxo = $fields[0] * $fields[1];
+				$allobjs{$currentobj}{"spritexoffset"} = $sxo;
+			}
 	    print STDERR "$currentobj spritexoffset $1\n";
 	  }
-    if ($line =~ /this\.spriteyoffset\s*=\s*[\"\'](.+)[\"\']/) {
+    if ($line =~ /this\.spriteyoffset\s*=\s*(\S+)\s*;/) {
 	    $allobjs{$currentobj}{"spriteyoffset"}= $1;
+			if ($allobjs{$currentobj}{"spriteyoffset"} =~ /\*/) {
+        my @fields = split(/\*/,$allobjs{$currentobj}{"spriteyoffset"});
+				my $syo = $fields[0] * $fields[1];
+				$allobjs{$currentobj}{"spriteyoffset"} = $syo;
+			}
 	    print STDERR "$currentobj spriteyoffset $1\n";
 	  }
     if ($line =~ /this\.desc\s*=\s*[\"\'](.+)[\"\']/) {
