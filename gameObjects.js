@@ -333,6 +333,8 @@ GameObject.prototype.setGraphicArray = function(newgraphics) {
 	this.overlay = newgraphics[1];
 	this.spritexoffset = newgraphics[2];
   this.spriteyoffset = newgraphics[3];
+  this.overlayxoffset = newgraphics[4];
+  this.overlayyoffset = newgraphics[5];
 }
 
 GameObject.prototype.getGraphic = function() {
@@ -362,6 +364,17 @@ GameObject.prototype.getGraphicArray = function() {
   } else {
   	returnVars[3] = "0";
   }
+  if (this.overlayxoffset) {
+    returnVars[4] = this.overlayxoffset;
+  } else {
+    returnVars[4] = 0;
+  }
+  if (this.overlayyoffset) {
+    returnVars[5] = this.overlayyoffset;
+  } else {
+    returnVars[5] = 0;
+  }
+  
   return(returnVars); 
 }
 
@@ -1466,13 +1479,14 @@ TerrainObject.prototype.setCombatMapOptions = function(mapnum) {
 }
 
 function OceanTile() {
+  //Graphics Upgraded
   this.name = "Ocean";
-  this.graphic = "flowing_animations.gif";
+  this.graphic = "water.gif";
   this.desc = "deep water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL;
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "0";
+  this.spritexoffset = 0;
+  this.spriteyoffset = 0;
   this.combatmap = "Water";
   this.peerview = "#0000e0";
   this.walkSound = "water";
@@ -1481,12 +1495,12 @@ OceanTile.prototype = new TerrainObject();
 
 function WaterTile() {
   this.name = "Water";
-  this.graphic = "flowing_animations.gif";
+  this.graphic = "water.gif";
   this.desc = "water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "0";
+  this.spritexoffset = -32;
+  this.spriteyoffset = 0;
   this.combatmap = "Water";
   this.peerview = "#4040fc";
   this.walkSound = "water";
@@ -1505,12 +1519,12 @@ WaterTile.prototype.idle = function(walker) {
 
 function ShallowsTile() {
   this.name = "Shallows";
-  this.graphic = "flowing_animations.gif";
+  this.graphic = "water.gif";
   this.desc = "shallow water";
   this.blocklos = 0;
   this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "0";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = 0;
   this.combatmap = "Water";
   this.peerview = "#8080fc";
   this.walkSound = "water";
@@ -1689,6 +1703,861 @@ function FlameMountainTile() {
   this.walkSound = "hill";
 }
 FlameMountainTile.prototype = new TerrainObject();
+
+function Mountain1Tile() {
+  //Graphics Upgraded
+  this.name = "Mountain1";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = 0;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1Tile.prototype = new TerrainObject();
+
+function Mountain2Tile() {
+  //Graphics Upgraded
+  this.name = "Mountain1";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2Tile.prototype = new TerrainObject();
+
+function Mountain1MeadowBaseTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1MeadowBase";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -48*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1MeadowBaseTile.prototype = new TerrainObject();
+
+function Mountain1GrassBaseTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1GrassBase";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -48*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1GrassBaseTile.prototype = new TerrainObject();
+
+function Mountain1SandBaseTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1SandBase";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -48*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1SandBaseTile.prototype = new TerrainObject();
+
+function Mountain1DirtBaseTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1DirtBase";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -48*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1DirtBaseTile.prototype = new TerrainObject();
+
+function Mountain1CaveBaseTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1CaveBase";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -48*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1CaveBaseTile.prototype = new TerrainObject();
+
+function Mountain2MeadowBaseTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2MeadowBase";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -48*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2MeadowBaseTile.prototype = new TerrainObject();
+
+function Mountain2GrassBaseTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2GrassBase";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -48*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2GrassBaseTile.prototype = new TerrainObject();
+
+function Mountain2SandBaseTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2SandBase";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -48*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2SandBaseTile.prototype = new TerrainObject();
+
+function Mountain2DirtBaseTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2DirtBase";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -48*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2DirtBaseTile.prototype = new TerrainObject();
+
+function Mountain2CaveBaseTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2CaveBase";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -48*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2CaveBaseTile.prototype = new TerrainObject();
+
+function Mountain1MeadowCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1MeadowCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -49*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1MeadowCrownTile.prototype = new TerrainObject();
+
+function Mountain1GrassCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1GrassCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -49*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1GrassCrownTile.prototype = new TerrainObject();
+
+function Mountain1SandCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1SandCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -49*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1SandCrownTile.prototype = new TerrainObject();
+
+function Mountain1DirtCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1DirtCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -49*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1DirtCrownTile.prototype = new TerrainObject();
+
+function Mountain1CaveCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1CaveCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -49*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1CaveCrownTile.prototype = new TerrainObject();
+
+function Mountain2MeadowCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2MeadowCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -56*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2MeadowCrownTile.prototype = new TerrainObject();
+
+function Mountain2GrassCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2GrassCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -57*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2GrassCrownTile.prototype = new TerrainObject();
+
+function Mountain2SandCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1SandCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -57*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2SandCrownTile.prototype = new TerrainObject();
+
+function Mountain2DirtCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2DirtCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -57*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2DirtCrownTile.prototype = new TerrainObject();
+
+function Mountain2CaveCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2CaveCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -58*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2CaveCrownTile.prototype = new TerrainObject();
+
+function Mountain1MeadowBaseCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1MeadowBaseCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -50*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1MeadowBaseCrownTile.prototype = new TerrainObject();
+
+function Mountain1GrassBaseCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1GrassBaseCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -1*32;
+  this.spriteyoffset = -50*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1GrassBaseCrownTile.prototype = new TerrainObject();
+
+function Mountain1SandBaseCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1SandBaseCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -50*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1SandBaseCrownTile.prototype = new TerrainObject();
+
+function Mountain1DirtBaseCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1DirtBaseCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -50*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1DirtBaseCrownTile.prototype = new TerrainObject();
+
+function Mountain1CaveBaseCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1CaveBaseCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -50*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain1CaveBaseCrownTile.prototype = new TerrainObject();
+
+function Mountain2MeadowBaseCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2MeadowBaseCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -49*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2MeadowBaseCrownTile.prototype = new TerrainObject();
+
+function Mountain2GrassBaseCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2GrassBaseCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -1*32;
+  this.spriteyoffset = -49*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2GrassBaseCrownTile.prototype = new TerrainObject();
+
+function Mountain2SandBaseCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain1SandBaseCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -49*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2SandBaseCrownTile.prototype = new TerrainObject();
+
+function Mountain2DirtBaseCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2DirtBaseCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -49*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2DirtBaseCrownTile.prototype = new TerrainObject();
+
+function Mountain2CaveBaseCrownTile() {
+  //Graphics Upgraded
+  this.name = "Mountain2CaveBaseCrown";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -49*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+Mountain2CaveBaseCrownTile.prototype = new TerrainObject();
+
+function MountainLeftMeadowTile() {
+  //Graphics Upgraded
+  this.name = "MountainLeftMeadow";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -53*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainLeftMeadowTile.prototype = new TerrainObject();
+
+function MountainLeftGrassTile() {
+  //Graphics Upgraded
+  this.name = "MountainLeftGrass";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -53*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainLeftGrassTile.prototype = new TerrainObject();
+
+function MountainLeftSandTile() {
+  //Graphics Upgraded
+  this.name = "MountainLeftSand";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -54*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainLeftSandTile.prototype = new TerrainObject();
+
+function MountainLeftDirtTile() {
+  //Graphics Upgraded
+  this.name = "MountainLeftDirt";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -54*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainLeftDirtTile.prototype = new TerrainObject();
+
+function MountainLeftCaveTile() {
+  //Graphics Upgraded
+  this.name = "MountainLeftCave";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -54*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainLeftCaveTile.prototype = new TerrainObject();
+
+function MountainRightMeadowTile() {
+  //Graphics Upgraded
+  this.name = "MountainRightMeadow";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -54*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainRightMeadowTile.prototype = new TerrainObject();
+
+function MountainRightGrassTile() {
+  //Graphics Upgraded
+  this.name = "MountainRightGrass";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -54*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainRightGrassTile.prototype = new TerrainObject();
+
+function MountainRightSandTile() {
+  //Graphics Upgraded
+  this.name = "MountainRightSand";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -57*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainRightSandTile.prototype = new TerrainObject();
+
+function MountainRightDirtTile() {
+  //Graphics Upgraded
+  this.name = "MountainRightDirt";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -54*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainRightDirtTile.prototype = new TerrainObject();
+
+function MountainRightCaveTile() {
+  //Graphics Upgraded
+  this.name = "MountainRightCave";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -57*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainRightCaveTile.prototype = new TerrainObject();
+
+function MountainHalfMeadow1Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfMeadow1";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -55*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfMeadow1Tile.prototype = new TerrainObject();
+
+function MountainHalfGrass1Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfGrass1";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -55*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfGrass1Tile.prototype = new TerrainObject();
+
+function MountainHalfSand1Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfSand1";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -55*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfSand1Tile.prototype = new TerrainObject();
+
+function MountainHalfDirt1Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfDirt1";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -56*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfDirt1Tile.prototype = new TerrainObject();
+
+function MountainHalfCave1Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfCave1";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -56*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfCave1Tile.prototype = new TerrainObject();
+
+function MountainHalfMeadow2Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfMeadow2";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -58*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfMeadow2Tile.prototype = new TerrainObject();
+
+function MountainHalfGrass2Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfGrass2";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -58*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfGrass2Tile.prototype = new TerrainObject();
+
+function MountainHalfSand2Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfSand2";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -58*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfSand2Tile.prototype = new TerrainObject();
+
+function MountainHalfDirt2Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfDirt1";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -58*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfDirt2Tile.prototype = new TerrainObject();
+
+function MountainHalfCave2Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfCave2";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -58*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfCave2Tile.prototype = new TerrainObject();
+
+function MountainHalfMeadow3Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfMeadow3";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -58*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfMeadow3Tile.prototype = new TerrainObject();
+
+function MountainHalfGrass3Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfGrass3";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -58*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfGrass3Tile.prototype = new TerrainObject();
+
+function MountainHalfSand3Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfSand3";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -59*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfSand3Tile.prototype = new TerrainObject();
+
+function MountainHalfDirt3Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfDirt3";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -59*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfDirt3Tile.prototype = new TerrainObject();
+
+function MountainHalfCave3Tile() {
+  //Graphics Upgraded
+  this.name = "MountainHalfCave3";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -59*32;
+  this.desc = "mountains";
+  this.blocklos = 1;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.combatmap = "Hill";
+  this.peerview = "#fcfcfc";
+  this.walkSound = "hill";
+}
+MountainHalfCave3Tile.prototype = new TerrainObject();
 
 function StoneWallTile() {
   this.name = "StoneWall";
@@ -1919,11 +2788,40 @@ function DarknessTile() {
 }
 DarknessTile.prototype = new TerrainObject();
 
-function WallTile() {
-  this.name = "Wall";
+function ShinyWallTile() {
+  //Graphics Upgraded. Actually, new.
+  this.name = "ShinyWall";
   this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-128";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -12*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+ShinyWallTile.prototype = new TerrainObject();
+
+function OffwhiteWallTile() {
+  //Graphics Upgraded. Actually, new.
+  this.name = "OffwhiteWall";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -12*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+OffwhiteWallTile.prototype = new TerrainObject();
+
+function WallTile() {
+  //Graphics Upgraded
+  this.name = "Wall";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -15*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.prefix = "a";
@@ -1933,10 +2831,11 @@ function WallTile() {
 WallTile.prototype = new TerrainObject();
 
 function FireplaceWallTile() {
+  //Graphics Upgraded
   this.name = "FireplaceWall";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-128";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -15*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 2;
   this.prefix = "a";
@@ -1945,11 +2844,40 @@ function FireplaceWallTile() {
 }
 FireplaceWallTile.prototype = new TerrainObject();
 
+function GreyWallTile() {
+  //Graphics Upgraded
+  this.name = "GreyWall";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -18*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+GreyWallTile.prototype = new TerrainObject();
+
+function GreyFireplaceWallTile() {
+  //Graphics Upgraded
+  this.name = "GreyFireplaceWall";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -18*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+GreyFireplaceWallTile.prototype = new TerrainObject();
+
 function RuinsWallTile() {
+  //Graphics Upgraded
   this.name = "RuinsWall";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-256";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.prefix = "a";
@@ -1958,11 +2886,54 @@ function RuinsWallTile() {
 }
 RuinsWallTile.prototype = new TerrainObject();
 
+function RuinsWallArchTile() {
+  //Graphics Upgraded
+  this.name = "RuinsWallArch";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -14*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+RuinsWallArchTile.prototype = new TerrainObject();
+
+function RuinsWallIvyTile() {
+  //Graphics Upgraded
+  this.name = "RuinsWallIvy";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -14*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+RuinsWallIvyTile.prototype = new TerrainObject();
+
+function RuinsWallIvy2Tile() {
+  //Graphics Upgraded
+  this.name = "RuinsWallIvy2";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -14*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+RuinsWallIvy2Tile.prototype = new TerrainObject();
+
 function IllusionaryRuinsWallTile() {
+  //Graphics Upgraded
   this.name = "IllusionaryRuinsWall";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-256";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -13*32;
   this.passable = MOVE_WALK + MOVE_LEVITATE + MOVE_ETHEREAL + MOVE_FLY;
   this.blocklos = 2;
   this.prefix = "a";
@@ -1972,10 +2943,11 @@ function IllusionaryRuinsWallTile() {
 IllusionaryRuinsWallTile.prototype = new TerrainObject();
 
 function ArrowSlitTile() {
+  //Graphics Upgraded
 	this.name = "ArrowSlit";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-128";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -15*32;
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.losupclose = { distance : 1 , blocklos : 0 };
@@ -1987,11 +2959,29 @@ function ArrowSlitTile() {
 }
 ArrowSlitTile.prototype = new TerrainObject();
 
+function GreyArrowSlitTile() {
+  //Graphics Upgraded
+	this.name = "GreyArrowSlit";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -17*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = { distance : 1 , blocklos : 0 };
+	this.blockloe = 1;
+	this.loeupclose = {distance : 0 , blocklow : .2 };
+	this.prefix = "an";
+	this.desc = "arrow slit";
+  this.peerview = "white";
+}
+GreyArrowSlitTile.prototype = new TerrainObject();
+
 function WindowTile() {
+  //Graphics Upgraded
 	this.name = "Window";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-128";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -15*32;
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.blockloe = 1;
@@ -2000,6 +2990,21 @@ function WindowTile() {
   this.peerview = "white";
 }
 WindowTile.prototype = new TerrainObject();
+
+function GreyWindowTile() {
+  //Graphics Upgraded
+	this.name = "GreyWindow";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -17*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 0; 
+	this.blockloe = 1;
+	this.prefix = "a";
+	this.desc = "window";
+  this.peerview = "white";
+}
+GreyWindowTile.prototype = new TerrainObject();
 
 function ShadowWindowTile() {
 	this.name = "ShadowWindow";
@@ -2164,12 +3169,27 @@ function ShadowPlanksNSTile() {
 }
 ShadowPlanksNSTile.prototype = new TerrainObject();
 
+function SouthCoastMeadowTile() {
+  //Graphics Upgraded
+  this.name = "SouthCoastMeadow";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -52*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+}
+SouthCoastMeadowTile.prototype = new TerrainObject();
+
 function SouthCoastTile() {
+  //Graphics Upgraded
   this.name = "SouthCoast";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-160";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -52*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2180,10 +3200,11 @@ function SouthCoastTile() {
 SouthCoastTile.prototype = new TerrainObject();
 
 function SouthCoastSandTile() {
+  //Graphics Upgraded
   this.name = "SouthCoastSand";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-96";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -52*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2193,12 +3214,57 @@ function SouthCoastSandTile() {
 }
 SouthCoastSandTile.prototype = new TerrainObject();
 
+function SouthCoastDirtTile() {
+  //Graphics Upgraded
+  this.name = "SouthCoastDirt";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -53*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+SouthCoastDirtTile.prototype = new TerrainObject();
+
+function SouthCoastCaveTile() {
+  //Graphics Upgraded
+  this.name = "SouthCoastCave";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -53*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+SouthCoastCaveTile.prototype = new TerrainObject();
+
+function NorthCoastMeadowTile() {
+  //Graphics Upgraded
+  this.name = "NorthCoastMeadow";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -55*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+}
+NorthCoastMeadowTile.prototype = new TerrainObject();
+
 function NorthCoastTile() {
+  //Graphics Upgraded
   this.name = "NorthCoast";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-160";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -55*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2209,10 +3275,11 @@ function NorthCoastTile() {
 NorthCoastTile.prototype = new TerrainObject();
 
 function NorthCoastSandTile() {
+  //Graphics Upgraded
   this.name = "NorthCoastSand";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-288";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -55*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2222,12 +3289,57 @@ function NorthCoastSandTile() {
 }
 NorthCoastSandTile.prototype = new TerrainObject();
 
+function NorthCoastDirtTile() {
+  //Graphics Upgraded
+  this.name = "NorthCoastDirt";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -55*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+NorthCoastDirtTile.prototype = new TerrainObject();
+
+function NorthCoastCaveTile() {
+  //Graphics Upgraded
+  this.name = "NorthCoastCave";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -55*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+NorthCoastCaveTile.prototype = new TerrainObject();
+
+function EastCoastMeadowTile() {
+  //Graphics Upgraded
+  this.name = "EastCoastMeadow";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -56*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+}
+EastCoastMeadowTile.prototype = new TerrainObject();
+
 function EastCoastTile() {
+  //Graphics Upgraded
   this.name = "EastCoast";
-//  this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-160";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -56*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2238,10 +3350,11 @@ function EastCoastTile() {
 EastCoastTile.prototype = new TerrainObject();
 
 function EastCoastSandTile() {
+  //Graphics Upgraded
   this.name = "EastCoastSand";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-96";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -56*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2251,12 +3364,57 @@ function EastCoastSandTile() {
 }
 EastCoastSandTile.prototype = new TerrainObject();
 
+function EastCoastDirtTile() {
+  //Graphics Upgraded
+  this.name = "EastCoastDirt";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -56*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+EastCoastDirtTile.prototype = new TerrainObject();
+
+function EastCoastCaveTile() {
+  //Graphics Upgraded
+  this.name = "EastCoastCave";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -56*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+EastCoastCaveTile.prototype = new TerrainObject();
+
+function WestCoastMeadowTile() {
+  //Graphics Upgraded
+  this.name = "WestCoastMeadow";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -57*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+}
+WestCoastMeadowTile.prototype = new TerrainObject();
+
 function WestCoastTile() {
+  //Graphics Upgraded
   this.name = "WestCoast";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-160";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -57*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2267,10 +3425,11 @@ function WestCoastTile() {
 WestCoastTile.prototype = new TerrainObject();
 
 function WestCoastSandTile() {
+  //Graphics Upgraded
   this.name = "WestCoastSand";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-96";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -57*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2280,14 +3439,61 @@ function WestCoastSandTile() {
 }
 WestCoastSandTile.prototype = new TerrainObject();
 
-function NortheastCoastTile() {
-  this.name = "NortheastCoast";
-  // For Phaser: 0,672
+function WestCoastDirtTile() {
+  //Graphics Upgraded
+  this.name = "WestCoastDirt";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -57*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+WestCoastDirtTile.prototype = new TerrainObject();
+
+function WestCoastCaveTile() {
+  //Graphics Upgraded
+  this.name = "WestCoastCave";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -57*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+}
+WestCoastCaveTile.prototype = new TerrainObject();
+
+function NortheastCoastMeadowTile() {
+  this.name = "NortheastCoastMeadow";
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
-  //this.overlay = "necoast_d.gif";
-  this.overlay = "necoast.gif";
+  //this.overlay = "necoast.gif";
+  this.layers = [["static.png","",-5*32,-51*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+  
+  SetBySurroundCoast.call(this);
+}
+NortheastCoastMeadowTile.prototype = new TerrainObject();
+
+function NortheastCoastTile() {
+  this.name = "NortheastCoast";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  //this.overlay = "necoast.gif";
+  this.layers = [["static.png","",-6*32,-51*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2301,11 +3507,11 @@ NortheastCoastTile.prototype = new TerrainObject();
 
 function NortheastCoastSandTile() {
   this.name = "NortheastCoastSand";
-  // For Phaser: 32,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
-  this.overlay = "necoast-sand.gif";
+  //this.overlay = "necoast-sand.gif";
+  this.layers = [["static.png","",-7*32,-51*32]]
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2317,14 +3523,67 @@ function NortheastCoastSandTile() {
 }
 NortheastCoastSandTile.prototype = new TerrainObject();
 
-function SouthwestCoastTile() {
-  this.name = "SouthwestCoast";
-  // For Phaser: 64,672
+function NortheastCoastDirtTile() {
+  this.name = "NortheastCoastDirt";
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
-  //this.overlay = "swcoast_d.gif";
-  this.overlay = "swcoast.gif";
+  //this.overlay = "necoast-sand.gif";
+  this.layers = [["static.png","",0,-53*32]]
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+  
+  SetBySurroundCoast.call(this);
+}
+NortheastCoastDirtTile.prototype = new TerrainObject();
+
+function NortheastCoastCaveTile() {
+  this.name = "NortheastCoastCave";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  //this.overlay = "necoast-sand.gif";
+  this.layers = [["static.png","",-1*32,-53*32]]
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+  
+  SetBySurroundCoast.call(this);
+}
+NortheastCoastCaveTile.prototype = new TerrainObject();
+
+function SouthwestCoastMeadowTile() {
+  this.name = "SouthwestCoastMeadow";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+//  this.overlay = "swcoast.gif";
+  this.layers = [["static.png","",-5*32,-50*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+  
+  SetBySurroundCoast.call(this);
+}
+SouthwestCoastMeadowTile.prototype = new TerrainObject();
+
+function SouthwestCoastTile() {
+  this.name = "SouthwestCoast";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+//  this.overlay = "swcoast.gif";
+  this.layers = [["static.png","",-6*32,-50*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2338,11 +3597,11 @@ SouthwestCoastTile.prototype = new TerrainObject();
 
 function SouthwestCoastSandTile() {
   this.name = "SouthwestCoastSand";
-  // For Phaser: 96,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
-  this.overlay = "swcoast-sand.gif";
+  //this.overlay = "swcoast-sand.gif";
+  this.layers = [["static.png","",-7*32,-50*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2354,14 +3613,67 @@ function SouthwestCoastSandTile() {
 }
 SouthwestCoastSandTile.prototype = new TerrainObject();
 
-function NorthwestCoastTile() {
-  this.name = "NorthwestCoast";
-  // For Phaser: 128,672
+function SouthwestCoastDirtTile() {
+  this.name = "SouthwestCoastDirt";
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
-  //this.overlay = "nwcoast_d.gif";
-  this.overlay = "nwcoast.gif";
+  //this.overlay = "swcoast-sand.gif";
+  this.layers = [["static.png","",-8*32,-50*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+  
+  SetBySurroundCoast.call(this);
+}
+SouthwestCoastDirtTile.prototype = new TerrainObject();
+
+function SouthwestCoastCaveTile() {
+  this.name = "SouthwestCoastCave";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  //this.overlay = "swcoast-sand.gif";
+  this.layers = [["static.png","",-9*32,-50*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+  
+  SetBySurroundCoast.call(this);
+}
+SouthwestCoastCaveTile.prototype = new TerrainObject();
+
+function NorthwestCoastMeadowTile() {
+  this.name = "NorthwestCoastMeadow";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+//  this.overlay = "nwcoast.gif";
+  this.layers = [["static.png","",0,-52*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+  
+  SetBySurroundCoast.call(this);
+}
+NorthwestCoastMeadowTile.prototype = new TerrainObject();
+
+function NorthwestCoastTile() {
+  this.name = "NorthwestCoast";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+//  this.overlay = "nwcoast.gif";
+  this.layers = [["static.png","",-32,-52*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2375,11 +3687,11 @@ NorthwestCoastTile.prototype = new TerrainObject();
 
 function NorthwestCoastSandTile() {
   this.name = "NorthwestCoastSand";
-  // For Phaser: 160,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
-  this.overlay = "nwcoast-sand.gif";
+//  this.overlay = "nwcoast-sand.gif";
+  this.layers = [["static.png","",-2*32,-52*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2391,14 +3703,67 @@ function NorthwestCoastSandTile() {
 }
 NorthwestCoastSandTile.prototype = new TerrainObject();
 
-function SoutheastCoastTile() {
-  this.name = "SoutheastCoast";
-  // For Phaser: 192,672
+function NorthwestCoastDirtTile() {
+  this.name = "NorthwestCoastDirt";
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
-  //this.overlay = "secoast_d.gif";
-  this.overlay = "secoast.gif";
+//  this.overlay = "nwcoast-sand.gif";
+  this.layers = [["static.png","",-3*32,-52*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+  
+  SetBySurroundCoast.call(this);
+}
+NorthwestCoastDirtTile.prototype = new TerrainObject();
+
+function NorthwestCoastCaveTile() {
+  this.name = "NorthwestCoastCave";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+//  this.overlay = "nwcoast-sand.gif";
+  this.layers = [["static.png","",-4*32,-52*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+  
+  SetBySurroundCoast.call(this);
+}
+NorthwestCoastCaveTile.prototype = new TerrainObject();
+
+function SoutheastCoastMeadowTile() {
+  this.name = "SoutheastCoastMeadow";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+//  this.overlay = "secoast.gif";
+  this.layers = [["static.png","",0,-51*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#00c000";
+  this.walkSound = "grass";
+  
+  SetBySurroundCoast.call(this);
+}
+SoutheastCoastMeadowTile.prototype = new TerrainObject();
+
+function SoutheastCoastTile() {
+  this.name = "SoutheastCoast";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+//  this.overlay = "secoast.gif";
+  this.layers = [["static.png","",-32,-51*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2412,11 +3777,11 @@ SoutheastCoastTile.prototype = new TerrainObject();
 
 function SoutheastCoastSandTile() {
   this.name = "SoutheastCoastSand";
-  // For Phaser: 224,672
   this.graphic = "flowing_animations.gif";
   this.spritexoffset = "-192";
   this.spriteyoffset = "0";
-  this.overlay = "secoast-sand.gif";
+  //this.overlay = "secoast-sand.gif";
+  this.layers = [["static.png","",-2*32,-51*32]];
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "coast";
@@ -2427,6 +3792,42 @@ function SoutheastCoastSandTile() {
   SetBySurroundCoast.call(this);
 }
 SoutheastCoastSandTile.prototype = new TerrainObject();
+
+function SoutheastCoastDirtTile() {
+  this.name = "SoutheastCoastDirt";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  //this.overlay = "secoast-sand.gif";
+  this.layers = [["static.png","",-3*32,-51*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+  
+  SetBySurroundCoast.call(this);
+}
+SoutheastCoastDirtTile.prototype = new TerrainObject();
+
+function SoutheastCoastCaveTile() {
+  this.name = "SoutheastCoastCave";
+  this.graphic = "flowing_animations.gif";
+  this.spritexoffset = "-192";
+  this.spriteyoffset = "0";
+  //this.overlay = "secoast-sand.gif";
+  this.layers = [["static.png","",-4*32,-51*32]];
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "coast";
+  this.combatmap = "Grass";
+  this.peerview = "#7a2a1a";
+  this.walkSound = "grass";
+  
+  SetBySurroundCoast.call(this);
+}
+SoutheastCoastCaveTile.prototype = new TerrainObject();
 
 function ShadowSouthCoastTile() {
   this.name = "ShadowSouthCoast";
@@ -3055,10 +4456,11 @@ function SandVegetationTile() {
 SandVegetationTile.prototype = new TerrainObject();
 
 function BrushNCoastTile() {
+  //Graphics Upgraded
   this.name = "BrushNCoast";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-192";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -45*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "brush";
@@ -3088,9 +4490,9 @@ ShadowBrushNCoastTile.prototype = new TerrainObject();
 
 function BrushECoastTile() {
   this.name = "BrushECoast";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-192";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -45*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "brush";
@@ -3119,10 +4521,11 @@ function ShadowBrushECoastTile() {
 ShadowBrushECoastTile.prototype = new TerrainObject();
 
 function BrushSCoastTile() {
+  //Graphics Upgraded
   this.name = "BrushSCoast";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-192";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -45*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "brush";
@@ -3151,10 +4554,11 @@ function ShadowBrushSCoastTile() {
 ShadowBrushSCoastTile.prototype = new TerrainObject();
 
 function BrushWCoastTile() {
+  //Graphics Upgraded
   this.name = "BrushWCoast";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-192";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -45*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.desc = "brush";
@@ -3218,6 +4622,96 @@ function Forest2Tile() {
 }
 Forest2Tile.prototype = new TerrainObject();
 
+function ForestEdgeTile() {
+  //Graphics Upgraded
+  this.name = "ForestEdge";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -61*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+ForestEdgeTile.prototype = new TerrainObject();
+
+function ForestEdge2Tile() {
+  //Graphics Upgraded
+  this.name = "ForestEdge2";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -61*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+ForestEdge2Tile.prototype = new TerrainObject();
+
+function ForestEdge3Tile() {
+  //Graphics Upgraded
+  this.name = "ForestEdge3";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -61*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+ForestEdge3Tile.prototype = new TerrainObject();
+
+function ForestEdge4Tile() {
+  //Graphics Upgraded
+  this.name = "ForestEdge4";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -61*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+ForestEdge4Tile.prototype = new TerrainObject();
+
+function ForestEdge5Tile() {
+  //Graphics Upgraded
+  this.name = "ForestEdge5";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -61*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+ForestEdge5Tile.prototype = new TerrainObject();
+
 function DeadForestTile() {
   //Graphics Upgraded
   this.name = "DeadForest";
@@ -3253,6 +4747,78 @@ function EvergreenForestTile() {
   this.walkSound = "forest";
 }
 EvergreenForestTile.prototype = new TerrainObject();
+
+function EvergreenForestEdgeTile() {
+  //Graphics Upgraded
+  this.name = "EvergreenForestEdge";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -60*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+EvergreenForestEdgeTile.prototype = new TerrainObject();
+
+function EvergreenForestEdge2Tile() {
+  //Graphics Upgraded
+  this.name = "EvergreenForestEdge2";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -60*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+EvergreenForestEdge2Tile.prototype = new TerrainObject();
+
+function EvergreenForestEdge3Tile() {
+  //Graphics Upgraded
+  this.name = "EvergreenForestEdge3";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -60*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+EvergreenForestEdge3Tile.prototype = new TerrainObject();
+
+function EvergreenForestEdge4Tile() {
+  //Graphics Upgraded
+  this.name = "EvergreenForestEdge4";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -60*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+EvergreenForestEdge4Tile.prototype = new TerrainObject();
 
 function BrightForestTile() {
   //Graphics Upgraded
@@ -3290,11 +4856,102 @@ function BrightForest2Tile() {
 }
 BrightForest2Tile.prototype = new TerrainObject();
 
+function BrightForestEdgeTile() {
+  //Graphics Upgraded
+  this.name = "BrightForestEdge";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -61*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+BrightForestEdgeTile.prototype = new TerrainObject();
+
+function BrightForestEdge2Tile() {
+  //Graphics Upgraded
+  this.name = "BrightForestEdge2";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -61*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+BrightForestEdge2Tile.prototype = new TerrainObject();
+
+function BrightForestEdge3Tile() {
+  //Graphics Upgraded
+  this.name = "BrightForestEdge3";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -61*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+BrightForestEdge3Tile.prototype = new TerrainObject();
+
+function BrightForestEdge4Tile() {
+  //Graphics Upgraded
+  this.name = "BrightForestEdge4";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -61*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+BrightForestEdge4Tile.prototype = new TerrainObject();
+
+function BrightForestEdge5Tile() {
+  //Graphics Upgraded
+  this.name = "BrightForestEdge5";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -61*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+BrightForestEdge5Tile.prototype = new TerrainObject();
+
 function ForestNCoastTile() {
+  //Graphics Upgraded
 	this.name = "ForestNCoast";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-192";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -64*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
 	this.losupclose = { distance : 1 , blocklos : 0 };
@@ -3308,10 +4965,11 @@ function ForestNCoastTile() {
 ForestNCoastTile.prototype = new TerrainObject();
 
 function ForestECoastTile() {
+  //Graphics Upgraded
 	this.name = "ForestECoast";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-192";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -64*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
 	this.losupclose = { distance : 1 , blocklos : 0 };
@@ -3325,10 +4983,11 @@ function ForestECoastTile() {
 ForestECoastTile.prototype = new TerrainObject();
 
 function ForestSCoastTile() {
+  //Graphics Upgraded
 	this.name = "ForestSCoast";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-192";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -64*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
 	this.losupclose = { distance : 1 , blocklos : 0 };
@@ -3342,10 +5001,11 @@ function ForestSCoastTile() {
 ForestSCoastTile.prototype = new TerrainObject();
 
 function ForestWCoastTile() {
+  //Graphics Upgraded
 	this.name = "ForestWCoast";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-224";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -64*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 1;
 	this.losupclose = { distance : 1 , blocklos : 0 };
@@ -3357,6 +5017,150 @@ function ForestWCoastTile() {
   this.walkSound = "forest";
 }
 ForestWCoastTile.prototype = new TerrainObject();
+
+function EvergreenForestNCoastTile() {
+  //Graphics Upgraded
+	this.name = "EvergreenForestNCoast";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -63*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+EvergreenForestNCoastTile.prototype = new TerrainObject();
+
+function EvergreenForestECoastTile() {
+  //Graphics Upgraded
+	this.name = "EvergreenForestECoast";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -63*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+EvergreenForestECoastTile.prototype = new TerrainObject();
+
+function EvergreenForestSCoastTile() {
+  //Graphics Upgraded
+	this.name = "EvergreenForestSCoast";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -63*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+EvergreenForestSCoastTile.prototype = new TerrainObject();
+
+function EvergreenForestWCoastTile() {
+  //Graphics Upgraded
+	this.name = "EvergreenForestWCoast";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -63*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+EvergreenForestWCoastTile.prototype = new TerrainObject();
+
+function BrightForestNCoastTile() {
+  //Graphics Upgraded
+	this.name = "BrightForestNCoast";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -62*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+BrightForestNCoastTile.prototype = new TerrainObject();
+
+function BrightForestECoastTile() {
+  //Graphics Upgraded
+	this.name = "BrightForestECoast";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -62*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+BrightForestECoastTile.prototype = new TerrainObject();
+
+function BrightForestSCoastTile() {
+  //Graphics Upgraded
+	this.name = "BrightForestSCoast";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -62*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+BrightForestSCoastTile.prototype = new TerrainObject();
+
+function BrightForestWCoastTile() {
+  //Graphics Upgraded
+	this.name = "BrightForestWCoast";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -62*32;
+	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 1;
+	this.losupclose = { distance : 1 , blocklos : 0 };
+  this.desc = "forest";
+  this.initdelay = 1.3;
+  this.pathweight = 1.3;
+  this.combatmap = "Forest";
+  this.peerview = "#004000";
+  this.walkSound = "forest";
+}
+BrightForestWCoastTile.prototype = new TerrainObject();
 
 function HillsTile() {
   // Graphics Upgraded
@@ -3374,6 +5178,40 @@ function HillsTile() {
   this.walkSound = "hill";
 }
 HillsTile.prototype = new TerrainObject();
+
+function Hills1Tile() {
+  // Graphics Upgraded
+  this.name = "Hills1";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -7*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "hills";
+  this.initdelay = 1.5;
+  this.pathweight = 1.5;
+  this.combatmap = "Hill";
+  this.peerview = "#49473a";
+  this.walkSound = "hill";
+}
+Hills1Tile.prototype = new TerrainObject();
+
+function Hills2Tile() {
+  // Graphics Upgraded
+  this.name = "Hills2";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -18*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.desc = "hills";
+  this.initdelay = 1.5;
+  this.pathweight = 1.5;
+  this.combatmap = "Hill";
+  this.peerview = "#49473a";
+  this.walkSound = "hill";
+}
+Hills2Tile.prototype = new TerrainObject();
 
 function PurpleCobblestoneTile() {
   this.name = "PurpleCobblestone";
@@ -3700,10 +5538,12 @@ function LightRoughStoneFloorTile() {
 LightRoughStoneFloorTile.prototype = new TerrainObject();
 
 function HexTransparentFloorTile() {
+  //Graphics Upgraded
+  // No longer a hex, but hey
 	this.name = "HexTransparentFloor";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-288";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -10*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 0;
 	this.desc = "floor";
@@ -4321,7 +6161,6 @@ function PurpleCarpetNWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 PurpleCarpetNWTile.prototype = new FeatureObject();
 
@@ -4334,7 +6173,6 @@ function PurpleCarpetNTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 PurpleCarpetNTile.prototype = new FeatureObject();
 
@@ -4347,7 +6185,6 @@ function PurpleCarpetNETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 PurpleCarpetNETile.prototype = new FeatureObject();
 
@@ -4360,7 +6197,6 @@ function PurpleCarpetWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 PurpleCarpetWTile.prototype = new FeatureObject();
 
@@ -4373,7 +6209,6 @@ function PurpleCarpetCTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 PurpleCarpetCTile.prototype = new FeatureObject();
 
@@ -4386,7 +6221,6 @@ function PurpleCarpetETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 PurpleCarpetETile.prototype = new FeatureObject();
 
@@ -4399,7 +6233,6 @@ function PurpleCarpetSWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 PurpleCarpetSWTile.prototype = new FeatureObject();
 
@@ -4412,7 +6245,6 @@ function PurpleCarpetSTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 PurpleCarpetSTile.prototype = new FeatureObject();
 
@@ -4425,7 +6257,6 @@ function PurpleCarpetSETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 PurpleCarpetSETile.prototype = new FeatureObject();
 
@@ -4438,7 +6269,6 @@ function FringeCarpetNWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 FringeCarpetNWTile.prototype = new FeatureObject();
 
@@ -4451,7 +6281,6 @@ function FringeCarpetNTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 FringeCarpetNTile.prototype = new FeatureObject();
 
@@ -4464,7 +6293,6 @@ function FringeCarpetNETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 FringeCarpetNETile.prototype = new FeatureObject();
 
@@ -4477,7 +6305,6 @@ function FringeCarpetWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 FringeCarpetWTile.prototype = new FeatureObject();
 
@@ -4490,7 +6317,6 @@ function FringeCarpetCTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 FringeCarpetCTile.prototype = new FeatureObject();
 
@@ -4503,7 +6329,6 @@ function FringeCarpetETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 FringeCarpetETile.prototype = new FeatureObject();
 
@@ -4516,7 +6341,6 @@ function FringeCarpetSWTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 FringeCarpetSWTile.prototype = new FeatureObject();
 
@@ -4529,7 +6353,6 @@ function FringeCarpetSTile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 FringeCarpetSTile.prototype = new FeatureObject();
 
@@ -4542,15 +6365,179 @@ function FringeCarpetSETile() {
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
   this.desc = "carpet";
-  this.walkSound = "stone";
 }
 FringeCarpetSETile.prototype = new FeatureObject();
 
+function WoodenPillarTile() {
+  this.name = "WoodenPillar";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -19*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.blockloe = .2;
+  this.prefix = "a";
+  this.desc = "pole";
+}
+WoodenPillarTile.prototype = new FeatureObject();
+
+function MarblePillarTile() {
+  //Graphics Upgraded
+  this.name = "MarblePillar";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -20*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pillar";
+}
+MarblePillarTile.prototype = new FeatureObject();
+
+function CrackedMarblePillarTile() {
+  //Graphics Upgraded
+  this.name = "CrackedMarblePillar";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -20*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "pillar";
+}
+CrackedMarblePillarTile.prototype = new FeatureObject();
+
+function BrokenMarblePillarTile() {
+  //Graphics Upgraded
+  this.name = "BrokenMarblePillar";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -20*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "broken pillar";
+}
+BrokenMarblePillarTile.prototype = new FeatureObject();
+
+function FenceNSWTile() {
+  //Graphics Upgraded
+  //new fence
+  this.name = "FenceNSW";
+  this.graphic = "static.png";
+  this.spritexoffset = -10*32;
+  this.spriteyoffset = -10*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+}
+FenceNSWTile.prototype = new FeatureObject();
+
+function FenceWTile() {
+  //Graphics Upgraded
+  //new fence
+  this.name = "FenceW";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -11*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+}
+FenceWTile.prototype = new FeatureObject();
+
+function FenceWBrokenTile() {
+  //Graphics Upgraded
+  //new fence
+  this.name = "FenceWBroken";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -12*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+}
+FenceWBrokenTile.prototype = new FeatureObject();
+
+function FenceEBrokenTile() {
+  //Graphics Upgraded
+  //new fence
+  this.name = "FenceEBroken";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -12*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+}
+FenceEBrokenTile.prototype = new FeatureObject();
+
+function FenceETile() {
+  //Graphics Upgraded
+  //new fence
+  this.name = "FenceE";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -12*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+}
+FenceETile.prototype = new FeatureObject();
+
+function FencePostTile() {
+  //Graphics Upgraded
+  //new fence
+  this.name = "FencePost";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -11*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+}
+FencePostTile.prototype = new FeatureObject();
+
+function FenceBrokenPostTile() {
+  //Graphics Upgraded
+  //new fence
+  this.name = "FenceBrokenPost";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -12*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+}
+FenceBrokenPostTile.prototype = new FeatureObject();
+
+function FenceNSEWTile() {
+  //Graphics Upgraded
+  //new fence
+  this.name = "FenceNSEW";
+  this.graphic = "static.png";
+  this.spritexoffset = -1*32;
+  this.spriteyoffset = -11*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+}
+FenceNSEWTile.prototype = new FeatureObject();
+
 function FenceNWTile() {
+  //Graphics Upgraded
   this.name = "FenceNW";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-768";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4559,10 +6546,11 @@ function FenceNWTile() {
 FenceNWTile.prototype = new FeatureObject();
 
 function FenceNETile() {
+  //Graphics Upgraded
   this.name = "FenceNE";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-768";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4571,10 +6559,11 @@ function FenceNETile() {
 FenceNETile.prototype = new FeatureObject();
 
 function FenceEWTile() {
+  //Graphics Upgraded
   this.name = "FenceEW";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-768";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4583,10 +6572,11 @@ function FenceEWTile() {
 FenceEWTile.prototype = new FeatureObject();
 
 function FenceSETile() {
+  //Graphics Upgraded
   this.name = "FenceSE";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-768";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4595,10 +6585,11 @@ function FenceSETile() {
 FenceSETile.prototype = new FeatureObject();
 
 function FenceSWTile() {
+  //Graphics Upgraded
   this.name = "FenceSW";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-768";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -12*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4607,10 +6598,11 @@ function FenceSWTile() {
 FenceSWTile.prototype = new FeatureObject();
 
 function FenceNSTile() {
+  //Graphics Upgraded
   this.name = "FenceNS";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-768";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4619,10 +6611,11 @@ function FenceNSTile() {
 FenceNSTile.prototype = new FeatureObject();
 
 function FenceEWSTile() {
+  //Graphics Upgraded
   this.name = "FenceEWS";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-768";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -11*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4630,11 +6623,38 @@ function FenceEWSTile() {
 }
 FenceEWSTile.prototype = new FeatureObject();
 
+function FenceEWNTile() {
+  //Graphics Upgraded
+  this.name = "FenceEWN";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -12*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+}
+FenceEWNTile.prototype = new FeatureObject();
+
+function FenceENSTile() {
+  //Graphics Upgraded
+  this.name = "FenceENS";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -12*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "fence";
+}
+FenceENSTile.prototype = new FeatureObject();
+
 function FenceEWGateTile() {
+  //Graphics Upgraded
 	this.name = "FenceEWGate";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-800";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -12*32;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
@@ -4642,7 +6662,7 @@ function FenceEWGateTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, ["master_spritesheet.png", "", "0", "-800"], ["master_spritesheet.png", "", "-32", "-800"], 0, "sfx_fence_open", "sfx_fence_close", "sfx_locked_door");
+  Openable.call(this, ["static.png", "", -7*32, -12*32], ["static.png", "", 0, -11*32], 0, "sfx_fence_open", "sfx_fence_close", "sfx_locked_door");
 }
 FenceEWGateTile.prototype = new FeatureObject();
 
@@ -4724,10 +6744,11 @@ function Statue4Tile() {
 Statue4Tile.prototype = new FeatureObject();
 
 function PaintingCrossTile() {
+  //Graphics Upgraded
   this.name = "PaintingCross";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-576";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4736,10 +6757,11 @@ function PaintingCrossTile() {
 PaintingCrossTile.prototype = new FeatureObject();
 
 function PaintingGreenTile() {
+  //Graphics Upgraded
   this.name = "PaintingGreen";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-576";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4748,10 +6770,11 @@ function PaintingGreenTile() {
 PaintingGreenTile.prototype = new FeatureObject();
 
 function PaintingPurpleTile() {
+  //Graphics Upgraded
   this.name = "PaintingPurple";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-576";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4760,10 +6783,11 @@ function PaintingPurpleTile() {
 PaintingPurpleTile.prototype = new FeatureObject();
 
 function PaintingTreeTile() {
+  //Graphics Upgraded
   this.name = "PaintingTree";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-576";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -4870,6 +6894,96 @@ function DungeonTile() {
   Enterable.call(this, "null", 0, 0);
 }
 DungeonTile.prototype = new FeatureObject();
+
+function Dungeon2Tile() {
+  //Graphics Upgraded
+  this.name = "Dungeon2";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -40*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "dungeon entrance";
+
+  Enterable.call(this, "null", 0, 0);
+}
+Dungeon2Tile.prototype = new FeatureObject();
+
+function Dungeon3Tile() {
+  //Graphics Upgraded
+  this.name = "Dungeon3";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -40*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "dungeon entrance";
+
+  Enterable.call(this, "null", 0, 0);
+}
+Dungeon3Tile.prototype = new FeatureObject();
+
+function Dungeon4Tile() {
+  //Graphics Upgraded
+  this.name = "Dungeon4";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -40*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "dungeon entrance";
+
+  Enterable.call(this, "null", 0, 0);
+}
+Dungeon4Tile.prototype = new FeatureObject();
+
+function Dungeon5Tile() {
+  //Graphics Upgraded
+  this.name = "Dungeon5";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -40*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "dungeon entrance";
+
+  Enterable.call(this, "null", 0, 0);
+}
+Dungeon5Tile.prototype = new FeatureObject();
+
+function Dungeon6Tile() {
+  //Graphics Upgraded
+  this.name = "Dungeon6";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -40*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "dungeon entrance";
+
+  Enterable.call(this, "null", 0, 0);
+}
+Dungeon6Tile.prototype = new FeatureObject();
+
+function Dungeon7Tile() {
+  //Graphics Upgraded
+  this.name = "Dungeon7";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -40*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "dungeon entrance";
+
+  Enterable.call(this, "null", 0, 0);
+}
+Dungeon7Tile.prototype = new FeatureObject();
 
 function CaveTile() {
   //Graphics Upgraded
@@ -5225,16 +7339,30 @@ function PileOfRocksTile() {
 PileOfRocksTile.prototype = new FeatureObject();
 
 function DoorwayTile() {
+  //Graphics Upgraded
   this.name = "Doorway";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-704";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -16*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "archway";
 }
 DoorwayTile.prototype = new FeatureObject();
+
+function GreyDoorwayTile() {
+  //Graphics Upgraded
+  this.name = "GreyDoorway";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -17*32;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.blocklos = 0;
+  this.prefix = "an";
+  this.desc = "archway";
+}
+GreyDoorwayTile.prototype = new FeatureObject();
 
 function StoneDoorwayTile() {
   this.name = "StoneDoorway";
@@ -5372,13 +7500,14 @@ ColinChestTile.prototype.usecheck = function(who) {
   return ret;
 }
 
-function DoorWindowTile() {
-  Lockable.call(this, ["master_spritesheet.png","",'-96','-704'], ["master_spritesheet.png","",'-128','-704'], ["master_spritesheet.png","",'-160','-704'], "a", "door", "a", "locked door", "a", "magically locked door");
+function WallDoor1Tile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-6*32,-16*32], ["static.png","",-6*32,-16*32], ["static.png","",-6*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
 	
-	this.name = "DoorWindow";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-704";
+	this.name = "WallDoor1";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -16*32;
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.losupclose = {distance: 1 , blocklos: 0};
@@ -5388,7 +7517,257 @@ function DoorWindowTile() {
   
   this.pathweight = 2; 
 
-  Openable.call(this, ["master_spritesheet.png","",'-96','-704'], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+  Openable.call(this, ["static.png","",-6*32,-16*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+WallDoor1Tile.prototype = new FeatureObject();
+
+WallDoor1Tile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function WallDoorWindow1Tile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-9*32,-15*32], ["static.png","",-9*32,-15*32], ["static.png","",-9*32,-15*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "WallDoorWindow1";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -15*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",-9*32,-15*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+WallDoorWindow1Tile.prototype = new FeatureObject();
+
+WallDoorWindow1Tile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function WallDoorWindow1LitTile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-9*32,-15*32], ["static.png","",-9*32,-15*32], ["static.png","",-9*32,-15*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "WallDoorWindow1Lit";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -15*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",-9*32,-15*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+WallDoorWindow1LitTile.prototype = new FeatureObject();
+
+WallDoorWindow1LitTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function GreyDoor1Tile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-7*32,-18*32], ["static.png","",-7*32,-18*32], ["static.png","",-7*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "GreyDoor1";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -18*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",-7*32,-18*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+GreyDoor1Tile.prototype = new FeatureObject();
+
+GreyDoor1Tile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function GreyDoorWindow1Tile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",0,-18*32], ["static.png","",0,-18*32], ["static.png","",0,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "GreyDoorWindow1";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -18*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",0,-18*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+GreyDoorWindow1Tile.prototype = new FeatureObject();
+
+GreyDoorWindow1Tile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function GreyDoorWindow1LitTile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-32,-18*32], ["static.png","",-32,-18*32], ["static.png","",-32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "GreyDoorWindow1Lit";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -18*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",-32,-18*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+GreyDoorWindow1LitTile.prototype = new FeatureObject();
+
+GreyDoorWindow1LitTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function RuinsWallDoorWindow1Tile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-9*32,-13*32], ["static.png","",-9*32,-13*32], ["static.png","",-9*32,-13*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "RuinsWallDoorWindow1";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -13*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",-9*32,-13*32], ["static.png","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+RuinsWallDoorWindow1Tile.prototype = new FeatureObject();
+
+RuinsWallDoorWindow1Tile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function RuinsWallDoorWindow1LitTile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",0,-14*32], ["static.png","",0,-14*32], ["static.png","",0,-14*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "RuinsWallDoorWindow1";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -14*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",0,-14*32], ["static.png","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+RuinsWallDoorWindow1LitTile.prototype = new FeatureObject();
+
+RuinsWallDoorWindow1LitTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function RuinsWallDoorWindow2Tile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-3*32,-14*32], ["static.png","",-4*32,-15*32], ["static.png","",-5*32,-14*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "RuinsWallDoorWindow2";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -14*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",-3*32,-14*32], ["static.png","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+RuinsWallDoorWindow2Tile.prototype = new FeatureObject();
+
+RuinsWallDoorWindow2Tile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function RuinsWallDoorWindow2LitTile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-4*32,-14*32], ["static.png","",-5*32,-15*32], ["static.png","",-5*32,-14*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "RuinsWallDoorWindow2";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -14*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",-4*32,-14*32], ["static.png","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+RuinsWallDoorWindow2LitTile.prototype = new FeatureObject();
+
+RuinsWallDoorWindow2LitTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function DoorWindowTile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-3*32,-16*32], ["static.png","",-2*32,-17*32], ["static.png","",-5*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "DoorWindow";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -16*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",-3*32,-16*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorWindowTile.prototype = new FeatureObject();
 
@@ -5396,13 +7775,89 @@ DoorWindowTile.prototype.bumpinto = function(who) {
   return BumpIntoDoor(this,who);
 }
 
+function DoorWindowLitTile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-4*32,-16*32], ["static.png","",-3*32,-17*32], ["static.png","",-5*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "DoorWindowLit";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -16*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",-4*32,-16*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+DoorWindowLitTile.prototype = new FeatureObject();
+
+DoorWindowLitTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function GreyDoorWindowTile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-4*32,-18*32], ["static.png","",-9*32,-42*32], ["static.png","",-6*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "GreyDoorWindow";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -18*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",-4*32,-18*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+GreyDoorWindowTile.prototype = new FeatureObject();
+
+GreyDoorWindowTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function GreyDoorWindowLitTile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-5*32,-18*32], ["static.png","",-9*32,-47*32], ["static.png","",-6*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
+	
+	this.name = "GreyDoorWindowLit";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -18*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.losupclose = {distance: 1 , blocklos: 0};
+	this.blockloe = 1;
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png","",-5*32,-18*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+GreyDoorWindowLitTile.prototype = new FeatureObject();
+
+GreyDoorWindowLitTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
 function StonePortcullisTile() {
-  Lockable.call(this, ["master_spritesheet.png", "", "-224", "-832"], ["master_spritesheet.png", "", "-224", "-832"], ["master_spritesheet.png", "", "-224", "-832"], "a", "portcullis", "a", "portcullis", "a", "portcullis");
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png", "", -2*32, -15*32], ["static.png", "", -2*32, -15*32], ["static.png", "", -2*32, -15*32], "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
 	this.name = "StonePortcullis";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-832";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -15*32;
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
@@ -5411,7 +7866,7 @@ function StonePortcullisTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, ["master_spritesheet.png", "", "-224", "-832"], ["master_spritesheet.png", "", "-192", "-832"], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
+  Openable.call(this, ["static.png", "", -2*32, -15*32], ["static.png", "", 0, -15*32], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
 }
 StonePortcullisTile.prototype = new FeatureObject();
 
@@ -5419,13 +7874,28 @@ StonePortcullisTile.prototype.bumpinto = function(who) {
   return BumpIntoDoor(this,who);
 }
 
+function StonePortcullisAlwaysClosedTile() {
+	this.name = "StonePortcullisAlwaysClosed";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -15*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 0; 
+	this.prefix = "a";
+	this.desc = "portcullis";
+	this.heavy = 1;
+
+  this.pathweight = 2; 
+}
+StonePortcullisAlwaysClosedTile.prototype = new FeatureObject();
+
 function WallPortcullisTile() {
-  Lockable.call(this, ["master_spritesheet.png", "", "-288", "-832"], ["master_spritesheet.png", "", "-288", "-832"], ["master_spritesheet.png", "", "-288", "-832"], "a", "portcullis", "a", "portcullis", "a", "portcullis");
+  Lockable.call(this, ["static.png", "", -9*32, -16*32], ["static.png", "", -9*32, -16*32], ["static.png", "", -9*32, -16*32], "a", "portcullis", "a", "portcullis", "a", "portcullis");
 	
 	this.name = "WallPortcullis";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-832";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -16*32;
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 0; 
 	this.prefix = "a";
@@ -5434,11 +7904,34 @@ function WallPortcullisTile() {
 
   this.pathweight = 2; 
 
-  Openable.call(this, ["master_spritesheet.png", "", "-288", "-832"], ["master_spritesheet.png", "", "-256", "-832"], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
+  Openable.call(this, ["static.png", "", -9*32, -16*32], ["static.png", "", 0, -17*32], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
 }
 WallPortcullisTile.prototype = new FeatureObject();
 
 WallPortcullisTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function GreyWallPortcullisTile() {
+  Lockable.call(this, ["static.png", "", -4*32, -17*32], ["static.png", "", -4*32, -17*32], ["static.png", "", -4*32, -17*32], "a", "portcullis", "a", "portcullis", "a", "portcullis");
+	
+	this.name = "GreyWallPortcullis";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -17*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 0; 
+	this.prefix = "a";
+	this.desc = "portcullis";
+	this.heavy = 1;
+
+  this.pathweight = 2; 
+
+  Openable.call(this, ["static.png", "", -4*32, -17*32], ["static.png", "", -5*32, -17*32], 0, "sfx_portcullis_open", "sfx_portcullis_close", "sfx_locked_door");  
+}
+GreyWallPortcullisTile.prototype = new FeatureObject();
+
+GreyWallPortcullisTile.prototype.bumpinto = function(who) {
   return BumpIntoDoor(this,who);
 }
 
@@ -6011,9 +8504,9 @@ SmallFireplaceTile.prototype = new FireplaceTile();
 
 function DustyFireplaceTile() {
 	this.name = "DustyFireplace";
-	this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "0";
-	this.spriteyoffset = "-384";
+	this.graphic = "static.png";
+	this.spritexoffset = -8*32;
+	this.spriteyoffset = -20*32;
 	this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.blocklos = 2;
   this.prefix = "a";
@@ -6021,6 +8514,19 @@ function DustyFireplaceTile() {
 	this.peerview = "white";
 }
 DustyFireplaceTile.prototype = new FeatureObject();
+
+function SmallDustyFireplaceTile() {
+	this.name = "SmallDustyFireplace";
+	this.graphic = "static.png";
+	this.spritexoffset = -9*32;
+	this.spriteyoffset = -20*32;
+	this.passable = MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+	this.blocklos = 2;
+  this.prefix = "a";
+	this.desc = "dusty fireplace";
+	this.peerview = "white";
+}
+SmallDustyFireplaceTile.prototype = new FeatureObject();
 
 function AltarTile() {
 	this.name = "Altar";
@@ -6080,13 +8586,13 @@ ThroneTile.prototype.walkoff = function(who) {
   return {msg:""};
 }
 
-function DoorTile() {
-  Lockable.call(this, ["master_spritesheet.png","",'-224','-704'], ["master_spritesheet.png","",'-256','-704'], ["master_spritesheet.png","",'-288','-704'], "a", "door", "a", "locked door", "a", "magically locked door");
+function RuinsWallDoor1Tile() {
+  Lockable.call(this, ["static.png","",-8*32,-13*32], ["static.png","",-8*32,-13*32], ["static.png","",-8*32,-13*32], "a", "door", "a", "locked door", "a", "magically locked door");
   	
-	this.name = "Door";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-704";
+	this.name = "RuinsWallDoor1";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -13*32;
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 1; 
 	this.prefix = "a";
@@ -6094,7 +8600,52 @@ function DoorTile() {
   
   this.pathweight = 2; 
 
-	Openable.call(this, ["master_spritesheet.png", "", "-224", "-704"], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+	Openable.call(this, ["static.png","",-8*32,-13*32], ["static.png","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+RuinsWallDoor1Tile.prototype = new FeatureObject();
+
+RuinsWallDoor1Tile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function RuinsWallDoor2Tile() {
+  Lockable.call(this, ["static.png","",-1*32,-14*32], ["static.png","",-3*32,-15*32], ["static.png","",-2*32,-14*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  	
+	this.name = "RuinsWallDoor2";
+  this.graphic = "static.png";
+  this.spritexoffset = -1*32;
+  this.spriteyoffset = -14*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+	Openable.call(this, ["static.png","",-1*32,-14*32], ["static.png","",-9*32,-14*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+RuinsWallDoor2Tile.prototype = new FeatureObject();
+
+RuinsWallDoor2Tile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
+}
+
+function DoorTile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-32,-16*32], ["static.png","",-32,-17*32], ["static.png","",-2*32,-16*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  	
+	this.name = "Door";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -16*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+	Openable.call(this, ["static.png", "", -32, -16*32], ["static.png","",-8*32,-16*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
 }
 DoorTile.prototype = new FeatureObject();
 
@@ -6139,6 +8690,29 @@ TalkingDoorTile.prototype.activate = function(timeoverride) {
     return retval;
   };
   return 1;
+}
+
+function GreyDoorTile() {
+  //Graphics Upgraded
+  Lockable.call(this, ["static.png","",-2*32,-18*32], ["static.png","",-9*32,-41*32], ["static.png","",-3*32,-18*32], "a", "door", "a", "locked door", "a", "magically locked door");
+  	
+	this.name = "GreyDoor";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -18*32;
+	this.passable = MOVE_ETHEREAL;
+	this.blocklos = 1; 
+	this.prefix = "a";
+  this.desc = "door";
+  
+  this.pathweight = 2; 
+
+	Openable.call(this, ["static.png", "", -2*32, -16*32], ["static.png","",-7*32,-17*32], 0, "sfx_open_door", "sfx_close_door", "sfx_locked_door");
+}
+GreyDoorTile.prototype = new FeatureObject();
+
+GreyDoorTile.prototype.bumpinto = function(who) {
+  return BumpIntoDoor(this,who);
 }
 
 function DoorStoneWallTile() {
@@ -6909,10 +9483,11 @@ function PottedPlantTile() {
 PottedPlantTile.prototype = new FeatureObject();
 
 function WallPlaqueTile() {
+  //Graphics Upgraded
   this.name = "WallPlaque";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-576";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -20*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7745,10 +10320,11 @@ function CaskTile() {
 CaskTile.prototype = new FeatureObject();
 
 function TreeTile() {
+  //Graphics Upgraded
   this.name = "Tree";
-	this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "0";
-  this.spriteyoffset = "-1472";
+	this.graphic = "static.png";
+	this.spritexoffset = -2*32;
+  this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7756,11 +10332,25 @@ function TreeTile() {
 }
 TreeTile.prototype = new FeatureObject();
 
+function AutumnTreeTile() {
+  //Graphics Upgraded
+  this.name = "AutumnTree";
+	this.graphic = "static.png";
+	this.spritexoffset = -3*32;
+  this.spriteyoffset = -19*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "tree";
+}
+AutumnTreeTile.prototype = new FeatureObject();
+
 function EvergreenTile() {
+  //Graphics Upgraded
   this.name = "Evergreen";
-	this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-32";
-  this.spriteyoffset = "-1472";
+	this.graphic = "static.png";
+	this.spritexoffset = -5*32;
+  this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "an";
@@ -7768,11 +10358,25 @@ function EvergreenTile() {
 }
 EvergreenTile.prototype = new FeatureObject();
 
+function WillowTreeTile() {
+  //Graphics Upgraded
+  this.name = "WillowTree";
+	this.graphic = "static.png";
+	this.spritexoffset = -32;
+  this.spriteyoffset = -19*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "willow tree";
+}
+WillowTreeTile.prototype = new FeatureObject();
+
 function DeadTreeTile() {
+  //Graphics Upgraded
   this.name = "DeadTree";
-	this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-64";
-  this.spriteyoffset = "-1472";
+	this.graphic = "static.png";
+	this.spritexoffset = 0;
+  this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -7780,33 +10384,58 @@ function DeadTreeTile() {
 	this.lootgroup = "";
 	this.lootedid = "";
   this.showsearched = 0;
-  this.searchedgraphic = ["master_spritesheet.png","","-64","-1472"];
+  this.searchedgraphic = ["static.png","",0,-19*32];
 	}
 DeadTreeTile.prototype = new FeatureObject();
 
-function CactusTile() {
-  this.name = "Cactus";
-	this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-96";
-  this.spriteyoffset = "-1472";
-  this.passable = MOVE_ETHEREAL;
-  this.blocklos = 0;
-  this.prefix = "a";
-  this.desc = "cactus";
-}
-CactusTile.prototype = new FeatureObject();
-
 function AppleTreeTile() {
+  //Graphics Upgraded
   this.name = "AppleTree";
-	this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-128";
-  this.spriteyoffset = "-1472";
+	this.graphic = "static.png";
+	this.spritexoffset = -4*32;
+  this.spriteyoffset = -19*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "an";
   this.desc = "apple tree";
 }
 AppleTreeTile.prototype = new FeatureObject();
+
+function OlympusTapestryTile() {
+  this.name = "OlympusTapestry";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -19*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "tapestry with the seal of House Olympus";
+}
+OlympusTapestryTile.prototype = new FeatureObject();
+
+function PaladinTapestryTile() {
+  this.name = "PaladinTapestry";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -19*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "tapestry with the chalice of the Paladins";
+}
+PaladinTapestryTile.prototype = new FeatureObject();
+
+function HildendainTapestryTile() {
+  this.name = "HildendainTapestry";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -19*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "tapestry with the seal of House Hildendain";
+}
+HildendainTapestryTile.prototype = new FeatureObject();
 
 function GrandfatherClockTile() {
   this.name = "GrandfatherClock";
@@ -8297,10 +10926,11 @@ function SecretDoorTile() {
 SecretDoorTile.prototype = new FeatureObject();
 
 function RuinsWallTallLeftMidRightTile() {
+  //Graphics Upgraded
   this.name = "RuinsWallTallLeftMidRight";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-256";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.prefix = "a";
@@ -8309,11 +10939,26 @@ function RuinsWallTallLeftMidRightTile() {
 }
 RuinsWallTallLeftMidRightTile.prototype = new FeatureObject();
 
+function RuinsWallTallLeftMidRight2Tile() {
+  //Graphics Upgraded
+  this.name = "RuinsWallTallLeftMidRight2";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -13*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+RuinsWallTallLeftMidRight2Tile.prototype = new FeatureObject();
+
 function RuinsWallMidLeftMidRightTile() {
+  //Graphics Upgraded
   this.name = "RuinsWallMidLeftMidRight";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-256";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.prefix = "a";
@@ -8323,10 +10968,11 @@ function RuinsWallMidLeftMidRightTile() {
 RuinsWallMidLeftMidRightTile.prototype = new FeatureObject();
 
 function RuinsWallMidLeftTallRightTile() {
+  //Graphics Upgraded
   this.name = "RuinsWallMidLeftTallRight";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-256";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.prefix = "a";
@@ -8336,10 +10982,11 @@ function RuinsWallMidLeftTallRightTile() {
 RuinsWallMidLeftTallRightTile.prototype = new FeatureObject();
 
 function RuinsWallMidLeftBottomRightTile() {
+  //Graphics Upgraded
   this.name = "RuinsWallMidLeftBottomRight";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-256";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.prefix = "a";
@@ -8348,11 +10995,26 @@ function RuinsWallMidLeftBottomRightTile() {
 }
 RuinsWallMidLeftBottomRightTile.prototype = new FeatureObject();
 
+function RuinsWallBottomLeftBottomRightTile() {
+  //Graphics Upgraded
+  this.name = "RuinsWallBottomLeftBottomRight";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -13*32;
+  this.passable = MOVE_ETHEREAL;
+  this.blocklos = 2;
+  this.prefix = "a";
+  this.desc = "wall";
+  this.peerview = "white";
+}
+RuinsWallBottomLeftBottomRightTile.prototype = new FeatureObject();
+
 function RuinsWallBottomLeftMidRightTile() {
+  //Graphics Upgraded
   this.name = "RuinsWallBottomLeftMidRight";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-256";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -13*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 2;
   this.prefix = "a";
@@ -9650,9 +12312,9 @@ ArmorRackPlateTile.prototype = new FeatureObject();
 
 function ShieldDisplayTile() {
   this.name = "ShieldDisplay";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-352";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -37*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.blockloe = 0;
@@ -11550,10 +14212,9 @@ ItemObject.prototype.getUseDesc = function() {
 
 function AmbroseShieldTile() {
   this.name = "AmbroseShield";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -36*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "shield";
@@ -11564,10 +14225,11 @@ function AmbroseShieldTile() {
 AmbroseShieldTile.prototype = new ItemObject();
 
 function RobertMapTile() {
+  //Graphics Upgraded
   this.name = "RobertMap";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-608";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "map";
@@ -11578,10 +14240,11 @@ function RobertMapTile() {
 RobertMapTile.prototype = new ItemObject();
 
 function SmallRockTile() {
+  //Graphics Upgraded
   this.name = "SmallRock";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1344";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -24*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "small rock";
@@ -11592,11 +14255,11 @@ function SmallRockTile() {
 SmallRockTile.prototype = new ItemObject();
 
 function SiriCloakTile() {
+  //Graphics Upgraded
   this.name = "SiriCloak";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1344";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -39*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "blue cloak";
@@ -11608,10 +14271,11 @@ function SiriCloakTile() {
 SiriCloakTile.prototype = new ItemObject();
 
 function CrownTile() {
+  //Graphics Upgraded
   this.name = "Crown";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1312";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -21*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "crown";
@@ -11638,10 +14302,11 @@ function CrownJewelTile() {
 CrownJewelTile.prototype = new ItemObject();
 
 function SceptreTile() {
+  //Graphics Upgraded
   this.name = "Sceptre";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1312";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -36*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "sceptre";
@@ -11653,11 +14318,11 @@ function SceptreTile() {
 SceptreTile.prototype = new ItemObject();
 
 function ChaliceTile() {
+  //Graphics Upgraded
   this.name = "Chalice";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1696";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -26*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "chalice";
@@ -11669,10 +14334,11 @@ function ChaliceTile() {
 ChaliceTile.prototype = new ItemObject();
 
 function CourierPouchTile() {
+  //Graphics Upgraded
   this.name = "CourierPouch";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1344";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "pouch full of papers";
@@ -11726,10 +14392,11 @@ CourierLetterTile.prototype.use = function(who) {
 }
 
 function TrustedPlansTile() {
+  //Graphics Upgraded
   this.name = "TrustedPlans";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "plans for a Trusted pin";
@@ -11740,11 +14407,11 @@ function TrustedPlansTile() {
 TrustedPlansTile.prototype = new ItemObject();
 
 function TrustedPinTile() {
+  //Graphics Upgraded
   this.name = "TrustedPin";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1344";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -26*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Trusted pin";
@@ -11755,10 +14422,11 @@ function TrustedPinTile() {
 TrustedPinTile.prototype = new ItemObject();
 
 function ReaperBarkTile() {
+  //Graphics Upgraded
   this.name = "ReaperBark";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1344";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -24*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "piece of petrified reaper bark";
@@ -11769,11 +14437,11 @@ function ReaperBarkTile() {
 ReaperBarkTile.prototype = new ItemObject();
 
 function BlackDragonScaleTile() {
+  //Graphics Upgraded
   this.name = "BlackDragonScale";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1696";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -24*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "black dragon scale";
@@ -11784,11 +14452,11 @@ function BlackDragonScaleTile() {
 BlackDragonScaleTile.prototype = new ItemObject();
 
 function DragonBoneTile() {
+  //Graphics Upgraded
   this.name = "DragonBone";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1280";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -39*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "dragon fingerbone";
@@ -11799,10 +14467,11 @@ function DragonBoneTile() {
 DragonBoneTile.prototype = new ItemObject();
 
 function VoidstoneSculptureTile() {
+  //Graphics Upgraded
   this.name = "VoidstoneSculpture";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1568";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -35*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -11812,53 +14481,11 @@ function VoidstoneSculptureTile() {
 }
 VoidstoneSculptureTile.prototype = new ItemObject();
 
-function StoneOfSparksTile() {
-  this.name = "StoneOfSparks";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1248";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Stone of Sparks";
-  this.prefix = "the";
-  this.longdesc = "The Stone of Sparks. It pulses with a red glow.";
-  this.addType("Quest");
-}
-StoneOfSparksTile.prototype = new ItemObject();
-
-function StoneOfEmbersTile() {
-  this.name = "StoneOfEmbers";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1248";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Stone of Embers";
-  this.prefix = "the";
-  this.longdesc = "The Stone of Embers. It hums with a strange power.";
-  this.addType("Quest");
-}
-StoneOfEmbersTile.prototype = new ItemObject();
-
-function StoneOfTheBlazeTile() {
-  this.name = "StoneOfTheBlaze";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1248";
-  this.blocklos = 0;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.desc = "Stone of the Blaze";
-  this.prefix = "the";
-  this.longdesc = "The Stone of the Blaze. It is warm to the touch.";
-  this.addType("Quest");
-}
-StoneOfTheBlazeTile.prototype = new ItemObject();
-
 function StoneOfConflagrationsTile() {
   this.name = "StoneOfConflagrations";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -26*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Conflagrations";
@@ -11919,10 +14546,11 @@ function FavorChitTile() {
 FavorChitTile.prototype = new ItemObject();
 
 function VoidstoneTile() {
+  //Graphics Upgraded
   this.name = "Voidstone";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1440";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -25*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -11933,10 +14561,11 @@ function VoidstoneTile() {
 VoidstoneTile.prototype = new ItemObject();
 
 function SpiderSilkTile() {
+  //Graphics Upgraded
   this.name = "SpiderSilk";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1504";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -26*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -11947,10 +14576,11 @@ function SpiderSilkTile() {
 SpiderSilkTile.prototype = new ItemObject();
 
 function BlackPearlTile() {
+  //Graphics Upgraded
   this.name = "BlackPearl";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1504";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -26*32;
   this.blocklos = 0;
   this.prefix = "a";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -11961,10 +14591,11 @@ function BlackPearlTile() {
 BlackPearlTile.prototype = new ItemObject();
 
 function ExecutionersHoodTile() {
+  //Graphics Upgraded
   this.name = "ExecutionersHood";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1504";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -27*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
@@ -11975,10 +14606,11 @@ function ExecutionersHoodTile() {
 ExecutionersHoodTile.prototype = new ItemObject();
 
 function QuestExecutionersHoodTile() {
+  //Graphics Upgraded
   this.name = "QuestExecutionersHood";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1504";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -27*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "an";
@@ -11989,10 +14621,11 @@ function QuestExecutionersHoodTile() {
 QuestExecutionersHoodTile.prototype = new ItemObject();
 
 function NightshadeTile() {
+  //Graphics Upgraded
   this.name = "Nightshade";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1504";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -27*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "some";
@@ -12003,10 +14636,11 @@ function NightshadeTile() {
 NightshadeTile.prototype = new ItemObject();
 
 function SulfurousAshTile() {
+  //Graphics Upgraded
   this.name = "SulfurousAsh";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1504";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -28*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
@@ -12016,11 +14650,27 @@ function SulfurousAshTile() {
 }
 SulfurousAshTile.prototype = new ItemObject();
 
+function MassOfHerbsTile() {
+  //Graphics Upgraded
+  this.name = "MassOfHerbs";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -28*32;
+  this.blocklos = 0;
+  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
+  this.prefix = "a";
+  this.desc = "mass of herbs";
+  this.longdesc = "A mass of herbs, sometimes used in alchemy.";
+  this.addType("Reagent");
+}
+MassOfHerbsTile.prototype = new ItemObject();
+
 function MandrakeRootTile() {
+  //Graphics Upgraded
   this.name = "MandrakeRoot";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1504";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -26*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "mandrake root";
@@ -12030,10 +14680,11 @@ function MandrakeRootTile() {
 MandrakeRootTile.prototype = new ItemObject();
 
 function LightningWoodTile() {
+  //GraphicsUpgraded 
   this.name = "LightningWood";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1504";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -26*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "twig of lightning wood";
@@ -12044,10 +14695,11 @@ function LightningWoodTile() {
 LightningWoodTile.prototype = new ItemObject();
 
 function MistletoeTile() {
+  //Graphics Upgraded
   this.name = "Mistletoe";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1504";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -26*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "mistletoe";
@@ -12057,10 +14709,11 @@ function MistletoeTile() {
 MistletoeTile.prototype = new ItemObject();
 
 function BloodMossTile() {
+  //Graphics Upgraded
   this.name = "BloodMoss";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1504";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -26*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "blood moss";
@@ -12070,10 +14723,11 @@ function BloodMossTile() {
 BloodMossTile.prototype = new ItemObject();
 
 function BottledEtherTile() {
+  //Graphics Upgraded
   this.name = "BottledEther";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1152";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -23*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "bottled ether";
@@ -12083,11 +14737,11 @@ function BottledEtherTile() {
 BottledEtherTile.prototype = new ItemObject();
 
 function PerfectRubyTile() {
+  //Graphics Upgraded
 	this.name = "PerfectRuby";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1376";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -23*32;
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "perfect ruby gemstone";
@@ -12098,11 +14752,11 @@ function PerfectRubyTile() {
 PerfectRubyTile.prototype = new ItemObject();
 
 function UncutLargeRubyTile() {
+  //Graphics Upgraded
 	this.name = "UncutLargeRuby";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -23*32;
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "rough, fist-sized ruby gemstone";
@@ -12113,11 +14767,11 @@ function UncutLargeRubyTile() {
 UncutLargeRubyTile.prototype = new ItemObject();
 
 function RubyTile() {
+  //Graphics Upgraded
 	this.name = "Ruby";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1376";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -23*32;
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "ruby";
@@ -12128,11 +14782,11 @@ function RubyTile() {
 RubyTile.prototype = new ItemObject();
 
 function UncutRubyTile() {
+  //Graphics Upgraded
 	this.name = "UncutRuby";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1376";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -23*32;
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "uncut ruby";
@@ -12143,11 +14797,11 @@ function UncutRubyTile() {
 UncutRubyTile.prototype = new ItemObject();
 
 function SmallSapphireTile() {
+  //Graphics Upgraded
 	this.name = "SmallSapphire";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1376";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -23*32;
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "sapphire";
@@ -12158,11 +14812,11 @@ function SmallSapphireTile() {
 SmallSapphireTile.prototype = new ItemObject();
 
 function UncutSapphireTile() {
+  //Graphics Upgraded
 	this.name = "UncutSapphire";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1376";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -24*32;
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "smooth, uncut sapphire";
@@ -12173,11 +14827,11 @@ function UncutSapphireTile() {
 UncutSapphireTile.prototype = new ItemObject();
 
 function GemsTile() {
+  //Graphics Upgraded
 	this.name = "Gems";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1344";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -23*32;
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "handful of small gemstones";
@@ -12188,11 +14842,11 @@ function GemsTile() {
 GemsTile.prototype = new ItemObject();
 
 function UncutGemsTile() {
+  //Graphics Upgraded
 	this.name = "UncutGems";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1344";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -23*32;
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "handful of small, uncut gemstones";
@@ -12203,10 +14857,11 @@ function UncutGemsTile() {
 UncutGemsTile.prototype = new ItemObject();
 
 function RubyGemoftheSunTile() {
+  //Graphics Upgraded
 	this.name = "RubyGemoftheSun";
-	this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1376";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -23*32;
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
 	this.desc = "ruby gem";
@@ -12235,10 +14890,11 @@ function DecorativeArmorTile() {
 DecorativeArmorTile.prototype = new ItemObject();
 
 function FluteTile() {
+  //Graphics Upgraded
   this.name = "Flute";
-	this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-128";
-  this.spriteyoffset = "-1408";
+	this.graphic = "static.png";
+	this.spritexoffset = -6*32;
+  this.spriteyoffset = -36*32;
 	this.desc = "flute";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12248,10 +14904,11 @@ function FluteTile() {
 FluteTile.prototype = new ItemObject();
 
 function DrumTile() {
+  //Graphics Upgraded
   this.name = "Drum";
-	this.graphic = "master_spritesheet_d.gif";
-	this.spritexoffset = "-160";
-  this.spriteyoffset = "-1408";
+	this.graphic = "static.png";
+	this.spritexoffset = -4*32;
+  this.spriteyoffset = -36*32;
 	this.desc = "drum";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12261,10 +14918,11 @@ function DrumTile() {
 DrumTile.prototype = new ItemObject();
 
 function LyreTile() {
+  //Graphics Upgraded
   this.name = "Lyre";
-	this.graphic = "master_spritesheet_d.gif";
-	this.spritexoffset = "-192";
-  this.spriteyoffset = "-1408";
+	this.graphic = "static.png";
+	this.spritexoffset = -5*32;
+  this.spriteyoffset = -36*32;
 	this.desc = "lyre";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12274,10 +14932,11 @@ function LyreTile() {
 LyreTile.prototype = new ItemObject();
 
 function LuteTile() {
+  //Graphics Upgraded
   this.name = "Lute";
-	this.graphic = "master_spritesheet_d.gif";
-	this.spritexoffset = "-224";
-  this.spriteyoffset = "-1408";
+	this.graphic = "static.png";
+	this.spritexoffset = -7*32;
+  this.spriteyoffset = -36*32;
 	this.desc = "lute";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12287,10 +14946,11 @@ function LuteTile() {
 LuteTile.prototype = new ItemObject();
 
 function HornTile() {
+  //Graphics Upgraded
   this.name = "Horn";
-	this.graphic = "master_spritesheet_d.gif";
-	this.spritexoffset = "-256";
-  this.spriteyoffset = "-1408";
+	this.graphic = "static.png";
+	this.spritexoffset = -8*32;
+  this.spriteyoffset = -36*32;
 	this.desc = "horn";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12300,11 +14960,11 @@ function HornTile() {
 HornTile.prototype = new ItemObject();
 
 function MortarTile() {
+  //Graphics Upgraded
   this.name = "Mortar";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "0";
-  this.spriteyoffset = "-1440";
+  this.graphic = "static.png";
+	this.spritexoffset = 0;
+  this.spriteyoffset = -36*32;
 	this.desc = "mortar and pestle";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12315,10 +14975,9 @@ MortarTile.prototype = new ItemObject();
 
 function AppleTile() {
   this.name = "Apple";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-288";
-  this.spriteyoffset = "-1408";
+  this.graphic = "static.png";
+	this.spritexoffset = 0;
+  this.spriteyoffset = -26*32;
 	this.desc = "apple";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12340,10 +14999,11 @@ AppleTile.prototype.use = function(who) {
 }
 
 function CrystalMortarTile() {
+  //Graphics Upgraded
   this.name = "CrystalMortar";
-	this.graphic = "master_spritesheet.png";
-	this.spritexoffset = "-32";
-  this.spriteyoffset = "-1440";
+	this.graphic = "static.png";
+	this.spritexoffset = -2*32;
+  this.spriteyoffset = -36*32;
 	this.desc = "crystal mortar";
 	this.blocklos = 0;
 	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
@@ -12353,10 +15013,11 @@ function CrystalMortarTile() {
 CrystalMortarTile.prototype = new ItemObject();
 
 function JadeNecklaceTile() {
+  //Graphics Upgraded
   this.name = "JadeNecklace";
-  this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-256";
-  this.spritexoffset = "-1536";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -35*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -12366,11 +15027,11 @@ function JadeNecklaceTile() {
 JadeNecklaceTile.prototype = new ItemObject();
 
 function GoldLocketTile() {
+  //Graphics Upgraded
   this.name = "GoldLocket";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spriteyoffset = "-256";
-  this.spritexoffset = "-1536";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -35*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -12387,11 +15048,11 @@ GoldLocketTile.prototype.onGet = function(who) {
 }
 
 function GoldTile() {
+  //Graphics Upgraded
   this.name = "Gold";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1120";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -35*32;
   this.desc = "1 gold coin";
   this.quantity = 1;
   this.blocklos = 0;
@@ -12410,22 +15071,19 @@ GoldTile.prototype.setQuantity = function(quant) {
   } else {
     return 0;
   }
-  if ((this.quantity > 0) && (this.quantity < 4)) {
-    //this.graphic = "master_spritesheet_d.gif";
-    this.graphic = "master_spritesheet.png";
-    this.spritexoffset = "-192";
-    this.spriteyoffset = "-1120";
+  if ((this.quantity > 0) && (this.quantity < 7)) {
+    this.graphic = "static.png";
+    this.spritexoffset = -5*32;
+    this.spriteyoffset = -35*32;
   }
-  else if ((this.quantity > 3) && (this.quantity < 16)) {
-    //this.graphic = "master_spritesheet_d.gif";
-    this.graphic = "master_spritesheet.png";
-    this.spritexoffset = "-224";
-    this.spriteyoffset = "-1120";
+  else if ((this.quantity > 6) && (this.quantity < 16)) {
+    this.graphic = "static.png";
+    this.spritexoffset = -6*32;
+    this.spriteyoffset = -35*32;
   } else if (this.quantity > 15) {
-    //this.graphic = "master_spritesheet_d.gif";
-    this.graphic = "master_spritesheet.png";
-    this.spritexoffset = "-256";
-    this.spriteyoffset = "-1120";
+    this.graphic = "static.png";
+    this.spritexoffset = -7*32;
+    this.spriteyoffset = -35*32;
   }
   return this.quantity;
 }
@@ -12498,11 +15156,11 @@ function KeyUse(who,what,tgt) {
 }
 
 function HomeKeyTile() {
+  //Graphics Upgraded
   this.name = "HomeKey";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1280";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -24*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "your housekey";
@@ -12512,11 +15170,11 @@ function HomeKeyTile() {
 HomeKeyTile.prototype = new KeyItemObject();
 
 function ToshinKeyTile() {
+  //Graphics Upgraded
   this.name = "ToshinKey";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1280";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -24*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "key to Toshin's Tower";
@@ -12526,11 +15184,11 @@ function ToshinKeyTile() {
 ToshinKeyTile.prototype = new KeyItemObject();
 
 function PitOfDespairKeyTile() {
+  //Graphics Upgraded
   this.name = "PitOfDespairKey";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1280";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -24*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Pit of Despair dungeon key";
@@ -12541,11 +15199,11 @@ function PitOfDespairKeyTile() {
 PitOfDespairKeyTile.prototype = new KeyItemObject();
 
 function InnerPitOfDespairKeyTile() {
+  //Graphics Upgraded
   this.name = "InnerPitOfDespairKey";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1280";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -24*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "buzzing key";
@@ -12556,10 +15214,11 @@ function InnerPitOfDespairKeyTile() {
 InnerPitOfDespairKeyTile.prototype = new KeyItemObject();
 
 function KeyOfSpiritsTile() {   // Not currently used?
+  //Graphics Upgraded
   this.name = "KeyOfSpirits";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1280";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -25*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Spirits";
@@ -12570,11 +15229,11 @@ function KeyOfSpiritsTile() {   // Not currently used?
 KeyOfSpiritsTile.prototype = new KeyItemObject();
 
 function RoyalKeyTile() {
+  //Graphics Upgraded
   this.name = "RoyalKey";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1280";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -24*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Royal Key";
@@ -12585,11 +15244,11 @@ function RoyalKeyTile() {
 RoyalKeyTile.prototype = new KeyItemObject();  
 
 function BlackDragonKeyTile() {
+  //Graphics Upgraded
   this.name = "BlackDragonKey";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1312";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -24*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Black Dragon Key";
@@ -12600,11 +15259,11 @@ function BlackDragonKeyTile() {
 BlackDragonKeyTile.prototype = new KeyItemObject();  
 
 function KeyOfAshesTile() {
+  //Graphics Upgraded
   this.name = "KeyOfAshes";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1312";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -25*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Ashes";
@@ -12615,11 +15274,11 @@ function KeyOfAshesTile() {
 KeyOfAshesTile.prototype = new KeyItemObject();  
 
 function KeyOfIceTile() {
+  //Graphics Upgraded
   this.name = "KeyOfIce";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1312";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -25*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Ice";
@@ -12630,11 +15289,11 @@ function KeyOfIceTile() {
 KeyOfIceTile.prototype = new KeyItemObject();  
 
 function KeyOfBoneTile() {
+  //Graphics Upgraded
   this.name = "KeyOfBone";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1312";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -25*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Bone";
@@ -12645,11 +15304,11 @@ function KeyOfBoneTile() {
 KeyOfBoneTile.prototype = new KeyItemObject();  
 
 function KeyOfDustTile() {
+  //Graphics Upgraded
   this.name = "KeyOfDust";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1312";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -25*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of Dust";
@@ -12660,11 +15319,11 @@ function KeyOfDustTile() {
 KeyOfDustTile.prototype = new KeyItemObject();  
 
 function KeyOfSunTile() {
+  //Graphics Upgraded
   this.name = "KeyOfSun";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1312";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -25*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Key of the Sun";
@@ -12675,10 +15334,11 @@ function KeyOfSunTile() {
 KeyOfSunTile.prototype = new KeyItemObject();  
 
 function StoneOfShadowTile() {
+  //Graphics Upgraded
   this.name = "StoneOfShadow";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1312";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -25*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Stone of Shadow";
@@ -12733,10 +15393,11 @@ function PerformRead() {
 }
 
 function SheafOfNotesTile() {
+  //Graphics Upgraded (might upgrade again)
   this.name = "SheafOfNotes";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1536";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "sheaf of notes";
@@ -12747,11 +15408,11 @@ function SheafOfNotesTile() {
 SheafOfNotesTile.prototype = new BookItemObject();
 
 function XoriccoRecipeTile() {
+  //Graphics Upgraded (might upgrade again)
   this.name = "XoriccoRecipe";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "recipe";
@@ -12762,11 +15423,11 @@ function XoriccoRecipeTile() {
 XoriccoRecipeTile.prototype = new BookItemObject();
 
 function ClearLakeReportTile() {
+  //Graphics Upgraded (might upgrade again)
   this.name = "ClearLakeReport";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "report from Clear Lake";
@@ -12777,11 +15438,11 @@ function ClearLakeReportTile() {
 ClearLakeReportTile.prototype = new BookItemObject();
 
 function BeldskaeReportTile() {
+  //Graphics Upgraded (might upgrade again)
   this.name = "BeldskaeReport";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "report from Beldskae";
@@ -12792,11 +15453,11 @@ function BeldskaeReportTile() {
 BeldskaeReportTile.prototype = new BookItemObject();
 
 function SwainhilReportTile() {
+  //Graphics Upgraded (might upgrade again)
   this.name = "SwainhilReport";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "report from Swainhil";
@@ -12807,11 +15468,11 @@ function SwainhilReportTile() {
 SwainhilReportTile.prototype = new BookItemObject();
 
 function FallOfTargrionTile() {
+  //Graphics Upgraded
   this.name = "FallOfTargrion";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Fall of Targrion";
@@ -12822,11 +15483,11 @@ function FallOfTargrionTile() {
 FallOfTargrionTile.prototype = new BookItemObject();
 
 function BookOfLoreTile() {
+  //Graphics Upgraded
   this.name = "BookOfLore";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Book of Lore";
@@ -12837,11 +15498,11 @@ function BookOfLoreTile() {
 BookOfLoreTile.prototype = new BookItemObject();
 
 function EshkazBookTile() {
+  //Graphics Upgraded
   this.name = "EshkazBook";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -38*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Eshkaz's Planar Primer";
@@ -12852,11 +15513,11 @@ function EshkazBookTile() {
 EshkazBookTile.prototype = new BookItemObject();
 
 function TomeOfSightTile() {
+  //Graphics Upgraded
   this.name = "TomeOfSight";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Tome of Sight";
@@ -12867,11 +15528,11 @@ function TomeOfSightTile() {
 TomeOfSightTile.prototype = new BookItemObject();
 
 function MapsAndLegendsTile() {
+  //Graphics Upgraded
   this.name = "MapsAndLegends";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Maps and Legends";
@@ -12882,11 +15543,11 @@ function MapsAndLegendsTile() {
 MapsAndLegendsTile.prototype = new BookItemObject();
 
 function ATreatiseOnDragonsTile() {
+  //Graphics Upgraded
   this.name = "ATreatiseOnDragons";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -38*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "A Treatise On Dragons";
@@ -12897,11 +15558,11 @@ function ATreatiseOnDragonsTile() {
 ATreatiseOnDragonsTile.prototype = new BookItemObject();
 
 function NatassaJournalTile() {
+  //Graphics Upgraded
   this.name = "NatassaJournal";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -12912,11 +15573,11 @@ function NatassaJournalTile() {
 NatassaJournalTile.prototype = new BookItemObject();
 
 function NatassaResearchTile() {
+  //Graphics Upgraded
   this.name = "NatassaResearch";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -12927,11 +15588,11 @@ function NatassaResearchTile() {
 NatassaResearchTile.prototype = new BookItemObject();
 
 function NatassaResearch2Tile() {
+  //Graphics Upgraded
   this.name = "NatassaResearch2";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -12942,11 +15603,11 @@ function NatassaResearch2Tile() {
 NatassaResearch2Tile.prototype = new BookItemObject();
 
 function ToshinJournalTile() {
+  //Graphics Upgraded
   this.name = "ToshinJournal";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -12957,11 +15618,11 @@ function ToshinJournalTile() {
 ToshinJournalTile.prototype = new BookItemObject();
 
 function ArcheoJournalTile() {
+  //Graphics Upgraded
   this.name = "ArcheoJournal";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -12972,11 +15633,11 @@ function ArcheoJournalTile() {
 ArcheoJournalTile.prototype = new BookItemObject();
 
 function AdelusLetterTile() {
+  //Graphics Upgraded 
   this.name = "AdelusLetter";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "letter";
@@ -12987,11 +15648,11 @@ function AdelusLetterTile() {
 AdelusLetterTile.prototype = new BookItemObject();
 
 function SpireScrapTile() {
+  //Graphics Upgraded 
   this.name = "SpireScrap";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "scrap of paper";
@@ -13002,11 +15663,11 @@ function SpireScrapTile() {
 SpireScrapTile.prototype = new BookItemObject();
 
 function LanceRuneNotesTile() {
+  //Graphics Upgraded
   this.name = "LanceRuneNotes";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -37*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -13018,10 +15679,9 @@ LanceRuneNotesTile.prototype = new BookItemObject();
 
 function XApprenticeJournalTile() {
   this.name = "XApprenticeJournal";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-288";
-  this.spriteyoffset = "-1248";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -38*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "journal";
@@ -13152,10 +15812,11 @@ KyvekBoxTile.prototype.usePrompt = function(code) {
 }
 
 function InfiniteScrollTile() {
+  //Graphics Upgraded
   this.name = "InfiniteScroll";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1344";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -39*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Infinite Scroll";
@@ -13255,11 +15916,11 @@ SupplyBoxTile.prototype.use = function(who) {
 }
 
 function BluePalmCrystalTile() {
+  //Graphics Upgraded
   this.name = "BluePalmCrystal";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1696";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -37*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -13282,11 +15943,11 @@ BluePalmCrystalTile.prototype.use = function(who) {
 }
 
 function GreenPalmCrystalTile() {
+  //Graphics Upgraded
   this.name = "GreenPalmCrystal";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1696";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -37*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -13310,11 +15971,11 @@ GreenPalmCrystalTile.prototype.use = function(who) {
 }
 
 function PurplePalmCrystalTile() {
+  //Graphics Upgraded
   this.name = "PurplePalmCrystal";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1696";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -37*32;
   this.passable = MOVE_ETHEREAL;
   this.blocklos = 0;
   this.prefix = "a";
@@ -13368,14 +16029,14 @@ PotionItemObject.prototype.flamed = function() {
 
 // poison potions
 function GreenPotionTile() {
+  //Graphics Upgraded
   this.name = "GreenPotion";
   this.desc = "green potion";
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1152";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -21*32;
   this.usedesc = "Drink the potion, or throw the potion.";
 }
 GreenPotionTile.prototype = new PotionItemObject();
@@ -13485,13 +16146,13 @@ GreenPotionTile.prototype.throw = function(who,tgt) {
 
 //haste potion
 function DarkGreenPotionTile() {
+  //Graphics Upgraded
   this.name = "DarkGreenPotion";
   this.desc = "dark green potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1152";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -21*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13516,13 +16177,13 @@ DarkGreenPotionTile.prototype.use = function(who) {
 
 // str potion
 function SilverPotionTile() {
+  //Graphics Upgraded
   this.name = "SilverPotion";
   this.desc = "silver potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1152";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13561,13 +16222,13 @@ SilverPotionTile.prototype.use = function(who) {
   
 // dex potion
 function PinkPotionTile() {
+  //Graphics Upgraded
   this.name = "PinkPotion";
   this.desc = "pink potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1152";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13606,13 +16267,13 @@ PinkPotionTile.prototype.use = function(who) {
 
 // int potion
 function GreyPotionTile() {
+  //Graphics Upgraded
   this.name = "GreyPotion";
   this.desc = "grey potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1152";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -23*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13650,14 +16311,15 @@ GreyPotionTile.prototype.use = function(who) {
 }
 
 // greater mana potion
+// actually milky purple
 function BrownPotionTile() {
+  //Graphics Upgraded
   this.name = "BrownPotion";
-  this.desc = "brown potion";
+  this.desc = "milky purple potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1152";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13684,13 +16346,13 @@ BrownPotionTile.prototype.use = function(who) {
 
 // cure potion
 function RedPotionTile() {
+  //Graphics Upgraded
   this.name = "RedPotion";
   this.desc = "red potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13718,13 +16380,13 @@ RedPotionTile.prototype.use = function(who) {
 
 // light potion
 function WhitePotionTile() {
+  //Graphics Upgraded
   this.name = "WhitePotion";
   this.desc = "white potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -21*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13749,13 +16411,13 @@ WhitePotionTile.prototype.use = function(who) {
 
 // lesser heal potion
 function YellowPotionTile() {
+  //Graphics Upgraded
   this.name = "YellowPotion";
   this.desc = "yellow potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13780,13 +16442,13 @@ YellowPotionTile.prototype.use = function(who) {
 
 // protect potion
 function PurplePotionTile() {
+  //Graphics Upgraded
   this.name = "PurplePotion";
   this.desc = "purple potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13811,13 +16473,13 @@ PurplePotionTile.prototype.use = function(who) {
 
 // bless potion
 function BlackPotionTile() {
+  //Graphics Upgraded
   this.name = "BlackPotion";
   this.desc = "black potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -21*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13842,13 +16504,13 @@ BlackPotionTile.prototype.use = function(who) {
 
 // heal potion
 function BluePotionTile() {
+  //Graphics Upgraded
   this.name = "BluePotion";
   this.desc = "blue potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13873,13 +16535,13 @@ BluePotionTile.prototype.use = function(who) {
 
 // ethereal vision potion
 function DeepBluePotionTile() {
+  //Graphics Upgraded
   this.name = "DeepBluePotion";
   this.desc = "deep blue potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1152";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -21*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13903,13 +16565,13 @@ DeepBluePotionTile.prototype.use = function(who) {
 
 // mana potion
 function OrangePotionTile() {
+  //Graphics Upgraded
   this.name = "OrangePotion";
   this.desc = "orange potion";
   this.prefix = "an";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13939,13 +16601,13 @@ OrangePotionTile.prototype.use = function(who) {
 
 // iron flesh potion
 function TanPotionTile() {
+  //Graphics Upgraded
   this.name = "TanPotion";
   this.desc = "tan potion";
   this.prefix = "a";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1152";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -22*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.usedesc = "Drink it.";
 }
@@ -13971,11 +16633,11 @@ TanPotionTile.prototype.use = function(who) {
 // scrolls
 
 function ScrollItemObject() {
+  //Graphics Upgraded
   this.addType("Scroll"); 
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1184";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -39*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.spelllevel = 1;
   this.spellnum = 1;
@@ -14039,12 +16701,13 @@ ScrollItemObject.prototype.flamed = function() {
 }
 
 function ScrollWildcardTile() {
+  //Graphics Upgraded
   this.name = "ScrollWildcard";
   this.desc = "scroll of ???";
   this.prefix = "a";
-  this.graphic = "master_spritesheet_d.gif";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1344";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -39*32;
   this.spelllevel = 0;
   this.spellnum = 0;
 }
@@ -14499,12 +17162,13 @@ AudachtaNemesosObject.prototype.flamed = function() {
 }
 
 function AudachtaNemesosDisarmTrapTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosDisarmTrap";
   this.desc = "Audachta Nemesos: Disarm Trap";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_DISARM_TRAP_LEVEL;
   this.spellnum = SPELL_DISARM_TRAP_ID;
   this.spellname = "Disarm Trap";
@@ -14512,12 +17176,13 @@ function AudachtaNemesosDisarmTrapTile() {
 AudachtaNemesosDisarmTrapTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosDistractTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosDistract";
   this.desc = "Audachta Nemesos: Distract";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_DISTRACT_LEVEL;
   this.spellnum = SPELL_DISTRACT_ID;
   this.spellname = "Distract";
@@ -14525,12 +17190,13 @@ function AudachtaNemesosDistractTile() {
 AudachtaNemesosDistractTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosFlameBladeTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosFlameBlade";
   this.desc = "Audachta Nemesos: Flame Blade";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_FLAME_BLADE_LEVEL;
   this.spellnum = SPELL_FLAME_BLADE_ID;
   this.spellname = "Flame Blade";
@@ -14538,12 +17204,13 @@ function AudachtaNemesosFlameBladeTile() {
 AudachtaNemesosFlameBladeTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosVulnerabilityTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosVulnerability";
   this.desc = "Audachta Nemesos: Vulnerability";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_VULNERABILITY_LEVEL;
   this.spellnum = SPELL_VULNERABILITY_ID;
   this.spellname = "Vulnerability";
@@ -14551,12 +17218,13 @@ function AudachtaNemesosVulnerabilityTile() {
 AudachtaNemesosVulnerabilityTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosIronFleshTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosIronFlesh";
   this.desc = "Audachta Nemesos: Iron Flesh";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_IRON_FLESH_LEVEL;
   this.spellnum = SPELL_IRON_FLESH_ID;
   this.spellname = "Iron Flesh";
@@ -14564,12 +17232,13 @@ function AudachtaNemesosIronFleshTile() {
 AudachtaNemesosIronFleshTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosLesserHealTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosLesserHeal";
   this.desc = "Audachta Nemesos: Lesser Heal";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_LESSER_HEAL_LEVEL;
   this.spellnum = SPELL_LESSER_HEAL_ID;
   this.spellname = "Lesser Heal";
@@ -14577,12 +17246,13 @@ function AudachtaNemesosLesserHealTile() {
 AudachtaNemesosLesserHealTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosPoisonCloudTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosPoisonCloud";
   this.desc = "Audachta Nemesos: Poison Cloud";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_POISON_CLOUD_LEVEL;
   this.spellnum = SPELL_POISON_CLOUD_ID;
   this.spellname = "Poison Cloud";
@@ -14590,12 +17260,13 @@ function AudachtaNemesosPoisonCloudTile() {
 AudachtaNemesosPoisonCloudTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosProtectionTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosProtection";
   this.desc = "Audachta Nemesos: Protection";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_PROTECTION_LEVEL;
   this.spellnum = SPELL_PROTECTION_ID;
   this.spellname = "Protection";
@@ -14603,12 +17274,13 @@ function AudachtaNemesosProtectionTile() {
 AudachtaNemesosProtectionTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosUnlockTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosUnlock";
   this.desc = "Audachta Nemesos: Unlock";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_UNLOCK_LEVEL;
   this.spellnum = SPELL_UNLOCK_ID;
   this.spellname = "Unlock";
@@ -14616,12 +17288,13 @@ function AudachtaNemesosUnlockTile() {
 AudachtaNemesosUnlockTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosWindChangeTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosWindChange";
   this.desc = "Audachta Nemesos: Wind Change";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_WIND_CHANGE_LEVEL;
   this.spellnum = SPELL_WIND_CHANGE_ID;
   this.spellname = "Wind Change";
@@ -14629,12 +17302,13 @@ function AudachtaNemesosWindChangeTile() {
 AudachtaNemesosWindChangeTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosDisruptUndeadTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosDisruptUndead";
   this.desc = "Audachta Nemesos: Disrupt Undead";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_DISRUPT_UNDEAD_LEVEL;
   this.spellnum = SPELL_DISRUPT_UNDEAD_ID;
   this.spellname = "Disrupt Undead";
@@ -14642,12 +17316,13 @@ function AudachtaNemesosDisruptUndeadTile() {
 AudachtaNemesosDisruptUndeadTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosFireArmorTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosFireArmor";
   this.desc = "Audachta Nemesos: Fire Armor";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_FIRE_ARMOR_LEVEL;
   this.spellnum = SPELL_FIRE_ARMOR_ID;
   this.spellname = "Fire Armor";
@@ -14655,12 +17330,13 @@ function AudachtaNemesosFireArmorTile() {
 AudachtaNemesosFireArmorTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosIceballTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosIceball";
   this.desc = "Audachta Nemesos: Iceball";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_ICEBALL_LEVEL;
   this.spellnum = SPELL_ICEBALL_ID;
   this.spellname = "Iceball";
@@ -14668,12 +17344,13 @@ function AudachtaNemesosIceballTile() {
 AudachtaNemesosIceballTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosTelekinesisTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosTelekinesis";
   this.desc = "Audachta Nemesos: Telekinesis";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_TELEKINESIS_LEVEL;
   this.spellnum = SPELL_TELEKINESIS_ID;
   this.spellname = "Telekinesis";
@@ -14681,12 +17358,13 @@ function AudachtaNemesosTelekinesisTile() {
 AudachtaNemesosTelekinesisTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosTelepathyTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosTelepathy";
   this.desc = "Audachta Nemesos: Telepathy";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_TELEPATHY_LEVEL;
   this.spellnum = SPELL_TELEPATHY_ID;
   this.spellname = "Telepathy";
@@ -14694,12 +17372,13 @@ function AudachtaNemesosTelepathyTile() {
 AudachtaNemesosTelepathyTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosWallOfFlameTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosWallOfFlame";
   this.desc = "Audachta Nemesos: Wall of Flame";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_WALL_OF_FLAME_LEVEL;
   this.spellnum = SPELL_WALL_OF_FLAME_ID;
   this.spellname = "Wall of Flame";
@@ -14707,12 +17386,13 @@ function AudachtaNemesosWallOfFlameTile() {
 AudachtaNemesosWallOfFlameTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosBlessingTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosBlessing";
   this.desc = "Audachta Nemesos: Blessing";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_BLESSING_LEVEL;
   this.spellnum = SPELL_BLESSING_ID;
   this.spellname = "Blessing";
@@ -14720,12 +17400,13 @@ function AudachtaNemesosBlessingTile() {
 AudachtaNemesosBlessingTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosHealTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosHeal";
   this.desc = "Audachta Nemesos: Heal";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_HEAL_LEVEL;
   this.spellnum = SPELL_HEAL_ID;
   this.spellname = "Heal";
@@ -14733,12 +17414,13 @@ function AudachtaNemesosHealTile() {
 AudachtaNemesosHealTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosLifeDrainTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosLifeDrain";
   this.desc = "Audachta Nemesos: Life Drain";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_LIFE_DRAIN_LEVEL;
   this.spellnum = SPELL_LIFE_DRAIN_ID;
   this.spellname = "Life Drain";
@@ -14746,12 +17428,13 @@ function AudachtaNemesosLifeDrainTile() {
 AudachtaNemesosLifeDrainTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosSmiteTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosSmite";
   this.desc = "Audachta Nemesos: Smite";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_SMITE_LEVEL;
   this.spellnum = SPELL_SMITE_ID;
   this.spellname = "Smite";
@@ -14759,12 +17442,13 @@ function AudachtaNemesosSmiteTile() {
 AudachtaNemesosSmiteTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosOpenGateTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosOpenGate";
   this.desc = "Audachta Nemesos: Open Gate";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_OPEN_GATE_LEVEL;
   this.spellnum = SPELL_OPEN_GATE_ID;
   this.spellname = "Open Gate";
@@ -14772,12 +17456,13 @@ function AudachtaNemesosOpenGateTile() {
 AudachtaNemesosOpenGateTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosCrystalTrapTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosCrystalTrap";
   this.desc = "Audachta Nemesos: Crystal Trap";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_CRYSTAL_TRAP_LEVEL;
   this.spellnum = SPELL_CRYSTAL_TRAP_ID;
   this.spellname = "Crystal Trap";
@@ -14785,12 +17470,13 @@ function AudachtaNemesosCrystalTrapTile() {
 AudachtaNemesosCrystalTrapTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosMirrorWardTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosMirrorWard";
   this.desc = "Audachta Nemesos: Mirror Ward";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_MIRROR_WARD_LEVEL;
   this.spellnum = SPELL_MIRROR_WARD_ID;
   this.spellname = "Mirror Ward";
@@ -14798,12 +17484,13 @@ function AudachtaNemesosMirrorWardTile() {
 AudachtaNemesosMirrorWardTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosParalyzeTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosParalyze";
   this.desc = "Audachta Nemesos: Paralyze";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_PARALYZE_LEVEL;
   this.spellnum = SPELL_PARALYZE_ID;
   this.spellname = "Paralyze";
@@ -14811,12 +17498,13 @@ function AudachtaNemesosParalyzeTile() {
 AudachtaNemesosParalyzeTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosReturnTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosReturn";
   this.desc = "Audachta Nemesos: Return";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_RETURN_LEVEL;
   this.spellnum = SPELL_RETURN_ID;
   this.spellname = "Return";
@@ -14824,12 +17512,13 @@ function AudachtaNemesosReturnTile() {
 AudachtaNemesosReturnTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosShockwaveTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosShockwave";
   this.desc = "Audachta Nemesos: Shockwave";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_SHOCKWAVE_LEVEL;
   this.spellnum = SPELL_SHOCKWAVE_ID;
   this.spellname = "Shockwave";
@@ -14837,12 +17526,13 @@ function AudachtaNemesosShockwaveTile() {
 AudachtaNemesosShockwaveTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosSummonAllyTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosSummonAlly";
   this.desc = "Audachta Nemesos: Summon Ally";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_SUMMON_ALLY_LEVEL;
   this.spellnum = SPELL_SUMMON_ALLY_ID;
   this.spellname = "Summon Ally";
@@ -14850,12 +17540,13 @@ function AudachtaNemesosSummonAllyTile() {
 AudachtaNemesosSummonAllyTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosSwordstrikeTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosSwordstrike";
   this.desc = "Audachta Nemesos: Swordstrike";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-192";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_SWORDSTRIKE_LEVEL;
   this.spellnum = SPELL_SWORDSTRIKE_ID;
   this.spellname = "Swordstrike";
@@ -14863,12 +17554,13 @@ function AudachtaNemesosSwordstrikeTile() {
 AudachtaNemesosSwordstrikeTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosEmpowerTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosEmpower";
   this.desc = "Audachta Nemesos: Empower";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_EMPOWER_LEVEL;
   this.spellnum = SPELL_EMPOWER_ID;
   this.spellname = "Empower";
@@ -14876,12 +17568,13 @@ function AudachtaNemesosEmpowerTile() {
 AudachtaNemesosEmpowerTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosExplosionTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosExplosion";
   this.desc = "Audachta Nemesos: Explosion";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-190";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_EXPLOSION_LEVEL;
   this.spellnum = SPELL_EXPLOSION_ID;
   this.spellname = "Explosion";
@@ -14889,12 +17582,13 @@ function AudachtaNemesosExplosionTile() {
 AudachtaNemesosExplosionTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosJinxTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosJinx";
   this.desc = "Audachta Nemesos: Jinx";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_JINX_LEVEL;
   this.spellnum = SPELL_JINX_ID;
   this.spellname = "Jinx";
@@ -14902,12 +17596,13 @@ function AudachtaNemesosJinxTile() {
 AudachtaNemesosJinxTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosNegateMagicTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosNegateMagic";
   this.desc = "Audachta Nemesos: Negate Magic";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_NEGATE_MAGIC_LEVEL;
   this.spellnum = SPELL_NEGATE_MAGIC_ID;
   this.spellname = "Negate Magic";
@@ -14915,12 +17610,13 @@ function AudachtaNemesosNegateMagicTile() {
 AudachtaNemesosNegateMagicTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosTremorTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosTremor";
   this.desc = "Audachta Nemesos: Tremor";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -7*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_TREMOR_LEVEL;
   this.spellnum = SPELL_TREMOR_ID;
   this.spellname = "Tremor";
@@ -14928,12 +17624,13 @@ function AudachtaNemesosTremorTile() {
 AudachtaNemesosTremorTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosWeatherControlTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosWeatherControl";
   this.desc = "Audachta Nemesos: Weather Control";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_WEATHER_CONTROL_LEVEL;
   this.spellnum = SPELL_WEATHER_CONTROL_ID;
   this.spellname = "Weather Control";
@@ -14941,12 +17638,13 @@ function AudachtaNemesosWeatherControlTile() {
 AudachtaNemesosWeatherControlTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosCharmTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosCharm";
   this.desc = "Audachta Nemesos: Charm";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_CHARM_LEVEL;
   this.spellnum = SPELL_CHARM_ID;
   this.spellname = "Charm";
@@ -14954,12 +17652,13 @@ function AudachtaNemesosCharmTile() {
 AudachtaNemesosCharmTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosFearTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosFear";
   this.desc = "Audachta Nemesos: Fear";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -3*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_FEAR_LEVEL;
   this.spellnum = SPELL_FEAR_ID;
   this.spellname = "Fear";
@@ -14967,12 +17666,13 @@ function AudachtaNemesosFearTile() {
 AudachtaNemesosFearTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosFireAndIceTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosFireAndIce";
   this.desc = "Audachta Nemesos: Fire and Ice";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_FIRE_AND_ICE_LEVEL;
   this.spellnum = SPELL_FIRE_AND_ICE_ID;
   this.spellname = "Fire and Ice";
@@ -14980,12 +17680,13 @@ function AudachtaNemesosFireAndIceTile() {
 AudachtaNemesosFireAndIceTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosInvulnerabilityTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosInvulnerability";
   this.desc = "Audachta Nemesos: Invulnerability";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -4*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_INVULNERABILITY_LEVEL;
   this.spellnum = SPELL_INVULNERABILITY_ID;
   this.spellname = "Invulnerability";
@@ -14993,12 +17694,13 @@ function AudachtaNemesosInvulnerabilityTile() {
 AudachtaNemesosInvulnerabilityTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosMeteorSwarmTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosMeteorSwarm";
   this.desc = "Audachta Nemesos: Meteor Swarm";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -6*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_METEOR_SWARM_LEVEL;
   this.spellnum = SPELL_METEOR_SWARM_ID;
   this.spellname = "Meteor Swarm";
@@ -15006,12 +17708,13 @@ function AudachtaNemesosMeteorSwarmTile() {
 AudachtaNemesosMeteorSwarmTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosMindBlastTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosMindBlast";
   this.desc = "Audachta Nemesos: Mind Blast";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_MIND_BLAST_LEVEL;
   this.spellnum = SPELL_MIND_BLAST_ID;
   this.spellname = "Mind Blast";
@@ -15019,12 +17722,13 @@ function AudachtaNemesosMindBlastTile() {
 AudachtaNemesosMindBlastTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosArrowOfGlassTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosArrowOfGlass";
   this.desc = "Audachta Nemesos: Arrow of Glass";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-64";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_ARROW_OF_GLASS_LEVEL;
   this.spellnum = SPELL_ARROW_OF_GLASS_ID;
   this.spellname = "Arrow of Glass";
@@ -15032,12 +17736,13 @@ function AudachtaNemesosArrowOfGlassTile() {
 AudachtaNemesosArrowOfGlassTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosBuildGateTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosBuildGate";
   this.desc = "Audachta Nemesos: Build Gate";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-32";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_BUILD_GATE_LEVEL;
   this.spellnum = SPELL_BUILD_GATE_ID;
   this.spellname = "Build Gate";
@@ -15045,12 +17750,13 @@ function AudachtaNemesosBuildGateTile() {
 AudachtaNemesosBuildGateTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosConflagrationTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosConflagration";
   this.desc = "Audachta Nemesos: Conflagration";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_CONFLAGRATION_LEVEL;
   this.spellnum = SPELL_CONFLAGRATION_ID;
   this.spellname = "Conflagration";
@@ -15058,12 +17764,13 @@ function AudachtaNemesosConflagrationTile() {
 AudachtaNemesosConflagrationTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosConjureDaemonTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosConjureDaemon";
   this.desc = "Audachta Nemesos: Conjure Daemon";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-128";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_CONJURE_DAEMON_LEVEL;
   this.spellnum = SPELL_CONJURE_DAEMON_ID;
   this.spellname = "Conjure Daemon";
@@ -15071,12 +17778,13 @@ function AudachtaNemesosConjureDaemonTile() {
 AudachtaNemesosConjureDaemonTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosQuicknessTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosQuickness";
   this.desc = "Audachta Nemesos: Quickness";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -5*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_QUICKNESS_LEVEL;
   this.spellnum = SPELL_QUICKNESS_ID;
   this.spellname = "Quickness";
@@ -15084,12 +17792,13 @@ function AudachtaNemesosQuicknessTile() {
 AudachtaNemesosQuicknessTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosReincarnateTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosReincarnate";
   this.desc = "Audachta Nemesos: Reincarnate";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-160";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_REINCARNATE_LEVEL;
   this.spellnum = SPELL_REINCARNATE_ID;
   this.spellname = "Reincarnate";
@@ -15097,12 +17806,13 @@ function AudachtaNemesosReincarnateTile() {
 AudachtaNemesosReincarnateTile.prototype = new AudachtaNemesosObject();
 
 function AudachtaNemesosTimeStopTile() {
+  //Graphics Upgraded
   this.name = "AudachtaNemesosTimeStop";
   this.desc = "Audachta Nemesos: Time Stop";
   this.prefix = "an";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-1216";
+  this.graphic = "static.png";
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = -38*32;
   this.spelllevel = SPELL_TIME_STOP_LEVEL;
   this.spellnum = SPELL_TIME_STOP_ID;
   this.spellname = "Time Stop";
@@ -15307,11 +18017,11 @@ EquipableItemObject.prototype.setToHitBonus = function(newbonus) {
 // TRINKETS
 
 function RingOfFireResistTile() {
+  //Graphics Upgraded
   this.name = "RingOfFireResist";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-224";
-  this.spriteyoffset = "-1632";
+  this.graphic = "static.png";
+  this.spritexoffset = -32;
+  this.spriteyoffset = -21*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Ring of Fire Resistance";
@@ -15337,10 +18047,11 @@ RingOfFireResistTile.prototype.onUnequip = function(who) {
 }
 
 function RingOfEtherealFocusTile() {
+  //Graphics Upgraded
   this.name = "RingOfEtherealFocus";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "0";
-  this.spriteyoffset = "-1728";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -21*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Ring of Ethereal Focus";
@@ -15381,11 +18092,11 @@ RingOfEtherealFocusTile.prototype.killed = function(who) {
 }
 
 function AmuletOfReflectionsTile() {
+  //Graphics Upgraded
   this.name = "AmuletOfReflections";
-  //this.graphic = "master_spritesheet_d.gif";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-1280";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -35*32;
   this.blocklos = 0;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.desc = "Amulet of Reflections";
