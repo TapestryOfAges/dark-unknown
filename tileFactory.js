@@ -33,6 +33,11 @@ tileFactory.prototype.makeShallowsTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeStillWaterTile = function() {
+  let newTile = new StillWaterTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeShadowOceanTile = function() {
   let newTile = new ShadowOceanTile();
   return newTile;
@@ -633,6 +638,11 @@ tileFactory.prototype.makeEastCoastTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeEastCoastRoadEndTile = function() {
+  let newTile = new EastCoastRoadEndTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeEastCoastSandTile = function() {
   let newTile = new EastCoastSandTile();
   return newTile;
@@ -818,6 +828,11 @@ tileFactory.prototype.makeRiverTile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeRiverGrassBaseTile = function() {
+  let newTile = new RiverGrassBaseTile();
+  return newTile;
+}
+
 tileFactory.prototype.makeRedCobblestoneTile = function() {
   let newTile = new RedCobblestoneTile();
   return newTile;
@@ -900,6 +915,11 @@ tileFactory.prototype.makeMeadowTile = function() {
 
 tileFactory.prototype.makeGrassTile = function() {
   let newTile = new GrassTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeGrassRoadEndTile = function() {
+  let newTile = new GrassRoadEndTile();
   return newTile;
 }
 
@@ -1028,13 +1048,43 @@ tileFactory.prototype.makeForest2Tile = function() {
   return newTile;
 }
 
+tileFactory.prototype.makeForestTilingNWTile = function() {
+  let newTile = new ForestTilingNWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeForestTilingNETile = function() {
+  let newTile = new ForestTilingNETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeForestTilingWTile = function() {
+  let newTile = new ForestTilingWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeForestTilingETile = function() {
+  let newTile = new ForestTilingETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeForestTilingSWTile = function() {
+  let newTile = new ForestTilingSWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeForestTilingSETile = function() {
+  let newTile = new ForestTilingSETile();
+  return newTile;
+}
+
 tileFactory.prototype.makeForestEdgeTile = function() {
   let newTile = new ForestEdgeTile();
   return newTile;
 }
 
-tileFactory.prototype.makeForestEdge2Tile = function() {
-  let newTile = new ForestEdge2Tile();
+tileFactory.prototype.makeForest3Tile = function() {
+  let newTile = new Forest3Tile();
   return newTile;
 }
 
