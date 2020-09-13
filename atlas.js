@@ -4,494 +4,6 @@
 function Atlas() {
 
   this.key = {
-    "md" : "Meadow",
-    "Meadow" : "md",
-    "ss" : "Sand",
-    "Sand" : "ss",
-    "sv" : "SandVegetation",
-    "SandVegetation" : "sv",
-    "WW" : "Ocean",   
-    "Ocean" : "WW",  
-    "ww" : "Water",   
-    "Water" : "ww",  
-    "uu" : "Shallows", 
-    "Shallows" : "uu",
-    "sW" : "ShadowOcean",   
-    "ShadowOcean" : "sW",  
-    "sw" : "ShadowWater",   
-    "ShadowWater" : "sw",  
-    "su" : "ShadowShallows", 
-    "ShadowShallows" : "su",
-    '^^' : "Mountain", 
-    "Mountain" : '^^', 
-    '^_' : "MountainPass", 
-    "MountainPass" : '^_', 
-    '_^' : "NoBlockMountain", 
-    "NoBlockMountain" : '_^', 
-    'F^' : "FlameMountain", 
-    "FlameMountain" : 'F^', 
-    '^a' : "Mountain1", 
-    "Mountain1" : '^a', 
-    '^b' : "Mountain2", 
-    "Mountain2" : '^b', 
-    '^1' : "Mountain1MeadowBase", 
-    "Mountain1MeadowBase" : '^1', 
-    '^2' : "Mountain1GrassBase", 
-    "Mountain1GrassBase" : '^2', 
-    '^3' : "Mountain1SandBase", 
-    "Mountain1SandBase" : '^3', 
-    '^4' : "Mountain1DirtBase", 
-    "Mountain1DirtBase" : '^4', 
-    '^5' : "Mountain1CaveBase", 
-    "Mountain1CaveBase" : '^5', 
-    '^6' : "Mountain2MeadowBase", 
-    "Mountain2MeadowBase" : '^6', 
-    '^7' : "Mountain2GrassBase", 
-    "Mountain2GrassBase" : '^7', 
-    '^8' : "Mountain2SandBase", 
-    "Mountain2SandBase" : '^8', 
-    '^9' : "Mountain2DirtBase", 
-    "Mountain2DirtBase" : '^9', 
-    '^0' : "Mountain2CaveBase", 
-    "Mountain2CaveBase" : '^0', 
-    '1^' : "Mountain1MeadowCrown", 
-    "Mountain1MeadowCrown" : '1^', 
-    '2^' : "Mountain1GrassCrown", 
-    "Mountain1GrassCrown" : '2^', 
-    '3^' : "Mountain1SandCrown", 
-    "Mountain1SandCrown" : '3^', 
-    '4^' : "Mountain1DirtCrown", 
-    "Mountain1DirtCrown" : '4^', 
-    '5^' : "Mountain1CaveCrown", 
-    "Mountain1CaveCrown" : '5^', 
-    '6^' : "Mountain2MeadowCrown", 
-    "Mountain2MeadowCrown" : '6^', 
-    '7^' : "Mountain2GrassCrown", 
-    "Mountain2GrassCrown" : '7^', 
-    '8^' : "Mountain2SandCrown", 
-    "Mountain2SandCrown" : '8^', 
-    '9^' : "Mountain2DirtCrown", 
-    "Mountain2DirtCrown" : '9^', 
-    '0^' : "Mountain2CaveCrown", 
-    "Mountain2CaveCrown" : '0^', 
-    '^c' : "Mountain1MeadowBaseCrown", 
-    "Mountain1MeadowBaseCrown" : '^c', 
-    '^d' : "Mountain1GrassBaseCrown", 
-    "Mountain1GrassBaseCrown" : '^d', 
-    '^e' : "Mountain1SandBaseCrown", 
-    "Mountain1SandBaseCrown" : '^e', 
-    '^f' : "Mountain1DirtBaseCrown", 
-    "Mountain1DirtBaseCrown" : '^f', 
-    '^g' : "Mountain1CaveBaseCrown", 
-    "Mountain1CaveBaseCrown" : '^g', 
-    '^h' : "Mountain2MeadowBaseCrown", 
-    "Mountain2MeadowBaseCrown" : '^h', 
-    '^i' : "Mountain2GrassBaseCrown", 
-    "Mountain2GrassBaseCrown" : '^i', 
-    '^j' : "Mountain2SandBaseCrown", 
-    "Mountain2SandBaseCrown" : '^j', 
-    '^k' : "Mountain2DirtBaseCrown", 
-    "Mountain2DirtBaseCrown" : '^k', 
-    '^l' : "Mountain2CaveBaseCrown", 
-    "Mountain2CaveBaseCrown" : '^l', 
-    '^m' : "MountainLeftMeadow", 
-    "MountainLeftMeadow" : '^m', 
-    '^n' : "MountainLeftGrass", 
-    "MountainLeftGrass" : '^n', 
-    '^o' : "MountainLeftSand", 
-    "MountainLeftSand" : '^o', 
-    '^p' : "MountainLeftDirt", 
-    "MountainLeftDirt" : '^p', 
-    '^q' : "MountainLeftCave", 
-    "MountainLeftCave" : '^q', 
-    '^r' : "MountainRightMeadow", 
-    "MountainRightMeadow" : '^r', 
-    '^s' : "MountainRightGrass", 
-    "MountainRightGrass" : '^s', 
-    '^t' : "MountainRightSand", 
-    "MountainRightSand" : '^t', 
-    '^u' : "MountainRightDirt", 
-    "MountainRightDirt" : '^u', 
-    '^v' : "MountainRightCave", 
-    "MountainRightCave" : '^v', 
-    '^A' : "MountainHalfMeadow1", 
-    "MountainHalfMeadow1" : '^A', 
-    '^B' : "MountainHalfGrass1", 
-    "MountainHalfGrass1" : '^B', 
-    '^C' : "MountainHalfSand1", 
-    "MountainHalfSand1" : '^C', 
-    '^D' : "MountainHalfDirt1", 
-    "MountainHalfDirt1" : '^D', 
-    '^E' : "MountainHalfCave1", 
-    "MountainHalfCave1" : '^E', 
-    '^F' : "MountainHalfMeadow2", 
-    "MountainHalfMeadow2" : '^F', 
-    '^G' : "MountainHalfGrass2", 
-    "MountainHalfGrass2" : '^G', 
-    '^H' : "MountainHalfSand2", 
-    "MountainHalfSand2" : '^H', 
-    '^I' : "MountainHalfDirt2", 
-    "MountainHalfDirt2" : '^I', 
-    '^J' : "MountainHalfCave2", 
-    "MountainHalfCave2" : '^J', 
-    '^K' : "MountainHalfMeadow3", 
-    "MountainHalfMeadow3" : '^K', 
-    '^L' : "MountainHalfGrass3", 
-    "MountainHalfGrass3" : '^L', 
-    '^M' : "MountainHalfSand3", 
-    "MountainHalfSand3" : '^M', 
-    '^N' : "MountainHalfDirt3", 
-    "MountainHalfDirt3" : '^N', 
-    '^O' : "MountainHalfCave3", 
-    "MountainHalfCave3" : '^O', 
-    '%%' : "StoneWall", 
-    "StoneWall" : '%%',
-    '#*' : "Mast",  
-    "Mast" : '#*',
-    '+o' : "Pillar", 
-    "Pillar" : '+o',
-    'xo' : "PurplePillar", 
-    "PurplePillar" : 'xo',
-    '::' : "HorizontalCounter", 
-    "HorizontalCounter" : '::',
-    ':]' : "RightCounter",  
-    "RightCounter" : ':]', 
-    '[:' : "LeftCounter", 
-    "LeftCounter" : '[:',
-    '[]' : "CounterBox",  
-    "CounterBox" : '[]',
-    'BK' : "BlankBlack", 
-    "BlankBlack" : 'BK',
-    'DK' : "Darkness", 
-    "Darkness" : 'DK',
-    '##' : "Wall", 
-    "Wall" : '##',
-    '!#' : "RuinsWall",
-    "RuinsWall" : '!#',
-    'i#' : "IllusionaryRuinsWall",
-    "IllusionaryRuinsWall" : 'i#',
-    '~_' : "RuinsWallMidLeftBottomRight",
-    "RuinsWallMidLeftBottomRight" : '~_',
-    '_~' : "RuinsWallBottomLeftMidRight",
-    "RuinsWallBottomLeftMidRight" : '_~',
-    '=~' : "RuinsWallTallLeftMidRight",
-    "RuinsWallTallLeftMidRight" : '=~',
-    '~=' : "RuinsWallMidLeftTallRight",
-    "RuinsWallMidLeftTallRight" : '~=',
-    '~~' : "RuinsWallMidLeftMidRight",
-    "RuinsWallMidLeftMidRight" : '~~',
-    '#+' : "ArrowSlit",
-    "ArrowSlit" : '#+',
-    '#O' : "Window",
-    "Window" : '#O',
-    'sO' : "ShadowWindow",
-    "ShadowWindow" : 'sO',
-    '()' : "VerticalCounter", 
-    "VerticalCounter" : '()',
-    '(_' : "BottomCounter", 
-    "BottomCounter" : '(_',
-    '(^' : "TopCounter", 
-    "TopCounter" : '(^',
-    '!!' : "PlanksNS", 
-    "PlanksNS" : '!!',
-    '||' : "DarkPlanksNS", 
-    "DarkPlanksNS" : '||',
-    '!|' : "RoughPlanksNS", 
-    "RoughPlanksNS" : '!|',
-    's!' : "ShadowPlanksNS", 
-    "ShadowPlanksNS" : 's!',
-    '_m' : "SouthCoastMeadow", 
-    "SouthCoastMeadow" : '_m',
-    '__' : "SouthCoast", 
-    "SouthCoast" : '__',
-    '_b' : "SouthCoastSand", 
-    "SouthCoastSand" : '_b',
-    '_d' : "SouthCoastDirt", 
-    "SouthCoastDirt" : '_d',
-    '_c' : "SouthCoastCave", 
-    "SouthCoastCave" : '_c',
-    '-m' : "NorthCoastMeadow", 
-    "NorthCoastMeadow" : '-m',
-    '--' : "NorthCoast", 
-    "NorthCoast" : '--',
-    '-b' : "NorthCoastSand", 
-    "NorthCoastSand" : '-b',
-    '-d' : "NorthCoastDirt", 
-    "NorthCoastDirt" : '-d',
-    '-c' : "NorthCoastCave", 
-    "NorthCoastCave" : '-c',
-    'm|' : "EastCoastMeadow", 
-    "EastCoastMeadow" : 'm|',
-    '.|' : "EastCoast", 
-    "EastCoast" : '.|',
-    'b|' : "EastCoastSand", 
-    "EastCoastSand" : 'b|',
-    'd|' : "EastCoastDirt", 
-    "EastCoastDirt" : 'd|',
-    'c|' : "EastCoastCave", 
-    "EastCoastCave" : 'c|',
-    '|m' : "WestCoastMeadow", 
-    "WestCoastMeadow" : '|m',
-    '|.' : "WestCoast", 
-    "WestCoast" : '|.',
-    '|b' : "WestCoastSand", 
-    "WestCoastSand" : '|b',
-    '|d' : "WestCoastDirt", 
-    "WestCoastDirt" : '|d',
-    '|c' : "WestCoastCave", 
-    "WestCoastCave" : '|c',
-    'm`' : "NortheastCoastMeadow", 
-    "NortheastCoastMeadow" : 'm`',
-    '.`' : "NortheastCoast", 
-    "NortheastCoast" : '.`',
-    'b`' : "NortheastCoastSand", 
-    "NortheastCoastSand" : 'b`',
-    'd`' : "NortheastCoastDirt", 
-    "NortheastCoastDirt" : 'd`',
-    'c`' : "NortheastCoastCave", 
-    "NortheastCoastCave" : 'c`',
-    '`m' : "SouthwestCoastMeadow", 
-    "SouthwestCoastMeadow" : '`m', 
-    '`.' : "SouthwestCoast", 
-    "SouthwestCoast" : '`.', 
-    '`b' : "SouthwestCoastSand", 
-    "SouthwestCoastSand" : '`b', 
-    '`d' : "SouthwestCoastDirt", 
-    "SouthwestCoastDirt" : '`d', 
-    '`c' : "SouthwestCoastCave", 
-    "SouthwestCoastCave" : '`c', 
-    '/m' : "NorthwestCoastMeadow", 
-    "NorthwestCoastMeadow" : '/m',
-    '/.' : "NorthwestCoast", 
-    "NorthwestCoast" : '/.',
-    '/b' : "NorthwestCoastSand", 
-    "NorthwestCoastSand" : '/b',
-    '/d' : "NorthwestCoastDirt", 
-    "NorthwestCoastDirt" : '/d',
-    '/c' : "NorthwestCoastCave", 
-    "NorthwestCoastCave" : '/c',
-    'm/' : "SoutheastCoastMeadow", 
-    "SoutheastCoastMeadow" : 'm/',
-    './' : "SoutheastCoast", 
-    "SoutheastCoast" : './',
-    'b/' : "SoutheastCoastSand", 
-    "SoutheastCoastSand" : 'b/',
-    'd/' : "SoutheastCoastDirt", 
-    "SoutheastCoastDirt" : 'd/',
-    'c/' : "SoutheastCoastCave", 
-    "SoutheastCoastCave" : 'c/',
-    's_' : "ShadowSouthCoast", 
-    "ShadowSouthCoast" : 's_',
-    's-' : "ShadowNorthCoast", 
-    "ShadowNorthCoast" : 's-',
-    's|' : "ShadowEastCoast", 
-    "ShadowEastCoast" : 's|',
-    '|s' : "ShadowWestCoast", 
-    "ShadowWestCoast" : '|s',
-    's`' : "ShadowNortheastCoast", 
-    "ShadowNortheastCoast" : 's`',
-    '`s' : "ShadowSouthwestCoast", 
-    "ShadowSouthwestCoast" : '`s', 
-    '/s' : "ShadowNorthwestCoast", 
-    "ShadowNorthwestCoast" : '/s',
-    's/' : "ShadowSoutheastCoast", 
-    "ShadowSoutheastCoast" : 's/',
-    '++' : "Cobblestone", 
-    "Cobblestone" : '++',
-    '+r' : "CobblestoneRoad", 
-    "CobblestoneRoad" : '+r',
-    '*r' : "PurpleCobblestoneRoad", 
-    "PurpleCobblestoneRoad" : '*r',
-    '-=' : "PlanksEW", 
-    "PlanksEW" : '-=',
-    '==' : "DarkPlanksEW", 
-    "DarkPlanksEW" : '==',
-    '=-' : "RoughPlanksEW", 
-    "RoughPlanksEW" : '=-',
-    '..' : "Grass", 
-    "Grass" : '..',
-    'sg' : "ShadowGrass", 
-    "ShadowGrass" : 'sg',
-    '.,' : "Dirt", 
-    "Dirt" : '.,',
-    '.*' : "DirtScrub", 
-    "DirtScrub" : '.*',
-    'FF' : "FallowFarm",
-    "FallowFarm" : 'FF',
-    'gF' : "Farm",
-    "Farm" : 'gF',
-    'Ff' : "FallowFarm2",
-    "FallowFarm2" : 'Ff',
-    'gf' : "Farm2",
-    "Farm2" : 'gf',
-    's,' : "ShadowDirt", 
-    "ShadowDirt" : 's,',
-    ',,' : "Brush", 
-    "Brush" : ',,',
-    'u,' : "Underbrush", 
-    "Underbrush" : 'u,',
-    ',s' : "ShadowBrush",
-    "ShadowBrush" : ',s',
-    ',|' : "BrushECoast",
-    "BrushECoast" : ',|',
-    '|,' : "BrushWCoast",
-    "BrushWCoast" : '|,',
-    '_,' : "BrushSCoast",
-    "BrushSCoast" : '_,',
-    '-,' : "BrushNCoast",
-    "BrushNCoast" : '-,',
-    'e;' : "EvergreenForest", 
-    "EvergreenForest" : 'e;',
-    ';;' : "Forest", 
-    "Forest" : ';;',
-    ',;' : "Forest2", 
-    "Forest2" : ',;',
-    'b;' : "BrightForest", 
-    "BrightForest" : 'b;',
-    'B;' : "BrightForest2", 
-    "BrightForest2" : 'B;',
-    'd;' : "DeadForest", 
-    "DeadForest" : 'd;',
-    'e1' : "EvergreenForestEdge", 
-    "EvergreenForestEdge" : 'e1',
-    'e2' : "EvergreenForestEdge2", 
-    "EvergreenForestEdge2" : 'e2',
-    'e3' : "EvergreenForestEdge3", 
-    "EvergreenForestEdge3" : 'e3',
-    'e4' : "EvergreenForestEdge4", 
-    "EvergreenForestEdge4" : 'e4',
-    ';1' : "ForestEdge", 
-    "ForestEdge" : ';1',
-    ';2' : "ForestEdge2", 
-    "ForestEdge2" : ';2',
-    ';3' : "ForestEdge3", 
-    "ForestEdge3" : ';3',
-    ';4' : "ForestEdge4", 
-    "ForestEdge4" : ';4',
-    ';5' : "ForestEdge5", 
-    "ForestEdge5" : ';5',
-    'b1' : "BrightForestEdge", 
-    "BrightForestEdge" : 'b1',
-    'b2' : "BrightForestEdge2", 
-    "BrightForestEdge2" : 'b2',
-    'b3' : "BrightForestEdge3", 
-    "BrightForestEdge3" : 'b3',
-    'b4' : "BrightForestEdge4", 
-    "BrightForestEdge4" : 'b4',
-    'b5' : "BrightForestEdge5", 
-    "BrightForestEdge5" : 'b5',
-    '|;' : "ForestWCoast",
-    "ForestWCoast" : '|;',
-    ';|' : "ForestECoast",
-    "ForestECoast" : ';|',
-    '_;' : "ForestSCoast",
-    "ForestSCoast" : '_;',
-    '-;' : "ForestNCoast",
-    "ForestNCoast" : '-;',
-    '|E' : "EvergreenForestWCoast",
-    "EvergreenForestWCoast" : '|E',
-    'E|' : "EvergreenForestECoast",
-    "EvergreenForestECoast" : 'E|',
-    '_E' : "EvergreenForestSCoast",
-    "EvergreenForestSCoast" : '_E',
-    '-E' : "EvergreenForestNCoast",
-    "EvergreenForestNCoast" : '-E',
-    '|B' : "BrightForestWCoast",
-    "BrightForestWCoast" : '|B',
-    'B|' : "BrightForestECoast",
-    "BrightForestECoast" : 'B|',
-    '_B' : "BrightForestSCoast",
-    "BrightForestSCoast" : '_B',
-    '-B' : "BrightForestNCoast",
-    "BrightForestNCoast" : '-B',
-    'nn' : "Hills", 
-    "Hills" : 'nn',
-    '+*' : "PurpleCobblestone", 
-    "PurpleCobblestone" : '+*',
-    '+S' : "ShadowPurpleCobblestone", 
-    "ShadowPurpleCobblestone" : '+S',
-    'p*' : "FancyFloor",
-    "FancyFloor" : 'p*',
-    'q*' : "FancyFloor2",
-    "FancyFloor2" : 'q*',
-    'Q*' : "FancyFloor2",
-    "FancyFloor2" : 'Q*',
-    'ff' : "Swamp", 
-    "Swamp" : 'ff',
-    'sf' : "ShadowSwamp", 
-    "ShadowSwamp" : 'sf',
-    'RR' : "River",
-    "River" : 'RR',
-    'rd' : "Road",
-    "Road" : 'rd',
-    'rw' : "RoadWN",
-    "RoadWN" : 'rw',
-    'rf' : "Shingles",
-    "Shingles" : 'rf',
-    'rc' : "ShinglesTop",
-    "ShinglesTop" : 'rc',
-    'rL' : "Shingles2",
-    "Shingles2" : 'rL',
-    'sb' : "SeeBelow",
-    "SeeBelow" : 'sb',
-    'wb' : "WorldBelow",
-    "WorldBelow" : 'wb',
-    'cf' : "CaveFloor",
-    "CaveFloor" : 'cf',
-    'cw' : "CaveWall",
-    "CaveWall" : 'cw',
-    'cc' : "CaveColumn",
-    "CaveColumn" : 'cc',
-    'lt' : "LavaTube",
-    "LavaTube" : 'lt',
-    'hf' : "RoughStoneFloor",
-    "RoughStoneFloor" : 'hf',
-    'Lf' : "LightRoughStoneFloor",
-    "LightRoughStoneFloor" : 'Lf',
-    'ht' : "HexTransparentFloor",
-    "HexTransparentFloor" : 'ht',
-    'bb' : "BlueTiles",    
-    "BlueTiles" : 'bb',
-    'go' : "GoldOutlineFloor",    
-    "GoldOutlineFloor" : 'go',
-    'df' : "DiamondFloor",    
-    "DiamondFloor" : 'df',
-    'bd' : "BlueCobblestone",    
-    "BlueCobblestone" : 'bd',
-    'pd' : "PurpleDiamondFloor",    
-    "PurpleDiamondFloor" : 'pd',
-    'r^' : "RedCobblestone",    
-    "RedCobblestone" : 'r^',
-    'Bd' : "BrokenCobblestone",    
-    "BrokenCobblestone" : 'Bd',
-    'kd' : "BlackCobblestone",    
-    "BlackCobblestone" : 'kd',
-    'cd' : "CyanCobblestone",    
-    "CyanCobblestone" : 'cd',
-    'Gd' : "GreenCobblestone",    
-    "GreenCobblestone" : 'Gd',
-    'Kd' : "CrackedBlackCobblestone",    
-    "CrackedBlackCobblestone" : 'Kd',
-    'yd' : "YellowCheckeredFloor",    
-    "YellowCheckeredFloor" : 'yd',
-    'gd' : "GreenCheckeredFloor",    
-    "GreenCheckeredFloor" : 'gd',
-    'br' : "Banner",
-    "Banner" : 'br',
-    'pb' : "PaladinBanner",
-    "PaladinBanner" : 'pb',
-    'hb' : "HildendainBanner",
-    "HildendainBanner" : 'hb',
-    'ch' : "Chasm",
-    "Chasm" : 'ch',
-    'WF' : "WSFloor",
-    "WSFloor" : 'WF',
-    'Ww' : "WSWall",
-    "WSWall" : "Ww",
-    'WV' : "WSWallVine",
-    "WSWallVine" : 'WV',
-    'WM' : "WSWallMold",
-    "WSWallMold" : 'WM',
   }
 
 }
@@ -506,6 +18,268 @@ Atlas.prototype.insertkey = function(terrain, keyname) {
   if (this.key[keyname]) { console.log("Duplicate key: " + keyname + ", key for " + terrain); }
   this.key[keyname] = terrain;
   this.key[terrain] = keyname;
+}
+
+function PopulateAtlas(atlasref) {
+  atlasref.insertkey("Meadow","md");
+  atlasref.insertkey("Sand","ss");
+  atlasref.insertkey("SandVegetation","sv");
+  atlasref.insertkey("Ocean","WW"); 
+  atlasref.insertkey("Water","ww");
+  atlasref.insertkey("Shallows","uu");
+  atlasref.insertkey("StillWater","us");
+  atlasref.insertkey("ShadowOcean","sW");
+  atlasref.insertkey("ShadowWater","sw");
+  atlasref.insertkey("ShadowShallows","su");
+  atlasref.insertkey("Mountain",'^^');
+  atlasref.insertkey("MountainPass",'^_');
+  atlasref.insertkey("NoBlockMountain",'_^');
+  atlasref.insertkey("FlameMountain",'F^');
+  atlasref.insertkey("Mountain1",'^a');
+  atlasref.insertkey("Mountain2",'^b');
+  atlasref.insertkey("Mountain1MeadowBase",'^1');
+  atlasref.insertkey("Mountain1GrassBase",'^2');
+  atlasref.insertkey("Mountain1SandBase",'^3');
+  atlasref.insertkey("Mountain1DirtBase",'^4');
+  atlasref.insertkey("Mountain1CaveBase",'^5');
+  atlasref.insertkey("Mountain2MeadowBase",'^6');
+  atlasref.insertkey("Mountain2GrassBase",'^7');
+  atlasref.insertkey("Mountain2SandBase",'^8');
+  atlasref.insertkey("Mountain2DirtBase",'^9');
+  atlasref.insertkey("Mountain2CaveBase",'^0');
+  atlasref.insertkey("Mountain1MeadowCrown",'1^');
+  atlasref.insertkey("Mountain1GrassCrown",'2^');
+  atlasref.insertkey("Mountain1SandCrown",'3^');
+  atlasref.insertkey("Mountain1DirtCrown",'4^');
+  atlasref.insertkey("Mountain1CaveCrown",'5^');
+  atlasref.insertkey("Mountain2MeadowCrown",'6^');
+  atlasref.insertkey("Mountain2GrassCrown",'7^');
+  atlasref.insertkey("Mountain2SandCrown",'8^');
+  atlasref.insertkey("Mountain2DirtCrown",'9^');
+  atlasref.insertkey("Mountain2CaveCrown",'0^');
+  atlasref.insertkey("Mountain1MeadowBaseCrown",'^c');
+  atlasref.insertkey("Mountain1GrassBaseCrown",'^d');
+  atlasref.insertkey("Mountain1SandBaseCrown",'^e');
+  atlasref.insertkey("Mountain1DirtBaseCrown",'^f');
+  atlasref.insertkey("Mountain1CaveBaseCrown",'^g');
+  atlasref.insertkey("Mountain2MeadowBaseCrown",'^h');
+  atlasref.insertkey("Mountain2GrassBaseCrown",'^i');
+  atlasref.insertkey("Mountain2SandBaseCrown",'^j');
+  atlasref.insertkey("Mountain2DirtBaseCrown",'^k');
+  atlasref.insertkey("Mountain2CaveBaseCrown",'^l');
+  atlasref.insertkey("MountainLeftMeadow",'^m');
+  atlasref.insertkey("MountainLeftGrass",'^n');
+  atlasref.insertkey("MountainLeftSand",'^o');
+  atlasref.insertkey("MountainLeftDirt",'^p');
+  atlasref.insertkey("MountainLeftCave",'^q');
+  atlasref.insertkey("MountainRightMeadow",'^r');
+  atlasref.insertkey("MountainRightGrass",'^s');
+  atlasref.insertkey("MountainRightSand",'^t');
+  atlasref.insertkey("MountainRightDirt",'^u');
+  atlasref.insertkey("MountainRightCave",'^v');
+  atlasref.insertkey("MountainHalfMeadow1",'^A');
+  atlasref.insertkey("MountainHalfGrass1",'^B');
+  atlasref.insertkey("MountainHalfSand1",'^C');
+  atlasref.insertkey("MountainHalfDirt1",'^D');
+  atlasref.insertkey("MountainHalfCave1",'^E');
+  atlasref.insertkey("MountainHalfMeadow2",'^F');
+  atlasref.insertkey("MountainHalfGrass2",'^G');
+  atlasref.insertkey("MountainHalfSand2",'^H');
+  atlasref.insertkey("MountainHalfDirt2",'^I');
+  atlasref.insertkey("MountainHalfCave2",'^J');
+  atlasref.insertkey("MountainHalfMeadow3",'^K');
+  atlasref.insertkey("MountainHalfGrass3",'^L');
+  atlasref.insertkey("MountainHalfSand3",'^M');
+  atlasref.insertkey("MountainHalfDirt3",'^N');
+  atlasref.insertkey("MountainHalfCave3",'^O');
+  atlasref.insertkey("StoneWall",'%%');
+  atlasref.insertkey("Mast",'#*');
+  atlasref.insertkey("Pillar",'+o');
+  atlasref.insertkey("PurplePillar",'xo');
+  atlasref.insertkey("HorizontalCounter",'::');
+  atlasref.insertkey("RightCounter",':]');
+  atlasref.insertkey("LeftCounter",'[:');
+  atlasref.insertkey("CounterBox",'[]');
+  atlasref.insertkey("BlankBlack",'BK');
+  atlasref.insertkey("Darkness",'DK');
+  atlasref.insertkey("Wall",'##');
+  atlasref.insertkey("FireplaceWall",'f#');
+  atlasref.insertkey("ShinyWall",'s#');
+  atlasref.insertkey("OffwhiteWall",'o#');
+  atlasref.insertkey("GreyWall",'g#');
+  atlasref.insertkey("GreyArrowSlit",'g+');
+  atlasref.insertkey("GreyWindow",'gO');
+  atlasref.insertkey("RuinsWall",'!#');
+  atlasref.insertkey("RuinsWallIvy",'#i');
+  atlasref.insertkey("RuinsWallIvy2",'#I');
+  atlasref.insertkey("IllusionaryRuinsWall",'i#');
+  atlasref.insertkey("RuinsWallMidLeftBottomRight",'~_');
+  atlasref.insertkey("RuinsWallBottomLeftMidRight",'_~');
+  atlasref.insertkey("RuinsWallTallLeftMidRight",'=~');
+  atlasref.insertkey("RuinsWallMidLeftTallRight",'~=');
+  atlasref.insertkey("RuinsWallMidLeftMidRight",'~~');
+  atlasref.insertkey("ArrowSlit",'#+');
+  atlasref.insertkey("Window",'#O');
+  atlasref.insertkey("ShadowWindow",'sO');
+  atlasref.insertkey("VerticalCounter",'()');
+  atlasref.insertkey("BottomCounter",'(_');
+  atlasref.insertkey("TopCounter",'(^');
+  atlasref.insertkey("PlanksNS",'!!');
+  atlasref.insertkey("DarkPlanksNS",'||');
+  atlasref.insertkey("RoughPlanksNS",'!|');
+  atlasref.insertkey("ShadowPlanksNS",'s!');
+  atlasref.insertkey("SouthCoastMeadow",'_m');
+  atlasref.insertkey("SouthCoast",'__');
+  atlasref.insertkey("SouthCoastSand",'_b');
+  atlasref.insertkey("SouthCoastDirt",'_d');
+  atlasref.insertkey("SouthCoastCave",'_c');
+  atlasref.insertkey("NorthCoastMeadow",'-m');
+  atlasref.insertkey("NorthCoast",'--');
+  atlasref.insertkey("NorthCoastSand",'-b');
+  atlasref.insertkey("NorthCoastDirt",'-d');
+  atlasref.insertkey("NorthCoastCave",'-c');
+  atlasref.insertkey("EastCoastMeadow",'m|');
+  atlasref.insertkey("EastCoast",'.|');
+  atlasref.insertkey("EastCoastSand",'b|');
+  atlasref.insertkey("EastCoastDirt",'d|');
+  atlasref.insertkey("EastCoastCave",'c|');
+  atlasref.insertkey("WestCoastMeadow",'|m');
+  atlasref.insertkey("WestCoast",'|.');
+  atlasref.insertkey("WestCoastSand",'|b');
+  atlasref.insertkey("WestCoastDirt",'|d');
+  atlasref.insertkey("WestCoastCave",'|c');
+  atlasref.insertkey("NortheastCoastMeadow",'m`');
+  atlasref.insertkey("NortheastCoast",'.`');
+  atlasref.insertkey("NortheastCoastSand",'b`');
+  atlasref.insertkey("NortheastCoastDirt",'d`');
+  atlasref.insertkey("NortheastCoastCave",'c`');
+  atlasref.insertkey("SouthwestCoastMeadow",'`m');
+  atlasref.insertkey("SouthwestCoast",'`.');
+  atlasref.insertkey("SouthwestCoastSand",'`b');
+  atlasref.insertkey("SouthwestCoastDirt",'`d');
+  atlasref.insertkey("SouthwestCoastCave",'`c');
+  atlasref.insertkey("NorthwestCoastMeadow",'/m');
+  atlasref.insertkey("NorthwestCoast",'/.');
+  atlasref.insertkey("NorthwestCoastSand",'/b');
+  atlasref.insertkey("NorthwestCoastDirt",'/d');
+  atlasref.insertkey("NorthwestCoastCave",'/c');
+  atlasref.insertkey("SoutheastCoastMeadow",'m/');
+  atlasref.insertkey("SoutheastCoast",'./');
+  atlasref.insertkey("SoutheastCoastSand",'b/');
+  atlasref.insertkey("SoutheastCoastDirt",'d/');
+  atlasref.insertkey("SoutheastCoastCave",'c/');
+  atlasref.insertkey("ShadowSouthCoast",'s_');
+  atlasref.insertkey("ShadowNorthCoast",'s-');
+  atlasref.insertkey("ShadowEastCoast",'s|');
+  atlasref.insertkey("ShadowWestCoast",'|s');
+  atlasref.insertkey("ShadowNortheastCoast",'s`');
+  atlasref.insertkey("ShadowSouthwestCoast",'`s',);
+  atlasref.insertkey("ShadowNorthwestCoast",'/s');
+  atlasref.insertkey("ShadowSoutheastCoast",'s/');
+  atlasref.insertkey("Cobblestone",'++');
+  atlasref.insertkey("CobblestoneRoad",'+r');
+  atlasref.insertkey("PurpleCobblestoneRoad",'*r');
+  atlasref.insertkey("PlanksEW",'-=');
+  atlasref.insertkey("DarkPlanksEW",'==');
+  atlasref.insertkey("RoughPlanksEW",'=-');
+  atlasref.insertkey("Grass",'..');
+  atlasref.insertkey("GrassRoadEnd",'.r');
+  atlasref.insertkey("EastCoastRoadEnd",'.R');
+  atlasref.insertkey("ShadowGrass",'sg');
+  atlasref.insertkey("Dirt",'.,');
+  atlasref.insertkey("DirtScrub",'.*');
+  atlasref.insertkey("FallowFarm",'FF');
+  atlasref.insertkey("Farm",'gF');
+  atlasref.insertkey("FallowFarm2",'Ff');
+  atlasref.insertkey("Farm2",'gf');
+  atlasref.insertkey("ShadowDirt",'s,');
+  atlasref.insertkey("Brush",',,');
+  atlasref.insertkey("Underbrush",'u,');
+  atlasref.insertkey("ShadowBrush",',s');
+  atlasref.insertkey("BrushECoast",',|');
+  atlasref.insertkey("BrushWCoast",'|,');
+  atlasref.insertkey("BrushSCoast",'_,');
+  atlasref.insertkey("BrushNCoast",'-,');
+  atlasref.insertkey("EvergreenForest",'e;');
+  atlasref.insertkey("Forest",';;');
+  atlasref.insertkey("Forest2",',;');
+  atlasref.insertkey("BrightForest",'b;');
+  atlasref.insertkey("BrightForest2",'B;');
+  atlasref.insertkey("DeadForest",'d;');
+  atlasref.insertkey("EvergreenForestEdge",'e1');
+  atlasref.insertkey("EvergreenForestEdge2",'e2');
+  atlasref.insertkey("EvergreenForestEdge3",'e3');
+  atlasref.insertkey("ForestTilingNW",';4');
+  atlasref.insertkey("ForestTilingNE",';5');
+  atlasref.insertkey("Forest3",';3');
+  atlasref.insertkey("ForestTilingE",';6');
+  atlasref.insertkey("ForestTilingW",';7');
+  atlasref.insertkey("ForestTilingSE",';8');
+  atlasref.insertkey("ForestTilingSW",';9');
+  atlasref.insertkey("BrightForestEdge",'b1');
+  atlasref.insertkey("BrightForestEdge2",'b2');
+  atlasref.insertkey("BrightForestEdge3",'b3');
+  atlasref.insertkey("BrightForestEdge4",'b4');
+  atlasref.insertkey("BrightForestEdge5",'b5');
+  atlasref.insertkey("ForestWCoast",'|;');
+  atlasref.insertkey("ForestECoast",';|');
+  atlasref.insertkey("ForestSCoast",'_;');
+  atlasref.insertkey("ForestNCoast",'-;');
+  atlasref.insertkey("EvergreenForestWCoast",'|E');
+  atlasref.insertkey("EvergreenForestECoast",'E|');
+  atlasref.insertkey("EvergreenForestSCoast",'_E');
+  atlasref.insertkey("EvergreenForestNCoast",'-E');
+  atlasref.insertkey("BrightForestWCoast",'|B');
+  atlasref.insertkey("BrightForestECoast",'B|');
+  atlasref.insertkey("BrightForestSCoast",'_B');
+  atlasref.insertkey("BrightForestNCoast",'-B');
+  atlasref.insertkey("Hills",'nn');
+  atlasref.insertkey("Hills1",'n1');
+  atlasref.insertkey("Hills2",'n2');
+  atlasref.insertkey("PurpleCobblestone",'+*');
+  atlasref.insertkey("ShadowPurpleCobblestone",'+S');
+  atlasref.insertkey("FancyFloor",'p*');
+  atlasref.insertkey("FancyFloor2",'q*');
+  atlasref.insertkey("FancyFloor3",'Q*');
+  atlasref.insertkey("Swamp",'ff');
+  atlasref.insertkey("ShadowSwamp",'sf');
+  atlasref.insertkey("River",'RR');
+  atlasref.insertkey("Road",'rd');
+  atlasref.insertkey("RoadWN",'rw');
+  atlasref.insertkey("Shingles",'rf');
+  atlasref.insertkey("ShinglesTop",'rc');
+  atlasref.insertkey("Shingles2",'rL');
+  atlasref.insertkey("SeeBelow",'sb');
+  atlasref.insertkey("WorldBelow",'wb');
+  atlasref.insertkey("CaveFloor",'cf');
+  atlasref.insertkey("CaveWall",'cw');
+  atlasref.insertkey("CaveColumn",'cc');
+  atlasref.insertkey("LavaTube",'lt');
+  atlasref.insertkey("RoughStoneFloor",'hf');
+  atlasref.insertkey("LightRoughStoneFloor",'Lf');
+  atlasref.insertkey("HexTransparentFloor",'ht');
+  atlasref.insertkey("BlueTiles",'bb');
+  atlasref.insertkey("GoldOutlineFloor",'go');
+  atlasref.insertkey("DiamondFloor",'df');
+  atlasref.insertkey("BlueCobblestone",'bd');
+  atlasref.insertkey("PurpleDiamondFloor",'pd');
+  atlasref.insertkey("RedCobblestone",'r^');
+  atlasref.insertkey("BrokenCobblestone",'Bd');
+  atlasref.insertkey("BlackCobblestone",'kd');
+  atlasref.insertkey("CyanCobblestone",'cd');
+  atlasref.insertkey("GreenCobblestone",'Gd');
+  atlasref.insertkey("CrackedBlackCobblestone",'Kd');
+  atlasref.insertkey("YellowCheckeredFloor",'yd');
+  atlasref.insertkey("GreenCheckeredFloor",'gd');
+  atlasref.insertkey("Banner",'br');
+  atlasref.insertkey("PaladinBanner",'pb');
+  atlasref.insertkey("HildendainBanner",'hb');
+  atlasref.insertkey("Chasm",'ch');
+  atlasref.insertkey("WSFloor",'WF');
+  atlasref.insertkey("WSWall","Ww");
+  atlasref.insertkey("WSWallVine",'WV');
+  atlasref.insertkey("WSWallMold",'WM');
+
 }
 
 // Page object- condensed map
@@ -1839,6 +1613,7 @@ GameMap.prototype.loadMap = function (name) {
   this.npcs.deleteAll();
   let loadfrom = mappages.readPage(name, "terrain");
   let localatlas = new Atlas();
+  PopulateAtlas(localatlas);
   for (let i=0;i<=loadfrom.length-1;i++) {
     DebugWrite("map", "<br>Starting line: " +i+ ", length " + loadfrom[i].length + " <br>");
     let tileserials = [];
