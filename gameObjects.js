@@ -1281,7 +1281,7 @@ function SetBySurroundRoad() {
 }
 
 // General func
-function SetBySurroundRiver() {
+function SetBySurroundRiver(terraintype) {
 	this.setBySurround = function(x,y,themap,graphics, checklos, fromx, fromy, losresult) {
 		if (losresult >= LOS_THRESHOLD) {
 			let displaytile = eidos.getForm('BlankBlack');
@@ -1323,9 +1323,9 @@ function SetBySurroundRiver() {
 		} else { west = 1; }
 		if ((north === 1) && (south === 1) && (east === 1) && (west === 1)) {
 			// this shouldn't happen, if it does I need to draw a + river piece
-			graphics[1] = "spacer.gif";
+      graphics[1] = "spacer.gif";
 		} else if ((north === 1) && (east === 1) && (south === 1)) {
-			graphics[1] = "riverTright.gif";
+      graphics[1] = "riverTright.gif";
 		} else if ((north === 1) && (west === 1) && (south === 1)) {
 			graphics[1] = "riverTleft.gif";
 		} else if ((north === 1) && (east === 1) && (west === 1)) {
@@ -1459,6 +1459,7 @@ TerrainObject.prototype = new InanimateObject();
 TerrainObject.prototype.serialize = function() {
   let name = this.name;
   let myatlas = new Atlas();
+  PopulateAtlas(myatlas);
   let code = myatlas.keylookup(name);
   if (code) { return(code); }
   return(0);
@@ -1537,6 +1538,30 @@ ShallowsTile.prototype.walkon = function(walker) {
 }
 
 ShallowsTile.prototype.idle = function(walker) {
+  let resp = InWater(walker);
+  return resp;
+}
+
+function StillWaterTile() {
+  this.name = "StillWater";
+  this.graphic = "water.gif";
+  this.desc = "shallow water";
+  this.blocklos = 0;
+  this.passable = MOVE_SWIM + MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE;
+  this.spritexoffset = -2*32;
+  this.spriteyoffset = 0;
+  this.combatmap = "Water";
+  this.peerview = "#8080fc";
+  this.walkSound = "water";
+}
+StillWaterTile.prototype = new TerrainObject();
+
+StillWaterTile.prototype.walkon = function(walker) {
+  let resp = InWater(walker);
+  return resp;
+}
+
+StillWaterTile.prototype.idle = function(walker) {
   let resp = InWater(walker);
   return resp;
 }
@@ -1723,8 +1748,8 @@ function Mountain2Tile() {
   //Graphics Upgraded
   this.name = "Mountain1";
   this.graphic = "static.png";
-  this.spritexoffset = -7*32;
-  this.spriteyoffset = -32;
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = 0;
   this.desc = "mountains";
   this.blocklos = 1;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
@@ -3349,6 +3374,12 @@ function EastCoastTile() {
 }
 EastCoastTile.prototype = new TerrainObject();
 
+function EastCoastRoadEndTile() {
+  //Graphics Upgraded
+  this.name = "EastCoastRoadEnd";
+}
+EastCoastRoadEndTile.prototype = new EastCoastTile();
+
 function EastCoastSandTile() {
   //Graphics Upgraded
   this.name = "EastCoastSand";
@@ -3972,6 +4003,25 @@ function RiverTile() {
 }
 RiverTile.prototype = new TerrainObject();
 
+function RiverGrassBaseTile() {
+  this.name = "RiverGrassBase";
+//  this.overlay = "riverns.gif";
+  this.layers = [["static.png", "", 0,-42*32]];
+  this.graphic = "water.gif";
+  this.spritexoffset = "-64";
+  this.spriteyoffset = "0";
+  this.passable = MOVE_SWIM + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_FLY;
+  this.blocklos = 0;
+  this.prefix = "a";
+  this.desc = "river";
+  this.combatmap = "Water";
+  this.peerview = "#8080fc";
+  this.walkSound = "water";
+
+  SetBySurroundRiver.call(this, "grass");
+}
+RiverGrassBaseTile.prototype = new TerrainObject();
+
 function RedCobblestoneTile() {
   //Graphics Upgraded
   this.name = "RedCobblestone";
@@ -4210,6 +4260,13 @@ function GrassTile() {
   this.combatmap = "Grass"; 
 }
 GrassTile.prototype = new TerrainObject();
+
+function GrassRoadEndTile() {
+  // Graphics Upgraded
+  // This exists to trick roads into knowing they have to lead into cities
+  this.name = "GrassRoadEnd";
+}
+GrassRoadEndTile.prototype = new GrassTile();
 
 function ShadowGrassTile() {
   this.name = "ShadowGrass";
@@ -4593,7 +4650,7 @@ function ForestTile() {
   this.spritexoffset = -7*32;
   this.spriteyoffset = -32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
+  this.blocklos = .5;
 	this.losupclose = { distance : 1 , blocklos : 0 };
   this.desc = "forest";
   this.initdelay = 1.3;
@@ -4610,17 +4667,62 @@ function Forest2Tile() {
   this.graphic = "static.png";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-Forest2Tile.prototype = new TerrainObject();
+Forest2Tile.prototype = new ForestTile();
+
+function ForestTilingNWTile() {
+  //Graphics Upgraded
+  this.name = "ForestTilingNW";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -62*32;
+}
+ForestTilingNWTile.prototype = new ForestTile();
+
+function ForestTilingNETile() {
+  //Graphics Upgraded
+  this.name = "ForestTilingNE";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -62*32;
+}
+ForestTilingNETile.prototype = new ForestTile();
+
+function ForestTilingWTile() {
+  //Graphics Upgraded
+  this.name = "ForestTilingW";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -63*32;
+}
+ForestTilingWTile.prototype = new ForestTile();
+
+function ForestTilingETile() {
+  //Graphics Upgraded
+  this.name = "ForestTilingE";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -63*32;
+}
+ForestTilingETile.prototype = new ForestTile();
+
+function ForestTilingSWTile() {
+  //Graphics Upgraded
+  this.name = "ForestTilingSW";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -64*32;
+}
+ForestTilingSWTile.prototype = new ForestTile();
+
+function ForestTilingSETile() {
+  //Graphics Upgraded
+  this.name = "ForestTilingSE";
+  this.graphic = "static.png";
+  this.spritexoffset = -9*32;
+  this.spriteyoffset = -64*32;
+}
+ForestTilingSETile.prototype = new ForestTile();
 
 function ForestEdgeTile() {
   //Graphics Upgraded
@@ -4628,35 +4730,17 @@ function ForestEdgeTile() {
   this.graphic = "static.png";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -61*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-ForestEdgeTile.prototype = new TerrainObject();
+ForestEdgeTile.prototype = new ForestTile();
 
-function ForestEdge2Tile() {
+function Forest3Tile() {
   //Graphics Upgraded
-  this.name = "ForestEdge2";
+  this.name = "Forest3";
   this.graphic = "static.png";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -61*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-ForestEdge2Tile.prototype = new TerrainObject();
+Forest3Tile.prototype = new ForestTile();
 
 function ForestEdge3Tile() {
   //Graphics Upgraded
@@ -4664,17 +4748,8 @@ function ForestEdge3Tile() {
   this.graphic = "static.png";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -61*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-ForestEdge3Tile.prototype = new TerrainObject();
+ForestEdge3Tile.prototype = new ForestTile();
 
 function ForestEdge4Tile() {
   //Graphics Upgraded
@@ -4682,17 +4757,8 @@ function ForestEdge4Tile() {
   this.graphic = "static.png";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -61*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-ForestEdge4Tile.prototype = new TerrainObject();
+ForestEdge4Tile.prototype = new ForestTile();
 
 function ForestEdge5Tile() {
   //Graphics Upgraded
@@ -4700,17 +4766,8 @@ function ForestEdge5Tile() {
   this.graphic = "static.png";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -61*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-ForestEdge5Tile.prototype = new TerrainObject();
+ForestEdge5Tile.prototype = new ForestTile();
 
 function DeadForestTile() {
   //Graphics Upgraded
@@ -4718,17 +4775,8 @@ function DeadForestTile() {
   this.graphic = "static.png";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-DeadForestTile.prototype = new TerrainObject();
+DeadForestTile.prototype = new ForestTile();
 
 function EvergreenForestTile() {
   //Graphics Upgraded
@@ -4736,17 +4784,8 @@ function EvergreenForestTile() {
   this.graphic = "static.png";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-EvergreenForestTile.prototype = new TerrainObject();
+EvergreenForestTile.prototype = new ForestTile();
 
 function EvergreenForestEdgeTile() {
   //Graphics Upgraded
@@ -4754,17 +4793,8 @@ function EvergreenForestEdgeTile() {
   this.graphic = "static.png";
   this.spritexoffset = -6*32;
   this.spriteyoffset = -60*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-EvergreenForestEdgeTile.prototype = new TerrainObject();
+EvergreenForestEdgeTile.prototype = new ForestTile();
 
 function EvergreenForestEdge2Tile() {
   //Graphics Upgraded
@@ -4772,17 +4802,8 @@ function EvergreenForestEdge2Tile() {
   this.graphic = "static.png";
   this.spritexoffset = -7*32;
   this.spriteyoffset = -60*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-EvergreenForestEdge2Tile.prototype = new TerrainObject();
+EvergreenForestEdge2Tile.prototype = new ForestTile();
 
 function EvergreenForestEdge3Tile() {
   //Graphics Upgraded
@@ -4790,17 +4811,8 @@ function EvergreenForestEdge3Tile() {
   this.graphic = "static.png";
   this.spritexoffset = -8*32;
   this.spriteyoffset = -60*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-EvergreenForestEdge3Tile.prototype = new TerrainObject();
+EvergreenForestEdge3Tile.prototype = new ForestTile();
 
 function EvergreenForestEdge4Tile() {
   //Graphics Upgraded
@@ -4808,17 +4820,8 @@ function EvergreenForestEdge4Tile() {
   this.graphic = "static.png";
   this.spritexoffset = -9*32;
   this.spriteyoffset = -60*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-EvergreenForestEdge4Tile.prototype = new TerrainObject();
+EvergreenForestEdge4Tile.prototype = new ForestTile();
 
 function BrightForestTile() {
   //Graphics Upgraded
@@ -4826,17 +4829,8 @@ function BrightForestTile() {
   this.graphic = "static.png";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-BrightForestTile.prototype = new TerrainObject();
+BrightForestTile.prototype = new ForestTile();
 
 function BrightForest2Tile() {
   //Graphics Upgraded
@@ -4844,17 +4838,8 @@ function BrightForest2Tile() {
   this.graphic = "static.png";
   this.spritexoffset = -5*32;
   this.spriteyoffset = -32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-BrightForest2Tile.prototype = new TerrainObject();
+BrightForest2Tile.prototype = new ForestTile();
 
 function BrightForestEdgeTile() {
   //Graphics Upgraded
@@ -4862,17 +4847,8 @@ function BrightForestEdgeTile() {
   this.graphic = "static.png";
   this.spritexoffset = 0;
   this.spriteyoffset = -61*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-BrightForestEdgeTile.prototype = new TerrainObject();
+BrightForestEdgeTile.prototype = new ForestTile();
 
 function BrightForestEdge2Tile() {
   //Graphics Upgraded
@@ -4880,17 +4856,8 @@ function BrightForestEdge2Tile() {
   this.graphic = "static.png";
   this.spritexoffset = -32;
   this.spriteyoffset = -61*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-BrightForestEdge2Tile.prototype = new TerrainObject();
+BrightForestEdge2Tile.prototype = new ForestTile();
 
 function BrightForestEdge3Tile() {
   //Graphics Upgraded
@@ -4898,17 +4865,8 @@ function BrightForestEdge3Tile() {
   this.graphic = "static.png";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -61*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-BrightForestEdge3Tile.prototype = new TerrainObject();
+BrightForestEdge3Tile.prototype = new ForestTile();
 
 function BrightForestEdge4Tile() {
   //Graphics Upgraded
@@ -4916,17 +4874,8 @@ function BrightForestEdge4Tile() {
   this.graphic = "static.png";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -61*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-BrightForestEdge4Tile.prototype = new TerrainObject();
+BrightForestEdge4Tile.prototype = new ForestTile();
 
 function BrightForestEdge5Tile() {
   //Graphics Upgraded
@@ -4934,17 +4883,8 @@ function BrightForestEdge5Tile() {
   this.graphic = "static.png";
   this.spritexoffset = -4*32;
   this.spriteyoffset = -61*32;
-  this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-BrightForestEdge5Tile.prototype = new TerrainObject();
+BrightForestEdge5Tile.prototype = new ForestTile();
 
 function ForestNCoastTile() {
   //Graphics Upgraded
@@ -4952,17 +4892,8 @@ function ForestNCoastTile() {
   this.graphic = "static.png";
   this.spritexoffset = -32;
   this.spriteyoffset = -64*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-ForestNCoastTile.prototype = new TerrainObject();
+ForestNCoastTile.prototype = new ForestTile();
 
 function ForestECoastTile() {
   //Graphics Upgraded
@@ -4970,17 +4901,8 @@ function ForestECoastTile() {
   this.graphic = "static.png";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -64*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-ForestECoastTile.prototype = new TerrainObject();
+ForestECoastTile.prototype = new ForestTile();
 
 function ForestSCoastTile() {
   //Graphics Upgraded
@@ -4988,17 +4910,8 @@ function ForestSCoastTile() {
   this.graphic = "static.png";
   this.spritexoffset = 0;
   this.spriteyoffset = -64*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-ForestSCoastTile.prototype = new TerrainObject();
+ForestSCoastTile.prototype = new ForestTile();
 
 function ForestWCoastTile() {
   //Graphics Upgraded
@@ -5006,17 +4919,8 @@ function ForestWCoastTile() {
   this.graphic = "static.png";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -64*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-ForestWCoastTile.prototype = new TerrainObject();
+ForestWCoastTile.prototype = new ForestTile();
 
 function EvergreenForestNCoastTile() {
   //Graphics Upgraded
@@ -5024,17 +4928,8 @@ function EvergreenForestNCoastTile() {
   this.graphic = "static.png";
   this.spritexoffset = -32;
   this.spriteyoffset = -63*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-EvergreenForestNCoastTile.prototype = new TerrainObject();
+EvergreenForestNCoastTile.prototype = new ForestTile();
 
 function EvergreenForestECoastTile() {
   //Graphics Upgraded
@@ -5042,17 +4937,8 @@ function EvergreenForestECoastTile() {
   this.graphic = "static.png";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -63*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-EvergreenForestECoastTile.prototype = new TerrainObject();
+EvergreenForestECoastTile.prototype = new ForestTile();
 
 function EvergreenForestSCoastTile() {
   //Graphics Upgraded
@@ -5060,17 +4946,8 @@ function EvergreenForestSCoastTile() {
   this.graphic = "static.png";
   this.spritexoffset = 0;
   this.spriteyoffset = -63*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-EvergreenForestSCoastTile.prototype = new TerrainObject();
+EvergreenForestSCoastTile.prototype = new ForestTile();
 
 function EvergreenForestWCoastTile() {
   //Graphics Upgraded
@@ -5078,17 +4955,8 @@ function EvergreenForestWCoastTile() {
   this.graphic = "static.png";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -63*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-EvergreenForestWCoastTile.prototype = new TerrainObject();
+EvergreenForestWCoastTile.prototype = new ForestTile();
 
 function BrightForestNCoastTile() {
   //Graphics Upgraded
@@ -5096,17 +4964,8 @@ function BrightForestNCoastTile() {
   this.graphic = "static.png";
   this.spritexoffset = -32;
   this.spriteyoffset = -62*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-BrightForestNCoastTile.prototype = new TerrainObject();
+BrightForestNCoastTile.prototype = new ForestTile();
 
 function BrightForestECoastTile() {
   //Graphics Upgraded
@@ -5114,17 +4973,8 @@ function BrightForestECoastTile() {
   this.graphic = "static.png";
   this.spritexoffset = -2*32;
   this.spriteyoffset = -62*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-BrightForestECoastTile.prototype = new TerrainObject();
+BrightForestECoastTile.prototype = new ForestTile();
 
 function BrightForestSCoastTile() {
   //Graphics Upgraded
@@ -5132,17 +4982,8 @@ function BrightForestSCoastTile() {
   this.graphic = "static.png";
   this.spritexoffset = 0;
   this.spriteyoffset = -62*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-BrightForestSCoastTile.prototype = new TerrainObject();
+BrightForestSCoastTile.prototype = new ForestTile();
 
 function BrightForestWCoastTile() {
   //Graphics Upgraded
@@ -5150,17 +4991,8 @@ function BrightForestWCoastTile() {
   this.graphic = "static.png";
   this.spritexoffset = -3*32;
   this.spriteyoffset = -62*32;
-	this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
-  this.blocklos = 1;
-	this.losupclose = { distance : 1 , blocklos : 0 };
-  this.desc = "forest";
-  this.initdelay = 1.3;
-  this.pathweight = 1.3;
-  this.combatmap = "Forest";
-  this.peerview = "#004000";
-  this.walkSound = "forest";
 }
-BrightForestWCoastTile.prototype = new TerrainObject();
+BrightForestWCoastTile.prototype = new ForestTile();
 
 function HillsTile() {
   // Graphics Upgraded
@@ -6425,7 +6257,7 @@ function FenceNSWTile() {
   //new fence
   this.name = "FenceNSW";
   this.graphic = "static.png";
-  this.spritexoffset = -10*32;
+  this.spritexoffset = -9*32;
   this.spriteyoffset = -10*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL;
   this.blocklos = 0;
@@ -7378,9 +7210,9 @@ StoneDoorwayTile.prototype = new FeatureObject();
 
 function WallDoorwayTile() {
   this.name = "WallDoorway";
-  this.graphic = "master_spritesheet.png";
-  this.spritexoffset = "-256";
-  this.spriteyoffset = "-832";
+  this.graphic = "static.png";
+  this.spritexoffset = 0;
+  this.spriteyoffset = -17*32;
   this.passable = MOVE_FLY + MOVE_ETHEREAL + MOVE_LEVITATE + MOVE_WALK;
   this.blocklos = 0;
   this.prefix = "an";
@@ -10907,9 +10739,9 @@ BrilliantPoolTile.prototype.bookFinish = function() {
 
 function SecretDoorTile() {
 	this.name = "SecretDoor";
-  this.graphic = "master_spritesheet.png";   // note: 024 is U4's secret door
-  this.spritexoffset = "-96";
-  this.spriteyoffset = "-128";
+  this.graphic = "static.png";
+  this.spritexoffset = -8*32;
+  this.spriteyoffset = -15*32;
 	this.passable = MOVE_ETHEREAL;
 	this.blocklos = 2; 
 	this.prefix = "a";
@@ -10921,7 +10753,7 @@ function SecretDoorTile() {
   
   this.pathweight = 2; 
 	
-  Openable.call(this, [this.graphic, "", "-96", "-128"], ["master_spritesheet.png","",'-192','-704'], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
+  Openable.call(this, [this.graphic, "", -8*32, -15*32], [this.graphic,"",-7*32,-16*32], 0, "sfx_stone_drag", "sfx_stone_drag", "sfx_locked_door");
 }
 SecretDoorTile.prototype = new FeatureObject();
 
