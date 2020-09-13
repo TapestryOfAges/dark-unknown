@@ -192,7 +192,7 @@ function SortDisplayTiles(disparray) {
   return disparray;
 }
 
-function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
+function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev, skipfeatures, skipnpcs, skipseebelow) {
   
   let baseStack = [];
   let displayStack = [];
@@ -218,20 +218,24 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
     
   baseStack = localacre.getTileStack();
   let maplevel = mapname;
-  while (baseStack[0].getName() === "SeeBelow") {
-    baseStack.shift();
-    let retval = FindBelow(x,y,maplevel);
-    maplevel = maps.getMap(maplevel.getSeeBelow());
-    let loweracre = retval.tile;
-    let newstack = loweracre.getTileStack();
-    for (let j=newstack.length-1;j>=0;j--) {
-      baseStack.unshift(newstack[j]);
+  if (!skipseebelow) {
+    while (baseStack[0].getName() === "SeeBelow") {
+      baseStack.shift();
+      let retval = FindBelow(x,y,maplevel);
+      maplevel = maps.getMap(maplevel.getSeeBelow());
+      let loweracre = retval.tile;
+      let newstack = loweracre.getTileStack();
+      for (let j=newstack.length-1;j>=0;j--) {
+        baseStack.unshift(newstack[j]);
+      }
     }
   }
 
   let ontop = [];
   for (let i=0;i<baseStack.length;i++) {
     if (baseStack[i].invisible) { continue; }
+    if (baseStack[i].checkType("feature") && skipfeatures) { continue; }
+    if (baseStack[i].checkType("npc") && skipnpcs) { continue; }
     let displayCell = {};
     let displaytile = baseStack[i];
     displayCell.layers = displaytile.layers;
@@ -244,6 +248,9 @@ function GetDisplayStack(mapname, centerx, centery, x, y, tp, ev) {
       displayCell.graphics2 = graphics[2];
       displayCell.graphics3 = graphics[3];
       displayCell.graphics1 = graphics[1];
+      if (graphics[4]) {
+        displayCell.layers = graphics[4];
+      }
       if (typeof displaytile.doTile === "function") {
         let showGraphic = displaytile.doTile(x,y,displayCell);
         if ("graphic" in showGraphic) { displayCell.showGraphic = showGraphic.graphic; }
