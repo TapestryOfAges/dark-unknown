@@ -34,6 +34,7 @@ var DULootGroups = SetLootGroups(); //  see loot.js and lootset.js for populatio
 var DUTraps = SetTraps();           //
 var Dice = new DiceObject();
 var localatlas = new Atlas();
+PopulateAtlas(localatlas);
 
 var graphicpicks = [];
 var optindex = 0;
@@ -86,6 +87,63 @@ function editorLoadMap(mapname) {
 }
 
 function drawMap() {
+  $("div.mapscreen").html(`<div style="position:absolute;z-index:1" id="topmap"></div>`);
+  if (amap.data.length) {
+    let maintable = "<table id='mainview' border='0' cellspacing='0' cellpadding='0'>";
+    for (let j = 0; j<amap.data.length; j++) {
+      maintable += "<tr>";
+      for (let i = 0; i< amap.data[0].length; i++) {
+        maintable += "<td id='mainview_"+i+"x"+j+"' style='position:relative;width:32;height:32' onMouseDown='brushdown=1;brushdownx="+i+";brushdowny="+j+";clickmap("+i+","+j+");return(false);' onMouseOver='enterTile("+i+","+j+");' alt='"+i+","+j+"' title='"+i+","+j+"'><img src='graphics/spacer.gif' width='32' height='32' />";
+        maintable += CreateTileHTML(i,j);
+        maintable += "</td>";
+      }
+      maintable += "</tr>";
+    }
+    maintable += "</table>";
+    document.getElementById("topmap").innerHTML = maintable;
+
+    $.each(amap.allLabels, function(idx,val) {
+      var rect = {};
+      var labelcoords = idx.replace('div_tile','');
+      var labelarray = labelcoords.split('x');
+      rect.left = labelarray[0]*32+3;
+      rect.top = labelarray[1]*32+3;
+      $("div.mapscreen").append('<div id="'+idx+'" style="position:absolute;left:'+rect.left+';top:'+rect.top+'" class="labelsLayer" onClick="DeleteLabel(\''+idx+'\')">&nbsp;'+val+'&nbsp;</div>');
+
+    });
+    workInLayers = 0;
+    $(".labelsLayer").css("display","none");
+
+    $("div.mapscreen").css("height", browserheight-130);
+    $("div.tiles").css("height", browserheight-100);
+    $().ready(function() { $('#featurebubble').jqm({modal : true}) });
+
+  }
+}
+
+function RedrawTile(x,y) {
+  let mainview = document.getElementById(`mainview_${x}x${y}`);
+  if (mainview) {
+    mainview.innerHTML = CreateTileHTML(x,y);
+  }
+}
+
+function CreateTileHTML(x,y) {
+  let fea = 1;
+  if (document.getElementById("showfeatures").checked) { fea = 0; }
+  let npcs = 1;
+  if (document.getElementById("shownpcs").checked) { npcs = 0; }
+  let thiscell = GetDisplayStack(amap,x,y,x,y,0,0,fea,npcs,1);
+  let tilehtml = "";
+  for (let k=0;k<thiscell.length;k++) {
+    let newdiv = `<div style="position:absolute; top:0px; left:0px; background-image: url('graphics/${thiscell[k].showGraphic}'); background-repeat:no-repeat; background-position: ${thiscell[k].graphics2}px ${thiscell[k].graphics3}px">
+    <img id='tile${x}x${y}' src='graphics/${thiscell[k].graphics1}' border='0' width='32' height='32' title='${x}x${y}' alt='${x}x${y}' /></div>`;
+    tilehtml += newdiv;
+  }
+  return tilehtml;
+}
+
+function drawMap2() {
   if (amap.data.length) {
     
     // create map tables
@@ -128,6 +186,7 @@ function drawMap() {
       }
     }
  
+
     $.each(amap.allLabels, function(idx,val) {
       var rect = {};
       var labelcoords = idx.replace('div_tile','');
@@ -236,27 +295,13 @@ function changeselection(tilename) {
   var graphics = selectionval.getGraphicArray();
   $('#td_selectionimg').css("background-image", "url('graphics/" + graphics[0] + "')");
   $('#td_selectionimg').css("background-position", graphics[2] + "px " + graphics[3] + "px");
-  document.images["selectionimg"].src = "graphics/" + graphics[1];
-  if (selectionval.checkType("Terrain")) {
-//  	displayval='terrain';
-//  	drawFeatures(0);
-//  	document.editlayer.layer[0].checked = true;
-  }
-  else if (selectionval.checkType("Feature")) {
-//  	displayval = 'feature';
-//  	drawFeatures(1);
-//  	document.editlayer.layer[1].checked = true;
-  }
-  else {
-//  	displayval = 'all';
-//  	drawFeatures(2);
-//  	document.editlayer.layer[2].checked = true;
+  if (selectionval.layers) {
+    let content = `<div style="background-image: url('graphics/${selectionval.layers[0][0]}'); background-position: ${selectionval.layers[0][2]}px ${selectionval.layers[0][3]}px; width:32; height:32"><img src="graphics/spacer.gif" width='32' height='32' /></div>`;
+    document.getElementById("td_selectionimg").innerHTML = content;
   }
 }
 
 function clickmap(xval,yval) {
-//	if (lockout == 1) {return;}
-//  console.log(xval + "x" + yval);
   changes = 1;
   var x=0;
   var y=0;
@@ -615,6 +660,12 @@ function submitEditNPC(change) {
 
 function changemaptile(xval,yval,toTerrain) {
   if (!toTerrain) { toTerrain = selectionval; }
+  amap.setTerrain(xval,yval,toTerrain);
+  setTimeout(function() { RedrawTile(xval,yval); }, 1);
+}
+
+function changemaptile_old(xval,yval,toTerrain) {
+  if (!toTerrain) { toTerrain = selectionval; }
   var tileid = xval + "x" + yval;
   var tdid = "#terrain_" + tileid;
   var graphics = toTerrain.getGraphicArray();
@@ -677,6 +728,9 @@ function addfeaturetomap(x,y,selection,noFactory) {
 	amap.data[y][x].features.addTop(newfeature);
 	amap.features.addTop(newfeature);
 
+  setTimeout(function() { RedrawTile(x,y) }, 1);
+  return; 
+
   var tileid = x + "x" + y;  
   var tdid = "#mainview_" + tileid;
   var graphics = selection.getGraphicArray()
@@ -718,7 +772,10 @@ function addnpctomap(x,y,selection,noFactory) {
   }
 	amap.data[y][x].npcs.addTop(newnpc);
 	amap.npcs.addTop(newnpc);
-	
+  
+  setTimeout(function() { RedrawTile(x,y); }, 1);
+  return; 
+
 	var tileid = x + "x" + y;
 	var tdid = "#mainview_" + tileid;
 	var graphics = selection.getGraphicArray();
@@ -757,6 +814,8 @@ function erasefeature(x,y,npc) {
   } else {
     mapfeature.features.deleteFrom(editable);
   }
+  setTimeout(function() { RedrawTile(x,y); }, 1);
+  return;
   var tileid = editable.getx() + "x" + editable.gety();
   var tdtileid = "#mainview_" + tileid;
   $(tdtileid).css("background-image", "");

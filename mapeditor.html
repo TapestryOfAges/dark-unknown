@@ -22,6 +22,7 @@
 <script language="JavaScript" src="atlas.js"></script>
 <script language="JavaScript" src="los.js"></script>
 <script language="JavaScript" src="npcutil.js"></script>
+<script language="JavaScript" src="displayutil.js"></script>
 <script language="JavaScript" src="util.js"></script>
 <script language="JavaScript" src="loot.js"></script>
 <script language="JavaScript" src="lootset.js"></script>
@@ -230,9 +231,9 @@
 <table>
 <tr><td colspan="2" style="text-align:center">Map View</td><td></td></tr>
 <tr>
-<td><input type="checkbox" name="showfeatures" checked="checked" onclick="drawFeatures()" /> Features</td>
-<td><input type="checkbox" name="shownpcs" checked="checked" onclick="drawFeatures()" /> NPCs</td>
-<td><input type="checkbox" name="showinvis" onclick="drawFeatures()" /> Invis</td>
+<td><input type="checkbox" name="showfeatures" id="showfeatures" checked="checked" onclick="drawFeatures()" /> Features</td>
+<td><input type="checkbox" name="shownpcs" id="shownpcs" checked="checked" onclick="drawFeatures()" /> NPCs</td>
+<td><input type="checkbox" name="showinvis" id="showinvis" onclick="drawFeatures()" /> Invis</td>
 </tr>
 </table>
 </form>
@@ -251,7 +252,7 @@
           <tr><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td></tr>
           <tr><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td><td><input type="radio" name="where"></td></tr>
           </table></td></tr>
-          <tr><td id="td_selectionimg" style="width:32;height:32;background-color:black; background-image:url('graphics/001.gif');background-repeat:no-repeat">
+          <tr><td id="td_selectionimg" style="width:32;height:32;background-color:black; background-image:url('graphics/spacer.gif');background-repeat:no-repeat">
           <img src="graphics/spacer.gif" id="selectionimg" width="32" height="32"></td></tr>
           <tr><td></td></tr>
           <tr><td></td><td><span style="font-size:smaller"><a href="javascript:resize(document.placement);">Resize</a>
@@ -282,7 +283,7 @@
   <td colspan="3" style="font-weight:bold;text-align:center">Outdoor</td>
 </tr>
 <tr>
- <td></td>
+	<script language="Javascript">writeTileOption('StillWater');</script>
  <script language="Javascript">writeTileOption('SeeBelow');</script>
  <script language="Javascript">writeTileOption('WorldBelow');</script>
 </tr>
@@ -290,6 +291,11 @@
  <script language="Javascript">writeTileOption('Ocean');</script>
  <script language="Javascript">writeTileOption('Water');</script>
  <script language="Javascript">writeTileOption('Shallows');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('Mountain');</script>
+	<script language="Javascript">writeTileOption('Mountain1');</script>
+	<script language="Javascript">writeTileOption('Mountain2');</script>
 </tr>
 <tr>
  <script language="Javascript">writeTileOption('SouthCoast');</script>
@@ -304,147 +310,223 @@
 <tr>
  <script language="Javascript">writeTileOption('NorthwestCoast');</script>
  <script language="Javascript">writeTileOption('SoutheastCoast');</script>
- <script language="Javascript">writeTileOption('River');</script>
-</tr>
-<tr>
- <script language="Javascript">writeTileOption('Swamp');</script>
- <script language="Javascript">writeTileOption('Lava');</script>
- <script language="Javascript">writeTileOption('Dirt');</script>
-</tr>
-<tr>
- <script language="Javascript">writeTileOption('Mountain');</script>
  <script language="Javascript">writeTileOption('Grass');</script>
- <script language="Javascript">writeTileOption('Brush');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('Mountain1');</script>
-	<script language="Javascript">writeTileOption('Mountain2');</script>
-	<script language="Javascript">writeTileOption('Mountain1MeadowBase');</script>
 </tr>
 <tr>
 	<script language="Javascript">writeTileOption('Mountain1GrassBase');</script>
-	<script language="Javascript">writeTileOption('Mountain1SandBase');</script>
-	<script language="Javascript">writeTileOption('Mountain1DirtBase');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('Mountain1CaveBase');</script>
-	<script language="Javascript">writeTileOption('Mountain2MeadowBase');</script>
 	<script language="Javascript">writeTileOption('Mountain2GrassBase');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('Mountain2SandBase');</script>
-	<script language="Javascript">writeTileOption('Mountain2DirtBase');</script>
-	<script language="Javascript">writeTileOption('Mountain2CaveBase');</script>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<script language="Javascript">writeTileOption('Mountain1MeadowCrown');</script>
-</tr>
-<tr>
 	<script language="Javascript">writeTileOption('Mountain1GrassCrown');</script>
-	<script language="Javascript">writeTileOption('Mountain1SandCrown');</script>
-	<script language="Javascript">writeTileOption('Mountain1DirtCrown');</script>
 </tr>
 <tr>
-	<script language="Javascript">writeTileOption('Mountain1CaveCrown');</script>
-	<script language="Javascript">writeTileOption('Mountain2MeadowCrown');</script>
 	<script language="Javascript">writeTileOption('Mountain2GrassCrown');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('Mountain2SandCrown');</script>
-	<script language="Javascript">writeTileOption('Mountain2DirtCrown');</script>
-	<script language="Javascript">writeTileOption('Mountain2CaveCrown');</script>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<script language="Javascript">writeTileOption('Mountain1MeadowBaseCrown');</script>
-</tr>
-<tr>
 	<script language="Javascript">writeTileOption('Mountain1GrassBaseCrown');</script>
-	<script language="Javascript">writeTileOption('Mountain1SandBaseCrown');</script>
-	<script language="Javascript">writeTileOption('Mountain1DirtBaseCrown');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('Mountain1CaveBaseCrown');</script>
-	<script language="Javascript">writeTileOption('Mountain2MeadowBaseCrown');</script>
 	<script language="Javascript">writeTileOption('Mountain2GrassBaseCrown');</script>
 </tr>
 <tr>
-	<script language="Javascript">writeTileOption('Mountain2SandBaseCrown');</script>
-	<script language="Javascript">writeTileOption('Mountain2DirtBaseCrown');</script>
-	<script language="Javascript">writeTileOption('Mountain2CaveBaseCrown');</script>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<script language="Javascript">writeTileOption('MountainLeftMeadow');</script>
-</tr>
-<tr>
 	<script language="Javascript">writeTileOption('MountainLeftGrass');</script>
-	<script language="Javascript">writeTileOption('MountainLeftSand');</script>
-	<script language="Javascript">writeTileOption('MountainLeftDirt');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('MountainLeftCave');</script>
-	<script language="Javascript">writeTileOption('MountainRightMeadow');</script>
 	<script language="Javascript">writeTileOption('MountainRightGrass');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('MountainRightSand');</script>
-	<script language="Javascript">writeTileOption('MountainRightDirt');</script>
-	<script language="Javascript">writeTileOption('MountainRightCave');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('MountainHalfMeadow1');</script>
 	<script language="Javascript">writeTileOption('MountainHalfGrass1');</script>
-	<script language="Javascript">writeTileOption('MountainHalfSand1');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('MountainHalfDirt1');</script>
-	<script language="Javascript">writeTileOption('MountainHalfCave1');</script>
-	<script language="Javascript">writeTileOption('MountainHalfMeadow2');</script>
 </tr>
 <tr>
 	<script language="Javascript">writeTileOption('MountainHalfGrass2');</script>
-	<script language="Javascript">writeTileOption('MountainHalfSand2');</script>
-	<script language="Javascript">writeTileOption('MountainHalfDirt2');</script>
+	<script language="Javascript">writeTileOption('MountainHalfGrass3');</script>
+	<script language="Javascript">writeTileOption('Meadow');</script>
 </tr>
 <tr>
-	<script language="Javascript">writeTileOption('MountainHalfCave2');</script>
-	<script language="Javascript">writeTileOption('MountainHalfMeadow3');</script>
-	<script language="Javascript">writeTileOption('MountainHalfGrass3');</script>
+	<script language="Javascript">writeTileOption('NorthwestCoastMeadow');</script>
+	<script language="Javascript">writeTileOption('NortheastCoastMeadow');</script>
+  <script language="Javascript">writeTileOption('SouthwestCoastMeadow');</script>
+</tr>
+<tr>
+  <script language="Javascript">writeTileOption('SoutheastCoastMeadow');</script>
+	<script language="Javascript">writeTileOption('SouthCoastMeadow');</script>
+	<script language="Javascript">writeTileOption('NorthCoastMeadow');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('EastCoastMeadow');</script>
+	<script language="Javascript">writeTileOption('WestCoastMeadow');</script>
+	<script language="Javascript">writeTileOption('Mountain1MeadowBase');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('Mountain2MeadowBase');</script>
+	<script language="Javascript">writeTileOption('Mountain1MeadowCrown');</script>
+	<script language="Javascript">writeTileOption('Mountain2MeadowCrown');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('Mountain1MeadowBaseCrown');</script>
+	<script language="Javascript">writeTileOption('Mountain2MeadowBaseCrown');</script>
+	<script language="Javascript">writeTileOption('MountainLeftMeadow');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('MountainRightMeadow');</script>
+	<script language="Javascript">writeTileOption('MountainHalfMeadow1');</script>
+	<script language="Javascript">writeTileOption('MountainHalfMeadow2');</script>
+</tr>
+<tr>
+  <script language="Javascript">writeTileOption('MountainHalfMeadow3');</script>
+	<script language="Javascript">writeTileOption('Sand');</script>
+	<script language="Javascript">writeTileOption('SandVegetation');</script>
+</tr>
+<tr>
+  <script language="Javascript">writeTileOption('NorthwestCoastSand');</script>
+  <script language="Javascript">writeTileOption('NortheastCoastSand');</script>
+	<script language="Javascript">writeTileOption('SouthwestCoastSand');</script>
+</tr>
+<tr>
+  <script language="Javascript">writeTileOption('SoutheastCoastSand');</script>
+	<script language="Javascript">writeTileOption('SouthCoastSand');</script>
+	<script language="Javascript">writeTileOption('EastCoastSand');</script>
+</tr>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('WestCoastSand');</script>
+	<script language="Javascript">writeTileOption('NorthCoastSand');</script>
+	<script language="Javascript">writeTileOption('Mountain1SandBase');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('Mountain2SandBase');</script>
+	<script language="Javascript">writeTileOption('Mountain1SandCrown');</script>
+	<script language="Javascript">writeTileOption('Mountain2SandCrown');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('Mountain1SandBaseCrown');</script>
+	<script language="Javascript">writeTileOption('Mountain2SandBaseCrown');</script>
+	<script language="Javascript">writeTileOption('MountainLeftSand');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('MountainRightSand');</script>
+	<script language="Javascript">writeTileOption('MountainHalfSand1');</script>
+	<script language="Javascript">writeTileOption('MountainHalfSand2');</script>
 </tr>
 <tr>
 	<script language="Javascript">writeTileOption('MountainHalfSand3');</script>
-	<script language="Javascript">writeTileOption('MountainHalfDirt3');</script>
-	<script language="Javascript">writeTileOption('MountainHalfCave3');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('Forest2');</script>
-	<script language="Javascript">writeTileOption('BrightForest');</script>
-	<script language="Javascript">writeTileOption('BrightForest2');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('EvergreenForest');</script>
-	<script language="Javascript">writeTileOption('DeadForest');</script>
+	<script language="Javascript">writeTileOption('Dirt');</script>
 	<script language="Javascript">writeTileOption('DirtScrub');</script>
 </tr>
 <tr>
-	<script language="Javascript">writeTileOption('Hills');</script>
-	<script language="Javascript">writeTileOption('Hills1');</script>
-	<script language="Javascript">writeTileOption('Hills2');</script>
+  <script language="Javascript">writeTileOption('NorthwestCoastDirt');</script>
+  <script language="Javascript">writeTileOption('NortheastCoastDirt');</script>
+  <script language="Javascript">writeTileOption('SouthwestCoastDirt');</script>
 </tr>
 <tr>
- <script language="Javascript">writeTileOption('Forest');</script>
- <td></td>
- <script language="Javascript">writeTileOption('ForestNCoast');</script>
+	<script language="Javascript">writeTileOption('SoutheastCoastDirt');</script>
+  <script language="Javascript">writeTileOption('NorthCoastDirt');</script>	
+	<script language="Javascript">writeTileOption('EastCoastDirt');</script>
 </tr>
 <tr>
- <script language="Javascript">writeTileOption('ForestECoast');</script>
- <script language="Javascript">writeTileOption('ForestWCoast');</script>
- <script language="Javascript">writeTileOption('ForestSCoast');</script>
+	<script language="Javascript">writeTileOption('WestCoastDirt');</script>
+	<script language="Javascript">writeTileOption('SouthCoastDirt');</script>
+	<script language="Javascript">writeTileOption('Mountain1DirtBase');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('Mountain2DirtBase');</script>
+	<script language="Javascript">writeTileOption('Mountain1DirtCrown');</script>	
+	<script language="Javascript">writeTileOption('Mountain2DirtCrown');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('Mountain1DirtBaseCrown');</script>
+	<script language="Javascript">writeTileOption('Mountain2DirtBaseCrown');</script>
+	<script language="Javascript">writeTileOption('MountainLeftDirt');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('MountainRightDirt');</script>
+	<script language="Javascript">writeTileOption('MountainHalfDirt1');</script>
+	<script language="Javascript">writeTileOption('MountainHalfDirt2');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('MountainHalfDirt3');</script>
+	<script language="Javascript">writeTileOption('CaveFloor');</script>
+	<script language="Javascript">writeTileOption('CaveWall');</script>
+</tr>
+<tr>
+  <script language="Javascript">writeTileOption('NorthwestCoastCave');</script>
+  <script language="Javascript">writeTileOption('NortheastCoastCave');</script>
+  <script language="Javascript">writeTileOption('SouthwestCoastCave');</script>
+</tr>
+<tr>
+  <script language="Javascript">writeTileOption('SoutheastCoastCave');</script>
+  <script language="Javascript">writeTileOption('NorthCoastCave');</script>
+	<script language="Javascript">writeTileOption('WestCoastCave');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('SouthCoastCave');</script>
+	<script language="Javascript">writeTileOption('EastCoastCave');</script>
+	<script language="Javascript">writeTileOption('Mountain1CaveBase');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('Mountain2CaveBase');</script>
+	<script language="Javascript">writeTileOption('Mountain1CaveCrown');</script>
+	<script language="Javascript">writeTileOption('Mountain2CaveCrown');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('Mountain1CaveBaseCrown');</script>
+	<script language="Javascript">writeTileOption('Mountain2CaveBaseCrown');</script>	
+	<script language="Javascript">writeTileOption('MountainLeftCave');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('MountainRightCave');</script>
+	<script language="Javascript">writeTileOption('MountainHalfCave1');</script>
+	<script language="Javascript">writeTileOption('MountainHalfCave2');</script>
+</tr>
+<tr>	
+	<script language="Javascript">writeTileOption('MountainHalfCave3');</script>
+	<script language="Javascript">writeTileOption('Brush');</script>
+	<script language="Javascript">writeTileOption('Underbrush');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('BrushNCoast');</script>
+	<script language="Javascript">writeTileOption('BrushECoast');</script>
+	<script language="Javascript">writeTileOption('BrushWCoast');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('BrushSCoast');</script>
+	<td>	</td>
+	<td></td>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('Forest');</script>
+	<script language="Javascript">writeTileOption('Forest2');</script>
+	<script language="Javascript">writeTileOption('Forest3');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('ForestNCoast');</script>
+	<script language="Javascript">writeTileOption('ForestECoast');</script>
+	<script language="Javascript">writeTileOption('ForestWCoast');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('ForestSCoast');</script>
+	<script language="Javascript">writeTileOption('ForestTilingNW');</script>
+	<script language="Javascript">writeTileOption('ForestTilingNE');</script>
+</tr>
+<tr>
+	<td></td>
+	<script language="Javascript">writeTileOption('ForestTilingW');</script>
+	<script language="Javascript">writeTileOption('ForestTilingE');</script>
+</tr>
+<tr>
+	<td></td>
+	<script language="Javascript">writeTileOption('ForestTilingSW');</script>
+	<script language="Javascript">writeTileOption('ForestTilingSE');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('BrightForest');</script>
+	<script language="Javascript">writeTileOption('BrightForest2');</script>
+	<script language="Javascript">writeTileOption('BrightForestNCoast');</script>
+</tr>
+<tr>
+  <script language="Javascript">writeTileOption('BrightForestECoast');</script>
+  <script language="Javascript">writeTileOption('BrightForestWCoast');</script>
+  <script language="Javascript">writeTileOption('BrightForestSCoast');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('BrightForestEdge');</script>
+	<script language="Javascript">writeTileOption('BrightForestEdge2');</script>
+	<script language="Javascript">writeTileOption('BrightForestEdge3');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('BrightForestEdge4');</script>
+	<script language="Javascript">writeTileOption('BrightForestEdge5');</script>
+	<td></td>
 </tr>
 <tr>
 	<script language="Javascript">writeTileOption('EvergreenForestNCoast');</script>
@@ -453,108 +535,58 @@
 </tr>
 <tr>
 	<script language="Javascript">writeTileOption('EvergreenForestWCoast');</script>
-	<script language="Javascript">writeTileOption('BrightForestNCoast');</script>
-	<script language="Javascript">writeTileOption('BrightForestECoast');</script>
+	<script language="Javascript">writeTileOption('EvergreenForestEdge');</script>
+	<script language="Javascript">writeTileOption('EvergreenForestEdge2');</script>
 </tr>
 <tr>
-	<script language="Javascript">writeTileOption('BrightForestWCoast');</script>
-	<script language="Javascript">writeTileOption('BrightForestSCoast');</script>
+	<script language="Javascript">writeTileOption('EvergreenForestEdge3');</script>
+	<script language="Javascript">writeTileOption('EvergreenForest');</script>
+	<script language="Javascript">writeTileOption('DeadForest');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('Hills');</script>
+	<script language="Javascript">writeTileOption('Hills1');</script>
+	<script language="Javascript">writeTileOption('Hills2');</script>
+</tr>
+<tr>
+ <script language="Javascript">writeTileOption('Swamp');</script>
+ <script language="Javascript">writeTileOption('FallowFarm');</script>
+ <script language="Javascript">writeTileOption('Farm');</script> 
+</tr>
+<tr>
+  <script language="Javascript">writeTileOption('FallowFarm2');</script>
+  <script language="Javascript">writeTileOption('Farm2');</script>
+	<script language="Javascript">writeTileOption('Road');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('River');</script>
+	<script language="Javascript">writeTileOption('Coral');</script>
+	<script language="Javascript">writeTileOption('Lava');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('CobblestoneRoad');</script>	
+	<script language="Javascript">writeTileOption('PurpleCobblestoneRoad');</script>
+	<script language="Javascript">writeTileOption('FenceNSEW');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('FenceNW');</script>
+	<script language="Javascript">writeTileOption('FenceNE');</script>
+	<script language="Javascript">writeTileOption('FenceE');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('FenceEBroken');</script>
+	<script language="Javascript">writeTileOption('FenceW');</script>
+	<script language="Javascript">writeTileOption('FenceWBroken');</script>
+</tr>
+<tr>
+	<script language="Javascript">writeTileOption('FencePost');</script>
+	<script language="Javascript">writeTileOption('FenceBrokenPost');</script>
 	<td></td>
 </tr>
 <tr>
- <script language="Javascript">writeTileOption('BrushNCoast');</script>
- <script language="Javascript">writeTileOption('BrushECoast');</script>
- <script language="Javascript">writeTileOption('BrushWCoast');</script>
-</tr>
-<tr>
- <script language="Javascript">writeTileOption('BrushSCoast');</script>
- <script language="Javascript">writeTileOption('Underbrush');</script>
- <td></td>
-</tr>
-<tr>
- <script language="Javascript">writeTileOption('CaveFloor');</script>
- <script language="Javascript">writeTileOption('CaveWall');</script>
- <script language="Javascript">writeTileOption('DirtScrub');</script>
-</tr>
-<tr>
-  <script language="Javascript">writeTileOption('Coral');</script>
-  <script language="Javascript">writeTileOption('NorthwestCoastSand');</script>
-  <script language="Javascript">writeTileOption('NortheastCoastSand');</script>
-</tr>
-<tr>
-  <script language="Javascript"></script>
-  <script language="Javascript">writeTileOption('SouthwestCoastSand');</script>
-  <script language="Javascript">writeTileOption('SoutheastCoastSand');</script>
-</tr>
-<tr>
-  <td></td>
-  <script language="Javascript">writeTileOption('NorthwestCoastMeadow');</script>
-  <script language="Javascript">writeTileOption('NortheastCoastMeadow');</script>
-</tr>
-<tr>
-  <script language="Javascript"></script>
-  <script language="Javascript">writeTileOption('SouthwestCoastMeadow');</script>
-  <script language="Javascript">writeTileOption('SoutheastCoastMeadow');</script>
-</tr>
-<tr>
-  <td></td>
-  <script language="Javascript">writeTileOption('NorthwestCoastDirt');</script>
-  <script language="Javascript">writeTileOption('NortheastCoastDirt');</script>
-</tr>
-<tr>
-  <script language="Javascript"></script>
-  <script language="Javascript">writeTileOption('SouthwestCoastDirt');</script>
-  <script language="Javascript">writeTileOption('SoutheastCoastDirt');</script>
-</tr>
-<tr>
-  <td></td>
-  <script language="Javascript">writeTileOption('NorthwestCoastCave');</script>
-  <script language="Javascript">writeTileOption('NortheastCoastCave');</script>
-</tr>
-<tr>
-  <script language="Javascript"></script>
-  <script language="Javascript">writeTileOption('SouthwestCoastCave');</script>
-  <script language="Javascript">writeTileOption('SoutheastCoastCave');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('SouthCoastMeadow');</script>
-	<script language="Javascript">writeTileOption('NorthCoastMeadow');</script>
-	<script language="Javascript">writeTileOption('EastCoastMeadow');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('WestCoastMeadow');</script>
-	<script language="Javascript">writeTileOption('NorthCoastDirt');</script>
-	<script language="Javascript">writeTileOption('EastCoastDirt');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('WestCoastDirt');</script>
-	<script language="Javascript">writeTileOption('SouthCoastDirt');</script>
-	<script language="Javascript">writeTileOption('NorthCoastCave');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('WestCoastCave');</script>
-	<script language="Javascript">writeTileOption('SouthCoastCave');</script>
-	<script language="Javascript">writeTileOption('EastCoastCave');</script>
-</tr>
-<tr>
-  <script language="Javascript">writeTileOption('SouthCoastSand');</script>
-  <script language="Javascript">writeTileOption('EastCoastSand');</script>
-  <script language="Javascript">writeTileOption('WestCoastSand');</script>
-</tr>
-<tr>
-  <script language="Javascript">writeTileOption('NorthCoastSand');</script>
-  <script language="Javascript">writeTileOption('FallowFarm');</script>
-  <script language="Javascript">writeTileOption('Farm');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('Sand');</script>
-  <script language="Javascript">writeTileOption('FallowFarm2');</script>
-  <script language="Javascript">writeTileOption('Farm2');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('SandVegetation');</script>
-	<script language="Javascript">writeTileOption('FenceNW');</script>
-	<script language="Javascript">writeTileOption('FenceNE');</script>
+	<script language="Javascript">writeTileOption('FenceNSW');</script>
+	<script language="Javascript">writeTileOption('FenceEWN');</script>
+	<script language="Javascript">writeTileOption('FenceENS');</script>
 </tr>
 <tr>
 	<script language="Javascript">writeTileOption('FenceEW');</script>
@@ -567,43 +599,18 @@
 	<script language="Javascript">writeTileOption('FenceEWGate');</script>
 </tr>
 <tr>
-	<script language="Javascript">writeTileOption('Road');</script>
-	<script language="Javascript">writeTileOption('CobblestoneRoad');</script>
-	<script language="Javascript">writeTileOption('Meadow');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('BrightForestEdge');</script>
-	<script language="Javascript">writeTileOption('BrightForestEdge2');</script>
-	<script language="Javascript">writeTileOption('BrightForestEdge3');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('BrightForestEdge4');</script>
-	<script language="Javascript">writeTileOption('BrightForestEdge5');</script>
-	<script language="Javascript">writeTileOption('ForestEdge');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('ForestEdge2');</script>
-	<script language="Javascript">writeTileOption('ForestEdge3');</script>
-	<script language="Javascript">writeTileOption('ForestEdge4');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('ForestEdge5');</script>
-	<script language="Javascript">writeTileOption('EvergreenForestEdge');</script>
-	<script language="Javascript">writeTileOption('EvergreenForestEdge2');</script>
-</tr>
-<tr>
-	<script language="Javascript">writeTileOption('EvergreenForestEdge3');</script>
-	<script language="Javascript">writeTileOption('EvergreenForestEdge4');</script>
-	<td></td>
-</tr>
-<tr>
  <script language="Javascript">writeTileOption('LeftCastle');</script>
  <script language="Javascript">writeTileOption('Castle');</script>
  <script language="Javascript">writeTileOption('RightCastle');</script>
 </tr>
 <tr>
+	<script language="Javascript">writeTileOption('Towne');</script>
+	<script language="Javascript">writeTileOption('Towne2');</script>
+	<script language="Javascript">writeTileOption('Towne3');</script>
+</tr>
+<tr>
+	<td></td>
  <script language="Javascript">writeTileOption('Dungeon');</script>
- <script language="Javascript">writeTileOption('Towne');</script>
  <script language="Javascript">writeTileOption('Keep');</script>
 </tr>
 <tr>
@@ -684,12 +691,12 @@
  <script language="Javascript">writeTileOption('RightCounter');</script>
 </tr>
 <tr>
-	<script language="Javascript">writeTileOption('CobblestoneRoad');</script>
+	<td></td>
  <script language="Javascript">writeTileOption('Shingles2');</script>
  <script language="Javascript">writeTileOption('TopCounter');</script>
 </tr>
 <tr>
-	<script language="Javascript">writeTileOption('PurpleCobblestoneRoad');</script>
+	<td></td>
  <script language="Javascript">writeTileOption('ShinglesTop');</script>
  <script language="Javascript">writeTileOption('VerticalCounter');</script>
 </tr>
