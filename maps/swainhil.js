@@ -54,7 +54,7 @@ mappages["swainhil"].terrain[48] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww
 mappages["swainhil"].terrain[49] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww `. .. .. .. .. .. ## ++ ++ ++ ++ ++ ++ ++ ++ ++ ## ++ ++ ++ ++ ++ ++ ++ ++ ## .. .. .. .. .. .. .. .. .. ## ## ## ++ ## ## ## .. .. ..';
 mappages["swainhil"].terrain[50] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww |. .. .. .. .. ## ## ## ## ## #O ## ## ## ## ## ## ## ## ## #O ## ## ## ## .. .. .. .. .. .. .. .. ## ## ++ ++ ++ ++ ++ ## ## .. ..';
 mappages["swainhil"].terrain[51] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ## ## ++ ++ ++ ++ ++ ## ## ## ..';
-mappages["swainhil"].terrain[52] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ++ ## ## pb ++ br ## ## ++ ## ..';
+mappages["swainhil"].terrain[52] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ++ ## ## ## ++ ## ## ## ++ ## ..';
 mappages["swainhil"].terrain[53] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww /. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. #+ ++ ++ ++ ++ ++ ++ ++ ++ ++ #+ ..';
 mappages["swainhil"].terrain[54] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww /. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ++ ## ++ ++ ++ ++ ++ ## ++ ## ..';
 mappages["swainhil"].terrain[55] = 'ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww ww |. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ## ## ## ++ ++ ++ ++ ++ ## ## ## ..';
@@ -500,6 +500,8 @@ mappages["swainhil"].features[432] = {name : 'TorchWest', x : 54, y : 37};
 mappages["swainhil"].features[433] = {name : 'TorchWest', x : 54, y : 42};
 mappages["swainhil"].features[434] = {name : 'TorchWest', x : 48, y : 42};
 mappages["swainhil"].features[435] = {name : 'TorchWest', x : 48, y : 37};
+mappages["swainhil"].features[436] = {name : 'OlympusTapestry', x : 56, y : 52};
+mappages["swainhil"].features[437] = {name : 'HildendainTapestry', x : 58, y : 52};
 
 
 mappages["swainhil"].npcs = [];
