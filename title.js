@@ -1054,17 +1054,69 @@ function ExecuteAttract(frame) {
     case 1:
       document.getElementById("am11x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
       break;
+    case 2:
+      document.getElementById("am11x8").innerHTML = ``;
+      document.getElementById("am12x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",9,7,9,10);
+      ShowTiles("",14,7,14,10);
+      break;
+    case 3:
+      document.getElementById("am12x8").innerHTML = ``;
+      document.getElementById("am13x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",10,7,10,10);
+      ShowTiles("",15,7,15,10);
+      break;
+    case 4:
+      document.getElementById("am13x8").innerHTML = ``;
+      document.getElementById("am14x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",11,7,11,10);
+      ShowTiles("",16,7,16,10);
+      break;
+    case 5:
+      document.getElementById("am14x8").innerHTML = ``;
+      document.getElementById("am15x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",12,7,12,10);
+      ShowTiles("",17,7,17,10);
+      break;
+    case 6:
+      document.getElementById("am15x8").innerHTML = ``;
+      document.getElementById("am16x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",13,7,13,10);
+      ShowTiles("",18,7,18,10);
+      break;
+    case 7:
+      document.getElementById("am16x8").innerHTML = ``;
+      document.getElementById("am17x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",14,7,14,10);
+      ShowTiles("",19,7,19,10);
+      break;
+    case 8:
+      document.getElementById("am17x8").innerHTML = ``;
+      document.getElementById("am18x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",15,7,15,10);
+      ShowTiles("",20,7,20,10);
+      break;
+    case 9:
+      document.getElementById("am18x8").innerHTML = ``;
+      document.getElementById("am19x8").innerHTML = `<div style='width:32px;height:32px;background-image:url("graphics/310.gif");'></div>`;
+      HideTiles("",16,7,16,10);
+      ShowTiles("",21,7,21,10);
+      ShowTiles("",19,6,21,6);
+      ShowTiles("",19,11,21,11);
+      break;
+
     default:
-      return;
+    return;
   }
   setTimeout(function() { ExecuteAttract(frame+1) },dur);
 }
 
 function HideTiles(board,x1,y1,x2,y2) {
-  for (i=x1;i<=x2;i++) {
-    for (j=y1;j<=y2;j++) {
+  for (let i=x1;i<=x2;i++) {
+    for (let j=y1;j<=y2;j++) {
       let tile = document.getElementById("am"+board+""+i+"x"+j);
       if (tile) {
+        tile.classList.remove("attractfadein");
         tile.style.opacity = 0;
       }
     }
