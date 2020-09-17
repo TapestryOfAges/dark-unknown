@@ -4003,8 +4003,8 @@ function RiverTile() {
 }
 RiverTile.prototype = new TerrainObject();
 
-function RiverGrassBaseTile() {
-  this.name = "RiverGrassBase";
+function RiverBaseTile() {
+  this.name = "RiverBase";
 //  this.overlay = "riverns.gif";
   this.layers = [["static.png", "", 0,-42*32]];
   this.graphic = "water.gif";
@@ -4018,9 +4018,530 @@ function RiverGrassBaseTile() {
   this.peerview = "#8080fc";
   this.walkSound = "water";
 
-  SetBySurroundRiver.call(this, "grass");
 }
-RiverGrassBaseTile.prototype = new TerrainObject();
+RiverBaseTile.prototype = new TerrainObject();
+
+function RiverGrassSourceNTile() {
+  this.name = "RiverGrassSourceN";
+  this.layers = [["static.png", "", -4*32, -43*32]];
+}
+RiverGrassSourceNTile.prototype = new RiverBaseTile();
+
+function RiverGrassSourceWTile() {
+  this.name = "RiverGrassSourceW";
+  this.layers = [["static.png", "", -7*32, -43*32]];
+}
+RiverGrassSourceWTile.prototype = new RiverBaseTile();
+
+function RiverGrassSourceSTile() {
+  this.name = "RiverGrassSourceS";
+  this.layers = [["static.png", "", -4*32, -44*32]];
+}
+RiverGrassSourceSTile.prototype = new RiverBaseTile();
+
+function RiverGrassSourceETile() {
+  this.name = "RiverGrassSourceE";
+  this.layers = [["static.png", "", -7*32, -44*32]];
+}
+RiverGrassSourceETile.prototype = new RiverBaseTile();
+
+function RiverDirtSourceNTile() {
+  this.name = "RiverDirtSourceN";
+  this.layers = [["static.png", "", -5*32, -43*32]];
+}
+RiverDirtSourceNTile.prototype = new RiverBaseTile();
+
+function RiverDirtSourceWTile() {
+  this.name = "RiverDirtSourceW";
+  this.layers = [["static.png", "", -8*32, -43*32]];
+}
+RiverDirtSourceWTile.prototype = new RiverBaseTile();
+
+function RiverDirtSourceSTile() {
+  this.name = "RiverDirtSourceS";
+  this.layers = [["static.png", "", -5*32, -44*32]];
+}
+RiverDirtSourceSTile.prototype = new RiverBaseTile();
+
+function RiverDirtSourceETile() {
+  this.name = "RiverDirtSourceE";
+  this.layers = [["static.png", "", -8*32, -44*32]];
+}
+RiverDirtSourceETile.prototype = new RiverBaseTile();
+
+function RiverCaveSourceNTile() {
+  this.name = "RiverCaveSourceN";
+  this.layers = [["static.png", "", -6*32, -43*32]];
+}
+RiverCaveSourceNTile.prototype = new RiverBaseTile();
+
+function RiverCaveSourceWTile() {
+  this.name = "RiverCaveSourceW";
+  this.layers = [["static.png", "", -9*32, -43*32]];
+}
+RiverCaveSourceWTile.prototype = new RiverBaseTile();
+
+function RiverCaveSourceSTile() {
+  this.name = "RiverCaveSourceS";
+  this.layers = [["static.png", "", -6*32, -44*32]];
+}
+RiverCaveSourceSTile.prototype = new RiverBaseTile();
+
+function RiverCaveSourceETile() {
+  this.name = "RiverCaveSourceE";
+  this.layers = [["static.png", "", -9*32, -44*32]];
+}
+RiverCaveSourceETile.prototype = new RiverBaseTile();
+
+function RiverGrassNSTile() {
+  this.name = "RiverGrassNS";
+  this.layers = [["static.png", "", 0, -42*32]];
+}
+RiverGrassNSTile.prototype = new RiverBaseTile();
+
+function RiverDirtNSTile() {
+  this.name = "RiverDirtNS";
+  this.layers = [["static.png", "", 0, -41*32]];
+}
+RiverDirtNSTile.prototype = new RiverBaseTile();
+
+function RiverCaveNSTile() {
+  this.name = "RiverCaveNS";
+  this.layers = [["static.png", "", 0, -47*32]];
+}
+RiverCaveNSTile.prototype = new RiverBaseTile();
+
+function RiverGrassEW_NTile() {
+  this.name = "RiverGrassEW_N";
+  this.layers = [["static.png", "", -7*32, -42*32]];
+}
+RiverGrassEW_NTile.prototype = new RiverBaseTile();
+
+function RiverDirtEW_NTile() {
+  this.name = "RiverDirtEW_N";
+  this.layers = [["static.png", "", -7*32, -41*32]];
+}
+RiverDirtEW_NTile.prototype = new RiverBaseTile();
+
+function RiverCaveEW_NTile() {
+  this.name = "RiverCaveEW_N";
+  this.layers = [["static.png", "", -7*32, -47*32]];
+}
+RiverCaveEW_NTile.prototype = new RiverBaseTile();
+
+function RiverGrassEW_STile() {
+  this.name = "RiverGrassEW_S";
+  this.layers = [["static.png", "", -8*32, -42*32]];
+}
+RiverGrassEW_STile.prototype = new RiverBaseTile();
+
+function RiverDirtEW_STile() {
+  this.name = "RiverDirtEW_S";
+  this.layers = [["static.png", "", -8*32, -41*32]];
+}
+RiverDirtEW_STile.prototype = new RiverBaseTile();
+
+function RiverCaveEW_STile() {
+  this.name = "RiverCaveEW_S";
+  this.layers = [["static.png", "", -8*32, -47*32]];
+}
+RiverCaveEW_STile.prototype = new RiverBaseTile();
+
+function RiverGrassSETile() {
+  this.name = "RiverGrassSE";
+  this.layers = [["static.png", "", -32, -42*32]];
+}
+RiverGrassSETile.prototype = new RiverBaseTile();
+
+function RiverDirtSETile() {
+  this.name = "RiverDirtSE";
+  this.layers = [["static.png", "", -32, -41*32]];
+}
+RiverDirtSETile.prototype = new RiverBaseTile();
+
+function RiverCaveSETile() {
+  this.name = "RiverCaveSE";
+  this.layers = [["static.png", "", -32, -47*32]];
+}
+RiverCaveSETile.prototype = new RiverBaseTile();
+
+function RiverGrassSWTile() {
+  this.name = "RiverGrassSW";
+  this.layers = [["static.png", "", -2*32, -42*32]];
+}
+RiverGrassSWTile.prototype = new RiverBaseTile();
+
+function RiverDirtSWTile() {
+  this.name = "RiverDirtSW";
+  this.layers = [["static.png", "", -2*32, -41*32]];
+}
+RiverDirtSWTile.prototype = new RiverBaseTile();
+
+function RiverCaveSWTile() {
+  this.name = "RiverCaveSW";
+  this.layers = [["static.png", "", -2*32, -47*32]];
+}
+RiverCaveSWTile.prototype = new RiverBaseTile();
+
+function RiverGrassNE_STile() {
+  this.name = "RiverGrassNE_S";
+  this.layers = [["static.png", "", -3*32, -42*32]];
+}
+RiverGrassNE_STile.prototype = new RiverBaseTile();
+
+function RiverDirtNE_STile() {
+  this.name = "RiverDirtNE_S";
+  this.layers = [["static.png", "", -3*32, -41*32]];
+}
+RiverDirtNE_STile.prototype = new RiverBaseTile();
+
+function RiverCaveNE_STile() {
+  this.name = "RiverCaveNE_S";
+  this.layers = [["static.png", "", -3*32, -47*32]];
+}
+RiverCaveNE_STile.prototype = new RiverBaseTile();
+
+function RiverGrassEW_SNTile() {
+  this.name = "RiverGrassEW_SN";
+  this.layers = [["static.png", "", -4*32, -42*32]];
+}
+RiverGrassEW_SNTile.prototype = new RiverBaseTile();
+
+function RiverDirtEW_SNTile() {
+  this.name = "RiverDirtEW_SN";
+  this.layers = [["static.png", "", -4*32, -41*32]];
+}
+RiverDirtEW_SNTile.prototype = new RiverBaseTile();
+
+function RiverCaveEW_SNTile() {
+  this.name = "RiverCaveEW_SN";
+  this.layers = [["static.png", "", -4*32, -47*32]];
+}
+RiverCaveEW_SNTile.prototype = new RiverBaseTile();
+
+function RiverGrassEW_NSTile() {
+  this.name = "RiverGrassEW_NS";
+  this.layers = [["static.png", "", -5*32, -42*32]];
+}
+RiverGrassEW_NSTile.prototype = new RiverBaseTile();
+
+function RiverDirtEW_NSTile() {
+  this.name = "RiverDirtEW_NS";
+  this.layers = [["static.png", "", -5*32, -41*32]];
+}
+RiverDirtEW_NSTile.prototype = new RiverBaseTile();
+
+function RiverCaveEW_NSTile() {
+  this.name = "RiverCaveEW_NS";
+  this.layers = [["static.png", "", -5*32, -47*32]];
+}
+RiverCaveEW_NSTile.prototype = new RiverBaseTile();
+
+function RiverGrassNW_STile() {
+  this.name = "RiverGrassNW_S";
+  this.layers = [["static.png", "", -6*32, -42*32]];
+}
+RiverGrassNW_STile.prototype = new RiverBaseTile();
+
+function RiverDirtNW_STile() {
+  this.name = "RiverDirtNW_S";
+  this.layers = [["static.png", "", -6*32, -41*32]];
+}
+RiverDirtNW_STile.prototype = new RiverBaseTile();
+
+function RiverCaveNW_STile() {
+  this.name = "RiverCaveNW_S";
+  this.layers = [["static.png", "", -6*32, -47*32]];
+}
+RiverCaveNW_STile.prototype = new RiverBaseTile();
+
+function RiverGrassNE_NTile() {
+  this.name = "RiverGrassNE_N";
+  this.layers = [["static.png", "", -4*32, -45*32]];
+}
+RiverGrassNE_NTile.prototype = new RiverBaseTile();
+
+function RiverDirtNE_NTile() {
+  this.name = "RiverDirtNE_N";
+  this.layers = [["static.png", "", 0, -46*32]];
+}
+RiverDirtNE_NTile.prototype = new RiverBaseTile();
+
+function RiverCaveNE_NTile() {
+  this.name = "RiverCaveNE_N";
+  this.layers = [["static.png", "", -2*32, -46*32]];
+}
+RiverCaveNE_NTile.prototype = new RiverBaseTile();
+
+function RiverGrassNW_NTile() {
+  this.name = "RiverGrassNW_N";
+  this.layers = [["static.png", "", -5*32, -45*32]];
+}
+RiverGrassNW_NTile.prototype = new RiverBaseTile();
+
+function RiverDirtNW_NTile() {
+  this.name = "RiverDirtNW_N";
+  this.layers = [["static.png", "", -1*32, -46*32]];
+}
+RiverDirtNW_NTile.prototype = new RiverBaseTile();
+
+function RiverCaveNW_NTile() {
+  this.name = "RiverCaveNW_N";
+  this.layers = [["static.png", "", -3*32, -46*32]];
+}
+RiverCaveNW_NTile.prototype = new RiverBaseTile();
+
+function RiverGrassMouthNTile() {
+  this.name = "RiverGrassMouthN";
+  this.layers = [["static.png", "", -7*32, -59*32]];
+}
+RiverGrassMouthNTile.prototype = new RiverBaseTile();
+
+function RiverDirtMouthNTile() {
+  this.name = "RiverDirtMouthN";
+  this.layers = [["static.png", "", -8*32, -59*32]];
+}
+RiverDirtMouthNTile.prototype = new RiverBaseTile();
+
+function RiverCaveMouthNTile() {
+  this.name = "RiverCaveMouthN";
+  this.layers = [["static.png", "", -9*32, -59*32]];
+}
+RiverCaveMouthNTile.prototype = new RiverBaseTile();
+
+function RiverGrassMouthSTile() {
+  this.name = "RiverGrassMouthS";
+  this.layers = [["static.png", "", -0, -67*32]];
+}
+RiverGrassMouthSTile.prototype = new RiverBaseTile();
+
+function RiverDirtMouthSTile() {
+  this.name = "RiverDirtMouthS";
+  this.layers = [["static.png", "", -1*32, -67*32]];
+}
+RiverDirtMouthSTile.prototype = new RiverBaseTile();
+
+function RiverCaveMouthSTile() {
+  this.name = "RiverCaveMouthS";
+  this.layers = [["static.png", "", -9*32, -67*32]];
+}
+RiverCaveMouthSTile.prototype = new RiverBaseTile();
+
+function RiverGrassMouthE_NTile() {
+  this.name = "RiverGrassMouthE_N";
+  this.layers = [["static.png", "", -9*32, -65*32]];
+}
+RiverGrassMouthE_NTile.prototype = new RiverBaseTile();
+
+function RiverDirtMouthE_NTile() {
+  this.name = "RiverDirtMouthE_N";
+  this.layers = [["static.png", "", -1*32, -65*32]];
+}
+RiverDirtMouthE_NTile.prototype = new RiverBaseTile();
+
+function RiverCaveMouthE_NTile() {
+  this.name = "RiverCaveMouthE_N";
+  this.layers = [["static.png", "", 0, -65*32]];
+}
+RiverCaveMouthE_NTile.prototype = new RiverBaseTile();
+
+function RiverGrassMouthW_NTile() {
+  this.name = "RiverGrassMouthW_N";
+  this.layers = [["static.png", "", -6*32, -65*32]];
+}
+RiverGrassMouthW_NTile.prototype = new RiverBaseTile();
+
+function RiverDirtMouthW_NTile() {
+  this.name = "RiverDirtMouthW_N";
+  this.layers = [["static.png", "", -7*32, -65*32]];
+}
+RiverDirtMouthW_NTile.prototype = new RiverBaseTile();
+
+function RiverCaveMouthW_NTile() {
+  this.name = "RiverCaveMouthW_N";
+  this.layers = [["static.png", "", -8*32, -65*32]];
+}
+RiverCaveMouthW_NTile.prototype = new RiverBaseTile();
+
+function RiverGrassSEW_STile() {
+  this.name = "RiverGrassSEW_S";
+  this.layers = [["static.png", "", -4*32, -62*32]];
+}
+RiverGrassSEW_STile.prototype = new RiverBaseTile();
+
+function RiverDirtSEW_STile() {
+  this.name = "RiverDirtSEW_S";
+  this.layers = [["static.png", "", -5*32, -62*32]];
+}
+RiverDirtSEW_STile.prototype = new RiverBaseTile();
+
+function RiverCaveSEW_STile() {
+  this.name = "RiverCaveSEW_S";
+  this.layers = [["static.png", "", -6*32, -62*32]];
+}
+RiverCaveSEW_STile.prototype = new RiverBaseTile();
+
+function RiverGrassNSE_NTile() {
+  this.name = "RiverGrassNSE_N";
+  this.layers = [["static.png", "", -4*32, -63*32]];
+}
+RiverGrassNSE_NTile.prototype = new RiverBaseTile();
+
+function RiverDirtNSE_NTile() {
+  this.name = "RiverDirtNSE_N";
+  this.layers = [["static.png", "", -5*32, -63*32]];
+}
+RiverDirtNSE_NTile.prototype = new RiverBaseTile();
+
+function RiverCaveNSE_NTile() {
+  this.name = "RiverCaveNSE_N";
+  this.layers = [["static.png", "", -6*32, -63*32]];
+}
+RiverCaveNSE_NTile.prototype = new RiverBaseTile();
+
+function RiverGrassNSW_STile() {
+  this.name = "RiverGrassNSW_S";
+  this.layers = [["static.png", "", -7*32, -62*32]];
+}
+RiverGrassNSW_STile.prototype = new RiverBaseTile();
+
+function RiverDirtNSW_STile() {
+  this.name = "RiverDirtNSW_S";
+  this.layers = [["static.png", "", -4*32, -65*32]];
+}
+RiverDirtNSW_STile.prototype = new RiverBaseTile();
+
+function RiverCaveNSW_STile() {
+  this.name = "RiverCaveNSW_S";
+  this.layers = [["static.png", "", -5*32, -65*32]];
+}
+RiverCaveNSW_STile.prototype = new RiverBaseTile();
+
+function RiverGrassMouthW_STile() {
+  this.name = "RiverGrassMouthW_S";
+  this.layers = [["static.png", "", -9*32, -66*32]];
+}
+RiverGrassMouthW_STile.prototype = new RiverBaseTile();
+
+function RiverDirtMouthW_STile() {
+  this.name = "RiverDirtMouthW_S";
+  this.layers = [["static.png", "", 0, -66*32]];
+}
+RiverDirtMouthW_STile.prototype = new RiverBaseTile();
+
+function RiverCaveMouthW_STile() {
+  this.name = "RiverCaveMouthW_S";
+  this.layers = [["static.png", "", -1*32, -66*32]];
+}
+RiverCaveMouthW_STile.prototype = new RiverBaseTile();
+
+function RiverGrassMouthE_STile() {
+  this.name = "RiverGrassMouthE_S";
+  this.layers = [["static.png", "", -4*32, -46*32]];
+}
+RiverGrassMouthE_STile.prototype = new RiverBaseTile();
+
+function RiverDirtMouthE_STile() {
+  this.name = "RiverDirtMouthE_S";
+  this.layers = [["static.png", "", -5*32, -46*32]];
+}
+RiverDirtMouthE_STile.prototype = new RiverBaseTile();
+
+function RiverCaveMouthE_STile() {
+  this.name = "RiverCaveMouthE_S";
+  this.layers = [["static.png", "", -2*32, -60*32]];
+}
+RiverCaveMouthE_STile.prototype = new RiverBaseTile();
+
+function RiverGrassNSW_NTile() {
+  this.name = "RiverGrassNSW_N";
+  this.layers = [["static.png", "", -7*32, -63*32]];
+}
+RiverGrassNSW_NTile.prototype = new RiverBaseTile();
+
+function RiverDirtNSW_NTile() {
+  this.name = "RiverDirtNSW_N";
+  this.layers = [["static.png", "", -4*32, -66*32]];
+}
+RiverDirtNSW_NTile.prototype = new RiverBaseTile();
+
+function RiverCaveNSW_NTile() {
+  this.name = "RiverCaveNSW_N";
+  this.layers = [["static.png", "", -5*32, -66*32]];
+}
+RiverCaveNSW_NTile.prototype = new RiverBaseTile();
+
+function RiverGrassNEW_STile() {
+  this.name = "RiverGrassNEW_S";
+  this.layers = [["static.png", "", -4*32, -64*32]];
+}
+RiverGrassNEW_STile.prototype = new RiverBaseTile();
+
+function RiverDirtNEW_STile() {
+  this.name = "RiverDirtNEW_S";
+  this.layers = [["static.png", "", -5*32, -64*32]];
+}
+RiverDirtNEW_STile.prototype = new RiverBaseTile();
+
+function RiverCaveNEW_STile() {
+  this.name = "RiverCaveNEW_S";
+  this.layers = [["static.png", "", -6*32, -64*32]];
+}
+RiverCaveNEW_STile.prototype = new RiverBaseTile();
+
+function RiverGrassSEW_NTile() {
+  this.name = "RiverGrassSEW_N";
+  this.layers = [["static.png", "", -7*32, -64*32]];
+}
+RiverGrassSEW_NTile.prototype = new RiverBaseTile();
+
+function RiverDirtSEW_NTile() {
+  this.name = "RiverDirtSEW_N";
+  this.layers = [["static.png", "", -4*32, -67*32]];
+}
+RiverDirtSEW_NTile.prototype = new RiverBaseTile();
+
+function RiverCaveSEW_NTile() {
+  this.name = "RiverCaveSEW_N";
+  this.layers = [["static.png", "", -5*32, -67*32]];
+}
+RiverCaveSEW_NTile.prototype = new RiverBaseTile();
+
+function RiverGrassNSE_STile() {
+  this.name = "RiverGrassNSE_S";
+  this.layers = [["static.png", "", -6*32, -66*32]];
+}
+RiverGrassNSE_STile.prototype = new RiverBaseTile();
+
+function RiverDirtNSE_STile() {
+  this.name = "RiverDirtNSE_S";
+  this.layers = [["static.png", "", -7*32, -66*32]];
+}
+RiverDirtNSE_STile.prototype = new RiverBaseTile();
+
+function RiverCaveNSE_STile() {
+  this.name = "RiverCaveNSE_S";
+  this.layers = [["static.png", "", -8*32, -66*32]];
+}
+RiverCaveNSE_STile.prototype = new RiverBaseTile();
+
+function RiverGrassNEW_NTile() {
+  this.name = "RiverGrassNEW_N";
+  this.layers = [["static.png", "", -6*32, -67*32]];
+}
+RiverGrassNEW_NTile.prototype = new RiverBaseTile();
+
+function RiverDirtNEW_NTile() {
+  this.name = "RiverDirtNEW_N";
+  this.layers = [["static.png", "", -7*32, -67*32]];
+}
+RiverDirtNEW_NTile.prototype = new RiverBaseTile();
+
+function RiverCaveNEW_NTile() {
+  this.name = "RiverCaveNEW_N";
+  this.layers = [["static.png", "", -8*32, -67*32]];
+}
+RiverCaveNEW_NTile.prototype = new RiverBaseTile();
 
 function RedCobblestoneTile() {
   //Graphics Upgraded

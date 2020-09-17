@@ -828,8 +828,443 @@ tileFactory.prototype.makeRiverTile = function() {
   return newTile;
 }
 
-tileFactory.prototype.makeRiverGrassBaseTile = function() {
-  let newTile = new RiverGrassBaseTile();
+tileFactory.prototype.makeRiverBaseTile = function() {
+  let newTile = new RiverBaseTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassSourceNTile = function() {
+  let newTile = new RiverGrassSourceNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassSourceWTile = function() {
+  let newTile = new RiverGrassSourceWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassSourceSTile = function() {
+  let newTile = new RiverGrassSourceSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassSourceETile = function() {
+  let newTile = new RiverGrassSourceETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtSourceNTile = function() {
+  let newTile = new RiverDirtSourceNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtSourceWTile = function() {
+  let newTile = new RiverDirtSourceWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtSourceSTile = function() {
+  let newTile = new RiverDirtSourceSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtSourceETile = function() {
+  let newTile = new RiverDirtSourceETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveSourceNTile = function() {
+  let newTile = new RiverCaveSourceNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveSourceWTile = function() {
+  let newTile = new RiverCaveSourceWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveSourceSTile = function() {
+  let newTile = new RiverCaveSourceSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveSourceETile = function() {
+  let newTile = new RiverCaveSourceETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassNSTile = function() {
+  let newTile = new RiverGrassNSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtNSTile = function() {
+  let newTile = new RiverDirtNSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveNSTile = function() {
+  let newTile = new RiverCaveNSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassEW_NTile = function() {
+  let newTile = new RiverGrassEW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtEW_NTile = function() {
+  let newTile = new RiverDirtEW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveEW_NTile = function() {
+  let newTile = new RiverCaveEW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassEW_STile = function() {
+  let newTile = new RiverGrassEW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtEW_STile = function() {
+  let newTile = new RiverDirtEW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveEW_STile = function() {
+  let newTile = new RiverCaveEW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassSETile = function() {
+  let newTile = new RiverGrassSETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtSETile = function() {
+  let newTile = new RiverDirtSETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveSETile = function() {
+  let newTile = new RiverCaveSETile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassSWTile = function() {
+  let newTile = new RiverGrassSWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtSWTile = function() {
+  let newTile = new RiverDirtSWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveSWTile = function() {
+  let newTile = new RiverCaveSWTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassNE_STile = function() {
+  let newTile = new RiverGrassNE_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtNE_STile = function() {
+  let newTile = new RiverDirtNE_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveNE_STile = function() {
+  let newTile = new RiverCaveNE_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassEW_SNTile = function() {
+  let newTile = new RiverGrassEW_SNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtEW_SNTile = function() {
+  let newTile = new RiverDirtEW_SNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveEW_SNTile = function() {
+  let newTile = new RiverCaveEW_SNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassEW_NSTile = function() {
+  let newTile = new RiverGrassEW_NSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtEW_NSTile = function() {
+  let newTile = new RiverDirtEW_NSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveEW_NSTile = function() {
+  let newTile = new RiverCaveEW_NSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassNW_STile = function() {
+  let newTile = new RiverGrassNW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtNW_STile = function() {
+  let newTile = new RiverDirtNW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveNW_STile = function() {
+  let newTile = new RiverCaveNW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassNE_NTile = function() {
+  let newTile = new RiverGrassNE_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtNE_NTile = function() {
+  let newTile = new RiverDirtNE_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveNE_NTile = function() {
+  let newTile = new RiverCaveNE_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassNW_NTile = function() {
+  let newTile = new RiverGrassNW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtNW_NTile = function() {
+  let newTile = new RiverDirtNW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveNW_NTile = function() {
+  let newTile = new RiverCaveNW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassMouthNTile = function() {
+  let newTile = new RiverGrassMouthNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtMouthNTile = function() {
+  let newTile = new RiverDirtMouthNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveMouthNTile = function() {
+  let newTile = new RiverCaveMouthNTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassMouthSTile = function() {
+  let newTile = new RiverGrassMouthSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtMouthSTile = function() {
+  let newTile = new RiverDirtMouthSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveMouthSTile = function() {
+  let newTile = new RiverCaveMouthSTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassMouthE_NTile = function() {
+  let newTile = new RiverGrassMouthE_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtMouthE_NTile = function() {
+  let newTile = new RiverDirtMouthE_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveMouthE_NTile = function() {
+  let newTile = new RiverCaveMouthE_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassMouthW_NTile = function() {
+  let newTile = new RiverGrassMouthW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtMouthW_NTile = function() {
+  let newTile = new RiverDirtMouthW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveMouthW_NTile = function() {
+  let newTile = new RiverCaveMouthW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassSEW_STile = function() {
+  let newTile = new RiverGrassSEW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtSEW_STile = function() {
+  let newTile = new RiverDirtSEW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveSEW_STile = function() {
+  let newTile = new RiverCaveSEW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassNSE_NTile = function() {
+  let newTile = new RiverGrassNSE_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtNSE_NTile = function() {
+  let newTile = new RiverDirtNSE_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveNSE_NTile = function() {
+  let newTile = new RiverCaveNSE_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassNSW_STile = function() {
+  let newTile = new RiverGrassNSW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtNSW_STile = function() {
+  let newTile = new RiverDirtNSW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveNSW_STile = function() {
+  let newTile = new RiverCaveNSW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassMouthW_STile = function() {
+  let newTile = new RiverGrassMouthW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtMouthW_STile = function() {
+  let newTile = new RiverDirtMouthW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveMouthW_STile = function() {
+  let newTile = new RiverCaveMouthW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassMouthE_STile = function() {
+  let newTile = new RiverGrassMouthE_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtMouthE_STile = function() {
+  let newTile = new RiverDirtMouthE_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveMouthE_STile = function() {
+  let newTile = new RiverCaveMouthE_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassNSW_NTile = function() {
+  let newTile = new RiverGrassNSW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtNSW_NTile = function() {
+  let newTile = new RiverDirtNSW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveNSW_NTile = function() {
+  let newTile = new RiverCaveNSW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassNEW_STile = function() {
+  let newTile = new RiverGrassNEW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtNEW_STile = function() {
+  let newTile = new RiverDirtNEW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveNEW_STile = function() {
+  let newTile = new RiverCaveNEW_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassSEW_NTile = function() {
+  let newTile = new RiverGrassSEW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtSEW_NTile = function() {
+  let newTile = new RiverDirtSEW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveSEW_NTile = function() {
+  let newTile = new RiverCaveSEW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassNSE_STile = function() {
+  let newTile = new RiverGrassNSE_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtNSE_STile = function() {
+  let newTile = new RiverDirtNSE_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveNSE_STile = function() {
+  let newTile = new RiverCaveNSE_STile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverGrassNEW_NTile = function() {
+  let newTile = new RiverGrassNEW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverDirtNEW_NTile = function() {
+  let newTile = new RiverDirtNEW_NTile();
+  return newTile;
+}
+
+tileFactory.prototype.makeRiverCaveNEW_NTile = function() {
+  let newTile = new RiverCaveNEW_NTile();
   return newTile;
 }
 
